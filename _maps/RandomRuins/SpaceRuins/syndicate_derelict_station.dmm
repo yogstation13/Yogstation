@@ -1,10 +1,10 @@
 "af" = (/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
-"ah" = (/obj/machinery/hydroponics/constructable,/turf/open/floor/plasteel/airless/broken,/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"ah" = (/obj/structure/frame/machine,/turf/open/floor/plasteel/airless/broken,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "aj" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 1},/obj/item/stack/rods,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hallway)
 "aw" = (/obj/structure/table,/obj/item/inducer,/obj/item/inducer,/obj/item/inducer,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "aG" = (/obj/structure/grille/broken,/turf/open/floor/plating/broken/three,/area/ruin/space/has_grav/syndiederelict/kitchen)
 "aM" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/obj/machinery/door/airlock/virology,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
-"aP" = (/obj/machinery/chem_dispenser,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
+"aP" = (/obj/structure/frame/machine,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
 "aS" = (/obj/machinery/atmospherics/pipe/simple/orange/visible{dir = 6},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "bp" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 10},/obj/structure/chair/office/dark{dir = 1},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
 "bt" = (/obj/machinery/disposal/bin,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/kitchen)
@@ -18,7 +18,7 @@
 "cM" = (/turf/open/floor/plasteel/airless/burnt,/area/ruin/space/has_grav/syndiederelict/research)
 "cZ" = (/obj/structure/table,/obj/machinery/plantgenes/seedvault,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "dd" = (/obj/effect/decal/cleanable/glass,/turf/open/floor/plasteel/airless/broken/two,/area/ruin/space/has_grav/syndiederelict/medbay)
-"di" = (/obj/machinery/rnd/production/protolathe,/obj/machinery/light/broken{dir = 8},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
+"di" = (/obj/machinery/light/broken{dir = 8},/obj/structure/frame/machine,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
 "dr" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 8},/obj/machinery/advanced_airlock_controller{dir = 1; pixel_y = -24},/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "dx" = (/turf/open/floor/plating/broken,/area/ruin/space/has_grav/syndiederelict/kitchen)
 "dH" = (/obj/item/twohanded/required/kirbyplants/random,/obj/machinery/light/broken{dir = 8},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
@@ -31,11 +31,12 @@
 "fw" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 4},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "fT" = (/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{dir = 1},/obj/structure/cable/yellow{icon_state = "1-8"},/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "fW" = (/obj/structure/cable/yellow,/obj/machinery/power/apc/syndicate{name = "Syndicate Derelict Kitchen"; pixel_y = -24; start_charge = 0},/obj/machinery/light/broken,/turf/open/floor/plasteel/airless/broken,/area/ruin/space/has_grav/syndiederelict/kitchen)
+"fX" = (/mob/living/simple_animal/hostile/nanotrasen/ranged{name = "Nanotrasen Assault Unit"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "gl" = (/obj/machinery/airalarm/syndicate{dir = 8; pixel_x = 24},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hydroponics)
-"gr" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "1-8"},/obj/structure/cable{icon_state = "2-8"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
+"gr" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "1-8"},/obj/structure/cable{icon_state = "0-2"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
 "gx" = (/obj/item/stack/sheet/mineral/plastitanium,/obj/item/stack/sheet/mineral/plastitanium,/obj/item/stack/sheet/mineral/plastitanium,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/research)
 "gP" = (/obj/machinery/hydroponics/constructable,/obj/machinery/light,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hydroponics)
-"ha" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "1-8"},/obj/structure/cable{icon_state = "4-8"},/obj/structure/cable{icon_state = "2-8"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
+"ha" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "1-4"},/obj/structure/cable{icon_state = "4-8"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
 "hp" = (/turf/closed/wall/mineral/plastitanium/nodiagonal,/area/ruin/space/has_grav/syndiederelict/engineering)
 "hx" = (/obj/machinery/rnd/destructive_analyzer,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
 "hy" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
@@ -43,6 +44,7 @@
 "hC" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 6},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 6},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
 "ic" = (/turf/closed/wall/mineral/plastitanium/nodiagonal,/area/ruin/space/has_grav/syndiederelict/medbay)
 "ip" = (/obj/item/stack/rods,/obj/structure/lattice,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/hallway)
+"iK" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "1-2"},/obj/structure/cable{icon_state = "1-8"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
 "iQ" = (/obj/machinery/disposal/bin,/obj/structure/extinguisher_cabinet{pixel_x = 27},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "jv" = (/obj/structure/lattice,/obj/item/stack/rods,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/kitchen)
 "jH" = (/obj/machinery/chem_master,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
@@ -60,7 +62,7 @@
 "lf" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/obj/machinery/light/small/broken{dir = 8},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
 "lk" = (/obj/machinery/atmospherics/components/binary/pump/on/layer4{name = "Scrubbers"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "lp" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 9},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 9},/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
-"lA" = (/obj/structure/table/glass,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
+"lA" = (/obj/structure/table/glass,/obj/structure/windoor_assembly{dir = 8},/obj/item/storage/firstaid,/obj/item/storage/firstaid/brute,/obj/item/storage/firstaid/fire,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
 "lE" = (/obj/effect/spawner/structure/window/plastitanium,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
 "lF" = (/turf/open/floor/plating/broken,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "lO" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
@@ -82,7 +84,7 @@
 "oe" = (/obj/structure/chair{dir = 8},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
 "oh" = (/turf/closed/wall/mineral/plastitanium,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "oz" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{dir = 4},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
-"oE" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "1-4"},/obj/structure/cable{icon_state = "2-4"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
+"oE" = (/obj/structure/lattice/catwalk,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
 "oG" = (/obj/structure/window/plasma/reinforced{dir = 4},/turf/open/floor/engine/n2,/area/ruin/space/has_grav/syndiederelict/engineering)
 "oH" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
 "oP" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "4-8"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
@@ -104,6 +106,7 @@
 "rC" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 9},/obj/structure/table,/obj/item/radio/intercom{broadcasting = 0; dir = 8; freerange = 1; listening = 1; name = "Syndicate Listening Channel"},/turf/open/floor/plasteel/airless/broken/two,/area/ruin/space/has_grav/syndiederelict/research)
 "rP" = (/obj/structure/cable,/obj/effect/spawner/structure/solars/solar_96,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/solars)
 "rU" = (/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
+"rZ" = (/mob/living/simple_animal/hostile/nanotrasen/ranged{name = "Nanotrasen Assault Unit"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
 "sm" = (/obj/structure/lattice,/obj/item/stack/sheet/metal,/obj/item/stack/sheet/metal,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/research)
 "sr" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 9},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "sv" = (/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{dir = 4},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/obj/structure/table,/obj/item/radio/intercom{broadcasting = 0; dir = 8; freerange = 1; listening = 1; name = "Syndicate Listening Channel"},/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
@@ -120,24 +123,25 @@
 "uG" = (/obj/effect/decal/cleanable/glass,/obj/item/shard,/turf/open/floor/plasteel/airless/broken,/area/ruin/space/has_grav/syndiederelict/research)
 "uQ" = (/obj/structure/lattice,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "uS" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
-"ve" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 1},/obj/machinery/suit_storage_unit/syndicate,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
+"ve" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 1},/obj/machinery/suit_storage_unit,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "vk" = (/obj/structure/cable/yellow{icon_state = "0-4"},/obj/machinery/power/apc/syndicate{name = "Syndicate Derelict Engineering"; pixel_x = -24; dir = 8; start_charge = 0},/obj/effect/mob_spawn/human/syndicate_derelict_engineer{dir = 4},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "vv" = (/obj/machinery/vending/engivend,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "vw" = (/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "vx" = (/obj/structure/lattice,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/hallway)
 "vF" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 8},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/obj/structure/cable/yellow{icon_state = "4-8"},/obj/effect/decal/cleanable/glass,/turf/open/floor/plasteel/airless/burnt,/area/ruin/space/has_grav/syndiederelict/hallway)
 "vO" = (/obj/structure/lattice,/obj/item/stack/sheet/metal,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/research)
+"vU" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 8},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/obj/structure/cable/yellow{icon_state = "4-8"},/mob/living/simple_animal/hostile/nanotrasen{name = "Nanotrasen Assault Unit"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hallway)
 "vV" = (/obj/structure/lattice,/obj/item/stack/sheet/mineral/plastitanium,/obj/item/stack/sheet/mineral/plastitanium,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/medbay)
 "wv" = (/obj/machinery/atmospherics/pipe/simple/orange/visible{dir = 4},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "wy" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
-"wB" = (/obj/machinery/chem_heater,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
+"wB" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "1-4"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
 "wG" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/obj/structure/cable/yellow{icon_state = "1-4"},/obj/effect/decal/cleanable/glass,/turf/open/floor/plasteel/airless/burnt,/area/ruin/space/has_grav/syndiederelict/medbay)
 "wH" = (/obj/item/stack/rods,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
-"wW" = (/obj/machinery/stasis{dir = 4},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
-"wY" = (/obj/machinery/mech_bay_recharge_port,/obj/machinery/light/broken{dir = 8},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
+"wW" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/mob/living/simple_animal/hostile/nanotrasen{name = "Nanotrasen Assault Unit"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
+"wY" = (/obj/machinery/light/broken{dir = 8},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
 "xd" = (/obj/effect/spawner/structure/window/plastitanium,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "xm" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 9},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 9},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
-"xw" = (/obj/machinery/hydroponics/constructable,/turf/open/floor/plating/broken,/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"xw" = (/obj/structure/frame/machine,/turf/open/floor/plating/broken,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "xQ" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 8},/obj/machinery/light/small{dir = 1},/obj/structure/bed,/obj/item/bedsheet/medical/virology,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
 "xR" = (/obj/machinery/computer/operating{dir = 1},/obj/machinery/light,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
 "xW" = (/obj/item/stack/sheet/plastitaniumglass,/obj/item/stack/sheet/plastitaniumglass,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/kitchen)
@@ -151,6 +155,7 @@
 "zu" = (/obj/structure/lattice,/obj/item/stack/sheet/mineral/plastitanium,/obj/item/stack/sheet/mineral/plastitanium,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/research)
 "zJ" = (/obj/machinery/disposal/bin,/obj/machinery/light{dir = 1},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
 "zM" = (/obj/item/stack/rods,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/research)
+"Ak" = (/mob/living/simple_animal/hostile/nanotrasen/ranged{name = "Nanotrasen Assault Unit"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hallway)
 "Aq" = (/turf/closed/wall/mineral/plastitanium,/area/ruin/space/has_grav/syndiederelict/kitchen)
 "As" = (/obj/structure/lattice,/obj/item/stack/rods,/obj/item/stack/cable_coil/cut/red,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "AD" = (/obj/structure/lattice,/obj/item/stack/rods,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/research)
@@ -158,14 +163,14 @@
 "AF" = (/obj/effect/decal/cleanable/glass,/obj/item/stack/rods,/turf/open/floor/plasteel/airless/burnt,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "AO" = (/obj/structure/table,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
 "AR" = (/obj/structure/lattice,/obj/item/stack/sheet/mineral/plastitanium,/obj/item/stack/sheet/mineral/plastitanium,/obj/item/stack/sheet/mineral/plastitanium,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/research)
-"Bq" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 1},/obj/structure/fermenting_barrel,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"Bq" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 1},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "Br" = (/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
 "Bv" = (/obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{dir = 1},/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "BG" = (/obj/structure/lattice,/obj/item/stack/sheet/mineral/plastitanium,/obj/item/stack/sheet/mineral/plastitanium,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/kitchen)
 "BJ" = (/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/research)
-"BS" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 4},/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{dir = 1},/obj/machinery/suit_storage_unit/syndicate,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
+"BS" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 4},/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{dir = 1},/obj/machinery/suit_storage_unit,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "Ci" = (/obj/effect/decal/cleanable/glass,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hallway)
-"Cz" = (/obj/machinery/suit_storage_unit/syndicate,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
+"Cz" = (/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/solar_assembly,/obj/item/electronics/tracker,/obj/item/stack/cable_coil/red,/obj/item/stack/cable_coil/red,/obj/item/holosign_creator/atmos,/obj/structure/closet/crate/engineering,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "CG" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "CR" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 4},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
 "CT" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/obj/machinery/door/window/brigdoor{dir = 1},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
@@ -188,6 +193,7 @@
 "Fo" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "Fq" = (/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/kitchen)
 "FA" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 1},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
+"FK" = (/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/solars)
 "FS" = (/obj/item/shard,/turf/open/floor/plating/broken/three,/area/ruin/space/has_grav/syndiederelict/kitchen)
 "Gc" = (/obj/structure/table,/obj/item/stack/sheet/metal/fifty,/obj/item/stack/sheet/metal/fifty,/obj/item/stack/sheet/metal/fifty,/obj/item/stack/sheet/glass/fifty{pixel_x = 3; pixel_y = 3},/obj/item/stack/sheet/glass/fifty{pixel_x = 3; pixel_y = 3},/obj/item/stack/rods/fifty,/obj/item/stack/rods/fifty,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "Gd" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 4},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/obj/machinery/door/airlock/glass,/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/hydroponics)
@@ -207,15 +213,16 @@
 "Io" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 4},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/obj/structure/reagent_dispensers/watertank,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "Iv" = (/obj/machinery/airalarm/syndicate{dir = 8; pixel_x = 24},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
 "Iz" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 8},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
-"IE" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "1-2"},/obj/structure/cable{icon_state = "1-4"},/obj/structure/cable{icon_state = "1-8"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
+"IE" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "1-2"},/obj/structure/cable{icon_state = "1-4"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
 "IT" = (/obj/structure/window/plasma/reinforced{dir = 8},/obj/structure/window/plasma/reinforced{dir = 1},/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{dir = 1; name = "Oxygen"},/turf/open/floor/engine/o2,/area/ruin/space/has_grav/syndiederelict/engineering)
 "IY" = (/obj/effect/spawner/structure/window/plastitanium,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/hallway)
-"Jo" = (/obj/machinery/rnd/production/circuit_imprinter,/turf/open/floor/plasteel/airless/broken,/area/ruin/space/has_grav/syndiederelict/research)
+"Jd" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "2-4"},/obj/structure/cable,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
+"Jo" = (/obj/structure/frame/machine,/turf/open/floor/plasteel/airless/broken,/area/ruin/space/has_grav/syndiederelict/research)
 "Js" = (/obj/structure/cable{icon_state = "0-2"},/obj/machinery/power/terminal{dir = 1},/obj/structure/tank_dispenser/plasma,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "JC" = (/turf/open/floor/engine/n2,/area/ruin/space/has_grav/syndiederelict/engineering)
 "JE" = (/obj/item/stack/rods,/turf/open/floor/plasteel/airless/broken/three,/area/ruin/space/has_grav/syndiederelict/medbay)
 "JN" = (/obj/machinery/smartfridge/chemistry/virology/preloaded,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
-"JQ" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 1},/obj/machinery/smartfridge/drying_rack,/turf/open/floor/plating/broken,/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"JQ" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 1},/turf/open/floor/plating/broken,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "JV" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "Ka" = (/obj/structure/lattice,/obj/item/shard,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/medbay)
 "Kc" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/obj/structure/chair/office/dark{dir = 4},/obj/structure/cable/yellow{icon_state = "1-8"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
@@ -235,13 +242,13 @@
 "Nh" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 1},/obj/item/shard,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/medbay)
 "No" = (/obj/structure/reagent_dispensers/virusfood{pixel_y = -30},/obj/structure/closet/l3closet/virology,/obj/structure/extinguisher_cabinet{pixel_x = -27},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
 "NC" = (/obj/structure/reagent_dispensers/fueltank,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
-"NM" = (/obj/machinery/biogenerator,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"NM" = (/obj/structure/lattice/catwalk,/obj/structure/cable,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
 "Ol" = (/obj/structure/window/plasma/reinforced{dir = 1},/turf/open/floor/engine/o2,/area/ruin/space/has_grav/syndiederelict/engineering)
 "Ov" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/obj/item/stack/rods,/turf/open/floor/plasteel/airless/broken,/area/ruin/space/has_grav/syndiederelict/medbay)
 "OB" = (/obj/structure/table/glass,/turf/open/floor/plasteel/airless/broken,/area/ruin/space/has_grav/syndiederelict/medbay)
-"OE" = (/obj/structure/cable,/obj/machinery/power/tracker,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/solars)
+"OE" = (/obj/structure/cable,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/solars)
 "OH" = (/obj/structure/lattice,/obj/item/stack/cable_coil/cut/red,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/kitchen)
-"OY" = (/obj/machinery/light{dir = 8},/obj/effect/mob_spawn/human/syndicate_derelict_engineer{dir = 4},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
+"OY" = (/obj/machinery/light{dir = 8},/obj/item/circuitboard/machine/ore_silo,/obj/item/circuitboard/machine/ore_redemption,/obj/item/stock_parts/matter_bin,/obj/item/stock_parts/matter_bin{pixel_x = 5},/obj/item/stock_parts/matter_bin{pixel_x = -1},/obj/item/stock_parts/matter_bin{pixel_x = -7},/obj/item/stock_parts/manipulator{pixel_y = 11},/obj/item/stock_parts/manipulator{pixel_x = -5; pixel_y = 11},/obj/item/stock_parts/micro_laser{pixel_x = 1; pixel_y = 5},/obj/item/assembly/igniter,/obj/item/stack/sheet/glass,/obj/item/stack/sheet/glass,/obj/structure/closet/crate,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "Pi" = (/obj/structure/lattice,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/kitchen)
 "Pj" = (/obj/structure/lattice,/obj/item/stack/cable_coil/cut/red,/obj/item/stack/cable_coil/cut/red,/obj/item/stack/cable_coil/cut/red,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/hallway)
 "PE" = (/obj/machinery/light/broken{dir = 8},/obj/machinery/portable_atmospherics/scrubber,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
@@ -257,13 +264,14 @@
 "Sr" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 4},/obj/structure/table,/obj/item/twohanded/rcl/pre_loaded,/obj/item/twohanded/rcl/pre_loaded,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
 "SO" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 5},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 5},/obj/machinery/power/apc/syndicate{name = "Syndicate Derelict Virology"; pixel_x = -24; dir = 8; start_charge = 0},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
 "SZ" = (/obj/structure/cable{icon_state = "0-2"},/obj/effect/spawner/structure/solars/solar_96,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/solars)
+"Tc" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "0-2"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
 "Tm" = (/obj/item/shard,/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hallway)
 "Tq" = (/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hallway)
 "Tu" = (/obj/item/stack/sheet/plastitaniumglass,/obj/item/stack/sheet/plastitaniumglass,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/research)
 "Tw" = (/turf/open/floor/plasteel/airless/burnt,/area/ruin/space/has_grav/syndiederelict/medbay)
 "TA" = (/obj/item/stack/rods,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/hallway)
 "TD" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 8},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/engineering)
-"TO" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "1-4"},/obj/structure/cable{icon_state = "4-8"},/obj/structure/cable{icon_state = "2-4"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
+"TO" = (/obj/structure/lattice/catwalk,/obj/structure/cable{icon_state = "0-8"},/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/solars)
 "TT" = (/turf/open/floor/plasteel/airless/broken,/area/ruin/space/has_grav/syndiederelict/medbay)
 "Uk" = (/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "UH" = (/obj/item/stack/rods,/turf/template_noop,/area/template_noop)
@@ -284,8 +292,11 @@
 "Xo" = (/obj/structure/lattice,/obj/item/shard,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "Xs" = (/obj/effect/decal/cleanable/glass,/turf/open/floor/plasteel/airless/broken/three,/area/ruin/space/has_grav/syndiederelict/research)
 "XA" = (/obj/machinery/airalarm/syndicate{dir = 8; pixel_x = 24},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
-"XG" = (/obj/machinery/seed_extractor,/obj/machinery/light/broken{dir = 1},/turf/open/floor/plasteel/airless/broken/three,/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"XC" = (/mob/living/simple_animal/hostile/nanotrasen{name = "Nanotrasen Assault Unit"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/hydroponics)
+"XF" = (/mob/living/simple_animal/hostile/nanotrasen{name = "Nanotrasen Assault Unit"},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
+"XG" = (/obj/machinery/light/broken{dir = 1},/obj/structure/frame/machine,/turf/open/floor/plasteel/airless/broken/three,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "XK" = (/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/research)
+"XQ" = (/obj/structure/frame/machine,/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "XS" = (/obj/structure/grille/broken,/obj/item/stack/rods,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/research)
 "XY" = (/turf/open/space/basic,/area/ruin/space/has_grav/syndiederelict/medbay)
 "Ya" = (/obj/structure/closet/wardrobe/virology_white,/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 8},/turf/open/floor/plasteel/airless,/area/ruin/space/has_grav/syndiederelict/virology)
@@ -302,30 +313,30 @@ ququququququququququququququququququququququququququququququququququququququququ
 ququququVXVXVXVXVXququVXVXVXququVXVXVXVXVXVXququVXVXVXVXVXVXququququququququququ
 ququubububublWububububublWubububublWubublWububububublWubububububququququququququ
 ququubFqFqFqFqPiqDFqBGuQohohcdcdcdcdohohohnAxdxdnAnAnAxdxdnAnAubququququququququ
-ququubFqqDPitPPisQPiPiuQNMXGdXdXdXdXkefeohafWVrUrUEBrUrUrUnsnAubququququququququ
-ququubPiPisQPiPiFqxWFqAsUklFHFfwfwnWfwfwGdeOfTIzFoFoFoQPafJsxdubububububququququ
-quVXubnKPiPixWjvFqFSDwHOuQUkJQcZhzBqvwiQohOYCGafCznANCafafjWnAnAxdnAxdubququququ
-quVXubAqoaPiFqPidxKoMgohuQKMlFAFkJvwvwglohvkcAYlBSzlIoyCYljKmDdrtlukWxoPoPERququ
+ququubFqqDPitPPisQPiPiuQvwXGdXdXdXdXkefeohafWVrUrUEBrUrUrUnsnAubququququququququ
+ququubPiPisQPiPiFqxWFqAsXQlFHFfwfwnWfwfwGdeOfTIzFoFoFoQPafJsxdubububububququququ
+quVXubnKPiPixWjvFqFSDwHOuQUkJQcZhzBqXCiQohOYCGafCznANCafafjWnAnAxdnAxdubququququ
+quVXubAqoaPiFqPidxKoMgohuQKMlFAFkJvwfXglohvkcAYlBSzlIoyCYljKmDdrtlukWxoPTOERququ
 quVXlWAqEEFSGMOHDOfWbtohxwXoUkahdXdXgPdXohrvnbafvenAawhyafHenAnAxdnAxdubquyaququ
 quVXubAqAqqIPiElaGAqAqohohohuQuQohohohohohGjnbafGcnASrozafWtxdubububububquyaququ
-quVXubIYCiQDDJvxGlHWHWWGTqvFbJDJipDJjPsHkATDlpmyFoZtFosrafWHxdubVXququququyaququ
-ququubIYLkvxDJTAyBMPTmkHajPXDeTmqlPjvxPXIYafaSwvnjqXcmXfafvvnAlWVXququququyaququ
-ququubQUQUEVqAnSEsfgQUQUSoSoSoRiXSSopnSoSoPEKLlkpppShpnAxdxdnAubVXququququyaququ
-quVXubQUdHwGcoXYKaaPwBjHSopucMhxXmXKlOniSouilcJVITOlnAubublWububquququququyaququ
-quVXlWlEBrWTqAtfpqEDbpIvSodikhbvcMXKlOQcSoJCoGJVoXDpxdubVXVXVXququququququyaququ
+quVXubIYCiQDDJvxGlHWvUWGTqvFbJDJipDJjPsHkATDlpmyFoZtFosrafWHxdubVXququququyaququ
+ququubIYLkvxDJTAyBMPTmkHajAkDeTmqlPjvxPXIYafaSwvnjqXcmXfafvvnAlWVXququququNMququ
+ququubQUQUEVqAnSEsfgQUQUSoSoSoRiXSSopnSoSoPEKLlkpppShpnAxdxdnAubVXququququTcququ
+quVXubQUdHwGcoXYKaaPaPjHSopucMhxXmXKlOniSouilcJVITOlnAubublWububquququququTcququ
+quVXlWlEBrWTqAtfpqEDbpIvSodikhbvcMXFlOQcSoJCoGJVoXDpxdubVXVXVXququququququyaququ
 quVXublETTuSvVqAqATwHMsLSoJoXsAOZOCRsvAOSoqHoGJVoXPHnAubququququeEoPoPoPoPMzququ
-quVXublEhCxmddqAqABrOvEHHglYlYnrAERGKcKYSonAxdVBxdnAnAubququququyaquququququququ
-quVXlWQUaMicEnJETwBrNhOBHLBJzulYADsmrCGASoububBvublWububSZSZSZubyaubSZSZSZlWVXqu
-quVXubQUlfQUEnBrxRwWBrlASoLFBJlYBJlYlYlYHLubVXubVXVXVXuboETOTOoPIEoPhahagrubVXqu
-ququubQUaMQUQUQUQUQUQUQUSoXsVvARvOlYzMTuBJubVXquququVXubrPrPrPubyaubrPrPrPlWVXqu
-ququubYfwyzJWmVuxQWmVuxQSowYwHkMuGARBJBJlYlWVXquququVXubububububyaububububublWqu
-quVXubECwyoeWmyYLBWmHRYaSoSoSoMwHLBJTugxlYubVXquququVXlWSZSZSZubyaubSZSZSZlWVXqu
-quVXlWECoHoeWmZlWmWmCTWmYfububublWububublWubVXquququlWuboETOTOoPIEoPhahagrubVXqu
-quVXubYfSOkzcHYXkzfumvXAYflWquVXVXVXVXUHlWlWlWquququVXlWrPrPrPubyaubrPrPrPlWVXqu
+quVXublEhCxmddqAqArZOvEHHglYlYnrAERGKcKYSonAxdVBxdnAnAubququququNMquququququququ
+quVXlWQUaMicEnJETwBrNhOBHLBJzulYADsmrCGASoububBvublWububFKSZSZuboEubFKFKSZlWVXqu
+quVXubQUlfQUEnBrxRBrBrlASoLFBJlYBJlYlYlYHLubVXubVXVXVXuboEhaeEoEIETOoPMzMzubVXqu
+ququubQUaMQUQUQUQUQUQUQUSoXsVvARvOlYzMTuBJubVXquququVXubFKrPFKubyaubrPrPFKlWVXqu
+ququubYfwyzJWmVuxQWmVuxQSowYwHkMuGARBJBJlYlWVXquququVXubububububoEububububublWqu
+quVXubECwWoeWmyYLBWmHRYaSoSoSoMwHLBJTugxlYubVXquququVXlWSZFKFKubyaubSZFKFKlWVXqu
+quVXlWECoHoeWmZlWmWmCTWmYfububublWububublWubVXquququlWubwBJdTOoEMzoPERoPgrubVXqu
+quVXubYfSOkzcHYXkzfumvXAYflWquVXVXVXVXUHlWlWlWquququVXlWrPFKrPubTcubFKrPFKlWVXqu
 quVXubYfULuBNaDPZYFAGhULYfubquququququququUHququququVXubububububyaubububububVXqu
-ququububYfNopJzsJNLxyTYflWVXququququququququququququVXlWSZSZSZubyaubSZSZSZlWlWqu
-quququubYfYfECECECECYfYfubVXququququququququququququlWuboETOTOoPIEoPhahagrubVXqu
-quququubublWubububublWububVXququququququququququququVXlWrPrPrPubOEubrPrPrPlWVXqu
+ququububYfNopJzsJNLxyTYflWVXququququququququququququVXlWFKSZFKuboEubFKSZSZlWlWqu
+quququubYfYfECECECECYfYfubVXququququququququququququlWubJdhaeEoPiKoPTOERMzubVXqu
+quququubublWubububublWububVXququququququququququququVXlWrPFKFKubOEubFKFKrPlWVXqu
 ququququVXVXVXquVXVXVXVXquququququququququququququququublWublWububublWublWubququ
 quququququququququququququququququququququququququququVXVXVXlWVXVXVXVXVXlWVXququ
 "}
