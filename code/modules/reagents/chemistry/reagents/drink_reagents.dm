@@ -788,7 +788,7 @@
 	. = TRUE
 
 /datum/reagent/consumable/chocolate/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST
+	if(method == INGEST
 		if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 			to_chat(M, span_notice("This is like Milk, but better!?"))
 	return ..()
@@ -811,7 +811,7 @@
 	. = TRUE
 
 /datum/reagent/consumable/vanillapudding/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST
+	if(method == INGEST
 		if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 			to_chat(M, span_notice("This is like Milk, but better!?"))
 	return ..()
@@ -835,7 +835,7 @@
 	..()
 
 /datum/reagent/consumable/cherryshake/reaction_mob(mob/living/C, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		if(isjellyperson(C))
 			to_chat(C, span_notice("Just like us, just like jelly!"))
 	return ..()
@@ -858,7 +858,7 @@
 	..()
 
 /datum/reagent/consumable/bluecherryshake/reaction_mob(mob/living/C, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		if(isjellyperson(C))
 			to_chat(C, span_notice("Just like us, just like jelly!"))
 	return ..()
@@ -1092,7 +1092,7 @@
 	..()
 
 /datum/reagent/consumable/mushroom_tea/reaction_mob(mob/living/M, method=TOUCH)
-	if(method = INGEST)
+	if(method == INGEST)
 		if(islizard(M))
 			to_chat(M, span_notice("The most important thing to a Lizard is their brains.... Probably"))
 	return ..()
