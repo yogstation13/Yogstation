@@ -18,6 +18,14 @@
 	no_pin_required = TRUE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //so ashwalkers can use it
 
+	// No vertical grip on a bow
+	available_attachments = list(
+		/obj/item/attachment/scope/simple,
+		/obj/item/attachment/scope/holo,
+		/obj/item/attachment/scope/infrared,
+		/obj/item/attachment/laser_sight,
+	)
+
 	// Drawing vars //
 	var/drawing = FALSE
 	var/drop_release_draw = TRUE
@@ -26,7 +34,7 @@
 	var/draw_slowdown = 0.75
 	var/draw_sound = 'sound/weapons/sound_weapons_bowdraw.ogg'
 	var/mutable_appearance/arrow_overlay
-	/// If the bow can be equipped 
+	/// If the bow can be equipped when an arrow is loaded
 	var/equip_when_loaded = FALSE
 	/// If the last loaded arrow was a toy arrow or not, used to see if foam darts / arrows should do stamina damage
 	var/nerfed = FALSE
@@ -36,6 +44,7 @@
 
 /obj/item/gun/ballistic/bow/chamber_round()
 	chambered = magazine.get_round(1)
+	update_slowdown()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/dropped()
@@ -63,6 +72,7 @@
 	if(drop_release_draw)
 		release_draw()
 */
+
 /obj/item/gun/ballistic/bow/process_chamber()
 	chambered = null
 	magazine.get_round(FALSE)
@@ -72,23 +82,23 @@
 /obj/item/gun/ballistic/bow/attack_self(mob/living/user)
 	if(drawing)
 		to_chat(user, span_notice("You are already drawing the bowstring!"))
-		return
+		return TRUE
 	if(chambered)
 		release_draw()
 		to_chat(user, span_notice("You gently release the bowstring."))
+		return TRUE
 	else if(get_ammo())
 		drawing = TRUE
 		update_slowdown()
 		if (!do_after(user, draw_time, src, TRUE, stayStill = !move_drawing))
 			drawing = FALSE
 			update_slowdown()
-			return
+			return TRUE
 		drawing = FALSE
 		to_chat(user, span_notice("You draw back the bowstring."))
 		playsound(src, draw_sound, 75, 0, falloff = 3) //gets way too high pitched if the freq varies
 		chamber_round()
-	update_slowdown()
-	update_icon()
+		return TRUE
 
 /obj/item/gun/ballistic/bow/AltClick(mob/user)
 	if(chambered || get_ammo())
@@ -107,17 +117,25 @@
 	if(!chambered && !get_ammo())
 		return
 	var/obj/item/ammo_casing/AC = magazine.get_round(FALSE)
-	if(user)
+	chambered = null
+	if(CHECK_BITFIELD(AC.item_flags, DROPDEL))
+		// Shouldn't be put into someone's hand
+		qdel(AC)
+		if(user)
+			to_chat(user, span_notice("You disperse [AC]."))
+	else if(user)
 		user.put_in_hands(AC)
 		to_chat(user, span_notice("You remove [AC]."))
-	chambered = null
 	update_slowdown()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/attackby(obj/item/I, mob/user, params)
-	if (magazine.attackby(I, user, params, 1))
-		to_chat(user, span_notice("You notch [I]."))
-		nerfed = istype(I, /obj/item/ammo_casing/reusable/arrow/toy)
+	if(istype(I, /obj/item/ammo_casing))
+		if(!user.is_holding(src))
+			to_chat(user, span_notice("You need to hold [src] to load \the [I]."))
+		else if (magazine.attackby(I, user, params, 1))
+			to_chat(user, span_notice("You notch [I]."))
+			nerfed = istype(I, /obj/item/ammo_casing/reusable/arrow/toy)
 	update_slowdown()
 	update_icon()
 
@@ -197,7 +215,7 @@
 	mag_type = /obj/item/ammo_box/magazine/arrow
 	internal_magazine = FALSE
 
-/obj/item/gun/ballistic/bow/attackby(obj/item/I, mob/user, params)
+/obj/item/gun/ballistic/bow/crossbow/magfed/attackby(obj/item/I, mob/user, params)
 	if (!internal_magazine && istype(I, /obj/item/ammo_box/magazine))
 		var/obj/item/ammo_box/magazine/AM = I
 		if (!magazine)
@@ -424,7 +442,7 @@
 	var/can_fold = FALSE
 	var/folded_w_class = WEIGHT_CLASS_NORMAL
 	var/folded = FALSE
-	var/stored_ammo ///what was stored in the magazine before being folded?
+	//var/stored_ammo ///what was stored in the magazine before being folded?
 	var/fold_sound = 'sound/weapons/batonextend.ogg'
 
 /obj/item/gun/ballistic/bow/energy/Initialize()
@@ -435,8 +453,9 @@
 /obj/item/gun/ballistic/bow/energy/examine(mob/user)
 	. = ..()
 	var/obj/item/ammo_box/magazine/internal/bow/energy/M = magazine
-	if(M.selectable_types.len > 1)
-		. += "You can select firing modes by using ALT + CLICK."
+	if(magazine.ammo_type)
+		var/obj/item/arrow_type = magazine.ammo_type
+		. += "It is current firing mode is \"[initial(arrow_type.name)]\"[M.selectable_types.len > 1 ? ", you can select firing modes by using ALT + CLICK" : ""]."
 	if(can_fold)
 		. += "[folded ? "It is currently folded, you can unfold it" : "It can be folded into a compact form"] by using CTRL + CLICK."
 	if(TIMER_COOLDOWN_CHECK(src, "arrow_recharge"))
@@ -477,7 +496,8 @@
 /obj/item/gun/ballistic/bow/energy/attack_self(mob/living/user)
 	if(folded)
 		toggle_folded(FALSE, user)
-	..()
+	if(..())
+		return TRUE
 	/*
 	if(chambered)
 		remove_arrow()
@@ -495,25 +515,16 @@
 	*/
 	if(!chambered && !get_ammo() && (!recharge_time || !TIMER_COOLDOWN_CHECK(src, "arrow_recharge")))
 		to_chat(user, span_notice("You fabricate an arrow."))
-		recharge_bolt()
+		recharge_arrow()
 	update_slowdown()
 	update_icon()
 
-/obj/item/gun/ballistic/bow/energy/remove_arrow(mob/user)
-	if(!chambered && !get_ammo())
-		return
-	var/obj/item/ammo_casing/AC = magazine.get_round(FALSE)
-	chambered = null
-	to_chat(user, span_notice("You disperse [AC]."))
-	qdel(AC)
-	update_slowdown()
-	update_icon()
-
-/obj/item/gun/ballistic/bow/energy/proc/recharge_bolt()
+/obj/item/gun/ballistic/bow/energy/proc/recharge_arrow()
 	if(folded || magazine.get_round(TRUE))
 		return
 	var/ammo_type = magazine.ammo_type
 	magazine.give_round(new ammo_type())
+	update_slowdown()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/energy/attackby(obj/item/I, mob/user, params)
@@ -525,7 +536,7 @@
 	if(current_round)
 		QDEL_NULL(current_round)
 	if(!TIMER_COOLDOWN_CHECK(src, "arrow_recharge"))
-		recharge_bolt()
+		recharge_arrow()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/energy/proc/select_projectile(mob/living/user)
@@ -585,13 +596,13 @@
 	if(folded)
 		w_class = folded_w_class
 		chambered = null
-		stored_ammo = magazine.ammo_list()
-		magazine.stored_ammo = null
+		//stored_ammo = magazine.ammo_list()
+		//magazine.stored_ammo = null
 		if(user)
 			to_chat(user, span_notice("You fold [src]."))
 	else
 		w_class = initial(w_class)
-		magazine.stored_ammo = stored_ammo
+		//magazine.stored_ammo = stored_ammo
 		if(user)
 			to_chat(user, span_notice("You extend [src], allowing it to be fired."))
 	update_icon()

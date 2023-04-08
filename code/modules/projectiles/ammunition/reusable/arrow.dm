@@ -5,6 +5,8 @@
 	caliber = "arrow"
 	icon_state = "arrow"
 	item_state = "arrow"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	base_rotation = 45
 	force = 5
 	throwforce = 5 //If, if you want to throw the arrow since you don't have a bow?
@@ -330,6 +332,13 @@
 	item_state = "arrow_toy_shock"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/shock
 
+/obj/item/ammo_casing/reusable/arrow/toy/magic
+	name = "toy magic arrow"
+	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble a magic arrow used by wizards."
+	icon_state = "arrow_magic"
+	item_state = "arrow_magic"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/magic
+
 
 // Utility //
 
@@ -491,6 +500,7 @@
 /obj/item/ammo_casing/reusable/arrow/singulo/shard6
 	shard = /obj/item/singularity_shard/stage6
 
+
 // Hardlight //
 
 /obj/item/ammo_casing/reusable/arrow/energy
@@ -529,7 +539,7 @@
 		return
 	ticks++
 	playsound(embedde, tick_sound , 10, 0)
-	embedde.apply_damage(tick_damage, BB.damage_type, part.body_zone)
+	embedde.apply_damage(tick_damage, tick_damage_type, part.body_zone)
 
 /obj/item/ammo_casing/reusable/arrow/energy/disabler
 	name = "disabler bolt"

@@ -56,6 +56,7 @@
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
 		var/obj/item/ammo_casing/reusable/arrow/arrow = ammo_type
 		if(!(istype(arrow) && arrow.explosive) && prob(embed_chance * clamp((100 - (embede.getarmor(part, flag) - armour_penetration)), 0, 100)) && embede.embed_object(ammo_type, part, TRUE))
+			arrow.on_land(src)
 			dropped = TRUE
 	return ..()
 
@@ -178,8 +179,12 @@
 	name = "toy shock bolt"
 	icon_state = "arrow_shock"
 
+/obj/item/projectile/bullet/reusable/arrow/toy/magic
+	name = "toy shock bolt"
+	icon_state = "arrow_magic"
 
-// Joke? //
+
+// Joke //
 
 /obj/item/projectile/bullet/reusable/arrow/supermatter
 	name = "supermatter arrow"
@@ -267,6 +272,7 @@
 	paralyze = 10 SECONDS
 	stutter = 5
 	jitter = 20
+	damage_type = STAMINA
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/shock
 
 /obj/item/projectile/energy/arrow/shock/on_hit(atom/target, blocked = FALSE)

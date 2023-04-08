@@ -893,9 +893,15 @@
 					to_chat(carbon, span_notice("You feel [arrow] tugging on you."))
 					return
 				to_chat(carbon, span_userdanger("[arrow] suddenly rips out of you!"))
-	else if(istype(arrow.loc, /obj/item/gun/ballistic/bow))
-		var/obj/item/gun/ballistic/bow/bow = arrow.loc
-		bow.remove_arrow()
+	else if(istype(arrow.loc, /obj/item/ammo_box))
+		var/obj/item/ammo_box/box = arrow.loc
+		box.stored_ammo -= arrow
+		if(istype(box.loc, /obj/item/gun/ballistic/bow))
+			var/obj/item/gun/ballistic/bow/bow = box.loc
+			if(bow.chambered == arrow)
+				bow.chambered = null
+			bow.update_slowdown()
+			bow.update_icon()
 
 	if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, arrow, null, TRUE, TRUE))
 		return

@@ -201,6 +201,15 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define REFLECT_NORMAL 				(1<<0)
 #define REFLECT_FAKEPROJECTILE		(1<<1)
 
+// Casing Flags //
+/* Flags for /obj/item/ammo_casing */
+/// If the ammo casing doesn't have a different live and spent icon, it will just use the non-live sprite instead
+#define CASINGFLAG_NO_LIVE_SPRITE 	(1<<0)
+/// If the ammo casing should be force eject when fired even when the gun is not semi-auto, useful for casings that delete themselves. Only works with balistic weapons
+#define CASINGFLAG_FORCE_CLEAR_CHAMBER		(1<<1)
+/// If the ammo casing should not spin when thrown
+#define CASINGFLAG_NOT_HEAVY_METAL	(1<<2)
+
 //Object/Item sharpness
 #define SHARP_NONE			0
 #define SHARP_EDGED			1
