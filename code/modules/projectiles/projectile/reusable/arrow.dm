@@ -180,7 +180,7 @@
 	icon_state = "arrow_shock"
 
 /obj/item/projectile/bullet/reusable/arrow/toy/magic
-	name = "toy shock bolt"
+	name = "toy magic arrow"
 	icon_state = "arrow_magic"
 
 

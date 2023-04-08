@@ -68,10 +68,6 @@
 /obj/item/gun/ballistic/bow/equipped(mob/user, slot)
 	..()
 	nerfed = initial(nerfed)
-/*
-	if(drop_release_draw)
-		release_draw()
-*/
 
 /obj/item/gun/ballistic/bow/process_chamber()
 	chambered = null
@@ -498,21 +494,6 @@
 		toggle_folded(FALSE, user)
 	if(..())
 		return TRUE
-	/*
-	if(chambered)
-		remove_arrow()
-	else if(get_ammo())
-		drawing = TRUE
-		update_slowdown()
-		if (!do_after(user, draw_time, src, TRUE, stayStill = FALSE))
-			drawing = FALSE
-			update_slowdown()
-			return
-		drawing = FALSE
-		to_chat(user, span_notice("You draw back the bowstring."))
-		playsound(src, draw_sound, 75, 0, falloff = 3) //gets way too high pitched if the freq varies
-		chamber_round()
-	*/
 	if(!chambered && !get_ammo() && (!recharge_time || !TIMER_COOLDOWN_CHECK(src, "arrow_recharge")))
 		to_chat(user, span_notice("You fabricate an arrow."))
 		recharge_arrow()
