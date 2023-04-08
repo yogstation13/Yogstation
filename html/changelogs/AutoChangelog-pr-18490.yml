@@ -1,0 +1,4 @@
+author: "dcxgame"
+delete-after: true 
+changes: 
+  - bugfix: "spacepods no longer operate 10 times slower than intended"
