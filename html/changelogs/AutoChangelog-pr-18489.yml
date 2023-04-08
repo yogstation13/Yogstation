@@ -1,0 +1,5 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "medical winter coats (by extension cmo) can hold hyposprays now (their items were set equal to the labcoat)"
+  - tweak: "medical winter coats technically can't hold stuff like cigarettes and lighters but they also got SOAP"
