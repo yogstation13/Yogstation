@@ -12336,6 +12336,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "bCv" = (
@@ -19578,6 +19579,18 @@
 	},
 /turf/open/space,
 /area/solar/starboard/fore)
+"dHL" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
 "dHZ" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "Secure Gate";
@@ -45123,6 +45136,16 @@
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+"nWn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "nWs" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -85235,7 +85258,7 @@ lFj
 lFj
 lFj
 alU
-vZz
+nWn
 aBI
 aak
 pAL
@@ -120726,7 +120749,7 @@ bdz
 hPW
 ptr
 bhH
-biY
+dHL
 biY
 biY
 bjS
