@@ -688,7 +688,7 @@
 	flavour_text = "During your briefing, you're told that an old syndicate research post has gone missing without notice. No theories have been brought to its fate, and it's unlikely to know the cause of its destruction. Your job will be to restore this post to optimal levels."
 	important_info = "Do not leave the derelict under any circumstances."
 	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper-s"
+	icon_state = "sleeper_s"
 	outfit = /datum/outfit/syndicate_derelict_engi
 	random = TRUE
 	roundstart = FALSE
