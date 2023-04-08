@@ -149,8 +149,6 @@
 		if(!msg)
 			if(holder)
 				message_admins("[key_name_admin(src)] has started replying to [key_name_admin(recipient, 0, 0)]'s admin help.")
-				if(!current_ticket.handling_admin)
-					current_ticket.Administer(TRUE)
 			msg = input(src,"Message:", "Private message to [recipient.holder?.fakekey ? "an Administrator" : key_name(recipient, 0, 0)].") as message|null
 			msg = trim(msg)
 			if(!msg)

@@ -27,6 +27,7 @@
 	key_third_person = "chokes"
 	message = "chokes!"
 	emote_type = EMOTE_AUDIBLE
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/cross
 	key = "cross"
@@ -56,6 +57,7 @@
 	key_third_person = "coughs"
 	message = "coughs!"
 	emote_type = EMOTE_AUDIBLE
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/cough/can_run_emote(mob/user, status_check = TRUE , intentional)
 	. = ..()
@@ -104,6 +106,7 @@
 	key = "faint"
 	key_third_person = "faints"
 	message = "faints."
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/faint/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -153,6 +156,7 @@
 	key = "frown"
 	key_third_person = "frowns"
 	message = "frowns."
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/gag
 	key = "gag"
@@ -190,6 +194,7 @@
 	key_third_person = "groans"
 	message = "groans!"
 	message_mime = "appears to groan!"
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/grimace
 	key = "grimace"
@@ -259,6 +264,7 @@
 	key_third_person = "nods"
 	message = "nods."
 	message_param = "nods at %t."
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/point
 	key = "point"
@@ -308,6 +314,7 @@
 	key = "shake"
 	key_third_person = "shakes"
 	message = "shakes their head."
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/shiver
 	key = "shiver"
@@ -361,7 +368,7 @@
 	message = "stares."
 	message_param = "stares at %t."
 
-/datum/emote/living/strech
+/datum/emote/living/stretch
 	key = "stretch"
 	key_third_person = "stretches"
 	message = "stretches their arms."
@@ -392,6 +399,7 @@
 	key = "tremble"
 	key_third_person = "trembles"
 	message = "trembles in fear!"
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/twitch
 	key = "twitch"
@@ -412,6 +420,8 @@
 	key_third_person = "whimpers"
 	message = "whimpers."
 	message_mime = "appears hurt."
+	stat_allowed = SOFT_CRIT
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/wsmile
 	key = "wsmile"
