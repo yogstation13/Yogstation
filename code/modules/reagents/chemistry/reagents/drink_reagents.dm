@@ -787,8 +787,8 @@
 	..()
 	. = TRUE
 
-/datum/reagent/consumable/chocolate/reaction_mob(mob/living/M, method=INGEST)
-	if(method != INGEST)
+/datum/reagent/consumable/chocolate/reaction_mob(mob/living/M, method=TOUCH)
+	if(method = INGEST
 		if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 			to_chat(M, span_notice("This is like Milk, but better!?"))
 	return ..()
@@ -810,8 +810,8 @@
 	..()
 	. = TRUE
 
-/datum/reagent/consumable/vanillapudding/reaction_mob(mob/living/M, method=INGEST)
-	if(method != INGEST)
+/datum/reagent/consumable/vanillapudding/reaction_mob(mob/living/M, method=TOUCH)
+	if(method = INGEST
 		if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 			to_chat(M, span_notice("This is like Milk, but better!?"))
 	return ..()
@@ -834,8 +834,8 @@
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
 	..()
 
-/datum/reagent/consumable/cherryshake/reaction_mob(mob/living/C, method=INGEST)
-	if(method != INGEST)
+/datum/reagent/consumable/cherryshake/reaction_mob(mob/living/C, method=TOUCH)
+	if(method = INGEST)
 		if(isjellyperson(C))
 			to_chat(C, span_notice("Just like us, just like jelly!"))
 	return ..()
@@ -857,8 +857,8 @@
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
 	..()
 
-/datum/reagent/consumable/bluecherryshake/reaction_mob(mob/living/C, method=INGEST)
-	if(method != INGEST)
+/datum/reagent/consumable/bluecherryshake/reaction_mob(mob/living/C, method=TOUCH)
+	if(method = INGEST)
 		if(isjellyperson(C))
 			to_chat(C, span_notice("Just like us, just like jelly!"))
 	return ..()
@@ -1091,8 +1091,8 @@
 		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -2.5*REM)
 	..()
 
-/datum/reagent/consumable/mushroom_tea/reaction_mob(mob/living/M, method=INGEST)
-	if(method != INGEST)
+/datum/reagent/consumable/mushroom_tea/reaction_mob(mob/living/M, method=TOUCH)
+	if(method = INGEST)
 		if(islizard(M))
 			to_chat(M, span_notice("The most important thing to a Lizard is their brains.... Probably"))
 	return ..()
