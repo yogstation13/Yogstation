@@ -31,6 +31,6 @@
 
 /obj/item/projectile/bullet/reusable/dart/hidden
 	name = "beanbag slug"
-	//icon_state = "bullet" // I'm assuming this should look like the slug instead of a dart, though this PR is so bloated I don't want to include another random tweak, I'll leave it here for anyone who bothers to look at this code like you :)
+	icon_state = "bullet" //So it doesn't look like a goddamned syringe
 	stamina = 5 // gotta act like we did stamina
 	sharpness = SHARP_NONE

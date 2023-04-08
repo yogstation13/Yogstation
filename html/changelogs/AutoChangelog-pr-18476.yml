@@ -1,0 +1,5 @@
+author: "solwashere"
+delete-after: true 
+changes: 
+  - tweak: "several emotes can now be used in softcrit"
+  - tweak: "also fixed a spelling error (strech -> stretch)"

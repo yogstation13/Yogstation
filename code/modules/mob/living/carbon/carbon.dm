@@ -263,11 +263,10 @@
 							span_userdanger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."))
 			if(do_mob(usr, src, POCKET_STRIP_DELAY))
 				if(internal)
-					update_internals()
+					cutoff_internals()
 				else if(ITEM && istype(ITEM, /obj/item/tank))
 					if((wear_mask && (wear_mask.clothing_flags & MASKINTERNALS)) || getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-						internal = ITEM
-						update_internals_hud_icon(1)
+						open_internals(ITEM)
 
 				visible_message(span_danger("[usr] [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name]."), \
 								span_userdanger("[usr] [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name]."))
@@ -879,22 +878,6 @@
 				hud_used.healths.icon_state = "health6"
 		else
 			hud_used.healths.icon_state = "health7"
-
-/mob/living/carbon/proc/update_internals()
-	if(getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-		return TRUE
-	if(wear_mask && (wear_mask.clothing_flags & MASKINTERNALS) && !wear_mask.mask_adjusted && ((internal.loc && internal.loc == src) || (wear_mask.clothing_flags & MASKEXTENDRANGE)))
-		return TRUE
-	if(head && (head.clothing_flags & STOPSPRESSUREDAMAGE) && (head.flags_cover & HEADCOVERSMOUTH))
-		return TRUE
-	update_internals_hud_icon(0)
-	update_action_buttons_icon()
-	internal = null
-	return FALSE
-
-/mob/living/carbon/proc/update_internals_hud_icon(internal_state = 0)
-	if(hud_used && hud_used.internals)
-		hud_used.internals.icon_state = "internal[internal_state]"
 
 /mob/living/carbon/update_stat()
 	if(status_flags & GODMODE)

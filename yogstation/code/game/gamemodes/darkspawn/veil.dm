@@ -43,7 +43,7 @@
 
 /datum/antagonist/veil/greet()
 	to_chat(owner, "<span class='velvet big'><b>ukq wna ieja jks</b></span>" )
-	if(ispreternis(owner))
+	if(ispreternis(owner.current))
 		to_chat(owner, "<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \n\
 		A consciousness brushes against your own. You dream.\n\
 		Of a vast, glittering empire stretching from star to star. \n\
