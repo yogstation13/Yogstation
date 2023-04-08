@@ -662,7 +662,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			// If its not embedded, don't bother proccessing it
 			if(!get_embedded_part(I))
 				continue
-			if(CHECK_BITFIELD(SEND_SIGNAL(I, COMSIG_ITEM_EMBED_TICK, src), COMSIG_ITEM_BLOCK_EMBED_TICK))
+			if(CHECK_BITFIELD(SEND_SIGNAL(I, COMSIG_ITEM_EMBED_TICK, src, BP), COMSIG_ITEM_BLOCK_EMBED_TICK))
 				continue
 			var/pain_chance_current = I.embedding.embedded_pain_chance
 			if(!(mobility_flags & MOBILITY_STAND))

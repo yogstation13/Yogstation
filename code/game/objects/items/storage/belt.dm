@@ -877,21 +877,25 @@
 	addtimer(CALLBACK(src, .proc/check_arrow_return, AM), return_time)
 
 /obj/item/storage/belt/quiver/returning/proc/check_arrow_return(atom/movable/arrow)
-	if(!istype(arrow, return_type) || arrow.loc == src || (ismob(loc) && loc == arrow.loc))
+	if(!istype(arrow, return_type) || arrow.loc == src || (ismob(loc) && (loc == arrow.loc) || (istype(arrow.loc) && loc == arrow.loc.loc)))
 		return
-	var/mob/arrow_holder = arrow.loc
-	if(anti_magic_check && istype(arrow_holder) && arrow_holder.anti_magic_check(TRUE, FALSE ,FALSE, 0))
-		to_chat(arrow_holder, span_notice("You feel [arrow] tugging on you."))
-		return
-	var/mob/living/carbon/carbon = arrow.loc
+	if(ismob(arrow.loc))
+		var/mob/arrow_holder = arrow.loc
+		if(anti_magic_check && arrow_holder.anti_magic_check(TRUE, FALSE ,FALSE, 0))
+			to_chat(arrow_holder, span_notice("You feel [arrow] tugging on you."))
+			return
+		var/mob/living/carbon/carbon = arrow.loc
 
-	if(istype(carbon))
-		var/obj/item/bodypart/part = carbon.get_embedded_part(arrow)
-		if(part)
-			if(!carbon.remove_embedded_object(src, unsafe = TRUE))
-				to_chat(carbon, span_notice("You feel [arrow] tugging on you."))
-				return
-			to_chat(carbon, span_userdanger("[arrow] suddenly rips out of you!"))
+		if(iscarbon(carbon))
+			var/obj/item/bodypart/part = carbon.get_embedded_part(arrow)
+			if(part)
+				if(!carbon.remove_embedded_object(src, unsafe = TRUE))
+					to_chat(carbon, span_notice("You feel [arrow] tugging on you."))
+					return
+				to_chat(carbon, span_userdanger("[arrow] suddenly rips out of you!"))
+	else if(istype(arrow.loc, /obj/item/gun/ballistic/bow))
+		var/obj/item/gun/ballistic/bow/bow = arrow.loc
+		bow.remove_arrow()
 
 	if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, arrow, null, TRUE, TRUE))
 		return

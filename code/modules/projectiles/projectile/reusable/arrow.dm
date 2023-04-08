@@ -135,6 +135,29 @@
 	embed_chance = 0.9
 	break_chance = 0
 
+/obj/item/projectile/bullet/reusable/arrow/toy/on_hit(atom/target, blocked)
+	. = ..()
+
+	if(!iscarbon(target))
+		return
+	
+	var/nerfed = FALSE
+	var/mob/living/carbon/C = target
+	for(var/obj/item/gun/ballistic/T in C.held_items) // Is usually just ~2 items
+		if(ispath(T.mag_type, /obj/item/ammo_box/magazine/toy) || ispath(T.mag_type, /obj/item/ammo_box/magazine/internal/shot/toy)) // All automatic foam force guns || Foam force shotguns & crossbows
+			nerfed = TRUE
+			break
+		if(istype(T, /obj/item/gun/ballistic/bow)) // Bows have their own handling
+			var/obj/item/gun/ballistic/bow/bow = T
+			if(bow.nerfed)
+				nerfed = TRUE
+				break
+	
+	if(!nerfed)
+		return
+	
+	C.adjustStaminaLoss(25) // ARMOR IS CHEATING!!!
+
 /obj/item/projectile/bullet/reusable/arrow/toy/energy
 	name = "toy energy bolt"
 	icon_state = "arrow_energy"
