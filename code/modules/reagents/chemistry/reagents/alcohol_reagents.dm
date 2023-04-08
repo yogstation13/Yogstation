@@ -822,6 +822,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(30)
+	if(isethereal(M))
+		var/mob/living/carbon/C = M
+		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
+		if(istype(stomach))
+			stomach.adjust_charge(M.reagents.get_reagent_amount(/datum/reagent/consumable/ethanol/manhattan_proj) * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 	return ..()
 
 /datum/reagent/consumable/ethanol/whiskeysoda
@@ -1230,6 +1235,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/fetching_fizz/on_mob_life(mob/living/carbon/M)
 	for(var/obj/item/stack/ore/O in orange(3, M))
 		step_towards(O, get_turf(M))
+
+	if(ispreternis(M))
+		for(var/obj/O in orange(2,M))
+			if(!O.anchored && (O.flags_1 & CONDUCT_1))
+				step_towards(O, get_turf(M))
 	return ..()
 
 //Another reference. Heals those in critical condition extremely quickly.
@@ -1418,7 +1428,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(30))
 				M.adjustToxLoss(2, 0)
 				. = 1
-	..()
+	
+	if(ispodperson(M))
+		M.adjustBruteLoss(-1)
+		M.adjustFireLoss(-1)
+		M.adjustToxLoss(-0.5)
+		M.adjustOxyLoss(-3)
+	return ..()
 
 /datum/reagent/consumable/ethanol/eggnog
 	name = "Eggnog"

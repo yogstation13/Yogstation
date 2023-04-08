@@ -118,7 +118,7 @@
 	starting_organ = /obj/item/organ/eyes/robotic/xray/syndicate
 
 /obj/item/autosurgeon/anti_stun
-	starting_organ = /obj/item/organ/cyberimp/brain/anti_stun
+	starting_organ = /obj/item/organ/cyberimp/brain/anti_stun/syndicate
 
 /obj/item/autosurgeon/reviver
 	starting_organ = /obj/item/organ/cyberimp/chest/reviver
@@ -328,9 +328,6 @@
 		uses--
 	if(!uses)
 		desc = "[initial(desc)] Looks like it's been used up."
-
-/obj/item/multisurgeon/jumpboots //for miners
-	starting_organ = list(/obj/item/organ/cyberimp/leg/jumpboots, /obj/item/organ/cyberimp/leg/jumpboots/l)
 
 /obj/item/multisurgeon/airshoes //for traitors
 	starting_organ = list(/obj/item/organ/cyberimp/leg/airshoes, /obj/item/organ/cyberimp/leg/airshoes/l)

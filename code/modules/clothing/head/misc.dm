@@ -231,6 +231,10 @@
 	H.facial_hair_style = "Neckbeard"
 	return(BRUTELOSS)
 
+/obj/item/clothing/head/fedora/brown
+	icon_state = "detective"
+	desc = "A brown fedora, typically worn by investigators. This one has no protective fibers."
+
 /obj/item/clothing/head/sombrero
 	name = "sombrero"
 	icon_state = "sombrero"

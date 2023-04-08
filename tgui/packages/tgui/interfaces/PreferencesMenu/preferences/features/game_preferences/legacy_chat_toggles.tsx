@@ -1,5 +1,5 @@
 import { multiline } from "common/string";
-import { FeatureToggle, CheckboxInput } from "../base";
+import { FeatureToggle, CheckboxInput, CheckboxInputInverse } from "../base";
 
 export const chat_bankcard: FeatureToggle = {
   name: "Enable income updates",
@@ -49,7 +49,7 @@ export const ghost_ckey: FeatureToggle = {
   name: "Show ckey in deadchat",
   category: "GHOST",
   description: "When enabled, your ckey will be displayed when you talk in deadchat.",
-  component: CheckboxInput,
+  component: CheckboxInputInverse,
 };
 
 export const chat_ghostsight: FeatureToggle = {

@@ -17,7 +17,7 @@
 	speedmod = -0.1 //Light and energy move quickly
 	punchdamagehigh  = 11 //Fire hand more painful
 	punchstunthreshold = 11 //Still stuns on max hit, but subsequently lower chance to stun overall
-	payday_modifier = 0.7 //Neutrally useful to NT
+	payday_modifier = 0.7 //Moths have to be compensated slightly more to be willing to work for NT bcuz drug therapy, both ethereal and moth are neutral though
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
 	species_traits = list(NOEYESPRITES, EYECOLOR, DYNCOLORS, AGENDER, HAIR, FACEHAIR, HAS_FLESH, HAS_BONE) // i mean i guess they have blood so they can have wounds too

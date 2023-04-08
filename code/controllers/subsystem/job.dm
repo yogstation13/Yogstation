@@ -612,7 +612,7 @@ SUBSYSTEM_DEF(job)
 	return living_mob
 
 /datum/controller/subsystem/job/proc/irish_override()
-	var/datum/map_template/template = SSmapping.station_room_templates["St. Patrick's Day"]
+	var/datum/map_template/template = SSmapping.station_room_templates["Bar Irish"]
 
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)

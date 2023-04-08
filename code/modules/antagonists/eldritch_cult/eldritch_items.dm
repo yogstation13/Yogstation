@@ -1,5 +1,5 @@
 /obj/item/living_heart
-	name = "Living Heart"
+	name = "living heart"
 	desc = "Link to the worlds beyond."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "living_heart"
@@ -87,8 +87,8 @@
 	qdel(sword)
 
 /obj/item/gun/magic/hook/sickly_blade
-	name = "Sickly blade"
-	desc = "A sickly green crescent blade, decorated with an ornamental eye. You feel like you're being watched..."
+	name = "sickly blade"
+	desc = "A sickly, green crescent blade, decorated with an ornamental eye. You feel like you're being watched..."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eldritch_blade"
 	item_state = "eldritch_blade"
@@ -164,25 +164,25 @@
 		eldritch_knowledge_datum.on_eldritch_blade(target,user,proximity_flag,click_parameters)
 
 /obj/item/gun/magic/hook/sickly_blade/rust
-	name = "Rusted Blade"
-	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten teeth."
+	name = "rusted blade"
+	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten teeth. A strange liquid oozes from its points."
 	icon_state = "rust_blade"
 	item_state = "rust_blade"
 
 /obj/item/gun/magic/hook/sickly_blade/ash
-	name = "Ashen Blade"
-	desc = "Molten and unwrought, a hunk of metal warped to cinders and slag. Unmade, it aspires to be more than it is, and shears soot-filled wounds with a blunt edge."
+	name = "ashen blade"
+	desc = "A hunk of molten metal warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is as it shears soot-filled wounds."
 	icon_state = "ash_blade"
 	item_state = "ash_blade"
 
 /obj/item/gun/magic/hook/sickly_blade/flesh
-	name = "Flesh Blade"
-	desc = "A crescent blade born from a fleshwarped creature. Keenly aware, it seeks to spread to others the excruitations it has endured from dread origins."
+	name = "flesh blade"
+	desc = "A blade of strange material born from a fleshwarped creature. Keenly aware, it seeks to spread the excruciating pain it has endured from dread origins."
 	icon_state = "flesh_blade"
 	item_state = "flesh_blade"
 
 /obj/item/clothing/neck/eldritch_amulet
-	name = "Warm Eldritch Medallion"
+	name = "warm eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the world around you melts away. You see your own beating heart, and the pulse of a thousand others."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eye_medalion"
@@ -202,14 +202,14 @@
 	user.update_sight()
 
 /obj/item/clothing/neck/eldritch_amulet/piercing
-	name = "Piercing Eldritch Medallion"
+	name = "piercing eldritch medallion"
 	desc = "A strange medallion. Peering through the crystalline surface, the light refracts into new and terrifying spectrums of color. You see yourself, reflected off cascading mirrors, warped into improbable shapes."
 	trait = TRAIT_XRAY_VISION
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	name = "ominous hood"
+	desc = "A torn, dust-caked hood. You feel it watching you."
 	icon_state = "eldritch"
-	desc = "A torn, dust-caked hood. Strange eyes line the inside."
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	flash_protect = 2
@@ -223,12 +223,11 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
-	// slightly better than normal cult robes
-	armor = list(MELEE = 50, BULLET = 50, LASER = 50,ENERGY = 50, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20)
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //Who knows why it's this good
 
 /obj/item/reagent_containers/glass/beaker/eldritch
 	name = "flask of eldritch essence"
-	desc = "Toxic to the close minded. Healing to those with knowledge of the beyond."
+	desc = "Anathema to the close-minded. Ambrosia to those blessed by the Mansus."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eldrich_flask"
 	list_reagents = list(/datum/reagent/eldritch = 50)
