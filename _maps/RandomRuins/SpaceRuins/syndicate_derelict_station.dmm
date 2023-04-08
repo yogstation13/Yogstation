@@ -93,6 +93,7 @@
 "qH" = (/obj/machinery/atmospherics/miner/nitrogen,/turf/open/floor/engine/n2,/area/ruin/space/has_grav/syndiederelict/engineering)
 "qI" = (/obj/machinery/recharge_station,/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/research)
 "qX" = (/obj/machinery/atmospherics/pipe/layer_manifold{dir = 4},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/engineering)
+"rv" = (/obj/effect/mob_spawn/human/syndicate_derelict_engineer{dir = 4},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/engineering)
 "rC" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 9},/obj/structure/table,/obj/item/radio/intercom{broadcasting = 0; dir = 8; freerange = 1; listening = 1; name = "Syndicate Listening Channel"},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/research)
 "rP" = (/obj/structure/cable,/obj/effect/spawner/structure/solars/solar_96,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/solars)
 "rU" = (/obj/structure/cable/yellow{icon_state = "4-8"},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/engineering)
@@ -110,7 +111,7 @@
 "uQ" = (/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "uS" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/medbay)
 "ve" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 1},/obj/machinery/suit_storage_unit/syndicate,/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/engineering)
-"vk" = (/obj/structure/cable/yellow{icon_state = "0-4"},/obj/machinery/power/apc/syndicate{name = "Syndicate Derelict Engineering"; pixel_x = -24; dir = 8},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/engineering)
+"vk" = (/obj/structure/cable/yellow{icon_state = "0-4"},/obj/machinery/power/apc/syndicate{name = "Syndicate Derelict Engineering"; pixel_x = -24; dir = 8},/obj/effect/mob_spawn/human/syndicate_derelict_engineer{dir = 4},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/engineering)
 "vv" = (/obj/machinery/vending/engivend,/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/engineering)
 "vw" = (/obj/structure/closet/secure_closet/freezer/kitchen,/obj/machinery/light,/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/kitchen)
 "vx" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 1},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/obj/structure/cable/yellow{icon_state = "1-2"},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/hallway)
@@ -155,7 +156,7 @@
 "DJ" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{dir = 8},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/obj/structure/cable/yellow{icon_state = "4-8"},/obj/machinery/airalarm/syndicate{pixel_y = 24},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/hallway)
 "DO" = (/obj/structure/table,/obj/effect/spawner/lootdrop/donkpockets,/obj/effect/spawner/lootdrop/donkpockets{pixel_x = 5; pixel_y = 3},/obj/effect/spawner/lootdrop/donkpockets{pixel_x = -5; pixel_y = 5},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/kitchen)
 "DP" = (/obj/structure/chair/office/dark,/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/virology)
-"En" = (/obj/machinery/sleeper{dir = 4},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/medbay)
+"En" = (/obj/machinery/sleeper/syndie{dir = 4},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/medbay)
 "EB" = (/obj/structure/cable/yellow{icon_state = "4-8"},/obj/machinery/light{dir = 1},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/engineering)
 "EC" = (/obj/effect/spawner/structure/window/plastitanium,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/virology)
 "ED" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{dir = 4},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/medbay)
@@ -210,6 +211,7 @@
 "Ov" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/medbay)
 "OE" = (/obj/structure/cable,/obj/machinery/power/tracker,/turf/open/floor/plating/airless,/area/ruin/space/has_grav/syndiederelict/solars)
 "OH" = (/obj/structure/table,/obj/machinery/reagentgrinder/kitchen,/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/kitchen)
+"OY" = (/obj/machinery/light{dir = 8},/obj/effect/mob_spawn/human/syndicate_derelict_engineer{dir = 4},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/engineering)
 "Pi" = (/obj/machinery/vending/dinnerware,/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/kitchen)
 "PE" = (/obj/machinery/light{dir = 8},/turf/open/floor/plasteel/airless/dark,/area/ruin/space/has_grav/syndiederelict/engineering)
 "PH" = (/obj/machinery/atmospherics/miner/oxygen,/turf/open/floor/engine/o2,/area/ruin/space/has_grav/syndiederelict/engineering)
@@ -262,9 +264,9 @@ ququubububublWububububublWubububublWubublWububububublWubububububququququququququ
 ququubARAqAqnKnKnKAqAqohohohcdcdcdcdohohohnAxdxdnAnAnAxdxdnAnAubququququququququ
 ququubAqqDPXtPtPGARinrohNMXGdXdXdXdXkefeohafWVrUrUEBrUrUrUnsnAubququququququququ
 ququubnKdxsQXsddAFxWHLGdUkfwHFfwfwnWfwfwGdeOfTIzFoFoFoQPafJsxdubububububququququ
-quVXubnKPidxpqjvFqFSdxHOuQkJJQcZhzBqkJiQohPECGafCznANCafafjWnAnAxdnAxdubququququ
+quVXubnKPidxpqjvFqFSdxHOuQkJJQcZhzBqkJiQohOYCGafCznANCafafjWnAnAxdnAxdubququququ
 quVXubAqoadxdxdxdxKoMgohpSkJkJkJkJkJkJglohvkcAYlBSzlIoyCYljKmDdrtlukWxoPoPERququ
-quVXlWAqEEvwGMOHDOfWbtohdXXodXdXdXdXXodXohafnbafvenAawhyafHenAnAxdnAxdubquyaququ
+quVXlWAqEEvwGMOHDOfWbtohdXXodXdXdXdXXodXohrvnbafvenAawhyafHenAnAxdnAxdubquyaququ
 quVXubAqAqAqAqAqAqAqAqohohohohohohohohohohafnbafGcnASrozafWtxdubububububquyaququ
 quVXubIYTmQDDJHWipHWHWWGTqHWHWHWipHWjPHWkATDlpmyFoZtFosrafWHxdubVXququququyaququ
 ququubIYTmvxTmTAyBTmTmkHajTmTmTmqlTmlFTmIYafaSwvnjqXcmXfafvvnAlWVXququququyaququ
