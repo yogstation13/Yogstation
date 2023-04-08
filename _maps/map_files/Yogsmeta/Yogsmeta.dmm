@@ -8650,10 +8650,6 @@
 "axC" = (
 /turf/closed/wall,
 /area/crew_quarters/toilet/restrooms)
-"axD" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "axE" = (
 /obj/machinery/door/airlock/maintenance{
 	req_one_access_txt = "12;63;48;50"
@@ -9380,19 +9376,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"azz" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/effect/landmark/start/yogs/mining_medic,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "azB" = (
 /obj/structure/closet/crate/freezer,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -9936,31 +9919,6 @@
 /turf/open/floor/plating,
 /area/quartermaster/miningoffice)
 "aAC" = (
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
-"aAD" = (
-/obj/machinery/door/airlock/mining/glass{
-	name = "Mining Dock";
-	req_access_txt = "48"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
-"aAE" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "aAF" = (
@@ -10547,14 +10505,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
-"aBS" = (
-/obj/item/stack/ore/silver,
-/obj/item/stack/ore/silver,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "aBT" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/camera{
@@ -31576,15 +31526,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
-"bEC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "bED" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -46921,6 +46862,17 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"cTQ" = (
+/obj/item/stack/ore/silver,
+/obj/item/stack/ore/silver,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "cTT" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/r_wall,
@@ -51062,6 +51014,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"env" = (
+/obj/machinery/door/airlock/mining/glass{
+	name = "Mining Dock";
+	req_access_txt = "48"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "enT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -52612,6 +52586,21 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
+"fpR" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "fqd" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -55287,13 +55276,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"heF" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/obj/item/stack/ore/iron,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "heW" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
@@ -55439,6 +55421,22 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"hjK" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/effect/landmark/start/yogs/mining_medic,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "hjZ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -56364,6 +56362,17 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
+"hQW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/item/stack/ore/iron,
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 24
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "hRp" = (
 /obj/structure/closet/crate,
 /obj/item/coin/silver,
@@ -56847,6 +56856,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"iiM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "iiN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -61177,7 +61195,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 1;
-	sensors = list("co2_sensor"="Tank")
+	sensors = list("co2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -61235,7 +61253,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/air_tank{
-	sensors = list("air_sensor"="Tank")
+	sensors = list("air_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -62263,7 +62281,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 1;
-	sensors = list("tox_sensor"="Tank")
+	sensors = list("tox_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -64114,7 +64132,7 @@
 	areastring = "/area/engine/atmos/pumproom";
 	dir = 1;
 	name = "Atmospherics Pumping Room APC";
-	pixel_y = 25
+	pixel_y = 23
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/pumproom)
@@ -65402,6 +65420,11 @@
 	},
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/cmo)
+"nwI" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "nwR" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/plasteel,
@@ -65670,7 +65693,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 1;
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
@@ -69016,7 +69039,7 @@
 	areastring = "/area/engine/atmos/mix";
 	dir = 1;
 	name = "Atmospherics Mixing Room APC";
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -69500,6 +69523,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"qhM" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "qil" = (
 /obj/machinery/holopad,
 /obj/structure/cable/yellow{
@@ -70427,7 +70457,7 @@
 	areastring = "/area/engine/atmos/foyer";
 	dir = 1;
 	name = "Atmospherics Foyer APC";
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -74295,6 +74325,15 @@
 	dir = 8
 	},
 /area/medical/medbay/central)
+"tfp" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningoffice)
 "tfz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -79023,7 +79062,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
-	sensors = list("n2_sensor"="Tank")
+	sensors = list("n2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -80007,7 +80046,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
-	sensors = list("o2_sensor"="Tank")
+	sensors = list("o2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -80735,7 +80774,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 1;
-	sensors = list("n2o_sensor"="Tank")
+	sensors = list("n2o_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -98507,10 +98546,10 @@ dne
 aaf
 aaa
 aaf
-aFO
-heF
-aAC
-aBS
+ayj
+hQW
+tfp
+cTQ
 aFO
 aaf
 aaa
@@ -98766,7 +98805,7 @@ aaa
 aaf
 aFO
 azk
-aAC
+iiM
 aBT
 aFO
 aaf
@@ -99023,7 +99062,7 @@ aaf
 aaf
 ayj
 ayj
-aAD
+env
 aBU
 ayj
 aFO
@@ -99280,8 +99319,8 @@ dne
 dne
 ayj
 azl
-aAE
-azz
+fpR
+hjK
 aBB
 mVR
 aFF
@@ -99537,8 +99576,8 @@ dne
 awP
 ayj
 azm
-axD
-bEC
+qhM
+nwI
 aAC
 aEw
 aFG
