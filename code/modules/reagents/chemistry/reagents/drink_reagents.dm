@@ -811,7 +811,7 @@
 	. = TRUE
 
 /datum/reagent/consumable/vanillapudding/reaction_mob(mob/living/M, method=TOUCH)
-	if(method == INGEST
+	if(method == INGEST)
 		if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 			to_chat(M, span_notice("This is like Milk, but better!?"))
 	return ..()
