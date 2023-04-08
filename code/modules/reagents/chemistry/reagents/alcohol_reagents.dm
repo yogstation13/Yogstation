@@ -1511,7 +1511,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Quadruple Sec"
 	description = "Kicks just as hard as licking the powercell on a baton, but tastier."
 	color = "#cc0000"
-	boozepwr = 100
+	boozepwr = 55
 	quality = DRINK_GOOD
 	taste_description = "an invigorating bitter freshness which suffuses your being; no enemy of the station will go unrobusted this day"
 	glass_icon_state = "quadruple_sec"
@@ -1521,8 +1521,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/quadruple_sec/on_mob_life(mob/living/carbon/M)
 	//Securidrink in line with the Screwdriver for engineers or Nothing for mimes
 	if(HAS_TRAIT(M.mind, TRAIT_LAW_ENFORCEMENT_METABOLISM))
-		M.adjustFireLoss(-1,0)
-		M.adjustBruteLoss(-2,0)
+		M.adjustFireLoss(-0.5,0)
+		M.adjustBruteLoss(-1,0)
 		. = 1
 	return ..()
 
@@ -1530,7 +1530,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Quintuple Sec"
 	description = "Law, Order, Alcohol, and Police Brutality distilled into one single elixir of JUSTICE."
 	color = "#ff3300"
-	boozepwr = 150
+	boozepwr = 90
 	quality = DRINK_FANTASTIC
 	taste_description = "THE LAW"
 	glass_icon_state = "quintuple_sec"
