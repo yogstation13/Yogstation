@@ -1,4 +1,0 @@
-author: "Majkl-J"
-delete-after: true 
-changes: 
-  - bugfix: "balloon boxes no longer have a infinite balloon amount and can be examined correctly"

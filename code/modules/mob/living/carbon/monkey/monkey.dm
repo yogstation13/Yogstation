@@ -100,13 +100,6 @@
 			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
 			. += "Absorbed DNA: [changeling.absorbedcount]"
 
-/mob/living/carbon/monkey/verb/removeinternal()
-	set name = "Remove Internals"
-	set category = "IC"
-	internal = null
-	return
-
-
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
 	if(mind && is_monkey(mind))
 		return TRUE

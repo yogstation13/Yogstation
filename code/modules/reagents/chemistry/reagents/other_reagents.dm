@@ -100,6 +100,7 @@
 	name = "Vaccine"
 	color = "#C81040" // rgb: 200, 16, 64
 	taste_description = "slime"
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/vaccine/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	if(islist(data) && ((method == INGEST && reac_volume >= 5) || method == INJECT))//drinking it requires at least 5u, injection doesn't

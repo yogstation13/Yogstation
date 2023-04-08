@@ -312,7 +312,11 @@
 	// Makes plant teleport people when squashed or slipped on.
 	// Teleport radius is calculated as max(round(potency*rate), 1)
 	name = "Bluespace Activity"
-	rate = 0.1
+	rate = 0.05
+
+/datum/plant_gene/trait/teleport/on_new(obj/item/reagent_containers/food/snacks/grown/G, newloc)
+	..()
+	G.throw_range = min(G.throw_range, 2)
 
 /datum/plant_gene/trait/teleport/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	if(isliving(target))

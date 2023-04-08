@@ -322,7 +322,6 @@ Credit where due:
 		H.internal = H.get_item_for_held_index(2)
 		H.update_internals_hud_icon(1)
 
-
 //This paper serves as a quick run-down to the cult as well as a changelog to refer to.
 //Check strings/clockwork_cult_changelog.txt for the changelog, and update it when you can!
 /obj/item/paper/servant_primer
