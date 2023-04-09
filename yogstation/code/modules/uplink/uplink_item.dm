@@ -33,7 +33,7 @@
 	desc = "The Contagion Viral Supplementor injector is a state of the art Syndicate hyposyringe that can inject the target with a \
 			sentient virus. A vial can be inserted with a virus sample to give that sentient virus those symptoms. Doesn't come with a miniprinter."
 	item = /obj/item/sentient_disease_injector
-	cost = 25
+	cost = 20
 	surplus = 0 //Hijack-only, don't let this exist in surplus
 	cant_discount = TRUE
 	include_objectives = list(/datum/objective/hijack) //Hijack only.
