@@ -319,8 +319,7 @@ Credit where due:
 		PDA.update_filters()
 
 	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
-		H.internal = H.get_item_for_held_index(2)
-		H.update_internals_hud_icon(1)
+		H.open_internals(H.get_item_for_held_index(2))
 
 //This paper serves as a quick run-down to the cult as well as a changelog to refer to.
 //Check strings/clockwork_cult_changelog.txt for the changelog, and update it when you can!
