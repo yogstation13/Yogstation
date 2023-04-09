@@ -138,7 +138,7 @@
 			if(prob(3))
 				affected_mob.say(pick("Eeek, ook ook!", "Eee-eeek!", "Eeee!", "Ungh, ungh."), forced = "jungle fever")
 
-/datum/disease/transformation/jungle_fever/cure()
+/datum/disease/transformation/jungle_fever/cure(add_resistance = TRUE)
 	remove_monkey(affected_mob.mind)
 	..()
 
@@ -147,7 +147,7 @@
 	disease_flags = CAN_CARRY //no vaccines! no cure!
 	cure_text = "Clown's Tears."
 	cures = list(/datum/reagent/consumable/clownstears)
-	
+
 /datum/disease/transformation/jungle_fever/monkeymode/after_add()
 	if(affected_mob && !is_monkey_leader(affected_mob.mind))
 		visibility_flags = NONE
@@ -286,7 +286,7 @@
 	stage5	= list(span_danger("You have become a morph."))
 	new_form = /mob/living/simple_animal/hostile/morph
 	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
-	
+
 /datum/disease/transformation/ghost
 	name = "Spectral Curse"
 	cure_text = "Holy Water"
