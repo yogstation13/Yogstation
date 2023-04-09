@@ -249,6 +249,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/examine(mob/user)
 	. = ..()
+	if (!has_been_powered)
+		. += span_notice("This on has not been activated.") //425
+	else
+		. += span_notice("This on has been activated.")
 	if (istype(user, /mob/living/carbon))
 		if ((!HAS_TRAIT(user, TRAIT_MESONS)) && (get_dist(user, src) < HALLUCINATION_RANGE(power)))
 			. += span_danger("You get headaches just from looking at it.")
@@ -507,7 +511,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			heal_mod = (healcomp * HEALIUM_HEAL_MOD) + 1 //Increases healing and healing cap
 		else
 			heal_mod = 1
-		
+
 		if (zaukcomp >= 0.05)
 			damage_mod = (zaukcomp * ZAUKER_DAMAGE_MOD) + 1 //Increases damage taken and damage cap
 		else
@@ -543,15 +547,20 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(surging)
 			power += surging
 
-		if(gasmix_power_ratio > 0.8)
-			// with a perfect gas mix, make the power less based on heat
-			icon_state = "[initial(icon_state)]_glow"
-			temp_factor = 50
+		if(has_been_powered)//425
+			if(gasmix_power_ratio > 0.8)
+				// with a perfect gas mix, make the power less based on heat
+				icon_state = "[(icon_state)]_glow"
+				temp_factor = 50
+			else
+				// in normal mode, base the produced energy around the heat
+				temp_factor = 30
+				icon_state = initial(icon_state)
+		else if(power)
+			has_been_powered = TRUE
+			icon_state = "[initial(icon_state)]_start"//425
 		else
-			// in normal mode, base the produced energy around the heat
-			temp_factor = 30
-			icon_state = initial(icon_state)
-
+			icon_state = "[initial(icon_state)]_inactive" //425 ima add the other sm sprite types in futer
 		power = clamp((removed.return_temperature() * temp_factor / T0C) * gasmix_power_ratio + power, 0, SUPERMATTER_MAXIMUM_ENERGY) //Total laser power plus an overload
 
 		if(prob(50))
@@ -750,6 +759,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			investigate_log("has been powered for the first time.", INVESTIGATE_SUPERMATTER)
 			message_admins("[src] has been powered for the first time [ADMIN_JMP(src)].")
 			has_been_powered = TRUE
+			icon_state = "[initial(icon_state)]_start" //425
 			var/datum/department_goal/eng/additional_supermatter/goal = locate() in SSYogs.department_goals
 			if(goal)
 				goal.complete()
