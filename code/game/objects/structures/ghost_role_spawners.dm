@@ -709,5 +709,5 @@
 	glasses = /obj/item/clothing/glasses/meson/engine
 	ears = /obj/item/radio/headset/syndicate
 	id = /obj/item/card/id/syndicate
-	l_pocket = /obj/item/t_scanner
+	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/kitchen/knife/combat/survival
