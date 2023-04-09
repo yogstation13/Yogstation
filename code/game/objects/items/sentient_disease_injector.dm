@@ -2,7 +2,6 @@
 	name = "\improper CVS recipient injector"
 	desc = "It doesn't look like it prints recipts."
 
-
 	var/used = FALSE
 
 	var/obj/item/reagent_containers/glass/bottle/vial/stored_vial
@@ -57,11 +56,14 @@
 	if(!proximity || !istype(target,/mob/living/carbon))
 		return ..()
 
+	if(!used)
+		to_chat(user, span_warning("\The [src] is already spent!"))
+		return
+
 	var/mob/living/carbon/C = target
 
 	if(!C.can_inject(user, 1, user.zone_selected, TRUE))
 		to_chat(user, span_warning("You can't seem to inject \the [C] that way!"))
-
 
 	if(ishuman(C))
 		var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
