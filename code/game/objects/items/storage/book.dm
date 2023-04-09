@@ -229,15 +229,20 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 				EX.icon_state = "ghost1"
 				EX.name = "Purified [initial(EX.name)]"
 			user.visible_message(span_notice("[user] has purified [SS]!"))
-	else if(istype(A, /obj/item/nullrod/scythe/talking))
-		var/obj/item/nullrod/scythe/talking/sword = A
+	else if(istype(A, /obj/item/nullrod/talking))
+		var/obj/item/nullrod/talking/sword = A
 		to_chat(user, span_notice("You begin to exorcise [sword]..."))
+		if(sword.owner)
+			to_chat(sword.owner, "you feel the soul in your blade cry out as it starts getting exorcised!")
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,TRUE)
 		if(do_after(user, 4 SECONDS, sword))
 			playsound(src,'sound/effects/pray_chaplain.ogg',60,TRUE)
 			for(var/mob/living/simple_animal/shade/S in sword.contents)
 				to_chat(S, span_userdanger("You were destroyed by the exorcism!"))
 				qdel(S)
+			if(sword.owner)
+				sword.owner.RemoveSpell(sword.summon)
+				sword.owner = null
 			sword.possessed = FALSE //allows the chaplain (or someone else) to reroll a new spirit for their sword
 			sword.name = initial(sword.name)
 			REMOVE_TRAIT(sword, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT) //in case the "sword" is a possessed dummy
