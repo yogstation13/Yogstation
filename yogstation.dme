@@ -1099,6 +1099,7 @@
 #include "code\game\objects\items\RPD.dm"
 #include "code\game\objects\items\RSF.dm"
 #include "code\game\objects\items\scrolls.dm"
+#include "code\game\objects\items\sentient_disease_injector.dm"
 #include "code\game\objects\items\sharpener.dm"
 #include "code\game\objects\items\shields.dm"
 #include "code\game\objects\items\shooting_range.dm"

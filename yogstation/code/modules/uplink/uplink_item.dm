@@ -28,6 +28,18 @@
 	category = "Conspicuous Weapons"
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear)
 
+/datum/uplink_item/stealthy_weapons/sentient_disease_injector
+	name = "CVS recipient injector"
+	desc = "The Contagion Viral Supplementor injector is a state of the art Syndicate hyposyringe that can inject the target with a \
+			sentient virus. A vial can be inserted with a virus sample to give that sentient virus those symptoms. Doesn't come with a miniprinter."
+	item = /obj/item/sentient_disease_injector
+	cost = 25
+	surplus = 0 //Hijack-only, don't let this exist in surplus
+	cant_discount = TRUE
+	include_objectives = list(/datum/objective/hijack) //Hijack only.
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
+	restricted_roles = list("Virologist","Chief Medical Officer")
+
 /datum/uplink_item/stealthy_weapons/soap_clusterbang
 	category = "Conspicuous Weapons"
 
