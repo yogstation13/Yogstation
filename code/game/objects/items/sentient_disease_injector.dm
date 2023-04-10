@@ -31,16 +31,16 @@
 		)
 
 	if(stored_vial)
+		if(stored_vial.reagents.total_volume > 0)
+			var/mutable_appearance/filling = mutable_appearance(icon,"[icon_state]_reagents")
+			filling.color = mix_color_from_reagents(stored_vial.reagents.reagent_list)
+			add_overlay(filling)
 		add_overlay(
 			image(
 				icon = icon,
 				icon_state = "[icon_state]_vial]"
 			)
 		)
-		if(stored_vial.reagents.total_volume > 0)
-			var/mutable_appearance/filling = mutable_appearance(icon,"[icon_state]_reagents")
-			filling.color = mix_color_from_reagents(stored_vial.reagents.reagent_list)
-			add_overlay(filling)
 
 /obj/item/sentient_disease_injector/examine(mob/user)
 	. = ..()
