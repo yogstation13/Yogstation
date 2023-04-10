@@ -62,7 +62,7 @@
 
 /obj/item/sentient_disease_injector/afterattack(atom/target, mob/user, proximity)
 
-	if(!proximity || !istype(target,/mob/living/carbon))
+	if(!proximity || !icarbon(target))
 		return ..()
 
 	if(uses <= 0)
@@ -87,14 +87,12 @@
 
 	uses -= 1
 
-	for(var/k in C.diseases) //Cure all existing diseases
-		var/datum/disease/D = k
+	for(var/datum/disease/D as anything in C.diseases) //Cure all existing diseases
 		D.cure(add_resistance = FALSE)
 
 	if(stored_vial && stored_vial.reagents.total_volume) //If there is a stored vial, inject.
 		var/list/injected = list()
-		for(var/k in stored_vial.reagents)
-			var/datum/reagent/R = k
+		for(var/datum/reagent/R as anything in stored_vial.reagents)
 			injected += R.name
 		log_combat(user, C, "attempted to inject", src, "([english_list(injected)])")
 		stored_vial.reagents.reaction(C, INJECT, 1)
@@ -103,7 +101,7 @@
 		log_combat(user, C, "attempted to inject", src)
 
 	if(length(C.diseases))
-		INVOKE_ASYNC(src, .proc/create_sentient_virus, target, user)
+		INVOKE_ASYNC(src, PROC_REF(create_sentient_virus), target, user)
 
 	return TRUE
 
@@ -123,8 +121,7 @@
 	message_admins("[ADMIN_LOOKUPFLW(virus)] has been made into a sentient disease by [ADMIN_LOOKUPFLW(usr)]'s [src].")
 	log_game("[key_name(virus)] was spawned as a sentient disease by [ADMIN_LOOKUPFLW(usr)]'s [src].")
 	//Mix and cure all existing diseases.
-	for(var/k in target.diseases)
-		var/datum/disease/D = k
+	for(var/datum/disease/D as anything in target.diseases)
 		if(D == virus)
 			continue
 		virus.disease_template.Mix(D)
