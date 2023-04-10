@@ -12,6 +12,10 @@
 	resistance_flags = ACID_PROOF
 	slot_flags = ITEM_SLOT_BELT
 
+/obj/item/sentient_disease_injector/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/sentient_disease_injector/update_icon()
 
 	. = ..()
@@ -35,7 +39,7 @@
 		)
 		if(stored_vial.reagents.total_volume > 0)
 			var/mutable_appearance/filling = mutable_appearance(icon,"[icon_state]_reagents")
-			filling.color = mix_color_from_reagents(reagents.reagent_list)
+			filling.color = mix_color_from_reagents(stored_vial.reagents.reagent_list)
 			add_overlay(filling)
 
 /obj/item/sentient_disease_injector/examine(mob/user)
@@ -66,7 +70,7 @@
 		to_chat(user, span_warning("\The [I] is empty!"))
 		return
 
-	if(!length(R.data["viruses"]))
+	if(!length(R.data) || !length(R.data["viruses"]))
 		to_chat(user, span_warning("\The [src] can't seem to detect any viruses inside \the [I]..."))
 		return
 
@@ -98,7 +102,7 @@
 
 /obj/item/sentient_disease_injector/afterattack(atom/target, mob/user, proximity)
 
-	if(!proximity || !icarbon(target))
+	if(!proximity || !iscarbon(target))
 		return ..()
 
 	if(uses <= 0)
@@ -150,7 +154,7 @@
 /obj/item/sentient_disease_injector/proc/create_sentient_virus(mob/living/carbon/target,mob/user)
 
 	var/list/candidates = pollGhostCandidates("Do you wish to be considered for the special role of 'custom sentient disease'?", ROLE_ALIEN, null, ROLE_ALIEN)
-	if(!candidates.len)
+	if(!length(candidates))
 		return FALSE //No candidates.
 
 	var/mob/dead/observer/selected = pick_n_take(candidates)
