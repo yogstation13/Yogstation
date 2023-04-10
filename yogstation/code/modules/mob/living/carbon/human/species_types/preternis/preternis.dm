@@ -350,6 +350,12 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "cookie-bite",
+			SPECIES_PERK_NAME = "Meal Plan",
+			SPECIES_PERK_DESC = "Preterni can eat ores to replenish their metal skin. All ores are not created equal.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
 			SPECIES_PERK_NAME = "Faraday \"Skin\"",
 			SPECIES_PERK_DESC = "Being incased in plasteel rather than standard metal allows Preterni to be completely unaffected by EMPs.",
