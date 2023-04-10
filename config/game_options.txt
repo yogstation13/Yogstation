@@ -27,7 +27,7 @@ JOB_SPECIES_WHITELIST /datum/job/cmo human,lizard,pod,plasmaman,moth,ethereal,pr
 
 ## OOC DURING ROUND ###
 ## Comment this out if you want OOC to be automatically disabled during the round, it will be enabled during the lobby and after the round end results.
-OOC_DURING_ROUND
+# OOC_DURING_ROUND
 
 ## LOOC DURING ROUND ###
 ## Comment this out if you want LOOC to be automatically disabled during the round, it will be enabled during the lobby and after the round end results.
