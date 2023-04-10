@@ -1,0 +1,4 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - bugfix: "Correctly marks Podbay as its own area, adds the APC for it, and fixes the podbay doors so the forcefield is there."
