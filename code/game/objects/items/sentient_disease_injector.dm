@@ -1,10 +1,19 @@
 /obj/item/sentient_disease_injector
 	name = "\improper CVS recipient injector"
-	desc = "It doesn't look like it prints recipts."
+	desc = "It doesn't look like it prints receipts."
 
-	var/used = FALSE
+	var/uses = 3
 
 	var/obj/item/reagent_containers/glass/bottle/vial/stored_vial
+
+/obj/item/sentient_disease_injector/examine(mob/user)
+	. = ..()
+	if(stored_vial)
+		. += span_notice("It has a [stored_vial] inserted.")
+	if(uses > 0)
+		. += span_notice("The charge meter indicates it has [uses] [uses == 1 ? "use" : "uses"] remaining.")
+	else
+		. += span_notice("The charge meter indicates it is spent..")
 
 /obj/item/sentient_disease_injector/attackby(obj/item/I, mob/user, params)
 
@@ -56,8 +65,8 @@
 	if(!proximity || !istype(target,/mob/living/carbon))
 		return ..()
 
-	if(!used)
-		to_chat(user, span_warning("\The [src] is already spent!"))
+	if(uses <= 0)
+		to_chat(user, span_warning("\The [src] is spent!"))
 		return
 
 	var/mob/living/carbon/C = target
@@ -76,7 +85,7 @@
 
 	to_chat(user, span_notice("You stealthily inject \the [C] with \the [src]."))
 
-	used = TRUE
+	uses -= 1
 
 	for(var/k in C.diseases) //Cure all existing diseases
 		var/datum/disease/D = k
