@@ -1,19 +1,51 @@
 /obj/item/sentient_disease_injector
 	name = "\improper CVS recipient injector"
-	desc = "It doesn't look like it prints receipts."
+	desc = "It doesn't look like it prints receipts..."
+
+	icon = 'yogstation/icons/obj/syringe.dmi'
+	icon_state = "cvs"
 
 	var/uses = 3
 
 	var/obj/item/reagent_containers/glass/bottle/vial/stored_vial
+
+	resistance_flags = ACID_PROOF
+	slot_flags = ITEM_SLOT_BELT
+
+/obj/item/sentient_disease_injector/update_icon()
+
+	. = ..()
+
+	cut_overlays()
+
+	if(uses > 0)
+		add_overlay(
+			image(
+				icon = icon,
+				icon_state = "[icon_state]_virus[min(uses,3)]"
+			)
+		)
+
+	if(stored_vial)
+		add_overlay(
+			image(
+				icon = icon,
+				icon_state = "[icon_state]_vial]"
+			)
+		)
+		if(stored_vial.reagents.total_volume > 0)
+			var/mutable_appearance/filling = mutable_appearance(icon,"[icon_state]_reagents")
+			filling.color = mix_color_from_reagents(reagents.reagent_list)
+			add_overlay(filling)
 
 /obj/item/sentient_disease_injector/examine(mob/user)
 	. = ..()
 	if(stored_vial)
 		. += span_notice("It has a [stored_vial] inserted.")
 	if(uses > 0)
-		. += span_notice("The charge meter indicates it has [uses] [uses == 1 ? "use" : "uses"] remaining.")
+		. += span_notice("It has [uses] [uses == 1 ? "use" : "uses"] remaining.")
 	else
-		. += span_notice("The charge meter indicates it is spent..")
+		. += span_notice("It is spent.")
 
 /obj/item/sentient_disease_injector/attackby(obj/item/I, mob/user, params)
 
@@ -43,6 +75,8 @@
 
 	to_chat(user, span_notice("You insert \the [I] into \the [src]."))
 
+	update_icon()
+
 	return TRUE
 
 /obj/item/sentient_disease_injector/attack_self(mob/user)
@@ -54,6 +88,8 @@
 	user.put_in_hands(stored_vial)
 	to_chat(user, span_notice("You eject \the [stored_vial] from \the [src]."))
 	stored_vial = null
+
+	update_icon()
 
 	return TRUE
 
@@ -105,6 +141,8 @@
 	if(length(C.diseases))
 		INVOKE_ASYNC(src, .proc/create_sentient_virus, target, user)
 
+	update_icon()
+
 	return TRUE
 
 /obj/item/sentient_disease_injector/Destroy()
@@ -131,5 +169,3 @@
 		D.cure(add_resistance = FALSE)
 
 	return virus.force_infect(target)
-
-
