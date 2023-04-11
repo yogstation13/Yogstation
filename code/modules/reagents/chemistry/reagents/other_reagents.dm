@@ -32,7 +32,6 @@
 			else
 				C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(C))
 
-
 /datum/reagent/blood/on_new(list/data)
 	if(istype(data))
 		SetViruses(src, data)
@@ -81,6 +80,19 @@
 		B = new(T)
 	if(data["blood_DNA"])
 		B.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
+
+/datum/reagent/synthblood
+	name = "Synthetic Blood"
+	description = "Specialized blood that adapts to the blood type of any host and is incapable of carrying diseases."
+	color = "#9000ffff" // rgb: 200, 0, 0
+	metabolization_rate = 5 //fast rate so it disappears fast.
+
+/datum/reagent/synthblood/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+	. = ..()
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(C.get_blood_id() == /datum/reagent/blood && (method == INJECT || (method == INGEST && (DRINKSBLOOD in C?.dna?.species?.species_traits))))
+			C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(C))
 
 /datum/reagent/liquidgibs
 	name = "Liquid gibs"

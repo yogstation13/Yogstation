@@ -2,7 +2,7 @@
 	if(!is_vampire(M) || M == src || M.zone_selected != "head")
 		return FALSE
 	var/datum/antagonist/vampire/V = M.mind.has_antag_datum(/datum/antagonist/vampire)
-	if((NOBLOOD in dna.species.species_traits) || dna.species.exotic_blood || !blood_volume)
+	if((NOBLOOD in dna.species.species_traits) || !blood_volume)
 		to_chat(M, span_warning("They have no blood!"))
 		return FALSE
 	if(is_vampire(src))

@@ -163,7 +163,7 @@
 			if(victim.stat == DEAD)
 				to_chat(H, span_notice("You need a living victim!"))
 				return
-			if(!victim.blood_volume || (victim.dna && ((NOBLOOD in victim.dna.species.species_traits) || victim.dna.species.exotic_blood)))
+			if(!victim.blood_volume || (victim.dna && ((NOBLOOD in victim.dna.species.species_traits))))
 				to_chat(H, span_notice("[victim] doesn't have blood!"))
 				return
 			V.drain_cooldown = world.time + 30
