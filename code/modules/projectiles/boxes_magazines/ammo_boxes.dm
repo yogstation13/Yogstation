@@ -185,7 +185,7 @@
 	icon_state = "arrowbox_yellow"
 	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/shock
 
-/obj/item/ammo_box/arrow/toy/shock
+/obj/item/ammo_box/arrow/toy/magic
 	name = "ammo box (Toy Magic Arrow)"
 	icon_state = "arrowbox_purple"
-	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/shock
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/magic

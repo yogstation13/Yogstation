@@ -232,10 +232,12 @@
 
 /obj/item/gun/ballistic/process_chamber(empty_chamber = TRUE, from_firing = TRUE, chamber_next_round = TRUE)
 	var/obj/item/ammo_casing/AC = chambered //Find chambered round
-	if(!semi_auto && from_firing && !(istype(AC) && CHECK_BITFIELD(AC.casing_flags, CASINGFLAG_FORCE_CLEAR_CHAMBER)))
+	if(!semi_auto && from_firing)
+		if(istype(AC) && CHECK_BITFIELD(AC.casing_flags, CASINGFLAG_FORCE_CLEAR_CHAMBER))
+			chambered = null
 		return
 	if(istype(AC)) //there's a chambered round
-		if(CHECK_BITFIELD(AC.casing_flags, CASINGFLAG_FORCE_CLEAR_CHAMBER))
+		if(CHECK_BITFIELD(AC.casing_flags, CASINGFLAG_FORCE_CLEAR_CHAMBER) && from_firing)
 			chambered = null
 		else if(casing_ejector || !from_firing)
 			AC.forceMove(drop_location()) //Eject casing onto ground.

@@ -2738,7 +2738,8 @@
 					/obj/item/ammo_box/arrow/toy/energy,
 					/obj/item/ammo_box/arrow/toy/pulse,
 					/obj/item/ammo_box/arrow/toy/xray,
-					/obj/item/ammo_box/arrow/toy/shock
+					/obj/item/ammo_box/arrow/toy/shock,
+					/obj/item/ammo_box/arrow/toy/magic
 	)
 	crate_name = "archery war crate"
 	crate_type = /obj/structure/closet/crate/wooden

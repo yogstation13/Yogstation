@@ -23,6 +23,8 @@
 
 /obj/item/ammo_casing/reusable/proc/on_land(var/obj/item/projectile/old_projectile)
 	if(istype(old_projectile))
+		pixel_x = old_projectile.pixel_x
+		pixel_y = old_projectile.pixel_y
 		var/matrix/M = matrix(transform)
 		M.Turn(old_projectile.Angle - base_rotation)
 		transform = M
