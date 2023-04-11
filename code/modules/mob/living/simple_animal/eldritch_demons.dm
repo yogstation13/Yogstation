@@ -41,7 +41,7 @@
 /mob/living/simple_animal/hostile/eldritch/raw_prophet
 	name = "Raw Prophet"
 	real_name = "Raw Prophet"
-	desc = "An eye supported by a mass of severed limbs, it has a piercing gaze."
+	desc = "An eye supported by a mass of severed limbs. It has a piercing gaze."
 	icon_state = "raw_prophet"
 	status_flags = CANPUSH
 	icon_living = "raw_prophet"
@@ -116,9 +116,9 @@
 	unlinked_mob.AdjustParalyzed(0.5 SECONDS) //micro stun
 
 /mob/living/simple_animal/hostile/eldritch/armsy
-	name = "Terror of the night"
-	real_name = "Armsy"
-	desc = "Abomination made from severed limbs."
+	name = "Lavish Serpent"
+	real_name = "Waning Devourer"
+	desc = "A horrid abomination made from severed limbs."
 	icon_state = "armsy_start"
 	icon_living = "armsy_start"
 	maxHealth = 200
@@ -286,8 +286,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/eldritch/armsy/prime
-	name = "Lord of the Night"
-	real_name = "Master of Decay"
+	name = "Thirstly Serpent"
+	real_name = "Decadent Devourer"
 	maxHealth = 400
 	health = 400
 	melee_damage_lower = 30
@@ -300,9 +300,9 @@
 	transform = matrix_transformation
 
 /mob/living/simple_animal/hostile/eldritch/rust_spirit
-	name = "Rust Walker"
+	name = "Rustwalker"
 	real_name = "Rusty"
-	desc = "A massive skull supported by a machination of deteriorating machinery, it actively seeps life out of its environment."
+	desc = "A massive skull supported by a machination of deteriorating machinery. It actively seeps life out of its environment."
 	icon_state = "rust_walker_s"
 	status_flags = CANPUSH
 	icon_living = "rust_walker_s"
@@ -338,9 +338,9 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/eldritch/ash_spirit
-	name = "Ash Man"
+	name = "Ashman"
 	real_name = "Ashy"
-	desc = "A strange, floating... thing..."
+	desc = "A strange, floating mass of ash and hunger."
 	icon_state = "ash_walker"
 	status_flags = CANPUSH
 	icon_living = "ash_walker"
@@ -356,9 +356,9 @@
 	)
 
 /mob/living/simple_animal/hostile/eldritch/stalker
-	name = "Flesh Stalker"
-	real_name = "Flesh Stalker"
-	desc = "An abomination made from severed limbs, its form shifts as it moves."
+	name = "Stalker"
+	real_name = "Stalker"
+	desc = "A horrid entity made from severed limbs. Its form shifts as it moves."
 	icon_state = "stalker"
 	status_flags = CANPUSH
 	icon_living = "stalker"

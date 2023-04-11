@@ -416,7 +416,14 @@
 		user.visible_message(span_notice("[defib] beeps: Unit is unpowered."))
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
-	if(!wielded)
+	
+	var/has_rod = FALSE
+	for(var/obj/item/rod_of_asclepius/rod in user.held_items)
+		if(istype(rod) && rod.activated)
+			has_rod = TRUE
+			break
+
+	if(!(wielded || has_rod))
 		if(iscyborg(user))
 			to_chat(user, span_warning("You must activate the paddles in your active module before you can use them on someone!"))
 		else
@@ -455,6 +462,8 @@
 		H.grab_ghost() // Shove them back in their body.
 	else if(H.can_defib(FALSE))
 		H.notify_ghost_cloning("Your heart is being defibrillated. Re-enter your corpse if you want to be revived!", source = src)
+	if(has_rod && !wielded)
+		to_chat(user, span_notice("Your snake holds the other paddle in its mouth and places it on [H]'s chest."))
 	do_help(H, user)
 
 /obj/item/twohanded/shockpaddles/proc/shock_touching(dmg, mob/H)

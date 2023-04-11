@@ -232,6 +232,7 @@
 				SSshuttle.emag_shuttle_purchased = TRUE
 			SSshuttle.unload_preview()
 			SSshuttle.existing_shuttle = SSshuttle.emergency
+			SSshuttle.emergency.name = shuttle.name
 			SSshuttle.action_load(shuttle)
 			bank_account.adjust_money(-shuttle.credit_cost)
 			minor_announce("[authorize_name] has purchased [shuttle.name] for [shuttle.credit_cost] credits.[shuttle.extra_desc ? " [shuttle.extra_desc]" : ""]" , "Shuttle Purchase")

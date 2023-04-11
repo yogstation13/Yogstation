@@ -68,6 +68,10 @@
 		var/obj/item/clothing/CH = head
 		if (CS.clothing_flags & CH.clothing_flags & STOPSPRESSUREDAMAGE)
 			return ONE_ATMOSPHERE
+	else if(!get_bodypart(BODY_ZONE_HEAD) && wear_suit && istype(wear_suit, /obj/item/clothing)) // you don't need a helmet if you don't have a head
+		var/obj/item/clothing/CS = wear_suit
+		if(CS.clothing_flags & STOPSPRESSUREDAMAGE)
+			return ONE_ATMOSPHERE
 	return pressure
 
 

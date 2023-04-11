@@ -324,7 +324,7 @@
 		human.emp_act(EMP_HEAVY)
 	for(var/obj/thing in victim)
 		//Doesn't work on SMES and APCs, to prevent kekkery.
-		if(istype(thing, /obj/machinery/power/apc) || istype(thing, /obj/machinery/power/smes))
+		if(istype(thing,/obj/machinery/airalarm) || istype(thing, /obj/machinery/power/apc) || istype(thing, /obj/machinery/power/smes || istype(thing, /obj/machinery/particle_accelerator/control_box)))
 			continue
 		if(prob(20))
 			if(prob(50))

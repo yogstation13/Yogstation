@@ -393,22 +393,20 @@
 		add_new_profile(C)
 
 /datum/antagonist/changeling/apply_innate_effects(mob/living/mob_override)
-	//Brains optional.
 	var/mob/mob_to_tweak = mob_override || owner.current
 	if(!isliving(mob_to_tweak))
 		return
 	handle_clown_mutation(mob_to_tweak, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
 	RegisterSignal(mob_to_tweak, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(on_life))
-	var/mob/living/carbon/C = mob_to_tweak
-	if(istype(C))
-		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
-		if(B)
-			B.organ_flags &= ~ORGAN_VITAL
-			B.decoy_override = TRUE
+	RegisterSignals(mob_to_tweak, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON), PROC_REF(on_click_sting))
+	//Brains optional.
+	var/obj/item/organ/brain/our_ling_brain = mob_to_tweak.getorganslot(ORGAN_SLOT_BRAIN)
+	if(our_ling_brain)
+		our_ling_brain.organ_flags &= ~ORGAN_VITAL
+		our_ling_brain.decoy_override = TRUE
 
-	if(C.hud_used)
-		var/datum/hud/hud_used = C.hud_used
-
+	if(mob_to_tweak.hud_used)
+		var/datum/hud/hud_used = mob_to_tweak.hud_used
 		lingchemdisplay = new /atom/movable/screen/ling/chems()
 		lingchemdisplay.hud = hud_used
 		hud_used.infodisplay += lingchemdisplay
@@ -419,11 +417,13 @@
 
 		hud_used.show_hud(hud_used.hud_version)
 	else
-		RegisterSignal(C, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
+		RegisterSignal(mob_to_tweak, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
+
 
 /datum/antagonist/changeling/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/living_mob = mob_override || owner.current
+	UnregisterSignal(living_mob, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON))
 
 	if(living_mob.hud_used)
 		var/datum/hud/hud_used = living_mob.hud_used
@@ -576,6 +576,31 @@
 				identity_theft.find_target()
 			objectives += identity_theft
 		escape_objective_possible = FALSE
+
+/**
+ * Signal proc for [COMSIG_MOB_MIDDLECLICKON] and [COMSIG_MOB_ALTCLICKON].
+ * Allows the changeling to sting people with a click.
+ */
+/datum/antagonist/changeling/proc/on_click_sting(mob/living/ling, atom/clicked)
+	SIGNAL_HANDLER
+
+	// nothing to handle
+	if(!chosen_sting)
+		return
+
+	if(!isliving(ling) || clicked == ling || ling.stat != CONSCIOUS)
+		return
+
+	// sort-of hack done here: we use in_given_range here because it's quicker.
+	// actual ling stings do pathfinding to determine whether the target's "in range".
+	// however, this is "close enough" preliminary checks to not block click
+	if(!isliving(clicked) || !IN_GIVEN_RANGE(ling, clicked, sting_range))
+		return
+	
+	chosen_sting.try_to_sting(ling, clicked)
+	ling.next_click = world.time + 5
+
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/antagonist/changeling/admin_add(datum/mind/new_owner,mob/admin)
 	. = ..()

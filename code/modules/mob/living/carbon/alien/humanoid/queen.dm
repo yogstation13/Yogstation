@@ -12,6 +12,7 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/xeno = 20, /obj/item/stack/sheet/animalhide/xeno = 3)
 
 	var/alt_inhands_file = 'icons/mob/alienqueen.dmi'
+	var/datum/timedevent/time_to_shuttle
 
 /mob/living/carbon/alien/humanoid/royal/can_inject()
 	return 0

@@ -128,7 +128,7 @@
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
 
-	var/handled = SEND_SIGNAL(L, COMSIG_PROCESS_MOVE, direct) //yogs start - movement components
+	var/handled = SEND_SIGNAL(L, COMSIG_MOB_CLIENT_PRE_MOVE, direct)
 	if(handled)
 		return FALSE//yogs end
 

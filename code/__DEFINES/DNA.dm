@@ -154,6 +154,7 @@
 #define NOMOUTH			27
 /// has a tail
 #define HAS_TAIL		28
+#define NONANITES		29
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

@@ -16,7 +16,7 @@
 	coldmod = 0.67 //used to being cold, just doesn't like it much
 	heatmod = 0.67 //greatly appreciate heat, just not too much
 	action_speed_coefficient = 1.05 //claws aren't as dextrous as hands
-	payday_modifier = 0.5 //Negatively viewed by NT
+	payday_modifier = 0.85 //Full SIC citizens, but not quite given all the same rights- it's been an ongoing process for about half a decade
 	default_features = list("mcolor" = "0F0", "tail_lizard" = "Smooth", "snout" = "Round", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	attack_verb = "slash"
@@ -184,7 +184,7 @@
 	inherent_traits = list(TRAIT_NOGUNS) //yogs start - ashwalkers have special lungs and actually breathe
 	mutantlungs = /obj/item/organ/lungs/ashwalker
 	breathid = "n2" // yogs end
-	species_language_holder = /datum/language_holder/lizard/ash
+	species_language_holder = /datum/language_holder/lizard/ash //ashwalker dum
 
 // yogs start - Ashwalkers now have ash immunity
 /datum/species/lizard/ashwalker/on_species_gain(mob/living/carbon/C, datum/species/old_species)
@@ -206,6 +206,7 @@
 	punchdamagehigh = 7
 	punchstunthreshold = 7
 	action_speed_coefficient = 0.9 //they're smart and efficient unlike other lizards
+	species_language_holder = /datum/language_holder/lizard/shaman
 	var/datum/action/cooldown/spell/touch/healtouch/lizardtouch
 
 //gives the heal spell

@@ -35,7 +35,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	punchdamagehigh = 8 //not built for large high speed acts like punches
 	punchstunthreshold = 7 //if they get a good punch off, you're still seeing lights
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
-	payday_modifier = 0.8 //Highly efficient workers, more than worth their price, NT still racist though
+	payday_modifier = 0.6 //Highly efficient workers, but significant political tension between SIC and Remnants = next to no protection or people willing to fight the obvious wage cut
 	//mutant_bodyparts = list("head", "body_markings")
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
@@ -47,7 +47,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	yogs_draw_robot_hair = TRUE //remove their hair when they get the new sprite
 	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
 	wings_icon = "Robotic" //maybe change this eventually
-	species_language_holder = /datum/language_holder/preternis	
+	species_language_holder = /datum/language_holder/machine
 	//new variables
 	var/datum/action/innate/maglock/maglock
 	var/lockdown = FALSE
@@ -75,6 +75,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(istype(BP,/obj/item/bodypart/l_leg) || istype(BP,/obj/item/bodypart/r_leg))//my dudes skip leg day
 			BP.max_damage = 30
 
+	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, .proc/drain_power_from)
+
 	if(ishuman(C))
 		maglock = new
 		maglock.Grant(C)
@@ -89,6 +91,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		BP.change_bodypart_status(ORGAN_ORGANIC,FALSE,TRUE)
 		BP.burn_reduction = initial(BP.burn_reduction)
 		BP.brute_reduction = initial(BP.brute_reduction)
+
+	UnregisterSignal(C, COMSIG_MOB_ALTCLICKON)
 		
 	var/datum/component/empprotection/empproof = C.GetExactComponent(/datum/component/empprotection)
 	empproof.RemoveComponent()//remove emp proof if they stop being a preternis
@@ -343,7 +347,32 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/create_pref_unique_perks()
 	var/list/to_add = list()
 
-	// TODO
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
+			SPECIES_PERK_NAME = "Faraday \"Skin\"",
+			SPECIES_PERK_DESC = "Being incased in plasteel rather than standard metal allows Preterni to be completely unaffected by EMPs.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "charging-station", //would prefer battery-bolt, but it doesn't show up
+			SPECIES_PERK_NAME = "Plug-n-Play",
+			SPECIES_PERK_DESC = "Preterni run off electricity rather than food.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "flask",
+			SPECIES_PERK_NAME = "Chemical Purge",
+			SPECIES_PERK_DESC = "Preterni will purge any foreign chemicals after a short time of them being in the blood stream.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "droplet-slash",
+			SPECIES_PERK_NAME = "Keep Dry",
+			SPECIES_PERK_DESC = "Preterni have exposed circuitry under cracks in their body, if water gets in they will short, causing weakness in the limbs and burns.",
+		),
+	)
 
 	return to_add
 

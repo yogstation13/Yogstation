@@ -5,7 +5,7 @@
 	required_shit_list = "A pile of ash and a knife."
 
 /datum/eldritch_transmutation/ashen_eyes
-	name = "Ashen Eyes"
+	name = "Eldritch Medallion"
 	required_atoms = list(/obj/item/organ/eyes,/obj/item/shard)
 	result_atoms = list(/obj/item/clothing/neck/eldritch_amulet)
 	required_shit_list = "A glass shard and a pair of eyes."
@@ -57,13 +57,13 @@
 	chosen_mob.update_mobility()
 
 /datum/eldritch_transmutation/final/ash_final
-	name = "Ashlord's Rite"
+	name = "Amgala's Ruin"
 	required_atoms = list(/mob/living/carbon/human)
 	var/list/trait_list = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_BOMBIMMUNE)
 	required_shit_list = "Three dead bodies."
 
 /datum/eldritch_transmutation/final/ash_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear The Blaze, for Ashbringer [user.real_name] has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report a fiery entity of unknown power is quickly escalating the station temperature to unhabitable levels. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 	set_security_level(SEC_LEVEL_GAMMA)
 
 	var/datum/action/cooldown/spell/fire_sworn/circle_spell = new(user.mind)

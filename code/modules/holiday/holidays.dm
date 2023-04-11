@@ -612,11 +612,13 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 
 /datum/holiday/xmas/celebrate()
 	SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
-	GLOB.maintenance_loot += list(
-		/obj/item/toy/xmas_cracker = 3,
-		/obj/item/clothing/head/santa = 1,
-		/obj/item/a_gift/anything = 1
+	//Start of yogstation loot changes.
+	GLOB.maintenance_loot_traditional += list(
+		/obj/item/toy/xmas_cracker = 300,
+		/obj/item/clothing/head/santa = 100,
+		/obj/item/a_gift/anything = 100
 	)
+	//End of yogstation loot changes.
 
 /datum/holiday/xmas/proc/roundstart_celebrate()
 	for(var/obj/machinery/computer/security/telescreen/entertainment/Monitor in GLOB.machines)
@@ -682,9 +684,11 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	return ..()
 
 /datum/holiday/easter/celebrate()
-	GLOB.maintenance_loot += list(
-		/obj/item/reagent_containers/food/snacks/egg/loaded = 15,
-		/obj/item/storage/bag/easterbasket = 15)
+	//Start of yogstation loot changes.
+	GLOB.maintenance_loot_traditional += list(
+		/obj/item/reagent_containers/food/snacks/egg/loaded = 1500,
+		/obj/item/storage/bag/easterbasket = 1500)
+	//End of yogstation loot changes.
 
 /datum/holiday/easter/greet()
 	return "Greetings! Have a Happy Easter and keep an eye out for Easter Bunnies!"

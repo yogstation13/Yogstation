@@ -1,5 +1,5 @@
-/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
-	name = "Ashen passage"
+/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash
+	name = "Ashen Passage"
 	desc = "Grants a short period of incorporeality, allowing passage through walls and other obstacles."
 	background_icon_state = "bg_ecult"
 	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -318,7 +318,7 @@
 
 // Currently unused.
 /datum/action/cooldown/spell/touch/mad_touch
-	name = "Touch of madness"
+	name = "Touch of Madness"
 	desc = "Strange energies engulf your hand, you feel even the sight of them would cause a headache if you didn't understand them."
 	background_icon_state = "bg_ecult"
 	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -327,6 +327,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 	invocation_type = INVOCATION_NONE
+
 	spell_requirements = NONE
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 
@@ -359,9 +360,10 @@
 	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 300
 	invocation = "F'RE"
 	invocation_type = INVOCATION_WHISPER
+	
+	cooldown_time = 30 SECONDS
 	spell_requirements = NONE
 
 	/// The length of the flame line spit out.
@@ -402,7 +404,7 @@
 				continue
 			hit_list += L
 			L.adjustFireLoss(20)
-			to_chat(L, span_userdanger("You're hit by [source]'s fire breath!"))
+			to_chat(L, span_userdanger("You're hit by [source]'s fire blast!"))
 
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)

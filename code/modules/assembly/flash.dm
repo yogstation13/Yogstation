@@ -31,6 +31,8 @@
 	var/last_trigger = 0
 	///can we convert people to revolution
 	var/can_convert = FALSE
+	///can we stun silicons
+	var/borgstun = TRUE
 
 /obj/item/assembly/flash/suicide_act(mob/living/user)
 	if(burnt_out)
@@ -166,7 +168,7 @@
 	if(iscarbon(M))
 		flash_carbon(M, user, 5, 1)
 		return TRUE
-	else if(issilicon(M))
+	else if(issilicon(M) && borgstun)
 		var/mob/living/silicon/robot/R = M
 		if(!R.sensor_protection)
 			log_combat(user, R, "flashed", src)
@@ -233,6 +235,9 @@
 
 
 /obj/item/assembly/flash/cyborg
+	name = "cyborg flash"
+	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production. This variant is unable to stun cyborgs."
+	borgstun = FALSE
 
 /obj/item/assembly/flash/cyborg/attack(mob/living/M, mob/user)
 	..()
@@ -246,6 +251,11 @@
 	return
 /obj/item/assembly/flash/cyborg/screwdriver_act(mob/living/user, obj/item/I)
 	return
+	
+/obj/item/assembly/flash/cyborg/combat
+	name = "combat cyborg flash"
+	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production. This variant is able to stun cyborgs."
+	borgstun = TRUE
 
 /obj/item/assembly/flash/memorizer
 	name = "memorizer"
