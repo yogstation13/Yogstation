@@ -28,9 +28,12 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"ba" = (
-/obj/machinery/power/grounding_rod,
-/turf/open/floor/plating,
+"aX" = (
+/obj/machinery/field/generator{
+	anchored = 1;
+	state = 2
+	},
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "bp" = (
 /obj/structure/cable/orange{
@@ -53,6 +56,20 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"cH" = (
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Singularity Northeast";
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plating/snowed,
+/area/engine/engineering)
+"cI" = (
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/machinery/power/tesla_coil,
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "cR" = (
 /obj/machinery/light{
@@ -101,6 +118,13 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+"dw" = (
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/machinery/power/rad_collector,
+/turf/open/floor/plating/snowed,
+/area/engine/engineering)
 "dU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -130,6 +154,16 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"fm" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/snowed,
+/area/engine/engineering)
+"fC" = (
+/obj/machinery/power/tesla_coil,
+/turf/open/floor/plating/snowed,
+/area/engine/engineering)
 "fE" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "engsm";
@@ -138,12 +172,9 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"gi" = (
-/obj/machinery/power/emitter/anchored{
-	state = 2
-	},
-/obj/structure/cable/orange,
-/turf/open/floor/plating/airless,
+"gb" = (
+/obj/structure/cable,
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "gD" = (
 /obj/structure/cable/orange{
@@ -164,10 +195,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"iY" = (
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/engine/engineering)
+"iV" = (
+/obj/structure/cable/orange{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/snowed,
+/area/icemoon/surface/outdoors)
 "iZ" = (
 /turf/open/floor/plating,
 /area/icemoon/surface/outdoors)
@@ -192,6 +225,16 @@
 	network = list("ss13","engine")
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
+/area/engine/engineering)
+"kz" = (
+/obj/machinery/power/emitter/anchored{
+	dir = 1;
+	state = 2
+	},
+/obj/structure/cable/orange{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "kH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -229,17 +272,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/engine/engineering)
-"ly" = (
-/obj/machinery/power/tesla_coil,
-/obj/structure/cable/orange{
-	icon_state = "2-4"
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
-"lR" = (
-/obj/machinery/power/tesla_coil,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "mh" = (
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
@@ -276,18 +308,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"nu" = (
-/obj/structure/cable/orange{
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating,
-/area/icemoon/surface/outdoors)
-"nA" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "oj" = (
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -316,12 +336,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"pS" = (
-/obj/structure/cable/orange{
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating,
-/area/icemoon/surface/outdoors)
 "qk" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon,
@@ -347,6 +361,16 @@
 	dir = 4
 	},
 /turf/open/floor/engine,
+/area/engine/engineering)
+"rR" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "sb" = (
 /obj/structure/cable{
@@ -376,19 +400,6 @@
 "sZ" = (
 /obj/structure/sign/warning/radiation/rad_area,
 /turf/closed/wall/r_wall,
-/area/engine/engineering)
-"tm" = (
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/obj/machinery/power/tesla_coil,
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
-"tA" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
 /area/engine/engineering)
 "tS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -445,6 +456,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"uJ" = (
+/obj/machinery/power/tesla_coil,
+/obj/structure/cable/orange{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating/snowed,
+/area/engine/engineering)
 "uY" = (
 /obj/structure/cable/orange{
 	icon_state = "2-8"
@@ -465,18 +483,6 @@
 /area/engine/engineering)
 "vP" = (
 /turf/closed/wall/r_wall,
-/area/engine/engineering)
-"wg" = (
-/obj/machinery/power/rad_collector,
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
-"wm" = (
-/obj/machinery/camera/emp_proof{
-	c_tag = "Engineering Singularity Southeast";
-	dir = 1;
-	network = list("ss13","engine")
-	},
-/turf/open/floor/plating,
 /area/engine/engineering)
 "wr" = (
 /obj/structure/cable{
@@ -513,9 +519,12 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"xi" = (
-/obj/machinery/power/rad_collector,
-/turf/open/floor/plating,
+"xu" = (
+/obj/structure/cable/orange{
+	icon_state = "1-4"
+	},
+/obj/machinery/power/tesla_coil,
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "yo" = (
 /obj/structure/cable/orange{
@@ -541,12 +550,12 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"zu" = (
-/obj/structure/cable/orange{
-	icon_state = "1-8"
+"zD" = (
+/obj/machinery/power/emitter/anchored{
+	state = 2
 	},
-/obj/machinery/power/rad_collector,
-/turf/open/floor/plating/airless,
+/obj/structure/cable/orange,
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "zG" = (
 /obj/structure/cable{
@@ -596,6 +605,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"Bm" = (
+/obj/structure/cable/orange{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/snowed,
+/area/icemoon/surface/outdoors)
 "BD" = (
 /obj/structure/cable/orange{
 	icon_state = "2-4"
@@ -608,6 +623,12 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
+/area/engine/engineering)
+"CS" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "CT" = (
 /obj/structure/grille,
@@ -622,6 +643,14 @@
 	req_access_txt = "10"
 	},
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"DW" = (
+/obj/machinery/camera/emp_proof{
+	c_tag = "Engineering Singularity Southeast";
+	dir = 1;
+	network = list("ss13","engine")
+	},
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "En" = (
 /obj/structure/grille,
@@ -644,16 +673,20 @@
 	},
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/engine/engineering)
-"Gk" = (
-/obj/structure/cable/orange{
-	icon_state = "1-4"
-	},
-/obj/machinery/power/tesla_coil,
-/turf/open/floor/plating,
+"FX" = (
+/obj/machinery/the_singularitygen/tesla,
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "Gp" = (
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"HN" = (
+/obj/structure/cable/orange{
+	icon_state = "1-8"
+	},
+/obj/machinery/power/rad_collector,
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "Ij" = (
 /obj/structure/cable{
@@ -672,6 +705,10 @@
 /obj/item/extinguisher,
 /obj/item/pipe_dispenser,
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"IU" = (
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "JC" = (
 /obj/effect/turf_decal/stripes{
@@ -710,13 +747,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"KO" = (
-/obj/machinery/camera/emp_proof{
-	c_tag = "Engineering Singularity Northeast";
-	network = list("ss13","engine")
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "KT" = (
 /obj/structure/cable/orange{
 	icon_state = "1-8"
@@ -747,23 +777,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"LK" = (
-/obj/machinery/field/generator{
-	anchored = 1;
-	state = 2
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "LS" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
-"Mp" = (
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
+"Mu" = (
 /obj/machinery/power/rad_collector,
-/turf/open/floor/plating,
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "MJ" = (
 /obj/effect/turf_decal/stripes{
@@ -780,16 +800,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Ne" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/obj/machinery/power/grounding_rod,
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
 "Nq" = (
 /obj/machinery/button/door{
 	dir = 4;
@@ -801,19 +811,16 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"Nt" = (
+/obj/structure/cable/orange{
+	icon_state = "2-8"
+	},
+/obj/machinery/power/rad_collector,
+/turf/open/floor/plating/snowed,
+/area/engine/engineering)
 "Oy" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon,
-/area/engine/engineering)
-"Pf" = (
-/obj/machinery/power/emitter/anchored{
-	dir = 1;
-	state = 2
-	},
-/obj/structure/cable/orange{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plating,
 /area/engine/engineering)
 "PQ" = (
 /obj/machinery/door/airlock/external,
@@ -837,17 +844,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Qi" = (
-/obj/structure/cable/orange{
-	icon_state = "2-8"
-	},
-/obj/machinery/power/rad_collector,
-/turf/open/floor/plating,
-/area/engine/engineering)
-"QS" = (
-/obj/machinery/the_singularitygen/tesla,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "QZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -857,12 +853,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"Ro" = (
+"Rc" = (
+/obj/machinery/power/tesla_coil,
 /obj/structure/cable/orange{
 	icon_state = "4-8"
 	},
-/obj/machinery/power/rad_collector,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating/snowed,
+/area/engine/engineering)
+"Rr" = (
+/obj/machinery/light,
+/obj/structure/cable/orange{
+	icon_state = "4-8"
+	},
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "RA" = (
 /obj/structure/cable/orange{
@@ -870,6 +874,9 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/plasteel,
+/area/engine/engineering)
+"RR" = (
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "Sv" = (
 /obj/structure/cable/yellow{
@@ -886,21 +893,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"SF" = (
-/turf/open/floor/plating,
-/area/engine/engineering)
 "SN" = (
 /turf/template_noop,
 /area/template_noop)
-"SS" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
-"Uh" = (
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
 "Uj" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -958,32 +953,16 @@
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"XE" = (
-/obj/machinery/power/tesla_coil,
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
-"Yb" = (
-/obj/machinery/power/emitter/anchored{
-	state = 2
-	},
-/obj/structure/cable/orange,
-/turf/open/floor/plating,
-/area/engine/engineering)
-"YY" = (
-/obj/machinery/light,
-/obj/structure/cable/orange{
-	icon_state = "4-8"
-	},
-/obj/machinery/power/grounding_rod,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "ZB" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon,
+/area/engine/engineering)
+"ZE" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating/snowed,
 /area/engine/engineering)
 "ZP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1286,8 +1265,8 @@ SN
 "}
 (12,1,1) = {"
 nn
-pS
-nA
+Bm
+CS
 FI
 Wv
 Oy
@@ -1301,8 +1280,8 @@ Oy
 Oy
 Wv
 FI
-nA
-nu
+CS
+iV
 cf
 vP
 SN
@@ -1312,23 +1291,23 @@ SN
 "}
 (13,1,1) = {"
 WW
-Yb
-SF
+zD
+RR
 FI
 Oy
-LK
+aX
 Wv
 Wv
-LK
+aX
 Wv
 Wv
 Wv
 Wv
-LK
+aX
 Oy
 FI
-SF
-Pf
+RR
+kz
 En
 vP
 SN
@@ -1338,10 +1317,10 @@ SN
 "}
 (14,1,1) = {"
 kb
-lR
-SF
+fC
+RR
 lv
-iY
+gb
 Wv
 Wv
 Wv
@@ -1351,10 +1330,10 @@ Wv
 Wv
 Wv
 Wv
-tA
+ZE
 VS
-SF
-lR
+RR
+fC
 BX
 vP
 SN
@@ -1364,10 +1343,10 @@ SN
 "}
 (15,1,1) = {"
 kX
-Gk
-SF
+xu
+RR
 FI
-SF
+RR
 Wv
 Wv
 Wv
@@ -1375,12 +1354,12 @@ Oy
 Wv
 Wv
 Wv
+RR
 Wv
-Wv
-SF
+RR
 FI
-SF
-ly
+RR
+uJ
 wu
 vP
 SN
@@ -1390,23 +1369,23 @@ SN
 "}
 (16,1,1) = {"
 vP
-tm
-SF
+cI
+RR
 FI
 Wv
 Wv
 Wv
 Wv
-SF
-SF
-SF
+RR
+RR
+RR
 Oy
 Oy
-LK
+aX
 Oy
 FI
-SF
-XE
+RR
+Rc
 vP
 vP
 SN
@@ -1416,23 +1395,23 @@ SN
 "}
 (17,1,1) = {"
 vP
-Ne
-ba
+rR
+IU
 lv
-iY
+gb
 Wv
 Wv
 Wv
-SF
-SF
-QS
+RR
+RR
+FX
 Wv
 Wv
 Wv
-tA
+ZE
 VS
-ba
-YY
+IU
+Rr
 vP
 vP
 SN
@@ -1442,23 +1421,23 @@ SN
 "}
 (18,1,1) = {"
 vP
-Ro
-SF
+dw
+RR
 FI
 Oy
-LK
+aX
 Oy
 Oy
-SF
-SF
-SF
+RR
+RR
+RR
 Wv
 Wv
 Wv
 Wv
 FI
-SF
-Mp
+RR
+dw
 vP
 vP
 SN
@@ -1468,10 +1447,10 @@ SN
 "}
 (19,1,1) = {"
 nn
-zu
-SF
+HN
+RR
 oq
-iY
+gb
 Wv
 Wv
 Wv
@@ -1481,10 +1460,10 @@ Oy
 Wv
 Wv
 Wv
-tA
+ZE
 wM
-SF
-Qi
+RR
+Nt
 cf
 vP
 SN
@@ -1494,10 +1473,10 @@ SN
 "}
 (20,1,1) = {"
 kb
-wg
-SF
+Mu
+RR
 qk
-SF
+RR
 Wv
 Wv
 Wv
@@ -1507,10 +1486,10 @@ Oy
 Wv
 Wv
 Wv
-SF
+RR
 qk
-SF
-xi
+RR
+Mu
 BX
 vP
 SN
@@ -1520,23 +1499,23 @@ SN
 "}
 (21,1,1) = {"
 kX
-gi
-SF
+zD
+RR
 qk
 Oy
-LK
+aX
 Wv
 Wv
 Wv
 Wv
-LK
+aX
 Wv
 Wv
-LK
+aX
 Oy
 qk
-SF
-Pf
+RR
+kz
 wu
 vP
 SN
@@ -1546,8 +1525,8 @@ SN
 "}
 (22,1,1) = {"
 LS
-Uh
-SF
+RR
+RR
 qk
 Wv
 Oy
@@ -1561,8 +1540,8 @@ Wv
 Oy
 Wv
 qk
-SF
-SF
+RR
+RR
 CT
 vP
 SN
@@ -1572,8 +1551,8 @@ SN
 "}
 (23,1,1) = {"
 LS
-Uh
-SS
+RR
+fm
 qk
 Oy
 Oy
@@ -1587,8 +1566,8 @@ Wv
 Oy
 Oy
 qk
-SS
-SF
+fm
+RR
 CT
 vP
 SN
@@ -1600,19 +1579,19 @@ SN
 vP
 xa
 vP
-KO
-SF
-SS
-SF
-SF
-SF
-SS
-SF
-SF
-SF
-SS
-SF
-wm
+cH
+RR
+fm
+RR
+RR
+RR
+fm
+RR
+RR
+RR
+fm
+RR
+DW
 vP
 xa
 vP
