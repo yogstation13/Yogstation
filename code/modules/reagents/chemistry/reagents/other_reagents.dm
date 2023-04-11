@@ -566,7 +566,7 @@
 			to_chat(H, span_warning("<b>You crumple in agony as your flesh wildly morphs into new forms!</b>"))
 			H.visible_message("<b>[H]</b> falls to the ground and screams as [H.p_their()] skin bubbles and froths!") //'froths' sounds painful when used with SKIN.
 			H.Knockdown(2 SECONDS)
-			addtimer(CALLBACK(src, .proc/mutate, H), 2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(mutate), H), 2 SECONDS)
 		else
 			to_chat(H, span_notice("There is a sudden, relieving lack of skin shifting."))
 			H.reagents.remove_reagent(type,1000) //adios
