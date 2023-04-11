@@ -186,6 +186,11 @@ export const SecurityConsole = (props, context) => {
                   })}>
                     Print
                   </Button>
+                  <Button icon="camera" mr="2px" fluid onClick={() => act("edit_field", {
+                    field: "upd_photo_front",
+                  })}>
+                    Update
+                  </Button>
                 </Box>
                 <Box>
                   <img src={data.active_record.side_image}
@@ -195,6 +200,11 @@ export const SecurityConsole = (props, context) => {
                     field: "print_photo_side",
                   })}>
                     Print
+                  </Button>
+                  <Button icon="camera" ml="2px" fluid onClick={() => act("edit_field", {
+                    field: "upd_photo_side",
+                  })}>
+                    Update
                   </Button>
                 </Box>
 

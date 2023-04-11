@@ -1,20 +1,24 @@
 /datum/map_generator/cave_generator/icemoon
-	open_turf_types = list(/turf/open/floor/plating/asteroid/snow/icemoon = 19, /turf/open/floor/plating/ice/icemoon = 1)
-	closed_turf_types = list(/turf/closed/mineral/random/snow = 1)
+	weighted_open_turf_types = list(/turf/open/floor/plating/asteroid/snow/icemoon = 19, /turf/open/floor/plating/ice/icemoon = 1)
+	weighted_closed_turf_types = list(/turf/closed/mineral/random/snow = 1)
 
 
-	mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/wolf = 50, /obj/structure/spawner/ice_moon = 3, \
+	weighted_mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/wolf = 50, /obj/structure/spawner/ice_moon = 3, \
 						  /mob/living/simple_animal/hostile/asteroid/polarbear = 30, /obj/structure/spawner/ice_moon/polarbear = 3, \
 						  /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow = 50, 
 						  /mob/living/simple_animal/hostile/asteroid/marrowweaver/ice = 30,
 						  /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
-	flora_spawn_list = list(/obj/structure/flora/tree/pine = 2, /obj/structure/flora/rock/icy = 2, /obj/structure/flora/rock/pile/icy = 2, /obj/structure/flora/grass/both = 6)
+	weighted_flora_spawn_list = list(/obj/structure/flora/tree/pine = 2, /obj/structure/flora/rock/icy = 2, /obj/structure/flora/rock/pile/icy = 2, /obj/structure/flora/grass/both = 6)
 	///Note that this spawn list is also in the lavaland generator
-	feature_spawn_list = list()
+	weighted_feature_spawn_list = null
 
 /datum/map_generator/cave_generator/icemoon/surface
 	flora_spawn_chance = 4
-	mob_spawn_list = null
+	weighted_mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/wolf = 50, /obj/structure/spawner/ice_moon = 3, \
+						  /mob/living/simple_animal/hostile/asteroid/polarbear = 30, /obj/structure/spawner/ice_moon/polarbear = 3, \
+						  /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow = 50, 
+						  /mob/living/simple_animal/hostile/asteroid/marrowweaver/ice = 30,
+						  /mob/living/simple_animal/hostile/asteroid/goldgrub = 10)
 	initial_closed_chance = 53
 	birth_limit = 5
 	death_limit = 4

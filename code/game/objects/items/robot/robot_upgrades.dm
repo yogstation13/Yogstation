@@ -159,7 +159,6 @@
 			return FALSE
 
 		R.ionpulse = TRUE
-		R.toggle_ionpulse() //Enabled by default
 
 /obj/item/borg/upgrade/thrusters/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
@@ -403,7 +402,10 @@
 	icon_state = "cyborg_upgrade5"
 	require_module = 1
 	var/repair_amount = -1
-	var/repair_tick = 1
+	/// world.time of next repair
+	var/next_repair = 0
+	/// Minimum time between repairs in seconds
+	var/repair_cooldown = 4
 	var/msg_cooldown = 0
 	var/on = FALSE
 	var/powercost = 10
@@ -467,8 +469,7 @@
 	update_icon()
 
 /obj/item/borg/upgrade/selfrepair/process()
-	if(!repair_tick)
-		repair_tick = 1
+	if(world.time < next_repair)
 		return
 
 	if(cyborg && (cyborg.stat != DEAD) && on)
@@ -495,7 +496,7 @@
 			cyborg.cell.use(powercost)
 		else
 			cyborg.cell.use(5)
-		repair_tick = 0
+		next_repair = world.time + repair_cooldown * 10 // Multiply by 10 since world.time is in deciseconds
 
 		if((world.time - 2000) > msg_cooldown )
 			var/msgmode = "standby"
@@ -775,8 +776,8 @@
 		R.SetLockdown(1)
 		R.anchored = TRUE
 		R.expansion_count++
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(1, R.loc)
+		var/datum/effect_system/fluid_spread/smoke/smoke = new
+		smoke.set_up(1, location = R.loc)
 		smoke.start()
 		sleep(0.2 SECONDS)
 		for(var/i in 1 to 4)
@@ -852,34 +853,6 @@
 	if (.)
 		for(var/obj/item/gun/energy/plasmacutter/adv/cyborg/PC in R.module.modules)
 			R.module.remove_module(PC, TRUE)
-
-/obj/item/borg/upgrade/pinpointer
-	name = "medical cyborg crew pinpointer"
-	desc = "A crew pinpointer module for the medical cyborg."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "pinpointer_crew"
-	require_module = TRUE
-	module_type = /obj/item/robot_module/medical
-	module_flags = BORG_MODULE_MEDICAL
-
-/obj/item/borg/upgrade/pinpointer/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if(.)
-
-		var/obj/item/pinpointer/crew/PP = locate() in R.module.modules
-		if(PP)
-			to_chat(user, span_warning("This unit is already equipped with a pinpointer module."))
-			return FALSE
-
-		PP = new(R.module)
-		R.module.basic_modules += PP
-		R.module.add_module(PP, FALSE, TRUE)
-
-/obj/item/borg/upgrade/pinpointer/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (.)
-		for(var/obj/item/pinpointer/crew/PP in R.module.modules)
-			R.module.remove_module(PP, TRUE)
 
 /obj/item/borg/upgrade/transform
 	name = "borg module picker (Standard)"

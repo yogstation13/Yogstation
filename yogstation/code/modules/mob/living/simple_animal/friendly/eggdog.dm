@@ -1,6 +1,6 @@
 /mob/living/simple_animal/pet/dog/eggdog //E G G R P
 	name = "Egg Dog"
-	desc = "It's a egg that is also a dog."
+	desc = "It's an egg that is also a dog."
 	icon = 'yogstation/icons/mob/pets.dmi'
 	icon_state = "eggdog"
 	icon_living = "eggdog"
@@ -21,9 +21,9 @@
 	if(!B || !B.brainmob || !B.brainmob.mind)
 		return
 	B.brainmob.mind.transfer_to(src)
-	to_chat(src, "<span class='big bold'>You are a egg dog!</span><b> You're a harmless egg/dog hybrid that most people love. People can take bites out of you if they're hungry, but you regenerate health \
+	to_chat(src, "<span class='big bold'>You are an egg dog!</span><b> You're a harmless egg/dog hybrid that most people love. People can take bites out of you if they're hungry, but you regenerate health \
 	so quickly that it generally doesn't matter. You're remarkably resilient to any damage besides this and it's hard for you to really die at all. Your mission is to go around and spread egg role play \
-	across the station so have fun!</b>")
+	across the station, so have fun!</b>")
 	var/new_name = stripped_input(src, "Enter your name, or press \"Cancel\" to stick with Egg Dog.", "Name Change")
 	if(new_name)
 		to_chat(src, span_notice("Your name is now <b>\"new_name\"</b>!"))

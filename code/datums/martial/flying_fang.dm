@@ -249,7 +249,7 @@
 
 	to_chat(usr, "[span_notice("Tail Slap")]: Disarm Disarm Disarm. High armor piercing attack that causes a short slow followed by a knockdown. Deals heavy stamina damage.")
 	to_chat(usr, "[span_notice("Neck Bite")]: Grab Harm. Target must be prone. Stuns you and your target for a short period, dealing heavy brute damage and bleeding. If the target is not in crit, this attack will heal you.")
-	to_chat(usr, "<spna class='notice'>Leap</span>: Action: Jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds.")
+	to_chat(usr, "[span_notice("Leap")]: Action: Jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds.")
 
 /datum/martial_art/flyingfang/teach(mob/living/carbon/human/H,make_temporary=0)
 	..()

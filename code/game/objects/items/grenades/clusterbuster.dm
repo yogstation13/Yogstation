@@ -117,7 +117,7 @@
 /obj/item/grenade/flashbang/cluster
 	icon_state = "flashbang_active"
 
-/obj/item/grenade/clusterbuster/emp
+/obj/item/grenade/clusterbuster/syndie/emp
 	name = "Electromagnetic Storm"
 	payload = /obj/item/grenade/empgrenade
 
@@ -129,7 +129,7 @@
 	name = "Instant Concrete"
 	payload = /obj/item/grenade/chem_grenade/metalfoam
 
-/obj/item/grenade/clusterbuster/inferno
+/obj/item/grenade/clusterbuster/syndie/inferno
 	name = "Inferno"
 	payload = /obj/item/grenade/chem_grenade/incendiary
 
@@ -145,19 +145,19 @@
 	name = "Oignon Grenade"
 	payload = /obj/item/grenade/chem_grenade/teargas
 
-/obj/item/grenade/clusterbuster/facid
+/obj/item/grenade/clusterbuster/syndie/facid
 	name = "Aciding Rain"
 	payload = /obj/item/grenade/chem_grenade/facid
 
-/obj/item/grenade/clusterbuster/syndieminibomb
+/obj/item/grenade/clusterbuster/syndie/syndieminibomb
 	name = "SyndiWrath"
 	payload = /obj/item/grenade/syndieminibomb
 
-/obj/item/grenade/clusterbuster/spawner_manhacks
+/obj/item/grenade/clusterbuster/syndie/spawner_manhacks
 	name = "iViscerator"
 	payload = /obj/item/grenade/spawnergrenade/manhacks
 
-/obj/item/grenade/clusterbuster/spawner_spesscarp
+/obj/item/grenade/clusterbuster/syndie/spawner_spesscarp
 	name = "Invasion of the Space Carps"
 	payload = /obj/item/grenade/spawnergrenade/spesscarp
 
@@ -165,7 +165,7 @@
 	name = "Slipocalypse"
 	payload = /obj/item/grenade/spawnergrenade/syndiesoap
 
-/obj/item/grenade/clusterbuster/clf3
+/obj/item/grenade/clusterbuster/syndie/clf3
 	name = "WELCOME TO HELL"
 	payload = /obj/item/grenade/chem_grenade/clf3
 
@@ -176,6 +176,13 @@
 /obj/item/grenade/clusterbuster/random/Initialize()
 	..()
 	var/real_type = pick(subtypesof(/obj/item/grenade/clusterbuster))
+	new real_type(loc)
+	return INITIALIZE_HINT_QDEL
+
+// syndie subtype so syndies dont get something utterly useless
+/obj/item/grenade/clusterbuster/random/syndie/Initialize()
+	..()
+	var/real_type = pick(subtypesof(/obj/item/grenade/clusterbuster/syndie))
 	new real_type(loc)
 	return INITIALIZE_HINT_QDEL
 

@@ -74,13 +74,12 @@ Actual Adjacent procs :
 	return b.f - a.f
 
 //wrapper that returns an empty list if A* failed to find a path
-/proc/get_path_to(caller, end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = /turf/proc/reachableTurftest, id=null, turf/exclude=null, simulated_only = TRUE)
+/proc/get_path_to(caller, end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = /turf/proc/reachableTurftest, id=null, turf/exclude=null, simulated_only = TRUE, get_best_attempt = FALSE)
 	var/l = SSpathfinder.mobs.getfree(caller)
 	while(!l)
 		stoplag(3)
 		l = SSpathfinder.mobs.getfree(caller)
-	var/list/path = AStar(caller, end, dist, maxnodes, maxnodedepth, mintargetdist, adjacent,id, exclude, simulated_only)
-
+	var/list/path = AStar(caller, end, dist, maxnodes, maxnodedepth, mintargetdist, adjacent,id, exclude, simulated_only, get_best_attempt)
 	SSpathfinder.mobs.found(l)
 	if(!path)
 		path = list()
@@ -98,7 +97,7 @@ Actual Adjacent procs :
 	return path
 
 /// Pathfinding for bots
-/proc/AStar(caller, _end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = /turf/proc/reachableTurftest, id=null, turf/exclude=null, simulated_only = TRUE)
+/proc/AStar(caller, _end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = /turf/proc/reachableTurftest, id=null, turf/exclude=null, simulated_only = TRUE, get_best_attempt = FALSE)
 	//sanitation
 	var/turf/end = get_turf(_end)
 	var/turf/start = get_turf(caller)
@@ -162,6 +161,13 @@ Actual Adjacent procs :
 								openc[T] = CN
 		cur.bf = 0
 		CHECK_TICK
+	
+	// if(!path && get_best_attempt)
+	// 	path = new()
+	// 	path.Add(cur.source)
+	// 	while(cur.prevNode)
+	// 		cur = cur.prevNode
+	// 		path.Add(cur.source)
 	//reverse the path to get it from start to finish
 	if(path)
 		for(var/i = 1 to round(0.5*path.len))
@@ -205,6 +211,9 @@ Actual Adjacent procs :
 	for(var/obj/machinery/door/window/W in src)
 		if(!W.CanAStarPass(ID, adir))
 			return TRUE
+	for(var/obj/machinery/M in src)
+		if(!M.CanAStarPass(ID, adir, caller))
+			return TRUE
 	for(var/obj/machinery/door/firedoor/border_only/W in src)
 		if(!W.CanAStarPass(ID, adir, caller))
 			return TRUE
@@ -213,3 +222,8 @@ Actual Adjacent procs :
 			return TRUE
 
 	return FALSE
+
+//yog proc
+/turf/proc/reachableTurftestPlayer(caller, turf/T, ID, simulated_only)
+	if(T && !T.density && !LinkBlockedWithAccess(T, caller, ID) && !(simulated_only && SSpathfinder.space_type_cache[T.type]))
+		return TRUE

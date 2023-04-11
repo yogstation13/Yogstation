@@ -1,0 +1,54 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/turf/open/floor/plating,
+/area/template_noop)
+"F" = (
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating,
+/area/template_noop)
+"G" = (
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/item/restraints/handcuffs/cable,
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/broken/three,
+/area/template_noop)
+"K" = (
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/template_noop)
+"M" = (
+/obj/structure/closet/crate/coffin{
+	anchored = 1
+	},
+/obj/item/restraints/handcuffs/cable,
+/obj/item/restraints/handcuffs/cable,
+/obj/item/reagent_containers/blood/random,
+/turf/open/floor/plating,
+/area/template_noop)
+"S" = (
+/obj/item/restraints/handcuffs/cable/zipties/used,
+/turf/open/floor/plating,
+/area/template_noop)
+"W" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+K
+F
+M
+"}
+(2,1,1) = {"
+W
+f
+f
+"}
+(3,1,1) = {"
+G
+S
+f
+"}

@@ -214,6 +214,7 @@ Difficulty: Very Hard
 	for(var/mob/M in range(10,src))
 		if(M.client)
 			flash_color(M.client, "#C80000", 1)
+			sleep(0.5 SECONDS)
 			shake_camera(M, 4, 3)
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, 1)
 
@@ -233,6 +234,7 @@ Difficulty: Very Hard
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "at_shield2"
 	layer = FLY_LAYER
+	light_system = MOVABLE_LIGHT
 	light_range = 2
 	duration = 8
 	var/target
@@ -633,7 +635,7 @@ Difficulty: Very Hard
 	if(.)
 		return
 	if(ready_to_deploy)
-		var/be_helper = alert("Become a Lightgeist? (Warning, You can no longer be cloned!)",,"Yes","No")
+		var/be_helper = tgui_alert(usr,"Become a Lightgeist? (Warning, You can no longer be revived!)",,list("Yes","No"))
 		if(be_helper == "Yes" && !QDELETED(src) && isobserver(user))
 			var/mob/living/simple_animal/hostile/lightgeist/healing/W = new /mob/living/simple_animal/hostile/lightgeist/healing(get_turf(loc))
 			W.key = user.key
@@ -684,12 +686,32 @@ Difficulty: Very Hard
 	AIStatus = AI_OFF
 	stop_automated_movement = TRUE
 
+/mob/living/simple_animal/hostile/lightgeist/healing/Initialize()
+	. = ..()
+	remove_verb(src, /mob/living/verb/pulled)
+	remove_verb(src, /mob/verb/me_verb)
+	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+	medsensor.add_hud_to(src)
+
+/mob/living/simple_animal/hostile/lightgeist/ghostize()
+	. = ..()
+	if(.)
+		death()
+
 /mob/living/simple_animal/hostile/lightgeist/healing
 	var/heal_power = 5
+	var/heal_color = "#80F5FF"
 
-/mob/living/simple_animal/hostile/lightgeist/photogeist
+/mob/living/simple_animal/hostile/lightgeist/healing/AttackingTarget()
+	. = ..()
+	if(isliving(target) && target != src)
+		var/mob/living/L = target
+		if(L.stat != DEAD)
+			L.heal_overall_damage(heal_power, heal_power)
+			new /obj/effect/temp_visual/heal(get_turf(target), heal_color)
+
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist
 	name = "photogeist"
-	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
 	icon_state = "photogeist"
 	icon_living = "photogeist"
 	friendly = "shines on"
@@ -699,15 +721,18 @@ Difficulty: Very Hard
 	health = 10
 	light_range = 6
 	ventcrawler = VENTCRAWLER_NONE //they dont really need to be ventcrawling
-	var/heal_power = 3
+	heal_power = 3
+	heal_color = "#5bf563"
 
-/mob/living/simple_animal/hostile/lightgeist/Initialize()
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/Initialize()
 	. = ..()
-	remove_verb(src, /mob/living/verb/pulled)
-	remove_verb(src, /mob/verb/me_verb)
-	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	medsensor.add_hud_to(src)
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/plants)
+
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/AttackingTarget() //photogeists can only heal plantlike stuff
+	var/mob/living/L = target
+	if(!("vines" in L.faction) && !("plants" in L.faction))
+		return FALSE
+	. = ..()
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/plants
 	name = "Seed Plants"
@@ -730,23 +755,6 @@ Difficulty: Very Hard
 	action_icon = 'icons/mob/actions/actions_animal.dmi'
 	action_icon_state = "plant"
 
-/mob/living/simple_animal/hostile/lightgeist/healing/AttackingTarget()
-	. = ..()
-	if(isliving(target) && target != src)
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			L.heal_overall_damage(heal_power, heal_power)
-			new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
-
-/mob/living/simple_animal/hostile/lightgeist/photogeist/AttackingTarget() //photogeists can only heal plantlike stuff
-	. = ..()
-	if(isliving(target) && target != src)
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			if(("vines" in L.faction) || ("plants" in L.faction))
-				L.heal_overall_damage(heal_power, heal_power)
-				new /obj/effect/temp_visual/heal(get_turf(target), "#5bf563")
-
 /obj/effect/mob_spawn/photogeist
 	name = "dormant photogeist"
 	desc = "A strange plant creature. It seems to be peacefully sleeping, and its mere presence soothes your nerves."
@@ -755,7 +763,7 @@ Difficulty: Very Hard
 	density = FALSE
 	anchored = FALSE
 
-	mob_type = /mob/living/simple_animal/hostile/lightgeist/photogeist
+	mob_type = /mob/living/simple_animal/hostile/lightgeist/healing/photogeist
 	mob_name = "photogeist"
 	death = FALSE
 	roundstart = FALSE
@@ -767,11 +775,6 @@ Difficulty: Very Hard
 	var/area/A = get_area(src)
 	if(A)
 		notify_ghosts("A photogeist has been summoned in [A.name].", 'sound/effects/shovel_dig.ogg', source = src, action = NOTIFY_ATTACKORBIT, flashwindow = FALSE)
-
-/mob/living/simple_animal/hostile/lightgeist/ghostize()
-	. = ..()
-	if(.)
-		death()
 
 /mob/living/simple_animal/hostile/lightgeist/healing/slime
 	name = "crystalline lightgeist"

@@ -123,6 +123,7 @@ CREATE TABLE `SS13_bound_credentials` (
   `computerid` varchar(32) DEFAULT NULL,
   `ip` int(10) unsigned DEFAULT NULL,
   `flags` set('bypass_bans') DEFAULT NULL,
+  `comment` text NULL,
   PRIMARY KEY (`id`),
   KEY `idx_ckey_lookup` (`ckey`),
   KEY `idx_cid_lookup` (`computerid`),

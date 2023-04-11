@@ -73,4 +73,4 @@
 
 /datum/game_mode/heretics/generate_report()
 	return "Cybersun Industries has announced that they have successfully raided a high-security library. The library contained a very dangerous book that was \
-	shown to posses anomalous properties. We suspect that the book has been copied over, Stay vigilant!"
+	shown to possess anomalous properties. We suspect that the book has been copied over, Stay vigilant!"

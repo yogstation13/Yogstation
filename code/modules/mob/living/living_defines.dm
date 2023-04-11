@@ -4,6 +4,7 @@
 	see_in_dark = 2
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD)
 	pressure_resistance = 10
+	infra_luminosity = 10
 
 	hud_type = /datum/hud/living
 
@@ -119,8 +120,6 @@
 	var/lizardspeech = 0
 
 	var/list/implants = null
-
-	var/datum/riding/riding_datum
 
 	var/last_words	//used for database logging
 

@@ -150,7 +150,7 @@
 			active = TRUE
 			host = user
 			user.clear_fullscreen("hive_mc")
-			user.overlay_fullscreen("hive_eyes", /obj/screen/fullscreen/hive_eyes)
+			user.overlay_fullscreen("hive_eyes", /atom/movable/screen/fullscreen/hive_eyes)
 		revert_cast()
 	else
 		vessel.remove_status_effect(STATUS_EFFECT_BUGGED)
@@ -158,7 +158,7 @@
 		user.clear_fullscreen("hive_eyes")
 		var/obj/effect/proc_holder/spell/target_hive/hive_control/the_spell = locate(/obj/effect/proc_holder/spell/target_hive/hive_control) in user.mind.spell_list
 		if(the_spell && the_spell.active)
-			user.overlay_fullscreen("hive_mc", /obj/screen/fullscreen/hive_mc)
+			user.overlay_fullscreen("hive_mc", /atom/movable/screen/fullscreen/hive_mc)
 		active = FALSE
 		limited = FALSE
 		revert_cast()
@@ -347,7 +347,7 @@
 	to_chat(src, span_warning("You find yourself unable to speak, you aren't in control of your body!"))
 	return FALSE
 
-/mob/living/passenger/emote(act, m_type = null, message = null, intentional = FALSE)
+/mob/living/passenger/emote(act, m_type = null, message = null, intentional = FALSE, is_keybind = FALSE)
 	to_chat(src, span_warning("You find yourself unable to emote, you aren't in control of your body!"))
 	return
 
@@ -453,7 +453,7 @@
 			vessel.mind.transfer_to(backseat, 1)
 			user.mind.transfer_to(vessel, 1)
 			backseat.blind_eyes(power)
-			vessel.overlay_fullscreen("hive_mc", /obj/screen/fullscreen/hive_mc)
+			vessel.overlay_fullscreen("hive_mc", /atom/movable/screen/fullscreen/hive_mc)
 			active = TRUE
 			out_of_range = FALSE
 			starting_spot = get_turf(vessel)

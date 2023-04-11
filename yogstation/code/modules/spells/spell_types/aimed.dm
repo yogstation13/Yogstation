@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/aimed/animation
 	name = "Animation"
-	desc = "This spell fires a animation bolt at a target."
+	desc = "This spell fires an animation bolt at a target."
 	charge_max = 60
 	clothes_req = FALSE
 	invocation = "ONA ANIMATUS"

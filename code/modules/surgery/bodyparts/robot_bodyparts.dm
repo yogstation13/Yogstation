@@ -139,6 +139,11 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
+/obj/item/bodypart/l_leg/robot/digitigrade
+	name = "digitigrade cyborg left leg"
+	icon_state = "digitigrade_1_l_leg"
+	use_digitigrade = FULL_DIGITIGRADE
+
 /obj/item/bodypart/r_leg/robot
 	name = "cyborg right leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
@@ -161,6 +166,65 @@
 	light_burn_msg = ROBOTIC_LIGHT_BURN_MSG
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
+
+/obj/item/bodypart/r_leg/robot/digitigrade
+	name = "digitigrade cyborg right leg"
+	icon_state = "digitigrade_1_r_leg"
+	use_digitigrade = FULL_DIGITIGRADE
+	
+//make them swappable
+/obj/item/bodypart/l_leg/robot/attackby(obj/item/W, mob/user, params)
+	if(W.tool_behaviour != TOOL_SCREWDRIVER)
+		return ..()
+	var/obj/item/bodypart/l_leg/robot/prosthetic
+	to_chat(user, span_notice("You configure [src] into [use_digitigrade != FULL_DIGITIGRADE ? "digitigrade" : "plantigrade"] mode."))
+	if(istype(src,/obj/item/bodypart/l_leg/robot/surplus))
+		if(use_digitigrade == FULL_DIGITIGRADE)
+			prosthetic = new /obj/item/bodypart/l_leg/robot/surplus
+		else
+			prosthetic = new /obj/item/bodypart/l_leg/robot/surplus/digitigrade
+	else
+		if(use_digitigrade == FULL_DIGITIGRADE)
+			prosthetic = new /obj/item/bodypart/l_leg/robot
+		else
+			prosthetic = new /obj/item/bodypart/l_leg/robot/digitigrade
+	if(!prosthetic)
+		return
+	
+	var/spot = src.loc
+	moveToNullspace()
+	if(spot == user && !user.get_inactive_held_item())
+		user.put_in_inactive_hand(prosthetic)
+	else
+		prosthetic.forceMove(get_turf(user))
+	qdel(src)
+	
+/obj/item/bodypart/r_leg/robot/attackby(obj/item/W, mob/user, params)
+	if(W.tool_behaviour != TOOL_SCREWDRIVER)
+		return ..()
+	var/obj/item/bodypart/r_leg/robot/prosthetic
+	to_chat(user, span_notice("You configure [src] into [use_digitigrade != FULL_DIGITIGRADE ? "digitigrade" : "plantigrade"] mode."))
+	if(istype(src,/obj/item/bodypart/r_leg/robot/surplus))
+		if(use_digitigrade == FULL_DIGITIGRADE)
+			prosthetic = new /obj/item/bodypart/r_leg/robot/surplus
+		else
+			prosthetic = new /obj/item/bodypart/r_leg/robot/surplus/digitigrade
+	else
+		if(use_digitigrade == FULL_DIGITIGRADE)
+			prosthetic = new /obj/item/bodypart/r_leg/robot
+		else
+			prosthetic = new /obj/item/bodypart/r_leg/robot/digitigrade
+	if(!prosthetic)
+		return
+
+	var/spot = src.loc
+	moveToNullspace()
+	if(spot == user && !user.get_inactive_held_item())
+		user.put_in_inactive_hand(prosthetic)
+	else
+		prosthetic.forceMove(get_turf(user))
+	qdel(src)
+	
 
 /obj/item/bodypart/chest/robot
 	name = "cyborg torso"
@@ -391,6 +455,11 @@
 	burn_reduction = 0
 	max_damage = 20
 
+/obj/item/bodypart/l_leg/robot/surplus/digitigrade
+	name = "surplus digitigrade prosthetic left leg"
+	icon_state = "digitigrade_1_l_leg"
+	use_digitigrade = FULL_DIGITIGRADE
+
 /obj/item/bodypart/r_leg/robot/surplus
 	name = "surplus prosthetic right leg"
 	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
@@ -399,7 +468,10 @@
 	burn_reduction = 0
 	max_damage = 20
 
-
+/obj/item/bodypart/r_leg/robot/surplus/digitigrade
+	name = "surplus digitigrade prosthetic right leg"
+	icon_state = "digitigrade_1_r_leg"
+	use_digitigrade = FULL_DIGITIGRADE
 
 /obj/item/bodypart/l_leg/ipc
 	status = BODYPART_ROBOTIC

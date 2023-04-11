@@ -200,9 +200,12 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list)
 		var/being_hijacked = A.hijacking ? TRUE : FALSE
-		data["ais"] += list(list("name" = A.name, "ref" = REF(A), "can_download" = A.can_download, "health" = A.health, "active" = A.mind ? TRUE : FALSE, "being_hijacked" = being_hijacked, "in_core" = istype(A.loc, /obj/machinery/ai/data_core)))
+		var/being_cogged = A.cogging ? TRUE : FALSE
+		data["ais"] += list(list("name" = A.name, "ref" = REF(A), "can_download" = A.can_download, "health" = A.health, "active" = A.mind ? TRUE : FALSE, "being_hijacked" = being_hijacked, "being_cogged" = being_cogged, "in_core" = istype(A.loc, /obj/machinery/ai/data_core)))
 
 	data["is_infiltrator"] = is_infiltrator(user)
+
+	data["is_servant_of_ratvar"] = is_servant_of_ratvar(user)
 
 	return data
 
@@ -432,6 +435,62 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(A, span_bolddanger("Unknown device disconnected. Systems confirmed secure."))
 			else
 				to_chat(user, span_notice("You fail to remove the device."))
+		if("start_cog")
+			var/mob/user = usr
+			if(!is_servant_of_ratvar(usr))
+				return
+			if(!is_station_level(z))
+				to_chat(user, span_brass("It's beyond our reach."))
+				return
+			if(!istype(user.get_active_held_item(), /obj/item/clockwork/integration_cog))
+				to_chat(user, span_brass("How are you going to integrate it with no integration cog?"))
+				return
+			var/obj/item/clockwork/integration_cog/device = user.get_active_held_item()
+			var/mob/living/silicon/ai/target = locate(params["target_ai"])
+			if(!target || !isAI(target))
+				return
+			var/mob/living/silicon/ai/A = target
+			if(A.mind && is_servant_of_ratvar(A))
+				to_chat(user, span_brass("[A] has already seen the light of the Justicar!"))
+				return
+			if(A.stat == DEAD)
+				to_chat(user, span_warning("[A] is dead!"))
+				return
+			if(A.cogging)
+				to_chat(user, span_brass("Be patient."))
+				return
+			user.visible_message(span_warning("[user] begins holds a strange cog up to [src], and it begins to spin..."))
+			if(do_after(user, 5.5 SECONDS, src))
+				user.dropItemToGround(device)
+				device.forceMove(A)
+				A.cogging = device
+				A.cog_start = world.time
+				A.update_icons()
+				to_chat(A, span_danger("Warning! Anomaly detected in primary systems!"))
+				to_chat(A, span_heavy_brass(text2ratvar("You belong to me now.")))
+				message_admins("[ADMIN_LOOKUPFLW(user)] has attached an integration cog to [ADMIN_LOOKUPFLW(A)]!")
+				notify_ghosts("[user] has begun to convert [A]!", source = src, action = NOTIFY_ORBIT, ghost_sound = 'sound/machines/chime.ogg')
+
+		if("stop_cog")
+			var/mob/living/silicon/ai/target = locate(params["target_ai"])
+			if(!target || !isAI(target))
+				return
+			var/mob/living/silicon/ai/A = target
+			var/mob/user = usr
+
+			if(!is_station_level(z))
+				to_chat(user, span_brass("It's beyond our reach."))
+				return
+			
+			user.visible_message(span_danger("[user] begins to rip out a strange cog from [src]!"), span_notice("There's something attached to [A]! You attempt to remove it.."))
+			if (do_after(user, 10 SECONDS, src))
+				A.cogging.forceMove(get_turf(src))
+				A.cogging = null
+				A.cog_start = 0
+				A.update_icons()
+				to_chat(A, span_bolddanger("Anomaly cleared. System is now safe to resume operation."))
+			else
+				to_chat(user, span_notice("You fail to remove the cog."))
 		
 
 

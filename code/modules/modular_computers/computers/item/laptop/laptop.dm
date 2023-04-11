@@ -17,7 +17,7 @@
 	item_flags = SLOWS_WHILE_IN_HAND
 
 	screen_on = FALSE 		// Starts closed
-	var/start_open = TRUE	// unless this var is set to 1
+	var/start_open = FALSE	// unless this var is set to 1
 	var/icon_state_closed = "laptop-closed"
 	var/w_class_open = WEIGHT_CLASS_BULKY
 	var/slowdown_open = TRUE
@@ -57,8 +57,8 @@
 	. = ..()
 	if(over_object == usr || over_object == src)
 		try_toggle_open(usr)
-	else if(istype(over_object, /obj/screen/inventory/hand))
-		var/obj/screen/inventory/hand/H = over_object
+	else if(istype(over_object, /atom/movable/screen/inventory/hand))
+		var/atom/movable/screen/inventory/hand/H = over_object
 		var/mob/M = usr
 
 		if(!M.restrained() && !M.stat)

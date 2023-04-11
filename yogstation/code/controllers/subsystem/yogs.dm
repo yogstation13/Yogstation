@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(Yogs)
 			portal.linked_targets = exits_by_id[portal.id]
 
 	//ACCENT GENERATOR
-	var/list/accent_names = assoc_list_strip_value(GLOB.accents_name2file)
+	var/list/accent_names = assoc_to_keys(GLOB.accents_name2file)
 	var/regex/is_phrase = regex(@"\\b[\w \.,;'\?!]+\\b","i")
 	var/regex/is_word = regex(@"\\b[\w\.,;'\?!]+\\b","i") // Should be very similar to the above regex, except it doesn't capture on spaces and so only hits plaintext words
 	for(var/accent in accent_names)
@@ -141,12 +141,12 @@ SUBSYSTEM_DEF(Yogs)
 	for(var/path in subtypesof(/datum/corporation))
 		new path
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/Yogs/fire(resumed = 0)
 	//END OF SHIFT ANNOUNCER
 	if(world.time > (ROUND_END_ANNOUNCEMENT_TIME*600) && !endedshift && !(EMERGENCY_AT_LEAST_DOCKED))
-		priority_announce("Crew, your shift has come to an end. [SSshuttle.emergency.mode != SHUTTLE_IDLE ? "\n You may call the shuttle whenever you find it appropriate." : ""]", "End of shift announcement", RANDOM_REPORT_SOUND)
+		priority_announce("Crew, your shift has come to an end.[SSshuttle.emergency.mode == SHUTTLE_IDLE ? "\nYou may call the shuttle whenever you find it appropriate." : ""]", "End of shift announcement", RANDOM_REPORT_SOUND)
 		endedshift = TRUE
 
 	//UNCLAIMED TICKET BWOINKER

@@ -223,7 +223,7 @@
 						aiPDA.silent = !aiPDA.silent
 					else if(href_list["target"])
 						if(silent)
-							return alert("Communications circuits remain uninitialized.")
+							return tgui_alert(usr,"Communications circuits remain uninitialized.")
 						var/target = locate(href_list["target"]) in GLOB.PDAs
 						aiPDA.create_message(src, target)
 

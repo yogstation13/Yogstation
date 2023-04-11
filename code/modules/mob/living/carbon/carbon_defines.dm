@@ -32,7 +32,10 @@
 	var/obj/item/back = null
 	var/obj/item/clothing/mask/wear_mask = null
 	var/obj/item/clothing/neck/wear_neck = null
+	/// Equipped air tank. Never set this manually.
 	var/obj/item/tank/internal = null
+	/// "External" air tank. Never set this manually. Not required to stay directly equipped on the mob (i.e. could be a machine or MOD suit module).
+	var/obj/item/tank/external = null
 	var/obj/item/clothing/head = null
 
 	var/obj/item/clothing/gloves = null //only used by humans
@@ -83,4 +86,9 @@
 	var/list/all_scars
 	var/visible_tumors = FALSE //if you are seem with some tumors, for examine
 
+	/// Only load in visual organs
+	var/visual_only_organs = FALSE
+
 	COOLDOWN_DECLARE(bleeding_message_cd)
+
+	var/list/image/infra_images

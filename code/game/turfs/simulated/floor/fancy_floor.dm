@@ -173,10 +173,6 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 
-/turf/open/floor/carpet/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>There's a <b>small crack</b> on the edge of it.</span>"
-
 /turf/open/floor/bamboo/broken
 	icon_state = "damaged"
 	broken = TRUE
@@ -222,7 +218,6 @@
 	planetary_atmos = TRUE
 	floor_tile = null
 	initial_gas_mix = FROZEN_ATMOS
-	slowdown = 2
 	bullet_sizzle = TRUE
 	footstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
@@ -251,7 +246,6 @@
 		set_basalt_light(src)
 
 /turf/open/floor/grass/snow/safe
-	slowdown = 1.5
 	planetary_atmos = FALSE
 
 

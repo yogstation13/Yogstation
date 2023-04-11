@@ -17,8 +17,10 @@
 	. = ..()
 
 /obj/machinery/computer/emergency_shuttle/attack_alien(mob/living/carbon/alien/humanoid/user)
-	if(istype(user, /mob/living/carbon/alien/humanoid/royal/queen))
-		SSshuttle.clearHostileEnvironment(user)
+	if(isalienqueen(user))
+		var/mob/living/carbon/alien/humanoid/royal/queen/queenuser = user
+		queenuser.kill_shuttle_timer()
+		balloon_alert(user, "shuttle ready to launch!")
 
 /obj/machinery/computer/emergency_shuttle/ui_state(mob/user)
 	return GLOB.human_adjacent_state
@@ -128,7 +130,7 @@
 	log_game("[key_name(user)] has authorized early shuttle launch in [COORD(src)]")
 	// Now check if we're on our way
 	. = TRUE
-	process()
+	process(SSMACHINES_DT)
 
 /obj/machinery/computer/emergency_shuttle/process()
 	// Launch check is in process in case auth_need changes for some reason
@@ -180,7 +182,7 @@
 
 		authorized += ID
 
-	process()
+	process(SSMACHINES_DT)
 
 /obj/machinery/computer/emergency_shuttle/Destroy()
 	// Our fake IDs that the emag generated are just there for colour
@@ -311,8 +313,9 @@
 			continue
 		if(shuttle_areas[get_area(player)])
 			//Non-xeno present. Can't hijack.
-			if(!istype(player, /mob/living/carbon/alien))
-				return FALSE
+			if(!isalien(player))
+				if(!HAS_TRAIT(player, TRAIT_XENO_HOST) && !player.getorganslot(ORGAN_SLOT_PARASITE_EGG)) //if they are hosts / egged skip them,
+					return FALSE																  //checks twice just incase cause the system is wacky
 			has_xenos = TRUE
 
 	return has_xenos
@@ -388,7 +391,7 @@
 			if(time_left <= 50 && !sound_played) //4 seconds left:REV UP THOSE ENGINES BOYS. - should sync up with the launch
 				sound_played = 1 //Only rev them up once.
 				var/list/areas = list()
-				for(var/area/shuttle/escape/E in GLOB.sortedAreas)
+				for(var/area/shuttle/escape/E in GLOB.areas)
 					areas += E
 				hyperspace_sound(HYPERSPACE_WARMUP, areas)
 
@@ -400,7 +403,7 @@
 
 				//now move the actual emergency shuttle to its transit dock
 				var/list/areas = list()
-				for(var/area/shuttle/escape/E in GLOB.sortedAreas)
+				for(var/area/shuttle/escape/E in GLOB.areas)
 					areas += E
 				hyperspace_sound(HYPERSPACE_LAUNCH, areas)
 				enterTransit()
@@ -415,7 +418,7 @@
 		if(SHUTTLE_ESCAPE)
 			if(sound_played && time_left <= HYPERSPACE_END_TIME)
 				var/list/areas = list()
-				for(var/area/shuttle/escape/E in GLOB.sortedAreas)
+				for(var/area/shuttle/escape/E in GLOB.areas)
 					areas += E
 				hyperspace_sound(HYPERSPACE_END, areas)
 			if(time_left <= PARALLAX_LOOP_TIME)

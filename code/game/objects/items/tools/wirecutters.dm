@@ -60,6 +60,11 @@
 		if(do_after(user, 1.5 SECONDS, C))
 			to_chat(C, span_notice("You succesfuly remove the durathread strand."))
 			C.remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
+	else if(istype(C) && C.legcuffed && (C.legcuffed.type == /obj/item/restraints/legcuffs/bola || istype(C.legcuffed, /obj/item/restraints/legcuffs/beartrap/energy)))
+		user.visible_message(span_notice("[user] cuts [C]'s restraints with [src]!"))
+		qdel(C.legcuffed)
+		C.legcuffed = null
+		return	
 	else if(!(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, C, user))
 		return
 	else

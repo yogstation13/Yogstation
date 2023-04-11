@@ -19,7 +19,7 @@
 	reagents = AM.reagents
 	turn_connects = _turn_connects
 
-	RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED,COMSIG_PARENT_PREQDELETED), .proc/disable)
+	RegisterSignals(parent, list(COMSIG_MOVABLE_MOVED,COMSIG_PARENT_PREQDELETED), .proc/disable)
 
 	if(start)
 		start()
@@ -29,7 +29,7 @@
 
 /datum/component/plumbing/process()
 	if(!demand_connects || !reagents)
-		STOP_PROCESSING(SSfluids, src)
+		STOP_PROCESSING(SSplumbing, src)
 		return
 	if(reagents.total_volume < reagents.maximum_volume)
 		for(var/D in GLOB.cardinals)
@@ -117,7 +117,7 @@
 /datum/component/plumbing/proc/disable() //we stop acting like a plumbing thing and disconnect if we are, so we can safely be moved and stuff
 	if(!active)
 		return
-	STOP_PROCESSING(SSfluids, src)
+	STOP_PROCESSING(SSplumbing, src)
 	for(var/A in ducts)
 		var/datum/ductnet/D = ducts[A]
 		D.remove_plumber(src)
@@ -131,7 +131,7 @@
 	active = TRUE
 
 	if(demand_connects)
-		START_PROCESSING(SSfluids, src)
+		START_PROCESSING(SSplumbing, src)
 
 	for(var/D in GLOB.cardinals)
 		if(D & (demand_connects + supply_connects))

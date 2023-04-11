@@ -37,6 +37,10 @@
 		var/turf/T = get_turf(usr)
 		if(is_reebe(T.z))
 			to_chat(usr, span_danger("[src] will not function on Reebe!"))
+			return
+		if(is_centcom_level(T.z))
+			to_chat(usr, span_danger("Centcom bluespace activity blockers prevent you from using [src]"))
+			return
 		in_use = TRUE
 		create_area(usr)
 		in_use = FALSE

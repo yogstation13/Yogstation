@@ -1,6 +1,9 @@
 /datum/job/hop
 	title = "Head of Personnel"
+	description = "Alter access on ID cards, manage civil and supply departments, \
+		protect Ian, run the station when the captain dies."
 	flag = HOP
+	orbit_icon = "dog"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
 	department_flag = CIVILIAN
@@ -33,11 +36,25 @@
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL
 	minimal_character_age = 26 //Baseline age requirement and competency, as well as ability to assume leadership in shite situations
 
-	changed_maps = list("OmegaStation")
+	departments_list = list(
+		/datum/job_department/service,
+		/datum/job_department/command,
+	)
 
-/datum/job/hop/proc/OmegaStationChanges()
-	added_access = get_all_accesses()
-	base_access = get_all_accesses()
+	mail_goodies = list(
+		/obj/item/card/id/silver = 10,
+		/obj/item/stack/sheet/bone = 5
+	)
+
+	smells_like = "bureaucracy"
+
+//only pet worth reviving
+/datum/job/hop/get_mail_goodies(mob/recipient)
+	. = ..()
+	// Strange Reagent if the pet is dead.
+	for(var/mob/living/simple_animal/pet/dog/corgi/Ian/staff_pet in GLOB.dead_mob_list)
+		. += list(/datum/reagent/medicine/strange_reagent = 20)
+		break
 
 /datum/outfit/job/hop
 	name = "Head of Personnel"
@@ -46,6 +63,7 @@
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
 
+	glasses = /obj/item/clothing/glasses/hud/personnel
 	ears = /obj/item/radio/headset/heads/hop
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
 	uniform_skirt = /obj/item/clothing/under/rank/head_of_personnel/skirt

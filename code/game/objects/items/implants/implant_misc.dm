@@ -153,3 +153,52 @@
 	name = "implanter (internal syndicate radio)"
 	imp_type = /obj/item/implant/radio/syndicate
 
+/obj/item/implant/empshield
+	name = "EMP shield implant"
+	desc = "An implant that completely protects from electro-magnetic pulses. It will shut down briefly if triggered too often."
+	activated = 0
+	var/lastemp = 0
+	var/numrecent = 0
+	var/warning = TRUE
+	var/overloadtimer = 10 SECONDS
+
+/obj/item/implant/empshield/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
+	if(..())
+		if(ishuman(target))
+			target.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+			RegisterSignal(target, COMSIG_ATOM_EMP_ACT, .proc/overloaded, target)
+		return TRUE
+
+/obj/item/implant/empshield/removed(mob/target, silent = FALSE, special = 0)
+	if(..())
+		if(ishuman(target))
+			var/datum/component/empprotection/empshield = target.GetExactComponent(/datum/component/empprotection)
+			if(empshield)
+				empshield.Destroy()
+			UnregisterSignal(target, COMSIG_ATOM_EMP_ACT)
+		return TRUE
+
+/obj/item/implant/empshield/proc/overloaded(mob/living/target)
+	if(world.time - lastemp > overloadtimer)
+		numrecent = 0
+	numrecent ++
+	lastemp = world.time
+
+	if(numrecent >= 5 && ishuman(target))
+		if(warning)
+			to_chat(target, span_userdanger("You feel a twinge inside from your [src], you get the feeling it won't protect you anymore."))
+			warning = FALSE
+		var/datum/component/empprotection/empshield = target.GetExactComponent(/datum/component/empprotection)
+		if(empshield)
+			empshield.Destroy()
+		addtimer(CALLBACK(src, .proc/refreshed, target), overloadtimer, TIMER_OVERRIDE | TIMER_UNIQUE)
+
+/obj/item/implant/empshield/proc/refreshed(mob/living/target)
+	to_chat(target, span_usernotice("A familiar feeling resonates from your [src], it seems to be functioning properly again."))
+	warning = TRUE
+	if(ishuman(target))
+		target.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+
+/obj/item/implanter/empshield
+	name = "implanter (EMP shield)"
+	imp_type = /obj/item/implant/empshield

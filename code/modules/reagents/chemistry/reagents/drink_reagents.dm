@@ -73,7 +73,7 @@
 /datum/reagent/consumable/berryjuice
 	name = "Berry Juice"
 	description = "A delicious blend of several different kinds of berries."
-	color = "#863333" // rgb: 134, 51, 51
+	color = "#770b0b" // rgb: 119, 11, 11
 	taste_description = "berries"
 	glass_icon_state = "berryjuice"
 	glass_name = "glass of berry juice"
@@ -82,7 +82,7 @@
 /datum/reagent/consumable/applejuice
 	name = "Apple Juice"
 	description = "The sweet juice of an apple, fit for all ages."
-	color = "#ECFF56" // rgb: 236, 255, 86
+	color = "#e99e12" // rgb: 233, 158, 18
 	taste_description = "apples"
 
 /datum/reagent/consumable/poisonberryjuice
@@ -102,7 +102,7 @@
 /datum/reagent/consumable/watermelonjuice
 	name = "Watermelon Juice"
 	description = "Delicious juice made from watermelon."
-	color = "#863333" // rgb: 134, 51, 51
+	color = "#ff3561" // rgb: 255, 53, 97
 	taste_description = "juicy watermelon"
 	glass_icon_state = "glass_red"
 	glass_name = "glass of watermelon juice"
@@ -111,7 +111,7 @@
 /datum/reagent/consumable/lemonjuice
 	name = "Lemon Juice"
 	description = "This juice is VERY sour."
-	color = "#863333" // rgb: 175, 175, 0
+	color = "#ECFF56" // rgb: 236, 255, 86
 	taste_description = "sourness"
 	glass_icon_state  = "lemonglass"
 	glass_name = "glass of lemon juice"
@@ -120,7 +120,7 @@
 /datum/reagent/consumable/banana
 	name = "Banana Juice"
 	description = "The raw essence of a banana. HONK"
-	color = "#863333" // rgb: 175, 175, 0
+	color = "#fdff98" // rgb: 253, 255, 152
 	taste_description = "banana"
 	glass_icon_state = "banana"
 	glass_name = "glass of banana juice"
@@ -187,7 +187,7 @@
 /datum/reagent/consumable/grapejuice
 	name = "Grape Juice"
 	description = "The juice of a bunch of grapes. Guaranteed non-alcoholic."
-	color = "#290029" // dark purple
+	color = "#290029" // rgn: 41, 0, 41 dark purple
 	taste_description = "grape soda"
 
 /datum/reagent/consumable/milk
@@ -404,6 +404,7 @@
 /datum/reagent/consumable/lemonade
 	name = "Lemonade"
 	description = "Sweet, tangy lemonade. Good for the soul."
+	color = "#ECFF56" // rgb: 236, 255, 86 Same as the lemon juice if this ever matters
 	quality = DRINK_NICE
 	taste_description = "sunshine and summertime"
 	glass_icon_state = "lemonpitcher"
@@ -780,6 +781,12 @@
 	glass_name = "chocolate pudding"
 	glass_desc = "Tasty."
 
+/datum/reagent/consumable/chocolate/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+		M.heal_bodypart_damage(2.0,0, 0)
+	..()
+	. = TRUE
+
 /datum/reagent/consumable/vanillapudding
 	name = "Vanilla Pudding"
 	description = "A great dessert for vanilla lovers."
@@ -790,6 +797,12 @@
 	glass_icon_state = "vanillapudding"
 	glass_name = "vanilla pudding"
 	glass_desc = "Tasty."
+
+/datum/reagent/consumable/vanillapudding/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+		M.heal_bodypart_damage(2.0,0, 0)
+	..()
+	. = TRUE
 
 /datum/reagent/consumable/cherryshake
 	name = "Cherry Shake"
@@ -802,6 +815,12 @@
 	glass_name = "cherry shake"
 	glass_desc = "A cherry flavored milkshake."
 
+/datum/reagent/consumable/cherryshake/on_mob_life(mob/living/carbon/C)
+	if(isjellyperson(C))
+		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
+			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
+	..()
+
 /datum/reagent/consumable/bluecherryshake
 	name = "Blue Cherry Shake"
 	description = "An exotic milkshake."
@@ -812,6 +831,12 @@
 	glass_icon_state = "bluecherryshake"
 	glass_name = "blue cherry shake"
 	glass_desc = "An exotic blue milkshake."
+
+/datum/reagent/consumable/bluecherryshake/on_mob_life(mob/living/carbon/C)
+	if(isjellyperson(C))
+		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
+			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
+	..()
 
 /datum/reagent/consumable/pumpkin_latte
 	name = "Pumpkin Latte"
@@ -1036,8 +1061,7 @@
 	glass_name = "glass of mushroom tea"
 	glass_desc = "Oddly savoury for a drink."
 
-/datum/reagent/consumable/mushroom_tea/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	if(islizard(M))
-		M.adjustOxyLoss(-0.5 * REM * delta_time, 0)
+/datum/reagent/consumable/mushroom_tea/on_mob_life(mob/living/carbon/C)
+	if(islizard(C))
+		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -2.5*REM)
 	..()
-	. = TRUE

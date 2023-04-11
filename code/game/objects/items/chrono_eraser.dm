@@ -133,6 +133,10 @@
 	if(istype(C))
 		gun = C.gun
 
+/obj/item/projectile/energy/chrono_beam/Destroy()
+	gun = null
+	return ..()
+
 /obj/item/projectile/energy/chrono_beam/on_hit(atom/target)
 	if(target && gun && isliving(target))
 		var/obj/structure/chrono_field/F = new(target.loc, target, gun)
@@ -151,7 +155,9 @@
 		gun = loc
 	. = ..()
 
-
+/obj/item/ammo_casing/energy/chrono_beam/Destroy()
+	gun = null
+	return ..()
 
 
 
@@ -167,7 +173,7 @@
 	interaction_flags_atom = NONE
 	var/mob/living/captured = null
 	var/obj/item/gun/energy/chrono_gun/gun = null
-	var/tickstokill = 15
+	var/timetokill = 30
 	var/mutable_appearance/mob_underlay
 	var/preloaded = 0
 	var/RPpos = null
@@ -198,7 +204,7 @@
 	return ..()
 
 /obj/structure/chrono_field/update_icon()
-	var/ttk_frame = 1 - (tickstokill / initial(tickstokill))
+	var/ttk_frame = 1 - (timetokill / initial(timetokill))
 	ttk_frame = clamp(CEILING(ttk_frame * CHRONO_FRAME_COUNT, 1), 1, CHRONO_FRAME_COUNT)
 	if(ttk_frame != RPpos)
 		RPpos = ttk_frame
@@ -206,13 +212,13 @@
 		underlays = list() //hack: BYOND refuses to update the underlay to match the icon_state otherwise
 		underlays += mob_underlay
 
-/obj/structure/chrono_field/process()
+/obj/structure/chrono_field/process(delta_time)
 	if(captured)
-		if(tickstokill > initial(tickstokill))
+		if(timetokill > initial(timetokill))
 			for(var/atom/movable/AM in contents)
 				AM.forceMove(drop_location())
 			qdel(src)
-		else if(tickstokill <= 0)
+		else if(timetokill <= 0)
 			to_chat(captured, span_boldnotice("As the last essence of your being is erased from time, you are taken back to your most enjoyable memory. You feel happy..."))
 			var/mob/dead/observer/ghost = captured.ghostize(1)
 			if(captured.mind)
@@ -229,12 +235,12 @@
 			update_icon()
 			if(gun)
 				if(gun.field_check(src))
-					tickstokill--
+					timetokill -= delta_time
 				else
 					gun = null
 					return .()
 			else
-				tickstokill++
+				timetokill += delta_time
 	else
 		qdel(src)
 

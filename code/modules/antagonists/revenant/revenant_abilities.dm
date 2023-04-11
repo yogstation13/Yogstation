@@ -266,11 +266,9 @@
 	for(var/obj/machinery/dna_scannernew/dna in T)
 		dna.open_machine()
 	for(var/obj/structure/window/window in T)
-		if(window)
-			if(!istype(window, /obj/structure/window/reinforced) || !istype(window, /obj/structure/window/plasma) || !istype(window, /obj/structure/window/plastitanium) || !istype(window, /obj/structure/window/plasma/reinforced))
-				window.take_damage(rand(30,80))
-				if(window.fulltile)
-					new /obj/effect/temp_visual/revenant/cracks(window.loc)
+		if(window && window.fulltile)
+			new /obj/effect/temp_visual/revenant/cracks(window.loc)
+			window.take_damage(rand(30,80))
 	for(var/obj/machinery/light/light in T)
 		light.flicker(20) //spooky
 
@@ -306,7 +304,7 @@
 		new /obj/effect/temp_visual/revenant(human.loc)
 		human.emp_act(EMP_HEAVY)
 	for(var/obj/thing in T)
-		if(istype(thing, /obj/machinery/power/apc) || istype(thing, /obj/machinery/power/smes) || istype(thing, /obj/machinery/particle_accelerator/control_box)) //Doesn't work on SMES and APCs or the PA control box, to prevent kekkery
+		if(istype(thing,/obj/machinery/airalarm) || istype(thing, /obj/machinery/power/apc) || istype(thing, /obj/machinery/power/smes) || istype(thing, /obj/machinery/particle_accelerator/control_box)) //Doesn't work on SMES and APCs or the PA control box, to prevent kekkery. Yogstation change: Air alarms included.
 			continue
 		if(prob(20))
 			if(prob(50))

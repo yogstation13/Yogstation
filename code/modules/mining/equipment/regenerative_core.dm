@@ -22,6 +22,7 @@
 	name = "regenerative core"
 	desc = "All that remains of a hivelord. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."
 	icon_state = "roro core 2"
+	visual = FALSE
 	item_flags = NOBLUDGEON
 	slot = "hivecore"
 	force = 0
@@ -74,6 +75,7 @@
 	. = ..()
 	if(proximity_flag && ishuman(target))
 		var/mob/living/carbon/human/H = target
+		var/turf/user_turf = get_turf(user)
 		if(inert)
 			to_chat(user, span_notice("[src] has decayed and can no longer be used to heal."))
 			return
@@ -83,7 +85,7 @@
 				return
 			if(H != user)
 			
-				if(!is_station_level(get_turf(user)) || is_reserved_level(get_turf(user)))
+				if(!is_station_level(user_turf.z) || is_reserved_level(user_turf.z))
 					H.visible_message(span_notice("[user] crushes [src] against [H]'s body, causing black tendrils to encover and reinforce [H.p_them()]!"))
 				else
 					H.visible_message(span_notice("[user] holds [src] against [H]'s body, coaxing the regenerating tendrils from [src]..."))
@@ -95,8 +97,7 @@
 					H.visible_message(span_notice("[src] explodes into a flurry of tendrils, rapidly covering and reinforcing [H]'s body."))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "other"))
 			else
-			
-				if(!is_station_level(get_turf(user)) || is_reserved_level(get_turf(user)))
+				if(!is_station_level(user_turf.z) || is_reserved_level(user_turf.z))
 					to_chat(user, span_notice("You crush [src] within your hand. Disgusting tendrils spread across your body, hold you together and allow you to keep moving, but for how long?"))
 				else
 					to_chat(user, span_notice("You hold [src] against your body, coaxing the regenerating tendrils from [src]..."))

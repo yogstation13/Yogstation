@@ -148,9 +148,11 @@
 
 /obj/item/hand_tele/proc/try_dispel_portal(atom/target, mob/user)
 	if(is_parent_of_portal(target))
-		qdel(target)
-		to_chat(user, span_notice("You dispel [target] with \the [src]!"))
-		return TRUE
+		balloon_alert(user, "Dispelling portal...")
+		if(do_after(user, 4 SECONDS, target))
+			qdel(target)
+			to_chat(user, span_notice("You dispel [target] with \the [src]!"))
+			return TRUE
 	return FALSE
 
 /obj/item/hand_tele/afterattack(atom/target, mob/user)

@@ -16,7 +16,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 /obj/effect/rune
 	name = "rune"
 	var/cultist_name = "basic rune"
-	desc = "An odd collection of symbols drawn in what seems to be blood."
+	desc = "A rune vandalizing the station."
 	var/cultist_desc = "a basic rune with no function." //This is shown to cultists who examine the rune in order to determine its true purpose.
 	anchored = TRUE
 	icon = 'icons/obj/rune.dmi'
@@ -70,6 +70,11 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 
 /obj/effect/rune/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user))
+		var/confirm = tgui_alert(user, "Erasing this [cultist_name] rune might be against your goal to summon Nar'Sie.", "Begin to erase the [cultist_name] rune?", list("Proceed", "Abort"))
+		if(confirm != "Proceed")
+			return
+		if(!user.is_holding_item_of_type(/obj/item/melee/cultblade/dagger) || !Adjacent(user) || user.incapacitated() || user.stat == DEAD) //Gee, good thing we made sure cultists can't input stall to grief their team and get banned anyway
+			return
 		SEND_SOUND(user,'sound/items/sheath.ogg')
 		if(do_after(user, 1.5 SECONDS, src))
 			to_chat(user, span_notice("You carefully erase the [lowertext(cultist_name)] rune."))
@@ -84,6 +89,11 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	if(.)
 		return
 	if(!iscultist(user))
+		for(var/obj/item/nullrod/antimagic in user.get_equipped_items())
+			user.say("BEGONE FOUL MAGIKS!!", forced = "nullrod")
+			to_chat(user, span_danger("You disrupt the magic of [src] with [antimagic]."))
+			qdel(src)
+			return
 		to_chat(user, span_warning("You aren't able to understand the words of [src]."))
 		return
 	if(istype(user, /mob/living/simple_animal/shade))
@@ -904,7 +914,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	. = ..()
 	var/mob/living/user = invokers[1]
 	var/turf/T = get_turf(src)
-	var/choice = alert(user,"You tear open a connection to the spirit realm...",,"Summon a Cult Ghost","Ascend as a Dark Spirit","Cancel")
+	var/choice = tgui_alert(user,"You tear open a connection to the spirit realm...",,list("Summon a Cult Ghost","Ascend as a Dark Spirit","Cancel"))
 	if(choice == "Summon a Cult Ghost")
 		var/area/A = get_area(T)
 		if(A.map_name == "Space" || is_mining_level(T.z))

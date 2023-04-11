@@ -58,7 +58,7 @@
 		var/selected_zone = A.zone_selected
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 		var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 40)
-		D.apply_damage(30, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 
+		D.apply_damage(A.get_punchdamagehigh() * 2 + 10, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	//30 damage
 		to_chat(A, span_warning("You stab [D] with a hidden blade!"))
 		to_chat(D, span_userdanger("You are suddenly stabbed with a blade!"))
 		streak = ""
@@ -67,8 +67,8 @@
 		var/selected_zone = A.zone_selected
 		var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 		var/armor_block = D.run_armor_check(affecting, MELEE, armour_penetration = 10)
-		D.apply_damage(20, STAMINA, affecting, armor_block)
-		D.apply_damage(5, BRUTE, affecting, armor_block)
+		D.apply_damage(A.get_punchdamagehigh() * 1.5 + 5, STAMINA, affecting, armor_block)	//20 stamina
+		D.apply_damage(A.get_punchdamagehigh() / 2, BRUTE, affecting, armor_block)			//5 brute
 		return FALSE //Because it is a stealthy martial art, we need it to work like... a normal shove, so people nearby couldn't understand so easy that you know a martial art.
 
 
@@ -87,8 +87,8 @@
 	var/obj/item/gun/ballistic/automatic/pistol/martial/gun = new /obj/item/gun/ballistic/automatic/pistol/martial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
 	gun.gun_owner = A
 	A.put_in_hands(gun)
-	to_chat(A, span_notice("You extract a hiden gun from your hand."))	
-	D.Paralyze(1 SECONDS)
+	to_chat(A, span_notice("You extract a hidden gun from your hand."))	
+	D.Paralyze((A.get_punchdamagehigh() / 10) SECONDS)	//1 second
 	streak = ""
 
 /obj/item/gun/ballistic/automatic/pistol/martial
@@ -137,9 +137,9 @@
 	set category = "Combat Modules"
 	to_chat(usr, "<b><i>You try to remember some basic actions from your upgraded combat modules.</i></b>")
 
-	to_chat(usr, "[span_notice("Hidden Blade")]: Harm Harm Grab. The second strike will deal 20 stamina and 5 brute damage, and finishing the combo will make you stab the victim with a hiden blade, dealing 30 brute damage.")
+	to_chat(usr, "[span_notice("Hidden Blade")]: Harm Harm Grab. The second strike will deal 20 stamina and 5 brute damage, and finishing the combo will make you stab the victim with a hidden blade, dealing 30 brute damage.")
 	to_chat(usr, "[span_notice("Injection")]: Disarm Harm Disarm. The second and third attack will stealthy inject respectively 5 units of cyanide and 8 unites of sodium thiopental.")
-	to_chat(usr, "[span_notice("Finger gun")]: Harm Disarm Disarm. Finishing the combo will paralyze your target and place a stealthy version of a stechkin in your hand.")
+	to_chat(usr, "[span_notice("Finger gun")]: Harm Disarm Disarm. Finishing the combo will paralyse your target and place a stealthy version of a stechkin in your hand.")
 
 #undef PRE_DAGGER_COMBO
 #undef DAGGER_COMBO 

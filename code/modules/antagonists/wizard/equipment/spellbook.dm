@@ -119,10 +119,6 @@
 	spell_type = /obj/effect/proc_holder/spell/targeted/projectile/magic_missile
 	category = "Defensive"
 
-/datum/spellbook_entry/disintegrate
-	name = "Disintegrate"
-	spell_type = /obj/effect/proc_holder/spell/targeted/touch/disintegrate
-
 /datum/spellbook_entry/pacify
 	name = "Pacify"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/pacify
@@ -193,6 +189,10 @@
 /datum/spellbook_entry/fleshtostone
 	name = "Flesh to Stone"
 	spell_type = /obj/effect/proc_holder/spell/targeted/touch/flesh_to_stone
+
+/datum/spellbook_entry/touchofdeath		//yogs start
+	name = "Touch of Death"
+	spell_type = /obj/effect/proc_holder/spell/targeted/touch/touch_of_death	//yogs end
 
 /datum/spellbook_entry/summonitem
 	name = "Summon Item"

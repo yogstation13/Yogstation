@@ -6,7 +6,7 @@
 		var/leg_amount = get_num_legs()
 		. += max(6 - 3*leg_amount, 0) //the fewer the legs, the slower the mob
 		if(!leg_amount)
-			. += max((6 - 3*get_num_arms()), 0) //crawling is harder with fewer arms
+			. += max((12 - 6*get_num_arms()), 0) //crawling is harder with fewer arms
 		if(legcuffed)
 			. += legcuffed.slowdown
 
@@ -25,6 +25,8 @@
 	return
 	
 /mob/living/carbon/Process_Spacemove(movement_dir = 0)
+	if(!.)
+		. = ..()
 	if(!isturf(loc))
 		return FALSE
 	// Do we have a jetpack implant (and is it on)?
@@ -37,12 +39,6 @@
 	if(istype(J))
 		if((movement_dir || J.stabilizers) && J.allow_thrust(0.01, src))
 			. =  TRUE
-
-	if(!.)
-		. = ..()
-	if(!. && pulledby) // If it still returned false
-		pulledby.stop_pulling()
-		return TRUE
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()

@@ -1,10 +1,10 @@
 /datum/status_effect/roots
 	id = "roots"
-	alert_type = /obj/screen/alert/status_effect/roots
+	alert_type = /atom/movable/screen/alert/status_effect/roots
 	var/icon/cube
 	duration = 1 SECONDS
 
-/obj/screen/alert/status_effect/roots
+/atom/movable/screen/alert/status_effect/roots
 	name = "grasped"
 	desc = "You're rooted in place"
 	icon_state = "grip"

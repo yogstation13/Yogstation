@@ -1,6 +1,9 @@
 /datum/job/detective
 	title = "Detective"
+	description = "Investigate crimes, gather evidence, perform interrogations, \
+		look badass, smoke cigarettes."
 	flag = DETECTIVE
+	orbit_icon = "user-secret"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
 	department_flag = ENGSEC
@@ -26,16 +29,22 @@
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 	minimal_character_age = 22 //Understanding of forensics, crime analysis, and theory. Less of a grunt officer and more of an intellectual, theoretically, despite how this is never reflected in-game
 
-	changed_maps = list("EclipseStation", "OmegaStation")
+	departments_list = list(
+		/datum/job_department/security,
+	)
 
-/datum/job/detective/proc/EclipseStationChanges()
-	total_positions = 2
-	spawn_positions = 2
+	mail_goodies = list(
+		///obj/item/storage/fancy/cigarettes = 25,
+		/obj/item/ammo_box/c38 = 25,
+		///obj/item/ammo_box/c38/dumdum = 5,
+		/obj/item/ammo_box/c38/hotshot = 5,
+		/obj/item/ammo_box/c38/iceblox = 5,
+		///obj/item/ammo_box/c38/match = 5,
+		/obj/item/ammo_box/tra32 = 5,
+		///obj/item/storage/belt/holster/detective/full = 1
+	)
 
-/datum/job/detective/proc/OmegaStationChanges()
-	added_access = list()
-	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
-	supervisors = "the captain"
+	smells_like = "whisky-soaked despair"
 
 /datum/outfit/job/detective
 	name = "Detective"

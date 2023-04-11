@@ -26,7 +26,7 @@
 /obj/item/gun/ballistic/revolver/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	..()
 	chamber_round(TRUE)
-
+ 
 /obj/item/gun/ballistic/revolver/AltClick(mob/user)
 	..()
 	spin()
@@ -99,8 +99,7 @@
 				to_chat(user, span_warning("You can't modify it!"))
 				return TRUE
 			magazine.caliber = "357"
-			fire_delay = 12 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder
-			spread = 25 //Can be wildly inaccurate randomly
+			fire_delay = 8 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder. Plus, if you perfectly slam fire with the .38 and hit all your shots, you (should) do more lethal damage than using .357 at this fire_delay
 			fire_sound = 'sound/weapons/revolver357shot.ogg'
 			desc = "The barrel and chamber assembly seems to have been modified."
 			to_chat(user, span_notice("You reinforce the barrel of [src]. Now it will fire .357 rounds."))
@@ -115,7 +114,7 @@
 				to_chat(user, span_warning("You can't modify it!"))
 				return
 			magazine.caliber = "38"
-			fire_delay = 0 //Fixed again
+			fire_delay = 0 //Blessed mag dump
 			spread = 0
 			fire_sound = 'sound/weapons/revolver38shot.ogg'
 			desc = initial(desc)
@@ -231,9 +230,14 @@
 	user.visible_message(span_danger("[user.name] tries to fire \the [src] at the same time, but only succeeds at looking like an idiot."), span_danger("\The [src]'s anti-combat mechanism prevents you from firing it at the same time!"))
 
 /obj/item/gun/ballistic/revolver/russian/proc/shoot_self(mob/living/carbon/human/user, affecting = BODY_ZONE_HEAD)
-	user.apply_damage(300, BRUTE, affecting)
-	user.visible_message(span_danger("[user.name] fires [src] at [user.p_their()] head!"), span_userdanger("You fire [src] at your head!"), span_italics("You hear a gunshot!"))
-
+	switch(rand(1,3))
+		if (1 to 2)
+			user.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
+		if (3)
+			user.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
+	user.apply_damage(300, BRUTE, affecting) 
+	user.visible_message(span_danger("[user.name] fires [src] at [user.p_their()] head!"), span_userdanger("You fire [src] at your head!"), span_italics("You hear a gunshot, then everything goes silent."))
+	
 /obj/item/gun/ballistic/revolver/russian/soul
 	name = "cursed Russian revolver"
 	desc = "To play with this revolver requires wagering your very soul."

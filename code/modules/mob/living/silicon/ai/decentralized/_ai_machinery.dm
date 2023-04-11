@@ -20,7 +20,7 @@
 	SSair.atmos_machinery -= src 
 
 /obj/machinery/ai/proc/valid_holder()
-	if(stat & (BROKEN|NOPOWER|EMPED))
+	if(stat & (BROKEN|EMPED) || !has_power())
 		return FALSE
 	
 	var/turf/T = get_turf(src)
@@ -34,6 +34,9 @@
 	if(env.return_temperature() > GLOB.ai_os.get_temp_limit() || !env.heat_capacity())
 		return FALSE
 	return TRUE
+
+/obj/machinery/ai/proc/has_power()
+	return !(stat & (NOPOWER))
 
 /obj/machinery/ai/proc/get_holder_status()
 	if(stat & (BROKEN|NOPOWER|EMPED))

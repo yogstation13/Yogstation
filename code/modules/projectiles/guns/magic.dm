@@ -12,11 +12,13 @@
 	var/checks_antimagic = TRUE
 	var/max_charges = 6
 	var/charges = 0
-	var/recharge_rate = 4
-	var/charge_tick = 0
+	var/recharge_rate = 8 // Seconds per charge
+	var/charge_timer = 0
 	var/can_charge = TRUE
 	var/ammo_type
 	var/no_den_usage
+	recoil = 0
+	spread = 0
 	clumsy_check = 0
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL // Has no trigger at all, uses magic instead
 	pin = /obj/item/firing_pin/magic
@@ -65,11 +67,14 @@
 	return ..()
 
 
-/obj/item/gun/magic/process()
-	charge_tick++
-	if(charge_tick < recharge_rate || charges >= max_charges)
+/obj/item/gun/magic/process(delta_time)
+	if(charges >= max_charges)
+		charge_timer = 0
 		return 0
-	charge_tick = 0
+	charge_timer += delta_time
+	if(charge_timer < recharge_rate)
+		return 0
+	charge_timer = 0
 	charges++
 	if(charges == 1)
 		recharge_newshot()

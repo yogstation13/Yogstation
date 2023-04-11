@@ -71,13 +71,16 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 
 	else if(istype(W, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/S = W
-		if(amount != 1)
-			to_chat(user, span_warning("You must use a single rod!"))
-		else if(S.w_class > WEIGHT_CLASS_SMALL)
+		if(S.w_class > WEIGHT_CLASS_SMALL)
 			to_chat(user, span_warning("The ingredient is too big for [src]!"))
 		else
+			amount -= 1
 			var/obj/item/reagent_containers/food/snacks/customizable/A = new/obj/item/reagent_containers/food/snacks/customizable/kebab(get_turf(src))
-			A.initialize_custom_food(src, S, user)
+			if (amount == 0)
+				A.initialize_custom_food(src, S, user)
+			else
+				A.initialize_custom_food(src, S, user, TRUE)
+				update_icon()
 	else
 		return ..()
 

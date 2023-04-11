@@ -13,6 +13,9 @@
 	var/mob/living/quirk_holder
 	var/not_init = FALSE // Yogs -- Allows quirks to be instantiated without all the song & dance below happening
 	var/list/species_blacklist = list()
+	/// The icon to show in the preferences menu.
+	/// This references a tgui icon, so it can be FontAwesome or a tgfont (with a tg- prefix).
+	var/icon
 
 /datum/quirk/New(mob/living/quirk_mob, spawn_effects, no_init = FALSE)
 	..()
@@ -69,14 +72,14 @@
 /datum/quirk/proc/check_quirk(datum/preferences/prefs) // Yogs -- allows quirks to check the preferences of the user who may acquire it
 	return FALSE
 
-/datum/quirk/process()
+/datum/quirk/process(delta_time)
 	if(QDELETED(quirk_holder))
 		quirk_holder = null
 		qdel(src)
 		return
 	if(quirk_holder.stat == DEAD)
 		return
-	on_process()
+	on_process(delta_time)
 
 /mob/living/proc/get_trait_string(medical) //helper string. gets a string of all the traits the mob has
 	var/list/dat = list()

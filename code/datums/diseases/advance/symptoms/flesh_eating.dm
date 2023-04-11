@@ -14,7 +14,7 @@ Bonus
 /datum/symptom/flesh_eating
 
 	name = "Necrotizing Fasciitis"
-	desc = "The virus aggressively attacks body cells, necrotizing tissues and organs."
+	desc = "The virus aggressively attacks body cells, necrosing tissues and organs."
 	stealth = -3
 	resistance = -4
 	stage_speed = 0

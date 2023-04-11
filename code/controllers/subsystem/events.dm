@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(events)
 		control += E				//add it to the list of all events (controls)
 	reschedule()
 	getHoliday()
-	return ..()
+	return SS_INIT_SUCCESS
 
 
 /datum/controller/subsystem/events/fire(resumed = 0)
@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(events)
 		var/datum/thing = currentrun[currentrun.len]
 		currentrun.len--
 		if(thing)
-			thing.process()
+			thing.process(wait * 0.1)
 		else
 			running.Remove(thing)
 		if (MC_TICK_CHECK)

@@ -10,80 +10,124 @@ SUBSYSTEM_DEF(atoms)
 	loading_points = 30 SECONDS // Yogs -- smarter loading times
 
 	var/old_initialized
+	/// A count of how many initalize changes we've made. We want to prevent old_initialize being overriden by some other value, breaking init code
+	var/initialized_changed = 0
 
 	var/list/late_loaders = list()
 
 	var/list/BadInitializeCalls = list()
 
+	var/init_start_time
+
+	/// Atoms that will be deleted once the subsystem is initialized
+	var/list/queued_deletions = list()
+
+	initialized = INITIALIZATION_INSSATOMS
+
 /datum/controller/subsystem/atoms/Initialize(timeofday)
+	init_start_time = world.time
 	GLOB.fire_overlay.appearance_flags = RESET_COLOR
 	setupGenetics() //to set the mutations' sequence
+
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
-	return ..()
+	initialized = INITIALIZATION_INNEW_REGULAR
+	
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
 	if(initialized == INITIALIZATION_INSSATOMS)
 		return
 
-	initialized = INITIALIZATION_INNEW_MAPLOAD
+	set_tracked_initalized(INITIALIZATION_INNEW_MAPLOAD)
 
-	var/count
-	var/list/mapload_arg = list(TRUE)
-	if(atoms)
-		count = atoms.len
-		for(var/I in atoms)
-			var/atom/A = I
-			if(!(A.flags_1 & INITIALIZED_1))
-				InitAtom(I, mapload_arg)
-				CHECK_TICK
-	else
-		count = 0
-		for(var/atom/A in world)
-			if(!(A.flags_1 & INITIALIZED_1))
-				InitAtom(A, mapload_arg)
-				++count
-				CHECK_TICK
-
-	testing("Initialized [count] atoms")
-	pass(count)
-
-	initialized = INITIALIZATION_INNEW_REGULAR
+	// This may look a bit odd, but if the actual atom creation runtimes for some reason, we absolutely need to set initialized BACK
+	CreateAtoms(atoms)
+	clear_tracked_initalize()
 
 	if(late_loaders.len)
-		for(var/I in late_loaders)
-			var/atom/A = I
+		for(var/I in 1 to late_loaders.len)
+			var/atom/A = late_loaders[I]
+			//I hate that we need this
+			if(QDELETED(A))
+				continue
 			A.LateInitialize()
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
+	
+	for (var/queued_deletion in queued_deletions)
+		qdel(queued_deletion)
+
+	testing("[queued_deletions.len] atoms were queued for deletion.")
+	queued_deletions.Cut()
+
+/// Actually creates the list of atoms. Exists soley so a runtime in the creation logic doesn't cause initalized to totally break
+/datum/controller/subsystem/atoms/proc/CreateAtoms(list/atoms)
+	#ifdef TESTING
+	var/count
+	#endif
+
+	var/list/mapload_arg = list(TRUE)
+
+	if(atoms)
+		#ifdef TESTING
+		count = atoms.len
+		#endif
+
+		for(var/I in 1 to atoms.len)
+			var/atom/A = atoms[I]
+			if(!(A.flags_1 & INITIALIZED_1))
+				CHECK_TICK
+				InitAtom(A, mapload_arg)
+	else
+		#ifdef TESTING
+		count = 0
+		#endif
+
+		for(var/atom/A as anything in world)
+			if(!(A.flags_1 & INITIALIZED_1))
+				InitAtom(A, mapload_arg)
+				#ifdef TESTING
+				++count
+				#endif
+				CHECK_TICK
+
+	testing("Initialized [count] atoms")
 
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
 	var/the_type = A.type
 	if(QDELING(A))
-		BadInitializeCalls[the_type] |= BAD_INIT_QDEL_BEFORE
+		// Check init_start_time to not worry about atoms created before the atoms SS that are cleaned up before this
+		if (A.gc_destroyed > init_start_time)
+			BadInitializeCalls[the_type] |= BAD_INIT_QDEL_BEFORE
 		return TRUE
 
+	#ifdef UNIT_TESTS
 	var/start_tick = world.time
+	#endif
 
 	var/result = A.Initialize(arglist(arguments))
 
+	#ifdef UNIT_TESTS
 	if(start_tick != world.time)
 		BadInitializeCalls[the_type] |= BAD_INIT_SLEPT
+	#endif
 
 	var/qdeleted = FALSE
 
-	if(result != INITIALIZE_HINT_NORMAL)
-		switch(result)
-			if(INITIALIZE_HINT_LATELOAD)
-				if(arguments[1])	//mapload
-					late_loaders += A
-				else
-					A.LateInitialize()
-			if(INITIALIZE_HINT_QDEL)
-				qdel(A)
-				qdeleted = TRUE
+	switch(result)
+		if (INITIALIZE_HINT_NORMAL)
+			// pass
+		if (INITIALIZE_HINT_LATELOAD)
+			if(arguments[1]) //mapload
+				late_loaders += A
 			else
-				BadInitializeCalls[the_type] |= BAD_INIT_NO_HINT
+				A.LateInitialize()
+		if (INITIALIZE_HINT_QDEL)
+			qdel(A)
+			qdeleted = TRUE
+		else
+			BadInitializeCalls[the_type] |= BAD_INIT_NO_HINT
 
 	if(!A)	//possible harddel
 		qdeleted = TRUE
@@ -93,11 +137,24 @@ SUBSYSTEM_DEF(atoms)
 	return qdeleted || QDELING(A)
 
 /datum/controller/subsystem/atoms/proc/map_loader_begin()
-	old_initialized = initialized
-	initialized = INITIALIZATION_INSSATOMS
+	set_tracked_initalized(INITIALIZATION_INSSATOMS)
 
 /datum/controller/subsystem/atoms/proc/map_loader_stop()
-	initialized = old_initialized
+	clear_tracked_initalize()
+
+/// Use this to set initialized to prevent error states where old_initialized is overriden. It keeps happening and it's cheesing me off
+/datum/controller/subsystem/atoms/proc/set_tracked_initalized(value)
+	if(!initialized_changed)
+		old_initialized = initialized
+		initialized = value
+	else
+		stack_trace("We started maploading while we were already maploading. You doing something odd?")
+	initialized_changed += 1
+
+/datum/controller/subsystem/atoms/proc/clear_tracked_initalize()
+	initialized_changed -= 1
+	if(!initialized_changed)
+		initialized = old_initialized
 
 /datum/controller/subsystem/atoms/Recover()
 	initialized = SSatoms.initialized
@@ -142,6 +199,14 @@ SUBSYSTEM_DEF(atoms)
 			. += "- Qdel'd in New()\n"
 		if(fails & BAD_INIT_SLEPT)
 			. += "- Slept during Initialize()\n"
+
+/// Prepares an atom to be deleted once the atoms SS is initialized.
+/datum/controller/subsystem/atoms/proc/prepare_deletion(atom/target)
+	if (initialized == INITIALIZATION_INNEW_REGULAR)
+		// Atoms SS has already completed, just kill it now.
+		qdel(target)
+	else
+		queued_deletions += WEAKREF(target)
 
 /datum/controller/subsystem/atoms/Shutdown()
 	var/initlog = InitLog()

@@ -5,7 +5,7 @@
 	icon_state = "smokewhite"
 	item_state = "flashbang"
 	slot_flags = ITEM_SLOT_BELT
-	var/datum/effect_system/smoke_spread/bad/smoke
+	var/datum/effect_system/fluid_spread/smoke/bad/smoke
 
 /obj/item/grenade/smokebomb/Initialize()
 	. = ..()
@@ -19,7 +19,7 @@
 /obj/item/grenade/smokebomb/prime()
 	update_mob()
 	playsound(src, 'sound/effects/smoke.ogg', 50, 1, -3)
-	smoke.set_up(4, src)
+	smoke.set_up(4, location = src)
 	smoke.start()
 
 

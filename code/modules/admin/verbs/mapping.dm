@@ -78,7 +78,8 @@ GLOBAL_LIST_INIT(admin_verbs_debug_all, list(
 	/client/proc/reload_configuration,
 	/datum/admins/proc/create_or_modify_area,
 	/client/proc/debug_typeof, // Yogs -- Adds a debug verb for getting the subtypes of something
-	/client/proc/toggle_cdn
+	/client/proc/toggle_cdn,
+	/client/proc/debug_mail_loot
 ))
 GLOBAL_PROTECT(admin_verbs_debug_all)
 
@@ -137,8 +138,8 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set name = "Camera Report"
 
 	if(!Master)
-		alert(usr,"Master_controller not found.","Sec Camera Report")
-		return 0
+		tgui_alert(usr,"Master_controller not found.","Sec Camera Report")
+		return FALSE
 
 	var/list/obj/machinery/camera/CL = list()
 
@@ -349,7 +350,6 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 					qdel(I)
 				randomize_human(D)
 				JB.equip(D, TRUE, FALSE)
-				COMPILE_OVERLAYS(D)
 				var/icon/I = icon(getFlatIcon(D), frame = 1)
 				final.Insert(I, JB.title)
 	qdel(D)

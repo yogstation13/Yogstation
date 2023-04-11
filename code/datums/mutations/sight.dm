@@ -36,7 +36,7 @@
 
 /datum/mutation/human/thermal
 	name = "Thermal Vision"
-	desc = "The user of this genome can visually percieve the unique human thermal signature."
+	desc = "The user of this genome can visually perceive the unique human thermal signature."
 	quality = POSITIVE
 	difficulty = 18
 	text_gain_indication = span_notice("You can see the heat rising off of your skin...")
@@ -75,15 +75,7 @@
 	locked = TRUE
 	difficulty = 16
 	text_gain_indication = span_notice("You feel pressure building up behind your eyes.")
-	layer_used = FRONT_MUTATIONS_LAYER
 	limb_req = BODY_ZONE_HEAD
-
-/datum/mutation/human/laser_eyes/New(class_ = MUT_OTHER, timer, datum/mutation/human/copymut)
-	..()
-	visual_indicators |= mutable_appearance('icons/effects/genetics.dmi', "lasereyes", -FRONT_MUTATIONS_LAYER)
-
-/datum/mutation/human/laser_eyes/get_visual_indicator()
-	return visual_indicators[1]
 
 /datum/mutation/human/laser_eyes/on_ranged_attack(atom/target, mouseparams)
 	if(owner.a_intent == INTENT_HARM)

@@ -24,6 +24,12 @@
 //maintcentral:			2  items,  2 spots 0 extra (08/08/2014)
 //port:					5  items,  5 spots 0 extra (08/08/2014)
 
+
+//************************************************************
+// AS OF ROUGHLY 2023/03/20, THIS FILE IS REDUNDANT
+// MAINT LOOT IS NOW HANDELED AT
+// yogstation/code/_globalvars/lists/maintenance_loot.dm
+//************************************************************
 GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/bodybag = 1,
 	/obj/item/clothing/glasses/meson = 2,
@@ -112,6 +118,7 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/storage/toolbox/artistic = 2,
 	/obj/item/toy/eightball = 1,
 	/obj/item/reagent_containers/pill/floorpill = 1,
+	/obj/item/reagent_containers/gummy/floorbear = 1,
 	/obj/item/reagent_containers/food/snacks/cannedpeaches/maint = 1,
 	/obj/item/storage/box/mre/menu3 = 1, //Yogs start - MREs
 	/obj/item/storage/box/mre/menu2 = 2,

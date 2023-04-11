@@ -16,7 +16,7 @@
 
 /obj/item/storage/bag/photo
 	name = "Photo Bag"
-	desc = "This Satchel can be used to store all your photo related items."
+	desc = "This satchel can be used to store all your photo related items."
 	icon = 'yogstation/icons/obj/toy.dmi'
 	icon_state = "photobag"
 	w_class = WEIGHT_CLASS_TINY

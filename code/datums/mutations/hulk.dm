@@ -48,7 +48,7 @@
 
 /datum/mutation/human/genetics_hulk
 	name = "Hulk"
-	desc = "A seemingly dormant genome, but reacts violently to aggitation."
+	desc = "A seemingly dormant genome, but reacts violently to agitation."
 	difficulty = 16
 	instability = 50
 	class = MUT_OTHER

@@ -143,6 +143,7 @@
 	var/chameleon_type = null
 	var/chameleon_name = "Item"
 	var/emp_timer
+	var/current_disguise = null
 
 /datum/action/item_action/chameleon/change/Grant(mob/M)
 	if(M && (owner != M))
@@ -220,10 +221,15 @@
 		var/obj/item/I = target
 		I.item_state = initial(picked_item.item_state)
 		I.mob_overlay_icon = initial(picked_item.mob_overlay_icon)
-		if(istype(I, /obj/item/clothing) && istype(initial(picked_item), /obj/item/clothing))
+		if(istype(I, /obj/item/clothing) && istype(picked_item, /obj/item/clothing))
 			var/obj/item/clothing/CL = I
 			var/obj/item/clothing/PCL = picked_item
 			CL.flags_cover = initial(PCL.flags_cover)
+			CL.flags_inv = initial(PCL.flags_inv)
+			if(istype(CL, /obj/item/clothing/mask/chameleon))
+				var/obj/item/clothing/mask/chameleon/CH = CL
+				if(CH.vchange)
+					CH.flags_inv |= HIDEFACE // We want the chameleon mask hiding the face to retain voice changing!
 	if(istype(target, /obj/item/clothing/suit/space/hardsuit/infiltration)) //YOGS START
 		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = target
 		var/obj/item/clothing/suit/space/hardsuit/HS = picked_item
@@ -235,6 +241,7 @@
 		//YOGS END
 	target.icon = initial(picked_item.icon)
 	target.on_chameleon_change()
+	current_disguise = picked_item
 
 /datum/action/item_action/chameleon/change/Trigger()
 	if(!IsAvailable())
@@ -299,6 +306,35 @@
 /obj/item/clothing/under/chameleon/broken/Initialize()
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
+	
+/obj/item/clothing/under/plasmaman/chameleon
+	name = "envirosuit"
+	icon_state = "plasmaman"
+	item_state = "plasmaman"
+	desc = "The latest generation of Nanotrasen-designed plasmamen envirosuits. This new version has an extinguisher built into the uniform's workings. While airtight, the suit is not EVA-rated."
+	sensor_mode = SENSOR_OFF
+	random_sensor = FALSE
+	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 95, ACID = 95)
+	var/datum/action/item_action/chameleon/change/chameleon_action
+
+/obj/item/clothing/under/plasmaman/chameleon/syndicate
+	syndicate = TRUE
+
+/obj/item/clothing/under/plasmaman/chameleon/Initialize()
+	. = ..()
+	chameleon_action = new(src)
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
+	chameleon_action.chameleon_type = /obj/item/clothing/under
+	chameleon_action.chameleon_name = "Jumpsuit"
+	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/clothing/under, /obj/item/clothing/under/color, /obj/item/clothing/under/rank, /obj/item/clothing/under/changeling), only_root_path = TRUE)
+	chameleon_action.initialize_disguises()
+
+/obj/item/clothing/under/chameleon/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	chameleon_action.emp_randomise()
 
 /obj/item/clothing/suit/chameleon
 	name = "armor"
@@ -306,6 +342,7 @@
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
+	body_parts_covered = CHEST
 	resistance_flags = NONE
 	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 
@@ -340,7 +377,7 @@
 	icon_state = "meson"
 	item_state = "meson"
 	resistance_flags = NONE
-	armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -433,6 +470,34 @@
 /obj/item/clothing/head/chameleon/broken/Initialize()
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
+	
+/obj/item/clothing/head/helmet/space/plasmaman/chameleon
+	name = "purple envirosuit helmet"
+	desc = "A generic purple envirohelm of Nanotrasen design. This updated model comes with a built-in lamp."
+	icon_state = "purple_envirohelm"
+	item_state = "purple_envirohelm"
+	armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 100, ACID = 75)
+	actions_types = list()
+	var/datum/action/item_action/chameleon/change/chameleon_action
+
+/obj/item/clothing/head/helmet/space/plasmaman/chameleon/syndicate
+	syndicate = TRUE
+
+/obj/item/clothing/head/helmet/space/plasmaman/chameleon/Initialize()
+	. = ..()
+	chameleon_action = new /datum/action/item_action/chameleon/change
+	if(syndicate)
+		chameleon_action.syndicate = TRUE
+	chameleon_action.chameleon_type = /obj/item/clothing/head/helmet/space
+	chameleon_action.chameleon_name = "Hat"
+	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/head/changeling, only_root_path = TRUE)
+	chameleon_action.initialize_disguises()
+
+/obj/item/clothing/head/helmet/space/plasmaman/chameleon/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_SELF)
+		return
+	chameleon_action.emp_randomise()
 
 /obj/item/clothing/head/chameleon/drone
 	// The camohat, I mean, holographic hat projection, is part of the
@@ -492,7 +557,11 @@
 /obj/item/clothing/mask/chameleon/attack_self(mob/user)
 	vchange = !vchange
 	to_chat(user, span_notice("The voice changer is now [vchange ? "on" : "off"]!"))
-
+	if(vchange)
+		flags_inv |= HIDEFACE
+	else if(chameleon_action.current_disguise && isitem(chameleon_action.current_disguise))
+		var/obj/item/I = chameleon_action.current_disguise
+		flags_inv = initial(I.flags_inv)
 
 /obj/item/clothing/mask/chameleon/drone
 	//Same as the drone chameleon hat, undroppable and no protection

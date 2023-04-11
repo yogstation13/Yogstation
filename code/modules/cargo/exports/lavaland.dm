@@ -13,7 +13,7 @@
 						/obj/item/melee/ghost_sword,
 						/obj/item/clothing/suit/space/hardsuit/cult,
 						/obj/item/voodoo,
-						/obj/item/grenade/clusterbuster/inferno,
+						/obj/item/grenade/clusterbuster/syndie/inferno,
 						/obj/item/clothing/neck/necklace/memento_mori,
 						/obj/item/organ/heart/cursed/wizard,
 						/obj/item/clothing/suit/hooded/cloak/drake,
@@ -70,6 +70,16 @@
 	export_types = list(/obj/item/clothing/head/helmet/space/hostile_environment)
 
 //Gemstones, because they are unstackable
+
+/datum/export/lavaland/gems/sell_object(obj/O, datum/export_report/report, dry_run = TRUE, allowed_categories = EXPORT_CARGO , apply_limit = TRUE)
+	. = ..()
+	if(dry_run)
+		return .
+	var/obj/item/gem/sold = O
+	var/obj/item/card/id/claim = sold?.claimed_by
+	if(claim)
+		var/area/shuttle/shuttle = get_area(O)
+		shuttle.gem_payout[claim] += sold.point_value
 
 /datum/export/lavaland/gems/rupee
 	cost = 3300

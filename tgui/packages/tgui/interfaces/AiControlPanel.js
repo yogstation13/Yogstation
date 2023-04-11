@@ -131,6 +131,12 @@ export const AiControlPanel = (props, context) => {
                               {!!ai.being_hijacked && (
                                 <Button color="bad" icon="stop" onClick={() => act("stop_hijack", { target_ai: ai.ref })}>Stop hijacking</Button>
                               )}
+                              {!!data.is_servant_of_ratvar && !ai.being_cogged && (
+                                <Button color="good" tooltip="Requires an integration cog" icon="download" onClick={() => act("start_cog", { target_ai: ai.ref })}>Start integrating</Button>
+                              ) }
+                              {!!ai.being_cogged && (
+                                <Button color="bad" icon="stop" onClick={() => act("stop_cog", { target_ai: ai.ref })}>Stop integrating</Button>
+                              )}
                             </Fragment>
                           )}>
                           <Box bold>Integrity:</Box>

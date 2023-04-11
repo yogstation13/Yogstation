@@ -183,25 +183,6 @@
 	result = /obj/item/reagent_containers/food/snacks/cubannachos
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/food/dolphinandchips
-	name = "Dolphin and Chips"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/dolphinmeat = 3,
-		/obj/item/reagent_containers/food/snacks/chips = 1
-	)
-	result = /obj/item/reagent_containers/food/snacks/dolphinandchips
-	subcategory = CAT_MISCFOOD
-
-/datum/crafting_recipe/food/dolphincereal
-	name = "Dolphin Cereal"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/dolphinmeat = 2,
-		/datum/reagent/consumable/milk = 5,
-		/datum/reagent/consumable/flour = 15
-	)
-	result = /obj/item/reagent_containers/food/snacks/dolphincereal
-	subcategory = CAT_MISCFOOD
-
 /datum/crafting_recipe/food/eggplantparm
 	name ="Eggplant Parmigiana"
 	reqs = list(

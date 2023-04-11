@@ -1,6 +1,9 @@
 /datum/job/chief_engineer
 	title = "Chief Engineer"
+	description = "Coordinate engineering, ensure equipment doesn't get stolen, \
+		make sure the Supermatter doesn't blow up, maintain telecommunications."
 	flag = CHIEF
+	orbit_icon = "user-astronaut"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
 	department_flag = ENGSEC
@@ -15,12 +18,12 @@
 	exp_requirements = 720
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_ENGINEERING
-	alt_titles = list("Engineering Director", "Head of Engineering")
+	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer")
 
 	outfit = /datum/outfit/job/ce
 
 	added_access = list(ACCESS_CAPTAIN)
-	base_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS,
+	base_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_SECURE_TECH_STORAGE, ACCESS_MAINT_TUNNELS,
 			            ACCESS_EXTERNAL_AIRLOCKS, ACCESS_ATMOSPHERICS, ACCESS_EVA, ACCESS_TCOM_ADMIN,
 			            ACCESS_HEADS, ACCESS_CONSTRUCTION, ACCESS_SEC_DOORS, ACCESS_MINISAT, ACCESS_MECH_ENGINE,
 			            ACCESS_CE, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_MINERAL_STOREROOM)
@@ -29,6 +32,22 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	minimal_character_age = 30 //Combine all the jobs together; that's a lot of physics, mechanical, electrical, and power-based knowledge
+
+	departments_list = list(
+		/datum/job_department/engineering,
+		/datum/job_department/command,
+	)
+
+	mail_goodies = list(
+		/obj/item/reagent_containers/food/snacks/cracker = 25, //you know. for poly
+		/obj/item/stack/sheet/mineral/diamond = 15,
+		///obj/item/stack/sheet/mineral/uranium/five = 15,
+		///obj/item/stack/sheet/mineral/plasma/five = 15,
+		/obj/item/stack/sheet/mineral/gold = 15
+		///obj/effect/spawner/random/engineering/tool_advanced = 3
+	)
+
+	smells_like = "industry leadership"
 
 /datum/outfit/job/ce
 	name = "Chief Engineer"

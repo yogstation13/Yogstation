@@ -53,7 +53,7 @@
 	icon_state = "data_2"
 
 /obj/item/card/data/disk
-	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one inexplicibly looks like a floppy disk."
+	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one inexplicably looks like a floppy disk."
 	icon_state = "data_3"
 
 /*
@@ -412,12 +412,12 @@ update_label("John Doe", "Clowny")
 			else
 				return ..()
 
-		var/popup_input = alert(user, "Choose Action", "Agent ID", "Show", "Forge/Reset", "Change Account ID")
+		var/popup_input = tgui_alert(user, "Choose Action", "Agent ID", list("Show", "Forge/Reset", "Change Account ID"))
 		if(user.incapacitated())
 			return
 		if(popup_input == "Forge/Reset" && !forged)
 			var/input_name = stripped_input(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
-			input_name = reject_bad_name(input_name)
+			input_name = reject_bad_name(input_name, TRUE) //some species (IPCs) can have numbers in their name
 			if(!input_name)
 				// Invalid/blank names give a randomly generated one.
 				if(user.gender == FEMALE)
@@ -515,7 +515,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/makeshift/attack_self(mob/user)
 	if(isliving(user) && user.mind)
-		var/popup_input = alert(user, "Choose Action", "ID", "Show", "Forge/Reset")
+		var/popup_input = tgui_alert(user, "Choose Action", "Action?", list("ID", "Show", "Forge/Reset"))
 		if(user.incapacitated())
 			return
 		if(popup_input == "Forge/Reset")

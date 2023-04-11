@@ -49,7 +49,7 @@
 	get_kill()
 	. = ..()
 
-/obj/screen/alert/status_effect/in_love
+/atom/movable/screen/alert/status_effect/in_love
 	name = "In Love"
 	desc = "You feel so wonderfully in love!"
 	icon_state = "in_love"
@@ -58,7 +58,7 @@
 	id = "in_love"
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /obj/screen/alert/status_effect/in_love
+	alert_type = /atom/movable/screen/alert/status_effect/in_love
 	var/mob/living/date
 
 /datum/status_effect/in_love/on_creation(mob/living/new_owner, mob/living/love_interest)
@@ -149,7 +149,7 @@
 	id = "tagalong"
 	duration = 3000
 	tick_interval = 1 //as fast as possible
-	alert_type = /obj/screen/alert/status_effect/tagalong
+	alert_type = /atom/movable/screen/alert/status_effect/tagalong
 	var/mob/living/shadowing
 	var/turf/cached_location //we store this so if the mob is somehow gibbed we aren't put into nullspace
 
@@ -188,12 +188,12 @@
 			owner.Stun(5) //short delay so they can't click as soon as they're out
 		qdel(src)
 
-/obj/screen/alert/status_effect/tagalong
+/atom/movable/screen/alert/status_effect/tagalong
 	name = "Tagalong"
 	desc = "You are accompanying TARGET_NAME. Use the Tagalong ability to break away at any time."
 	icon_state = "shadow_mend"
 
-/obj/screen/alert/status_effect/tagalong/MouseEntered()
+/atom/movable/screen/alert/status_effect/tagalong/MouseEntered()
 	var/datum/status_effect/tagalong/tagalong = attached_effect
 	desc = replacetext(desc, "TARGET_NAME", tagalong.shadowing.real_name)
 	..()
@@ -205,9 +205,9 @@
 	duration = -1
 	tick_interval = -1
 	status_type = STATUS_EFFECT_MULTIPLE
-	alert_type = /obj/screen/alert/status_effect/heldup
+	alert_type = /atom/movable/screen/alert/status_effect/heldup
 
-/obj/screen/alert/status_effect/heldup
+/atom/movable/screen/alert/status_effect/heldup
 	name = "Held Up"
 	desc = "Making any sudden moves would probably be a bad idea!"
 	icon_state = "aimed"
@@ -218,9 +218,9 @@
 	duration = -1
 	tick_interval = -1
 	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /obj/screen/alert/status_effect/holdup
+	alert_type = /atom/movable/screen/alert/status_effect/holdup
 
-/obj/screen/alert/status_effect/holdup
+/atom/movable/screen/alert/status_effect/holdup
 	name = "Holding Up"
 	desc = "You're currently pointing a gun at someone."
 	icon_state = "aimed"

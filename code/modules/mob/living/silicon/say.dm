@@ -1,27 +1,62 @@
 /mob/living/proc/robot_talk(message)
 	log_talk(message, LOG_SAY)
-	var/desig = "Default Cyborg" //ezmode for taters
+
+	var/designation = "Default Cyborg"
+	var/spans = list(SPAN_ROBOT)
+
 	if(issilicon(src))
-		var/mob/living/silicon/S = src
-		desig = trim_left(S.designation + " " + S.job)
-	var/message_a = say_quote(message)
-	var/rendered = "Robotic Talk, [span_name("[name]")] [span_message("[message_a]")]"
+		var/mob/living/silicon/player = src
+		designation = trim_left(player.designation + " " + player.job)
+
+	if(isAI(src))
+		// AIs are loud and ugly
+		spans |= SPAN_COMMAND
+
+	var/quoted_message = say_quote(
+		message,
+		spans
+	)
+
 	for(var/mob/M in GLOB.player_list)
 		if(M.binarycheck())
 			if(isAI(M))
-				var/renderedAI = span_binarysay("Robotic Talk, <a href='?src=[REF(M)];track=[html_encode(name)]'>[span_name("[name] ([desig])")]</a> [span_message("[message_a]")]")
-				to_chat(M, renderedAI)
+				to_chat(
+					M,
+					span_binarysay("\
+						Robotic Talk, \
+						<a href='?src=[REF(M)];track=[html_encode(name)]'>[span_name("[name] ([designation])")]</a> \
+						[span_message("[quoted_message]")]\
+					")
+				)
 			else
-				to_chat(M, span_binarysay("[rendered]"))
+				to_chat(
+					M,
+					span_binarysay("\
+						Robotic Talk, \
+						[span_name("[name]")] [span_message("[quoted_message]")]\
+					")
+				)
+
 		if(isobserver(M))
 			var/following = src
+
 			// If the AI talks on binary chat, we still want to follow
-			// it's camera eye, like if it talked on the radio
+			// its camera eye, like if it talked on the radio
+
 			if(isAI(src))
 				var/mob/living/silicon/ai/ai = src
 				following = ai.eyeobj
-			var/link = FOLLOW_LINK(M, following)
-			to_chat(M, span_binarysay("[link] [rendered]"))
+
+			var/follow_link = FOLLOW_LINK(M, following)
+
+			to_chat(
+				M,
+				span_binarysay("\
+					[follow_link] \
+					Robotic Talk, \
+					[span_name("[name]")] [span_message("[quoted_message]")]\
+				")
+			)
 
 /mob/living/silicon/binarycheck()
 	return 1

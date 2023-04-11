@@ -13,6 +13,7 @@
 	var/last_man_standing = FALSE
 	var/list/datum/mind/targets_stolen
 	greentext_achieve = /datum/achievement/greentext/internal
+	preview_outfit = /datum/outfit/assassin
 
 /datum/antagonist/traitor/internal_affairs/proc/give_pinpointer()
 	if(owner && owner.current)
@@ -50,14 +51,14 @@
 	id = "agent_pinpointer"
 	duration = -1
 	tick_interval = PINPOINTER_PING_TIME
-	alert_type = /obj/screen/alert/status_effect/agent_pinpointer
+	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer
 	var/minimum_range = PINPOINTER_MINIMUM_RANGE
 	var/range_fuzz_factor = PINPOINTER_EXTRA_RANDOM_RANGE
 	var/mob/scan_target = null
 	var/range_mid = 8
 	var/range_far = 16
 
-/obj/screen/alert/status_effect/agent_pinpointer
+/atom/movable/screen/alert/status_effect/agent_pinpointer
 	name = "Internal Affairs Integrated Pinpointer"
 	desc = "Even stealthier than a normal implant."
 	icon = 'icons/obj/device.dmi'
@@ -69,7 +70,7 @@
 		return
 	var/turf/here = get_turf(owner)
 	var/turf/there = get_turf(scan_target)
-	if(here.z != there.z)
+	if(here?.z != there?.z)
 		linked_alert.icon_state = "pinonnull"
 		return
 	if(get_dist_euclidian(here,there)<=minimum_range + rand(0, range_fuzz_factor))
@@ -127,7 +128,7 @@
 		if(!(istype(objective_, /datum/objective/escape)||istype(objective_, /datum/objective/survive)||istype(objective_, /datum/objective/martyr)))
 			continue
 		remove_objective(objective_)
-	
+
 	var/datum/objective/hijack/hijack_objective = new
 	hijack_objective.owner = owner
 	add_objective(hijack_objective)

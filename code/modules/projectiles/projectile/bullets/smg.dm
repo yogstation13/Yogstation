@@ -23,10 +23,10 @@
 	damage = 20
 
 /obj/item/projectile/bullet/c45/venom/on_hit(atom/target, blocked)
-	. = ..()
-	if(iscarbon(target))
+	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/victim = target
 		victim.reagents.add_reagent(/datum/reagent/toxin/venom, 4)
+	return ..()
 
 // 4.6x30mm (WT-550 Autocarbine)
 
@@ -35,20 +35,18 @@
 	damage = 15
 	wound_bonus = -5
 	bare_wound_bonus = 5
-	armour_penetration = 20
 
 /obj/item/projectile/bullet/c46x30mm/ap
 	name = "4.6x30mm armor-piercing bullet"
 	damage = 12
-	armour_penetration = 50
+	armour_penetration = 40
 
 /obj/item/projectile/bullet/incendiary/c46x30mm
 	name = "4.6x30mm incendiary bullet"
 	damage = 9
 	fire_stacks = 1
-	armour_penetration = 20 //Doesn't inherit it normally
 
 /obj/item/projectile/bullet/c46x30mm/rubber
 	name = "4.6x30mm rubber bullet"
 	damage = 5
-	stamina = 22 //slightly more effective than the detective's revolver when fired in bursts, plus AP
+	stamina = 22

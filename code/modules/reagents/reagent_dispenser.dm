@@ -124,7 +124,10 @@
 	. = ..()
 	if(prob(1))
 		desc = "IT'S PEPPER TIME, BITCH!"
-
+	// I am cheating
+	// Sets 1/3 of the tank to be pepperspray coloring
+	reagents.remove_reagent(reagent_id, tank_volume / 3)
+	reagents.add_reagent(/datum/reagent/colorful_reagent/crayonpowder/red/pepperspray, tank_volume / 3)
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "liquid cooler"

@@ -13,6 +13,26 @@
 	var/landmark_type
 	var/greet_text
 
+/datum/antagonist/abductor/get_preview_icon()
+	var/mob/living/carbon/human/dummy/consistent/scientist = new
+	var/mob/living/carbon/human/dummy/consistent/agent = new
+
+	scientist.set_species(/datum/species/abductor)
+	agent.set_species(/datum/species/abductor)
+
+	var/icon/scientist_icon = render_preview_outfit(/datum/outfit/abductor/scientist, scientist)
+	scientist_icon.Shift(WEST, 8)
+
+	var/icon/agent_icon = render_preview_outfit(/datum/outfit/abductor/agent, agent)
+	agent_icon.Shift(EAST, 8)
+
+	var/icon/final_icon = scientist_icon
+	final_icon.Blend(agent_icon, ICON_OVERLAY)
+
+	qdel(scientist)
+	qdel(agent)
+
+	return finish_preview_icon(final_icon)
 
 /datum/antagonist/abductor/agent
 	name = "Abductor Agent"
@@ -113,7 +133,7 @@
 		to_chat(admin, span_warning("This only works on humans!"))
 		return
 	var/mob/living/carbon/human/H = owner.current
-	var/gear = alert(admin,"Agent or Scientist Gear","Gear","Agent","Scientist")
+	var/gear = tgui_alert(admin,"Agent or Scientist Gear","Gear",list("Agent","Scientist"))
 	if(gear)
 		if(gear=="Agent")
 			H.equipOutfit(/datum/outfit/abductor/agent)

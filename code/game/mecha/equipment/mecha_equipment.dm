@@ -27,7 +27,8 @@
 	var/destroy_sound = 'sound/mecha/critdestr.ogg'
 	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
 	var/mech_flags = NONE
-
+	//Special melee override for melee weapons
+	var/melee_override = FALSE
 /obj/item/mecha_parts/mecha_equipment/proc/update_chassis_page()
 	if(chassis)
 		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
@@ -43,6 +44,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/Destroy()
 	if(chassis)
+		if(chassis.selected == src)	//If it's the active equipment, we lose any passive effects
+			on_deselect()
 		chassis.equipment -= src
 		if(chassis.selected == src)
 			chassis.selected = null
@@ -106,7 +109,7 @@
 /obj/item/mecha_parts/mecha_equipment/proc/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	addtimer(CALLBACK(src, .proc/set_ready_state, 1), equip_cooldown)
+	addtimer(CALLBACK(src, .proc/set_ready_state, 1), equip_cooldown * check_eva())
 
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(atom/target)
 	if(!chassis)
@@ -114,7 +117,7 @@
 	var/C = chassis.loc
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	. = do_after(chassis.occupant, equip_cooldown, target)
+	. = do_after(chassis.occupant, equip_cooldown * check_eva(), target)
 	set_ready_state(1)
 	if(!chassis || 	chassis.loc != C || src != chassis.selected || !(get_dir(chassis, target)&chassis.dir))
 		return 0
@@ -140,6 +143,8 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/detach(atom/moveto=null)
+	if(chassis.selected == src)
+		src.on_deselect()
 	moveto = moveto || get_turf(chassis)
 	if(src.Move(moveto))
 		chassis.equipment -= src
@@ -178,6 +183,18 @@
 /obj/item/mecha_parts/mecha_equipment/proc/rearm()
 	return 0
 
-
 /obj/item/mecha_parts/mecha_equipment/proc/needs_rearm()
 	return 0
+
+
+//used for equipment, such as melee weapons, that have passive effects
+/obj/item/mecha_parts/mecha_equipment/proc/on_select()
+	return 0
+
+/obj/item/mecha_parts/mecha_equipment/proc/on_deselect()
+	return 0
+
+// Is the occupant wearing a pilot suit?
+/obj/item/mecha_parts/mecha_equipment/proc/check_eva()
+	return chassis?.check_eva()
+

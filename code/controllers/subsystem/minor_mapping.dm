@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(minor_mapping)
 /datum/controller/subsystem/minor_mapping/Initialize(timeofday)
 	trigger_migration(CONFIG_GET(number/mice_roundstart), FALSE) //we dont want roundstart special rats
 	place_satchels()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/minor_mapping/proc/trigger_migration(num_mice = 10, special = TRUE)
 	var/list/exposed_wires = find_exposed_wires()

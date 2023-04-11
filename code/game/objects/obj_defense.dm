@@ -146,7 +146,7 @@
 		return
 	attack_generic(user, rand(10, 15), BRUTE, MELEE, 1)
 
-/obj/mech_melee_attack(obj/mecha/M)
+/obj/mech_melee_attack(obj/mecha/M, equip_allowed)
 	M.do_attack_animation(src)
 	var/play_soundeffect = 0
 	var/mech_damtype = M.damtype
@@ -156,11 +156,14 @@
 	else
 		switch(M.damtype)
 			if(BRUTE)
-				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
+				if(M.meleesound)
+					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(BURN)
-				playsound(src, 'sound/items/welder.ogg', 50, 1)
+				if(M.meleesound)
+					playsound(src, 'sound/items/welder.ogg', 50, 1)
 			if(TOX)
-				playsound(src, 'sound/effects/spray2.ogg', 50, 1)
+				if(M.meleesound)
+					playsound(src, 'sound/effects/spray2.ogg', 50, 1)
 				return 0
 			else
 				return 0

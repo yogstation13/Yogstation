@@ -24,7 +24,7 @@
 	layer = GHOST_LAYER
 	healable = FALSE
 	spacewalk = TRUE
-	sight = SEE_SELF
+	sight = SEE_MOBS | SEE_OBJS | SEE_TURFS | SEE_SELF
 	throwforce = 0
 
 	see_in_dark = 8
@@ -70,6 +70,7 @@
 /mob/living/simple_animal/revenant/Initialize(mapload)
 	. = ..()
 	flags_1 |= RAD_NO_CONTAMINATE_1
+	ADD_TRAIT(src, TRAIT_SIXTHSENSE, INNATE_TRAIT)
 	AddSpell(new /obj/effect/proc_holder/spell/targeted/night_vision/revenant(null))
 	AddSpell(new /obj/effect/proc_holder/spell/targeted/telepathy/revenant(null))
 	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/defile(null))
@@ -116,9 +117,7 @@
 		unreveal_time = 0
 		revealed = FALSE
 		incorporeal_move = INCORPOREAL_MOVE_JAUNT
-		var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
-		if(incorp)
-			incorp.signal_enabled = TRUE //yogs end
+		AddComponent(/datum/component/walk/jaunt)
 		invisibility = INVISIBILITY_REVENANT
 		to_chat(src, span_revenboldnotice("You are once more concealed."))
 	if(unstun_time && world.time >= unstun_time)
@@ -255,9 +254,7 @@
 	revealed = TRUE
 	invisibility = 0
 	incorporeal_move = FALSE
-	var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
-	if(incorp)
-		incorp.signal_enabled = FALSE //yogs end
+	qdel(GetComponent(/datum/component/walk/jaunt))
 	if(!unreveal_time)
 		to_chat(src, span_revendanger("You have been revealed!"))
 		unreveal_time = world.time + time
@@ -298,9 +295,6 @@
 	var/turf/T = get_turf(src)
 	if(isclosedturf(T))
 		to_chat(src, span_revenwarning("You cannot use abilities from inside of a wall."))
-		return FALSE
-	if(isspaceturf(T))
-		to_chat(src, span_revenwarning("You cannot use abilities in space!"))
 		return FALSE
 	for(var/obj/O in T)
 		if(O.density && !O.CanPass(src, T))
@@ -347,9 +341,8 @@
 	inhibited = FALSE
 	draining = FALSE
 	incorporeal_move = INCORPOREAL_MOVE_JAUNT
-	var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
-	if(incorp)
-		incorp.signal_enabled = TRUE //yogs end
+	if (!GetComponent(/datum/component/walk/jaunt))
+		AddComponent(/datum/component/walk/jaunt)
 	invisibility = INVISIBILITY_REVENANT
 	alpha=255
 	stasis = FALSE

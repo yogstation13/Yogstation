@@ -109,7 +109,7 @@
 /obj/structure/bloodsucker/bloodaltar/unbolt()
 	. = ..()
 	anchored = FALSE
-	
+
 /obj/structure/bloodsucker/bloodaltar/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(!.)
@@ -122,18 +122,19 @@
 		to_chat(user, span_notice("You have done all tasks for the night, come back tomorrow for more."))
 		return
 	var/task //just like amongus
-	var/suckamount = 0
-	var/heartamount = 0
-	switch(bloodsuckerdatum.bloodsucker_level + bloodsuckerdatum.bloodsucker_level_unspent)
-		if(0 to 3)
-			suckamount = rand(100, 200)
-			heartamount = rand(1,2)
-		if(3 to 8)
-			suckamount = rand(300, 400)
-			heartamount = rand(3,4)
-		if(8 to INFINITY)
-			suckamount = rand(500, 600)
-			heartamount = rand(5,6)
+	var/suckamount = bloodsuckerdatum.task_blood_required
+	var/heartamount = bloodsuckerdatum.task_heart_required
+	if(suckamount == 0 && heartamount == 0) // Generate random amounts if we don't already have them set
+		switch(bloodsuckerdatum.bloodsucker_level + bloodsuckerdatum.bloodsucker_level_unspent)
+			if(0 to 3)
+				suckamount = rand(100, 200)
+				heartamount = rand(1,2)
+			if(3 to 8)
+				suckamount = rand(200, 300)
+				heartamount = rand(1,2)
+			if(8 to INFINITY)
+				suckamount = rand(500, 600)
+				heartamount = rand(5,6)
 	if(bloodsuckerdatum.task_blood_drank >= suckamount || sacrifices >= heartamount)
 		task_completed = TRUE
 	if(task_completed)
@@ -142,6 +143,8 @@
 		bloodsuckerdatum.bloodsucker_level_unspent++
 		bloodsuckerdatum.altar_uses++
 		bloodsuckerdatum.task_blood_drank = 0
+		bloodsuckerdatum.task_blood_required = 0
+		bloodsuckerdatum.task_heart_required = 0
 		sacrifices = 0
 		to_chat(user, span_notice("You have sucessfully done a task and gained a rank!"))
 		task_completed = FALSE
@@ -151,18 +154,20 @@
 		to_chat(user, span_warning("You already have a rank up task!"))
 		return
 	if(!bloodsuckerdatum.current_task)
-		var/want_rank = alert("Do you want to gain a task? This will cost 100 Blood.", "Task Manager", "Yes", "No")
+		var/want_rank = alert("Do you want to gain a task? This will cost 50 Blood.", "Task Manager", "Yes", "No")
 		if(want_rank == "No" || QDELETED(src))
 			return
 		var/mob/living/carbon/C = user
-		if(C.blood_volume < 100)
+		if(C.blood_volume < 50)
 			to_chat(user, span_danger("You don't have enough blood to gain a task!"))
 			return
-		C.blood_volume -= 100
+		C.blood_volume -= 50
 		switch(rand(1, 3))
 			if(1,2)
+				bloodsuckerdatum.task_blood_required = suckamount
 				task = "Suck [suckamount] units of pure blood."
 			if(3)
+				bloodsuckerdatum.task_heart_required = heartamount
 				task = "Sacrifice [heartamount] hearts by using them on the altar."
 				sacrificialtask = TRUE
 		bloodsuckerdatum.task_memory += "<B>Current Rank Up Task</B>: [task]<br>"
@@ -174,7 +179,7 @@
 	if(sacrificialtask)
 		if(sacrifices > 0)
 			. += span_boldnotice("It currently contains [sacrifices] [organ_name].")
-	else 
+	else
 		return ..()
 
 /obj/structure/bloodsucker/bloodaltar/attackby(obj/item/H, mob/user, params)
@@ -189,7 +194,7 @@
 			to_chat(usr, span_notice("You feed the heart to the altar!"))
 			qdel(H)
 			sacrifices++
-			return 
+			return
 	return ..()
 #undef ALTAR_RANKS_PER_DAY
 
@@ -209,7 +214,7 @@
 		Aid your master by bringing them what they need for these or by help getting them."
 	Hunter_desc = "This is a blood altar, where monsters ascend their powers to shadowy levels.\n\
 		They normally need ranks or blood in exchange for power, forcing them to move out of their lair and weakening them."
-	
+
 /obj/item/abyssal_essence
 	name = "abyssal essence"
 	desc = "As you glare at the abyssal essence, you feel it glaring back."
@@ -351,17 +356,16 @@
 
 /obj/structure/bloodsucker/possessedarmor
 	name = "knight's armor"
-	desc = "I swear i saw it's eyes move..."
+	desc = "I swear I saw its eyes move..."
 	icon_state = "posarmor"
 	anchored = FALSE
 	density = TRUE
 	Ghost_desc = "This Knight's armor will come alive once non-bloodsuckers get close to it."
 	Vamp_desc = "This is a possesed knight's armor, it will come alive once mortals get close to it.\n\
-		You don't care about it's attack's since you are brute immune.\n\
 		You can reinforce it with 5 silver bars.\n\
 		Good for immediate defense of your lair."
 	Vassal_desc = "This is a possesed knight's armor, it will protect your master if people get too close to it."
-	Hunter_desc = "This is a suspicious knight's armor. These things shouldn't be here, i shouldn't get too close."
+	Hunter_desc = "This is a suspicious knight's armor. These things shouldn't be here, I shouldn't get too close."
 	var/upgraded = FALSE
 
 /obj/structure/bloodsucker/possessedarmor/upgraded
@@ -408,7 +412,7 @@
 
 /obj/structure/bloodsucker/possessedarmor/process()
 	for(var/mob/living/passerby in dview(1, get_turf(src)))
-		if(IS_BLOODSUCKER(passerby) || IS_VASSAL(passerby))
+		if(IS_BLOODSUCKER(passerby) || IS_VASSAL(passerby) || passerby.restrained())
 			continue
 		to_chat(passerby, span_warning("The armor starts moving!"))
 		if(upgraded)
@@ -471,7 +475,7 @@
 		if(meat_amount > 0)
 			. += span_boldnotice("It currently contains [meat_points] points to use in rituals.")
 			. += span_boldnotice("You can add meat points to the rack by using muscle, acquired from <i>Dicing</i> corpses, on it.")
-	else 
+	else
 		return ..()
 
 /obj/structure/bloodsucker/vassalrack/bolt()
@@ -672,7 +676,7 @@
 	/// Conversion Process
 	if(convert_progress > 0)
 		to_chat(user, span_notice("You spill some blood and prepare to initiate [target] into your service."))
-		bloodsuckerdatum.AddBloodVolume(-TORTURE_BLOOD_COST)
+		bloodsuckerdatum.AddBloodVolume(-text2num(TORTURE_BLOOD_COST))
 		if(!do_torture(user,target))
 			to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 		else
@@ -717,7 +721,7 @@
 		to_chat(user, span_danger("<i>They're mindshielded! Break their mindshield with a candelabrum or surgery before continuing!</i>"))
 		return
 	/// Convert to Vassal!
-	bloodsuckerdatum.AddBloodVolume(-TORTURE_CONVERSION_COST)
+	bloodsuckerdatum.AddBloodVolume(-text2num(TORTURE_CONVERSION_COST))
 	if(bloodsuckerdatum && bloodsuckerdatum.attempt_turn_vassal(target))
 		bloodsuckerdatum.bloodsucker_level_unspent++
 		user.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
@@ -964,7 +968,7 @@
 			if(!do_mob(user, target, 1 SECONDS))
 				return
 			to_chat(user, span_notice("You transfer your blood and toy with [target]'s flesh and bones, leaving their body as a huge pile of flesh and organs."))
-			to_chat(target, span_notice("Your master has mutated you into a gigartuan monster!"))
+			to_chat(target, span_notice("Your master has mutated you into a gargantuan monster!"))
 			B.blood_volume -= 300
 			T = new /mob/living/simple_animal/hostile/bloodsucker/tzimisce/triplechest(target.loc)
 			target.forceMove(T)
@@ -1082,11 +1086,11 @@
 			unbuckle_mob(target)
 			return
 		if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-			if(user.blood_volume >= 150)
-				switch(input("Do you wish to spend 150 Blood to deactivate [target]'s mindshield?") in list("Yes", "No"))
+			if(user.blood_volume >= 50)
+				switch(input("Do you wish to spend 50 Blood to deactivate [target]'s mindshield?") in list("Yes", "No"))
 					if("Yes")
-						user.blood_volume -= 150
-						if(!do_mob(user, target, 60 SECONDS))
+						user.blood_volume -= 50
+						if(!do_mob(user, target, 20 SECONDS))
 							to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 							return FALSE
 						remove_loyalties(target)

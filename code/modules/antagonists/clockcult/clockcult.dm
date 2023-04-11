@@ -129,7 +129,7 @@
 		hierophant_network.span_for_name = "nezbere"
 		hierophant_network.span_for_message = "brass"
 	hierophant_network.Grant(current)
-	current.throw_alert("clockinfo", /obj/screen/alert/clockwork/infodump)
+	current.throw_alert("clockinfo", /atom/movable/screen/alert/clockwork/infodump)
 	if(clockwork_ark_active() && ishuman(current))
 		current.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))
 
@@ -259,3 +259,10 @@
 	if(ratio >= SERVANT_HARDMODE_PERCENT)
 		GLOB.clockwork_hardmode_active = TRUE
 		hierophant_message("<span class='large_brass bold'>As the cult increases in size, the Ark's connection to the material plane weakens. Warping with camera consoles will take substantially more time unless the destination is a clockwork tile!</span>")
+
+/datum/antagonist/clockcult/get_preview_icon()
+	var/icon/clockie_icon = icon('icons/effects/512x512.dmi', "ratvar")
+
+	clockie_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return clockie_icon

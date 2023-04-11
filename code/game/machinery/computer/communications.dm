@@ -232,6 +232,7 @@
 				SSshuttle.emag_shuttle_purchased = TRUE
 			SSshuttle.unload_preview()
 			SSshuttle.existing_shuttle = SSshuttle.emergency
+			SSshuttle.emergency.name = shuttle.name
 			SSshuttle.action_load(shuttle)
 			bank_account.adjust_money(-shuttle.credit_cost)
 			minor_announce("[authorize_name] has purchased [shuttle.name] for [shuttle.credit_cost] credits.[shuttle.extra_desc ? " [shuttle.extra_desc]" : ""]" , "Shuttle Purchase")
@@ -346,6 +347,9 @@
 			if (!authenticated_as_silicon_or_captain(usr))
 				return
 			if (GLOB.emergency_access)
+				if (!COOLDOWN_FINISHED(src, important_action_cooldown))
+					to_chat(usr, span_alert("Maintenance airlock communications relays recharging. Please stand by."))
+					return
 				revoke_maint_all_access()
 				log_game("[key_name(usr)] disabled emergency maintenance access.")
 				message_admins("[ADMIN_LOOKUPFLW(usr)] disabled emergency maintenance access.")
@@ -355,6 +359,7 @@
 				log_game("[key_name(usr)] enabled emergency maintenance access.")
 				message_admins("[ADMIN_LOOKUPFLW(usr)] enabled emergency maintenance access.")
 				deadchat_broadcast(" enabled emergency maintenance access at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
+				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("printSpare")
 			if (authenticated_as_non_silicon_head(usr))
 				if (!COOLDOWN_FINISHED(src, important_action_cooldown))

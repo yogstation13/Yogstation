@@ -32,10 +32,12 @@
 
 /datum/antagonist/rev/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
+	M.grant_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
 	update_rev_icons_added(M)
 
 /datum/antagonist/rev/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
+	M.remove_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
 	update_rev_icons_removed(M)
 
 /datum/antagonist/rev/proc/equip_rev()
@@ -122,8 +124,7 @@
 	.["Demote"] = CALLBACK(src,.proc/admin_demote)
 
 /datum/antagonist/rev/head/proc/admin_take_flash(mob/admin)
-	var/list/L = owner.current.get_contents()
-	var/obj/item/assembly/flash/flash = locate() in L
+	var/obj/item/organ/cyberimp/arm/flash/rev/flash = owner.current.getorgan(/obj/item/organ/cyberimp/arm/flash/rev)
 	if (!flash)
 		to_chat(admin, span_danger("Deleting flash failed!"))
 		return
@@ -160,8 +161,9 @@
 	name = "Head Revolutionary"
 	hud_type = "rev_head"
 	var/remove_clumsy = FALSE
-	var/give_flash = FALSE
+	var/give_flash = TRUE
 	var/give_hud = TRUE
+	preview_outfit = /datum/outfit/revolutionary
 
 /datum/antagonist/rev/head/antag_listing_name()
 	return ..() + "(Leader)"
@@ -170,6 +172,37 @@
 	if(owner.current)
 		equip_head()
 	return ..()
+
+/datum/antagonist/rev/head/get_preview_icon()
+	var/icon/final_icon = render_preview_outfit(preview_outfit)
+
+	final_icon.Blend(make_assistant_icon("Business Hair"), ICON_UNDERLAY, -8, 0)
+	final_icon.Blend(make_assistant_icon("CIA"), ICON_UNDERLAY, 8, 0)
+
+	// Apply the rev head HUD, but scale up the preview icon a bit beforehand.
+	// Otherwise, the R gets cut off.
+	final_icon.Scale(64, 64)
+
+	var/icon/rev_head_icon = icon('icons/mob/hud.dmi', "rev_head")
+	rev_head_icon.Scale(48, 48)
+	rev_head_icon.Crop(1, 1, 64, 64)
+	rev_head_icon.Shift(EAST, 10)
+	rev_head_icon.Shift(NORTH, 16)
+	final_icon.Blend(rev_head_icon, ICON_OVERLAY)
+
+	return finish_preview_icon(final_icon)
+
+/datum/antagonist/rev/head/proc/make_assistant_icon(hairstyle)
+	var/mob/living/carbon/human/dummy/consistent/assistant = new
+	assistant.hair_style = hairstyle
+	assistant.update_hair()
+
+	var/icon/assistant_icon = render_preview_outfit(/datum/outfit/job/assistant/consistent, assistant)
+	assistant_icon.ChangeOpacity(0.5)
+
+	qdel(assistant)
+
+	return assistant_icon
 
 /datum/antagonist/rev/head/proc/equip_head()
 	var/obj/item/book/granter/crafting_recipe/weapons/W = new
@@ -253,17 +286,9 @@
 		H.dna.remove_mutation(CLOWNMUT)
 
 	if(give_flash)
-		var/obj/item/assembly/flash/handheld/T = new(H)
-		var/list/slots = list (
-			"backpack" = SLOT_IN_BACKPACK,
-			"left pocket" = SLOT_L_STORE,
-			"right pocket" = SLOT_R_STORE
-		)
-		var/where = H.equip_in_one_of_slots(T, slots)
-		if (!where)
-			to_chat(H, "The Syndicate were unfortunately unable to get you a flash.")
-		else
-			to_chat(H, "The flash in your [where] will help you to persuade the crew to join your cause.")
+		var/obj/item/organ/cyberimp/arm/flash/rev/T = new
+		T.Insert(H, special = TRUE, drop_if_replaced = FALSE)
+		to_chat(H, span_boldnotice("The flash implant in your arm will allow you to persuade the crew to join your cause. It is one of a kind, so do not lose it."))
 
 	if(give_hud)
 		var/obj/item/organ/cyberimp/eyes/hud/security/syndicate/S = new(H)
@@ -333,7 +358,7 @@
 				rev.promote()
 
 	addtimer(CALLBACK(src,.proc/update_heads),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
-	
+
 /datum/team/revolution/proc/save_members()
 	ex_headrevs = get_antag_minds(/datum/antagonist/rev/head, TRUE)
 	ex_revs = get_antag_minds(/datum/antagonist/rev, TRUE)
@@ -376,7 +401,7 @@
 		revs = ex_revs
 	else
 		revs = get_antag_minds(/datum/antagonist/rev, TRUE)
-		
+
 	if(check_victory())
 		for(var/H in revs)
 			var/datum/mind/M = H
@@ -446,3 +471,12 @@
 
 /datum/team/revolution/is_gamemode_hero()
 	return SSticker.mode.name == "revolution"
+
+/datum/outfit/revolutionary
+	name = "Revolutionary (Preview only)"
+
+	uniform = /obj/item/clothing/under/yogs/soviet_dress_uniform
+	head = /obj/item/clothing/head/ushanka
+	gloves = /obj/item/clothing/gloves/color/black
+	l_hand = /obj/item/twohanded/spear
+	r_hand = /obj/item/assembly/flash

@@ -68,7 +68,7 @@
 //Detective
 /obj/item/clothing/head/fedora/det_hat
 	name = "detective's fedora"
-	desc = "There's only one man who can sniff out the dirty stench of crime, and he's likely wearing this hat."
+	desc = "There's only one man who can sniff out the dirty stench of crime, and he's likely wearing this hat. Woven with lightly protective fibers."
 	armor = list(MELEE = 25, BULLET = 5, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 50, WOUND = 5)
 	icon_state = "detective"
 	var/candy_cooldown = 0
@@ -95,10 +95,15 @@
 			else
 				to_chat(user, "You just took a candy corn! You should wait a couple minutes, lest you burn through your stash.")
 
+/obj/item/clothing/head/fedora/det_hat/grey
+	name = "detective's grey fedora"
+	desc = "A darker tone of P.I. headwear for those thick-skinned detectives. Woven with lightly protective fibers."
+	icon_state = "fedora"
+
 /obj/item/clothing/head/det_hat/evil
 	name = "suspicious fedora"
 	icon_state = "syndicate_fedora"
-	desc = "A suspicious black fedora with a red band."
+	desc = "A suspicious black fedora with a red band. It can be activated in-hand to extend or retract razor blades which cause significant damage when thrown. Also heavily armored."
 	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 70, ACID = 90, WOUND = 20)
 	throw_speed = 4
 	sharpness = SHARP_NONE

@@ -7,6 +7,16 @@
  *		Emergency Oxygen
  */
 
+/// Allows carbon to toggle internals via AltClick of the equipped tank.
+/obj/item/tank/internals/AltClick(mob/user)
+	..()
+	if((loc == user) && user.canUseTopic(src, be_close = TRUE, no_dextery = TRUE, no_tk = TRUE))
+		toggle_internals(user)
+
+/obj/item/tank/internals/examine(mob/user)
+	. = ..()
+	. += span_notice("Alt-click the tank to toggle the valve.")
+
 /*
  * Oxygen
  */
@@ -175,4 +185,22 @@
 	volume = 8
 
 /obj/item/tank/internals/emergency_oxygen/double/empty/populate_gas()
+	return
+
+/obj/item/tank/internals/ipc_coolant
+	name = "IPC coolant tank"
+	desc = "A tank of cold nitrogen for use as a coolant by IPCs. Not breathable."
+	icon_state = "ipc_coolant"
+	item_state = "ipc_coolant"
+	slot_flags = ITEM_SLOT_BELT
+	force = 5
+	volume = 6
+	w_class = WEIGHT_CLASS_SMALL
+	distribute_pressure = 8
+
+/obj/item/tank/internals/ipc_coolant/populate_gas()
+	air_contents.set_moles(/datum/gas/nitrogen, (10 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * (T0C - 50)))
+	air_contents.set_temperature(T0C - 50)
+
+/obj/item/tank/internals/ipc_coolant/empty/populate_gas()
 	return
