@@ -19,7 +19,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	attack_verb = "assault"
 	skinned_type = /obj/item/stack/sheet/plasteel{amount = 5} //coated in plasteel
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
-	exotic_blood = /datum/reagent/synthblood
+	exotic_blood = /datum/reagent/blood/synthetic
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES

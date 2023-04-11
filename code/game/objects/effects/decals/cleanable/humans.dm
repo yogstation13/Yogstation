@@ -14,6 +14,13 @@
 			C.bloodiness += bloodiness
 	return ..()
 
+/obj/effect/decal/cleanable/blood/synthetic //mainly for use in recolouring
+	name = "unusual blood"
+	desc = "It's unpleasant and gooey. Perhaps it's the chef's cooking?"
+	bloodiness = 0
+	icon_state = "genericsplatter1"
+	random_icon_states = list("genericsplatter1", "genericsplatter2", "genericsplatter3", "genericsplatter4", "genericsplatter5", "genericsplatter6")
+
 /obj/effect/decal/cleanable/blood/old
 	name = "dried blood"
 	desc = "Looks like it's been here a while.  Eew."

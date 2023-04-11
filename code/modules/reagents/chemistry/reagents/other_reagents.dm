@@ -81,18 +81,38 @@
 	if(data["blood_DNA"])
 		B.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
 
-/datum/reagent/synthblood
+/datum/reagent/blood/synthetic
 	name = "Synthetic Blood"
 	description = "Specialized blood that adapts to the blood type of any host and is incapable of carrying diseases."
 	color = "#9000ff" // rgb: 200, 0, 0
-	metabolization_rate = 5 //fast rate so it disappears fast.
+	taste_mult = 1.5
+	glass_name = "glass of ...tomato juice?"
+	glass_desc = "there's literally no way this one is tomato juice!"
 
-/datum/reagent/synthblood/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	. = ..()
+/datum/reagent/blood/synthetic/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		if(C.get_blood_id() == /datum/reagent/blood && (method == INJECT || (method == INGEST && (DRINKSBLOOD in C?.dna?.species?.species_traits))))
+		if(!(C?.dna?.species?.exotic_blood) && (method == INJECT || (method == INGEST && (DRINKSBLOOD in C?.dna?.species?.species_traits))))
 			C.blood_volume = min(C.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(C))
+
+//just pretend these don't exist
+/datum/reagent/blood/synthetic/get_diseases()
+	return
+/datum/reagent/blood/synthetic/on_new(list/data)
+	return
+/datum/reagent/blood/synthetic/on_merge(list/mix_data)
+	return
+
+/datum/reagent/blood/synthetic/reaction_turf(turf/T, reac_volume)
+	if(!istype(T))
+		return
+	if(reac_volume < 3)
+		return
+	
+	var/obj/effect/decal/cleanable/blood/synthetic/B = locate() in T //find some blood here
+	if(!B)
+		B = new(T)
+		B.add_atom_colour(color, FIXED_COLOUR_PRIORITY)//rather than making a new decal, just recolour the white one
 
 /datum/reagent/liquidgibs
 	name = "Liquid gibs"
