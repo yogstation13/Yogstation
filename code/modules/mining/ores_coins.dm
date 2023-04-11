@@ -109,7 +109,7 @@
 	edible = TRUE
 
 /obj/item/stack/ore/iron/eaten(mob/living/carbon/human/H)
-	H.heal_overall_damage(2, 0, 0, BODYPART_ANY)
+	H.heal_overall_damage(2, 0, 0, BODYPART_ROBOTIC)
 
 /obj/item/stack/ore/glass
 	name = "sand pile"
@@ -164,7 +164,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	edible = TRUE
 
 /obj/item/stack/ore/plasma/eaten(mob/living/carbon/human/H)
-	H.heal_overall_damage(0, 2, 0, BODYPART_ANY)
+	H.heal_overall_damage(0, 2, 0, BODYPART_ROBOTIC)
 
 /obj/item/stack/ore/plasma/welder_act(mob/living/user, obj/item/I)
 	to_chat(user, span_warning("You can't hit a high enough temperature to smelt [src] properly!"))

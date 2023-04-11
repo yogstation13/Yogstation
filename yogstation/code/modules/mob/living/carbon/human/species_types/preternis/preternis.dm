@@ -352,7 +352,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "cookie-bite",
-			SPECIES_PERK_NAME = "Meal Plan",
+			SPECIES_PERK_NAME = "Stone eater",
 			SPECIES_PERK_DESC = "Preterni can eat ores to replenish their metal skin. All ores are not created equal.",
 		),
 		list(
