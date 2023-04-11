@@ -151,10 +151,10 @@
 /obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover)) //yogs start
-		if(mover.pass_flags & PASSGLASS)
-			return !opacity
 		if(mover.pass_flags & PASSDOOR)
-			return TRUE //yogs end
+			return TRUE
+		if(mover.pass_flags & PASSGLASS)
+			return !opacity //yogs end
 
 /obj/machinery/door/proc/bumpopen(mob/user)
 	if(operating)

@@ -291,8 +291,9 @@
 	var/datum/action/innate/darkspawn/D = abilities[id]
 	if(!silent)
 		to_chat(owner.current, span_velvet("You have lost the <b>[D.name]</b> ability."))
-	QDEL_NULL(abilities[id])
-	abilities -= abilities[id]
+	D.Remove(owner.current)
+	abilities -= D
+	QDEL_NULL(D)
 	return TRUE
 
 /datum/antagonist/darkspawn/proc/has_upgrade(id)
@@ -358,16 +359,20 @@
 
 /datum/antagonist/darkspawn/proc/sacrament()
 	var/mob/living/carbon/human/user = owner.current
-	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user))
-	user.status_flags |= GODMODE
-	user.mind.transfer_to(progenitor)
-	progenitor.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/progenitor_curse(null))
 	if(!SSticker.mode.sacrament_done)
 		set_security_level(SEC_LEVEL_GAMMA)
 		addtimer(CALLBACK(src, .proc/sacrament_shuttle_call), 50)
 	for(var/V in abilities)
 		remove_ability(abilities[V], TRUE)
-	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 70, FALSE, pressure_affected = FALSE)
+	for(var/datum/action/innate/darkspawn/leftover_ability in user.actions)
+		leftover_ability.Remove(user)
+		QDEL_NULL(leftover_ability)
+	// Spawn the cosmic progenitor
+	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user))
+	user.status_flags |= GODMODE
+	user.mind.transfer_to(progenitor)
+	progenitor.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/progenitor_curse(null))
+	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 50, FALSE, pressure_affected = FALSE)
 	psi = 9999
 	psi_cap = 9999
 	psi_regen = 9999

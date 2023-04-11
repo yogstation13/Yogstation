@@ -83,7 +83,7 @@
 	return bleed_amt
 
 /datum/wound/slash/get_bleed_rate_of_change()
-	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS))
+	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS) || HAS_TRAIT(victim, TRAIT_BLOODY_MESS_LITE))
 		return BLOOD_FLOW_INCREASING
 	if(limb.current_gauze || clot_rate > 0)
 		return BLOOD_FLOW_DECREASING
@@ -104,6 +104,8 @@
 
 	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS) && (victim.stat != DEAD))
 		blood_flow += 0.5 // old heparin used to just add +2 bleed stacks per tick, this adds 0.5 bleed flow to all open cuts which is probably even stronger as long as you can cut them first
+	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS_LITE) && (victim.stat != DEAD)) //hemophiliac version, half strength
+		blood_flow += 0.25
 	if(limb.current_gauze)
 		if(clot_rate > 0)
 			blood_flow -= clot_rate

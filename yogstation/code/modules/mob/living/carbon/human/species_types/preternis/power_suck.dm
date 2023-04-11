@@ -1,23 +1,18 @@
-/mob/living/carbon/AltClickOn(atom/A)
-	dna?.species.spec_AltClickOn(A,src)
-	return ..()
-
-/datum/species/preternis/spec_AltClickOn(atom/A,H)
-	return drain_power_from(H, A)
 
 /datum/species/preternis/proc/drain_power_from(mob/living/carbon/human/H, atom/A)
-	if(get_dist(H, A) > 1)
-		to_chat(H, span_warning("[A] is too far away!"))
-		return FALSE
-
 	if(!istype(H) || !A)
-		return FALSE
+		return
 
-	if(draining)
-		to_chat(H,span_info("CONSUME protocols can only be used on one object at any single time."))
-		return FALSE
 	if(!A.can_consume_power_from())
-		return FALSE //if it returns text, we want it to continue so we can get the error message later.
+		return
+	
+	if(get_dist(H, A) > 1)
+		to_chat(H, span_warning("[A] is too far away to initiate CONSUME protocol!"))
+		return
+	
+	if(draining)
+		to_chat(H, span_info("CONSUME protocols can only be used on one object at any single time."))
+		return
 
 	draining = TRUE
 
@@ -27,28 +22,30 @@
 		siemens_coefficient *= 1.5
 
 	if (charge >= PRETERNIS_LEVEL_FULL - 25) //just to prevent spam a bit
-		to_chat(H,span_notice("CONSUME protocol reports no need for additional power at this time."))
+		to_chat(H, span_notice("CONSUME protocol reports no need for additional power at this time."))
 		draining = FALSE
-		return TRUE
+		return
 
 	if(H.gloves)
 		if(!H.gloves.siemens_coefficient)
-			to_chat(H,span_info("NOTICE: [H.gloves] prevent electrical contact - CONSUME protocol aborted."))
+			to_chat(H, span_info("NOTICE: [H.gloves] prevent electrical contact - CONSUME protocol aborted."))
 			draining = FALSE
-			return TRUE
+			return
 		else
 			if(H.gloves.siemens_coefficient < 1)
-				to_chat(H,span_info("NOTICE: [H.gloves] are interfering with electrical contact - advise removal before activating CONSUME protocol."))
+				to_chat(H, span_info("NOTICE: [H.gloves] are interfering with electrical contact - advise removal before activating CONSUME protocol."))
 			siemens_coefficient *= H.gloves.siemens_coefficient
+
+	. = COMSIG_MOB_CANCEL_CLICKON
 
 	H.face_atom(A)
 	H.visible_message(span_warning("[H] starts placing their hands on [A]..."), span_warning("You start placing your hands on [A]..."))
 	if(!do_after(H, HAS_TRAIT(H, TRAIT_VORACIOUS)? 1.5 SECONDS : 2 SECONDS, A))
-		to_chat(H,span_info("CONSUME protocol aborted."))
+		to_chat(H, span_info("CONSUME protocol aborted."))
 		draining = FALSE
-		return TRUE
+		return
 
-	to_chat(H,span_info("Extracutaneous implants detect viable power source. Initiating CONSUME protocol."))
+	to_chat(H, span_info("Extracutaneous implants detect viable power source. Initiating CONSUME protocol."))
 
 	var/done = FALSE
 	var/drain = 150 * siemens_coefficient
@@ -57,8 +54,6 @@
 	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 	spark_system.attach(A)
 	spark_system.set_up(5, 0, A)
-
-
 
 	while(!done)
 		cycle++
@@ -72,7 +67,7 @@
 			var/can_drain = A.can_consume_power_from()
 			if(!can_drain || istext(can_drain))
 				if(istext(can_drain))
-					to_chat(H,can_drain)
+					to_chat(H, can_drain)
 				done = TRUE
 			else
 				playsound(A.loc, "sparks", 50, 1)
@@ -80,22 +75,22 @@
 					spark_system.start()
 				var/drained = A.consume_power_from(drain)
 				if(drained < drain)
-					to_chat(H,span_info("[A]'s power has been depleted, CONSUME protocol halted."))
+					to_chat(H, span_info("[A]'s power has been depleted, CONSUME protocol halted."))
 					done = TRUE
 				charge = clamp(charge + (drained * ELECTRICITY_TO_NUTRIMENT_FACTOR),PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
 
 				if(!done)
 					if(charge > (PRETERNIS_LEVEL_FULL - 25))
-						to_chat(H,span_info("CONSUME protocol complete. Physical nourishment refreshed."))
+						to_chat(H, span_info("CONSUME protocol complete. Physical nourishment refreshed."))
 						done = TRUE
 					else if(!(cycle % 4))
 						var/nutperc = round((charge / PRETERNIS_LEVEL_FULL) * 100)
-						to_chat(H,span_info("CONSUME protocol continues. Current satiety level: [nutperc]%."))
+						to_chat(H, span_info("CONSUME protocol continues. Current satiety level: [nutperc]%."))
 		else
 			done = TRUE
 	qdel(spark_system)
 	draining = FALSE
-	return TRUE
+	return
 
 /atom/proc/can_consume_power_from()
 	return FALSE //if a string is returned, it will evaluate as false and be output to the person draining.

@@ -199,7 +199,7 @@
 /datum/outfit/ert/commander/inquisitor
 	name = "Inquisition Commander"
 	suit = /obj/item/clothing/suit/space/hardsuit/ert/paranormal
-	belt = /obj/item/nullrod/scythe/talking/chainsword
+	belt = /obj/item/nullrod/talking/chainsword
 	suit_store = /obj/item/gun/energy/e_gun
 	mask = /obj/item/clothing/mask/gas/sechailer
 	backpack_contents = list(
