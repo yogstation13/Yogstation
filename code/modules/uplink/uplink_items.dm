@@ -693,7 +693,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	be silenced. It can produce an infinite number \
 	of bolts, but takes time to automatically recharge after each shot."
 	item = /obj/item/gun/energy/kinetic_accelerator/crossbow
-	cost = 8
+	cost = 5
 	surplus = 30
 	exclude_modes = list(/datum/game_mode/nuclear)
 
