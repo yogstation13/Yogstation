@@ -147,7 +147,7 @@
 	disease_flags = CAN_CARRY //no vaccines! no cure!
 	cure_text = "Clown's Tears."
 	cures = list(/datum/reagent/consumable/clownstears)
-	
+
 /datum/disease/transformation/jungle_fever/monkeymode/after_add()
 	if(affected_mob && !is_monkey_leader(affected_mob.mind))
 		visibility_flags = NONE
@@ -219,7 +219,7 @@
 /datum/disease/transformation/slime
 	name = "Advanced Mutation Transformation"
 	cure_text = "frost oil"
-	cures = list(/datum/reagent/consumable/frostoil)
+	cures = list(/datum/reagent/consumable/ice)
 	cure_chance = 80
 	agent = "Advanced Mutation Toxin"
 	desc = "This highly concentrated extract converts anything into more of itself."
@@ -286,7 +286,7 @@
 	stage5	= list(span_danger("You have become a morph."))
 	new_form = /mob/living/simple_animal/hostile/morph
 	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
-	
+
 /datum/disease/transformation/ghost
 	name = "Spectral Curse"
 	cure_text = "Holy Water"
