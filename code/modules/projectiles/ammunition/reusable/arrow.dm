@@ -5,6 +5,8 @@
 	caliber = "arrow"
 	icon_state = "arrow"
 	item_state = "arrow"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	base_rotation = 45
 	force = 5
 	throwforce = 5 //If, if you want to throw the arrow since you don't have a bow?
@@ -12,6 +14,7 @@
 	sharpness = SHARP_POINTY
 	embedding = list("embed_chance" = 25, "embedded_fall_chance" = 0)
 
+	// Arrow
 	/// List of all attached parts to move to the projectile when fired
 	var/list/attached_parts
 	/// Attached explosive
@@ -46,6 +49,10 @@
 		add_overlay(mutable_appearance(icon, "arrow_bola"), TRUE)
 	if(istype(syringe))
 		add_overlay(mutable_appearance(icon, "arrow_syringe"), TRUE)
+		if(syringe.reagents && syringe.reagents.total_volume)
+			var/image/filling_overlay = mutable_appearance(icon, "arrow_syringe[clamp(round((syringe.reagents.total_volume / syringe.volume * 15),5), 1, 15)]")
+			filling_overlay.color = mix_color_from_reagents(syringe.reagents.reagent_list)
+			add_overlay(filling_overlay)
 	if(flaming)
 		add_overlay(mutable_appearance(icon, "arrow_fire"), TRUE)
 
@@ -325,6 +332,13 @@
 	item_state = "arrow_toy_shock"
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/shock
 
+/obj/item/ammo_casing/reusable/arrow/toy/magic
+	name = "toy magic arrow"
+	desc = "A plastic arrow with a blunt tip covered in velcro to allow it to stick to whoever it hits. This one is made to resemble a magic arrow used by wizards."
+	icon_state = "arrow_magic"
+	item_state = "arrow_magic"
+	projectile_type = /obj/item/projectile/bullet/reusable/arrow/toy/magic
+
 
 // Utility //
 
@@ -407,6 +421,7 @@
 
 /obj/item/ammo_casing/reusable/arrow/singulo/Initialize()
 	..()
+	// If the shard is a path, make a new one of that type and put it in the shard slot
 	if(ispath(shard))
 		CheckParts(list(new shard()))
 
@@ -418,8 +433,10 @@
 		return ..()
 
 	if(istype(shard))
+		// If we already have a shard, drop the new one and keep the old one
 		new_shard.forceMove(new_shard.drop_location())
 	else
+		// Otherwise, move it to the arrow and make it the new shard
 		new_shard.forceMove(src)
 		shard = new_shard
 		update_icon()
@@ -430,11 +447,16 @@
 	if(istype(shard))
 		add_overlay(mutable_appearance(icon, "[icon_state]_[shard.icon_state]"), TRUE)
 
+/// Handles the special effect of the singulo arrow, called by the projectile on hit
 /obj/item/ammo_casing/reusable/arrow/singulo/proc/shard_effect()
+	// If the is no shard, may as well just delete this as it shouldn't exist anyways
 	if(!shard)
 		qdel(src)
 		return
+
+	/// Chance for the arrow to break on impact, if the shard is all powerful (stage 6), it will create a singularity when it breaks
 	var/break_chance = 0
+	/// The ammount of rads released on impact
 	var/rads_released = 0
 	switch(shard.type)
 		if(/obj/item/singularity_shard/stage1)
@@ -460,34 +482,45 @@
 			break_chance = 100
 			rads_released = 3000
 			empulse(src, 5, 15) // Its going to break open into a singulo anyways, may as well add some fireworks
-
+	
+	// Handles releasing rads
 	if(rads_released)
 		radiation_pulse(src, rads_released, RAD_DISTANCE_COEFFICIENT * 0.5)
+
+	// Handles the shard breaking
 	if(prob(break_chance))
 		playsound(src, "shatter", 70, 1)
-		if(shard.all_powerful)
+		if(shard.all_powerful) // If it is all powerful, create a new singulo
 			new /obj/singularity(get_turf(src), 100)
 			visible_message(span_danger("\The [shard] shatters on impact, releasing a singularity!"))
 		else
 			visible_message(span_danger("\The [shard] shatters on impact!"))
 
+// A version of the singulo arrow that comes with a tier 6 shard in it
 /obj/item/ammo_casing/reusable/arrow/singulo/shard6
 	shard = /obj/item/singularity_shard/stage6
+
 
 // Hardlight //
 
 /obj/item/ammo_casing/reusable/arrow/energy
 	name = "energy bolt"
-	desc = "An arrow made from hardlight."
+	desc = "An arrow made from hardlight. This one burns the victim."
 	icon_state = "arrow_energy"
 	item_flags = DROPDEL
 	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_pain_multiplier" = 0, "embedded_fall_chance" = 0, "embedded_bleed_rate" = 0)
 	projectile_type = /obj/item/projectile/energy/arrow
 
+	// Embed tick damage vars //
+	/// How many embed ticks have passed
 	var/ticks = 0
+	/// The max number of embed ticks can be done before the arrow is deleted
 	var/tick_max = 10
+	/// How much damage is done per embed tick
 	var/tick_damage = 1
+	/// The damage type of the embed tick damage
 	var/tick_damage_type = FIRE
+	/// The sound that plays per embed tick
 	var/tick_sound = 'sound/effects/sparks4.ogg'
 
 /obj/item/ammo_casing/reusable/arrow/energy/Initialize()
@@ -502,11 +535,11 @@
 
 /obj/item/ammo_casing/reusable/arrow/energy/embed_tick(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	if(ticks >= tick_max)
-		embedde.remove_embedded_object(src, , TRUE, TRUE)
+		embedde.remove_embedded_object(src, null, TRUE, TRUE)
 		return
 	ticks++
 	playsound(embedde, tick_sound , 10, 0)
-	embedde.apply_damage(tick_damage, BB.damage_type, part.body_zone)
+	embedde.apply_damage(tick_damage, tick_damage_type, part.body_zone)
 
 /obj/item/ammo_casing/reusable/arrow/energy/disabler
 	name = "disabler bolt"

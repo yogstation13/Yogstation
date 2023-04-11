@@ -4,8 +4,7 @@
 /obj/item/ammo_casing/reusable
 	desc = "A reusable bullet casing."
 	firing_effect_type = null
-	heavy_metal = FALSE
-	live_sprite = FALSE
+	casing_flags = CASINGFLAG_NO_LIVE_SPRITE | CASINGFLAG_FORCE_CLEAR_CHAMBER | CASINGFLAG_NOT_HEAVY_METAL
 
 	/// If the projectile is currently being shot as a projectile
 	var/in_air = FALSE
@@ -14,6 +13,8 @@
 
 /obj/item/ammo_casing/reusable/ready_proj(atom/target, mob/living/user, quiet, zone_override = "", atom/fired_from)
 	..()
+	if(!BB)
+		newshot() // Just in case it wasn't replaced. Should be replaced when the projectile landed in case a subtype wants to change it, this is just a failsafe.
 	var/obj/item/projectile/bullet/reusable/reusable_projectile = BB
 	if(istype(reusable_projectile))
 		reusable_projectile.ammo_type = src
@@ -21,9 +22,13 @@
 	in_air = TRUE
 
 /obj/item/ammo_casing/reusable/proc/on_land(var/obj/item/projectile/old_projectile)
-	var/matrix/M = matrix(transform)
-	M.Turn(old_projectile.Angle - base_rotation)
-	transform = M
-	newshot()
+	if(istype(old_projectile))
+		pixel_x = old_projectile.pixel_x
+		pixel_y = old_projectile.pixel_y
+		var/matrix/M = matrix(transform)
+		M.Turn(old_projectile.Angle - base_rotation)
+		transform = M
+	if(!BB)
+		newshot()
 	in_air = FALSE
 	update_icon()

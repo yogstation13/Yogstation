@@ -122,7 +122,7 @@
 	LAZYREMOVE(body_part.embedded_objects, embedded)
 	if(unsafe)
 		var/damage_amount = embedded.embedding.embedded_unsafe_removal_pain_multiplier * embedded.w_class
-		if(!embedded.embedding.embedded_bleed_rate)
+		if(embedded.embedding.embedded_bleed_rate)
 			body_part.receive_damage(damage_amount * 0.25, sharpness = SHARP_EDGED)//It hurts to rip it out, get surgery you dingus.
 			body_part.check_wounding(WOUND_SLASH, damage_amount, 20, 0)
 		else

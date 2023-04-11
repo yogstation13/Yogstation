@@ -109,7 +109,7 @@
 
 
 //Sad that this will cause some overhead, but the alias seems necessary
-//*I* may be happy with a million and one references to "indexes" but others won't be
+//*I* may be happy with a million and one references to "indexes" but others won't be	// This should be converted into a helper define to reduce proc overhead
 /mob/proc/is_holding(obj/item/I)
 	return get_held_index_of_item(I)
 

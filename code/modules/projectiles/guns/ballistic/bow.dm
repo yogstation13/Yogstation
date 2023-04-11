@@ -18,6 +18,15 @@
 	no_pin_required = TRUE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //so ashwalkers can use it
 
+	// No vertical grip on a bow
+	available_attachments = list(
+		/obj/item/attachment/scope/simple,
+		/obj/item/attachment/scope/holo,
+		/obj/item/attachment/scope/infrared,
+		/obj/item/attachment/laser_sight,
+	)
+
+	// Drawing vars //
 	var/drawing = FALSE
 	var/drop_release_draw = TRUE
 	var/move_drawing = TRUE
@@ -25,23 +34,29 @@
 	var/draw_slowdown = 0.75
 	var/draw_sound = 'sound/weapons/sound_weapons_bowdraw.ogg'
 	var/mutable_appearance/arrow_overlay
+	/// If the bow can be equipped when an arrow is loaded
 	var/equip_when_loaded = FALSE
+	/// If the last loaded arrow was a toy arrow or not, used to see if foam darts / arrows should do stamina damage
+	var/nerfed = FALSE
 
 /obj/item/gun/ballistic/bow/shoot_with_empty_chamber()
 	return
 
 /obj/item/gun/ballistic/bow/chamber_round()
 	chambered = magazine.get_round(1)
+	update_slowdown()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/dropped()
 	. = ..()
-	if(drop_release_draw && !QDELING(src))
+	if(!QDELING(src))
 		addtimer(CALLBACK(src, .proc/release_draw_if_not_held))
 
 /obj/item/gun/ballistic/bow/proc/release_draw_if_not_held()
 	if(!ismob(loc))
-		release_draw()
+		if(drop_release_draw)
+			release_draw()
+		nerfed = initial(nerfed) // So you can't meta if the last arrow loaded by a dropped bow was a toy arrow or not
 
 /obj/item/gun/ballistic/bow/proc/release_draw()
 	var/old_chambered = chambered
@@ -50,6 +65,10 @@
 	update_slowdown()
 	update_icon()
 
+/obj/item/gun/ballistic/bow/equipped(mob/user, slot)
+	..()
+	nerfed = initial(nerfed)
+
 /obj/item/gun/ballistic/bow/process_chamber()
 	chambered = null
 	magazine.get_round(FALSE)
@@ -57,22 +76,25 @@
 	update_icon()
 
 /obj/item/gun/ballistic/bow/attack_self(mob/living/user)
+	if(drawing)
+		to_chat(user, span_notice("You are already drawing the bowstring!"))
+		return TRUE
 	if(chambered)
 		release_draw()
 		to_chat(user, span_notice("You gently release the bowstring."))
+		return TRUE
 	else if(get_ammo())
 		drawing = TRUE
 		update_slowdown()
 		if (!do_after(user, draw_time, src, TRUE, stayStill = !move_drawing))
 			drawing = FALSE
 			update_slowdown()
-			return
+			return TRUE
 		drawing = FALSE
 		to_chat(user, span_notice("You draw back the bowstring."))
 		playsound(src, draw_sound, 75, 0, falloff = 3) //gets way too high pitched if the freq varies
 		chamber_round()
-	update_slowdown()
-	update_icon()
+		return TRUE
 
 /obj/item/gun/ballistic/bow/AltClick(mob/user)
 	if(chambered || get_ammo())
@@ -91,15 +113,25 @@
 	if(!chambered && !get_ammo())
 		return
 	var/obj/item/ammo_casing/AC = magazine.get_round(FALSE)
-	user.put_in_hands(AC)
 	chambered = null
-	to_chat(user, span_notice("You remove [AC]."))
+	if(CHECK_BITFIELD(AC.item_flags, DROPDEL))
+		// Shouldn't be put into someone's hand
+		qdel(AC)
+		if(user)
+			to_chat(user, span_notice("You disperse [AC]."))
+	else if(user)
+		user.put_in_hands(AC)
+		to_chat(user, span_notice("You remove [AC]."))
 	update_slowdown()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/attackby(obj/item/I, mob/user, params)
-	if (magazine.attackby(I, user, params, 1))
-		to_chat(user, span_notice("You notch [I]."))
+	if(istype(I, /obj/item/ammo_casing))
+		if(!user.is_holding(src))
+			to_chat(user, span_notice("You need to hold [src] to load \the [I]."))
+		else if (magazine.attackby(I, user, params, 1))
+			to_chat(user, span_notice("You notch [I]."))
+			nerfed = istype(I, /obj/item/ammo_casing/reusable/arrow/toy)
 	update_slowdown()
 	update_icon()
 
@@ -119,7 +151,7 @@
 	if(equip_when_loaded)
 		return
 	if(get_ammo())
-		slot_flags = NONE
+		slot_flags = ITEM_SLOT_DENY_S_STORE // So you can't put a drawn bow in your suit storage slot
 	else
 		slot_flags = initial(slot_flags)
 
@@ -159,6 +191,7 @@
 	item_state = "crossbow"
 	force = 15 //Beating someone with a goddamned stock are we
 	spread = 0
+	weapon_weight = WEAPON_MEDIUM // You only need one hand to pull the trigger, though good luck reloading it with one hand
 	draw_time = 2 SECONDS
 	draw_slowdown = FALSE
 	drop_release_draw = FALSE
@@ -178,7 +211,7 @@
 	mag_type = /obj/item/ammo_box/magazine/arrow
 	internal_magazine = FALSE
 
-/obj/item/gun/ballistic/bow/attackby(obj/item/I, mob/user, params)
+/obj/item/gun/ballistic/bow/crossbow/magfed/attackby(obj/item/I, mob/user, params)
 	if (!internal_magazine && istype(I, /obj/item/ammo_box/magazine))
 		var/obj/item/ammo_box/magazine/AM = I
 		if (!magazine)
@@ -200,6 +233,7 @@
 	force = 0
 	spread = 10
 	draw_time = 2 SECONDS
+	nerfed = TRUE
 
 	var/obj/item/assembly/assembly = /obj/item/assembly/voice_box/bow
 
@@ -404,7 +438,7 @@
 	var/can_fold = FALSE
 	var/folded_w_class = WEIGHT_CLASS_NORMAL
 	var/folded = FALSE
-	var/stored_ammo ///what was stored in the magazine before being folded?
+	//var/stored_ammo ///what was stored in the magazine before being folded?
 	var/fold_sound = 'sound/weapons/batonextend.ogg'
 
 /obj/item/gun/ballistic/bow/energy/Initialize()
@@ -415,8 +449,9 @@
 /obj/item/gun/ballistic/bow/energy/examine(mob/user)
 	. = ..()
 	var/obj/item/ammo_box/magazine/internal/bow/energy/M = magazine
-	if(M.selectable_types.len > 1)
-		. += "You can select firing modes by using ALT + CLICK."
+	if(magazine.ammo_type)
+		var/obj/item/arrow_type = magazine.ammo_type
+		. += "It is current firing mode is \"[initial(arrow_type.name)]\"[M.selectable_types.len > 1 ? ", you can select firing modes by using ALT + CLICK" : ""]."
 	if(can_fold)
 		. += "[folded ? "It is currently folded, you can unfold it" : "It can be folded into a compact form"] by using CTRL + CLICK."
 	if(TIMER_COOLDOWN_CHECK(src, "arrow_recharge"))
@@ -457,41 +492,20 @@
 /obj/item/gun/ballistic/bow/energy/attack_self(mob/living/user)
 	if(folded)
 		toggle_folded(FALSE, user)
-	if(chambered)
-		remove_arrow()
-	else if(get_ammo())
-		drawing = TRUE
-		update_slowdown()
-		if (!do_after(user, draw_time, src, TRUE, stayStill = FALSE))
-			drawing = FALSE
-			update_slowdown()
-			return
-		drawing = FALSE
-		to_chat(user, span_notice("You draw back the bowstring."))
-		playsound(src, draw_sound, 75, 0, falloff = 3) //gets way too high pitched if the freq varies
-		chamber_round()
-	else if(!recharge_time || !TIMER_COOLDOWN_CHECK(src, "arrow_recharge"))
+	if(..())
+		return TRUE
+	if(!chambered && !get_ammo() && (!recharge_time || !TIMER_COOLDOWN_CHECK(src, "arrow_recharge")))
 		to_chat(user, span_notice("You fabricate an arrow."))
-		recharge_bolt()
+		recharge_arrow()
 	update_slowdown()
 	update_icon()
 
-/obj/item/gun/ballistic/bow/energy/remove_arrow(mob/user)
-	if(!chambered && !get_ammo())
-		return
-	var/obj/item/ammo_casing/AC = magazine.get_round(FALSE)
-	chambered = null
-	to_chat(user, span_notice("You disperse [AC]."))
-	qdel(AC)
-	update_slowdown()
-	update_icon()
-
-/obj/item/gun/ballistic/bow/energy/proc/recharge_bolt()
+/obj/item/gun/ballistic/bow/energy/proc/recharge_arrow()
 	if(folded || magazine.get_round(TRUE))
 		return
 	var/ammo_type = magazine.ammo_type
 	magazine.give_round(new ammo_type())
-
+	update_slowdown()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/energy/attackby(obj/item/I, mob/user, params)
@@ -503,7 +517,7 @@
 	if(current_round)
 		QDEL_NULL(current_round)
 	if(!TIMER_COOLDOWN_CHECK(src, "arrow_recharge"))
-		recharge_bolt()
+		recharge_arrow()
 	update_icon()
 
 /obj/item/gun/ballistic/bow/energy/proc/select_projectile(mob/living/user)
@@ -518,8 +532,9 @@
 			to_chat(user, span_notice("\The [src] doesn't have any other firing modes."))
 		if(2)
 			selectable_types = selectable_types - M.ammo_type
-			M.ammo_type = selectable_types[1]
-			to_chat(user, span_notice("You switch \the [src]'s firing mode."))
+			var/obj/item/ammo_casing/reusable/arrow/energy/new_ammo_type = selectable_types[1]
+			M.ammo_type = new_ammo_type
+			to_chat(user, span_notice("You switch \the [src]'s firing mode to \"[initial(new_ammo_type.name)]\"."))
 		else
 			var/list/choice_list = list()
 			var/list/radial_list = list()
@@ -528,6 +543,7 @@
 				var/datum/radial_menu_choice/choice = new
 				choice.image = image(initial(arrow_type.icon), icon_state = initial(arrow_type.icon_state))
 				choice.info = initial(arrow_type.desc)
+				choice.active = M.ammo_type == type
 				choice_list[initial(arrow_type.name)] = arrow_type
 				radial_list[initial(arrow_type.name)] = choice
 			var/raw_choice = show_radial_menu(user, user, radial_list, tooltips = TRUE)
@@ -545,6 +561,8 @@
 /obj/item/gun/ballistic/bow/energy/CtrlClick(mob/living/user)
 	if(!can_fold || !user.is_holding(src))
 		return ..()
+	if(drawing)
+		to_chat(user, span_notice("You can't fold \the [src] while drawing the bowstring."))
 	toggle_folded(!folded, user)
 
 /obj/item/gun/ballistic/bow/energy/proc/toggle_folded(new_folded, mob/living/user)
@@ -559,13 +577,13 @@
 	if(folded)
 		w_class = folded_w_class
 		chambered = null
-		stored_ammo = magazine.ammo_list()
-		magazine.stored_ammo = null
+		//stored_ammo = magazine.ammo_list()
+		//magazine.stored_ammo = null
 		if(user)
 			to_chat(user, span_notice("You fold [src]."))
 	else
 		w_class = initial(w_class)
-		magazine.stored_ammo = stored_ammo
+		//magazine.stored_ammo = stored_ammo
 		if(user)
 			to_chat(user, span_notice("You extend [src], allowing it to be fired."))
 	update_icon()
