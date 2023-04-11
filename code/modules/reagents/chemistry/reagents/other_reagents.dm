@@ -84,7 +84,7 @@
 /datum/reagent/synthblood
 	name = "Synthetic Blood"
 	description = "Specialized blood that adapts to the blood type of any host and is incapable of carrying diseases."
-	color = "#9000ffff" // rgb: 200, 0, 0
+	color = "#9000ff" // rgb: 200, 0, 0
 	metabolization_rate = 5 //fast rate so it disappears fast.
 
 /datum/reagent/synthblood/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
