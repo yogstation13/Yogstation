@@ -67,14 +67,21 @@
 			qdel(src)
 
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
-	if(edible && M == user && ispreternis(user))
-		var/mob/living/carbon/human/H = user
-		H.visible_message("[H] takes a bite of [src], crunching happily.", "You take a bite of [src], minerals do a body good.")
-		playsound(H, 'sound/items/eatfood.ogg', 50, 1)
-		use(1)//only eat one at a time
-		eaten(H)
-		return
-	. = ..()
+	if(!edible || user.a_intent == INTENT_HARM)
+		return ..()
+	
+	if(M != user || !ispreternis(user))
+		return ..()
+
+	var/mob/living/carbon/human/H = user
+	H.visible_message("[H] takes a bite of [src], crunching happily.", "You take a bite of [src], minerals do a body good.")
+	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
+	
+	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
+		H.changeNext_move(CLICK_CD_MELEE * 0.5)
+
+	use(1)//only eat one at a time
+	eaten(H)
 	
 
 /obj/item/stack/ore/proc/eaten(mob/living/carbon/human/H)//override to give certain ores effects when eaten
