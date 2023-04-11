@@ -28,7 +28,7 @@
 		return FALSE
 
 	var/mob/living/carbon/human/human_target = cast_on
-	return !human_target.is_blind()
+	return !is_blind(human_target)
 
 /datum/action/cooldown/spell/pointed/blind/cast(mob/living/carbon/human/cast_on)
 	. = ..()

@@ -32,7 +32,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	if(!GLOB.exports_list.len)
 		setupExports()
 
-	var/list/contents = AM.GetAllContents()
+	var/list/contents = AM.get_all_contents()
 
 	var/datum/export_report/report = external_report
 	if(!report) //If we don't have any longer transaction going on

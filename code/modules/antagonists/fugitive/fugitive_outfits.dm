@@ -60,10 +60,10 @@
 	no_drops += H.get_item_by_slot(SLOT_HEAD)
 	no_drops += H.get_item_by_slot(SLOT_GLASSES)
 	for(var/obj/item/trait_needed as anything in no_drops)
-		ADD_TRAIT(trait_needed, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+		ADD_TRAIT(trait_needed, TRAIT_NODROP, CURSED_ITEM_TRAIT(trait_needed.type))
 
-	var/datum/action/cooldown/spell/aoe/knock/waldos_key = new(equipped_on.mind || equipped_on)
-	waldos_key.Grant(equipped_on)
+	var/datum/action/cooldown/spell/aoe/knock/waldos_key = new(H.mind || H)
+	waldos_key.Grant(H)
 
 /datum/outfit/synthetic
 	name = "Factory Error Synth"

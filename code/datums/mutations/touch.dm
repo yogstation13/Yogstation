@@ -6,7 +6,7 @@
 	difficulty = 16
 	text_gain_indication = span_notice("You feel power flow through your hands.")
 	text_lose_indication = span_notice("The energy in your hands subsides.")
-	power = /datum/action/cooldown/spell/touch/shock
+	power_path = /datum/action/cooldown/spell/touch/shock
 	instability = 20
 	locked = TRUE
 	conflicts = list(/datum/mutation/human/shock/far, /datum/mutation/human/insulated)

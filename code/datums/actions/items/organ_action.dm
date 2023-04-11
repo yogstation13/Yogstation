@@ -1,4 +1,5 @@
 /datum/action/item_action/organ_action
+	name = "Organ Action"
 	check_flags = AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/organ_action/IsAvailable()
@@ -12,8 +13,8 @@
 
 /datum/action/item_action/organ_action/toggle/New(Target)
 	..()
-	name = "Toggle [target.name]"
-	button.name = name
+	var/obj/item/organ/organ_target = target
+	name = "Toggle [organ_target.name]"
 
 /datum/action/item_action/organ_action/use
 	name = "Use Organ"
@@ -21,4 +22,4 @@
 /datum/action/item_action/organ_action/use/New(Target)
 	..()
 	var/obj/item/organ/organ_target = target
-	name = "Toggle [organ_target.name]"
+	name = "Use [organ_target.name]"

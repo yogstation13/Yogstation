@@ -24,7 +24,7 @@
 			return l_store
 		if(SLOT_R_STORE)
 			return r_store
-		if(SLOT_S_STORE)
+		if(SLOT_SUIT_STORE)
 			return s_store
 	return ..()
 
@@ -159,7 +159,7 @@
 		if(SLOT_R_STORE)
 			r_store = I
 			update_inv_pockets()
-		if(SLOT_S_STORE)
+		if(SLOT_SUIT_STORE)
 			s_store = I
 			update_inv_s_store()
 		else
@@ -362,12 +362,12 @@
 
 /mob/living/carbon/human/proc/smart_equipsuit()
 	var/obj/item/thing = get_active_held_item()
-	var/obj/item/equipped_suit = get_item_by_slot(SLOT_S_STORE)
+	var/obj/item/equipped_suit = get_item_by_slot(SLOT_SUIT_STORE)
 	if(!equipped_suit) 
 		if(!thing)
 			to_chat(src, span_notice("You have no suit storage to take something out of."))
 			return
-		if(equip_to_slot_if_possible(thing, SLOT_S_STORE))
+		if(equip_to_slot_if_possible(thing, SLOT_SUIT_STORE))
 			update_inv_hands()
 		return
 	if(!SEND_SIGNAL(equipped_suit, COMSIG_CONTAINS_STORAGE)) // not a storage item

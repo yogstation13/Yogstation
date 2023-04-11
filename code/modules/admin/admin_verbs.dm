@@ -602,7 +602,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		else
 			spell_list += to_add
 
-	var/chosen_spell = tgui_input_list(usr, "Choose the spell to give to [spell_recipient]", "ABRAKADABRA", sort_list(spell_list))
+	var/chosen_spell = tgui_input_list(usr, "Choose the spell to give to [spell_recipient]", "ABRAKADABRA", sortList(spell_list))
 	if(isnull(chosen_spell))
 		return
 	var/datum/action/cooldown/spell/spell_path = which == "Typepath" ? chosen_spell : spell_list[chosen_spell]
@@ -630,7 +630,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		to_chat(usr, span_userdanger("Spells given to mindless mobs will belong to the mob and not their mind, \
 			and as such will not be transferred if their mind changes body (Such as from Mindswap)."))
 
-/client/proc/remove_spell(mob/T in GLOB.mob_list)
+/client/proc/remove_spell(mob/removal_target in GLOB.mob_list)
 	set category = "Admin.Player Interaction"
 	set name = "Remove Spell"
 	set desc = "Remove a spell from the selected mob."
@@ -642,7 +642,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	if(!length(target_spell_list))
 		return
 
-	var/chosen_spell = tgui_input_list(usr, "Choose the spell to remove from [removal_target]", "ABRAKADABRA", sort_list(target_spell_list))
+	var/chosen_spell = tgui_input_list(usr, "Choose the spell to remove from [removal_target]", "ABRAKADABRA", sortList(target_spell_list))
 	if(isnull(chosen_spell))
 		return
 	var/datum/action/cooldown/spell/to_remove = target_spell_list[chosen_spell]

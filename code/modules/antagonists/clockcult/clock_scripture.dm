@@ -302,7 +302,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 //Uses a ranged slab ability, returning only when the ability no longer exists(ie, when interrupted) or finishes.
 /datum/clockwork_scripture/ranged_ability
 	var/slab_overlay
-	var/ranged_type = /obj/effect/proc_holder/slab
+	var/ranged_type = /datum/action/cooldown/slab
 	var/ranged_message = "This is a huge goddamn bug, how'd you cast this?"
 	var/timeout_time = 0
 	var/allow_mobility = TRUE //if moving and swapping hands is allowed during the while
@@ -321,7 +321,8 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 		slab.inhand_overlay = slab_overlay
 	slab.slab_ability = new ranged_type(slab)
 	slab.slab_ability.slab = slab
-	slab.slab_ability.add_ranged_ability(invoker, ranged_message)
+	slab.slab_ability.set_click_ability(invoker)
+	to_chat(invoker, ranged_message)
 	invoker.update_inv_hands()
 	var/end_time = world.time + timeout_time
 	var/successful = FALSE
@@ -340,7 +341,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 		if(slab.slab_ability)
 			successful = slab.slab_ability.successful
 			if(!slab.slab_ability.finished)
-				slab.slab_ability.remove_ranged_ability()
+				slab.slab_ability.unset_click_ability(invoker)
 		slab.cut_overlays()
 		slab.item_state = initial(slab.item_state)
 		slab.item_state = initial(slab.lefthand_file)

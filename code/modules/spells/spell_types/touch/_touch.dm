@@ -1,3 +1,23 @@
+/**
+ * ## Touch Spell
+ *
+ * Touch spells are spells which function through the power of an item attack.
+ *
+ * Instead of the spell triggering when the caster presses the button,
+ * pressing the button will give them a hand object.
+ * The spell's effects are cast when the hand object makes contact with something.
+ *
+ * To implement a touch spell, all you need is to implement:
+ * * is_valid_target - to check whether the slapped target is valid
+ * * cast_on_hand_hit - to implement effects on cast
+ *
+ * However, for added complexity, you can optionally implement:
+ * * on_antimagic_triggered - to cause effects when antimagic is triggered
+ * * cast_on_secondary_hand_hit - to implement different effects if the caster r-clicked
+
+ * It is not necessarily to touch any of the core functions, and is
+ * (generally) inadvisable unless you know what you're doing
+ */
 /datum/action/cooldown/spell/touch
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED
 	sound = 'sound/items/welder.ogg'
@@ -12,6 +32,8 @@
 	var/draw_message = span_notice("You channel the power of the spell to your hand.")
 	/// The message displayed upon willingly dropping / deleting / cancelling the touch hand before using it
 	var/drop_message = span_notice("You draw the power out of your hand.")
+	/// If TRUE, the caster can willingly hit themselves with the hand
+	var/can_cast_on_self = FALSE
 
 /datum/action/cooldown/spell/touch/Destroy()
 	// If we have an owner, the hand is cleaned up in Remove(), which Destroy() calls.
@@ -62,7 +84,7 @@
 	var/obj/item/melee/touch_attack/new_hand = new hand_path(cast_on, src)
 	if(!cast_on.put_in_hands(new_hand, del_on_fail = TRUE))
 		reset_spell_cooldown()
-		if (cast_on.usable_hands == 0)
+		if (!cast_on.get_num_arms())
 			to_chat(cast_on, span_warning("You dont have any usable hands!"))
 		else
 			to_chat(cast_on, span_warning("Your hands are full!"))
@@ -70,7 +92,7 @@
 
 	attached_hand = new_hand
 	RegisterSignal(attached_hand, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_hand_hit))
-	RegisterSignal(attached_hand, COMSIG_ITEM_AFTERATTACK_SECONDARY, PROC_REF(on_secondary_hand_hit))
+//	RegisterSignal(attached_hand, COMSIG_ITEM_AFTERATTACK_SECONDARY, PROC_REF(on_secondary_hand_hit))
 	RegisterSignal(attached_hand, COMSIG_PARENT_QDELETING, PROC_REF(on_hand_deleted))
 	RegisterSignal(attached_hand, COMSIG_ITEM_DROPPED, PROC_REF(on_hand_dropped))
 	to_chat(cast_on, draw_message)
@@ -143,12 +165,33 @@
 
 	//FUCK COMBAT MODE!!!
 
+/// Checks if the passed victim can be cast on by the caster.
+/datum/action/cooldown/spell/touch/proc/can_hit_with_hand(atom/victim, mob/caster)
+	if(!can_cast_on_self && victim == caster)
+		return FALSE
+	if(!is_valid_target(victim))
+		return FALSE
+	if(!can_cast_spell(feedback = TRUE))
+		return FALSE
+
+	return TRUE
+
 /**
  * Calls cast_on_hand_hit() from the caster onto the victim.
+ * It's worth noting that victim will be guaranteed to be whatever checks are implemented in is_valid_target by this point.
+ *
+ * Implements checks for antimagic.
  */
 /datum/action/cooldown/spell/touch/proc/do_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
+	SHOULD_NOT_OVERRIDE(TRUE) // Don't put effects here, put them in cast_on_hand_hit
+
 	SEND_SIGNAL(src, COMSIG_SPELL_TOUCH_HAND_HIT, victim, caster, hand)
-	if(!cast_on_hand_hit(hand, victim, caster))
+
+	var/mob/mob_victim = victim
+	if(istype(mob_victim) && mob_victim.can_block_magic(antimagic_flags))
+		on_antimagic_triggered(hand, victim, caster)
+
+	else if(!cast_on_hand_hit(hand, victim, caster))
 		return
 
 	log_combat(caster, victim, "cast the touch spell [name] on", hand)
@@ -222,14 +265,34 @@
 
 	remove_hand(dropper, reset_cooldown_after = TRUE)
 
+/**
+ * Signal proc for [COMSIG_ITEM_OFFER_TAKEN] from our attached hand.
+ *
+ * Giving a high five with our hand makes it cast
+ */
+/datum/action/cooldown/spell/touch/proc/on_hand_taken(obj/item/source, mob/living/carbon/offerer, mob/living/carbon/taker)
+	SIGNAL_HANDLER
+
+	if(!can_hit_with_hand(taker, offerer))
+		return
+
+	INVOKE_ASYNC(src, PROC_REF(do_hand_hit), source, taker, offerer)
+	return COMPONENT_OFFER_INTERRUPT
+
+/**
+ * Called whenever our spell is cast, but blocked by antimagic.
+ */
+/datum/action/cooldown/spell/touch/proc/on_antimagic_triggered(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
+	return
+
 /obj/item/melee/touch_attack
 	name = "\improper outstretched hand"
 	desc = "High Five?"
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/wizard.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	icon_state = "latexballon"
-	inhand_icon_state = null
+	item_state = null
 	item_flags = NEEDS_PERMIT | ABSTRACT
 	w_class = WEIGHT_CLASS_HUGE
 	force = 0
@@ -260,7 +323,7 @@
  * However, if you want to consume the hand and not give a cooldown,
  * such as adding a unique behavior to the hand specifically, this function will do that.
  */
-/obj/item/melee/touch_attack/mansus_fist/proc/remove_hand_with_no_refund(mob/holder)
+/obj/item/melee/touch_attack/proc/remove_hand_with_no_refund(mob/holder)
 	var/datum/action/cooldown/spell/touch/hand_spell = spell_which_made_us?.resolve()
 	if(!QDELETED(hand_spell))
 		hand_spell.remove_hand(holder, reset_cooldown_after = FALSE)

@@ -27,7 +27,8 @@
 		if(ishuman(M.current))
 			vessel.glow = mutable_appearance('icons/effects/hivemind.dmi', "awoken", -BODY_BEHIND_LAYER)
 			M.current.add_overlay(vessel.glow)
-		M.AddSpell(new/obj/effect/proc_holder/spell/self/hive_comms)
+		var/datum/action/cooldown/spell/hive_comms/comms = new(src)
+		comms.Grant(src)
 		vessel.one_mind = final_form
 		vessel.one_mind.add_member(M)
 		vessel.objectives |= vessel.one_mind.objectives

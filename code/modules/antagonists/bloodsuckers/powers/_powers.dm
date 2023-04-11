@@ -68,10 +68,6 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
-/datum/action/bloodsucker/process()
-	cooldown_overlay?.tick()
-
-
 /datum/action/bloodsucker/IsAvailable()
 	return TRUE
 
@@ -162,9 +158,6 @@
 
 /// NOTE: With this formula, you'll hit half cooldown at level 8 for that power.
 /datum/action/bloodsucker/proc/StartCooldown()
-	// Alpha Out
-	button.color = rgb(128,0,0,128)
-	button.alpha = 100
 	// Calculate Cooldown (by power's level)
 	var/this_cooldown
 	if(power_flags & BP_AM_STATIC_COOLDOWN)
@@ -174,14 +167,7 @@
 
 	// Wait for cooldown
 	COOLDOWN_START(src, bloodsucker_power_cooldown, this_cooldown)
-	cooldown_overlay = start_cooldown(button,world.time + this_cooldown)
-	addtimer(CALLBACK(src, .proc/alpha_in), this_cooldown)
-
-/datum/action/bloodsucker/proc/alpha_in()
-	if(cooldown_overlay)
-		QDEL_NULL(cooldown_overlay)
-	button.color = rgb(255,255,255,255)
-	button.alpha = 255
+	addtimer(CALLBACK(src, PROC_REF(UpdateButton)), this_cooldown+(1 SECONDS))
 
 /datum/action/bloodsucker/proc/CheckCanDeactivate()
 	return TRUE

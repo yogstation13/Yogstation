@@ -192,7 +192,7 @@
 	active = FALSE
 	background_icon_state = "bg_default"
 
-/datum/action/innate/lizard_leap/proc/InterceptClickOn(mob/living/carbon/human/A, params, atom/target)
+/datum/action/innate/lizard_leap/InterceptClickOn(mob/living/carbon/human/A, params, atom/target)
 	if(linked_martial.leaping)
 		return
 	linked_martial.leaping = TRUE

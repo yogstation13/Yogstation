@@ -136,7 +136,7 @@
 	exposed_mob.adjust_bodytemperature(-reac_volume * TEMPERATURE_DAMAGE_COEFFICIENT, 50)
 	exposed_mob.adjust_fire_stacks(-reac_volume / 2)
 	if(reac_volume >= metabolization_rate)
-		exposed_mob.ExtinguishMob()
+		exposed_mob.extinguish_mob()
 
 /datum/reagent/medicine/c2/rhigoxane/overdose_process(mob/living/carbon/M)
 	M.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT * REM, 50) //chilly chilly

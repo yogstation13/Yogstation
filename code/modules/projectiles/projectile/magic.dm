@@ -8,17 +8,26 @@
 	flag = MAGIC
 	var/tile_dropoff = 0
 	var/tile_dropoff_s = 0
-
-	var/antimagic_affected = TRUE // Marks whether antimagic will cause this projectile to vanish on contact.
+	/// determines what type of antimagic can block the spell projectile
+	var/antimagic_flags = MAGIC_RESISTANCE
+	/// determines the drain cost on the antimagic item
+	var/antimagic_charge_cost = 1
 
 /obj/item/projectile/magic/prehit(atom/target)
 	. = ..()
 	if(isliving(target))
-		var/mob/living/L = target
-		if(L.anti_magic_check())
-			L.visible_message(span_warning("[src] vanishes on contact with [target]!"))
-			qdel(src)
-			return FALSE
+		var/mob/living/victim = target
+		if(victim.can_block_magic(antimagic_flags, antimagic_charge_cost))
+			visible_message(span_warning("[src] fizzles on contact with [victim]!"))
+			return BULLET_ACT_BLOCK
+
+	if(istype(target, /obj/machinery/hydroponics)) // even plants can block antimagic
+		var/obj/machinery/hydroponics/plant_tray = target
+		if(!plant_tray.myseed)
+			return
+		if(LAZYFIND(plant_tray.myseed.reagents_add, /datum/reagent/water/holywater))
+			visible_message(span_warning("[src] fizzles on contact with [plant_tray]!"))
+			return BULLET_ACT_BLOCK
 
 /obj/item/projectile/magic/death
 	name = "bolt of death"
@@ -526,7 +535,7 @@
 	. = ..()
 	if(ismob(target))
 		var/mob/M = target
-		SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, REF(src), /datum/mood_event/sapped)
+		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, REF(src), /datum/mood_event/sapped)
 
 /obj/item/projectile/magic/necropotence
 	name = "bolt of necropotence"
@@ -620,18 +629,18 @@
 
 	return ..()
 
-/obj/projectile/magic/aoe/can_hit_target(atom/target, list/passthrough, direct_target = FALSE, ignore_loc = FALSE)
+/obj/item/projectile/magic/aoe/can_hit_target(atom/target, list/passthrough, direct_target = FALSE, ignore_loc = FALSE)
 	if(can_only_hit_target && target != original)
 		return FALSE
 	return ..()
 
-/obj/projectile/magic/aoe/Moved(atom/OldLoc, Dir)
+/obj/item/projectile/magic/aoe/Moved(atom/OldLoc, Dir)
 	. = ..()
 	if(trail)
 		create_trail()
 
 /// Creates and handles the trail that follows the projectile.
-/obj/projectile/magic/aoe/proc/create_trail()
+/obj/item/projectile/magic/aoe/proc/create_trail()
 	if(!trajectory)
 		return
 
@@ -674,11 +683,11 @@
 	tesla_zap(src, tesla_range, tesla_power, tesla_flags)
 	qdel(src)
 
-/obj/projectile/magic/aoe/lightning/Destroy()
+/obj/item/projectile/magic/aoe/lightning/Destroy()
 	QDEL_NULL(chain)
 	return ..()
 
-/obj/item/projectile/magic/aoe/fireball
+/obj/item/projectile/magic/fireball
 	name = "bolt of fireball"
 	icon_state = "fireball"
 	damage = 10
@@ -694,7 +703,7 @@
 	/// Flash radius of the fireball
 	var/exp_flash = 3
 
-/obj/projectile/magic/fireball/on_hit(atom/target, blocked = FALSE, pierce_hit)
+/obj/item/projectile/magic/fireball/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/mob_target = target
@@ -716,7 +725,7 @@
 	)
 
 
-/obj/projectile/magic/aoe/magic_missile
+/obj/item/projectile/magic/aoe/magic_missile
 	name = "magic missile"
 	icon_state = "magicm"
 	range = 20
@@ -731,11 +740,11 @@
 	trail_lifespan = 0.5 SECONDS
 	trail_icon_state = "magicmd"
 
-/obj/projectile/magic/aoe/magic_missile/lesser
+/obj/item/projectile/magic/aoe/magic_missile/lesser
 	color = "red" //Looks more culty this way
 	range = 10
 
-/obj/projectile/magic/aoe/juggernaut
+/obj/item/projectile/magic/aoe/juggernaut
 	name = "Gauntlet Echo"
 	icon_state = "cultfist"
 	alpha = 180
@@ -749,7 +758,7 @@
 	range = 15
 	speed = 7
 
-/obj/projectile/magic/spell/juggernaut/on_hit(atom/target, blocked)
+/obj/item/projectile/magic/spell/juggernaut/on_hit(atom/target, blocked)
 	. = ..()
 	var/turf/target_turf = get_turf(src)
 	playsound(target_turf, 'sound/weapons/resonator_blast.ogg', 100, FALSE)
@@ -763,14 +772,14 @@
 		adjacent_object.take_damage(90, BRUTE, MELEE, 0)
 		new /obj/effect/temp_visual/cult/turf/floor(get_turf(adjacent_object))
 
-/obj/item/projectile/magic/aoe/fireball/infernal
+/obj/item/projectile/magic/fireball/infernal
 	name = "infernal fireball"
 	exp_heavy = -1
 	exp_light = -1
 	exp_flash = 4
 	exp_fire= 5
 
-/obj/item/projectile/magic/aoe/fireball/infernal/on_hit(target)
+/obj/item/projectile/magic/fireball/infernal/on_hit(target)
 	. = ..()
 	var/turf/T = get_turf(target)
 	for(var/i=0, i<50, i+=10)

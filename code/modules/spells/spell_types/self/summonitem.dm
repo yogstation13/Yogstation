@@ -125,7 +125,7 @@
 				if(istype(retrieved_item, /obj/machinery/portable_atmospherics))
 					var/obj/machinery/portable_atmospherics/atmos_item = retrieved_item
 					atmos_item.disconnect()
-					atmos_item.update_appearance()
+					atmos_item.update_icon()
 
 				// Otherwise bring the whole thing with us
 				item_to_retrieve = retrieved_item
@@ -138,7 +138,7 @@
 			var/obj/item/organ/organ = item_to_retrieve
 			if(organ.owner)
 				// If this code ever runs I will be happy
-				log_combat(caster, organ.owner, "magically removed [organ.name] from", addition = "COMBAT MODE: [uppertext(caster.combat_mode)]")
+				log_combat(caster, organ.owner, "magically removed [organ.name] from", addition = "INTENT: [uppertext(caster.a_intent)]")
 				organ.Remove(organ.owner)
 
 	if(!item_to_retrieve)

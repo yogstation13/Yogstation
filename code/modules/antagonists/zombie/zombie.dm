@@ -5,32 +5,32 @@
 	roundend_category = "zombies"
 	antagpanel_category = "Zombie"
 
-	var/datum/action/innate/zombie/zomb/zombify = new
+//	var/datum/action/innate/zombie/zomb/zombify = new
 
-	var/datum/action/innate/zombie/talk/talk_action = new
+//	var/datum/action/innate/zombie/talk/talk_action = new
 
-	var/datum/action/innate/zombie/choose_class/evolution = new
+//	var/datum/action/innate/zombie/choose_class/evolution = new
 
-	var/datum/action/innate/zombie/choose_class/tier2/evolution2 = new
+//	var/datum/action/innate/zombie/choose_class/tier2/evolution2 = new
 
 	//EVOLUTION
 	var/evolutionTime = 0 //When can we evolve?
 
 	//GENERAL ABILITIES
-	var/datum/action/innate/zombie/uncuff/uncuff = new
+//	var/datum/action/innate/zombie/uncuff/uncuff = new
 
 	//SPITTER ABILITIES
-	var/obj/effect/proc_holder/zombie/spit/spit
-	var/obj/effect/proc_holder/zombie/acid/acid
+//	var/obj/effect/proc_holder/zombie/spit/spit
+//	var/obj/effect/proc_holder/zombie/acid/acid
 
 	//Necromancer
-	var/obj/effect/proc_holder/zombie/necromance/necro
+//	var/obj/effect/proc_holder/zombie/necromance/necro
 
 	//Runner
-	var/obj/effect/proc_holder/zombie/adrenaline/adren
+//	var/obj/effect/proc_holder/zombie/adrenaline/adren
 
 	//Juggernaut
-	var/obj/effect/proc_holder/zombie/tank/tank
+//	var/obj/effect/proc_holder/zombie/tank/tank
 
 	job_rank = ROLE_ZOMBIE
 
@@ -66,9 +66,9 @@
 /datum/antagonist/zombie/proc/add_objectives()
 	objectives |= team.objectives
 
-/datum/antagonist/zombie/Destroy()
-	QDEL_NULL(zombify)
-	return ..()
+///datum/antagonist/zombie/Destroy()
+//	QDEL_NULL(zombify)
+//	return ..()
 
 
 /datum/antagonist/zombie/greet()
@@ -89,13 +89,13 @@
 	. = ..()
 	var/mob/living/current = owner.current
 	current.faction |= "zombies"
-	talk_action.Grant(current)
+//	talk_action.Grant(current)
 
 /datum/antagonist/zombie/remove_innate_effects()
 	. = ..()
 	var/mob/living/current = owner.current
 	current.faction -= "zombies"
-	talk_action.Remove(current)
+//	talk_action.Remove(current)
 
 
 /datum/antagonist/zombie/on_removal()
@@ -103,42 +103,42 @@
 	. = ..()
 
 
-/datum/antagonist/zombie/proc/start_timer()
-	addtimer(CALLBACK(src, .proc/add_button_timed), 15 MINUTES)
+///datum/antagonist/zombie/proc/start_timer()
+//	addtimer(CALLBACK(src, .proc/add_button_timed), 15 MINUTES)
 
-/datum/antagonist/zombie/proc/add_button_timed()
-	zombify.Grant(owner.current)
-	to_chat(owner.current, span_userdanger("<b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie. IN 5 MINUTES YOU WILL FORCIBLY BE ZOMBIFIED IF YOU HAVEN'T.<b>"))
-	addtimer(CALLBACK(src, .proc/force_zombify), 5 MINUTES)
+///datum/antagonist/zombie/proc/add_button_timed()
+//	zombify.Grant(owner.current)
+//	to_chat(owner.current, span_userdanger("<b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie. IN 5 MINUTES YOU WILL FORCIBLY BE ZOMBIFIED IF YOU HAVEN'T.<b>"))
+//	addtimer(CALLBACK(src, .proc/force_zombify), 5 MINUTES)
 
-/datum/antagonist/zombie/proc/force_zombify()
-	if(!zombified)
-		zombify.Activate()
+///datum/antagonist/zombie/proc/force_zombify()
+//	if(!zombified)
+//		zombify.Activate()
 
 /datum/antagonist/zombie/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.add_antag_datum(src)
 	message_admins("[key_name_admin(admin)] has zombied'ed [key_name_admin(new_owner)].")
 	log_admin("[key_name(admin)] has zombied'ed [key_name(new_owner)].")
-	start_timer()
+//	start_timer()
 
 
 /datum/antagonist/zombie/get_admin_commands()
 	. = ..()
-	.["Give Button"] = CALLBACK(src,.proc/admin_give_button)
-	.["Remove Button"] = CALLBACK(src,.proc/remove_button)
+//	.["Give Button"] = CALLBACK(src,.proc/admin_give_button)
+//	.["Remove Button"] = CALLBACK(src,.proc/remove_button)
 
-/datum/antagonist/zombie/proc/admin_give_button(mob/admin)
-	zombify.Grant(owner.current)
+///datum/antagonist/zombie/proc/admin_give_button(mob/admin)
+//	zombify.Grant(owner.current)
 
-/datum/antagonist/zombie/proc/remove_button(mob/admin)
-	zombify.Remove(owner.current)
+///datum/antagonist/zombie/proc/remove_button(mob/admin)
+//	zombify.Remove(owner.current)
 
 /datum/antagonist/zombie/proc/start_evolution_2()
 	addtimer(CALLBACK(src, .proc/finish_evolution_2), TIER_2_TIME)
 
 /datum/antagonist/zombie/proc/finish_evolution_2()
 	evolution_ready = TRUE
-	evolution2.Grant(owner.current)
+//	evolution2.Grant(owner.current)
 	to_chat(owner.current, span_userdanger("<b>You can now evolve into a Tier 2 zombie! There can only be tier 2 zombies equal to the amount of starting zombies!<b>"))
 
 /datum/team/zombie
@@ -173,7 +173,7 @@
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
-/datum/action/innate/zombie
+/*/datum/action/innate/zombie
 	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
 	background_icon_state = "bg_demon"
 	buttontooltipstyle = "cult"
@@ -363,9 +363,9 @@
 	panel = "Zombie"
 	has_action = TRUE
 	base_action = /datum/action/spell_action
-	action_icon = 'icons/mob/actions/actions_xeno.dmi'
-	action_icon_state = "spell_default"
-	action_background_icon_state = "bg_alien"
+	icon_icon = 'icons/mob/actions/actions_xeno.dmi'
+	button_icon_state = "spell_default"
+	background_icon_state = "bg_alien"
 	var/ready = TRUE
 	var/cooldown_ends = 0
 	var/cooldown_time = 1 SECONDS
@@ -418,7 +418,7 @@
 /obj/effect/proc_holder/zombie/proc/start_cooldown()
 	addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown_time)
 	cooldown_ends = world.time + cooldown_time
-	ready = FALSE
+	ready = FALSE*/
 
 #undef TIER_2_TIME
 

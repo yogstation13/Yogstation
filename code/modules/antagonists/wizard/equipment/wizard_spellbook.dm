@@ -2,8 +2,8 @@
 	name = "spell book"
 	desc = "An unearthly tome that glows with power."
 	icon = 'icons/obj/library.dmi'
-	icon_state ="book"
-	worn_icon_state = "book"
+	icon_state = "book"
+	item_state = "book"
 	throw_speed = 2
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -68,7 +68,7 @@
 		return
 
 	if(user.mind != owner)
-		if(user.mind?.special_role == ROLE_WIZARD_APPRENTICE)
+		if(user.mind.has_antag_datum(/datum/antagonist/wizard/apprentice))
 			to_chat(user, span_warning("If you got caught sneaking a peek from your teacher's spellbook, you'd likely be expelled from the Wizard Academy. Better not."))
 		else
 			to_chat(user, span_warning("[src] does not recognize you as its owner and refuses to open!"))

@@ -226,6 +226,7 @@ mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user,
 
 /mob/living/simple_animal/hostile/construct/wraith/AttackingTarget() //refund jaunt cooldown when attacking living targets
 	var/prev_stat
+	var/mob/living/living_target = target
 	if(isliving(target) && !iscultist(target))
 		var/mob/living/L = target
 		prev_stat = L.stat
@@ -292,7 +293,6 @@ mob/living/simple_animal/hostile/construct/attackby(obj/item/W, mob/living/user,
 		/datum/action/cooldown/spell/aoe/magic_missile/lesser,
 		/datum/action/innate/cult/create_rune/revive,
 	)
-	runetype = /datum/action/innate/cult/create_rune/revive
 	playstyle_string = "<b>You are an Artificer. You are incredibly weak and fragile, \
 		but you are able to construct fortifications, use magic missile, and repair allied constructs, shades, \
 		and yourself (by clicking on them). Additionally, <i>and most important of all,</i> you can create new constructs \

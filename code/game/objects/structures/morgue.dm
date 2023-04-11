@@ -251,7 +251,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	if(locked)
 		return //don't let you cremate something twice or w/e
 	// Make sure we don't delete the actual morgue and its tray
-	var/list/conts = GetAllContents() - src - connected
+	var/list/conts = get_all_contents() - src - connected
 
 	if(!conts.len)
 		audible_message(span_italics("You hear a hollow crackle."))
@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		update_icon()
 
 /obj/structure/bodycontainer/crematorium/proc/finish_cremate(mob/user)
-	var/list/conts = GetAllContents() - src - connected
+	var/list/conts = get_all_contents() - src - connected
 	audible_message(span_italics("You hear a roar as the crematorium reaches its maximum temperature."))
 	for(var/mob/living/M in conts)
 		if(M.stat != DEAD)
@@ -312,7 +312,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 
 /obj/structure/bodycontainer/crematorium/creamatorium/cremate(mob/user)
 	var/list/icecreams = new()
-	for(var/i_scream in GetAllContents(/mob/living))
+	for(var/i_scream in get_all_contents(/mob/living))
 		var/obj/item/reagent_containers/food/snacks/icecream/IC = new()
 		IC.set_cone_type("waffle")
 		IC.add_mob_flavor(i_scream)

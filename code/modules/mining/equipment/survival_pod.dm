@@ -319,7 +319,6 @@
 						/obj/item/gun/magic/wand/fireball,
 						/obj/item/stack/telecrystal/twenty,
 						/obj/item/nuke_core,
-						/obj/item/phylactery,
 						/obj/item/bikehorn)
 
 /obj/item/fakeartefact/Initialize()

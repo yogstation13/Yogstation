@@ -18,7 +18,7 @@
 	var/walldam = 30
 
 /// Takes the mob directly in front of you, attempts to smash whatever is behind you, and then tries to put them behind you
-/datum/action/cooldown/buster/slam/Trigger()
+/datum/action/cooldown/buster/slam/Activate(atom/target)
 	if(!..())
 		return FALSE
 	StartCooldown()
@@ -96,6 +96,7 @@
 			L.gib()
 		sleep(0.2 SECONDS)
 		wakeup(L)
+
 /datum/action/cooldown/buster/slam/l/IsAvailable()
 	. = ..()
 	var/mob/living/O = owner

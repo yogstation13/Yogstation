@@ -24,24 +24,24 @@
 	var/obj/item/clothing/suit/draculacoat/coat
 
 	var/list/upgrade_tiers = list(
-		/obj/effect/proc_holder/spell/self/vampire_help = 0,
-		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
-		/obj/effect/proc_holder/spell/pointed/gaze = 0,
-		/obj/effect/proc_holder/spell/pointed/hypno = 0,
+		/datum/action/cooldown/spell/vampire_help = 0,
+		/datum/action/cooldown/spell/rejuvenate = 0,
+		/datum/action/cooldown/spell/pointed/gaze = 0,
+		/datum/action/cooldown/spell/pointed/hypno = 0,
 		/datum/vampire_passive/vision = 75,
-		/obj/effect/proc_holder/spell/self/shapeshift = 75,
+		/datum/action/cooldown/spell/shapeshift = 75,
 		/datum/vampire_passive/nostealth = 100,
-		/obj/effect/proc_holder/spell/self/cloak = 100,
-		/obj/effect/proc_holder/spell/self/revive = 100,
-		/obj/effect/proc_holder/spell/targeted/disease = 200,
-		/obj/effect/proc_holder/spell/self/batform = 200,
-		/obj/effect/proc_holder/spell/self/screech = 215,
-		/obj/effect/proc_holder/spell/bats = 250,
+		/datum/action/cooldown/spell/cloak = 100,
+		/datum/action/cooldown/spell/revive = 100,
+		/datum/action/cooldown/spell/pointed/disease = 200,
+		/datum/action/cooldown/spell/batform = 200,
+		/datum/action/cooldown/spell/aoe/screech = 215,
+		/datum/action/cooldown/spell/bats = 250,
 		/datum/vampire_passive/regen = 255,
-		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform = 300,
+		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/mistform = 300,
 		/datum/vampire_passive/full = 420,
-		/obj/effect/proc_holder/spell/self/summon_coat = 420,
-		/obj/effect/proc_holder/spell/targeted/vampirize = 450)
+		/datum/action/cooldown/spell/summon_coat = 420,
+		/datum/action/cooldown/spell/pointed/vampirize = 450)
 
 /datum/antagonist/vampire/new_blood
 	full_vampire = FALSE
@@ -315,14 +315,13 @@
 	to_chat(owner, span_notice("You stop draining [H.name] of blood."))
 
 /datum/antagonist/vampire/proc/force_add_ability(path)
-	var/spell = new path(owner)
-	if(istype(spell, /obj/effect/proc_holder/spell))
-		owner.AddSpell(spell)
-	powers += spell
+	var/datum/action/cooldown/spell/hi_how_are_you = new path(owner)
+	if(istype(hi_how_are_you))
+		hi_how_are_you.Grant(owner.current)
+	powers += hi_how_are_you
 
 /datum/antagonist/vampire/proc/get_ability(path)
-	for(var/P in powers)
-		var/datum/power = P
+	for(var/datum/power as anything in powers)
 		if(power.type == path)
 			return power
 	return null
@@ -334,13 +333,13 @@
 /datum/antagonist/vampire/proc/remove_ability(ability)
 	if(ability && (ability in powers))
 		powers -= ability
-		owner.spell_list.Remove(ability)
+		owner.current.actions.Remove(ability)
 		qdel(ability)
 
 
 /datum/antagonist/vampire/proc/remove_vampire_powers()
-	for(var/P in powers)
-		remove_ability(P)
+	for(var/datum/power as anything in powers)
+		remove_ability(power)
 	owner.current.alpha = 255
 
 /datum/antagonist/vampire/proc/check_vampire_upgrade(var/announce = TRUE)
@@ -356,8 +355,8 @@
 /datum/antagonist/vampire/proc/announce_new_power(list/old_powers)
 	for(var/p in powers)
 		if(!(p in old_powers))
-			if(istype(p, /obj/effect/proc_holder/spell))
-				var/obj/effect/proc_holder/spell/power = p
+			if(istype(p, /datum/action/cooldown/spell))
+				var/datum/action/cooldown/spell/power = p
 				to_chat(owner.current, span_notice("[power.gain_desc]"))
 			else if(istype(p, /datum/vampire_passive))
 				var/datum/vampire_passive/power = p

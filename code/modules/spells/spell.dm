@@ -11,7 +11,7 @@
  * - [is_valid_target][/datum/action/cooldown/spell/is_valid_target] checks if the TARGET
  * THE SPELL IS BEING CAST ON is a valid target for the spell. NOTE: The CAST TARGET is often THE SAME as THE OWNER OF THE SPELL,
  * but is not always - depending on how [Pre Activate][/datum/action/cooldown/spell/PreActivate] is resolved.
- * - [can_invoke][/datum/action/cooldown/spell/can_invoke] is run in can_cast_spell to check if
+ * - [try_invoke][/datum/action/cooldown/spell/try_invoke] is run in can_cast_spell to check if
  * the OWNER of the spell is able to say the current invocation.
  *
  * ## The spell chain:
@@ -37,7 +37,8 @@
  * this can be extended if you wish to add unique effects on level up for wizards.
  * - [delevel_spell][/datum/action/cooldown/spell/delevel_spell] is where the process of removing a spell level is handled.
  * this can be extended if you wish to undo unique effects on level up for wizards.
- * - [update_spell_name][/datum/action/cooldown/spell/update_spell_name] updates the prefix of the spell name based on its level.
+ * - [get_spell_title][/datum/action/cooldown/spell/get_spell_title] returns the prefix of the spell name based on its level,
+ * for use in updating the button name / spell name.
  */
 /datum/action/cooldown/spell
 	name = "Spell"
@@ -95,15 +96,15 @@
 
 	// Register some signals so our button's icon stays up to date
 	if(spell_requirements & SPELL_REQUIRES_STATION)
-		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(update_status_on_signal))
+		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(UpdateButtons))
 	if(spell_requirements & (SPELL_REQUIRES_NO_ANTIMAGIC|SPELL_REQUIRES_WIZARD_GARB))
-		RegisterSignal(owner, COMSIG_MOB_EQUIPPED_ITEM, PROC_REF(update_status_on_signal))
-	RegisterSignals(owner, list(COMSIG_MOB_ENTER_JAUNT, COMSIG_MOB_AFTER_EXIT_JAUNT), PROC_REF(update_status_on_signal))
-	owner.client?.stat_panel.send_message("check_spells")
+		RegisterSignal(owner, COMSIG_MOB_EQUIPPED_ITEM, PROC_REF(UpdateButtons))
+	RegisterSignals(owner, list(COMSIG_MOB_ENTER_JAUNT, COMSIG_MOB_AFTER_EXIT_JAUNT), PROC_REF(UpdateButtons))
+//	owner.client?.stat_panel.send_message("check_spells")
 
 /datum/action/cooldown/spell/Remove(mob/living/remove_from)
 
-	remove_from.client?.stat_panel.send_message("check_spells")
+//	remove_from.client?.stat_panel.send_message("check_spells")
 	UnregisterSignal(remove_from, list(
 		COMSIG_MOB_AFTER_EXIT_JAUNT,
 		COMSIG_MOB_ENTER_JAUNT,
@@ -400,7 +401,7 @@
 
 	spell_level++
 	cooldown_time = max(cooldown_time - cooldown_reduction_per_rank, 0.25 SECONDS) // 0 second CD starts to break things.
-	UpdateButtons()
+	update_spell_name()
 	return TRUE
 
 /**
@@ -415,30 +416,26 @@
 		return FALSE
 
 	spell_level--
-	if(cooldown_reduction_per_rank > 0 SECONDS)
-		cooldown_time = min(cooldown_time + cooldown_reduction_per_rank, initial(cooldown_time))
-	else
-		cooldown_time = max(cooldown_time + cooldown_reduction_per_rank, initial(cooldown_time))
-
-	UpdateButtons()
+	cooldown_time = min(cooldown_time + cooldown_reduction_per_rank, initial(cooldown_time))
+	update_spell_name()
 	return TRUE
 
-/datum/action/cooldown/spell/update_button_name(atom/movable/screen/movable/action_button/button, force)
-	name = "[get_spell_title()][initial(name)]"
-	return ..()
-
-/// Gets the title of the spell based on its level.
-/datum/action/cooldown/spell/proc/get_spell_title()
+/**
+ * Updates the spell's name based on its level.
+ */
+/datum/action/cooldown/spell/proc/update_spell_name()
+	var/spell_title = ""
 	switch(spell_level)
 		if(2)
-			return "Efficient "
+			spell_title = "Efficient "
 		if(3)
-			return "Quickened "
+			spell_title = "Quickened "
 		if(4)
-			return "Free "
+			spell_title = "Free "
 		if(5)
-			return "Instant "
+			spell_title = "Instant "
 		if(6)
-			return "Ludicrous "
+			spell_title = "Ludicrous "
 
-	return ""
+	name = "[spell_title][initial(name)]"
+	UpdateButtons()

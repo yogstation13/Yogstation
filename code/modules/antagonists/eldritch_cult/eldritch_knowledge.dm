@@ -33,9 +33,9 @@
   */
 /datum/eldritch_knowledge/proc/on_gain(mob/user)
 	to_chat(user, span_warning("[gain_text]"))
-	for(var/S in spells_to_add)
-		var/obj/effect/proc_holder/spell/spell2add = new S
-		user.mind.AddSpell(spell2add)
+	for(var/datum/action/spells in spells_to_add)
+		spells = new(user)
+		spells.Grant(user)
 	var/datum/antagonist/heretic/EC = user.mind?.has_antag_datum(/datum/antagonist/heretic)
 	for(var/X in unlocked_transmutations)
 		var/datum/eldritch_transmutation/ET = new X
@@ -47,9 +47,8 @@
   * This proc is called whenever antagonist looses his antag datum, put cleanup code in here
   */
 /datum/eldritch_knowledge/proc/on_lose(mob/user)
-	for(var/S in spells_to_add)
-		var/obj/effect/proc_holder/spell/spell2remove = S
-		user.mind.RemoveSpell(spell2remove)
+	for(var/datum/action/spells in spells_to_add)
+		spells?.Remove(user)
 	return
 /**
   * What happens every tick

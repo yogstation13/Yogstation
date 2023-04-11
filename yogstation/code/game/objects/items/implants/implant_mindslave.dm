@@ -1,17 +1,17 @@
 /obj/item/implant/mindslave
 	name = "mindslave implant"
 	desc = "Turn a crewmate into your eternal slave"
-	activated = FALSE
 
 /obj/item/implant/mindslave/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Syndicate Loyalty Implant<BR>
-<b>Life:</b> Single use<BR>
-<b>Important Notes:</b> <font color='red'>Illegal</font><BR>
-<HR>
-<b>Implant Details:</b> <BR>
-<b>Function:</b> Makes the injected a slave to the owner of the implant.<HR>"}
+		<b>Implant Specifications:</b><BR>
+		<b>Name:</b> Syndicate Loyalty Implant<BR>
+		<b>Life:</b> Single use<BR>
+		<b>Important Notes:</b> <font color='red'>Illegal</font><BR>
+		<HR>
+		<b>Implant Details:</b> <BR>
+		<b>Function:</b> Makes the injected a slave to the owner of the implant.<HR>
+	"}
 	return dat
 
 /obj/item/implant/mindslave/implant(mob/source, mob/user)

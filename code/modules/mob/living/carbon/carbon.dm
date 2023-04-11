@@ -329,7 +329,7 @@
 	if(fire_stacks <= 0)
 		visible_message(span_danger("[src] has successfully extinguished [p_them()]self!"), \
 			span_notice("You extinguish yourself."))
-		ExtinguishMob()
+		extinguish_mob()
 	return
 
 /mob/living/carbon/resist_restraints()
@@ -401,8 +401,8 @@
 	cuff.dropped(src) //drop it to the ground
 
 	if(!QDELETED(cuff)) //if it didn't delete on drop, update planes
-		cuff.layer = initial(handcuff.layer)
-		cuff.plane = initial(handcuff.plane)
+		cuff.layer = initial(cuff.layer)
+		cuff.plane = initial(cuff.plane)
 
 	changeNext_move(0)
 
@@ -996,7 +996,7 @@
 	if(organs_amt)
 		to_chat(user, span_notice("You retrieve some of [src]\'s internal organs!"))
 
-/mob/living/carbon/ExtinguishMob()
+/mob/living/carbon/extinguish_mob()
 	for(var/X in get_equipped_items())
 		var/obj/item/I = X
 		I.acid_level = 0 //washes off the acid on our clothes

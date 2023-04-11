@@ -19,5 +19,5 @@
 		bloodsuckerdatum.RemovePower(masquerade_power)
 
 /datum/bloodsucker_clan/gangrel/on_favorite_vassal(datum/source, datum/antagonist/vassal/vassaldatum, mob/living/bloodsucker)
-	var/obj/effect/proc_holder/spell/targeted/shapeshift/bat/batform = new(vassaldatum.owner || vassaldatum.owner.current)
-	vassaldatum.owner.AddSpell(batform)
+	var/datum/action/cooldown/spell/shapeshift/bat/batform = new(vassaldatum.owner || vassaldatum.owner.current)
+	batform.Grant(vassaldatum.owner.current)

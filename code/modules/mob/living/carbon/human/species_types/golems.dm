@@ -12,7 +12,7 @@
 	punchdamagelow = 5
 	punchdamagehigh = 14
 	punchstunthreshold = 11 //about 40% chance to stun
-	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE)
+	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_SUIT_STORE)
 	nojumpsuit = 1
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	sexes = 1
@@ -679,7 +679,7 @@
 
 /datum/species/golem/runic/on_species_loss(mob/living/carbon/remove_from)
 	. = ..()
-	grant_to.faction -= "cult"
+	remove_from.faction -= "cult"
 	// Aaand cleanup our species specific spells.
 	// No free rides.
 	QDEL_NULL(jaunt)
@@ -984,7 +984,7 @@
 
 /datum/species/golem/snow/on_species_gain(mob/living/carbon/grant_to, datum/species/old_species)
 	. = ..()
-	C.weather_immunities |= "snow"
+	grant_to.weather_immunities |= "snow"
 	snowball = new(grant_to)
 	snowball.StartCooldown()
 	snowball.Grant(grant_to)
@@ -995,18 +995,10 @@
 
 /datum/species/golem/snow/on_species_loss(mob/living/carbon/remove_from)
 	. = ..()
-	C.weather_immunities -= "snow"
+	remove_from.weather_immunities -= "snow"
 	QDEL_NULL(snowball)
 	QDEL_NULL(cryo)
 	return ..()
-
-/obj/effect/proc_holder/spell/targeted/conjure_item/snowball
-	name = "Snowball"
-	desc = "Concentrates cryokinetic forces to create snowballs, useful for throwing at people."
-	item_type = /obj/item/toy/snowball
-	charge_max = 15
-	action_icon = 'icons/obj/toy.dmi'
-	action_icon_state = "snowball"
 
 /datum/species/golem/cardboard //Faster but weaker, can also make new shells on its own
 	name = "Cardboard Golem"
@@ -1169,15 +1161,16 @@
 	to_chat(C, span_userdanger("Hit non-golems several times in order to get them fat and on your side!"))
 
 	SEND_SOUND(C, sound('sound/misc/capitialism.ogg'))
-	C.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock ())
-	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
+	var/datum/action/cooldown/spell/aoe/knock/OPEN_THE_DOOR = new(C)
+	OPEN_THE_DOOR.Grant(C)
+	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	C.mind.add_antag_datum(/datum/antagonist/golem/capitalist)
 
 /datum/species/golem/capitalist/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	UnregisterSignal(C, COMSIG_MOB_SAY)
-	for(var/obj/effect/proc_holder/spell/aoe_turf/knock/spell in C.mob_spell_list)
-		C.RemoveSpell(spell)
+	for(var/datum/action/cooldown/spell/aoe/knock/OPEN_THE_DOOR in C.actions)
+		OPEN_THE_DOOR.Remove(C)
 	var/datum/antagonist/golem/capitalist/CA = C.mind.has_antag_datum(/datum/antagonist/golem/capitalist)
 	if(CA && !CA.removing)
 		C.mind.remove_antag_datum(/datum/antagonist/golem/capitalist)
@@ -1192,7 +1185,7 @@
 	target.adjust_nutrition(40)
 
 /datum/species/golem/capitalist/proc/handle_speech(datum/source, list/speech_args)
-	playsound(source, 'sound/misc/mymoney.ogg', 25, 0)
+	playsound(source, 'sound/misc/mymoney.ogg', 25, TRUE)
 	speech_args[SPEECH_MESSAGE] = "Hello, I like money!"
 
 /datum/species/golem/church_capitalist //slightly faster reskinned iron golem gained from a cult of st credit rite
@@ -1240,14 +1233,15 @@
 	to_chat(C, span_userdanger("Hit non-golems several times in order to get them starving and on your side!"))
 	
 	SEND_SOUND(C, sound('sound/misc/Russian_Anthem_chorus.ogg'))
-	C.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock ())
-	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
+	var/datum/action/cooldown/spell/aoe/knock/OPEN_THE_DOOR = new(C)
+	OPEN_THE_DOOR.Grant(C)
+	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	C.mind.add_antag_datum(/datum/antagonist/golem/communist)
 
 /datum/species/golem/soviet/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	for(var/obj/effect/proc_holder/spell/aoe_turf/knock/spell in C.mob_spell_list)
-		C.RemoveSpell(spell)
+	for(var/datum/action/cooldown/spell/aoe/knock/OPEN_THE_DOOR in C.actions)
+		OPEN_THE_DOOR.Remove(C)
 	UnregisterSignal(C, COMSIG_MOB_SAY)
 	var/datum/antagonist/golem/communist/CU = C.mind.has_antag_datum(/datum/antagonist/golem/communist)
 	if(CU && !CU.removing)
@@ -1263,7 +1257,7 @@
 	target.adjust_nutrition(-40)
 
 /datum/species/golem/soviet/proc/handle_speech(datum/source, list/speech_args)
-	playsound(source, 'sound/misc/Cyka Blyat.ogg', 25, 0)
+	playsound(source, 'sound/misc/Cyka Blyat.ogg', 25, TRUE) //if it's handled with the ambient it's funnier
 	speech_args[SPEECH_MESSAGE] = "Cyka Blyat"
 
 /datum/species/golem/cheese
@@ -1330,35 +1324,35 @@
 	species_traits = list(NOBLOOD,MUTCOLORS,NO_UNDERWEAR,NOFLASH)
 	prefix = "Telecrystal"
 	special_names = list("Agent", "Operative")
-	var/obj/effect/proc_holder/spell/pointed/phase_jump/phase_jump
+	var/datum/action/cooldown/spell/pointed/phase_jump/phase_jump
 
 /datum/species/golem/telecrystal/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
 	if(ishuman(C))
-		phase_jump = new
-		C.AddSpell(phase_jump)
+		phase_jump = new(C)
+		phase_jump.Grant(C)
 
 /datum/species/golem/telecrystal/on_species_loss(mob/living/carbon/C)
 	if(phase_jump)
-		C.RemoveSpell(phase_jump)
+		phase_jump.Remove(C)
 	..()
 
-/obj/effect/proc_holder/spell/pointed/phase_jump
+/datum/action/cooldown/spell/pointed/phase_jump
 	name = "Phase Jump"
 	desc = "Tap the power of your telecrystal body to teleport a short distance!"
-	charge_max = 200
-	clothes_req = FALSE
-	stat_allowed = FALSE
-	antimagic_allowed = TRUE
-	cooldown_min = 200
-	range = 3
+	button_icon_state = "phasejump"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/phase_jump.dmi'
-	action_icon_state = "phasejump"
+
+	cooldown_time = 20 SECONDS
+	cast_range = 3
 	active_msg = span_notice("You start channeling your telecrystal core....")
 	deactive_msg = span_notice("You stop channeling your telecrystal core.")
+	spell_requirements = NONE
 
-/obj/effect/proc_holder/spell/pointed/phase_jump/cast(list/targets,mob/user = usr)
-	var/target = targets[1]
+/datum/action/cooldown/spell/pointed/phase_jump/InterceptClickOn(atom/target, params, mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/turf/T = get_turf(target)
 	var/phasein = /obj/effect/temp_visual/dir_setting/cult/phase
 	var/phaseout = /obj/effect/temp_visual/dir_setting/cult/phase/out
@@ -1367,16 +1361,17 @@
 	var/obj/spot2 = new phasein(get_turf(user), user.dir)
 	spot1.Beam(spot2,"tentacle",time=20)
 	user.visible_message("<span class='danger'>[user] phase shifts away!", span_warning("You shift around the space around you."))
+	return TRUE
 
-/obj/effect/proc_holder/spell/pointed/phase_jump/can_target(atom/target, mob/user, silent)
+/datum/action/cooldown/spell/pointed/phase_jump/is_valid_target(atom/target)
 	. = ..()
 	if(!.)
 		return FALSE
 	var/turf/T = get_turf(target)
-	var/area/AU = get_area(user)
+	var/area/AU = get_area(owner)
 	var/area/AT = get_area(T)
 	if(AT.noteleport || AU.noteleport)
-		remove_ranged_ability("Something nullifies any teleports in the local area...")
+		owner.balloon_alert(owner, "something omnious prevents your teleport!")
 		return FALSE
 	return TRUE
 
@@ -1389,31 +1384,29 @@
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES) //no mutcolors or eyesprites
 	speedmod = 1.5 //inbetween gold golem and iron
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/blessed
-	info_text = "As an <span class='danger'>Ruinous Golem</span>, you are made of an ancient powerful metal. While not particularly tough, you have a connection with the old gods that grants you a selection of abilities."
+	info_text = "As an <span class='danger'>Ruinous Golem</span>, you are made of an ancient powerful metal. While not particularly tough, \
+				you have a connection with the old gods that grants you a selection of abilities."
 	prefix = "Ruinous"
 	special_names = list("One", "Elder", "Watcher", "Walker") //ominous
-	var/obj/effect/proc_holder/spell/targeted/telepathy/eldritch/ruinoustelepathy
-	var/obj/effect/proc_holder/spell/targeted/touch/flagellate/flagellate
+	var/datum/action/cooldown/spell/list_target/telepathy/eldritch/ruinoustelepathy
+//	var/datum/action/cooldown/spell/touch/flagellate/flagellate
 
 /datum/species/golem/ruinous/on_species_loss(mob/living/carbon/C)
 	..()
 	UnregisterSignal(C, COMSIG_MOB_SAY)
 	REMOVE_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
-	if(ruinoustelepathy)
-		C.RemoveSpell(ruinoustelepathy)
-	if(flagellate)
-		C.RemoveSpell(flagellate)
+	ruinoustelepathy?.Remove(C)
+//	if(flagellate)
+//		C.RemoveSpell(flagellate)
 
 /datum/species/golem/ruinous/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
-	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
-	ruinoustelepathy = new
-	ruinoustelepathy.charge_counter = 0
-	C.AddSpell(ruinoustelepathy)
-	flagellate = new
-	flagellate.charge_counter = 0
-	C.AddSpell(flagellate)
+	ruinoustelepathy = new(C)
+	ruinoustelepathy.Grant(C)
+//	flagellate = new
+//	C.AddSpell(flagellate)
 
 /datum/species/golem/ruinous/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_CULTLARGE

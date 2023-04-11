@@ -113,7 +113,7 @@
 		if(B)
 			if(!(B.resistance_flags & ON_FIRE))
 				to_chat(L, span_warning("Your [B.name] bursts into flames!"))
-			for(var/obj/item/storage/book/bible/BI in L.GetAllContents())
+			for(var/obj/item/storage/book/bible/BI in L.get_all_contents())
 				if(!(BI.resistance_flags & ON_FIRE))
 					BI.fire_act()
 			continue

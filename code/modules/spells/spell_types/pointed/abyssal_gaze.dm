@@ -35,9 +35,6 @@
 	owner.playsound_local(get_turf(owner), 'sound/effects/ghost2.ogg', 50, 1)
 	cast_on.become_blind(ABYSSAL_GAZE_BLIND)
 	addtimer(CALLBACK(src, PROC_REF(cure_blindness), cast_on), blind_duration)
-	if(ishuman(cast_on))
-		var/mob/living/carbon/human/human_cast_on = cast_on
-		human_cast_on.adjust_coretemperature(-amount_to_cool)
 	cast_on.adjust_bodytemperature(-amount_to_cool)
 
 /**

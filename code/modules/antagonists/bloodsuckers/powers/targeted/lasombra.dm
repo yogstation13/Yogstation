@@ -56,7 +56,7 @@
 		var/mob/living/L = target_atom
 		if(isethereal(L))
 			L.emp_act(EMP_LIGHT)
-		for(var/obj/item/O in L.GetAllContents())
+		for(var/obj/item/O in L.get_all_contents())
 			if(O.light_range && O.light_power)
 				disintegrate(O)
 			if(L.pulling && L.pulling.light_range && isitem(L.pulling))

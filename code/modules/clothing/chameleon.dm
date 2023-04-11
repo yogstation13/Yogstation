@@ -72,11 +72,18 @@
 	name = "Select Chameleon Outfit"
 	button_icon_state = "chameleon_outfit"
 	var/list/outfit_options //By default, this list is shared between all instances. It is not static because if it were, subtypes would not be able to have their own. If you ever want to edit it, copy it first.
-	syndicate = TRUE
-	
+	var/syndicate = FALSE
+
 /datum/action/chameleon_outfit/New()
 	..()
 	initialize_outfits()
+
+/datum/action/chameleon_outfit/IsAvailable()
+	if(syndicate)
+		if(!is_syndicate(owner))
+			HideFrom(owner)
+		return is_syndicate(owner)
+	return ..()
 
 /datum/action/chameleon_outfit/proc/initialize_outfits()
 	var/static/list/standard_outfit_options
@@ -144,6 +151,7 @@
 	var/chameleon_name = "Item"
 	var/emp_timer
 	var/current_disguise = null
+	var/syndicate = FALSE
 
 /datum/action/item_action/chameleon/change/Grant(mob/M)
 	if(M && (owner != M))
@@ -164,8 +172,7 @@
 	..()
 
 /datum/action/item_action/chameleon/change/proc/initialize_disguises()
-	if(button)
-		button.name = "Change [chameleon_name] Appearance"
+	name = "Change [chameleon_name] Appearance"
 
 	chameleon_blacklist |= typecacheof(target.type)
 	for(var/V in typesof(chameleon_type))

@@ -372,7 +372,7 @@
 		If that food happens to be a horribly ruined mess or the chef scrapped out of the microwave, or poisoned in some way, \
 		then it might have negative effects on the bag..."
 	icon_state = "duffel-curse"
-	inhand_icon_state = "duffel-curse"
+	item_state = "duffel-curse"
 	slowdown = 1.5
 	max_integrity = 100
 

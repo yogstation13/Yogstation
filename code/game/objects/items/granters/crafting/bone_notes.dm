@@ -1,4 +1,4 @@
-/obj/item/book/granter/crafting_recipe/boneyard_notes
+/*/obj/item/book/granter/crafting_recipe/boneyard_notes
 	name = "The Complete Works of Lavaland Bone Architecture"
 	desc = "Pried from the lead Archaeologist's cold, dead hands, this seems to explain how ancient bone architecture was erected long ago."
 	crafting_recipe_types = list(
@@ -17,4 +17,4 @@
 		"The page is just filled with insane ramblings about some 'legion' thing.",
 		"But why would they need vinegar to polish the bones? And rags too?",
 		"You spend a few moments cleaning dirt and blood off of the page, yeesh.",
-	)
+	)*/

@@ -467,7 +467,7 @@
 	expose_ability = new(src)
 
 /obj/item/clothing/glasses/godeye/Destroy()
-	QDEL_NULL(scan_ability)
+	QDEL_NULL(expose_ability)
 	return ..()
 
 /obj/item/clothing/glasses/godeye/equipped(mob/living/user, slot)
@@ -522,7 +522,7 @@
 	living_exposed.apply_status_effect(STATUS_EFFECT_EXPOSED)
 	living_exposed.adjust_jitter(5 SECONDS)
 	to_chat(living_exposed, span_warning("You feel the gaze of a malevolent presence focus on you!"))
-	owner.playsound_local(get_turf(ranged_ability_user), 'sound/magic/smoke.ogg', 50, TRUE)
+	owner.playsound_local(get_turf(owner), 'sound/magic/smoke.ogg', 50, TRUE)
 
 	living_exposed.playsound_local(get_turf(living_exposed), 'sound/hallucinations/i_see_you1.ogg', 50, TRUE)
 	owner.balloon_alert(owner, "[living_exposed] exposed!")

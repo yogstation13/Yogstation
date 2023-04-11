@@ -78,7 +78,7 @@
 		return
 
 	// We are ventcrawling - can our new form support ventcrawling?
-	if(cast_on.ventcrawler = VENTCRAWLER_ALWAYS || cast_on.ventcrawler = VENTCRAWLER_NUDE)
+	if(cast_on.ventcrawler == VENTCRAWLER_ALWAYS || cast_on.ventcrawler == VENTCRAWLER_NUDE)
 		return
 
 	// Uh oh. You've shapeshifted into something that can't fit into a vent, while ventcrawling.

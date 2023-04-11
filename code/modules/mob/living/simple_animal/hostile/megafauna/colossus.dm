@@ -726,7 +726,8 @@ Difficulty: Very Hard
 
 /mob/living/simple_animal/hostile/lightgeist/healing/photogeist/Initialize()
 	. = ..()
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/plants)
+	var/datum/action/cooldown/spell/conjure/plants/terrarium = new(src)
+	terrarium.Grant(src)
 
 /mob/living/simple_animal/hostile/lightgeist/healing/photogeist/AttackingTarget() //photogeists can only heal plantlike stuff
 	var/mob/living/L = target
@@ -734,15 +735,15 @@ Difficulty: Very Hard
 		return FALSE
 	. = ..()
 
-/obj/effect/proc_holder/spell/aoe_turf/conjure/plants
+/datum/action/cooldown/spell/conjure/plants
 	name = "Seed Plants"
 	desc = "This spell seeds a random plant into the floor."
-	school = "conjuration"
-	charge_max = 200
-	clothes_req = FALSE
-	invocation = "none"
-	invocation_type = "none"
-	range = 0
+	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	button_icon_state = "plant"
+
+	invocation_type = INVOCATION_NONE
+
+	cooldown_time = 20 SECONDS
 	summon_type = list(
 		/obj/structure/flora/ausbushes,
 		/obj/structure/flora/ausbushes/leafybush,
@@ -752,8 +753,7 @@ Difficulty: Very Hard
 		/obj/structure/flora/ausbushes/ppflowers,
 		/obj/structure/flora/ausbushes/fullgrass
 	)
-	action_icon = 'icons/mob/actions/actions_animal.dmi'
-	action_icon_state = "plant"
+	spell_requirements = NONE
 
 /obj/effect/mob_spawn/photogeist
 	name = "dormant photogeist"

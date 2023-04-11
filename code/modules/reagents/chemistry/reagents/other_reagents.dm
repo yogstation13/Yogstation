@@ -188,7 +188,7 @@
 		return
 	if(method == TOUCH)
 		M.adjust_fire_stacks(-(reac_volume / 10))
-		M.ExtinguishMob()
+		M.extinguish_mob()
 	..()
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)

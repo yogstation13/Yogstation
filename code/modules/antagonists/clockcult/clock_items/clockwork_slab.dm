@@ -16,7 +16,7 @@
 	var/no_cost = FALSE //If the slab is admin-only and needs no components and has no scripture locks
 	var/speed_multiplier = 1 //multiples how fast this slab recites scripture
 	var/selected_scripture = SCRIPTURE_DRIVER
-	var/obj/effect/proc_holder/slab/slab_ability //the slab's current bound ability, for certain scripture
+	var/datum/action/cooldown/slab/slab_ability //the slab's current bound ability, for certain scripture
 
 	var/recollecting = FALSE //if we're looking at fancy recollection
 	var/recollection_category = "Default"
@@ -93,14 +93,14 @@
 
 /obj/item/clockwork/slab/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	if(slab_ability && slab_ability.ranged_ability_user)
-		slab_ability.remove_ranged_ability()
+	if(slab_ability && slab_ability.owner)
+		slab_ability.unset_click_ability(slab_ability.owner)
 	slab_ability = null
 	return ..()
 
 /obj/item/clockwork/slab/dropped(mob/user)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/check_on_mob, user), 1) //dropped is called before the item is out of the slot, so we need to check slightly later
+	addtimer(CALLBACK(src, PROC_REF(check_on_mob), user), 1) //dropped is called before the item is out of the slot, so we need to check slightly later
 
 /obj/item/clockwork/slab/worn_overlays(isinhands = FALSE, icon_file)
 	. = list()
@@ -109,8 +109,8 @@
 		. += M
 
 /obj/item/clockwork/slab/proc/check_on_mob(mob/user)
-	if(user && !(src in user.held_items) && slab_ability && slab_ability.ranged_ability_user) //if we happen to check and we AREN'T in user's hands, remove whatever ability we have
-		slab_ability.remove_ranged_ability()
+	if(user && !(src in user.held_items) && slab_ability && slab_ability.owner) //if we happen to check and we AREN'T in user's hands, remove whatever ability we have
+		slab_ability.unset_click_ability(user)
 
 //Power generation
 /obj/item/clockwork/slab/process()

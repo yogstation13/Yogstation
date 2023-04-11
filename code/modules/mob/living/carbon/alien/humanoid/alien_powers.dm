@@ -129,7 +129,7 @@ Doesn't work on other aliens/AI.*/
 		to_chat(owner, span_noticealien("There's no one around to whisper to."))
 		return FALSE
 
-	var/mob/living/chosen_recipient = tgui_input_list(owner, "Select whisper recipient", "Whisper", sort_names(possible_recipients))
+	var/mob/living/chosen_recipient = tgui_input_list(owner, "Select whisper recipient", "Whisper", sortUsernames(possible_recipients))
 	if(!chosen_recipient)
 		return FALSE
 
@@ -170,7 +170,7 @@ Doesn't work on other aliens/AI.*/
 		to_chat(owner, span_noticealien("There are no other aliens around."))
 		return FALSE
 
-	var/mob/living/carbon/donation_target = tgui_input_list(owner, "Target to transfer to", "Plasma Donation", sort_names(aliens_around))
+	var/mob/living/carbon/donation_target = tgui_input_list(owner, "Target to transfer to", "Plasma Donation", sortUsernames(aliens_around))
 	if(!donation_target)
 		return FALSE
 
@@ -235,13 +235,6 @@ Doesn't work on other aliens/AI.*/
 	)
 	return TRUE
 
-/obj/effect/proc_holder/alien/acid/fire(mob/living/carbon/alien/user)
-	var/O = input("Select what to dissolve:","Dissolve",null) as obj|turf in oview(1,user)
-	if(!O || user.incapacitated())
-		return 0
-	else
-		return corrode(O,user)
-
 /datum/action/cooldown/alien/acid/neurotoxin
 	name = "Spit Neurotoxin"
 	desc = "Spits neurotoxin at someone, paralyzing them for a short time."
@@ -292,7 +285,7 @@ Doesn't work on other aliens/AI.*/
 		span_danger("[caller] spits neurotoxin!"),
 		span_alertalien("You spit neurotoxin."),
 	)
-	var/obj/item/projectile/neurotoxin/neurotoxin = new /obj/item/projectile/neurotoxin(caller.loc)
+	var/obj/item/projectile/bullet/neurotoxin/neurotoxin = new /obj/item/projectile/bullet/neurotoxin(caller.loc)
 	neurotoxin.preparePixelProjectile(target, caller, modifiers)
 	neurotoxin.firer = caller
 	neurotoxin.fire()

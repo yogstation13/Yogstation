@@ -2,6 +2,7 @@
 
 /atom/movable/screen/movable/action_button
 	var/datum/action/linked_action
+	var/datum/hud/our_hud
 	var/actiontooltipstyle = ""
 	screen_loc = null
 
@@ -105,7 +106,7 @@
 			var/datum/action/A = V
 			if(A.owner != usr)
 				continue // This isnt your button fuck off
-			var/atom/movable/screen/movable/action_button/B = A.button
+			var/atom/movable/screen/movable/action_button/B = A.viewers[usr.hud_used]
 			B.moved = FALSE
 			if(B.id && usr.client)
 				usr.client.prefs.action_buttons_screen_locs["[B.name]_[B.id]"] = null
@@ -132,7 +133,7 @@
 		var/datum/action/A = V
 		if(A.owner != user)
 			continue // This isnt your button fuck off
-		var/atom/movable/screen/movable/action_button/B = A.button
+		var/atom/movable/screen/movable/action_button/B = A.viewers[user.hud_used]
 		B.moved = FALSE
 	if(moved)
 		moved = FALSE
@@ -190,14 +191,15 @@
 	var/button_number = 0
 	if(hud_used.action_buttons_hidden)
 		for(var/datum/action/A in actions)
-			A.button.screen_loc = null
+			var/atom/movable/screen/movable/action_button/button = A.viewers[hud_used]
+			A.UpdateButtons()
 			if(reload_screen)
-				client.screen += A.button
+				client.screen += button
 	else
 		for(var/datum/action/A in actions)
 			var/is_owner = (A.owner == src)
 			A.UpdateButtons()
-			var/atom/movable/screen/movable/action_button/B = A.button
+			var/atom/movable/screen/movable/action_button/B = A.viewers[hud_used]
 			if(B.ordered)
 				button_number++
 			if(B.moved && is_owner)

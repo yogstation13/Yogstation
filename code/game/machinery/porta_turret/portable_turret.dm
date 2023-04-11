@@ -558,6 +558,7 @@
 	A.preparePixelProjectile(target, T)
 	A.firer = src
 	A.fired_from = src
+	A.ignored_factions = faction
 	A.fire()
 	return A
 

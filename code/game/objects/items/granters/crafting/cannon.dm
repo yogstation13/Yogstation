@@ -1,4 +1,4 @@
-/obj/item/book/granter/crafting_recipe/trash_cannon
+/*/obj/item/book/granter/crafting_recipe/trash_cannon
 	name = "diary of a demoted engineer"
 	desc = "A lost journal. The engineer seems very deranged about their demotion."
 	crafting_recipe_types = list(
@@ -17,3 +17,4 @@
 /obj/item/book/granter/crafting_recipe/trash_cannon/recoil(mob/living/user)
 	to_chat(user, span_warning("The book turns to dust in your hands."))
 	qdel(src)
+*/

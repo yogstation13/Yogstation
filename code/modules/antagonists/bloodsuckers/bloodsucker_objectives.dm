@@ -198,7 +198,7 @@
 	if(!owner.current)
 		return FALSE
 
-	var/list/all_items = owner.current.GetAllContents()
+	var/list/all_items = owner.current.get_all_contents()
 	var/heart_count = 0
 	for(var/obj/item/organ/heart/current_hearts in all_items)
 		if(current_hearts.organ_flags & ORGAN_SYNTHETIC) // No robo-hearts allowed

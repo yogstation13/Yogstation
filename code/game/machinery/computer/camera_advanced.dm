@@ -330,7 +330,7 @@
 	var/cancel = FALSE //if TRUE, an active warp will be canceled
 	var/obj/effect/temp_visual/ratvar/warp_marker/warping
 
-/datum/action/innate/servant_warp/Activate()
+/datum/action/innate/servant_warp/Activate(atom/target)
 	if(QDELETED(target) || !(ishuman(owner) || iscyborg(owner)) || !owner.canUseTopic(target))
 		return
 	if(!GLOB.servants_active) //No leaving unless there's servants from the get-go
@@ -340,7 +340,7 @@
 		return
 	var/mob/living/carbon/human/user = owner
 	var/mob/camera/aiEye/remote/remote_eye = user.remote_control
-	var/obj/machinery/computer/camera_advanced/ratvar/R  = target
+	var/obj/machinery/computer/camera_advanced/ratvar/R = target
 	var/turf/T = get_turf(remote_eye)
 	if(!is_reebe(user.z) || !is_station_level(T.z))
 		return

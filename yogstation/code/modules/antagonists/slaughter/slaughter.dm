@@ -73,8 +73,8 @@
 
 	// Grant us a speed boost if we're on the mortal plane
 	if(isturf(loc))
-		add_movespeed_modifier(/datum/movespeed_modifier/slaughter)
-		addtimer(CALLBACK(src, PROC_REF(remove_movespeed_modifier), /datum/movespeed_modifier/slaughter), 6 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		add_movespeed_modifier(MOVESPEED_ID_SLAUGHTER, TRUE, 100, override = TRUE, multiplicative_slowdown = -1)
+		addtimer(CALLBACK(src, PROC_REF(remove_movespeed_modifier), MOVESPEED_ID_SLAUGHTER, TRUE), 6 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 	// Reset our streaks
 	current_hitstreak = 0

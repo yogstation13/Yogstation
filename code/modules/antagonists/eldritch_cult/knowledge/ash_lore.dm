@@ -34,12 +34,11 @@
 	var/mob/living/carbon/C = target
 	var/datum/status_effect/eldritch/E = C.has_status_effect(/datum/status_effect/eldritch/rust) || C.has_status_effect(/datum/status_effect/eldritch/ash) || C.has_status_effect(/datum/status_effect/eldritch/flesh)
 	if(E)
-		E.on_effect()
-		for(var/X in user.mind.spell_list)
-			if(!istype(X, /datum/action/cooldown/spell/touch/mansus_grasp))
-				continue
-			var/datum/action/cooldown/spell/touch/mansus_grasp/MG = X
-			MG.charge_counter = min(round(MG.charge_counter + MG.charge_max * 0.75),MG.charge_max) // refunds 75% of charge.
+		// Also refunds 75% of charge!
+		var/datum/action/cooldown/spell/touch/mansus_grasp/grasp = locate() in user.actions
+		if(grasp)
+			grasp.next_use_time = min(round(grasp.next_use_time - grasp.cooldown_time * 0.75, 0), 0)
+			grasp.UpdateButtons()
 
 /datum/eldritch_knowledge/ashen_shift
 	name = "Ashen Shift"
@@ -130,7 +129,7 @@
 	gain_text = "At first I didn't know these instruments of war, but The Priest told me to use them."
 	desc = "Gives AOE spell that causes heavy bleeding and blood loss."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/pointed/cleave)
+	spells_to_add = list(/datum/action/cooldown/spell/pointed/cleave)
 	tier = TIER_3
 
 /datum/eldritch_knowledge/ash_final

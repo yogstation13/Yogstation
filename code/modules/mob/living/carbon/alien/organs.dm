@@ -31,7 +31,7 @@
 
 /obj/item/organ/alien/plasmavessel/prepare_eat()
 	var/obj/S = ..()
-	S.reagents.add_reagent(/datum/reagent/toxin/plasma, storedPlasma/10)
+	S.reagents.add_reagent(/datum/reagent/toxin/plasma, stored_plasma/10)
 	return S
 
 /obj/item/organ/alien/plasmavessel/large
@@ -63,7 +63,7 @@
 /obj/item/organ/alien/plasmavessel/synthetic
 	name = "synthetic plasma vessel"
 	icon_state = "plasma-c"
-	storedPlasma = 50
+	stored_plasma = 50
 	max_plasma = 100
 
 /obj/item/organ/alien/plasmavessel/on_life()

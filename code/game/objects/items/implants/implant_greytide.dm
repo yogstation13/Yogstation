@@ -1,7 +1,6 @@
 /obj/item/implant/greytide
 	name = "Greytide implant"
 	desc = "Turn a crewmate into greytider"
-	activated = FALSE
 
 /obj/item/implant/greytide/get_data()
 	var/dat = {"

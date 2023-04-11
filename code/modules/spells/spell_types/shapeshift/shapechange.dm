@@ -17,6 +17,6 @@
 		/mob/living/simple_animal/pet/dog/corgi,
 		/mob/living/simple_animal/hostile/carp/ranged/chaos,
 		/mob/living/simple_animal/bot/ed209,
-		/mob/living/simple_animal/hostile/giant_spider/poison/viper/wizard,
+		/mob/living/simple_animal/hostile/poison/giant_spider,
 		/mob/living/simple_animal/hostile/construct/armored,
 	)

@@ -85,11 +85,11 @@
 
 /obj/item/melee/touch_attack/mansus_fist
 	name = "Mansus Grasp"
-		desc = "A sinister looking aura that distorts the flow of reality around it. \
+	desc = "A sinister looking aura that distorts the flow of reality around it. \
 		Causes knockdown, minor bruises, and major stamina damage. \
 		It gains additional beneficial effects as you expand your knowledge of the Mansus."
-	icon_state = "disintegrate"
-	item_state = "disintegrate"
+	icon_state = "mansus"
+	item_state = "mansus"
 
 /obj/item/melee/touch_attack/mansus_fist/ignition_effect(atom/A, mob/user)
 	. = span_notice("[user] effortlessly snaps [user.p_their()] fingers near [A], igniting it with eldritch energies. Fucking badass!")
@@ -277,32 +277,40 @@
 	cast_range = 9
 	/// The radius of the cleave effect
 	var/cleave_radius = 1
+	/// What type of wound we apply
+	var/wound_type = /datum/wound/slash/critical/cleave
 
 /datum/action/cooldown/spell/pointed/cleave/is_valid_target(atom/cast_on)
 	return ..() && ishuman(cast_on)
 
 /datum/action/cooldown/spell/pointed/cleave/cast(mob/living/carbon/human/cast_on)
 	. = ..()
-	var/list/mob/living/carbon/human/nearby = list(cast_on)
-	for(var/mob/living/carbon/human/nearby_human in range(cleave_radius, cast_on))
-		nearby += nearby_human
-
-	for(var/mob/living/carbon/human/victim as anything in nearby)
-		if(victim == owner)
+	for(var/mob/living/carbon/human/victim in range(cleave_radius, cast_on))
+		if(victim == owner || IS_HERETIC(victim) || IS_HERETIC_MONSTER(victim))
 			continue
-		if(victim.anti_magic_check())
-			to_chat(owner, span_warning("The spell had no effect!"))
-			victim.visible_message(span_danger("[victim]'s veins emit a dull glow, but their magic protection repulses the blaze!"), \
-							span_danger("You see a dull glow and feel a faint prickling sensation in your veins, but your magic protection prevents ignition!"))
+		if(victim.can_block_magic(antimagic_flags))
+			victim.visible_message(
+				span_danger("[victim]'s flashes in a firey glow, but repels the blaze!"),
+				span_danger("Your body begins to flash a firey glow, but you are protected!!")
+			)
 			continue
 
-		victim.visible_message(span_danger("[victim]'s veins are shredded from within as an unholy blaze erupts from their blood!"), \
-							span_danger("You feel your skin scald as superheated blood bursts from your veins!"))
-		var/obj/item/bodypart/bodypart = pick(target.bodyparts)
-		var/datum/wound/slash/critical/crit_wound = new
+		if(!victim.blood_volume)
+			continue
+
+		victim.visible_message(
+			span_danger("[victim]'s veins are shredded from within as an unholy blaze erupts from [victim.p_their()] blood!"),
+			span_danger("Your veins burst from within and unholy flame erupts from your blood!")
+		)
+
+		var/obj/item/bodypart/bodypart = pick(victim.bodyparts)
+		var/datum/wound/slash/crit_wound = new wound_type()
 		crit_wound.apply_wound(bodypart)
 		victim.apply_damage(20, BURN, wound_bonus = CANT_WOUND)
-		new /obj/effect/temp_visual/cleave(target.drop_location())
+
+		new /obj/effect/temp_visual/cleave(get_turf(victim))
+
+	return TRUE
 
 /datum/action/cooldown/spell/pointed/cleave/long
 	name = "Deeper Cleave"
@@ -444,10 +452,11 @@
 	sound = 'sound/items/welder.ogg'
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 30 SECONDS
 	invocation = "C'SC'DE"
 	invocation_type = INVOCATION_WHISPER
-		spell_requirements = NONE
+
+	cooldown_time = 30 SECONDS
+	spell_requirements = NONE
 
 	/// The radius the flames will go around the caster.
 	var/flame_radius = 4
@@ -537,19 +546,19 @@
 			fried_living.apply_damage(2.5 * delta_time, BURN)
 
 
-/obj/effect/proc_holder/spell/targeted/worm_contract
+/datum/action/cooldown/spell/worm_contract
 	name = "Force Contract"
 	desc = "Forces all the worm parts to collapse onto a single turf"
-	invocation_type = "none"
-	clothes_req = FALSE
-	action_background_icon_state = "bg_ecult"
-	range = -1
-	include_user = TRUE
-	charge_max = 300
-	action_icon = 'icons/mob/actions/actions_ecult.dmi'
-	action_icon_state = "worm_contract"
+	background_icon_state = "bg_ecult"
+	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "worm_contract"
 
-/obj/effect/proc_holder/spell/targeted/worm_contract/cast(list/targets, mob/user)
+	invocation_type = INVOCATION_NONE
+
+	cooldown_time = 30 SECONDS
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/worm_contract/cast(mob/living/user)
 	. = ..()
 	if(!istype(user,/mob/living/simple_animal/hostile/eldritch/armsy))
 		to_chat(user, span_userdanger("You try to contract your muscles but nothing happens..."))
@@ -683,41 +692,6 @@
 		return FALSE
 	return TRUE
 
-/datum/action/innate/mansus_speech
-	name = "Mansus Link"
-	desc = "Send a psychic message to everyone connected to your mansus link."
-	button_icon_state = "link_speech"
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
-	background_icon_state = "bg_ecult"
-	var/mob/living/simple_animal/hostile/eldritch/raw_prophet/originator
-
-/datum/action/innate/mansus_speech/New(_originator)
-	. = ..()
-	originator = _originator
-
-/datum/action/innate/mansus_speech/Activate()
-	var/mob/living/living_owner = owner
-	if(!originator?.linked_mobs[living_owner])
-		CRASH("Uh oh the mansus link got somehow activated without it being linked to a raw prophet or the mob not being in a list of mobs that should be able to do it.")
-
-	var/message = sanitize(input("Message:", "Telepathy from the Manse") as text|null)
-
-	if(QDELETED(living_owner))
-		return
-
-	if(!originator?.linked_mobs[living_owner])
-		to_chat(living_owner, span_warning("The link seems to have been severed..."))
-		Remove(living_owner)
-		return
-	if(message)
-		var/msg = "<i><font color=#568b00>\[Mansus Link\] <b>[living_owner]:</b> [message]</font></i>"
-		log_directed_talk(living_owner, originator, msg, LOG_SAY, "Mansus Link")
-		to_chat(originator.linked_mobs, msg)
-
-		for(var/dead_mob in GLOB.dead_mob_list)
-			var/link = FOLLOW_LINK(dead_mob, living_owner)
-			to_chat(dead_mob, "[link] [msg]")
-
 // Given to heretic monsters.
 /datum/action/cooldown/spell/pointed/blind/eldritch
 	name = "Eldritch Blind"
@@ -801,3 +775,29 @@
 		return 3
 	else
 		return 2
+
+// Action for Raw Prophets that boosts up or shrinks down their sight range.
+/datum/action/innate/expand_sight
+	name = "Expand Sight"
+	desc = "Boosts your sight range considerably, allowing you to see enemies from much further away."
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	button_icon_state = "eye"
+	background_icon_state = "bg_heretic"
+	/// How far we expand the range to.
+	var/boost_to = 5
+	/// A cooldown for the last time we toggled it, to prevent spam.
+	COOLDOWN_DECLARE(last_toggle)
+
+/datum/action/innate/expand_sight/IsAvailable(feedback = FALSE)
+	return ..() && COOLDOWN_FINISHED(src, last_toggle)
+
+/datum/action/innate/expand_sight/Activate()
+	active = TRUE
+	owner.client?.view_size.setTo(boost_to)
+	playsound(owner, pick('sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg'), 50, TRUE, ignore_walls = FALSE)
+	COOLDOWN_START(src, last_toggle, 8 SECONDS)
+
+/datum/action/innate/expand_sight/Deactivate()
+	active = FALSE
+	owner.client?.view_size.resetToDefault()
+	COOLDOWN_START(src, last_toggle, 4 SECONDS)

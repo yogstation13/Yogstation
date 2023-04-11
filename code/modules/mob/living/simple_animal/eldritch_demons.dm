@@ -70,7 +70,6 @@
 	AddComponent(/datum/component/mind_linker, \
 		network_name = "Mansus Link", \
 		chat_color = "#568b00", \
-		linker_action_path = /datum/action/cooldown/manse_link, \
 		linker_action_path = /datum/action/cooldown/spell/pointed/manse_link, \
 		link_message = on_link_message, \
 		unlink_message = on_unlink_message, \
@@ -78,23 +77,43 @@
 		speech_action_background_icon_state = "bg_ecult", \
 	)
 
-/mob/living/simple_animal/hostile/eldritch/raw_prophet/proc/after_unlink(mob/living/mob_linked)
-	if(!linked_mobs[mob_linked])
+/mob/living/simple_animal/hostile/eldritch/raw_prophet/attack_animal(mob/living/simple_animal/user, list/modifiers)
+	if(user == src) // Easy to hit yourself + very fragile = accidental suicide, prevent that
 		return
-	UnregisterSignal(mob_linked, list(COMSIG_GLOB_MOB_DEATH, COMSIG_PARENT_QDELETING))
-	var/datum/action/innate/mansus_speech/action = linked_mobs[mob_linked]
-	action.Remove(mob_linked)
-	qdel(action)
-	to_chat(mob_linked, span_notice("You feel something tear out of your mind as the [src]'s Mansus Link leaves your mind."))
-	mob_linked.emote("Scream")
-	//micro stun
-	mob_linked.AdjustParalyzed(0.5 SECONDS)
-	linked_mobs -= mob_linked
 
-/mob/living/simple_animal/hostile/eldritch/raw_prophet/death(gibbed)
-	for(var/linked_mob in linked_mobs)
-		unlink_mob(linked_mob)
 	return ..()
+
+/mob/living/simple_animal/hostile/eldritch/raw_prophet/AttackingTarget(atom/attacked_target)
+	if(WEAKREF(attacked_target) == last_target)
+		melee_damage_lower = min(melee_damage_lower + 5, 30)
+		melee_damage_upper = min(melee_damage_upper + 5, 35)
+	else
+		melee_damage_lower = initial(melee_damage_lower)
+		melee_damage_upper = initial(melee_damage_upper)
+
+	. = ..()
+	if(!.)
+		return
+
+	SpinAnimation(5, 1)
+	last_target = WEAKREF(attacked_target)
+
+/mob/living/simple_animal/hostile/eldritch/raw_prophet/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	. = ..()
+	var/rotation_degree = (360 / 3)
+	if(movement_dir & WEST || movement_dir & SOUTH)
+		rotation_degree *= -1
+
+	var/matrix/to_turn = matrix(transform)
+	to_turn = turn(transform, rotation_degree)
+	animate(src, transform = to_turn, time = 0.1 SECONDS)
+
+/mob/living/simple_animal/hostile/eldritch/raw_prophet/proc/after_unlink(mob/living/unlinked_mob)
+	if(QDELETED(unlinked_mob) || unlinked_mob.stat == DEAD)
+		return
+
+	INVOKE_ASYNC(unlinked_mob, TYPE_PROC_REF(/mob, emote), "scream")
+	unlinked_mob.AdjustParalyzed(0.5 SECONDS) //micro stun
 
 /mob/living/simple_animal/hostile/eldritch/armsy
 	name = "Terror of the night"

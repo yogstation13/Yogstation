@@ -1,4 +1,4 @@
-/obj/item/book/granter/crafting_recipe/pipegun_prime
+/*/obj/item/book/granter/crafting_recipe/pipegun_prime
 	name = "diary of a dead assistant"
 	desc = "A battered journal. Looks like he had a pretty rough life."
 	crafting_recipe_types = list(
@@ -17,3 +17,4 @@
 /obj/item/book/granter/crafting_recipe/pipegun_prime/recoil(mob/living/user)
 	to_chat(user, span_warning("The book turns to dust in your hands."))
 	qdel(src)
+*/

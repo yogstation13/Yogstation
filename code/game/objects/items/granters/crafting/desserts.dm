@@ -1,4 +1,4 @@
-/obj/item/book/granter/crafting_recipe/cooking_sweets_101
+/*/obj/item/book/granter/crafting_recipe/cooking_sweets_101
 	name = "Cooking Desserts 101"
 	desc = "A cook book that teaches you some more of the newest desserts. AI approved, and a best seller on Honkplanet."
 	crafting_recipe_types = list(
@@ -18,3 +18,4 @@
 		"A clown must have made this page, or they forgot to spell check it before printing...",
 		"Wait, a way to cook slime to be safe?",
 	)
+*/

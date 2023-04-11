@@ -129,7 +129,7 @@
 		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
 		mult *= 8 // Increase multiplier if we're sleeping in a coffin.
 		costMult *= 0 // No cost if we're sleeping in a coffin.
-		user.ExtinguishMob()
+		user.extinguish_mob()
 		user.remove_all_embedded_objects() // Remove Embedded!
 		if(check_limbs(costMult))
 			return TRUE

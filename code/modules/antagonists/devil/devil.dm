@@ -104,16 +104,16 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	var/reviveNumber = 0
 	var/form = BASIC_DEVIL
 	var/static/list/devil_spells = typecacheof(list(
-		/obj/effect/proc_holder/spell/aimed/fireball/hellish,
-		/obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork,
-		/obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork/greater,
-		/obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork/ascended,
-		/obj/effect/proc_holder/spell/targeted/infernal_jaunt,
-		/obj/effect/proc_holder/spell/targeted/sintouch,
-		/obj/effect/proc_holder/spell/targeted/sintouch/ascended,
-		/obj/effect/proc_holder/spell/targeted/summon_contract,
-		/obj/effect/proc_holder/spell/targeted/conjure_item/violin,
-		/obj/effect/proc_holder/spell/targeted/summon_dancefloor))
+		/datum/action/cooldown/spell/pointed/projectile/fireball/hellish,
+		/datum/action/cooldown/spell/conjure_item/summon_pitchfork,
+		/datum/action/cooldown/spell/conjure_item/summon_pitchfork/greater,
+		/datum/action/cooldown/spell/conjure_item/summon_pitchfork/ascended,
+		/datum/action/cooldown/spell/jaunt/infernal_jaunt,
+		/datum/action/cooldown/spell/aoe/sintouch,
+		/datum/action/cooldown/spell/aoe/sintouch/ascended,
+		/datum/action/cooldown/spell/pointed/summon_contract,
+		/datum/action/cooldown/spell/conjure_item/violin,
+		/datum/action/cooldown/spell/summon_dancefloor))
 	var/ascendable = FALSE
 
 /datum/antagonist/devil/can_be_owned(datum/mind/new_owner)
@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 
 /datum/antagonist/devil/get_admin_commands()
 	. = ..()
-	.["Toggle ascendable"] = CALLBACK(src,.proc/admin_toggle_ascendable)
+	.["Toggle ascendable"] = CALLBACK(src, .proc/admin_toggle_ascendable)
 
 
 /datum/antagonist/devil/proc/admin_toggle_ascendable(mob/admin)
@@ -322,17 +322,19 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	form = ARCH_DEVIL
 
 /datum/antagonist/devil/proc/remove_spells()
-	for(var/X in owner.spell_list)
-		var/obj/effect/proc_holder/spell/S = X
-		if(is_type_in_typecache(S, devil_spells))
-			owner.RemoveSpell(S)
+	for(var/datum/action/cooldown/spell/spells in owner.current.actions)
+		if(is_type_in_typecache(spells, devil_spells))
+			spells.Remove(owner.current)
 
 /datum/antagonist/devil/proc/give_summon_contract()
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_contract(null))
+	var/datum/action/cooldown/spell/pointed/summon_contract/summon_contract = new(owner.current)
+	summon_contract.Grant(owner.current)
 	if(obligation == OBLIGATION_FIDDLE)
-		owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/violin(null))
+		var/datum/action/cooldown/spell/conjure_item/violin/violin = new(owner.current)
+		violin.Grant(owner.current)
 	else if(obligation == OBLIGATION_DANCEOFF)
-		owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_dancefloor(null))
+		var/datum/action/cooldown/spell/summon_dancefloor/dance_floor = new(owner.current)
+		dance_floor.Grant(owner.current)
 
 /datum/antagonist/devil/proc/give_appropriate_spells()
 	remove_spells()
@@ -347,23 +349,41 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		give_base_spells()
 
 /datum/antagonist/devil/proc/give_base_spells()
-	owner.AddSpell(new /obj/effect/proc_holder/spell/aimed/fireball/hellish(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork(null))
+	var/datum/action/cooldown/spell/pointed/projectile/fireball/hellish/fireball = new(owner.current)
+	fireball.Grant(owner.current)
+
+	var/datum/action/cooldown/spell/conjure_item/summon_pitchfork/pitchfork = new(owner.current)
+	pitchfork.Grant(owner.current)
 
 /datum/antagonist/devil/proc/give_blood_spells()
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/aimed/fireball/hellish(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/infernal_jaunt(null))
+	var/datum/action/cooldown/spell/conjure_item/summon_pitchfork/pitchfork = new(owner.current)
+	pitchfork.Grant(owner.current)
+
+	var/datum/action/cooldown/spell/pointed/projectile/fireball/hellish/fireball = new(owner.current)
+	fireball.Grant(owner.current)
+
+	var/datum/action/cooldown/spell/jaunt/infernal_jaunt/jaunt = new(owner.current)
+	jaunt.Grant(owner.current)
 
 /datum/antagonist/devil/proc/give_true_spells()
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork/greater(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/aimed/fireball/hellish(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/infernal_jaunt(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/sintouch(null))
+	var/datum/action/cooldown/spell/conjure_item/summon_pitchfork/greater/better_pitchfork = new(owner.current)
+	better_pitchfork.Grant(owner.current)
+
+	var/datum/action/cooldown/spell/pointed/projectile/fireball/hellish/fireball = new(owner.current)
+	fireball.Grant(owner.current)
+
+	var/datum/action/cooldown/spell/jaunt/infernal_jaunt/jaunt = new(owner.current)
+	jaunt.Grant(owner.current)
+
+	var/datum/action/cooldown/spell/aoe/sintouch/sintouch = new(owner.current)
+	sintouch.Grant(owner.current)
 
 /datum/antagonist/devil/proc/give_arch_spells()
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork/ascended(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/sintouch/ascended(null))
+	var/datum/action/cooldown/spell/conjure_item/summon_pitchfork/ascended/betterer_pitchfork = new(owner.current)
+	betterer_pitchfork.Grant(owner.current)
+
+	var/datum/action/cooldown/spell/aoe/sintouch/ascended/better_sintouch = new(owner.current)
+	better_sintouch.Grant(owner.current)
 
 /datum/antagonist/devil/proc/beginResurrectionCheck(mob/living/body)
 	if(SOULVALUE>0)
@@ -534,10 +554,9 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	.=..()
 
 /datum/antagonist/devil/remove_innate_effects(mob/living/mob_override)
-	for(var/X in owner.spell_list)
-		var/obj/effect/proc_holder/spell/S = X
-		if(is_type_in_typecache(S, devil_spells))
-			owner.RemoveSpell(S)
+	for(var/datum/action/cooldown/spell/spells in owner.current.actions)
+		if(is_type_in_typecache(spells, devil_spells))
+			spells.Remove(owner.current)
 	owner.current.remove_all_languages(LANGUAGE_DEVIL)
 	.=..()
 

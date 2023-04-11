@@ -86,7 +86,7 @@
 	id = "nightmare"
 	limbs_id = "shadow"
 	burnmod = 1.5
-	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE)
+	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_SUIT_STORE)
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_NOBREATH,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_VIRUSIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER)
 	mutanteyes = /obj/item/organ/eyes/night_vision/nightmare
@@ -127,7 +127,7 @@
 	..()
 	if(host.dna.species.id != "nightmare")
 		host.set_species(/datum/species/shadow/nightmare)
-		visible_message(span_warning("[host] thrashes as [src] takes root in [M.p_their()] body!"))
+		visible_message(span_warning("[host] thrashes as [src] takes root in [host.p_their()] body!"))
 	
 	our_jaunt = new(host)
 	our_jaunt.Grant(host)
@@ -246,7 +246,7 @@
 			if(borg.lamp_enabled)
 				borg.smash_headlamp()
 		else if(ishuman(AM))
-			for(var/obj/item/O in AM.GetAllContents())
+			for(var/obj/item/O in AM.get_all_contents())
 				if(O.light_range && O.light_power)
 					disintegrate(O)
 		if(L.pulling && L.pulling.light_range && isitem(L.pulling))

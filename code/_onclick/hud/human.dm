@@ -199,7 +199,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "suit_storage"
 	inv_box.screen_loc = ui_sstore1
-	inv_box.slot_id = SLOT_S_STORE
+	inv_box.slot_id = SLOT_SUIT_STORE
 	static_inventory += inv_box
 
 	using = new /atom/movable/screen/resist()

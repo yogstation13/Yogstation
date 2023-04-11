@@ -204,7 +204,7 @@
 	if(viewer.client)
 		viewer.client.screen += button
 
-	button.load_position(viewer)
+//	button.load_position(viewer)
 	viewer.update_action_buttons()
 
 /// Removes our action from the passed viewer.

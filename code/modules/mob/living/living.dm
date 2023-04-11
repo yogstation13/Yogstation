@@ -597,7 +597,7 @@
 	cure_blind()
 	cure_husk()
 	heal_overall_damage(INFINITY, INFINITY, INFINITY, null, TRUE) //heal brute and burn dmg on both organic and robotic limbs, and update health right away.
-	ExtinguishMob()
+	extinguish_mob()
 	losebreath = 0
 	fire_stacks = 0
 	if(HAS_TRAIT_FROM(src, TRAIT_BADDNA, CHANGELING_DRAIN))
@@ -1054,7 +1054,7 @@
 	if(!magic && !holy && !tinfoil)
 		return
 	var/list/protection_sources = list()
-	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, tinfoil, chargecost, self, protection_sources) & COMPONENT_BLOCK_MAGIC)
+	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, tinfoil, chargecost, self, protection_sources) & COMPONENT_MAGIC_BLOCKED)
 		if(protection_sources.len)
 			return pick(protection_sources)
 		else
@@ -1135,7 +1135,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/proc/ExtinguishMob()
+/mob/living/proc/extinguish_mob()
 	if(on_fire)
 		on_fire = 0
 		fire_stacks = 0
@@ -1152,7 +1152,7 @@
 	else
 		fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
-		ExtinguishMob()
+		extinguish_mob()
 
 //Share fire evenly between the two mobs
 //Called in MobBump() and Crossed()

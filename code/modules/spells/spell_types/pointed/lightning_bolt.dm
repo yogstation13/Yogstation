@@ -38,6 +38,6 @@
 		return
 
 	var/obj/item/projectile/magic/aoe/lightning/bolt = to_fire
-	bolt.zap_range = bolt_range
-	bolt.zap_power = bolt_power
-	bolt.zap_flags = bolt_flags
+	bolt.tesla_range = bolt_range
+	bolt.tesla_power = bolt_power
+	bolt.tesla_flags = bolt_flags

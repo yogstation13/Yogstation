@@ -8,7 +8,7 @@
 		However, you are also unable to use any ranged weaponry. You can learn more about your newfound art by using the Recall Teachings verb in the Sleeping Carp tab.</span>"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll2"
-	worn_icon_state = "scroll"
+	item_state = "scroll"
 	remarks = list(
 		"Wait, a high protein diet is really all it takes to become stabproof...?",
 		"Overwhelming force, immovable object...",
@@ -21,11 +21,11 @@
 
 /obj/item/book/granter/martial/carp/on_reading_finished(mob/living/carbon/user)
 	. = ..()
-	update_appearance()
+	update_icon()
 
-/obj/item/book/granter/martial/carp/update_appearance(updates)
+/obj/item/book/granter/martial/carp/update_icon(updates)
 	. = ..()
-	if(uses <= 0)
+	if(!uses)
 		name = "empty scroll"
 		desc = "It's completely blank."
 		icon_state = "blankscroll"

@@ -116,7 +116,7 @@
 	gain_text = "Our blood is one in the same, after all. The Owl told me."
 	desc = "You gain a spell that drains enemies health and restores yours."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/touch/blood_siphon)
+	spells_to_add = list(/datum/action/cooldown/spell/pointed/blood_siphon)
 	tier = TIER_2
 
 /datum/eldritch_knowledge/flesh_blade_upgrade

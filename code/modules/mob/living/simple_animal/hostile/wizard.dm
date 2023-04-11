@@ -30,7 +30,7 @@
 	minimum_distance = 3
 	del_on_death = 1
 	loot = list(
-		/obj/effect/mob_spawn/corpse/human/wizard,
+		/obj/effect/mob_spawn/human/corpse/wizard,
 		/obj/item/staff,
 	)
 

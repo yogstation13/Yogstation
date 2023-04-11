@@ -59,10 +59,6 @@
 	var/datum/action/innate/spider/lay_web/webbing = new(src)
 	webbing.Grant(src)
 
-/mob/living/simple_animal/hostile/poison/giant_spider/Destroy()
-	QDEL_NULL(lay_web)
-	return ..()
-
 /mob/living/simple_animal/hostile/poison/giant_spider/Topic(href, href_list)
 	if(href_list["activate"])
 		var/mob/dead/observer/ghost = usr
@@ -116,7 +112,7 @@
 
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/Initialize()
 	. = ..()
-	var/datum/atom_hud/datahud = GLOB.huds[health_hud]
+	var/datum/atom_hud/datahud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	datahud.show_to(src)
 
 	var/datum/action/cooldown/wrap/wrapping = new(src)
@@ -270,11 +266,13 @@
 			//second, spin a sticky spiderweb on this tile
 			var/obj/structure/spider/stickyweb/W = locate() in get_turf(src)
 			if(!W)
-				lay_web.Activate()
+				for(var/datum/action/innate/spider/lay_web/lay_web in actions)
+					lay_web.Activate()
 			else
 				//third, lay an egg cluster there
 				if(fed)
-					lay_eggs.Activate()
+					for(var/datum/action/innate/spider/lay_eggs/lay_eggs in actions)
+						lay_eggs.Activate()
 				else
 					//fourthly, cocoon any nearby items so those pesky pinkskins can't use them
 					for(var/obj/O in can_see)
@@ -325,7 +323,8 @@
 					if(L.blood_volume && (L.stat != DEAD || !consumed_mobs[L.tag])) //if they're not dead, you can consume them anyway
 						consumed_mobs[L.tag] = TRUE
 						fed++
-						lay_eggs.UpdateButtons(TRUE)
+						for(var/datum/action/innate/spider/lay_eggs/lay_eggs in actions)
+							lay_eggs.UpdateButtons(TRUE)
 						visible_message(span_danger("[src] sticks a proboscis into [L] and sucks a viscous substance out."),span_notice("You suck the nutriment out of [L], feeding you enough to lay a cluster of eggs."))
 						L.death() //you just ate them, they're dead.
 					else
@@ -358,7 +357,7 @@
 
 	var/mob/living/simple_animal/hostile/poison/giant_spider/spider = owner
 	var/obj/structure/spider/stickyweb/web = locate() in get_turf(spider)
-	if(web && !spider.web_sealer) //if(web && (!spider.web_sealer || istype(web, /obj/structure/spider/stickyweb/sealed)))
+	if(web) //&& !spider.web_sealer) //if(web && (!spider.web_sealer || istype(web, /obj/structure/spider/stickyweb/sealed)))
 		to_chat(owner, span_warning("There's already a web here!"))
 		return FALSE
 
@@ -369,7 +368,7 @@
 
 /datum/action/innate/spider/lay_web/Activate()
 	var/turf/spider_turf = get_turf(owner)
-	var/mob/living/simple_animal/hostile/giant_spider/spider = owner
+	var/mob/living/simple_animal/hostile/poison/giant_spider/spider = owner
 	var/obj/structure/spider/stickyweb/web = locate() in spider_turf
 	if(web)
 		spider.visible_message(
@@ -385,7 +384,7 @@
 
 	spider.stop_automated_movement = TRUE
 
-	if(do_after(spider, 4 SECONDS * spider.web_speed, target = spider_turf))
+	if(do_after(spider, 4 SECONDS, target = spider_turf))
 		if(spider.loc == spider_turf)
 			if(web)
 				qdel(web)
@@ -467,21 +466,12 @@
 	if(istype(animal_owner))
 		animal_owner.stop_automated_movement = TRUE
 
-	if(do_after(owner, wrap_time, target = to_wrap, interaction_key = INTERACTION_SPIDER_KEY))
+	if(do_after(owner, wrap_time, target = to_wrap))
 		var/obj/structure/spider/cocoon/casing = new(to_wrap.loc)
 		if(isliving(to_wrap))
 			var/mob/living/living_wrapped = to_wrap
 			// if they're not dead, you can consume them anyway
 			if(ishuman(living_wrapped) && (living_wrapped.stat != DEAD || !HAS_TRAIT(living_wrapped, TRAIT_SPIDER_CONSUMED)))
-				var/datum/action/innate/spider/lay_eggs/enriched/egg_power = locate() in owner.actions
-				if(egg_power)
-					egg_power.charges++
-					egg_power.UpdateButtons()
-					owner.visible_message(
-						span_danger("[owner] sticks a proboscis into [living_wrapped] and sucks a viscous substance out."),
-						span_notice("You suck the nutriment out of [living_wrapped], feeding you enough to lay a cluster of enriched eggs."),
-					)
-
 				living_wrapped.death() //you just ate them, they're dead.
 			else
 				to_chat(owner, span_warning("[living_wrapped] cannot sate your hunger!"))
@@ -523,13 +513,13 @@
 		span_notice("You begin to lay a cluster of eggs."),
 	)
 
-	var/mob/living/simple_animal/hostile/giant_spider/spider = owner
+	var/mob/living/simple_animal/hostile/poison/giant_spider/spider = owner
 	spider.stop_automated_movement = TRUE
 
 	if(do_after(owner, egg_lay_time, target = get_turf(owner)))
 		var/obj/structure/spider/eggcluster/eggs = locate() in get_turf(owner)
 		if(!eggs || !isturf(spider.loc))
-			var/obj/structure/spider/eggcluster/eggs/new_eggs = new /obj/structure/spider/eggcluster/eggs(get_turf(spider))
+			var/obj/structure/spider/eggcluster/new_eggs = new /obj/structure/spider/eggcluster(get_turf(spider))
 			new_eggs.directive = spider.directive
 			new_eggs.faction = spider.faction
 			UpdateButtons(TRUE)
@@ -546,7 +536,7 @@
 	return ..() && istype(owner, /mob/living/simple_animal/hostile/poison/giant_spider)
 
 /datum/action/innate/spider/set_directive/Activate()
-	var/mob/living/simple_animal/hostile/giant_spider/midwife/spider = owner
+	var/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife/spider = owner
 
 	spider.directive = tgui_input_text(spider, "Enter the new directive", "Create directive", "[spider.directive]")
 	if(isnull(spider.directive) || QDELETED(src) || QDELETED(owner) || !IsAvailable())

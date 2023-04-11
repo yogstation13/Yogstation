@@ -38,6 +38,7 @@
 		vassal.see_in_dark = 8
 		vassal.eye_color = BLOODCULT_EYE
 		vassal.updateappearance()
-	var/list/powers = list(new /obj/effect/proc_holder/spell/targeted/lesser_glare, new /obj/effect/proc_holder/spell/targeted/shadowwalk)
-	for(var/obj/effect/proc_holder/spell/targeted/power in powers)
-		vassaldatum.owner.AddSpell(power)
+	var/list/powers = list(/datum/action/cooldown/spell/pointed/lesser_glare, /datum/action/cooldown/spell/jaunt/shadow_walk)
+	for(var/datum/action/cooldown/spell/power in powers)
+		power = new(vassaldatum.owner.current)
+		power.Grant(vassaldatum.owner.current)

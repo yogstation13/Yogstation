@@ -131,7 +131,7 @@
 			if(exposed_I && !(exposed_I.type in chronosafe_items) && user.dropItemToGround(exposed_I))
 				to_chat(user, span_notice("Your [exposed_I.name] got left behind."))
 
-		user.ExtinguishMob()
+		user.extinguish_mob()
 
 		for(var/obj/item/I in user.held_items)
 			ADD_TRAIT(I, TRAIT_NODROP, CHRONOSUIT_TRAIT)

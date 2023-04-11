@@ -12,8 +12,12 @@
 	SSticker.mode.shadows += owner
 	owner.special_role = "Shadowling"
 	log_game("[key_name(owner.current)] was made into a shadowling!")
-	owner.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hatch(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hivemind(null))
+	var/datum/action/cooldown/spell/shadowling_hatch/hatch = new(owner.current)
+	hatch.Grant(owner.current)
+
+	var/datum/action/cooldown/spell/shadowling_hivemind/hivemind_chat = new(owner.current)
+	hivemind_chat.Grant(owner.current)
+
 	handle_clown_mutation(owner.current, "Your alien nature has allowed you to overcome your clownishness.")
 	var/datum/objective/ascend/O = new
 	O.update_explanation_text()
@@ -33,9 +37,8 @@
 	message_admins("[key_name_admin(owner.current)] was de-shadowlinged!")
 	log_game("[key_name(owner.current)] was de-shadowlinged!")
 	owner.special_role = null
-	for(var/X in owner.spell_list)
-		var/obj/effect/proc_holder/spell/S = X
-		owner.RemoveSpell(S)
+	for(var/datum/action/cooldown/spell/spells in owner.current.actions)
+		spells.Remove(owner.current)
 	var/mob/living/M = owner.current
 	if(issilicon(M))
 		M.audible_message(span_notice("[M] lets out a short blip."))

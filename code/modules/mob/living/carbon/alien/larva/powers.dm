@@ -54,15 +54,7 @@
 		var/mob/hunter_path = /mob/living/carbon/alien/humanoid/hunter
 		var/datum/radial_menu_choice/hunter = new()
 		hunter.name = "Hunter"
-		hunter.image  = image(icon = initial(hunter_path.icon), icon_state = initial(hunter_path.icon_state))
-		hunter.info = span_info("Hunters are the most agile caste, tasked with hunting for hosts. \
-			They are faster than a human and can even pounce, but are not much tougher than a drone.")
-	
-	// This can probably be genericized in the future.
-		var/mob/hunter_path = /mob/living/carbon/alien/humanoid/hunter
-		var/datum/radial_menu_choice/hunter = new()
-		hunter.name = "Hunter"
-		hunter.image  = image(icon = initial(hunter_path.icon), icon_state = initial(hunter_path.icon_state))
+		hunter.image = image(icon = initial(hunter_path.icon), icon_state = initial(hunter_path.icon_state))
 		hunter.info = span_info("Hunters are the most agile caste, tasked with hunting for hosts. \
 			They are faster than a human and can even pounce, but are not much tougher than a drone.")
 
@@ -71,7 +63,7 @@
 		var/mob/sentinel_path = /mob/living/carbon/alien/humanoid/sentinel
 		var/datum/radial_menu_choice/sentinel = new()
 		sentinel.name = "Sentinel"
-		sentinel.image  = image(icon = initial(sentinel_path.icon), icon_state = initial(sentinel_path.icon_state))
+		sentinel.image = image(icon = initial(sentinel_path.icon), icon_state = initial(sentinel_path.icon_state))
 		sentinel.info = span_info("Sentinels are tasked with protecting the hive. \
 			With their ranged spit, invisibility, and high health, they make formidable guardians \
 			and acceptable secondhand hunters.")
@@ -81,7 +73,7 @@
 		var/mob/drone_path = /mob/living/carbon/alien/humanoid/drone
 		var/datum/radial_menu_choice/drone = new()
 		drone.name = "Drone"
-		drone.image  = image(icon = initial(drone_path.icon), icon_state = initial(drone_path.icon_state))
+		drone.image = image(icon = initial(drone_path.icon), icon_state = initial(drone_path.icon_state))
 		drone.info = span_info("Drones are the weakest and slowest of the castes, \
 			but can grow into a praetorian and then queen if no queen exists, \
 			and are vital to maintaining a hive with their resin secretion abilities.")

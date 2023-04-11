@@ -6,13 +6,12 @@
 	buttontooltipstyle = "cult"
 	background_icon_state = "bg_demon"
 
+	default_button_position = "6:157,4:-2"
+
 /datum/action/item_action/cult_dagger/Grant(mob/M)
 	if(iscultist(M))
-		..()
-		button.screen_loc = "6:157,4:-2"
-		button.moved = "6:157,4:-2"
-	else
-		Remove(owner)
+		return ..()
+	Remove(owner)
 
 /datum/action/item_action/cult_dagger/Trigger()
 	for(var/obj/item/H in owner.held_items) //In case we were already holding another dagger

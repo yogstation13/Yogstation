@@ -1,7 +1,7 @@
-/obj/effect/proc_holder/zombie/spit
+/*/obj/effect/proc_holder/zombie/spit
 	name = "Spit Neurotoxin"
 	desc = "Spits neurotoxin at someone, paralyzing them for a short time."
-	action_icon_state = "alien_neurotoxin_0"
+	button_icon_state = "alien_neurotoxin_0"
 	active = FALSE
 	cooldown_time = 1 MINUTES
 
@@ -19,11 +19,11 @@
 /obj/effect/proc_holder/zombie/spit/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(..())
 		return FALSE
-	if(!isinfected(ranged_ability_user) || ranged_ability_user.stat != CONSCIOUS)
+	if(!isinfected(owner) || owner.stat != CONSCIOUS)
 		remove_ranged_ability()
 		return FALSE
 
-	var/mob/living/carbon/user = ranged_ability_user
+	var/mob/living/carbon/user = owner
 
 	if(!ready)
 		to_chat(user, span_warning("You cannot currently spit. You can spit again in [(cooldown_ends - world.time) / 10] seconds"))
@@ -56,3 +56,4 @@
 		paralyze = 0
 		nodamage = TRUE
 	return ..()
+*/

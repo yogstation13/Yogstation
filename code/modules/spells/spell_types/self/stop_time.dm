@@ -15,6 +15,8 @@
 	var/timestop_range = 2
 	/// The duration of the time stop.
 	var/timestop_duration = 10 SECONDS
+	///The timestop effect we use
+	var/timestop_effect = /obj/effect/timestop/wizard
 
 /datum/action/cooldown/spell/timestop/Grant(mob/grant_to)
 	. = ..()
@@ -27,4 +29,4 @@
 
 /datum/action/cooldown/spell/timestop/cast(atom/cast_on)
 	. = ..()
-	new /obj/effect/timestop/magic(get_turf(cast_on), timestop_range, timestop_duration, list(cast_on))
+	new timestop_effect(get_turf(cast_on), timestop_range, timestop_duration, list(cast_on))

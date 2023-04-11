@@ -79,7 +79,7 @@
 		fire_stacks--
 		fire_stacks = max(0, fire_stacks)
 	else
-		ExtinguishMob()
+		extinguish_mob()
 		return TRUE
 
 	//adjustFireLoss(3)

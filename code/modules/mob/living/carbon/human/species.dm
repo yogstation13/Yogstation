@@ -1209,7 +1209,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if( I.w_class <= WEIGHT_CLASS_SMALL || (I.slot_flags & ITEM_SLOT_POCKET) )
 				return TRUE
 			return FALSE
-		if(SLOT_S_STORE)
+		if(SLOT_SUIT_STORE)
 			if(HAS_TRAIT(I, TRAIT_NODROP))
 				return FALSE
 			if(H.s_store)
@@ -2114,7 +2114,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		return FALSE
 	return TRUE
 
-/datum/species/proc/ExtinguishMob(mob/living/carbon/human/H)
+/datum/species/proc/extinguish_mob(mob/living/carbon/human/H)
 	return
 
 /datum/species/proc/spec_revival(mob/living/carbon/human/H, admin_revive = FALSE)

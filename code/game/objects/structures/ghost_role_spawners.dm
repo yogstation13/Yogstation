@@ -419,11 +419,11 @@
 	random = TRUE
 	id_job = "SuperFriend"
 	id_access = "assistant"
-	var/obj/effect/proc_holder/spell/targeted/summon_friend/spell
+	var/datum/action/cooldown/spell/summon_friend/spell
 	var/datum/mind/owner
 	assignedrole = "SuperFriend"
 
-/obj/effect/mob_spawn/human/demonic_friend/Initialize(mapload, datum/mind/owner_mind, obj/effect/proc_holder/spell/targeted/summon_friend/summoning_spell)
+/obj/effect/mob_spawn/human/demonic_friend/Initialize(mapload, datum/mind/owner_mind, datum/action/cooldown/spell/summon_friend/summoning_spell)
 	. = ..()
 	owner = owner_mind
 	flavour_text = "You have been given a reprieve from your eternity of torment, to be [owner.name]'s friend for [owner.p_their()] short mortal coil."
@@ -434,13 +434,11 @@
 	objectives = "Be [owner.name]'s friend, and keep [owner.name] alive, so you don't get sent back to hell."
 	spell = summoning_spell
 
-
 /obj/effect/mob_spawn/human/demonic_friend/special(mob/living/L)
 	if(!QDELETED(owner.current) && owner.current.stat != DEAD)
 		L.fully_replace_character_name(null,"[owner.name]'s best friend")
 		soullink(/datum/soullink/oneway, owner.current, L)
 		spell.friend = L
-		spell.charge_counter = spell.charge_max
 		L.mind.hasSoul = FALSE
 		var/mob/living/carbon/human/H = L
 		var/obj/item/worn = H.wear_id
