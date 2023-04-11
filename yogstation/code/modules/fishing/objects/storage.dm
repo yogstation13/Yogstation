@@ -26,7 +26,7 @@
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 24
 	STR.set_holdable(list(
-		/obj/item/twohanded/fishingrod/collapsable,
+		/obj/item/twohanded/fishingrod/collapsible,
 		/obj/item/reagent_containers/food/snacks/bait,
 		/obj/item/reagent_containers/food/snacks/chum
 	))

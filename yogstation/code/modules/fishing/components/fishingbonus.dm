@@ -16,6 +16,13 @@
 	else
 		return COMPONENT_INCOMPATIBLE
 
+/datum/component/fishingbonus/proc/OnFishFind(mob/target,mob/user)
+	var/obj/item/clothing/C = parent
+	if(C)
+		to_chat(user,examine_block("[C.name]: [fishing_bonus] fishing bonus"))
+	return TRUE
+		user = null
+
 /datum/component/fishingbonus/proc/OnEquip(datum/source, mob/living/carbon/equipper, slot)
 	var/obj/item/parent_item = parent
 	if(!parent_item)
@@ -27,13 +34,6 @@
 /datum/component/fishingbonus/proc/OnUnequip(datum/source, mob/living/carbon/equipper, slot)
 	if(user)
 		equipper.fishing_power -= fishing_bonus
-		wearer = null
-
-/datum/component/fishingbonus/proc/OnFishFind(mob/target,mob/user)
-	var/obj/item/clothing/C = parent
-	if(C)
-		to_chat(user,examine_block("[C.name]: [fishing_bonus] fishing bonus"))
-	return TRUE
 		user = null
 
 /datum/component/fishingbonus/proc/OnBuckle(datum/source, mob/living/carbon/M, force = FALSE)

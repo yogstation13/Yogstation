@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(fishing_table,init_fishing_table())
 		/obj/item/reagent_containers/food/snacks/fish/goldfish,
 		/obj/item/reagent_containers/food/snacks/fish/salmon,
 		/obj/item/reagent_containers/food/snacks/fish/bass,
-		/obj/item/reagent_containers/food/snacks/bait/leech
+		/obj/item/reagent_containers/food/snacks/bait/worm/leech
 		)
 	uncommon_loot = list(
 		/obj/item/reagent_containers/food/snacks/fish/goldfish/giant,
