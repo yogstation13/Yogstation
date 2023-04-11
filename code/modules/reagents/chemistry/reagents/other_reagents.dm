@@ -572,6 +572,10 @@
 			H.reagents.del_reagent(type) //adios
 	return
 
+/datum/reagent/mutationtoxin/on_mob_end_metabolize(mob/living/L)
+	..()
+	to_chat(L, span_notice("There is sudden, relieving lack of skin shifting."))
+
 /datum/reagent/mutationtoxin/proc/mutate(mob/living/carbon/human/H)
 	if(QDELETED(H))
 		return
