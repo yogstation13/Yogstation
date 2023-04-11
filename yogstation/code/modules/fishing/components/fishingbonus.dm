@@ -21,7 +21,6 @@
 	if(C)
 		to_chat(user,examine_block("[C.name]: [fishing_bonus] fishing bonus"))
 	return TRUE
-		user = null
 
 /datum/component/fishingbonus/proc/OnEquip(datum/source, mob/living/carbon/equipper, slot)
 	var/obj/item/parent_item = parent
