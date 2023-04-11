@@ -67,13 +67,15 @@
 			qdel(src)
 
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
-	if(!edible || user.a_intent == INTENT_HARM)
+	if(!edible || user.a_intent == INTENT_HARM || M != user || !ishuman(user))
 		return ..()
 	
-	if(M != user || !ispreternis(user))
+	var/mob/living/carbon/human/H = user
+	var/obj/item/organ/stomach/S = H.getorganslot(ORGAN_SLOT_STOMACH)
+
+	if(!istype(S, /obj/item/organ/stomach/preternis))//need a fancy stomach for it
 		return ..()
 
-	var/mob/living/carbon/human/H = user
 	H.visible_message("[H] takes a bite of [src], crunching happily.", "You take a bite of [src], minerals do a body good.")
 	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
 	
