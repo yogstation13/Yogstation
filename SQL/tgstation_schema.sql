@@ -326,6 +326,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `lasteditor` varchar(32) DEFAULT NULL,
   `edits` mediumtext DEFAULT NULL,
   `deleted` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `playtime` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_msg_ckey_time` (`targetckey`,`timestamp`,`deleted`),
   KEY `idx_msg_type_ckeys_time` (`type`,`targetckey`,`adminckey`,`timestamp`,`deleted`),

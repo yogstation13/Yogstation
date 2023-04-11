@@ -68,8 +68,8 @@
 			qdel(query_validate_expire_time)
 
 	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery({"
-		INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp)
-		VALUES (:type, :target_ckey, :admin_ckey, :text, :timestamp, :server, INET_ATON(:internet_address), :port, :round_id, :secret, :expiry)
+		INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp, playtime)
+		VALUES (:type, :target_ckey, :admin_ckey, :text, :timestamp, :server, INET_ATON(:internet_address), :port, :round_id, :secret, :expiry, :playtime)
 	"}, list(
 		"type" = type,
 		"target_ckey" = target_ckey,
@@ -82,6 +82,7 @@
 		"round_id" = GLOB.round_id,
 		"secret" = secret,
 		"expiry" = expiry || null,
+		"playtime" = get_exp_living_from_ckey(target_ckey)
 	))
 
 	var/pm = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]: [text]"
@@ -99,6 +100,24 @@
 			browse_messages("[type]")
 		else
 			browse_messages(target_ckey = target_ckey, agegate = TRUE)
+
+/proc/get_exp_living_from_ckey(ckey)
+	var/client/target_client = GLOB.directory[ckey]
+	if(target_client)
+		return target_client.get_exp_living(TRUE)
+	var/datum/DBQuery/exp_read = SSdbcore.NewQuery(
+		"SELECT minutes FROM [format_table_name("role_time")] WHERE ckey = :ckey and job = :job",
+		list("ckey" = ckey, "job" = EXP_TYPE_LIVING)
+	)
+	if(!exp_read.Execute(async = TRUE))
+		qdel(exp_read)
+		return null
+	if(!exp_read.NextRow())
+		qdel(exp_read)
+		return null
+	var/result = text2num(exp_read.item[1])
+	qdel(exp_read)
+	return result
 
 /proc/delete_message(message_id, logged = 1, browse)
 	if(!SSdbcore.Connect())
@@ -331,7 +350,7 @@
 		qdel(query_get_type_messages)
 	if(target_ckey)
 		var/target_key
-		var/datum/DBQuery/query_get_messages = SSdbcore.NewQuery("SELECT type, secret, id, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), text, timestamp, round_id, server, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), DATEDIFF(NOW(), timestamp), (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), expire_timestamp FROM [format_table_name("messages")] WHERE type <> 'memo' AND targetckey = :target_ckey AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC", list("target_ckey" = target_ckey))
+		var/datum/DBQuery/query_get_messages = SSdbcore.NewQuery("SELECT type, secret, id, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), text, timestamp, round_id, server, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), DATEDIFF(NOW(), timestamp), (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), expire_timestamp, playtime FROM [format_table_name("messages")] WHERE type <> 'memo' AND targetckey = :target_ckey AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC", list("target_ckey" = target_ckey))
 		if(!query_get_messages.warn_execute())
 			qdel(query_get_messages)
 			return
@@ -358,6 +377,8 @@
 			var/age = text2num(query_get_messages.item[10])
 			target_key = query_get_messages.item[11]
 			var/expire_timestamp = query_get_messages.item[12]
+			var/raw_playtime = query_get_messages.item[13]
+			var/playtime = (isnull(raw_playtime) ? "" : " ([get_exp_format(text2num(raw_playtime))])")
 			var/alphatext = ""
 			var/nsd = CONFIG_GET(number/note_stale_days)
 			var/nfd = CONFIG_GET(number/note_fresh_days)
@@ -371,7 +392,7 @@
 						alpha = 10
 						skipped = TRUE
 					alphatext = "filter: alpha(opacity=[alpha]); opacity: [alpha/100];"
-			var/list/data = list("<p style='margin:0px;[alphatext]'> <b>[timestamp] | [server] | [admin_key] | ")
+			var/list/data = list("<p style='margin:0px;[alphatext]'> <b>[timestamp][playtime] | [server] | [admin_key] | ")
 			data += "Round: #<a href='?_src_=holder;[HrefToken()];viewdemo=[roundnumber]'>[roundnumber]</a>"
 			if(expire_timestamp)
 				data += " | Expires [expire_timestamp]"
