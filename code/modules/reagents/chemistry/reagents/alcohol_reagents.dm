@@ -1151,7 +1151,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/syndicatebomb/on_mob_life(mob/living/carbon/M)
 	if(is_syndicate(M))
-		to_chat(M, span_notice("The Syndicate will always Win!"))
 		M.heal_overall_damage(0.5, 0.5)
 	if(prob(5))
 		playsound(get_turf(M), 'sound/effects/explosionfar.ogg', 100, 1)
