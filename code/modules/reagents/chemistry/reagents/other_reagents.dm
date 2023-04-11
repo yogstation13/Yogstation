@@ -1308,8 +1308,9 @@
 	return ..()
 
 /datum/reagent/nitrium_low_metabolization/on_mob_life(mob/living/carbon/M)
-	M.adjustStaminaLoss(-2 * REM, FALSE)
-	M.adjustToxLoss(1 * REM,FALSE)
+	if(M.getStaminaLoss() > 0)
+		M.adjustStaminaLoss(-2 * REM, FALSE)
+		M.adjustToxLoss(1.5 *REM, FALSE)
 	M.Jitter(15)
 	return ..()
 
