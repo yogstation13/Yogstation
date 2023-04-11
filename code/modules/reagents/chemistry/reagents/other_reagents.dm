@@ -569,7 +569,7 @@
 			addtimer(CALLBACK(src, PROC_REF(mutate), H), 2 SECONDS)
 		else
 			to_chat(H, span_notice("There is a sudden, relieving lack of skin shifting."))
-			H.reagents.remove_reagent(type,1000) //adios
+			H.reagents.del_reagent(type) //adios
 	return
 
 /datum/reagent/mutationtoxin/proc/mutate(mob/living/carbon/human/H)
@@ -580,7 +580,7 @@
 	if(HAS_TRAIT(H, TRAIT_GENELESS))
 		if(H.has_dna())
 			H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
-	H.reagents.remove_reagent(type,1000) //adios
+	H.reagents.del_reagent(type) //adios
 
 /datum/reagent/mutationtoxin/classic //The one from plasma on green slimes
 	name = "Mutation Toxin"
