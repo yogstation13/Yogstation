@@ -942,8 +942,8 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	action_icon_state = "swordrecall"
 
 /obj/effect/proc_holder/spell/targeted/recallnullrod/cast(list/targets, mob/user)
-	if(!owner.get_empty_held_indexes())
-		to_chat(usr, span_warning("You need an empty hand to call forth your [sword.name]!"))
+	if(!user.get_empty_held_indexes())
+		to_chat(usr, span_warning("You need an empty hand to recall your [sword.name]!"))
 		return
 	if(sword)
 		if(sword.walking)
