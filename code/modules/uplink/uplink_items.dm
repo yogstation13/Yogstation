@@ -833,6 +833,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	item = /obj/item/ammo_box/magazine/m12g/flechette
 
+/datum/uplink_item/ammo/shotgun/airburst
+	name = "12g Airburst Drum"
+	desc = "An alternative 8-round airburst magazine for use with the Bulldog shotgun. \
+			Travels 4 tiles, pops in a 360 of lead. For when you REALLY need to clear a room."
+	item = /obj/item/ammo_box/magazine/m12g/airburst
+
 /datum/uplink_item/ammo/revolver
 	name = ".357 Speed Loader Box"
 	desc = "A box with two .357 speed loaders. These speed loaders contain seven .357 rounds each; usable with the Syndicate revolver."

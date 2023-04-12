@@ -449,6 +449,17 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
+/datum/crafting_recipe/airburst_shell
+	name = "Airburst Shell"
+	result = /obj/item/ammo_casing/shotgun/airburst_shell
+	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1,
+				/datum/reagent/blackpowder = 5,
+				/obj/item/stack/sheet/plastic = 1)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
 /datum/crafting_recipe/laserslug
 	name = "Bolts"
 	result = /obj/item/ammo_casing/caseless/bolts

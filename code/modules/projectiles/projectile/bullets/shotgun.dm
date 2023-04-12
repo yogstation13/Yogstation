@@ -124,6 +124,45 @@
 	stamina = 13 //Total of 78 with less falloff (very big)
 	sharpness = SHARP_NONE
 
+// Normal airburst
+
+/obj/item/projectile/bullet/pellet/shotgun_airburst_casing
+	name = "airburst rubber casing"
+	damage = 2 // The shell for the bullets, not designed to hit people
+	sharpness = SHARP_NONE
+
+/obj/item/projectile/bullet/pellet/shotgun_airburst_casing/on_range()
+	var/obj/item/ammo_casing/shotgun/airburst_pellet_shell/P = new(get_turf(src))
+	var/mob/living/L = new (get_turf(src))//it's jank, but casings can only be shot via a mob's location
+	P.fire_casing(get_edge_target_turf(firer, get_dir(firer, original)), L)
+	playsound(L, 'sound/weapons/shotgunshot.ogg', 40, 0, 2)
+	qdel(L)
+	..()
+
+/obj/item/projectile/bullet/pellet/shotgun_airburst_pellet
+	name = "airburst rubber pellet"
+	stamina = 15 // Realistically, you are gonna be hit by one or two, MAYBE three at most.
+	sharpness = SHARP_NONE
+
+// Syndicate Airburst
+
+/obj/item/projectile/bullet/pellet/shotgun_airburst_casing_syndicate
+	name = "airburst metal casing"
+	damage = 2 // The shell for the bullets, not designed to hit people
+	sharpness = SHARP_NONE
+
+/obj/item/projectile/bullet/pellet/shotgun_airburst_casing_syndicate/on_range()
+	var/obj/item/ammo_casing/shotgun/airburst_pellet_shell/syndicate/P = new(get_turf(src))
+	var/mob/living/L = new (get_turf(src))//it's jank, but casings can only be shot via a mob's location
+	P.fire_casing(get_edge_target_turf(firer, get_dir(firer, original)), L)
+	playsound(L, 'sound/weapons/shotgunshot.ogg', 40, 0, 2)
+	qdel(L)
+	..()
+
+/obj/item/projectile/bullet/pellet/shotgun_airburst_pellet_syndicate
+	name = "airburst metal pellet"
+	damage = 15 
+
 /obj/item/projectile/bullet/pellet/shotgun_cryoshot
 	name = "cryoshot pellet"
 	damage = 6

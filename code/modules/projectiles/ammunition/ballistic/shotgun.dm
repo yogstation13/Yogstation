@@ -210,7 +210,6 @@
 	materials = list(/datum/material/iron=4000)
 	caliber = "breaching"
 
-
 /obj/item/ammo_casing/shotgun/thundershot
 	name = "thunder slug"
 	desc = "An advanced shotgun shell that uses stored electrical energy to discharge a massive shock on impact, arcing to nearby targets."
@@ -218,3 +217,28 @@
 	pellets = 3
 	variance = 25
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_thundershot
+
+/obj/item/ammo_casing/shotgun/airburst_shell
+	name = "airburst shell"
+	desc = "A 12-gague shell packed with a small timed charge, and lots of tiny beads, designed to suppress and disperse crowds."
+	icon_state = "abshell" 
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_airburst_casing
+	range = 7 // roughly 4 tiles 
+
+/obj/item/ammo_casing/shotgun/airburst_pellet_shell
+	name = "airburst shell"
+	desc = "You shouldnt be seeing this. Go ahead, shoot it. See what happens."
+	icon_state = "abshell" 
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_airburst_pellet
+	pellets = 22
+	variance = 360 // Hope you took cover!!
+
+/obj/item/ammo_casing/shotgun/airburst_shell/syndicate
+	name = "syndicate airburst shell"
+	desc = "A 12-gague shell packed with a small timed charge, and loads of tiny pieces of metal."
+	icon_state = "abshells" 
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_airburst_casing_syndicate
+
+/obj/item/ammo_casing/shotgun/airburst_pellet_shell/syndicate
+	icon_state = "abshells" 
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_airburst_pellet_syndicate
