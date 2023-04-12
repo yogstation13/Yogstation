@@ -726,8 +726,8 @@
   *
   * Default behaviour is to send COMSIG_ATOM_RAD_ACT and return
   */
-/atom/proc/rad_act(strength)
-	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength)
+/atom/proc/rad_act(strength, collectable_radiation)
+	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength, collectable_radiation)
 
 /**
   * Respond to narsie eating our atom
@@ -868,19 +868,19 @@
 
 	var/new_x = pixel_x
 	var/new_y = pixel_y
-	
+
 	if (dir & NORTH)
 		new_y++
-	
+
 	if (dir & EAST)
 		new_x++
-	
+
 	if (dir & SOUTH)
 		new_y--
-	
+
 	if (dir & WEST)
 		new_x--
-	
+
 	pixel_x = clamp(new_x, -16, 16)
 	pixel_y = clamp(new_y, -16, 16)
 
