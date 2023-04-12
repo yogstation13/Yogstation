@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - rscdel: "Radiation collectors no longer produce power from contamination"
