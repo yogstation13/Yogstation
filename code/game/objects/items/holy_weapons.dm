@@ -229,7 +229,7 @@
 
 /obj/item/nullrod/spear
 	name = "bronze spear"
-	desc = "Purge untruths and honor... rats?"
+	desc = "Purge untruths and honor...and rats?"
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "ratvarian_spear"
 	item_state = "ratvarian_spear"
@@ -942,6 +942,9 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	action_icon_state = "swordrecall"
 
 /obj/effect/proc_holder/spell/targeted/recallnullrod/cast(list/targets, mob/user)
+	if(!owner.get_empty_held_indexes())
+		to_chat(usr, span_warning("You need an empty hand to call forth your [sword.name]!"))
+		return
 	if(sword)
 		if(sword.walking)
 			sword.blade.throw_at(user, 20, 3) //remember, sword is the item, blade is the mob
