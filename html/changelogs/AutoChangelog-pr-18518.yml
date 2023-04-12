@@ -1,4 +1,0 @@
-author: "Matheo351"
-delete-after: true 
-changes: 
-  - bugfix: "fixed string \"replace\" function in NT Script language"

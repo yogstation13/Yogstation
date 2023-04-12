@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixes items falling off when removing a jumpsuit when you're still able to equip them in their current slot without one"
