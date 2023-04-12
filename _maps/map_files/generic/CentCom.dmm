@@ -7114,7 +7114,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
 "apT" = (
-/obj/machinery/portable_atmospherics/canister/freon,
+/obj/machinery/portable_atmospherics/canister/stimulum,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "apU" = (
@@ -21630,7 +21630,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/freon,
+/obj/machinery/portable_atmospherics/canister/stimulum,
 /turf/open/floor/plasteel/dark,
 /area/centcom/testchamber)
 "aRQ" = (
@@ -21648,7 +21648,7 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/nullrod/glowing{
+/obj/item/nullrod/claymore/glowing{
 	damtype = "stamina";
 	force = 30
 	},
@@ -22013,7 +22013,7 @@
 	},
 /area/holodeck/rec_center/lounge)
 "aSL" = (
-/obj/machinery/portable_atmospherics/canister/nitrium,
+/obj/machinery/portable_atmospherics/canister/nitryl,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "aSM" = (
@@ -23426,7 +23426,7 @@
 /area/centcom/testchamber)
 "aVF" = (
 /obj/structure/rack,
-/obj/item/nullrod/vibro{
+/obj/item/nullrod/scythe/vibro{
 	damtype = "stamina";
 	force = 30
 	},
@@ -24442,7 +24442,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/nitrium,
+/obj/machinery/portable_atmospherics/canister/nitryl,
 /turf/open/floor/bluespace,
 /area/centcom/testchamber)
 "aXF" = (
