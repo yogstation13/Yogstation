@@ -150,6 +150,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "boxta"
 	unlock_path = /obj/item/storage/box/boxta
 
+/datum/donator_gear/ynot
+	name = "Golden Lighter"
+	ckey = "ynot01"
+	unlock_path = /obj/item/lighter/gold
+
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
 	name = "Beanie"
@@ -410,6 +415,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/wizard/black
 	name = "Wizard's Hat (Black, Collectable)"
 	unlock_path = /obj/item/clothing/head/wizard/fake/black
+	slot = SLOT_HEAD
+
+/datum/donator_gear/wizard/brown
+	name = "Wizard's Hat (Brown, Collectable)"
+	unlock_path = /obj/item/clothing/head/wizard/fake/brown
 	slot = SLOT_HEAD
 
 /datum/donator_gear/wizard/marisa

@@ -4,7 +4,7 @@
 	name = "space helmet"
 	icon_state = "space"
 	desc = "A special helmet with solar UV shielding to protect your eyes from harmful rays."
-	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | HEADINTERNALS
 	item_state = "space"
 	permeability_coefficient = 0.01
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 100, RAD = 50, FIRE = 40, ACID = 70)

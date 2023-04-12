@@ -228,5 +228,5 @@
 /obj/structure/bed/grip/Initialize()
 	. = ..()
 
-/obj/structure/bed/roller/post_unbuckle_mob(mob/living/M)
+/obj/structure/bed/grip/post_unbuckle_mob(mob/living/M)
 	qdel(src)

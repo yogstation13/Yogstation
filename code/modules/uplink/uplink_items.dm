@@ -429,7 +429,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "This switchblade has a unique shape that makes it especially lethal when lodged in someone's backside. \
 			Still does a moderate amount of damage when applied from the front."
 	item = /obj/item/switchblade/backstab
-	cost = 5
+	cost = 3
 	// backstabs are pretty funny, clown ops can have this one
 
 /datum/uplink_item/dangerous/bostaff
@@ -1408,15 +1408,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_tools/shadowcloak
 	name = "Cloaker Belt"
-	desc = "Renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
-	item = /obj/item/shadowcloak
+	desc = "A tactical belt that renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
+	item = /obj/item/storage/belt/military/shadowcloak
 	cost = 10
 	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/nuclearshadowcloak
 	name = "Cloaker Belt"
-	desc = "Renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
-	item = /obj/item/shadowcloak
+	desc = "A tactical belt that renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
+	item = /obj/item/storage/belt/military/shadowcloak
 	cost = 20
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -1954,10 +1954,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	player_minimum = 25
 
 /datum/uplink_item/implants/antistun
-	name = "CNS Rebooter Implant"
-	desc = "This implant will help you get back up on your feet faster after being stunned. Comes with an autosurgeon."
+	name = "Upgraded CNS Rebooter Implant"
+	desc = "This implant will help you get back up on your feet faster after being stunned. \
+			This version is modified to help reduce exhaustion during combat. \
+			Comes with an autosurgeon."
 	item = /obj/item/autosurgeon/anti_stun
-	cost = 12
+	cost = 8
 	surplus = 0
 
 /datum/uplink_item/implants/freedom
@@ -2101,6 +2103,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 45
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/implants/emp_shield
+	name = "EMP Shield Implant"
+	desc = "An implant that will render you and your insides immune to electromagnetic interference, protecting you from ion-based weaponry and EMPs. \
+			Due to technical limitations, it will overload and shut down for a short time if triggered too often."
+	item = /obj/item/storage/box/syndie_kit/emp_shield
+	cost = 6
 
 // Events
 /datum/uplink_item/services

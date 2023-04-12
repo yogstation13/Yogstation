@@ -747,12 +747,12 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
 
-/datum/quirk/hemophilia //basically permanent heparin
+/datum/quirk/hemophilia //basically permanent weak heparin
 	name = "Hemophiliac"
 	desc = "You can't naturally clot bleeding wounds and bleed much more from them than most people, making even small cuts possibly life threatening."
 	icon = "droplet"
-	value = -6
-	mob_trait = TRAIT_BLOODY_MESS
+	value = -4
+	mob_trait = TRAIT_BLOODY_MESS_LITE
 	gain_text = span_danger("You feel like your blood is thin.")
 	lose_text = span_notice("You feel like your blood is of normal thickness once more.")
 	medical_record_text = "Patient appears unable to naturally form blood clots."
@@ -773,7 +773,7 @@
 	name = "Brain Damage"
 	desc = "The shuttle ride was a bit bumpy to the station."
 	icon = "brain"
-	value = -7
+	value = -6
 	gain_text = span_danger("Your head hurts.")
 	lose_text = span_notice("Your head feels good again.")
 	medical_record_text = "Patient appears to have brain damage."
@@ -782,7 +782,7 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/datum/brain_trauma/badtimes = list(BRAIN_TRAUMA_MILD, BRAIN_TRAUMA_SEVERE)
 	var/amount = 0 // Pray you dont get fucked
-	amount = rand(1, 4)
+	amount = rand(1, 3)
 
 	for(var/i = 0 to amount)
 		H.gain_trauma_type(pick(badtimes), TRAUMA_RESILIENCE_ABSOLUTE) // Mr bones wild rides takes no breaks

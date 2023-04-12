@@ -459,7 +459,8 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
 	/obj/item/storage/box/ingredients/wildcard = W_RARE,
 	/obj/item/storage/box/mre = W_ESSENTIAL,
 	/obj/item/storage/box/mre/menu2 = W_RARE,
-	/obj/item/storage/box/mre/menu3 = W_MYTHICAL
+	/obj/item/storage/box/mre/menu3 = W_MYTHICAL,
+	/obj/item/relic = W_ESSENTIAL
 ))
 
 //Makeshift/shitty/suspicious assistant-tier stuff goes here. Some makeshift equipment is in other places (like weapons).

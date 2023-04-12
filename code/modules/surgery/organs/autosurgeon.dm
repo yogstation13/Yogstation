@@ -118,7 +118,7 @@
 	starting_organ = /obj/item/organ/eyes/robotic/xray/syndicate
 
 /obj/item/autosurgeon/anti_stun
-	starting_organ = /obj/item/organ/cyberimp/brain/anti_stun
+	starting_organ = /obj/item/organ/cyberimp/brain/anti_stun/syndicate
 
 /obj/item/autosurgeon/reviver
 	starting_organ = /obj/item/organ/cyberimp/chest/reviver
