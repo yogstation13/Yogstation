@@ -229,7 +229,7 @@
 
 /obj/item/nullrod/spear
 	name = "bronze spear"
-	desc = "Purge untruths and honor...and rats?"
+	desc = "Purge untruths and honor... rats?"
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "ratvarian_spear"
 	item_state = "ratvarian_spear"
