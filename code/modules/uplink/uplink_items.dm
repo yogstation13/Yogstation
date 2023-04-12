@@ -429,7 +429,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "This switchblade has a unique shape that makes it especially lethal when lodged in someone's backside. \
 			Still does a moderate amount of damage when applied from the front."
 	item = /obj/item/switchblade/backstab
-	cost = 5
+	cost = 3
 	// backstabs are pretty funny, clown ops can have this one
 
 /datum/uplink_item/dangerous/bostaff
