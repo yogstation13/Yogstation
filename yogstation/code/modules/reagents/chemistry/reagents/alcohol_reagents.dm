@@ -74,3 +74,40 @@
 	if(prob(10))
 		M.hallucination += hal_amt //conscious dreamers can be treasurers to their own currency
 	..()
+
+
+/datum/reagent/consumable/ethanol/neurotoxin_alien
+	name = "Alien Neurotoxin"
+	description = "A strong neurotoxin that puts the subject into a death-like state. Now 100% more concentrated!"
+	color = "#2E2E61" // rgb: 46, 46, 97
+	boozepwr = 25
+	quality = DRINK_VERYGOOD
+	taste_description = "a numbing sensation"
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+	glass_icon_state = "neurotoxinglass"
+	glass_name = "Neurotoxin"
+	glass_desc = "A drink that is guaranteed to knock you silly."
+
+/datum/reagent/consumable/ethanol/neurotoxin_alien/proc/pickt()
+	return (pick(TRAIT_PARALYSIS_L_ARM,TRAIT_PARALYSIS_R_ARM,TRAIT_PARALYSIS_R_LEG,TRAIT_PARALYSIS_L_LEG))
+
+/datum/reagent/consumable/ethanol/neurotoxin_alien/on_mob_life(mob/living/carbon/M)
+	M.dizziness += 2
+	if(prob(20))
+		M.adjustStaminaLoss(10)
+		M.drop_all_held_items()
+		to_chat(M, span_warning("You can't feel your hands!"))
+	if(prob(20))
+		var/t = pickt()
+		ADD_TRAIT(M, t, type)
+		M.adjustStaminaLoss(10)
+	. = 1
+	..()
+
+/datum/reagent/consumable/ethanol/neurotoxin_alien/on_mob_end_metabolize(mob/living/carbon/M)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_L_ARM, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_R_ARM, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_R_LEG, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_L_LEG, type)
+	M.adjustStaminaLoss(10)
+	. = ..()

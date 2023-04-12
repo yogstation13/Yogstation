@@ -185,7 +185,7 @@
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = "neurotoxingland"
-	alien_powers = list(/obj/effect/proc_holder/alien/neurotoxin)
+	alien_powers = list(/obj/effect/proc_holder/alien/neurotoxin_bite) //Yogstation change: neurotoxin is now a bite.
 
 
 /obj/item/organ/alien/eggsac
