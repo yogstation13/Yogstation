@@ -467,7 +467,7 @@
 		metal -= count
 		new /obj/item/stack/sheet/metal(get_turf(user), count)
 	else
-		to_chat(user, span_warning("There's no metal to retrieve in [src.]"))
+		to_chat(user, span_warning("There's no metal to retrieve in [src]."))
 	update_icon()
 #undef METALLIMIT
 

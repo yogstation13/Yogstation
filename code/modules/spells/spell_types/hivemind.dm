@@ -28,6 +28,9 @@
 
 
 /datum/action/cooldown/spell/aoe/target_hive/cast(atom/cast_on)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive || !hive.hivemembers)
 		to_chat(owner, span_notice("This is a bug. Error:HIVE1"))
@@ -52,6 +55,8 @@
 	if(!H)
 		return
 	targets += H
+
+	return TRUE
 
 /datum/action/cooldown/spell/aoe/target_hive/hive_add
 	name = "Assimilate Vessel"

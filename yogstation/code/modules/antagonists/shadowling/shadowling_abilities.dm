@@ -518,6 +518,9 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/blindness_smoke/cast(mob/living/carbon/human/user) //Extremely hacky
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!shadowling_check(user))
 		return
 	user.visible_message(span_warning("[user] bends over and coughs out a cloud of black smoke!"))
@@ -532,6 +535,7 @@
 		S.set_up(4, location = B.loc, carry = B.reagents)
 		S.start()
 	qdel(B)
+	return TRUE
 
 /datum/action/cooldown/spell/aoe/unearthly_screech //Damages nearby windows, confuses nearby carbons, and outright stuns silly cones
 	name = "Sonic Screech"

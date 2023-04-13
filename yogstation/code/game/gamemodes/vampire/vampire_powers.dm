@@ -262,12 +262,15 @@
 	vamp_req = TRUE
 
 /datum/action/cooldown/spell/appearanceshift/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		user.visible_message(span_warning("[H] transforms!"))
 		randomize_human(H)
 	user.regenerate_icons()
-
+	return TRUE
 
 /datum/action/cooldown/spell/cloak
 	name = "Cloak of Darkness"
@@ -434,6 +437,9 @@
 	var/num_bats = 2
 
 /datum/action/cooldown/spell/bats/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/list/turf/locs = new
 	for(var/direction in GLOB.alldirs) //looking for bat spawns
 		if(locs.len == num_bats) //we found 2 locations and thats all we need
@@ -448,6 +454,8 @@
 
 	for(var/T in locs)
 		new /mob/living/simple_animal/hostile/vampire_bat(T)
+
+	return TRUE
 
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/mistform

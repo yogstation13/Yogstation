@@ -18,8 +18,6 @@
 /obj/item/restraints/legcuffs/beartrap/bloodsucker/attack_self(mob/user)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	lair_area = bloodsuckerdatum?.bloodsucker_lair_area
-		var/mob/lair_owner
- = user
 	START_PROCESSING(SSobj, src)
 	if(!bloodsuckerdatum)
 		to_chat(user, span_notice("Although it seems simple you have no idea how to reactivate [src]."))
@@ -36,14 +34,14 @@
 	lair_area = bloodsuckerdatum.bloodsucker_lair_area
 	lair_owner = user
 	START_PROCESSING(SSobj, src)
-	..()
+	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/bloodsucker/Crossed(AM as mob|obj)
 	var/mob/living/carbon/human/user = AM
 	if(armed && (IS_BLOODSUCKER(user) || IS_VASSAL(user)))
 		to_chat(user, span_notice("You gracefully step over the blood puddle and avoid triggering the trap"))
 		return
-	..()
+	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/bloodsucker/close_trap()
 	STOP_PROCESSING(SSobj, src)
