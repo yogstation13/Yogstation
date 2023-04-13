@@ -5687,10 +5687,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/locker)
-"aTU" = (
-/obj/structure/grille,
-/turf/closed/wall/r_wall,
-/area/engine/atmos_distro)
 "aUa" = (
 /turf/open/floor/engine,
 /area/science/mixing)
@@ -9562,7 +9558,7 @@
 /obj/machinery/portable_atmospherics/canister/toxins,
 /obj/machinery/atmospherics/miner/toxins,
 /turf/open/floor/engine/plasma,
-/area/engine/atmos_distro)
+/area/engine/atmos/distro)
 "cdm" = (
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 8
@@ -23275,11 +23271,11 @@
 /area/engine/atmos/distro)
 "gJL" = (
 /obj/structure/closet/crate,
-/obj/item/twohanded/fishingrod/collapsable,
-/obj/item/twohanded/fishingrod/collapsable,
 /obj/item/twohanded/fishingrod,
 /obj/item/twohanded/fishingrod,
 /obj/item/twohanded/fishingrod,
+/obj/item/twohanded/fishingrod/collapsible,
+/obj/item/twohanded/fishingrod/collapsible,
 /turf/open/floor/white{
 	icon = 'icons/turf/floors/ice_turf.dmi';
 	icon_state = "unsmooth";
@@ -25474,7 +25470,7 @@
 /area/security/main)
 "huC" = (
 /turf/open/floor/engine/plasma,
-/area/engine/atmos_distro)
+/area/engine/atmos/distro)
 "huG" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -129405,11 +129401,11 @@ acb
 acb
 acb
 aNg
-aTU
+mas
 huC
 cdi
 huC
-aTU
+mas
 jqA
 dxj
 jqA
@@ -129662,11 +129658,11 @@ acb
 acb
 acb
 aNg
-aTU
+mas
 huC
 huC
 huC
-aTU
+mas
 jqA
 jqA
 jqA
@@ -129919,11 +129915,11 @@ acb
 acb
 acb
 aNg
-aTU
-aTU
-aTU
-aTU
-aTU
+mas
+mas
+mas
+mas
+mas
 mas
 mas
 mas
