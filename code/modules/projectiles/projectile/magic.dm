@@ -230,7 +230,6 @@
 							/mob/living/simple_animal/pet/cat,
 							/mob/living/simple_animal/pet/cat/space,
 							/mob/living/simple_animal/chocobo,
-							/mob/living/simple_animal/hostile/retaliate/goose/vomit,
 							/mob/living/simple_animal/cow,
 							/mob/living/simple_animal/hostile/lizard,
 							/mob/living/simple_animal/pet/fox,
