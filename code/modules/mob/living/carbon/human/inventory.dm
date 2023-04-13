@@ -163,6 +163,10 @@
 				update_inv_w_uniform()
 			update_inv_wear_suit()
 	else if(I == w_uniform)
+		w_uniform = null
+		update_suit_sensors()
+		if(!QDELETED(src))
+			update_inv_w_uniform()
 		if(invdrop)
 			if(r_store && !can_equip(r_store, SLOT_R_STORE, TRUE))
 				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
@@ -172,10 +176,6 @@
 				dropItemToGround(wear_id)
 			if(belt && !can_equip(belt, SLOT_BELT, TRUE))
 				dropItemToGround(belt)
-		w_uniform = null
-		update_suit_sensors()
-		if(!QDELETED(src))
-			update_inv_w_uniform()
 	else if(I == gloves)
 		gloves = null
 		if(!QDELETED(src))
