@@ -730,6 +730,28 @@
 	for(var/i in 1 to 7)
 		new /obj/item/poster/random_official(src)
 
+/obj/item/storage/box/syndie_kit/augmentation
+	real_name = "augmentation kit"
+
+/obj/item/storage/box/syndie_kit/augmentation/PopulateContents()
+	new /obj/item/autosurgeon/limb/head/robot(src)
+	new /obj/item/autosurgeon/limb/chest/robot(src)
+	new /obj/item/autosurgeon/limb/l_arm/robot(src)
+	new /obj/item/autosurgeon/limb/r_arm/robot(src)
+	new /obj/item/autosurgeon/limb/l_leg/robot(src)
+	new /obj/item/autosurgeon/limb/r_leg/robot(src)
+
+/obj/item/storage/box/syndie_kit/augmentation/superior
+	real_name = "superior augmentation kit"
+
+/obj/item/storage/box/syndie_kit/augmentation/superior/PopulateContents()
+	..()
+	new /obj/item/autosurgeon/upgraded_cyberheart(src)
+	new /obj/item/autosurgeon/upgraded_cyberliver(src)
+	new /obj/item/autosurgeon/upgraded_cyberlungs(src)
+	new /obj/item/autosurgeon/upgraded_cyberstomach(src)
+	new /obj/item/implanter/empshield(src)
+
 /obj/item/storage/box/beanbag/syndie_darts/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/ammo_casing/shotgun/dart/hidden(src)
