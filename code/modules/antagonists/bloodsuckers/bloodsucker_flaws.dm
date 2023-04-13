@@ -103,7 +103,7 @@
 			to_chat(owner, span_announce("You have Ranked up enough to learn: You are part of the Hecata Clan!\n\
 				* As part of the Hecata clan, you are an avid practioner of necromancy.\n\
 				* You are capable of raising the dead as zombies, making them into temporary vassals loyal to you. Dead vassals are instead permanently revived\n\
-				* You can also call for help from the beyond by summong wraiths.\n\
+				* You can also call for help from the beyond by summoning wraiths.\n\
 				* In addition, you can send messages to all your vassals no matter their location via Deathly Communion.\n\
 				* However, feeding on people causes them deep pain, making it impossible to feed silently.\n\
 				* You also are unable to use the blood altar in order to gain tasks for ranks.\n\

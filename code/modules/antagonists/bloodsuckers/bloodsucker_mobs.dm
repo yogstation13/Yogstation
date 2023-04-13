@@ -290,8 +290,6 @@
 	status_flags = 0
 	status_flags = CANPUSH
 	movement_type = FLYING
-	loot = list(/obj/item/ectoplasm)
-	del_on_death = 1
 
 /mob/living/simple_animal/hostile/bloodsucker/wraith/Life()
 	. = ..()
@@ -302,4 +300,5 @@
 
 /mob/living/simple_animal/hostile/bloodsucker/wraith/death()
 	deathmessage = "withers away into nothing."
+	qdel(src) //Del on death for some reason doesn't work, might be due to previous code preventing it for /bloodsucker mobs.
 	..()

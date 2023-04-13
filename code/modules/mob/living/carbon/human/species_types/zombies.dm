@@ -127,8 +127,7 @@
 	id = "hecatazombie"
 	limbs_id = "zombie"
 	say_mod = "moans"
-	brutemod = 1.1
-	burnmod = 1.25 //more fragile, though they also dont enter soft crit
+	brutemod = 1.1 //more fragile, though they also dont enter soft crit. No burn weakness since sanguine recuperation wont heal it.
 	speedmod = 0.33 //slightly slower
 	stunmod = 0.5
 	staminamod = 0.5 //difficult to subdue via nonlethal means

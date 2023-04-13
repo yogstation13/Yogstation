@@ -33,6 +33,12 @@
 	target_range = 1
 	prefire_message = "Select a target."
 	
+/datum/action/bloodsucker/targeted/hecata/necromancy/CheckValidTarget(atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
+	return isliving(target_atom)
+
 /datum/action/bloodsucker/targeted/hecata/necromancy/CheckCanTarget(atom/target_atom)
 	. = ..()
 	if(!.)
