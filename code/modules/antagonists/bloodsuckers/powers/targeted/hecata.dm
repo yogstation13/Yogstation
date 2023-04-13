@@ -81,7 +81,7 @@
 		to_chat(user, span_warning("We revive [target]!"))
 		var/living_time
 		if(level_current == 1)
-			living_time = 1 MINUTES
+			living_time = 5 MINUTES
 		else if(level_current == 2)
 			living_time = 8 MINUTES
 		else if(level_current == 3)
@@ -110,8 +110,6 @@
 	to_chat(user, span_warning("Your broken form is picked up by strange shadows. If you were previously not a vassal, it is unlikely these shadows will be strong enough to keep you going for very long."))
 	to_chat(user, span_notice("You are resilient to many things like the vacuum of space, can punch harder, and can take more damage before dropping. However, you are unable to use guns and are slower."))
 
-//summon wraiths (weakened shades) to attack anyone who isn't a zombie. This includes non-zombified vassals. However, you can get around this by zombifying your vassals.
-//to do this, you can make someone your favorite vassal, or you can kill them and then revive them with necromancy.
 /datum/action/bloodsucker/hecata
 	purchase_flags = HECATA_CAN_BUY
 	button_icon = 'icons/mob/actions/actions_hecata_bloodsucker.dmi'
@@ -120,6 +118,8 @@
 	background_icon_state_on = "hecata_power_on"
 	background_icon_state_off = "hecata_power_off"
 
+//summon wraiths (weakened shades) to attack anyone who isn't a zombie. This includes non-zombified vassals. However, you can get around this by zombifying your vassals.
+//to do this, you can make someone your favorite vassal, or you can kill them and then revive them with necromancy.
 /datum/action/bloodsucker/hecata/spiritcall
 	name = "Spirit Call"
 	level_current = 1
