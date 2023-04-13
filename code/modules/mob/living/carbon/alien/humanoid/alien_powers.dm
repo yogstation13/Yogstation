@@ -219,7 +219,7 @@ Doesn't work on other aliens/AI.*/
 
 /obj/effect/proc_holder/alien/neurotoxin
 	name = "Spit Neurotoxin"
-	desc = "Spits neurotoxin at someone, paralyzing them for a short time."
+	desc = "Spits neurotoxin at someone, knocking them down for a short time."
 	action_icon_state = "alien_neurotoxin_0"
 	active = FALSE
 
