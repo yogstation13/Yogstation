@@ -260,7 +260,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(!rad_mode)
 		. += "you see a tesla like thing connected to it."
 	if(!has_been_powered)
-		. += "It apears to be inactive" //425
+		. += "It apears to be inactive"
 	if(istype(user, /mob/living/carbon))
 		if((!HAS_TRAIT(user, TRAIT_MESONS)) && (get_dist(user, src) < HALLUCINATION_RANGE(power)))
 			. += span_danger("You get headaches just from looking at it.")
@@ -555,10 +555,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(surging)
 			power += surging
 
-		if(has_been_powered)//425
+		if(has_been_powered)
 			if(gasmix_power_ratio > 0.8)
 				// with a perfect gas mix, make the power less based on heat
-				icon_state = "[(icon_state)]_glow"
+				icon_state = "[initial(icon_state)]_glow"
 				temp_factor = 50
 			else
 				// in normal mode, base the produced energy around the heat
@@ -566,9 +566,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				icon_state = initial(icon_state)
 		else if(power)
 			has_been_powered = 2 //it got activated by something other than emitters
-			icon_state = "[initial(icon_state)]_start"//425
+			icon_state = "[initial(icon_state)]_start"
 		else
-			icon_state = "[initial(icon_state)]_inactive" //425 ima add the other sm sprite types in futer
+			icon_state = "[initial(icon_state)]_inactive"
 		power = clamp((removed.return_temperature() * temp_factor / T0C) * gasmix_power_ratio + power, 0, SUPERMATTER_MAXIMUM_ENERGY) //Total laser power plus an overload
 
 		if(prob(50))
@@ -577,7 +577,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(rad_mode) //for when a rad converter is attached
 				radiation_pulse(src, max(last_rads))
 			else
-				tesla_zap(src, 3, last_rads, SUPERMATTER_TESLA_FLAGS)
+				tesla_zap(src, 3, last_rads*100, SUPERMATTER_TESLA_FLAGS)
 
 		if(nitriummol > NITRO_BALL_MOLES_REQUIRED) // haha funny particles go brrrrr
 			var/balls_shot = min(round(nitriummol / NITRO_BALL_MOLES_REQUIRED), NITRO_BALL_MAX_REACT_RATE / NITRO_BALL_MOLES_REQUIRED)
@@ -770,7 +770,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			investigate_log("has been powered for the first time.", INVESTIGATE_SUPERMATTER)
 			message_admins("[src] has been powered for the first time [ADMIN_JMP(src)].")
 			has_been_powered = TRUE
-			icon_state = "[initial(icon_state)]_start" //425
+			icon_state = "[initial(icon_state)]_start"
 			var/datum/department_goal/eng/additional_supermatter/goal = locate() in SSYogs.department_goals
 			if(goal)
 				goal.complete()
