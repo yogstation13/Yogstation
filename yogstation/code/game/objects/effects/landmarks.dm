@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return TRUE
 
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM" = 50, "Engine Singulo And Tesla" = 50, "Engine TEG" = 0)
+	template_names = list("Engine SM" = 45, "Engine TSM" = 10, "Engine Singulo And Tesla" = 45, "Engine TEG" = 0)
 	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
 /obj/effect/landmark/stationroom/box/engine/choose()
@@ -119,7 +119,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 			return . //We let the normal choose() do the work if we want to have all of them in play
 		if(4)
 			return "Engine TEG"
-
+		if(5)
+			return "Engine TSM"
 
 /obj/effect/landmark/stationroom/box/testingsite
 	template_names = list("Bunker Bomb Range","Syndicate Bomb Range","Clown Bomb Range", "Clerk Bomb Range")
@@ -137,7 +138,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	template_names = list("Transfer 1", "Transfer 2", "Transfer 3", "Transfer 4", "Transfer 5", "Transfer 6", "Transfer 7", "Transfer 8", "Transfer 9", "Transfer 10")
 
 /obj/effect/landmark/stationroom/meta/engine
-	template_names = list("Meta Singulo And Tesla" = 50, "Meta SM" = 50, "Meta TEG" = 0)
+	template_names = list("Meta Singulo And Tesla" = 45, "Meta SM" = 45, "Meta TSM" = 10, "Meta TEG" = 0)
 
 /obj/effect/landmark/stationroom/meta/engine/choose()
 	. = ..()
@@ -151,7 +152,8 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 			return . //We let the normal choose() do the work if we want to have all of them in play
 		if(4)
 			return "Meta TEG"
-
+		if(5)
+			return "Meta TSM"
 
 /obj/effect/landmark/stationroom/maint/
 	unique = TRUE
@@ -194,17 +196,17 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	for(var/obj/effect/landmark/stationroom/limited_spawn/L in GLOB.stationroom_landmarks)
 		if(L.type == src.type)
 			landmarks |= L
-	
+
 	for(var/i = 0, i < count, i++)
 		var/obj/effect/landmark/stationroom/limited_spawn/L = pick_n_take(landmarks)
 		L.choose_result = pick(L.template_names)
 		var/turf/T = get_turf(L)
 		message_admins(span_adminnotice("Spawning limited_spawn landmark at [ADMIN_COORDJMP(T)]"))
 		log_game("Spawning limited_spawn landmark at: [AREACOORD(T)]")
-	
+
 	for(var/obj/effect/landmark/stationroom/limited_spawn/L in landmarks)
 		L.choose_result = EMPTY_SPAWN
-	
+
 	return choose_result
 
 /obj/effect/landmark/stationroom/limited_spawn/gax/ai_whale
@@ -228,6 +230,6 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 /obj/effect/landmark/start/infiltrator_objective/Initialize()
 	..()
 	GLOB.infiltrator_objective_items += loc
-	return INITIALIZE_HINT_QDEL 
+	return INITIALIZE_HINT_QDEL
 
 #undef EMPTY_SPAWN
