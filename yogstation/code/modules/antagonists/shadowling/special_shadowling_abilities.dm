@@ -15,6 +15,9 @@
 	max_integrity = INFINITY
 
 /datum/action/cooldown/spell/shadowling_hatch/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(user.stat || !ishuman(user) || !user || !is_shadow(user) || user.isinspace())
 		return
 	var/mob/living/carbon/human/H = user
@@ -128,6 +131,8 @@
 
 			var/datum/action/cooldown/spell/pointed/shadowling_extend_shuttle/shuttle_extend = new(H)
 			shuttle_extend.Grant(H)
+	
+	return TRUE
 
 /datum/action/cooldown/spell/shadowling_ascend
 	name = "Ascend"

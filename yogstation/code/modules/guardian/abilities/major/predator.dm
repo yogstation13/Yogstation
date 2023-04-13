@@ -61,6 +61,9 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/predator/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if (!isguardian(user))
 		return
 	var/mob/living/simple_animal/hostile/guardian/G = user
@@ -79,6 +82,8 @@
 	for (var/datum/status_effect/agent_pinpointer/predator/status in G.status_effects)
 		status.scan_target = prey
 		status.point_to_target()
+
+	return TRUE
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer/predator
 	name = "Predator's All-Seeing Eyes"

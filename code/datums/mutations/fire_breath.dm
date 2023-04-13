@@ -68,7 +68,6 @@
 		get_edge_target_turf(living_cast_on, turn(living_cast_on.dir, 180)),
 		range = self_throw_range,
 		speed = 2,
-		force = MOVE_FORCE_WEAK
 	)
 	// Try to set us to our original direction after, so we don't end up backwards.
 	living_cast_on.setDir(original_dir)

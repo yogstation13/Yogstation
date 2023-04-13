@@ -156,7 +156,7 @@
 		if(source_spell.convert_damage)
 			var/damage_to_apply = owner.maxHealth * ((caster_mob.maxHealth - caster_mob.health) / caster_mob.maxHealth)
 
-			owner.apply_damage(damage_to_apply, source_spell.convert_damage_type, forced = TRUE, wound_bonus = CANT_WOUND)
+			owner.apply_damage(damage_to_apply, source_spell.convert_damage_type, wound_bonus = CANT_WOUND)
 			owner.blood_volume = caster_mob.blood_volume
 
 	for(var/datum/action/bodybound_action as anything in caster_mob.actions)
@@ -190,7 +190,7 @@
 		caster_mob.revive(TRUE)
 
 		var/damage_to_apply = caster_mob.maxHealth * ((owner.maxHealth - owner.health) / owner.maxHealth)
-		caster_mob.apply_damage(damage_to_apply, source_spell.convert_damage_type, forced = TRUE, wound_bonus = CANT_WOUND)
+		caster_mob.apply_damage(damage_to_apply, source_spell.convert_damage_type, wound_bonus = CANT_WOUND)
 
 	caster_mob.blood_volume = owner.blood_volume
 

@@ -385,6 +385,9 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 
 
 /datum/action/cooldown/spell/pocket_dim_move/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if (!guardian || !istype(guardian))
 		return
 	var/datum/guardian_ability/major/special/pocket/PD = guardian?.stats?.ability
@@ -418,6 +421,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	else
 		give_eye(eyeobj)
 		eyeobj.setLoc(locate(PD.manifested_at_x || T.x, PD.manifested_at_y || T.y, PD.manifested_at_z || T.z))
+		
+	return TRUE
 
 /datum/action/cooldown/spell/pocket_dim_move/proc/give_eye(mob/camera/aiEye/remote/pocket/eyeobj)
 	eyeobj.eye_user = guardian

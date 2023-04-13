@@ -327,6 +327,9 @@
 	vamp_req = TRUE
 
 /datum/action/cooldown/spell/revive/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!is_vampire(user) || !isliving(user))
 		return
 	if(user.stat != DEAD)
@@ -342,6 +345,8 @@
 		L.dust()
 	to_chat(L, span_notice("We begin to reanimate... this will take 1 minute."))
 	addtimer(CALLBACK(src, PROC_REF(revive), L), 1 MINUTES)
+
+	return TRUE
 
 /datum/action/cooldown/spell/revive/proc/revive(mob/living/user)
 	var/list/missing = user.get_missing_limbs()
@@ -580,6 +585,9 @@
 	var/mob/living/simple_animal/hostile/vampire_bat/bat
 
 /datum/action/cooldown/spell/batform/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(!V)
 		return FALSE
@@ -598,3 +606,5 @@
 		bat.mind.transfer_to(bat.controller)
 		bat.controller = null //just so we don't accidently trigger the death() thing
 		qdel(bat)
+
+	return TRUE

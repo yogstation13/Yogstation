@@ -381,6 +381,9 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/shadowling_regenarmor/cast(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!is_shadow(user))
 		to_chat(user, span_warning("You must be a shadowling to do this!"))
 		return
@@ -390,6 +393,8 @@
 	user.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(user), SLOT_WEAR_SUIT)
 	user.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(user), SLOT_HEAD)
 	user.set_species(/datum/species/shadow/ling)
+
+	return TRUE
 
 /datum/action/cooldown/spell/collective_mind //Lets a shadowling bring together their thralls' strength, granting new abilities and a headcount
 	name = "Collective Hivemind"
@@ -970,9 +975,14 @@
 	user.alpha = initial(user.alpha)
 
 /datum/action/cooldown/spell/lesser_shadow_walk/cast(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	user.visible_message(span_warning("[user] suddenly fades away!"), span_shadowling("You veil yourself in darkness, making you harder to see."))
 	user.alpha = 10
 	addtimer(CALLBACK(src, PROC_REF(reappear), user), 10 SECONDS)
+	
+	return TRUE
 
 /datum/action/cooldown/spell/thrall_night_vision //Toggleable night vision for thralls
 	name = "Thrall Darksight"
