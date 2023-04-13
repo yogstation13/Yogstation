@@ -45,15 +45,6 @@
 		if (start_cooling)
 			inject_from_side_components(delta_time)
 			process_internal_cooling(delta_time)
-	else
-		// No power forces bad settings
-		magnetic_constrictor = 100
-		heating_conductor = 500
-		current_damper = 0
-		fuel_injection_rate = 20
-		moderator_injection_rate = 50
-		waste_remove = FALSE
-		iron_content += 0.02 * power_level * delta_time
 
 	update_temperature_status(delta_time)
 
