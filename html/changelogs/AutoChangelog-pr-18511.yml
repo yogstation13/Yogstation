@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: true 
+changes: 
+  - tweak: "Nitrium deals 1.5 tox damage per tick for every 2 points of stamina damage it heals and makes you jittery."
