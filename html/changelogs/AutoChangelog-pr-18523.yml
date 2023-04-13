@@ -1,0 +1,6 @@
+author: "adamsong"
+delete-after: true 
+changes: 
+  - rscadd: "Added a confirmation before administering someone else's ticket"
+  - rscadd: "Added a confirmation before replying to someone else's ticket"
+  - bugfix: "fixed ticket auto-claiming not applying to some reply methods"
