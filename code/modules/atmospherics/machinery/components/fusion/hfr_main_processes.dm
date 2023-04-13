@@ -45,6 +45,12 @@
 		if (start_cooling)
 			inject_from_side_components(delta_time)
 			process_internal_cooling(delta_time)
+	else
+		// No power forces some bad settings
+		magnetic_constrictor = 100
+		current_damper = 0
+		waste_remove = FALSE
+		iron_content += 0.02 * power_level * delta_time
 
 	update_temperature_status(delta_time)
 
