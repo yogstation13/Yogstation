@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes a bug involving dropping pocket items or belts when stripped"
