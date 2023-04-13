@@ -20,7 +20,7 @@
 #define H2O_HEAT_PENALTY 12 //This'll get made slowly over time, I want my spice rock spicy god damnit
 #define ANTINOB_HEAT_PENALTY 15
 
-/// Higher == Bigger bonus to power generation. 
+/// Higher == Bigger bonus to power generation.
 /// All of these get divided by 10-bzcomp * 5 before having 1 added and being multiplied with power to determine rads
 #define OXYGEN_TRANSMIT_MODIFIER 1.5
 #define PLASMA_TRANSMIT_MODIFIER 4
@@ -36,7 +36,7 @@
 
 /// How much extra radioactivity to emit
 #define BZ_RADIOACTIVITY_MODIFIER 5 // Up to 500% rads
-#define TRITIUM_RADIOACTIVITY_MODIFIER 3 
+#define TRITIUM_RADIOACTIVITY_MODIFIER 3
 #define PLUOXIUM_RADIOACTIVITY_MODIFIER -2
 
 /// Higher == Gas makes the crystal more resistant against heat damage.
@@ -83,6 +83,9 @@
 #define GRAVITATIONAL_ANOMALY "gravitational_anomaly"
 #define FLUX_ANOMALY "flux_anomaly"
 #define PYRO_ANOMALY "pyro_anomaly"
+
+//tesla zaps
+#define SUPERMATTER_TESLA_FLAGS TESLA_MOB_DAMAGE | TESLA_MOB_STUN
 
 //If integrity percent remaining is less than these values, the monitor sets off the relevant alarm.
 #define SUPERMATTER_DELAM_PERCENT 5
@@ -134,7 +137,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	/// How much force the SM expldoes with
 	var/explosion_power = 35
-	
+
 	/// Factor for power generation. AirTemp*(temp_factor/(0C))
 	var/temp_factor = 30
 	var/power = 0
@@ -180,6 +183,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	/// For antag sliver objective or for engineering goal
 	var/is_main_engine = FALSE
+
+	/// does it emitt radiation or tesla zap
+	var/rad_mode = TRUE
 
 	/// Is it moveable. Used for SM shards
 	var/moveable = FALSE
@@ -233,7 +239,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	investigate_log("has been created.", INVESTIGATE_SUPERMATTER)
 	if(is_main_engine)
 		GLOB.main_supermatter_engine = src
-
+	if(!rad_mode)
+		var/image/teslaconverter = image(icon, null, "tesla")
+		add_overlay(teslaconverter)
 	soundloop = new(list(src), TRUE)
 
 /obj/machinery/power/supermatter_crystal/Destroy()
@@ -249,12 +257,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/examine(mob/user)
 	. = ..()
-	if (!has_been_powered)
-		. += span_notice("This on has not been activated.") //425
-	else
-		. += span_notice("This on has been activated.")
-	if (istype(user, /mob/living/carbon))
-		if ((!HAS_TRAIT(user, TRAIT_MESONS)) && (get_dist(user, src) < HALLUCINATION_RANGE(power)))
+	if(!rad_mode)
+		. += "you see a tesla like thing connected to it."
+	if(!has_been_powered)
+		. += "It apears to be inactive" //425
+	if(istype(user, /mob/living/carbon))
+		if((!HAS_TRAIT(user, TRAIT_MESONS)) && (get_dist(user, src) < HALLUCINATION_RANGE(power)))
 			. += span_danger("You get headaches just from looking at it.")
 
 /obj/machinery/power/supermatter_crystal/proc/get_status()
@@ -557,7 +565,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				temp_factor = 30
 				icon_state = initial(icon_state)
 		else if(power)
-			has_been_powered = TRUE
+			has_been_powered = 2 //it got activated by something other than emitters
 			icon_state = "[initial(icon_state)]_start"//425
 		else
 			icon_state = "[initial(icon_state)]_inactive" //425 ima add the other sm sprite types in futer
@@ -566,7 +574,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(prob(50))
 			//1 + (tritRad + pluoxDampen * bzDampen * o2Rad * plasmaRad / (10 - bzrads))
 			last_rads = power * (1 + (tritiumcomp * TRITIUM_RADIOACTIVITY_MODIFIER) + ((pluoxiumcomp * PLUOXIUM_RADIOACTIVITY_MODIFIER) * pluoxiumcomp) * (power_transmission_bonus/(10-(bzcomp * BZ_RADIOACTIVITY_MODIFIER)))) * radmodifier
-			radiation_pulse(src, max(last_rads))
+			if(rad_mode) //for when a rad converter is attached
+				radiation_pulse(src, max(last_rads))
+			else
+				tesla_zap(src, 3, last_rads, SUPERMATTER_TESLA_FLAGS)
 
 		if(nitriummol > NITRO_BALL_MOLES_REQUIRED) // haha funny particles go brrrrr
 			var/balls_shot = min(round(nitriummol / NITRO_BALL_MOLES_REQUIRED), NITRO_BALL_MAX_REACT_RATE / NITRO_BALL_MOLES_REQUIRED)
@@ -1047,6 +1058,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/engine
 	is_main_engine = TRUE
 
+/obj/machinery/power/supermatter_crystal/engine/tesla
+	rad_mode = FALSE
+
 /obj/machinery/power/supermatter_crystal/shard
 	name = "supermatter shard"
 	desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure."
@@ -1216,7 +1230,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		qdel(src)
 		addtimer(CALLBACK(shard, /obj/machinery/power/supermatter_crystal/shard.proc/trigger), 60)
 	return TRUE
-	
+
 /obj/machinery/power/supermatter_crystal/shard/proc/trigger()
 	var/area/A = get_area(loc)
 	playsound(src, 'sound/machines/supermatter_alert.ogg', 75)
