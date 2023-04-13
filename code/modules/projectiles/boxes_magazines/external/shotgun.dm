@@ -72,3 +72,11 @@
 	icon_state = "m12gndl-8"
 	ammo_type = /obj/item/ammo_casing/shotgun/flechette
 	sprite_designation = "ndl"
+
+/obj/item/ammo_box/magazine/m12g/airburst
+	name = "shotgun magazine (12g airburst)"
+	desc = "A drum magazine designed for the Bulldog shotgun. \
+			Airburst flies for four tiles, before poppung and filling the air with lead. Take cover, or it can hit you too."
+	icon_state = "m12gab-8"
+	ammo_type = /obj/item/ammo_casing/shotgun/airburst_shell/syndicate
+	sprite_designation = "ab"

@@ -129,6 +129,7 @@
 /obj/item/projectile/bullet/pellet/shotgun_airburst_casing
 	name = "airburst rubber casing"
 	damage = 2 // The shell for the bullets, not designed to hit people
+	range = 7 // roughly 4 tiles 
 	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/pellet/shotgun_airburst_casing/on_range()
@@ -149,6 +150,7 @@
 /obj/item/projectile/bullet/pellet/shotgun_airburst_casing_syndicate
 	name = "airburst metal casing"
 	damage = 2 // The shell for the bullets, not designed to hit people
+	range = 7 // roughly 4 tiles 
 	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/pellet/shotgun_airburst_casing_syndicate/on_range()

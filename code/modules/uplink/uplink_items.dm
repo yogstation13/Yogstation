@@ -836,7 +836,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/shotgun/airburst
 	name = "12g Airburst Drum"
 	desc = "An alternative 8-round airburst magazine for use with the Bulldog shotgun. \
-			Travels 4 tiles, pops in a 360 of lead. For when you REALLY need to clear a room."
+			For when you REALLY need to clear a room. And the next. And the next."
 	item = /obj/item/ammo_box/magazine/m12g/airburst
 
 /datum/uplink_item/ammo/revolver

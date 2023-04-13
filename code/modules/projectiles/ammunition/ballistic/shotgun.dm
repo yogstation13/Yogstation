@@ -223,7 +223,6 @@
 	desc = "A 12-gague shell packed with a small timed charge, and lots of tiny beads, designed to suppress and disperse crowds."
 	icon_state = "abshell" 
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_airburst_casing
-	range = 7 // roughly 4 tiles 
 
 /obj/item/ammo_casing/shotgun/airburst_pellet_shell
 	name = "airburst shell"
@@ -236,9 +235,7 @@
 /obj/item/ammo_casing/shotgun/airburst_shell/syndicate
 	name = "syndicate airburst shell"
 	desc = "A 12-gague shell packed with a small timed charge, and loads of tiny pieces of metal."
-	icon_state = "abshells" 
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_airburst_casing_syndicate
 
 /obj/item/ammo_casing/shotgun/airburst_pellet_shell/syndicate
-	icon_state = "abshells" 
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_airburst_pellet_syndicate
