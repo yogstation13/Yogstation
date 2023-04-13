@@ -433,7 +433,7 @@
 	if(M == user)
 		return
 	var/atom/throw_target = get_edge_target_turf(M, user.dir)
-	ADD_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")///mainly so emps don't end you instantly, they still do damage though
+	ADD_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
 	var/distance = rand(1,5)
 	if(prob(1))
 		distance = 50 //hehe funny hallway launch
