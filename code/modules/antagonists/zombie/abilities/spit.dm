@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/zombie/spit
 	name = "Spit Neurotoxin"
-	desc = "Spits neurotoxin at someone, paralyzing them for a short time."
+	desc = "Spits neurotoxin at someone, knocking them down for a short time."
 	action_icon_state = "alien_neurotoxin_0"
 	active = FALSE
 	cooldown_time = 1 MINUTES
@@ -49,10 +49,10 @@
 	icon_state = "neurotoxin"
 	damage = 2
 	damage_type = TOX
-	paralyze = 50
+	knockdown = 50
 
 /obj/item/projectile/bullet/neurotoxin/spitter/on_hit(atom/target, blocked = FALSE)
 	if(isinfected(target))
-		paralyze = 0
+		knockdown = 0
 		nodamage = TRUE
 	return ..()
