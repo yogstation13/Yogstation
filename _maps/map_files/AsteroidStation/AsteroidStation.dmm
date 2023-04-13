@@ -7280,7 +7280,7 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "bqm" = (
 /obj/machinery/power/apc{
 	areastring = "/area/science/research";
@@ -10554,7 +10554,7 @@
 /obj/machinery/portable_atmospherics/canister,
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "cuW" = (
 /obj/effect/turf_decal/tile/darkgreen{
 	dir = 1
@@ -11236,7 +11236,7 @@
 "cGf" = (
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "cGi" = (
 /obj/machinery/vending/cola/random,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -13823,7 +13823,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "dBf" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -16566,7 +16566,7 @@
 	},
 /obj/structure/reagent_dispensers/foamtank,
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "eyn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -18467,7 +18467,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "feZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
@@ -22938,7 +22938,7 @@
 	},
 /obj/structure/reagent_dispensers/foamtank,
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "gDx" = (
 /obj/effect/landmark/start/security_officer,
 /obj/effect/turf_decal/trimline/red/filled/corner{
@@ -26164,7 +26164,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "hEY" = (
 /obj/machinery/computer/secure_data{
 	dir = 8
@@ -26926,7 +26926,7 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "hSh" = (
 /obj/machinery/libraryscanner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -29745,9 +29745,6 @@
 /obj/item/toy/dummy,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/starboard/fore)
-"iTA" = (
-/turf/open/floor/plasteel,
-/area/engine/atmos_distro)
 "iTS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -31421,7 +31418,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "jqV" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -32776,7 +32773,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "jPv" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -34980,7 +34977,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "kDj" = (
 /obj/machinery/door/airlock/research{
 	name = "Toxins Launch Room";
@@ -36299,7 +36296,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "lcg" = (
 /obj/structure/table,
 /obj/machinery/button/door{
@@ -39967,7 +39964,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "mqk" = (
 /obj/effect/turf_decal/tile/darkgreen{
 	dir = 1
@@ -46184,7 +46181,7 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "oqX" = (
 /obj/structure/closet/radiation,
 /turf/open/floor/plating,
@@ -51045,7 +51042,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "pQu" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -52165,7 +52162,7 @@
 	pixel_x = -24
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "qfA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
@@ -53322,7 +53319,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "qAI" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/central";
@@ -54986,7 +54983,7 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "rcz" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -67927,7 +67924,7 @@
 "vrS" = (
 /obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "vrT" = (
 /obj/effect/turf_decal/pool/corner{
 	dir = 4
@@ -68564,7 +68561,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "vDy" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -68888,7 +68885,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/engine/atmos_distro)
+/area/engine/atmos/storage)
 "vJI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -123755,7 +123752,7 @@ eMS
 hiX
 vDu
 cGf
-iTA
+cin
 vrS
 vrS
 cuH
