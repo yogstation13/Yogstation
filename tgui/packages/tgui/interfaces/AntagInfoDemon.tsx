@@ -68,7 +68,7 @@ export const AntagInfoDemon = (props, context) => {
                       <Stack.Divider />
                       <Stack.Item>
                         <span style={injurestyle}>Monstrous strike:</span> You
-                        can launch a devastating slam attack by right-clicking,
+                        can launch a devastating slam attack by alt-clicking,
                         capable of smashing bones in one strike. Great for
                         preventing the escape of your victims, as their wounds
                         will slow them.
