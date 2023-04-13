@@ -351,6 +351,9 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/shadowling_hivemind/cast(atom/cast_on)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!is_shadow(owner))
 		to_chat(owner, span_warning("You must be a shadowling to do that!"))
 		return
@@ -364,6 +367,8 @@
 		if(M in GLOB.dead_mob_list)
 			to_chat(M, "<a href='?src=[REF(M)];follow=[REF(owner)]'>(F)</a> [my_message]")
 	log_say("[owner.real_name]/[owner.key] : [text]")
+
+	return TRUE
 
 /datum/action/cooldown/spell/shadowling_regenarmor //Resets a shadowling's species to normal, removes genetic defects, and re-equips their armor
 	name = "Rapid Re-Hatch"
@@ -402,6 +407,9 @@
 	var/null_charge_acquired = FALSE
 
 /datum/action/cooldown/spell/collective_mind/cast(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!shadowling_check(user))
 		return
 	var/thralls = 0
@@ -462,6 +470,8 @@
 				else
 					to_chat(M, span_shadowling("<b>[user.real_name] has coalesced the strength of the thralls. You can draw upon it at any time to ascend. (Shadowling Evolution Tab)</b>")) //Tells all the other shadowlings
 
+	return TRUE
+
 /datum/action/cooldown/spell/null_charge
 	name = "Null Charge"
 	desc = "Empties an APC, preventing it from recharging until fixed."
@@ -473,6 +483,9 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/null_charge/cast(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!shadowling_check(user))
 		return
 
@@ -505,6 +518,7 @@
 		target_apc.charging = 0
 		target_apc.update_icon()
 
+	return TRUE
 
 /datum/action/cooldown/spell/blindness_smoke //Spawns a cloud of smoke that blinds non-thralls/shadows and grants slight healing to shadowlings and their allies
 	name = "Blindness Smoke"
@@ -589,6 +603,9 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/pointed/empower_thral/InterceptClickOn(mob/living/user, params, atom/target)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!shadowling_check(user))
 		return
 	if(!ishuman(target))
@@ -660,6 +677,9 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/pointed/revive_thrall/InterceptClickOn(mob/living/user, params, atom/target)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!shadowling_check(user))
 		return
 	if(!ishuman(target))
@@ -713,6 +733,9 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/pointed/shadowling_extend_shuttle/InterceptClickOn(mob/living/user, params, atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!shadowling_check(user))
 		return
 	if(!ishuman(target_atom))
@@ -769,6 +792,8 @@
 
 /datum/action/cooldown/spell/jaunt/void_jaunt/cast(mob/living/user)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(iscarbon(user))	//If we're not an ascendant sling
 		var/mob/living/carbon/C = user
 		if(C.on_fire)
@@ -796,6 +821,7 @@
 		S2.jaunter = user
 		S2.jaunt_spell = src
 
+	return TRUE
 
 //Both have to be high to cancel out natural regeneration
 #define VOIDJAUNT_STAM_PENALTY_DARK 10
@@ -900,6 +926,9 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/pointed/lesser_glare/InterceptClickOn(mob/living/carbon/user, params, atom/target)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!user.getorganslot(ORGAN_SLOT_EYES))
 		to_chat(user, span_warning("You need eyes to glare!"))
 		return
@@ -954,6 +983,9 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/thrall_night_vision/cast(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!is_shadow_or_thrall(user))
 		return
 	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
@@ -973,6 +1005,8 @@
 			eyes.see_in_dark = 2	//default
 	user.update_sight()
 
+	return TRUE
+
 /datum/action/cooldown/spell/lesser_shadowling_hivemind //Lets a thrall talk with their allies
 	name = "Lesser Commune"
 	desc = "Allows you to silently communicate with all other shadowlings and thralls."
@@ -984,6 +1018,9 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/lesser_shadowling_hivemind/cast(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!is_shadow_or_thrall(user))
 		to_chat(user, span_warning("<b>As you attempt to commune with the others, an agonizing spike of pain drives itself into your head!</b>"))
 		user.apply_damage(10, BRUTE, "head")
@@ -1000,8 +1037,7 @@
 			to_chat(M, "<a href='?src=[REF(M)];follow=[REF(user)]'>(F)</a> [text]")
 	log_say("[user.real_name]/[user.key] : [text]")
 
-
-
+	return TRUE
 
 // ASCENDANT ABILITIES BEYOND THIS POINT //
 // YES THEY'RE OP, BUT THEY'VE WON AT THE POINT WHERE THEY HAVE THIS, SO WHATEVER. //
@@ -1017,6 +1053,8 @@
 
 /datum/action/cooldown/spell/pointed/sling/annihilate/InterceptClickOn(mob/living/caller, params, atom/target)
 	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/boom = target
 	if(user.incorporeal_move)
 		to_chat(user, span_warning("You are not in the same plane of existence. Unphase first."))
@@ -1119,6 +1157,9 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/shadowling_hivemind_ascendant/cast(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/text = sanitize(tgui_input_text(user, "What do you want to say to fellow thralls and shadowlings?.", "Hive Chat", ""))
 	if(!text)
 		return

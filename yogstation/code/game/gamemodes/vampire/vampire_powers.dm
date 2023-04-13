@@ -101,6 +101,9 @@
 	vamp_req = TRUE
 
 /datum/action/cooldown/spell/rejuvenate/cast(list/targets, mob/user = usr)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/carbon/U = user
 	U.remove_status_effect(/datum/status_effect/speech/stutter)
 
@@ -116,6 +119,7 @@
 			U.adjustFireLoss(-1)
 		sleep(0.75 SECONDS)
 
+	return TRUE
 
 /datum/action/cooldown/spell/pointed/gaze
 	name = "Vampiric Gaze"
@@ -297,6 +301,9 @@
 	name = "[initial(name)] ([V.iscloaking ? "Deactivate" : "Activate"])"
 
 /datum/action/cooldown/spell/cloak/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(!V)
 		return
@@ -304,6 +311,7 @@
 	update_name()
 	to_chat(user, span_notice("You will now be [V.iscloaking ? "hidden" : "seen"] in darkness."))
 
+	return TRUE
 
 /datum/action/cooldown/spell/revive
 	name = "Revive"

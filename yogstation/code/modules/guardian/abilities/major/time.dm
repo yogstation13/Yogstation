@@ -28,6 +28,9 @@
 	var/length = 10 SECONDS
 
 /datum/action/cooldown/spell/erase_time/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if (!isturf(user.loc) || !isguardian(user))
 		return
 	var/list/immune = list(user)
@@ -40,6 +43,8 @@
 	for(var/mob/living/L in immune)
 		disappear(L, length, immune)
 	addtimer(CALLBACK(src, PROC_REF(StartCooldown)), length)
+
+	return TRUE
 
 /datum/action/cooldown/spell/erase_time/proc/disappear(mob/living/target, length, list/immune)
 	SEND_SOUND(target, sound('yogstation/sound/effects/kingcrimson_start.ogg'))

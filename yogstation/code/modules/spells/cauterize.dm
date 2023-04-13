@@ -14,6 +14,9 @@
 	spell_requirements = SPELL_REQUIRES_WIZARD_GARB
 
 /datum/action/cooldown/spell/cauterize/cast(mob/living/target)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/total_dam = target.getBruteLoss() + target.getFireLoss()
 	var/real_duration = cauterize_duration+((spell_level-1)*10) //60 at highest, same as cooldown
 	target.adjustBruteLoss(-500)
@@ -23,6 +26,8 @@
 		to_chat(target, span_warning("You really feel like you should heal your burns!"))
 	for(var/i in 1 to real_duration)
 		addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon, adjustFireLoss), damage_per_tick), 1 SECONDS)
+
+	return TRUE
 
 /datum/spellbook_entry/cauterize
 	name = "Cauterize"

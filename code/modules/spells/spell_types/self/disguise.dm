@@ -29,6 +29,9 @@
 	return TRUE
 
 /datum/action/cooldown/spell/disguise/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/carbon/human/C = user //Turns the user into a carbon, we'll need this later.
 	var/list/potentials = list()
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
@@ -36,6 +39,8 @@
 			potentials += H
 	var/mob/living/carbon/human/target = pick(potentials) //Picks a random subject from the viable targets.
 	cloak(C, target, user)
+
+	return TRUE
 
 /datum/action/cooldown/spell/disguise/proc/cloak(var/mob/living/carbon/human/C, var/mob/living/carbon/human/target, mob/user) //Code shortcut to enable the disguise.
 	if(is_disguised)

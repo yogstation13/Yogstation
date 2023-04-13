@@ -166,6 +166,8 @@
 		new_character.client.init_verbs() // re-initialize character specific verbs
 		LAZYCLEARLIST(new_character.client.recent_examines)
 	current.update_atom_languages()
+	SEND_SIGNAL(src, COMSIG_MIND_TRANSFERRED, old_current)
+	SEND_SIGNAL(current, COMSIG_MOB_MIND_TRANSFERRED_INTO)
 
 /datum/mind/proc/set_death_time()
 	last_death = world.time

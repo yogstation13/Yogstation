@@ -198,6 +198,9 @@
 	cast_range = 7
 
 /datum/action/cooldown/spell/pointed/hive_shock/cast(list/targets, mob/owner = usr)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive || !hive.hivemembers)
 		to_chat(owner, span_notice("This is a bug. Error:HIVE1"))
@@ -219,6 +222,8 @@
 	target.stop_pulling()
 	to_chat(target, span_ownerdanger("You feel your mind start to burn!"))
 
+	return TRUE
+
 /datum/action/cooldown/spell/hive_scan
 	name = "Psychoreception"
 	desc = "We release a pulse to receive information on any enemies we have previously located via Network Invasion, as well as those currently tracking us."
@@ -230,7 +235,10 @@
 	background_icon_state = "bg_hive"
 	button_icon_state = "scan"
 
-/datum/action/cooldown/spell/hive_scan/cast(mob/living/owner = usr)
+/datum/action/cooldown/spell/hive_scan/cast(mob/living/owner)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
 		to_chat(owner, span_notice("This is a bug. Error:HIVE1"))
@@ -290,6 +298,8 @@
 					message += " is quite far away."
 		to_chat(owner, span_assimilator("[message]"))
 
+		return TRUE
+
 /datum/action/cooldown/spell/hive_drain
 	name = "Repair Protocol"
 	desc = "Our many vessels sacrifice a small portion of their mind's vitality to cure us of our physical and mental ailments."
@@ -302,6 +312,9 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /datum/action/cooldown/spell/hive_drain/cast(mob/living/carbon/human/owner)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive || !hive.hivemembers)
 		return
@@ -332,6 +345,7 @@
 		iterations++
 	owner.setOrganLoss(ORGAN_SLOT_BRAIN, 0)
 
+	return TRUE
 
 /mob/living/passenger
 	name = "mind control victim"
@@ -501,6 +515,9 @@
 	button_icon_state = "panic"
 
 /datum/action/cooldown/spell/pointed/induce_panic/cast(list/targets, mob/living/owner = usr)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
 		to_chat(owner, span_notice("This is a bug. Error:HIVE1"))
@@ -541,6 +558,8 @@
 	for(var/mob/living/silicon/target in targets)
 		target.Unconscious(50)
 
+	return TRUE
+
 /datum/action/cooldown/spell/pointed/pin
 	name = "Psychic Pin"
 	desc = "We send out a controlled pulse of psionic energy, pinning everyone in sight, and knocking out silicon-based lifeforms. This is weaker against enemy hiveminds."
@@ -553,6 +572,9 @@
 	button_icon_state = "pin"
 
 /datum/action/cooldown/spell/pointed/pin/cast(list/targets, mob/living/owner = usr)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!targets)
 		to_chat(owner, span_notice("Nobody is in sight, it'd be a waste to do that now."))
 		return
@@ -627,6 +649,9 @@
 	var/spell_item = /obj/item/extendohand/hivemind
 
 /datum/action/cooldown/spell/telekinetic_hand/cast(mob/owner = usr)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(owner.get_active_held_item()==null)
 		var/obj/item/W = new spell_item
 		owner.put_in_hands(W)
@@ -645,7 +670,10 @@
 	background_icon_state = "bg_hive"
 	button_icon_state = "hack"
 
-/datum/action/cooldown/spell/pointed/hive_hack/cast(list/targets, mob/living/owner = usr)
+/datum/action/cooldown/spell/pointed/hive_hack/cast(list/targets, mob/living/owner)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
 		to_chat(owner, span_notice("This is a bug. Error:HIVE1"))
@@ -712,6 +740,9 @@
 	button_icon_state = "reclaim"
 
 /datum/action/cooldown/spell/pointed/hive_reclaim/cast(list/targets, mob/living/owner = usr)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
 		to_chat(owner, span_notice("This is a bug. Error:HIVE1"))
@@ -753,7 +784,10 @@
 	background_icon_state = "bg_hive"
 	button_icon_state = "chaos"
 
-/datum/action/cooldown/spell/hive_wake/cast(mob/living/owner = usr)
+/datum/action/cooldown/spell/hive_wake/cast(mob/living/owner)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
 		to_chat(owner, span_notice("This is a bug. Error:HIVE1"))
@@ -781,6 +815,8 @@
 		var/mob/living/carbon/C = pick_n_take(valid_targets)
 		C.hive_awaken(objective)
 
+	return TRUE
+
 /datum/action/cooldown/spell/hive_loyal
 	name = "Bruteforce"
 	desc = "Our ability to assimilate is boosted at the cost of, allowing us to crush the technology shielding the minds of savyy personnel and assimilate them. This power comes at a small price, and we will be immobilized for a few seconds after assimilation."
@@ -795,7 +831,10 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN
 	var/active = FALSE
 
-/datum/action/cooldown/spell/hive_loyal/cast(mob/living/owner = usr)
+/datum/action/cooldown/spell/hive_loyal/cast(mob/living/owner)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
 		to_chat(owner, span_notice("This is a bug. Error:HIVE1"))
@@ -807,6 +846,8 @@
 	the_spell.bruteforce = !active
 	to_chat(owner, span_notice("We [active?"let our minds rest and cancel our crushing power.":"prepare to crush mindshielding technology!"]"))
 	active = !active
+
+	return TRUE
 
 /datum/action/cooldown/spell/forcewall/hive
 	name = "Telekinetic Field"
@@ -824,12 +865,17 @@
 	var/wall_type_b = /obj/effect/forcefield/wizard/hive/invis
 
 /datum/action/cooldown/spell/forcewall/hive/cast(list/targets,mob/owner = usr)
+	. = ..()
+	if(!.)
+		return FALSE
 	new wall_type(get_turf(owner),owner)
 	for(var/dir in GLOB.alldirs)
 		new wall_type_b(get_step(owner, dir),owner)
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(hive)
 		hive.threat_level += 0.5
+
+	return TRUE
 
 /obj/effect/forcefield/wizard/hive
 	name = "Telekinetic Field"
@@ -867,7 +913,10 @@
 
 	cooldown_time = 0.1 SECONDS
 
-/datum/action/cooldown/spell/one_mind/cast(mob/living/owner = usr)
+/datum/action/cooldown/spell/one_mind/cast(mob/living/owner)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/datum/antagonist/hivemind/hive = owner.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
 		to_chat(owner, span_notice("This is a bug. Error:HIVE1"))
@@ -911,6 +960,8 @@
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, span_bigassimilator("...there is only us.")), 130)
 		addtimer(CALLBACK(C, /mob/living/proc/hive_awaken, new_objective, one_mind_team), 150)
 
+	return TRUE
+
 /datum/action/cooldown/spell/hive_comms
 	name = "Hive Communication"
 	desc = "Now that we are free we may finally share our thoughts with our many bretheren."
@@ -923,6 +974,9 @@
 	button_icon_state = "comms"
 
 /datum/action/cooldown/spell/hive_comms/cast(mob/living/owner = usr)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/message = stripped_input(owner, "What do you want to say?", "Hive Communication")
 	if(!message)
 		return
