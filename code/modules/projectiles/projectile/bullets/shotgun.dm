@@ -10,6 +10,7 @@
 /obj/item/projectile/bullet/shotgun/slug/syndie
 	name = "12g syndicate shotgun slug"
 	damage = 60
+	tile_dropoff = 1.5
 
 /obj/item/projectile/bullet/shotgun/slug/beanbag
 	name = "beanbag slug"
@@ -24,7 +25,7 @@
 
 /obj/item/projectile/bullet/incendiary/shotgun/dragonsbreath
 	name = "dragonsbreath pellet"
-	damage = 5
+	damage = 7
 
 /obj/item/projectile/bullet/shotgun/slug/stun
 	name = "stunslug"
@@ -41,7 +42,7 @@
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "dust"
 	damage = 20
-	paralyze = 80
+	paralyze = 8 SECONDS
 	wound_bonus = 0
 	sharpness = SHARP_NONE
 	hitsound = 'sound/effects/meteorimpact.ogg'
@@ -100,7 +101,7 @@
 	damage = 14.5 //3.5 more damage so it sucks less?
 	wound_bonus = 2
 	bare_wound_bonus = 2
-	wound_falloff_tile = -2.5
+	armour_penetration = 0 //So it doesn't suffer against armor (it's for nukies only)
 
 /obj/item/projectile/bullet/pellet/shotgun_flechette
 	name = "flechette pellet"
@@ -108,7 +109,7 @@
 	damage = 12
 	wound_bonus = 4
 	bare_wound_bonus = 4
-	armour_penetration = 40 //You're the exception of pellets not sucking against armor because ??
+	armour_penetration = 40
 	tile_dropoff = 0.35 //Ranged pellet because I guess?
 	wound_falloff_tile = -1
 

@@ -822,6 +822,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(30)
+	if(isethereal(M))
+		var/mob/living/carbon/C = M
+		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
+		if(istype(stomach))
+			stomach.adjust_charge(M.reagents.get_reagent_amount(/datum/reagent/consumable/ethanol/manhattan_proj) * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 	return ..()
 
 /datum/reagent/consumable/ethanol/whiskeysoda
@@ -1055,6 +1060,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Acid Spit"
 	glass_desc = "A drink from Nanotrasen. Made from live aliens."
 
+/datum/reagent/consumable/ethanol/acid_spit/on_mob_life(mob/living/carbon/M)
+	if(ispolysmorph(M))
+		M.adjustFireLoss(-0.5)
+	return ..()
+
 /datum/reagent/consumable/ethanol/amasec
 	name = "Amasec"
 	description = "Official drink of the Nanotrasen Gun-Club!"
@@ -1225,6 +1235,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/fetching_fizz/on_mob_life(mob/living/carbon/M)
 	for(var/obj/item/stack/ore/O in orange(3, M))
 		step_towards(O, get_turf(M))
+
+	if(ispreternis(M))
+		for(var/obj/O in orange(2,M))
+			if(!O.anchored && (O.flags_1 & CONDUCT_1))
+				step_towards(O, get_turf(M))
 	return ..()
 
 //Another reference. Heals those in critical condition extremely quickly.
@@ -1413,7 +1428,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(prob(30))
 				M.adjustToxLoss(2, 0)
 				. = 1
-	..()
+	
+	if(ispodperson(M))
+		M.adjustBruteLoss(-1)
+		M.adjustFireLoss(-1)
+		M.adjustToxLoss(-0.5)
+		M.adjustOxyLoss(-3)
+	return ..()
 
 /datum/reagent/consumable/ethanol/eggnog
 	name = "Eggnog"
@@ -2050,6 +2071,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Turbo"
 	glass_desc = "A turbulent cocktail for outlaw hoverbikers."
 
+/datum/reagent/consumable/ethanol/turbo/on_mob_metabolize(mob/living/L)
+	..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.6, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/consumable/ethanol/turbo/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	..()
+
 /datum/reagent/consumable/ethanol/turbo/on_mob_life(mob/living/carbon/M)
 	if(prob(4))
 		to_chat(M, span_notice("[pick("You feel disregard for the rule of law.", "You feel pumped!", "Your head is pounding.", "Your thoughts are racing..")]"))
@@ -2492,6 +2521,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "glass_orange"
 	glass_name = "glass of mushi kombucha"
 	glass_desc = "A glass of (slightly alcoholic) fermented sweetened mushroom tea. Refreshing, if a little strange."
+
+/datum/reagent/consumable/ethanol/mushi_kombucha/on_mob_life(mob/living/carbon/M)
+	if(ismoth(M))
+		M.adjustToxLoss(-2, 0)
+	return ..()
 
 /datum/reagent/consumable/ethanol/triumphal_arch
 	name = "Triumphal Arch"

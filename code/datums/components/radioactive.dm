@@ -42,7 +42,7 @@
 /datum/component/radioactive/process(delta_time)
 	if(!DT_PROB(50, delta_time))
 		return
-	radiation_pulse(parent, strength, RAD_DISTANCE_COEFFICIENT*2, FALSE, can_contaminate)
+	radiation_pulse(parent, strength, RAD_DISTANCE_COEFFICIENT*2, FALSE, can_contaminate, collectable_radiation=FALSE)
 	if(!hl3_release_date)
 		return
 	strength -= strength / hl3_release_date
@@ -85,7 +85,7 @@
 	to_chat(user, "<span class ='warning'>[out.Join()]</span>")
 
 /datum/component/radioactive/proc/rad_attack(datum/source, atom/movable/target, mob/living/user)
-	radiation_pulse(parent, strength/20)
+	radiation_pulse(parent, strength/20, collectable_radiation=FALSE)
 	target.rad_act(strength/2)
 	if(!hl3_release_date)
 		return
