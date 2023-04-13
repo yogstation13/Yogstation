@@ -220,7 +220,7 @@
 		var/list/fishing_contents = list()
 		for(var/turf/T in range(3, src.parent))
 			if(ischasm(T))
-				fishing_contents += T.GetAllContents()
+				fishing_contents += T.get_all_contents()
 
 		if(!length(fishing_contents))
 			to_chat(user, span_warning("There's nothing here!"))

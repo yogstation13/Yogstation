@@ -733,7 +733,6 @@
 		flame_range = exp_fire,
 		flash_range = exp_flash,
 		adminlog = FALSE,
-		explosion_cause = src,
 	)
 
 

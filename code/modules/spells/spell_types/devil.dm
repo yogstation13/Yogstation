@@ -43,6 +43,7 @@
 
 	cast_range = 5
 	cooldown_time = 15 SECONDS
+	spell_requirements = NONE
 
 /datum/action/cooldown/spell/pointed/summon_contract/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()

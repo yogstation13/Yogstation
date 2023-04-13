@@ -231,6 +231,9 @@ SUBSYSTEM_DEF(statpanels)
 	else if(length(GLOB.sdql2_queries) && target.stat_tab == "SDQL2")
 		set_SDQL2_tab(target)
 
+/// Stat panel window declaration
+/client/var/datum/tgui_window/stat_panel
+
 /atom/proc/remove_from_cache()
 	SSstatpanels.cached_images -= REF(src)
 

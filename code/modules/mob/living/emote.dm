@@ -205,7 +205,7 @@
 	key = "handsup"
 	key_third_person = "raiseshands"
 	message	= span_surrender("raises their hands in the air, they surrender!")
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/handsup/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
@@ -564,4 +564,4 @@
 	key_third_person = "thumbs"
 	message = "gives a thumbs up."
 	message_param = "gives a thumbs up to %t."
-	restraint_check = TRUE
+	hands_use_check = TRUE

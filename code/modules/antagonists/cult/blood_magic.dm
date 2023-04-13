@@ -2,6 +2,7 @@
 	name = "Prepare Blood Magic"
 	button_icon_state = "carve"
 	desc = "Prepare blood magic by carving runes into your flesh. This is easier with an <b>empowering rune</b>."
+	default_button_position = DEFAULT_BLOODSPELLS
 	var/list/spells = list()
 	var/channeling = FALSE
 
@@ -15,6 +16,23 @@
 		return FALSE
 	return ..()
 
+/datum/action/innate/cult/blood_magic/proc/Positioning()
+	for(var/datum/hud/hud as anything in viewers)
+		var/our_view = hud.mymob?.client?.view || "15x15"
+		var/atom/movable/screen/movable/action_button/button = viewers[hud]
+		var/position = screen_loc_to_offset(button.screen_loc)
+		var/spells_iterated = 0
+		for(var/datum/action/innate/cult/blood_spell/blood_spell in spells)
+			spells_iterated += 1
+			if(blood_spell.positioned)
+				continue
+			var/atom/movable/screen/movable/action_button/moving_button = blood_spell.viewers[hud]
+			if(!moving_button)
+				continue
+			var/our_x = position[1] + spells_iterated * world.icon_size // Offset any new buttons into our list
+			hud.position_action(moving_button, offset_to_screen_loc(our_x, position[2], our_view))
+			blood_spell.positioned = TRUE
+
 /datum/action/innate/cult/blood_magic/Activate()
 	var/rune = FALSE
 	var/limit = RUNELESS_MAX_BLOODCHARGE
@@ -23,16 +41,15 @@
 		break
 	if(rune)
 		limit = MAX_BLOODCHARGE
-	listclearnulls(spells)
-	if(spells.len >= limit)
+	if(length(spells) >= limit)
 		if(rune)
 			to_chat(owner, span_cultitalic("You cannot store more than [MAX_BLOODCHARGE] spells. <b>Pick a spell to remove.</b>"))
 		else
 			to_chat(owner, span_cultitalic("<b><u>You cannot store more than [RUNELESS_MAX_BLOODCHARGE] spells without an empowering rune! Pick a spell to remove.</b></u>"))
-		var/nullify_spell = input(owner, "Choose a spell to remove.", "Current Spells") as null|anything in spells
-		if(nullify_spell)
-			qdel(nullify_spell)
-		return
+		var/nullify_spell = tgui_input_list(owner, "Spell to remove", "Current Spells", spells)
+		if(isnull(nullify_spell))
+			return
+		qdel(nullify_spell)
 	var/entered_spell_name
 	var/datum/action/innate/cult/blood_spell/BS
 	var/list/possible_spells = list()
@@ -41,14 +58,16 @@
 		var/cult_name = initial(J.name)
 		possible_spells[cult_name] = J
 	possible_spells += "(REMOVE SPELL)"
-	entered_spell_name = input(owner, "Pick a blood spell to prepare...", "Spell Choices") as null|anything in possible_spells
-	if(entered_spell_name == "(REMOVE SPELL)")
-		var/nullify_spell = input(owner, "Choose a spell to remove.", "Current Spells") as null|anything in spells
-		if(nullify_spell)
-			qdel(nullify_spell)
+	entered_spell_name = tgui_input_list(owner, "Blood spell to prepare", "Spell Choices", possible_spells)
+	if(isnull(entered_spell_name))
 		return
+	if(entered_spell_name == "(REMOVE SPELL)")
+		var/nullify_spell = tgui_input_list(owner, "Spell to remove", "Current Spells", spells)
+		if(isnull(nullify_spell))
+			return
+		qdel(nullify_spell)
 	BS = possible_spells[entered_spell_name]
-	if(QDELETED(src) || owner.incapacitated() || !BS || (rune && !(locate(/obj/effect/rune/empower) in range(1, owner))) || (spells.len >= limit))
+	if(QDELETED(src) || owner.incapacitated() || !BS || (rune && !(locate(/obj/effect/rune/empower) in range(1, owner))) || (length(spells) >= limit))
 		return
 	to_chat(owner,span_warning("You begin to carve unnatural symbols into your flesh!"))
 	SEND_SOUND(owner, sound('sound/weapons/slice.ogg',0,1,10))
@@ -57,13 +76,14 @@
 	else
 		to_chat(owner, span_cultitalic("You are already invoking blood magic!"))
 		return
-	if(do_after(owner, (10 - rune*6) SECONDS, owner))
+	if(do_after(owner, 100 - rune*60, target = owner))
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			H.bleed(40 - rune*32)
 		var/datum/action/innate/cult/blood_spell/new_spell = new BS(owner)
 		new_spell.Grant(owner, src)
 		spells += new_spell
+		Positioning()
 		to_chat(owner, span_warning("Your wounds glow with power, you have prepared a [new_spell.name] invocation!"))
 	channeling = FALSE
 
@@ -78,6 +98,8 @@
 	var/base_desc //To allow for updating tooltips
 	var/invocation
 	var/health_cost = 0
+	/// Have we already been positioned into our starting location?
+	var/positioned = FALSE
 
 /datum/action/innate/cult/blood_spell/Grant(mob/living/owner, datum/action/innate/cult/blood_magic/BM)
 	if(health_cost)
@@ -85,7 +107,7 @@
 	base_desc = desc
 	desc += "<br><b><u>Has [charges] use\s remaining</u></b>."
 	all_magic = BM
-	..()
+	return ..()
 
 /datum/action/innate/cult/blood_spell/Remove()
 	if(all_magic)

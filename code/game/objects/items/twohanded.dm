@@ -860,7 +860,7 @@
 	wound_bonus = 20
 	bare_wound_bonus = 25
 
-/obj/item/highfrequencyblade/wizard/attack_self(mob/user, modifiers)
+/obj/item/twohanded/vibro_weapon/wizard/wizard/attack_self(mob/user, modifiers)
 	if(!iswizard(user))
 		balloon_alert(user, "you're too weak!")
 		return

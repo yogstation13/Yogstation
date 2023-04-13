@@ -15,6 +15,14 @@
 ///This is slower and better for more intensive status effects - 1s between ticks
 #define STATUS_EFFECT_NORMAL_PROCESS 1
 
+// Grouped effect sources, see also code/__DEFINES/traits.dm
+
+#define STASIS_MACHINE_EFFECT "stasis_machine"
+
+#define STASIS_CHEMICAL_EFFECT "stasis_chemical"
+
+#define STASIS_SHAPECHANGE_EFFECT "stasis_shapechange"
+
 ///////////
 // BUFFS //
 ///////////

@@ -84,7 +84,7 @@
 			to_chat(user, span_warning("[src] doesn't seem to want to refund [O]."))
 			return
 		if(!contract_entry.can_refund(user, src))
-			to_chat(user, span_warning("You can't refund [src]."))
+			to_chat(user, span_warning("You can't refund [O]."))
 			return
 		var/obj/item/antag_spawner/contract/contract = O
 		if(contract.used)

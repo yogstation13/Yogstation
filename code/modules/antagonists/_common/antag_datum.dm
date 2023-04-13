@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 /// Handles adding and removing the clumsy mutation from clown antags. Gets called in apply/remove_innate_effects
 /datum/antagonist/proc/handle_clown_mutation(mob/living/mob_override, message, removing = TRUE)
-	if(!ishuman(mob_override) || !owner.assigned_role == "Clown")
+	if(!ishuman(mob_override) || owner.assigned_role != "Clown")
 		return
 	var/mob/living/carbon/human/human_override = mob_override
 	if(removing) // They're a clown becoming an antag, remove clumsy
@@ -421,6 +421,7 @@ datum/antagonist/custom/create_team(datum/team/team)
 /datum/action/antag_info
 	name = "Open Antag Information:"
 	button_icon_state = "info"
+	show_to_observers = FALSE
 
 /datum/action/antag_info/New(Target)
 	. = ..()

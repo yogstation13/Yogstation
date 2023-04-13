@@ -302,7 +302,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 //Uses a ranged slab ability, returning only when the ability no longer exists(ie, when interrupted) or finishes.
 /datum/clockwork_scripture/ranged_ability
 	var/slab_overlay
-	var/ranged_type = /datum/action/cooldown/slab
+	var/ranged_type = /datum/action/cooldown/pointed/slab
 	var/ranged_message = "This is a huge goddamn bug, how'd you cast this?"
 	var/timeout_time = 0
 	var/allow_mobility = TRUE //if moving and swapping hands is allowed during the while

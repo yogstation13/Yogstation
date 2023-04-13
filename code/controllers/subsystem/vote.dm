@@ -336,6 +336,7 @@ SUBSYSTEM_DEF(vote)
 /datum/action/vote
 	name = "Vote!"
 	button_icon_state = "vote"
+	show_to_observers = FALSE
 
 /datum/action/vote/Trigger()
 	if(owner)

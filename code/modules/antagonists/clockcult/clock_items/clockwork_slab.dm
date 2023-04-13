@@ -16,7 +16,7 @@
 	var/no_cost = FALSE //If the slab is admin-only and needs no components and has no scripture locks
 	var/speed_multiplier = 1 //multiples how fast this slab recites scripture
 	var/selected_scripture = SCRIPTURE_DRIVER
-	var/datum/action/cooldown/slab/slab_ability //the slab's current bound ability, for certain scripture
+	var/datum/action/cooldown/pointed/slab/slab_ability //the slab's current bound ability, for certain scripture
 
 	var/recollecting = FALSE //if we're looking at fancy recollection
 	var/recollection_category = "Default"

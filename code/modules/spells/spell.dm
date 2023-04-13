@@ -96,15 +96,18 @@
 
 	// Register some signals so our button's icon stays up to date
 	if(spell_requirements & SPELL_REQUIRES_STATION)
-		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(UpdateButtons))
+		RegisterSignal(owner, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(update_icon_on_signal))
 	if(spell_requirements & (SPELL_REQUIRES_NO_ANTIMAGIC|SPELL_REQUIRES_WIZARD_GARB))
-		RegisterSignal(owner, COMSIG_MOB_EQUIPPED_ITEM, PROC_REF(UpdateButtons))
-	RegisterSignals(owner, list(COMSIG_MOB_ENTER_JAUNT, COMSIG_MOB_AFTER_EXIT_JAUNT), PROC_REF(UpdateButtons))
-//	owner.client?.stat_panel.send_message("check_spells")
+		RegisterSignal(owner, COMSIG_MOB_EQUIPPED_ITEM, PROC_REF(update_icon_on_signal))
+
+	RegisterSignals(owner, list(COMSIG_MOB_ENTER_JAUNT, COMSIG_MOB_AFTER_EXIT_JAUNT), PROC_REF(update_icon_on_signal))
+	if(owner.client)
+		owner.client << output(null, "statbrowser:check_spells")
 
 /datum/action/cooldown/spell/Remove(mob/living/remove_from)
 
-//	remove_from.client?.stat_panel.send_message("check_spells")
+	if(remove_from.client)
+		remove_from.client << output(null, "statbrowser:check_spells")
 	UnregisterSignal(remove_from, list(
 		COMSIG_MOB_AFTER_EXIT_JAUNT,
 		COMSIG_MOB_ENTER_JAUNT,

@@ -45,7 +45,7 @@
 /datum/spellbook_entry/teslablast
 	name = "Tesla Blast"
 	desc = "Charge up a tesla arc and release it at a random nearby target! You can move freely while it charges. The arc jumps between targets and can knock them down."
-	spell_type = /datum/action/cooldown/spell/tesla
+	spell_type = /datum/action/cooldown/spell/charged/beam/tesla
 	category = "Offensive"
 
 /datum/spellbook_entry/lightningbolt
@@ -110,6 +110,6 @@
 /datum/spellbook_entry/item/highfrequencyblade
 	name = "High Frequency Blade"
 	desc = "An incredibly swift enchanted blade resonating at a frequency high enough to be able to slice through anything."
-	item_path = /obj/item/highfrequencyblade/wizard
+	item_path = /obj/item/twohanded/vibro_weapon/wizard
 	category = "Offensive"
 	cost = 3

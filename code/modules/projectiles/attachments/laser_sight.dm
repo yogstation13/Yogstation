@@ -71,7 +71,9 @@
 	P.gun = attached_gun
 	P.color = laser_color
 	var/turf/curloc = get_turf(src)
-	var/turf/targloc = get_turf(current_user.client.mouseObject)
+	
+	var/atom/target_atom = current_user.client.mouse_object_ref?.resolve()
+	var/turf/targloc = get_turf(target_atom)
 	if(!istype(targloc))
 		if(!istype(curloc))
 			return

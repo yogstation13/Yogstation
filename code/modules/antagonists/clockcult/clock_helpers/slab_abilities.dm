@@ -1,20 +1,20 @@
 //The base for slab-bound/based ranged abilities //',:)
-/datum/action/cooldown/slab
+/datum/action/cooldown/pointed/slab
 	var/obj/item/clockwork/slab/slab
 	var/successful = FALSE
 	var/finished = FALSE
 	var/in_progress = FALSE
 
-/datum/action/cooldown/slab/Destroy()
+/datum/action/cooldown/pointed/slab/Destroy()
 	slab = null
 	return ..()
 
-/datum/action/cooldown/slab/unset_click_ability(atom/caster)
+/datum/action/cooldown/pointed/slab/unset_click_ability(atom/caster)
 	. = ..()
 	finished = TRUE
 	QDEL_IN(src, 0.6 SECONDS)
 
-/datum/action/cooldown/slab/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/pointed/slab/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(!..() || in_progress)
 		return FALSE
 	if(owner.incapacitated() || !slab || !(slab in owner.held_items) || target == slab)
@@ -24,9 +24,9 @@
 	return TRUE
 
 //For the Hateful Manacles scripture; applies replicant handcuffs to the target.
-/datum/action/cooldown/slab/hateful_manacles
+/datum/action/cooldown/pointed/slab/hateful_manacles
 
-/datum/action/cooldown/slab/hateful_manacles/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/pointed/slab/hateful_manacles/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(!..())
 		return FALSE
 
@@ -83,10 +83,10 @@
 	. = ..()
 
 //For the Sentinel's Compromise scripture; heals a target servant.
-/datum/action/cooldown/slab/compromise
+/datum/action/cooldown/pointed/slab/compromise
 	ranged_mousepointer = 'icons/effects/compromise_target.dmi'
 
-/datum/action/cooldown/slab/compromise/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/pointed/slab/compromise/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(!..())
 		return FALSE
 
@@ -143,10 +143,10 @@
 	return TRUE
 
 //For the Kindle scripture; stuns and mutes a target non-servant.
-/datum/action/cooldown/slab/kindle
+/datum/action/cooldown/pointed/slab/kindle
 	ranged_mousepointer = 'icons/effects/volt_target.dmi'
 
-/datum/action/cooldown/slab/kindle/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/pointed/slab/kindle/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(!..())
 		return FALSE
 
@@ -211,10 +211,10 @@
 
 
 //For the cyborg Linked Vanguard scripture, grants you and a nearby ally Vanguard
-/datum/action/cooldown/slab/vanguard
+/datum/action/cooldown/pointed/slab/vanguard
 	ranged_mousepointer = 'icons/effects/vanguard_target.dmi'
 
-/datum/action/cooldown/slab/vanguard/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/pointed/slab/vanguard/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(!..())
 		return FALSE
 
@@ -254,10 +254,10 @@
 	return TRUE
 
 //For the cyborg Judicial Marker scripture, places a judicial marker
-/datum/action/cooldown/slab/judicial
+/datum/action/cooldown/pointed/slab/judicial
 	ranged_mousepointer = 'icons/effects/visor_reticule.dmi'
 
-/datum/action/cooldown/slab/judicial/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/pointed/slab/judicial/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(!..())
 		return FALSE
 

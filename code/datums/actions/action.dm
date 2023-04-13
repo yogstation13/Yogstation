@@ -32,6 +32,9 @@
 	var/button_icon_state = "default"
 	///List of all mobs that are viewing our action button -> A unique movable for them to view.
 	var/list/viewers = list()
+	/// If TRUE, this action button will be shown to observers / other mobs who view from this action's owner's eyes.
+	/// Used in [/mob/proc/show_other_mob_action_buttons]
+	var/show_to_observers = TRUE
 
 /datum/action/New(Target)
 	link_to(Target)
@@ -73,6 +76,7 @@
 			return
 		Remove(owner)
 	SEND_SIGNAL(src, COMSIG_ACTION_GRANTED, grant_to)
+	SEND_SIGNAL(grant_to, COMSIG_MOB_GRANTED_ACTION, src)
 	owner = grant_to
 	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
 
@@ -102,6 +106,7 @@
 
 	if(owner)
 		SEND_SIGNAL(src, COMSIG_ACTION_REMOVED, owner)
+		SEND_SIGNAL(owner, COMSIG_MOB_REMOVED_ACTION, src)
 		UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
 
 		// Clean up our check_flag signals
@@ -204,7 +209,7 @@
 	if(viewer.client)
 		viewer.client.screen += button
 
-//	button.load_position(viewer)
+	button.load_position(viewer)
 	viewer.update_action_buttons()
 
 /// Removes our action from the passed viewer.

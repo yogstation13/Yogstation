@@ -31,14 +31,16 @@
 	return ..()
 
 /datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
-	mob_override.maxHealth -= 40
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.maxHealth -= 40
 	veil_sigils = mutable_appearance('yogstation/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
-	mob_override.add_overlay(veil_sigils)
+	current_mob.add_overlay(veil_sigils)
 	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
-	mob_override.maxHealth += 40
-	mob_override.cut_overlay(veil_sigils)
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.maxHealth += 40
+	current_mob.cut_overlay(veil_sigils)
 	QDEL_NULL(veil_sigils)
 
 /datum/antagonist/veil/greet()

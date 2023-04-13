@@ -901,7 +901,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	var/mob/living/simple_animal/shade/soul //when they're just a blade (stored inside the blade at all times)
 	var/mob/living/simple_animal/nullrod/blade //when they're flying around (blade stored inside them (soul is inside that blade))
 	var/mob/living/owner //the person with the recall spell
-	var/obj/effect/proc_holder/spell/targeted/recallnullrod/summon //the recall spell in question
+	var/datum/action/cooldown/spell/recall_nullrod/summon //the recall spell in question
 	menutab = MENU_MISC
 	additional_desc = "You feel an unwoken presence in this one."
 
@@ -935,9 +935,9 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 			soul.fully_replace_character_name(null, "The spirit of [input]")
 
 		to_chat(owner, "You feel the spirit within the blade stir and waken.")
-		summon = new /obj/effect/proc_holder/spell/targeted/recallnullrod
+		summon = new(owner)
 		summon.sword = src
-		owner.AddSpell(summon)
+		summon.Grant(owner)
 	else
 		to_chat(user, "The blade is dormant. Maybe you can try again later.")
 		possessed = FALSE
@@ -947,7 +947,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	if(soul)
 		if(owner && summon)
 			to_chat(owner, "You feel weakened as your blade fades from this world.")
-			owner.RemoveSpell(summon)
+			summon.Remove(owner)
 		to_chat(soul, "You were destroyed!")
 		qdel(soul)
 	return ..()
@@ -969,26 +969,22 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	else
 		. = ..()
 	
-/obj/effect/proc_holder/spell/targeted/recallnullrod
+/datum/action/cooldown/spell/recall_nullrod
 	name = "Sword Recall"
 	desc = "Pulls your possessed sword back to you."
-	school = "transmutation"
 	panel = "Chaplain"
-	charge_max = 10 SECONDS
-	clothes_req = FALSE
-	antimagic_allowed = TRUE
+	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon_state = "swordrecall"
+
+	school = SCHOOL_CONJURATION
 	invocation = "COME"
-	invocation_type = "shout"
-	range = -1
-	level_max = 0 //cannot be improved
-	cooldown_min = 10 SECONDS
-	include_user = TRUE
+	invocation_type = INVOCATION_SHOUT
 
+	cooldown_time = 10 SECONDS
+	spell_requirements = NONE
 	var/obj/item/nullrod/talking/sword
-	action_icon = 'icons/mob/actions/actions_spells.dmi'
-	action_icon_state = "swordrecall"
 
-/obj/effect/proc_holder/spell/targeted/recallnullrod/cast(list/targets, mob/user)
+/datum/action/cooldown/spell/recall_nullrod/cast(mob/living/carbon/user)
 	if(sword)
 		if(sword.walking)
 			sword.blade.throw_at(user, 20, 3) //remember, sword is the item, blade is the mob
@@ -1033,13 +1029,13 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	movement_type = FLYING
 	initial_language_holder = /datum/language_holder/universal
 	var/obj/item/nullrod/talking/sword //the sword they're part of
-	var/obj/effect/proc_holder/spell/targeted/nullroddrop/button //suicide button so they can return to being an item if need be
+	var/datum/action/cooldown/spell/nullrod_drop/button //suicide button so they can return to being an item if need be
 
 /mob/living/simple_animal/nullrod/Initialize()
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
-	button = new /obj/effect/proc_holder/spell/targeted/nullroddrop
-	AddSpell(button)
+	button = new(src)
+	button.Grant(src)
 
 /mob/living/simple_animal/nullrod/death()
 	if(sword)
@@ -1050,49 +1046,43 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	qdel(src)
 
 /mob/living/simple_animal/nullrod/canSuicide()
-	return 0 //you're a sword, you can't suicide
+	return FALSE //you're a sword, you can't suicide
 
 /mob/living/simple_animal/nullrod/attack_hand(mob/living/carbon/human/M)
-	if(sword?.owner && M == sword.owner)//let the chaplain pick it up in one hit
+	if(!sword.owner || M != sword.owner)//let the chaplain pick it up in one hit
+		return ..()
+	sword.owner.put_in_active_hand(sword)
+	mind.transfer_to(sword.soul)
+	sword.walking = FALSE
+	visible_message("[sword.owner] grabs [src] by the hilt.")
+	qdel(src)
+
+/mob/living/simple_animal/nullrod/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(!isliving(hit_atom))
+		return ..()
+	var/mob/living/target = hit_atom
+	if(sword?.owner && target == sword.owner)
 		sword.owner.put_in_active_hand(sword)
 		mind.transfer_to(sword.soul)
 		sword.walking = FALSE
-		visible_message("[sword.owner] grabs [src] by the hilt.")
+		visible_message("[sword.owner] catches the flying blade out of the air!")
 		qdel(src)
-	else
-		..()
 
-/mob/living/simple_animal/nullrod/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(isliving(hit_atom))
-		var/mob/living/target = hit_atom
-		if(sword?.owner && target == sword.owner)
-			sword.owner.put_in_active_hand(sword)
-			mind.transfer_to(sword.soul)
-			sword.walking = FALSE
-			visible_message("[sword.owner] catches the flying blade out of the air!")
-			qdel(src)
-	else
-		..()
-
-/obj/effect/proc_holder/spell/targeted/nullroddrop
+/datum/action/cooldown/spell/nullrod_drop
 	name = "Land"
 	desc = "Return to the ground for people to wield you."
-	school = "transmutation"
 	panel = "Chaplain"
-	charge_max = 10 SECONDS
-	clothes_req = FALSE
-	antimagic_allowed = TRUE
+	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon_state = "sworddrop"
+
+	school = SCHOOL_TRANSMUTATION
 	invocation = "COME"
-	invocation_type = "shout"
-	range = -1
-	level_max = 0 //cannot be improved
-	cooldown_min = 10 SECONDS
-	include_user = TRUE
+	invocation_type = INVOCATION_SHOUT
 
-	action_icon = 'icons/mob/actions/actions_spells.dmi'
-	action_icon_state = "sworddrop"
+	cooldown_time = 10 SECONDS
+	spell_requirements = NONE
 
-/obj/effect/proc_holder/spell/targeted/nullroddrop/cast(list/targets, mob/user)
+/datum/action/cooldown/spell/nullrod_drop/cast(mob/living/user)
 	user.death()//basically a glorified suicide button PLEASE don't give it to any actual player
 	. = ..()
 

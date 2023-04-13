@@ -1,24 +1,23 @@
-/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash
+/datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
 	name = "Ashen Passage"
-	desc = "Grants a short period of incorporeality, allowing passage through walls and other obstacles."
-	background_icon_state = "bg_ecult"
+	desc = "A short range spell that allows you to pass unimpeded through walls."
+	background_icon_state = "bg_heretic"
 	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "ash_shift"
-	sound = null
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 15 SECONDS
-
 	invocation = "ASH'N P'SSG'"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
 
+	cooldown_time = 15 SECONDS
+	cooldown_time = 15 SECONDS
 	exit_jaunt_sound = null
 	jaunt_duration = 1.1 SECONDS
 	jaunt_in_time = 1.3 SECONDS
 	jaunt_out_time = 0.6 SECONDS
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out
+	spell_requirements = NONE
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/do_steam_effects()
 	return
@@ -54,6 +53,9 @@
 	spell_requirements = SPELL_CASTABLE_WITHOUT_INVOCATION
 
 	hand_path = /obj/item/melee/touch_attack/mansus_fist
+
+/datum/action/cooldown/spell/touch/mansus_grasp/is_valid_target(atom/cast_on)
+	return TRUE // This baby can hit anything
 
 /datum/action/cooldown/spell/touch/mansus_grasp/can_cast_spell(feedback = TRUE)
 	return ..() && !!IS_HERETIC(owner)

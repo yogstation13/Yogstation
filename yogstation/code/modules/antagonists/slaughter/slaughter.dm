@@ -40,7 +40,7 @@
 							Pulling a dead or unconscious mob while you enter a pool will pull them in with you, allowing you to feast and regain your health. \
 							You move quickly upon leaving a pool of blood, but the material world will soon sap your strength and leave you sluggish. \
 							You gain strength the more attacks you land on live humanoids, though this resets when you return to the blood zone. You can also \
-							launch a devastating slam attack with ctrl+shift+click, capable of smashing bones in one strike.</B>"
+							launch a devastating slam attack with <B>Alt Click</B>, capable of smashing bones in one strike.</B>"
 
 	loot = list(/obj/effect/decal/cleanable/blood, \
 				/obj/effect/decal/cleanable/blood/innards, \
@@ -81,18 +81,21 @@
 	wound_bonus = initial(wound_bonus)
 	bare_wound_bonus = initial(bare_wound_bonus)
 
-/mob/living/simple_animal/slaughter/AltClickOn(atom/A)
-	if(!isliving(A))
-		return ..()
-	if(!Adjacent(A))
-		to_chat(src, span_warning("You are too far away to use your slam attack on [A]!"))
+/// Performs the classic slaughter demon bodyslam on the attack_target. Yeets them a screen away.
+/mob/living/simple_animal/slaughter/proc/bodyslam(atom/attack_target)
+	if(!isliving(attack_target))
 		return
+
+	if(!Adjacent(attack_target))
+		to_chat(src, span_warning("You are too far away to use your slam attack on [attack_target]!"))
+		return
+
 	if(slam_cooldown + slam_cooldown_time > world.time)
 		to_chat(src, span_warning("Your slam ability is still on cooldown!"))
 		return
 
-	face_atom(A)
-	var/mob/living/victim = A
+	face_atom(attack_target)
+	var/mob/living/victim = attack_target
 	victim.take_bodypart_damage(brute=20, wound_bonus=wound_bonus) // don't worry, there's more punishment when they hit something
 	visible_message(span_danger("[src] slams into [victim] with monstrous strength!"), span_danger("You slam into [victim] with monstrous strength!"), ignored_mobs=victim)
 	to_chat(victim, span_userdanger("[src] slams into you with monstrous strength, sending you flying like a ragdoll!"))
@@ -100,6 +103,9 @@
 	victim.throw_at(yeet_target, 10, 5, src)
 	slam_cooldown = world.time
 	log_combat(src, victim, "slaughter slammed")
+
+/mob/living/simple_animal/slaughter/AltClickOn(atom/A)
+	bodyslam(A)
 
 /mob/living/simple_animal/slaughter/UnarmedAttack(atom/A, proximity)
 	if(iscarbon(A))

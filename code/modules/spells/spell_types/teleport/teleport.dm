@@ -39,7 +39,8 @@
 	invocation_says_area = FALSE
 
 /datum/action/cooldown/spell/teleport/area_teleport/wizard/scroll/IsAvailable()
-	return ..() && owner.is_holding(target)
+	var/obj/item/teleportation_scroll/scroll = target
+	return ..() && owner.is_holding(scroll) && scroll.uses
 
 /datum/action/cooldown/spell/teleport/area_teleport/wizard/scroll/before_cast(atom/cast_on)
 	. = ..()

@@ -742,6 +742,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	desc = "Call the blood spear back to your hand!"
 	background_icon_state = "bg_demon"
 	button_icon_state = "bloodspear"
+	default_button_position = "6:157,4:-2"
 	var/obj/item/twohanded/cult_spear/spear
 	var/cooldown = 0
 

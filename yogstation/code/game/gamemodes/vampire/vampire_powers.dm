@@ -73,12 +73,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/datum/action/cooldown/spell/self/vampire_help
+/datum/action/cooldown/spell/vampire_help
 	name = "How to suck blood 101"
 	desc = "Explains how the vampire blood sucking system works."
 	button_icon_state = "bloodymaryglass"
 	icon_icon = 'icons/obj/drinks.dmi'
 	background_icon_state = "bg_demon"
+
+	school = SCHOOL_SANGUINE
 
 	vamp_req = TRUE //YES YOU NEED TO BE A VAMPIRE TO KNOW HOW TO BE A VAMPIRE SHOCKING
 
@@ -92,6 +94,8 @@
 	button_icon_state = "rejuv"
 	icon_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
+
+	school = SCHOOL_RESTORATION
 
 	cooldown_time = 20 SECONDS
 	vamp_req = TRUE
@@ -120,6 +124,8 @@
 	icon_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 	button_icon_state = "gaze"
+
+	school = SCHOOL_SANGUINE
 
 	cooldown_time = 30 SECONDS
 	active_msg = "You prepare your vampiric gaze.</span>"
@@ -182,6 +188,8 @@
 	ranged_mousepointer = 'icons/effects/mouse_pointers/hypnotize_target.dmi'
 	icon_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
+
+	school = SCHOOL_SANGUINE
 
 	cooldown_time = 30 SECONDS
 	blood_used = 20
@@ -248,6 +256,8 @@
 	icon_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 
+	school = SCHOOL_TRANSMUTATION
+
 	blood_used = 50
 	vamp_req = TRUE
 
@@ -266,6 +276,8 @@
 	button_icon_state = "cloak"
 	icon_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
+
+	school = SCHOOL_CONJURATION
 
 	cooldown_time = 1 SECONDS
 	vamp_req = TRUE
@@ -297,6 +309,8 @@
 	icon_icon = 'yogstation/icons/mob/vampire.dmi'
 	button_icon_state = "coffin"
 	background_icon_state = "bg_demon"
+
+	school = SCHOOL_SANGUINE
 
 	cooldown_time = 100 SECONDS
 	vamp_req = TRUE
@@ -337,6 +351,8 @@
 	icon_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 
+	school = SCHOOL_SANGUINE
+
 	blood_used = 50
 	vamp_req = TRUE
 
@@ -366,6 +382,8 @@
 	button_icon_state = "reeee"
 	icon_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
+
+	school = SCHOOL_SANGUINE
 
 	aoe_radius = 4
 	blood_used = 20
@@ -408,6 +426,8 @@
 	icon_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 
+	school = SCHOOL_CONJURATION
+
 	cooldown_time = 2 MINUTES
 	vamp_req = TRUE
 	blood_used = 30
@@ -446,6 +466,8 @@
 	background_icon_state = "bg_demon"
 	button_icon_state = "oath"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/bite_target.dmi' //big win
+
+	school = SCHOOL_SANGUINE
 
 	blood_used = 300
 	vamp_req = TRUE
@@ -508,6 +530,8 @@
 	button_icon_state = "coat"
 	background_icon_state = "bg_demon"
 
+	school = SCHOOL_CONJURATION
+
 	blood_used = 100
 	vamp_req = TRUE
 
@@ -532,6 +556,8 @@
 	button_icon_state = "bat"
 	icon_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
+
+	school = SCHOOL_TRANSMUTATION
 
 	cooldown_time = 20 SECONDS
 	vamp_req = TRUE

@@ -56,8 +56,8 @@
 /obj/effect/dummy/phased_mob/Exited(atom/movable/gone, direction)
 	. = ..()
 	if(gone == jaunter)
+		SEND_SIGNAL(src, COMSIG_MOB_EJECTED_FROM_JAUNT, jaunter)
 		jaunter = null
-
 
 /obj/effect/dummy/phased_mob/ex_act()
 	return FALSE
@@ -69,7 +69,10 @@
 	var/turf/newloc = phased_check(user, direction)
 	if(!newloc)
 		return
-	setDir(direction)
+
+	if (direction in GLOB.alldirs)
+		setDir(direction)
+
 	forceMove(newloc)
 
 /// Checks if the conditions are valid to be able to phase. Returns a turf destination if positive.
@@ -77,7 +80,7 @@
 	RETURN_TYPE(/turf)
 	if (movedelay > world.time || !direction)
 		return
-	var/turf/newloc = get_step(src,direction)
+	var/turf/newloc = get_step_multiz(src,direction)
 	if(!newloc)
 		return
 	var/area/destination_area = newloc.loc

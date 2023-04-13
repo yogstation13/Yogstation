@@ -342,18 +342,18 @@
 		if(!can_hit_target(M, permutated, M == original, TRUE))
 			continue
 		mobs += M
-	var/mob/M = pick(mobs)
-	if(M)
-		return M.lowest_buckled_mob()
+	if(LAZYLEN(mobs))
+		var/mob/M = pick(mobs)
+		return M?.lowest_buckled_mob()
 	var/list/obj/possible_objs = typecache_filter_list(T, GLOB.typecache_machine_or_structure)
 	var/list/obj/objs = list()
 	for(var/obj/O in possible_objs)
 		if(!can_hit_target(O, permutated, O == original, TRUE))
 			continue
 		objs += O
-	var/obj/O = pick(objs)
-	if(O)
-		return O
+	if(LAZYLEN(objs))
+		var/obj/object_chosen = pick(objs)
+		return object_chosen
 	//Nothing else is here that we can hit, hit the turf if we haven't.
 	if(!(T in permutated) && can_hit_target(T, permutated, T == original, TRUE))
 		return T
@@ -662,12 +662,10 @@
 		var/y = text2num(screen_loc_Y[1]) * 32 + text2num(screen_loc_Y[2]) - 32
 
 		//Calculate the "resolution" of screen based on client's view and world's icon size. This will work if the user can view more tiles than average.
-		var/list/screenview = getviewsize(user.client.view)
-		var/screenviewX = screenview[1] * world.icon_size
-		var/screenviewY = screenview[2] * world.icon_size
+		var/list/screenview = view_to_pixels(user.client.view)
 
-		var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
-		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
+		var/ox = round(screenview[1] / 2) - user.client.pixel_x //"origin" x
+		var/oy = round(screenview[2] / 2) - user.client.pixel_y //"origin" y
 		angle = ATAN2(y - oy, x - ox)
 	return list(angle, p_x, p_y)
 

@@ -53,12 +53,23 @@ GLOBAL_LIST_EMPTY(lockers)
 	var/door_anim_time = 2.5 // set to 0 to make the door not animate at all
 
 /obj/structure/closet/Initialize(mapload)
-	if(mapload && !opened)		// if closed, any item at the crate's loc is put in the contents
-		addtimer(CALLBACK(src, .proc/take_contents), 0)
 	. = ..()
+
+	if(mapload && !opened)		// if closed, any item at the crate's loc is put in the contents
+		. = INITIALIZE_HINT_LATELOAD
+
 	update_icon()
 	PopulateContents()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_MAGICALLY_UNLOCKED = PROC_REF(on_magic_unlock),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 	GLOB.lockers += src
+
+/obj/structure/closet/LateInitialize()
+	. = ..()
+
+	take_contents()
 
 //USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
@@ -636,3 +647,9 @@ GLOBAL_LIST_EMPTY(lockers)
 		return TRUE
 	. = ..()
 	
+	/// Signal proc for [COMSIG_ATOM_MAGICALLY_UNLOCKED]. Unlock and open up when we get knock casted.
+/obj/structure/closet/proc/on_magic_unlock(datum/source, datum/action/cooldown/spell/aoe/knock/spell, mob/living/caster)
+	SIGNAL_HANDLER
+
+	locked = FALSE
+	INVOKE_ASYNC(src, PROC_REF(open))

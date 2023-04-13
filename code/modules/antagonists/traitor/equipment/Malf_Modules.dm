@@ -525,9 +525,10 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	to_chat(owner, span_notice("Overcurrent applied to the powernet."))
 	owner.playsound_local(owner, "sparks", 50, 0)
 	adjust_uses(-1)
-	if(src && uses) //Not sure if not having src here would cause a runtime, so it's here to be safe
-		desc = "[initial(desc)] It has [uses] use\s remaining."
-		UpdateButtons()
+	if(QDELETED(src) || uses) //Not sure if not having src here would cause a runtime, so it's here to be safe
+		return
+	desc = "[initial(desc)] It has [uses] use\s remaining."
+	UpdateButtons()
 
 /// Robotic Factory: Places a large machine that converts humans that go through it into cyborgs. Unlocking this ability removes shunting.
 /datum/AI_Module/utility/place_cyborg_transformer
@@ -717,8 +718,10 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	to_chat(owner, span_notice("Diagnostic complete! Cameras reactivated: <b>[fixed_cameras]</b>. Reactivations remaining: <b>[uses]</b>."))
 	owner.playsound_local(owner, 'sound/items/wirecutter.ogg', 50, 0)
 	adjust_uses(0, TRUE) //Checks the uses remaining
-	if(src && uses) //Not sure if not having src here would cause a runtime, so it's here to be safe
-		desc = "[initial(desc)] There are [uses] reactivations remaining."
+	if(QDELETED(src) || !uses) //Not sure if not having src here would cause a runtime, so it's here to be safe
+		return
+	desc = "[initial(desc)] It has [uses] use\s remaining."
+	UpdateButtons()
 
 
 /// Upgrade Camera Network: EMP-proofs all cameras, in addition to giving them X-ray vision.
