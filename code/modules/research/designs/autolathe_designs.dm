@@ -925,17 +925,25 @@
 	build_path = /obj/item/ammo_box/c10mm
 	category = list("hacked", "Security")
 
+/datum/design/c10mm/disk
+	id = "c10mm_disk"
+	category = list("Security")
+
 /datum/design/c10mm/sp
 	name = "Ammo Box (10mm soporific)"
 	id = "c10mm_sp"
 	build_path = /obj/item/ammo_box/c10mm/sp
 
+/datum/design/c10mm/sp/disk
+	id = "c10mm_sp_disk"
+	category = list("Security")
+
 /obj/item/disk/design_disk/illegal_ammo
 	name = "Illegal Ammo Design Disk"
 	desc = "A disk containing designs for both standard and non-standard 10mm and .357 bullet designs."
 	icon_state = "datadisk1"
-	var/list/ammo_types = list(/datum/design/c10mm, /datum/design/c10mm/sp, /datum/design/c10mm/ap, /datum/design/c10mm/hp, /datum/design/c10mm/inc, /datum/design/c10mm/emp, 
-								/datum/design/box_a357, /datum/design/box_a357/ironfeather, /datum/design/box_a357/nutcracker, /datum/design/box_a357/metalshock, /datum/design/box_a357/heartpiercer, /datum/design/box_a357/wallstake)
+	var/list/ammo_types = list(/datum/design/c10mm/disk, /datum/design/c10mm/sp/disk, /datum/design/c10mm/ap, /datum/design/c10mm/hp, /datum/design/c10mm/inc, /datum/design/c10mm/emp, 
+								/datum/design/box_a357/disk, /datum/design/box_a357/ironfeather/disk, /datum/design/box_a357/nutcracker, /datum/design/box_a357/metalshock, /datum/design/box_a357/heartpiercer, /datum/design/box_a357/wallstake)
 
 /obj/item/disk/design_disk/illegal_ammo/Initialize()
 	. = ..()
@@ -996,10 +1004,18 @@
 	build_path = /obj/item/ammo_box/no_direct/a357
 	category = list("hacked", "Security")
 
+/datum/design/box_a357/disk
+	id = "box_a357_disk"
+	category = list("Security")
+
 /datum/design/box_a357/ironfeather
 	name = "Ammo Box (.357 Ironfeather)"
 	id = "box_a357_ironfeather"
 	build_path = /obj/item/ammo_box/no_direct/a357/ironfeather
+
+/datum/design/box_a357/ironfeather/disk
+	id = "box_a357_ironfeather_disk"
+	category = list("Security")
 
 /datum/design/box_a357/nutcracker
 	name = "Ammo Box (.357 Nutcracker)"
