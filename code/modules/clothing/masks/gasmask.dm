@@ -9,8 +9,8 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH
-	resistance_flags = NONE
-
+	resistance_flags = FIRE_PROOF
+	
 // **** Welding gas mask ****
 
 /obj/item/clothing/mask/gas/welding
