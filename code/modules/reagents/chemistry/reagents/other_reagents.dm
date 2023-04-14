@@ -1321,7 +1321,7 @@
 	if(M.getStaminaLoss() > 0)
 		M.adjustStaminaLoss(-2 * REM, FALSE)
 		M.adjustToxLoss(1.5 *REM, FALSE)
-	M.Jitter(15)
+	M.adjust_jitter(15 SECONDS)
 	return ..()
 
 /datum/reagent/nitrium_high_metabolization
