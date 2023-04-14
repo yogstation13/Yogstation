@@ -10,7 +10,6 @@
 
 	if(!istype(darkspawn))
 		CRASH("darkspawn menu started with wrong datum.")
-		return
 
 	data["lucidity"] = "[darkspawn.lucidity]  |  [darkspawn.lucidity_drained] / 20 unique drained total"
 

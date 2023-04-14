@@ -11,7 +11,6 @@
 
 	if(!istype(changeling))
 		CRASH("changeling menu started with wrong datum.")
-		return
 
 	var/can_readapt = changeling.canrespec
 	var/genetic_points_remaining = changeling.geneticpoints
