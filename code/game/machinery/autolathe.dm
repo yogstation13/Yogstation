@@ -275,7 +275,7 @@
 	switch(wire)
 		if(WIRE_HACK)
 			if(!wires.is_cut(wire))
-				if(!obj_flags & EMAGGED)
+				if(!(obj_flags & EMAGGED))
 					adjust_hacked(FALSE)
 		if(WIRE_SHOCK)
 			if(!wires.is_cut(wire))

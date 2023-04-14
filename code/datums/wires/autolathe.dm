@@ -29,7 +29,7 @@
 	var/obj/machinery/autolathe/A = holder
 	switch(wire)
 		if(WIRE_HACK)
-			if(!A.obj_flags & EMAGGED)
+			if(!(A.obj_flags & EMAGGED))
 				A.adjust_hacked(!A.hacked)
 				addtimer(CALLBACK(A, /obj/machinery/autolathe.proc/reset, wire), 60)
 		if(WIRE_SHOCK)
@@ -43,7 +43,7 @@
 	var/obj/machinery/autolathe/A = holder
 	switch(wire)
 		if(WIRE_HACK)
-			if(!A.obj_flags & EMAGGED)
+			if(!(A.obj_flags & EMAGGED))
 				A.adjust_hacked(!mend)
 		if(WIRE_HACK)
 			A.shocked = !mend
