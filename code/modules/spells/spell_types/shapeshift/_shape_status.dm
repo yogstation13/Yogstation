@@ -59,7 +59,7 @@
 
 	var/mob/living/revealed_mob = caster_mob
 	source.visible_message(span_warning("[revealed_mob] gets pulled back to their normal form!"))
-	restore_caster()
+	INVOKE_ASYNC(src, PROC_REF(restore_caster))
 	revealed_mob.Paralyze(10 SECONDS, ignore_canstun = TRUE)
 	return STOP_WABBAJACK
 
@@ -105,7 +105,7 @@
 	if(gibbed)
 		return
 
-	restore_caster()
+	INVOKE_ASYNC(src, PROC_REF(restore_caster))
 
 /// Signal proc for [COMSIG_LIVING_DEATH] from our caster.
 /// If our internal caster is killed, kill our owner, too (which causes the above signal).
@@ -115,11 +115,11 @@
 
 	// Our caster inside was gibbed, mirror the gib to our mob
 	if(gibbed)
-		owner.gib()
+		INVOKE_ASYNC(owner, PROC_REF(gib))
 
 	// Otherwise our caster died, just make our mob die
 	else
-		owner.death()
+		INVOKE_ASYNC(owner, PROC_REF(death))
 
 /// Signal proc for [COMSIG_PARENT_QDELETING] from our caster, delete us / our owner if we get deleted
 /datum/status_effect/shapechange_mob/proc/on_caster_deleted(datum/source)

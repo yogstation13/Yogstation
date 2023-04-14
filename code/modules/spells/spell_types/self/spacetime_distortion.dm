@@ -147,7 +147,7 @@
 /obj/effect/cross_action/spacetime_dist/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
 	if(!busy)
-		walk_link(AM)
+		INVOKE_ASYNC(src, PROC_REF(walk_link), AM)
 
 /obj/effect/cross_action/spacetime_dist/attackby(obj/item/W, mob/user, params)
 	if(user.temporarilyRemoveItemFromInventory(W))

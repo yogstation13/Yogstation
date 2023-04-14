@@ -49,7 +49,7 @@
 
 	return ..()
 
-/obj/item/implant/mindslave/removed(mob/source)
+/obj/item/implant/mindslave/removed(mob/living/source, silent = 0, special = 0)
 	if(!..())
 		return
 	if(source.mind && source.mind.has_antag_datum(/datum/antagonist/mindslave))
