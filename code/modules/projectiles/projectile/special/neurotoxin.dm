@@ -9,5 +9,5 @@
 		nodamage = TRUE
 	else if(iscarbon(target))
 		var/mob/living/carbon/H = target
-		H.reagents.add_reagent(/datum/reagent/consumable/ethanol/neurotoxin_alien, 10 * H.get_permeability_protection())
+		H.reagents.add_reagent(/datum/reagent/toxin/staminatoxin/neurotoxin_alien, 10 * H.get_permeability_protection())
 	return ..()
