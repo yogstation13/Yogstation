@@ -275,7 +275,8 @@
 	switch(wire)
 		if(WIRE_HACK)
 			if(!wires.is_cut(wire))
-				adjust_hacked(FALSE)
+				if(!obj_flags & EMAGGED)
+					adjust_hacked(FALSE)
 		if(WIRE_SHOCK)
 			if(!wires.is_cut(wire))
 				shocked = FALSE
@@ -309,6 +310,19 @@
 /obj/machinery/autolathe/hacked/Initialize()
 	. = ..()
 	adjust_hacked(TRUE)
+
+/obj/machinery/autolathe/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		return
+	obj_flags |= EMAGGED
+	if(!hacked)
+		adjust_hacked(TRUE)
+	for(var/id in SSresearch.techweb_designs)
+		var/datum/design/D = SSresearch.techweb_design_by_id(id)
+		if((D.build_type & AUTOLATHE) && ("emagged" in D.category))
+			stored_research.add_design(D)
+	playsound(src, "sparks", 75, TRUE, -1)
+	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
 
 //Called when the object is constructed by an autolathe
 //Has a reference to the autolathe so you can do !!FUN!! things with hacked lathes
