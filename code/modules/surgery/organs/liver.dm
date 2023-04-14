@@ -111,7 +111,7 @@
 	. = ..()
 	var/mob/living/carbon/C = owner
 	if(!(organ_flags & ORGAN_FAILING)) //Passive Toxin damage healing
-		C.adjustToxLoss(-0.5, TRUE, FALSE)
+		C.adjustToxLoss(-0.5, TRUE, TRUE)
 
 /obj/item/organ/liver/cybernetic/emp_act(severity)
 	. = ..()
