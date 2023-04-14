@@ -115,11 +115,11 @@
 
 	// Our caster inside was gibbed, mirror the gib to our mob
 	if(gibbed)
-		INVOKE_ASYNC(owner, PROC_REF(gib))
+		INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob/, gib))
 
 	// Otherwise our caster died, just make our mob die
 	else
-		INVOKE_ASYNC(owner, PROC_REF(death))
+		INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob/, death))
 
 /// Signal proc for [COMSIG_PARENT_QDELETING] from our caster, delete us / our owner if we get deleted
 /datum/status_effect/shapechange_mob/proc/on_caster_deleted(datum/source)
