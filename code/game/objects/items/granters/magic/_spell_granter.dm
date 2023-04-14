@@ -21,7 +21,7 @@
 
 	if(prob(80))
 		caster.dropItemToGround(src, TRUE)
-		INVOKE_ASYNC(src, PROC_REF(/atom/, visible_message), span_warning("[src] catches fire and burns to ash!"))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/, visible_message), span_warning("[src] catches fire and burns to ash!"))
 		new /obj/effect/decal/cleanable/ash(drop_location())
 		qdel(src)
 		return COMPONENT_ITEM_BURNT_OUT

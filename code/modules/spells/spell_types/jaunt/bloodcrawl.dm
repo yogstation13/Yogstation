@@ -313,7 +313,7 @@
 	// Someone we've eaten has spontaneously revived; maybe regen coma, maybe a changeling
 	victim.forceMove(get_turf(victim))
 	victim.visible_message(span_warning("[victim] falls out of the air, covered in blood, with a confused look on their face."))
-	exit_blood_effect(victim)
+	INVOKE_ASYNC(src, PROC_REF(exit_blood_effect), victim)
 
 	consumed_mobs -= victim
 	UnregisterSignal(victim, COMSIG_MOB_STATCHANGE)
