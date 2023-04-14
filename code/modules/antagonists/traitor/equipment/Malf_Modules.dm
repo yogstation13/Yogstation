@@ -397,7 +397,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 		to_chat(caller, span_warning("That machine can't be overridden!"))
 		return FALSE
 
-	caller.playsound_local(caller, 'sound/misc/interference.ogg', 50, FALSE, use_reverb = FALSE)
+	caller.playsound_local(caller, 'sound/misc/interference.ogg', 50, FALSE)
 	adjust_uses(-1)
 
 	if(uses)

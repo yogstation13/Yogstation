@@ -167,7 +167,7 @@
 
 	// Wait for cooldown
 	COOLDOWN_START(src, bloodsucker_power_cooldown, this_cooldown)
-	addtimer(CALLBACK(src, PROC_REF(UpdateButton)), this_cooldown+(1 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(UpdateButtons)), this_cooldown+(1 SECONDS))
 
 /datum/action/bloodsucker/proc/CheckCanDeactivate()
 	return TRUE

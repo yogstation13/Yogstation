@@ -85,8 +85,13 @@
 	vamp_req = TRUE //YES YOU NEED TO BE A VAMPIRE TO KNOW HOW TO BE A VAMPIRE SHOCKING
 
 /datum/action/cooldown/spell/vampire_help/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	to_chat(user, "<span class='notice'>You can consume blood from living, humanoid life by <b>punching their head while on the harm intent</b>. This <i>WILL</i> alert everyone who can see it as well as make a noise, which is generally hearable about <b>three meters away</b>. Note that you <b>cannot</b> draw blood from <b>catatonics or corpses</b>.\n\
 			Your bloodsucking speed depends on grab strength, you can <i>stealthily</i> extract blood by initiating without a grab, and can suck more blood per cycle by <b>having a neck grab or stronger</b>. Both of these modify the amount of blood taken by 50%; less for stealth, more for strong grabs.</span>")
+
+	return TRUE
 
 /datum/action/cooldown/spell/rejuvenate
 	name = "Rejuvenate"
@@ -155,6 +160,9 @@
 	return TRUE
 
 /datum/action/cooldown/spell/pointed/gaze/InterceptClickOn(mob/living/user, params, atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/target = target_atom
 	var/mob/living/carbon/human/T = target
 	user.visible_message(span_warning("[user]'s eyes flash red."),\
@@ -217,6 +225,9 @@
 	return TRUE
 
 /datum/action/cooldown/spell/pointed/hypno/InterceptClickOn(mob/living/user, params, atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
 	user.visible_message(span_warning("[user] twirls their finger in a circlular motion."),\
 			span_warning("You twirl your finger in a circular motion."))
 	var/mob/living/target = target_atom
@@ -251,6 +262,8 @@
 			to_chat(user, span_warning("[T] has fallen asleep!"))
 		else
 			to_chat(T, span_notice("You feel a whole lot better now."))
+
+	return TRUE
 
 /datum/action/cooldown/spell/appearanceshift
 	name = "Shapeshift (50)"
@@ -557,6 +570,9 @@
 	vamp_req = TRUE
 
 /datum/action/cooldown/spell/summon_coat/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(!is_vampire(user) || !isliving(user))
 		return
 	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
@@ -569,6 +585,7 @@
 	user.put_in_hands(V.coat)
 	to_chat(user, span_notice("You summon your dracula coat."))
 
+	return TRUE
 
 /datum/action/cooldown/spell/batform
 	name = "Bat Form (15)"

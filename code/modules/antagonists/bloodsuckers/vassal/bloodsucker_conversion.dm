@@ -34,7 +34,7 @@
 	if(!conversion_target.mind)
 		to_chat(owner.current, span_danger("[conversion_target] isn't self-aware enough to be made into a Vassal."))
 		return FALSE
-	if(!AmValidAntag(conversion_target))
+	if(AmValidAntag(conversion_target))
 		to_chat(owner.current, span_danger("[conversion_target] resists the power of your blood to dominate their mind!"))
 		return FALSE
 	var/mob/living/master = conversion_target.mind.enslaved_to?.resolve()

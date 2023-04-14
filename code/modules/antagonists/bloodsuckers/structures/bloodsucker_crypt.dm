@@ -925,58 +925,51 @@
 		SEND_SIGNAL(bloodsuckerdatum.my_clan, BLOODSUCKER_MADE_VASSAL, user, target)
 
 /obj/structure/bloodsucker/vassalrack/proc/do_torture(mob/living/user, mob/living/carbon/target, mult = 1)
-	/// Fifteen seconds if you aren't using anything. Shorter with weapons and such.
+	// Fifteen seconds if you aren't using anything. Shorter with weapons and such.
 	var/torture_time = 15
 	var/torture_dmg_brute = 2
 	var/torture_dmg_burn = 0
-	/// Get Bodypart
-	var/target_string = ""
-	var/obj/item/bodypart/selected_bodypart = null
-	selected_bodypart = pick(target.bodyparts)
-	if(selected_bodypart)
-		target_string += selected_bodypart.name
-	/// Get Weapon
-	var/obj/item/held_item = user.get_active_held_item()
-	if(!istype(held_item))
-		held_item = user.get_inactive_held_item()
+	var/obj/item/bodypart/selected_bodypart = pick(target.bodyparts)
+	// Get Weapon
+	var/obj/item/held_item = user.get_inactive_held_item()
 	/// Weapon Bonus
 	if(held_item)
 		torture_time -= held_item.force / 4
-		torture_dmg_brute += held_item.force / 4
-		//torture_dmg_burn += I.
-		if(held_item.sharpness == SHARP_EDGED)
-			torture_time -= 2
-		else if(held_item.sharpness == SHARP_POINTY)
-			torture_time -= 3
-		/// This will hurt your eyes.
-		else if(held_item.tool_behaviour == TOOL_WELDER)
-			if(held_item.use_tool(src, user, 0, volume = 5))
-				torture_time -= 6
-				torture_dmg_burn += 5
-		held_item.play_tool_sound(target)
-	/// Minimum 5 seconds.
-	torture_time = max(5 SECONDS, torture_time SECONDS)
-	/// Now run process.
-	if(!do_after(user, torture_time * mult, target))
+		if(!held_item.use_tool(src, user, 0, volume = 5))
+			return
+		switch(held_item.damtype)
+			if(BRUTE)
+				torture_dmg_brute = held_item.force / 4
+				torture_dmg_burn = 0
+			if(BURN)
+				torture_dmg_brute = 0
+				torture_dmg_burn = held_item.force / 4
+		switch(held_item.sharpness)
+			if(SHARP_EDGED)
+				torture_time -= 2
+			if(SHARP_POINTY)
+				torture_time -= 3
+
+	// Minimum 5 seconds.
+	torture_time = max(5 SECONDS, torture_time * 10)
+	// Now run process.
+	if(!do_after(user, (torture_time * mult), target))
 		return FALSE
-	/// Success?
+
 	if(held_item)
 		playsound(loc, held_item.hitsound, 30, 1, -1)
 		held_item.play_tool_sound(target)
 	target.visible_message(
-		span_danger("[user] performs a ritual, spilling some of [target]'s blood from their [target_string] and shaking them up!"),
-		span_userdanger("[user] performs a ritual, spilling some blood from your [target_string], shaking you up!"),
-	)
+		span_danger("[user] performs a ritual, spilling some of [target]'s blood from their [selected_bodypart.name] and shaking them up!"),
+		span_userdanger("[user] performs a ritual, spilling some blood from your [selected_bodypart.name], shaking you up!"))
+
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "scream")
 	target.adjust_jitter(5 SECONDS)
-	target.apply_damages(brute = torture_dmg_brute, burn = torture_dmg_burn, def_zone = (selected_bodypart ? selected_bodypart.body_zone : null)) // take_overall_damage(6,0)
+	target.apply_damages(brute = torture_dmg_brute, burn = torture_dmg_burn, def_zone = selected_bodypart.body_zone)
 	return TRUE
 
 /// Offer them the oppertunity to join now.
 /obj/structure/bloodsucker/vassalrack/proc/do_disloyalty(mob/living/user, mob/living/target)
-	if(!target || !target.client)
-		balloon_alert(user, "target has no mind!")
-		return FALSE
 	if(disloyalty_offered)
 		return FALSE
 
@@ -995,12 +988,20 @@
 		if("Accept")
 			disloyalty_confirm = TRUE
 		else
-			to_chat(target, span_notice("You refuse to give in! You <i>will not</i> break!"))
+			target.balloon_alert_to_viewers("stares defiantly", "refused vassalization!")
 	disloyalty_offered = FALSE
 
 	return TRUE
 
 /obj/structure/bloodsucker/vassalrack/proc/RequireDisloyalty(mob/living/user, mob/living/target)
+#ifdef BLOODSUCKER_TESTING
+	if(!target || !target.mind)
+#else
+	if(!target || !target.client)
+#endif
+		balloon_alert(user, "target has no mind!")
+		return VASSALIZATION_BANNED
+
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	return bloodsuckerdatum.AmValidAntag(target)
 

@@ -89,7 +89,10 @@
 	cooldown_time = 5 SECONDS
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/pointed/progenitor_curse/Activate(atom/target_atom)
+/datum/action/cooldown/spell/list_target/progenitor_curse/cast(atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/target = target_atom
 	var/zoinks = pick(0.1, 0.5, 1)//like, this isn't even my final form!
 	usr.visible_message(span_warning("[usr]'s sigils flare as it glances at [target]!"), \

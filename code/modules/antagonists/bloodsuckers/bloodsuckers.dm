@@ -131,6 +131,11 @@
 		on_hud_created()
 	else
 		RegisterSignal(current_mob, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
+#ifdef BLOODSUCKER_TESTING
+	var/turf/user_loc = get_turf(current_mob)
+	new /obj/structure/closet/crate/coffin(user_loc)
+	new /obj/structure/bloodsucker/vassalrack(user_loc)
+#endif
 
 /**
  * Remove innate effects is everything given to the mob

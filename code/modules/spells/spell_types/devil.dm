@@ -107,6 +107,9 @@
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/jaunt/infernal_jaunt/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(istype(user))
 		if(is_jaunting(user))
 			if(valid_location(user))
@@ -131,6 +134,8 @@
 				user.notransform = FALSE
 				user.fakefireextinguish()
 		return
+
+	return TRUE
 
 /datum/action/cooldown/spell/jaunt/infernal_jaunt/proc/valid_location(mob/living/user = usr)
 	if(istype(get_area(user), /area/shuttle/)) // Can always phase in in a shuttle.
@@ -217,6 +222,9 @@
 
 
 /datum/action/cooldown/spell/summon_dancefloor/cast(mob/living/carbon/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	LAZYINITLIST(dancefloor_turfs)
 	LAZYINITLIST(dancefloor_turfs_types)
 
@@ -245,6 +253,8 @@
 			dancefloor_turfs_types[i] = T.type
 			T.ChangeTurf((i % 2 == 0) ? /turf/open/floor/light/colour_cycle/dancefloor_a : /turf/open/floor/light/colour_cycle/dancefloor_b, flags = CHANGETURF_INHERIT_AIR)
 			i++
+
+	return TRUE
 
 /datum/effect_system/fluid_spread/smoke/transparent/dancefloor_devil
 	effect_type = /obj/effect/particle_effect/fluid/smoke/transparent/dancefloor_devil

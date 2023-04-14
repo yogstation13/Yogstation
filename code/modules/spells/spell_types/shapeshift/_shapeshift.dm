@@ -76,7 +76,7 @@
 		return . | SPELL_CANCEL_CAST
 
 	shapeshift_type = shift_type || pick(possible_shapes)
-	if(QDELETED(src) || QDELETED(owner) || !can_cast_spell(feedback = FALSE))
+	if(QDELETED(src) || QDELETED(owner) || !can_cast_spell(FALSE))
 		return . | SPELL_CANCEL_CAST
 
 /datum/action/cooldown/spell/shapeshift/cast(mob/living/cast_on)
