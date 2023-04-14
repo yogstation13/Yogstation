@@ -930,33 +930,47 @@
 	id = "c10mm_sp"
 	build_path = /obj/item/ammo_box/c10mm/sp
 
+/obj/item/disk/design_disk/illegal_ammo
+	name = "Illegal Ammo Design Disk"
+	desc = "A disk containing designs for both standard and non-standard 10mm and .357 bullet designs."
+	icon_state = "datadisk1"
+	var/list/ammo_types = list(/datum/design/c10mm, /datum/design/c10mm/sp, /datum/design/c10mm/ap, /datum/design/c10mm/hp, /datum/design/c10mm/inc, /datum/design/c10mm/emp, 
+								/datum/design/box_a357, /datum/design/box_a357/ironfeather, /datum/design/box_a357/nutcracker, /datum/design/box_a357/metalshock, /datum/design/box_a357/heartpiercer, /datum/design/box_a357/wallstake)
+
+/obj/item/disk/design_disk/illegal_ammo/Initialize()
+	. = ..()
+	max_blueprints = ammo_types.len
+	for(var/design in ammo_types)
+		var/datum/design/new_design = design
+		blueprints += new new_design
+
 /datum/design/c10mm/ap
 	name = "Ammo Box (10mm armor-piercing)"
 	id = "c10mm_ap"
 	materials = list(/datum/material/iron = 45000)
 	build_path = /obj/item/ammo_box/c10mm/ap
-	category = list("emagged", "Security")
+	category = list("Security")
 
 /datum/design/c10mm/hp
 	name = "Ammo Box (10mm hollow-point)"
 	id = "c10mm_hp"
 	materials = list(/datum/material/iron = 45000)
 	build_path = /obj/item/ammo_box/c10mm/hp
-	category = list("emagged", "Security")
+	category = list("Security")
 
 /datum/design/c10mm/inc
 	name = "Ammo Box (10mm incendiary)"
 	id = "c10mm_inc"
 	materials = list(/datum/material/iron = 45000)
 	build_path = /obj/item/ammo_box/c10mm/inc
-	category = list("emagged", "Security")
+	category = list("Security")
 
 /datum/design/c10mm/emp
 	name = "Ammo Box (10mm EMP)"
 	id = "c10mm_emp"
 	materials = list(/datum/material/iron = 45000)
 	build_path = /obj/item/ammo_box/c10mm/emp
-	category = list("emagged", "Security")
+	category = list("Security")
 
 /datum/design/c45
 	name = "Ammo Box (.45)"
@@ -992,28 +1006,28 @@
 	id = "box_a357_nutcracker"
 	materials = list (/datum/material/iron = 60000)
 	build_path = /obj/item/ammo_box/no_direct/a357/nutcracker
-	category = list ("emagged", "Security")
+	category = list ("Security")
 
 /datum/design/box_a357/metalshock
 	name = "Ammo Box (.357 Metalshock)"
 	id = "box_a357_metalshock"
 	materials = list (/datum/material/iron = 60000)
 	build_path = /obj/item/ammo_box/no_direct/a357/metalshock
-	category = list ("emagged", "Security")
+	category = list ("Security")
 
 /datum/design/box_a357/heartpiercer
 	name = "Ammo Box (.357 Heartpiercer)"
 	id = "box_a357_heartpiercer"
 	materials = list (/datum/material/iron = 60000)
 	build_path = /obj/item/ammo_box/no_direct/a357/heartpiercer
-	category = list ("emagged", "Security")
+	category = list ("Security")
 
 /datum/design/box_a357/wallstake
 	name = "Ammo Box (.357 Wallstake)"
 	id = "box_a357_wallstake"
 	materials = list (/datum/material/iron = 60000)
 	build_path = /obj/item/ammo_box/no_direct/a357/wallstake
-	category = list ("emagged", "Security")
+	category = list ("Security")
 
 /datum/design/cleaver
 	name = "Butcher's Cleaver"

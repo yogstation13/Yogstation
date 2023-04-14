@@ -317,10 +317,6 @@
 	obj_flags |= EMAGGED
 	if(!hacked)
 		adjust_hacked(TRUE)
-	for(var/id in SSresearch.techweb_designs)
-		var/datum/design/D = SSresearch.techweb_design_by_id(id)
-		if((D.build_type & AUTOLATHE) && ("emagged" in D.category))
-			stored_research.add_design(D)
 	playsound(src, "sparks", 75, TRUE, -1)
 	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
 
