@@ -252,7 +252,7 @@
 /datum/action/cooldown/spell/touch/proc/on_hand_deleted(datum/source)
 	SIGNAL_HANDLER
 
-	remove_hand(reset_cooldown_after = TRUE)
+	INVOKE_ASYNC(src, PROC_REF(remove_hand), null, TRUE)
 
 /**
  * Signal proc for [COMSIG_ITEM_DROPPED] from our attached hand.
