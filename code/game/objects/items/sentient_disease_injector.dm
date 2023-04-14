@@ -132,7 +132,8 @@
 
 	if(stored_vial && stored_vial.reagents.total_volume) //If there is a stored vial, inject.
 		var/list/injected = list()
-		for(var/datum/reagent/R as anything in stored_vial.reagents)
+		for(var/k in stored_vial.reagents)
+			var/datum/reagent/R = k
 			injected += R.name
 		log_combat(user, C, "attempted to inject", src, "([english_list(injected)])")
 		stored_vial.reagents.reaction(C, INJECT, 1)
