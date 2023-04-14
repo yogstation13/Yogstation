@@ -47,8 +47,8 @@
 		"YOU DIDN'T THINK IT'D BE THAT EASY, DID YOU?",
 	)
 
-	to_chat(caster, span_warning("Glowing red letters appear on the front cover..."))
-	to_chat(caster, span_red(pick(clever_girl)))
+	INVOKE_ASYNC(src, PROC_REF(to_chat), caster, span_warning("Glowing red letters appear on the front cover..."))
+	INVOKE_ASYNC(src, PROC_REF(to_chat), caster, span_red(pick(clever_girl)))
 
 	return COMPONENT_ITEM_BURNT_OUT
 

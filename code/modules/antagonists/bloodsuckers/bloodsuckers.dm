@@ -176,18 +176,18 @@
 	sunlight_display.hud = bloodsucker_hud
 	bloodsucker_hud.infodisplay += sunlight_display
 
-	bloodsucker_hud.show_hud(bloodsucker_hud.hud_version)
+	INVOKE_ASYNC(bloodsucker_hud, TYPE_PROC_REF(/datum/hud/, show_hud), bloodsucker_hud.hud_version)
 
 /datum/antagonist/bloodsucker/get_admin_commands()
 	. = ..()
-	.["Give Level"] = CALLBACK(src, .proc/RankUp)
+	.["Give Level"] = CALLBACK(src, PROC_REF(RankUp))
 	if(bloodsucker_level_unspent >= 1)
-		.["Remove Level"] = CALLBACK(src, .proc/RankDown)
+		.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
 
 	if(broke_masquerade)
-		.["Fix Masquerade"] = CALLBACK(src, .proc/fix_masquerade)
+		.["Fix Masquerade"] = CALLBACK(src, PROC_REF(fix_masquerade))
 	else
-		.["Break Masquerade"] = CALLBACK(src, .proc/break_masquerade)
+		.["Break Masquerade"] = CALLBACK(src, PROC_REF(break_masquerade))
 
 ///Called when you get the antag datum, called only ONCE per antagonist.
 /datum/antagonist/bloodsucker/on_gain()

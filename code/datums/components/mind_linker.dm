@@ -137,7 +137,7 @@
 		return
 
 	to_chat(to_unlink, span_warning(unlink_message))
-	post_unlink_callback?.Invoke(to_unlink)
+	INVOKE_ASYNC(post_unlink_callback, PROC_REF(/datum/callback/, Invoke), to_unlink)
 
 	UnregisterSignal(to_unlink, list(COMSIG_LIVING_DEATH, COMSIG_PARENT_QDELETING, COMSIG_MINDSHIELD_IMPLANTED))
 

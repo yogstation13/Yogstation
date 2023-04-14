@@ -105,7 +105,7 @@
 	return 1
 
 /obj/item/implant/Destroy()
-	if(imp_in)
+	if(!QDELETED(imp_in) && !QDESTROYING(imp_in))
 		removed(imp_in)
 	return ..()
 

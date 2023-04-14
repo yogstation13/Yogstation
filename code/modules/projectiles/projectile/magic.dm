@@ -587,32 +587,32 @@
 		possession_test(M)
 		return BULLET_ACT_HIT
 
-/obj/item/projectile/magic/wipe/proc/possession_test(var/mob/living/carbon/M)
-	var/datum/brain_trauma/special/imaginary_friend/trapped_owner/trauma = M.gain_trauma(/datum/brain_trauma/special/imaginary_friend/trapped_owner)
-	var/poll_message = "Do you want to play as [M.real_name]?"
-	if(M?.mind?.assigned_role)
-		poll_message = "[poll_message] Job:[M.mind.assigned_role]."
-	if(M?.mind?.special_role)
-		poll_message = "[poll_message] Status:[M.mind.special_role]."
-	else if(M.mind)
-		var/datum/antagonist/A = M.mind.has_antag_datum(/datum/antagonist/)
+/obj/item/projectile/magic/wipe/proc/possession_test(mob/living/carbon/target)
+	var/datum/brain_trauma/special/imaginary_friend/trapped_owner/trauma = target.gain_trauma(/datum/brain_trauma/special/imaginary_friend/trapped_owner)
+	var/poll_message = "Do you want to play as [target.real_name]?"
+	if(target.mind)
+		poll_message = "[poll_message] Job:[target.mind.assigned_role]."
+	if(target.mind && target.mind.special_role)
+		poll_message = "[poll_message] Status:[target.mind.special_role]."
+	else if(target.mind)
+		var/datum/antagonist/A = target.mind.has_antag_datum(/datum/antagonist/)
 		if(A)
 			poll_message = "[poll_message] Status:[A.name]."
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob(poll_message, ROLE_PAI, null, FALSE, 100, M)
-	if(M.stat == DEAD)//boo.
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob(poll_message, ROLE_PAI, null, FALSE, 10 SECONDS, target)
+	if(target.stat == DEAD)//boo.
 		return
 	if(LAZYLEN(candidates))
-		var/mob/dead/observer/C = pick(candidates)
-		to_chat(M, "You have been noticed by a ghost, and it has possessed you!")
-		var/oldkey = M.key
-		M.ghostize(0)
-		M.key = C.key
+		var/mob/dead/observer/ghost = pick(candidates)
+		to_chat(target, span_boldnotice("You have been noticed by a ghost and it has possessed you!"))
+		var/oldkey = target.key
+		target.ghostize(FALSE)
+		target.key = ghost.key
 		trauma.friend.key = oldkey
 		trauma.friend.reset_perspective(null)
 		trauma.friend.Show()
 		trauma.friend_initialized = TRUE
 	else
-		to_chat(M, span_notice("Your mind has managed to go unnoticed in the spirit world."))
+		to_chat(target, span_notice("Your mind has managed to go unnoticed in the spirit world."))
 		qdel(trauma)
 
 /// Gives magic projectiles an area of effect radius that will bump into any nearby mobs

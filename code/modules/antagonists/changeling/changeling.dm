@@ -129,7 +129,7 @@
 	lingstingdisplay.hud = ling_hud
 	ling_hud.infodisplay += lingstingdisplay
 
-	ling_hud.show_hud(ling_hud.hud_version)
+	INVOKE_ASYNC(ling_hud, TYPE_PROC_REF(/datum/hud/, show_hud),ling_hud.hud_version)
 
 /datum/antagonist/changeling/proc/make_absorbable()
 	var/mob/living/carbon/C = owner.current

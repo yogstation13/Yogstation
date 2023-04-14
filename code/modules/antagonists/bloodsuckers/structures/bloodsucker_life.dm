@@ -13,7 +13,7 @@
 		return
 
 	if(HAS_TRAIT(owner.current, TRAIT_NODEATH))
-		check_end_torpor()
+		INVOKE_ASYNC(src, PROC_REF(check_end_torpor))
 
 	if(istype(owner.current, /mob/living/simple_animal/hostile/bloodsucker))
 		return
