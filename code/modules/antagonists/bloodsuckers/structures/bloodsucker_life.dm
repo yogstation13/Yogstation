@@ -26,7 +26,7 @@
 		INVOKE_ASYNC(src, PROC_REF(AddBloodVolume), -BLOODSUCKER_PASSIVE_BLOOD_DRAIN) // -.1 currently
 	if(HandleHealing())
 		if((COOLDOWN_FINISHED(src, bloodsucker_spam_healing)) && bloodsucker_blood_volume)
-			to_chat(owner.current, span_notice("The power of your blood begins knitting your wounds..."))
+			INVOKE_ASYNC(src, PROC_REF(to_chat), owner.current, span_notice("The power of your blood begins knitting your wounds..."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_HEALING)
 	// Standard Updates
 	INVOKE_ASYNC(src, PROC_REF(HandleDeath))
