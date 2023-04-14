@@ -50,7 +50,7 @@
 
 	return ..()
 
-/obj/item/implant/greytide/removed(mob/source)
+/obj/item/implant/greytide/removed(mob/living/source, silent = FALSE, special = 0)
 	. = ..()
 	if(!.)
 		return

@@ -9,7 +9,7 @@
 	slab = null
 	return ..()
 
-/datum/action/cooldown/pointed/slab/unset_click_ability(atom/caster)
+/datum/action/cooldown/pointed/slab/unset_click_ability(mob/on_who, refund_cooldown = TRUE)
 	. = ..()
 	finished = TRUE
 	QDEL_IN(src, 0.6 SECONDS)
