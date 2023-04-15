@@ -1,0 +1,6 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "species mutation toxins are no longer instant (they now take around 2 minutes), and can be counteracted by getting cold or drinking ice"
+  - tweak: "slime transformation disease cure changed to ice from frost oil to make it curable"
+  - rscdel: "plasmaman mutation toxin and advanced mutation toxin are no longer duplicable or present in the random reagent pool"
