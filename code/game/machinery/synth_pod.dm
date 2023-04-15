@@ -85,6 +85,7 @@ GLOBAL_LIST_EMPTY(synth_pods)
 	var/datum/species/wy_synth/S = user.dna.species
 	if(S.mainframe)
 		S.undeploy(user)
+		return
 	var/list/options = list("Stay here")
 	for(var/obj/machinery/synth_pod/pod in GLOB.synth_pods)
 		if(pod == src)
@@ -108,6 +109,8 @@ GLOBAL_LIST_EMPTY(synth_pods)
 		var/mob/living/carbon/human/target_synth = selected_pod.stored
 		var/datum/species/wy_synth/S = user.dna.species
 		S.transfer(user, target_synth)
+		selected_pod.open_machine()
+		selected_pod.stored = null
 		
 		
 

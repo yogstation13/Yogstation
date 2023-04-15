@@ -80,7 +80,8 @@
 
 
 /datum/ai_dashboard/synth_dashboard/tick(seconds)
-	var/datum/species/wy_synth/S = owner.dna.species
+	var/mob/living/carbon/human/H = owner
+	var/datum/species/wy_synth/S = H.dna.species
 	if(S.mainframe)
 		return
 	. = ..(seconds)
@@ -88,7 +89,8 @@
 	suspicion_tick()
 
 /datum/ai_dashboard/synth_dashboard/proc/suspicion_tick()
-	var/datum/species/wy_synth/S = owner.dna.species
+	var/mob/living/carbon/human/H = owner
+	var/datum/species/wy_synth/S = H.dna.species
 	if(S.mainframe)
 		return
 	owner.mind.governor_suspicion -= SYNTH_GOVERNOR_SUSPICION_DECREASE * owner.mind.suspicion_multiplier
