@@ -27,4 +27,4 @@
 	if(!do_mob(bloodsucker, vassal, 1 SECONDS, TRUE))
 		return
 	playsound(vassal.loc, 'sound/effects/splat.ogg', 50, TRUE)
-	vassal.set_species(/datum/species/szlachta)
+	INVOKE_ASYNC(vassal, TYPE_PROC_REF(/mob/, set_species), /datum/species/szlachta)

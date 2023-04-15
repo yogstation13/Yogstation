@@ -961,15 +961,15 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	for(var/obj/effect/decal/cleanable/nearby_blood in range(1, get_turf(source)))
 		if(!nearby_blood.can_bloodcrawl_in())
 			continue
-		source.forceMove(get_turf(nearby_blood))
+		INVOKE_ASYNC(source, TYPE_PROC_REF(/atom/movable/, forceMove), get_turf(nearby_blood))
 		source.visible_message(span_warning("[nearby_blood] violently expels [source]!"))
 		crawl.exit_blood_effect(source)
 		return
 
 	// Fuck it, just eject them, thanks to some split second cleaning
-	source.forceMove(get_turf(source))
+	INVOKE_ASYNC(source, TYPE_PROC_REF(/atom/movable/, forceMove), get_turf(source))
 	source.visible_message(span_warning("[source] appears from nowhere, covered in blood!"))
-	crawl.exit_blood_effect(source)
+	INVOKE_ASYNC(crawl, TYPE_PROC_REF(/datum/action/cooldown/spell/jaunt/bloodcrawl/, exit_blood_effect), source)
 
 /datum/reagent/consumable/ethanol/vodkatonic
 	name = "Vodka and Tonic"

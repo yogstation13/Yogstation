@@ -290,10 +290,9 @@
 		// Unregister the signals first
 		UnregisterSignal(friend, list(COMSIG_MOB_STATCHANGE, COMSIG_PARENT_QDELETING))
 
-		friend.forceMove(release_turf)
+		INVOKE_ASYNC(friend, TYPE_PROC_REF(/atom/movable/, forceMove), release_turf)
 		if(!friend.revive(full_heal = TRUE, admin_revive = TRUE))
 			continue
-		friend.grab_ghost(force = TRUE)
 		playsound(release_turf, consumed_mobs, 50, TRUE, -1)
 		to_chat(friend, span_clown("You leave [source]'s warm embrace, and feel ready to take on the world."))
 
@@ -311,7 +310,7 @@
 	if(new_stat == DEAD)
 		return
 	// Someone we've eaten has spontaneously revived; maybe regen coma, maybe a changeling
-	victim.forceMove(get_turf(victim))
+	INVOKE_ASYNC(victim, TYPE_PROC_REF(/atom/movable/, forceMove), get_turf(victim))
 	victim.visible_message(span_warning("[victim] falls out of the air, covered in blood, with a confused look on their face."))
 	INVOKE_ASYNC(src, PROC_REF(exit_blood_effect), victim)
 
