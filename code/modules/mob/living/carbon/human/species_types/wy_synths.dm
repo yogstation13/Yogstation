@@ -144,6 +144,10 @@
 
 	handle_charge(H)
 
+	if(H.mind)
+		if(!H.mind.synth_os)
+			add_synthos(H)
+
 	if(H.mind?.synth_os)
 		H.mind.synth_os.tick(2 SECONDS * 0.1)
 

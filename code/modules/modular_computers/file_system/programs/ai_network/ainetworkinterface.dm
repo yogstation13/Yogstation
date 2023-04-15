@@ -140,9 +140,9 @@
 		if(subnet.cables.len || subnet.nodes.len)
 			var/area/area
 			if(length(subnet.cables))
-				area = get_area(subnet.cables[0])
+				area = get_area(subnet.cables[1])
 			else
-				area = get_area(subnet.nodes[0])
+				area = get_area(subnet.nodes[1])
 			if(!area)
 				continue
 			var/synth_list = list()
@@ -455,11 +455,11 @@
 				else
 					var/area_text 
 					if(subnet.cables.len)
-						var/obj/structure/ethernet_cable/C = subnet.cables[0]
+						var/obj/structure/ethernet_cable/C = subnet.cables[1]
 						area_text = "[get_area(subnet.cables[0])] ([C.x], [C.y])"
 					else
-						var/obj/machinery/N = subnet.nodes[0]
-						area_text = "[get_area(subnet.nodes[0])] ([N.x], [N.y])"
+						var/obj/machinery/N = subnet.nodes[1]
+						area_text = "[get_area(subnet.nodes[1])] ([N.x], [N.y])"
 					if(!area_text)
 						continue
 					options[area_text] = subnet
