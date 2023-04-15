@@ -1,0 +1,4 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - tweak: "Syndicate Ghost Roles aren't allowed to share with NT."
