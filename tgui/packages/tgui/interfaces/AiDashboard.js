@@ -129,7 +129,7 @@ export const AiDashboard = (props, context) => {
 };
 
 
-const AvailableProjects = (props, context) => {
+export const AvailableProjects = (props, context) => {
   const { act, data } = useBackend(context);
   const [search, setSearch] = useLocalState(context, 'search', null);
   const [selectedCategory, setCategory] = useLocalState(context, 'selectedCategory', data.categories[0]);
@@ -193,7 +193,7 @@ const AvailableProjects = (props, context) => {
   );
 };
 
-const CompletedProjects = (props, context) => {
+export const CompletedProjects = (props, context) => {
   const { act, data } = useBackend(context);
 
   const [searchCompleted, setSearchCompleted] = useLocalState(context, 'searchCompleted', null);
@@ -249,7 +249,7 @@ const CompletedProjects = (props, context) => {
   );
 };
 
-const AbilityCharging = (props, context) => {
+export const AbilityCharging = (props, context) => {
   const { act, data } = useBackend(context);
   let remaining_cpu = (1 - data.used_cpu) * 100;
 

@@ -1535,6 +1535,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(!attacker_style?.nonlethal && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm [target]!"))
 		return FALSE
+	if(!synth_check(user, SYNTH_ORGANIC_HARM))
+		to_chat(user, span_warning("You don't want to harm [target]!"))
+		return
 	var/datum/martial_art/M = target.check_block()
 	if(M)
 		M.handle_counter(target, user)

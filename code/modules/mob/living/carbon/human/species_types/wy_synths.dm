@@ -10,7 +10,7 @@
 
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,NOHUSK,NOBLOOD, NO_UNDERWEAR)
 	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB,
-	TRAIT_NOHUNGER, TRAIT_REDUCED_DAMAGE_SLOWDOWN, TRAIT_PACIFISM, TRAIT_NOGUNS, TRAIT_NO_STUN_WEAPONS, TRAIT_NO_GRENADES)
+	TRAIT_NOHUNGER, TRAIT_REDUCED_DAMAGE_SLOWDOWN, TRAIT_NOGUNS, TRAIT_NO_GRENADES)
 	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_HEAD, SLOT_GLASSES)
 	inherent_biotypes = list(MOB_ROBOTIC)
 	mutantbrain = /obj/item/organ/brain/positron
@@ -44,23 +44,36 @@
 	allow_numbers_in_name = TRUE
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	wings_icon = "Robotic"
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE
 
 	var/charge = PRETERNIS_LEVEL_FULL
-	var/power_drain = 0.5 //probably going to have to tweak this shit
+	var/power_drain = 0.25 //probably going to have to tweak this shit
 	var/draining = FALSE
 	var/datum/action/innate/undeployment_synth/undeployment_action = new
+	///For transferring back and forth to an AI body when it's the AI deploying
 	var/mob/living/silicon/ai/mainframe
 
 	inherent_slowdown = 0.65
 	var/datum/action/innate/synth_os/os_button = new
 
+
+	///Original synth number designation for when this shell becomes uninhabited
 	var/original_numbers
+
+	var/obj/item/ai_cpu/inbuilt_cpu
+
+	punchdamagehigh = 12
+	punchdamagelow = 5
+	punchstunthreshold = 11
+	var/force_multiplier = 1.25 //We hit 25% harder with all weapons
 
 
 /datum/species/wy_synth/on_species_gain(mob/living/carbon/human/C)
 	. = ..()
 	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, .proc/drain_power_from)
+
+
 	var/obj/item/organ/appendix/A = C.getorganslot(ORGAN_SLOT_APPENDIX) // Easiest way to remove it.
 	if(A)
 		A.Remove(C)
@@ -71,13 +84,21 @@
 	C.name = C.real_name
 	os_button.Grant(C)
 	if(C.mind && !C.mind.synth_os)
-		C.mind.synth_os = new()
+		C.mind.synth_os = new(C)
+	
+	if(!C.ai_network)
+		C.ai_network = new(C)
+	
+	inbuilt_cpu = new /obj/item/ai_cpu
 
 
+	
 /datum/species/wy_synth/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
 	C.remove_language(/datum/language/machine, source = LANGUAGE_SYNTH)
 	os_button.Remove(C)
+	inbuilt_cpu.forceMove(get_turf(C))
+	inbuilt_cpu = null
 
 /datum/species/wy_synth/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
@@ -109,11 +130,20 @@
 /datum/species/wy_synth/spec_life(mob/living/carbon/human/H)
 	. = ..()
 
+	if(H.stat == DEAD)
+		return
+
+	if(!H.ai_network)
+		H.ai_network = new /datum/ai_network(synth_starter = H)
+
 	if(H.oxyloss)
 		H.setOxyLoss(0)
 		H.losebreath = 0
 
 	handle_charge(H)
+
+	if(H.mind?.synth_os)
+		H.mind.synth_os.tick(2 SECONDS * 0.1)
 
 
 /datum/species/wy_synth/proc/handle_charge(mob/living/carbon/human/H)
@@ -157,9 +187,6 @@
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
 
-
-/datum/species/wy_synth/spec_AltClickOn(atom/A,H)
-	return drain_power_from(H, A)
 
 /datum/species/wy_synth/proc/drain_power_from(mob/living/carbon/human/H, atom/A)
 	if(get_dist(H, A) > 1)
@@ -251,6 +278,11 @@
 	draining = FALSE
 	return TRUE
 
+/datum/species/wy_synth/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
+	. = ..()
+	var/hit_percent = (100-(blocked+armor))/100
+	H.mind.synth_os.suspicion_add((damage * hit_percent * brutemod) / 5, SYNTH_DAMAGED)
+
 
 /datum/species/wy_synth/proc/assume_control(var/mob/living/silicon/ai/AI, mob/living/carbon/human/H)
 	H.real_name = "[AI.real_name]"	//Randomizing the name so it shows up separately in the shells list
@@ -281,6 +313,7 @@
 	return TRUE
 
 
+
 /datum/species/wy_synth/proc/undeploy(mob/living/carbon/human/H)
 	if(!H.mind)
 		return
@@ -300,14 +333,16 @@
 		ID.update_label(user.real_name, "Synthetic")
 
 	user.real_name = "Synthetic Unit #[original_numbers]"
-	user.name = C.real_name
-	var/obj/item/card/id/ID = user.wear_id
+	user.name = user.real_name
+	ID = user.wear_id
 	if(ID)
 		ID.update_label(user.real_name, "Synthetic")
 	user.say("Unit disconnected. Entering sleep mode.")
 
 /datum/species/wy_synth/spec_attack_hand(mob/living/carbon/human/attacker, mob/living/carbon/human/user)
 	if(is_synth(attacker) && is_synth(user)) 
+		if(user.mind == attacker.mind)
+			return ..()
 		if(user.mind)
 			to_chat(attacker, span_warning("[user] is currently occupied by a different personality!"))
 			return ..()
@@ -346,6 +381,7 @@
 		H.mind.synth_os.ui_interact(owner)
 	
 	return FALSE
+
 
 #undef CONCIOUSAY
 

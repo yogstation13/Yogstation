@@ -3,6 +3,7 @@
 // each contiguous network of ethernet cables & AI machinery
 /////////////////////////////////////
 /datum/ai_network
+	var/custom_name
 	var/number					// unique id
 	var/list/cables = list()	// all cables & junctions
 	var/list/nodes = list()		// all connected machines
@@ -10,6 +11,8 @@
 	var/list/ai_list = list() 	//List of all AIs in this network
 	var/list/reviving_ais = list()
 	var/list/decryption_drives = list()
+
+	var/list/synth_list = list()
 
 	var/list/remote_networks = list()
 	
@@ -31,10 +34,12 @@
 
 	
 
-/datum/ai_network/New()
+/datum/ai_network/New(mob/living/synth_starter)
 	SSmachines.ainets += src
 	label = num2hex(rand(1,65535), -1)
 	resources = new(starting_network = src)
+	if(synth_starter)
+		synth_list += synth_starter
 
 /datum/ai_network/Destroy()
 	//Go away references, you suck!
@@ -56,6 +61,10 @@
 	return ..()
 
 /datum/ai_network/process()
+	if(!cables.len && !nodes.len && !ai_list.len && !synth_list.len)
+		qdel(src)
+		return
+
 	var/total_cpu = resources.total_cpu()
 	var/resources_assigned = resources.cpu_assigned[src] ? resources.cpu_assigned[src] : 0
 
@@ -309,6 +318,20 @@
 	core.transfer_AI(AI)
 
 
+/datum/ai_network/proc/add_synth(mob/living/synth)
+	if(synth.ai_network)
+		synth.ai_network.remove_synth(synth, TRUE)
+	synth.ai_network = src
+	synth_list += synth
+
+/datum/ai_network/proc/remove_synth(mob/living/synth, new_net)
+	if(!new_net)
+		synth.ai_network = new /datum/ai_network(synth)
+	synth_list -= synth
+	if(!synth_list.len && local_cpu_usage[SYNTH_RESEARCH])
+		local_cpu_usage[SYNTH_RESEARCH] = 0
+
+
 /proc/merge_ainets(datum/ai_network/net1, datum/ai_network/net2)
 	if(!net1 || !net2) //if one of the network doesn't exist, return
 		return
@@ -333,6 +356,11 @@
 
 
 	net1.ai_list += net2.ai_list //AIs can only be in 1 network at a time
+	net1.synth_list += net2.synth_list
+	if(net2.custom_name && !net1.custom_name)
+		net1.custom_name = net2.custom_name
+	for(var/mob/living/synth in net1.synth_list)
+		synth.ai_network = net1
 	/*
 	net1.rebuild_remote()
 	net2.rebuild_remote() */
@@ -417,4 +445,6 @@
 	message_admins("----------------------------")
 	for(var/datum/ai_shared_resources/ASR in resource_list)
 		message_admins("Resource count [REF(ASR)], CPU: [ASR.total_cpu()] | RAM: [ASR.total_ram()]")
+
+
 

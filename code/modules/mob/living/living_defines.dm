@@ -144,3 +144,6 @@
 
 	//Last item/projectile that damaged this mob, not including surgery
 	var/last_damage = ""
+
+	//Due to the fact that silicon and carbons can both be connected to a network we share at this level of inheritance
+	var/datum/ai_network/ai_network

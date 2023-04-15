@@ -36,6 +36,36 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 	AI_PROJECT_MISC
 ))
 
+//Synth Project Categories
+#define SYNTH_PROJECT_MOBILITY "Mobility"
+#define SYNTH_PROJECT_EMERGENCY_FUNCTIONS "Emergency Functions"
+#define SYNTH_PROJECT_MISC "Misc."
+//Update this list if you add any new ones, else the category won't show up in the UIs
+GLOBAL_LIST_INIT(synth_project_categories, list(
+	SYNTH_PROJECT_MOBILITY,
+	SYNTH_PROJECT_EMERGENCY_FUNCTIONS,
+	SYNTH_PROJECT_MISC
+))
+
+#define SYNTH_DAMAGED	"damage to own synthetic shell"
+#define SYNTH_RESTRICTED_ITEM "usage of restricted weapon"
+#define SYNTH_OBJ_DAMAGE "damage to inanimate object"
+#define SYNTH_RESTRICTED_WEAPON "usage of restricted weapon"
+#define SYNTH_ORGANIC_HARM "harm to organic being"
+
+GLOBAL_LIST_INIT(synth_punishment_values, list(
+	"[SYNTH_DAMAGED]" = 1,
+	"[SYNTH_RESTRICTED_ITEM]" = 5,
+	"[SYNTH_OBJ_DAMAGE]" = 5,
+	"[SYNTH_RESTRICTED_WEAPON]" = 10,
+	"[SYNTH_ORGANIC_HARM]" = 15,
+))
+
+//Synth Governor Defines
+//How fast the governor suspicion decreases
+#define SYNTH_GOVERNOR_SUSPICION_DECREASE 0.25
+
+
 ///How much is the AI download progress increased by per tick? Multiplied by a modifer on the AI if they have upgraded. Need to reach 100 to be downloaded
 #define AI_DOWNLOAD_PER_PROCESS 1.125
 ///Check for tracked individual coming into view every X ticks
@@ -81,26 +111,30 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 #define AI_RESEARCH "Research Assistance"
 #define AI_REVIVAL "AI Restoration"
 #define AI_PUZZLE "Floppy Drive Decryption"
+#define SYNTH_RESEARCH "Synth Research Allocation"
 
 GLOBAL_LIST_INIT(possible_ainet_activities, list(
 	"[AI_CRYPTO]",
 	"[AI_RESEARCH]",
 	"[AI_REVIVAL]",
-	"[AI_PUZZLE]"
+	"[AI_PUZZLE]",
+	"[SYNTH_RESEARCH]"
 ))
 
 GLOBAL_LIST_INIT(ainet_activity_tagline, list(
 	"[AI_CRYPTO]" = "Use CPU to generate credits!",
 	"[AI_RESEARCH]" = "Use CPU to generate regular research points!",
 	"[AI_REVIVAL]" = "Revive a dead AI using CPU!",
-	"[AI_PUZZLE]" = "Use CPU to break encryption on floppy drives!"
+	"[AI_PUZZLE]" = "Use CPU to break encryption on floppy drives!",
+	"[SYNTH_RESEARCH]" = "Give connected synths CPU for research!"
 ))
 
 GLOBAL_LIST_INIT(ainet_activity_description, list(
 	"[AI_CRYPTO]" = "Using CPU to mine NTCoin should allow for a meager sum of passive credit income.",
 	"[AI_RESEARCH]" = "Allocating additional CPU to the research servers should allow for increased point gain. Not to be confused with AI Research points.",
 	"[AI_REVIVAL]" = "If you've inserted a volatile neural core into a connected data core this will revive it using CPU.",
-	"[AI_PUZZLE]" = "If you've found and inserted an encrypted floppy drive into a connected server cabinet you can decrypt it using CPU."
+	"[AI_PUZZLE]" = "If you've found and inserted an encrypted floppy drive into a connected server cabinet you can decrypt it using CPU.",
+	"[SYNTH_RESEARCH]" = "CPU allocated to this task will be split amongst connected synths so they can research local projects."
 ))
 
 

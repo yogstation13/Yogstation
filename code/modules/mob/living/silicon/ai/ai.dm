@@ -123,7 +123,6 @@
 	//Did we get the death prompt?
 	var/is_dying = FALSE 
 
-	var/datum/ai_network/ai_network
 
 
 

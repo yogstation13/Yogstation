@@ -2654,6 +2654,8 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\self_defense.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\surveillance.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\projects\synth_control.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\projects\synths\_synth_project.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\projects\synths\speed_buff.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\cpu.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\overclocking.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\systech\rack.dm"

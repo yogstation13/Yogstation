@@ -1,6 +1,6 @@
 /datum/job/synthetic
 	title = "Synthetic"
-	description = "Watch over the crew, carry out mundane tasks that nobody else want to. Do no harm. NOTE: Currently not playable"
+	description = "Watch over the crew, carry out mundane tasks that nobody else want to. Do no harm."
 	flag = SYNTHETIC_JF
 	orbit_icon = "eye"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON|DEADMIN_POSITION_CRITICAL
@@ -56,10 +56,14 @@
 	if(H.w_uniform)
 		var/obj/item/clothing/under/wearing = H.w_uniform
 		wearing.has_sensor = FALSE
-
+	
+	var/obj/machinery/ai/data_core/core 
+	core = H.available_ai_cores(forced = TRUE)
+	if(core)
+		core.network.add_synth(H)
 
 /datum/outfit/job/synthetic/naked
-	name = "Synthetic Naked"
+	name = "Synthetic (Naked)"
 
 	uniform = null
 	ears = null

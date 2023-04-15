@@ -88,8 +88,6 @@
 	var/afk_verb_used = FALSE
 	/// The timer for the afk verb
 	var/afk_verb_timer
-	//Holder for the synth OS since we persist across multiple bodies. Only accessible if you're inside a synth
-	var/datum/synth_os/os
 
 /datum/mind/New(_key)
 	key = _key

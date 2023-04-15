@@ -25,12 +25,18 @@
 	var/ability_recharge_invested = 0
 
 	var/mob/living/silicon/ai/ai
+	var/mob/living/carbon/human/synth
 	var/datum/ai_dashboard/dashboard
 
-/datum/ai_project/New(new_ai, new_dash)
-	ai = new_ai
+	var/for_synths = FALSE
+
+/datum/ai_project/New(new_owner, new_dash)
+	if(!for_synths)
+		ai = new_owner
+	else
+		synth = new_owner
 	dashboard = new_dash
-	if(!ai || !dashboard)
+	if(!(ai || synth) || !dashboard)
 		qdel(src)
 	..()
 

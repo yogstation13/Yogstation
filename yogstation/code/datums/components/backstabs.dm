@@ -11,6 +11,8 @@
 	// No bypassing pacifism nerd
 	if(source.force > 0 && HAS_TRAIT(user, TRAIT_PACIFISM) && (source.damtype != STAMINA))
 		return
+	if(source.force > 0 && !synth_check(user, SYNTH_ORGANIC_HARM))
+		return
 	// Same calculation that kinetic crusher uses
 	var/backstab_dir = get_dir(user, target)
 	// No backstabbing people if they're already in crit

@@ -264,13 +264,17 @@
 			
 			if(!user.temporarilyRemoveItemFromInventory(W))
 				return
-			qdel(W)
 			var/mob/living/carbon/human/O = new /mob/living/carbon/human(get_turf(loc))
 			O.set_species(/datum/species/wy_synth)
 			O.invisibility = 0
 			O.job = "Synthetic"
 			var/datum/outfit/job/synthetic/naked/SO = new()
 			SO.equip(O)
+			W.forceMove(O)
+			var/datum/species/wy_synth/S = O.dna.species
+			qdel(S.inbuilt_cpu)
+			S.inbuilt_cpu = null
+			S.inbuilt_cpu = W
 
 	else if(istype(W, /obj/item/mmi))
 		var/obj/item/mmi/M = W

@@ -135,6 +135,21 @@
 
 	data["remaining_network_cpu"] = remaining_net_cpu
 
+	data["networks"] = list()
+	for(var/datum/ai_network/subnet in net.resources.networks)
+		if(subnet.cables.len || subnet.nodes.len)
+			var/area/area
+			if(subnet.cables.len)
+				area = get_area(subnet.cables[0])
+			else
+				area = get_area(subnet.nodes[0])
+			if(!area)
+				continue
+			var/synth_list = list()
+			for(var/mob/living/carbon/synth in subnet.synth_list)
+				synth_list += list(list("name" = synth.real_name, "ref" = REF(synth)))
+			data["networks"] += list(list("ref" = REF(subnet), "name" = subnet.custom_name ? subnet.custom_name : area.name, "cpu" = net.resources.cpu_sources[subnet], "ram" = net.resources.ram_sources[subnet], "synths" = synth_list , "current_net" = (subnet == net)))
+
 	return data
 
 /datum/computer_file/program/ai/ai_network_interface/ui_act(action, params, datum/tgui/ui)
@@ -425,8 +440,51 @@
 			user.put_in_hands(holochip)
 			to_chat(user, span_notice("Payout of [payout_amount]cr confirmed."))
 			net.bitcoin_payout = 0
-		
 
+		if("transfer_synth")
+			var/mob/living/carbon/to_transfer = locate(params["synth_target"])
+			if(!(to_transfer.ai_network in net.resources.networks))
+				return
+			var/options = list()
+			for(var/datum/ai_network/subnet in net.resources.networks)
+				if(subnet.custom_name)
+					if(options[subnet.custom_name])
+						options["[subnet.custom_name]  ([rand(1, 999)])"] = subnet //save us by random chance, hopefully
+					else
+						options[subnet.custom_name] = subnet
+				else
+					var/area_text 
+					if(subnet.cables.len)
+						area_text = "[get_area(subnet.cables[0])] ([subnet.cables[0].x], [subnet.cables[0].y])"
+					else
+						area_text = "[get_area(subnet.nodes[0])] ([subnet.nodes[0].x], [subnet.nodes[0].y])"
+					if(!area_text)
+						continue
+					options[area_text] = subnet
+
+			options["Cancel"] = "Cancel"
+			
+			var/response = tgui_input_list(user, "Select which network to transfer the synth to", "Synth Network Transfer", options)
+			
+			if(response == "Cancel")
+				return
+			if(options[response] in net.resources.networks)
+				var/datum/ai_network/new_net = options[response]
+				new_net.add_synth(to_transfer)
+					
+
+		if("rename_network")
+			var/datum/ai_network/target_net = locate(params["target_net"])
+			if(!(target_net in net.resources.networks))
+				return
+			var/new_name = stripped_input(user, "Slect a new name for the network", "Network Name Change", null, 32)
+			if(isnotpretty(new_name))
+				to_chat(user, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				var/log_message = "[key_name(user)] just tripped a pretty filter: '[new_name]'."
+				message_admins(log_message)
+				log_say(log_message)
+				return FALSE
+			target_net.custom_name = new_name
 
 
 
