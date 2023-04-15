@@ -65,7 +65,8 @@
 	examine_text += vassal_examine
 
 /datum/antagonist/vassal/on_gain()
-	RegisterSignal(owner.current, COMSIG_PARENT_EXAMINE, .proc/on_examine)
+	RegisterSignal(owner.current, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
 	/// Enslave them to their Master
 	if(!master || !istype(master, master))
 		return
@@ -89,6 +90,7 @@
 
 /datum/antagonist/vassal/on_removal()
 	UnregisterSignal(owner.current, COMSIG_PARENT_EXAMINE)
+	UnregisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN)
 	//Free them from their Master
 	if(master && master.owner)
 		if(special_type && master.special_vassals[special_type])

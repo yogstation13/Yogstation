@@ -5,10 +5,7 @@
  * target - The person we check for antag datums.
  */
 /datum/antagonist/bloodsucker/proc/AmValidAntag(mob/target)
-	if(!target.mind)
-		return
-
-	if(target.mind.unconvertable)
+	if(!target.mind || target.mind.unconvertable)
 		return VASSALIZATION_BANNED
 
 	var/vassalization_status = VASSALIZATION_ALLOWED

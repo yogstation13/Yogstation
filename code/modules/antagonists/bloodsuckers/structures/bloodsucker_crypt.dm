@@ -784,9 +784,6 @@
 	if(vassaldatum && (vassaldatum in bloodsuckerdatum.vassals))
 		SEND_SIGNAL(bloodsuckerdatum.my_clan, BLOODSUCKER_PRE_MAKE_FAVORITE, bloodsuckerdatum, vassaldatum)
 		return
-	else if(bloodsuckerdatum.my_clan?.control_type == BLOODSUCKER_CONTROL_FLESH)
-		do_ritual(user, buckled_carbons)
-		return
 
 	// Not our Vassal, but Alive & We're a Bloodsucker, good to torture!
 	torture_victim(user, buckled_carbons)
@@ -877,7 +874,6 @@
 
 	var/disloyalty_requires = RequireDisloyalty(user, target)
 	if(disloyalty_requires == VASSALIZATION_BANNED)
-		balloon_alert(user, "can't be vassalized!")
 		return
 
 	// Conversion Process
@@ -897,13 +893,13 @@
 			balloon_alert(user, "needs more persuasion...")
 			return
 
-		if(disloyalty_requires == VASSALIZATION_DISLOYAL)
+		if(disloyalty_requires)
 			balloon_alert(user, "has external loyalties! more persuasion required!")
 		else
 			balloon_alert(user, "ready for communion!")
 		return
 
-	if(!disloyalty_confirm && (disloyalty_requires == VASSALIZATION_DISLOYAL))
+	if(!disloyalty_confirm && disloyalty_requires)
 		if(!do_disloyalty(user, target))
 			return
 		else if(!disloyalty_confirm)
@@ -912,13 +908,13 @@
 			balloon_alert(user, "ready for communion!")
 		return
 
-	user.balloon_alert_to_viewers("smears blood...", "painting bloody marks...", )
+	user.balloon_alert_to_viewers("smears blood...", "painting bloody marks...")
 	if(!do_after(user, 5 SECONDS, target))
 		balloon_alert(user, "interrupted!")
 		return
 	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 		to_chat(user, span_danger("<i>They're mindshielded! Break their mindshield with a candelabrum or surgery before continuing!</i>"))
-		return
+		return VASSALIZATION_DISLOYAL
 	/// Convert to Vassal!
 	bloodsuckerdatum.AddBloodVolume(-TORTURE_CONVERSION_COST)
 	if(bloodsuckerdatum.make_vassal(target))
@@ -1014,14 +1010,14 @@
 	var/mob/living/carbon/human/H = target
 
 	/// Due to the checks leding up to this, if they fail this, they're dead & Not our vassal.
-	if(!IS_VASSAL(target))
+	if(!IS_VASSAL(target)) //remind me to refactor this later
 		to_chat(user, span_notice("Do you wish to rebuild this body? This will remove any restraints they might have, and will cost 150 Blood!"))
 		var/revive_response = tgui_alert(usr, "Would you like to revive [target]?", "Ghetto Medbay", list("Yes", "No"))
 		if(revive_response == "Yes")
 			if(!do_mob(user, src, 7 SECONDS))
 				to_chat(user, span_danger("<i>The ritual has been interrupted!</i>"))
 				return
-			if(prob(50) && bloodsuckerdatum.bloodsucker_level <= 10)
+			if(prob(70 - bloodsuckerdatum.bloodsucker_level * 7)) //calculation, stops going wrong at level 10
 				to_chat(user, span_danger("Something has gone terribly wrong! You have accidentally turned [target] into a High-Functioning Zombie!"))
 				to_chat(target, span_announce("As Blood drips over your body, your heart fails to beat... But you still wake up."))
 				H.set_species(/datum/species/zombie)

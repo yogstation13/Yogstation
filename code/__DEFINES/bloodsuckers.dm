@@ -41,11 +41,11 @@
 #define DANGER_LEVEL_SOL_ENDED 5
 
 ///If someone passes all checks and can be vassalized
-#define VASSALIZATION_ALLOWED "allowed"
+#define VASSALIZATION_ALLOWED 0
 ///If someone has to accept vassalization
-#define VASSALIZATION_DISLOYAL "disloyal"
+#define VASSALIZATION_DISLOYAL 1
 ///If someone is not allowed under any circimstances to become a Vassal
-#define VASSALIZATION_BANNED "banned"
+#define VASSALIZATION_BANNED 2
 
 /**
  * Cooldown defines

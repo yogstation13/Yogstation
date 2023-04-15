@@ -88,7 +88,6 @@
 
 	owner.balloon_alert(owner, "feeding off [feed_target]...")
 	if(!do_after(owner, feed_timer, feed_target, NONE, TRUE))
-		owner.balloon_alert(owner, "interrupted!")
 		DeactivatePower()
 		return
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
@@ -131,10 +130,7 @@
 /datum/action/bloodsucker/feed/UsePower(mob/living/user)
 	var/mob/living/feed_target = target_ref.resolve()
 	if(!ContinueActive(user, feed_target))
-		if(silent_feed)
-			owner.balloon_alert(owner, "interrupted...")
-		else
-			owner.balloon_alert(owner, "interrupted!")
+		if(!silent_feed)
 			user.visible_message(
 				span_warning("[user] is ripped from [feed_target]'s throat. [feed_target.p_their(TRUE)] blood sprays everywhere!"),
 				span_warning("Your teeth are ripped from [feed_target]'s throat. [feed_target.p_their(TRUE)] blood sprays everywhere!"))
@@ -179,11 +175,9 @@
 		warning_target_bloodvol = feed_target.blood_volume
 
 	if(user.blood_volume >= bloodsuckerdatum_power.max_blood_volume)
-		owner.balloon_alert(owner, "you are full...")
 		DeactivatePower()
 		return
 	if(feed_target.blood_volume <= 0)
-		owner.balloon_alert(owner, "out of blood...")
 		DeactivatePower()
 		return
 	owner.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
@@ -223,7 +217,7 @@
 	if(istype(target, /mob/living/simple_animal/mouse) || istype(target, /mob/living/simple_animal/hostile/rat))
 		if(bloodsuckerdatum_power.my_clan.blood_drink_type == BLOODSUCKER_DRINK_SNOBBY)
 			if(give_warnings)
-				to_chat(owner, span_warning("The thought of feeding off of a dirty rat leaves your stomach aching."))
+				owner.balloon_alert(owner, "too disgusting!")
 			return FALSE
 		return TRUE
 	//Mice check done, only humans are otherwise allowed
@@ -232,15 +226,15 @@
 	var/mob/living/carbon/human/target_user = target
 	if(!(target_user.dna?.species) || !(target_user.mob_biotypes & MOB_ORGANIC))
 		if(give_warnings)
-			to_chat(owner, span_warning("Your victim has no blood to take."))
+			owner.balloon_alert(owner, "no blood!")
 		return FALSE
 	if(!target_user.can_inject(owner, BODY_ZONE_HEAD))
 		if(give_warnings)
-			to_chat(owner, span_warning("Their suit is too thick to feed through."))
+			owner.balloon_alert(owner, "suit too thick!")
 		return FALSE
 	if((bloodsuckerdatum_power.my_clan.blood_drink_type == BLOODSUCKER_DRINK_SNOBBY) && !target_user.mind && !bloodsuckerdatum_power.frenzied)
 		if(give_warnings)
-			to_chat(owner, span_warning("The thought of drinking blood from the mindsless leaves a distasteful feeling in your mouth."))
+			owner.balloon_alert(owner, "cant drink from mindless!")
 		return FALSE
 	return TRUE
 

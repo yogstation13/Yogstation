@@ -21,10 +21,13 @@
 	if(!ishuman(vassaldatum.owner.current))
 		return
 	var/mob/living/carbon/human/vassal = vassaldatum.owner.current
-	if(!INVOKE_ASYNC(src, PROC_REF(do_after), bloodsucker, 1 SECONDS, vassal, FALSE, TRUE, null, FALSE))
+	if(!INVOKE_ASYNC(src, PROC_REF(slash_vassal), bloodsucker, 1 SECONDS, vassal))
 		return
 	playsound(vassal.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
-	if(!INVOKE_ASYNC(src, PROC_REF(do_after), bloodsucker, 1 SECONDS, vassal, FALSE, TRUE, null, FALSE))
+	if(!INVOKE_ASYNC(src, PROC_REF(slash_vassal), bloodsucker, 1 SECONDS, vassal))
 		return
 	playsound(vassal.loc, 'sound/effects/splat.ogg', 50, TRUE)
 	INVOKE_ASYNC(vassal, TYPE_PROC_REF(/mob/, set_species), /datum/species/szlachta)
+
+/datum/bloodsucker_clan/tzimisce/proc/slash_vassal(mob/living/bloodsucker, time, mob/living/vassal)
+	do_after(bloodsucker, time, vassal, FALSE, TRUE, null, FALSE) //necessary becaues of how signal handler works
