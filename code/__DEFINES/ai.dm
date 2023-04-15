@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(synth_punishment_values, list(
 
 //Synth Governor Defines
 //How fast the governor suspicion decreases
-#define SYNTH_GOVERNOR_SUSPICION_DECREASE 0.25
+#define SYNTH_GOVERNOR_SUSPICION_DECREASE 0.05
 
 
 ///How much is the AI download progress increased by per tick? Multiplied by a modifer on the AI if they have upgraded. Need to reach 100 to be downloaded
