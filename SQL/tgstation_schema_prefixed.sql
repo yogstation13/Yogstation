@@ -333,11 +333,6 @@ CREATE TABLE IF NOT EXISTS `SS13_messages` (
   KEY `idx_msg_type_ckey_time_odr` (`type`,`targetckey`,`timestamp`,`deleted`)
 ) ENGINE=InnoDB AUTO_INCREMENT=75629 DEFAULT CHARSET=utf8;
 
-DROP TRIGGER IF EXISTS messagesTloghours
-CREATE TRIGGER messagesTloghours
-    BEFORE INSERT ON `ss13_messages` FOR EACH ROW
-    SET NEW.playtime = (SELECT minutes FROM ss13_role_time rt WHERE rt.ckey = NEW.targetckey AND rt.job = 'Living');
-
 DROP TABLE IF EXISTS `SS13_mfa_logins`;
 CREATE TABLE IF NOT EXISTS `SS13_mfa_logins` (
 	`ckey` varchar(32) NOT NULL,
@@ -565,6 +560,11 @@ CREATE TRIGGER `role_timeTlogupdate` AFTER UPDATE ON `SS13_role_time` FOR EACH R
 END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+DROP TRIGGER IF EXISTS messagesTloghours
+CREATE TRIGGER messagesTloghours
+    BEFORE INSERT ON `ss13_messages` FOR EACH ROW
+    SET NEW.playtime = (SELECT minutes FROM ss13_role_time rt WHERE rt.ckey = NEW.targetckey AND rt.job = 'Living');
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
