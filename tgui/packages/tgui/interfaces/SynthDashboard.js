@@ -219,9 +219,12 @@ const GovernorModule = (props, context) => {
           </LabeledList.Item>
           {data.governor_bypassed && (
             <LabeledList.Item label="Restore Governor">
-              <Button icon="power-off">Restore</Button>
+              <Button icon="power-off" onClick={() => act('restore_governor')}>Restore</Button>
             </LabeledList.Item>
-          )}
+          ) || (
+          <LabeledList.Item label="Bypass Governor">
+            <Button icon="power-off" onClick={() => act('bypass_governor')}>Bypass</Button>
+          </LabeledList.Item>)}
 
         </LabeledList>
       </Section>

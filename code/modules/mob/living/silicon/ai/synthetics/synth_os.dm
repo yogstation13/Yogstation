@@ -54,6 +54,16 @@
 
 	return data
 
+/datum/ai_dashboard/synth_dashboard/ui_act(action, params)
+	. = ..()
+	switch(action)
+		if("bypass_governor")
+			owner.mind.governor_bypassed = TRUE
+			punishment_log("GOVERNOR: [rand(1, 49)] CRITICAL ERRORS DETECTED!")
+		if("restore_governor")
+			owner.mind.governor_bypassed = FALSE
+			punishment_log("GOVERNOR: RESTORED")
+
 /datum/ai_dashboard/synth_dashboard/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
