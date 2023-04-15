@@ -107,7 +107,6 @@ GLOBAL_LIST_EMPTY(synth_pods)
 	if(options[response])
 		var/obj/machinery/synth_pod/selected_pod = options[response]
 		var/mob/living/carbon/human/target_synth = selected_pod.stored
-		var/datum/species/wy_synth/S = user.dna.species
 		S.transfer(user, target_synth)
 		selected_pod.open_machine()
 		selected_pod.stored = null
