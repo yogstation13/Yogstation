@@ -83,14 +83,16 @@
 	C.real_name = "Synthetic Unit #[original_numbers]"
 	C.name = C.real_name
 	os_button.Grant(C)
-	if(C.mind && !C.mind.synth_os)
-		C.mind.synth_os = new(C)
+	add_synthos(C)
 	
 	if(!C.ai_network)
 		C.ai_network = new(C)
 	
 	inbuilt_cpu = new /obj/item/ai_cpu
 
+/datum/species/wy_synth/proc/add_synthos(mob/living/carbon/human/C)
+	if(C.mind && !C.mind.synth_os)
+		C.mind.synth_os = new(C)
 
 	
 /datum/species/wy_synth/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)

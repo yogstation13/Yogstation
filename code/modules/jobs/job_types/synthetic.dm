@@ -11,8 +11,8 @@
 	spawn_positions = 1
 	supervisors = "the AI"
 	selection_color = "#ddffdd"
-	minimal_player_age = 7
-	exp_requirements = 300
+	minimal_player_age = 30
+	exp_requirements = 900
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
 
@@ -61,6 +61,8 @@
 	core = H.available_ai_cores(forced = TRUE)
 	if(core)
 		core.network.add_synth(H)
+
+	
 
 /datum/outfit/job/synthetic/naked
 	name = "Synthetic (Naked)"

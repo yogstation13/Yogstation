@@ -25,6 +25,7 @@
 /datum/ai_dashboard/synth_dashboard/New(mob/living/new_owner)
 	if(!istype(new_owner))
 		qdel(src)
+		return
 
 	owner = new_owner
 	available_projects = list()
@@ -33,10 +34,10 @@
 	cpu_usage = list()
 
 
-	for(var/path in subtypesof(/datum/ai_project))
+	for(var/path in subtypesof(/datum/ai_project/synth_project))
 		var/datum/ai_project/newProject = path
 		if(initial(newProject.for_synths))
-			available_projects += new path(owner.mind, src)
+			available_projects += new path(owner, src)
 
 
 /datum/ai_dashboard/synth_dashboard/ui_data(mob/user)

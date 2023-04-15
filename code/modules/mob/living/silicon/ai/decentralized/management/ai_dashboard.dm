@@ -290,6 +290,8 @@
 
 /datum/ai_dashboard/proc/stop_project(datum/ai_project/project)
 	project.stop()
+	if(!project.ram_required)
+		return FALSE
 	if(ram_usage[project.name])
 		ram_usage[project.name] -= project.ram_required
 		return project.ram_required
