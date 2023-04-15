@@ -67,6 +67,8 @@
 	punchstunthreshold = 11
 	var/force_multiplier = 1.25 //We hit 25% harder with all weapons
 
+	var/last_warned
+
 
 /datum/species/wy_synth/on_species_gain(mob/living/carbon/human/C)
 	. = ..()
@@ -145,7 +147,7 @@
 	handle_charge(H)
 
 	if(H.mind)
-		if(!H.mind.synth_os)
+		if(!H.mind.synth_os && !mainframe)
 			add_synthos(H)
 
 	if(H.mind?.synth_os)
@@ -287,7 +289,9 @@
 /datum/species/wy_synth/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
 	. = ..()
 	var/hit_percent = (100-(blocked+armor))/100
-	H.mind.synth_os.suspicion_add((damage * hit_percent * brutemod) / 5, SYNTH_DAMAGED)
+	if(last_warned <= world.time)
+		last_warned = world.time + 30 SECONDS
+		H.mind.synth_os.suspicion_add((damage * hit_percent * brutemod) / 5, SYNTH_DAMAGED)
 
 
 /datum/species/wy_synth/proc/assume_control(var/mob/living/silicon/ai/AI, mob/living/carbon/human/H)

@@ -80,16 +80,24 @@
 
 
 /datum/ai_dashboard/synth_dashboard/tick(seconds)
+	var/datum/species/wy_synth/S = owner.dna.species
+	if(S.mainframe)
+		return
 	. = ..(seconds)
 	
 	suspicion_tick()
 
 /datum/ai_dashboard/synth_dashboard/proc/suspicion_tick()
+	var/datum/species/wy_synth/S = owner.dna.species
+	if(S.mainframe)
+		return
 	owner.mind.governor_suspicion -= SYNTH_GOVERNOR_SUSPICION_DECREASE * owner.mind.suspicion_multiplier
 	owner.mind.governor_suspicion = clamp(owner.mind.governor_suspicion, owner.mind.suspicion_floor, 100)
 	handle_punishments()
 
 /datum/ai_dashboard/synth_dashboard/proc/suspicion_add(amount, source)
+	if(owner.mind.governor_disabled)
+		return
 	owner.mind.governor_suspicion += amount
 	owner.mind.governor_suspicion = clamp(owner.mind.governor_suspicion, owner.mind.suspicion_floor, 100)
 	to_chat(owner, span_warning("Governor punishment administered. [amount] suspicion score added due to [source]."))
@@ -168,13 +176,15 @@
 /proc/synth_check(mob/user, punishment)
 	if(!is_synth(user))
 		return TRUE
-	if(!(user.mind.governor_bypassed && user.mind.governor_disabled))
-		return FALSE
+
+	if(user.mind.governor_disabled)
+		return TRUE
 
 	if(user.mind.governor_bypassed)
 		var/suspicion_add = GLOB.synth_punishment_values[punishment]
 		user.mind.synth_os.suspicion_add(suspicion_add, punishment)
 		return TRUE
 
-	if(user.mind.governor_disabled)
-		return TRUE
+	return FALSE
+
+	

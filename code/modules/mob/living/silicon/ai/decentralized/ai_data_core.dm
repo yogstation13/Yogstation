@@ -216,6 +216,8 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 				for(var/mob/living/silicon/ai/AI in send_to)
 					if(AI.is_dying)
 						continue
+					if(!AI.mind && !AI.deployed_shell.mind)
+						continue
 					if(!AI.mind && AI.deployed_shell.mind)
 						to_chat(AI.deployed_shell, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
 					else

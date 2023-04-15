@@ -82,6 +82,9 @@ GLOBAL_LIST_EMPTY(synth_pods)
 		switch_body(target)
 
 /obj/machinery/synth_pod/proc/switch_body(mob/living/carbon/human/user)
+	var/datum/species/wy_synth/S = user.dna.species
+	if(S.mainframe)
+		S.undeploy(user)
 	var/list/options = list("Stay here")
 	for(var/obj/machinery/synth_pod/pod in GLOB.synth_pods)
 		if(pod == src)
