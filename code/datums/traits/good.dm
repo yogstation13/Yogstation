@@ -320,7 +320,7 @@
 
 /datum/quirk/cyberorgan/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/list/temp = organ_list.copy() //pretty sure this is global so i dont want to bugger with it :)
+	var/list/temp = organ_list.Copy() //pretty sure this is global so i dont want to bugger with it :)
 	if(isjellyperson(H))
 		temp -= ORGAN_SLOT_LIVER
 	var/organ_slot = pick(temp)
