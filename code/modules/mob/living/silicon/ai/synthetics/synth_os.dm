@@ -68,7 +68,7 @@
 			var/mob/living/carbon/C = usr
 			var/obj/item/paper/P = new /obj/item/paper(usr.loc)
 			P.name = "paper - '[usr.name] - Diagnostic Report'"
-			for(var/entry in C.synth_action_log)
+			for(var/entry in C.mind.synth_action_log)
 				P.info += entry + "<br>";
 			P.update_icon()
 			playsound(usr, 'sound/items/poster_being_created.ogg', 50, TRUE)
