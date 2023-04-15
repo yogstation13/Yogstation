@@ -65,7 +65,7 @@
 /datum/component/curse_of_hunger/proc/on_drop(datum/source, mob/dropper)
 	SIGNAL_HANDLER
 
-	the_curse_ends(dropper)
+	INVOKE_ASYNC(src, PROC_REF(the_curse_ends), dropper)
 
 /datum/component/curse_of_hunger/proc/the_curse_begins(mob/cursed)
 	var/obj/item/cursed_item = parent

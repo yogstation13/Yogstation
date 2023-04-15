@@ -291,7 +291,7 @@
 		UnregisterSignal(friend, list(COMSIG_MOB_STATCHANGE, COMSIG_PARENT_QDELETING))
 
 		INVOKE_ASYNC(friend, TYPE_PROC_REF(/atom/movable/, forceMove), release_turf)
-		if(!friend.revive(full_heal = TRUE, admin_revive = TRUE))
+		if(!INVOKE_ASYNC(friend, TYPE_PROC_REF(/mob/living/, revive), TRUE, TRUE))
 			continue
 		playsound(release_turf, consumed_mobs, 50, TRUE, -1)
 		to_chat(friend, span_clown("You leave [source]'s warm embrace, and feel ready to take on the world."))

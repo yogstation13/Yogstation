@@ -481,7 +481,7 @@
 ///Called when Sol first ends.
 /datum/antagonist/bloodsucker/proc/on_sol_end(atom/source)
 	SIGNAL_HANDLER
-	check_end_torpor()
+	INVOKE_ASYNC(src, PROC_REF(check_end_torpor))
 	for(var/datum/action/bloodsucker/power in powers)
 		if(istype(power, /datum/action/bloodsucker/gohome))
 			RemovePower(power)

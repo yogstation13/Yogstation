@@ -20,7 +20,7 @@
 		return COMPONENT_ITEM_CHARGED|COMPONENT_ITEM_BURNT_OUT
 
 	if(prob(80))
-		caster.dropItemToGround(src, TRUE)
+		INVOKE_ASYNC(caster, TYPE_PROC_REF(/mob/, dropItemToGround), src, TRUE)
 		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/, visible_message), span_warning("[src] catches fire and burns to ash!"))
 		new /obj/effect/decal/cleanable/ash(drop_location())
 		qdel(src)
