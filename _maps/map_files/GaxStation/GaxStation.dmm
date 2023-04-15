@@ -2672,25 +2672,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"bpF" = (
-/obj/structure/rack,
-/obj/item/aicard,
-/obj/item/disk/holodisk/tutorial/AICore,
-/obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/heads/hor";
-	dir = 8;
-	name = "RD Office APC";
-	pixel_x = -25
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/hor)
 "bpO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -18696,9 +18677,6 @@
 	},
 /turf/open/floor/carpet/exoticpurple,
 /area/crew_quarters/heads/hor)
-"jli" = (
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "jls" = (
 /turf/open/floor/plasteel/white,
 /area/science/lab)
@@ -19579,6 +19557,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"jIN" = (
+/obj/machinery/computer/robotics{
+	dir = 8
+	},
+/turf/open/floor/carpet/exoticpurple,
+/area/crew_quarters/heads/hor)
 "jJq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -20880,6 +20864,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"ksr" = (
+/obj/structure/rack,
+/obj/item/aicard,
+/obj/item/disk/holodisk/tutorial/AICore,
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/hor";
+	dir = 8;
+	name = "RD Office APC";
+	pixel_x = -25
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/hor)
 "kst" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -33705,6 +33708,9 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/science/storage)
+"qRm" = (
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "qRv" = (
 /obj/machinery/recharger/wallrecharger{
 	pixel_x = 5;
@@ -39822,12 +39828,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"tPN" = (
-/obj/machinery/computer/robotics{
-	dir = 8
-	},
-/turf/open/floor/carpet/exoticpurple,
-/area/crew_quarters/heads/hor)
 "tQi" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 10
@@ -81884,7 +81884,7 @@ nJe
 wIc
 dpf
 ylC
-jli
+qRm
 cvx
 dpf
 wYJ
@@ -88041,7 +88041,7 @@ hso
 bdB
 rIB
 rrE
-bpF
+ksr
 tAW
 lID
 qPM
@@ -88553,7 +88553,7 @@ tAW
 jNf
 eEB
 jlh
-tPN
+jIN
 eNu
 bxI
 tAW
