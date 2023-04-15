@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Sidewinders can now equip the mech fire extinguisher and cable layer"
+  - tweak: "Sidewinders can no longer equip the definitely-not-gun-winky-face-emoji mining tools"
