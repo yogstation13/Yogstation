@@ -21,10 +21,10 @@
 	if(!ishuman(vassaldatum.owner.current))
 		return
 	var/mob/living/carbon/human/vassal = vassaldatum.owner.current
-	if(!do_mob(bloodsucker, vassal, 1 SECONDS, TRUE))
+	if(!INVOKE_ASYNC(src, PROC_REF(do_after), bloodsucker, 1 SECONDS, vassal, FALSE, TRUE, null, FALSE))
 		return
 	playsound(vassal.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
-	if(!do_mob(bloodsucker, vassal, 1 SECONDS, TRUE))
+	if(!INVOKE_ASYNC(src, PROC_REF(do_after), bloodsucker, 1 SECONDS, vassal, FALSE, TRUE, null, FALSE))
 		return
 	playsound(vassal.loc, 'sound/effects/splat.ogg', 50, TRUE)
 	INVOKE_ASYNC(vassal, TYPE_PROC_REF(/mob/, set_species), /datum/species/szlachta)

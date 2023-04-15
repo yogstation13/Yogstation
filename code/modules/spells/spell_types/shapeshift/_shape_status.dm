@@ -200,7 +200,7 @@
 	if(!QDELETED(source_spell) && source_spell.die_with_shapeshifted_form)
 		// (But if our spell says we should revert on death anyways, we'll also do that)
 		if(source_spell.revert_on_death)
-			restore_caster(kill_caster_after = TRUE)
+			INVOKE_ASYNC(src, PROC_REF(restore_caster), TRUE)
 		// Otherwise, we just do nothing - we dead
 		return
 
