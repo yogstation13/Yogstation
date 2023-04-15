@@ -53,13 +53,15 @@
 	var/mob/dead/selected_candidate = pick_n_take(candidates)
 	var/key = selected_candidate.key
 
-	var/datum/mind/Mind = create_tzimisce_mind(key)
-	Mind.active = TRUE
+	var/datum/mind/tzimisce_mind = create_tzimisce_mind(key)
+	tzimisce_mind.active = TRUE
 
 	var/mob/living/carbon/human/tzimisce = spawn_event_tzimisce()
-	Mind.transfer_to(tzimisce)
-	Mind.add_antag_datum(/datum/antagonist/bloodsucker)
+	tzimisce_mind.transfer_to(tzimisce)
+	tzimisce_mind.add_antag_datum(/datum/antagonist/bloodsucker)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = tzimisce.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	bloodsuckerdatum.antag_hud_name = "tzimisce"
+	bloodsuckerdatum.add_team_hud(tzimisce)
 	bloodsuckerdatum.bloodsucker_level_unspent += round(world.time / (15 MINUTES), 1)
 	bloodsuckerdatum.assign_clan_and_bane(tzimisce = TRUE)
 
@@ -67,12 +69,16 @@
 	message_admins("[ADMIN_LOOKUPFLW(tzimisce)] has been made into a tzimisce bloodsucker an event.")
 	log_game("[key_name(tzimisce)] was spawned as a tzimisce bloodsucker by an event.")
 	var/datum/job/jobdatum = SSjob.GetJob(pick("Assistant", "Botanist", "Station Engineer", "Medical Doctor", "Scientist", "Cargo Technician", "Cook"))
-	bloodsuckerdatum.antag_hud_name = "tzimisce"
 	if(SSshuttle.arrivals)
 		SSshuttle.arrivals.QueueAnnounce(tzimisce, jobdatum.title)
-	Mind.assigned_role = jobdatum.title //sets up the manifest properly
-	jobdatum.equip(tzimisce)
+	tzimisce_mind.assigned_role = jobdatum.title //sets up the manifest properly
+	jobdatum.equip(tzimisce) 
 	var/obj/item/card/id/id = tzimisce.get_item_by_slot(SLOT_WEAR_ID)
+	if(!istype(id)) //pda on ID slot
+		var/obj/item/modular_computer/tablet/PDA = tzimisce.get_item_by_slot(SLOT_WEAR_ID)
+		var/obj/item/computer_hardware/card_slot/card_slot2 = PDA.all_components[MC_CARD2]
+		var/obj/item/computer_hardware/card_slot/card_slot = PDA.all_components[MC_CARD]
+		id = card_slot2?.stored_card || card_slot?.stored_card //check both slots, priority on 2nd
 	id.assignment = jobdatum.title
 	id.originalassignment = jobdatum.title
 	id.update_label()
@@ -90,6 +96,6 @@
 	return new_tzimisce
 
 /datum/round_event/ghost_role/tzimisce/proc/create_tzimisce_mind(key)
-	var/datum/mind/Mind = new /datum/mind(key)
-	Mind.special_role = ROLE_BLOODSUCKER
-	return Mind
+	var/datum/mind/tzimisce_mind = new /datum/mind(key)
+	tzimisce_mind.special_role = ROLE_BLOODSUCKER
+	return tzimisce_mind

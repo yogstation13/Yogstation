@@ -8,6 +8,7 @@
 	roundend_category = "vassals"
 	antagpanel_category = "Bloodsucker"
 	job_rank = ROLE_BLOODSUCKER
+	antag_hud_name = "vassal"
 	show_in_roundend = FALSE
 
 	/// The Master Bloodsucker's antag datum.
