@@ -333,6 +333,11 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `idx_msg_type_ckey_time_odr` (`type`,`targetckey`,`timestamp`,`deleted`)
 ) ENGINE=InnoDB AUTO_INCREMENT=75629 DEFAULT CHARSET=utf8;
 
+DROP TRIGGER IF EXISTS `messagesTloghours`
+CREATE TRIGGER `messagesTloghours`
+    BEFORE INSERT ON `messages` FOR EACH ROW
+    SET NEW.playtime = (SELECT minutes FROM ss13_role_time rt WHERE rt.ckey = NEW.targetckey AND rt.job = 'Living');
+
 DROP TABLE IF EXISTS `mfa_logins`;
 CREATE TABLE IF NOT EXISTS `mfa_logins` (
 	`ckey` varchar(32) NOT NULL,

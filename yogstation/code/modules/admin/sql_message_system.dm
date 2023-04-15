@@ -68,8 +68,8 @@
 			qdel(query_validate_expire_time)
 
 	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery({"
-		INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp, playtime)
-		VALUES (:type, :target_ckey, :admin_ckey, :text, :timestamp, :server, INET_ATON(:internet_address), :port, :round_id, :secret, :expiry, :playtime)
+		INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp)
+		VALUES (:type, :target_ckey, :admin_ckey, :text, :timestamp, :server, INET_ATON(:internet_address), :port, :round_id, :secret, :expiry)
 	"}, list(
 		"type" = type,
 		"target_ckey" = target_ckey,
@@ -82,7 +82,6 @@
 		"round_id" = GLOB.round_id,
 		"secret" = secret,
 		"expiry" = expiry || null,
-		"playtime" = get_exp_living_from_ckey(target_ckey)
 	))
 
 	var/pm = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]: [text]"
@@ -100,24 +99,6 @@
 			browse_messages("[type]")
 		else
 			browse_messages(target_ckey = target_ckey, agegate = TRUE)
-
-/proc/get_exp_living_from_ckey(ckey)
-	var/client/target_client = GLOB.directory[ckey]
-	if(target_client)
-		return target_client.get_exp_living(TRUE)
-	var/datum/DBQuery/exp_read = SSdbcore.NewQuery(
-		"SELECT minutes FROM [format_table_name("role_time")] WHERE ckey = :ckey and job = :job",
-		list("ckey" = ckey, "job" = EXP_TYPE_LIVING)
-	)
-	if(!exp_read.Execute(async = TRUE))
-		qdel(exp_read)
-		return null
-	if(!exp_read.NextRow())
-		qdel(exp_read)
-		return null
-	var/result = text2num(exp_read.item[1])
-	qdel(exp_read)
-	return result
 
 /proc/delete_message(message_id, logged = 1, browse)
 	if(!SSdbcore.Connect())
