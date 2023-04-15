@@ -561,7 +561,7 @@ END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
-DROP TRIGGER IF EXISTS `messagesTloghours`
+DROP TRIGGER IF EXISTS `messagesTloghours`;
 CREATE TRIGGER `messagesTloghours`
     BEFORE INSERT ON `messages` FOR EACH ROW
     SET NEW.playtime = (SELECT minutes FROM role_time rt WHERE rt.ckey = NEW.targetckey AND rt.job = 'Living');
