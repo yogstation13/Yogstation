@@ -139,7 +139,7 @@
 	for(var/datum/ai_network/subnet in net.resources.networks)
 		if(subnet.cables.len || subnet.nodes.len)
 			var/area/area
-			if(subnet.cables.len)
+			if(len(subnet.cables))
 				area = get_area(subnet.cables[0])
 			else
 				area = get_area(subnet.nodes[0])
