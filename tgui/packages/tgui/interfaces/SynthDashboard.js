@@ -215,7 +215,7 @@ const GovernorModule = (props, context) => {
       <Section title="Diagnostics">
         <LabeledList>
           <LabeledList.Item label="Print Diagnostic Report">
-            <Button icon="print">Print</Button>
+            <Button icon="print" onClick={() => act('print_diagnostics')}>Print</Button>
           </LabeledList.Item>
           {data.governor_bypassed && (
             <LabeledList.Item label="Restore Governor">

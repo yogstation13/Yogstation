@@ -64,6 +64,15 @@
 		if("restore_governor")
 			owner.mind.governor_bypassed = FALSE
 			punishment_log("GOVERNOR: RESTORED")
+		if("print_diagnostics")
+			var/mob/living/carbon/C = usr
+			var/obj/item/paper/P = new /obj/item/paper(usr.loc)
+			P.name = "paper - '[usr.name] - Diagnostic Report'"
+			for(var/entry in C.synth_action_log)
+				P.info += entry + "<br>";
+			P.update_icon()
+			playsound(usr, 'sound/items/poster_being_created.ogg', 50, TRUE)
+
 
 /datum/ai_dashboard/synth_dashboard/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
