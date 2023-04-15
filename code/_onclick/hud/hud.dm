@@ -11,7 +11,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Plasmafire" = 'icons/mob/screen_plasmafire.dmi',
 	"Slimecore" = 'icons/mob/screen_slimecore.dmi',
 	"Operative" = 'icons/mob/screen_operative.dmi',
-	"Clockwork" = 'icons/mob/screen_clockwork.dmi'
+	"Clockwork" = 'icons/mob/screen_clockwork.dmi',
+	"Detective" = 'icons/mob/screen_detective.dmi',
 ))
 
 /proc/ui_style2icon(ui_style)
