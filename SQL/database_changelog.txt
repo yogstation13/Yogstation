@@ -14,7 +14,7 @@ Adds playtime to notes
 ALTER TABLE `messages` ADD `playtime` int(10) unsigned DEFAULT NULL;
 CREATE TRIGGER messagesTloghours
     BEFORE INSERT ON `messages` FOR EACH ROW
-    SET NEW.playtime = (SELECT minutes FROM ss13_role_time rt WHERE rt.ckey = NEW.targetckey AND rt.job = 'Living');
+    SET NEW.playtime = (SELECT minutes FROM role_time rt WHERE rt.ckey = NEW.targetckey AND rt.job = 'Living');
 
 version 5.11 2023-01-03
 Adds comment to credentials binding

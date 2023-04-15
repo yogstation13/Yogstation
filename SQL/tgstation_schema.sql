@@ -336,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
 DROP TRIGGER IF EXISTS `messagesTloghours`
 CREATE TRIGGER `messagesTloghours`
     BEFORE INSERT ON `messages` FOR EACH ROW
-    SET NEW.playtime = (SELECT minutes FROM ss13_role_time rt WHERE rt.ckey = NEW.targetckey AND rt.job = 'Living');
+    SET NEW.playtime = (SELECT minutes FROM role_time rt WHERE rt.ckey = NEW.targetckey AND rt.job = 'Living');
 
 DROP TABLE IF EXISTS `mfa_logins`;
 CREATE TABLE IF NOT EXISTS `mfa_logins` (
