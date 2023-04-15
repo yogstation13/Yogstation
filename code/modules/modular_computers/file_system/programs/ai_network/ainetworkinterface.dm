@@ -455,9 +455,11 @@
 				else
 					var/area_text 
 					if(subnet.cables.len)
-						area_text = "[get_area(subnet.cables[0])] ([subnet.cables[0].x], [subnet.cables[0].y])"
+						var/obj/structure/ethernet_cable/C = subnet.cables[0]
+						area_text = "[get_area(subnet.cables[0])] ([C.x], [C.y])"
 					else
-						area_text = "[get_area(subnet.nodes[0])] ([subnet.nodes[0].x], [subnet.nodes[0].y])"
+						var/obj/machinery/N = subnet.nodes[0]
+						area_text = "[get_area(subnet.nodes[0])] ([N.x], [N.y])"
 					if(!area_text)
 						continue
 					options[area_text] = subnet
