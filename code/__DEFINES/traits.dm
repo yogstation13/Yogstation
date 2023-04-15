@@ -218,6 +218,7 @@
 #define TRAIT_NO_PASSIVE_COOLING "no-passive-cooling"
 #define TRAIT_NO_PASSIVE_HEATING "no-passive-heating"
 #define TRAIT_BLOODY_MESS		"bloody_mess" //from heparin, makes open bleeding wounds rapidly spill more blood
+#define TRAIT_BLOODY_MESS_LITE	"bloody_mess_lite" //weak heparin, otherwise the same
 #define TRAIT_COAGULATING		"coagulating" //from coagulant reagents, this doesn't affect the bleeding itself but does affect the bleed warning messages
 #define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
 #define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels

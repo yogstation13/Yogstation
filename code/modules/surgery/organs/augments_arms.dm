@@ -73,9 +73,13 @@
 
 	UnregisterSignal(holder, COMSIG_ITEM_PREDROPPED)
 
-	owner.visible_message(span_notice("[owner] retracts [holder] back into [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
-		span_notice("[holder] snaps back into your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
-		span_italics("You hear a short mechanical noise."))
+	if(!syndicate_implant)
+		owner.visible_message(span_notice("[owner] retracts [holder] back into [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
+			span_notice("[holder] snaps back into your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
+			span_italics("You hear a short mechanical noise."))
+		playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
+	else
+		to_chat(owner, span_notice("[holder] silently snaps back into your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."))
 
 	if(istype(holder, /obj/item/assembly/flash/armimplant))
 		var/obj/item/assembly/flash/F = holder
@@ -83,7 +87,6 @@
 
 	owner.transferItemToLoc(holder, src, TRUE)
 	holder = null
-	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
 
 /obj/item/organ/cyberimp/arm/proc/on_drop(datum/source, mob/user)
 	Retract()
@@ -121,10 +124,13 @@
 	// Activate the hand that now holds our item.
 	owner.swap_hand(result)//... or the 1st hand if the index gets lost somehow
 
-	owner.visible_message(span_notice("[owner] extends [holder] from [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
-		span_notice("You extend [holder] from your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
-		span_italics("You hear a short mechanical noise."))
-	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
+	if(!syndicate_implant)
+		owner.visible_message(span_notice("[owner] extends [holder] from [owner.p_their()] [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
+			span_notice("You extend [holder] from your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."),
+			span_italics("You hear a short mechanical noise."))
+		playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
+	else
+		to_chat(owner, span_notice("You silently extend [holder] from your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."))
 
 /obj/item/organ/cyberimp/arm/ui_action_click()
 	if((organ_flags & ORGAN_FAILING) || (!holder && !contents.len))

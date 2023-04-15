@@ -359,7 +359,7 @@
 	display_name = "Artificial Intelligence"
 	description = "AI unit research."
 	prereq_ids = list("base")
-	design_ids = list("server_cabinet", "networking_machine", "subcontroller", "synth_pod", "ai_data_core", "ai_core_display", "ai_server_overview", "ram1", "basic_ai_cpu", "aifixer", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module", "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "mother_module", "silicop_module", "construction_module", "metaexperiment_module", "researcher_module", "siliconcollective_module", "spotless_module", "clown_module", "chapai_module", "druid_module", "detective_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
+	design_ids = list("server_cabinet", "networking_machine", "subcontroller", "synth_pod", "ai_data_core", "ai_core_display", "ai_server_overview", "ram1", "basic_ai_cpu", "aifixer", "safeguard_module", "onehuman_module", "reporter_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module", "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "mother_module", "silicop_module", "construction_module", "metaexperiment_module", "researcher_module", "siliconcollective_module", "spotless_module", "clown_module", "chapai_module", "druid_module", "detective_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
 	research_costs = list(TECHWEB_POINT_TYPE_AI = 1000)
 
 /////////////////////////EMP tech/////////////////////////
@@ -520,7 +520,7 @@
 	display_name = "Advanced Cybernetic Implants"
 	description = "Upgraded and more powerful cybernetic implants."
 	prereq_ids = list("neural_programming", "cyber_implants","integrated_HUDs")
-	design_ids = list("ci-toolset", "ci-surgery", "ci-reviver", "ci-nutrimentplus", "jumpbootsimplant", "wheeliesimplant", "magbootimplant")
+	design_ids = list("ci-toolset", "ci-surgery", "ci-reviver", "ci-nutrimentplus", "ci-magboots")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/combat_cyber_implants
@@ -528,7 +528,7 @@
 	display_name = "Combat Cybernetic Implants"
 	description = "Military grade combat implants to improve performance."
 	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech","high_efficiency")
-	design_ids = list("ci-thermals", "ci-antidrop", "ci-antistun", "ci-thrusters")
+	design_ids = list("ci-thermals", "ci-antidrop", "ci-antistun", "ci-thrusters", "ci-jumpboots", "ci-wheelies")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/illegal_cyber_implants
@@ -536,7 +536,7 @@
 	display_name = "Illegal Cybernetic Implants"
 	description = "Nanotrasen would like to remind employees that use of unlicensed cybernetic implants violates multiple employee contract clauses."
 	prereq_ids = list("combat_cyber_implants","syndicate_basic")
-	design_ids = list("ci-xray", "noslipwater")
+	design_ids = list("ci-xray", "ci-noslipwater")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 
 ////////////////////////Tools////////////////////////
@@ -1040,7 +1040,7 @@
 	display_name = "Neural Nanite Programming"
 	description = "Nanite programs affecting nerves and brain matter."
 	prereq_ids = list("nanite_bio")
-	design_ids = list("nervous_nanites", "brainheal_nanites", "paralyzing_nanites", "stun_nanites", "selfscan_nanites")
+	design_ids = list("nervous_nanites", "brainheal_nanites", "stun_nanites", "selfscan_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000, TECHWEB_POINT_TYPE_NANITES = 1000)
 
 /datum/techweb_node/nanite_synaptic

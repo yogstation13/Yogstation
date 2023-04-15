@@ -101,3 +101,15 @@
 /obj/item/modular_computer/tablet/pda/preset/basic/clown/Initialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 120, NO_SLIP_WHEN_WALKING)
+
+//for inside one of the nukie lockers
+/obj/item/modular_computer/tablet/pda/preset/basic/syndicate
+	desc = "A standard issue PDA often given to syndicate agents."
+
+/obj/item/modular_computer/tablet/pda/preset/basic/syndicate/Initialize()
+	. = ..()
+	obj_flags |= EMAGGED //starts emagged
+	starting_files |= list(
+		new /datum/computer_file/program/bomberman
+	)	
+	

@@ -412,6 +412,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/clothing/head/wizard/fake/black
 	slot = SLOT_HEAD
 
+/datum/donator_gear/wizard/brown
+	name = "Wizard's Hat (Brown, Collectable)"
+	unlock_path = /obj/item/clothing/head/wizard/fake/brown
+	slot = SLOT_HEAD
+
 /datum/donator_gear/wizard/marisa
 	name = "Marisa Wizard Hat"
 	unlock_path = /obj/item/clothing/head/wizard/marisa/fake

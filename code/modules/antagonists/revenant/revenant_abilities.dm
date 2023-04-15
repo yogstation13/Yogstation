@@ -304,7 +304,7 @@
 		new /obj/effect/temp_visual/revenant(human.loc)
 		human.emp_act(EMP_HEAVY)
 	for(var/obj/thing in T)
-		if(istype(thing, /obj/machinery/power/apc) || istype(thing, /obj/machinery/power/smes) || istype(thing, /obj/machinery/particle_accelerator/control_box)) //Doesn't work on SMES and APCs or the PA control box, to prevent kekkery
+		if(istype(thing,/obj/machinery/airalarm) || istype(thing, /obj/machinery/power/apc) || istype(thing, /obj/machinery/power/smes) || istype(thing, /obj/machinery/particle_accelerator/control_box)) //Doesn't work on SMES and APCs or the PA control box, to prevent kekkery. Yogstation change: Air alarms included.
 			continue
 		if(prob(20))
 			if(prob(50))
