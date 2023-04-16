@@ -32,7 +32,7 @@
 /// Removes [jaunter] from our phased mob
 /obj/effect/dummy/phased_mob/proc/eject_jaunter()
 	if(!jaunter)
-		CRASH("Phased mob ([type]) attempted to eject null jaunter.")
+		return // This is weird but it can happen if the jaunt is gibbed by an arriving shuttle
 	var/turf/eject_spot = get_turf(src)
 	if(!eject_spot) //You're in nullspace you clown!
 		return
@@ -72,7 +72,6 @@
 
 	if (direction in GLOB.alldirs)
 		setDir(direction)
-
 	forceMove(newloc)
 
 /// Checks if the conditions are valid to be able to phase. Returns a turf destination if positive.

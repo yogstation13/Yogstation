@@ -63,6 +63,7 @@
 
 /**
  * Ejects the [unjaunter] from jaunt
+ * The jaunt object in turn should call on_jaunt_exited
  * If [loc_override] is supplied,
  * the jaunt will be moved to that turf
  * before ejecting the unjaunter

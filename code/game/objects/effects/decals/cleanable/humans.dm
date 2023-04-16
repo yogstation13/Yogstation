@@ -25,6 +25,9 @@
 	. = ..()
 	icon_state = "[icon_state]-old" //change from the normal blood icon selected from random_icon_states in the parent's Initialize to the old dried up blood.
 
+/obj/effect/decal/cleanable/blood/old/can_bloodcrawl_in() //Yogs -- dried blood bloodcrawl
+	return TRUE
+
 /obj/effect/decal/cleanable/blood/splatter
 	icon_state = "gibbl1"
 	random_icon_states = list("gibbl1", "gibbl2", "gibbl3", "gibbl4", "gibbl5")
@@ -209,8 +212,8 @@
 
 /obj/effect/decal/cleanable/blood/footprints/can_bloodcrawl_in()
 	if((blood_state != BLOOD_STATE_OIL) && (blood_state != BLOOD_STATE_NOT_BLOODY))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/effect/decal/cleanable/blood/kilo
 	name = "remember kilo"

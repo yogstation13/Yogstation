@@ -121,9 +121,9 @@
 	if(!(L.mobility_flags & MOBILITY_MOVE))
 		return FALSE
 
-	if(isobj(mob.loc) || ismob(mob.loc))	//Inside an object, tell it we moved
-		var/atom/O = mob.loc
-		return O.relaymove(mob, direct)
+	if(ismovable(mob.loc))	//Inside an object, tell it we moved
+		var/atom/loc_atom = mob.loc
+		return loc_atom.relaymove(mob, direct)
 
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
@@ -502,6 +502,10 @@
 	set name = "Move Upwards"
 	set category = "IC"
 
+	if(ismovable(loc)) //Inside an object, tell it we moved
+		var/atom/loc_atom = loc
+		return loc_atom.relaymove(src, UP)
+
 	if(zMove(UP, TRUE))
 		to_chat(src, span_notice("You move upwards."))
 
@@ -509,6 +513,10 @@
 /mob/verb/down()
 	set name = "Move Down"
 	set category = "IC"
+
+	if(ismovable(loc)) //Inside an object, tell it we moved
+		var/atom/loc_atom = loc
+		return loc_atom.relaymove(src, DOWN)
 
 	if(zMove(DOWN, TRUE))
 		to_chat(src, span_notice("You move down."))
