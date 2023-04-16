@@ -11,7 +11,7 @@
 
 	msg = pretty_filter(msg)
 	msg = emoji_parse(msg)
-	log_donator("MSAY: [key_name(src)] : [msg]")
+	mob.log_talk(msg, LOG_DONATOR, "Donator")
 
 	msg = "<b><font color ='#2e87a1'><span class='prefix donator'>DONATOR CHAT:</span> <EM>[key_name(src, 0, 0)]</EM>: <span class='message donator'>[msg]</span></font></b>"
 
