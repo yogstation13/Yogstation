@@ -367,6 +367,7 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 30
 
+/obj/item/storage/backpack/duffelbag/cursed
 	name = "living duffel bag"
 	desc = "A cursed clown duffel bag that hungers for food of any kind. A warning label suggests that it eats food inside. \
 		If that food happens to be a horribly ruined mess or the chef scrapped out of the microwave, or poisoned in some way, \

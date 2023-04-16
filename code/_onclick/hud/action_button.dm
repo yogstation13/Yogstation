@@ -95,7 +95,6 @@
 	if(!QDELETED(src))
 		openToolTip(usr, src, params, title = name, content = desc, theme = actiontooltipstyle)
 
-
 /atom/movable/screen/movable/action_button/MouseExited(location, control, params)
 	closeToolTip(usr)
 	return ..()
@@ -170,9 +169,8 @@
 //see human and alien hud for specific implementations.
 
 /mob/proc/update_action_buttons_icon(status_only = FALSE)
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.UpdateButtons(status_only)
+	for(var/datum/action/current_action as anything in actions)
+		current_action.UpdateButtons(status_only)
 
 //This is the proc used to update all the action buttons.
 /mob/proc/update_action_buttons(reload_screen = FALSE)

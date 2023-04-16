@@ -4,6 +4,7 @@
 
 	///If set, how far the target has to be for the power to work.
 	var/target_range
+	///Message sent to chat when clicking on the power, before you use it.
 	var/prefire_message
 	///Most powers happen the moment you click. Some, like Mesmerize, require time and shouldn't cost you if they fail.
 	var/power_activates_immediately = TRUE
@@ -52,11 +53,12 @@
 
 /// Check if valid target meets conditions
 /datum/action/bloodsucker/targeted/proc/CheckCanTarget(atom/target_atom)
-	// Out of Range
-	if(!(target_atom in view(target_range, owner)))
-		if(target_range > 1) // Only warn for range if it's greater than 1. Brawn doesn't need to announce itself.
-			to_chat(owner, "Target out of range.")
-		return FALSE
+	if(target_range)
+		// Out of Range
+		if(!(target_atom in view(target_range, owner)))
+			if(target_range > 1) // Only warn for range if it's greater than 1. Brawn doesn't need to announce itself.
+				owner.balloon_alert(owner, "out of range.")
+			return FALSE
 	return istype(target_atom)
 
 /// Click Target
@@ -83,8 +85,8 @@
 /datum/action/bloodsucker/targeted/proc/PowerActivatedSuccessfully()
 	unset_click_ability(owner)
 	PayCost()
+	StartCooldown()
 	DeactivatePower()
-	StartCooldown()	// Do AFTER UpdateIcon() inside of DeactivatePower. Otherwise icon just gets wiped.
 
 /datum/action/bloodsucker/targeted/proc/InterceptClickOn(mob/living/caller, params, atom/target)
 	ClickWithPower(target)

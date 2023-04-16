@@ -334,9 +334,8 @@
 	switch(action)
 		if("join_clan")
 			assign_clan_and_bane()
-			ui.send_full_update(force = TRUE)
+			ui?.send_full_update(force = TRUE)
 			return
-
 
 /datum/antagonist/bloodsucker/roundend_report()
 	var/list/report = list()
