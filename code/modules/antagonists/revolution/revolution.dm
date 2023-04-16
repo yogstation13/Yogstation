@@ -224,6 +224,8 @@
 		return FALSE
 	if(!can_be_owned(candidate.mind))
 		return FALSE
+	if(is_synth(candidate))
+		return FALSE
 	var/mob/living/carbon/C = candidate //Check to see if the potential rev is implanted
 	if(!istype(C)) //Can't convert simple animals
 		return FALSE

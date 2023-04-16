@@ -29,13 +29,13 @@
 	forced_skintone = "albino"
 
 	payday_modifier = 0
-	burnmod = 1
-	heatmod = 1
-	brutemod = 0.85
+	burnmod = 0.9
+	heatmod = 0.95
+	brutemod = 0.75
 	toxmod = 0
 	clonemod = 0
-	staminamod = 0.6
-	coldmod = 0.3 //You take less cold damage
+	staminamod = 0.5
+	coldmod = 0.25 //You take less cold damage
 	siemens_coeff = 1.75
 	reagent_tag = PROCESS_SYNTHETIC
 	species_gibs = "robotic"
@@ -149,6 +149,8 @@
 	if(H.mind)
 		if(!H.mind.synth_os && !mainframe)
 			add_synthos(H)
+		if(!H.mind.unconvertable)
+			H.mind.unconvertable = TRUE
 
 	if(H.mind?.synth_os)
 		H.mind.synth_os.tick(2 SECONDS * 0.1)

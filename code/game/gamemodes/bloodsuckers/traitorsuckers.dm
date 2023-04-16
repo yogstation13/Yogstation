@@ -4,7 +4,7 @@
 	report_type = "traitorsucker"
 	false_report_weight = 10
 	traitors_possible = 3 // Hard limit on Traitors if scaling is turned off
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list("AI", "Cyborg", "Synthetic")
 	protected_jobs = list(
 		"Captain", "Head of Personnel", "Head of Security", 
 		"Research Director", "Chief Engineer", "Chief Medical Officer", "Curator", 

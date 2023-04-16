@@ -12,7 +12,7 @@
 	antag_datum = /datum/antagonist/traitor
 	minimum_required_age = 0
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
-	restricted_roles = list("Cyborg")
+	restricted_roles = list("Cyborg", "Synthetic")
 	required_candidates = 1
 	weight = 5
 	cost = 8	// Avoid raising traitor threat above 10, as it is the default low cost ruleset.
@@ -53,7 +53,7 @@
 	antag_flag = ROLE_BROTHER
 	antag_datum = /datum/antagonist/brother/
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
-	restricted_roles = list("AI", "Cyborg")
+	restricted_roles = list("AI", "Cyborg", "Synthetic")
 	required_candidates = 2
 	weight = 4
 	cost = 10
@@ -102,7 +102,7 @@
 	antag_flag = ROLE_CHANGELING
 	antag_datum = /datum/antagonist/changeling
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
-	restricted_roles = list("AI", "Cyborg")
+	restricted_roles = list("AI", "Cyborg", "Synthetic")
 	required_candidates = 1
 	weight = 3
 	cost = 16
@@ -140,7 +140,7 @@
 	antag_flag = ROLE_HERETIC
 	antag_datum = /datum/antagonist/heretic
 	protected_roles = list("Chaplain","Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
-	restricted_roles = list("AI", "Cyborg")
+	restricted_roles = list("AI", "Cyborg", "Synthetic")
 	required_candidates = 1
 	weight = 3
 	cost = 15
@@ -230,7 +230,7 @@
 	antag_flag = ROLE_CULTIST
 	antag_datum = /datum/antagonist/cult
 	minimum_required_age = 14
-	restricted_roles = list("Chaplain","AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
+	restricted_roles = list("Chaplain","AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician", "Synthetic")
 	required_candidates = 2
 	weight = 3
 	cost = 20
@@ -428,7 +428,7 @@
 	antag_flag = ROLE_REV_HEAD
 	antag_datum = /datum/antagonist/rev/head
 	minimum_required_age = 14
-	restricted_roles = list("Security Officer", "Warden", "Detective", "AI", "Cyborg", "Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer", "Shaft Miner", "Mining Medic", "Brig Physician")
+	restricted_roles = list("Security Officer", "Warden", "Detective", "AI", "Cyborg", "Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer", "Shaft Miner", "Mining Medic", "Brig Physician", "Synthetic")
 	required_candidates = 3
 	weight = 1
 	delay = 7 MINUTES
@@ -577,7 +577,7 @@
 	antag_flag = ROLE_SERVANT_OF_RATVAR
 	antag_datum = /datum/antagonist/clockcult
 	protected_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Brig Physician")
-	restricted_roles = list("Chaplain", "Captain")
+	restricted_roles = list("Chaplain", "Captain", "Synthetic")
 	required_candidates = 4
 	weight = 1
 	cost = 40
@@ -698,7 +698,7 @@
 	name = "Devil"
 	antag_flag = ROLE_DEVIL
 	antag_datum = /datum/antagonist/devil
-	restricted_roles = list("Lawyer", "Curator", "Chaplain", "Head of Security", "Captain", "AI")
+	restricted_roles = list("Lawyer", "Curator", "Chaplain", "Head of Security", "Captain", "AI", "Synthetic")
 	required_candidates = 1
 	weight = 1
 	cost = 60
@@ -851,7 +851,7 @@
 	antag_flag = ROLE_SHADOWLING
 	antag_datum = /datum/antagonist/shadowling
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
-	restricted_roles = list("Cyborg", "AI")
+	restricted_roles = list("Cyborg", "AI", "Synthetic")
 	required_candidates = 3
 	weight = 3
 	cost = 30
@@ -895,7 +895,7 @@
 	antag_flag = ROLE_VAMPIRE
 	antag_datum = /datum/antagonist/vampire
 	protected_roles = list("Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Security Officer", "Chaplain", "Detective", "Warden", "Brig Physician")
-	restricted_roles = list("Cyborg", "AI")
+	restricted_roles = list("Cyborg", "AI", "Synthetic")
 	required_candidates = 3
 	weight = 3
 	cost = 8
@@ -1003,7 +1003,7 @@
 	antag_datum = /datum/antagonist/darkspawn/
 	minimum_required_age = 20
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Research Director", "Chief Engineer", "Chief Medical Officer", "Brig Physician")
-	restricted_roles = list("AI", "Cyborg")
+	restricted_roles = list("AI", "Cyborg", "Synthetic")
 	required_candidates = 3
 	weight = 3
 	cost = 20
@@ -1040,7 +1040,7 @@
 		"Warden", "Security Officer", "Detective", "Brig Physician",
 		"Curator"
 	)
-	restricted_roles = list("AI", "Cyborg")
+	restricted_roles = list("AI", "Cyborg", "Synthetic")
 	required_candidates = 1
 	weight = 5
 	cost = 10
