@@ -7,8 +7,8 @@
 	department_head = list("AI")
 	department_flag = ENGSEC
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the AI"
 	selection_color = "#ddffdd"
 	minimal_player_age = 30
