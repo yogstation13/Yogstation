@@ -105,6 +105,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 
 /obj/effect/landmark/stationroom/box/engine
 	template_names = list("Engine SM" = 45, "Engine TSM" = 10, "Engine Singulo And Tesla" = 45, "Engine TEG" = 0)
+
 	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
 /obj/effect/landmark/stationroom/box/engine/choose()
