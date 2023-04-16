@@ -1,0 +1,5 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - tweak: "quad sec heals sec 50% less"
+  - tweak: "quad and quint sec have slightly higher booze power"
