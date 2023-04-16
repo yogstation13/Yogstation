@@ -1003,7 +1003,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	real_name = "Shade"
 	desc = "A bound spirit."
 	gender = PLURAL
-	icon = 'icons/mob/mob.dmi'
+	icon = 'icons/mob/nonhuman-player/holy.dmi'
 	icon_state = "talking_sword"
 	icon_living = "talking_sword"
 	mob_biotypes = list(MOB_INORGANIC, MOB_SPIRIT)

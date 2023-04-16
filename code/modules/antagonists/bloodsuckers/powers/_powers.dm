@@ -5,11 +5,15 @@
 	button_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	//This is the ICON_STATE for the background icon
 	background_icon_state = "vamp_power_off"
-	var/background_icon_state_on = "vamp_power_on"
-	var/background_icon_state_off = "vamp_power_off"
 	icon_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	button_icon_state = "power_feed"
 	buttontooltipstyle = "cult"
+	transparent_when_unavailable = TRUE
+
+	///Background icon when the Power is active.
+	var/background_icon_state_on = "vamp_power_on"
+	///Background icon when the Power is NOT active.
+	var/background_icon_state_off = "vamp_power_off"
 
 	/// The text that appears when using the help verb, meant to explain how the Power changes when ranking up.
 	var/power_explanation = ""
@@ -46,7 +50,6 @@
 /datum/action/bloodsucker/New(Target)
 	. = ..()
 	UpdateDesc()
-	START_PROCESSING(SSfastprocess, src)
 
 /datum/action/bloodsucker/proc/UpdateDesc()
 	desc = initial(desc)
@@ -65,24 +68,16 @@
 
 /datum/action/bloodsucker/Destroy()
 	bloodsuckerdatum_power = null
-	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
 /datum/action/bloodsucker/IsAvailable()
-	return TRUE
+	return COOLDOWN_FINISHED(src, bloodsucker_power_cooldown)
 
 /datum/action/bloodsucker/Grant(mob/user)
 	. = ..()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner)
 	if(bloodsuckerdatum)
 		bloodsuckerdatum_power = bloodsuckerdatum
-
-/**
- * # NOTES
- *
- * click.dm <--- Where we can take over mouse clicks
- * spells.dm  /add_ranged_ability()  <--- How we take over the mouse click to use a power on a target.
- */
 
 //This is when we CLICK on the ability Icon, not USING.
 /datum/action/bloodsucker/Trigger(trigger_flags)
@@ -93,7 +88,7 @@
 		return FALSE
 	PayCost()
 	ActivatePower()
-	if(power_flags & BP_AM_SINGLEUSE)
+	if(!(power_flags & BP_AM_TOGGLE) || !active)
 		RemoveAfterUse()
 	return TRUE
 
@@ -174,7 +169,7 @@
 
 /datum/action/bloodsucker/UpdateButtons(force = FALSE)
 	background_icon_state = active ? background_icon_state_on : background_icon_state_off
-	. = ..()
+	return ..()
 
 /datum/action/bloodsucker/proc/PayCost()
 	// Non-bloodsuckers will pay in other ways.
@@ -191,7 +186,8 @@
 /datum/action/bloodsucker/proc/ActivatePower()
 	active = TRUE
 	if(power_flags & BP_AM_TOGGLE)
-		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/UsePower)
+		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(UsePower))
+
 	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
 	UpdateButtons()
 
@@ -202,8 +198,8 @@
 		RemoveAfterUse()
 		return
 	active = FALSE
-	UpdateButtons()
 	StartCooldown()
+	UpdateButtons()
 
 ///Used by powers that are continuously active (That have BP_AM_TOGGLE flag)
 /datum/action/bloodsucker/proc/UsePower(mob/living/user)
