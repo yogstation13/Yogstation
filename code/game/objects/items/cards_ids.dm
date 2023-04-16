@@ -396,6 +396,13 @@ update_label("John Doe", "Clowny")
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
 
+/obj/item/card/id/synthetic/GetAccess()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.mind)
+			return access
+	return list()
+
 /obj/item/card/id/syndicate
 	name = "agent card"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
