@@ -94,7 +94,7 @@ $stamp-height: 8vh !default;
 .InspectorBooth__Speaker {
   position: absolute;
   right: 15vw;
-  top: 25vh;
+  top: 23vh;
   height: 6vh;
   width: auto;
   transform: translateX(50%);
@@ -167,17 +167,8 @@ $stamp-height: 8vh !default;
   &__idcard {
     height: 21vh;
     width: 28vw;
-    border-radius: 3vmin;
-    background-color: purple;
-    overflow: hidden;
-
-    &-picture {
-
-    }
-
-    &-name {
-
-    }
+    border-radius: 2vmin;
+    background-color: rgba(139, 139, 139, 1);
 
     &--reflect {
       @extend .InspectorBooth__Items__idcard--small;
@@ -190,10 +181,68 @@ $stamp-height: 8vh !default;
       width: 10vw;
       border-radius: 1vmin;
 
-      .InspectorBooth__Items__idcard-name {
+      .InspectorBooth__Items__idcard-textBox {
         font-size: 1vmin;
         line-height: 1vmin;
       }
+    }
+
+    &-stripe {
+      position: absolute;
+      left: 5%;
+      bottom: 10%;
+      width: 90%;
+      height: 15%;
+      background-color: rgba(58, 58, 58, 1);
+      box-shadow: 0 0.5vh rgba(27, 27, 27, 1);
+    }
+
+    &-bar {
+      position: absolute;
+      left: 37%;
+      width: 20%;
+      height: 100%;
+      background-color: rgba(79, 106, 77, 1);
+    }
+
+    &-sticker {
+      position: absolute;
+      left: 37%;
+      bottom: 8%;
+      width: 20%;
+      height: 17%;
+      background-color: rgba(11, 78, 6, 1);
+      background-image: url('../assets/bg-nanotrasen.svg');
+    }
+
+    &-picture {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      width: 28%;
+      height: 49%;
+    }
+
+    &-empty {
+      @extend .InspectorBooth__Items__idcard-picture;
+      top: 10%;
+      height: 44%;
+      background-color: rgba(198, 0, 39, 1);
+      border: 1vmin solid rgba(143, 2, 30, 1);
+    }
+
+    &-textBox {
+      position: absolute;
+      top: 5%;
+      left: 40%;
+      width: 55%;
+      height: 90%;
+      color: white;
+      font-size: 2.5vmin;
+      text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      overflow: hidden;
     }
   }
 
@@ -300,6 +349,67 @@ $stamp-height: 8vh !default;
       height: $stamp-height;
       background-size: cover;
     }
+  }
+}
+
+// Convert byond item overlays into css styles
+.InspectorBooth__Items__idcard {
+  &-stripe {
+    &.id_gold { background-color: rgba(151, 127, 0, 0.5); box-shadow: 0 0.5vh rgba(91, 76, 0, 1); }
+    &.id_silver { background-color: rgba(185, 185, 185, 0.5); box-shadow: 0 0.5vh rgba(96, 96, 96, 1); }
+  }
+  &-bar {
+    //&.captain { background-color: rgba(170, 145, 0, 0.5); }
+    &.captain { background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+      radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%); opacity: 0.5; }
+    &.security { background-color: rgba(106, 12, 12, 0.5); }
+    &.medical { background-color: rgba(7, 84, 199, 0.5); }
+    &.engineering { background-color: rgba(138, 118, 7, 0.5); }
+    &.cargo { background-color: rgba(128, 88, 6, 0.5); }
+    &.science { background-color: rgba(122, 46, 160, 0.5); }
+    &.mime { background-color: rgba(0, 0, 0, 0.5); }
+
+    // This is horrifying
+    &.clown {background:
+      linear-gradient(rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%)
+      0 0/100% 200%;
+      animation: rainbow 2s linear infinite;
+    }
+    @keyframes rainbow {
+      to {background-position:0 -200%}
+    }
+  }
+  &-sticker {
+    &.gold { background-color: rgba(222, 189, 0, 1); }
+    &.silver { background-color: rgba(252, 184, 27, 1); }
+    &.red { background-color: red; }
+    &.orange { background-color: rgba(255, 153, 51, 1); }
+    &.yellow { background-color: rgba(255, 255, 0, 1); }
+    &.blue { background-color: cyan; }
+    &.purple { background-color: rgba(204, 0, 204, 1); }
+    &.white { background-color: white;  }
+    &.brown { background-color: rgb(204, 102, 0, 1); }
+    &.black { background-color: rgba(100, 100, 100, 1); }
+    &.rainbow { animation: horrifying-rainbow 1s infinite; }
+  }
+  &-empty {
+    &.gold { background-color: rgba(222, 189, 0, 1); border: 1vmin solid rgba(75, 62, 0, 1); }
+    &.silver { background-color: rgba(211, 211, 211, 1); border: 1vmin solid rgba(252, 184, 27, 1); }
+    &.yellow { background-color: yellow; border: 1vmin solid rgba(204, 204, 0, 1); }
+    &.orange { background-color: rgba(255, 153, 51, 1); border: 1vmin solid rgba(255, 51, 51, 1); }
+    &.green { background-color: rgba(52, 212, 42, 1); border: 1vmin solid rgba(11, 77, 5, 1); }
+    &.blue { background-color: cyan; border: 1vmin solid rgba(0, 153, 255, 1); }
+    &.purple { background-color: rgba(204, 0, 204, 1); border: 1vmin solid rgba(153, 0, 204, 1); }
+    &.white { background-color: white; border: 1vmin solid rgba(176, 176, 176, 1); }
+    &.brown { background-color: rgba(204, 102, 0, 1); border: 1vmin solid rgba(153, 51, 0, 1); }
+    &.black { background-color: rgba(100, 100, 100, 1); border: 1vmin solid rgba(100, 100, 100, 1); }
+    &.rainbow { animation: horrifying-rainbow 1s infinite; border: none; }
+  }
+  @keyframes horrifying-rainbow{
+    0% { background: red; }
+    20% { background: green; }
+    40% { background: yellow; }
+    60% { background: blue; }
   }
 }
 

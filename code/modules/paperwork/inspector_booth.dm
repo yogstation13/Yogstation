@@ -49,9 +49,14 @@
 	if (contents.len >= max_items)
 		to_chat(user, span_warning("\The [src] is full!"))
 		return
+
 	var/valid = FALSE
-	if (istype(I, /obj/item/paper) || istype(I, /obj/item/card/id))
+	if (istype(I, /obj/item/paper))
 		valid = TRUE
+	else if (istype(I, /obj/item/card/id))
+		if (!istype(I, /obj/item/card/id/captains_spare/temporary))
+			valid = TRUE
+	
 	if(valid)
 		// TODO: Add auto extinguishing/decontam for part upgrades
 		var/safe = TRUE
@@ -111,24 +116,27 @@
 		if (istype(I, /obj/item/card/id))
 			var/obj/item/card/id/D = I
 			names[D.registered_name] = ++name_index
+			var/colors = get_colors_by_job(D.originalassignment)
 			items["idcards"] += list(list("id" = key, "name" = D.registered_name, "age" = D.registered_age, 
-				"job" = D.assignment, "colors" = overlays2text(D.overlays),
+				"job" = D.assignment, "bg" = D.icon_state, "department" = colors[1], "color" = colors[2], 
 				"x" = item_list[key]["x"], "y" = item_list[key]["y"], "z" = item_list[key]["z"]))
 	
 	// Retroactively add profile pictures to ids
 	// The reason why we want to store all the names we want to search
 	// first is so that we only have to loop through the data core once
-	for (var/record in GLOB.data_core.general)
-		var/datum/data/record/R = record
-		var/name = R.fields["name"]
-		if (name in names && istype(R.fields["photo_front"], /obj/item/photo))
-			var/icon/picture = icon(R.fields["photo_front"].picture.picture_image)
-			picture.Crop(10, 32, 22, 22)
-			var/md5 = md5(fcopy_rsc(picture))
-			if(!SSassets.cache["photo_[md5]_cropped.png"])
-				SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
-			SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
-			items["idcards"][names[name]] += list("picture" = SSassets.transport.get_asset_url("photo_[md5]_cropped.png"))
+	// This could be improved by caching the datum/record on item insert
+	if (name_index > 0)
+		for (var/record in GLOB.data_core.general)
+			var/datum/data/record/R = record
+			var/name = R.fields["name"]
+			if ((name in names) && (istype(R.fields["photo_front"], /obj/item/photo)))
+				var/icon/picture = icon(R.fields["photo_front"].picture.picture_image)
+				picture.Crop(10, 32, 22, 22)
+				var/md5 = md5(fcopy_rsc(picture))
+				if(!SSassets.cache["photo_[md5]_cropped.png"])
+					SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
+				SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
+				items["idcards"][names[name]] += list("picture" = SSassets.transport.get_asset_url("photo_[md5]_cropped.png"))
 
 	data["items"] = items
 
@@ -199,3 +207,52 @@
 		get_asset_datum(/datum/asset/simple/inspector_booth),
 		get_asset_datum(/datum/asset/spritesheet/simple/paper),
 	)
+
+// Copy-pasting the entire proc from yogstation/../cards_ids.dm
+// because the list there is a private var and its more work
+// to parse and process the overlays back into strings
+/obj/machinery/inspector_booth/proc/get_colors_by_job(real_job)
+	var/list/idfluff = list(
+	"Assistant" = list("civillian","green"),
+	"Captain" = list("captain","gold"),
+	"Head of Personnel" = list("civillian","silver"),
+	"Head of Security" = list("security","silver"),
+	"Chief Engineer" = list("engineering","silver"),
+	"Research Director" = list("science","silver"),
+	"Chief Medical Officer" = list("medical","silver"),
+	"Station Engineer" = list("engineering","yellow"),
+	"Atmospheric Technician" = list("engineering","white"),
+	"Network Admin" = list("engineering","green"),
+	"Medical Doctor" = list("medical","blue"),
+	"Geneticist" = list("medical","purple"),
+	"Virologist" = list("medical","green"),
+	"Chemist" = list("medical","orange"),
+	"Paramedic" = list("medical","white"),
+	"Psychiatrist" = list("medical","brown"),
+	"Scientist" = list("science","purple"),
+	"Roboticist" = list("science","black"),
+	"Quartermaster" = list("cargo","silver"),
+	"Cargo Technician" = list("cargo","brown"),
+	"Shaft Miner" = list("cargo","black"),
+	"Mining Medic" = list("cargo","blue"),
+	"Bartender" = list("civillian","black"),
+	"Botanist" = list("civillian","blue"),
+	"Cook" = list("civillian","white"),
+	"Janitor" = list("civillian","purple"),
+	"Curator" = list("civillian","purple"),
+	"Chaplain" = list("civillian","black"),
+	"Clown" = list("clown","rainbow"),
+	"Mime" = list("mime","white"),
+	"Artist" = list("civillian","yellow"),
+	"Clerk" = list("civillian","blue"),
+	"Tourist" = list("civillian","yellow"),
+	"Warden" = list("security","black"),
+	"Security Officer" = list("security","red"),
+	"Detective" = list("security","brown"),
+	"Brig Physician" = list("security","blue"),
+	"Lawyer" = list("security","purple")
+	)
+	if (real_job in idfluff)
+		return idfluff[real_job]
+	else
+		return idfluff["Assistant"]

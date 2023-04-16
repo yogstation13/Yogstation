@@ -68,21 +68,21 @@ export class Draggable extends Component {
     let maxX, maxY, clientWidth, clientHeight = 0;
     if (this.self) {
       let bounds = this.self.getBoundingClientRect();
-      maxX = 100*(1-bounds.width/window.innerWidth);
-      maxY = 100*(1-bounds.height/window.innerHeight);
+      maxX = 100*(1-bounds.width/window.outerWidth);
+      maxY = 100*(1-bounds.height/window.outerHeight);
       clientWidth = this.self.clientWidth;
       clientHeight = this.self.clientHeight;
     }
     if (!center) {
       this.setState(prev => ({
         // Multiply by 100/window size to convert from px to vw/vh
-        dX: clamp(initX + 100*(e.clientX - prev.pX)/window.innerWidth, 0, maxX),
-        dY: clamp(initY + 100*(e.clientY - prev.pY)/window.innerHeight, 0, maxY),
+        dX: clamp(initX + 100*(e.clientX - prev.pX)/window.outerWidth, 0, maxX),
+        dY: clamp(initY + 100*(e.clientY - prev.pY)/window.outerHeight, 0, maxY),
       }));
     } else {
       this.setState({
-        dX: clamp(100*(e.clientX - clientWidth/2)/window.innerWidth, 0, maxX),
-        dY: clamp(100*(e.clientY - clientHeight/2)/window.innerHeight, 0, maxY),
+        dX: clamp(100*(e.clientX - clientWidth/2)/window.outerWidth, 0, maxX),
+        dY: clamp(100*(e.clientY - clientHeight/2)/window.outerHeight, 0, maxY),
       });
     }
     // if(this.props.duringDrag && typeof this.props.duringDrag === 'function') { this.props.duringDrag(e, this); }
@@ -96,8 +96,8 @@ export class Draggable extends Component {
       top = this.self.getBoundingClientRect().top;
     }
     this.setState({
-      initX: 100*left/window.innerWidth,
-      initY: 100*top/window.innerHeight,
+      initX: 100*left/window.outerWidth,
+      initY: 100*top/window.outerHeight,
       // eslint-disable-next-line react/no-unused-state
       dragging: false,
     });

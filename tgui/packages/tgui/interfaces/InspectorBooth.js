@@ -23,7 +23,7 @@ const sanitizeHTML = (input) => {
 };
 
 const outOfBounds = (x, y) => {
-  return x < -10 || x > 110 || y < -10 || y > 110;
+  return x < 0 || x > 100 || y < 0 || y > 100;
 };
 
 const overlap = (first, second) => {
@@ -315,6 +315,7 @@ class IDCard extends Item {
   constructor(props) {
     super(props);
     this.className = 'InspectorBooth__Items__idcard';
+    this.extraClasses = `InspectorBooth__Items__idcard-bg--`+this.props.bg;
     this.dropShadow = `box-shadow: -1vw 2vh 0 0 rgba(0, 0, 0, .2);`;
     this.sfx_startDrag = 'card_drag_start';
     this.sfx_stopDrag = 'card_drag_stop';
@@ -324,8 +325,16 @@ class IDCard extends Item {
   renderItem() {
     return (
       <Fragment>
-        <img className={this.className+'-picture'} src={resolveAsset(this.props.picture)} />
-        <div className={this.className+'-name'}> {this.props.name} </div>
+        <div className={this.className+'-stripe '+this.props.bg} />
+        <div className={'InspectorBooth__Items__idcard-bar '+this.props.department} />
+        {this.props.color && (<img className={this.className+'-sticker '+this.props.color} />)}
+        {!this.props.picture && (<div className={this.className+'-empty '+this.props.color} />)}
+        {this.props.picture && (<img className={this.className+'-picture'} src={resolveAsset(this.props.picture)} />)}
+        <div className={this.className+'-textBox '+this.props.bg}>
+          {this.props.name} <br />
+          {(this.props.name && this.props.age) && (<>Age: {this.props.age} <br /></>)}
+          {this.props.job} <br />
+        </div>
       </Fragment>
     );
   }
@@ -417,7 +426,8 @@ export const InspectorBooth = (props, context) => {
         ))}
         {items.idcards?.map(item => (
           <IDCard removable reflectable dragVisible item_id={item.id} name={item.name} age={item.age} job={item.job}
-            colors={item.colors} x={item.x} y={item.y} z={item.z} key={item.id+item.x+item.y+item.z} />
+            department={item.department} color={item.color} bg={item.bg} picture={item.picture}
+            x={item.x} y={item.y} z={item.z} key={item.id+item.x+item.y+item.z} />
         ))}
         <Receptacle type={'shrink'} renderAboveItems>
           <Receptacle type={'drop_item'} collision={'inside'} >
