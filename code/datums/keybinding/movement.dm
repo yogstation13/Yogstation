@@ -3,7 +3,7 @@
     weight = WEIGHT_HIGHEST
 
 /datum/keybinding/movement/north
-	hotkey_keys = list("W", "North")
+	hotkey_keys = list("N", "North")
 	classic_keys = list("North")
 	name = "North"
 	full_name = "Move North"
@@ -17,14 +17,14 @@
 	description = "Moves your character south"
 
 /datum/keybinding/movement/west
-	hotkey_keys = list("A", "West")
+	hotkey_keys = list("W", "West")
 	classic_keys = list("West")
 	name = "West"
 	full_name = "Move West"
 	description = "Moves your character left"
 
 /datum/keybinding/movement/east
-	hotkey_keys = list("D", "East")
+	hotkey_keys = list("E", "East")
 	classic_keys = list("East")
 	name = "East"
 	full_name = "Move East"
