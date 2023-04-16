@@ -210,6 +210,7 @@
 	name = "ominous hood"
 	desc = "A torn, dust-caked hood. You feel it watching you."
 	icon_state = "eldritch"
+	item_state = "eldritch"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	flash_protect = 2
