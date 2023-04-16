@@ -6,6 +6,7 @@ export const TRAITOR_MECHANICAL_DESCRIPTION
       Utilize a hidden uplink to acquire equipment, then set out to accomplish your objectives how you see fit. Be cunning, be fierce, be swift.
    `;
 
+
 const Traitor: Antagonist = {
   key: "traitor",
   name: "Traitor",

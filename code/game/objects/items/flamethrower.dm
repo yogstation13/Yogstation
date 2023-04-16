@@ -242,13 +242,13 @@
 	//var/oxygen_consumption = (air_transfer.get_moles(/datum/gas/plasma) * 2) + (air_transfer.get_moles(/datum/gas/tritium) / 2) + (air_transfer.get_moles(/datum/gas/hydrogen) / 2)
 
 	// Return of the stimball flamethrower, wear radiation protection when using this or you're just as likely to die as your target
-	if(air_transfer.get_moles(/datum/gas/plasma) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(/datum/gas/stimulum) >= STIM_BALL_MOLES_REQUIRED && air_transfer.get_moles(/datum/gas/pluoxium) >= STIM_BALL_MOLES_REQUIRED)
-		var/balls_shot = round(min(air_transfer.get_moles(/datum/gas/stimulum), air_transfer.get_moles(/datum/gas/pluoxium), STIM_BALL_MAX_REACT_RATE / STIM_BALL_MOLES_REQUIRED))
+	if(air_transfer.get_moles(/datum/gas/plasma) >= NITRO_BALL_MOLES_REQUIRED && air_transfer.get_moles(/datum/gas/nitrium) >= NITRO_BALL_MOLES_REQUIRED && air_transfer.get_moles(/datum/gas/pluoxium) >= NITRO_BALL_MOLES_REQUIRED)
+		var/balls_shot = round(min(air_transfer.get_moles(/datum/gas/nitrium), air_transfer.get_moles(/datum/gas/pluoxium), NITRO_BALL_MAX_REACT_RATE / NITRO_BALL_MOLES_REQUIRED))
 		var/angular_increment = 360/balls_shot
 		var/random_starting_angle = rand(0,360)
 		for(var/i in 1 to balls_shot)
 			target.fire_nuclear_particle((i*angular_increment+random_starting_angle))
-		air_transfer.adjust_moles(/datum/gas/plasma, -balls_shot * STIM_BALL_GAS_AMOUNT) // No free extra damage for you, conservation of mass go brrrrr
+		air_transfer.adjust_moles(/datum/gas/plasma, -balls_shot * NITRO_BALL_GAS_AMOUNT) // No free extra damage for you, conservation of mass go brrrrr
 
 	// 8 damage at 0.5 mole transfer or having 10 moles in the tank
 	// 16 damage at 1 mole transfer or having 20 moles in the tank
@@ -325,3 +325,20 @@
 
 /obj/item/assembly/igniter/proc/ignite_turf(obj/item/flamethrower/F,turf/open/location,release_amount = 0.05)
 	return F.default_ignite(location,release_amount)
+
+///////////////////// Flamethrower as an energy weapon /////////////////////
+// Currently used exclusively in /obj/item/gun/energy/printer/flamethrower
+/obj/item/ammo_casing/energy/flamethrower
+	projectile_type = /obj/item/projectile/bullet/incendiary/flamethrower
+	select_name = "fire"
+	fire_sound = null
+	firing_effect_type = null
+	e_cost = 50
+
+/obj/item/projectile/bullet/incendiary/flamethrower
+	name = "waft of flames"
+	icon_state = null
+	damage = 0
+	sharpness = SHARP_NONE
+	range = 6
+	penetration_type = 2

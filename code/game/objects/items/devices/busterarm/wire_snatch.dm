@@ -1,11 +1,11 @@
 /* Formatting for these files, from top to bottom:
-	* Spell/Action
+	* Action
 	* Trigger()
 	* IsAvailable()
 	* Items
-	In regards to spells or items with left and right subtypes, list the base, then left, then right.
+	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
-////////////////// Spell //////////////////
+////////////////// Action //////////////////
 /datum/action/cooldown/buster/wire_snatch
 	name = "Wire Snatch"
 	desc = "Extend a wire for reeling in foes from a distance. Reeled in targets will be unable to walk for 1.5 seconds. \
@@ -82,7 +82,7 @@
 	. = ..()
 	ADD_TRAIT(src, HAND_REPLACEMENT_TRAIT, NOBLUDGEON)
 	if(ismob(loc))
-		loc.visible_message(span_warning("A long cable comes out from [loc.name]'s arm!"), span_warning("You extend the breaker's wire from your arm."))
+		loc.visible_message(span_warning("A long cable comes out from [loc.name]'s arm!"), span_warning("You extend the buster's wire from your arm."))
 
 /// Deletes the wire once it has no more shots left
 /obj/item/gun/magic/wire/process_chamber()
@@ -107,6 +107,7 @@
 	damage = 0
 	armour_penetration = 100
 	damage_type = BRUTE
+	nodamage = TRUE
 	range = 8
 	hitsound = 'sound/effects/splat.ogg'
 	knockdown = 0
@@ -122,12 +123,13 @@
 	to_chat(user, span_warning("You pull yourself towards [target]."))
 	playsound(user, 'sound/magic/tail_swing.ogg', 10, TRUE)
 	user.Immobilize(0.2 SECONDS)//so it's not cut short by walking
-	user.throw_at(get_step_towards(target,user), 8, 4)
+	user.forceMove(get_step_towards(target, user))
 
 /obj/item/projectile/wire/on_hit(atom/target)
 	var/mob/living/carbon/human/H = firer
 	if(!H)
 		return
+	H.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 	if(isobj(target)) // If it's an object
 		var/obj/item/I = target
 		if(!I?.anchored) // Give it to us if it's not anchored
@@ -141,6 +143,7 @@
 			return
 		zip(H, target) // Pull us towards it if it's anchored
 	if(isliving(target)) // If it's somebody
+		H.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)
 		var/mob/living/L = target
 		var/turf/T = get_step(get_turf(H), H.dir)
 		var/turf/Q = get_turf(H)
@@ -149,7 +152,7 @@
 		if(!L.anchored) // Only pull them if they're unanchored
 			if(istype(H))
 				L.visible_message(span_danger("[L] is pulled by [H]'s wire!"),span_userdanger("A wire grabs you and pulls you towards [H]!"))				
-				L.Immobilize(1.5 SECONDS)
+				L.Immobilize(1.0 SECONDS)
 				if(prob(5))
 					firer.say("GET OVER HERE!!")//slicer's request
 				if(T.density) // If we happen to be facing a wall after the wire snatches them

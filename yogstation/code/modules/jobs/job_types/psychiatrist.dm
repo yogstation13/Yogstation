@@ -16,7 +16,7 @@
 	outfit = /datum/outfit/job/psych
 
 	added_access = list()
-	base_access = list(ACCESS_MEDICAL)
+	base_access = list(ACCESS_MEDICAL, ACCESS_PSYCH)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 	mind_traits = list(TRAIT_PSYCH)

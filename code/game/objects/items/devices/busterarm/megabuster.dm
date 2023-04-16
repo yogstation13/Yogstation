@@ -1,19 +1,15 @@
 /* Formatting for these files, from top to bottom:
-	* Spell/Action
+	* Action
 	* Trigger()
 	* IsAvailable()
 	* Items
-	In regards to spells or items with left and right subtypes, list the base, then left, then right.
+	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
-////////////////// Spell //////////////////
+////////////////// Action //////////////////
 /datum/action/cooldown/buster/megabuster
 	name = "Mega Buster"
-	// Literal essay. It just punches shit really hard.
-	desc = "Put the buster arm through its paces to gain extreme power for five seconds. Connecting the blow will \
-			devastate the target and send them flying. Flying targets will have a snowball effect on hitting other \
-			unanchored people or objects collided with. Punching a mangled limb will instead send it flying and \
-			momentarily stun its owner. Once the five seconds are up or a strong wall or person or exosuit is hit, \
-			the arm won't be able to do that again for 20 seconds."
+	desc = "Put the buster arm through its paces to gain extreme power for five seconds. Connecting the blow will devastate the target and send them flying, taking others with \
+	them and sending them through walls."
 	button_icon_state = "ponch"
 	cooldown_time = 20 SECONDS
 
@@ -67,8 +63,8 @@
 
 ////////////////// Megabuster Item //////////////////
 /obj/item/buster/megabuster
-	name = "supercharged emitter"
-	desc = "The result of all the prosthetic's power building up in its palm. It's fading fast."
+	name = "supercharged fist"
+	desc = "The result of all the prosthetic's power building up. It's fading fast."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "fist"
 	item_state = "disintegrate"
@@ -114,8 +110,8 @@
 		return
 	if(target == user)
 		return
-	
-	// Punch items, if you wanted to do that for some reason. Can't destroy brains though.
+
+	// Punch items. Can't destroy brains though.
 	if(isitem(target))
 		var/obj/I = target
 		if(!isturf(I.loc))
@@ -123,6 +119,7 @@
 				to_chat(user, span_warning("You probably shouldn't attack something on your person."))
 			return
 		if(!istype(I, /obj/item/organ/brain) && !istype(I, /obj/item/clothing/mask/cigarette))
+			user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 			I.take_damage(objdam)
 			user.visible_message(span_warning("[user] pulverizes [I]!"))
 		return
@@ -130,7 +127,9 @@
 	// Punch open turf (does nothing)
 	if(isopenturf(target))
 		return
-
+	if(iseffect(target))
+		return
+	user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 	playsound(L, 'sound/effects/gravhit.ogg', 60, 1)
 	if(iswallturf(target)) // Destroys a wall
 		var/turf/closed/wall/W = target
@@ -160,11 +159,16 @@
 			return
 	
 	if(isliving(L)) // Punching a mob
+		if(prob(5))
+			if(prob(50))
+				user.say("FUCK YOU!!")
+			else
+				user.say("JACKPOT!!")
 		var/obj/item/bodypart/limb_to_hit = L.get_bodypart(user.zone_selected)
 		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
 		qdel(src, force = TRUE) // Punching mobs instantly starts the cooldown
-		shake_camera(L, 4, 3) // Shake their camera
-		L.apply_damage(punchdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND) // Apply damage to mob
+		shake_camera(L, 4, 3) 
+		L.apply_damage(punchdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND) 
 		if(!limb_to_hit)
 			limb_to_hit = L.get_bodypart(BODY_ZONE_CHEST)
 		if(iscarbon(L))
@@ -174,16 +178,18 @@
 				else // If you target a limb and it's fully damaged then lop it off
 					var/atom/throw_target = get_edge_target_turf(L, direction)
 					to_chat(L, span_userdanger("[user] blows [limb_to_hit] off with inhuman force!"))
-					user.visible_message(span_warning("[user] punches [L]'s [limb_to_hit] clean off!"))
+					user.visible_message(span_warning("[user] punches [limb_to_hit] clean off!"))
 					limb_to_hit.drop_limb()
 					limb_to_hit.throw_at(throw_target, 8, 4, user, 3)
 					L.Paralyze(3 SECONDS)
 					return // Stop here, don't bother throwing
 		L.SpinAnimation(0.5 SECONDS, 2)
 		to_chat(L, span_userdanger("[user] hits you with a blast of energy and sends you flying!"))
-		user.visible_message(span_warning("[user] blasts [L] with a surge of energy and sends [L.p_them()] flying!"))
+		if(!istype(limb_to_hit, /obj/item/bodypart/head))
+			user.visible_message(span_warning("[user] blasts [L] with a surge of energy and sends [L.p_them()] flying!"))
+		else
+			user.visible_message(span_warning("[user] smashes [user.p_their()] fist upwards into [L]'s jaw, sending [L.p_them()] flying!"))//slicer's request
 		knockedback |= L
-	// Shake cameras Woosh
 	for(var/mob/M in view(7, user))
 		shake_camera(M, 2, 3)
 	var/turf/P = get_turf(user)
@@ -199,6 +205,8 @@
 				J.take_damage(objcolldam)
 			for(var/mob/living/S in knockedback) // For every mob that is flying, damage them again
 				hit(user, S, colldam)
+				S.Knockdown(1.5 SECONDS)
+				S.Immobilize(1.5 SECONDS)
 				if(isanimal(S) && S.stat == DEAD)
 					S.gib()
 			if(!istype(W, /turf/closed/wall/r_wall)) // Destroy the wall if it's not a reinforced wall
@@ -234,7 +242,7 @@
 				K.SpinAnimation(0.2 SECONDS, 1)
 				sleep(0.001 SECONDS)
 				K.forceMove(T)
-				if(istype(T, /turf/open/space)) // If we hit space, YEET
+				if(istype(T, /turf/open/space)) // If we hit space, keep flying
 					var/atom/throw_target = get_edge_target_turf(K, direction)
 					K.throw_at(throw_target, 6, 4, user, 3)
 					return

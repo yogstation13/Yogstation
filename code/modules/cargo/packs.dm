@@ -371,15 +371,15 @@
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/clothing/under/rank/security/navyblue,
 					/obj/item/clothing/under/rank/security/navyblue,
-					/obj/item/clothing/suit/security/officer,
-					/obj/item/clothing/suit/security/officer,
+					/obj/item/clothing/suit/armor/officerjacket,
+					/obj/item/clothing/suit/armor/officerjacket,
 					/obj/item/clothing/head/beret/sec/navyofficer,
 					/obj/item/clothing/head/beret/sec/navyofficer,
 					/obj/item/clothing/under/rank/warden/navyblue,
-					/obj/item/clothing/suit/security/warden,
+					/obj/item/clothing/suit/armor/wardenjacket,
 					/obj/item/clothing/head/beret/sec/navywarden,
 					/obj/item/clothing/under/rank/head_of_security/navyblue,
-					/obj/item/clothing/suit/security/hos,
+					/obj/item/clothing/suit/armor/hosjacket,
 					/obj/item/clothing/head/beret/sec/navyhos)
 	crate_name = "security clothing crate"
 
@@ -646,7 +646,7 @@
 	contraband = TRUE
 	contains = list(/obj/item/reagent_containers/food/snacks/rationpack,
 					/obj/item/ammo_box/a762,
-					/obj/item/ammo_box/n762,
+					/obj/item/ammo_box/no_direct/n762,
 					/obj/item/storage/toolbox/ammo,
 					/obj/item/clothing/suit/armor/vest/russian,
 					/obj/item/clothing/head/helmet/rus_helmet,
@@ -1112,6 +1112,24 @@
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
 
+/datum/supply_pack/engine/hypertorus_fusion_reactor
+	name = "HFR Crate"
+	desc = "The new and improved fusion reactor. Requires CE access to open."
+	cost = 10000
+	access = ACCESS_CE
+	contains = list(/obj/item/hfr_box/corner,
+					/obj/item/hfr_box/corner,
+					/obj/item/hfr_box/corner,
+					/obj/item/hfr_box/corner,
+					/obj/item/hfr_box/body,
+					/obj/item/hfr_box/body,
+					/obj/item/hfr_box/body,
+					/obj/item/hfr_box/body,
+					/obj/item/hfr_box/core)
+	crate_name = "HFR crate"
+	crate_type = /obj/structure/closet/crate/secure/engineering
+	dangerous = TRUE
+
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////// Canisters & Materials ////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -1298,15 +1316,15 @@
 	name = "Medipen Variety-Pak"
 	desc = "Contains eight different medipens in three different varieties, to assist in quickly treating seriously injured patients."
 	cost = 2000
-	contains = list(/obj/item/reagent_containers/autoinjector/medipen/,
-					/obj/item/reagent_containers/autoinjector/medipen/,
+	contains = list(/obj/item/reagent_containers/autoinjector/medipen,
+					/obj/item/reagent_containers/autoinjector/medipen,
 					/obj/item/reagent_containers/autoinjector/medipen/ekit,
 					/obj/item/reagent_containers/autoinjector/medipen/ekit,
 					/obj/item/reagent_containers/autoinjector/medipen/ekit,
 					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
 					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
-					/obj/item/reagent_containers/autoinjector/medipen/blood_loss
-)
+					/obj/item/reagent_containers/autoinjector/medipen/blood_loss,
+	)
 	crate_name = "medipen crate"
 
 /datum/supply_pack/medical/firstaid_single

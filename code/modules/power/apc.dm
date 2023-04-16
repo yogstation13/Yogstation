@@ -531,6 +531,15 @@
 			opened = APC_COVER_OPENED
 			update_icon()
 			return
+	else
+		W.play_tool_sound(src)
+		to_chat(user, span_notice("You attempt to pry off the broken cover..."))
+		if(W.use_tool(src, user, 3 SECONDS))
+			W.play_tool_sound(src)
+			to_chat(user, span_notice("You pry the broken cover off of [src]."))
+			opened = APC_COVER_REMOVED
+			update_icon()
+			return
 
 /obj/machinery/power/apc/screwdriver_act(mob/living/user, obj/item/W)
 	if(..())

@@ -330,6 +330,10 @@
 			if(chambered.harmful) // Is the bullet chambered harmful?
 				to_chat(user, span_notice(" [src] is lethally chambered! You don't want to risk harming anyone..."))
 				return
+		if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
+			if(!chambered.harmful) // Is the bullet chambered not harmful?
+				to_chat(user, span_notice(" [src] is not lethally chambered! You cannot use non-lethal weapons!"))
+				return
 		if(randomspread)
 			sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
 		else //Smart spread
@@ -386,6 +390,10 @@
 			if(HAS_TRAIT(user, TRAIT_PACIFISM)) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
 				if(chambered.harmful) // Is the bullet chambered harmful?
 					to_chat(user, span_notice(" [src] is lethally chambered! You don't want to risk harming anyone..."))
+					return
+			if(HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
+				if(!chambered.harmful) // Is the bullet chambered not harmful?
+					to_chat(user, span_notice(" [src] is not lethally chambered! You cannot use non-lethal weapons!"))
 					return
 			sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
 			before_firing(target,user)

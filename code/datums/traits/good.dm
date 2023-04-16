@@ -313,7 +313,7 @@
 	name = "Cybernetic Organ"
 	desc = "Due to a past incident you lost function of one of your organs, but now have a fancy upgraded cybernetic organ!"
 	icon = "building-ngo"
-	value = 6
+	value = 4
 	var/slot_string = "organ"
 	medical_record_text = "During physical examination, patient was found to have an upgraded cybernetic organ."
 

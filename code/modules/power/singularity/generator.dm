@@ -15,7 +15,7 @@
 	buckle_requires_restraints = TRUE
 
 	var/energy = 0
-	var/creation_type = /obj/singularity
+	var/creation_type = /obj/singularity/gravitational
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH)

@@ -54,7 +54,7 @@
 	add_to_streak("G",D)
 	check_streak(A,D)
 	if(D.stat != DEAD)//feedback to know the click landed, but only if it's actually able to do something
-		playsound(A, 'sound/effects/servostep.ogg', 110, FALSE, -1)//this sound is annoyingly quiet
+		playsound(A, 'sound/items/change_jaws.ogg', 20, FALSE)//changed to be distinct from new IPC walk sound
 	return TRUE //no grabbing either
 
 /datum/martial_art/ultra_violence/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -235,8 +235,7 @@
 	else
 		playsound(H, 'sound/effects/dodge.ogg', 50)
 		dash_timer = addtimer(CALLBACK(src, .proc/regen_dash, H), 4 SECONDS, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
-		REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, "martial") //can't immobilize if has stun immune, technically means they can be stunned mid-dash
-		H.Immobilize(30 SECONDS) //to prevent cancelling the dash
+		H.Immobilize(30 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the dash
 		dashing = TRUE
 		H.throw_at(A, MAX_DASH_DIST, 1.5, H, FALSE, TRUE, callback = CALLBACK(src, .proc/dash_end, H))
 		dashes -= 1
@@ -244,8 +243,7 @@
 
 /datum/martial_art/ultra_violence/proc/dash_end(mob/living/carbon/human/H)
 	dashing = FALSE
-	H.SetImmobilized(0 SECONDS)
-	ADD_TRAIT(H, TRAIT_STUNIMMUNE, "martial")
+	H.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
 
 /datum/martial_art/ultra_violence/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(!dashing)

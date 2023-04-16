@@ -89,6 +89,11 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	if(.)
 		return
 	if(!iscultist(user))
+		for(var/obj/item/nullrod/antimagic in user.get_equipped_items())
+			user.say("BEGONE FOUL MAGIKS!!", forced = "nullrod")
+			to_chat(user, span_danger("You disrupt the magic of [src] with [antimagic]."))
+			qdel(src)
+			return
 		to_chat(user, span_warning("You aren't able to understand the words of [src]."))
 		return
 	if(istype(user, /mob/living/simple_animal/shade))

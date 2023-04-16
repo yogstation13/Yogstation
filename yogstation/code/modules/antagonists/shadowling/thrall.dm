@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 
 /datum/antagonist/thrall/greet()
 	to_chat(owner, span_shadowling("<b>You see the truth. Reality has been torn away and you realize what a fool you've been.</b>"))
-	if(ispreternis(owner))
+	if(ispreternis(owner.current))
 		to_chat(owner, span_shadowling("<b>The shadowlings- your creators, have returned to become gods.</b> Serve them above all else and ensure they complete their goals.</b>"))
 	else
 		to_chat(owner, span_shadowling("<b>The shadowlings are your masters.</b> Serve them above all else and ensure they complete their goals.</b>"))
