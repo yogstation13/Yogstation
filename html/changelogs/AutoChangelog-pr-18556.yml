@@ -1,0 +1,4 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - rscdel: "Removes augmentation kits from the Syndicate uplink"
