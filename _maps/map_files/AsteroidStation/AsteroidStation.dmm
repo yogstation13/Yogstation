@@ -68262,6 +68262,10 @@
 /obj/machinery/microwave,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"vXK" = (
+/obj/effect/landmark/start/atmospheric_technician,
+/turf/open/floor/plasteel,
+/area/engine/atmos/foyer)
 "vXZ" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "atmos";
@@ -116404,7 +116408,7 @@ aOl
 uzw
 jhF
 emc
-aCQ
+vXK
 aCQ
 kZw
 aOd
