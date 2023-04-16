@@ -43336,12 +43336,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/disposal/incinerator)
-"nkd" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "nkg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -63249,6 +63243,13 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/security/brig)
+"vqx" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/start/synthetic,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "vqP" = (
 /obj/structure/sign/departments/minsky/command/charge{
 	pixel_y = -32
@@ -97078,7 +97079,7 @@ kPb
 jwK
 jwK
 mpy
-nkd
+vqx
 bmr
 bmr
 qPS
