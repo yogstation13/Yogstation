@@ -41,12 +41,9 @@
 
 /datum/action/cooldown/spell/jaunt/bloodcrawl/cast(mob/living/cast_on)
 	. = ..()
-	for(var/obj/effect/decal/cleanable/blood_nearby in range(blood_radius, get_turf(cast_on)))
-		if(blood_nearby.can_bloodcrawl_in())
-			return do_bloodcrawl(blood_nearby, cast_on)
-
-	reset_spell_cooldown()
-	to_chat(cast_on, span_warning("There must be a nearby source of blood!"))
+	// Should always return something because we checked that in can_cast_spell before arriving here
+	var/obj/effect/decal/cleanable/blood_nearby = find_nearby_blood(get_turf(cast_on))
+	do_bloodcrawl(blood_nearby, cast_on)
 
 /// Returns a nearby blood decal, or null if there aren't any
 /datum/action/cooldown/spell/jaunt/bloodcrawl/proc/find_nearby_blood(turf/origin)
@@ -290,8 +287,8 @@
 		// Unregister the signals first
 		UnregisterSignal(friend, list(COMSIG_MOB_STATCHANGE, COMSIG_PARENT_QDELETING))
 
-		friend.forceMove(release_turf)
-		if(!friend.revive(TRUE, TRUE))
+		INVOKE_ASYNC(friend, TYPE_PROC_REF(/atom/movable/, forceMove), release_turf)
+		if(!INVOKE_ASYNC(friend, TYPE_PROC_REF(/mob/living/, revive), TRUE, TRUE))
 			continue
 		playsound(release_turf, consumed_mobs, 50, TRUE, -1)
 		to_chat(friend, span_clown("You leave [source]'s warm embrace, and feel ready to take on the world."))
@@ -310,9 +307,9 @@
 	if(new_stat == DEAD)
 		return
 	// Someone we've eaten has spontaneously revived; maybe regen coma, maybe a changeling
-	victim.forceMove(get_turf(victim))
+	INVOKE_ASYNC(victim, TYPE_PROC_REF(/atom/movable/, forceMove), get_turf(victim))
 	victim.visible_message(span_warning("[victim] falls out of the air, covered in blood, with a confused look on their face."))
-	exit_blood_effect(victim)
+	INVOKE_ASYNC(src, PROC_REF(exit_blood_effect), victim)
 
 	consumed_mobs -= victim
 	UnregisterSignal(victim, COMSIG_MOB_STATCHANGE)
