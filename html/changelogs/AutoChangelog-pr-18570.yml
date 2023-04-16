@@ -1,0 +1,5 @@
+author: "BlueishTsunami"
+delete-after: true 
+changes: 
+  - rscadd: "Added \"Moff\" to the available list of ghosts in preferences."
+  - imageadd: "Added sprite for Moth Ghost"
