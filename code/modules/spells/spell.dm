@@ -118,7 +118,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/IsAvailable()
-	return ..() && can_cast_spell(feedback = FALSE)
+	return ..() && can_cast_spell(FALSE)
 
 /datum/action/cooldown/spell/Trigger(trigger_flags, atom/target)
 	// We implement this can_cast_spell check before the parent call of Trigger()
