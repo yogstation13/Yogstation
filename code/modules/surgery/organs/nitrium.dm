@@ -8,7 +8,7 @@
 	var/mutable_appearance/ad_overlay
 	var/upgraded = FALSE
 
-/obj/item/organ/nitrium_tumor/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+/obj/item/organ/nitrium_tumor/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
 	. = ..()
 	implant_ability = new
 	implant_ability.tumor = src
