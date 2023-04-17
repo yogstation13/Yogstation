@@ -97,6 +97,10 @@
 	
 	suspicion_tick()
 
+/datum/ai_dashboard/synth_dashboard/run_project(datum/ai_project/project)
+	project.run_project()
+	return TRUE
+
 /datum/ai_dashboard/synth_dashboard/proc/suspicion_tick()
 	var/mob/living/carbon/human/H = owner
 	var/datum/species/wy_synth/S = H.dna.species
