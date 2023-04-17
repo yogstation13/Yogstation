@@ -17,7 +17,7 @@
 	ad_overlay = mutable_appearance('yogstation/icons/mob/clothing/suit/suit.dmi', "sl_shell", -UNDER_SUIT_LAYER)
 	M.add_overlay(ad_overlay)
 
-/obj/item/organ/nitrium_tumor/Remove(mob/living/carbon/M)
+/obj/item/organ/nitrium_tumor/Remove(mob/living/carbon/M, special = 0)
 	. = ..()
 	if(implant_ability)
 		implant_ability.Remove(M)
