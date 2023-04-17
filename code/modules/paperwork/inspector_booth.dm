@@ -25,6 +25,14 @@
 	var/stamp_types = list(
 		"stamp-ok" = "stamp_approve.png",
 		"stamp-deny" = "stamp_deny.png",
+		"stamp-cap" = "stamp_cap.png",
+		"stamp-hop" = "stamp_hop.png",
+		"stamp-hos" = "stamp_hos.png",
+		"stamp-cmo" = "stamp_cmo.png",
+		"stamp-qm" = "stamp_qm.png",
+		"stamp-rd" = "stamp_rd.png",
+		"stamp-ce" = "stamp_ce.png",
+		"stamp-law" = "stamp_law.png",
 		"stamp-clown" = "stamp_clown.png",
 	)
 	var/sfx = list(
@@ -157,6 +165,8 @@
 		return
 	
 	var/mob/living/user = params["ckey"] ? get_mob_by_key(params["ckey"]) : null
+	if (user != null && get_dist_chebyshev(src, user) > sqrt(2))
+		user = null
 	var/obj/item = (params["id"] in item_list) ? item_list[params["id"]]["item"] : null
 
 	switch(action)
@@ -173,7 +183,7 @@
 			if (item != null)
 				if (istype(item, /obj/item/paper))
 					var/obj/item/paper/P = item
-					// This could be moved into a proc in Paper.dm
+					// This was copied from Paper.dm and should probably be moved into its own proc there
 					var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/simple/paper)
 					if (isnull(P.stamps))
 						P.stamps = sheet.css_tag()
@@ -207,6 +217,12 @@
 		get_asset_datum(/datum/asset/simple/inspector_booth),
 		get_asset_datum(/datum/asset/spritesheet/simple/paper),
 	)
+
+// Should probably be moved into game.dm
+/proc/get_dist_chebyshev(atom/Loc1 as turf|mob|obj,atom/Loc2 as turf|mob|obj)
+	var/dx = Loc1.x - Loc2.x
+	var/dy = Loc1.y - Loc2.y
+	return max(abs(dx), abs(dy))
 
 // Copy-pasting the entire proc from yogstation/../cards_ids.dm
 // because the list there is a private var and its more work

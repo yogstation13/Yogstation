@@ -315,20 +315,23 @@ class IDCard extends Item {
   constructor(props) {
     super(props);
     this.className = 'InspectorBooth__Items__idcard';
-    this.extraClasses = `InspectorBooth__Items__idcard-bg--`+this.props.bg;
-    this.dropShadow = `box-shadow: -1vw 2vh 0 0 rgba(0, 0, 0, .2);`;
+    this.dropShadow = `box-shadow: -1vw 3vh 0 0 rgba(0, 0, 0, .2);`;
     this.sfx_startDrag = 'card_drag_start';
     this.sfx_stopDrag = 'card_drag_stop';
     this.r = -20;
+    this.bg = 'idcard.png';
+    if (props.bg === 'id_silver' || props.bg === 'id_gold') {
+      this.bg = props.bg.replace('_', 'card_') + '.png';
+    }
   }
 
   renderItem() {
+
     return (
       <Fragment>
-        <div className={this.className+'-stripe '+this.props.bg} />
+        <img className={this.className+'-icon'} src={resolveAsset(this.bg)} />
         <div className={'InspectorBooth__Items__idcard-bar '+this.props.department} />
         {this.props.color && (<img className={this.className+'-sticker '+this.props.color} />)}
-        {!this.props.picture && (<div className={this.className+'-empty '+this.props.color} />)}
         {this.props.picture && (<img className={this.className+'-picture'} src={resolveAsset(this.props.picture)} />)}
         <div className={this.className+'-textBox '+this.props.bg}>
           {this.props.name} <br />
