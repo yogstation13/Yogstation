@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(synth_pods)
 
 /obj/machinery/synth_pod/Initialize(mapload)
 	. = ..()
-	update_icon()
+	
 	if(mapload && !start_empty_roundstart)
 		var/mob/living/carbon/human/S = new(src)
 		S.set_species(/datum/species/wy_synth)
@@ -28,6 +28,7 @@ GLOBAL_LIST_EMPTY(synth_pods)
 		var/datum/outfit/job/synthetic/SO = new()
 		SO.equip(S)
 	GLOB.synth_pods += src
+	update_icon()
 
 /obj/machinery/synth_pod/Destroy()
 	. = ..()
