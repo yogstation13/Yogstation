@@ -1334,10 +1334,16 @@
 	. = ..()
 	ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.physiology.burn_mod *= 1.25
 
 /datum/reagent/nitrium_low_metabolization/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
+	if(ishuman(L)) // physiology gets reset anyway if you get turned into something that doesn't have it
+		var/mob/living/carbon/human/H = L
+		H.physiology.burn_mod /= 1.25
 	return ..()
 
 /datum/reagent/nitrium_low_metabolization/on_mob_life(mob/living/carbon/M)
