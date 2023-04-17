@@ -215,6 +215,9 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
 
+/obj/item/radio/headset/headset_synthetic/attackby(obj/item/W, mob/user, params)
+	return FALSE
+
 /obj/item/radio/headset/headset_cent
 	name = "\improper CentCom headset"
 	desc = "A headset used by the upper echelons of NanoTrasen."

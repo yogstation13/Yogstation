@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(synth_pods)
 	if(stored)
 		to_chat(user, span_warning("This unit is already full."))
 		return
-		
+
 	var/mob/living/target = A
 
 	if(!is_synth(target))
@@ -115,6 +115,7 @@ GLOBAL_LIST_EMPTY(synth_pods)
 		S.transfer(user, target_synth)
 		selected_pod.open_machine()
 		selected_pod.stored = null
+		selected_pod.update_icon()
 		
 		
 
