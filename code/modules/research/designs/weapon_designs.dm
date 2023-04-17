@@ -357,12 +357,12 @@
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_kraken
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
-/datum/design/mag_oldsmg/venom_mag
-	name = "WT-550 Auto Gun Venom Bullet Magazine (4.6x30mm Venom)"
-	desc = "A 20-round venom magazine for the out of date security WT-550 Auto Carbine."
-	id = "mag_oldsmg_venom"
+/datum/design/mag_oldsmg/snakebite_mag
+	name = "WT-550 Auto Gun snakebite Bullet Magazine (4.6x30mm snakebite)"
+	desc = "A 20-round snakebite magazine for the out of date security WT-550 Auto Carbine."
+	id = "mag_oldsmg_snakebite"
 	materials = list(/datum/material/iron = 7500, /datum/material/titanium = 2000, /datum/material/uranium = 1000)
-	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_venom
+	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_snakebite
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/stunshell

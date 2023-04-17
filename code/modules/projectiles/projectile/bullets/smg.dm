@@ -51,11 +51,11 @@
 	damage = 5
 	stamina = 22
 
-/obj/item/projectile/bullet/c46x30mm/venom
-	name = "4.6x30mm venom bullet" 
+/obj/item/projectile/bullet/c46x30mm/snakebite
+	name = "4.6x30mm snakebite bullet" 
 	damage = 6
 
-/obj/item/projectile/bullet/c46x30mm/venom/on_hit(atom/target, blocked)
+/obj/item/projectile/bullet/c46x30mm/snakebite/on_hit(atom/target, blocked)
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/victim = target // Both injects toxin, and applies 6 tox damage on hit.
 		victim.reagents.add_reagent(/datum/reagent/toxin, 4)

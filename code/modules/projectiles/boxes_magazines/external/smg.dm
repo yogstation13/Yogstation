@@ -50,12 +50,12 @@
 
 //Experimental WT mags
 
-/obj/item/ammo_box/magazine/wt550m9/wt_venom
-	name = "\improper WT-550 magazine (Venom Rounds 4.6x30mm)"
+/obj/item/ammo_box/magazine/wt550m9/wt_snakebite
+	name = "\improper WT-550 magazine (snakebite Rounds 4.6x30mm)"
 	desc = "A 20-round 4.6x30mm magazine, designed for the WT-550 Carbine. \
 			These rounds, while not directly lethal, inject a fast acting toxin that deals damage instead."
 	icon_state = "46x30mmtV-20"
-	ammo_type = /obj/item/ammo_casing/c46x30mm/venom
+	ammo_type = /obj/item/ammo_casing/c46x30mm/snakebite
 	sprite_designation = "V"
 
 /obj/item/ammo_box/magazine/wt550m9/wt_kraken
