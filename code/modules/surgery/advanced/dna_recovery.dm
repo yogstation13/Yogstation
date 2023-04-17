@@ -11,6 +11,8 @@
 	possible_locs = list(BODY_ZONE_HEAD)
 
 /datum/surgery/advanced/dna_recovery/mechanic
+	name = "Prosthetic DNA recovery"
+	desc = "An experimental surgical procedure that could fix the DNA from dead bodies with cybernetic augmentation. Requires rezadone."
 	steps = list(/datum/surgery_step/mechanic_open,
 				/datum/surgery_step/open_hatch,
 				/datum/surgery_step/mechanic_unwrench,
@@ -37,9 +39,9 @@
 	if(!..())
 		return FALSE
 
-	if(!HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN) && !HAS_TRAIT(target, TRAIT_HUSK))
-		return FALSE
-	return TRUE
+	if(HAS_TRAIT_FROM(target, TRAIT_BADDNA, CHANGELING_DRAIN) || HAS_TRAIT(target, TRAIT_HUSK))
+		return TRUE
+	return FALSE
 
 /datum/surgery_step/dna_recovery
 	name = "recover DNA"
