@@ -78,7 +78,8 @@
 
 /mob/living/carbon/proc/Drain()
 	become_husk(CHANGELING_DRAIN)
-	ADD_TRAIT(src, TRAIT_BADDNA, CHANGELING_DRAIN)
+	if(!(NOHUSK in dna?.species?.species_traits))
+		ADD_TRAIT(src, TRAIT_BADDNA, CHANGELING_DRAIN)
 	blood_volume = 0
 	return TRUE
 	
