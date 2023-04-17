@@ -40988,14 +40988,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"mpy" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = 2;
-	pixel_y = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/central)
 "mpB" = (
 /obj/effect/turf_decal/bot_white,
 /obj/structure/rack,
@@ -51819,10 +51811,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"qKu" = (
-/obj/structure/table,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "qKA" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "QMLoad"
@@ -55940,6 +55928,10 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
+"svM" = (
+/obj/machinery/vr_sleeper/netmin/synth_only,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "swc" = (
 /obj/structure/chair{
 	dir = 1
@@ -61236,6 +61228,14 @@
 "uBx" = (
 /turf/open/space/basic,
 /area/space/nearstation)
+"uCr" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/central)
 "uCu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -97078,7 +97078,7 @@ xul
 kPb
 jwK
 jwK
-mpy
+svM
 vqx
 bmr
 bmr
@@ -97592,7 +97592,7 @@ kjm
 kRv
 lvY
 jwK
-qKu
+uCr
 cEh
 dEb
 eaw
