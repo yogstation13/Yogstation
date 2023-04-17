@@ -15,10 +15,12 @@
 
 	// TODO: add increased item capacity for part upgrades
 	var/max_items = 5
+	var/max_stamps = 3
 
 	// Internal data
 	var/item_ids = 0
 	var/item_list = list()
+	var/list/stamp_upgrades = list("stamp-ok", "stamp-deny")
 	var/list/concurrent_users = list()
 
 	// Reference data
@@ -54,6 +56,23 @@
 	return ..()
 
 /obj/machinery/inspector_booth/attackby(obj/item/I, mob/user, params)
+	// For adding stamp upgrades to component_parts
+	if (istype(I, /obj/item/stamp))
+		if (stamp_upgrades.len >= max_stamps) 
+			if (!(I.icon_state in stamp_upgrades))
+				if (is_item_safe(user, I))
+					component_parts += I
+					stamp_upgrades += I.icon_state
+					I.moveToNullspace()
+					user.visible_message("[user] upgrades \the [src] with \the [I].", \
+					span_notice("You upgrade \the [src] with \the [I]."))
+			else 
+				to_chat(user, span_warning("\The [src] already contains \a [I]!"))
+		else
+			to_chat(user, span_warning("\The [src]'s stamp tray is full!"))
+		return
+		
+	// Adding to src
 	if (contents.len >= max_items)
 		to_chat(user, span_warning("\The [src] is full!"))
 		return
@@ -66,26 +85,28 @@
 			valid = TRUE
 	
 	if(valid)
-		// TODO: Add auto extinguishing/decontam for part upgrades
-		var/safe = TRUE
-		if (I.resistance_flags & ON_FIRE)
-			safe = FALSE
-			to_chat(user, span_warning("\The [src] rejects the burning [I]!"))
-		else
-			var/datum/component/radioactive/radiation = I.GetComponent(/datum/component/radioactive)
-			if (radiation && radiation.strength > 50)
-				safe = FALSE
-				to_chat(user, span_warning("\The [src] rejects the irradiated [I]!"))
-				
-		if (safe)
+		if (is_item_safe(user, I))
 			if(user.transferItemToLoc(I, src))
 				user.visible_message("[user] inserts \the [I] into \the [src].", \
 				span_notice("You insert \the [I] into \the [src]."))
 				item_list["item"+ num2text(++item_ids)] = list("item" = I, "x" = 0, "y" = 0, "z" = -1)
 			else
 				to_chat(user, span_warning("You failed to insert \the [I] into \the [src]!"))
-		else 
-			to_chat(user, span_warning("\The [src] rejects \the [I]."))
+	else 
+		to_chat(user, span_warning("\The [src] rejects \the [I]."))
+
+// TODO: Add auto extinguishing/decontam for part upgrades
+/obj/machinery/inspector_booth/proc/is_item_safe(mob/user, obj/item/I)
+	var/safe = TRUE
+	if (I.resistance_flags & ON_FIRE)
+		safe = FALSE
+		to_chat(user, span_warning("\The [src] rejects the burning [I]!"))
+	else
+		var/datum/component/radioactive/radiation = I.GetComponent(/datum/component/radioactive)
+		if (radiation && radiation.strength > 50)
+			safe = FALSE
+			to_chat(user, span_warning("\The [src] rejects the irradiated [I]!"))
+	return safe
 
 /obj/machinery/inspector_booth/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

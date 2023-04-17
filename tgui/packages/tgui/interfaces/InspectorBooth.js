@@ -149,7 +149,7 @@ class StampTray extends Component {
     const [zIndex] = useSharedState(this.context, "zindex", 0);
     const styles = {
       slide : {
-        "z-index": zIndex*2,
+        "z-index": zIndex+5000,
         transition: this.init ? "transform 300ms ease-in-out 0s" : "none",
       },
       out : { transform: "translateX(0vw)" },
@@ -443,11 +443,11 @@ export const InspectorBooth = (props, context) => {
           </div>
           <Receptacle type={'take_item'} />
         </Receptacle>
-        <StampTray />
         <span className={className+'__Window__glass'} style={`z-index: ${zIndex+2000};`}>
           <img className={className+'__Window__glass-icon'} src={resolveAsset("window.png")} />
         </span>
         <Speaker />
+        <StampTray />
       </div>
     </Window>
   );
