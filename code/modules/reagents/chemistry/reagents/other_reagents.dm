@@ -1342,6 +1342,7 @@
 
 /datum/reagent/nitrium_low_metabolization/on_mob_life(mob/living/carbon/M)
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 1)
+	M.adjustStaminaLoss(-2 * REM, FALSE)
 	M.Jitter(15)
 	return ..()
 
