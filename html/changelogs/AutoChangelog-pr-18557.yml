@@ -1,6 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Adds the militia crate to the armory section of Cargo, intended to allow you to cheaply and quickly arm a group of individuals"
-  - tweak: "Surplus Carbine is now bulky, instead of huge"
-  - spellcheck: "Fixes the L6 being produced in the future"
