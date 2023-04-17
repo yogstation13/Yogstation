@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Preterni get a special stomach"
+  - rscadd: "Preternis stomach lets people eat iron and plasma ore to heal for very small amounts"
