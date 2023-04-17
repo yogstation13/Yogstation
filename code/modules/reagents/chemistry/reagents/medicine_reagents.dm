@@ -1325,6 +1325,10 @@
 	..()
 	return TRUE
 
+/datum/reagent/medicine/changelingadrenaline/nitrium
+	name = "Nitrium Adrenaline"
+	color = "#DCA5B1"
+
 /datum/reagent/medicine/changelinghaste
 	name = "Changeling Haste"
 	description = "Drastically increases movement speed, but deals toxin damage."
@@ -1343,6 +1347,20 @@
 	M.adjustToxLoss(2, 0)
 	..()
 	return TRUE
+
+/datum/reagent/medicine/nitriumhaste // shameless copy paste of changeling haste
+	name = "Nitrium Haste"
+	description = "Increases movement speed."
+	color = "#DCA5B1"
+	metabolization_rate = 1
+
+/datum/reagent/medicine/nitriumhaste/on_mob_metabolize(mob/living/L)
+	..()
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.55, blacklisted_movetypes=(FLYING|FLOATING))
+
+/datum/reagent/medicine/nitriumhaste/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(type)
+	..()
 
 /datum/reagent/medicine/corazone
 	// Heart attack code will not do damage if corazone is present

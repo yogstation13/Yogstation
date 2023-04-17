@@ -1323,51 +1323,46 @@
 
 /datum/reagent/nitrium_low_metabolization
 	name = "Nitrium"
-	description = "A highly reactive byproduct that stops you from sleeping, while dealing increasing toxin damage over time."
+	description = "A highly reactive byproduct that puts adrenal glands into overdrive."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
-	color = "E1A116"
+	color = "#E1A116"
 	can_synth = FALSE
 	taste_description = "sourness"
 
 /datum/reagent/nitrium_low_metabolization/on_mob_metabolize(mob/living/L)
 	. = ..()
-	ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
-	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
+	if(L.getorganslot(ORGAN_SLOT_ADRENAL))
+		return
+	var/obj/item/organ/nitrium_tumor/N = new
+	N.Insert(L)
 
 /datum/reagent/nitrium_low_metabolization/on_mob_end_metabolize(mob/living/L)
-	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
-	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
+	var/obj/item/organ/O = L.getorganslot(ORGAN_SLOT_ADRENAL)
+	if(O && istype(O))
+		O.Remove(L)
 	return ..()
 
 /datum/reagent/nitrium_low_metabolization/on_mob_life(mob/living/carbon/M)
 	if(M.getStaminaLoss() > 0)
-		M.adjustStaminaLoss(-2 * REM, FALSE)
-		M.adjustToxLoss(1.5 *REM, FALSE)
-	M.Jitter(15)
+		M.adjustStaminaLoss(-10 * REM, FALSE)
+		M.Jitter(15)
 	return ..()
 
 /datum/reagent/nitrium_high_metabolization
 	name = "Nitrosyl plasmide"
-	description = "A highly reactive gas that makes you feel faster."
+	description = "A highly reactive gas that even further augments adrenal glands when combined with Nitrium."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
-	color = "90560B"
+	color = "#90560B"
 	can_synth = FALSE
 	taste_description = "burning"
 
-/datum/reagent/nitrium_high_metabolization/on_mob_metabolize(mob/living/L)
-	. = ..()
-	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
-
-/datum/reagent/nitrium_high_metabolization/on_mob_end_metabolize(mob/living/L)
-	L.remove_movespeed_modifier(type)
-	return ..()
-
 /datum/reagent/nitrium_high_metabolization/on_mob_life(mob/living/carbon/M)
-	M.adjustFireLoss(2 * REM)
-	M.adjustToxLoss(1 * REM)
-	return ..()
+	. = ..()
+	var/obj/item/organ/nitrium_tumor/N = M.getorganslot(ORGAN_SLOT_ADRENAL)
+	if(N && istype(N))
+		N.upgraded = TRUE
 
 /datum/reagent/freon
 	name = "Freon"
