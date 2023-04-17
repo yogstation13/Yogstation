@@ -38,6 +38,19 @@
 
 	forced_species = /datum/species/wy_synth
 
+/datum/job/synthetic/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
+	. = ..()
+
+	var/newname = sanitize_name(reject_bad_text(stripped_input(M, "Please input your name.", "Name change", H.real_name, MAX_NAME_LEN)))
+
+	H.fully_replace_character_name(H.real_name, newname)
+	if(iscarbon(H)) //doing these two JUST to be sure you dont have edge cases of your DNA and mind not matching your new name, somehow
+		var/mob/living/carbon/C = H
+		if(C?.dna)
+			C?.dna?.real_name = newname
+	if(H?.mind)
+		H?.mind?.name = newname
+
 /datum/job/synthetic/get_access()
 	return get_all_accesses()
 
@@ -62,15 +75,7 @@
 	if(core)
 		core.network.add_synth(H)
 
-	var/newname = sanitize_name(reject_bad_text(stripped_input(H, "Please input your name.", "Name change", H.real_name, MAX_NAME_LEN)))
-
-	H.fully_replace_character_name(H.real_name, newname)
-	if(iscarbon(H)) //doing these two JUST to be sure you dont have edge cases of your DNA and mind not matching your new name, somehow
-		var/mob/living/carbon/C = H
-		if(C?.dna)
-			C?.dna?.real_name = newname
-	if(H?.mind)
-		H?.mind?.name = newname
+	
 
 	
 
