@@ -11,7 +11,7 @@ export const VRSleeper = (props, context) => {
       height={400}>
       <Window.Content>
         {!!data.vr_avatar && (
-          <Section title="Virtual Avataer">
+          <Section title="Virtual Avatar">
             <LabeledList>
               <LabeledList.Item label="Name">{data.vr_avatar.name}</LabeledList.Item>
               <LabeledList.Item label="Status">{data.vr_avatar.status}</LabeledList.Item>
