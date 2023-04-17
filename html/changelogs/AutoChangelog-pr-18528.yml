@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Gives preternis universal blood type instead of stable plasma"
+  - tweak: "Universal blood type is universal donor, in addition to recipient"
