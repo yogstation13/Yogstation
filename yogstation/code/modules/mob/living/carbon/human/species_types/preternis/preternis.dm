@@ -39,6 +39,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	//mutant_bodyparts = list("head", "body_markings")
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
+	mutantstomach = /obj/item/organ/stomach/preternis
 	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
 	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
@@ -348,6 +349,12 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/list/to_add = list()
 
 	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "cookie-bite",
+			SPECIES_PERK_NAME = "Stone eater",
+			SPECIES_PERK_DESC = "Preterni can eat ores to replenish their metal skin. All ores are not created equal.",
+		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
