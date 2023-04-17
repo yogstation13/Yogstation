@@ -131,8 +131,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/flying_species = FALSE
 	///the actual flying ability given to flying species
 	var/datum/action/innate/flight/fly
-	///the icon used for the wings
+	///the icon used for the wings + details icon of a different source colour
 	var/wings_icon = "Angel"
+	var/wings_detail
 	/// Used for metabolizing reagents. We're going to assume you're a meatbag unless you say otherwise.
 	var/reagent_tag = PROCESS_ORGANIC
 	/// What kind of gibs to spawn
@@ -482,10 +483,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		QDEL_NULL(fly)
 		if(C.movement_type & FLYING)
 			ToggleFlight(C)
-	if(C.dna && C.dna.species && (C.dna.features["wings"] == wings_icon))
+	if(C?.dna?.species && (C.dna.features["wings"] == wings_icon))
 		if("wings" in C.dna.species.mutant_bodyparts)
 			C.dna.species.mutant_bodyparts -= "wings"
 		C.dna.features["wings"] = "None"
+		if(wings_detail && C.dna.features["wingsdetail"] == wings_detail)
+			if("wingsdetail" in C.dna.species.mutant_bodyparts)
+				C.dna.species.mutant_bodyparts -= "wingsdetail"
+			C.dna.features["wingsdetail"] = "None"
 		C.update_body()
 
 	C.remove_movespeed_modifier(MOVESPEED_ID_SPECIES)
@@ -839,6 +844,16 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		else if ("wings" in mutant_bodyparts)
 			bodyparts_to_add -= "wings_open"
 
+	if("wingsdetail" in mutant_bodyparts)
+		if(!H.dna.features["wingsdetail"] || H.dna.features["wingsdetail"] == "None" || (H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))
+			bodyparts_to_add -= "wingsdetail"
+
+	if("wingsdetail_open" in mutant_bodyparts)
+		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception)))
+			bodyparts_to_add -= "wingsdetail_open"
+		else if ("wingsdetail" in mutant_bodyparts)
+			bodyparts_to_add -= "wingsdetail_open"
+
 	if("ipc_screen" in mutant_bodyparts)
 		if(!H.dna.features["ipc_screen"] || H.dna.features["ipc_screen"] == "None" || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || !HD)
 			bodyparts_to_add -= "ipc_screen"
@@ -947,6 +962,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.wings_list[H.dna.features["wings"]]
 				if("wingsopen")
 					S = GLOB.wings_open_list[H.dna.features["wings"]]
+				if("wingsdetail")
+					S = GLOB.wings_list[H.dna.features["wingsdetail"]]
+				if("wingsdetailopen")
+					S = GLOB.wings_open_list[H.dna.features["wingsdetail"]]
 				if("legs")
 					S = GLOB.legs_list[H.dna.features["legs"]]
 				if("moth_wings")
@@ -2204,6 +2223,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(H.dna.features["wings"] != wings_icon)
 		mutant_bodyparts |= "wings"
 		H.dna.features["wings"] = wings_icon
+		if(wings_detail && H.dna.features["wingsdetail"] != wings_detail)
+			mutant_bodyparts |= "wingsdetail"
+			H.dna.features["wingsdetail"] = wings_detail
 		H.update_body()
 
 /datum/species/proc/HandleFlight(mob/living/carbon/human/H)
