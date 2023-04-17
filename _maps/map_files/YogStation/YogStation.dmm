@@ -16689,10 +16689,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
-"cEh" = (
-/obj/machinery/synth_pod,
-/turf/open/floor/plating,
-/area/maintenance/central)
 "cEm" = (
 /obj/effect/turf_decal/arrows/white{
 	color = "#99ccff";
@@ -68055,6 +68051,12 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
+"xoc" = (
+/obj/machinery/synth_pod{
+	start_empty_roundstart = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/central)
 "xou" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -97593,7 +97595,7 @@ kRv
 lvY
 jwK
 uCr
-cEh
+xoc
 dEb
 eaw
 nfX
