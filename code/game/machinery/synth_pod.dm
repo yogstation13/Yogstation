@@ -16,10 +16,12 @@ GLOBAL_LIST_EMPTY(synth_pods)
 	state_open = FALSE
 	panel_open = FALSE
 
+	var/start_empty_roundstart = FALSE
+
 /obj/machinery/synth_pod/Initialize(mapload)
 	. = ..()
 	update_icon()
-	if(mapload)
+	if(mapload && !start_empty_roundstart)
 		var/mob/living/carbon/human/S = new(src)
 		S.set_species(/datum/species/wy_synth)
 		stored = S
