@@ -1,0 +1,12 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Ultra Violence help verb no longer mentions needing an empty hand to counter emps (it doesn't)"
+  - bugfix: "Ultra Violence dash no longer stuns for 30 seconds if used in space"
+  - tweak: "Ultra Violence gets 0.5 seconds of invulnerability during a dash"
+  - tweak: "Ultra Violence dash goes 1 tile further"
+  - tweak: "Ultra Violence blood burst combo does 10 more damage"
+  - tweak: "Ultra Violence pistol has 3 bullets instead of 1"
+  - tweak: "Ultra Violence gun hand combo automatically shoots"
+  - tweak: "Ultra Violence blood burst combo execute heals 80 adaptive damage rather than 40 brute 40 burn"
+  - tweak: "Ultra Violence disables punch stuns"
