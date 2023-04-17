@@ -60,6 +60,8 @@ GLOBAL_LIST_EMPTY(synth_pods)
 			return
 	if(stored)
 		to_chat(user, span_warning("This unit is already full."))
+		return
+		
 	var/mob/living/target = A
 
 	if(!is_synth(target))
