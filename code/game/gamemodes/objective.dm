@@ -532,7 +532,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(!M.has_antag_datum(/datum/antagonist/changeling))
 			continue
 		var/datum/mind/T = possible_target
-		if(!istype(T) || isipc(T.current))
+		if(!istype(T) || HAS_TRAIT(T.current, NOHUSK) || HAS_TRAIT(T.current, NO_DNA_COPY)) // if you can't absorb them you shouldn't have an objective to do so
 			return FALSE
 	return TRUE
 
