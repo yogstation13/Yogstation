@@ -915,7 +915,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 			else
 				playsound(target, 'sound/weapons/rapierhit.ogg', 30, 1, -1)
 				owner.take_overall_damage(5)
-				visible_message("[src] smacks [owner] in the face as they try to catch it with full hands!")
+				visible_message("[src] smacks [owner] in the face as they try to catch it with [owner.p_their()] hands full!")
 	else if(possessed)
 		transform = initial(transform)//to reset rotation for when it drops to the ground
 		blade = new /mob/living/simple_animal/nullrod(get_turf(src))
