@@ -210,6 +210,7 @@
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/headset_synthetic
 	item_flags = DROPDEL
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/item/radio/headset/headset_synthetic/Initialize()
 	. = ..()
