@@ -69,7 +69,7 @@
 /datum/antagonist/changeling/Destroy()
 	QDEL_NULL(cellular_emporium)
 	QDEL_NULL(emporium_action)
-	. = ..()
+	return ..()
 
 /datum/antagonist/changeling/proc/generate_name()
 	var/honorific
@@ -136,8 +136,8 @@
 	if(ishuman(C) && (NO_DNA_COPY in C.dna.species.species_traits || !C.has_dna()))
 		to_chat(C, span_userdanger("You have been made a human, as your original race had incompatible DNA."))
 		C.set_species(/datum/species/human, TRUE, TRUE)
-		if(C.client?.prefs?.read_preference(/datum/preference/name/real_name) && !is_banned_from(C.client?.ckey, "Appearance"))
-			C.fully_replace_character_name(C.dna.real_name, C.client.prefs.read_preference(/datum/preference/name/real_name))
+		if(C.client?.prefs?.read_preference(/datum/preference/name/backup_human) && !is_banned_from(C.client?.ckey, "Appearance"))
+			C.fully_replace_character_name(C.dna.real_name, C.client.prefs.read_preference(/datum/preference/name/backup_human))
 		else
 			C.fully_replace_character_name(C.dna.real_name, random_unique_name(C.gender))
 

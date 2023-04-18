@@ -116,15 +116,18 @@
 /datum/mind/proc/prepare_bloodsucker(datum/mind/convertee, datum/mind/converter)
 	var/mob/living/carbon/human/user = convertee.current
 	//Yogs start -- fixes plasmaman vampires
-	var/species_type = convertee?.current?.client.prefs.read_preference(/datum/preference/choiced/species)
+	var/species_type = convertee.current.client.prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
 	var/noblood = (NOBLOOD in species.species_traits)
 	qdel(species)
 
 	if(noblood)
-		user.set_species(/datum/species/human)
-		user.apply_pref_name(/datum/preference/name/real_name, user.client)
+		user.set_species(/datum/species/human, TRUE, TRUE)
+		if(user.client?.prefs?.read_preference(/datum/preference/name/backup_human) && !is_banned_from(user.client?.ckey, "Appearance"))
+			user.fully_replace_character_name(user.dna.real_name, user.client.prefs.read_preference(/datum/preference/name/backup_human))
+		else
+			user.fully_replace_character_name(user.dna.real_name, random_unique_name(user.gender))
 	// Check for Fledgeling
 	if(converter)
 		message_admins("[convertee] has become a Bloodsucker, and was created by [converter].")
