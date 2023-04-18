@@ -342,12 +342,14 @@
 	target.name = target.real_name
 	var/obj/item/card/id/ID = target.wear_id
 	if(ID)
+		ID.registered_name = user.real_name
 		ID.update_label(user.real_name, "Synthetic")
 
 	user.real_name = "Synthetic Unit #[original_numbers]"
 	user.name = user.real_name
 	ID = user.wear_id
 	if(ID)
+		ID.registered_name = user.real_name
 		ID.update_label(user.real_name, "Synthetic")
 	user.say("Unit disconnected. Entering sleep mode.")
 
