@@ -52,7 +52,7 @@
 		H?.mind?.name = newname
 
 /datum/job/synthetic/get_access()
-	return get_all_accesses()
+	return get_all_accesses() - list(ACCESS_HOS, ACCESS_WEAPONS, ACCESS_CREMATORIUM, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_ARMORY)
 
 
 /datum/outfit/job/synthetic
