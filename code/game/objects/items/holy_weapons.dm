@@ -1033,7 +1033,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 			else
 				playsound(target, 'sound/weapons/rapierhit.ogg', 30, 1, -1)
 				sword.owner.take_overall_damage(5)
-				visible_message("The flying blade smacks [sword.owner] in the face as they try to catch it with full hands!")
+				visible_message("The flying blade smacks [sword.owner] in the face as they try to catch it with [owner.p_their()] hands full!")
 	else
 		..()
 
