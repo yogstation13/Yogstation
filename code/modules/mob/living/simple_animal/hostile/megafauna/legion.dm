@@ -16,15 +16,19 @@ Difficulty: Medium
 
 */
 
+#define LEGION_LARGE 5
+#define LEGION_MEDIUM 3
+#define LEGION_SMALL 1
+
 /mob/living/simple_animal/hostile/megafauna/legion
 	name = "Legion"
 	health = 800
 	maxHealth = 800
-	icon_state = "legion"
-	icon_living = "legion"
+	icon_state = "mega_legion"
+	icon_living = "mega_legion"
 	health_doll_icon = "mega_legion"
 	desc = "One of many."
-	icon = 'icons/mob/lavaland/legion.dmi'
+	icon = 'icons/mob/lavaland/96x96megafauna.dmi'
 	attacktext = "chomps"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	speak_emote = list("echoes")
@@ -38,11 +42,11 @@ Difficulty: Medium
 	retreat_distance = 5
 	minimum_distance = 5
 	ranged_cooldown_time = 20
-	var/size = 5
+	var/size = LEGION_LARGE
 	var/charging = FALSE
 	internal_type = /obj/item/gps/internal/legion
-	pixel_y = -90
-	pixel_x = -75
+	pixel_y = -32
+	pixel_x = -16
 	loot = list(/obj/item/stack/sheet/bone = 3)
 	vision_range = 13
 	wander = FALSE
@@ -52,6 +56,30 @@ Difficulty: Medium
 	attack_action_types = list(/datum/action/innate/megafauna_attack/create_skull,
 							   /datum/action/innate/megafauna_attack/charge_target)
 	small_sprite_type = /datum/action/small_sprite/megafauna/legion
+
+/mob/living/simple_animal/hostile/megafauna/legion/medium
+	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
+	pixel_x = -16
+	pixel_y = -8
+	maxHealth = 350
+	size = LEGION_MEDIUM
+
+/mob/living/simple_animal/hostile/megafauna/legion/medium/left
+	icon_state = "mega_legion_left"
+
+/mob/living/simple_animal/hostile/megafauna/legion/medium/eye
+	icon_state = "mega_legion_eye"
+
+/mob/living/simple_animal/hostile/megafauna/legion/medium/right
+	icon_state = "mega_legion_right"
+
+/mob/living/simple_animal/hostile/megafauna/legion/small
+	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
+	icon_state = "mega_legion"
+	pixel_x = 0
+	pixel_y = 0
+	maxHealth = 200
+	size = LEGION_SMALL
 
 /datum/action/innate/megafauna_attack/create_skull
 	name = "Create Legion Skull"
@@ -127,40 +155,30 @@ Difficulty: Medium
 	charging = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/legion/death()
-	if(health > 0)
+	if(health)
 		return
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
 		D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
-	if(size > 1)
-		adjustHealth(-maxHealth) //heal ourself to full in prep for splitting
-		var/mob/living/simple_animal/hostile/megafauna/legion/L = new(loc)
-
+	if(size > LEGION_SMALL)
 		var/datum/component/music_player/player = GetComponent(/datum/component/music_player)
-		if(player)
-			L.AddComponent(player.type, player.music_path)
-
-		L.maxHealth = round(maxHealth * 0.6,DAMAGE_PRECISION)
-		maxHealth = L.maxHealth
-
-		L.health = L.maxHealth
-		health = maxHealth
-
 		size--
-		L.size = size
-
-		L.resize = L.size * 0.2
-		transform = initial(transform)
-		resize = size * 0.2
-
-		L.update_transform()
-		update_transform()
-
-		L.faction = faction.Copy()
-
-		L.GiveTarget(target)
-
-		visible_message(span_boldannounce("[src] splits in twain!"))
+		switch(size)
+			if(LEGION_SMALL)
+				for(var/i in 0 to 2)
+					new /mob/living/simple_animal/hostile/megafauna/legion/small(loc)
+			if(LEGION_MEDIUM)
+				new /mob/living/simple_animal/hostile/megafauna/legion/medium/left(loc)
+				new /mob/living/simple_animal/hostile/megafauna/legion/medium/right(loc)
+				new /mob/living/simple_animal/hostile/megafauna/legion/medium/eye(loc)
+			else
+				adjustHealth(-maxHealth) //heal ourself to full in prep for next phase
+		
+		if(player)
+			for(var/mob/living/simple_animal/hostile/megafauna/legion/other in GLOB.mob_living_list)
+				if(other.GetComponent(/datum/component/music_player))
+					continue
+				other.AddComponent(player.type, player.music_path)
 	else
 		var/last_legion = TRUE
 		for(var/mob/living/simple_animal/hostile/megafauna/legion/other in GLOB.mob_living_list)
@@ -179,7 +197,7 @@ Difficulty: Medium
 			loot = list(/obj/structure/closet/crate/necropolis/tendril)
 		if(!true_spawn)
 			loot = null
-		..()
+		return ..()
 
 /obj/item/gps/internal/legion
 	icon_state = null
@@ -244,3 +262,7 @@ Difficulty: Medium
 	playsound(user, 'sound/magic/staff_change.ogg', 200, 0)
 	A.telegraph()
 	storm_cooldown = world.time + 200
+
+#undef LEGION_LARGE
+#undef LEGION_MEDIUM
+#undef LEGION_SMALL

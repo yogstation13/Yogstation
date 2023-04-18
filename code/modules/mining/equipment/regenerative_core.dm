@@ -32,7 +32,7 @@
 
 /obj/item/organ/regenerative_core/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/inert_check), 2400)
+	addtimer(CALLBACK(src, PROC_REF(inert_check)), 4 MINUTES)
 
 /obj/item/organ/regenerative_core/proc/inert_check()
 	if(!preserved)
@@ -130,17 +130,19 @@
 /*************************Legion core********************/
 /obj/item/organ/regenerative_core/legion
 	desc = "A strange rock that crackles with power. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."
-	icon_state = "legion_soul"
+	icon_state = "legion_core"
 
 /obj/item/organ/regenerative_core/legion/Initialize()
 	. = ..()
 	update_icon()
 
 /obj/item/organ/regenerative_core/update_icon()
-	icon_state = inert ? "legion_soul_inert" : "legion_soul"
-	cut_overlays()
+	if(inert)
+		icon_state = "legion_core_inert"
+	if(preserved)
+		icon_state = "legion_core"
 	if(!inert && !preserved)
-		add_overlay("legion_soul_crackle")
+		icon_state = "legion_core_unstable"
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()

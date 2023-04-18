@@ -19,11 +19,13 @@
 /mob/living/simple_animal/hostile/asteroid/elite/herald
 	name = "herald"
 	desc = "A monstrous beast which fires deadly projectiles at threats and prey."
+	icon = 'icons/mob/lavaland/lavaland_elites_64.dmi'
 	icon_state = "herald"
 	icon_living = "herald"
 	icon_aggro = "herald"
 	icon_dead = "herald_dying"
 	icon_gib = "syndicate_gib"
+	pixel_x = -16
 	health_doll_icon = "herald"
 	maxHealth = 800
 	health = 800
@@ -206,6 +208,7 @@
 	health = 60
 	maxHealth = 60
 	icon_state = "herald_mirror"
+	pixel_x = -16
 	deathmessage = "shatters violently!"
 	deathsound = 'sound/effects/glassbr1.ogg'
 	movement_type = FLYING
