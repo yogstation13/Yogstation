@@ -1,5 +1,0 @@
-author: "SomeguyManperson"
-delete-after: true 
-changes: 
-  - tweak: "resonators replicating to all nearby rocks is no longer a bug"
-  - bugfix: "probably stops resonator bubbles from overlapping when replicating because it is annoying"
