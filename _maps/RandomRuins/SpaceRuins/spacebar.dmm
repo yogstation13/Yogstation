@@ -504,12 +504,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/spacebar)
-"rX" = (
-/obj/structure/closet/crate/rcd,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
 "sM" = (
 /turf/closed/mineral,
 /area/ruin/unpowered/no_grav)
@@ -605,6 +599,9 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
+"vi" = (
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered/no_grav)
 "vq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/chem_master/condimaster{
@@ -1294,6 +1291,12 @@
 "TU" = (
 /obj/structure/falsewall,
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
+"TV" = (
+/obj/structure/closet/crate/rcd,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "UN" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2372,9 +2375,9 @@ YH
 YH
 ZN
 ZN
-sM
-sM
-sM
+vi
+vi
+vi
 FB
 lS
 zE
@@ -2382,7 +2385,7 @@ zE
 qz
 Qz
 Rp
-rX
+TV
 FB
 TK
 FB
@@ -2406,8 +2409,8 @@ YH
 YH
 ZN
 ZN
-sM
-sM
+vi
+vi
 KO
 zE
 zE
@@ -2439,8 +2442,8 @@ YH
 YH
 YH
 YH
-sM
-sM
+vi
+vi
 FB
 mh
 nf
