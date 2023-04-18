@@ -139,6 +139,8 @@ GLOBAL_LIST_EMPTY(synth_pods)
 
 /obj/machinery/synth_pod/attack_ai(mob/user)
 	. = ..()
+	return
+	/*
 	if(!isAI(user))
 		return
 	var/mob/living/silicon/ai/AI = user
@@ -154,4 +156,4 @@ GLOBAL_LIST_EMPTY(synth_pods)
 		S.assume_control(AI, stored)
 		stored = null
 		update_icon()
-
+	*/
