@@ -16,6 +16,7 @@
 	required_organs = list(/obj/item/organ/heart)
 	bypasses_immunity = TRUE // Immunity is based on not having an appendix; this isn't a virus
 	var/sound = FALSE
+	var/obj/item/organ/heart/original
 
 /datum/disease/heart_failure/Copy()
 	var/datum/disease/heart_failure/D = ..()
@@ -25,8 +26,10 @@
 /datum/disease/heart_failure/stage_act()
 	..()
 	var/obj/item/organ/heart/O = affected_mob.getorgan(/obj/item/organ/heart)
+	if(!original)
+		original = O
 	var/mob/living/carbon/H = affected_mob
-	if(O && H.can_heartattack())
+	if(original && O && original == O && H.can_heartattack())
 		switch(stage)
 			if(1 to 2)
 				if(prob(2))
