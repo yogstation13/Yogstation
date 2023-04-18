@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	41
+#define SAVEFILE_VERSION_MAX	42
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -57,6 +57,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	if (current_version < 40)
 		migrate_preferences_to_tgui_prefs_menu()
+
+	if (current_version < 41)
+		key_bindings["action_1"] = GLOB.default_hotkeys["action_1"]
+		key_bindings["action_2"] = GLOB.default_hotkeys["action_2"]
+		key_bindings["action_3"] = GLOB.default_hotkeys["action_3"]
+		key_bindings["action_4"] = GLOB.default_hotkeys["action_4"]
+
 
 
 /datum/preferences/proc/update_character(current_version, savefile/S)

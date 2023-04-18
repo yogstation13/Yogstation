@@ -1,0 +1,7 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - rscadd: "WT Venom mag - Dealing toxin damage through microneedles or something"
+  - rscadd: "WT Kraken mag - Super reinforced flat-tipped bullets that rip through flesh, but are canceled by any armor"
+  - rscadd: "WT Airburst mag - Fires a round that, after traveling a short distance, pops and splits into three smaller rounds."
+  - tweak: "Tech shells moved to the new \"Experimental Ammo\" node"

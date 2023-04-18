@@ -429,7 +429,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "This switchblade has a unique shape that makes it especially lethal when lodged in someone's backside. \
 			Still does a moderate amount of damage when applied from the front."
 	item = /obj/item/switchblade/backstab
-	cost = 5
+	cost = 3
 	// backstabs are pretty funny, clown ops can have this one
 
 /datum/uplink_item/dangerous/bostaff
@@ -693,7 +693,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	be silenced. It can produce an infinite number \
 	of bolts, but takes time to automatically recharge after each shot."
 	item = /obj/item/gun/energy/kinetic_accelerator/crossbow
-	cost = 8
+	cost = 5
 	surplus = 30
 	exclude_modes = list(/datum/game_mode/nuclear)
 
@@ -1408,15 +1408,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_tools/shadowcloak
 	name = "Cloaker Belt"
-	desc = "Renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
-	item = /obj/item/shadowcloak
+	desc = "A tactical belt that renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
+	item = /obj/item/storage/belt/military/shadowcloak
 	cost = 10
 	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/nuclearshadowcloak
 	name = "Cloaker Belt"
-	desc = "Renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
-	item = /obj/item/shadowcloak
+	desc = "A tactical belt that renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
+	item = /obj/item/storage/belt/military/shadowcloak
 	cost = 20
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -1954,10 +1954,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	player_minimum = 25
 
 /datum/uplink_item/implants/antistun
-	name = "CNS Rebooter Implant"
-	desc = "This implant will help you get back up on your feet faster after being stunned. Comes with an autosurgeon."
+	name = "Upgraded CNS Rebooter Implant"
+	desc = "This implant will help you get back up on your feet faster after being stunned. \
+			This version is modified to help reduce exhaustion during combat. \
+			Comes with an autosurgeon."
 	item = /obj/item/autosurgeon/anti_stun
-	cost = 12
+	cost = 8
 	surplus = 0
 
 /datum/uplink_item/implants/freedom
@@ -2083,24 +2085,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 14
 	surplus = 0
 	limited_stock = 1
-
-/datum/uplink_item/implants/augmentation
-	name = "Full Augmentation Kit"
-	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Provides superior damage resistance, immunity to cold and vacuum, \
-			but renders the subject vulnerable to electromagnetic pulses. They will also require repair with a welder and wires, rather than traditional medicine."
-	item = /obj/item/storage/box/syndie_kit/augmentation
-	cost = 15
-	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear)
-
-/datum/uplink_item/implants/superior_augmentation
-	name = "Superior Augmentation Kit"
-	desc = "A kit containing six limb autosurgeons to transform you into a fully augmented humanoid. Also contains autosurgeons to replace the subject's vital organs with cybernetic ones. \
-			Finally, it includes an implant to render the subject and their innards immune to EMP; however, it will shut down briefly if triggered too often. Repair of the body will still require a welder and wires."
-	item = /obj/item/storage/box/syndie_kit/augmentation/superior
-	cost = 45
-	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/implants/emp_shield
 	name = "EMP Shield Implant"
