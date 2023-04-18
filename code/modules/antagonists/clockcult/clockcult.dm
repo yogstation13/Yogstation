@@ -190,9 +190,9 @@
 
 /datum/antagonist/clockcult/get_admin_commands()
 	. = ..()
-	.["Give slab"] = CALLBACK(src,.proc/admin_give_slab)
+	.["Equip Cultist"] = CALLBACK(src, PROC_REF(admin_equip))
 
-/datum/antagonist/clockcult/proc/admin_give_slab(mob/admin)
+/datum/antagonist/clockcult/proc/admin_equip(mob/admin)
 	if(!SSticker.mode.equip_servant(owner.current))
 		to_chat(admin, span_warning("Failed to outfit [owner.current]!"))
 	else

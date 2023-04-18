@@ -21,6 +21,7 @@
 			unset_ranged_ability(owner, disable_text)
 		else
 			set_ranged_ability(owner, enable_text)
+		UpdateButtons(TRUE)
 		return TRUE
 
 	// We're not a click action (we're a toggle or otherwise)
@@ -72,7 +73,7 @@
 	if(!clicked_on)
 		return FALSE
 
-	return do_ability(caller, clicked_on)
+	return do_ability(caller, params, clicked_on)
 
 /// Actually goes through and does the click ability
 /datum/action/innate/proc/do_ability(mob/living/caller, params, atom/clicked_on)

@@ -242,7 +242,7 @@
 	if(!owner.current || !owner.current.hud_used)
 		return
 	var/atom/movable/screen/counter = owner.current.hud_used.psi_counter
-	counter.maptext = FORMAT_ANTAG_TEXT(psi, COLOR_DARKSPAWN_PSI)
+	counter.maptext = ANTAG_MAPTEXT(psi, COLOR_DARKSPAWN_PSI)
 
 /datum/antagonist/darkspawn/proc/regain_abilities()
 	for(var/A in abilities)

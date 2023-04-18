@@ -139,7 +139,7 @@
 		return
 	var/datum/hud/chemical_counter/H = hud_used
 	var/atom/movable/screen/counter = H.chemical_counter
-	counter.maptext = FORMAT_ANTAG_TEXT(chemicals, COLOR_DARKSPAWN_PSI)
+	counter.maptext = ANTAG_MAPTEXT(chemicals, COLOR_DARKSPAWN_PSI)
 
 /mob/living/simple_animal/horror/proc/can_use_ability()
 	if(stat != CONSCIOUS)

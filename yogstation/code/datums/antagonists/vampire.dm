@@ -227,7 +227,7 @@
 		return
 	if(owner && C.hud_used && C.hud_used.vamp_blood_display)
 		C.hud_used.vamp_blood_display.invisibility = FALSE
-		C.hud_used.vamp_blood_display.maptext = FORMAT_ANTAG_TEXT(usable_blood, COLOR_CHANGELING_CHEMICALS)
+		C.hud_used.vamp_blood_display.maptext = ANTAG_MAPTEXT(usable_blood, COLOR_CHANGELING_CHEMICALS)
 	handle_vampire_cloak()
 	if(istype(C.loc, /obj/structure/closet/crate/coffin))
 		C.adjustBruteLoss(-4)

@@ -470,7 +470,7 @@
 	var/cap_to = isnum(override_cap) ? override_cap : chem_storage
 	chem_charges = clamp(chem_charges + amount, 0, cap_to)
 
-	lingchemdisplay?.maptext = FORMAT_ANTAG_TEXT(chem_charges, COLOR_CHANGELING_CHEMICALS)
+	lingchemdisplay?.maptext = ANTAG_MAPTEXT(chem_charges, COLOR_CHANGELING_CHEMICALS)
 
 
 /datum/antagonist/changeling/proc/forge_team_objectives()
