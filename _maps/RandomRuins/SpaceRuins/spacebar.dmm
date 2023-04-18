@@ -348,10 +348,6 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/spacebar)
-"mi" = (
-/obj/machinery/light/small,
-/turf/closed/wall,
-/area/ruin/space/has_grav/powered/spacebar)
 "mG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -507,6 +503,12 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered/spacebar)
+"rX" = (
+/obj/structure/closet/crate/rcd,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "sM" = (
 /turf/closed/mineral,
@@ -664,11 +666,6 @@
 	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/bar,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
-"yA" = (
-/obj/structure/closet/crate/rcd,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "yK" = (
@@ -2320,7 +2317,7 @@ FB
 Ir
 Rp
 Hj
-mi
+FB
 YY
 FB
 FB
@@ -2385,7 +2382,7 @@ zE
 qz
 Qz
 Rp
-yA
+rX
 FB
 TK
 FB
@@ -2452,7 +2449,7 @@ FB
 FB
 FB
 FB
-LN
+sM
 ZN
 ZN
 ZN
