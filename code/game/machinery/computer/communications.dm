@@ -53,12 +53,16 @@
 
 /// Are we NOT a silicon, AND we're logged in as the captain?
 /obj/machinery/computer/communications/proc/authenticated_as_non_silicon_captain(mob/user)
+	if(is_synth(user))
+		return FALSE
 	if (issilicon(user))
 		return FALSE
 	return ACCESS_CAPTAIN in authorize_access
 
 /// Are we a silicon, OR we're logged in as the captain?
 /obj/machinery/computer/communications/proc/authenticated_as_silicon_or_captain(mob/user)
+	if(is_synth(user))
+		return FALSE
 	if (issilicon(user))
 		return TRUE
 	return ACCESS_CAPTAIN in authorize_access
