@@ -275,6 +275,7 @@
 			qdel(S.inbuilt_cpu)
 			S.inbuilt_cpu = null
 			S.inbuilt_cpu = W
+			qdel(src)
 
 	else if(istype(W, /obj/item/mmi))
 		var/obj/item/mmi/M = W
