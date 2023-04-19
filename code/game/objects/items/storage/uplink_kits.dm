@@ -769,3 +769,11 @@
 
 /obj/item/storage/box/syndie_kit/emp_shield/PopulateContents()
 	new /obj/item/implanter/empshield(src)
+
+/obj/item/storage/box/syndie_kit/prisonerbag
+	real_name = "Prisoner kit"
+
+/obj/item/storage/box/syndie_kit/emp_shield/PopulateContents()
+	var/obj/item/bodybag/environmental/prisoner/syndicate/pbag = new(src)
+	var/obj/item/syndicate_prisoner_remote/remote = new(src)
+	remote.bag = pbag

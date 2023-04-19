@@ -1911,8 +1911,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/syndie_bodybag
 	name = "Syndicate Prisoner Transport Bag"
-	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. Designed to keep a victim unconscious, alive, and secured until they are transported to a required location."
-	item = /obj/item/bodybag/environmental/prisoner/syndicate
+	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. \
+			Designed to keep a victim unconscious, alive, and secured until they are transported to a required location. \
+			Comes with a remote that burns victims for emergencies."
+	item = /obj/item/storage/box/syndie_kit/prisonerbag
 	cost = 2
 
 /datum/uplink_item/device_tools/holo_sight
