@@ -589,7 +589,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
 	throwforce = 0
-	slowdown = 0.4 //slower until speed is built up
+	slowdown = 0.3 //slower until speed is built up
 	menutab = MENU_CLOTHING
 	additional_desc = "The blessing of Hermes imbues the wearer with incredible speed."
 	var/steps = 0 //how many steps currently at
@@ -613,7 +613,7 @@
 	COOLDOWN_START(src, standstill, stilltimer)
 	slowdown = max(initial(slowdown) + (steps * speedperstep), maxspeed)
 	steps ++
-	if(slowdown <= 0)//only see the effect if you're getting enough speed
+	if(slowdown < 0)//only see the effect if you're getting extra speed
 		new /obj/effect/temp_visual/flowers(get_turf(src))
 
 /obj/effect/temp_visual/flowers
