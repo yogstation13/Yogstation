@@ -849,6 +849,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	attack_verb = list("chopped", "sliced", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	throw_speed = 2 //make it slow so it has time to look cool
+	throwforce = 0 //it doesn't actually use this because we override throw impact, it's just for letting pacifists throw it
 	var/possessed = FALSE
 	var/walking = FALSE //check to tell if they're flying around or not
 	var/mob/living/simple_animal/shade/soul //when they're just a blade (stored inside the blade at all times)
