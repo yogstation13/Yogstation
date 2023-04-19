@@ -1734,6 +1734,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	manufacturer = /datum/corporation/traitor/cybersun
 
+/datum/uplink_item/device_tools/illegal_ammo_disk
+	name = "Illegal Ammo Design Disk"
+	desc = "A design disk for an autolathe that permits it to print all types of 10mm and .357 ammunition."
+	item = /obj/item/disk/design_disk/illegal_ammo
+	cost = 4
+	exclude_modes = list(/datum/game_mode/nuclear) //Buy your own ammo you lazy sods
+
 /datum/uplink_item/device_tools/medgun
 	name = "Medbeam Gun"
 	desc = "A wonder of Syndicate engineering, the Medbeam gun, or Medi-Gun enables a medic to keep his fellow \
