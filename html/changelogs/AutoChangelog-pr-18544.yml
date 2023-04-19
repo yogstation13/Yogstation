@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Nullrod hammer hit now throws between 1 and 5 tiles (still no knockdown)"

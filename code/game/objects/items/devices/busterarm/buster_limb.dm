@@ -41,6 +41,9 @@
 		return
 	if(!ishuman(L))
 		return
+	if(L.mind.martial_art.type in subtypesof(/datum/martial_art) && !(istype(L.mind.martial_art, /datum/martial_art/cqc/under_siege))) //prevents people from learning several martial arts or swapping between them
+		to_chat(L, span_warning("You are already dedicated to using [L.mind.martial_art.name]!"))
+		return
 	playsound(L,'sound/effects/phasein.ogg', 20, 1)
 	to_chat(L, span_notice("You bump the prosthetic near your shoulder. In a flurry faster than your eyes can follow, it takes the place of your left arm!"))
 	replace_limb(L)
@@ -86,6 +89,9 @@
 	if(get_turf(L) != get_turf(src))
 		return
 	if(!ishuman(L))
+		return
+	if(L.mind.martial_art.type in subtypesof(/datum/martial_art) && !(istype(L.mind.martial_art, /datum/martial_art/cqc/under_siege))) //prevents people from learning several martial arts or swapping between them
+		to_chat(L, span_warning("You are already dedicated to using [L.mind.martial_art.name]!"))
 		return
 	playsound(L,'sound/effects/phasein.ogg', 20, 1)
 	to_chat(L, span_notice("You bump the prosthetic near your shoulder. In a flurry faster than your eyes can follow, it takes the place of your right arm!"))

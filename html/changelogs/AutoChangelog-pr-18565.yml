@@ -1,0 +1,5 @@
+author: "@BlueishTsunami @Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds new wings for plantpeople species"
+  - imageadd: "Adds sprites for plantpeople wings"
