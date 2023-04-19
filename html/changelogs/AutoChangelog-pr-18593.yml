@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - tweak: "particle accelerator construction is modernized with progress bars"
