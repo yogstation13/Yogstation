@@ -1,0 +1,6 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the Illegal Ammo Design Disk to the uplink for 4 TC, which allows you to print every type of 10mm and .357 ammo box at the lathe (this includes stuff like 10mm AP, soporific, .357 Heartpiercer, Ironfeather, and more)"
+  - rscadd: "You can now EMAG autolathes to render them permanently hacked"
+  - rscadd: "Hacked autolathes can now print individual .357 Ironfeather bullets, as well as 10mm soporific and .357 Ironfeather ammo boxes"
