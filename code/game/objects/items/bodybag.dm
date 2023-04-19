@@ -121,11 +121,14 @@
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental/prisoner/syndicate
 	resistance_flags = ACID_PROOF | FIRE_PROOF | FREEZE_PROOF | LAVA_PROOF
 	var/killing = FALSE
+	var/obj/structure/closet/body_bag/environmental/prisoner/syndicate/deployed_bag
 
-/obj/item/bodybag/environmental/prisoner/syndicate/update_icon()
-	if(loc && istype(loc, unfoldedbag_path))
-		var/obj/O = loc
-		O.update_icon()
+/obj/item/bodybag/environmental/prisoner/syndicate/deploy_bodybag(mob/user, atom/location)
+	deployed_bag = new unfoldedbag_path(location)
+	deployed_bag.open(user)
+	deployed_bag.add_fingerprint(user)
+	deployed_bag.foldedbag_instance = src
+	moveToNullspace()
 
 /obj/item/syndicate_prisoner_remote
 	name = "syndicate prisoner remote"
@@ -144,5 +147,6 @@
 		return
 	
 	bag.killing = !bag.killing
-	bag.update_icon()
+	if(deployed_bag)
+		deployed_bag.update_icon()
 	to_chat(user, span_notice("\The [bag] is now set to [bag.killing ? "LETHAL" : "NON-LETHAL"]."))
