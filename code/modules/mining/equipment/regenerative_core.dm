@@ -21,14 +21,27 @@
 /obj/item/organ/regenerative_core
 	name = "regenerative core"
 	desc = "All that remains of a hivelord. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."
-	icon_state = "roro core 2"
+	icon_state = "hivelord_core"
+	var/icon_state_inert = "hivelord_core_decayed"
+	var/icon_state_preserved = "hivelord_core"
 	visual = FALSE
 	item_flags = NOBLUDGEON
 	slot = "hivecore"
 	force = 0
 	actions_types = list(/datum/action/item_action/organ_action/use)
-	var/inert = 0
-	var/preserved = 0
+	var/inert = FALSE
+	var/preserved = FALSE
+
+/obj/item/organ/regenerative_core/update_icon()
+	if(inert)
+		icon_state = icon_state_inert
+	if(preserved)
+		icon_state = icon_state_preserved
+	if(!inert && !preserved)
+		icon_state = initial(icon_state)
+
+	for(var/datum/action/A as anything in actions)
+		A.UpdateButtonIcon()
 
 /obj/item/organ/regenerative_core/Initialize()
 	. = ..()
@@ -93,7 +106,7 @@
 					if(!do_mob(user, H, 2 SECONDS)) //come on teamwork bonus?
 						to_chat(user, span_warning("You are interrupted, causing [src]'s tendrils to retreat back into its form."))
 						return
-					balloon_alert(user, "Core applied!")
+					H.balloon_alert(user, "core applied!")
 					H.visible_message(span_notice("[src] explodes into a flurry of tendrils, rapidly covering and reinforcing [H]'s body."))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "other"))
 			else
@@ -105,7 +118,7 @@
 					if(!do_after(user, 4 SECONDS, src))
 						to_chat(user, span_warning("You are interrupted, causing [src]'s tendrils to retreat back into its form."))
 						return
-					balloon_alert(user, "Core applied!")
+					user.balloon_alert(user, "core applied!")
 					to_chat(user, span_notice("[src] explodes into a flurry of tendrils, rapidly spreading across your body. They will hold you together and allow you to keep moving, but for how long?"))
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
 			H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
@@ -131,21 +144,12 @@
 /obj/item/organ/regenerative_core/legion
 	desc = "A strange rock that crackles with power. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."
 	icon_state = "legion_core"
+	icon_state_inert = "legion_core_decayed"
+	icon_state_preserved = "legion_core_stable"
 
 /obj/item/organ/regenerative_core/legion/Initialize()
 	. = ..()
 	update_icon()
-
-/obj/item/organ/regenerative_core/update_icon()
-	if(inert)
-		icon_state = "legion_core_decayed"
-	if(preserved)
-		icon_state = "legion_core_stable"
-	if(!inert && !preserved)
-		icon_state = "legion_core"
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.UpdateButtonIcon()
 
 /obj/item/organ/regenerative_core/legion/go_inert()
 	..()
