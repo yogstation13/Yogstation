@@ -23,7 +23,9 @@
 	ram_usage = list()
 
 	for(var/path in subtypesof(/datum/ai_project))
-		available_projects += new path(owner, src)
+		var/datum/ai_project/P = path
+		if(!initial(P.for_synths))
+			available_projects += new path(owner, src)
 
 
 /datum/ai_dashboard/proc/is_interactable(mob/user)
