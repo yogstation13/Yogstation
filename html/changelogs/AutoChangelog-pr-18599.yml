@@ -1,0 +1,4 @@
+author: "MajManatee"
+delete-after: true 
+changes: 
+  - bugfix: "WT Airburst mags don't have 20 rounds anymore... Hope this gets merged quick..."
