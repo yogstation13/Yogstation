@@ -1,0 +1,5 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - mapping: "Small hydroponics area added to Space Bar kitchen"
+  - mapping: "Hoochmaster and chem heater added to Space Bar"
