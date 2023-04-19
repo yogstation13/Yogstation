@@ -291,6 +291,12 @@
 	breakout_time = 8 MINUTES
 	sinch_time = 4 SECONDS
 
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_icon()
+	. = ..()
+	var/obj/item/bodybag/environmental/prisoner/syndicate/inner_bag = foldedbag_instance
+	if(sinched && inner_bag && inner_bag.killing)
+		add_overlay("kill_flash")
+
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize()
 	. = ..()
 	update_airtightness()

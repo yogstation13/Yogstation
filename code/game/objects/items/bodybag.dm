@@ -122,6 +122,11 @@
 	resistance_flags = ACID_PROOF | FIRE_PROOF | FREEZE_PROOF | LAVA_PROOF
 	var/killing = FALSE
 
+/obj/item/bodybag/environmental/prisoner/syndicate/update_icon()
+	if(loc && istype(loc, unfoldedbag_path))
+		var/obj/O = loc
+		O.update_icon()
+
 /obj/item/syndicate_prisoner_remote
 	name = "syndicate prisoner remote"
 	desc = "A wireless remote that will toggle the lethality of a linked syndicate prisoner transport bag."
@@ -139,4 +144,5 @@
 		return
 	
 	bag.killing = !bag.killing
+	bag.update_icon()
 	to_chat(user, span_notice("\The [bag] is now set to [bag.killing ? "LETHAL" : "NON-LETHAL"]."))
