@@ -121,13 +121,13 @@ Difficulty: Medium
 
 /mob/living/simple_animal/hostile/megafauna/legion/proc/charge_target()
 	visible_message(span_warning("<b>[src] charges!</b>"))
-	SpinAnimation(speed = 20, loops = 5)
+	SpinAnimation(speed = 20, loops = 3, parallel = FALSE)
 	ranged = FALSE
 	retreat_distance = 0
 	minimum_distance = 0
 	set_varspeed(0)
 	charging = TRUE
-	addtimer(CALLBACK(src, .proc/reset_charge), 50)
+	addtimer(CALLBACK(src, PROC_REF(reset_charge)), 5 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/legion/GiveTarget(new_target)
 	. = ..()
@@ -167,12 +167,14 @@ Difficulty: Medium
 			if(LEGION_SMALL)
 				for(var/i in 0 to 2)
 					new /mob/living/simple_animal/hostile/megafauna/legion/small(loc)
+				qdel(src)
 			if(LEGION_MEDIUM)
 				new /mob/living/simple_animal/hostile/megafauna/legion/medium/left(loc)
 				new /mob/living/simple_animal/hostile/megafauna/legion/medium/right(loc)
 				new /mob/living/simple_animal/hostile/megafauna/legion/medium/eye(loc)
+				qdel(src)
 			else
-				adjustHealth(-maxHealth) //heal ourself to full in prep for next phase
+				adjustHealth(-maxHealth) //heal ourselves to full in prep for next phase
 		
 		if(player)
 			for(var/mob/living/simple_animal/hostile/megafauna/legion/other in GLOB.mob_living_list)

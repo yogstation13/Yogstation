@@ -89,7 +89,7 @@
 					H.visible_message(span_notice("[user] crushes [src] against [H]'s body, causing black tendrils to encover and reinforce [H.p_them()]!"))
 				else
 					H.visible_message(span_notice("[user] holds [src] against [H]'s body, coaxing the regenerating tendrils from [src]..."))
-					balloon_alert(user, "Applying core...")
+					H.balloon_alert(user, "applying core...")
 					if(!do_mob(user, H, 2 SECONDS)) //come on teamwork bonus?
 						to_chat(user, span_warning("You are interrupted, causing [src]'s tendrils to retreat back into its form."))
 						return
@@ -101,7 +101,7 @@
 					to_chat(user, span_notice("You crush [src] within your hand. Disgusting tendrils spread across your body, hold you together and allow you to keep moving, but for how long?"))
 				else
 					to_chat(user, span_notice("You hold [src] against your body, coaxing the regenerating tendrils from [src]..."))
-					balloon_alert(user, "Applying core...")
+					user.balloon_alert(user, "applying core...")
 					if(!do_after(user, 4 SECONDS, src))
 						to_chat(user, span_warning("You are interrupted, causing [src]'s tendrils to retreat back into its form."))
 						return
@@ -138,11 +138,11 @@
 
 /obj/item/organ/regenerative_core/update_icon()
 	if(inert)
-		icon_state = "legion_core_inert"
+		icon_state = "legion_core_decayed"
 	if(preserved)
-		icon_state = "legion_core"
+		icon_state = "legion_core_stable"
 	if(!inert && !preserved)
-		icon_state = "legion_core_unstable"
+		icon_state = "legion_core"
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
