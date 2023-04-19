@@ -312,7 +312,7 @@
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/process(delta_time)
 	var/obj/item/bodybag/environmental/prisoner/syndicate/inner_bag = foldedbag_instance
-	if(!inner_bag || !inner_bag.killing || !inner_bag.sinched)
+	if(!inner_bag || !inner_bag.killing || !sinched)
 		return
 	for(var/mob/living/target in contents)
 		if(!target.reagents)
