@@ -318,12 +318,12 @@
 		if(!target.reagents)
 			continue
 		if(target.stat == DEAD)
-			target.adjustFireLoss(10) // Husks after a few ticks
+			target.adjustFireLoss(10 * delta_time) // Husks after a few seconds
 			continue
-		target.reagents.add_reagent(/datum/reagent/clf3, 3)
-		target.reagents.add_reagent(/datum/reagent/phlogiston, 3)
-		target.reagents.add_reagent(/datum/reagent/teslium, 3)
-		target.reagents.add_reagent(/datum/reagent/toxin/acid/fluacid, 3)
+		target.reagents.add_reagent(/datum/reagent/clf3, 3 * delta_time)
+		target.reagents.add_reagent(/datum/reagent/phlogiston, 3 * delta_time)
+		target.reagents.add_reagent(/datum/reagent/teslium, 3 * delta_time)
+		target.reagents.add_reagent(/datum/reagent/toxin/acid/fluacid, 3 * delta_time)
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_airtightness()
 	if(sinched)
