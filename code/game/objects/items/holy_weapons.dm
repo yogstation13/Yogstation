@@ -595,7 +595,7 @@
 	var/steps = 0 //how many steps currently at
 	var/speedperstep = -0.05 //how much speed increases per step
 	var/maxspeed = -0.4 //what is the max amount of speed someone can get
-	var/stilltimer = 10 //how long (in deciseconds) someone can standstill without losing stacks
+	var/stilltimer = 8 //how long (in deciseconds) someone can standstill without losing stacks
 	COOLDOWN_DECLARE(standstill)
 
 /obj/item/nullrod/hermes/equipped(mob/user, slot, initial)
@@ -614,6 +614,7 @@
 	slowdown = max(initial(slowdown) + (steps * speedperstep), maxspeed)
 	steps ++
 	if(slowdown < 0)//only see the effect if you're getting extra speed
+		playsound(src, 'sound/effects/fairyboots.ogg', 45, FALSE)
 		new /obj/effect/temp_visual/flowers(get_turf(src))
 
 /obj/effect/temp_visual/flowers
