@@ -41,6 +41,9 @@
 /datum/job/synthetic/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	. = ..()
 
+	addtimer(CALLBACK(src, .proc/synth_name_choose, H, M), 1 SECONDS,)
+
+/datum/job/synthetic/proc/synth_name_choose(mob/living/H, mob/M)
 	var/newname = sanitize_name(reject_bad_text(stripped_input(M, "Please input your name.", "Name change", H.real_name, MAX_NAME_LEN)))
 
 	H.fully_replace_character_name(H.real_name, newname)
@@ -50,6 +53,7 @@
 			C?.dna?.real_name = newname
 	if(H?.mind)
 		H?.mind?.name = newname
+
 
 /datum/job/synthetic/get_access()
 	return get_all_accesses() - list(ACCESS_HOS, ACCESS_WEAPONS, ACCESS_CREMATORIUM, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_ARMORY)
