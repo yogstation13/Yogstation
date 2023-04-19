@@ -915,13 +915,6 @@
 "HM" = (
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered/no_grav)
-"HR" = (
-/obj/machinery/chem_heater,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
 "HZ" = (
 /obj/structure/sign/poster/official/cleanliness{
 	pixel_x = -32
@@ -956,10 +949,6 @@
 /obj/structure/sign/poster/random{
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
-"Ir" = (
-/obj/machinery/chem_dispenser/fullupgrade,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "IX" = (
@@ -1048,14 +1037,6 @@
 	req_access_txt = "0";
 	use_power = 0
 	},
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
-"Mu" = (
-/obj/machinery/autolathe,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/metal/fifty,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "MF" = (
@@ -1266,6 +1247,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"SA" = (
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
 "Tw" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line{
@@ -1365,6 +1350,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
+"Wj" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/chem_dispenser/fullupgrade,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
 "XW" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue,
 /obj/effect/turf_decal/tile/slightlydarkerblue{
@@ -1373,6 +1365,14 @@
 /obj/structure/chair{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
+"Yc" = (
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/structure/table,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "YA" = (
@@ -2284,7 +2284,7 @@ Rt
 Rt
 VI
 FB
-HR
+Wj
 Rp
 ab
 FB
@@ -2317,7 +2317,7 @@ gx
 gx
 gx
 FB
-Ir
+SA
 Rp
 Hj
 FB
@@ -2350,7 +2350,7 @@ FB
 FB
 FB
 FB
-Mu
+Yc
 Qz
 GH
 FB
