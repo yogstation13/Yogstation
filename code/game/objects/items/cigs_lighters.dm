@@ -158,6 +158,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else
 		return ..()
 
+/obj/item/clothing/mask/cigarette/attack_hand(mob/user)
+	if(!lit && isethereal(user) && user.a_intent == INTENT_HARM)
+		light("With a snap of [user.p_their()] fingers, [user] lights [src].")
+		return
+	. = ..()
+	
+
 /obj/item/clothing/mask/cigarette/afterattack(obj/item/reagent_containers/glass/glass, mob/user, proximity)
 	. = ..()
 	if(!proximity || lit) //can't dip if cigarette is lit (it will heat the reagents in the glass instead)
