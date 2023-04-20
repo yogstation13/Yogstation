@@ -1,0 +1,4 @@
+author: "LazennG"
+delete-after: true 
+changes: 
+  - bugfix: "fixes gulag process being able to cuff people you normally cant"
