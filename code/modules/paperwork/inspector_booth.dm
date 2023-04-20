@@ -1,8 +1,8 @@
 /obj/machinery/inspector_booth
 	name = "inspector booth"
 	desc = "Used for inspecting paperwork."
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper"
+	icon = 'icons/obj/machines/inspector_booth.dmi'
+	icon_state = "booth"
 	// TODO: add reduced power usage for part upgrades
 	//use_power = NO_POWER_USE
 	//idle_power_usage = 20
