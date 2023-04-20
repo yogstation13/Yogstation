@@ -123,7 +123,7 @@
 	name = "cable restraints"
 	desc = "Looks like some cables tied together. Could be used to tie something up."
 	icon_state = "zipties"
-	item_state = "coil_red"
+	item_state = "coil"
 	color = CABLE_HEX_COLOR_RED
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
@@ -142,13 +142,6 @@
 /obj/item/restraints/handcuffs/cable/proc/set_cable_color(new_color)
 	color = GLOB.cable_colors[new_color]
 	cable_color = new_color
-	update_icon()
-
-/obj/item/restraints/handcuffs/cable/update_icon()
-	if(cable_color)
-		var/new_inhand_icon = "coil_[cable_color]"
-		if(new_inhand_icon != item_state)
-			item_state = new_inhand_icon //small memory optimization.
 
 /obj/item/restraints/handcuffs/cable/vv_edit_var(vname, vval)
 	if(vname == NAMEOF(src, cable_color))
@@ -190,39 +183,30 @@
 
 /obj/item/restraints/handcuffs/cable/red
 	cable_color = CABLE_COLOR_RED
-	item_state = "coil_red"
 
 /obj/item/restraints/handcuffs/cable/yellow
 	cable_color = CABLE_COLOR_YELLOW
-	item_state = "coil_yellow"
 
 /obj/item/restraints/handcuffs/cable/blue
 	cable_color = CABLE_COLOR_BLUE
-	item_state = "coil_blue"
 
 /obj/item/restraints/handcuffs/cable/green
 	cable_color = CABLE_COLOR_GREEN
-	item_state = "coil_green"
 
 /obj/item/restraints/handcuffs/cable/pink
 	cable_color = CABLE_COLOR_PINK
-	item_state = "coil_pink"
 
 /obj/item/restraints/handcuffs/cable/orange
 	cable_color = CABLE_COLOR_ORANGE
-	item_state = "coil_orange"
 
 /obj/item/restraints/handcuffs/cable/cyan
 	cable_color = CABLE_COLOR_CYAN
-	item_state = "coil_cyan"
 
 /obj/item/restraints/handcuffs/cable/white
 	cable_color = CABLE_COLOR_WHITE
-	item_state = "coil_white"
 
 /obj/item/restraints/handcuffs/cable/brown
 	cable_color = CABLE_COLOR_BROWN
-	item_state = "coil_brown"
 
 /obj/item/restraints/handcuffs/cable/zipties
 	name = "zipties"
