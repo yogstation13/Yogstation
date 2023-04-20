@@ -42,3 +42,4 @@ idfc=I don't fucking care
 btw=by the way
 pls=please
 plz=please
+\btf\b=the fuck

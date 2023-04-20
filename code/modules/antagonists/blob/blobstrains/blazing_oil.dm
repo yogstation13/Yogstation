@@ -3,9 +3,9 @@
 /datum/blobstrain/reagent/blazing_oil
 	name = "Blazing Oil"
 	description = "will do medium burn damage and set targets on fire."
-	effectdesc = "is completely immune to burn damage and will also release bursts of flame when burnt, but takes damage from water."
+	effectdesc = "is immune to, and will gain blob points from burn damage. Will also release bursts of flame when burnt, but takes damage from water."
 	analyzerdescdamage = "Does medium burn damage and sets targets on fire."
-	analyzerdesceffect = "Releases fire when burnt and is completely immune to burning, but takes damage from water and other extinguishing liquids."
+	analyzerdesceffect = "Releases fire when burnt and will gain power when exposed to heat, but takes damage from water and other extinguishing liquids."
 	color = "#B68D00"
 	complementary_color = "#BE5532"
 	blobbernaut_message = "splashes"

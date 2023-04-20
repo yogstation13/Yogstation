@@ -35,17 +35,23 @@
 	for(var/mob/living/silicon/S in range(2,user))
 		to_chat(S, span_userdanger("Your sensors are disabled by a shower of blood!"))
 		S.Paralyze(60)
-	var/turf = get_turf(user)
-	var/mob/living/simple_animal/horror/H = user.has_horror_inside()
-	H?.leave_victim()
+	var/turf/user_turf = get_turf(user)
+	var/mob/living/simple_animal/horror/horror = user.has_horror_inside()
+	if (horror)
+		horror.leave_victim()
+	user.transfer_observers_to(user_turf) // user is about to be deleted, store orbiters on the turf
 	user.gib()
 	. = TRUE
-	sleep(0.5 SECONDS) // So it's not killed in explosion
-	var/mob/living/simple_animal/hostile/headcrab/crab = new(turf)
+	addtimer(CALLBACK(src, .proc/spawn_headcrab, M, user_turf, organs), 0.5 SECONDS)
+
+/datum/action/changeling/headcrab/proc/spawn_headcrab(datum/mind/stored_mind, turf/spawn_location, list/organs)
+	var/mob/living/simple_animal/hostile/headcrab/crab = new(spawn_location)
 	for(var/obj/item/organ/I in organs)
 		I.forceMove(crab)
-	crab.origin = M
-	if(crab.origin)
-		crab.origin.active = 1
-		crab.origin.transfer_to(crab)
-		to_chat(crab, span_warning("You burst out of the remains of your former body in a shower of gore!"))
+	crab.origin = stored_mind
+	if(!crab.origin)
+		return
+	crab.origin.active = TRUE
+	crab.origin.transfer_to(crab)
+	spawn_location.transfer_observers_to(crab)
+	to_chat(crab, span_warning("You burst out of the remains of your former body in a shower of gore!"))
