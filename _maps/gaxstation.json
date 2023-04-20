@@ -6,5 +6,6 @@
 		"cargo": "cargo_gax",
 		"ferry": "ferry_fancy",
 		"emergency": "emergency_box"
-	}
+	},
+	"traits": [{"Up": 1}, {"Down": -1}]
 }

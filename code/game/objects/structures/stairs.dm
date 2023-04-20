@@ -41,7 +41,7 @@
 		if(S)
 			S.update_icon()
 
-/obj/structure/stairs/Uncross(atom/movable/AM, atom/newloc)
+/obj/structure/stairs/Uncross(atom/movable/AM, turf/newloc)
 	if(!newloc || !AM)
 		return ..()
 	if(isliving(AM) && isTerminator() && (get_dir(src, newloc) == dir))
@@ -68,7 +68,11 @@
 		return
 	var/turf/target = get_step_multiz(get_turf(src), (dir|UP))
 	if(istype(target) && !target.can_zFall(AM, null, get_step_multiz(target, DOWN)))			//Don't throw them into a tile that will just dump them back down.
+		var/atom/movable/AM2 = AM.pulling
 		AM.forceMove(target)
+		if(AM2)
+			AM2.forceMove(target)
+			AM.start_pulling(AM2)
 
 /obj/structure/stairs/vv_edit_var(var_name, var_value)
 	. = ..()

@@ -1013,36 +1013,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"dd" = (
-/turf/open/floor/plasteel{
-	icon_state = "L1"
-	},
-/area/storage/primary)
 "de" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/storage/primary)
-"df" = (
-/turf/open/floor/plasteel{
-	icon_state = "L5"
-	},
-/area/storage/primary)
-"dg" = (
-/turf/open/floor/plasteel{
-	icon_state = "L7"
-	},
-/area/storage/primary)
-"dh" = (
-/turf/open/floor/plasteel{
-	icon_state = "L9"
-	},
-/area/storage/primary)
-"dj" = (
-/turf/open/floor/plasteel{
-	icon_state = "L13"
-	},
 /area/storage/primary)
 "dk" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1079,41 +1054,6 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/storage/primary)
-"dq" = (
-/turf/open/floor/plasteel{
-	icon_state = "L2"
-	},
-/area/storage/primary)
-"dr" = (
-/turf/open/floor/plasteel{
-	icon_state = "L4"
-	},
-/area/storage/primary)
-"ds" = (
-/turf/open/floor/plasteel{
-	icon_state = "L6"
-	},
-/area/storage/primary)
-"dt" = (
-/turf/open/floor/plasteel{
-	icon_state = "L8"
-	},
-/area/storage/primary)
-"du" = (
-/turf/open/floor/plasteel{
-	icon_state = "L10"
-	},
-/area/storage/primary)
-"dv" = (
-/turf/open/floor/plasteel{
-	icon_state = "L12"
-	},
-/area/storage/primary)
-"dw" = (
-/turf/open/floor/plasteel{
-	icon_state = "L14"
-	},
 /area/storage/primary)
 "dx" = (
 /obj/machinery/light{
@@ -1341,16 +1281,6 @@
 "ep" = (
 /turf/open/floor/plasteel,
 /area/construction)
-"eq" = (
-/turf/open/floor/plasteel{
-	icon_state = "L3"
-	},
-/area/storage/primary)
-"er" = (
-/turf/open/floor/plasteel{
-	icon_state = "L11"
-	},
-/area/storage/primary)
 "es" = (
 /obj/effect/turf_decal/stripes/asteroid/corner,
 /turf/open/floor/plasteel,
@@ -1559,6 +1489,10 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"iB" = (
+/obj/structure/railing,
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "og" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/ladder,
@@ -1590,6 +1524,18 @@
 /obj/effect/turf_decal/stripes/asteroid/line,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"qv" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/storage/primary)
+"tp" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "ux" = (
 /obj/structure/ladder,
 /turf/open/floor/plasteel,
@@ -1631,6 +1577,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"DY" = (
+/obj/structure/stairs{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "Fz" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 8
@@ -1638,6 +1590,12 @@
 /obj/effect/turf_decal/stripes/asteroid/line,
 /turf/open/floor/plasteel,
 /area/security)
+"GB" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "Hn" = (
 /obj/effect/turf_decal/stripes/asteroid/line,
 /obj/structure/ladder,
@@ -1688,6 +1646,9 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"MN" = (
+/turf/open/floor/plasteel,
+/area/security)
 "Pl" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 4
@@ -1695,10 +1656,25 @@
 /obj/effect/turf_decal/stripes/asteroid/line,
 /turf/open/floor/plasteel,
 /area/security)
+"RS" = (
+/turf/open/openspace,
+/area/storage/primary)
+"Sv" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "Uc" = (
 /obj/effect/turf_decal/stripes/asteroid/line,
 /turf/open/floor/plasteel,
 /area/security)
+"Uj" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "WC" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 4
@@ -3630,7 +3606,7 @@ cH
 cI
 cJ
 by
-dJ
+DY
 dJ
 dB
 dl
@@ -3684,7 +3660,7 @@ eo
 eo
 cK
 by
-dJ
+DY
 dJ
 dB
 dl
@@ -6115,8 +6091,8 @@ bE
 bE
 bE
 dJ
-dd
-dq
+dJ
+dJ
 dJ
 ex
 ex
@@ -6169,8 +6145,8 @@ bE
 bE
 bE
 dJ
-eq
-dr
+dJ
+dJ
 dJ
 ex
 au
@@ -6223,10 +6199,10 @@ bE
 bE
 bE
 dJ
-df
-ds
 dJ
-ex
+dJ
+dJ
+iB
 au
 au
 au
@@ -6277,12 +6253,12 @@ bE
 bE
 bE
 dJ
-dg
-dt
 dJ
-ex
-au
-au
+dJ
+dJ
+dJ
+MN
+MN
 au
 au
 au
@@ -6331,10 +6307,10 @@ bE
 bE
 bE
 dJ
-dh
-du
 dJ
-ex
+dJ
+dJ
+iB
 au
 au
 au
@@ -6385,10 +6361,10 @@ by
 by
 by
 by
-er
-dv
+qv
+Uj
 dJ
-ex
+iB
 au
 au
 au
@@ -6438,11 +6414,11 @@ cy
 cy
 cy
 en
-by
-dj
-dw
+en
+RS
+tp
 dJ
-ex
+iB
 au
 au
 au
@@ -6492,11 +6468,11 @@ eo
 eo
 eo
 eo
-by
+en
+RS
+tp
 dJ
-dJ
-dJ
-ex
+iB
 au
 au
 au
@@ -6547,10 +6523,10 @@ eo
 eo
 eo
 by
+GB
+Sv
 dJ
-dJ
-dJ
-ex
+iB
 au
 au
 au

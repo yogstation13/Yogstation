@@ -26,6 +26,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	use_power = NO_POWER_USE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/sprite_number = 0
+	var/ztrait //Set to a valid ZTRAIT define to have the gravgen provide gravity to all of the zlevels with said trait. Ex: ZTRAIT_STATION
 
 /obj/machinery/gravity_generator/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, force = MOVE_FORCE_STRONG, quickstart = TRUE)
 	return FALSE
@@ -91,6 +92,9 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 //
 // Generator which spawns with the station.
 //
+
+/obj/machinery/gravity_generator/main/station
+	ztrait = ZTRAIT_STATION
 
 /obj/machinery/gravity_generator/main/station/Initialize()
 	. = ..()
@@ -370,14 +374,22 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	return 0
 
 /obj/machinery/gravity_generator/main/proc/update_list()
-	var/turf/T = get_turf(src.loc)
-	if(T)
-		if(!GLOB.gravity_generators["[T.z]"])
-			GLOB.gravity_generators["[T.z]"] = list()
+	var/list/levels_to_update = list()
+
+	if(ztrait)
+		for(var/level in SSmapping.levels_by_trait(ztrait))
+			levels_to_update += level
+	else if(!ztrait || !levels_to_update.len)
+		var/turf/T = get_turf(src.loc)
+		levels_to_update += T.z
+
+	for(var/level in levels_to_update)
+		if(!GLOB.gravity_generators["[level]"])
+			GLOB.gravity_generators["[level]"] = list()
 		if(on)
-			GLOB.gravity_generators["[T.z]"] |= src
+			GLOB.gravity_generators["[level]"] |= src
 		else
-			GLOB.gravity_generators["[T.z]"] -= src
+			GLOB.gravity_generators["[level]"] -= src
 
 /obj/machinery/gravity_generator/main/proc/change_setting(value)
 	if(value != setting)
