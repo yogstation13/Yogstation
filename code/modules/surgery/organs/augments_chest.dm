@@ -340,7 +340,7 @@
 	. = ..()
 	switch(severity)//i don't want emps to just be damage again, that's boring
 		if(EMP_HEAVY)
-			owner.set_drugginess(40)
+			owner.adjust_drugginess(40)
 			owner.hallucination += 500
 			owner.blur_eyes(20)
 			owner.dizziness += 10
@@ -348,7 +348,7 @@
 			owner.adjustFireLoss(10)
 			to_chat(owner, span_warning("Your spinal implant malfunctions and you feel it scramble your brain!"))
 		if(EMP_LIGHT)
-			owner.set_drugginess(20)
+			owner.adjust_drugginess(20)
 			owner.hallucination += 200
 			owner.blur_eyes(10)
 			owner.dizziness += 5

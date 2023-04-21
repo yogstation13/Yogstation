@@ -67,6 +67,15 @@
 			user.put_in_hand(newgun)
 			to_chat(user,"Harsh tendrils wrap around the plasma cutter shotgun, merging the parts and cutter to form a mega plasma cutter shotgun.")
 			qdel(src)
-
+		if(/obj/item/twohanded/kinetic_crusher)
+			var/obj/item/twohanded/kinetic_crusher/gun = target
+			for(var/t in gun.trophies)
+				var/obj/item/crusher_trophy/T = t
+				T.remove_from(gun, user)
+			qdel(gun)
+			var/obj/item/twohanded/kinetic_crusher/mega/newgun = new(get_turf(user))
+			user.put_in_hand(newgun)
+			to_chat(user,"Harsh tendrils wrap around the kinetic crusher, merging the parts and cutter to form a mega kinetic crusher.")
+			qdel(src)
 
 	

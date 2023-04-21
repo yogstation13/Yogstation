@@ -65,6 +65,9 @@
 	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
 */
 /mob/proc/ClickOn( atom/A, params )
+	if(HAS_TRAIT(src, TRAIT_NOINTERACT)) // INTERCEPTED
+		to_chat(src, span_danger("You can't interact with anything right now!"))
+		return
 	if(world.time <= next_click)
 		return
 	next_click = world.time + 1
@@ -350,19 +353,10 @@
 	Unused except for AI
 */
 /mob/proc/AltClickOn(atom/A)
-	var/result = SEND_SIGNAL(src, COMSIG_ALT_CLICK_ON, A) //yogs start - has to be like this, otherwise stuff breaks
-	if(!result)
-		A.AltClick(src)
-	return //yogs end
-
-/mob/living/carbon/AltClickOn(atom/A)
-	if(!stat && mind && iscarbon(A) && A != src)
-		var/datum/antagonist/changeling/C = mind.has_antag_datum(/datum/antagonist/changeling)
-		if(C && C.chosen_sting)
-			C.chosen_sting.try_to_sting(src,A)
-			next_click = world.time + 5
-			return
-	..()
+	. = SEND_SIGNAL(src, COMSIG_MOB_ALTCLICKON, A)
+	if(. & COMSIG_MOB_CANCEL_CLICKON)
+		return
+	A.AltClick(src)
 
 /atom/proc/AltClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_ALT, user)

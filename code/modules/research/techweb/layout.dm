@@ -619,6 +619,26 @@
 	ui_x = -640
 	ui_y = 32
 
+/datum/techweb_node/mech_katana
+	ui_x = -704
+	ui_y = -32
+
+/datum/techweb_node/mech_batong
+	ui_x = -512
+	ui_y = -32
+
+/datum/techweb_node/mech_trogdor
+	ui_x = -704
+	ui_y = 32
+
+/datum/techweb_node/mech_maul
+	ui_x = -704
+	ui_y = -96
+
+/datum/techweb_node/mech_spear
+	ui_x = -512
+	ui_y = 32
+
 /datum/techweb_node/bshipc
 	ui_x = -224
 	ui_y = 32
@@ -654,3 +674,7 @@
 /datum/techweb_node/zhpipc
 	ui_x = -224
 	ui_y = 288
+
+/datum/techweb_node/experimental_ammo
+	ui_x = -700
+	ui_y = -750

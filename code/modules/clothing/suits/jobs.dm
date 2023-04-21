@@ -61,6 +61,27 @@
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
 
+/obj/item/clothing/suit/det_suit/civilian
+	desc = "All the class of a trenchcoat without the security fibers."
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+
+/obj/item/clothing/suit/det_suit/civilian/Initialize()
+	. = ..()
+	//Same permissions as the leather jacket/leather overcoat, because you know, trench coat
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/gun/ballistic/automatic/pistol, /obj/item/gun/ballistic/revolver, /obj/item/gun/ballistic/revolver/detective, /obj/item/radio)
+
+/obj/item/clothing/suit/det_suit/civilian/grey
+	name = "grey trenchcoat"
+	desc = "A dark trenchcoat without any security weaving present."
+	icon_state = "greydet"
+	item_state = "greydet"
+
+/obj/item/clothing/suit/det_suit/civilian/tan
+	name = "tan trenchcoat"
+	desc = "A lighter, warmer trenchcoat. This one doesn't offer protection."
+	icon_state = "detective_tan"
+	item_state = "detective_tan"
+
 /obj/item/clothing/suit/det_suit/grey
 	name = "noir trenchcoat"
 	desc = "A hard-boiled private investigator's grey trenchcoat."
@@ -68,8 +89,8 @@
 	item_state = "greydet"
 
 /obj/item/clothing/suit/det_suit/grey/evil
-	name = "padded trenchcoat"
-	desc = "A grey trenchcoat that offers significantly more protection than your average duster."
+	name = "grey trenchcoat"
+	desc = "A dark trenchcoat that offers significantly more protection than your average duster."
 	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 70, ACID = 90, WOUND = 20)
 
 /obj/item/clothing/suit/det_suit/tan
@@ -127,26 +148,23 @@
 	blood_overlay_type = "armor" //it's the less thing that I can put here
 
 //Security
-/obj/item/clothing/suit/security/officer
+/obj/item/clothing/suit/armor/officerjacket
 	name = "security officer's jacket"
 	desc = "This jacket is for those special occasions when a security officer isn't required to wear their armor."
 	icon_state = "officerbluejacket"
 	item_state = "officerbluejacket"
-	body_parts_covered = CHEST|ARMS
 
-/obj/item/clothing/suit/security/warden
+/obj/item/clothing/suit/armor/wardenjacket
 	name = "warden's jacket"
 	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
 	icon_state = "wardenbluejacket"
 	item_state = "wardenbluejacket"
-	body_parts_covered = CHEST|ARMS
 
-/obj/item/clothing/suit/security/hos
+/obj/item/clothing/suit/armor/hosjacket
 	name = "head of security's jacket"
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
 	item_state = "hosbluejacket"
-	body_parts_covered = CHEST|ARMS
 
 //Surgeon
 /obj/item/clothing/suit/apron/surgical
