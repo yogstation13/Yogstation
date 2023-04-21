@@ -89,6 +89,12 @@
 	difficulty = 5
 	excludefromjob = list("Research Director")
 
+/datum/objective_item/steal/boh
+	name = "the Research Director's prototype bag of holding."
+	targetitem = /obj/item/storage/backpack/holding/rd
+	difficulty = 10
+	excludefromjob = list("Research Director")
+
 /datum/objective_item/steal/documents
 	name = "any set of secret documents of any organization."
 	targetitem = /obj/item/documents //Any set of secret documents. Doesn't have to be NT's
@@ -226,11 +232,6 @@
 /datum/objective_item/special/ddrill
 	name = "a diamond drill."
 	targetitem = /obj/item/pickaxe/drill/diamonddrill
-	difficulty = 10
-
-/datum/objective_item/special/boh
-	name = "the Research Director's bag of holding."    //Just in case these are activated again this one is updated to reference the only one on station now. - Aquizit Jan '23
-	targetitem = /obj/item/storage/backpack/holding
 	difficulty = 10
 
 /datum/objective_item/special/hypercell

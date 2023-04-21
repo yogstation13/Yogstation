@@ -65,6 +65,8 @@
 	component_type = /datum/component/storage/concrete/bluespace/bag_of_holding
 
 /obj/item/storage/backpack/holding/rd
+	name = "prototype bag of holding"
+	desc = "A backpack that opens into a localized pocket of bluespace. This is the Research Director's special prototype version that is sturdier than those manufactured on station."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	cryo_preserve = TRUE
 
