@@ -669,8 +669,8 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	slot_flags = 0
-	force = 17
-	force_wielded = 24
+	force = 10
+	force_wielded = 25
 	throwforce = 40
 	throw_speed = 2
 	armour_penetration = 30
