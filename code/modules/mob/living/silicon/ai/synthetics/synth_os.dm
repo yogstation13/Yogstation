@@ -85,6 +85,7 @@
 		running_project.stop(TRUE)
 		running_project.synth = new_shell
 		running_project.run_project(FALSE, TRUE)
+	owner = new_shell
 	punishment_shell_switch(old_shell, new_shell)
 
 

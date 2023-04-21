@@ -379,7 +379,7 @@
 		return
 	var/mob/living/carbon/human/H = owner
 	var/datum/species/wy_synth/WS = H?.dna?.species
-	if(WS)
+	if(WS && istype(WS))
 		if(WS.mainframe)
 			to_chat(owner, span_warning("Unfortunately SynthOS is not supported in remotely controlled synthetic units."))
 			return FALSE
@@ -390,8 +390,7 @@
 	if(!..())
 		return FALSE
 	var/mob/living/carbon/human/H = owner
-	var/datum/species/wy_synth/WS = H?.dna?.species
-	if(WS)
+	if(H.mind)
 		H.mind.synth_os.ui_interact(owner)
 	
 	return FALSE
