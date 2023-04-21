@@ -186,14 +186,14 @@
 			to_chat(user, span_warning("This unit's personality matrix is gone."))
 			return TRUE
 	if(H.health < 0)
-		to_chat(user, span_warning("You have to repair the IPC before using this module!"))
+		to_chat(user, span_warning("You have to repair the unit before using this module!"))
 		return TRUE
-	to_chat(user, span_warning("You start restarting the IPC's internal circuitry."))
+	to_chat(user, span_warning("You start restarting the unit's internal circuitry."))
 	if(!do_after(user, 5 SECONDS, H))
 		return TRUE
 	if(H.mind)
 		H.mind.grab_ghost()
-	to_chat(user, span_notice("You reset the IPC's internal circuitry - reviving them!"))
+	to_chat(user, span_notice("You reset the unit's internal circuitry - reviving them!"))
 	H.setOrganLoss(ORGAN_SLOT_BRAIN, 0)
 	H.revive()
 	qdel(src)
