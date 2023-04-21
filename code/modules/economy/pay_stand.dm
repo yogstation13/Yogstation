@@ -4,7 +4,10 @@
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "card_scanner"
 	anchored = TRUE
-	layer = FLY_LAYER
+	layer = MOB_LAYER
+	circuit = /obj/item/circuitboard/machine/paystand
+	density = TRUE
+	anchored = TRUE
 	/// ID linked to the holopay
 	var/obj/item/card/id/linked_card = null
 	var/shop_logo = "donate"
@@ -43,11 +46,17 @@
 		return ..()
 	/// Users can pay with an ID to skip the UI
 	if(isidcard(held_item))
-		if(!linked_card)
+		if(linked_card == null)
 			if(istype(held_item, /obj/item/card/id))
 				var/obj/item/card/id/card = held_item
 				desc = "Pays directly into [card.registered_account.account_holder]'s bank account."
 				force_fee = card.holopay_fee
+				name = card.holopay_name
+				shop_logo = card.holopay_logo
+				to_chat(user,span_info("Registered this paystand to you!"))
+				linked_card = card
+				log_admin("User [ADMIN_LOOKUPFLW(user)] registered a paystand [ADMIN_JMP(src)]")
+				return
 		if(force_fee && tgui_alert(item_holder, "This holopay has a [force_fee] cr fee. Confirm?", "Holopay Fee", list("Pay", "Cancel")) != "Pay")
 			return TRUE
 		process_payment(user)
@@ -103,10 +112,10 @@
 
 /obj/machinery/paystand/ui_static_data(mob/user)
 	. = list()
-	.["available_logos"] = linked_card.available_logos
+	.["available_logos"] = linked_card?.available_logos
 	.["description"] = desc
-	.["max_fee"] = linked_card.holopay_max_fee
-	.["owner"] = linked_card.registered_account?.account_holder || null
+	.["max_fee"] = linked_card?.holopay_max_fee
+	.["owner"] = linked_card?.registered_account?.account_holder || null
 	.["shop_logo"] = shop_logo
 
 /obj/machinery/paystand/ui_data(mob/user)
