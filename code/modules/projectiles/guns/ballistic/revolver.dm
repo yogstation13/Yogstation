@@ -162,6 +162,7 @@
 	name = ".44 Magnum single action revolver"
 	desc = "A single action fixed cylinder revolver. Ineffective in the hands of an inexperienced user due to the lack of automation found in more recently designed weapons, though its robust construction allows it to chamber powerful ammunition. Uses .44 Magnum ammo."
 	icon_state = "single-action"
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev44
 	///current hampter position
 	var/hammer_set = HAMMER_CLOSED
 
@@ -206,11 +207,10 @@
 	to_chat(user, span_warning("You pull back [src]'s hammer."))
 	playsound(src, dry_fire_sound, 30, TRUE)
 	user.changeNext_move(CLICK_CD_RANGE)
-	var/mutable_appearance/hammer = mutable_appearance(icon, "single-action_anim")
-	flick(hammer, src)
 	hammer_set = HAMMER_FULL
-	sleep(2)
-	update_icon()
+	cut_overlays()
+	flick("single-action_full_anim", src)
+	addtimer(CALLBACK(src, .proc/update_icon), 3)
 
 /obj/item/gun/ballistic/revolver/single_action/attack_self(mob/user)
 	if(hammer_set == HAMMER_RELOAD)
@@ -242,11 +242,11 @@
 /obj/item/gun/ballistic/revolver/single_action/attackby(obj/item/A, mob/user, params)
 	if(!(hammer_set == HAMMER_RELOAD) && istype(A, /obj/item/ammo_casing))
 		to_chat(user, span_warning("[src]'s loading gate is not open, use it in hand to start reloading!"))
-		balloon_alert(user, "Loading gate closed!")
+		balloon_alert(user, "Loading gate is closed!")
 		return
 	if(istype(A, /obj/item/ammo_casing) && magazine.stored_ammo[1])
 		to_chat(user, span_warning("The current chamber is full, left click to rotate the cylinder!"))
-		balloon_alert(user, "Chamber full!")
+		balloon_alert(user, "Chamber is full!")
 		return
 	if(istype(A, /obj/item/ammo_box))
 		to_chat(user, span_warning("[src] only accepts single rounds!"))
@@ -266,7 +266,7 @@
 	update_icon()
 
 /obj/item/gun/ballistic/revolver/single_action/do_spin()
-	if(!hammer_set == HAMMER_RELOAD)
+	if(!hammer_set == HAMMER_RELOAD) //cylinder can't freely spin unless it's in reloading position
 		return
 	. = ..()
 

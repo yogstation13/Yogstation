@@ -87,6 +87,11 @@
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
+/obj/item/ammo_box/a44
+	name = "ammo box (.44 magnum)"
+	icon_state = "357box"
+	ammo_type = /obj/item/ammo_casing/a44
+
 /obj/item/ammo_box/c9mm
 	name = "ammo box (9mm)"
 	icon_state = "9mmbox"

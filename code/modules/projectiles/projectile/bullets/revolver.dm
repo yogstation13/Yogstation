@@ -52,7 +52,7 @@
 
 /obj/item/projectile/bullet/c38/gutterpunch/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && iscarbon(target))
-		var/mob/living/carbon/M = target 
+		var/mob/living/carbon/M = target
 		M.adjust_disgust(20)
 	return ..()
 
@@ -130,3 +130,9 @@
 		var/atom/movable/M = target
 		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 		M.safe_throw_at(throw_target, 2, 2) //Extra ten damage if they hit a wall, resolves against melee armor
+
+/obj/item/projectile/bullet/a44
+	name = ".44 Magnum bullet"
+	damage = 35
+	armour_penetration = 30
+	wound_bonus = -30 //TBD

@@ -26,3 +26,9 @@
 /obj/item/ammo_box/magazine/internal/rus357/Initialize()
 	stored_ammo += new ammo_type(src)
 	. = ..()
+
+/obj/item/ammo_box/magazine/internal/cylinder/rev44
+	name = "\improper .44 Magnum revolvey cylinder"
+	ammo_type = /obj/item/ammo_casing/a44
+	caliber = "44"
+	max_ammo = 6

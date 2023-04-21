@@ -71,3 +71,10 @@
 	desc = "A .32 TRAC bullet casing."
 	caliber = "32trac"
 	projectile_type = /obj/item/projectile/bullet/tra32
+
+// .44 Magnum (Single-Action Revolver)
+/obj/item/ammo_casing/a44
+	name = ".44 Magnum bullet casing"
+	desc = "A .44 Magnum bullet casing."
+	caliber = "44"
+	projectile_type = /obj/item/projectile/bullet/a44
