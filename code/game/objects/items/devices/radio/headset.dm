@@ -216,6 +216,10 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, SYNTHETIC_TRAIT)
 
+/obj/item/radio/headset/headset_synthetic/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+
 /obj/item/radio/headset/headset_synthetic/attackby(obj/item/W, mob/user, params)
 	return FALSE
 
