@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	. += span_notice("Use a crowbar to remove all currently inserted racks.")
 
 	if(puzzle_disk)
-		. += span_notice("The inserted disk is [round(puzzle_disk.decryption_progress / (AI_FLOPPY_DECRYPTION_COST * (GLOB.decrypted_puzzle_disks + 1) ** AI_FLOPPY_EXPONENT) * 100)]")
+		. += span_notice("The inserted disk is [round(puzzle_disk.decryption_progress / (AI_FLOPPY_DECRYPTION_COST * (GLOB.decrypted_puzzle_disks + 1) ** AI_FLOPPY_EXPONENT) * 100)]% decrypted.")
 
 
 /obj/machinery/ai/server_cabinet/prefilled/Initialize()
