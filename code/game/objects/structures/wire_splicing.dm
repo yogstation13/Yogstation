@@ -72,8 +72,10 @@
 	loc = pick(candidates)
 
 /obj/structure/wire_splicing/examine(mob/user)
-	..()
-	to_chat(user, "It has [messiness] wire[messiness > 1?"s":""] dangling around.")
+	. = ..()
+	if(is_syndicate(user))
+		. += span_warning("or you could add more wires..!")
+	. += "It has [messiness] wire[messiness > 1?"s":""] dangling around."
 
 /obj/structure/wire_splicing/Crossed(AM as mob|obj)
 	. = ..()
@@ -111,6 +113,10 @@
 				return
 			user.visible_message("[user] cuts the splicing.", span_notice("You cut the splicing."))
 			investigate_log(" was cut by [key_name(usr)] in [AREACOORD(src)]", INVESTIGATE_WIRES)
+			var/turf/T = get_turf(src)
+			var/obj/structure/cable/C = locate() in T
+			var/new_color = C?.cable_color || pick(GLOB.cable_colors)
+			new /obj/item/stack/cable_coil(T, messiness, new_color)
 			qdel(src)
 
 	if(istype(I, /obj/item/stack/cable_coil) && user.a_intent == INTENT_HARM)
@@ -122,10 +128,13 @@
 	if(messiness >= 10)
 		to_chat(user,span_warning("You can't seem to jam more cable into the splicing!"))
 		return
-	if(!do_after(user, 2 SECONDS, src))
-		return
-	messiness = min(messiness + 1, 10)
-	investigate_log("wire splicing was reinforced to [messiness] by [key_name(usr)] in [AREACOORD(src)]", INVESTIGATE_WIRES)
-	coil.use(1)
-	if(messiness < 10 && coil.get_amount() >= 1)
-		reinforce(user, coil)
+	if(do_after(user, 2 SECONDS, src))
+		if (shock(user, 50))
+			return
+		messiness = min(messiness + 1, 10)
+		icon_state = "wire_splicing[messiness]"
+		investigate_log("wire splicing was reinforced to [messiness] by [key_name(usr)] in [AREACOORD(src)]", INVESTIGATE_WIRES)
+		user.visible_message("[user] tucks more wires into the splicing.", span_notice("You add more cables to the splicing."))
+		coil.use(1)
+		if(messiness < 10 && coil && coil.get_amount() >= 1)
+			reinforce(user, coil)

@@ -12,7 +12,7 @@
 /obj/effect/spawner/wire_splicing
 	name = "wiring splicing spawner"
 	icon = 'icons/obj/structures_spawners.dmi'
-	icon_state = "window_spawner"
+	icon_state = "wire_splicing"
 
 /obj/effect/spawner/wire_splicing/Initialize()
 	. = ..()
