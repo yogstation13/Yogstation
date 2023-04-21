@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "Code cleanup on wire splicings, fixing not being able to reinforce them"
