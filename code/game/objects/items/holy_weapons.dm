@@ -1037,8 +1037,6 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	charge_max = 10 SECONDS
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
-	invocation = "COME"
-	invocation_type = "shout"
 	range = -1
 	level_max = 0 //cannot be improved
 	cooldown_min = 10 SECONDS
