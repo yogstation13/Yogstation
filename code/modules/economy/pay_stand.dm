@@ -61,7 +61,8 @@
 			to_chat(user, span_warning("There doesn't seem to be any credits here."))
 			return FALSE
 		/// Charges force fee or uses pay what you want
-		var/cash_deposit = force_fee || tgui_input_number(user, "How much? (Max: [chip.credits])", "Patronage", max_value = chip.credits)
+		var/input_number = input(user, "How much? (Max: [chip.credits])", "Patronage", force_fee) as null|num
+		var/cash_deposit = force_fee || clamp(round(input_number), 0, chip.credits) //no tgui_input_number :(
 		/// Exit sanity checks
 		if(!cash_deposit)
 			return TRUE
@@ -167,7 +168,8 @@
 		to_chat(user, span_warning("You can't pay yourself."))
 		return FALSE
 	/// If the user has enough money, ask them the amount or charge the force fee
-	var/amount = force_fee || tgui_input_number(user, "How much? (Max: [payee.account_balance])", "Patronage", max_value = payee.account_balance)
+	var/input_number = input(user, "How much? (Max: [payee.account_balance])", "Patronage", force_fee) as null|num
+	var/amount = force_fee || clamp(round(input_number), 0, payee.account_balance) //no tgui_input_number :(
 	/// Exit checks in case the user cancelled or entered an invalid amount
 	if(!amount || QDELETED(user) || QDELETED(src))
 		return FALSE
