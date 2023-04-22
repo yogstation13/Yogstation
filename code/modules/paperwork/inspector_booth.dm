@@ -83,17 +83,17 @@
 
 /obj/machinery/inspector_booth/attackby(obj/item/I, mob/user, params)
 	// Normal tool interactions
-	if (get_dir(user, src) == src.dir && default_deconstruction_screwdriver(user, "booth_maintenance", "booth", I))
+	if ((get_dir(user, src) == src.dir || get_dist_chebyshev(src, user) == 0) && default_deconstruction_screwdriver(user, "booth_maintenance", "booth", I))
 		return
 	if (default_change_direction_wrench(user, I) || default_deconstruction_crowbar(I))
 		return
 
 	if (user.a_intent != INTENT_HELP)
-		return
+		return ..()
 
 	// For adding stamp upgrades to component_parts
 	if (istype(I, /obj/item/stamp))
-		if (stamp_upgrades.len >= max_stamps) 
+		if (stamp_upgrades.len < max_stamps) 
 			if (!(I.icon_state in stamp_upgrades))
 				if (is_item_safe(user, I))
 					component_parts += I
@@ -145,7 +145,9 @@
 
 /obj/machinery/inspector_booth/can_interact(mob/user)
 	. = ..()
-	if(get_dir(user, src) != src.dir && !isobserver(user))
+	if (get_dist_chebyshev(src, user) == 0)
+		return TRUE
+	if((get_dir(user, src) != src.dir && !isobserver(user)))
 		return FALSE
 
 /obj/machinery/inspector_booth/ui_interact(mob/user, datum/tgui/ui)
