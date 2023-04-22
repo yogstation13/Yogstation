@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "Possessed sword no longer deletes itself if trying to catch it with full hands"
