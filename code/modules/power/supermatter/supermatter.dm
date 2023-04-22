@@ -233,7 +233,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	investigate_log("has been created.", INVESTIGATE_SUPERMATTER)
 	if(is_main_engine)
 		GLOB.main_supermatter_engine = src
-
+	icon_state = "[initial(icon_state)]_inactive"
 	soundloop = new(list(src), TRUE)
 
 /obj/machinery/power/supermatter_crystal/Destroy()
@@ -543,14 +543,18 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(surging)
 			power += surging
 
-		if(gasmix_power_ratio > 0.8)
-			// with a perfect gas mix, make the power less based on heat
-			icon_state = "[initial(icon_state)]_glow"
-			temp_factor = 50
-		else
-			// in normal mode, base the produced energy around the heat
-			temp_factor = 30
-			icon_state = initial(icon_state)
+		if(has_been_powered)
+			if(gasmix_power_ratio > 0.8)
+				// with a perfect gas mix, make the power less based on heat
+				icon_state = "[initial(icon_state)]_glow"
+				temp_factor = 50
+			else
+				// in normal mode, base the produced energy around the heat
+				temp_factor = 30
+				icon_state = initial(icon_state)
+		else if(power)
+			has_been_powered = 2 //it got activated by something other than emitters
+			icon_state = "[initial(icon_state)]_start"
 
 		power = clamp((removed.return_temperature() * temp_factor / T0C) * gasmix_power_ratio + power, 0, SUPERMATTER_MAXIMUM_ENERGY) //Total laser power plus an overload
 
@@ -750,10 +754,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			investigate_log("has been powered for the first time.", INVESTIGATE_SUPERMATTER)
 			message_admins("[src] has been powered for the first time [ADMIN_JMP(src)].")
 			has_been_powered = TRUE
+			icon_state = "[initial(icon_state)]_start"
 			var/datum/department_goal/eng/additional_supermatter/goal = locate() in SSYogs.department_goals
 			if(goal)
 				goal.complete()
-
 	else if(takes_damage)
 		damage += Proj.damage * config_bullet_energy
 	return BULLET_ACT_HIT
