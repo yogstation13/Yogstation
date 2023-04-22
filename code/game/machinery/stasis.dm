@@ -188,12 +188,11 @@
 		if(repair_organs && iscarbon(L_occupant))
 			var/mob/living/carbon/C_occupant = L_occupant
 			var/heal_reps = 4
-			var/list/organs = list(ORGAN_SLOT_EARS,ORGAN_SLOT_EYES,ORGAN_SLOT_LIVER,ORGAN_SLOT_LUNGS,ORGAN_SLOT_STOMACH,ORGAN_SLOT_HEART)
+			var/list/organs = C_occupant.internal_organs.Copy()
 			for(var/i in 1 to heal_reps)
 				organs = shuffle(organs)
-				for(var/o in organs)
+				for(var/obj/item/organ/heal_target in organs)
 					var/healed = FALSE
-					var/obj/item/organ/heal_target = C_occupant.getorganslot(o)
 					if(heal_target?.damage >= 1)
 						var/organ_healing = C_occupant.stat == DEAD ? 3 : 6
 						heal_target.applyOrganDamage(-organ_healing)
