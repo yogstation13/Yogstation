@@ -162,14 +162,16 @@ export const Vending = (props, context) => {
           </Section>
         )}
         {!!customInventory.length && <Section title={chef.title} >
-          {customInventory.map(customItem => (
-            <VendingRow
-              key={customItem.product.name}
-              custom={true}
-              product={customItem.product}
-              productStock={customItem.productStock}
-            />
-          ))}
+          <Table>
+            {customInventory.map(customItem => (
+              <VendingRow
+                key={customItem.product.name}
+                custom={true}
+                product={customItem.product}
+                productStock={customItem.productStock}
+              />
+            ))}
+          </Table>
         </Section>}
         <Section title="Products" >
           <Table>
