@@ -24,9 +24,20 @@ const VendingRow = (props, context) => {
     || data.ignores_capitalism
     // yogs end
   );
+
+  const customFree = (
+    !data.onstation
+    || (
+      data.user
+      && data.department
+      && data.department === data.user.department
+    )
+    || data.ignores_capitalism
+  );
+
   return (
     <Table.Row>
-      <Table.Cell collapsing>
+      {!custom && <Table.Cell collapsing>
         {product.base64 ? (
           <img
             src={`data:image/jpeg;base64,${product.img}`}
@@ -45,14 +56,13 @@ const VendingRow = (props, context) => {
               'horizontal-align': 'middle',
             }} />
         )}
-      </Table.Cell>
+      </Table.Cell>}
       <Table.Cell bold>
         {product.name}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         <Box
-          color={custom
-            ? 'good'
+          color={custom ? (productStock > 0 ? 'good' : 'bad')
             : productStock <= 0
               ? 'bad'
               : productStock <= (product.max_amount / 2)
@@ -65,7 +75,12 @@ const VendingRow = (props, context) => {
         {custom && (
           <Button
             fluid
-            content={data.access ? 'FREE' : product.price + ' cr'}
+            disabled={(
+              productStock === 0
+              || !data.user
+              || product.price > data.user.cash
+            )}
+            content={customFree ? 'FREE' : product.price + ' cr'}
             onClick={() => act('dispense', {
               'item': product.name,
             })} />
@@ -93,13 +108,10 @@ export const Vending = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     product_ad,
+    chef,
   } = data;
   let inventory;
-  let custom = false;
-  if (data.vending_machine_input) {
-    inventory = data.vending_machine_input;
-    custom = true;
-  } else if (data.extended_inventory) {
+  if (data.extended_inventory) {
     inventory = [
       ...data.product_records,
       ...data.coin_records,
@@ -111,6 +123,15 @@ export const Vending = (props, context) => {
       ...data.coin_records,
     ];
   }
+
+  const customInventory = Object.keys(data.custom_stock).map(itemName => ({
+    product: {
+      name: itemName,
+      price: chef.price,
+    },
+    productStock: data.custom_stock[itemName]
+  }));
+
   return (
     <Window
       title="Vending Machine"
@@ -140,12 +161,22 @@ export const Vending = (props, context) => {
             )}
           </Section>
         )}
+        {!!customInventory.length && <Section title={chef.title} >
+          {customInventory.map(customItem => (
+            <VendingRow
+              key={customItem.product.name}
+              custom={true}
+              product={customItem.product}
+              productStock={customItem.productStock}
+            />
+          ))}
+        </Section>}
         <Section title="Products" >
           <Table>
             {inventory.map(product => (
               <VendingRow
                 key={product.name}
-                custom={custom}
+                custom={false}
                 product={product}
                 productStock={data.stock[product.name]} />
             ))}

@@ -136,6 +136,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/obj/item/coin/coin
 	///Bills we accept?
 	var/obj/item/stack/spacecash/bill
+	///Custom item price
 	var/chef_price = 10
 	///Default price of items if not overridden
 	var/default_price = 25
@@ -152,6 +153,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	///ID's that can load this vending machine wtih refills
 	var/list/canload_access_list
 
+	///Custom item stock
 	var/list/vending_machine_input = list()
 	///Display header on the input view
 	var/input_display_header = "Custom Compartment"
@@ -669,6 +671,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 	. = list()
 	.["onstation"] = onstation
 	.["department"] = payment_department
+	.["chef"] = list() // "chef compartment" i.e. player-added stock
+	.["chef"]["title"] = input_display_header
+	.["chef"]["price"] = chef_price
 	.["product_records"] = list()
 	for (var/datum/data/vending_product/R in product_records)
 		var/list/data = list(
@@ -733,6 +738,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 	for (var/datum/data/vending_product/R in product_records + coin_records + hidden_records)
 		.["stock"][R.name] = R.amount
 	.["extended_inventory"] = extended_inventory
+	// extra items that have been placed in custom stock
+	.["custom_stock"] = vending_machine_input
 
 /obj/machinery/vending/ui_act(action, params)
 	. = ..()
@@ -829,6 +836,64 @@ GLOBAL_LIST_EMPTY(vending_products)
 				vended_item.forceMove(get_turf(src))
 			R.amount--
 			SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[R.product_path]"))
+			vend_ready = TRUE
+		if("dispense")
+			. = TRUE
+			if(!vend_ready)
+				return
+			if(panel_open)
+				to_chat(usr, span_warning("The vending machine cannot dispense products while its service panel is open!"))
+				return
+			var/N = params["item"]
+			if(vending_machine_input[N] <= 0) // don't dispense none item with left beef
+				return
+			vend_ready = FALSE //One thing at a time!!
+			var/price_to_use = chef_price
+
+			var/mob/living/L
+			if(isliving(usr))
+				L = usr
+
+			if(onstation && ishuman(usr) && (L && !L.ignores_capitalism))
+				var/mob/living/carbon/human/H = usr
+				var/obj/item/card/id/C = H.get_idcard(TRUE)
+
+				if(!C)
+					say("No card found.")
+					flick(icon_deny,src)
+					vend_ready = TRUE
+					return
+				else if (!C.registered_account)
+					say("No account found.")
+					flick(icon_deny,src)
+					vend_ready = TRUE
+					return
+				var/datum/bank_account/account = C.registered_account
+				if(account.account_job && account.account_job.paycheck_department == payment_department)
+					price_to_use = 0
+				if(price_to_use && !account.adjust_money(-price_to_use))
+					say("You do not possess the funds to purchase [N].")
+					flick(icon_deny,src)
+					vend_ready = TRUE
+					return
+				var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
+				if(D)
+					D.adjust_money(price_to_use)
+
+			if(last_shopper != usr || purchase_message_cooldown < world.time)
+				say("Thank you for shopping local and buying [N]!")
+				purchase_message_cooldown = world.time + 5 SECONDS
+				last_shopper = usr
+			use_power(5)
+			if(icon_vend) //Show the vending animation if needed
+				flick(icon_vend,src)
+			playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
+
+			vending_machine_input[N] = max(vending_machine_input[N] - 1, 0)
+			for(var/obj/item/I in contents)
+				if(I.name == N)
+					I.forceMove(get_turf(src))
+					break
 			vend_ready = TRUE
 
 /obj/machinery/vending/process(delta_time)
