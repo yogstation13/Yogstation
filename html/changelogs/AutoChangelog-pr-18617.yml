@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Crematorium now respects indestructible items and godmoded mobs"
-  - tweak: "Crematorium now detonates bombs, tanks, and grenades"
