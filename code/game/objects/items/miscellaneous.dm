@@ -173,7 +173,7 @@
 /obj/item/ipcrevive/attack(mob/living/M, mob/living/user)
 	if(user.a_intent != INTENT_HELP)
 		return ..()
-	if(!isipc(M) || !is_synth(M))
+	if(!isipc(M) && !is_synth(M))
 		to_chat(user, span_warning("This is not an IPC or a synthetic."))
 		return TRUE
 	var/mob/living/carbon/human/H = M
