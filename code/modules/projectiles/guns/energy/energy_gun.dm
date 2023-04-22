@@ -10,6 +10,11 @@
 	flight_x_offset = 15
 	flight_y_offset = 10
 
+/obj/item/gun/energy/e_gun/ancient
+	name = "old energy gun"
+	desc = "What the fuck?"
+	icon_state = "energyold"
+
 /obj/item/gun/energy/e_gun/mini
 	name = "miniature energy gun"
 	desc = "A small, pistol-sized energy gun with a built-in flashlight. It has two settings: disable and kill."
@@ -169,9 +174,9 @@
 
 /obj/item/gun/energy/e_gun/bouncer
 	name = "bouncer energy gun"
-	desc = "A special energy gun shooting ricocheting projectiles, has two settings: disable and suffocate."
+	desc = "A special energy gun shooting ricocheting projectiles, has two settings: disable and freeze."
 	icon_state = "bouncer"
-	ammo_type = list(/obj/item/ammo_casing/energy/disabler/bounce, /obj/item/ammo_casing/energy/anoxia/bounce)
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler/bounce, /obj/item/ammo_casing/energy/temp/bounce)
 	can_flashlight = FALSE
 	ammo_x_offset = 2
 	pin = null

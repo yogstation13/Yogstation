@@ -82,7 +82,7 @@
 
 	for(var/gasID in using)
 		loaded_tank.air_contents.adjust_moles(gasID, -gasdrained)
-	
+
 	for(var/gasID in giving)
 		loaded_tank.air_contents.adjust_moles(gasID, giving[gasID]*gasdrained)
 
@@ -296,9 +296,9 @@
 	else
 		update_icon()
 
-/obj/machinery/power/rad_collector/rad_act(pulse_strength)
+/obj/machinery/power/rad_collector/rad_act(pulse_strength, collectable_radiation)
 	. = ..()
-	if(loaded_tank && active && pulse_strength > RAD_COLLECTOR_EFFICIENCY)
+	if(loaded_tank && active && collectable_radiation && pulse_strength > RAD_COLLECTOR_EFFICIENCY)
 		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*(machine_tier+power_bonus)
 
 /obj/machinery/power/rad_collector/update_icon()

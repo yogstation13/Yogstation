@@ -319,6 +319,7 @@
 
 /datum/action/item_action/set_internals
 	name = "Set Internals"
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/set_internals/UpdateButtonIcon(status_only = FALSE, force)
 	if(..()) //button available
@@ -425,9 +426,11 @@
 
 /datum/action/item_action/toggle_helmet_flashlight
 	name = "Toggle Helmet Flashlight"
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/toggle_helmet_mode
 	name = "Toggle Helmet Mode"
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/toggle
 
@@ -768,12 +771,6 @@
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "art_summon"
 
-//surf_ss13
-/datum/action/item_action/bhop
-	name = "Activate Jump Boots"
-	desc = "Activates the jump boot's internal propulsion system, allowing the user to dash over 4-wide gaps."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "jetboot"
 
 /datum/action/item_action/dash
 	name = "Dash"

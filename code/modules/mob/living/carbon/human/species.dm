@@ -121,6 +121,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/deathsound
 	///Sounds to override barefeet walkng
 	var/list/special_step_sounds
+	///Sounds to play while walking regardless of wearing shoes
+	var/list/special_walk_sounds
 	///Special sound for grabbing
 	var/grab_sound
 	///yogs - audio of a species' scream
@@ -1058,6 +1060,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	stop_wagging_tail(H)
 	return
 
+//Now checks if the item is already equipped to that slot before instantly returning false because of it being there, so you can now check if an item is able to remain in a slot
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
 	if((slot in no_equip) || (slot in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
@@ -1072,7 +1075,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return TRUE
 			return FALSE
 		if(SLOT_WEAR_MASK)
-			if(H.wear_mask)
+			if(H.wear_mask && H.wear_mask != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_MASK))
 				return FALSE
@@ -1080,25 +1083,25 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_NECK)
-			if(H.wear_neck)
+			if(H.wear_neck && H.wear_neck != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_NECK) )
 				return FALSE
 			return TRUE
 		if(SLOT_BACK)
-			if(H.back)
+			if(H.back && H.back != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_BACK) )
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_WEAR_SUIT)
-			if(H.wear_suit)
+			if(H.wear_suit && H.wear_suit != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_OCLOTHING) )
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_GLOVES)
-			if(H.gloves)
+			if(H.gloves && H.gloves != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_GLOVES) )
 				return FALSE
@@ -1106,20 +1109,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_SHOES)
-			if(H.shoes)
+			if(H.shoes && H.shoes != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_FEET) )
 				return FALSE
 			if(num_legs < 2)
 				return FALSE
 			var/obj/item/clothing/shoes/S = I
-			if((!S && (DIGITIGRADE in species_traits)) || ((DIGITIGRADE in species_traits) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT)) // Checks leg compatibilty with shoe digitigrade or not flag
+			if(istype(S) && ((!S && (DIGITIGRADE in species_traits)) || ((DIGITIGRADE in species_traits) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT))) // Checks leg compatibilty with shoe digitigrade or not flag
 				if(!disable_warning)
 					to_chat(H, span_warning("This footwear isn't compatible with your feet!"))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_BELT)
-			if(H.belt)
+			if(H.belt && H.belt != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
@@ -1132,7 +1135,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_GLASSES)
-			if(H.glasses)
+			if(H.glasses && H.glasses != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_EYES))
 				return FALSE
@@ -1143,7 +1146,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_HEAD)
-			if(H.head)
+			if(H.head && H.head != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_HEAD))
 				return FALSE
@@ -1151,7 +1154,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_EARS)
-			if(H.ears)
+			if(H.ears && H.ears != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_EARS))
 				return FALSE
@@ -1159,13 +1162,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_W_UNIFORM)
-			if(H.w_uniform)
+			if(H.w_uniform && H.w_uniform != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_ICLOTHING) )
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_WEAR_ID)
-			if(H.wear_id)
+			if(H.wear_id && H.wear_id != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
@@ -1179,7 +1182,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(SLOT_L_STORE)
 			if(HAS_TRAIT(I, TRAIT_NODROP)) //Pockets aren't visible, so you can't move TRAIT_NODROP items into them.
 				return FALSE
-			if(H.l_store)
+			if(H.l_store && H.l_store != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_L_LEG)
@@ -1195,7 +1198,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(SLOT_R_STORE)
 			if(HAS_TRAIT(I, TRAIT_NODROP))
 				return FALSE
-			if(H.r_store)
+			if(H.r_store && H.r_store != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_R_LEG)
@@ -1212,7 +1215,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(SLOT_S_STORE)
 			if(HAS_TRAIT(I, TRAIT_NODROP))
 				return FALSE
-			if(H.s_store)
+			if(H.s_store && H.s_store != I)
 				return FALSE
 			if(!H.wear_suit)
 				if(!disable_warning)
@@ -1230,7 +1233,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return TRUE
 			return FALSE
 		if(SLOT_HANDCUFFED)
-			if(H.handcuffed)
+			if(H.handcuffed && H.handcuffed != I)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/handcuffs))
 				return FALSE
@@ -1238,7 +1241,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return TRUE
 		if(SLOT_LEGCUFFED)
-			if(H.legcuffed)
+			if(H.legcuffed && H.legcuffed != I)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/legcuffs))
 				return FALSE
@@ -1246,7 +1249,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return TRUE
 		if(SLOT_IN_BACKPACK)
-			if(H.back)
+			if(H.back && H.back != I)
 				if(SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_CAN_INSERT, I, H, TRUE))
 					return TRUE
 			return FALSE
@@ -2125,11 +2128,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 ////////////
 
 /datum/species/proc/spec_stun(mob/living/carbon/human/H,amount)
-	if(flying_species && H.movement_type & FLYING)
-		ToggleFlight(H)
-		flyslip(H)
-	. = stunmod * H.physiology.stun_mod * amount
-	stop_wagging_tail(H)
+	if(!HAS_TRAIT(H, TRAIT_STUNIMMUNE))
+		if(flying_species && H.movement_type & FLYING)
+			ToggleFlight(H)
+			flyslip(H)
+		stop_wagging_tail(H)
+	return stunmod * H.physiology.stun_mod * amount
+	
 
 //////////////
 //Space Move//
@@ -2310,7 +2315,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(C == user)
 		if(fullness <= 50)
 			user.visible_message(span_notice("[user] frantically [eatverb]s \the [O], scarfing it down!"), span_notice("You frantically [eatverb] \the [O], scarfing it down!"))
-		else if(fullness > 50 && fullness < 150)
+		else if((fullness > 50 && fullness < 150) || HAS_TRAIT(C, TRAIT_BOTTOMLESS_STOMACH))
 			user.visible_message(span_notice("[user] hungrily [eatverb]s \the [O]."), span_notice("You hungrily [eatverb] \the [O]."))
 		else if(fullness > 150 && fullness < 500)
 			user.visible_message(span_notice("[user] [eatverb]s \the [O]."), span_notice("You [eatverb] \the [O]."))
@@ -2671,6 +2676,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/create_pref_traits_perks()
 	var/list/to_add = list()
 
+	if(TRAIT_RADIMMUNE in inherent_traits)
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "radiation",
+			SPECIES_PERK_NAME = "Radiation Immunity",
+			SPECIES_PERK_DESC = "[plural_form] are completely unaffected by radiation. However, this doesn't mean they can't be irradiated.",
+		))
+
 	if(TRAIT_LIMBATTACHMENT in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
@@ -2705,6 +2718,15 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				causing toxins will instead cause healing. Be careful around purging chemicals!",
 		))
 
+	if(ROBOTIC_LIMBS in species_traits)//species traits is basically inherent traits
+		to_add += list(list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "fa-solid fa-gear",
+			SPECIES_PERK_NAME = "Robotic limbs",
+			SPECIES_PERK_DESC = "[plural_form] have limbs comprised entirely of metal and circuitry, this will make standard surgery ineffective. \
+				However, this gives [plural_form] the ability to do self-maintenance with just simple tools.",
+		))
+		
 	return to_add
 
 /**

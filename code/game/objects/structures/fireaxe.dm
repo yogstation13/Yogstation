@@ -12,7 +12,7 @@
 	var/open = FALSE
 	var/obj/item/twohanded/fireaxe/fireaxe
 	var/obj/item/card/id/captains_spare/spareid
-	var/obj/item/twohanded/fishingrod/collapsable/miningmedic/olreliable //what the fuck?
+	var/obj/item/twohanded/fishingrod/collapsible/miningmedic/olreliable //what the fuck?
 	var/alert = TRUE
 	var/axe = TRUE
 
@@ -85,8 +85,8 @@
 			to_chat(user, span_caution("You place the [S.name] back in the [name]."))
 			update_icon()
 			return
-		else if(istype(I, /obj/item/twohanded/fishingrod/collapsable/miningmedic) && !olreliable && !axe)
-			var/obj/item/twohanded/fishingrod/collapsable/miningmedic/R = I
+		else if(istype(I, /obj/item/twohanded/fishingrod/collapsible/miningmedic) && !olreliable && !axe)
+			var/obj/item/twohanded/fishingrod/collapsible/miningmedic/R = I
 			if(R.opened)
 				to_chat(user, span_caution("[R.name] won't seem to fit!"))
 				return

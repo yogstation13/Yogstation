@@ -175,6 +175,7 @@
 	var/cone_type
 	bitesize = 3
 	foodtype = GRAIN
+	tastes = list("cold" = 6, "creamy" = 4)
 
 /obj/item/reagent_containers/food/snacks/icecream/Initialize()
 	. = ..()

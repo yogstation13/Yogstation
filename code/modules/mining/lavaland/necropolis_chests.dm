@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,23)
+	var/loot = rand(1,21)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -33,39 +33,42 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(8)
 			new /obj/item/ship_in_a_bottle(src)
 		if(9)
-			new /obj/item/clothing/glasses/telepathy(src)
+			new /obj/item/clothing/gloves/gauntlets(src)
 		if(10)
 			new /obj/item/jacobs_ladder(src)
-		if(11)
-			new /obj/item/nullrod/scythe/talking(src)
+		if(11)//select and spawn a random nullrod that a chaplain could choose from
+			var/found = FALSE
+			while(!found)
+				var/path = pick(subtypesof(/obj/item/nullrod))
+				var/obj/item/nullrod/rod = new path(src)
+				if(rod.chaplain_spawnable)
+					found = TRUE
+				else
+					qdel(rod)
 		if(12)
-			new /obj/item/nullrod/armblade(src)
-		if(13)
 			new /obj/item/warp_cube/red(src)
-		if(14)
+		if(13)
 			new /obj/item/organ/heart/gland/heals(src)
-		if(15)
+		if(14)
 			new /obj/item/eflowers(src)
-		if(16)
+		if(15)
 			new /obj/item/voodoo(src)
-		if(17)
+		if(16)
 			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
-		if(18)
+		if(17)
 			new /obj/item/book_of_babel(src)
-		if(19)
+		if(18)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-		if(20)
+		if(19)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(21)
+		if(20)
 			new /obj/item/rune_scimmy(src)
-		if(22)
+		if(21)
 			new /obj/item/dnainjector/dwarf(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
-		if(23)
-			new /obj/item/clothing/gloves/gauntlets(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -132,7 +135,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(itemUser, failText)
 		return
 	to_chat(itemUser, span_notice("The snake, satisfied with your oath, attaches itself and the rod to your forearm with an inseparable grip. Your thoughts seem to only revolve around the core idea of helping others, and harm is nothing more than a distant, wicked memory..."))
-	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency)
+	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency, type)
 	effect.hand = usedHand
 	activated()
 
@@ -311,25 +314,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 	user.sight |= sight_flags
 	if(!isnull(lighting_alpha))
 		user.lighting_alpha = min(user.lighting_alpha, lighting_alpha)
-
-/obj/item/clothing/glasses/telepathy
-	name = "blindfold of telepathy"
-	desc = "Covers the eyes, preventing natural sight. In return for committing oneself forever to the senses of the mind, the senses of the body are allowed to rest."
-	icon_state = "blindfoldwhite"
-	item_state = "blindfoldwhite"
-	flash_protect = 10 //they're blind, yo
-	tint = 2
-	darkness_view = 0
-	var/sight_flags = SEE_MOBS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-
-/obj/item/clothing/glasses/telepathy/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(slot == SLOT_GLASSES)
-		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-		user.sight |= sight_flags
-		item_flags = DROPDEL
 
 //Red/Blue Cubes
 /obj/item/warp_cube
@@ -710,15 +694,18 @@ GLOBAL_LIST_EMPTY(aide_list)
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
-		var/holycheck = ishumanbasic(C)
-		if(!(holycheck || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || (reac_volume < 5))) //humans (which are holy?), lizards, skeletons, and preterni(ises?) can get wings
+		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C))
+		if(valid_species && (reac_volume < 5))	 //humans, lizards, skeletons, and preterni(ises?) can get wings
+			to_chat(C, span_notice("<i>You feel something stir in you, but it quickly fades away.</i>"))
+			return ..()
+		if(!valid_species)
 			if(method == INGEST && show_message)
 				to_chat(C, span_notice("<i>You feel nothing but a terrible aftertaste.</i>"))
 			return ..()
 
 		to_chat(C, span_userdanger("A terrible pain travels down your back as wings burst out!"))
 		C.dna.species.GiveSpeciesFlight(C)
-		if(holycheck)
+		if(ishumanbasic(C))
 			to_chat(C, span_notice("You feel blessed!"))
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		if(islizard(C))
@@ -1815,6 +1802,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 //Legion
 #define COOLDOWN_TAP 60
 #define COOLDOWN_BAND 200
+#define COOLDOWN_TELE 15
 /obj/item/cane/cursed
 	name = "cursed cane"
 	desc = "A pristine marble cane. Tapping the cane against the ground calls lesser minions to you while tapping it against a dead or dying victim will make them yours should you\
@@ -1825,15 +1813,16 @@ GLOBAL_LIST_EMPTY(aide_list)
 	item_state = "cursedcane"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 0
+	force = 1 //for weaker animals and fucking legion skulls
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/band)
 	var/limit = 3
-	var/telerange = 10
+	var/telerange = 20 
 	var/next_tap = 0
 	var/next_band = 0
+	var/next_teleport = 0
 
 /obj/item/cane/cursed/pickup(mob/user)
 	. = ..()
@@ -1871,15 +1860,48 @@ GLOBAL_LIST_EMPTY(aide_list)
 	user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane before enveloping [M.p_them()] in a dark mass!"))
 	to_chat(M, span_userdanger("You feel the last of your energy fade away as everything turns to black!"))
 
+/obj/item/cane/cursed/proc/execute(mob/living/user, mob/living/target)
+	var/mob/living/M = target
+	M.adjustBruteLoss(M.health)
+	user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane, making [M.p_their()] eyes flash black before keeling over!"))
+
 /obj/item/cane/cursed/proc/curse(mob/living/user, mob/living/target)
 	var/mob/living/M = target
-	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead))
+	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead) || istype(M, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
 		return FALSE
 	if(isbot(M))//because they just walk out of the aide lol
 		return FALSE
 	if(GLOB.aide_list.len >= limit)
-		to_chat(user, span_notice("You can't control that many minions!"))
-		return FALSE
+		if(M.stat == CONSCIOUS)
+			if(iscarbon(M) && M.health < M.maxHealth/8)
+				execute(user, M)
+				return FALSE
+			if(ismegafauna(M) && M.health < M.maxHealth/5)
+				execute(user, M)
+				limit++
+				return FALSE
+			if(M.health < M.maxHealth/2.8)
+				execute(user, M)
+				return FALSE
+		else
+			to_chat(user, span_notice("You can't control that many minions!"))
+			return FALSE
+	if(ismegafauna(M))
+		if(M.health > M.maxHealth/5)
+			to_chat(user, span_notice("Your target must be weakened!"))
+			return FALSE
+		else if (M.stat == CONSCIOUS)
+			bigfinish(user, M)
+			limit ++
+			to_chat(user, span_notice("Defeating a powerful foe has increased the cane's capacity for minions!"))
+			return TRUE
+	if(istype(M, /mob/living/simple_animal/hostile/asteroid/elite))
+		if(M.health > M.maxHealth/5)
+			to_chat(user, span_notice("Your target must be weakened!"))
+			return FALSE
+		else
+			bigfinish(user, M)
+			return TRUE
 	if(M.has_status_effect(STATUS_EFFECT_EXHUMED))
 		to_chat(user, span_notice("[target] cannot be raised again!"))
 		return FALSE
@@ -1887,26 +1909,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 		littlefinish(user, M)
 		M.apply_status_effect(/datum/status_effect/exhumed)
 		return TRUE
-	if(ismegafauna(M))
-		if(M.health > M.maxHealth/10)
-			to_chat(user, span_notice("Your target must be weakened!"))
-			return FALSE
-		else
-			bigfinish(user, M)
-			limit ++
-			to_chat(user, span_notice("Defeating a powerful foe has increased the cane's capacity for minions!"))
-			return TRUE
-	if(istype(M, /mob/living/simple_animal/hostile/asteroid/elite))
-		if(M.health > M.maxHealth/10)
-			to_chat(user, span_notice("Your target must be weakened!"))
-			return FALSE
-		else
-			bigfinish(user, M)
-			return TRUE
 	if(iscarbon(M) && M.health < M.maxHealth/8)
 		littlefinish(user, M)
 		return TRUE
-	if(M.health < M.maxHealth/5)
+	if(M.health < M.maxHealth/2.8)
 		littlefinish(user, M)
 		return TRUE
 
@@ -1941,11 +1947,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/turf/Z = get_turf(thrownby)
 	if(hit_atom.density == TRUE && get_dist(src,thrownby) <= telerange)
 		var/obj/effect/temp_visual/decoy/fading/halfsecond/F = new(Z, thrownby)
-		F.forceMove(Z)
-		thrownby.forceMove(D)
-		thrownby.visible_message(span_warning("[thrownby] reappears at the location of [thrownby.p_their()] cane!"))
+		if(next_teleport < world.time)
+			F.forceMove(Z)
+			next_teleport = world.time + COOLDOWN_TELE
+			thrownby.forceMove(D)
+			thrownby.visible_message(span_warning("[thrownby] reappears at the location of [thrownby.p_their()] cane!"))
+			thrownby.put_in_hands(src)
 		if(isliving(hit_atom))
 			var/mob/living/M = hit_atom
 			if(curse(thrownby, M) == TRUE)
 				to_chat(thrownby, span_notice("You appear before the cane and stab [M], making a new minion out of [M.p_them()]!"))
-				thrownby.put_in_hands(src)

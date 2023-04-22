@@ -628,6 +628,7 @@
 	name = "\improper Rod of The White"
 	desc = "A sleek white rod with a snake spiraling along it."
 	efficiency = 0.5
+	resistance_flags = FREEZE_PROOF
 
 /obj/item/rod_of_asclepius/white/Initialize()
 	. = ..()

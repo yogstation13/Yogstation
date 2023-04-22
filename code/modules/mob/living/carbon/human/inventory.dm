@@ -163,19 +163,19 @@
 				update_inv_w_uniform()
 			update_inv_wear_suit()
 	else if(I == w_uniform)
-		if(invdrop)
-			if(r_store)
-				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
-			if(l_store)
-				dropItemToGround(l_store, TRUE)
-			if(wear_id)
-				dropItemToGround(wear_id)
-			if(belt)
-				dropItemToGround(belt)
 		w_uniform = null
 		update_suit_sensors()
 		if(!QDELETED(src))
 			update_inv_w_uniform()
+		if(invdrop)
+			if(r_store && !can_equip(r_store, SLOT_R_STORE, TRUE))
+				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
+			if(l_store && !can_equip(l_store, SLOT_L_STORE, TRUE))
+				dropItemToGround(l_store, TRUE)
+			if(wear_id && !can_equip(wear_id, SLOT_WEAR_ID, TRUE))
+				dropItemToGround(wear_id)
+			if(belt && !can_equip(belt, SLOT_BELT, TRUE))
+				dropItemToGround(belt)
 	else if(I == gloves)
 		gloves = null
 		if(!QDELETED(src))
@@ -224,12 +224,44 @@
 		if(!QDELETED(src))
 			update_inv_s_store()
 
+/mob/living/carbon/human/toggle_internals(obj/item/tank, is_external = FALSE)
+	// Just close the tank if it's the one the mob already has open.
+	var/obj/item/existing_tank = is_external ? external : internal
+	if(tank == existing_tank)
+		return toggle_close_internals(is_external)
+	// Use breathing tube regardless of mask.
+	if(can_breathe_tube())
+		return toggle_open_internals(tank, is_external)
+	// Use mask in absence of tube.
+	if(isclothing(wear_mask) && ((wear_mask.visor_flags & MASKINTERNALS) || (wear_mask.clothing_flags & MASKINTERNALS)))
+		// Adjust dishevelled breathing mask back onto face.
+		if (wear_mask.mask_adjusted)
+			wear_mask.adjustmask(src)
+		return toggle_open_internals(tank, is_external)
+	// Use helmet in absence of tube or valid mask.
+	if(can_breathe_helmet())
+		return toggle_open_internals(tank, is_external)
+	// Notify user of missing valid breathing apparatus.
+	if (wear_mask)
+		// Invalid mask
+		to_chat(src, span_warning("[wear_mask] can't use [tank]!"))
+	else if (head)
+		// Invalid headgear
+		to_chat(src, span_warning("[head] isn't airtight! You need a mask!"))
+	else
+		// Not wearing any breathing apparatus.
+		to_chat(src, span_warning("You need a mask!"))
+
+/// Returns TRUE if the tank successfully toggles open/closed. Opens the tank only if a breathing apparatus is found.
+/mob/living/carbon/human/toggle_externals(obj/item/tank)
+	return toggle_internals(tank, TRUE)
+
 /mob/living/carbon/human/wear_mask_update(obj/item/I, toggle_off = 1)
 	if((I.flags_inv & (HIDEHAIR|HIDEFACIALHAIR)) || (initial(I.flags_inv) & (HIDEHAIR|HIDEFACIALHAIR)))
 		update_hair()
-	if(toggle_off && internal && !getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-		update_internals_hud_icon(0)
-		internal = null
+	// Close internal air tank if mask was the only breathing apparatus.
+	if(invalid_internals())
+		cutoff_internals()
 	if(I.flags_inv & HIDEEYES)
 		update_inv_glasses()
 	sec_hud_set_security_status()
@@ -242,6 +274,9 @@
 		var/obj/item/clothing/C = I
 		if(istype(C) && C.dynamic_hair_suffix)
 			update_hair()
+	// Close internal air tank if helmet was the only breathing apparatus.
+	if (invalid_internals())
+		cutoff_internals()
 	if(I.flags_inv & HIDEEYES || forced)
 		update_inv_glasses()
 	if(I.flags_inv & HIDEEARS || forced)

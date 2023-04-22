@@ -31,6 +31,8 @@
 	var/last_trigger = 0
 	///can we convert people to revolution
 	var/can_convert = FALSE
+	///can we stun silicons
+	var/borgstun = TRUE
 
 /obj/item/assembly/flash/suicide_act(mob/living/user)
 	if(burnt_out)
@@ -148,10 +150,10 @@
 					trauma.on_flash(user, M)
 			else
 				to_chat(M, span_userdanger("You are blinded by [src]!"))
-			if(M.IsParalyzed())
-				M.Paralyze(rand(20,30))
+			if(M.IsParalyzed() || M.IsKnockdown())
+				M.Knockdown(rand(20,30))
 			else
-				M.Paralyze(rand(80,120))
+				M.Knockdown(rand(80,120))
 		else if(user)
 			visible_message(span_disarm("[user] fails to blind [M] with the flash!"))
 			to_chat(user, span_warning("You fail to blind [M] with the flash!"))
@@ -169,7 +171,7 @@
 	if(iscarbon(M))
 		flash_carbon(M, user, 5, 1)
 		return TRUE
-	else if(issilicon(M))
+	else if(issilicon(M) && borgstun)
 		var/mob/living/silicon/robot/R = M
 		if(!R.sensor_protection)
 			log_combat(user, R, "flashed", src)
@@ -237,6 +239,9 @@
 
 
 /obj/item/assembly/flash/cyborg
+	name = "cyborg flash"
+	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production. This variant is unable to stun cyborgs."
+	borgstun = FALSE
 
 /obj/item/assembly/flash/cyborg/attack(mob/living/M, mob/user)
 	..()
@@ -250,6 +255,11 @@
 	return
 /obj/item/assembly/flash/cyborg/screwdriver_act(mob/living/user, obj/item/I)
 	return
+	
+/obj/item/assembly/flash/cyborg/combat
+	name = "combat cyborg flash"
+	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production. This variant is able to stun cyborgs."
+	borgstun = TRUE
 
 /obj/item/assembly/flash/memorizer
 	name = "memorizer"

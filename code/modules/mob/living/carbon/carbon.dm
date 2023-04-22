@@ -93,6 +93,8 @@
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(mind?.martial_art.handle_throw(hit_atom, src))
 		return
+	if(HAS_TRAIT(src, TRAIT_IMPACTIMMUNE))
+		return
 	. = ..()
 	var/hurt = TRUE
 	var/extra_speed = 0
@@ -263,12 +265,10 @@
 							span_userdanger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."))
 			if(do_mob(usr, src, POCKET_STRIP_DELAY))
 				if(internal)
-					internal = null
-					update_internals_hud_icon(0)
+					cutoff_internals()
 				else if(ITEM && istype(ITEM, /obj/item/tank))
 					if((wear_mask && (wear_mask.clothing_flags & MASKINTERNALS)) || getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-						internal = ITEM
-						update_internals_hud_icon(1)
+						open_internals(ITEM)
 
 				visible_message(span_danger("[usr] [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name]."), \
 								span_userdanger("[usr] [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name]."))
@@ -767,7 +767,7 @@
 	if(!client)
 		return
 
-	if(health <= crit_threshold)
+	if(health <= crit_threshold && !(HAS_TRAIT(src, TRAIT_NOHARDCRIT) && HAS_TRAIT(src, TRAIT_NOSOFTCRIT)))//if crit is entirely disabled, no crit overlay at all
 		var/severity = 0
 		switch(health)
 			if(-20 to -10)
@@ -790,7 +790,7 @@
 				severity = 9
 			if(-INFINITY to -95)
 				severity = 10
-		if(!InFullCritical())
+		if(!InFullCritical() && !HAS_TRAIT(src, TRAIT_NOSOFTCRIT))//no soft crit blind for those immune to soft crit
 			var/visionseverity = 4
 			switch(health)
 				if(-8 to -4)
@@ -880,10 +880,6 @@
 				hud_used.healths.icon_state = "health6"
 		else
 			hud_used.healths.icon_state = "health7"
-
-/mob/living/carbon/proc/update_internals_hud_icon(internal_state = 0)
-	if(hud_used && hud_used.internals)
-		hud_used.internals.icon_state = "internal[internal_state]"
 
 /mob/living/carbon/update_stat()
 	if(status_flags & GODMODE)

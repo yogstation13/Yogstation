@@ -40,6 +40,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	var/mob/affecting = null
 	var/deity_name = "Christ"
 	force_string = "holy"
+	slot_flags = ITEM_SLOT_BELT
 	var/success_heal_chance = 60
 
 /obj/item/storage/book/bible/Initialize()
@@ -105,14 +106,11 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			to_chat(user, span_warning("[src.deity_name] refuses to heal this metallic taint!"))
 			return 0
 
-	var/heal_amt = 10
-	var/list/hurt_limbs = H.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)
+	var/heal_amt = 20
 
-	if(hurt_limbs.len)
-		for(var/X in hurt_limbs)
-			var/obj/item/bodypart/affecting = X
-			if(affecting.heal_damage(heal_amt, heal_amt, null, BODYPART_ORGANIC))
-				H.update_damage_overlays()
+	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
+		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ORGANIC)
+		H.update_damage_overlays()
 		H.visible_message(span_notice("[user] heals [H] with the power of [deity_name]!"))
 		to_chat(H, span_boldnotice("May the power of [deity_name] compel you to be healed!"))
 		playsound(src.loc, "punch", 25, 1, -1)
@@ -231,15 +229,20 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 				EX.icon_state = "ghost1"
 				EX.name = "Purified [initial(EX.name)]"
 			user.visible_message(span_notice("[user] has purified [SS]!"))
-	else if(istype(A, /obj/item/nullrod/scythe/talking))
-		var/obj/item/nullrod/scythe/talking/sword = A
+	else if(istype(A, /obj/item/nullrod/talking))
+		var/obj/item/nullrod/talking/sword = A
 		to_chat(user, span_notice("You begin to exorcise [sword]..."))
+		if(sword.owner)
+			to_chat(sword.owner, "you feel the soul in your blade cry out as it starts getting exorcised!")
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,TRUE)
 		if(do_after(user, 4 SECONDS, sword))
 			playsound(src,'sound/effects/pray_chaplain.ogg',60,TRUE)
 			for(var/mob/living/simple_animal/shade/S in sword.contents)
 				to_chat(S, span_userdanger("You were destroyed by the exorcism!"))
 				qdel(S)
+			if(sword.owner)
+				sword.owner.RemoveSpell(sword.summon)
+				sword.owner = null
 			sword.possessed = FALSE //allows the chaplain (or someone else) to reroll a new spirit for their sword
 			sword.name = initial(sword.name)
 			REMOVE_TRAIT(sword, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT) //in case the "sword" is a possessed dummy

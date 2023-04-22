@@ -12,6 +12,7 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/xeno = 20, /obj/item/stack/sheet/animalhide/xeno = 3)
 
 	var/alt_inhands_file = 'icons/mob/alienqueen.dmi'
+	var/datum/timedevent/time_to_shuttle
 
 /mob/living/carbon/alien/humanoid/royal/can_inject()
 	return 0
@@ -22,12 +23,12 @@
 	maxHealth = 400
 	health = 400
 	icon_state = "alienq"
-	var/datum/action/small_sprite/smallsprite = new/datum/action/small_sprite/queen()
+	var/datum/action/small_sprite/smallsprite = new /datum/action/small_sprite/queen()
 
 /mob/living/carbon/alien/humanoid/royal/queen/Initialize()
 	if(!is_centcom_level(get_turf(src)))
 		SSshuttle.registerHostileEnvironment(src) //yogs: aliens delay shuttle
-		addtimer(CALLBACK(src, .proc/game_end), 30 MINUTES) //yogs: time until shuttle is freed/called
+		time_to_shuttle = addtimer(CALLBACK(src, PROC_REF(game_end)), 30 MINUTES, TIMER_STOPPABLE) //yogs: time until shuttle is freed/called
 	//there should only be one queen
 	for(var/mob/living/carbon/alien/humanoid/royal/queen/Q in GLOB.carbon_list)
 		if(Q == src)
@@ -45,6 +46,17 @@
 	smallsprite.Grant(src)
 	return ..()
 
+/mob/living/carbon/alien/humanoid/royal/queen/get_status_tab_items()
+	. = ..()
+	if(time_to_shuttle)
+		. += ""
+		. += "Blocked Shuttle Timer: [round(timeleft(time_to_shuttle) / 600, 1)] minutes" //weird conversion but works
+
+/mob/living/carbon/alien/humanoid/royal/queen/proc/kill_shuttle_timer()
+	SSshuttle.clearHostileEnvironment(src)
+	if(time_to_shuttle)
+		deltimer(time_to_shuttle)
+
 /mob/living/carbon/alien/humanoid/royal/queen/create_internal_organs()
 	internal_organs += new /obj/item/organ/alien/plasmavessel/large/queen
 	internal_organs += new /obj/item/organ/alien/resinspinner
@@ -58,17 +70,17 @@
 		return
 	if(stat == DEAD)
 		return
-	SSshuttle.clearHostileEnvironment(src)
+	kill_shuttle_timer()
 	if(EMERGENCY_IDLE_OR_RECALLED)
 		priority_announce("Xenomorph infestation detected: Emergency shuttle will be sent to recover any survivors, if this is in error feel free to recall.")
 		SSshuttle.emergency.request(null, set_coefficient=0.5)
 
 /mob/living/carbon/alien/humanoid/royal/queen/death()//yogs start: dead queen doesnt stop shuttle
-	SSshuttle.clearHostileEnvironment(src)
+	kill_shuttle_timer()
 	..()
 
 /mob/living/carbon/alien/humanoid/royal/queen/Destroy()
-	SSshuttle.clearHostileEnvironment(src)
+	kill_shuttle_timer()
 	..() //yogs end
 
 //Queen verbs
@@ -98,8 +110,6 @@
 	plasma_cost = 500 //Plasma cost used on promotion, not spawning the parasite.
 
 	action_icon_state = "alien_queen_promote"
-
-
 
 /obj/effect/proc_holder/alien/royal/queen/promote/fire(mob/living/carbon/alien/user)
 	var/obj/item/queenpromote/prom

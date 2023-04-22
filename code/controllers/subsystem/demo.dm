@@ -25,6 +25,9 @@ SUBSYSTEM_DEF(demo)
 	var/last_completed = 0
 
 /datum/controller/subsystem/demo/proc/write_time()
+	if(!can_fire)
+		return
+
 	var/new_time = world.time
 	if(last_written_time != new_time)
 		if(initialized)
@@ -34,6 +37,9 @@ SUBSYSTEM_DEF(demo)
 	last_written_time = new_time
 
 /datum/controller/subsystem/demo/proc/write_event_line(line)
+	if(!can_fire)
+		return
+
 	write_time()
 	if(initialized)
 		WRITE_LOG_NO_FORMAT(GLOB.demo_log, "[line]\n")
@@ -41,6 +47,9 @@ SUBSYSTEM_DEF(demo)
 		pre_init_lines += line
 
 /datum/controller/subsystem/demo/proc/write_chat(target, text)
+	if(!can_fire)
+		return
+
 	var/target_text = ""
 	if(target == GLOB.clients)
 		target_text = "world"

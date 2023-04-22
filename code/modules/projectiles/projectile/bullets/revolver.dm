@@ -85,7 +85,8 @@
 
 /obj/item/projectile/bullet/pellet/a357_ironfeather
 	name = ".357 Ironfeather pellet"
-	damage = 8 //Total of 48 damage assuming PBS; so no, it's not a two-shot anymore
+	damage = 8 //Total of 48 damage assuming PBS
+	armour_penetration = 10 //In between normal pellets and flechette for AP
 	wound_bonus = 7 //So it might be able to actually wound things
 	bare_wound_bonus = 7
 	tile_dropoff = 0.35 //Loses 0.05 damage less per tile than standard damaging pellets
@@ -93,8 +94,7 @@
 
 /obj/item/projectile/bullet/a357/nutcracker
 	name = ".357 Nutcracker bullet"
-	damage = 20 //Twice the damage of a breaching slug
-	wound_bonus = -10
+	damage = 30
 
 /obj/item/projectile/bullet/a357/nutcracker/on_hit(atom/target) //Basically breaching slug with 1.5x damage
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
@@ -103,12 +103,12 @@
 
 /obj/item/projectile/bullet/a357/metalshock
 	name = ".357 Metalshock bullet"
-	damage = 10
+	damage = 15
 	wound_bonus = -5
 
 /obj/item/projectile/bullet/a357/metalshock/on_hit(atom/target, blocked = FALSE)
 	..()
-	tesla_zap(target, 4, 20000, TESLA_MOB_DAMAGE) //Should do around 33 burn to the first target it
+	tesla_zap(target, 4, 20000, TESLA_MOB_DAMAGE) //Should do around 33 burn to the first target hit, assume no siemens coefficient (black gloves have 0.5)
 	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/a357/heartpiercer
@@ -121,7 +121,7 @@
 /obj/item/projectile/bullet/a357/wallstake
 	name = ".357 Wallstake bullet"
 	damage = 36 //Almost entirely a meme round at this point. 36 damage barely four-shots standard armor
-	wound_bonus = -40
+	wound_bonus = -35
 	sharpness = SHARP_NONE //Blunt
 
 /obj/item/projectile/bullet/a357/wallstake/on_hit(atom/target, blocked = FALSE)
