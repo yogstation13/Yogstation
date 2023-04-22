@@ -278,6 +278,7 @@
 	name = "red bandana"
 	desc = "A fine red bandana with nanotech lining."
 	icon_state = "bandred"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/bandana/blue
 	name = "blue bandana"

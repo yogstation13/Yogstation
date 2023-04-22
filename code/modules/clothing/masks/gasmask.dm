@@ -10,6 +10,7 @@
 	permeability_coefficient = 0.01
 	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH
 	resistance_flags = FIRE_PROOF
+	mutantrace_variation = MUTANTRACE_VARIATION
 	
 // **** Welding gas mask ****
 
@@ -27,6 +28,7 @@
 	visor_flags_inv = HIDEEYES
 	visor_flags_cover = MASKCOVERSEYES
 	resistance_flags = FIRE_PROOF
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/welding/attack_self(mob/user)
 	weldingvisortoggle(user)
@@ -47,6 +49,7 @@
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "syndicate"
 	strip_delay = 60
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/clown_hat
 	name = "clown wig and mask"
@@ -57,6 +60,7 @@
 	dye_color = "clown"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
+	mutantrace_variation = MUTANTRACE_VARIATION
 	actions_types = list(/datum/action/item_action/adjust)
 	dog_fashion = /datum/dog_fashion/head/clown
 	var/list/clownmask_designs = list()
@@ -103,6 +107,7 @@
 	item_state = "sexyclown"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
@@ -112,6 +117,7 @@
 	item_state = "mime"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
+	mutantrace_variation = MUTANTRACE_VARIATION
 	actions_types = list(/datum/action/item_action/adjust)
 	var/list/mimemask_designs = list()
 
