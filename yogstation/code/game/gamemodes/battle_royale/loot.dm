@@ -139,39 +139,49 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 
 GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/circular_saw = 5,
-		/obj/item/kitchen/knife/combat/survival = 5,
-		/obj/item/pen/edagger = 5,
-		/obj/item/gun/ballistic/automatic/pistol = 1,
+
+		/obj/item/kitchen/knife/combat/survival = 4,
+
+		/obj/item/pen/edagger = 3,
+
 		/obj/item/flamethrower/full/tank = 1,
-		/obj/item/gun/ballistic/shotgun/automatic/combat = 1,
-		/obj/item/melee/transforming/energy/sword = 1,
-		/obj/item/gun/ballistic/shotgun/doublebarrel = 1,
-		/obj/item/gun/energy/laser/retro/old = 1,
-		/obj/item/gun/energy/laser = 1,
-		/obj/item/gun/ballistic/automatic/wt550 = 1,
-		/obj/item/gun/ballistic/shotgun/riot = 1,
-		/obj/item/gun/ballistic/revolver/detective = 1,
-		/obj/item/gun/ballistic/shotgun/automatic/combat/compact = 1,
-		/obj/item/gun/ballistic/revolver = 1,
-		/obj/item/gun/ballistic/automatic/pistol/deagle = 1,
-		/obj/item/gun/energy/laser/captain = 1,
-		/obj/item/gun/energy/beam_rifle = 1,
-		/obj/item/gun/ballistic/automatic/c20r/unrestricted = 1,
-		/obj/item/gun/ballistic/automatic/mini_uzi = 1,
-		/obj/item/gun/ballistic/shotgun/bulldog/unrestricted = 1,
-		/obj/item/gun/ballistic/automatic/tommygun = 1,
-		/obj/item/gun/ballistic/shotgun/automatic/dual_tube = 1,
-		/obj/item/gun/ballistic/automatic/sniper_rifle = 1,
-		/obj/item/gun/ballistic/automatic/ar = 1,
-		/obj/item/gun/ballistic/automatic/m90/unrestricted = 1,
-		/obj/item/twohanded/dualsaber = 1,
-		/obj/item/gun/energy/kinetic_accelerator/crossbow = 1,
-		/obj/item/gun/ballistic/bow/energy/syndicate = 1,
-		/obj/item/melee/powerfist = 1,
-		/obj/item/melee/fryingpan/bananium = 1,
-		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = 1,
+
+		/obj/item/twohanded/vxtvulhammer = 0,
+		/obj/item/gun/ballistic/shotgun/riot = 0,
+		/obj/item/gun/ballistic/shotgun/automatic/dual_tube = 0,
+		/obj/item/gun/ballistic/revolver/detective = 0,
+
+		/obj/item/melee/powerfist = -1,
+		/obj/item/gun/ballistic/automatic/pistol = -1,
+		/obj/item/gun/ballistic/shotgun/doublebarrel = -1,
+		/obj/item/melee/transforming/energy/sword = -1,
+		/obj/item/gun/energy/laser/retro/old = -1,
+
+		/obj/item/gun/ballistic/shotgun/automatic/combat = -2,
+		/obj/item/gun/ballistic/shotgun/automatic/combat/compact = -2,
+		/obj/item/gun/ballistic/automatic/wt550 = -2,
+		/obj/item/gun/ballistic/shotgun/bulldog/unrestricted = -2,
+		/obj/item/gun/energy/kinetic_accelerator/crossbow = -2,
+		/obj/item/gun/energy/laser = -2,
+
+		/obj/item/gun/ballistic/revolver = -3,
+		/obj/item/gun/ballistic/bow/energy/syndicate = -3,
+		/obj/item/gun/energy/laser/captain = -3,
+
+		/obj/item/gun/ballistic/automatic/m90/unrestricted = -3,
+		/obj/item/gun/ballistic/automatic/pistol/deagle = -3,
+		/obj/item/gun/ballistic/automatic/ar = -3,
+		/obj/item/gun/ballistic/automatic/c20r/unrestricted = -3,
+		/obj/item/gun/ballistic/automatic/mini_uzi = -3,
+		/obj/item/gun/ballistic/automatic/tommygun = -3,
+
+		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = -4,
+		/obj/item/twohanded/dualsaber = -4,
+		/obj/item/gun/energy/beam_rifle = -4,
+		/obj/item/gun/ballistic/automatic/sniper_rifle = -4,
+
+		/obj/item/melee/fryingpan/bananium = -5,
 		/obj/item/his_grace = -5,
-		/obj/item/twohanded/vxtvulhammer = 1,
 		))
 
 GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max health doesn't scale, there's also less healing items than other items
