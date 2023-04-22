@@ -1,5 +1,5 @@
 /obj/singularity/narsie //Moving narsie to a child object of the singularity so it can be made to function differently. --NEO
-	name = "Nar-sie's Avatar"
+	name = "Nar'sie's Avatar"
 	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees."
 	icon = 'icons/obj/magic_terror.dmi'
 	pixel_x = -89
@@ -16,12 +16,12 @@
 	light_color = rgb(255, 0, 0)
 	gender = FEMALE
 	does_targeting = FALSE
-	var/clashing = FALSE //If Nar-Sie is fighting Ratvar
+	var/clashing = FALSE //If Nar'sie is fighting Ratvar
 
 /obj/singularity/narsie/large
-	name = "Nar-Sie"
+	name = "Nar'sie"
 	icon = 'icons/obj/narsie.dmi'
-	// Pixel stuff centers Narsie.
+	// Pixel stuff centers Nar'sie.
 	pixel_x = -236
 	pixel_y = -256
 	current_size = 12
@@ -36,7 +36,7 @@
 	var/area/A = get_area(src)
 	if(A)
 		var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/cult_effects.dmi', "ghostalertsie")
-		notify_ghosts("Nar-Sie has risen in \the [A.name]. Reach out to the Geometer to be given a new shell for your soul.", source = src, alert_overlay = alert_overlay, action=NOTIFY_ATTACK)
+		notify_ghosts("Nar'sie has risen in \the [A.name]. Reach out to the Geometer to be given a new shell for your soul.", source = src, alert_overlay = alert_overlay, action=NOTIFY_ATTACK)
 	INVOKE_ASYNC(src, .proc/narsie_spawn_animation)
 
 /obj/singularity/narsie/large/cult  // For the new cult ending, guaranteed to end the round within 3 minutes
@@ -165,7 +165,7 @@
 /obj/singularity/narsie/Bump(atom/A)
 	var/turf/T = get_turf(A)
 	if(T == loc)
-		T = get_step(A, A.dir) //please don't slam into a window like a bird, nar-sie
+		T = get_step(A, A.dir) //please don't slam into a window like a bird, Nar'sie
 	forceMove(T)
 
 
@@ -186,7 +186,7 @@
 	return
 
 
-/obj/singularity/narsie/proc/pickcultist() //Narsie rewards her cultists with being devoured first, then picks a ghost to follow.
+/obj/singularity/narsie/proc/pickcultist() //Nar'sie rewards her cultists with being devoured first, then picks a ghost to follow.
 	var/list/cultists = list()
 	var/list/noncultists = list()
 	for(var/obj/structure/destructible/clockwork/massive/ratvar/enemy in GLOB.poi_list) //Prioritize killing Ratvar
