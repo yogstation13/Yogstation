@@ -505,8 +505,9 @@
 	icon_state = "generic"
 	build_path = /obj/machinery/inspector_booth
 	req_components = list(
-		/obj/item/stamp = 1,
+		// Make sure stamp is second because otherwise the machine frame will treat the denied stamp as granted
 		/obj/item/stamp/denied = 1,
+		/obj/item/stamp = 1,
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stock_parts/scanning_module = 1,

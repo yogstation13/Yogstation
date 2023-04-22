@@ -1,6 +1,6 @@
 /obj/machinery/inspector_booth
 	name = "inspector booth"
-	desc = "Used for inspecting paperwork."
+	desc = "Used for inspecting paperwork and ID cards."
 	icon = 'icons/obj/machines/inspector_booth.dmi'
 	icon_state = "booth"
 	// TODO: add reduced power usage for part upgrades
@@ -8,12 +8,12 @@
 	//idle_power_usage = 20
 	//active_power_usage = 50
 	circuit = /obj/item/circuitboard/machine/inspector_booth
+	density = TRUE
 	
 	// TODO: add increased health and armor for part upgrades
 	// armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	// max_integrity = 200
 
-	// TODO: add increased item capacity for part upgrades
 	var/max_items = 5
 	var/max_stamps = 3
 
@@ -49,13 +49,48 @@
 		"card_drag_stop" = 'sound/machines/inspector_booth/paper-dragstop0.wav',
 	)
 
+
 /obj/machinery/inspector_booth/Initialize()
 	. = ..()
+	update_icon()
 
-/obj/machinery/inspector_booth/Destroy()
-	return ..()
+/obj/machinery/inspector_booth/update_icon()
+	if (stat & NOPOWER)
+		icon_state = "booth_off"
+	else if (panel_open || stat & MAINT)
+		icon_state = "booth_maintenance"
+	else
+		icon_state = "booth"
+
+/obj/machinery/inspector_booth/RefreshParts()
+	var/b
+	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
+		b += B.rating
+	var/m
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
+		m += M.rating
+	max_items = 3 + 2*b
+	max_stamps = 2 + m
+
+/obj/machinery/inspector_booth/examine(mob/user)
+	. = ..()
+	var/item_capacity = max_items - contents.len
+	var/stamp_capacity = max_stamps - stamp_upgrades.len
+	if (in_range(user, src) || isobserver(user))
+		. += span_notice("It looks like there is room for [item_capacity] more items and [stamp_capacity] more stamps.")
+	if (panel_open)
+		. += span_notice("[src]'s maintenance panel is open!")
 
 /obj/machinery/inspector_booth/attackby(obj/item/I, mob/user, params)
+	// Normal tool interactions
+	if (get_dir(user, src) == src.dir && default_deconstruction_screwdriver(user, "booth_maintenance", "booth", I))
+		return
+	if (default_change_direction_wrench(user, I) || default_deconstruction_crowbar(I))
+		return
+
+	if (user.a_intent != INTENT_HELP)
+		return
+
 	// For adding stamp upgrades to component_parts
 	if (istype(I, /obj/item/stamp))
 		if (stamp_upgrades.len >= max_stamps) 
@@ -71,7 +106,7 @@
 		else
 			to_chat(user, span_warning("\The [src]'s stamp tray is full!"))
 		return
-		
+	
 	// Adding to src
 	if (contents.len >= max_items)
 		to_chat(user, span_warning("\The [src] is full!"))
@@ -84,15 +119,15 @@
 		if (!istype(I, /obj/item/card/id/captains_spare/temporary))
 			valid = TRUE
 	
-	if(valid)
+	if (valid)
 		if (is_item_safe(user, I))
-			if(user.transferItemToLoc(I, src))
+			if (user.transferItemToLoc(I, src))
 				user.visible_message("[user] inserts \the [I] into \the [src].", \
 				span_notice("You insert \the [I] into \the [src]."))
 				item_list["item"+ num2text(++item_ids)] = list("item" = I, "x" = 0, "y" = 0, "z" = -1)
 			else
 				to_chat(user, span_warning("You failed to insert \the [I] into \the [src]!"))
-	else 
+	else
 		to_chat(user, span_warning("\The [src] rejects \the [I]."))
 
 // TODO: Add auto extinguishing/decontam for part upgrades
@@ -108,12 +143,17 @@
 			to_chat(user, span_warning("\The [src] rejects the irradiated [I]!"))
 	return safe
 
+/obj/machinery/inspector_booth/can_interact(mob/user)
+	. = ..()
+	if(get_dir(user, src) != src.dir && !isobserver(user))
+		return FALSE
+
 /obj/machinery/inspector_booth/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
 		var/user_ref = REF(user)
 		var/is_living = isliving(user)
-		if(is_living)
+		if (is_living)
 			concurrent_users += user_ref
 		ui = new(user, src, "InspectorBooth", name)
 		ui.open()
@@ -136,7 +176,7 @@
 			var/obj/item/paper/P = I
 			var/text = P.info
 			for (var/i = 1; i <= P.written.len; ++i)
-				if(istype(P.written[i] ,/datum/langtext))
+				if (istype(P.written[i] ,/datum/langtext))
 					var/datum/langtext/L = P.written[i]
 					text += "\n" + L.text
 			items["papers"] += list(list("id" = key, "text" = text, "stamps" = P.stamps, 
@@ -162,7 +202,7 @@
 				var/icon/picture = icon(R.fields["photo_front"].picture.picture_image)
 				picture.Crop(10, 32, 22, 22)
 				var/md5 = md5(fcopy_rsc(picture))
-				if(!SSassets.cache["photo_[md5]_cropped.png"])
+				if (!SSassets.cache["photo_[md5]_cropped.png"])
 					SSassets.transport.register_asset("photo_[md5]_cropped.png", picture)
 				SSassets.transport.send_assets(user, list("photo_[md5]_cropped.png" = picture))
 				items["idcards"][names[name]] += list("picture" = SSassets.transport.get_asset_url("photo_[md5]_cropped.png"))
@@ -182,7 +222,7 @@
 	return data
 
 /obj/machinery/inspector_booth/ui_act(action, list/params)
-	if(..())
+	if (..())
 		return
 	
 	var/mob/living/user = params["ckey"] ? get_mob_by_key(params["ckey"]) : null
@@ -191,7 +231,7 @@
 	var/obj/item = (params["id"] in item_list) ? item_list[params["id"]]["item"] : null
 
 	switch(action)
-		if("play_sfx")
+		if ("play_sfx")
 			var/name = params["name"]
 			if (name in sfx)
 				var/volume = params["volume"] ? params["volume"] : 50
@@ -199,7 +239,7 @@
 				var/extra_range = params["extrarange"] ? params["extrarange"] : -3
 				playsound(user ? user : src, sfx[name], volume, vary, extra_range)
 				. = TRUE
-		if("stamp_item")
+		if ("stamp_item")
 			var/type = params["type"] ? params["type"] : "stamp-mime"
 			if (item != null)
 				if (istype(item, /obj/item/paper))
@@ -215,19 +255,19 @@
 					LAZYADD(P.stamped, type)
 					P.add_overlay(stampoverlay)
 					. = TRUE
-		if("move_item")
+		if ("move_item")
 			if (params["id"] in item_list)
 				var/id = params["id"]
 				item_list[id]["x"] = params["x"]
 				item_list[id]["y"] = params["y"]
 				item_list[id]["z"] = params["z"]
 				. = TRUE
-		if("take_item")
+		if ("take_item")
 			if (user && item && !QDELETED(item))
 				user.put_in_hands(item)
 				item_list -= params["id"]
 				. = TRUE
-		if("drop_item")
+		if ("drop_item")
 			if (item && !QDELETED(item))
 				item.forceMove(drop_location())
 				item_list -= params["id"]
