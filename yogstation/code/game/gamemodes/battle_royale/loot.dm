@@ -202,50 +202,61 @@ GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max
 		))
 
 GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's not an explicit weapon, clothing piece, or healing item really
-		/obj/item/grenade/plastic/c4 = 1,
-		/obj/item/grenade/syndieminibomb = 1,
-		/obj/item/storage/backpack/duffelbag/syndie/c4 = 1,
-		/obj/machinery/syndicatebomb = 1,
-		/obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted = 1, //more of a ranged bomb than a weapon
-		/obj/item/gun/ballistic/rocketlauncher/unrestricted = 1,
-		/obj/item/gun/energy/wormhole_projector/upgraded = 1,
-		/obj/item/storage/toolbox/mechanical = 1,
-		/obj/item/storage/box/syndie_kit/throwing_weapons = 1,
-		/obj/item/guardiancreator/tech/random = 1,
-		/obj/item/guardiancreator/carp/random = 1,
-		/obj/item/stand_arrow/safe = -5,
-		/obj/item/bodypart/l_arm/robot/buster = -5,
-		/obj/item/grenade/spawnergrenade/manhacks = -5,
-		/obj/item/autosurgeon/cmo = 1,
-		/obj/item/autosurgeon/thermal_eyes = 1,
-		/obj/item/autosurgeon/xray_eyes = 1,
-		/obj/item/autosurgeon/reviver = 1,
-		/obj/item/autosurgeon/syndicate/spinalspeed = 1,
-		/obj/item/storage/box/syndie_kit/augmentation = -5,
-		/obj/item/multisurgeon/airshoes = 1,
-		/obj/item/spellbook = -5,
-		/obj/item/book/granter/martial/cqc = 1,
-		/obj/item/book/granter/martial/carp = 1,
-		/obj/item/battleroyale/martial/ipc = 1,
-		/obj/item/battleroyale/martial/lizard = 1,
-		/obj/item/battleroyale/martial/preternis = 1,
-		/obj/item/battleroyale/martial/phytosian = 1,
-		/obj/item/battleroyale/martial/plasmaman = 1,
-		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = 1,
-		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = 1,
-		/obj/item/antag_spawner/nuke_ops/borg_tele/saboteur = 1,
-		/obj/item/book/granter/spell/smoke = 1,
-		/obj/item/book/granter/spell/smoke/lesser = 5,
-		/obj/item/book/granter/spell/knock = 1,
-		/obj/item/desynchronizer = 1,
-		/obj/item/teleportation_scroll/apprentice = 1,
+		/obj/item/book/granter/spell/knock = 5,
+
+		/obj/item/storage/box/syndie_kit/throwing_weapons = 4,
+		/obj/item/grenade/plastic/c4 = 4,
+		/obj/item/storage/toolbox/mechanical = 4,
+
+		/obj/item/book/granter/spell/smoke/lesser = 3,
+		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
+
+		/obj/item/autosurgeon/cmo = 2,
+
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
-		/obj/item/battleroyale/itemspawner/construct = 1,
-		/obj/item/dragons_blood = 1,
-		/obj/item/slimecross/stabilized/sepia = -5,
+		/obj/item/book/granter/spell/smoke = 1,
+		/obj/item/autosurgeon/reviver = 1,
+
+		/obj/item/storage/backpack/duffelbag/syndie/c4 = 0,
+		/obj/item/teleportation_scroll/apprentice = 0,
+		/obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted = 0,
+		/obj/item/slimecross/stabilized/red = 0,
+		/obj/item/slimecross/stabilized/sepia = 0,
+		/obj/item/battleroyale/martial/preternis = 0,
+
+		/obj/item/autosurgeon/thermal_eyes = -1,
+		/obj/item/autosurgeon/xray_eyes = -1,
+		/obj/item/multisurgeon/airshoes = -1,
+
+		/obj/item/storage/box/syndie_kit/augmentation = -2,
+		/obj/item/grenade/syndieminibomb = -2,
+		/obj/item/desynchronizer = -2,
+		/obj/item/dragons_blood = -2,
+		/obj/item/book/granter/martial/cqc = -2,
+
+		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
+		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,
+		/obj/item/antag_spawner/nuke_ops/borg_tele/saboteur = -3,
+		/obj/item/battleroyale/itemspawner/construct = -3,
+		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3,//so they don't get fully rotated out when the 0 weight one does
+		/obj/item/spellbook = -3,
+		/obj/item/battleroyale/martial/phytosian = -3,
+		/obj/item/battleroyale/martial/plasmaman = -3,
+
+		/obj/item/guardiancreator/tech/random = -4,
+		/obj/item/guardiancreator/carp/random = -4,
+		/obj/item/autosurgeon/syndicate/spinalspeed = -4,
+		/obj/item/storage/firstaid/tactical = -4, //has combat defib, one of the few stun weapons
+		/obj/item/battleroyale/martial/ipc = -4,
+		/obj/item/battleroyale/martial/lizard = -4,
+		/obj/item/book/granter/martial/carp = -4,
+
+		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
-		/obj/item/slimecross/stabilized/red = 1,
-		/obj/item/storage/firstaid/tactical = -5, //has combat defib, one of the few stun weapons
+		/obj/machinery/syndicatebomb = -5,
+		/obj/item/bodypart/l_arm/robot/buster = -5,
+		/obj/item/gun/ballistic/rocketlauncher/unrestricted = -5,
+		/obj/item/stand_arrow/safe = -5,
 		))
 
 /obj/structure/closet/crate/battleroyale
