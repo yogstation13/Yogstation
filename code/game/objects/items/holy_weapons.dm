@@ -432,16 +432,15 @@
 	. = ..()
 	if(M == user)
 		return
-	var/throw_direction = get_dir(user, M)
-	var/atom/throw_target = get_edge_target_turf(M, throw_direction)
-	var/turf/throw_location = get_step_towards(M, throw_target)
-	M.SpinAnimation(5, 1)
-	if(throw_location.density)
-		return
-	for(var/obj/D in throw_location.contents)
-		if(D.density)
-			return
-	M.forceMove(throw_location)
+	var/atom/throw_target = get_edge_target_turf(M, user.dir)
+	ADD_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
+	var/distance = rand(1,5)
+	if(prob(1))
+		distance = 50 //hehe funny hallway launch
+	M.throw_at(throw_target, distance, 3, user, TRUE, TRUE, callback = CALLBACK(src, .proc/afterimpact, M))
+
+/obj/item/twohanded/required/nullrod/proc/afterimpact(mob/living/M)
+	REMOVE_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
 
 /*---------------------------------------------------------------------------
 |

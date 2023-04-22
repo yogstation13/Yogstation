@@ -93,6 +93,8 @@
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(mind?.martial_art.handle_throw(hit_atom, src))
 		return
+	if(HAS_TRAIT(src, TRAIT_IMPACTIMMUNE))
+		return
 	. = ..()
 	var/hurt = TRUE
 	var/extra_speed = 0
