@@ -355,7 +355,7 @@ const Speaker = (props, context) => {
     style={style} onClick={() => {
       const time = new Date().getTime();
       if (time - timer > cooldown) {
-        act('play_sfx', { name: 'speaker', ckey: config.client?.ckey, vary: -1 });
+        act('play_sfx', { name: 'speaker', ckey: config.client?.ckey, vary: -1, extrarange: 5 });
         setTimer(time);
       }
     }} />
