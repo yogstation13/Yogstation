@@ -11,7 +11,7 @@
 	/// How much damage does it apply when used
 	var/dam_force = 20
 	var/obj/mecha/working/ripley/cargo_holder
-	harmful = TRUE
+	harmful = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/can_attach(obj/mecha/working/ripley/M as obj)
 	if(..())
@@ -239,9 +239,9 @@
 /obj/item/mecha_parts/mecha_equipment/extinguisher/get_equip_info()
 	return "[..()] \[[src.reagents.total_volume]\]"
 
-/obj/item/mecha_parts/mecha_equipment/extinguisher/can_attach(obj/mecha/working/M as obj)
+/obj/item/mecha_parts/mecha_equipment/extinguisher/can_attach(obj/mecha/M as obj)
 	if(..())
-		if(istype(M))
+		if(istype(M, /obj/mecha/working) || istype(M, /obj/mecha/combat/sidewinder))
 			return 1
 	return 0
 
@@ -382,9 +382,9 @@
 	. = ..()
 	cable = new(src, 0)
 
-/obj/item/mecha_parts/mecha_equipment/cable_layer/can_attach(obj/mecha/working/M)
+/obj/item/mecha_parts/mecha_equipment/cable_layer/can_attach(obj/mecha/M)
 	if(..())
-		if(istype(M))
+		if(istype(M, /obj/mecha/working) || istype(M, /obj/mecha/combat/sidewinder))
 			return 1
 	return 0
 

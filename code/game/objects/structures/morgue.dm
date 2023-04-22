@@ -277,6 +277,11 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	var/list/conts = GetAllContents() - src - connected
 	audible_message(span_italics("You hear a roar as the crematorium reaches its maximum temperature."))
 	for(var/mob/living/M in conts)
+		if(M.status_flags & GODMODE)
+			to_chat(M, span_userdanger("A strange force protects you!"))
+			M.adjust_fire_stacks(40)
+			M.IgniteMob()
+			continue
 		if(M.stat != DEAD)
 			M.emote("scream")
 		if(M.client)
@@ -296,6 +301,25 @@ GLOBAL_LIST_EMPTY(crematoriums)
 			qdel(M)
 
 	for(var/obj/O in conts) //conts defined above, ignores crematorium and tray
+		if(O.resistance_flags & INDESTRUCTIBLE)
+			continue
+		
+		if(istype(O, /obj/item/grenade))
+			log_bomber(user, "cremated a ", O, ", detonating it.")
+			var/obj/item/grenade/nade = O
+			nade.prime()
+		else if(istype(O, /obj/item/tank))
+			log_bomber(user, "cremated a ", O, ", igniting it.")
+			var/obj/item/tank/tank = O
+			tank.ignite()
+		else if(istype(O, /obj/item/bombcore))
+			log_bomber(user, "cremated a ", O, ", detonating it.")
+			var/obj/item/bombcore/bomb = O
+			bomb.detonate()
+		else if(isitem(O))
+			var/obj/item/I = O
+			if(I.cryo_preserve)
+				log_combat(user, O, "cremated")
 		qdel(O)
 
 	if(!locate(/obj/effect/decal/cleanable/ash) in get_step(src, dir))//prevent pile-up

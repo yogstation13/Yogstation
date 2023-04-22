@@ -6,7 +6,7 @@
 	icon_state = "clockwork_helmet"
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACE
+	flags_inv = HIDEEARS | HIDEHAIR | HIDEFACE
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	armor = list(MELEE = 50, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 

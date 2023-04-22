@@ -94,16 +94,16 @@
 	name = "cybernetic stomach"
 	desc = "A cybernetic metabolic furnace that can be connected to a digestive system in place of a stomach."
 	icon_state = "stomach-c"
-	maxHealth = 1.2 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
-	disgust_metabolism = 1.2	//Slightly more efficient at stabilizing itself
+	disgust_metabolism = 1.5	//Slightly more efficient at stabilizing itself
 
 /obj/item/organ/stomach/cybernetic/upgraded
 	name = "upgraded cybernetic stomach"
 	desc = "An upgraded metabolic furnace that can be connected to a digestive system in place of a stomach. Both hardier and capable of storing excess nutrition if the body is already well sustained."
 	icon_state = "stomach-c-u"
-	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD
 	var/nutriment_stashed = 0
 	disgust_metabolism = 2		//Twice as efficient as stabilizing itself
 

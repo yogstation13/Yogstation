@@ -97,7 +97,7 @@
 	hitsound = "swing_hit"
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "hfrequency0"
-	icon_state_on = "hfrequency0_ext"
+	icon_state_on = "hfrequency1"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	force = 0

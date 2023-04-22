@@ -730,10 +730,15 @@
 				to_chat(src, span_notice("You succesfuly remove the durathread strand."))
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return
-		else if(istype(src.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard) && creamed)
-			visible_message(span_notice("[src] eats the pie off [p_their()] face with [p_their()] forked tongue."), 
-							"<span class='notice'>You eat the pie off your face with your forked tongue.")
-			reagents.add_reagent(/datum/reagent/consumable/banana, 1)
+		else if(creamed)
+			if(istype(getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard))
+				visible_message(span_notice("[src] eats the pie off [p_their()] face with [p_their()] forked tongue."), 
+								span_notice("You eat the pie off your face with your forked tongue."))
+				reagents.add_reagent(/datum/reagent/consumable/banana, 1)
+
+			else if(M.get_num_arms()) //make sure you have arms with which to wipe
+				visible_message(span_notice("[src] wipes the pie off [p_their()] face with [p_their()] hand."), 
+								span_notice("You wipe the pie off your face with your hand."))
 			wash_cream()
 			return
 		check_self_for_injuries()

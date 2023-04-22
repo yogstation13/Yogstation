@@ -1,4 +1,0 @@
-author: "Uristthedorf"
-delete-after: true 
-changes: 
-  - tweak: "No cyborg modules except for standard, peacekeeper, security, and syndicate can flash other cyborgs now."

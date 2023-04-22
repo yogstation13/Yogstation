@@ -313,13 +313,17 @@
 	name = "Cybernetic Organ"
 	desc = "Due to a past incident you lost function of one of your organs, but now have a fancy upgraded cybernetic organ!"
 	icon = "building-ngo"
-	value = 6
+	value = 4
 	var/slot_string = "organ"
+	var/list/organ_list = list(ORGAN_SLOT_LUNGS, ORGAN_SLOT_HEART, ORGAN_SLOT_LIVER)
 	medical_record_text = "During physical examination, patient was found to have an upgraded cybernetic organ."
 
 /datum/quirk/cyberorgan/on_spawn()
-	var/organ_slot = pick(ORGAN_SLOT_LUNGS, ORGAN_SLOT_HEART, ORGAN_SLOT_LIVER)
 	var/mob/living/carbon/human/H = quirk_holder
+	var/list/temp = organ_list.Copy() //pretty sure this is global so i dont want to bugger with it :)
+	if(isjellyperson(H))
+		temp -= ORGAN_SLOT_LIVER
+	var/organ_slot = pick(temp)
 	var/obj/item/organ/old_part = H.getorganslot(organ_slot)
 	var/obj/item/organ/prosthetic
 	switch(organ_slot)

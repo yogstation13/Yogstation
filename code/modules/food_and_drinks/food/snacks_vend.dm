@@ -32,6 +32,7 @@
 	desc = "Homemade beef jerky made from the finest space cows."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	junkiness = 0
+	foodtype = JUNKFOOD | MEAT
 
 /obj/item/reagent_containers/food/snacks/chips
 	name = "chips"

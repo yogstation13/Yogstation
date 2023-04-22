@@ -381,7 +381,7 @@ nobliumformation = 1001
 
 /datum/gas_reaction/nitrium_formation/init_reqs()
 	min_requirements = list(
-		/datum/gas/nitrogen = 20,
+		/datum/gas/nitrogen = 50,
 		/datum/gas/plasma = 20,
 		/datum/gas/bz = 20,
 		/datum/gas/nitrous_oxide = 5,
@@ -392,15 +392,15 @@ nobliumformation = 1001
 	var/temperature = air.return_temperature()
 	var/old_heat_capacity = air.heat_capacity()
 
-	var/heat_efficency = min(temperature / NITRIUM_FORMATION_TEMP_DIVISOR, air.get_moles(/datum/gas/nitrogen), air.get_moles(/datum/gas/plasma), air.get_moles(/datum/gas/bz))
+	var/heat_efficency = min(temperature / NITRIUM_FORMATION_ENERGY, air.get_moles(/datum/gas/nitrogen) / 2, air.get_moles(/datum/gas/plasma), air.get_moles(/datum/gas/bz))
 	//Shouldn't produce gas from nothing.
 	if (heat_efficency <= 0 || (air.get_moles(/datum/gas/nitrogen) - heat_efficency < 0 ) || (air.get_moles(/datum/gas/plasma) - heat_efficency < 0) || (air.get_moles(/datum/gas/bz) - heat_efficency < 0))
 		return NO_REACTION
 
-	air.adjust_moles(/datum/gas/nitrogen, -heat_efficency)
+	air.adjust_moles(/datum/gas/nitrogen, -heat_efficency * 2)
 	air.adjust_moles(/datum/gas/plasma, -heat_efficency)
 	air.adjust_moles(/datum/gas/bz, -heat_efficency)
-	air.adjust_moles(/datum/gas/nitrium, heat_efficency * 2)
+	air.adjust_moles(/datum/gas/nitrium, heat_efficency / 10)
 
 	var/energy_used = heat_efficency * NITRIUM_FORMATION_ENERGY
 	var/new_heat_capacity = air.heat_capacity()
@@ -526,7 +526,7 @@ nobliumformation = 1001
 	var/energy_released = (reaction_rate*NITRO_BALL_HEAT_SCALE) + (plasma_burned*NITRO_BALL_PLASMA_ENERGY)
 	air.adjust_moles(/datum/gas/nitrium, -reaction_rate)
 	air.adjust_moles(/datum/gas/pluoxium, -reaction_rate)
-	air.adjust_moles(/datum/gas/nitrium, reaction_rate*5)
+	air.adjust_moles(/datum/gas/antinoblium, reaction_rate) // an actual purpose for this reaction other than bombs and flamethrowers
 	air.adjust_moles(/datum/gas/plasma, -plasma_burned)
 	if(balls_shot && !isnull(location))
 		var/angular_increment = 360/balls_shot

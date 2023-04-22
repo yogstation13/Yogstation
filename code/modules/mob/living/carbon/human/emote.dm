@@ -10,6 +10,7 @@
 	key_third_person = "cries"
 	message = "cries."
 	emote_type = EMOTE_AUDIBLE
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/carbon/human/cry/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -97,6 +98,7 @@
 	key_third_person = "mumbles"
 	message = "mumbles!"
 	emote_type = EMOTE_AUDIBLE
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/carbon/human/scream
 	key = "scream"
