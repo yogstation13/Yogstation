@@ -39,7 +39,7 @@
 	health_doll_icon = "spacedragon"
 	obj_damage = 50
 	see_in_dark = 7 //Yogs
-	lightning_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE //yogs
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE //yogs
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 	mob_size = MOB_SIZE_LARGE

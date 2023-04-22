@@ -132,7 +132,7 @@
 	update_check()
 
 	var/turf/current_turf = get_turf(src)
-	for(var/mob/living/simple_animal/hostile/hostilehere in loc)
+	for(var/mob/living/simple_animal/hostile/hostilehere in get_turf(src))
 		if(LAZYFIND(hostilehere.faction, "carp"))
 			hostilehere.adjustHealth(-5)
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(hostilehere))
