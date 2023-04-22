@@ -234,7 +234,7 @@ const SetupDisplay = (props, context) => {
           </Box>
           <Dropdown
             onSelected={(value) => act("boltlock", { locked: value })}
-            options={["Yes","No"]}
+            options={["Yes", "No"]}
             selected={locked}
             width="100%"
           />
