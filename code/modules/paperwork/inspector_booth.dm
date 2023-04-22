@@ -201,7 +201,8 @@
 			var/datum/data/record/R = record
 			var/name = R.fields["name"]
 			if ((name in names) && (istype(R.fields["photo_front"], /obj/item/photo)))
-				var/icon/picture = icon(R.fields["photo_front"].picture.picture_image)
+				var/obj/item/photo/P = R.fields["photo_front"]
+				var/icon/picture = icon(P.picture.picture_image)
 				picture.Crop(10, 32, 22, 22)
 				var/md5 = md5(fcopy_rsc(picture))
 				if (!SSassets.cache["photo_[md5]_cropped.png"])
