@@ -1030,21 +1030,26 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!canload_access_list)
 		return TRUE
 	else
-		var/do_you_have_access = FALSE
-		var/req_access_txt_holder = req_access_txt
-		for(var/i in canload_access_list)
-			req_access_txt = i
-			if(!allowed(user) && !(obj_flags & EMAGGED) && scan_id)
-				continue
-			else
-				do_you_have_access = TRUE
-				break //you passed don't bother looping anymore
-		req_access_txt = req_access_txt_holder // revert to normal (before the proc ran)
-		if(do_you_have_access)
+		if((obj_flags & EMAGGED) || !scan_id)
 			return TRUE
-		else
-			to_chat(user, span_warning("[src]'s input compartment blinks red: Access denied."))
-			return FALSE
+
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			var/obj/item/card/id/C = H.get_idcard(TRUE)
+			if(!C)
+				to_chat(user, span_warning("[src]'s input compartment blinks red: No card found."))
+				return FALSE
+
+			var/A = C.GetAccess()
+			// This is checking like `req_one_access` does (need any in list)
+			// The only thing that uses this is the chef compartment which only has one access in the list anyway
+			// If you add another, you may need to alter this behaviour
+			for(var/req in canload_access_list)
+				if(req in A)
+					return TRUE
+
+		to_chat(user, span_warning("[src]'s input compartment blinks red: Access denied."))
+		return FALSE
 
 /obj/machinery/vending/onTransitZ()
 	return
