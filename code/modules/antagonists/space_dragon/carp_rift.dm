@@ -115,21 +115,28 @@
 	dragon = null
 	return ..()
 
-/obj/structure/carp_rift/process()
+/obj/structure/carp_rift/process(delta_time)
 	// If we're fully charged, just start mass spawning carp and move around.
 	if(charge_state == CHARGE_COMPLETED)
-		if(prob(5) && dragon)
+		if(DT_PROB(1.25, delta_time) && dragon)
 			var/mob/living/newcarp = new dragon.ai_to_spawn(loc)
 			newcarp.faction = dragon.owner.current.faction.Copy()
-		if(prob(6))
+		if(DT_PROB(1.5, delta_time))
 			var/rand_dir = pick(GLOB.cardinals)
 			forceMove(get_step(src, rand_dir))
 		return
 
 	// Increase time trackers and check for any updated states.
-	time_charged = min(time_charged, max_charge)
-	last_carp_inc += 2
+	time_charged = min(time_charged + delta_time, max_charge)
+	last_carp_inc += delta_time
 	update_check()
+
+	var/turf/current_turf = get_turf(src)
+	for(var/mob/living/simple_animal/hostile/hostilehere in loc)
+		if(LAZYFIND(hostilehere.faction, "carp"))
+			hostilehere.adjustHealth(-5)
+			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(hostilehere))
+			H.color = COLOR_BLUE
 
 /obj/structure/carp_rift/attack_ghost(mob/user)
 	. = ..()

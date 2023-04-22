@@ -31,7 +31,7 @@
 	attacktext = "chomps"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	deathsound = 'sound/magic/demon_dies.ogg'
+	deathsound = 'sound/creatures/space_dragon_roar.ogg'
 	icon = 'icons/mob/spacedragon.dmi'
 	icon_state = "spacedragon"
 	icon_living = "spacedragon"
@@ -142,7 +142,7 @@
 			to_chat(src, span_warning("You begin to swallow [L] whole..."))
 			if(do_after(src, 3 SECONDS, target = L))
 				if(eat(L))
-					adjustHealth(-L.maxHealth * 0.25)
+					adjustHealth(-L.maxHealth * 0.5)
 			return
 	. = ..()
 	if(ismecha(target))
