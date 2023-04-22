@@ -674,7 +674,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	throwforce = 40
 	throw_speed = 2
 	armour_penetration = 30
-	block_chance = 30
+	block_chance = 50
 	attack_verb = list("attacked", "impaled", "stabbed", "torn", "gored")
 	sharpness = SHARP_POINTY
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -724,8 +724,8 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	qdel(src)
 
 /obj/item/twohanded/cult_spear/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(wielded)
-		final_block_chance *= 2
+	if(!wielded)
+		final_block_chance = 0
 	if(prob(final_block_chance))
 		if(attack_type == PROJECTILE_ATTACK)
 			owner.visible_message(span_danger("[owner] deflects [attack_text] with [src]!"))
