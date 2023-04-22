@@ -13,6 +13,7 @@ type HoloPayData = {
   owner: string;
   shop_logo: string;
   user: { name: string; balance: number };
+  locked: string;
 };
 
 const COPYRIGHT_SCROLLER = `Nanotrasen (c) 2525-2562. All sales final.
@@ -170,7 +171,7 @@ const TerminalDisplay = (props, context) => {
  */
 const SetupDisplay = (props, context) => {
   const { act, data } = useBackend<HoloPayData>(context);
-  const { available_logos = [], force_fee, max_fee, name, shop_logo } = data;
+  const { available_logos = [], force_fee, max_fee, name, shop_logo, locked } = data;
   const { onClick } = props;
 
   return (
@@ -226,6 +227,17 @@ const SetupDisplay = (props, context) => {
               value={force_fee}
             />
           </Tooltip>
+        </Stack.Item>
+        <Stack.Item>
+          <Box bold color="label">
+            Bolts Locked?
+          </Box>
+          <Dropdown
+            onSelected={(value) => act("boltlock", { locked: value })}
+            options={["Yes","No"]}
+            selected={locked}
+            width="100%"
+          />
         </Stack.Item>
       </Stack>
     </Section>

@@ -4,7 +4,6 @@
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "card_scanner"
 	anchored = TRUE
-	layer = MOB_LAYER
 	circuit = /obj/item/circuitboard/machine/paystand
 	density = TRUE
 	anchored = TRUE
@@ -13,6 +12,7 @@
 	var/shop_logo = "donate"
 	/// Replaces the "pay whatever" functionality with a set amount when non-zero.
 	var/force_fee = 0
+	var/bolt_locked = FALSE
 
 /obj/machinery/paystand/examine(mob/user)
 	. = ..()
@@ -57,7 +57,7 @@
 				linked_card = card
 				log_admin("User [ADMIN_LOOKUPFLW(user)] registered a paystand [ADMIN_JMP(src)]")
 				return
-		if(force_fee && tgui_alert(item_holder, "This holopay has a [force_fee] cr fee. Confirm?", "Holopay Fee", list("Pay", "Cancel")) != "Pay")
+		if(force_fee && tgui_alert(item_holder, "This paystand has a [force_fee] cr fee. Confirm?", "Holopay Fee", list("Pay", "Cancel")) != "Pay")
 			return TRUE
 		process_payment(user)
 		return TRUE
@@ -91,6 +91,17 @@
 	if(istype(held_item, /obj/item/coin))
 		to_chat(user, "What is this, the 1800s? We only take card here.")
 		return TRUE
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, held_item))
+		return
+
+	if(default_pry_open(held_item))
+		return
+
+	if(default_unfasten_wrench(user, held_item))
+		return
+
+	if(default_deconstruction_crowbar(held_item))
+		return
 	return ..()
 
 /obj/machinery/paystand/ui_interact(mob/user, datum/tgui/ui)
@@ -117,6 +128,10 @@
 	.["max_fee"] = linked_card?.holopay_max_fee
 	.["owner"] = linked_card?.registered_account?.account_holder || null
 	.["shop_logo"] = shop_logo
+	if(bolt_locked)
+		.["locked"] = "Yes"
+	if(!bolt_locked)
+		.["locked"] = "No"
 
 /obj/machinery/paystand/ui_data(mob/user)
 	. = list()
@@ -153,6 +168,11 @@
 		if("rename")
 			linked_card.set_holopay_name(params["name"])
 			name = linked_card.holopay_name
+		if("boltlock")
+			if(params["locked"] == "No")
+				bolt_locked = FALSE
+			if(params["locked"] == "Yes")
+				bolt_locked = TRUE
 	return FALSE
 
 /**
@@ -208,3 +228,8 @@
 	playsound(src, 'sound/effects/cashregister.ogg', 20, TRUE)
 	SSblackbox.record_feedback("amount", "credits_transferred", amount)
 	return TRUE
+
+/obj/machinery/paystand/default_unfasten_wrench(mob/user, obj/item/I, time = 20)
+	if(bolt_locked)
+		return
+	. = ..()
