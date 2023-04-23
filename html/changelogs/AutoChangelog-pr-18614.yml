@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Blood cultist blood spear has 6 less force"
+  - tweak: "Blood cultist blood spear can only block while wielded and has 10 less block"
