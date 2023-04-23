@@ -83,12 +83,14 @@ GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
 			GLOB.ooc_new_long_messages[key] = 1
 
 
-	if(GLOB.ooc_new_long_messages[key] >= 3)
+	if(GLOB.ooc_new_long_messages[key] >= 3 && !GLOB.ooc_shadow_muted[key])
 		GLOB.ooc_shadow_muted[key] = TRUE
+		message_admins("Shadow muted [key] from OOC. Will reset when round ends.")
 
-	if(!GLOB.ooc_shadow_muted[key] && ((world.time + 5 SECONDS) < GLOB.ooc_new_last_messsage[key]))
-		to_chat(src, span_warning("Please wait a few seconds before sending another OOC message"))
-		return
+	if(!GLOB.ooc_shadow_muted[key])
+		if(GLOB.ooc_new_last_messsage[key] < (world.time + 5 SECONDS))
+			to_chat(src, span_warning("Please wait a few seconds before sending another OOC message"))
+			return
 
 	if(get_exp_living(TRUE) <= 300)
 		GLOB.ooc_new_last_messsage[key] = world.time
