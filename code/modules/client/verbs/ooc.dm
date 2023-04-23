@@ -84,7 +84,7 @@ GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
 
 		GLOB.ooc_new_last_messsage[key] = world.time
 
-	if(GLOB.ooc_new_long_messages[key] > 3)
+	if(GLOB.ooc_new_long_messages[key] >= 3)
 		GLOB.ooc_shadow_muted[key] = TRUE
 
 	if(!GLOB.ooc_shadow_muted[key] && ((world.time + 30 SECONDS) < GLOB.ooc_new_last_messsage[key]))
