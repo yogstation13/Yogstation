@@ -223,7 +223,7 @@ export const PartFabricator = (props, context) => {
               <Button
                 fluid
                 content="PRINT"
-                onClick={() => act('tryPrint', {tab:tabIndex})} />
+                onClick={() => act('tryPrint', { tab:tabIndex })} />
             )
             :
             (

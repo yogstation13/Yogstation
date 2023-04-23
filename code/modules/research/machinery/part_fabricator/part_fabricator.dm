@@ -216,14 +216,12 @@
 			current_plants++
 	data["current_plants"] = current_plants
 
-	var/datum/gas_mixture/my_gas = return_air()
 	var/current_temp = my_gas.return_temperature()
 	data["current_temp"] = current_temp ? current_temp : 0
 
 	// Other vars /////////////////////////////////////////////////////////////////
 
 	data["production_progress"] = production_progress
-	data["tab"] = tab
 
 	return data
 
