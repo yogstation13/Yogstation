@@ -41,6 +41,7 @@
 	var/output_used = 0 // amount of power actually outputted. may be less than output_level if the powernet returns excess power
 
 	var/obj/machinery/power/terminal/terminal = null
+	var/lethal = FALSE
 
 /obj/machinery/power/smes/examine(user)
 	. = ..()
@@ -68,16 +69,14 @@
 	var/MC = 0
 	var/C
 	var/tierfive = FALSE
+	lethal = FALSE
 	for(var/obj/item/stock_parts/capacitor/CP in component_parts)
 		IO += CP.rating
 		if(CP.rating >= 5)
 			tierfive = TRUE
 	if(tierfive)
 		IO *= 4 // Quadruples power input/output caps
-		if(powernet) // Uncaps the shock damage from the powernet we're attached to
-			powernet.lethal = TRUE
-		if(terminal?.powernet)
-			terminal.powernet.lethal = TRUE
+		lethal = TRUE // Uncaps the shock damage from the powernet(s) we're attached to
 	input_level_max = initial(input_level_max) * IO
 	output_level_max = initial(output_level_max) * IO
 	for(var/obj/item/stock_parts/cell/PC in component_parts)

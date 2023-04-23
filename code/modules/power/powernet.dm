@@ -16,8 +16,6 @@
 	var/delayedload = 0			// load applied to powernet between power ticks.
 	var/z = 0 // the Z coordinate of this powernet. Only used by some random achievement, at the moment.
 
-	var/lethal = FALSE // if this powernet can shock big damage
-
 /datum/powernet/New(newz)
 	SSmachines.powernets += src
 	z = newz
@@ -100,6 +98,11 @@
 
 /datum/powernet/proc/get_electrocute_damage()
 	if(avail >= 1000)
+		var/lethal = FALSE
+		for(var/obj/machinery/power/smes/S in nodes)
+			if(S.lethal)
+				lethal = TRUE
+				break
 		return clamp(20 + round(avail/25000), 20, lethal ? INFINITY : 195) + rand(-5,5)
 	else
 		return 0
