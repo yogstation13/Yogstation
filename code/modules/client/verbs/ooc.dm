@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
 			return
 
 	if(get_exp_living(TRUE) <= 300)
-		GLOB.ooc_new_last_messsage[key] = world.time + 5 SECODNS
+		GLOB.ooc_new_last_messsage[key] = world.time + 5 SECONDS
 
 	//PINGS
 	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
