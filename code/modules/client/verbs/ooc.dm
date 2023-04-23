@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
 
 	if(!GLOB.ooc_shadow_muted[key])
 		if(GLOB.ooc_new_last_messsage[key] > (world.time))
-			to_chat(src, span_warning("Please wait a few seconds before sending another OOC message"))
+			to_chat(src, span_warning("Please wait a [(GLOB.ooc_new_last_messsage[key] - world.time) / 10 ] seconds before sending another OOC message"))
 			return
 
 	if(get_exp_living(TRUE) <= 300)
