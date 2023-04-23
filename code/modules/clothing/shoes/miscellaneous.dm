@@ -190,8 +190,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/shoes/cult
-	name = "\improper Nar'Sien invoker boots"
-	desc = "A pair of boots worn by the followers of Nar'Sie."
+	name = "\improper Nar'sien invoker boots"
+	desc = "A pair of boots worn by the followers of Nar'sie."
 	icon_state = "cult"
 	item_state = "cult"
 	cold_protection = FEET

@@ -70,7 +70,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 
 /obj/effect/rune/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user))
-		var/confirm = tgui_alert(user, "Erasing this [cultist_name] rune might be against your goal to summon Nar'Sie.", "Begin to erase the [cultist_name] rune?", list("Proceed", "Abort"))
+		var/confirm = tgui_alert(user, "Erasing this [cultist_name] rune might be against your goal to summon Nar'sie.", "Begin to erase the [cultist_name] rune?", list("Proceed", "Abort"))
 		if(confirm != "Proceed")
 			return
 		if(!user.is_holding_item_of_type(/obj/item/melee/cultblade/dagger) || !Adjacent(user) || user.incapacitated() || user.stat == DEAD) //Gee, good thing we made sure cultists can't input stall to grief their team and get banned anyway
@@ -212,7 +212,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 //Rite of Offering: Converts or sacrifices a target.
 /obj/effect/rune/convert
 	cultist_name = "Offer"
-	cultist_desc = "offers a noncultist above it to Nar-Sie, either converting them or sacrificing them."
+	cultist_desc = "offers a noncultist above it to Nar'sie, either converting them or sacrificing them."
 	req_cultists_text = "2 for conversion, 3 for living sacrifices and sacrifice targets."
 	invocation = "Mah'weyh pleggh at e'ntrath!"
 	icon_state = "3"
@@ -498,9 +498,9 @@ structure_check() searches for nearby cultist structures required for the invoca
 	light_range = 0
 	update_light()
 
-//Ritual of Dimensional Rending: Calls forth the avatar of Nar-Sie upon the station.
+//Ritual of Dimensional Rending: Calls forth the avatar of Nar'sie upon the station.
 /obj/effect/rune/narsie
-	cultist_name = "Nar-Sie"
+	cultist_name = "Nar'sie"
 	cultist_desc = "tears apart dimensional barriers, beginning the Red Harvest. You will need to protect 4 Bloodstones around the station, then the Anchor Bloodstone after invoking this rune or the summoning will backfire and need to be restarted. Requires 9 invokers, with the cult leader counting as half of this if they invoke the rune."
 	invocation = "TOK-LYR RQA-NAP G'OLT-ULOFT!!"
 	req_cultists = 9
@@ -518,7 +518,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	. = ..()
 	GLOB.poi_list |= src
 	var/area/A = get_area(src)
-	priority_announce("An anomaly in veil physics has appeared in your station according to our scanners, the source being in [A.map_name]. It appears the anomaly is being stabilized by the cult of Nar-Sie!","Central Command Higher Dimensional Affairs", ANNOUNCER_SPANOMALIES)
+	priority_announce("An anomaly in veil physics has appeared in your station according to our scanners, the source being in [A.map_name]. It appears the anomaly is being stabilized by the cult of Nar'sie!","Central Command Higher Dimensional Affairs", ANNOUNCER_SPANOMALIES)
 
 
 /obj/effect/rune/narsie/Destroy()
@@ -548,8 +548,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 		return
 	if(locate(/obj/singularity/narsie) in GLOB.poi_list)
 		for(var/M in invokers)
-			to_chat(M, span_warning("Nar-Sie is already on this plane!"))
-		log_game("Nar-Sie rune failed - already summoned")
+			to_chat(M, span_warning("Nar'sie is already on this plane!"))
+		log_game("Nar'sie rune failed - already summoned")
 		return
 	if(SSticker.mode.bloodstone_cooldown)
 		for(var/M in invokers)
@@ -558,7 +558,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	if(SSticker.mode.bloodstone_list.len)
 		for(var/M in invokers)
 			to_chat(M, span_warning("The Red Harvest is already in progress! Protect the bloodstones!"))
-		log_game("Nar-Sie rune failed - bloodstones present")
+		log_game("Nar'sie rune failed - bloodstones present")
 		return
 	//BEGIN THE SUMMONING
 	used = TRUE
@@ -574,13 +574,13 @@ structure_check() searches for nearby cultist structures required for the invoca
 	if((istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user)))
 		user.visible_message(span_warning("[user.name] begins erasing [src]..."), span_notice("You begin erasing [src]..."))
 		if(do_after(user, 5 SECONDS, src))	//Prevents accidental erasures.
-			log_game("Summon Narsie rune erased by [key_name(user)] with [I.name]")
-			message_admins("[ADMIN_LOOKUPFLW(user)] erased a Narsie rune with [I.name]")
+			log_game("Summon Nar'sie rune erased by [key_name(user)] with [I.name]")
+			message_admins("[ADMIN_LOOKUPFLW(user)] erased a Nar'sie rune with [I.name]")
 			..()
 	else
 		if(istype(I, /obj/item/nullrod))	//Begone foul magiks. You cannot hinder me.
-			log_game("Summon Narsie rune erased by [key_name(user)] using a null rod")
-			message_admins("[ADMIN_LOOKUPFLW(user)] erased a Narsie rune with a null rod")
+			log_game("Summon Nar'sie rune erased by [key_name(user)] using a null rod")
+			message_admins("[ADMIN_LOOKUPFLW(user)] erased a Nar'sie rune with a null rod")
 			..()
 
 //Rite of Resurrection: Requires a dead or inactive cultist. When reviving the dead, you can only perform one revival for every three sacrifices your cult has carried out.
@@ -949,7 +949,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		var/obj/structure/emergency_shield/invoker/N = new(T)
 		new_human.key = ghost_to_spawn.key
 		SSticker.mode.add_cultist(new_human.mind, 0)
-		to_chat(new_human, span_cultitalic("<b>You are a servant of the Geometer. You have been made semi-corporeal by the cult of Nar-Sie, and you are to serve them at all costs.</b>"))
+		to_chat(new_human, span_cultitalic("<b>You are a servant of the Geometer. You have been made semi-corporeal by the cult of Nar'sie, and you are to serve them at all costs.</b>"))
 
 		while(!QDELETED(src) && !QDELETED(user) && !QDELETED(new_human) && (user in T))
 			if(user.stat || new_human.InCritical())
@@ -1032,7 +1032,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		to_chat(user, span_cultlarge("Only one ritual site remains - it must be reserved for the final summoning!"))
 		return
 	if(!(place in summon_objective.summon_spots))
-		to_chat(user, span_cultlarge("The Apocalypse rune will remove a ritual site, where Nar-sie can be summoned, it can only be scribed in [english_list(summon_objective.summon_spots)]!"))
+		to_chat(user, span_cultlarge("The Apocalypse rune will remove a ritual site, where Nar'sie can be summoned, it can only be scribed in [english_list(summon_objective.summon_spots)]!"))
 		return
 	summon_objective.summon_spots -= place
 	rune_in_use = TRUE
