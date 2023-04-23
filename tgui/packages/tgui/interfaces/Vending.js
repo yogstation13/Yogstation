@@ -37,7 +37,8 @@ const VendingRow = (props, context) => {
 
   return (
     <Table.Row>
-      {!custom && <Table.Cell collapsing>
+      {!custom &&
+      <Table.Cell collapsing>
         {product.base64 ? (
           <img
             src={`data:image/jpeg;base64,${product.img}`}
@@ -78,7 +79,7 @@ const VendingRow = (props, context) => {
             disabled={(
               productStock === 0
               || !data.user
-              || product.price > data.user.cash
+              || (!free && product.price > data.user.cash)
             )}
             content={customFree ? 'FREE' : product.price + ' cr'}
             onClick={() => act('dispense', {
@@ -129,7 +130,7 @@ export const Vending = (props, context) => {
       name: itemName,
       price: chef.price,
     },
-    productStock: data.custom_stock[itemName]
+    productStock: data.custom_stock[itemName],
   }));
 
   return (
@@ -161,12 +162,13 @@ export const Vending = (props, context) => {
             )}
           </Section>
         )}
-        {!!customInventory.length && <Section title={chef.title} >
+        {!!customInventory.length &&
+        <Section title={chef.title} >
           <Table>
             {customInventory.map(customItem => (
               <VendingRow
                 key={customItem.product.name}
-                custom={true}
+                custom
                 product={customItem.product}
                 productStock={customItem.productStock}
               />
@@ -178,7 +180,6 @@ export const Vending = (props, context) => {
             {inventory.map(product => (
               <VendingRow
                 key={product.name}
-                custom={false}
                 product={product}
                 productStock={data.stock[product.name]} />
             ))}
