@@ -82,14 +82,16 @@ GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
 		else
 			GLOB.ooc_new_long_messages[key] = 1
 
-		GLOB.ooc_new_last_messsage[key] = world.time
 
 	if(GLOB.ooc_new_long_messages[key] >= 3)
 		GLOB.ooc_shadow_muted[key] = TRUE
 
-	if(!GLOB.ooc_shadow_muted[key] && ((world.time + 30 SECONDS) < GLOB.ooc_new_last_messsage[key]))
+	if(!GLOB.ooc_shadow_muted[key] && ((world.time + 5 SECONDS) < GLOB.ooc_new_last_messsage[key]))
 		to_chat(src, span_warning("Please wait a few seconds before sending another OOC message"))
 		return
+
+	if(get_exp_living(TRUE) <= 300)
+		GLOB.ooc_new_last_messsage[key] = world.time
 
 	//PINGS
 	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
