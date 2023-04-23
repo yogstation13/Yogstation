@@ -6,6 +6,7 @@ GLOBAL_LIST_EMPTY(ooc_shadow_muted)
 GLOBAL_LIST_EMPTY(ooc_new_long_messages)
 GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
 GLOBAL_LIST_EMPTY(ooc_new_long_messages_short)
+GLOBAL_LIST_EMPTY(ooc_new_long_messages_very)
 
 /client/verb/ooc_wrapper()
 	set hidden = TRUE
@@ -65,17 +66,17 @@ GLOBAL_LIST_EMPTY(ooc_new_long_messages_short)
 		to_chat(src, span_danger("You have OOC muted."))
 		return
 
-	mob.log_talk(raw_msg, LOG_OOC)
-	if(holder && holder.fakekey) //YOGS start - webhook support
-		webhook_send_ooc(holder.fakekey, msg)
-	else
-		webhook_send_ooc(key, msg) //YOGS end - webhook support
-
 	var/keyname = key
 	if(prefs.unlock_content)
 		if(prefs.toggles & MEMBER_PUBLIC)
 			keyname = "<font color='[prefs.read_preference(/datum/preference/color/ooc_color) || GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//YOG START - Yog OOC
+
+	if(get_exp_living(TRUE) <= 300 && length(msg) >= 150)
+		if(GLOB.ooc_new_long_messages[key])
+			GLOB.ooc_new_long_messages_very[key]++
+		else
+			GLOB.ooc_new_long_messages_very[key] = 1
 
 	if(get_exp_living(TRUE) <= 300 && length(msg) >= 50)
 		if(GLOB.ooc_new_long_messages[key])
@@ -89,6 +90,9 @@ GLOBAL_LIST_EMPTY(ooc_new_long_messages_short)
 		else
 			GLOB.ooc_new_long_messages_short[key] = 1
 
+	if(GLOB.ooc_new_long_messages_very[key] > 0 && !GLOB.ooc_shadow_muted[key])
+		GLOB.ooc_shadow_muted[key] = TRUE
+		message_admins("Shadow muted [key] from OOC. Will reset when round ends.")
 
 	if(GLOB.ooc_new_long_messages[key] > 1 && !GLOB.ooc_shadow_muted[key])
 		GLOB.ooc_shadow_muted[key] = TRUE
@@ -105,6 +109,13 @@ GLOBAL_LIST_EMPTY(ooc_new_long_messages_short)
 
 	if(get_exp_living(TRUE) <= 300)
 		GLOB.ooc_new_last_messsage[key] = world.time + 5 SECONDS
+
+	mob.log_talk(raw_msg, LOG_OOC)
+	if(holder && holder.fakekey) //YOGS start - webhook support
+		webhook_send_ooc(holder.fakekey, msg)
+	else
+		if(!GLOB.ooc_shadow_muted[key])
+			webhook_send_ooc(key, msg) //YOGS end - webhook support
 
 	//PINGS
 	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
