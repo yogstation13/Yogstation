@@ -35,11 +35,8 @@
 
 /obj/machinery/rnd/server/RefreshParts()
 	var/tot_rating = 0
-	single_server_income = initial(single_server_income)
 	for(var/obj/item/stock_parts/SP in src)
 		tot_rating += SP.rating
-		if(SP.rating >= 5)
-			single_server_income *= 2
 	heat_gen /= max(1, tot_rating)
 
 /obj/machinery/rnd/server/update_icon()
