@@ -87,7 +87,7 @@ GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
 	if(GLOB.ooc_new_long_messages[key] > 3)
 		GLOB.ooc_shadow_muted[key] = TRUE
 
-	if(!GLOB.ooc_shadow_muted[key] && ((world.time + 30 SECONDS) > GLOB.ooc_new_last_messsage[key]))
+	if(!GLOB.ooc_shadow_muted[key] && ((world.time + 30 SECONDS) < GLOB.ooc_new_last_messsage[key]))
 		to_chat(src, span_warning("Please wait a few seconds before sending another OOC message"))
 		return
 
