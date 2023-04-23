@@ -502,7 +502,7 @@
 	stealth = 0
 	resistance = -1
 	stage_speed = -1
-	transmission = -2
+	transmittable = -2
 	level = 6
 	severity = 2
 	symptom_delay_min = 15
@@ -513,12 +513,6 @@
 		"Stealth 2" = "The disease resets cell DNA, quickly curing cell damage and mutations.",
 		"Transmission 8" = "The EMP affects electronics adjacent to the subject as well",
 		)
-	
-
-/datum/symptom/EMP/severityset(datum/disease/advance/A)
-	. = ..()
-	if(A.stealth >= 2) //if you combine this with pituitary disruption, you have the two most downside-heavy symptoms available
-	if(A.transmission >= 8)
 		
 
 /datum/symptom/EMP/Start(datum/disease/advance/A)
