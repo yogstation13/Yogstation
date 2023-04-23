@@ -86,9 +86,7 @@ export const PartFabricator = (props, context) => {
                   <br />
                   <br />
                   Energy in grid:{" "}
-                  {Math.round((current_energy/1000000000 + Number.EPSILON) * 1000) / 1000}
-                  /
-                  {Math.round((capacitor_energy/1000000000 + Number.EPSILON) * 1000) / 1000} GW
+                  {formatPower(current_energy)} / {formatPower(capacitor_energy)}
                   <ProgressBar
                     value={current_energy/capacitor_energy}
                     ranges={{
@@ -114,9 +112,7 @@ export const PartFabricator = (props, context) => {
                   <br />
                   <br />
                   Freon:{" "}
-                  {Math.round((current_moles + Number.EPSILON) * 1000) / 1000}
-                  /
-                  {Math.round((matterbin_moles + Number.EPSILON) * 1000) / 1000} moles
+                  {toFixed(current_moles, 3)} moles / {toFixed(matterbin_moles, 3)} moles
                   <ProgressBar
                     value={current_moles/matterbin_moles}
                     ranges={{
