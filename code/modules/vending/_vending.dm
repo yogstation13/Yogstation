@@ -38,6 +38,23 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/list/returned_products
 
 /**
+ * # User-inserted custom product
+ * A datum that represents a custom product that is vendable
+ */
+/datum/data/vending_custom_product
+	///Name of the stored item
+	name = "generic"
+	///Icon of the item
+	var/asset = null
+	///How many are stored currently
+	var/amount = 0
+
+/datum/data/vending_custom_product/New(obj/item/I)
+	name = format_text(I.name)
+	var/icon/icon = icon(I.icon, I.icon_state, SOUTH, 1)
+	asset = icon2base64(icon) // costly? probably. less costly than sending the entire spritesheet? also probably
+
+/**
   * # vending machines
   *
   * Captalism in the year 2525, everything in a vending machine, even love
@@ -603,10 +620,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 			LAZYADD(product_datum.returned_products, I)
 			return
 
-	if(vending_machine_input[format_text(I.name)])
-		vending_machine_input[format_text(I.name)]++
-	else
-		vending_machine_input[format_text(I.name)] = 1
+	var/name = format_text(I.name)
+	if(!vending_machine_input[name])
+		vending_machine_input[name] = new /datum/data/vending_custom_product(I)
+
+	vending_machine_input[name].amount++
 	loaded_items++
 
 /obj/machinery/vending/exchange_parts(mob/user, obj/item/storage/part_replacer/W)
@@ -739,7 +757,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 		.["stock"][R.name] = R.amount
 	.["extended_inventory"] = extended_inventory
 	// extra items that have been placed in custom stock
-	.["custom_stock"] = vending_machine_input
+	.["custom_stock"] = list()
+	for (var/name in vending_machine_input)
+		var/datum/data/vending_custom_product/P = vending_machine_input[name]
+		.["custom_stock"][P.name] = list(amount = P.amount, img = P.asset)
 
 /obj/machinery/vending/ui_act(action, params)
 	. = ..()
@@ -845,7 +866,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				to_chat(usr, span_warning("The vending machine cannot dispense products while its service panel is open!"))
 				return
 			var/N = params["item"]
-			if(vending_machine_input[N] <= 0) // don't dispense none item with left beef
+			if(!vending_machine_input[N] || vending_machine_input[N].amount <= 0) // don't dispense none item with left beef
 				return
 			vend_ready = FALSE //One thing at a time!!
 			var/price_to_use = chef_price
@@ -872,7 +893,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				if(account.account_job && account.account_job.paycheck_department == payment_department)
 					price_to_use = 0
 				if(price_to_use && !account.adjust_money(-price_to_use))
-					say("You do not possess the funds to purchase [N].")
+					say("You do not possess the funds to purchase the [N].")
 					flick(icon_deny,src)
 					vend_ready = TRUE
 					return
@@ -881,7 +902,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 					D.adjust_money(price_to_use)
 
 			if(last_shopper != usr || purchase_message_cooldown < world.time)
-				say("Thank you for shopping local and buying [N]!")
+				say("Thank you for shopping local and buying the [N]!")
 				purchase_message_cooldown = world.time + 5 SECONDS
 				last_shopper = usr
 			use_power(5)
@@ -889,7 +910,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				flick(icon_vend,src)
 			playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 
-			vending_machine_input[N] = max(vending_machine_input[N] - 1, 0)
+			vending_machine_input[N].amount = max(vending_machine_input[N].amount - 1, 0)
 			for(var/obj/item/I in contents)
 				if(I.name == N)
 					I.forceMove(get_turf(src))

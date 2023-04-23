@@ -37,11 +37,11 @@ const VendingRow = (props, context) => {
 
   return (
     <Table.Row>
-      {!custom &&
       <Table.Cell collapsing>
         {product.base64 ? (
           <img
             src={`data:image/jpeg;base64,${product.img}`}
+            className="icon"
             style={{
               'vertical-align': 'middle',
               'horizontal-align': 'middle',
@@ -57,7 +57,7 @@ const VendingRow = (props, context) => {
               'horizontal-align': 'middle',
             }} />
         )}
-      </Table.Cell>}
+      </Table.Cell>
       <Table.Cell bold>
         {product.name}
       </Table.Cell>
@@ -129,8 +129,10 @@ export const Vending = (props, context) => {
     product: {
       name: itemName,
       price: chef.price,
+      base64: true,
+      img: data.custom_stock[itemName].img,
     },
-    productStock: data.custom_stock[itemName],
+    productStock: data.custom_stock[itemName].amount,
   }));
 
   return (
