@@ -483,7 +483,7 @@
 
 /mob/living/carbon/human/proc/buster_recalibration()
 	set name = "Recalibrate Arm"
-	set desc = "You stabilize the arm in the case of missing functions."
+	set desc = "You recalibrate the arm to restore missing functionality."
 	set category = "Buster Style"
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You recalibrate your arm in an attempt to restore its functions.</i></b>"
