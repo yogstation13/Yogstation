@@ -155,34 +155,53 @@
 
 /obj/machinery/part_fabricator/ui_data(mob/user)
 	var/list/data = ..()
-	// Capacitor requirements /////////////////////////////////////////////////////////////////
-	var/current_ESMs = 0
-	for(var/obj/item/electrical_stasis_manifold/esm in contents)
-		current_ESMs++
-	data["current_ESMs"] = current_ESMs ? current_ESMs : 0
 
-	var/current_energy = get_power()
-	data["current_energy"] = current_energy ? current_energy : 0
+	var/current_ESMs = 0
+	var/current_augurs = 0
+	var/datum/gas_mixture/my_gas = return_air()
+	var/current_posibrain = "ERROR: No artificial brain loaded"
+	var/current_lasergun = "ERROR: No laser gun loaded"
+	var/current_money = 0
+	var/current_plants = 0
+	for(var/obj/item/loaded_item in contents) // Run through contents once instead of several times
+		if(istype(loaded_item, /obj/item/electrical_stasis_manifold))
+			current_ESMs++
+		else if(istype(loaded_item, /obj/item/organic_augur))
+			current_augurs++
+		else if(istype(loaded_item, /obj/item/mmi/posibrain))
+			if(current_posibrain == "Artificial brain active")
+				continue
+			var/obj/item/mmi/posibrain/posi = loaded_item
+			current_posibrain = "ERROR: Artificial brain inactive"
+			if(posi.brainmob?.key && posi.brainmob.stat == CONSCIOUS && posi.brainmob.client)
+				current_posibrain = "Artificial brain active"
+		else if(istype(loaded_item, /obj/item/gun/energy/laser))
+			if(current_lasergun == "Laser gun loaded")
+				continue
+			var/obj/item/gun/energy/laser/lasgun = loaded_item
+			var/valid = FALSE
+			for(var/obj/item/ammo_casing/ammotype in lasgun.ammo_type)
+				if(initial(ammotype.harmful)) // No practice laser guns
+					valid = TRUE
+					break
+			if(valid)
+				current_lasergun = "Laser gun loaded"
+		else if(loaded_item.get_item_credit_value())
+			current_money += loaded_item.get_item_credit_value()
+		else if(is_type_in_list(loaded_item, manipulator_plant_requirement.wanted_types))
+			current_plants++
+		
+	// Capacitor requirements /////////////////////////////////////////////////////////////////
+	data["current_ESMs"] = current_ESMs
+	data["current_energy"] = get_power()
 
 	// Matter bin requirements /////////////////////////////////////////////////////////////////
-	var/current_augurs = 0
-	for(var/obj/item/organic_augur/augur in contents)
-		current_augurs++
-	data["current_augurs"] = current_augurs ? current_augurs : 0
-
-	var/datum/gas_mixture/my_gas = return_air()
+	data["current_augurs"] = current_augurs
 	var/current_moles = my_gas.get_moles(/datum/gas/freon)
 	data["current_moles"] = current_moles ? current_moles : 0
 
 	// Scanner requirements /////////////////////////////////////////////////////////////////
-	var/current_posibrain = "ERROR: No artificial brain loaded"
-	for(var/obj/item/mmi/posibrain/posi in contents)
-		current_posibrain = "ERROR: Artificial brain inactive"
-		if(posi.brainmob?.key && posi.brainmob.stat == CONSCIOUS && posi.brainmob.client)
-			current_posibrain = "Artificial brain active"
-			break
 	data["current_posibrain"] = current_posibrain
-
 	var/current_reagents = list()
 	var/current_reagents_num = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
@@ -192,35 +211,15 @@
 	data["current_reagents_num"] = current_reagents_num
 
 	// Laser requirements /////////////////////////////////////////////////////////////////
-	var/current_lasergun = "ERROR: No laser gun loaded"
-	for(var/obj/item/gun/energy/laser/lasgun in contents)
-		var/valid = FALSE
-		for(var/obj/item/ammo_casing/ammotype in lasgun.ammo_type)
-			if(initial(ammotype.harmful)) // No practice laser guns
-				valid = TRUE
-				break
-		if(valid)
-			current_lasergun = "Laser gun loaded"
-			break
 	data["current_lasergun"] = current_lasergun
-
-	var/current_money = 0
-	for(var/obj/item/money in contents)
-		current_money += money.get_item_credit_value()
-	data["current_money"] = current_money ? current_money : 0
+	data["current_money"] = current_money
 
 	// Manipulator requirements /////////////////////////////////////////////////////////////////
-	var/current_plants = 0
-	for(var/selected_item in contents)
-		if(is_type_in_list(selected_item, manipulator_plant_requirement.wanted_types))
-			current_plants++
 	data["current_plants"] = current_plants
-
 	var/current_temp = my_gas.return_temperature()
 	data["current_temp"] = current_temp ? current_temp : 0
 
 	// Other vars /////////////////////////////////////////////////////////////////
-
 	data["production_progress"] = production_progress
 
 	return data
