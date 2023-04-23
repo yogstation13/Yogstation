@@ -162,21 +162,21 @@
 		var/current_ESMs = 0
 		for(var/obj/item/electrical_stasis_manifold/esm in contents)
 			current_ESMs++
-		data["current_ESMs"] = current_ESMs ? current_ESMs : "0"
+		data["current_ESMs"] = current_ESMs ? current_ESMs : 0
 
 		var/current_energy = get_power()
-		data["current_energy"] = current_energy ? current_energy : "0"
+		data["current_energy"] = current_energy ? current_energy : 0
 
 	// Matter bin requirements /////////////////////////////////////////////////////////////////
 	else if(tab == FAB_MATTERBIN)
 		var/current_augurs = 0
 		for(var/obj/item/organic_augur/augur in contents)
 			current_augurs++
-		data["current_augurs"] = current_augurs ? current_augurs : "0"
+		data["current_augurs"] = current_augurs ? current_augurs : 0
 
 		var/datum/gas_mixture/my_gas = return_air()
 		var/current_moles = my_gas.get_moles(/datum/gas/freon)
-		data["current_moles"] = current_moles ? current_moles : "0"
+		data["current_moles"] = current_moles ? current_moles : 0
 
 	// Scanner requirements /////////////////////////////////////////////////////////////////
 	else if(tab == FAB_SCANNER)
@@ -213,7 +213,7 @@
 		var/current_money = 0
 		for(var/obj/item/money in contents)
 			current_money += money.get_item_credit_value()
-		data["current_money"] = current_money ? current_money : "0"
+		data["current_money"] = current_money ? current_money : 0
 
 	// Manipulator requirements /////////////////////////////////////////////////////////////////
 	else if(tab == FAB_MANIPULATOR)
@@ -225,7 +225,7 @@
 
 		var/datum/gas_mixture/my_gas = return_air()
 		var/current_temp = my_gas.return_temperature()
-		data["current_temp"] = current_temp ? current_temp : "0"
+		data["current_temp"] = current_temp ? current_temp : 0
 
 	// Other vars /////////////////////////////////////////////////////////////////
 
