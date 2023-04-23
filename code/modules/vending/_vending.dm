@@ -624,7 +624,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!vending_machine_input[name])
 		vending_machine_input[name] = new /datum/data/vending_custom_product(I)
 
-	vending_machine_input[name].amount++
+	var/datum/data/vending_custom_product/P = vending_machine_input[name]
+	P.amount++
 	loaded_items++
 
 /obj/machinery/vending/exchange_parts(mob/user, obj/item/storage/part_replacer/W)
@@ -866,7 +867,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 				to_chat(usr, span_warning("The vending machine cannot dispense products while its service panel is open!"))
 				return
 			var/N = params["item"]
-			if(!vending_machine_input[N] || vending_machine_input[N].amount <= 0) // don't dispense none item with left beef
+			var/datum/data/vending_custom_product/P = vending_machine_input[N]
+			if(!P || P.amount <= 0) // don't dispense none item with left beef
 				return
 			vend_ready = FALSE //One thing at a time!!
 			var/price_to_use = chef_price
@@ -910,7 +912,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				flick(icon_vend,src)
 			playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 
-			vending_machine_input[N].amount = max(vending_machine_input[N].amount - 1, 0)
+			P.amount = max(P.amount - 1, 0)
 			for(var/obj/item/I in contents)
 				if(I.name == N)
 					I.forceMove(get_turf(src))
