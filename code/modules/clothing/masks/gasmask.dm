@@ -42,6 +42,7 @@
 	desc = "A modernised version of the classic design, this mask will not only filter out toxins but it can also be connected to an air supply."
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 	armor = list(MELEE = 0, BULLET = 0, LASER = 2,ENERGY = 2, BOMB = 0, BIO = 75, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/mask/gas/syndicate
@@ -161,6 +162,7 @@
 	item_state = "monkeymask"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"
@@ -170,17 +172,20 @@
 	item_state = "sexymime"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"
 	icon_state = "death_commando_mask"
 	item_state = "death_commando_mask"
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/cyborg
 	name = "cyborg visor"
 	desc = "Beep boop."
 	icon_state = "death"
 	resistance_flags = FLAMMABLE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/owl_mask
 	name = "owl mask"
@@ -189,11 +194,13 @@
 	clothing_flags = MASKINTERNALS
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/carp
 	name = "carp mask"
 	desc = "Gnash gnash."
 	icon_state = "carp_mask"
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/tiki_mask
 	name = "tiki mask"
@@ -204,6 +211,7 @@
 	max_integrity = 100
 	actions_types = list(/datum/action/item_action/adjust)
 	dog_fashion = null
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 	var/list/tikimask_designs = list()
 
 /obj/item/clothing/mask/gas/tiki_mask/Initialize(mapload)
