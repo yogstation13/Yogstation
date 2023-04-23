@@ -495,3 +495,53 @@
 		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len, null, BODYPART_ORGANIC))
 			M.update_damage_overlays()
 	return 1
+
+/datum/symptom/EMP
+	name = "Organic Flux Induction"
+	desc = "Causes electromagnetic interference around the subject"
+	stealth = 0
+	resistance = -1
+	stage_speed = -1
+	transmission = -2
+	level = 6
+	severity = 2
+	symptom_delay_min = 15
+	symptom_delay_max = 40
+	var/bigemp = FALSE
+	var/cellheal = FALSE
+	threshold_descs = list(
+		"Stealth 2" = "The disease resets cell DNA, quickly curing cell damage and mutations.",
+		"Transmission 8" = "The EMP affects electronics adjacent to the subject as well",
+		)
+	
+
+/datum/symptom/EMP/severityset(datum/disease/advance/A)
+	. = ..()
+	if(A.stealth >= 2) //if you combine this with pituitary disruption, you have the two most downside-heavy symptoms available
+	if(A.transmission >= 8)
+		
+
+/datum/symptom/EMP/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.stealth >= 2)
+		cellheal = TRUE
+	if(A.transmission >= 8)
+		bigemp = TRUE
+
+/datum/symptom/EMP/Activate(datum/disease/advance/A)
+	if(!..())
+		return
+	var/mob/living/carbon/M = A.affected_mob
+	switch(A.stage)
+		if(4, 5)
+			M.emp_act(EMP_HEAVY)
+			if(cellheal)
+				M.adjustCloneLoss(-30)
+				M.reagents.add_reagent(/datum/reagent/medicine/mutadone = 1)
+			if(bigemp)
+				empulse(M.loc, 0, 1)
+			to_chat(M, "<span class='userdanger'>[pick("Your mind fills with static!", "You feel a jolt!", "Your sense of direction flickers out!")]</span>")
+		else
+			to_chat(M, "<span class='notice'>[pick("You feel a slight tug toward the station's wall.", "Nearby electronics flicker.", "Your hair stands on end.")]</span>")
+	return
