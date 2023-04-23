@@ -88,12 +88,12 @@ GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
 		message_admins("Shadow muted [key] from OOC. Will reset when round ends.")
 
 	if(!GLOB.ooc_shadow_muted[key])
-		if(GLOB.ooc_new_last_messsage[key] < (world.time + 5 SECONDS))
+		if(GLOB.ooc_new_last_messsage[key] > (world.time))
 			to_chat(src, span_warning("Please wait a few seconds before sending another OOC message"))
 			return
 
 	if(get_exp_living(TRUE) <= 300)
-		GLOB.ooc_new_last_messsage[key] = world.time
+		GLOB.ooc_new_last_messsage[key] = world.time + 5 SECODNS
 
 	//PINGS
 	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
