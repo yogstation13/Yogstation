@@ -61,7 +61,7 @@
 	dye_color = "clown"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 	actions_types = list(/datum/action/item_action/adjust)
 	dog_fashion = /datum/dog_fashion/head/clown
 	var/list/clownmask_designs = list()
@@ -108,7 +108,7 @@
 	item_state = "sexyclown"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
@@ -118,7 +118,7 @@
 	item_state = "mime"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
-	mutantrace_variation = MUTANTRACE_VARIATION
+	mutantrace_variation = NO_MUTANTRACE_VARIATION
 	actions_types = list(/datum/action/item_action/adjust)
 	var/list/mimemask_designs = list()
 
