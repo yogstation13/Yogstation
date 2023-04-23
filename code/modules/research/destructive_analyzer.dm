@@ -89,11 +89,11 @@ Note: Must be placed within 3 tiles of the R&D Console
 		var/list/food = thing.GetDeconstructableContents()
 		for(var/obj/item/innerthing in food)
 			destroy_item(innerthing, TRUE)
-	if(can_research_items && !is_type_in_typecache(thing.type, researched_items))
+	if(can_research_items && !researched_items[thing.type])
 		var/points = (rand() + 1) * 300 // 300-600 points, juicy
 		linked_console.stored_research.add_stored_point_type(TECHWEB_POINT_TYPE_DEFAULT, points)
 		balloon_alert_to_viewers("Gained [points] points from \the [thing]!")
-		researched_items += typecacheof(thing.type)
+		researched_items[thing.type] = TRUE
 	reclaim_materials_from(thing)
 	for(var/mob/M in thing)
 		M.death()
