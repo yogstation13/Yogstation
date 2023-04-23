@@ -518,9 +518,9 @@
 /datum/symptom/EMP/Start(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.stealth >= 2)
+	if(A.totalStealth() >= 2)
 		cellheal = TRUE
-	if(A.transmission >= 8)
+	if(A.totalTransmittable() >= 8)
 		bigemp = TRUE
 
 /datum/symptom/EMP/Activate(datum/disease/advance/A)
