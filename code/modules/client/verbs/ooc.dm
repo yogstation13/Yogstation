@@ -5,6 +5,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 GLOBAL_LIST_EMPTY(ooc_shadow_muted)
 GLOBAL_LIST_EMPTY(ooc_new_long_messages)
 GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
+GLOBAL_LIST_EMPTY(ooc_new_long_messages_short)
 
 /client/verb/ooc_wrapper()
 	set hidden = TRUE
@@ -82,8 +83,18 @@ GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
 		else
 			GLOB.ooc_new_long_messages[key] = 1
 
+	if(get_exp_living(TRUE) <= 300 && length(msg) >= 25)
+		if(GLOB.ooc_new_long_messages_short[key])
+			GLOB.ooc_new_long_messages_short[key]++
+		else
+			GLOB.ooc_new_long_messages_short[key] = 1
 
-	if(GLOB.ooc_new_long_messages[key] >= 3 && !GLOB.ooc_shadow_muted[key])
+
+	if(GLOB.ooc_new_long_messages[key] > 1 && !GLOB.ooc_shadow_muted[key])
+		GLOB.ooc_shadow_muted[key] = TRUE
+		message_admins("Shadow muted [key] from OOC. Will reset when round ends.")
+
+	if(GLOB.ooc_new_long_messages_short[key] >= 3 && !GLOB.ooc_shadow_muted[key])
 		GLOB.ooc_shadow_muted[key] = TRUE
 		message_admins("Shadow muted [key] from OOC. Will reset when round ends.")
 
