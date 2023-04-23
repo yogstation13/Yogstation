@@ -1,4 +1,4 @@
-import { useBackend } from '../backend';
+import { useBackend, useLocalState } from '../backend';
 import { Button, Box, ProgressBar, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
@@ -31,6 +31,10 @@ export const PartFabricator = (props, context) => {
     // Variable, progress in printing
     production_progress,
   } = data;
+  const [
+    tabIndex,
+    setTabIndex,
+  ] = useLocalState(context, 'tab-index', 1);
   return (
     <Window width={480} height={300}>
       <Window.Content>
@@ -38,32 +42,32 @@ export const PartFabricator = (props, context) => {
           <Stack.Item>
             <Tabs>
               <Tabs.Tab
-                selected={tab === "capacitor"}
-                onClick={() => act('goCapacitor')}
+                selected={tabIndex === 1}
+                onClick={() => setTabIndex(1)}
                 >
                 Capacitor
               </Tabs.Tab>
               <Tabs.Tab
-                selected={tab === "matterbin"}
-                onClick={() => act('goMatterBin')}
+                selected={tabIndex === 2}
+                onClick={() => setTabIndex(2)}
                 >
                 Matter Bin
               </Tabs.Tab>
               <Tabs.Tab
-                selected={tab === "scanner"}
-                onClick={() => act('goScanner')}
+                selected={tabIndex === 3}
+                onClick={() => setTabIndex(3)}
                 >
                 Scanner
               </Tabs.Tab>
               <Tabs.Tab
-                selected={tab === "laser"}
-                onClick={() => act('goLaser')}
+                selected={tabIndex === 4}
+                onClick={() => setTabIndex(4)}
                 >
                 Laser
               </Tabs.Tab>
               <Tabs.Tab
-                selected={tab === "manipulator"}
-                onClick={() => act('goManipulator')}
+                selected={tabIndex === 5}
+                onClick={() => setTabIndex(5)}
                 >
                 Manipulator
               </Tabs.Tab>
@@ -71,7 +75,7 @@ export const PartFabricator = (props, context) => {
           </Stack.Item>
           <Stack.Item grow>
             <Section title={"Requirements"}>
-              {tab === "capacitor" && (
+              {tabIndex === 1 && (
                 <Box>
                   Electrical stasis manifolds: {current_ESMs}/1{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectESM')}>Eject</Button>
@@ -97,7 +101,7 @@ export const PartFabricator = (props, context) => {
                     />
                 </Box>
                 )}
-              {tab === "matterbin" && (
+              {tabIndex === 2 && (
                 <Box>
                   Organic Augurs: {current_augurs}/1{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectAugur')}>Eject</Button>
@@ -123,7 +127,7 @@ export const PartFabricator = (props, context) => {
                     />
                 </Box>
                 )}
-              {tab === "scanner" && (
+              {tabIndex === 3 && (
                 <Box>
                   {current_posibrain}{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectPosi')}>Eject</Button>
@@ -157,7 +161,7 @@ export const PartFabricator = (props, context) => {
                   )}
                 </Box>
                 )}
-              {tab === "laser" && (
+              {tabIndex === 4 && (
                 <Box>
                   {current_lasergun}{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectLaserGun')}>Eject</Button>
@@ -183,7 +187,7 @@ export const PartFabricator = (props, context) => {
                     />
                 </Box>
                 )}
-              {tab === "manipulator" && (
+              {tabIndex === 5 && (
                 <Box>
                   {manipulator_plant}: {current_plants}/{manipulator_plant_num}{" "}
                   <Button color="bad" icon="eject" onClick={(e, value) => act('ejectPlants')}>Eject</Button>
@@ -219,7 +223,7 @@ export const PartFabricator = (props, context) => {
               <Button
                 fluid
                 content="PRINT"
-                onClick={() => act('tryPrint')} />
+                onClick={() => act('tryPrint', {tab:tabIndex})} />
             )
             :
             (

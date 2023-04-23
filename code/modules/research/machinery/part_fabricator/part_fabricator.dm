@@ -1,8 +1,8 @@
-#define FAB_CAPACITOR "capacitor"
-#define FAB_MATTERBIN "matterbin"
-#define FAB_SCANNER "scanner"
-#define FAB_LASER "laser"
-#define FAB_MANIPULATOR "manipulator"
+#define FAB_CAPACITOR 1
+#define FAB_MATTERBIN 2
+#define FAB_SCANNER 3
+#define FAB_LASER 4
+#define FAB_MANIPULATOR 5
 
 /// The Production Producer
 /obj/machinery/part_fabricator
@@ -30,8 +30,6 @@
 	var/static/manipulator_temp_requirement
 
 	var/static/list/acceptable_items
-
-	var/tab = FAB_CAPACITOR
 
 	var/production_speed = 1
 
@@ -158,74 +156,69 @@
 /obj/machinery/part_fabricator/ui_data(mob/user)
 	var/list/data = ..()
 	// Capacitor requirements /////////////////////////////////////////////////////////////////
-	if(tab == FAB_CAPACITOR)
-		var/current_ESMs = 0
-		for(var/obj/item/electrical_stasis_manifold/esm in contents)
-			current_ESMs++
-		data["current_ESMs"] = current_ESMs ? current_ESMs : 0
+	var/current_ESMs = 0
+	for(var/obj/item/electrical_stasis_manifold/esm in contents)
+		current_ESMs++
+	data["current_ESMs"] = current_ESMs ? current_ESMs : 0
 
-		var/current_energy = get_power()
-		data["current_energy"] = current_energy ? current_energy : 0
+	var/current_energy = get_power()
+	data["current_energy"] = current_energy ? current_energy : 0
 
 	// Matter bin requirements /////////////////////////////////////////////////////////////////
-	else if(tab == FAB_MATTERBIN)
-		var/current_augurs = 0
-		for(var/obj/item/organic_augur/augur in contents)
-			current_augurs++
-		data["current_augurs"] = current_augurs ? current_augurs : 0
+	var/current_augurs = 0
+	for(var/obj/item/organic_augur/augur in contents)
+		current_augurs++
+	data["current_augurs"] = current_augurs ? current_augurs : 0
 
-		var/datum/gas_mixture/my_gas = return_air()
-		var/current_moles = my_gas.get_moles(/datum/gas/freon)
-		data["current_moles"] = current_moles ? current_moles : 0
+	var/datum/gas_mixture/my_gas = return_air()
+	var/current_moles = my_gas.get_moles(/datum/gas/freon)
+	data["current_moles"] = current_moles ? current_moles : 0
 
 	// Scanner requirements /////////////////////////////////////////////////////////////////
-	else if(tab == FAB_SCANNER)
-		var/current_posibrain = "ERROR: No artificial brain loaded"
-		for(var/obj/item/mmi/posibrain/posi in contents)
-			current_posibrain = "ERROR: Artificial brain inactive"
-			if(posi.brainmob?.key && posi.brainmob.stat == CONSCIOUS && posi.brainmob.client)
-				current_posibrain = "Artificial brain active"
-				break
-		data["current_posibrain"] = current_posibrain
+	var/current_posibrain = "ERROR: No artificial brain loaded"
+	for(var/obj/item/mmi/posibrain/posi in contents)
+		current_posibrain = "ERROR: Artificial brain inactive"
+		if(posi.brainmob?.key && posi.brainmob.stat == CONSCIOUS && posi.brainmob.client)
+			current_posibrain = "Artificial brain active"
+			break
+	data["current_posibrain"] = current_posibrain
 
-		var/current_reagents = list()
-		var/current_reagents_num = list()
-		for(var/datum/reagent/R in reagents.reagent_list)
-			current_reagents += "[R.name]"
-			current_reagents_num += R.volume
-		data["current_reagents"] = current_reagents
-		data["current_reagents_num"] = current_reagents_num
+	var/current_reagents = list()
+	var/current_reagents_num = list()
+	for(var/datum/reagent/R in reagents.reagent_list)
+		current_reagents += "[R.name]"
+		current_reagents_num += R.volume
+	data["current_reagents"] = current_reagents
+	data["current_reagents_num"] = current_reagents_num
 
 	// Laser requirements /////////////////////////////////////////////////////////////////
-	else if(tab == FAB_LASER)
-		var/current_lasergun = "ERROR: No laser gun loaded"
-		for(var/obj/item/gun/energy/laser/lasgun in contents)
-			var/valid = FALSE
-			for(var/obj/item/ammo_casing/ammotype in lasgun.ammo_type)
-				if(initial(ammotype.harmful)) // No practice laser guns
-					valid = TRUE
-					break
-			if(valid)
-				current_lasergun = "Laser gun loaded"
+	var/current_lasergun = "ERROR: No laser gun loaded"
+	for(var/obj/item/gun/energy/laser/lasgun in contents)
+		var/valid = FALSE
+		for(var/obj/item/ammo_casing/ammotype in lasgun.ammo_type)
+			if(initial(ammotype.harmful)) // No practice laser guns
+				valid = TRUE
 				break
-		data["current_lasergun"] = current_lasergun
+		if(valid)
+			current_lasergun = "Laser gun loaded"
+			break
+	data["current_lasergun"] = current_lasergun
 
-		var/current_money = 0
-		for(var/obj/item/money in contents)
-			current_money += money.get_item_credit_value()
-		data["current_money"] = current_money ? current_money : 0
+	var/current_money = 0
+	for(var/obj/item/money in contents)
+		current_money += money.get_item_credit_value()
+	data["current_money"] = current_money ? current_money : 0
 
 	// Manipulator requirements /////////////////////////////////////////////////////////////////
-	else if(tab == FAB_MANIPULATOR)
-		var/current_plants = 0
-		for(var/selected_item in contents)
-			if(is_type_in_list(selected_item, manipulator_plant_requirement.wanted_types))
-				current_plants++
-		data["current_plants"] = current_plants
+	var/current_plants = 0
+	for(var/selected_item in contents)
+		if(is_type_in_list(selected_item, manipulator_plant_requirement.wanted_types))
+			current_plants++
+	data["current_plants"] = current_plants
 
-		var/datum/gas_mixture/my_gas = return_air()
-		var/current_temp = my_gas.return_temperature()
-		data["current_temp"] = current_temp ? current_temp : 0
+	var/datum/gas_mixture/my_gas = return_air()
+	var/current_temp = my_gas.return_temperature()
+	data["current_temp"] = current_temp ? current_temp : 0
 
 	// Other vars /////////////////////////////////////////////////////////////////
 
@@ -250,28 +243,16 @@
 	return data
 
 /obj/machinery/part_fabricator/ui_act(action, list/params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	
 	switch(action)
 		if("tryPrint")
-			return try_print()
-		/// Tabs ///
-		if("goCapacitor")
-			tab = FAB_CAPACITOR
-			return TRUE
-		if("goMatterBin")
-			tab = FAB_MATTERBIN
-			return TRUE
-		if("goScanner")
-			tab = FAB_SCANNER
-			return TRUE
-		if("goLaser")
-			tab = FAB_LASER
-			return TRUE
-		if("goManipulator")
-			tab = FAB_MANIPULATOR
-			return TRUE
+			var/tab = params["tab"]
+			if(!isnum(tab))
+				return
+			return try_print(tab)
 		/// Ejection ///
 		if("ejectESM")
 			eject_type(/obj/item/electrical_stasis_manifold)
@@ -321,7 +302,9 @@
 	item.forceMove(get_step(drop_location(), WEST))
 	adjust_item_drop_location(item)
 
-/obj/machinery/part_fabricator/proc/try_print()
+/obj/machinery/part_fabricator/proc/try_print(tab)
+	if(!ISINTEGER(tab) || tab < FAB_CAPACITOR || tab > FAB_MANIPULATOR)
+		return FALSE
 	if(panel_open)
 		return FALSE
 	if(production_progress > 0)
