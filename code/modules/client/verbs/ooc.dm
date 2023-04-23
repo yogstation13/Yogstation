@@ -72,19 +72,19 @@ GLOBAL_LIST_EMPTY(ooc_new_long_messages_very)
 			keyname = "<font color='[prefs.read_preference(/datum/preference/color/ooc_color) || GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//YOG START - Yog OOC
 
-	if(get_exp_living(TRUE) <= 300 && length(msg) >= 150)
+	if(get_exp_living(TRUE) <= 300 && length(msg) >= 450)
 		if(GLOB.ooc_new_long_messages[key])
 			GLOB.ooc_new_long_messages_very[key]++
 		else
 			GLOB.ooc_new_long_messages_very[key] = 1
 
-	if(get_exp_living(TRUE) <= 300 && length(msg) >= 50)
+	if(get_exp_living(TRUE) <= 300 && length(msg) >= 300)
 		if(GLOB.ooc_new_long_messages[key])
 			GLOB.ooc_new_long_messages[key]++
 		else
 			GLOB.ooc_new_long_messages[key] = 1
 
-	if(get_exp_living(TRUE) <= 300 && length(msg) >= 25)
+	if(get_exp_living(TRUE) <= 300 && length(msg) >= 150)
 		if(GLOB.ooc_new_long_messages_short[key])
 			GLOB.ooc_new_long_messages_short[key]++
 		else
