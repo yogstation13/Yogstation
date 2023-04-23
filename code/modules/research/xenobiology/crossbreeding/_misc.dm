@@ -278,8 +278,8 @@ Slimecrossing Items
 		to_chat(user, span_warning("The capture device only works on simple creatures."))
 		return
 	if(M.mind)
-		to_chat(user, span_notice("You offer the device to [M]."))
-		if(alert(M, "Would you like to enter [user]'s capture device?", "Gold Capture Device", "Yes", "No") == "Yes")
+		to_chat(user, "<span class='notice'>You offer the device to [M].</span>")
+		if(tgui_alert(M, "Would you like to enter [user]'s capture device?", "Gold Capture Device", list("Yes", "No")) == "Yes")
 			if(user.canUseTopic(src, BE_CLOSE) && user.canUseTopic(M, BE_CLOSE))
 				to_chat(user, span_notice("You store [M] in the capture device."))
 				to_chat(M, span_notice("The world warps around you, and you're suddenly in an endless void, with a window to the outside floating in front of you."))

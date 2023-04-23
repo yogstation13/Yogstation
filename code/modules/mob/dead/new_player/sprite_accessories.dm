@@ -1886,7 +1886,7 @@
 
 /datum/sprite_accessory/socks/stockings_green
 	name = "Stockings (Green)"
-	icon_state = "stockings_black"
+	icon_state = "stockings_green"
 
 /datum/sprite_accessory/socks/stockings_orange
 	name = "Stockings (Orange)"
@@ -2143,6 +2143,24 @@
 	dimension_x = 46
 	center = TRUE
 	dimension_y = 34
+
+/datum/sprite_accessory/wings/plant
+	name = "Plant"
+	icon_state = "plant"
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+	color_src = HAIR
+
+/datum/sprite_accessory/wings_open/plant
+	name = "Plant"
+	icon_state = "plant"
+	dimension_x = 96
+	center = TRUE
+	dimension_y = 32
+	locked = TRUE
+	color_src = HAIR
 
 /datum/sprite_accessory/wings/dragon
 	name = "Dragon"

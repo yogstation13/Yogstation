@@ -4,12 +4,12 @@
 	can_attach_mob = TRUE
 	var/glitter_type = "glitter"
 
-/datum/effect_system/smoke_spread/chem/glitter
-	effect_type = /obj/effect/particle_effect/smoke/chem/glitter
+datum/effect_system/fluid_spread/smoke/chem/glitter
+	effect_type = /obj/effect/particle_effect/fluid/smoke/chem/glitter
 
-/obj/effect/particle_effect/smoke/chem/glitter
-	lifetime = 6
-	opaque = TRUE
+/obj/effect/particle_effect/fluid/smoke/chem/glitter
+	lifetime = 6 SECONDS
+	opacity = TRUE
 
 /obj/item/grenade/plastic/glitterbomb/Initialize()
 	. = ..()
@@ -17,8 +17,8 @@
 	reagents.add_reagent(glitter_type, 20)
 
 /obj/item/grenade/plastic/glitterbomb/prime()
-	var/datum/effect_system/smoke_spread/chem/glitter/smoke = new()
-	smoke.set_up(reagents, 4, target)
+	var/datum/effect_system/fluid_spread/smoke/chem/glitter/smoke = new()
+	smoke.set_up(4, location = target, carry = reagents)
 	smoke.start()
 	playsound(target, 'sound/items/party_horn.ogg', 50, 1, -1)
 	target.cut_overlay(plastic_overlay, TRUE)

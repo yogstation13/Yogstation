@@ -51,6 +51,8 @@
 	filters = list()
 	if(istype(mymob) && mymob.eye_blurry)
 		filters += GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3))
+	// Should be moved to the world render plate when render plates get ported in
+	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 
 ///Contains most things in the game world
 /atom/movable/screen/plane_master/game_world
@@ -61,10 +63,12 @@
 
 /atom/movable/screen/plane_master/game_world/backdrop(mob/mymob)
 	filters = list()
-	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
+	if(istype(mymob) && mymob.client?.prefs?.read_preference(/datum/preference/toggle/ambient_occlusion))
 		filters += AMBIENT_OCCLUSION
 	if(istype(mymob) && mymob.eye_blurry)
 		filters += GAUSSIAN_BLUR(clamp(mymob.eye_blurry*0.1,0.6,3))
+	// Should be moved to the world render plate when render plates get ported in
+	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 
 
 ///Contains all lighting objects
@@ -76,8 +80,11 @@
 
 /atom/movable/screen/plane_master/lighting/Initialize()
 	. = ..()
-	filters += filter(type="alpha", render_source=EMISSIVE_RENDER_TARGET, flags=MASK_INVERSE)
-	filters += filter(type="alpha", render_source=EMISSIVE_UNBLOCKABLE_RENDER_TARGET, flags=MASK_INVERSE)
+	filters += filter(type="alpha", render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE)
+	filters += filter(type="alpha", render_source = EMISSIVE_UNBLOCKABLE_RENDER_TARGET, flags = MASK_INVERSE)
+	filters += filter(type="alpha", render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE)
+	// Should be moved to the world render plate when render plates get ported in
+	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 
 /**
   * Things placed on this mask the lighting plane. Doesn't render directly.
@@ -94,6 +101,8 @@
 /atom/movable/screen/plane_master/emissive/Initialize()
 	. = ..()
 	filters += filter(type="alpha", render_source=EMISSIVE_BLOCKER_RENDER_TARGET, flags=MASK_INVERSE)
+	// Should be moved to the world render plate when render plates get ported in
+	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
 
 /**
   * Things placed on this always mask the lighting plane. Doesn't render directly.
@@ -126,6 +135,13 @@
 	blend_mode = BLEND_MULTIPLY
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
+/atom/movable/screen/plane_master/parallax/Initialize(mapload)
+	. = ..()
+	if(HAS_TRAIT(SSstation, STATION_TRAIT_STATION_ADRIFT))
+		SpinAnimation(15 MINUTES)
+	// Should be moved to the world render plate when render plates get ported in
+	filters += filter(type="displace", render_source = SINGULARITY_RENDER_TARGET, size=75)
+
 /atom/movable/screen/plane_master/parallax_white
 	name = "parallax whitifier plane master"
 	plane = PLANE_SPACE
@@ -133,6 +149,12 @@
 /atom/movable/screen/plane_master/lighting/backdrop(mob/mymob)
 	mymob.overlay_fullscreen("lighting_backdrop_lit", /atom/movable/screen/fullscreen/lighting_backdrop/lit)
 	mymob.overlay_fullscreen("lighting_backdrop_unlit", /atom/movable/screen/fullscreen/lighting_backdrop/unlit)
+
+/atom/movable/screen/plane_master/singularity_effect
+	name = "singularity plane master"
+	plane = SINGULARITY_EFFECT_PLANE
+	render_target = SINGULARITY_RENDER_TARGET
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/plane_master/camera_static
 	name = "camera static plane master"
@@ -148,5 +170,13 @@
 
 /atom/movable/screen/plane_master/runechat/backdrop(mob/mymob)
 	filters = list()
-	if(istype(mymob) && mymob.client?.prefs?.ambientocclusion)
+	if(istype(mymob) && mymob.client?.prefs?.read_preference(/datum/preference/toggle/ambient_occlusion))
 		filters += AMBIENT_OCCLUSION
+
+/atom/movable/screen/plane_master/o_light_visual
+	name = "overlight light visual plane master"
+	layer = O_LIGHTING_VISUAL_LAYER
+	plane = O_LIGHTING_VISUAL_PLANE
+	render_target = O_LIGHTING_VISUAL_RENDER_TARGET
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	blend_mode = BLEND_MULTIPLY

@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/charge_type = "recharge" //can be recharge or charges, see charge_max and charge_counter descriptions; can also be based on the holder's vars now, use "holder_var" for that
 
-	var/charge_max = 100 //recharge time in deciseconds if charge_type = "recharge" or starting charges if charge_type = "charges"
+	var/charge_max = 10 SECONDS //recharge time in deciseconds if charge_type = "recharge" or starting charges if charge_type = "charges"
 	var/charge_counter = 0 //can only cast spells if it equals recharge, ++ each decisecond if charge_type = "recharge" or -- each cast if charge_type = "charges"
 	var/still_recharging_msg = span_notice("The spell is still recharging.")
 	var/recharging = TRUE
@@ -147,8 +147,10 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/sparks_spread = 0
 	var/sparks_amt = 0 //cropped at 10
-	var/smoke_spread = 0 //1 - harmless, 2 - harmful
-	var/smoke_amt = 0 //cropped at 10
+	/// The typepath of the smoke to create on cast.
+	var/smoke_spread = null
+	/// The amount of smoke to create on case. This is a range so a value of 5 will create enough smoke to cover everything within 5 steps.
+	var/smoke_amt = 0
 
 	var/centcom_cancast = TRUE //Whether or not the spell should be allowed on z2
 
@@ -306,9 +308,9 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	cooldown_overlay = start_cooldown(action.button, world.time + charge_max)
 	recharging = TRUE
 
-/obj/effect/proc_holder/spell/process()
+/obj/effect/proc_holder/spell/process(delta_time)
 	if(recharging && charge_type == "recharge" && (charge_counter < charge_max))
-		charge_counter += 2	//processes 5 times per second instead of 10.
+		charge_counter += delta_time * 10
 		cooldown_overlay?.tick()
 		if(charge_counter >= charge_max)
 			action.UpdateButtonIcon()
@@ -356,19 +358,10 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			to_chat(target, text("[message]"))
 		if(sparks_spread)
 			do_sparks(sparks_amt, FALSE, location)
-		if(smoke_spread)
-			if(smoke_spread == 1)
-				var/datum/effect_system/smoke_spread/smoke = new
-				smoke.set_up(smoke_amt, location)
-				smoke.start()
-			else if(smoke_spread == 2)
-				var/datum/effect_system/smoke_spread/bad/smoke = new
-				smoke.set_up(smoke_amt, location)
-				smoke.start()
-			else if(smoke_spread == 3)
-				var/datum/effect_system/smoke_spread/sleeping/smoke = new
-				smoke.set_up(smoke_amt, location)
-				smoke.start()
+		if(ispath(smoke_spread, /datum/effect_system/fluid_spread/smoke)) // Dear god this code is :agony:
+			var/datum/effect_system/fluid_spread/smoke/smoke = new smoke_spread()
+			smoke.set_up(smoke_amt, location = location)
+			smoke.start()
 
 
 /obj/effect/proc_holder/spell/proc/cast(list/targets,mob/user = usr)

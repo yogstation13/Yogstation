@@ -42,6 +42,10 @@
 	radio.independent = TRUE
 	radio.recalculateChannels()
 
+/obj/machinery/computer/secure_data/Destroy()
+	. = ..()
+	QDEL_NULL(radio)
+
 /obj/machinery/computer/secure_data/syndie
 	icon_keyboard = "syndie_key"
 
@@ -466,7 +470,7 @@
 		if("delete_records")
 			if(!logged_in)
 				return
-			if(alert("Are you sure you want to delete all security records?",, "Yes", "No") != "Yes")
+			if(tgui_alert(usr, "Are you sure you want to delete all security records?",, list("Yes", "No")) != "Yes")
 				return
 			investigate_log("[key_name(usr)] has purged all the security records.", INVESTIGATE_RECORDS)
 			for(var/datum/data/record/R in GLOB.data_core.security)
@@ -541,7 +545,7 @@
 		if("delete_general_record_and_security")
 			if(!logged_in)
 				return
-			if(alert("Are you sure you want to delete these records?",, "Yes", "No") != "Yes")
+			if(tgui_alert(usr, "Are you sure you want to delete these records?",, list("Yes", "No")) != "Yes")
 				return
 			if(active_general_record)
 				investigate_log("[key_name(usr)] has deleted all records for [active_general_record.fields["name"]].", INVESTIGATE_RECORDS)
@@ -562,7 +566,7 @@
 		if("delete_security_record")
 			if(!logged_in)
 				return
-			if(alert("Are you sure you want to delete this record?",, "Yes", "No") != "Yes")
+			if(tgui_alert(usr, "Are you sure you want to delete this record?",, list("Yes", "No")) != "Yes")
 				return
 			investigate_log("[key_name(usr)] has deleted the security records for [active_general_record.fields["name"]].", INVESTIGATE_RECORDS)
 			if(active_security_record)

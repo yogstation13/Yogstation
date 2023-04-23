@@ -1,15 +1,15 @@
-#define CONCIOUSAY(text) if(H.stat == CONSCIOUS) { ##text }
+#define CONSCIOUSAY(text) if(H.stat == CONSCIOUS) { ##text }
 
 /datum/species/ipc // im fucking lazy mk2 and cant get sprites to normally work
 	name = "IPC" //inherited from the real species, for health scanners and things
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
 	sexes = FALSE
-	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
+	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
-	mutant_brain = /obj/item/organ/brain/positron
-	mutant_heart = /obj/item/organ/heart/cybernetic/ipc
+	mutantbrain = /obj/item/organ/brain/positron
+	mutantheart = /obj/item/organ/heart/cybernetic/ipc
 	mutanteyes = /obj/item/organ/eyes/robotic
 	mutanttongue = /obj/item/organ/tongue/robot
 	mutantliver = /obj/item/organ/liver/cybernetic/upgraded/ipc
@@ -24,7 +24,7 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	payday_modifier = 0.6 //Mass producible labor
+	payday_modifier = 0.5 //Mass producible labor + robot
 	burnmod = 1.5
 	heatmod = 1
 	brutemod = 1
@@ -38,13 +38,18 @@
 	screamsound = 'goon/sound/robot_scream.ogg'
 	allow_numbers_in_name = TRUE
 	deathsound = 'sound/voice/borg_deathsound.ogg'
+	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
+	special_walk_sounds = list('sound/effects/servostep.ogg')
 	wings_icon = "Robotic"
 	var/saved_screen //for saving the screen when they die
+	species_language_holder = /datum/language_holder/machine
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	// Hats need to be 1 up
 	offset_features = list(OFFSET_HEAD = list(0,1))
 
 	var/datum/action/innate/change_screen/change_screen
+
+	smells_like = "industrial lubricant"
 
 /datum/species/ipc/random_name(unique)
 	var/ipc_name = "[pick(GLOB.posibrain_names)]-[rand(100, 999)]"
@@ -93,6 +98,30 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		return
 	C.dna.features["ipc_screen"] = null //Turns off screen on death
 	C.update_body()
+
+/datum/species/ipc/get_species_description()
+	return /*"IPCs, or Integrated Posibrain Chassis, are a series of constructed bipedal humanoids which vaguely represent humans in their figure. \
+		IPCs were made by several human corporations after the second generation of cyborg units was created."*/
+
+/datum/species/ipc/get_species_lore()
+	return list("TBD",/*
+		"The development and creation of IPCs was a natural occurrence after Sol Interplanetary Coalition explorers, flying a Martian flag, uncovered MMI technology in 2419. \
+		It was massively hoped by scientists, explorers, and opportunists that this discovery would lead to a breakthrough in humanity’s ability to access and understand much of the derelict technology left behind."
+	*/)
+
+/datum/species/ipc/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
+
+/datum/species/ipc/create_pref_biotypes_perks()
+	var/list/to_add = list()
+
+	// TODO
+
+	return to_add
 
 /datum/action/innate/change_screen
 	name = "Change Display"
@@ -185,13 +214,13 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	return
 
 /datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)
-	CONCIOUSAY(H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]..."))
+	CONSCIOUSAY(H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]..."))
 	sleep(3 SECONDS)
-	CONCIOUSAY(H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]..."))
+	CONSCIOUSAY(H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]..."))
 	sleep(3 SECONDS)
-	CONCIOUSAY(H.say("Finalizing setup..."))
+	CONSCIOUSAY(H.say("Finalizing setup..."))
 	sleep(3 SECONDS)
-	CONCIOUSAY(H.say("Unit [H.real_name] is fully functional. Have a nice day."))
+	CONSCIOUSAY(H.say("Unit [H.real_name] is fully functional. Have a nice day."))
 	if(H.stat == DEAD)
 		return
 	H.dna.features["ipc_screen"] = saved_screen
@@ -212,7 +241,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	if(H.oxyloss)
 		H.setOxyLoss(0)
 		H.losebreath = 0
-	if(H.health <= HEALTH_THRESHOLD_FULLCRIT && H.stat != DEAD) // So they die eventually instead of being stuck in crit limbo.
+	if(H.health <= HEALTH_THRESHOLD_FULLCRIT && H.stat != DEAD && !HAS_TRAIT(H, TRAIT_NOHARDCRIT)) // So they die eventually instead of being stuck in crit limbo.
 		H.adjustFireLoss(6) // After bodypart_robotic resistance this is ~2/second
 		if(prob(5))
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
@@ -251,15 +280,25 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	C.visible_message(span_danger("[user] attempts to pour [O] down [C]'s port!"), \
 										span_userdanger("[user] attempts to pour [O] down [C]'s port!"))
 
+/datum/species/ipc/spec_emag_act(mob/living/carbon/human/H, mob/user)
+	if(H == user)//no emagging yourself
+		return
+	for(var/datum/brain_trauma/hypnosis/ipc/trauma in H.get_traumas())
+		return
+	H.SetUnconscious(10 SECONDS)
+	H.gain_trauma(/datum/brain_trauma/hypnosis/ipc, TRAUMA_RESILIENCE_SURGERY)
+
 /*------------------------
 
 ipc martial arts stuff
 
 --------------------------*/
 /datum/species/ipc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	if(chem.type == exotic_blood)
+		return FALSE
 	. = ..()
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
-		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it			
+	if(H.mind?.martial_art && H.mind.martial_art.id == "ultra violence")
+		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it
 			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
 			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)
 			H.reagents.del_reagent(chem.type)//only one big tick of healing
@@ -273,6 +312,8 @@ ipc martial arts stuff
 		else//if just getting hit
 			addtimer(CALLBACK(src, .proc/add_empproof, H), 1, TIMER_UNIQUE)
 		addtimer(CALLBACK(src, .proc/remove_empproof, H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+	else if(severity == EMP_HEAVY)
+		H.emote("warn") // *chuckles* i'm in danger!
 
 /datum/species/ipc/proc/throw_lightning(mob/living/carbon/human/H)
 	siemens_coeff = 0
@@ -287,4 +328,4 @@ ipc martial arts stuff
 	if(ipcmartial)
 		ipcmartial.Destroy()
 
-#undef CONCIOUSAY
+#undef CONSCIOUSAY

@@ -9,7 +9,7 @@
 	name = "darkspawn"
 	config_tag = "darkspawn"
 	antag_flag = ROLE_DARKSPAWN
-	required_players = 26
+	required_players = 38
 	required_enemies = 3
 	recommended_enemies = 3
 	enemy_minimum_age = 15
@@ -120,7 +120,8 @@
 		Of a vast, empty Void in the deep of space.\n\
 		Something lies in the Void. Ancient. Unknowable. It watches you with hungry eyes. \n\
 		Eyes filled with stars.</b>\n\
-		[span_boldwarning("It needs to die.")]")
+		[span_boldwarning("The creature's gaze swallows the universe into blackness.")])\n\
+		[span_boldwarning("It cannot be permitted to succeed.")]")
 		return FALSE
 	return mind.add_antag_datum(/datum/antagonist/veil)
 

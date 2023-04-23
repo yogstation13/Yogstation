@@ -124,8 +124,8 @@
 		"Power efficiency increased by <b>[round((powerefficiency*1000)-100, 1)]%</b>.</span>"
 		//"Macro granularity at <b>[macroresolution]u</b>.</span>"
 
-/obj/machinery/chem_dispenser/process()
-	if (recharge_counter >= 4)
+/obj/machinery/chem_dispenser/process(delta_time)
+	if (recharge_counter >= 8)
 		if(!is_operational())
 			return
 		var/usedpower = cell.give(recharge_amount)
@@ -133,7 +133,7 @@
 			use_power(250*recharge_amount)
 		recharge_counter = 0
 		return
-	recharge_counter++
+	recharge_counter += delta_time
 
 /obj/machinery/chem_dispenser/proc/display_beaker()
 	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
@@ -309,7 +309,7 @@
 		if("clear_recipes")
 			if(!is_operational())
 				return
-			var/yesno = alert("Clear all recipes?",, "Yes","No")
+			var/yesno = tgui_alert(usr, "Clear all recipes?",, list("Yes","No"))
 			if(yesno == "Yes")
 				saved_recipes = list()
 		if("add_recipe")
@@ -357,8 +357,8 @@
 		if(HAS_TRAIT(I, TRAIT_NODROP))
 			to_chat(user, span_notice("[I] is stuck to your hand!"))
 			return
-		I.forceMove(src) // Force it out of our hands so we can put the old cell in it
 		if(istype(I, /obj/item/stock_parts/cell))
+			I.forceMove(src) // Force it out of our hands so we can put the old cell in it		
 			if(!user.put_in_hands(cell))
 				cell.forceMove(get_turf(src))
 			component_parts -= cell // Remove the old cell so the new one spawns when deconstructed

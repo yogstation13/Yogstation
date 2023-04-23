@@ -31,10 +31,6 @@
 /datum/uplink_item/stealthy_weapons/soap_clusterbang
 	category = "Conspicuous Weapons"
 
-/datum/uplink_item/device_tools/hypnotic_flash
-	restricted_roles = list("Psychiatrist")
-	category = "Role-Restricted"
-
 
 /datum/uplink_item/dangerous/syndicate_minibomb
 	cost = 4
@@ -168,14 +164,16 @@
 
 /datum/uplink_item/race_restricted/ultra_violence
 	name = "Version one upgrade module"
-	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed."
+	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed. \
+			If you install this, it will make you incapable of pushing and pulling. \
+			There are no half-measures, either you succeed or you die."
 	cost = 16
 	item = /obj/item/book/granter/martial/ultra_violence
 	restricted_species = list("ipc")
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"
-	desc = "A camera with an upgraded flashbulb. Can be used much like a handheld flash except with a longer cooldown between uses, allowing the bulb to cool down; avoid burning out altogether."
+	desc = "A camera with an upgraded flashbulb. Can be used much like a handheld flash except with a longer cooldown between uses, allowing the bulb to cool down — avoiding burning out altogether."
 	item = /obj/item/camera/tator
 	cost = 4
 	surplus = 15

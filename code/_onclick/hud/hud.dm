@@ -11,7 +11,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Plasmafire" = 'icons/mob/screen_plasmafire.dmi',
 	"Slimecore" = 'icons/mob/screen_slimecore.dmi',
 	"Operative" = 'icons/mob/screen_operative.dmi',
-	"Clockwork" = 'icons/mob/screen_clockwork.dmi'
+	"Clockwork" = 'icons/mob/screen_clockwork.dmi',
+	"Detective" = 'icons/mob/screen_detective.dmi',
 ))
 
 /proc/ui_style2icon(ui_style)
@@ -71,12 +72,12 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	if (!ui_style)
 		// will fall back to the default if any of these are null
-		ui_style = ui_style2icon(owner.client && owner.client.prefs && owner.client.prefs.UI_style)
+		ui_style = ui_style2icon(owner.client?.prefs?.read_preference(/datum/preference/choiced/ui_style))
 
 	hide_actions_toggle = new
 	hide_actions_toggle.InitialiseIcon(src)
 	if(mymob.client)
-		hide_actions_toggle.locked = mymob.client.prefs.buttons_locked
+		hide_actions_toggle.locked = mymob.client.prefs.read_preference(/datum/preference/toggle/buttons_locked)
 
 	hand_slots = list()
 

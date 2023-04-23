@@ -15,7 +15,7 @@
 	buckle_requires_restraints = TRUE
 
 	var/energy = 0
-	var/creation_type = /obj/singularity
+	var/creation_type = /obj/singularity/gravitational
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH)
@@ -23,7 +23,7 @@
 	else
 		return ..()
 
-/obj/machinery/the_singularitygen/process()
+/obj/machinery/the_singularitygen/process(delta_time)
 	if(energy > 0)
 		if(energy >= 200)
 			var/turf/T = get_turf(src)
@@ -32,4 +32,4 @@
 			transfer_fingerprints_to(S)
 			qdel(src)
 		else
-			energy -= 1
+			energy -= delta_time * 0.5

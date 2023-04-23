@@ -42,14 +42,17 @@
 
 /obj/item/gun/ballistic/automatic/proc/burst_select()
 	var/mob/living/carbon/human/user = usr
+	var/spread_difference = initial(spread) - semi_auto_spread //Set this way so laser sights work properly. Default value of 0
 	select = !select
 	if(!select)
 		burst_size = 1
 		fire_delay = 0
+		spread -= spread_difference //Has to be subtraction because laser sight
 		to_chat(user, span_notice("You switch to semi-automatic."))
 	else
 		burst_size = initial(burst_size)
 		fire_delay = initial(fire_delay)
+		spread += spread_difference //Has to be addition because laser sight
 		to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
@@ -89,8 +92,9 @@
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
 	fire_delay = 2
 	burst_size = 2
+	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
-	can_suppress = FALSE
+	can_suppress = TRUE // its been 6 years, get with the times old man!
 	can_bayonet = TRUE
 	knife_x_offset = 25
 	knife_y_offset = 12
@@ -166,11 +170,13 @@
 
 /obj/item/gun/ballistic/automatic/m90/burst_select()
 	var/mob/living/carbon/human/user = usr
+	var/spread_difference = initial(spread) - semi_auto_spread //It shouldn't need this but just in case someone decides to nerf the M90-gl's accuracy for whatever reason
 	switch(select)
 		if(0)
 			select = 1
 			burst_size = initial(burst_size)
 			fire_delay = initial(fire_delay)
+			spread += spread_difference
 			to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
 		if(1)
 			select = 2
@@ -179,6 +185,7 @@
 			select = 0
 			burst_size = 1
 			fire_delay = 0
+			spread -= spread_difference
 			to_chat(user, span_notice("You switch to semi-auto."))
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
 	update_icon()
@@ -216,7 +223,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw
 	name = "\improper L6 SAW"
-	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2531' engraved on the receiver below the designation."
+	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2506' engraved on the receiver below the designation."
 	icon_state = "l6"
 	item_state = "l6closedmag"
 	w_class = WEIGHT_CLASS_HUGE
@@ -226,7 +233,8 @@
 	var/cover_open = FALSE
 	can_suppress = FALSE
 	fire_delay = 1
-	spread = 7
+	burst_size = 3
+	spread = 14
 	pin = /obj/item/firing_pin/implant/pindicate
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
@@ -305,6 +313,7 @@
 	mag_type = /obj/item/ammo_box/magazine/m308
 	fire_delay = 6
 	burst_size = 1
+	spread = 2 //Marksman rifle == accurate?
 	can_suppress = FALSE
 	can_bayonet = TRUE
 	knife_x_offset = 27
@@ -332,6 +341,7 @@
 	mag_type = /obj/item/ammo_box/magazine/ks762
 	fire_delay = 5 //Can fire slightly faster than the LWT-650
 	burst_size = 1
+	spread = 2 //DMR gets to be special
 	can_suppress = FALSE
 	zoomable = TRUE
 	zoom_amt = 5 //Not as significant a scope as the sniper
@@ -362,6 +372,7 @@
 	mag_type = /obj/item/ammo_box/magazine/sniper_rounds
 	fire_delay = 40
 	burst_size = 1
+	spread = 0
 	w_class = WEIGHT_CLASS_NORMAL
 	zoomable = TRUE
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
@@ -393,7 +404,7 @@
 	burst_size = 1
 	can_unsuppress = TRUE
 	can_suppress = TRUE
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list()
 	mag_display = TRUE

@@ -182,7 +182,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 
 	open_machine()
 	prisoner.Paralyze(stun_duration)
-	if(!prisoner.handcuffed)
+	if(!prisoner.handcuffed && (prisoner.get_num_arms(FALSE) >= 2 || prisoner.get_arm_ignore()))
 		prisoner.handcuffed = new /obj/item/restraints/handcuffs/cable/zipties/used(prisoner)
 		prisoner.update_handcuffed()
 	visible_message(span_warning("Prisoner Processed."))

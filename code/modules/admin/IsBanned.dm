@@ -129,7 +129,7 @@ Yogs End*/
 
 				if(reject_bound_cid || reject_bound_ip)
 					var/cause = reject_bound_cid ? "computer ID" : "IP address"
-					var/msg = {"This [cause] has been bound to another account.
+					var/msg = {"Round ID [GLOB.round_id]: This [cause] has been bound to another account.
 					Please visit [CONFIG_GET(string/banappeals) || "the forums"] if this was done in error or if you have recently changed BYOND accounts."}
 					log_access("Failed Login: [key] [computer_id] [address] - Bound [cause]")
 					key_cache[key] = 0

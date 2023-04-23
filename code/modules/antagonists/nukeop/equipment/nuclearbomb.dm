@@ -546,7 +546,7 @@
 		disarm()
 		return
 	if(is_station_level(bomb_location.z))
-		var/datum/round_event_control/E = locate(/datum/round_event_control/vent_clog/beer) in SSevents.control
+		var/datum/round_event_control/E = locate(/datum/round_event_control/scrubber_overflow/beer) in SSevents.control
 		if(E)
 			E.runEvent()
 		addtimer(CALLBACK(src, .proc/really_actually_explode), 110)
@@ -570,8 +570,8 @@
 	R.my_atom = src
 	R.add_reagent(/datum/reagent/consumable/ethanol/beer, 100)
 
-	var/datum/effect_system/foam_spread/foam = new
-	foam.set_up(200, get_turf(src), R)
+	var/datum/effect_system/fluid_spread/foam/foam = new
+	foam.set_up(200, location = get_turf(src), carry = R)
 	foam.start()
 	disarm()
 

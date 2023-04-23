@@ -3,6 +3,7 @@
 /obj/item/organ/stomach
 	name = "stomach"
 	icon_state = "stomach"
+	visual = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_STOMACH
@@ -86,20 +87,23 @@
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "disgust")
 	..()
 
+/obj/item/organ/stomach/get_availability(datum/species/species)
+	return !(NOSTOMACH in species.species_traits)
+
 /obj/item/organ/stomach/cybernetic
 	name = "cybernetic stomach"
 	desc = "A cybernetic metabolic furnace that can be connected to a digestive system in place of a stomach."
 	icon_state = "stomach-c"
-	maxHealth = 1.2 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
-	disgust_metabolism = 1.2	//Slightly more efficient at stabilizing itself
+	disgust_metabolism = 1.5	//Slightly more efficient at stabilizing itself
 
 /obj/item/organ/stomach/cybernetic/upgraded
 	name = "upgraded cybernetic stomach"
 	desc = "An upgraded metabolic furnace that can be connected to a digestive system in place of a stomach. Both hardier and capable of storing excess nutrition if the body is already well sustained."
 	icon_state = "stomach-c-u"
-	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD
 	var/nutriment_stashed = 0
 	disgust_metabolism = 2		//Twice as efficient as stabilizing itself
 
@@ -161,11 +165,18 @@
 	name = "biological battery"
 	icon_state = "stomach-p" //Welp. At least it's more unique in functionaliy.
 	desc = "A crystal-like organ that stores the electric charge of ethereals."
-	var/crystal_charge = ETHEREAL_CHARGE_FULL
+	var/crystal_charge = ETHEREAL_CHARGE_ALMOSTFULL
 
 /obj/item/organ/stomach/ethereal/on_life()
 	..()
-	adjust_charge(-ETHEREAL_CHARGE_FACTOR)
+	var/chargemod = 1
+	if(HAS_TRAIT(owner, TRAIT_EAT_LESS))
+		chargemod *= 0.75 //power consumption rate reduced by about 25%
+	if(HAS_TRAIT(owner, TRAIT_EAT_MORE))
+		chargemod *= 3 //hunger rate tripled
+	if(HAS_TRAIT(owner, TRAIT_BOTTOMLESS_STOMACH))
+		crystal_charge = min(crystal_charge, ETHEREAL_CHARGE_ALMOSTFULL) //capped, can never be truly full
+	adjust_charge(-(ETHEREAL_CHARGE_FACTOR * chargemod))
 
 /obj/item/organ/stomach/ethereal/Insert(mob/living/carbon/M, special = 0)
 	..()
@@ -183,7 +194,7 @@
 /obj/item/organ/stomach/ethereal/proc/on_electrocute(datum/source, shock_damage, siemens_coeff = 1, illusion = FALSE)
 	if(illusion)
 		return
-	adjust_charge(shock_damage * siemens_coeff * 2)
+	adjust_charge(shock_damage * siemens_coeff * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 	to_chat(owner, span_notice("You absorb some of the shock into your body!"))
 
 /obj/item/organ/stomach/ethereal/proc/adjust_charge(amount)

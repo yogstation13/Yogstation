@@ -12,3 +12,15 @@
 	icon_state = "open"
 	density = FALSE
 	opacity = 0
+
+/obj/machinery/door/poddoor/shutters/window
+	name = "windowed shutters"
+	desc = "A shutter with a thick see-through polycarbonate window."
+	icon = 'icons/obj/doors/shutters_window.dmi'
+	icon_state = "closed"
+	opacity = FALSE
+	glass = TRUE
+
+/obj/machinery/door/poddoor/shutters/window/preopen
+	icon_state = "open"
+	density = FALSE

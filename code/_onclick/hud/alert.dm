@@ -387,13 +387,13 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 			angle = 0
 			cut_overlays()
 			icon_state = "runed_sense0"
-			desc = "Nar-Sie demands that [sac_objective.target] be sacrificed before the summoning ritual can begin."
+			desc = "Nar'sie demands that [sac_objective.target] be sacrificed before the summoning ritual can begin."
 			add_overlay(sac_objective.sac_image)
 		else
 			var/datum/objective/eldergod/summon_objective = locate() in antag.cult_team.objectives
 			if(!summon_objective)
 				return
-			desc = "The sacrifice is complete, summon Nar-Sie! The summoning can only take place in [english_list(summon_objective.summon_spots)]!"
+			desc = "The sacrifice is complete, summon Nar'sie! The summoning can only take place in [english_list(summon_objective.summon_spots)]!"
 			if(icon_state == "runed_sense1")
 				return
 			animate(src, transform = null, time = 0.1 SECONDS, loop = 0)
@@ -511,7 +511,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	alerttooltipstyle = "parasite"
 
 //IPC martial arts
-/obj/screen/alert/ipcmartial
+/atom/movable/screen/alert/ipcmartial
 	name = "Dashes"
 	desc = "This is how many dash charges you have."
 	icon_state = "ipcdash"
@@ -690,7 +690,7 @@ so as to remain in compliance with the most up-to-date laws."
 			else
 				. = ""
 		alert.screen_loc = .
-		mymob.client.screen |= alert
+		mymob?.client?.screen |= alert
 	return 1
 
 /mob

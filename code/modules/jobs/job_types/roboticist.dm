@@ -1,6 +1,8 @@
 /datum/job/roboticist
 	title = "Roboticist"
+	description = "Build and repair the AI and cyborgs, create mechs."
 	flag = ROBOTICIST
+	orbit_icon = "battery-half"
 	department_head = list("Research Director")
 	department_flag = MEDSCI
 	faction = "Station"
@@ -15,14 +17,16 @@
 	outfit = /datum/outfit/job/roboticist
 
 	added_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_XENOBIOLOGY, ACCESS_GENETICS)
-	base_access = list(ACCESS_ROBOTICS, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH, ACCESS_MECH_SCIENCE, ACCESS_MECH_ENGINE, ACCESS_MECH_MEDICAL, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM)
+	base_access = list(ACCESS_ROBO_CONTROL, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH, ACCESS_MECH_SCIENCE, ACCESS_MECH_ENGINE, ACCESS_MECH_MEDICAL, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SCI
 
 	display_order = JOB_DISPLAY_ORDER_ROBOTICIST
 	minimal_character_age = 22 //Engineering, AI theory, robotic knowledge and the like
 
-	changed_maps = list("OmegaStation")
+	departments_list = list(
+		/datum/job_department/science,
+	)
 
 	mail_goodies = list(
 		/obj/item/storage/box/flashes = 20,
@@ -30,8 +34,7 @@
 		/obj/item/modular_computer/tablet/preset/advanced = 5
 	)
 
-/datum/job/roboticist/proc/OmegaStationChanges()
-	supervisors = "the captain and the head of personnel"
+	smells_like = "burnt solder"
 
 /datum/outfit/job/roboticist
 	name = "Roboticist"

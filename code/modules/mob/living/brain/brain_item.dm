@@ -2,6 +2,7 @@
 	name = "brain"
 	desc = "A piece of juicy meat found in a person's head."
 	icon_state = "brain"
+	visual = TRUE
 	throw_speed = 3
 	throw_range = 5
 	layer = ABOVE_MOB_LAYER
@@ -260,13 +261,14 @@
 /obj/item/organ/brain/positron/emp_act(severity)
 	if(prob(25))
 		return
+
+	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50/severity)
+	owner.adjust_drugginess(40/severity)
 	switch(severity)
 		if(1)
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60)
-			to_chat(owner, "<span class='warning'>Alert: Posibrain heavily damaged.</span>")
+			to_chat(owner, span_warning("Alert: Posibrain heavily damaged."))
 		if(2)
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25)
-			to_chat(owner, "<span class='warning'>Alert: Posibrain damaged.</span>") 
+			to_chat(owner, span_warning("Alert: Posibrain damaged.")) 
 
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////

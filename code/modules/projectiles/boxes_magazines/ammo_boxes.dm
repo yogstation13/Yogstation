@@ -3,8 +3,43 @@
 	desc = "A seven-shot speed loader designed for .357 revolvers."
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/a357
+	caliber = "357"
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_PER_BULLET
+
+// Cannot be directly loaded into guns with internal magazines, but can load magazines/cylinders
+/obj/item/ammo_box/no_direct/a357
+	name = "ammo box (.357)"
+	icon_state = "357box"
+	ammo_type = /obj/item/ammo_casing/a357
+	max_ammo = 20
+
+/obj/item/ammo_box/no_direct/a357/ironfeather
+	name = "ammo box (.357 Ironfeather)"
+	ammo_type = /obj/item/ammo_casing/a357/ironfeather
+
+/obj/item/ammo_box/no_direct/a357/nutcracker
+	name = "ammo box (.357 Nutcracker)"
+	ammo_type = /obj/item/ammo_casing/a357/nutcracker
+
+/obj/item/ammo_box/no_direct/a357/metalshock
+	name = "ammo box (.357 Metalshock)"
+	ammo_type = /obj/item/ammo_casing/a357/metalshock
+
+/obj/item/ammo_box/no_direct/a357/heartpiercer
+	name = "ammo box (.357 Heartpiercer)"
+	ammo_type = /obj/item/ammo_casing/a357/heartpiercer
+
+/obj/item/ammo_box/no_direct/a357/wallstake
+	name = "ammo box (.357 Wallstake)"
+	ammo_type = /obj/item/ammo_casing/a357/wallstake
+
+/obj/item/ammo_box/no_direct/n762
+	name = "ammo box (7.62x38mmR)"
+	icon_state = "10mmbox"
+	ammo_type = /obj/item/ammo_casing/n762
+	caliber = "n762"
+	max_ammo = 14
 
 /obj/item/ammo_box/a357/ironfeather
 	name = "speed loader (.357 Ironfeather)"
@@ -46,6 +81,7 @@
 	desc = "A six-shot speed loader designed for .38 revolvers."
 	icon_state = "38"
 	ammo_type = /obj/item/ammo_casing/c38
+	caliber = "38"
 	max_ammo = 6
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	materials = list(/datum/material/iron = 20000)
@@ -74,9 +110,10 @@
 /obj/item/ammo_box/tra32
 	name = "speed loader (.32 TRAC)"
 	desc = "A seven-shot speed loader designed for the Caldwell Tracking Revolver. \
-			These needle-like rounds deal miniscule damage, but inject a tracking implant upon burrowing into a target's body. Implant lifespan is fifteen minutes."
+			These needle-like rounds deal miniscule damage, but inject a tracking implant upon burrowing into a target's body. Implant lifespan is five minutes."
 	icon_state = "32trac"
 	ammo_type = /obj/item/ammo_casing/tra32
+	caliber = "32trac"
 	max_ammo = 7
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
@@ -84,24 +121,48 @@
 	name = "ammo box (9mm)"
 	icon_state = "9mmbox"
 	ammo_type = /obj/item/ammo_casing/c9mm
+	caliber = "9mm"
 	max_ammo = 30
 
 /obj/item/ammo_box/c10mm
 	name = "ammo box (10mm)"
 	icon_state = "10mmbox"
 	ammo_type = /obj/item/ammo_casing/c10mm
+	caliber = "10mm"
 	max_ammo = 20
+
+/obj/item/ammo_box/c10mm/sp
+	name = "ammo box (10mm soporific)"
+	ammo_type = /obj/item/ammo_casing/c10mm/sp
+
+/obj/item/ammo_box/c10mm/ap
+	name = "ammo box (10mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/c10mm/ap
+
+/obj/item/ammo_box/c10mm/hp
+	name = "ammo box (10mm hollow-point)"
+	ammo_type = /obj/item/ammo_casing/c10mm/hp
+
+/obj/item/ammo_box/c10mm/inc
+	name = "ammo box (10mm incendiary)"
+	ammo_type = /obj/item/ammo_casing/c10mm/inc
+
+/obj/item/ammo_box/c10mm/emp
+	name = "ammo box (10mm EMP)"
+	ammo_type = /obj/item/ammo_casing/c10mm/emp
 
 /obj/item/ammo_box/c45
 	name = "ammo box (.45)"
 	icon_state = "45box"
 	ammo_type = /obj/item/ammo_casing/c45
+	caliber = ".45"
 	max_ammo = 20
 
 /obj/item/ammo_box/a40mm
 	name = "ammo box (40mm grenades)"
 	icon_state = "40mm"
 	ammo_type = /obj/item/ammo_casing/a40mm
+	caliber = "40mm"
 	max_ammo = 4
 	multiple_sprites = AMMO_BOX_PER_BULLET
 
@@ -110,20 +171,16 @@
 	desc = "A stripper clip holding 7.62mm rounds."
 	icon_state = "762"
 	ammo_type = /obj/item/ammo_casing/a762
+	caliber = "a762"
 	max_ammo = 5
 	multiple_sprites = AMMO_BOX_PER_BULLET
-
-/obj/item/ammo_box/n762
-	name = "ammo box (7.62x38mmR)"
-	icon_state = "10mmbox"
-	ammo_type = /obj/item/ammo_casing/n762
-	max_ammo = 14
 
 /obj/item/ammo_box/foambox
 	name = "ammo box (Foam Darts)"
 	icon = 'icons/obj/guns/toy.dmi'
 	icon_state = "foambox"
 	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
+	caliber = "foam_force"
 	max_ammo = 40
 	materials = list(/datum/material/iron = 500)
 

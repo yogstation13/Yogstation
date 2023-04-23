@@ -253,12 +253,14 @@
 			COOLDOWN_START(src, startsoundcooldown, 1 SECONDS)
 		owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
 		owner.next_move_modifier *= 0.7
+		owner?.dna?.species?.action_speed_coefficient *= 0.7
 		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/move_react)
 	else
 		if(COOLDOWN_FINISHED(src, endsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
 			COOLDOWN_START(src, endsoundcooldown, 1 SECONDS)
 		owner.next_move_modifier /= 0.7
+		owner?.dna?.species?.action_speed_coefficient /= 0.7
 		owner.remove_movespeed_modifier("spinalimplant")
 		UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	on = !on
@@ -338,7 +340,7 @@
 	. = ..()
 	switch(severity)//i don't want emps to just be damage again, that's boring
 		if(EMP_HEAVY)
-			owner.set_drugginess(40)
+			owner.adjust_drugginess(40)
 			owner.hallucination += 500
 			owner.blur_eyes(20)
 			owner.dizziness += 10
@@ -346,7 +348,7 @@
 			owner.adjustFireLoss(10)
 			to_chat(owner, span_warning("Your spinal implant malfunctions and you feel it scramble your brain!"))
 		if(EMP_LIGHT)
-			owner.set_drugginess(20)
+			owner.adjust_drugginess(20)
 			owner.hallucination += 200
 			owner.blur_eyes(10)
 			owner.dizziness += 5

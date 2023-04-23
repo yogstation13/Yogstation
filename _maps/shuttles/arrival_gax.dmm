@@ -5,6 +5,17 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
+"c" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Arrivals Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "g" = (
 /obj/machinery/light{
 	dir = 4
@@ -147,16 +158,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
-"S" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Arrivals Shuttle Airlock"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/arrival)
 "T" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -221,7 +222,7 @@ b
 s
 "}
 (5,1,1) = {"
-S
+c
 K
 K
 K
@@ -239,7 +240,7 @@ b
 s
 "}
 (7,1,1) = {"
-S
+c
 K
 K
 K

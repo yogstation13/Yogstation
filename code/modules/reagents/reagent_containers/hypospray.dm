@@ -149,6 +149,19 @@
 	else
 		. += span_notice("It is spent.")
 
+/obj/item/reagent_containers/autoinjector/medipen/resurrector
+	name = "resurrector nanite serum"
+	desc = "A single-use superdose of nanites capable of restoring a corpse to perfect working very quickly. Does nothing on a living person."
+	icon_state = "mechserum"
+	list_reagents = list(/datum/reagent/medicine/resurrector_nanites = 12)
+
+/obj/item/reagent_containers/autoinjector/medipen/resurrector/attack(mob/living/M, mob/user)
+	if(!reagents.total_volume)
+		to_chat(user, span_warning("[src] is empty!"))
+		return
+	if(do_after(user, 3 SECONDS, M))
+		..()
+
 /obj/item/reagent_containers/autoinjector/medipen/stimpack //goliath kiting
 	name = "stimpack medipen"
 	desc = "A rapid way to stimulate your body's adrenaline, allowing for freer movement in restrictive armor."
@@ -196,6 +209,13 @@
 	volume = 250
 	list_reagents = list(/datum/reagent/water/holywater = 150, /datum/reagent/peaceborg/tire = 50, /datum/reagent/peaceborg/confuse = 50)
 	amount_per_transfer_from_this = 50
+
+/obj/item/reagent_containers/autoinjector/combat/healermech
+	name = "healer nanite serum"
+	desc = "Contains reverse-engineered nanites that will quickly heal most wounds on a subject. Pre-filled with fifteen doses."
+	volume = 150
+	amount_per_transfer_from_this = 10
+	list_reagents = list(/datum/reagent/medicine/syndicate_nanites = 150)
 
 /obj/item/reagent_containers/autoinjector/medipen/atropine
 	name = "atropine autoinjector"

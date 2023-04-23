@@ -10,6 +10,7 @@
 	canmove = TRUE
 	density = FALSE		//Thought I couldn't fix this one easily, phew
 	movedelay = 4
+	var/move_sound = 'sound/effects/roll.ogg'
 
 /obj/vehicle/ridden/wheelchair/Initialize()
 	. = ..()
@@ -59,7 +60,7 @@
 /obj/vehicle/ridden/wheelchair/Moved()
 	. = ..()
 	cut_overlays()
-	playsound(src, 'sound/effects/roll.ogg', 75, TRUE)
+	playsound(src, move_sound, 75, TRUE)
 	if(has_buckled_mobs())
 		handle_rotation_overlayed()
 

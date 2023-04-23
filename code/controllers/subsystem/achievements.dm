@@ -76,7 +76,7 @@ SUBSYSTEM_DEF(achievements)
 			qdel(getRidOfOldStuff)
 
 	qdel(ridOldChieves)
-	return ..()
+	return SS_INIT_SUCCESS
 
 /**
   * Subsystem firing, checks solar panel achievement

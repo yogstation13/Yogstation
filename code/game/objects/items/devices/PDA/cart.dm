@@ -49,12 +49,6 @@
 	var/mob/living/simple_animal/bot/active_bot
 	var/list/botlist = list()
 
-/obj/item/cartridge/Initialize()
-	. = ..()
-	var/obj/item/pda/pda = loc
-	if(istype(pda))
-		host_pda = pda
-
 /obj/item/cartridge/engineering
 	name = "\improper Power-ON cartridge"
 	icon_state = "cart-e"

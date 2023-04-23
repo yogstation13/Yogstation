@@ -4,15 +4,14 @@
 /obj/machinery/electrolyzer
 	anchored = FALSE
 	density = TRUE
-	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN
+	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN | INTERACT_MACHINE_OFFLINE
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "electrolyzer-off"
 	name = "space electrolyzer"
 	desc = "Thanks to the fast and dynamic response of our electrolyzers, on-site hydrogen production is guaranteed. Warranty void if used by clowns"
 	max_integrity = 250
 	circuit = /obj/item/circuitboard/machine/electrolyzer
-	/// We don't use area power, we always use the cell
-	use_power = NO_POWER_USE
+	use_power = ACTIVE_POWER_USE
 	///used to check if there is a cell in the machine
 	var/obj/item/stock_parts/cell/cell
 	///check if the machine is on or off
@@ -23,6 +22,8 @@
 	var/workingPower = 1
 	///Decrease the amount of power usage, changed by upgrading the capacitor tier
 	var/efficiency = 0.5
+	//Recharge cell when drawing power from apc
+	var/charge_rate = 10
 
 /obj/machinery/electrolyzer/get_cell()
 	return cell
@@ -60,15 +61,17 @@
 		add_overlay("electrolyzer-open")
 
 /obj/machinery/electrolyzer/process(delta_time)
-	if(!is_operational() && on)
+	if((stat & (BROKEN|MAINT)) && on)
 		on = FALSE
 	if(!on)
-		return PROCESS_KILL
-
-	if(!cell || cell.charge <= 0)
-		on = FALSE
+		active_power_usage = 0
 		update_icon()
 		return PROCESS_KILL
+
+	if((stat & NOPOWER) && (!cell || cell.charge <= 0))
+		on = FALSE
+		update_icon()
+		return FALSE
 
 	var/turf/L = loc
 	if(!istype(L))
@@ -98,11 +101,28 @@
 	removed.adjust_moles(/datum/gas/hydrogen, (proportion * 2 * workingPower))
 	env.merge(removed) //put back the new gases in the turf
 	air_update_turf()
-	if (!cell.use((5 * proportion * workingPower) / (efficiency + workingPower)))
-		//automatically turn off machine when cell depletes
-		on = FALSE
-		update_icon()
+
+	var/working = TRUE
+
+	if(stat & NOPOWER)
+		if (!cell.use((5 * proportion * workingPower) / (efficiency + workingPower)))
+			//automatically turn off machine when cell depletes
+			on = FALSE
+			update_icon()
+			working = FALSE
+	else
+		active_power_usage = (5 * proportion * workingPower) / (efficiency + workingPower)
+		cell.give(charge_rate)
+
+	if(!working)
 		return PROCESS_KILL
+
+/obj/machinery/electrolyzer/power_change()
+	. = ..()
+	if(stat & NOPOWER)
+		use_power = NO_POWER_USE
+	else
+		use_power = ACTIVE_POWER_USE
 
 /obj/machinery/electrolyzer/RefreshParts()
 	var/lasers = 0
@@ -111,6 +131,7 @@
 		lasers += L.rating
 	for(var/obj/item/stock_parts/capacitor/M in component_parts)
 		cap += M.rating
+		charge_rate = initial(charge_rate)*M.rating
 
 	workingPower = lasers / 2 //used in the amount of moles processed
 

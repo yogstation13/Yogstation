@@ -2,6 +2,7 @@
 	name = "Obsessed"
 	show_in_antagpanel = TRUE
 	antagpanel_category = "Other"
+	preview_outfit = /datum/outfit/obsessed
 	job_rank = ROLE_OBSESSED
 	show_name_in_check_antagonists = TRUE
 	roundend_category = "obsessed"
@@ -20,6 +21,40 @@
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
 	//PRESTO FUCKIN MAJESTO
 	C.gain_trauma(/datum/brain_trauma/special/obsessed)//ZAP
+
+/datum/antagonist/obsessed/get_preview_icon()
+	var/mob/living/carbon/human/dummy/consistent/victim_dummy = new
+	victim_dummy.hair_color = "b96" // Brown
+	victim_dummy.hair_style = "Messy"
+	victim_dummy.update_hair()
+
+	var/icon/obsessed_icon = render_preview_outfit(preview_outfit)
+	obsessed_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
+
+	var/icon/final_icon = finish_preview_icon(obsessed_icon)
+
+	final_icon.Blend(
+	icon('icons/ui_icons/antags/obsessed.dmi', "obsession"),
+		ICON_OVERLAY,
+		ANTAGONIST_PREVIEW_ICON_SIZE - 30,
+		20,
+	)
+
+	return final_icon
+
+/datum/outfit/obsessed
+	name = "Obsessed (Preview only)"
+
+	uniform = /obj/item/clothing/under/yogs/redoveralls
+	gloves = /obj/item/clothing/gloves/color/latex
+	mask = /obj/item/clothing/mask/surgical
+	neck = /obj/item/camera
+	suit = /obj/item/clothing/suit/apron
+
+/datum/outfit/obsessed/post_equip(mob/living/carbon/human/H)
+	for(var/obj/item/carried_item in H.get_equipped_items(TRUE))
+		carried_item.add_mob_blood(H)//Oh yes, there will be blood...
+	H.regenerate_icons()
 
 /datum/antagonist/obsessed/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/creepalert.ogg', 100, FALSE, pressure_affected = FALSE)

@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 
 /datum/clockwork_scripture/proc/check_offstation_penalty()
 	var/turf/T = get_turf(invoker)
-	if(!T || (!is_centcom_level(T.z) && !is_station_level(T.z) && !is_mining_level(T.z) && !is_reebe(T.z)))
+	if(!T || (!is_centcom_level(T.z) && !is_station_level(T.z) && !is_reebe(T.z))) //Yogstation change: Added penalty for being on lavaland base.
 		channel_time *= 2
 		power_cost *= 2
 		return TRUE

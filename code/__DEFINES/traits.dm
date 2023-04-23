@@ -136,6 +136,7 @@
 #define TRAIT_XENO_HOST			"xeno_host"	//Tracks whether we're gonna be a baby alien's mummy.
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
+#define TRAIT_IMPACTIMMUNE		"impact_immunity" //protects from the damage of getting launched into a wall hard
 #define TRAIT_PUSHIMMUNE		"push_immunity"
 #define TRAIT_SHOCKIMMUNE		"shock_immunity"
 #define TRAIT_STABLEHEART		"stable_heart"
@@ -198,6 +199,7 @@
 #define	TRAIT_MAGIC_CHOKE		"magic_choke"
 #define TRAIT_SOOTHED_THROAT    "soothed-throat"
 #define TRAIT_LAW_ENFORCEMENT_METABOLISM "law-enforcement-metabolism"
+#define TRAIT_PSYCH				"psych-diagnosis"
 #define TRAIT_ALWAYS_CLEAN      "always-clean"
 #define TRAIT_BOOZE_SLIDER      "booze-slider"
 #define TRAIT_QUICK_CARRY		"quick-carry"
@@ -217,6 +219,7 @@
 #define TRAIT_NO_PASSIVE_COOLING "no-passive-cooling"
 #define TRAIT_NO_PASSIVE_HEATING "no-passive-heating"
 #define TRAIT_BLOODY_MESS		"bloody_mess" //from heparin, makes open bleeding wounds rapidly spill more blood
+#define TRAIT_BLOODY_MESS_LITE	"bloody_mess_lite" //weak heparin, otherwise the same
 #define TRAIT_COAGULATING		"coagulating" //from coagulant reagents, this doesn't affect the bleeding itself but does affect the bleed warning messages
 #define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
 #define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
@@ -228,8 +231,13 @@
 #define TRAIT_MESONS			"mesons"
 #define TRAIT_MAGBOOTS			"magboots"
 #define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
+#define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
+#define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
+
 /// This person is crying
 #define TRAIT_CRYING "crying"
+/// This human wants to see the color of their glasses, for some reason
+#define TRAIT_SEE_GLASS_COLORS "see_glass_colors"
 
 //non-mob traits
 /// Used for limb-based paralysis, where replacing the limb will fix it.
@@ -296,6 +304,7 @@
 #define INNATE_TRAIT "innate"
 #define STATION_TRAIT "station-trait"
 #define ATTACHMENT_TRAIT "attachment-trait"
+#define GLASSES_TRAIT "glasses"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -345,6 +354,7 @@
 #define HOLDER_TRAIT "holder_trait"
 #define SINFULDEMON_TRAIT "sinfuldemon"
 #define CHANGESTING_TRAIT "changesting"
+#define POSIBRAIN_TRAIT "positrait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
@@ -354,3 +364,4 @@
 #define STATION_TRAIT_FILLED_MAINT "station_trait_filled_maint"
 #define STATION_TRAIT_EMPTY_MAINT "station_trait_empty_maint"
 #define STATION_TRAIT_PDA_GLITCHED "station_trait_pda_glitched"
+#define STATION_TRAIT_STATION_ADRIFT "station_trait_station_adrift"

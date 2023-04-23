@@ -14,6 +14,7 @@
 	var/wiz_age = WIZARD_AGE_MIN /* Wizards by nature cannot be too young. */
 	can_hijack = HIJACK_HIJACKER
 	show_to_ghosts = TRUE
+	preview_outfit = /datum/outfit/wizard
 
 /datum/antagonist/wizard/on_gain()
 	register()

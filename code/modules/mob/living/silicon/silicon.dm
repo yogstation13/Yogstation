@@ -471,7 +471,7 @@
 	var/datum/mind/mega = usr.mind
 	if(!istype(mega))
 		return
-	var/aksent = input(usr, "Choose your accent:","Available Accents") as null|anything in (assoc_list_strip_value(strings("accents.json", "accent_file_names", directory = "strings/accents")) + "None")
+	var/aksent = input(usr, "Choose your accent:","Available Accents") as null|anything in (assoc_to_keys(strings("accents.json", "accent_file_names", directory = "strings/accents")) + "None")
 	if(aksent) // Accents were an accidents why the fuck do I have to do mind.RegisterSignal(mob, COMSIG_MOB_SAY)
 		if(aksent == "None")
 			mega.accent_name = null

@@ -390,7 +390,7 @@
 
 
 	if(preference_source)
-		apply_pref_name("ai",preference_source)
+		apply_pref_name(/datum/preference/name/ai, preference_source)
 
 	qdel(src)
 
@@ -628,7 +628,7 @@
 /mob/proc/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
-	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
+	var/mobpath = input(usr, "Which type of mob should [src] turn into?", "Choose a type", sortList(mobtypes, /proc/cmp_typepaths_asc))
 
 	if(!safe_animal(mobpath))
 		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))

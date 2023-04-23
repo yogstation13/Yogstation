@@ -103,7 +103,7 @@
 	return ..()
 
 /obj/item/modular_computer/tablet/proc/pda_no_detonate()
-	return COMPONENT_PDA_NO_DETONATE
+	return COMPONENT_TABLET_NO_DETONATE
 
 /obj/item/modular_computer/tablet/proc/remove_pen()
 	if(inserted_item)

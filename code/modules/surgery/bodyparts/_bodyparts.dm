@@ -382,6 +382,12 @@
 
 	if(HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		damage *= 1.1
+	
+	// If we have an open surgery site here, wound more easily
+	for(var/datum/surgery/S in owner.surgeries)
+		if(S.operated_bodypart == src)
+			damage *= 1.25
+			break
 
 	var/base_roll = rand(1, round(damage ** WOUND_DAMAGE_EXPONENT))
 	var/injury_roll = base_roll
@@ -443,7 +449,7 @@
 /**
   * check_wounding_mods() is where we handle the various modifiers of a wound roll
   *
-  * A short list of things we consider: any armor a human target may be wearing, and if they have no wound armor on the limb, if we have a bare_wound_bonus to apply, plus the plain wound_bonus
+  * A short list of things we consider: any armor a human target may be wearing, any innate wound armour from their physiology, and if they have no wound armor on the limb, if we have a bare_wound_bonus to apply, plus the plain wound_bonus
   * We also flick through all of the wounds we currently have on this limb and add their threshold penalties, so that having lots of bad wounds makes you more liable to get hurt worse
   * Lastly, we add the inherent wound_resistance variable the bodypart has (heads and chests are slightly harder to wound), and a small bonus if the limb is already disabled
   *
@@ -456,6 +462,10 @@
 
 	if(owner && ishuman(owner))
 		var/mob/living/carbon/human/H = owner
+
+		if(H?.physiology?.armor?.wound)//if there is any innate wound armor (poly or genetics)
+			armor_ablation += H.physiology.armor.getRating(WOUND)
+		
 		var/list/clothing = H.clothingonpart(src)
 		for(var/c in clothing)
 			var/obj/item/clothing/C = c
@@ -557,7 +567,7 @@
 		set_disabled(TRUE)
 		return
 
-	var/total_damage = max(brute_dam + burn_dam, stamina_dam)
+	var/total_damage = HAS_TRAIT(owner, TRAIT_STUNIMMUNE) ? (brute_dam + burn_dam) : max(brute_dam + burn_dam, stamina_dam)
 
 	// this block of checks is for limbs that can be disabled, but not through pure damage (AKA limbs that suffer wounds, human/monkey parts and such)
 	if(!disable_threshold)
@@ -694,8 +704,22 @@
 
 	if(status == BODYPART_ROBOTIC)
 		disable_threshold = 1
+		light_brute_msg = "marred"
+		medium_brute_msg = "dented"
+		heavy_brute_msg = "falling apart"
+
+		light_burn_msg = "scorched"
+		medium_burn_msg = "charred"
+		heavy_burn_msg = "smoldering"
 	else
 		disable_threshold = 0
+		light_brute_msg = "bruised"
+		medium_brute_msg = "battered"
+		heavy_brute_msg = "mangled"
+
+		light_burn_msg = "numb"
+		medium_burn_msg = "blistered"
+		heavy_burn_msg = "peeling away"
 
 	if(change_icon_to_default)
 		if(status == BODYPART_ORGANIC)
@@ -869,6 +893,8 @@
 			limb.icon_state = "[body_zone]_[icon_gender]"
 		else if(use_digitigrade)
 			limb.icon_state = "digitigrade_[use_digitigrade]_[body_zone]"
+		else if(body_zone == BODY_ZONE_HEAD || body_zone == BODY_ZONE_CHEST)//default to male for the torso and head if the species is agendered
+			limb.icon_state = "[body_zone]_m"
 		else
 			limb.icon_state = "[body_zone]"
 		if(aux_zone)
@@ -930,7 +956,8 @@
 	//We want an accurate reading of .len
 	listclearnulls(embedded_objects)
 	for(var/obj/item/embeddies in embedded_objects)
-		if(!embeddies.taped)
+		var/obj/item/ammo_casing/AC = embeddies
+		if(!(embeddies.taped || (istype(AC) && !AC.harmful)))
 			bleed_rate += 0.5
 
 	for(var/thing in wounds)

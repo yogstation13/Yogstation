@@ -5,14 +5,14 @@ GLOBAL_LIST_INIT(infiltrator_objective_areas, typecacheof(list(/area/yogs/infilt
 		return TRUE
 	return !considered_alive(target)
 
-/datum/objective/sole_survivor
+/datum/objective/hijack/sole_survivor
 	name = "sole survivor"
 	explanation_text = "Escape on the shuttle to ensure <b>no one except you</b> escapes alive and out of custody."
 	team_explanation_text = "Escape on the shuttle to ensure <b>no one except your team</b> escapes alive and out of custody. Leave no team member behind."
 	martyr_compatible = 0 //Technically you won't get both anyway.
 
-/datum/objective/sole_survivor/check_completion() // Requires all owners to escape.
-	if(..())
+/datum/objective/hijack/sole_survivor/check_completion() // Requires all owners to escape.
+	if(completed)
 		return TRUE
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return TRUE

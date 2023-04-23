@@ -21,10 +21,10 @@
 	var/dna_max = 6 //How many extra DNA strands the changeling can store for transformation.
 	var/absorbedcount = 0
 	var/trueabsorbs = 0//dna gained using absorb, not dna sting
-	var/chem_charges = 20
-	var/chem_storage = 75
-	var/chem_recharge_rate = 1
-	var/chem_recharge_slowdown = 0
+	var/chem_charges = 50 // chems we have on spawn
+	var/chem_storage = 125 // max chems
+	var/chem_recharge_rate = 2 // how fast we restore chems
+	var/chem_recharge_slowdown = 0 // how much is our chem restore rate hampered (keep at 0)
 	var/sting_range = 2
 	var/changelingID = "Changeling"
 	var/geneticdamage = 0
@@ -109,8 +109,8 @@
 	if(ishuman(C) && (NO_DNA_COPY in C.dna.species.species_traits || !C.has_dna()))
 		to_chat(C, span_userdanger("You have been made a human, as your original race had incompatible DNA."))
 		C.set_species(/datum/species/human, TRUE, TRUE)
-		if(C.client?.prefs?.custom_names["human"] && !is_banned_from(C.client?.ckey, "Appearance"))
-			C.fully_replace_character_name(C.dna.real_name, C.client.prefs.custom_names["human"])
+		if(C.client?.prefs?.read_preference(/datum/preference/name/real_name) && !is_banned_from(C.client?.ckey, "Appearance"))
+			C.fully_replace_character_name(C.dna.real_name, C.client.prefs.read_preference(/datum/preference/name/real_name))
 		else
 			C.fully_replace_character_name(C.dna.real_name, random_unique_name(C.gender))
 
@@ -378,19 +378,24 @@
 		add_new_profile(C)
 
 /datum/antagonist/changeling/apply_innate_effects()
+	var/mob/living/living_mob = owner.current
+	if(!isliving(living_mob))
+		return
+
+	RegisterSignals(living_mob, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON), .proc/on_click_sting)
+
 	//Brains optional.
-	var/mob/living/carbon/C = owner.current
-	if(istype(C))
-		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
-		if(B)
-			B.organ_flags &= ~ORGAN_VITAL
-			B.decoy_override = TRUE
+	var/obj/item/organ/brain/our_ling_brain = living_mob.getorganslot(ORGAN_SLOT_BRAIN)
+	if(our_ling_brain)
+		our_ling_brain.organ_flags &= ~ORGAN_VITAL
+		our_ling_brain.decoy_override = TRUE
 	update_changeling_icons_added()
-	return
 
 /datum/antagonist/changeling/remove_innate_effects()
+	var/mob/living/living_mob = owner.current
+
+	UnregisterSignal(living_mob, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON))
 	update_changeling_icons_removed()
-	return
 
 
 /datum/antagonist/changeling/greet()
@@ -519,6 +524,31 @@
 	hud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)
 
+/**
+ * Signal proc for [COMSIG_MOB_MIDDLECLICKON] and [COMSIG_MOB_ALTCLICKON].
+ * Allows the changeling to sting people with a click.
+ */
+/datum/antagonist/changeling/proc/on_click_sting(mob/living/ling, atom/clicked)
+	SIGNAL_HANDLER
+
+	// nothing to handle
+	if(!chosen_sting)
+		return
+
+	if(!isliving(ling) || clicked == ling || ling.stat != CONSCIOUS)
+		return
+
+	// sort-of hack done here: we use in_given_range here because it's quicker.
+	// actual ling stings do pathfinding to determine whether the target's "in range".
+	// however, this is "close enough" preliminary checks to not block click
+	if(!isliving(clicked) || !IN_GIVEN_RANGE(ling, clicked, sting_range))
+		return
+	
+	chosen_sting.try_to_sting(ling, clicked)
+	ling.next_click = world.time + 5
+
+	return COMSIG_MOB_CANCEL_CLICKON
+
 /datum/antagonist/changeling/admin_add(datum/mind/new_owner,mob/admin)
 	. = ..()
 	to_chat(new_owner.current, span_boldannounce("Our powers have awoken. A flash of memory returns to us...we are [changelingID], a changeling!"))
@@ -625,3 +655,24 @@
 
 /datum/antagonist/changeling/xenobio/antag_listing_name()
 	return ..() + "(Xenobio)"
+
+/datum/antagonist/changeling/get_preview_icon()
+	var/icon/final_icon = render_preview_outfit(/datum/outfit/changeling)
+	var/icon/split_icon = render_preview_outfit(/datum/outfit/job/engineer)
+
+	final_icon.Shift(WEST, world.icon_size / 2)
+	final_icon.Shift(EAST, world.icon_size / 2)
+
+	split_icon.Shift(EAST, world.icon_size / 2)
+	split_icon.Shift(WEST, world.icon_size / 2)
+
+	final_icon.Blend(split_icon, ICON_OVERLAY)
+
+	return finish_preview_icon(final_icon)
+
+/datum/outfit/changeling
+	name = "Changeling"
+
+	head = /obj/item/clothing/head/helmet/changeling
+	suit = /obj/item/clothing/suit/armor/changeling
+	l_hand = /obj/item/melee/arm_blade

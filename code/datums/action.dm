@@ -72,7 +72,7 @@
 		M.actions += src
 		if(M.client)
 			M.client.screen += button
-			button.locked = M.client.prefs.buttons_locked || button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE //even if it's not defaultly locked we should remember we locked it before
+			button.locked = M.client.prefs.read_preference(/datum/preference/toggle/buttons_locked) || button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE //even if it's not defaultly locked we should remember we locked it before
 			button.moved = button.id ? M.client.prefs.action_buttons_screen_locs["[name]_[button.id]"] : FALSE
 		for(var/mob/dead/observer/O in M.observers)
 			O?.client.screen += button
@@ -90,9 +90,10 @@
 		M.actions -= src
 		M.update_action_buttons()
 	owner = null
-	button.moved = FALSE //so the button appears in its normal position when given to another owner.
-	button.locked = FALSE
-	button.id = null
+	if(button)
+		button.moved = FALSE //so the button appears in its normal position when given to another owner.
+		button.locked = FALSE
+		button.id = null
 
 /datum/action/proc/Trigger()
 	if(!IsAvailable())
@@ -318,6 +319,7 @@
 
 /datum/action/item_action/set_internals
 	name = "Set Internals"
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/set_internals/UpdateButtonIcon(status_only = FALSE, force)
 	if(..()) //button available
@@ -424,9 +426,11 @@
 
 /datum/action/item_action/toggle_helmet_flashlight
 	name = "Toggle Helmet Flashlight"
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/toggle_helmet_mode
 	name = "Toggle Helmet Mode"
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/toggle
 
@@ -625,6 +629,18 @@
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rshield"
 
+/datum/action/item_action/band
+	name = "Band"
+	desc = "Summon all your thralls to your location."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
+
+/datum/action/item_action/gambit
+	name = "Gambit"
+	desc = "Throw out your cane. If the target is weak enough to finish off, teleport to them and do it, recovering your cane in the process."
+	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
+
 //Preset for spells
 /datum/action/spell_action
 	check_flags = NONE
@@ -718,7 +734,9 @@
 	button.maptext_height = 12
 
 /datum/action/cooldown/IsAvailable()
-	return next_use_time <= world.time
+	if(next_use_time > world.time)
+		return FALSE
+	return ..()
 
 /datum/action/cooldown/proc/StartCooldown()
 	next_use_time = world.time + cooldown_time
@@ -753,12 +771,6 @@
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "art_summon"
 
-//surf_ss13
-/datum/action/item_action/bhop
-	name = "Activate Jump Boots"
-	desc = "Activates the jump boot's internal propulsion system, allowing the user to dash over 4-wide gaps."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "jetboot"
 
 /datum/action/item_action/dash
 	name = "Dash"

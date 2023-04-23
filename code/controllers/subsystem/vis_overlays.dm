@@ -3,15 +3,11 @@ SUBSYSTEM_DEF(vis_overlays)
 	wait = 1 MINUTES
 	priority = FIRE_PRIORITY_VIS
 	init_order = INIT_ORDER_VIS
+	flags = SS_NO_INIT
 
-	var/list/vis_overlay_cache
-	var/list/unique_vis_overlays
+	var/list/vis_overlay_cache = list()
+	var/list/unique_vis_overlays = list()
 	var/list/currentrun
-
-/datum/controller/subsystem/vis_overlays/Initialize()
-	vis_overlay_cache = list()
-	unique_vis_overlays = list()
-	return ..()
 
 /datum/controller/subsystem/vis_overlays/fire(resumed = FALSE)
 	if(!resumed)
@@ -87,6 +83,8 @@ SUBSYSTEM_DEF(vis_overlays)
 	var/list/overlays_to_remove = list()
 	for(var/i in thing.managed_vis_overlays - unique_vis_overlays)
 		var/obj/effect/overlay/vis/overlay = i
+		if(!overlay)
+			continue
 		add_vis_overlay(thing, overlay.icon, overlay.icon_state, overlay.layer, overlay.plane, turn(overlay.dir, rotation), overlay.alpha, overlay.appearance_flags)
 		overlays_to_remove += overlay
 	for(var/i in thing.managed_vis_overlays & unique_vis_overlays)

@@ -13,6 +13,7 @@
 	var/last_man_standing = FALSE
 	var/list/datum/mind/targets_stolen
 	greentext_achieve = /datum/achievement/greentext/internal
+	preview_outfit = /datum/outfit/assassin
 
 /datum/antagonist/traitor/internal_affairs/proc/give_pinpointer()
 	if(owner && owner.current)
@@ -69,7 +70,7 @@
 		return
 	var/turf/here = get_turf(owner)
 	var/turf/there = get_turf(scan_target)
-	if(here.z != there.z)
+	if(here?.z != there?.z)
 		linked_alert.icon_state = "pinonnull"
 		return
 	if(get_dist_euclidian(here,there)<=minimum_range + rand(0, range_fuzz_factor))

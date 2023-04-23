@@ -71,6 +71,9 @@
 		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 
 		for(var/obj/docking_port/mobile/port in place)
+			// initTemplateBounds explicitly ignores the shuttle's docking port, to ensure that it calculates the bounds of the shuttle correctly
+			// so we need to manually initialize it here
+			SSatoms.InitializeAtoms(list(port))
 			if(register)
 				port.register()
 			if(isnull(port_x_offset))
@@ -214,6 +217,12 @@
 	Has medical facilities."
 	credit_cost = 5000
 
+/datum/map_template/shuttle/emergency/triage
+	suffix = "triage"
+	name = "Emergency Triage Shuttle"
+	description = "Do you have plenty of crew who need to be wheeled or dragged to safety? This shuttle is equipped with ample medical equipment to help your medical staff recover as many people as possible."
+	credit_cost = 5000 // Yes this is pretty cheap for all the shuttle offers, but considering it's to be used in an extreme medical emergency, it cannot be too expensive.
+
 /datum/map_template/shuttle/emergency/pod
 	suffix = "pod"
 	name = "Emergency Pods"
@@ -226,7 +235,7 @@
 	description = "A modified version of the Box escape shuttle that comes with a preinstalled pool. Fun for the whole family!"
 	admin_notes = "Pool filter can be very easily filled with acid or other harmful chemicals."
 	credit_cost = 15000
-	
+
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
 	name = "Mother Russia Bleeds"
@@ -439,7 +448,7 @@
 	suffix = "fancy"
 	name = "fancy transport ferry"
 	description = "At some point, someone upgraded the ferry to have fancier flooring... and fewer seats."
-	
+
 /datum/map_template/shuttle/ferry/kilo
 	suffix = "kilo"
 	name = "kilo transport ferry"
@@ -476,7 +485,7 @@
 /datum/map_template/shuttle/cargo/birdboat
 	suffix = "birdboat"
 	name = "supply shuttle (Birdboat)"
-	
+
 /datum/map_template/shuttle/cargo/kilo
 	suffix = "kilo"
 	name = "supply shuttle (Kilo)"
@@ -492,6 +501,7 @@
 	admin_notes = "Go big or go home."
 	credit_cost = 7500
 
+/* Disabled for having fucked atmos
 /datum/map_template/shuttle/emergency/raven
 	suffix = "raven"
 	name = "CentCom Raven Cruiser"
@@ -500,6 +510,7 @@
 	This escape shuttle boasts shields and numerous anti-personnel turrets guarding its perimeter to fend off meteors and enemy boarding attempts."
 	admin_notes = "Comes with turrets that will target anything without the neutral faction (nuke ops, xenos etc, but not pets)."
 	credit_cost = 30000
+*/
 
 /datum/map_template/shuttle/arrival/box
 	suffix = "box"
@@ -512,7 +523,7 @@
 /datum/map_template/shuttle/mining/box
 	suffix = "box"
 	name = "mining shuttle (Box)"
-	
+
 /datum/map_template/shuttle/mining/kilo
 	suffix = "kilo"
 	name = "mining shuttle (Kilo)"
@@ -520,7 +531,7 @@
 /datum/map_template/shuttle/labour/box
 	suffix = "box"
 	name = "labour shuttle (Box)"
-	
+
 /datum/map_template/shuttle/labour/kilo
 	suffix = "kilo"
 	name = "labour shuttle (Kilo)"
@@ -552,7 +563,7 @@
 /datum/map_template/shuttle/arrival/omega
 	suffix = "omega"
 	name = "arrival shuttle (Omega)"
-	
+
 /datum/map_template/shuttle/arrival/kilo
 	suffix = "kilo"
 	name = "arrival shuttle (Kilo)"

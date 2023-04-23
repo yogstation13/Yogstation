@@ -1,4 +1,4 @@
-/mob/living/proc/Life(seconds, times_fired)
+/mob/living/proc/Life(times_fired)
 	set waitfor = FALSE
 	set invisibility = 0
 

@@ -31,7 +31,7 @@
 		cross.icon_state = "tome"
 		font_color = "red"
 		prayer_type = "CULTIST PRAYER"
-		deity = "Nar-Sie"
+		deity = "Nar'sie"
 	else if(isliving(usr))
 		var/mob/living/L = usr
 		if(HAS_TRAIT(L, TRAIT_SPIRITUAL))

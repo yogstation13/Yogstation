@@ -1,0 +1,5 @@
+https://www.youtube.com/watch?v=rMUQeMcbs7c
+
+filter curve > bass cut
+echo > delay 0.01, decay factor 0.5
+bitrate > 11025 
