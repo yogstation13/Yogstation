@@ -76,7 +76,7 @@ GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
 			keyname = "<font color='[prefs.read_preference(/datum/preference/color/ooc_color) || GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//YOG START - Yog OOC
 
-	if(get_exp_living() <= 300 && length(msg) >= 50)
+	if(get_exp_living(TRUE) <= 300 && length(msg) >= 50)
 		if(GLOB.ooc_new_long_messages[key])
 			GLOB.ooc_new_long_messages[key]++
 		else
