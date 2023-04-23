@@ -2,6 +2,10 @@ GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwis
 GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
 
+GLOBAL_LIST_EMPTY(ooc_shadow_muted)
+GLOBAL_LIST_EMPTY(ooc_new_long_messages)
+GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
+
 /client/verb/ooc_wrapper()
 	set hidden = TRUE
 	var/message = input("", "OOC \"text\"") as null|text
@@ -72,6 +76,21 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 			keyname = "<font color='[prefs.read_preference(/datum/preference/color/ooc_color) || GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//YOG START - Yog OOC
 
+	if(get_exp_living() <= 300 && length(msg) >= 50)
+		if(GLOB.ooc_new_long_messages[key])
+			GLOB.ooc_new_long_messages[key]++
+		else
+			GLOB.ooc_new_long_messages[key] = 1
+
+		GLOB.ooc_new_last_messsage[key] = world.time
+
+	if(GLOB.ooc_new_long_messages[key] > 3)
+		GLOB.ooc_shadow_muted[key] = TRUE
+
+	if(!GLOB.ooc_shadow_muted[key] && ((world.time + 30 SECONDS) > GLOB.ooc_new_last_messsage[key]))
+		to_chat(src, span_warning("Please wait a few seconds before sending another OOC message"))
+		return
+
 	//PINGS
 	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
 	// Regex101 link to this specific regex, as of 3rd April 2019: https://regex101.com/r/YtmLDs/7
@@ -128,21 +147,24 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 		oocmsg_toadmins = oocmsg
 
 	//SENDING THE MESSAGES OUT
-	for(var/c in GLOB.clients)
-		var/client/C = c // God bless typeless for-loops
-		if( (!C.prefs || (C.prefs.chat_toggles & CHAT_OOC)) && (holder || !(key in C.prefs?.ignoring)) )
-			var/sentmsg // The message we're sending to this specific person
-			if(C.holder) // If they're an admin-ish
-				sentmsg = oocmsg_toadmins // Get the admin one
-			else
-				sentmsg = oocmsg
-			if( (ckey(C.key) in pinged) || (C.holder && C.holder.fakekey && (C.holder.fakekey in pinged)) )
-				var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
-				pingsound.volume = 50
-				pingsound.pan = 80
-				SEND_SOUND(C,pingsound)
-				sentmsg = "<span style='background-color: #ccccdd'>" + sentmsg + "</span>"
-			to_chat(C,sentmsg)
+	if(!(key in GLOB.ooc_shadow_muted))
+		for(var/c in GLOB.clients)
+			var/client/C = c // God bless typeless for-loops
+			if( (!C.prefs || (C.prefs.chat_toggles & CHAT_OOC)) && (holder || !(key in C.prefs?.ignoring)) )
+				var/sentmsg // The message we're sending to this specific person
+				if(C.holder) // If they're an admin-ish
+					sentmsg = oocmsg_toadmins // Get the admin one
+				else
+					sentmsg = oocmsg
+				if( (ckey(C.key) in pinged) || (C.holder && C.holder.fakekey && (C.holder.fakekey in pinged)) )
+					var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
+					pingsound.volume = 50
+					pingsound.pan = 80
+					SEND_SOUND(C,pingsound)
+					sentmsg = "<span style='background-color: #ccccdd'>" + sentmsg + "</span>"
+				to_chat(C,sentmsg)
+	else
+		to_chat(src,oocmsg)
 	//YOGS END
 	var/data = list()
 	data["normal"] = oocmsg
@@ -151,8 +173,8 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	var/source = list()
 	source["is_admin"] = !!holder
 	source["key"] = key
-
-	send2otherserver(json_encode(source), json_encode(data), "ooc_relay")
+	if(!(key in GLOB.ooc_shadow_muted))
+		send2otherserver(json_encode(source), json_encode(data), "ooc_relay")
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
