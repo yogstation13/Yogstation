@@ -280,7 +280,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		if(M.status_flags & GODMODE)
 			to_chat(M, span_userdanger("A strange force protects you!"))
 			M.adjust_fire_stacks(40)
-			M.IgniteMob()
+			M.ignite_mob()
 			continue
 		if(M.stat != DEAD)
 			M.emote("scream")
