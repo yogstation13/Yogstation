@@ -188,7 +188,7 @@ GLOBAL_LIST_EMPTY(ooc_new_long_messages_short)
 	var/source = list()
 	source["is_admin"] = !!holder
 	source["key"] = key
-	if(!(key in GLOB.ooc_shadow_muted))
+	if(!GLOB.ooc_shadow_muted[key])
 		send2otherserver(json_encode(source), json_encode(data), "ooc_relay")
 
 /proc/toggle_ooc(toggle = null)
