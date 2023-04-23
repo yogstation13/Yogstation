@@ -80,11 +80,10 @@
 	light_color = "#c1caff"
 	},
 /obj/structure/table/wood/fancy/exoticpurple,
-/obj/item/clothing/suit/wizrobe/red,
-/obj/item/clothing/head/wizard/red,
-/obj/item/clothing/shoes/sandal/magic,
 /obj/item/staff,
 /obj/item/clothing/mask/gas/tiki_mask/yalp_elor,
+/obj/item/clothing/head/wizard/fake/red,
+/obj/item/clothing/head/wizard/fake/black,
 /turf/open/floor/carpet/exoticgreen,
 /area/template_noop)
 "G" = (
@@ -93,11 +92,8 @@
 	light_color = "#c1caff"
 	},
 /obj/structure/table/wood/fancy/exoticpurple,
-/obj/machinery/microwave{
-	name = "box of cooking";
-	pixel_x = -1;
-	pixel_y = 6
-	},
+/obj/item/clothing/head/wizard/fake/yellow,
+/obj/item/clothing/head/wizard/fake/brown,
 /turf/open/floor/carpet/exoticgreen,
 /area/template_noop)
 "K" = (

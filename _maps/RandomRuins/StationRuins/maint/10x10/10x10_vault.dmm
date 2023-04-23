@@ -38,9 +38,8 @@
 /turf/open/space/basic,
 /area/template_noop)
 "I" = (
-/turf/open/floor/mineral/gold{
-	initial_gas_mix = "TEMP=2.7"
-	},
+/obj/item/coin/gold,
+/turf/open/floor/plating,
 /area/template_noop)
 "M" = (
 /obj/effect/spawner/lootdrop/maintenance,
@@ -56,9 +55,9 @@
 	info = "Next time don't build your vault next to space, dumbass! Did you forget we don't live in a 2d world? NT's finest my foot! -J";
 	infolang = /datum/language/common
 	},
-/turf/open/floor/mineral/gold{
-	initial_gas_mix = "TEMP=2.7"
-	},
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/sheet/mineral/gold,
+/turf/open/floor/plating,
 /area/template_noop)
 "R" = (
 /turf/open/floor/plating{
@@ -142,7 +141,7 @@ a
 n
 E
 b
-I
+a
 P
 b
 E

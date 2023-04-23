@@ -2,6 +2,11 @@
 "a" = (
 /turf/open/floor/carpet/red,
 /area/template_noop)
+"b" = (
+/turf/open/floor/plasteel/stairs/old{
+	dir = 4
+	},
+/area/template_noop)
 "c" = (
 /turf/open/floor/plasteel/stairs/old,
 /area/template_noop)
@@ -10,6 +15,11 @@
 /area/template_noop)
 "f" = (
 /turf/closed/wall,
+/area/template_noop)
+"g" = (
+/turf/open/floor/plasteel/stairs/old{
+	dir = 8
+	},
 /area/template_noop)
 "h" = (
 /obj/machinery/light{
@@ -130,7 +140,7 @@ S
 q
 S
 a
-a
+b
 f
 e
 f
@@ -214,7 +224,7 @@ o
 a
 S
 a
-a
+g
 f
 e
 f

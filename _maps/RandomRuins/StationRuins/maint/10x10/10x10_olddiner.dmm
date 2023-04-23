@@ -17,11 +17,10 @@
 	},
 /area/template_noop)
 "eu" = (
-/obj/machinery/chem_dispenser/drinks/beer,
-/obj/structure/table/wood,
 /obj/item/radio/intercom{
 	pixel_y = 26
 	},
+/obj/machinery/oven,
 /turf/open/floor/plating,
 /area/template_noop)
 "fi" = (
@@ -169,7 +168,6 @@
 /area/template_noop)
 "yM" = (
 /obj/machinery/light/small,
-/obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
 "Ap" = (
@@ -288,7 +286,6 @@
 	dir = 1
 	},
 /obj/structure/table/wood,
-/obj/machinery/chem_dispenser/drinks,
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
 "TS" = (

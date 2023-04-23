@@ -72,10 +72,6 @@
 /obj/item/stack/sheet/mineral/wood,
 /turf/open/floor/plating,
 /area/template_noop)
-"q" = (
-/obj/item/twohanded/spear,
-/turf/open/floor/plating,
-/area/template_noop)
 "r" = (
 /obj/structure/table_frame/wood,
 /turf/open/floor/wood,
@@ -382,7 +378,7 @@ f
 "}
 (9,1,1) = {"
 h
-q
+f
 f
 W
 F

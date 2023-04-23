@@ -76,25 +76,8 @@
 /area/template_noop)
 "w" = (
 /obj/structure/closet/crate,
-/obj/item/coin/gold,
-/obj/item/coin/gold{
-	pixel_x = -8;
-	pixel_y = 3
-	},
 /obj/item/coin/gold{
 	pixel_x = 8
-	},
-/obj/item/coin/gold{
-	pixel_x = 5;
-	pixel_y = -6
-	},
-/obj/item/coin/gold{
-	pixel_x = -2;
-	pixel_y = -6
-	},
-/obj/item/coin/gold{
-	pixel_x = -7;
-	pixel_y = -2
 	},
 /turf/open/floor/plasteel,
 /area/template_noop)

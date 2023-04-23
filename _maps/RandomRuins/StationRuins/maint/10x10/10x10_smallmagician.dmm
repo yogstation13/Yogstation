@@ -22,7 +22,6 @@
 /area/template_noop)
 "f" = (
 /obj/structure/table,
-/obj/machinery/chem_dispenser/drinks/beer,
 /turf/open/floor/plasteel/cafeteria,
 /area/template_noop)
 "g" = (
@@ -246,7 +245,6 @@
 /area/template_noop)
 "U" = (
 /obj/structure/table,
-/obj/machinery/chem_dispenser/drinks,
 /obj/machinery/light/small{
 	dir = 1
 	},

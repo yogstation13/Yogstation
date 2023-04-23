@@ -46,13 +46,13 @@
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "g" = (
-/obj/structure/mineral_door/iron,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/obj/machinery/door/airlock,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "h" = (

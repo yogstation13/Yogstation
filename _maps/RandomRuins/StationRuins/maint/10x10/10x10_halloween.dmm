@@ -130,11 +130,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
-"v" = (
-/obj/machinery/jukebox/disco,
-/obj/effect/decal/cleanable/glitter/pink,
-/turf/open/floor/light/colour_cycle/dancefloor_b,
-/area/template_noop)
 "w" = (
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
@@ -394,7 +389,7 @@ C
 Y
 N
 F
-v
+X
 A
 X
 o
