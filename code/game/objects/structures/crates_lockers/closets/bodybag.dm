@@ -124,7 +124,11 @@
 	if(the_folder in src)
 		to_chat(usr, span_warning("You can't fold a bluespace body bag from the inside!"))
 		return
-	if(!do_after(the_folder, 2.5 SECONDS, src))
+	var/has_living = FALSE
+	for(var/mob/living in contents)
+		has_living = TRUE
+		break
+	if(has_living && !do_after(the_folder, 2.5 SECONDS, src))
 		return
 	return TRUE
 
