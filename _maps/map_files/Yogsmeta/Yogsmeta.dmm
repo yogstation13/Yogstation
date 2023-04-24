@@ -28449,6 +28449,9 @@
 	pixel_x = -25;
 	pixel_y = 5
 	},
+/obj/machinery/photocopier{
+	pixel_y = 3
+	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
 "bsN" = (
