@@ -138,18 +138,34 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		))
 
 GLOBAL_LIST_INIT(battleroyale_weapon, list(
-		/obj/item/circular_saw = 5,
+		/obj/item/kitchen/knife/carrotshiv = 5,
 
 		/obj/item/kitchen/knife/combat/survival = 4,
+		/obj/item/twohanded/required/baseball_bat = 4,
+		/obj/item/twohanded/spear = 4,
 
 		/obj/item/pen/edagger = 3,
+		/obj/item/twohanded/bigspoon = 3,
+
+		/obj/item/kitchen/knife/combat = 2,
+		/obj/item/twohanded/bonespear = 2,
+		/obj/item/nullrod/hammer = 2,
+		/obj/item/nullrod/tribal_knife = 2,
+		/obj/item/nullrod/vibro = 2,
+		/obj/item/nullrod/talking = 2,
 
 		/obj/item/flamethrower/full/tank = 1,
+		/obj/item/twohanded/required/baseball_bat/metal_bat = 1,
+		/obj/item/twohanded/required/chainsaw = 1,
+		/obj/item/twohanded/fireaxe/metal_h2_axe = 1,
+		/obj/item/nullrod/whip = 1,
 
 		/obj/item/twohanded/vxtvulhammer = 0,
 		/obj/item/gun/ballistic/shotgun/riot = 0,
 		/obj/item/gun/ballistic/shotgun/automatic/dual_tube = 0,
 		/obj/item/gun/ballistic/revolver/detective = 0,
+		/obj/item/twohanded/required/baseball_bat/homerun = 0,
+		/obj/item/twohanded/fireaxe = 0,
 
 		/obj/item/melee/powerfist = -1,
 		/obj/item/gun/ballistic/automatic/pistol = -1,
@@ -182,6 +198,8 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 
 		/obj/item/melee/fryingpan/bananium = -5,
 		/obj/item/his_grace = -5,
+		/obj/item/twohanded/vibro_weapon = -5,
+		/obj/item/twohanded/required/chainsaw/doomslayer = -5,
 		))
 
 GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max health doesn't scale, there's also less healing items than other items
@@ -222,10 +240,12 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
 
 		/obj/item/autosurgeon/cmo = 2,
+		/obj/item/nullrod/hermes = 2,
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
 		/obj/item/book/granter/spell/smoke = 1,
 		/obj/item/autosurgeon/reviver = 1,
+		/obj/item/nullrod/servoskull = 1,
 
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = 0,
 		/obj/item/teleportation_scroll/apprentice = 0,
@@ -237,6 +257,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/autosurgeon/thermal_eyes = -1,
 		/obj/item/autosurgeon/xray_eyes = -1,
 		/obj/item/multisurgeon/airshoes = -1,
+		/obj/item/nullrod/staff = -1,
 
 		/obj/item/storage/box/syndie_kit/augmentation = -2,
 		/obj/item/grenade/syndieminibomb = -2,
