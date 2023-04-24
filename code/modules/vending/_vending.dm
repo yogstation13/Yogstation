@@ -859,7 +859,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			R.amount--
 			SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[R.product_path]"))
 			vend_ready = TRUE
-		if("dispense")
+		if("vend_custom")
 			. = TRUE
 			if(!vend_ready)
 				return

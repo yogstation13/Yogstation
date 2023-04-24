@@ -82,7 +82,7 @@ const VendingRow = (props, context) => {
               || (!free && product.price > data.user.cash)
             )}
             content={customFree ? 'FREE' : product.price + ' cr'}
-            onClick={() => act('dispense', {
+            onClick={() => act('vend_custom', {
               'item': product.name,
             })} />
         ) || (
