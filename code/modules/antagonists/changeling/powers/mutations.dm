@@ -197,8 +197,12 @@
 
 		if((!A.requiresID() || A.allowed(user)) && A.hasPower()) //This is to prevent stupid shit like hitting a door with an arm blade, the door opening because you have acces and still getting a "the airlocks motors resist our efforts to force it" message, power requirement is so this doesn't stop unpowered doors from being pried open if you have access
 			return
+
 		if(A.locked)
 			to_chat(user, span_warning("The airlock's bolts prevent it from being forced!"))
+			return
+		if(A.welded)
+			to_chat(user, span_warning("The airlock is welded shut, it won't budge!"))
 			return
 
 		if(A.hasPower())
