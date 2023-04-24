@@ -162,14 +162,6 @@
 	build_path = /obj/item/reagent_containers/glass/bottle/nutrient/rh
 	category = list("initial","Botany Chemicals")
 
-/datum/design/saltpetre
-	name = "Saltpetre"
-	id = "saltpetre"
-	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 200)
-	build_path = /obj/item/reagent_containers/glass/bottle/saltpetre
-	category = list("initial","Botany Chemicals")
-
 /datum/design/weed_killer
 	name = "Weed Killer"
 	id = "weed_killer"

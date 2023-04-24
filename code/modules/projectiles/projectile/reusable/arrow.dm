@@ -177,7 +177,7 @@
 	wound_bonus = -30
 	irradiate = 500
 	range = 20
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOOR
 	embed_type = /obj/item/ammo_casing/caseless/arrow/energy/xray
 
 /obj/item/projectile/energy/arrow/clockbolt

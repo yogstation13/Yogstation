@@ -4,7 +4,7 @@ import { multiline } from "common/string";
 export const CULTIST_MECHANICAL_DESCRIPTION
    = multiline`
       Conspire with other blood cultists to convert other crew and take over the station.
-      Track down your sacrifice target, kill them via ritual, then begin to summon Nar-Sie.
+      Track down your sacrifice target, kill them via ritual, then begin to summon Nar'sie.
       Defend her crystals until she is ready, and witness her glory tear into our dimension.
    `;
 

@@ -623,6 +623,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/Administer(announce = FALSE)
 	if(!usr.client)
 		return FALSE
+	if(handling_admin)
+		if(handling_admin == usr.client)
+			to_chat(usr, "This ticket is already yours.")
+			return FALSE
+		if(tgui_alert(usr, "This ticket has already been claimed by [handling_admin], are you sure you wish to continue?", "Confirm", list("Yes", "No")) != "Yes")
+			return FALSE
+
 	handling_admin = usr.client
 
 	var/datum/DBQuery/set_admin_query = SSdbcore.NewQuery(

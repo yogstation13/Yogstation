@@ -278,6 +278,10 @@ Key procs
 							/datum/language/draconic = list(LANGUAGE_ATOM))
 
 /datum/language_holder/lizard/ash
+	understood_languages = list(/datum/language/draconic = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/draconic = list(LANGUAGE_ATOM))
+
+/datum/language_holder/lizard/shaman
 	selected_language = /datum/language/draconic
 
 /datum/language_holder/monkey

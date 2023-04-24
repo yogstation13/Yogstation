@@ -21,6 +21,8 @@
 		dat += " | "
 		dat += individual_logging_panel_link(M, INDIVIDUAL_LOOC_LOG, LOGSRC_CLIENT, "LOOC Log", source, ntype) // yogs - LOOC log
 		dat += " | " // yogs - LOOC log
+		dat += individual_logging_panel_link(M, INDIVIDUAL_DONATOR_LOG, LOGSRC_CLIENT, "Donator Log", source, ntype) // yogs - Donator log
+		dat += " | " // yogs - Donator log
 		dat += individual_logging_panel_link(M, INDIVIDUAL_SHOW_ALL_LOG, LOGSRC_CLIENT, "Show All", source, ntype)
 		dat += "</center>"
 	else
@@ -42,6 +44,8 @@
 	dat += " | "
 	dat += individual_logging_panel_link(M, INDIVIDUAL_LOOC_LOG, LOGSRC_CLIENT, "LOOC Log", source, ntype) // yogs - LOOC log
 	dat += " | " // yogs - LOOC log
+	dat += individual_logging_panel_link(M, INDIVIDUAL_DONATOR_LOG, LOGSRC_CLIENT, "Donator Log", source, ntype) // yogs - Donator log
+	dat += " | " // yogs - Donator log
 	dat += individual_logging_panel_link(M, INDIVIDUAL_SHOW_ALL_LOG, LOGSRC_MOB, "Show All", source, ntype)
 	dat += "</center>"
 

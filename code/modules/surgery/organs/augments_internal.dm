@@ -143,6 +143,30 @@
 	clear_stuns()
 	organ_flags &= ~ORGAN_FAILING
 
+/obj/item/organ/cyberimp/brain/anti_stun/syndicate
+	name = "syndicate CNS rebooter implant"
+	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
+	syndicate_implant = TRUE
+	stun_cap_amount = 3 SECONDS
+
+/obj/item/organ/cyberimp/brain/anti_stun/syndicate/Insert()
+	..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.stamina_mod *= 0.8
+		H.physiology.stun_mod *= 0.8
+
+/obj/item/organ/cyberimp/brain/anti_stun/syndicate/Remove(mob/living/carbon/M, special)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.stamina_mod *= 1.25
+		H.physiology.stun_mod *= 1.25
+
+/obj/item/organ/cyberimp/brain/anti_stun/syndicate/on_life()
+	..() // makes stamina damage decay over time
+	owner.adjustStaminaLoss(owner.getStaminaLoss() / -10)
+
 //[[[[MOUTH]]]]
 /obj/item/organ/cyberimp/mouth
 	zone = BODY_ZONE_PRECISE_MOUTH

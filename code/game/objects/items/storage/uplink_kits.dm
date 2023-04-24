@@ -36,14 +36,14 @@
 			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //See above
 			new /obj/item/flashlight/emp(src) //2 TC
 
-		if("bloodyspai") //32 TCish
+		if("bloodyspai") //30 TCish
 			new /obj/item/clothing/under/chameleon/syndicate(src) //1 TC, has only two parts of the massive kit
 			new /obj/item/clothing/mask/chameleon/syndicate(src) //See above
 			new /obj/item/card/id/syndicate(src) //2 TC
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/reagent_containers/syringe/mulligan(src) //4 TC
-			new /obj/item/switchblade/backstab(src) //5 TC
+			new /obj/item/switchblade/backstab(src) //3 TC
 			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/chameleon(src) //7 TC
@@ -769,3 +769,11 @@
 
 /obj/item/storage/box/syndie_kit/emp_shield/PopulateContents()
 	new /obj/item/implanter/empshield(src)
+
+/obj/item/storage/box/syndie_kit/prisonerbag
+	real_name = "Prisoner kit"
+
+/obj/item/storage/box/syndie_kit/prisonerbag/PopulateContents()
+	var/obj/item/bodybag/environmental/prisoner/syndicate/pbag = new(src)
+	var/obj/item/syndicate_prisoner_remote/remote = new(src)
+	remote.bag = pbag

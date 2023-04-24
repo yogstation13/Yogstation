@@ -1,0 +1,5 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Surplus Carbine now loads .45, instead of 10mm"
+  - tweak: "Surplus Carbine fire rate slightly increased (every 1 second instead of every 1.2 seconds)"

@@ -597,7 +597,7 @@
 	..()
 
 /datum/reagent/consumable/lemon_lime
-	name = "Lemon Lime"
+	name = "Spite"
 	description = "A tangy substance made of 0.5% natural citrus!"
 	color = "#8CFF00" // rgb: 135, 255, 0
 	taste_description = "tangy lime and lemon soda"
@@ -787,6 +787,12 @@
 	..()
 	. = TRUE
 
+/datum/reagent/consumable/chocolate/reaction_mob(mob/living/M, method=TOUCH)
+	if(method == INGEST)
+		if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+			to_chat(M, span_notice("This is like Milk, but better!?"))
+	return ..()
+
 /datum/reagent/consumable/vanillapudding
 	name = "Vanilla Pudding"
 	description = "A great dessert for vanilla lovers."
@@ -804,6 +810,12 @@
 	..()
 	. = TRUE
 
+/datum/reagent/consumable/vanillapudding/reaction_mob(mob/living/M, method=TOUCH)
+	if(method == INGEST)
+		if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+			to_chat(M, span_notice("This is like Milk, but better!?"))
+	return ..()
+
 /datum/reagent/consumable/cherryshake
 	name = "Cherry Shake"
 	description = "A cherry flavored milkshake."
@@ -817,9 +829,16 @@
 
 /datum/reagent/consumable/cherryshake/on_mob_life(mob/living/carbon/C)
 	if(isjellyperson(C))
+		to_chat(C, span_notice("Just like us, just like jelly!"))
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
 	..()
+
+/datum/reagent/consumable/cherryshake/reaction_mob(mob/living/C, method=TOUCH)
+	if(method == INGEST)
+		if(isjellyperson(C))
+			to_chat(C, span_notice("Just like us, just like jelly!"))
+	return ..()
 
 /datum/reagent/consumable/bluecherryshake
 	name = "Blue Cherry Shake"
@@ -837,6 +856,12 @@
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
 	..()
+
+/datum/reagent/consumable/bluecherryshake/reaction_mob(mob/living/C, method=TOUCH)
+	if(method == INGEST)
+		if(isjellyperson(C))
+			to_chat(C, span_notice("Just like us, just like jelly!"))
+	return ..()
 
 /datum/reagent/consumable/pumpkin_latte
 	name = "Pumpkin Latte"
@@ -1065,3 +1090,9 @@
 	if(islizard(C))
 		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -2.5*REM)
 	..()
+
+/datum/reagent/consumable/mushroom_tea/reaction_mob(mob/living/M, method=TOUCH)
+	if(method == INGEST)
+		if(islizard(M))
+			to_chat(M, span_notice("The most important thing to a Lizard is their brains.... Probably"))
+	return ..()

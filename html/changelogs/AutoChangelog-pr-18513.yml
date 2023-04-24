@@ -1,0 +1,5 @@
+author: " @solwashere @Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a few new pirate ship names"
+  - tweak: "Pirate ship names are now based on a combination of two names"

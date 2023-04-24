@@ -100,7 +100,6 @@
 	name = "Vaccine"
 	color = "#C81040" // rgb: 200, 16, 64
 	taste_description = "slime"
-	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/vaccine/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
 	if(islist(data) && ((method == INGEST && reac_volume >= 5) || method == INJECT))//drinking it requires at least 5u, injection doesn't
@@ -187,7 +186,7 @@
 	..()
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
-	. = ..()	
+	. = ..()
 	var/body_temperature_difference = BODYTEMP_NORMAL - M.bodytemperature
 	M.adjust_bodytemperature(min(3,body_temperature_difference))
 	if(M.blood_volume)
@@ -233,7 +232,7 @@
 		M.stuttering = min(M.stuttering+4, 10)
 		M.Dizzy(5)
 		if(iscultist(M) && prob(20))
-			M.say(pick("Av'te Nar'Sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
+			M.say(pick("Av'te Nar'sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
 			if(prob(10))
 				M.visible_message(span_danger("[M] starts having a seizure!"), span_userdanger("You have a seizure!"))
 				M.Unconscious(120)
@@ -245,7 +244,7 @@
 					clockwork_say(M, "...[text2ratvar(pick("Engine... your light grows dark...", "Where are you, master?", "He lies rusting in Error...", "Purge all untruths and... and... something..."))]")
 				if("message")
 					to_chat(M, "<span class='boldwarning'>[pick("Ratvar's illumination of your mind has begun to flicker", "He lies rusting in Reebe, derelict and forgotten. And there he shall stay", \
-					"You can't save him. Nothing can save him now", "It seems that Nar-Sie will triumph after all")].</span>")
+					"You can't save him. Nothing can save him now", "It seems that Nar'sie will triumph after all")].</span>")
 				if("emote")
 					M.visible_message(span_warning("[M] [pick("whimpers quietly", "shivers as though cold", "glances around in paranoia")]."))
 	if(data["misc"] >= 60)	// 30 units, 135 seconds
@@ -384,7 +383,7 @@
 	taste_description = "cherry" // by popular demand
 	process_flags = PROCESS_ORGANIC | PROCESS_SYNTHETIC
 	metabolization_rate = 2 * REAGENTS_METABOLISM // Double speed
-	
+
 
 /datum/reagent/lube/reaction_turf(turf/open/T, reac_volume)
 	if (!istype(T))
@@ -525,35 +524,66 @@
 	name = "Stable Mutation Toxin"
 	description = "A humanizing toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
-	metabolization_rate = INFINITY //So it instantly removes all of itself
+	metabolization_rate = 0.1 //has to be low so it can metabolize for longer at the same reagent counts
 	taste_description = "slime"
 	var/datum/species/race = /datum/species/human
 	var/mutationtext = span_danger("The pain subsides. You feel... human.")
-	process_flags = ORGANIC | SYNTHETIC
+	var/frozen = FALSE //warnings for the reagent being in/active
+	var/already_mutating = FALSE //no return point for mutation so we don't spam ourselves
 
 /datum/reagent/mutationtoxin/on_mob_life(mob/living/carbon/human/H)
 	..()
 	if(!istype(H))
 		return
-	to_chat(H, span_warning("<b>You crumple in agony as your flesh wildly morphs into new forms!</b>"))
-	H.visible_message("<b>[H]</b> falls to the ground and screams as [H.p_their()] skin bubbles and froths!") //'froths' sounds painful when used with SKIN.
-	H.Paralyze(60)
-	addtimer(CALLBACK(src, .proc/mutate, H), 30)
+	if(!data)
+		data = list("transfurmation" = 1)
+		to_chat(H, span_warning("Something begins to shift under your skin, and you feel like you are heating up...")) //I think this is the best way to say "hey you should probably cool down to avoid this"
+	if(H.bodytemperature >= T0C + 10 && !H.reagents.has_reagent(/datum/reagent/consumable/ice)) //if we're consuming ice, or have cooled ourselves, the toxin stops because slimes hate cold
+		data["transfurmation"]++
+		if(frozen)
+			frozen = FALSE
+			to_chat(H, span_warning("The movement beneath your skin picks up again..."))
+	else
+		data["transfurmation"]--
+		if(!frozen)
+			frozen = TRUE
+			to_chat(H, span_warning("The movement beneath your skin stops, for now..."))
+
+	if(!frozen) //welcome to flavor town
+		if(data["transfurmation"] == 10) //that's bad cable management
+			to_chat(H, span_warning("You feel uncomfortably warm."))
+		if(data["transfurmation"] == 25) //take them out
+			to_chat(H, span_warning("Your insides feel like jelly."))
+		if(data["transfurmation"] == 40) //fix. them.
+			to_chat(H, span_warning("Your skin is wrong. Your skin is wrong."))
+
+	if(data["transfurmation"] >= 50 && !already_mutating) //~100 seconds & 5 units at 2 seconds per process & 0.1 metabolization rate
+		already_mutating = TRUE
+		var/current_species = H.dna.species.type
+		var/datum/species/mutation = race
+		if(mutation && mutation != current_species) //the real mutation was the friends we made along the way :)
+			to_chat(H, span_warning("<b>You crumple in agony as your flesh wildly morphs into new forms!</b>"))
+			H.visible_message("<b>[H]</b> falls to the ground and screams as [H.p_their()] skin bubbles and froths!") //'froths' sounds painful when used with SKIN.
+			H.Knockdown(2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(mutate), H), 2 SECONDS)
+		else
+			to_chat(H, span_notice("There is a sudden, relieving lack of skin shifting."))
+			H.reagents.del_reagent(type) //adios
 	return
+
+/datum/reagent/mutationtoxin/on_mob_end_metabolize(mob/living/L)
+	..()
+	to_chat(L, span_notice("There is sudden, relieving lack of skin shifting."))
 
 /datum/reagent/mutationtoxin/proc/mutate(mob/living/carbon/human/H)
 	if(QDELETED(H))
 		return
-	var/current_species = H.dna.species.type
-	var/datum/species/mutation = race
-	if(mutation && mutation != current_species)
-		to_chat(H, mutationtext)
-		H.set_species(mutation)
-		if(HAS_TRAIT(H, TRAIT_GENELESS))
-			if(H.has_dna())
-				H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
-	else
-		to_chat(H, span_danger("The pain vanishes suddenly. You feel no different."))
+	to_chat(H, mutationtext)
+	H.set_species(race)
+	if(HAS_TRAIT(H, TRAIT_GENELESS))
+		if(H.has_dna())
+			H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
+	H.reagents.del_reagent(type) //adios
 
 /datum/reagent/mutationtoxin/classic //The one from plasma on green slimes
 	name = "Mutation Toxin"
@@ -602,6 +632,13 @@
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/ethereal
 	mutationtext = span_danger("The pain subsides. You feel... ecstatic.")
+	
+/datum/reagent/mutationtoxin/preternis
+	name = "Preternis Mutation Toxin"
+	description = "A metallic precursor toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/preternis
+	mutationtext = span_danger("The pain subsides. You feel... optimized.")
 
 /datum/reagent/mutationtoxin/polysmorph
 	name = "Polysmorph Mutation Toxin"
@@ -674,6 +711,7 @@
 	name = "Plasma Mutation Toxin"
 	description = "A plasma-based toxin."
 	color = "#5EFF3B" //RGB: 94, 255, 59
+	can_synth = FALSE //uhh no? we don't want people mass producing fire skeleton toxin?
 	race = /datum/species/plasmaman
 	mutationtext = span_danger("The pain subsides. You feel... flammable.")
 
@@ -732,6 +770,7 @@
 	name = "Advanced Mutation Toxin"
 	description = "An advanced corruptive toxin produced by slimes."
 	color = "#13BC5E" // rgb: 19, 188, 94
+	can_synth = FALSE //sorry, wrong maintenance pill, enjoy  being a dumb slime permanently
 	taste_description = "slime"
 
 /datum/reagent/aslimetoxin/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
@@ -1301,14 +1340,23 @@
 	. = ..()
 	ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.physiology.burn_mod *= 1.5
 
 /datum/reagent/nitrium_low_metabolization/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
+	if(ishuman(L)) // physiology gets reset anyway if you get turned into something that doesn't have it
+		var/mob/living/carbon/human/H = L
+		H.physiology.burn_mod /= 1.5
 	return ..()
 
 /datum/reagent/nitrium_low_metabolization/on_mob_life(mob/living/carbon/M)
-	M.adjustStaminaLoss(-2 * REM, FALSE)
+	if(M.getStaminaLoss() > 0)
+		M.adjustStaminaLoss(-2 * REM, FALSE)
+		M.adjustToxLoss(1.5 *REM, FALSE)
+	M.Jitter(15)
 	return ..()
 
 /datum/reagent/nitrium_high_metabolization
@@ -2152,7 +2200,7 @@
 /datum/reagent/adrenaline/on_mob_add(mob/living/L)
 	. = ..()
 	ADD_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
-	
+
 /datum/reagent/adrenaline/on_mob_delete(mob/living/L)
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
