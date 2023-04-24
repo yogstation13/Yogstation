@@ -674,6 +674,8 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	throwforce = 35
 	throw_speed = 2
 	armour_penetration = 20
+	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
+	wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
 	attack_verb = list("attacked", "impaled", "stabbed", "torn", "gored")
 	sharpness = SHARP_POINTY
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -722,20 +724,6 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			playsound(T, 'sound/effects/glassbr3.ogg', 100)
 	qdel(src)
 
-/obj/item/twohanded/cult_spear/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(wielded)
-		final_block_chance *= 2
-	if(prob(final_block_chance))
-		if(attack_type == PROJECTILE_ATTACK)
-			owner.visible_message(span_danger("[owner] deflects [attack_text] with [src]!"))
-			playsound(src, pick('sound/weapons/effects/ric1.ogg', 'sound/weapons/effects/ric2.ogg', 'sound/weapons/effects/ric3.ogg', 'sound/weapons/effects/ric4.ogg', 'sound/weapons/effects/ric5.ogg'), 100, 1)
-			return TRUE
-		else
-			playsound(src, 'sound/weapons/parry.ogg', 100, 1)
-			owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
-			return TRUE
-	return FALSE
-
 /datum/action/innate/cult/spear
 	name = "Bloody Bond"
 	desc = "Call the blood spear back to your hand!"
@@ -755,7 +743,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		return
 	var/ST = get_turf(spear)
 	var/OT = get_turf(owner)
-	if(get_dist(OT, ST) > 10)
+	if(get_dist(OT, ST) > 20)
 		to_chat(owner,span_cult("The spear is too far away!"))
 	else
 		cooldown = world.time + 20
@@ -763,7 +751,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			var/mob/living/L = spear.loc
 			L.dropItemToGround(spear)
 			L.visible_message(span_warning("An unseen force pulls the blood spear from [L]'s hands!"))
-		spear.throw_at(owner, 10, 2, owner)
+		spear.throw_at(owner, 20, 2, owner)
 
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/arcane_barrage/blood
@@ -994,3 +982,33 @@ GLOBAL_VAR_INIT(curselimit, 0)
 
 /obj/item/shield/mirror/IsReflect()
 	return prob(block_chance)
+
+/obj/item/shield/mirror/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	var/turf/T = get_turf(hit_atom)
+	var/datum/thrownthing/D = throwingdatum
+	if(isliving(hit_atom))
+		var/mob/living/L = hit_atom
+		if(iscultist(L))
+			playsound(src, 'sound/weapons/throwtap.ogg', 50)
+			if(L.put_in_active_hand(src))
+				L.visible_message(span_warning("[L] catches [src] out of the air!"))
+			else
+				L.visible_message(span_warning("[src] bounces off of [L], as if repelled by an unseen force!"))
+		else if(!..())
+			if(!L.anti_magic_check())
+				if(L.buckled)
+					L.buckled.unbuckle_mob(L)
+
+				if(is_servant_of_ratvar(L))
+					L.Knockdown(60)
+				else
+					L.Knockdown(30)
+				if(D?.thrower)
+					for(var/mob/living/Next in orange(2, T))
+						if(!Next.density || iscultist(Next))
+							continue
+						throw_at(Next, 3, 1, D.thrower)
+						return
+					throw_at(D.thrower, 7, 1, null)
+	else
+		..()
