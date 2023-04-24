@@ -211,9 +211,14 @@
 	..()
 
 /datum/reagent/water/holywater/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(is_servant_of_ratvar(M))
-		to_chat(M, span_userdanger("A darkness begins to spread its unholy tendrils through your mind, purging the Justiciar's influence!"))
-	..()
+	if(method == TOUCH || method == VAPOR)
+		if(is_servant_of_ratvar(M))
+			to_chat(M, span_userdanger("A darkness begins to spread its unholy tendrils through your mind, purging the Justiciar's influence!"))
+		else if(iscultist(M))
+			to_chat(M, span_userdanger("A darkness begins to spread its unholy tendrils through your mind, purging the Elder Goddess's influence!"))
+		M.reagents.add_reagent(type, reac_volume/4)
+		return
+	return ..()
 
 /datum/reagent/water/holywater/on_mob_life(mob/living/carbon/M)
 	if(M.blood_volume)
