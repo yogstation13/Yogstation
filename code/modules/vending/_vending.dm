@@ -44,6 +44,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 /datum/data/vending_custom_product
 	///Name of the stored item
 	name = "generic"
+	///Unstripped name of the item, includes article
+	var/full_name = ""
 	///Icon of the item
 	var/asset = null
 	///How many are stored currently
@@ -51,6 +53,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 
 /datum/data/vending_custom_product/New(obj/item/I)
 	name = format_text(I.name)
+	full_name = I.name
 	var/icon/icon = icon(I.icon, I.icon_state, SOUTH, 1)
 	asset = icon2base64(icon) // costly? probably. less costly than sending the entire spritesheet? also probably
 
@@ -799,25 +802,26 @@ GLOBAL_LIST_EMPTY(vending_products)
 				flick(icon_deny,src)
 				vend_ready = TRUE
 				return
-			var/mob/living/L
-			if(isliving(usr))
-				L = usr
 
-			if(onstation && ishuman(usr) && (L && !L.ignores_capitalism))
+			if(coin_records.Find(R) || hidden_records.Find(R))
+				price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
+
+			if(LAZYLEN(R.returned_products))
+				price_to_use = 0 //returned items are free
+
+			if(!charge_user(price_to_use, R.name))
+				vend_ready = TRUE
+				return
+
+			if(onstation && ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				var/obj/item/card/id/C = H.get_idcard(TRUE)
-
+				// this should really be caught by charge_user above, just extra safety
 				if(!C)
-					say("No card found.")
-					flick(icon_deny,src)
 					vend_ready = TRUE
 					return
-				else if (!C.registered_account)
-					say("No account found.")
-					flick(icon_deny,src)
-					vend_ready = TRUE
-					return
-				else if(age_restrictions && R.age_restricted && (!C.registered_age || C.registered_age < AGE_MINOR))
+
+				if(age_restrictions && R.age_restricted && (!C.registered_age || C.registered_age < AGE_MINOR))
 					say("You are not of legal age to purchase [R.name].")
 					if(!(usr in GLOB.narcd_underages))
 						alertradio.set_frequency(FREQ_SECURITY)
@@ -826,29 +830,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 					flick(icon_deny,src)
 					vend_ready = TRUE
 					return
-				var/datum/bank_account/account = C.registered_account
-				if(account.account_job && account.account_job.paycheck_department == payment_department)
-					price_to_use = 0
-				if(coin_records.Find(R) || hidden_records.Find(R))
-					price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
-				if(LAZYLEN(R.returned_products))
-					price_to_use = 0 //returned items are free
-				if(price_to_use && !account.adjust_money(-price_to_use))
-					say("You do not possess the funds to purchase [R.name].")
-					flick(icon_deny,src)
-					vend_ready = TRUE
-					return
-				var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
-				if(D)
-					D.adjust_money(price_to_use)
-			if(last_shopper != usr || purchase_message_cooldown < world.time)
-				say("Thank you for shopping with [src]!")
-				purchase_message_cooldown = world.time + 5 SECONDS
-				last_shopper = usr
-			use_power(5)
-			if(icon_vend) //Show the vending animation if needed
-				flick(icon_vend,src)
-			playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
+
+			thank_user("Thank you for shopping with [src]!")
+			finish_vend()
+
 			var/obj/item/vended_item
 			if(!LAZYLEN(R.returned_products)) //always give out free returned stuff first, e.g. to avoid walling a traitor objective in a bag behind paid items
 				vended_item = new R.product_path(get_turf(src))
@@ -871,46 +856,14 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(!P || P.amount <= 0) // don't dispense none item with left beef
 				return
 			vend_ready = FALSE //One thing at a time!!
-			var/price_to_use = chef_price
 
-			var/mob/living/L
-			if(isliving(usr))
-				L = usr
+			// Charge the user
+			if (!charge_user(chef_price, P.full_name))
+				vend_ready = TRUE
+				return
 
-			if(onstation && ishuman(usr) && (L && !L.ignores_capitalism))
-				var/mob/living/carbon/human/H = usr
-				var/obj/item/card/id/C = H.get_idcard(TRUE)
-
-				if(!C)
-					say("No card found.")
-					flick(icon_deny,src)
-					vend_ready = TRUE
-					return
-				else if (!C.registered_account)
-					say("No account found.")
-					flick(icon_deny,src)
-					vend_ready = TRUE
-					return
-				var/datum/bank_account/account = C.registered_account
-				if(account.account_job && account.account_job.paycheck_department == payment_department)
-					price_to_use = 0
-				if(price_to_use && !account.adjust_money(-price_to_use))
-					say("You do not possess the funds to purchase the [N].")
-					flick(icon_deny,src)
-					vend_ready = TRUE
-					return
-				var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
-				if(D)
-					D.adjust_money(price_to_use)
-
-			if(last_shopper != usr || purchase_message_cooldown < world.time)
-				say("Thank you for shopping local and buying the [N]!")
-				purchase_message_cooldown = world.time + 5 SECONDS
-				last_shopper = usr
-			use_power(5)
-			if(icon_vend) //Show the vending animation if needed
-				flick(icon_vend,src)
-			playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
+			thank_user("Thank you for shopping local and buying \the [P.full_name]!")
+			finish_vend()
 
 			P.amount = max(P.amount - 1, 0)
 			for(var/obj/item/I in contents)
@@ -918,6 +871,59 @@ GLOBAL_LIST_EMPTY(vending_products)
 					I.forceMove(get_turf(src))
 					break
 			vend_ready = TRUE
+
+/**
+ * Charge the user during a vend
+ * Returns false if the user could not buy this item
+ */
+/obj/machinery/vending/proc/charge_user(price, item_name)
+	var/mob/living/L
+	if(isliving(usr))
+		L = usr
+
+	if(onstation && ishuman(usr) && (L && !L.ignores_capitalism))
+		var/mob/living/carbon/human/H = usr
+		var/obj/item/card/id/C = H.get_idcard(TRUE)
+
+		if(!C)
+			say("No card found.")
+			flick(icon_deny,src)
+			return FALSE
+		else if (!C.registered_account)
+			say("No account found.")
+			flick(icon_deny,src)
+			vend_ready = TRUE
+			return FALSE
+		var/datum/bank_account/account = C.registered_account
+		if(account.account_job && account.account_job.paycheck_department == payment_department)
+			price = 0
+		if(price && !account.adjust_money(-price))
+			say("You do not possess the funds to purchase \the [item_name].")
+			flick(icon_deny,src)
+			return FALSE
+		var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
+		if(D)
+			D.adjust_money(price)
+
+	return TRUE
+
+/**
+ * Thank the user for the purchase
+ */
+/obj/machinery/vending/proc/thank_user(message)
+	if(last_shopper != usr || purchase_message_cooldown < world.time)
+		say(message)
+		purchase_message_cooldown = world.time + 5 SECONDS
+		last_shopper = usr
+
+/**
+ * Finish a vend by consuming power, playing animations & playing sounds
+ */
+/obj/machinery/vending/proc/finish_vend()
+	use_power(5)
+	if(icon_vend) //Show the vending animation if needed
+		flick(icon_vend,src)
+	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 
 /obj/machinery/vending/process(delta_time)
 	if(stat & (BROKEN|NOPOWER))
