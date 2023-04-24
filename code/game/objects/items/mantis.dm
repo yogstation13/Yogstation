@@ -14,7 +14,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = SHARP_EDGED
 	tool_behaviour = TOOL_CROWBAR // just a very "sharp" crowbar
-	toolspeed = 0.7
+	toolspeed = 0.4 //for door prying speed
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "lacerated", "ripped", "diced", "cut")
 
 /obj/item/mantis/blade/equipped(mob/user, slot, initial)
