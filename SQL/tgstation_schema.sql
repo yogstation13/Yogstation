@@ -326,6 +326,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `lasteditor` varchar(32) DEFAULT NULL,
   `edits` mediumtext DEFAULT NULL,
   `deleted` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `playtime` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_msg_ckey_time` (`targetckey`,`timestamp`,`deleted`),
   KEY `idx_msg_type_ckeys_time` (`type`,`targetckey`,`adminckey`,`timestamp`,`deleted`),
@@ -559,6 +560,11 @@ CREATE TRIGGER `role_timeTlogupdate` AFTER UPDATE ON `role_time` FOR EACH ROW BE
 END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+DROP TRIGGER IF EXISTS `messagesTloghours`;
+CREATE TRIGGER `messagesTloghours`
+    BEFORE INSERT ON `messages` FOR EACH ROW
+    SET NEW.playtime = (SELECT minutes FROM role_time rt WHERE rt.ckey = NEW.targetckey AND rt.job = 'Living');
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
