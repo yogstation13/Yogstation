@@ -25,7 +25,7 @@
 	var/warning_target_bloodvol = BLOOD_VOLUME_MAX_LETHAL
 	///Reference to the target we've fed off of
 	var/datum/weakref/target_ref
-	///Are we feeding with aggresive grab or not?
+	///Are we feeding with passive grab or not?
 	var/silent_feed = TRUE 
 
 /datum/action/bloodsucker/feed/CheckCanUse(mob/living/carbon/user)
@@ -82,7 +82,7 @@
 		DeactivatePower()
 		feed_target.death()
 		return
-	var/feed_timer = clamp(round(FEED_DEFAULT_TIMER / (1.25 * level_current)), 1, FEED_DEFAULT_TIMER)
+	var/feed_timer = clamp(round(FEED_DEFAULT_TIMER / (1.25 * level_current)), 1 SECONDS, FEED_DEFAULT_TIMER)
 	if(bloodsuckerdatum_power.frenzied)
 		feed_timer = 2 SECONDS
 

@@ -27,32 +27,33 @@
 	if(!do_mob(user, user, 10 SECONDS, 1))
 		return
 	var/list/radial_display = list()
-	switch(bloodsuckerdatum.total_blood_drank) //get our options
-		if(0 to 250) //makes the icons for the options
-			var/datum/radial_menu_choice/option = new
-			user.setDir(SOUTH)
-			var/icon/icon_to_mix = getFlatIcon(user)
-			icon_to_mix.Blend(icon('icons/mob/mutant_bodyparts.dmi', "m_ears_cat_FRONT"), ICON_OVERLAY)
-			option.image = icon_to_mix
-			option.info = "[iscatperson(user) ? "Lizard" : "Felinid"]: Increased agility and speed, but less armor."
-			radial_display["Lizard/Felinid"] = option
-		if(250 to 750)
-			var/datum/radial_menu_choice/option = new
-			var/icon/body = icon('yogstation/icons/mob/human_parts.dmi', "gorilla_r_leg")
-			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_l_leg"), ICON_OVERLAY)
-			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_r_arm"), ICON_OVERLAY)
-			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_l_arm"), ICON_OVERLAY)
-			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_r_hand"), ICON_OVERLAY)
-			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_l_hand"), ICON_OVERLAY)
-			body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_chest_m"), ICON_OVERLAY)
-			option.image = body
-			option.info = "Gorilla: Increased durability and strength, but less speed."
-			radial_display["Gorilla"] = option
-		if(750 to INFINITY)
-			var/datum/radial_menu_choice/option = new
-			option.image = icon('icons/mob/bloodsucker_mobs.dmi', "batform")
-			option.info = "Turn into a giant bat simple mob with unique abilities."
-			radial_display["Bat"] = option
+	//get our options, switches are kinda weird here cause wwe ant to stack them
+	if(bloodsuckerdatum.total_blood_drank) //makes the icons for the options
+		var/datum/radial_menu_choice/option = new
+		user.setDir(SOUTH)
+		var/icon/icon_to_mix = getFlatIcon(user)
+		icon_to_mix.Blend(icon('icons/mob/mutant_bodyparts.dmi', "m_ears_cat_FRONT"), ICON_OVERLAY)
+		option.image = icon_to_mix
+		option.info = "[iscatperson(user) ? "Lizard" : "Felinid"]: Increased agility and speed, but decreased defense."
+		radial_display["Lizard/Felinid"] = option //haha yeah
+	if(bloodsuckerdatum.total_blood_drank >= 250)
+		var/datum/radial_menu_choice/option = new
+		var/icon/body = icon('yogstation/icons/mob/human_parts.dmi', "gorilla_r_leg") //procedurally generated icons? don't mind if i do
+		body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_l_leg"), ICON_OVERLAY) //it may seem kinda big but it's worth it ngl
+		body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_r_arm"), ICON_OVERLAY)
+		body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_l_arm"), ICON_OVERLAY)
+		body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_r_hand"), ICON_OVERLAY)
+		body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_l_hand"), ICON_OVERLAY)
+		body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_chest_m"), ICON_OVERLAY)
+		body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_head_m"), ICON_OVERLAY)
+		option.image = body
+		option.info = "Gorilla: Increased durability and strength, but less speed."
+		radial_display["Gorilla"] = option
+	if(bloodsuckerdatum.total_blood_drank >= 750)
+		var/datum/radial_menu_choice/option = new
+		option.image = icon('icons/mob/bloodsucker_mobs.dmi', "batform")
+		option.info = "Turn into a giant bat simple mob with unique abilities."
+		radial_display["Bat"] = option
 	var/chosen_transform = show_radial_menu(user, user, radial_display)
 	transform(chosen_transform) //actually transform
 	. = ..()

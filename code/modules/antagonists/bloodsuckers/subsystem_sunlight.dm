@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(sunlight)
 			issued_XP = FALSE
 			//randomize the next sol timer
 			time_til_cycle = round(rand((TIME_BLOODSUCKER_NIGHT-TIME_BLOODSUCKER_SOL_DELAY), (TIME_BLOODSUCKER_NIGHT+TIME_BLOODSUCKER_SOL_DELAY)), 1)
-			message_admins("BLOODSUCKER NOTICE: Daylight Ended. Resetting to Night (Lasts for [round(time_til_cycle / 60, 1)] minutes.")
+			message_admins("BLOODSUCKER NOTICE: Daylight Ended. Resetting to Night (Lasts for [round(time_til_cycle / 60, 1)] minutes.)")
 			SEND_SIGNAL(src, COMSIG_SOL_END)
 			warn_daylight(
 				danger_level = DANGER_LEVEL_SOL_ENDED,
@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(sunlight)
 			sunlight_active = TRUE
 			//set the timer to countdown daytime now.
 			time_til_cycle = TIME_BLOODSUCKER_DAY
-			message_admins("BLOODSUCKER NOTICE: Daylight Beginning (Lasts for [round(TIME_BLOODSUCKER_DAY / 60, 1)] minutes.")
+			message_admins("BLOODSUCKER NOTICE: Daylight Beginning (Lasts for [round(TIME_BLOODSUCKER_DAY / 60, 1)] minutes.)")
 			warn_daylight(
 				danger_level = DANGER_LEVEL_SOL_ROSE,
 				vampire_warning_message = span_userdanger("Solar flares bombard the station with deadly UV light! Stay in cover for the next [round(TIME_BLOODSUCKER_DAY / 60, 1)] minutes or risk Final Death!"),

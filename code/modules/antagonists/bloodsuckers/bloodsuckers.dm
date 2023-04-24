@@ -490,8 +490,12 @@
 
 /// Buying powers
 /datum/antagonist/bloodsucker/proc/BuyPower(datum/action/bloodsucker/power)
+	for(var/datum/action/bloodsucker/current_powers as anything in powers)
+		if(current_powers.type == power.type)
+			return FALSE
 	powers += power
 	power.Grant(owner.current)
+	return TRUE
 
 /datum/antagonist/bloodsucker/proc/RemovePower(datum/action/bloodsucker/power)
 	if(power.active)

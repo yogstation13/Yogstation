@@ -144,6 +144,29 @@
 	if(master && master.owner)
 		to_chat(master.owner, span_cultbold("You feel the bond with your vassal [owner.current] has somehow been broken!"))
 
+/datum/antagonist/vassal/admin_add(datum/mind/new_owner, mob/admin)
+	var/list/datum/mind/possible_vampires = list()
+	for(var/datum/antagonist/bloodsucker/bloodsuckerdatums in GLOB.antagonists)
+		var/datum/mind/vamp = bloodsuckerdatums.owner
+		if(!vamp)
+			continue
+		if(!vamp.current)
+			continue
+		if(vamp.current.stat == DEAD)
+			continue
+		possible_vampires += vamp
+	if(!length(possible_vampires))
+		message_admins("[key_name_admin(usr)] tried vassalizing [key_name_admin(new_owner)], but there were no bloodsuckers!")
+		return
+	var/datum/mind/choice = input("Which bloodsucker should this vassal belong to?", "Bloodsucker") in possible_vampires
+	if(!choice)
+		return
+	log_admin("[key_name_admin(usr)] turned [key_name_admin(new_owner)] into a vassal of [key_name_admin(choice)]!")
+	var/datum/antagonist/bloodsucker/vampire = choice.has_antag_datum(/datum/antagonist/bloodsucker)
+	master = vampire
+	new_owner.add_antag_datum(src)
+	to_chat(choice, span_notice("Through divine intervention, you've gained a new vassal!"))
+
 /datum/antagonist/vassal/proc/toreador_levelup_mesmerize() //Don't need stupid args
 	for(var/datum/action/bloodsucker/targeted/mesmerize/mesmerize_power in powers)
 		if(!istype(mesmerize_power))
@@ -258,7 +281,7 @@
 
 /datum/antagonist/ex_vassal/on_gain()
 	. = ..()
-	RegisterSignal(owner.current, COMSIG_PARENT_EXAMINE, .proc/on_examine)
+	RegisterSignal(owner.current, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 
 /datum/antagonist/ex_vassal/on_removal()
 	if(revenge_vassal)
@@ -367,7 +390,7 @@
  * Artificially made, this must be fed to ex-vassals to keep them on their high.
  */
 /datum/reagent/blood/bloodsucker
-	name = "Blood two"
+	name = "Blood two" //real
 
 /datum/reagent/blood/bloodsucker/reaction_mob(mob/living/exposed_mob, methods, reac_volume, show_message, touch_protection)
 	var/datum/antagonist/ex_vassal/former_vassal = exposed_mob.mind.has_antag_datum(/datum/antagonist/ex_vassal)

@@ -870,19 +870,19 @@
 		var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
 		if(!vassaldatum.master.broke_masquerade)
 			balloon_alert(user, "someone else's vassal!")
-			return
+			return FALSE
 
 	var/disloyalty_requires = RequireDisloyalty(user, target)
 	if(disloyalty_requires == VASSALIZATION_BANNED)
-		return
+		balloon_alert(user, "can't be vassalized!")
+		return FALSE
 
 	// Conversion Process
 	if(convert_progress)
 		balloon_alert(user, "spilling blood...")
 		bloodsuckerdatum.AddBloodVolume(-TORTURE_BLOOD_HALF_COST)
 		if(!do_torture(user, target))
-			balloon_alert(user, "interrupted!")
-			return
+			return FALSE
 		bloodsuckerdatum.AddBloodVolume(-TORTURE_BLOOD_HALF_COST)
 		// Prevent them from unbuckling themselves as long as we're torturing.
 		target.Paralyze(1 SECONDS)
@@ -902,7 +902,7 @@
 	if(!disloyalty_confirm && disloyalty_requires)
 		if(!do_disloyalty(user, target))
 			return
-		else if(!disloyalty_confirm)
+		if(!disloyalty_confirm)
 			balloon_alert(user, "refused persuasion!")
 		else
 			balloon_alert(user, "ready for communion!")
@@ -915,7 +915,7 @@
 	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 		to_chat(user, span_danger("<i>They're mindshielded! Break their mindshield with a candelabrum or surgery before continuing!</i>"))
 		return VASSALIZATION_DISLOYAL
-	/// Convert to Vassal!
+	// Convert to Vassal!
 	bloodsuckerdatum.AddBloodVolume(-TORTURE_CONVERSION_COST)
 	if(bloodsuckerdatum.make_vassal(target))
 		SEND_SIGNAL(bloodsuckerdatum.my_clan, BLOODSUCKER_MADE_VASSAL, user, target)

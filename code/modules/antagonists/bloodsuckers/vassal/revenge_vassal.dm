@@ -81,26 +81,3 @@
 	var/datum/action/antag_info/info_button = new(src)
 	info_button.Grant(owner.current)
 	info_button_ref = WEAKREF(info_button)
-
-/datum/antagonist/vassal/admin_add(datum/mind/new_owner, mob/admin)
-	var/list/datum/mind/possible_vampires = list()
-	for(var/datum/antagonist/bloodsucker/bloodsuckerdatums in GLOB.antagonists)
-		var/datum/mind/vamp = bloodsuckerdatums.owner
-		if(!vamp)
-			continue
-		if(!vamp.current)
-			continue
-		if(vamp.current.stat == DEAD)
-			continue
-		possible_vampires += vamp
-	if(!length(possible_vampires))
-		message_admins("[key_name_admin(usr)] tried vassalizing [key_name_admin(new_owner)], but there were no bloodsuckers!")
-		return
-	var/datum/mind/choice = input("Which bloodsucker should this vassal belong to?", "Bloodsucker") in possible_vampires
-	if(!choice)
-		return
-	log_admin("[key_name_admin(usr)] turned [key_name_admin(new_owner)] into a vassal of [key_name_admin(choice)]!")
-	var/datum/antagonist/bloodsucker/vampire = choice.has_antag_datum(/datum/antagonist/bloodsucker)
-	master = vampire
-	new_owner.add_antag_datum(src)
-	to_chat(choice, span_notice("Through divine intervention, you've gained a new vassal!"))
