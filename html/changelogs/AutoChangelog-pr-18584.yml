@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "you can no longer be absorbed and ling husked if you can't be husked"
+  - bugfix: "fixes getting an objective to absorb and escape as someone if you can't absorb them"
