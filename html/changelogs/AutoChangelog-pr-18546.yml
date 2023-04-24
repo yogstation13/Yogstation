@@ -1,0 +1,4 @@
+author: "ThatLing"
+delete-after: true 
+changes: 
+  - tweak: "The HFR will only change a few settings upon losing power"
