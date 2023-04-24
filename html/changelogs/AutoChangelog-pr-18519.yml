@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - rscadd: "Admin notes now record the living playtime of a player when they were noted."
