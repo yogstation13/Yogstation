@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "fairy boots nullrod now starts with slowdown and builds up speed as you walk continuously"
+  - soundadd: "adds a sound effect to being at high speeds with the fairy boots"
