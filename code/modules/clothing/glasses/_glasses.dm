@@ -466,7 +466,7 @@
 	. = ..()
 	expose_ability = new(expose_ability)
 
-/obj/item/clothing/glasses/godeye/equipped(mob/living/user, slot)
+/obj/item/clothing/glasses/godeye/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(ishuman(user) && slot == ITEM_SLOT_EYES)
 		ADD_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
@@ -475,7 +475,7 @@
 			var/datum/atom_hud/H = GLOB.huds[hud_type]
 			H.add_hud_to(user)
 
-/obj/item/clothing/glasses/godeye/dropped(mob/living/user)
+/obj/item/clothing/glasses/godeye/dropped(mob/living/carbon/human/user)
 	. = ..()
 	// Behead someone, their "glasses" drop on the floor
 	// and thus, the god eye should no longer be sticky
