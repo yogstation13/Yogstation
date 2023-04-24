@@ -486,7 +486,7 @@
 	set desc = "You recalibrate the arm to restore missing functionality."
 	set category = "Buster Style"
 	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You recalibrate your arm in an attempt to restore its functions.</i></b>"
+	combined_msg +=  "<b><i>You recalibrate your arm in an attempt to restore its functionality.</i></b>"
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 	usr.click_intercept = usr.mind.martial_art
