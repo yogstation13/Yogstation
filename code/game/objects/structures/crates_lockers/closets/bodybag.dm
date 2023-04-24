@@ -124,6 +124,8 @@
 	if(the_folder in src)
 		to_chat(usr, span_warning("You can't fold a bluespace body bag from the inside!"))
 		return
+	if(!do_after(the_folder, 2.5 SECONDS, src))
+		return
 	return TRUE
 
 /obj/structure/closet/body_bag/bluespace/perform_fold(mob/living/carbon/human/the_folder)
