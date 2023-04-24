@@ -669,12 +669,11 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	slot_flags = 0
-	force = 17
-	force_wielded = 24
-	throwforce = 40
+	force = 12
+	force_wielded = 16
+	throwforce = 35
 	throw_speed = 2
-	armour_penetration = 30
-	block_chance = 30
+	armour_penetration = 20
 	attack_verb = list("attacked", "impaled", "stabbed", "torn", "gored")
 	sharpness = SHARP_POINTY
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -705,9 +704,9 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		else if(!..())
 			if(!L.anti_magic_check())
 				if(is_servant_of_ratvar(L))
-					L.Paralyze(100)
+					L.Paralyze(20)
 				else
-					L.Paralyze(50)
+					L.Paralyze(10)
 			break_spear(T)
 	else
 		..()
@@ -995,33 +994,3 @@ GLOBAL_VAR_INIT(curselimit, 0)
 
 /obj/item/shield/mirror/IsReflect()
 	return prob(block_chance)
-
-/obj/item/shield/mirror/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	var/turf/T = get_turf(hit_atom)
-	var/datum/thrownthing/D = throwingdatum
-	if(isliving(hit_atom))
-		var/mob/living/L = hit_atom
-		if(iscultist(L))
-			playsound(src, 'sound/weapons/throwtap.ogg', 50)
-			if(L.put_in_active_hand(src))
-				L.visible_message(span_warning("[L] catches [src] out of the air!"))
-			else
-				L.visible_message(span_warning("[src] bounces off of [L], as if repelled by an unseen force!"))
-		else if(!..())
-			if(!L.anti_magic_check())
-				if(L.buckled)
-					L.buckled.unbuckle_mob(L)
-
-				if(is_servant_of_ratvar(L))
-					L.Paralyze(60)
-				else
-					L.Paralyze(30)
-				if(D?.thrower)
-					for(var/mob/living/Next in orange(2, T))
-						if(!Next.density || iscultist(Next))
-							continue
-						throw_at(Next, 3, 1, D.thrower)
-						return
-					throw_at(D.thrower, 7, 1, null)
-	else
-		..()
