@@ -217,8 +217,7 @@
 		else if(iscultist(M))
 			to_chat(M, span_userdanger("A darkness begins to spread its unholy tendrils through your mind, purging the Elder Goddess's influence!"))
 		M.reagents.add_reagent(type, reac_volume/4)
-		return
-	return ..()
+	..()
 
 /datum/reagent/water/holywater/on_mob_life(mob/living/carbon/M)
 	if(M.blood_volume)
