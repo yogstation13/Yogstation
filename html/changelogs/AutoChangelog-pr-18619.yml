@@ -1,6 +1,0 @@
-author: "ReddicusDragon"
-delete-after: true 
-changes: 
-  - rscadd: "Added TG Paystands"
-  - rscdel: "Removed dumb yog paystands"
-  - soundadd: "adds cash register kaching"
