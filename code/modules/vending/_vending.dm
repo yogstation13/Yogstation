@@ -892,7 +892,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 		else if (!C.registered_account)
 			say("No account found.")
 			flick(icon_deny,src)
-			vend_ready = TRUE
 			return FALSE
 		var/datum/bank_account/account = C.registered_account
 		if(account.account_job && account.account_job.paycheck_department == payment_department)
