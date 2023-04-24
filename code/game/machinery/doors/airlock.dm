@@ -1267,10 +1267,16 @@
 				return
 		INVOKE_ASYNC(src, (density ? .proc/open : .proc/close), 2)
 
-	if(istype(I, /obj/item/jawsoflife))
+	if(istype(I, /obj/item/jawsoflife) || istype(I, /obj/item/mantis/blade))
 		if(isElectrified())
 			shock(user,100)//it's like sticking a fork in a power socket
 			return
+
+		if(istype(I, /obj/item/mantis/blade))
+			var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
+			if(!istype(secondsword, /obj/item/mantis/blade))
+				to_chat(user, span_warning("You need a second [I] to pry open doors!"))
+				return
 
 		if(!density)//already open
 			return
