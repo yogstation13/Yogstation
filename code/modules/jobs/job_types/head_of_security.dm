@@ -47,9 +47,7 @@
 		/obj/item/disk/nuclear/fake = 5,
 		/obj/item/melee/chainofcommand/tailwhip = 3,
 		/obj/item/melee/chainofcommand/tailwhip/kitty = 2,
-		/obj/item/kitchen/knife/combat = 2,
-		/obj/item/grenade/clusterbuster = 1,
-		/obj/item/grenade/clusterbuster/teargas = 1
+		/obj/item/kitchen/knife/combat = 2
 	)
 
 	smells_like = "deadly authority"
