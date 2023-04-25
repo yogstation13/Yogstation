@@ -871,7 +871,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 					I.forceMove(get_turf(src))
 					break
 			if(P.amount <= 0) // If there's no more left, clear it from the records
-				vending_machine_input[N] = null
+				vending_machine_input.Remove(N)
 				qdel(P)
 			vend_ready = TRUE
 
