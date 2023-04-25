@@ -1,5 +1,0 @@
-author: "hedgehog1029"
-delete-after: true 
-changes: 
-  - bugfix: "Fix the vending machine chef's compartment"
-  - rscadd: "Add icons to custom items in the vending UI"
