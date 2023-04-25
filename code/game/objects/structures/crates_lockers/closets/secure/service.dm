@@ -21,5 +21,5 @@
 		/obj/item/clothing/glasses/sunglasses/reagent = 1,
 		/obj/item/clothing/neck/petcollar = 1,
 		/obj/item/storage/belt/bandolier = 1,
-		/obj/item/gun/ballistic/shotgun/doublebarrel = 1) //now in closet rather than on a table
+		/obj/item/gun/ballistic/shotgun/doublebarrel/bartender = 1) //now in closet rather than on a table
 	generate_items_inside(items_inside,src)

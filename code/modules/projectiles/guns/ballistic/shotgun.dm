@@ -180,6 +180,9 @@
 	if(unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
 		reskin_obj(user)
 
+/obj/item/gun/ballistic/shotgun/doublebarrel/bartender
+	pin = /obj/item/firing_pin/location/bar
+
 // IMPROVISED SHOTGUN //
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised

@@ -126,7 +126,19 @@
 	icon_state = "firing_pin_pindi"
 	req_implant = /obj/item/implant/weapons_auth
 
+/obj/item/firing_pin/location
+	name = "location firing pin"
+	desc = "Will only authorize if the user is within a pre-programmed area."
+	fail_message = "LOCATION CHECK FAILED"
+	var/list/enabled_areas
 
+/obj/item/firing_pin/location/pin_auth(mob/living/user)
+	for(var/location in enabled_areas)
+		if(istype(get_area(user), location))
+			return TRUE
+
+/obj/item/firing_pin/location/bar
+	enabled_areas = list(/area/crew_quarters/bar)
 
 // Honk pin, clown's joke item.
 // Can replace other pins. Replace a pin in cap's laser for extra fun!
