@@ -36,9 +36,10 @@
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/donut/jelly = 10,
 		/obj/item/reagent_containers/food/snacks/donut/meat = 10,
-		/obj/item/reagent_containers/food/snacks/donut/spaghetti = 5
-		///obj/item/clothing/mask/whistle = 5,
-		///obj/item/melee/baton/security/boomerang/loaded = 1
+		/obj/item/reagent_containers/food/snacks/donut/spaghetti = 5,
+		/obj/item/grenade/chem_grenade/teargas = 4,
+		/obj/item/grenade/flashbang = 2,
+		/obj/item/clothing/mask/gas/sechailer/swat = 1
 	)
 
 	smells_like = "donuts"

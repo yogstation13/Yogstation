@@ -30,6 +30,12 @@
 	changed_maps = list("GaxStation")
 
 	mail_goodies = list(
+		/obj/item/storage/box/hug = 30,
+		/obj/item/storage/pill_bottle/mannitol = 25,
+		/obj/item/storage/pill_bottle/happy = 10,
+		/obj/item/storage/pill_bottle/stimulant = 10,
+		/obj/item/reagent_containers/glass/bottle/morphine = 5, //lmao
+		/obj/item/assembly/flash/handheld = 4,
 		/obj/item/gun/ballistic/revolver/russian = 1
 	)
 

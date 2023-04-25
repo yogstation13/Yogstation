@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Vaccines no longer work on IPCs"
-  - tweak: "IPC can purge viruses with system cleaner"
-  - tweak: "most virus symptoms no long affect mobs with synthetic chemical processing"
