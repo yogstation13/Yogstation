@@ -24698,6 +24698,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
 "biP" = (
@@ -24708,6 +24711,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
 "biQ" = (
@@ -24716,6 +24722,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
@@ -24734,10 +24743,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
 /obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/disposalpipe/junction/flip{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -27762,6 +27771,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bqU" = (
@@ -28404,6 +28416,9 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bsK" = (
@@ -28648,6 +28663,9 @@
 /obj/effect/turf_decal/tile/blue,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "btH" = (
@@ -29137,6 +29155,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bvL" = (
@@ -29412,6 +29433,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bwI" = (
@@ -29804,6 +29828,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/command)
 "byt" = (
@@ -70933,6 +70960,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"qWw" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/command)
 "qWA" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -74466,6 +74502,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
+"tjn" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "tkt" = (
 /turf/open/floor/plasteel,
 /area/janitor)
@@ -111161,7 +111211,7 @@ bjf
 bkG
 blU
 boz
-boy
+tjn
 bsU
 bsU
 bsU
@@ -111682,7 +111732,7 @@ bkn
 bvL
 bgp
 bhJ
-biA
+qWw
 bDt
 aJs
 aJy
@@ -111939,7 +111989,7 @@ bcj
 bvM
 bcj
 bBN
-biA
+qWw
 bDt
 aJs
 aJz
@@ -112196,7 +112246,7 @@ bwA
 bvR
 blE
 bcj
-biA
+qWw
 bEB
 bQG
 bVk
@@ -112453,7 +112503,7 @@ bfA
 bvR
 bfA
 byo
-biA
+qWw
 bEH
 aNs
 aAy
@@ -112967,7 +113017,7 @@ bfe
 bvZ
 bAe
 bcj
-biA
+qWw
 bDt
 aJt
 aJr
@@ -113738,7 +113788,7 @@ bfk
 bcj
 bcj
 bcj
-biA
+qWw
 bDt
 bzJ
 aJr
