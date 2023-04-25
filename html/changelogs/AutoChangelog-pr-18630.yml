@@ -1,0 +1,5 @@
+author: "solwashere"
+delete-after: true 
+changes: 
+  - tweak: "Mantis Blades are now 6 tc"
+  - tweak: "Mantis Blades attack slower when attacking with both"
