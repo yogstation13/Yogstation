@@ -161,9 +161,28 @@
 	var/originalassignment = null
 	var/access_txt // mapping aid
 	var/datum/bank_account/registered_account
-	var/obj/machinery/paystand/my_store
 	var/registered_age = 21 // default age for ss13 players
 	var/critter_money = FALSE //does exactly what it says
+
+	//yogs: redd ports holopay but as paystands
+	/// Linked holopay.
+	var/obj/machinery/paystand/my_store = null
+	/// List of logos available for holopay customization - via font awesome 5
+	var/static/list/available_logos = list("angry", "ankh", "bacon", "band-aid", "cannabis", "cat", "cocktail", "coins", "comments-dollar",
+	"cross", "cut", "dog", "donate", "dna", "fist-raised", "flask", "glass-cheers", "glass-martini-alt", "hamburger", "hand-holding-usd",
+	"hat-wizard", "head-side-cough-slash", "heart", "heart-broken",  "laugh-beam", "leaf", "money-check-alt", "music", "piggy-bank",
+	"pizza-slice", "prescription-bottle-alt", "radiation", "robot", "smile", "skull-crossbones", "smoking", "space-shuttle", "tram",
+	"trash", "user-ninja", "utensils", "wrench")
+	/// Replaces the "pay whatever" functionality with a set amount when non-zero.
+	var/holopay_fee = 0
+	/// The holopay icon chosen by the user
+	var/holopay_logo = "donate"
+	/// Maximum forced fee. It's unlikely for a user to encounter this type of money, much less pay it willingly.
+	var/holopay_max_fee = 5000
+	/// Minimum forced fee for holopay stations. Registers as "pay what you want."
+	var/holopay_min_fee = 0
+	/// The holopay name chosen by the user
+	var/holopay_name = "registered pay stand"
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
@@ -171,10 +190,10 @@
 		access = text2access(access_txt)
 
 /obj/item/card/id/Destroy()
-	if (registered_account)
+	if(registered_account)
 		registered_account.bank_cards -= src
-	if (my_store && my_store.my_card == src)
-		my_store.my_card = null
+	if(my_store && my_store.linked_card == src)
+		my_store.linked_card = null
 	return ..()
 
 /obj/item/card/id/attack_self(mob/user)
@@ -604,6 +623,44 @@ update_label("John Doe", "Clowny")
 		holder.spareid = null
 		holder.update_icon()
 	burn()
+
+//yogs: redd ports holopay but as paystands
+/**
+ * Setter for the shop logo on linked holopays
+ *
+ * Arguments:
+ * * new_logo - The new logo to be set.
+ */
+/obj/item/card/id/proc/set_holopay_logo(new_logo)
+	if(!available_logos.Find(new_logo))
+		CRASH("User input a holopay shop logo that didn't exist.")
+	holopay_logo = new_logo
+
+/**
+ * Setter for changing the force fee on a holopay.
+ *
+ * Arguments:
+ * * new_fee - The new fee to be set.
+ */
+/obj/item/card/id/proc/set_holopay_fee(new_fee)
+	if(!isnum(new_fee))
+		CRASH("User input a non number into the holopay fee field.")
+	if(new_fee < holopay_min_fee || new_fee > holopay_max_fee)
+		CRASH("User input a number outside of the valid range into the holopay fee field.")
+	holopay_fee = new_fee
+
+/**
+ * Setter for changing the holopay name.
+ *
+ * Arguments:
+ * * new_name - The new name to be set.
+ */
+/obj/item/card/id/proc/set_holopay_name(name)
+	if(length(name) < 3 || length(name) > MAX_NAME_LEN)
+		to_chat(usr, span_warning("Must be between 3 - 42 characters."))
+	else
+		holopay_name = html_encode(trim(name, MAX_NAME_LEN))
+//yogs end
 
 /obj/item/card/id/centcom
 	name = "\improper CentCom ID"

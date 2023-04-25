@@ -41,10 +41,9 @@
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/cracker = 25, //you know. for poly
 		/obj/item/stack/sheet/mineral/diamond = 15,
-		///obj/item/stack/sheet/mineral/uranium/five = 15,
-		///obj/item/stack/sheet/mineral/plasma/five = 15,
-		/obj/item/stack/sheet/mineral/gold = 15
-		///obj/effect/spawner/random/engineering/tool_advanced = 3
+		/obj/item/stack/sheet/mineral/gold = 15,
+		/obj/effect/spawner/lootdrop/engineering_tool_advanced = 3,
+		/obj/effect/spawner/lootdrop/engineering_tool_alien = 1
 	)
 
 	smells_like = "industry leadership"

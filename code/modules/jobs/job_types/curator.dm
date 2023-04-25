@@ -24,6 +24,17 @@
 	display_order = JOB_DISPLAY_ORDER_CURATOR
 	minimal_character_age = 18 //Don't need to be some aged-ass fellow to know how to care for things, possessions could easily have come from parents and the like. Bloodsucker knowledge is another thing, though that's likely mostly consulted by the book
 
+	mail_goodies = list(
+		/obj/item/book/random = 20,
+		/obj/item/book/manual/random = 10,
+		/obj/item/book/random/triple = 10, //bluespace letter full of books
+		/obj/item/stack/sheet/mineral/wood/fifty = 5,
+		/obj/item/tome = 2,
+		/obj/item/stack/sheet/runed_metal/five = 2,
+		/obj/item/book/mimery = 1,
+		/obj/item/greentext = 1 //the one true book
+  )
+
 	departments_list = list(
 		/datum/job_department/service,
 	)
