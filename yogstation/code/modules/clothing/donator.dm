@@ -89,6 +89,7 @@
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	icon_state = "megumu_dress"
 	item_state = "megumu_dress"
+
 /obj/item/clothing/suit/yogs/adventurerskirt
 	name = "adventurer skirt"
 	desc = "Retrofitted skirt designed by a well known felind brand Tailor"
@@ -100,11 +101,13 @@
 	desc = "White marked sleeves, signal of a skillful Hunter."
 	icon_state = "arm_sleeves"
 	item_state = "arm_sleeves"
+
 /obj/item/clothing/under/yogs/skin_tight_garmet
 	name = "Skin Tight Garmet"
 	desc = "With this on you can barely breath."
 	icon_state = "skin_tight_garmet"
 	item_state = "skin_tight_garmet"
+
 /obj/item/clothing/neck/yogs/megumu
 	name = "Megumu's Cape"
 	desc = "Tofu!"
@@ -194,9 +197,27 @@
 	new /obj/item/clothing/neck/falcon(src)
 	new /obj/item/clothing/head/fedora/gtrim_fedora(src)
 
+/obj/item/storage/box/cark
+	name = "Marketing Box"
+	desc = "Contains everything that a multi-level marketing lover would ever want." 
+
+/obj/item/storage/box/cark/PopulateContents()
+	. = ..()
+	new /obj/item/bedsheet/pride(src)
+	new /obj/item/clothing/suit/toggle/multilevel(src)
+
 /obj/item/bedsheet/pride
 	name = "Pride Bedsheet"
 	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
 	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
 	icon_state = "sheetpride"
 	item_state = "sheetpride"
+
+/obj/item/clothing/suit/toggle/multilevel
+	name = "Multi-level marketing hoodie"
+	desc = "A hoodie for people who love multi-level marketing."
+	mob_overlay_icon = 'icons/mob/clothing/suit/suit.dmi'
+	icon_state = "multilevel"
+	item_state = "multilevel"
+	body_parts_covered = CHEST|GROIN|ARMS
+	togglename = "sleeves"
