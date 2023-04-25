@@ -15,7 +15,7 @@ adamsogm = Council Member
 britishgrace = Council Member
 margot = Council Member
 mordrehel = Council Member
-ynot01 = Council Memeber
+ynot01 = Council Member
 
 jamied12	=	Head Developer
 baiomu = Head Developer
