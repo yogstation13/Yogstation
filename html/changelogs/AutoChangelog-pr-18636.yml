@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "Bluespace activity now actually has a max teleport range of 5"
-  - tweak: "Getting hit by bluespace plants makes you slightly ill and confused"
