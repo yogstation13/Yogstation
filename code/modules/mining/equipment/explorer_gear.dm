@@ -63,6 +63,8 @@
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	visor_flags_inv = HIDEFACIALHAIR
 	visor_flags_cover = MASKCOVERSMOUTH
+	mutantrace_adjusted = MUTANTRACE_VARIATION 
+	mutantrace_variation = MUTANTRACE_VARIATION
 	actions_types = list(/datum/action/item_action/adjust)
 	armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 50, RAD = 0, FIRE = 20, ACID = 40, WOUND = 5)
 	resistance_flags = FIRE_PROOF

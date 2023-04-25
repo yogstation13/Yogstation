@@ -9,6 +9,7 @@
 	var/mask_adjusted = 0
 	var/adjusted_flags = null
 	var/mutantrace_variation = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
+	var/mutantrace_adjusted = NO_MUTANTRACE_VARIATION //Are there special sprites for specific situations? Don't use this unless you need to.
 
 /obj/item/clothing/mask/attack_self(mob/user)
 	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
@@ -59,7 +60,7 @@
 		to_chat(user, span_notice("You push \the [src] back into place."))
 		slot_flags = initial(slot_flags)
 	else
-		icon_state += "_up"
+		icon_state = initial(icon_state) + "_up"
 		to_chat(user, span_notice("You push \the [src] out of the way."))
 		gas_transfer_coefficient = null
 		permeability_coefficient = null
