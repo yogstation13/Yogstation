@@ -867,7 +867,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 			P.amount = max(P.amount - 1, 0)
 			for(var/obj/item/I in contents)
-				if(I.name == N)
+				if(format_text(I.name) == N)
 					I.forceMove(get_turf(src))
 					break
 			vend_ready = TRUE
