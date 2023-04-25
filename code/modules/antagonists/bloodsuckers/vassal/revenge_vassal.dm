@@ -35,10 +35,10 @@
 
 /datum/antagonist/vassal/revenge/on_gain()
 	. = ..()
-	RegisterSignal(master.my_clan, BLOODSUCKER_FINAL_DEATH, PROC_REF(on_master_death))
+	RegisterSignal(master, BLOODSUCKER_FINAL_DEATH, PROC_REF(on_master_death))
 
 /datum/antagonist/vassal/revenge/on_removal()
-	UnregisterSignal(master.my_clan, BLOODSUCKER_FINAL_DEATH)
+	UnregisterSignal(master, BLOODSUCKER_FINAL_DEATH)
 	return ..()
 
 /datum/antagonist/vassal/revenge/ui_static_data(mob/user)
@@ -54,14 +54,13 @@
 
 	return data + ..()
 
-/datum/antagonist/vassal/revenge/proc/on_master_death(datum/source, mob/living/carbon/master)
+/datum/antagonist/vassal/revenge/proc/on_master_death(datum/antagonist/bloodsucker/bloodsuckerdatum, mob/living/carbon/master)
 	SIGNAL_HANDLER
 
 	show_in_roundend = TRUE
 	for(var/datum/objective/all_objectives as anything in objectives)
 		objectives -= all_objectives
 	BuyPower(new /datum/action/bloodsucker/vassal_blood)
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(master)
 	for(var/datum/action/bloodsucker/master_powers as anything in bloodsuckerdatum.powers)
 		if(master_powers.purchase_flags & BLOODSUCKER_DEFAULT_POWER)
 			continue

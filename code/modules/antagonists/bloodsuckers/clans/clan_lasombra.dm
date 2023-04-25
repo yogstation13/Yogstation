@@ -5,34 +5,31 @@
 		They appear to be in search of a station with a veil weakness to be able to channel their shadow's abyssal powers. \n\
 		Thanks to this, they have also evolved a dark liquid in their veins, which makes them able to manipulate shadows. \n\
 		Their Favorite Vassal appears to have been imbued with abyssal essence and is able to blend in with the shadows."
+	clan_objective = /datum/objective/bloodsucker/hierarchy
 	join_icon_state = "lasombra"
 	join_description = "Heal more on the dark, transform abilties into upgraded ones, become one with the darkness."
 
-/datum/bloodsucker_clan/lasombra/New(mob/living/carbon/user)
+/datum/bloodsucker_clan/lasombra/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/targeted/lasombra)
-	if(ishuman(user))
-		var/mob/living/carbon/human/human_user = user
+	if(ishuman(bloodsuckerdatum.owner.current))
+		var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 		human_user.eye_color = BLOODCULT_EYE
 		human_user.updateappearance()
-	ADD_TRAIT(user, CULT_EYES, BLOODSUCKER_TRAIT)
-	user.faction |= "bloodhungry"
-	user.update_body()
+	ADD_TRAIT(bloodsuckerdatum.owner.current, CULT_EYES, BLOODSUCKER_TRAIT)
+	bloodsuckerdatum.owner.current.faction |= "bloodhungry"
+	bloodsuckerdatum.owner.current.update_body()
 	var/obj/item/organ/heart/nightmare/nightmarish_heart = new
-	nightmarish_heart.Insert(user)
+	nightmarish_heart.Insert(bloodsuckerdatum.owner.current)
 	nightmarish_heart.Stop()
-	for(var/obj/item/light_eater/blade in user.held_items)
+	for(var/obj/item/light_eater/blade in bloodsuckerdatum.owner.current.held_items)
 		QDEL_NULL(blade)
-	var/datum/objective/bloodsucker/hierarchy/lasombra_objective = new
-	lasombra_objective.owner = user.mind
-	bloodsuckerdatum.objectives += lasombra_objective
-	GLOB.reality_smash_track.AddMind(user.mind)
-	to_chat(user, span_notice("You have also learned how to channel the abyss's power into an iron knight's armor that can be build in the structure tab and activated as a trap for your lair."))
-	user.mind.teach_crafting_recipe(/datum/crafting_recipe/possessedarmor)
-	user.mind.teach_crafting_recipe(/datum/crafting_recipe/restingplace)
+	GLOB.reality_smash_track.AddMind(bloodsuckerdatum.owner)
+	to_chat(bloodsuckerdatum.owner.current, span_notice("You have also learned how to channel the abyss's power into an iron knight's armor that can be build in the structure tab and activated as a trap for your lair."))
+	bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/possessedarmor)
+	bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/restingplace)
 
-/datum/bloodsucker_clan/lasombra/on_favorite_vassal(datum/source, datum/antagonist/vassal/vassaldatum, mob/living/bloodsucker)
+/datum/bloodsucker_clan/lasombra/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	if(ishuman(vassaldatum.owner.current))
 		var/mob/living/carbon/human/vassal = vassaldatum.owner.current
 		vassal.see_in_dark = 8

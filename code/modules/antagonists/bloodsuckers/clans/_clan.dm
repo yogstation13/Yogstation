@@ -1,6 +1,3 @@
-///List of all Bloodsuckers in a clan, separated by their clans.
-GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
-
 /**
  * Bloodsucker clans
  *
@@ -8,6 +5,8 @@ GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
  * the entire idea of datumizing this came to me in a dream.
  */
 /datum/bloodsucker_clan
+	///The bloodsucker datum that owns this clan. Use this over 'source', because while it's the same thing, this is more consistent (and used for deletion).
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum
 	///The name of the clan we're in.
 	var/name = CLAN_NONE
 	///Description of what the clan is, given when joining and through your antag UI.
@@ -16,7 +15,7 @@ GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
 		No additional abilities is gained, nothing is lost, if you want a plain Bloodsucker, this is it. \n\
 		The Favorite Vassal will gain the Brawn ability, to help in combat."
 	///The clan objective that is required to greentext.
-	var/clan_objective
+	var/datum/objective/bloodsucker/clan_objective
 	///The icon of the radial icon to join this clan.
 	var/join_icon = 'icons/mob/bloodsucker_clan_icons.dmi'
 	///Same as join_icon, but the state
@@ -35,27 +34,25 @@ GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
 	///How we will drink blood using Feed.
 	var/blood_drink_type = BLOODSUCKER_DRINK_NORMAL
 
-/datum/bloodsucker_clan/New(mob/living/carbon/user)
+/datum/bloodsucker_clan/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
-	if(!GLOB.bloodsucker_clan_members["[name]"])
-		GLOB.bloodsucker_clan_members["[name]"] = list()
-	GLOB.bloodsucker_clan_members["[name]"] |= user
+	src.bloodsuckerdatum = owner_datum
 
-	RegisterSignal(src, BLOODSUCKER_HANDLE_LIFE, .proc/handle_clan_life)
-	RegisterSignal(src, BLOODSUCKER_RANK_UP, .proc/on_spend_rank)
+	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_ON_LIFETICK, PROC_REF(handle_clan_life))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_RANK_UP, PROC_REF(on_spend_rank))
 
-	RegisterSignal(src, BLOODSUCKER_PRE_MAKE_FAVORITE, .proc/on_offer_favorite)
-	RegisterSignal(src, BLOODSUCKER_MAKE_FAVORITE, .proc/on_favorite_vassal)
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_PRE_MAKE_FAVORITE, PROC_REF(on_offer_favorite))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MAKE_FAVORITE, PROC_REF(on_favorite_vassal))
 
-	RegisterSignal(src, BLOODSUCKER_MADE_VASSAL, .proc/on_vassal_made)
-	RegisterSignal(src, BLOODSUCKER_EXIT_TORPOR, .proc/on_exit_torpor)
-	RegisterSignal(src, BLOODSUCKER_FINAL_DEATH, .proc/on_final_death)
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MADE_VASSAL, PROC_REF(on_vassal_made))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_EXIT_TORPOR, PROC_REF(on_exit_torpor))
+	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_FINAL_DEATH, PROC_REF(on_final_death))
 
-	give_clan_objective(user)
+	give_clan_objective()
 
-/datum/bloodsucker_clan/Destroy(force, mob/living/carbon/user)
-	UnregisterSignal(src, list(
-		BLOODSUCKER_HANDLE_LIFE,
+/datum/bloodsucker_clan/Destroy(force)
+	UnregisterSignal(bloodsuckerdatum, list(
+		COMSIG_BLOODSUCKER_ON_LIFETICK,
 		BLOODSUCKER_RANK_UP,
 		BLOODSUCKER_PRE_MAKE_FAVORITE,
 		BLOODSUCKER_MAKE_FAVORITE,
@@ -63,38 +60,43 @@ GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
 		BLOODSUCKER_EXIT_TORPOR,
 		BLOODSUCKER_FINAL_DEATH,
 	))
-	GLOB.bloodsucker_clan_members[name] -= user
+	remove_clan_objective()
+	bloodsuckerdatum = null
 	return ..()
 
 ///legacy code support
 /datum/bloodsucker_clan/proc/get_clan()
 	return name
 
-/datum/bloodsucker_clan/proc/give_clan_objective(mob/living/user)
+/datum/bloodsucker_clan/proc/give_clan_objective()
 	if(isnull(clan_objective))
 		return
-	var/datum/objective/bloodsucker/given_objective = new clan_objective
-	given_objective.owner = user.mind
-	given_objective.objective_name = "Clan Objective"
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
-	bloodsuckerdatum.objectives += given_objective
-	user.mind.announce_objectives()
+	clan_objective = new clan_objective()
+	clan_objective.objective_name = "Clan Objective"
+	clan_objective.owner = bloodsuckerdatum.owner
+	bloodsuckerdatum.objectives += clan_objective
+	bloodsuckerdatum.owner.announce_objectives()
+
+/datum/bloodsucker_clan/proc/remove_clan_objective()
+	bloodsuckerdatum.objectives -= clan_objective
+	QDEL_NULL(clan_objective)
+	bloodsuckerdatum.owner.announce_objectives()
 
 /**
  * Called when a Bloodsucker exits Torpor
  * args:
- * user - the Bloodsucker exiting Torpor
+ * source - the Bloodsucker exiting Torpor
  */
-/datum/bloodsucker_clan/proc/on_exit_torpor(atom/source, mob/living/carbon/user)
+/datum/bloodsucker_clan/proc/on_exit_torpor(datum/antagonist/bloodsucker/source)
 	SIGNAL_HANDLER
 
 
 /**
  * Called when a Bloodsucker enters Final Death
  * args:
- * user - the Bloodsucker exiting Torpor
+ * source - the Bloodsucker exiting Torpor
  */
-/datum/bloodsucker_clan/proc/on_final_death(atom/source, mob/living/carbon/user)
+/datum/bloodsucker_clan/proc/on_final_death(datum/antagonist/bloodsucker/source)
 	SIGNAL_HANDLER
 	return FALSE
 
@@ -103,7 +105,7 @@ GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
  * args:
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker running this.
  */
-/datum/bloodsucker_clan/proc/handle_clan_life(atom/source, datum/antagonist/bloodsucker/bloodsuckerdatum)
+/datum/bloodsucker_clan/proc/handle_clan_life(datum/antagonist/bloodsucker/source)
 	SIGNAL_HANDLER
 
 /**
@@ -111,7 +113,7 @@ GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
  * args:
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker running this.
  */
-/datum/bloodsucker_clan/proc/on_vassal_made(atom/source, mob/living/user, mob/living/target)
+/datum/bloodsucker_clan/proc/on_vassal_made(datum/antagonist/bloodsucker/source, mob/living/user, mob/living/target)
 	SIGNAL_HANDLER
 	user.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
 	target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
@@ -127,12 +129,12 @@ GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
  * blood_cost - A number saying how much it costs to rank up
  * ask - If they want to automatically spend the rest of their ranks
  */
-/datum/bloodsucker_clan/proc/on_spend_rank(datum/source, datum/antagonist/bloodsucker/bloodsuckerdatum, cost_rank = TRUE, blood_cost, ask = TRUE)
+/datum/bloodsucker_clan/proc/on_spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost, ask)
 	SIGNAL_HANDLER
 
-	INVOKE_ASYNC(src, .proc/spend_rank, bloodsuckerdatum, cost_rank, blood_cost, ask)
+	INVOKE_ASYNC(src, PROC_REF(spend_rank), bloodsuckerdatum, cost_rank, blood_cost, ask)
 
-/datum/bloodsucker_clan/proc/spend_rank(datum/antagonist/bloodsucker/bloodsuckerdatum, cost_rank = TRUE, blood_cost, ask = TRUE)
+/datum/bloodsucker_clan/proc/spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost, ask)
 	// Purchase Power Prompt
 	var/list/options = list()
 	for(var/datum/action/bloodsucker/power as anything in bloodsuckerdatum.all_bloodsucker_powers)
@@ -168,7 +170,7 @@ GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
 
 	finalize_spend_rank(bloodsuckerdatum, cost_rank, blood_cost, ask)
 
-/datum/bloodsucker_clan/proc/finalize_spend_rank(datum/antagonist/bloodsucker/bloodsuckerdatum, cost_rank = TRUE, blood_cost, ask = TRUE)
+/datum/bloodsucker_clan/proc/finalize_spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost, ask)
 	bloodsuckerdatum.LevelUpPowers()
 	bloodsuckerdatum.bloodsucker_regen_rate += 0.05
 	bloodsuckerdatum.max_blood_volume += 100
@@ -211,16 +213,16 @@ GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
  * bloodsuckerdatum - the antagonist datum of the Bloodsucker performing this.
  * vassaldatum - the antagonist datum of the Vassal being offered up.
  */
-/datum/bloodsucker_clan/proc/on_offer_favorite(datum/source, datum/antagonist/bloodsucker/bloodsuckerdatum, datum/antagonist/vassal/vassaldatum)
+/datum/bloodsucker_clan/proc/on_offer_favorite(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	SIGNAL_HANDLER
 
-	INVOKE_ASYNC(src, .proc/offer_favorite, bloodsuckerdatum, vassaldatum)
+	INVOKE_ASYNC(src, PROC_REF(offer_favorite), bloodsuckerdatum, vassaldatum)
 
-/datum/bloodsucker_clan/proc/offer_favorite(datum/antagonist/bloodsucker/bloodsuckerdatum, datum/antagonist/vassal/vassaldatum)
+/datum/bloodsucker_clan/proc/offer_favorite(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	if(vassaldatum.special_type)
 		to_chat(bloodsuckerdatum.owner.current, span_notice("This Vassal was already assigned a special position."))
 		return FALSE
-	if(!vassaldatum.owner.can_make_bloodsucker(creator = bloodsuckerdatum.owner))
+	if(!vassaldatum.owner.can_make_special(creator = bloodsuckerdatum.owner))
 		to_chat(bloodsuckerdatum.owner.current, span_notice("This Vassal is unable to gain a Special rank due to innate features."))
 		return FALSE
 
@@ -252,9 +254,9 @@ GLOBAL_LIST_EMPTY(bloodsucker_clan_members)
 /**
  * Called when we are successfully turn a Vassal into a Favorite Vassal
  * args:
+ * bloodsuckerdatum - antagonist datum of the Bloodsucker who turned them into a Vassal.
  * vassaldatum - the antagonist datum of the Vassal being offered up.
- * bloodsucker - mob of the Bloodsucker who turned them into a Vassal.
  */
-/datum/bloodsucker_clan/proc/on_favorite_vassal(datum/source, datum/antagonist/vassal/vassaldatum, mob/living/bloodsucker)
+/datum/bloodsucker_clan/proc/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	SIGNAL_HANDLER
 	vassaldatum.BuyPower(new /datum/action/bloodsucker/targeted/brawn)

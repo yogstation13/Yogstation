@@ -174,8 +174,9 @@
 /datum/action/bloodsucker/proc/PayCost()
 	// Non-bloodsuckers will pay in other ways.
 	if(!bloodsuckerdatum_power)
-		var/mob/living/living_owner = owner
-		living_owner.blood_volume -= bloodcost
+		var/mob/living/carbon/living_owner = owner
+		if(!LAZYFIND(living_owner.dna.species.species_traits, NOBLOOD))
+			living_owner.blood_volume -= bloodcost
 		return
 	// Bloodsuckers in a Frenzy don't have enough Blood to pay it, so just don't.
 	if(bloodsuckerdatum_power.frenzied)
@@ -213,8 +214,9 @@
 		if(bloodsuckerdatum_power)
 			bloodsuckerdatum_power.AddBloodVolume(-constant_bloodcost)
 		else
-			var/mob/living/living_owner = owner
-			living_owner.blood_volume -= constant_bloodcost
+			var/mob/living/carbon/living_owner = owner
+			if(!LAZYFIND(living_owner.dna.species.species_traits, NOBLOOD))
+				living_owner.blood_volume -= bloodcost
 	return TRUE
 
 /// Checks to make sure this power can stay active

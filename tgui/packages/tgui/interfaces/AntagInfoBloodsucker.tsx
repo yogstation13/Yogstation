@@ -229,7 +229,9 @@ const PowerSection = (props: any, context: any) => {
         <Button
           icon="info"
           tooltipPosition="left"
-          tooltip={'Select a Power to explain.'}
+          tooltip={
+            'Select a Power using the dropdown menu for an in-depth explanation.'
+          }
         />
       }>
       <Stack>

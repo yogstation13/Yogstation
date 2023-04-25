@@ -22,5 +22,5 @@
 	if(!chosen_clan)
 		to_chat(owner, span_announce("You choose to remain ignorant, for now."))
 		return
-	my_clan = new chosen_clan(owner.current)
+	my_clan = new chosen_clan(src)
 	owner.announce_objectives()

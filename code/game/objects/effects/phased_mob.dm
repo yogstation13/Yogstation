@@ -47,7 +47,7 @@
 			if(ishuman(living_cheaterson))
 				shake_camera(living_cheaterson, 20, 1)
 				addtimer(CALLBACK(living_cheaterson, TYPE_PROC_REF(/mob/living/carbon, vomit)), 2 SECONDS)
-			jaunter.forceMove(find_safe_turf(max(z,2))
+			jaunter.forceMove(find_safe_turf(max(z,2)))
 
 	else
 		jaunter.forceMove(eject_spot)

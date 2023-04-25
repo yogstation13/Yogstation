@@ -2,29 +2,29 @@
 	name = CLAN_TZIMISCE
 	description = "The page is covered in blood..."
 	join_icon_state = "tzimisce"
+//	clan_objective = TBD
 	joinable_clan = FALSE //important
 	blood_drink_type = BLOODSUCKER_DRINK_INHUMANELY
 	control_type = BLOODSUCKER_CONTROL_FLESH
 
-/datum/bloodsucker_clan/tzimisce/New(mob/living/carbon/user)
+/datum/bloodsucker_clan/tzimisce/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	bloodsuckerdatum.AddHumanityLost(5.6)
 	bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/targeted/dice)
-	user.faction |= "bloodhungry" //flesh monster's clan
+	bloodsuckerdatum.owner.current.faction |= "bloodhungry" //flesh monster's clan
 	var/list/powerstoremove = list(/datum/action/bloodsucker/veil, /datum/action/bloodsucker/masquerade)
-	for(var/datum/action/bloodsucker/P in bloodsuckerdatum.powers)
-		if(is_type_in_list(P, powerstoremove))
-			bloodsuckerdatum.RemovePower(P)
+	for(var/datum/action/bloodsucker/banned_power in bloodsuckerdatum.powers)
+		if(is_type_in_list(banned_power, powerstoremove))
+			bloodsuckerdatum.RemovePower(banned_power)
 
-/datum/bloodsucker_clan/tzimisce/on_favorite_vassal(datum/source, datum/antagonist/vassal/vassaldatum, mob/living/bloodsucker)
+/datum/bloodsucker_clan/tzimisce/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	if(!ishuman(vassaldatum.owner.current))
 		return
 	var/mob/living/carbon/human/vassal = vassaldatum.owner.current
-	if(!INVOKE_ASYNC(src, PROC_REF(slash_vassal), bloodsucker, 1 SECONDS, vassal))
+	if(!INVOKE_ASYNC(src, PROC_REF(slash_vassal), bloodsuckerdatum.owner.current, 1 SECONDS, vassal))
 		return
 	playsound(vassal.loc, 'sound/weapons/slash.ogg', 50, TRUE, -1)
-	if(!INVOKE_ASYNC(src, PROC_REF(slash_vassal), bloodsucker, 1 SECONDS, vassal))
+	if(!INVOKE_ASYNC(src, PROC_REF(slash_vassal), bloodsuckerdatum.owner.current, 1 SECONDS, vassal))
 		return
 	playsound(vassal.loc, 'sound/effects/splat.ogg', 50, TRUE)
 	INVOKE_ASYNC(vassal, TYPE_PROC_REF(/mob/, set_species), /datum/species/szlachta)

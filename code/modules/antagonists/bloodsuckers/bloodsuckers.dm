@@ -106,14 +106,6 @@
 		TRAIT_RESISTDAMAGESLOWDOWN,
 	)
 
-/datum/antagonist/bloodsucker/can_be_owned(datum/mind/new_owner)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!new_owner.can_make_bloodsucker())
-		return FALSE
-	return TRUE
-
 /**
  * Apply innate effects is everything given to the mob
  * When a body is tranferred, this is called on the new mob
@@ -124,6 +116,7 @@
 	var/mob/living/current_mob = mob_override || owner.current
 	RegisterSignal(current_mob, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(current_mob, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(LifeTick))
+	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
 
@@ -146,7 +139,7 @@
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
-	UnregisterSignal(current_mob, list(COMSIG_LIVING_BIOLOGICAL_LIFE, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(current_mob, list(COMSIG_LIVING_BIOLOGICAL_LIFE, COMSIG_PARENT_EXAMINE, COMSIG_LIVING_DEATH))
 
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
@@ -212,7 +205,8 @@
 
 	. = ..()
 	// Assign Powers
-	AssignStarterPowersAndStats()
+	give_starting_powers()
+	assign_starting_stats()
 
 /// Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 /datum/antagonist/bloodsucker/on_removal()
@@ -280,7 +274,10 @@
 /datum/antagonist/bloodsucker/farewell()
 	to_chat(owner.current, span_userdanger("<FONT size = 3>With a snap, your curse has ended. You are no longer a Bloodsucker. You live once more!</FONT>"))
 	// Refill with Blood so they don't instantly die.
-	owner.current.blood_volume = max(owner.current.blood_volume, BLOOD_VOLUME_NORMAL(owner.current))
+	if(ishuman(owner.current))
+		var/mob/living/carbon/user = owner.current
+		if(!LAZYFIND(user.dna.species.species_traits, NOBLOOD))
+			owner.current.blood_volume = max(owner.current.blood_volume, BLOOD_VOLUME_NORMAL(owner.current))
 
 // Called when using admin tools to give antag status, admin spawned bloodsuckers don't get turned human if plasmaman.
 /datum/antagonist/bloodsucker/admin_add(datum/mind/new_owner, mob/admin)
@@ -503,12 +500,13 @@
 	powers -= power
 	power.Remove(owner.current)
 
-/datum/antagonist/bloodsucker/proc/AssignStarterPowersAndStats()
-	// Purchase Roundstart Powers
+/datum/antagonist/bloodsucker/proc/give_starting_powers()
 	for(var/datum/action/bloodsucker/all_powers as anything in all_bloodsucker_powers)
 		if(!(initial(all_powers.purchase_flags) & BLOODSUCKER_DEFAULT_POWER))
 			continue
 		BuyPower(new all_powers)
+
+/datum/antagonist/bloodsucker/proc/assign_starting_stats()
 	// Traits: Species
 	var/mob/living/carbon/human/user = owner.current
 	if(ishuman(owner.current))
@@ -590,11 +588,13 @@
 /datum/antagonist/bloodsucker/proc/RankDown()
 	bloodsucker_level_unspent--
 
-/datum/antagonist/bloodsucker/proc/remove_nondefault_powers()
+/datum/antagonist/bloodsucker/proc/remove_nondefault_powers(return_levels = FALSE)
 	for(var/datum/action/bloodsucker/power as anything in powers)
 		if(istype(power, /datum/action/bloodsucker/feed) || istype(power, /datum/action/bloodsucker/masquerade) || istype(power, /datum/action/bloodsucker/veil))
 			continue
 		RemovePower(power)
+		if(return_levels)
+			bloodsucker_level_unspent++
 
 /datum/antagonist/bloodsucker/proc/LevelUpPowers()
 	for(var/datum/action/bloodsucker/power as anything in powers)
@@ -611,7 +611,7 @@
 /datum/antagonist/bloodsucker/proc/SpendRank(mob/living/carbon/human/target, cost_rank = TRUE, blood_cost, ask = TRUE)
 	if(!owner || !owner.current || !owner.current.client || (cost_rank && bloodsucker_level_unspent <= 0.5))
 		return
-	SEND_SIGNAL(my_clan, BLOODSUCKER_RANK_UP, src, cost_rank, blood_cost, ask)
+	SEND_SIGNAL(src, BLOODSUCKER_RANK_UP, target, cost_rank, blood_cost)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -762,19 +762,7 @@
 	broke_masquerade = TRUE
 	antag_hud_name = "masquerade_broken"
 	add_team_hud(owner.current)
-	for(var/datum/mind/clan_minds as anything in get_antag_minds(/datum/antagonist/bloodsucker))
-		if(owner == clan_minds)
-			continue
-		if(!isliving(clan_minds.current))
-			continue
-		var/datum/antagonist/bloodsucker/bloodsuckerdatum = clan_minds.has_antag_datum(/datum/antagonist/bloodsucker)
-		to_chat(clan_minds, span_userdanger("[owner.current] has broken the Masquerade![bloodsuckerdatum.my_clan?.get_clan() == CLAN_TOREADOR ? "Ensure they are eliminated at all costs!" : ""]"))
-		if(bloodsuckerdatum.my_clan?.get_clan() == CLAN_TOREADOR)
-			var/datum/objective/assassinate/masquerade_objective = new /datum/objective/assassinate
-			masquerade_objective.target = owner.current
-			masquerade_objective.explanation_text = "Ensure [owner.current], who has broken the Masquerade, suffers Final Death."
-			bloodsuckerdatum.objectives += masquerade_objective
-			clan_minds.announce_objectives()
+	SEND_GLOBAL_SIGNAL(COMSIG_BLOODSUCKER_BROKE_MASQUERADE)
 
 ///This is admin-only of reverting a broken masquerade.
 /datum/antagonist/bloodsucker/proc/fix_masquerade()

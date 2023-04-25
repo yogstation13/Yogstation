@@ -2,7 +2,7 @@
 #define BLOODSUCKER_PASSIVE_BLOOD_DRAIN 0.1
 
 /// Runs from COMSIG_LIVING_BIOLOGICAL_LIFE, handles Bloodsucker constant proccesses.
-/datum/antagonist/bloodsucker/proc/LifeTick()
+/datum/antagonist/bloodsucker/proc/LifeTick(mob/living/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
 
 	if(isbrain(owner.current))
@@ -29,14 +29,21 @@
 			INVOKE_ASYNC(src, PROC_REF(to_chat), owner.current, span_notice("The power of your blood begins knitting your wounds..."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_HEALING)
 	// Standard Updates
-	INVOKE_ASYNC(src, PROC_REF(HandleDeath))
+	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK)
 	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
 	INVOKE_ASYNC(src, PROC_REF(update_blood))
 
 	INVOKE_ASYNC(src, PROC_REF(update_hud))
 
-	if(my_clan)
-		SEND_SIGNAL(my_clan, BLOODSUCKER_HANDLE_LIFE, src)
+/datum/antagonist/bloodsucker/proc/on_death(mob/living/source, gibbed)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(HandleDeath))
+	RegisterSignal(owner.current, COMSIG_LIVING_REVIVE, PROC_REF(on_revive))
+	RegisterSignal(src, COMSIG_BLOODSUCKER_ON_LIFETICK, PROC_REF(HandleDeath))
+
+/datum/antagonist/bloodsucker/proc/on_revive(mob/living/source)
+	UnregisterSignal(owner.current, COMSIG_LIVING_REVIVE)
+	UnregisterSignal(src, COMSIG_BLOODSUCKER_ON_LIFETICK)
 
 /**
  * ## BLOOD STUFF
@@ -148,11 +155,11 @@
 	var/limb_regen_cost = 50 * -costMult
 	var/mob/living/carbon/user = owner.current
 	var/list/missing = user.get_missing_limbs()
-	if(missing.len && user.blood_volume < limb_regen_cost + 5)
+	if(missing.len && bloodsucker_blood_volume < limb_regen_cost + 5)
 		return FALSE
 	for(var/missing_limb in missing) //Find ONE Limb and regenerate it.
 		user.regenerate_limb(missing_limb, FALSE)
-		AddBloodVolume(limb_regen_cost)
+		AddBloodVolume(-limb_regen_cost)
 		var/obj/item/bodypart/missing_bodypart = user.get_bodypart(missing_limb) // 2) Limb returns Damaged
 		missing_bodypart.brute_dam = 60
 		to_chat(user, span_notice("Your flesh knits as it regrows your [missing_bodypart]!"))
@@ -178,8 +185,7 @@
 	bloodsuckeruser.regenerate_organs()
 
 	// Step 2 NOTE: Giving passive organ regeneration will cause Torpor to spam /datum/client_colour/monochrome at the Bloodsucker, permanently making them colorblind!
-	for(var/all_organs in bloodsuckeruser.internal_organs)
-		var/obj/item/organ/organ = all_organs
+	for(var/obj/item/organ/organ as anything in bloodsuckeruser.internal_organs)
 		organ.setOrganDamage(0)
 	var/obj/item/organ/heart/current_heart = bloodsuckeruser.getorganslot(ORGAN_SLOT_HEART)
 	if(!istype(current_heart, /obj/item/organ/heart/vampheart) && !istype(current_heart, /obj/item/organ/heart/demon) && !istype(current_heart, /obj/item/organ/heart/cursed && !istype(current_heart, /obj/item/organ/heart/nightmare)))
@@ -197,15 +203,13 @@
 		if(my_clan?.get_clan() == CLAN_LASOMBRA && ishuman(bloodsuckeruser))
 			var/mob/living/carbon/human/bloodsucker = bloodsuckeruser
 			bloodsucker.eye_color = BLOODCULT_EYE
-			bloodsucker.physiology.brute_mod *= 0 //making sure
 			bloodsuckeruser.update_body()
 	bloodsuckeruser.update_sight()
 
 	// Step 3
 	if(bloodsuckeruser.stat == DEAD)
 		bloodsuckeruser.revive(full_heal = FALSE, admin_revive = FALSE)
-	for(var/i in bloodsuckeruser.all_wounds)
-		var/datum/wound/iter_wound = i
+	for(var/datum/wound/iter_wound as anything in bloodsuckeruser.all_wounds)
 		iter_wound.remove_wound()
 	// From [powers/panacea.dm]
 	var/list/bad_organs = list(
@@ -228,7 +232,7 @@
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
 	// Not "Alive"?
-	if(!owner.current || !get_turf(owner.current))
+	if(!owner.current)
 		FinalDeath()
 		return
 	// Fire Damage and Fledgeling? (above double health)
@@ -243,16 +247,11 @@
 	if(owner.current.StakeCanKillMe() && owner.current.am_staked())
 		FinalDeath()
 		return
-	// Not organic/living? (Zombie/Skeleton/Plasmaman)
-	if(!(owner.current.mob_biotypes & MOB_ORGANIC))
-		FinalDeath()
-		return
 	// Temporary Death? Convert to Torpor.
-	if(owner.current.stat == DEAD)
-		var/mob/living/carbon/human/dead_bloodsucker = owner.current
-		if(!HAS_TRAIT(dead_bloodsucker, TRAIT_NODEATH))
-			to_chat(dead_bloodsucker, span_danger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
-			check_begin_torpor(TRUE)
+	if(HAS_TRAIT(owner.current, TRAIT_NODEATH))
+		return
+	to_chat(owner.current, span_danger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
+	check_begin_torpor(TRUE)
 
 
 /datum/antagonist/bloodsucker/proc/HandleStarving() // I am thirsty for blood!
@@ -440,11 +439,15 @@
 	ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
 	heal_vampire_organs()
 
-	if(my_clan)
-		SEND_SIGNAL(my_clan, BLOODSUCKER_EXIT_TORPOR, owner.current)
+	SEND_SIGNAL(src, BLOODSUCKER_EXIT_TORPOR)
 
 /// Makes your blood_volume look like your bloodsucker blood, unless you're Masquerading.
 /datum/antagonist/bloodsucker/proc/update_blood()
+	if(!iscarbon(owner.current))
+		return
+	var/mob/living/carbon/bloodsucker = owner.current
+	if(LAZYFIND(bloodsucker.dna.species.species_traits, NOBLOOD))
+		return
 	//If we're on Masquerade, we appear to have full blood, unless we are REALLY low, in which case we don't look as bad.
 	if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
 		switch(bloodsucker_blood_volume)
@@ -474,10 +477,9 @@
 	owner.current.unequip_everything()
 	user.remove_all_embedded_objects()
 	playsound(owner.current, 'sound/effects/tendril_destroyed.ogg', 40, TRUE)
-	if(my_clan)
-		var/unique_death = SEND_SIGNAL(my_clan, BLOODSUCKER_FINAL_DEATH, owner.current)
-		if(unique_death & DONT_DUST)
-			return
+	var/unique_death = SEND_SIGNAL(src, BLOODSUCKER_FINAL_DEATH)
+	if(unique_death & DONT_DUST)
+		return
 
 	// Elders get dusted, Fledglings get gibbed.
 	if(bloodsucker_level >= 4)
@@ -485,7 +487,7 @@
 			span_warning("[user]'s skin crackles and dries, their skin and bones withering to dust. A hollow cry whips from what is now a sandy pile of remains."),
 			span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
 			span_hear("You hear a dry, crackling sound."))
-		addtimer(CALLBACK(user, /mob/living.proc/dust), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dust)), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 	else
 		user.visible_message(
 			span_warning("[user]'s skin bursts forth in a spray of gore and detritus. A horrible cry echoes from what is now a wet pile of decaying meat."),

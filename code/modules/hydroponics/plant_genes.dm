@@ -327,7 +327,7 @@
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
 			C.adjust_disgust(15)	//Two teleports is safe
-			C.confused += 7
+			C.adjust_confusion(7 SECONDS)
 
 /datum/plant_gene/trait/teleport/on_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/C)
 	var/teleport_radius = max(round(G.seed.potency * rate), 1)	//max of 5

@@ -131,12 +131,12 @@
 ///Called when a new Vassal is successfully made: (datum/bloodsucker_datum)
 #define BLOODSUCKER_MADE_VASSAL "bloodsucker_made_vassal"
 
-///Called on Bloodsucker's LifeTick()
-#define BLOODSUCKER_HANDLE_LIFE "bloodsucker_handle_life"
 ///Called when a Bloodsucker exits Torpor.
 #define BLOODSUCKER_EXIT_TORPOR "bloodsucker_exit_torpor"
 ///Called when a Bloodsucker reaches Final Death.
 #define BLOODSUCKER_FINAL_DEATH "bloodsucker_final_death"
+
+#define COMSIG_BLOODSUCKER_BROKE_MASQUERADE "comsig_bloodsucker_broke_masquerade"
 
 ///Whether the Bloodsucker should not be dusted when arriving Final Death
 #define DONT_DUST (1<<0)
@@ -150,3 +150,5 @@
 #define COMSIG_SOL_END "comsig_sol_end"
 ///Sent when a warning for Sol is meant to go out: (danger_level, vampire_warning_message, vassal_warning_message)
 #define COMSIG_SOL_WARNING_GIVEN "comsig_sol_warning_given"
+///Called on a Bloodsucker's Lifetick.
+#define COMSIG_BLOODSUCKER_ON_LIFETICK "comsig_bloodsucker_on_lifetick"

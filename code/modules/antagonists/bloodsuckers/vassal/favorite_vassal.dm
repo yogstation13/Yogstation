@@ -16,7 +16,7 @@
 
 /datum/antagonist/vassal/favorite/on_gain()
 	. = ..()
-	SEND_SIGNAL(master.my_clan, BLOODSUCKER_MAKE_FAVORITE, src, master)
+	SEND_SIGNAL(master, BLOODSUCKER_MAKE_FAVORITE, src)
 
 ///Set the Vassal's rank to their Bloodsucker level
 /datum/antagonist/vassal/favorite/proc/set_vassal_level(mob/living/carbon/human/target)
