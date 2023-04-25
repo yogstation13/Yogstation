@@ -28577,6 +28577,14 @@
 /obj/machinery/newscaster{
 	pixel_y = -32
 	},
+/obj/item/toy/crayon/spraycan{
+	step_x = 9;
+	step_y = 8
+	},
+/obj/item/toy/crayon/spraycan{
+	step_x = 10;
+	step_y = 5
+	},
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "btp" = (
