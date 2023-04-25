@@ -79,7 +79,7 @@
 		equip_cultist(TRUE)
 	SSticker.mode.cult += owner // Only add after they've been given objectives
 	SSticker.mode.update_cult_icons_added(owner)
-	current.log_message("has been converted to the cult of Nar'Sie!", LOG_ATTACK, color="#960000")
+	current.log_message("has been converted to the cult of Nar'sie!", LOG_ATTACK, color="#960000")
 
 	if(cult_team.blood_target && cult_team.blood_target_image && current.client)
 		current.client.images += cult_team.blood_target_image
@@ -210,7 +210,7 @@
 	if(!silent)
 		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just reverted to [owner.current.p_their()] old faith!")]", null, null, null, owner.current)
 		to_chat(owner.current, span_userdanger("An unfamiliar white light flashes through your mind, cleansing the taint of the Geometer and all your memories as her servant."))
-		owner.current.log_message("has renounced the cult of Nar'Sie!", LOG_ATTACK, color="#960000")
+		owner.current.log_message("has renounced the cult of Nar'sie!", LOG_ATTACK, color="#960000")
 	if(cult_team.blood_target && cult_team.blood_target_image && owner.current.client)
 		owner.current.client.images -= cult_team.blood_target_image
 	. = ..()
@@ -478,7 +478,7 @@
 	// At this point, the cultists have squandered their mulligan and the round is over.
 	for (var/datum/mind/M in members)
 		to_chat(M.current, span_narsiesmall("I will not be worshipped by failures."))
-		// Nar-sie is sick of your crap
+		// Nar'sie is sick of your crap
 		M.current.reagents.add_reagent(/datum/reagent/toxin/heparin, 100)
 		M.current.reagents.add_reagent(/datum/reagent/toxin/initropidril, 100)
 	cult_failed = TRUE
@@ -519,7 +519,7 @@
 	update_explanation_text()
 
 /datum/objective/eldergod/update_explanation_text()
-	explanation_text = "Summon Nar-Sie by invoking the rune 'Summon Nar-Sie'. <b>The summoning can only be accomplished in [english_list(summon_spots)] - where the veil is weak enough for the ritual to begin.</b>"
+	explanation_text = "Summon Nar'sie by invoking the rune 'Summon Nar'sie'. <b>The summoning can only be accomplished in [english_list(summon_spots)] - where the veil is weak enough for the ritual to begin.</b>"
 
 /datum/objective/eldergod/check_completion()
 	if(killed)
@@ -542,7 +542,7 @@
 	if(victory == CULT_NARSIE_KILLED) // Epic failure, you summoned your god and then someone killed it.
 		parts += "<span class='redtext big'>Nar'sie has been killed! The cult will haunt the universe no longer!</span>"
 	else if(victory)
-		parts += "<span class='greentext big'>The cult has succeeded! Nar-sie has snuffed out another torch in the void!</span>"
+		parts += "<span class='greentext big'>The cult has succeeded! Nar'sie has snuffed out another torch in the void!</span>"
 		for(var/mind in members)
 			var/datum/mind/M = mind
 			if(M.current?.client)
@@ -551,7 +551,7 @@
 					SSachievements.unlock_achievement(/datum/achievement/greentext/narsie/master,M.current.client)
 	else
 		if (cult_failed)
-			parts += "<span class='redtext big'>The cult lost the favor of Nar-Sie!  Next time, don't let your target's body get destroyed!</span>"
+			parts += "<span class='redtext big'>The cult lost the favor of Nar'sie!  Next time, don't let your target's body get destroyed!</span>"
 		else
 			parts += "<span class='redtext big'>The staff managed to stop the cult! Dark words and heresy are no match for Nanotrasen's finest!</span>"
 

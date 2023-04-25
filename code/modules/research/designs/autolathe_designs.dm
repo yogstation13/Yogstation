@@ -912,6 +912,11 @@
 	build_path = /obj/item/ammo_casing/a357
 	category = list("hacked", "Security")
 
+/datum/design/a357/ironfeather
+	name = ".357 Ironfeather Bullet"
+	id = "a357_ironfeather"
+	build_path = /obj/item/ammo_casing/a357/ironfeather
+
 /datum/design/c10mm
 	name = "Ammo Box (10mm)"
 	id = "c10mm"
@@ -919,6 +924,61 @@
 	materials = list(/datum/material/iron = 30000)
 	build_path = /obj/item/ammo_box/c10mm
 	category = list("hacked", "Security")
+
+/datum/design/c10mm/disk
+	id = "c10mm_disk"
+	category = list("Security")
+
+/datum/design/c10mm/sp
+	name = "Ammo Box (10mm soporific)"
+	id = "c10mm_sp"
+	build_path = /obj/item/ammo_box/c10mm/sp
+
+/datum/design/c10mm/sp/disk
+	id = "c10mm_sp_disk"
+	category = list("Security")
+
+/obj/item/disk/design_disk/illegal_ammo
+	name = "Illegal Ammo Design Disk"
+	desc = "A disk containing designs for both standard and non-standard 10mm and .357 bullet designs."
+	icon_state = "datadisk1"
+	var/list/ammo_types = list(/datum/design/c10mm/disk, /datum/design/c10mm/sp/disk, /datum/design/c10mm/ap, /datum/design/c10mm/hp, /datum/design/c10mm/inc, /datum/design/c10mm/emp, 
+								/datum/design/box_a357/disk, /datum/design/box_a357/ironfeather/disk, /datum/design/box_a357/nutcracker, /datum/design/box_a357/metalshock, /datum/design/box_a357/heartpiercer, /datum/design/box_a357/wallstake)
+
+/obj/item/disk/design_disk/illegal_ammo/Initialize()
+	. = ..()
+	max_blueprints = ammo_types.len
+	for(var/design in ammo_types)
+		var/datum/design/new_design = design
+		blueprints += new new_design
+
+/datum/design/c10mm/ap
+	name = "Ammo Box (10mm armor-piercing)"
+	id = "c10mm_ap"
+	materials = list(/datum/material/iron = 45000)
+	build_path = /obj/item/ammo_box/c10mm/ap
+	category = list("Security")
+
+/datum/design/c10mm/hp
+	name = "Ammo Box (10mm hollow-point)"
+	id = "c10mm_hp"
+	materials = list(/datum/material/iron = 45000)
+	build_path = /obj/item/ammo_box/c10mm/hp
+	category = list("Security")
+
+/datum/design/c10mm/inc
+	name = "Ammo Box (10mm incendiary)"
+	id = "c10mm_inc"
+	materials = list(/datum/material/iron = 45000)
+	build_path = /obj/item/ammo_box/c10mm/inc
+	category = list("Security")
+
+/datum/design/c10mm/emp
+	name = "Ammo Box (10mm EMP)"
+	id = "c10mm_emp"
+	materials = list(/datum/material/iron = 45000)
+	build_path = /obj/item/ammo_box/c10mm/emp
+	category = list("Security")
 
 /datum/design/c45
 	name = "Ammo Box (.45)"
@@ -943,6 +1003,47 @@
 	materials = list(/datum/material/iron = 40000)
 	build_path = /obj/item/ammo_box/no_direct/a357
 	category = list("hacked", "Security")
+
+/datum/design/box_a357/disk
+	id = "box_a357_disk"
+	category = list("Security")
+
+/datum/design/box_a357/ironfeather
+	name = "Ammo Box (.357 Ironfeather)"
+	id = "box_a357_ironfeather"
+	build_path = /obj/item/ammo_box/no_direct/a357/ironfeather
+
+/datum/design/box_a357/ironfeather/disk
+	id = "box_a357_ironfeather_disk"
+	category = list("Security")
+
+/datum/design/box_a357/nutcracker
+	name = "Ammo Box (.357 Nutcracker)"
+	id = "box_a357_nutcracker"
+	materials = list (/datum/material/iron = 60000)
+	build_path = /obj/item/ammo_box/no_direct/a357/nutcracker
+	category = list ("Security")
+
+/datum/design/box_a357/metalshock
+	name = "Ammo Box (.357 Metalshock)"
+	id = "box_a357_metalshock"
+	materials = list (/datum/material/iron = 60000)
+	build_path = /obj/item/ammo_box/no_direct/a357/metalshock
+	category = list ("Security")
+
+/datum/design/box_a357/heartpiercer
+	name = "Ammo Box (.357 Heartpiercer)"
+	id = "box_a357_heartpiercer"
+	materials = list (/datum/material/iron = 60000)
+	build_path = /obj/item/ammo_box/no_direct/a357/heartpiercer
+	category = list ("Security")
+
+/datum/design/box_a357/wallstake
+	name = "Ammo Box (.357 Wallstake)"
+	id = "box_a357_wallstake"
+	materials = list (/datum/material/iron = 60000)
+	build_path = /obj/item/ammo_box/no_direct/a357/wallstake
+	category = list ("Security")
 
 /datum/design/cleaver
 	name = "Butcher's Cleaver"

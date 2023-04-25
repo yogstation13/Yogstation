@@ -380,6 +380,7 @@
 		"Transmission 6" = "Increases temperature adjustment rate.",
 		"Stage Speed 7" = "Increases healing speed.",
 	)
+	process_flags = ORGANIC | SYNTHETIC //only really for temp stabilize
 
 /datum/symptom/heal/plasma/Start(datum/disease/advance/A)
 	. = ..()

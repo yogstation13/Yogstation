@@ -53,8 +53,8 @@
 	title_icon = "cult"
 
 	announce_span = "cult"
-	announce_text = "Some crew members are trying to start a cult to Nar-Sie!\n\
-	<span class='cult'>Cultists</span>: Carry out Nar-Sie's will.\n\
+	announce_text = "Some crew members are trying to start a cult to Nar'sie!\n\
+	<span class='cult'>Cultists</span>: Carry out Nar'sie's will.\n\
 	<span class='notice'>Crew</span>: Prevent the cult from expanding and drive it out."
 
 	var/finished = 0
@@ -175,7 +175,7 @@
 /datum/game_mode/cult/generate_report()
 	return "Some stations in your sector have reported evidence of blood sacrifice and strange magic. Ties to the Wizards' Federation have been proven not to exist, and many employees \
 			have disappeared; even Central Command employees light-years away have felt strange presences and at times hysterical compulsions. Interrogations point towards this being the work of \
-			the cult of Nar-Sie. If evidence of this cult is discovered aboard your station, extreme caution and extreme vigilance must be taken going forward, and all resources should be \
+			the cult of Nar'sie. If evidence of this cult is discovered aboard your station, extreme caution and extreme vigilance must be taken going forward, and all resources should be \
 			devoted to stopping this cult. Note that holy water seems to weaken and eventually return the minds of cultists that ingest it, and mindshield implants will prevent conversion \
 			altogether."
 
@@ -265,7 +265,7 @@
 			else
 				cultist.Stun(40)
 				cultist.confused += 30 //one minute of confusion
-			to_chat(cultist, span_narsiesmall("You feel a bleakness as the destruction of the anchor cuts off your connection to Nar-Sie!"))
+			to_chat(cultist, span_narsiesmall("You feel a bleakness as the destruction of the anchor cuts off your connection to Nar'sie!"))
 
 /datum/game_mode/proc/disable_bloodstone_cooldown()
 	bloodstone_cooldown = FALSE
@@ -282,14 +282,14 @@
 	var/list/round_credits = list()
 	var/len_before_addition
 
-	round_credits += "<center><h1>The Cult of Nar'Sie:</h1>"
+	round_credits += "<center><h1>The Cult of Nar'sie:</h1>"
 	len_before_addition = round_credits.len
 	for(var/datum/mind/cultist in cult)
 		round_credits += "<center><h2>[cultist.name] as a cult fanatic</h2>"
 
 	var/datum/objective/eldergod/summon_objective = locate() in main_cult.objectives
 	if(summon_objective && summon_objective.summoned)
-		round_credits += "<center><h2>Nar'Sie as the eldritch abomination</h2>"
+		round_credits += "<center><h2>Nar'sie as the eldritch abomination</h2>"
 
 	if(len_before_addition == round_credits.len)
 		round_credits += list("<center><h2>The cultists have learned the danger of eldritch magic!</h2>", "<center><h2>They all disappeared!</h2>")
