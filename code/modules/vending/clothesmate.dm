@@ -162,6 +162,7 @@
 		            /obj/item/clothing/suit/yogs/furcoat = 2,
 		            /obj/item/clothing/under/yogs/grimhoodie = 2,
 		            /obj/item/clothing/suit/yogs/bikerjacket = 2,
+					/obj/item/clothing/suit/yogs/battlejacket = 2,
 		            /obj/item/clothing/suit/yogs/varsity = 2,
 		            /obj/item/clothing/under/lawyer/blacksuit = 2,
 		            /obj/item/clothing/suit/toggle/lawyer/black = 2,
