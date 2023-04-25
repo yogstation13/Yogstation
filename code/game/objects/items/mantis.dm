@@ -32,6 +32,7 @@
 	if(istype(secondsword, /obj/item/mantis/blade) && !secondattack)
 		sleep(0.2 SECONDS)
 		secondsword.attack(M, user, TRUE)
+		user.changeNext_move(CLICK_CD_MELEE)
 	return
 
 /obj/item/mantis/blade/syndicate
