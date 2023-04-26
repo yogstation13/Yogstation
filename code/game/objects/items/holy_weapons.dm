@@ -450,20 +450,15 @@
 	item_state = "fulldual"
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_HUGE
-	force = 10
+	force = 12
+	block_chance = 10
+	wound_bonus = -20
 	attack_verb = list("thwacked")
 	menutab = MENU_WEAPON
 	additional_desc = "Strap the sheathe to your waist, and these blades will never fail you."
 	var/swords = TRUE
 	var/obj/item/nullrod/handedsword/swordright
 	var/obj/item/nullrod/handedsword/other/swordleft
-
-/obj/item/nullrod/dualsword/Initialize()
-	. = ..()
-	var/datum/component/anti_magic/removal = GetExactComponent(/datum/component/anti_magic)//it's the sheathe, not the weapons, delete
-	if(removal)
-		removal.RemoveComponent()
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
 /obj/item/nullrod/dualsword/AltClick(mob/user)
 	. = ..()
@@ -481,6 +476,8 @@
 		swordright.force = force
 		swordright.armour_penetration = armour_penetration
 		swordright.block_chance = block_chance
+		swordright.wound_bonus = wound_bonus
+		swordright.bare_wound_bonus = bare_wound_bonus
 		swordright.sheath = src
 		user.put_in_r_hand(swordright)
 
@@ -488,6 +485,8 @@
 		swordleft.force = force
 		swordleft.armour_penetration = armour_penetration
 		swordleft.block_chance = block_chance
+		swordleft.wound_bonus = wound_bonus
+		swordleft.bare_wound_bonus = bare_wound_bonus
 		swordleft.sheath = src
 		user.put_in_l_hand(swordleft)
 
@@ -519,21 +518,21 @@
 		H.update_inv_belt()
 
 /obj/item/nullrod/handedsword
-	name = "justice"
+	name = "Justice"
 	desc = "Ashes to ashes... Rust to rust..."
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "dualright"
 	item_state = "dualright"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 10 //in case they get otherwise spawned i guess
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "ripped", "diced", "cut")
+	hitsound = 'sound/weapons/rapierhit.ogg'
 	w_class = WEIGHT_CLASS_HUGE
 	chaplain_spawnable = FALSE
 	var/obj/item/nullrod/dualsword/sheath //so the sheathe is refilled when the swords are dropped
 
 /obj/item/nullrod/handedsword/other
-	name = "splendor"
+	name = "Splendor"
 	desc = "\"I'm going to ultrakill you!\" -Righteous Judge"
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "dualleft"
