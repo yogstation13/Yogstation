@@ -27032,6 +27032,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
+"gGI" = (
+/obj/structure/chair/office/light,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/start/yogs/network_admin,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "gGM" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Xenobiology Maintenance";
@@ -58547,16 +58558,6 @@
 	},
 /turf/open/floor/plating,
 /area/clerk)
-"twA" = (
-/obj/structure/chair/office/light,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "twJ" = (
 /obj/machinery/cryopod{
 	dir = 4
@@ -121572,7 +121573,7 @@ iMu
 cOe
 oGM
 dWR
-twA
+gGI
 glO
 qka
 hKl
