@@ -702,9 +702,7 @@
 		brutestate = 0
 		burnstate = 0
 
-	disable_threshold = 1
 	if(status == BODYPART_ROBOTIC)
-		disable_threshold = 1
 		light_brute_msg = "marred"
 		medium_brute_msg = "dented"
 		heavy_brute_msg = "falling apart"
@@ -713,7 +711,6 @@
 		medium_burn_msg = "charred"
 		heavy_burn_msg = "smoldering"
 	else
-		disable_threshold = 0
 		light_brute_msg = "bruised"
 		medium_brute_msg = "battered"
 		heavy_brute_msg = "mangled"
