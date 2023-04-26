@@ -34306,12 +34306,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
-"juq" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "jut" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -65487,6 +65481,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"wjp" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/structure/sign/warning/securearea{
+	pixel_x = -32
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "wjH" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -121563,7 +121566,7 @@ cOe
 buU
 cOe
 cOe
-juq
+wjp
 uLv
 iMu
 cOe
