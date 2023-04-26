@@ -292,7 +292,7 @@
 		box = null
 	if (isipc(H) && !(visualsOnly)) // IPCs get their own box with special internals in it
 		box = ipc_box
-	
+
 	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
 		shoes = digitigrade_shoes
 
