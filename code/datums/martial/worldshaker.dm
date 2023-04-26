@@ -42,7 +42,11 @@
 ---------------------------------------------------------------*/
 /datum/martial_art/worldshaker/proc/stomp(mob/living/carbon/human/user)
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
-	animate(shockwave, transform = matrix().Scale(0.5), time = 10)
+	shockwave.transform *= 0.01 //basically invisible
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	animate(shockwave, transform = matrix().Scale(1), time = 2 SECONDS)
+	QDEL_IN(shockwave, 2 SECONDS)
 
 /*---------------------------------------------------------------
 	end of stomp section
@@ -56,20 +60,22 @@
 	var/chargeturf = get_turf(target)
 	if(!chargeturf)
 		return
-	var/dir = get_dir(src, chargeturf)
+	var/dir = get_dir(user, chargeturf)
 	var/turf/T = get_ranged_target_turf(chargeturf, dir)
 	if(!T)
 		return
 	new /obj/effect/temp_visual/dragon_swoop/bubblegum(T)
 	leaping = TRUE
-	walk(src, 0)
+	user.movement_type &= FLYING
+	walk(user, 0)
 	user.setDir(dir)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc, user)
 	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 0.3 SECONDS)
 	var/movespeed = 0.7
-	walk_towards(src, T, movespeed)
-	sleep(get_dist(src, T) * movespeed)
-	walk(src, 0) // cancel the movement
+	walk_towards(user, T, movespeed)
+	sleep(get_dist(user, T) * movespeed)
+	walk(user, 0) // cancel the movement
+	user.movement_type &= ~FLYING
 	leaping = FALSE
 /*---------------------------------------------------------------
 	end of leap section
