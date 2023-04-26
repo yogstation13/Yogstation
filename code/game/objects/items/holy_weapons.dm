@@ -540,10 +540,10 @@
 	icon_state = "dualleft"
 	item_state = "dualleft"
 
-/obj/item/nullrod/handedsword/attack(mob/living/M, mob/living/user)
+/obj/item/nullrod/handedsword/attack(mob/living/M, mob/living/user, secondattack = FALSE)
 	. = ..()
 	var/obj/item/nullrod/handedsword/secondsword = user.get_inactive_held_item()
-	if(istype(secondsword, /obj/item/nullrod/handedsword))
+	if(istype(secondsword, /obj/item/nullrod/handedsword) && !secondattack)
 		addtimer(CALLBACK(src, PROC_REF(secondattack), M, user, secondsword), 2, TIMER_UNIQUE | TIMER_OVERRIDE)
 	return
 
@@ -559,6 +559,8 @@
 	if(QDELETED(src))
 		return
 	if(sheath)
+		if(loc == sheath)
+			return
 		var/obj/item/otherhand = user.get_inactive_held_item()
 		if(istype(otherhand, /obj/item/nullrod/handedsword))
 			otherhand.forceMove(sheath)
