@@ -512,7 +512,7 @@
 /obj/item/nullrod/dualsword/update_icon()
 	. = ..()
 	item_state = swords ? "fulldual" : "emptydual"
-	icon_state = swords ? "fulldual" : "emptydual"
+	icon_state = item_state
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		H.update_inv_belt()
