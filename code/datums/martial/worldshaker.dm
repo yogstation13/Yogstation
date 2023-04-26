@@ -65,18 +65,23 @@
 	if(!T)
 		return
 	new /obj/effect/temp_visual/dragon_swoop/bubblegum(T)
+	
 	leaping = TRUE
-	user.movement_type &= FLYING
-	walk(user, 0)
-	user.setDir(dir)
-	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc, user)
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(loc,src)
 	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 0.3 SECONDS)
-	var/movespeed = 0.7
-	walk_towards(user, T, movespeed)
-	sleep(get_dist(user, T) * movespeed)
-	walk(user, 0) // cancel the movement
-	user.movement_type &= ~FLYING
+	user.apply_status_effect(STATUS_EFFECT_DODGING)
+	playsound(H, 'sound/effects/dodge.ogg', 50)
+	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
+	user.throw_at(target, 10, 3, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
+
+/datum/martial_art/worldshaker/proc/leap_end(mob/living/carbon/human/user)
+	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
 	leaping = FALSE
+
+/datum/martial_art/worldshaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
+	if(!leaping)
+		return ..()
+	return TRUE
 /*---------------------------------------------------------------
 	end of leap section
 ---------------------------------------------------------------*/
