@@ -15372,13 +15372,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"ckB" = (
-/obj/effect/turf_decal/delivery,
-/obj/structure/cable/orange{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "ckC" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -27164,7 +27157,7 @@
 	areastring = "/area/engine/atmos/foyer";
 	dir = 1;
 	name = "Atmospherics Foyer APC";
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -33282,6 +33275,21 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
+"iZM" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable/orange{
+	icon_state = "1-2"
+	},
+/obj/machinery/button/door{
+	desc = "A remote control-switch for secure storage.";
+	id = "Secure Storage";
+	name = "Engineering Secure Storage";
+	pixel_x = -24;
+	pixel_y = -23;
+	req_access_txt = "11"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "iZW" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -97666,7 +97674,7 @@ uzc
 ccw
 pzv
 cjM
-ckB
+iZM
 eZD
 gQB
 dwS
