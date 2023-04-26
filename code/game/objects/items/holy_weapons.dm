@@ -502,7 +502,7 @@
 	if(istype(I, /obj/item/nullrod/handedsword))
 		I.forceMove(src)
 
-		var/otherhand = user.get_inactive_held_item()
+		var/obj/item/otherhand = user.get_inactive_held_item()
 		if(istype(otherhand, /obj/item/nullrod/handedsword))
 			otherhand.forceMove(src)
 
@@ -558,8 +558,8 @@
 	. = ..()
 	if(QDELETED(src))
 		return
-	var/otherhand = user.get_inactive_held_item()
 	if(sheath)
+		var/obj/item/otherhand = user.get_inactive_held_item()
 		if(istype(otherhand, /obj/item/nullrod/handedsword))
 			otherhand.forceMove(sheath)
 		forceMove(sheath)
