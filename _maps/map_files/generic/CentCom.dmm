@@ -11893,6 +11893,7 @@
 /obj/item/clothing/head/wizard/red,
 /obj/item/staff,
 /obj/item/clothing/shoes/sandal/magic,
+/obj/item/clothing/shoes/xeno_wraps/magic,
 /turf/open/floor/engine/cult,
 /area/wizard_station)
 "azq" = (
