@@ -500,15 +500,15 @@
 /obj/item/nullrod/dualsword/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(istype(I, /obj/item/nullrod/handedsword))
-		I.forceMove(src)
+		swords = TRUE
 
 		var/obj/item/otherhand = user.get_inactive_held_item()
 		if(istype(otherhand, /obj/item/nullrod/handedsword))
 			otherhand.forceMove(src)
+		I.forceMove(src)
 
 		user.balloon_alert(user, span_notice("You sheathe \the [src]."))
 		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
-		swords = TRUE
 		update_icon()
 		
 /obj/item/nullrod/dualsword/update_icon()
@@ -558,15 +558,13 @@
 	. = ..()
 	if(QDELETED(src))
 		return
-	if(sheath)
-		if(loc == sheath)
-			return
+	if(sheath && !sheath.swords)
+		sheath.swords = TRUE
 		var/obj/item/otherhand = user.get_inactive_held_item()
 		if(istype(otherhand, /obj/item/nullrod/handedsword))
 			otherhand.forceMove(sheath)
 		forceMove(sheath)
-		user.balloon_alert(user, span_notice("you sheathe \the [src]."))
-		sheath.swords = TRUE
+		user.balloon_alert(user, span_notice("you sheathe \the [sheath]."))
 		sheath.update_icon()
 		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 	
