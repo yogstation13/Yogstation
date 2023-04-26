@@ -474,22 +474,22 @@
 
 		if(!swordright)
 			swordright = new(src) //copies stats from the sheathe to the weapons to allow for varedit shenanigans
-		swordright.force = force
-		swordright.armour_penetration = armour_penetration
-		swordright.block_chance = block_chance
-		swordright.wound_bonus = wound_bonus
-		swordright.bare_wound_bonus = bare_wound_bonus
-		swordright.sheath = src
+			swordright.sheath = src
+			swordright.force = force
+			swordright.armour_penetration = armour_penetration
+			swordright.block_chance = block_chance
+			swordright.wound_bonus = wound_bonus
+			swordright.bare_wound_bonus = bare_wound_bonus
 		user.put_in_r_hand(swordright)
 
 		if(!swordleft)
 			swordleft = new(src)
-		swordleft.force = force
-		swordleft.armour_penetration = armour_penetration
-		swordleft.block_chance = block_chance
-		swordleft.wound_bonus = wound_bonus
-		swordleft.bare_wound_bonus = bare_wound_bonus
-		swordleft.sheath = src
+			swordleft.sheath = src
+			swordleft.force = force
+			swordleft.armour_penetration = armour_penetration
+			swordleft.block_chance = block_chance
+			swordleft.wound_bonus = wound_bonus
+			swordleft.bare_wound_bonus = bare_wound_bonus
 		user.put_in_l_hand(swordleft)
 
 		user.balloon_alert(user, span_notice("you unsheathe \the [src]."))
@@ -500,11 +500,11 @@
 /obj/item/nullrod/dualsword/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(istype(I, /obj/item/nullrod/handedsword))
-		qdel(I)
+		I.forceMove(src)
 
 		var/otherhand = user.get_inactive_held_item()
 		if(istype(otherhand, /obj/item/nullrod/handedsword))
-			qdel(otherhand)
+			otherhand.forceMove(src)
 
 		user.balloon_alert(user, span_notice("You sheathe \the [src]."))
 		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
@@ -559,14 +559,14 @@
 	if(QDELETED(src))
 		return
 	var/otherhand = user.get_inactive_held_item()
-	if(istype(otherhand, /obj/item/nullrod/handedsword))
-		qdel(otherhand)
 	if(sheath)
+		if(istype(otherhand, /obj/item/nullrod/handedsword))
+			otherhand.forceMove(sheath)
+		forceMove(sheath)
 		user.balloon_alert(user, span_notice("you sheathe \the [src]."))
 		sheath.swords = TRUE
 		sheath.update_icon()
 		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
-	qdel(src)
 	
 
 /*---------------------------------------------------------------------------
