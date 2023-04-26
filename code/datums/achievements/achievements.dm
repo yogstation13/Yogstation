@@ -181,12 +181,12 @@
 
 /datum/achievement/greentext/narsie
 	name = "Blood Rites"
-	desc = "As a member of blood cult, summon Nar-Sie"
+	desc = "As a member of blood cult, summon Nar'sie"
 	id = GREENTEXT + 4
 
 /datum/achievement/greentext/narsie/master
 	name = "Master of Blood"
-	desc = "As a cult master, summon Nar-Sie"
+	desc = "As a cult master, summon Nar'sie"
 	id = GREENTEXT + 5
 
 /datum/achievement/greentext/revolution

@@ -120,3 +120,33 @@
 	icon_state = "syndieenvirobag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/environmental/prisoner/syndicate
 	resistance_flags = ACID_PROOF | FIRE_PROOF | FREEZE_PROOF | LAVA_PROOF
+	var/killing = FALSE
+	var/obj/structure/closet/body_bag/environmental/prisoner/syndicate/deployed_bag
+
+/obj/item/bodybag/environmental/prisoner/syndicate/deploy_bodybag(mob/user, atom/location)
+	deployed_bag = new unfoldedbag_path(location)
+	deployed_bag.open(user)
+	deployed_bag.add_fingerprint(user)
+	deployed_bag.foldedbag_instance = src
+	moveToNullspace()
+
+/obj/item/syndicate_prisoner_remote
+	name = "syndicate prisoner remote"
+	desc = "A wireless remote that will toggle the lethality of a linked syndicate prisoner transport bag."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gangtool-red"
+	item_state = "electronic"
+	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+	var/obj/item/bodybag/environmental/prisoner/syndicate/bag
+
+/obj/item/syndicate_prisoner_remote/attack_self(mob/user)
+	. = ..()
+	if(!bag)
+		to_chat(user, span_warning("The link to the bag has been broken!"))
+		return
+	
+	bag.killing = !bag.killing
+	if(bag.deployed_bag)
+		bag.deployed_bag.update_icon()
+	to_chat(user, span_notice("\The [bag] is now set to [bag.killing ? "LETHAL" : "NON-LETHAL"]."))

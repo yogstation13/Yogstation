@@ -46,12 +46,9 @@
 			inject_from_side_components(delta_time)
 			process_internal_cooling(delta_time)
 	else
-		// No power forces bad settings
+		// No power forces some bad settings
 		magnetic_constrictor = 100
-		heating_conductor = 500
 		current_damper = 0
-		fuel_injection_rate = 20
-		moderator_injection_rate = 50
 		waste_remove = FALSE
 		iron_content += 0.02 * power_level * delta_time
 
@@ -298,19 +295,16 @@
 			if(moderator_list[/datum/gas/pluonium] > 20)
 				radiation *= 1.55
 				heat_output *= 1.025
-				internal_output.adjust_moles(/datum/gas/nitrium, scaled_production * 1.05)
 				moderator_internal.adjust_moles(/datum/gas/pluonium, -min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.35))
 
 		if(3, 4)
 			if(moderator_list[/datum/gas/plasma] > 10)
 				internal_output.adjust_moles(/datum/gas/freon, scaled_production * 0.15)
-				internal_output.adjust_moles(/datum/gas/nitrium, scaled_production * 1.05)
 				moderator_internal.adjust_moles(/datum/gas/plasma, -min(moderator_internal.get_moles(/datum/gas/plasma), scaled_production * 0.45))
 			if(moderator_list[/datum/gas/freon] > 50)
 				heat_output *= 0.9
 				radiation *= 0.8
 			if(moderator_list[/datum/gas/pluonium]> 15)
-				internal_output.adjust_moles(/datum/gas/nitrium, scaled_production * 1.25)
 				internal_output.adjust_moles(/datum/gas/halon, scaled_production * 1.15)
 				moderator_internal.adjust_moles(/datum/gas/pluonium, -min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.55))
 				radiation *= 1.95
@@ -328,7 +322,6 @@
 				heat_output *= 0.5
 				radiation *= 0.2
 			if(moderator_list[/datum/gas/pluonium] > 50)
-				internal_output.adjust_moles(/datum/gas/nitrium, scaled_production * 1.95)
 				internal_output.adjust_moles(/datum/gas/pluoxium, scaled_production)
 				moderator_internal.adjust_moles(/datum/gas/pluonium, -min(moderator_internal.get_moles(/datum/gas/pluonium), scaled_production * 1.35))
 				radiation *= 1.95

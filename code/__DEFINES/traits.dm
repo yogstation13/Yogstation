@@ -136,6 +136,7 @@
 #define TRAIT_XENO_HOST			"xeno_host"	//Tracks whether we're gonna be a baby alien's mummy.
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
+#define TRAIT_IMPACTIMMUNE		"impact_immunity" //protects from the damage of getting launched into a wall hard
 #define TRAIT_PUSHIMMUNE		"push_immunity"
 #define TRAIT_SHOCKIMMUNE		"shock_immunity"
 #define TRAIT_STABLEHEART		"stable_heart"

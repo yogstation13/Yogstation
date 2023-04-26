@@ -266,7 +266,7 @@
 			return
 	if(!target)
 		return
-	if(NO_DNA_COPY in target.dna.species.species_traits)
+	if((NO_DNA_COPY in target.dna.species.species_traits) || (NOHUSK in target.dna.species.species_traits)) // if they can't be husked absorbing them will break and make them unrevivable
 		if(verbose)
 			to_chat(user, span_warning("[target] is not compatible with our biology."))
 		return

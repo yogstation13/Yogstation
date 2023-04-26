@@ -173,7 +173,8 @@
 					/obj/item/clothing/gloves/fingerless = 3,
 					/obj/item/clothing/head/soft = 3,
 					/obj/item/radio/headset/headset_cargo = 3,
-					/obj/item/clothing/accessory/armband/cargo = 2)
+					/obj/item/clothing/accessory/armband/cargo = 2,
+					/obj/item/storage/bag/mail = 3)
 	premium = list(/obj/item/clothing/under/rank/miner = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/cargo_wardrobe
 	payment_department = ACCOUNT_CAR
