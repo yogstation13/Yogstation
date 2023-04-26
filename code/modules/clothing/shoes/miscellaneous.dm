@@ -544,11 +544,6 @@
 	xenoshoe = YES_DIGIT
 	mutantrace_variation = MUTANTRACE_VARIATION
 
-/obj/item/clothing/shoes/xeno_wraps/magic // kinda boring if the wizard dies because they got stunned from stepping on a piece of glass
-	name = "magical footwraps"
-	desc = "Incredibly comfortable footwraps made from cloth imbued with magical properties."
-	resistance_flags = FIRE_PROOF |  ACID_PROOF
-
 /obj/item/clothing/shoes/airshoes
 	name = "air shoes"
 	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."

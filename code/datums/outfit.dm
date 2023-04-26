@@ -35,9 +35,6 @@
 	/// Type path of item to go in shoes slot
 	var/shoes = null
 
-	/// Type path of item to go in shoes slot for digitigrade legs
-	var/digitigrade_shoes
-
 	/// Type path of item to go in head slot
 	var/head = null
 
@@ -172,8 +169,7 @@
 	if(gloves)
 		H.equip_to_slot_or_del(SSwardrobe.provide_type(gloves, H), SLOT_GLOVES, TRUE)
 	if(shoes)
-		if(!H.equip_to_slot_or_del(SSwardrobe.provide_type(shoes, H), SLOT_SHOES, TRUE)) // if the normal type can't be equipped,
-			H.equip_to_slot_or_del(SSwardrobe.provide_type(digitigrade_shoes, H), SLOT_SHOES, TRUE) // try the digitigrade variation instead
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(shoes, H), SLOT_SHOES, TRUE)
 	if(head)
 		H.equip_to_slot_or_del(SSwardrobe.provide_type(head, H), SLOT_HEAD, TRUE)
 	if(mask)

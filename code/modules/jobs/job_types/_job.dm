@@ -265,6 +265,9 @@
 	/// Which slot the PDA defaults to
 	var/pda_slot = SLOT_BELT
 
+	/// What shoes digitgrade crew should wear
+	var/digitigrade_shoes
+
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backbag)
 		if(GBACKPACK)
@@ -289,6 +292,9 @@
 		box = null
 	if (isipc(H) && !(visualsOnly)) // IPCs get their own box with special internals in it
 		box = ipc_box
+	
+	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
+		shoes = digitigrade_shoes
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
