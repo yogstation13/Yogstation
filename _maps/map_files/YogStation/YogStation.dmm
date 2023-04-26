@@ -18184,6 +18184,21 @@
 /obj/machinery/papershredder,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
+"dca" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "ddb" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=HOP";
@@ -25971,18 +25986,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"gia" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	external_pressure_bound = 120;
-	name = "server vent"
-	},
-/obj/machinery/camera{
-	c_tag = "Security Checkpoint";
-	dir = 4;
-	network = list("ss13","chpt")
-	},
-/turf/open/floor/circuit/telecomms/server,
-/area/ai_monitored/secondarydatacore)
 "giq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -27824,6 +27827,30 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
+"gXg" = (
+/obj/machinery/door/airlock/command/glass{
+	id_tag = "secondary_aicore_interior";
+	name = "Physical Core Access";
+	req_one_access_txt = "30, 70"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = -1;
+	diry = -1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "gXs" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -40626,15 +40653,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
-"mer" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/camera{
-	c_tag = "Security Checkpoint";
-	dir = 4;
-	network = list("ss13","chpt")
-	},
-/turf/open/floor/plating,
-/area/ai_monitored/secondarydatacore)
 "mey" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -47505,14 +47523,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"oTZ" = (
-/obj/machinery/camera{
-	c_tag = "Security Checkpoint";
-	dir = 4;
-	network = list("ss13","chpt")
-	},
-/turf/closed/wall/r_wall,
-/area/science/nanite)
 "oUc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -52243,18 +52253,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"qQR" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
 "qQV" = (
 /turf/template_noop,
 /area/template_noop)
@@ -56701,31 +56699,6 @@
 /obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/port)
-"sLt" = (
-/obj/machinery/door/airlock/command/glass{
-	id_tag = "secondary_aicore_interior";
-	name = "Physical Core Access";
-	req_one_access_txt = "30, 70"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
-	dirx = -1;
-	diry = -1
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "sLv" = (
 /obj/machinery/camera{
 	c_tag = "Cargo Bay South";
@@ -57511,6 +57484,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"sZT" = (
+/obj/machinery/door/airlock/command/glass{
+	id_tag = "secondary_aicore_interior";
+	name = "Physical Core Access";
+	req_one_access_txt = "30, 70"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
+	dirx = 1;
+	diry = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/secondarydatacore)
 "sZY" = (
 /obj/machinery/camera{
 	c_tag = "Central Hallway East";
@@ -58401,6 +58390,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
+"tun" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	external_pressure_bound = 120;
+	name = "server vent"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/ai_monitored/secondarydatacore)
 "tup" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
@@ -64355,28 +64351,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"vMO" = (
-/obj/machinery/door/airlock/command/glass{
-	id_tag = "secondary_aicore_interior";
-	name = "Physical Core Access";
-	req_one_access_txt = "30, 70"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_target{
-	dirx = 1;
-	diry = 1
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/camera{
-	c_tag = "Security Checkpoint";
-	dir = 4;
-	network = list("ss13","chpt")
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/secondarydatacore)
 "vMZ" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -119772,7 +119746,7 @@ woT
 wkN
 atN
 atN
-oTZ
+atN
 atN
 atN
 atN
@@ -120028,8 +120002,8 @@ gFN
 iKk
 oGM
 rHI
-mer
-gia
+qka
+tun
 qxB
 nwC
 xjr
@@ -120285,7 +120259,7 @@ gFN
 nXh
 oGM
 sub
-vMO
+sZT
 fPv
 fPv
 hKl
@@ -120541,7 +120515,7 @@ dqh
 qoK
 gvV
 oGM
-sLt
+gXg
 oGM
 qka
 qka
@@ -122091,7 +122065,7 @@ mgc
 vhd
 oGM
 bNA
-qQR
+dca
 dyY
 qNT
 dez
