@@ -463,16 +463,17 @@
 /obj/item/nullrod/dualsword/AltClick(mob/user)
 	. = ..()
 	if(loc != user)
-		to_chat(user, "you awkwardly struggle to pull the blades out of the sheathe while not wearing it.")
+		user.balloon_alert(user, span_notice("you struggle to pull the blades out of the sheathe..."))
 		return
 	if(swords)
 		if(LAZYLEN(user.get_empty_held_indexes()) < 2)
-			to_chat(user, "you need both hands free to draw your swords.")
+			user.balloon_alert(user, span_warning("you need both hands free to unsheathe \the [src]!"))
 			return
 
 		user.drop_all_held_items() //in case they have some sneaky 3rd hand shit
 
-		swordright = new(src) //copies stats from the sheathe to the weapons to allow for varedit shenanigans
+		if(!swordright)
+			swordright = new(src) //copies stats from the sheathe to the weapons to allow for varedit shenanigans
 		swordright.force = force
 		swordright.armour_penetration = armour_penetration
 		swordright.block_chance = block_chance
@@ -481,7 +482,8 @@
 		swordright.sheath = src
 		user.put_in_r_hand(swordright)
 
-		swordleft = new(src)
+		if(!swordleft)
+			swordleft = new(src)
 		swordleft.force = force
 		swordleft.armour_penetration = armour_penetration
 		swordleft.block_chance = block_chance
@@ -490,7 +492,7 @@
 		swordleft.sheath = src
 		user.put_in_l_hand(swordleft)
 
-		to_chat(user, "you draw your righteous blades.")
+		user.balloon_alert(user, span_notice("you unsheathe \the [src]."))
 		playsound(user, 'sound/items/unsheath.ogg', 25, TRUE)
 		swords = FALSE
 		update_icon()
@@ -504,7 +506,7 @@
 		if(istype(otherhand, /obj/item/nullrod/handedsword))
 			qdel(otherhand)
 
-		to_chat(user, "you sheathe your blades.")
+		user.balloon_alert(user, span_notice("You sheathe \the [src]."))
 		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 		swords = TRUE
 		update_icon()
@@ -538,17 +540,19 @@
 	icon_state = "dualleft"
 	item_state = "dualleft"
 
-/obj/item/nullrod/handedsword/attack(mob/living/M, mob/living/user, secondattack = FALSE)
+/obj/item/nullrod/handedsword/attack(mob/living/M, mob/living/user)
 	. = ..()
 	var/obj/item/nullrod/handedsword/secondsword = user.get_inactive_held_item()
-	if(istype(secondsword, /obj/item/nullrod/handedsword) && !secondattack)
-		sleep(0.2 SECONDS)
-		if(QDELETED(secondsword) || QDELETED(src))
-			return
-		user.swap_hand()
-		secondsword.attack(M, user, TRUE)
-		user.changeNext_move(CLICK_CD_MELEE)
+	if(istype(secondsword, /obj/item/nullrod/handedsword))
+		addtimer(CALLBACK(src, PROC_REF(secondattack), M, user, secondsword), 2, TIMER_UNIQUE | TIMER_OVERRIDE)
 	return
+
+/obj/item/nullrod/handedsword/proc/secondattack(mob/living/M, mob/living/user, obj/item/nullrod/handedsword/secondsword)
+	if(QDELETED(secondsword) || QDELETED(src))
+		return
+	user.swap_hand()
+	secondsword.attack(M, user, TRUE)
+	user.changeNext_move(CLICK_CD_MELEE)
 
 /obj/item/nullrod/handedsword/dropped(mob/user, silent = TRUE)
 	. = ..()
@@ -558,7 +562,7 @@
 	if(istype(otherhand, /obj/item/nullrod/handedsword))
 		qdel(otherhand)
 	if(sheath)
-		to_chat("you sheathe your blades.")
+		user.balloon_alert(user, span_notice("you sheathe \the [src]."))
 		sheath.swords = TRUE
 		sheath.update_icon()
 		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
