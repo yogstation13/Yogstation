@@ -23,7 +23,7 @@
 
 /obj/machinery/griddle/Initialize()
 	. = ..()
-	end_processing() //doen't start on
+	end_processing() //doesn't start on
 	grill_loop = new(list(src), FALSE)
 	variant = rand(1,3)
 
@@ -39,13 +39,14 @@
 		to_chat(user, "<span class='notice'>[src] can't fit more items!</span>")
 		return
 	if(user.transferItemToLoc(I, src))
+		I.pixel_x = pick(-(world.icon_size/4), 0, (world.icon_size/4))
+		I.pixel_y = pick(-(world.icon_size/8), 0, (world.icon_size/4))
 		var/list/click_params = params2list(params)
-		//Center the icon where the user clicked.
-		if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
-			return
-		//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
-		I.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
-		I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+		//Attempt to center the icon where the user clicked.
+		if(click_params && click_params["icon-x"] && click_params["icon-y"])
+			//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
+			I.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/4), world.icon_size/4)
+			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/8), world.icon_size/4)
 		to_chat(user, "<span class='notice'>You place [I] on [src].</span>")
 		AddToGrill(I, user)
 		update_icon()

@@ -14,7 +14,7 @@
 	var/framebuildstackamount = 5
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 0
-	var/list/allowed_projectile_typecache = list(/obj/item/projectile/beam)
+	var/list/allowed_projectile_typecache = list(/obj/item/projectile/beam, /obj/item/projectile/energy/nuclear_particle)
 	var/rotation_angle = -1
 
 /obj/structure/reflector/Initialize()

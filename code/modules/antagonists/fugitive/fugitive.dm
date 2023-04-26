@@ -7,6 +7,7 @@
 	var/datum/team/fugitive/fugitive_team
 	var/is_captured = FALSE
 	var/backstory = "error"
+	preview_outfit = /datum/outfit/spacepol
 
 /datum/antagonist/fugitive/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
@@ -125,3 +126,4 @@
 		else if(M in GLOB.dead_mob_list)
 			to_chat(M, "[FOLLOW_LINK(M, user)] [my_message]")
 	user.log_talk(message, LOG_SAY, tag="Yalp Elor")
+

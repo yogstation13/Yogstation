@@ -597,7 +597,13 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		"https://soundcloud.com/garym03062/beacons-in-the-darkness",	// Gary McGath - Beacons in the Darkness
 		"https://www.youtube.com/watch?v=KGEfBop0nkI",	// Julia Ecklar - "Christmastime in Sector 5" - "Little Drummer Boy"
 		"https://www.youtube.com/watch?v=1twga61Kd14",	// Julia Ecklar - #1 - Christmas Time
-		"https://www.youtube.com/watch?v=imjMjnczqkU"	// Pete Gold - Ive Been a Bad Boy
+		"https://www.youtube.com/watch?v=imjMjnczqkU",	// Pete Gold - Ive Been a Bad Boy
+		"https://www.youtube.com/watch?v=aAkMkVFwAoo",   //Mariah Carey, All I Want For Christmas Is You
+		"https://www.youtube.com/watch?v=Ri-Pmh5X8-c",   //Phyrnna - Sisters of Snow Dissent
+		"https://www.youtube.com/watch?v=W2Dyg4YY2VU",   //Phyrnna - Sisters of Snow Assent
+		"https://www.youtube.com/watch?v=VICEsWdd4Kk",   //Phyrnna - A First Snow with Friends
+		"https://www.youtube.com/watch?v=1HGQlV2AWGs"	// Phineas and Ferb - We Wish You a Merry Christmas
+
 		)
 	mail_holiday = TRUE
 
@@ -606,11 +612,13 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 
 /datum/holiday/xmas/celebrate()
 	SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
-	GLOB.maintenance_loot += list(
-		/obj/item/toy/xmas_cracker = 3,
-		/obj/item/clothing/head/santa = 1,
-		/obj/item/a_gift/anything = 1
+	//Start of yogstation loot changes.
+	GLOB.maintenance_loot_traditional += list(
+		/obj/item/toy/xmas_cracker = 300,
+		/obj/item/clothing/head/santa = 100,
+		/obj/item/a_gift/anything = 100
 	)
+	//End of yogstation loot changes.
 
 /datum/holiday/xmas/proc/roundstart_celebrate()
 	for(var/obj/machinery/computer/security/telescreen/entertainment/Monitor in GLOB.machines)
@@ -676,9 +684,11 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	return ..()
 
 /datum/holiday/easter/celebrate()
-	GLOB.maintenance_loot += list(
-		/obj/item/reagent_containers/food/snacks/egg/loaded = 15,
-		/obj/item/storage/bag/easterbasket = 15)
+	//Start of yogstation loot changes.
+	GLOB.maintenance_loot_traditional += list(
+		/obj/item/reagent_containers/food/snacks/egg/loaded = 1500,
+		/obj/item/storage/bag/easterbasket = 1500)
+	//End of yogstation loot changes.
 
 /datum/holiday/easter/greet()
 	return "Greetings! Have a Happy Easter and keep an eye out for Easter Bunnies!"

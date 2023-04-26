@@ -37,3 +37,8 @@
 	..()
 	if(!mind.has_antag_datum(/datum/antagonist/swarmer))
 		mind.add_antag_datum(/datum/antagonist/swarmer)
+
+/datum/antagonist/swarmer/get_preview_icon()
+	var/icon/swarmer_icon = icon('icons/mob/swarmer.dmi', "swarmer")
+	swarmer_icon.Shift(NORTH, 8)
+	return finish_preview_icon(swarmer_icon)

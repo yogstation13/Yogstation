@@ -36,7 +36,7 @@
 
 /datum/mutation/human/thermal
 	name = "Thermal Vision"
-	desc = "The user of this genome can visually percieve the unique human thermal signature."
+	desc = "The user of this genome can visually perceive the unique human thermal signature."
 	quality = POSITIVE
 	difficulty = 18
 	text_gain_indication = span_notice("You can see the heat rising off of your skin...")

@@ -197,7 +197,7 @@
 /datum/barsign/slipperyshots
 	name = "Slippery Shots"
 	icon = "slipperyshots"
-	desc = "Slippery slope to drunkeness with our shots!"
+	desc = "Slippery slope to drunkenness with our shots!"
 
 /datum/barsign/thegreytide
 	name = "The Grey Tide"

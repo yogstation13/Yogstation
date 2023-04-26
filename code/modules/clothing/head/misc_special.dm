@@ -46,7 +46,7 @@
 	hitsound = 'sound/weapons/tap.ogg'
 	flags_inv = HIDEEARS|HIDEHAIR
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
-	brightness_on = 2 //luminosity when on
+	light_range = 2 //luminosity when on
 	flags_cover = HEADCOVERSEYES
 	heat = 999
 
@@ -116,7 +116,7 @@
 	hat_type = "pumpkin"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
-	brightness_on = 2 //luminosity when on
+	light_range = 2 //luminosity when on
 	flags_cover = HEADCOVERSEYES
 	hattable = FALSE
 
@@ -166,7 +166,7 @@
 	hat_type = "reindeer"
 	flags_inv = 0
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
-	brightness_on = 1 //luminosity when on
+	light_range = 1 //luminosity when on
 	dynamic_hair_suffix = ""
 
 	dog_fashion = /datum/dog_fashion/head/reindeer
@@ -371,3 +371,15 @@
 	icon_state = "rflower"
 	item_state = "rflower"
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/clothing/head/Floralwizhat
+	name = "Druid hat"
+	desc = "A black wizard hat with an exotic looking purple flower on it"
+	icon_state = "flowerwizhat"
+	item_state = "flowerwizhat"
+
+/obj/item/clothing/head/fedora/gtrim_fedora
+	name = "Gold trimmed Fedora"
+	desc = "A Unique variation of the classic fedora. Now with 'Waterproofing' for when buisness gets messy."
+	icon_state = "gtrim_fedora"
+	item_state = "gtrim_fedora"

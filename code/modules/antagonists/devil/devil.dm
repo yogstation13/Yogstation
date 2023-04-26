@@ -215,7 +215,9 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	to_chat(owner.current, span_warning("Your powers weaken, have more contracts be signed to regain power."))
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
-		H.set_species(/datum/species/human, 1)
+
+		var/species_type = owner.current.client.prefs.read_preference(/datum/preference/choiced/species)
+		H.set_species(species_type, 1)
 		H.regenerate_icons()
 	give_appropriate_spells()
 	if(istype(owner.current.loc, /obj/effect/dummy/phased_mob))
@@ -475,6 +477,8 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 				A.set_name()
 				if(SOULVALUE >= ARCH_THRESHOLD && ascendable)
 					A.convert_to_archdevil()
+		give_appropriate_spells()
+		update_hud()
 	else
 		CRASH("Unable to find a blobstart landmark for hellish resurrection")
 
@@ -568,3 +572,10 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	ban = randomdevilban()
 	banish = randomdevilbanish()
 	ascendable = prob(25)
+
+/datum/antagonist/devil/get_preview_icon()
+	var/icon/devil_icon = icon('icons/effects/64x64.dmi', "devil")
+
+	devil_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return devil_icon

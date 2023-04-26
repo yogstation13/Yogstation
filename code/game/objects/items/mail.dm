@@ -16,19 +16,15 @@
 	var/datum/weakref/recipient_ref
 	/// How many goodies this mail contains.
 	var/goodie_count = 1
-	/// Goodies which can be given to anyone. The base weight for cash is 56. For there to be a 50/50 chance of getting a department item, they need 56 weight as well.
+	/// Goodies which can be given to anyone. The base weight for cash is 37. For there to be a 50/50 chance of getting a department item, they need 37 weight as well.
 	var/list/generic_goodies = list( //yogs, add coins, sorted least valuable to most valuable
-		/obj/item/coin/iron = 2,
-		/obj/item/coin/silver = 2,
-		/obj/item/coin/gold = 2,
-		/obj/item/coin/plasma = 2,
-		/obj/item/stack/spacecash/c50 = 5,
-		/obj/item/stack/spacecash/c100 = 20,
-		/obj/item/coin/diamond = 10,
+		/obj/item/stack/spacecash/c50 = 4,
+		/obj/item/stack/spacecash/c100 = 10,
 		/obj/item/stack/spacecash/c200 = 6,
-		/obj/item/coin/bananium = 4,
 		/obj/item/stack/spacecash/c500 = 2,
 		/obj/item/stack/spacecash/c1000 = 1,
+		/obj/effect/spawner/lootdrop/coin = 8,
+		/obj/effect/spawner/lootdrop/donkpockets = 6
 	)
 	// Overlays (pure fluff)
 	/// Does the letter have the postmark overlay?
@@ -56,7 +52,7 @@
 
 /obj/item/mail/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, .proc/disposal_handling)
+	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposal_handling))
 	//AddElement(/datum/element/item_scaling, 0.75, 1)
 	if(isnull(department_colors))
 		department_colors = list(
@@ -113,6 +109,7 @@
 			playsound(loc, 'sound/machines/twobeep_high.ogg', 100, TRUE)
 
 /obj/item/mail/attack_self(mob/user)
+	var/recipient_real = FALSE // Whether there is a recipient
 	if(recipient_ref)
 		var/datum/mind/recipient = recipient_ref.resolve()
 		// If the recipient's mind has gone, then anyone can open their mail
@@ -120,6 +117,7 @@
 		if(recipient && recipient != user?.mind)
 			to_chat(user, span_notice("You can't open somebody else's mail! That's <em>illegal</em>!"))
 			return
+		recipient_real = recipient // This will be truthy if recipient resolved successfully
 
 	to_chat(user, span_notice("You start to unwrap the package..."))
 	if(!do_after(user, 1.5 SECONDS, target = user))
@@ -128,6 +126,9 @@
 	for (var/content in contents)
 		user.put_in_hands(content)
 	playsound(loc, 'sound/items/poster_ripped.ogg', 50, TRUE)
+	if(recipient_real) // If this is official NT mail for someone, give cargo money for delivering it successfully
+		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
+		D?.adjust_money(150)
 	qdel(src)
 
 /obj/item/mail/examine_more(mob/user)
@@ -160,6 +161,15 @@
 				goodies = job_goodies
 			else
 				goodies += job_goodies
+
+	if(recipient.current && HAS_TRAIT(recipient.current, TRAIT_BADMAIL))	//reduce the weight of every item by 10
+		for(var/item in goodies)
+			goodies[item] -= 10
+			if(goodies[item] <= 0)	 //remove everything with a weight below 0
+				goodies -= item
+
+	if(!goodies) //if everything was removed for some reason
+		return FALSE 
 
 	for(var/iterator in 1 to goodie_count)
 		var/target_good = pickweight(goodies)

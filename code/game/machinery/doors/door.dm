@@ -7,7 +7,7 @@
 	density = TRUE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = OPEN_DOOR_LAYER
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	max_integrity = 350
 	armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, RAD = 100, FIRE = 80, ACID = 70)
 	CanAtmosPass = ATMOS_PASS_DENSITY
@@ -151,10 +151,10 @@
 /obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(istype(mover)) //yogs start
-		if(mover.pass_flags & PASSGLASS)
-			return !opacity
 		if(mover.pass_flags & PASSDOOR)
-			return TRUE //yogs end
+			return TRUE
+		if(mover.pass_flags & PASSGLASS)
+			return !opacity //yogs end
 
 /obj/machinery/door/proc/bumpopen(mob/user)
 	if(operating)
@@ -238,6 +238,8 @@
 	return max_moles - min_moles > 20
 
 /obj/machinery/door/attackby(obj/item/I, mob/user, params)
+	add_fingerprint(user)
+
 	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/twohanded/fireaxe)))
 		try_to_crowbar(I, user)
 		return 1

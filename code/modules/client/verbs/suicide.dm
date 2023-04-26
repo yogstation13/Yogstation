@@ -33,7 +33,7 @@
 	if(!canSuicide())
 		return
 	var/oldkey = ckey
-	var/confirm = alert("Are you sure you want to commit suicide? This will prevent you from being revived!", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to commit suicide? This will prevent you from being revived!", "Confirm Suicide", list("Yes", "No"))
 	if(ckey != oldkey)
 		return
 	if(!canSuicide())
@@ -69,7 +69,7 @@
 					adjustFireLoss(200/damage_mod)
 
 				if(damagetype & TOXLOSS)
-					adjustToxLoss(200/damage_mod)
+					adjustToxLoss(200/damage_mod, TRUE, TRUE)//toxinlovers
 
 				if(damagetype & OXYLOSS)
 					adjustOxyLoss(200/damage_mod)
@@ -116,7 +116,7 @@
 	set hidden = TRUE
 	if(!canSuicide())
 		return
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")
@@ -149,7 +149,7 @@
 	set hidden = TRUE
 	if(!canSuicide())
 		return
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")
@@ -167,7 +167,7 @@
 	set hidden = TRUE
 	if(!canSuicide())
 		return
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")
@@ -183,7 +183,7 @@
 
 /mob/living/silicon/pai/verb/suicide()
 	set hidden = TRUE
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(confirm == "Yes")
 		var/turf/T = get_turf(src.loc)
 		T.visible_message(span_notice("[src] flashes a message across its screen, \"Wiping core files. Please acquire a new personality to continue using pAI device functions.\""), null, \
@@ -199,7 +199,7 @@
 	set hidden = TRUE
 	if(!canSuicide())
 		return
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")
@@ -218,7 +218,7 @@
 	set hidden = TRUE
 	if(!canSuicide())
 		return
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
+	var/confirm = tgui_alert(usr,"Are you sure you want to commit suicide?", "Confirm Suicide", list("Yes", "No"))
 	if(!canSuicide())
 		return
 	if(confirm == "Yes")

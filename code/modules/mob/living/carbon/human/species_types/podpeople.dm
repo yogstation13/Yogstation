@@ -7,6 +7,7 @@ DISREGUARD THIS FILE IF YOU'RE INTENDING TO CHANGE ASPECTS OF PLAYER CONTROLLED 
 /datum/species/pod
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
 	name = "Podperson"
+	plural_form = "Podpeople"
 	id = "pod"
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR)
@@ -22,7 +23,7 @@ DISREGUARD THIS FILE IF YOU'RE INTENDING TO CHANGE ASPECTS OF PLAYER CONTROLLED 
 	siemen_coeff = 0.75 //I wouldn't make semiconductors out of plant material
 	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
 	punchstunthreshold = 9 
-	payday_modifier = 0.7 //Neutrally viewed by NT
+	payday_modifier = 0.6 //Most are desperate exiles if they have to work with NT
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	exotic_blood = /datum/reagent/water
 	disliked_food = MEAT | DAIRY | MICE | VEGETABLES | FRUIT | GRAIN | JUNKFOOD | FRIED | RAW | GROSS | BREAKFAST | GRILLED | EGG | CHOCOLATE | SEAFOOD | CLOTH

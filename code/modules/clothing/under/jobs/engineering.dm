@@ -25,6 +25,7 @@
 	name = "atmospheric technician's jumpsuit"
 	icon_state = "atmos"
 	item_state = "atmos_suit"
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 0)
 	resistance_flags = NONE
 	mutantrace_variation = MUTANTRACE_VARIATION
 

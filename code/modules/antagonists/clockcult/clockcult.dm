@@ -259,3 +259,10 @@
 	if(ratio >= SERVANT_HARDMODE_PERCENT)
 		GLOB.clockwork_hardmode_active = TRUE
 		hierophant_message("<span class='large_brass bold'>As the cult increases in size, the Ark's connection to the material plane weakens. Warping with camera consoles will take substantially more time unless the destination is a clockwork tile!</span>")
+
+/datum/antagonist/clockcult/get_preview_icon()
+	var/icon/clockie_icon = icon('icons/effects/512x512.dmi', "ratvar")
+
+	clockie_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return clockie_icon

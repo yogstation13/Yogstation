@@ -48,6 +48,26 @@
 		/obj/item/cautery/alien,
 	)
 
+/obj/effect/spawner/lootdrop/engineering_tool_advanced
+	name = "Advanced engineering tool spawner"
+	loot = list( // Mail loot spawner. Drop pool of advanced engineering tools typically from research. Not endgame content.
+		/obj/item/handdrill,
+		/obj/item/jawsoflife,
+		/obj/item/multitool/tricorder,
+		/obj/item/weldingtool/experimental,
+	)
+
+/obj/effect/spawner/lootdrop/engineering_tool_alien
+	name = "Rare engineering tool spawner"
+	loot = list( // Mail loot spawner. Some sort of random and rare engineering tool. Alien tech found here.
+		/obj/item/wrench/abductor,
+		/obj/item/wirecutters/abductor,
+		/obj/item/screwdriver/abductor,
+		/obj/item/crowbar/abductor,
+		/obj/item/weldingtool/abductor,
+		/obj/item/multitool/abductor,
+	)
+
 /obj/effect/spawner/lootdrop/memeorgans
 	name = "meme organ spawner"
 	lootcount = 5
@@ -69,6 +89,59 @@
 		/obj/item/organ/lungs/plasmaman,
 		/obj/item/organ/tail/cat,
 		/obj/item/organ/tail/lizard,
+	)
+
+/obj/effect/spawner/lootdrop/plushies
+	name = "random plushie"
+	lootcount = 1
+	loot = list(
+		/obj/item/toy/plush/bubbleplush,
+		/obj/item/toy/plush/carpplushie,
+		/obj/item/toy/plush/lizardplushie,
+		/obj/item/toy/plush/snakeplushie,
+		/obj/item/toy/plush/nukeplushie,
+		/obj/item/toy/plush/slimeplushie,
+		/obj/item/toy/plush/beeplushie,
+		/obj/item/toy/plush/mothplushie,
+		/obj/item/toy/plush/pkplushie,
+		/obj/item/toy/plush/foxplushie,
+		/obj/item/toy/plush/lizard/azeel,
+		/obj/item/toy/plush/blahaj,
+		/obj/item/toy/plush/cdragon,
+		/obj/item/toy/plush/goatplushie,
+		/obj/item/toy/plush/teddybear,
+		/obj/item/toy/plush/stuffedmonkey,
+		/obj/item/toy/plush/inorixplushie,
+		/obj/item/toy/plush/flowerbunch,
+		/obj/item/toy/plush/goatplushie,
+		/obj/item/toy/plush/realgoat
+	)
+
+/obj/effect/spawner/lootdrop/techshell
+	name = "random techshell spawner"
+	lootcount = 1
+	loot = list(
+		/obj/item/ammo_casing/shotgun/pulseslug,
+		/obj/item/ammo_casing/shotgun/dragonsbreath,
+		/obj/item/ammo_casing/shotgun/ion,
+		/obj/item/ammo_casing/shotgun/frag12,
+		/obj/item/ammo_casing/shotgun/laserbuckshot,
+		/obj/item/ammo_casing/shotgun/thundershot,
+		/obj/item/ammo_casing/shotgun/uraniumpenetrator,
+		/obj/item/ammo_casing/shotgun/cryoshot
+	)
+
+/obj/effect/spawner/lootdrop/coin
+	name = "random coin spawner"
+	lootcount = 1
+	loot = list(
+		/obj/item/coin/iron,
+		/obj/item/coin/silver,
+		/obj/item/coin/gold,
+		/obj/item/coin/plasma,
+		/obj/item/coin/uranium,
+		/obj/item/coin/diamond,
+		/obj/item/coin/bananium
 	)
 
 /obj/effect/spawner/lootdrop/armory_contraband
@@ -360,16 +433,47 @@
 	name = "maintenance loot spawner"
 	// see code/_globalvars/lists/maintenance_loot.dm for loot table
 
+//Start of Yogstation change: Refactors maintenance loot.
+
 /obj/effect/spawner/lootdrop/maintenance/Initialize(mapload)
-	loot = GLOB.maintenance_loot
-	
+
+	loot = GLOB.maintenance_loot_makeshift
+	lootcount = 1
+
+	switch(rand(1,10000))
+		if(1 to 5)
+			loot = GLOB.maintenance_loot_serious
+		if(6 to 30)
+			loot = GLOB.maintenance_loot_major
+		if(31 to 400)
+			loot = GLOB.maintenance_loot_moderate
+		if(401 to 2000)
+			loot = GLOB.maintenance_loot_minor
+			for(var/obj/O in get_turf(src))
+				if(O.density) //Must be a table or a locker or something.
+					lootcount = rand(lootcount,lootcount*6)
+					break
+		if(2001 to 4000)
+			loot = GLOB.maintenance_loot_makeshift
+			for(var/obj/O in get_turf(src))
+				if(O.density) //Must be a table or a locker or something.
+					lootcount = rand(lootcount,lootcount*6)
+					break
+		if(4001 to 10000)
+			loot = GLOB.maintenance_loot_traditional
+			for(var/obj/O in get_turf(src))
+				if(O.density) //Must be a table or a locker or something.
+					lootcount = rand(lootcount,lootcount*3)
+					break
+
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_FILLED_MAINT))
-		lootcount = FLOOR(lootcount * 1.5, 1)
+		lootcount = CEILING(lootcount * 1.5, 1)
 
 	else if(HAS_TRAIT(SSstation, STATION_TRAIT_EMPTY_MAINT))
-		lootcount = FLOOR(lootcount * 0.5, 1)
+		lootcount = CEILING(lootcount * 0.5, 1)
 
 	. = ..()
+//End of Yogstation change: Refactors maintenance loot.
 
 /obj/effect/spawner/lootdrop/maintenance/two
 	name = "2 x maintenance loot spawner"
@@ -416,7 +520,7 @@
 		/obj/item/organ/heart/gland/egg = 7,
 		/obj/item/organ/heart/gland/chem = 5,
 		/obj/item/organ/heart/gland/mindshock = 5,
-		/obj/item/organ/heart/gland/plasma = 7,
+		/obj/item/organ/heart/gland/gas = 7, //Yogstation change: plasma -> gas
 		/obj/item/organ/heart/gland/pop = 5,
 		/obj/item/organ/heart/gland/slime = 4,
 		/obj/item/organ/heart/gland/spiderman = 5,

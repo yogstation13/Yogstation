@@ -1,6 +1,7 @@
 /obj/item/organ/appendix
 	name = "appendix"
 	icon_state = "appendix"
+	visual = FALSE
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_APPENDIX
 	healing_factor = STANDARD_ORGAN_HEALING
@@ -42,6 +43,9 @@
 	if(inflamed)
 		S.reagents.add_reagent(/datum/reagent/toxin/bad_food, 5)
 	return S
+
+/obj/item/organ/appendix/get_availability(datum/species/species)
+	return !(TRAIT_NOHUNGER in species.inherent_traits)
 
 /obj/item/organ/appendix/cybernetic
 	name = "cybernetic appendix"

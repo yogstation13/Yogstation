@@ -106,7 +106,7 @@
 
 		to_chat(src, span_warning("You slither your tentacles up [C] and begin probing at [C.p_their()] ear canal...")) // Yogs -- pronouns
 
-		if(!do_mob(src, C, 4 SECONDS))
+		if(!do_mob(src, C, 3 SECONDS))
 			to_chat(src, span_warning("As [C] moves away, you are dislodged and fall to the ground."))
 			return
 
@@ -321,7 +321,7 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/horror/emote(act, m_type = null, message = null, intentional = FALSE)
+/mob/living/simple_animal/horror/emote(act, m_type = null, message = null, intentional = FALSE, is_keybind = FALSE)
 	if(victim)
 		to_chat(src, span_warning("You cannot emote while inside a host!"))
 		return
@@ -787,7 +787,7 @@
 	if(victim.health <= 75)
 		detatch()
 		to_chat(src, span_warning("It appears that [victim]s brain detected danger, and hastily took over."))
-		to_chat(victim, span_danger("Your body is under attack, you unconciously forced your brain to immediately take over!"))
+		to_chat(victim, span_danger("Your body is under attack, you unconsciously forced your brain to immediately take over!"))
 
 /mob/living/simple_animal/horror/proc/detatch()
 	if(!victim || !controlling)
@@ -859,3 +859,4 @@
 	else
 		RemoveInfestActions()
 		GrantHorrorActions()
+

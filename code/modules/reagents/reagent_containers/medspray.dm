@@ -14,8 +14,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 7
-	amount_per_transfer_from_this = 25
-	volume = 100
+	amount_per_transfer_from_this = 10
+	volume = 30
 	var/can_fill_from_container = TRUE
 	var/apply_type = PATCH
 	var/apply_method = "spray"
@@ -26,7 +26,7 @@
 	custom_price = 40
 
 /obj/item/reagent_containers/medspray/is_refillable()//one bottle, one opportunity
-	return FALSE
+	return can_fill_from_container
 
 /obj/item/reagent_containers/medspray/attack_self(mob/user)
 	squirt_mode = !squirt_mode
@@ -80,24 +80,36 @@
 
 /obj/item/reagent_containers/medspray/styptic
 	name = "medical spray (styptic powder)"
-	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains styptic powder, for treating cuts and bruises."
+	desc = "A single use medical spray bottle, designed for precision application. This one contains styptic powder, for treating cuts and bruises."
 	icon_state = "brutespray"
 	list_reagents = list(/datum/reagent/medicine/styptic_powder = 100)
+	can_fill_from_container = FALSE
+	amount_per_transfer_from_this = 25
+	volume = 100
 
 /obj/item/reagent_containers/medspray/silver_sulf
 	name = "medical spray (silver sulfadiazine)"
-	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains silver sulfadiazine, useful for treating burns."
+	desc = "A single use medical spray bottle, designed for precision application. This one contains silver sulfadiazine, useful for treating burns."
 	icon_state = "burnspray"
 	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 100)
+	can_fill_from_container = FALSE
+	amount_per_transfer_from_this = 25
+	volume = 100
 
 /obj/item/reagent_containers/medspray/synthflesh
 	name = "medical spray (synthflesh)"
-	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap. This one contains synthflesh, an apex brute and burn healing agent."
+	desc = "A single use medical spray bottle, designed for precision application. This one contains synthflesh, an apex brute and burn healing agent."
 	icon_state = "synthspray"
 	list_reagents = list(/datum/reagent/medicine/synthflesh = 100)
+	can_fill_from_container = FALSE
+	amount_per_transfer_from_this = 25
+	volume = 100
 	custom_price = 80
 
 /obj/item/reagent_containers/medspray/sterilizine
 	name = "sterilizer spray"
 	desc = "Spray bottle loaded with non-toxic sterilizer. Useful in preparation for surgery."
 	list_reagents = list(/datum/reagent/space_cleaner/sterilizine = 100)
+	can_fill_from_container = FALSE
+	amount_per_transfer_from_this = 25
+	volume = 100

@@ -13,11 +13,12 @@
 	var/static/list/immunelist = typecacheof(list(
 		/turf/closed/wall/mineral/diamond,
 		/turf/closed/indestructible,
-		/turf/open/indestructible)
+		/turf/open/indestructible,
+		/turf/closed/wall/r_wall)
 		)
 	
 	var/static/list/resistlist = typecacheof(
-		/turf/closed/wall/r_wall
+		/turf/closed/wall/mineral
 		)
 
 /datum/component/thermite/Initialize(_amount)
@@ -43,13 +44,13 @@
 	master.cut_overlay(overlay)
 	return ..()
 
-/datum/component/thermite/InheritComponent(datum/component/thermite/newC, i_am_original, list/arguments)
+/datum/component/thermite/InheritComponent(datum/component/thermite/newC, i_am_original, _amount)
 	if(!i_am_original)
 		return
 	if(newC)
 		amount += newC.amount
 	else
-		amount += arguments[1]
+		amount += _amount
 
 /datum/component/thermite/proc/thermite_melt(mob/user)
 	var/turf/master = parent

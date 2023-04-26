@@ -190,11 +190,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 		for(var/obj/item/card/id/miner in shuttle_area.gem_payout)
 			miner.mining_points += shuttle_area.gem_payout[miner]
-			shuttle_area.gem_payout &= miner
 			playsound(miner, 'sound/machines/ping.ogg', 15, TRUE)
 			var/mob/card_holder = recursive_loc_check(miner, /mob)
 			if(ismob(card_holder))
 				to_chat(card_holder, "You have been credited with [shuttle_area.gem_payout[miner]] mining points from sold gems!")
+			shuttle_area.gem_payout.Remove(miner)
 
 	if(ex.exported_atoms)
 		ex.exported_atoms += "." //ugh
@@ -216,7 +216,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /*
 	Generates a box of mail depending on our exports and imports.
 	Applied in the cargo shuttle sending/arriving, by building the crate if the round is ready to introduce mail based on the economy subsystem.
-	Then, fills the mail crate with mail, by picking applicable crew who can recieve mail at the time to sending.
+	Then, fills the mail crate with mail, by picking applicable crew who can receive mail at the time to sending.
 */
 /obj/docking_port/mobile/supply/proc/create_mail()
 	//Early return if there's no mail waiting to prevent taking up a slot. We also don't send mails on sundays or holidays.

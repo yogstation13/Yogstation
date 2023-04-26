@@ -104,7 +104,7 @@ Bonus
 /datum/symptom/alkali
 
 	name = "Alkali perspiration"
-	desc = "The virus attaches to sudoriparous glands, synthesizing a chemical that bursts into flames when reacting with water, leading to self-immolation."
+	desc = "The virus attaches to sudoriferous glands, synthesizing a chemical that bursts into flames when reacting with water, leading to self-immolation."
 	stealth = 2
 	resistance = -2
 	stage_speed = -2
@@ -121,6 +121,7 @@ Bonus
 		"Stage Speed 8" = "Increases explosion radius and explosion damage to the host when the host is wet.",
 		"Transmission 8" = "Additionally synthesizes chlorine trifluoride and napalm inside the host. More chemicals are synthesized if the resistance 9 threshold has been met."
 	)
+	process_flags = ORGANIC | SYNTHETIC //is funny
 
 /datum/symptom/alkali/Start(datum/disease/advance/A)
 	. = ..()

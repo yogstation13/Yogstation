@@ -179,6 +179,7 @@ All foods are distributed among various categories. Use common sense.
 /obj/item/reagent_containers/food/snacks/CheckParts(list/parts_list, datum/crafting_recipe/food/R)
 	..()
 	reagents.clear_reagents()
+	reagents.maximum_volume = 100
 	for(var/obj/item/reagent_containers/RC in contents)
 		RC.reagents.trans_to(reagents, RC.reagents.maximum_volume)
 	for(var/reagent in R.reqs)

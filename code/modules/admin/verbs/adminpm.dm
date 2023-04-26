@@ -72,6 +72,8 @@
 
 	if(AH)
 		message_admins("[key_name_admin(src)] has started replying to [key_name_admin(C, 0, 0)]'s admin help.")
+		if(!AH.handling_admin)
+			AH.Administer(TRUE)
 	var/msg = input(src,"Message:", "Private message to [C.holder?.fakekey ? "an Administrator" : key_name(C, 0, 0)].") as message|null
 	if (!msg)
 		message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, 0, 0)]'s admin help.")
@@ -98,9 +100,6 @@
 			html = span_notice("Message: [msg]"),
 			confidential = TRUE)
 
-		return
-
-	if(!holder && !current_ticket)	//no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
 		return
 
 	var/client/recipient
@@ -145,9 +144,16 @@
 
 		//get message text, limit it's length.and clean/escape html
 		if(!msg)
+			if(holder)
+				message_admins("[key_name_admin(src)] has started replying to [key_name_admin(recipient, 0, 0)]'s admin help.")
+				var/datum/admin_help/AH = recipient.current_ticket
+				if(AH && !AH.handling_admin)
+					AH.Administer(TRUE)
 			msg = input(src,"Message:", "Private message to [recipient.holder?.fakekey ? "an Administrator" : key_name(recipient, 0, 0)].") as message|null
 			msg = trim(msg)
 			if(!msg)
+				if(holder)
+					message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(recipient, 0, 0)]'s admin help.")
 				return
 
 			if(prefs.muted & MUTE_ADMINHELP)
@@ -227,6 +233,9 @@
 					new /datum/admin_help(msg, recipient, TRUE) // yogs - Yog Tickets
 				if(!recipient.current_ticket.handling_admin)
 					recipient.current_ticket.Administer() // yogs - Yog Tickets
+				if(recipient.current_ticket.handling_admin != usr.client)
+					if(tgui_alert(usr, "You are replying to a ticket administered by [recipient.current_ticket.handling_admin], are you sure you wish to continue?", "Confirm", list("Yes", "No")) != "Yes")
+						return
 
 				to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>", confidential=TRUE)
 				to_chat(recipient, span_adminsay("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: [span_linkify("[msg]")]"), confidential=TRUE)

@@ -4,8 +4,7 @@ SUBSYSTEM_DEF(profiler)
 	name = "Profiler"
 	init_order = INIT_ORDER_PROFILER
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
-	wait = 3000
-	flags = SS_NO_TICK_CHECK
+	wait = 5 MINUTES
 	var/fetch_cost = 0
 	var/write_cost = 0
 
@@ -19,7 +18,7 @@ SUBSYSTEM_DEF(profiler)
 		StartProfiling()
 	else
 		StopProfiling() //Stop the early start from world/New
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/profiler/fire()
 	if(CONFIG_GET(flag/auto_profile))

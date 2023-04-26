@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(economy)
 				continue
 			else
 				new /datum/bank_account/department(A, budget_starting_amt)
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
 	tally_departments() //see how many staff in each department
@@ -155,8 +155,11 @@ SUBSYSTEM_DEF(economy)
 	if(moneysink)
 		engineering_cash += moneysink.payout()
 	var/datum/bank_account/D = get_dep_account(ACCOUNT_ENG)
+	var/datum/bank_account/C = get_dep_account(ACCOUNT_CAR)
 	if(D)
 		D.adjust_money(engineering_cash)
+	if(C)
+		C.adjust_money(engineering_cash*0.5)
 
 
 /datum/controller/subsystem/economy/proc/car_payout()

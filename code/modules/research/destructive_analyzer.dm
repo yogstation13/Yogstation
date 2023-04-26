@@ -134,7 +134,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			user_mode_string = " for [json_encode(point_value)] points"
 		else if(loaded_item.materials.len)
 			user_mode_string = " for material reclamation"
-		var/choice = input("Are you sure you want to destroy [loaded_item][user_mode_string]?") in list("Proceed", "Cancel")
+		var/choice = tgui_alert(usr, "Are you sure you want to destroy [loaded_item][user_mode_string]?",, list("Proceed", "Cancel"))
 		if(choice == "Cancel")
 			return FALSE
 		if(QDELETED(loaded_item) || QDELETED(linked_console) || !user.Adjacent(linked_console) || QDELETED(src))

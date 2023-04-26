@@ -82,6 +82,7 @@
   * Calls qdel on the chatmessage when its parent is deleted, used to register qdel signal
   */
 /datum/chatmessage/proc/on_parent_qdel()
+	SIGNAL_HANDLER
 	qdel(src)
 
 /**
@@ -108,7 +109,7 @@
 	text = replacetext(text, span_check, "")
 
 	// Clip message
-	var/maxlen = owned_by.prefs.max_chat_length
+	var/maxlen = owned_by.prefs.read_preference(/datum/preference/numeric/max_chat_length)
 	if (length_char(text) > maxlen)
 		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 

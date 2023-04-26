@@ -65,7 +65,7 @@
 	if(L?.damage)
 		next_breath = max(next_breath * L.get_organ_efficiency(), 1)
 
-	if((times_fired % next_breath) == 0 || failed_last_breath)
+	if((times_fired % next_breath) == 0 || failed_last_breath || isipc(src)) //IPCs breathe every tick to stabilize cooling
 		breathe() //Breathe per 4 ticks if healthy, down to 1 based on lung damage, unless suffocating
 		if(failed_last_breath)
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "suffocation", /datum/mood_event/suffocation)
@@ -262,11 +262,6 @@
 		var/tritium_partialpressure = (breath.get_moles(/datum/gas/tritium)/breath.total_moles())*breath_pressure
 		radiation += tritium_partialpressure/10
 
-	//NITRYL
-	if(breath.get_moles(/datum/gas/nitryl))
-		var/nitryl_partialpressure = (breath.get_moles(/datum/gas/nitryl)/breath.total_moles())*breath_pressure
-		adjustFireLoss(nitryl_partialpressure/4)
-
 	//FREON
 	if(breath.get_moles(/datum/gas/freon))
 		var/freon_partialpressure = (breath.get_moles(/datum/gas/freon)/breath.total_moles())*breath_pressure
@@ -280,8 +275,6 @@
 			var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(2,3)
 			miasma_disease.name = "Unknown"
 			ForceContractDisease(miasma_disease, TRUE, TRUE)
-
-
 
 		//Miasma side effects
 		switch(miasma_partialpressure)
@@ -321,23 +314,24 @@
 
 	return 1
 
-//Fourth and final link in a breath chain
+/// Fourth and final link in a breath chain
 /mob/living/carbon/proc/handle_breath_temperature(datum/gas_mixture/breath)
 	return
 
 /mob/living/carbon/proc/get_breath_from_internal(volume_needed)
-	if(internal)
-		if(internal.loc != src)
-			internal = null
-			update_internals_hud_icon(0)
-		else if ((!wear_mask || !(wear_mask.clothing_flags & MASKINTERNALS)) && !getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-			internal = null
-			update_internals_hud_icon(0)
-		else
-			update_internals_hud_icon(1)
-			. = internal.remove_air_volume(volume_needed)
-			if(!.)
-				return FALSE //to differentiate between no internals and active, but empty internals
+	if(invalid_internals())
+		// Unexpectely lost breathing apparatus and ability to breathe from the internal air tank.
+		cutoff_internals()
+		return
+	if (external)
+		. = external.remove_air_volume(volume_needed)
+	else if (internal)
+		. = internal.remove_air_volume(volume_needed)
+	else
+		// Return without taking a breath if there is no air tank.
+		return
+	// To differentiate between no internals and active, but empty internals.
+	return . || FALSE
 
 /mob/living/carbon/proc/handle_blood()
 	return

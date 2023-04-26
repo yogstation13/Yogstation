@@ -43,6 +43,34 @@
 /datum/antagonist/brother/antag_panel_data()
 	return "Conspirators : [get_brother_names()]"
 
+/datum/antagonist/brother/get_preview_icon()
+	var/mob/living/carbon/human/dummy/consistent/brother1 = new
+	var/mob/living/carbon/human/dummy/consistent/brother2 = new
+
+	brother1.dna.features["ethcolor"] = GLOB.color_list_ethereal["Faint Red"]
+	brother1.set_species(/datum/species/ethereal)
+
+	brother2.dna.features["moth_antennae"] = "Plain"
+	brother2.dna.features["moth_markings"] = "None"
+	brother2.dna.features["moth_wings"] = "Plain"
+	brother2.set_species(/datum/species/moth)
+
+	var/icon/brother1_icon = render_preview_outfit(/datum/outfit/job/quartermaster, brother1)
+	brother1_icon.Blend(icon('icons/effects/blood.dmi', "maskblood"), ICON_OVERLAY)
+	brother1_icon.Shift(WEST, 8)
+
+	var/icon/brother2_icon = render_preview_outfit(/datum/outfit/job/scientist, brother2)
+	brother2_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
+	brother2_icon.Shift(EAST, 8)
+
+	var/icon/final_icon = brother1_icon
+	final_icon.Blend(brother2_icon, ICON_OVERLAY)
+
+	qdel(brother1)
+	qdel(brother2)
+
+	return finish_preview_icon(final_icon)
+
 /datum/antagonist/brother/proc/get_brother_names()
 	var/list/brothers = team.members - owner
 	var/brother_text = ""
@@ -64,11 +92,16 @@
 /datum/antagonist/brother/greet()
 	var/brother_text = get_brother_names()
 	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role] of [brother_text]."))
-	to_chat(owner.current, "The Syndicate only accepts those that have proven themselves. Prove yourself and prove your [team.member_name]s by completing your objectives together!")
+	to_chat(owner.current, "The Syndicate only accepts those that have proven themselves. Prove yourself and prove your [team.member_name]s by completing your objectives together! You and your team are outfitted with communication implants allowing for direct, encrypted communication.")
 	owner.announce_objectives()
 	give_meeting_area()
 
 /datum/antagonist/brother/proc/finalize_brother()
+	var/obj/item/implant/bloodbrother/I = new /obj/item/implant/bloodbrother()
+	I.implant(owner.current, null, TRUE, TRUE)
+	for(var/datum/mind/M in team.members) // Link the implants of all team members
+		var/obj/item/implant/bloodbrother/T = locate() in M.current.implants
+		I.link_implant(T)
 	SSticker.mode.update_brother_icons_added(owner)
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
 
@@ -175,7 +208,9 @@
 
 /datum/team/brother_team/proc/forge_brother_objectives()
 	objectives = list()
-	var/is_hijacker = prob(10)
+	var/is_hijacker = FALSE
+	if (GLOB.joined_player_list.len >= 30) // Less murderboning on lowpop thanks
+		is_hijacker = prob(10)
 	for(var/i = 1 to max(1, CONFIG_GET(number/brother_objectives_amount) + (members.len > 2) - is_hijacker))
 		forge_single_objective()
 	if(is_hijacker)

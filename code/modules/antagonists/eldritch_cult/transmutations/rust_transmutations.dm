@@ -1,23 +1,23 @@
 /datum/eldritch_transmutation/rust_blade
 	name = "Rusty Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/item/trash)
-	result_atoms = list(/obj/item/melee/sickly_blade/rust)
+	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/rust)
 	required_shit_list = "A piece of trash and a knife."
 
 /datum/eldritch_transmutation/armor
-	name = "Create Eldritch Armor"
+	name = "Eldritch Armor"
 	required_atoms = list(/obj/structure/table,/obj/item/clothing/mask/gas)
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch)
 	required_shit_list = "A table and a gas mask."
 
 /datum/eldritch_transmutation/water
-	name = "Create Eldritch Essence"
+	name = "Eldritch Essence"
 	required_atoms = list(/obj/structure/reagent_dispensers/watertank)
 	result_atoms = list(/obj/item/reagent_containers/glass/beaker/eldritch)
 	required_shit_list = "A tank of water."
 
 /datum/eldritch_transmutation/final/rust_final
-	name = "Rustbringer's Oath"
+	name = "Fallen Empress' Pathology"
 	required_atoms = list(/mob/living/carbon/human)
 	required_shit_list = "Three dead bodies."
 
@@ -27,7 +27,7 @@
 	H.physiology.burn_mod *= 0.5
 	H.physiology.stamina_mod = 0
 	H.physiology.stun_mod = 0
-	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the decay, for Rustbringer [user.real_name] has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+	priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report significant and rapid decay of the station's infrastructure with a single entity as its source. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 	set_security_level(SEC_LEVEL_GAMMA)
 	new /datum/rust_spread(loc)
 	var/datum/antagonist/heretic/ascension = H.mind.has_antag_datum(/datum/antagonist/heretic)

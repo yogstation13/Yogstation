@@ -8,7 +8,7 @@
 	agent = "Cryptococcus Cosmosis"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	cure_chance = 15//higher chance to cure, since two reagents are required
-	desc = "This disease destroys the braincells, causing brain fever, brain necrosis and general intoxication."
+	desc = "This disease destroys the brain's cells, causing brain fever, brain necrosis and general intoxication."
 	required_organs = list(/obj/item/organ/brain)
 	severity = DISEASE_SEVERITY_HARMFUL
 

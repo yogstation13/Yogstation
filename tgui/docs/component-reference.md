@@ -39,8 +39,10 @@ Make sure to add new items to this list if you document new components.
   - [`NoticeBox`](#noticebox)
   - [`NumberInput`](#numberinput)
   - [`ProgressBar`](#progressbar)
+  - [`RoundGauge`](#roundgauge)
   - [`Section`](#section)
   - [`Slider`](#slider)
+  - ['Stack'](#stack)
   - [`Table`](#table)
   - [`Table.Row`](#tablerow)
   - [`Table.Cell`](#tablecell)
@@ -217,11 +219,7 @@ Buttons allow users to take actions, and make choices, with a single click.
 - `selected: boolean` - Activates the button (gives it a green color).
 - `tooltip: string` - A fancy, boxy tooltip, which appears when hovering
 over the button.
-- `tooltipPosition: string` - Position of the tooltip.
-  - `top` - Show tooltip above the button.
-  - `bottom` (default) - Show tooltip below the button.
-  - `left` - Show tooltip on the left of the button.
-  - `right` - Show tooltip on the right of the button.
+- `tooltipPosition?: string` - Position of the tooltip. See [`Popper`](#Popper) for valid options.
 - `ellipsis: boolean` - If button width is constrained, button text will
 be truncated with an ellipsis. Be careful however, because this prop breaks
 the baseline alignment.
@@ -384,10 +382,9 @@ to the left, and certain elements to the right:
 
 ```jsx
 <Flex>
-  <Flex.Item>
+  <Flex.Item grow={1}>
     Button description
   </Flex.Item>
-  <Flex.Item grow={1} />
   <Flex.Item>
     <Button>
       Perform an action
@@ -396,16 +393,15 @@ to the left, and certain elements to the right:
 </Flex>
 ```
 
-Flex item with `grow` property serves as a "filler", to separate the other
-two flex items as far as possible from each other.
+Flex item with `grow` property will grow to take all available empty space,
+while flex items without grow will take the minimum amount of space. This
+effectively places the last flex item to the very end of the flex container.
 
 **Props:**
 
 - See inherited props: [Box](#box)
-- `spacing: number` - Spacing between flex items, in integer units
-(1 unit - 0.5em). Does not directly relate to a flex css property
-(adds a modifier class under the hood), and only integer numbers are
-supported.
+- ~~`spacing: number`~~ - **Removed in tgui 4.3**,
+use [Stack](#stack) instead.
 - `inline: boolean` - Makes flexbox container inline, with similar behavior
 to an `inline` property on a `Box`.
 - `direction: string` - This establishes the main-axis, thus defining the
@@ -452,16 +448,16 @@ when they overflow the line.
 - `order: number` - By default, flex items are laid out in the source order.
 However, the order property controls the order in which they appear in the
 flex container.
-- `grow: number` - This defines the ability for a flex item to grow if
-necessary. It accepts a unitless value that serves as a proportion. It
+- `grow: number | boolean` - This defines the ability for a flex item to grow
+if necessary. It accepts a unitless value that serves as a proportion. It
 dictates what amount of the available space inside the flex container the
 item should take up. This number is unit-less and is relative to other
 siblings.
-- `shrink: number` - This defines the ability for a flex item to shrink
-if necessary. Inverse of `grow`.
-- `basis: string` - This defines the default size of an element before any
-flex-related calculations are done. Has to be a length (e.g. `20%`, `5rem`),
-an `auto` or `content` keyword.
+- `shrink: number | boolean` - This defines the ability for a flex item to
+shrink if necessary. Inverse of `grow`.
+- `basis: number | string` - This defines the default size of an element
+before any flex-related calculations are done. Has to be a length
+(e.g. `20%`, `5rem`), an `auto` or `content` keyword.
   - **Important:** IE11 flex is buggy, and auto width/height calculations
   can sometimes end up in a circular dependency. This usually happens, when
   working with tables inside flex (they have wacky internal widths and such).
@@ -722,6 +718,16 @@ the input, or successfully enter a number.
 - `onDrag: (e, value) => void` - An event, which fires about every 500ms
 when you drag the input up and down, on release and on manual editing.
 
+### `Popper`
+
+Popper lets you position elements so that they don't go out of the bounds of the window. See [popper.js](https://popper.js.org/) for more information.
+
+**Props:**
+
+- `popperContent: InfernoNode` - The content that will be put inside the popper.
+- `options?: { ... }` - An object of options to pass to `createPopper`. See [https://popper.js.org/docs/v2/constructors/#options], but the one you want most is `placement`. Valid placements are "bottom", "top", "left", and "right". You can affix "-start" and "-end" to achieve something like top left or top right respectively. You can also use "auto" (with an optional "-start" or "-end"), where a best fit will be chosen.
+- `additionalStyles: { ... }` - A map of CSS styles to add to the element that will contain the popper.
+
 ### `ProgressBar`
 
 Progress indicators inform users about the status of ongoing processes.
@@ -753,6 +759,38 @@ percentage and how filled the bar is.
 based on whether the value lands in the range between `from` and `to`.
 - `color: string` - Color of the progress bar.
 - `children: any` - Content to render inside the progress bar.
+
+### `RoundGauge`
+
+The RoundGauge component provides a visual representation of a single metric, as well as being capable of showing informational or cautionary boundaries related to that metric.
+
+```jsx
+<RoundGauge
+  size={1.75}
+  value={tankPressure}
+  minValue={0}
+  maxValue={pressureLimit}
+  alertAfter={pressureLimit * 0.70}
+  ranges={{
+    "good": [0, pressureLimit * 0.70],
+    "average": [pressureLimit * 0.70, pressureLimit * 0.85],
+    "bad": [pressureLimit * 0.85, pressureLimit],
+  }}
+  format={formatPressure} />
+```
+
+The alert on the gauge is optional, and will only be shown if the `alertAfter` prop is defined. When defined, the alert will begin to flash the respective color upon which the needle currently rests, as defined in the `ranges` prop.
+
+**Props:**
+
+- See inherited props: [Box](#box)
+- `value: number` - The current value of the metric.
+- `minValue: number` (default: 0) - The lower bound of the guage.
+- `maxValue: number` (default: 1) - The upper bound of the guage.
+- `ranges: { color: [from, to] }` (default: `{ "good": [0, 1] }`) - Provide regions of the guage to color between two specified values of the metric.
+- `alertAfter: number` (optional) - When provided, will cause an alert symbol on the gauge to begin flashing in the color upon which the needle currently rest, as defined in `ranges`.
+- `format: function(value) => string` (optional) - When provided, will be used to format the value of the metric for display.
+- `size: number` (default: 1) - When provided scales the gauge.
 
 ### `Section`
 
@@ -829,6 +867,76 @@ Default is about 250ms, increase it if you still see flickering.
 the input, or successfully enter a number.
 - `onDrag: (e, value) => void` - An event, which fires about every 500ms
 when you drag the input up and down, on release and on manual editing.
+
+### `Stack`
+
+A higher-level component, that is based on [Flex](#flex). The main difference
+from `Flex`, is that this component automatically adds spacing between
+all stack items, reducing the boilerplate that you have to write!
+
+Consists of two elements: `<Stack>` and `<Stack.Item>`.
+
+Stacks can be vertical by adding a `vertical` property.
+
+**Example:**
+
+```jsx
+<Stack>
+  <Stack.Item grow>
+    Button description
+  </Stack.Item>
+  <Stack.Item>
+    <Button>
+      Perform an action
+    </Button>
+  </Stack.Item>
+</Stack>
+```
+
+**Example of a high-level window layout:**
+
+Stacks can be used for high level window layout.
+Make sure to use the `fill` property.
+
+```jsx
+<Window>
+  <Window.Content>
+    <Stack fill>
+      <Stack.Item>
+        <Section fill>
+          Sidebar
+        </Section>
+      </Stack.Item>
+      <Stack.Item grow>
+        <Stack fill vertical>
+          <Stack.Item grow>
+            <Section fill scrollable>
+              Main content
+            </Section>
+          </Stack.Item>
+          <Stack.Item>
+            <Section>
+              Bottom pane
+            </Section>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+    </Stack>
+  </Window.Content>
+</Window>
+```
+
+**Props:**
+
+- See inherited props: [Flex](#flex)
+- `fill: boolean` - If set, stack will fill all available height.
+- `vertical: boolean` - If set, stack will work in vertical mode.
+
+### `Stack.Item`
+
+**Props:**
+
+- See inherited props: [Flex.Item](#flexitem)
 
 ### `Table`
 
@@ -951,17 +1059,16 @@ it is recommended to use that prop instead.
 Usage:
 
 ```jsx
-<Box position="relative">
-  Sample text.
-  <Tooltip
-    position="bottom"
-    content="Box tooltip" />
-</Box>
+<Tooltip position="bottom" content="Box tooltip">
+  <Box position="relative">
+    Sample text.
+  </Box>
+</Tooltip>
 ```
 
 **Props:**
 
-- `position: string` - Tooltip position.
+- `position?: string` - Tooltip position. See [`Popper`](#Popper) for valid options. Defaults to "auto".
 - `content: string` - Content of the tooltip. Must be a plain string.
 Fragments or other elements are **not** supported.
 
@@ -976,9 +1083,7 @@ it in one way or another.
 Example:
 
 ```jsx
-<Window
-  theme="hackerman"
-  resizable>
+<Window theme="hackerman">
   <Window.Content scrollable>
     Hello, world!
   </Window.Content>
@@ -992,7 +1097,9 @@ Example:
 - `theme: string` - A name of the theme.
   - For a list of themes, see `packages/tgui/styles/themes`.
 - `title: string` - Window title.
-- `resizable: boolean` - Controls resizability of the window.
+- `width: number` - Window width.
+- `height: number` - Window height.
+- `canClose: boolean` - Controls the ability to close the window.
 - `children: any` - Child elements, which are rendered directly inside the
 window. If you use a [Dimmer](#dimmer) or [Modal](#modal) in your UI,
 they should be put as direct childs of a Window, otherwise you should be

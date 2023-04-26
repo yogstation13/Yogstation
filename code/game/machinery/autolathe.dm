@@ -266,13 +266,17 @@
 	if(wallcheck(printdirection))
 		say("Output blocked, please remove obstruction.")
 		return FALSE
+	if(!materials)
+		say("Error, invalid object.")
+		return FALSE
 	return materials.has_materials(required_materials)
 
 /obj/machinery/autolathe/proc/reset(wire)
 	switch(wire)
 		if(WIRE_HACK)
 			if(!wires.is_cut(wire))
-				adjust_hacked(FALSE)
+				if(!(obj_flags & EMAGGED))
+					adjust_hacked(FALSE)
 		if(WIRE_SHOCK)
 			if(!wires.is_cut(wire))
 				shocked = FALSE
@@ -306,6 +310,15 @@
 /obj/machinery/autolathe/hacked/Initialize()
 	. = ..()
 	adjust_hacked(TRUE)
+
+/obj/machinery/autolathe/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		return
+	obj_flags |= EMAGGED
+	if(!hacked)
+		adjust_hacked(TRUE)
+	playsound(src, "sparks", 75, TRUE, -1)
+	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
 
 //Called when the object is constructed by an autolathe
 //Has a reference to the autolathe so you can do !!FUN!! things with hacked lathes
@@ -365,6 +378,7 @@
 				for(var/i=1, i<=multiplier, i++)
 					var/obj/item/new_item = new D.build_path(A)
 					new_item.materials = new_item.materials.Copy()
+					new_item.item_flags |= AUTOLATHED
 					for(var/mat in materials_used)
 						new_item.materials[mat] = materials_used[mat] / multiplier
 					new_item.autolathe_crafted(src)

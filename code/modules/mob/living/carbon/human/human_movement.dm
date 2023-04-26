@@ -23,6 +23,8 @@
 			if (CS.clothing_flags & NOSLIP)
 				return 0
 	if (lube & SLIDE_ICE)
+		if(HAS_TRAIT(src, TRAIT_NOSLIPICE))
+			return 0
 		if(shoes && istype(shoes, /obj/item/clothing))
 			var/obj/item/clothing/CS = shoes
 			if (CS.clothing_flags & NOSLIP_ICE)
@@ -49,10 +51,10 @@
 			. = 1
 
 /mob/living/carbon/human/mob_negates_gravity()
-	return ((shoes && shoes.negates_gravity()) || (dna.species.negates_gravity(src)))
+	return ((shoes && shoes.negates_gravity()) || (dna.species.negates_gravity(src)) || HAS_TRAIT(src, TRAIT_MAGBOOTS))
 
 /mob/living/carbon/human/mob_has_heavy_gravity()
-	return (shoes && shoes.negates_gravity() || (dna.species.has_heavy_gravity(src)))
+	return (shoes && shoes.negates_gravity() || (dna.species.has_heavy_gravity(src)) || HAS_TRAIT(src, TRAIT_MAGBOOTS))
 
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()
@@ -66,7 +68,7 @@
 
 				//Bloody footprints
 				var/turf/T = get_turf(src)
-				if(S.bloody_shoes && S.bloody_shoes[S.blood_state])
+				if(istype(S) && S.bloody_shoes && S.bloody_shoes[S.blood_state])
 					for(var/obj/effect/decal/cleanable/blood/footprints/oldFP in T)
 						if (oldFP.blood_state == S.blood_state)
 							return
@@ -81,7 +83,8 @@
 						FP.update_icon()
 					update_inv_shoes()
 				//End bloody footprints
-				S.step_action()
+				if(istype(S))
+					S.step_action()
 	if(wear_neck)
 		if(mobility_flags & MOBILITY_STAND)
 			if(loc == NewLoc)

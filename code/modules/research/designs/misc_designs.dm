@@ -147,6 +147,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/clownshoesimplant
+	name = "Clownshoes implant"
+	desc = "Advanced clown technology has allowed the implanting of bananium to allow for heightened prankage."
+	id = "clownshoesimplant"
+	build_type = PROTOLATHE | MECHFAB
+	materials = list(/datum/material/iron = 4000, /datum/material/bananium = 1000)
+	build_path = /obj/item/organ/cyberimp/leg/clownshoes
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/mesons
 	name = "Optical Meson Scanners"
 	desc = "Used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting condition."
@@ -420,6 +430,16 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/plastic = 500)
 	build_path = /obj/structure/holosign/barrier/wetsign
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+/datum/design/holosignclown
+	name = "HONK holobanana projector"
+	desc = "A holographic projector that creates hardlight bananas"
+	id = "holosignclown"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/plastic = 500, /datum/material/bananium = 1000)
+	build_path = /obj/item/holosign_creator/clown
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 

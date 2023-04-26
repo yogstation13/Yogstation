@@ -59,14 +59,23 @@
 	. = ..()
 	. += "Intent: [a_intent]"
 	. += "Move Mode: [m_intent]"
-	if (internal)
-		if (!internal.air_contents)
-			qdel(internal)
-		else
-			. += ""
-			. += "Internal Atmosphere Info: [internal.name]"
-			. += "Tank Pressure: [internal.air_contents.return_pressure()]"
-			. += "Distribution Pressure: [internal.distribute_pressure]"
+	var/obj/item/tank/target_tank = internal || external
+	if(target_tank)
+		var/datum/gas_mixture/internal_air = target_tank.return_air()
+		. += ""
+		. += "Internal Atmosphere Info: [target_tank.name]"
+		. += "Tank Pressure: [internal_air.return_pressure()]"
+		. += "Distribution Pressure: [target_tank.distribute_pressure]"
+
+	// CLOAKER BELT
+	if(istype(belt, /obj/item/storage/belt/military/shadowcloak))
+		var/obj/item/storage/belt/military/shadowcloak/SC = belt
+		var/turf/T = get_turf(src)
+		var/lumens = T.get_lumcount()
+		. += ""
+		. += "Cloaker Status: [SC.on ? "ON" : "OFF"]"
+		. += "Cloaker Charge: [round(100*SC.charge/SC.max_charge, 1)]%"
+		. += "Lumens Count: [round(lumens, 0.01)]"
 
 	var/datum/antagonist/hivemind/hivemind = mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(hivemind)
@@ -290,6 +299,8 @@
 			if(pocket_item)
 				if(pocket_item == (pocket_id == SLOT_R_STORE ? r_store : l_store)) //item still in the pocket we search
 					dropItemToGround(pocket_item)
+					if(usr.IsAdvancedToolUser())
+						usr.put_in_hands(pocket_item)
 			else
 				if(place_item)
 					if(place_item.mob_can_equip(src, usr, pocket_id, FALSE, TRUE))
@@ -880,7 +891,7 @@
 	..()
 
 /mob/living/carbon/human/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
-	if(blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
+	if(!force && blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
 		if(message)
 			visible_message(span_warning("[src] dry heaves!"), \
 							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
@@ -965,7 +976,9 @@
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
-	return (istype(target) && target.stat == CONSCIOUS)
+	if (istype(target) && target.stat == CONSCIOUS && src.a_intent == INTENT_HELP)
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
 	return (ishuman(target) && !(target.mobility_flags & MOBILITY_STAND))
@@ -1251,6 +1264,9 @@
 /mob/living/carbon/human/species/lizard/ashwalker
 	race = /datum/species/lizard/ashwalker
 
+/mob/living/carbon/human/species/lizard/ashwalker/shaman
+	race = /datum/species/lizard/ashwalker/shaman
+
 /mob/living/carbon/human/species/lizard/draconid
 	race = /datum/species/lizard/draconid
 
@@ -1262,6 +1278,17 @@
 
 /mob/living/carbon/human/species/ipc
 	race = /datum/species/ipc
+
+/mob/living/carbon/human/species/ipc/empty //used for "cloning" ipcs
+
+/mob/living/carbon/human/species/ipc/empty/Initialize()
+	. = ..()
+	deathsound = null //make it a silent death
+	death()
+	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
+	if(B)
+		B.Remove(src)
+		QDEL_NULL(B)
 
 /mob/living/carbon/human/species/plasma
 	race = /datum/species/plasmaman

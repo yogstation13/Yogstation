@@ -142,10 +142,15 @@
 	
 	var/datum/beam/newVine = Beam(the_target, "vine", time=INFINITY, maxdistance = vine_grab_distance, beam_type=/obj/effect/ebeam/vine)
 	RegisterSignal(newVine, COMSIG_PARENT_QDELETING, .proc/remove_vine, newVine)
+	listclearnulls(vines)
 	vines += newVine
 	if(isliving(the_target))
 		var/mob/living/L = the_target
-		L.Paralyze(20)
+		if(iscarbon(the_target))
+			L.Immobilize(0.25 SECONDS)
+			L.Knockdown(2 SECONDS)
+		else
+			L.Paralyze(2 SECONDS)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/venus_human_trap/Login()
@@ -170,7 +175,7 @@
 /mob/living/simple_animal/hostile/venus_human_trap/proc/humanize_plant(mob/user)
 	if(key || !playable_plant || stat)
 		return
-	var/plant_ask = alert("Become a venus human trap?", "Are you reverse vegan?", "Yes", "No")
+	var/plant_ask = tgui_alert(usr,"Become a venus human trap?", "Are you reverse vegan?", list("Yes", "No"))
 	if(plant_ask == "No" || QDELETED(src))
 		return
 	if(key)
@@ -219,8 +224,8 @@
 
 /mob/living/simple_animal/hostile/venus_human_trap/proc/check_gas()
 	for(var/contents in src.loc)
-		if(istype(contents, /obj/effect/particle_effect/smoke/chem))
-			var/obj/effect/particle_effect/smoke/chem/gas = contents
+		if(istype(contents, /obj/effect/particle_effect/fluid/smoke/chem))
+			var/obj/effect/particle_effect/fluid/smoke/chem/gas = contents
 			if(gas.reagents.has_reagent(/datum/reagent/toxin/plantbgone, 1))
 				return TRUE
 	return FALSE

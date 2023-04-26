@@ -1,7 +1,7 @@
 /obj/machinery/atmospherics/components/binary/temperature_gate
 	icon_state = "tgate_map-3"
 	name = "temperature gate"
-	desc = "An activable gate that compares the input temperature with the interface set temperature to check if the gas can flow or not."
+	desc = "An activable gate that compares the input temperature with the interface set temperature to check if the gas can flow from the input side to the output side or not."
 
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
@@ -30,7 +30,7 @@
 	if(can_interact(user))
 		target_temperature = max_temperature
 		investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
-		to_chat(user, span_notice("You set the target temperature on [src] to [target_temperature] K."))
+		balloon_alert(user, "target temperature set to [target_temperature] K")
 		update_icon()
 	return ..()
 
@@ -86,7 +86,8 @@
 	var/data = list()
 	data["on"] = on
 	data["temperature"] = round(target_temperature)
-	data["max_temperature"] = round(max_temperature*100)
+	data["min_temperature"] = round(minimum_temperature)
+	data["max_temperature"] = round(max_temperature)
 	return data
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/ui_act(action, params)

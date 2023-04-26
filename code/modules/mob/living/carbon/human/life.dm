@@ -18,7 +18,7 @@
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
 
-/mob/living/carbon/human/Life(seconds, times_fired)
+/mob/living/carbon/human/Life(times_fired)
 	set invisibility = 0
 	if (notransform)
 		return
@@ -56,9 +56,9 @@
 		if(moody && moody.mood_level >= 7) // heal 0.2hp per second if you have 7 or more mood(I feel pretty good)
 			if(prob(50))
 				if(prob(50))
-					heal_bodypart_damage(0.2*seconds, 0, 0, TRUE, BODYPART_ORGANIC)
+					heal_bodypart_damage(0.4, 0, 0, TRUE, BODYPART_ORGANIC)
 				else
-					heal_bodypart_damage(0, 0.2*seconds, 0, TRUE, BODYPART_ORGANIC)
+					heal_bodypart_damage(0, 0.4, 0, TRUE, BODYPART_ORGANIC)
 		return 1
 
 
@@ -67,6 +67,10 @@
 		var/obj/item/clothing/CS = wear_suit
 		var/obj/item/clothing/CH = head
 		if (CS.clothing_flags & CH.clothing_flags & STOPSPRESSUREDAMAGE)
+			return ONE_ATMOSPHERE
+	else if(!get_bodypart(BODY_ZONE_HEAD) && wear_suit && istype(wear_suit, /obj/item/clothing)) // you don't need a helmet if you don't have a head
+		var/obj/item/clothing/CS = wear_suit
+		if(CS.clothing_flags & STOPSPRESSUREDAMAGE)
 			return ONE_ATMOSPHERE
 	return pressure
 
@@ -105,7 +109,7 @@
 	if(!L)
 		if(isipc(src))
 			throw_alert("not_enough_oxy", /atom/movable/screen/alert/not_enough_oxy/ipc)
-			adjust_bodytemperature(65, max_temp = 500)
+			adjust_bodytemperature(20, max_temp = 500)
 		else
 			if(health >= crit_threshold)
 				adjustOxyLoss(HUMAN_MAX_OXYLOSS + 1)

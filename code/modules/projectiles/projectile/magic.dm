@@ -71,8 +71,9 @@
 		if(!stuff.anchored && stuff.loc && !isobserver(stuff))
 			if(do_teleport(stuff, stuff, 10, channel = TELEPORT_CHANNEL_MAGIC))
 				teleammount++
-				var/datum/effect_system/smoke_spread/smoke = new
-				smoke.set_up(max(round(4 - teleammount),0), stuff.loc) //Smoke drops off if a lot of stuff is moved for the sake of sanity
+				var/smoke_range = max(round(4 - teleammount), 0)
+				var/datum/effect_system/fluid_spread/smoke/smoke = new
+				smoke.set_up(smoke_range, location = stuff.loc) //Smoke drops off if a lot of stuff is moved for the sake of sanity
 				smoke.start()
 
 /obj/item/projectile/magic/safety
@@ -92,8 +93,8 @@
 
 	if(do_teleport(target, destination_turf, channel=TELEPORT_CHANNEL_MAGIC))
 		for(var/t in list(origin_turf, destination_turf))
-			var/datum/effect_system/smoke_spread/smoke = new
-			smoke.set_up(0, t)
+			var/datum/effect_system/fluid_spread/smoke/smoke = new
+			smoke.set_up(0, location = t)
 			smoke.start()
 
 /obj/item/projectile/magic/door
@@ -199,10 +200,14 @@
 		if("animal")
 			var/path = pick(/mob/living/simple_animal/hostile/carp,
 							/mob/living/simple_animal/hostile/bear,
-							/mob/living/simple_animal/hostile/mushroom,
+							/mob/living/simple_animal/hostile/carp/eyeball,
+							/mob/living/simple_animal/hostile/eldritch/raw_prophet,
 							/mob/living/simple_animal/hostile/statue,
 							/mob/living/simple_animal/hostile/retaliate/bat,
 							/mob/living/simple_animal/hostile/retaliate/goat,
+							/mob/living/simple_animal/hostile/retaliate/goat/clown,
+							/mob/living/simple_animal/hostile/retaliate/clown/mutant/blob,
+							/mob/living/simple_animal/hostile/retaliate/clown/clownhulk,
 							/mob/living/simple_animal/hostile/killertomato,
 							/mob/living/simple_animal/hostile/poison/giant_spider,
 							/mob/living/simple_animal/hostile/poison/giant_spider/hunter,
@@ -217,17 +222,18 @@
 							/mob/living/simple_animal/hostile/stickman/dog,
 							/mob/living/simple_animal/hostile/megafauna/dragon/lesser,
 							/mob/living/simple_animal/hostile/gorilla,
+							/mob/living/simple_animal/hostile/lightgeist/healing,
 							/mob/living/simple_animal/parrot,
 							/mob/living/simple_animal/pet/dog/corgi,
 							/mob/living/simple_animal/crab,
 							/mob/living/simple_animal/pet/dog/pug,
 							/mob/living/simple_animal/pet/cat,
-							/mob/living/simple_animal/mouse,
-							/mob/living/simple_animal/chicken,
+							/mob/living/simple_animal/pet/cat/space,
+							/mob/living/simple_animal/chocobo,
 							/mob/living/simple_animal/cow,
 							/mob/living/simple_animal/hostile/lizard,
 							/mob/living/simple_animal/pet/fox,
-							/mob/living/simple_animal/butterfly,
+							/mob/living/simple_animal/pet/catslug,
 							/mob/living/simple_animal/pet/cat/cak,
 							/mob/living/simple_animal/chick)
 			new_mob = new path(M.loc)
@@ -245,10 +251,8 @@
 				if(chooseable_races.len)
 					new_mob.set_species(pick(chooseable_races))
 
-			var/datum/preferences/A = new()	//Randomize appearance for the human
-			A.copy_to(new_mob, icon_updates=0)
-
 			var/mob/living/carbon/human/H = new_mob
+			H.randomize_human_appearance(~(RANDOMIZE_SPECIES))
 			H.update_body()
 			H.update_hair()
 			H.update_body_parts()
@@ -377,6 +381,18 @@
 /obj/item/projectile/magic/spellblade/weak
 	damage = 15
 	dismemberment = 20
+	
+/obj/item/projectile/magic/spellblade/beesword
+	name = "stinger"
+	icon_state = "bee"
+	damage = 1
+	damage_type = BRUTE
+	dismemberment = 0
+	
+/obj/item/projectile/magic/spellblade/beesword/on_hit(atom/target, blocked = FALSE)
+	..()
+	if(ishuman(target))
+		target.reagents.add_reagent(/datum/reagent/toxin/venom, 2)
 
 /obj/item/projectile/magic/arcane_barrage
 	name = "arcane bolt"
@@ -740,7 +756,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
-		X.fire_stacks += 2
+		X.adjust_fire_stacks(2)
 		X.IgniteMob()
 
 
@@ -851,7 +867,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/X = target
-		X.fire_stacks += 1
+		X.adjust_fire_stacks(1)
 		X.IgniteMob()
 		X.adjustBruteLoss(5)
 

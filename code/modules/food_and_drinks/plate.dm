@@ -76,5 +76,6 @@
 	UnregisterSignal(removed_item, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
 
 ///This proc is called by signals that remove the food from the plate.
-/obj/item/plate/proc/ItemMoved(obj/item/moved_item, atom/OldLoc, Dir, Forced)
+/obj/item/plate/proc/ItemMoved(obj/item/moved_item, forced)
+	SIGNAL_HANDLER
 	ItemRemovedFromPlate(moved_item)

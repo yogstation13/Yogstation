@@ -85,6 +85,11 @@
 	icon_state = "shieldsparkles"
 	duration = 0.3 SECONDS
 
+/obj/effect/temp_visual/dir_setting/firing_effect/mecha_swipe
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "big_slash"
+	duration = 0.3 SECONDS
+
 /obj/effect/temp_visual/dir_setting/ninja
 	name = "ninja shadow"
 	icon = 'icons/mob/mob.dmi'
@@ -218,6 +223,10 @@
 /obj/effect/temp_visual/decoy/fading/Initialize(mapload, atom/mimiced_atom)
 	. = ..()
 	animate(src, alpha = 0, time = duration)
+
+/obj/effect/temp_visual/decoy/tensecond
+	desc = "It's a decoy!"
+	duration = 10 SECONDS
 
 /obj/effect/temp_visual/decoy/fading/threesecond
 	duration = 4 SECONDS

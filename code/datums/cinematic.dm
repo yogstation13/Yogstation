@@ -206,6 +206,20 @@
 	special()
 	screen.icon_state = "summary_cult"
 
+/datum/cinematic/cult_fail
+	id = CINEMATIC_CULT_FAIL
+
+/datum/cinematic/cult_fail/content()
+	screen.icon_state = "station_intact"
+	sleep(2 SECONDS)
+	cinematic_sound(sound('sound/creatures/narsie_rises.ogg'))
+	sleep(6 SECONDS)
+	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
+	sleep(1 SECONDS)
+	cinematic_sound(sound('sound/magic/demon_dies.ogg'))
+	sleep(3 SECONDS)
+	special()
+	
 /datum/cinematic/nuke_annihilation
 	id = CINEMATIC_ANNIHILATION
 

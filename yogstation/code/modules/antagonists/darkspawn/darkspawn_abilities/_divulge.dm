@@ -14,6 +14,8 @@
 	if(!ishuman(user))
 		to_chat(user, span_warning("You need to be human-er to do that!"))
 		return
+	if(isethereal(user))
+		user.set_light(0)
 	if(spot.get_lumcount() > DARKSPAWN_DIM_LIGHT)
 		to_chat(user, span_warning("You are only able to divulge in darkness!"))
 		return

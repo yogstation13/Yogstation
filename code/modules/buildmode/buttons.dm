@@ -28,7 +28,10 @@
 	return 1
 
 /atom/movable/screen/buildmode/mode/update_icon()
-	icon_state = bd.mode.get_button_iconstate()
+	if(bd && bd.mode)
+		icon_state = bd.mode.get_button_iconstate()
+	else
+		icon_state = initial(icon_state)
 
 /atom/movable/screen/buildmode/help
 	icon_state = "buildhelp"

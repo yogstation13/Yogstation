@@ -187,7 +187,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 		if(istype(stomach))
-			stomach.adjust_charge(20)
+			stomach.adjust_charge(10 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 			to_chat(M,span_notice("You get charged by [src]."))
 	//yogs edit end  ----------------------------------
 	if(iscyborg(M))

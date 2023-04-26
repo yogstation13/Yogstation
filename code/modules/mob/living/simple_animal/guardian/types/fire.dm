@@ -16,7 +16,7 @@
 	. = ..()
 	if(summoner)
 		summoner.ExtinguishMob()
-		summoner.adjust_fire_stacks(-20)
+		summoner.fire_stacks = -1
 
 /mob/living/simple_animal/hostile/guardian/fire/AttackingTarget()
 	. = ..()

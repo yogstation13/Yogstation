@@ -62,7 +62,7 @@ Doesn't work on other aliens/AI.*/
 /obj/effect/proc_holder/alien/proc/check_vent_block(mob/living/user)
 	var/obj/machinery/atmospherics/components/unary/atmos_thing = locate() in user.loc
 	if(atmos_thing)
-		var/rusure = alert(user, "Laying eggs and shaping resin here would block access to [atmos_thing]. Do you want to continue?", "Blocking Atmospheric Component", "Yes", "No")
+		var/rusure = tgui_alert(user, "Laying eggs and shaping resin here would block access to [atmos_thing]. Do you want to continue?", "Blocking Atmospheric Component", list("Yes", "No"))
 		if(rusure != "Yes")
 			return FALSE
 	return TRUE
@@ -147,36 +147,66 @@ Doesn't work on other aliens/AI.*/
 	desc = "Drench an object in acid, destroying it over time."
 	plasma_cost = 200
 	action_icon_state = "alien_acid"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/acid.dmi'
+	active = FALSE
 
 /obj/effect/proc_holder/alien/acid/on_gain(mob/living/carbon/user)
 	add_verb(user, /mob/living/carbon/proc/corrosive_acid)
 
 /obj/effect/proc_holder/alien/acid/on_lose(mob/living/carbon/user)
 	remove_verb(user, /mob/living/carbon/proc/corrosive_acid)
+	remove_ranged_ability()
 
-/obj/effect/proc_holder/alien/acid/proc/corrode(atom/target,mob/living/carbon/user = usr)
-	if(target in oview(1,user))
-		if(target.acid_act(200, 100))
-			user.visible_message(span_alertalien("[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!"))
-			return 1
-		else
-			to_chat(user, span_noticealien("You cannot dissolve this object."))
-
-
-			return 0
+/obj/effect/proc_holder/alien/acid/fire(mob/living/user)	
+	if(active)
+		user.balloon_alert(user, "acid glands relaxed")
+		remove_ranged_ability()
 	else
-		to_chat(src, span_noticealien("[target] is too far away."))
-		return 0
+		user.balloon_alert(user, "acid glands ready")
+		add_ranged_ability(user)
 
+/obj/effect/proc_holder/alien/acid/proc/check_target(atom/target)
+	return isturf(target) || isobj(target)
 
-/obj/effect/proc_holder/alien/acid/fire(mob/living/carbon/alien/user)
-	var/O = input("Select what to dissolve:","Dissolve",null) as obj|turf in oview(1,user)
-	if(!O || user.incapacitated())
-		return 0
-	else
-		return corrode(O,user)
+/obj/effect/proc_holder/alien/acid/InterceptClickOn(mob/living/caller, params, atom/target)
+	if(..())
+		return TRUE
 
-/mob/living/carbon/proc/corrosive_acid(O as obj|turf in oview(1)) // right click menu verb ugh
+	// Oh great, another unconscious alien. Let's just remove the ranged ability.
+	if(!iscarbon(ranged_ability_user) || ranged_ability_user.stat != CONSCIOUS)
+		remove_ranged_ability()
+		return TRUE
+
+	var/mob/living/carbon/user = ranged_ability_user
+
+	// If there's no target, why even bother?
+	if(!target || !check_target(target))
+		user.balloon_alert(user, "can't acid this!")
+		return TRUE
+
+	// Too far away
+	if(get_dist(user, target) > 1)
+		user.balloon_alert(user, "too far!")
+		return TRUE
+
+	// Plasma cost check. Because aliens need a currency too, apparently.
+	if(user.getPlasma() < plasma_cost)
+		user.balloon_alert(user, "not enough plasma!")
+		remove_ranged_ability()
+		return TRUE
+
+	// Let's just get this over with. Apply the acid effect and move on.
+	user.adjustPlasma(-plasma_cost)
+	if(target.acid_act(200, 100))
+		user.visible_message(span_alertalien("[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!"))
+		remove_ranged_ability()
+		return FALSE
+
+	// Fantastic. It didn't even work.
+	user.balloon_alert(user, "cannot disolve")
+	return TRUE
+
+/mob/living/carbon/proc/corrosive_acid() // right click menu verb ugh
 	set name = "Corrosive Acid"
 
 	if(!iscarbon(usr))
@@ -185,8 +215,7 @@ Doesn't work on other aliens/AI.*/
 	var/obj/effect/proc_holder/alien/acid/A = locate() in user.abilities
 	if(!A)
 		return
-	if(user.getPlasma() > A.plasma_cost && A.corrode(O))
-		user.adjustPlasma(-A.plasma_cost)
+	A.fire(user)
 
 /obj/effect/proc_holder/alien/neurotoxin
 	name = "Spit Neurotoxin"
@@ -274,7 +303,7 @@ Doesn't work on other aliens/AI.*/
 	if(!check_vent_block(user))
 		return FALSE
 
-	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in structures
+	var/choice = show_radial_menu(user, user, structures, radius = 36)
 	if(!choice)
 		return FALSE
 	if (!cost_check(check_turf,user))

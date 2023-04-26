@@ -1,23 +1,17 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
-/datum/asset/simple/tgui_common
-	keep_local_name = TRUE
-	assets = list(
-		"tgui-common.chunk.js" = 'tgui/public/tgui-common.chunk.js',
-	)
-
 /datum/asset/simple/tgui
 	keep_local_name = TRUE
 	assets = list(
-		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
+		"tgui.bundle.js" = file("tgui/public/tgui.bundle.js"),
+		"tgui.bundle.css" = file("tgui/public/tgui.bundle.css"),
 	)
 
 /datum/asset/simple/tgui_panel
 	keep_local_name = TRUE
 	assets = list(
-		"tgui-panel.bundle.js" = 'tgui/public/tgui-panel.bundle.js',
-		"tgui-panel.bundle.css" = 'tgui/public/tgui-panel.bundle.css',
+		"tgui-panel.bundle.js" = file("tgui/public/tgui-panel.bundle.js"),
+		"tgui-panel.bundle.css" = file("tgui/public/tgui-panel.bundle.css"),
 	)
 
 /datum/asset/simple/headers
@@ -164,18 +158,26 @@
 /datum/asset/simple/namespaced/fontawesome
 	legacy = TRUE
 	assets = list(
-		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
-		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
-		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
-		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
-		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
+		"fa-regular-400.ttf" = 'html/font-awesome/webfonts/fa-regular-400.ttf',
+		"fa-solid-900.ttf" = 'html/font-awesome/webfonts/fa-solid-900.ttf',
+		"fa-v4compatibility.ttf" = 'html/font-awesome/webfonts/fa-v4compatibility.ttf',
+		"v4shim.css" = 'html/font-awesome/css/v4-shims.min.css',
 	)
 	parents = list("font-awesome.css" = 'html/font-awesome/css/all.min.css')
+
+/datum/asset/simple/namespaced/tgfont
+	assets = list(
+		"tgfont.eot" = file("tgui/packages/tgfont/dist/tgfont.eot"),
+		"tgfont.woff2" = file("tgui/packages/tgfont/dist/tgfont.woff2"),
+	)
+	parents = list(
+		"tgfont.css" = file("tgui/packages/tgfont/dist/tgfont.css"),
+	)
 
 /datum/asset/spritesheet/chat
 	name = "chat"
 
-/datum/asset/spritesheet/chat/register()
+/datum/asset/spritesheet/chat/create_spritesheets()
 	InsertAll("emoji", 'icons/emoji.dmi')
 	// pre-loading all lanugage icons also helps to avoid meta
 	InsertAll("language", 'icons/misc/language.dmi')
@@ -186,7 +188,6 @@
 		if (icon != 'icons/misc/language.dmi')
 			var/icon_state = initial(L.icon_state)
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
-	..()
 
 /datum/asset/simple/lobby
 	assets = list(
@@ -286,16 +287,21 @@
 /datum/asset/spritesheet/pipes
 	name = "pipes"
 
-/datum/asset/spritesheet/pipes/register()
+/datum/asset/spritesheet/pipes/create_spritesheets()
 	for (var/each in list('icons/obj/atmospherics/pipes/pipe_item.dmi', 'icons/obj/atmospherics/pipes/disposal.dmi', 'icons/obj/atmospherics/pipes/transit_tube.dmi', 'icons/obj/plumbing/fluid_ducts.dmi'))
 		InsertAll("", each, GLOB.alldirs)
-	..()
+
+/datum/asset/simple/security_armaments
+	assets = list(
+		"disablerbig.png" = 'icons/vending_icons/disablerbig.png',
+		"ntuspbig.png" = 'icons/vending_icons/ntuspbig.png',
+	)
 
 // Representative icons for each research design
 /datum/asset/spritesheet/research_designs
 	name = "design"
 
-/datum/asset/spritesheet/research_designs/register()
+/datum/asset/spritesheet/research_designs/create_spritesheets()
 	for (var/path in subtypesof(/datum/design))
 		var/datum/design/D = path
 
@@ -306,9 +312,11 @@
 		if(initial(D.research_icon) && initial(D.research_icon_state)) //If the design has an icon replacement skip the rest
 			icon_file = initial(D.research_icon)
 			icon_state = initial(D.research_icon_state)
+			#ifdef UNIT_TESTS
 			if(!(icon_state in icon_states(icon_file)))
-				warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
+				stack_trace("design [D] with icon '[icon_file]' missing state '[icon_state]'")
 				continue
+			#endif
 			I = icon(icon_file, icon_state, SOUTH)
 
 		else
@@ -330,10 +338,11 @@
 
 			icon_file = initial(item.icon)
 			icon_state = initial(item.icon_state)
-
+			#ifdef UNIT_TESTS
 			if(!(icon_state in icon_states(icon_file)))
-				warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
+				stack_trace("design [D] with icon '[icon_file]' missing state '[icon_state]'")
 				continue
+			#endif
 			I = icon(icon_file, icon_state, SOUTH)
 
 			// computers (and snowflakes) get their screen and keyboard sprites
@@ -348,12 +357,11 @@
 					I.Blend(icon(icon_file, keyboard, SOUTH), ICON_OVERLAY)
 
 		Insert(initial(D.id), I)
-	return ..()
 
 /datum/asset/spritesheet/vending
 	name = "vending"
 
-/datum/asset/spritesheet/vending/register()
+/datum/asset/spritesheet/vending/create_spritesheets()
 	for (var/k in GLOB.vending_products)
 		var/atom/item = k
 		if (!ispath(item, /atom))
@@ -365,33 +373,35 @@
 			var/obj/item/ammo_box/ammoitem = item
 			if(initial(ammoitem.multiple_sprites))
 				icon_state = "[icon_state]-[initial(ammoitem.max_ammo)]"
-		var/icon/I
 
+		#ifdef UNIT_TESTS
 		var/icon_states_list = icon_states(icon_file)
-		if(icon_state in icon_states_list)
-			I = icon(icon_file, icon_state, SOUTH)
-			var/c = initial(item.color)
-			if (!isnull(c) && c != "#FFFFFF")
-				I.Blend(c, ICON_MULTIPLY)
-		else
+		if (!(icon_state in icon_states_list))
 			var/icon_states_string
 			for (var/an_icon_state in icon_states_list)
 				if (!icon_states_string)
 					icon_states_string = "[json_encode(an_icon_state)](\ref[an_icon_state])"
 				else
 					icon_states_string += ", [json_encode(an_icon_state)](\ref[an_icon_state])"
+	
 			stack_trace("[item] does not have a valid icon state, icon=[icon_file], icon_state=[json_encode(icon_state)](\ref[icon_state]), icon_states=[icon_states_string]")
-			I = icon('icons/turf/floors.dmi', "", SOUTH)
+			continue
+		#endif
+
+		var/icon/I = icon(icon_file, icon_state, SOUTH)
+		var/c = initial(item.color)
+		if (!isnull(c) && c != "#FFFFFF")
+			I.Blend(c, ICON_MULTIPLY)
 
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
 
 		Insert(imgid, I)
-	return ..()
 
 /datum/asset/spritesheet/uplink
 	name = "uplink"
+	load_immediately = TRUE // needed to prevent duplicates
 
-/datum/asset/spritesheet/uplink/register()
+/datum/asset/spritesheet/uplink/create_spritesheets()
 	for(var/path in GLOB.uplink_items)
 		var/datum/uplink_item/U = path
 		if (!ispath(U, /datum/uplink_item))
@@ -407,15 +417,10 @@
 			var/obj/item/ammo_box/ammoitem = item
 			if(initial(ammoitem.multiple_sprites))
 				icon_state = "[icon_state]-[initial(ammoitem.max_ammo)]"
-		var/icon/I
 
+		#ifdef UNIT_TESTS
 		var/icon_states_list = icon_states(icon_file)
-		if(icon_state in icon_states_list)
-			I = icon(icon_file, icon_state, SOUTH)
-			var/c = initial(item.color)
-			if (!isnull(c) && c != "#FFFFFF")
-				I.Blend(c, ICON_MULTIPLY)
-		else
+		if (!(icon_state in icon_states_list))
 			var/icon_states_string
 			for (var/an_icon_state in icon_states_list)
 				if (!icon_states_string)
@@ -423,13 +428,18 @@
 				else
 					icon_states_string += ", [json_encode(an_icon_state)](\ref[an_icon_state])"
 			stack_trace("[item] does not have a valid icon state, icon=[icon_file], icon_state=[json_encode(icon_state)](\ref[icon_state]), icon_states=[icon_states_string]")
-			I = icon('icons/turf/floors.dmi', "", SOUTH)
+			continue
+		#endif
+
+		var/icon/I = icon(icon_file, icon_state, SOUTH)
+		var/c = initial(item.color)
+		if (!isnull(c) && c != "#FFFFFF")
+			I.Blend(c, ICON_MULTIPLY)
 
 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
-
+		
 		if(!sprites[imgid])
 			Insert(imgid, I)
-	return ..()
 
 /datum/asset/simple/genetics
 	assets = list(
@@ -451,14 +461,13 @@
 /datum/asset/spritesheet/sheetmaterials
 	name = "sheetmaterials"
 
-/datum/asset/spritesheet/sheetmaterials/register()
+/datum/asset/spritesheet/sheetmaterials/create_spritesheets()
 	InsertAll("", 'icons/obj/stack_objects.dmi')
 
 	// Special case to handle Bluespace Crystals
 	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
 
 	Insert("dilithium_polycrystal", 'yogstation/icons/obj/telescience.dmi', "dilithium_polycrystal") //yogs: same as above but for dilithium
-	..()
 
 
 /datum/asset/simple/portraits
@@ -466,10 +475,10 @@
 	assets = list()
 
 /datum/asset/simple/portraits/New()
-	if(!SSpersistence.paintings || !SSpersistence.paintings[tab] || !length(SSpersistence.paintings[tab]))
+	if(!length(SSpersistent_paintings.paintings[tab]))
 		return
-	for(var/p in SSpersistence.paintings[tab])
-		var/list/portrait = p
+
+	for(var/list/portrait as anything in SSpersistent_paintings.paintings[tab])
 		var/png = "data/paintings/[tab]/[portrait["md5"]].png"
 		if(fexists(png))
 			var/asset_name = "[tab]_[portrait["md5"]]"
@@ -482,7 +491,7 @@
 /datum/asset/spritesheet/supplypods
 	name = "supplypods"
 
-/datum/asset/spritesheet/supplypods/register()
+/datum/asset/spritesheet/supplypods/create_spritesheets()
 	for (var/style in 1 to length(GLOB.podstyles))
 		var/icon_file = 'icons/obj/supplypods.dmi'
 		if (style == STYLE_SEETHROUGH)
@@ -507,4 +516,3 @@
 				glow = "pod_glow_[glow]"
 				podIcon.Blend(icon(icon_file, glow), ICON_OVERLAY)
 		Insert("pod_asset[style]", podIcon)
-	return ..()

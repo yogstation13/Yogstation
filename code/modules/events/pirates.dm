@@ -15,7 +15,7 @@
 	return ..()
 
 /datum/round_event/pirates
-	startWhen = 60 //2 minutes to answer
+	startWhen = 150 //5 minutes to answer
 	var/datum/comm_message/threat
 	var/payoff = 0
 	var/payoff_min = 20000
@@ -26,7 +26,10 @@
 	var/obj/item/gps/pirate/beacon
 
 /datum/round_event/pirates/setup()
-	ship_name = pick(strings(PIRATE_NAMES_FILE, "ship_names"))
+	var/the = prob(50) ? "The " : ""
+	var/start = pick(strings(PIRATE_NAMES_FILE, "ship_name_start"))
+	var/end = pick(strings(PIRATE_NAMES_FILE, "ship_name_end"))
+	ship_name = "[the][start] [end]"
 	beacon = new(ship_name)
 
 /datum/round_event/pirates/announce(fake)
@@ -160,7 +163,7 @@
 
 /obj/machinery/shuttle_scrambler/interact(mob/user)
 	if(!active)
-		if(alert(user, "Turning the scrambler on will make the shuttle trackable by GPS. Are you sure you want to do it?", "Scrambler", "Yes", "Cancel") == "Cancel")
+		if(tgui_alert(user, "Turning the scrambler on will make the shuttle trackable by GPS. Are you sure you want to do it?", "Scrambler", list("Yes", "Cancel")) == "Cancel")
 			return
 		if(active || !user.canUseTopic(src, BE_CLOSE))
 			return

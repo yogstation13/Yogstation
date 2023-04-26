@@ -9,6 +9,7 @@
 	var/send_to_spawnpoint = TRUE //Should the user be moved to default spawnpoint.
 	var/dress_up = TRUE
 	var/hud_icon = "synd"
+	preview_outfit = /datum/outfit/infiltrator
 
 /datum/antagonist/infiltrator/proc/update_synd_icons_added(mob/living/M)
 	var/datum/atom_hud/antag/sithud = GLOB.huds[ANTAG_HUD_INFILTRATOR]

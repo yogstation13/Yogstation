@@ -360,7 +360,12 @@
 	if(!AR.clockwork_warp_allowed)
 		to_chat(user, "[span_sevtug_small("[AR.clockwork_warp_fail]")]")
 		return
-	if(alert(user, "Are you sure you want to warp to [AR]?", target.name, "Warp", "Cancel") == "Cancel" || QDELETED(R) || !user.canUseTopic(R))
+
+	if (user.w_uniform && user.w_uniform.name == initial(user.w_uniform.name))
+		if (tgui_alert(user, "ARE YOU SURE YOU WANT TO WARP WITHOUT CAMOUFLAGING YOUR JUMPSUIT?", "Preflight Check", list("Yes", "No")) == "No" )
+			return
+	
+	if(tgui_alert(user, "Are you sure you want to warp to [AR]?", target.name, list("Warp", "Cancel")) == "Cancel" || QDELETED(R) || !user.canUseTopic(R))
 		return
 	do_sparks(5, TRUE, user)
 	do_sparks(5, TRUE, T)
