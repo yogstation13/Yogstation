@@ -498,15 +498,15 @@
 
 /datum/supply_pack/security/armory/ballistic_single
 	name = "Combat Shotgun Single-Pack"
-	desc = "For when the enemy absolutely needs to be replaced with lead. Contains one Aussec-designed Combat Shotgun, and one Shotgun Bandolier. Requires Armory access to open."
-	cost = 6000
+	desc = "For when the enemy absolutely needs to be replaced with lead. Contains one Aussec-designed Combat Shotgun, and one spare bandolier. Requires Armory access to open."
+	cost = 7200
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/storage/belt/bandolier)
 
 /datum/supply_pack/security/armory/ballistic
 	name = "Combat Shotguns Crate"
-	desc = "For when the enemy absolutely needs to be replaced with lead. Contains three Aussec-designed Combat Shotguns, and three Shotgun Bandoliers. Requires Armory access to open."
+	desc = "For when the enemy absolutely needs to be replaced with lead. Contains three Aussec-designed Combat Shotguns, and three spare bandoliers. Requires Armory access to open."
 	cost = 18000
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/gun/ballistic/shotgun/automatic/combat,
@@ -531,6 +531,33 @@
 	cost = 3200
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/shotgun/riot)
+
+/datum/supply_pack/security/armory/wintonrifle
+	name = "Winton Mk.VI Repeating Rifles Crate"
+	desc = "For the enterprising marksmen. Containts three Frontier-made Winton lever-action rifles and three bandoliers, each filled with twenty-four spare rounds."
+	cost = 24000
+	contains = list(/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/storage/belt/bandolier/sharpshooter,
+					/obj/item/storage/belt/bandolier/sharpshooter,
+					/obj/item/storage/belt/bandolier/sharpshooter)
+	crate_name = "lever-action rifles crate"
+
+/datum/supply_pack/security/armory/wintonrifle_single
+	name = "Winton Mk.VI Repeating Rifle Single-Pack"
+	desc = "For the enterprising marksman. Contains a single Frontier-made Winton level-action rifle and a bandolier filled with twenty-four spare rounds."
+	cost = 9600
+	small_item = TRUE
+	contains = list(/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/storage/belt/bandolier/sharpshooter)
+
+/datum/supply_pack/security/armory/winton_ammo
+	name = ".308 Ammo Box"
+	desc = "A .308 Ammo Box meant for refilling the Winton Mk.VI Repeating Rifle. Rounds must be loaded individually."
+	cost = 5000
+	small_item = TRUE
+	contains = list(/obj/item/ammo_box/no_direct/m308)
 
 /datum/supply_pack/security/armory/dragnet
 	name = "DRAGnet Crate"

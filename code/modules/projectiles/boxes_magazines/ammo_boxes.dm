@@ -41,6 +41,12 @@
 	caliber = "n762"
 	max_ammo = 14
 
+/obj/item/ammo_box/no_direct/m308
+	name = "ammo box (.308)"
+	icon_state = "308box"
+	ammo_type = /obj/item/ammo_casing/m308
+	caliber = "m308"
+
 /obj/item/ammo_box/a357/ironfeather
 	name = "speed loader (.357 Ironfeather)"
 	desc = "A seven-shot speed loader designed for .357 revolvers. \
