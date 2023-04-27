@@ -4,7 +4,6 @@
 #define STOMP_DAMAGERADIUS 5
 #define COOLDOWN_LEAP 1.5 SECONDS
 #define LEAP_RADIUS 1
-#define COOLDOWN_GRAPPLE 2 SECONDS
 #define STAGGER_DURATION 3 SECONDS
 #define WARNING_RANGE 10
 
@@ -17,7 +16,6 @@
 	var/list/thrown = list()
 	// COOLDOWN_DECLARE(next_stomp)
 	COOLDOWN_DECLARE(next_leap)
-	COOLDOWN_DECLARE(next_grapple)
 	var/datum/action/cooldown/worldstomp/linked_stomp
 	var/old_density //so people grappling something arent pushed by it until it's thrown
 	var/leaping = FALSE
@@ -80,6 +78,7 @@
 	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
 	var/datum/martial_art/worldshaker/linked_martial
 	cooldown_time = COOLDOWN_STOMP
+	var/charging = FALSE
 
 /datum/action/cooldown/worldstomp/IsAvailable()
 	if(!linked_martial.can_use(owner))
@@ -87,14 +86,19 @@
 	return ..()
 
 /datum/action/cooldown/worldstomp/Trigger()
-	. = ..()
+	if(!IsAvailable() || charging)
+		return
+	charging = TRUE
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(owner.loc, owner)
 	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = 1 SECONDS)
 	if(!do_after(owner, 1 SECONDS, owner) || !IsAvailable())
+		charging = FALSE
 		qdel(D)
 		return
+	charging = FALSE
 	StartCooldown()
-	animate(D, alpha = 0, color = "#000000", transform = matrix()*0, time = 1)
+	animate(D, color = "#000000", transform = matrix()*0, time = 2)
+	QDEL_IN(D, 3)
 
 	for(var/mob/living/L in range(STOMP_RADIUS, owner))
 		if(L == owner)
@@ -115,6 +119,8 @@
 		var/throwdirection = get_dir(owner, I)
 		var/atom/throw_target = get_edge_target_turf(I, throwdirection)
 		I.throw_at(throw_target, 3, 2, owner)
+	for(var/obj/item/structure/S in range(STOMP_DAMAGERADIUS, owner))
+		S.take_damage(25)
 
 	//flavour stuff
 	playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS)
@@ -198,12 +204,8 @@
 /datum/martial_art/worldshaker/proc/grapple(mob/living/user, atom/target) //proc for picking something up to toss
 	var/turf/Z = get_turf(user)
 	target.add_fingerprint(user, FALSE)
-	if(!COOLDOWN_FINISHED(src, next_grapple))
-		user.balloon_alert(user, span_warning("You can't do that yet!"))
-		return
 	if((target == user) || (isopenturf(target)) || (iswallturf(target)) || (isitem(target)) || (iseffect(target)))
 		return
-	playsound(user, 'sound/effects/servostep.ogg', 60, FALSE, -1)
 	if(isstructure(target) || ismachinery(target) || ismecha(target))
 		var/obj/I = target
 		old_density = I.density
@@ -218,7 +220,6 @@
 		if(user in I.contents)
 			user.balloon_alert(user, span_warning("You can't throw something while you're inside of it!")) //as funny as throwing lockers from the inside is i dont think i can get away with it
 			return
-		COOLDOWN_START(src, next_grapple, COOLDOWN_GRAPPLE)
 		I.visible_message(span_warning("[user] grabs [I] and lifts it above [user.p_their()] head!"))
 		animate(I, time = 0.2 SECONDS, pixel_y = 20)
 		I.forceMove(Z)
@@ -230,10 +231,12 @@
 		thrown |= I // Mark the item for throwing
 		if(ismecha(I))
 			I.anchored = TRUE
+
+	playsound(user, 'sound/effects/servostep.ogg', 60, FALSE, -1) //play sound here incase some ungrabbable object was clicked
+
 	if(isliving(target))
 		var/mob/living/L = target
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
-		COOLDOWN_START(src, next_grapple, COOLDOWN_GRAPPLE)
 		old_density = L.density // for the sake of noncarbons not playing nice with lying down
 		L.density = FALSE
 		L.visible_message(span_warning("[user] grabs [L] and lifts [L.p_them()] off the ground!"))
@@ -250,7 +253,8 @@
 
 /datum/martial_art/worldshaker/proc/lob(mob/living/user, atom/target) //proc for throwing something you picked up with grapple
 	var/slamdam = 5
-	var/objdam = 200 //really good at breaking terrain
+	var/objdam = 500 //really good at breaking terrain, reduces as the damage is dealt
+	var/thrownobjdam = 100 //object damage to thrown things
 	var/throwdam = 10
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
@@ -278,6 +282,8 @@
 			limb_to_hit = tossedliving.get_bodypart(BODY_ZONE_CHEST)
 	user.visible_message(span_warning("[user] throws [tossed]!"))
 	for(var/i = 1 to target_dist)
+		if(QDELETED(tossed) || objdam <= 0)//if the thrown item broke, or total damage has run out, end the throw
+			return
 		var/dir_to_target = get_dir(get_turf(tossed), D) //vars that let the thing be thrown while moving similar to things thrown normally
 		var/turf/T = get_step(get_turf(tossed), dir_to_target)
 		if(T.density) // crash into a wall and damage everything flying towards it before stopping 
@@ -288,14 +294,14 @@
 				if(isanimal(S) && S.stat == DEAD)
 					S.gib()	
 			for(var/obj/O in thrown)
-				O.take_damage(objdam) 
+				O.take_damage(thrownobjdam) 
 				target.visible_message(span_warning("[O] collides with [T]!"))
 			drop()
 			return
 		for(var/obj/Z in T.contents) // crash into something solid and damage it along with thrown objects that hit it
 			for(var/obj/O in thrown) 
 				if(Z.density == TRUE) 
-					O.take_damage(objdam) 
+					O.take_damage(thrownobjdam) 
 					if(istype(O, /obj/mecha)) // mechs are probably heavy as hell so stop flying after making contact with resistance
 						thrown -= O
 			if(Z.density == TRUE && Z.anchored == FALSE) // if the thing hit isn't anchored it starts flying too
@@ -315,10 +321,12 @@
 						dumpster.do_flush()
 						drop()
 						return
+				var/reduction = Z.obj_integrity
 				Z.take_damage(objdam)
+				objdam -= reduction
 				if(Z.density == TRUE && Z.anchored == TRUE)
+					playsound(Z, 'sound/effects/gravhit.ogg', 40, TRUE, 5)
 					drop()
-					playsound(Z, 'sound/effects/gravhit.ogg', 20, TRUE)
 					return // if the solid thing we hit doesnt break then the thrown thing is stopped
 		for(var/mob/living/M in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
 			if(user != M)
@@ -340,7 +348,7 @@
 				K.forceMove(T)
 				if(isspaceturf(T)) // throw them like normal if it's into space
 					var/atom/throw_target = get_edge_target_turf(K, dir_to_target)
-					K.throw_at(throw_target, 6, 4, user, 3)
+					K.throw_at(throw_target, 6, 5, user, 3)
 					thrown.Remove(K)
 	drop()
 	return
@@ -433,6 +441,5 @@
 #undef STOMP_DAMAGERADIUS
 #undef COOLDOWN_LEAP
 #undef LEAP_RADIUS
-#undef COOLDOWN_GRAPPLE
 #undef STAGGER_DURATION
 #undef WARNING_RANGE
