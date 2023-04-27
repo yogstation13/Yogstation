@@ -2607,7 +2607,6 @@
 /turf/open/floor/wood,
 /area/lawoffice)
 "apX" = (
-/obj/structure/filingcabinet/employment,
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = 26

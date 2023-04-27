@@ -15551,7 +15551,6 @@
 	},
 /area/maintenance/starboard/fore)
 "aMV" = (
-/obj/structure/filingcabinet/employment,
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
