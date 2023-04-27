@@ -1,0 +1,6 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: "Mirror shield now only knocks down on throw"
+  - tweak: "Blood halberd wielded force, AP, throwforce, and stun on throw have been reduced. Block chance removed."
+  - tweak: "Blood halberd recall range doubled, also acts like a spear with range now. Unwielded force up."
