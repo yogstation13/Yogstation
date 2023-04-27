@@ -376,6 +376,7 @@
 #define STARGAZER_TRAIT "stargazer"
 #define RANDOM_BLACKOUTS "random_blackouts"
 #define MADE_UNCLONEABLE "made-uncloneable"
+#define PULLED_WHILE_SOFTCRIT_TRAIT "pulled-while-softcrit"
 /// Source trait for Bloodsuckers-related traits
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
 /// Source trait during a Frenzy

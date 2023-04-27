@@ -417,8 +417,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 		var/atom/movable/screen/movable/action_button/button = action.viewers[src]
 		if(!button)
 			action.ShowTo(mymob)
-			button = action.viewers[src]
-		position_action(button, button.location)
+		else
+			position_action(button, button.location)
 
 /datum/action_group
 	/// The hud we're owned by
