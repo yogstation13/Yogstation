@@ -301,6 +301,7 @@ slowdown helper
 
 /datum/martial_art/worldshaker/proc/pummel(mob/living/user, mob/living/target)
 	to_chat(world, "pummel")
+	stagger(target)
 	playsound(user, 'sound/effects/gravhit.ogg', 60, TRUE) //Mainly this sound
 	playsound(user, 'sound/effects/meteorimpact.ogg', 25, 1, -1)
 	
