@@ -156,6 +156,9 @@ GLOBAL_LIST_EMPTY(lockers)
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
 		return FALSE
+	if((user.mind?.martial_art) && istype(user.mind.martial_art, /datum/martial_art/worldshaker) && (user.a_intent == INTENT_GRAB))
+		return FALSE
+
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in T)
 		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
@@ -165,6 +168,9 @@ GLOBAL_LIST_EMPTY(lockers)
 	return TRUE
 
 /obj/structure/closet/proc/can_close(mob/living/user)
+	if((user.mind?.martial_art) && istype(user.mind.martial_art, /datum/martial_art/worldshaker) && (user.a_intent == INTENT_GRAB))
+		return FALSE
+		
 	var/turf/T = get_turf(src)
 	for(var/obj/structure/closet/closet in T)
 		if(closet != src && !closet.wall_mounted)

@@ -1,11 +1,14 @@
 //variables for fun balance tweaks
-#define COOLDOWN_STOMP 10 SECONDS
-#define STOMP_RADIUS 10
-#define STOMP_DAMAGERADIUS 5
+#define COOLDOWN_STOMP 15 SECONDS
+#define STOMP_RADIUS 6 //the base radius for the charged stomp
+#define STOMP_DAMAGERADIUS 3
 #define COOLDOWN_LEAP 1.5 SECONDS
 #define LEAP_RADIUS 1
 #define STAGGER_DURATION 3 SECONDS
-#define WARNING_RANGE 10
+#define WARNING_RANGE 10 //extra range to certain sound effects
+#define PLATE_INTERVAL 20 SECONDS //how often a plate grows
+#define PLATE_REDUCTION 10 //how much DR per plate
+#define MAX_PLATES 8 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
 
 /datum/martial_art/worldshaker
 	name = "Worldshaker"
@@ -17,8 +20,9 @@
 	// COOLDOWN_DECLARE(next_stomp)
 	COOLDOWN_DECLARE(next_leap)
 	var/datum/action/cooldown/worldstomp/linked_stomp
-	var/old_density //so people grappling something arent pushed by it until it's thrown
 	var/leaping = FALSE
+	var/plates = 0
+	var/plate_timer = null
 
 /datum/martial_art/worldshaker/can_use(mob/living/carbon/human/H)
 	return ispreternis(H)
@@ -35,6 +39,8 @@
 		return
 	if(H.a_intent == INTENT_DISARM)
 		leap(H, target)
+	if(H.a_intent == INTENT_HELP && (H==target))
+		rip_plate(H)
 	if(thrown.len > 0 && H.a_intent == INTENT_GRAB)
 		if(get_turf(target) != get_turf(H))
 			lob(H, target)
@@ -51,6 +57,8 @@
 	start of helpers section
 -----------------------------*/
 /datum/martial_art/worldshaker/proc/stagger(mob/living/victim)
+	if(HAS_TRAIT(victim, TRAIT_STUNIMMUNE))
+		return
 	victim.set_resting(TRUE)//basically a trip
 	victim.add_movespeed_modifier(id, update=TRUE, priority=101, multiplicative_slowdown = 1)
 	addtimer(CALLBACK(src, PROC_REF(stagger_end), victim), STAGGER_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE)
@@ -62,26 +70,91 @@
 	var/throwdirection = get_dir(user, victim)
 	var/atom/throw_target = get_edge_target_turf(victim, throwdirection)
 	victim.throw_at(throw_target, distance, 2, user)
-
 /*-----------------------------
 	end of helpers section
 -----------------------------*/
 /*---------------------------------------------------------------
+	start of plates section 
+---------------------------------------------------------------*/
+/datum/martial_art/worldshaker/proc/grow_plate(mob/living/carbon/human/user)
+	user.balloon_alert(user, span_notice("Your plates grow thicker!"))
+	plates++
+	if(plates <= MAX_PLATES)
+		user.physiology.damage_resistance += PLATE_REDUCTION
+	update_platespeed(user)
+
+/datum/martial_art/worldshaker/proc/rip_plate(mob/living/carbon/human/user)
+	if(plates <= 0)
+		user.balloon_alert(user, span_warning("Your plates are too thin to tear off a piece of!"))
+		return
+	if(user.get_active_held_item())
+		user.balloon_alert(user, span_warning("You need an empty hand to tear off some of your plate!"))
+		return
+	user.balloon_alert(user, span_notice("You tear off a loose plate!"))
+
+	if(plates <= MAX_PLATES)
+		user.physiology.damage_resistance -= PLATE_REDUCTION
+	plates--
+	update_platespeed(user)
+	var/obj/item/worldplate/plate = new()
+	plate.linked_martial = src
+	user.put_in_active_hand(plate)
+	user.throw_move_on()
+
+/datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
+	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
+	H.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = platespeed, blacklisted_movetypes=(FLOATING))
+
+/obj/item/worldplate
+	name = "worldshaker plate"
+	desc = "A sizeable plasteel plate, you can barely imagine the strength it would take to throw this."
+	icon = 'yogstation/icons/obj/stack_objects.dmi'
+	icon_state = "sheet-plasteel"
+	item_state = "sheet-metal"
+	lefthand_file = 'icons/mob/inhands/misc/sheets_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/sheets_righthand.dmi'
+	materials = list(/datum/material/iron=2000, /datum/material/plasma=2000)
+	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "smashed")
+	force = 5
+	throwforce = 5 //more of a ranged CC than a ranged weapon
+	throw_speed = 4
+	throw_range = 7
+	var/datum/martial_art/worldshaker/linked_martial
+
+/obj/item/worldplate/equipped(mob/user, slot, initial)//difficult for regular people to throw
+	. = ..()
+	var/worldshaker = (H.mind.martial_art && istype(H.mind.martial_art, /datum/martial_art/worldshaker))
+	throw_speed = worldshaker ? 4 : 1
+	throw_range = worldshaker ? 7 : 4
+
+/obj/item/worldplate/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	if(!linked_martial)
+		return
+	if(isliving(hit_atom) && throwingdatum)
+		var/mob/living/L = hit_atom
+		linked_martial.stagger(L)
+		linked_martial.push_away(L, throwingdatum.thrower)
+	
+/*---------------------------------------------------------------
+	end of plates section
+---------------------------------------------------------------*/
+/*---------------------------------------------------------------
 	start of stomp section 
 ---------------------------------------------------------------*/
 /datum/action/cooldown/worldstomp
-	name = "stomp"
+	name = "Quake"
+	desc = "Put all your weight and strength into a singular stomp."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "lizard_tackle"
 	background_icon_state = "bg_default"
-	desc = "hehe big stompy."
 	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
 	var/datum/martial_art/worldshaker/linked_martial
 	cooldown_time = COOLDOWN_STOMP
 	var/charging = FALSE
 
 /datum/action/cooldown/worldstomp/IsAvailable()
-	if(!linked_martial.can_use(owner))
+	if(!linked_martial || !linked_martial.can_use(owner))
 		return FALSE
 	return ..()
 
@@ -100,13 +173,13 @@
 	animate(D, color = "#000000", transform = matrix()*0, time = 2)
 	QDEL_IN(D, 3)
 
-	for(var/mob/living/L in range(STOMP_RADIUS, owner))
+	for(var/mob/living/L in range(STOMP_RADIUS + linked_martial.plates, owner))
 		if(L == owner)
 			continue
 		linked_martial.stagger(L)
 		var/damage = 5
 		var/throwdistance = 1
-		if(L in range(STOMP_DAMAGERADIUS, owner))//more damage and CC if closer
+		if(L in range(STOMP_DAMAGERADIUS + (linked_martial.plates/2), owner))//more damage and CC if closer
 			damage = 30
 			throwdistance = 3
 			L.Knockdown(30)
@@ -208,7 +281,6 @@
 		return
 	if(isstructure(target) || ismachinery(target) || ismecha(target))
 		var/obj/I = target
-		old_density = I.density
 		if(ismecha(I)) // Can pick up mechs
 			I.anchored = FALSE
 		if(I.anchored == TRUE) // Cannot pick up anchored structures
@@ -227,7 +299,7 @@
 		walk_towards(I, user, 0, 0)
 		// Reset the item to its original state
 		if(get_dist(I, user) > 1)
-			I.density = old_density
+			I.density = initial(I.density)
 		thrown |= I // Mark the item for throwing
 		if(ismecha(I))
 			I.anchored = TRUE
@@ -237,7 +309,6 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
-		old_density = L.density // for the sake of noncarbons not playing nice with lying down
 		L.density = FALSE
 		L.visible_message(span_warning("[user] grabs [L] and lifts [L.p_them()] off the ground!"))
 		L.Stun(1 SECONDS) //so the user has time to aim their throw
@@ -246,7 +317,7 @@
 		F.buckle_mob(target)
 		walk_towards(F, user, 0, 0)
 		if(get_dist(L, user) > 1)
-			L.density = old_density
+			L.density = initial(L.density)
 			return
 		thrown |= L // Marks the mob to throw
 		return
@@ -260,7 +331,7 @@
 	var/turf/D = get_turf(target)	
 	var/atom/tossed = thrown[1]
 	walk(tossed,0)
-	tossed.density = old_density
+	tossed.density = initial(tossed.density)
 	user.stop_pulling()
 	if(get_dist(tossed, user) > 1)//cant reach the thing i was supposed to be throwing anymore
 		drop()
@@ -363,13 +434,20 @@
 	if(user == target)
 		return
 	to_chat(world, "pummel")
-	target.apply_damage(30, BRUTE, user.zone_selected, wound_bonus = 10, bare_wound_bonus = 20)
-	target.adjustStaminaLoss(30)
-	if(!target.resting)//if they aren't already knocked down, throw them back one space
-		if(target.anchored)
-			target.anchored = FALSE
-		push_away(user, target)
-	stagger(target)
+	for(var/mob/living/L in range(1, user))
+		var/damage = 10
+		if(L == user)
+			continue
+		if(L == target)
+			damage = 30 //the target takes more stamina and brute damage
+
+		if(!L.resting)//if they aren't already knocked down, throw them back one space
+			if(L.anchored)
+				L.anchored = FALSE
+			push_away(user, L)
+		stagger(L)
+		L.apply_damage(damage, BRUTE, user.zone_selected, wound_bonus = 10, bare_wound_bonus = 20)
+		L.adjustStaminaLoss(damage)
 
 	user.do_attack_animation(target)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE, -1)
@@ -413,10 +491,10 @@
 /datum/martial_art/worldshaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
 	usr.click_intercept = src 
-	H.physiology.damage_resistance += 50 //50% damage reduction
-	H.physiology.heat_mod = 0
-	H.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = 0.5)//you hella chunky
+	H.physiology.heat_mod -= 1 //walk through that fire all you like, hope you don't care about your clothes
+	plate_timer = addtimer(CALLBACK(src, PROC_REF(regen_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	ADD_TRAIT(H, TRAIT_BOMBIMMUNE, type)//maxcap suicide bombers can go fuck themselves
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 	if(!linked_stomp)
@@ -426,10 +504,12 @@
 
 /datum/martial_art/worldshaker/on_remove(mob/living/carbon/human/H)
 	usr.click_intercept = null 
-	H.physiology.damage_resistance -= 50
-	H.physiology.heat_mod = initial(H.physiology.heat_mod)
+	H.physiology.heat_mod += 1
+	H.physiology.damage_resistance -= PLATE_REDUCTION * min(plates, MAX_PLATES)
 	H.remove_movespeed_modifier(type)
+	deltimer(plate_timer)
 	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	REMOVE_TRAIT(H, TRAIT_BOMBIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 	if(linked_stomp)
