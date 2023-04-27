@@ -173,13 +173,14 @@
 	animate(D, color = "#000000", transform = matrix()*0, time = 2)
 	QDEL_IN(D, 3)
 
-	for(var/mob/living/L in range(STOMP_RADIUS + linked_martial.plates, owner))
+	var/plates = linked_martial.plates
+	for(var/mob/living/L in range(STOMP_RADIUS + plates, owner))
 		if(L == owner)
 			continue
 		linked_martial.stagger(L)
 		var/damage = 5
 		var/throwdistance = 1
-		if(L in range(STOMP_DAMAGERADIUS + (linked_martial.plates/2), owner))//more damage and CC if closer
+		if(L in range(STOMP_DAMAGERADIUS + (plates/2), owner))//more damage and CC if closer
 			damage = 30
 			throwdistance = 3
 			L.Knockdown(30)
@@ -188,11 +189,11 @@
 			L.adjustStaminaLoss(70)
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
 		linked_martial.push_away(owner, L, throwdistance)
-	for(var/obj/item/I in range(STOMP_RADIUS, owner))
+	for(var/obj/item/I in range(STOMP_RADIUS + plates, owner))
 		var/throwdirection = get_dir(owner, I)
 		var/atom/throw_target = get_edge_target_turf(I, throwdirection)
 		I.throw_at(throw_target, 3, 2, owner)
-	for(var/obj/item/structure/S in range(STOMP_DAMAGERADIUS, owner))
+	for(var/obj/item/structure/S in range(STOMP_DAMAGERADIUS + (plates/2), owner))
 		S.take_damage(25)
 
 	//flavour stuff
@@ -202,8 +203,8 @@
 	shockwave.transform *= 0.1 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	animate(shockwave, alpha = 0, transform = matrix().Scale(3), time = 3 SECONDS)
-	QDEL_IN(shockwave, 3.1 SECONDS)
+	animate(shockwave, alpha = 0, transform = matrix().Scale(1 + (plates/4)), time = (3 SECONDS + plates))
+	QDEL_IN(shockwave, 3.1 SECONDS + plates)
 
 /*---------------------------------------------------------------
 	end of stomp section
