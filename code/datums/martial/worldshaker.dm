@@ -1,15 +1,17 @@
-#define COOLDOWN_STOMP 5 SECONDS
+#define COOLDOWN_STOMP 4 SECONDS
 #define STOMP_RADIUS 5
-#define COOLDOWN_LEAP 3 SECONDS
-#define LEAP_RADIUS 2
-#define COOLDOWN_GRAPPLE 3 SECONDS
+#define COOLDOWN_LEAP 1.5 SECONDS
+#define LEAP_RADIUS 1
+#define COOLDOWN_GRAPPLE 2 SECONDS
 #define STAGGER_DURATION 3 SECONDS
+#define WARNING_RANGE 10
 
 /datum/martial_art/worldshaker
 	name = "Worldshaker"
 	id = MARTIALART_WORLDSHAKER
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/worldshaker_help
+	block_chance = 100 //validhunters cry
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_stomp)
 	COOLDOWN_DECLARE(next_leap)
@@ -26,12 +28,11 @@
 
 /datum/martial_art/worldshaker/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
 	var/list/modifiers = params2list(params)
-	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"]))
+	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
 		return
-	H.face_atom(target) //for the sake of moves that care about user orientation like mop and slam
 	if(H.a_intent == INTENT_DISARM)
 		leap(H, target)
-	if(H.a_intent == INTENT_HELP)
+	if(H.a_intent == INTENT_HELP && (ishuman(target) || isturf(target)))
 		stomp(H)
 	if(thrown.len > 0 && H.a_intent == INTENT_GRAB)
 		if(get_turf(target) != get_turf(H))
@@ -46,12 +47,18 @@
 slowdown helper
 -----------------------------*/
 /datum/martial_art/worldshaker/proc/stagger(mob/living/victim)
-	victim.Knockdown(1)//basically a trip
+	victim.set_resting(TRUE)//basically a trip
 	victim.add_movespeed_modifier(id, update=TRUE, priority=101, multiplicative_slowdown = 1)
-	addtimer(CALLBACK(src, PROC_REF(stagger_end), victim), STAGGER_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(stagger_end), victim), STAGGER_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 /datum/martial_art/worldshaker/proc/stagger_end(mob/living/victim)
 	victim.remove_movespeed_modifier(id)
+
+/datum/martial_art/worldshaker/proc/push_away(mob/living/user, mob/living/victim, distance = 1)
+	var/throwdirection = get_dir(user, victim)
+	var/atom/throw_target = get_edge_target_turf(victim, throwdirection)
+	victim.throw_at(throw_target, distance, 2, user)
+
 /*---------------------------------------------------------------
 	start of stomp section 
 ---------------------------------------------------------------*/
@@ -65,16 +72,24 @@ slowdown helper
 		if(L == user)
 			continue
 		stagger(L)
+		L.Knockdown(30)
+		var/damage = 15
+		if(L.loc == user.loc)//if the are standing directly ontop of you
+			damage = 30
+			L.adjustStaminaLoss(70)
+		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
+		push_away(user, L)
 
 	//flavour stuff
+	playsound(user, 'sound/effects/gravhit.ogg', 60, TRUE, STOMP_RADIUS) //Mainly this sound
+	playsound(user, get_sfx("hull_creaking"), 80, FALSE, STOMP_RADIUS + WARNING_RANGE)
+	playsound(user, 'sound/effects/explosion_distant.ogg', 120, FALSE, STOMP_RADIUS + WARNING_RANGE)
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
-	shockwave.transform *= 0.01 //basically invisible
+	shockwave.transform *= 0.1 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	playsound(user, 'sound/effects/gravhit.ogg', 80, TRUE) //Mainly this sound
-	playsound(user, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
-	animate(shockwave, transform = matrix().Scale(0.6), time = 1 SECONDS)
-	QDEL_IN(shockwave, 1 SECONDS)
+	animate(shockwave, alpha = 0, transform = matrix().Scale(0.8), time = 6)
+	QDEL_IN(shockwave, 6)
 
 /*---------------------------------------------------------------
 	end of stomp section
@@ -89,25 +104,40 @@ slowdown helper
 	if(!target || leaping)
 		return
 	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP)
-	new /obj/effect/temp_visual/dragon_swoop/bubblegum(get_turf(target))
 
 	leaping = TRUE
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc,user)
 	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 0.3 SECONDS)
-	playsound(user, 'sound/effects/dodge.ogg', 50)
+	playsound(user, 'sound/effects/gravhit.ogg', 30)
+	playsound(user, 'sound/effects/dodge.ogg', 25, TRUE)
 	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
-	user.throw_at(target, 15, 2, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
+	user.throw_at(target, 15, 3, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 
 /datum/martial_art/worldshaker/proc/leap_end(mob/living/carbon/human/user)
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
 	leaping = FALSE
 
-	playsound(user, 'sound/effects/gravhit.ogg', 80, TRUE)
-	explosion(user, 0, 0, 1)
 	for(var/mob/living/L in range(LEAP_RADIUS,user))
 		if(L == user)
 			continue
 		stagger(L)
+		var/damage = 20
+
+		if(L.loc == user.loc)
+			damage = 40//for the love of god, don't get landed on
+			L.adjustStaminaLoss(70)
+
+		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
+		push_away(user, L)
+
+	playsound(user, 'sound/effects/gravhit.ogg', 30, TRUE)
+	playsound(user, 'sound/effects/explosion_distant.ogg', 120, FALSE, WARNING_RANGE)
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
+	shockwave.transform *= 0.1 //basically invisible
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	animate(shockwave, alpha = 0, transform = matrix().Scale(0.2), time = 4)
+	QDEL_IN(shockwave, 4)
 
 /datum/martial_art/worldshaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(leaping)
@@ -182,9 +212,9 @@ slowdown helper
 		return
 
 /datum/martial_art/worldshaker/proc/lob(mob/living/user, atom/target) //proc for throwing something you picked up with grapple
-	var/slamdam = 7
+	var/slamdam = 5
 	var/objdam = 50
-	var/throwdam = 15
+	var/throwdam = 10
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
 	var/atom/tossed = thrown[1]
@@ -209,21 +239,6 @@ slowdown helper
 			F.Destroy()
 		if(!limb_to_hit)
 			limb_to_hit = tossedliving.get_bodypart(BODY_ZONE_CHEST)
-		if(limb_to_hit.brute_dam == limb_to_hit.max_damage)
-			if(!istype(limb_to_hit, /obj/item/bodypart/chest))
-				to_chat(tossedliving, span_userdanger("[user] tears [limb_to_hit] off!"))
-				playsound(user,'sound/misc/desceration-01.ogg', 20, 1)
-				tossedliving.visible_message(span_warning("[user] throws [tossedliving] by [limb_to_hit], severing it from [tossedliving.p_them()]!"))
-				limb_to_hit.drop_limb()
-				user.put_in_hands(limb_to_hit)
-		if(limb_to_hit == tossedliving.get_bodypart(BODY_ZONE_PRECISE_GROIN)) //targetting the chest works for tail removal too but who cares
-			var/obj/item/organ/T = tossedliving.getorgan(/obj/item/organ/tail)
-			if(T && limb_to_hit.brute_dam >= 50)
-				to_chat(tossedliving, span_userdanger("[user] tears your tail off!"))
-				playsound(user,'sound/misc/desceration-02.ogg', 20, 1)
-				tossedliving.visible_message(span_warning("[user] throws [tossedliving] by [tossedliving.p_their()] tail, severing [tossedliving.p_them()] from it!")) //"I'm taking this back."
-				T.Remove(tossedliving)
-				user.put_in_hands(T)
 	user.visible_message(span_warning("[user] throws [tossed]!"))
 	for(var/i = 1 to target_dist)
 		var/dir_to_target = get_dir(get_turf(tossed), D) //vars that let the thing be thrown while moving similar to things thrown normally
@@ -300,10 +315,20 @@ slowdown helper
 ---------------------------------------------------------------*/
 
 /datum/martial_art/worldshaker/proc/pummel(mob/living/user, mob/living/target)
+	if(user == target)
+		return
 	to_chat(world, "pummel")
+	target.apply_damage(30, BRUTE, user.zone_selected, wound_bonus = 10, bare_wound_bonus = 20)
+	target.adjustStaminaLoss(30)
+	if(!target.resting)//if they aren't already knocked down, throw them back one space
+		if(target.anchored)
+			target.anchored = FALSE
+		push_away(user, target)
 	stagger(target)
-	playsound(user, 'sound/effects/gravhit.ogg', 60, TRUE) //Mainly this sound
-	playsound(user, 'sound/effects/meteorimpact.ogg', 25, 1, -1)
+
+	user.do_attack_animation(target)
+	playsound(user, 'sound/effects/gravhit.ogg', 30, TRUE, -1)
+	playsound(user, 'sound/effects/meteorimpact.ogg', 45, TRUE, -1)
 	
 /*---------------------------------------------------------------
 	end of pummel section
@@ -346,22 +371,19 @@ slowdown helper
 /datum/martial_art/worldshaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
 	usr.click_intercept = src 
-	H.physiology.damage_resistance += 10
+	H.physiology.damage_resistance += 30 //30% damage reduction
 	H.physiology.heat_mod = 0
-	H.dna.species.speedmod += 0.3
-	H.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = 1)//you hella chunky
+	H.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = 0.5)//you hella chunky
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
-	ADD_TRAIT(H, TRAIT_BOMBIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 
 /datum/martial_art/worldshaker/on_remove(mob/living/carbon/human/H)
 	usr.click_intercept = null 
-	H.physiology.damage_resistance -= 10
+	H.physiology.damage_resistance -= 30
 	H.physiology.heat_mod = initial(H.physiology.heat_mod)
 	H.remove_movespeed_modifier(type)
 	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
-	REMOVE_TRAIT(H, TRAIT_BOMBIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 	..()
