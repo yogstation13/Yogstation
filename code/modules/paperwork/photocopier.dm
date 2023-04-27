@@ -323,11 +323,6 @@
 	
 /obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy)
 	var/copy_as_paper = TRUE
-	if(istype(copy, /obj/item/paper/contract/employment))
-		var/obj/item/paper/contract/employment/E = copy
-		var/obj/item/paper/contract/employment/C = new /obj/item/paper/contract/employment (loc, E.target.current)
-		if(C)
-			copy_as_paper = FALSE
 	if(copy_as_paper)
 		var/obj/item/paper/c = new /obj/item/paper (loc)
 		if(length(copy.info) || length(copy.written))	//Only print and add content if the copied doc has words on it
