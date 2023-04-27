@@ -10,9 +10,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		DYE_BLACK = /obj/item/clothing/under/color/black,
 		DYE_WHITE = /obj/item/clothing/under/color/white,
 		DYE_RAINBOW = /obj/item/clothing/under/color/rainbow,
-		DYE_MIME = /obj/item/clothing/under/rank/mime,
 		DYE_CLOWN = /obj/item/clothing/under/rank/clown,
-		DYE_QM = /obj/item/clothing/under/rank/chief_medical_officer,
 		DYE_LAW = /obj/item/clothing/under/lawyer/blacksuit,
 		DYE_CAPTAIN = /obj/item/clothing/under/rank/captain,
 		DYE_HOP = /obj/item/clothing/under/rank/head_of_personnel,
@@ -20,7 +18,11 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		DYE_CE = /obj/item/clothing/under/rank/chief_engineer,
 		DYE_RD = /obj/item/clothing/under/rank/research_director,
 		DYE_CMO = /obj/item/clothing/under/rank/chief_medical_officer,
-		DYE_REDCOAT = /obj/item/clothing/under/redcoat
+		DYE_REDCOAT = /obj/item/clothing/under/redcoat,
+		DYE_SYNDI = /obj/item/clothing/under/syndicate/tacticool,
+		DYE_CENT = /obj/item/clothing/under/rank/centcom_officer,
+		DYE_MIME = /obj/item/clothing/under/rank/mime,
+		DYE_QM = /obj/item/clothing/under/rank/cargo
 	),
 	DYE_REGISTRY_JUMPSKIRT = list(
 		DYE_RED = /obj/item/clothing/under/skirt/color/red,
