@@ -1,6 +1,7 @@
 //variables for fun balance tweaks
-#define COOLDOWN_STOMP 5 SECONDS
-#define STOMP_RADIUS 6
+#define COOLDOWN_STOMP 10 SECONDS
+#define STOMP_RADIUS 10
+#define STOMP_DAMAGERADIUS 5
 #define COOLDOWN_LEAP 1.5 SECONDS
 #define LEAP_RADIUS 1
 #define COOLDOWN_GRAPPLE 2 SECONDS
@@ -59,7 +60,7 @@
 /datum/martial_art/worldshaker/proc/stagger_end(mob/living/victim)
 	victim.remove_movespeed_modifier(id)
 
-/datum/martial_art/worldshaker/proc/push_away(mob/living/user, atom/victim, distance = 1)
+/datum/martial_art/worldshaker/proc/push_away(mob/living/user, mob/living/victim, distance = 1)
 	var/throwdirection = get_dir(user, victim)
 	var/atom/throw_target = get_edge_target_turf(victim, throwdirection)
 	victim.throw_at(throw_target, distance, 2, user)
@@ -81,39 +82,49 @@
 	cooldown_time = COOLDOWN_STOMP
 
 /datum/action/cooldown/worldstomp/IsAvailable()
-	if(linked_martial.can_use(owner))
-		return ..()
-	return FALSE
+	if(!linked_martial.can_use(owner))
+		return FALSE
+	return ..()
 
 /datum/action/cooldown/worldstomp/Trigger()
 	. = ..()
-	if(!do_after(owner, 0.5 SECONDS, owner, stayStill = FALSE))
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(owner.loc, owner)
+	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = 1 SECONDS)
+	if(!do_after(owner, 1 SECONDS, owner) || !IsAvailable())
+		qdel(D)
 		return
 	StartCooldown()
+	animate(D, alpha = 0, color = "#000000", transform = matrix()*0, time = 1)
 
 	for(var/mob/living/L in range(STOMP_RADIUS, owner))
 		if(L == owner)
 			continue
 		linked_martial.stagger(L)
-		L.Knockdown(30)
-		var/damage = 15
-		if(L.loc == owner.loc)//if the are standing directly ontop of you
+		var/damage = 5
+		var/throwdistance = 1
+		if(L in range(STOMP_DAMAGERADIUS, owner))//more damage and CC if closer
 			damage = 30
+			throwdistance = 3
+			L.Knockdown(30)
+		if(L.loc == owner.loc)//if the are standing directly ontop of you, you're fucked
+			damage = 40
 			L.adjustStaminaLoss(70)
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
-		linked_martial.push_away(owner, L, 3)
+		linked_martial.push_away(owner, L, throwdistance)
 	for(var/obj/item/I in range(STOMP_RADIUS, owner))
+		var/throwdirection = get_dir(owner, I)
+		var/atom/throw_target = get_edge_target_turf(I, throwdirection)
+		I.throw_at(throw_target, 3, 2, owner)
 
 	//flavour stuff
-	playsound(owner, get_sfx("explosion_creaking"), 60, TRUE, STOMP_RADIUS)
-	playsound(owner, get_sfx("hull_creaking"), 80, FALSE, STOMP_RADIUS + WARNING_RANGE)
+	playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS)
 	playsound(owner, 'sound/effects/explosion_distant.ogg', 200, FALSE, STOMP_RADIUS + WARNING_RANGE)
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(owner))
 	shockwave.transform *= 0.1 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	animate(shockwave, alpha = 0, transform = matrix().Scale(1), time = 10)
-	QDEL_IN(shockwave, 10)
+	animate(shockwave, alpha = 0, transform = matrix().Scale(3), time = 3 SECONDS)
+	QDEL_IN(shockwave, 3.1 SECONDS)
 
 /*---------------------------------------------------------------
 	end of stomp section
@@ -132,8 +143,9 @@
 	leaping = TRUE
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc,user)
 	animate(D, alpha = 0, color = "#000000", transform = matrix()*2, time = 0.3 SECONDS)
+	animate(user, time = 0.2 SECONDS, pixel_y = 20)//we up in the air
 	playsound(user, 'sound/effects/gravhit.ogg', 20)
-	playsound(user, 'sound/effects/dodge.ogg', 20, TRUE)
+	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
 	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
 	user.throw_at(target, 15, 3, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 
@@ -154,14 +166,15 @@
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
 		push_away(user, L)
 
+	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE)
 	playsound(user, 'sound/effects/explosion_distant.ogg', 200, FALSE, WARNING_RANGE)
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
 	shockwave.transform *= 0.1 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	animate(shockwave, alpha = 0, transform = matrix().Scale(0.2), time = 4)
-	QDEL_IN(shockwave, 4)
+	animate(shockwave, alpha = 0, transform = matrix().Scale(0.3), time = 2)
+	QDEL_IN(shockwave, 3)
 
 /datum/martial_art/worldshaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(leaping)
@@ -237,7 +250,7 @@
 
 /datum/martial_art/worldshaker/proc/lob(mob/living/user, atom/target) //proc for throwing something you picked up with grapple
 	var/slamdam = 5
-	var/objdam = 50
+	var/objdam = 200 //really good at breaking terrain
 	var/throwdam = 10
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
@@ -338,7 +351,6 @@
 /*---------------------------------------------------------------
 	start of pummel section
 ---------------------------------------------------------------*/
-
 /datum/martial_art/worldshaker/proc/pummel(mob/living/user, mob/living/target)
 	if(user == target)
 		return
@@ -358,36 +370,33 @@
 /*---------------------------------------------------------------
 	end of pummel section
 ---------------------------------------------------------------*/
+/datum/martial_art/worldshaker/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)
+	push_away(user, attacker, 20)//don't EVER come at me with that B
+	
 /*---------------------------------------------------------------
 	training related section
 ---------------------------------------------------------------*/
 /mob/living/carbon/human/proc/worldshaker_help()
-	set name = "Buster Style"
-	set desc = "You mentally practice the stunts you can pull with the buster arm."
-	set category = "Buster Style"
+	set name = "Worldshaker"
+	set desc = "You imagine all the things you would be capable of with this power."
+	set category = "Worldshaker"
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You think about what stunts you can pull with the power of a buster arm.</i></b>"
 
-	combined_msg += "[span_notice("Wire Snatch")]:By targetting yourself with help intent, you equip a grappling wire which can be used to move yourself or other objects. Landing a \
-	shot on a person will immobilize them for 2 seconds. Facing an immediate solid object will slam them into it, damaging both of them. Extending the wire has a 5 second cooldown."
-
-	combined_msg +=  "[span_notice("Mop the Floor")]: Your disarm has been replaced with a move that sends you flying forward, damaging enemies in front of you by dragging them \
+	combined_msg +=  "[span_notice("Leap")]: Your disarm has been replaced with a move that sends you flying forward, damaging enemies in front of you by dragging them \
 	along the ground. Ramming victims into something solid does damage to them and the object. Has a 4 second cooldown."
-
-	combined_msg +=  "[span_notice("Slam")]: Your harm has been replaced with a slam attack that places enemies behind you and smashes them against \
-	whatever person, wall, or object is there for bonus damage. Has a 0.8 second cooldown."
 	
-	combined_msg +=  "[span_notice("Grapple")]: Your grab has been amplified, allowing you to take a target object or being into your hand for up to 10 seconds and throw them at a \
+	combined_msg +=  "[span_notice("Clasp")]: Your grab has been amplified, allowing you to take a target object or being into your hand for up to 10 seconds and throw them at a \
 	target destination by clicking again with grab intent. Throwing them into unanchored people and objects will knock them back and deal additional damage to existing thrown \
 	targets. Mechs and vending machines can be tossed as well. If the target's limb is at its limit, tear it off. Has a 3 second cooldown"
 
-	combined_msg +=  "[span_notice("Megabuster")]: Charge up your buster arm to put a powerful attack in the corresponding hand. The energy only lasts 5 seconds \
+	combined_msg +=  "[span_notice("Pummel")]: Your harm has been replaced with a slam attack that places enemies behind you and smashes them against \
+	whatever person, wall, or object is there for bonus damage. Has a 0.8 second cooldown."
+
+	combined_msg +=  "[span_notice("Worldslam")]: Charge up your buster arm to put a powerful attack in the corresponding hand. The energy only lasts 5 seconds \
 	but does hefty damage to its target, even breaking walls down when hitting things into them or connecting the attack directly. Landing the attack on a reinforced wall \
 	destroys it but uses up the attack. Attacking a living target uses up the attack and sends them flying and dismembers their limb if its damaged enough. Has a 15 second \
 	cooldown."
-
-	combined_msg +=  span_warning("You can't perform any of the moves if you have an occupied hand. Additionally, if your buster arm should become disabled, so shall\
-	 your moves.")
 
 	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 50% for 2 seconds.</b>")
 
@@ -396,7 +405,7 @@
 /datum/martial_art/worldshaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
 	usr.click_intercept = src 
-	H.physiology.damage_resistance += 30 //30% damage reduction
+	H.physiology.damage_resistance += 50 //50% damage reduction
 	H.physiology.heat_mod = 0
 	H.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = 0.5)//you hella chunky
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
@@ -409,7 +418,7 @@
 
 /datum/martial_art/worldshaker/on_remove(mob/living/carbon/human/H)
 	usr.click_intercept = null 
-	H.physiology.damage_resistance -= 30
+	H.physiology.damage_resistance -= 50
 	H.physiology.heat_mod = initial(H.physiology.heat_mod)
 	H.remove_movespeed_modifier(type)
 	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
@@ -421,6 +430,7 @@
 
 #undef COOLDOWN_STOMP
 #undef STOMP_RADIUS
+#undef STOMP_DAMAGERADIUS
 #undef COOLDOWN_LEAP
 #undef LEAP_RADIUS
 #undef COOLDOWN_GRAPPLE
