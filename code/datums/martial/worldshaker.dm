@@ -41,10 +41,16 @@
 	start of stomp section 
 ---------------------------------------------------------------*/
 /datum/martial_art/worldshaker/proc/stomp(mob/living/carbon/human/user)
+	if(!COOLDOWN_FINISHED(src, next_stomp))
+		user.balloon_alert(user, span_warning("You can't do that yet!"))
+		return
+	COOLDOWN_START(src, next_stomp, COOLDOWN_STOMP)
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
 	shockwave.transform *= 0.01 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
+	playsound(user, 'sound/effects/gravhit.ogg', 80, TRUE) //Mainly this sound
+	playsound(user, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
 	animate(shockwave, transform = matrix().Scale(1), time = 2 SECONDS)
 	QDEL_IN(shockwave, 2 SECONDS)
 
@@ -65,9 +71,9 @@
 	if(!T)
 		return
 	new /obj/effect/temp_visual/dragon_swoop/bubblegum(T)
-	
+
 	leaping = TRUE
-	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(loc,src)
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc,user)
 	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 0.3 SECONDS)
 	user.apply_status_effect(STATUS_EFFECT_DODGING)
 	playsound(H, 'sound/effects/dodge.ogg', 50)
@@ -76,12 +82,14 @@
 
 /datum/martial_art/worldshaker/proc/leap_end(mob/living/carbon/human/user)
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
+	playsound(user, 'sound/effects/gravhit.ogg', 80, TRUE) //Mainly this sound
+	explosion(user, -1, 0, 0.5, flame_range = 1)
 	leaping = FALSE
 
 /datum/martial_art/worldshaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
-	if(!leaping)
-		return ..()
-	return TRUE
+	if(leaping)
+		return TRUE
+	return ..()
 /*---------------------------------------------------------------
 	end of leap section
 ---------------------------------------------------------------*/
@@ -101,7 +109,7 @@
 	var/turf/Z = get_turf(user)
 	target.add_fingerprint(user, FALSE)
 	if(!COOLDOWN_FINISHED(src, next_grapple))
-		to_chat(user, span_warning("You can't do that yet!"))
+		user.balloon_alert(user, span_warning("You can't do that yet!"))
 		return
 	if((target == user) || (isopenturf(target)) || (iswallturf(target)) || (isitem(target)) || (iseffect(target)))
 		return
@@ -118,7 +126,7 @@
 			else
 				return
 		if(user in I.contents)
-			to_chat(user, span_warning("You can't throw something while you're inside of it!")) //as funny as throwing lockers from the inside is i dont think i can get away with it
+			user.balloon_alert(user, span_warning("You can't throw something while you're inside of it!")) //as funny as throwing lockers from the inside is i dont think i can get away with it
 			return
 		COOLDOWN_START(src, next_grapple, COOLDOWN_GRAPPLE)
 		user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
@@ -271,6 +279,9 @@
 ---------------------------------------------------------------*/
 
 /datum/martial_art/worldshaker/proc/pummel(mob/living/user, mob/living/target)
+	to_chat(world, "pummel")
+	playsound(user, 'sound/effects/gravhit.ogg', 60, TRUE) //Mainly this sound
+	playsound(user, 'sound/effects/meteorimpact.ogg', 25, 1, -1)
 	
 /*---------------------------------------------------------------
 	end of pummel section
@@ -312,12 +323,22 @@
 
 /datum/martial_art/worldshaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
-	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, type)
-	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	usr.click_intercept = src 
+	H.physiology.damage_resistance += 10
+	H.physiology.heat_mod = 0
+	H.dna.species.speedmod += 0.3
+	H.update_movespeed(TRUE)
+	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
+	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 
 /datum/martial_art/worldshaker/on_remove(mob/living/carbon/human/H)
-	REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, type)
-	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	usr.click_intercept = null 
+	H.physiology.damage_resistance -= 10
+	H.physiology.heat_mod = initial(H.physiology.heat_mod)
+	H.dna.species.speedmod -= 0.3
+	H.update_movespeed(TRUE)
+	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
+	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 	..()
