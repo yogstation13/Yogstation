@@ -1,5 +1,9 @@
 #define COOLDOWN_STOMP 5 SECONDS
+#define STOMP_RADIUS 5
+#define COOLDOWN_LEAP 3 SECONDS
+#define LEAP_RADIUS 2
 #define COOLDOWN_GRAPPLE 3 SECONDS
+#define STAGGER_DURATION 3 SECONDS
 
 /datum/martial_art/worldshaker
 	name = "Worldshaker"
@@ -8,6 +12,7 @@
 	help_verb = /mob/living/carbon/human/proc/worldshaker_help
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_stomp)
+	COOLDOWN_DECLARE(next_leap)
 	COOLDOWN_DECLARE(next_grapple)
 	var/old_density //so people grappling something arent pushed by it until it's thrown
 	var/leaping = FALSE
@@ -37,6 +42,16 @@
 	if(H.a_intent == INTENT_GRAB)
 		grapple(H,target)
 
+/*-----------------------------
+slowdown helper
+-----------------------------*/
+/datum/martial_art/worldshaker/proc/stagger(mob/living/victim)
+	victim.Knockdown(1)//basically a trip
+	victim.add_movespeed_modifier(id, update=TRUE, priority=101, multiplicative_slowdown = 1)
+	addtimer(CALLBACK(src, PROC_REF(stagger_end), victim), STAGGER_DURATION)
+
+/datum/martial_art/worldshaker/proc/stagger_end(mob/living/victim)
+	victim.remove_movespeed_modifier(id)
 /*---------------------------------------------------------------
 	start of stomp section 
 ---------------------------------------------------------------*/
@@ -45,14 +60,21 @@
 		user.balloon_alert(user, span_warning("You can't do that yet!"))
 		return
 	COOLDOWN_START(src, next_stomp, COOLDOWN_STOMP)
+
+	for(var/mob/living/L in range(STOMP_RADIUS,user))
+		if(L == user)
+			continue
+		stagger(L)
+
+	//flavour stuff
 	var/atom/movable/gravity_lens/shockwave = new(get_turf(user))
 	shockwave.transform *= 0.01 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
 	playsound(user, 'sound/effects/gravhit.ogg', 80, TRUE) //Mainly this sound
 	playsound(user, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
-	animate(shockwave, transform = matrix().Scale(1), time = 2 SECONDS)
-	QDEL_IN(shockwave, 2 SECONDS)
+	animate(shockwave, transform = matrix().Scale(0.6), time = 1 SECONDS)
+	QDEL_IN(shockwave, 1 SECONDS)
 
 /*---------------------------------------------------------------
 	end of stomp section
@@ -61,30 +83,31 @@
 	start of leap section
 ---------------------------------------------------------------*/
 /datum/martial_art/worldshaker/proc/leap(mob/living/user, atom/target)
+	if(!COOLDOWN_FINISHED(src, next_leap))
+		user.balloon_alert(user, span_warning("You can't do that yet!"))
+		return
 	if(!target || leaping)
 		return
-	var/chargeturf = get_turf(target)
-	if(!chargeturf)
-		return
-	var/dir = get_dir(user, chargeturf)
-	var/turf/T = get_ranged_target_turf(chargeturf, dir)
-	if(!T)
-		return
-	new /obj/effect/temp_visual/dragon_swoop/bubblegum(T)
+	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP)
+	new /obj/effect/temp_visual/dragon_swoop/bubblegum(get_turf(target))
 
 	leaping = TRUE
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc,user)
 	animate(D, alpha = 0, color = "#FF0000", transform = matrix()*2, time = 0.3 SECONDS)
-	user.apply_status_effect(STATUS_EFFECT_DODGING)
-	playsound(H, 'sound/effects/dodge.ogg', 50)
+	playsound(user, 'sound/effects/dodge.ogg', 50)
 	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
-	user.throw_at(target, 10, 3, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
+	user.throw_at(target, 15, 2, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 
 /datum/martial_art/worldshaker/proc/leap_end(mob/living/carbon/human/user)
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
-	playsound(user, 'sound/effects/gravhit.ogg', 80, TRUE) //Mainly this sound
-	explosion(user, -1, 0, 0.5, flame_range = 1)
 	leaping = FALSE
+
+	playsound(user, 'sound/effects/gravhit.ogg', 80, TRUE)
+	explosion(user, 0, 0, 1)
+	for(var/mob/living/L in range(LEAP_RADIUS,user))
+		if(L == user)
+			continue
+		stagger(L)
 
 /datum/martial_art/worldshaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(leaping)
@@ -129,7 +152,6 @@
 			user.balloon_alert(user, span_warning("You can't throw something while you're inside of it!")) //as funny as throwing lockers from the inside is i dont think i can get away with it
 			return
 		COOLDOWN_START(src, next_grapple, COOLDOWN_GRAPPLE)
-		user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 		I.visible_message(span_warning("[user] grabs [I] and lifts it above [user.p_their()] head!"))
 		animate(I, time = 0.2 SECONDS, pixel_y = 20)
 		I.forceMove(Z)
@@ -145,7 +167,6 @@
 		var/mob/living/L = target
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
 		COOLDOWN_START(src, next_grapple, COOLDOWN_GRAPPLE)
-		user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)
 		old_density = L.density // for the sake of noncarbons not playing nice with lying down
 		L.density = FALSE
 		L.visible_message(span_warning("[user] grabs [L] and lifts [L.p_them()] off the ground!"))
@@ -327,8 +348,9 @@
 	H.physiology.damage_resistance += 10
 	H.physiology.heat_mod = 0
 	H.dna.species.speedmod += 0.3
-	H.update_movespeed(TRUE)
+	H.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = 1)//you hella chunky
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	ADD_TRAIT(H, TRAIT_BOMBIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 
@@ -336,9 +358,9 @@
 	usr.click_intercept = null 
 	H.physiology.damage_resistance -= 10
 	H.physiology.heat_mod = initial(H.physiology.heat_mod)
-	H.dna.species.speedmod -= 0.3
-	H.update_movespeed(TRUE)
+	H.remove_movespeed_modifier(type)
 	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	REMOVE_TRAIT(H, TRAIT_BOMBIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 	..()
