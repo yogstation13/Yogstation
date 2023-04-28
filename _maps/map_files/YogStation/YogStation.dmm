@@ -29748,6 +29748,20 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/locker)
+"hGQ" = (
+/obj/structure/displaycase/cmo,
+/obj/effect/turf_decal/tile/blue/opposingcorners{
+	dir = 1
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Chief Medical Officer's Desk";
+	departmentType = 5;
+	name = "Chief Medical Officer RC";
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
 "hHb" = (
 /obj/machinery/light_switch{
 	pixel_x = -24
@@ -32534,6 +32548,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"iKc" = (
+/obj/structure/closet/secure_closet/CMO,
+/obj/item/sensor_device,
+/obj/machinery/button/door{
+	id = "cmo";
+	name = "CMO Privacy Shutters Control";
+	pixel_y = 28;
+	req_access_txt = "40"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/crew_quarters/heads/cmo)
 "iKg" = (
 /obj/machinery/ai_slipper{
 	uses = 10
@@ -34609,13 +34634,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
-"jDY" = (
-/obj/structure/displaycase/cmo,
-/obj/effect/turf_decal/tile/blue/opposingcorners{
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/cmo)
 "jEd" = (
 /obj/structure/showcase/cyborg/old{
 	dir = 4;
@@ -35478,6 +35496,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"jXL" = (
+/obj/machinery/button/holosign{
+	pixel_x = -7;
+	pixel_y = -8
+	},
+/turf/closed/wall/r_wall,
+/area/crew_quarters/heads/cmo)
 "jXO" = (
 /obj/structure/sink{
 	dir = 8;
@@ -36612,26 +36637,6 @@
 /obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"kzk" = (
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Chief Medical Officer's Desk";
-	departmentType = 5;
-	name = "Chief Medical Officer RC";
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/tile/blue/opposingcorners{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/clothing/suit/apron/surgical,
-/obj/item/clothing/mask/surgical,
-/obj/item/reagent_containers/glass/bottle/morphine{
-	pixel_x = 8;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/cmo)
 "kzu" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload_foyer)
@@ -39510,6 +39515,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"lIo" = (
+/obj/machinery/camera{
+	c_tag = "Chief Medical Office";
+	network = list("ss13","medbay")
+	},
+/obj/machinery/modular_computer/console/preset/command/cmo,
+/turf/open/floor/carpet/royalblue,
+/area/crew_quarters/heads/cmo)
 "lIC" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible,
 /turf/open/floor/plasteel,
@@ -44734,20 +44747,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
-"nKO" = (
-/obj/machinery/camera{
-	c_tag = "Chief Medical Office";
-	network = list("ss13","medbay")
-	},
-/obj/machinery/button/door{
-	id = "cmo";
-	name = "CMO Privacy Shutters Control";
-	pixel_y = 28;
-	req_access_txt = "40"
-	},
-/obj/machinery/modular_computer/console/preset/command/cmo,
-/turf/open/floor/carpet/royalblue,
-/area/crew_quarters/heads/cmo)
 "nKP" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 1
@@ -57968,11 +57967,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"tkr" = (
-/obj/structure/closet/secure_closet/CMO,
-/obj/item/sensor_device,
-/turf/open/floor/carpet/royalblue,
-/area/crew_quarters/heads/cmo)
 "tks" = (
 /obj/machinery/vending/assist,
 /obj/effect/turf_decal/stripes/corner{
@@ -65341,6 +65335,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
+"wgu" = (
+/obj/effect/turf_decal/tile/blue/opposingcorners{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/clothing/suit/apron/surgical,
+/obj/item/clothing/mask/surgical,
+/obj/item/reagent_containers/glass/bottle/morphine{
+	pixel_x = 8;
+	pixel_y = -3
+	},
+/obj/machinery/button/door{
+	id = "cmo";
+	name = "CMO Privacy Shutters Control";
+	pixel_x = 7;
+	pixel_y = 24;
+	req_access_txt = "40"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
 "wgC" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -109471,8 +109485,8 @@ buB
 aYV
 aYV
 duH
-kiy
-kzk
+jXL
+wgu
 pbD
 elr
 cpm
@@ -109986,7 +110000,7 @@ aYV
 aYV
 rlx
 kiy
-jDY
+hGQ
 vcC
 lTN
 vcC
@@ -110757,7 +110771,7 @@ cce
 cBm
 yfG
 kiy
-nKO
+lIo
 peX
 rdx
 vcC
@@ -111014,7 +111028,7 @@ cuA
 aYV
 pnN
 kiy
-tkr
+iKc
 otm
 iqi
 akj
