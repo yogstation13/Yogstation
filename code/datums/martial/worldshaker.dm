@@ -118,6 +118,7 @@
 	plate.linked_martial = src
 	user.put_in_active_hand(plate)
 	user.changeNext_move(0.1)//entirely to prevent hitting yourself instantly
+	user.throw_mode_on()
 
 /datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
 	heavy = plates > MAX_PLATES
@@ -128,7 +129,7 @@
 	if(istype(S))
 		if(heavy)//sort of a sound indicator that you're in "heavy mode"
 			S.special_step_sounds = list('sound/effects/gravhit.ogg')//heavy boy get stompy footsteps
-			S.special_step_volume = 10 //prevent it from blowing out ears
+			S.special_step_volume = 7 //prevent it from blowing out ears
 		else
 			S.special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
 			S.special_step_volume = 50
@@ -410,10 +411,13 @@
 /datum/action/cooldown/worldstomp/Trigger()
 	if(!IsAvailable() || charging)
 		return
+	var/plates = linked_martial.plates
+	var/heavy = linked_martial.heavy
+
 	charging = TRUE
-	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(owner.loc, owner)
-	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = 2 SECONDS)
-	if(!do_after(owner, 2 SECONDS, owner) || !IsAvailable())
+	var/obj/effect/temp_visual/decoy/tensecond/D = new /obj/effect/temp_visual/tensecond/decoy(owner.loc, owner)
+	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = (heavy ? 2 : 1) SECONDS)
+	if(!do_after(owner, (heavy ? 2 : 1) SECONDS, owner) || !IsAvailable())
 		charging = FALSE
 		qdel(D)
 		return
@@ -422,7 +426,6 @@
 	animate(D, color = "#000000", transform = matrix()*0, time = 2)
 	QDEL_IN(D, 3)
 
-	var/plates = linked_martial.plates
 	for(var/mob/living/L in range(STOMP_RADIUS + plates, owner))
 		if(L == owner)
 			continue
