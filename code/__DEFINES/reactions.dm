@@ -26,10 +26,8 @@
 #define N2O_DECOMPOSITION_RATE				0.5		//maximum percentage of n2o that can decompose in one tick
 
 // Nitrium:
-/// The minimum temperature necessary for nitrium to form from tritium, nitrogen, and BZ.
+/// The minimum temperature necessary for nitrium to form from plasma, nitrogen, and BZ (with N2O as a catalyst)
 #define NITRIUM_FORMATION_MIN_TEMP 50000
-/// A scaling divisor for the rate of nitrium formation relative to mix temperature.
-#define NITRIUM_FORMATION_TEMP_DIVISOR NITRIUM_FORMATION_MIN_TEMP / 8
 /// The amount of thermal energy consumed when a mole of nitrium is formed
 #define NITRIUM_FORMATION_ENERGY 100000
 

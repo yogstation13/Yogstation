@@ -36,6 +36,7 @@
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 30,
 		/obj/item/extraction_pack = 5,
+		/obj/item/storage/firstaid/hypospray/advanced = 5,
 		/obj/item/fulton_core = 1
 	)
 

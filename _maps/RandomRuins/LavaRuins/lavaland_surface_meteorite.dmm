@@ -2761,7 +2761,7 @@
 	pixel_x = -6;
 	pixel_y = 14
 	},
-/obj/item/nullrod/claymore/glowing{
+/obj/item/nullrod/glowing{
 	desc = "Don't tell anyone you put any points into dex, though.";
 	force = 10;
 	name = "moonlight greatsword"

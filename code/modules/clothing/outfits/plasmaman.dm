@@ -484,8 +484,7 @@
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	uniform = /obj/item/clothing/under/plasmaman/mining
 	l_hand = /obj/item/storage/firstaid/hypospray/qmc
-	l_pocket =  /obj/item/pda/medical
-	r_pocket = /obj/item/wormhole_jaunter
+	l_pocket = /obj/item/wormhole_jaunter
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

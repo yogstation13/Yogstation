@@ -24,7 +24,7 @@ Assistant
 	department_for_prefs = /datum/job_department/assistant
 
 	mail_goodies = list(
-		/obj/item/reagent_containers/food/snacks/donkpocket = 10,
+		/obj/effect/spawner/lootdrop/donkpockets = 10, //more donkpockets
 		/obj/item/clothing/mask/gas = 10,
 		/obj/item/clothing/gloves/color/fyellow = 7,
 		/obj/item/choice_beacon/music = 5,

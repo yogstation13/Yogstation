@@ -82,7 +82,7 @@
 	. = ..()
 	ADD_TRAIT(src, HAND_REPLACEMENT_TRAIT, NOBLUDGEON)
 	if(ismob(loc))
-		loc.visible_message(span_warning("A long cable comes out from [loc.name]'s arm!"), span_warning("You extend the breaker's wire from your arm."))
+		loc.visible_message(span_warning("A long cable comes out from [loc.name]'s arm!"), span_warning("You extend the buster's wire from your arm."))
 
 /// Deletes the wire once it has no more shots left
 /obj/item/gun/magic/wire/process_chamber()

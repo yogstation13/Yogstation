@@ -31,11 +31,13 @@
 	)
 
 	mail_goodies = list(
-		/obj/item/storage/box/lights/mixed = 20,
-		/obj/item/lightreplacer = 10,
+		/obj/item/stack/sheet/metal/fifty = 25,
+		/obj/item/stack/sheet/glass/fifty = 25,
 		/obj/item/holosign_creator/engineering = 8,
 		/obj/item/rcd_ammo = 5,
-		/obj/item/clothing/head/hardhat/red/upgraded = 1
+		/obj/item/stack/sheet/plasteel/twenty = 5,
+		/obj/item/clothing/head/hardhat/red/upgraded = 2,
+		/obj/item/clothing/suit/space/hardsuit/engine = 1
 	)
 
 	smells_like = "welding fuel"

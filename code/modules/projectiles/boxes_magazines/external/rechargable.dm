@@ -29,7 +29,7 @@
 	icon_state = "ntusp"
 	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/recharge/ntusp
-	can_suppress = FALSE
+	can_suppress = TRUE // based and suppressor pilled
 	can_flashlight = TRUE
 	flight_x_offset = 16
 	flight_y_offset = 13

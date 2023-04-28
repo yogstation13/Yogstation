@@ -43,7 +43,7 @@
 /datum/martial_art/buster_style/can_use(mob/living/carbon/human/H)
 	var/obj/item/bodypart/r_arm/robot/buster/R = H.get_bodypart(BODY_ZONE_R_ARM)
 	var/obj/item/bodypart/l_arm/robot/buster/L = H.get_bodypart(BODY_ZONE_L_ARM)
-	if(H.restrained() || H.get_active_held_item() || HAS_TRAIT(H, TRAIT_PACIFISM) || !(H.mobility_flags & MOBILITY_STAND))
+	if(H.restrained() || H.get_active_held_item() || HAS_TRAIT(H, TRAIT_PACIFISM) || !(H.mobility_flags & MOBILITY_MOVE) || H.stat != CONSCIOUS)
 		for(var/atom/movable/K in thrown)
 			thrown.Remove(K)
 			walk(K,0)
@@ -472,17 +472,23 @@
 	destroys it but uses up the attack. Attacking a living target uses up the attack and sends them flying and dismembers their limb if its damaged enough. Has a 15 second \
 	cooldown."
 
-	combined_msg +=  span_warning("You can't perform any of the moves besides megabuster if you're lying down or have an occupied hand. Additionally, if your buster arm should become \
-	disabled, so shall your moves.")
+	combined_msg +=  span_warning("You can't perform any of the moves if you have an occupied hand. Additionally, if your buster arm should become disabled, so shall\
+	 your moves.")
 
-	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 65% for 2 seconds.</b>")
+	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 50% for 2 seconds.</b>")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 /datum/martial_art/buster_style/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
+	var/datum/species/S = H.dna?.species
+	ADD_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
+	S.add_no_equip_slot(H, SLOT_GLOVES)
 	usr.click_intercept = src 
 
 /datum/martial_art/buster_style/on_remove(mob/living/carbon/human/H)
-	..()
+	var/datum/species/S = H.dna?.species
+	REMOVE_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
+	S.remove_no_equip_slot(H, SLOT_GLOVES)
 	usr.click_intercept = null 
+	..()
