@@ -528,7 +528,7 @@
 
 /obj/item/book/granter/martial/worldshaker
 	martial = /datum/martial_art/worldshaker
-	name = "Prototype worldshaker compound"
+	name = "prototype worldshaker compound"
 	martialname = "Worldshaker"
 	desc = "A foul concoction made by reverse engineering chemicals compounds found in an ancient Vxtrin military outpost."
 	greet = "<span class='sciradio'>You feel weirdly good, good enough to shake the world to it's very core. \
