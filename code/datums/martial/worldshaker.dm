@@ -430,15 +430,15 @@
 		if(L == owner)
 			continue
 		linked_martial.stagger(L)
-		var/damage = 5
+		var/damage = heavy ? 10 : 5
 		var/throwdistance = 1
 		if(L in range(STOMP_DAMAGERADIUS + (plates/2), owner))//more damage and CC if closer
-			damage = 30
+			damage *= 3
 			throwdistance = 2
 			L.Knockdown(30)
-		if(L.loc == owner.loc)//if the are standing directly ontop of you, you're fucked
-			damage = 40
-			L.adjustStaminaLoss(70)
+		if(L.loc == owner.loc)//if they are standing directly ontop of you, you're probably fucked
+			damage *= 3
+			L.Stun(5 SECONDS)
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
 		linked_martial.push_away(owner, L, throwdistance)
 	for(var/obj/item/I in range(STOMP_RADIUS + plates, owner))
