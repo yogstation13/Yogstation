@@ -139,7 +139,7 @@
 	if (severity == 1)
 		charge -= maxcharge * 0.5
 	else if (severity == 2)
-		charge -= maxcharge * 0.75
+		charge -= maxcharge * 0.25
 	if (charge < 0)
 		charge = 0
 
