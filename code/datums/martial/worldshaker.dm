@@ -6,7 +6,7 @@
 #define LEAP_RADIUS 1
 #define STAGGER_DURATION 3 SECONDS
 #define WARNING_RANGE 10 //extra range to certain sound effects
-#define PLATE_INTERVAL 20 SECONDS //how often a plate grows
+#define PLATE_INTERVAL 30 SECONDS //how often a plate grows
 #define PLATE_REDUCTION 10 //how much DR per plate
 #define MAX_PLATES 7 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
 #define PLATE_CAP MAX_PLATES * 2 //hard cap of plates to prevent station wide fuckery
@@ -58,9 +58,9 @@
 		grapple(H,target)
 
 	
-/*-----------------------------
+/*-------------------------------------------------------------
 	start of helpers section
------------------------------*/
+---------------------------------------------------------*/
 /datum/martial_art/worldshaker/proc/stagger(mob/living/victim)
 	if(HAS_TRAIT(victim, TRAIT_STUNIMMUNE))
 		return
@@ -79,14 +79,14 @@
 		throwspeed *= 2
 		distance *= 2
 	victim.throw_at(throw_target, distance, throwspeed, user)
-/*-----------------------------
+/*---------------------------------------------------------------
 	end of helpers section
------------------------------*/
+----------------------------------------------------------------*/
 /*---------------------------------------------------------------
 	start of plates section 
 ---------------------------------------------------------------*/
 /datum/martial_art/worldshaker/proc/grow_plate(mob/living/carbon/human/user)
-	if(plates >= PLATE_CAP)//no quaking the entire station
+	if(plates >= PLATE_CAP || user.stat == DEAD)//no quaking the entire station
 		return
 	user.balloon_alert(user, span_notice("Your plates grow thicker!"))
 	user.adjustBruteLoss(-2)//more for flavour than actual gameplay (and so the damage from tearing off a plate isn't annoying)
@@ -107,8 +107,6 @@
 			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
 			user.balloon_alert(user, span_warning("Your plates are too thin to tear off a piece!"))
 		return
-	if(!do_after(user, 2, user, stayStill = FALSE))//so they can't quite rapid fire plates
-		return
 	user.balloon_alert(user, span_notice("You tear off a loose plate!"))
 	user.adjustBruteLoss(1)//literally tearing off part of your "skin" (more for flavour than actual gameplay)
 
@@ -119,13 +117,20 @@
 	var/obj/item/worldplate/plate = new()
 	plate.linked_martial = src
 	user.put_in_active_hand(plate)
-	user.throw_mode_on()
 
 /datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
 	heavy = plates > MAX_PLATES
 	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
 	user.remove_movespeed_modifier(type)
 	user.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = platespeed, blacklisted_movetypes=(FLOATING))
+	var/datum/species/preternis/S = user.dna.species
+	if(istype(S))
+		if(heavy)//sort of a sound indicator that you're in "heavy mode"
+			S.special_step_sounds = list('sound/effects/gravhit.ogg')//heavy boy get stompy footsteps
+			S.special_step_volume = 10 //prevent it from blowing out ears
+		else
+			S.special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
+			S.special_step_volume = 50
 
 /obj/item/worldplate
 	name = "worldshaker plate"
@@ -183,7 +188,7 @@
 	animate(D, alpha = 0, color = "#000000", transform = matrix()*2, time = 0.3 SECONDS)
 	animate(user, time = (heavy ? 0.4 : 0.2)SECONDS, pixel_y = 20)//we up in the air
 	addtimer(CALLBACK(src, PROC_REF(reset_pixel), user), 1.5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)//in case something happens, we don't permanently float
-	playsound(user, 'sound/effects/gravhit.ogg', 20)
+	playsound(user, 'sound/effects/gravhit.ogg', 15)
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
 
 /datum/martial_art/worldshaker/proc/leap_end(mob/living/carbon/human/user)
@@ -207,8 +212,6 @@
 		push_away(user, L)
 	for(var/obj/item/I in range(range, user))
 		push_away(user, I)
-	for(var/obj/structure/S in range(range, user))
-		S.take_damage(10 * range)
 
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE)
@@ -248,7 +251,7 @@
 	target.add_fingerprint(user, FALSE)
 
 	if(isliving(target) && target != user)
-		playsound(user, 'sound/effects/servostep.ogg', 60, FALSE, -1) //play sound here incase some ungrabbable object was clicked
+		playsound(user, 'sound/weapons/thudswoosh.ogg', 65, FALSE, -1) //play sound here incase some ungrabbable object was clicked
 		var/mob/living/L = target
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
 		L.density = FALSE
@@ -376,8 +379,6 @@
 		L.adjustStaminaLoss(damage)
 	for(var/obj/item/I in range(1, target))
 		push_away(user, I)
-	for(var/obj/structure/S in range(1, target))
-		S.take_damage(20)
 
 	user.do_attack_animation(target)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE, -1)
@@ -410,8 +411,8 @@
 		return
 	charging = TRUE
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(owner.loc, owner)
-	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = 1 SECONDS)
-	if(!do_after(owner, 1 SECONDS, owner) || !IsAvailable())
+	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = 2 SECONDS)
+	if(!do_after(owner, 2 SECONDS, owner) || !IsAvailable())
 		charging = FALSE
 		qdel(D)
 		return

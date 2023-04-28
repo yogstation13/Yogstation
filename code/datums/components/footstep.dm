@@ -99,7 +99,7 @@
 			
 			else
 				if(H.dna.species.special_step_sounds)
-					playsound(T, pick(H.dna.species.special_step_sounds), 50, TRUE)
+					playsound(T, pick(H.dna.species.special_step_sounds), H.dna.species.special_step_volume, TRUE)
 				else
 					playsound(T, pick(GLOB.barefootstep[T.barefootstep][1]),
 						GLOB.barefootstep[T.barefootstep][2] * v,
