@@ -217,7 +217,7 @@
 		var/damage = heavy ? 25 : 15 //chunky boy does more damage
 
 		if(L.loc == user.loc)
-			to_chat(L, "[user] lands directly ontop of you, c")
+			to_chat(L, span_userdanger("[user] lands directly ontop of you, crushing you beneath their immense weight!"))
 			damage *= 2//for the love of god, don't get landed on
 			L.adjustStaminaLoss(damage)
 
@@ -447,6 +447,7 @@
 			throwdistance = 2
 			L.Knockdown(30)
 		if(L.loc == owner.loc)//if they are standing directly ontop of you, you're probably fucked
+			to_chat(L, span_userdanger("[owner] slams you into the ground with so much force that you're certain your ribs have been collapsed!"))
 			damage *= 3
 			L.Stun(5 SECONDS)
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
