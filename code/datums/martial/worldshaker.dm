@@ -97,15 +97,17 @@
 	update_platespeed(user)
 
 /datum/martial_art/worldshaker/proc/rip_plate(mob/living/carbon/human/user)
+	if(user.get_active_held_item())
+		if(COOLDOWN_FINISHED(src, next_balloon))
+			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
+			user.balloon_alert(user, span_warning("You need an empty hand to tear off some of your plate!"))
+		return
 	if(plates <= 0)
 		if(COOLDOWN_FINISHED(src, next_balloon))
 			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
 			user.balloon_alert(user, span_warning("Your plates are too thin to tear off a piece!"))
 		return
-	if(user.get_active_held_item())
-		user.balloon_alert(user, span_warning("You need an empty hand to tear off some of your plate!"))
-		return
-	if(!do_after(user, 1, user, stayStill = FALSE))//so they can't quite rapid fire plates
+	if(!do_after(user, 2, user, stayStill = FALSE))//so they can't quite rapid fire plates
 		return
 	user.balloon_alert(user, span_notice("You tear off a loose plate!"))
 	user.adjustBruteLoss(1)//literally tearing off part of your "skin" (more for flavour than actual gameplay)
@@ -180,7 +182,7 @@
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc,user)
 	animate(D, alpha = 0, color = "#000000", transform = matrix()*2, time = 0.3 SECONDS)
 	animate(user, time = (heavy ? 0.4 : 0.2)SECONDS, pixel_y = 20)//we up in the air
-	addtimer(CALLBACK(src, PROC_REF(reset_pixel), user), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)//in case something happens, we don't permanently float
+	addtimer(CALLBACK(src, PROC_REF(reset_pixel), user), 1.5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)//in case something happens, we don't permanently float
 	playsound(user, 'sound/effects/gravhit.ogg', 20)
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
 
@@ -206,7 +208,7 @@
 	for(var/obj/item/I in range(range, user))
 		push_away(user, I)
 	for(var/obj/structure/S in range(range, user))
-		S.take_damage(20)
+		S.take_damage(10 * range)
 
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE)
@@ -388,7 +390,7 @@
 	start of stomp section 
 ---------------------------------------------------------------*/
 /datum/action/cooldown/worldstomp
-	name = "Quake"
+	name = "Worldstomp"
 	desc = "Put all your weight and strength into a singular stomp."
 	icon_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	button_icon_state = "lightning"
@@ -437,7 +439,7 @@
 	for(var/obj/item/I in range(STOMP_RADIUS + plates, owner))
 		linked_martial.push_away(owner, I, 2)
 	for(var/obj/structure/S in range(STOMP_DAMAGERADIUS + (plates/2), owner))
-		S.take_damage(25)
+		S.take_damage(25 + (plates * 3))
 
 	//flavour stuff
 	playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS)
@@ -480,20 +482,22 @@
 	combined_msg +=  "[span_notice("Pummel")]: Your harm intent pummels a small area dealing brute and stamina damage. Everything within a certain range is damaged, knocked back, and staggered. \
 	The target takes significantly more brute and stamina damage."
 
-	combined_msg +=  "[span_notice("Worldstomp")]: Focus all your weight and power into a single stomp. After a delay, create a giant shockwave that deals damage to all mobs within a radius. \
+	combined_msg +=  "[span_notice("Worldstomp")]: After a delay, create a giant shockwave that deals damage to all mobs within a radius. \
 	The shockwave will knock back and stagger all mobs in a larger radius. Objects and structures within the extended radius will be thrown or damaged respectively.\
 	The radius, knockback, and damage all scale with number of plates."
 
 	combined_msg +=  "[span_notice("Landslide")]: If hit by a melee attack while in throw mode, you will block it and send the attacker flying."
 
 	combined_msg += span_notice("<b>All attacks apply stagger. Stagger knocks people prone and applies a brief slow.</b>")
+	combined_msg += span_notice("<b>Being in this state causes you to burn energy significantly faster.</b>")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 /datum/martial_art/worldshaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
-	if(H.dna.species.power_drain)//burn bright my friend
-		H.dna.species.power_drain *= 10
+	var/datum/species/preternis/S = H.dna.species
+	if(istype(S))//burn bright my friend
+		S.power_drain *= 3
 	usr.click_intercept = src 
 	H.physiology.heat_mod -= 1 //walk through that fire all you like, hope you don't care about your clothes
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
@@ -508,8 +512,9 @@
 	linked_stomp.Grant(H)
 
 /datum/martial_art/worldshaker/on_remove(mob/living/carbon/human/H)
-	if(H.dna.species.power_drain)//but not that bright
-		H.dna.species.power_drain /= 10
+	var/datum/species/preternis/S = H.dna.species
+	if(istype(S))//but not that bright
+		S.power_drain /= 3
 	usr.click_intercept = null 
 	H.physiology.heat_mod += 1
 	H.physiology.damage_resistance -= PLATE_REDUCTION * min(plates, MAX_PLATES)
