@@ -664,7 +664,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	to_chat(user, span_notice("You short out the product lock on [src]."))
 
 /obj/machinery/vending/_try_interact(mob/user)
-	if((user.mind?.martial_art) && (istype(user.mind.martial_art, /datum/martial_art/buster_style) || istype(user.mind.martial_art, /datum/martial_art/worldshaker)) && (user.a_intent == INTENT_GRAB)) //buster arm shit since it can throw vendors
+	if((user.mind?.martial_art) && istype(user.mind.martial_art, /datum/martial_art/buster_style) && (user.a_intent == INTENT_GRAB)) //buster arm shit since it can throw vendors
 		return
 	
 	if(seconds_electrified && !(stat & NOPOWER))

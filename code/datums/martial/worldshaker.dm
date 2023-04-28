@@ -6,9 +6,10 @@
 #define LEAP_RADIUS 1
 #define STAGGER_DURATION 3 SECONDS
 #define WARNING_RANGE 10 //extra range to certain sound effects
-#define PLATE_INTERVAL 20 SECONDS //how often a plate grows
+#define PLATE_INTERVAL 30 SECONDS //how often a plate grows
 #define PLATE_REDUCTION 10 //how much DR per plate
-#define MAX_PLATES 8 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
+#define MAX_PLATES 7 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
+#define PLATE_CAP 14 //hard cap of plates to prevent station wide fuckery
 
 /datum/martial_art/worldshaker
 	name = "Worldshaker"
@@ -23,6 +24,7 @@
 	var/leaping = FALSE
 	var/plates = 0
 	var/plate_timer = null
+	var/heavy = FALSE //
 
 /datum/martial_art/worldshaker/can_use(mob/living/carbon/human/H)
 	return ispreternis(H)
@@ -60,7 +62,7 @@
 	if(HAS_TRAIT(victim, TRAIT_STUNIMMUNE))
 		return
 	victim.set_resting(TRUE)//basically a trip
-	victim.add_movespeed_modifier(id, update=TRUE, priority=101, multiplicative_slowdown = 1)
+	victim.add_movespeed_modifier(id, update=TRUE, priority=101, multiplicative_slowdown = 0.5)
 	addtimer(CALLBACK(src, PROC_REF(stagger_end), victim), STAGGER_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 /datum/martial_art/worldshaker/proc/stagger_end(mob/living/victim)
@@ -69,7 +71,8 @@
 /datum/martial_art/worldshaker/proc/push_away(mob/living/user, mob/living/victim, distance = 1)
 	var/throwdirection = get_dir(user, victim)
 	var/atom/throw_target = get_edge_target_turf(victim, throwdirection)
-	victim.throw_at(throw_target, distance, 2, user)
+	var/throwspeed = heavy ? 3 : 2
+	victim.throw_at(throw_target, distance, throwspeed, user)
 /*-----------------------------
 	end of helpers section
 -----------------------------*/
@@ -77,6 +80,8 @@
 	start of plates section 
 ---------------------------------------------------------------*/
 /datum/martial_art/worldshaker/proc/grow_plate(mob/living/carbon/human/user)
+	if(plates >= PLATE_CAP)//no quaking the entire station
+		return
 	user.balloon_alert(user, span_notice("Your plates grow thicker!"))
 	plates++
 	if(plates <= MAX_PLATES)
@@ -99,11 +104,13 @@
 	var/obj/item/worldplate/plate = new()
 	plate.linked_martial = src
 	user.put_in_active_hand(plate)
-	user.throw_move_on()
+	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob/living/carbon, throw_mode_on))//so the plate isn't instantly thrown
 
 /datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
+	heavy = plates > MAX_PLATES
 	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
-	H.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = platespeed, blacklisted_movetypes=(FLOATING))
+	user.remove_movespeed_modifier(type)
+	user.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = platespeed, blacklisted_movetypes=(FLOATING))
 
 /obj/item/worldplate
 	name = "worldshaker plate"
@@ -123,7 +130,7 @@
 
 /obj/item/worldplate/equipped(mob/user, slot, initial)//difficult for regular people to throw
 	. = ..()
-	var/worldshaker = (H.mind.martial_art && istype(H.mind.martial_art, /datum/martial_art/worldshaker))
+	var/worldshaker = (user.mind?.martial_art && istype(user.mind.martial_art, /datum/martial_art/worldshaker))
 	throw_speed = worldshaker ? 4 : 1
 	throw_range = worldshaker ? 7 : 4
 
@@ -134,7 +141,7 @@
 	if(isliving(hit_atom) && throwingdatum)
 		var/mob/living/L = hit_atom
 		linked_martial.stagger(L)
-		linked_martial.push_away(L, throwingdatum.thrower)
+		linked_martial.push_away(throwingdatum.thrower, L)
 	
 /*---------------------------------------------------------------
 	end of plates section
@@ -193,7 +200,7 @@
 		var/throwdirection = get_dir(owner, I)
 		var/atom/throw_target = get_edge_target_turf(I, throwdirection)
 		I.throw_at(throw_target, 3, 2, owner)
-	for(var/obj/item/structure/S in range(STOMP_DAMAGERADIUS + (plates/2), owner))
+	for(var/obj/structure/S in range(STOMP_DAMAGERADIUS + (plates/2), owner))
 		S.take_damage(25)
 
 	//flavour stuff
@@ -218,16 +225,18 @@
 		return
 	if(!target || leaping)
 		return
-	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP)
+	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + plates)//longer cooldown the more plates you have
 
 	leaping = TRUE
+	var/jumpspeed = heavy ? 1 : 3
+	user.throw_at(target, 15, jumpspeed, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
+	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
+
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc,user)
 	animate(D, alpha = 0, color = "#000000", transform = matrix()*2, time = 0.3 SECONDS)
 	animate(user, time = 0.2 SECONDS, pixel_y = 20)//we up in the air
 	playsound(user, 'sound/effects/gravhit.ogg', 20)
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
-	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
-	user.throw_at(target, 15, 3, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 
 /datum/martial_art/worldshaker/proc/leap_end(mob/living/carbon/human/user)
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
@@ -237,11 +246,11 @@
 		if(L == user)
 			continue
 		stagger(L)
-		var/damage = 20
+		var/damage = heavy ? 30 : 15 //chunky boy does more damage
 
 		if(L.loc == user.loc)
-			damage = 40//for the love of god, don't get landed on
-			L.adjustStaminaLoss(70)
+			damage *= 2//for the love of god, don't get landed on
+			L.adjustStaminaLoss(damage)
 
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
 		push_away(user, L)
@@ -267,6 +276,7 @@
 	start of grapple section
 ---------------------------------------------------------------*/
 /datum/martial_art/worldshaker/proc/grab(mob/living/user, mob/living/target, damage)//proc the moves will use for damage dealing
+	stagger(target)
 	var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
 	var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
 	target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
@@ -278,36 +288,9 @@
 /datum/martial_art/worldshaker/proc/grapple(mob/living/user, atom/target) //proc for picking something up to toss
 	var/turf/Z = get_turf(user)
 	target.add_fingerprint(user, FALSE)
-	if((target == user) || (isopenturf(target)) || (iswallturf(target)) || (isitem(target)) || (iseffect(target)))
-		return
-	if(isstructure(target) || ismachinery(target) || ismecha(target))
-		var/obj/I = target
-		if(ismecha(I)) // Can pick up mechs
-			I.anchored = FALSE
-		if(I.anchored == TRUE) // Cannot pick up anchored structures
-			if(istype(I, /obj/machinery/vending)) // Can pick up vending machines, even if anchored
-				I.anchored = FALSE
-				I.visible_message(span_warning("[user] grabs [I] and tears it off the bolts securing it!"))
-			else
-				return
-		if(user in I.contents)
-			user.balloon_alert(user, span_warning("You can't throw something while you're inside of it!")) //as funny as throwing lockers from the inside is i dont think i can get away with it
-			return
-		I.visible_message(span_warning("[user] grabs [I] and lifts it above [user.p_their()] head!"))
-		animate(I, time = 0.2 SECONDS, pixel_y = 20)
-		I.forceMove(Z)
-		I.density = FALSE 
-		walk_towards(I, user, 0, 0)
-		// Reset the item to its original state
-		if(get_dist(I, user) > 1)
-			I.density = initial(I.density)
-		thrown |= I // Mark the item for throwing
-		if(ismecha(I))
-			I.anchored = TRUE
 
-	playsound(user, 'sound/effects/servostep.ogg', 60, FALSE, -1) //play sound here incase some ungrabbable object was clicked
-
-	if(isliving(target))
+	if(isliving(target) && target != user)
+		playsound(user, 'sound/effects/servostep.ogg', 60, FALSE, -1) //play sound here incase some ungrabbable object was clicked
 		var/mob/living/L = target
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
 		L.density = FALSE
@@ -324,10 +307,9 @@
 		return
 
 /datum/martial_art/worldshaker/proc/lob(mob/living/user, atom/target) //proc for throwing something you picked up with grapple
-	var/slamdam = 5
-	var/objdam = 500 //really good at breaking terrain, reduces as the damage is dealt
-	var/thrownobjdam = 100 //object damage to thrown things
-	var/throwdam = 10
+	var/slamdam = heavy ? 10 : 5
+	var/objdam = heavy ? 400 : 200 //really good at breaking terrain, reduces as the damage is dealt
+	var/throwdam = heavy ? 20 : 10
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
 	var/atom/tossed = thrown[1]
@@ -337,8 +319,6 @@
 	if(get_dist(tossed, user) > 1)//cant reach the thing i was supposed to be throwing anymore
 		drop()
 		return 
-	for(var/obj/I in thrown)
-		animate(I, time = 0.2 SECONDS, pixel_y = 0) //to get it back to normal since it was lifted before
 	if(user in tossed.contents)
 		to_chat(user, span_warning("You can't throw something while you're inside of it!"))
 		return
@@ -365,21 +345,10 @@
 				S.Immobilize(1.5 SECONDS)
 				if(isanimal(S) && S.stat == DEAD)
 					S.gib()	
-			for(var/obj/O in thrown)
-				O.take_damage(thrownobjdam) 
-				target.visible_message(span_warning("[O] collides with [T]!"))
 			drop()
 			return
 		for(var/obj/Z in T.contents) // crash into something solid and damage it along with thrown objects that hit it
-			for(var/obj/O in thrown) 
-				if(Z.density == TRUE) 
-					O.take_damage(thrownobjdam) 
-					if(istype(O, /obj/mecha)) // mechs are probably heavy as hell so stop flying after making contact with resistance
-						thrown -= O
-			if(Z.density == TRUE && Z.anchored == FALSE) // if the thing hit isn't anchored it starts flying too
-				thrown |= Z 
-				Z.take_damage(50) 
-			if(Z.density == TRUE && Z.anchored == TRUE) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
+			if(Z.density) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
 				for(var/mob/living/S in thrown) 
 					grab(user, S, slamdam) 
 					S.Knockdown(1.5 SECONDS)
@@ -396,7 +365,7 @@
 				var/reduction = Z.obj_integrity
 				Z.take_damage(objdam)
 				objdam -= reduction
-				if(Z.density == TRUE && Z.anchored == TRUE)
+				if(Z.density)
 					playsound(Z, 'sound/effects/gravhit.ogg', 40, TRUE, 5)
 					drop()
 					return // if the solid thing we hit doesnt break then the thrown thing is stopped
@@ -408,15 +377,12 @@
 					grab(user, S, slamdam) 
 					S.Knockdown(1 SECONDS) 
 				thrown |= M 
-			for(var/obj/O in thrown)
-				O.take_damage(objdam) // Damage all thrown objects
 		if(T) // if the next tile wont stop the thrown mass from continuing
 			for(var/mob/living/S in thrown)
 				S.Knockdown(1.5 SECONDS)
 				S.Immobilize(1.5 SECONDS)
 			for(var/atom/movable/K in thrown) // to make the mess of things that's being thrown almost look like a normal throw
 				K.SpinAnimation(0.2 SECONDS, 1) 
-				sleep(0.001 SECONDS)
 				K.forceMove(T)
 				if(isspaceturf(T)) // throw them like normal if it's into space
 					var/atom/throw_target = get_edge_target_turf(K, dir_to_target)
@@ -493,7 +459,8 @@
 	..()
 	usr.click_intercept = src 
 	H.physiology.heat_mod -= 1 //walk through that fire all you like, hope you don't care about your clothes
-	plate_timer = addtimer(CALLBACK(src, PROC_REF(regen_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
+	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
+	update_platespeed(H)
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	ADD_TRAIT(H, TRAIT_BOMBIMMUNE, type)//maxcap suicide bombers can go fuck themselves
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
