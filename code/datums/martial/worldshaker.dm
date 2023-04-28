@@ -28,6 +28,8 @@
 	var/heavy = FALSE //
 
 /datum/martial_art/worldshaker/can_use(mob/living/carbon/human/H)
+	if(H.stat == DEAD || H.IsUnconscious() || H.IsFrozen() || HAS_TRAIT(H, TRAIT_PACIFISM))
+		return FALSE
 	return ispreternis(H)
 
 /datum/martial_art/worldshaker/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -87,6 +89,8 @@
 	if(plates >= PLATE_CAP)//no quaking the entire station
 		return
 	user.balloon_alert(user, span_notice("Your plates grow thicker!"))
+	user.adjustBruteLoss(-2)//more for flavour than actual gameplay (and so the damage from tearing off a plate isn't annoying)
+	user.adjustFireLoss(-1)
 	plates++
 	if(plates <= MAX_PLATES)
 		user.physiology.damage_resistance += PLATE_REDUCTION
@@ -94,7 +98,9 @@
 
 /datum/martial_art/worldshaker/proc/rip_plate(mob/living/carbon/human/user)
 	if(plates <= 0)
-		user.balloon_alert(user, span_warning("Your plates are too thin to tear off a piece of!"))
+		if(COOLDOWN_FINISHED(src, next_balloon))
+			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
+			user.balloon_alert(user, span_warning("Your plates are too thin to tear off a piece!"))
 		return
 	if(user.get_active_held_item())
 		user.balloon_alert(user, span_warning("You need an empty hand to tear off some of your plate!"))
@@ -102,6 +108,7 @@
 	if(!do_after(user, 1, user, stayStill = FALSE))//so they can't quite rapid fire plates
 		return
 	user.balloon_alert(user, span_notice("You tear off a loose plate!"))
+	user.adjustBruteLoss(1)//literally tearing off part of your "skin" (more for flavour than actual gameplay)
 
 	if(plates <= MAX_PLATES)
 		user.physiology.damage_resistance -= PLATE_REDUCTION
@@ -121,15 +128,15 @@
 /obj/item/worldplate
 	name = "worldshaker plate"
 	desc = "A sizeable plasteel plate, you can barely imagine the strength it would take to throw this."
-	icon = 'yogstation/icons/obj/stack_objects.dmi'
-	icon_state = "sheet-plasteel"
-	item_state = "sheet-metal"
-	lefthand_file = 'icons/mob/inhands/misc/sheets_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/sheets_righthand.dmi'
+	icon = 'icons/obj/meteor.dmi'
+	icon_state = "sharp"
+	item_state = "tile-darkshuttle"
+	lefthand_file = 'icons/mob/inhands/misc/tiles_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/tiles_righthand.dmi'
 	materials = list(/datum/material/iron=2000, /datum/material/plasma=2000)
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "smashed")
 	force = 5
-	throwforce = 5 //more of a ranged CC than a ranged weapon
+	throwforce = 10 //more of a ranged CC than a ranged weapon
 	throw_speed = 4
 	throw_range = 7
 	var/datum/martial_art/worldshaker/linked_martial
@@ -153,79 +160,13 @@
 	end of plates section
 ---------------------------------------------------------------*/
 /*---------------------------------------------------------------
-	start of stomp section 
----------------------------------------------------------------*/
-/datum/action/cooldown/worldstomp
-	name = "Quake"
-	desc = "Put all your weight and strength into a singular stomp."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "lizard_tackle"
-	background_icon_state = "bg_default"
-	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
-	var/datum/martial_art/worldshaker/linked_martial
-	cooldown_time = COOLDOWN_STOMP
-	var/charging = FALSE
-
-/datum/action/cooldown/worldstomp/IsAvailable()
-	if(!linked_martial || !linked_martial.can_use(owner))
-		return FALSE
-	return ..()
-
-/datum/action/cooldown/worldstomp/Trigger()
-	if(!IsAvailable() || charging)
-		return
-	charging = TRUE
-	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(owner.loc, owner)
-	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = 1 SECONDS)
-	if(!do_after(owner, 1 SECONDS, owner) || !IsAvailable())
-		charging = FALSE
-		qdel(D)
-		return
-	charging = FALSE
-	StartCooldown()
-	animate(D, color = "#000000", transform = matrix()*0, time = 2)
-	QDEL_IN(D, 3)
-
-	var/plates = linked_martial.plates
-	for(var/mob/living/L in range(STOMP_RADIUS + plates, owner))
-		if(L == owner)
-			continue
-		linked_martial.stagger(L)
-		var/damage = 5
-		var/throwdistance = 1
-		if(L in range(STOMP_DAMAGERADIUS + (plates/2), owner))//more damage and CC if closer
-			damage = 30
-			throwdistance = 2
-			L.Knockdown(30)
-		if(L.loc == owner.loc)//if the are standing directly ontop of you, you're fucked
-			damage = 40
-			L.adjustStaminaLoss(70)
-		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
-		linked_martial.push_away(owner, L, throwdistance)
-	for(var/obj/item/I in range(STOMP_RADIUS + plates, owner))
-		linked_martial.push_away(owner, I, 2)
-	for(var/obj/structure/S in range(STOMP_DAMAGERADIUS + (plates/2), owner))
-		S.take_damage(25)
-
-	//flavour stuff
-	playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS)
-	playsound(owner, 'sound/effects/explosion_distant.ogg', 200, FALSE, STOMP_RADIUS + WARNING_RANGE)
-	var/atom/movable/gravity_lens/shockwave = new(get_turf(owner))
-	shockwave.transform *= 0.1 //basically invisible
-	shockwave.pixel_x = -240
-	shockwave.pixel_y = -240
-	animate(shockwave, alpha = 0, transform = matrix().Scale(1 + (plates/6)), time = (2 SECONDS + plates))
-	QDEL_IN(shockwave, 2.1 SECONDS + plates)
-
-/*---------------------------------------------------------------
-	end of stomp section
----------------------------------------------------------------*/
-/*---------------------------------------------------------------
 	start of leap section
 ---------------------------------------------------------------*/
 /datum/martial_art/worldshaker/proc/leap(mob/living/user, atom/target)
 	if(!COOLDOWN_FINISHED(src, next_leap))
-		user.balloon_alert(user, span_warning("You can't do that yet!"))
+		if(COOLDOWN_FINISHED(src, next_balloon))
+			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
+			user.balloon_alert(user, span_warning("You can't do that yet!"))
 		return
 	if(!target || leaping)
 		return
@@ -239,6 +180,7 @@
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc,user)
 	animate(D, alpha = 0, color = "#000000", transform = matrix()*2, time = 0.3 SECONDS)
 	animate(user, time = (heavy ? 0.4 : 0.2)SECONDS, pixel_y = 20)//we up in the air
+	addtimer(CALLBACK(src, PROC_REF(reset_pixel), user), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)//in case something happens, we don't permanently float
 	playsound(user, 'sound/effects/gravhit.ogg', 20)
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
 
@@ -275,6 +217,9 @@
 	shockwave.pixel_y = -240
 	animate(shockwave, alpha = 0, transform = matrix().Scale(range/3), time = 1 + (range/10))
 	QDEL_IN(shockwave, 2 + (range/10))
+
+/datum/martial_art/worldshaker/proc/reset_pixel(mob/living/user)//in case something happens, we don't permanently float
+	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 
 /datum/martial_art/worldshaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(leaping)
@@ -439,6 +384,74 @@
 /*---------------------------------------------------------------
 	end of pummel section
 ---------------------------------------------------------------*/
+/*---------------------------------------------------------------
+	start of stomp section 
+---------------------------------------------------------------*/
+/datum/action/cooldown/worldstomp
+	name = "Quake"
+	desc = "Put all your weight and strength into a singular stomp."
+	icon_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	button_icon_state = "lightning"
+	background_icon_state = "bg_default"
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
+	var/datum/martial_art/worldshaker/linked_martial
+	cooldown_time = COOLDOWN_STOMP
+	var/charging = FALSE
+
+/datum/action/cooldown/worldstomp/IsAvailable()
+	if(!linked_martial || !linked_martial.can_use(owner))
+		return FALSE
+	return ..()
+
+/datum/action/cooldown/worldstomp/Trigger()
+	if(!IsAvailable() || charging)
+		return
+	charging = TRUE
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(owner.loc, owner)
+	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = 1 SECONDS)
+	if(!do_after(owner, 1 SECONDS, owner) || !IsAvailable())
+		charging = FALSE
+		qdel(D)
+		return
+	charging = FALSE
+	StartCooldown()
+	animate(D, color = "#000000", transform = matrix()*0, time = 2)
+	QDEL_IN(D, 3)
+
+	var/plates = linked_martial.plates
+	for(var/mob/living/L in range(STOMP_RADIUS + plates, owner))
+		if(L == owner)
+			continue
+		linked_martial.stagger(L)
+		var/damage = 5
+		var/throwdistance = 1
+		if(L in range(STOMP_DAMAGERADIUS + (plates/2), owner))//more damage and CC if closer
+			damage = 30
+			throwdistance = 2
+			L.Knockdown(30)
+		if(L.loc == owner.loc)//if the are standing directly ontop of you, you're fucked
+			damage = 40
+			L.adjustStaminaLoss(70)
+		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
+		linked_martial.push_away(owner, L, throwdistance)
+	for(var/obj/item/I in range(STOMP_RADIUS + plates, owner))
+		linked_martial.push_away(owner, I, 2)
+	for(var/obj/structure/S in range(STOMP_DAMAGERADIUS + (plates/2), owner))
+		S.take_damage(25)
+
+	//flavour stuff
+	playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS)
+	playsound(owner, 'sound/effects/explosion_distant.ogg', 200, FALSE, STOMP_RADIUS + WARNING_RANGE)
+	var/atom/movable/gravity_lens/shockwave = new(get_turf(owner))
+	shockwave.transform *= 0.1 //basically invisible
+	shockwave.pixel_x = -240
+	shockwave.pixel_y = -240
+	animate(shockwave, alpha = 0, transform = matrix().Scale(1 + (plates/6)), time = (2 SECONDS + plates))
+	QDEL_IN(shockwave, 2.1 SECONDS + plates)
+
+/*---------------------------------------------------------------
+	end of stomp section
+---------------------------------------------------------------*/
 /datum/martial_art/worldshaker/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)
 	push_away(user, attacker, 20)//don't EVER come at me with that B
 	
@@ -447,32 +460,40 @@
 ---------------------------------------------------------------*/
 /mob/living/carbon/human/proc/worldshaker_help()
 	set name = "Worldshaker"
-	set desc = "You imagine all the things you would be capable of with this power."
+	set desc = "Imagine all the things you would be capable of with this power."
 	set category = "Worldshaker"
 	var/list/combined_msg = list()
-	combined_msg +=  "<b><i>You think about what stunts you can pull with the power of a buster arm.</i></b>"
+	combined_msg +=  "<b><i>You imagine all the things you would be capable of with this power.</i></b>"
 
-	combined_msg +=  "[span_notice("Leap")]: Your disarm has been replaced with a move that sends you flying forward, damaging enemies in front of you by dragging them \
-	along the ground. Ramming victims into something solid does damage to them and the object. Has a 4 second cooldown."
+	combined_msg +=  "[span_notice("Plates")]: You will progressively grow plates every [PLATE_INTERVAL] seconds. \
+	Each plate provides [PLATE_REDUCTION]% damage reduction but also slows you down. The damage reduction caps at [PLATE_REDUCTION * MAX_PLATES]% but the slowdown can continue scaling.\
+	While at maximum damage reduction you are considered \"heavy\" and most of your attacks will be slower, but do more damage in a larger area."
+
+	combined_msg +=  "[span_notice("Rip Plate")]: Help intent yourself to rip off a plate. The plate can be thrown at people to stagger them and knock them back. \
+	The plate is heavy enough that others will find it difficult to throw."
+
+	combined_msg +=  "[span_notice("Leap")]: Your disarm is instead a leap that deals damage, staggers, and knocks everything back within a radius. \
+	Landing on someone will do twice as much damage and deal additional stamina damage.	Has a 2 second cooldown that gets longer with more plates grown."
 	
-	combined_msg +=  "[span_notice("Clasp")]: Your grab has been amplified, allowing you to take a target object or being into your hand for up to 10 seconds and throw them at a \
-	target destination by clicking again with grab intent. Throwing them into unanchored people and objects will knock them back and deal additional damage to existing thrown \
-	targets. Mechs and vending machines can be tossed as well. If the target's limb is at its limit, tear it off. Has a 3 second cooldown"
+	combined_msg +=  "[span_notice("Clasp")]: Your grab is far stronger. Instead of grabbing someone, you will pick them up and be able to throw them."
 
-	combined_msg +=  "[span_notice("Pummel")]: Your harm has been replaced with a slam attack that places enemies behind you and smashes them against \
-	whatever person, wall, or object is there for bonus damage. Has a 0.8 second cooldown."
+	combined_msg +=  "[span_notice("Pummel")]: Your harm intent pummels a small area dealing brute and stamina damage. Everything within a certain range is damaged, knocked back, and staggered. \
+	The target takes significantly more brute and stamina damage."
 
-	combined_msg +=  "[span_notice("Worldslam")]: Charge up your buster arm to put a powerful attack in the corresponding hand. The energy only lasts 5 seconds \
-	but does hefty damage to its target, even breaking walls down when hitting things into them or connecting the attack directly. Landing the attack on a reinforced wall \
-	destroys it but uses up the attack. Attacking a living target uses up the attack and sends them flying and dismembers their limb if its damaged enough. Has a 15 second \
-	cooldown."
+	combined_msg +=  "[span_notice("Worldstomp")]: Focus all your weight and power into a single stomp. After a delay, create a giant shockwave that deals damage to all mobs within a radius. \
+	The shockwave will knock back and stagger all mobs in a larger radius. Objects and structures within the extended radius will be thrown or damaged respectively.\
+	The radius, knockback, and damage all scale with number of plates."
 
-	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 50% for 2 seconds.</b>")
+	combined_msg +=  "[span_notice("Landslide")]: If hit by a melee attack while in throw mode, you will block it and send the attacker flying."
+
+	combined_msg += span_notice("<b>All attacks apply stagger. Stagger knocks people prone and applies a brief slow.</b>")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 /datum/martial_art/worldshaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
+	if(H.dna.species.power_drain)//burn bright my friend
+		H.dna.species.power_drain *= 10
 	usr.click_intercept = src 
 	H.physiology.heat_mod -= 1 //walk through that fire all you like, hope you don't care about your clothes
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
@@ -487,6 +508,8 @@
 	linked_stomp.Grant(H)
 
 /datum/martial_art/worldshaker/on_remove(mob/living/carbon/human/H)
+	if(H.dna.species.power_drain)//but not that bright
+		H.dna.species.power_drain /= 10
 	usr.click_intercept = null 
 	H.physiology.heat_mod += 1
 	H.physiology.damage_resistance -= PLATE_REDUCTION * min(plates, MAX_PLATES)
