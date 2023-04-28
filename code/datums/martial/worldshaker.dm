@@ -531,7 +531,7 @@
 	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 	if(linked_stomp)
 		linked_stomp.Remove(H)
-	..()
+	return ..()
 
 #undef COOLDOWN_STOMP
 #undef STOMP_RADIUS
