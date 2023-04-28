@@ -2,14 +2,15 @@
 #define COOLDOWN_STOMP 15 SECONDS
 #define STOMP_RADIUS 6 //the base radius for the charged stomp
 #define STOMP_DAMAGERADIUS 3
-#define COOLDOWN_LEAP 1.5 SECONDS
+#define COOLDOWN_LEAP 2 SECONDS
 #define LEAP_RADIUS 1
 #define STAGGER_DURATION 3 SECONDS
 #define WARNING_RANGE 10 //extra range to certain sound effects
-#define PLATE_INTERVAL 30 SECONDS //how often a plate grows
+#define PLATE_INTERVAL 20 SECONDS //how often a plate grows
 #define PLATE_REDUCTION 10 //how much DR per plate
 #define MAX_PLATES 7 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
-#define PLATE_CAP 14 //hard cap of plates to prevent station wide fuckery
+#define PLATE_CAP MAX_PLATES * 2 //hard cap of plates to prevent station wide fuckery
+#define BALLOON_COOLDOWN 1 SECONDS  //limit the balloon alert spam of rapid click
 
 /datum/martial_art/worldshaker
 	name = "Worldshaker"
@@ -18,8 +19,8 @@
 	help_verb = /mob/living/carbon/human/proc/worldshaker_help
 	block_chance = 100 //validhunters cry
 	var/list/thrown = list()
-	// COOLDOWN_DECLARE(next_stomp)
 	COOLDOWN_DECLARE(next_leap)
+	COOLDOWN_DECLARE(next_balloon)
 	var/datum/action/cooldown/worldstomp/linked_stomp
 	var/leaping = FALSE
 	var/plates = 0
@@ -68,10 +69,13 @@
 /datum/martial_art/worldshaker/proc/stagger_end(mob/living/victim)
 	victim.remove_movespeed_modifier(id)
 
-/datum/martial_art/worldshaker/proc/push_away(mob/living/user, mob/living/victim, distance = 1)
+/datum/martial_art/worldshaker/proc/push_away(mob/living/user, atom/movable/victim, distance = 1)
 	var/throwdirection = get_dir(user, victim)
 	var/atom/throw_target = get_edge_target_turf(victim, throwdirection)
-	var/throwspeed = heavy ? 3 : 2
+	var/throwspeed = 3
+	if(heavy)
+		throwspeed *= 2
+		distance *= 2
 	victim.throw_at(throw_target, distance, throwspeed, user)
 /*-----------------------------
 	end of helpers section
@@ -95,6 +99,8 @@
 	if(user.get_active_held_item())
 		user.balloon_alert(user, span_warning("You need an empty hand to tear off some of your plate!"))
 		return
+	if(!do_after(user, 1, user, stayStill = FALSE))//so they can't quite rapid fire plates
+		return
 	user.balloon_alert(user, span_notice("You tear off a loose plate!"))
 
 	if(plates <= MAX_PLATES)
@@ -104,7 +110,7 @@
 	var/obj/item/worldplate/plate = new()
 	plate.linked_martial = src
 	user.put_in_active_hand(plate)
-	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob/living/carbon, throw_mode_on))//so the plate isn't instantly thrown
+	user.throw_mode_on()
 
 /datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
 	heavy = plates > MAX_PLATES
@@ -131,8 +137,8 @@
 /obj/item/worldplate/equipped(mob/user, slot, initial)//difficult for regular people to throw
 	. = ..()
 	var/worldshaker = (user.mind?.martial_art && istype(user.mind.martial_art, /datum/martial_art/worldshaker))
-	throw_speed = worldshaker ? 4 : 1
-	throw_range = worldshaker ? 7 : 4
+	throw_speed = worldshaker ? 3 : 1
+	throw_range = worldshaker ? 8 : 3
 
 /obj/item/worldplate/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
@@ -189,7 +195,7 @@
 		var/throwdistance = 1
 		if(L in range(STOMP_DAMAGERADIUS + (plates/2), owner))//more damage and CC if closer
 			damage = 30
-			throwdistance = 3
+			throwdistance = 2
 			L.Knockdown(30)
 		if(L.loc == owner.loc)//if the are standing directly ontop of you, you're fucked
 			damage = 40
@@ -197,9 +203,7 @@
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
 		linked_martial.push_away(owner, L, throwdistance)
 	for(var/obj/item/I in range(STOMP_RADIUS + plates, owner))
-		var/throwdirection = get_dir(owner, I)
-		var/atom/throw_target = get_edge_target_turf(I, throwdirection)
-		I.throw_at(throw_target, 3, 2, owner)
+		linked_martial.push_away(owner, I, 2)
 	for(var/obj/structure/S in range(STOMP_DAMAGERADIUS + (plates/2), owner))
 		S.take_damage(25)
 
@@ -210,8 +214,8 @@
 	shockwave.transform *= 0.1 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	animate(shockwave, alpha = 0, transform = matrix().Scale(1 + (plates/4)), time = (3 SECONDS + plates))
-	QDEL_IN(shockwave, 3.1 SECONDS + plates)
+	animate(shockwave, alpha = 0, transform = matrix().Scale(1 + (plates/6)), time = (2 SECONDS + plates))
+	QDEL_IN(shockwave, 2.1 SECONDS + plates)
 
 /*---------------------------------------------------------------
 	end of stomp section
@@ -234,7 +238,7 @@
 
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(user.loc,user)
 	animate(D, alpha = 0, color = "#000000", transform = matrix()*2, time = 0.3 SECONDS)
-	animate(user, time = 0.2 SECONDS, pixel_y = 20)//we up in the air
+	animate(user, time = (heavy ? 0.4 : 0.2)SECONDS, pixel_y = 20)//we up in the air
 	playsound(user, 'sound/effects/gravhit.ogg', 20)
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
 
@@ -245,7 +249,7 @@
 	if(heavy)
 		range++
 		
-	for(var/mob/living/L in range(LEAP_RADIUS,user))
+	for(var/mob/living/L in range(range,user))
 		if(L == user)
 			continue
 		stagger(L)
@@ -257,6 +261,10 @@
 
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
 		push_away(user, L)
+	for(var/obj/item/I in range(range, user))
+		push_away(user, I)
+	for(var/obj/structure/S in range(range, user))
+		S.take_damage(20)
 
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE)
@@ -265,7 +273,7 @@
 	shockwave.transform *= 0.1 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	animate(shockwave, alpha = 0, transform = matrix().Scale(0.2 + (range/10)), time = 1 + (range/10))
+	animate(shockwave, alpha = 0, transform = matrix().Scale(range/3), time = 1 + (range/10))
 	QDEL_IN(shockwave, 2 + (range/10))
 
 /datum/martial_art/worldshaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
@@ -310,9 +318,9 @@
 		return
 
 /datum/martial_art/worldshaker/proc/lob(mob/living/user, atom/target) //proc for throwing something you picked up with grapple
-	var/slamdam = heavy ? 10 : 5
-	var/objdam = heavy ? 400 : 200 //really good at breaking terrain, reduces as the damage is dealt
-	var/throwdam = heavy ? 20 : 10
+	var/slamdam = 5
+	var/throwdam = 10
+	var/objdam = 400 //really good at breaking terrain, reduces as the damage is dealt
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
 	var/atom/tossed = thrown[1]
@@ -322,10 +330,7 @@
 	if(get_dist(tossed, user) > 1)//cant reach the thing i was supposed to be throwing anymore
 		drop()
 		return 
-	if(user in tossed.contents)
-		to_chat(user, span_warning("You can't throw something while you're inside of it!"))
-		return
-	if(iscarbon(tossed)) // Logic that tears off a damaged limb or tail
+	if(iscarbon(tossed))
 		var/mob/living/carbon/tossedliving = thrown[1]
 		var/obj/item/bodypart/limb_to_hit = tossedliving.get_bodypart(user.zone_selected)
 		if(!tossedliving.buckled)
@@ -337,10 +342,13 @@
 			limb_to_hit = tossedliving.get_bodypart(BODY_ZONE_CHEST)
 	user.visible_message(span_warning("[user] throws [tossed]!"))
 	for(var/i = 1 to target_dist)
-		if(QDELETED(tossed) || objdam <= 0)//if the thrown item broke, or total damage has run out, end the throw
+		if(QDELETED(tossed))//if the thrown person is deleted,
 			return
 		var/dir_to_target = get_dir(get_turf(tossed), D) //vars that let the thing be thrown while moving similar to things thrown normally
 		var/turf/T = get_step(get_turf(tossed), dir_to_target)
+		if(objdam <= 0)// or total damage has run out, end the throw
+			playsound(T, 'sound/effects/gravhit.ogg', 40, TRUE, 5)
+			return
 		if(T.density) // crash into a wall and damage everything flying towards it before stopping 
 			for(var/mob/living/S in thrown)
 				grab(user, S, slamdam) 
@@ -386,6 +394,7 @@
 				S.Immobilize(1.5 SECONDS)
 			for(var/atom/movable/K in thrown) // to make the mess of things that's being thrown almost look like a normal throw
 				K.SpinAnimation(0.2 SECONDS, 1) 
+				sleep(0.001 SECONDS)
 				K.forceMove(T)
 				if(isspaceturf(T)) // throw them like normal if it's into space
 					var/atom/throw_target = get_edge_target_turf(K, dir_to_target)
@@ -404,7 +413,7 @@
 	if(user == target)
 		return
 	to_chat(world, "pummel")
-	for(var/mob/living/L in range(1, user))
+	for(var/mob/living/L in range(1, target))
 		var/damage = 10
 		if(L == user)
 			continue
@@ -418,6 +427,10 @@
 		stagger(L)
 		L.apply_damage(damage, BRUTE, user.zone_selected, wound_bonus = 10, bare_wound_bonus = 20)
 		L.adjustStaminaLoss(damage)
+	for(var/obj/item/I in range(1, target))
+		push_away(user, I)
+	for(var/obj/structure/S in range(1, target))
+		S.take_damage(20)
 
 	user.do_attack_animation(target)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE, -1)
@@ -494,3 +507,7 @@
 #undef LEAP_RADIUS
 #undef STAGGER_DURATION
 #undef WARNING_RANGE
+#undef PLATE_INTERVAL
+#undef PLATE_REDUCTION
+#undef MAX_PLATES
+#undef PLATE_CAP

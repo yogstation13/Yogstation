@@ -523,6 +523,30 @@
 		desc = "It's a damaged upgrade module."
 		name = "damaged board"
 
+/obj/item/book/granter/martial/worldshaker
+	martial = /datum/martial_art/worldshaker
+	name = "Version one upgrade module"
+	martialname = "Ultra Violence"
+	desc = "A module full of forbidden techniques from a horrific event long since passed, or perhaps yet to come."
+	greet = "<span class='sciradio'>You have installed how to perform Ultra Violence! You are able to redirect electromagnetic pulses, \
+	blood heals you, and you CANNOT BE STOPPED. You can mentally practice by using Cyber Grind in the Ultra Violence tab.</span>"
+	icon = 'icons/obj/module.dmi'
+	icon_state = "cyborg_upgrade"
+	remarks = list("MANKIND IS DEAD.", "BLOOD IS FUEL.", "HELL IS FULL.")
+
+/obj/item/book/granter/martial/worldshaker/already_known(mob/user)
+	if(!ispreternis(user))
+		to_chat(user, span_warning("There is no way in hell you're drinking this."))
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/worldshaker/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		var/obj/item/reagent_containers/glass/bottle/vial/empty = new()
+		user.put_in_active_hand(empty)
+		qdel(src)
+
 // I did not include mushpunch's grant, it is not a book and the item does it just fine.
 
 
