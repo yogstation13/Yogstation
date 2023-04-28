@@ -19,7 +19,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	attack_verb = "assault"
 	skinned_type = /obj/item/stack/sheet/plasteel{amount = 5} //coated in plasteel
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
-	exotic_blood = /datum/reagent/stable_plasma //helps with heat regulation
+	exotic_bloodtype = "U" //synthetic blood that works for literally everyone
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES
@@ -39,6 +39,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	//mutant_bodyparts = list("head", "body_markings")
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
+	mutantstomach = /obj/item/organ/stomach/preternis
 	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
 	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
@@ -273,8 +274,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
 	. = ..()
-	if(ispreternis(user) && !attacker_style?.nonlethal && !user.mind.has_martialart() && !(user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)))
-		user.next_move += 3 //adds 0.3 second delay to combat
+	if(!ispreternis(user) || attacker_style?.nonlethal || (user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)) || (user.mind.martial_art.type in subtypesof(/datum/martial_art)))
+		return	
+	user.next_move += 2 //adds 0.2 second delay to combat
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
@@ -348,6 +350,12 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/list/to_add = list()
 
 	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "cookie-bite",
+			SPECIES_PERK_NAME = "Stone eater",
+			SPECIES_PERK_DESC = "Preterni can eat ores to replenish their metal skin. All ores are not created equal.",
+		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash

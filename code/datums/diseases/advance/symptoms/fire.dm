@@ -121,6 +121,7 @@ Bonus
 		"Stage Speed 8" = "Increases explosion radius and explosion damage to the host when the host is wet.",
 		"Transmission 8" = "Additionally synthesizes chlorine trifluoride and napalm inside the host. More chemicals are synthesized if the resistance 9 threshold has been met."
 	)
+	process_flags = ORGANIC | SYNTHETIC //is funny
 
 /datum/symptom/alkali/Start(datum/disease/advance/A)
 	. = ..()

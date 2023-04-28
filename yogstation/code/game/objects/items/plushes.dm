@@ -2,7 +2,7 @@
 	var/is_invoker = TRUE // Part of preserving the plush's capacity to invoke. <3
 
 /obj/item/toy/plush/narplush/hugbox
-	desc = "A small stuffed doll of the elder goddess Nar'Sie. Who thought this was a good children's toy? <b>It looks sad.</b>"
+	desc = "A small stuffed doll of the elder goddess Nar'sie. Who thought this was a good children's toy? <b>It looks sad.</b>"
 	is_invoker = FALSE
 
 /obj/item/toy/plush/goatplushie

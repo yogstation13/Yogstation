@@ -7,7 +7,7 @@
 
 /obj/item/nullrod
 	name = "null rod"
-	desc = "A rod of pure obsidian; its very presence disrupts and dampens the powers of Nar-Sie and Ratvar's followers."
+	desc = "A rod of pure obsidian; its very presence disrupts and dampens the powers of Nar'sie and Ratvar's followers."
 	icon_state = "nullrod"
 	item_state = "nullrod"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -432,16 +432,15 @@
 	. = ..()
 	if(M == user)
 		return
-	var/throw_direction = get_dir(user, M)
-	var/atom/throw_target = get_edge_target_turf(M, throw_direction)
-	var/turf/throw_location = get_step_towards(M, throw_target)
-	M.SpinAnimation(5, 1)
-	if(throw_location.density)
-		return
-	for(var/obj/D in throw_location.contents)
-		if(D.density)
-			return
-	M.forceMove(throw_location)
+	var/atom/throw_target = get_edge_target_turf(M, user.dir)
+	ADD_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
+	var/distance = rand(1,5)
+	if(prob(1))
+		distance = 50 //hehe funny hallway launch
+	M.throw_at(throw_target, distance, 3, user, TRUE, TRUE, callback = CALLBACK(src, .proc/afterimpact, M))
+
+/obj/item/twohanded/required/nullrod/proc/afterimpact(mob/living/M)
+	REMOVE_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
 
 /*---------------------------------------------------------------------------
 |
@@ -590,9 +589,14 @@
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
 	throwforce = 0
-	slowdown = -0.3 //give up a weapon, get some speed
+	slowdown = 0.3 //slower until speed is built up
 	menutab = MENU_CLOTHING
 	additional_desc = "The blessing of Hermes imbues the wearer with incredible speed."
+	var/steps = 0 //how many steps currently at
+	var/speedperstep = -0.05 //how much speed increases per step
+	var/maxspeed = -0.4 //what is the max amount of speed someone can get
+	var/stilltimer = 8 //how long (in deciseconds) someone can standstill without losing stacks
+	COOLDOWN_DECLARE(standstill)
 
 /obj/item/nullrod/hermes/equipped(mob/user, slot, initial)
 	. = ..()
@@ -604,7 +608,14 @@
 	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
 
 /obj/item/nullrod/hermes/proc/move_react()
-	new /obj/effect/temp_visual/flowers(get_turf(src))
+	if(COOLDOWN_FINISHED(src, standstill))
+		steps = 0
+	COOLDOWN_START(src, standstill, stilltimer)
+	slowdown = max(initial(slowdown) + (steps * speedperstep), maxspeed)
+	steps ++
+	if(slowdown < 0)//only see the effect if you're getting extra speed
+		playsound(src, 'sound/effects/fairyboots.ogg', 45, FALSE)
+		new /obj/effect/temp_visual/flowers(get_turf(src))
 
 /obj/effect/temp_visual/flowers
 	layer = BELOW_MOB_LAYER
@@ -849,6 +860,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	attack_verb = list("chopped", "sliced", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	throw_speed = 2 //make it slow so it has time to look cool
+	throwforce = 0 //it doesn't actually use this because we override throw impact, it's just for letting pacifists throw it
 	var/possessed = FALSE
 	var/walking = FALSE //check to tell if they're flying around or not
 	var/mob/living/simple_animal/shade/soul //when they're just a blade (stored inside the blade at all times)
@@ -909,8 +921,13 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	if(isliving(hit_atom))//only transform if it doesn't hit a person
 		var/mob/living/target = hit_atom
 		if(owner && target == owner)
-			owner.put_in_active_hand(src)
-			visible_message("[owner] catches the flying [src] out of the air!")
+			var/caught = owner.put_in_hands(src)
+			if(caught)
+				visible_message("[owner] catches the flying [src] out of the air!")
+			else
+				playsound(target, 'sound/weapons/rapierhit.ogg', 30, 1, -1)
+				owner.take_overall_damage(5)
+				visible_message("[src] smacks [owner] in the face as [owner.p_they()] try to catch it with [owner.p_their()] hands full!")
 	else if(possessed)
 		transform = initial(transform)//to reset rotation for when it drops to the ground
 		blade = new /mob/living/simple_animal/nullrod(get_turf(src))
@@ -1019,11 +1036,16 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	if(isliving(hit_atom))
 		var/mob/living/target = hit_atom
 		if(sword?.owner && target == sword.owner)
-			sword.owner.put_in_active_hand(sword)
+			var/caught = sword.owner.put_in_hands(sword)
 			mind.transfer_to(sword.soul)
 			sword.walking = FALSE
-			visible_message("[sword.owner] catches the flying blade out of the air!")
 			qdel(src)
+			if(caught)
+				visible_message("[sword.owner] catches the flying blade out of the air!")
+			else
+				playsound(target, 'sound/weapons/rapierhit.ogg', 30, 1, -1)
+				sword.owner.take_overall_damage(5)
+				visible_message("The flying blade smacks [sword.owner] in the face as [sword.owner.p_they()] try to catch it with [sword.owner.p_their()] hands full!")
 	else
 		..()
 

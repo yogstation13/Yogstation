@@ -24,8 +24,21 @@
 		"fish",
 		"helm"
 	],
-	"ship_names": [
-		"Space Queen's Revenge",
-		"Syndicate Privateer"
+	"ship_name_start": [
+		"Space Queen's",
+		"Syndicate",
+		"Void",
+		"Star",
+		"Black",
+		"Golden"
+	],
+	"ship_name_end": [
+		"Revenge",
+		"Privateer",
+		"Pearl",
+		"Carp",
+		"Marauder",
+		"Buccaneer",
+		"Scourge"
 	]
 }
