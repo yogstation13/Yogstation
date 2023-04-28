@@ -95,9 +95,8 @@
 /datum/martial_art/worldshaker/proc/grow_plate(mob/living/carbon/human/user)
 	if(plates >= PLATE_CAP || user.stat == DEAD)//no quaking the entire station
 		return
-	user.balloon_alert(user, span_notice("Your plates grow thicker!"))
-	user.adjustBruteLoss(-2)//more for flavour than actual gameplay (and so the damage from tearing off a plate isn't annoying)
-	user.adjustFireLoss(-1)
+	user.balloon_alert(user, span_notice("your plates grow thicker!"))
+	user.heal_overall_damage(-2, -1, BODYPART_ANY)//more for flavour than actual gameplay (and so the damage from tearing off a plate isn't annoying)
 	plates++
 	if(plates <= MAX_PLATES)
 		user.physiology.damage_resistance += PLATE_REDUCTION
@@ -105,10 +104,10 @@
 
 /datum/martial_art/worldshaker/proc/rip_plate(mob/living/carbon/human/user)
 	if(plates <= 0)
-		to_chat(user, span_warning("Your plates are too thin to tear off a piece!"))
+		to_chat(user, span_warning("your plates are too thin to tear off a piece!"))
 		return
-	user.balloon_alert(user, span_notice("You tear off a loose plate!"))
-	user.adjustBruteLoss(1)//literally tearing off part of your "skin" (more for flavour than actual gameplay)
+	user.balloon_alert(user, span_notice("you tear off a loose plate!"))
+	user.take_overall_damage(1, 0, BODYPART_ANY)//literally tearing off part of your "skin" (more for flavour than actual gameplay)
 
 	if(plates <= MAX_PLATES)
 		user.physiology.damage_resistance -= PLATE_REDUCTION
@@ -175,7 +174,7 @@
 	if(!COOLDOWN_FINISHED(src, next_leap))
 		if(COOLDOWN_FINISHED(src, next_balloon))
 			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
-			user.balloon_alert(user, span_warning("You can't do that yet!"))
+			user.balloon_alert(user, span_warning("you can't do that yet!"))
 		return
 	if(!target || leaping)
 		return
@@ -483,6 +482,8 @@
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You imagine all the things you would be capable of with this power.</i></b>"
 
+	combined_msg += span_notice("<b>All attacks apply stagger. Stagger knocks people prone and applies a brief slow.</b>")
+
 	combined_msg +=  "[span_notice("Plates")]: You will progressively grow plates every [PLATE_INTERVAL/10] seconds. \
 	Each plate provides [PLATE_REDUCTION]% damage reduction but also slows you down. The damage reduction caps at [PLATE_REDUCTION * MAX_PLATES]% but the slowdown can continue scaling.\
 	While at maximum damage reduction you are considered \"heavy\" and most of your attacks will be slower, but do more damage in a larger area."
@@ -490,22 +491,26 @@
 	combined_msg +=  "[span_notice("Rip Plate")]: Help intent yourself to rip off a plate. The plate can be thrown at people to stagger them and knock them back. \
 	The plate is heavy enough that others will find it difficult to throw."
 
-	combined_msg +=  "[span_notice("Leap")]: Your disarm is instead a leap that deals damage, staggers, and knocks everything back within a radius. \
-	Landing on someone will do twice as much damage and deal additional stamina damage.	Has a 2 second cooldown that gets longer with more plates grown."
+	combined_msg +=  "[span_notice("Leap")]: \
+	Your disarm is instead a leap that deals damage, staggers, and knocks everything back within a radius. \
+	Landing on someone will do twice as much damage and deal additional stamina damage. \
+	Has a 2 second cooldown that gets longer with more plates grown."
 	
-	combined_msg +=  "[span_notice("Clasp")]: Your grab is far stronger. Instead of grabbing someone, you will pick them up and be able to throw them."
+	combined_msg +=  "[span_notice("Clasp")]: Your grab is far stronger. \
+	Instead of grabbing someone, you will pick them up and be able to throw them."
 
-	combined_msg +=  "[span_notice("Pummel")]: Your harm intent pummels a small area dealing brute and stamina damage. Everything within a certain range is damaged, knocked back, and staggered. \
+	combined_msg +=  "[span_notice("Pummel")]: Your harm intent pummels a small area dealing brute and stamina damage. \
+	Everything within a certain range is damaged, knocked back, and staggered. \
 	The target takes significantly more brute and stamina damage."
 
 	combined_msg +=  "[span_notice("Worldstomp")]: After a delay, create a giant shockwave that deals damage to all mobs within a radius. \
-	The shockwave will knock back and stagger all mobs in a larger radius. Objects and structures within the extended radius will be thrown or damaged respectively.\
+	The shockwave will knock back and stagger all mobs in a larger radius. Objects and structures within the extended radius will be thrown or damaged respectively. \
 	The radius, knockback, and damage all scale with number of plates."
 
 	combined_msg +=  "[span_notice("Landslide")]: If hit by a melee attack while in throw mode, you will block it and send the attacker flying."
-
-	combined_msg += span_notice("<b>All attacks apply stagger. Stagger knocks people prone and applies a brief slow.</b>")
+	
 	combined_msg += span_notice("<b>Being in this state causes you to burn energy significantly faster.</b>")
+
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
