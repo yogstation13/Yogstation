@@ -32,7 +32,14 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	update_ninja_icons_removed(M)
 
 /datum/antagonist/ninja/proc/equip_space_ninja(mob/living/carbon/human/H = owner.current)
-	return H.equipOutfit(/datum/outfit/ninja)
+	. = H.equipOutfit(/datum/outfit/ninja)
+	if(!.)
+		return
+	if(istype(H.belt, /obj/item/energy_katana))
+		var/obj/item/energy_katana/katana = H.belt
+		for(var/datum/objective/O as anything in objectives)
+			if(istype(O, /datum/objective/debrain) || istype(O, /datum/objective/assassinate))
+				katana.people_to_kill |= O.target
 
 /datum/antagonist/ninja/proc/addMemories()
 	antag_memory += "I am an elite mercenary assassin of the mighty Spider Clan. A <font color='red'><B>SPACE NINJA</B></font>!<br>"

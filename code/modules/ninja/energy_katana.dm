@@ -32,7 +32,7 @@
 	damtype = STAMINA // non-lethal except to those who attack us
 	var/killing_sound = 'sound/weapons/bladeslice.ogg'
 	var/killing_verbs = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	var/list/mob/living/people_to_kill
+	var/list/mob/living/people_to_kill = list()
 
 	var/datum/effect_system/spark_spread/spark_system
 	var/datum/action/innate/dash/ninja/jaunt
@@ -40,7 +40,6 @@
 
 /obj/item/energy_katana/Initialize()
 	. = ..()
-	people_to_kill = list()
 	jaunt = new(src)
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
