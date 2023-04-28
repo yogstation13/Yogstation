@@ -760,13 +760,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "10mm Armor-Piercing Magazine"
 	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are less effective at injuring the target but penetrate protective gear."
-	item = /obj/item/ammo_box/magazine/m10mm/ap
+	item = /obj/item/ammo_container/magazine/m10mm/ap
 
 /datum/uplink_item/ammo/pistol/hp
 	name = "10mm Hollow-Point Magazine"
 	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin Pistol. \
 			These rounds are more damaging but ineffective against armour."
-	item = /obj/item/ammo_box/magazine/m10mm/hp
+	item = /obj/item/ammo_container/magazine/m10mm/hp
 
 /datum/uplink_item/ammo/pistol/sleepy
 	name = "Pair of 10mm Soporific Magazines"
@@ -778,13 +778,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "10mm Incendiary Magazine"
 	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin Pistol. \
 			Loaded with incendiary rounds which inflict reduced damage, but ignite the target."
-	item = /obj/item/ammo_box/magazine/m10mm/fire
+	item = /obj/item/ammo_container/magazine/m10mm/fire
 
 /datum/uplink_item/ammo/pistol/emp
 	name = "10mm EMP Magazine"
 	desc = "An additional 10-round 10mm magazine; compatible with the Stechkin pistol. \
 			Loaded with bullets which release micro-electromagnetic pulses on hit, disrupting electronics on the target hit."
-	item = /obj/item/ammo_box/magazine/m10mm/emp
+	item = /obj/item/ammo_container/magazine/m10mm/emp
 
 /datum/uplink_item/ammo/shotgun
 	cost = 2
@@ -799,39 +799,39 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/shotgun/buck
 	name = "12g Buckshot Drum"
 	desc = "An additional 8-round buckshot magazine for use with the Bulldog shotgun. Front towards enemy."
-	item = /obj/item/ammo_box/magazine/m12g
+	item = /obj/item/ammo_container/magazine/m12g
 
 /datum/uplink_item/ammo/shotgun/dragon
 	name = "12g Dragon's Breath Drum"
 	desc = "An alternative 8-round dragon's breath magazine for use in the Bulldog shotgun. \
 			'I'm a fire starter, twisted fire starter!'"
-	item = /obj/item/ammo_box/magazine/m12g/dragon
+	item = /obj/item/ammo_container/magazine/m12g/dragon
 
 /datum/uplink_item/ammo/shotgun/frag
 	name = "12g Frag-12 Drum"
 	desc = "An alternative 8-round frag-12 magazine for use in the Bulldog shotgun. \
 			'Collateral is my favorite kind of damage!'"
 	cost = 3
-	item = /obj/item/ammo_box/magazine/m12g/frag
+	item = /obj/item/ammo_container/magazine/m12g/frag
 
 /datum/uplink_item/ammo/shotgun/meteor
 	name = "12g Meteorslug Shells"
 	desc = "An alternative 8-round meteorslug magazine for use in the Bulldog shotgun. \
 			Great for blasting airlocks off their frames and knocking down enemies."
-	item = /obj/item/ammo_box/magazine/m12g/meteor
+	item = /obj/item/ammo_container/magazine/m12g/meteor
 
 /datum/uplink_item/ammo/shotgun/slug
 	name = "12g Slug Drum"
 	desc = "An additional 8-round slug magazine for use with the Bulldog shotgun. \
 			Now 8 times less likely to shoot your pals."
-	item = /obj/item/ammo_box/magazine/m12g/slug
+	item = /obj/item/ammo_container/magazine/m12g/slug
 
 /datum/uplink_item/ammo/shotgun/flechette
 	name = "12g Flechette Drum"
 	desc = "An alternative 8-round flechette magazine for use with the Bulldog shotgun. \
 			Tighter spread and armor penetration; make 'em bleed."
 	cost = 3
-	item = /obj/item/ammo_box/magazine/m12g/flechette
+	item = /obj/item/ammo_container/magazine/m12g/flechette
 
 /datum/uplink_item/ammo/revolver
 	name = ".357 Speed Loader Box"
@@ -851,31 +851,31 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = ".357 Nutcracker Speed Loader"
 	desc = "A speed loader that contains seven .357 Nutcracker rounds; usable with the Syndicate revolver. \
 			These rounds lose moderate stopping power in exchange for being able to rapidly destroy doors and windows."
-	item = /obj/item/ammo_box/a357/nutcracker
+	item = /obj/item/ammo_container/a357/nutcracker
 
 /datum/uplink_item/ammo/revolver/metalshock
 	name = ".357 Metalshock Speed Loader"
 	desc = "A speed loader that contains seven .357 Metalshock rounds; usable with the Syndicate revolver. \
 			These rounds convert some lethality into an electric payload, which can bounce between targets."
-	item = /obj/item/ammo_box/a357/metalshock
+	item = /obj/item/ammo_container/a357/metalshock
 
 /datum/uplink_item/ammo/revolver/heartpiercer
 	name = ".357 Heartpiercer Speed Loader"
 	desc = "A speed loader that contains seven .357 Heartpiercer rounds; usable with the Syndicate revolver. \
 			These rounds are less damaging, but penetrate through armor and up to two bodies at once."
-	item = /obj/item/ammo_box/a357/heartpiercer
+	item = /obj/item/ammo_container/a357/heartpiercer
 
 /datum/uplink_item/ammo/revolver/wallstake
 	name = ".357 Wallstake Speed Loader"
 	desc = "A speed loader that contains seven .357 Wallstake rounds; usable with the Syndicate revolver. \
 			These blunt rounds are slightly less damaging but can knock people against walls."
-	item = /obj/item/ammo_box/a357/wallstake
+	item = /obj/item/ammo_container/a357/wallstake
 
 /datum/uplink_item/ammo/rifle
 	name = "5.56mm Toploader Magazine"
 	desc = "An additional 30-round 5.56mm magazine; suitable for use with the M-90gl rifle. \
 			These bullets pack less punch than 7.12x82mm rounds, but they still offer more power than .45 ammo."
-	item = /obj/item/ammo_box/magazine/m556
+	item = /obj/item/ammo_container/magazine/m556
 	cost = 4
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -883,14 +883,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "5.56mm Armor-Piercing Toploader Magazine"
 	desc = "An additional 30-round 5.56mm magazine; suitable for use with the M-90gl rifle. \
 			These rounds are less damaging but puncture through armor easily."
-	item = /obj/item/ammo_box/magazine/m556/ap
+	item = /obj/item/ammo_container/magazine/m556/ap
 	cost = 6
 
 /datum/uplink_item/ammo/rifle/inc
 	name = "5.56mm Incendiary Toploader Magazine"
 	desc = "An additional 30-round 5.56mm magazine; suitable for use with the M-90gl rifle. \
 			These rounds are less damaging but ignite targets."
-	item = /obj/item/ammo_box/magazine/m556/inc
+	item = /obj/item/ammo_container/magazine/m556/inc
 
 /datum/uplink_item/ammo/a40mm
 	name = "40mm Grenade"
@@ -910,7 +910,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/smg
 	name = ".45 SMG Magazine"
 	desc = "An additional 24-round .45 magazine suitable for use with the C-20r submachine gun."
-	item = /obj/item/ammo_box/magazine/smgm45
+	item = /obj/item/ammo_container/magazine/smgm45
 	cost = 3
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -918,26 +918,26 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = ".45 Armor-Piercing SMG Magazine"
 	desc = "An additional 24-round armor-piercing .45 magazine suitable for use with the C-20r submachine gun. \
 			These rounds deal reduced damage but will bypass most protective gear."
-	item = /obj/item/ammo_box/magazine/smgm45/ap
+	item = /obj/item/ammo_container/magazine/smgm45/ap
 	cost = 4
 
 /datum/uplink_item/ammo/smg/hp
 	name = ".45 Hollow-Point SMG Magazine"
 	desc = "An additional 24-round hollow-point .45 magazine suitable for use with the C-20r submachine gun. \
 			These rounds deal high damage but are weak against body armor."
-	item = /obj/item/ammo_box/magazine/smgm45/hp
+	item = /obj/item/ammo_container/magazine/smgm45/hp
 
 /datum/uplink_item/ammo/smg/venom
 	name = ".45 Venom SMG Magazine"
 	desc = "An additional 24-round venom .45 magazine suitable for use with the C-20r submachine gun. \
 			These rounds deal reduced damage but inject venom into targets."
-	item = /obj/item/ammo_box/magazine/smgm45/venom
+	item = /obj/item/ammo_container/magazine/smgm45/venom
 	cost = 4
 
 /datum/uplink_item/ammo/nukiedmr
 	name = "7.62 Rifle Magazine"
 	desc = "A standard 11-round magazine for the K-41s DMR. Filled with 7.62 rounds."
-	item = /obj/item/ammo_box/magazine/ks762
+	item = /obj/item/ammo_container/magazine/ks762
 	cost = 3
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -945,27 +945,27 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "7.62 Raze Rifle Magazine"
 	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with Raze 7.62 rounds. \
 			These rounds do notably less damage, but release radium dust in targets that severely damages their DNA structure."
-	item = /obj/item/ammo_box/magazine/ks762/raze
+	item = /obj/item/ammo_container/magazine/ks762/raze
 	cost = 4
 
 /datum/uplink_item/ammo/nukiedmr/pen
 	name = "7.62 Anti-Material Rifle Magazine"
 	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with anti-material 7.62 rounds. \
 			These rounds offer less stopping power, but pierce through a couple of objects before stopping."
-	item = /obj/item/ammo_box/magazine/ks762/pen
+	item = /obj/item/ammo_container/magazine/ks762/pen
 	cost = 5
 
 /datum/uplink_item/ammo/nukiedmr/vulcan
 	name = "7.62 Vulcan Rifle Magazine"
 	desc = "An alternative 11-round magazine for the K-41s DMR. Filled with Vulcan 7.62 rounds. \
 			These rounds are loaded with an incendiary payload that causes fire to erupt out upon impact."
-	item = /obj/item/ammo_box/magazine/ks762/vulcan
+	item = /obj/item/ammo_container/magazine/ks762/vulcan
 	cost = 4
 
 /datum/uplink_item/ammo/sniper
 	name = ".50 Magazine"
 	desc = "An additional standard 6-round magazine for use with .50 sniper rifles."
-	item = /obj/item/ammo_box/magazine/sniper_rounds
+	item = /obj/item/ammo_container/magazine/sniper_rounds
 	cost = 4
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -973,13 +973,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = ".50 Penetrator Magazine"
 	desc = "A 5-round magazine of penetrator ammo designed for use with .50 sniper rifles. \
 			Can pierce walls and multiple enemies."
-	item = /obj/item/ammo_box/magazine/sniper_rounds/penetrator
+	item = /obj/item/ammo_container/magazine/sniper_rounds/penetrator
 	cost = 5
 
 /datum/uplink_item/ammo/sniper/soporific
 	name = ".50 Soporific Magazine"
 	desc = "A 3-round magazine of soporific ammo designed for use with .50 sniper rifles. Put your enemies to sleep today!"
-	item = /obj/item/ammo_box/magazine/sniper_rounds/soporific
+	item = /obj/item/ammo_container/magazine/sniper_rounds/soporific
 	cost = 6
 
 /datum/uplink_item/ammo/machinegun
@@ -991,26 +991,26 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "7.12x82mm Box Magazine"
 	desc = "A 50-round magazine of 7.12x82mm ammunition for use with the L6 SAW. \
 			By the time you need to use this, you'll already be standing on a pile of corpses."
-	item = /obj/item/ammo_box/magazine/mm712x82
+	item = /obj/item/ammo_container/magazine/mm712x82
 
 /datum/uplink_item/ammo/machinegun/ap
 	name = "7.12x82mm (Armor-Piercing) Box Magazine"
 	desc = "A 50-round magazine of 7.12x82mm ammunition for use in the L6 SAW; equipped with special properties \
 			to puncture even the most durable armor."
-	item = /obj/item/ammo_box/magazine/mm712x82/ap
+	item = /obj/item/ammo_container/magazine/mm712x82/ap
 	cost = 9
 
 /datum/uplink_item/ammo/machinegun/hollow
 	name = "7.12x82mm (Hollow-Point) Box Magazine"
 	desc = "A 50-round magazine of 7.12x82mm ammunition for use in the L6 SAW; equipped with hollow-point tips to help \
 			with the unarmored masses of crew."
-	item = /obj/item/ammo_box/magazine/mm712x82/hollow
+	item = /obj/item/ammo_container/magazine/mm712x82/hollow
 
 /datum/uplink_item/ammo/machinegun/inc
 	name = "7.12x82mm (Incendiary) Box Magazine"
 	desc = "A 50-round magazine of 7.12x82mm ammunition for use in the L6 SAW; tipped with a special flammable \
 			mixture that'll ignite anyone struck by the bullet. Some men just want to watch the world burn."
-	item = /obj/item/ammo_box/magazine/mm712x82/incen
+	item = /obj/item/ammo_container/magazine/mm712x82/incen
 
 /datum/uplink_item/ammo/rocket
 	include_modes = list(/datum/game_mode/nuclear)
@@ -1031,14 +1031,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/pistolaps
 	name = "9mm Handgun Magazine"
 	desc = "An additional 15-round 9mm magazine, compatible with the Stechkin APS pistol, found in the Spetsnaz Pyro bundle."
-	item = /obj/item/ammo_box/magazine/pistolm9mm
+	item = /obj/item/ammo_container/magazine/pistolm9mm
 	cost = 2
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/toydarts
 	name = "Box of Riot Darts"
 	desc = "A box of 40 Donksoft riot darts, for reloading any compatible foam dart magazine. Don't forget to share!"
-	item = /obj/item/ammo_box/foambox/riot
+	item = /obj/item/ammo_container/box/foambox/riot
 	cost = 1
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 0
@@ -1055,7 +1055,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/bolt_action
 	name = "Surplus Rifle Clip"
 	desc = "A stripper clip used to quickly load bolt action rifles. Contains 5 rounds."
-	item = 	/obj/item/ammo_box/a762
+	item = 	/obj/item/ammo_container/box/a762
 	cost = 1
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -2780,104 +2780,104 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/nt/ammo/powerpack
 	name = "Power Pack"
 	desc = "An additional 20-round laser magazine; suitable for use with the laser rifle."
-	item = /obj/item/ammo_box/magazine/recharge
+	item = /obj/item/ammo_container/magazine/recharge
 	cost = 5
 
 /datum/uplink_item/nt/ammo/arg
 	name = "5.56mm Magazine"
 	desc = "An additional 30-round 5.56mm magazine; suitable for use with the NT-ARG."
-	item = /obj/item/ammo_box/magazine/r556
+	item = /obj/item/ammo_container/magazine/r556
 	cost = 4
 
 /datum/uplink_item/nt/ammo/arg/ap
 	name = "5.56 AP Magazine"
 	desc = "An alternative 30-round 5.56 magazine loaded with armor-piercing rounds; suitable for use with the NT-ARG."
-	item = /obj/item/ammo_box/magazine/r556/ap
+	item = /obj/item/ammo_container/magazine/r556/ap
 	cost = 6
 
 /datum/uplink_item/nt/ammo/arg/inc
 	name = "5.56 Incendiary Magazine"
 	desc = "An alternative 30-round 5.56 magazine loaded with incendiary rounds; suitable for use with the NT-ARG."
-	item = /obj/item/ammo_box/magazine/r556/inc
+	item = /obj/item/ammo_container/magazine/r556/inc
 
 /datum/uplink_item/nt/ammo/arg/rubber
 	name = "5.56 Rubber Magazine"
 	desc = "An alternative 30-round 5.56 magazine loaded with less-lethal rounds; suitable for use with the NT-ARG."
-	item = /obj/item/ammo_box/magazine/r556/rubber
+	item = /obj/item/ammo_container/magazine/r556/rubber
 
 /datum/uplink_item/nt/ammo/lwt
 	name = ".308 Magazine"
 	desc = "An additional 15-round .308 magazine; suitable for use with the LWT-650."
-	item = /obj/item/ammo_box/magazine/m308
+	item = /obj/item/ammo_container/magazine/m308
 	cost = 2
 
 /datum/uplink_item/nt/ammo/lwt/penetrator
 	name = ".308 Penetrator Magazine"
 	desc = "An alternative 15-round .308 penetrator magazine; suitable for use with the LWT-650. \
 			These rounds do less damage but puncture bodies and body armor alike."
-	item = /obj/item/ammo_box/magazine/m308/pen
+	item = /obj/item/ammo_container/magazine/m308/pen
 	cost = 4
 
 /datum/uplink_item/nt/ammo/lwt/laser
 	name = ".308 Heavy Laser Magazine"
 	desc = "An alternative 15-round .308 heavy laser magazine; suitable for use with the LWT-650. \
 			These rounds fire heavy lasers which do much more than a standard laser. The magazine is rechargable like the laser rifle's."
-	item = /obj/item/ammo_box/magazine/m308/laser
+	item = /obj/item/ammo_container/magazine/m308/laser
 	cost = 7
 
 /datum/uplink_item/nt/ammo/tommyammo
 	name = ".45 Drum Magazine"
 	desc = "An additional 50-round .45 drum magazine; suitable for use with the Thompson SMG."
-	item = /obj/item/ammo_box/magazine/tommygunm45
+	item = /obj/item/ammo_container/magazine/tommygunm45
 	cost = 4
 
 /datum/uplink_item/nt/ammo/m45ammo
 	name = ".45 Handgun Magazine"
 	desc = "An additional 8-round .45 magazine; suitable for use with the M1911."
-	item = /obj/item/ammo_box/magazine/m45
+	item = /obj/item/ammo_container/magazine/m45
 	cost = 2
 	required_ert_uplink = null
 
 /datum/uplink_item/nt/ammo/saberammo
 	name = "9mm Magazine"
 	desc = "An additional 21-round 9mm magazine; suitable for use with the Saber SMG."
-	item = /obj/item/ammo_box/magazine/smgm9mm
+	item = /obj/item/ammo_container/magazine/smgm9mm
 	cost = 1
 
 /datum/uplink_item/nt/ammo/saberammo/ap
 	name = "9mm AP Magazine"
 	desc = "An additional 21-round 9mm magazine loaded with armor-piercing rounds; suitable for use with the Saber SMG."
-	item = /obj/item/ammo_box/magazine/smgm9mm/ap
+	item = /obj/item/ammo_container/magazine/smgm9mm/ap
 	cost = 2
 
 /datum/uplink_item/nt/ammo/saberammo/inc
 	name = "9mm Incendiary Magazine"
 	desc = "An additional 21-round 9mm magazine loaded with incendiary rounds; suitable for use with the Saber SMG."
-	item = /obj/item/ammo_box/magazine/smgm9mm/inc
+	item = /obj/item/ammo_container/magazine/smgm9mm/inc
 
 /datum/uplink_item/nt/ammo/wt
 	name = "4.6x30mm Magazine"
 	desc = "An additional 20-round 4.6x30mm magazine; suitable for use with the WT-550."
-	item = /obj/item/ammo_box/magazine/wt550m9
+	item = /obj/item/ammo_container/magazine/wt550m9
 	cost = 2
 	required_ert_uplink = null
 
 /datum/uplink_item/nt/ammo/wt/ap
 	name = "4.6x30mm AP Magazine"
 	desc = "An additional 20-round 4.6x30mm magazine loaded with armor-piercing rounds; suitable for use with the WT-550."
-	item = /obj/item/ammo_box/magazine/wt550m9/wtap
+	item = /obj/item/ammo_container/magazine/wt550m9/wtap
 	cost = 4
 
 /datum/uplink_item/nt/ammo/wt/ic
 	name = "4.6x30mm Incendiary Magazine"
 	desc = "An additional 20-round 4.6x30mm magazine loaded with incendiary rounds; suitable for use with the WT-550."
-	item = /obj/item/ammo_box/magazine/wt550m9/wtic
+	item = /obj/item/ammo_container/magazine/wt550m9/wtic
 	cost = 4
 
 /datum/uplink_item/nt/ammo/wt/r
 	name = "4.6x30mm Rubber Shot Magazine"
 	desc = "An additional 20-round 4.6x30mm magazine loaded with less-lethal rounds; suitable for use with the WT-550."
-	item = /obj/item/ammo_box/magazine/wt550m9/wtr
+	item = /obj/item/ammo_container/magazine/wt550m9/wtr
 	cost = 1
 
 /datum/uplink_item/nt/mech

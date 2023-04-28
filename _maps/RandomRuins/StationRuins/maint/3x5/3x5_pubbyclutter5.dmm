@@ -30,8 +30,8 @@
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
 	},
-/obj/item/ammo_box/foambox,
-/obj/item/ammo_box/foambox,
+/obj/item/ammo_container/box/foambox,
+/obj/item/ammo_container/box/foambox,
 /obj/item/gun/ballistic/shotgun/toy,
 /obj/item/gun/ballistic/shotgun/toy,
 /turf/open/floor/plating,

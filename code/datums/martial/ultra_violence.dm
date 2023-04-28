@@ -101,13 +101,13 @@
 	
 /obj/item/gun/ballistic/revolver/ipcmartial
 	desc = "Your trusty revolver."
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
+	mag_type = /obj/item/ammo_container/magazine/internal/cylinder/ipcmartial
 	can_be_sawn_off  = FALSE
 	var/mob/gun_owner
 	spread = 0
 	semi_auto_spread = 0
 
-/obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
+/obj/item/ammo_container/magazine/internal/cylinder/ipcmartial
 	name = "\improper Piercer cylinder"
 	ammo_type = /obj/item/ammo_casing/ipcmartial
 	caliber = "357"

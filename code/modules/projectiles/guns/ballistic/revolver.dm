@@ -2,7 +2,7 @@
 	name = "\improper .357 revolver"
 	desc = "A suspicious revolver. Uses .357 ammo." //usually used by syndicates
 	icon_state = "revolver"
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder
+	mag_type = /obj/item/ammo_container/magazine/internal/cylinder
 	fire_sound = 'sound/weapons/revolver357shot.ogg'
 	load_sound = 'sound/weapons/revolverload.ogg'
 	eject_sound = 'sound/weapons/revolverempty.ogg'
@@ -52,7 +52,7 @@
 		verbs -= /obj/item/gun/ballistic/revolver/verb/spin
 
 /obj/item/gun/ballistic/revolver/proc/do_spin()
-	var/obj/item/ammo_box/magazine/internal/cylinder/C = magazine
+	var/obj/item/ammo_container/magazine/internal/cylinder/C = magazine
 	. = istype(C)
 	if(.)
 		C.spin()
@@ -71,7 +71,7 @@
 	fire_sound = 'sound/weapons/revolver38shot.ogg'
 	icon_state = "detective"
 	fire_delay = 0
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38
+	mag_type = /obj/item/ammo_container/magazine/internal/cylinder/rev38
 	obj_flags = UNIQUE_RENAME
 	unique_reskin = list("Default" = "detective",
 						"Fitz Special" = "detective_fitz",
@@ -128,7 +128,7 @@
 	fire_delay = 10 //Needle round rotate slowly, pace your shots
 	suppressed = TRUE
 	can_unsuppress = FALSE
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/tra32
+	mag_type = /obj/item/ammo_container/magazine/internal/cylinder/tra32
 
 /obj/item/gun/ballistic/revolver/mateba
 	name = "\improper Unica 6 auto-revolver"
@@ -152,7 +152,7 @@
 	fire_delay = 5 //Mild trigger pull, the gun was known for it
 	can_suppress = TRUE
 
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762
+	mag_type = /obj/item/ammo_container/magazine/internal/cylinder/rev762
 
 
 // A gun to play Russian Roulette!
@@ -162,7 +162,7 @@
 	name = "\improper Russian revolver"
 	desc = "A Russian-made revolver for drinking games. Uses .357 ammo, and has a mechanism requiring you to spin the chamber before each trigger pull."
 	icon_state = "russianrevolver"
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rus357
+	mag_type = /obj/item/ammo_container/magazine/internal/cylinder/rus357
 	var/spun = FALSE
 
 /obj/item/gun/ballistic/revolver/russian/do_spin()

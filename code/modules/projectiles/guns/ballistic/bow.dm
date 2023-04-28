@@ -7,7 +7,7 @@
 	weapon_weight = WEAPON_HEAVY //need both hands to fire
 	force = 5
 	spread = 1
-	mag_type = /obj/item/ammo_box/magazine/internal/bow
+	mag_type = /obj/item/ammo_container/magazine/internal/bow
 	fire_sound = 'sound/weapons/sound_weapons_bowfire.ogg'
 	slot_flags = ITEM_SLOT_BACK
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
@@ -136,12 +136,12 @@
 /obj/item/gun/ballistic/bow/crossbow/magfed
 	name = "wooden magfed crossbow"
 	desc = "A bow with a locking mechanism that more closely resembles a modern gun. This one seems to be outfitted with an automatic loading mechanism."
-	mag_type = /obj/item/ammo_box/magazine/arrow
+	mag_type = /obj/item/ammo_container/magazine/arrow
 	internal_magazine = FALSE
 
 /obj/item/gun/ballistic/bow/attackby(obj/item/I, mob/user, params)
-	if (!internal_magazine && istype(I, /obj/item/ammo_box/magazine))
-		var/obj/item/ammo_box/magazine/AM = I
+	if (!internal_magazine && istype(I, /obj/item/ammo_container/magazine))
+		var/obj/item/ammo_container/magazine/AM = I
 		if (!magazine)
 			insert_magazine(user, AM)
 		else
@@ -157,7 +157,7 @@
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
 	icon_state = "bow_hardlight"
 	item_state = "bow_hardlight"
-	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy
+	mag_type = /obj/item/ammo_container/magazine/internal/bow/energy
 	no_pin_required = FALSE
 	draw_slowdown = 0
 	var/recharge_time = 1 SECONDS
@@ -220,7 +220,7 @@
 	update_icon()
 
 /obj/item/gun/ballistic/bow/energy/proc/select_projectile(mob/living/user)
-	var/obj/item/ammo_box/magazine/internal/bow/energy/M = magazine
+	var/obj/item/ammo_container/magazine/internal/bow/energy/M = magazine
 	if(!istype(M) || !M.selectable_types)
 		return
 	var/list/selectable_types = M.selectable_types
@@ -255,7 +255,7 @@
 
 /obj/item/gun/ballistic/bow/energy/advanced
 	name = "Advanced Hardlight Bow"
-	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/advanced
+	mag_type = /obj/item/ammo_container/magazine/internal/bow/energy/advanced
 	recharge_time = 0
 	pin = /obj/item/firing_pin
 
@@ -264,7 +264,7 @@
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy. This one is designed by the Syndicate for silent takedowns of targets."
 	icon_state = "bow_syndicate"
 	item_state = "bow_syndicate"
-	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/syndicate
+	mag_type = /obj/item/ammo_container/magazine/internal/bow/energy/syndicate
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 5
@@ -325,5 +325,5 @@
 	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and fabricates arrows by itself."
 	icon_state = "bow_clockwork"
 	item_state = "bow_clockwork"
-	mag_type = /obj/item/ammo_box/magazine/internal/bow/energy/clockcult
+	mag_type = /obj/item/ammo_container/magazine/internal/bow/energy/clockcult
 	pin = /obj/item/firing_pin/clockie

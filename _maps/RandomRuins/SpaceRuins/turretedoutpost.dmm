@@ -211,7 +211,7 @@
 /area/ruin/space/has_grav/turretedoutpost)
 "aH" = (
 /obj/structure/rack,
-/obj/item/ammo_box/c9mm,
+/obj/item/ammo_container/box/c9mm,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},

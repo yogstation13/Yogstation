@@ -1801,10 +1801,10 @@
 /obj/structure/closet/secure_closet/personal/cabinet{
 	req_access_txt = "150"
 	},
-/obj/item/ammo_box/magazine/m10mm{
+/obj/item/ammo_container/magazine/m10mm{
 	icon_state = "9x19p-8"
 	},
-/obj/item/ammo_box/magazine/m10mm{
+/obj/item/ammo_container/magazine/m10mm{
 	icon_state = "9x19p-8"
 	},
 /obj/item/suppressor,

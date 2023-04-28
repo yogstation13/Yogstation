@@ -280,11 +280,11 @@
 /area/shuttle/yogs/stealthcruiser)
 "aJ" = (
 /obj/structure/table/reinforced,
-/obj/item/ammo_box/magazine/m10mm{
+/obj/item/ammo_container/magazine/m10mm{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_container/magazine/m10mm,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/yogs/stealthcruiser)
 "aK" = (

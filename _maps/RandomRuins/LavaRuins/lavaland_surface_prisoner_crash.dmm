@@ -188,7 +188,7 @@
 	desc = "The Pilot won't be needing any of this....";
 	name = "Pilots Belongings"
 	},
-/obj/item/ammo_box/c45,
+/obj/item/ammo_container/box/c45,
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/toy/figure/secofficer,
 /obj/item/tank/internals/oxygen/red,

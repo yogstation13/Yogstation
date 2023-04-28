@@ -21202,7 +21202,7 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/ammo_box/magazine/recharge/ntusp{
+/obj/item/ammo_container/magazine/recharge/ntusp{
 	pixel_x = 9;
 	pixel_y = -7
 	},

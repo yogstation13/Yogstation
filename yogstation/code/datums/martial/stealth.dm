@@ -97,7 +97,7 @@
 	fire_sound_volume = 30
 	lefthand_file = null  ///We don't want it to be visible inhands
 	righthand_file = null
-	mag_type = /obj/item/ammo_box/magazine/m10mm/martial
+	mag_type = /obj/item/ammo_container/magazine/m10mm/martial
 	var/mob/gun_owner
 	var/dying = FALSE
 
@@ -107,10 +107,10 @@
 	install_suppressor(S)
 	ADD_TRAIT(src, TRAIT_NODROP, "martial")
 
-/obj/item/gun/ballistic/automatic/pistol/martial/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
+/obj/item/gun/ballistic/automatic/pistol/martial/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_container/magazine/tac_load = null)
 	return FALSE
 
-/obj/item/gun/ballistic/automatic/pistol/martial/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
+/obj/item/gun/ballistic/automatic/pistol/martial/insert_magazine(mob/user, obj/item/ammo_container/magazine/AM, display_message = TRUE)
 	return FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/martial/attack_self(mob/living/user)
@@ -128,7 +128,7 @@
 	to_chat(gun_owner, span_warning("You hide [src]."))	
 	qdel(src)	
 
-/obj/item/ammo_box/magazine/m10mm/martial
+/obj/item/ammo_container/magazine/m10mm/martial
 	max_ammo = 1
 
 /mob/living/carbon/human/proc/preternis_martial_help()

@@ -1,6 +1,6 @@
 //WT-550 Autocarbine
 
-/obj/item/ammo_box/magazine/wt550m9
+/obj/item/ammo_container/magazine/wt550m9
 	name = "\improper WT-550 magazine (4.6x30mm)"
 	desc = "A 20-round 4.6x30mm magazine, designed for the WT-550 Carbine."
 	icon_state = "46x30mmt-20"
@@ -8,7 +8,7 @@
 	caliber = "4.6x30mm"
 	max_ammo = 20
 
-/obj/item/ammo_box/magazine/wt550m9/update_icon()
+/obj/item/ammo_container/magazine/wt550m9/update_icon()
 	..()
 	switch(ammo_count())
 		if(17 to 21) //Considers the extra bullet in the chamber
@@ -24,7 +24,7 @@
 		else
 			icon_state = "46x30mmt[sprite_designation]-0"
 
-/obj/item/ammo_box/magazine/wt550m9/wtap
+/obj/item/ammo_container/magazine/wt550m9/wtap
 	name = "\improper WT-550 magazine (Armor-Piercing 4.6x30mm)"
 	desc = "A 20-round AP 4.6x30mm magazine, designed for the WT-550 Carbine. \
 			These rounds trade damage for armor-piercing capability."
@@ -32,7 +32,7 @@
 	ammo_type = /obj/item/ammo_casing/c46x30mm/ap
 	sprite_designation = "A"
 
-/obj/item/ammo_box/magazine/wt550m9/wtic
+/obj/item/ammo_container/magazine/wt550m9/wtic
 	name = "\improper WT-550 magazine (Incendiary 4.6x30mm)"
 	desc = "A 20-round Incendiary 4.6x30mm magazine, designed for the WT-550 Carbine. \
 			These rounds trade damage for ignition of targets."
@@ -40,7 +40,7 @@
 	ammo_type = /obj/item/ammo_casing/c46x30mm/inc
 	sprite_designation = "I"
 
-/obj/item/ammo_box/magazine/wt550m9/wtr
+/obj/item/ammo_container/magazine/wt550m9/wtr
 	name = "\improper WT-550 magazine (Rubber Rounds 4.6x30mm)"
 	desc = "A 20-round 4.6x30mm magazine, designed for the WT-550 Carbine. \
 			These rounds possess minimal lethality but deal high stamina damage to targets."
@@ -50,7 +50,7 @@
 
 //Experimental WT mags
 
-/obj/item/ammo_box/magazine/wt550m9/wt_snakebite
+/obj/item/ammo_container/magazine/wt550m9/wt_snakebite
 	name = "\improper WT-550 magazine (snakebite Rounds 4.6x30mm)"
 	desc = "A 20-round 4.6x30mm magazine, designed for the WT-550 Carbine. \
 			These rounds, while not directly lethal, inject a fast acting toxin that deals damage instead."
@@ -58,7 +58,7 @@
 	ammo_type = /obj/item/ammo_casing/c46x30mm/snakebite
 	sprite_designation = "V"
 
-/obj/item/ammo_box/magazine/wt550m9/wt_kraken
+/obj/item/ammo_container/magazine/wt550m9/wt_kraken
 	name = "\improper WT-550 magazine (Kraken Rounds 4.6x30mm)"
 	desc = "A 10-round 4.6x30mm magazine, designed for the WT-550 Carbine. \
 			These rounds trade any AP capabilites for increased damage to un-armored opponents."
@@ -66,7 +66,7 @@
 	ammo_type = /obj/item/ammo_casing/c46x30mm/kraken
 	sprite_designation = "K"
 
-/obj/item/ammo_box/magazine/wt550m9/wt_airburst
+/obj/item/ammo_container/magazine/wt550m9/wt_airburst
 	name = "\improper WT-550 magazine (Airburst Rounds 4.6x30mm)"
 	desc = "A 10-round 4.6x30mm magazine, designed for the WT-550 Carbine. \
 			These rounds travel a few feet, then pop and split into many smaller projectiles. The initial bullet is nigh useless however."
@@ -75,7 +75,7 @@
 	sprite_designation = "B"
 	max_ammo = 10
 
-/obj/item/ammo_box/magazine/wt550m9/wt_airburst/update_icon() // Snowflake code snowflake code
+/obj/item/ammo_container/magazine/wt550m9/wt_airburst/update_icon() // Snowflake code snowflake code
 	..()
 	switch(ammo_count())
 		if(9 to 11) //Considers the extra bullet in the chamber
@@ -93,7 +93,7 @@
 
 //Type T3 Uzi
 
-/obj/item/ammo_box/magazine/uzim9mm
+/obj/item/ammo_container/magazine/uzim9mm
 	name = "uzi magazine (9mm)"
 	desc = "A 32-round magazine for the Type T3 Uzi that contains 9mm rounds."
 	icon_state = "uzi9mm-32"
@@ -101,13 +101,13 @@
 	caliber = "9mm"
 	max_ammo = 32
 
-/obj/item/ammo_box/magazine/uzim9mm/update_icon()
+/obj/item/ammo_container/magazine/uzim9mm/update_icon()
 	..()
 	icon_state = "uzi9mm-[round(ammo_count(),4)]"
 
 //NT Saber SMG
 
-/obj/item/ammo_box/magazine/smgm9mm
+/obj/item/ammo_container/magazine/smgm9mm
 	name = "SMG magazine (9mm)"
 	desc = "A 21-round magazine for the Nanotrasen Saber SMG that contains 9mm rounds."
 	icon_state = "smg9mm-42"
@@ -115,11 +115,11 @@
 	caliber = "9mm"
 	max_ammo = 21
 
-/obj/item/ammo_box/magazine/smgm9mm/update_icon()
+/obj/item/ammo_container/magazine/smgm9mm/update_icon()
 	..()
 	icon_state = "smg9mm[sprite_designation]-[ammo_count() ? "42" : "0"]"
 
-/obj/item/ammo_box/magazine/smgm9mm/ap
+/obj/item/ammo_container/magazine/smgm9mm/ap
 	name = "SMG magazine (Armor-Piercing 9mm)"
 	desc = "A 21-round magazine for the Nanotrasen Saber SMG that contains AP 9mm rounds. \
 			These rounds inflict less harm but penetrate most standard protection."
@@ -127,7 +127,7 @@
 	ammo_type = /obj/item/ammo_casing/c9mm/ap
 	sprite_designation = "A"
 
-/obj/item/ammo_box/magazine/smgm9mm/inc
+/obj/item/ammo_container/magazine/smgm9mm/inc
 	name = "SMG Magazine (Incendiary 9mm)"
 	desc = "A 21-round magazine for the Nanotrasen Saber SMG that contains incendiary 9mm rounds. \
 			These rounds do less damage but ignite targets."
@@ -137,7 +137,7 @@
 
 //C-20r SMG
 
-/obj/item/ammo_box/magazine/smgm45
+/obj/item/ammo_container/magazine/smgm45
 	name = "SMG magazine (.45)"
 	desc = "A 24-round magazine for the C-20r SMG that contains .45 rounds."
 	icon_state = "c20r45-24"
@@ -145,11 +145,11 @@
 	caliber = ".45"
 	max_ammo = 24
 
-/obj/item/ammo_box/magazine/smgm45/update_icon()
+/obj/item/ammo_container/magazine/smgm45/update_icon()
 	..()
 	icon_state = "c20r45[sprite_designation]-[round(ammo_count(),2)]"
 
-/obj/item/ammo_box/magazine/smgm45/ap
+/obj/item/ammo_container/magazine/smgm45/ap
 	name = "SMG magazine (Armor-Piercing .45)"
 	desc = "A 24-round magazine for the C-20r SMG that contains AP .45 rounds. \
 			These rounds do less damage but bypass most standard body armor."
@@ -157,7 +157,7 @@
 	ammo_type = /obj/item/ammo_casing/c45/ap
 	sprite_designation = "A"
 
-/obj/item/ammo_box/magazine/smgm45/hp
+/obj/item/ammo_container/magazine/smgm45/hp
 	name = "SMG magazine (Hollow-Point .45)"
 	desc = "A 24-round magazine for the C-20r SMG that contains HP .45 rounds. \
 			These rounds suffer against those wearing body armor but devastate those who do not."
@@ -165,7 +165,7 @@
 	ammo_type = /obj/item/ammo_casing/c45/hp
 	sprite_designation = "H"
 
-/obj/item/ammo_box/magazine/smgm45/venom
+/obj/item/ammo_container/magazine/smgm45/venom
 	name = "SMG magazine (Venom .45)"
 	desc = "A 24-round magazine for the C-20r SMG that contains Venom .45 rounds. \
 			These rounds do less damage but poison targets."
@@ -175,7 +175,7 @@
 
 //Thompson SMG
 
-/obj/item/ammo_box/magazine/tommygunm45
+/obj/item/ammo_container/magazine/tommygunm45
 	name = "drum magazine (.45)"
 	desc = "A massive 50-round drum magazine for usage in the Thompson SMG. It contains .45 rounds."
 	icon_state = "drum45"

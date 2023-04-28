@@ -3,7 +3,7 @@
 	desc = "A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors."
 	icon_state = "pistol"
 	w_class = WEIGHT_CLASS_SMALL
-	mag_type = /obj/item/ammo_box/magazine/m10mm
+	mag_type = /obj/item/ammo_container/magazine/m10mm
 	can_suppress = TRUE
 	burst_size = 1
 	fire_delay = 0
@@ -28,14 +28,14 @@
 	install_suppressor(S)
 
 /obj/item/gun/ballistic/automatic/pistol/pacifist
-	starting_mag_type = /obj/item/ammo_box/magazine/m10mm/sp
+	starting_mag_type = /obj/item/ammo_container/magazine/m10mm/sp
 
 /obj/item/gun/ballistic/automatic/pistol/m1911
 	name = "\improper M1911"
 	desc = "A classic .45 handgun with a small magazine capacity."
 	icon_state = "m1911"
 	w_class = WEIGHT_CLASS_NORMAL
-	mag_type = /obj/item/ammo_box/magazine/m45
+	mag_type = /obj/item/ammo_container/magazine/m45
 	can_suppress = FALSE
 	feedback_types = list(
 		"fire" = 3
@@ -50,7 +50,7 @@
 	icon_state = "deagle"
 	force = 14
 	fire_delay = 8
-	mag_type = /obj/item/ammo_box/magazine/m50
+	mag_type = /obj/item/ammo_container/magazine/m50
 	can_suppress = FALSE
 	mag_display = TRUE
 	feedback_types = list(
@@ -73,7 +73,7 @@
 	desc = "The original Russian version of a widely used Syndicate sidearm. Uses 9mm ammo."
 	icon_state = "aps"
 	w_class = WEIGHT_CLASS_SMALL
-	mag_type = /obj/item/ammo_box/magazine/pistolm9mm
+	mag_type = /obj/item/ammo_container/magazine/pistolm9mm
 	can_suppress = FALSE
 	burst_size = 3
 	fire_delay = 2

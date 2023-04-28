@@ -33,7 +33,7 @@
 	head = /obj/item/clothing/head/fedora/det_hat
 	r_hand = /obj/item/gun/ballistic
 	l_hand = null
-	r_pocket = /obj/item/ammo_box/c10mm
+	r_pocket = /obj/item/ammo_container/box/c10mm
 
 /datum/outfit/tournament/janitor
 	name = "tournament janitor"
@@ -189,7 +189,7 @@
 		SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/stack/spacecash/c1000, null, TRUE, TRUE)
 	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/gun/energy/kinetic_accelerator/crossbow, null, TRUE, TRUE)
 	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/gun/ballistic/revolver/mateba, null, TRUE, TRUE)
-	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/ammo_box/a357, null, TRUE, TRUE)
+	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/ammo_container/a357, null, TRUE, TRUE)
 	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/grenade/plastic/x4, null, TRUE, TRUE)
 
 	var/obj/item/pda/heads/pda = H.belt
@@ -368,7 +368,7 @@
 	implants = list(/obj/item/implant/mindshield)
 
 	backpack_contents = list(/obj/item/storage/box=1,\
-		/obj/item/ammo_box/a357=1,\
+		/obj/item/ammo_container/a357=1,\
 		/obj/item/storage/firstaid/regular=1,\
 		/obj/item/storage/box/flashbangs=1,\
 		/obj/item/flashlight=1,\

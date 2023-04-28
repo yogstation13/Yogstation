@@ -95,7 +95,7 @@
 
 /datum/crafting_recipe/makeshiftmagazine
 	name = "Makeshift Pistol Magazine (10mm)"
-	result = /obj/item/ammo_box/magazine/m10mm/makeshift
+	result = /obj/item/ammo_container/magazine/m10mm/makeshift
 	reqs = list(/obj/item/stack/sheet/metal = 2,
         		/obj/item/stack/tape = 2)
 	time = 12 SECONDS

@@ -31,4 +31,4 @@
 	description = "Our detective had an incident with the clown and requires some more revolver ammo. Ship a few speedloaders over to help him feel safer."
 	reward = 5000
 	required_count = 3
-	wanted_types = list(/obj/item/ammo_box/c38)
+	wanted_types = list(/obj/item/ammo_container/c38)

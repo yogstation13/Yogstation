@@ -20,8 +20,8 @@
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/cable_coil/random,
 /obj/item/gun/ballistic/automatic/surplus,
-/obj/item/ammo_box/magazine/m10mm/rifle,
-/obj/item/ammo_box/magazine/m10mm/rifle,
+/obj/item/ammo_container/magazine/m10mm/rifle,
+/obj/item/ammo_container/magazine/m10mm/rifle,
 /turf/open/floor/plating,
 /area/ruin/powered/gasstation)
 "aj" = (

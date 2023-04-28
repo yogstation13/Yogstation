@@ -12,7 +12,7 @@
 	force = 10
 	flags_1 =  CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
-	mag_type = /obj/item/ammo_box/magazine/internal/shot
+	mag_type = /obj/item/ammo_container/magazine/internal/shot
 	weapon_weight = WEAPON_MEDIUM
 	semi_auto = FALSE
 	internal_magazine = TRUE
@@ -38,7 +38,7 @@
 		. = 1
 
 /obj/item/gun/ballistic/shotgun/lethal
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal
+	mag_type = /obj/item/ammo_container/magazine/internal/shot/lethal
 
 // RIOT SHOTGUN //
 
@@ -47,7 +47,7 @@
 	desc = "A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control."
 	icon_state = "riotshotgun"
 	fire_delay = 7
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
+	mag_type = /obj/item/ammo_container/magazine/internal/shot/riot
 	sawn_desc = "Come with me if you want to live."
 	can_be_sawn_off  = TRUE
 
@@ -57,7 +57,7 @@
 	name = "tactical breaching shotgun"
 	desc = "A compact semi-auto shotgun designed to fire breaching slugs and create rapid entry points. Only accepts breaching slugs."
 	icon_state = "breachingshotgun"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/breaching
+	mag_type = /obj/item/ammo_container/magazine/internal/shot/breaching
 	w_class = WEIGHT_CLASS_NORMAL //compact so it fits in backpacks
 	can_be_sawn_off  = FALSE
 
@@ -69,14 +69,14 @@
 	desc = "A semi-automatic shotgun with tactical furniture and a six-shell capacity underneath."
 	fire_delay = 5
 	icon_state = "cshotgun"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
+	mag_type = /obj/item/ammo_container/magazine/internal/shot/com
 	w_class = WEIGHT_CLASS_HUGE
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact
 	name = "compact combat shotgun"
 	desc = "A compact version of the semi-automatic combat shotgun. For close encounters."
 	icon_state = "cshotgunc"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
+	mag_type = /obj/item/ammo_container/magazine/internal/shot/com/compact
 	w_class = WEIGHT_CLASS_BULKY
 
 //Dual Feed Shotgun
@@ -85,10 +85,10 @@
 	name = "cycler shotgun"
 	desc = "An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types."
 	icon_state = "cycler"
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/tube
+	mag_type = /obj/item/ammo_container/magazine/internal/shot/tube
 	w_class = WEIGHT_CLASS_HUGE
 	var/toggled = FALSE
-	var/obj/item/ammo_box/magazine/internal/shot/alternate_magazine
+	var/obj/item/ammo_container/magazine/internal/shot/alternate_magazine
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/examine(mob/user)
 	. = ..()
@@ -130,7 +130,7 @@
 	item_state = "bulldog"
 	w_class = WEIGHT_CLASS_NORMAL
 	weapon_weight = WEAPON_MEDIUM
-	mag_type = /obj/item/ammo_box/magazine/m12g
+	mag_type = /obj/item/ammo_container/magazine/m12g
 	can_suppress = FALSE
 	burst_size = 1
 	fire_delay = 0
@@ -160,7 +160,7 @@
 	force = 10
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual
+	mag_type = /obj/item/ammo_container/magazine/internal/shot/dual
 	sawn_desc = "Omar's coming!"
 	obj_flags = UNIQUE_RENAME
 	rack_sound_volume = 0
@@ -190,7 +190,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	slot_flags = null
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/improvised
+	mag_type = /obj/item/ammo_container/magazine/internal/shot/improvised
 	sawn_desc = "I'm just here for the gasoline."
 	unique_reskin = null
 	var/slung = FALSE

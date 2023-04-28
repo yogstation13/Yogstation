@@ -6,7 +6,7 @@
 	name = "grenade launcher"
 	icon_state = "dshotgun_sawn"
 	item_state = "gun"
-	mag_type = /obj/item/ammo_box/magazine/internal/grenadelauncher
+	mag_type = /obj/item/ammo_container/magazine/internal/grenadelauncher
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
 	pin = /obj/item/firing_pin/implant/pindicate
@@ -17,7 +17,7 @@
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/attackby(obj/item/A, mob/user, params)
 	..()
-	if(istype(A, /obj/item/ammo_box) || istype(A, /obj/item/ammo_casing))
+	if(istype(A, /obj/item/ammo_container) || istype(A, /obj/item/ammo_casing))
 		chamber_round()
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/cyborg
@@ -25,7 +25,7 @@
 	name = "multi grenade launcher"
 	icon = 'icons/mecha/mecha_equipment.dmi'
 	icon_state = "mecha_grenadelnchr"
-	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/grenademulti
+	mag_type = /obj/item/ammo_container/magazine/internal/cylinder/grenademulti
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/cyborg/attack_self()
@@ -36,7 +36,7 @@
 	desc = "A prototype pistol designed to fire self propelled rockets."
 	icon_state = "gyropistol"
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
-	mag_type = /obj/item/ammo_box/magazine/m75
+	mag_type = /obj/item/ammo_container/magazine/m75
 	burst_size = 1
 	fire_delay = 0
 	actions_types = list()
@@ -48,7 +48,7 @@
 	icon_state = "rocketlauncher"
 	item_state = "rocketlauncher"
 	pickup_sound = 'sound/weapons/weapon_pickup.ogg'
-	mag_type = /obj/item/ammo_box/magazine/internal/rocketlauncher
+	mag_type = /obj/item/ammo_container/magazine/internal/rocketlauncher
 	fire_sound = 'sound/weapons/rocketlaunch.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	can_suppress = FALSE
@@ -109,7 +109,7 @@
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "handcannon"
 	item_state = "handycannon"
-	mag_type = /obj/item/ammo_box/magazine/internal/cannonball
+	mag_type = /obj/item/ammo_container/magazine/internal/cannonball
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
 	casing_ejector = FALSE
@@ -131,7 +131,7 @@
 	item_state = "gauss"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
-	mag_type = /obj/item/ammo_box/magazine/internal/rods
+	mag_type = /obj/item/ammo_container/magazine/internal/rods
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
 	casing_ejector = FALSE

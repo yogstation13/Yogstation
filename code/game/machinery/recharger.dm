@@ -18,8 +18,8 @@
 	var/static/list/allowed_devices = typecacheof(list(
 		/obj/item/gun/energy,
 		/obj/item/melee/baton,
-		/obj/item/ammo_box/magazine/recharge,
-		/obj/item/ammo_box/magazine/m308/laser,
+		/obj/item/ammo_container/magazine/recharge,
+		/obj/item/ammo_container/magazine/m308/laser,
 		/obj/item/modular_computer))
 
 /obj/machinery/recharger/RefreshParts()
@@ -134,8 +134,8 @@
 				use_power(125 * recharge_coeff * delta_time)
 			update_icon()
 
-		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
-			var/obj/item/ammo_box/magazine/recharge/R = charging
+		if(istype(charging, /obj/item/ammo_container/magazine/recharge))
+			var/obj/item/ammo_container/magazine/recharge/R = charging
 			if(R.stored_ammo.len < R.max_ammo)
 				for(var/i in 1 to recharge_coeff) //So it actually gives more ammo when upgraded
 					R.stored_ammo += new R.ammo_type(R)
@@ -144,8 +144,8 @@
 				use_power(100 * recharge_coeff)
 			update_icon()
 			return
-		if(istype(charging, /obj/item/ammo_box/magazine/m308/laser))
-			var/obj/item/ammo_box/magazine/m308/laser/R = charging
+		if(istype(charging, /obj/item/ammo_container/magazine/m308/laser))
+			var/obj/item/ammo_container/magazine/m308/laser/R = charging
 			if(R.stored_ammo.len < R.max_ammo)
 				for(var/i in 1 to recharge_coeff) //See above
 					R.stored_ammo += new R.ammo_type(R)
@@ -183,11 +183,11 @@
 		var/num = 0
 		if(C)
 			num = round(C.charge/C.maxcharge, 0.01)
-		if(istype(charging, /obj/item/ammo_box/magazine/recharge))
-			var/obj/item/ammo_box/magazine/recharge/R = charging
+		if(istype(charging, /obj/item/ammo_container/magazine/recharge))
+			var/obj/item/ammo_container/magazine/recharge/R = charging
 			num = round(R.stored_ammo.len/R.max_ammo, 0.01)
-		if(istype(charging, /obj/item/ammo_box/magazine/m308/laser))
-			var/obj/item/ammo_box/magazine/m308/laser/R = charging
+		if(istype(charging, /obj/item/ammo_container/magazine/m308/laser))
+			var/obj/item/ammo_container/magazine/m308/laser/R = charging
 			num = round(R.stored_ammo.len/R.max_ammo, 0.01)
 		
 		if(num >= 1)

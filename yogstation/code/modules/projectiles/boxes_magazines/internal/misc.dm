@@ -1,4 +1,4 @@
-/obj/item/ammo_box/magazine/internal/speargun
+/obj/item/ammo_container/magazine/internal/speargun
 	name = "speargun internal magazine"
 	ammo_type = /obj/item/ammo_casing/caseless/kineticspear
 	caliber = "speargun"

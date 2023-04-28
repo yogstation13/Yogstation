@@ -6579,8 +6579,8 @@
 /area/awaymission/snowdin/post/secpost)
 "od" = (
 /obj/item/gun/ballistic/rifle/boltaction,
-/obj/item/ammo_box/a762,
-/obj/item/ammo_box/a762,
+/obj/item/ammo_container/box/a762,
+/obj/item/ammo_container/box/a762,
 /obj/structure/closet/secure_closet{
 	icon_state = "sec";
 	locked = 1;

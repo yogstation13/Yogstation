@@ -9,9 +9,9 @@
 /area/ruin/powered)
 "ac" = (
 /obj/structure/table/wood,
-/obj/item/ammo_box/magazine/toy/pistol/riot,
-/obj/item/ammo_box/magazine/toy/pistol/riot,
-/obj/item/ammo_box/magazine/toy/pistol/riot,
+/obj/item/ammo_container/magazine/toy/pistol/riot,
+/obj/item/ammo_container/magazine/toy/pistol/riot,
+/obj/item/ammo_container/magazine/toy/pistol/riot,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "ad" = (
@@ -24,8 +24,8 @@
 /area/ruin/powered)
 "ae" = (
 /obj/structure/table/wood,
-/obj/item/ammo_box/magazine/toy/pistol/riot,
-/obj/item/ammo_box/magazine/toy/pistol/riot,
+/obj/item/ammo_container/magazine/toy/pistol/riot,
+/obj/item/ammo_container/magazine/toy/pistol/riot,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "af" = (
@@ -90,7 +90,7 @@
 /area/ruin/powered)
 "aq" = (
 /obj/structure/table/wood,
-/obj/item/ammo_box/foambox/riot,
+/obj/item/ammo_container/box/foambox/riot,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "ar" = (

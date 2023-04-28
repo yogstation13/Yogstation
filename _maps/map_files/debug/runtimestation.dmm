@@ -2731,7 +2731,7 @@
 /area/bridge)
 "BG" = (
 /obj/structure/table,
-/obj/item/ammo_box/c10mm,
+/obj/item/ammo_container/box/c10mm,
 /obj/item/gun/ballistic/automatic/pistol,
 /turf/open/floor/plasteel,
 /area/bridge)

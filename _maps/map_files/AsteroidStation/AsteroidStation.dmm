@@ -4294,7 +4294,7 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /obj/item/gun/ballistic/revolver/russian,
-/obj/item/ammo_box/a357,
+/obj/item/ammo_container/a357,
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13663,7 +13663,7 @@
 /area/storage/tech)
 "dAf" = (
 /obj/structure/closet/crate,
-/obj/item/ammo_box/foambox,
+/obj/item/ammo_container/box/foambox,
 /obj/item/gun/ballistic/automatic/toy/pistol,
 /turf/open/floor/carpet/black,
 /area/maintenance/department/tcoms)
@@ -47135,7 +47135,7 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/ammo_box/magazine/recharge/ntusp{
+/obj/item/ammo_container/magazine/recharge/ntusp{
 	pixel_x = 9;
 	pixel_y = -7
 	},

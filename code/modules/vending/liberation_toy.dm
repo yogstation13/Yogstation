@@ -11,7 +11,7 @@
 					/obj/item/gun/ballistic/automatic/toy/pistol/unrestricted = 10,
 					/obj/item/gun/ballistic/shotgun/toy/unrestricted = 10,
 					/obj/item/toy/sword = 10,
-					/obj/item/ammo_box/foambox = 20,
+					/obj/item/ammo_container/box/foambox = 20,
 					/obj/item/toy/foamblade = 10,
 					/obj/item/toy/syndicateballoon = 10,
 					/obj/item/clothing/suit/syndicatefake = 5,
@@ -19,7 +19,7 @@
 	contraband = list(/obj/item/gun/ballistic/shotgun/toy/crossbow = 10,   //Congrats, you unlocked the +18 setting!
 					  /obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot = 10,
 					  /obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted/riot = 10,
-					  /obj/item/ammo_box/foambox/riot = 20,
+					  /obj/item/ammo_container/box/foambox/riot = 20,
 					  /obj/item/toy/katana = 10,
 					  /obj/item/twohanded/dualsaber/toy = 5,
 					  /obj/item/toy/cards/deck/syndicate = 10) //Gambling and it hurts, making it a +18 item

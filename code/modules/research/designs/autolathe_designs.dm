@@ -807,7 +807,7 @@
 	id = "foam_dart"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 500)
-	build_path = /obj/item/ammo_box/foambox
+	build_path = /obj/item/ammo_container/box/foambox
 	category = list("initial", "Miscellaneous")
 
 //hacked autolathe recipes
@@ -893,7 +893,7 @@
 	id = "riot_darts"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 50000) //Comes with 40 darts
-	build_path = /obj/item/ammo_box/foambox/riot
+	build_path = /obj/item/ammo_container/box/foambox/riot
 	category = list("hacked", "Security")
 
 /datum/design/c38
@@ -922,7 +922,7 @@
 	id = "c10mm"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 30000)
-	build_path = /obj/item/ammo_box/c10mm
+	build_path = /obj/item/ammo_container/box/c10mm
 	category = list("hacked", "Security")
 
 /datum/design/c10mm/disk
@@ -932,7 +932,7 @@
 /datum/design/c10mm/sp
 	name = "Ammo Box (10mm soporific)"
 	id = "c10mm_sp"
-	build_path = /obj/item/ammo_box/c10mm/sp
+	build_path = /obj/item/ammo_container/box/c10mm/sp
 
 /datum/design/c10mm/sp/disk
 	id = "c10mm_sp_disk"
@@ -956,28 +956,28 @@
 	name = "Ammo Box (10mm armor-piercing)"
 	id = "c10mm_ap"
 	materials = list(/datum/material/iron = 45000)
-	build_path = /obj/item/ammo_box/c10mm/ap
+	build_path = /obj/item/ammo_container/box/c10mm/ap
 	category = list("Security")
 
 /datum/design/c10mm/hp
 	name = "Ammo Box (10mm hollow-point)"
 	id = "c10mm_hp"
 	materials = list(/datum/material/iron = 45000)
-	build_path = /obj/item/ammo_box/c10mm/hp
+	build_path = /obj/item/ammo_container/box/c10mm/hp
 	category = list("Security")
 
 /datum/design/c10mm/inc
 	name = "Ammo Box (10mm incendiary)"
 	id = "c10mm_inc"
 	materials = list(/datum/material/iron = 45000)
-	build_path = /obj/item/ammo_box/c10mm/inc
+	build_path = /obj/item/ammo_container/box/c10mm/inc
 	category = list("Security")
 
 /datum/design/c10mm/emp
 	name = "Ammo Box (10mm EMP)"
 	id = "c10mm_emp"
 	materials = list(/datum/material/iron = 45000)
-	build_path = /obj/item/ammo_box/c10mm/emp
+	build_path = /obj/item/ammo_container/box/c10mm/emp
 	category = list("Security")
 
 /datum/design/c45
@@ -985,7 +985,7 @@
 	id = "c45"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 30000)
-	build_path = /obj/item/ammo_box/c45
+	build_path = /obj/item/ammo_container/box/c45
 	category = list("hacked", "Security")
 
 /datum/design/c9mm
@@ -993,7 +993,7 @@
 	id = "c9mm"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 30000)
-	build_path = /obj/item/ammo_box/c9mm
+	build_path = /obj/item/ammo_container/box/c9mm
 	category = list("hacked", "Security")
 
 /datum/design/box_a357
@@ -1001,7 +1001,7 @@
 	id = "box_a357"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 40000)
-	build_path = /obj/item/ammo_box/no_direct/a357
+	build_path = /obj/item/ammo_container/no_direct/a357
 	category = list("hacked", "Security")
 
 /datum/design/box_a357/disk
@@ -1011,7 +1011,7 @@
 /datum/design/box_a357/ironfeather
 	name = "Ammo Box (.357 Ironfeather)"
 	id = "box_a357_ironfeather"
-	build_path = /obj/item/ammo_box/no_direct/a357/ironfeather
+	build_path = /obj/item/ammo_container/no_direct/a357/ironfeather
 
 /datum/design/box_a357/ironfeather/disk
 	id = "box_a357_ironfeather_disk"
@@ -1021,28 +1021,28 @@
 	name = "Ammo Box (.357 Nutcracker)"
 	id = "box_a357_nutcracker"
 	materials = list (/datum/material/iron = 60000)
-	build_path = /obj/item/ammo_box/no_direct/a357/nutcracker
+	build_path = /obj/item/ammo_container/no_direct/a357/nutcracker
 	category = list ("Security")
 
 /datum/design/box_a357/metalshock
 	name = "Ammo Box (.357 Metalshock)"
 	id = "box_a357_metalshock"
 	materials = list (/datum/material/iron = 60000)
-	build_path = /obj/item/ammo_box/no_direct/a357/metalshock
+	build_path = /obj/item/ammo_container/no_direct/a357/metalshock
 	category = list ("Security")
 
 /datum/design/box_a357/heartpiercer
 	name = "Ammo Box (.357 Heartpiercer)"
 	id = "box_a357_heartpiercer"
 	materials = list (/datum/material/iron = 60000)
-	build_path = /obj/item/ammo_box/no_direct/a357/heartpiercer
+	build_path = /obj/item/ammo_container/no_direct/a357/heartpiercer
 	category = list ("Security")
 
 /datum/design/box_a357/wallstake
 	name = "Ammo Box (.357 Wallstake)"
 	id = "box_a357_wallstake"
 	materials = list (/datum/material/iron = 60000)
-	build_path = /obj/item/ammo_box/no_direct/a357/wallstake
+	build_path = /obj/item/ammo_container/no_direct/a357/wallstake
 	category = list ("Security")
 
 /datum/design/cleaver
@@ -1237,7 +1237,7 @@
 	id = "a762"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 20000)
-	build_path = /obj/item/ammo_box/a762
+	build_path = /obj/item/ammo_container/box/a762
 	category = list("hacked", "Security")
 
 /datum/design/n762box
@@ -1245,7 +1245,7 @@
 	id = "n762"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 15000)
-	build_path = /obj/item/ammo_box/no_direct/n762
+	build_path = /obj/item/ammo_container/no_direct/n762
 	category = list("hacked", "Security")
 
 /datum/design/decal_painter

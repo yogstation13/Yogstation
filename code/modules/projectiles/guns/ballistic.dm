@@ -48,7 +48,7 @@
 	///Whether the gun will spawn loaded with a magazine
 	var/spawnwithmagazine = TRUE
 	///Compatible magazines with the gun
-	var/mag_type = /obj/item/ammo_box/magazine/m10mm //Removes the need for max_ammo and caliber info
+	var/mag_type = /obj/item/ammo_container/magazine/m10mm //Removes the need for max_ammo and caliber info
 	///What magazine this gun starts with, if null it will just use mag_type
 	var/starting_mag_type
 	///Whether the sprite has a visible magazine or not
@@ -70,7 +70,7 @@
 	///Whether the gun has to be racked each shot or not.
 	var/semi_auto = TRUE
 	///Actual magazine currently contained within the gun
-	var/obj/item/ammo_box/magazine/magazine
+	var/obj/item/ammo_container/magazine/magazine
 	///whether the gun ejects the chambered casing
 	var/casing_ejector = TRUE
 	///Whether the gun has an internal magazine or a detatchable one. Overridden by BOLT_TYPE_NO_BOLT.
@@ -290,7 +290,7 @@
 	update_icon()
 
 ///Handles all the logic needed for magazine insertion
-/obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
+/obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_container/magazine/AM, display_message = TRUE)
 	if(!istype(AM, mag_type))
 		to_chat(user, span_warning("\The [AM] doesn't seem to fit into \the [src]..."))
 		return FALSE
@@ -311,7 +311,7 @@
 		return FALSE
 
 ///Handles all the logic of magazine ejection, if tac_load is set that magazine will be tacloaded in the place of the old eject
-/obj/item/gun/ballistic/proc/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
+/obj/item/gun/ballistic/proc/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_container/magazine/tac_load = null)
 	if(bolt_type == BOLT_TYPE_OPEN)
 		chambered = null
 	if(!tac_load)
@@ -321,7 +321,7 @@
 			playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
 		feedback("mag_out")
 	magazine.forceMove(drop_location())
-	var/obj/item/ammo_box/magazine/old_mag = magazine
+	var/obj/item/ammo_container/magazine/old_mag = magazine
 	if (tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
 			to_chat(user, span_notice("You perform a tactical reload on \the [src]."))
@@ -348,8 +348,8 @@
 	. = ..()
 	if (.)
 		return
-	if (!internal_magazine && istype(A, /obj/item/ammo_box/magazine))
-		var/obj/item/ammo_box/magazine/AM = A
+	if (!internal_magazine && istype(A, /obj/item/ammo_container/magazine))
+		var/obj/item/ammo_container/magazine/AM = A
 		if (!magazine)
 			insert_magazine(user, AM)
 		else
@@ -358,7 +358,7 @@
 			else
 				to_chat(user, span_notice("There's already a [magazine_wording] in \the [src]."))
 		return
-	if ((istype(A, /obj/item/ammo_casing) || istype(A, /obj/item/ammo_box)) && !istype(A, /obj/item/ammo_box/no_direct))
+	if ((istype(A, /obj/item/ammo_casing) || istype(A, /obj/item/ammo_container)) && !istype(A, /obj/item/ammo_container/no_direct))
 		if (bolt_type == BOLT_TYPE_NO_BOLT || internal_magazine)
 			if (chambered && !chambered.BB)
 				chambered.forceMove(drop_location())

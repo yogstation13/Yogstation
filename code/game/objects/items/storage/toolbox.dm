@@ -270,13 +270,13 @@
 	pickup_sound =  'sound/items/handling/ammobox_pickup.ogg'
 
 /obj/item/storage/toolbox/ammo/PopulateContents()
-	new /obj/item/ammo_box/a762(src)
-	new /obj/item/ammo_box/a762(src)
-	new /obj/item/ammo_box/a762(src)
-	new /obj/item/ammo_box/a762(src)
-	new /obj/item/ammo_box/a762(src)
-	new /obj/item/ammo_box/a762(src)
-	new /obj/item/ammo_box/a762(src)
+	new /obj/item/ammo_container/box/a762(src)
+	new /obj/item/ammo_container/box/a762(src)
+	new /obj/item/ammo_container/box/a762(src)
+	new /obj/item/ammo_container/box/a762(src)
+	new /obj/item/ammo_container/box/a762(src)
+	new /obj/item/ammo_container/box/a762(src)
+	new /obj/item/ammo_container/box/a762(src)
 
 //floorbot assembly
 /obj/item/storage/toolbox/attackby(obj/item/stack/tile/plasteel/T, mob/user, params)

@@ -3,7 +3,7 @@
 	desc = "Some kind of bolt action rifle. You get the feeling you shouldn't have this."
 	icon_state = "moistnugget"
 	icon_state = "moistnugget"
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction
+	mag_type = /obj/item/ammo_container/magazine/internal/boltaction
 	bolt_wording = "bolt"
 	bolt_type = BOLT_TYPE_STANDARD
 	semi_auto = FALSE
@@ -56,7 +56,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	icon_state = "moistnugget"
 	item_state = "moistnugget"
 	slot_flags = ITEM_SLOT_BACK
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction
+	mag_type = /obj/item/ammo_container/magazine/internal/boltaction
 	can_bayonet = TRUE
 	knife_x_offset = 27
 	knife_y_offset = 13
@@ -104,14 +104,14 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	name = "enchanted bolt action rifle"
 	desc = "Careful not to lose your head."
 	var/guns_left = 30
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
+	mag_type = /obj/item/ammo_container/magazine/internal/boltaction/enchanted
 	can_be_sawn_off = FALSE
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/oneuse
 	name = "enchanted bolt action rifle"
 	desc = "Careful not to lose your head."
 	guns_left = 0
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
+	mag_type = /obj/item/ammo_container/magazine/internal/boltaction/enchanted
 	can_be_sawn_off = FALSE
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/arcane_barrage
@@ -125,7 +125,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	item_flags = NEEDS_PERMIT | DROPDEL | ABSTRACT | NOBLUDGEON
 	flags_1 = NONE
 
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted/arcane_barrage
+	mag_type = /obj/item/ammo_container/magazine/internal/boltaction/enchanted/arcane_barrage
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/dropped()
 	. = ..()

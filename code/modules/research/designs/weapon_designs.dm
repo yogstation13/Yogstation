@@ -8,7 +8,7 @@
 	id = "sec_38"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000)
-	build_path = /obj/item/ammo_box/c38
+	build_path = /obj/item/ammo_container/c38
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
@@ -18,7 +18,7 @@
 	id = "c38_hotshot"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/hotshot
+	build_path = /obj/item/ammo_container/c38/hotshot
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
@@ -28,7 +28,7 @@
 	id = "c38_iceblox"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/iceblox
+	build_path = /obj/item/ammo_container/c38/iceblox
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
@@ -39,7 +39,7 @@
 	id = "c38_gutterpunch"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/gutterpunch
+	build_path = /obj/item/ammo_container/c38/gutterpunch
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
@@ -319,7 +319,7 @@
 	id = "mag_oldsmg"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000)
-	build_path = /obj/item/ammo_box/magazine/wt550m9
+	build_path = /obj/item/ammo_container/magazine/wt550m9
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
@@ -328,7 +328,7 @@
 	desc = "A 20-round armour piercing magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_ap"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600)
-	build_path = /obj/item/ammo_box/magazine/wt550m9/wtap
+	build_path = /obj/item/ammo_container/magazine/wt550m9/wtap
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/mag_oldsmg/ic_mag
@@ -336,7 +336,7 @@
 	desc = "A 20-round incendiary magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_ic"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600, /datum/material/glass = 1000)
-	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic
+	build_path = /obj/item/ammo_container/magazine/wt550m9/wtic
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/mag_oldsmg/rubber_mag
@@ -344,7 +344,7 @@
 	desc = "A 20-round rubber bullet magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_rubber"
 	materials = list(/datum/material/iron = 4000)
-	build_path = /obj/item/ammo_box/magazine/wt550m9/wtr
+	build_path = /obj/item/ammo_container/magazine/wt550m9/wtr
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 	// This is where the fun begins
@@ -354,7 +354,7 @@
 	desc = "A 20-round kraken magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_kraken"
 	materials = list(/datum/material/iron = 7500, /datum/material/titanium = 2000, /datum/material/diamond = 500)
-	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_kraken
+	build_path = /obj/item/ammo_container/magazine/wt550m9/wt_kraken
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/mag_oldsmg/snakebite_mag
@@ -362,7 +362,7 @@
 	desc = "A 20-round snakebite magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_snakebite"
 	materials = list(/datum/material/iron = 7500, /datum/material/titanium = 2000, /datum/material/uranium = 1000)
-	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_snakebite
+	build_path = /obj/item/ammo_container/magazine/wt550m9/wt_snakebite
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/stunshell

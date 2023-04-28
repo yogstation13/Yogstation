@@ -191,11 +191,11 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 
 //ammo box sprite defines
 ///ammo box will always use provided icon state
-#define AMMO_BOX_ONE_SPRITE 0
+#define AMMO_CONTAINER_ONE_SPRITE 0
 ///ammo box will have a different state for each bullet; <icon_state>-<bullets left>
-#define AMMO_BOX_PER_BULLET 1
+#define AMMO_CONTAINER_PER_BULLET 1
 ///ammo box will have a different state for full and empty; <icon_state>-max_ammo and <icon_state>-0
-#define AMMO_BOX_FULL_EMPTY 2
+#define AMMO_CONTAINER_FULL_EMPTY 2
 
 //Projectile Reflect
 #define REFLECT_NORMAL 				(1<<0)

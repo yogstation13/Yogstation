@@ -116,7 +116,7 @@
 	fire_delay = 1
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/laser.ogg'
-	mag_type = /obj/item/ammo_box/magazine/internal/minigun
+	mag_type = /obj/item/ammo_container/magazine/internal/minigun
 	tac_reloads = FALSE
 	casing_ejector = FALSE
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND

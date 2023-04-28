@@ -18,8 +18,8 @@
 // To note: each vest has 7 normal slots - Hopek
 /obj/item/storage/belt/military/amber/ComponentInitialize() // Amber Soldier
 	. = ..()
-	new /obj/item/ammo_box/magazine/recharge(src)
-	new /obj/item/ammo_box/magazine/recharge(src)
+	new /obj/item/ammo_container/magazine/recharge(src)
+	new /obj/item/ammo_container/magazine/recharge(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/flashlight/flare(src)
 	new /obj/item/flashlight/flare(src)
@@ -29,8 +29,8 @@
 
 /obj/item/storage/belt/military/amber_commander/ComponentInitialize() // Amber Commander
 	. = ..()
-	new /obj/item/ammo_box/magazine/recharge(src)
-	new /obj/item/ammo_box/magazine/recharge(src)
+	new /obj/item/ammo_container/magazine/recharge(src)
+	new /obj/item/ammo_container/magazine/recharge(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/melee/classic_baton/telescopic(src)
 	new /obj/item/megaphone(src)
@@ -39,7 +39,7 @@
 
 /obj/item/storage/belt/military/amber_medic/ComponentInitialize() // Amber Medic
 	. = ..()
-	new /obj/item/ammo_box/magazine/recharge(src)
+	new /obj/item/ammo_container/magazine/recharge(src)
 	new /obj/item/reagent_containers/medspray/synthflesh(src) // for getting people back to defib range
 	new /obj/item/reagent_containers/medspray/synthflesh(src)
 	new /obj/item/reagent_containers/autoinjector/medipen/survival(src)

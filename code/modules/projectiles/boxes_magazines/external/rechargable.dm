@@ -1,6 +1,6 @@
 //Laser Rifle
 
-/obj/item/ammo_box/magazine/recharge
+/obj/item/ammo_container/magazine/recharge
 	name = "power pack"
 	desc = "A rechargeable, detachable battery that serves as a magazine for laser rifles."
 	icon_state = "powerpack"
@@ -8,7 +8,7 @@
 	caliber = LASER
 	max_ammo = 20
 
-/obj/item/ammo_box/magazine/recharge/update_icon()
+/obj/item/ammo_container/magazine/recharge/update_icon()
 	..()
 	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
 	cut_overlays()
@@ -20,7 +20,7 @@
 			add_overlay("[icon_state]_o_mid")
 		
 
-/obj/item/ammo_box/magazine/recharge/attack_self() //No popping out the "bullets"
+/obj/item/ammo_container/magazine/recharge/attack_self() //No popping out the "bullets"
 	return
 
 /obj/item/gun/ballistic/automatic/pistol/ntusp
@@ -28,7 +28,7 @@
 	desc = "A small pistol that uses hardlight technology to synthesize bullets. Due to its low power, it doesn't have much use besides tiring out criminals."
 	icon_state = "ntusp"
 	w_class = WEIGHT_CLASS_SMALL
-	mag_type = /obj/item/ammo_box/magazine/recharge/ntusp
+	mag_type = /obj/item/ammo_container/magazine/recharge/ntusp
 	can_suppress = TRUE // based and suppressor pilled
 	can_flashlight = TRUE
 	flight_x_offset = 16
@@ -46,7 +46,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/ntusp/update_icon()
 	icon_state = initial(icon_state)
-	if(istype(magazine, /obj/item/ammo_box/magazine/recharge/ntusp/laser))
+	if(istype(magazine, /obj/item/ammo_container/magazine/recharge/ntusp/laser))
 		// Tricks the parent proc into thinking we have a skin so it uses the laser-variant icon_state
 		// I sure hope no one tries to add skins to NT-USP in the future
 		current_skin = "ntusp-l"
@@ -57,17 +57,17 @@
 	unique_reskin = null
 
 //NT-USP Clip
-/obj/item/ammo_box/magazine/recharge/ntusp
+/obj/item/ammo_container/magazine/recharge/ntusp
 	name = "small power pack"
 	desc = "A small, rechargeable power pack for the NT-USP. Synthesizes up to twelve .22HL bullets that tire targets."
 	icon_state = "powerpack_small"
 	ammo_type = /obj/item/ammo_casing/caseless/c22hl
 	max_ammo = 12
 
-/obj/item/ammo_box/magazine/recharge/ntusp/empty
+/obj/item/ammo_container/magazine/recharge/ntusp/empty
 	start_empty = TRUE
 
-/obj/item/ammo_box/magazine/recharge/ntusp/emp_act(severity) //shooting physical bullets wont stop you dying to an EMP
+/obj/item/ammo_container/magazine/recharge/ntusp/emp_act(severity) //shooting physical bullets wont stop you dying to an EMP
 	. = ..()
 	if(!(. & EMP_PROTECT_CONTENTS)) 
 		var/bullet_count = ammo_count()
@@ -91,13 +91,13 @@
 	speed = 0.55
 
 //NT-USP Lethal Clip
-/obj/item/ammo_box/magazine/recharge/ntusp/laser
+/obj/item/ammo_container/magazine/recharge/ntusp/laser
 	desc = "A small, rechargeable power pack for the NT-USP that has been modified. Synthesizes up to eight .22LS bullets that fire lasers."
 	ammo_type = /obj/item/ammo_casing/caseless/c22ls
 	icon_state = "powerpack_small-l"
 	max_ammo = 8
 
-/obj/item/ammo_box/magazine/recharge/ntusp/laser/update_icon()
+/obj/item/ammo_container/magazine/recharge/ntusp/laser/update_icon()
 	..()
 	cut_overlays()
 	var/cur_ammo = ammo_count()
@@ -107,7 +107,7 @@
 		else
 			add_overlay("powerpack_small_o_mid")
 
-/obj/item/ammo_box/magazine/recharge/ntusp/laser/empty
+/obj/item/ammo_container/magazine/recharge/ntusp/laser/empty
 	start_empty = TRUE
 
 /obj/item/ammo_casing/caseless/c22ls
@@ -134,18 +134,18 @@
 	icon_state = "modkit_ntusp"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/ammo_box/magazine/recharge/ntusp/attackby(obj/item/A, mob/user)
+/obj/item/ammo_container/magazine/recharge/ntusp/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ntusp_conversion_kit))
 		to_chat(user, span_danger("[A] makes a whirring sound as it modifies \the [src]'s lens to fabricate more lethal rounds."))
-		new /obj/item/ammo_box/magazine/recharge/ntusp/laser/empty(get_turf(src)) // you thought you were getting free bullets?
+		new /obj/item/ammo_container/magazine/recharge/ntusp/laser/empty(get_turf(src)) // you thought you were getting free bullets?
 		qdel(src)
 	else
 		return ..()
 
-/obj/item/ammo_box/magazine/recharge/ntusp/laser/attackby(obj/item/A, mob/user)
+/obj/item/ammo_container/magazine/recharge/ntusp/laser/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ntusp_conversion_kit))
 		to_chat(user, span_notice("[A] makes a whirring sound as it modifies \the [src]'s lens to fabricate less lethal rounds."))
-		new /obj/item/ammo_box/magazine/recharge/ntusp/empty(get_turf(src))
+		new /obj/item/ammo_container/magazine/recharge/ntusp/empty(get_turf(src))
 		qdel(src)
 	else
 		return ..()

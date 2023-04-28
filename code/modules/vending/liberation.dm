@@ -17,10 +17,10 @@
 					/obj/item/gun/ballistic/automatic/gyropistol = 1,
 					/obj/item/gun/ballistic/shotgun = 2,
 					/obj/item/gun/ballistic/automatic/ar = 2)
-	premium = list(/obj/item/ammo_box/magazine/smgm9mm = 2,
-		           /obj/item/ammo_box/magazine/m50 = 4,
-		           /obj/item/ammo_box/magazine/m45 = 2,
-		           /obj/item/ammo_box/magazine/m75 = 2,
+	premium = list(/obj/item/ammo_container/magazine/smgm9mm = 2,
+		           /obj/item/ammo_container/magazine/m50 = 4,
+		           /obj/item/ammo_container/magazine/m45 = 2,
+		           /obj/item/ammo_container/magazine/m75 = 2,
 				   /obj/item/reagent_containers/food/snacks/cheesyfries = 5,
 				   /obj/item/reagent_containers/food/snacks/burger/baconburger = 5) //Premium burgers for the premium section
 	contraband = list(/obj/item/clothing/under/patriotsuit = 3,

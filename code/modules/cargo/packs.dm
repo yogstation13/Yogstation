@@ -263,17 +263,17 @@
 	desc = "Contains two 22-round magazines for the WT-550 Auto Carbine, three boxes of buckshot ammo, three boxes of rubber ammo, and special .38 speedloaders. Requires Security access to open."
 	cost = 2500
 	access_view = ACCESS_ARMORY
-	contains = list(/obj/item/ammo_box/magazine/wt550m9,
-					/obj/item/ammo_box/magazine/wt550m9,
+	contains = list(/obj/item/ammo_container/magazine/wt550m9,
+					/obj/item/ammo_container/magazine/wt550m9,
 					/obj/item/storage/box/lethalshot,
 					/obj/item/storage/box/lethalshot,
 					/obj/item/storage/box/lethalshot,
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
-					/obj/item/ammo_box/c38/hotshot,
-					/obj/item/ammo_box/c38/iceblox,
-					/obj/item/ammo_box/c38/gutterpunch)
+					/obj/item/ammo_container/c38/hotshot,
+					/obj/item/ammo_container/c38/iceblox,
+					/obj/item/ammo_container/c38/gutterpunch)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/security/armor
@@ -316,9 +316,9 @@
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/ntusp,
 					/obj/item/gun/ballistic/automatic/pistol/ntusp,
 					/obj/item/gun/ballistic/automatic/pistol/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp,
-					/obj/item/ammo_box/magazine/recharge/ntusp)
+					/obj/item/ammo_container/magazine/recharge/ntusp,
+					/obj/item/ammo_container/magazine/recharge/ntusp,
+					/obj/item/ammo_container/magazine/recharge/ntusp)
 	crate_name = "nt-usp crate"
 
 /datum/supply_pack/security/forensics
@@ -599,8 +599,8 @@
 	desc = "Contains one Caldwell Tracking Revolver and two speed loaders for it. Requires Armory access to open."
 	cost = 4000
 	contains = list(/obj/item/gun/ballistic/revolver/tracking,
-					/obj/item/ammo_box/tra32,
-					/obj/item/ammo_box/tra32)
+					/obj/item/ammo_container/tra32,
+					/obj/item/ammo_container/tra32)
 	crate_name = "TRAC revolver crate"
 
 /datum/supply_pack/security/armory/laserarmor
@@ -645,8 +645,8 @@
 	cost = 7000
 	contraband = TRUE
 	contains = list(/obj/item/reagent_containers/food/snacks/rationpack,
-					/obj/item/ammo_box/a762,
-					/obj/item/ammo_box/no_direct/n762,
+					/obj/item/ammo_container/box/a762,
+					/obj/item/ammo_container/no_direct/n762,
 					/obj/item/storage/toolbox/ammo,
 					/obj/item/clothing/suit/armor/vest/russian,
 					/obj/item/clothing/head/helmet/rus_helmet,
@@ -710,9 +710,9 @@
 	contains = list(/obj/item/gun/ballistic/automatic/surplus,
 					/obj/item/gun/ballistic/automatic/surplus,
 					/obj/item/gun/ballistic/automatic/surplus,
-					/obj/item/ammo_box/magazine/m10mm/rifle,
-					/obj/item/ammo_box/magazine/m10mm/rifle,
-					/obj/item/ammo_box/magazine/m10mm/rifle,
+					/obj/item/ammo_container/magazine/m10mm/rifle,
+					/obj/item/ammo_container/magazine/m10mm/rifle,
+					/obj/item/ammo_container/magazine/m10mm/rifle,
 					/obj/item/kitchen/knife/combat/survival,
 					/obj/item/kitchen/knife/combat/survival,
 					/obj/item/kitchen/knife/combat/survival,
@@ -743,25 +743,25 @@
 	name = "Surplus Security Autocarbine Ammo Crate"
 	desc = "Contains four 20-round magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 3000
-	contains = list(/obj/item/ammo_box/magazine/wt550m9,
-					/obj/item/ammo_box/magazine/wt550m9,
-					/obj/item/ammo_box/magazine/wt550m9,
-					/obj/item/ammo_box/magazine/wt550m9)
+	contains = list(/obj/item/ammo_container/magazine/wt550m9,
+					/obj/item/ammo_container/magazine/wt550m9,
+					/obj/item/ammo_container/magazine/wt550m9,
+					/obj/item/ammo_container/magazine/wt550m9)
 
 /datum/supply_pack/security/armory/wt550ammo_rubber
 	name = "Surplus Security Autocarbine Less-Lethal Ammo Crate"
 	desc = "Contains four 20-round less-than-lethal magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 2500
-	contains = list(/obj/item/ammo_box/magazine/wt550m9/wtr,
-					/obj/item/ammo_box/magazine/wt550m9/wtr,
-					/obj/item/ammo_box/magazine/wt550m9/wtr,
-					/obj/item/ammo_box/magazine/wt550m9/wtr)
+	contains = list(/obj/item/ammo_container/magazine/wt550m9/wtr,
+					/obj/item/ammo_container/magazine/wt550m9/wtr,
+					/obj/item/ammo_container/magazine/wt550m9/wtr,
+					/obj/item/ammo_container/magazine/wt550m9/wtr)
 
 /datum/supply_pack/security/armory/wt550ammo_single
 	name = "Surplus Security Autocarbine Ammo Crate Single-Pack"
 	desc = "Contains a 20-round magazine for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
 	cost = 750 //one of the few single-pack items that who's price per unit is the exact same as the bulk
-	contains = list(/obj/item/ammo_box/magazine/wt550m9)
+	contains = list(/obj/item/ammo_container/magazine/wt550m9)
 	small_item = TRUE
 
 //////////////////////////////////////////////////////////////////////////////
@@ -2557,8 +2557,8 @@
 	cost = 4000
 	contains = list(/obj/item/gun/ballistic/automatic/toy/pistol,
 					/obj/item/gun/ballistic/automatic/toy/pistol,
-					/obj/item/ammo_box/magazine/toy/pistol,
-					/obj/item/ammo_box/magazine/toy/pistol)
+					/obj/item/ammo_container/magazine/toy/pistol,
+					/obj/item/ammo_container/magazine/toy/pistol)
 	crate_name = "foam force crate"
 
 /datum/supply_pack/costumes_toys/formalwear

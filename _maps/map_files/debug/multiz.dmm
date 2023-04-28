@@ -557,7 +557,7 @@
 /area/bridge)
 "bH" = (
 /obj/structure/table,
-/obj/item/ammo_box/c10mm,
+/obj/item/ammo_container/box/c10mm,
 /obj/item/gun/ballistic,
 /turf/open/floor/plasteel,
 /area/bridge)

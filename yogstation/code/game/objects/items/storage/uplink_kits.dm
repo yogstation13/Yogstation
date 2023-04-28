@@ -9,7 +9,7 @@
 	new /obj/item/reagent_containers/food/drinks/soda_cans/cola(src)
 	new /obj/item/toy/plush/goatplushie/angry(src)
 	new /obj/item/gun/ballistic/automatic/pistol(src)
-	new /obj/item/ammo_box/magazine/m10mm(src)
+	new /obj/item/ammo_container/magazine/m10mm(src)
 
 /obj/item/storage/box/syndie_kit/imp_mindslave
 	real_name = "Implanter (Mindslave)"

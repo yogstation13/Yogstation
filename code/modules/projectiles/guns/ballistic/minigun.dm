@@ -122,7 +122,7 @@
 	fire_sound_volume = 60
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gunshot.ogg'
-	mag_type = /obj/item/ammo_box/magazine/internal/minigunosprey
+	mag_type = /obj/item/ammo_container/magazine/internal/minigunosprey
 	actions_types = list(/datum/action/item_action/toggle_firemode)
 	tac_reloads = FALSE
 	casing_ejector = FALSE

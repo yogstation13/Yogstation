@@ -369,8 +369,8 @@
 
 		var/icon_file = initial(item.icon)
 		var/icon_state = initial(item.icon_state)
-		if(ispath(item, /obj/item/ammo_box))
-			var/obj/item/ammo_box/ammoitem = item
+		if(ispath(item, /obj/item/ammo_container))
+			var/obj/item/ammo_container/ammoitem = item
 			if(initial(ammoitem.multiple_sprites))
 				icon_state = "[icon_state]-[initial(ammoitem.max_ammo)]"
 
@@ -413,8 +413,8 @@
 
 		var/icon_file = initial(item.icon)
 		var/icon_state = initial(item.icon_state)
-		if(ispath(item, /obj/item/ammo_box))
-			var/obj/item/ammo_box/ammoitem = item
+		if(ispath(item, /obj/item/ammo_container))
+			var/obj/item/ammo_container/ammoitem = item
 			if(initial(ammoitem.multiple_sprites))
 				icon_state = "[icon_state]-[initial(ammoitem.max_ammo)]"
 

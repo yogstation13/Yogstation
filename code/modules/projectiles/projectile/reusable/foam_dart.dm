@@ -24,10 +24,10 @@
 	var/nerfed = FALSE
 	var/mob/living/carbon/C = target
 	for(var/obj/item/gun/ballistic/T in C.held_items) // Is usually just ~2 items
-		if(ispath(T.mag_type, /obj/item/ammo_box/magazine/toy)) // All automatic foam force guns
+		if(ispath(T.mag_type, /obj/item/ammo_container/magazine/toy)) // All automatic foam force guns
 			nerfed = TRUE
 			break
-		if(ispath(T.mag_type, /obj/item/ammo_box/magazine/internal/shot/toy)) // Foam force shotguns & crossbows
+		if(ispath(T.mag_type, /obj/item/ammo_container/magazine/internal/shot/toy)) // Foam force shotguns & crossbows
 			nerfed = TRUE
 			break
 	

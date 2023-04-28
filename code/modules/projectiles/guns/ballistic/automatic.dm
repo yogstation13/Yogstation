@@ -19,7 +19,7 @@
 	name = "\improper Nanotrasen Saber SMG"
 	desc = "A prototype three-round burst 9mm submachine gun, designated 'SABR'. Has a threaded barrel for suppressors."
 	icon_state = "saber"
-	mag_type = /obj/item/ammo_box/magazine/smgm9mm
+	mag_type = /obj/item/ammo_container/magazine/smgm9mm
 	pin = null
 	bolt_type = BOLT_TYPE_LOCKING
 	mag_display = TRUE
@@ -66,7 +66,7 @@
 	desc = "A bullpup two-round burst .45 SMG, designated 'C-20r'. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp."
 	icon_state = "c20r"
 	item_state = "c20r"
-	mag_type = /obj/item/ammo_box/magazine/smgm45
+	mag_type = /obj/item/ammo_container/magazine/smgm45
 	fire_delay = 2
 	burst_size = 2
 	pin = /obj/item/firing_pin/implant/pindicate
@@ -89,7 +89,7 @@
 	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Carbine. Has a two-round burst or a semi-automatic firing mode."
 	icon_state = "wt550"
 	item_state = "arg"
-	mag_type = /obj/item/ammo_box/magazine/wt550m9
+	mag_type = /obj/item/ammo_container/magazine/wt550m9
 	fire_delay = 2
 	burst_size = 2
 	w_class = WEIGHT_CLASS_BULKY
@@ -103,13 +103,13 @@
 	empty_indicator = TRUE
 
 /obj/item/gun/ballistic/automatic/wt550/armory
-	mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
+	mag_type = /obj/item/ammo_container/magazine/wt550m9/wtr
 
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
 	desc = "A lightweight, burst-fire submachine gun, for when you really want someone dead. Uses 9mm rounds."
 	icon_state = "miniuzi"
-	mag_type = /obj/item/ammo_box/magazine/uzim9mm
+	mag_type = /obj/item/ammo_container/magazine/uzim9mm
 	burst_size = 2
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
@@ -120,7 +120,7 @@
 	desc = "A three-round burst 5.56 toploading rifle, designated 'M-90gl'. Has an attached underbarrel grenade launcher which can be toggled on and off."
 	icon_state = "m90"
 	item_state = "m90"
-	mag_type = /obj/item/ammo_box/magazine/m556
+	mag_type = /obj/item/ammo_container/magazine/m556
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	can_suppress = FALSE
 	var/obj/item/gun/ballistic/revolver/grenadelauncher/underbarrel
@@ -198,7 +198,7 @@
 	item_state = "shotgun"
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = 0
-	mag_type = /obj/item/ammo_box/magazine/tommygunm45
+	mag_type = /obj/item/ammo_container/magazine/tommygunm45
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	can_suppress = FALSE
 	burst_size = 4
@@ -212,7 +212,7 @@
 	icon_state = "arg"
 	item_state = "arg"
 	slot_flags = 0
-	mag_type = /obj/item/ammo_box/magazine/r556
+	mag_type = /obj/item/ammo_container/magazine/r556
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	can_suppress = FALSE
 	burst_size = 3
@@ -228,7 +228,7 @@
 	item_state = "l6closedmag"
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = 0
-	mag_type = /obj/item/ammo_box/magazine/mm712x82
+	mag_type = /obj/item/ammo_container/magazine/mm712x82
 	weapon_weight = WEAPON_HEAVY
 	var/cover_open = FALSE
 	can_suppress = FALSE
@@ -310,7 +310,7 @@
 	rack_sound = "sound/weapons/riflerack.ogg"
 	eject_sound = "sound/weapons/rifleunload.ogg"
 	eject_empty_sound = "sound/weapons/rifleunload.ogg"
-	mag_type = /obj/item/ammo_box/magazine/m308
+	mag_type = /obj/item/ammo_container/magazine/m308
 	fire_delay = 6
 	burst_size = 1
 	spread = 2 //Marksman rifle == accurate?
@@ -338,7 +338,7 @@
 	rack_sound = "sound/weapons/riflerack.ogg"
 	eject_sound = "sound/weapons/rifleunload.ogg"
 	eject_empty_sound = "sound/weapons/rifleunload.ogg"
-	mag_type = /obj/item/ammo_box/magazine/ks762
+	mag_type = /obj/item/ammo_container/magazine/ks762
 	fire_delay = 5 //Can fire slightly faster than the LWT-650
 	burst_size = 1
 	spread = 2 //DMR gets to be special
@@ -369,7 +369,7 @@
 	rack_sound = "sound/weapons/sniper_rack.ogg"
 	recoil = 2
 	weapon_weight = WEAPON_HEAVY
-	mag_type = /obj/item/ammo_box/magazine/sniper_rounds
+	mag_type = /obj/item/ammo_container/magazine/sniper_rounds
 	fire_delay = 40
 	burst_size = 1
 	spread = 0
@@ -399,7 +399,7 @@
 	icon_state = "surplus"
 	item_state = "moistnugget"
 	weapon_weight = WEAPON_HEAVY
-	mag_type = /obj/item/ammo_box/magazine/m10mm/rifle
+	mag_type = /obj/item/ammo_container/magazine/m10mm/rifle
 	fire_delay = 10
 	burst_size = 1
 	can_unsuppress = TRUE
@@ -416,7 +416,7 @@
 	desc = "Though sometimes mocked for the relatively weak firepower of their energy weapons, the logistic miracle of rechargeable ammunition has given Nanotrasen a decisive edge over many a foe."
 	icon_state = "oldrifle"
 	item_state = "arg"
-	mag_type = /obj/item/ammo_box/magazine/recharge
+	mag_type = /obj/item/ammo_container/magazine/recharge
 	fire_delay = 2
 	can_suppress = FALSE
 	burst_size = 0

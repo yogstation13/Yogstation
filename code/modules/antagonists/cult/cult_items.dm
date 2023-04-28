@@ -759,11 +759,11 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	desc = "Blood for blood."
 	color = "#ff0000"
 	guns_left = 24
-	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted/arcane_barrage/blood
+	mag_type = /obj/item/ammo_container/magazine/internal/boltaction/enchanted/arcane_barrage/blood
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 
 
-/obj/item/ammo_box/magazine/internal/boltaction/enchanted/arcane_barrage/blood
+/obj/item/ammo_container/magazine/internal/boltaction/enchanted/arcane_barrage/blood
 	ammo_type = /obj/item/ammo_casing/magic/arcane_barrage/blood
 
 /obj/item/ammo_casing/magic/arcane_barrage/blood

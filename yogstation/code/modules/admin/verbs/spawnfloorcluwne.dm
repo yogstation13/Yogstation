@@ -31,7 +31,7 @@
 		if(H.stat == DEAD || !(H.client))
 			continue
 		var/type = pick(gun_type_list)
-		new /obj/item/ammo_box/foambox(get_turf(H))
+		new /obj/item/ammo_container/box/foambox(get_turf(H))
 		new type(get_turf(H))
 		if(type == /obj/item/gun/ballistic/shotgun/toy/crossbow)//for that sick combo cafe.
 			new /obj/item/toy/sword(get_turf(H))

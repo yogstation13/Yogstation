@@ -1,6 +1,6 @@
 //Sniper Rifle
 
-/obj/item/ammo_box/magazine/sniper_rounds
+/obj/item/ammo_container/magazine/sniper_rounds
 	name = ".50 magazine"
 	desc = "A six-round .50mag magazine that contains massive, oversized bullets. \
 			These bullets will dismember limbs, penetrate armor, and paralyze targets."
@@ -9,14 +9,14 @@
 	max_ammo = 6
 	caliber = ".50"
 
-/obj/item/ammo_box/magazine/sniper_rounds/update_icon()
+/obj/item/ammo_container/magazine/sniper_rounds/update_icon()
 	..()
 	if(ammo_count())
 		icon_state = "[initial(icon_state)]-ammo"
 	else
 		icon_state = "[initial(icon_state)]"
 
-/obj/item/ammo_box/magazine/sniper_rounds/soporific
+/obj/item/ammo_container/magazine/sniper_rounds/soporific
 	name = ".50 magazine (Soporific)"
 	desc = "A three-round .50mag magazine that contains massive, oversized bullets. \
 			These rounds instantly put their targets to sleep on contact."
@@ -24,7 +24,7 @@
 	ammo_type = /obj/item/ammo_casing/p50/soporific
 	max_ammo = 3
 
-/obj/item/ammo_box/magazine/sniper_rounds/penetrator
+/obj/item/ammo_container/magazine/sniper_rounds/penetrator
 	name = ".50 magazine (Penetrator)"
 	desc = "A five-round .50mag magazine that contains massive, oversized bullets. \
 			These bullets are extremely powerful rounds capable of passing straight through cover and anyone unfortunate enough to be behind it."

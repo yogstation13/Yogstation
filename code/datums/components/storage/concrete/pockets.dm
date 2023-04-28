@@ -93,4 +93,4 @@
 	set_holdable(list(/obj/item/reagent_containers/food/drinks/bottle/vodka,
 					  /obj/item/reagent_containers/food/drinks/bottle/molotov,
 					  /obj/item/reagent_containers/food/drinks/drinkingglass,
-					  /obj/item/ammo_box/a762))
+					  /obj/item/ammo_container/box/a762))

@@ -62,14 +62,14 @@
 			new /obj/item/gun/ballistic/revolver(src) //6 TC
 			new /obj/item/gun/ballistic/automatic/pistol(src) //6 TC
 			new /obj/item/gun/ballistic/automatic/pistol(src) //6 TC
-			new /obj/item/ammo_box/a357(src) //1 TC for two
-			new /obj/item/ammo_box/a357(src) //See above
-			new /obj/item/ammo_box/a357(src) //1 TC for two
-			new /obj/item/ammo_box/a357(src) //See above
-			new /obj/item/ammo_box/magazine/m10mm(src) //1 TC for two
-			new /obj/item/ammo_box/magazine/m10mm(src) //See above
-			new /obj/item/ammo_box/magazine/m10mm(src) //1 TC for two
-			new /obj/item/ammo_box/magazine/m10mm(src) //See above
+			new /obj/item/ammo_container/a357(src) //1 TC for two
+			new /obj/item/ammo_container/a357(src) //See above
+			new /obj/item/ammo_container/a357(src) //1 TC for two
+			new /obj/item/ammo_container/a357(src) //See above
+			new /obj/item/ammo_container/magazine/m10mm(src) //1 TC for two
+			new /obj/item/ammo_container/magazine/m10mm(src) //See above
+			new /obj/item/ammo_container/magazine/m10mm(src) //1 TC for two
+			new /obj/item/ammo_container/magazine/m10mm(src) //See above
 			new /obj/item/storage/belt/holster/syndicate(src) //A holster for your four guns. It could be 1 TC I guess, since the tactical webbing can't hold normal items?
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
 			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
@@ -119,9 +119,9 @@
 
 		if("sniper") //28 TC, you only get 11 shots total with the sniper and 14 with the revolver. A mini-ebow would probably be better than the sniper in a normal traitor game
 			new /obj/item/gun/ballistic/automatic/sniper_rifle(src) //12 TC, nukies only
-			new /obj/item/ammo_box/magazine/sniper_rounds/penetrator(src) //5 TC, nukies only
+			new /obj/item/ammo_container/magazine/sniper_rounds/penetrator(src) //5 TC, nukies only
 			new /obj/item/gun/ballistic/revolver(src) //6 TC
-			new /obj/item/ammo_box/a357/heartpiercer(src) //1 TC
+			new /obj/item/ammo_container/a357/heartpiercer(src) //1 TC
 			new /obj/item/clothing/glasses/thermal/syndi(src) //4 TC
 			new /obj/item/clothing/gloves/color/latex/nitrile(src) //Free?
 			new /obj/item/clothing/mask/gas/clown_hat(src) //Free?
@@ -131,8 +131,8 @@
 			new /obj/item/clothing/suit/space/hardsuit/syndi(src) //8 TC
 			new /obj/item/gun/ballistic/shotgun/bulldog/unrestricted(src) //8 TC, nukies only
 			new /obj/item/implanter/explosive(src) //2 TC, nukies only
-			new /obj/item/ammo_box/magazine/m12g(src) //2 TC, nukies only
-			new /obj/item/ammo_box/magazine/m12g(src) //2 TC, nukies only
+			new /obj/item/ammo_container/magazine/m12g(src) //2 TC, nukies only
+			new /obj/item/ammo_container/magazine/m12g(src) //2 TC, nukies only
 			new /obj/item/grenade/plastic/c4 (src) //1 TC
 			new /obj/item/grenade/plastic/c4 (src) //1 TC
 			new /obj/item/card/emag(src) //6 TC
@@ -158,7 +158,7 @@
 			new /obj/item/clothing/suit/det_suit/grey/evil(src) //Grey det trenchcoat with hos coat values, 2ish TC
 			new /obj/item/clothing/shoes/laceup(src) //Fancy shoes. Free
 			new /obj/item/gun/ballistic/automatic/pistol/deagle/gold(src) //Gold deagle (golden gun). Since you can print off .357 boxes now I'd honestly say it's like 5 TC, even that's an overestimation
-			new /obj/item/ammo_box/magazine/m50(src) //Spare mag for your gun. 1 TC.
+			new /obj/item/ammo_container/magazine/m50(src) //Spare mag for your gun. 1 TC.
 			new /obj/item/grenade/syndieminibomb(src) //Hand grenade. 6 TC
 			new /obj/item/deployablemine(src) //I don't know if anyone remembers remote mines in Goldeneye because I certainly do. Hilariously less lethal than the 4 TC rubber ducky for clown ops, so I say 3
 			new /obj/item/dnainjector/dwarf(src) //Gives you dwarfism (smaller hitbox, instantly climb tables), would argue 2-3 TC. The only other core item to this kit
@@ -244,16 +244,16 @@
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/gun/ballistic/automatic/pistol(src)
 			new /obj/item/gun/ballistic/automatic/pistol(src)
-			new /obj/item/ammo_box/magazine/m10mm/ap(src)
-			new /obj/item/ammo_box/magazine/m10mm/ap(src)
-			new /obj/item/ammo_box/magazine/m10mm/ap(src)
-			new /obj/item/ammo_box/magazine/m10mm/ap(src)
-			new /obj/item/ammo_box/magazine/m10mm(src)
-			new /obj/item/ammo_box/magazine/m10mm(src)
-			new /obj/item/ammo_box/magazine/m10mm/sp(src)
-			new /obj/item/ammo_box/magazine/m10mm/sp(src)
-			new /obj/item/ammo_box/magazine/m10mm/fire(src)
-			new /obj/item/ammo_box/magazine/m10mm/fire(src)
+			new /obj/item/ammo_container/magazine/m10mm/ap(src)
+			new /obj/item/ammo_container/magazine/m10mm/ap(src)
+			new /obj/item/ammo_container/magazine/m10mm/ap(src)
+			new /obj/item/ammo_container/magazine/m10mm/ap(src)
+			new /obj/item/ammo_container/magazine/m10mm(src)
+			new /obj/item/ammo_container/magazine/m10mm(src)
+			new /obj/item/ammo_container/magazine/m10mm/sp(src)
+			new /obj/item/ammo_container/magazine/m10mm/sp(src)
+			new /obj/item/ammo_container/magazine/m10mm/fire(src)
+			new /obj/item/ammo_container/magazine/m10mm/fire(src)
 			new /obj/item/reagent_containers/syringe/plasma(src)
 			new /obj/item/reagent_containers/autoinjector/medipen/stimpack/large/redpill(src)
 			new /obj/item/slime_extract/sepia(src)
@@ -565,28 +565,28 @@
 
 /obj/item/storage/box/syndie_kit/pistolammo/PopulateContents()
 	for(var/i in 1 to 2)
-		new /obj/item/ammo_box/magazine/m10mm(src)
+		new /obj/item/ammo_container/magazine/m10mm(src)
 
 /obj/item/storage/box/syndie_kit/pistolsleepyammo
 	real_name = "10mm soporific magazine box"
 
 /obj/item/storage/box/syndie_kit/pistolsleepyammo/PopulateContents()
 	for(var/i in 1 to 2)
-		new /obj/item/ammo_box/magazine/m10mm/sp(src)
+		new /obj/item/ammo_container/magazine/m10mm/sp(src)
 
 /obj/item/storage/box/syndie_kit/revolverammo
 	real_name = ".357 speed loader box"
 
 /obj/item/storage/box/syndie_kit/revolverammo/PopulateContents()
 	for(var/i in 1 to 2)
-		new /obj/item/ammo_box/a357(src)
+		new /obj/item/ammo_container/a357(src)
 
 /obj/item/storage/box/syndie_kit/revolvershotgunammo
 	real_name = ".357 Ironfeather speed loader box"
 
 /obj/item/storage/box/syndie_kit/revolvershotgunammo/PopulateContents()
 	for(var/i in 1 to 2)
-		new /obj/item/ammo_box/a357/ironfeather(src)
+		new /obj/item/ammo_container/a357/ironfeather(src)
 
 /obj/item/storage/box/syndie_kit/nuke
 	real_name = "box"

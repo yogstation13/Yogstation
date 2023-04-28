@@ -1257,8 +1257,8 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/secure/gear,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_container/magazine/m10mm,
+/obj/item/ammo_container/magazine/m10mm,
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter2)
 "SF" = (

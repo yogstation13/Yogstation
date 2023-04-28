@@ -86,8 +86,8 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	mask = /obj/item/clothing/mask/gas/sechailer/swat/spacepol
 	glasses = /obj/item/clothing/glasses/sunglasses
-	l_pocket = /obj/item/ammo_box/magazine/m45
-	r_pocket = /obj/item/ammo_box/magazine/m45
+	l_pocket = /obj/item/ammo_container/magazine/m45
+	r_pocket = /obj/item/ammo_container/magazine/m45
 	id = /obj/item/card/id
 	back = /obj/item/storage/backpack
 	box = /obj/item/storage/box/survival
@@ -100,7 +100,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	mask = /obj/item/clothing/mask/gas
 	r_hand = /obj/item/gun/ballistic/rifle/boltaction
-	r_pocket = /obj/item/ammo_box/a762 
+	r_pocket = /obj/item/ammo_container/box/a762 
 	mask = /obj/item/clothing/mask/gas
 	back = /obj/item/storage/backpack
 	box = /obj/item/storage/box/survival

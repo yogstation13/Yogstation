@@ -330,7 +330,7 @@
 		/obj/item/assembly/flash/handheld,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
-		/obj/item/ammo_box,
+		/obj/item/ammo_container,
 		/obj/item/storage/box/rubbershot,
 		/obj/item/storage/box/lethalshot,
 		/obj/item/storage/box/breacherslug,
@@ -781,14 +781,14 @@
 	STR.set_holdable(list(
 		/obj/item/gun/ballistic/automatic/pistol,
 		/obj/item/gun/ballistic/revolver,
-		/obj/item/ammo_box,
+		/obj/item/ammo_container,
 		/obj/item/gun/energy/e_gun/mini
 		))
 
 /obj/item/storage/belt/holster/full/PopulateContents()
 	var/static/items_inside = list(
 		/obj/item/gun/ballistic/revolver/detective = 1,
-		/obj/item/ammo_box/c38 = 2)
+		/obj/item/ammo_container/c38 = 2)
 	generate_items_inside(items_inside, src)
 
 /obj/item/storage/belt/holster/syndicate

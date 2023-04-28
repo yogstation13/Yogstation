@@ -8,7 +8,7 @@
 	force = 10
 	bolt_type = BOLT_TYPE_NO_BOLT
 	can_suppress = FALSE
-	mag_type = /obj/item/ammo_box/magazine/internal/speargun
+	mag_type = /obj/item/ammo_container/magazine/internal/speargun
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	casing_ejector = FALSE
 	internal_magazine = TRUE

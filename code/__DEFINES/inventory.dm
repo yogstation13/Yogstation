@@ -178,7 +178,7 @@
 //Allowed equipment lists for security vests and hardsuits.
 
 GLOBAL_LIST_INIT(advanced_hardsuit_allowed, typecacheof(list(
-	/obj/item/ammo_box,
+	/obj/item/ammo_container,
 	/obj/item/ammo_casing,
 	/obj/item/flashlight,
 	/obj/item/gun,
@@ -189,7 +189,7 @@ GLOBAL_LIST_INIT(advanced_hardsuit_allowed, typecacheof(list(
 	/obj/item/tank/internals)))
 
 GLOBAL_LIST_INIT(security_hardsuit_allowed, typecacheof(list(
-	/obj/item/ammo_box,
+	/obj/item/ammo_container,
 	/obj/item/ammo_casing,
 	/obj/item/flashlight,
 	/obj/item/gun/ballistic,
@@ -201,7 +201,7 @@ GLOBAL_LIST_INIT(security_hardsuit_allowed, typecacheof(list(
 	/obj/item/tank/internals)))
 
 GLOBAL_LIST_INIT(detective_vest_allowed, typecacheof(list(
-	/obj/item/ammo_box,
+	/obj/item/ammo_container,
 	/obj/item/ammo_casing,
 	/obj/item/detective_scanner,
 	/obj/item/flashlight,
@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(detective_vest_allowed, typecacheof(list(
 	/obj/item/tank/internals/ipc_coolant)))
 
 GLOBAL_LIST_INIT(security_vest_allowed, typecacheof(list(
-	/obj/item/ammo_box,
+	/obj/item/ammo_container,
 	/obj/item/ammo_casing,
 	/obj/item/flashlight,
 	/obj/item/gun/ballistic,
@@ -234,7 +234,7 @@ GLOBAL_LIST_INIT(security_vest_allowed, typecacheof(list(
 	/obj/item/tank/internals/ipc_coolant)))
 
 GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(
-	/obj/item/ammo_box,
+	/obj/item/ammo_container,
 	/obj/item/ammo_casing,
 	/obj/item/flashlight,
 	/obj/item/storage/box/fancy/cigarettes,

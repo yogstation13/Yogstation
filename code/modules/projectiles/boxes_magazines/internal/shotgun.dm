@@ -1,43 +1,43 @@
-/obj/item/ammo_box/magazine/internal/shot
+/obj/item/ammo_container/magazine/internal/shot
 	name = "shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	caliber = "shotgun"
 	max_ammo = 4
 	multiload = 0
 
-/obj/item/ammo_box/magazine/internal/shot/tube
+/obj/item/ammo_container/magazine/internal/shot/tube
 	name = "dual feed shotgun internal tube"
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
 	max_ammo = 4
 
-/obj/item/ammo_box/magazine/internal/shot/lethal
+/obj/item/ammo_container/magazine/internal/shot/lethal
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
 
-/obj/item/ammo_box/magazine/internal/shot/com
+/obj/item/ammo_container/magazine/internal/shot/com
 	name = "combat shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
 	max_ammo = 6
 
-/obj/item/ammo_box/magazine/internal/shot/com/compact
+/obj/item/ammo_container/magazine/internal/shot/com/compact
 	name = "compact combat shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
 	max_ammo = 4
 
-/obj/item/ammo_box/magazine/internal/shot/dual
+/obj/item/ammo_container/magazine/internal/shot/dual
 	name = "double-barrel shotgun internal magazine"
 	max_ammo = 2
 
-/obj/item/ammo_box/magazine/internal/shot/improvised
+/obj/item/ammo_container/magazine/internal/shot/improvised
 	name = "improvised shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/improvised
 	max_ammo = 1
 
-/obj/item/ammo_box/magazine/internal/shot/riot
+/obj/item/ammo_container/magazine/internal/shot/riot
 	name = "riot shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
 	max_ammo = 6
 
-/obj/item/ammo_box/magazine/internal/shot/breaching
+/obj/item/ammo_container/magazine/internal/shot/breaching
 	name = "breaching shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/breacher
 	max_ammo = 3

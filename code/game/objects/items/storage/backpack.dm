@@ -519,22 +519,22 @@
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/PopulateContents()
 	for(var/i in 1 to 3)
-		new /obj/item/ammo_box/magazine/m12g(src)
+		new /obj/item/ammo_container/magazine/m12g(src)
 	for(var/i in 4 to 6)
-		new /obj/item/ammo_box/magazine/m12g/slug(src)
+		new /obj/item/ammo_container/magazine/m12g/slug(src)
 	for(var/i in 7 to 8)
-		new /obj/item/ammo_box/magazine/m12g/flechette(src)
+		new /obj/item/ammo_container/magazine/m12g/flechette(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	desc = "A large duffel bag, packed to the brim with C-20r magazines."
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/smg/PopulateContents()
 	for(var/i in 1 to 5)
-		new /obj/item/ammo_box/magazine/smgm45(src)
+		new /obj/item/ammo_container/magazine/smgm45(src)
 	for(var/i in 6 to 7)
-		new /obj/item/ammo_box/magazine/smgm45/ap(src)
+		new /obj/item/ammo_container/magazine/smgm45/ap(src)
 	for(var/i in 8 to 9)
-		new /obj/item/ammo_box/magazine/smgm45/hp(src)
+		new /obj/item/ammo_container/magazine/smgm45/hp(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/ammo/dark_gygax
 	desc = "A large duffel bag, packed to the brim with various exosuit ammo."
@@ -565,8 +565,8 @@
 	desc = "A large duffel bag containing a C-20r, some magazines, and a cheap looking suppressor."
 
 /obj/item/storage/backpack/duffelbag/syndie/c20rbundle/PopulateContents()
-	new /obj/item/ammo_box/magazine/smgm45(src)
-	new /obj/item/ammo_box/magazine/smgm45(src)
+	new /obj/item/ammo_container/magazine/smgm45(src)
+	new /obj/item/ammo_container/magazine/smgm45(src)
 	new /obj/item/gun/ballistic/automatic/c20r(src)
 	new /obj/item/suppressor/specialoffer(src)
 
@@ -575,8 +575,8 @@
 
 /obj/item/storage/backpack/duffelbag/syndie/bulldogbundle/PopulateContents()
 	new /obj/item/gun/ballistic/shotgun/bulldog(src)
-	new /obj/item/ammo_box/magazine/m12g(src)
-	new /obj/item/ammo_box/magazine/m12g(src)
+	new /obj/item/ammo_container/magazine/m12g(src)
+	new /obj/item/ammo_container/magazine/m12g(src)
 	new /obj/item/clothing/glasses/thermal/syndi(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle
@@ -586,7 +586,7 @@
 	new /obj/item/clothing/shoes/magboots/syndie(src)
 	new /obj/item/storage/firstaid/tactical(src)
 	new /obj/item/gun/ballistic/automatic/l6_saw/toy(src)
-	new /obj/item/ammo_box/foambox/riot(src)
+	new /obj/item/ammo_container/box/foambox/riot(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle
 	desc = "A large duffel bag containing medical equipment, a Donksoft LMG, a big jumbo box of riot darts, and a knock-off pair of magboots."
@@ -595,7 +595,7 @@
 	new /obj/item/clothing/shoes/magboots/syndie(src)
 	new /obj/item/storage/firstaid/tactical(src)
 	new /obj/item/gun/ballistic/automatic/l6_saw/toy(src)
-	new /obj/item/ammo_box/foambox/riot(src)
+	new /obj/item/ammo_container/box/foambox/riot(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med/bioterrorbundle
 	desc = "A large duffel bag containing deadly chemicals, a handheld chem sprayer, Bioterror foam grenade, a Donksoft assault rifle, box of riot grade darts, a dart pistol, and a box of syringes."
@@ -606,7 +606,7 @@
 	new /obj/item/gun/syringe/syndicate(src)
 	new /obj/item/gun/ballistic/automatic/c20r/toy(src)
 	new /obj/item/storage/box/syringes(src)
-	new /obj/item/ammo_box/foambox/riot(src)
+	new /obj/item/ammo_container/box/foambox/riot(src)
 	new /obj/item/grenade/chem_grenade/bioterrorfoam(src)
 	if(prob(5))
 		new /obj/item/reagent_containers/food/snacks/pizza/pineapple(src)
@@ -627,8 +627,8 @@
 	new /obj/item/watertank/op(src)
 	new /obj/item/clothing/suit/space/hardsuit/syndi/elite(src)
 	new /obj/item/gun/ballistic/automatic/pistol/APS(src)
-	new /obj/item/ammo_box/magazine/pistolm9mm(src)
-	new /obj/item/ammo_box/magazine/pistolm9mm(src)
+	new /obj/item/ammo_container/magazine/pistolm9mm(src)
+	new /obj/item/ammo_container/magazine/pistolm9mm(src)
 	new /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka(src)
 	new /obj/item/reagent_containers/syringe/stimulants(src)
 	new /obj/item/grenade/syndieminibomb(src)

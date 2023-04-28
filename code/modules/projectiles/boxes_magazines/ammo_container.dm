@@ -1,7 +1,7 @@
 //Boxes of ammo
-/obj/item/ammo_box
-	name = "ammo box (null_reference_exception)"
-	desc = "A box of ammo."
+/obj/item/ammo_container
+	name = "ammo container (null_reference_exception)"
+	desc = "A container of ammo."
 	icon = 'icons/obj/ammo.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
@@ -19,8 +19,8 @@
 	var/ammo_type = /obj/item/ammo_casing
 	///maximum amount of ammo in the magazine
 	var/max_ammo = 7
-	///Controls how sprites are updated for the ammo box; see defines in combat.dm: AMMO_BOX_ONE_SPRITE; AMMO_BOX_PER_BULLET; AMMO_BOX_FULL_EMPTY
-	var/multiple_sprites = AMMO_BOX_ONE_SPRITE
+	///Controls how sprites are updated for the ammo container; see defines in combat.dm: AMMO_CONTAINER_ONE_SPRITE; AMMO_CONTAINER_PER_BULLET; AMMO_CONTAINER_FULL_EMPTY
+	var/multiple_sprites = AMMO_CONTAINER_ONE_SPRITE
 	///String, used for checking if ammo of different types but still fits can fit inside it; generally used for magazines
 	var/caliber
 	///Allows multiple bullets to be loaded in from one click of another box/magazine
@@ -34,7 +34,7 @@
 	//Whether the magazine should utilize a unique sprite or not if the magazine has multi-stage sprites
 	var/sprite_designation
 
-/obj/item/ammo_box/Initialize()
+/obj/item/ammo_container/Initialize()
 	. = ..()
 	calc_mats()
 	if(!start_empty)
@@ -45,10 +45,10 @@
   * top_off is used to refill the magazine to max, in case you want to increase the size of a magazine with VV then refill it at once
   *
   * Arguments:
-  * * load_type - if you want to specify a specific ammo casing type to load, enter the path here, otherwise it'll use the basic [/obj/item/ammo_box/var/ammo_type]. Must be a compatible round
+  * * load_type - if you want to specify a specific ammo casing type to load, enter the path here, otherwise it'll use the basic [/obj/item/ammo_container/var/ammo_type]. Must be a compatible round
   * * starting - Relevant for revolver cylinders, if FALSE then we mind the nulls that represent the empty cylinders (since those nulls don't exist yet if we haven't initialized when this is TRUE)
   */
-/obj/item/ammo_box/proc/top_off(load_type, starting=FALSE)
+/obj/item/ammo_container/proc/top_off(load_type, starting=FALSE)
 	if(!load_type) //this check comes first so not defining an argument means we just go with default ammo
 		load_type = ammo_type
 
@@ -61,7 +61,7 @@
 		stored_ammo += new round_check(src)
 	update_icon()
 
-/obj/item/ammo_box/proc/calc_mats(force = FALSE)
+/obj/item/ammo_container/proc/calc_mats(force = FALSE)
 	if (force || !bullet_cost)
 		for (var/material in materials)
 			var/material_amount = materials[material]
@@ -71,11 +71,11 @@
 			material_amount /= max_ammo
 			LAZYSET(bullet_cost, material, material_amount)
 
-/obj/item/ammo_box/autolathe_crafted()
+/obj/item/ammo_container/autolathe_crafted()
 	calc_mats(force = TRUE)
 
 ///gets a round from the magazine, if keep is TRUE the round will stay in the gun
-/obj/item/ammo_box/proc/get_round(keep = FALSE)
+/obj/item/ammo_container/proc/get_round(keep = FALSE)
 	if (!stored_ammo.len)
 		return null
 	else
@@ -86,7 +86,7 @@
 		return b
 
 ///puts a round into the magazine
-/obj/item/ammo_box/proc/give_round(obj/item/ammo_casing/R, replace_spent = 0)
+/obj/item/ammo_container/proc/give_round(obj/item/ammo_casing/R, replace_spent = 0)
 	// If we fail to find a caliber, then we fall back to ammo_type.
 	if(!R || (caliber && R.caliber != caliber) || (!caliber && R.type != ammo_type))
 		return FALSE
@@ -109,15 +109,15 @@
 	return FALSE
 
 ///Whether or not the box can be loaded, used in overrides
-/obj/item/ammo_box/proc/can_load(mob/user)
+/obj/item/ammo_container/proc/can_load(mob/user)
 	return TRUE
 
-/obj/item/ammo_box/attackby(obj/item/A, mob/user, params, silent = FALSE, replace_spent = 0)
+/obj/item/ammo_container/attackby(obj/item/A, mob/user, params, silent = FALSE, replace_spent = 0)
 	var/num_loaded = 0
 	if(!can_load(user))
 		return
-	if(istype(A, /obj/item/ammo_box))
-		var/obj/item/ammo_box/AM = A
+	if(istype(A, /obj/item/ammo_container))
+		var/obj/item/ammo_container/AM = A
 		for(var/obj/item/ammo_casing/AC in AM.stored_ammo)
 			var/did_load = give_round(AC, replace_spent)
 			if(did_load)
@@ -139,7 +139,7 @@
 		update_icon()
 	return num_loaded
 
-/obj/item/ammo_box/attack_self(mob/user)
+/obj/item/ammo_container/attack_self(mob/user)
 	var/obj/item/ammo_casing/A = get_round()
 	if(A)
 		A.forceMove(drop_location())
@@ -149,12 +149,12 @@
 		to_chat(user, span_notice("You remove a round from [src]!"))
 		update_icon()
 
-/obj/item/ammo_box/update_icon()
+/obj/item/ammo_container/update_icon()
 	var/shells_left = stored_ammo.len
 	switch(multiple_sprites)
-		if(AMMO_BOX_PER_BULLET)
+		if(AMMO_CONTAINER_PER_BULLET)
 			icon_state = "[initial(icon_state)]-[shells_left]"
-		if(AMMO_BOX_FULL_EMPTY)
+		if(AMMO_CONTAINER_FULL_EMPTY)
 			icon_state = "[initial(icon_state)]-[shells_left ? "[max_ammo]" : "0"]"
 	desc = "[initial(desc)] There [(shells_left == 1) ? "is" : "are"] [shells_left] shell\s left!"
 	for (var/material in bullet_cost)
@@ -163,7 +163,7 @@
 		materials[material] = material_amount
 
 ///Count of number of bullets in the magazine
-/obj/item/ammo_box/magazine/proc/ammo_count(countempties = TRUE)
+/obj/item/ammo_container/magazine/proc/ammo_count(countempties = TRUE)
 	var/boolets = 0
 	for(var/obj/item/ammo_casing/bullet in stored_ammo)
 		if(bullet && (bullet.BB || countempties))
@@ -171,19 +171,19 @@
 	return boolets
 
 ///list of every bullet in the magazine
-/obj/item/ammo_box/magazine/proc/ammo_list(drop_list = FALSE)
+/obj/item/ammo_container/magazine/proc/ammo_list(drop_list = FALSE)
 	var/list/L = stored_ammo.Copy()
 	if(drop_list)
 		stored_ammo.Cut()
 	return L
 
 ///drops the entire contents of the magazine on the floor
-/obj/item/ammo_box/magazine/proc/empty_magazine()
+/obj/item/ammo_container/magazine/proc/empty_magazine()
 	var/turf_mag = get_turf(src)
 	for(var/obj/item/ammo in stored_ammo)
 		ammo.forceMove(turf_mag)
 		stored_ammo -= ammo
 
-/obj/item/ammo_box/magazine/handle_atom_del(atom/A)
+/obj/item/ammo_container/magazine/handle_atom_del(atom/A)
 	stored_ammo -= A
 	update_icon()

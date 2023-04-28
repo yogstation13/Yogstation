@@ -197,7 +197,7 @@
 	name = "Surplus Carbine Ammo"
 	id = "surplus_ammo"
 	weapon_cost = 5
-	item_path = /obj/item/ammo_box/magazine/m10mm/rifle
+	item_path = /obj/item/ammo_container/magazine/m10mm/rifle
 
 /datum/gang_item/weapon/improvised
 	name = "Sawn-Off Improvised Shotgun"
@@ -221,7 +221,7 @@
 	name = "10mm Ammo"
 	id = "pistol_ammo"
 	weapon_cost = 10
-	item_path = /obj/item/ammo_box/magazine/m10mm
+	item_path = /obj/item/ammo_container/magazine/m10mm
 
 /datum/gang_item/weapon/uzi
 	name = "Uzi SMG"
@@ -233,7 +233,7 @@
 	name = "Uzi Ammo"
 	id = "uzi_ammo"
 	weapon_cost = 40
-	item_path = /obj/item/ammo_box/magazine/uzim9mm
+	item_path = /obj/item/ammo_container/magazine/uzim9mm
 
 ///////////////////
 //EQUIPMENT

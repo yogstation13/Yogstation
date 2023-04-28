@@ -28,8 +28,8 @@
 // To note: each vest has 7 normal slots - Hopek
 /obj/item/storage/belt/military/occupying_officer/ComponentInitialize() // Occupying Officer
 	. = ..()
-	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
-	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
+	new /obj/item/ammo_container/magazine/wt550m9/wtr(src)
+	new /obj/item/ammo_container/magazine/wt550m9/wtr(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
@@ -39,8 +39,8 @@
 
 /obj/item/storage/belt/military/occupying_commander/ComponentInitialize() // Occupying force Commander
 	. = ..()
-	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
-	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
+	new /obj/item/ammo_container/magazine/wt550m9/wtr(src)
+	new /obj/item/ammo_container/magazine/wt550m9/wtr(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
 	new /obj/item/megaphone(src)
