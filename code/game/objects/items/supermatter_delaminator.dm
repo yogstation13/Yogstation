@@ -134,7 +134,7 @@
 	if(sealed)
 		unseal()
 		to_chat(user, span_warning("[user] opens the [src] revealing the [shard] contained inside!"))
-	else 
+	else
 		seal()
 		to_chat(user, span_warning("[user] seals the [src]."))
 
@@ -145,7 +145,7 @@
 		icon_state = "antinoblium_container_loaded"
 	else
 		icon_state = "antinoblium_container_empty"
-	
+
 
 /obj/item/hemostat/antinoblium
 	name = "antinoblium extraction tongs"
@@ -185,7 +185,7 @@
 	if(ismob(AM))
 		var/mob/victim = AM
 		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)].")
-		message_admins("[ADMIN_LOOKUPFLW(user)] has used an antinoblium shard to commit dual suicide with [ADMIN_LOOKUPFLW(victim)] at [ADMIN_VERBOSEJMP(src)].") 
+		message_admins("[ADMIN_LOOKUPFLW(user)] has used an antinoblium shard to commit dual suicide with [ADMIN_LOOKUPFLW(victim)] at [ADMIN_VERBOSEJMP(src)].")
 		investigate_log("has consumed [key_name(victim)].", "supermatter")
 		investigate_log("[key_name(user)] has used an antinoblium shard to commit dual suicide with [key_name(victim)].", "supermatter")
 		victim.dust()
@@ -211,3 +211,8 @@
 	icon = 'icons/obj/supermatter_delaminator.dmi'
 	icon_state = "corruptor"
 
+/obj/item/tsm_kit
+	name = "tesla supermatter kit"
+	desc = "The newest Centcom engineering team creation. Applying it to a supermatter with high enough mass allows for much higher energy production for the sacrifice of safety. It has a note on it saying:'Caution, Highly experimental. Use at your own risk.'"
+	icon = 'icons/obj/supermatter.dmi'
+	icon_state = "tsm_kit"

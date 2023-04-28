@@ -85,7 +85,8 @@
 #define PYRO_ANOMALY "pyro_anomaly"
 
 //tesla zaps
-#define SUPERMATTER_TESLA_FLAGS TESLA_MOB_DAMAGE | TESLA_MOB_STUN
+//more power but dangerous
+#define SUPERMATTER_TESLA_FLAGS TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_OBJ_DAMAGE | TESLA_MACHINE_EXPLOSIVE
 
 //If integrity percent remaining is less than these values, the monitor sets off the relevant alarm.
 #define SUPERMATTER_DELAM_PERCENT 5
@@ -187,6 +188,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	/// does it emitt radiation or tesla zap
 	var/rad_mode = TRUE
 
+	/// how much extra energy tesla zaps have
+	var/tesla_bonus = 2
+
 	/// Is it moveable. Used for SM shards
 	var/moveable = FALSE
 
@@ -240,8 +244,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(is_main_engine)
 		GLOB.main_supermatter_engine = src
 	if(!rad_mode)
-		var/image/teslaconverter = image(icon, null, "tesla")
-		add_overlay(teslaconverter)
+		var/image/teslathing = image(icon, null, "tesla")
+		add_overlay(teslathing)
 	soundloop = new(list(src), TRUE)
 
 /obj/machinery/power/supermatter_crystal/Destroy()
@@ -259,8 +263,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	. = ..()
 	if(!rad_mode)
 		. += "you see a tesla like thing connected to it."
-	if(!has_been_powered)
-		. += "It apears to be inactive"
 	if(istype(user, /mob/living/carbon))
 		if((!HAS_TRAIT(user, TRAIT_MESONS)) && (get_dist(user, src) < HALLUCINATION_RANGE(power)))
 			. += span_danger("You get headaches just from looking at it.")
@@ -480,6 +482,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(!removed || !removed.total_moles() || isspaceturf(T)) //we're in space or there is no gas to process
 		if(takes_damage)
 			damage += max((power / 1000) * DAMAGE_INCREASE_MULTIPLIER, 0.1) // always does at least some damage
+		if(!rad_mode)//no escape
+			tesla_zap(src, 5, 300000 * tesla_bonus, SUPERMATTER_TESLA_FLAGS)
 	else
 		if(takes_damage) //causing damage
 			damage = max(damage + (max(clamp(removed.total_moles() / 200, 0.5, 1) * removed.return_temperature() - ((T0C + HEAT_PENALTY_THRESHOLD)*dynamic_heat_resistance), 0) * mole_heat_penalty / 150 ) * DAMAGE_INCREASE_MULTIPLIER, 0)
@@ -555,20 +559,14 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(surging)
 			power += surging
 
-		if(has_been_powered)
-			if(gasmix_power_ratio > 0.8)
-				// with a perfect gas mix, make the power less based on heat
-				icon_state = "[initial(icon_state)]_glow"
-				temp_factor = 50
-			else
-				// in normal mode, base the produced energy around the heat
-				temp_factor = 30
-				icon_state = initial(icon_state)
-		else if(power)
-			has_been_powered = 2 //it got activated by something other than emitters
-			icon_state = "[initial(icon_state)]_start"
+		if(gasmix_power_ratio > 0.8)
+			// with a perfect gas mix, make the power less based on heat
+			icon_state = "[initial(icon_state)]_glow"
+			temp_factor = 50
 		else
-			icon_state = "[initial(icon_state)]_inactive"
+			// in normal mode, base the produced energy around the heat
+			temp_factor = 30
+			icon_state = initial(icon_state)
 		power = clamp((removed.return_temperature() * temp_factor / T0C) * gasmix_power_ratio + power, 0, SUPERMATTER_MAXIMUM_ENERGY) //Total laser power plus an overload
 
 		if(prob(50))
@@ -577,7 +575,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(rad_mode) //for when a rad converter is attached
 				radiation_pulse(src, max(last_rads))
 			else
-				tesla_zap(src, 3, last_rads*100, SUPERMATTER_TESLA_FLAGS)
+				tesla_zap(src, 3, (last_rads*1000) * tesla_bonus, SUPERMATTER_TESLA_FLAGS)
 
 		if(nitriummol > NITRO_BALL_MOLES_REQUIRED) // haha funny particles go brrrrr
 			var/balls_shot = min(round(nitriummol / NITRO_BALL_MOLES_REQUIRED), NITRO_BALL_MAX_REACT_RATE / NITRO_BALL_MOLES_REQUIRED)
@@ -770,7 +768,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			investigate_log("has been powered for the first time.", INVESTIGATE_SUPERMATTER)
 			message_admins("[src] has been powered for the first time [ADMIN_JMP(src)].")
 			has_been_powered = TRUE
-			icon_state = "[initial(icon_state)]_start"
 			var/datum/department_goal/eng/additional_supermatter/goal = locate() in SSYogs.department_goals
 			if(goal)
 				goal.complete()
@@ -985,6 +982,36 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		empulse(src, 3,6)
 		qdel(W)
 		return
+	if(istype(W, /obj/item/tsm_kit))
+		if(istype(src, /obj/machinery/power/supermatter_crystal/engine)) //can only be applied to round start sm
+			if(!rad_mode)
+				to_chat(user, "A tsm kit has already been connected to \the [src]")
+				return
+			to_chat(user, span_notice("You carefully begin to insert \the [W] into \the [src]..."))
+			if(W.use_tool(src, user, 60))
+				if(prob(80))// i told you its risky
+					corruptor_attached = TRUE
+					if(prob(50))
+						antinoblium_attached = TRUE
+				if(prob(80))
+					surge(rand(1,20) * 1000)
+					matter_power += (rand(1, 20) * 1000)
+				if(prob(1))
+					user.visible_message(span_danger("As \the [user] tries to apply \the [W] to \the [src] their hands slipped and had a contact with \the [src]"))
+					to_chat(user, span_danger("your hands slipped and you accidently touched \the [src]"))
+					to_chat(user, span_userdanger("Exteremly unlucky."))
+					Consume(user)
+					return
+				var/image/teslathing = image(icon, null, "tesla")
+				add_overlay(teslathing)
+				rad_mode = !rad_mode
+				to_chat(user, span_danger("you successfully connect \the [W] to \the [src]"))
+				investigate_log("[user] has attached a tsm to the sm.", INVESTIGATE_SUPERMATTER)
+				message_admins("[user] has traded the safety for power by attaching the tsm to the sm .")
+				qdel(W)
+				return
+		else
+			to_chat(user, span_warning("The tsm kit gives a not enough mass error."))
 	else if(user.dropItemToGround(W))
 		user.visible_message(span_danger("As [user] touches \the [src] with \a [W], silence fills the room..."),\
 			"[span_userdanger("You touch \the [src] with \the [W], and everything suddenly goes silent.")]\n[span_notice("\The [W] flashes into dust as you flinch away from \the [src].")]",\

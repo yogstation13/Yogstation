@@ -31,6 +31,7 @@
 	new /obj/item/barrier_taperoll/engineering(src)
 	new /obj/item/analyzer/ranged(src)
 	new /obj/item/multisurgeon/magboots(src)
+	new /obj/item/tsm_kit(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies locker"
