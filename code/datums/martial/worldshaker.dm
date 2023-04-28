@@ -129,7 +129,7 @@
 	if(istype(S))
 		if(heavy)//sort of a sound indicator that you're in "heavy mode"
 			S.special_step_sounds = list('sound/effects/gravhit.ogg')//heavy boy get stompy footsteps
-			S.special_step_volume = 7 //prevent it from blowing out ears
+			S.special_step_volume = 9 //prevent it from blowing out ears
 		else
 			S.special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
 			S.special_step_volume = 50
@@ -472,7 +472,7 @@
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You imagine all the things you would be capable of with this power.</i></b>"
 
-	combined_msg +=  "[span_notice("Plates")]: You will progressively grow plates every [PLATE_INTERVAL] seconds. \
+	combined_msg +=  "[span_notice("Plates")]: You will progressively grow plates every [PLATE_INTERVAL/10] seconds. \
 	Each plate provides [PLATE_REDUCTION]% damage reduction but also slows you down. The damage reduction caps at [PLATE_REDUCTION * MAX_PLATES]% but the slowdown can continue scaling.\
 	While at maximum damage reduction you are considered \"heavy\" and most of your attacks will be slower, but do more damage in a larger area."
 
