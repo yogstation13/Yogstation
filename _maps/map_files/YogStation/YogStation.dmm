@@ -51062,6 +51062,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"qtc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/crew_quarters/public_lounge)
 "qtd" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
@@ -57742,6 +57754,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"tfn" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/crew_quarters/public_lounge)
 "tfF" = (
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 4
@@ -99673,7 +99692,7 @@ gdj
 kVT
 sef
 kVT
-kVT
+tfn
 gOM
 sXZ
 leZ
@@ -99930,7 +99949,7 @@ lEf
 tPr
 pIp
 gLt
-gLt
+qtc
 xiE
 sYk
 oex
@@ -100187,7 +100206,7 @@ dQB
 mLN
 ckR
 kVT
-kVT
+tfn
 gOM
 sYv
 ptp
