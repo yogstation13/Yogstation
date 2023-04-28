@@ -241,12 +241,15 @@
 /datum/martial_art/worldshaker/proc/leap_end(mob/living/carbon/human/user)
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
 	leaping = FALSE
-
+	var/range = LEAP_RADIUS
+	if(heavy)
+		range++
+		
 	for(var/mob/living/L in range(LEAP_RADIUS,user))
 		if(L == user)
 			continue
 		stagger(L)
-		var/damage = heavy ? 30 : 15 //chunky boy does more damage
+		var/damage = heavy ? 25 : 15 //chunky boy does more damage
 
 		if(L.loc == user.loc)
 			damage *= 2//for the love of god, don't get landed on
@@ -262,8 +265,8 @@
 	shockwave.transform *= 0.1 //basically invisible
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	animate(shockwave, alpha = 0, transform = matrix().Scale(0.3), time = 2)
-	QDEL_IN(shockwave, 3)
+	animate(shockwave, alpha = 0, transform = matrix().Scale(0.2 + (range/10)), time = 1 + (range/10))
+	QDEL_IN(shockwave, 2 + (range/10))
 
 /datum/martial_art/worldshaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(leaping)
