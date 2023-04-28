@@ -45,7 +45,7 @@ They *could* go in their appropriate files, but this is supposed to be modular
 				spark_system.start()
 				playsound(loc, "sparks", 50, 1)
 				cell.use(drain)
-				S.cell.give(drain)
+				S.cell.give(drain * 3)
 				. += drain
 			else
 				break
