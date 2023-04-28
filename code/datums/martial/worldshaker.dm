@@ -415,7 +415,7 @@
 	var/heavy = linked_martial.heavy
 
 	charging = TRUE
-	var/obj/effect/temp_visual/decoy/tensecond/D = new /obj/effect/temp_visual/tensecond/decoy(owner.loc, owner)
+	var/obj/effect/temp_visual/decoy/tensecond/D = new /obj/effect/temp_visual/decoy/tensecond(owner.loc, owner)
 	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = (heavy ? 2 : 1) SECONDS)
 	if(!do_after(owner, (heavy ? 2 : 1) SECONDS, owner) || !IsAvailable())
 		charging = FALSE
