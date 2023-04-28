@@ -6,7 +6,7 @@
 #define LEAP_RADIUS 1
 #define STAGGER_DURATION 3 SECONDS
 #define WARNING_RANGE 10 //extra range to certain sound effects
-#define PLATE_INTERVAL 30 SECONDS //how often a plate grows
+#define PLATE_INTERVAL 20 SECONDS //how often a plate grows
 #define PLATE_REDUCTION 10 //how much DR per plate
 #define MAX_PLATES 7 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
 #define PLATE_CAP MAX_PLATES * 2 //hard cap of plates to prevent station wide fuckery
