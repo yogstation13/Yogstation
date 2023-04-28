@@ -28,4 +28,3 @@
 #define DYE_CLOWN "clown"
 #define DYE_SYNDI "tactifool"
 #define DYE_CENT "centcom"
-#define DYE_MIME "mime"
