@@ -384,7 +384,16 @@
 		return
 
 	if(trim(reason))
+		var/datum/bank_account/bank_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
+		if (!SSshuttle.freebie)
+			if (bank_account.account_balance < 1000)
+				to_chat(src, span_warning("Your station cannot afford to call the emergency shuttle!"))
+				return
+			bank_account.adjust_money(-1000)
 		SSshuttle.requestEvac(src, reason)
+		if (!SSshuttle.freebie) // we want to tell them AFTER the gigantic message to ensure that they see it
+			to_chat(src, span_info("NOTICE: 1000 credits has been deducted from your station's funds as penalty for \
+									repeatedly calling the shuttle. 500 credits will be refunded in the event of a shuttle recall."))
 
 	// hack to display shuttle timer
 	if(!EMERGENCY_IDLE_OR_RECALLED)

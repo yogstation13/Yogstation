@@ -52,6 +52,8 @@ SUBSYSTEM_DEF(shuttle)
 	var/shuttle_purchased = SHUTTLEPURCHASE_PURCHASABLE //If the station has purchased a replacement escape shuttle this round
 	var/emag_shuttle_purchased = FALSE //If the traitors have purchased a replacement escape shuttle this round
 
+	var/freebie = TRUE // The first shuttle call is free, for emergencies of course.
+
 	var/lockdown = FALSE	//disallow transit after nuke goes off
 
 	var/datum/map_template/shuttle/selected
