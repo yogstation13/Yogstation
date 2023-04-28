@@ -168,6 +168,7 @@
 	diag_hud_set_mechhealth()
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_CONTENTS)
 
 /obj/mecha/update_icon()
 	if (silicon_pilot && silicon_icon_state)
