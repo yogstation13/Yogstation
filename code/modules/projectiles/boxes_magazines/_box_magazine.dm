@@ -133,7 +133,7 @@
 
 	if(num_loaded)
 		if(!silent)
-			to_chat(user, span_notice("You load [num_loaded] shell\s into \the [src]!"))
+			to_chat(user, span_notice("You load [num_loaded] round\s into \the [src]!"))
 			playsound(src, 'sound/weapons/bulletinsert.ogg', 60, TRUE)
 		A.update_icon()
 		update_icon()
@@ -150,13 +150,13 @@
 		update_icon()
 
 /obj/item/ammo_box/update_icon()
-	var/shells_left = stored_ammo.len
+	var/rounds_left = stored_ammo.len
 	switch(multiple_sprites)
 		if(AMMO_BOX_PER_BULLET)
-			icon_state = "[initial(icon_state)]-[shells_left]"
+			icon_state = "[initial(icon_state)]-[rounds_left]"
 		if(AMMO_BOX_FULL_EMPTY)
-			icon_state = "[initial(icon_state)]-[shells_left ? "[max_ammo]" : "0"]"
-	desc = "[initial(desc)] There [(shells_left == 1) ? "is" : "are"] [shells_left] shell\s left!"
+			icon_state = "[initial(icon_state)]-[rounds_left ? "[max_ammo]" : "0"]"
+	desc = "[initial(desc)] There [(rounds_left == 1) ? "is" : "are"] [rounds_left] round\s left!"
 	for (var/material in bullet_cost)
 		var/material_amount = bullet_cost[material]
 		material_amount = (material_amount*stored_ammo.len) + base_cost[material]
