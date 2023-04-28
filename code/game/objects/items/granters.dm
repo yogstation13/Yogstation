@@ -344,7 +344,8 @@
 	return FALSE
 
 /obj/item/book/granter/martial/on_reading_start(mob/user)
-	to_chat(user, span_notice("You start reading about [martialname]..."))
+	if(sound)
+		to_chat(user, span_notice("You start reading about [martialname]..."))
 
 /obj/item/book/granter/martial/on_reading_finished(mob/user)
 	to_chat(user, "[greet]")
@@ -528,7 +529,7 @@
 /obj/item/book/granter/martial/worldshaker
 	martial = /datum/martial_art/worldshaker
 	name = "Prototype worldshaker compound"
-	martialname = "Ultra Violence"
+	martialname = "Worldshaker"
 	desc = "A foul concoction made by reverse engineering chemicals compounds found in an ancient Vxtrin military outpost."
 	greet = "<span class='sciradio'>You feel weirdly good, good enough to shake the world to it's very core. \
 	Your plates feel like they are growing past their normal limits. The protection will come in handy, but it will eventually slow you down.\

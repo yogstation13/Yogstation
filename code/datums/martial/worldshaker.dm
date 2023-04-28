@@ -117,6 +117,7 @@
 	var/obj/item/worldplate/plate = new()
 	plate.linked_martial = src
 	user.put_in_active_hand(plate)
+	user.changeNext_move(0.1)//entirely to prevent hitting yourself instantly
 
 /datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
 	heavy = plates > MAX_PLATES
