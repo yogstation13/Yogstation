@@ -963,7 +963,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	if(sword.loc == user)
 		to_chat(user, span_notice("[sword] is already in your hand"))
 		revert_cast()
-		return
+		return FALSE
 	return ..()
 	
 /obj/effect/proc_holder/spell/targeted/recallnullrod/cast(list/targets, mob/user)
