@@ -26677,10 +26677,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"gym" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/space/basic,
-/area/crew_quarters/public_lounge)
 "gyr" = (
 /obj/machinery/sleeper{
 	dir = 4
@@ -99177,7 +99173,7 @@ shw
 wzq
 gHE
 pxd
-gym
+mHH
 pxd
 inP
 aJq
@@ -100719,7 +100715,7 @@ shw
 sfb
 saV
 pxd
-gym
+mHH
 pxd
 inP
 aJq
