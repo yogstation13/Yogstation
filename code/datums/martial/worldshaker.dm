@@ -424,6 +424,7 @@
 	var/heavy = linked_martial.heavy
 
 	charging = TRUE
+	owner.visible_message(span_danger("[owner] prepares to stomp the ground with all their might!"), span_notice("you build up power in your legs, preparing to stomp with all you have!"))
 	var/obj/effect/temp_visual/decoy/tensecond/D = new /obj/effect/temp_visual/decoy/tensecond(owner.loc, owner)
 	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = (heavy ? 2 : 1) SECONDS)
 	if(!do_after(owner, (heavy ? 2 : 1) SECONDS, owner) || !IsAvailable())
@@ -508,7 +509,7 @@
 	The radius, knockback, and damage all scale with number of plates."
 
 	combined_msg +=  "[span_notice("Landslide")]: If hit by a melee attack while in throw mode, you will block it and send the attacker flying."
-	
+
 	combined_msg += span_notice("<b>Being in this state causes you to burn energy significantly faster.</b>")
 
 
