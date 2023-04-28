@@ -42,8 +42,13 @@
 	var/list/modifiers = params2list(params)
 	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
 		return
+		
 	if(H.a_intent == INTENT_DISARM)
 		leap(H, target)
+
+	if(H.get_active_held_item()) //most abilities need an empty hand
+		return
+
 	if(H.a_intent == INTENT_HELP && (H==target))
 		rip_plate(H)
 	if(thrown.len > 0 && H.a_intent == INTENT_GRAB)
@@ -72,6 +77,8 @@
 	victim.remove_movespeed_modifier(id)
 
 /datum/martial_art/worldshaker/proc/push_away(mob/living/user, atom/movable/victim, distance = 1)
+	if(victim.anchored)
+		return
 	var/throwdirection = get_dir(user, victim)
 	var/atom/throw_target = get_edge_target_turf(victim, throwdirection)
 	var/throwspeed = 3
@@ -97,15 +104,8 @@
 	update_platespeed(user)
 
 /datum/martial_art/worldshaker/proc/rip_plate(mob/living/carbon/human/user)
-	if(user.get_active_held_item())
-		if(COOLDOWN_FINISHED(src, next_balloon))
-			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
-			user.balloon_alert(user, span_warning("You need an empty hand to tear off some of your plate!"))
-		return
 	if(plates <= 0)
-		if(COOLDOWN_FINISHED(src, next_balloon))
-			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
-			user.balloon_alert(user, span_warning("Your plates are too thin to tear off a piece!"))
+		to_chat(user, span_warning("Your plates are too thin to tear off a piece!"))
 		return
 	user.balloon_alert(user, span_notice("You tear off a loose plate!"))
 	user.adjustBruteLoss(1)//literally tearing off part of your "skin" (more for flavour than actual gameplay)
@@ -312,16 +312,16 @@
 			return
 		for(var/obj/Z in T.contents) // crash into something solid and damage it along with thrown objects that hit it
 			if(Z.density) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
-				for(var/mob/living/S in thrown) 
-					grab(user, S, slamdam) 
-					S.Knockdown(1.5 SECONDS)
-					S.Immobilize(1.5 SECONDS)
-					if(isanimal(S) && S.stat == DEAD)
-						S.gib()
+				for(var/mob/living/L in thrown) 
+					grab(user, L, slamdam) 
+					L.Knockdown(1.5 SECONDS)
+					L.Immobilize(1.5 SECONDS)
+					if(isanimal(L) && L.stat == DEAD)
+						L.gib()
 					if(istype(Z, /obj/machinery/disposal/bin)) // dumpster living things tossed into the trash
 						var/obj/machinery/disposal/bin/dumpster = D
-						S.forceMove(Z)
-						Z.visible_message(span_warning("[S] is thrown down the trash chute!"))
+						L.forceMove(Z)
+						Z.visible_message(span_warning("[L] is thrown down the trash chute!"))
 						dumpster.do_flush()
 						drop()
 						return
@@ -332,14 +332,14 @@
 					playsound(Z, 'sound/effects/gravhit.ogg', 40, TRUE, 5)
 					drop()
 					return // if the solid thing we hit doesnt break then the thrown thing is stopped
-		for(var/mob/living/M in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
-			if(user != M)
-				grab(user, M, slamdam) 
-				M.Knockdown(1.5 SECONDS) 
-				for(var/mob/living/S in thrown)
-					grab(user, S, slamdam) 
-					S.Knockdown(1 SECONDS) 
-				thrown |= M 
+		for(var/mob/living/hit in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
+			if(user != hit)
+				grab(user, hit, slamdam) 
+				hit.Knockdown(1.5 SECONDS) 
+				for(var/mob/living/L in thrown)
+					grab(user, L, slamdam) 
+					L.Knockdown(1 SECONDS) 
+				thrown |= hit
 		if(T) // if the next tile wont stop the thrown mass from continuing
 			for(var/mob/living/S in thrown)
 				S.Knockdown(1.5 SECONDS)
@@ -364,7 +364,6 @@
 /datum/martial_art/worldshaker/proc/pummel(mob/living/user, mob/living/target)
 	if(user == target)
 		return
-	to_chat(world, "pummel")
 	for(var/mob/living/L in range(1, target))
 		var/damage = 10
 		if(L == user)
