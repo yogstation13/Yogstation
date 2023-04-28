@@ -492,7 +492,7 @@
 			swordleft.bare_wound_bonus = bare_wound_bonus
 		user.put_in_l_hand(swordleft)
 
-		user.balloon_alert(user, span_notice("you unsheathe \the [src]."))
+		user.balloon_alert(user, "you unsheathe \the [src].")
 		playsound(user, 'sound/items/unsheath.ogg', 25, TRUE)
 		swords = FALSE
 		update_icon()
@@ -507,7 +507,7 @@
 			otherhand.forceMove(src)
 		I.forceMove(src)
 
-		user.balloon_alert(user, span_notice("You sheathe \the [src]."))
+		user.balloon_alert(user, "You sheathe \the [src].")
 		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 		update_icon()
 		
@@ -529,6 +529,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
+	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_HUGE
 	chaplain_spawnable = FALSE
 	var/obj/item/nullrod/dualsword/sheath //so the sheathe is refilled when the swords are dropped
@@ -564,7 +565,7 @@
 		if(istype(otherhand, /obj/item/nullrod/handedsword))
 			otherhand.forceMove(sheath)
 		forceMove(sheath)
-		user.balloon_alert(user, span_notice("you sheathe \the [sheath]."))
+		user.balloon_alert(user, "you sheathe \the [sheath].")
 		sheath.update_icon()
 		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 	
