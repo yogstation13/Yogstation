@@ -18,29 +18,6 @@
 	playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', volume, TRUE)
 	addtimer(CALLBACK(src, .proc/prime), isnull(delayoverride)? det_time : delayoverride)
 
-/obj/item/grenade/gas_crystal/proto_nitrate_crystal
-	name = "Proto Nitrate crystal"
-	desc = "A crystal made from the Proto Nitrate gas, you can see the liquid gases inside."
-	icon_state = "proto_nitrate_crystal"
-	///Range of the grenade air refilling
-	var/refill_range = 5
-	///Amount of Nitrogen gas released (close to the grenade)
-	var/n2_gas_amount = 80
-	///Amount of Oxygen gas released (close to the grenade)
-	var/o2_gas_amount = 30
-
-/obj/item/grenade/gas_crystal/proto_nitrate_crystal/prime(mob/living/lanced_by)
-	. = ..()
-	update_mob()
-	playsound(src, 'sound/effects/spray2.ogg', 100, TRUE)
-	for(var/turf/turf_loc in view(refill_range, loc))
-		if(!isopenturf(turf_loc))
-			continue
-		var/distance_from_center = max(get_dist(turf_loc, loc), 1)
-		var/turf/open/floor_loc = turf_loc
-		floor_loc.atmos_spawn_air("n2=[n2_gas_amount / distance_from_center];o2=[o2_gas_amount / distance_from_center];TEMP=273")
-	qdel(src)
-
 /obj/item/grenade/gas_crystal/healium_crystal
 	name = "Healium crystal"
 	desc = "A crystal made from the Healium gas, it's cold to the touch."

@@ -216,8 +216,12 @@
 	if(do_after(user, 3 SECONDS, src.parent))
 		if(!rod.wielded)
 			return
-		var/atom/parent = src.parent
-		var/list/fishing_contents = parent.GetAllContents()
+
+		var/list/fishing_contents = list()
+		for(var/turf/T in range(3, src.parent))
+			if(ischasm(T))
+				fishing_contents += T.GetAllContents()
+
 		if(!length(fishing_contents))
 			to_chat(user, span_warning("There's nothing here!"))
 			return
@@ -226,6 +230,7 @@
 			M.forceMove(get_turf(user))
 			UnregisterSignal(M, COMSIG_LIVING_REVIVE)
 			found = TRUE
+			break //only one mob rather than all
 		if(found)
 			to_chat(user, span_warning("You reel in something!"))
 		else

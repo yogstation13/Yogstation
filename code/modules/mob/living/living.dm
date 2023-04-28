@@ -31,7 +31,7 @@
 			qdel(effect)
 		else
 			effect.be_replaced()
-	
+
 	if(ranged_ability)
 		ranged_ability.remove_ranged_ability(src)
 
@@ -1050,7 +1050,7 @@
 		G.Recall()
 		to_chat(G, span_holoparasite("Your summoner has changed form!"))
 
-/mob/living/rad_act(amount)
+/mob/living/rad_act(amount, collectable_radiation)
 	. = ..()
 
 	if(!amount || (amount < RAD_MOB_SKIN_PROTECTION) || HAS_TRAIT(src, TRAIT_RADIMMUNE))
@@ -1223,7 +1223,7 @@
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src) && (has_arms || ignore_legs || has_legs)
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src)
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else

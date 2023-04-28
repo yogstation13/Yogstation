@@ -6,7 +6,7 @@
 		var/leg_amount = get_num_legs()
 		. += max(6 - 3*leg_amount, 0) //the fewer the legs, the slower the mob
 		if(!leg_amount)
-			. += max((6 - 3*get_num_arms()), 0) //crawling is harder with fewer arms
+			. += max((12 - 6*get_num_arms()), 0) //crawling is harder with fewer arms
 		if(legcuffed)
 			. += legcuffed.slowdown
 

@@ -703,6 +703,27 @@
 					/obj/item/clothing/gloves/combat)
 	crate_name = "swat crate"
 
+/datum/supply_pack/security/armory/militia
+	name = "Militia Crate"
+	desc = "All you need to quickly and cheaply arm your own militia. Comes with three surplus carbines and three additional magazines, three survival knives, three armor vests, then three stylish berets. Requires Armory access to open."
+	cost = 3500
+	contains = list(/obj/item/gun/ballistic/automatic/surplus,
+					/obj/item/gun/ballistic/automatic/surplus,
+					/obj/item/gun/ballistic/automatic/surplus,
+					/obj/item/ammo_box/magazine/m10mm/rifle,
+					/obj/item/ammo_box/magazine/m10mm/rifle,
+					/obj/item/ammo_box/magazine/m10mm/rifle,
+					/obj/item/kitchen/knife/combat/survival,
+					/obj/item/kitchen/knife/combat/survival,
+					/obj/item/kitchen/knife/combat/survival,
+					/obj/item/clothing/suit/armor/vest,
+					/obj/item/clothing/suit/armor/vest,
+					/obj/item/clothing/suit/armor/vest,
+					/obj/item/clothing/head/beret/vintage,
+					/obj/item/clothing/head/beret/vintage,
+					/obj/item/clothing/head/beret/vintage)
+	crate_name = "militia crate"
+
 /datum/supply_pack/security/armory/wt550_single
 	name = "Surplus Security Autocarbine Single-Pack"
 	desc = "Contains one high-powered, semiautomatic carbine chambered in 4.6x30mm rounds. Requires Armory access to open."
@@ -1109,6 +1130,24 @@
 	access = ACCESS_CE
 	contains = list(/obj/item/choice_beacon/supermatter)
 	crate_name = "supermatter shard crate"
+	crate_type = /obj/structure/closet/crate/secure/engineering
+	dangerous = TRUE
+
+/datum/supply_pack/engine/hypertorus_fusion_reactor
+	name = "HFR Crate"
+	desc = "The new and improved fusion reactor. Requires CE access to open."
+	cost = 10000
+	access = ACCESS_CE
+	contains = list(/obj/item/hfr_box/corner,
+					/obj/item/hfr_box/corner,
+					/obj/item/hfr_box/corner,
+					/obj/item/hfr_box/corner,
+					/obj/item/hfr_box/body,
+					/obj/item/hfr_box/body,
+					/obj/item/hfr_box/body,
+					/obj/item/hfr_box/body,
+					/obj/item/hfr_box/core)
+	crate_name = "HFR crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
 
