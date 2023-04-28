@@ -42,7 +42,7 @@
 	var/list/modifiers = params2list(params)
 	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
 		return
-		
+
 	if(H.a_intent == INTENT_DISARM)
 		leap(H, target)
 
@@ -181,6 +181,16 @@
 		return
 	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + plates)//longer cooldown the more plates you have
 
+	//telegraph ripped entirely from bubblegum charge
+	var/chargeturf = get_turf(target)
+	if(!chargeturf)
+		return
+	var/dir = get_dir(user, chargeturf)
+	var/turf/T = get_ranged_target_turf(chargeturf, dir)
+	if(!T)
+		return
+	new /obj/effect/temp_visual/dragon_swoop/bubblegum(T)
+
 	leaping = TRUE
 	var/jumpspeed = heavy ? 1 : 3
 	user.throw_at(target, 15, jumpspeed, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
@@ -207,6 +217,7 @@
 		var/damage = heavy ? 25 : 15 //chunky boy does more damage
 
 		if(L.loc == user.loc)
+			to_chat(L, "[user] lands directly ontop of you, c")
 			damage *= 2//for the love of god, don't get landed on
 			L.adjustStaminaLoss(damage)
 
@@ -503,9 +514,9 @@
 	if(istype(S))//burn bright my friend
 		S.power_drain *= 3
 	usr.click_intercept = src 
-	H.physiology.heat_mod -= 1 //walk through that fire all you like, hope you don't care about your clothes
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 	update_platespeed(H)
+	ADD_TRAIT(H, TRAIT_RESISTHEAT, type) //walk through that fire all you like, hope you don't care about your clothes
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	ADD_TRAIT(H, TRAIT_BOMBIMMUNE, type)//maxcap suicide bombers can go fuck themselves
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
@@ -520,10 +531,10 @@
 	if(istype(S))//but not that bright
 		S.power_drain /= 3
 	usr.click_intercept = null 
-	H.physiology.heat_mod += 1
 	H.physiology.damage_resistance -= PLATE_REDUCTION * min(plates, MAX_PLATES)
-	H.remove_movespeed_modifier(type)
 	deltimer(plate_timer)
+	H.remove_movespeed_modifier(type)
+	REMOVE_TRAIT(H, TRAIT_RESISTHEAT, type)
 	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	REMOVE_TRAIT(H, TRAIT_BOMBIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
