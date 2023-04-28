@@ -18,22 +18,7 @@
 
 
 	else if(istype(I, /obj/item/stock_parts/cell))
-		var/obj/item/stock_parts/cell/CELL = I
-		if(CELL.maxcharge > cell.maxcharge && n_gloves && n_gloves.candrain)
-			to_chat(U, span_notice("Higher maximum capacity detected.\nUpgrading..."))
-			if (n_gloves && n_gloves.candrain && do_after(U, s_delay, src))
-				U.transferItemToLoc(CELL, src)
-				CELL.charge = min(CELL.charge+cell.charge, CELL.maxcharge)
-				var/obj/item/stock_parts/cell/old_cell = cell
-				old_cell.charge = 0
-				U.put_in_hands(old_cell)
-				old_cell.add_fingerprint(U)
-				old_cell.corrupt()
-				old_cell.update_icon()
-				cell = CELL
-				to_chat(U, span_notice("Upgrade complete. Maximum capacity: <b>[round(cell.maxcharge/100)]</b>%"))
-			else
-				to_chat(U, span_danger("Procedure interrupted. Protocol terminated."))
+		to_chat(U, span_warning("ERROR: CELL REPLACEMENT UNAUTHORIZED AS OF TREATY#18678"))
 		return
 
 	else if(istype(I, /obj/item/disk/tech_disk))//If it's a data disk, we want to copy the research on to the suit.

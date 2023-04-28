@@ -22,20 +22,25 @@
 	block_chance = 50
 	armour_penetration = 50
 	w_class = WEIGHT_CLASS_NORMAL
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	block_chance = 50
+	hitsound = 'sound/weapons/cqchit1.ogg'
+	attack_verb = list("beat", "struck", "battered", "impaired")
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	sharpness = SHARP_EDGED
-	max_integrity = 200
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	icon = 'icons/obj/weapons/swords.dmi'
+
+	damtype = STAMINA // non-lethal except to those who attack us
+	var/killing_sound = 'sound/weapons/bladeslice.ogg'
+	var/killing_verbs = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	var/list/mob/living/people_to_kill
+
 	var/datum/effect_system/spark_spread/spark_system
 	var/datum/action/innate/dash/ninja/jaunt
 	var/dash_toggled = TRUE
 
 /obj/item/energy_katana/Initialize()
 	. = ..()
+	people_to_kill = list()
 	jaunt = new(src)
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
@@ -44,6 +49,15 @@
 /obj/item/energy_katana/attack_self(mob/user)
 	dash_toggled = !dash_toggled
 	to_chat(user, span_notice("You [dash_toggled ? "enable" : "disable"] the dash function on [src]."))
+
+/obj/item/energy_katana/pre_attack(atom/A, mob/living/user, params)
+	. = ..()
+	if(!.)
+		return
+	if(!isliving(A) || (A in people_to_kill))
+		damtype = BRUTE
+		attack_verb = typelist("attack_verb", killing_verbs)
+		hitsound = killing_sound
 
 /obj/item/energy_katana/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
@@ -54,6 +68,9 @@
 		playsound(user, "sparks", 50, 1)
 		playsound(user, 'sound/weapons/blade1.ogg', 50, 1)
 		target.emag_act(user)
+	damtype = initial(damtype)
+	attack_verb = typelist("attack_verb", initial(attack_verb))
+	hitsound = initial(hitsound)
 
 /obj/item/energy_katana/pickup(mob/living/carbon/human/user)
 	. = ..()
@@ -88,6 +105,30 @@
 	. = ..()
 	jaunt.Remove(user)
 	user.update_icons()
+
+/obj/item/energy_katana/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type)
+	. = ..()
+	if(isliving(hitby))
+		var/mob/living/attacking_mob = hitby
+		if(attack_type != UNARMED_ATTACK || attacking_mob.a_intent != INTENT_HELP) // they are just trying to help
+			disable_safeties(owner, hitby)
+	else if(isprojectile(hitby))
+		var/obj/item/projectile/P = hitby
+		if(P?.firer && P.firer != owner && isliving(P.firer))
+			disable_safeties(owner, P.firer)
+	else if(isitem(hitby))
+		var/obj/item/attacking_item = hitby
+		if (attacking_item.thrownby)
+			disable_safeties(owner, attacking_item.thrownby)
+		else if(isliving(attacking_item.loc))
+			disable_safeties(owner, attacking_item.loc)
+
+/obj/item/energy_katana/proc/disable_safeties(mob/owner, mob/living/target)
+	if(!istype(target))
+		return
+	if(owner)
+		to_chat(owner, span_warning("WARNING: Safeties permanently disabled for [target]."))
+	people_to_kill |= target
 
 //If we hit the Ninja who owns this Katana, they catch it.
 //Works for if the Ninja throws it or it throws itself or someone tries
