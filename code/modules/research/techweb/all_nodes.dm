@@ -1094,7 +1094,7 @@
 	/obj/item/weldingtool/abductor, /obj/item/wirecutters/abductor, /obj/item/circuitboard/machine/abductor, /obj/item/abductor/baton, /obj/item/abductor)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	hidden = TRUE
-	design_ids = list("alienalloy", "mind_flayer")
+	design_ids = list("alienalloy", "mind_flayer", "ci-disabler")
 
 /datum/techweb_node/alien_bio
 	id = "alien_bio"

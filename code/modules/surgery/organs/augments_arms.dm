@@ -177,6 +177,14 @@
 /obj/item/organ/cyberimp/arm/gun/laser/l
 	zone = BODY_ZONE_L_ARM
 
+/obj/item/organ/cyberimp/arm/gun/disabler
+	name = "arm-mounted laser implant"
+	desc = "A variant of the arm cannon implant that fires disabler shots. The cannon emerges from the subject's arm and remains inside when not in use."
+	icon_state = "arm_taser"
+	contents = newlist(/obj/item/gun/energy/disabler/mounted)
+
+/obj/item/organ/cyberimp/arm/gun/disabler/l
+	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/gun/taser
 	name = "arm-mounted taser implant"

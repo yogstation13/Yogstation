@@ -24,3 +24,13 @@
 
 /obj/item/gun/energy/laser/mounted/dropped()
 	..()
+
+/obj/item/gun/energy/disabler/mounted
+	name = "mounted disabler"
+	desc = "An arm mounted self-defense weapon that exhausts organic targets, weakening them until they collapse."
+	selfcharge = 1
+	can_flashlight = FALSE
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
+
+/obj/item/gun/energy/disabler/mounted/dropped()
+	..()

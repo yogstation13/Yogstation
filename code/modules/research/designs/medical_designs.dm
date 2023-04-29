@@ -493,6 +493,17 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/cyberimp_toolset
+	name = "Disabler Arm Implant"
+	desc = "A variant of the arm cannon implant that fires disabler shots. The cannon emerges from the subject's arm and remains inside when not in use."
+	id = "ci-disabler"
+	build_type = PROTOLATHE
+	construction_time = 100
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2000, /datum/material/silver = 1000, /datum/material/diamond = 1000)
+	build_path = /obj/item/organ/cyberimp/arm/toolset
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/cymberimp_noslipwater
 	name = "Slip Resistance Implant"
 	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it. It probably won't help if the floor is too slippery."
