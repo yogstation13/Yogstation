@@ -493,7 +493,7 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/cyberimp_toolset
+/datum/design/cyberimp_disabler
 	name = "Disabler Arm Implant"
 	desc = "A variant of the arm cannon implant that fires disabler shots. The cannon emerges from the subject's arm and remains inside when not in use."
 	id = "ci-disabler"
