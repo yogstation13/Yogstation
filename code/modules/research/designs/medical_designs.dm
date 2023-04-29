@@ -500,7 +500,7 @@
 	build_type = PROTOLATHE
 	construction_time = 100
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2000, /datum/material/silver = 1000, /datum/material/diamond = 1000)
-	build_path = /obj/item/organ/cyberimp/arm/toolset
+	build_path = /obj/item/organ/cyberimp/arm/gun/disabler
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
