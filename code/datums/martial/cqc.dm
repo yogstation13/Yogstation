@@ -293,6 +293,9 @@
   * returns false if the attack is interrupted
   */
 /datum/martial_art/cqc/proc/handle_chokehold(mob/living/carbon/human/A, mob/living/carbon/human/D) //handles the chokehold attack, dealing oxygen damage until the target is unconscious or would have less than 20 health before knocking out
+	if(HAS_TRAIT(D, TRAIT_NOBREATH) || isipc(D))
+		to_chat(A, span_warning("[D] doesn't breathe, you can't choke [D.p_them()] out!"))
+		return FALSE
 	chokehold_active = TRUE
 	var/damage2deal = 15
 	while(do_mob(A, D, 10))
