@@ -382,7 +382,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon_state = "cyborg_upgrade"
 	var/martial = /datum/martial_art/cqc
 	var/species = /datum/species/polysmorph //get clowned on
-	var/breathing = FALSE //if species breathing is a problem
 
 /obj/item/battleroyale/martial/attack_self(mob/user)
 	. = ..()
@@ -394,9 +393,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		var/datum/martial_art/MA = new martial
 		user.set_species(species)
 		MA.teach(user)
-		if(breathing)
-			var/obj/item/organ/lungs/debug/based = new /obj/item/organ/lungs/debug()
-			based.Insert(user)
+		ADD_TRAIT(user, TRAIT_NOBREATH, name)//because some species can't breathe normally
 		qdel(src)
 
 /obj/item/battleroyale/martial/ipc
@@ -406,7 +403,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon_state = "cyborg_upgrade"
 	martial = /datum/martial_art/ultra_violence
 	species = /datum/species/ipc
-	breathing = TRUE //they can't us regular internals tanks
 
 /obj/item/battleroyale/martial/lizard
 	name = "Lizard martial mutator"
@@ -439,7 +435,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon_state = "scroll2"
 	martial = /datum/martial_art/explosive_fist
 	species = /datum/species/plasmaman
-	breathing = TRUE //they can't us regular internals tanks
 
 //used for bundle items
 /obj/item/battleroyale/itemspawner

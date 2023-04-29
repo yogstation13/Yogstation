@@ -622,19 +622,3 @@
 	heat_level_1_threshold = 500
 	heat_level_2_threshold = 800
 	heat_level_3_threshold = 1400
-
-/obj/item/organ/lungs/debug
-	name = "god lungs"
-	desc = "just don't need to breath innit"
-	safe_oxygen_min = 0
-	safe_oxygen_max = 0
-	safe_nitro_min = 0
-	safe_nitro_max = 0
-	safe_co2_min = 0
-	safe_co2_max = 0
-	safe_toxins_min = 0
-	safe_toxins_max = 0
-	SA_para_min = 0
-	SA_sleep_min = 0
-	BZ_trip_balls_min = 0
-	gas_stimulation_min = 0
