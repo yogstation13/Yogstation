@@ -535,7 +535,7 @@
 /datum/supply_pack/security/armory/wintonrifle
 	name = "Winton Mk. VI Repeating Rifles Crate"
 	desc = "Line them up and put them down. Containts three Frontier-made Winton lever-action rifles and three bandoliers, each filled with twenty-four spare rounds."
-	cost = 13000
+	cost = 16000
 	contains = list(/obj/item/gun/ballistic/shotgun/lever,
 					/obj/item/gun/ballistic/shotgun/lever,
 					/obj/item/gun/ballistic/shotgun/lever,
@@ -547,7 +547,7 @@
 /datum/supply_pack/security/armory/wintonrifle_single
 	name = "Winton Mk. VI Repeating Rifle Single-Pack"
 	desc = "For the enterprising marksman. Contains a single Frontier-made Winton level-action rifle and a bandolier filled with twenty-four spare rounds."
-	cost = 5200
+	cost = 6400
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/shotgun/lever,
 					/obj/item/storage/belt/bandolier/sharpshooter)
