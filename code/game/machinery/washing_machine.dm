@@ -32,7 +32,17 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		DYE_BLUE = /obj/item/clothing/under/skirt/color/blue,
 		DYE_PURPLE = /obj/item/clothing/under/skirt/color/lightpurple,
 		DYE_BLACK = /obj/item/clothing/under/skirt/color/black,
-		DYE_WHITE = /obj/item/clothing/under/skirt/color/white
+		DYE_WHITE = /obj/item/clothing/under/skirt/color/white,
+
+		DYE_MIME = /obj/item/clothing/under/rank/mime/skirt,
+		DYE_LAW = /obj/item/clothing/under/lawyer/blacksuit/skirt,
+		DYE_CAPTAIN = /obj/item/clothing/under/rank/captain/skirt,
+		DYE_HOP = /obj/item/clothing/under/rank/head_of_personnel/skirt,
+		DYE_HOS = /obj/item/clothing/under/rank/head_of_security/skirt,
+		DYE_CE = /obj/item/clothing/under/rank/chief_engineer/skirt,
+		DYE_RD = /obj/item/clothing/under/rank/research_director/skirt,
+		DYE_CMO = /obj/item/clothing/under/rank/chief_medical_officer/skirt,
+		DYE_QM = /obj/item/clothing/under/rank/cargo/skirt
 	),
 	DYE_REGISTRY_GLOVES = list(
 		DYE_RED = /obj/item/clothing/gloves/color/red,
