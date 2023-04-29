@@ -28,9 +28,13 @@
 /obj/item/gun/energy/disabler/mounted
 	name = "mounted disabler"
 	desc = "An arm mounted self-defense weapon that exhausts organic targets, weakening them until they collapse."
+	ammo_type = list(/obj/item/ammo_casing/energy/disabler/mounted)
 	selfcharge = 1
 	can_flashlight = FALSE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
 /obj/item/gun/energy/disabler/mounted/dropped()
 	..()
+
+/obj/item/ammo_casing/energy/disabler/mounted //twice the cost
+	e_cost = 100
