@@ -172,18 +172,18 @@
   * Called by client/Move()
   */
 /client/proc/Process_Grab()
-	if(mob.pulledby)
-		if((mob.pulledby == mob.pulling) && (mob.pulledby.grab_state == GRAB_PASSIVE))			//Don't autoresist passive grabs if we're grabbing them too.
-			return
-		if(mob.incapacitated(ignore_restraints = 1))
-			move_delay = world.time + 10
-			return TRUE
-		else if(mob.restrained(ignore_grab = 1))
-			move_delay = world.time + 10
-			to_chat(src, span_warning("You're restrained! You can't move!"))
-			return TRUE
-		else
-			return mob.resist_grab(1)
+	if(!mob.pulledby)
+		return FALSE
+	if(mob.pulledby == mob.pulling && mob.pulledby.grab_state == GRAB_PASSIVE) //Don't autoresist passive grabs if we're grabbing them too.
+		return FALSE
+	if(HAS_TRAIT(mob, TRAIT_INCAPACITATED))
+		COOLDOWN_START(src, move_delay, 1 SECONDS)
+		return TRUE
+	else if(mob.restrained(ignore_grab = TRUE))
+		COOLDOWN_START(src, move_delay, 1 SECONDS)
+		to_chat(src, span_warning("You're restrained! You can't move!"))
+		return TRUE
+	return mob.resist_grab(TRUE)
 
 /**
   * Allows mobs to ignore density and phase through objects

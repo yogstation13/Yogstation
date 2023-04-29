@@ -16,7 +16,7 @@
 
 /datum/action/cooldown/spell/aoe/target_hive
 	panel = "Hivemind Abilities"
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "spell_default"
 
@@ -51,7 +51,7 @@
 		if(aoe_radius)
 			possible_targets &= view_or_range(aoe_radius, owner, "range")
 
-	var/mob/living/carbon/human/H = tgui_input_list("Choose the target for the spell.", "Targeting", possible_targets) //arcaic, homeric even
+	var/mob/living/carbon/human/H = tgui_input_list(owner, "Choose the target for the spell.", "Targeting", possible_targets) //arcaic, homeric even
 	if(!H)
 		return
 	targets += H
@@ -192,7 +192,7 @@
 	panel = "Hivemind Abilities"
 	invocation_type = INVOCATION_NONE
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "shock"
 	cast_range = 7
@@ -231,7 +231,7 @@
 	cooldown_time = 1800
 	invocation_type = INVOCATION_NONE
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "scan"
 
@@ -306,7 +306,7 @@
 	panel = "Hivemind Abilities"
 	cooldown_time = 600
 	invocation_type = INVOCATION_NONE
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "drain"
 	spell_requirements = SPELL_REQUIRES_HUMAN
@@ -510,7 +510,7 @@
 	cooldown_time = 600
 	cast_range = 7
 	invocation_type = INVOCATION_NONE
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "panic"
 
@@ -567,7 +567,7 @@
 	cooldown_time = 600
 	cast_range = 7
 	invocation_type = INVOCATION_NONE
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "pin"
 
@@ -644,7 +644,7 @@
 	cooldown_time = 200
 	panel = "Hivemind Abilities"
 	background_icon_state = "bg_hive"
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	button_icon_state = "hivehand"
 	var/spell_item = /obj/item/extendohand/hivemind
 
@@ -666,7 +666,7 @@
 	cooldown_time = 600
 	cast_range = 1
 	invocation_type = INVOCATION_NONE
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "hack"
 
@@ -735,7 +735,7 @@
 	cast_range = 1
 	invocation_type = INVOCATION_NONE
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "reclaim"
 
@@ -780,7 +780,7 @@
 	cooldown_time = 1
 	invocation_type = INVOCATION_NONE
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "chaos"
 
@@ -821,7 +821,7 @@
 	name = "Bruteforce"
 	desc = "Our ability to assimilate is boosted at the cost of, allowing us to crush the technology shielding the minds of savyy personnel and assimilate them. This power comes at a small price, and we will be immobilized for a few seconds after assimilation."
 	panel = "Hivemind Abilities"
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "loyal"
 
@@ -853,7 +853,7 @@
 	name = "Telekinetic Field"
 	desc = "Our psionic powers form a barrier around us in the phsyical world that only we can pass through."
 	panel = "Hivemind Abilities"
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "forcewall"
 
@@ -904,7 +904,7 @@
 	name = "One Mind"
 	desc = "Our true power... finally within reach."
 	panel = "Hivemind Abilities"
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "assim"
 
@@ -969,7 +969,7 @@
 	cooldown_time = 100
 	invocation_type = INVOCATION_NONE
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	icon_icon = 'icons/mob/actions/actions_hive.dmi'
+	button_icon = 'icons/mob/actions/actions_hive.dmi'
 	background_icon_state = "bg_hive"
 	button_icon_state = "comms"
 

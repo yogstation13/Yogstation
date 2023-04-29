@@ -1298,13 +1298,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 /datum/action/item_action/visegrip
 	name = "Vise Grip"
 	desc = "Remotely detonate marked targets. People become rooted for 1 second. Animals become rooted for 6 seconds and take hefty damage."
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "leghold"
 
 /datum/action/item_action/reach
 	name = "Reach"
 	desc = "Mark those standing on blood for 10 seconds."
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rshield"
 
 /obj/item/melee/knuckles
@@ -1540,7 +1540,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 				playsound(T,'sound/magic/blind.ogg', 200, 1, -4)
 				new /obj/effect/temp_visual/hierophant/telegraph/teleport(T, user)
 				beacon = new/obj/effect/hierophant(T)
-				user.update_action_buttons_icon()
+				user.update_mob_action_buttons()
 				user.visible_message("[span_hierophant_warning("[user] places a strange machine beneath [user.p_their()] feet!")]", \
 				"[span_hierophant("You detach the hierophant beacon, allowing you to teleport yourself and any allies to it at any time!")]\n\
 				[span_notice("You can remove the beacon to place it again by striking it with the club.")]")
@@ -1560,7 +1560,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(user, span_warning("You don't have enough space to teleport from here!"))
 		return
 	teleporting = TRUE //start channel
-	user.update_action_buttons_icon()
+	user.update_mob_action_buttons()
 	user.visible_message("[span_hierophant_warning("[user] starts to glow faintly...")]")
 	timer = world.time + 5 SECONDS
 	INVOKE_ASYNC(src, .proc/prepare_icon_update)
@@ -1573,7 +1573,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(is_blocked_turf(T, TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
-			user.update_action_buttons_icon()
+			user.update_mob_action_buttons()
 			timer = world.time
 			INVOKE_ASYNC(src, .proc/prepare_icon_update)
 			beacon.icon_state = "hierophant_tele_off"
@@ -1585,7 +1585,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(!do_after(user, 0.3 SECONDS, user) || !user || !beacon || QDELETED(beacon)) //no walking away shitlord
 			teleporting = FALSE
 			if(user)
-				user.update_action_buttons_icon()
+				user.update_mob_action_buttons()
 			timer = world.time
 			INVOKE_ASYNC(src, .proc/prepare_icon_update)
 			if(beacon)
@@ -1594,7 +1594,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(is_blocked_turf(T, TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
-			user.update_action_buttons_icon()
+			user.update_mob_action_buttons()
 			timer = world.time
 			INVOKE_ASYNC(src, .proc/prepare_icon_update)
 			beacon.icon_state = "hierophant_tele_off"
@@ -1622,7 +1622,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		beacon.icon_state = "hierophant_tele_off"
 	teleporting = FALSE
 	if(user)
-		user.update_action_buttons_icon()
+		user.update_mob_action_buttons()
 
 /obj/item/hierophant_club/proc/teleport_mob(turf/source, mob/M, turf/target, mob/user)
 	var/turf/turf_to_teleport_to = get_step(target, get_dir(source, M)) //get position relative to caster
@@ -1819,13 +1819,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 /datum/action/item_action/band
 	name = "Band"
 	desc = "Summon all your thralls to your location."
-	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "horde"
 
 /*/datum/action/item_action/gambit
 	name = "Gambit"
 	desc = "Throw out your cane. If the target is weak enough to finish off, teleport to them and do it, recovering your cane in the process."
-	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "horde"*/
 
 /obj/item/cane/cursed

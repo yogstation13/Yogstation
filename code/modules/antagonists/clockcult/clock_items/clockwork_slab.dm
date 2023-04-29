@@ -102,6 +102,10 @@
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(check_on_mob), user), 1) //dropped is called before the item is out of the slot, so we need to check slightly later
 
+/obj/item/clockwork/slab/equipped(mob/user)
+	. = ..()
+	update_quickbind()
+
 /obj/item/clockwork/slab/worn_overlays(isinhands = FALSE, icon_file)
 	. = list()
 	if(isinhands && item_state && inhand_overlay)
@@ -111,6 +115,7 @@
 /obj/item/clockwork/slab/proc/check_on_mob(mob/user)
 	if(user && !(src in user.held_items) && slab_ability?.owner) //if we happen to check and we AREN'T in user's hands, remove whatever ability we have
 		slab_ability.unset_ranged_ability(user)
+	update_quickbind(user, TRUE)
 
 //Power generation
 /obj/item/clockwork/slab/process()
@@ -468,7 +473,7 @@
 		if("toggle")
 			recollecting = !recollecting
 		if("recite")
-			INVOKE_ASYNC(src, .proc/recite_scripture, text2path(params["category"]), usr, FALSE)
+			INVOKE_ASYNC(src, PROC_REF(recite_scripture), text2path(params["category"]), usr, FALSE)
 		if("select")
 			selected_scripture = params["category"]
 		if("bind")
@@ -504,19 +509,31 @@
 	quickbound[index] = scripture
 	update_quickbind()
 
-/obj/item/clockwork/slab/proc/update_quickbind()
-	for(var/datum/action/item_action/clock/quickbind/Q in actions)
-		qdel(Q) //regenerate all our quickbound scriptures
-	if(LAZYLEN(quickbound))
-		for(var/i in 1 to quickbound.len)
-			if(!quickbound[i])
-				continue
-			var/datum/action/item_action/clock/quickbind/Q = new /datum/action/item_action/clock/quickbind(src)
-			Q.scripture_index = i
-			var/datum/clockwork_scripture/quickbind_slot = GLOB.all_scripture[quickbound[i]]
-			Q.name = "[quickbind_slot.name] ([Q.scripture_index])"
-			Q.desc = quickbind_slot.quickbind_desc
-			Q.button_icon_state = quickbind_slot.name
-			Q.UpdateButtons()
-			if(isliving(loc))
-				Q.Grant(loc)
+/obj/item/clockwork/slab/proc/update_quickbind(mob/mob_override, removing_only = FALSE)
+	var/list/actions_to_elim = list()
+	if(!mob_override && !isliving(loc))
+		actions_to_elim = actions
+	else
+		var/mob/living/user = mob_override || loc
+		if(!is_servant_of_ratvar(user))
+			return
+		actions_to_elim = user.actions
+	for(var/datum/action/item_action/clock/quickbind/existing_binds in actions_to_elim)
+		existing_binds.Remove(existing_binds.owner) //regenerate all our quickbound scriptures
+	if(removing_only)
+		return
+	if(!LAZYLEN(quickbound))
+		return
+	for(var/i in 1 to quickbound.len)
+		if(!quickbound[i])
+			continue
+		var/datum/action/item_action/clock/quickbind/Q = new /datum/action/item_action/clock/quickbind(src)
+		Q.scripture_index = i
+		var/datum/clockwork_scripture/quickbind_slot = GLOB.all_scripture[quickbound[i]]
+		Q.name = "[quickbind_slot.name] ([Q.scripture_index])"
+		Q.desc = quickbind_slot.quickbind_desc
+		Q.button_icon_state = quickbind_slot.name
+		qdel(Q.GetComponent(/datum/component/action_item_overlay))
+		if(isliving(loc))
+			Q.Grant(loc)
+		Q.build_all_button_icons()

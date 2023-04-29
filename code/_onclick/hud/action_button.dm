@@ -6,8 +6,12 @@
 	var/actiontooltipstyle = ""
 	screen_loc = null
 
-	var/button_icon_state
-	var/appearance_cache
+	/// The icon state of our active overlay, used to prevent re-applying identical overlays
+	var/active_overlay_icon_state
+	/// The icon state of our active underlay, used to prevent re-applying identical underlays
+	var/active_underlay_icon_state
+	/// The overlay we have overtop our button
+	var/mutable_appearance/button_overlay
 
 	/// Where we are currently placed on the hud. SCRN_OBJ_DEFAULT asks the linked action what it thinks
 	var/location = SCRN_OBJ_DEFAULT
@@ -160,19 +164,27 @@
 	. = list()
 	.["bg_icon"] = ui_style
 	.["bg_state"] = "template"
+	.["bg_state_active"] = "template_active"
 
-	//TODO : Make these fit theme
-	.["toggle_icon"] = 'icons/mob/actions.dmi'
-	.["toggle_hide"] = "hide"
-	.["toggle_show"] = "show"
-
-//see human and alien hud for specific implementations.
-
-/mob/proc/update_action_buttons_icon(status_only = FALSE)
+/**
+ * Updates all action buttons this mob has.
+ *
+ * Arguments:
+ * * update_flags - Which flags of the action should we update
+ * * force - Force buttons update even if the given button icon state has not changed
+ */
+/mob/proc/update_mob_action_buttons(update_flags = ALL, force = FALSE)
 	for(var/datum/action/current_action as anything in actions)
-		current_action.UpdateButtons(status_only)
+		current_action.build_all_button_icons(update_flags, force)
 
-//This is the proc used to update all the action buttons.
+/**
+ * This proc handles adding all of the mob's actions to their screen
+ *
+ * If you just need to update existing buttons, use [/mob/proc/update_mob_action_buttons]!
+ *
+ * Arguments:
+ * * update_flags - reload_screen - bool, if TRUE, this proc will add the button to the screen of the passed mob as well
+ */
 /mob/proc/update_action_buttons(reload_screen = FALSE)
 	if(!hud_used || !client)
 		return
@@ -182,7 +194,7 @@
 
 	for(var/datum/action/action as anything in actions)
 		var/atom/movable/screen/movable/action_button/button = action.viewers[hud_used]
-		action.UpdateButtons()
+		action.build_all_button_icons()
 		if(reload_screen)
 			client.screen += button
 

@@ -232,7 +232,7 @@
 
 /datum/action/item_action/activate_uber
 	name = "Activate Übercharge"
-	icon_icon = 'icons/obj/chronos.dmi'
+	button_icon = 'icons/obj/chronos.dmi'
 	button_icon_state = "chronogun"
 
 /// Activates über if ubercharge is ready
@@ -243,7 +243,7 @@
 
 	var/obj/item/gun/medbeam/uber/gun = target
 
-	if(!IsAvailable())
+	if(!IsAvailable(feedback = FALSE))
 		return
 
 	if(gun.ubering)

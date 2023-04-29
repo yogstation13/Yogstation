@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/conjure_item/summon_pitchfork
 	name = "Summon Pitchfork"
 	desc = "A devil's weapon of choice.  Use this to summon/unsummon your pitchfork."
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "pitchfork"
 	background_icon_state = "bg_demon"
 
@@ -23,7 +23,7 @@
 	desc = "A devil's instrument of choice. \n\
 		Use this to summon/unsummon your golden violin."
 	button_icon_state = "golden_violin"
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	background_icon_state = "bg_demon"
 
 	invocation = "I aint have this much fun since Georgia."
@@ -172,7 +172,7 @@
 /datum/action/cooldown/spell/aoe/sintouch
 	name = "Sin Touch"
 	desc = "Subtly encourage someone to sin."
-	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "sintouch"
 	background_icon_state = "bg_demon"
 
@@ -210,7 +210,7 @@
 	school = SCHOOL_CONJURATION
 
 	cooldown_time = 5 SECONDS //so the smoke can't be spammed
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "funk"
 	background_icon_state = "bg_demon"
 	spell_requirements = NONE

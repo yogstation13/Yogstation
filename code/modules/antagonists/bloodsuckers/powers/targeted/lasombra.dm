@@ -1,8 +1,8 @@
 /datum/action/bloodsucker/targeted/lasombra
 	name = "Shadow Control"
 	desc = "Submit shadows to your bidding, making darkness much scarier than before."
+	background_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	background_icon_state_on = "lasombra_power_on"
 	background_icon_state_off = "lasombra_power_off"
 	button_icon_state = "power_shadow"

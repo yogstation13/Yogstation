@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/summon_wealth
 	name = "Summon wealth"
 	desc = "The reward for selling your soul."
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "moneybag"
 
 	school = SCHOOL_CONJURATION
@@ -31,7 +31,7 @@
 /datum/action/cooldown/spell/view_range
 	name = "Distant vision"
 	desc = "The reward for selling your soul."
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_jump"
 
 	invocation_type = INVOCATION_NONE
@@ -51,7 +51,7 @@
 /datum/action/cooldown/spell/summon_friend
 	name = "Summon Friend"
 	desc = "The reward for selling your soul."
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "sacredflame"
 	
 	invocation_type = INVOCATION_NONE

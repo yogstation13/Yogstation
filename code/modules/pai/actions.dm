@@ -1,6 +1,6 @@
 /datum/action/innate/pai
 	name = "PAI Action"
-	button_icon = 'icons/mob/actions/actions_silicon.dmi'
+	background_icon = 'icons/mob/actions/actions_silicon.dmi'
 	var/mob/living/silicon/pai/pai_owner
 
 /datum/action/innate/pai/Trigger(trigger_flags)
@@ -53,7 +53,7 @@
 
 /datum/action/innate/pai/light
 	name = "Toggle Integrated Lights"
-	button_icon = 'icons/mob/actions/actions_spells.dmi'
+	background_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "emp"
 	background_icon_state = "bg_tech"
 

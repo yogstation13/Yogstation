@@ -344,7 +344,7 @@
 	return
 
 ///Is the mob incapacitated
-/mob/proc/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE)
+/mob/proc/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE)
 	return
 
 /**

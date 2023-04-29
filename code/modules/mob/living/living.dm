@@ -386,9 +386,17 @@
 			to_chat(src, span_notice("You have given up life and succumbed to death."))
 		death()
 
-/mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
-	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IS_IN_STASIS(src)))
+/mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, ignore_stasis = FALSE)
+	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
 		return TRUE
+
+	if(!ignore_restraints && restrained(ignore_grab))
+		return TRUE
+	if(!ignore_grab && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE)
+		return TRUE
+	if(!ignore_stasis && IS_IN_STASIS(src))
+		return TRUE
+	return FALSE
 
 /mob/living/canUseStorage()
 	if (get_num_arms() <= 0)
@@ -741,7 +749,11 @@
 		..(pressure_difference, direction, pressure_resistance_prob_delta)
 
 /mob/living/can_resist()
-	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
+	if(next_move > world.time)
+		return FALSE
+	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
+		return FALSE
+	return TRUE
 
 /mob/living/verb/resist()
 	set name = "Resist"

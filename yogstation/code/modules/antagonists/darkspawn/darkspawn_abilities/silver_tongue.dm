@@ -8,7 +8,7 @@
 	psi_cost = 60
 	lucidity_price = 1 //Very niche, so low cost
 
-/datum/action/innate/darkspawn/silver_tongue/IsAvailable()
+/datum/action/innate/darkspawn/silver_tongue/IsAvailable(feedback = FALSE)
 	if(SSshuttle.emergency.mode != SHUTTLE_CALL)
 		return
 	return ..()

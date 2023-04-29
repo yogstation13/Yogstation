@@ -142,7 +142,7 @@
 
 /datum/action/item_action/toggle_laser_sight
 	name = "Toggle Laser Sight"
-	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon = 'icons/obj/guns/attachment.dmi'
 	button_icon_state = "laser_sight"
 	var/obj/item/attachment/laser_sight/att
 
@@ -155,9 +155,9 @@
 					att = A
 					break
 	att?.toggle_on()
-	UpdateButtons()
+	build_all_button_icons(UPDATE_BUTTON_ICON)
 
-/datum/action/item_action/toggle_laser_sight/UpdateButton(atom/movable/screen/movable/action_button/button, status_only = FALSE, force)
+/datum/action/item_action/toggle_laser_sight/apply_button_icon(atom/movable/screen/movable/action_button/button, force)
 	var/obj/item/attachment/laser_sight/sight = target
 	if(istype(sight))
 		button_icon_state = "laser_sight[att?.is_on ? "_on" : ""]"
@@ -166,7 +166,7 @@
 
 /datum/action/item_action/change_laser_sight_color
 	name = "Change Laser Sight Color"
-	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon = 'icons/obj/guns/attachment.dmi'
 	button_icon_state = "laser_sight"
 	var/obj/item/attachment/laser_sight/att
 
@@ -183,8 +183,8 @@
 		if(!C || QDELETED(att))
 			return
 		att.laser_color = C
-	UpdateButtons()
+	build_all_button_icons(UPDATE_BUTTON_ICON)
 
-/datum/action/item_action/change_laser_sight_color/UpdateButtons(status_only = FALSE, force)
+/datum/action/item_action/change_laser_sight_color/apply_button_icon(atom/movable/screen/movable/action_button/button, force)
 	button_icon_state = "laser_sight[att?.is_on ? "_on" : ""]"
 	..()

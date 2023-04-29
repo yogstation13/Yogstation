@@ -1,7 +1,7 @@
 /* Formatting for these files, from top to bottom:
 	* Action
 	* Trigger()
-	* IsAvailable()
+	* IsAvailable(feedback = FALSE)
 	* Items
 	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */

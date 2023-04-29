@@ -10,13 +10,13 @@
 	slab = null
 	return ..()
 
-/datum/action/innate/slab/IsAvailable()
+/datum/action/innate/slab/IsAvailable(feedback = FALSE)
 	return TRUE
 
 /datum/action/innate/slab/unset_ranged_ability(mob/living/on_who)
 	. = ..()
 	finished = TRUE
-	QDEL_IN(src, 0.6 SECONDS)
+	QDEL_IN(src, 1 SECONDS)
 
 /datum/action/innate/slab/InterceptClickOn(mob/living/caller, params, atom/clicked_on)
 	if(in_progress)
@@ -27,7 +27,7 @@
 
 	. = ..()
 	if(.)
-		unset_ranged_ability(caller) //i am a genius
+		unset_ranged_ability(caller || usr)
 
 //For the Hateful Manacles scripture; applies replicant handcuffs to the clicked_on.
 /datum/action/innate/slab/hateful_manacles
@@ -60,7 +60,7 @@
 		to_chat(L, span_userdanger("[caller] begins forming manacles around your wrists!"))
 		if(do_mob(caller, L, 30))
 			if(!(istype(L.handcuffed,/obj/item/restraints/handcuffs/clockwork)))
-				L.handcuffed = new/obj/item/restraints/handcuffs/clockwork(L)
+				L.handcuffed = new /obj/item/restraints/handcuffs/clockwork(L)
 				L.update_handcuffed()
 				to_chat(caller, "[span_neovgre_small("You shackle [L].")]")
 				log_combat(caller, L, "handcuffed")
@@ -193,7 +193,7 @@
 		else
 			L.visible_message(span_warning("[L]'s eyes blaze with brilliant light!"), \
 			span_userdanger("Your vision suddenly screams with white-hot light!"))
-			L.Paralyze(15)
+			L.Paralyze(1.5 SECONDS)
 			L.apply_status_effect(STATUS_EFFECT_KINDLE)
 			L.flash_act(1, 1)
 			if(iscultist(L))

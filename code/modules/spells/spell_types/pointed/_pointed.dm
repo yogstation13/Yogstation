@@ -10,8 +10,6 @@
 /datum/action/cooldown/spell/pointed
 	click_to_activate = TRUE
 
-	/// The base icon state of the spell's button icon, used for editing the icon "on" and "off"
-	var/base_icon_state
 	/// Message showing to the spell owner upon activating pointed spell.
 	var/active_msg
 	/// Message showing to the spell owner upon deactivating pointed spell.
@@ -48,14 +46,16 @@
 	if(. & SPELL_CANCEL_CAST)
 		on_deactivation(owner, refund_cooldown = FALSE)
 
+	if(owner && get_dist(get_turf(owner), get_turf(cast_on)) > cast_range)
+		cast_on.balloon_alert(owner, "too far away!")
+		return . | SPELL_CANCEL_CAST
+
 /// Called when the spell is activated / the click ability is set to our spell
 /datum/action/cooldown/spell/pointed/proc/on_activation(mob/on_who)
 	SHOULD_CALL_PARENT(TRUE)
 
 	to_chat(on_who, span_notice("[active_msg] <B>Left-click to cast the spell on a target!</B>"))
-	if(base_icon_state)
-		button_icon_state = "[base_icon_state]1"
-		UpdateButtons()
+	build_all_button_icons()
 	return TRUE
 
 /// Called when the spell is deactivated / the click ability is unset from our spell
@@ -65,9 +65,7 @@
 	if(refund_cooldown)
 		// Only send the "deactivation" message if they're willingly disabling the ability
 		to_chat(on_who, span_notice("[deactive_msg]"))
-	if(base_icon_state)
-		button_icon_state = "[base_icon_state]0"
-		UpdateButtons()
+	build_all_button_icons()
 	return TRUE
 
 /datum/action/cooldown/spell/pointed/InterceptClickOn(mob/living/caller, params, atom/click_target)
@@ -85,10 +83,6 @@
 /datum/action/cooldown/spell/pointed/is_valid_target(atom/cast_on)
 	if(cast_on == owner)
 		to_chat(owner, span_warning("You cannot cast [src] on yourself!"))
-		return FALSE
-
-	if(get_dist(owner, cast_on) > cast_range)
-		to_chat(owner, span_warning("[cast_on.p_theyre(TRUE)] too far away!"))
 		return FALSE
 
 	return TRUE
@@ -160,6 +154,7 @@
 	for(var/i in 1 to projectiles_per_fire)
 		var/obj/item/projectile/to_fire = new projectile_type()
 		ready_projectile(to_fire, target, owner, i)
+		SEND_SIGNAL(owner, COMSIG_MOB_SPELL_PROJECTILE, src, target, to_fire)
 		to_fire.fire()
 	return TRUE
 
@@ -167,7 +162,7 @@
 	to_fire.firer = owner
 	to_fire.fired_from = get_turf(owner)
 	to_fire.preparePixelProjectile(target, owner)
-	RegisterSignal(to_fire, COMSIG_PROJECTILE_ON_HIT, .proc/on_cast_hit)
+	RegisterSignal(to_fire, COMSIG_PROJECTILE_SELF_ON_HIT, PROC_REF(on_cast_hit))
 
 	if(istype(to_fire, /obj/item/projectile/magic))
 		var/obj/item/projectile/magic/magic_to_fire = to_fire

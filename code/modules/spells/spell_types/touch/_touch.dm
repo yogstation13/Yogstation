@@ -45,12 +45,12 @@
 	remove_hand(remove_from)
 	return ..()
 
-/datum/action/cooldown/spell/touch/UpdateButton(atom/movable/screen/movable/action_button/button, status_only = FALSE, force = FALSE)
-	. = ..()
-	if(!button)
-		return
-	if(attached_hand)
-		button.color = COLOR_GREEN
+// PreActivate is overridden to not check is_valid_target on the caster, as it makes less sense.
+/datum/action/cooldown/spell/touch/PreActivate(atom/target)
+	return Activate(target)
+
+/datum/action/cooldown/spell/touch/is_action_active(atom/movable/screen/movable/action_button/current_button)
+	return !!attached_hand
 
 /datum/action/cooldown/spell/touch/set_statpanel_format()
 	. = ..()
@@ -81,6 +81,8 @@
  * Otherwise, registers signals and returns TRUE.
  */
 /datum/action/cooldown/spell/touch/proc/create_hand(mob/living/carbon/cast_on)
+	SHOULD_CALL_PARENT(TRUE)
+
 	var/obj/item/melee/touch_attack/new_hand = new hand_path(cast_on, src)
 	if(!cast_on.put_in_hands(new_hand, del_on_fail = TRUE))
 		reset_spell_cooldown()
@@ -105,6 +107,8 @@
  * If reset_cooldown_after is FALSE, we will instead just start the spell's cooldown
  */
 /datum/action/cooldown/spell/touch/proc/remove_hand(mob/living/hand_owner, reset_cooldown_after = FALSE)
+	SHOULD_CALL_PARENT(TRUE)
+
 	if(!QDELETED(attached_hand))
 		UnregisterSignal(attached_hand, list(COMSIG_ITEM_AFTERATTACK, COMSIG_ITEM_AFTERATTACK_SECONDARY, COMSIG_PARENT_QDELETING, COMSIG_ITEM_DROPPED))
 		hand_owner?.temporarilyRemoveItemFromInventory(attached_hand)
@@ -116,6 +120,7 @@
 		reset_spell_cooldown()
 	else
 		StartCooldown()
+		build_all_button_icons()
 
 // Touch spells don't go on cooldown OR give off an invocation until the hand is used itself.
 /datum/action/cooldown/spell/touch/before_cast(atom/cast_on)

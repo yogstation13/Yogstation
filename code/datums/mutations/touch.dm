@@ -21,7 +21,7 @@
 	invocation_type = INVOCATION_NONE
 	spell_requirements = NONE
 
-	icon_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	draw_message = span_notice("You channel electricity into your hand.")
 	drop_message = span_notice("You let the electricity from your hand dissipate.")
 

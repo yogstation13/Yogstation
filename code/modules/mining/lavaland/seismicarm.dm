@@ -16,7 +16,7 @@
 /datum/action/cooldown/spell/pointed/seismic/lariat
 	name = "Lariat"
 	desc = "Dash forward, catching whatever animal you hit with your arm and knocking them over."
-	icon_icon = 'icons/mob/actions/actions_arm.dmi'
+	button_icon = 'icons/mob/actions/actions_arm.dmi'
 	button_icon_state = "lariat"
 
 	cooldown_time = 7 SECONDS
@@ -73,7 +73,7 @@
 /datum/action/cooldown/spell/pointed/seismic/mop
 	name = "Mop the Floor"
 	desc = "Launch forward and drag whoever's in front of you on the ground. The power of this move increases with closeness to the target upon using it."
-	icon_icon = 'icons/mob/actions/actions_arm.dmi'
+	button_icon = 'icons/mob/actions/actions_arm.dmi'
 	button_icon_state = "mop"
 	
 	cooldown_time = 7 SECONDS
@@ -149,7 +149,7 @@
 /datum/action/cooldown/spell/pointed/seismic/suplex
 	name = "Suplex"
 	desc = "Grab the target in front of you and slam them back onto the ground."
-	icon_icon = 'icons/mob/actions/actions_arm.dmi'	
+	button_icon = 'icons/mob/actions/actions_arm.dmi'	
 	button_icon_state = "suplex"
 
 	cooldown_time = 1 SECONDS
@@ -206,7 +206,7 @@
 /datum/action/cooldown/spell/pointed/seismic/righthook
 	name = "Right Hook"
 	desc = "Put the arm through its paces, cranking the outputs located at the front and back of the hand to full capacity for a powerful blow. This attack can only be readied for five seconds and connecting with it will temporarily overwhelm the entire arm for fifteen."
-	icon_icon = 'icons/mob/actions/actions_arm.dmi'
+	button_icon = 'icons/mob/actions/actions_arm.dmi'
 	button_icon_state = "ponch"
 
 	cooldown_time = 3 SECONDS

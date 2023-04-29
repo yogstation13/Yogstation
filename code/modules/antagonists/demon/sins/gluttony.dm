@@ -1,8 +1,8 @@
 /datum/action/cooldown/spell/forcewall/gluttony
 	name = "Gluttonous Wall"
 	desc = "Create a magical barrier that only allows fat people to pass through."
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	background_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "blob"
 	background_icon_state = "bg_demon"
 

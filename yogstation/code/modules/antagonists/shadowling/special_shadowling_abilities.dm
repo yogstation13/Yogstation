@@ -3,7 +3,7 @@
 	name = "Hatch"
 	desc = "Casts off your disguise."
 	panel = "Shadowling Evolution"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "hatch"
 
 	cooldown_time = 5 MINUTES
@@ -138,7 +138,7 @@
 	name = "Ascend"
 	desc = "Enters your true form."
 	panel = "Shadowling Evolution"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "ascend"
 
 	cooldown_time = 5 MINUTES

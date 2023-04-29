@@ -2,11 +2,11 @@
 
 /datum/action/item_action/chameleon/drone/randomise
 	name = "Randomise Headgear"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "random"
 
 /datum/action/item_action/chameleon/drone/randomise/Trigger()
-	if(!IsAvailable())
+	if(!IsAvailable(feedback = FALSE))
 		return
 
 	// Damn our lack of abstract interfeces
@@ -22,7 +22,7 @@
 
 /datum/action/item_action/chameleon/drone/togglehatmask
 	name = "Toggle Headgear Mode"
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 
 /datum/action/item_action/chameleon/drone/togglehatmask/New()
 	..()
@@ -33,7 +33,7 @@
 		button_icon_state = "drone_camogear_mask"
 
 /datum/action/item_action/chameleon/drone/togglehatmask/Trigger()
-	if(!IsAvailable())
+	if(!IsAvailable(feedback = FALSE))
 		return
 
 	// No point making the code more complicated if no non-drone
@@ -78,7 +78,7 @@
 	..()
 	initialize_outfits()
 
-/datum/action/chameleon_outfit/IsAvailable()
+/datum/action/chameleon_outfit/IsAvailable(feedback = FALSE)
 	if(syndicate)
 		if(!is_syndicate(owner))
 			HideFrom(owner)
@@ -89,10 +89,9 @@
 	var/static/list/standard_outfit_options
 	if(!standard_outfit_options)
 		standard_outfit_options = list()
-		for(var/path in subtypesof(/datum/outfit/job))
-			var/datum/outfit/O = path
+		for(var/datum/outfit/O as anything in subtypesof(/datum/outfit/job))
 			if(initial(O.can_be_admin_equipped))
-				standard_outfit_options[initial(O.name)] = path
+				standard_outfit_options[initial(O.name)] = O
 		sortTim(standard_outfit_options, /proc/cmp_text_asc)
 	outfit_options = standard_outfit_options
 
@@ -100,10 +99,10 @@
 	return select_outfit(owner)
 
 /datum/action/chameleon_outfit/proc/select_outfit(mob/user)
-	if(!user || !IsAvailable())
+	if(!user || !IsAvailable(feedback = FALSE))
 		return FALSE
-	var/selected = input("Select outfit to change into", "Chameleon Outfit") as null|anything in outfit_options
-	if(!IsAvailable() || QDELETED(src) || QDELETED(user))
+	var/selected = tgui_input_list(user, "Select outfit to change into", "Chameleon Outfit", outfit_options)
+	if(!IsAvailable(feedback = FALSE) || QDELETED(src) || QDELETED(user))
 		return FALSE
 	var/outfit_type = outfit_options[selected]
 	if(!outfit_type)
@@ -173,7 +172,7 @@
 
 /datum/action/item_action/chameleon/change/proc/initialize_disguises()
 	name = "Change [chameleon_name] Appearance"
-	UpdateButtons()
+	build_all_button_icons()
 
 	chameleon_blacklist |= typecacheof(target.type)
 	for(var/V in typesof(chameleon_type))
@@ -219,7 +218,7 @@
 		update_item(picked_item)
 		var/obj/item/thing = target
 		thing.update_slot_icon()
-	UpdateButtons()
+	build_all_button_icons()
 
 /datum/action/item_action/chameleon/change/proc/update_item(obj/item/picked_item, obj/item/target = src.target) //yogs -- add support for cham hardsuits
 	target.name = initial(picked_item.name)
@@ -252,7 +251,7 @@
 	current_disguise = picked_item
 
 /datum/action/item_action/chameleon/change/Trigger()
-	if(!IsAvailable())
+	if(!IsAvailable(feedback = FALSE))
 		return
 
 	select_look(owner)
@@ -525,9 +524,9 @@
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	chameleon_action.random_look()
 	var/datum/action/item_action/chameleon/drone/togglehatmask/togglehatmask_action = new(src)
-	togglehatmask_action.UpdateButtons()
+	togglehatmask_action.build_all_button_icons()
 	var/datum/action/item_action/chameleon/drone/randomise/randomise_action = new(src)
-	randomise_action.UpdateButtons()
+	randomise_action.build_all_button_icons()
 
 /obj/item/clothing/mask/chameleon
 	name = "gas mask"
@@ -590,9 +589,9 @@
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	chameleon_action.random_look()
 	var/datum/action/item_action/chameleon/drone/togglehatmask/togglehatmask_action = new(src)
-	togglehatmask_action.UpdateButtons()
+	togglehatmask_action.build_all_button_icons()
 	var/datum/action/item_action/chameleon/drone/randomise/randomise_action = new(src)
-	randomise_action.UpdateButtons()
+	randomise_action.build_all_button_icons()
 
 /obj/item/clothing/mask/chameleon/drone/attack_self(mob/user)
 	to_chat(user, span_notice("[src] does not have a voice changer."))

@@ -74,10 +74,10 @@
 /datum/action/bloodsucker/cloak/shadow
 	name = "Cloak of Shadows"
 	desc = "Empowered to the abyss, fortitude will now grant you a shadow armor, making your grip harder to escape and reduce projectile damage while in darkness."
-	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	background_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	background_icon_state_on = "lasombra_power_on"
 	background_icon_state_off = "lasombra_power_off"
-	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_state"
 	additional_text = "Additionally allows you to run during cloak and gain a physical cloak while in darkness."
 	purchase_flags = LASOMBRA_CAN_BUY

@@ -55,32 +55,29 @@
 /datum/action/item_action/toggle_unfriendly_fire
 	name = "Toggle Friendly Fire \[ON\]"
 	desc = "Toggles if the club's blasts cause friendly fire."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "vortex_ff_on"
 
 /datum/action/item_action/toggle_unfriendly_fire/Trigger()
 	if(..())
-		UpdateButtons()
+		build_all_button_icons()
 
-/datum/action/item_action/toggle_unfriendly_fire/UpdateButtons(status_only = FALSE, force)
-	if(istype(target, /obj/item/hierophant_club))
-		var/obj/item/hierophant_club/H = target
-		if(H.friendly_fire_check)
-			button_icon_state = "vortex_ff_off"
-			name = "Toggle Friendly Fire \[OFF\]"
-		else
-			button_icon_state = "vortex_ff_on"
-			name = "Toggle Friendly Fire \[ON\]"
-	..()
+/datum/action/item_action/toggle_unfriendly_fire/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force)
+	if(!istype(target, /obj/item/hierophant_club))
+		return
+	var/obj/item/hierophant_club/H = target
+	button_icon_state = H.friendly_fire_check ? "vortex_ff_off" : "vortex_ff_on"
+	name = H.friendly_fire_check ? "Toggle Friendly Fire \[OFF\]" : "Toggle Friendly Fire \[ON\]"
+	return ..()
 
 /datum/action/item_action/toggle_research_scanner
 	name = "Toggle Research Scanner"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "scan_mode"
 	var/active = FALSE
 
 /datum/action/item_action/toggle_research_scanner/Trigger()
-	if(IsAvailable())
+	if(IsAvailable(feedback = FALSE))
 		active = !active
 		if(active)
 			owner.research_scanner++
@@ -98,7 +95,7 @@
 /datum/action/item_action/jetpack_stabilization
 	name = "Toggle Jetpack Stabilization"
 
-/datum/action/item_action/jetpack_stabilization/IsAvailable()
+/datum/action/item_action/jetpack_stabilization/IsAvailable(feedback = FALSE)
 	var/obj/item/tank/jetpack/linked_jetpack = target
 	if(!istype(linked_jetpack) || !linked_jetpack.on)
 		return FALSE
@@ -128,20 +125,21 @@
 /datum/action/item_action/wheelys
 	name = "Toggle Wheely-Heel's Wheels"
 	desc = "Pops out or in your wheely-heel's wheels."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "wheelys"
 
 /datum/action/item_action/kindle_kicks
 	name = "Activate Kindle Kicks"
 	desc = "Kick you feet together, activating the lights in your Kindle Kicks."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "kindleKicks"
 
 /datum/action/item_action/storage_gather_mode
 	name = "Switch gathering mode"
 	desc = "Switches the gathering mode of a storage object."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "storage_gather_switch"
+	background_icon = 'icons/mob/actions/actions_items.dmi'
+	background_icon_state = "storage_gather_switch"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/item_action/equip_unequip_TED_Gun
 	name = "Equip/Unequip TED Gun"

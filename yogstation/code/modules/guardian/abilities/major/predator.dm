@@ -53,7 +53,7 @@
 /datum/action/cooldown/spell/predator
 	name = "All-Seeing Predator"
 	desc = "Track down a target whose identity you know of."
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "predator"
 	background_icon_state = "bg_demon"
 	

@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/aoe/slip
 	name = "Slip"
 	desc = "Causes the floor within six tiles to become slippery."
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "slip"
 
 	invocation = "OO'BANAN'A!"

@@ -69,7 +69,7 @@
 
 /datum/action/item_action/toggle_infrared_sight
 	name = "Toggle Infrared"
-	icon_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon = 'icons/obj/guns/attachment.dmi'
 	button_icon_state = "ifr_sight"
 	var/obj/item/attachment/scope/infrared/att
 
@@ -82,9 +82,9 @@
 					att = A
 					break
 	att?.toggle_on()
-	UpdateButtons()
+	build_all_button_icons(UPDATE_BUTTON_ICON)
 
-/datum/action/item_action/toggle_infrared_sight/UpdateButtons(atom/movable/screen/movable/action_button/button, status_only = FALSE, force)
+/datum/action/item_action/toggle_infrared_sight/apply_button_icon(atom/movable/screen/movable/action_button/current_button, status_only = FALSE, force)
 	var/obj/item/attachment/scope/infrared/ifrsight = target
 	if(istype(ifrsight))
 		button_icon_state = "ifr_sight[att?.is_on ? "_on" : ""]"

@@ -71,7 +71,7 @@
 /datum/action/innate/blobpop
 	name = "Pop"
 	desc = "Unleash the blob"
-	icon_icon = 'icons/mob/blob.dmi'
+	button_icon = 'icons/mob/blob.dmi'
 	button_icon_state = "blob"
 	var/autoplace_time = OVERMIND_STARTING_AUTO_PLACE_TIME
 

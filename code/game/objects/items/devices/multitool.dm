@@ -150,7 +150,7 @@
 	name = "Toggle AI detector HUD"
 	check_flags = NONE
 
-/datum/action/item_action/toggle_multitool/IsAvailable()
+/datum/action/item_action/toggle_multitool/IsAvailable(feedback = FALSE)
 	if(!is_syndicate(owner))
 		HideFrom(owner)
 	return is_syndicate(owner)

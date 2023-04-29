@@ -585,7 +585,7 @@
 	if(!(status_flags & GODMODE))
 		staminaloss = round(total_stamina, DAMAGE_PRECISION)
 	update_stat()
-	update_mobility()
+	update_stamina()
 	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD) && stat == DEAD )
 		become_husk(BURN)
 	med_hud_set_health()
@@ -596,14 +596,18 @@
 
 /mob/living/carbon/update_stamina()
 	var/stam = getStaminaLoss()
-	if(istype(src, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = src
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src //leaving this here but sus
 		if(stam && H.hulk_stamina_check())
 			return
-	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold && !stat)
-		enter_stamcrit()
-	else if(stam_paralyzed)
-		stam_paralyzed = FALSE
+	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold)
+		if(!stat)
+			enter_stamcrit()
+	else if(HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA))
+		REMOVE_TRAIT(src, TRAIT_INCAPACITATED, STAMINA)
+		REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, STAMINA)
+		REMOVE_TRAIT(src, TRAIT_FLOORED, STAMINA)
+		update_mobility()
 	else
 		return
 	update_stamina_hud()
@@ -911,7 +915,7 @@
 	else
 		clear_alert("handcuffed")
 		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "handcuffed")
-	update_action_buttons_icon() //some of our action buttons might be unusable when we're handcuffed.
+	update_mob_action_buttons() //some of our action buttons might be unusable when we're handcuffed.
 	update_inv_handcuffed()
 	update_hud_handcuffed()
 	update_mobility()

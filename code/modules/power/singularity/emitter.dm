@@ -454,7 +454,7 @@
 		for(var/obj/item/I in U.held_items)
 			if(istype(I, /obj/item/turret_control))
 				qdel(I)
-		UpdateButtons()
+		build_all_button_icons()
 		return
 	else
 		playsound(PE,'sound/mecha/mechmove01.ogg', 50, TRUE)
@@ -471,7 +471,7 @@
 			else	//Entries in the list should only ever be items or null, so if it's not an item, we can assume it's an empty hand
 				var/obj/item/turret_control/TC = new /obj/item/turret_control()
 				U.put_in_hands(TC)
-		UpdateButtons()
+		build_all_button_icons()
 
 
 /obj/item/turret_control

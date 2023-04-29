@@ -144,7 +144,7 @@
 /datum/action/cooldown/spell/pointed/drakeling/fire_breath
 	name = "Fire Breath"
 	desc = "Breathe a short flame that is effective against fauna but worthless off of lavaland."
-	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "fireball"
 	cooldown_time = 1.6 SECONDS //kinetic gun
 	active_msg = span_notice("You prepare %YOUR fire breath attack")
@@ -201,7 +201,7 @@
 	name = "Wing Flap"
 	desc = "Causes a large, powerful gust of air to push stuff away, deal damage to fauna, and break rocks."
 	button_icon_state = "tornado"
-	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon = 'icons/obj/wizard.dmi'
 	cooldown_time = 1 SECONDS //adv cutter
 	active_msg = span_notice("You prepare %YOUR wings.")
 	deactive_msg = span_notice("You stop the flapping.")
@@ -264,7 +264,7 @@
 /datum/action/drake_ollie
 	name = "DRAGON Ollie"
 	desc = "This seems like a REALLY COOL IDEA"
-	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "dragon_ollie"
 	//cooldown to next jump
 	var/next_ollie

@@ -445,7 +445,7 @@
 		update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtons()
+		A.build_all_button_icons()
 
 /obj/item/clothing/head/helmet/stormtrooper
 	name = "Storm Trooper Helmet"

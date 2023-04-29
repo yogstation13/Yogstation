@@ -76,7 +76,6 @@
 	var/damageoverlaytemp = 0
 
 	var/stam_regen_start_time = 0 //used to halt stamina regen temporarily
-	var/stam_paralyzed = FALSE //knocks you down
 
 	/// All of the wounds a carbon has afflicted throughout their limbs
 	var/list/all_wounds

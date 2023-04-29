@@ -116,7 +116,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	name = "Maglock"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "magboots0"
-	icon_icon = 'icons/obj/clothing/shoes.dmi'
+	button_icon = 'icons/obj/clothing/shoes.dmi'
 	background_icon_state = "bg_default"
 
 /datum/action/innate/maglock/Grant(mob/M)
@@ -136,7 +136,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		REMOVE_TRAIT(H, TRAIT_NOSLIPICE, "preternis_maglock")
 		button_icon_state = "magboots0"
-	UpdateButtons()
+	build_all_button_icons()
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
 	if(!silent)

@@ -71,7 +71,7 @@
 
 	return ..()
 
-/obj/machinery/launchpad/proc/isAvailable()
+/obj/machinery/launchpad/proc/IsAvailable(feedback = FALSE)
 	if(stat & NOPOWER)
 		return FALSE
 	if(panel_open)
@@ -81,7 +81,7 @@
 /obj/machinery/launchpad/proc/update_indicator()
 	var/image/holder = hud_list[DIAG_LAUNCHPAD_HUD]
 	var/turf/target_turf
-	if(isAvailable())
+	if(IsAvailable(feedback = FALSE))
 		target_turf = locate(x + x_offset, y + y_offset, z)
 	if(target_turf)
 		holder.icon_state = indicator_icon
@@ -133,7 +133,7 @@
 	indicator_icon = "launchpad_target"
 	update_indicator()
 
-	if(QDELETED(src) || !isAvailable())
+	if(QDELETED(src) || !IsAvailable(feedback = FALSE))
 		return
 
 	teleporting = FALSE
@@ -232,7 +232,7 @@
 	QDEL_NULL(briefcase)
 	return ..()
 
-/obj/machinery/launchpad/briefcase/isAvailable()
+/obj/machinery/launchpad/briefcase/IsAvailable(feedback = FALSE)
 	if(closed)
 		return FALSE
 	return ..()
@@ -352,7 +352,7 @@
 	if(QDELETED(pad))
 		to_chat(user, span_warning("ERROR: Launchpad not responding. Check launchpad integrity."))
 		return
-	if(!pad.isAvailable())
+	if(!pad.IsAvailable(feedback = FALSE))
 		to_chat(user, span_warning("ERROR: Launchpad not operative. Make sure the launchpad is ready and powered."))
 		return
 	pad.doteleport(user, sending)

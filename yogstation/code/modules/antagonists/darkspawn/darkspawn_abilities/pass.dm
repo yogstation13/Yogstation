@@ -7,7 +7,7 @@
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS
 	blacklisted = TRUE //baseline
 
-/datum/action/innate/darkspawn/pass/IsAvailable()
+/datum/action/innate/darkspawn/pass/IsAvailable(feedback = FALSE)
 	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows) || istype(owner, /mob/living/simple_animal/hostile/darkspawn_progenitor) || !owner.get_empty_held_indexes() && !active)
 		return
 	return ..()

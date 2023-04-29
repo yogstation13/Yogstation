@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/cluwnecurse
 	name = "Curse of the Cluwne"
 	desc = "This spell dooms the fate of any unlucky soul to the live of a pitiful cluwne, a terrible creature that is hunted for fun."
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	base_icon_state = "cluwne"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/cluwne_target.dmi'
 

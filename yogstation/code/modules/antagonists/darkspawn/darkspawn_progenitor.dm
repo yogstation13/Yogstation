@@ -82,7 +82,7 @@
 /datum/action/cooldown/spell/list_target/progenitor_curse
 	name = "Viscerate Mind"
 	desc = "Unleash a powerful psionic barrage into the mind of the target."
-	icon_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	button_icon_state = "veil_mind"
 	background_icon_state = "bg_alien"
 

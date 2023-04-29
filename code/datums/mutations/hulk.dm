@@ -135,7 +135,7 @@
 	name = "Ground Smash"
 	desc = "Smash the ground to throw your enemies back!"
 	invocation = "HULK SMASH!!"
-	icon_icon = 'icons/mob/actions.dmi'
+	button_icon = 'icons/mob/actions.dmi'
 	button_icon_state = "green_hand"
 
 /datum/action/cooldown/spell/aoe/repulse/hulk/cast_on_thing_in_aoe(atom/movable/victim, atom/caster)

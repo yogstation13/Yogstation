@@ -68,7 +68,7 @@
 	/// Whether or not Space Dragon has completed their objective, and thus triggered the ending sequence.
 	var/objective_complete = FALSE
 	/// The togglable small sprite action
-	var/small_sprite_type = /datum/action/small_sprite/megafauna/spacedragon
+	var/small_sprite_type = /datum/action/small_sprite/space_dragon
 	/// The innate ability to use wing gust
 	var/datum/action/innate/space_dragon/gustAttack/gust
 	/// The innate ability to summon rifts
@@ -366,7 +366,7 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 
 /datum/action/innate/space_dragon
 	background_icon_state = "bg_default"
-	icon_icon = 'icons/mob/actions/actions_space_dragon.dmi'
+	button_icon = 'icons/mob/actions/actions_space_dragon.dmi'
 
 /datum/action/innate/space_dragon/gustAttack
 	name = "Gust Attack"

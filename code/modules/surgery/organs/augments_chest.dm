@@ -171,7 +171,7 @@
 		icon_state = "imp_jetpack"
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtons()
+		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/thrusters/proc/move_react()
 	allow_thrust(0.01)
@@ -275,7 +275,7 @@
 		icon_state = "imp_spinal"
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtons()
+		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage
 	var/turf/currentloc = get_turf(owner)

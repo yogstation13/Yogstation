@@ -97,4 +97,4 @@
 	else
 		mobility_flags = MOBILITY_FLAGS_DEFAULT
 	update_transform()
-	update_action_buttons_icon()
+	update_mob_action_buttons()

@@ -5,7 +5,7 @@
 /* Formatting for these files, from top to bottom:
 	* Action
 	* Trigger()
-	* IsAvailable()
+	* IsAvailable(feedback = FALSE)
 	* Items
 	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
@@ -13,9 +13,9 @@
 /datum/action/cooldown/buster
 	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	icon_icon = 'icons/mob/actions/actions_arm.dmi'
+	button_icon = 'icons/mob/actions/actions_arm.dmi'
 
-/datum/action/cooldown/buster/IsAvailable()
+/datum/action/cooldown/buster/IsAvailable(feedback = FALSE)
 	. = ..()
 	if(!isliving(owner))
 		return FALSE

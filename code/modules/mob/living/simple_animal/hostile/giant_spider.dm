@@ -324,7 +324,7 @@
 						consumed_mobs[L.tag] = TRUE
 						fed++
 						for(var/datum/action/innate/spider/lay_eggs/lay_eggs in actions)
-							lay_eggs.UpdateButtons(TRUE)
+							lay_eggs.build_all_button_icons(TRUE)
 						visible_message(span_danger("[src] sticks a proboscis into [L] and sucks a viscous substance out."),span_notice("You suck the nutriment out of [L], feeding you enough to lay a cluster of eggs."))
 						L.death() //you just ate them, they're dead.
 					else
@@ -338,7 +338,7 @@
 	stop_automated_movement = FALSE
 
 /datum/action/innate/spider
-	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	background_icon_state = "bg_alien"
 
 /datum/action/innate/spider/lay_web // Todo: Unify this with the genetics power
@@ -347,7 +347,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "lay_web"
 
-/datum/action/innate/spider/lay_web/IsAvailable()
+/datum/action/innate/spider/lay_web/IsAvailable(feedback = FALSE)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -398,7 +398,8 @@
 	desc = "Wrap something or someone in a cocoon. If it's a human or similar species, \
 		you'll also consume them, allowing you to lay enriched eggs."
 	background_icon_state = "bg_alien"
-	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	overlay_icon_state = "bg_alien_border"
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "wrap_0"
 	check_flags = AB_CHECK_CONSCIOUS
 	click_to_activate = TRUE
@@ -406,7 +407,7 @@
 	/// The time it takes to wrap something.
 	var/wrap_time = 5 SECONDS
 
-/datum/action/cooldown/wrap/IsAvailable()
+/datum/action/cooldown/wrap/IsAvailable(feedback = FALSE)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -421,7 +422,7 @@
 
 	to_chat(on_who, span_notice("You prepare to wrap something in a cocoon. <B>Left-click your target to start wrapping!</B>"))
 	button_icon_state = "wrap_0"
-	UpdateButtons()
+	build_all_button_icons()
 
 /datum/action/cooldown/wrap/unset_click_ability(mob/on_who, refund_cooldown = TRUE)
 	. = ..()
@@ -431,7 +432,7 @@
 	if(refund_cooldown)
 		to_chat(on_who, span_notice("You no longer prepare to wrap something in a cocoon."))
 	button_icon_state = "wrap_1"
-	UpdateButtons()
+	build_all_button_icons()
 
 /datum/action/cooldown/wrap/Activate(atom/to_wrap)
 	if(!owner.Adjacent(to_wrap))
@@ -493,7 +494,7 @@
 	///The type of egg we create
 	//var/egg_type = /obj/effect/mob_spawn/ghost_role/spider
 
-/datum/action/innate/spider/lay_eggs/IsAvailable()
+/datum/action/innate/spider/lay_eggs/IsAvailable(feedback = FALSE)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -522,7 +523,7 @@
 			var/obj/structure/spider/eggcluster/new_eggs = new /obj/structure/spider/eggcluster(get_turf(spider))
 			new_eggs.directive = spider.directive
 			new_eggs.faction = spider.faction
-			UpdateButtons(TRUE)
+			build_all_button_icons(TRUE)
 
 	spider.stop_automated_movement = FALSE
 
@@ -532,14 +533,14 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "directive"
 
-/datum/action/innate/spider/set_directive/IsAvailable()
+/datum/action/innate/spider/set_directive/IsAvailable(feedback = FALSE)
 	return ..() && istype(owner, /mob/living/simple_animal/hostile/poison/giant_spider)
 
 /datum/action/innate/spider/set_directive/Activate()
 	var/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife/spider = owner
 
 	spider.directive = tgui_input_text(spider, "Enter the new directive", "Create directive", "[spider.directive]")
-	if(isnull(spider.directive) || QDELETED(src) || QDELETED(owner) || !IsAvailable())
+	if(isnull(spider.directive) || QDELETED(src) || QDELETED(owner) || !IsAvailable(feedback = FALSE))
 		return FALSE
 
 	message_admins("[ADMIN_LOOKUPFLW(owner)] set its directive to: '[spider.directive]'.")
@@ -559,12 +560,12 @@
 	desc = "Send a command to all living spiders."
 	button_icon_state = "command"
 
-/datum/action/innate/spider/comm/IsAvailable()
+/datum/action/innate/spider/comm/IsAvailable(feedback = FALSE)
 	return ..() && istype(owner, /mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife)
 
 /datum/action/innate/spider/comm/Trigger()
 	var/input = tgui_input_text(owner, "Input a command for your legions to follow.", "Command")
-	if(!input || QDELETED(src) || QDELETED(owner) || !IsAvailable())
+	if(!input || QDELETED(src) || QDELETED(owner) || !IsAvailable(feedback = FALSE))
 		return FALSE
 
 	spider_command(owner, input)

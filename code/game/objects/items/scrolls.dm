@@ -18,7 +18,7 @@
 	if(!teleport)
 		return
 	teleport.name = name
-	teleport.icon_icon = icon
+	teleport.button_icon = icon
 	teleport.button_icon_state = icon_state
 	RegisterSignal(teleport, COMSIG_SPELL_AFTER_CAST, PROC_REF(on_spell_cast))
 

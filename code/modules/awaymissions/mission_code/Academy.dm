@@ -382,8 +382,8 @@
 
 	var/datum/weakref/summon_weakref
 
-	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
-	icon_icon = "summon_servant"
+	background_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	button_icon = "summon_servant"
 
 /datum/action/cooldown/spell/summon_mob/New(Target, mob/living/summoned_mob)
 	. = ..()

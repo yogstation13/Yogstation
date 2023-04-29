@@ -2,22 +2,24 @@
 	name = "Ashen Passage"
 	desc = "A short range spell that allows you to pass unimpeded through walls."
 	background_icon_state = "bg_heretic"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "ash_shift"
+	sound = null
 
 	school = SCHOOL_FORBIDDEN
+	cooldown_time = 15 SECONDS
+
 	invocation = "ASH'N P'SSG'"
 	invocation_type = INVOCATION_WHISPER
+	spell_requirements = NONE
 
-	cooldown_time = 15 SECONDS
-	cooldown_time = 15 SECONDS
 	exit_jaunt_sound = null
 	jaunt_duration = 1.1 SECONDS
 	jaunt_in_time = 1.3 SECONDS
 	jaunt_out_time = 0.6 SECONDS
 	jaunt_in_type = /obj/effect/temp_visual/dir_setting/ash_shift
 	jaunt_out_type = /obj/effect/temp_visual/dir_setting/ash_shift/out
-	spell_requirements = NONE
 
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash/do_steam_effects()
 	return
@@ -39,8 +41,9 @@
 /datum/action/cooldown/spell/touch/mansus_grasp
 	name = "Mansus Grasp"
 	desc = "A powerful combat initiation spell that deals massive stamina damage. It may have other effects if you continue your research..."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "mansus_grasp"
 	sound = 'sound/items/welder.ogg'
 
@@ -100,8 +103,9 @@
 /datum/action/cooldown/spell/aoe/rust_conversion
 	name = "Aggressive Spread"
 	desc = "Spread rust onto nearby turfs, possibly destroying rusted walls."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "corrode"
 	sound = 'sound/items/welder.ogg'
 
@@ -141,8 +145,9 @@
 	name = "Blood Siphon"
 	desc = "A touch spell that heals your wounds while damaging the enemy. \
 		It has a chance to transfer wounds between you and your enemy."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "blood_siphon"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
 
@@ -153,7 +158,7 @@
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = NONE
 
-	cast_range = 9
+	cast_range = 6
 
 /datum/action/cooldown/spell/pointed/blood_siphon/can_cast_spell(feedback = TRUE)
 	return ..() && isliving(owner)
@@ -209,8 +214,9 @@
 /datum/action/cooldown/spell/basic_projectile/rust_wave
 	name = "Patron's Reach"
 	desc = "Fire a rust spreading projectile in front of you, dealing toxin damage to whatever it hits."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "rust_wave"
 
 	school = SCHOOL_FORBIDDEN
@@ -263,8 +269,9 @@
 /datum/action/cooldown/spell/pointed/cleave
 	name = "Cleave"
 	desc = "Causes severe bleeding on a target and people around them"
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "cleave"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
 
@@ -276,7 +283,8 @@
 
 	spell_requirements = NONE
 
-	cast_range = 9
+	cast_range = 4
+
 	/// The radius of the cleave effect
 	var/cleave_radius = 1
 	/// What type of wound we apply
@@ -322,14 +330,14 @@
 /datum/action/cooldown/spell/touch/mad_touch
 	name = "Touch of Madness"
 	desc = "Strange energies engulf your hand, you feel even the sight of them would cause a headache if you didn't understand them."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "mad_touch"
 
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 	invocation_type = INVOCATION_NONE
-
 	spell_requirements = NONE
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 
@@ -356,8 +364,9 @@
 /datum/action/cooldown/spell/pointed/ash_beams
 	name = "Nightwatcher's Rite"
 	desc = "A powerful spell that releases five streams of eldritch fire towards the target."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "flames"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
 
@@ -419,22 +428,32 @@
 		sleep(0.15 SECONDS)
 
 /datum/action/cooldown/spell/shapeshift/eldritch
+	name = "Shapechange"
+	desc = "A spell that allows you to take on the form of another creature, gaining their abilities. \
+		After making your choice, you will be unable to change to another."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+
 	school = SCHOOL_FORBIDDEN
-	background_icon_state = "bg_ecult"
 	invocation = "SH'PE"
 	invocation_type = INVOCATION_WHISPER
+	spell_requirements = NONE
 
-	possible_shapes = list(/mob/living/simple_animal/mouse,\
+	possible_shapes = list(
+		/mob/living/simple_animal/mouse,\
 		/mob/living/simple_animal/pet/dog/corgi,\
 		/mob/living/simple_animal/hostile/carp/megacarp,\
 		/mob/living/simple_animal/pet/fox,\
 		/mob/living/simple_animal/hostile/netherworld/migo,\
 		/mob/living/simple_animal/bot/medbot,\
-		/mob/living/simple_animal/pet/cat )
+		/mob/living/simple_animal/pet/cat 
+	)
 
 /datum/action/cooldown/spell/emp/eldritch
 	name = "Entropic Pulse"
-	background_icon_state = "bg_ecult"
+	desc = "A spell that causes a large EMP around you, disabling electronics."
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
 
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 30 SECONDS
@@ -450,8 +469,9 @@
 /datum/action/cooldown/spell/fire_cascade
 	name = "Lesser Fire Cascade"
 	desc = "Heats the air around you."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "fire_ring"
 	sound = 'sound/items/welder.ogg'
 
@@ -486,7 +506,8 @@
 /datum/action/cooldown/spell/list_target/telepathy/eldritch
 	name = "Eldritch Telepathy"
 	school = SCHOOL_FORBIDDEN
-	background_icon_state = "bg_ecult"
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
 	invocation_type = INVOCATION_NONE
 	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND
 
@@ -494,8 +515,9 @@
 /datum/action/cooldown/spell/fire_sworn
 	name = "Oath of Fire"
 	desc = "Engulf yourself in a cloak of flames for a minute. The flames are harmless to you, but dangerous to anyone else."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "fire_ring"
 
 	school = SCHOOL_FORBIDDEN
@@ -553,13 +575,15 @@
 /datum/action/cooldown/spell/worm_contract
 	name = "Force Contract"
 	desc = "Forces all the worm parts to collapse onto a single turf"
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "worm_contract"
 
-	invocation_type = INVOCATION_NONE
-
+	school = SCHOOL_FORBIDDEN
 	cooldown_time = 30 SECONDS
+
+	invocation_type = INVOCATION_NONE
 	spell_requirements = NONE
 
 /datum/action/cooldown/spell/worm_contract/cast(mob/living/user)
@@ -585,8 +609,9 @@
 	desc = "A spell that extinguishes you drains nearby heathens engulfed in flames of their life force, \
 		healing you for each victim drained. Those in critical condition \
 		will have the last of their vitality drained, killing them."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "smoke"
 
 	school = SCHOOL_FORBIDDEN
@@ -636,8 +661,8 @@
 	name = "Manse Link"
 	desc = "This spell allows you to pierce through reality and connect minds to one another \
 		via your Mansus Link. All minds connected to your Mansus Link will be able to communicate discreetly across great distances."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "mansus_link"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
 
@@ -699,10 +724,12 @@
 // Given to heretic monsters.
 /datum/action/cooldown/spell/pointed/blind/eldritch
 	name = "Eldritch Blind"
-	background_icon_state = "bg_ecult"
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
 
 	school = SCHOOL_FORBIDDEN
 	invocation = "E'E'S"
+	spell_requirements = NONE
 
 	cast_range = 10
 
@@ -741,9 +768,11 @@
 /datum/action/cooldown/spell/cone/staggered/entropic_plume
 	name = "Entropic Plume"
 	desc = "Spews forth a disorienting plume that causes enemies to strike each other, briefly blinds them(increasing with range) and poisons them(decreasing with range), while also spreading rust in the path of the plume."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "entropic_plume"
+	sound = 'sound/magic/forcewall.ogg'
 
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 30 SECONDS
@@ -784,9 +813,10 @@
 /datum/action/innate/expand_sight
 	name = "Expand Sight"
 	desc = "Boosts your sight range considerably, allowing you to see enemies from much further away."
-	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	background_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "eye"
 	background_icon_state = "bg_heretic"
+	overlay_icon_state = "bg_heretic_border"
 	/// How far we expand the range to.
 	var/boost_to = 5
 	/// A cooldown for the last time we toggled it, to prevent spam.

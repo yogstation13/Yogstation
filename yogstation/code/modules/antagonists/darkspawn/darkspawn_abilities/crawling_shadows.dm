@@ -8,7 +8,7 @@
 	psi_cost = 60
 	lucidity_price = 2 //probably going to replace creep with this
 
-/datum/action/innate/darkspawn/crawling_shadows/IsAvailable()
+/datum/action/innate/darkspawn/crawling_shadows/IsAvailable(feedback = FALSE)
 	var/mob/living/L = owner
 	if(L.has_status_effect(STATUS_EFFECT_TAGALONG))
 		return

@@ -39,14 +39,14 @@
 	unset_click_ability(owner)
 
 /datum/action/cooldown/spell/pointed/sling/proc/start_recharge()
-	UpdateButtons()
+	build_all_button_icons()
 
 /datum/action/cooldown/spell/pointed/sling/glare //Stuns and mutes a human target for 10 seconds
 	name = "Glare"
 	desc = "Disrupts the target's motor and speech abilities. Much more effective within two meters."
 	panel = "Shadowling Abilities"
 	button_icon_state = "glare"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 
 	cooldown_time = 30 SECONDS
 	spell_requirements = SPELL_REQUIRES_HUMAN
@@ -97,7 +97,7 @@
 	desc = "Extinguishes most nearby light sources."
 	panel = "Shadowling Abilities"
 	button_icon_state = "veil"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 
 	cooldown_time = 12 SECONDS //Short cooldown because people can just turn the lights back on
 	aoe_radius = 5
@@ -207,7 +207,7 @@
 /datum/action/cooldown/spell/aoe/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
 	desc = "Instantly freezes the blood of nearby people, stunning them and causing burn damage while hampering their movement."
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "icy_veins"
 
 	panel = "Shadowling Abilities"
@@ -247,7 +247,7 @@
 	desc = "Allows you to enslave a conscious, non-braindead, non-catatonic human to your will. This takes some time to cast."
 	panel = "Shadowling Abilities"
 	button_icon_state = "enthrall"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 
 	cast_range = 1 //Adjacent to user
 	var/enthralling = FALSE
@@ -345,7 +345,7 @@
 	name = "Hivemind Commune"
 	desc = "Allows you to silently communicate with all other shadowlings and thralls."
 	panel = "Shadowling Abilities"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "commune"
 
 	spell_requirements = SPELL_REQUIRES_HUMAN
@@ -374,7 +374,7 @@
 	name = "Rapid Re-Hatch"
 	desc = "Re-forms protective chitin that may be lost during cloning or similar processes."
 	panel = "Shadowling Abilities"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "regen_armor"
 
 	cooldown_time = 1 MINUTES
@@ -401,7 +401,7 @@
 	desc = "Gathers the power of all of your thralls and compares it to what is needed for ascendance. Also gains you new abilities."
 	panel = "Shadowling Abilities"
 	button_icon_state = "collective_mind"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 
 	cooldown_time = 10 SECONDS //10 second cooldown to prevent spam
 	spell_requirements = SPELL_REQUIRES_HUMAN
@@ -481,7 +481,7 @@
 	name = "Null Charge"
 	desc = "Empties an APC, preventing it from recharging until fixed."
 	panel = "Shadowling Abilities"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "null_charge"
 
 	cooldown_time = 1 MINUTES
@@ -530,7 +530,7 @@
 	desc = "Spews a cloud of smoke which will blind enemies."
 	panel = "Shadowling Abilities"
 	button_icon_state = "black_smoke"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 
 	sound = 'sound/effects/bamf.ogg'
 	cooldown_time = 1 MINUTES
@@ -561,7 +561,7 @@
 	desc = "Deafens, stuns, and confuses nearby people. Also shatters windows."
 	panel = "Shadowling Abilities"
 	button_icon_state = "screech"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 
 	sound = 'sound/effects/screech.ogg'
 	aoe_radius = 7
@@ -600,7 +600,7 @@
 	name = "Dark Acceleration"
 	desc = "Empowers a thrall. You can only have 3 empowered thralls at a time. Empowered thralls become lesser versions of yourself, gaining a small selection of your abilities as well as your healing in the dark and aversion to light."
 	panel = "Shadowling Abilities"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "darksight"
 
 	cast_range = 1
@@ -674,7 +674,7 @@
 	name = "Black Recuperation"
 	desc = "Revives or empowers a thrall."
 	panel = "Shadowling Abilities"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "revive_thrall"
 
 	cast_range = 1
@@ -730,7 +730,7 @@
 	name = "Destroy Engines"
 	desc = "Sacrifice a thrall to extend the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
 	panel = "Shadowling Abilities"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "extend_shuttle"
 
 	cast_range = 1
@@ -788,7 +788,7 @@
 	name = "Void Jaunt"
 	desc = "Move through the void for a time, avoiding mortal eyes and lights."
 	panel = "Shadowling Abilities"
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "jaunt"
 
 	cooldown_time = 80 SECONDS
@@ -923,7 +923,7 @@
 	name = "Lesser Glare"
 	desc = "Makes a single target dizzy for a bit."
 	panel = "Thrall Abilities"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "glare"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
 
@@ -964,7 +964,7 @@
 	name = "Guise"
 	desc = "Wraps your form in shadows, making you harder to see."
 	panel = "Thrall Abilities"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "shadow_walk"
 
 	cooldown_time = 2 MINUTES
@@ -988,7 +988,7 @@
 	name = "Thrall Darksight"
 	desc = "Allows you to see in the dark!"
 	button_icon_state = "darksight"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 
 	spell_requirements = NONE
 
@@ -1021,7 +1021,7 @@
 	name = "Lesser Commune"
 	desc = "Allows you to silently communicate with all other shadowlings and thralls."
 	panel = "Thrall Abilities"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "commune"
 
 	cooldown_time = 5 SECONDS
@@ -1056,7 +1056,7 @@
 	desc = "Gibs someone instantly."
 	panel = "Ascendant"
 	button_icon_state = "annihilate"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 
 	sound = 'sound/magic/Staff_Chaos.ogg'
 	spell_requirements = NONE
@@ -1093,7 +1093,7 @@
 	name = "Hypnosis"
 	desc = "Instantly enthralls a human."
 	panel = "Ascendant"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "enthrall"
 	
 	spell_requirements = NONE
@@ -1135,7 +1135,7 @@
 	desc = "Shocks everyone nearby."
 	panel = "Ascendant"
 	button_icon_state = "lightning_storm"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 
 	sound = 'sound/magic/lightningbolt.ogg'
 	aoe_radius = 6
@@ -1161,7 +1161,7 @@
 	name = "Ascendant Commune"
 	desc = "Allows you to LOUDLY communicate with all other shadowlings and thralls."
 	panel = "Ascendant"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "commune"
 
 	spell_requirements = NONE
@@ -1185,7 +1185,7 @@
 	name = "Subjugate"
 	desc = "Instantly enthrall a weakling."
 	panel = "Ascendant"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "gore"
 
 	spell_requirements = NONE

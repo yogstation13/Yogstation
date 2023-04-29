@@ -155,7 +155,7 @@
 	name = "Swipe"
 	desc = "Swipe at a target area, dealing damage to heal yourself. Creatures take 60 damage while people and cyborgs take 20 damage. Living creatures hit with this ability will heal the user for 13 brute/burn/poison while dead ones heal for 20 and get butchered, while killing a creature with a swipe will heal the user for 33. People and cyborgs hit will heal for 5."
 	background_icon_state = "bg_demon"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "cuff"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_target.dmi'
 	cooldown_time = 10 SECONDS

@@ -88,7 +88,7 @@
 		user.add_overlay(helmet_mob_overlay)
 	user.update_inv_head()
 	for(var/datum/action/A as anything in actions)
-		A.UpdateButtons()
+		A.build_all_button_icons()
 
 /obj/item/clothing/head/helmet/space/plasmaman/equipped(mob/living/user, slot)
 	. = ..()

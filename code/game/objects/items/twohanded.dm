@@ -672,7 +672,7 @@
 		user.update_inv_hands()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtons()
+		A.build_all_button_icons()
 
 /obj/item/twohanded/required/chainsaw/doomslayer
 	name = "THE GREAT COMMUNICATOR"

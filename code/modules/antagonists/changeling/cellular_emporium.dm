@@ -67,9 +67,10 @@
 
 /datum/action/innate/cellular_emporium
 	name = "Cellular Emporium"
-	icon_icon = 'icons/obj/drinks.dmi'
+	button_icon = 'icons/obj/drinks.dmi'
 	button_icon_state = "changelingsting"
 	background_icon_state = "bg_changeling"
+	overlay_icon_state = "bg_changeling_border"
 	var/datum/antag_menu/cellular_emporium/cellular_emporium
 
 /datum/action/innate/cellular_emporium/New(our_target)
@@ -78,6 +79,10 @@
 		cellular_emporium = our_target
 	else
 		CRASH("cellular_emporium action created with non emporium.")
+
+/datum/action/innate/cellular_emporium/Destroy()
+	cellular_emporium = null
+	return ..()
 
 /datum/action/innate/cellular_emporium/Activate()
 	cellular_emporium.ui_interact(owner)

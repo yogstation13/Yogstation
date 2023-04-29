@@ -1,7 +1,7 @@
 /*/obj/effect/proc_holder/zombie/adrenaline
 	name = "Adrenaline Boost"
 	desc = "Makes you able to sprint for a second or two!"
-	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
+	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "adrenaline"
 	cooldown_time = 3 MINUTES
 	var/reagent_amount = 3

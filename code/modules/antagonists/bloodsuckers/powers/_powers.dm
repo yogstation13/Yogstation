@@ -2,10 +2,10 @@
 	name = "Vampiric Gift"
 	desc = "A vampiric gift."
 	//This is the FILE for the background icon
-	button_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
+	background_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	//This is the ICON_STATE for the background icon
 	background_icon_state = "vamp_power_off"
-	icon_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
+	button_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	button_icon_state = "power_feed"
 	buttontooltipstyle = "cult"
 	transparent_when_unavailable = TRUE
@@ -70,7 +70,7 @@
 	bloodsuckerdatum_power = null
 	return ..()
 
-/datum/action/bloodsucker/IsAvailable()
+/datum/action/bloodsucker/IsAvailable(feedback = FALSE)
 	return COOLDOWN_FINISHED(src, bloodsucker_power_cooldown)
 
 /datum/action/bloodsucker/Grant(mob/user)
@@ -162,13 +162,16 @@
 
 	// Wait for cooldown
 	COOLDOWN_START(src, bloodsucker_power_cooldown, this_cooldown)
-	addtimer(CALLBACK(src, PROC_REF(UpdateButtons)), this_cooldown+(1 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(build_all_button_icons)), this_cooldown+(1 SECONDS))
 
 /datum/action/bloodsucker/proc/CheckCanDeactivate()
 	return TRUE
 
-/datum/action/bloodsucker/UpdateButtons(force = FALSE)
-	background_icon_state = active ? background_icon_state_on : background_icon_state_off
+/datum/action/bloodsucker/build_all_button_icons(atom/movable/screen/movable/action_button/button, update_flags = ALL, force = FALSE)
+	if(active)
+		background_icon_state = background_icon_state_on
+	else
+		background_icon_state = background_icon_state_off
 	return ..()
 
 /datum/action/bloodsucker/proc/PayCost()
@@ -190,7 +193,7 @@
 		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(UsePower))
 
 	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
-	UpdateButtons()
+	build_all_button_icons()
 
 /datum/action/bloodsucker/proc/DeactivatePower()
 	if(power_flags & BP_AM_TOGGLE)
@@ -200,7 +203,7 @@
 		return
 	active = FALSE
 	StartCooldown()
-	UpdateButtons()
+	build_all_button_icons()
 
 ///Used by powers that are continuously active (That have BP_AM_TOGGLE flag)
 /datum/action/bloodsucker/proc/UsePower(mob/living/user)

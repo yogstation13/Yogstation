@@ -183,10 +183,10 @@
 
 /datum/action/bloodsucker/targeted/lunge/shadow
 	name = "Dark Embrace"
-	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	background_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	background_icon_state_on = "lasombra_power_on"
 	background_icon_state_off = "lasombra_power_off"
-	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_embrace"
 	additional_text = "Additionally makes the target walk."
 	purchase_flags = LASOMBRA_CAN_BUY

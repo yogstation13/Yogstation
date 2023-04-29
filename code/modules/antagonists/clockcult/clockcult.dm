@@ -90,7 +90,7 @@
 	GLOB.all_clockwork_mobs += current
 	current.faction |= "ratvar"
 	current.grant_language(/datum/language/ratvar)
-	current.update_action_buttons_icon() //because a few clockcult things are action buttons and we may be wearing/holding them for whatever reason, we need to update buttons
+	current.update_mob_action_buttons() //because a few clockcult things are action buttons and we may be wearing/holding them for whatever reason, we need to update buttons
 	if(issilicon(current))
 		var/mob/living/silicon/S = current
 		if(iscyborg(S))
@@ -162,7 +162,7 @@
 		var/mob/living/silicon/robot/R = temp_owner
 		R.module.rebuild_modules()
 	if(temp_owner)
-		temp_owner.update_action_buttons_icon() //because a few clockcult things are action buttons and we may be wearing/holding them, we need to update buttons
+		temp_owner.update_mob_action_buttons() //because a few clockcult things are action buttons and we may be wearing/holding them, we need to update buttons
 	temp_owner.cut_overlays()
 	temp_owner.regenerate_icons()
 

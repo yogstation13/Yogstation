@@ -78,7 +78,7 @@
 	if(!length(possible))
 		to_chat(owner,span_warning("Despite your best efforts, there are no scents to be found here"))
 		return
-	tracking_target = input(owner, "Choose a scent to focus in on.", "Scent Tracking") as null|anything in possible
+	tracking_target = tgui_input_list(owner, "Choose a scent to focus in on.", "Scent Tracking", possible)
 	if(tracking_flags & TRACKING_SCENT)
 		tracking_target = possible[tracking_target]
 	if(!tracking_target)
@@ -121,12 +121,12 @@
 /datum/action/bloodsucker/olfaction/acquire_scent/lesser
 	name = "Transcendent Olfaction"
 
-	button_icon = 'icons/mob/actions/backgrounds.dmi'
+	background_icon = 'icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_spell"
 	background_icon_state_on = "bg_spell"
 	background_icon_state_off = "bg_spell"
 	
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "nose"
 
 	buttontooltipstyle = ""
@@ -259,13 +259,13 @@
 	name = "Follow the Scent"
 	desc = "Begin following the scent of your target."
 
-	button_icon = 'icons/mob/actions/backgrounds.dmi'
+	background_icon = 'icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_spell"
 	background_icon_state_on = "bg_spell"
 	background_icon_state_off = "bg_spell"
 	buttontooltipstyle = ""
 	
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "nose"
 
 	status_effect = STATUS_EFFECT_SCENT_HUNTER

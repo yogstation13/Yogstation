@@ -41,7 +41,7 @@
 	if(power_flags & BP_AM_TOGGLE)
 		UnregisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE)
 	active = FALSE
-	UpdateButtons()
+	build_all_button_icons()
 	unset_click_ability(owner)
 //	..() // we don't want to pay cost here
 

@@ -75,12 +75,12 @@
 			next_cast = world.time + 1 SECONDS
 			return
 
-		if(magic_missile.IsAvailable())
+		if(magic_missile.IsAvailable(feedback = FALSE))
 			magic_missile.Trigger(null, target)
 			next_cast = world.time + 1 SECONDS
 			return
 
-		if(blink.IsAvailable()) // Spam Blink when you can
+		if(blink.IsAvailable(feedback = FALSE)) // Spam Blink when you can
 			blink.Trigger(null, src)
 			next_cast = world.time + 1 SECONDS
 			return

@@ -2,7 +2,7 @@
 	name = "Fortitude"
 	desc = "Withstand egregious physical wounds and walk away from attacks that would stun, pierce, and dismember lesser beings."
 	button_icon_state = "power_fortitude"
-	power_explanation = "Fortitude<:\n\
+	power_explanation = "Fortitude:\n\
 		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
 		You will additionally gain resistance to Brute and Stamina damge, scaling with level.\n\
 		While using Fortitude, attempting to run will crush you.\n\
@@ -86,10 +86,10 @@
 /datum/action/bloodsucker/fortitude/shadow
 	name = "Shadow Armor"
 	desc = "Empowered to the abyss, fortitude will now grant you a shadow armor, making your grip harder to escape and reduce projectile damage while in darkness."
-	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	background_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	background_icon_state_on = "lasombra_power_on"
 	background_icon_state_off = "lasombra_power_off"
-	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_armor"
 	additional_text = "Additionally gives you extra damage while fortitude'd and agro grab while in darkness."
 	purchase_flags = LASOMBRA_CAN_BUY

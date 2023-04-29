@@ -2,7 +2,7 @@
 	name = "Mimicry"
 	desc = "Why fight your foes when you can simply outwit them? Disguises the caster as a random crewmember. \
 			The body-covering shell keeps your form as is, and protects you from body-altering effects."
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "disguise"
 
 	school = SCHOOL_TRANSMUTATION

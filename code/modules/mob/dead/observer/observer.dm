@@ -852,13 +852,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/proc/cleanup_observe()
 	var/mob/target = observetarget
+	observetarget = null
 	client?.perspective = initial(client.perspective)
 	sight = initial(sight)
-	UnregisterSignal(target, COMSIG_MOVABLE_Z_CHANGED)
-	if(target && target.observers)
-		target.observers -= src
-		UNSETEMPTY(target.observers)
-	observetarget = null
+	if(target)
+		UnregisterSignal(target, COMSIG_MOVABLE_Z_CHANGED)
+		hide_other_mob_action_buttons(target)
+		LAZYREMOVE(target.observers, src)
 	actions = originalactions
 	actions -= UO
 	update_action_buttons()
@@ -910,13 +910,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /datum/action/unobserve
 	name = "Stop Observing"
 	desc = "Stops observing the person."
-	icon_icon = 'icons/mob/mob.dmi'
+	button_icon = 'icons/mob/mob.dmi'
 	button_icon_state = "ghost_nodir"
 
 /datum/action/unobserve/Trigger()
 	owner.reset_perspective(null)
 
-/datum/action/unobserve/IsAvailable()
+/datum/action/unobserve/IsAvailable(feedback = FALSE)
 	return TRUE
 
 /mob/dead/observer/proc/on_observing_z_changed(datum/source, oldz, newz)

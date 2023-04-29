@@ -1337,7 +1337,7 @@
 	. = ..()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtons()
+		A.build_all_button_icons()
 
 /atom/movable/proc/get_filter(name)
 	if(filter_data && filter_data[name])

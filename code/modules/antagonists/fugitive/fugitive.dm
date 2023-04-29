@@ -89,13 +89,13 @@
 /datum/action/innate/yalpcomms
 	name = "Yalp Elor Communion"
 	desc = "Allows talking with the brothers of Yalp Elor."
-	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "yalp_comms"
 	background_icon_state = "bg_tech"
 
 /datum/action/innate/yalpcomms/Activate()
 	var/input = stripped_input(usr, "Input a message to send to your brothers.", "Yalp Elor Communion", "")
-	if(!input || !IsAvailable())
+	if(!input || !IsAvailable(feedback = FALSE))
 		return
 
 	yalp_speech(usr, input)

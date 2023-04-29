@@ -990,7 +990,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	name = "Sword Recall"
 	desc = "Pulls your possessed sword back to you."
 	panel = "Chaplain"
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "swordrecall"
 
 	school = SCHOOL_CONJURATION
@@ -1094,7 +1094,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	name = "Land"
 	desc = "Return to the ground for people to wield you."
 	panel = "Chaplain"
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "sworddrop"
 
 	school = SCHOOL_TRANSMUTATION

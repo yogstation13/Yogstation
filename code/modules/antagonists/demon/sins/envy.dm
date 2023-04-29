@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/touch/envy
 	name = "Vanity Steal"
 	desc = "Engulfs your arm in a jealous might, allowing you to steal the look of the first human-like struck with it. Note, the form change is not reversible."
-	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
+	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "transform"
 	background_icon_state = "bg_demon"
 

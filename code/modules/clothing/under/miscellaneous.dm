@@ -836,7 +836,7 @@
 
 	for(var/X in actions)
 		var/datum/action/A=X
-		A.UpdateButtons()
+		A.build_all_button_icons()
 
 /obj/item/clothing/under/lampskirt/female
 	icon_state = "lampskirt_female"

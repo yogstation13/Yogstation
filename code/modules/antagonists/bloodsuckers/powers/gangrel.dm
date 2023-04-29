@@ -1,6 +1,6 @@
 /datum/action/bloodsucker/gangrel
+	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	background_icon_state = "gangrel_power_off"
 	background_icon_state_on = "gangrel_power_on"
 	background_icon_state_off = "gangrel_power_off"
@@ -133,8 +133,8 @@
 /datum/action/bloodsucker/targeted/haste/batdash
 	name = "Flying Haste"
 	desc = "Propulse yourself into a position of advantage."
+	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon_state = "power_baste"
 	background_icon_state_on = "bat_power_on"
 	background_icon_state_off = "bat_power_off"
@@ -161,8 +161,8 @@
 /datum/action/bloodsucker/targeted/bloodbolt
 	name = "Blood Bolt"
 	desc = "Shoot a blood bolt to damage your foes."
+	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon_state = "power_bolt"
 	background_icon_state_on = "bat_power_on"
 	background_icon_state_off = "bat_power_off"
@@ -263,8 +263,8 @@
 /datum/action/bloodsucker/targeted/feast
 	name = "Feast"
 	desc = "DEVOUR THE WEAKLINGS, CAUSE THEM HARM. FEED. ME."
+	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon_state = "power_feast"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
@@ -354,8 +354,8 @@
 /datum/action/bloodsucker/targeted/pounce
 	name = "Pounce"
 	desc = "TACKLE THE LIVING TO THE GROUND. FEAST ON CORPSES."
+	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon_state = "power_pounce"
 	background_icon_state_on = "wolf_power_on"
 	background_icon_state_off = "wolf_power_off"
@@ -507,8 +507,8 @@
 	name = "Tear"
 	desc = "Ruthlessly tear into an enemy, dealing massive damage to them if successful."
 	button_icon_state = "power_tear"
+	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	background_icon_state_on = "gangrel_power_on"
 	background_icon_state_off = "gangrel_power_off"
 	power_explanation = "Tear:\n\

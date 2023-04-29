@@ -324,7 +324,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 /datum/action/cooldown/spell/pocket_dim
 	name = "Dimensional Intersection"
 	desc = "(De)manifest a pocket dimension."
-	icon_icon = 'icons/obj/objects.dmi'
+	button_icon = 'icons/obj/objects.dmi'
 	button_icon_state = "anom"
 
 	cooldown_time = 45 SECONDS
@@ -377,7 +377,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 
 /datum/action/cooldown/spell/pocket_dim_move
 	name = "Dimensional Movement"
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_jump"
 
 	spell_requirements = NONE

@@ -38,35 +38,35 @@
 
 /datum/action/innate/megafauna_attack/spiralpikes
 	name = "Resonant Spiral"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "shield"
 	chosen_message = span_boldannounce("You are now firing in a spiral.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/cardinalpikes
 	name = "Cardinal Pikes"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "launchpad_target"
 	chosen_message = span_boldannounce("You are now firing in 8 directions.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/backup
 	name = "Warp Mini Mechanoid"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "curse"
 	chosen_message = span_boldannounce("You are now summoning allies.")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/stalnade
 	name = "Volatile Orb Cone"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "m_shield"
 	chosen_message = span_boldannounce("You are now firing a cone of slow, high damaging projectiles.")
 	chosen_attack_num = 4
 
 /datum/action/innate/megafauna_attack/stalnadespiral
 	name = "Volatile Orb Spiral"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "shield-old"
 	chosen_message = span_boldannounce("You are now firing a spiral of slow, high damaging projectiles.")
 	chosen_attack_num = 5

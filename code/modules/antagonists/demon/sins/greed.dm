@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/conjure/summon_greedslots
 	name = "Summon Slotmachine"
 	desc = "Summon forth a temporary slot machine of greed, allowing you to offer patrons a deadly game where the price is their life (and some money if you'd like) and the possible prize is a one use die of fate."
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "slots"
 	background_icon_state = "bg_demon"
 

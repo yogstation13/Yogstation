@@ -3,8 +3,10 @@
 	desc = "Shoot up to three mimed bullets from your fingers that damage and mute their targets. \
 		Can't be used if you have something in your hands."
 	background_icon_state = "bg_mime"
-	icon_icon = 'icons/mob/actions/actions_mime.dmi'
+	overlay_icon_state = "bg_mime_border"
+	button_icon = 'icons/mob/actions/actions_mime.dmi'
 	button_icon_state = "finger_guns0"
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED|AB_CHECK_INCAPACITATED
 	panel = "Mime"
 	sound = null
 

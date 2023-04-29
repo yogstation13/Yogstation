@@ -8,19 +8,21 @@
 	//heal_flag_necessary = HEAL_CC_STATUS
 	var/needs_update_stat = FALSE
 
-/datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration)
+/datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration, updating_canmove)
 	if(isnum(set_duration))
 		duration = set_duration
 	. = ..()
-	if(. && (needs_update_stat || issilicon(owner)))
-		owner.update_stat()
+	if(. && updating_canmove)
+		owner.update_mobility()
+		if(needs_update_stat || issilicon(owner))
+			owner.update_stat()
 
 
 /datum/status_effect/incapacitating/on_remove()
+	owner.update_mobility()
 	if(needs_update_stat || issilicon(owner)) //silicons need stat updates in addition to normal canmove updates
 		owner.update_stat()
 	return ..()
-
 
 //STUN
 /datum/status_effect/incapacitating/stun
@@ -30,14 +32,10 @@
 	. = ..()
 	if(!.)
 		return
-	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
-	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
-	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, TRAIT_STATUS_EFFECT(id))
+	owner.add_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_HANDS_BLOCKED), TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/incapacitating/stun/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
-	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
-	REMOVE_TRAIT(owner, TRAIT_HANDS_BLOCKED, TRAIT_STATUS_EFFECT(id))
+	owner.remove_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_HANDS_BLOCKED), TRAIT_STATUS_EFFECT(id))
 	return ..()
 
 
@@ -79,16 +77,10 @@
 	. = ..()
 	if(!.)
 		return
-	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
-	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
-	ADD_TRAIT(owner, TRAIT_FLOORED, TRAIT_STATUS_EFFECT(id))
-	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, TRAIT_STATUS_EFFECT(id))
+	owner.add_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED, TRAIT_HANDS_BLOCKED), TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/incapacitating/paralyzed/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
-	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
-	REMOVE_TRAIT(owner, TRAIT_FLOORED, TRAIT_STATUS_EFFECT(id))
-	REMOVE_TRAIT(owner, TRAIT_HANDS_BLOCKED, TRAIT_STATUS_EFFECT(id))
+	owner.remove_traits(list(TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED, TRAIT_HANDS_BLOCKED), TRAIT_STATUS_EFFECT(id))
 	return ..()
 
 //INCAPACITATED
@@ -240,7 +232,7 @@
 /datum/status_effect/incapacitating/stasis
 	id = "stasis"
 	duration = -1
-	tick_interval = 10
+	tick_interval = 1 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/stasis
 	var/last_dead_time
 	/// What is added to the *life_tickrate*, -1 to freeze the ticks
@@ -774,12 +766,12 @@
 	id = "kindle"
 	status_type = STATUS_EFFECT_UNIQUE
 	tick_interval = 5
-	duration = 100
+	duration = 10 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/kindle
 	var/old_health
 
 /datum/status_effect/kindle/tick()
-	owner.Paralyze(15)
+	owner.Paralyze(1.5 SECONDS)
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
 		C.silent += 2

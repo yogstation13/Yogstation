@@ -77,7 +77,7 @@
 	name = "How to suck blood 101"
 	desc = "Explains how the vampire blood sucking system works."
 	button_icon_state = "bloodymaryglass"
-	icon_icon = 'icons/obj/drinks.dmi'
+	button_icon = 'icons/obj/drinks.dmi'
 	background_icon_state = "bg_demon"
 
 	school = SCHOOL_SANGUINE
@@ -97,7 +97,7 @@
 	name = "Rejuvenate"
 	desc= "Flush your system with spare blood to repair minor stamina damage to your body."
 	button_icon_state = "rejuv"
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 
 	school = SCHOOL_RESTORATION
@@ -130,7 +130,7 @@
 	name = "Vampiric Gaze"
 	desc = "Paralyze your target with fear."
 	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 	button_icon_state = "gaze"
 
@@ -198,7 +198,7 @@
 	desc = "Knock out your target."
 	button_icon_state = "hypnotize"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/hypnotize_target.dmi'
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 
 	school = SCHOOL_SANGUINE
@@ -270,7 +270,7 @@
 	desc = "Changes your name and appearance at the cost of 50 blood and has a cooldown of 3 minutes."
 	gain_desc = "You have gained the shapeshifting ability, at the cost of stored blood you can change your form permanently."
 	button_icon_state = "genetic_poly"
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 
 	school = SCHOOL_TRANSMUTATION
@@ -294,7 +294,7 @@
 	desc = "Toggles whether you are currently cloaking yourself in darkness."
 	gain_desc = "You have gained the Cloak of Darkness ability which when toggled makes you near invisible in the shroud of darkness."
 	button_icon_state = "cloak"
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 
 	school = SCHOOL_CONJURATION
@@ -330,7 +330,7 @@
 	name = "Revive"
 	gain_desc = "You have gained the ability to revive after death... However you can still be cremated/gibbed, and you will disintergrate if you're in the chapel!"
 	desc = "Revives you, provided you are not in the chapel!"
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	button_icon_state = "coffin"
 	background_icon_state = "bg_demon"
 
@@ -377,7 +377,7 @@
 	desc = "Touches your victim with infected blood giving them Grave Fever, which will, left untreated, causes toxic building and frequent collapsing."
 	gain_desc = "You have gained the Diseased Touch ability which causes those you touch to become weak unless treated medically."
 	button_icon_state = "disease"
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 
 	school = SCHOOL_SANGUINE
@@ -409,7 +409,7 @@
 	desc = "An extremely loud shriek that stuns nearby humans and breaks windows as well."
 	gain_desc = "You have gained the Chiropteran Screech ability which stuns anything with ears in a large radius and shatters glass in the process."
 	button_icon_state = "reeee"
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 
 	school = SCHOOL_SANGUINE
@@ -452,7 +452,7 @@
 	desc = "You summon a pair of space bats who attack nearby targets until they or their target is dead."
 	gain_desc = "You have gained the Summon Bats ability."
 	button_icon_state = "bats"
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 
 	school = SCHOOL_CONJURATION
@@ -496,7 +496,7 @@
 	name = "Lilith's Pact (300)"
 	desc = "You drain a victim's blood, and fill them with new blood, blessed by Lilith, turning them into a new vampire."
 	gain_desc = "You have gained the ability to force someone, given time, to become a vampire."
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 	button_icon_state = "oath"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/bite_target.dmi' //big win
@@ -560,7 +560,7 @@
 	name = "Summon Dracula Coat (100)"
 	desc = "Allows you to summon a Vampire Coat providing passive usable blood restoration when your usable blood is very low."
 	gain_desc = "Now that you have reached full power, you can now pull a vampiric coat out of thin air!"
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	button_icon_state = "coat"
 	background_icon_state = "bg_demon"
 
@@ -592,7 +592,7 @@
 	gain_desc = "You now have the Bat Form ability, which allows you to turn into a bat (and back!)"
 	desc = "Transform into a bat!"
 	button_icon_state = "bat"
-	icon_icon = 'yogstation/icons/mob/vampire.dmi'
+	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	background_icon_state = "bg_demon"
 
 	school = SCHOOL_TRANSMUTATION

@@ -270,7 +270,7 @@
 		reckoning.Grant(current)
 	bloodmark.Grant(current)
 	throwing.Grant(current)
-	current.update_action_buttons_icon()
+	current.update_mob_action_buttons()
 	current.apply_status_effect(/datum/status_effect/cult_master)
 	if(cult_team.cult_risen)
 		cult_team.rise(current)
@@ -286,7 +286,7 @@
 	reckoning.Remove(current)
 	bloodmark.Remove(current)
 	throwing.Remove(current)
-	current.update_action_buttons_icon()
+	current.update_mob_action_buttons()
 	current.remove_status_effect(/datum/status_effect/cult_master)
 
 	if(ishuman(current))

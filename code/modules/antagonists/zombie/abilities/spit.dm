@@ -14,7 +14,7 @@
 
 /obj/effect/proc_holder/zombie/spit/update_icon()
 	action.button_icon_state = "alien_neurotoxin_[active]"
-	action.UpdateButtons()
+	action.build_all_button_icons()
 
 /obj/effect/proc_holder/zombie/spit/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(..())

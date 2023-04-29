@@ -450,7 +450,7 @@
 		walk(src, 0) //stop mid walk
 
 	update_transform()
-	update_action_buttons_icon()
+	update_mob_action_buttons()
 
 /mob/living/simple_animal/update_transform()
 	var/matrix/ntransform = matrix(transform) //aka transform.Copy()

@@ -499,14 +499,15 @@
 	name = "Expose"
 	desc = "Expose an enemy, increasing all damage dealt to them by 15% for 10 seconds, effect is magnified on megafauna."
 	background_icon_state =  "bg_demon"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	overlay_icon_state = "bg_demon_border"
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "expose"
 
 	click_to_activate = TRUE
 	cooldown_time = 45 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/expose_target.dmi'
 
-/datum/action/cooldown/expose/IsAvailable()
+/datum/action/cooldown/expose/IsAvailable(feedback = FALSE)
 	return ..() && isliving(owner)
 
 /datum/action/cooldown/expose/Activate(atom/exposed)

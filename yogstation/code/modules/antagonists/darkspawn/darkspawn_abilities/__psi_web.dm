@@ -79,6 +79,10 @@
 	else
 		CRASH("psi_web action created with non web.")
 
+/datum/action/innate/darkspawn/psi_web/Destroy()
+	psi_web = null
+	return ..()
+
 /datum/action/innate/darkspawn/psi_web/Activate()
 	if(!darkspawn)
 		return

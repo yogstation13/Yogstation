@@ -35,7 +35,7 @@
 	user.update_gravity(user.has_gravity())
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtons()
+		A.build_all_button_icons()
 
 /obj/item/clothing/shoes/magboots/negates_gravity()
 	return clothing_flags & NOSLIP

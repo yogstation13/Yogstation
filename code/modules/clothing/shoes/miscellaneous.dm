@@ -547,13 +547,13 @@
 /datum/action/item_action/dash
 	name = "Dash"
 	desc = "Momentarily maximizes the jets of the shoes, allowing the user to dash a short distance."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "thrust"
 
 /datum/action/item_action/airshoes
 	name = "Toggle thrust on air shoes."
 	desc = "Switch between walking and hovering."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "airshoes_a"
 
 /obj/item/clothing/shoes/airshoes

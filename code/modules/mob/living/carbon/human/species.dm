@@ -2281,7 +2281,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/action/innate/flight
 	name = "Toggle Flight"
 	check_flags = AB_CHECK_CONSCIOUS| AB_CHECK_IMMOBILE
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "flight"
 
 /datum/action/innate/flight/Activate()

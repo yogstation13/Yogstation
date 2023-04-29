@@ -5,8 +5,8 @@
 /datum/action/bloodsucker/targeted/dice
 	name = "Dice" 
 	desc = "Slice, cut, sever. The Flesh obeys as my fingers lay touch on it."
+	background_icon = 'icons/mob/actions/actions_tzimisce_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_tzimisce_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_tzimisce_bloodsucker.dmi'
 	background_icon_state = "tzimisce_power_off"
 	background_icon_state_on = "tzimisce_power_on"
 	background_icon_state_off = "tzimisce_power_off"

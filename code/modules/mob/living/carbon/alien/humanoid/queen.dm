@@ -115,7 +115,7 @@
 
 	.[PANEL_DISPLAY_STATUS] = "PLASMA - [promotion_plasma_cost]"
 
-/datum/action/cooldown/alien/promote/IsAvailable()
+/datum/action/cooldown/alien/promote/IsAvailable(feedback = FALSE)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -169,7 +169,7 @@
 		to_chat(queen, span_noticealien("You may only use this with your adult, non-royal children!"))
 		return
 	
-	if(!promotion.IsAvailable())
+	if(!promotion.IsAvailable(feedback = FALSE))
 		to_chat(queen, span_noticealien("You cannot promote a child right now!"))
 		return
 

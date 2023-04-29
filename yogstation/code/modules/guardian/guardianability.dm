@@ -85,7 +85,7 @@
 /datum/guardian_ability/minor
 
 /datum/action/guardian
-	icon_icon = 'icons/mob/actions_guardian.dmi'
+	button_icon = 'icons/mob/actions_guardian.dmi'
 	background_icon_state = null
 
 /datum/action/guardian/Trigger()

@@ -174,12 +174,12 @@
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /*/datum/action/innate/zombie
-	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
+	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	background_icon_state = "bg_demon"
 	buttontooltipstyle = "cult"
 	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 
-/datum/action/innate/zombie/IsAvailable()
+/datum/action/innate/zombie/IsAvailable(feedback = FALSE)
 	if(!isinfected(owner))
 		return FALSE
 	return ..()
@@ -215,12 +215,12 @@
 /datum/action/innate/zombie/talk
 	name = "Chat"
 	desc = "Chat with your fellow infected."
-	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "cult_comms"
 
 /datum/action/innate/zombie/talk/Activate()
 	var/input = stripped_input(usr, "Please choose a message to tell to the other zombies.", "Infected Communications", "")
-	if(!input || !IsAvailable())
+	if(!input || !IsAvailable(feedback = FALSE))
 		return
 
 	talk(usr, input)
@@ -245,12 +245,12 @@
 /datum/action/innate/zombie/choose_class
 	name = "Evolve"
 	desc = "Evolve into a special class."
-	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "cultfist"
 
 /datum/action/innate/zombie/choose_class/Activate()
 	var/selected = input(usr, "Choose a class to evolve into", "Evolution") as null|anything in list("Runner", "Juggernaut", "Spitter")
-	if(!selected || !IsAvailable())
+	if(!selected || !IsAvailable(feedback = FALSE))
 		return
 	if(!isinfectedzombie(owner))
 		return
@@ -298,10 +298,10 @@
 /datum/action/innate/zombie/choose_class/tier2
 	name = "Evolve - Tier 2"
 	desc = "Evolve into a Tier 2 special class."
-	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "cultfist"
 
-/datum/action/innate/zombie/choose_class/tier2/IsAvailable()
+/datum/action/innate/zombie/choose_class/tier2/IsAvailable(feedback = FALSE)
 	if(!isinfected(owner))
 		return
 	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
@@ -315,7 +315,7 @@
 
 /datum/action/innate/zombie/choose_class/tier2/Activate()
 	var/selected = input(usr, "Choose a class to evolve into", "Evolution") as null|anything in list("Necromancer")
-	if(!selected || !IsAvailable())
+	if(!selected || !IsAvailable(feedback = FALSE))
 		return
 	if(!isinfectedzombie(owner))
 		return
@@ -363,7 +363,7 @@
 	panel = "Zombie"
 	has_action = TRUE
 	base_action = /datum/action/spell_action
-	icon_icon = 'icons/mob/actions/actions_xeno.dmi'
+	button_icon = 'icons/mob/actions/actions_xeno.dmi'
 	button_icon_state = "spell_default"
 	background_icon_state = "bg_alien"
 	var/ready = TRUE

@@ -186,8 +186,12 @@
 	if(!ispath(power_path) || !owner)
 		return FALSE
 
-	var/datum/action/cooldown/spell/new_power = new power_path(src)
-	new_power.background_icon_state = "bg_tech_blue_on"
+	var/datum/action/cooldown/new_power = new power_path(src)
+	new_power.background_icon_state = "bg_tech_blue"
+	new_power.base_background_icon_state = new_power.background_icon_state
+	new_power.active_background_icon_state = "[new_power.base_background_icon_state]_active"
+	new_power.overlay_icon_state = "bg_tech_blue_border"
+	new_power.active_overlay_icon_state = null
 	new_power.panel = "Genetic"
 	new_power.Grant(owner)
 

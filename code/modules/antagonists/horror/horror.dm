@@ -823,7 +823,7 @@
 	var/datum/action/innate/horror/action = has_ability(/datum/action/innate/horror/chameleon)
 	if(action)
 		action.button_icon_state = "horror_sneak_[invisible ? "true" : "false"]"
-		action.UpdateButtons()
+		action.build_all_button_icons()
 
 /mob/living/simple_animal/horror/proc/GrantHorrorActions()
 	for(var/datum/action/innate/horror/ability in horrorabilities)

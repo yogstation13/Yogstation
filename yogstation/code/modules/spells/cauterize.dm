@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/cauterize
 	name = "Cauterize"
 	desc = "Replace all brute/burn damage with burn damage, taken over time. Higher levels increases time taken to return back to original damage level."
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "cauterize"
 
 	school = SCHOOL_TRANSMUTATION //not restoration!

@@ -39,9 +39,8 @@
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		H.update_inv_head()
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.UpdateButtons(force = TRUE)
+	for(var/datum/action/A as anything in actions)
+		A.build_all_button_icons(force = TRUE)
 	..()
 
 /obj/item/clothing/head/hardhat/proc/turn_on(mob/user)

@@ -1,9 +1,9 @@
 /datum/action/item_action/clock
-	icon_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	background_icon_state = "bg_clock"
 	buttontooltipstyle = "clockcult"
 
-/datum/action/item_action/clock/IsAvailable()
+/datum/action/item_action/clock/IsAvailable(feedback = FALSE)
 	if(!is_servant_of_ratvar(owner))
 		return FALSE
 	return ..()
@@ -12,7 +12,7 @@
 	name = "Create Judicial Marker"
 	desc = "Allows you to create a stunning Judicial Marker at any location in view. Click again to disable."
 
-/datum/action/item_action/clock/toggle_visor/IsAvailable()
+/datum/action/item_action/clock/toggle_visor/IsAvailable(feedback = FALSE)
 	if(!is_servant_of_ratvar(owner))
 		return FALSE
 	if(istype(target, /obj/item/clothing/glasses/judicial_visor))

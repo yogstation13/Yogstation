@@ -38,7 +38,7 @@
 
 	invocation_says_area = FALSE
 
-/datum/action/cooldown/spell/teleport/area_teleport/wizard/scroll/IsAvailable()
+/datum/action/cooldown/spell/teleport/area_teleport/wizard/scroll/IsAvailable(feedback = FALSE)
 	var/obj/item/teleportation_scroll/scroll = target
 	return ..() && owner.is_holding(scroll) && scroll.uses
 

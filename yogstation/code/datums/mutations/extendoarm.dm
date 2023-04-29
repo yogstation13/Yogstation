@@ -11,7 +11,7 @@
 /datum/action/cooldown/spell/pointed/projectile/extendoarm
 	name = "Arm"
 	desc = "Stretch your arm to grab or put stuff down."
-	icon_icon = 'yogstation/icons/mob/actions/actions_spells.dmi'
+	button_icon = 'yogstation/icons/mob/actions/actions_spells.dmi'
 	base_icon_state = "arm"
 
 	cooldown_time = 5 SECONDS
@@ -23,7 +23,7 @@
 	deactive_msg = "You relax your arm."
 	projectile_amount = 64
 
-/datum/action/cooldown/spell/pointed/projectile/extendoarm/IsAvailable()
+/datum/action/cooldown/spell/pointed/projectile/extendoarm/IsAvailable(feedback = FALSE)
 	. = ..()
 	if(!.)
 		return FALSE
