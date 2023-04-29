@@ -2606,13 +2606,6 @@
 "apS" = (
 /turf/open/floor/wood,
 /area/lawoffice)
-"apX" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/wood,
-/area/lawoffice)
 "aqb" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/miner/oxygen,
@@ -47256,6 +47249,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
+"oQm" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/structure/filingcabinet/filingcabinet,
+/turf/open/floor/wood,
+/area/lawoffice)
 "oQp" = (
 /obj/machinery/button/door{
 	id = "heads_meeting";
@@ -97336,7 +97337,7 @@ kUv
 aOn
 mqS
 min
-apX
+oQm
 gOe
 mMn
 aph
