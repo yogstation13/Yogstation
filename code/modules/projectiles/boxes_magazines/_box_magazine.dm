@@ -162,7 +162,9 @@
 	else
 		var/obj/item/ammo_casing/A = get_round()
 		if(A)
-			user.put_in_hands(A)
+			if(!user.put_in_hands(A))
+				A.forceMove(drop_location())
+				A.bounce_away(FALSE, NONE)
 			playsound(src, 'sound/weapons/bulletinsert.ogg', 60, TRUE)
 			to_chat(user, span_notice("You remove a round from [src]!"))
 			update_icon()
