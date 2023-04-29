@@ -5,9 +5,8 @@
 	icon_state = "secbot"
 	density = FALSE
 	anchored = FALSE
-	health = 40
-	maxHealth = 40
-	damage_coeff = list(BRUTE = 0.5, BURN = 0.7, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	health = 75
+	maxHealth = 75
 	pass_flags = PASSMOB
 
 	radio_key = /obj/item/encryptionkey/secbot //AI Priv + Security
@@ -266,20 +265,23 @@ Auto Patrol: []"},
 	icon_state = "secbot-c"
 	addtimer(CALLBACK(src, .proc/update_icon), 2)
 	var/threat = 5
-	C.stuttering = max(5, C.stuttering)
-	C.apply_damage(70, STAMINA) // basically a baton mounted on a little robot, so it shouldn't be any stronger than an actual baton
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		threat = H.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
+		if(H.check_shields(src, 54, "[src]'s baton"))
+			return
 	else
 		threat = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
-
+	C.stuttering = max(5, C.stuttering)
+	C.apply_damage(54, STAMINA, BODY_ZONE_CHEST, C.run_armor_check(BODY_ZONE_CHEST, ENERGY)) // baton runs off of the tiny bot's power instead of an actual cell, not enough to work at full capacity
 	log_combat(src,C,"stunned")
 	if(declare_arrests)
 		var/area/location = get_area(src)
 		speak("[arrest_type ? "Detaining" : "Arresting"] level [threat] scumbag <b>[C]</b> in [location].", radio_channel)
-	C.visible_message(span_danger("[src] has stunned [C]!"),\
-							span_userdanger("[src] has stunned you!"))
+	C.visible_message(
+		span_danger("[src] has stunned [C]!"),
+		span_userdanger("[src] has stunned you!")
+	)
 
 /mob/living/simple_animal/bot/secbot/handle_automated_action()
 	if(!..())
