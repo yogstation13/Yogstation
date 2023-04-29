@@ -5,8 +5,8 @@
 	icon_state = "secbot"
 	density = FALSE
 	anchored = FALSE
-	health = 25
-	maxHealth = 25
+	health = 40
+	maxHealth = 40
 	damage_coeff = list(BRUTE = 0.5, BURN = 0.7, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	pass_flags = PASSMOB
 
@@ -267,7 +267,7 @@ Auto Patrol: []"},
 	addtimer(CALLBACK(src, .proc/update_icon), 2)
 	var/threat = 5
 	C.stuttering = max(5, C.stuttering)
-	C.apply_damage(40, STAMINA)
+	C.apply_damage(70, STAMINA) // basically a baton mounted on a little robot, so it shouldn't be any stronger than an actual baton
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		threat = H.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
