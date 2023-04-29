@@ -50,6 +50,7 @@
 	name = "4.6x30mm rubber bullet"
 	damage = 5
 	stamina = 22
+	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/c46x30mm/snakebite
 	name = "4.6x30mm snakebite bullet" 
