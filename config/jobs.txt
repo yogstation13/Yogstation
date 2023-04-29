@@ -30,7 +30,7 @@ Chaplain=1,1
 Station Engineer=5,5
 Atmospheric Technician=3,2
 
-Medical Doctor=5,3
+Medical Doctor=3,2
 Chemist=2,2
 Geneticist=2,2
 Virologist=1,1
