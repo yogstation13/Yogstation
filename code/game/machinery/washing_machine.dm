@@ -33,7 +33,6 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		DYE_PURPLE = /obj/item/clothing/under/skirt/color/lightpurple,
 		DYE_BLACK = /obj/item/clothing/under/skirt/color/black,
 		DYE_WHITE = /obj/item/clothing/under/skirt/color/white,
-
 		DYE_MIME = /obj/item/clothing/under/rank/mime/skirt,
 		DYE_LAW = /obj/item/clothing/under/lawyer/blacksuit/skirt,
 		DYE_CAPTAIN = /obj/item/clothing/under/rank/captain/skirt,
@@ -63,7 +62,8 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		DYE_CE = /obj/item/clothing/gloves/color/black,
 		DYE_RD = /obj/item/clothing/gloves/color/grey,
 		DYE_CMO = /obj/item/clothing/gloves/color/latex/nitrile,
-		DYE_REDCOAT = /obj/item/clothing/gloves/color/white
+		DYE_REDCOAT = /obj/item/clothing/gloves/color/white,
+		DYE_CENT = /obj/item/clothing/gloves/color/captain/centcom
 	),
 	DYE_REGISTRY_SNEAKERS = list(
 		DYE_RED = /obj/item/clothing/shoes/sneakers/red,
@@ -113,6 +113,8 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		DYE_CE = /obj/item/bedsheet/ce,
 		DYE_RD = /obj/item/bedsheet/rd,
 		DYE_CMO = /obj/item/bedsheet/cmo,
+		DYE_CENT = /obj/item/bedsheet/centcom,
+		DYE_SYNDI = /obj/item/bedsheet/syndie,
 		DYE_COSMIC = /obj/item/bedsheet/cosmos
 	)
 ))
