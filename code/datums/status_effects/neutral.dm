@@ -166,7 +166,7 @@
 	playsound(owner, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
 	owner.setDir(SOUTH)
 
-/datum/status_effect/tagalong/process()
+/datum/status_effect/tagalong/tick()
 	if(!shadowing)
 		owner.forceMove(cached_location)
 		qdel(src)
@@ -176,7 +176,7 @@
 		owner.forceMove(cached_location)
 		shadowing.visible_message(span_warning("[owner] suddenly appears from the dark!"))
 		to_chat(owner, span_warning("You are forced out of [shadowing]'s shadow!"))
-		owner.Knockdown(30)
+		owner.Knockdown(3 SECONDS)
 		qdel(src)
 	var/obj/item/I = owner.get_active_held_item()
 	if(I)
