@@ -28574,14 +28574,6 @@
 /obj/item/storage/crayons,
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
-"btm" = (
-/obj/structure/table,
-/obj/item/camera,
-/obj/machinery/newscaster{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/vaporwave,
-/area/storage/art)
 "btp" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -60853,6 +60845,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"kJt" = (
+/obj/structure/table,
+/obj/item/camera,
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
+/obj/item/toy/crayon/spraycan,
+/obj/item/toy/crayon/spraycan{
+	pixel_x = 0
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/storage/art)
 "kKB" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
@@ -116534,7 +116538,7 @@ agq
 agq
 bmO
 btl
-btm
+kJt
 njC
 bmO
 alH
