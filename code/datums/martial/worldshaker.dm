@@ -104,7 +104,7 @@
 
 /datum/martial_art/worldshaker/proc/rip_plate(mob/living/carbon/human/user)
 	if(plates <= 0)
-		to_chat(user, span_warning("your plates are too thin to tear off a piece!"))
+		to_chat(user, span_warning("Your plates are too thin to tear off a piece!"))
 		return
 	user.balloon_alert(user, span_notice("you tear off a loose plate!"))
 	user.take_overall_damage(1, 0, BODYPART_ANY)//literally tearing off part of your "skin" (more for flavour than actual gameplay)
