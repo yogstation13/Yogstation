@@ -1,5 +1,0 @@
-author: "solwashere"
-delete-after: true 
-changes: 
-  - rscadd: "Adds a mining medic labcoat that will spawn in their locker"
-  - imageadd: "adds mining medic labcoat sprites"
