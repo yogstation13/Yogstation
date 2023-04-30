@@ -37,7 +37,7 @@
 
 #define ALLOW_OBJECTS			(1<<0) //whether or not it can allow chameleon dummies
 #define ALLOW_DENSE				(1<<1) //whether or not it can contain objects with density
-#define HORIZONTAL				(1<<2) //whether people need to be lying down to enter it
+#define HORIZONTAL_HOLD			(1<<2) //whether people need to be lying down to enter it
 #define HORIZONTAL_LID			(1<<3) //whether people standing on it prevent opening and closing
 
 // Flags for the clothing_flags var on /obj/item/clothing

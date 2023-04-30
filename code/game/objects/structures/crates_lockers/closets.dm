@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY(lockers)
 		if(L.anchored || L.buckled || L.incorporeal_move || L.has_buckled_mobs())
 			return FALSE
 		if(L.mob_size > MOB_SIZE_TINY) // Tiny mobs are treated as items.
-			if((open_flags & HORIZONTAL) && L.density)
+			if((open_flags & HORIZONTAL_HOLD) && L.density)
 				return FALSE
 			if(L.mob_size > max_mob_size)
 				return FALSE
