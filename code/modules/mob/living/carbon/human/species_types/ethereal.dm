@@ -91,7 +91,7 @@
 		if(!emageffect)
 			current_color = rgb(r2 + ((r1-r2)*healthpercent), g2 + ((g1-g2)*healthpercent), b2 + ((b1-b2)*healthpercent))
 		H.set_light(light_range + 1, 0.1, current_color)//this just controls actual view range, not the overlay
-		ethereal_light.set_light_range_power_color(light_range, 1, current_color)
+		ethereal_light.set_light_range_power_color(light_range, healthpercent, current_color)
 		ethereal_light.set_light_on(TRUE)
 		fixed_mut_color = copytext_char(current_color, 2)
 	else
