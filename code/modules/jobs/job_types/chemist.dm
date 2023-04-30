@@ -33,8 +33,9 @@
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/glass/bottle/flash_powder = 15,
-		///obj/item/reagent_containers/glass/bottle/exotic_stabilizer = 5,
-		///obj/item/reagent_containers/glass/bottle/leadacetate = 5,
+		/obj/item/reagent_containers/glass/beaker/meta = 15,
+		/obj/item/reagent_containers/glass/beaker/large/lemoline = 10,
+		/obj/item/storage/pill_bottle/gummies/floorbear = 1,
 		/obj/item/paper/secretrecipe = 1
 	)
 

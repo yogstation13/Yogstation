@@ -598,7 +598,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	plush = TRUE
 
 /datum/donator_gear/narplush
-	name = "Nar'Sie"
+	name = "Nar'sie"
 	unlock_path = /obj/item/toy/plush/narplush/hugbox
 	plush = TRUE
 
