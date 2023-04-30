@@ -178,9 +178,9 @@
 	D.IgniteMob()
 	playsound(D, get_sfx("explosion"), 50, TRUE, -1)
 	
-	var/obj/item/bodypart/affecting = A.get_bodypart(BODY_ZONE_CHEST)
-	var/armor_block = A.run_armor_check(affecting, BOMB)
-	A.apply_damage(A.get_punchdamagehigh() * 1.5 + 4.5, BRUTE, BODY_ZONE_CHEST, armor_block) 	//15 brute (vs bomb)
+	var/obj/item/bodypart/affecting = D.get_bodypart(BODY_ZONE_CHEST)
+	var/armor_block = D.run_armor_check(affecting, BOMB)
+	D.apply_damage(A.get_punchdamagehigh() * 1.5 + 4.5, BRUTE, BODY_ZONE_CHEST, armor_block) 	//15 brute (vs bomb)
 	streak = ""
 /*---------------------------------------------------------------
 	end of Detonate section
