@@ -321,6 +321,19 @@
 					/obj/item/ammo_box/magazine/recharge/ntusp)
 	crate_name = "nt-usp crate"
 
+/datum/supply_pack/security/v38pistol
+	name = "Vastra M38 Pistol Crate"
+	desc = "A pack containing three Vastra M38s, an unusual handgun which loads .38 special, designed for unarmored targets. Three spare magazines are included. Requires Security access to open."
+	cost = 2500
+	access_view = ACCESS_ARMORY
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/ammo_box/magazine/v38,
+					/obj/item/ammo_box/magazine/v38,
+					/obj/item/ammo_box/magazine/v38)
+	crate_name = "pistol crate"
+
 /datum/supply_pack/security/forensics
 	name = "Forensics Crate"
 	desc = "Stay hot on the criminal's heels with Nanotrasen's Detective Essentials(tm). Contains a forensics scanner, six evidence bags, camera, tape recorder, white crayon, and of course, a fedora. Requires Security access to open."

@@ -96,3 +96,19 @@
 	else
 		icon_state = "50ae-[ammo_count()]"
 
+//Vatra M38 Pistol
+
+/obj/item/ammo_box/magazine/v38
+	name = "handgun magazine (.38)"
+	desc = "A 8-round .38 magazine designed for the Vatra M38 pistol."
+	icon_state = "v38-8"
+	ammo_type = /obj/item/ammo_casing/c38
+	caliber = "38"
+	max_ammo = 8
+
+/obj/item/ammo_box/magazine/v38/update_icon()
+	..()
+	if (ammo_count() >= 8)
+		icon_state = "v38-8"
+	else
+		icon_state = "v38-[ammo_count()]"
