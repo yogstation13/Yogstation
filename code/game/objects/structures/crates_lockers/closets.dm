@@ -21,8 +21,6 @@ GLOBAL_LIST_EMPTY(lockers)
 	var/message_cooldown
 	var/can_weld_shut = TRUE
 	var/open_flags = null
-	var/horizontal = FALSE 
-	var/horizontallid = FALSE
 	var/dense_when_open = FALSE //if it's dense when open or not
 	var/max_mob_size = MOB_SIZE_HUMAN //Biggest mob_size accepted by the container
 	var/mob_storage_capacity = 3 // how many human sized mob/living can fit together inside a closet.
