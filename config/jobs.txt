@@ -12,7 +12,7 @@ Chief Medical Officer=1,1
 Assistant=-1,-1
 
 Quartermaster=1,1
-Cargo Technician=3,2
+Cargo Technician=2,1
 Shaft Miner=3,3
 
 Bartender=1,1

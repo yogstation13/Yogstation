@@ -14,6 +14,26 @@
 	ammo_type = /obj/item/ammo_casing/a357
 	max_ammo = 20
 
+/obj/item/ammo_box/no_direct/a357/ironfeather
+	name = "ammo box (.357 Ironfeather)"
+	ammo_type = /obj/item/ammo_casing/a357/ironfeather
+
+/obj/item/ammo_box/no_direct/a357/nutcracker
+	name = "ammo box (.357 Nutcracker)"
+	ammo_type = /obj/item/ammo_casing/a357/nutcracker
+
+/obj/item/ammo_box/no_direct/a357/metalshock
+	name = "ammo box (.357 Metalshock)"
+	ammo_type = /obj/item/ammo_casing/a357/metalshock
+
+/obj/item/ammo_box/no_direct/a357/heartpiercer
+	name = "ammo box (.357 Heartpiercer)"
+	ammo_type = /obj/item/ammo_casing/a357/heartpiercer
+
+/obj/item/ammo_box/no_direct/a357/wallstake
+	name = "ammo box (.357 Wallstake)"
+	ammo_type = /obj/item/ammo_casing/a357/wallstake
+
 /obj/item/ammo_box/no_direct/n762
 	name = "ammo box (7.62x38mmR)"
 	icon_state = "10mmbox"
@@ -110,6 +130,26 @@
 	ammo_type = /obj/item/ammo_casing/c10mm
 	caliber = "10mm"
 	max_ammo = 20
+
+/obj/item/ammo_box/c10mm/sp
+	name = "ammo box (10mm soporific)"
+	ammo_type = /obj/item/ammo_casing/c10mm/sp
+
+/obj/item/ammo_box/c10mm/ap
+	name = "ammo box (10mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/c10mm/ap
+
+/obj/item/ammo_box/c10mm/hp
+	name = "ammo box (10mm hollow-point)"
+	ammo_type = /obj/item/ammo_casing/c10mm/hp
+
+/obj/item/ammo_box/c10mm/inc
+	name = "ammo box (10mm incendiary)"
+	ammo_type = /obj/item/ammo_casing/c10mm/inc
+
+/obj/item/ammo_box/c10mm/emp
+	name = "ammo box (10mm EMP)"
+	ammo_type = /obj/item/ammo_casing/c10mm/emp
 
 /obj/item/ammo_box/c45
 	name = "ammo box (.45)"

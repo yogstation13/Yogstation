@@ -88,6 +88,14 @@
 	required_reagents = list(/datum/reagent/lithium = 1) //battery material makes electricity people
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/green
+	
+/datum/chemical_reaction/slime/slimepreternis
+	name = "Preternis Mutation Toxin"
+	id = "preternismuttoxin"
+	results = list(/datum/reagent/mutationtoxin/preternis = 1)
+	required_reagents = list(/datum/reagent/stable_plasma = 1)
+	required_other = TRUE
+	required_container = /obj/item/slime_extract/green
 
 /datum/chemical_reaction/slime/slimemoth
 	name = "Moth Mutation Toxin"

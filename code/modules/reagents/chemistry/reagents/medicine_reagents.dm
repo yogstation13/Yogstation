@@ -448,6 +448,11 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	process_flags = SYNTHETIC
 
+/datum/reagent/medicine/system_cleaner/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	for(var/thing in L.diseases)//lets it cure viruses from IPC
+		var/datum/disease/D = thing
+		D.cure()
+
 /datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/M)
 	M.adjustToxLoss(-2*REM, 0)
 	. = 1

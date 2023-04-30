@@ -42,8 +42,15 @@
 	)
 
 	mail_goodies = list(
+		/obj/item/toner = 15,
+		/obj/item/pen/fourcolor = 10,
+		/obj/item/pen/fountain = 10,
 		/obj/item/card/id/silver = 10,
-		/obj/item/stack/sheet/bone = 5
+		/obj/item/stack/sheet/bone = 5,
+		/obj/item/stamp = 5,
+		/obj/item/stamp/denied = 5,
+		/obj/item/stamp/syndi = 3,
+		/obj/item/stamp/cent = 1 //the holy grail of stamps
 	)
 
 	smells_like = "bureaucracy"

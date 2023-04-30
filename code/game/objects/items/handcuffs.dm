@@ -123,46 +123,32 @@
 	name = "cable restraints"
 	desc = "Looks like some cables tied together. Could be used to tie something up."
 	icon_state = "zipties"
-	item_state = "zipties"
+	item_state = "coil"
+	color = CABLE_HEX_COLOR_RED
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	materials = list(/datum/material/iron=150, /datum/material/glass=75)
-	breakouttime = 300 //Deciseconds = 30s
+	breakouttime = 30 SECONDS
 	break_strength = 2
 	cuffsound = 'sound/weapons/cablecuff.ogg'
+	///for generating the correct icons based off the original cable's color.
+	var/cable_color = CABLE_COLOR_RED
 
-/obj/item/restraints/handcuffs/cable/red
-	color = "#ff0000"
+/obj/item/restraints/handcuffs/cable/Initialize(mapload, new_color)
+	. = ..()
+	if(new_color)
+		set_cable_color(new_color || cable_color)
 
-/obj/item/restraints/handcuffs/cable/yellow
-	color = "#ffff00"
+/obj/item/restraints/handcuffs/cable/proc/set_cable_color(new_color)
+	color = GLOB.cable_colors[new_color]
+	cable_color = new_color
 
-/obj/item/restraints/handcuffs/cable/blue
-	color = "#1919c8"
-
-/obj/item/restraints/handcuffs/cable/green
-	color = "#00aa00"
-
-/obj/item/restraints/handcuffs/cable/pink
-	color = "#ff3ccd"
-
-/obj/item/restraints/handcuffs/cable/orange
-	color = "#ff8000"
-
-/obj/item/restraints/handcuffs/cable/cyan
-	color = "#00ffff"
-
-/obj/item/restraints/handcuffs/cable/white
-	color = null
-
-/obj/item/restraints/handcuffs/alien
-	icon_state = "handcuffAlien"
-
-/obj/item/restraints/handcuffs/fake
-	name = "fake handcuffs"
-	desc = "Fake handcuffs meant for gag purposes."
-	breakouttime = 10 //Deciseconds = 1s
-	break_strength = 1
+/obj/item/restraints/handcuffs/cable/vv_edit_var(vname, vval)
+	if(vname == NAMEOF(src, cable_color))
+		set_cable_color(vval)
+		datum_flags |= DF_VAR_EDITED
+		return TRUE
+	return ..()
 
 /obj/item/restraints/handcuffs/cable/attackby(obj/item/I, mob/user, params)
 	..()
@@ -195,13 +181,40 @@
 	else
 		return ..()
 
+/obj/item/restraints/handcuffs/cable/red
+	cable_color = CABLE_COLOR_RED
+
+/obj/item/restraints/handcuffs/cable/yellow
+	cable_color = CABLE_COLOR_YELLOW
+
+/obj/item/restraints/handcuffs/cable/blue
+	cable_color = CABLE_COLOR_BLUE
+
+/obj/item/restraints/handcuffs/cable/green
+	cable_color = CABLE_COLOR_GREEN
+
+/obj/item/restraints/handcuffs/cable/pink
+	cable_color = CABLE_COLOR_PINK
+
+/obj/item/restraints/handcuffs/cable/orange
+	cable_color = CABLE_COLOR_ORANGE
+
+/obj/item/restraints/handcuffs/cable/cyan
+	cable_color = CABLE_COLOR_CYAN
+
+/obj/item/restraints/handcuffs/cable/white
+	cable_color = CABLE_COLOR_WHITE
+
+/obj/item/restraints/handcuffs/cable/brown
+	cable_color = CABLE_COLOR_BROWN
+
 /obj/item/restraints/handcuffs/cable/zipties
 	name = "zipties"
 	desc = "Plastic, disposable zipties that can be used to restrain temporarily but are destroyed after use."
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	materials = list()
-	breakouttime = 450 //Deciseconds = 45s
+	breakouttime = 45 SECONDS
 	trashtype = /obj/item/restraints/handcuffs/cable/zipties/used
 	color = null
 	break_strength = 3
@@ -212,6 +225,15 @@
 
 /obj/item/restraints/handcuffs/cable/zipties/used/attack()
 	return
+
+/obj/item/restraints/handcuffs/alien
+	icon_state = "handcuffAlien"
+
+/obj/item/restraints/handcuffs/fake
+	name = "fake handcuffs"
+	desc = "Fake handcuffs meant for gag purposes."
+	breakouttime = 10 //Deciseconds = 1s
+	break_strength = 1
 
 //Legcuffs
 

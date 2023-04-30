@@ -1734,6 +1734,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	manufacturer = /datum/corporation/traitor/cybersun
 
+/datum/uplink_item/device_tools/illegal_ammo_disk
+	name = "Illegal Ammo Design Disk"
+	desc = "A design disk for an autolathe that permits it to print all types of 10mm and .357 ammunition."
+	item = /obj/item/disk/design_disk/illegal_ammo
+	cost = 4
+	exclude_modes = list(/datum/game_mode/nuclear) //Buy your own ammo you lazy sods
+
 /datum/uplink_item/device_tools/medgun
 	name = "Medbeam Gun"
 	desc = "A wonder of Syndicate engineering, the Medbeam gun, or Medi-Gun enables a medic to keep his fellow \
@@ -1912,8 +1919,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/syndie_bodybag
 	name = "Syndicate Prisoner Transport Bag"
-	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. Designed to keep a victim unconscious, alive, and secured until they are transported to a required location."
-	item = /obj/item/bodybag/environmental/prisoner/syndicate
+	desc = "An alteration of Nanotrasen's environmental protection bag which has been used in several high-profile kidnappings. \
+			Designed to keep a victim unconscious, alive, and secured until they are transported to a required location. \
+			Comes with a remote that burns victims for emergencies."
+	item = /obj/item/storage/box/syndie_kit/prisonerbag
 	cost = 2
 
 /datum/uplink_item/device_tools/holo_sight
@@ -2069,7 +2078,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "G.O.R.L.E.X. Mantis Blade"
 	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing. Two blades can be used at once."
 	item = /obj/item/autosurgeon/arm/syndicate/syndie_mantis
-	cost = 7
+	cost = 6
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
