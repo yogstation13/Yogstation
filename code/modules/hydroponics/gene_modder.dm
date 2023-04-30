@@ -124,6 +124,12 @@
 			target = null
 			interact(user)
 			return
+		if((operation == "replace" && !((istype(disk.seed, seed)) || (istype(seed, disk.seed)))))
+			say("WARNING! PLANT STATS CAN ONLY BE INSERTED INTO PLANTS OF A SIMILAR TYPE!")
+			operation = ""
+			target = null
+			interact(user)
+			return
 
 		dat += "<div class='line'><h3>Confirm Operation</h3></div>"
 		dat += "<div class='statusDisplay'>Are you sure you want to [operation] "
@@ -320,7 +326,11 @@
 				if("extract")
 					if(disk && !disk.read_only)
 						disk.gene = G
+						qdel(disk.seed)
+						disk.seed = null
 						if(istype(G, /datum/plant_gene/core))
+							disk.seed = seed
+							seed.forceMove(disk)
 							var/datum/plant_gene/core/gene = G
 							if(istype(G, /datum/plant_gene/core/potency))
 								gene.value = min(gene.value, max_potency)
@@ -336,18 +346,19 @@
 								gene.value = max(gene.value, min_wrate)
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
+						seed = null
 						disk.update_name()
 						disk.update_icon()
-						qdel(seed)
-						seed = null
+
 						update_icon()
 				if("replace")
 					if(disk && disk.gene && istype(disk.gene, G.type) && istype(G, /datum/plant_gene/core))
-						seed.genes -= G
-						var/datum/plant_gene/core/C = disk.gene.Copy()
-						seed.genes += C
-						C.apply_stat(seed)
-						repaint_seed()
+						if(!disk.seed || (istype(disk.seed, seed) || istype(seed, disk.seed)))
+							seed.genes -= G
+							var/datum/plant_gene/core/C = disk.gene.Copy()
+							seed.genes += C
+							C.apply_stat(seed)
+							repaint_seed()
 				if("insert")
 					if(disk && disk.gene && !istype(disk.gene, /datum/plant_gene/core) && disk.gene.can_add(seed))
 						seed.genes += disk.gene.Copy()
@@ -431,6 +442,7 @@
 	icon_state = "datadisk_hydro"
 	materials = list(/datum/material/iron=30, /datum/material/glass=10)
 	var/datum/plant_gene/gene
+	var/obj/item/seeds/seed
 	var/read_only = 0 //Well, it's still a floppy disk
 	obj_flags = UNIQUE_RENAME
 
@@ -457,6 +469,8 @@
 
 /obj/item/disk/plantgene/examine(mob/user)
 	. = ..()
+	if(seed)
+		. += "The stats it contains were extracted from a " + seed.name
 	if(gene && (istype(gene, /datum/plant_gene/core/potency)))
 		. += span_notice("Percent is relative to potency, not maximum volume of the plant.")
 	. += "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"]."
