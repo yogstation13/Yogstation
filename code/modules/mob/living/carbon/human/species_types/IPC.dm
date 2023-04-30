@@ -247,13 +247,13 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
-	if(H.mind && H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && (H.blood_in_hands > 0 || H?.wash(CLEAN_TYPE_BLOOD)))//ipc martial art blood heal check
-		H.blood_in_hands = 0
-		H.wash(CLEAN_TYPE_BLOOD)
-		to_chat(H,"You absorb the blood covering you to heal.")
-		H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
-		H.adjustBruteLoss(-20, FALSE, FALSE, BODYPART_ANY)//getting covered in blood isn't actually that common
-		H.adjustFireLoss(-20, FALSE, FALSE, BODYPART_ANY)
+	if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))//ipc martial art blood heal check
+		if(H.blood_in_hands > 0 || H.wash(CLEAN_TYPE_BLOOD))
+			H.blood_in_hands = 0
+			to_chat(H,"You absorb the blood covering you to heal.")
+			H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
+			H.adjustBruteLoss(-20, FALSE, FALSE, BODYPART_ANY)//getting covered in blood isn't actually that common
+			H.adjustFireLoss(-20, FALSE, FALSE, BODYPART_ANY)
 
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
