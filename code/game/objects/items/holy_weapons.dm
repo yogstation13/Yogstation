@@ -118,6 +118,8 @@
 			if(!ispath(rodPath))
 				return FALSE
 			var/obj/item/nullrod/holy_weapon = new rodPath
+			if(!istype(holy_weapon))
+				return FALSE // client: "My chosen null rod is /obj/item/gun/energy/pulse"
 			GLOB.holy_weapon_type = holy_weapon.type
 			SSblackbox.record_feedback("tally", "chaplain_weapon", 1, "[params["rodPath"]]")
 			if(holy_weapon)
