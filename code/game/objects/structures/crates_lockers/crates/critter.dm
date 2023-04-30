@@ -2,7 +2,7 @@
 	name = "critter crate"
 	desc = "A crate designed for safe transport of animals. It has an oxygen tank for safe transport in space."
 	icon_state = "crittercrate"
-	open_flags = ALLOW_OBJECTS
+	open_flags = ALLOW_DENSE
 	breakout_time = 600
 	material_drop = /obj/item/stack/sheet/mineral/wood
 	material_drop_amount = 4
