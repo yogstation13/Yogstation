@@ -20086,26 +20086,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"dSq" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -16;
-	pixel_y = 5
-	},
-/obj/item/folder/white{
-	pixel_x = -7;
-	pixel_y = -3
-	},
-/obj/item/folder/white{
-	pixel_x = 8;
-	pixel_y = -2
-	},
-/obj/item/folder/white{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "dSz" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -28523,13 +28503,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
-"hjl" = (
-/obj/machinery/chem_dispenser,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/psych)
 "hjz" = (
 /obj/machinery/power/apc{
 	areastring = "/area/hallway/primary/fore";
@@ -48937,6 +48910,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"pxM" = (
+/obj/structure/bookcase/random/religion,
+/turf/open/floor/wood,
+/area/medical/psych)
 "pym" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -58016,6 +57993,26 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"tly" = (
+/obj/item/flashlight/lamp/green{
+	pixel_x = -41;
+	pixel_y = 10
+	},
+/obj/structure/table/wood,
+/obj/item/folder/white{
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/folder/white{
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "tlG" = (
 /obj/item/folder/white,
 /obj/structure/table,
@@ -63314,6 +63311,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/space/basic,
 /area/ai_monitored/storage/satellite)
+"vtO" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/floor/wood,
+/area/medical/psych)
 "vtR" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -64563,14 +64564,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"vRr" = (
-/obj/machinery/chem_master,
-/obj/item/book/manual/wiki/chemistry,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/psych)
 "vRA" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -108748,7 +108741,7 @@ vFJ
 jdO
 cQo
 hpd
-hjl
+sUY
 jxu
 bSN
 pYm
@@ -109005,7 +108998,7 @@ jdO
 jdO
 xou
 fyq
-vRr
+tly
 jxu
 xpC
 hEv
@@ -109262,7 +109255,7 @@ cFP
 wfd
 qns
 bwo
-sUY
+vtO
 jxu
 bNd
 bNd
@@ -109519,7 +109512,7 @@ bDB
 gjv
 btY
 fju
-dSq
+pxM
 jxu
 qYx
 aay

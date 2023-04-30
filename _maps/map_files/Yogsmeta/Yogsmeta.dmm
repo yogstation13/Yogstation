@@ -48362,10 +48362,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"dfW" = (
-/obj/machinery/chem_dispenser,
-/turf/open/floor/wood,
-/area/medical/psych)
 "dgi" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/plating,
@@ -56519,11 +56515,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"hYx" = (
-/obj/machinery/chem_master,
-/obj/item/book/manual/wiki/chemistry,
-/turf/open/floor/wood,
-/area/medical/psych)
 "hYG" = (
 /obj/structure/chair,
 /obj/effect/landmark/start/assistant,
@@ -70296,6 +70287,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
+"qGP" = (
+/obj/structure/bookcase/random/religion,
+/turf/open/floor/wood,
+/area/medical/psych)
 "qGY" = (
 /turf/open/space,
 /area/space/nearstation)
@@ -70517,6 +70512,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"qMu" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/floor/wood,
+/area/medical/psych)
 "qNp" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -107634,8 +107633,8 @@ vRk
 auQ
 mTn
 bSe
-dfW
-hYx
+qGP
+qMu
 mWz
 qkN
 cZr
