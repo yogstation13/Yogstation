@@ -6,6 +6,7 @@
 	req_access = null
 	can_weld_shut = FALSE
 	horizontal = TRUE
+	horizontallid = TRUE
 	allow_objects = TRUE
 	allow_dense = TRUE
 	dense_when_open = TRUE

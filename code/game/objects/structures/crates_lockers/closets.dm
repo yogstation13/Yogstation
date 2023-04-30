@@ -20,7 +20,8 @@ GLOBAL_LIST_EMPTY(lockers)
 	var/breakout_time = 1200
 	var/message_cooldown
 	var/can_weld_shut = TRUE
-	var/horizontal = FALSE
+	var/horizontal = FALSE //whether people need to be lying down to enter it
+	var/horizontallid = FALSE //whether people standing on it prevent opening and closing
 	var/allow_objects = FALSE
 	var/allow_dense = FALSE
 	var/dense_when_open = FALSE //if it's dense when open or not
@@ -158,7 +159,7 @@ GLOBAL_LIST_EMPTY(lockers)
 		return FALSE
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in T)
-		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
+		if(L.anchored || horizontallid && L.mob_size > MOB_SIZE_TINY && L.density)
 			if(user)
 				to_chat(user, span_danger("There's something large on top of [src], preventing it from opening.") )
 			return FALSE
@@ -170,7 +171,7 @@ GLOBAL_LIST_EMPTY(lockers)
 		if(closet != src && !closet.wall_mounted)
 			return FALSE
 	for(var/mob/living/L in T)
-		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
+		if(L.anchored || horizontallid && L.mob_size > MOB_SIZE_TINY && L.density)
 			if(user)
 				to_chat(user, span_danger("There's something too large in [src], preventing it from closing."))
 			return FALSE
