@@ -51094,6 +51094,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
+"epO" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/item/assembly/flash{
+	pixel_x = -5
+	},
+/obj/item/lighter{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/laser_pointer{
+	pixel_x = 4;
+	pixel_y = -10
+	},
+/obj/item/flashlight/pen{
+	pixel_x = 7;
+	pixel_y = 8
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "eqK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -54252,24 +54274,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos_distro)
-"guf" = (
-/obj/structure/closet/secure_closet{
-	name = "psychiatrist locker";
-	req_access_txt = "5"
-	},
-/obj/item/storage/pill_bottle/psicodine,
-/obj/item/storage/pill_bottle/lsd{
-	name = "very happy pills bottle"
-	},
-/obj/item/storage/pill_bottle/happy{
-	name = "happy pills bottle"
-	},
-/obj/item/storage/pill_bottle/dice,
-/obj/item/storage/pill_bottle/happiness,
-/obj/item/clothing/mask/muzzle,
-/obj/item/clothing/suit/straight_jacket,
-/turf/open/floor/wood,
-/area/medical/psych)
 "gut" = (
 /obj/structure/closet,
 /obj/item/extinguisher,
@@ -54728,28 +54732,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
-"gKZ" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/assembly/flash{
-	pixel_x = -5
-	},
-/obj/item/lighter{
-	pixel_x = 6;
-	pixel_y = -3
-	},
-/obj/item/laser_pointer{
-	pixel_x = 4;
-	pixel_y = -10
-	},
-/obj/item/flashlight/pen{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "gLe" = (
 /obj/structure/table/reinforced,
 /obj/item/paper,
@@ -55792,6 +55774,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"hCq" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/taperecorder{
+	pixel_x = 5
+	},
+/obj/item/assembly/flash{
+	pixel_x = -5
+	},
+/turf/open/floor/carpet,
+/area/medical/psych)
 "hCE" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -56395,10 +56394,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
-"hXt" = (
-/obj/structure/bookcase/random/reference,
-/turf/open/floor/wood,
-/area/medical/psych)
 "hXL" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -71598,6 +71593,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/storage_shared)
+"rCS" = (
+/obj/structure/bookcase/random/reference,
+/turf/open/floor/wood,
+/area/medical/psych)
 "rCZ" = (
 /obj/machinery/door/airlock/external{
 	name = "Supply Dock Airlock";
@@ -77083,6 +77082,24 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"vbh" = (
+/obj/structure/closet/secure_closet{
+	name = "psychiatrist locker";
+	req_access_txt = "5"
+	},
+/obj/item/storage/pill_bottle/psicodine,
+/obj/item/storage/pill_bottle/lsd{
+	name = "very happy pills bottle"
+	},
+/obj/item/storage/pill_bottle/happy{
+	name = "happy pills bottle"
+	},
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/happiness,
+/obj/item/clothing/mask/muzzle,
+/obj/item/clothing/suit/straight_jacket,
+/turf/open/floor/wood,
+/area/medical/psych)
 "vbm" = (
 /obj/structure/grille/broken,
 /obj/structure/lattice,
@@ -77305,23 +77322,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"viK" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -6;
-	pixel_y = 3
-	},
-/obj/item/taperecorder{
-	pixel_x = 5
-	},
-/obj/item/assembly/flash{
-	pixel_x = -5
-	},
-/turf/open/floor/carpet,
-/area/medical/psych)
 "viM" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -106540,8 +106540,8 @@ bPc
 auQ
 gLq
 vyf
-viK
-gKZ
+hCq
+epO
 mWz
 bUs
 cLa
@@ -107054,8 +107054,8 @@ vRk
 auQ
 mTn
 bSe
-hXt
-guf
+rCS
+vbh
 mWz
 qkN
 cZr

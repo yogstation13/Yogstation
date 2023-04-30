@@ -2032,6 +2032,25 @@
 /obj/machinery/vending/wardrobe/curator_wardrobe,
 /turf/open/floor/carpet,
 /area/library)
+"aqJ" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/item/assembly/flash{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/assembly/flash{
+	pixel_x = -1;
+	pixel_y = 10
+	},
+/obj/item/flashlight/pen{
+	pixel_x = -6;
+	pixel_y = -1
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "aqK" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -13158,25 +13177,6 @@
 /mob/living/simple_animal/slime,
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"dtN" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/assembly/flash{
-	pixel_x = 5;
-	pixel_y = 6
-	},
-/obj/item/assembly/flash{
-	pixel_x = -1;
-	pixel_y = 10
-	},
-/obj/item/flashlight/pen{
-	pixel_x = -6;
-	pixel_y = -1
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "duv" = (
 /obj/structure/filingcabinet,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -13277,6 +13277,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/department/tcoms)
+"dwU" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/structure/bookcase/random/reference,
+/turf/open/floor/wood,
+/area/medical/psych)
 "dwW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -33244,10 +33252,6 @@
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"koz" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/medical/psych)
 "koH" = (
 /obj/machinery/flasher{
 	id = "AI";
@@ -35526,6 +35530,10 @@
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
+"len" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/medical/psych)
 "lep" = (
 /obj/structure/rack,
 /obj/item/pickaxe,
@@ -51373,14 +51381,6 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/nuke_storage)
-"qsy" = (
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/structure/bookcase/random/reference,
-/turf/open/floor/wood,
-/area/medical/psych)
 "qsS" = (
 /obj/machinery/light{
 	dir = 8
@@ -107342,9 +107342,9 @@ xVJ
 uut
 aVN
 kME
-qsy
-koz
-dtN
+dwU
+len
+aqJ
 aVN
 mNt
 aPk

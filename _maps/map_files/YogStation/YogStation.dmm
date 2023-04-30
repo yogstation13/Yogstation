@@ -13971,6 +13971,10 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
+"bUN" = (
+/obj/structure/bookcase/random/reference,
+/turf/open/floor/wood,
+/area/medical/psych)
 "bUV" = (
 /obj/machinery/vending/wardrobe/sec_wardrobe,
 /obj/machinery/light,
@@ -35382,10 +35386,6 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"kdq" = (
-/obj/structure/bookcase/random/reference,
-/turf/open/floor/wood,
-/area/medical/psych)
 "kdC" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -60568,6 +60568,26 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
+"uwk" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -16;
+	pixel_y = 5
+	},
+/obj/item/folder/white{
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/folder/white{
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "uxv" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -64700,26 +64720,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/aft)
-"way" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -16;
-	pixel_y = 5
-	},
-/obj/item/folder/white{
-	pixel_x = -7;
-	pixel_y = -3
-	},
-/obj/item/folder/white{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/folder/white{
-	pixel_x = 8;
-	pixel_y = -2
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "waB" = (
 /obj/structure/table,
 /obj/item/stock_parts/subspace/analyzer,
@@ -108648,7 +108648,7 @@ jdO
 jdO
 xFh
 fyq
-way
+uwk
 jxu
 xpC
 hEv
@@ -108905,7 +108905,7 @@ cFP
 wfd
 qns
 bwo
-kdq
+bUN
 jxu
 bNd
 bNd
@@ -109162,7 +109162,7 @@ bDB
 gjv
 btY
 fju
-kdq
+bUN
 jxu
 qYx
 rnx
