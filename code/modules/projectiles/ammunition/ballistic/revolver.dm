@@ -41,7 +41,7 @@
 	caliber = "n762"
 	projectile_type = /obj/item/projectile/bullet/n762
 
-// .38 (Colt Detective Special + Vastra M38)
+// .38 (Colt Detective Special + Vatra M38)
 
 /obj/item/ammo_casing/c38
 	name = ".38 bullet casing"

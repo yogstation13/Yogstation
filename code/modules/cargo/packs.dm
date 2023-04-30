@@ -322,8 +322,8 @@
 	crate_name = "nt-usp crate"
 
 /datum/supply_pack/security/v38pistol
-	name = "Vastra M38 Pistol Crate"
-	desc = "A pack containing three Vastra M38s, an unusual handgun which loads .38 special, designed for unarmored targets. Three spare magazines are included. Requires Security access to open."
+	name = "Vatra M38 Pistol Crate"
+	desc = "A pack containing three Vatra M38s, an unusual handgun which loads .38 special, designed for unarmored targets. Three spare magazines are included. Requires Security access to open."
 	cost = 2500
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/v38,

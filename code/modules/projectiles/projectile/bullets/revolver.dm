@@ -14,7 +14,7 @@
 	wound_bonus = -35
 	wound_falloff_tile = -2.5
 
-// .38 (Colt Detective Special + Vastra M38)
+// .38 (Colt Detective Special + Vatra M38)
 
 /obj/item/projectile/bullet/c38
 	name = ".38 bullet"
