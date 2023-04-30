@@ -13158,6 +13158,25 @@
 /mob/living/simple_animal/slime,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"dtN" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/item/assembly/flash{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/assembly/flash{
+	pixel_x = -1;
+	pixel_y = 10
+	},
+/obj/item/flashlight/pen{
+	pixel_x = -6;
+	pixel_y = -1
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "duv" = (
 /obj/structure/filingcabinet,
 /obj/effect/turf_decal/trimline/red/filled/line{
@@ -31842,10 +31861,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"jOO" = (
-/obj/machinery/chem_dispenser,
-/turf/open/floor/wood,
-/area/medical/psych)
 "jOQ" = (
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
@@ -33229,6 +33244,10 @@
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"koz" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/medical/psych)
 "koH" = (
 /obj/machinery/flasher{
 	id = "AI";
@@ -51354,6 +51373,14 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/nuke_storage)
+"qsy" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/structure/bookcase/random/reference,
+/turf/open/floor/wood,
+/area/medical/psych)
 "qsS" = (
 /obj/machinery/light{
 	dir = 8
@@ -56917,26 +56944,6 @@
 "ses" = (
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"sey" = (
-/obj/structure/table/wood,
-/obj/item/assembly/flash{
-	pixel_x = -1;
-	pixel_y = 10
-	},
-/obj/item/flashlight/pen{
-	pixel_x = -6;
-	pixel_y = -1
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/item/assembly/flash{
-	pixel_x = 5;
-	pixel_y = 6
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "seA" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 1
@@ -62929,14 +62936,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"ukc" = (
-/obj/machinery/chem_master,
-/obj/item/book/manual/wiki/chemistry,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "ukq" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -107343,9 +107342,9 @@ xVJ
 uut
 aVN
 kME
-sey
-jOO
-ukc
+qsy
+koz
+dtN
 aVN
 mNt
 aPk
