@@ -14,47 +14,21 @@
 	wound_bonus = -35
 	wound_falloff_tile = -2.5
 
-// .38 (Detective's Gun)
+// .38 (Colt Detective Classic)
 
 /obj/item/projectile/bullet/c38
 	name = ".38 bullet"
-	damage = 25 //High damaging but...
-	armour_penetration = -40 //Almost doubles the armor of any bullet armor it hits
+	damage = 21
+	armour_penetration = -30
 	wound_bonus = -30
 	wound_falloff_tile = -2.5
 	bare_wound_bonus = 15
 
-/obj/item/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
-	name = ".38 Hot Shot bullet"
-	damage = 20
-
-/obj/item/projectile/bullet/c38/hotshot/on_hit(atom/target, blocked = FALSE)
-	if((blocked != 100) && iscarbon(target))
-		var/mob/living/carbon/M = target
-		M.adjust_fire_stacks(2)
-		M.IgniteMob()
-	return ..()
-
-/obj/item/projectile/bullet/c38/iceblox //see /obj/item/projectile/temp for the original code
-	name = ".38 Iceblox bullet"
-	damage = 20
-	var/temperature = 100
-
-/obj/item/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
-	..()
-	if(isliving(target))
-		var/mob/living/M = target
-		M.adjust_bodytemperature(((100-blocked)/100)*(temperature - M.bodytemperature))
-
-/obj/item/projectile/bullet/c38/gutterpunch //Vomit bullets my favorite
-	name = ".38 Gutterpunch bullet"
-	damage = 20
-
-/obj/item/projectile/bullet/c38/gutterpunch/on_hit(atom/target, blocked = FALSE)
-	if((blocked != 100) && iscarbon(target))
-		var/mob/living/carbon/M = target 
-		M.adjust_disgust(20)
-	return ..()
+/obj/item/projectile/bullet/c38/rubber
+	name = ".38 rubber bullet"
+	damage = 7
+	stamina = 30
+	sharpness = SHARP_NONE
 
 // .32 TRAC (Caldwell Tracking Revolver)
 
