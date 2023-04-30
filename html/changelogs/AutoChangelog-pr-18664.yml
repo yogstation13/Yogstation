@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes a runtime that would cause custom vendor items to not show up"
