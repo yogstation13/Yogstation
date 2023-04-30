@@ -287,7 +287,7 @@
 	name = "ancient cultist hood"
 	icon_state = "culthood"
 	desc = "A torn, dust-caked hood. Strange letters line the inside."
-	flags_inv = HIDEFACE|HIDEHAIR|HIDEEARS
+	flags_inv = HIDEHAIR|HIDEEARS
 	flags_cover = HEADCOVERSEYES
 	armor = list(MELEE = 40, BULLET = 30, LASER = 40,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
 	cold_protection = HEAD
@@ -303,11 +303,11 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
 	armor = list(MELEE = 40, BULLET = 30, LASER = 40,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
-	flags_inv = HIDEJUMPSUIT
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 
 /obj/item/clothing/head/culthood/alt
