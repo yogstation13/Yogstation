@@ -589,9 +589,14 @@
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
 	throwforce = 0
-	slowdown = -0.3 //give up a weapon, get some speed
+	slowdown = 0.3 //slower until speed is built up
 	menutab = MENU_CLOTHING
 	additional_desc = "The blessing of Hermes imbues the wearer with incredible speed."
+	var/steps = 0 //how many steps currently at
+	var/speedperstep = -0.05 //how much speed increases per step
+	var/maxspeed = -0.4 //what is the max amount of speed someone can get
+	var/stilltimer = 8 //how long (in deciseconds) someone can standstill without losing stacks
+	COOLDOWN_DECLARE(standstill)
 
 /obj/item/nullrod/hermes/equipped(mob/user, slot, initial)
 	. = ..()
@@ -603,7 +608,14 @@
 	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
 
 /obj/item/nullrod/hermes/proc/move_react()
-	new /obj/effect/temp_visual/flowers(get_turf(src))
+	if(COOLDOWN_FINISHED(src, standstill))
+		steps = 0
+	COOLDOWN_START(src, standstill, stilltimer)
+	slowdown = max(initial(slowdown) + (steps * speedperstep), maxspeed)
+	steps ++
+	if(slowdown < 0)//only see the effect if you're getting extra speed
+		playsound(src, 'sound/effects/fairyboots.ogg', 45, FALSE)
+		new /obj/effect/temp_visual/flowers(get_turf(src))
 
 /obj/effect/temp_visual/flowers
 	layer = BELOW_MOB_LAYER

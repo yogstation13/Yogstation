@@ -465,8 +465,8 @@ LAW_WEIGHT drone,0
 ION_LAW_WEIGHT drone,2
 LAW_WEIGHT liveandletlive,0
 ION_LAW_WEIGHT liveandletlive,2
-LAW_WEIGHT peacekeeper,1
-ION_LAW_WEIGHT peacekeeper,2
+LAW_WEIGHT peacekeeper,0
+ION_LAW_WEIGHT peacekeeper,1
 LAW_WEIGHT reporter,0
 ION_LAW_WEIGHT reporter,1
 LAW_WEIGHT cowboy,0

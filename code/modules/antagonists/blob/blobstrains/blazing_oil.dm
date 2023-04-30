@@ -3,9 +3,9 @@
 /datum/blobstrain/reagent/blazing_oil
 	name = "Blazing Oil"
 	description = "will do medium burn damage and set targets on fire."
-	effectdesc = "is immune to, and will gain blob points from burn damage. Will also release bursts of flame when burnt, but takes damage from water."
+	effectdesc = "is immune to, and will gain blob points from burn damage, but takes extra brute damage. Will also release bursts of flame when burnt, but takes damage from water."
 	analyzerdescdamage = "Does medium burn damage and sets targets on fire."
-	analyzerdesceffect = "Releases fire when burnt and will gain power when exposed to heat, but takes damage from water and other extinguishing liquids."
+	analyzerdesceffect = "Releases fire when burnt and will gain power when exposed to heat, but takes damage from water and other extinguishing liquids as well as taking extra brute damage."
 	color = "#B68D00"
 	complementary_color = "#BE5532"
 	blobbernaut_message = "splashes"
@@ -14,9 +14,11 @@
 	reagent = /datum/reagent/blob/blazing_oil
 
 /datum/blobstrain/reagent/blazing_oil/extinguish_reaction(obj/structure/blob/B)
-	B.take_damage(1, BURN, ENERGY)
+	B.take_damage(1.3, BURN, ENERGY)
 
 /datum/blobstrain/reagent/blazing_oil/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
+	if(damage_type == BRUTE) 
+		return damage * 1.5
 	if(damage_type == BURN && damage_flag != ENERGY)
 		var/mob/camera/blob/O = overmind
 		O.add_points(damage / 10)//burn damage causes the blob to gain a very small amount of points: the 20 damage of a laser will generate 2 BP.
