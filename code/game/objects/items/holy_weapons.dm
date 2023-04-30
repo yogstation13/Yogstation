@@ -7,7 +7,7 @@
 
 /obj/item/nullrod
 	name = "null rod"
-	desc = "A rod of pure obsidian; its very presence disrupts and dampens the powers of Nar-Sie and Ratvar's followers."
+	desc = "A rod of pure obsidian; its very presence disrupts and dampens the powers of Nar'sie and Ratvar's followers."
 	icon_state = "nullrod"
 	item_state = "nullrod"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -909,8 +909,13 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	if(isliving(hit_atom))//only transform if it doesn't hit a person
 		var/mob/living/target = hit_atom
 		if(owner && target == owner)
-			owner.put_in_active_hand(src)
-			visible_message("[owner] catches the flying [src] out of the air!")
+			var/caught = owner.put_in_hands(src)
+			if(caught)
+				visible_message("[owner] catches the flying [src] out of the air!")
+			else
+				playsound(target, 'sound/weapons/rapierhit.ogg', 30, 1, -1)
+				owner.take_overall_damage(5)
+				visible_message("[src] smacks [owner] in the face as [owner.p_they()] try to catch it with [owner.p_their()] hands full!")
 	else if(possessed)
 		transform = initial(transform)//to reset rotation for when it drops to the ground
 		blade = new /mob/living/simple_animal/nullrod(get_turf(src))
@@ -1019,11 +1024,16 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	if(isliving(hit_atom))
 		var/mob/living/target = hit_atom
 		if(sword?.owner && target == sword.owner)
-			sword.owner.put_in_active_hand(sword)
+			var/caught = sword.owner.put_in_hands(sword)
 			mind.transfer_to(sword.soul)
 			sword.walking = FALSE
-			visible_message("[sword.owner] catches the flying blade out of the air!")
 			qdel(src)
+			if(caught)
+				visible_message("[sword.owner] catches the flying blade out of the air!")
+			else
+				playsound(target, 'sound/weapons/rapierhit.ogg', 30, 1, -1)
+				sword.owner.take_overall_damage(5)
+				visible_message("The flying blade smacks [sword.owner] in the face as [sword.owner.p_they()] try to catch it with [sword.owner.p_their()] hands full!")
 	else
 		..()
 
