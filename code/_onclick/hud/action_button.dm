@@ -1,5 +1,3 @@
-#define ACTION_BUTTON_DEFAULT_BACKGROUND "default"
-
 /atom/movable/screen/movable/action_button
 	var/datum/action/linked_action
 	var/datum/hud/our_hud

@@ -47,7 +47,7 @@
 
 /// Signal proc for [COMSIG_ACTION_OVERLAY_APPLY], applies the item appearance if possible.
 /datum/component/action_item_overlay/proc/on_overlays_applied(datum/action/source, atom/movable/screen/movable/action_button/current_button, force)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER , sinful but needed -> change when porting update_icon changes
 
 	// We're in the middle of being removed / deleted, remove our associated overlay
 	if(QDELING(src))
