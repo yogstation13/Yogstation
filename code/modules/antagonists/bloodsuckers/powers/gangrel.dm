@@ -1,15 +1,15 @@
-/datum/action/bloodsucker/gangrel
+/datum/action/cooldown/bloodsucker/gangrel
 	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	background_icon_state = "gangrel_power_off"
-	background_icon_state_on = "gangrel_power_on"
-	background_icon_state_off = "gangrel_power_off"
+	active_background_icon_state = "gangrel_power_on"
+	base_background_icon_state = "gangrel_power_off"
 	purchase_flags = GANGREL_CAN_BUY
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
 	check_flags = BP_AM_COSTLESS_UNCONSCIOUS
-	cooldown = 10 SECONDS
+	cooldown_time = 10 SECONDS
 
-/datum/action/bloodsucker/gangrel/transform
+/datum/action/cooldown/bloodsucker/gangrel/transform
 	name = "Transform"
 	desc = "Allows you to unleash your inner form and turn into something greater."
 	button_icon_state = "power_gangrel"
@@ -21,7 +21,7 @@
 	power_flags = BP_AM_SINGLEUSE|BP_AM_STATIC_COOLDOWN
 	bloodcost = 100
 
-/datum/action/bloodsucker/gangrel/transform/ActivatePower()
+/datum/action/cooldown/bloodsucker/gangrel/transform/ActivatePower()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/human/user = owner
 	if(!do_mob(user, user, 10 SECONDS, 1))
@@ -58,7 +58,7 @@
 	transform(chosen_transform) //actually transform
 	. = ..()
 
-/datum/action/bloodsucker/gangrel/transform/proc/transform(chosen_transform)
+/datum/action/cooldown/bloodsucker/gangrel/transform/proc/transform(chosen_transform)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	var/mob/living/carbon/human/user = owner
 	var/datum/species/user_species = user.dna.species
@@ -94,22 +94,22 @@
 				gb.bloodsucker = user
 				user.status_flags |= GODMODE //sad!
 				user.mind.transfer_to(gb)
-				var/list/bat_powers = list(new /datum/action/bloodsucker/gangrel/transform_back, )
-				for(var/datum/action/bloodsucker/power in bloodsuckerdatum.powers)
-					if(istype(power, /datum/action/bloodsucker/targeted/haste))
-						bat_powers += new /datum/action/bloodsucker/targeted/haste/batdash
-					if(istype(power, /datum/action/bloodsucker/targeted/mesmerize))
-						bat_powers += new /datum/action/bloodsucker/targeted/bloodbolt
-					if(istype(power, /datum/action/bloodsucker/targeted/brawn))
-						bat_powers += new /datum/action/bloodsucker/gangrel/wingslam
-				for(var/datum/action/bloodsucker/power in bat_powers)
+				var/list/bat_powers = list(new /datum/action/cooldown/bloodsucker/gangrel/transform_back, )
+				for(var/datum/action/cooldown/bloodsucker/power in bloodsuckerdatum.powers)
+					if(istype(power, /datum/action/cooldown/bloodsucker/targeted/haste))
+						bat_powers += new /datum/action/cooldown/bloodsucker/targeted/haste/batdash
+					if(istype(power, /datum/action/cooldown/bloodsucker/targeted/mesmerize))
+						bat_powers += new /datum/action/cooldown/bloodsucker/targeted/bloodbolt
+					if(istype(power, /datum/action/cooldown/bloodsucker/targeted/brawn))
+						bat_powers += new /datum/action/cooldown/bloodsucker/gangrel/wingslam
+				for(var/datum/action/cooldown/bloodsucker/power in bat_powers)
 					power.Grant(gb)
 				playsound(gb.loc, 'sound/items/toysqueak1.ogg', 50, TRUE)
 			return  //early to not mess with vampire organs proc
 	
 	bloodsuckerdatum.heal_vampire_organs() //regives you the stuff
 
-/datum/action/bloodsucker/gangrel/transform_back
+/datum/action/cooldown/bloodsucker/gangrel/transform_back
 	name = "Transform"
 	desc = "Regress back into a human."
 	button_icon_state = "power_gangrel"
@@ -117,7 +117,7 @@
 		Regress back to your humanoid form early, requires you to stand still.\n\
 		Beware you will not be able to transform again until the night passes!"
 
-/datum/action/bloodsucker/gangrel/transform_back/ActivatePower()
+/datum/action/cooldown/bloodsucker/gangrel/transform_back/ActivatePower()
 	if(!do_mob(owner, owner, 10 SECONDS))
 		return
 	var/mob/living/simple_animal/hostile/bloodsucker/bs
@@ -130,14 +130,14 @@
 //            Powers            \\
 \\\\\\\\\\\\\\\\||////////////////
 */
-/datum/action/bloodsucker/targeted/haste/batdash
+/datum/action/cooldown/bloodsucker/targeted/haste/batdash
 	name = "Flying Haste"
 	desc = "Propulse yourself into a position of advantage."
 	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon_state = "power_baste"
-	background_icon_state_on = "bat_power_on"
-	background_icon_state_off = "bat_power_off"
+	active_background_icon_state = "bat_power_on"
+	base_background_icon_state = "bat_power_off"
 	power_explanation = "Flying Haste<:\n\
 		Makes you dash into the air, creating a smoke cloud at the end.\n\
 		Helpful in situations where you either need to run away or engage in a crowd of people, works over tables.\n\
@@ -146,26 +146,26 @@
 	check_flags = NONE
 	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
-	cooldown = 15 SECONDS
+	cooldown_time = 15 SECONDS
 
-/datum/action/bloodsucker/targeted/haste/batdash/CheckCanUse(mob/living/carbon/user)
+/datum/action/cooldown/bloodsucker/targeted/haste/batdash/CanUse(mob/living/carbon/user)
 	var/mob/living/L = user
 	if(L.stat == DEAD)
 		return FALSE
 	return TRUE
 
-/datum/action/bloodsucker/targeted/haste/batdash/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/haste/batdash/FireTargetedPower(atom/target_atom)
 	. = ..()
 	do_smoke(2, owner.loc, smoke_type = /obj/effect/particle_effect/fluid/smoke/transparent) //so you can attack people after hasting
 
-/datum/action/bloodsucker/targeted/bloodbolt
+/datum/action/cooldown/bloodsucker/targeted/bloodbolt
 	name = "Blood Bolt"
 	desc = "Shoot a blood bolt to damage your foes."
 	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon_state = "power_bolt"
-	background_icon_state_on = "bat_power_on"
-	background_icon_state_off = "bat_power_off"
+	active_background_icon_state = "bat_power_on"
+	base_background_icon_state = "bat_power_off"
 	power_explanation = "Blood Bolt<:\n\
 		Shoots a blood bolt that does moderate damage to your foes.\n\
 		Helpful in situations where you get outranged or just extra damage.\n\
@@ -174,15 +174,15 @@
 	check_flags = NONE
 	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
-	cooldown = 12.5 SECONDS
+	cooldown_time = 12.5 SECONDS
 
-/datum/action/bloodsucker/targeted/bloodbolt/CheckCanUse(mob/living/carbon/user)
+/datum/action/cooldown/bloodsucker/targeted/bloodbolt/CanUse(mob/living/carbon/user)
 	var/mob/living/L = user
 	if(L.stat == DEAD)
 		return FALSE
 	return TRUE
 
-/datum/action/bloodsucker/targeted/bloodbolt/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/bloodbolt/FireTargetedPower(atom/target_atom)
 	. = ..()
 	var/mob/living/user = owner
 	to_chat(user, span_warning("You fire a blood bolt!"))
@@ -195,14 +195,14 @@
 	magic_9ball.preparePixelProjectile(target_atom, user)
 	INVOKE_ASYNC(magic_9ball, /obj/item/projectile.proc/fire)
 	playsound(user, 'sound/magic/wand_teleport.ogg', 60, TRUE)
-	PowerActivatedSuccessfully()
+	power_activated_sucessfully()
 
 /obj/item/projectile/magic/arcane_barrage/bloodsucker
 	name = "blood bolt"
 	icon_state = "bloodbolt"
 	damage_type = BURN
 	damage = 30
-	var/datum/action/bloodsucker/targeted/bloodbolt/bloodsucker_power
+	var/datum/action/cooldown/bloodsucker/targeted/bloodbolt/bloodsucker_power
 
 /obj/item/projectile/magic/arcane_barrage/bloodsucker/on_hit(target)
 	if(ismob(target))
@@ -213,12 +213,12 @@
 		return BULLET_ACT_HIT
 	. = ..()
 
-/datum/action/bloodsucker/gangrel/wingslam
+/datum/action/cooldown/bloodsucker/gangrel/wingslam
 	name = "Wing Slam"
 	desc = "Slams all foes next to you."
 	button_icon_state = "power_wingslam"
-	background_icon_state_on = "bat_power_on"
-	background_icon_state_off = "bat_power_off"
+	active_background_icon_state = "bat_power_on"
+	base_background_icon_state = "bat_power_off"
 	power_explanation = "Wing Slam:\n\
 		Knocksback and immobilizes people adjacent to you.\n\
 		Has a low recharge time and may be helpful in meelee situations!\n\
@@ -226,7 +226,7 @@
 	check_flags = NONE
 	bloodcost = 0
 
-/datum/action/bloodsucker/gangrel/wingslam/ActivatePower()
+/datum/action/cooldown/bloodsucker/gangrel/wingslam/ActivatePower()
 	var/mob/living/user = owner
 	var/list/choices = list()
 	for(var/mob/living/carbon/C in view(1, user))
@@ -260,14 +260,14 @@
 \\\\\\\\\\\\\\\\||////////////////
 */
 
-/datum/action/bloodsucker/targeted/feast
+/datum/action/cooldown/bloodsucker/targeted/feast
 	name = "Feast"
 	desc = "DEVOUR THE WEAKLINGS, CAUSE THEM HARM. FEED. ME."
 	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon_state = "power_feast"
-	background_icon_state_on = "wolf_power_on"
-	background_icon_state_off = "wolf_power_off"
+	active_background_icon_state = "wolf_power_on"
+	base_background_icon_state = "wolf_power_off"
 	power_explanation = "Feast:\n\
 		Feasting on a dead person will give you a satiation point and gib them.\n\
 		Satiation points are essential for overcoming frenzy, after gathering 3 you'll turn back to normal.\n\
@@ -278,18 +278,18 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
 	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
-	cooldown = 10 SECONDS
+	cooldown_time = 10 SECONDS
 	target_range = 1
 	power_activates_immediately = TRUE
 	prefire_message = "WHOM SHALL BE DEVOURED."
 
-/datum/action/bloodsucker/targeted/feast/CheckValidTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/feast/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
 	return isliving(target_atom)
 
-/datum/action/bloodsucker/targeted/feast/CheckCanTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/feast/CheckCanTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -297,7 +297,7 @@
 	if(isliving(target_atom))
 		return TRUE
 
-/datum/action/bloodsucker/targeted/feast/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/feast/FireTargetedPower(atom/target_atom)
 	if(isturf(target_atom))
 		return
 	owner.face_atom(target_atom)
@@ -305,7 +305,7 @@
 	var/mob/living/carbon/human/target = target_atom
 	if(target.stat == DEAD)
 		user.devour(target)
-		PowerActivatedSuccessfully()
+		power_activated_sucessfully()
 		return
 	user.do_attack_animation(target, ATTACK_EFFECT_BITE)
 	var/affecting = pick(BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
@@ -313,14 +313,14 @@
 	target.apply_damage(35, BRUTE, affecting, target.run_armor_check(affecting, MELEE, armour_penetration = 10), sharpness = SHARP_EDGED)
 	target.visible_message(span_danger("[user] takes a large bite out of [target]!"), \
 					  span_userdanger("[user] takes a large bite out of you!"))
-	PowerActivatedSuccessfully()
+	power_activated_sucessfully()
 
-/datum/action/bloodsucker/gangrel/wolfortitude
+/datum/action/cooldown/bloodsucker/gangrel/wolfortitude
 	name = "Wolftitude"
 	desc = "WITHSTAND THEIR ATTACKS. DESTROY. THEM. ALL!"
 	button_icon_state = "power_wort"
-	background_icon_state_on = "wolf_power_on"
-	background_icon_state_off = "wolf_power_off"
+	active_background_icon_state = "wolf_power_on"
+	base_background_icon_state = "wolf_power_off"
 	power_explanation = "Fortitude:\n\
 		Activating Wolftitude will provide more attack damage, and more overall health.\n\
 		It will give you a minor health buff while it stands, but slow you down severely.\n\
@@ -330,9 +330,9 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
 	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
-	cooldown = 8 SECONDS
+	cooldown_time = 8 SECONDS
 
-/datum/action/bloodsucker/gangrel/wolfortitude/ActivatePower()
+/datum/action/cooldown/bloodsucker/gangrel/wolfortitude/ActivatePower()
 	. = ..()
 	to_chat(owner, span_notice("Your fur and claws harden, becoming as hard as steel."))
 	var/mob/living/simple_animal/hostile/A = owner
@@ -342,7 +342,7 @@
 	A.melee_damage_lower += 10
 	A.melee_damage_upper += 10
 
-/datum/action/bloodsucker/gangrel/wolfortitude/DeactivatePower()
+/datum/action/cooldown/bloodsucker/gangrel/wolfortitude/DeactivatePower()
 	. = ..()
 	var/mob/living/simple_animal/hostile/A = owner
 	A.maxHealth /= 1.2
@@ -351,14 +351,14 @@
 	A.melee_damage_lower -= 10
 	A.melee_damage_upper -= 10
 
-/datum/action/bloodsucker/targeted/pounce
+/datum/action/cooldown/bloodsucker/targeted/pounce
 	name = "Pounce"
 	desc = "TACKLE THE LIVING TO THE GROUND. FEAST ON CORPSES."
 	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon_state = "power_pounce"
-	background_icon_state_on = "wolf_power_on"
-	background_icon_state_off = "wolf_power_off"
+	active_background_icon_state = "wolf_power_on"
+	base_background_icon_state = "wolf_power_off"
 	power_explanation = "Pounce:\n\
 		Click any player to instantly dash at them, knocking them down and paralyzing them for a short while.\n\
 		Additionally if they are dead you'll consume their corpse to gain satiation and get closer to leaving frenzy.\n\
@@ -367,25 +367,25 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
-	cooldown = 10 SECONDS
+	cooldown_time = 10 SECONDS
 	target_range = 6
 	power_activates_immediately = FALSE
 
-/datum/action/bloodsucker/targeted/pounce/ActivatePower()
+/datum/action/cooldown/bloodsucker/targeted/pounce/ActivatePower()
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	A.icon_state = initial(A.icon_state) + "_pounce"
 	A.icon_living = initial(A.icon_state) + "_pounce"
 	A.update_body()
 
-/datum/action/bloodsucker/targeted/pounce/DeactivatePower()
+/datum/action/cooldown/bloodsucker/targeted/pounce/DeactivatePower()
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	A.icon_state = initial(A.icon_state)
 	A.icon_living = initial(A.icon_state)
 	A.update_body()
 
-/datum/action/bloodsucker/targeted/pounce/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/pounce/FireTargetedPower(atom/target_atom)
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/user = owner
 	owner.face_atom(target_atom)
@@ -403,19 +403,19 @@
 			if(!user.Adjacent(target))
 				return
 			user.devour(target)
-			PowerActivatedSuccessfully()
+			power_activated_sucessfully()
 			return
 		target.Knockdown(6 SECONDS)
 		target.Paralyze(1 SECONDS)
-	PowerActivatedSuccessfully()
+	power_activated_sucessfully()
 
-/datum/action/bloodsucker/targeted/pounce/CheckValidTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/pounce/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
 	return isliving(target_atom)
 
-/datum/action/bloodsucker/targeted/pounce/CheckCanTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/pounce/CheckCanTarget(atom/target_atom)
 	// DEFAULT CHECKS (Distance)
 	. = ..()
 	// Target Type: Living
@@ -423,12 +423,12 @@
 		return TRUE
 	return FALSE
 
-/datum/action/bloodsucker/gangrel/howl
+/datum/action/cooldown/bloodsucker/gangrel/howl
 	name = "Howl"
 	desc = "LET THEM KNOW WHAT HUNTS THEM. KNOCKDOWNS AND CONFUSES NEARBY WEAKLINGS."
 	button_icon_state = "power_howl"
-	background_icon_state_on = "wolf_power_on"
-	background_icon_state_off = "wolf_power_off"
+	active_background_icon_state = "wolf_power_on"
+	base_background_icon_state = "wolf_power_off"
 	power_explanation = "Howl:\n\
 		Activating Howl will start up a 2 and a half second charge up.\n\
 		After the charge up you'll knockdown anyone adjacent to you.\n\
@@ -438,9 +438,9 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
 	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
-	cooldown = 15 SECONDS
+	cooldown_time = 15 SECONDS
 
-/datum/action/bloodsucker/gangrel/howl/ActivatePower()
+/datum/action/cooldown/bloodsucker/gangrel/howl/ActivatePower()
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	A.visible_message(span_danger("[A] inhales a ton of air!"), span_warning("You prepare to howl!"))
@@ -462,12 +462,12 @@
 				M.Paralyze(0.1 SECONDS)
 		DeactivatePower()
 
-/datum/action/bloodsucker/gangrel/rabidism
+/datum/action/cooldown/bloodsucker/gangrel/rabidism
 	name = "Rabidism"
 	desc = "FLAIL WILLDY, INJURING ALL WHO APPROACH AND SAVAGING STRUCTURES."
 	button_icon_state = "power_rabid"
-	background_icon_state_on = "wolf_power_on"
-	background_icon_state_off = "wolf_power_off"
+	active_background_icon_state = "wolf_power_on"
+	base_background_icon_state = "wolf_power_off"
 	power_explanation = "Rabidism:\n\
 		Rabidism will deal reduced damage to everyone in range including you.\n\
 		During Rabidism's ten second rage you'll deal alot more damage to structures.\n\
@@ -477,40 +477,40 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
 	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 0
-	cooldown = 20 SECONDS
+	cooldown_time = 20 SECONDS
 
-/datum/action/bloodsucker/gangrel/rabidism/ActivatePower()
+/datum/action/cooldown/bloodsucker/gangrel/rabidism/ActivatePower()
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	A.environment_smash = ENVIRONMENT_SMASH_RWALLS
 	A.obj_damage *= 3
 	addtimer(CALLBACK(src, .proc/DeactivatePower), 10 SECONDS)
 
-/datum/action/bloodsucker/gangrel/rabidism/ContinueActive()
+/datum/action/cooldown/bloodsucker/gangrel/rabidism/ContinueActive()
 	return TRUE
 
-/datum/action/bloodsucker/gangrel/rabidism/UsePower(mob/living/user)
+/datum/action/cooldown/bloodsucker/gangrel/rabidism/process()
 	. = ..()
-	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = user
+	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	for(var/mob/living/all_targets in dview(1, get_turf(A)))
 		if(all_targets == A || all_targets == A.bloodsucker)
 			continue
 		A.UnarmedAttack(all_targets) //byongcontrol
 
-/datum/action/bloodsucker/gangrel/rabidism/DeactivatePower()
+/datum/action/cooldown/bloodsucker/gangrel/rabidism/DeactivatePower()
 	. = ..()
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	A.environment_smash = initial(A.environment_smash)
 	A.obj_damage = initial(A.obj_damage)
 
-/datum/action/bloodsucker/targeted/tear
+/datum/action/cooldown/bloodsucker/targeted/tear
 	name = "Tear"
 	desc = "Ruthlessly tear into an enemy, dealing massive damage to them if successful."
 	button_icon_state = "power_tear"
 	background_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
-	background_icon_state_on = "gangrel_power_on"
-	background_icon_state_off = "gangrel_power_off"
+	active_background_icon_state = "gangrel_power_on"
+	base_background_icon_state = "gangrel_power_off"
 	power_explanation = "Tear:\n\
 		Tear will make your first attack start up a bleeding process.\n\
 		Bleeding process will only work if the target stands still.\n\
@@ -519,10 +519,10 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
 	purchase_flags = GANGREL_CAN_BUY
 	bloodcost = 10
-	cooldown = 7 SECONDS
+	cooldown_time = 7 SECONDS
 	var/mob/living/mauled
 
-/datum/action/bloodsucker/targeted/tear/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/tear/FireTargetedPower(atom/target_atom)
 	. = ..()
 	var/mob/living/carbon/human/user = owner
 	var/mob/living/target = target_atom
@@ -535,7 +535,7 @@
 	mauled = target
 	Mawl(target)
 
-/datum/action/bloodsucker/targeted/tear/proc/Mawl(mob/living/target)
+/datum/action/cooldown/bloodsucker/targeted/tear/proc/Mawl(mob/living/target)
 	var/mob/living/carbon/user = owner
 
 	if(!do_mob(user, target, 1 SECONDS))
@@ -555,13 +555,13 @@
 		else
 			B.add_bleed(B.bleed_buildup)
 
-/datum/action/bloodsucker/targeted/tear/CheckValidTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/tear/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
 	return isliving(target_atom)
 
-/datum/action/bloodsucker/targeted/tear/CheckCanTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/tear/CheckCanTarget(atom/target_atom)
 	// DEFAULT CHECKS (Distance)
 	. = ..()
 	// Target Type: Living
@@ -600,7 +600,7 @@
 	mob_overlay_icon = 'icons/mob/actions/actions_gangrel_bloodsucker.dmi'
 	body_parts_covered = ARMS|HANDS
 	flags_inv = HIDEJUMPSUIT
-	var/datum/action/bloodsucker/targeted/tear/tearaction = new
+	var/datum/action/cooldown/bloodsucker/targeted/tear/tearaction = new
 
 /obj/item/clothing/shoes/wolflegs
 	name = "Wolf Legs"

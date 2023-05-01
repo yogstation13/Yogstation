@@ -2,14 +2,14 @@
 #define SIZE_MEDIUM 2
 #define SIZE_BIG 4
 
-/datum/action/bloodsucker/targeted/dice
+/datum/action/cooldown/bloodsucker/targeted/dice
 	name = "Dice" 
 	desc = "Slice, cut, sever. The Flesh obeys as my fingers lay touch on it."
 	background_icon = 'icons/mob/actions/actions_tzimisce_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_tzimisce_bloodsucker.dmi'
 	background_icon_state = "tzimisce_power_off"
-	background_icon_state_on = "tzimisce_power_on"
-	background_icon_state_off = "tzimisce_power_off"
+	active_background_icon_state = "tzimisce_power_on"
+	base_background_icon_state = "tzimisce_power_off"
 	button_icon_state = "power_dice"
 	power_explanation = "Dice:\n\
 		Use on a dead corpse to extract muscle from it to be able to feed it to a vassalrack.\n\
@@ -21,7 +21,7 @@
 	purchase_flags = TZIMISCE_CAN_BUY
 	check_flags = BP_AM_COSTLESS_UNCONSCIOUS
 	target_range = 1
-	cooldown = 10 SECONDS
+	cooldown_time = 10 SECONDS
 
 /obj/item/muscle
 	name = "muscle"
@@ -98,7 +98,7 @@
 			new /obj/item/muscle/big(user.drop_location())
 	qdel(src)
 
-/datum/action/bloodsucker/targeted/dice/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/dice/FireTargetedPower(atom/target_atom)
 	var/mob/living/target = target_atom
 	var/mob/living/carbon/user = owner
 	user.face_atom(target)
@@ -163,13 +163,13 @@
 	target.gib()
 	new /obj/item/muscle/medium(target.loc)
 
-/datum/action/bloodsucker/targeted/dice/CheckValidTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/dice/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
 	return isliving(target_atom)
 
-/datum/action/bloodsucker/targeted/dice/CheckCanTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/dice/CheckCanTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE

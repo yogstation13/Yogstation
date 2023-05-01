@@ -1,4 +1,4 @@
-/datum/action/bloodsucker/cloak
+/datum/action/cooldown/bloodsucker/cloak
 	name = "Cloak of Darkness"
 	desc = "Blend into the shadows and become invisible to the untrained and Artificial eye."
 	button_icon_state = "power_cloak"
@@ -12,12 +12,12 @@
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 5
 	constant_bloodcost = 0.2
-	cooldown = 5 SECONDS
+	cooldown_time = 5 SECONDS
 	var/was_running
 	var/runbound = TRUE
 
 /// Must have nobody around to see the cloak
-/datum/action/bloodsucker/cloak/CheckCanUse(mob/living/carbon/user)
+/datum/action/cooldown/bloodsucker/cloak/CanUse(mob/living/carbon/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -26,7 +26,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/bloodsucker/cloak/ActivatePower()
+/datum/action/cooldown/bloodsucker/cloak/ActivatePower()
 	. = ..()
 	var/mob/living/user = owner
 	was_running = (user.m_intent == MOVE_INTENT_RUN)
@@ -37,11 +37,14 @@
 	user.digitalcamo = 1
 	user.balloon_alert(user, "cloak turned on.")
 
-/datum/action/bloodsucker/cloak/UsePower(mob/living/user)
+/datum/action/cooldown/bloodsucker/cloak/process()
 	// Checks that we can keep using this.
 	. = ..()
 	if(!.)
 		return
+	if(!active)
+		return
+	var/mob/living/user = owner
 	animate(user, alpha = max(25, owner.alpha - min(75, 10 + 5 * level_current)), time = 1.5 SECONDS)
 	// Prevents running while on Cloak of Darkness
 	if(runbound)
@@ -50,7 +53,7 @@
 			user.toggle_move_intent()
 			user.adjustBruteLoss(rand(5,15))
 
-/datum/action/bloodsucker/cloak/ContinueActive(mob/living/user, mob/living/target)
+/datum/action/cooldown/bloodsucker/cloak/ContinueActive(mob/living/user, mob/living/target)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -60,7 +63,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/bloodsucker/cloak/DeactivatePower()
+/datum/action/cooldown/bloodsucker/cloak/DeactivatePower()
 	. = ..()
 	var/mob/living/user = owner
 	animate(user, alpha = 255, time = 1 SECONDS)
@@ -71,12 +74,12 @@
 			user.toggle_move_intent()
 	user.balloon_alert(user, "cloak turned off.")
 
-/datum/action/bloodsucker/cloak/shadow
+/datum/action/cooldown/bloodsucker/cloak/shadow
 	name = "Cloak of Shadows"
 	desc = "Empowered to the abyss, fortitude will now grant you a shadow armor, making your grip harder to escape and reduce projectile damage while in darkness."
 	background_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
-	background_icon_state_on = "lasombra_power_on"
-	background_icon_state_off = "lasombra_power_off"
+	active_background_icon_state = "lasombra_power_on"
+	base_background_icon_state = "lasombra_power_off"
 	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_state"
 	additional_text = "Additionally allows you to run during cloak and gain a physical cloak while in darkness."
@@ -91,7 +94,7 @@
 	mob_overlay_icon = 'icons/obj/vamp_obj.dmi'
 	icon_state = "cloak"
 	item_state = "cloak"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 100) //good if you haven nothing
+	armor = list(MELEE = 0, BULLET = 0, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 100) //good if you haven nothing
 
 /obj/item/clothing/neck/yogs/sith_cloak/cloak/Initialize()
 	. = ..()
@@ -106,7 +109,7 @@
 		STOP_PROCESSING(SSobj, src)
 		src.visible_message(span_warning("The cape desintegrates as the light contacts it's surface!"))
 
-/datum/action/bloodsucker/cloak/shadow/ActivatePower()
+/datum/action/cooldown/bloodsucker/cloak/shadow/ActivatePower()
 	. = ..()
 	var/turf/T = get_turf(owner)
 	var/light_amount = T.get_lumcount()
@@ -114,7 +117,7 @@
 		if(!owner.get_item_by_slot(SLOT_NECK))
 			owner.equip_to_slot_or_del( new /obj/item/clothing/neck/yogs/sith_cloak/cloak(null), SLOT_NECK)
 
-/datum/action/bloodsucker/cloak/shadow/DeactivatePower()
+/datum/action/cooldown/bloodsucker/cloak/shadow/DeactivatePower()
 	. = ..()
 	var/obj/item/I = owner.get_item_by_slot(SLOT_NECK)
 	if(istype(I, /obj/item/clothing/neck/yogs/sith_cloak/cloak))

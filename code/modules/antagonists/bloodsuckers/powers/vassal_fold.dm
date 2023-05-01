@@ -1,4 +1,4 @@
-/datum/action/bloodsucker/vassal_blood
+/datum/action/cooldown/bloodsucker/vassal_blood
 	name = "Help Vassal"
 	desc = "Bring an ex-Vassal back into the fold."
 	button_icon_state = "power_torpor"
@@ -9,7 +9,7 @@
 	check_flags = NONE
 	purchase_flags = NONE
 	bloodcost = 10
-	cooldown = 10 SECONDS
+	cooldown_time = 10 SECONDS
 
 	///Bloodbag we have in our hands.
 	var/obj/item/reagent_containers/blood/bloodbag
@@ -18,7 +18,7 @@
 	///If we are analyze or helping
 	var/analyzing
 
-/datum/action/bloodsucker/vassal_blood/CheckCanUse(mob/living/carbon/user)
+/datum/action/cooldown/bloodsucker/vassal_blood/CanUse(mob/living/carbon/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -52,7 +52,7 @@
 	bloodbag = blood_bag
 	return TRUE
 
-/datum/action/bloodsucker/vassal_blood/ActivatePower()
+/datum/action/cooldown/bloodsucker/vassal_blood/ActivatePower()
 	. = ..()
 	var/datum/antagonist/vassal/revenge/revenge_vassal = owner.mind.has_antag_datum(/datum/antagonist/vassal/revenge)
 	if(analyzing)

@@ -278,8 +278,8 @@
 	if(bloodsuckerdatum.my_clan?.control_type == BLOODSUCKER_CONTROL_SHADOWS)
 		if(bloodsuckerdatum.clanpoints)
 			var/list/upgradablepowers = list()
-			var/list/unupgradablepowers = list(/datum/action/bloodsucker/feed, /datum/action/bloodsucker/masquerade, /datum/action/bloodsucker/veil)
-			for(var/datum/action/bloodsucker/power as anything in bloodsuckerdatum.powers)
+			var/list/unupgradablepowers = list(/datum/action/cooldown/bloodsucker/feed, /datum/action/cooldown/bloodsucker/masquerade, /datum/action/cooldown/bloodsucker/veil)
+			for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.powers)
 				if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY)
 					upgradablepowers += power
 				if(is_type_in_list(power, unupgradablepowers))
@@ -289,24 +289,24 @@
 				return
 			if((locate(upgradablepowers[choice]) in bloodsuckerdatum.powers))
 				return
-			var/datum/action/bloodsucker/granted = null
+			var/datum/action/cooldown/bloodsucker/granted = null
 			switch(choice)
-				if(/datum/action/bloodsucker/targeted/brawn)
-					granted = new /datum/action/bloodsucker/targeted/brawn/shadow
-				if(/datum/action/bloodsucker/targeted/haste)
-					granted = new /datum/action/bloodsucker/targeted/haste/shadow
-				if(/datum/action/bloodsucker/fortitude)
-					granted = new /datum/action/bloodsucker/fortitude/shadow // i hate this
-				if(/datum/action/bloodsucker/targeted/mesmerize)
-					granted = new /datum/action/bloodsucker/targeted/mesmerize/shadow
-				if(/datum/action/bloodsucker/targeted/trespass)
-					granted = new /datum/action/bloodsucker/targeted/trespass/shadow
-				if(/datum/action/bloodsucker/targeted/lunge)
-					granted = new /datum/action/bloodsucker/targeted/lunge/shadow
-				if(/datum/action/bloodsucker/cloak/)
-					granted = new /datum/action/bloodsucker/cloak/shadow
+				if(/datum/action/cooldown/bloodsucker/targeted/brawn)
+					granted = new /datum/action/cooldown/bloodsucker/targeted/brawn/shadow
+				if(/datum/action/cooldown/bloodsucker/targeted/haste)
+					granted = new /datum/action/cooldown/bloodsucker/targeted/haste/shadow
+				if(/datum/action/cooldown/bloodsucker/fortitude)
+					granted = new /datum/action/cooldown/bloodsucker/fortitude/shadow // i hate this
+				if(/datum/action/cooldown/bloodsucker/targeted/mesmerize)
+					granted = new /datum/action/cooldown/bloodsucker/targeted/mesmerize/shadow
+				if(/datum/action/cooldown/bloodsucker/targeted/trespass)
+					granted = new /datum/action/cooldown/bloodsucker/targeted/trespass/shadow
+				if(/datum/action/cooldown/bloodsucker/targeted/lunge)
+					granted = new /datum/action/cooldown/bloodsucker/targeted/lunge/shadow
+				if(/datum/action/cooldown/bloodsucker/cloak/)
+					granted = new /datum/action/cooldown/bloodsucker/cloak/shadow
 			bloodsuckerdatum.BuyPower(granted)
-			var/datum/action/bloodsucker/now_level_it_up = LAZYFIND(bloodsuckerdatum.powers, granted)
+			var/datum/action/cooldown/bloodsucker/now_level_it_up = LAZYFIND(bloodsuckerdatum.powers, granted)
 			now_level_it_up.level_current = rand(3, 4)
 			qdel(choice)
 			to_chat(user, span_boldnotice("You have ascended [choice]!"))

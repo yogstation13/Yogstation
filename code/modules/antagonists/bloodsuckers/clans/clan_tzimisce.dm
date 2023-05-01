@@ -10,10 +10,10 @@
 /datum/bloodsucker_clan/tzimisce/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
 	bloodsuckerdatum.AddHumanityLost(5.6)
-	bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/targeted/dice)
+	bloodsuckerdatum.BuyPower(new /datum/action/cooldown/bloodsucker/targeted/dice)
 	bloodsuckerdatum.owner.current.faction |= "bloodhungry" //flesh monster's clan
-	var/list/powerstoremove = list(/datum/action/bloodsucker/veil, /datum/action/bloodsucker/masquerade)
-	for(var/datum/action/bloodsucker/banned_power in bloodsuckerdatum.powers)
+	var/list/powerstoremove = list(/datum/action/cooldown/bloodsucker/veil, /datum/action/cooldown/bloodsucker/masquerade)
+	for(var/datum/action/cooldown/bloodsucker/banned_power in bloodsuckerdatum.powers)
 		if(is_type_in_list(banned_power, powerstoremove))
 			bloodsuckerdatum.RemovePower(banned_power)
 

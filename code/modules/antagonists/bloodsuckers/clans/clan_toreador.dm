@@ -19,7 +19,7 @@
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/moldingstone)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/chisel)
 
-		for(var/datum/action/bloodsucker/masquerade/masquarade_spell in bloodsuckerdatum.powers)
+		for(var/datum/action/cooldown/bloodsucker/masquerade/masquarade_spell in bloodsuckerdatum.powers)
 			if(!istype(masquarade_spell))
 				continue
 			masquarade_spell.bloodcost = 0
@@ -30,7 +30,7 @@
 	return ..()
 
 /datum/bloodsucker_clan/toreador/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
-	vassaldatum.BuyPower(new /datum/action/bloodsucker/targeted/mesmerize)
+	vassaldatum.BuyPower(new /datum/action/cooldown/bloodsucker/targeted/mesmerize)
 
 /datum/bloodsucker_clan/toreador/proc/on_bloodsucker_broke_masquerade(datum/antagonist/bloodsucker/masquerade_breaker)
 	SIGNAL_HANDLER

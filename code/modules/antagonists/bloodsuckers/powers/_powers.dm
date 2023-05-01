@@ -1,19 +1,20 @@
-/datum/action/bloodsucker
+/datum/action/cooldown/bloodsucker
 	name = "Vampiric Gift"
 	desc = "A vampiric gift."
-	//This is the FILE for the background icon
 	background_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
-	//This is the ICON_STATE for the background icon
 	background_icon_state = "vamp_power_off"
 	button_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	button_icon_state = "power_feed"
 	buttontooltipstyle = "cult"
 	transparent_when_unavailable = TRUE
 
+	/// Cooldown you'll have to wait between each use, decreases depending on level.
+	cooldown_time = 2 SECONDS
+
 	///Background icon when the Power is active.
-	var/background_icon_state_on = "vamp_power_on"
+	active_background_icon_state = "vamp_power_on"
 	///Background icon when the Power is NOT active.
-	var/background_icon_state_off = "vamp_power_off"
+	base_background_icon_state = "vamp_power_off"
 
 	/// The text that appears when using the help verb, meant to explain how the Power changes when ranking up.
 	var/power_explanation = ""
@@ -28,15 +29,9 @@
 	/// Who can purchase the Power
 	var/purchase_flags = NONE // BLOODSUCKER_CAN_BUY|LASOMBRA_CAN_BUY|GANGREL_CAN_BUY|VASSAL_CAN_BUY|HUNTER_CAN_BUY
 
-	// COOLDOWNS //
-	///Timer between Power uses.
-	COOLDOWN_DECLARE(bloodsucker_power_cooldown)
-
 	// VARS //
 	/// If the Power is currently active.
 	var/active = FALSE
-	/// Cooldown you'll have to wait between each use, decreases depending on level.
-	var/cooldown = 2 SECONDS
 	///Can increase to yield new abilities - Each Power ranks up each Rank
 	var/level_current = 0
 	///The cost to ACTIVATE this Power
@@ -47,11 +42,11 @@
 	var/additional_text = ""
 
 // Modify description to add cost.
-/datum/action/bloodsucker/New(Target)
+/datum/action/cooldown/bloodsucker/New(Target)
 	. = ..()
 	UpdateDesc()
 
-/datum/action/bloodsucker/proc/UpdateDesc()
+/datum/action/cooldown/bloodsucker/proc/UpdateDesc()
 	desc = initial(desc)
 	if(length(additional_text) > 0)
 		desc += "<br><br><b>ASCENDED</b>: [additional_text]"
@@ -63,40 +58,40 @@
 		desc += "<br><br><b>SINGLE USE:</br><i> [name] can only be used once per night.</i>"
 	if(level_current > 0)
 		desc += "<br><br><b>LEVEL:</b><i> [name] is currently level [level_current].</i>"
-	if(cooldown > 0)
-		desc += "<br><br><b>COOLDOWN:</b><i> [name] has a cooldown of [cooldown / 10] seconds.</i>"
+	if(cooldown_time > 0)
+		desc += "<br><br><b>COOLDOWN:</b><i> [name] has a cooldown of [cooldown_time / 10] seconds.</i>"
 
-/datum/action/bloodsucker/Destroy()
+/datum/action/cooldown/bloodsucker/Destroy()
 	bloodsuckerdatum_power = null
 	return ..()
 
-/datum/action/bloodsucker/IsAvailable(feedback = FALSE)
-	return COOLDOWN_FINISHED(src, bloodsucker_power_cooldown)
+/datum/action/cooldown/bloodsucker/IsAvailable(feedback = FALSE)
+	return next_use_time <= world.time
 
-/datum/action/bloodsucker/Grant(mob/user)
+/datum/action/cooldown/bloodsucker/Grant(mob/user)
 	. = ..()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(owner)
 	if(bloodsuckerdatum)
 		bloodsuckerdatum_power = bloodsuckerdatum
 
 //This is when we CLICK on the ability Icon, not USING.
-/datum/action/bloodsucker/Trigger(trigger_flags)
-	if(active && CheckCanDeactivate()) // Active? DEACTIVATE AND END!
+/datum/action/cooldown/bloodsucker/Trigger(trigger_flags)
+	if(active && can_deactivate()) // Active? DEACTIVATE AND END!
 		DeactivatePower()
 		return FALSE
-	if(!CheckCanPayCost() || !CheckCanUse(owner))
+	if(!can_pay_cost() || !CanUse(owner))
 		return FALSE
-	PayCost()
+	pay_cost()
 	ActivatePower()
 	if(!(power_flags & BP_AM_TOGGLE) || !active)
-		RemoveAfterUse()
+		StartCooldown()
 	return TRUE
 
-/datum/action/bloodsucker/proc/CheckCanPayCost()
+/datum/action/cooldown/bloodsucker/proc/can_pay_cost()
 	if(!owner || !owner.mind)
 		return FALSE
 	// Cooldown?
-	if(!COOLDOWN_FINISHED(src, bloodsucker_power_cooldown))
+	if(!COOLDOWN_FINISHED(src, next_use_time))
 		owner.balloon_alert(owner, "power unavailable!")
 		to_chat(owner, "[src] on cooldown!")
 		return FALSE
@@ -116,11 +111,11 @@
 	return TRUE
 
 ///Called when the Power is upgraded.
-/datum/action/bloodsucker/proc/upgrade_power()
+/datum/action/cooldown/bloodsucker/proc/upgrade_power()
 	level_current++
 
 ///Checks if the Power is available to use.
-/datum/action/bloodsucker/proc/CheckCanUse(mob/living/carbon/user)
+/datum/action/cooldown/bloodsucker/proc/CanUse(mob/living/carbon/user)
 	if(!owner)
 		return FALSE
 	if(!isliving(user))
@@ -152,29 +147,22 @@
 	return TRUE
 
 /// NOTE: With this formula, you'll hit half cooldown at level 8 for that power.
-/datum/action/bloodsucker/proc/StartCooldown()
+/datum/action/cooldown/bloodsucker/StartCooldown()
 	// Calculate Cooldown (by power's level)
-	var/this_cooldown
 	if(power_flags & BP_AM_STATIC_COOLDOWN)
-		this_cooldown = cooldown
+		cooldown_time = initial(cooldown_time)
 	else
-		this_cooldown = max(cooldown / 2, cooldown - (cooldown / 16 * (level_current-1)))
+		cooldown_time = max(initial(cooldown_time) / 2, initial(cooldown_time) - (initial(cooldown_time) / 16 * (level_current-1)))
 
-	// Wait for cooldown
-	COOLDOWN_START(src, bloodsucker_power_cooldown, this_cooldown)
-	addtimer(CALLBACK(src, PROC_REF(build_all_button_icons)), this_cooldown+(1 SECONDS))
-
-/datum/action/bloodsucker/proc/CheckCanDeactivate()
-	return TRUE
-
-/datum/action/bloodsucker/build_all_button_icons(atom/movable/screen/movable/action_button/button, update_flags = ALL, force = FALSE)
-	if(active)
-		background_icon_state = background_icon_state_on
-	else
-		background_icon_state = background_icon_state_off
 	return ..()
 
-/datum/action/bloodsucker/proc/PayCost()
+/datum/action/cooldown/bloodsucker/proc/can_deactivate()
+	return TRUE
+
+/datum/action/cooldown/bloodsucker/is_action_active()
+	return active
+
+/datum/action/cooldown/bloodsucker/proc/pay_cost()
 	// Non-bloodsuckers will pay in other ways.
 	if(!bloodsuckerdatum_power)
 		var/mob/living/carbon/living_owner = owner
@@ -187,49 +175,50 @@
 	bloodsuckerdatum_power.bloodsucker_blood_volume -= bloodcost
 	bloodsuckerdatum_power?.update_hud()
 
-/datum/action/bloodsucker/proc/ActivatePower()
+/datum/action/cooldown/bloodsucker/proc/ActivatePower()
 	active = TRUE
 	if(power_flags & BP_AM_TOGGLE)
-		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(UsePower))
+		START_PROCESSING(SSprocessing, src)
 
 	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
 	build_all_button_icons()
 
-/datum/action/bloodsucker/proc/DeactivatePower()
+/datum/action/cooldown/bloodsucker/proc/DeactivatePower()
+	if(!active) //Already inactive? Return
+		return
 	if(power_flags & BP_AM_TOGGLE)
-		UnregisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE)
+		STOP_PROCESSING(SSprocessing, src)
 	if(power_flags & BP_AM_SINGLEUSE)
-		RemoveAfterUse()
+		remove_after_use()
 		return
 	active = FALSE
 	StartCooldown()
 	build_all_button_icons()
 
 ///Used by powers that are continuously active (That have BP_AM_TOGGLE flag)
-/datum/action/bloodsucker/proc/UsePower(mob/living/user)
-	if(!active) // Power isn't active? Then stop here, so we dont keep looping UsePower for a non existent Power.
-		return FALSE
-	if(!ContinueActive(user)) // We can't afford the Power? Deactivate it.
+/datum/action/cooldown/bloodsucker/process(seconds_per_tick)
+	SHOULD_CALL_PARENT(TRUE) //Need this to call parent so the cooldown system works
+	. = ..()
+	if(!ContinueActive(owner)) // We can't afford the Power? Deactivate it.
 		DeactivatePower()
 		return FALSE
 	// We can keep this up (For now), so Pay Cost!
-	if(!(power_flags & BP_AM_COSTLESS_UNCONSCIOUS) && user.stat != CONSCIOUS)
+	if(!(power_flags & BP_AM_COSTLESS_UNCONSCIOUS) && owner.stat != CONSCIOUS)
 		if(bloodsuckerdatum_power)
 			bloodsuckerdatum_power.AddBloodVolume(-constant_bloodcost)
 		else
-			var/mob/living/carbon/living_owner = owner
-			if(!LAZYFIND(living_owner.dna.species.species_traits, NOBLOOD))
-				living_owner.blood_volume -= bloodcost
+			var/mob/living/living_owner = owner
+			living_owner.blood_volume -= constant_bloodcost
 	return TRUE
 
 /// Checks to make sure this power can stay active
-/datum/action/bloodsucker/proc/ContinueActive(mob/living/user, mob/living/target)
+/datum/action/cooldown/bloodsucker/proc/ContinueActive(mob/living/user, mob/living/target)
 	if(!user)
 		return FALSE
 	if(!constant_bloodcost > 0 || bloodsuckerdatum_power.bloodsucker_blood_volume)
 		return TRUE
 
 /// Used to unlearn Single-Use Powers
-/datum/action/bloodsucker/proc/RemoveAfterUse()
+/datum/action/cooldown/bloodsucker/proc/remove_after_use()
 	bloodsuckerdatum_power?.powers -= src
 	Remove(owner)

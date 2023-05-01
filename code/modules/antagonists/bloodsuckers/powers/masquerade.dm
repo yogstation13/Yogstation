@@ -10,7 +10,7 @@
  *	- Normal body temp -- remove Cold Blooded (return on deactivate)
  */
 
-/datum/action/bloodsucker/masquerade
+/datum/action/cooldown/bloodsucker/masquerade
 	name = "Masquerade"
 	desc = "Feign the vital signs of a mortal, and escape both casual and medical notice as the monster you truly are."
 	button_icon_state = "power_human"
@@ -25,11 +25,11 @@
 	check_flags = BP_CANT_USE_IN_FRENZY|BP_AM_COSTLESS_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 10
-	cooldown = 5 SECONDS
+	cooldown_time = 5 SECONDS
 	constant_bloodcost = 0.1
 	var/list/theqdeld = list()
 
-/datum/action/bloodsucker/masquerade/ActivatePower()
+/datum/action/cooldown/bloodsucker/masquerade/ActivatePower()
 	. = ..()
 	var/mob/living/carbon/user = owner
 	to_chat(user, span_notice("Your heart beats falsely within your lifeless chest. You may yet pass for a mortal."))
@@ -80,7 +80,7 @@
 		vampheart.fake_start_heart()
 	user.apply_status_effect(STATUS_EFFECT_MASQUERADE)
 
-/datum/action/bloodsucker/masquerade/DeactivatePower()
+/datum/action/cooldown/bloodsucker/masquerade/DeactivatePower()
 	. = ..() // activate = FALSE
 	var/mob/living/carbon/user = owner
 	user.remove_status_effect(STATUS_EFFECT_MASQUERADE)

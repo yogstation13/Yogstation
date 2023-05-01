@@ -1,7 +1,7 @@
 #define FEED_NOTICE_RANGE 2
 #define FEED_DEFAULT_TIMER (10 SECONDS)
 
-/datum/action/bloodsucker/feed
+/datum/action/cooldown/bloodsucker/feed
 	name = "Feed"
 	desc = "Feed blood off of a living creature."
 	button_icon_state = "power_feed"
@@ -18,7 +18,7 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_STAKED|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER
 	bloodcost = 0
-	cooldown = 15 SECONDS
+	cooldown_time = 15 SECONDS
 	///Amount of blood taken, reset after each Feed. Used for logging.
 	var/blood_taken = 0
 	///The amount of Blood a target has since our last feed, this loops and lets us not spam alerts of low blood.
@@ -28,7 +28,7 @@
 	///Are we feeding with passive grab or not?
 	var/silent_feed = TRUE 
 
-/datum/action/bloodsucker/feed/CheckCanUse(mob/living/carbon/user)
+/datum/action/cooldown/bloodsucker/feed/CanUse(mob/living/carbon/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -46,14 +46,14 @@
 		return FALSE
 	return TRUE
 
-/datum/action/bloodsucker/feed/ContinueActive(mob/living/user, mob/living/target)
+/datum/action/cooldown/bloodsucker/feed/ContinueActive(mob/living/user, mob/living/target)
 	if(!target)
 		return FALSE
 	if(!user.Adjacent(target))
 		return FALSE
 	return TRUE
 
-/datum/action/bloodsucker/feed/DeactivatePower()
+/datum/action/cooldown/bloodsucker/feed/DeactivatePower()
 	var/mob/living/user = owner
 	if(target_ref)
 		var/mob/living/feed_target = target_ref.resolve()
@@ -71,7 +71,7 @@
 	REMOVE_TRAIT(user, TRAIT_MUTE, FEED_TRAIT)
 	return ..()
 
-/datum/action/bloodsucker/feed/ActivatePower()
+/datum/action/cooldown/bloodsucker/feed/ActivatePower()
 	var/mob/living/feed_target = target_ref.resolve()
 	if(istype(feed_target, /mob/living/simple_animal/mouse || istype(feed_target, /mob/living/simple_animal/hostile/rat)))
 		to_chat(owner, span_notice("You recoil at the taste of a lesser lifeform."))
@@ -127,7 +127,10 @@
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, FEED_TRAIT)
 	return ..()
 
-/datum/action/bloodsucker/feed/UsePower(mob/living/user)
+/datum/action/cooldown/bloodsucker/feed/process()
+	if(!active) //If we aren't active (running on SSfastprocess)
+		return ..() //Manage our cooldown timers
+	var/mob/living/user = owner
 	var/mob/living/feed_target = target_ref.resolve()
 	if(!ContinueActive(user, feed_target))
 		if(!silent_feed)
@@ -185,7 +188,7 @@
 	if(owner.pulling == feed_target && owner.grab_state >= GRAB_AGGRESSIVE)
 		feed_target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
 
-/datum/action/bloodsucker/feed/proc/find_target()
+/datum/action/cooldown/bloodsucker/feed/proc/find_target()
 	if(owner.pulling && isliving(owner.pulling))
 		if(!can_feed_from(owner.pulling, give_warnings = TRUE))
 			return FALSE
@@ -213,7 +216,7 @@
 	//No one to suck blood from.
 	return FALSE
 
-/datum/action/bloodsucker/feed/proc/can_feed_from(mob/living/target, give_warnings = FALSE)
+/datum/action/cooldown/bloodsucker/feed/proc/can_feed_from(mob/living/target, give_warnings = FALSE)
 	if(istype(target, /mob/living/simple_animal/mouse) || istype(target, /mob/living/simple_animal/hostile/rat))
 		if(bloodsuckerdatum_power.my_clan.blood_drink_type == BLOODSUCKER_DRINK_SNOBBY)
 			if(give_warnings)

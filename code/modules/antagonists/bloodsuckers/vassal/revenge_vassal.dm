@@ -43,7 +43,7 @@
 
 /datum/antagonist/vassal/revenge/ui_static_data(mob/user)
 	var/list/data = list()
-	for(var/datum/action/bloodsucker/power as anything in powers)
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
 		var/list/power_data = list()
 
 		power_data["power_name"] = power.name
@@ -60,8 +60,8 @@
 	show_in_roundend = TRUE
 	for(var/datum/objective/all_objectives as anything in objectives)
 		objectives -= all_objectives
-	BuyPower(new /datum/action/bloodsucker/vassal_blood)
-	for(var/datum/action/bloodsucker/master_powers as anything in bloodsuckerdatum.powers)
+	BuyPower(new /datum/action/cooldown/bloodsucker/vassal_blood)
+	for(var/datum/action/cooldown/bloodsucker/master_powers as anything in bloodsuckerdatum.powers)
 		if(master_powers.purchase_flags & BLOODSUCKER_DEFAULT_POWER)
 			continue
 		master_powers.Grant(owner.current)

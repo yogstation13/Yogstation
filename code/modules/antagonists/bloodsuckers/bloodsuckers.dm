@@ -38,7 +38,7 @@
 	var/altar_uses = 0
 
 	///ALL Powers currently owned
-	var/list/datum/action/bloodsucker/powers = list()
+	var/list/datum/action/cooldown/bloodsucker/powers = list()
 	///Frenzy Grab Martial art given to Bloodsuckers in a Frenzy
 	var/datum/martial_art/frenzygrab/frenzygrab = new
 	///How many clan points you have -> Used in clans in order to assert certain limits // Upgrades and stuff
@@ -80,7 +80,7 @@
 	var/atom/movable/screen/bloodsucker/sunlight_counter/sunlight_display
 
 	/// Static typecache of all bloodsucker powers.
-	var/static/list/all_bloodsucker_powers = typecacheof(/datum/action/bloodsucker, TRUE)
+	var/static/list/all_bloodsucker_powers = typecacheof(/datum/action/cooldown/bloodsucker, TRUE)
 	/// Antagonists that cannot be Vassalized no matter what
 	var/static/list/vassal_banned_antags = list(
 		/datum/antagonist/bloodsucker,
@@ -221,7 +221,7 @@
 	. = ..()
 	if(istype(new_body, /mob/living/simple_animal/hostile/bloodsucker) || istype(old_body, /mob/living/simple_animal/hostile/bloodsucker))
 		return
-	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		all_powers.Remove(old_body)
 		all_powers.Grant(new_body)
 	var/old_punchdamagelow
@@ -307,7 +307,7 @@
 /datum/antagonist/bloodsucker/ui_static_data(mob/user)
 	var/list/data = list()
 	//we don't need to update this that much.
-	for(var/datum/action/bloodsucker/power as anything in powers)
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
 		var/list/power_data = list()
 
 		power_data["power_name"] = power.name
@@ -469,39 +469,39 @@
 ///Called when Sol is near starting.
 /datum/antagonist/bloodsucker/proc/sol_near_start(atom/source)
 	SIGNAL_HANDLER
-	if(bloodsucker_lair_area && !(locate(/datum/action/bloodsucker/gohome) in powers))
-		BuyPower(new /datum/action/bloodsucker/gohome)
-	if(my_clan?.get_clan() == CLAN_GANGREL && !(locate(/datum/action/bloodsucker/gangrel/transform) in powers))
-		BuyPower(new /datum/action/bloodsucker/gangrel/transform)
+	if(bloodsucker_lair_area && !(locate(/datum/action/cooldown/bloodsucker/gohome) in powers))
+		BuyPower(new /datum/action/cooldown/bloodsucker/gohome)
+	if(my_clan?.get_clan() == CLAN_GANGREL && !(locate(/datum/action/cooldown/bloodsucker/gangrel/transform) in powers))
+		BuyPower(new /datum/action/cooldown/bloodsucker/gangrel/transform)
 
 ///Called when Sol first ends.
 /datum/antagonist/bloodsucker/proc/on_sol_end(atom/source)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(check_end_torpor))
-	for(var/datum/action/bloodsucker/power in powers)
-		if(istype(power, /datum/action/bloodsucker/gohome))
+	for(var/datum/action/cooldown/bloodsucker/power in powers)
+		if(istype(power, /datum/action/cooldown/bloodsucker/gohome))
 			RemovePower(power)
 	if(altar_uses)
 		to_chat(owner, span_boldnotice("Your Altar uses have been reset!"))
 		altar_uses = 0
 
 /// Buying powers
-/datum/antagonist/bloodsucker/proc/BuyPower(datum/action/bloodsucker/power)
-	for(var/datum/action/bloodsucker/current_powers as anything in powers)
+/datum/antagonist/bloodsucker/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
+	for(var/datum/action/cooldown/bloodsucker/current_powers as anything in powers)
 		if(current_powers.type == power.type)
 			return FALSE
 	powers += power
 	power.Grant(owner.current)
 	return TRUE
 
-/datum/antagonist/bloodsucker/proc/RemovePower(datum/action/bloodsucker/power)
+/datum/antagonist/bloodsucker/proc/RemovePower(datum/action/cooldown/bloodsucker/power)
 	if(power.active)
 		power.DeactivatePower()
 	powers -= power
 	power.Remove(owner.current)
 
 /datum/antagonist/bloodsucker/proc/give_starting_powers()
-	for(var/datum/action/bloodsucker/all_powers as anything in all_bloodsucker_powers)
+	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in all_bloodsucker_powers)
 		if(!(initial(all_powers.purchase_flags) & BLOODSUCKER_DEFAULT_POWER))
 			continue
 		BuyPower(new all_powers)
@@ -530,7 +530,7 @@
 
 /datum/antagonist/bloodsucker/proc/ClearAllPowersAndStats()
 	// Powers
-	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		RemovePower(all_powers)
 	/// Stats
 	if(ishuman(owner.current))
@@ -589,21 +589,21 @@
 	bloodsucker_level_unspent--
 
 /datum/antagonist/bloodsucker/proc/remove_nondefault_powers(return_levels = FALSE)
-	for(var/datum/action/bloodsucker/power as anything in powers)
-		if(istype(power, /datum/action/bloodsucker/feed) || istype(power, /datum/action/bloodsucker/masquerade) || istype(power, /datum/action/bloodsucker/veil))
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+		if(istype(power, /datum/action/cooldown/bloodsucker/feed) || istype(power, /datum/action/cooldown/bloodsucker/masquerade) || istype(power, /datum/action/cooldown/bloodsucker/veil))
 			continue
 		RemovePower(power)
 		if(return_levels)
 			bloodsucker_level_unspent++
 
 /datum/antagonist/bloodsucker/proc/LevelUpPowers()
-	for(var/datum/action/bloodsucker/power as anything in powers)
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
 		power.level_current++
 		power.UpdateDesc()
 
 ///Disables all powers, accounting for torpor
 /datum/antagonist/bloodsucker/proc/DisableAllPowers(forced = FALSE)
-	for(var/datum/action/bloodsucker/power as anything in powers)
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
 		if(forced || ((power.check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(owner.current, TRAIT_NODEATH)))
 			if(power.active)
 				power.DeactivatePower()
@@ -611,7 +611,7 @@
 /datum/antagonist/bloodsucker/proc/SpendRank(mob/living/carbon/human/target, cost_rank = TRUE, blood_cost, ask = TRUE)
 	if(!owner || !owner.current || !owner.current.client || (cost_rank && bloodsucker_level_unspent <= 0.5))
 		return
-	SEND_SIGNAL(src, BLOODSUCKER_RANK_UP, target, cost_rank, blood_cost)
+	SEND_SIGNAL(src, BLOODSUCKER_RANK_UP, target, cost_rank, blood_cost, ask)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 

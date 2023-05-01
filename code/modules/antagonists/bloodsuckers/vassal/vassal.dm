@@ -79,7 +79,7 @@
 	owner.enslave_mind_to_creator(master.owner.current)
 	owner.current.log_message("has been vassalized by [master.owner.current]!", LOG_ATTACK, color="#960000")
 	/// Give Recuperate Power
-	BuyPower(new /datum/action/bloodsucker/recuperate)
+	BuyPower(new /datum/action/cooldown/bloodsucker/recuperate)
 	/// Give Objectives
 	var/datum/objective/bloodsucker/vassal/vassal_objective = new
 	vassal_objective.owner = owner
@@ -102,7 +102,7 @@
 		REMOVE_TRAIT(owner.current, all_status_traits, BLOODSUCKER_TRAIT)
 	//Remove Recuperate Power
 	while(powers.len)
-		var/datum/action/bloodsucker/power = pick(powers)
+		var/datum/action/cooldown/bloodsucker/power = pick(powers)
 		powers -= power
 		power.Remove(owner.current)
 	//Remove Language & Hud
@@ -111,7 +111,7 @@
 
 /datum/antagonist/vassal/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()
-	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		all_powers.Remove(old_body)
 		all_powers.Grant(new_body)
 
@@ -168,7 +168,7 @@
 	to_chat(choice, span_notice("Through divine intervention, you've gained a new vassal!"))
 
 /datum/antagonist/vassal/proc/toreador_levelup_mesmerize() //Don't need stupid args
-	for(var/datum/action/bloodsucker/targeted/mesmerize/mesmerize_power in powers)
+	for(var/datum/action/cooldown/bloodsucker/targeted/mesmerize/mesmerize_power in powers)
 		if(!istype(mesmerize_power))
 			continue
 		mesmerize_power.level_current = max(master.bloodsucker_level, 1)
@@ -197,12 +197,12 @@
 	vassal.remove_antag_datum(/datum/antagonist/vassal)
 
 /// Used when your Master teaches you a new Power.
-/datum/antagonist/vassal/proc/BuyPower(datum/action/bloodsucker/power)
+/datum/antagonist/vassal/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
 	powers += power
 	power.Grant(owner.current)
 
 /datum/antagonist/vassal/proc/LevelUpPowers()
-	for(var/datum/action/bloodsucker/power in powers)
+	for(var/datum/action/cooldown/bloodsucker/power in powers)
 		power.level_current++
 
 /// Called when we are made into the Favorite Vassal

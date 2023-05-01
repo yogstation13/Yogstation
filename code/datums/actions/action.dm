@@ -266,6 +266,7 @@
 
 	current_button.icon = button_icon
 	current_button.icon_state = button_icon_state
+	current_button.actiontooltipstyle = buttontooltipstyle
 
 /**
  * Applies any overlays to our button

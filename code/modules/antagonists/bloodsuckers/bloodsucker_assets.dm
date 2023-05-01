@@ -6,7 +6,7 @@
 			continue
 		add_bloodsucker_icon(initial(clans.join_icon), initial(clans.join_icon_state))
 
-	for(var/datum/action/bloodsucker/power as anything in subtypesof(/datum/action/bloodsucker))
+	for(var/datum/action/cooldown/bloodsucker/power as anything in subtypesof(/datum/action/cooldown/bloodsucker))
 		add_bloodsucker_icon(initial(power.button_icon), initial(power.button_icon_state))
 
 	return ..()

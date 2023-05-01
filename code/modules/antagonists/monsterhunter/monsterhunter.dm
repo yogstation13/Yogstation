@@ -13,8 +13,8 @@
 	var/list/datum/action/powers = list()
 	var/datum/martial_art/hunterfu/my_kungfu = new
 	var/give_objectives = TRUE
-	var/datum/action/bloodsucker/trackvamp = new /datum/action/bloodsucker/trackvamp()
-	var/datum/action/bloodsucker/fortitude = new /datum/action/bloodsucker/fortitude/hunter()
+	var/datum/action/cooldown/bloodsucker/trackvamp = new /datum/action/cooldown/bloodsucker/trackvamp()
+	var/datum/action/cooldown/bloodsucker/fortitude = new /datum/action/cooldown/bloodsucker/fortitude/hunter()
 
 /datum/antagonist/monsterhunter/apply_innate_effects(mob/living/mob_override)
 	.  = ..()
@@ -63,7 +63,7 @@
 
 /datum/antagonist/monsterhunter/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()
-	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		all_powers.Remove(old_body)
 		all_powers.Grant(new_body)
 

@@ -1,7 +1,7 @@
 #define TRACKING_SCENT			(1<<0)
 #define TRACKING_BLOOD			(1<<1)
 
-/datum/action/bloodsucker/olfaction
+/datum/action/cooldown/bloodsucker/olfaction
 	name = "Sanguine Olfaction"
 	desc = "Smells blood."
 	button_icon_state = "power_olfac"
@@ -10,9 +10,9 @@
 		You shouldn't see this text, please scream and cry in the discord chat or ooc about it after the round if you do.\n\
 		Or make a bug report."
 	power_flags = BP_AM_STATIC_COOLDOWN
-	cooldown = 20 SECONDS
+	cooldown_time = 20 SECONDS
 
-/datum/action/bloodsucker/olfaction/acquire_scent
+/datum/action/cooldown/bloodsucker/olfaction/acquire_scent
 	name = "Sanguine Olfaction"
 	desc = "Acquire a scent from the environment immediately around you to track."
 	power_explanation = "Sanguine Olfaction:\n\
@@ -31,9 +31,9 @@
 	///tracking blood or scents. blood for bloodsuckers, scent for genetics olfaction
 	var/tracking_flags = TRACKING_SCENT
 
-	var/datum/action/bloodsucker/olfaction/follow_scent/follow = new /datum/action/bloodsucker/olfaction/follow_scent()
+	var/datum/action/cooldown/bloodsucker/olfaction/follow_scent/follow = new /datum/action/cooldown/bloodsucker/olfaction/follow_scent()
 
-/datum/action/bloodsucker/olfaction/acquire_scent/Grant(mob/user, tracking)
+/datum/action/cooldown/bloodsucker/olfaction/acquire_scent/Grant(mob/user, tracking)
 	. = ..()
 	if(!iscarbon(user))
 		to_chat(owner, span_warning("Your olfactory senses aren't developed enough to utilize this ability!"))
@@ -42,7 +42,7 @@
 	if(tracking)
 		tracking_flags = tracking
 
-/datum/action/bloodsucker/olfaction/acquire_scent/Trigger()
+/datum/action/cooldown/bloodsucker/olfaction/acquire_scent/Trigger()
 	if(!..())
 		return FALSE
 	DeactivatePower()
@@ -105,26 +105,26 @@
 	
 	return TRUE
 
-/datum/action/bloodsucker/olfaction/acquire_scent/Remove(mob/M)	
+/datum/action/cooldown/bloodsucker/olfaction/acquire_scent/Remove(mob/M)	
 	follow = locate(follow) in owner.actions
 	if(follow)
 		follow.Remove(owner)
 	return ..()
 
-/datum/action/bloodsucker/olfaction/acquire_scent/sanguine
+/datum/action/cooldown/bloodsucker/olfaction/acquire_scent/sanguine
 	sensitive = FALSE
 	tracking_flags = TRACKING_BLOOD
 	purchase_flags = BLOODSUCKER_CAN_BUY
 
-	follow = new /datum/action/bloodsucker/olfaction/follow_scent/sanguine()
+	follow = new /datum/action/cooldown/bloodsucker/olfaction/follow_scent/sanguine()
 
-/datum/action/bloodsucker/olfaction/acquire_scent/lesser
+/datum/action/cooldown/bloodsucker/olfaction/acquire_scent/lesser
 	name = "Transcendent Olfaction"
 
 	background_icon = 'icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_spell"
-	background_icon_state_on = "bg_spell"
-	background_icon_state_off = "bg_spell"
+	active_background_icon_state = "bg_spell"
+	base_background_icon_state = "bg_spell"
 	
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "nose"
@@ -139,11 +139,11 @@
 		Selecting one of those scents will grant you a new ability to follow that scent. This will create a visible trail to follow to the owner of that scent.\n\
 		WARNING: it will be difficult to see around you while following a scent trail due to the the color being drained from all your vision except for the trail and your target."
 
-	cooldown = 60 SECONDS
+	cooldown_time = 60 SECONDS
 
-	follow = new /datum/action/bloodsucker/olfaction/follow_scent/lesser()
+	follow = new /datum/action/cooldown/bloodsucker/olfaction/follow_scent/lesser()
 
-/datum/action/bloodsucker/olfaction/follow_scent
+/datum/action/cooldown/bloodsucker/olfaction/follow_scent
 	name = "Follow the Scent"
 	desc = "Begin following the scent of your target."
 	button_icon_state = "power_olfac"
@@ -159,7 +159,7 @@
 	///which status effect is being applied on use
 	var/status_effect = STATUS_EFFECT_BLOOD_HUNTER
 
-/datum/action/bloodsucker/olfaction/follow_scent/Grant(mob/user, tracking)
+/datum/action/cooldown/bloodsucker/olfaction/follow_scent/Grant(mob/user, tracking)
 	. = ..()
 	if(!iscarbon(user))
 		to_chat(owner, span_warning("Your olfactory senses aren't developed enough to utilize this ability!"))
@@ -169,7 +169,7 @@
 	if(tracking)
 		tracking_target = tracking
 
-/datum/action/bloodsucker/olfaction/follow_scent/Trigger()
+/datum/action/cooldown/bloodsucker/olfaction/follow_scent/Trigger()
 	if(!..())
 		return FALSE
 	DeactivatePower()
@@ -249,20 +249,20 @@
 		new /obj/effect/temp_visual/scent_trail(trail_step, scent_dir, sniffer, invert, scent_color)
 		sleep(0.1 SECONDS)
 
-/datum/action/bloodsucker/olfaction/follow_scent/sanguine
+/datum/action/cooldown/bloodsucker/olfaction/follow_scent/sanguine
 	name = "Follow the Scent"
 	desc = "Begin following the scent of your target."
 	
 	status_effect = STATUS_EFFECT_BLOOD_HUNTER
 
-/datum/action/bloodsucker/olfaction/follow_scent/lesser
+/datum/action/cooldown/bloodsucker/olfaction/follow_scent/lesser
 	name = "Follow the Scent"
 	desc = "Begin following the scent of your target."
 
 	background_icon = 'icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "bg_spell"
-	background_icon_state_on = "bg_spell"
-	background_icon_state_off = "bg_spell"
+	active_background_icon_state = "bg_spell"
+	base_background_icon_state = "bg_spell"
 	buttontooltipstyle = ""
 	
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
@@ -270,4 +270,4 @@
 
 	status_effect = STATUS_EFFECT_SCENT_HUNTER
 
-	cooldown = 60 SECONDS
+	cooldown_time = 60 SECONDS

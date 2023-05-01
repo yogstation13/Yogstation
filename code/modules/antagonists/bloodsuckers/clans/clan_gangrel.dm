@@ -13,9 +13,9 @@
 /datum/bloodsucker_clan/gangrel/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
 	bloodsuckerdatum.AddHumanityLost(16.8)
-	bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/gangrel/transform)
+	bloodsuckerdatum.BuyPower(new /datum/action/cooldown/bloodsucker/gangrel/transform)
 	bloodsuckerdatum.owner.current.faction |= "bloodhungry" //i love animals i love animals
-	for(var/datum/action/bloodsucker/masquerade/masquerade_power in bloodsuckerdatum.powers)
+	for(var/datum/action/cooldown/bloodsucker/masquerade/masquerade_power in bloodsuckerdatum.powers)
 		bloodsuckerdatum.RemovePower(masquerade_power)
 
 /datum/bloodsucker_clan/malkavian/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)

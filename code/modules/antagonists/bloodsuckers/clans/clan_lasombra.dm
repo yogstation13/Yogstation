@@ -11,7 +11,7 @@
 
 /datum/bloodsucker_clan/lasombra/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
-	bloodsuckerdatum.BuyPower(new /datum/action/bloodsucker/targeted/lasombra)
+	bloodsuckerdatum.BuyPower(new /datum/action/cooldown/bloodsucker/targeted/lasombra)
 	if(ishuman(bloodsuckerdatum.owner.current))
 		var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
 		human_user.eye_color = BLOODCULT_EYE
