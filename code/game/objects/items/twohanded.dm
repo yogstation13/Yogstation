@@ -332,7 +332,7 @@
 
 /obj/item/twohanded/fireaxe/energy/attack(mob/living/M, mob/living/user)
 	..()
-	M.IgniteMob() // Ignites you if you're flammable
+	M.ignite_mob() // Ignites you if you're flammable
 
 /obj/item/twohanded/fireaxe/energy/afterattack(atom/A, mob/user, proximity)
 	. = ..()

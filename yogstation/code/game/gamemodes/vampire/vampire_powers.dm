@@ -3,7 +3,7 @@
 	var/blood_used = 0
 	var/vamp_req = FALSE
 
-/datum/action/cooldown/spell/can_cast_spell()
+/datum/action/cooldown/spell/can_cast_spell(feedback = TRUE)
 	if(vamp_req)
 		if(!is_vampire(owner))
 			return FALSE
@@ -11,7 +11,8 @@
 		if(!V)
 			return FALSE
 		if(V.usable_blood < blood_used)
-			to_chat(owner, span_warning("You do not have enough blood to cast this!"))
+			if(feedback)
+				to_chat(owner, span_warning("You do not have enough blood to cast this!"))
 			return FALSE
 	return ..()
 
@@ -20,37 +21,36 @@
 	if(vamp_req)
 		spell_requirements = NONE
 
-
 /datum/action/cooldown/spell/before_cast(atom/cast_on)
-	. = ..()
 	if(vamp_req)
 		// sanity check before we cast
-		if(!is_vampire(usr))
+		if(!is_vampire(owner))
 			return
 
 		if(!blood_used)
 			return
 
 		// enforce blood
-		var/datum/antagonist/vampire/vampire = usr.mind.has_antag_datum(/datum/antagonist/vampire)
+		var/datum/antagonist/vampire/vampire = owner.mind.has_antag_datum(/datum/antagonist/vampire)
 
 		if(blood_used <= vampire.usable_blood)
 			vampire.usable_blood -= blood_used
 
 		if(cast_on)
-			to_chat(usr, span_notice("<b>You have [vampire.usable_blood] left to use.</b>"))
+			to_chat(owner, span_notice("<b>You have [vampire.usable_blood] left to use.</b>"))
 
+	return ..()
 
 /datum/action/cooldown/spell/is_valid_target(mob/living/target)
-	. = ..()
 	if(vamp_req && is_vampire(target))
 		return FALSE
+	return ..()
 
 /datum/vampire_passive
 	var/gain_desc
 
 /datum/vampire_passive/New()
-	..()
+	. = ..()
 	if(!gain_desc)
 		gain_desc = "You have gained \the [src] ability."
 
@@ -78,7 +78,8 @@
 	desc = "Explains how the vampire blood sucking system works."
 	button_icon_state = "bloodymaryglass"
 	button_icon = 'icons/obj/drinks.dmi'
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	school = SCHOOL_SANGUINE
 
@@ -98,17 +99,16 @@
 	desc= "Flush your system with spare blood to repair minor stamina damage to your body."
 	button_icon_state = "rejuv"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	school = SCHOOL_RESTORATION
 
 	cooldown_time = 20 SECONDS
 	vamp_req = TRUE
 
-/datum/action/cooldown/spell/rejuvenate/cast(list/targets, mob/user = usr)
+/datum/action/cooldown/spell/rejuvenate/cast(mob/living/user)
 	. = ..()
-	if(!.)
-		return FALSE
 	var/mob/living/carbon/U = user
 	U.remove_status_effect(/datum/status_effect/speech/stutter)
 
@@ -124,14 +124,13 @@
 			U.adjustFireLoss(-1)
 		sleep(0.75 SECONDS)
 
-	return TRUE
-
 /datum/action/cooldown/spell/pointed/gaze
 	name = "Vampiric Gaze"
 	desc = "Paralyze your target with fear."
 	ranged_mousepointer = 'icons/effects/mouse_pointers/gaze_target.dmi'
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 	button_icon_state = "gaze"
 
 	school = SCHOOL_SANGUINE
@@ -199,7 +198,8 @@
 	button_icon_state = "hypnotize"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/hypnotize_target.dmi'
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	school = SCHOOL_SANGUINE
 
@@ -271,7 +271,8 @@
 	gain_desc = "You have gained the shapeshifting ability, at the cost of stored blood you can change your form permanently."
 	button_icon_state = "genetic_poly"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	school = SCHOOL_TRANSMUTATION
 
@@ -280,14 +281,11 @@
 
 /datum/action/cooldown/spell/appearanceshift/cast(mob/living/user)
 	. = ..()
-	if(!.)
-		return FALSE
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		user.visible_message(span_warning("[H] transforms!"))
 		randomize_human(H)
 	user.regenerate_icons()
-	return TRUE
 
 /datum/action/cooldown/spell/cloak
 	name = "Cloak of Darkness"
@@ -295,7 +293,8 @@
 	gain_desc = "You have gained the Cloak of Darkness ability which when toggled makes you near invisible in the shroud of darkness."
 	button_icon_state = "cloak"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	school = SCHOOL_CONJURATION
 
@@ -315,8 +314,6 @@
 
 /datum/action/cooldown/spell/cloak/cast(mob/living/user)
 	. = ..()
-	if(!.)
-		return FALSE
 	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(!V)
 		return
@@ -324,15 +321,14 @@
 	update_name()
 	to_chat(user, span_notice("You will now be [V.iscloaking ? "hidden" : "seen"] in darkness."))
 
-	return TRUE
-
 /datum/action/cooldown/spell/revive
 	name = "Revive"
 	gain_desc = "You have gained the ability to revive after death... However you can still be cremated/gibbed, and you will disintergrate if you're in the chapel!"
 	desc = "Revives you, provided you are not in the chapel!"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	button_icon_state = "coffin"
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	school = SCHOOL_SANGUINE
 
@@ -341,8 +337,6 @@
 
 /datum/action/cooldown/spell/revive/cast(mob/living/user)
 	. = ..()
-	if(!.)
-		return FALSE
 	if(!is_vampire(user) || !isliving(user))
 		return
 	if(user.stat != DEAD)
@@ -358,8 +352,6 @@
 		L.dust()
 	to_chat(L, span_notice("We begin to reanimate... this will take 1 minute."))
 	addtimer(CALLBACK(src, PROC_REF(revive), L), 1 MINUTES)
-
-	return TRUE
 
 /datum/action/cooldown/spell/revive/proc/revive(mob/living/user)
 	var/list/missing = user.get_missing_limbs()
@@ -378,7 +370,8 @@
 	gain_desc = "You have gained the Diseased Touch ability which causes those you touch to become weak unless treated medically."
 	button_icon_state = "disease"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	school = SCHOOL_SANGUINE
 
@@ -410,7 +403,8 @@
 	gain_desc = "You have gained the Chiropteran Screech ability which stuns anything with ears in a large radius and shatters glass in the process."
 	button_icon_state = "reeee"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	school = SCHOOL_SANGUINE
 
@@ -446,14 +440,14 @@
 		W.take_damage(75)
 	playsound(user.loc, 'sound/effects/screech.ogg', 100, TRUE)
 
-
 /datum/action/cooldown/spell/bats
 	name = "Summon Bats (30)"
 	desc = "You summon a pair of space bats who attack nearby targets until they or their target is dead."
 	gain_desc = "You have gained the Summon Bats ability."
 	button_icon_state = "bats"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	school = SCHOOL_CONJURATION
 
@@ -464,8 +458,6 @@
 
 /datum/action/cooldown/spell/bats/cast(mob/living/user)
 	. = ..()
-	if(!.)
-		return FALSE
 	var/list/turf/locs = new
 	for(var/direction in GLOB.alldirs) //looking for bat spawns
 		if(locs.len == num_bats) //we found 2 locations and thats all we need
@@ -481,13 +473,11 @@
 	for(var/T in locs)
 		new /mob/living/simple_animal/hostile/vampire_bat(T)
 
-	return TRUE
-
-
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt/mistform
 	name = "Mist Form (30)"
 	gain_desc = "You have gained the Mist Form ability which allows you to take on the form of mist for a short period and pass over any obstacle in your path."
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	blood_used = 30
 	vamp_req = TRUE
@@ -497,7 +487,8 @@
 	desc = "You drain a victim's blood, and fill them with new blood, blessed by Lilith, turning them into a new vampire."
 	gain_desc = "You have gained the ability to force someone, given time, to become a vampire."
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 	button_icon_state = "oath"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/bite_target.dmi' //big win
 
@@ -562,7 +553,8 @@
 	gain_desc = "Now that you have reached full power, you can now pull a vampiric coat out of thin air!"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
 	button_icon_state = "coat"
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	school = SCHOOL_CONJURATION
 
@@ -571,8 +563,6 @@
 
 /datum/action/cooldown/spell/summon_coat/cast(mob/living/user)
 	. = ..()
-	if(!.)
-		return FALSE
 	if(!is_vampire(user) || !isliving(user))
 		return
 	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
@@ -585,43 +575,25 @@
 	user.put_in_hands(V.coat)
 	to_chat(user, span_notice("You summon your dracula coat."))
 
-	return TRUE
-
-/datum/action/cooldown/spell/batform
+/datum/action/cooldown/spell/shapeshift/bat/vampire
 	name = "Bat Form (15)"
 	gain_desc = "You now have the Bat Form ability, which allows you to turn into a bat (and back!)"
 	desc = "Transform into a bat!"
 	button_icon_state = "bat"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	background_icon_state = "bg_demon"
+	background_icon_state = "bg_vampire"
+	overlay_icon_state = "bg_vampire_border"
 
 	school = SCHOOL_TRANSMUTATION
 
 	cooldown_time = 20 SECONDS
+	blood_used = 15
 	vamp_req = TRUE
-	var/mob/living/simple_animal/hostile/vampire_bat/bat
+	shapeshift_type = /mob/living/simple_animal/hostile/vampire_bat
 
-/datum/action/cooldown/spell/batform/cast(mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
-	if(!V)
-		return FALSE
-	if(!bat || bat.stat == DEAD)
-		if(V.usable_blood < 15)
-			to_chat(user, span_warning("You do not have enough blood to cast this!"))
-			return FALSE
-		bat = new /mob/living/simple_animal/hostile/vampire_bat(user.loc)
-		user.forceMove(bat)
-		bat.controller = user
-		user.status_flags |= GODMODE
-		user.mind.transfer_to(bat)
+/datum/action/cooldown/spell/shapeshift/bat/vampire/can_cast_spell()
+	if(ishuman(owner))
+		blood_used = 15
 	else
-		bat.controller.forceMove(bat.loc)
-		bat.controller.status_flags &= ~GODMODE
-		bat.mind.transfer_to(bat.controller)
-		bat.controller = null //just so we don't accidently trigger the death() thing
-		QDEL_NULL(bat)
-
-	return TRUE
+		blood_used = 0
+	return ..()

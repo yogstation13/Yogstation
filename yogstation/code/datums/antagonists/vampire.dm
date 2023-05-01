@@ -34,7 +34,7 @@
 		/datum/action/cooldown/spell/cloak = 100,
 		/datum/action/cooldown/spell/revive = 100,
 		/datum/action/cooldown/spell/pointed/disease = 200,
-		/datum/action/cooldown/spell/batform = 200,
+		/datum/action/cooldown/spell/shapeshift/bat/vampire = 200,
 		/datum/action/cooldown/spell/aoe/screech = 215,
 		/datum/action/cooldown/spell/bats = 250,
 		/datum/vampire_passive/regen = 255,
