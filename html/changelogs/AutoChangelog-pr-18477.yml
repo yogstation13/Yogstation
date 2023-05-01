@@ -1,0 +1,8 @@
+author: " SapphicOverload, MemedHams"
+delete-after: true 
+changes: 
+  - rscadd: "adds energy fire axe"
+  - imageadd: "adds energy fire axe sprites"
+  - tweak: "adds \"axed\" to the list of attack verbs for axes"
+  - bugfix: "fixes windows and grilles not respecting armor penetration"
+  - bugfix: "holding an open flame will now ignite flammable gases in the air as intended"
