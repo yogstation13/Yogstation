@@ -115,7 +115,7 @@
 	switch(action)
 		if("confirm")
 			var/rodPath = text2path(params["rodPath"])
-			if(!ispath(rodPath))
+			if(!ispath(rodPath, /obj/item/nullrod))
 				return FALSE
 			var/obj/item/nullrod/holy_weapon = new rodPath
 			GLOB.holy_weapon_type = holy_weapon.type

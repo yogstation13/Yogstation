@@ -28449,6 +28449,9 @@
 	pixel_x = -25;
 	pixel_y = 5
 	},
+/obj/machinery/photocopier{
+	pixel_y = 3
+	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
 "bsN" = (
@@ -77152,6 +77155,20 @@
 	dir = 5
 	},
 /area/crew_quarters/heads/hor)
+"uQP" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/button/door{
+	desc = "A remote control-switch for secure storage.";
+	id = "Secure Storage";
+	name = "Engineering Secure Storage";
+	pixel_x = -24;
+	pixel_y = -23;
+	req_access_txt = "11"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "uRM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -122706,7 +122723,7 @@ aBI
 aBI
 aJn
 aCO
-aFq
+uQP
 aNq
 aBI
 yfM
