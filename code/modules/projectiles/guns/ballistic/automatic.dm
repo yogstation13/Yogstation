@@ -103,7 +103,7 @@
 	empty_indicator = TRUE
 
 /obj/item/gun/ballistic/automatic/wt550/armory
-	mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
+	starting_mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
 
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"

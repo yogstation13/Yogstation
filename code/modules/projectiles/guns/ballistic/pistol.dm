@@ -118,3 +118,6 @@
 	feedback_types = list(
 		"fire" = 3
 	)
+
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal
+	starting_mag_type = /obj/item/ammo_box/magazine/v38/rubber

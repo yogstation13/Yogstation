@@ -19,7 +19,7 @@
 /obj/item/projectile/bullet/c38
 	name = ".38 bullet"
 	damage = 21
-	armour_penetration = -30
+	armour_penetration = -30 //Armor hit by this is modified by x1.43
 	wound_bonus = -30
 	wound_falloff_tile = -2.5
 	bare_wound_bonus = 15
@@ -29,6 +29,43 @@
 	damage = 7
 	stamina = 30
 	sharpness = SHARP_NONE
+
+/obj/item/projectile/bullet/c38/ap
+	name = ".38 armor-piercing bullet"
+	damage = 18
+	armour_penetration = 15 //Not actually all that great against armor, but not *terrible*
+
+/obj/item/projectile/bullet/c38/frost //Basically Iceblax 2
+	name = ".38 frost bullet"
+	armour_penetration = -45 //x1.81 vs x1.43 for how much more effective armor is
+	var/temperature = 100
+
+/obj/item/projectile/bullet/c38/frost/on_hit(atom/target, blocked = 0)
+	if(blocked != 100)
+		if(isliving(target))
+			var/mob/living/L = target
+			L.adjust_bodytemperature(((100-blocked)/100)*(temperature - L.bodytemperature))
+	return ..()
+
+/obj/item/projectile/bullet/c38/talon
+	name = ".38 talon bullet"
+	damage = 12 //Tested on naked felinids, could never cause a wound type above open cut.
+	stamina = 18
+	sharpness = SHARP_EDGED
+
+/obj/item/projectile/bullet/c38/talon/on_hit(atom/target, blocked = 0)
+	if(blocked != 100)
+		if(ishuman(target) && damage > 5)
+			var/mob/living/carbon/human/H = target
+			var/obj/item/bodypart/B = H.get_bodypart(def_zone)
+			var/datum/wound/slash/moderate/open_wound = new
+			open_wound.apply_wound(B)
+	return ..()
+
+/obj/item/projectile/bullet/c38/bluespace
+	name = ".38 bluespace bullet"
+	damage = 18
+	speed = 0.2 //Very, very, very fast
 
 // .32 TRAC (Caldwell Tracking Revolver)
 
