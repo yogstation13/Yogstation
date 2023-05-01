@@ -788,7 +788,7 @@
 /obj/item/storage/belt/holster/full/PopulateContents()
 	var/static/items_inside = list(
 		/obj/item/gun/ballistic/revolver/detective = 1,
-		/obj/item/ammo_box/c38 = 2)
+		/obj/item/ammo_box/c38/rubber = 2)
 	generate_items_inside(items_inside, src)
 
 /obj/item/storage/belt/holster/syndicate

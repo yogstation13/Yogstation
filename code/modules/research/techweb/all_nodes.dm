@@ -734,7 +734,7 @@
 	display_name = "Exotic Ammunition"
 	description = "They won't know what hit em."
 	prereq_ids = list("adv_weaponry")
-	design_ids = list("c38_hotshot", "c38_iceblox", "c38_gutterpunch")
+	design_ids = list("techshotshell")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/gravity_gun
@@ -750,7 +750,7 @@
 	display_name = "Experimental Ammunition"
 	description = "We're hitting levels of power that shouldn't be possible."
 	prereq_ids = list("exotic_ammo","ballistic_weapons")
-	design_ids = list("techshotshell", "mag_oldsmg_kraken", "mag_oldsmg_snakebite")
+	design_ids = list("mag_oldsmg_kraken", "mag_oldsmg_snakebite")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 ////////////////////////mech technology////////////////////////
