@@ -1,0 +1,5 @@
+author: "azzzertyy"
+delete-after: true 
+changes: 
+  - rscadd: "stamp washes for unadded roles & jumpskirts"
+  - bugfix: "fixed qm stamp washing into CMO's jumpsuit"
