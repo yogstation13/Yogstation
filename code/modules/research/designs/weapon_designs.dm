@@ -3,44 +3,19 @@
 /////////////////////////////////////////
 
 /datum/design/c38_sec
-	name = "Speed Loader (.38)"
+	name = "Speed Loader (.38 rubber)"
 	desc = "Designed to quickly reload revolvers."
 	id = "sec_38"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/ammo_box/c38/rubber
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/c38_sec/lethal
+	name = "Speed Loader (.38)"
+	id = "sec_38_lethal"
 	build_path = /obj/item/ammo_box/c38
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
-/datum/design/c38_hotshot
-	name = "Speed Loader (.38 Hot Shot)"
-	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
-	id = "c38_hotshot"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/hotshot
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
-/datum/design/c38_iceblox
-	name = "Speed Loader (.38 Iceblox)"
-	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
-	id = "c38_iceblox"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/iceblox
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
-/datum/design/c38_gutterpunch
-	name = "Speed Loader (.38 Gutterpunch)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
-	id = "c38_gutterpunch"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/gutterpunch
-	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/rubbershot/sec
