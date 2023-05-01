@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed changelings not being able to humanize when monkeyed by lesser form or last resort"
-  - bugfix: "Fixed vampires not being able to turn into bats more than once"
-  - bugfix: "Fixed vassals being able to instantly kill themselves by changing into a bat when too damaged"

@@ -1,7 +1,0 @@
-author: "BlueishTsunami"
-delete-after: true 
-changes: 
-  - rscadd: "Added lizard variants for around 17 masks"
-  - rscadd: "Added code to handle mutant mask variants"
-  - tweak: "tweaked code handling snout removal to take mask variants into account"
-  - imageadd: "Added sprites for lizard mask variants"
