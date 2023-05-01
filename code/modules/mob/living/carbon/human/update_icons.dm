@@ -431,9 +431,15 @@ There are several things that need to be remembered:
 		inv.update_icon()
 
 	if(wear_mask)
+		var/target_overlay = wear_mask.icon_state
+		if("snout" in dna.species.mutant_bodyparts) //checks for snout and uses lizard mask variant
+			if(wear_mask.mutantrace_variation == MUTANTRACE_VARIATION && !wear_mask.mask_adjusted)
+				target_overlay = "[target_overlay]_l"
+			else if (wear_mask.mutantrace_adjusted == MUTANTRACE_VARIATION)
+				target_overlay = "[target_overlay]_l"
 		update_hud_wear_mask(wear_mask)
 		if(!(head && (head.flags_inv & HIDEMASK)))
-			overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask/mask.dmi')
+			overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask/mask.dmi', override_state = target_overlay)
 			var/mutable_appearance/mask_overlay = overlays_standing[FACEMASK_LAYER]
 			if(mask_overlay)
 				remove_overlay(FACEMASK_LAYER)

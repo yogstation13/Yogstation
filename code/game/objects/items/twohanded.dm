@@ -242,7 +242,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	force_wielded = 19
-	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
+	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut", "axed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 	max_integrity = 200
@@ -267,13 +267,13 @@
 	. = ..()
 	if(!proximity)
 		return
-	if(wielded) //destroys windows and grilles in one hit
+	if(wielded && !QDELETED(A)) //destroys windows and grilles in one hit
 		if(istype(A, /obj/structure/window))
 			var/obj/structure/window/W = A
-			W.take_damage(W.max_integrity*2, BRUTE, MELEE, 0)
+			W.take_damage(W.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 		else if(istype(A, /obj/structure/grille))
 			var/obj/structure/grille/G = A
-			G.take_damage(G.max_integrity*2, BRUTE, MELEE, 0)
+			G.take_damage(G.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /*
  * Metal Hydrogen Axe
@@ -287,6 +287,87 @@
 /obj/item/twohanded/fireaxe/metal_h2_axe/update_icon()  //Currently only here to fuck with the on-mob icons.
 	icon_state = "metalh2_axe[wielded]"
 	return
+
+/*
+ * Energy Fire Axe
+ */
+
+/obj/item/twohanded/fireaxe/energy
+	name = "energy fire axe"
+	desc = "Glory to atmosia."
+	icon = 'icons/obj/weapons/energy.dmi'
+	icon_state = "energy-fireaxe0"
+	force_wielded = 25
+	armour_penetration = 50 // Probably doesn't care much for armor given how it can destroy solid metal structures
+	block_chance = 50 // Big handle and large flat energy blade, good for blocking things
+	heat = 1800 // It's a FIRE axe
+	w_class = WEIGHT_CLASS_NORMAL
+	var/w_class_on = WEIGHT_CLASS_BULKY
+	hitsound = "swing_hit"
+	wieldsound = 'sound/weapons/saberon.ogg'
+	unwieldsound = 'sound/weapons/saberoff.ogg'
+	light_system = MOVABLE_LIGHT
+	light_range = 6 //This is NOT a stealthy weapon
+	light_color = "#ff4800" //red-orange
+	light_on = FALSE
+	sharpness = SHARP_NONE
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/twohanded/fireaxe/energy/wield(mob/living/carbon/M) //Specific wield () to switch hitsounds.
+	..()
+	if(wielded)
+		sharpness = SHARP_EDGED
+		w_class = w_class_on
+		hitsound = 'sound/weapons/blade1.ogg'
+		START_PROCESSING(SSobj, src)
+		set_light_on(TRUE)
+
+/obj/item/twohanded/fireaxe/energy/unwield() //Specific unwield () to switch hitsounds.
+	sharpness = initial(sharpness)
+	w_class = initial(w_class)
+	..()
+	hitsound = "swing_hit"
+	STOP_PROCESSING(SSobj, src)
+	set_light_on(FALSE)
+
+/obj/item/twohanded/fireaxe/energy/attack(mob/living/M, mob/living/user)
+	..()
+	M.IgniteMob() // Ignites you if you're flammable
+
+/obj/item/twohanded/fireaxe/energy/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(wielded && !QDELETED(A)) // Does x2 damage against inanimate objects like machines, structures, mechs, etc
+		if(isobj(A) && !isitem(A))
+			var/obj/O = A
+			O.take_damage(force, BRUTE, MELEE, FALSE, null, armour_penetration)
+
+/obj/item/twohanded/fireaxe/energy/update_icon()
+	icon_state = "energy-fireaxe[wielded]"
+	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
+
+/obj/item/twohanded/fireaxe/energy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type)
+	if(!wielded)
+		return 0 // large energy blade can only block stuff if it's actually on
+	return ..()
+
+/obj/item/twohanded/fireaxe/energy/ignition_effect(atom/A, mob/user)
+	if(!wielded)
+		return "[user] tries to light [A] with [src] while it's off. Nothing happens."
+	playsound(loc, hitsound, get_clamped_volume(), 1, -1)
+	return "[user] casually raises [src] up to [user.p_their()] face and lights [A]. Hot damn."
+
+/obj/item/twohanded/fireaxe/energy/is_hot()
+	if(!wielded)
+		return FALSE // Shouldn't be able to ignite stuff if it's off
+	..()
+
+/obj/item/twohanded/fireaxe/energy/process()
+	if(!wielded)
+		STOP_PROCESSING(SSobj, src)
+		return PROCESS_KILL
+	open_flame(heat)
 
 /*
  * Double-Bladed Energy Swords - Cheridan

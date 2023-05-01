@@ -622,6 +622,6 @@
 		bat.controller.status_flags &= ~GODMODE
 		bat.mind.transfer_to(bat.controller)
 		bat.controller = null //just so we don't accidently trigger the death() thing
-		qdel(bat)
+		QDEL_NULL(bat)
 
 	return TRUE
