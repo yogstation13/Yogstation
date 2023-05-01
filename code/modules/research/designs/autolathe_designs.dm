@@ -896,12 +896,20 @@
 	build_path = /obj/item/ammo_box/foambox/riot
 	category = list("hacked", "Security")
 
+/datum/design/c38_rubber
+	name = ".38 Rubber Speedloader"
+	id = "c38_rubber"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/ammo_box/c38/rubber
+	category = list("Security")
+
 /datum/design/c38
-	name = ".38 Bullet"
+	name = ".38 Speedloader"
 	id = "c38"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 1500)
-	build_path = /obj/item/ammo_casing/c38
+	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/ammo_box/c38
 	category = list("hacked", "Security")
 
 /datum/design/a357
