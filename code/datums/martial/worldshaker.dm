@@ -145,8 +145,8 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "smashed")
 	force = 5
 	throwforce = 10 //more of a ranged CC than a ranged weapon
-	throw_speed = 4
-	throw_range = 7
+	throw_speed = 3
+	throw_range = 8
 	var/datum/martial_art/worldshaker/linked_martial
 
 /obj/item/worldplate/equipped(mob/user, slot, initial)//difficult for regular people to throw
@@ -380,12 +380,11 @@
 		if(L == user)
 			continue
 		if(L == target)
-			damage = 30 //the target takes more stamina and brute damage
+			damage *= 3 //the target takes more stamina and brute damage
 
-		if(!L.resting)//if they aren't already knocked down, throw them back one space
-			if(L.anchored)
-				L.anchored = FALSE
-			push_away(user, L)
+		if(L.anchored)
+			L.anchored = FALSE
+		push_away(user, L)
 		stagger(L)
 		L.apply_damage(damage, BRUTE, user.zone_selected, wound_bonus = 10, bare_wound_bonus = 20)
 		L.adjustStaminaLoss(damage)
@@ -521,6 +520,9 @@
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//burn bright my friend
 		S.power_drain *= 3
+		S.punchdamagelow += 5
+		S.punchdamagehigh += 5
+		S.punchstunthreshold += 5
 	usr.click_intercept = src 
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 	update_platespeed(H)
@@ -538,6 +540,9 @@
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//but not that bright
 		S.power_drain /= 3
+		S.punchdamagelow -= 5
+		S.punchdamagehigh -= 5
+		S.punchstunthreshold -= 5
 	usr.click_intercept = null 
 	H.physiology.damage_resistance -= PLATE_REDUCTION * min(plates, MAX_PLATES)
 	deltimer(plate_timer)
