@@ -5,8 +5,9 @@
 	icon_state = "secbot"
 	density = FALSE
 	anchored = FALSE
-	health = 75
-	maxHealth = 75
+	health = 25
+	maxHealth = 25
+	damage_coeff = list(BRUTE = 0.5, BURN = 0.7, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	pass_flags = PASSMOB
 
 	radio_key = /obj/item/encryptionkey/secbot //AI Priv + Security
@@ -222,7 +223,7 @@ Auto Patrol: []"},
 		return
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		if((C.getStaminaLoss() < C.maxHealth || arrest_type) && stuncount < 30)
+		if((!C.IsParalyzed() || arrest_type) && stuncount < 30)
 			stun_attack(A)
 			if(lastStunned && lastStunned == A)
 				stuncount++
@@ -266,22 +267,21 @@ Auto Patrol: []"},
 	addtimer(CALLBACK(src, .proc/update_icon), 2)
 	var/threat = 5
 	if(ishuman(C))
+		C.stuttering = 5
+		C.Paralyze(100)
 		var/mob/living/carbon/human/H = C
 		threat = H.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
-		if(H.check_shields(src, 54, "[src]'s baton"))
-			return
 	else
+		C.Paralyze(100)
+		C.stuttering = 5
 		threat = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
-	C.stuttering = max(5, C.stuttering)
-	C.apply_damage(54, STAMINA, BODY_ZONE_CHEST, C.run_armor_check(BODY_ZONE_CHEST, ENERGY)) // baton runs off of the tiny bot's power instead of an actual cell, not enough to work at full capacity
+
 	log_combat(src,C,"stunned")
 	if(declare_arrests)
 		var/area/location = get_area(src)
 		speak("[arrest_type ? "Detaining" : "Arresting"] level [threat] scumbag <b>[C]</b> in [location].", radio_channel)
-	C.visible_message(
-		span_danger("[src] has stunned [C]!"),
-		span_userdanger("[src] has stunned you!")
-	)
+	C.visible_message(span_danger("[src] has stunned [C]!"),\
+							span_userdanger("[src] has stunned you!"))
 
 /mob/living/simple_animal/bot/secbot/handle_automated_action()
 	if(!..())
@@ -326,7 +326,7 @@ Auto Patrol: []"},
 		if(BOT_PREP_ARREST)		// preparing to arrest target
 
 			// see if he got away. If he's no no longer adjacent or inside a closet or about to get up, we hunt again.
-			if( !Adjacent(target) || !isturf(target.loc) ||  target.getStaminaLoss() < target.maxHealth)
+			if( !Adjacent(target) || !isturf(target.loc) ||  target.AmountParalyzed() < 40)
 				back_to_hunt()
 				return
 
@@ -353,7 +353,7 @@ Auto Patrol: []"},
 				back_to_idle()
 				return
 
-			if(!Adjacent(target) || !isturf(target.loc) || (target.loc != target_lastloc && target.getStaminaLoss() < target.maxHealth)) //if he's changed loc and about to get up or not adjacent or got into a closet, we prep arrest again.
+			if(!Adjacent(target) || !isturf(target.loc) || (target.loc != target_lastloc && target.AmountParalyzed() < 40)) //if he's changed loc and about to get up or not adjacent or got into a closet, we prep arrest again.
 				back_to_hunt()
 				return
 			else //Try arresting again if the target escapes.
