@@ -1226,7 +1226,6 @@
 /datum/status_effect/catchup
 	id = "catchup"
 	duration = 1 SECONDS
-	///damage multiplier
 	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 
 /datum/status_effect/catchup/on_apply()
