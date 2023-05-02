@@ -414,7 +414,6 @@
 /datum/reagent/drug/happiness/on_mob_life(mob/living/carbon/affected_mob)
 	affected_mob.remove_status_effect(/datum/status_effect/jitter)
 	affected_mob.remove_status_effect(/datum/status_effect/confusion)
-	affected_mob.disgust = 0
 	affected_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
 	..()
 	. = 1

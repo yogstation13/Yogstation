@@ -695,7 +695,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
 		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C))
-		if(valid_species && (reac_volume < 5))	 //humans, lizards, skeletons, and preterni(ises?) can get wings
+		if(valid_species && (reac_volume < 5))	 //humans, lizards, skeletons, and preterni can get wings
 			to_chat(C, span_notice("<i>You feel something stir in you, but it quickly fades away.</i>"))
 			return ..()
 		if(!valid_species)

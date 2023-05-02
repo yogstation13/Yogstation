@@ -5,9 +5,7 @@
 	icon_state = "crate"
 	req_access = null
 	can_weld_shut = FALSE
-	horizontal = TRUE
-	allow_objects = TRUE
-	allow_dense = TRUE
+	open_flags = HORIZONTAL_HOLD | HORIZONTAL_LID | ALLOW_OBJECTS | ALLOW_DENSE
 	dense_when_open = TRUE
 	climbable = TRUE
 	climb_time = 10 //real fast, because let's be honest stepping into or onto a crate is easy

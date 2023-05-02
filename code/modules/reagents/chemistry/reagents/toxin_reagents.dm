@@ -401,6 +401,43 @@
 	..()
 	. = 1
 
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien
+	name = "Alien Neurotoxin"
+	description = "A strong neurotoxin that puts the subject into a death-like state. Now 100% more concentrated!"
+	color = "#2E2E61" // rgb: 46, 46, 97
+	taste_description = "a numbing sensation"
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+	glass_icon_state = "neurotoxinglass"
+	glass_name = "Neurotoxin"
+	glass_desc = "A drink that is guaranteed to knock you silly."
+	var/list/paralyzeparts = list(TRAIT_PARALYSIS_L_ARM, TRAIT_PARALYSIS_R_ARM, TRAIT_PARALYSIS_R_LEG, TRAIT_PARALYSIS_L_LEG)
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/proc/pickparalyze()
+	var/selected = pick(paralyzeparts)
+	paralyzeparts -= selected
+	return selected
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/on_mob_life(mob/living/carbon/M)
+	M.dizziness += 2
+	if(prob(40))
+		if(prob(50))
+			var/part = pickparalyze()
+			if(part)
+				to_chat(M, span_userdanger("one of your limbs goes numb!"))
+				ADD_TRAIT(M, part, type)
+		else
+			M.drop_all_held_items()
+			to_chat(M, span_warning("You can't feel your hands!"))
+	. = 1
+	..()
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/on_mob_end_metabolize(mob/living/carbon/M)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_L_ARM, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_R_ARM, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_R_LEG, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_L_LEG, type)
+	. = ..()
+
 /datum/reagent/toxin/polonium
 	name = "Polonium"
 	description = "An extremely radioactive material in liquid form. Ingestion results in fatal irradiation."

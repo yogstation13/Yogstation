@@ -224,6 +224,9 @@
 	if("wings" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "wings"
 		dna.species.mutant_bodyparts |= "wingsopen"
+		if("wingsdetail" in dna.species.mutant_bodyparts)
+			dna.species.mutant_bodyparts -= "wingsdetail"
+			dna.species.mutant_bodyparts |= "wingsdetailopen"
 	if("moth_wings" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts |= "moth_wingsopen"
 		dna.features["moth_wingsopen"] = "moth_wings"
@@ -236,6 +239,9 @@
 	if("wingsopen" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "wingsopen"
 		dna.species.mutant_bodyparts |= "wings"
+		if("wingsdetailopen" in dna.species.mutant_bodyparts)
+			dna.species.mutant_bodyparts -= "wingsdetailopen"
+			dna.species.mutant_bodyparts |= "wingsdetail"
 	if("moth_wingsopen" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "moth_wingsopen"
 		dna.species.mutant_bodyparts |= "moth_wings"
