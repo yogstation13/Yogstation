@@ -54029,7 +54029,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
-/area)
+/area/library)
 "rFM" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
