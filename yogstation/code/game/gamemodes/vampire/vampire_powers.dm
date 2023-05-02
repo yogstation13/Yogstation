@@ -42,7 +42,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/is_valid_target(mob/living/target)
-	if(vamp_req && is_vampire(target))
+	if(vamp_req && !is_vampire(target))
 		return FALSE
 	return ..()
 
@@ -87,8 +87,6 @@
 
 /datum/action/cooldown/spell/vampire_help/cast(mob/living/user)
 	. = ..()
-	if(!.)
-		return FALSE
 	to_chat(user, "<span class='notice'>You can consume blood from living, humanoid life by <b>punching their head while on the harm intent</b>. This <i>WILL</i> alert everyone who can see it as well as make a noise, which is generally hearable about <b>three meters away</b>. Note that you <b>cannot</b> draw blood from <b>catatonics or corpses</b>.\n\
 			Your bloodsucking speed depends on grab strength, you can <i>stealthily</i> extract blood by initiating without a grab, and can suck more blood per cycle by <b>having a neck grab or stronger</b>. Both of these modify the amount of blood taken by 50%; less for stealth, more for strong grabs.</span>")
 
@@ -122,7 +120,6 @@
 			U.adjustOxyLoss(-2.5)
 			U.adjustToxLoss(-1, TRUE, TRUE)
 			U.adjustFireLoss(-1)
-		sleep(0.75 SECONDS)
 
 /datum/action/cooldown/spell/pointed/gaze
 	name = "Vampiric Gaze"
@@ -575,7 +572,7 @@
 	user.put_in_hands(V.coat)
 	to_chat(user, span_notice("You summon your dracula coat."))
 
-/datum/action/cooldown/spell/shapeshift/bat/vampire
+/datum/action/cooldown/spell/shapeshift/vampire
 	name = "Bat Form (15)"
 	gain_desc = "You now have the Bat Form ability, which allows you to turn into a bat (and back!)"
 	desc = "Transform into a bat!"
@@ -587,11 +584,12 @@
 	school = SCHOOL_TRANSMUTATION
 
 	cooldown_time = 20 SECONDS
+	die_with_shapeshifted_form = FALSE
 	blood_used = 15
 	vamp_req = TRUE
-	shapeshift_type = /mob/living/simple_animal/hostile/vampire_bat
+	possible_shapes = list(/mob/living/simple_animal/hostile/vampire_bat)
 
-/datum/action/cooldown/spell/shapeshift/bat/vampire/can_cast_spell()
+/datum/action/cooldown/spell/shapeshift/vampire/can_cast_spell()
 	if(ishuman(owner))
 		blood_used = 15
 	else

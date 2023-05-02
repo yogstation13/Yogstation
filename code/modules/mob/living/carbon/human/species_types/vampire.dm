@@ -210,4 +210,4 @@
 
 	invocation = "Squeak!"
 	cooldown_time = 5 SECONDS
-	shapeshift_type = /mob/living/simple_animal/hostile/retaliate/bat
+	possible_shapes = list(/mob/living/simple_animal/hostile/retaliate/bat)
