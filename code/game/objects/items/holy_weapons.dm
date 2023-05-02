@@ -719,6 +719,7 @@
 	if(hud_type && istype(user) && user.glasses == src)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.hide_from(user)
+
 /obj/item/nullrod/servoskull
 	name = "servitor skull"
 	desc = "Even in death, I still serve"

@@ -478,7 +478,7 @@
 		expose_ability.Grant(user)
 		if(hud_type)
 			var/datum/atom_hud/H = GLOB.huds[hud_type]
-			H.add_hud_to(user)
+			H.show_to(user)
 
 /obj/item/clothing/glasses/godeye/dropped(mob/living/carbon/human/user)
 	. = ..()
@@ -488,7 +488,7 @@
 	expose_ability.Remove(user)
 	if(hud_type && istype(user) && user.glasses == src)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.remove_hud_from(user)
+		H.hide_from(user)
 
 /obj/item/clothing/glasses/godeye/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(istype(W, src) && W != src && W.loc == user)

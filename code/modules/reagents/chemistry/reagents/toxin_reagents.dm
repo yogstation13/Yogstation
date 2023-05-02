@@ -418,12 +418,12 @@
 	return selected
 
 /datum/reagent/toxin/staminatoxin/neurotoxin_alien/on_mob_life(mob/living/carbon/M)
-	M.dizziness += 2
+	M.adjust_dizzy(2 SECONDS)
 	if(prob(40))
 		if(prob(50))
 			var/part = pickparalyze()
 			if(part)
-				to_chat(M, span_userdanger("one of your limbs goes numb!"))
+				M.balloon_alert(M, "your limbs go numb!")
 				ADD_TRAIT(M, part, type)
 		else
 			M.drop_all_held_items()
