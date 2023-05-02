@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "possessed sword now does sharp injuries rather than blunt"
-  - bugfix: "no longer dupes possessed sword by recalling with it in your hand"

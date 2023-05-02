@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Lets mantis blades pry open doors if you have two"
-  - tweak: "prying open doors scales with tool speed (only makes jimmies faster)"

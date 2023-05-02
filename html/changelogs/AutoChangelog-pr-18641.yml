@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Changeling armblade door pry takes 6 seconds instead of 10"
-  - bugfix: "Changeling armblade can no longer pry open welded doors"

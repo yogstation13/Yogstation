@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - tweak: "Happiness chem no longer sets disgust to 0"
