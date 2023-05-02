@@ -408,6 +408,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list()
 	mag_display = TRUE
+	can_bayonet = TRUE
 
 // Laser rifle (rechargeable magazine) //
 

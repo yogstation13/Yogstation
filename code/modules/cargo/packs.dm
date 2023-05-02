@@ -331,6 +331,14 @@
 					/obj/item/ammo_box/magazine/v38)
 	crate_name = "pistol crate"
 
+/datum/supply_pack/security/energypistol
+	name = "Energy Pistol Single-Pack"
+	desc = "Contains one energy pistol for personal defense, capable of firing both lethal and nonlethal blasts of light. Requires Security access to open."
+	cost = 700
+	access_view = ACCESS_SECURITY
+	small_item = TRUE
+	contains = list(/obj/item/gun/energy/e_gun/mini)
+
 /datum/supply_pack/security/forensics
 	name = "Forensics Crate"
 	desc = "Stay hot on the criminal's heels with Nanotrasen's Detective Essentials(tm). Contains a forensics scanner, six evidence bags, camera, tape recorder, white crayon, and of course, a fedora. Requires Security access to open."

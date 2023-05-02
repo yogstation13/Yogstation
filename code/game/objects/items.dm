@@ -692,7 +692,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	if(ismob(location))
 		var/mob/M = location
 		var/success = FALSE
-		if(src == M.get_item_by_slot(SLOT_WEAR_MASK))
+		if(src == M.get_item_by_slot(SLOT_WEAR_MASK) || (src in M.held_items))
 			success = TRUE
 		if(success)
 			location = get_turf(M)
