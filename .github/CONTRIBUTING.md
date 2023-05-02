@@ -64,7 +64,7 @@ Maintainers can revert your changes if they feel they are not worth maintaining 
 
 **We allow users to create draft Pull Requests in order to have time to work on features and solicit feedback on those features**; however, there will be a limit of 2 draft Pull Requests per person, as we want people to finish their projects before moving onto others as soon as possible.
 
-**In regards to Revert Pull Requests**, these should only be opened if there is a reason for the reversion ie. the feature is broken or is not as expected when it was merged. Otherwise please wait at least 48 hours before reversing a change.
+**In regards to Revert Pull Requests**, these should only be opened if there is a reason for the reversion ie. the feature is broken or is not as expected when it was merged. Otherwise please wait at least 48 hours before reversing a change. These rules do not apply to corrections made by a HD for a Pull request merged by a maintainer incorrectly or if they disagree it should have been merged in the first place.
 
 ### Maintainers
 
