@@ -49,20 +49,10 @@
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38
 
-/obj/item/ammo_casing/c38/hotshot
-	name = ".38 Hot Shot bullet casing"
-	desc = "A .38 Hot Shot bullet casing."
-	projectile_type = /obj/item/projectile/bullet/c38/hotshot
-
-/obj/item/ammo_casing/c38/iceblox
-	name = ".38 Iceblox bullet casing"
-	desc = "A .38 Iceblox bullet casing."
-	projectile_type = /obj/item/projectile/bullet/c38/iceblox
-
-/obj/item/ammo_casing/c38/gutterpunch
-	name = ".38 Gutterpunch bullet casing"
-	desc = "A .38 Gutterpunch bullet casing"
-	projectile_type = /obj/item/projectile/bullet/c38/gutterpunch
+/obj/item/ammo_casing/c38/rubber
+	name = ".38 rubber bullet casing"
+	desc = "A .38 rubber bullet casing"
+	projectile_type = /obj/item/projectile/bullet/c38/rubber
 
 // .32 (Caldwell Tracking Revolver)
 
