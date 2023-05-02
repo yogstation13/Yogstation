@@ -17,7 +17,7 @@
 
 	outfit = /datum/outfit/job/miningmedic
 
-	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer", "Land Search & Rescue", "Mining EMT")
+	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Planetside Health Officer", "Land Search & Rescue", "Lavaland EMT")
 
 	minimal_character_age = 26 //Matches MD
 
