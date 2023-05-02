@@ -1864,23 +1864,6 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"apA" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/computer/operating,
-/obj/machinery/flasher{
-	id = "briginfirmary";
-	pixel_x = 8;
-	pixel_y = 28
-	},
-/obj/machinery/button/flasher{
-	id = "briginfirmary";
-	pixel_x = -8;
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/white,
-/area/security/physician)
 "apB" = (
 /turf/closed/wall/r_wall,
 /area/bridge/meeting_room)
@@ -7601,14 +7584,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"bvd" = (
-/obj/structure/table/optable,
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/item/storage/backpack/duffelbag/sec/surgery,
-/turf/open/floor/plasteel/white,
-/area/security/physician)
 "bvk" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -21763,25 +21738,6 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"gkX" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/medspray/synthflesh{
-	pixel_x = 7;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/medspray/sterilizine{
-	pixel_x = -1;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = -8;
-	pixel_y = 3
-	},
-/obj/machinery/vending/wallmed{
-	pixel_y = 29
-	},
-/turf/open/floor/plasteel/white,
-/area/security/physician)
 "gli" = (
 /obj/machinery/power/apc{
 	areastring = "/area/science/robotics/lab";
@@ -22963,12 +22919,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"gEw" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
-/turf/open/floor/plasteel/white,
-/area/security/physician)
 "gEx" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
@@ -23020,6 +22970,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/entry)
+"gFQ" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/obj/structure/closet/secure_closet/physician,
+/obj/item/clothing/mask/surgical,
+/obj/item/clothing/gloves/color/latex,
+/turf/open/floor/plasteel/white,
+/area/security/physician)
 "gFS" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -45031,6 +44990,22 @@
 	},
 /turf/open/floor/carpet/red,
 /area/bridge)
+"nWZ" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/medspray/synthflesh{
+	pixel_x = 7;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/medspray/sterilizine{
+	pixel_x = -1;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/white,
+/area/security/physician)
 "nXn" = (
 /obj/machinery/light{
 	dir = 8
@@ -45114,6 +45089,24 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
+"nYw" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/flasher{
+	id = "briginfirmary";
+	pixel_x = 8;
+	pixel_y = 28
+	},
+/obj/machinery/button/flasher{
+	id = "briginfirmary";
+	pixel_x = -8;
+	pixel_y = 28
+	},
+/obj/structure/table/optable,
+/obj/item/storage/backpack/duffelbag/sec/surgery,
+/turf/open/floor/plasteel/white,
+/area/security/physician)
 "nYG" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -45574,6 +45567,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"ogD" = (
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/security/physician)
 "ogK" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -50880,12 +50880,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"pPh" = (
-/obj/structure/closet/secure_closet/physician,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/turf/open/floor/plasteel/white,
-/area/security/physician)
 "pPl" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57291,6 +57285,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"rND" = (
+/obj/machinery/vending/wallmed{
+	pixel_y = 29
+	},
+/obj/machinery/computer/operating,
+/turf/open/floor/plasteel/white,
+/area/security/physician)
 "rNE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -104399,7 +104400,7 @@ msb
 msb
 api
 jev
-gEw
+gFQ
 fdv
 lye
 qBV
@@ -104655,7 +104656,7 @@ msb
 msb
 msb
 api
-bvd
+ogD
 iDZ
 mcg
 lCU
@@ -104912,7 +104913,7 @@ msb
 msb
 msb
 api
-apA
+nYw
 gGp
 wBQ
 tpe
@@ -105169,7 +105170,7 @@ msb
 msb
 msb
 api
-gkX
+rND
 bJD
 iDZ
 tXm
@@ -105426,9 +105427,9 @@ msb
 msb
 msb
 api
-oWG
+nWZ
 iDZ
-pPh
+oWG
 unq
 dyV
 dgz
