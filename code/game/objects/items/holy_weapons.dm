@@ -987,6 +987,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	attack_verb = list("chopped", "sliced", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
+	sharpness = SHARP_EDGED
 	throw_speed = 2 //make it slow so it has time to look cool
 	throwforce = 0 //it doesn't actually use this because we override throw impact, it's just for letting pacifists throw it
 	w_class = WEIGHT_CLASS_BULKY
@@ -1088,6 +1089,13 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	action_icon = 'icons/mob/actions/actions_spells.dmi'
 	action_icon_state = "swordrecall"
 
+/obj/effect/proc_holder/spell/targeted/recallnullrod/cast_check(skipcharge = 0, mob/user = usr)
+	if(sword.loc == user)
+		to_chat(user, span_notice("[sword] is already in your hand"))
+		revert_cast()
+		return FALSE
+	return ..()
+	
 /obj/effect/proc_holder/spell/targeted/recallnullrod/cast(list/targets, mob/user)
 	if(sword)
 		if(sword.walking)
@@ -1180,7 +1188,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 		..()
 
 /obj/effect/proc_holder/spell/targeted/nullroddrop
-	name = "Land"
+	name = "land"
 	desc = "Return to the ground for people to wield you."
 	school = "transmutation"
 	panel = "Chaplain"
