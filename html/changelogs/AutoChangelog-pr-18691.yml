@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "beepsky does 54 stamina damage to you instead of 10 seconds of instant paralysis"
+  - tweak: "increased beepsky's health to compensate and removes its damage coefficients"
