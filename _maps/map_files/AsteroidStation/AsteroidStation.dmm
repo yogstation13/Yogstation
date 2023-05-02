@@ -17417,6 +17417,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"eMA" = (
+/obj/effect/landmark/start/atmospheric_technician,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "eMC" = (
 /obj/structure/chair{
 	dir = 4
@@ -118075,7 +118079,7 @@ aOl
 uzw
 jhF
 emc
-lrf
+eMA
 lrf
 kZw
 aOd
