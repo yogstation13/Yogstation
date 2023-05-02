@@ -1,0 +1,4 @@
+author: "hedgehog1029"
+delete-after: true 
+changes: 
+  - bugfix: "Added the 3rd atmos tech spawn location back to AsteroidStation"
