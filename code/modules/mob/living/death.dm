@@ -76,9 +76,10 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	med_hud_set_health()
 	med_hud_set_status()
 	if(!gibbed && !QDELETED(src))
-		addtimer(CALLBACK(src, .proc/med_hud_set_status), (DEFIB_TIME_LIMIT) + 1)
+		addtimer(CALLBACK(src, PROC_REF(med_hud_set_status)), (DEFIB_TIME_LIMIT) + 1)
 	stop_pulling()
 
+	SEND_SIGNAL(src, COMSIG_LIVING_DEATH, gibbed)
 	. = ..()
 
 	if (client)

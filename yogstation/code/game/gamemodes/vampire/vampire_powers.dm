@@ -585,6 +585,7 @@
 
 	cooldown_time = 20 SECONDS
 	die_with_shapeshifted_form = FALSE
+	convert_damage_type = STAMINA
 	blood_used = 15
 	vamp_req = TRUE
 	possible_shapes = list(/mob/living/simple_animal/hostile/vampire_bat)

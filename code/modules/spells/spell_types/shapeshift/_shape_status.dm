@@ -196,10 +196,11 @@
 
 /datum/status_effect/shapechange_mob/from_spell/on_shape_death(datum/source, gibbed)
 	var/datum/action/cooldown/spell/shapeshift/source_spell = source_weakref.resolve()
-	if(!QDELETED(source_spell))
-		// If our spell says we should revert on death anyways, we'll do that
+	// If our spell dictates our wizard dies when our shape dies, we won't restore by default
+	if(!QDELETED(source_spell) && source_spell.die_with_shapeshifted_form)
+		// (But if our spell says we should revert on death anyways, we'll also do that)
 		if(source_spell.revert_on_death)
-			INVOKE_ASYNC(src, PROC_REF(restore_caster), source_spell.die_with_shapeshifted_form) // Boolean die_with_shapeshifted form will decide if we live or not
+			INVOKE_ASYNC(src, PROC_REF(restore_caster), TRUE)
 		// Otherwise, we just do nothing - we dead
 		return
 
