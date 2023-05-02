@@ -861,6 +861,8 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	throw_speed = 2 //make it slow so it has time to look cool
 	throwforce = 0 //it doesn't actually use this because we override throw impact, it's just for letting pacifists throw it
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	var/possessed = FALSE
 	var/walking = FALSE //check to tell if they're flying around or not
 	var/mob/living/simple_animal/shade/soul //when they're just a blade (stored inside the blade at all times)
@@ -1057,8 +1059,6 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	charge_max = 10 SECONDS
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
-	invocation = "COME"
-	invocation_type = "shout"
 	range = -1
 	level_max = 0 //cannot be improved
 	cooldown_min = 10 SECONDS
