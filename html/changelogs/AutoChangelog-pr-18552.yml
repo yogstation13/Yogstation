@@ -1,0 +1,4 @@
+author: " @BurgerLUA @Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Xeno spit injects a fast acting paralysis chemical instead of stunning"
