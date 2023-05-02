@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Blood cult emp is an aimed projectile rather than centered on the caster"
+  - tweak: "Blood cult emp size is 1 heavy 3 light instead of 2 heavy 5 light"

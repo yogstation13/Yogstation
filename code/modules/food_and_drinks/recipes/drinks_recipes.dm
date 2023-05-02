@@ -319,6 +319,11 @@
 	results = list(/datum/reagent/consumable/ethanol/barefoot = 3)
 	required_reagents = list(/datum/reagent/consumable/berryjuice = 1, /datum/reagent/consumable/cream = 1, /datum/reagent/consumable/ethanol/vermouth = 1)
 
+/datum/chemical_reaction/moscow_mule
+	id = /datum/reagent/consumable/ethanol/moscow_mule
+	results = list(/datum/reagent/consumable/ethanol/moscow_mule = 10)
+	required_reagents = list(/datum/reagent/consumable/sodawater = 5, /datum/reagent/consumable/ethanol/vodka = 5, /datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/ice = 1)
+	mix_sound = 'sound/effects/bubbles2.ogg'
 
 ////DRINKS THAT REQUIRED IMPROVED SPRITES BELOW:: -Agouri/////
 
@@ -873,7 +878,7 @@
 
 /datum/chemical_reaction/blackvelvet
 	name = "Black Velvet"
-	id = /datum/reagent/consumable/ethanol/beer/stout/blackvelvet 
+	id = /datum/reagent/consumable/ethanol/beer/stout/blackvelvet
 	results = list(/datum/reagent/consumable/ethanol/beer/stout/blackvelvet = 2)
 	required_reagents = list(/datum/reagent/consumable/ethanol/champagne = 1, /datum/reagent/consumable/ethanol/beer/stout = 1)
 

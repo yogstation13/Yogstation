@@ -614,6 +614,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 25
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/dangerous/nuclear_energy_fire_axe
+	name = "Energy Fire Axe"
+	desc = "A terrifying axe with a blade of pure energy, able to tear down structures with ease. \
+			Easier to store than a standard fire axe while inactive."
+	item = /obj/item/twohanded/fireaxe/energy
+	cost = 10
+	include_modes = list(/datum/game_mode/nuclear)
+	surplus = 0
+
 // Stealthy Weapons
 /datum/uplink_item/stealthy_weapons
 	category = "Stealthy Weapons"
@@ -2070,7 +2079,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "G.O.R.L.E.X. Mantis Blade"
 	desc = "One G.O.R.L.E.X Mantis blade implant able to be retracted inside your body at will for easy storage and concealing. Two blades can be used at once."
 	item = /obj/item/autosurgeon/arm/syndicate/syndie_mantis
-	cost = 7
+	cost = 6
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
@@ -2525,6 +2534,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/mail/explosive
 	cost = 1
 	restricted_roles = list("Quartermaster","Cargo Technician")
+
+/datum/uplink_item/role_restricted/energy_fire_axe
+	name = "Energy Fire Axe"
+	desc = "A terrifying axe with a blade of pure energy, able to tear down structures with ease. \
+			Easier to store than a standard fire axe while inactive."
+	item = /obj/item/twohanded/fireaxe/energy
+	cost = 10
+	restricted_roles = list("Station Engineer","Atmospheric Technician","Network Admin","Chief Engineer")
 
 // Pointless
 /datum/uplink_item/badass

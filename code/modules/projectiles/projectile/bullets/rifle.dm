@@ -19,6 +19,7 @@
 	name = "5.56mm rubber bullet"
 	damage = 10
 	stamina = 47
+	sharpness = SHARP_NONE
 
 // .308 (LWT-650 DMR)
 
