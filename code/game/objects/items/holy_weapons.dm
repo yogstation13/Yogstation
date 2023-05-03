@@ -480,6 +480,7 @@
 			swordright.block_chance = block_chance
 			swordright.wound_bonus = wound_bonus
 			swordright.bare_wound_bonus = bare_wound_bonus
+			swordright.reskinned = TRUE
 		user.put_in_r_hand(swordright)
 
 		if(!swordleft)
@@ -490,6 +491,7 @@
 			swordleft.block_chance = block_chance
 			swordleft.wound_bonus = wound_bonus
 			swordleft.bare_wound_bonus = bare_wound_bonus
+			swordleft.reskinned = TRUE
 		user.put_in_l_hand(swordleft)
 
 		user.balloon_alert(user, "you unsheathe \the [src].")
