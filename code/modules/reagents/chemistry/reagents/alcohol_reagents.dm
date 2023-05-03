@@ -2605,3 +2605,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(islizard(M))
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "triumph", name)
 	return ..()
+
+/datum/reagent/consumable/ethanol/moscow_mule
+	name = "Moscow Mule"
+	description = "A chilly drink that reminds you of the Derelict."
+	boozepwr = 30
+	color = "#EEF1AA"
+	quality = DRINK_GOOD
+	taste_description = "refreshing spiciness"
+	glass_icon_state = "moscow_mule"
+	glass_name = "Moscow Mule"
+	glass_desc = "A chilly drink that reminds you of the Derelict."

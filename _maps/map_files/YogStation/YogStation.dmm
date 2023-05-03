@@ -2616,14 +2616,6 @@
 "apS" = (
 /turf/open/floor/wood,
 /area/lawoffice)
-"apX" = (
-/obj/structure/filingcabinet/employment,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/wood,
-/area/lawoffice)
 "aqb" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/miner/oxygen,
@@ -16358,6 +16350,37 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"cwa" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = 24
+	},
+/obj/structure/table/glass,
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = 11;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = 11;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/item/clothing/mask/surgical{
+	pixel_y = -6
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
+	},
+/obj/item/clothing/gloves/color/latex,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "cwc" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -24474,6 +24497,14 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"fCn" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/table/optable,
+/obj/item/storage/backpack/duffelbag/sec/surgery,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "fCu" = (
 /obj/machinery/vending/cola/random,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
@@ -28511,6 +28542,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"hjd" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Brig Infirmary";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "hjj" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
@@ -40410,6 +40454,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"mbf" = (
+/obj/machinery/vending/wallmed{
+	pixel_y = 29
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 9
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "mby" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -40598,26 +40652,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"meA" = (
-/obj/machinery/flasher{
-	id = "briginfirmary";
-	pixel_x = 8;
-	pixel_y = 28
-	},
-/obj/machinery/button/flasher{
-	id = "briginfirmary";
-	pixel_x = -8;
-	pixel_y = 28
-	},
-/obj/structure/table/glass,
-/obj/machinery/computer/med_data/laptop{
-	pixel_y = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "meG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -44105,12 +44139,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"nwM" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
-/obj/effect/turf_decal/trimline/blue/filled/line/lower,
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "nwZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel/white,
@@ -45169,6 +45197,17 @@
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+"nWg" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower,
+/obj/structure/table/glass{
+	pixel_x = 1
+	},
+/obj/machinery/computer/med_data/laptop{
+	dir = 1;
+	pixel_y = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "nWn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -45306,13 +45345,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/service)
-"nYw" = (
-/obj/machinery/computer/operating,
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "nYC" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
@@ -47288,6 +47320,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
+"oQm" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/structure/filingcabinet/filingcabinet,
+/turf/open/floor/wood,
+/area/lawoffice)
 "oQp" = (
 /obj/machinery/button/door{
 	id = "heads_meeting";
@@ -48709,36 +48749,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"ptt" = (
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = 24
-	},
-/obj/structure/table/glass,
-/obj/item/reagent_containers/glass/bottle/charcoal{
-	pixel_x = 11;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/glass/bottle/epinephrine{
-	pixel_x = 11;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/syringe{
-	pixel_x = -5;
-	pixel_y = 8
-	},
-/obj/item/clothing/mask/surgical{
-	pixel_y = -6
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 2;
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "ptH" = (
 /turf/closed/wall,
 /area/escapepodbay)
@@ -49196,6 +49206,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"pBW" = (
+/obj/machinery/flasher{
+	id = "briginfirmary";
+	pixel_x = 8;
+	pixel_y = 28
+	},
+/obj/machinery/button/flasher{
+	id = "briginfirmary";
+	pixel_x = -8;
+	pixel_y = 28
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/computer/operating,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "pCi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -55725,18 +55752,6 @@
 "soo" = (
 /turf/closed/wall,
 /area/engine/atmos/mix)
-"soz" = (
-/obj/structure/table/optable,
-/obj/item/storage/backpack/duffelbag/sec/surgery,
-/obj/machinery/vending/wallmed{
-	pixel_y = 29
-	},
-/obj/item/clothing/gloves/color/latex,
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 9
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "soM" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
@@ -57624,22 +57639,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/space/nearstation)
-"tbS" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/chair/stool{
-	pixel_y = 8
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Brig Infirmary";
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "tcf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer/arcade,
@@ -97371,8 +97370,8 @@ pLj
 fsi
 lnA
 agj
-soz
-tbS
+mbf
+hjd
 sax
 tvs
 agj
@@ -97388,7 +97387,7 @@ kUv
 aOn
 mqS
 min
-apX
+oQm
 gOe
 mMn
 aph
@@ -97628,7 +97627,7 @@ uYu
 nUk
 cVB
 agj
-nYw
+fCn
 tjy
 elf
 rdl
@@ -97885,10 +97884,10 @@ xdR
 fsi
 cVB
 agj
-meA
+pBW
 ueO
 cea
-nwM
+nWg
 agj
 wHG
 qQn
@@ -98142,7 +98141,7 @@ pLj
 dGT
 qQY
 agj
-ptt
+cwa
 gxX
 kvG
 faV

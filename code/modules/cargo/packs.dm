@@ -260,7 +260,7 @@
 
 /datum/supply_pack/security/ammo
 	name = "Ammo Crate"
-	desc = "Contains two 22-round magazines for the WT-550 Auto Carbine, three boxes of buckshot ammo, three boxes of rubber ammo, and special .38 speedloaders. Requires Security access to open."
+	desc = "Contains two 20-round magazines for the WT-550 Auto Carbine, three boxes of buckshot ammo, and three boxes of rubber ammo. Requires Security access to open."
 	cost = 2500
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
@@ -270,10 +270,7 @@
 					/obj/item/storage/box/lethalshot,
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
-					/obj/item/storage/box/rubbershot,
-					/obj/item/ammo_box/c38/hotshot,
-					/obj/item/ammo_box/c38/iceblox,
-					/obj/item/ammo_box/c38/gutterpunch)
+					/obj/item/storage/box/rubbershot)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/security/armor
@@ -288,7 +285,7 @@
 
 /datum/supply_pack/security/stormtrooper
 	name = "Stormtrooper Crate"
-	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light wielding wizards. Requires Security access to open."
+	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light-wielding wizards. Requires Security access to open."
 	cost = 10000
 	contains = list(/obj/item/clothing/suit/armor/stormtrooper,
 					/obj/item/clothing/suit/armor/stormtrooper,
@@ -310,7 +307,7 @@
 
 /datum/supply_pack/security/ntusp
 	name = "NT-USP Crate"
-	desc = "Three stamina-draining ballistic weapons, along with 3 extra clips. Requires Security access to open."
+	desc = "Three stamina-draining ballistic weapons, along with three extra magazines. Requires Security access to open."
 	cost = 2000
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/ntusp,
@@ -320,6 +317,14 @@
 					/obj/item/ammo_box/magazine/recharge/ntusp,
 					/obj/item/ammo_box/magazine/recharge/ntusp)
 	crate_name = "nt-usp crate"
+
+/datum/supply_pack/security/energypistol
+	name = "Energy Pistol Single-Pack"
+	desc = "Contains one energy pistol for personal defense, capable of firing both lethal and nonlethal blasts of light. Requires Security access to open."
+	cost = 700
+	access_view = ACCESS_SECURITY
+	small_item = TRUE
+	contains = list(/obj/item/gun/energy/e_gun/mini)
 
 /datum/supply_pack/security/forensics
 	name = "Forensics Crate"

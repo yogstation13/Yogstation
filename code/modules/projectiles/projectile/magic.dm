@@ -930,3 +930,19 @@
 							X.resize = reresize
 							X.update_transform()
 		.=..()
+
+/obj/item/projectile/magic/ion //magic version of ion rifle bullets
+	name = "ion bolt"
+	icon_state = "ion"
+	damage = 0
+	damage_type = BURN
+	nodamage = TRUE
+	flag = ENERGY
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/ion
+	var/light_emp_radius = 3
+	var/heavy_emp_radius = 0.5	//Effectively 1 but doesnt spread to adjacent tiles
+
+/obj/item/projectile/magic/ion/on_hit(atom/target, blocked = FALSE)
+	..()
+	empulse(target, heavy_emp_radius, light_emp_radius)
+	return BULLET_ACT_HIT
