@@ -42,6 +42,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	GLOB.enter_allowed = FALSE
 	message_admins("Battle Royale Mode has disabled late-joining. If you re-enable it you will break everything.")
 	for(var/datum/mind/virgin in queued)
+		if(!(virgin.current) || !isliving(virgin.current))//don't put ghosts in the battle bus
+			continue
 		SEND_SOUND(virgin.current, 'yogstation/sound/effects/battleroyale/battlebus.ogg')
 		virgin.add_antag_datum(antag_datum_type)
 		if(!GLOB.thebattlebus) //Ruhoh.
@@ -55,7 +57,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		GLOB.battleroyale_players += virgin.current
 		virgin.current.set_species(/datum/species/human) //Fuck plasmamen
 
-	if(LAZYLEN(!GLOB.battleroyale_players))
+	if(!LAZYLEN(GLOB.battleroyale_players))
 		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
 
 	addtimer(CALLBACK(src, .proc/check_win), 300)
@@ -66,7 +68,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	. = ..()
 	if(finished)
 		return
-	var/list/royalers = list()
+	var/list/royalers = GLOB.battleroyale_players.Copy()
 	if(LAZYLEN(GLOB.player_list) <= 1) //It's a localhost testing
 		return
 	if(!LAZYLEN(GLOB.battleroyale_players)) //sanity check for if this gets called before people are added to the list somehow
@@ -74,17 +76,14 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		return
 
 	for(var/mob/living/player in GLOB.battleroyale_players)
-		if(player.stat == DEAD)
-			GLOB.battleroyale_players -= player
+		if(player.stat == DEAD || !player.client)
 			continue
-		if(!player.client)
-			GLOB.battleroyale_players -= player
-			continue //No AFKS allowed!!!
 		if(!is_station_level(player.z) || player.onCentCom() || player.onSyndieBase())
-			GLOB.battleroyale_players -= player
 			to_chat(player, "You left the station! You have been disqualified from battle royale.")
 			continue
 		royalers += player
+
+	GLOB.battleroyale_players = royalers //new list with everyone removed
 
 	if(!LAZYLEN(royalers))
 		SSticker.mode.check_finished(TRUE)
