@@ -180,6 +180,20 @@
 	if(unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
 		reskin_obj(user)
 
+/obj/item/gun/ballistic/shotgun/doublebarrel/attackby(obj/item/A, mob/user, params)	//Parent proc is being lazy so we'll do it here
+	if((get_ammo(FALSE, FALSE) == magazine.max_ammo))
+		to_chat(user, span_notice("You can't load any more shells into into \the [src]!"))
+		return
+	.=..()
+	if(istype(A, /obj/item/ammo_casing/shotgun))
+		var/can_reload_say = !get_ammo(FALSE, FALSE)
+		to_chat(user, span_notice("You load [A] into \the [src]."))
+		playsound(src, load_sound, load_sound_volume, load_sound_vary)
+		if(can_reload_say)
+			user.say(reload_say, forced = "reloading")
+		if (chambered == null)
+			chamber_round()
+
 // IMPROVISED SHOTGUN //
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised
