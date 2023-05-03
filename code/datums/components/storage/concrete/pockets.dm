@@ -94,3 +94,14 @@
 					  /obj/item/reagent_containers/food/drinks/bottle/molotov,
 					  /obj/item/reagent_containers/food/drinks/drinkingglass,
 					  /obj/item/ammo_box/a762))
+
+
+/datum/component/storage/concrete/pockets/hosarmor
+	quickdraw = TRUEd
+	max_items = 6
+	max_w_class = WEIGHT_CLASS_TINY
+
+/datum/component/storage/concrete/pockets/hosarmor/Initialize()
+	. = ..()
+	set_holdable(list(/obj/item/clothing/mask/cigarette,
+					  /obj/item/pen))
