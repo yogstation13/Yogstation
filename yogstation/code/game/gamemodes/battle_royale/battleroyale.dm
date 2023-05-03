@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		GLOB.battleroyale_players += virgin.current
 		virgin.current.set_species(/datum/species/human) //Fuck plasmamen
 
-	if(!GLOB.battleroyale_players.len)
+	if(LAZYLEN(!GLOB.battleroyale_players))
 		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
 
 	addtimer(CALLBACK(src, .proc/check_win), 300)
@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	if(finished)
 		return
 	var/list/royalers = list()
-	if(GLOB.player_list.len <= 1) //It's a localhost testing
+	if(LAZYLEN(GLOB.player_list) <= 1) //It's a localhost testing
 		return
 	if(!LAZYLEN(GLOB.battleroyale_players)) //sanity check for if this gets called before people are added to the list somehow
 		message_admins("Somehow no one is signed up to battle royale but check_win has been called, please contact someone to fix it.")
@@ -80,28 +80,20 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		if(!player.client)
 			GLOB.battleroyale_players -= player
 			continue //No AFKS allowed!!!
-		if(player.onCentCom())
-			GLOB.battleroyale_players -= player
-			to_chat(player, "You left the station! You have been disqualified from battle royale.")
-			continue
-		else if(player.onSyndieBase())
-			GLOB.battleroyale_players -= player
-			to_chat(player, "You left the station! You have been disqualified from battle royale.")
-			continue
-		if(!is_station_level(player.z))
+		if(!is_station_level(player.z) || player.onCentCom() || player.onSyndieBase())
 			GLOB.battleroyale_players -= player
 			to_chat(player, "You left the station! You have been disqualified from battle royale.")
 			continue
 		royalers += player
 
-	if(!royalers.len)
+	if(!LAZYLEN(royalers))
 		SSticker.mode.check_finished(TRUE)
 		SSticker.force_ending = 1
 		to_chat(world, "<span_class='ratvar'>L. Nobody wins!</span>")
 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/L.ogg')
 		finished = TRUE
 		return
-	if(royalers.len == 1) //We have a wiener!
+	if(LAZYLEN(royalers) == 1) //We have a wiener!
 		SSticker.mode.check_finished(TRUE)
 		SSticker.force_ending = 1
 		winner = pick(royalers)
