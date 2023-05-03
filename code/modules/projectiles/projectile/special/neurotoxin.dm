@@ -7,6 +7,8 @@
 /obj/item/projectile/bullet/neurotoxin/on_hit(atom/target, blocked = FALSE)
 	if(isalien(target))
 		nodamage = TRUE
+	else if (istype(target, /obj/mecha))
+		empulse(target, 2,3)
 	else if(iscarbon(target))
 		var/mob/living/carbon/H = target
 		H.reagents.add_reagent(/datum/reagent/toxin/staminatoxin/neurotoxin_alien, 10 * H.get_permeability_protection())
