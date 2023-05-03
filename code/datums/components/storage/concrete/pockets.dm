@@ -97,7 +97,7 @@
 
 
 /datum/component/storage/concrete/pockets/hosarmor
-	quickdraw = TRUEd
+	quickdraw = TRUE
 	max_items = 6
 	max_w_class = WEIGHT_CLASS_TINY
 
