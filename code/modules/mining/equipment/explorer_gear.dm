@@ -22,8 +22,8 @@
 	desc = "An armoured hood for exploring harsh environments."
 	icon_state = "explorer"
 	body_parts_covered = HEAD
-	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
-	flags_prot = HIDEHAIR|HIDEFACE
+	flags_inv = HIDEHAIR|HIDEEARS // hoods don't hide your face, silly
+	flags_prot = HIDEHAIR
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
 	armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
@@ -38,11 +38,11 @@
 		if(NORMAL_STYLE)
 			adjusted = ALT_STYLE
 			to_chat(usr, span_notice("You adjust the hood to wear it more casually."))
-			flags_inv &= ~(HIDEHAIR|HIDEFACE)
+			flags_inv &= ~HIDEHAIR
 		if(ALT_STYLE)
 			adjusted = NORMAL_STYLE
 			to_chat(usr, span_notice("You adjust the hood back to normal."))
-			flags_inv |= (HIDEHAIR|HIDEFACE)
+			flags_inv |= HIDEHAIR
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		H.update_hair()
@@ -63,6 +63,8 @@
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	visor_flags_inv = HIDEFACIALHAIR
 	visor_flags_cover = MASKCOVERSMOUTH
+	mutantrace_adjusted = MUTANTRACE_VARIATION 
+	mutantrace_variation = MUTANTRACE_VARIATION
 	actions_types = list(/datum/action/item_action/adjust)
 	armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 0, BIO = 50, RAD = 0, FIRE = 20, ACID = 40, WOUND = 5)
 	resistance_flags = FIRE_PROOF

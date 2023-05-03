@@ -1,3 +1,8 @@
+/datum/mood_event/ally_power
+	description= "<span class='nicegreen'>There are Allies everywhere.</span>\n"
+	mood_change = 1
+	timeout = 2 MINUTES
+
 /datum/mood_event/hug
 	description = "<span class='nicegreen'>Hugs are nice.</span>\n"
 	mood_change = 1
@@ -103,7 +108,7 @@
 	description = "<span class='nicegreen'>I have seen the truth, praise the almighty one!</span>\n"
 	mood_change = 40 //maybe being a cultist isnt that bad after all
 	hidden = TRUE
-	
+
 /datum/mood_event/changeling
 	description = "<span class='nicegreen'>No feeling supersedes our hunger.</span>\n" //if i could i'd just make them not get all those human feelings
 	mood_change = 40

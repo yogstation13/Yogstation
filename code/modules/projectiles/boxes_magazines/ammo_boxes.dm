@@ -1,6 +1,6 @@
 /obj/item/ammo_box/a357
 	name = "speed loader (.357)"
-	desc = "A seven-shot speed loader designed for .357 revolvers."
+	desc = "A seven-shot speed loader designed for .357 revolvers. High damaging, some innate prowess against armor."
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/a357
 	caliber = "357"
@@ -13,6 +13,26 @@
 	icon_state = "357box"
 	ammo_type = /obj/item/ammo_casing/a357
 	max_ammo = 20
+
+/obj/item/ammo_box/no_direct/a357/ironfeather
+	name = "ammo box (.357 Ironfeather)"
+	ammo_type = /obj/item/ammo_casing/a357/ironfeather
+
+/obj/item/ammo_box/no_direct/a357/nutcracker
+	name = "ammo box (.357 Nutcracker)"
+	ammo_type = /obj/item/ammo_casing/a357/nutcracker
+
+/obj/item/ammo_box/no_direct/a357/metalshock
+	name = "ammo box (.357 Metalshock)"
+	ammo_type = /obj/item/ammo_casing/a357/metalshock
+
+/obj/item/ammo_box/no_direct/a357/heartpiercer
+	name = "ammo box (.357 Heartpiercer)"
+	ammo_type = /obj/item/ammo_casing/a357/heartpiercer
+
+/obj/item/ammo_box/no_direct/a357/wallstake
+	name = "ammo box (.357 Wallstake)"
+	ammo_type = /obj/item/ammo_casing/a357/wallstake
 
 /obj/item/ammo_box/no_direct/n762
 	name = "ammo box (7.62x38mmR)"
@@ -58,7 +78,7 @@
 
 /obj/item/ammo_box/c38
 	name = "speed loader (.38)"
-	desc = "A six-shot speed loader designed for .38 revolvers."
+	desc = "A six-shot speed loader designed for .38 revolvers. These rounds do good damage, but are weak against armor."
 	icon_state = "38"
 	ammo_type = /obj/item/ammo_casing/c38
 	caliber = "38"
@@ -66,26 +86,11 @@
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	materials = list(/datum/material/iron = 20000)
 
-/obj/item/ammo_box/c38/hotshot
-	name = "speed loader (.38 Hot Shot)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade some damage for an incendiary payload which sets targets ablaze."
-	icon_state = "38hot"
-	ammo_type = /obj/item/ammo_casing/c38/hotshot
-
-/obj/item/ammo_box/c38/iceblox
-	name = "speed loader (.38 Iceblox)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade some damage for a cryogenic payload which significantly reduces the body temperature of targets hit."
-	icon_state = "38ice"
-	ammo_type = /obj/item/ammo_casing/c38/iceblox
-
-/obj/item/ammo_box/c38/gutterpunch
-	name = "speed loader (.38 Gutterpunch)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade some damage for an emetic payload which induces nausea in targets."
-	icon_state = "38gut"
-	ammo_type = /obj/item/ammo_casing/c38/gutterpunch
+/obj/item/ammo_box/c38/rubber
+	name = "speed loader (.38 rubber)"
+	desc = "A six-shot speed loader designed for .38 revolvers. Rubber rounds trade lethality for a better ability to incapacitate targets."
+	icon_state = "38rubber"
+	ammo_type = /obj/item/ammo_casing/c38/rubber
 
 /obj/item/ammo_box/tra32
 	name = "speed loader (.32 TRAC)"
@@ -110,6 +115,26 @@
 	ammo_type = /obj/item/ammo_casing/c10mm
 	caliber = "10mm"
 	max_ammo = 20
+
+/obj/item/ammo_box/c10mm/sp
+	name = "ammo box (10mm soporific)"
+	ammo_type = /obj/item/ammo_casing/c10mm/sp
+
+/obj/item/ammo_box/c10mm/ap
+	name = "ammo box (10mm armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/c10mm/ap
+
+/obj/item/ammo_box/c10mm/hp
+	name = "ammo box (10mm hollow-point)"
+	ammo_type = /obj/item/ammo_casing/c10mm/hp
+
+/obj/item/ammo_box/c10mm/inc
+	name = "ammo box (10mm incendiary)"
+	ammo_type = /obj/item/ammo_casing/c10mm/inc
+
+/obj/item/ammo_box/c10mm/emp
+	name = "ammo box (10mm EMP)"
+	ammo_type = /obj/item/ammo_casing/c10mm/emp
 
 /obj/item/ammo_box/c45
 	name = "ammo box (.45)"

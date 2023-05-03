@@ -128,7 +128,7 @@
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
 
-	var/handled = SEND_SIGNAL(L, COMSIG_PROCESS_MOVE, direct) //yogs start - movement components
+	var/handled = SEND_SIGNAL(L, COMSIG_MOB_CLIENT_PRE_MOVE, direct)
 	if(handled)
 		return FALSE//yogs end
 
@@ -512,6 +512,12 @@
 
 	if(zMove(DOWN, TRUE))
 		to_chat(src, span_notice("You move down."))
+
+/mob/abstract_move(atom/destination)
+	var/turf/new_turf = get_turf(destination)
+	if(new_turf && (istype(new_turf, /turf/cordon/secret) || is_secret_level(new_turf.z)) && !client?.holder)
+		return
+	return ..()
 
 ///Move a mob between z levels, if it's valid to move z's on this turf
 /mob/proc/zMove(dir, feedback = FALSE)

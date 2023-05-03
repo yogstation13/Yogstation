@@ -3,44 +3,19 @@
 /////////////////////////////////////////
 
 /datum/design/c38_sec
-	name = "Speed Loader (.38)"
+	name = "Speed Loader (.38 rubber)"
 	desc = "Designed to quickly reload revolvers."
 	id = "sec_38"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/ammo_box/c38/rubber
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/c38_sec/lethal
+	name = "Speed Loader (.38)"
+	id = "sec_38_lethal"
 	build_path = /obj/item/ammo_box/c38
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
-/datum/design/c38_hotshot
-	name = "Speed Loader (.38 Hot Shot)"
-	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
-	id = "c38_hotshot"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/hotshot
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
-/datum/design/c38_iceblox
-	name = "Speed Loader (.38 Iceblox)"
-	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
-	id = "c38_iceblox"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/iceblox
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
-/datum/design/c38_gutterpunch
-	name = "Speed Loader (.38 Gutterpunch)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
-	id = "c38_gutterpunch"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/gutterpunch
-	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/rubbershot/sec
@@ -249,7 +224,7 @@
 	materials = list(/datum/material/iron = 3000)
 	build_path = /obj/item/grenade/chem_grenade/large
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/pyro_grenade
 	name = "Pyro Grenade"
@@ -346,6 +321,24 @@
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtr
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+	// This is where the fun begins
+
+/datum/design/mag_oldsmg/kraken_mag
+	name = "WT-550 Auto Gun Kraken Bullet Magazine (4.6x30mm Kraken)"
+	desc = "A 20-round kraken magazine for the out of date security WT-550 Auto Carbine."
+	id = "mag_oldsmg_kraken"
+	materials = list(/datum/material/iron = 7500, /datum/material/titanium = 2000, /datum/material/diamond = 500)
+	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_kraken
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/mag_oldsmg/snakebite_mag
+	name = "WT-550 Auto Gun snakebite Bullet Magazine (4.6x30mm snakebite)"
+	desc = "A 20-round snakebite magazine for the out of date security WT-550 Auto Carbine."
+	id = "mag_oldsmg_snakebite"
+	materials = list(/datum/material/iron = 7500, /datum/material/titanium = 2000, /datum/material/uranium = 1000)
+	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_snakebite
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/stunshell
 	name = "Stun Shell"

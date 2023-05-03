@@ -41,6 +41,15 @@
 
 	changed_maps = list("YogsPubby")
 
+	mail_goodies = list(
+		/obj/item/stack/sheet/plastic/five = 20, //need that plastic chair
+		/obj/item/clothing/head/hatsky = 10,
+		/obj/item/disk/nuclear/fake = 5,
+		/obj/item/melee/chainofcommand/tailwhip = 3,
+		/obj/item/melee/chainofcommand/tailwhip/kitty = 2,
+		/obj/item/kitchen/knife/combat = 2
+	)
+
 	smells_like = "deadly authority"
 
 /datum/job/hos/proc/YogsPubbyChanges()

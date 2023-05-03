@@ -293,8 +293,13 @@
 	if(prob(10))
 		var/list/mob/living/target_hosts = list()
 		for(var/mob/living/L in oview(5, host_mob))
-			if(!(MOB_ORGANIC in L.mob_biotypes) && !(MOB_UNDEAD in L.mob_biotypes) && !isipc(L))
-				continue
+			if(iscarbon(L))
+				var/mob/living/carbon/carbon_occupant = L
+				if(NONANITES in carbon_occupant.dna.species.species_traits)
+					continue
+			else
+				if(issilicon(L))
+					continue
 			target_hosts += L
 		if(!target_hosts.len)
 			return

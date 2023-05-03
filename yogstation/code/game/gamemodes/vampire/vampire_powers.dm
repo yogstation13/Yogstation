@@ -454,7 +454,7 @@
 					to_chat(target, span_danger("Wicked shadows invade your sight, beckoning to you."))
 					to_chat(user, span_notice("We begin to drain [target]'s blood in, so Lilith can bless it."))
 				if(2)
-					to_chat(target, span_danger("Demonic whispers fill your mind, and they become irressistible..."))
+					to_chat(target, span_danger("Demonic whispers fill your mind, and they become irresistible..."))
 				if(3)
 					to_chat(target, span_danger("The world blanks out, and you see a demo- no ange- demon- lil- glory- blessing... Lilith."))
 					to_chat(user, span_notice("Excitement builds up in you as [target] sees the blessing of Lilith."))
@@ -536,4 +536,4 @@
 		bat.controller.status_flags &= ~GODMODE
 		bat.mind.transfer_to(bat.controller)
 		bat.controller = null //just so we don't accidently trigger the death() thing
-		qdel(bat)
+		QDEL_NULL(bat)

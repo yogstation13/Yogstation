@@ -4,6 +4,8 @@
 	icon_state = "ce_envirosuit"
 	item_state = "ce_envirosuit"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 10, FIRE = 95, ACID = 95)
+	sensor_mode = SENSOR_COORDS
+	random_sensor = FALSE
 
 /obj/item/clothing/under/plasmaman/engineering
 	name = "engineering envirosuit"

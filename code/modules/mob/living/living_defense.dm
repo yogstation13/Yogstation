@@ -71,7 +71,8 @@
 		if((istype(P, /obj/item/projectile/energy/nuclear_particle)) && (getarmor(null, RAD) >= 100))
 			P.damage = 0
 		else
-			apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness())
+			var/attack_direction = get_dir(P.starting, src)
+			apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus = P.wound_bonus, bare_wound_bonus = P.bare_wound_bonus, sharpness = P.get_sharpness(), attack_direction = attack_direction)
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
 	if(P.penetrating && (P.penetration_type == 0 || P.penetration_type == 2) && P.penetrations > 0)
@@ -128,10 +129,12 @@
 					var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
 					src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 				take_overall_damage(rand(M.force/2, M.force))
-				playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
+				if(M.meleesound)
+					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(BURN)
 				take_overall_damage(0, rand(M.force/2, M.force))
-				playsound(src, 'sound/items/welder.ogg', 50, 1)
+				if(M.meleesound)
+					playsound(src, 'sound/items/welder.ogg', 50, 1)
 			if(TOX)
 				M.mech_toxin_damage(src)
 			else
@@ -387,7 +390,7 @@
 		return
 
 	if(is_servant_of_ratvar(src) && !stat)
-		to_chat(src, span_userdanger("You resist Nar-Sie's influence... but not all of it. <i>Run!</i>"))
+		to_chat(src, span_userdanger("You resist Nar'sie's influence... but not all of it. <i>Run!</i>"))
 		adjustBruteLoss(35)
 		if(src && reagents)
 			reagents.add_reagent(/datum/reagent/toxin/heparin, 5)

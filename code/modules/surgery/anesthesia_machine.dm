@@ -63,7 +63,7 @@
 		if(iscarbon(attached_mask.loc)) // If mask is on a mob
 			var/mob/living/carbon/M = attached_mask.loc
 			M.transferItemToLoc(attached_mask, src, TRUE)
-			M.internal = null
+			M.close_externals()
 		else
 			attached_mask.forceMove(src)
 		mask_out = FALSE
@@ -84,10 +84,9 @@
 					return
 				else
 					usr.visible_message("<span class='warning'>[usr] attaches the [src] to [target].</span>", "<span class='notice'>You attach the [src] to [target].</span>")
-					target.internal = attached_tank
+					target.open_internals(attached_tank, TRUE)
 					mask_out = TRUE
 					START_PROCESSING(SSmachines, src)
-					target.update_internals_hud_icon(1)
 					update_icon()
 		else
 			to_chat(usr, "<span class='warning'>[mask_out ? "The machine is already in use!" : "The machine has no attached tank!"]</span>")

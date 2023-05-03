@@ -55,6 +55,7 @@
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 80
 	clothing_flags = THICKMATERIAL
+	mutantrace_variation = MUTANTRACE_VARIATION
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/hosarmor
 
 /obj/item/clothing/suit/armor/hos/trenchcoat
@@ -64,7 +65,6 @@
 	item_state = "hostrench"
 	flags_inv = 0
 	strip_delay = 80
-	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/suit/armor/vest/warden
 	name = "warden's jacket"
@@ -493,7 +493,7 @@
 	name = "MK.I bluespace plating"
 	desc = "Incredibly light bluespace-infused armor plating that offers great movement while also providing some protection."
 	name_set = "MK.I bluespace"
-	slowdown_set = -0.075 // Speeds you up a bit in exchange for giving up some armor
+	slowdown_set = -0.1 // Speeds you up a bit in exchange for giving up some armor
 	armor = list(MELEE = 15, BULLET = 20, LASER = 25, ENERGY = 5, BOMB = 5, BIO = 0, RAD = 0, FIRE = 30, ACID = 40, WOUND = 10) // Slightly worse than default armor
 	partial_coverage = 0
 
