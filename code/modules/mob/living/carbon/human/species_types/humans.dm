@@ -40,8 +40,14 @@
 		Their kind extend from old Earth to the edges of known space."*/
 
 /datum/species/human/get_species_lore()
-	return list("TBD",/*
-		"These primate-descended creatures, originating from the mostly harmless Earth, \
+	return list("Humans (Homo sapiens) are the most common and widespread species of primate in the great ape family Hominidae, \
+			and also the most common species of primate overall. Humans are broadly characterized by their bipedalism and high intelligence.",
+			
+			"Humans' large brain and resulting cognitive skills have allowed them to thrive in a variety of environments and develop complex societies and civilizations. \
+			Humans are highly social and tend to live in complex social structures composed of many cooperating and competing groups, from families and kinship networks to political states. \
+			As such, social interactions between humans have established a wide variety of values, social norms, languages, and rituals, each of which bolsters human society. \
+			The desire to understand and influence phenomena has motivated humanity's development of science, technology, philosophy, mythology, religion, and other conceptual frameworks."
+		/*"These primate-descended creatures, originating from the mostly harmless Earth, \
 		have long-since outgrown their home and semi-benign designation. \
 		The space age has taken humans out of their solar system and into the galaxy-at-large.",
 
