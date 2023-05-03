@@ -140,6 +140,7 @@ GLOBAL_LIST_INIT(huds, list(
 		hud_users_all_z_levels[new_viewer] = 1
 
 		RegisterSignal(new_viewer, COMSIG_PARENT_QDELETING, PROC_REF(unregister_atom), override = TRUE) //both hud users and hud atoms use these signals
+		RegisterSignal(new_viewer, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_atom_or_user_z_level_changed), override = TRUE)
 
 		var/turf/their_turf = get_turf(new_viewer)
 		if(!their_turf)
@@ -169,6 +170,7 @@ GLOBAL_LIST_INIT(huds, list(
 	if (absolute || hud_users_all_z_levels[former_viewer] <= 0)//if forced or there arent any sources left, remove the user
 
 		if(!hud_atoms_all_z_levels[former_viewer])//make sure we arent unregistering changes on a mob thats also a hud atom for this hud
+			UnregisterSignal(former_viewer, COMSIG_MOVABLE_Z_CHANGED)
 			UnregisterSignal(former_viewer, COMSIG_PARENT_QDELETING)
 
 		hud_users_all_z_levels -= former_viewer
@@ -192,6 +194,7 @@ GLOBAL_LIST_INIT(huds, list(
 		return FALSE
 
 	// No matter where or who you are, you matter to me :)
+	RegisterSignal(new_hud_atom, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_atom_or_user_z_level_changed), override = TRUE)
 	RegisterSignal(new_hud_atom, COMSIG_PARENT_QDELETING, PROC_REF(unregister_atom), override = TRUE) //both hud atoms and hud users use these signals
 	hud_atoms_all_z_levels[new_hud_atom] = TRUE
 
@@ -213,6 +216,7 @@ GLOBAL_LIST_INIT(huds, list(
 
 	//make sure we arent unregistering a hud atom thats also a hud user mob
 	if(!hud_users_all_z_levels[hud_atom_to_remove])
+		UnregisterSignal(hud_atom_to_remove, COMSIG_MOVABLE_Z_CHANGED)
 		UnregisterSignal(hud_atom_to_remove, COMSIG_PARENT_QDELETING)
 
 	for(var/mob/mob_to_remove as anything in hud_users_all_z_levels)
@@ -272,30 +276,30 @@ GLOBAL_LIST_INIT(huds, list(
 
 ///when a hud atom or hud user changes z levels this makes sure it gets the images it needs and removes the images it doesnt need.
 ///because of how signals work we need the same proc to handle both use cases because being a hud atom and being a hud user arent mutually exclusive
-/datum/atom_hud/proc/on_atom_or_user_z_level_changed(atom/movable/moved_atom, turf/old_turf, turf/new_turf)
+/datum/atom_hud/proc/on_atom_or_user_z_level_changed(atom/movable/moved_atom, old_z, new_z) //turf/old_turf, turf/new_turf
 	SIGNAL_HANDLER
-	if(old_turf)
+	if(old_z)
 		if(hud_users_all_z_levels[moved_atom])
-			hud_users[old_turf.z] -= moved_atom
+			hud_users[old_z] -= moved_atom
 
-			remove_all_atoms_from_single_hud(moved_atom, get_hud_atoms_for_z_level(old_turf.z))
+			remove_all_atoms_from_single_hud(moved_atom, get_hud_atoms_for_z_level(old_z))
 
 		if(hud_atoms_all_z_levels[moved_atom])
-			hud_atoms[old_turf.z] -= moved_atom
+			hud_atoms[old_z] -= moved_atom
 
 			//this wont include moved_atom since its removed
-			remove_atom_from_all_huds(get_hud_users_for_z_level(old_turf.z), moved_atom)
+			remove_atom_from_all_huds(get_hud_users_for_z_level(old_z), moved_atom)
 
-	if(new_turf)
+	if(new_z)
 		if(hud_users_all_z_levels[moved_atom])
-			hud_users[new_turf.z][moved_atom] = TRUE //hud users is associative, hud atoms isnt
+			hud_users[new_z][moved_atom] = TRUE //hud users is associative, hud atoms isnt
 
-			add_all_atoms_to_single_mob_hud(moved_atom, get_hud_atoms_for_z_level(new_turf.z))
+			add_all_atoms_to_single_mob_hud(moved_atom, get_hud_atoms_for_z_level( new_z))
 
 		if(hud_atoms_all_z_levels[moved_atom])
-			hud_atoms[new_turf.z] |= moved_atom
+			hud_atoms[ new_z] |= moved_atom
 
-			add_atom_to_all_mob_huds(get_hud_users_for_z_level(new_turf.z), moved_atom)
+			add_atom_to_all_mob_huds(get_hud_users_for_z_level(new_z), moved_atom)
 
 /// add just hud_atom's hud images (that are part of this atom_hud) to requesting_mob's client.images list
 /datum/atom_hud/proc/add_atom_to_single_mob_hud(mob/requesting_mob, atom/hud_atom) //unsafe, no sanity apart from client
