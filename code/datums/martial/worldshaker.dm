@@ -2,7 +2,7 @@
 #define COOLDOWN_STOMP 15 SECONDS
 #define STOMP_RADIUS 6 //the base radius for the charged stomp
 #define STOMP_DAMAGERADIUS 3
-#define COOLDOWN_LEAP 2 SECONDS
+#define COOLDOWN_LEAP 3 SECONDS
 #define LEAP_RADIUS 1
 #define STAGGER_DURATION 3 SECONDS
 #define WARNING_RANGE 10 //extra range to certain sound effects
@@ -129,9 +129,11 @@
 		if(heavy)//sort of a sound indicator that you're in "heavy mode"
 			S.special_step_sounds = list('sound/effects/gravhit.ogg')//heavy boy get stompy footsteps
 			S.special_step_volume = 9 //prevent it from blowing out ears
+			ADD_TRAIT(H, TRAIT_BOMBIMMUNE, type)//maxcap suicide bombers can go fuck themselves
 		else
 			S.special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
 			S.special_step_volume = 50
+			REMOVE_TRAIT(H, TRAIT_BOMBIMMUNE, type)
 
 /obj/item/worldplate
 	name = "worldshaker plate"
@@ -178,7 +180,7 @@
 		return
 	if(!target || leaping)
 		return
-	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + plates)//longer cooldown the more plates you have
+	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (plates * 2))//longer cooldown the more plates you have
 
 	//telegraph ripped entirely from bubblegum charge
 	var/chargeturf = get_turf(target)
@@ -206,8 +208,8 @@
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
 	leaping = FALSE
 	var/range = LEAP_RADIUS
-	if(heavy)
-		range++
+	if(heavy)//heavy gets doubled range
+		range *= 2
 		
 	for(var/mob/living/L in range(range,user))
 		if(L == user)
@@ -218,7 +220,7 @@
 		if(L.loc == user.loc)
 			to_chat(L, span_userdanger("[user] lands directly ontop of you, crushing you beneath their immense weight!"))
 			damage *= 2//for the love of god, don't get landed on
-			L.adjustStaminaLoss(damage)
+			L.apply_damage(damage, STAMINA)
 
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
 		push_away(user, L)
@@ -268,7 +270,6 @@
 		var/obj/structure/bed/grip/F = new(Z, user) // Buckles them to an invisible bed
 		victim.density = FALSE
 		victim.visible_message(span_warning("[user] grabs [victim] and lifts [victim.p_them()] off the ground!"))
-		victim.Stun(1 SECONDS) //so the user has time to aim their throw
 		to_chat(victim, span_userdanger("[user] grapples you and lifts you up into the air! Resist [user.p_their()] grip!"))
 		victim.forceMove(Z)
 		F.buckle_mob(target)
@@ -315,8 +316,8 @@
 		if(T.density) // crash into a wall and damage everything flying towards it before stopping 
 			for(var/mob/living/victim in thrown)
 				grab(user, victim, slamdam) 
-				victim.Knockdown(1.5 SECONDS)
-				victim.Immobilize(1.5 SECONDS)
+				victim.Knockdown(1 SECONDS)
+				victim.Immobilize(1 SECONDS)
 				if(isanimal(victim) && victim.stat == DEAD)
 					victim.gib()	
 			drop()
@@ -325,8 +326,8 @@
 			if(thing.density) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
 				for(var/mob/living/victim in thrown) 
 					grab(user, victim, slamdam) 
-					victim.Knockdown(1.5 SECONDS)
-					victim.Immobilize(1.5 SECONDS)
+					victim.Knockdown(1 SECONDS)
+					victim.Immobilize(1 SECONDS)
 					if(isanimal(victim) && victim.stat == DEAD)
 						victim.gib()
 					if(istype(thing, /obj/machinery/disposal/bin)) // dumpster living things tossed into the trash
@@ -346,15 +347,15 @@
 		for(var/mob/living/hit in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
 			if(user != hit)
 				grab(user, hit, slamdam) 
-				hit.Knockdown(1.5 SECONDS) 
+				hit.Knockdown(1 SECONDS) 
 				for(var/mob/living/victim in thrown)
 					grab(user, victim, slamdam) 
 					victim.Knockdown(1 SECONDS) 
 				thrown |= hit
 		if(T) // if the next tile wont stop the thrown mass from continuing
 			for(var/mob/living/victim in thrown)
-				victim.Knockdown(1.5 SECONDS)
-				victim.Immobilize(1.5 SECONDS)
+				victim.Knockdown(1 SECONDS)
+				victim.Immobilize(1 SECONDS)
 			for(var/atom/movable/thing in thrown) // to make the mess of things that's being thrown almost look like a normal throw
 				thing.SpinAnimation(0.2 SECONDS, 1) 
 				sleep(0.001 SECONDS)
@@ -387,7 +388,7 @@
 		push_away(user, L)
 		stagger(L)
 		L.apply_damage(damage, BRUTE, user.zone_selected, wound_bonus = 10, bare_wound_bonus = 20)
-		L.adjustStaminaLoss(damage)
+		L.apply_damage(damage, STAMINA, user.zone_selected)
 	for(var/obj/item/I in range(1, target))
 		push_away(user, I)
 
@@ -528,7 +529,6 @@
 	update_platespeed(H)
 	ADD_TRAIT(H, TRAIT_RESISTHEAT, type) //walk through that fire all you like, hope you don't care about your clothes
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
-	ADD_TRAIT(H, TRAIT_BOMBIMMUNE, type)//maxcap suicide bombers can go fuck themselves
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 	if(!linked_stomp)
