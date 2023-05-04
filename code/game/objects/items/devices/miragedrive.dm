@@ -9,7 +9,7 @@
 	icon_state = "miragedrive"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	item_state = "mdrive"
+	item_state = "electronic"
 	w_class = WEIGHT_CLASS_SMALL
 	var/list/path = list()
 	var/next_dash = 0
@@ -47,9 +47,9 @@ obj/item/mdrive/afterattack(atom/target, mob/user)
 			continue
 		else
 			next_dash = world.time + COOLDOWN_DASH
-	for(L in range(2, user))
+	for(L in range(1, user))
 		if(L != user)
-			if(get_dist(L, user) <= 1 && (next_hit < world.time))
+			if(next_hit < world.time)
 				offhand.attack(L, user)
 				aoe_attack = TRUE
 			else 
