@@ -58,9 +58,15 @@
 		return
 
 	if(iscyborg(caster))
-		to_chat(caster, span_warning("You cannot shapeshift as a cyborg"))
+		to_chat(caster, span_warning("You cannot shapeshift as a cyborg!"))
+		return
 
 	var/mob/living/shape = new shapeshift_type(caster.loc)
+	if(caster.maxHealth - (caster.health + caster.maxHealth)/2 >= shape.maxHealth) // this would instantly kill the caster
+		to_chat(caster, span_warning("You are too damaged to shapeshift into this form!"))
+		qdel(shape)
+		return
+
 	H = new(shape,src,caster)
 
 	clothes_req = FALSE

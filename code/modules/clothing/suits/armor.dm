@@ -56,6 +56,7 @@
 	strip_delay = 80
 	clothing_flags = THICKMATERIAL
 	mutantrace_variation = MUTANTRACE_VARIATION
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/hosarmor
 
 /obj/item/clothing/suit/armor/hos/trenchcoat
 	name = "armored trenchcoat"

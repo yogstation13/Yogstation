@@ -12,6 +12,7 @@
 	material_drop = /obj/item/stack/sheet/cloth
 	delivery_icon = null //unwrappable
 	anchorable = FALSE
+	open_flags = HORIZONTAL_HOLD //intended for bodies, so people lying down
 	notreallyacloset = TRUE
 	door_anim_time = 0 // no animation
 	var/foldedbag_path = /obj/item/bodybag

@@ -7,8 +7,7 @@
 	icon_state = "pod" //This is a common base sprite shared by a number of pods
 	pixel_x = SUPPLYPOD_X_OFFSET //2x2 sprite
 	layer = TABLE_LAYER //So that the crate inside doesn't appear underneath
-	allow_objects = TRUE
-	allow_dense = TRUE
+	open_flags = ALLOW_OBJECTS | ALLOW_DENSE
 	delivery_icon = null
 	can_weld_shut = FALSE
 	armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 100, BIO = 0, RAD = 0, FIRE = 100, ACID = 80)
