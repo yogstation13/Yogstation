@@ -565,3 +565,10 @@
 	message = "gives a thumbs up."
 	message_param = "gives a thumbs up to %t."
 	restraint_check = TRUE
+
+/datum/emote/living/clueless
+	key = "clueless"
+	key_third_person = "cluelesses"
+	message = "looks clueless."
+	message_param = "looks cluelessly at %t"
+	stat_allowed = SOFT_CRIT
