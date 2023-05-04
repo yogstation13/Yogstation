@@ -52,10 +52,11 @@
 	damage = 12 //Tested on naked felinids, could never cause a wound type above open cut.
 	stamina = 18
 	sharpness = SHARP_EDGED
+	var/bleed_threshold = 7 //How much damage the bullet must do to bleed
 
 /obj/item/projectile/bullet/c38/talon/on_hit(atom/target, blocked = 0)
 	if(blocked != 100)
-		if(ishuman(target) && damage > 7)
+		if(ishuman(target) && damage > bleed_threshold)
 			var/mob/living/carbon/human/H = target
 			var/obj/item/bodypart/B = H.get_bodypart(def_zone)
 			var/datum/wound/slash/moderate/open_wound = new
