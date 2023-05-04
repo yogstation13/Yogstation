@@ -5,10 +5,29 @@
 		if("robotic")
 			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-r")
 
+/mob/living/carbon/human/dust(just_ash, drop_items, force)
+	death(TRUE)
+
+	if(drop_items)
+		unequip_everything()
+
+	if(buckled)
+		buckled.unbuckle_mob(src, force = TRUE)
+
+	notransform = TRUE
+	canmove = FALSE
+	dust_animation()
+	spawn_dust(just_ash)
+	QDEL_IN(src, 20) // since this is sometimes called in
+
 /mob/living/carbon/human/dust_animation()
 	switch(dna.species.species_gibs)
 		if("human")
-			new /obj/effect/temp_visual/dust_animation(loc, "dust-h")
+			var/obj/effect/dusting_anim/dust_effect = new(loc, UID())
+			filters += filter(type = "displace", size = 256, render_source = "*snap[UID()]")
+			animate(src, alpha = 0, time = 20, easing = (EASE_IN | SINE_EASING))
+
+			QDEL_IN(dust_effect, 20)
 		if("robotic")
 			new /obj/effect/temp_visual/dust_animation(loc, "dust-r")
 
