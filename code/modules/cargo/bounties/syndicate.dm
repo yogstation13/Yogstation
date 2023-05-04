@@ -55,7 +55,7 @@
 	reward = 5
 /datum/bounty/item/syndicate/borgupload
 	name = "!&@#CYBORG UPLOAD CONSOLE BOARD!#@*$"
-	description = "!&@#WE'RE PROBING NANOTRASEN CYBORGS FOR SECURITY FLAWS. A CONSOLE LIKE THIS COULD ACCOMPLISH OUR GOA.#@*$"
+	description = "!&@#WE'RE PROBING NANOTRASEN CYBORGS FOR SECURITY FLAWS. A CONSOLE LIKE THIS COULD ACCOMPLISH OUR GOAL#@*$"
 	wanted_types = list(/obj/item/circuitboard/computer/borgupload)
 	reward = 3
 /datum/bounty/item/syndicate/gygaxboards
