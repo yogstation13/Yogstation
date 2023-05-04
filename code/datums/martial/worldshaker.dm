@@ -220,8 +220,8 @@
 		if(L.loc == user.loc)
 			to_chat(L, span_userdanger("[user] lands directly ontop of you, crushing you beneath their immense weight!"))
 			damage *= 2//for the love of god, don't get landed on
-			L.apply_damage(damage, STAMINA)
 
+		L.apply_damage(damage, STAMINA)
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
 		push_away(user, L)
 	for(var/obj/item/I in range(range, user))
