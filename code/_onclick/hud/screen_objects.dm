@@ -220,26 +220,29 @@
 	var/held_index = 0
 
 /atom/movable/screen/inventory/hand/update_icon()
-	..()
+	. = ..()
 
 	if(!handcuff_overlay)
+		var/ui_style = hud?.mymob?.client?.prefs?.read_preference(/datum/preference/choiced/ui_style)
 		var/state = (!(held_index % 2)) ? "markus" : "gabrielle"
-		handcuff_overlay = mutable_appearance('icons/mob/screen_gen.dmi', state)
+		handcuff_overlay = mutable_appearance((ui_style ? ui_style2icon(ui_style) : 'icons/mob/screen_gen.dmi'), state)
 
 	cut_overlays()
 
-	if(hud && hud.mymob)
-		if(iscarbon(hud.mymob))
-			var/mob/living/carbon/C = hud.mymob
-			if(C.handcuffed)
-				add_overlay(handcuff_overlay)
+	if(!hud?.mymob)
+		return
 
-			if(held_index)
-				if(!C.has_hand_for_held_index(held_index))
-					add_overlay(blocked_overlay)
+	if(iscarbon(hud.mymob))
+		var/mob/living/carbon/C = hud.mymob
+		if(C.handcuffed)
+			add_overlay(handcuff_overlay)
 
-		if(held_index == hud.mymob.active_hand_index)
-			add_overlay("hand_active")
+		if(held_index)
+			if(!C.has_hand_for_held_index(held_index))
+				add_overlay(blocked_overlay)
+
+	if(held_index == hud.mymob.active_hand_index)
+		add_overlay((held_index % 2) ? "lhandactive" : "rhandactive")
 
 
 /atom/movable/screen/inventory/hand/Click(location, control, params)

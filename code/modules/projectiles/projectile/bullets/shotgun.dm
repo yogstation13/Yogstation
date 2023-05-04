@@ -1,8 +1,8 @@
 /obj/item/projectile/bullet/shotgun/slug
 	name = "12g shotgun slug"
 	speed = 0.5 //Shotgun = slower
-	var/tile_dropoff = 3
-	var/tile_dropoff_s = 2.25
+	var/tile_dropoff = 1.5
+	var/tile_dropoff_s = 1
 	damage = 46 //About 2/3's the damage of buckshot but doesn't suffer from spread or negative AP
 	sharpness = SHARP_POINTY
 	wound_bonus = -30
@@ -10,7 +10,7 @@
 /obj/item/projectile/bullet/shotgun/slug/syndie
 	name = "12g syndicate shotgun slug"
 	damage = 60
-	tile_dropoff = 1.5
+	tile_dropoff = 0.5
 
 /obj/item/projectile/bullet/shotgun/slug/beanbag
 	name = "beanbag slug"

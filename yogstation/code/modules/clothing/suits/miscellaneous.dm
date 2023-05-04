@@ -335,6 +335,12 @@
 	icon_state = "biker"
 	item_state = "biker"
 
+/obj/item/clothing/suit/yogs/battlejacket
+	name = "battle jacket"
+	desc = "Smells like stale beer and cigarettes. Must have been a good show!"
+	icon_state = "battlejacket"
+	item_state = "battlejacket"
+
 /obj/item/clothing/suit/yogs/varsity
 	name = "varsity jacket"
 	desc = "Go Space Carps!"

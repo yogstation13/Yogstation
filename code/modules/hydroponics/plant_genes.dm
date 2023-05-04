@@ -316,17 +316,21 @@
 
 /datum/plant_gene/trait/teleport/on_new(obj/item/reagent_containers/food/snacks/grown/G, newloc)
 	..()
-	G.throw_range = min(G.throw_range, 2)
+	G.throw_range = min(G.throw_range, 3)
 
 /datum/plant_gene/trait/teleport/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	if(isliving(target))
-		var/teleport_radius = max(round(G.seed.potency / 10), 1)
+		var/teleport_radius = max(round(G.seed.potency * rate), 1)	//max of 5
 		var/turf/T = get_turf(target)
 		new /obj/effect/decal/cleanable/molten_object(T) //Leave a pile of goo behind for dramatic effect...
 		do_teleport(target, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
+		if(iscarbon(target))
+			var/mob/living/carbon/C = target
+			C.adjust_disgust(15)	//Two teleports is safe
+			C.confused += 7
 
 /datum/plant_gene/trait/teleport/on_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/C)
-	var/teleport_radius = max(round(G.seed.potency / 10), 1)
+	var/teleport_radius = max(round(G.seed.potency * rate), 1)	//max of 5
 	var/turf/T = get_turf(C)
 	to_chat(C, span_warning("You slip through spacetime!"))
 	do_teleport(C, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)

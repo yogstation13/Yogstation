@@ -364,7 +364,7 @@
 				chambered.forceMove(drop_location())
 				chambered = null
 			var/can_reload_say = !get_ammo(FALSE, FALSE)
-			var/num_loaded = magazine.attackby(A, user, params, TRUE)
+			var/num_loaded = magazine.attempt_load(A, user, params, TRUE)
 			if (num_loaded)
 				to_chat(user, span_notice("You load [num_loaded] [cartridge_wording]\s into \the [src]."))
 				playsound(src, load_sound, load_sound_volume, load_sound_vary)

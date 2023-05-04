@@ -45,9 +45,17 @@
 		if("dispense_weapon")
 			if(params["weapon"] && ispath(text2path(params["weapon"])))
 				var/wep = text2path(params["weapon"])
+				if(!(wep in inventory))
+					message_admins("[ADMIN_LOOKUPFLW(usr)] just attempted to purchase a [wep] from the armaments dispenser.")
+					log_admin("[ADMIN_LOOKUP(usr)] attempted to purchase a [wep] from the armaments dispenser.")
+					return FALSE
 				new wep(loc)
 				if(params["magazine"] && ispath(text2path(params["magazine"])))
 					var/mag = text2path(params["magazine"])
+					if(!(mag in inventory))
+						message_admins("[ADMIN_LOOKUPFLW(usr)] just attempted to purchase a [mag] from the armaments dispenser.")
+						log_admin("[ADMIN_LOOKUP(usr)] attempted to purchase a [mag] from the armaments dispenser.")
+						return FALSE
 					new mag(loc)
 			else
 				return FALSE

@@ -157,16 +157,73 @@
 	desc = "Emits a large electromagnetic pulse."
 	button_icon_state = "emp"
 	health_cost = 10
+	var/obj/effect/proc_holder/bloodemp/PH
 	invocation = "Ta'gh fara'qha fel d'amar det!"
 
+/datum/action/innate/cult/blood_spell/emp/New()
+	PH = new()
+	PH.attached_action = src
+	..()
+
+/datum/action/innate/cult/blood_spell/emp/Destroy()
+	var/obj/effect/proc_holder/bloodemp/destroy = PH
+	. = ..()
+	if(destroy  && !QDELETED(destroy))
+		QDEL_NULL(destroy)
+
 /datum/action/innate/cult/blood_spell/emp/Activate()
-	owner.visible_message(span_warning("[owner]'s hand flashes a bright blue!"), \
+	PH.toggle(owner) //the important bit
+	return TRUE
+
+/obj/effect/proc_holder/bloodemp
+	active = FALSE
+	ranged_mousepointer = 'icons/effects/cult_target.dmi'
+	var/datum/action/innate/cult/blood_spell/attached_action
+
+/obj/effect/proc_holder/bloodemp/Destroy()
+	var/datum/action/innate/cult/blood_spell/AA = attached_action
+	. = ..()
+	if(AA && !QDELETED(AA))
+		QDEL_NULL(AA)
+
+/obj/effect/proc_holder/bloodemp/proc/toggle(mob/user)
+	if(active)
+		remove_ranged_ability(span_cult("You dispel the magic..."))
+	else
+		add_ranged_ability(user, span_cult("You prepare to emp a target..."))
+
+/obj/effect/proc_holder/bloodemp/InterceptClickOn(mob/living/caller, params, atom/target)
+	if(..())
+		return
+	if(ranged_ability_user.incapacitated() || !iscultist(caller))
+		remove_ranged_ability()
+		return
+	var/turf/T = get_turf(ranged_ability_user)
+	if(!isturf(T))
+		return FALSE
+
+	var/mob/living/carbon/user = ranged_ability_user
+
+	user.visible_message(span_warning("[user]'s hand flashes a bright blue!"), \
 						 span_cultitalic("You speak the cursed words, emitting an EMP blast from your hand."))
-	empulse(owner, 2, 5)
-	owner.whisper(invocation, language = /datum/language/common)
-	charges--
-	if(charges<=0)
+	user.whisper(attached_action.invocation, language = /datum/language/common)
+	var/obj/item/projectile/magic/ion/A = new /obj/item/projectile/magic/ion(user.loc)
+	A.firer = user
+	A.preparePixelProjectile(target, user, params)
+	A.fire()
+
+	if(attached_action.health_cost)
+		if(user.active_hand_index == 1)
+			user.apply_damage(attached_action.health_cost, BRUTE, BODY_ZONE_L_ARM)
+		else
+			user.apply_damage(attached_action.health_cost, BRUTE, BODY_ZONE_R_ARM)
+
+	attached_action.charges--
+	if(attached_action.charges <= 0)
+		remove_ranged_ability(span_cult("You have exhausted the spell's power!"))
 		qdel(src)
+
+	return TRUE
 
 /datum/action/innate/cult/blood_spell/shackles
 	name = "Shadow Shackles"
