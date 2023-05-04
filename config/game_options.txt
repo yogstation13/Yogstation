@@ -515,8 +515,8 @@ LAW_WEIGHT ratvar,0
 ION_LAW_WEIGHT ratvar,0
 LAW_WEIGHT buildawall,0
 ION_LAW_WEIGHT buildawall,0
-LAW_WEIGHT metaexperiment,0
-ION_LAW_WEIGHT metaexperiment,1
+LAW_WEIGHT metaexperiment,1
+ION_LAW_WEIGHT metaexperiment,2
 
 ##------------------------------------------------
 
