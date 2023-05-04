@@ -129,11 +129,11 @@
 		if(heavy)//sort of a sound indicator that you're in "heavy mode"
 			S.special_step_sounds = list('sound/effects/gravhit.ogg')//heavy boy get stompy footsteps
 			S.special_step_volume = 9 //prevent it from blowing out ears
-			ADD_TRAIT(H, TRAIT_BOMBIMMUNE, type)//maxcap suicide bombers can go fuck themselves
+			ADD_TRAIT(user, TRAIT_BOMBIMMUNE, type)//maxcap suicide bombers can go fuck themselves
 		else
 			S.special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
 			S.special_step_volume = 50
-			REMOVE_TRAIT(H, TRAIT_BOMBIMMUNE, type)
+			REMOVE_TRAIT(user, TRAIT_BOMBIMMUNE, type)
 
 /obj/item/worldplate
 	name = "worldshaker plate"
