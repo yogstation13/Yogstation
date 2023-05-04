@@ -358,3 +358,10 @@
 	desc = "My Moon My Man."
 	icon_state = "punk"
 	item_state = "punk"
+
+/obj/item/clothing/suit/yogs/tornjacket
+	name = "torn navy military jacket"
+	desc = "Aviators not included. Looks pretty beat up."
+	icon_state = "snavymiljacket"
+	item_state = "snavymiljacket"
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
