@@ -321,7 +321,7 @@
 /datum/supply_pack/security/v38pistol
 	name = "Vatra M38 Pistol Crate"
 	desc = "A pack containing three Vatra M38s, an unusual handgun which loads .38 special designed for unarmored targets. Three spare magazines are included. Requires Security access to open."
-	cost = 2500
+	cost = 4000
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/v38,
 					/obj/item/gun/ballistic/automatic/pistol/v38,

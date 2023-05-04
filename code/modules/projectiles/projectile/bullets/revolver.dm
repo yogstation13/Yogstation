@@ -55,7 +55,7 @@
 
 /obj/item/projectile/bullet/c38/talon/on_hit(atom/target, blocked = 0)
 	if(blocked != 100)
-		if(ishuman(target) && damage > 5)
+		if(ishuman(target) && damage > 7)
 			var/mob/living/carbon/human/H = target
 			var/obj/item/bodypart/B = H.get_bodypart(def_zone)
 			var/datum/wound/slash/moderate/open_wound = new
