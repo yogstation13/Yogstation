@@ -103,5 +103,4 @@
 
 /datum/component/storage/concrete/pockets/hosarmor/Initialize()
 	. = ..()
-	set_holdable(list(/obj/item/clothing/mask/cigarette,
-					  /obj/item/pen))
+	set_holdable(list(/obj/item/clothing/mask/cigarette))
