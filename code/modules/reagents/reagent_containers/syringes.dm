@@ -58,16 +58,16 @@
 	if(!target.reagents)
 		return
 
-	var/mob/living/L
-	if(isliving(target))
-		L = target
-		if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
-			return
+	if(!isliving(target))
+		return
+
+	var/mob/living/L = target
+	if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
+		return
 
 	// chance of monkey retaliation
 	if(ismonkey(target) && prob(MONKEY_SYRINGE_RETALIATION_PROB))
-		var/mob/living/carbon/monkey/M
-		M = target
+		var/mob/living/carbon/monkey/M = L
 		M.retaliate(user)
 
 	switch(mode)
