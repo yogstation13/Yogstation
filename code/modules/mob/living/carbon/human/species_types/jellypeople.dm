@@ -14,9 +14,10 @@
 	damage_overlay_type = ""
 	var/datum/action/innate/regenerate_limbs/regenerate_limbs
 	liked_food = MEAT
-	coldmod = 6   // = 3x cold damage
-	heatmod = 0.5 // = 1/4x heat damage
+	coldmod = 6
+	heatmod = 0.5
 	burnmod = 1 // = regular burn damage unlike other slimes
+	armor = -10	//Squishy
 	payday_modifier = 0.6 //literally a pile of toxic ooze walking around, definitely a health hazard
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
