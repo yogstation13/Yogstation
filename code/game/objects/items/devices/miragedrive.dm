@@ -9,7 +9,7 @@
 	icon_state = "miragedrive"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	item_state = "electronic"
+	item_state = "mdrive"
 	w_class = WEIGHT_CLASS_SMALL
 	var/list/path = list()
 	var/next_dash = 0
