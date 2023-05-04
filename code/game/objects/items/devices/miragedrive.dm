@@ -47,9 +47,9 @@ obj/item/mdrive/afterattack(atom/target, mob/user)
 			continue
 		else
 			next_dash = world.time + COOLDOWN_DASH
-	for(L in range(1, user))
+	for(L in range(2, user))
 		if(L != user)
-			if(next_hit < world.time)
+			if(get_dist(L, user) <= 1 && (next_hit < world.time))
 				offhand.attack(L, user)
 				aoe_attack = TRUE
 			else 
