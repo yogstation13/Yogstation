@@ -23,8 +23,8 @@
 /mob/living/carbon/human/dust_animation()
 	switch(dna.species.species_gibs)
 		if("human")
-			var/obj/effect/dusting_anim/dust_effect = new(loc, UID())
-			filters += filter(type = "displace", size = 256, render_source = "*snap[UID()]")
+			var/obj/effect/dusting_anim/dust_effect = new(loc, ref(src))
+			filters += filter(type = "displace", size = 256, render_source = "*snap[ref(src)]")
 			animate(src, alpha = 0, time = 20, easing = (EASE_IN | SINE_EASING))
 
 			QDEL_IN(dust_effect, 20)
