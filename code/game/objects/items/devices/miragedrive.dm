@@ -43,12 +43,12 @@ obj/item/mdrive/afterattack(atom/target, mob/user)
 	for(L in range(2, user))
 		if(L != user)
 			L.apply_status_effect(STATUS_EFFECT_CATCHUP)
+			next_dash = world.time + COOLDOWN_MASH
 			continue
 		else
 			next_dash = world.time + COOLDOWN_DASH
 	for(L in range(1, user))
 		if(L != user)
-			next_dash = world.time + COOLDOWN_MASH
 			if(next_hit < world.time)
 				offhand.attack(L, user)
 				aoe_attack = TRUE
