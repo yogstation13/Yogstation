@@ -7,7 +7,7 @@ export const CargoBountyConsole = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     bountydata = [],
-    emagged
+    emagged,
   } = data;
   return (
     <Window
