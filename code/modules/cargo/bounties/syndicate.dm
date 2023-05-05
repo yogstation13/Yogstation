@@ -21,12 +21,6 @@
 	description = "!&@#OUR NEW BATCH OF ARMOR-PIERCING ROUNDS HAVE JUST COME OFF THE PRODUCTION LINE, AND WE NEED SOMETHING TO TEST THEM ON! HELP US OUT AND YOU'LL BE REWARDED!#@*$"
 	wanted_types = list(/obj/item/clothing/suit/space/hardsuit/swat/captain)
 	reward = 4
-
-/datum/bounty/item/syndicate/aicore
-	name = "!&@#AI CORE CONSOLE BOARD!#@*$"
-	description = "!&@#WE'RE INTERESTED IN LEARNING MORE ABOUT NANOTRASEN AIS. SEND US AN AI DATA CORE BOARD TO BE REWARDED!#@*$"
-	wanted_types = list(/obj/item/circuitboard/machine/ai_data_core)
-	reward = 2
 /datum/bounty/item/syndicate/aicontrol
 	name = "!&@#AI CONTROL CONSOLE BOARD!#@*$"
 	description = "!&@#A CONSOLE TO REMOTELY DISABLE AI UNITS WOULD BE QUITE HELPFUL FOR US, SO GET US ONE!#@*$"
