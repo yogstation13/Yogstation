@@ -63,7 +63,7 @@
 	description = "!&@#WHILE INFERIOR TO OUR BULLDOG SHOTGUNS, COMPACT COMBAT SHOTGUNS CONTAIN AN EXPENSIVE PART THAT'S REQUIRED TO MANUFACTURE BULLDOG SHOTGUNS. YOU'LL SAVE US A PRETTY PENNY BY GIVING US ONE, AND WE'LL PAY YOU IN RETURN#@*$"
 	wanted_types = list(/obj/item/gun/ballistic/shotgun/automatic/combat/compact)
 	reward = 8 //you gotta kill the warden
-/datum/bounty/item/syndicate/wardenshotgun
+/datum/bounty/item/syndicate/advancedhardsuit
 	name = "!&@#ADVANCED HARDSUIT!#@*$"
 	description = "!&@#THE RADIATION SHIELDING BUILT INTO THE ADVANCED HARDSUIT IS SERIOUSLY HIGH-TECH, AND WE WANT A GOOD LOOK AT IT. BRING IT TO US AND WE'LL GIVE YOU A REWARD.#@*$"
 	wanted_types = list(/obj/item/clothing/suit/space/hardsuit/engine/elite)
