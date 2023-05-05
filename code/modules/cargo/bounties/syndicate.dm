@@ -30,12 +30,12 @@
 /datum/bounty/item/syndicate/aicontrol
 	name = "!&@#AI CONTROL CONSOLE BOARD!#@*$"
 	description = "!&@#A CONSOLE TO REMOTELY DISABLE AI UNITS WOULD BE QUITE HELPFUL FOR US, SO GET US ONE!#@*$"
-	wanted_types = list(/obj/item/circuitboard/machine/ai_data_core)
+	wanted_types = list(/obj/item/circuitboard/computer/ai_upload_download)
 	reward = 6
 /datum/bounty/item/syndicate/rdsuit
 	name = "!&@#PROTOTYPE HARDSUIT!#@*$"
 	description = "!&@#WE'RE INTERESTED IN DEVELOPING ARMOR THAT CAN RESIST EXPLOSIVES BETTER. THE PROTOTYPE HARDSUIT WOULD BE HELPFUL FOR THIS GOAL!#@*$"
-	wanted_types = list(/obj/item/circuitboard/machine/ai_data_core)
+	wanted_types = list(/obj/item/clothing/suit/space/hardsuit/rd)
 	reward = 3
 /datum/bounty/item/syndicate/boh
 	name = "!&@#BAG OF HOLDING!#@*$"
