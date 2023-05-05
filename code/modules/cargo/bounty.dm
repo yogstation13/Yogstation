@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(bounties_list_syndicate)
 		try_add_bounty(new low_priority_bounty)
 
 /proc/setup_syndicate_bounties() //Much simpler as we're only picking from one pool of bounties
-	for(var/i in 1 to 5)
+	for(var/i in 0 to 5)
 		var/pick = pick(subtypesof(/datum/bounty/item/syndicate))
 		if(!(try_add_syndie_bounty(new pick)))
 			i -= 1
