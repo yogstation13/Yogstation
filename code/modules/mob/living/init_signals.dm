@@ -93,7 +93,7 @@
 
 /// Called when [TRAIT_FLOORED] is added to the mob.
 /mob/living/proc/on_floored_trait_gain(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	if(buckled && buckled.buckle_lying != NO_BUCKLE_LYING)
 		return // Handled by the buckle.
 	if(HAS_TRAIT(src, TRAIT_FORCED_STANDING))
@@ -104,13 +104,13 @@
 
 /// Called when [TRAIT_FLOORED] is removed from the mob.
 /mob/living/proc/on_floored_trait_loss(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	mobility_flags |= MOBILITY_STAND
 	on_floored_end()
 
 /// Called when [TRAIT_FORCED_STANDING] is added to the mob.
 /mob/living/proc/on_forced_standing_trait_gain(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 
 //	set_body_position(STANDING_UP)
 //	set_lying_angle(0)
@@ -118,7 +118,7 @@
 
 /// Called when [TRAIT_FORCED_STANDING] is removed from the mob.
 /mob/living/proc/on_forced_standing_trait_loss(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
 //		on_fall()
@@ -131,20 +131,20 @@
 
 /// Called when [TRAIT_HANDS_BLOCKED] is added to the mob.
 /mob/living/proc/on_handsblocked_trait_gain(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	mobility_flags &= ~(MOBILITY_USE | MOBILITY_PICKUP | MOBILITY_STORAGE)
 	on_handsblocked_start()
 
 /// Called when [TRAIT_HANDS_BLOCKED] is removed from the mob.
 /mob/living/proc/on_handsblocked_trait_loss(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	mobility_flags |= (MOBILITY_USE | MOBILITY_PICKUP | MOBILITY_STORAGE)
 	on_handsblocked_end()
 
 
 /// Called when [TRAIT_UI_BLOCKED] is added to the mob.
 /mob/living/proc/on_ui_blocked_trait_gain(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	mobility_flags &= ~(MOBILITY_UI)
 	unset_machine()
 	update_mob_action_buttons()
@@ -170,26 +170,24 @@
 
 
 /// Called when [TRAIT_INCAPACITATED] is added to the mob.
-/mob/living/proc/on_incapacitated_trait_gain(datum/source)
-	SIGNAL_HANDLER
+/mob/living/proc/on_incapacitated_trait_gain(datum/source)	SIGNAL_HANDLER
 	add_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED), TRAIT_INCAPACITATED)
 //	update_appearance()
 
 /// Called when [TRAIT_INCAPACITATED] is removed from the mob.
-/mob/living/proc/on_incapacitated_trait_loss(datum/source)
-	SIGNAL_HANDLER
+/mob/living/proc/on_incapacitated_trait_loss(datum/source)	SIGNAL_HANDLER
 	remove_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED), TRAIT_INCAPACITATED)
 //	update_appearance()
 
 
 /// Called when [TRAIT_RESTRAINED] is added to the mob.
 /mob/living/proc/on_restrained_trait_gain(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, TRAIT_RESTRAINED)
 
 /// Called when [TRAIT_RESTRAINED] is removed from the mob.
 /mob/living/proc/on_restrained_trait_loss(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, TRAIT_RESTRAINED)
 
 
@@ -199,7 +197,7 @@
  * Will show or hide the succumb alert prompt.
  */
 /mob/living/proc/update_succumb_action()
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 //	if (CAN_SUCCUMB(src) || HAS_TRAIT(src, TRAIT_SUCCUMB_OVERRIDE))
 //		throw_alert(ALERT_SUCCUMB, /atom/movable/screen/alert/succumb)
 //	else
@@ -207,28 +205,28 @@
 
 ///From [element/movetype_handler/on_movement_type_trait_gain()]
 /mob/living/proc/on_movement_type_flag_enabled(datum/source, flag, old_movement_type)
-	SIGNAL_HANDLER
-	update_movespeed(FALSE)
+//	SIGNAL_HANDLER
+//	update_movespeed(FALSE)
 
 ///From [element/movetype_handler/on_movement_type_trait_loss()]
 /mob/living/proc/on_movement_type_flag_disabled(datum/source, flag, old_movement_type)
-	SIGNAL_HANDLER
-	update_movespeed(FALSE)
+//	SIGNAL_HANDLER
+//	update_movespeed(FALSE)
 
 
 /// Called when [TRAIT_SKITTISH] is added to the mob.
 /mob/living/proc/on_skittish_trait_gain(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 //	AddElement(/datum/element/skittish)
 
 /// Called when [TRAIT_SKITTISH] is removed from the mob.
 /mob/living/proc/on_skittish_trait_loss(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 //	RemoveElement(/datum/element/skittish)
 
 /// Called when [TRAIT_NEGATES_GRAVITY] is gained or lost
 /mob/living/proc/on_negate_gravity(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 //	if(!isgroundlessturf(loc))
 //		if(HAS_TRAIT(src, TRAIT_NEGATES_GRAVITY))
 //			ADD_TRAIT(src, TRAIT_IGNORING_GRAVITY, IGNORING_GRAVITY_NEGATION)
@@ -237,15 +235,15 @@
 
 /// Called when [TRAIT_IGNORING_GRAVITY] is gained or lost
 /mob/living/proc/on_ignore_gravity(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 //	refresh_gravity()
 
 /// Called when [TRAIT_FORCED_GRAVITY] is gained or lost
 /mob/living/proc/on_force_gravity(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 //	refresh_gravity()
 
 /// Called when our loc's [TRAIT_FORCED_GRAVITY] is gained or lost
 /mob/living/proc/on_loc_force_gravity(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 //	refresh_gravity()
