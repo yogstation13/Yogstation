@@ -173,7 +173,7 @@
 
 /obj/item/hand_tele/proc/try_dispel_portal(atom/target, mob/user)
 	if(is_parent_of_portal(target))
-		var/dispel_time = 4 - manipulator.rating
+		var/dispel_time = 5 - manipulator.rating
 		if(dispel_time == 0)
 			qdel(target)
 			to_chat(user, span_notice("You dispel [target] with \the [src]!"))
