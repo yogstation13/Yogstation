@@ -44,7 +44,8 @@
 	return GLOB.bounties_list
 
 /obj/machinery/computer/bounty/ui_interact(mob/user, datum/tgui/ui)
-	if(!get_list_to_use().len)
+	var/list/list_to_use = get_list_to_use()
+	if(!list_to_use.len)
 		if(get_list_to_use() == GLOB.bounties_list_syndicate)
 			setup_syndicate_bounties()
 		setup_bounties()
