@@ -1,6 +1,0 @@
-author: "LazennG"
-delete-after: true 
-changes: 
-  - bugfix: "fixed buster arm permanently breaking on using aimed abilities"
-  - tweak: "tweak slam damage"
-  - spellcheck: "soshall becomes so shall"
