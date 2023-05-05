@@ -385,8 +385,9 @@
 		return
 	locked = FALSE
 	obj_flags |= EMAGGED
+	sparks.start()
 	if(user)
-		user.visible_message("[user.name] emags [src].",span_notice("You short out the lock and disable the power limiters."))
+		user.visible_message("[src] starts to spark and hum as its power exceeds the recommended limit.", span_notice("You short out the lock and disable the power limiters."))
 	if(gun)
 		to_chat(user, span_warning("[src] ejects [gun] as you disable the power limiter."))
 		remove_gun(user)
