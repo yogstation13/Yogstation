@@ -49418,6 +49418,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
+"dzT" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "chemistry_shutters";
+	name = "chemistry shutters control";
+	pixel_x = 24;
+	pixel_y = 24;
+	req_access_txt = "5; 33"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "dAk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -50533,27 +50546,6 @@
 "ebO" = (
 /turf/closed/wall,
 /area/engine/atmos/hfr)
-"ebZ" = (
-/obj/machinery/button/door{
-	id = "chemistry_shutters";
-	name = "chemistry shutters control";
-	pixel_x = 24;
-	pixel_y = 24;
-	req_access_txt = "5; 33"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "chemistry_shutters";
-	name = "chemistry shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/medical/chemistry)
 "ecc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -65482,12 +65474,6 @@
 /mob/living/simple_animal/sloth/citrus,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"nxK" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "nyc" = (
 /obj/effect/turf_decal/tile/green/half/contrasted,
 /turf/open/floor/plasteel,
@@ -108901,7 +108887,7 @@ dsq
 wjN
 uSP
 wVZ
-nxK
+dzT
 awz
 kPz
 uIu
@@ -109156,7 +109142,7 @@ gAI
 iox
 jjT
 cga
-ebZ
+iDY
 cga
 iDY
 cga
