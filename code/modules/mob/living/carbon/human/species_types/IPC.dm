@@ -252,8 +252,11 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 		H.wash(CLEAN_TYPE_BLOOD)
 		to_chat(H,"You absorb the blood covering you to heal.")
 		H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
-		H.adjustBruteLoss(-20, FALSE, FALSE, BODYPART_ANY)//getting covered in blood isn't actually that common
-		H.adjustFireLoss(-20, FALSE, FALSE, BODYPART_ANY)
+		var/heal_amt = 30 //heals brute first, then burn with any excess
+		var/brute_before = H.getBruteLoss()
+		H.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
+		heal_amt -= max(brute_before - H.getBruteLoss(), 0)
+		H.adjustFireLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
 
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
@@ -317,7 +320,7 @@ ipc martial arts stuff
 
 /datum/species/ipc/proc/throw_lightning(mob/living/carbon/human/H)
 	siemens_coeff = 0
-	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
+	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE)
 	siemens_coeff = initial(siemens_coeff)
 
 /datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)

@@ -1,7 +1,7 @@
 #define IPCMARTIAL "ipcmartialtrait"
-#define GUN_HAND "GHG"
+#define GUN_HAND "HG"
 #define POCKET_PISTOL "GG"
-#define BLOOD_BURST "HHH"
+#define BLOOD_BURST "HH"
 #define MAX_DASH_DIST 4
 #define DASH_SPEED 2
 
@@ -80,7 +80,7 @@
 		D.bleed(130)
 		D.death()
 		//bonus healing to incentivise execution
-		var/heal_amt = 80 //heals brute first, then burn with any excess
+		var/heal_amt = 40 //heals brute first, then burn with any excess
 		var/brute_before = A.getBruteLoss()
 		A.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
 		heal_amt -= max(brute_before - A.getBruteLoss(), 0)
@@ -109,29 +109,9 @@
 
 /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	name = "\improper Piercer cylinder"
-	ammo_type = /obj/item/ammo_casing/ipcmartial
+	ammo_type = /obj/item/ammo_casing/a357
 	caliber = "357"
 	max_ammo = 3
-
-/obj/item/ammo_casing/ipcmartial
-	name = ".357 piercer bullet casing"
-	desc = "A .357 piercer bullet casing."
-	caliber = "357"
-	projectile_type = /obj/item/projectile/bullet/ipcmartial
-	click_cooldown_override = 0.1 //this gun shoots faster
-
-/obj/item/projectile/bullet/ipcmartial	//one shot, make it count
-	name = ".357 piercer bullet"
-	damage = 40
-	armour_penetration = 40
-	wound_bonus = -30	//more wounds
-	penetrating = TRUE
-
-/obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
-	. = ..()
-	if(ishuman(target) && !blocked)
-		var/mob/living/carbon/human/H = target
-		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
 
 /obj/item/gun/ballistic/revolver/ipcmartial/Initialize(mapload)
 	. = ..()
@@ -165,30 +145,14 @@
 ---------------------------------------------------------------*/
 
 /datum/martial_art/ultra_violence/proc/gun_hand(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	var/obj/item/ammo_casing/caseless/ipcmartial/ammo = new /obj/item/ammo_casing/caseless/ipcmartial()
+	var/obj/item/ammo_casing/a357/ironfeather/ammo = new /obj/item/ammo_casing/a357/ironfeather()
 	A.put_in_active_hand(ammo)
 	ammo.fire_casing(D, A)
 	playsound(A, "sound/weapons/shotgunshot.ogg", 90, FALSE)
 	to_chat(A, span_notice("You shoot [D] with your gun hand."))
+	A.add_mob_blood(D)
+	D.add_splatter_floor(D.loc, TRUE)
 	streak = ""
-
-/obj/item/ammo_casing/caseless/ipcmartial
-	projectile_type = /obj/item/projectile/bullet/pellet/ipcmartial
-	pellets = 6
-	variance = 15
-
-/obj/item/projectile/bullet/pellet/ipcmartial //one shot, make it count
-	name = "violence buckshot pellet"
-	damage = 16 //don't let them point blank you
-	wound_bonus = 5
-	bare_wound_bonus = 5
-	wound_falloff_tile = -1 // less wound falloff
-
-/obj/item/projectile/bullet/pellet/ipcmartial/on_hit(atom/target, blocked)//the real reason i made a whole new ammo type
-	. = ..()
-	if(ishuman(target) && !blocked)
-		var/mob/living/carbon/human/H = target
-		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
 
 /*---------------------------------------------------------------
 
@@ -266,8 +230,8 @@
 	
 	to_chat(usr, "[span_notice("Disarm Intent")]: Dash in a direction granting brief invulnerability.")
 	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for three shots. Target must be living, but can be yourself.")
-	to_chat(usr, "[span_notice("Gun Hand")]: Grab Harm Grab. Shoots the target with the shotgun in your hand.")
-	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere.")
+	to_chat(usr, "[span_notice("Gun Hand")]: Harm Grab. Shoots the target with the shotgun in your hand.")
+	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere.")
 	to_chat(usr, span_notice("Completing any combo will give a speed buff with a duration scaling based on combo difficulty."))
 
 /datum/martial_art/ultra_violence/teach(mob/living/carbon/human/H, make_temporary=0)//brace your eyes for this mess of buffs
@@ -277,8 +241,7 @@
 	H.dna.species.punchdamagehigh += 4 //no fancy comboes, just punches
 	H.dna.species.punchstunthreshold += 50 //disables punch stuns
 	H.dna.species.staminamod = 0 //my god, why must you make me add all these additional things, stop trying to disable them, just kill them
-	H.dna.species.speedmod -= 0.1
-	H.update_movespeed(TRUE)
+	H.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = -0.1, blacklisted_movetypes=(FLOATING))
 	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)//instead of giving them more health, just remove crit entirely, fits better thematically too
 	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
@@ -297,8 +260,7 @@
 	H.dna.species.punchdamagehigh -= 4 
 	H.dna.species.punchstunthreshold -= 50
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
-	H.dna.species.speedmod += 0.1
-	H.update_movespeed(TRUE)
+	H.remove_movespeed_modifier(type)
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
