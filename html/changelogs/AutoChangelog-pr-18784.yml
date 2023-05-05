@@ -1,0 +1,5 @@
+author: " @AffectedArc07 @Absolucy @Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "New dust animation"
+  - imageadd: "Filter used in new dust animation"
