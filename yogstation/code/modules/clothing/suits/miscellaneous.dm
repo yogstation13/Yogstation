@@ -364,3 +364,16 @@
 	desc = "My Moon My Man."
 	icon_state = "punk"
 	item_state = "punk"
+
+/obj/item/clothing/suit/hooded/wintercoat/northern
+	name = "nothern coat"
+	desc = "A heavy jacket designed for weathering cold terran planets."
+	icon_state = "northern"
+	item_state = "northern"
+	hoodtype = /obj/item/clothing/head/hooded/winterhood/northern
+	
+/obj/item/clothing/head/hooded/winterhood/northern
+	name = "northern hat"
+	desc = "only this, and nothing more."
+	icon_state = "northern"
+	item_state = "northern"
