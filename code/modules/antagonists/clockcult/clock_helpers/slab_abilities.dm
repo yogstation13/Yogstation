@@ -60,7 +60,7 @@
 		to_chat(L, span_userdanger("[caller] begins forming manacles around your wrists!"))
 		if(do_mob(caller, L, 30))
 			if(!(istype(L.handcuffed,/obj/item/restraints/handcuffs/clockwork)))
-				L.handcuffed = new /obj/item/restraints/handcuffs/clockwork(L)
+				L.set_handcuffed(new /obj/item/restraints/handcuffs/clockwork(L))
 				L.update_handcuffed()
 				to_chat(caller, "[span_neovgre_small("You shackle [L].")]")
 				log_combat(caller, L, "handcuffed")

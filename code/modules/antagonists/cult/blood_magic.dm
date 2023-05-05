@@ -561,7 +561,7 @@
 								span_userdanger("[user] begins shaping dark magic shackles around your wrists!"))
 		if(do_mob(user, C, 30))
 			if(!C.handcuffed)
-				C.handcuffed = new /obj/item/restraints/handcuffs/energy/cult/used(C)
+				C.set_handcuffed(new /obj/item/restraints/handcuffs/energy/cult/used(C))
 				C.update_handcuffed()
 				C.silent += 5
 				to_chat(user, span_notice("You shackle [C]."))

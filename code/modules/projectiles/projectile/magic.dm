@@ -329,7 +329,7 @@
 	B.desc = "What appears to be [M.real_name] reformed into a wheel of delicious parmesan..."
 	B.name = "[M.name] Parmesan"
 	B.real_name = "[M.name] Parmesan"
-	B.stat = CONSCIOUS
+	B.set_stat(CONSCIOUS)
 	B.a_intent = INTENT_HARM
 	if(M.mind)
 		M.mind.transfer_to(B)

@@ -403,14 +403,14 @@ Difficulty: Hard
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
 			D.adjust_money(maxHealth * MEGAFAUNA_CASH_SCALE)
-		stat = DEAD
+		set_stat(DEAD)
 		blinking = TRUE //we do a fancy animation, release a huge burst(), and leave our staff.
 		visible_message(span_hierophant("\"Mrmxmexmrk wipj-hiwxvygx wiuyirgi...\""))
 		visible_message("[span_hierophant_warning("[src] shrinks, releasing a massive burst of energy!")]")
 		for(var/mob/living/L in view(7,src))
 			stored_nearby += L // store the people to grant the achievements to once we die
 		hierophant_burst(null, get_turf(src), 10)
-		stat = CONSCIOUS // deathgasp wont run if dead, stupid
+		set_stat(CONSCIOUS) // deathgasp wont run if dead, stupid
 		..(force_grant = stored_nearby)
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/Destroy()

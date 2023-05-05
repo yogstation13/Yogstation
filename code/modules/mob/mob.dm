@@ -341,7 +341,7 @@
 
 ///Is the mob restrained
 /mob/proc/restrained(ignore_grab)
-	return
+	return HAS_TRAIT(src, TRAIT_RESTRAINED)
 
 ///Is the mob incapacitated
 /mob/proc/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE)

@@ -1,8 +1,8 @@
-/mob/living/Initialize()
+/mob/living/Initialize(mapload)
 	. = ..()
+	register_init_signals()
 	if(unique_name)
-		name = "[name] ([rand(1, 1000)])"
-		real_name = name
+		set_name()
 	var/datum/atom_hud/data/human/medical/advanced/medhud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medhud.add_atom_to_hud(src)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
@@ -562,7 +562,7 @@
 		remove_from_dead_mob_list()
 		add_to_alive_mob_list()
 		set_suicide(FALSE)
-		stat = UNCONSCIOUS //the mob starts unconscious,
+		set_stat(UNCONSCIOUS) //the mob starts unconscious,
 		blind_eyes(1)
 		losebreath = 0 //losebreath stacks were persisting beyond death, immediately killing again after revival until they ran out natureally from time
 		updatehealth() //then we check if the mob should wake up.
@@ -1342,6 +1342,10 @@
 	L.visible_message(span_warning("[L] scoops up [src]!"))
 	L.put_in_hands(holder)
 
+/mob/living/proc/set_name()
+	name = "[name] ([rand(1, 1000)])"
+	real_name = name
+
 /mob/living/proc/mob_try_pickup(mob/living/user)
 	if(!ishuman(user))
 		return
@@ -1447,6 +1451,17 @@
 /mob/living/proc/is_face_visible()
 	return isturf(loc) // Yogs -- forbids making eye contact with things hidden within objects
 
+/mob/living/carbon/proc/set_handcuffed(new_value)
+	if(handcuffed == new_value)
+		return FALSE
+	. = handcuffed
+	handcuffed = new_value
+	if(.)
+		if(!handcuffed)
+			REMOVE_TRAIT(src, TRAIT_RESTRAINED, HANDCUFFED_TRAIT)
+	else if(handcuffed)
+		ADD_TRAIT(src, TRAIT_RESTRAINED, HANDCUFFED_TRAIT)
+
 /mob/living/set_pulledby(new_pulledby)
 	. = ..()
 	if(. == FALSE) //null is a valid value here, we only want to return if FALSE is explicitly passed.
@@ -1456,3 +1471,78 @@
 			ADD_TRAIT(src, TRAIT_IMMOBILIZED, PULLED_WHILE_SOFTCRIT_TRAIT)
 	else if(. && stat == SOFT_CRIT)
 		REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, PULLED_WHILE_SOFTCRIT_TRAIT)
+
+/mob/living/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+
+	switch(.) //Previous stat.
+		if(CONSCIOUS)
+			if(stat >= UNCONSCIOUS)
+				ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT)
+			add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_INCAPACITATED, TRAIT_FLOORED), STAT_TRAIT)
+		if(SOFT_CRIT)
+			if(stat >= UNCONSCIOUS)
+				ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT) //adding trait sources should come before removing to avoid unnecessary updates
+			if(pulledby)
+				REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, PULLED_WHILE_SOFTCRIT_TRAIT)
+		if(UNCONSCIOUS)
+//			if(stat != HARD_CRIT)
+			cure_blind(UNCONSCIOUS_TRAIT)
+//		if(HARD_CRIT)
+//			if(stat != UNCONSCIOUS)
+//				cure_blind(UNCONSCIOUS_TRAIT)
+		if(DEAD)
+			remove_from_dead_mob_list()
+			add_to_alive_mob_list()
+	switch(stat) //Current stat.
+		if(CONSCIOUS)
+			if(. >= UNCONSCIOUS)
+				REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT)
+			remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_INCAPACITATED, TRAIT_FLOORED, TRAIT_CRITICAL_CONDITION), STAT_TRAIT)
+		if(SOFT_CRIT)
+			if(pulledby)
+				ADD_TRAIT(src, TRAIT_IMMOBILIZED, PULLED_WHILE_SOFTCRIT_TRAIT) //adding trait sources should come before removing to avoid unnecessary updates
+			if(. >= UNCONSCIOUS)
+				REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT)
+			ADD_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+		if(UNCONSCIOUS)
+//			if(. != HARD_CRIT)
+	//			become_blind(UNCONSCIOUS_TRAIT)
+			if(health <= crit_threshold && !HAS_TRAIT(src, TRAIT_NOSOFTCRIT))
+				ADD_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+			else
+				REMOVE_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+//		if(HARD_CRIT)
+//			if(. != UNCONSCIOUS)
+//				become_blind(UNCONSCIOUS_TRAIT)
+//			ADD_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+		if(DEAD)
+			REMOVE_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+			remove_from_alive_mob_list()
+			add_to_dead_mob_list()
+
+/// Proc to append behavior to the condition of being handsblocked. Called when the condition starts.
+/mob/living/proc/on_handsblocked_start()
+	drop_all_held_items()
+	add_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED), TRAIT_HANDS_BLOCKED)
+
+
+/// Proc to append behavior to the condition of being handsblocked. Called when the condition ends.
+/mob/living/proc/on_handsblocked_end()
+	remove_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED), TRAIT_HANDS_BLOCKED)
+
+/// Proc to append behavior to the condition of being floored. Called when the condition starts.
+/mob/living/proc/on_floored_start()
+//	if(body_position == STANDING_UP) //force them on the ground
+//		set_lying_angle(pick(90, 270))
+//		set_body_position(LYING_DOWN)
+//		on_fall()
+	set_resting(TRUE)
+
+/// Proc to append behavior to the condition of being floored. Called when the condition ends.
+/mob/living/proc/on_floored_end()
+//	if(!resting)
+//		get_up()
+	set_resting(FALSE)

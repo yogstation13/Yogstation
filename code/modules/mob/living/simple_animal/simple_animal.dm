@@ -156,7 +156,7 @@
 		if(health <= 0)
 			death()
 		else
-			stat = CONSCIOUS
+			set_stat(CONSCIOUS)
 	med_hud_set_status()
 
 /mob/living/simple_animal/proc/handle_automated_action()
