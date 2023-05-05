@@ -93,6 +93,8 @@
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(mind?.martial_art.handle_throw(hit_atom, src))
 		return
+	if(HAS_TRAIT(src, TRAIT_IMPACTIMMUNE))
+		return
 	. = ..()
 	var/hurt = TRUE
 	var/extra_speed = 0
@@ -263,11 +265,10 @@
 							span_userdanger("[usr] tries to [internal ? "close" : "open"] the valve on [src]'s [ITEM.name]."))
 			if(do_mob(usr, src, POCKET_STRIP_DELAY))
 				if(internal)
-					update_internals()
+					cutoff_internals()
 				else if(ITEM && istype(ITEM, /obj/item/tank))
 					if((wear_mask && (wear_mask.clothing_flags & MASKINTERNALS)) || getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-						internal = ITEM
-						update_internals_hud_icon(1)
+						open_internals(ITEM)
 
 				visible_message(span_danger("[usr] [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name]."), \
 								span_userdanger("[usr] [internal ? "opens" : "closes"] the valve on [src]'s [ITEM.name]."))
@@ -880,22 +881,6 @@
 		else
 			hud_used.healths.icon_state = "health7"
 
-/mob/living/carbon/proc/update_internals()
-	if(getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-		return TRUE
-	if(wear_mask && (wear_mask.clothing_flags & MASKINTERNALS) && !wear_mask.mask_adjusted && ((internal.loc && internal.loc == src) || (wear_mask.clothing_flags & MASKEXTENDRANGE)))
-		return TRUE
-	if(head && (head.clothing_flags & STOPSPRESSUREDAMAGE) && (head.flags_cover & HEADCOVERSMOUTH))
-		return TRUE
-	update_internals_hud_icon(0)
-	update_action_buttons_icon()
-	internal = null
-	return FALSE
-
-/mob/living/carbon/proc/update_internals_hud_icon(internal_state = 0)
-	if(hud_used && hud_used.internals)
-		hud_used.internals.icon_state = "internal[internal_state]"
-
 /mob/living/carbon/update_stat()
 	if(status_flags & GODMODE)
 		return
@@ -1320,3 +1305,21 @@
 
 /mob/living/carbon/proc/force_drink_text(obj/O, mob/living/carbon/C, mob/user)
 	return dna?.species.force_drink_text(O, C, user)
+
+/**
+ * This proc is a helper for spraying blood for things like slashing/piercing wounds and dismemberment.
+ *
+ * The strength of the splatter in the second argument determines how much it can dirty and how far it can go
+ *
+ * Arguments:
+ * * splatter_direction: Which direction the blood is flying
+ * * splatter_strength: How many tiles it can go, and how many items it can pass over and dirty
+ */
+/mob/living/carbon/proc/spray_blood(splatter_direction, splatter_strength = 3)
+	if(!isturf(loc))
+		return
+	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc)
+	our_splatter.add_blood_DNA(return_blood_DNA())
+	our_splatter.blood_dna_info = get_blood_dna_list()
+	var/turf/targ = get_ranged_target_turf(src, splatter_direction, splatter_strength)
+	INVOKE_ASYNC(our_splatter, /obj/effect/decal/cleanable/blood/hitsplatter/.proc/fly_towards, targ, splatter_strength)

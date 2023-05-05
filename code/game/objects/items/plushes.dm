@@ -464,8 +464,8 @@
 		P.clashing = FALSE
 
 /obj/item/toy/plush/narplush
-	name = "\improper Nar'Sie plushie"
-	desc = "A small stuffed doll of the elder goddess Nar'Sie. Who thought this was a good children's toy?"
+	name = "\improper Nar'sie plushie"
+	desc = "A small stuffed doll of the elder goddess Nar'sie. Who thought this was a good children's toy?"
 	icon_state = "narplush"
 	var/clashing
 	gender = FEMALE	//it's canon if the toy is

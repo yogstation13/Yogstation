@@ -700,8 +700,8 @@
   *
   * Default behaviour is to send COMSIG_ATOM_RAD_ACT and return
   */
-/atom/proc/rad_act(strength)
-	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength)
+/atom/proc/rad_act(strength, collectable_radiation)
+	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength, collectable_radiation)
 
 /**
   * Respond to narsie eating our atom
@@ -842,19 +842,19 @@
 
 	var/new_x = pixel_x
 	var/new_y = pixel_y
-	
+
 	if (dir & NORTH)
 		new_y++
-	
+
 	if (dir & EAST)
 		new_x++
-	
+
 	if (dir & SOUTH)
 		new_y--
-	
+
 	if (dir & WEST)
 		new_x--
-	
+
 	pixel_x = clamp(new_x, -16, 16)
 	pixel_y = clamp(new_y, -16, 16)
 
@@ -1190,6 +1190,8 @@
 			log_ooc(log_text)
 		if(LOG_LOOC) // yogs - LOOC log
 			log_looc(log_text) // yogs - LOOC log
+		if(LOG_DONATOR) // yogs - Donator log
+			log_donator(log_text) // yogs - Donator log
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_ADMIN_PRIVATE)
@@ -1268,7 +1270,7 @@
   * * dealt_bare_wound_bonus- The bare_wound_bonus, if one was specified *and applied*, of the wounding attack. Not shown if armor was present
   * * base_roll- Base wounding ability of an attack is a random number from 1 to (dealt_damage ** WOUND_DAMAGE_EXPONENT). This is the number that was rolled in there, before mods
   */
-/proc/log_wound(atom/victim, datum/wound/suffered_wound, dealt_damage, dealt_wound_bonus, dealt_bare_wound_bonus, base_roll)
+/proc/log_wound(atom/victim, datum/wound/suffered_wound, dealt_damage, dealt_wound_bonus, dealt_bare_wound_bonus, base_roll, attack_direction = null)
 	if(QDELETED(victim) || !suffered_wound)
 		return
 	var/message = "has suffered: [suffered_wound][suffered_wound.limb ? " to [suffered_wound.limb.name]" : null]"// maybe indicate if it's a promote/demote?
@@ -1284,6 +1286,9 @@
 
 	if(dealt_bare_wound_bonus)
 		message += " | BWB: [dealt_bare_wound_bonus]"
+
+	if(attack_direction)
+		message += " | AtkDir: [attack_direction]"
 
 	victim.log_message(message, LOG_ATTACK, color="blue")
 

@@ -61,12 +61,12 @@
 		if(C.has_horror_inside())
 			var/mob/living/simple_animal/horror/B = C.has_horror_inside()
 			B.leave_victim()
-	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling))
-		var/datum/antagonist/changeling/bruh = C.mind.has_antag_datum(/datum/antagonist/changeling)
-		for(var/d in bruh.purchasedpowers)
-			if(istype(d, /datum/action/changeling/fakedeath))
-				var/datum/action/changeling/fakedeath/ack = d
-				ack.sting_action(C)
+		if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling))
+			var/datum/antagonist/changeling/bruh = C.mind.has_antag_datum(/datum/antagonist/changeling)
+			for(var/d in bruh.purchasedpowers)
+				if(istype(d, /datum/action/changeling/fakedeath))
+					var/datum/action/changeling/fakedeath/ack = d
+					ack.sting_action(C)
 
 	for(var/X in traumas)
 		var/datum/brain_trauma/BT = X
@@ -261,13 +261,14 @@
 /obj/item/organ/brain/positron/emp_act(severity)
 	if(prob(25))
 		return
+
+	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50/severity)
+	owner.adjust_drugginess(40/severity)
 	switch(severity)
 		if(1)
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60)
-			to_chat(owner, "<span class='warning'>Alert: Posibrain heavily damaged.</span>")
+			to_chat(owner, span_warning("Alert: Posibrain heavily damaged."))
 		if(2)
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25)
-			to_chat(owner, "<span class='warning'>Alert: Posibrain damaged.</span>") 
+			to_chat(owner, span_warning("Alert: Posibrain damaged.")) 
 
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////

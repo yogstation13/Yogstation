@@ -160,10 +160,12 @@
 	energy_drain = 30
 	projectile = /obj/item/projectile/plasma/adv/mech
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
-	harmful = TRUE
+	harmful = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/can_attach(obj/mecha/M)
-	if(..()) //combat mech
+	if(M.melee_allowed && !M.guns_allowed)	//Should only hold true for melee mechs
+		return 0
+	else if(..()) 	//combat mech
 		return 1
 	else if(M.equipment.len < M.max_equip && istype(M))
 		return 1
@@ -177,11 +179,13 @@
 	energy_drain = 30
 	projectile = /obj/item/projectile/kinetic/mech
 	fire_sound = 'sound/weapons/kenetic_accel.ogg'
-	harmful = TRUE
+	harmful = FALSE
 
 //attachable to all mechas, like the plasma cutter
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun/can_attach(obj/mecha/M)
-	if(..()) //combat mech
+	if(M.melee_allowed && !M.guns_allowed)	//Should only hold true for melee mechs
+		return 0
+	else if(..()) 	//combat mech
 		return 1
 	else if(M.equipment.len < M.max_equip && istype(M))
 		return 1
@@ -327,7 +331,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/silenced
 	name = "\improper S.H.H. \"Quietus\" Carbine"
 	desc = "A weapon for combat exosuits. A mime invention, field tests have shown that targets cannot even scream before going down."
-	fire_sound = 'sound/weapons/gunshot_silenced.ogg'
+	fire_sound = null
 	icon_state = "mecha_mime"
 	equip_cooldown = 30
 	projectile = /obj/item/projectile/bullet/mime

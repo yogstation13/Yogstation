@@ -11,19 +11,19 @@
 
 /datum/bounty/item/atmos/simple/pluoxium
 	name = "Full Tank of Pluoxium"
-	description = "CentCom RnD is researching extra compact internals. Ship us a tank full of Pluoxium and you'll be compensated."
+	description = "CentCom RnD is researching extra compact internals. Ship us a tank full of Pluoxium and you'll be compensated. (20 Moles)"
 	reward = 2500
 	gas_type = /datum/gas/pluoxium
 
-/datum/bounty/item/atmos/simple/nitryl_tank
-	name = "Full Tank of Nitryl"
-	description = "The non-human staff of Station 88 has been volunteered to test performance enhancing drugs. Ship them a tank full of Nitryl so they can get started."
-	reward = 6000
-	gas_type = /datum/gas/nitryl
+/datum/bounty/item/atmos/simple/nitrium_tank
+	name = "Full Tank of Nitrium"
+	description = "The non-human staff of Station 88 has been volunteered to test performance enhancing drugs. Ship them a tank full of Nitrium so they can get started. (20 Moles)"
+	reward = 12000
+	gas_type = /datum/gas/nitrium
 
 /datum/bounty/item/atmos/simple/tritium_tank
 	name = "Full Tank of Tritium"
-	description = "Station 49 is looking to kickstart their research program. Ship them a tank full of Tritium."
+	description = "Station 49 is looking to kickstart their research program. Ship them a tank full of Tritium. (20 Moles)"
 	reward = 3500
 	gas_type = /datum/gas/tritium
 
@@ -51,12 +51,6 @@
 	reward = 15000
 	gas_type = /datum/gas/hypernoblium
 
-/datum/bounty/item/atmos/complex/stimulum_tank
-	name = "Full Tank of Stimulum"
-	description = "Station 14's staff are behind schedule on important research. Ship them some Stimulum to get them back up to speed. (20 Moles)"
-	reward = 12000
-	gas_type = /datum/gas/stimulum
-
 /datum/bounty/item/h2metal/metallic_hydrogen_armor
 	name = "Metallic Hydrogen Armors"
 	description = "Nanotrasen is requiring new armor to be made. Ship them some metallic hydrogen armors."
@@ -80,7 +74,7 @@
 
 /datum/bounty/item/supermatter_silver
 	name = "Supermatter Silvers"
-	description = "Nanotrasen engineering team wants to build a new supermatter engine, shift them some supermatter silvers."
+	description = "Nanotrasen engineering team wants to build a new supermatter engine. Ship them 2 supermatter silvers."
 	reward = 50000
 	required_count = 2
 	wanted_types = list(/obj/item/nuke_core/supermatter_sliver)

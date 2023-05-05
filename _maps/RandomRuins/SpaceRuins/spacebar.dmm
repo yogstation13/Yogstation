@@ -82,6 +82,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"aU" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	req_access = null;
+	req_access_txt = "25"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
 "aX" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -95,19 +103,13 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
-"co" = (
-/obj/machinery/light/small{
+"eg" = (
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
 	dir = 1
 	},
-/obj/machinery/chem_dispenser/fullupgrade,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
-"ez" = (
-/obj/structure/closet/secure_closet/freezer/meat{
-	req_access = null;
-	req_access_txt = "25"
-	},
-/turf/open/floor/plasteel/cafeteria,
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/spacebar)
 "eC" = (
 /obj/effect/turf_decal/tile/bar{
@@ -119,13 +121,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
-"eD" = (
-/obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = null;
-	req_access_txt = "25"
-	},
-/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "eX" = (
 /obj/effect/turf_decal/tile/bar{
@@ -154,13 +149,6 @@
 "ff" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
-/area/ruin/space/has_grav/powered/spacebar)
-"fh" = (
-/obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = null;
-	req_access_txt = "25"
-	},
-/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "fy" = (
 /obj/structure/chair{
@@ -207,6 +195,22 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
+"gx" = (
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1
+	},
+/obj/machinery/hydroponics/constructable,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered/spacebar)
+"gP" = (
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1
+	},
+/obj/machinery/seed_extractor,
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/spacebar)
 "gX" = (
 /obj/effect/turf_decal/tile/bar{
@@ -376,6 +380,16 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/spacebar)
+"ni" = (
+/obj/structure/sign/poster/contraband/eat{
+	pixel_y = 32
+	},
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = null;
+	req_access_txt = "25"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
 "nK" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -418,6 +432,16 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/freezer,
+/area/ruin/space/has_grav/powered/spacebar)
+"qs" = (
+/obj/structure/window{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/donkpockets{
+	pixel_y = 3
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "qy" = (
 /obj/effect/turf_decal/stripes/line{
@@ -538,15 +562,11 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/spacebar)
-"uk" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/table,
-/obj/item/book/manual/wiki/cooking_to_serve_man{
-	pixel_y = 3
-	},
-/obj/machinery/light{
+"ur" = (
+/obj/structure/window{
 	dir = 4
 	},
+/obj/structure/table,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "uD" = (
@@ -578,6 +598,17 @@
 	id = null
 	},
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
+"vi" = (
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered/no_grav)
+"vq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "vQ" = (
 /obj/machinery/light/small{
@@ -638,6 +669,11 @@
 /obj/machinery/vending/boozeomat,
 /turf/closed/wall,
 /area/ruin/space/has_grav/powered/spacebar)
+"zA" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
 "zE" = (
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -676,16 +712,6 @@
 	req_access_txt = "25"
 	},
 /turf/open/floor/wood,
-/area/ruin/space/has_grav/powered/spacebar)
-"Bs" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	pixel_x = 0;
-	pixel_y = 0
-	},
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "BT" = (
 /obj/machinery/smartfridge/food,
@@ -779,12 +805,6 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
-"Fy" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/airless,
-/area/ruin/space/has_grav/powered/spacebar)
 "FB" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -805,6 +825,19 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
+"Gk" = (
+/obj/structure/closet/secure_closet/freezer/meat{
+	req_access = null;
+	req_access_txt = "25"
+	},
+/obj/structure/window{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "GD" = (
 /turf/open/floor/plasteel/freezer,
@@ -837,6 +870,20 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
+"Hj" = (
+/obj/structure/closet,
+/obj/item/vending_refill/cigarette,
+/obj/item/vending_refill/boozeomat,
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/storage/bag/trash,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/soap,
+/obj/item/soap,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
 "Hk" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -854,6 +901,16 @@
 	name = "bar shutters"
 	},
 /turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/spacebar)
+"Hy" = (
+/obj/structure/window{
+	dir = 4
+	},
+/obj/item/book/manual/wiki/cooking_to_serve_man{
+	pixel_y = 3
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "HM" = (
 /turf/open/floor/plating/airless,
@@ -875,6 +932,14 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+"Ig" = (
+/obj/structure/sink/kitchen{
+	dir = 4;
+	pixel_x = -11;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
 "Ik" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue,
 /obj/effect/turf_decal/tile/slightlydarkerblue{
@@ -886,11 +951,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
-"IG" = (
-/obj/structure/sign/poster/contraband/eat{
-	pixel_y = 32
+"IX" = (
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1
 	},
-/turf/open/floor/plasteel/cafeteria,
+/obj/machinery/vending/hydroseeds,
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/spacebar)
 "Jq" = (
 /obj/machinery/door/airlock/external,
@@ -956,6 +1023,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"LN" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/airless,
+/area/ruin/unpowered/no_grav)
 "Mk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/wallmed{
@@ -973,6 +1046,18 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
+"MS" = (
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1
+	},
+/obj/structure/closet,
+/obj/item/cultivator,
+/obj/item/hatchet,
+/obj/item/plant_analyzer,
+/obj/item/storage/bag/plants,
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/spacebar)
 "Na" = (
 /obj/effect/turf_decal/tile/bar{
@@ -1015,15 +1100,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
 /area/ruin/space/has_grav/powered/spacebar)
-"Ok" = (
-/obj/machinery/autolathe,
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
 "Oo" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -1047,6 +1123,14 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
+"OR" = (
+/obj/structure/window{
+	dir = 4
+	},
+/obj/item/reagent_containers/glass/mixbowl,
+/obj/structure/table,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/space/has_grav/powered/spacebar)
 "OT" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1;
@@ -1068,6 +1152,18 @@
 	},
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
+"Pc" = (
+/obj/structure/window{
+	dir = 4
+	},
+/obj/item/kitchen/rollingpin,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "PE" = (
 /obj/effect/turf_decal/tile/bar{
@@ -1122,6 +1218,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
+"Rt" = (
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered/spacebar)
 "RT" = (
 /obj/effect/turf_decal/tile/slightlydarkerblue,
 /obj/effect/turf_decal/tile/slightlydarkerblue{
@@ -1144,13 +1247,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
-"SZ" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/donkpockets{
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/cafeteria,
+"SA" = (
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "Tw" = (
 /obj/structure/table/reinforced,
@@ -1177,6 +1276,12 @@
 "TU" = (
 /obj/structure/falsewall,
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
+"TV" = (
+/obj/structure/closet/crate/rcd,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small,
+/turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "UN" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1214,12 +1319,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
-"VG" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/light{
+"VI" = (
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
 	dir = 1
 	},
-/turf/open/floor/plasteel/cafeteria,
+/obj/machinery/light,
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/spacebar)
 "VK" = (
 /obj/machinery/door/airlock/external{
@@ -1233,10 +1339,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
-"VN" = (
-/obj/structure/closet/crate/rcd,
-/turf/open/floor/plasteel,
-/area/ruin/space/has_grav/powered/spacebar)
 "VY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -1248,19 +1350,11 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
-"WM" = (
-/obj/structure/closet,
-/obj/item/vending_refill/cigarette,
-/obj/item/vending_refill/boozeomat,
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
-/obj/item/mop,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/storage/bag/trash,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/soap,
-/obj/item/soap,
-/obj/machinery/light/small,
+"Wj" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/chem_dispenser/fullupgrade,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "XW" = (
@@ -1273,11 +1367,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
-"XZ" = (
-/obj/structure/disposalpipe/segment,
+"Yc" = (
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
 /obj/structure/table,
-/obj/item/reagent_containers/glass/mixbowl,
-/turf/open/floor/plasteel/cafeteria,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/spacebar)
+"YA" = (
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/watertank/high,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel/white,
+/area/ruin/space/has_grav/powered/spacebar)
+"YB" = (
+/obj/effect/turf_decal/tile/darkgreen,
+/obj/effect/turf_decal/tile/darkgreen{
+	dir = 1
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/powered/spacebar)
 "YH" = (
 /turf/template_noop,
@@ -1290,6 +1406,12 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/spacebar)
+"Zg" = (
+/obj/machinery/door/window/eastleft{
+	name = "Growing Area"
+	},
+/turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "Zh" = (
 /obj/machinery/processor,
@@ -1990,7 +2112,7 @@ YH
 sM
 FB
 bw
-Ow
+Ig
 Zh
 FD
 go
@@ -2022,7 +2144,7 @@ YH
 YH
 sM
 FB
-IG
+ni
 Ow
 Ow
 Ow
@@ -2055,13 +2177,13 @@ YH
 YH
 oq
 ff
-VG
+aU
 Cu
 Cu
-SZ
-Bs
-XZ
-uk
+Cu
+Cu
+Cu
+zA
 ff
 uD
 Rp
@@ -2088,13 +2210,13 @@ YH
 YH
 sM
 FB
-ez
-eD
-fh
-FB
-FB
-FB
-FB
+Gk
+Zg
+ur
+qs
+Pc
+OR
+Hy
 FB
 FB
 jd
@@ -2121,15 +2243,15 @@ YH
 YH
 ZN
 FB
+gP
+Rt
+Rt
+Rt
+Rt
+Rt
+Rt
 FB
-FB
-FB
-FB
-lS
-zE
-zE
-qz
-Rp
+vq
 Qz
 Mk
 NH
@@ -2153,16 +2275,16 @@ YH
 YH
 YH
 ZN
-ZN
-ZN
-ZN
-ZN
-KO
-zE
-zE
-JG
 FB
-VN
+MS
+Rt
+Rt
+Rt
+Rt
+Rt
+VI
+FB
+Wj
 Rp
 ab
 FB
@@ -2185,19 +2307,19 @@ YH
 YH
 YH
 YH
-YH
 ZN
-ZN
-ZN
-sM
 FB
-mh
-nf
-eZ
+YB
+eg
+IX
+YA
+gx
+gx
+gx
 FB
-co
+SA
 Rp
-WM
+Hj
 FB
 YY
 FB
@@ -2218,17 +2340,17 @@ YH
 YH
 YH
 YH
-YH
 ZN
-ZN
-ZN
-sM
 FB
 FB
 FB
 FB
 FB
-Ok
+FB
+FB
+FB
+FB
+Yc
 Qz
 GH
 FB
@@ -2251,20 +2373,20 @@ YH
 YH
 YH
 YH
-YH
 ZN
-sM
-sM
-sM
-sM
-sM
-sM
-sM
+ZN
+vi
+vi
+vi
 FB
+lS
+zE
+zE
+qz
+Qz
+Rp
+TV
 FB
-Dz
-FB
-NQ
 TK
 FB
 sM
@@ -2287,19 +2409,19 @@ YH
 YH
 ZN
 ZN
-sM
-sM
-sM
-sM
-sM
-sM
-sM
+vi
+vi
+KO
+zE
+zE
+JG
 FB
 FB
+Dz
 FB
-Fy
+NQ
 ZN
-Fy
+LN
 sM
 sM
 sM
@@ -2320,17 +2442,17 @@ YH
 YH
 YH
 YH
+vi
+vi
+FB
+mh
+nf
+eZ
+FB
+FB
+FB
+FB
 sM
-sM
-sM
-sM
-sM
-sM
-sM
-sM
-sM
-sM
-ZN
 ZN
 ZN
 ZN
@@ -2355,11 +2477,11 @@ YH
 YH
 YH
 sM
-sM
-sM
-sM
-sM
-sM
+FB
+FB
+FB
+FB
+FB
 sM
 sM
 sM

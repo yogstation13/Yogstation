@@ -10,6 +10,7 @@
 	key_third_person = "cries"
 	message = "cries."
 	emote_type = EMOTE_AUDIBLE
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/carbon/human/cry/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -97,6 +98,7 @@
 	key_third_person = "mumbles"
 	message = "mumbles!"
 	emote_type = EMOTE_AUDIBLE
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/carbon/human/scream
 	key = "scream"
@@ -222,6 +224,9 @@
 	if("wings" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "wings"
 		dna.species.mutant_bodyparts |= "wingsopen"
+		if("wingsdetail" in dna.species.mutant_bodyparts)
+			dna.species.mutant_bodyparts -= "wingsdetail"
+			dna.species.mutant_bodyparts |= "wingsdetailopen"
 	if("moth_wings" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts |= "moth_wingsopen"
 		dna.features["moth_wingsopen"] = "moth_wings"
@@ -234,6 +239,9 @@
 	if("wingsopen" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "wingsopen"
 		dna.species.mutant_bodyparts |= "wings"
+		if("wingsdetailopen" in dna.species.mutant_bodyparts)
+			dna.species.mutant_bodyparts -= "wingsdetailopen"
+			dna.species.mutant_bodyparts |= "wingsdetail"
 	if("moth_wingsopen" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "moth_wingsopen"
 		dna.species.mutant_bodyparts |= "moth_wings"
@@ -241,6 +249,9 @@
 	if(isturf(loc))
 		var/turf/T = loc
 		T.Entered(src)
+
+/datum/emote/living/carbon/human/robot_tongue
+	emote_type = EMOTE_AUDIBLE //emotes that require robotic voicebox are audible by default, because it's a sound-making device
 
 /datum/emote/living/carbon/human/robot_tongue/can_run_emote(mob/user, status_check = TRUE , intentional)
 	var/obj/item/organ/tongue/T = user.getorganslot("tongue")
@@ -287,6 +298,15 @@
 
 /datum/emote/living/carbon/human/robot_tongue/ping/get_sound(mob/living/user)
 	return 'sound/machines/ping.ogg'
+
+/datum/emote/living/carbon/human/robot_tongue/warn
+	key = "warn"
+	key_third_person = "warns"
+	message = "blares an alarm!"
+	message_param = "blares an alarm at %t!"
+
+/datum/emote/living/carbon/human/robot_tongue/warn/get_sound(mob/living/user)
+	return 'sound/machines/warning-buzzer.ogg'
 
  // Clown Robotic Tongue ONLY. Henk.
 

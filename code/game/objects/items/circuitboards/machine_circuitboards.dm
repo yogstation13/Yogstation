@@ -434,6 +434,52 @@
 #undef PATH_FREEZER
 #undef PATH_HEATER
 
+/obj/item/circuitboard/machine/HFR_fuel_input
+	name = "HFR Fuel Input (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_waste_output
+	name = "HFR Waste Output (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/waste_output
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_moderator_input
+	name = "HFR Moderator Input (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_core
+	name = "HFR core (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/core
+	req_components = list(
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/stack/sheet/glass = 10,
+		/obj/item/stack/sheet/plasteel = 10)
+
+/obj/item/circuitboard/machine/HFR_corner
+	name = "HFR Corner (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/hypertorus/corner
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_interface
+	name = "HFR Interface (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/hypertorus/interface
+	req_components = list(
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/stack/sheet/glass = 10,
+		/obj/item/stack/sheet/plasteel = 5)
+
 //Generic
 
 /obj/item/circuitboard/machine/circuit_imprinter
@@ -489,7 +535,21 @@
 	name = "Pay Stand (Machine Board)"
 	icon_state = "generic"
 	build_path = /obj/machinery/paystand
+	var/cash_register = FALSE
 	req_components = list()
+
+/obj/item/circuitboard/machine/paystand/attackby(obj/item/held_item, mob/user, params)
+	if(held_item.tool_behaviour)
+		if(held_item.tool_behaviour == TOOL_SCREWDRIVER && user.a_intent == INTENT_HELP)
+			if(cash_register)
+				to_chat(user,span_info("You change the holo-emitter selector to it's default setting."))
+				build_path = /obj/machinery/paystand
+				return
+			to_chat(user,span_info("You change the holo-emitter selector to 'cash register.'"))
+			build_path = /obj/machinery/paystand/register
+			return
+	return ..()
+			
 
 /obj/item/circuitboard/machine/ticketmachine
 	name = "Ticket Machine (Machine Board)"

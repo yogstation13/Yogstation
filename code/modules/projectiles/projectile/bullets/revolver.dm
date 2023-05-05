@@ -14,47 +14,21 @@
 	wound_bonus = -35
 	wound_falloff_tile = -2.5
 
-// .38 (Detective's Gun)
+// .38 (Colt Detective Classic)
 
 /obj/item/projectile/bullet/c38
 	name = ".38 bullet"
-	damage = 25 //High damaging but...
-	armour_penetration = -40 //Almost doubles the armor of any bullet armor it hits
+	damage = 21
+	armour_penetration = -30
 	wound_bonus = -30
 	wound_falloff_tile = -2.5
 	bare_wound_bonus = 15
 
-/obj/item/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
-	name = ".38 Hot Shot bullet"
-	damage = 20
-
-/obj/item/projectile/bullet/c38/hotshot/on_hit(atom/target, blocked = FALSE)
-	if((blocked != 100) && iscarbon(target))
-		var/mob/living/carbon/M = target
-		M.adjust_fire_stacks(2)
-		M.IgniteMob()
-	return ..()
-
-/obj/item/projectile/bullet/c38/iceblox //see /obj/item/projectile/temp for the original code
-	name = ".38 Iceblox bullet"
-	damage = 20
-	var/temperature = 100
-
-/obj/item/projectile/bullet/c38/iceblox/on_hit(atom/target, blocked = FALSE)
-	..()
-	if(isliving(target))
-		var/mob/living/M = target
-		M.adjust_bodytemperature(((100-blocked)/100)*(temperature - M.bodytemperature))
-
-/obj/item/projectile/bullet/c38/gutterpunch //Vomit bullets my favorite
-	name = ".38 Gutterpunch bullet"
-	damage = 20
-
-/obj/item/projectile/bullet/c38/gutterpunch/on_hit(atom/target, blocked = FALSE)
-	if((blocked != 100) && iscarbon(target))
-		var/mob/living/carbon/M = target 
-		M.adjust_disgust(20)
-	return ..()
+/obj/item/projectile/bullet/c38/rubber
+	name = ".38 rubber bullet"
+	damage = 7
+	stamina = 30
+	sharpness = SHARP_NONE
 
 // .32 TRAC (Caldwell Tracking Revolver)
 
@@ -85,7 +59,8 @@
 
 /obj/item/projectile/bullet/pellet/a357_ironfeather
 	name = ".357 Ironfeather pellet"
-	damage = 8 //Total of 48 damage assuming PBS; so no, it's not a two-shot anymore
+	damage = 8 //Total of 48 damage assuming PBS
+	armour_penetration = 10 //In between normal pellets and flechette for AP
 	wound_bonus = 7 //So it might be able to actually wound things
 	bare_wound_bonus = 7
 	tile_dropoff = 0.35 //Loses 0.05 damage less per tile than standard damaging pellets
@@ -93,8 +68,7 @@
 
 /obj/item/projectile/bullet/a357/nutcracker
 	name = ".357 Nutcracker bullet"
-	damage = 20 //Twice the damage of a breaching slug
-	wound_bonus = -10
+	damage = 30
 
 /obj/item/projectile/bullet/a357/nutcracker/on_hit(atom/target) //Basically breaching slug with 1.5x damage
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
@@ -103,12 +77,12 @@
 
 /obj/item/projectile/bullet/a357/metalshock
 	name = ".357 Metalshock bullet"
-	damage = 10
+	damage = 15
 	wound_bonus = -5
 
 /obj/item/projectile/bullet/a357/metalshock/on_hit(atom/target, blocked = FALSE)
 	..()
-	tesla_zap(target, 4, 20000, TESLA_MOB_DAMAGE) //Should do around 33 burn to the first target it
+	tesla_zap(target, 4, 20000, TESLA_MOB_DAMAGE) //Should do around 33 burn to the first target hit, assume no siemens coefficient (black gloves have 0.5)
 	return BULLET_ACT_HIT
 
 /obj/item/projectile/bullet/a357/heartpiercer
@@ -121,7 +95,7 @@
 /obj/item/projectile/bullet/a357/wallstake
 	name = ".357 Wallstake bullet"
 	damage = 36 //Almost entirely a meme round at this point. 36 damage barely four-shots standard armor
-	wound_bonus = -40
+	wound_bonus = -35
 	sharpness = SHARP_NONE //Blunt
 
 /obj/item/projectile/bullet/a357/wallstake/on_hit(atom/target, blocked = FALSE)

@@ -121,6 +121,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/deathsound
 	///Sounds to override barefeet walkng
 	var/list/special_step_sounds
+	///Sounds to play while walking regardless of wearing shoes
+	var/list/special_walk_sounds
 	///Special sound for grabbing
 	var/grab_sound
 	///yogs - audio of a species' scream
@@ -129,8 +131,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/flying_species = FALSE
 	///the actual flying ability given to flying species
 	var/datum/action/innate/flight/fly
-	///the icon used for the wings
+	///the icon used for the wings + details icon of a different source colour
 	var/wings_icon = "Angel"
+	var/wings_detail
 	/// Used for metabolizing reagents. We're going to assume you're a meatbag unless you say otherwise.
 	var/reagent_tag = PROCESS_ORGANIC
 	/// What kind of gibs to spawn
@@ -480,10 +483,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		QDEL_NULL(fly)
 		if(C.movement_type & FLYING)
 			ToggleFlight(C)
-	if(C.dna && C.dna.species && (C.dna.features["wings"] == wings_icon))
+	if(C?.dna?.species && (C.dna.features["wings"] == wings_icon))
 		if("wings" in C.dna.species.mutant_bodyparts)
 			C.dna.species.mutant_bodyparts -= "wings"
 		C.dna.features["wings"] = "None"
+		if(wings_detail && C.dna.features["wingsdetail"] == wings_detail)
+			if("wingsdetail" in C.dna.species.mutant_bodyparts)
+				C.dna.species.mutant_bodyparts -= "wingsdetail"
+			C.dna.features["wingsdetail"] = "None"
 		C.update_body()
 
 	C.remove_movespeed_modifier(MOVESPEED_ID_SPECIES)
@@ -812,7 +819,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			bodyparts_to_add -= "waggingspines"
 
 	if("snout" in mutant_bodyparts) //Take a closer look at that snout!
-		if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
+		if((H.wear_mask && H.wear_mask.mutantrace_variation == NO_MUTANTRACE_VARIATION && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "snout"
 
 	if("frills" in mutant_bodyparts)
@@ -836,6 +843,16 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			bodyparts_to_add -= "wings_open"
 		else if ("wings" in mutant_bodyparts)
 			bodyparts_to_add -= "wings_open"
+
+	if("wingsdetail" in mutant_bodyparts)
+		if(!H.dna.features["wingsdetail"] || H.dna.features["wingsdetail"] == "None" || (H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))
+			bodyparts_to_add -= "wingsdetail"
+
+	if("wingsdetail_open" in mutant_bodyparts)
+		if(H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception)))
+			bodyparts_to_add -= "wingsdetail_open"
+		else if ("wingsdetail" in mutant_bodyparts)
+			bodyparts_to_add -= "wingsdetail_open"
 
 	if("ipc_screen" in mutant_bodyparts)
 		if(!H.dna.features["ipc_screen"] || H.dna.features["ipc_screen"] == "None" || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || !HD)
@@ -945,6 +962,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					S = GLOB.wings_list[H.dna.features["wings"]]
 				if("wingsopen")
 					S = GLOB.wings_open_list[H.dna.features["wings"]]
+				if("wingsdetail")
+					S = GLOB.wings_list[H.dna.features["wingsdetail"]]
+				if("wingsdetailopen")
+					S = GLOB.wings_open_list[H.dna.features["wingsdetail"]]
 				if("legs")
 					S = GLOB.legs_list[H.dna.features["legs"]]
 				if("moth_wings")
@@ -1058,6 +1079,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	stop_wagging_tail(H)
 	return
 
+//Now checks if the item is already equipped to that slot before instantly returning false because of it being there, so you can now check if an item is able to remain in a slot
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
 	if((slot in no_equip) || (slot in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
@@ -1072,7 +1094,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return TRUE
 			return FALSE
 		if(SLOT_WEAR_MASK)
-			if(H.wear_mask)
+			if(H.wear_mask && H.wear_mask != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_MASK))
 				return FALSE
@@ -1080,25 +1102,25 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_NECK)
-			if(H.wear_neck)
+			if(H.wear_neck && H.wear_neck != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_NECK) )
 				return FALSE
 			return TRUE
 		if(SLOT_BACK)
-			if(H.back)
+			if(H.back && H.back != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_BACK) )
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_WEAR_SUIT)
-			if(H.wear_suit)
+			if(H.wear_suit && H.wear_suit != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_OCLOTHING) )
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_GLOVES)
-			if(H.gloves)
+			if(H.gloves && H.gloves != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_GLOVES) )
 				return FALSE
@@ -1106,20 +1128,20 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_SHOES)
-			if(H.shoes)
+			if(H.shoes && H.shoes != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_FEET) )
 				return FALSE
 			if(num_legs < 2)
 				return FALSE
 			var/obj/item/clothing/shoes/S = I
-			if((!S && (DIGITIGRADE in species_traits)) || ((DIGITIGRADE in species_traits) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT)) // Checks leg compatibilty with shoe digitigrade or not flag
+			if(istype(S) && ((!S && (DIGITIGRADE in species_traits)) || ((DIGITIGRADE in species_traits) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT))) // Checks leg compatibilty with shoe digitigrade or not flag
 				if(!disable_warning)
 					to_chat(H, span_warning("This footwear isn't compatible with your feet!"))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_BELT)
-			if(H.belt)
+			if(H.belt && H.belt != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
@@ -1132,7 +1154,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_GLASSES)
-			if(H.glasses)
+			if(H.glasses && H.glasses != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_EYES))
 				return FALSE
@@ -1143,7 +1165,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_HEAD)
-			if(H.head)
+			if(H.head && H.head != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_HEAD))
 				return FALSE
@@ -1151,7 +1173,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_EARS)
-			if(H.ears)
+			if(H.ears && H.ears != I)
 				return FALSE
 			if(!(I.slot_flags & ITEM_SLOT_EARS))
 				return FALSE
@@ -1159,13 +1181,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_W_UNIFORM)
-			if(H.w_uniform)
+			if(H.w_uniform && H.w_uniform != I)
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_ICLOTHING) )
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_WEAR_ID)
-			if(H.wear_id)
+			if(H.wear_id && H.wear_id != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
@@ -1179,7 +1201,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(SLOT_L_STORE)
 			if(HAS_TRAIT(I, TRAIT_NODROP)) //Pockets aren't visible, so you can't move TRAIT_NODROP items into them.
 				return FALSE
-			if(H.l_store)
+			if(H.l_store && H.l_store != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_L_LEG)
@@ -1195,7 +1217,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(SLOT_R_STORE)
 			if(HAS_TRAIT(I, TRAIT_NODROP))
 				return FALSE
-			if(H.r_store)
+			if(H.r_store && H.r_store != I)
 				return FALSE
 
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_R_LEG)
@@ -1212,7 +1234,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(SLOT_S_STORE)
 			if(HAS_TRAIT(I, TRAIT_NODROP))
 				return FALSE
-			if(H.s_store)
+			if(H.s_store && H.s_store != I)
 				return FALSE
 			if(!H.wear_suit)
 				if(!disable_warning)
@@ -1230,7 +1252,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return TRUE
 			return FALSE
 		if(SLOT_HANDCUFFED)
-			if(H.handcuffed)
+			if(H.handcuffed && H.handcuffed != I)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/handcuffs))
 				return FALSE
@@ -1238,7 +1260,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return TRUE
 		if(SLOT_LEGCUFFED)
-			if(H.legcuffed)
+			if(H.legcuffed && H.legcuffed != I)
 				return FALSE
 			if(!istype(I, /obj/item/restraints/legcuffs))
 				return FALSE
@@ -1246,7 +1268,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return TRUE
 		if(SLOT_IN_BACKPACK)
-			if(H.back)
+			if(H.back && H.back != I)
 				if(SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_CAN_INSERT, I, H, TRUE))
 					return TRUE
 			return FALSE
@@ -1581,11 +1603,12 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(user.limb_destroyer)
 			target.dismembering_strike(user, affecting.body_zone)
 
+		var/attack_direction = get_dir(user, target)
 		if(atk_verb == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage
-			target.apply_damage(damage*1.5, user.dna.species.attack_type, affecting, armor_block)
+			target.apply_damage(damage*1.5, user.dna.species.attack_type, affecting, armor_block, attack_direction = attack_direction)
 			log_combat(user, target, "kicked")
 		else//other attacks deal full raw damage + 1.5x in stamina damage
-			target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block)
+			target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block, attack_direction = attack_direction)
 			target.apply_damage(damage*1.5, STAMINA, affecting, armor_block)
 			log_combat(user, target, "punched")
 
@@ -1775,7 +1798,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	H.send_item_attack_message(I, user, hit_area, affecting)
 
-	apply_damage(I.force * weakness, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.sharpness)
+	var/attack_direction = get_dir(user, H)
+	apply_damage(I.force * weakness, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.sharpness, attack_direction = attack_direction)
 
 	if(!I.force)
 		return FALSE //item force is zero
@@ -1842,8 +1866,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			H.forcesay(GLOB.hit_appends)	//forcesay checks stat already.
 	return TRUE
 
-/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
-	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness) // make sure putting wound_bonus here doesn't screw up other signals or uses for this signal)
+/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
+	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness, attack_direction) // make sure putting wound_bonus here doesn't screw up other signals or uses for this signal)
 	var/hit_percent = (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
 	if(!damage || hit_percent <= 0)
@@ -1863,14 +1887,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(BRUTE)
 			H.damageoverlaytemp = 20
 			if(BP)
-				if(BP.receive_damage(damage * hit_percent * brutemod * H.physiology.brute_mod, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
+				if(BP.receive_damage(damage * hit_percent * brutemod * H.physiology.brute_mod, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness, attack_direction = attack_direction))
 					H.update_damage_overlays()
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage * hit_percent * brutemod * H.physiology.brute_mod)
 		if(BURN)
 			H.damageoverlaytemp = 20
 			if(BP)
-				if(BP.receive_damage(0, damage * hit_percent * burnmod * H.physiology.burn_mod, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
+				if(BP.receive_damage(0, damage * hit_percent * burnmod * H.physiology.burn_mod, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness, attack_direction = attack_direction))
 					H.update_damage_overlays()
 			else
 				H.adjustFireLoss(damage * hit_percent * burnmod * H.physiology.burn_mod)
@@ -2201,6 +2225,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(H.dna.features["wings"] != wings_icon)
 		mutant_bodyparts |= "wings"
 		H.dna.features["wings"] = wings_icon
+		if(wings_detail && H.dna.features["wingsdetail"] != wings_detail)
+			mutant_bodyparts |= "wingsdetail"
+			H.dna.features["wingsdetail"] = wings_detail
 		H.update_body()
 
 /datum/species/proc/HandleFlight(mob/living/carbon/human/H)

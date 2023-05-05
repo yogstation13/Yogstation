@@ -178,7 +178,7 @@
 //////////////////////////           Humanize               //////////////////////////////
 //Could probably be merged with monkeyize but other transformations got their own procs, too
 
-/mob/living/carbon/proc/humanize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG))
+/mob/living/carbon/proc/humanize(tr_flags = (TR_KEEPITEMS | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_DEFAULTMSG), datum/changelingprofile/chosen_prof)
 	if (notransform || transformation_timer)
 		return
 	//now the rest
@@ -199,9 +199,9 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	new /obj/effect/temp_visual/monkeyify/humanify(loc)
 
-	transformation_timer = addtimer(CALLBACK(src, .proc/finish_humanize, tr_flags), TRANSFORMATION_DURATION, TIMER_UNIQUE)
+	transformation_timer = addtimer(CALLBACK(src, .proc/finish_humanize, tr_flags, chosen_prof), TRANSFORMATION_DURATION, TIMER_UNIQUE)
 
-/mob/living/carbon/proc/finish_humanize(tr_flags)
+/mob/living/carbon/proc/finish_humanize(tr_flags, datum/changelingprofile/chosen_prof)
 	transformation_timer = null
 	var/list/stored_implants = list()
 	var/list/int_organs = list()
@@ -348,6 +348,9 @@
 			loc.vars[A] = O
 
 	transfer_trait_datums(O)
+
+	if(chosen_prof)
+		changeling_transform(O, chosen_prof)
 
 	qdel(src)
 

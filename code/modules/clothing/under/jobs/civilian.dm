@@ -41,6 +41,7 @@
 	icon_state = "captain_skirt"
 	item_state = "b_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
@@ -58,6 +59,7 @@
 	icon_state = "qm_skirt"
 	item_state = "lb_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
@@ -199,6 +201,7 @@
 	icon_state = "hop_skirt"
 	item_state = "b_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
@@ -335,6 +338,7 @@
 	icon_state = "reallyblack_suit_skirt"
 	item_state = "bar_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
@@ -376,6 +380,7 @@
 	icon_state = "mime_skirt"
 	item_state = "mime"
 	body_parts_covered = CHEST|GROIN|ARMS
+	dying_key = DYE_REGISTRY_JUMPSKIRT
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
