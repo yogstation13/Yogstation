@@ -37,6 +37,9 @@
 	var/recalling
 	var/next_spaghetti = 0
 	var/spaghetti_cooldown = 50
+	var/atom/movable/gravity_lens/grav_lens
+
+
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/Initialize()
 	. = ..()
@@ -44,6 +47,16 @@
 	if(!GLOB.ark_of_the_clockwork_justiciar)
 		GLOB.ark_of_the_clockwork_justiciar = src
 	START_PROCESSING(SSprocessing, src)
+	if (!grav_lens)
+		grav_lens = new(src)
+		grav_lens.transform = matrix().Scale(0.5)
+		grav_lens.pixel_x = -240
+		grav_lens.pixel_y = -240
+		// Radioactive green glow messes with the displacement map
+		/*var/datum/component/radioactive/c = grav_lens.GetComponent(/datum/component/radioactive)
+		if(c)
+			c.RemoveComponent()*/
+		vis_contents += grav_lens
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
