@@ -188,14 +188,9 @@
 	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (plates * 2))//longer cooldown the more plates you have
 
 	//telegraph ripped entirely from bubblegum charge
-	var/chargeturf = get_turf(target)
-	if(!chargeturf)
-		return
-	var/dir = get_dir(user, chargeturf)
-	var/turf/T = get_ranged_target_turf(chargeturf, dir)
-	if(!T)
-		return
-	new /obj/effect/temp_visual/dragon_swoop/bubblegum(T)
+	var/telegraph = get_turf(target)
+	if(telegraph && telegraph in view(15, get_turf(user)))//only show the telegraph if the telegraph is actually correct, hard to get an accurate one since raycasting isn't a thing afaik
+		new /obj/effect/temp_visual/dragon_swoop/bubblegum(telegraph)
 
 	leaping = TRUE
 	var/jumpspeed = heavy ? 1 : 3
