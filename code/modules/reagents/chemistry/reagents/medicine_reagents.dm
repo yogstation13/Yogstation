@@ -428,7 +428,7 @@
 	name = "Charcoal"
 	description = "Heals toxin damage as well as slowly removing any other chemicals the patient has in their bloodstream."
 	reagent_state = LIQUID
-	color = "#000000"
+	color = "#808080"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "ash"
 
