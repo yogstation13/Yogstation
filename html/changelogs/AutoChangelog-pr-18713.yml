@@ -1,0 +1,8 @@
+author: " Skrem_7, ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Adds the Vatra M38 pistol and a respective crate in the Security section of Cargo"
+  - rscadd: "Adds .38 AP, .38 frost, .38 talon, and .38 bluespace magazines"
+  - tweak: "Techshell moved back to experimental ammo"
+  - bugfix: "Armory WT (not actually in the armory) should be able to load other WT magazines now"
+  - imageadd: "Sprites for the gun + magazine types"
