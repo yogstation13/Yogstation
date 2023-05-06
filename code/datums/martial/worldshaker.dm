@@ -478,6 +478,7 @@
 		user.physiology.damage_resistance -= PLATE_REDUCTION
 	plates--
 	update_platespeed(user)
+	user.visible_message("With a burst of metal, [user] sends [attacker] flying.", "You shed a plate to repel [attacker]'s attack.")
 	push_away(user, attacker, 20)//don't EVER come at me with that B
 	
 /*---------------------------------------------------------------
