@@ -11,6 +11,9 @@
 #define MAX_PLATES 7 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
 #define PLATE_CAP MAX_PLATES * 2 //hard cap of plates to prevent station wide fuckery
 #define BALLOON_COOLDOWN 1 SECONDS  //limit the balloon alert spam of rapid click
+#define THROW_TOSSDMG 10 //the damage dealt by the initial throw
+#define THROW_SLAMDMG 5 //the damage dealt per object impacted during a throw
+#define THROW_OBJDMG 400 //Total amount of structure damage that can be done
 
 /datum/martial_art/worldshaker
 	name = "Worldshaker"
@@ -54,7 +57,7 @@
 		rip_plate(H)
 	if(thrown.len > 0 && H.a_intent == INTENT_GRAB)
 		if(get_turf(target) != get_turf(H))
-			lob(H, target)
+			throw_start(H, target)
 
 	if(!H.Adjacent(target) || H==target)
 		return
@@ -282,10 +285,7 @@
 		thrown |= victim // Marks the mob to throw
 		return
 
-/datum/martial_art/worldshaker/proc/lob(mob/living/user, atom/target) //proc for throwing something you picked up with grapple
-	var/slamdam = 5
-	var/throwdam = 10
-	var/objdam = 400 //really good at breaking terrain, reduces as the damage is dealt
+/datum/martial_art/worldshaker/proc/throw_start(mob/living/user, atom/target)//proc for throwing something you picked up with grapple
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
 	var/atom/tossed = thrown[1]
@@ -298,76 +298,79 @@
 		return 
 	if(iscarbon(tossed))
 		var/mob/living/carbon/tossedliving = thrown[1]
-		var/obj/item/bodypart/limb_to_hit = tossedliving.get_bodypart(user.zone_selected)
 		if(!tossedliving.buckled)
 			return
-		grab(user, tossedliving, throwdam) // Apply damage
+		grab(user, tossedliving, THROW_TOSSDMG) // Apply damage
 		for(var/obj/structure/bed/grip/holder in view(1, user))
 			holder.Destroy()
-		if(!limb_to_hit)
-			limb_to_hit = tossedliving.get_bodypart(BODY_ZONE_CHEST)
 	user.visible_message(span_warning("[user] throws [tossed]!"))
-	for(var/i = 1 to target_dist)
-		if(QDELETED(tossed))//if the thrown person is deleted,
-			return
-		var/dir_to_target = get_dir(get_turf(tossed), D) //vars that let the thing be thrown while moving similar to things thrown normally
-		var/turf/T = get_step(get_turf(tossed), dir_to_target)
-		if(objdam <= 0)// or total damage has run out, end the throw
-			playsound(T, 'sound/effects/gravhit.ogg', 40, TRUE, 5)
-			return
-		if(T.density) // crash into a wall and damage everything flying towards it before stopping 
-			for(var/mob/living/victim in thrown)
-				grab(user, victim, slamdam) 
+
+	throw_process(user, target_dist, 1, tossed, D, THROW_OBJDMG)
+
+/datum/martial_art/worldshaker/proc/throw_process(mob/living/user, target_dist, current_dist, atom/tossed, turf/target, remaining_damage)//each call of the throw loop
+	if(!target_dist || !current_dist || !tossed || current_dist > target_dist)
+		drop()
+		return
+	if(remaining_damage <= 0)// or total damage has run out, end the throw
+		drop()
+		playsound(get_turf(tossed), 'sound/effects/gravhit.ogg', 60, TRUE, 5)
+		return
+
+	var/dir_to_target = get_dir(get_turf(tossed), target) //vars that let the thing be thrown while moving similar to things thrown normally
+	var/turf/T = get_step(get_turf(tossed), dir_to_target)
+	if(T.density) // crash into a wall and damage everything flying towards it before stopping 
+		for(var/mob/living/victim in thrown)
+			grab(user, victim, THROW_SLAMDMG) 
+			victim.Knockdown(1 SECONDS)
+			victim.Immobilize(1 SECONDS)
+			if(isanimal(victim) && victim.stat == DEAD)
+				victim.gib()	
+		playsound(T, 'sound/effects/gravhit.ogg', 60, TRUE, 5)
+		drop()
+		return
+	for(var/obj/thing in T.contents) // crash into something solid and damage it along with thrown objects that hit it
+		if(thing.density) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
+			for(var/mob/living/victim in thrown) 
+				grab(user, victim, THROW_SLAMDMG) 
 				victim.Knockdown(1 SECONDS)
 				victim.Immobilize(1 SECONDS)
 				if(isanimal(victim) && victim.stat == DEAD)
-					victim.gib()	
-			drop()
-			return
-		for(var/obj/thing in T.contents) // crash into something solid and damage it along with thrown objects that hit it
-			if(thing.density) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
-				for(var/mob/living/victim in thrown) 
-					grab(user, victim, slamdam) 
-					victim.Knockdown(1 SECONDS)
-					victim.Immobilize(1 SECONDS)
-					if(isanimal(victim) && victim.stat == DEAD)
-						victim.gib()
-					if(istype(thing, /obj/machinery/disposal/bin)) // dumpster living things tossed into the trash
-						var/obj/machinery/disposal/bin/dumpster = thing
-						victim.forceMove(thing)
-						thing.visible_message(span_warning("[victim] is thrown down the trash chute!"))
-						dumpster.do_flush()
-						drop()
-						return
-				var/reduction = thing.obj_integrity
-				thing.take_damage(objdam)
-				objdam -= reduction
-				if(thing.density)
-					playsound(thing, 'sound/effects/gravhit.ogg', 40, TRUE, 5)
+					victim.gib()
+				if(istype(thing, /obj/machinery/disposal/bin)) // dumpster living things tossed into the trash
+					var/obj/machinery/disposal/bin/dumpster = thing
+					victim.forceMove(thing)
+					thing.visible_message(span_warning("[victim] is thrown down the trash chute!"))
+					dumpster.do_flush()
 					drop()
-					return // if the solid thing we hit doesnt break then the thrown thing is stopped
-		for(var/mob/living/hit in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
-			if(user != hit)
-				grab(user, hit, slamdam) 
-				hit.Knockdown(1 SECONDS) 
-				for(var/mob/living/victim in thrown)
-					grab(user, victim, slamdam) 
-					victim.Knockdown(1 SECONDS) 
-				thrown |= hit
-		if(T) // if the next tile wont stop the thrown mass from continuing
+					return
+			var/reduction = thing.obj_integrity
+			thing.take_damage(remaining_damage)
+			remaining_damage -= reduction
+			if(thing.density)
+				playsound(T, 'sound/effects/gravhit.ogg', 60, TRUE, 5)
+				drop()
+				return // if the solid thing we hit doesnt break then the thrown thing is stopped
+	for(var/mob/living/hit in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
+		if(user != hit)
+			grab(user, hit, THROW_SLAMDMG) 
+			hit.Knockdown(1 SECONDS) 
 			for(var/mob/living/victim in thrown)
+				grab(user, victim, THROW_SLAMDMG) 
+				victim.Knockdown(1 SECONDS) 
+			thrown |= hit
+	if(T) // if the next tile wont stop the thrown mass from continuing
+		for(var/atom/movable/thing in thrown) // to make the mess of things that's being thrown almost look like a normal throw
+			if(isliving(thing))
+				var/mob/living/victim = thing
 				victim.Knockdown(1 SECONDS)
 				victim.Immobilize(1 SECONDS)
-			for(var/atom/movable/thing in thrown) // to make the mess of things that's being thrown almost look like a normal throw
-				thing.SpinAnimation(0.2 SECONDS, 1) 
-				sleep(0.001 SECONDS)
-				thing.forceMove(T)
-				if(isspaceturf(T)) // throw them like normal if it's into space
-					var/atom/throw_target = get_edge_target_turf(thing, dir_to_target)
-					thing.throw_at(throw_target, 6, 5, user, 3)
-					thrown.Remove(thing)
-	drop()
-	return
+			thing.SpinAnimation(0.2 SECONDS, 1) 
+			thing.forceMove(T)
+			if(isspaceturf(T)) // throw them like normal if it's into space
+				var/atom/throw_target = get_edge_target_turf(thing, dir_to_target)
+				thing.throw_at(throw_target, 6, 5, user, 3)
+				thrown.Remove(thing)
+		addtimer(CALLBACK(src, PROC_REF(throw_process), user, target_dist, current_dist + 1, tossed, target, remaining_damage), 0.1)
 
 /*---------------------------------------------------------------
 	end of grapple section
@@ -588,3 +591,7 @@
 #undef PLATE_REDUCTION
 #undef MAX_PLATES
 #undef PLATE_CAP
+#undef BALLOON_COOLDOWN
+#undef THROW_TOSSDMG
+#undef THROW_SLAMDMG
+#undef THROW_OBJDMG
