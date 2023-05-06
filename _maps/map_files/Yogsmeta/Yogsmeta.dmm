@@ -73022,6 +73022,27 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"suo" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	frequency = 1485;
+	name = "Station Intercom (Medbay)";
+	pixel_x = 32
+	},
+/obj/machinery/button/door{
+	id = "chemistry_shutters";
+	name = "chemistry shutters control";
+	pixel_x = 26;
+	pixel_y = -9;
+	req_access_txt = "5; 33"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "suM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -73036,16 +73057,6 @@
 	icon_state = "platingdmg1"
 	},
 /area/maintenance/starboard/aft)
-"suP" = (
-/obj/machinery/button/door{
-	id = "chemistry_shutters";
-	name = "chemistry shutters control";
-	pixel_x = -8;
-	pixel_y = -7;
-	req_access_txt = "5; 33"
-	},
-/turf/closed/wall,
-/area/medical/chemistry)
 "suR" = (
 /turf/open/floor/plasteel/grimy,
 /area/security/interrogation)
@@ -80317,20 +80328,6 @@
 /obj/structure/bookcase/manuals/research_and_development,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"wVZ" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/line{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	frequency = 1485;
-	name = "Station Intercom (Medbay)";
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "wWP" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -108889,7 +108886,7 @@ ckQ
 dsq
 wjN
 uSP
-wVZ
+suo
 kzY
 awz
 kPz
@@ -109146,7 +109143,7 @@ iox
 jjT
 cga
 iDY
-suP
+cga
 iDY
 cga
 cga
