@@ -1072,6 +1072,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/alliescocktail/reaction_mob(mob/living/M, method=TOUCH)
 	if(method == INGEST)
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "ally_power", name)
+		to_chat(M, span_notice("There are allies everywhere!"))
 	return ..()
 
 /datum/reagent/consumable/ethanol/acid_spit
