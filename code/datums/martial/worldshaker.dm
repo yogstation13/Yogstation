@@ -516,7 +516,7 @@
 	The shockwave will knock back and stagger all mobs in a larger radius. Objects and structures within the extended radius will be thrown or damaged respectively. \
 	The radius, knockback, and damage all scale with number of plates."
 
-	combined_msg +=  "[span_notice("Landslide")]: If hit by a melee attack while in throw mode, you will block it and send the attacker flying."
+	combined_msg +=  "[span_notice("Landslide")]: If hit by a melee attack while in throw mode, you will expel one of your loose plates to block it and send the attacker flying."
 
 	combined_msg += span_notice("Being in this state causes you to burn energy significantly faster.")
 	combined_msg += span_notice("Your considerably increased weight will prevent you from using most conventional vehicles.")
