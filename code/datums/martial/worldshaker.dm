@@ -121,7 +121,7 @@
 	user.throw_mode_on()
 
 /datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
-	block_chance = plates ? initail(block_chance) : 0
+	block_chance = plates ? initial(block_chance) : 0
 	heavy = plates > MAX_PLATES
 	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
 	user.remove_movespeed_modifier(type)
