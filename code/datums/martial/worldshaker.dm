@@ -17,7 +17,7 @@
 	id = MARTIALART_WORLDSHAKER
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/worldshaker_help
-	block_chance = 100 //validhunters cry
+	block_chance = 90 //validhunters cry
 	var/recalibration = /mob/living/carbon/human/proc/worldshaker_recalibration
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_leap)
@@ -121,6 +121,7 @@
 	user.throw_mode_on()
 
 /datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
+	block_chance = plates ? initail(block_chance) : 0
 	heavy = plates > MAX_PLATES
 	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
 	user.remove_movespeed_modifier(type)
@@ -473,6 +474,10 @@
 	end of stomp section
 ---------------------------------------------------------------*/
 /datum/martial_art/worldshaker/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)
+	if(plates <= MAX_PLATES)
+		user.physiology.damage_resistance -= PLATE_REDUCTION
+	plates--
+	update_platespeed(user)
 	push_away(user, attacker, 20)//don't EVER come at me with that B
 	
 /*---------------------------------------------------------------
@@ -512,9 +517,9 @@
 
 	combined_msg +=  "[span_notice("Landslide")]: If hit by a melee attack while in throw mode, you will block it and send the attacker flying."
 
-	combined_msg += span_notice("<b>Being in this state causes you to burn energy significantly faster.</b>")
-
-	combined_msg += span_notice("<b>Should your strength fail you, an attempt to regain strength can be made with the 'Flush Circuits' function.</b>")
+	combined_msg += span_notice("Being in this state causes you to burn energy significantly faster.")
+	combined_msg += span_notice("Your considerably increased weight will prevent you from using most conventional vehicles.")
+	combined_msg += span_notice("Should your strength fail you, an attempt to regain strength can be made with the 'Flush Circuits' function.")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
@@ -544,6 +549,7 @@
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
+	ADD_TRAIT(H, TRAIT_NOVEHICLE, type)
 	if(!linked_stomp)
 		linked_stomp = new
 		linked_stomp.linked_martial = src
@@ -565,7 +571,7 @@
 	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	REMOVE_TRAIT(H, TRAIT_BOMBIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
-	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
+	REMOVE_TRAIT(H, TRAIT_NOVEHICLE, type)
 	if(linked_stomp)
 		linked_stomp.Remove(H)
 	return ..()
