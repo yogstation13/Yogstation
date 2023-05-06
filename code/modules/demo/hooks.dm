@@ -10,6 +10,7 @@
 /mob/Login()
 	. = ..()
 	SSdemo.write_event_line("setmob [client.ckey] \ref[src]") 
+* handled in code\modules\mob.dm 
 */
 
 /client/New()
