@@ -49,13 +49,9 @@
 	START_PROCESSING(SSprocessing, src)
 	if (!grav_lens)
 		grav_lens = new(src)
-		grav_lens.transform = matrix().Scale(0.5)
+		grav_lens.transform = matrix().Scale(0.15)
 		grav_lens.pixel_x = -240
 		grav_lens.pixel_y = -240
-		// Radioactive green glow messes with the displacement map
-		/*var/datum/component/radioactive/c = grav_lens.GetComponent(/datum/component/radioactive)
-		if(c)
-			c.RemoveComponent()*/
 		vis_contents += grav_lens
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
@@ -72,6 +68,19 @@
 					M.playsound_local(M, 'sound/machines/clockcult/ark_scream.ogg', 100, FALSE, pressure_affected = FALSE)
 			hierophant_message("<span class='big boldwarning'>The Ark is taking damage!</span>")
 	last_scream = world.time + ARK_SCREAM_COOLDOWN
+	if(grav_lens)
+		addtimer(CALLBACK(src, PROC_REF(grow), damage_amount), 0.01 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(shrink)), 0.69 SECONDS)
+
+
+/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/grow(damage_amount)
+		animate(grav_lens, transform = matrix().Scale(0.4 + damage_amount/125), time = 0.2)
+
+/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/shrink()
+		animate(grav_lens, transform = matrix().Scale(0.15), time = 0.5)
+
+/obj/structure/destructible/clockwork/massive/celestial_gateway/proc/growEnd(end_time)
+		animate(grav_lens, transform = matrix().Scale(2), time = end_time)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/fork))
@@ -204,6 +213,7 @@
 			countdown.stop()
 			visible_message(span_userdanger("[src] begins to pulse uncontrollably... you might want to run!"))
 			sound_to_playing_players(volume = 50, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_disrupted.ogg'))
+			growEnd(2 SECONDS)
 			for(var/mob/M in GLOB.player_list)
 				var/turf/T = get_turf(M)
 				if((T && T.z == z) || is_servant_of_ratvar(M))
@@ -350,6 +360,7 @@
 				resistance_flags |= INDESTRUCTIBLE
 				purpose_fulfilled = TRUE
 				make_glow()
+				growEnd(14 SECONDS)
 				animate(glow, transform = matrix() * 1.5, alpha = 255, time = 12.5 SECONDS)
 				sound_to_playing_players(volume = 100, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/ratvar_rises.ogg')) //End the sounds
 				sleep(12.5 SECONDS)
