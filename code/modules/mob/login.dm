@@ -49,6 +49,7 @@
 	client.statobj = src
 	
 	SSdemo.write_event_line("setmob [client.ckey] \ref[src]")
+
 	// DO NOT CALL PARENT HERE
 	// BYOND's internal implementation of login does two things
 	// 1: Set statobj to the mob being logged into (We got this covered)
