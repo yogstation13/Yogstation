@@ -309,6 +309,7 @@
 	if(remaining_damage <= 0)// or total damage has run out, end the throw
 		drop()
 		playsound(get_turf(tossed), 'sound/effects/gravhit.ogg', 60, TRUE, 5)
+		playsound(get_turf(tossed), 'sound/effects/meteorimpact.ogg', 50, TRUE, 5)
 		return
 
 	var/dir_to_target = get_dir(get_turf(tossed), target) //vars that let the thing be thrown while moving similar to things thrown normally
@@ -321,6 +322,7 @@
 			if(isanimal(victim) && victim.stat == DEAD)
 				victim.gib()	
 		playsound(T, 'sound/effects/gravhit.ogg', 60, TRUE, 5)
+		playsound(T, 'sound/effects/meteorimpact.ogg', 50, TRUE, 5)
 		drop()
 		return
 	for(var/obj/thing in T.contents) // crash into something solid and damage it along with thrown objects that hit it
@@ -362,7 +364,7 @@
 			thing.forceMove(T)
 			if(isspaceturf(T)) // throw them like normal if it's into space
 				var/atom/throw_target = get_edge_target_turf(thing, dir_to_target)
-				thing.throw_at(throw_target, 6, 5, user, 3)
+				thing.throw_at(throw_target, 6, 10, user, 3)//lol bye
 				thrown.Remove(thing)
 		addtimer(CALLBACK(src, PROC_REF(throw_process), user, target_dist, current_dist + 1, tossed, target, remaining_damage), 0.1)
 
