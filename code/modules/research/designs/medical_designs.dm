@@ -818,7 +818,7 @@
 	name = "DNA Recovery"
 	desc = "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
 	id = "surgery_dna_recovery"
-	surgery = list(/datum/surgery/advanced/dna_recovery, /datum/surgery/advanced/dna_recovery/alien)
+	surgery = list(/datum/surgery/advanced/dna_recovery, /datum/surgery/advanced/dna_recovery/mechanic, /datum/surgery/advanced/dna_recovery/alien)
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/brainwashing

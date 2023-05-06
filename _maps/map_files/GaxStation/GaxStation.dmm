@@ -5441,17 +5441,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"cHy" = (
-/obj/machinery/sleeper,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "cHZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -7755,6 +7744,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"dSW" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 28
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "dTo" = (
 /obj/machinery/light{
 	dir = 4
@@ -10646,6 +10646,18 @@
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
+"few" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "feB" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -28962,19 +28974,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"orq" = (
-/obj/structure/bodycontainer/morgue{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "ors" = (
 /turf/closed/wall/r_wall,
 /area/security/prison)
@@ -34642,6 +34641,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"rmU" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 9
+	},
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = 24
+	},
+/obj/structure/bodycontainer/morgue,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "rmW" = (
 /obj/machinery/status_display/evac{
 	layer = 4
@@ -41852,15 +41862,6 @@
 "uRB" = (
 /turf/open/floor/engine,
 /area/engine/engineering)
-"uRN" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "uRS" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
@@ -73367,8 +73368,8 @@ bkG
 hRk
 stx
 qBn
-cHy
-uRN
+rmU
+few
 xst
 xeh
 xLJ
@@ -73881,7 +73882,7 @@ uYy
 kAo
 agN
 qBn
-orq
+dSW
 wPo
 hzT
 fra

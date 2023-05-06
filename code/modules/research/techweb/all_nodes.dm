@@ -726,7 +726,7 @@
 	display_name = "Ballistic Weaponry"
 	description = "This isn't research.. This is reverse-engineering!"
 	prereq_ids = list("weaponry")
-	design_ids = list("mag_oldsmg", "mag_oldsmg_ap", "mag_oldsmg_ic", "mag_oldsmg_rubber")
+	design_ids = list("mag_v38", "mag_v38_ap", "mag_v38_rubber", "mag_oldsmg", "mag_oldsmg_ap", "mag_oldsmg_ic", "mag_oldsmg_rubber")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/exotic_ammo
@@ -734,7 +734,7 @@
 	display_name = "Exotic Ammunition"
 	description = "They won't know what hit em."
 	prereq_ids = list("adv_weaponry")
-	design_ids = list("c38_hotshot", "c38_iceblox", "c38_gutterpunch")
+	design_ids = list("mag_v38_frost", "mag_v38_talon")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/gravity_gun
@@ -750,7 +750,7 @@
 	display_name = "Experimental Ammunition"
 	description = "We're hitting levels of power that shouldn't be possible."
 	prereq_ids = list("exotic_ammo","ballistic_weapons")
-	design_ids = list("techshotshell", "mag_oldsmg_kraken", "mag_oldsmg_snakebite")
+	design_ids = list("techshotshell", "mag_v38_bluespace", "mag_oldsmg_kraken", "mag_oldsmg_snakebite")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 ////////////////////////mech technology////////////////////////
