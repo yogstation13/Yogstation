@@ -47,7 +47,7 @@
 	START_PROCESSING(SSprocessing, src)
 	if (!grav_lens)
 		grav_lens = new(src)
-		grav_lens.transform = matrix().Scale(0.15)
+		grav_lens.transform = matrix().Scale(0.8)
 		grav_lens.pixel_x = -240
 		grav_lens.pixel_y = -240
 		vis_contents += grav_lens
@@ -75,7 +75,7 @@
 		animate(grav_lens, transform = matrix().Scale(0.1 + damage_amount/80), time = 0.2)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/shrink()
-		animate(grav_lens, transform = matrix().Scale(0.15), time = 0.3)
+		animate(grav_lens, transform = matrix().Scale(0.8), time = 0.3)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/growEnd(end_time)
 		animate(grav_lens, transform = matrix().Scale(2), time = end_time)
