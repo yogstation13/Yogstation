@@ -18,6 +18,7 @@
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/worldshaker_help
 	block_chance = 100 //validhunters cry
+	var/recalibration = /mob/living/carbon/human/proc/worldshaker_recalibration
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_leap)
 	COOLDOWN_DECLARE(next_balloon)
@@ -513,8 +514,19 @@
 
 	combined_msg += span_notice("<b>Being in this state causes you to burn energy significantly faster.</b>")
 
+	combined_msg += span_notice("<b>Should your strength fail you, an attempt to regain strength can be made with the 'Flush Circuits' function.</b>")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
+
+/mob/living/carbon/human/proc/worldshaker_recalibration()
+	set name = "Flush Circuits"
+	set desc = "Flush 'clogged' circuits in order to regain lost strength."
+	set category = "Worldshaker"
+	var/list/combined_msg = list()
+	combined_msg +=  "<b><i>You flush your circuits with excess power to reduce built up strain on your limbs.</i></b>"
+	to_chat(usr, examine_block(combined_msg.Join("\n")))
+
+	usr.click_intercept = usr.mind.martial_art
 
 /datum/martial_art/worldshaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
@@ -525,6 +537,7 @@
 		S.punchdamagehigh += 5
 		S.punchstunthreshold += 5
 	usr.click_intercept = src 
+	add_verb(H, recalibration)
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 	update_platespeed(H)
 	ADD_TRAIT(H, TRAIT_RESISTHEAT, type) //walk through that fire all you like, hope you don't care about your clothes
@@ -544,6 +557,7 @@
 		S.punchdamagehigh -= 5
 		S.punchstunthreshold -= 5
 	usr.click_intercept = null 
+	remove_verb(H, recalibration)
 	H.physiology.damage_resistance -= PLATE_REDUCTION * min(plates, MAX_PLATES)
 	deltimer(plate_timer)
 	H.remove_movespeed_modifier(type)
