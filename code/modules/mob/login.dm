@@ -47,11 +47,13 @@
 	next_move = 1
 
 	client.statobj = src
-
+	
+	SSdemo.write_event_line("setmob [client.ckey] \ref[src]")
 	// DO NOT CALL PARENT HERE
 	// BYOND's internal implementation of login does two things
 	// 1: Set statobj to the mob being logged into (We got this covered)
 	// 2: And I quote "If the mob has no location, place it near (1,1,1) if possible"
+	// 3: Yog: handle the mob client in replays
 	// See, near is doing an agressive amount of legwork there
 	// What it actually does is takes the area that (1,1,1) is in, and loops through all those turfs
 	// If you successfully move into one, it stops
