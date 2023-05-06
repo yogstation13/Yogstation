@@ -27498,6 +27498,25 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/port)
+"gRT" = (
+/obj/structure/table/wood,
+/obj/item/storage/briefcase{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/storage/pill_bottle/gummies/mindbreaker{
+	pixel_x = 8
+	},
+/obj/item/storage/pill_bottle/gummies/mindbreaker{
+	pixel_x = 8;
+	pixel_y = 10
+	},
+/obj/item/storage/pill_bottle/psicodine{
+	pixel_x = -10;
+	pixel_y = 60
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "gSd" = (
 /obj/machinery/camera{
 	c_tag = "Research Division Access"
@@ -57088,14 +57107,6 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"sUY" = (
-/obj/structure/table/wood,
-/obj/item/storage/briefcase{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "sVu" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -108741,7 +108752,7 @@ vFJ
 jdO
 cQo
 hpd
-sUY
+gRT
 jxu
 bSN
 pYm

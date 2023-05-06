@@ -50570,10 +50570,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"pLl" = (
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/medical/psych)
 "pLm" = (
 /obj/machinery/firealarm{
 	pixel_y = 26
@@ -76255,6 +76251,26 @@
 /obj/effect/landmark/start/warden,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
+"yeX" = (
+/obj/structure/table/wood,
+/obj/item/storage/pill_bottle/psicodine{
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/obj/item/storage/pill_bottle/psicodine{
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/obj/item/storage/pill_bottle/gummies/mindbreaker{
+	pixel_x = -2;
+	pixel_y = 9
+	},
+/obj/item/storage/pill_bottle/gummies/mindbreaker{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "yff" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/o2{
@@ -109385,7 +109401,7 @@ uut
 aVN
 kME
 yfh
-pLl
+yeX
 qkj
 aVN
 mNt

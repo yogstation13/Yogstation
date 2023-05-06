@@ -53854,18 +53854,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"gdq" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/pen/fountain{
-	pixel_x = -4;
-	pixel_y = 1
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "gdD" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -80286,6 +80274,29 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"wSK" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/pen/fountain{
+	pixel_x = 6
+	},
+/obj/item/storage/pill_bottle/psicodine{
+	pixel_x = -1;
+	pixel_y = 8
+	},
+/obj/item/storage/pill_bottle/gummies/mindbreaker{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/storage/pill_bottle/gummies/mindbreaker{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "wSR" = (
 /turf/open/floor/engine/air,
 /area/engine/atmos/distro)
@@ -106091,7 +106102,7 @@ uex
 auQ
 caS
 yaA
-gdq
+wSK
 vYl
 auQ
 lMW
