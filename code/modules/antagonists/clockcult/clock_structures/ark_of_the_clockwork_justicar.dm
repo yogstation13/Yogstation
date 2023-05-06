@@ -39,8 +39,6 @@
 	var/spaghetti_cooldown = 50
 	var/atom/movable/gravity_lens/grav_lens
 
-
-
 /obj/structure/destructible/clockwork/massive/celestial_gateway/Initialize()
 	. = ..()
 	glow = new(get_turf(src))
@@ -70,14 +68,14 @@
 	last_scream = world.time + ARK_SCREAM_COOLDOWN
 	if(grav_lens)
 		addtimer(CALLBACK(src, PROC_REF(grow), damage_amount), 0.01 SECONDS)
-		addtimer(CALLBACK(src, PROC_REF(shrink)), 0.69 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(shrink)), 0.7 SECONDS)
 
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/grow(damage_amount)
-		animate(grav_lens, transform = matrix().Scale(0.4 + damage_amount/125), time = 0.2)
+		animate(grav_lens, transform = matrix().Scale(0.1 + damage_amount/80), time = 0.2)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/shrink()
-		animate(grav_lens, transform = matrix().Scale(0.15), time = 0.5)
+		animate(grav_lens, transform = matrix().Scale(0.15), time = 0.3)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/growEnd(end_time)
 		animate(grav_lens, transform = matrix().Scale(2), time = end_time)
@@ -360,12 +358,12 @@
 				resistance_flags |= INDESTRUCTIBLE
 				purpose_fulfilled = TRUE
 				make_glow()
-				growEnd(14 SECONDS)
 				animate(glow, transform = matrix() * 1.5, alpha = 255, time = 12.5 SECONDS)
 				sound_to_playing_players(volume = 100, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/ratvar_rises.ogg')) //End the sounds
 				sleep(12.5 SECONDS)
 				make_glow()
 				animate(glow, transform = matrix() * 3, alpha = 0, time = 0.5 SECONDS)
+				growEnd(14 SECONDS)
 				QDEL_IN(src, 0.3 SECONDS)
 				sleep(0.3 SECONDS)
 				GLOB.clockwork_gateway_activated = TRUE
