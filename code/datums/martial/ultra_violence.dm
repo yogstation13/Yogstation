@@ -13,6 +13,7 @@
 	reroute_deflection = TRUE
 	help_verb = /mob/living/carbon/human/proc/ultra_violence_help
 	///used to keep track of the dash stuff
+	var/recalibration = /mob/living/carbon/human/proc/violence_recalibration
 	var/dashing = FALSE
 	var/dashes = 3
 	var/dash_timer = null
@@ -233,6 +234,17 @@
 	to_chat(usr, "[span_notice("Gun Hand")]: Harm Grab. Shoots the target with the shotgun in your hand.")
 	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere.")
 	to_chat(usr, span_notice("Completing any combo will give a speed buff with a duration scaling based on combo difficulty."))
+	to_chat(usr, span_notice("Should your dash cease functioning, use the 'Reinitialize Module' function."))
+
+/mob/living/carbon/human/proc/violence_recalibration()
+	set name = "Reinitialize Module"
+	set desc = "Turn your Ultra Violence module off and on again to fix problems."
+	set category = "Ultra Violence"
+	var/list/combined_msg = list()
+	combined_msg +=  "<b><i>You reboot your Ultra Violence module to remove any runtime errors.</i></b>"
+	to_chat(usr, examine_block(combined_msg.Join("\n")))
+
+	usr.click_intercept = usr.mind.martial_art
 
 /datum/martial_art/ultra_violence/teach(mob/living/carbon/human/H, make_temporary=0)//brace your eyes for this mess of buffs
 	..()
@@ -250,6 +262,7 @@
 	ADD_TRAIT(H, TRAIT_NODISMEMBER, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, IPCMARTIAL)///mainly so emps don't end you instantly, they still do damage though
 	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
+	add_verb(H, recalibration)
 	usr.click_intercept = src //probably breaks something, don't know what though
 	H.dna.species.GiveSpeciesFlight(H)//because... c'mon
 
@@ -270,6 +283,7 @@
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, IPCMARTIAL)
 	deltimer(dash_timer)
 	H.clear_alert("dash_charge")
+	remove_verb(H, recalibration)
 	usr.click_intercept = null //un-breaks the thing that i don't know is broken
 	//not likely they'll lose the martial art i guess, so i guess they can keep the wings since i don't know how to remove them
 
