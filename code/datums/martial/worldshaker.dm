@@ -13,7 +13,7 @@
 #define BALLOON_COOLDOWN 1 SECONDS  //limit the balloon alert spam of rapid click
 #define THROW_TOSSDMG 10 //the damage dealt by the initial throw
 #define THROW_SLAMDMG 5 //the damage dealt per object impacted during a throw
-#define THROW_OBJDMG 400 //Total amount of structure damage that can be done
+#define THROW_OBJDMG 500 //Total amount of structure damage that can be done
 
 /datum/martial_art/worldshaker
 	name = "Worldshaker"
@@ -189,7 +189,7 @@
 
 	//telegraph ripped entirely from bubblegum charge
 	var/telegraph = get_turf(target)
-	if(telegraph && telegraph in view(15, get_turf(user)))//only show the telegraph if the telegraph is actually correct, hard to get an accurate one since raycasting isn't a thing afaik
+	if(telegraph && (telegraph in view(15, get_turf(user))))//only show the telegraph if the telegraph is actually correct, hard to get an accurate one since raycasting isn't a thing afaik
 		new /obj/effect/temp_visual/dragon_swoop/bubblegum(telegraph)
 
 	leaping = TRUE
@@ -317,7 +317,7 @@
 		for(var/mob/living/victim in thrown)
 			grab(user, victim, THROW_SLAMDMG) 
 			victim.Knockdown(1 SECONDS)
-			victim.Immobilize(1 SECONDS)
+			victim.Immobilize(0.5 SECONDS)
 			if(isanimal(victim) && victim.stat == DEAD)
 				victim.gib()	
 		playsound(T, 'sound/effects/gravhit.ogg', 60, TRUE, 5)
@@ -328,7 +328,7 @@
 			for(var/mob/living/victim in thrown) 
 				grab(user, victim, THROW_SLAMDMG) 
 				victim.Knockdown(1 SECONDS)
-				victim.Immobilize(1 SECONDS)
+				victim.Immobilize(0.5 SECONDS)
 				if(isanimal(victim) && victim.stat == DEAD)
 					victim.gib()
 				if(istype(thing, /obj/machinery/disposal/bin)) // dumpster living things tossed into the trash
@@ -342,9 +342,8 @@
 			thing.take_damage(remaining_damage)
 			remaining_damage -= reduction
 			if(thing.density)
-				playsound(T, 'sound/effects/gravhit.ogg', 60, TRUE, 5)
-				drop()
-				return // if the solid thing we hit doesnt break then the thrown thing is stopped
+				throw_process(user, target_dist, current_dist, tossed, target, remaining_damage)//keep damaging until the damage dealt is run out
+				return
 	for(var/mob/living/hit in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
 		if(user != hit)
 			grab(user, hit, THROW_SLAMDMG) 
@@ -358,7 +357,7 @@
 			if(isliving(thing))
 				var/mob/living/victim = thing
 				victim.Knockdown(1 SECONDS)
-				victim.Immobilize(1 SECONDS)
+				victim.Immobilize(0.5 SECONDS)
 			thing.SpinAnimation(0.2 SECONDS, 1) 
 			thing.forceMove(T)
 			if(isspaceturf(T)) // throw them like normal if it's into space
