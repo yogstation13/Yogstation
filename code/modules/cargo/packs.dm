@@ -260,7 +260,7 @@
 
 /datum/supply_pack/security/ammo
 	name = "Ammo Crate"
-	desc = "Contains two 20-round magazines for the WT-550 Auto Carbine, three boxes of buckshot ammo, and three boxes of rubber ammo. Requires Security access to open."
+	desc = "Contains two 20-round magazines for the WT-550 Auto Carbine, two 8-round magazines for the Vatra M38 Pistol, three boxes of buckshot ammo, and three boxes of rubber ammo. Requires Security access to open."
 	cost = 2500
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
@@ -317,6 +317,19 @@
 					/obj/item/ammo_box/magazine/recharge/ntusp,
 					/obj/item/ammo_box/magazine/recharge/ntusp)
 	crate_name = "nt-usp crate"
+
+/datum/supply_pack/security/v38pistol
+	name = "Vatra M38 Pistol Crate"
+	desc = "A pack containing three Vatra M38s, an unusual handgun which loads .38 special designed for unarmored targets. Three spare magazines are included. Requires Security access to open."
+	cost = 4000
+	access_view = ACCESS_ARMORY
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/ammo_box/magazine/v38,
+					/obj/item/ammo_box/magazine/v38,
+					/obj/item/ammo_box/magazine/v38)
+	crate_name = "pistol crate"
 
 /datum/supply_pack/security/energypistol
 	name = "Energy Pistol Single-Pack"
