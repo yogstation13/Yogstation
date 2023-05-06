@@ -180,6 +180,9 @@
 	holder.icon_state = "nanites[nanite_percent]"
 
 /datum/component/nanites/proc/on_emp(datum/source, severity)
+	var/datum/component/empprotection/empproof = host_mob.GetExactComponent(/datum/component/empprotection)
+	if(empproof)
+		return // don't do EMP effects if they're protected from EMPs
 	nanite_volume *= (rand(0.75, 0.90))		//Lose 10-25% of nanites
 	adjust_nanites(null, -(rand(5, 30)))		//Lose 5-30 flat nanite volume
 	for(var/X in programs)
