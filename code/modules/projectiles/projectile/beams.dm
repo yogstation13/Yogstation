@@ -154,6 +154,7 @@
 	name = "overcharged emitter beam"
 	icon_state = "u_laser"
 	damage = 50 // EVEN MORE power for the SM
+	range = 250 // More power means longer range
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 	light_color = LIGHT_COLOR_BLUE
 	tracer_type = /obj/effect/projectile/tracer/pulse
