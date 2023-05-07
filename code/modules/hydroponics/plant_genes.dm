@@ -397,14 +397,6 @@
 
 /datum/plant_gene/trait/stinging/on_slip(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	if(isliving(target))
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			if(H.shoes && istype(H.shoes, /obj/item/clothing))
-				if(H.shoes.clothing_flags & THICKMATERIAL)
-					return
-			if(H.wear_suit && istype(H.wear_suit, /obj/item/clothing) && (H.wear_suit.body_parts_covered & FEET))
-				if(H.wear_suit.clothing_flags & THICKMATERIAL)
-					return
 		on_attack(G, target, null, pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
 
 /datum/plant_gene/trait/stinging/on_attack(obj/item/reagent_containers/food/snacks/grown/G, mob/living/target, mob/living/user, def_zone)
