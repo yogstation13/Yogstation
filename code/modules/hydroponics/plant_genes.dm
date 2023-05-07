@@ -397,21 +397,17 @@
 
 /datum/plant_gene/trait/stinging/on_slip(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	if(isliving(target))
-		var/transfer_coeff = 0.2
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(H.shoes && istype(H.shoes, /obj/item/clothing))
 				if(H.shoes.clothing_flags & THICKMATERIAL)
 					return
-				transfer_coeff *= H.shoes.permeability_coefficient // thick shoes like jackboots will protect you
 			if(H.wear_suit && istype(H.wear_suit, /obj/item/clothing) && (H.wear_suit.body_parts_covered & FEET))
 				if(H.wear_suit.clothing_flags & THICKMATERIAL)
 					return
-				transfer_coeff *= H.wear_suit.permeability_coefficient
-		if(transfer_coeff >= 1 / G.seed.potency) // needs at least 5 potency to work at all, 10 to inject through normal shoes, and will not penetrate thick shoes like jackboots at all
-			on_attack(G, target, null, pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG), transfer_coeff)
+		on_attack(G, target, null, pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
 
-/datum/plant_gene/trait/stinging/on_attack(obj/item/reagent_containers/food/snacks/grown/G, mob/living/target, mob/living/user, def_zone, transfer_coeff = 0.2)
+/datum/plant_gene/trait/stinging/on_attack(obj/item/reagent_containers/food/snacks/grown/G, mob/living/target, mob/living/user, def_zone)
 	var/obj/item/bodypart/BP = target.get_bodypart(def_zone)
 	if(G.reagents && G.reagents.total_volume && target.reagents && target.can_inject(user, 0, def_zone) && !(BP && BP.status == BODYPART_ROBOTIC))
 		if(user)
@@ -419,11 +415,13 @@
 			user.log_message("pricked [target == user ? "themselves" : target ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
 			if(target != user && target.ckey && user.ckey) // injecting people with plants now creates admin logs (stolen from hypospray code)
 				log_attack("[user.name] ([user.ckey]) pricked [target.name] ([target.ckey]) with [G], which had [contained] (INTENT: [uppertext(user.a_intent)])")
-		var/injecting_amount = max(1, G.seed.potency * transfer_coeff) // Minimum of 1, max of 20
+		to_chat(target, span_danger("You are pricked by [G]!"))
+		var/injecting_amount = max(G.seed.potency * 0.2) / target.getarmor(def_zone, BIO) // Maximum of 20, reduced by bio protection
+		if(injecting_amount < 1)
+			return
 		var/fraction = min(injecting_amount/G.reagents.total_volume, 1)
 		G.reagents.reaction(target, INJECT, fraction)
 		G.reagents.trans_to(target, injecting_amount)
-		to_chat(target, span_danger("You are pricked by [G]!"))
 
 /datum/plant_gene/trait/smoke
 	name = "gaseous decomposition"
