@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "hypodermic prickles injects on melee attack instead of when thrown, can't inject through thick clothes or robotic limbs, and injection amount is reduced by bio armor"
