@@ -9,7 +9,7 @@
 	var/cauterize_duration = 20 //in seconds
 	include_user = TRUE
 	invocation = "AMOS INO!"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "cauterize"
 
