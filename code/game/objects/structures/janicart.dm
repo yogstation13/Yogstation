@@ -193,6 +193,12 @@
 			user.put_in_hands(myreplacer)
 			to_chat(user, span_notice("You take [myreplacer] from [src]."))
 			myreplacer = null
+		if("Broom")
+			if(!mybroom)
+				return
+			user.put_in_hands(mybroom)
+			to_chat(user, "<span class='notice'>You take [mybroom] from [src].</span>")
+			mybroom = null
 		if("Sign")
 			if(signs <= 0)
 				return

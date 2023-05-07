@@ -1350,6 +1350,7 @@
 Broom
 */
 
+#define BROOM_PUSH_LIMIT 20
 /obj/item/twohanded/broom
 	name = "broom"
 	desc = "This is my BROOMSTICK! It can be used manually or braced with two hands to sweep items as you move. It has a telescopic handle for compact storage."
@@ -1371,44 +1372,57 @@ Broom
 	icon_state = "broom[wielded]"
 
 /obj/item/twohanded/broom/wield(mob/user)
+	SIGNAL_HANDLER
 	. = ..()
 	if(!wielded)
 		return
+
 	to_chat(user, "<span class='notice'>You brace the [src] against the ground in a firm sweeping stance.</span>")
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/sweep)
+	RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, .proc/sweep)
 
 /obj/item/twohanded/broom/unwield(mob/user)
 	. = ..()
-	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
 
 /obj/item/twohanded/broom/afterattack(atom/A, mob/user, proximity)
+	SIGNAL_HANDLER
 	. = ..()
 	if(!proximity)
 		return
-	sweep(user, A, FALSE)
+	sweep(user, A)
 
-/obj/item/twohanded/broom/proc/sweep(mob/user, atom/A, moving = TRUE)
-	var/turf/target
-	if (!moving)
-		if (isturf(A))
-			target = A
-		else
-			target = A.loc
-	else
-		target = user.loc
-	if (locate(/obj/structure/table) in target.contents)
+/obj/item/twohanded/broom/proc/sweep(mob/user, atom/A)
+	SIGNAL_HANDLER
+
+	var/turf/current_item_loc = isturf(A) ? A : A.loc
+	if (!isturf(current_item_loc))
 		return
-	var/i = 0
-	for(var/obj/item/garbage in target.contents)
-		if(!garbage.anchored)
-			garbage.Move(get_step(target, user.dir), user.dir)
-		i++
-		if(i >= 20)
+	var/turf/new_item_loc = get_step(current_item_loc, user.dir)
+	var/obj/machinery/disposal/bin/target_bin = locate(/obj/machinery/disposal/bin) in new_item_loc.contents
+	var/i = 1
+	for (var/obj/item/garbage in current_item_loc.contents)
+		if (!garbage.anchored)
+			if (target_bin)
+				garbage.forceMove(target_bin)
+			else
+				garbage.Move(new_item_loc, user.dir)
+			i++
+		if (i > BROOM_PUSH_LIMIT)
 			break
-	if(i >= 1)
+	if (i > 1)
+		if (target_bin)
+			target_bin.update_icon()
+			to_chat(user, "<span class='notice'>You sweep the pile of garbage into [target_bin].</span>")
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 30, TRUE, -1)
 
 /obj/item/twohanded/broom/proc/janicart_insert(mob/user, obj/structure/janitorialcart/J) //bless you whoever fixes this copypasta
 	J.put_in_cart(src, user)
 	J.mybroom=src
 	J.update_icon()
+
+/obj/item/twohanded/broom/cyborg
+	name = "robotic push broom"
+
+/obj/item/twohanded/broom/cyborg/janicart_insert(mob/user, obj/structure/janitorialcart/J)
+	to_chat(user, "<span class='notice'>You cannot place your [src] into the [J]</span>")
+	return FALSE
