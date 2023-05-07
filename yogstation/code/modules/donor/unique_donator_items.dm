@@ -590,6 +590,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/sword0
 	name = "toy sword"
 	unlock_path = /obj/item/toy/sword
+/datum/donator_gear/hammer
+	name = "toy sledgehammer"
+	unlock_path = /obj/item/twohanded/vxtvulhammer/toy
 
 //plushies - kill me, for fuck sake
 /datum/donator_gear/plushvar
