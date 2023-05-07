@@ -765,8 +765,9 @@
 		//Can hold just about every ballistic bullet type
 		/obj/item/ammo_casing
 		), list(
-		//Can't hold arrows, rockets, and the like
-		/obj/item/ammo_casing/caseless
+		//Can't hold arrows, rockets, and the like (but it can hold foam darts!)
+		/obj/item/ammo_casing/caseless,
+		/obj/item/ammo_casing/reusable/arrow
 		))
 
 /obj/item/storage/belt/bandolier/sharpshooter/PopulateContents()
