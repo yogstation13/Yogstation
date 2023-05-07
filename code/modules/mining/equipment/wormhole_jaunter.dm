@@ -47,6 +47,8 @@
 	var/obj/effect/portal/jaunt_tunnel/J = new (get_turf(src), src, 100, null, FALSE, get_turf(chosen_beacon))
 	if(adjacent)
 		try_move_adjacent(J)
+	else
+		J.teleport(user) // send the user through instantly if it appears directly on top of them
 	playsound(src,'sound/effects/sparks4.ogg',50,1)
 	qdel(src)
 
