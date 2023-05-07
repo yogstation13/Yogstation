@@ -226,7 +226,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		if(istype(recipient))
 			send_message(msg, recipient, usr)
 			var/mob/living/user = usr
-			user.log_talk(message, LOG_PDA, tag="as [username] to user [recipient.username]")
+			user.log_talk(msg, LOG_PDA, tag="as [username] to user [recipient.username]")
 		else
 			computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
 			computer.visible_message(span_danger("Recipient does not exist!"), null, null, 1)
