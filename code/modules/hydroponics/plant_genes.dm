@@ -415,13 +415,13 @@
 			user.log_message("pricked [target == user ? "themselves" : target ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
 			if(target != user && target.ckey && user.ckey) // injecting people with plants now creates admin logs (stolen from hypospray code)
 				log_attack("[user.name] ([user.ckey]) pricked [target.name] ([target.ckey]) with [G], which had [contained] (INTENT: [uppertext(user.a_intent)])")
-		to_chat(target, span_danger("You are pricked by [G]!"))
 		var/injecting_amount = max(G.seed.potency * 0.2) / target.getarmor(def_zone, BIO) // Maximum of 20, reduced by bio protection
 		if(injecting_amount < 1)
 			return
 		var/fraction = min(injecting_amount/G.reagents.total_volume, 1)
 		G.reagents.reaction(target, INJECT, fraction)
 		G.reagents.trans_to(target, injecting_amount)
+		to_chat(target, span_danger("You are pricked by [G]!"))
 
 /datum/plant_gene/trait/smoke
 	name = "gaseous decomposition"
