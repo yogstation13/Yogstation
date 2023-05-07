@@ -323,6 +323,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
 	/obj/item/lipstick/random = W_UNCOMMON,
 	/obj/item/map/station = W_UNCOMMON,
 	/obj/item/mop = W_COMMON,
+	/obj/item/twohanded/broom = W_COMMON,
 	/obj/item/newspaper = W_UNCOMMON,
 	/obj/item/paper_bin = W_UNCOMMON,
 	/obj/item/pen = W_UNCOMMON,
