@@ -47,7 +47,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	//deathsound = //change this when sprite gets reworked
 	yogs_draw_robot_hair = TRUE //remove their hair when they get the new sprite
 	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
-	wings_icon = "Robotic" //maybe change this eventually
+	wings_icon = "Robotic"
 	species_language_holder = /datum/language_holder/machine
 	//new variables
 	var/datum/action/innate/maglock/maglock

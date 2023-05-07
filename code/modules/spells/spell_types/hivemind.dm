@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/target_hive
 	panel = "Hivemind Abilities"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	selection_type = "range"
 	action_icon = 'icons/mob/actions/actions_hive.dmi'
 	action_background_icon_state = "bg_hive"
@@ -185,7 +185,7 @@
 	desc = "After a short charging time, we overload the mind of one of our vessels with psionic energy, temporarilly disrupting their sight, hearing, and speech."
 	charge_max = 600
 	panel = "Hivemind Abilities"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = 0
 	human_req = 1
 	action_icon = 'icons/mob/actions/actions_hive.dmi'
@@ -222,7 +222,7 @@
 	desc = "We release a pulse to receive information on any enemies we have previously located via Network Invasion, as well as those currently tracking us."
 	panel = "Hivemind Abilities"
 	charge_max = 1800
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = 0
 	human_req = 1
 	action_icon = 'icons/mob/actions/actions_hive.dmi'
@@ -296,7 +296,7 @@
 	panel = "Hivemind Abilities"
 	charge_max = 600
 	clothes_req = 0
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	action_icon = 'icons/mob/actions/actions_hive.dmi'
 	action_background_icon_state = "bg_hive"
 	action_icon_state = "drain"
@@ -524,7 +524,7 @@
 	panel = "Hivemind Abilities"
 	charge_max = 600
 	range = 7
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = 0
 	max_targets = 0
 	antimagic_allowed = TRUE
@@ -579,7 +579,7 @@
 	panel = "Hivemind Abilities"
 	charge_max = 600
 	range = 7
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = 0
 	max_targets = 0
 	antimagic_allowed = TRUE
@@ -656,7 +656,7 @@
 	name = "Telekinetic hand"
 	desc = "Makes a telekinetic hand to extend the reach of our unarmed combat. Drop to remove."
 	clothes_req = 0
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	antimagic_allowed = TRUE
 	charge_max = 200
 	panel = "Hivemind Abilities"
@@ -680,7 +680,7 @@
 	panel = "Hivemind Abilities"
 	charge_max = 600
 	range = 1
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = 0
 	max_targets = 1
 	action_icon = 'icons/mob/actions/actions_hive.dmi'
@@ -751,7 +751,7 @@
 	charge_max = 600
 	range = 1
 	max_targets = 0
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = 0
 	human_req = 1
 	action_icon = 'icons/mob/actions/actions_hive.dmi'
@@ -795,9 +795,9 @@
 	name = "Chaos Induction"
 	desc = "A one-use power, we awaken four random vessels within our hive and force them to do our bidding."
 	panel = "Hivemind Abilities"
-	charge_type = "charges"
+	charge_type = SPELL_CHARGE_TYPE_CHARGES
 	charge_max = 1
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = 0
 	human_req = 1
 	action_icon = 'icons/mob/actions/actions_hive.dmi'
@@ -840,7 +840,7 @@
 	desc = "Our ability to assimilate is boosted at the cost of, allowing us to crush the technology shielding the minds of savyy personnel and assimilate them. This power comes at a small price, and we will be immobilized for a few seconds after assimilation."
 	panel = "Hivemind Abilities"
 	charge_max = 600
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = 0
 	human_req = 1
 	action_icon = 'icons/mob/actions/actions_hive.dmi'
@@ -870,7 +870,7 @@
 	charge_max = 600
 	clothes_req = 0
 	human_req = 1
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	action_icon = 'icons/mob/actions/actions_hive.dmi'
 	action_background_icon_state = "bg_hive"
 	action_icon_state = "forcewall"
@@ -916,9 +916,9 @@
 	name = "One Mind"
 	desc = "Our true power... finally within reach."
 	panel = "Hivemind Abilities"
-	charge_type = "charges"
+	charge_type = SPELL_CHARGE_TYPE_CHARGES
 	charge_max = 1
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = 0
 	human_req = 1
 	action_icon = 'icons/mob/actions/actions_hive.dmi'
@@ -974,7 +974,7 @@
 	desc = "Now that we are free we may finally share our thoughts with our many bretheren."
 	panel = "Hivemind Abilities"
 	charge_max = 100
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = 0
 	human_req = 1
 	action_icon = 'icons/mob/actions/actions_hive.dmi'

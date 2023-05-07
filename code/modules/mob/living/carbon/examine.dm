@@ -10,7 +10,9 @@
 	var/list/obscured = check_obscured_slots()
 
 	if (handcuffed)
-		. += span_warning("[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!")
+		. += span_warning("[t_He] [t_is] handcuffed with [handcuffed.get_examine_string(user)]!")
+	if (legcuffed)
+		. += span_warning("[t_He] [t_is] legcuffed with [legcuffed.get_examine_string(user)]!")
 	if (head)
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head. "
 	if(wear_mask && !(SLOT_WEAR_MASK in obscured))

@@ -6,7 +6,7 @@
 	charge_max = 150
 	clothes_req = FALSE
 	invocation = "ETERNAL FLAMES"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	action_icon = 'icons/mob/actions/actions_changeling.dmi'
 	action_icon_state = "transform"
 	action_background_icon_state = "bg_demon"
