@@ -464,3 +464,21 @@
 	if(TIMER_COOLDOWN_CHECK(src, "cloak_emp_disable"))
 		return
 	return ..()
+
+/obj/item/clothing/neck/secconwhistle
+	name = "constable's whistle"
+	desc = "A small cylindrical whistle meant for blowing out crooks' eardrums."
+	w_class = WEIGHT_CLASS_SMALL
+	icon_state = "secconwhistle"
+	item_state = "secconwhistle"
+	var/recharge_time = 0
+	var/recharge_rate = 50
+	actions_types = list(/datum/action/item_action/blow_whistle)
+
+/obj/item/clothing/neck/secconwhistle/ui_action_click(mob/user)
+	if(recharge_time > world.time)
+		to_chate(usr, span_warning("You need to catch your breath first!"))
+		return
+	playsound(loc, 'sound/misc/policewhistle.ogg', 35, 1, -1)
+	user.visible_message(span_warning("[user] blows their whistle!"))
+	recharge_time = world.time + recharge_rate
