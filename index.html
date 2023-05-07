@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(591 modules,
-    1539/8454 macros, 18.2%)</aside></h3>
+<aside>(592 modules,
+    1548/8477 macros, 18.3%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -705,6 +705,7 @@ transformations and other events that cause new languages to become available.</
     <li><span class="no-substance">supermatter&#x2F;</span><a href="code/modules/power/supermatter/supermatter.html" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter">supermatter</a></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;projectiles">projectiles</span><ul class="index-tree">
+    <li><span class="no-substance">ammunition&#x2F;reusable&#x2F;</span><a href="code/modules/projectiles/ammunition/reusable/arrow.html" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition&#x2F;reusable&#x2F;arrow">arrow</a></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;projectiles&#x2F;attachments">attachments</span><ul class="index-tree">
     <li><a href="code/modules/projectiles/attachments/_attachment.html" title="code&#x2F;modules&#x2F;projectiles&#x2F;attachments&#x2F;_attachment">_attachment</a></li>
     <li><a href="code/modules/projectiles/attachments/grips.html" title="code&#x2F;modules&#x2F;projectiles&#x2F;attachments&#x2F;grips">grips</a></li>
@@ -885,7 +886,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(661 detailed/1422 documented/27495 total, 5.2%)</aside></h3>
+<aside>(672 detailed/1434 documented/27603 total, 5.2%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -2040,7 +2041,10 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell&#x2F;cone&#x2F;staggered">staggered</span> - This type of cone gradually affects each level of the cone instead of affecting the entire area at once.</li>
     </ul></li>
     <li><a href="obj/effect/proc_holder/spell/pointed.html" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell&#x2F;pointed">pointed spell</a></li>
-    <li><span class="no-substance">targeted&#x2F;</span><a href="obj/effect/proc_holder/spell/targeted/fire_sworn.html" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell&#x2F;targeted&#x2F;fire_sworn">Oath of Fire</a></li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell&#x2F;targeted">targeted</span><ul class="index-tree">
+    <li><a href="obj/effect/proc_holder/spell/targeted/conjure_item.html" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell&#x2F;targeted&#x2F;conjure_item">Summon weapon</a></li>
+    <li><a href="obj/effect/proc_holder/spell/targeted/fire_sworn.html" title="&#x2F;obj&#x2F;effect&#x2F;proc_holder&#x2F;spell&#x2F;targeted&#x2F;fire_sworn">Oath of Fire</a></li>
+    </ul></li>
     </ul></li>
     </ul></li>
     <li><a href="obj/effect/reality_smash.html" title="&#x2F;obj&#x2F;effect&#x2F;reality_smash">&#x2F;improper reality smash</a></li>
@@ -2145,9 +2149,19 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li class="has-children"><a href="obj/item/ammo_box.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_box">ammo box (null_reference_exception)</a><ul class="index-tree">
     <li><a href="obj/item/ammo_box/magazine.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_box&#x2F;magazine">magazine</a></li>
     </ul></li>
-    <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;ammo_casing">ammo_casing</span><ul class="index-tree">
+    <li class="has-children"><a href="obj/item/ammo_casing.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_casing">bullet casing</a><ul class="index-tree">
     <li><span class="no-substance">energy&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;ammo_casing&#x2F;energy&#x2F;flamethrower">flamethrower</span> - Flamethrower as an energy weapon</li>
     <li><span class="no-substance">magic&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;ammo_casing&#x2F;magic&#x2F;wire">hook</span> - Ammo Casing</li>
+    <li class="has-children"><a href="obj/item/ammo_casing/reusable.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_casing&#x2F;reusable">reusable</a><ul class="index-tree">
+    <li class="has-children"><a href="obj/item/ammo_casing/reusable/arrow.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_casing&#x2F;reusable&#x2F;arrow">arrow</a><ul class="index-tree">
+    <li><a href="obj/item/ammo_casing/reusable/arrow/energy.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_casing&#x2F;reusable&#x2F;arrow&#x2F;energy">energy bolt</a></li>
+    <li><a href="obj/item/ammo_casing/reusable/arrow/magic.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_casing&#x2F;reusable&#x2F;arrow&#x2F;magic">magic arrow</a></li>
+    <li class="has-children"><a href="obj/item/ammo_casing/reusable/arrow/singulo.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_casing&#x2F;reusable&#x2F;arrow&#x2F;singulo">singularity shard arrow</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;ammo_casing&#x2F;reusable&#x2F;arrow&#x2F;singulo&#x2F;shard6">shard6</span> - Chance for the arrow to break on impact, if the shard is all powerful (stage 6), it will create a singularity when it breaks
+The ammount of rads released on impact</li>
+    </ul></li>
+    </ul></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;antag_spawner">antag_spawner</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;antag_spawner&#x2F;contract">contract</span> - WIZARD</li>
@@ -2160,6 +2174,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;assembly">assembly</span><ul class="index-tree">
     <li><a href="obj/item/assembly/flash.html" title="&#x2F;obj&#x2F;item&#x2F;assembly&#x2F;flash">flash</a></li>
     <li><span class="no-substance">radio&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;assembly&#x2F;radio&#x2F;bell">desk bell announcer</span> - Desk Bells</li>
+    <li><a href="obj/item/assembly/voice_box.html" title="&#x2F;obj&#x2F;item&#x2F;assembly&#x2F;voice_box">voice box</a></li>
     </ul></li>
     <li class="has-children"><a href="obj/item/attachment.html" title="&#x2F;obj&#x2F;item&#x2F;attachment">attachment</a> - Base attachment.
 &quot;_a&quot; icons should be 5x5 pixels.
@@ -2250,7 +2265,10 @@ Puts in old analyzer</li>
     <li><a href="obj/item/clothing/mask/yogs/cluwne/happy_cluwne.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;mask&#x2F;yogs&#x2F;cluwne&#x2F;happy_cluwne">Happy Cluwne Mask</a> - Togglable cluwne mask that has a small chance to turn the user into a cluwne or create a floor cluwne with the user as a target</li>
     </ul></li>
     </ul></li>
-    <li><span class="no-substance">neck&#x2F;</span><a href="obj/item/clothing/neck/eldritch_amulet.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;neck&#x2F;eldritch_amulet">warm eldritch medallion</a></li>
+    <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;neck">neck</span><ul class="index-tree">
+    <li><span class="no-substance">cloak&#x2F;</span><a href="obj/item/clothing/neck/cloak/ranger.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;neck&#x2F;cloak&#x2F;ranger">ranger cloak</a></li>
+    <li><a href="obj/item/clothing/neck/eldritch_amulet.html" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;neck&#x2F;eldritch_amulet">warm eldritch medallion</a></li>
+    </ul></li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;suit">suit</span><ul class="index-tree">
     <li><span class="no-substance">armor&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;suit&#x2F;armor&#x2F;plated">empty plated armor vest</span> - PLATED ARMOR</li>
     <li><span class="no-substance">hooded&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;suit&#x2F;hooded&#x2F;explorer">explorer suit</span> - Explorer's Suit and Mask</li>
@@ -2311,7 +2329,7 @@ the program that displays laws should always be usable, and the exceptions were 
     <li class="has-children"><a href="obj/item/gun/ballistic.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic">projectile gun</a> - Subtype for any kind of ballistic gun
 This has a shitload of vars on it, and I'm sorry for that, but it does make making new subtypes really easy<ul class="index-tree">
     <li><span class="no-substance">automatic&#x2F;pistol&#x2F;</span><a href="obj/item/gun/ballistic/automatic/pistol/martial.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;automatic&#x2F;pistol&#x2F;martial">martial</a> - I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand</li>
-    <li><span class="no-substance">bow&#x2F;energy&#x2F;</span><a href="obj/item/gun/ballistic/bow/energy/syndicate.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;bow&#x2F;energy&#x2F;syndicate">Syndicate Hardlight Bow</a></li>
+    <li><a href="obj/item/gun/ballistic/bow.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;bow">wooden bow</a></li>
     <li><span class="no-substance">revolver&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic&#x2F;revolver&#x2F;ipcmartial">ipcmartial</span> - I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand</li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;energy">energy</span><ul class="index-tree">
@@ -2588,6 +2606,10 @@ obj/item/reagent_containers/glass/bottle/leadacetate</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;bag&#x2F;mail">mail bag</span> - Mailbag.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;bag&#x2F;money">money bag</span> - Money bag</li>
     </ul></li>
+    <li class="has-children"><span class="no-substance">belt&#x2F;</span><span title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;belt&#x2F;quiver">quiver</span><ul class="index-tree">
+    <li><span class="no-substance">anomaly&#x2F;</span><a href="obj/item/storage/belt/quiver/anomaly/pyro.html" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;belt&#x2F;quiver&#x2F;anomaly&#x2F;pyro">incendiary quiver</a></li>
+    <li><a href="obj/item/storage/belt/quiver/returning.html" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;belt&#x2F;quiver&#x2F;returning">quiver of returning</a></li>
+    </ul></li>
     <li><span class="no-substance">box&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;box&#x2F;clown">clown box</span> - clown box &amp; honkbot assembly</li>
     <li><a href="obj/item/storage/pod.html" title="&#x2F;obj&#x2F;item&#x2F;storage&#x2F;pod">emergency space suits</a></li>
     </ul></li>
@@ -2851,7 +2873,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/74214caff54ef9aa81c2c60d0a732bd3b26a16bc">74214ca</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/0c89250c3b3c1b0566a32fa8034bf5e6ca49784d">0c89250</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
