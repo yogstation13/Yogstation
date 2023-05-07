@@ -112,14 +112,14 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/school = "evocation" //not relevant at now, but may be important later if there are changes to how spells work. the ones I used for now will probably be changed... maybe spell presets? lacking flexibility but with some other benefit?
 
-	var/charge_type = "recharge" //can be recharge or charges, see charge_max and charge_counter descriptions; can also be based on the holder's vars now, use "holder_var" for that
+	var/charge_type = SPELL_CHARGE_TYPE_RECHARGE // See spell defines for a full list of options and what they do
 
-	var/charge_max = 10 SECONDS //recharge time in deciseconds if charge_type = "recharge" or starting charges if charge_type = "charges"
-	var/charge_counter = 0 //can only cast spells if it equals recharge, ++ each decisecond if charge_type = "recharge" or -- each cast if charge_type = "charges"
+	var/charge_max = 10 SECONDS //recharge time in deciseconds if charge_type = SPELL_CHARGE_TYPE_RECHARGE or starting charges if charge_type = SPELL_CHARGE_TYPE_CHARGES
+	var/charge_counter = 0 //can only cast spells if it equals recharge, ++ each decisecond if charge_type = SPELL_CHARGE_TYPE_RECHARGE or -- each cast if charge_type = SPELL_CHARGE_TYPE_CHARGES
 	var/still_recharging_msg = span_notice("The spell is still recharging.")
 	var/recharging = TRUE
 
-	var/holder_var_type = "bruteloss" //only used if charge_type equals to "holder_var"
+	var/holder_var_type = "bruteloss" //only used if charge_type equals to SPELL_CHARGE_TYPE_HOLDERVAR
 	var/holder_var_amount = 20 //same. The amount adjusted with the mob's var when the spell is used
 
 	var/clothes_req = TRUE //see if it requires clothes
@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/antimagic_allowed = FALSE // If false, the spell cannot be cast while under the effect of antimagic
 	var/invocation = "HURP DURP" //what is uttered when the wizard casts the spell
 	var/invocation_emote_self = null
-	var/invocation_type = "none" //can be none, whisper, emote and shout
+	var/invocation_type = SPELL_INVOCATION_NONE // See spell defines for a full list of options and what they do
 	var/range = 7 //the range of the spell; outer radius for aoe spells
 	var/message = "" //whatever it says to the guy affected by it
 	var/selection_type = "view" //can be "range" or "view"
@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 		var/mob/living/carbon/human/H = user
 
-		if((invocation_type == "whisper" || invocation_type == "shout") && !H.can_speak_vocal())
+		if((invocation_type == SPELL_INVOCATION_SAY || invocation_type == SPELL_INVOCATION_WHISPER) && !H.can_speak_vocal())
 			to_chat(user, span_notice("You can't get the words out!"))
 			return FALSE
 
@@ -237,11 +237,11 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	if(!skipcharge)
 		switch(charge_type)
-			if("recharge")
+			if(SPELL_CHARGE_TYPE_RECHARGE)
 				charge_counter = 0 //doesn't start recharging until the targets selecting ends
-			if("charges")
+			if(SPELL_CHARGE_TYPE_CHARGES)
 				charge_counter-- //returns the charge if the targets selecting fails
-			if("holdervar")
+			if(SPELL_CHARGE_TYPE_HOLDERVAR)
 				adjust_var(user, holder_var_type, holder_var_amount)
 	if(action)
 		action.UpdateButtonIcon()
@@ -249,12 +249,12 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/proc/charge_check(mob/user, silent = FALSE)
 	switch(charge_type)
-		if("recharge")
+		if(SPELL_CHARGE_TYPE_RECHARGE)
 			if(charge_counter < charge_max)
 				if(!silent)
 					to_chat(user, still_recharging_msg)
 				return FALSE
-		if("charges")
+		if(SPELL_CHARGE_TYPE_CHARGES)
 			if(!charge_counter)
 				if(!silent)
 					to_chat(user, span_notice("[name] has no charges left."))
@@ -263,17 +263,19 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/proc/invocation(mob/user = usr) //spelling the spell out and setting it on recharge/reducing charges amount
 	switch(invocation_type)
-		if("shout")
+		if(SPELL_INVOCATION_SAY)
 			if(prob(50))//Auto-mute? Fuck that noise
 				user.say(invocation, forced = "spell")
 			else
 				user.say(replacetext(invocation," ","`"), forced = "spell")
-		if("whisper")
+		if(SPELL_INVOCATION_WHISPER)
 			if(prob(50))
 				user.whisper(invocation)
 			else
 				user.whisper(replacetext(invocation," ","`"))
-		if("emote")
+		if(SPELL_INVOCATION_EMOTE)
+			user.emote(invocation)
+		if(SPELL_INVOCATION_MESSAGE)
 			user.visible_message(invocation, invocation_emote_self) //same style as in mob/living/emote.dm
 
 /obj/effect/proc_holder/spell/proc/playMagSound()
@@ -309,7 +311,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	recharging = TRUE
 
 /obj/effect/proc_holder/spell/process(delta_time)
-	if(recharging && charge_type == "recharge" && (charge_counter < charge_max))
+	if(recharging && charge_type == SPELL_CHARGE_TYPE_RECHARGE && (charge_counter < charge_max))
 		charge_counter += delta_time * 10
 		cooldown_overlay?.tick()
 		if(charge_counter >= charge_max)
@@ -369,11 +371,11 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/proc/revert_cast(mob/user = usr) //resets recharge or readds a charge
 	switch(charge_type)
-		if("recharge")
+		if(SPELL_CHARGE_TYPE_RECHARGE)
 			charge_counter = charge_max
-		if("charges")
+		if(SPELL_CHARGE_TYPE_CHARGES)
 			charge_counter++
-		if("holdervar")
+		if(SPELL_CHARGE_TYPE_HOLDERVAR)
 			adjust_var(user, holder_var_type, -holder_var_amount)
 	QDEL_NULL(cooldown_overlay)
 	if(action)
@@ -555,7 +557,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	charge_max = 100
 	cooldown_min = 50
 	invocation = "Victus sano!"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	school = "restoration"
 	sound = 'sound/magic/staff_healing.ogg'
 

@@ -137,6 +137,7 @@
 		//Being destroyed, just move to nullspace now (so it's not in contents for the icon update)
 		AM.moveToNullspace()
 	refresh_mob_views()
+	SEND_SIGNAL(parent, COMSIG_STORAGE_REMOVED, AM, new_location)
 	if(isobj(parent))
 		var/obj/O = parent
 		O.update_icon()
@@ -189,6 +190,7 @@
 			parent.add_fingerprint(M)
 			if(!prevent_warning)
 				mob_item_insertion_feedback(usr, M, I)
+	SEND_SIGNAL(parent, COMSIG_STORAGE_INSERTED, I, M)
 	update_icon()
 	return TRUE
 

@@ -6,7 +6,7 @@
 	charge_max = 100
 	clothes_req = FALSE
 	invocation = "AULIE OXIN FIERA"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	range = 3
 	cooldown_min = 20 //20 deciseconds reduction per rank
 	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'

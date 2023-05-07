@@ -4,7 +4,7 @@
 	school = "mime"
 	panel = "Mime"
 	summon_type = list(/obj/effect/forcefield/mime)
-	invocation_type = "emote"
+	invocation_type = SPELL_INVOCATION_MESSAGE
 	invocation_emote_self = span_notice("You form a wall in front of yourself.")
 	summon_lifespan = 300
 	charge_max = 300
@@ -29,7 +29,7 @@
 			return
 		invocation = "<B>[usr.real_name]</B> looks as if a wall is in front of [usr.p_them()]."
 	else
-		invocation_type ="none"
+		invocation_type = SPELL_INVOCATION_NONE
 	..()
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair
@@ -38,7 +38,7 @@
 	school = "mime"
 	panel = "Mime"
 	summon_type = list(/obj/structure/chair/mime)
-	invocation_type = "emote"
+	invocation_type = SPELL_INVOCATION_MESSAGE
 	invocation_emote_self = span_notice("You conjure an invisible chair and sit down.")
 	summon_lifespan = 250
 	charge_max = 300
@@ -59,7 +59,7 @@
 			return
 		invocation = "<B>[usr.real_name]</B> pulls out an invisible chair and sits down."
 	else
-		invocation_type ="none"
+		invocation_type = SPELL_INVOCATION_NONE
 	..()
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair/cast(list/targets,mob/user = usr)
@@ -76,7 +76,7 @@
 	school = "mime"
 	panel = "Mime"
 	summon_type = list(/obj/item/storage/box/mime)
-	invocation_type = "emote"
+	invocation_type = SPELL_INVOCATION_MESSAGE
 	invocation_emote_self = span_notice("You conjure up an invisible box, large enough to store a few things.")
 	summon_lifespan = 250
 	charge_max = 300
@@ -106,7 +106,7 @@
 			return
 		invocation = "<B>[usr.real_name]</B> moves [usr.p_their()] hands in the shape of a cube, pressing a box out of the air."
 	else
-		invocation_type ="none"
+		invocation_type = SPELL_INVOCATION_NONE
 	..()
 
 
@@ -156,7 +156,7 @@
 	school = "mime"
 	panel = "Mime"
 	wall_type = /obj/effect/forcefield/mime/advanced
-	invocation_type = "emote"
+	invocation_type = SPELL_INVOCATION_MESSAGE
 	invocation_emote_self = span_notice("You form a blockade in front of yourself.")
 	charge_max = 600
 	sound =  null
@@ -176,7 +176,7 @@
 			return
 		invocation = "<B>[usr.real_name]</B> looks as if a blockade is in front of [usr.p_them()]."
 	else
-		invocation_type ="none"
+		invocation_type = SPELL_INVOCATION_NONE
 	..()
 
 /obj/effect/proc_holder/spell/aimed/finger_guns
@@ -187,7 +187,7 @@
 	charge_max = 300
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
-	invocation_type = "emote"
+	invocation_type = SPELL_INVOCATION_MESSAGE
 	invocation_emote_self = span_dangers("You fire your finger gun!")
 	range = 20
 	projectile_type = /obj/item/projectile/bullet/mime
@@ -214,7 +214,7 @@
 			return
 		invocation = "<B>[usr.real_name]</B> fires [usr.p_their()] finger gun!"
 	else
-		invocation_type ="none"
+		invocation_type = SPELL_INVOCATION_NONE
 	..()
 
 
