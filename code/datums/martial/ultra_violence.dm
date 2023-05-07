@@ -110,9 +110,30 @@
 
 /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	name = "\improper Piercer cylinder"
-	ammo_type = /obj/item/ammo_casing/a357
+	ammo_type = /obj/item/ammo_casing/ipcmartial
 	caliber = "357"
 	max_ammo = 3
+
+/obj/item/ammo_casing/ipcmartial
+	name = ".357 piercer bullet casing"
+	desc = "A .357 piercer bullet casing."
+	caliber = "357"
+	projectile_type = /obj/item/projectile/bullet/ipcmartial
+	click_cooldown_override = 0.1 //this gun shoots faster
+
+/obj/item/projectile/bullet/ipcmartial //literally just default 357 with mob piercing
+	name = ".357 piercer bullet"
+	damage = 40
+	armour_penetration = 15
+	wound_bonus = -45
+	wound_falloff_tile = -2.5
+	penetrating = TRUE
+
+/obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
+	. = ..()
+	if(ishuman(target) && !blocked)
+		var/mob/living/carbon/human/H = target
+		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
 
 /obj/item/gun/ballistic/revolver/ipcmartial/Initialize(mapload)
 	. = ..()
