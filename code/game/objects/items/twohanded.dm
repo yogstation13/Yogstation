@@ -1372,7 +1372,6 @@ Broom
 	icon_state = "broom[wielded]"
 
 /obj/item/twohanded/broom/wield(mob/user)
-	SIGNAL_HANDLER
 	. = ..()
 	if(!wielded)
 		return
@@ -1385,14 +1384,12 @@ Broom
 	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
 
 /obj/item/twohanded/broom/afterattack(atom/A, mob/user, proximity)
-	SIGNAL_HANDLER
 	. = ..()
 	if(!proximity)
 		return
 	sweep(user, A)
 
 /obj/item/twohanded/broom/proc/sweep(mob/user, atom/A)
-	SIGNAL_HANDLER
 
 	var/turf/current_item_loc = isturf(A) ? A : A.loc
 	if (!isturf(current_item_loc))
