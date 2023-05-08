@@ -56,7 +56,7 @@
 
 /obj/item/clothing/head/beret/sec/secconhat
 	name = "constable's hat"
-	desc = "Reinforced wit kevlar, this hat will keep your noggin safe."
+	desc = "Reinforced with kevlar, this hat will keep your noggin safe."
 	icon_state = "secconhat"
 	item_state = "secconhat"
 
