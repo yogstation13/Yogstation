@@ -777,3 +777,10 @@
 	var/obj/item/bodybag/environmental/prisoner/syndicate/pbag = new(src)
 	var/obj/item/syndicate_prisoner_remote/remote = new(src)
 	remote.bag = pbag
+
+/obj/item/storage/briefcase/stechkin_implant
+	real_name = "Stechkin arm implants"
+
+/obj/item/stroage/briefcase/stechkin_implant/PopulateContents()
+	new /obj/item/autosurgeon/arm/syndicate/stechkin_implant/(src)
+	new /obj/item/autosurgeon/arm/syndicate/stechkin_implant/left(src)
