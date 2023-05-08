@@ -764,6 +764,7 @@
 		new /obj/item/reagent_containers/food/snacks/monkeycube(src)
 	new /obj/item/bodypart/l_arm/robot/buster(src)
 
+
 /obj/item/storage/box/syndie_kit/emp_shield
 	real_name = "EMP shield implant kit"
 
@@ -778,9 +779,3 @@
 	var/obj/item/syndicate_prisoner_remote/remote = new(src)
 	remote.bag = pbag
 
-/obj/item/storage/briefcase/stechkin_implant
-	real_name = "Stechkin arm implants"
-
-/obj/item/stroage/briefcase/stechkin_implant/PopulateContents()
-	new /obj/item/autosurgeon/arm/syndicate/stechkin_implant/(src)
-	new /obj/item/autosurgeon/arm/syndicate/stechkin_implant/left(src)
