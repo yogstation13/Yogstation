@@ -866,7 +866,10 @@
 
 /datum/action/item_action/blow_whistle
 	name = "Blow Your Whistle"
-	
+
+/datum/action/item_action/wrist_strap
+	name = "Adjust Wrist Strap"
+
 /datum/action/item_action/storage_gather_mode
 	name = "Switch gathering mode"
 	desc = "Switches the gathering mode of a storage object."

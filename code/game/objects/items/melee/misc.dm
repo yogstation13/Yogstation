@@ -516,15 +516,16 @@
 	force = 10
 	stamina_damage = 15
 	var/active = 0
+	actions_types = list(/datum/action/item_action/wrist_strap)
 
-/obj/item/melee/classic_baton/secconbaton/attack_self(mob/user)
+/obj/item/melee/classic_baton/secconbaton/ui_action_click()
 	active = !active
 	if(active)
 		to_chat(usr, span_notice("You tighten the wrist strap."))
 		ADD_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
 	else
 		release_items()
-		to_chat(usr, span_notice("You untighten the wrist strap"))
+		to_chat(usr, span_notice("You untighten the wrist strap."))
 
 /obj/item/melee/classic_baton/secconbaton/proc/release_items()
 	REMOVE_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)

@@ -479,6 +479,6 @@
 	if(recharge_time > world.time)
 		to_chat(usr, span_warning("You need to catch your breath first!"))
 		return
-	playsound(loc, 'sound/misc/policewhistle.ogg', 35, 1, -1)
+	playsound(loc, 'sound/misc/policewhistle.ogg', 30, 1, -1)
 	user.visible_message(span_warning("[user] blows their whistle!"))
 	recharge_time = world.time + recharge_rate
