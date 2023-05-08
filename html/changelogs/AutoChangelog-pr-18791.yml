@@ -1,6 +1,0 @@
-author: "TheRyeGuyWhoWillNowDie"
-delete-after: true 
-changes: 
-  - rscadd: "Syndicate Bounties"
-  - rscdel: "Null crates"
-  - tweak: "Makeshift emags now work on cargo consoles, if you really want the special ops crate"
