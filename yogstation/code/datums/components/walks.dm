@@ -7,7 +7,7 @@
 /datum/component/walk/Initialize()
 	if(!istype(parent, /mob/living))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, .proc/handle_move)
+	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(handle_move))
 	var/datum/component/footstep/footsteps = parent.GetComponent(/datum/component/footstep)
 	if (footsteps)
 		qdel(footsteps)

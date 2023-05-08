@@ -18,7 +18,7 @@
 	owner.update_body_parts()
 	owner.dna.species.handle_mutant_bodyparts(owner)
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "hulk", /datum/mood_event/hulk)
-	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/mutation/human/hulk/on_attack_hand(atom/target, proximity)
 	if(proximity) //no telekinetic hulk attack
@@ -83,7 +83,7 @@
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, TRAIT_HULK)
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
 	ADD_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_HULK)
-	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	if(istype(owner.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = owner.w_uniform
 		if(owner.canUnEquip(U))

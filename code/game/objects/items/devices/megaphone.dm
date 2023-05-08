@@ -29,7 +29,7 @@
 /obj/item/megaphone/equipped(mob/M, slot)
 	. = ..()
 	if (slot == SLOT_HANDS)
-		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
 
@@ -43,7 +43,7 @@
 		return FALSE
 	last_used = world.time + recharge_time
 	update_icon()
-	addtimer(CALLBACK(src, .proc/update_icon), recharge_time)
+	addtimer(CALLBACK(src, PROC_REF(update_icon)), recharge_time)
 	return TRUE
 
 /obj/item/megaphone/update_icon()

@@ -127,7 +127,7 @@
 		reagents.maximum_volume = 0 //Makes them useless afterwards
 		reagents.flags = NONE
 	update_icon()
-	addtimer(CALLBACK(src, .proc/cyborg_recharge, user), 80)
+	addtimer(CALLBACK(src, PROC_REF(cyborg_recharge), user), 80)
 
 /obj/item/reagent_containers/autoinjector/medipen/proc/cyborg_recharge(mob/living/silicon/robot/user)
 	if(!reagents.total_volume && iscyborg(user))

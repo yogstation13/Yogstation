@@ -151,13 +151,13 @@ While using this makes the system rely on OnFire, it still gives options for tim
 				activity = TUMOR_ACTIVE
 				visible_message(span_boldwarning("[src] convulses as your arm enters its radius.  Your instincts tell you to step back."))
 				activator = user
-				addtimer(CALLBACK(src, .proc/return_elite), 30)
-				INVOKE_ASYNC(src, .proc/arena_checks)
+				addtimer(CALLBACK(src, PROC_REF(return_elite)), 30)
+				INVOKE_ASYNC(src, PROC_REF(arena_checks))
 			if(TUMOR_INACTIVE)
 				activity = TUMOR_ACTIVE
 				visible_message(span_boldwarning("[src] begins to convulse.  Your instincts tell you to step back."))
 				activator = user
-				addtimer(CALLBACK(src, .proc/spawn_elite), 3 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(spawn_elite)), 3 SECONDS)
 
 obj/structure/elite_tumor/proc/spawn_elite()
 	var/selectedspawn = pick(potentialspawns)
@@ -165,7 +165,7 @@ obj/structure/elite_tumor/proc/spawn_elite()
 	visible_message(span_boldwarning("[mychild] emerges from [src]!"))
 	playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
 	icon_state = "tumor_popped"
-	INVOKE_ASYNC(src, .proc/arena_checks)
+	INVOKE_ASYNC(src, PROC_REF(arena_checks))
 
 obj/structure/elite_tumor/proc/return_elite()
 	mychild.forceMove(loc)
@@ -202,10 +202,10 @@ obj/structure/elite_tumor/proc/return_elite()
 /obj/structure/elite_tumor/proc/arena_checks()
 	if(activity != TUMOR_ACTIVE || QDELETED(src))
 		return
-	INVOKE_ASYNC(src, .proc/fighters_check)  //Checks to see if our fighters died.
-	INVOKE_ASYNC(src, .proc/arena_trap)  //Gets another arena trap queued up for when this one runs out.
-	INVOKE_ASYNC(src, .proc/border_check)  //Checks to see if our fighters got out of the arena somehow.
-	addtimer(CALLBACK(src, .proc/arena_checks), 50)
+	INVOKE_ASYNC(src, PROC_REF(fighters_check))  //Checks to see if our fighters died.
+	INVOKE_ASYNC(src, PROC_REF(arena_trap))  //Gets another arena trap queued up for when this one runs out.
+	INVOKE_ASYNC(src, PROC_REF(border_check))  //Checks to see if our fighters got out of the arena somehow.
+	addtimer(CALLBACK(src, PROC_REF(arena_checks)), 50)
 
 /obj/structure/elite_tumor/proc/fighters_check()
 	if(activator != null && activator.stat == DEAD || activity == TUMOR_ACTIVE && QDELETED(activator))

@@ -114,13 +114,13 @@ GLOBAL_LIST_INIT(huds, list(
 		return
 	if(!hudusers[M])
 		hudusers[M] = 1
-		RegisterSignal(M, COMSIG_PARENT_QDELETING, .proc/unregister_mob)
+		RegisterSignal(M, COMSIG_PARENT_QDELETING, PROC_REF(unregister_mob))
 		var/M_is_silicon = FALSE
 		if(do_silicon_check && istype(M, /mob/living/silicon))
 			M_is_silicon = TRUE
 		if(next_time_allowed[M] > world.time)
 			if(!queued_to_see[M])
-				addtimer(CALLBACK(src, .proc/show_hud_images_after_cooldown, M, M_is_silicon), next_time_allowed[M] - world.time)
+				addtimer(CALLBACK(src, PROC_REF(show_hud_images_after_cooldown), M, M_is_silicon), next_time_allowed[M] - world.time)
 				queued_to_see[M] = TRUE
 		else
 			next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN

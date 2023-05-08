@@ -67,7 +67,7 @@
 	if(already_rotting)
 		start_rotting(rename=FALSE)
 	else
-		addtimer(CALLBACK(src, .proc/start_rotting), 2 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(start_rotting)), 2 MINUTES)
 
 /obj/effect/decal/cleanable/blood/gibs/proc/start_rotting(rename=TRUE)
 	if(rename)

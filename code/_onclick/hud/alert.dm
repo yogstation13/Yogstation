@@ -65,7 +65,7 @@
 	animate(thealert, transform = matrix(), time = 0.25 SECONDS, easing = CUBIC_EASING)
 
 	if(thealert.timeout)
-		addtimer(CALLBACK(src, .proc/alert_timeout, thealert, category), thealert.timeout)
+		addtimer(CALLBACK(src, PROC_REF(alert_timeout), thealert, category), thealert.timeout)
 		thealert.timeout = world.time + thealert.timeout - world.tick_lag
 	return thealert
 
@@ -299,7 +299,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	add_overlay(receiving)
 	src.receiving = receiving
 	src.giver = giver
-	RegisterSignal(taker, COMSIG_MOVABLE_MOVED, /atom/movable/screen/alert/give/.proc/removeAlert)
+	RegisterSignal(taker, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/alert/give, removeAlert))
 
 /atom/movable/screen/alert/give/proc/removeAlert()
 	to_chat(mob_viewer, span_warning("You moved out of range of [giver]!"))

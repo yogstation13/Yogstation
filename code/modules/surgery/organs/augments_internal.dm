@@ -112,8 +112,8 @@
 
 /obj/item/organ/cyberimp/brain/anti_stun/Insert()
 	. = ..()
-	RegisterSignal(owner, signalCache, .proc/on_signal)
-	RegisterSignal(owner, COMSIG_CARBON_STATUS_STAMCRIT, .proc/on_signal_stamina)
+	RegisterSignal(owner, signalCache, PROC_REF(on_signal))
+	RegisterSignal(owner, COMSIG_CARBON_STATUS_STAMCRIT, PROC_REF(on_signal_stamina))
 
 /obj/item/organ/cyberimp/brain/anti_stun/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
@@ -122,11 +122,11 @@
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal(datum/source, amount)
 	if(!(organ_flags & ORGAN_FAILING) && amount > 0)
-		addtimer(CALLBACK(src, .proc/clear_stuns), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(clear_stuns)), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal_stamina()
 	if(!(organ_flags & ORGAN_FAILING))
-		addtimer(CALLBACK(src, .proc/clear_stuns), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(clear_stuns)), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/clear_stuns()
 	if(owner && !(organ_flags & ORGAN_FAILING))
@@ -137,7 +137,7 @@
 	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
 		return
 	organ_flags |= ORGAN_FAILING
-	addtimer(CALLBACK(src, .proc/reboot), stun_cap_amount * 2 / severity)
+	addtimer(CALLBACK(src, PROC_REF(reboot)), stun_cap_amount * 2 / severity)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/reboot()
 	clear_stuns()

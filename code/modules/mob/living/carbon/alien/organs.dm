@@ -150,7 +150,7 @@
 
 	recent_queen_death = 1
 	owner.throw_alert("alien_noqueen", /atom/movable/screen/alert/alien_vulnerable)
-	addtimer(CALLBACK(src, .proc/clear_queen_death), QUEEN_DEATH_DEBUFF_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(clear_queen_death)), QUEEN_DEATH_DEBUFF_DURATION)
 
 
 /obj/item/organ/alien/hivenode/proc/clear_queen_death()

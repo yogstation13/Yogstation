@@ -97,7 +97,7 @@
 		user.put_in_hands(B)
 		if(user.get_active_held_item() == B)
 			B.alpha = 255
-		addtimer(CALLBACK(B, /obj/item/storage/box/mime/.proc/emptyStorage, FALSE), (summon_lifespan - 1))
+		addtimer(CALLBACK(B, TYPE_PROC_REF(/obj/item/storage/box/mime, emptyStorage), FALSE), (summon_lifespan - 1))
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box/Click()
 	if(usr && usr.mind)

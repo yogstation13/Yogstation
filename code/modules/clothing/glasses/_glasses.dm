@@ -543,7 +543,7 @@
 	living_target.playsound_local(get_turf(living_target), 'sound/hallucinations/i_see_you1.ogg', 50, TRUE)
 	to_chat(ranged_ability_user, "You glare at [living_target], exposing them!")
 	COOLDOWN_START(src, scan_cooldown, cooldown_time)
-	addtimer(CALLBACK(src, .proc/cooldown_over, ranged_ability_user), cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(cooldown_over), ranged_ability_user), cooldown_time)
 	remove_ranged_ability()
 	return TRUE
 

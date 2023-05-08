@@ -230,7 +230,7 @@ obj/effect/proc_holder/swipe
 			caller.adjustFireLoss(-5)
 			caller.adjustToxLoss(-5)
 	COOLDOWN_START(src, scan_cooldown, cooldown)
-	addtimer(CALLBACK(src, .proc/cooldown_over, ranged_ability_user), cooldown)
+	addtimer(CALLBACK(src, PROC_REF(cooldown_over), ranged_ability_user), cooldown)
 	remove_ranged_ability()
 	return TRUE
 
@@ -259,8 +259,8 @@ obj/effect/proc_holder/swipe
 	. = ..()
 	if(slot == SLOT_GLOVES)
 		tool_behaviour = TOOL_MINING
-		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/rocksmash)
-		RegisterSignal(user, COMSIG_MOVABLE_BUMP, .proc/rocksmash)
+		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(rocksmash))
+		RegisterSignal(user, COMSIG_MOVABLE_BUMP, PROC_REF(rocksmash))
 	else
 		stopmining(user)
 
