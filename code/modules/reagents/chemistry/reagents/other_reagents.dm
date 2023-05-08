@@ -2036,7 +2036,7 @@
 	if(target.mind)
 		var/datum/antagonist/changeling/changeling = target.mind.has_antag_datum(/datum/antagonist/changeling)
 		if(changeling)
-			changeling.adjust_chemicals(-2 * REM)
+			changeling.chem_charges = max(changeling.chem_charges-6, 0)
 	return ..()
 
 /datum/reagent/pax/peaceborg
