@@ -75,6 +75,11 @@
 	suffix = "bar_arcade.dmm"
 	name = "Bar Arcade"
 
+/datum/map_template/ruin/station/box/bar/diner2
+	id = "bar_kitchen"
+	suffix = "bar_kitchen.dmm"
+	name = "Bar Kitchen"
+
 /datum/map_template/ruin/station/box/engine
 	id = "engine_sm"
 	suffix = "engine_sm.dmm"
