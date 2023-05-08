@@ -1226,13 +1226,17 @@
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
 			var/mob/living/victim = target
 			if(toy)
-				victim.safe_throw_at(throw_target, 1, 1)
+				ADD_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
+				victim.safe_throw_at(throw_target, rand(1,2), 3, callback = CALLBACK(src, PROC_REF(afterimpact), victim))
 			else
 				victim.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
 				victim.Paralyze(2 SECONDS)
 				user.visible_message(span_danger("The hammer thunders as it viscerally strikes [target.name]!"))
 				to_chat(victim, span_userdanger("Agony sears through you as [user]'s blow cracks your body off its feet!"))
 				victim.emote("scream")
+
+/obj/item/twohanded/vxtvulhammer/proc/afterimpact(mob/living/victim)
+	REMOVE_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
 
 /obj/item/twohanded/vxtvulhammer/pirate //Exact same but different text and sprites
 	icon_state = "vxtvul_hammer_pirate0-0"
