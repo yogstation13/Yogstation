@@ -764,7 +764,6 @@
 		new /obj/item/reagent_containers/food/snacks/monkeycube(src)
 	new /obj/item/bodypart/l_arm/robot/buster(src)
 
-
 /obj/item/storage/box/syndie_kit/emp_shield
 	real_name = "EMP shield implant kit"
 
