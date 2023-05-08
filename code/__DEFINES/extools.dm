@@ -1,3 +1,7 @@
+#if DM_VERSION < 515
+#define call_ext call
+#endif
+
 #define EXTOOLS_SUCCESS		"SUCCESS"
 #define EXTOOLS_FAILED		"FAIL"
 GLOBAL_VAR_INIT(enable_memdump, 0)
@@ -8,7 +12,7 @@ GLOBAL_VAR_INIT(enable_memdump, 0)
 */
 
 /proc/extools_initialize()
-	return call(EXTOOLS, "core_initialize")() == EXTOOLS_SUCCESS
+	return call_ext(EXTOOLS, "core_initialize")() == EXTOOLS_SUCCESS
 
 /*
 	TFFI - Threaded FFI
@@ -109,13 +113,13 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 */
 
 /proc/profiling_initialize()
-	return call(EXTOOLS, "extended_profiling_initialize")() == EXTOOLS_SUCCESS
+	return call_ext(EXTOOLS, "extended_profiling_initialize")() == EXTOOLS_SUCCESS
 
 /proc/start_profiling(procpath)
-	call(EXTOOLS, "enable_extended_profiling")("[procpath]")
+	call_ext(EXTOOLS, "enable_extended_profiling")("[procpath]")
 
 /proc/stop_profiling(procpath)
-	call(EXTOOLS, "disable_extended_profiling")("[procpath]")
+	call_ext(EXTOOLS, "disable_extended_profiling")("[procpath]")
 
 /*
 	Debug Server - High and low level debugging of DM code.
@@ -126,7 +130,7 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 */
 
 /proc/debugger_initialize(pause = FALSE)
-	return call(EXTOOLS, "debug_initialize")(pause ? "pause" : "") == EXTOOLS_SUCCESS
+	return call_ext(EXTOOLS, "debug_initialize")(pause ? "pause" : "") == EXTOOLS_SUCCESS
 
 /*
 	Misc
@@ -134,11 +138,11 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 
 //Programatically enable and disable the built-in byond profiler. Useful if you want to, for example, profile subsystem initializations.
 /proc/enable_profiling()
-	return call(EXTOOLS, "enable_profiling")() == EXTOOLS_SUCCESS
+	return call_ext(EXTOOLS, "enable_profiling")() == EXTOOLS_SUCCESS
 
 /proc/disable_profiling()
-	return call(EXTOOLS, "disable_profiling")() == EXTOOLS_SUCCESS
+	return call_ext(EXTOOLS, "disable_profiling")() == EXTOOLS_SUCCESS
 
 // Will dump the server's in-depth memory profile into the file specified.
 /proc/dump_memory_profile(file_name)
-	return call(EXTOOLS, "dump_memory_usage")(file_name) == EXTOOLS_SUCCESS
+	return call_ext(EXTOOLS, "dump_memory_usage")(file_name) == EXTOOLS_SUCCESS
