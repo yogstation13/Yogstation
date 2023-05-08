@@ -155,11 +155,11 @@
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/syndie_hammer
 
-/obj/item/autosurgeon/organ/syndicate/stechkin_implant
+/obj/item/autosurgeon/arm/syndicate/stechkin_implant
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/stechkin_implant
 
-/obj/item/autosurgeon/organ/syndicate/stechkin_implant/left
+/obj/item/autosurgeon/arm/syndicate/stechkin_implant/left
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/stechkin_implant
 
