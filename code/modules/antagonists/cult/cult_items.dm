@@ -254,7 +254,7 @@
 	sword.block_chance = 100
 	sword.slowdown += 1.5
 	addtimer(CALLBACK(src, PROC_REF(stop_spinning)), 50)
-	holder.update_action_buttons_icon()
+	holder.update_mob_action_buttons()
 
 /datum/action/innate/cult/spin2win/proc/stop_spinning()
 	sword.spinning = FALSE
