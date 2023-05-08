@@ -80,7 +80,8 @@
 			if(!G.magazine == src)
 				return
 			G.semicd = TRUE
-			var/unjam_time = ((2/severity) + (rand(-20,20)*0.01)) SECONDS
+			// 5-10 seconds depending on severity, then give or take 0.2 seconds to prevent piercing ears
+			var/unjam_time = ((10/severity) + (rand(-20,20)*0.01)) SECONDS
 			addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/gun, reset_semicd)), unjam_time)
 
 /obj/item/ammo_casing/caseless/c22hl

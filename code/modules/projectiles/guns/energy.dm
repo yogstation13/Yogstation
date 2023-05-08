@@ -40,8 +40,8 @@
 		cell.use(round(cell.charge / (severity*2)))
 		emp_jammed = TRUE
 		deltimer(emp_jam_timer)
-		// 1-2 seconds depending on severity, then give or take 0.2 seconds to prevent piercing ears
-		var/unjam_time = ((2/severity) + (rand(-20,20)*0.01)) SECONDS
+		// 5-10 seconds depending on severity, then give or take 0.2 seconds to prevent piercing ears
+		var/unjam_time = ((10/severity) + (rand(-20,20)*0.01)) SECONDS
 		emp_jam_timer = addtimer(CALLBACK(src, PROC_REF(emp_unjam)), unjam_time, TIMER_STOPPABLE)
 		chambered = null //we empty the chamber
 		recharge_newshot() //and try to charge a new shot
