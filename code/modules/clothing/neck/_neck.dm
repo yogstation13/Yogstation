@@ -477,7 +477,7 @@
 
 /obj/item/clothing/neck/secconwhistle/ui_action_click(mob/user)
 	if(recharge_time > world.time)
-		to_chate(usr, span_warning("You need to catch your breath first!"))
+		to_chat(usr, span_warning("You need to catch your breath first!"))
 		return
 	playsound(loc, 'sound/misc/policewhistle.ogg', 35, 1, -1)
 	user.visible_message(span_warning("[user] blows their whistle!"))
