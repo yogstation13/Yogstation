@@ -54,3 +54,11 @@
 	..()
 	new /obj/item/autosurgeon/nt_mantis(src)
 	new /obj/item/autosurgeon/nt_mantis/left(src)
+
+/obj/item/storage/box/syndie_kit/stechkin_implant
+	real_name = "Stechkin implant"
+
+/obj/item/stroage/briefcase/syndie_kit/stechkin_implant/PopulateContents()
+	..()
+	new /obj/item/autosurgeon/organ/syndicate/stechkin_implant(src)
+	new /obj/item/autosurgeon/organ/syndicate/stechkin_implant/left(src)
