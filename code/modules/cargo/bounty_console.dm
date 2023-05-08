@@ -71,7 +71,7 @@
 		if("ClaimBounty")
 			var/datum/bounty/cashmoney = locate(params["bounty"]) in get_list_to_use()
 			if(cashmoney)
-				cashmoney.claim()
+				cashmoney.claim(usr)
 			return TRUE
 		if("Print")
 			if(printer_ready < world.time)
