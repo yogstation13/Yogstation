@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "fixes CMO and RD helmets not being airtight enough to use internals"
+  - tweak: "gives CMO hardsuit helmet the same flash protection as other hardsuits"

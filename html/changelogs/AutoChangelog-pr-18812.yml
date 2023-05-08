@@ -1,0 +1,4 @@
+author: "TheRyeGuyWhoWillNowDie"
+delete-after: true 
+changes: 
+  - bugfix: "a changeling huffing BZ will actually drain their chemicals"
