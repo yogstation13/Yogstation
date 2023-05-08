@@ -1314,6 +1314,7 @@
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 				prying_so_hard = TRUE
 				if(do_after(user, time_to_open, src))
+					shock(user, 100) //SEC SEC SOMEONE IS GREYTIDING HELP
 					open(2)
 					if(density && !open(2))
 						to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
