@@ -20,7 +20,7 @@
 	SHOULD_NOT_SLEEP(TRUE)
 	
 	if(viewer.client.prefs.read_preference(/datum/preference/toggle/disable_balloon_alerts))
-		INVOKE_ASYNC(.proc/to_chat, viewer, message)
+		INVOKE_ASYNC(PROC_REF(to_chat), viewer, message)
 	else
 		INVOKE_ASYNC(src, PROC_REF(balloon_alert_perform), viewer, message ? message : alert)
 

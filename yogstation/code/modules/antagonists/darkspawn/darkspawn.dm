@@ -339,7 +339,7 @@
 			to_chat(M, processed_message)
 	deadchat_broadcast(processed_message, null, H)
 	addtimer(CALLBACK(src, PROC_REF(divulge)), 25)
-	addtimer(CALLBACK(/atom/.proc/visible_message, H, span_boldwarning("[H]'s skin sloughs off, revealing black flesh covered in symbols!"), \
+	addtimer(CALLBACK(H, TYPE_PROC_REF(/atom, visible_message), span_boldwarning("[H]'s skin sloughs off, revealing black flesh covered in symbols!"), \
 	span_userdanger("You have forcefully divulged!")), 25)
 
 /datum/antagonist/darkspawn/proc/divulge()
