@@ -508,6 +508,27 @@
 	target.Jitter(20)
 	target.stuttering += 20
 
+/obj/item/melee/classic_baton/secconbaton
+	name = "billy club"
+	desc = "A dark wooden club with the Space Queen's crest burned onto its bottom. Its wrist strap will help keep it in your hands and out of crooks'."
+	icon_state = "secconbaton"
+	item_state = "secconbaton"
+	force = 10
+	stamina_damage = 15
+	var/active = 0
+
+/obj/item/melee/classic_baton/secconbaton/attack_self(mob/user)
+	active = !active
+	if(active)
+		to_chat(usr, span_notice("You tighten the wrist strap."))
+		ADD_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
+	else
+		release_items()
+		to_chat(usr, span_notice("You untighten the wrist strap"))
+
+/obj/item/melee/classic_baton/secconbaton/proc/release_items()
+	REMOVE_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
+
 /obj/item/melee/supermatter_sword
 	name = "supermatter sword"
 	desc = "In a station full of bad ideas, this might just be the worst."
