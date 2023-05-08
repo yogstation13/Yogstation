@@ -182,7 +182,6 @@
 	ammo.fire_casing(D, A)
 	playsound(A, "sound/weapons/shotgunshot.ogg", 90, FALSE)
 	to_chat(A, span_notice("You shoot [D] with your gun hand."))
-	A.add_mob_blood(D)
 	D.add_splatter_floor(D.loc, TRUE)
 	streak = ""
 
@@ -264,7 +263,7 @@
 	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for three shots. Target must be living, but can be yourself.")
 	to_chat(usr, "[span_notice("Gun Hand")]: Harm Grab. Shoots the target with the shotgun in your hand.")
 	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere.")
-	to_chat(usr, span_notice("Completing any combo will give a speed buff with a duration scaling based on combo difficulty."))
+	to_chat(usr, span_notice("Completing any combo will give a speed buff with the strength of the Pocket Revolver speed boost being weaker."))
 	to_chat(usr, span_notice("Should your dash cease functioning, use the 'Reinitialize Module' function."))
 
 /mob/living/carbon/human/proc/violence_recalibration()
