@@ -28,7 +28,7 @@
 	if(findtext(streak, POCKET_PISTOL))
 		streak = ""
 		pocket_pistol(A,D)
-		speed_boost(A, 2 SECONDS, "pocketpistol")
+		speed_boost(A, -0.2, "pocketpistol")
 		return TRUE
 
 	if(A == D) //you can pull your gun out by "grabbing" yourself
@@ -37,13 +37,13 @@
 	if(findtext(streak, BLOOD_BURST))
 		streak = ""
 		blood_burst(A,D)
-		speed_boost(A, 6 SECONDS, "bloodburst")
+		speed_boost(A, -0.5, "bloodburst")
 		return TRUE
 
 	if(findtext(streak, GUN_HAND))
 		streak = ""
 		gun_hand(A, D)
-		speed_boost(A, 6 SECONDS, "gunhand")
+		speed_boost(A, -0.5, "gunhand")
 		return TRUE
 
 /datum/martial_art/ultra_violence/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -61,13 +61,18 @@
 	check_streak(A,D)
 	return FALSE
 
-/datum/martial_art/ultra_violence/proc/speed_boost(mob/living/carbon/human/A, duration, tag)
-	A.add_movespeed_modifier(tag, update=TRUE, priority=101, multiplicative_slowdown = -0.5, blacklisted_movetypes=(FLOATING))
-	addtimer(CALLBACK(src, .proc/remove_boost, A, tag), duration, TIMER_UNIQUE|TIMER_OVERRIDE)
+/datum/martial_art/ultra_violence/proc/speed_boost(mob/living/carbon/human/A, strength, tag)
+	A.add_movespeed_modifier(tag, update=TRUE, priority=101, multiplicative_slowdown = strength, blacklisted_movetypes=(FLOATING))
+	addtimer(CALLBACK(src, .proc/remove_boost, A, tag), 6 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /datum/martial_art/ultra_violence/proc/remove_boost(mob/living/carbon/human/A, tag)
 	A.remove_movespeed_modifier(tag)
 
+/*---------------------------------------------------------------
+
+	start of blood burst section 
+
+---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/blood_burst(mob/living/carbon/human/A, mob/living/carbon/human/D)
 
 	A.add_mob_blood(D)
@@ -88,6 +93,11 @@
 		A.adjustFireLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
 		new /obj/effect/gibspawner/generic(D.loc)
 
+/*---------------------------------------------------------------
+
+	end of blood burst section 
+
+---------------------------------------------------------------*/
 /*---------------------------------------------------------------
 
 	start of pocket pistol section 
@@ -274,7 +284,6 @@
 	H.dna.species.punchdamagehigh += 4 //no fancy comboes, just punches
 	H.dna.species.punchstunthreshold += 50 //disables punch stuns
 	H.dna.species.staminamod = 0 //my god, why must you make me add all these additional things, stop trying to disable them, just kill them
-	H.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = -0.1, blacklisted_movetypes=(FLOATING))
 	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)//instead of giving them more health, just remove crit entirely, fits better thematically too
 	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
@@ -294,7 +303,6 @@
 	H.dna.species.punchdamagehigh -= 4 
 	H.dna.species.punchstunthreshold -= 50
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
-	H.remove_movespeed_modifier(type)
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
