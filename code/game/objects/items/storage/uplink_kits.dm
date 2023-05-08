@@ -778,4 +778,3 @@
 	var/obj/item/bodybag/environmental/prisoner/syndicate/pbag = new(src)
 	var/obj/item/syndicate_prisoner_remote/remote = new(src)
 	remote.bag = pbag
-

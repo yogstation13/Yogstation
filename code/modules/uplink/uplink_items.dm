@@ -2096,7 +2096,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/implants/mantis
 	name = "Stechkin arm implant"
 	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
-	item = /obj/item/storage/briefcase/syndie_kit/stechkin_implant
+	item = /obj/item/storage/briefcase/stechkin_implant
 	cost = 15
 	surplus = 0
 
