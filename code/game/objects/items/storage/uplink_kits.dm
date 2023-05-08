@@ -768,8 +768,7 @@
 	real_name = "Stechkin implant"
 
 /obj/item/stroage/box/syndie_kit/stechkin_implant/PopulateContents()
-	for(var/i in 1 to 2)
-		new /obj/item/autosurgeon/organ/syndicate/stechkin_implant(src)
+	new /obj/item/autosurgeon/organ/syndicate/stechkin_implant(src)
 
 /obj/item/storage/box/syndie_kit/emp_shield
 	real_name = "EMP shield implant kit"
