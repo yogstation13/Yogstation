@@ -55,10 +55,3 @@
 	new /obj/item/autosurgeon/nt_mantis(src)
 	new /obj/item/autosurgeon/nt_mantis/left(src)
 
-/obj/item/storage/briefcase/stechkin_implant
-	desc = "Portable container housing a pair of cutting-edge pistol implants disguised as a briefcase."
-
-/obj/item/storage/briefcase/stechkin_implant/PopulateContents()
-	..()
-	new /obj/item/autosurgeon/arm/syndicate/stechkin_implant/(src)
-	new /obj/item/autosurgeon/arm/syndicate/stechkin_implant/left(src)

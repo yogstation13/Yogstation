@@ -110,8 +110,8 @@
 
 /obj/item/gun/ballistic/automatic/pistol/implant
 	name = "Stechkin implant"
-	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
-	can_suppress = FALSE
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows for easy concealment."
+
 
 /obj/item/gun/ballistic/automatic/pistol/v38
 	name = "\improper Vatra M38 Pistol"

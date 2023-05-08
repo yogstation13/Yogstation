@@ -431,6 +431,3 @@
 	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
 	contents = newlist(/obj/item/gun/ballistic/automatic/pistol/implant)
 	syndicate_implant = TRUE
-
-/obj/item/organ/cyberimp/arm/stechkin_implant/left
-	zone= BODY_ZONE_L_ARM
