@@ -102,10 +102,7 @@
 				M.IgniteMob()
 				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
 			log_combat(user, target, "attempted to emag")
-			if (!istype(target, /obj/machinery/computer/cargo))
-				target.emag_act(user)
-			else
-				to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
+			target.emag_act(user)
 		emagging = FALSE
 
 /obj/item/card/emag/improvised/attackby(obj/item/W, mob/user, params)
