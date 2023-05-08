@@ -1734,7 +1734,7 @@ obj/item/toy/turn_tracker
 
 /obj/item/gun/magic/hook/sickly_blade_toy/ash_toy
 	name = "metalic replica blade"
-	desc = "A hunk of molten soft injection plastic warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is as it has a Donk Co logo is on the hilt."
+	desc = "A hunk of molten soft injection plastic warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is, as it has a Donk Co logo is on the hilt."
 	icon_state = "ash_blade"
 	item_state = "ash_blade"
 
