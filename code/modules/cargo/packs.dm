@@ -486,7 +486,7 @@
 					/obj/item/clothing/suit/armor/secconcoat,
 					/obj/item/clothing/head/beret/sec/secconhat,
 					/obj/item/clothing/suit/armor/secconvest)
-	name = "constable supply crate"
+	crate_name = "constable supply crate"
 	
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Armory //////////////////////////////////////////
