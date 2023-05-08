@@ -19,7 +19,7 @@
 	charge_max = 50
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = 2
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
 	action_icon_state = "areaconvert"
@@ -39,7 +39,7 @@
 	charge_max = 20
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = 0
 	summon_type = list(/turf/open/floor/engine/cult)
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
@@ -55,7 +55,7 @@
 	charge_max = 100
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = 0
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
 	action_icon_state = "lesserconstruct"
@@ -72,7 +72,7 @@
 	charge_max = 300
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = 0
 
 	summon_type = list(/turf/closed/wall/r_wall)
@@ -85,7 +85,7 @@
 	charge_max = 2400
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = 0
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
 	action_icon_state = "summonsoulstone"
@@ -110,7 +110,7 @@
 	charge_max = 400
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	wall_type = /obj/effect/forcefield/cult
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
 	action_icon_state = "cultforcewall"
@@ -126,7 +126,7 @@
 	charge_max = 250
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = -1
 	include_user = TRUE
 	jaunt_duration = 50 //in deciseconds
@@ -148,7 +148,7 @@
 	charge_max = 400
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	max_targets = 6
 	action_icon_state = "magicm"
 	action_background_icon_state = "bg_demon"
@@ -178,7 +178,7 @@
 	charge_max = 200
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = -1
 	include_user = TRUE
 	cooldown_min = 20 //25 deciseconds reduction per rank
@@ -202,7 +202,7 @@
 	school = "evocation"
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
 	action_background_icon_state = "bg_demon"
 	action_icon_state = "abyssal_gaze"
@@ -249,7 +249,7 @@
 	school = "evocation"
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	action_icon = 'icons/mob/actions/actions_cult.dmi'
 	action_background_icon_state = "bg_demon"
 	action_icon_state = "dominate"

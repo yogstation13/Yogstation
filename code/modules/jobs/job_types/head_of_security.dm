@@ -18,7 +18,7 @@
 	exp_requirements = 720
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
-	alt_titles = list("Security Commander", "Security Chief")
+	alt_titles = list("Security Commander", "Security Chief", "Chief Security Officer")
 
 	outfit = /datum/outfit/job/hos
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)

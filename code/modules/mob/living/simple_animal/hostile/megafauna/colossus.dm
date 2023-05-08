@@ -741,7 +741,7 @@ Difficulty: Very Hard
 	charge_max = 200
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = 0
 	summon_type = list(
 		/obj/structure/flora/ausbushes,
@@ -881,7 +881,7 @@ Difficulty: Very Hard
 	desc = "Exits the body you are possessing."
 	charge_max = 60
 	clothes_req = 0
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	max_targets = 1
 	range = -1
 	include_user = TRUE

@@ -11,7 +11,7 @@
 	clothes_req = FALSE
 	centcom_cancast = FALSE
 	invocation = "NECREM IMORTIUM!"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = -1
 	level_max = 0 //cannot be improved
 	cooldown_min = 10
