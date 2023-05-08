@@ -267,13 +267,19 @@
 	. = ..()
 	if(!proximity)
 		return
-	if(wielded && !QDELETED(A)) //destroys windows and grilles in one hit
+	if(wielded && !QDELETED(A)) //destroys windows and grilles in one or two hits, most of the time
 		if(istype(A, /obj/structure/window))
 			var/obj/structure/window/W = A
 			W.take_damage(W.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 		else if(istype(A, /obj/structure/grille))
 			var/obj/structure/grille/G = A
 			G.take_damage(G.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
+		else if(istype(A, /obj/machinery/door)) //Nines hits for reinforced airlock, seven for normal
+			var/obj/machinery/door/D = A
+			D.take_damage(D.max_integrity/6, BRUTE, MELEE, FALSE, null, armour_penetration)
+		else if(istype(A, /obj/structure/door_assembly)) //Two hits for frames left behind
+			var/obj/machinery/door/D = A
+			D.take_damage(D.max_integrity/3, BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /*
  * Metal Hydrogen Axe
