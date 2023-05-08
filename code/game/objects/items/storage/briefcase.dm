@@ -55,7 +55,7 @@
 	new /obj/item/autosurgeon/nt_mantis(src)
 	new /obj/item/autosurgeon/nt_mantis/left(src)
 
-/obj/item/storage/box/syndie_kit/stechkin_implant
+/obj/item/storage/briefcase/syndie_kit/stechkin_implant
 	real_name = "Stechkin implant"
 
 /obj/item/stroage/briefcase/syndie_kit/stechkin_implant/PopulateContents()
