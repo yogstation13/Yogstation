@@ -204,3 +204,14 @@
 	icon_state = "spacepol"
 	item_state = "spacepol"
 	can_adjust = FALSE
+
+/*
+ *Constable
+ */
+
+/obj/item/clothing/under/rank/security/secconuniform
+	name = "constable's uniform"
+	desc = "A pale blue and black uniform supposedly made from 90% Space Indian cotton."
+	icon_state = "secconuniform"
+	item_state = "secconuniform"
+	
