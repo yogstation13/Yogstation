@@ -1686,7 +1686,7 @@ obj/item/toy/turn_tracker
 
 /obj/item/gun/magic/hook/sickly_blade_toy
 	name = "plastic replica blade"
-	desc = "A sickly, green crescent blade, decorated with an plastic eye. You feel like this was cheaply made."
+	desc = "A sickly, green crescent blade, decorated with an plastic eye. You feel like this was cheaply made. A Donk Co logo is on the hilt of this heretical blade."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eldritch_blade"
 	item_state = "eldritch_blade"
@@ -1733,7 +1733,7 @@ obj/item/toy/turn_tracker
 	item_state = "rust_blade"
 
 /obj/item/gun/magic/hook/sickly_blade_toy/ash_toy
-	name = "metalicr replica blade"
+	name = "metalic replica blade"
 	desc = "A hunk of molten soft injection plastic warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is as it has a Donk Co logo is on the hilt."
 	icon_state = "ash_blade"
 	item_state = "ash_blade"
