@@ -155,6 +155,10 @@
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/syndie_hammer
 
+/obj/item/autosurgeon/organ/syndicate/stechkin_implant
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/stechkin_implant
+
 /obj/item/autosurgeon/arm/syndicate/syndie_hammer/attack_self(mob/user) //Preternis-only implant (if you don't manually remove the implant)
 	if(!ispreternis(user))
 		to_chat(user, span_warning("The autosurgeon rejects your body!"))
@@ -168,6 +172,7 @@
 /obj/item/autosurgeon/nt_mantis/left
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis/left
+
 
 /obj/item/autosurgeon/plasmavessel //Yogs Start: Just an autosurgeon with a plasma vessel in it, used in /obj/item/storage/box/syndie_kit/xeno_organ_kit
 	uses = 3
@@ -338,3 +343,4 @@
 /obj/item/multisurgeon/magboots //for ce
 	desc = "A single-use multisurgeon that contains magboot implants for each leg."
 	starting_organ = list(/obj/item/organ/cyberimp/leg/magboot, /obj/item/organ/cyberimp/leg/magboot/l)
+

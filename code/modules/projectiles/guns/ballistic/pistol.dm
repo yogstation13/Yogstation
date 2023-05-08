@@ -107,3 +107,19 @@
 	icon_state = "makeshift"
 	spawnwithmagazine = FALSE
 	fire_delay = 6
+
+/obj/item/gun/ballistic/automatic/pistol/implant
+	name = "Stechkin implant"
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
+	can_suppress = FALSE
+
+/obj/item/gun/ballistic/automatic/pistol/implant/equipped(mob/user, slot, initial)
+	. = ..()
+	if(slot != ITEM_SLOT_HANDS)
+		return
+	var/side = user.get_held_index_of_item(src)
+
+	if(side == LEFT_HANDS)
+		transform = NULL
+	else
+		transform = matrix(-1,0,0,0,1,0)
