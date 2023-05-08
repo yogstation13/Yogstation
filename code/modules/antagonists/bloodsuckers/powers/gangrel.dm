@@ -193,7 +193,7 @@
 	magic_9ball.firer = user
 	magic_9ball.def_zone = ran_zone(user.zone_selected)
 	magic_9ball.preparePixelProjectile(target_atom, user)
-	INVOKE_ASYNC(magic_9ball, /obj/item/projectile.proc/fire)
+	INVOKE_ASYNC(magic_9ball, TYPE_PROC_REF(/obj/item/projectile, fire))
 	playsound(user, 'sound/magic/wand_teleport.ogg', 60, TRUE)
 	power_activated_sucessfully()
 
@@ -484,7 +484,7 @@
 	var/mob/living/simple_animal/hostile/bloodsucker/werewolf/A = owner
 	A.environment_smash = ENVIRONMENT_SMASH_RWALLS
 	A.obj_damage *= 3
-	addtimer(CALLBACK(src, .proc/DeactivatePower), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeactivatePower)), 10 SECONDS)
 
 /datum/action/cooldown/bloodsucker/gangrel/rabidism/ContinueActive()
 	return TRUE

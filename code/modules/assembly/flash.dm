@@ -54,7 +54,7 @@
 	if(flash)
 		add_overlay(flashing_overlay)
 		attached_overlays += flashing_overlay
-		addtimer(CALLBACK(src, .proc/update_icon), 5)
+		addtimer(CALLBACK(src, PROC_REF(update_icon)), 5)
 	if(holder)
 		holder.update_icon()
 
@@ -183,8 +183,8 @@
 			R.uneq_all()
 			R.stop_pulling()
 			R.break_all_cyborg_slots(TRUE)
-			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/clear_fullscreen, "reducedflash"), 5 SECONDS)
-			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/repair_all_cyborg_slots), 5 SECONDS)
+			addtimer(CALLBACK(R, TYPE_PROC_REF(/mob/living/silicon/robot, clear_fullscreen), "reducedflash"), 5 SECONDS)
+			addtimer(CALLBACK(R, TYPE_PROC_REF(/mob/living/silicon/robot, repair_all_cyborg_slots)), 5 SECONDS)
 			to_chat(R, span_danger("Your sensors were momentarily dazzled!"))
 			user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
 			return TRUE
@@ -278,7 +278,7 @@
 		to_chat(I.owner, span_warning("Your photon projector implant overheats and deactivates!"))
 		I.Retract()
 	overheat = TRUE
-	addtimer(CALLBACK(src, .proc/cooldown), flashcd * 2)
+	addtimer(CALLBACK(src, PROC_REF(cooldown)), flashcd * 2)
 
 /obj/item/assembly/flash/armimplant/try_use_flash(mob/user = null)
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
@@ -289,7 +289,7 @@
 			to_chat(I.owner, span_warning("Your photon projector is running too hot to be used again so quickly!"))
 		return FALSE
 	overheat = TRUE
-	addtimer(CALLBACK(src, .proc/cooldown), flashcd)
+	addtimer(CALLBACK(src, PROC_REF(cooldown)), flashcd)
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
 	update_icon(1)
 	return TRUE

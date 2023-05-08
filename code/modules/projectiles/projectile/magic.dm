@@ -468,8 +468,8 @@
 /obj/structure/closet/decay/Initialize()
 	. = ..()
 	if(auto_destroy)
-		addtimer(CALLBACK(src, .proc/bust_open), 5 MINUTES)
-	addtimer(CALLBACK(src, .proc/magicly_lock), 5)
+		addtimer(CALLBACK(src, PROC_REF(bust_open)), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(magicly_lock)), 5)
 
 /obj/structure/closet/decay/proc/magicly_lock()
 	if(!welded)
@@ -483,7 +483,7 @@
 
 /obj/structure/closet/decay/proc/decay()
 	animate(src, alpha = 0, time = 3 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 3 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 3 SECONDS)
 
 /obj/structure/closet/decay/open(mob/living/user)
 	. = ..()
@@ -491,12 +491,12 @@
 		if(icon_state == magic_icon) //check if we used the magic icon at all before giving it the lesser magic icon
 			unmagify()
 		else
-			addtimer(CALLBACK(src, .proc/decay), 15 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
 
 /obj/structure/closet/decay/proc/unmagify()
 	icon_state = weakened_icon
 	update_icon()
-	addtimer(CALLBACK(src, .proc/decay), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
 	icon_welded = "welded"
 
 /obj/item/projectile/magic/flying

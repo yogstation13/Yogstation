@@ -594,7 +594,7 @@ update_label("John Doe", "Clowny")
 	. = ..()
 	access -= ACCESS_CHANGE_IDS
 	access -= ACCESS_HEADS
-	addtimer(CALLBACK(src, .proc/wipe_id), 50 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(wipe_id)), 50 SECONDS)
 
 /obj/item/card/id/captains_spare/temporary/proc/wipe_id()
 	visible_message(span_danger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"))

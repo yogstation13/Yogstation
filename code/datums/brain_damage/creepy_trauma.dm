@@ -31,7 +31,7 @@
 	owner.mind.add_antag_datum(/datum/antagonist/obsessed)
 	antagonist = owner.mind.has_antag_datum(/datum/antagonist/obsessed)
 	antagonist.trauma = src
-	RegisterSignal(obsession, COMSIG_MOB_EYECONTACT, .proc/stare)
+	RegisterSignal(obsession, COMSIG_MOB_EYECONTACT, PROC_REF(stare))
 	..()
 	//antag stuff//
 	antagonist.forge_objectives(obsession.mind)
@@ -108,7 +108,7 @@
 
 	if(examining_mob != owner || !triggering_examiner || prob(50))
 		return
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, obsession, span_warning("You catch [examining_mob] staring at you...")), 3)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), obsession, span_warning("You catch [examining_mob] staring at you...")), 3)
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/brain_trauma/special/obsessed/proc/find_obsession()

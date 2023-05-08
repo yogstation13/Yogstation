@@ -58,8 +58,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	if(!GLOB.battleroyale_players.len)
 		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
 
-	addtimer(CALLBACK(src, .proc/check_win), 300)
-	addtimer(CALLBACK(src, .proc/shrinkborders), 10)
+	addtimer(CALLBACK(src, PROC_REF(check_win)), 300)
+	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 10)
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
 		finished = TRUE
 		return
-	addtimer(CALLBACK(src, .proc/check_win), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
+	addtimer(CALLBACK(src, PROC_REF(check_win)), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
 
 /datum/game_mode/fortnite/set_round_result()
 	..()
@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	borderstage++
 
 	if(borderstage <= 6)
-		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
+		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
 /datum/game_mode/fortnite/proc/loot_spawn()
 	var/num = rand(1,3)

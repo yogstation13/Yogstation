@@ -64,7 +64,7 @@
 	update_gland_hud()
 	var/atom/movable/screen/alert/mind_control/mind_alert = owner.throw_alert("mind_control", /atom/movable/screen/alert/mind_control)
 	mind_alert.command = command
-	addtimer(CALLBACK(src, .proc/clear_mind_control), mind_control_duration)
+	addtimer(CALLBACK(src, PROC_REF(clear_mind_control)), mind_control_duration)
 	return TRUE
 
 /obj/item/organ/heart/gland/proc/clear_mind_control()
@@ -200,7 +200,7 @@
 
 	if(LAZYLEN(broadcasted_mobs))
 		active_mind_control = TRUE
-		addtimer(CALLBACK(src, .proc/clear_mind_control), mind_control_duration)
+		addtimer(CALLBACK(src, PROC_REF(clear_mind_control)), mind_control_duration)
 
 	update_gland_hud()
 	return TRUE
@@ -226,7 +226,7 @@
 
 /obj/item/organ/heart/gland/access/activate()
 	to_chat(owner, span_notice("You feel like a VIP for some reason."))
-	RegisterSignal(owner, COMSIG_MOB_ALLOWED, .proc/free_access)
+	RegisterSignal(owner, COMSIG_MOB_ALLOWED, PROC_REF(free_access))
 
 /obj/item/organ/heart/gland/access/proc/free_access(datum/source, obj/O)
 	return TRUE
@@ -340,7 +340,7 @@
 		if(!iscarbon(M))
 			continue
 		entangled_mob = M
-		addtimer(CALLBACK(src, .proc/quantum_swap), rand(1 MINUTES, 4 MINUTES))
+		addtimer(CALLBACK(src, PROC_REF(quantum_swap)), rand(1 MINUTES, 4 MINUTES))
 		return
 
 /obj/item/organ/heart/gland/quantum/proc/quantum_swap()
@@ -439,7 +439,7 @@
 	owner.visible_message(span_danger("[owner]'s skin starts emitting electric arcs!"),\
 	span_warning("You feel electric energy building up inside you!"))
 	playsound(get_turf(owner), "sparks", 100, 1, -1)
-	addtimer(CALLBACK(src, .proc/zap), rand(30, 100))
+	addtimer(CALLBACK(src, PROC_REF(zap)), rand(30, 100))
 
 /obj/item/organ/heart/gland/electric/proc/zap()
 	tesla_zap(owner, 4, 8000, TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE | TESLA_MOB_STUN)
@@ -475,8 +475,8 @@
 
 /obj/item/organ/heart/gland/gas/activate() //Yogstation change: plasma -> gas
 	to_chat(owner, span_warning("You feel bloated."))
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
-	addtimer(CALLBACK(src, .proc/vomit_gas), 20 SECONDS) //Yogstation change: plasma -> gas
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(vomit_gas)), 20 SECONDS) //Yogstation change: plasma -> gas
 
 /obj/item/organ/heart/gland/gas/proc/vomit_gas() //Yogstation change: plasma -> gas
 	if(!owner)

@@ -1372,7 +1372,7 @@
 		span_boldnotice("You sit down onto [src]."),
 	)
 	if(IS_BLOODSUCKER(user))
-		RegisterSignal(user, COMSIG_MOB_SAY, .proc/handle_speech)
+		RegisterSignal(user, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		user.Paralyze(6 SECONDS)
 		to_chat(user, span_cult("The power of the blood throne overwhelms you!"))

@@ -153,7 +153,7 @@
 /datum/quirk/random_accent/post_add()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(!H.mind.accent_name)
-		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
+		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, TYPE_PROC_REF(/datum/mind, handle_speech))
 	H.mind.accent_name = pick(assoc_to_keys(GLOB.accents_name2file))// Right now this pick just picks a straight random one from all implemented.
 
 /datum/quirk/colorist

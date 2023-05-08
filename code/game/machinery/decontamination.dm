@@ -111,7 +111,7 @@
 				mob_occupant.emote("scream")
 		else
 			decon.start()
-		addtimer(CALLBACK(src, .proc/cook), 50)
+		addtimer(CALLBACK(src, PROC_REF(cook)), 50)
 	else
 		uv_cycles = initial(uv_cycles)
 		uv = FALSE
@@ -120,12 +120,12 @@
 			flick("tube_up", src)
 			decon_emagged.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject_emagged), flick_waitTime)
+			addtimer(CALLBACK(src, PROC_REF(decon_eject_emagged)), flick_waitTime)
 		else
 			flick("tube_up", src)
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject), flick_waitTime)
+			addtimer(CALLBACK(src, PROC_REF(decon_eject)), flick_waitTime)
 
 /obj/machinery/decontamination_unit/proc/decon_eject_emagged()
 	var/mob/living/mob_occupant = occupant
@@ -237,7 +237,7 @@
 	if(locked)
 		visible_message(span_notice("You hear someone kicking against the doors of [src]!"), \
 			span_notice("You start kicking against the doors..."))
-		addtimer(CALLBACK(src, .proc/resist_open, user), 300)
+		addtimer(CALLBACK(src, PROC_REF(resist_open), user), 300)
 	else
 		open_machine()
 		dump_mob()

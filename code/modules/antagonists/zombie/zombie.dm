@@ -134,7 +134,7 @@
 //	zombify.Remove(owner.current)
 
 /datum/antagonist/zombie/proc/start_evolution_2()
-	addtimer(CALLBACK(src, .proc/finish_evolution_2), TIER_2_TIME)
+	addtimer(CALLBACK(src, PROC_REF(finish_evolution_2)), TIER_2_TIME)
 
 /datum/antagonist/zombie/proc/finish_evolution_2()
 	evolution_ready = TRUE
@@ -416,7 +416,7 @@
 	ready = TRUE
 
 /obj/effect/proc_holder/zombie/proc/start_cooldown()
-	addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown_time)
 	cooldown_ends = world.time + cooldown_time
 	ready = FALSE*/
 

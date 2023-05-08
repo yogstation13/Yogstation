@@ -26,8 +26,8 @@
 		))
 
 /datum/component/chasm/Initialize(turf/target)
-	RegisterSignals(parent, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/Entered)
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY,.proc/fish)
+	RegisterSignals(parent, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), PROC_REF(Entered))
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(fish))
 	target_turf = target
 	START_PROCESSING(SSobj, src) // process on create, in case stuff is still there
 
@@ -60,7 +60,7 @@
 	for (var/thing in to_check)
 		if (droppable(thing))
 			. = 1
-			INVOKE_ASYNC(src, .proc/drop, thing)
+			INVOKE_ASYNC(src, PROC_REF(drop), thing)
 
 /datum/component/chasm/proc/droppable(atom/movable/AM)
 	// avoid an infinite loop, but allow falling a large distance
@@ -135,7 +135,7 @@
 
 	if (!storage)
 		storage = new(get_turf(parent))
-		RegisterSignal(storage, COMSIG_ATOM_EXITED, .proc/left_chasm)
+		RegisterSignal(storage, COMSIG_ATOM_EXITED, PROC_REF(left_chasm))
 
 	if (storage.contains(dropped_thing))
 		return
@@ -146,7 +146,7 @@
 
 	if (dropped_thing.forceMove(storage))
 		if (isliving(dropped_thing))
-			RegisterSignal(dropped_thing, COMSIG_LIVING_REVIVE, .proc/on_revive)
+			RegisterSignal(dropped_thing, COMSIG_LIVING_REVIVE, PROC_REF(on_revive))
 	else
 		parent.visible_message(span_boldwarning("[parent] spits out [dropped_thing]!"))
 		dropped_thing.throw_at(get_edge_target_turf(parent, pick(GLOB.alldirs)), rand(1, 10), rand(1, 10))

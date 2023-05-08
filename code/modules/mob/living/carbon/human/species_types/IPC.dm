@@ -210,7 +210,7 @@
 	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
 	H.update_body()
-	addtimer(CALLBACK(src, .proc/afterrevive, H), 0)
+	addtimer(CALLBACK(src, PROC_REF(afterrevive), H), 0)
 	return
 
 /datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)

@@ -139,7 +139,7 @@
 			G.glowth.set_light(0, 0) // Set glowy to no light
 			if(G.current_nullify_timer)
 				deltimer(G.current_nullify_timer) // Stacks
-			G.current_nullify_timer = addtimer(CALLBACK(src, .proc/giveGlowyBack, M), 40 SECONDS, TIMER_STOPPABLE)
+			G.current_nullify_timer = addtimer(CALLBACK(src, PROC_REF(giveGlowyBack), M), 40 SECONDS, TIMER_STOPPABLE)
 
 /datum/action/cooldown/spell/aoe/proc/giveGlowyBack(mob/living/carbon/M)
 	if(!M)

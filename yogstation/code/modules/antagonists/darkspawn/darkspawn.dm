@@ -40,7 +40,7 @@
 	owner.current.hud_used.psi_counter.invisibility = 0
 	update_psi_hud()
 	add_ability("divulge")
-	addtimer(CALLBACK(src, .proc/begin_force_divulge), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
+	addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 	START_PROCESSING(SSprocessing, src)
 	var/datum/objective/darkspawn/O = new
 	objectives += O
@@ -101,17 +101,17 @@
 
 /datum/antagonist/darkspawn/get_admin_commands()
 	. = ..()
-	.["Give Ability"] = CALLBACK(src,.proc/admin_give_ability)
-	.["Take Ability"] = CALLBACK(src,.proc/admin_take_ability)
+	.["Give Ability"] = CALLBACK(src, PROC_REF(admin_give_ability))
+	.["Take Ability"] = CALLBACK(src, PROC_REF(admin_take_ability))
 	if(darkspawn_state == MUNDANE)
-		.["Divulge"] = CALLBACK(src, .proc/divulge)
-		.["Force-Divulge (Obvious)"] = CALLBACK(src, .proc/force_divulge)
+		.["Divulge"] = CALLBACK(src, PROC_REF(divulge))
+		.["Force-Divulge (Obvious)"] = CALLBACK(src, PROC_REF(force_divulge))
 	else if(darkspawn_state == DIVULGED)
-		.["Give Upgrade"] = CALLBACK(src, .proc/admin_give_upgrade)
-		.["[psi]/[psi_cap] Psi"] = CALLBACK(src, .proc/admin_edit_psi)
-		.["[lucidity] Lucidity"] = CALLBACK(src, .proc/admin_edit_lucidity)
-		.["[lucidity_drained] / [SSticker.mode.required_succs] Unique Lucidity"] = CALLBACK(src, .proc/admin_edit_lucidity_drained)
-		.["Sacrament (ENDS THE ROUND)"] = CALLBACK(src, .proc/sacrament)
+		.["Give Upgrade"] = CALLBACK(src, PROC_REF(admin_give_upgrade))
+		.["[psi]/[psi_cap] Psi"] = CALLBACK(src, PROC_REF(admin_edit_psi))
+		.["[lucidity] Lucidity"] = CALLBACK(src, PROC_REF(admin_edit_lucidity))
+		.["[lucidity_drained] / [SSticker.mode.required_succs] Unique Lucidity"] = CALLBACK(src, PROC_REF(admin_edit_lucidity_drained))
+		.["Sacrament (ENDS THE ROUND)"] = CALLBACK(src, PROC_REF(sacrament))
 
 /datum/antagonist/darkspawn/proc/admin_give_ability(mob/admin)
 	var/id = stripped_input(admin, "Enter an ability ID, for \"all\" to give all of them.", "Give Ability")
@@ -331,7 +331,9 @@
 	if(darkspawn_state >= DIVULGED)
 		return
 	if(forced)
-		owner.current.visible_message(span_boldwarning("[owner.current]'s skin sloughs off, revealing black flesh covered in symbols!"), span_userdanger("You have forcefully divulged!"))
+		owner.current.visible_message(
+			span_boldwarning("[owner.current]'s skin sloughs off, revealing black flesh covered in symbols!"), 
+			span_userdanger("You have forcefully divulged!"))
 	var/mob/living/carbon/human/user = owner.current
 	to_chat(user, "<span class='velvet bold'>Your mind has expanded. The Psi Web is now available. Avoid the light. Keep to the shadows. Your time will come.</span>")
 	user.fully_heal()
@@ -353,7 +355,7 @@
 	var/mob/living/carbon/human/user = owner.current
 	if(!SSticker.mode.sacrament_done)
 		set_security_level(SEC_LEVEL_GAMMA)
-		addtimer(CALLBACK(src, .proc/sacrament_shuttle_call), 50)
+		addtimer(CALLBACK(src, PROC_REF(sacrament_shuttle_call)), 50)
 	for(var/V in abilities)
 		remove_ability(abilities[V], TRUE)
 	for(var/datum/action/innate/darkspawn/leftover_ability in user.actions)

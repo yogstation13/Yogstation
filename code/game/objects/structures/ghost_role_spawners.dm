@@ -447,7 +447,7 @@
 		id.update_label()
 	else
 		to_chat(L, span_userdanger("Your owner is already dead!  You will soon perish."))
-		addtimer(CALLBACK(L, /mob.proc/dust, 150)) //Give em a few seconds as a mercy.
+		addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, dust), 150)) //Give em a few seconds as a mercy.
 
 /datum/outfit/demonic_friend
 	name = "Demonic Friend"

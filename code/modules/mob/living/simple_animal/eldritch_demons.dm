@@ -151,7 +151,7 @@
 		stack_trace("Eldritch Armsy created with invalid len ([len]). Reverting to 3.")
 		len = 3 //code breaks below 3, let's just not allow it.
 	oldloc = loc
-	RegisterSignal(src,COMSIG_MOVABLE_MOVED,.proc/update_chain_links)
+	RegisterSignal(src,COMSIG_MOVABLE_MOVED, PROC_REF(update_chain_links))
 	if(!spawn_more)
 		return
 	allow_pulling = TRUE

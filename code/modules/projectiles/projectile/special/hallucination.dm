@@ -100,7 +100,7 @@
 			layer = ABOVE_MOB_LAYER
 	hal_target.client.images += blood
 	animate(blood, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = 0.5 SECONDS)
-	addtimer(CALLBACK(src, .proc/cleanup_blood), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(cleanup_blood)), 0.5 SECONDS)
 
 /obj/item/projectile/hallucination/proc/cleanup_blood(image/blood)
 	hal_target.client.images -= blood

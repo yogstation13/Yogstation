@@ -409,7 +409,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/proc/surge(amount)
 	surging = amount
-	addtimer(CALLBACK(src, .proc/stopsurging), rand(30 SECONDS, 2 MINUTES))
+	addtimer(CALLBACK(src, PROC_REF(stopsurging)), rand(30 SECONDS, 2 MINUTES))
 
 /obj/machinery/power/supermatter_crystal/proc/stopsurging()
 	surging = 0
@@ -1207,7 +1207,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
 		shard.say(span_danger("Supermatter is being charged up, please stand back."))
 		qdel(src)
-		addtimer(CALLBACK(shard, /obj/machinery/power/supermatter_crystal/shard.proc/trigger), 60)
+		addtimer(CALLBACK(shard, TYPE_PROC_REF(/obj/machinery/power/supermatter_crystal/shard, trigger)), 60)
 	return TRUE
 	
 /obj/machinery/power/supermatter_crystal/shard/proc/trigger()
@@ -1215,7 +1215,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	playsound(src, 'sound/machines/supermatter_alert.ogg', 75)
 	radio.talk_into(src, "Alert, new crystalline hyperstructure has been established in [A.map_name]", engineering_channel)
 	for(var/i=1 to 10)
-		addtimer(CALLBACK(src, .proc/chargedUp_zap), 30)
+		addtimer(CALLBACK(src, PROC_REF(chargedUp_zap)), 30)
 
 /obj/machinery/power/supermatter_crystal/shard/proc/chargedUp_zap()
 	supermatter_zap(src, 7, 3000)

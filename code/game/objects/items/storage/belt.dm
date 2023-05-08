@@ -874,7 +874,7 @@
 /obj/item/storage/belt/quiver/returning/proc/mark_arrow_return(target, atom/movable/AM, atom/new_location)
 	if(!istype(AM, return_type))
 		return
-	addtimer(CALLBACK(src, .proc/check_arrow_return, AM), return_time)
+	addtimer(CALLBACK(src, PROC_REF(check_arrow_return), AM), return_time)
 
 /obj/item/storage/belt/quiver/returning/proc/check_arrow_return(atom/movable/arrow)
 	if(!istype(arrow, return_type) || arrow.loc == src || (ismob(loc) && (loc == arrow.loc) || (istype(arrow.loc) && loc == arrow.loc.loc)))

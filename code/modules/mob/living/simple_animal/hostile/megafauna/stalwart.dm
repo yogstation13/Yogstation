@@ -310,7 +310,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/death), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(death)), 30 SECONDS)
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/staldrone/ranged
 	ranged = 1

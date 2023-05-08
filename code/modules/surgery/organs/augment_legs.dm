@@ -32,7 +32,7 @@
 		return
 
 	L.set_disabled(TRUE)	//disable the bodypart
-	addtimer(CALLBACK(src, .proc/reenableleg), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(reenableleg)), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 	if(severity & EMP_HEAVY && prob(5) && !syndicate_implant)	//put probabilities into a calculator before you try fucking with this
 		to_chat(owner, span_warning("The EMP causes your [src] to thrash your [L] around wildly, breaking it!"))	
@@ -166,7 +166,7 @@
 /obj/item/organ/cyberimp/leg/clownshoes/AddEffect()
 	owner.add_movespeed_modifier("Clownshoesimplant", update=TRUE, priority=100, multiplicative_slowdown=1, blacklisted_movetypes=(FLYING|FLOATING))
 	waddle = owner.AddComponent(/datum/component/waddling)
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/SqueakyStep)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(SqueakyStep))
 	
 /obj/item/organ/cyberimp/leg/clownshoes/RemoveEffect()
 	owner.remove_movespeed_modifier("Clownshoesimplant")
@@ -378,7 +378,7 @@
 	if(!ishuman(M))
 		return
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/UpdateSpeed)
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(UpdateSpeed))
 
 /datum/action/innate/magboots/Remove(mob/M)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)

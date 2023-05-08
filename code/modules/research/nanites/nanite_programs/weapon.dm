@@ -93,7 +93,7 @@
 		return
 	host_mob.visible_message(span_warning("[host_mob] starts emitting a high-pitched buzzing, and [host_mob.p_their()] skin begins to glow..."),\
 							span_userdanger("You start emitting a high-pitched buzzing, and your skin begins to glow..."))
-	addtimer(CALLBACK(src, .proc/boom), 30 SECONDS) //You have 30 seconds to live
+	addtimer(CALLBACK(src, PROC_REF(boom)), 30 SECONDS) //You have 30 seconds to live
 
 /datum/nanite_program/triggered/explosive/proc/boom()
 	var/nanite_amount = nanites.nanite_volume

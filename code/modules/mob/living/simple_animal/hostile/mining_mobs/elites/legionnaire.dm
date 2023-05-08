@@ -107,7 +107,7 @@
 		T = get_step(T, dir_to_target)
 	playsound(src,'sound/magic/demon_attack1.ogg', 200, 1)
 	visible_message(span_boldwarning("[src] prepares to charge!"))
-	addtimer(CALLBACK(src, .proc/legionnaire_charge_2, dir_to_target, 0), 5)
+	addtimer(CALLBACK(src, PROC_REF(legionnaire_charge_2), dir_to_target, 0), 5)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge_2(var/move_dir, var/times_ran)
 	if(times_ran >= 4)
@@ -135,7 +135,7 @@
 		L.safe_throw_at(throwtarget, 10, 1, src)
 		L.Paralyze(20)
 		L.adjustBruteLoss(50)
-	addtimer(CALLBACK(src, .proc/legionnaire_charge_2, move_dir, (times_ran + 1)), 2)
+	addtimer(CALLBACK(src, PROC_REF(legionnaire_charge_2), move_dir, (times_ran + 1)), 2)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/head_detach(target)
 	ranged_cooldown = world.time + 10
@@ -163,7 +163,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/onHeadDeath()
 	myhead = null
-	addtimer(CALLBACK(src, .proc/regain_head), 50)
+	addtimer(CALLBACK(src, PROC_REF(regain_head)), 50)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/regain_head()
 	has_head = TRUE
@@ -350,8 +350,8 @@
 	D.set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
 	D.set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
 	D.vehicle_move_delay = 1
-	RegisterSignal(src, COMSIG_MOVABLE_BUCKLE, .proc/give_abilities)
-	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, .proc/remove_abilities)
+	RegisterSignal(src, COMSIG_MOVABLE_BUCKLE, PROC_REF(give_abilities))
+	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(remove_abilities))
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/proc/give_abilities(mob/living/elite, mob/living/M, force = FALSE)
 	toggle_ai(AI_OFF)

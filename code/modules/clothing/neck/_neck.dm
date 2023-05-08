@@ -371,7 +371,7 @@
 
 /obj/item/clothing/neck/cloak/ranger/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_POST_UNEQUIP, .proc/on_unequip)
+	RegisterSignal(src, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_unequip))
 
 /obj/item/clothing/neck/cloak/ranger/equipped(mob/user, slot)
 	. = ..()
@@ -396,8 +396,8 @@
 	var/mob/new_user = loc
 	if(istype(new_user) && new_user.get_item_by_slot(SLOT_NECK) == src)
 		current_user = new_user
-		RegisterSignal(current_user, COMSIG_MOVABLE_MOVED, .proc/on_move)
-		RegisterSignal(current_user, COMSIG_ATOM_BULLET_ACT, .proc/on_projectile_hit)
+		RegisterSignal(current_user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+		RegisterSignal(current_user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_projectile_hit))
 		START_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSobj, src)
