@@ -54,4 +54,3 @@
 	..()
 	new /obj/item/autosurgeon/nt_mantis(src)
 	new /obj/item/autosurgeon/nt_mantis/left(src)
-
