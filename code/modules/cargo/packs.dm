@@ -260,7 +260,7 @@
 
 /datum/supply_pack/security/ammo
 	name = "Ammo Crate"
-	desc = "Contains two 20-round magazines for the WT-550 Auto Carbine, three boxes of buckshot ammo, and three boxes of rubber ammo. Requires Security access to open."
+	desc = "Contains two 20-round magazines for the WT-550 Auto Carbine, two 8-round magazines for the Vatra M38 Pistol, three boxes of buckshot ammo, and three boxes of rubber ammo. Requires Security access to open."
 	cost = 2500
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
@@ -317,6 +317,19 @@
 					/obj/item/ammo_box/magazine/recharge/ntusp,
 					/obj/item/ammo_box/magazine/recharge/ntusp)
 	crate_name = "nt-usp crate"
+
+/datum/supply_pack/security/v38pistol
+	name = "Vatra M38 Pistol Crate"
+	desc = "A pack containing three Vatra M38s, an unusual handgun which loads .38 special designed for unarmored targets. Three spare magazines are included. Requires Security access to open."
+	cost = 4000
+	access_view = ACCESS_ARMORY
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/ammo_box/magazine/v38,
+					/obj/item/ammo_box/magazine/v38,
+					/obj/item/ammo_box/magazine/v38)
+	crate_name = "pistol crate"
 
 /datum/supply_pack/security/energypistol
 	name = "Energy Pistol Single-Pack"
@@ -2712,6 +2725,63 @@
 			if(istype(the_toy, /obj/item/toy/plush/lizard/azeel/snowflake))
 				the_toy = /obj/item/toy/plush/lizard/azeel
 		new the_toy(.)
+
+/datum/supply_pack/costumes_toys/archery
+	name = "Archery Crate"
+	desc = "Shoot apples of peoples heads with this kit containing everything you need to start your archery carrier."
+	cost = 1000
+	contains = list(/obj/item/gun/ballistic/bow,
+					/obj/item/storage/belt/quiver/full
+	)
+	crate_name = "archery crate"
+	crate_type = /obj/structure/closet/crate/wooden
+
+/datum/supply_pack/costumes_toys/randomised/toy_bow
+	name = "Toy Bow Crate"
+	desc = "A crate containing one random toy bow of four to impress your friends with, collect them all!"
+	cost = 500
+	num_contained = 1
+	contains = list(/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/white,
+					/obj/item/gun/ballistic/bow/toy/clockwork
+	)
+	crate_name = "toy bow crate"
+	crate_type = /obj/structure/closet/crate/wooden
+
+/datum/supply_pack/costumes_toys/archery_war
+	name = "Archery War Crate"
+	desc = "Set up an all out archery war with this simple kit!"
+	cost = 5000
+	contains = list(/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/storage/belt/quiver/blue/full,
+					/obj/item/storage/belt/quiver/blue/full,
+					/obj/item/storage/belt/quiver/blue/full,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/storage/belt/quiver/red/full,
+					/obj/item/storage/belt/quiver/red/full,
+					/obj/item/storage/belt/quiver/red/full,
+					/obj/item/ammo_box/arrow/toy/disabler,
+					/obj/item/ammo_box/arrow/toy/energy,
+					/obj/item/ammo_box/arrow/toy/pulse,
+					/obj/item/ammo_box/arrow/toy/xray,
+					/obj/item/ammo_box/arrow/toy/shock,
+					/obj/item/ammo_box/arrow/toy/magic
+	)
+	crate_name = "archery war crate"
+	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/wizard
 	name = "Wizard Costume Crate"

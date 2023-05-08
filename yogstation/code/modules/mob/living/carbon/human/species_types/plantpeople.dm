@@ -41,11 +41,11 @@
 	smells_like = "bloody grass"
 
 /datum/species/pod/before_equip_job(datum/job/J, mob/living/carbon/human/H)
-	to_chat(H, span_info("<b>You are a Phytosian.</b> Born from an engimatic plant called a 'Replica Pod'."))
-	to_chat(H, span_info("Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive, and affords you regeneration unmatched by any other race."))
-	to_chat(H, span_info("Darkness is your greatest foe. Even the cold expanses of space are lit by neighbouring stars, but the darkest recesses of the station's interior may prove to be your greatest foe."))
-	to_chat(H, span_info("Heat and cold will damage your epidermis far faster than your natural regeneration can match."))
-	to_chat(H, span_info("For more information on your race, see https://wiki.yogstation.net/wiki/Phytosian"))
+	to_chat(H, span_info("<b>You are a Phytosian.</b> You are born from the enigmatic plant lazarupela vitalis, better known as replica pods."))
+	to_chat(H, span_info("Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive while affording you regeneration unmatched by any other species."))
+	to_chat(H, span_info("Darkness is your greatest foe. While the cold expanse of space is lit by neighboring stars, shadowy recesses within the station's corridors will spell your demise."))
+	to_chat(H, span_info("Heat and cold will damage your epidermis far faster than your natural regeneration can match; take care to avoid environmental hazards."))
+	to_chat(H, span_info("For more information on your species, see https://wiki.yogstation.net/wiki/Phytosian"))
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()

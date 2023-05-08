@@ -65,6 +65,10 @@
 			guardian_pass = (src in safe)
 	if(guardian_pass)
 		return BULLET_ACT_FORCE_PIERCE
+
+	var/sig_return = SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone)
+	if(sig_return != NONE)
+		return sig_return
 	
 	if(!P.nodamage)
 		last_damage = P.name

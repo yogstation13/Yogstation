@@ -559,17 +559,16 @@
 
 /obj/item/nullrod/handedsword/dropped(mob/user, silent = TRUE)
 	. = ..()
-	if(QDELETED(src))
-		return
-	if(sheath && !sheath.swords)
+	if(sheath)
+		if(sheath.swordright)
+			sheath.swordright.forceMove(sheath)
+		if(sheath.swordleft)
+			sheath.swordleft.forceMove(sheath)
+		if(!sheath.swords)
+			user.balloon_alert(user, "you sheathe \the [sheath].")
+			sheath.update_icon()
+			playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 		sheath.swords = TRUE
-		var/obj/item/otherhand = user.get_inactive_held_item()
-		if(istype(otherhand, /obj/item/nullrod/handedsword))
-			otherhand.forceMove(sheath)
-		forceMove(sheath)
-		user.balloon_alert(user, "you sheathe \the [sheath].")
-		sheath.update_icon()
-		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 	
 
 /*---------------------------------------------------------------------------

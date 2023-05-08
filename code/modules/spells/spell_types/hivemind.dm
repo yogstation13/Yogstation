@@ -23,7 +23,6 @@
 	invocation_type = INVOCATION_NONE
 
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	aoe_radius = 0 //SNOWFLAKE, 0 is unlimited for target_external=0 spells
 	var/target_external = 0 //Whether or not we select targets inside or outside of the hive
 
 

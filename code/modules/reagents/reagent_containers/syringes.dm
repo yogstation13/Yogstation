@@ -15,13 +15,14 @@
 	materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 	sharpness = SHARP_POINTY
-	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 0.25 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5)
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 0.25 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5, "embedded_bleed_rate" = 0)
 
 /obj/item/reagent_containers/syringe/Initialize()
 	. = ..()
 	if(list_reagents) //syringe starts in inject mode if its already got something inside
 		mode = SYRINGE_INJECT
 		update_icon()
+	RegisterSignals(src, list(COMSIG_ITEM_EMBEDDED, COMSIG_ITEM_EMBED_TICK), PROC_REF(embed_inject))
 
 /obj/item/reagent_containers/syringe/on_reagent_change(changetype)
 	update_icon()
@@ -195,13 +196,9 @@
 		add_overlay(injoverlay)
 		M.update_inv_hands()
 	
-/obj/item/reagent_containers/syringe/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
-	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
-	reagents.reaction(embedde, INJECT, fraction)
-	reagents.trans_to(embedde, amount_per_transfer_from_this)
-	return TRUE
-	
-/obj/item/reagent_containers/syringe/embed_tick(embedde, part)
+/obj/item/reagent_containers/syringe/proc/embed_inject(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	if(!reagents.total_volume)
+		return
 	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 	reagents.reaction(embedde, INJECT, fraction)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
@@ -366,10 +363,14 @@
 /obj/item/reagent_containers/syringe/dart
 	name = "reagent dart"
 	amount_per_transfer_from_this = 10
-	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 0.25 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 0, "embedded_bleed_rate" = 0)
 
 /obj/item/reagent_containers/syringe/dart/temp
 	item_flags = DROPDEL
 
-/obj/item/reagent_containers/syringe/dart/temp/on_embed_removal(mob/living/carbon/human/embedde)
-	qdel(src)
+/obj/item/reagent_containers/syringe/dart/temp/Initialize()
+	..()
+	RegisterSignal(src, COMSIG_ITEM_EMBED_REMOVAL, PROC_REF(on_embed_removal))
+
+/obj/item/reagent_containers/syringe/dart/temp/proc/on_embed_removal(mob/living/carbon/human/embedde)
+	return COMSIG_ITEM_QDEL_EMBED_REMOVAL

@@ -32,6 +32,7 @@
 	var/mob/living/carbon/N = owner
 	megabuster_action.Remove(N)
 	buster_style.remove(N)
+	N.click_intercept = null
 	to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
 	..()
 
@@ -81,6 +82,7 @@
 	var/mob/living/carbon/N = owner
 	megabuster_action.Remove(N)
 	buster_style.remove(N)
+	N.click_intercept = null
 	to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
 	..()
 

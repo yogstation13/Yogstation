@@ -89,7 +89,7 @@
 	name = "mini energy crossbow"
 	desc = "A weapon favored by syndicate stealth specialists. Each bolt injects some poison into the victim."
 	icon_state = "crossbow"
-	item_state = "crossbow"
+	item_state = "ecrossbow"
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(/datum/material/iron=2000)
 	suppressed = TRUE
@@ -106,7 +106,7 @@
 	name = "candy corn crossbow"
 	desc = "A weapon favored by Syndicate trick-or-treaters."
 	icon_state = "crossbow_halloween"
-	item_state = "crossbow"
+	item_state = "ecrossbow"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/halloween)
 
 /obj/item/gun/energy/plasmacutter

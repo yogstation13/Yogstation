@@ -40,16 +40,19 @@
 #define ITEM_SLOT_NECK			(1<<14)
 #define ITEM_SLOT_HANDS			(1<<15)
 #define ITEM_SLOT_BACKPACK		(1<<16)
+/// Prevents items from being stored in suit storage
+#define ITEM_SLOT_DENY_S_STORE	(1<<17)
 /// Suit Storage slot
-#define ITEM_SLOT_SUITSTORE 	(1<<17)
+#define ITEM_SLOT_SUITSTORE 	(1<<18)
 /// Left Pocket slot
-#define ITEM_SLOT_LPOCKET 		(1<<18)
+#define ITEM_SLOT_LPOCKET 		(1<<19)
 /// Right Pocket slot
-#define ITEM_SLOT_RPOCKET 		(1<<19)
+#define ITEM_SLOT_RPOCKET 		(1<<20)
 /// Handcuff slot
-#define ITEM_SLOT_HANDCUFFED 	(1<<20)
+#define ITEM_SLOT_HANDCUFFED 	(1<<21)
 /// Legcuff slot (bolas, beartraps)
-#define ITEM_SLOT_LEGCUFFED 	(1<<21)
+#define ITEM_SLOT_LEGCUFFED 	(1<<22)
+
 
 //SLOTS
 #define SLOT_BACK			1

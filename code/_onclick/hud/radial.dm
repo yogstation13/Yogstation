@@ -25,6 +25,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/choice
 	var/next_page = FALSE
 	var/tooltips = FALSE
+	var/active = FALSE
 
 /atom/movable/screen/radial/slice/set_parent(new_value)
 	. = ..()
@@ -34,16 +35,17 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /atom/movable/screen/radial/slice/MouseEntered(location, control, params)
 	. = ..()
 	if(next_page || !parent)
-		icon_state = "radial_slice_focus"
+		icon_state = "radial_slice[active ? "_active" : ""]_focus"
 	else
 		icon_state = "[parent.radial_slice_icon]_focus"
+	icon_state = "radial_slice[active ? "_active" : ""]_focus"
 	if(tooltips)
 		openToolTip(usr, src, params, title = name)
 
 /atom/movable/screen/radial/slice/MouseExited(location, control, params)
 	. = ..()
 	if(next_page || !parent)
-		icon_state = "radial_slice"
+		icon_state = "radial_slice[active ? "_active" : ""]"
 	else
 		icon_state = parent.radial_slice_icon
 	if(tooltips)
@@ -244,6 +246,17 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		else
 			var/atom/movable/AM = choices_values[choice_id] //Movables only
 			E.name = AM.name
+
+		if(choices_icons[choice_id])
+			E.add_overlay(choices_icons[choice_id])
+
+		var/datum/radial_menu_choice/choice_datum = choice_datums[choice_id]
+		if(choice_datum && istext(choice_datum.info))
+			E.desc = choice_datum.info
+			if(choice_datum.active)
+				E.active = TRUE
+				E.icon_state = "radial_slice_active" //i really hope this doesn't cause any issues
+
 		E.choice = choice_id
 		E.maptext = null
 		E.next_page = FALSE
@@ -390,6 +403,9 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 	/// If provided, will display an info button that will put this text in your chat
 	var/info
+
+	/// If the radial slice should use the active icon
+	var/active = FALSE
 
 /datum/radial_menu_choice/Destroy(force, ...)
 	. = ..()
