@@ -1,7 +1,3 @@
-#if DM_VERSION < 515
-#define call_ext call
-#endif
-
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
 
 GLOBAL_VAR(restart_counter)
@@ -281,7 +277,7 @@ GLOBAL_VAR(restart_counter)
 		num_deleted++
 	log_world("Deallocated [num_deleted] gas mixtures")
 	if(fexists(EXTOOLS))
-		call_ext(EXTOOLS, "cleanup")()
+		LIBCALL(EXTOOLS, "cleanup")()
 	..()
 
 /world/proc/update_status() //yogs -- Mirrored in the Yogs folder in March 2019. Do not edit, swallow, or submerge in acid

@@ -1,7 +1,3 @@
-#if DM_VERSION < 515
-#define call_ext call
-#endif
-
 //LISTMOS
 //indices of values in gas lists.
 #define MOLES			1
@@ -473,7 +469,7 @@ GLOBAL_VAR(atmos_extools_initialized) // this must be an uninitialized (null) on
 #define ATMOS_EXTOOLS_CHECK if(!GLOB.atmos_extools_initialized){\
 	GLOB.atmos_extools_initialized=TRUE;\
 	if(fexists(EXTOOLS)){\
-		var/result = call_ext(EXTOOLS,"init_monstermos")();\
+		var/result = LIBCALL(EXTOOLS,"init_monstermos")();\
 		if(result != "ok") {CRASH(result);}\
 	} else {\
 		CRASH("byond-extools.dll does not exist!");\
