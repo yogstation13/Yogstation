@@ -60,5 +60,5 @@
 
 /obj/item/stroage/briefcase/syndie_kit/stechkin_implant/PopulateContents()
 	..()
-	new /obj/item/autosurgeon/organ/syndicate/stechkin_implant(src)
-	new /obj/item/autosurgeon/organ/syndicate/stechkin_implant/left(src)
+	new /obj/item/autosurgeon/arm/syndicate/stechkin_implant/(src)
+	new /obj/item/autosurgeon/arm/syndicate/stechkin_implant/left(src)
