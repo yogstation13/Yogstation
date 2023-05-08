@@ -2093,7 +2093,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
-/datum/uplink_item/implants/mantis
+/datum/uplink_item/implants/stechkin_implant
 	name = "Stechkin arm implant"
 	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
 	item = /obj/item/storage/briefcase/stechkin_implant
