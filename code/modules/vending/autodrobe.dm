@@ -222,6 +222,7 @@
 				   /obj/item/clothing/head/clownmitre = 1,
 		           /obj/item/skub = 1,
 		           /obj/item/clothing/under/lampskirt = 1,
+				   /obj/item/clothing/suit/hooded/cultrobes/eldritch_toy = 1,
 		           /obj/item/clothing/under/yogs/soviet_dress_uniform = 1, //yogs start
 		           /obj/item/clothing/under/yogs/rycliesuni = 1,
 		           /obj/item/clothing/head/yogs/toad = 1,
