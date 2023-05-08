@@ -167,7 +167,7 @@
 	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed. \
 			If you install this, it will make you incapable of pushing and pulling. \
 			There are no half-measures, either you succeed or you die."
-	cost = 14
+	cost = 16
 	item = /obj/item/book/granter/martial/ultra_violence
 	restricted_species = list("ipc")
 
