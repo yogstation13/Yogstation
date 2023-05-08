@@ -159,6 +159,10 @@
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/stechkin_implant
 
+/obj/item/autosurgeon/organ/syndicate/stechkin_implant/left
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/stechkin_implant
+
 /obj/item/autosurgeon/arm/syndicate/syndie_hammer/attack_self(mob/user) //Preternis-only implant (if you don't manually remove the implant)
 	if(!ispreternis(user))
 		to_chat(user, span_warning("The autosurgeon rejects your body!"))

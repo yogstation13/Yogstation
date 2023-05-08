@@ -769,6 +769,7 @@
 
 /obj/item/stroage/box/syndie_kit/stechkin_implant/PopulateContents()
 	new /obj/item/autosurgeon/organ/syndicate/stechkin_implant(src)
+	new /obj/item/autosurgeon/organ/syndicate/stechkin_implant/left(src)
 
 /obj/item/storage/box/syndie_kit/emp_shield
 	real_name = "EMP shield implant kit"
