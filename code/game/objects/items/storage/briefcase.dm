@@ -56,7 +56,7 @@
 	new /obj/item/autosurgeon/nt_mantis/left(src)
 
 /obj/item/storage/briefcase/syndie_kit/stechkin_implant
-	real_name = "Stechkin implant"
+	desc = "Portable container housing a pair of cutting-edge pistol implants disguised as a briefcase."
 
 /obj/item/stroage/briefcase/syndie_kit/stechkin_implant/PopulateContents()
 	..()
