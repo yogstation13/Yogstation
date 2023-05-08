@@ -38,7 +38,7 @@ if grep -i 'centcomm' _maps/**/*.dmm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1
 fi;
-if grep '.proc/' code/**/*.dm; then
+if grep '\.proc/' code/**/*.dm; then
 	echo "ERROR: Direct reference to .proc, use PROC_REF instead"
 	st=1
 fi;
