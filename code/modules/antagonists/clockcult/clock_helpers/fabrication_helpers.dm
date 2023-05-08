@@ -180,7 +180,7 @@
 	if(reinf)
 		fabrication_cost -= POWER_ROD
 	for(var/obj/structure/grille/G in get_turf(src))
-		INVOKE_ASYNC(fabricator, /obj/item/clockwork/replica_fabricator.proc/fabricate, G, user)
+		INVOKE_ASYNC(fabricator, TYPE_PROC_REF(/obj/item/clockwork/replica_fabricator, fabricate), G, user)
 	return list("operation_time" = fabrication_time, "new_obj_type" = windowtype, "power_cost" = fabrication_cost, "spawn_dir" = dir, "dir_in_new" = new_dir)
 
 /obj/structure/window/reinforced/clockwork/fabrication_vals(mob/living/user, obj/item/clockwork/replica_fabricator/fabricator, silent)
@@ -237,7 +237,7 @@
 	fabricator.repairing = src
 	while(fabricator && user && src)
 		if(!do_after(user, repair_values["healing_for_cycle"] * fabricator.speed_multiplier, src, \
-			extra_checks = CALLBACK(fabricator, /obj/item/clockwork/replica_fabricator.proc/fabricator_repair_checks, repair_values, src, user, TRUE)))
+			extra_checks = CALLBACK(fabricator, TYPE_PROC_REF(/obj/item/clockwork/replica_fabricator, fabricator_repair_checks), repair_values, src, user, TRUE)))
 			break
 		obj_integrity = clamp(obj_integrity + repair_values["healing_for_cycle"], 0, max_integrity)
 		adjust_clockwork_power(-repair_values["power_required"])
@@ -259,7 +259,7 @@
 	fabricator.repairing = src
 	while(fabricator && user && src)
 		if(!do_after(user, repair_values["healing_for_cycle"] * fabricator.speed_multiplier, src, \
-			extra_checks = CALLBACK(fabricator, /obj/item/clockwork/replica_fabricator.proc/fabricator_repair_checks, repair_values, src, user, TRUE)))
+			extra_checks = CALLBACK(fabricator, TYPE_PROC_REF(/obj/item/clockwork/replica_fabricator, fabricator_repair_checks), repair_values, src, user, TRUE)))
 			break
 		fabricator_heal_tick(repair_values["healing_for_cycle"])
 		adjust_clockwork_power(-repair_values["power_required"])
@@ -323,7 +323,7 @@
 		for(var/obj/item/clockwork/alloy_shards/S in get_turf(src)) //convert all other shards in the turf if we can
 			if(S == src)
 				continue //we want the shards to be fabricated after the main shard, thus this delay
-			addtimer(CALLBACK(fabricator, /obj/item/clockwork/replica_fabricator.proc/fabricate, S, user, TRUE), 0)
+			addtimer(CALLBACK(fabricator, TYPE_PROC_REF(/obj/item/clockwork/replica_fabricator, fabricate), S, user, TRUE), 0)
 	return list("operation_time" = 0, "new_obj_type" = null, "power_cost" = power_amount, "spawn_dir" = SOUTH)
 
 /obj/item/clockwork/alloy_shards/medium/gear_bit/large/fabrication_vals(mob/living/user, obj/item/clockwork/replica_fabricator/fabricator, silent, power_amount)

@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	move_spell.guardian = guardian
 	guardian.AddSpell(manifest_spell)
 	guardian.AddSpell(move_spell)
-	RegisterSignal(guardian, COMSIG_MOVABLE_MOVED, .proc/auto_demanifest)
+	RegisterSignal(guardian, COMSIG_MOVABLE_MOVED, PROC_REF(auto_demanifest))
 	if (!LAZYLEN(pocket_dim))
 		var/list/errorList = list()
 		SSmapping.LoadGroup(errorList, "Pocket Dimension [GLOB.pocket_dim]", "templates", "pocket_dimension.dmm", default_traits = list("Pocket Dimension" = TRUE, "Pocket Dimension [GLOB.pocket_dim]" = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0), silent = TRUE)
@@ -257,7 +257,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		QDEL_IN(manifestation, 3 SECONDS)
 
 	if (pocket_dim)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/update_pocket_mirror, pocket_dim, manifested_at_x, manifested_at_y, manifested_at_z), 3.5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(update_pocket_mirror), pocket_dim, manifested_at_x, manifested_at_y, manifested_at_z), 3.5 SECONDS)
 
 	addtimer(VARSET_CALLBACK(src, manifesting, FALSE), 3 SECONDS)
 
@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	ADD_TRAIT(L, TRAIT_NOSOFTCRIT, GUARDIAN_TRAIT)
 	ADD_TRAIT(L, TRAIT_NODEATH, GUARDIAN_TRAIT)
 	if (!isguardian(L))
-		RegisterSignal(L, COMSIG_MOVABLE_MOVED, .proc/check_if_teleport)
+		RegisterSignal(L, COMSIG_MOVABLE_MOVED, PROC_REF(check_if_teleport))
 	for (var/mob/living/simple_animal/hostile/guardian/G in L.hasparasites())
 		G.status_flags |= GODMODE
 

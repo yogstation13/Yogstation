@@ -51,14 +51,14 @@
 		return FALSE
 	switch(teleporting_stage)
 		if(GOHOME_START)
-			INVOKE_ASYNC(src, .proc/flicker_lights, 3, 20)
+			INVOKE_ASYNC(src, PROC_REF(flicker_lights), 3, 20)
 		if(GOHOME_FLICKER_ONE)
-			INVOKE_ASYNC(src, .proc/flicker_lights, 4, 40)
+			INVOKE_ASYNC(src, PROC_REF(flicker_lights), 4, 40)
 		if(GOHOME_FLICKER_TWO)
-			INVOKE_ASYNC(src, .proc/flicker_lights, 4, 60)
+			INVOKE_ASYNC(src, PROC_REF(flicker_lights), 4, 60)
 		if(GOHOME_TELEPORT)
 			do_mob(user, user, 1 SECONDS, TRUE)
-			INVOKE_ASYNC(src, .proc/teleport_to_coffin, user)
+			INVOKE_ASYNC(src, PROC_REF(teleport_to_coffin), user)
 	teleporting_stage++
 
 /datum/action/bloodsucker/gohome/ContinueActive(mob/living/user, mob/living/target)

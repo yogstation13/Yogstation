@@ -228,7 +228,7 @@
 		to_chat(user, span_warning("The huge impact takes the arm out of commission!"))
 		shake_camera(L, 4, 3)
 		shake_camera(user, 2, 3)
-		addtimer(CALLBACK(R, /obj/item/bodypart/r_arm/.proc/set_disabled), 15 SECONDS, TRUE)
+		addtimer(CALLBACK(R, TYPE_PROC_REF(/obj/item/bodypart/r_arm, set_disabled)), 15 SECONDS, TRUE)
 		to_chat(L, span_userdanger("[user] hits you with a blast of energy and sends you flying!"))
 		user.visible_message(span_warning("[user] blasts [L] with a surge of energy and sends [L.p_them()] flying!"))
 		knockedback |= L

@@ -2388,11 +2388,11 @@
 		minor_announce("Central Command has sent a fax message, it will be printed out at all fax machines.")
 
 	if(istype(F))
-		INVOKE_ASYNC(F, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, T)
+		INVOKE_ASYNC(F, TYPE_PROC_REF(/obj/machinery/photocopier/faxmachine, recieve_admin_fax), customname, T)
 		return
 	
 	for(var/obj/machinery/photocopier/faxmachine/fax in GLOB.allfaxes)
-		INVOKE_ASYNC(fax, /obj/machinery/photocopier/faxmachine.proc/recieve_admin_fax, customname, T)
+		INVOKE_ASYNC(fax, TYPE_PROC_REF(/obj/machinery/photocopier/faxmachine, recieve_admin_fax), customname, T)
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))
