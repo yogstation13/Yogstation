@@ -32,6 +32,7 @@
 	item_state = "that"
 	flags_inv = 0
 	armor = list(MELEE = 25, BULLET = 15, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 5)
+	hattable = FALSE
 	strip_delay = 60
 	dog_fashion = /datum/dog_fashion/head/captain
 
@@ -50,6 +51,7 @@
 	icon_state = "hopcap"
 	desc = "The symbol of true bureaucratic micromanagement."
 	armor = list(MELEE = 25, BULLET = 15, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
+	hattable = FALSE
 	dog_fashion = /datum/dog_fashion/head/hop
 
 //Chaplain
@@ -70,6 +72,7 @@
 	name = "detective's fedora"
 	desc = "There's only one man who can sniff out the dirty stench of crime, and he's likely wearing this hat. Woven with lightly protective fibers."
 	armor = list(MELEE = 25, BULLET = 5, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 50, WOUND = 5)
+	hattable = FALSE
 	icon_state = "detective"
 	var/candy_cooldown = 0
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/fedora/detective
@@ -205,6 +208,7 @@
 	desc = "The robust standard-issue cap of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
 	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 10, BOMB = 25, BIO = 10, RAD = 0, FIRE = 50, ACID = 60, WOUND = 10)
+	hattable = FALSE
 	strip_delay = 80
 	dynamic_hair_suffix = ""
 
@@ -226,6 +230,7 @@
 	desc = "It's a special armored hat issued to the Warden of a security force. Protects the head from impacts."
 	icon_state = "policehelm"
 	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 30, ACID = 60, WOUND = 6)
+	hattable = FALSE
 	strip_delay = 60
 	dog_fashion = /datum/dog_fashion/head/warden
 
@@ -301,6 +306,7 @@
 	desc = "A robust beret with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
 	icon_state = "beret_badge"
 	armor = list(MELEE = 40, BULLET = 30, LASER = 30,ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 20, ACID = 50, WOUND = 4)
+	hattable = FALSE
 	strip_delay = 60
 	dog_fashion = null
 
