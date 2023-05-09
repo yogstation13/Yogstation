@@ -110,7 +110,7 @@
 		//mesmerized.silent += power_time / 10 // Silent isn't based on ticks.
 		mesmerized.next_move = world.time + power_time // <--- Use direct change instead. We want an unmodified delay to their next move // mesmerized.changeNext_move(power_time) // check click.dm
 		mesmerized.notransform = TRUE // <--- Fuck it. We tried using next_move, but they could STILL resist. We're just doing a hard freeze.
-		addtimer(CALLBACK(src, .proc/end_mesmerize, user, target), power_time)
+		addtimer(CALLBACK(src, PROC_REF(end_mesmerize), user, target), power_time)
 	if(issilicon(target))
 		var/mob/living/silicon/mesmerized = target
 		mesmerized.emp_act(EMP_HEAVY)

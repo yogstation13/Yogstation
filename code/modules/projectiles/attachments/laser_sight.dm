@@ -105,7 +105,7 @@
 	if(istype(user))
 		current_user = user
 		LAZYOR(current_user.mousemove_intercept_objects, src)
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/on_mob_move)
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_mob_move))
 		listeningTo = user
 
 /obj/item/attachment/laser_sight/proc/on_mob_move()

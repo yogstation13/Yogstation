@@ -84,7 +84,7 @@
 		var/turf/T = get_turf(M)
 		if(is_servant_of_ratvar(M) || isobserver(M) || (T && T.z == z))
 			M.playsound_local(M, 'sound/magic/clockwork/ark_activation_sequence.ogg', 30, FALSE, pressure_affected = FALSE)
-	addtimer(CALLBACK(src, .proc/let_slip_the_dogs), 300)
+	addtimer(CALLBACK(src, PROC_REF(let_slip_the_dogs)), 300)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/let_slip_the_dogs()
 	spawn_animation()
@@ -132,7 +132,7 @@
 	recalling = TRUE
 	sound_to_playing_players('sound/machines/clockcult/ark_recall.ogg', 75, FALSE)
 	hierophant_message("<span class='bold large_brass'>The Eminence has initiated a mass recall! You are being transported to the Ark!</span>")
-	addtimer(CALLBACK(src, .proc/mass_recall), 100)
+	addtimer(CALLBACK(src, PROC_REF(mass_recall)), 100)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/mass_recall()
 	for(var/V in SSticker.mode.servants_of_ratvar)
@@ -312,7 +312,7 @@
 		if(-INFINITY to GATEWAY_REEBE_FOUND)
 			if(!second_sound_played)
 				for(var/V in GLOB.generic_event_spawns)
-					addtimer(CALLBACK(src, .proc/open_portal, get_turf(V)), rand(100, 600))
+					addtimer(CALLBACK(src, PROC_REF(open_portal), get_turf(V)), rand(100, 600))
 				sound_to_playing_players('sound/magic/clockwork/invoke_general.ogg', 30, FALSE)
 				sound_to_playing_players(volume = 15, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_charging.ogg', TRUE))
 				second_sound_played = TRUE

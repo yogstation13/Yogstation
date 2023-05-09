@@ -138,7 +138,7 @@
 	if(!length(items))
 		return
 	items = sortList(items)
-	var/pick = show_radial_menu(user, src, items, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 38, require_near = TRUE)
+	var/pick = show_radial_menu(user, src, items, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 38, require_near = TRUE)
 	if(!pick)
 		return
 	switch(pick)

@@ -499,7 +499,7 @@
 				out_of_range = TRUE
 				flash_color(vessel, flash_color="#800080", flash_time=10)
 				to_chat(vessel, span_warning("Our vessel has been moved too far away from the initial point of control, we will be disconnected if we go much further!"))
-				addtimer(CALLBACK(src, .proc/range_check, multiplier), 30)
+				addtimer(CALLBACK(src, PROC_REF(range_check), multiplier), 30)
 			else if(get_dist(starting_spot, vessel) > 21*multiplier)
 				release_control()
 

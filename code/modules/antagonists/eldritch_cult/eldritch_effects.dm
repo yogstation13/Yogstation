@@ -33,7 +33,7 @@
 	if(!IS_HERETIC(user))
 		return
 	if(!is_in_use)
-		INVOKE_ASYNC(src, .proc/activate , user)
+		INVOKE_ASYNC(src, PROC_REF(activate) , user)
 
 /obj/effect/eldritch/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
@@ -181,7 +181,7 @@
   * Use this whenever you want to add someone to the list
   */
 /datum/reality_smash_tracker/proc/AddMind(datum/mind/ecultist)
-	RegisterSignal(ecultist.current, COMSIG_MOB_LOGIN, .proc/ReworkNetwork)
+	RegisterSignal(ecultist.current, COMSIG_MOB_LOGIN, PROC_REF(ReworkNetwork))
 	targets |= ecultist
 	Generate()
 	for(var/obj/effect/reality_smash/R in smashes)

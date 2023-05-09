@@ -172,7 +172,7 @@
 	add_verb(src, list(/mob/living/simple_animal/spiderbot/proc/hide, \
 			  /mob/living/simple_animal/spiderbot/proc/drop_held_item, \
 			  /mob/living/simple_animal/spiderbot/proc/get_item))
-	RegisterSignal(src, COMSIG_GLOB_MOB_DEATH, .proc/on_death)
+	RegisterSignal(src, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_death))
 
 /mob/living/simple_animal/spiderbot/proc/on_death()
 	UnregisterSignal(src, COMSIG_GLOB_MOB_DEATH)
