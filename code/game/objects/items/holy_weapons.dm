@@ -716,13 +716,16 @@
 /obj/item/nullrod/spectralcowl/process(delta_time)
 	if(!ishuman(loc))
 		return PROCESS_KILL // something has gone terribly wrong
+	var/mob/living/carbon/human/H = loc
+	if(H.stat == DEAD)
+		return PROCESS_KILL //they hella dead yo
 	if(healing)
-		var/mob/living/carbon/human/H = loc
 		if(H.health < H.maxHealth)
+			var/power = max((((H.health - H.maxHealth)/H.maxHealth) * -3), 0.5)
 			new /obj/effect/temp_visual/heal(get_turf(H), "#009900")
-			H.heal_overall_damage(5,5, 0, BODYPART_ANY)
-			H.adjustToxLoss(-5, TRUE, TRUE)
-			H.adjustOxyLoss(-5, TRUE, TRUE)
+			H.heal_overall_damage(power, power, 0, BODYPART_ANY)
+			H.adjustToxLoss(-power, TRUE, TRUE)
+			H.adjustOxyLoss(-power, TRUE, TRUE)
 
 /obj/item/nullrod/servoskull
 	name = "servitor skull"
