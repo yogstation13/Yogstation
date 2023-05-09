@@ -673,6 +673,56 @@
 	menutab = MENU_CLOTHING
 	additional_desc = "This gaudy hat has surprisingly good weight distribution, you could probably throw it very effectively."
 
+/obj/item/nullrod/spectralcowl
+	name = "spectral cowl"
+	desc = "The brim of the hat is as sharp as your wit. The edge would hurt almost as much as disproving the existence of God."
+	icon_state = "spectral"
+	item_state = "spectral"
+	icon = 'icons/obj/clothing/hats.dmi'
+	slot_flags = ITEM_SLOT_HEAD
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	force = 0
+	throwforce = 0
+	menutab = MENU_CLOTHING
+	additional_desc = "This gaudy hat has surprisingly good weight distribution, you could probably throw it very effectively."
+	var/disable_duration = 16 SECONDS
+	var/healing = TRUE
+
+/obj/item/nullrod/spectralcowl/worn_overlays(isinhands)
+	. = list()
+	if(!isinhands)
+		. += mutable_appearance('icons/effects/effects.dmi', "curse", MOB_LAYER + 0.01, alpha = 80)
+
+/obj/item/nullrod/spectralcowl/equipped(mob/user, slot, initial)
+	..()
+	if(slot == ITEM_SLOT_HEAD)
+		START_PROCESSING(SSfastprocess, src)
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(disableheal))
+
+/obj/item/nullrod/spectralcowl/dropped(mob/user, silent)
+	..()
+	STOP_PROCESSING(SSfastprocess, src)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMAGE)
+
+/obj/item/nullrod/spectralcowl/proc/disableheal()
+	healing = FALSE
+	addtimer(CALLBACK(src, PROC_REF(enableheal)), disable_duration, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/obj/item/nullrod/spectralcowl/proc/enableheal()
+	healing = TRUE
+
+/obj/item/nullrod/spectralcowl/process(delta_time)
+	if(!ishuman(loc))
+		return PROCESS_KILL // something has gone terribly wrong
+	if(healing)
+		var/mob/living/carbon/human/H = loc
+		if(H.health < H.maxHealth)
+			new /obj/effect/temp_visual/heal(get_turf(H), "#009900")
+			H.heal_overall_damage(5,5, 0, BODYPART_ANY)
+			H.adjustToxLoss(-5, TRUE, TRUE)
+			H.adjustOxyLoss(-5, TRUE, TRUE)
+
 /obj/item/nullrod/servoskull
 	name = "servitor skull"
 	desc = "Even in death, I still serve"
