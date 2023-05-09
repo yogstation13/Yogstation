@@ -1,6 +1,6 @@
 /obj/item/ammo_box/a357
 	name = "speed loader (.357)"
-	desc = "A seven-shot speed loader designed for .357 revolvers."
+	desc = "A seven-shot speed loader designed for .357 revolvers. High damaging, some innate prowess against armor."
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/a357
 	caliber = "357"
@@ -78,7 +78,7 @@
 
 /obj/item/ammo_box/c38
 	name = "speed loader (.38)"
-	desc = "A six-shot speed loader designed for .38 revolvers."
+	desc = "A six-shot speed loader designed for .38 revolvers. These rounds do good damage, but are weak against armor."
 	icon_state = "38"
 	ammo_type = /obj/item/ammo_casing/c38
 	caliber = "38"
@@ -86,26 +86,11 @@
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	materials = list(/datum/material/iron = 20000)
 
-/obj/item/ammo_box/c38/hotshot
-	name = "speed loader (.38 Hot Shot)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade some damage for an incendiary payload which sets targets ablaze."
-	icon_state = "38hot"
-	ammo_type = /obj/item/ammo_casing/c38/hotshot
-
-/obj/item/ammo_box/c38/iceblox
-	name = "speed loader (.38 Iceblox)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade some damage for a cryogenic payload which significantly reduces the body temperature of targets hit."
-	icon_state = "38ice"
-	ammo_type = /obj/item/ammo_casing/c38/iceblox
-
-/obj/item/ammo_box/c38/gutterpunch
-	name = "speed loader (.38 Gutterpunch)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade some damage for an emetic payload which induces nausea in targets."
-	icon_state = "38gut"
-	ammo_type = /obj/item/ammo_casing/c38/gutterpunch
+/obj/item/ammo_box/c38/rubber
+	name = "speed loader (.38 rubber)"
+	desc = "A six-shot speed loader designed for .38 revolvers. Rubber rounds trade lethality for a better ability to incapacitate targets."
+	icon_state = "38rubber"
+	ammo_type = /obj/item/ammo_casing/c38/rubber
 
 /obj/item/ammo_box/tra32
 	name = "speed loader (.32 TRAC)"
@@ -179,12 +164,53 @@
 	name = "ammo box (Foam Darts)"
 	icon = 'icons/obj/guns/toy.dmi'
 	icon_state = "foambox"
-	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
+	ammo_type = /obj/item/ammo_casing/reusable/foam_dart
 	caliber = "foam_force"
 	max_ammo = 40
 	materials = list(/datum/material/iron = 500)
 
 /obj/item/ammo_box/foambox/riot
 	icon_state = "foambox_riot"
-	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot
+	ammo_type = /obj/item/ammo_casing/reusable/foam_dart/riot
 	materials = list(/datum/material/iron = 50000)
+
+// Arrows //
+/obj/item/ammo_box/arrow
+	name = "ammo box (Arrow)"
+	icon_state = "arrowbox_green"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow
+	max_ammo = 10
+
+/obj/item/ammo_box/arrow/toy
+	name = "ammo box (Toy Arrow)"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy
+
+/obj/item/ammo_box/arrow/toy/energy
+	name = "ammo box (Toy Energy Arrow)"
+	icon_state = "arrowbox_red"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/energy
+
+/obj/item/ammo_box/arrow/toy/disabler
+	name = "ammo box (Toy Disabler Arrow)"
+	icon_state = "arrowbox_teal"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/disabler
+
+/obj/item/ammo_box/arrow/toy/pulse
+	name = "ammo box (Toy Pulse Arrow)"
+	icon_state = "arrowbox_blue"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/pulse
+
+/obj/item/ammo_box/arrow/toy/xray
+	name = "ammo box (Toy X-ray Arrow)"
+	icon_state = "arrowbox_green"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/xray
+
+/obj/item/ammo_box/arrow/toy/shock
+	name = "ammo box (Toy Shock Arrow)"
+	icon_state = "arrowbox_yellow"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/shock
+
+/obj/item/ammo_box/arrow/toy/magic
+	name = "ammo box (Toy Magic Arrow)"
+	icon_state = "arrowbox_purple"
+	ammo_type = /obj/item/ammo_casing/reusable/arrow/toy/magic

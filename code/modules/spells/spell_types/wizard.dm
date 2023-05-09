@@ -6,7 +6,7 @@
 	charge_max = 200
 	clothes_req = TRUE
 	invocation = "FORTI GY AMA"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 7
 	cooldown_min = 60 //35 deciseconds reduction per rank
 	max_targets = 0
@@ -46,7 +46,7 @@
 	charge_max = 400
 	clothes_req = TRUE
 	invocation = "BIRUZ BENNAR"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = -1
 	include_user = TRUE
 
@@ -67,7 +67,7 @@
 	charge_max = 120
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = -1
 	include_user = TRUE
 	cooldown_min = 20 //25 deciseconds reduction per rank
@@ -86,7 +86,7 @@
 	charge_max = 360
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = -1
 	include_user = TRUE
 
@@ -101,7 +101,7 @@
 	charge_max = 400
 	clothes_req = TRUE
 	invocation = "NEC CANTIO"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = -1
 	include_user = TRUE
 	cooldown_min = 200 //50 deciseconds reduction per rank
@@ -118,7 +118,7 @@
 	charge_max = 20
 	clothes_req = TRUE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = -1
 	include_user = TRUE
 	cooldown_min = 5 //4 deciseconds reduction per rank
@@ -150,7 +150,7 @@
 	charge_max = 600
 	clothes_req = TRUE
 	invocation = "SCYAR NILA"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = -1
 	include_user = TRUE
 	cooldown_min = 200 //100 deciseconds reduction per rank
@@ -173,7 +173,7 @@
 	charge_max = 500
 	clothes_req = TRUE
 	invocation = "TOKI WO TOMARE"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 0
 	cooldown_min = 100
 	summon_amt = 1
@@ -190,7 +190,7 @@
 	charge_max = 1200
 	clothes_req = TRUE
 	invocation = "NOUK FHUNMM SACP RISSKA"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 1
 
 	summon_type = list(/mob/living/simple_animal/hostile/carp)
@@ -205,7 +205,7 @@
 	charge_max = 600
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = 0
 
 	summon_type = list(/obj/structure/constructshell)
@@ -222,7 +222,7 @@
 	charge_max = 1200
 	clothes_req = FALSE
 	invocation = "IA IA"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	summon_amt = 10
 	range = 3
 
@@ -242,7 +242,7 @@
 	charge_max = 400
 	clothes_req = TRUE
 	invocation = "GITTAH WEIGH"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 5
 	cooldown_min = 150
 	selection_type = "view"
@@ -298,7 +298,7 @@
 	antimagic_allowed = TRUE
 	range = 2
 	cooldown_min = 150
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	sparkle_path = /obj/effect/temp_visual/dir_setting/tailsweep
 	action_icon = 'icons/mob/actions/actions_xeno.dmi'
 	action_icon_state = "tailsweep"
@@ -338,7 +338,7 @@
 	charge_max = 60
 	clothes_req = FALSE
 	invocation = "FI'RAN DADISKO"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	max_targets = 0
 	range = 6
 	include_user = TRUE

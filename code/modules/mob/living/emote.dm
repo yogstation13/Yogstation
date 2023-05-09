@@ -143,7 +143,7 @@
 				H.CloseWings()
 			else
 				H.OpenWings()
-			addtimer(CALLBACK(H, open ? /mob/living/carbon/human.proc/OpenWings : /mob/living/carbon/human.proc/CloseWings), wing_time)
+			addtimer(CALLBACK(H, open ? TYPE_PROC_REF(/mob/living/carbon/human, OpenWings) : TYPE_PROC_REF(/mob/living/carbon/human, CloseWings)), wing_time)
 
 /datum/emote/living/flap/aflap
 	key = "aflap"
@@ -565,3 +565,10 @@
 	message = "gives a thumbs up."
 	message_param = "gives a thumbs up to %t."
 	restraint_check = TRUE
+
+/datum/emote/living/clueless
+	key = "clueless"
+	key_third_person = "cluelesses"
+	message = "looks clueless."
+	message_param = "looks cluelessly at %t"
+	stat_allowed = SOFT_CRIT

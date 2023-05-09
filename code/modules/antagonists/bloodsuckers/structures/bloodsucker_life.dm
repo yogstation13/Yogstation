@@ -2,7 +2,7 @@
 /datum/antagonist/bloodsucker/proc/LifeTick()
 
 	if(!owner && !owner.current)
-		INVOKE_ASYNC(src, .proc/HandleDeath)
+		INVOKE_ASYNC(src, PROC_REF(HandleDeath))
 		return
 
 	if(istype(owner.current, /mob/living/simple_animal/hostile/bloodsucker))
@@ -13,15 +13,15 @@
 
 	// Deduct Blood
 	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
-		INVOKE_ASYNC(src, .proc/AddBloodVolume, passive_blood_drain) // -.1 currently
+		INVOKE_ASYNC(src, PROC_REF(AddBloodVolume), passive_blood_drain) // -.1 currently
 	if(HandleHealing(1))
 		if((COOLDOWN_FINISHED(src, bloodsucker_spam_healing)) && owner.current.blood_volume > 0)
 			to_chat(owner.current, span_notice("The power of your blood begins knitting your wounds..."))
 			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_HEALING)
 	// Standard Updates
-	INVOKE_ASYNC(src, .proc/HandleDeath)
-	INVOKE_ASYNC(src, .proc/HandleStarving)
-	INVOKE_ASYNC(src, .proc/HandleTorpor)
+	INVOKE_ASYNC(src, PROC_REF(HandleDeath))
+	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
+	INVOKE_ASYNC(src, PROC_REF(HandleTorpor))
 
 	if(my_clan == CLAN_TOREADOR && owner.current.stat != DEAD)
 		for(var/datum/antagonist/vassal/vassal in vassals)
@@ -443,7 +443,7 @@
 			span_warning("[owner.current]'s skin crackles and dries, their skin and bones withering to dust. A hollow cry whips from what is now a sandy pile of remains."),
 			span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
 			span_hear("You hear a dry, crackling sound."))
-		addtimer(CALLBACK(owner.current, /mob/living.proc/dust), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
+		addtimer(CALLBACK(owner.current, TYPE_PROC_REF(/mob/living, dust)), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 	else
 		owner.current.visible_message(
 			span_warning("[owner.current]'s skin bursts forth in a spray of gore and detritus. A horrible cry echoes from what is now a wet pile of decaying meat."),

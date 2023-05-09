@@ -25,7 +25,7 @@
 	clear_signals()
 
 /datum/computer_file/program/crew_monitor/proc/set_signals()
-	RegisterSignal(GLOB.crewmonitor, COMSIG_MACHINERY_CREWMON_UPDATE, .proc/update_overlay, override = TRUE)
+	RegisterSignal(GLOB.crewmonitor, COMSIG_MACHINERY_CREWMON_UPDATE, PROC_REF(update_overlay), override = TRUE)
 
 /datum/computer_file/program/crew_monitor/proc/clear_signals()
 	UnregisterSignal(GLOB.crewmonitor, COMSIG_MACHINERY_CREWMON_UPDATE)

@@ -23,8 +23,10 @@
 	/// If we let off blood when hit, the max blood lost is this * the incoming damage
 	var/internal_bleeding_coefficient
 
-/datum/wound/pierce/wound_injury(datum/wound/old_wound)
+/datum/wound/pierce/wound_injury(datum/wound/old_wound = null, attack_direction = null)
 	blood_flow = initial_flow
+	if(attack_direction && victim.blood_volume > BLOOD_VOLUME_OKAY(victim))
+		victim.spray_blood(attack_direction, severity)
 
 /datum/wound/pierce/receive_damage(wounding_type, wounding_dmg, wound_bonus)
 	if(victim.stat == DEAD || wounding_dmg < 5)
@@ -107,8 +109,8 @@
 		self_penalty_mult = 1
 	user.visible_message(span_notice("[user] begins stitching [victim]'s [limb.name] with [I]..."), span_notice("You begin stitching [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
 	playsound(I, pick(I.apply_sounds), 25)
-
-	if(!do_after(user, base_treat_time * self_penalty_mult * I.treatment_speed, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	
+	if(!do_after(user, base_treat_time * self_penalty_mult * I.treatment_speed, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	user.visible_message(span_green("[user] stitches up some of the bleeding on [victim]."), span_green("You stitch up some of the bleeding on [user == victim ? "yourself" : "[victim]"]."))
@@ -133,8 +135,8 @@
 
 	user.visible_message(span_danger("[user] begins cauterizing [victim]'s [limb.name] with [I]..."), span_warning("You begin cauterizing [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
 	playsound(I, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff = 1)
-
-	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	
+	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	playsound(I, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff = 1)

@@ -11,6 +11,7 @@
 		/obj/item/gun/ballistic/automatic/toy/pistol/unrestricted = 10,
 		/obj/item/gun/ballistic/shotgun/toy/unrestricted = 10,
 		/obj/item/toy/sword = 10,
+		/obj/item/twohanded/vxtvulhammer/toy = 7,
 		/obj/item/ammo_box/foambox = 20,
 		/obj/item/toy/foamblade = 10,
 		/obj/item/toy/foamblade/baseball = 10,

@@ -234,7 +234,7 @@
 		addtimer(CALLBACK(D, /mob/living/carbon/human/proc/clear_shove_slowdown), 4 SECONDS)
 
 	D.dna.species.aiminginaccuracy += 25
-	addtimer(CALLBACK(src, .proc/remove_stagger, D), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(remove_stagger), D), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	
 /datum/martial_art/explosive_fist/proc/pre_lifeforce_trade(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
