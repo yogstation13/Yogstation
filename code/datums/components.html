@@ -14,7 +14,7 @@
 </header>
 <main>
 <h1>Datum Component System (DCS) <aside>code/datums/components/README.md</aside> 
-            <a href="https://github.com/yogstation13/Yogstation/blob/21bbc3327c9822a2e4f04c68852a9d4d178b3848/code/datums/components/README.md">
+            <a href="https://github.com/yogstation13/Yogstation/blob/676c5870063f2aa8834d19e5aef7d7391a2b0288/code/datums/components/README.md">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;README.md"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -154,7 +154,7 @@
 <li>If signal is a list it will be as if RegisterSignal was called for each of the entries with the same following arguments</li>
 <li>Makes the datum listen for the specified <code>signal</code> on it's <code>parent</code> datum.</li>
 <li>When that signal is received <code>proc_ref</code> will be called on the component, along with associated arguments</li>
-<li>Example proc ref: <code>.proc/OnEvent</code></li>
+<li>Example proc ref: <code>PROC_REF(OnEvent)</code></li>
 <li>If a previous registration is overwritten by the call, a runtime occurs. Setting <code>override</code> to TRUE prevents this</li>
 <li>These callbacks run asyncronously</li>
 <li>Returning <code>TRUE</code> from these callbacks will trigger a <code>TRUE</code> return from the <code>SendSignal()</code> that initiated it</li>
@@ -227,7 +227,7 @@
 <h3 id="see-define-signals-and-their-arguments-in-defines-components-dm">See/Define signals and their arguments in __DEFINES\components.dm</h3></td></tr></table></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/21bbc3327c9822a2e4f04c68852a9d4d178b3848">21bbc33</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/676c5870063f2aa8834d19e5aef7d7391a2b0288">676c587</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
