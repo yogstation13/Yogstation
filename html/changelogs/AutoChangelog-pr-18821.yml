@@ -1,5 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - bugfix: ".38 rubber should now be on autolathe properly"
-  - bugfix: "Fixes .38 speedloader and .38 magazines being gone from protolathes"

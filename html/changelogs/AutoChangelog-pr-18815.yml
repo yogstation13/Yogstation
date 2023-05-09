@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixed wormhole jaunters not saving you from chasms if stunned/immobilized"
