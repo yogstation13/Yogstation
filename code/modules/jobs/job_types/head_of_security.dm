@@ -59,7 +59,7 @@
 		switch(M.client.prefs.exp[EXP_TYPE_SECURITY] / 60)
 			if(200 to INFINITY)
 				exp_rank = "General"
-			if(100 to 200)
+			if(50 to 200)
 				exp_rank = "Major"
 		var/obj/item/badge/security/generated_badge = new
 		generated_badge.name = "[generated_badge.name] ([exp_rank])"

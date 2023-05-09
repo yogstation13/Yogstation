@@ -135,7 +135,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 		switch(M.client.prefs.exp[EXP_TYPE_SECURITY] / 60)
 			if(200 to INFINITY)
 				exp_rank = "Corporal"
-			if(100 to 200)
+			if(50 to 200)
 				exp_rank = "First Class"
 		var/obj/item/badge/security/generated_badge = new
 		generated_badge.name = "[generated_badge.name] ([exp_rank])"
