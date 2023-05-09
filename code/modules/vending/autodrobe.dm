@@ -209,7 +209,8 @@
 					  /obj/item/gun/magic/wand = 2,
 					  /obj/item/clothing/glasses/sunglasses/garb = 2,
 					  /obj/item/clothing/glasses/blindfold = 1,
-					  /obj/item/clothing/mask/muzzle = 2)
+					  /obj/item/clothing/mask/muzzle = 2,
+					  /obj/item/clothing/suit/hooded/cultrobes/eldritch_toy = 1,)
 	premium = list(/obj/item/clothing/suit/pirate/captain = 2,
 				   /obj/item/clothing/head/pirate/captain = 2,
 				   /obj/item/clothing/under/rank/rainbowclown = 1,
@@ -222,7 +223,6 @@
 				   /obj/item/clothing/head/clownmitre = 1,
 		           /obj/item/skub = 1,
 		           /obj/item/clothing/under/lampskirt = 1,
-				   /obj/item/clothing/suit/hooded/cultrobes/eldritch_toy = 1,
 		           /obj/item/clothing/under/yogs/soviet_dress_uniform = 1, //yogs start
 		           /obj/item/clothing/under/yogs/rycliesuni = 1,
 		           /obj/item/clothing/head/yogs/toad = 1,
