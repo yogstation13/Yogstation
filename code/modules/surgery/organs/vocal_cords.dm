@@ -216,9 +216,6 @@
 		power_multiplier *= (1 + (1/specific_listeners.len)) //2x on a single guy, 1.5x on two and so on
 		message = copytext(message, length(found_string) + 1)
 
-	var/static/regex/stun_words = regex("stop|wait|stand still|hold on|halt")
-	var/static/regex/knockdown_words = regex("drop|fall|trip|knockdown")
-	var/static/regex/sleep_words = regex("sleep|slumber|rest")
 	var/static/regex/vomit_words = regex("vomit|throw up|sick")
 	var/static/regex/silence_words = regex("shut up|silence|be silent|ssh|quiet|hush")
 	var/static/regex/hallucinate_words = regex("see the truth|hallucinate")
@@ -260,31 +257,12 @@
 	var/static/regex/multispin_words = regex("like a record baby|right round")
 
 	var/i = 0
-	//STUN
-	if(findtext(message, stun_words))
-		cooldown = COOLDOWN_STUN
-		for(var/V in listeners)
-			var/mob/living/L = V
-			L.Stun(60 * power_multiplier)
-
-	//KNOCKDOWN
-	else if(findtext(message, knockdown_words))
-		cooldown = COOLDOWN_STUN
-		for(var/V in listeners)
-			var/mob/living/L = V
-			L.Paralyze(60 * power_multiplier)
-
-	//SLEEP
-	else if((findtext(message, sleep_words)))
-		cooldown = COOLDOWN_STUN
-		for(var/mob/living/carbon/C in listeners)
-			C.Sleeping(40 * power_multiplier)
 
 	//VOMIT
-	else if((findtext(message, vomit_words)))
+	if((findtext(message, vomit_words)))
 		cooldown = COOLDOWN_STUN
 		for(var/mob/living/carbon/C in listeners)
-			C.vomit(10 * power_multiplier, distance = power_multiplier)
+			C.vomit(10 * power_multiplier, distance = power_multiplier, stun = FALSE)
 
 	//SILENCE
 	else if((findtext(message, silence_words)))
