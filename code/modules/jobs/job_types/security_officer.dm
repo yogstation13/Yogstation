@@ -18,7 +18,7 @@
 
 	outfit = /datum/outfit/job/security
 
-	alt_titles = list("Threat Response Officer", "Civilian Protection Officer", "Security Cadet", "Corporate Officer", "Peacekeeper")
+	alt_titles = list("Threat Response Officer", "Civilian Protection Officer", "Corporate Officer", "Peacekeeper")
 
 	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_FORENSICS_LOCKERS)
 	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM) // See /datum/job/officer/get_access()
@@ -129,6 +129,19 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 					continue
 				else
 					break
+
+	if(M?.client?.prefs)
+		var/exp_rank = "Cadet"
+		switch(M.client.prefs.exp[EXP_TYPE_SECURITY] / 60)
+			if(200 to INFINITY)
+				exp_rank = "Corporal"
+			if(100 to 200)
+				exp_rank = "First Class"
+		var/obj/item/badge/security/generated_badge = new
+		generated_badge.name = "[generated_badge.name] ([exp_rank])"
+		var/obj/item/clothing/suit/my_suit = H.wear_suit
+		my_suit.attach_badge(generated_badge)
+
 	if(department)
 		to_chat(M, "<b>You have been assigned to [department]!</b>")
 	else

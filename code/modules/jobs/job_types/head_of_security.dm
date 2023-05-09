@@ -52,6 +52,20 @@
 
 	smells_like = "deadly authority"
 
+/datum/job/hos/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	if(M?.client?.prefs)
+		var/exp_rank = "Lieutenant"
+		switch(M.client.prefs.exp[EXP_TYPE_SECURITY] / 60)
+			if(200 to INFINITY)
+				exp_rank = "General"
+			if(100 to 200)
+				exp_rank = "Captain"
+		var/obj/item/badge/security/generated_badge = new
+		generated_badge.name = "[generated_badge.name] ([exp_rank])"
+		var/obj/item/clothing/suit/my_suit = H.wear_suit
+		my_suit.attach_badge(generated_badge)
+
 /datum/job/hos/proc/YogsPubbyChanges()
 	base_access |= ACCESS_CREMATORIUM
 

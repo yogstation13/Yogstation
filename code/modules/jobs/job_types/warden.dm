@@ -20,7 +20,7 @@
 
 	outfit = /datum/outfit/job/warden
 
-	alt_titles = list("Brig Watchman", "Brig Superintendent", "Security Staff Sergeant", "Security Dispatcher", "Prison Supervisor")
+	alt_titles = list("Brig Watchman", "Brig Superintendent", "Security Dispatcher", "Prison Supervisor")
 
 	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_FORENSICS_LOCKERS)
 	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM) // See /datum/job/warden/get_access()
@@ -50,6 +50,20 @@
 	var/list/L = list()
 	L = ..() | check_config_for_sec_maint()
 	return L
+
+/datum/job/warden/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	if(M?.client?.prefs)
+		var/exp_rank = "Sergeant"
+		switch(M.client.prefs.exp[EXP_TYPE_SECURITY] / 60)
+			if(200 to INFINITY)
+				exp_rank = "Master Sergeant"
+			if(100 to 200)
+				exp_rank = "Staff Sergeant"
+		var/obj/item/badge/security/generated_badge = new
+		generated_badge.name = "[generated_badge.name] ([exp_rank])"
+		var/obj/item/clothing/suit/my_suit = H.wear_suit
+		my_suit.attach_badge(generated_badge)
 
 /datum/outfit/job/warden
 	name = "Warden"

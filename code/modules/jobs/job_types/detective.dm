@@ -18,7 +18,7 @@
 
 	outfit = /datum/outfit/job/detective
 
-	alt_titles = list("Investigator", "Forensic Analyst", "Investigative Cadet", "Private Eye", "Inspector")
+	alt_titles = list("Forensic Analyst", "Private Eye")
 
 	added_access = list()
 	base_access = list(ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_BRIG, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM)
@@ -43,6 +43,20 @@
 	)
 
 	smells_like = "whisky-soaked despair"
+
+/datum/job/detective/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	if(M?.client?.prefs)
+		var/exp_rank = "Deputy"
+		switch(M.client.prefs.exp[EXP_TYPE_SECURITY] / 60)
+			if(200 to INFINITY)
+				exp_rank = "Chief Inspector"
+			if(100 to 200)
+				exp_rank = "Investigator"
+		var/obj/item/badge/security/generated_badge = new
+		generated_badge.name = "[generated_badge.name] ([exp_rank])"
+		var/obj/item/clothing/suit/my_suit = H.wear_suit
+		my_suit.attach_badge(generated_badge)
 
 /datum/outfit/job/detective
 	name = "Detective"
