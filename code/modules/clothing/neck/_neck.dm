@@ -431,7 +431,7 @@
 		return BULLET_ACT_FORCE_PIERCE
 
 /obj/item/clothing/neck/cloak/ranger/proc/dodge(mob/living/carbon/human/user, atom/movable/hitby, attack_text)
-	if(!update_signals(user) || current_user.incapacitated(check_immobilized = TRUE) || !prob(cloak))
+	if(!update_signals(user) || current_user.incapacitated() || !prob(cloak))
 		return FALSE
 
 	set_cloak(cloak - cloak_dodge_loss)
