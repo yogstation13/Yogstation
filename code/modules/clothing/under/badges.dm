@@ -7,6 +7,7 @@
 	item_state = ""
 	mob_overlay_icon = 'icons/mob/clothing/badges.dmi'
 	w_class = WEIGHT_CLASS_TINY
+	var/owner_string
 
 /obj/item/badge/proc/try_attach(obj/item/clothing/suit/suit_target, mob/user)
 	if(suit_target.attached_badge)
@@ -31,6 +32,11 @@
 	suit_target.cut_overlays()
 	suit_target.attached_badge = null
 	suit_target.badge_overlay = null
+
+/obj/item/badge/examine(mob/user)
+	. = ..()
+	if(owner_string)
+		. += span_notice("Property of [owner_string].")
 
 /obj/item/badge/security
 	name = "security badge"

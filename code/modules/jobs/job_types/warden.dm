@@ -62,6 +62,7 @@
 				exp_rank = "Staff Sergeant"
 		var/obj/item/badge/security/generated_badge = new
 		generated_badge.name = "[generated_badge.name] ([exp_rank])"
+		generated_badge.owner_string = H.real_name
 		var/obj/item/clothing/suit/my_suit = H.wear_suit
 		my_suit.attach_badge(generated_badge)
 
