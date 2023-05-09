@@ -15,7 +15,7 @@
 /datum/action/changeling/fakedeath/sting_action(mob/living/user)
 	..()
 	if(revive_ready)
-		INVOKE_ASYNC(src, .proc/revive, user)
+		INVOKE_ASYNC(src, PROC_REF(revive), user)
 		revive_ready = FALSE
 		name = "Reviving Stasis"
 		desc = "We fall into a stasis, allowing us to regenerate and trick our enemies."
@@ -37,7 +37,7 @@
 		if(C)
 			regain_respec = C.canrespec
 			C.canrespec = FALSE
-		addtimer(CALLBACK(src, .proc/ready_to_regenerate, user), LING_FAKEDEATH_TIME, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(ready_to_regenerate), user), LING_FAKEDEATH_TIME, TIMER_UNIQUE)
 	return TRUE
 
 /datum/action/changeling/fakedeath/proc/revive(mob/living/user)

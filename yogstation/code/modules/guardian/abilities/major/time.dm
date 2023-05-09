@@ -41,7 +41,7 @@
 	for(var/mob/living/L in immune)
 		disappear(L, length, immune)
 	charge_counter = 0
-	addtimer(CALLBACK(src, .proc/start_recharge), length)
+	addtimer(CALLBACK(src, PROC_REF(start_recharge)), length)
 
 /obj/effect/proc_holder/spell/self/erase_time/proc/disappear(mob/living/target, length, list/immune)
 	SEND_SOUND(target, sound('yogstation/sound/effects/kingcrimson_start.ogg'))
@@ -67,7 +67,7 @@
 	var/image/invisible = image(icon = 'icons/effects/effects.dmi', icon_state = "nothing", loc = jaunt)
 	invisible.override = TRUE
 	jaunt.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/king_crimson, "king_crimson", invisible, NONE, immune)
-	addtimer(CALLBACK(src, .proc/reappear, target, fake, jaunt), length)
+	addtimer(CALLBACK(src, PROC_REF(reappear), target, fake, jaunt), length)
 
 /obj/effect/proc_holder/spell/self/erase_time/proc/reappear(mob/living/target, mob/living/fake, obj/effect/dummy/phased_mob/king_crimson/jaunt)
 	if (fake)

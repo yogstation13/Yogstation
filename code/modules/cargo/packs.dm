@@ -604,6 +604,13 @@
 	access_view = ACCESS_ARMORY
 	crate_type = /obj/structure/closet/crate/secure/weapon
 
+/datum/supply_pack/weaponry/winton_ammo
+	name = ".308 Ammo Box"
+	desc = "A .308 Ammo Box meant for refilling the Winton Mk. VI Repeating Rifle. Rounds must be loaded individually."
+	cost = 3000
+	small_item = TRUE
+	contains = list(/obj/item/ammo_box/no_direct/m308)
+
 /datum/supply_pack/weaponry/ammo
 	name = "Ammo Crate"
 	desc = "Contains two 20-round magazines for the WT-550 Auto Carbine, two 8-round magazines for the Vatra M38 Pistol, three boxes of buckshot ammo, and three boxes of rubber ammo. Requires Security access to open."
@@ -642,7 +649,7 @@
 /datum/supply_pack/weaponry/ballistic_single
 	name = "Combat Shotgun Single-Pack"
 	desc = "For when the enemy absolutely needs to be replaced with lead. Contains one Aussec-designed Combat Shotgun, and one Shotgun Bandolier. Requires Armory access to open."
-	cost = 6000
+	cost = 7200
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/storage/belt/bandolier)
@@ -796,6 +803,26 @@
 					/obj/item/ammo_box/magazine/v38)
 	crate_name = "pistol crate"
 	crate_type = /obj/structure/closet/crate/secure/gear
+
+/datum/supply_pack/security/armory/wintonrifle
+	name = "Winton Mk. VI Repeating Rifles Crate"
+	desc = "Line them up and put them down. Containts three Frontier-made Winton lever-action rifles and three bandoliers, each filled with twenty-four spare rounds."
+	cost = 16000
+	contains = list(/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/storage/belt/bandolier/sharpshooter,
+					/obj/item/storage/belt/bandolier/sharpshooter,
+					/obj/item/storage/belt/bandolier/sharpshooter)
+	crate_name = "lever-action rifles crate"
+
+/datum/supply_pack/security/armory/wintonrifle_single
+	name = "Winton Mk. VI Repeating Rifle Single-Pack"
+	desc = "For the enterprising marksman. Contains a single Frontier-made Winton level-action rifle and a bandolier filled with twenty-four spare rounds."
+	cost = 6400
+	small_item = TRUE
+	contains = list(/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/storage/belt/bandolier/sharpshooter)
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Engineering /////////////////////////////////////
@@ -2225,7 +2252,7 @@
 				anomalous_box_provided = TRUE
 				log_game("An anomalous pizza box was provided in a pizza crate at during cargo delivery")
 				if(prob(50))
-					addtimer(CALLBACK(src, .proc/anomalous_pizza_report), rand(300, 1800))
+					addtimer(CALLBACK(src, PROC_REF(anomalous_pizza_report)), rand(300, 1800))
 				else
 					message_admins("An anomalous pizza box was silently created with no command report in a pizza crate delivery.")
 				break
