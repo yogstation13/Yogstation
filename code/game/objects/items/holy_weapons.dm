@@ -692,11 +692,11 @@
 /obj/item/nullrod/spectralcowl/worn_overlays(isinhands)
 	. = list()
 	if(!isinhands)
-		. += mutable_appearance('icons/effects/effects.dmi', "curse", MOB_LAYER + 0.01, alpha = 80)
+		. += mutable_appearance('icons/effects/effects.dmi', "curse", MOB_LAYER + 0.01, alpha = 120)
 
 /obj/item/nullrod/spectralcowl/equipped(mob/user, slot, initial)
 	..()
-	if(slot == ITEM_SLOT_HEAD)
+	if(slot == SLOT_HEAD)
 		START_PROCESSING(SSfastprocess, src)
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(disableheal))
 
@@ -717,6 +717,7 @@
 		return PROCESS_KILL // something has gone terribly wrong
 	if(healing)
 		var/mob/living/carbon/human/H = loc
+		to_chat(world, "healing [H]")
 		if(H.health < H.maxHealth)
 			new /obj/effect/temp_visual/heal(get_turf(H), "#009900")
 			H.heal_overall_damage(5,5, 0, BODYPART_ANY)
