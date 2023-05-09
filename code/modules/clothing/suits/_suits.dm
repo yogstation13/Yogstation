@@ -16,6 +16,10 @@
 	var/obj/item/badge/attached_badge
 	var/mutable_appearance/badge_overlay
 
+/obj/item/clothing/suit/Destroy()
+	if(attached_badge)
+		QDEL_NULL(attached_badge)
+	return ..()
 
 /obj/item/clothing/suit/worn_overlays(isinhands = FALSE)
 	. = list()
