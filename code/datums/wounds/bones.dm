@@ -77,6 +77,8 @@
 		return
 
 	regen_ticks_current++
+	if(LAZYLEN(victim.mind?.antag_datums)) //not like anyone will be counting, right?
+		regen_ticks_current++
 	if(!(victim.mobility_flags & MOBILITY_STAND))
 		if(prob(50))
 			regen_ticks_current += 0.5
@@ -285,7 +287,7 @@
 
 	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), victim, extra_checks=CALLBACK(src, .proc/still_exists)))
 		return
-	
+
 	playsound(victim, 'sound/surgery/bone3.ogg', 25)
 	if(victim == user)
 		limb.receive_damage(brute=15, wound_bonus=CANT_WOUND)
