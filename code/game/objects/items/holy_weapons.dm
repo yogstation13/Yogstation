@@ -697,12 +697,12 @@
 /obj/item/nullrod/spectralcowl/equipped(mob/user, slot, initial)
 	..()
 	if(slot == SLOT_HEAD)
-		START_PROCESSING(SSfastprocess, src)
+		START_PROCESSING(SSobj, src)
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(disableheal))
 
 /obj/item/nullrod/spectralcowl/dropped(mob/user, silent)
 	..()
-	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSobj, src)
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMAGE)
 
 /obj/item/nullrod/spectralcowl/proc/disableheal()
