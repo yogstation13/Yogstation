@@ -675,17 +675,18 @@
 
 /obj/item/nullrod/spectralcowl
 	name = "spectral cowl"
-	desc = "The brim of the hat is as sharp as your wit. The edge would hurt almost as much as disproving the existence of God."
+	desc = "An unusual cloth head covering, you both feel worried and relaxed while looking at it."
 	icon_state = "spectral"
 	item_state = "spectral"
 	icon = 'icons/obj/clothing/hats.dmi'
 	slot_flags = ITEM_SLOT_HEAD
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	strip_delay = 80
 	force = 0
 	throwforce = 0
 	menutab = MENU_CLOTHING
-	additional_desc = "This gaudy hat has surprisingly good weight distribution, you could probably throw it very effectively."
+	additional_desc = "The curse within this item refuses to let your body pass into oblivion."
 	var/disable_duration = 16 SECONDS
 	var/healing = TRUE
 
