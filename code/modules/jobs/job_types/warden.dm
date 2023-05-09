@@ -54,12 +54,12 @@
 /datum/job/warden/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	if(M?.client?.prefs)
-		var/exp_rank = "Sergeant"
+		var/exp_rank = "2nd Lieutenant"
 		switch(M.client.prefs.exp[title] / 60)
 			if(200 to INFINITY)
-				exp_rank = "Gunnery Sergeant"
+				exp_rank = "Brig Captain"
 			if(50 to 200)
-				exp_rank = "Staff Sergeant"
+				exp_rank = "1st Lieutenant"
 		var/obj/item/badge/security/generated_badge = new
 		generated_badge.name = "[generated_badge.name] ([exp_rank])"
 		generated_badge.owner_string = H.real_name

@@ -131,12 +131,12 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 					break
 
 	if(M?.client?.prefs)
-		var/exp_rank = "Private"
+		var/exp_rank = "Corporal"
 		switch(M.client.prefs.exp[title] / 60)
 			if(200 to INFINITY)
-				exp_rank = "Corporal"
+				exp_rank = "Staff Sergeant"
 			if(50 to 200)
-				exp_rank = "Specialist"
+				exp_rank = "Sergeant"
 		var/obj/item/badge/security/generated_badge = new
 		generated_badge.name = "[generated_badge.name] ([exp_rank])"
 		generated_badge.owner_string = H.real_name
