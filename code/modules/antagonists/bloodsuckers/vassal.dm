@@ -135,7 +135,7 @@
 			vassal.set_species(/datum/species/szlachta)
 		if(CLAN_TOREADOR)
 			BuyPower(/datum/action/bloodsucker/targeted/mesmerize)
-			RegisterSignal(master, COMSIG_BLOODSUCKER_RANKS_SPENT, .proc/toreador_levelup_mesmerize)
+			RegisterSignal(master, COMSIG_BLOODSUCKER_RANKS_SPENT, PROC_REF(toreador_levelup_mesmerize))
 		if(CLAN_HECATA)
 			vassal.set_species(/datum/species/zombie/hecata)
 			BuyPower(new /datum/action/bloodsucker/hecata/spiritcall/vassal)
