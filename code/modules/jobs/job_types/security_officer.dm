@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 
 	if(M?.client?.prefs)
 		var/exp_rank = "Private"
-		switch(M.client.prefs.exp[EXP_TYPE_SECURITY] / 60)
+		switch(M.client.prefs.exp[title] / 60)
 			if(200 to INFINITY)
 				exp_rank = "Corporal"
 			if(50 to 200)

@@ -55,7 +55,7 @@
 	. = ..()
 	if(M?.client?.prefs)
 		var/exp_rank = "Sergeant"
-		switch(M.client.prefs.exp[EXP_TYPE_SECURITY] / 60)
+		switch(M.client.prefs.exp[title] / 60)
 			if(200 to INFINITY)
 				exp_rank = "Gunnery Sergeant"
 			if(50 to 200)
