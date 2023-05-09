@@ -28,8 +28,10 @@
 	)
 
 	mail_goodies = list(
-		///obj/item/raw_anomaly_core/random = 10,
-		///obj/item/disk/tech_disk/spaceloot = 2,
+		/obj/item/stack/sheet/bluespace_crystal = 10,
+		/obj/item/megaphone = 10,
+		/obj/item/anomaly_neutralizer = 5,
+		/obj/item/relic = 5,
 		/obj/item/camera_bug = 1
 	)
 

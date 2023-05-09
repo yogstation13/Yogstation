@@ -358,7 +358,7 @@
 		fully_heal()
 		color = "#FF0000"
 		set_varspeed(-0.5)
-		addtimer(CALLBACK(src, .proc/rift_empower, FALSE), 300)
+		addtimer(CALLBACK(src, PROC_REF(rift_empower), FALSE), 300)
 	else
 		color = "#FFFFFF"
 		set_varspeed(0)

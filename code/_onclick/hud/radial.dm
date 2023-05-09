@@ -14,16 +14,17 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/choice
 	var/next_page = FALSE
 	var/tooltips = FALSE
+	var/active = FALSE
 
 /atom/movable/screen/radial/slice/MouseEntered(location, control, params)
 	. = ..()
-	icon_state = "radial_slice_focus"
+	icon_state = "radial_slice[active ? "_active" : ""]_focus"
 	if(tooltips)
 		openToolTip(usr, src, params, title = name, content = desc)
 
 /atom/movable/screen/radial/slice/MouseExited(location, control, params)
 	. = ..()
-	icon_state = "radial_slice"
+	icon_state = "radial_slice[active ? "_active" : ""]"
 	if(tooltips)
 		closeToolTip(usr)
 
@@ -217,6 +218,9 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		var/datum/radial_menu_choice/choice_datum = choice_datums[choice_id]
 		if(choice_datum && istext(choice_datum.info))
 			E.desc = choice_datum.info
+			if(choice_datum.active)
+				E.active = TRUE
+				E.icon_state = "radial_slice_active"
 
 		E.choice = choice_id
 		E.maptext = null
@@ -348,6 +352,9 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 	/// If provided, will display an info button that will put this text in your chat
 	var/info
+
+	/// If the radial slice should use the active icon
+	var/active = FALSE
 
 /datum/radial_menu_choice/Destroy(force, ...)
 	. = ..()

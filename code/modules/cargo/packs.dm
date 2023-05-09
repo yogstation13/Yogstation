@@ -260,7 +260,7 @@
 
 /datum/supply_pack/security/ammo
 	name = "Ammo Crate"
-	desc = "Contains two 22-round magazines for the WT-550 Auto Carbine, three boxes of buckshot ammo, three boxes of rubber ammo, and special .38 speedloaders. Requires Security access to open."
+	desc = "Contains two 20-round magazines for the WT-550 Auto Carbine, two 8-round magazines for the Vatra M38 Pistol, three boxes of buckshot ammo, and three boxes of rubber ammo. Requires Security access to open."
 	cost = 2500
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/ammo_box/magazine/wt550m9,
@@ -270,10 +270,7 @@
 					/obj/item/storage/box/lethalshot,
 					/obj/item/storage/box/rubbershot,
 					/obj/item/storage/box/rubbershot,
-					/obj/item/storage/box/rubbershot,
-					/obj/item/ammo_box/c38/hotshot,
-					/obj/item/ammo_box/c38/iceblox,
-					/obj/item/ammo_box/c38/gutterpunch)
+					/obj/item/storage/box/rubbershot)
 	crate_name = "ammo crate"
 
 /datum/supply_pack/security/armor
@@ -288,7 +285,7 @@
 
 /datum/supply_pack/security/stormtrooper
 	name = "Stormtrooper Crate"
-	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light wielding wizards. Requires Security access to open."
+	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light-wielding wizards. Requires Security access to open."
 	cost = 10000
 	contains = list(/obj/item/clothing/suit/armor/stormtrooper,
 					/obj/item/clothing/suit/armor/stormtrooper,
@@ -310,7 +307,7 @@
 
 /datum/supply_pack/security/ntusp
 	name = "NT-USP Crate"
-	desc = "Three stamina-draining ballistic weapons, along with 3 extra clips. Requires Security access to open."
+	desc = "Three stamina-draining ballistic weapons, along with three extra magazines. Requires Security access to open."
 	cost = 2000
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/gun/ballistic/automatic/pistol/ntusp,
@@ -320,6 +317,27 @@
 					/obj/item/ammo_box/magazine/recharge/ntusp,
 					/obj/item/ammo_box/magazine/recharge/ntusp)
 	crate_name = "nt-usp crate"
+
+/datum/supply_pack/security/v38pistol
+	name = "Vatra M38 Pistol Crate"
+	desc = "A pack containing three Vatra M38s, an unusual handgun which loads .38 special designed for unarmored targets. Three spare magazines are included. Requires Security access to open."
+	cost = 4000
+	access_view = ACCESS_ARMORY
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/gun/ballistic/automatic/pistol/v38,
+					/obj/item/ammo_box/magazine/v38,
+					/obj/item/ammo_box/magazine/v38,
+					/obj/item/ammo_box/magazine/v38)
+	crate_name = "pistol crate"
+
+/datum/supply_pack/security/energypistol
+	name = "Energy Pistol Single-Pack"
+	desc = "Contains one energy pistol for personal defense, capable of firing both lethal and nonlethal blasts of light. Requires Security access to open."
+	cost = 700
+	access_view = ACCESS_SECURITY
+	small_item = TRUE
+	contains = list(/obj/item/gun/energy/e_gun/mini)
 
 /datum/supply_pack/security/forensics
 	name = "Forensics Crate"
@@ -498,15 +516,15 @@
 
 /datum/supply_pack/security/armory/ballistic_single
 	name = "Combat Shotgun Single-Pack"
-	desc = "For when the enemy absolutely needs to be replaced with lead. Contains one Aussec-designed Combat Shotgun, and one Shotgun Bandolier. Requires Armory access to open."
-	cost = 6000
+	desc = "For when the enemy absolutely needs to be replaced with lead. Contains one Aussec-designed Combat Shotgun, and one spare bandolier. Requires Armory access to open."
+	cost = 7200
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/storage/belt/bandolier)
 
 /datum/supply_pack/security/armory/ballistic
 	name = "Combat Shotguns Crate"
-	desc = "For when the enemy absolutely needs to be replaced with lead. Contains three Aussec-designed Combat Shotguns, and three Shotgun Bandoliers. Requires Armory access to open."
+	desc = "For when the enemy absolutely needs to be replaced with lead. Contains three Aussec-designed Combat Shotguns, and three spare bandoliers. Requires Armory access to open."
 	cost = 18000
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat,
 					/obj/item/gun/ballistic/shotgun/automatic/combat,
@@ -531,6 +549,33 @@
 	cost = 3200
 	small_item = TRUE
 	contains = list(/obj/item/gun/ballistic/shotgun/riot)
+
+/datum/supply_pack/security/armory/wintonrifle
+	name = "Winton Mk. VI Repeating Rifles Crate"
+	desc = "Line them up and put them down. Containts three Frontier-made Winton lever-action rifles and three bandoliers, each filled with twenty-four spare rounds."
+	cost = 16000
+	contains = list(/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/storage/belt/bandolier/sharpshooter,
+					/obj/item/storage/belt/bandolier/sharpshooter,
+					/obj/item/storage/belt/bandolier/sharpshooter)
+	crate_name = "lever-action rifles crate"
+
+/datum/supply_pack/security/armory/wintonrifle_single
+	name = "Winton Mk. VI Repeating Rifle Single-Pack"
+	desc = "For the enterprising marksman. Contains a single Frontier-made Winton level-action rifle and a bandolier filled with twenty-four spare rounds."
+	cost = 6400
+	small_item = TRUE
+	contains = list(/obj/item/gun/ballistic/shotgun/lever,
+					/obj/item/storage/belt/bandolier/sharpshooter)
+
+/datum/supply_pack/security/armory/winton_ammo
+	name = ".308 Ammo Box"
+	desc = "A .308 Ammo Box meant for refilling the Winton Mk. VI Repeating Rifle. Rounds must be loaded individually."
+	cost = 3000
+	small_item = TRUE
+	contains = list(/obj/item/ammo_box/no_direct/m308)
 
 /datum/supply_pack/security/armory/dragnet
 	name = "DRAGnet Crate"
@@ -2192,7 +2237,7 @@
 				anomalous_box_provided = TRUE
 				log_game("An anomalous pizza box was provided in a pizza crate at during cargo delivery")
 				if(prob(50))
-					addtimer(CALLBACK(src, .proc/anomalous_pizza_report), rand(300, 1800))
+					addtimer(CALLBACK(src, PROC_REF(anomalous_pizza_report)), rand(300, 1800))
 				else
 					message_admins("An anomalous pizza box was silently created with no command report in a pizza crate delivery.")
 				break
@@ -2707,6 +2752,63 @@
 			if(istype(the_toy, /obj/item/toy/plush/lizard/azeel/snowflake))
 				the_toy = /obj/item/toy/plush/lizard/azeel
 		new the_toy(.)
+
+/datum/supply_pack/costumes_toys/archery
+	name = "Archery Crate"
+	desc = "Shoot apples of peoples heads with this kit containing everything you need to start your archery carrier."
+	cost = 1000
+	contains = list(/obj/item/gun/ballistic/bow,
+					/obj/item/storage/belt/quiver/full
+	)
+	crate_name = "archery crate"
+	crate_type = /obj/structure/closet/crate/wooden
+
+/datum/supply_pack/costumes_toys/randomised/toy_bow
+	name = "Toy Bow Crate"
+	desc = "A crate containing one random toy bow of four to impress your friends with, collect them all!"
+	cost = 500
+	num_contained = 1
+	contains = list(/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/white,
+					/obj/item/gun/ballistic/bow/toy/clockwork
+	)
+	crate_name = "toy bow crate"
+	crate_type = /obj/structure/closet/crate/wooden
+
+/datum/supply_pack/costumes_toys/archery_war
+	name = "Archery War Crate"
+	desc = "Set up an all out archery war with this simple kit!"
+	cost = 5000
+	contains = list(/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/gun/ballistic/bow/toy/blue,
+					/obj/item/storage/belt/quiver/blue/full,
+					/obj/item/storage/belt/quiver/blue/full,
+					/obj/item/storage/belt/quiver/blue/full,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/gun/ballistic/bow/toy/red,
+					/obj/item/storage/belt/quiver/red/full,
+					/obj/item/storage/belt/quiver/red/full,
+					/obj/item/storage/belt/quiver/red/full,
+					/obj/item/ammo_box/arrow/toy/disabler,
+					/obj/item/ammo_box/arrow/toy/energy,
+					/obj/item/ammo_box/arrow/toy/pulse,
+					/obj/item/ammo_box/arrow/toy/xray,
+					/obj/item/ammo_box/arrow/toy/shock,
+					/obj/item/ammo_box/arrow/toy/magic
+	)
+	crate_name = "archery war crate"
+	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/costumes_toys/wizard
 	name = "Wizard Costume Crate"

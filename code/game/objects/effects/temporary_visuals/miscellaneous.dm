@@ -515,7 +515,7 @@
 	status = rcd_status
 	delay = rcd_delay
 	if (status == RCD_DECONSTRUCT)
-		addtimer(CALLBACK(src, .proc/update_icon), 11)
+		addtimer(CALLBACK(src, PROC_REF(update_icon)), 11)
 		delay -= 11
 		icon_state = "rcd_end_reverse"
 	else
@@ -537,7 +537,7 @@
 		qdel(src)
 	else
 		icon_state = "rcd_end"
-		addtimer(CALLBACK(src, .proc/end), 15)
+		addtimer(CALLBACK(src, PROC_REF(end)), 15)
 
 /obj/effect/constructing_effect/proc/end()
 	qdel(src)

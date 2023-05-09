@@ -50,8 +50,8 @@
 //Called when given to a mob
 /datum/brain_trauma/proc/on_gain()
 	to_chat(owner, gain_text)
-	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
-	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 	random_cure_chance *= rand(6, 15) / 10 // 0.6-1.5x
 
 //Called when removed from a mob

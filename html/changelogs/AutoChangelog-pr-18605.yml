@@ -1,5 +1,0 @@
-author: "tattax"
-delete-after: true 
-changes: 
-  - rscadd: "brown cable coil"
-  - bugfix: "fixes cable cuffs always being white"

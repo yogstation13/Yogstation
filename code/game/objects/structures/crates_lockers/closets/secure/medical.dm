@@ -129,6 +129,7 @@
 	new /obj/item/clothing/suit/toggle/labcoat/emt/explorer(src)
 	new /obj/item/clothing/head/beret/emt/mining(src)
 	new /obj/item/clothing/under/yogs/rank/miner/medic(src)
+	new /obj/item/clothing/suit/toggle/labcoat/explorer(src)
 	new /obj/item/storage/belt/medical/mining(src)
 	new /obj/item/clothing/glasses/hud/health/meson(src)
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)

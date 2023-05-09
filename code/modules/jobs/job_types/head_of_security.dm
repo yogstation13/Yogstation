@@ -18,7 +18,7 @@
 	exp_requirements = 720
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
-	alt_titles = list("Security Commander", "Security Chief")
+	alt_titles = list("Security Commander", "Security Chief", "Chief Security Officer")
 
 	outfit = /datum/outfit/job/hos
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
@@ -40,6 +40,15 @@
 	)
 
 	changed_maps = list("YogsPubby")
+
+	mail_goodies = list(
+		/obj/item/stack/sheet/plastic/five = 20, //need that plastic chair
+		/obj/item/clothing/head/hatsky = 10,
+		/obj/item/disk/nuclear/fake = 5,
+		/obj/item/melee/chainofcommand/tailwhip = 3,
+		/obj/item/melee/chainofcommand/tailwhip/kitty = 2,
+		/obj/item/kitchen/knife/combat = 2
+	)
 
 	smells_like = "deadly authority"
 

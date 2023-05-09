@@ -37,14 +37,14 @@
 			var/datum/antagonist/bloodsucker/bloodsuckerdatum = target.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 			bloodsuckerdatum.AddBloodVolume(gulp_size)
 			var/mob/living/carbon/H = target
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, target, gulp_size), 5)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, trans_to), target, gulp_size), 5)
 			reagents.reaction(target, INGEST, 100*gulp_size)
 			if(H.blood_volume >= bloodsuckerdatum.max_blood_volume)
 				to_chat(target, span_notice("You are full, and can't consume more blood"))
 				return
 		else
 			reagents.reaction(target, INGEST, gulp_size)
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, target, gulp_size), 5)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, trans_to), target, gulp_size), 5)
 		playsound(user.loc, 'sound/items/drink.ogg', rand(10,50), 1)
 	return ..()
 
