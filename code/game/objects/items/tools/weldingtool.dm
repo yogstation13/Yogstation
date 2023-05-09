@@ -135,7 +135,7 @@
 	if(!isOn() || user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
 		. = ..()
 		if(!.) // wasn't blocked by surgery/pacifism/etc
-			reagents.remove_reagent(/datum/reagent/fuel, 5)
+			reagents.remove_reagent(/datum/reagent/fuel, 2)
 			check_fuel()
 
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
