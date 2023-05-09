@@ -721,7 +721,7 @@
 					/obj/item/gun/ballistic/rifle/boltaction)
 	crate_name = "surplus military crate"
 
-/datum/supply_pack/security/armory/russian/fill(obj/structure/closet/crate/C)
+/datum/supply_pack/weaponry/russian/fill(obj/structure/closet/crate/C)
 	for(var/i in 1 to 12)
 		var/item = pick(contains)
 		new item(C)
@@ -804,7 +804,7 @@
 	crate_name = "pistol crate"
 	crate_type = /obj/structure/closet/crate/secure/gear
 
-/datum/supply_pack/security/armory/wintonrifle
+/datum/supply_pack/weaponry/wintonrifle
 	name = "Winton Mk. VI Repeating Rifles Crate"
 	desc = "Line them up and put them down. Containts three Frontier-made Winton lever-action rifles and three bandoliers, each filled with twenty-four spare rounds."
 	cost = 16000
@@ -816,7 +816,7 @@
 					/obj/item/storage/belt/bandolier/sharpshooter)
 	crate_name = "lever-action rifles crate"
 
-/datum/supply_pack/security/armory/wintonrifle_single
+/datum/supply_pack/weaponry/wintonrifle_single
 	name = "Winton Mk. VI Repeating Rifle Single-Pack"
 	desc = "For the enterprising marksman. Contains a single Frontier-made Winton level-action rifle and a bandolier filled with twenty-four spare rounds."
 	cost = 6400
