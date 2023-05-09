@@ -1319,7 +1319,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/chosen_pet = rand(1, possible_pets.len)
 	pet = locate(possible_pets[chosen_pet]) in GLOB.mob_living_list
 	name = "Kill [pet.name]]"
-	explanation_text = "Assasinate the important animal, [pet.name]"
+	explanation_text = "Assassinate the important animal, [pet.name]."
 	return pet
 
 /datum/objective/minor/pet/admin_edit(mob/admin)
