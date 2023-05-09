@@ -717,7 +717,6 @@
 		return PROCESS_KILL // something has gone terribly wrong
 	if(healing)
 		var/mob/living/carbon/human/H = loc
-		to_chat(world, "healing [H]")
 		if(H.health < H.maxHealth)
 			new /obj/effect/temp_visual/heal(get_turf(H), "#009900")
 			H.heal_overall_damage(5,5, 0, BODYPART_ANY)
