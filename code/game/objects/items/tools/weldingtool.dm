@@ -26,6 +26,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
+	weapon_stats = list(SWING_SPEED = 1.5, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 0, DAMAGE_HIGH = 0)
 
 	materials = list(/datum/material/iron=70, /datum/material/glass=30)
 	///Whether the welding tool is on or off.
@@ -132,7 +133,10 @@
 			return TRUE
 
 	if(!isOn() || user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
-		..()
+		. = ..()
+		if(!.) // wasn't blocked by surgery/pacifism/etc
+			reagents.remove_reagent(/datum/reagent/fuel, 5)
+			check_fuel()
 
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()
