@@ -57,7 +57,7 @@
 		var/exp_rank = "Sergeant"
 		switch(M.client.prefs.exp[EXP_TYPE_SECURITY] / 60)
 			if(200 to INFINITY)
-				exp_rank = "Master Sergeant"
+				exp_rank = "Gunnery Sergeant"
 			if(50 to 200)
 				exp_rank = "Staff Sergeant"
 		var/obj/item/badge/security/generated_badge = new
