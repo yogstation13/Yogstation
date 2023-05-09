@@ -823,7 +823,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/carbon/M)
 	M.set_drugginess(30)
 	if(isethereal(M))
-		to_chat(M, span_notice("Danger! Danger! High Voltage!! When we drink..."))
 		var/mob/living/carbon/C = M
 		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 		if(istype(stomach))
@@ -1073,6 +1072,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/alliescocktail/reaction_mob(mob/living/M, method=TOUCH)
 	if(method == INGEST)
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "ally_power", name)
+		to_chat(M, span_notice("There are allies everywhere!"))
 	return ..()
 
 /datum/reagent/consumable/ethanol/acid_spit

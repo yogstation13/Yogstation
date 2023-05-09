@@ -346,6 +346,7 @@
 	name = "Vatra M38 Magazine (.38)"
 	desc = "A 8-round magazine for the Vatra M38 service handgun."
 	id = "mag_v38"
+	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000)
 	build_path = /obj/item/ammo_box/magazine/v38
 	category = list("Ammo")

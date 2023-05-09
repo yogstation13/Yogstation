@@ -829,7 +829,6 @@
 
 /datum/reagent/consumable/cherryshake/on_mob_life(mob/living/carbon/C)
 	if(isjellyperson(C))
-		to_chat(C, span_notice("Just like us, just like jelly!"))
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
 	..()

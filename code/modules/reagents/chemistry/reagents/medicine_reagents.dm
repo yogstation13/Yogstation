@@ -921,8 +921,8 @@
 			M.visible_message(span_warning("[M]'s body starts convulsing!"))
 			M.notify_ghost_cloning(source = M)
 			M.do_jitter_animation(10)
-			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
-			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
+			addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 10), 40) //jitter immediately, then again after 4 and 8 seconds
+			addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 10), 80)
 			sleep(10 SECONDS) //so the ghost has time to re-enter
 			if(iscarbon(M))
 				var/mob/living/carbon/C = M

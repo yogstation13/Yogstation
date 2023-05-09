@@ -127,7 +127,7 @@
 
 /obj/item/holotool/attack_self(mob/user)
 	update_listing()
-	var/chosen = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, .proc/check_menu,user))
+	var/chosen = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, PROC_REF(check_menu),user))
 	if(!check_menu(user))
 		return
 	if(chosen)
