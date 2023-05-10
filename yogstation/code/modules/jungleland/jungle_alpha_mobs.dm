@@ -143,12 +143,14 @@
 	response_harm   = "hits"
 	maxHealth = 500
 	health = 500
-	//crusher_loot = /obj/item/crusher_trophy/jungleland/meduracha_tentacles
+	crusher_loot = /obj/item/crusher_trophy/jungleland/dryad_branch
+	loot = list(/obj/item/organ/regenerative_core/dryad = 5)
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	ranged = TRUE 
-	ranged_cooldown = 15 SECONDS
+	ranged_cooldown = 10 SECONDS
 	move_to_delay = 10
+	pixel_x = -32
 
 	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/dryad,/mob/living/simple_animal/hostile/yog_jungle/meduracha, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket,/mob/living/simple_animal/hostile/yog_jungle/emeraldspider)
 

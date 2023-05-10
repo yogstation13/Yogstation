@@ -533,7 +533,7 @@
 
 /obj/item/crusher_trophy/jungleland/dryad_branch
 	name = "Dryad Branch"
-	desc = "Slimy mass of organic tissue, it still pulsates when pressed."
+	desc = "Branch of a living tree, it still holds some of it's power."
 	icon_state = "dryad_branch"
 	denied_type = /obj/item/crusher_trophy/jungleland/dryad_branch
 
@@ -559,3 +559,33 @@
 /obj/item/crusher_trophy/jungleland/dryad_branch/proc/clear_status_effects(datum/source,mob/living/user,/obj/item/twohanded/kinetic_crusher/hammer_synced)
 	if(user.has_status_effect(/datum/status_effect/bounty_of_the_forest))
 		user.remove_status_effect(/datum/status_effect/bounty_of_the_forest)
+
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
+	name = "Corrupted branch"
+	desc = "A tendril of corruption that took over a forest spirit. Maybe it can be of use for me?"
+	icon_state = "dryad_branch"
+	denied_type = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
+
+/obj/item/crusher_trophy/jungleland/blob_brain/effect_desc()
+	return "Gives a stacking (up to 5 times) regeneration effect for every detonated mark. Lasts 5 seconds, extending on successful mark detonation. Missing resets the stacks."
+
+/obj/item/crusher_trophy/jungleland/dryad_branch/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	SIGNAL_HANDLER
+	. = ..()
+	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,.proc/clear_status_effects)
+	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,.proc/clear_status_effects)
+
+/obj/item/crusher_trophy/jungleland/dryad_branch/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	SIGNAL_HANDLER
+	. = ..()
+	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK)
+	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE)
+
+/obj/item/crusher_trophy/jungleland/dryad_branch/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced)
+	. = ..()
+	user.apply_status_effect(/datum/status_effect/bounty_of_the_forest)
+
+/obj/item/crusher_trophy/jungleland/dryad_branch/proc/clear_status_effects(datum/source,mob/living/user,/obj/item/twohanded/kinetic_crusher/hammer_synced)
+	if(user.has_status_effect(/datum/status_effect/bounty_of_the_forest))
+		user.remove_status_effect(/datum/status_effect/bounty_of_the_forest)
+
