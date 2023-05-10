@@ -28,7 +28,9 @@
 	display_order = JOB_DISPLAY_ORDER_VIROLOGIST
 	minimal_character_age = 24 //Requires understanding of microbes, biology, infection, and all the like, as well as being able to understand how to interface the machines. Epidemiology is no joke of a field
 
-	changed_maps = list("OmegaStation")
+	departments_list = list(
+		/datum/job_department/medical,
+	)
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/glass/bottle/random_virus = 15,
@@ -39,9 +41,6 @@
 	)
 
 	smells_like = "germlessness"
-
-/datum/job/virologist/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/outfit/job/virologist
 	name = "Virologist"

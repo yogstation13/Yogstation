@@ -149,7 +149,7 @@
 
 /datum/nanite_program/purging_advanced/check_conditions()
 	var/foreign_reagent = FALSE
-	for(var/datum/reagent/toxin/R in host_mob.reagents.reagent_list)
+	for(var/datum/reagent/toxin/R in host_mob.reagents?.reagent_list)
 		foreign_reagent = TRUE
 		break
 	if(!host_mob.getToxLoss() && !foreign_reagent)
@@ -158,7 +158,7 @@
 
 /datum/nanite_program/purging_advanced/active_effect()
 	host_mob.adjustToxLoss(-1)
-	for(var/datum/reagent/toxin/R in host_mob.reagents.reagent_list)
+	for(var/datum/reagent/toxin/R in host_mob.reagents?.reagent_list)
 		host_mob.reagents.remove_reagent(R.type,1)
 
 /datum/nanite_program/regenerative_advanced

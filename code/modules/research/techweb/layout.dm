@@ -411,6 +411,10 @@
 	ui_x = -736
 	ui_y = -416
 
+/datum/techweb_node/hardlight_weapons
+	ui_x = -672
+	ui_y = -352
+
 /datum/techweb_node/gygax
 	ui_x = -672
 	ui_y = -160

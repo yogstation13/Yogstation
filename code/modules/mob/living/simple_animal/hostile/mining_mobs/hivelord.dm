@@ -398,56 +398,78 @@
 			backpack_contents = list(/obj/item/reagent_containers/glass/beaker/unholywater = 1, /obj/item/cult_shift = 1, /obj/item/flashlight/flare/culttorch = 1, /obj/item/stack/sheet/runed_metal = 15)
 	. = ..()
 
-//Bloodman
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman
-	name = "bloodman"
-	desc = "It's contantly dripping and absorbing blood."
+//aide
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide
+	name = "aide"
+	desc = "A being aggressive to anybody it doesn't see as its charge."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
-	faction = list("blooded")
-	icon_state = "bloodman"
-	icon_living = "bloodman"
-	icon_aggro = "bloodman"
-	icon_dead = "bloodman"
+	faction = list("cane")
+	icon_state = "legion"
+	icon_living = "legion"
+	icon_aggro = "legion"
+	icon_dead = "legion"
 	maxHealth = 30
 	health = 30 //dont want crew to have a hard time killing actual fodder
 	loot = null
-	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
+	color = "#7422a3"
+	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/Initialize()
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/Initialize()
 	. = ..()
-	GLOB.bloodmen_list += src
+	GLOB.aide_list += src
 	return
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/death()
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/death()
 	. = ..()
-	GLOB.bloodmen_list -= src
+	GLOB.aide_list -= src
 	return
 
-//Bloodling
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling
-	name = "bloodling"
-	desc = "Blood that hates."
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide
+	name = "aide"
+	desc = "They bruise but they try not to kill."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
-	icon_state = "bloodling"
-	icon_living = "bloodling"
-	icon_aggro = "bloodling"
-	icon_dead = "bloodling"
+	icon_state = "legion_head"
+	icon_living = "legion_head"
+	icon_aggro = "legion_head"
+	icon_dead = "legion_head"
 	icon_gib = "syndicate_gib"
 	friendly = "buzzes near"
-	faction = list("blooded")
+	faction = list("cane")
 	harm_intent_damage = 2
 	melee_damage_lower = 2
-	melee_damage_upper = 2 //fodder isnt supposed to be strong
+	melee_damage_upper = 2
 	attacktext = "gnashes at"
-	stat_attack = DEAD
+	color = "#7422a3"
+	var/fauna_damage_bonus = 10
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/bloodling/Life()
-	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/bloodman/L
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/Life()
+	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/L
 	if(isturf(loc))
 		for(var/mob/living/M in view(src,1))
-			if(M.stat == DEAD && GLOB.bloodmen_list.len <= 2) //max of 3 bloodmen to minimize shitshows
+			if(M.stat == DEAD && GLOB.aide_list.len <= 2 && (!M.has_status_effect(STATUS_EFFECT_EXHUMED))) //max of 3 bloodmen to minimize shitshows
 				L = new(M.loc)
+				L.faction = src.faction
 				L.stored_mob = M
 				M.forceMove(L)
+				M.apply_status_effect(/datum/status_effect/exhumed)
 				qdel(src)
-	..() //couldnt figure out how to make infesting work without getting duplicate def errors so just doing this
+	..()
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/AttackingTarget()
+	. = ..()
+	var/mob/living/L = target
+	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+		L.apply_damage(fauna_damage_bonus, BRUTE)
+
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/CanAttack(atom/the_target)
+	. = ..()
+	var/mob/living/T = the_target
+	if(T.health < T.maxHealth/10)
+		return FALSE
+
+/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/CanAttack(atom/the_target)
+	. = ..()
+	var/mob/living/T = the_target
+	if(T.health < T.maxHealth/10)
+		return FALSE
+

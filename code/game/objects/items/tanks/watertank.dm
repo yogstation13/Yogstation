@@ -285,12 +285,12 @@
 		if(!Adj|| !isturf(target))
 			return
 		for(var/S in target)
-			if(istype(S, /obj/effect/particle_effect/foam/metal/resin) || istype(S, /obj/structure/foamedmetal/resin))
+			if(istype(S, /obj/effect/particle_effect/fluid/foam/metal/resin) || istype(S, /obj/structure/foamedmetal/resin))
 				to_chat(user, span_warning("There's already resin here!"))
 				return
 		if(resin_charges)
-			var/obj/effect/particle_effect/foam/metal/resin/F = new (get_turf(target))
-			F.amount = 0
+			var/obj/effect/particle_effect/fluid/foam/metal/resin/foam = new (get_turf(target))
+			foam.group.target_size = 0
 			resin_charges--
 			addtimer(CALLBACK(src, .proc/add_foam_charge), 5 SECONDS)
 		else
@@ -313,8 +313,9 @@
 	anchored = TRUE
 
 /obj/effect/resin_container/proc/Smoke()
-	var/obj/effect/particle_effect/foam/metal/resin/S = new /obj/effect/particle_effect/foam/metal/resin(get_turf(loc))
-	S.amount = 4
+	var/datum/effect_system/fluid_spread/foam/metal/resin/foaming = new
+	foaming.set_up(4, location = src)
+	foaming.start()
 	playsound(src,'sound/effects/bamf.ogg',100,1)
 	qdel(src)
 

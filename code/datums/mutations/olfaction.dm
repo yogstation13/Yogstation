@@ -80,10 +80,13 @@
 /obj/effect/temp_visual/scent_trail/Destroy()
 	UnregisterSignal(src, COMSIG_MOVABLE_CROSSED)
 	animate(img, alpha = 0, time = 1 SECONDS, easing = EASE_OUT) //fade out
+	INVOKE_ASYNC(src, .proc/Fade)
+	return ..()
+
+/obj/effect/temp_visual/scent_trail/proc/Fade()
 	sleep(1 SECONDS)
 	sniffer.remove_alt_appearance("smelly")
 	img = null
-	return ..()
 
 /datum/effect_system/trail_follow/scent
 	effect_type = /obj/effect/temp_visual/scent_trail

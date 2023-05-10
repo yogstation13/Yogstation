@@ -100,6 +100,27 @@
 #define JOB_DISPLAY_ORDER_CLERK 39
 #define JOB_DISPLAY_ORDER_CHAPLAIN 40
 
+#define DEPARTMENT_UNASSIGNED "No Department"
+#define DEPARTMENT_BITFLAG_SECURITY (1<<0)
+#define DEPARTMENT_SECURITY "Security"
+#define DEPARTMENT_BITFLAG_COMMAND (1<<1)
+#define DEPARTMENT_COMMAND "Command"
+#define DEPARTMENT_BITFLAG_SERVICE (1<<2)
+#define DEPARTMENT_SERVICE "Service"
+#define DEPARTMENT_BITFLAG_CARGO (1<<3)
+#define DEPARTMENT_CARGO "Cargo"
+#define DEPARTMENT_BITFLAG_ENGINEERING (1<<4)
+#define DEPARTMENT_ENGINEERING "Engineering"
+#define DEPARTMENT_BITFLAG_SCIENCE (1<<5)
+#define DEPARTMENT_SCIENCE "Science"
+#define DEPARTMENT_BITFLAG_MEDICAL (1<<6)
+#define DEPARTMENT_MEDICAL "Medical"
+#define DEPARTMENT_BITFLAG_SILICON (1<<7)
+#define DEPARTMENT_SILICON "Silicon"
+#define DEPARTMENT_BITFLAG_ASSISTANT (1<<8)
+#define DEPARTMENT_ASSISTANT "Assistant"
+#define DEPARTMENT_BITFLAG_CAPTAIN (1<<9)
+#define DEPARTMENT_CAPTAIN "Captain"
 
 /proc/find_job(target)
 	//Get the job from the mind
@@ -126,5 +147,3 @@
 #define IS_SCIENCE(target) (find_job(target) in GLOB.science_positions)
 #define IS_CARGO(target) (find_job(target) in GLOB.supply_positions)
 #define IS_SECURITY(target) (find_job(target) in GLOB.security_positions)
-
-#define DEPARTMENT_UNASSIGNED "No Department"

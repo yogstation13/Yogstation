@@ -7,7 +7,7 @@
  */
 
 /**
- * Moves focus to the BYOND map window. //
+ * Moves focus to the BYOND map window.
  */
 export const focusMap = () => {
   Byond.winset('mapwindow.map', {
@@ -19,7 +19,7 @@ export const focusMap = () => {
  * Moves focus to the browser window.
  */
 export const focusWindow = () => {
-  Byond.winset(window.__windowId__, {
+  Byond.winset(Byond.windowId, {
     focus: true,
   });
 };

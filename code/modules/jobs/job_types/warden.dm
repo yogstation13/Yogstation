@@ -31,7 +31,9 @@
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 	minimal_character_age = 20 //You're a sergeant, probably has some experience in the field
 
-	changed_maps = list("YogsPubby", "OmegaStation")
+	departments_list = list(
+		/datum/job_department/security,
+	)
 
 	mail_goodies = list(
 		/obj/item/storage/box/fancy/cigarettes = 15,
@@ -44,12 +46,6 @@
 	)
 
 	smells_like = "gunpowdery justice"
-
-/datum/job/warden/proc/YogsPubbyChanges()
-	base_access |= ACCESS_CREMATORIUM
-
-/datum/job/warden/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/job/warden/get_access()
 	var/list/L = list()

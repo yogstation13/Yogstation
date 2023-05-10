@@ -23,7 +23,9 @@
 	display_order = JOB_DISPLAY_ORDER_JANITOR
 	minimal_character_age = 20 //Theoretically janitors do actually need training and certifications in handling of certain hazardous materials as well as cleaning substances, but nothing absurd, I'd assume
 
-	changed_maps = list("OmegaStation", "EclipseStation")
+	departments_list = list(
+		/datum/job_department/service,
+	)
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/spray/cleaner = 30,
@@ -33,15 +35,6 @@
 	)
 
 	smells_like = "bleach"
-
-/datum/job/janitor/proc/OmegaStationChanges()
-	added_access = list()
-	base_access = list(ACCESS_JANITOR, ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
-	supervisors = "the captain and the head of personnel"
-
-/datum/job/janitor/proc/EclipseStationChanges()
-	total_positions = 4
-	spawn_positions = 2
 
 /datum/outfit/job/janitor
 	name = "Janitor"

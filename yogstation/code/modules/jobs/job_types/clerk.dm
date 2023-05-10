@@ -19,16 +19,11 @@
 	display_order = JOB_DISPLAY_ORDER_CLERK
 	minimal_character_age = 18 //Capitalism doesn't care about age
 
-	changed_maps = list("EclipseStation", "OmegaStation")
+	departments_list = list(
+		/datum/job_department/service,
+	)
 
 	smells_like = "cheap plastic"
-
-/datum/job/clerk/proc/EclipseStationChanges()
-	total_positions = 2
-	spawn_positions = 1
-
-/datum/job/clerk/proc/OmegaStationChanges()
-	return TRUE
 
 /datum/outfit/job/clerk
 	name = "Clerk"

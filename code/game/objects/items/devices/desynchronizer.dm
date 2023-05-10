@@ -9,8 +9,9 @@
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	materials = list(/datum/material/iron=250, /datum/material/glass=500)
-	var/max_duration = 3000
-	var/duration = 300
+	var/max_duration = 60 SECONDS
+	var/min_duration = 5 SECONDS
+	var/duration = 30 SECONDS
 	var/last_use = 0
 	var/next_use = 0
 	var/obj/effect/abstract/sync_holder/sync_holder
@@ -22,7 +23,7 @@
 	if(!sync_holder)
 		desync(user)
 	else
-		resync()
+		resync(user)
 
 /obj/item/desynchronizer/examine(mob/user)
 	. = ..()
@@ -34,10 +35,10 @@
 /obj/item/desynchronizer/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
-	var/new_duration = input(user, "Set the duration (5-300):", "Desynchronizer", duration / 10) as null|num
+	var/new_duration = input(user, "Set the duration ([min_duration/10]-[max_duration/10] seconds):", "Desynchronizer", duration / 10) as null|num
 	if(new_duration)
 		new_duration = new_duration SECONDS
-		new_duration = clamp(new_duration, 50, max_duration)
+		new_duration = clamp(new_duration, min_duration, max_duration)
 		duration = new_duration
 		to_chat(user, span_notice("You set the duration to [DisplayTimeText(duration)]."))
 
@@ -56,10 +57,16 @@
 	icon_state = "desynchronizer-on"
 	addtimer(CALLBACK(src, .proc/resync), duration)
 
-/obj/item/desynchronizer/proc/resync()
+/obj/item/desynchronizer/proc/resync(mob/living/user)
 	new /obj/effect/temp_visual/desynchronizer(sync_holder.drop_location())
 	QDEL_NULL(sync_holder)
 	icon_state = initial(icon_state)
+	if(user) // Punish them for cancelling early
+		to_chat(user, span_userdanger("\The [src]'s emergency abort sequence results in your cells being scrambled!"))
+		user.adjustCloneLoss(50) // ouch
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			C.vomit()
 	next_use = world.time + (world.time - last_use) // Could be 2*world.time-last_use but that would just be confusing
 
 /obj/item/desynchronizer/Destroy()

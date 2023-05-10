@@ -188,10 +188,12 @@
 /area/shuttle/syndicate_scout
 	name = "Syndicate Scout"
 	blob_allowed = FALSE
+	noteleport = TRUE
 
 /area/shuttle/caravan
 	blob_allowed = FALSE
 	requires_power = TRUE
+	noteleport = TRUE
 
 /area/shuttle/caravan/syndicate1
 	name = "Syndicate Fighter"

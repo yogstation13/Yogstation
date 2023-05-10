@@ -117,7 +117,7 @@
 		body += "<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_MENTORHELP]'><font color='[(muted & MUTE_MENTORHELP)?"red":"blue"]'>MENTORHELP</font></a> | "
 		body += "<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]"
 		body += "(<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)"
-		body += "<A href='?_src_=holder;[HrefToken()];afreeze=[REF(M)];'><font color='[M.client.prefs.afreeze ? "red":"blue"]'>FREEZE</font></a>" //yogs - adminfreezing
+		body += "<A href='?_src_=holder;[HrefToken()];afreeze=[REF(M)];'><font color='[M.client.afreeze ? "red":"blue"]'>FREEZE</font></a>" //yogs - adminfreezing
 
 	body += "<br><br>"
 	body += "<A href='?_src_=holder;[HrefToken()];jumpto=[REF(M)]'><b>Jump to</b></A> | "

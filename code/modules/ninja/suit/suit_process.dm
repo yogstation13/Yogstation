@@ -1,4 +1,4 @@
-/obj/item/clothing/suit/space/space_ninja/proc/ntick(mob/living/carbon/human/U = affecting, delta_time)
+/obj/item/clothing/suit/space/space_ninja/proc/ntick(mob/living/carbon/human/U = affecting)
 	//Runs in the background while the suit is initialized.
 	//Requires charge or stealth to process.
 	spawn while(s_initialized)
@@ -7,11 +7,11 @@
 
 		else if(cell.charge > 0)
 			if(s_coold > 0)
-				s_coold -= delta_time//Checks for ability s_cooldown first.
+				s_coold-- //Checks for ability s_cooldown first.
 
-			cell.charge -= s_cost * delta_time//s_cost is the default energy cost each ntick, usually 5.
+			cell.charge -= s_cost//s_cost is the default energy cost each ntick, usually 5.
 			if(stealth)//If stealth is active.
-				cell.charge -= s_acost * delta_time
+				cell.charge -= s_acost
 
 		else
 			cell.charge = 0

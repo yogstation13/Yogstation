@@ -388,7 +388,7 @@
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				if(!get_turf(H))
 					continue
-				if(H.client?.prefs?.disable_alternative_announcers)
+				if(H.client?.prefs?.read_preference(/datum/preference/toggle/disable_alternative_announcers))
 					SEND_SOUND(H, sound(SSstation.default_announcer.event_sounds[ANNOUNCER_ANIMES]))
 				else
 					SEND_SOUND(H, sound(SSstation.announcer.event_sounds[ANNOUNCER_ANIMES]))

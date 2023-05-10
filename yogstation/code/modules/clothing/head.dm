@@ -173,7 +173,7 @@
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_atmospherics"
-	armor = list(rad = 10, fire = 10)
+	armor = list(rad = 10, fire = 80)
 	strip_delay = 60
 
 /obj/item/clothing/head/beret/ce
@@ -182,7 +182,7 @@
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon_state = "beret_ce"
-	armor = list(rad = 20, fire = 30)
+	armor = list(rad = 20, fire = 80)
 	strip_delay = 60
 
 /obj/item/clothing/head/beret/sci

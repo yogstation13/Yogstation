@@ -932,7 +932,8 @@
 	//We want an accurate reading of .len
 	listclearnulls(embedded_objects)
 	for(var/obj/item/embeddies in embedded_objects)
-		if(!embeddies.taped)
+		var/obj/item/ammo_casing/AC = embeddies
+		if(!(embeddies.taped || (istype(AC) && !AC.harmful)))
 			bleed_rate += 0.5
 
 	for(var/thing in wounds)

@@ -259,6 +259,7 @@
 	baseturfs = /turf/open/floor/clockwork/reebe
 	uses_overlay = FALSE
 	planetary_atmos = TRUE
+	made_baseturf = TRUE // prevent spacing reebe
 
 /turf/open/floor/bluespace
 	slowdown = -1

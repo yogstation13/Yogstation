@@ -395,7 +395,7 @@
 			var/dmg = rand(M.force/2, M.force)
 			switch(M.damtype)
 				if(BRUTE)
-					if(M.force > 20)
+					if(M.force >= 20)
 						Knockdown(1.5 SECONDS)//the victim could get up before getting hit again
 						var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
 						src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling

@@ -331,3 +331,16 @@
 	name = "ornate mantle"
 	desc = "An ornate mantle commonly worn by a shaman or chieftain."
 	icon_state = "tribal-mantle"
+
+
+///////////
+// OTHER //
+///////////
+
+/obj/item/clothing/neck/falcon
+	name = "Faclonry pauldron"
+	desc = "A thick leather pad for a falcon to rest one. This one comes with a fake bird, free of charge."
+	icon = 'icons/obj/clothing/neck.dmi'
+	w_class = WEIGHT_CLASS_SMALL
+	icon_state = "falcon"
+	item_state = "falcon"

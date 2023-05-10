@@ -19,6 +19,7 @@
 	item_flags = NEEDS_PERMIT
 	attack_verb = list("struck", "hit", "bashed")
 	cryo_preserve = TRUE
+	fryable = TRUE
 
 	var/fire_sound = "gunshot"
 	var/vary_fire_sound = TRUE
@@ -42,7 +43,7 @@
 	var/semicd = 0						//cooldown handler
 	var/weapon_weight = WEAPON_LIGHT
 	var/spread = 5						//Spread induced by the gun itself. SEE LINE BELOW.
-	var/default_spread = 5				//MUST be equal to the value above; used to calculate adjustments for if semi-auto is used on a burst weapon.
+	var/semi_auto_spread = 5			//Equal to the value above by default. The spread that a weapon will have if it is switched to semi-auto from a burst-fire mode.
 	var/randomspread = 1				//Set to 0 for shotguns. This is used for weapons that don't fire all their bullets at once.
 
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -200,7 +201,7 @@
 
 	if(suppressed)
 		playsound(user, suppressed_sound, suppressed_volume, vary_fire_sound)
-		if(suppressed.break_chance && prob(suppressed.break_chance))
+		if(istype(suppressed) && suppressed.break_chance && prob(suppressed.break_chance))
 			to_chat(user, span_warning("\the [suppressed] falls apart!"))
 			w_class -= suppressed.w_class
 			qdel(suppressed)
@@ -608,6 +609,18 @@
 	update_gunlight()
 
 /obj/item/gun/proc/update_gunlight()
+	if(gun_light)
+		cut_overlay(flashlight_overlay, TRUE)
+		var/state = "flight[gun_light.on? "_on":""]"	//Generic state.
+		if(gun_light.icon_state in icon_states('icons/obj/guns/flashlights.dmi'))	//Snowflake state?
+			state = gun_light.icon_state
+		flashlight_overlay = mutable_appearance('icons/obj/guns/flashlights.dmi', state)
+		flashlight_overlay.pixel_x = flight_x_offset
+		flashlight_overlay.pixel_y = flight_y_offset
+		add_overlay(flashlight_overlay, TRUE)
+	else
+		cut_overlay(flashlight_overlay, TRUE)
+		flashlight_overlay = null
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X

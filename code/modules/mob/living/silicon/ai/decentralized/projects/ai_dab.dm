@@ -11,6 +11,8 @@
 	if(!.)
 		return .
 	for(var/obj/machinery/ai/data_core/datacores in GLOB.data_cores)
-		datacores.DabAnimation()
+		var/light_dab_angle = rand(35,55)
+		var/light_dab_speed = rand(3,7)
+		datacores.DabAnimation(angle = light_dab_angle , speed = light_dab_speed)
 
 	stop()

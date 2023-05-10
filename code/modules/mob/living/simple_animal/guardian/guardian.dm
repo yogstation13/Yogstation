@@ -398,55 +398,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 	src.log_talk(input, LOG_SAY, tag="guardian")
 
-/mob/living/proc/finduser()
-	set name = "Find another user"
-	set category = "Guardian"
-	set desc = "Search for the rough location of another person with a Guardian."
-	var/turf/my_loc = get_turf(owner)
-	var/closest_dist = 9999
-	var/mob/living/closest_user
-
-	to_chat(owner, span_notice("You take a moment to think, focusing yourself to try and discern any nearby users."))
-	if(!do_after(owner, 5 SECONDS))
-		return FALSE
-	var/list/datum/mind/users = list()
-	var/list/guardians = hasparasites()
-	for(var/mob/living/carbon/all_carbons in GLOB.alive_mob_list)
-		if(all_carbons == owner) //don't track ourselves!
-			continue
-		if(!all_carbons.mind)
-			continue
-		var/datum/mind/carbon_minds = all_carbons.mind
-		for(var/para in guardians)
-			var/mob/living/simple_animal/hostile/guardian/G = para
-			if(G.summoner?.current.ckey == owner.ckey)
-				users += carbon_minds
-	
-	for(var/datum/mind/user_minds in users)
-		if(!user_minds.current || user_minds.current == owner) // || !get_turf(M.current) || !get_turf(owner))
-			continue
-		for(var/antag_datums in user_minds.antag_datums)
-			var/datum/antagonist/antag_datum = antag_datums
-			if(!istype(antag_datum))
-				continue
-			var/their_loc = get_turf(user_minds.current)
-			var/distance = get_dist_euclidian(my_loc, their_loc)
-			/// Found One: Closer than previous/max distance
-			if(distance < closest_dist && distance <= GUARDIAN_SCAN_DISTANCE)
-				closest_dist = distance
-				closest_user = user_minds.current
-				/// Stop searching through my antag datums and go to the next guy
-				break
-
-	/// Found one!
-	if(closest_user)
-		var/distString = closest_dist <= GUARDIAN_SCAN_DISTANCE / 4 ? "<b>somewhere nearby!</b>" : "somewhere in the distance."
-		to_chat(owner, span_warning("You detect signs of a user [distString]"))
-
-	/// Will yield a "?"
-	else
-		to_chat(owner, span_notice("There are no users nearby."))
-
 //FORCE RECALL/RESET
 /mob/living/proc/guardian_recall()
 	set name = "Recall Guardian"

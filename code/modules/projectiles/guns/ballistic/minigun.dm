@@ -109,7 +109,7 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_left.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_right.dmi'
 	flags_1 = CONDUCT_1
-	slowdown = 2
+	slowdown = 1.5
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
 	materials = list()

@@ -61,7 +61,7 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_cycle_equip
-	name = "Cycle Equipment"
+	name = "Cycle Equipment. Can also be cycled with throwmode."
 	button_icon_state = "mech_cycle_equip_off"
 
 /datum/action/innate/mecha/mech_cycle_equip/Activate()

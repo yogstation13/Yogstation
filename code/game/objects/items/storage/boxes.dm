@@ -597,9 +597,10 @@
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/goat(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/sheep(src)
-		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/chicken(src)
-
+	for(var/i in 1 to 4)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
+		
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
 	desc = "Has so many empty IDs."
@@ -669,6 +670,15 @@
 /obj/item/storage/box/firingpins/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/firing_pin(src)
+
+/obj/item/storage/box/secfiringpins
+	name = "box of mindshield firing pins"
+	desc = "A box full of mindshield firing pins, to allow newly-developed firearms to operate."
+	illustration = "id"
+
+/obj/item/storage/box/secfiringpins/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/firing_pin/implant/mindshield(src)
 
 /obj/item/storage/box/lasertagpins
 	name = "box of laser tag firing pins"

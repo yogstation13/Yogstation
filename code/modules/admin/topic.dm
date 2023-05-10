@@ -28,10 +28,11 @@
 		var/mob/M = locate(href_list["afreeze"]) in GLOB.mob_list
 		if(!M || !M.client)
 			return
+
 		var/message
-		if(M.client.prefs.afreeze)
+		if(M.client.afreeze)
 			to_chat(M, span_userdanger("You are no longer frozen."))
-			M.client.prefs.afreeze = FALSE
+			M.client.afreeze = FALSE
 			M.client.show_popup_menus = TRUE
 			M.client.show_verb_panel = TRUE
 			M.notransform = FALSE
@@ -39,7 +40,7 @@
 			message = "[key_name(usr)] has unfrozen [key_name(M)]."
 		else
 			to_chat(M, span_userdanger("You have been frozen by an administrator."))
-			M.client.prefs.afreeze = TRUE
+			M.client.afreeze = TRUE
 			M.client.show_popup_menus = FALSE
 			M.client.show_verb_panel = FALSE
 			M.notransform = TRUE
@@ -212,6 +213,13 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a shadowling. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create a shadowling.")
+			if("darkspawn")
+				if(makeDarkspawn())
+					message_admins("[key_name(usr)] created a darkspawn.")
+					log_admin("[key_name(usr)] created a darkspawn.")
+				else
+					message_admins("[key_name_admin(usr)] tried to create a darkspawn. Unfortunately, there were no candidates available.")
+					log_admin("[key_name(usr)] failed to create a darkspawn.")
 			if("vampire")
 				if(makeVampire())
 					message_admins("[key_name(usr)] created a vampire.")
