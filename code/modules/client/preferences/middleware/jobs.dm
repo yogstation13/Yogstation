@@ -135,7 +135,6 @@
 		var/hasWhitelist = job.whitelist 
 		whitelisted_jobs[job.title] = hasWhitelist
 		if(job.whitelist)
-			var/isWhitelisted = user.client.key in job.whitelist
 			whitelist_status[job.title] = GLOB.job_whitelists[job.whitelistFileName][user.client.key]
 
 	if(whitelisted_jobs)

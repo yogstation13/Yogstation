@@ -42,8 +42,8 @@ SUBSYSTEM_DEF(job)
 					WARNING("Failed to load whitelist status for [J]. File likely corrupt.")
 					return
 				return
-			job_whitelists[J.title] = json_decode(json)
-			
+			GLOB.job_whitelists[J.title] = json_decode(json)
+
 	set_overflow_role(CONFIG_GET(string/overflow_job))
 	return SS_INIT_SUCCESS
 
