@@ -131,7 +131,7 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha_dryad
 	name ="Wrath of Gaia"
-	desc = "Collosal tree inhibited by all the furiours spirits of the jungle."
+	desc = "Collosal tree inhabited by all the furiours spirits of the jungle."
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
 	icon_state = "wrath_of_gaia"
 	icon_living = "wrath_of_gaia"
@@ -160,3 +160,61 @@
 		var/to_spawn = pick(spawnables)
 		var/mob/living/simple_animal/hostile/spawned = new to_spawn(get_step(src,pick(GLOB.cardinals)))
 		spawned.PickTarget(A)
+
+/mob/living/simple_animal/hostile/yog_jungle/alpha_corrupted_dryad
+	name ="Wrath of Corruption"
+	desc = "Collosal tree that used to be a home of the dryads. Now it serves as a weapon of corruption, spreading it's destruction wherever it goes."
+	icon = 'yogstation/icons/mob/jungle64x64.dmi'
+	icon_state = "wrath_of_corruption"
+	icon_living = "wrath_of_corruption"
+	icon_dead = "wrath_of_corruption_dead"
+	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
+	faction = list("mining")
+	response_help  = "gently pokes"
+	response_disarm = "gently pushes aside"
+	response_harm   = "hits"
+	maxHealth = 500
+	health = 500
+	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
+	loot = list(/obj/item/organ/regenerative_core/dryad/corrupted = 5)
+	melee_damage_lower = 20
+	melee_damage_upper = 25
+	ranged = TRUE 
+	ranged_cooldown = 7.5 SECONDS
+	move_to_delay = 10
+	pixel_x = -32
+	projectiletype = /obj/item/projectile/jungle/damage_orb
+
+	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/skin_twister,/mob/living/simple_animal/hostile/yog_jungle/blobby,/mob/living/simple_animal/hostile/yog_jungle/corrupted_dryad)
+
+/mob/living/simple_animal/hostile/yog_jungle/alpha_dryad/Shoot(atom/targeted_atom)
+	var/angle = Get_Angle(src,targeted_atom)
+	var/list/to_shoot = list() 
+	
+	to_shoot += get_turf(targeted_atom)
+	to_shoot += locate(round(x + sin(angle + 30) * 7),round(y + cos(angle + 15) * 7),z)
+	to_shoot += locate(round(x + sin(angle - 30) * 7),round(y + cos(angle - 15) * 7),z)
+	to_shoot += locate(round(x + sin(angle + 15) * 7),round(y + cos(angle + 15) * 7),z)
+	to_shoot += locate(round(x + sin(angle - 15) * 7),round(y + cos(angle - 15) * 7),z)
+
+	for(var/turf/T as anything in to_shoot)
+		shoot_projectile(T)
+	for(var/i in 0 to rand(1,3))
+		var/to_spawn = pick(spawnables)
+		var/mob/living/simple_animal/hostile/spawned = new to_spawn(get_step(src,pick(GLOB.cardinals)))
+		spawned.PickTarget(targeted_atom)
+
+/mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha/proc/shoot_projectile(atom/targeted_atom)
+	var/turf/startloc = get_turf(src)
+	var/obj/item/projectile/P = new projectiletype(startloc)
+	playsound(src, projectilesound, 100, 1)
+	P.starting = startloc
+	P.firer = src
+	P.fired_from = src
+	P.yo = targeted_atom.y - startloc.y
+	P.xo = targeted_atom.x - startloc.x
+	if(AIStatus != AI_ON)//Don't want mindless mobs to have their movement screwed up firing in space
+		newtonian_move(get_dir(targeted_atom, targets_from))
+	P.original = targeted_atom
+	P.preparePixelProjectile(targeted_atom, src)
+	P.fire()

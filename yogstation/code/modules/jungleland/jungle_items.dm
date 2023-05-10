@@ -537,17 +537,15 @@
 	icon_state = "dryad_branch"
 	denied_type = /obj/item/crusher_trophy/jungleland/dryad_branch
 
-/obj/item/crusher_trophy/jungleland/blob_brain/effect_desc()
+/obj/item/crusher_trophy/jungleland/dryad_branch/effect_desc()
 	return "Gives a stacking (up to 5 times) regeneration effect for every detonated mark. Lasts 5 seconds, extending on successful mark detonation. Missing resets the stacks."
 
 /obj/item/crusher_trophy/jungleland/dryad_branch/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
-	SIGNAL_HANDLER
 	. = ..()
 	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,.proc/clear_status_effects)
 	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,.proc/clear_status_effects)
 
 /obj/item/crusher_trophy/jungleland/dryad_branch/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
-	SIGNAL_HANDLER
 	. = ..()
 	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK)
 	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE)
@@ -556,36 +554,60 @@
 	. = ..()
 	user.apply_status_effect(/datum/status_effect/bounty_of_the_forest)
 
-/obj/item/crusher_trophy/jungleland/dryad_branch/proc/clear_status_effects(datum/source,mob/living/user,/obj/item/twohanded/kinetic_crusher/hammer_synced)
+/obj/item/crusher_trophy/jungleland/dryad_branch/proc/clear_status_effects(datum/source,mob/living/user,obj/item/twohanded/kinetic_crusher/hammer_synced)
 	if(user.has_status_effect(/datum/status_effect/bounty_of_the_forest))
 		user.remove_status_effect(/datum/status_effect/bounty_of_the_forest)
 
-/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch 
 	name = "Corrupted branch"
 	desc = "A tendril of corruption that took over a forest spirit. Maybe it can be of use for me?"
-	icon_state = "dryad_branch"
+	icon_state = "corrupted_dryad_branch"
 	denied_type = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
+	var/damage_bonus = 0
+	var/cooldown_bonus = 0
+	var/current_state = 0
+	var/timer = 0
 
-/obj/item/crusher_trophy/jungleland/blob_brain/effect_desc()
-	return "Gives a stacking (up to 5 times) regeneration effect for every detonated mark. Lasts 5 seconds, extending on successful mark detonation. Missing resets the stacks."
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/effect_desc()
+	return "Gives a stacking (up to 5 times) decreases your shot delay and increases detonation damage when you detonate a mark. Lasts 5 seconds, extending on successful mark detonation. Missing resets the stacks."
 
-/obj/item/crusher_trophy/jungleland/dryad_branch/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
-	SIGNAL_HANDLER
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
 	. = ..()
-	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,.proc/clear_status_effects)
-	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,.proc/clear_status_effects)
+	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,.proc/remove_bonuses)
+	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,.proc/remove_bonuses)
+	START_PROCESSING(SSprocessing,src)
 
-/obj/item/crusher_trophy/jungleland/dryad_branch/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
-	SIGNAL_HANDLER
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
 	. = ..()
 	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK)
 	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE)
+	remove_bonuses()
+	STOP_PROCESSING(SSprocessing,src)
 
-/obj/item/crusher_trophy/jungleland/dryad_branch/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced)
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced)
 	. = ..()
-	user.apply_status_effect(/datum/status_effect/bounty_of_the_forest)
+	timer = 5 SECONDS
+	var/previous_state = current_state
+	current_state = min(current_state + 1, 5)
+	cooldown_bonus = 2 * current_state
+	damage_bonus = 5 * current_state
+	if(previous_state != current_state)
+		hammer_synced.detonation_damage += 5
+		hammer_synced.charge_time -= 2
+	user.throw_alert("glory_of_victory",/atom/movable/screen/alert/status_effect/glory_of_victory,current_state)
 
-/obj/item/crusher_trophy/jungleland/dryad_branch/proc/clear_status_effects(datum/source,mob/living/user,/obj/item/twohanded/kinetic_crusher/hammer_synced)
-	if(user.has_status_effect(/datum/status_effect/bounty_of_the_forest))
-		user.remove_status_effect(/datum/status_effect/bounty_of_the_forest)
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/proc/remove_bonuses(datum/source,mob/living/user,obj/item/twohanded/kinetic_crusher/hammer_synced)
+	hammer_synced.detonation_damage -= damage_bonus
+	hammer_synced.charge_time -= cooldown_bonus
+	current_state = 0
+	cooldown_bonus = 0
+	damage_bonus = 0
+	user.clear_alert("glory_of_victory")
+
+/obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/process(delta_time)
+	if(timer > 0)
+		timer -= delta_time
+		if(timer == 0)
+			remove_bonuses()
+	 
 

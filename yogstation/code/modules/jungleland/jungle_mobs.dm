@@ -91,6 +91,7 @@
 	retreat_distance = 1
 	minimum_distance = 3
 	projectiletype = /obj/item/projectile/jungle/damage_orb
+	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_corrupted_dryad
 
 /mob/living/simple_animal/hostile/yog_jungle/meduracha
 	name ="Meduracha aquatica"
