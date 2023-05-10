@@ -720,12 +720,14 @@
 	if(H.stat == DEAD)
 		return PROCESS_KILL //they hella dead yo
 	if(healing)
-		if(H.health < H.maxHealth)
-			var/power = max((((H.health - H.maxHealth)/H.maxHealth) * -3), 0.5)
+		if(H.health < (H.maxHealth - H.getToxLoss()))
 			new /obj/effect/temp_visual/heal(get_turf(H), "#009900")
+			
+			var/power = max((((H.health - H.maxHealth)/H.maxHealth) * -3), 0.5)
+			var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - power, 0) + min(H.getFireLoss() - power, 0)
 			H.heal_overall_damage(power, power, 0, BODYPART_ANY)
-			H.adjustToxLoss(-power, TRUE, TRUE)
 			H.adjustOxyLoss(-power, TRUE, TRUE)
+			H.adjustToxLoss(amount_healed/2, TRUE, TRUE) //take toxin damage for healing
 
 /obj/item/nullrod/servoskull
 	name = "servitor skull"
