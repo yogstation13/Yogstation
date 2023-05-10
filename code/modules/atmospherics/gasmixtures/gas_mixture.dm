@@ -21,19 +21,19 @@ What are the archived variables for?
 
 #define QUANTIZE(variable)		(round(variable,0.0000001))/*I feel the need to document what happens here. Basically this is used to catch most rounding errors, however it's previous value made it so that
 															once gases got hot enough, most procedures wouldnt occur due to the fact that the mole counts would get rounded away. Thus, we lowered it a few orders of magnititude */
-GLOBAL_LIST_INIT(meta_gas_info, meta_gas_list()) //see ATMOSPHERICS/gas_types.dm
+GLOBAL_REAL(meta_gas_info, /list) = meta_gas_list(//see ATMOSPHERICS/gas_types.dm
 GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 /proc/init_gaslist_cache()
 	. = list()
-	for(var/id in GLOB.meta_gas_info)
+	for(var/id in global.meta_gas_info)
 		var/list/cached_gas = new(3)
 
 		.[id] = cached_gas
 
 		cached_gas[MOLES] = 0
 		cached_gas[ARCHIVE] = 0
-		cached_gas[GAS_META] = GLOB.meta_gas_info[id]
+		cached_gas[GAS_META] = global.meta_gas_info[id]
 
 /datum/gas_mixture
 	var/initial_volume = CELL_VOLUME //liters

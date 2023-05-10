@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 		.[gas_path] = gas_info
 
 /proc/gas_id2path(id)
-	var/list/meta_gas = GLOB.meta_gas_info
+	var/list/meta_gas = global.meta_gas_info
 	if(id in meta_gas)
 		return id
 	for(var/path in meta_gas)

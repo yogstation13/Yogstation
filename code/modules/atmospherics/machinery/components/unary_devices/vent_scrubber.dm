@@ -101,8 +101,8 @@
 		return FALSE
 
 	var/list/f_types = list()
-	for(var/path in GLOB.meta_gas_info)
-		var/list/gas = GLOB.meta_gas_info[path]
+	for(var/path in global.meta_gas_info)
+		var/list/gas = global.meta_gas_info[path]
 		f_types += list(list("gas_id" = gas[META_GAS_ID], "gas_name" = gas[META_GAS_NAME], "enabled" = (path in filter_types)))
 
 	var/datum/signal/signal = new(list(

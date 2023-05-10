@@ -79,16 +79,16 @@
 		dat += "<tr><td colspan=2><a href='?src=[REF(src)];mix=[mix_id];change_volume=1'>Volume: [mix.return_volume()] L</a></td><td colspan=2><a href='?src=[REF(src)];mix=[mix_id];change_temperature=1'>Temp: [mix.return_temperature()] K</a></td></tr>"
 	else
 		dat += "<tr><td colspan=1>Volume: [mix.return_volume()] L</td><td colspan=2>Temp: [mix.return_temperature()] K</td></tr>"
-	for(var/id in (mix_id ? GLOB.meta_gas_info : mix.get_gases()))
+	for(var/id in (mix_id ? global.meta_gas_info : mix.get_gases()))
 		var/list/moles = mix.get_moles(id)
 		dat += "<tr>"
 		if(mix_id)
 			dat += "<td><a href='?src=[REF(src)];mix=[mix_id];delete_gas=[id]'>X</a></td>"
-			dat += "<td>[GLOB.meta_gas_info[id][META_GAS_NAME]]</td>"
+			dat += "<td>[global.meta_gas_info[id][META_GAS_NAME]]</td>"
 			dat += "<td><a href='?src=[REF(src)];mix=[mix_id];change_moles=[id]'>[moles] moles</a></td>"
 			dat += "<td><a href='?src=[REF(src)];mix=[mix_id];change_pressure=[id]'>[moles * R_IDEAL_GAS_EQUATION * mix.return_temperature() / mix.return_volume()] kPa</a></td>"
 		else
-			dat += "<td>[GLOB.meta_gas_info[id][META_GAS_NAME]]</td>"
+			dat += "<td>[global.meta_gas_info[id][META_GAS_NAME]]</td>"
 			dat += "<td>[moles] moles</td>"
 			dat += "<td>[moles * R_IDEAL_GAS_EQUATION * mix.return_temperature() / mix.return_volume()] kPa</td>"
 		dat += "</tr>"
@@ -99,19 +99,19 @@
 /obj/machinery/computer/atmos_sim/proc/gas_topic(datum/gas_mixture/mix, href_list)
 	if(href_list["delete_gas"])
 		var/id = text2path(href_list["delete_gas"])
-		if(GLOB.meta_gas_info[id])
+		if(global.meta_gas_info[id])
 			mix.set_moles(id, text2path(href_list["delete_gas"]))
 	if(href_list["change_moles"])
 		var/id = text2path(href_list["change_moles"])
-		if(GLOB.meta_gas_info[id])
-			var/new_moles = input(usr, "Enter a new mole count for [GLOB.meta_gas_info[id][META_GAS_NAME]]", name) as null|num
+		if(global.meta_gas_info[id])
+			var/new_moles = input(usr, "Enter a new mole count for [global.meta_gas_info[id][META_GAS_NAME]]", name) as null|num
 			if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || new_moles == null)
 				return
 			mix.set_moles(id, new_moles)
 	if(href_list["change_pressure"])
 		var/id = text2path(href_list["change_pressure"])
-		if(GLOB.meta_gas_info[id])
-			var/new_pressure = input(usr, "Enter a new pressure for [GLOB.meta_gas_info[id][META_GAS_NAME]]", name) as null|num
+		if(global.meta_gas_info[id])
+			var/new_pressure = input(usr, "Enter a new pressure for [global.meta_gas_info[id][META_GAS_NAME]]", name) as null|num
 			if(!src || !usr || !usr.canUseTopic(src) || stat || QDELETED(src) || new_pressure == null)
 				return
 			mix.set_moles(id, new_pressure / R_IDEAL_GAS_EQUATION / mix.return_temperature() * mix.return_volume())

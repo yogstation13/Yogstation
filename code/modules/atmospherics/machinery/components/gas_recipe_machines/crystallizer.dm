@@ -278,13 +278,13 @@
 	if(internal.total_moles())
 		for(var/gasid in internal.get_gases())
 			internal_gas_data.Add(list(list(
-			"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
+			"name"= global.meta_gas_info[gasid][META_GAS_NAME],
 			"amount" = round(internal.get_moles(gasid), 0.01),
 			)))
 	else
 		for(var/gasid in internal.get_gases())
 			internal_gas_data.Add(list(list(
-				"name"= GLOB.meta_gas_info[gasid][META_GAS_NAME],
+				"name"= global.meta_gas_info[gasid][META_GAS_NAME],
 				"amount" = 0,
 				)))
 	data["internal_gas_data"] = internal_gas_data

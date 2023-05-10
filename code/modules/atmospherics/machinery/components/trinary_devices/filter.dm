@@ -147,8 +147,8 @@
 	data["max_rate"] = round(MAX_TRANSFER_RATE)
 
 	data["filter_types"] = list()
-	for(var/path in GLOB.meta_gas_info)
-		var/list/gas = GLOB.meta_gas_info[path]
+	for(var/path in global.meta_gas_info)
+		var/list/gas = global.meta_gas_info[path]
 		data["filter_types"] += list(list("name" = gas[META_GAS_NAME], "gas_id" = gas[META_GAS_ID], "enabled" = (path in filter_type)))
 
 	return data
@@ -189,7 +189,7 @@
 				change = "added"
 			else
 				change = "removed"
-			var/gas_name = GLOB.meta_gas_info[gas_id2path(params["val"])][META_GAS_NAME]
+			var/gas_name = global.meta_gas_info[gas_id2path(params["val"])][META_GAS_NAME]
 			var/msg = "[key_name(usr)] [change] [gas_name] from the filter type."
 			investigate_log(msg, INVESTIGATE_ATMOS)
 			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful

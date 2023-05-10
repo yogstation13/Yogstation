@@ -99,9 +99,9 @@
 	//Calculation of the gas power, only for theoretical instability calculations
 	var/gas_power = 0
 	for (var/gas_id in internal_fusion.get_gases())
-		gas_power += (GLOB.meta_gas_info[gas_id][META_GAS_FUSION_POWER] * internal_fusion.get_moles(gas_id))
+		gas_power += (global.meta_gas_info[gas_id][META_GAS_FUSION_POWER] * internal_fusion.get_moles(gas_id))
 	for (var/gas_id in moderator_internal.get_gases())
-		gas_power += (GLOB.meta_gas_info[gas_id][META_GAS_FUSION_POWER] * moderator_internal.get_moles(gas_id) * 0.75)
+		gas_power += (global.meta_gas_info[gas_id][META_GAS_FUSION_POWER] * moderator_internal.get_moles(gas_id) * 0.75)
 
 	instability = MODULUS((gas_power * INSTABILITY_GAS_POWER_FACTOR_HFR)**2, toroidal_size) + (current_damper * 0.01) - iron_content * 0.05
 	//Effective reaction instability (determines if the energy is used/released)
