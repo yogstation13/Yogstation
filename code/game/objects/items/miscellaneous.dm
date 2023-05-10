@@ -169,6 +169,7 @@
 	desc = "Used to revive an IPC once fixed."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade1"
+	var/ghetto = FALSE //ghetto does brain damage on revival
 
 /obj/item/ipcrevive/attack(mob/living/M, mob/living/user)
 	if(user.a_intent != INTENT_HELP)
@@ -194,7 +195,14 @@
 	if(H.mind)
 		H.mind.grab_ghost()
 	to_chat(user, span_notice("You reset the IPC's internal circuitry - reviving them!"))
-	H.setOrganLoss(ORGAN_SLOT_BRAIN, 0)
+	H.setOrganLoss(ORGAN_SLOT_BRAIN, ghetto ? 50 : 0) //ghetto does brain damage on revival
 	H.revive()
 	qdel(src)
-	return TRUE
+	return TRUE //only return true if it actually revives
+
+/obj/item/ipcrevive/ghetto
+	name = "IPC Hotwire Board"
+	desc = "Forcefully reboots an IPC unit. May cause damage to the positron brain."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "ghetto_revival"
+	ghetto = TRUE

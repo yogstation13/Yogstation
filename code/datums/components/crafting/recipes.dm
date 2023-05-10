@@ -720,6 +720,16 @@
 				/obj/item/stack/sheet/sinew = 6,
 				/datum/reagent/consumable/tinlux = 1)
 	category = CAT_PRIMAL
+	
+/datum/crafting_recipe/ghetto_ipcrevival
+	name = "IPC Hotwire Board"
+	result = /obj/item/ipcrevive/ghetto
+	reqs = list(/obj/item/stack/sheet/metal = 1,
+				/obj/item/stack/sheet/glass = 1,
+				/obj/item/stack/cable_coil = 5)
+	tools = list(TOOL_WIRECUTTER, TOOL_WELDER)
+	time = 15 SECONDS
+	category = CAT_MEDICAL
 
 /datum/crafting_recipe/leftprostheticarm
 	name = "Left Prosthetic Arm"
