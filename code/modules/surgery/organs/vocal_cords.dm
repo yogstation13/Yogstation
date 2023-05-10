@@ -221,7 +221,7 @@
 	var/static/regex/hallucinate_words = regex("see the truth|hallucinate")
 	var/static/regex/wakeup_words = regex("wake up|awaken")
 	var/static/regex/heal_words = regex("live|heal|survive|mend|life|heroes never die")
-	var/static/regex/hurt_words = regex("die|suffer|hurt|pain|death")
+	var/static/regex/hurt_words = regex("die|suffer|hurt|pain|death|judgement|thy end is now") // THY END IS NOW
 	var/static/regex/bleed_words = regex("bleed|there will be blood")
 	var/static/regex/burn_words = regex("burn|ignite")
 	var/static/regex/hot_words = regex("heat|hot|hell")
@@ -297,7 +297,12 @@
 		cooldown = COOLDOWN_DAMAGE
 		for(var/V in listeners)
 			var/mob/living/L = V
-			L.apply_damage(15 * power_multiplier, def_zone = BODY_ZONE_CHEST, wound_bonus=CANT_WOUND)
+			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+				L.apply_damage(360 * power_multiplier, def_zone = BODY_ZONE_CHEST, wound_bonus=CANT_WOUND) // very long cooldown so make it really good at killing lavaland mobs
+			else if(L.mind?.martial_art && L.mind.martial_art.id == "ultra violence")
+				L.apply_damage(45 * power_multiplier, def_zone = BODY_ZONE_CHEST, wound_bonus=CANT_WOUND) // DIE!!
+			else
+				L.apply_damage(15 * power_multiplier, def_zone = BODY_ZONE_CHEST, wound_bonus=CANT_WOUND)
 
 	//BLEED
 	else if((findtext(message, bleed_words)))
