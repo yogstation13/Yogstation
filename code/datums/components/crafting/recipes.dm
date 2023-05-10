@@ -725,8 +725,8 @@
 	name = "IPC Hotwire Board"
 	result = /obj/item/ipcrevive/ghetto
 	reqs = list(/obj/item/stack/sheet/metal = 1,
-				/obj/item/stack/sheet/glass = 1,
-				/obj/item/stack/cable_coil = 5)
+				/obj/item/stack/cable_coil = 5,
+				/obj/item/assembly/igniter = 1)
 	tools = list(TOOL_WIRECUTTER, TOOL_WELDER)
 	time = 15 SECONDS
 	category = CAT_MEDICAL
