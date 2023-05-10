@@ -33,8 +33,7 @@
 		explosion(location, boom_sizes[1], boom_sizes[2], boom_sizes[3])
 		qdel(src)
 		return //don't know if this is needed...
-	var/turf/closed/mineral/location = get_turf(target)
-	location.attempt_drill(null,TRUE,3) //orange says it doesnt include the actual middle
+	drill_at(location,3)
 	for(var/turf/closed/mineral/rock in circle_range_turfs(location,boom_sizes[3]))
 		var/distance = get_dist_euclidian(location,rock)
 		if(distance <= boom_sizes[1])

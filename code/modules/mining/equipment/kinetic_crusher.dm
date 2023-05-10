@@ -140,6 +140,7 @@
 		icon_state = "mining_hammer0"
 		playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
 
+
 //destablizing force
 /obj/item/projectile/destabilizer
 	name = "destabilizing force"
@@ -165,6 +166,8 @@
 			for(var/t in hammer_synced.trophies)
 				var/obj/item/crusher_trophy/T = t
 				T.on_mark_application(target, CM, had_effect, hammer_synced)
+	else 
+		SEND_SIGNAL(hammer_synced,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,firer,hammer_synced)
 	var/target_turf = get_turf(target)
 	if(ismineralturf(target_turf))
 		var/turf/closed/mineral/M = target_turf
@@ -172,6 +175,10 @@
 		M.attempt_drill(firer)
 	..()
 
+/obj/item/projectile/destabilizer/on_range()
+	SEND_SIGNAL(hammer_synced,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,firer,hammer_synced)
+	..()
+	
 //trophies
 /obj/item/crusher_trophy
 	name = "tail spike"
@@ -216,8 +223,8 @@
 //obj/item/crusher_trophy/proc/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark) //the target, the mark applied, and if the target had a mark before
 //obj/item/crusher_trophy/proc/on_mark_detonation(mob/living/target, mob/living/user) //the target and the user
 
-/obj/item/crusher_trophy/proc/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark,obj/item/twohanded/required/kinetic_crusher/hammer_synced) //YOGS EDIT
-/obj/item/crusher_trophy/proc/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/required/kinetic_crusher/hammer_synced) //YOGS EDIT
+/obj/item/crusher_trophy/proc/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark,obj/item/twohanded/kinetic_crusher/hammer_synced) //YOGS EDIT
+/obj/item/crusher_trophy/proc/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced) //YOGS EDIT
 //goliath
 /obj/item/crusher_trophy/goliath_tentacle
 	name = "goliath tentacle"

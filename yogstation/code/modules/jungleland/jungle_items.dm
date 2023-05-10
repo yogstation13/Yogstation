@@ -493,7 +493,7 @@
 /obj/item/crusher_trophy/jungleland/blob_brain/effect_desc()
 	return "Spreads the mark to mobs close together, activating a mark on adjacent mobs activates all the marks at once."
 
-/obj/item/crusher_trophy/jungleland/blob_brain/on_mark_detonation(mob/living/target, mob/living/user,obj/item/twohanded/required/kinetic_crusher/hammer_synced)
+/obj/item/crusher_trophy/jungleland/blob_brain/on_mark_detonation(mob/living/target, mob/living/user,obj/item/twohanded/kinetic_crusher/hammer_synced)
 	for(var/mob/living/L in range(1,target))
 		if(L == user || L == target)
 			continue 
@@ -517,7 +517,7 @@
 			L.apply_damage(hammer_synced.detonation_damage, BRUTE, blocked = def_check)
 			playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
 
-/obj/item/crusher_trophy/jungleland/blob_brain/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark,obj/item/twohanded/required/kinetic_crusher/hammer_synced)
+/obj/item/crusher_trophy/jungleland/blob_brain/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark,obj/item/twohanded/kinetic_crusher/hammer_synced)
 	. = ..()
 	if(had_mark)
 		return
@@ -530,4 +530,32 @@
 			for(var/t in hammer_synced.trophies)
 				var/obj/item/crusher_trophy/T = t
 				T.on_mark_application(target, CM, had_effect, hammer_synced)
-	
+
+/obj/item/crusher_trophy/jungleland/dryad_branch
+	name = "Dryad Branch"
+	desc = "Slimy mass of organic tissue, it still pulsates when pressed."
+	icon_state = "dryad_branch"
+	denied_type = /obj/item/crusher_trophy/jungleland/dryad_branch
+
+/obj/item/crusher_trophy/jungleland/blob_brain/effect_desc()
+	return "Gives a stacking (up to 5 times) regeneration effect for every detonated mark. Lasts 5 seconds, extending on successful mark detonation. Missing resets the stacks."
+
+/obj/item/crusher_trophy/jungleland/dryad_branch/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	SIGNAL_HANDLER
+	. = ..()
+	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,.proc/clear_status_effects)
+	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,.proc/clear_status_effects)
+
+/obj/item/crusher_trophy/jungleland/dryad_branch/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
+	SIGNAL_HANDLER
+	. = ..()
+	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK)
+	UnregisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE)
+
+/obj/item/crusher_trophy/jungleland/dryad_branch/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced)
+	. = ..()
+	user.apply_status_effect(/datum/status_effect/bounty_of_the_forest)
+
+/obj/item/crusher_trophy/jungleland/dryad_branch/proc/clear_status_effects(datum/source,mob/living/user,/obj/item/twohanded/kinetic_crusher/hammer_synced)
+	if(user.has_status_effect(/datum/status_effect/bounty_of_the_forest))
+		user.remove_status_effect(/datum/status_effect/bounty_of_the_forest)

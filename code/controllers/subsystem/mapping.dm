@@ -80,9 +80,6 @@ SUBSYSTEM_DEF(mapping)
 	process_teleport_locs()			//Sets up the wizard teleport locations
 	preloadTemplates()
 
-	//YOGS EDIT
-#ifndef LOWMEMORYMODE
-	//Pregenerate generic jungleland ruins that are biome-nonspecific 
 	var/list/jungle_ruins = levels_by_trait(ZTRAIT_JUNGLE_RUINS)
 	//this is really fuckign hacky, but we need to have a very specific order for these things, and if jungleland isn't even being loaded then i dont fucking care.
 	if(jungle_ruins.len)
@@ -95,6 +92,10 @@ SUBSYSTEM_DEF(mapping)
 		GLOB.jungleland_daynight_cycle.finish_generation() // I HAVE NO IDEA  WHERE TO PUT THIS, BUT THIS NEEDS TO BE WAY AFTER MAPGEN IS OVER	
 	else
 		run_map_generation()
+	//YOGS EDIT
+#ifndef LOWMEMORYMODE
+	//Pregenerate generic jungleland ruins that are biome-nonspecific 
+
 	//YOGS END
 	
 	// Create space ruin levels
@@ -143,7 +144,7 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(space_ruins, CONFIG_GET(number/space_budget), list(/area/space), space_ruins_templates)
 	seedStation()
 	loading_ruins = FALSE
-#endif
+	
 	//Load Reebe
 	var/list/errorList = list()
 	SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)

@@ -128,3 +128,33 @@
 	var/matrix/M = new
 	M.Scale(1/stage)
 	transform = M
+
+/mob/living/simple_animal/hostile/yog_jungle/alpha_dryad
+	name ="Wrath of Gaia"
+	desc = "Collosal tree inhibited by all the furiours spirits of the jungle."
+	icon = 'yogstation/icons/mob/jungle64x64.dmi'
+	icon_state = "wrath_of_gaia"
+	icon_living = "wrath_of_gaia"
+	icon_dead = "wrath_of_gaia_dead"
+	mob_biotypes = list(MOB_BEAST,MOB_ORGANIC)
+	faction = list("mining")
+	response_help  = "gently pokes"
+	response_disarm = "gently pushes aside"
+	response_harm   = "hits"
+	maxHealth = 500
+	health = 500
+	//crusher_loot = /obj/item/crusher_trophy/jungleland/meduracha_tentacles
+	melee_damage_lower = 20
+	melee_damage_upper = 25
+	ranged = TRUE 
+	ranged_cooldown = 15 SECONDS
+	move_to_delay = 10
+
+	var/list/spawnables = list(/mob/living/simple_animal/hostile/yog_jungle/dryad,/mob/living/simple_animal/hostile/yog_jungle/meduracha, /mob/living/simple_animal/hostile/yog_jungle/yellowjacket,/mob/living/simple_animal/hostile/yog_jungle/emeraldspider)
+
+/mob/living/simple_animal/hostile/yog_jungle/alpha_dryad/OpenFire(atom/A)
+	. = ..()
+	for(var/i in 0 to rand(1,3))
+		var/to_spawn = pick(spawnables)
+		var/mob/living/simple_animal/hostile/spawned = new to_spawn(get_step(src,pick(GLOB.cardinals)))
+		spawned.PickTarget(A)
