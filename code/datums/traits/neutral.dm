@@ -153,7 +153,7 @@
 /datum/quirk/random_accent/post_add()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(!H.mind.accent_name)
-		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
+		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, TYPE_PROC_REF(/datum/mind, handle_speech))
 	H.mind.accent_name = pick(assoc_to_keys(GLOB.accents_name2file))// Right now this pick just picks a straight random one from all implemented.
 
 /datum/quirk/colorist
@@ -256,9 +256,11 @@
 				heirloom_type = pick(subtypesof(/obj/item/toy/prize)) //look at this nerd
 			//Medical
 			if("Chief Medical Officer")
-				heirloom_type = pick(/obj/item/clothing/neck/stethoscope, /obj/item/bodybag)
+				heirloom_type = pick(/obj/item/clothing/neck/stethoscope)
 			if("Medical Doctor")
-				heirloom_type = pick(/obj/item/clothing/neck/stethoscope, /obj/item/bodybag)
+				heirloom_type = pick(/obj/item/clothing/neck/stethoscope)
+			if("Paramedic")
+				heirloom_type = pick(/obj/item/clothing/neck/stethoscope)
 			if("Chemist")
 				heirloom_type = pick(/obj/item/book/manual/wiki/chemistry, /obj/item/clothing/mask/vape)
 			if("Virologist")

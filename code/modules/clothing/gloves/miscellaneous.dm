@@ -31,8 +31,6 @@
 		worn = FALSE
 
 /obj/item/clothing/gloves/fingerless/bigboss
-	name = "tactical fingerless gloves"
-	desc = "Simple fabric gloves without fingertips to permit better dexterity in combat and tasks. Especially helpful with carrying bodies."
 	var/carrytrait = TRAIT_QUICKER_CARRY
 	tacticalspeed = 0.66 //Does channels 34% faster
 
@@ -49,6 +47,13 @@
 /obj/item/clothing/gloves/fingerless/bigboss/dropped(mob/user)
 	..()
 	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
+
+/obj/item/clothing/gloves/fingerless/weaver
+	name = "weaver chitin gloves"
+	desc = "Grey gloves without fingertips made from the hide of a dead arachnid found on lavaland. Increases the work speed of the wearer."
+	icon_state = "weaver_chitin"
+	item_state = "weaver_chitin"
+	tacticalspeed = 0.8
 
 /obj/item/clothing/gloves/botanic_leather
 	name = "botanist's leather gloves"
@@ -225,7 +230,7 @@ obj/effect/proc_holder/swipe
 			caller.adjustFireLoss(-5)
 			caller.adjustToxLoss(-5)
 	COOLDOWN_START(src, scan_cooldown, cooldown)
-	addtimer(CALLBACK(src, .proc/cooldown_over, ranged_ability_user), cooldown)
+	addtimer(CALLBACK(src, PROC_REF(cooldown_over), ranged_ability_user), cooldown)
 	remove_ranged_ability()
 	return TRUE
 
@@ -239,7 +244,7 @@ obj/effect/proc_holder/swipe
 	item_state = "concussive_gauntlets"
 	mob_overlay_icon = 'icons/mob/clothing/hands/hands.dmi'
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	toolspeed = 0.01
+	toolspeed = 0
 	strip_delay = 40
 	equip_delay_other = 20
 	body_parts_covered = ARMS
@@ -254,8 +259,8 @@ obj/effect/proc_holder/swipe
 	. = ..()
 	if(slot == SLOT_GLOVES)
 		tool_behaviour = TOOL_MINING
-		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/rocksmash)
-		RegisterSignal(user, COMSIG_MOVABLE_BUMP, .proc/rocksmash)
+		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(rocksmash))
+		RegisterSignal(user, COMSIG_MOVABLE_BUMP, PROC_REF(rocksmash))
 	else
 		stopmining(user)
 

@@ -1,5 +1,5 @@
 /obj/item/ammo_box/magazine/internal/shot/toy
-	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
+	ammo_type = /obj/item/ammo_casing/reusable/foam_dart
 	caliber = "foam_force"
 	max_ammo = 4
 

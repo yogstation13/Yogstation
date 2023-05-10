@@ -146,20 +146,18 @@ SUBSYSTEM_DEF(mapping)
 #endif
 	//Load Reebe
 	var/list/errorList = list()
-	var/list/reebes = SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
+	SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
 	if(errorList.len)	// reebe failed to load
 		message_admins("Reebe failed to load!")
 		log_game("Reebe failed to load!")
-	for(var/datum/parsed_map/PM in reebes)
-		PM.initTemplateBounds()
 	//Load an Arena
 	errorList = list()
-	var/list/arenas = SSmapping.LoadGroup(errorList, "Arena", "templates", "arena.dmm", silent = TRUE)
+	SSmapping.LoadGroup(errorList, "Arena", "templates", "arena.dmm", silent = TRUE)
 	if(errorList.len)	// arena failed to load
 		message_admins("A shuttle arena failed to load!")
 		log_game("A shuttle arena failed to load!")
-	for(var/datum/parsed_map/PM in arenas)
-		PM.initTemplateBounds()
+#endif
+
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	require_area_resort()
@@ -217,7 +215,7 @@ SUBSYSTEM_DEF(mapping)
 		message_admins("Shuttles in transit detected. Attempting to fast travel. Timeout is [wipe_safety_delay/10] seconds.")
 	var/list/cleared = list()
 	for(var/i in in_transit)
-		INVOKE_ASYNC(src, .proc/safety_clear_transit_dock, i, in_transit[i], cleared)
+		INVOKE_ASYNC(src, PROC_REF(safety_clear_transit_dock), i, in_transit[i], cleared)
 	UNTIL((go_ahead < world.time) || (cleared.len == in_transit.len))
 	do_wipe_turf_reservations()
 	clearing_reserved_turfs = FALSE

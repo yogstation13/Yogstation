@@ -126,8 +126,8 @@
 		var/speedbase = abs((4 SECONDS) / limbs_to_dismember.len)
 		for(bodypart in limbs_to_dismember)
 			i++
-			addtimer(CALLBACK(src, .proc/suicide_dismember, user, bodypart), speedbase * i)
-	addtimer(CALLBACK(src, .proc/manual_suicide, user), (5 SECONDS) * i)
+			addtimer(CALLBACK(src, PROC_REF(suicide_dismember), user, bodypart), speedbase * i)
+	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), (5 SECONDS) * i)
 	return MANUAL_SUICIDE
 
 /obj/item/melee/sabre/proc/suicide_dismember(mob/living/user, obj/item/bodypart/affecting)
@@ -624,7 +624,7 @@
 	. = ..()
 	if(proximity_flag)
 		var/turf/T = get_turf(target)
-		var/obj/singularity/S = new(T)
+		var/obj/singularity/gravitational/S = new(T)
 		S.consume(target)
 	else
 		return FALSE
@@ -632,7 +632,7 @@
 /obj/item/melee/singularity_sword/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	var/turf/T = get_turf(hit_atom)
-	var/obj/singularity/S = new(T)
+	var/obj/singularity/gravitational/S = new(T)
 	S.consume(hit_atom)
 
 /// Simple whip that does additional damage(8 brute to be exact) to simple animals

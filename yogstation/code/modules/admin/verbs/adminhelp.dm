@@ -216,7 +216,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			to_chat(client, span_danger("Ticket opened with no active admins. Ticket will be sent to discord in 30 seconds if not taken."), confidential=TRUE)
 			if(!found_deadmin)
 				found_deadmin = TRUE
-				addtimer(CALLBACK(src, .proc/send_to_discord), 30 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(send_to_discord)), 30 SECONDS)
 	if(!found_deadmin)
 		send_to_discord()
 
@@ -623,6 +623,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/Administer(announce = FALSE)
 	if(!usr.client)
 		return FALSE
+	if(handling_admin)
+		if(handling_admin == usr.client)
+			to_chat(usr, "This ticket is already yours.")
+			return FALSE
+		if(tgui_alert(usr, "This ticket has already been claimed by [handling_admin], are you sure you wish to continue?", "Confirm", list("Yes", "No")) != "Yes")
+			return FALSE
+
 	handling_admin = usr.client
 
 	var/datum/DBQuery/set_admin_query = SSdbcore.NewQuery(

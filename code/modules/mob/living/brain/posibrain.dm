@@ -59,7 +59,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	next_ask = world.time + askDelay
 	searching = TRUE
 	update_icon()
-	addtimer(CALLBACK(src, .proc/check_success), askDelay)
+	addtimer(CALLBACK(src, PROC_REF(check_success)), askDelay)
 
 /obj/item/mmi/posibrain/proc/check_success()
 	searching = FALSE
@@ -96,6 +96,11 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		return
 	if(user.suiciding) //if they suicided, they're out forever.
 		to_chat(user, span_warning("[src] fizzles slightly. Sadly it doesn't take those who suicided!"))
+		return
+	var/playtime = SSjob.GetJob("Cyborg").required_playtime_remaining(user.client)
+	if(playtime)
+		to_chat(user, span_warning("Positronic brains are beyond your knowledge to control."))
+		to_chat(user, span_warning("In order to play as a positron brain, you require [playtime] more minutes of experience on-board the station."))
 		return
 	var/posi_ask = tgui_alert(usr,"Become a [name]? (Warning, You can no longer be revived, and all past lives will be forgotten!)","Are you positive?",list("Yes","No"))
 	if(posi_ask == "No" || QDELETED(src))

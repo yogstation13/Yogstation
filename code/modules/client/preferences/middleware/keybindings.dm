@@ -3,9 +3,9 @@
 /// Middleware to handle keybindings
 /datum/preference_middleware/keybindings
 	action_delegations = list(
-		"reset_all_keybinds" = .proc/reset_all_keybinds,
-		"reset_keybinds_to_defaults" = .proc/reset_keybinds_to_defaults,
-		"set_keybindings" = .proc/set_keybindings,
+		"reset_all_keybinds" = PROC_REF(reset_all_keybinds),
+		"reset_keybinds_to_defaults" = PROC_REF(reset_keybinds_to_defaults),
+		"set_keybindings" = PROC_REF(set_keybindings),
 	)
 
 /datum/preference_middleware/keybindings/get_ui_static_data(mob/user)
@@ -28,7 +28,7 @@
 	preferences.key_bindings_by_key = preferences.get_key_bindings_by_key(preferences.key_bindings)
 
 	preferences.update_static_data(user)
-	preferences.parent?.set_macros()
+	user.client.update_special_keybinds()
 
 	return TRUE
 
@@ -43,11 +43,11 @@
 	preferences.key_bindings_by_key = preferences.get_key_bindings_by_key(preferences.key_bindings)
 
 	preferences.update_static_data(user)
-	preferences.parent?.set_macros()
+	user.client.update_special_keybinds()
 
 	return TRUE
 
-/datum/preference_middleware/keybindings/proc/set_keybindings(list/params)
+/datum/preference_middleware/keybindings/proc/set_keybindings(list/params, mob/user)
 	var/keybind_name = params["keybind_name"]
 
 	if (isnull(GLOB.keybindings_by_name[keybind_name]))
@@ -75,7 +75,8 @@
 
 	preferences.key_bindings[keybind_name] = hotkeys
 	preferences.key_bindings_by_key = preferences.get_key_bindings_by_key(preferences.key_bindings)
-	preferences.parent?.set_macros()
+	
+	user.client.update_special_keybinds()
 
 	return TRUE
 

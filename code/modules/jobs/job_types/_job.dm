@@ -210,7 +210,7 @@
 /datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/_addtimer_here, CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(_addtimer_here), CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
@@ -326,13 +326,9 @@
 
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
-		if (H.id_in_pda)
-			PDA.InsertID(C)
-			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
-		else // just in case you hate change
-			H.equip_to_slot_if_possible(PDA, pda_slot)
-			H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
-		
+		PDA.InsertID(C)
+		H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+
 		PDA.update_label()
 		PDA.update_icon()
 		PDA.update_filters()

@@ -12,6 +12,10 @@
 	var/ordered = TRUE //If the button gets placed into the default bar
 
 /atom/movable/screen/movable/action_button/proc/can_use(mob/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT)) // INTERCEPTED
+		to_chat(user, span_danger("You can't interact with anything right now!"))
+		return FALSE
+
 	if (linked_action)
 		return linked_action.owner == user
 	else if (isobserver(user))

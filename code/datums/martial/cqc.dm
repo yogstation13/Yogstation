@@ -263,10 +263,12 @@
 		if(chokehold_active)
 			return TRUE
 		log_combat(A, D, "began to chokehold(CQC)")
-		D.visible_message(span_danger("[A] puts [D] into a chokehold!"), \
-							span_userdanger("[A] puts you into a chokehold!"))
+		D.visible_message(
+			span_danger(isipc(D) ? "[A] attempts to deactivate [D]!" : "[A] puts [D] into a chokehold!"),
+			span_userdanger(isipc(D) ? "[A] attempts to deactivate you!" : "[A] puts you into a chokehold!")
+		)
 		if(handle_chokehold(A, D))
-			D.Unconscious(400)
+			D.Unconscious(40 SECONDS)
 			if(A.grab_state < GRAB_NECK)
 				A.grab_state = GRAB_NECK
 			A.visible_message(span_danger("[A] relaxes their grip on [D]."), \
@@ -295,13 +297,17 @@
 /datum/martial_art/cqc/proc/handle_chokehold(mob/living/carbon/human/A, mob/living/carbon/human/D) //handles the chokehold attack, dealing oxygen damage until the target is unconscious or would have less than 20 health before knocking out
 	chokehold_active = TRUE
 	var/damage2deal = 15
-	while(do_mob(A, D, 10))
+	while(do_mob(A, D, isipc(D) ? 5 SECONDS : 1 SECONDS)) // doesn't make sense to deal oxygen damage to IPCs so instead do a longer channel that automatically succeeds
 		if(!A.grab_state)
 			return FALSE
+		if(isipc(D)) // have you tried turning it off and on again
+			return TRUE
 		damage2deal = 15 * (1+D.getStaminaLoss()/100) //stamina damage boosts the effectiveness of an attack, making using other attacks to prepare important
+		if(HAS_TRAIT(D, TRAIT_NOBREATH))
+			damage2deal *= 0.5 // if they don't breathe they can't be choked, but you can still cut off blood flow to the head
 		if(D.health - damage2deal < 20 || D.stat)
 			return TRUE
-		D.adjustOxyLoss(damage2deal)
+		D.apply_damage(damage2deal, OXY) // respect oxygen damage mods
 		if(D.getOxyLoss() >= 50)
 			return TRUE
 

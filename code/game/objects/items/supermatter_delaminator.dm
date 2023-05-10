@@ -64,7 +64,7 @@
 
 /obj/item/antinoblium_container
 	name = "antinoblium bin"
-	desc = "A small cube that houses a stable antinoblium shard  to be safely stored."
+	desc = "A small cube that houses a stable antinoblium shard to be safely stored."
 	icon = 'icons/obj/supermatter_delaminator.dmi'
 	icon_state = "antinoblium_container_sealed"
 	var/obj/item/supermatter_delaminator/antinoblium_shard/shard
@@ -87,7 +87,7 @@
 	T.update_icon()
 	update_icon()
 	to_chat(user, span_warning("Container is resealing..."))
-	addtimer(CALLBACK(src, .proc/seal), 50)
+	addtimer(CALLBACK(src, PROC_REF(seal)), 50)
 	return TRUE
 
 /obj/item/antinoblium_container/proc/unload(obj/item/hemostat/antinoblium/T, mob/user)

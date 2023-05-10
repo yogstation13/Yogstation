@@ -71,7 +71,7 @@
 	transform = matrix()*0.75
 	animate(src, transform = matrix()*1.5, time = duration)
 	deltimer(timerid)
-	timerid = addtimer(CALLBACK(src, .proc/burst), duration, TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, PROC_REF(burst)), duration, TIMER_STOPPABLE)
 
 /obj/effect/temp_visual/resonance/Destroy()
 	if(res)
@@ -121,5 +121,5 @@
 	if(!istype(M) || !M.mineralType) // so we don't end up in the ultimate chain reaction
 		return
 	for(var/turf/closed/mineral/T in orange(1, M))
-		if(istype(T) && !locate(/obj/effect/temp_visual/resonance) in T && M.mineralType == T.mineralType)
+		if(istype(T) && !(locate(/obj/effect/temp_visual/resonance) in T))
 			new /obj/effect/temp_visual/resonance(T, creator, null, duration)	//yogs end

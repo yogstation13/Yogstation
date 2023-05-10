@@ -7,7 +7,7 @@
 /datum/component/earhealing/Initialize()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/equippedChanged)
+	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(equippedChanged))
 
 /datum/component/earhealing/proc/equippedChanged(datum/source, mob/living/carbon/user, slot)
 	if (slot == SLOT_EARS && istype(user))

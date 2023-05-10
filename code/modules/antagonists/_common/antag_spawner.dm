@@ -6,7 +6,7 @@
 
 /obj/item/antag_spawner/ComponentInitialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_REFUND, .proc/refund_check)
+	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
 
 /obj/item/antag_spawner/proc/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	return

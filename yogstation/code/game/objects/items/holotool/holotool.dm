@@ -50,6 +50,12 @@
 			return TRUE
 	. = ..()
 
+/obj/item/holotool/use(used)
+	return TRUE //it just always works, capiche!?
+
+/obj/item/holotool/tool_use_check(mob/living/user, amount)
+	return TRUE	//always has enough "fuel"
+
 /obj/item/holotool/ui_action_click(mob/user, datum/action/action)
 	if(istype(action, /datum/action/item_action/change_tool))
 		update_listing()
@@ -121,7 +127,7 @@
 
 /obj/item/holotool/attack_self(mob/user)
 	update_listing()
-	var/chosen = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, .proc/check_menu,user))
+	var/chosen = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, PROC_REF(check_menu),user))
 	if(!check_menu(user))
 		return
 	if(chosen)

@@ -24,13 +24,3 @@
 
 /datum/preference/choiced/pda_theme/init_possible_values()
 	return GLOB.pda_themes
-
-/// Put ID into PDA when spawning
-/datum/preference/toggle/id_in_pda
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_key = "id_in_pda"
-	savefile_identifier = PREFERENCE_PLAYER
-	default_value = FALSE
-
-/datum/preference/toggle/id_in_pda/apply_to_human(mob/living/carbon/human/target, value)
-	target.id_in_pda = value

@@ -25,7 +25,7 @@
 	added_access = list(ACCESS_CAPTAIN) //Yogs: Gives CMO access to the brig physicians locker
 	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_CLONING, ACCESS_HEADS, ACCESS_MINERAL_STOREROOM,
 			ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_CMO, ACCESS_SURGERY, ACCESS_RC_ANNOUNCE, ACCESS_MECH_MEDICAL,
-			ACCESS_KEYCARD_AUTH, ACCESS_SEC_DOORS, ACCESS_MAINT_TUNNELS, ACCESS_BRIG_PHYS, ACCESS_PARAMEDIC) //Yogs: Gives CMO access to the brig physicians locker
+			ACCESS_KEYCARD_AUTH, ACCESS_SEC_DOORS, ACCESS_MAINT_TUNNELS, ACCESS_BRIG_PHYS, ACCESS_PARAMEDIC, ACCESS_PSYCH) //Yogs: Gives CMO access to the brig physicians locker
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_MED
 
@@ -41,6 +41,7 @@
 		/obj/effect/spawner/lootdrop/organ_spawner = 10,
 		/obj/effect/spawner/lootdrop/memeorgans = 8,
 		/obj/effect/spawner/lootdrop/surgery_tool_advanced = 4,
+		/obj/item/statuebust/hippocratic = 2,
 		/obj/effect/spawner/lootdrop/surgery_tool_alien = 1
 	)
 

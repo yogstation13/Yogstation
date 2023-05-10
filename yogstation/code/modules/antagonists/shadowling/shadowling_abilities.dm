@@ -113,7 +113,7 @@
 	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
 	if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
-		if(F.light_on)
+		if(F.light_on || F.on)
 			if(cold)
 				if(is_type_in_list(F, blacklisted_lights))
 					F.visible_message(span_warning("The sheer cold shatters [F]!"))
@@ -123,6 +123,7 @@
 			if(is_type_in_list(I, blacklisted_lights))
 				I.visible_message(span_danger("[I] dims slightly before scattering the shadows around it."))
 				return F.light_power //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
+			F.on = FALSE
 			F.set_light_on(FALSE)
 			F.update_brightness()
 	else if(istype(I, /obj/item/pda))
@@ -143,7 +144,7 @@
 			G.glowth.set_light(0, 0) // Set glowy to no light
 			if(G.current_nullify_timer)
 				deltimer(G.current_nullify_timer) // Stacks
-			G.current_nullify_timer = addtimer(CALLBACK(src, .proc/giveGlowyBack, M), 40 SECONDS, TIMER_STOPPABLE)
+			G.current_nullify_timer = addtimer(CALLBACK(src, PROC_REF(giveGlowyBack), M), 40 SECONDS, TIMER_STOPPABLE)
 
 /obj/effect/proc_holder/spell/aoe_turf/proc/giveGlowyBack(mob/living/carbon/M)
 	if(!M)
@@ -958,7 +959,7 @@
 /obj/effect/proc_holder/spell/self/lesser_shadow_walk/cast(mob/living/carbon/human/user)
 	user.visible_message(span_warning("[user] suddenly fades away!"), span_shadowling("You veil yourself in darkness, making you harder to see."))
 	user.alpha = 10
-	addtimer(CALLBACK(src, .proc/reappear, user), 40)
+	addtimer(CALLBACK(src, PROC_REF(reappear), user), 40)
 
 /obj/effect/proc_holder/spell/self/thrall_night_vision //Toggleable night vision for thralls
 	name = "Thrall Darksight"

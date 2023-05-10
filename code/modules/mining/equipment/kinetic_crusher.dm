@@ -66,8 +66,7 @@
 
 /obj/item/twohanded/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
 	if(!wielded)
-		to_chat(user, span_warning("[src] is too heavy to use with one hand! You fumble and drop everything."))
-		user.drop_all_held_items()
+		to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
 		return	
 	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	if(!C)
@@ -81,11 +80,10 @@
 	if(!QDELETED(C) && !QDELETED(target))
 		C.total_damage += target_health - target.health //we did some damage, but let's not assume how much we did
 
-/obj/item/twohanded/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+/obj/item/twohanded/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams, magmite = FALSE)
 	. = ..()
 	if(!wielded)
-		to_chat(user, span_warning("[src] is too heavy to use with one hand! You fumble and drop everything."))
-		user.drop_all_held_items()
+		to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
 		return	
 	if(!proximity_flag && charged)//Mark a target, or mine a tile.
 		var/turf/proj_turf = user.loc
@@ -102,7 +100,7 @@
 		D.fire()
 		charged = FALSE
 		icon_state = "mining_hammer0_uncharged"
-		addtimer(CALLBACK(src, .proc/Recharge), charge_time)
+		addtimer(CALLBACK(src, PROC_REF(Recharge)), charge_time)
 		return
 	if(proximity_flag && isliving(target))
 		var/mob/living/L = target
@@ -132,7 +130,11 @@
 					C.total_damage += detonation_damage
 				L.apply_damage(detonation_damage, BRUTE, blocked = def_check)
 
-/obj/item/twohanded/kinetic_crusher/proc/Recharge()
+/obj/item/twohanded/kinetic_crusher/proc/Recharge(magmite = FALSE)
+	if(magmite == TRUE)
+		charged = TRUE
+		icon_state = "magmite_crusher0"
+		playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
 	if(!charged)
 		charged = TRUE
 		icon_state = "mining_hammer0"
@@ -301,7 +303,7 @@
 	icon_state = "frozen"
 
 /datum/status_effect/ice_wing_talisman/on_apply()
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/owner_moved)
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(owner_moved))
 	if(!owner.stat)
 		to_chat(owner, span_userdanger("You become frozen in a cube!"))
 	cube = icon('icons/effects/freeze.dmi', "ice_cube")
@@ -368,7 +370,7 @@
 			continue
 		playsound(L, 'sound/magic/fireball.ogg', 20, 1)
 		new /obj/effect/temp_visual/fire(L.loc)
-		addtimer(CALLBACK(src, .proc/pushback, L, user), 1) //no free backstabs, we push AFTER module stuff is done
+		addtimer(CALLBACK(src, PROC_REF(pushback), L, user), 1) //no free backstabs, we push AFTER module stuff is done
 		L.adjustFireLoss(bonus_value, forced = TRUE)
 
 /obj/item/crusher_trophy/tail_spike/proc/pushback(mob/living/target, mob/living/user)
@@ -432,7 +434,7 @@
 
 /obj/item/crusher_trophy/blaster_tubes/on_mark_detonation(mob/living/target, mob/living/user)
 	deadly_shot = TRUE
-	addtimer(CALLBACK(src, .proc/reset_deadly_shot), 300, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(reset_deadly_shot)), 300, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/item/crusher_trophy/blaster_tubes/proc/reset_deadly_shot()
 	deadly_shot = FALSE
@@ -470,3 +472,61 @@
         for(var/mob/living/L in oview(2,user))//fuck you and everything around you with a mark
             if(prob(bonus_value) && !L.has_status_effect(STATUS_EFFECT_CRUSHERMARK))
                 L.apply_status_effect(STATUS_EFFECT_CRUSHERMARK,hammer_synced)
+
+//Magmite Crusher
+
+/obj/item/twohanded/kinetic_crusher/mega
+    icon_state = "magmite_crusher0"
+    lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
+    righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
+    name = "mega proto-kinetic crusher"
+    desc = "An early design of the proto-kinetic accelerator, it is now a combination of various mining tools infused with magmite, forming a high-tech club, increasing its capacity as a mining tool. \
+     It does little to aid any but the most skilled and/or suicidal miners against local fauna."
+
+/obj/item/twohanded/kinetic_crusher/mega/attack(mob/living/target, mob/living/carbon/user)
+	if(!wielded)
+		to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
+		return
+	..()
+
+/obj/item/twohanded/kinetic_crusher/mega/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+    if(!wielded)
+        to_chat(user, span_warning("[src] is too heavy to use with one hand!"))
+        return
+    if(!proximity_flag && charged)
+        var/turf/proj_turf = user.loc
+        if(!isturf(proj_turf))
+            return
+        var/obj/item/projectile/destabilizer/mega/D = new /obj/item/projectile/destabilizer/mega(proj_turf)
+        D.preparePixelProjectile(target, user, clickparams)
+        D.firer = user
+        D.hammer_synced = src
+        playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, 1)
+        D.fire()
+        icon_state = "magmite_crusher_uncharged"
+        charged = FALSE
+        addtimer(CALLBACK(src, PROC_REF(Recharge), TRUE), charge_time)
+        return
+    ..()
+
+
+/obj/item/twohanded/kinetic_crusher/mega/update_icon()
+	icon_state = "magmite_crusher[wielded]"
+	return
+
+/obj/item/projectile/destabilizer/mega
+    name = "destabilizing force"
+    icon_state = "pulse0"
+    var/mine_range = 4
+
+/obj/item/projectile/destabilizer/mega/on_hit(atom/target, blocked = FALSE)
+    var/target_turf = get_turf(target)
+    if(ismineralturf(target_turf))
+        var/turf/closed/mineral/M = target_turf
+        M.attempt_drill(firer)
+        if(mine_range)
+            mine_range--
+            range++
+        if(range > 0)
+            return BULLET_ACT_FORCE_PIERCE
+    ..()

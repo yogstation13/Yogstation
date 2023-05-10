@@ -18,12 +18,12 @@
 	exp_requirements = 720
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_ENGINEERING
-	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer")
+	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer", "Chief Engineering Officer")
 
 	outfit = /datum/outfit/job/ce
 
 	added_access = list(ACCESS_CAPTAIN)
-	base_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS,
+	base_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_SECURE_TECH_STORAGE, ACCESS_MAINT_TUNNELS,
 			            ACCESS_EXTERNAL_AIRLOCKS, ACCESS_ATMOSPHERICS, ACCESS_EVA, ACCESS_TCOM_ADMIN,
 			            ACCESS_HEADS, ACCESS_CONSTRUCTION, ACCESS_SEC_DOORS, ACCESS_MINISAT, ACCESS_MECH_ENGINE,
 			            ACCESS_CE, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_MINERAL_STOREROOM)
@@ -41,10 +41,9 @@
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/cracker = 25, //you know. for poly
 		/obj/item/stack/sheet/mineral/diamond = 15,
-		///obj/item/stack/sheet/mineral/uranium/five = 15,
-		///obj/item/stack/sheet/mineral/plasma/five = 15,
-		/obj/item/stack/sheet/mineral/gold = 15
-		///obj/effect/spawner/random/engineering/tool_advanced = 3
+		/obj/item/stack/sheet/mineral/gold = 15,
+		/obj/effect/spawner/lootdrop/engineering_tool_advanced = 3,
+		/obj/effect/spawner/lootdrop/engineering_tool_alien = 1
 	)
 
 	smells_like = "industry leadership"

@@ -200,10 +200,14 @@
 		if("animal")
 			var/path = pick(/mob/living/simple_animal/hostile/carp,
 							/mob/living/simple_animal/hostile/bear,
-							/mob/living/simple_animal/hostile/mushroom,
+							/mob/living/simple_animal/hostile/carp/eyeball,
+							/mob/living/simple_animal/hostile/eldritch/raw_prophet,
 							/mob/living/simple_animal/hostile/statue,
 							/mob/living/simple_animal/hostile/retaliate/bat,
 							/mob/living/simple_animal/hostile/retaliate/goat,
+							/mob/living/simple_animal/hostile/retaliate/goat/clown,
+							/mob/living/simple_animal/hostile/retaliate/clown/mutant/blob,
+							/mob/living/simple_animal/hostile/retaliate/clown/clownhulk,
 							/mob/living/simple_animal/hostile/killertomato,
 							/mob/living/simple_animal/hostile/poison/giant_spider,
 							/mob/living/simple_animal/hostile/poison/giant_spider/hunter,
@@ -218,17 +222,18 @@
 							/mob/living/simple_animal/hostile/stickman/dog,
 							/mob/living/simple_animal/hostile/megafauna/dragon/lesser,
 							/mob/living/simple_animal/hostile/gorilla,
+							/mob/living/simple_animal/hostile/lightgeist/healing,
 							/mob/living/simple_animal/parrot,
 							/mob/living/simple_animal/pet/dog/corgi,
 							/mob/living/simple_animal/crab,
 							/mob/living/simple_animal/pet/dog/pug,
 							/mob/living/simple_animal/pet/cat,
-							/mob/living/simple_animal/mouse,
-							/mob/living/simple_animal/chicken,
+							/mob/living/simple_animal/pet/cat/space,
+							/mob/living/simple_animal/chocobo,
 							/mob/living/simple_animal/cow,
 							/mob/living/simple_animal/hostile/lizard,
 							/mob/living/simple_animal/pet/fox,
-							/mob/living/simple_animal/butterfly,
+							/mob/living/simple_animal/pet/catslug,
 							/mob/living/simple_animal/pet/cat/cak,
 							/mob/living/simple_animal/chick)
 			new_mob = new path(M.loc)
@@ -376,6 +381,18 @@
 /obj/item/projectile/magic/spellblade/weak
 	damage = 15
 	dismemberment = 20
+	
+/obj/item/projectile/magic/spellblade/beesword
+	name = "stinger"
+	icon_state = "bee"
+	damage = 1
+	damage_type = BRUTE
+	dismemberment = 0
+	
+/obj/item/projectile/magic/spellblade/beesword/on_hit(atom/target, blocked = FALSE)
+	..()
+	if(ishuman(target))
+		target.reagents.add_reagent(/datum/reagent/toxin/venom, 2)
 
 /obj/item/projectile/magic/arcane_barrage
 	name = "arcane bolt"
@@ -433,8 +450,8 @@
 /obj/structure/closet/decay/Initialize()
 	. = ..()
 	if(auto_destroy)
-		addtimer(CALLBACK(src, .proc/bust_open), 5 MINUTES)
-	addtimer(CALLBACK(src, .proc/magicly_lock), 5)
+		addtimer(CALLBACK(src, PROC_REF(bust_open)), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(magicly_lock)), 5)
 
 /obj/structure/closet/decay/proc/magicly_lock()
 	if(!welded)
@@ -448,7 +465,7 @@
 
 /obj/structure/closet/decay/proc/decay()
 	animate(src, alpha = 0, time = 3 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 3 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 3 SECONDS)
 
 /obj/structure/closet/decay/open(mob/living/user)
 	. = ..()
@@ -456,12 +473,12 @@
 		if(icon_state == magic_icon) //check if we used the magic icon at all before giving it the lesser magic icon
 			unmagify()
 		else
-			addtimer(CALLBACK(src, .proc/decay), 15 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
 
 /obj/structure/closet/decay/proc/unmagify()
 	icon_state = weakened_icon
 	update_icon()
-	addtimer(CALLBACK(src, .proc/decay), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
 	icon_welded = "welded"
 
 /obj/item/projectile/magic/flying
@@ -660,7 +677,7 @@
 	. = ..()
 	var/turf/T = get_turf(target)
 	for(var/i=0, i<50, i+=10)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/explosion, T, -1, exp_heavy, exp_light, exp_flash, FALSE, FALSE, exp_fire), i)
+		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(explosion), T, -1, exp_heavy, exp_light, exp_flash, FALSE, FALSE, exp_fire), i)
 
 //still magic related, but a different path
 
@@ -913,3 +930,19 @@
 							X.resize = reresize
 							X.update_transform()
 		.=..()
+
+/obj/item/projectile/magic/ion //magic version of ion rifle bullets
+	name = "ion bolt"
+	icon_state = "ion"
+	damage = 0
+	damage_type = BURN
+	nodamage = TRUE
+	flag = ENERGY
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/ion
+	var/light_emp_radius = 3
+	var/heavy_emp_radius = 0.5	//Effectively 1 but doesnt spread to adjacent tiles
+
+/obj/item/projectile/magic/ion/on_hit(atom/target, blocked = FALSE)
+	..()
+	empulse(target, heavy_emp_radius, light_emp_radius)
+	return BULLET_ACT_HIT

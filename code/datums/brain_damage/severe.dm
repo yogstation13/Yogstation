@@ -4,6 +4,7 @@
 
 /datum/brain_trauma/severe
 	resilience = TRAUMA_RESILIENCE_SURGERY
+	random_cure_chance = 4
 
 /datum/brain_trauma/severe/mute
 	name = "Mutism"
@@ -183,7 +184,7 @@
 				to_chat(owner, span_warning("You feel sick..."))
 			else
 				to_chat(owner, span_warning("You feel really sick at the thought of being alone!"))
-			addtimer(CALLBACK(owner, /mob/living/carbon.proc/vomit, high_stress), 50) //blood vomit if high stress
+			addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob/living/carbon, vomit), high_stress), 50) //blood vomit if high stress
 		if(2)
 			if(!high_stress)
 				to_chat(owner, span_warning("You can't stop shaking..."))

@@ -266,7 +266,7 @@
 			return
 	if(!target)
 		return
-	if(NO_DNA_COPY in target.dna.species.species_traits)
+	if((NO_DNA_COPY in target.dna.species.species_traits) || (NOHUSK in target.dna.species.species_traits)) // if they can't be husked absorbing them will break and make them unrevivable
 		if(verbose)
 			to_chat(user, span_warning("[target] is not compatible with our biology."))
 		return
@@ -378,19 +378,24 @@
 		add_new_profile(C)
 
 /datum/antagonist/changeling/apply_innate_effects()
+	var/mob/living/living_mob = owner.current
+	if(!isliving(living_mob))
+		return
+
+	RegisterSignals(living_mob, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON), PROC_REF(on_click_sting))
+
 	//Brains optional.
-	var/mob/living/carbon/C = owner.current
-	if(istype(C))
-		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
-		if(B)
-			B.organ_flags &= ~ORGAN_VITAL
-			B.decoy_override = TRUE
+	var/obj/item/organ/brain/our_ling_brain = living_mob.getorganslot(ORGAN_SLOT_BRAIN)
+	if(our_ling_brain)
+		our_ling_brain.organ_flags &= ~ORGAN_VITAL
+		our_ling_brain.decoy_override = TRUE
 	update_changeling_icons_added()
-	return
 
 /datum/antagonist/changeling/remove_innate_effects()
+	var/mob/living/living_mob = owner.current
+
+	UnregisterSignal(living_mob, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON))
 	update_changeling_icons_removed()
-	return
 
 
 /datum/antagonist/changeling/greet()
@@ -519,6 +524,31 @@
 	hud.leave_hud(owner.current)
 	set_antag_hud(owner.current, null)
 
+/**
+ * Signal proc for [COMSIG_MOB_MIDDLECLICKON] and [COMSIG_MOB_ALTCLICKON].
+ * Allows the changeling to sting people with a click.
+ */
+/datum/antagonist/changeling/proc/on_click_sting(mob/living/ling, atom/clicked)
+	SIGNAL_HANDLER
+
+	// nothing to handle
+	if(!chosen_sting)
+		return
+
+	if(!isliving(ling) || clicked == ling || ling.stat != CONSCIOUS)
+		return
+
+	// sort-of hack done here: we use in_given_range here because it's quicker.
+	// actual ling stings do pathfinding to determine whether the target's "in range".
+	// however, this is "close enough" preliminary checks to not block click
+	if(!isliving(clicked) || !IN_GIVEN_RANGE(ling, clicked, sting_range))
+		return
+	
+	chosen_sting.try_to_sting(ling, clicked)
+	ling.next_click = world.time + 5
+
+	return COMSIG_MOB_CANCEL_CLICKON
+
 /datum/antagonist/changeling/admin_add(datum/mind/new_owner,mob/admin)
 	. = ..()
 	to_chat(new_owner.current, span_boldannounce("Our powers have awoken. A flash of memory returns to us...we are [changelingID], a changeling!"))
@@ -526,7 +556,7 @@
 /datum/antagonist/changeling/get_admin_commands()
 	. = ..()
 	if(stored_profiles.len && (owner.current.real_name != first_prof.name))
-		.["Transform to initial appearance."] = CALLBACK(src,.proc/admin_restore_appearance)
+		.["Transform to initial appearance."] = CALLBACK(src, PROC_REF(admin_restore_appearance))
 
 /datum/antagonist/changeling/proc/admin_restore_appearance(mob/admin)
 	if(!stored_profiles.len || !iscarbon(owner.current))

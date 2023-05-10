@@ -543,7 +543,7 @@
 /obj/item/book/granter/crafting_recipe/weapons
 	name = "makeshift weapons 101"
 	desc = "A book filled with directions on how to make various weaponry."
-	crafting_recipe_types = list(/datum/crafting_recipe/metal_baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/pipebomb, /datum/crafting_recipe/makeshiftpistol, /datum/crafting_recipe/makeshiftmagazine, /datum/crafting_recipe/makeshiftsuppressor, /datum/crafting_recipe/makeshiftcrowbar, /datum/crafting_recipe/makeshiftwrench, /datum/crafting_recipe/makeshiftwirecutters, /datum/crafting_recipe/makeshiftweldingtool, /datum/crafting_recipe/makeshiftmultitool, /datum/crafting_recipe/makeshiftscrewdriver, /datum/crafting_recipe/makeshiftknife, /datum/crafting_recipe/makeshiftpickaxe, /datum/crafting_recipe/makeshiftradio, /datum/crafting_recipe/bola_arrow, /datum/crafting_recipe/flaming_arrow, /datum/crafting_recipe/makeshiftemag)
+	crafting_recipe_types = list(/datum/crafting_recipe/metal_baseball_bat, /datum/crafting_recipe/lance, /datum/crafting_recipe/knifeboxing, /datum/crafting_recipe/pipebomb, /datum/crafting_recipe/makeshiftpistol, /datum/crafting_recipe/makeshiftmagazine, /datum/crafting_recipe/makeshiftsuppressor, /datum/crafting_recipe/makeshiftcrowbar, /datum/crafting_recipe/makeshiftwrench, /datum/crafting_recipe/makeshiftwirecutters, /datum/crafting_recipe/makeshiftweldingtool, /datum/crafting_recipe/makeshiftmultitool, /datum/crafting_recipe/makeshiftscrewdriver, /datum/crafting_recipe/makeshiftknife, /datum/crafting_recipe/makeshiftpickaxe, /datum/crafting_recipe/makeshiftradio, /datum/crafting_recipe/bola_arrow, /datum/crafting_recipe/explosive_arrow, /datum/crafting_recipe/syringe_arrow, /datum/crafting_recipe/flaming_arrow, /datum/crafting_recipe/makeshiftemag)
 	icon_state = "bookCrafting"
 	oneuse = TRUE
 
@@ -560,7 +560,9 @@
 	desc = "A book filled with directions on how to make various tribal clothes and weapons."
 	icon_state = "stone_tablet"
 	crafting_recipe_types = list(/datum/crafting_recipe/bola_arrow,
+								/datum/crafting_recipe/explosive_arrow,
 								/datum/crafting_recipe/flaming_arrow,
+								/datum/crafting_recipe/syringe_arrow,
 								/datum/crafting_recipe/raider_leather,
 								/datum/crafting_recipe/tribal_wraps,
 								/datum/crafting_recipe/ash_robe,
@@ -585,3 +587,22 @@
 	. = ..()
 	user.AddComponent(/datum/component/mech_pilot, 0.8)
 	onlearned(user)
+
+/obj/item/book/granter/martial/psychotic_brawling
+	martial = /datum/martial_art/psychotic_brawling
+	name = "blood-stained paper"
+	martialname = "psychotic brawling"
+	desc = "A piece of blood-stained paper that emanates pure rage. Just holding it makes you want to punch someone."
+	greet = "<span class='boldannounce'>You have learned the tried and true art of Psychotic Brawling. \
+			You will be unable to disarm or grab, but your punches have a chance to do serious damage.</span>"
+	icon = 'yogstation/icons/obj/bureaucracy.dmi'
+	icon_state = "paper_talisman"
+	remarks = list("Just keep punching...", "Let go of your inhibitions...", "Methamphetamine...", "Embrace Space Florida...", "Become too angry to die...")
+
+/obj/item/book/granter/martial/psychotic_brawling/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		to_chat(user, span_notice("All of the blood on the paper seems to have vanished."))
+		user.dropItemToGround(src)
+		qdel(src)
+		user.put_in_hands(new /obj/item/paper)

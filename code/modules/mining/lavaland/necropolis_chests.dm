@@ -33,39 +33,47 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(8)
 			new /obj/item/ship_in_a_bottle(src)
 		if(9)
-			new /obj/item/clothing/glasses/telepathy(src)
+			new /obj/item/clothing/gloves/gauntlets(src)
 		if(10)
 			new /obj/item/jacobs_ladder(src)
-		if(11)
-			new /obj/item/nullrod/scythe/talking(src)
+		if(11)//select and spawn a random nullrod that a chaplain could choose from
+			var/found = FALSE
+			while(!found)
+				var/path = pick(subtypesof(/obj/item/nullrod))
+				var/obj/item/nullrod/rod = new path(src)
+				if(rod.chaplain_spawnable)
+					found = TRUE
+				else
+					qdel(rod)
 		if(12)
-			new /obj/item/nullrod/armblade(src)
-		if(13)
 			new /obj/item/warp_cube/red(src)
-		if(14)
+		if(13)
 			new /obj/item/organ/heart/gland/heals(src)
-		if(15)
+		if(14)
 			new /obj/item/eflowers(src)
-		if(16)
+		if(15)
 			new /obj/item/voodoo(src)
-		if(17)
+		if(16)
 			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
-		if(18)
+		if(17)
 			new /obj/item/book_of_babel(src)
-		if(19)
+		if(18)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-		if(20)
+		if(19)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(21)
+		if(20)
 			new /obj/item/rune_scimmy(src)
-		if(22)
+		if(21)
 			new /obj/item/dnainjector/dwarf(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
-		if(23)
+		if(22)
 			new /obj/item/clothing/gloves/gauntlets(src)
+		if(23)
+			new /obj/item/gun/ballistic/bow/ashen(src)
+			new /obj/item/storage/belt/quiver/returning/bone(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -96,6 +104,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/activated = FALSE
 	var/usedHand
 	var/list/advanced_surgeries = list()
+	var/efficiency = 1
 
 /obj/item/rod_of_asclepius/attack_self(mob/user)
 	if(activated)
@@ -131,7 +140,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(itemUser, failText)
 		return
 	to_chat(itemUser, span_notice("The snake, satisfied with your oath, attaches itself and the rod to your forearm with an inseparable grip. Your thoughts seem to only revolve around the core idea of helping others, and harm is nothing more than a distant, wicked memory..."))
-	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH)
+	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency, type)
 	effect.hand = usedHand
 	activated()
 
@@ -209,7 +218,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "memento_mori")
 		icon_state = "memento_mori_active"
 		active_owner = user
-		RegisterSignal(src, COMSIG_ITEM_PRESTRIP, .proc/moriwarn)
+		RegisterSignal(src, COMSIG_ITEM_PRESTRIP, PROC_REF(moriwarn))
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/moriwarn()
 	active_owner.visible_message(span_userdanger("The [src] writhes and shudders as it starts to tear away [active_owner]'s lifeforce!"))
@@ -295,7 +304,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/effect/wisp/orbit(atom/thing, radius, clockwise, rotation_speed, rotation_segments, pre_rotation, lockinorbit)
 	. = ..()
 	if(ismob(thing))
-		RegisterSignal(thing, COMSIG_MOB_UPDATE_SIGHT, .proc/update_user_sight)
+		RegisterSignal(thing, COMSIG_MOB_UPDATE_SIGHT, PROC_REF(update_user_sight))
 		var/mob/being = thing
 		being.update_sight()
 		to_chat(thing, span_notice("The wisp enhances your vision."))
@@ -310,25 +319,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 	user.sight |= sight_flags
 	if(!isnull(lighting_alpha))
 		user.lighting_alpha = min(user.lighting_alpha, lighting_alpha)
-
-/obj/item/clothing/glasses/telepathy
-	name = "blindfold of telepathy"
-	desc = "Covers the eyes, preventing natural sight. In return for committing oneself forever to the senses of the mind, the senses of the body are allowed to rest."
-	icon_state = "blindfoldwhite"
-	item_state = "blindfoldwhite"
-	flash_protect = 10 //they're blind, yo
-	tint = 2
-	darkness_view = 0
-	var/sight_flags = SEE_MOBS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-
-/obj/item/clothing/glasses/telepathy/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(slot == SLOT_GLASSES)
-		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-		user.sight |= sight_flags
-		item_flags = DROPDEL
 
 //Red/Blue Cubes
 /obj/item/warp_cube
@@ -619,7 +609,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		var/mob/living/L = target
 		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
-				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH,.proc/roll_loot, TRUE)
+				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH, PROC_REF(roll_loot), TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
 
@@ -652,7 +642,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(51 to 60)//10% for bow and bronze tipped arrows, bronze are supposed to be the worst in runescape but they kinda slap in here, hopefully limited by the 5 arrows
 			new /obj/item/gun/ballistic/bow(spot)
 			for(var/i in 1 to 5)
-				new /obj/item/ammo_casing/caseless/arrow/bronze(spot)
+				new /obj/item/ammo_casing/reusable/arrow/bronze(spot)
 		if(61 to 70)//10% chance at a seed drop, runescape drops seeds somewhat frequently for players to plant and harvest later
 			switch(rand(1,5))
 				if(1)
@@ -709,15 +699,18 @@ GLOBAL_LIST_EMPTY(aide_list)
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
-		var/holycheck = ishumanbasic(C)
-		if(!(holycheck || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || (reac_volume < 5))) //humans (which are holy?), lizards, skeletons, and preterni(ises?) can get wings
+		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C))
+		if(valid_species && (reac_volume < 5))	 //humans, lizards, skeletons, and preterni can get wings
+			to_chat(C, span_notice("<i>You feel something stir in you, but it quickly fades away.</i>"))
+			return ..()
+		if(!valid_species)
 			if(method == INGEST && show_message)
 				to_chat(C, span_notice("<i>You feel nothing but a terrible aftertaste.</i>"))
 			return ..()
 
 		to_chat(C, span_userdanger("A terrible pain travels down your back as wings burst out!"))
 		C.dna.species.GiveSpeciesFlight(C)
-		if(holycheck)
+		if(ishumanbasic(C))
 			to_chat(C, span_notice("You feel blessed!"))
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		if(islizard(C))
@@ -1213,7 +1206,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	color = "#990000"
 	extinguish()
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
-	addtimer(CALLBACK(src, .proc/hatch), 20 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(hatch)), 20 SECONDS)
 
 /obj/item/dragon_egg/proc/hatch()
 	visible_message(span_boldwarning("[src] suddenly cracks apart, revealing a tiny ash drake!"))
@@ -1252,7 +1245,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/mayhem/attack_self(mob/user)
 	for(var/mob/living/carbon/human/H in range(7,user))
 		var/obj/effect/mine/pickup/bloodbath/B = new(H)
-		INVOKE_ASYNC(B, /obj/effect/mine/pickup/bloodbath/.proc/mineEffect, H)
+		INVOKE_ASYNC(B, TYPE_PROC_REF(/obj/effect/mine/pickup/bloodbath, mineEffect), H)
 	to_chat(user, span_notice("You shatter the bottle!"))
 	playsound(user.loc, 'sound/effects/glassbr1.ogg', 100, 1)
 	message_admins(span_adminnotice("[ADMIN_LOOKUPFLW(user)] has activated a bottle of mayhem!"))
@@ -1471,11 +1464,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 	calculate_anger_mod(user)
 	timer = world.time + CLICK_CD_MELEE //by default, melee attacks only cause melee blasts, and have an accordingly short cooldown
 	if(proximity_flag)
-		INVOKE_ASYNC(src, .proc/aoe_burst, T, user)
+		INVOKE_ASYNC(src, PROC_REF(aoe_burst), T, user)
 		log_combat(user, target, "fired 3x3 blast at", src)
 	else
 		if(ismineralturf(target) && get_dist(user, target) < 6) //target is minerals, we can hit it(even if we can't see it)
-			INVOKE_ASYNC(src, .proc/cardinal_blasts, T, user)
+			INVOKE_ASYNC(src, PROC_REF(cardinal_blasts), T, user)
 			timer = world.time + cooldown_time
 		else if(target in view(5, get_turf(user))) //if the target is in view, hit it
 			timer = world.time + cooldown_time
@@ -1486,12 +1479,12 @@ GLOBAL_LIST_EMPTY(aide_list)
 				C.monster_damage_boost = FALSE
 				log_combat(user, target, "fired a chaser at", src)
 			else
-				INVOKE_ASYNC(src, .proc/cardinal_blasts, T, user) //otherwise, just do cardinal blast
+				INVOKE_ASYNC(src, PROC_REF(cardinal_blasts), T, user) //otherwise, just do cardinal blast
 				log_combat(user, target, "fired cardinal blast at", src)
 		else
 			to_chat(user, span_warning("That target is out of range!") )
 			timer = world.time
-	INVOKE_ASYNC(src, .proc/prepare_icon_update)
+	INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 
 /obj/item/hierophant_club/proc/calculate_anger_mod(mob/user) //we get stronger as the user loses health
 	chaser_cooldown = initial(chaser_cooldown)
@@ -1534,7 +1527,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			user.visible_message("[span_hierophant_warning("[user] starts fiddling with [src]'s pommel...")]", \
 			span_notice("You start detaching the hierophant beacon..."))
 			timer = world.time + 5.1 SECONDS
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			if(do_after(user, 5 SECONDS, user) && !beacon)
 				var/turf/T = get_turf(user)
 				playsound(T,'sound/magic/blind.ogg', 200, 1, -4)
@@ -1546,7 +1539,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 				[span_notice("You can remove the beacon to place it again by striking it with the club.")]")
 			else
 				timer = world.time
-				INVOKE_ASYNC(src, .proc/prepare_icon_update)
+				INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 		else
 			to_chat(user, span_warning("You need to be on solid ground to detach the beacon!"))
 		return
@@ -1563,7 +1556,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	user.update_action_buttons_icon()
 	user.visible_message("[span_hierophant_warning("[user] starts to glow faintly...")]")
 	timer = world.time + 5 SECONDS
-	INVOKE_ASYNC(src, .proc/prepare_icon_update)
+	INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 	beacon.icon_state = "hierophant_tele_on"
 	var/obj/effect/temp_visual/hierophant/telegraph/edge/TE1 = new /obj/effect/temp_visual/hierophant/telegraph/edge(user.loc)
 	var/obj/effect/temp_visual/hierophant/telegraph/edge/TE2 = new /obj/effect/temp_visual/hierophant/telegraph/edge(beacon.loc)
@@ -1575,7 +1568,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_action_buttons_icon()
 			timer = world.time
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			beacon.icon_state = "hierophant_tele_off"
 			return
 		new /obj/effect/temp_visual/hierophant/telegraph(T, user)
@@ -1587,7 +1580,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			if(user)
 				user.update_action_buttons_icon()
 			timer = world.time
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			if(beacon)
 				beacon.icon_state = "hierophant_tele_off"
 			return
@@ -1596,7 +1589,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_action_buttons_icon()
 			timer = world.time
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			beacon.icon_state = "hierophant_tele_off"
 			return
 		user.log_message("teleported self from [AREACOORD(source)] to [beacon]", LOG_GAME)
@@ -1609,7 +1602,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			var/obj/effect/temp_visual/hierophant/blast/B = new /obj/effect/temp_visual/hierophant/blast(t, user, TRUE) //but absolutely will hurt enemies
 			B.damage = 30
 		for(var/mob/living/L in range(1, source))
-			INVOKE_ASYNC(src, .proc/teleport_mob, source, L, T, user) //regardless, take all mobs near us along
+			INVOKE_ASYNC(src, PROC_REF(teleport_mob), source, L, T, user) //regardless, take all mobs near us along
 		sleep(0.6 SECONDS) //at this point the blasts detonate
 		if(beacon)
 			beacon.icon_state = "hierophant_tele_off"
@@ -1617,7 +1610,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		qdel(TE1)
 		qdel(TE2)
 		timer = world.time
-		INVOKE_ASYNC(src, .proc/prepare_icon_update)
+		INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 	if(beacon)
 		beacon.icon_state = "hierophant_tele_off"
 	teleporting = FALSE
@@ -1658,7 +1651,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	B.damage = HIEROPHANT_CLUB_CARDINAL_DAMAGE
 	B.monster_damage_boost = FALSE
 	for(var/d in GLOB.cardinals)
-		INVOKE_ASYNC(src, .proc/blast_wall, T, d, user)
+		INVOKE_ASYNC(src, PROC_REF(blast_wall), T, d, user)
 
 /obj/item/hierophant_club/proc/blast_wall(turf/T, dir, mob/living/user) //make a wall of blasts blast_range tiles long
 	if(!T)
@@ -1802,18 +1795,17 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "puzzling chest"
 
 /obj/structure/closet/crate/necropolis/puzzle/PopulateContents()
-	var/loot = rand(1,3)
+	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
 			new /obj/item/bodypart/r_arm/robot/seismic(src)
 		if(2)
 			new /obj/item/wisp_lantern(src)
-		if(3)
-			new /obj/item/prisoncube(src)
 
 //Legion
 #define COOLDOWN_TAP 60
 #define COOLDOWN_BAND 200
+#define COOLDOWN_TELE 15
 /obj/item/cane/cursed
 	name = "cursed cane"
 	desc = "A pristine marble cane. Tapping the cane against the ground calls lesser minions to you while tapping it against a dead or dying victim will make them yours should you\
@@ -1824,15 +1816,16 @@ GLOBAL_LIST_EMPTY(aide_list)
 	item_state = "cursedcane"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 0
+	force = 1 //for weaker animals and fucking legion skulls
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	actions_types = list(/datum/action/item_action/band)
 	var/limit = 3
-	var/telerange = 10
+	var/telerange = 20 
 	var/next_tap = 0
 	var/next_band = 0
+	var/next_teleport = 0
 
 /obj/item/cane/cursed/pickup(mob/user)
 	. = ..()
@@ -1870,15 +1863,48 @@ GLOBAL_LIST_EMPTY(aide_list)
 	user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane before enveloping [M.p_them()] in a dark mass!"))
 	to_chat(M, span_userdanger("You feel the last of your energy fade away as everything turns to black!"))
 
+/obj/item/cane/cursed/proc/execute(mob/living/user, mob/living/target)
+	var/mob/living/M = target
+	M.adjustBruteLoss(M.health)
+	user.visible_message(span_warning("[user] jabs [M] with [user.p_their()] cane, making [M.p_their()] eyes flash black before keeling over!"))
+
 /obj/item/cane/cursed/proc/curse(mob/living/user, mob/living/target)
 	var/mob/living/M = target
-	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead))
+	if((faction_check(M.faction, "cane")) || istype(M, /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead) || istype(M, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
 		return FALSE
 	if(isbot(M))//because they just walk out of the aide lol
 		return FALSE
 	if(GLOB.aide_list.len >= limit)
-		to_chat(user, span_notice("You can't control that many minions!"))
-		return FALSE
+		if(M.stat == CONSCIOUS)
+			if(iscarbon(M) && M.health < M.maxHealth/8)
+				execute(user, M)
+				return FALSE
+			if(ismegafauna(M) && M.health < M.maxHealth/5)
+				execute(user, M)
+				limit++
+				return FALSE
+			if(M.health < M.maxHealth/2.8)
+				execute(user, M)
+				return FALSE
+		else
+			to_chat(user, span_notice("You can't control that many minions!"))
+			return FALSE
+	if(ismegafauna(M))
+		if(M.health > M.maxHealth/5)
+			to_chat(user, span_notice("Your target must be weakened!"))
+			return FALSE
+		else if (M.stat == CONSCIOUS)
+			bigfinish(user, M)
+			limit ++
+			to_chat(user, span_notice("Defeating a powerful foe has increased the cane's capacity for minions!"))
+			return TRUE
+	if(istype(M, /mob/living/simple_animal/hostile/asteroid/elite))
+		if(M.health > M.maxHealth/5)
+			to_chat(user, span_notice("Your target must be weakened!"))
+			return FALSE
+		else
+			bigfinish(user, M)
+			return TRUE
 	if(M.has_status_effect(STATUS_EFFECT_EXHUMED))
 		to_chat(user, span_notice("[target] cannot be raised again!"))
 		return FALSE
@@ -1886,26 +1912,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 		littlefinish(user, M)
 		M.apply_status_effect(/datum/status_effect/exhumed)
 		return TRUE
-	if(ismegafauna(M))
-		if(M.health > M.maxHealth/10)
-			to_chat(user, span_notice("Your target must be weakened!"))
-			return FALSE
-		else
-			bigfinish(user, M)
-			limit ++
-			to_chat(user, span_notice("Defeating a powerful foe has increased the cane's capacity for minions!"))
-			return TRUE
-	if(istype(M, /mob/living/simple_animal/hostile/asteroid/elite))
-		if(M.health > M.maxHealth/10)
-			to_chat(user, span_notice("Your target must be weakened!"))
-			return FALSE
-		else
-			bigfinish(user, M)
-			return TRUE
 	if(iscarbon(M) && M.health < M.maxHealth/8)
 		littlefinish(user, M)
 		return TRUE
-	if(M.health < M.maxHealth/5)
+	if(M.health < M.maxHealth/2.8)
 		littlefinish(user, M)
 		return TRUE
 
@@ -1940,11 +1950,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/turf/Z = get_turf(thrownby)
 	if(hit_atom.density == TRUE && get_dist(src,thrownby) <= telerange)
 		var/obj/effect/temp_visual/decoy/fading/halfsecond/F = new(Z, thrownby)
-		F.forceMove(Z)
-		thrownby.forceMove(D)
-		thrownby.visible_message(span_warning("[thrownby] reappears at the location of [thrownby.p_their()] cane!"))
+		if(next_teleport < world.time)
+			F.forceMove(Z)
+			next_teleport = world.time + COOLDOWN_TELE
+			thrownby.forceMove(D)
+			thrownby.visible_message(span_warning("[thrownby] reappears at the location of [thrownby.p_their()] cane!"))
+			thrownby.put_in_hands(src)
 		if(isliving(hit_atom))
 			var/mob/living/M = hit_atom
 			if(curse(thrownby, M) == TRUE)
 				to_chat(thrownby, span_notice("You appear before the cane and stab [M], making a new minion out of [M.p_them()]!"))
-				thrownby.put_in_hands(src)

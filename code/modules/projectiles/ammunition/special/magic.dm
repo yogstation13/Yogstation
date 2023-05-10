@@ -3,7 +3,7 @@
 	desc = "I didn't even know magic needed ammo..."
 	projectile_type = /obj/item/projectile/magic
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/magic
-	heavy_metal = FALSE
+	casing_flags = CASINGFLAG_NOT_HEAVY_METAL
 
 /obj/item/ammo_casing/magic/change
 	projectile_type = /obj/item/projectile/magic/change
@@ -44,6 +44,9 @@
 
 /obj/item/ammo_casing/magic/spellblade/weak
 	projectile_type = /obj/item/projectile/magic/spellblade/weak
+	
+/obj/item/ammo_casing/magic/spellblade/beesword
+	projectile_type = /obj/item/projectile/magic/spellblade/beesword
 
 /obj/item/ammo_casing/magic/arcane_barrage
 	projectile_type = /obj/item/projectile/magic/arcane_barrage

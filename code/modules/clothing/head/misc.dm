@@ -231,6 +231,10 @@
 	H.facial_hair_style = "Neckbeard"
 	return(BRUTELOSS)
 
+/obj/item/clothing/head/fedora/brown
+	icon_state = "detective"
+	desc = "A brown fedora, typically worn by investigators. This one has no protective fibers."
+
 /obj/item/clothing/head/sombrero
 	name = "sombrero"
 	icon_state = "sombrero"
@@ -376,7 +380,7 @@
 /obj/item/clothing/head/frenchberet/equipped(mob/M, slot)
 	. = ..()
 	if (slot == SLOT_HEAD)
-		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
 

@@ -220,26 +220,29 @@
 	var/held_index = 0
 
 /atom/movable/screen/inventory/hand/update_icon()
-	..()
+	. = ..()
 
 	if(!handcuff_overlay)
+		var/ui_style = hud?.mymob?.client?.prefs?.read_preference(/datum/preference/choiced/ui_style)
 		var/state = (!(held_index % 2)) ? "markus" : "gabrielle"
-		handcuff_overlay = mutable_appearance('icons/mob/screen_gen.dmi', state)
+		handcuff_overlay = mutable_appearance((ui_style ? ui_style2icon(ui_style) : 'icons/mob/screen_gen.dmi'), state)
 
 	cut_overlays()
 
-	if(hud && hud.mymob)
-		if(iscarbon(hud.mymob))
-			var/mob/living/carbon/C = hud.mymob
-			if(C.handcuffed)
-				add_overlay(handcuff_overlay)
+	if(!hud?.mymob)
+		return
 
-			if(held_index)
-				if(!C.has_hand_for_held_index(held_index))
-					add_overlay(blocked_overlay)
+	if(iscarbon(hud.mymob))
+		var/mob/living/carbon/C = hud.mymob
+		if(C.handcuffed)
+			add_overlay(handcuff_overlay)
 
-		if(held_index == hud.mymob.active_hand_index)
-			add_overlay("hand_active")
+		if(held_index)
+			if(!C.has_hand_for_held_index(held_index))
+				add_overlay(blocked_overlay)
+
+	if(held_index == hud.mymob.active_hand_index)
+		add_overlay((held_index % 2) ? "lhandactive" : "rhandactive")
 
 
 /atom/movable/screen/inventory/hand/Click(location, control, params)
@@ -329,55 +332,48 @@
 /atom/movable/screen/internals/Click()
 	if(!iscarbon(usr))
 		return
+
 	var/mob/living/carbon/C = usr
 	if(C.incapacitated())
 		return
 
 	if(C.internal)
-		C.internal = null
+		C.close_internals()
 		to_chat(C, span_notice("You are no longer running on internals."))
 		icon_state = "internal0"
 	else
-		if(!C.getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-			if(!istype(C.wear_mask, /obj/item/clothing/mask))
-				to_chat(C, span_warning("You are not wearing an internals mask!"))
-				return 1
-			else
-				var/obj/item/clothing/mask/M = C.wear_mask
-				if(M.mask_adjusted) // if mask on face but pushed down
-					M.adjustmask(C) // adjust it back
-				if( !(M.clothing_flags & MASKINTERNALS) )
-					to_chat(C, span_warning("You are not wearing an internals mask!"))
-					return
+		if (!C.can_breathe_internals())
+			to_chat(C, span_warning("You are not wearing a suitable internals mask!"))
+			return
 
 		var/obj/item/I = C.is_holding_item_of_type(/obj/item/tank)
 		if(I)
 			to_chat(C, span_notice("You are now running on internals from [I] in your [C.get_held_index_name(C.get_held_index_of_item(I))]."))
-			C.internal = I
+			C.open_internals(I)
 		else if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			if(istype(H.s_store, /obj/item/tank))
 				to_chat(H, span_notice("You are now running on internals from [H.s_store] on your [H.wear_suit.name]."))
-				H.internal = H.s_store
+				H.open_internals(H.s_store)
 			else if(istype(H.belt, /obj/item/tank))
 				to_chat(H, span_notice("You are now running on internals from [H.belt] on your belt."))
-				H.internal = H.belt
+				H.open_internals(H.belt)
 			else if(istype(H.l_store, /obj/item/tank))
 				to_chat(H, span_notice("You are now running on internals from [H.l_store] in your left pocket."))
-				H.internal = H.l_store
+				H.open_internals(H.l_store)
 			else if(istype(H.r_store, /obj/item/tank))
 				to_chat(H, span_notice("You are now running on internals from [H.r_store] in your right pocket."))
-				H.internal = H.r_store
+				H.open_internals(H.r_store)
 
 		//Separate so CO2 jetpacks are a little less cumbersome.
 		if(!C.internal && istype(C.back, /obj/item/tank))
 			to_chat(C, span_notice("You are now running on internals from [C.back] on your back."))
-			C.internal = C.back
+			C.open_internals(C.back)
 
 		if(C.internal)
 			icon_state = "internal1"
 		else
-			to_chat(C, span_warning("You don't have an oxygen tank!"))
+			to_chat(C, span_warning("You don't have a suitable tank!"))
 			return
 	C.update_action_buttons_icon()
 
@@ -805,7 +801,7 @@
 	src.end_time = end_time
 	set_maptext("[round((end_time - world.time) / 10, 1)]")
 	if(need_timer)
-		timer = addtimer(CALLBACK(src, .proc/tick), 1 SECONDS, TIMER_STOPPABLE)
+		timer = addtimer(CALLBACK(src, PROC_REF(tick)), 1 SECONDS, TIMER_STOPPABLE)
 
 /atom/movable/screen/cooldown_overlay/proc/tick()
 	if(world.time >= end_time)
@@ -813,7 +809,7 @@
 		return
 	set_maptext("[round((end_time - world.time) / 10, 1)]")
 	if(timer)
-		timer = addtimer(CALLBACK(src, .proc/tick), 1 SECONDS, TIMER_STOPPABLE)
+		timer = addtimer(CALLBACK(src, PROC_REF(tick)), 1 SECONDS, TIMER_STOPPABLE)
 
 /atom/movable/screen/cooldown_overlay/proc/stop_cooldown()
 	parent_button.color = "#ffffffff"

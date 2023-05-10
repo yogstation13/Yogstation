@@ -463,7 +463,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return TRUE
 	for(var/mob/living/player in GLOB.player_list)
-		if(player.mind && player.stat != DEAD && !(issilicon(player) || isipc(player)))
+		if(player.mind && player.stat != DEAD && ((MOB_ORGANIC in player.mob_biotypes) || !(MOB_ROBOTIC in player.mob_biotypes)))
 			if(get_area(player) in SSshuttle.emergency.shuttle_areas)
 				return FALSE
 	return TRUE
@@ -532,8 +532,12 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(!M.has_antag_datum(/datum/antagonist/changeling))
 			continue
 		var/datum/mind/T = possible_target
-		if(!istype(T) || isipc(T.current))
+		if(!istype(T)) // if you can't absorb them you shouldn't have an objective to do so
 			return FALSE
+		if(ishuman(T.current))
+			var/mob/living/carbon/human/H = T.current
+			if((NO_DNA_COPY in H.dna.species.species_traits) || (NOHUSK in H.dna.species.species_traits))
+				return FALSE
 	return TRUE
 
 /datum/objective/escape/escape_with_identity
@@ -1315,7 +1319,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/chosen_pet = rand(1, possible_pets.len)
 	pet = locate(possible_pets[chosen_pet]) in GLOB.mob_living_list
 	name = "Kill [pet.name]]"
-	explanation_text = "Assasinate the important animal, [pet.name]"
+	explanation_text = "Assassinate the important animal, [pet.name]."
 	return pet
 
 /datum/objective/minor/pet/admin_edit(mob/admin)

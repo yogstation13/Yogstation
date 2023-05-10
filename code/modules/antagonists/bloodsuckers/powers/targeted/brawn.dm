@@ -49,7 +49,7 @@
 			span_warning("[closet] tears apart as you bash it open from within!"),
 		)
 		to_chat(user, span_warning("We bash [closet] wide open!"))
-		addtimer(CALLBACK(src, .proc/break_closet, user, closet), 1)
+		addtimer(CALLBACK(src, PROC_REF(break_closet), user, closet), 1)
 		used = TRUE
 
 	// Remove both Handcuffs & Legcuffs
@@ -130,13 +130,14 @@
 				span_danger("[user] lands a vicious punch, sending [target] away!"), \
 				span_userdanger("[user] has landed a horrifying punch on you, sending you flying!"),
 			)
-			target.Knockdown(min(5, rand(10, 10 * powerlevel)))
+			target.Knockdown(min(5 SECONDS, rand(1 SECONDS, 1 SECONDS * powerlevel)))
 		// Attack!
 		to_chat(owner, span_warning("You punch [target]!"))
 		playsound(get_turf(target), 'sound/weapons/punch4.ogg', 60, TRUE, -1)
 		user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(target.zone_selected))
-		target.apply_damage(hitStrength, BRUTE, affecting)
+		var/blocked = target.run_armor_check(affecting, MELEE, armour_penetration = 20)	//20 AP, will ignore light armor but not heavy stuff
+		target.apply_damage(hitStrength, BRUTE, affecting, blocked)
 		// Knockback
 		var/send_dir = get_dir(owner, target)
 		var/turf/turf_thrown_at = get_ranged_target_turf(target, send_dir, powerlevel)
@@ -152,7 +153,7 @@
 		if(!do_mob(user, target_closet, 2.5 SECONDS))
 			return FALSE
 		target_closet.visible_message(span_danger("[target_closet] breaks open as [user] bashes it!"))
-		addtimer(CALLBACK(src, .proc/break_closet, user, target_closet), 1)
+		addtimer(CALLBACK(src, PROC_REF(break_closet), user, target_closet), 1)
 		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, TRUE, -1)
 	// Target Type: Door
 	else if(istype(target_atom, /obj/machinery/door) && level_current >= 4)

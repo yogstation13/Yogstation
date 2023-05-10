@@ -16,9 +16,10 @@
 	outfit = /datum/outfit/job/psych
 
 	added_access = list()
-	base_access = list(ACCESS_MEDICAL)
+	base_access = list(ACCESS_MEDICAL, ACCESS_PSYCH)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
+	mind_traits = list(TRAIT_PSYCH)
 	display_order = JOB_DISPLAY_ORDER_PSYCHIATRIST
 	minimal_character_age = 24 //Psychology, therapy, and the like; all branches that would probably need to be certified as properly educated
 
@@ -29,6 +30,12 @@
 	changed_maps = list("GaxStation")
 
 	mail_goodies = list(
+		/obj/item/storage/box/hug = 30,
+		/obj/item/storage/pill_bottle/mannitol = 25,
+		/obj/item/storage/pill_bottle/happy = 10,
+		/obj/item/storage/pill_bottle/stimulant = 10,
+		/obj/item/reagent_containers/glass/bottle/morphine = 5, //lmao
+		/obj/item/assembly/flash/handheld = 4,
 		/obj/item/gun/ballistic/revolver/russian = 1
 	)
 

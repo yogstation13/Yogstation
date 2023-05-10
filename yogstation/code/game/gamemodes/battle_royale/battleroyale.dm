@@ -28,6 +28,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	if(A)
 		var/turf/T = safepick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
 		new /obj/structure/battle_bus(T)
+	else //please don't ever happen
+		message_admins("Something has gone terribly wrong and the bus couldn't spawn, please alert a maintainer or someone comparable.")
 	for(var/mob/L in GLOB.player_list)//fix this it spawns them with gear on
 		if(!L.mind || !L.client)
 			if(isobserver(L) || !L.mind || !L.client)
@@ -39,8 +41,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 /datum/game_mode/fortnite/post_setup() //now add a place for them to spawn :)
 	GLOB.enter_allowed = FALSE
 	message_admins("Battle Royale Mode has disabled late-joining. If you re-enable it you will break everything.")
-	for(var/i = 1 to queued.len)
-		var/datum/mind/virgin = queued[i]
+	for(var/datum/mind/virgin in queued)
 		SEND_SOUND(virgin.current, 'yogstation/sound/effects/battleroyale/battlebus.ogg')
 		virgin.add_antag_datum(antag_datum_type)
 		if(!GLOB.thebattlebus) //Ruhoh.
@@ -53,8 +54,12 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
 		virgin.current.set_species(/datum/species/human) //Fuck plasmamen
-	addtimer(CALLBACK(src, .proc/check_win), 300)
-	addtimer(CALLBACK(src, .proc/shrinkborders), 10)
+
+	if(!GLOB.battleroyale_players.len)
+		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
+
+	addtimer(CALLBACK(src, PROC_REF(check_win)), 300)
+	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 10)
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
@@ -64,9 +69,14 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/list/royalers = list()
 	if(GLOB.player_list.len <= 1) //It's a localhost testing
 		return
+	if(!LAZYLEN(GLOB.battleroyale_players)) //sanity check for if this gets called before people are added to the list somehow
+		message_admins("Somehow no one is signed up to battle royale but check_win has been called, please contact someone to fix it.")
+		return
+
 	for(var/mob/living/player in GLOB.battleroyale_players)
 		if(player.stat == DEAD)
 			GLOB.battleroyale_players -= player
+			continue
 		if(!player.client)
 			GLOB.battleroyale_players -= player
 			continue //No AFKS allowed!!!
@@ -100,7 +110,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
 		finished = TRUE
 		return
-	addtimer(CALLBACK(src, .proc/check_win), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
+	addtimer(CALLBACK(src, PROC_REF(check_win)), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
 
 /datum/game_mode/fortnite/set_round_result()
 	..()
@@ -129,7 +139,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	borderstage++
 
 	if(borderstage <= 6)
-		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
+		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
 /datum/game_mode/fortnite/proc/loot_spawn()
 	var/num = rand(1,3)

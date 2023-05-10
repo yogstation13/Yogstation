@@ -27,6 +27,7 @@
 	key_third_person = "chokes"
 	message = "chokes!"
 	emote_type = EMOTE_AUDIBLE
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/cross
 	key = "cross"
@@ -56,6 +57,7 @@
 	key_third_person = "coughs"
 	message = "coughs!"
 	emote_type = EMOTE_AUDIBLE
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/cough/can_run_emote(mob/user, status_check = TRUE , intentional)
 	. = ..()
@@ -104,6 +106,7 @@
 	key = "faint"
 	key_third_person = "faints"
 	message = "faints."
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/faint/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -140,7 +143,7 @@
 				H.CloseWings()
 			else
 				H.OpenWings()
-			addtimer(CALLBACK(H, open ? /mob/living/carbon/human.proc/OpenWings : /mob/living/carbon/human.proc/CloseWings), wing_time)
+			addtimer(CALLBACK(H, open ? TYPE_PROC_REF(/mob/living/carbon/human, OpenWings) : TYPE_PROC_REF(/mob/living/carbon/human, CloseWings)), wing_time)
 
 /datum/emote/living/flap/aflap
 	key = "aflap"
@@ -153,6 +156,7 @@
 	key = "frown"
 	key_third_person = "frowns"
 	message = "frowns."
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/gag
 	key = "gag"
@@ -190,11 +194,27 @@
 	key_third_person = "groans"
 	message = "groans!"
 	message_mime = "appears to groan!"
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/grimace
 	key = "grimace"
 	key_third_person = "grimaces"
 	message = "grimaces."
+
+/datum/emote/living/handsup
+	key = "handsup"
+	key_third_person = "raiseshands"
+	message	= span_surrender("raises their hands in the air, they surrender!")
+	restraint_check = TRUE
+
+/datum/emote/living/handsup/run_emote(mob/living/user, params, type_override, intentional)
+	. = ..()
+	if(!.)
+		return
+	for(var/obj/item/I in user.held_items)
+		user.drop_all_held_items(I, TRUE)
+	var/obj/item/twohanded/required/raisedhands/L = new(user)
+	user.put_in_hands(L)
 
 /datum/emote/living/jump
 	key = "jump"
@@ -244,6 +264,7 @@
 	key_third_person = "nods"
 	message = "nods."
 	message_param = "nods at %t."
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/point
 	key = "point"
@@ -293,6 +314,7 @@
 	key = "shake"
 	key_third_person = "shakes"
 	message = "shakes their head."
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/shiver
 	key = "shiver"
@@ -346,7 +368,7 @@
 	message = "stares."
 	message_param = "stares at %t."
 
-/datum/emote/living/strech
+/datum/emote/living/stretch
 	key = "stretch"
 	key_third_person = "stretches"
 	message = "stretches their arms."
@@ -377,6 +399,7 @@
 	key = "tremble"
 	key_third_person = "trembles"
 	message = "trembles in fear!"
+	stat_allowed = SOFT_CRIT
 
 /datum/emote/living/twitch
 	key = "twitch"
@@ -397,6 +420,8 @@
 	key_third_person = "whimpers"
 	message = "whimpers."
 	message_mime = "appears hurt."
+	stat_allowed = SOFT_CRIT
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/wsmile
 	key = "wsmile"
@@ -503,6 +528,7 @@
 	message_param = "beeps at %t."
 	sound = 'sound/machines/twobeep.ogg'
 	mob_type_allowed_typecache = list(/mob/living/brain, /mob/living/silicon)
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/circle
 	key = "circle"
@@ -532,3 +558,17 @@
 		to_chat(user, span_notice("You ready your slapping hand."))
 	else
 		to_chat(user, span_warning("You're incapable of slapping in your current state."))
+
+/datum/emote/living/thumbsup
+	key = "thumbsup"
+	key_third_person = "thumbs"
+	message = "gives a thumbs up."
+	message_param = "gives a thumbs up to %t."
+	restraint_check = TRUE
+
+/datum/emote/living/clueless
+	key = "clueless"
+	key_third_person = "cluelesses"
+	message = "looks clueless."
+	message_param = "looks cluelessly at %t"
+	stat_allowed = SOFT_CRIT

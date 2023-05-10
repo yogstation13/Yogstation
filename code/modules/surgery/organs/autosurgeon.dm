@@ -91,7 +91,7 @@
 	return TRUE
 
 /obj/item/autosurgeon/cmo
-	desc = "A single use autosurgeon that contains a medical heads-up display augment. A screwdriver can be used to remove it, but implants can't be placed back in."
+	desc = "A single-use autosurgeon that contains a medical heads-up display augment. A screwdriver can be used to remove it, but implants can't be placed back in."
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/eyes/hud/medical
 
@@ -118,7 +118,7 @@
 	starting_organ = /obj/item/organ/eyes/robotic/xray/syndicate
 
 /obj/item/autosurgeon/anti_stun
-	starting_organ = /obj/item/organ/cyberimp/brain/anti_stun
+	starting_organ = /obj/item/organ/cyberimp/brain/anti_stun/syndicate
 
 /obj/item/autosurgeon/reviver
 	starting_organ = /obj/item/organ/cyberimp/chest/reviver
@@ -160,6 +160,10 @@
 		to_chat(user, span_warning("The autosurgeon rejects your body!"))
 		return
 	..()
+
+/obj/item/autosurgeon/arm/syndicate/stechkin_implant
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/stechkin_implant
 
 /obj/item/autosurgeon/nt_mantis
 	uses = 1
@@ -329,11 +333,13 @@
 	if(!uses)
 		desc = "[initial(desc)] Looks like it's been used up."
 
-/obj/item/multisurgeon/jumpboots //for miners
-	starting_organ = list(/obj/item/organ/cyberimp/leg/jumpboots, /obj/item/organ/cyberimp/leg/jumpboots/l)
-
 /obj/item/multisurgeon/airshoes //for traitors
 	starting_organ = list(/obj/item/organ/cyberimp/leg/airshoes, /obj/item/organ/cyberimp/leg/airshoes/l)
 
 /obj/item/multisurgeon/noslipall //for traitors
 	starting_organ = list(/obj/item/organ/cyberimp/leg/noslip, /obj/item/organ/cyberimp/leg/noslip/l)
+
+/obj/item/multisurgeon/magboots //for ce
+	desc = "A single-use multisurgeon that contains magboot implants for each leg."
+	starting_organ = list(/obj/item/organ/cyberimp/leg/magboot, /obj/item/organ/cyberimp/leg/magboot/l)
+

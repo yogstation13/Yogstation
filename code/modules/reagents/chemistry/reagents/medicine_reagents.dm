@@ -448,6 +448,11 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	process_flags = SYNTHETIC
 
+/datum/reagent/medicine/system_cleaner/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+	for(var/thing in L.diseases)//lets it cure viruses from IPC
+		var/datum/disease/D = thing
+		D.cure()
+
 /datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/M)
 	M.adjustToxLoss(-2*REM, 0)
 	. = 1
@@ -705,16 +710,22 @@
 
 /datum/reagent/medicine/diphenhydramine
 	name = "Diphenhydramine"
-	description = "Rapidly purges the body of Histamine and reduces jitteriness. Slight chance of causing drowsiness."
+	description = "Rapidly purges the body of Histamine and reduces jitteriness. Slight chance of causing drowsiness. Overdosing will cause hallucinations."
 	reagent_state = LIQUID
 	color = "#64FFE6"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	overdose_threshold = 30
 
 /datum/reagent/medicine/diphenhydramine/on_mob_life(mob/living/carbon/M)
 	if(prob(10))
 		M.drowsyness += 1
 	M.jitteriness -= 1
 	M.reagents.remove_reagent(/datum/reagent/toxin/histamine,3)
+	..()
+
+/datum/reagent/medicine/diphenhydramine/overdose_process(mob/living/M)
+	M.set_drugginess(15)
+	M.hallucination += 5*REM
 	..()
 
 /datum/reagent/medicine/morphine
@@ -910,8 +921,8 @@
 			M.visible_message(span_warning("[M]'s body starts convulsing!"))
 			M.notify_ghost_cloning(source = M)
 			M.do_jitter_animation(10)
-			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
-			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
+			addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 10), 40) //jitter immediately, then again after 4 and 8 seconds
+			addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 10), 80)
 			sleep(10 SECONDS) //so the ghost has time to re-enter
 			if(iscarbon(M))
 				var/mob/living/carbon/C = M

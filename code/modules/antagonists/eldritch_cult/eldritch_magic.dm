@@ -1,5 +1,5 @@
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash
-	name = "Ashen passage"
+	name = "Ashen Passage"
 	desc = "Grants a short period of incorporeality, allowing passage through walls and other obstacles."
 	school = "transmutation"
 	charge_max = 150
@@ -39,7 +39,7 @@
 	action_background_icon_state = "bg_ecult"
 
 /obj/item/melee/touch_attack/mansus_fist
-	name = "Mansus Grasp"
+	name = "Mansus grasp"
 	desc = "A sinister looking aura that distorts the flow of reality around it. Knocks the target down and deals a large amount of stamina damage alongside a small amount of brute. It may gain more interesting capabilities if you continue your research..."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
@@ -86,7 +86,7 @@
 	charge_max = 300 //twice as long as mansus grasp
 	clothes_req = FALSE
 	invocation = "RUST TO RUST"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	range = 3
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "corrode"
@@ -114,13 +114,13 @@
 	charge_max = 150
 	clothes_req = FALSE
 	invocation = "ETERNAL FLAMES"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "blood_siphon"
 	action_background_icon_state = "bg_ecult"
 
 /obj/item/melee/touch_attack/blood_siphon
-	name = "Blood Siphon"
+	name = "blood siphon"
 	desc = "A sinister looking aura that distorts the flow of reality around it. It looks <i>hungry</i>..."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
@@ -165,10 +165,10 @@
 	action_icon_state = "rust_wave"
 	action_background_icon_state = "bg_ecult"
 	invocation = "FACE INEVITABILITY"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 
 /obj/item/projectile/magic/spell/rust_wave
-	name = "Patron's Reach"
+	name = "patron's reach"
 	icon_state = "eldritch_projectile"
 	alpha = 180
 	damage = 30
@@ -207,12 +207,12 @@
 
 /obj/effect/proc_holder/spell/pointed/cleave
 	name = "Cleave"
-	desc = "Causes severe bleeding on a target and people around them"
+	desc = "Causes a target and those around them to be inflicted with severe bleeding"
 	school = "transmutation"
 	charge_max = 350
 	clothes_req = FALSE
 	invocation = "RIP AND TEAR"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	range = 9
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "cleave"
@@ -261,12 +261,12 @@
 	charge_max = 650
 
 /obj/effect/proc_holder/spell/pointed/touch/mad_touch
-	name = "Touch of madness"
-	desc = "Strange energies engulf your hand, you feel even the sight of them would cause a headache if you didn't understand them."
+	name = "Touch of Madness"
+	desc = "Strange energies engulf your hand; you feel even the sight of them would cause a headache if you didn't understand them."
 	school = "transmutation"
 	charge_max = 150
 	clothes_req = FALSE
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = 2
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "mad_touch"
@@ -296,10 +296,10 @@
 
 /obj/effect/proc_holder/spell/pointed/ash_final
 	name = "Nightwatcher's Rite"
-	desc = "Fires 5 blasts of fire in angles away from you, dealing heavy damage to anything they hit."
+	desc = "Fires five blasts of fire in angles away from you, dealing heavy damage to anything they hit."
 	school = "transmutation"
 	invocation = "IGNITE"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	charge_max = 300
 	range = 15
 	clothes_req = FALSE
@@ -311,15 +311,15 @@
 	for(var/X in targets)
 		var/T
 		T = line_target(-25, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
+		INVOKE_ASYNC(src, PROC_REF(fire_line), user,T)
 		T = line_target(10, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
+		INVOKE_ASYNC(src, PROC_REF(fire_line), user,T)
 		T = line_target(0, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
+		INVOKE_ASYNC(src, PROC_REF(fire_line), user,T)
 		T = line_target(-10, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
+		INVOKE_ASYNC(src, PROC_REF(fire_line), user,T)
 		T = line_target(25, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
+		INVOKE_ASYNC(src, PROC_REF(fire_line), user,T)
 	return ..()
 
 /obj/effect/proc_holder/spell/pointed/ash_final/proc/line_target(offset, range, atom/at , atom/user)
@@ -348,7 +348,7 @@
 				continue
 			hit_list += L
 			L.adjustFireLoss(20)
-			to_chat(L, span_userdanger("You're hit by [source]'s fire breath!"))
+			to_chat(L, span_userdanger("You're hit by [source]'s fire blast!"))
 
 		new /obj/effect/hotspot(T)
 		T.hotspot_expose(700,50,1)
@@ -362,7 +362,7 @@
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/eldritch
 	invocation = "BEND MY FORM"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	possible_shapes = list(/mob/living/simple_animal/mouse,\
@@ -376,7 +376,7 @@
 /obj/effect/proc_holder/spell/targeted/emplosion/eldritch
 	name = "Entropic Pulse"
 	invocation = "ENTROPIC PULSE"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	range = -1
@@ -392,14 +392,14 @@
 	charge_max = 300 //twice as long as mansus grasp
 	clothes_req = FALSE
 	invocation = "CONFLAGRATE"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 4
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "fire_ring"
 	action_background_icon_state = "bg_ecult"
 
 /obj/effect/proc_holder/spell/aoe_turf/fire_cascade/cast(list/targets, mob/user = usr)
-	INVOKE_ASYNC(src, .proc/fire_cascade, user,range)
+	INVOKE_ASYNC(src, PROC_REF(fire_cascade), user,range)
 
 /obj/effect/proc_holder/spell/aoe_turf/fire_cascade/proc/fire_cascade(atom/centre,max_range)
 	playsound(get_turf(centre), 'sound/items/welder.ogg', 75, TRUE)
@@ -418,7 +418,7 @@
 
 /obj/effect/proc_holder/spell/targeted/telepathy/eldritch
 	invocation = ""
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 
@@ -426,7 +426,7 @@
 	name = "Oath of Fire"
 	desc = "Engulf yourself in a cloak of flames for a minute. The flames are harmless to you, but dangerous to anyone else."
 	invocation = "FUEL FOR THE FIRE"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	range = -1
@@ -445,7 +445,7 @@
 	. = ..()
 	current_user = user
 	has_fire_ring = TRUE
-	addtimer(CALLBACK(src, .proc/remove, user), duration, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(remove), user), duration, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 /obj/effect/proc_holder/spell/targeted/fire_sworn/proc/remove()
 	has_fire_ring = FALSE
@@ -464,7 +464,7 @@
 /obj/effect/proc_holder/spell/targeted/worm_contract
 	name = "Force Contract"
 	desc = "Forces all the worm parts to collapse onto a single turf"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	range = -1
@@ -493,9 +493,9 @@
 
 /obj/effect/proc_holder/spell/targeted/fiery_rebirth
 	name = "Nightwatcher's Rebirth"
-	desc = "Drains the health of nearby combusting individuals, healing you 10 of each damage type for every victim. If a victim is in critical condition they will be finished off."
+	desc = "Drains the health of nearby combusting individuals, healing you 10 of each damage type for every victim. If a victim is in critical condition, they will be finished off."
 	invocation = "ASHES TO ASHES"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	range = -1
@@ -525,12 +525,12 @@
 
 /obj/effect/proc_holder/spell/pointed/manse_link
 	name = "Mansus Link"
-	desc = "Pierce through reality, connecting minds. Hitting someone with this spell will add them to your mansus link shortly after if uninterrupted, allowing for silent communication."
+	desc = "Pierce through reality and connect minds. Hitting someone with this spell will add them to your Mansus link if uninterrupted, allowing for silent communication."
 	school = "transmutation"
 	charge_max = 300
 	clothes_req = FALSE
 	invocation = "HEAR MY VOICE"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	range = 10
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
 	action_icon_state = "mansus_link"
@@ -559,7 +559,7 @@
 
 /datum/action/innate/mansus_speech
 	name = "Mansus Link"
-	desc = "Send a psychic message to everyone connected to your mansus link."
+	desc = "Send a psychic message to everyone connected to your Mansus link."
 	button_icon_state = "link_speech"
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_ecult"
@@ -630,10 +630,10 @@
 
 /obj/effect/proc_holder/spell/cone/staggered/entropic_plume
 	name = "Entropic Plume"
-	desc = "Spews forth a disorienting plume that causes enemies to strike each other, briefly blinds them(increasing with range) and poisons them(decreasing with range), while also spreading rust in the path of the plume."
+	desc = "Spews forth a disorienting plume that causes enemies to strike each other, briefly blinding them (increasing with range) and poisoning them (decreasing with range), while also spreading rust in the path of the plume."
 	school = "illusion"
 	invocation = "GUST OF RUST"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	action_background_icon_state = "bg_ecult"
 	action_icon = 'icons/mob/actions/actions_ecult.dmi'
