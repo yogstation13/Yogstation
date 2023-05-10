@@ -89,6 +89,10 @@
 	if (!isnull(required_job_playtime))
 		data += required_job_playtime
 
+	var/list/whitelist_status = get_whitelist_status(user)
+	if (!isnull(whitelist_status))
+		data += whitelist_status
+
 	var/list/job_bans = get_job_bans(user)
 	if (job_bans.len)
 		data["job_bans"] = job_bans
@@ -119,6 +123,26 @@
 
 	if (job_required_experience)
 		data["job_required_experience"] = job_required_experience
+
+	return data
+
+/datum/preference_middleware/jobs/proc/get_whitelist_status(mob/user)
+	var/list/data = list()
+	var/list/whitelisted_jobs = list()
+	var/list/whitelist_status = list()
+
+	for (var/datum/job/job as anything in SSjob.occupations)
+		var/hasWhitelist = job.whitelist 
+		whitelisted_jobs[job.title] = hasWhitelist
+		if(job.whitelist)
+			var/isWhitelisted = user.client.key in job.whitelist
+			whitelist_status[job.title] = GLOB.job_whitelists[job.whitelistFileName][user.client.key]
+
+	if(whitelisted_jobs)
+		data["job_whitelisted"] = whitelisted_jobs
+
+	if(whitelist_status)
+		data["job_is_whitelisted"] = whitelist_status
 
 	return data
 

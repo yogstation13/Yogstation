@@ -192,6 +192,8 @@ const JobRow = (props: {
 
   const experienceNeeded = data.job_required_experience
     && data.job_required_experience[name];
+  const whitelistedJob = data.job_whitelisted && data.job_whitelisted[name];
+  const isWhitelisted = data.job_is_whitelisted && data.job_is_whitelisted[name];
   const daysLeft = data.job_days_left ? data.job_days_left[name] : 0;
 
   let rightSide: InfernoNode;
@@ -220,6 +222,14 @@ const JobRow = (props: {
       <Stack align="center" height="100%" pr={1}>
         <Stack.Item grow textAlign="right">
           <b>Banned</b>
+        </Stack.Item>
+      </Stack>
+    );
+  } else if(whitelistedJob && !isWhitelisted) {
+    rightSide = (
+      <Stack align="center" height="100%" pr={1}>
+        <Stack.Item grow textAlign="right">
+          <b>WHITELISTED</b>
         </Stack.Item>
       </Stack>
     );

@@ -157,6 +157,8 @@ export type PreferencesMenuData = {
     experience_type: string,
     required_playtime: number,
   }>;
+  job_whitelisted?: Record<string, number>,
+  job_is_whitelisted?: Record<string, number>,
   job_preferences: Record<string, JobPriority>;
   job_alt_titles: Record<string, string>;
 
