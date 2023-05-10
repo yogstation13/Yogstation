@@ -7,11 +7,13 @@ export const CargoBountyConsole = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     bountydata = [],
+    emagged,
   } = data;
   return (
     <Window
       width={750}
       height={600}
+      theme={emagged ? "syndicate" : undefined}
       resizable>
       <Window.Content scrollable>
         <Section

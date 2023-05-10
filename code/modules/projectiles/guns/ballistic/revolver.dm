@@ -67,7 +67,7 @@
 
 /obj/item/gun/ballistic/revolver/detective
 	name = "\improper Colt Detective Special"
-	desc = "A classic, if not outdated, law enforcement firearm. Uses .38-special rounds."
+	desc = "A classic, if not outdated, law enforcement firearm. Uses .38 special rounds."
 	fire_sound = 'sound/weapons/revolver38shot.ogg'
 	icon_state = "detective"
 	fire_delay = 0

@@ -13,6 +13,7 @@
 	flags_cover = MASKCOVERSMOUTH
 	visor_flags_cover = MASKCOVERSMOUTH
 	resistance_flags = NONE
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/breath/tactical
 	name = "tactical breath mask"
@@ -49,3 +50,4 @@
 	item_state = "m_mask"
 	permeability_coefficient = 0.01
 	equip_delay_other = 10
+	mutantrace_variation = MUTANTRACE_VARIATION

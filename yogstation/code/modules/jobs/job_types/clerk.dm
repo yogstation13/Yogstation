@@ -23,6 +23,21 @@
 		/datum/job_department/service,
 	)
 
+	mail_goodies = list(
+		/obj/effect/spawner/lootdrop/maintenance/three = 35, //bunch of stuff that could interest assistants
+		/obj/item/stack/sheet/plastic/five = 30,
+		/obj/effect/spawner/lootdrop/plushies = 20,
+		/obj/item/toy/minimeteor = 15,
+		/obj/item/circuitboard/computer/slot_machine = 15,
+		/obj/item/twohanded/dualsaber/toy = 10,
+		/obj/item/toy/windupToolbox = 10,
+		/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate = 5,
+		/obj/item/storage/box/fancy/heart_box = 5,
+		/obj/item/lipstick/random = 5,
+		/obj/item/skub = 2, //pro skub have taken over the mail
+		/obj/item/stack/ore/bluespace_crystal/refined/nt = 1
+	)
+
 	smells_like = "cheap plastic"
 
 /datum/outfit/job/clerk

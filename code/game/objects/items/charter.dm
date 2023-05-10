@@ -68,7 +68,7 @@
 
 	to_chat(user, "Your name has been sent to your employers for approval.")
 	// Autoapproves after a certain time
-	rename_callback = CALLBACK(src, .proc/rename_station, new_name, user.name, user.real_name, key_name(user))
+	rename_callback = CALLBACK(src, PROC_REF(rename_station), new_name, user.name, user.real_name, key_name(user))
 	response_timer_id = addtimer(rename_callback, approval_time, TIMER_STOPPABLE)
 	to_chat(GLOB.permissions.admins,
 		span_adminnotice("<b><font color=orange>CUSTOM STATION RENAME:</font></b>[ADMIN_LOOKUPFLW(user)] proposes to rename the [name_type] to [new_name] (will auto-approve in [DisplayTimeText(approval_time)]).\

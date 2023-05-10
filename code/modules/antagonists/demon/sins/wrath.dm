@@ -17,7 +17,7 @@
 	charge_max = 600
 	clothes_req = FALSE
 	invocation = "BURN IN HELL!!"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	message = span_notice("You ignite in a flash of hellfire!")
 	cooldown_min = 75
 	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
@@ -30,7 +30,7 @@
 	desc = "This spell sets a person on fire from range."
 	school = "transmutation"
 	invocation = "BURN IN HELL!!"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	charge_max = 600
 	clothes_req = FALSE
 	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'

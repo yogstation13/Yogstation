@@ -118,7 +118,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
 		finished = TRUE
 		return
-	addtimer(CALLBACK(src, .proc/check_win), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
+	addtimer(CALLBACK(src, PROC_REF(check_win)), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
 
 /datum/game_mode/fortnite/set_round_result()
 	..()
@@ -148,7 +148,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	borderstage++
 
 	if(borderstage <= 9)
-		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
+		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
 /datum/game_mode/fortnite/proc/ItemCull()//removes items that are too weak, adds stronger items into the loot pool
 	for(var/item in GLOB.battleroyale_armour)

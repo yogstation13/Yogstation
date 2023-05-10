@@ -384,7 +384,7 @@
 	if(burst_size > 1)
 		firing_burst = TRUE
 		for(var/i = 1 to burst_size)
-			addtimer(CALLBACK(src, .proc/process_burst, user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), fire_delay * (i - 1))
+			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), fire_delay * (i - 1))
 	else
 		if(chambered)
 			if(HAS_TRAIT(user, TRAIT_PACIFISM)) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
@@ -411,7 +411,7 @@
 		process_chamber()
 		update_icon()
 		semicd = TRUE
-		addtimer(CALLBACK(src, .proc/reset_semicd), fire_delay)
+		addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
 
 	if(user)
 		user.update_inv_hands()
@@ -767,7 +767,7 @@
 			zoomed = !zoomed
 
 	if(zoomed)
-		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
+		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate))
 		user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, direc)
 	else
 		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)

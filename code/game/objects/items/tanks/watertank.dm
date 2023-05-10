@@ -298,7 +298,7 @@
 			var/obj/effect/particle_effect/fluid/foam/metal/resin/foam = new (get_turf(target))
 			foam.group.target_size = 0
 			resin_charges--
-			addtimer(CALLBACK(src, .proc/add_foam_charge), 5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(add_foam_charge)), 5 SECONDS)
 		else
 			to_chat(user, span_warning("Resin foam mix is still being synthesized..."))
 			return
