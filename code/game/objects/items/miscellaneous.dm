@@ -195,7 +195,7 @@
 	if(H.mind)
 		H.mind.grab_ghost()
 	to_chat(user, span_notice("You reset the IPC's internal circuitry - reviving them!"))
-	H.setOrganLoss(ORGAN_SLOT_BRAIN, ghetto ? 50 : 0) //ghetto does brain damage on revival
+	H.setOrganLoss(ORGAN_SLOT_BRAIN, ghetto ? 60 : 0) //ghetto does brain damage on revival
 	H.revive()
 	qdel(src)
 	return TRUE //only return true if it actually revives
