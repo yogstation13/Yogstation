@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(job_whitelists)
+
 SUBSYSTEM_DEF(job)
 	name = "Jobs"
 	init_order = INIT_ORDER_JOBS
@@ -31,6 +33,17 @@ SUBSYSTEM_DEF(job)
 		SetupOccupations()
 	if(CONFIG_GET(flag/load_jobs_from_txt))
 		LoadJobs()
+	for(var/datum/job/J in occupations)
+		if(J.whitelist && J.whitelistFileName)
+			var/json = file2text("data/whitelists/[J.whitelistFileName].json")
+			if(!json)
+				var/json_file = file("data/whitelists/[J.whitelistFileName].json")
+				if(!fexists(json_file))
+					WARNING("Failed to load whitelist status for [J]. File likely corrupt.")
+					return
+				return
+			job_whitelists[J.title] = json_decode(json)
+			
 	set_overflow_role(CONFIG_GET(string/overflow_job))
 	return SS_INIT_SUCCESS
 

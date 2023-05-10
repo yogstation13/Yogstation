@@ -96,6 +96,11 @@
 	/// Icons to be displayed in the orbit ui. Source: FontAwesome v5.
 	var/orbit_icon
 
+	//Do we have a whitelist?
+	var/whitelist = FALSE
+	//What is the name of our json whitelist file
+	var/whitelistFileName
+
 /*
 	If you want to change a job on a specific map with this system, you will want to go onto that job datum
 	and add said map's name to the changed_maps list, like so:
