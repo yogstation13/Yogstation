@@ -276,10 +276,10 @@
 			G.take_damage(G.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 		else if(istype(A, /obj/machinery/door)) //Nines hits for reinforced airlock, seven for normal
 			var/obj/machinery/door/D = A
-			D.take_damage(D.max_integrity/6, BRUTE, MELEE, FALSE, null, armour_penetration)
+			D.take_damage((force+25), BRUTE, MELEE, FALSE, null, armour_penetration)
 		else if(istype(A, /obj/structure/door_assembly)) //Two hits for frames left behind
 			var/obj/machinery/door/D = A
-			D.take_damage(D.max_integrity/3, BRUTE, MELEE, FALSE, null, armour_penetration)
+			D.take_damage((force+25), BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /*
  * Metal Hydrogen Axe
