@@ -63,7 +63,7 @@
 
 /datum/martial_art/ultra_violence/proc/speed_boost(mob/living/carbon/human/A, strength, tag)
 	A.add_movespeed_modifier(tag, update=TRUE, priority=101, multiplicative_slowdown = strength, blacklisted_movetypes=(FLOATING))
-	addtimer(CALLBACK(src, .proc/remove_boost, A, tag), 6 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(remove_boost), A, tag), 6 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /datum/martial_art/ultra_violence/proc/remove_boost(mob/living/carbon/human/A, tag)
 	A.remove_movespeed_modifier(tag)
