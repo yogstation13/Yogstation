@@ -206,7 +206,7 @@
 			if(D.density)
 				return
 		delayFire += 1.5
-		addtimer(CALLBACK(src, .proc/dragon_fire_line, T), delayFire)
+		addtimer(CALLBACK(src, PROC_REF(dragon_fire_line), T), delayFire)
 
 /**
   * What occurs on each tile to actually create the fire.
@@ -287,7 +287,7 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 		fully_heal()
 		color = "#FF0000"
 		set_varspeed(-0.5)
-		addtimer(CALLBACK(src, .proc/rift_empower, FALSE), 300)
+		addtimer(CALLBACK(src, PROC_REF(rift_empower), FALSE), 300)
 	else
 		color = "#FFFFFF"
 		set_varspeed(0)
@@ -320,7 +320,7 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 /mob/living/simple_animal/hostile/space_dragon/proc/useGust(timer)
 	if(timer != 10)
 		pixel_y = pixel_y + 2;
-		addtimer(CALLBACK(src, .proc/useGust, timer + 1), 1.5)
+		addtimer(CALLBACK(src, PROC_REF(useGust), timer + 1), 1.5)
 		return
 	pixel_y = 0
 	icon_state = "spacedragon_gust_2"
@@ -338,7 +338,7 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 			var/throwtarget = get_edge_target_turf(target, dir_to_target)
 			L.safe_throw_at(throwtarget, 10, 1, src)
 			L.Paralyze(50)
-	addtimer(CALLBACK(src, .proc/reset_status), 4 + ((tiredness * tiredness_mult) / 10))
+	addtimer(CALLBACK(src, PROC_REF(reset_status)), 4 + ((tiredness * tiredness_mult) / 10))
 	tiredness = tiredness + (30 * tiredness_mult)
 
 /**

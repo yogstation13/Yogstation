@@ -1,0 +1,7 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "battle royale gamemode lasts 6 minutes longer at maximum"
+  - tweak: "Completely overhauls how the battle royale gamemode spawns loot"
+  - rscadd: "adds a bunch of items to the battle royale loot table"
+  - tweak: "Changes how areas are selected for battle royale storms (fixes deadzones)"

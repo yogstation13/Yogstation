@@ -71,7 +71,7 @@
 /obj/effect/proc_holder/spell/targeted/conjure_item
 	name = "Summon weapon"
 	desc = "A generic spell that should not exist.  This summons an instance of a specific type of item, or if one already exists, un-summons it.  Summons into hand if possible."
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	include_user = TRUE
 	range = -1
 	clothes_req = FALSE
@@ -80,15 +80,18 @@
 	school = "conjuration"
 	charge_max = 150
 	cooldown_min = 10
-	var/delete_old = TRUE //TRUE to delete the last summoned object if it's still there, FALSE for infinite item stream weeeee
+	/// TRUE to delete the last summoned object if it's still there, FALSE for infinite item stream weeeee
+	var/delete_old = TRUE
+	/// If the currently held item should be dropped to make way for the new item
+	var/drop_currently_held = TRUE
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/cast(list/targets, mob/user = usr)
 	if (delete_old && item && !QDELETED(item))
 		QDEL_NULL(item)
-	else
-		for(var/mob/living/carbon/C in targets)
-			if(C.dropItemToGround(C.get_active_held_item()))
-				C.put_in_hands(make_item(), TRUE)
+	for(var/mob/living/carbon/C in targets)
+		if(drop_currently_held)
+			C.dropItemToGround(C.get_active_held_item())
+		C.put_in_hands(make_item(), TRUE)
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/Destroy()
 	if(item)

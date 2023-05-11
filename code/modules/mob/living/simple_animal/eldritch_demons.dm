@@ -82,7 +82,7 @@
 	var/datum/action/innate/mansus_speech/action = new(src)
 	linked_mobs[mob_linked] = action
 	action.Grant(mob_linked)
-	RegisterSignals(mob_linked, list(COMSIG_GLOB_MOB_DEATH, COMSIG_PARENT_QDELETING) , .proc/unlink_mob)
+	RegisterSignals(mob_linked, list(COMSIG_GLOB_MOB_DEATH, COMSIG_PARENT_QDELETING) , PROC_REF(unlink_mob))
 	return TRUE
 
 /mob/living/simple_animal/hostile/eldritch/raw_prophet/proc/unlink_mob(mob/living/mob_linked)
@@ -139,7 +139,7 @@
 		stack_trace("Eldritch Armsy created with invalid len ([len]). Reverting to 3.")
 		len = 3 //code breaks below 3, let's just not allow it.
 	oldloc = loc
-	RegisterSignal(src,COMSIG_MOVABLE_MOVED,.proc/update_chain_links)
+	RegisterSignal(src,COMSIG_MOVABLE_MOVED, PROC_REF(update_chain_links))
 	if(!spawn_more)
 		return
 	allow_pulling = TRUE
