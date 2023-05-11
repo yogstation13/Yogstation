@@ -1,5 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Moves some stuff from sec/armory cargo sections into an \"Outside Weaponry\" section to make it nicer on the eyes"
-  - tweak: "Minus prison jumpsuit crate, sec/armory/weaponry sections should be alphabetized now"
