@@ -471,14 +471,14 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "secconwhistle"
 	item_state = "secconwhistle"
-	var/recharge_time = 0
-	var/recharge_rate = 50
+	COOLDOWN_DECLARE(recharge_time)
+	var/recharge_rate = 5 SECONDS
 	actions_types = list(/datum/action/item_action/blow_whistle)
 
 /obj/item/clothing/neck/secconwhistle/ui_action_click(mob/user)
-	if(recharge_time > world.time)
-		to_chat(usr, span_warning("You need to catch your breath first!"))
+	if(!COOLDOWN_FINISHED(src, recharge_time)
+		to_chat(user, span_warning("You need to catch your breath first!"))
 		return
-	playsound(loc, 'sound/misc/policewhistle.ogg', 30, 1, -1)
+	playsound(get_turf(src), 'sound/misc/policewhistle.ogg', 30, TRUE, -1)
 	user.visible_message(span_warning("[user] blows their whistle!"))
-	recharge_time = world.time + recharge_rate
+	COOLDOWN_START(src, recharge_time, recharge_rate)
