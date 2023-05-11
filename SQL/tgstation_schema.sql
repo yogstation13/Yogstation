@@ -3,6 +3,7 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+SET GLOBAL event_scheduler=ON
 
 DROP TABLE IF EXISTS `achievements`;
 CREATE TABLE IF NOT EXISTS `achievements` (
@@ -122,7 +123,7 @@ CREATE TABLE `bound_credentials` (
   `ckey` varchar(32) NOT NULL,
   `computerid` varchar(32) DEFAULT NULL,
   `ip` int(10) unsigned DEFAULT NULL,
-  `flags` set('bypass_bans') DEFAULT NULL,
+  `flags` set('bypass_bans','allow_proxies') DEFAULT NULL,
   `comment` text NULL,
   PRIMARY KEY (`id`),
   KEY `idx_ckey_lookup` (`ckey`),
@@ -533,6 +534,20 @@ CREATE TABLE IF NOT EXISTS `stickyban_matched_ip` (
   PRIMARY KEY (`stickyban`,`matched_ip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `proxy_cache`;
+CREATE TABLE `proxy_cache` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` int(11) unsigned NOT NULL,
+  `data` mediumtext NOT NULL,
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ip` (`ip`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE OR REPLACE EVENT proxy_cache_ttl
+    ON SCHEDULE EVERY 1 HOUR
+    DO
+      DELETE FROM proxy_cache WHERE (last_updated + INTERVAL 1 DAY) < current_timestamp();
 
 -- Dumping structure for trigger yogstation_copy.role_timeTlogdelete
 DROP TRIGGER IF EXISTS `role_timeTlogdelete`;
