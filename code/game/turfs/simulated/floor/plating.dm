@@ -38,7 +38,7 @@
 		broken_states = list("platingdmg1", "platingdmg2", "platingdmg3")
 	if (!burnt_states)
 		burnt_states = list("panelscorched")
-	//. = ..()
+	. = ..()
 	if(!attachment_holes || (!broken && !burnt))
 		icon_plating = icon_state
 	else
