@@ -82,7 +82,7 @@ TICK_LIMIT_MC_INIT 500
 ##	FEEDBACK_TABLEPREFIX
 ##	FEEDBACK_TABLEPREFIX SS13_
 ## Remove "SS13_" if you are using the standard schema file.
-FEEDBACK_TABLEPREFIX SS13_
+FEEDBACK_TABLEPREFIX
 
 VOICE_ANNOUNCE_URL_BASE http://localhost/voice_announce/
 VOICE_ANNOUNCE_DIR ../Yogstation.net/voice_announce_tmp
