@@ -324,18 +324,16 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	var/selected
 	switch(type)
 		if(1)//weapon focus (to fuel the fight)
-			for(var/i in 1 to rand(2,4))
+			for(var/i in 1 to rand(2,3))
 				selected = pickweightAllowZero(GLOB.battleroyale_weapon)
 				new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_utility)
 			new selected(src)
 
 		if(2)//armour focus (so people can select what they want)
-			for(var/i in 1 to 2)//less than weapons because guns can run out
+			for(var/i in 1 to 3)//less than weapons because guns can run out
 				selected = pickweightAllowZero(GLOB.battleroyale_armour)
 				new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
-			new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_healing)
 			new selected(src)
 
@@ -350,7 +348,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			new selected(src)
 
 		if(4)//KABOOOM AHAHAHAHAHA
-			for(var/i in 1 to rand(2,5))
+			for(var/i in 1 to rand(2,4))
 				selected = pickweightAllowZero(GLOB.battleroyale_utility)
 				new selected(src)
 
@@ -358,8 +356,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			for(var/i in 1 to rand(2,4))
 				selected = pickweightAllowZero(GLOB.battleroyale_healing)
 				new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_armour)
-			new selected(src)
 
 /obj/structure/closet/crate/battleroyale/open(mob/living/user)
 	. = ..()
