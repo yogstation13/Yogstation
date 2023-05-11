@@ -534,12 +534,10 @@ CREATE TABLE IF NOT EXISTS `stickyban_matched_ip` (
 
 DROP TABLE IF EXISTS `proxy_cache`;
 CREATE TABLE `proxy_cache` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` int(11) unsigned NOT NULL,
   `data` mediumtext NOT NULL,
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ip` (`ip`),
+  PRIMARY KEY (`ip`),
   CONSTRAINT `data` CHECK (json_valid(`data`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
