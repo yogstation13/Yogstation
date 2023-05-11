@@ -64,8 +64,9 @@ GLOBAL_VAR(stormdamage)
 	if(!GLOB.battleroyale_players.len)
 		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
 
-	for(var/obj/machinery/door/airlock/W in GLOB.machines)//set all doors to all access
+	for(var/obj/machinery/door/W in GLOB.machines)//set all doors to all access
 		W.req_access = list()
+		W.req_one_access = list()
 	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
