@@ -15,19 +15,16 @@ SUBSYSTEM_DEF(echelon)
 			flags
 		FROM [format_table_name("bound_credentials")]
 		WHERE
-			ckey = :ckey
+			ckey = :ckey AND
+			FIND_IN_SET('[DB_BOUND_CREDENTIALS_FLAG_ALLOW_PROXIES]', flags) 
 	"}, list("ckey" = ckey))
 	if(!query_get_flags.Execute())
 		qdel(query_get_flags)
 		return FALSE
 
-	while(query_get_flags.NextRow())
-		var/list/flags = splittext(query_get_flags.item[1], ",")
-		if(flags.Find(DB_BOUND_CREDENTIALS_FLAG_ALLOW_PROXIES))
-			qdel(query_get_flags)
-			return TRUE
-
 	qdel(query_get_flags)
+	return rows.len >= 1
+
 
 /datum/controller/subsystem/echelon/proc/is_using_proxy(ip)
 	PRIVATE_PROC(TRUE)
