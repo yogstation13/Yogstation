@@ -16,8 +16,7 @@
 	liked_food = MEAT
 	coldmod = 6
 	heatmod = 0.5
-	burnmod = 1 // = regular burn damage unlike other slimes
-	armor = -10	//Squishy
+	burnmod = 0.5 // = 1/2x generic burn damage
 	payday_modifier = 0.6 //literally a pile of toxic ooze walking around, definitely a health hazard
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
@@ -169,7 +168,6 @@
 	say_mod = "says"
 	hair_color = "mutcolor"
 	hair_alpha = 150
-	burnmod = 0.5 // = 1/2x generic burn damage
 	ignored_by = list(/mob/living/simple_animal/slime)
 	var/datum/action/innate/split_body/slime_split
 	var/list/mob/living/carbon/bodies
@@ -439,7 +437,6 @@
 	plural_form = null
 	id = "lum"
 	say_mod = "says"
-	burnmod = 0.5 // = 1/2x generic burn damage
 	var/glow_intensity = LUMINESCENT_DEFAULT_GLOW
 	var/obj/effect/dummy/luminescent_glow/glow
 	var/obj/item/slime_extract/current_extract
@@ -609,7 +606,6 @@
 	name = "Stargazer"
 	plural_form = null
 	id = "stargazer"
-	burnmod = 0.5 // = 1/2x generic burn damage
 	var/datum/action/innate/project_thought/project_thought
 	var/datum/action/innate/link_minds/link_minds
 	var/list/mob/living/linked_mobs = list()
