@@ -255,7 +255,8 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 			. += "[src] is made of cold-resistant materials."
 		if(resistance_flags & FIRE_PROOF)
 			. += "[src] is made of fire-retardant materials."
-
+	if(taped)
+		. += "[src] seems to be covered in tape."
 	if(!user.research_scanner)
 		return
 
@@ -621,7 +622,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	if(HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	thrownby = thrower
-	callback = CALLBACK(src, .proc/after_throw, callback) //replace their callback with our own
+	callback = CALLBACK(src, PROC_REF(after_throw), callback) //replace their callback with our own
 	. = ..(target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart = quickstart)
 
 
@@ -791,7 +792,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	if((item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && usr.client.prefs.read_preference(/datum/preference/toggle/enable_tooltips) && !QDELETED(src))
 		var/timedelay = usr.client.prefs.read_preference(/datum/preference/numeric/tooltip_delay) / 100
 		var/user = usr
-		tip_timer = addtimer(CALLBACK(src, .proc/openTip, location, control, params, user), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
+		tip_timer = addtimer(CALLBACK(src, PROC_REF(openTip), location, control, params, user), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
 
 /obj/item/MouseExited()
 	deltimer(tip_timer)//delete any in-progress timer if the mouse is moved off the item before it finishes
@@ -815,7 +816,7 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 
 	if(delay)
 		// Create a callback with checks that would be called every tick by do_after.
-		var/datum/callback/tool_check = CALLBACK(src, .proc/tool_check_callback, user, amount, extra_checks)
+		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
 		if(ismob(target))
 			if(!do_mob(user, target, delay, extra_checks=tool_check))
@@ -905,24 +906,6 @@ GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
-	
-/**
-  *	Called when this object is first embedded into a carbon
-  */
-/obj/item/proc/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
-	return TRUE
-
-/**
-  *	Called when this object is no longer embedded into a carbon	
-  */
-/obj/item/proc/on_embed_removal(mob/living/carbon/human/embedde)
-	return TRUE
-
-/**
-  *	Called every life tick when the object is embedded in a carbon	
-  */
-/obj/item/proc/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
-	return
 
 /obj/item/proc/do_pickup_animation(atom/target)
 	if(!istype(loc, /turf))

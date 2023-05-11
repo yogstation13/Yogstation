@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,21)
+	var/loot = rand(1,23)
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -69,6 +69,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
+		if(22)
+			new /obj/item/clothing/gloves/gauntlets(src)
+		if(23)
+			new /obj/item/gun/ballistic/bow/ashen(src)
+			new /obj/item/storage/belt/quiver/returning/bone(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -213,7 +218,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "memento_mori")
 		icon_state = "memento_mori_active"
 		active_owner = user
-		RegisterSignal(src, COMSIG_ITEM_PRESTRIP, .proc/moriwarn)
+		RegisterSignal(src, COMSIG_ITEM_PRESTRIP, PROC_REF(moriwarn))
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/moriwarn()
 	active_owner.visible_message(span_userdanger("The [src] writhes and shudders as it starts to tear away [active_owner]'s lifeforce!"))
@@ -299,7 +304,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/effect/wisp/orbit(atom/thing, radius, clockwise, rotation_speed, rotation_segments, pre_rotation, lockinorbit)
 	. = ..()
 	if(ismob(thing))
-		RegisterSignal(thing, COMSIG_MOB_UPDATE_SIGHT, .proc/update_user_sight)
+		RegisterSignal(thing, COMSIG_MOB_UPDATE_SIGHT, PROC_REF(update_user_sight))
 		var/mob/being = thing
 		being.update_sight()
 		to_chat(thing, span_notice("The wisp enhances your vision."))
@@ -604,7 +609,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		var/mob/living/L = target
 		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
-				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH,.proc/roll_loot, TRUE)
+				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH, PROC_REF(roll_loot), TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
 
@@ -637,7 +642,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(51 to 60)//10% for bow and bronze tipped arrows, bronze are supposed to be the worst in runescape but they kinda slap in here, hopefully limited by the 5 arrows
 			new /obj/item/gun/ballistic/bow(spot)
 			for(var/i in 1 to 5)
-				new /obj/item/ammo_casing/caseless/arrow/bronze(spot)
+				new /obj/item/ammo_casing/reusable/arrow/bronze(spot)
 		if(61 to 70)//10% chance at a seed drop, runescape drops seeds somewhat frequently for players to plant and harvest later
 			switch(rand(1,5))
 				if(1)
@@ -1201,7 +1206,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	color = "#990000"
 	extinguish()
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
-	addtimer(CALLBACK(src, .proc/hatch), 20 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(hatch)), 20 SECONDS)
 
 /obj/item/dragon_egg/proc/hatch()
 	visible_message(span_boldwarning("[src] suddenly cracks apart, revealing a tiny ash drake!"))
@@ -1240,7 +1245,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/mayhem/attack_self(mob/user)
 	for(var/mob/living/carbon/human/H in range(7,user))
 		var/obj/effect/mine/pickup/bloodbath/B = new(H)
-		INVOKE_ASYNC(B, /obj/effect/mine/pickup/bloodbath/.proc/mineEffect, H)
+		INVOKE_ASYNC(B, TYPE_PROC_REF(/obj/effect/mine/pickup/bloodbath, mineEffect), H)
 	to_chat(user, span_notice("You shatter the bottle!"))
 	playsound(user.loc, 'sound/effects/glassbr1.ogg', 100, 1)
 	message_admins(span_adminnotice("[ADMIN_LOOKUPFLW(user)] has activated a bottle of mayhem!"))
@@ -1459,11 +1464,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 	calculate_anger_mod(user)
 	timer = world.time + CLICK_CD_MELEE //by default, melee attacks only cause melee blasts, and have an accordingly short cooldown
 	if(proximity_flag)
-		INVOKE_ASYNC(src, .proc/aoe_burst, T, user)
+		INVOKE_ASYNC(src, PROC_REF(aoe_burst), T, user)
 		log_combat(user, target, "fired 3x3 blast at", src)
 	else
 		if(ismineralturf(target) && get_dist(user, target) < 6) //target is minerals, we can hit it(even if we can't see it)
-			INVOKE_ASYNC(src, .proc/cardinal_blasts, T, user)
+			INVOKE_ASYNC(src, PROC_REF(cardinal_blasts), T, user)
 			timer = world.time + cooldown_time
 		else if(target in view(5, get_turf(user))) //if the target is in view, hit it
 			timer = world.time + cooldown_time
@@ -1474,12 +1479,12 @@ GLOBAL_LIST_EMPTY(aide_list)
 				C.monster_damage_boost = FALSE
 				log_combat(user, target, "fired a chaser at", src)
 			else
-				INVOKE_ASYNC(src, .proc/cardinal_blasts, T, user) //otherwise, just do cardinal blast
+				INVOKE_ASYNC(src, PROC_REF(cardinal_blasts), T, user) //otherwise, just do cardinal blast
 				log_combat(user, target, "fired cardinal blast at", src)
 		else
 			to_chat(user, span_warning("That target is out of range!") )
 			timer = world.time
-	INVOKE_ASYNC(src, .proc/prepare_icon_update)
+	INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 
 /obj/item/hierophant_club/proc/calculate_anger_mod(mob/user) //we get stronger as the user loses health
 	chaser_cooldown = initial(chaser_cooldown)
@@ -1522,7 +1527,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			user.visible_message("[span_hierophant_warning("[user] starts fiddling with [src]'s pommel...")]", \
 			span_notice("You start detaching the hierophant beacon..."))
 			timer = world.time + 5.1 SECONDS
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			if(do_after(user, 5 SECONDS, user) && !beacon)
 				var/turf/T = get_turf(user)
 				playsound(T,'sound/magic/blind.ogg', 200, 1, -4)
@@ -1534,7 +1539,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 				[span_notice("You can remove the beacon to place it again by striking it with the club.")]")
 			else
 				timer = world.time
-				INVOKE_ASYNC(src, .proc/prepare_icon_update)
+				INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 		else
 			to_chat(user, span_warning("You need to be on solid ground to detach the beacon!"))
 		return
@@ -1551,7 +1556,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	user.update_action_buttons_icon()
 	user.visible_message("[span_hierophant_warning("[user] starts to glow faintly...")]")
 	timer = world.time + 5 SECONDS
-	INVOKE_ASYNC(src, .proc/prepare_icon_update)
+	INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 	beacon.icon_state = "hierophant_tele_on"
 	var/obj/effect/temp_visual/hierophant/telegraph/edge/TE1 = new /obj/effect/temp_visual/hierophant/telegraph/edge(user.loc)
 	var/obj/effect/temp_visual/hierophant/telegraph/edge/TE2 = new /obj/effect/temp_visual/hierophant/telegraph/edge(beacon.loc)
@@ -1563,7 +1568,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_action_buttons_icon()
 			timer = world.time
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			beacon.icon_state = "hierophant_tele_off"
 			return
 		new /obj/effect/temp_visual/hierophant/telegraph(T, user)
@@ -1575,7 +1580,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			if(user)
 				user.update_action_buttons_icon()
 			timer = world.time
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			if(beacon)
 				beacon.icon_state = "hierophant_tele_off"
 			return
@@ -1584,7 +1589,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
 			user.update_action_buttons_icon()
 			timer = world.time
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			beacon.icon_state = "hierophant_tele_off"
 			return
 		user.log_message("teleported self from [AREACOORD(source)] to [beacon]", LOG_GAME)
@@ -1597,7 +1602,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			var/obj/effect/temp_visual/hierophant/blast/B = new /obj/effect/temp_visual/hierophant/blast(t, user, TRUE) //but absolutely will hurt enemies
 			B.damage = 30
 		for(var/mob/living/L in range(1, source))
-			INVOKE_ASYNC(src, .proc/teleport_mob, source, L, T, user) //regardless, take all mobs near us along
+			INVOKE_ASYNC(src, PROC_REF(teleport_mob), source, L, T, user) //regardless, take all mobs near us along
 		sleep(0.6 SECONDS) //at this point the blasts detonate
 		if(beacon)
 			beacon.icon_state = "hierophant_tele_off"
@@ -1605,7 +1610,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		qdel(TE1)
 		qdel(TE2)
 		timer = world.time
-		INVOKE_ASYNC(src, .proc/prepare_icon_update)
+		INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 	if(beacon)
 		beacon.icon_state = "hierophant_tele_off"
 	teleporting = FALSE
@@ -1646,7 +1651,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	B.damage = HIEROPHANT_CLUB_CARDINAL_DAMAGE
 	B.monster_damage_boost = FALSE
 	for(var/d in GLOB.cardinals)
-		INVOKE_ASYNC(src, .proc/blast_wall, T, d, user)
+		INVOKE_ASYNC(src, PROC_REF(blast_wall), T, d, user)
 
 /obj/item/hierophant_club/proc/blast_wall(turf/T, dir, mob/living/user) //make a wall of blasts blast_range tiles long
 	if(!T)
@@ -1790,14 +1795,12 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "puzzling chest"
 
 /obj/structure/closet/crate/necropolis/puzzle/PopulateContents()
-	var/loot = rand(1,3)
+	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
 			new /obj/item/bodypart/r_arm/robot/seismic(src)
 		if(2)
 			new /obj/item/wisp_lantern(src)
-		if(3)
-			new /obj/item/prisoncube(src)
 
 //Legion
 #define COOLDOWN_TAP 60
