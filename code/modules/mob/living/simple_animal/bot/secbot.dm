@@ -20,6 +20,7 @@
 	data_hud_type = DATA_HUD_SECURITY_ADVANCED
 	path_image_color = "#FF0000"
 
+	var/baton_damage = 60
 	var/baton_type = /obj/item/melee/baton
 	var/mob/living/carbon/target
 	var/oldtarget_name
@@ -271,12 +272,12 @@ Auto Patrol: []"},
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		threat = H.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, PROC_REF(check_for_weapons)))
-		if(H.check_shields(src, 54, "[src]'s baton"))
+		if(H.check_shields(src, baton_damage, "[src]'s baton"))
 			return
 	else
 		threat = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, PROC_REF(check_for_weapons)))
 	C.stuttering = max(5, C.stuttering)
-	C.apply_damage(54, STAMINA, BODY_ZONE_CHEST, C.run_armor_check(BODY_ZONE_CHEST, ENERGY)) // baton runs off of the tiny bot's power instead of an actual cell, not enough to work at full capacity
+	C.apply_damage(baton_damage, STAMINA, BODY_ZONE_CHEST, C.run_armor_check(BODY_ZONE_CHEST, ENERGY)) // baton runs off of the tiny bot's power instead of an actual cell, not enough to work at full capacity
 
 	log_combat(src,C,"stunned")
 	if(declare_arrests)
