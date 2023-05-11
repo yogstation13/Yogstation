@@ -180,6 +180,10 @@
 	var/obj/item/ammo_casing/a357/ironfeather/ammo = new /obj/item/ammo_casing/a357/ironfeather()
 	A.put_in_active_hand(ammo)
 	ammo.fire_casing(D, A)
+	if(!QDELETED(ammo))
+		ammo.moveToNullspace()//get rid of the spent casing
+		QDEL_NULL(ammo)
+
 	playsound(A, "sound/weapons/shotgunshot.ogg", 90, FALSE)
 	to_chat(A, span_notice("You shoot [D] with your gun hand."))
 	D.add_splatter_floor(D.loc, TRUE)
