@@ -4,6 +4,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/talking/codex_gigas = 2,
 		/obj/item/clothing/under/syndicate/tacticool = 2,
 		/obj/item/toy/sword = 2,
+		/obj/item/twohanded/vxtvulhammer/toy = 2,
 		/obj/item/toy/gun = 2,
 		/obj/item/gun/ballistic/shotgun/toy/crossbow = 2,
 		/obj/item/storage/box/fakesyndiesuit = 2,
@@ -78,7 +79,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		var/obj/item/circuitboard/CB = new thegame()
 		var/atom/newgame = new CB.build_path(loc, CB)
 		newgame.dir = dir
-		
+
 		return INITIALIZE_HINT_QDEL
 	Reset()
 

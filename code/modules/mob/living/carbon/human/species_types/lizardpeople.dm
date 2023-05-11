@@ -92,7 +92,7 @@
 			return
 		var/chance = 0
 		switch(mood.shown_mood)
-			if(0 to MOOD_LEVEL_SAD4)
+			if(-INFINITY to MOOD_LEVEL_SAD4)
 				chance = -0.1
 			if(MOOD_LEVEL_SAD4 to MOOD_LEVEL_SAD3)
 				chance = -0.01
@@ -109,7 +109,7 @@
 				if(-1)
 					stop_wagging_tail(H)
 	if(!H.getorganslot(ORGAN_SLOT_TAIL) && !regrowtimer)
-		regrowtimer = addtimer(CALLBACK(src, .proc/regrow_tail, H), 20 MINUTES, TIMER_UNIQUE)
+		regrowtimer = addtimer(CALLBACK(src, PROC_REF(regrow_tail), H), 20 MINUTES, TIMER_UNIQUE)
 
 /datum/species/lizard/proc/regrow_tail(mob/living/carbon/human/H)
 	if(!H.getorganslot(ORGAN_SLOT_TAIL) && H.stat != DEAD)

@@ -478,7 +478,7 @@
 			mega.UnregisterSignal(L, COMSIG_MOB_SAY)
 		else
 			mega.accent_name = aksent
-			mega.RegisterSignal(L, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech, TRUE)
+			mega.RegisterSignal(L, COMSIG_MOB_SAY, TYPE_PROC_REF(/datum/mind, handle_speech), TRUE)
 
 /mob/living/silicon/proc/create_modularInterface()
 	if(!modularInterface)

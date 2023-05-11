@@ -41,7 +41,7 @@
 		var/mob/living/carbon/human/H = user
 		H.SetImmobilized(10 SECONDS)
 	animate(user, pixel_y = (32*8), time = 10 SECONDS)
-	addtimer(CALLBACK(src, .proc/suicide, user), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(suicide), user), 10 SECONDS)
 	return MANUAL_SUICIDE
 
 /obj/item/nullrod/proc/suicide(mob/user)
@@ -437,7 +437,7 @@
 	var/distance = rand(1,5)
 	if(prob(1))
 		distance = 50 //hehe funny hallway launch
-	M.throw_at(throw_target, distance, 3, user, TRUE, TRUE, callback = CALLBACK(src, .proc/afterimpact, M))
+	M.throw_at(throw_target, distance, 3, user, TRUE, TRUE, callback = CALLBACK(src, PROC_REF(afterimpact), M))
 
 /obj/item/twohanded/required/nullrod/proc/afterimpact(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
@@ -559,17 +559,16 @@
 
 /obj/item/nullrod/handedsword/dropped(mob/user, silent = TRUE)
 	. = ..()
-	if(QDELETED(src))
-		return
-	if(sheath && !sheath.swords)
+	if(sheath)
+		if(sheath.swordright)
+			sheath.swordright.forceMove(sheath)
+		if(sheath.swordleft)
+			sheath.swordleft.forceMove(sheath)
+		if(!sheath.swords)
+			user.balloon_alert(user, "you sheathe \the [sheath].")
+			sheath.update_icon()
+			playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 		sheath.swords = TRUE
-		var/obj/item/otherhand = user.get_inactive_held_item()
-		if(istype(otherhand, /obj/item/nullrod/handedsword))
-			otherhand.forceMove(sheath)
-		forceMove(sheath)
-		user.balloon_alert(user, "you sheathe \the [sheath].")
-		sheath.update_icon()
-		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 	
 
 /*---------------------------------------------------------------------------
@@ -731,7 +730,7 @@
 /obj/item/nullrod/hermes/equipped(mob/user, slot, initial)
 	. = ..()
 	if(slot == SLOT_SHOES)
-		RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, .proc/move_react)
+		RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
 
 /obj/item/nullrod/hermes/dropped(mob/user, silent)
 	. = ..()
@@ -848,8 +847,8 @@
 	holy_glow_fx = mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 	user.add_overlay(holy_glow_fx)
 	holy_glow_light = user.mob_light(_color = LIGHT_COLOR_HOLY_MAGIC, _range = 2)
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
-	RegisterSignal(src, COMSIG_ITEM_PREDROPPED, .proc/drop_unwield)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(unwield))
+	RegisterSignal(src, COMSIG_ITEM_PREDROPPED, PROC_REF(drop_unwield))
 	START_PROCESSING(SSfastprocess, src)
 
 /obj/item/nullrod/cross/Destroy()

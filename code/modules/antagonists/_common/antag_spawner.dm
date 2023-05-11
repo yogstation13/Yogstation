@@ -6,7 +6,7 @@
 
 /obj/item/antag_spawner/ComponentInitialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_REFUND, .proc/refund_check)
+	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
 
 /obj/item/antag_spawner/proc/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	return
@@ -123,10 +123,10 @@
 	if(used)
 		to_chat(user, span_warning("[src] is out of power!"))
 		return FALSE
-	if(!user.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE))
+	if(!(is_nukeop(user) || is_battleroyale(user)))//also let it work in battle royales
 		to_chat(user, span_danger("AUTHENTICATION FAILURE. ACCESS DENIED."))
 		return FALSE
-	if(!user.onSyndieBase())
+	if(!(user.onSyndieBase() || is_battleroyale(user)))
 		to_chat(user, span_warning("[src] is out of range! It can only be used at your base!"))
 		return FALSE
 	return TRUE

@@ -76,7 +76,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(istype(BP,/obj/item/bodypart/l_leg) || istype(BP,/obj/item/bodypart/r_leg))//my dudes skip leg day
 			BP.max_damage = 30
 
-	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, .proc/drain_power_from)
+	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
 
 	if(ishuman(C))
 		maglock = new
