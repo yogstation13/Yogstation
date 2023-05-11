@@ -19,6 +19,7 @@ CREATE TABLE `proxy_cache` (
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `ip` (`ip`)
+  CONSTRAINT `data` CHECK (json_valid(`data`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE OR REPLACE EVENT proxy_cache_ttl
