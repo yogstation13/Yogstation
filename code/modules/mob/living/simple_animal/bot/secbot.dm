@@ -20,6 +20,7 @@
 	allow_pai = 0
 	data_hud_type = DATA_HUD_SECURITY_ADVANCED
 	path_image_color = "#FF0000"
+	stop_automated_movement_when_pulled = 0 //make it annoying to drag it anywhere
 
 	var/baton_type = /obj/item/melee/baton
 	var/mob/living/carbon/target
