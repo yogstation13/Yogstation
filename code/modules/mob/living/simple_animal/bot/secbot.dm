@@ -5,8 +5,8 @@
 	icon_state = "secbot"
 	density = FALSE
 	anchored = FALSE
-	health = 75
-	maxHealth = 75
+	health = 50
+	maxHealth = 50
 	pass_flags = PASSMOB
 
 	radio_key = /obj/item/encryptionkey/secbot //AI Priv + Security
@@ -53,6 +53,9 @@
 	resize = 0.8
 	update_transform()
 
+
+/mob/living/simple_animal/bot/secbot/apply_damage(damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction)
+	return ..(max(damage - 6, 0), damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction) // has 6 innate flat damage reduction
 
 /mob/living/simple_animal/bot/secbot/beepsky/explode()
 	lastStunned = null
