@@ -539,7 +539,7 @@ CREATE TABLE `proxy_cache` (
   `data` mediumtext NOT NULL,
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `ip` (`ip`)
+  UNIQUE KEY `ip` (`ip`),
   CONSTRAINT `data` CHECK (json_valid(`data`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
