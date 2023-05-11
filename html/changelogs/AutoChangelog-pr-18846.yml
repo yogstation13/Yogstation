@@ -1,0 +1,4 @@
+author: "Skrem7"
+delete-after: true 
+changes: 
+  - tweak: ".308 ammo box has 20 rounds instead of 7 now"
