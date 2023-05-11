@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(echelon)
 		return FALSE
 
 	qdel(query_get_flags)
-	return rows.len >= 1
+	return query_get_flags.rows.len >= 1
 
 
 /datum/controller/subsystem/echelon/proc/is_using_proxy(ip)
