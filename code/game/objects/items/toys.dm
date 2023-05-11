@@ -24,6 +24,7 @@
  *		Toy Daggers
  *		Turn Tracker
  *		ceremonial Rod of Asclepius
+ *      Cult Sickles 
  */
 
 
@@ -1686,7 +1687,7 @@ obj/item/toy/turn_tracker
 
 /obj/item/gun/magic/hook/sickly_blade_toy
 	name = "plastic replica blade"
-	desc = "A sickly, green crescent blade, decorated with an plastic eye. You feel like this was cheaply made. A Donk Co logo is on the hilt of this heretical blade."
+	desc = "A sickly, green crescent blade, decorated with a plastic eye. You feel like this was cheaply made. A Donk Co logo is on the hilt of this heretical blade."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eldritch_blade"
 	item_state = "eldritch_blade"
