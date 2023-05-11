@@ -459,6 +459,11 @@
 	for(var/obj/structure/S in range(STOMP_DAMAGERADIUS + (plates/2), owner))
 		S.take_damage(25 + (plates * 3))
 
+	if(get_turf(owner))//fuck that tile up
+		var/turf/open/floor/target = get_turf(owner)
+		if(istype(target))
+			target.break_tile()
+
 	//flavour stuff
 	playsound(owner, get_sfx("explosion_creaking"), 100, TRUE, STOMP_RADIUS)
 	playsound(owner, 'sound/effects/explosion_distant.ogg', 200, FALSE, STOMP_RADIUS + WARNING_RANGE)
