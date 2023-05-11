@@ -140,7 +140,7 @@ Yogs End*/
 				if(SSechelon.is_match(ckey, address))
 					log_access("Failed Login: [key] [computer_id] [address] - Blocked due to proxy")
 					key_cache[key] = FALSE
-					return list("reason" = "proxy", "desc" = "Your connection has been blocked due to using a VPN or proxy service. If this was done in error or if you are required to use a VPN to connect to the server, please visit [CONFIG_GET(string/banappeals) || "the forums"].")
+					return list("reason" = "proxy", "desc" = "Round ID [GLOB.round_id]: Your connection has been blocked due to using a VPN or proxy service. If this was done in error or if you are required to use a VPN to connect to the server, please visit [CONFIG_GET(string/banappeals) || "the forums"].")
 
 			var/list/ban_details = is_banned_from_with_details(ckey, address, computer_id, "Server")
 			for(var/i in ban_details)
