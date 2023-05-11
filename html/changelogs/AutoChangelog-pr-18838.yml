@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "Antagonists don't suffer the self tend penalty when tending severe or critical wounds with normal tools, and have a boosted tending speed for using ghetto tools when tending wounds"
