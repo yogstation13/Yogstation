@@ -1,5 +1,6 @@
 GLOBAL_VAR(thebattlebus)
 GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
+GLOBAL_VAR(stormdamage)
 
 /datum/game_mode/fortnite
 	name = "battle royale"
@@ -27,6 +28,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.areas //Assuming we've gotten this far, let's spawn the battle bus.
+	GLOB.stormdamage = 5
 	if(A)
 		var/turf/T = safepick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
 		new /obj/structure/battle_bus(T)
@@ -53,7 +55,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
-		virgin.current.status_flags |= GODMODE //to prevent space from hurting
+		virgin.current.apply_status_effect(STATUS_EFFECT_DODGING_STALWART) //to prevent space from hurting
 		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
@@ -142,6 +144,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
 
+	GLOB.stormdamage += 1
+
 	if(borderstage)//doesn't cull during round start
 		ItemCull()
 
@@ -172,9 +176,9 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		message_admins("battle royale loot drop lists have been depleted somehow, PANIC")
 
 /datum/game_mode/fortnite/proc/loot_drop()
-	loot_spawn(rand(1, 2))
+	loot_spawn(1)
 
-/datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
+/datum/game_mode/fortnite/proc/loot_spawn(amount = 2)
 	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
 		var/area/AR = get_area(es)
 		for(var/I = 0, I < amount, I++)
@@ -210,7 +214,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	. = ..()
 	var/mob/living/carbon/human/tfue = owner.current
 	if(tfue && isspaceturf(get_turf(tfue)))//to account for not being able to put the storm on space turf tiles (if someone reviewing this knows how, please tell me)
-		tfue.adjustFireLoss(4) //no hiding in space
+		tfue.adjustFireLoss(GLOB.stormdamage * 2, TRUE, TRUE) //no hiding in space
 
 /datum/antagonist/battleroyale/greet()
 	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
@@ -265,7 +269,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 /obj/structure/battle_bus/proc/exit(var/mob/living/carbon/human/Ltaker)
 	Ltaker.forceMove(get_turf(src))
 	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "virginity")
-	Ltaker.status_flags &= ~GODMODE //to make shit hurt again
 	Ltaker.update_sight()
 	SEND_SOUND(Ltaker, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
 

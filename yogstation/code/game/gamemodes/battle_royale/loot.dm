@@ -152,10 +152,8 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/nullrod/hammer = 2,
 		/obj/item/nullrod/tribal_knife = 2,
 		/obj/item/nullrod/vibro = 2,
-		/obj/item/nullrod/talking = 2,
 
 		/obj/item/flamethrower/full/tank = 1,
-		/obj/item/twohanded/required/baseball_bat/metal_bat = 1,
 		/obj/item/twohanded/required/chainsaw = 1,
 		/obj/item/twohanded/fireaxe/metal_h2_axe = 1,
 		/obj/item/nullrod/whip = 1,
@@ -166,12 +164,14 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/revolver/detective = 0,
 		/obj/item/twohanded/required/baseball_bat/homerun = 0,
 		/obj/item/twohanded/fireaxe = 0,
+		/obj/item/nullrod/talking = 0,
 
 		/obj/item/melee/powerfist = -1,
 		/obj/item/gun/ballistic/automatic/pistol = -1,
 		/obj/item/gun/ballistic/shotgun/doublebarrel = -1,
 		/obj/item/melee/transforming/energy/sword = -1,
 		/obj/item/gun/energy/laser/retro/old = -1,
+		/obj/item/twohanded/required/baseball_bat/metal_bat = -1,
 
 		/obj/item/gun/ballistic/shotgun/automatic/combat = -2,
 		/obj/item/gun/ballistic/shotgun/automatic/combat/compact = -2,
@@ -236,16 +236,15 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/grenade/plastic/c4 = 4,
 		/obj/item/storage/toolbox/mechanical = 4,
 
-		/obj/item/book/granter/spell/smoke/lesser = 3,
 		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
 
 		/obj/item/autosurgeon/cmo = 2,
-		/obj/item/nullrod/hermes = 2,
+		/obj/item/book/granter/spell/smoke/lesser = 2,
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
-		/obj/item/book/granter/spell/smoke = 1,
 		/obj/item/autosurgeon/reviver = 1,
 		/obj/item/nullrod/servoskull = 1,
+		/obj/item/nullrod/staff = 1,
 
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = 0,
 		/obj/item/teleportation_scroll/apprentice = 0,
@@ -257,13 +256,13 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/autosurgeon/thermal_eyes = -1,
 		/obj/item/autosurgeon/xray_eyes = -1,
 		/obj/item/multisurgeon/airshoes = -1,
-		/obj/item/nullrod/staff = -1,
+		/obj/item/nullrod/hermes = -1,
 
 		/obj/item/storage/box/syndie_kit/augmentation = -2,
 		/obj/item/grenade/syndieminibomb = -2,
-		/obj/item/desynchronizer = -2,
 		/obj/item/dragons_blood = -2,
 		/obj/item/book/granter/martial/cqc = -2,
+		/obj/item/book/granter/spell/smoke = -2,
 
 		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,
