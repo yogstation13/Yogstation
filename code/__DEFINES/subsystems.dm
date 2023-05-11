@@ -21,7 +21,7 @@
   * make sure you add an update to the schema_version stable in the db changelog
   */
 
-#define DB_MINOR_VERSION 12
+#define DB_BOUND_CREDENTIALS_FLAG_BYPASS_BANS "bypass_bans"
 
 //! ## Timing subsystem
 /**
