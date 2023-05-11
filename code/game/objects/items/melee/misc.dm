@@ -515,20 +515,17 @@
 	item_state = "secconbaton"
 	force = 10
 	stamina_damage = 15
-	var/active = 0
+	var/tighten = FALSE
 	actions_types = list(/datum/action/item_action/wrist_strap)
 
-/obj/item/melee/classic_baton/secconbaton/ui_action_click()
-	active = !active
-	if(active)
-		to_chat(usr, span_notice("You tighten the wrist strap."))
+/obj/item/melee/classic_baton/secconbaton/ui_action_click(mob/user)
+	tighten = !tighten
+	if(tighten)
+		to_chat(user, span_notice("You tighten the wrist strap."))
 		ADD_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
 	else
-		release_items()
-		to_chat(usr, span_notice("You untighten the wrist strap."))
-
-/obj/item/melee/classic_baton/secconbaton/proc/release_items()
-	REMOVE_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
+		to_chat(user, span_notice("You untighten the wrist strap.")
 
 /obj/item/melee/supermatter_sword
 	name = "supermatter sword"
