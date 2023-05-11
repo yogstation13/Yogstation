@@ -335,6 +335,12 @@
 	icon_state = "biker"
 	item_state = "biker"
 
+/obj/item/clothing/suit/yogs/battlejacket
+	name = "battle jacket"
+	desc = "Smells like stale beer and cigarettes. Must have been a good show!"
+	icon_state = "battlejacket"
+	item_state = "battlejacket"
+
 /obj/item/clothing/suit/yogs/varsity
 	name = "varsity jacket"
 	desc = "Go Space Carps!"
@@ -358,3 +364,16 @@
 	desc = "My Moon My Man."
 	icon_state = "punk"
 	item_state = "punk"
+
+/obj/item/clothing/suit/hooded/wintercoat/northern
+	name = "nothern coat"
+	desc = "A heavy jacket designed for weathering cold terran planets."
+	icon_state = "northern"
+	item_state = "northern"
+	hoodtype = /obj/item/clothing/head/hooded/winterhood/northern
+	
+/obj/item/clothing/head/hooded/winterhood/northern
+	name = "northern hat"
+	desc = "only this, and nothing more."
+	icon_state = "northern"
+	item_state = "northern"

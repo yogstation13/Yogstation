@@ -189,7 +189,7 @@
 		playsound(owner, 'sound/magic/clockwork/fellowship_armory.ogg', 15 * do_message, TRUE) //get sound loudness based on how much we equipped
 	cooldown = CLOCKWORK_ARMOR_COOLDOWN + world.time
 	owner.update_action_buttons_icon()
-	addtimer(CALLBACK(owner, /mob.proc/update_action_buttons_icon), CLOCKWORK_ARMOR_COOLDOWN)
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_action_buttons_icon)), CLOCKWORK_ARMOR_COOLDOWN)
 	return TRUE
 
 /datum/action/innate/clockwork_armaments/proc/remove_item_if_better(obj/item/I, mob/user)

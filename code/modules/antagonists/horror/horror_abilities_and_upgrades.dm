@@ -147,7 +147,7 @@
 /datum/action/innate/horror/freeze_victim/Activate()
 	B.freeze_victim()
 	UpdateButtonIcon()
-	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 150)
+	addtimer(CALLBACK(src, PROC_REF(UpdateButtonIcon)), 150)
 
 /datum/action/innate/horror/freeze_victim/IsAvailable()
 	if(world.time - B.used_freeze < 150)
@@ -265,7 +265,7 @@
 				delay = 3 SECONDS
 
 	transferring = TRUE
-	if(!do_after(B.victim, delay, C, extra_checks = CALLBACK(src, .proc/is_transferring, C), stayStill = FALSE))
+	if(!do_after(B.victim, delay, C, extra_checks = CALLBACK(src, PROC_REF(is_transferring), C), stayStill = FALSE))
 		to_chat(owner, span_warning("As [C] moves away, your transfer gets interrupted!"))
 		transferring = FALSE
 		return
@@ -328,7 +328,7 @@
 	B.use_chemicals(chemical_cost)
 	cooldown = world.time + 10 SECONDS
 	UpdateButtonIcon()
-	addtimer(CALLBACK(src, .proc/UpdateButtonIcon), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(UpdateButtonIcon)), 10 SECONDS)
 	B.visible_message(span_warning("[B] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
 	flick("horror_spin", B)
 	playsound(B, 'sound/effects/blobattack.ogg', 25, 1)

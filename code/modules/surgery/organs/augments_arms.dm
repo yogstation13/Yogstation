@@ -96,7 +96,7 @@
 		return
 
 	holder = item
-	RegisterSignal(holder, COMSIG_ITEM_PREDROPPED, .proc/on_drop)
+	RegisterSignal(holder, COMSIG_ITEM_PREDROPPED, PROC_REF(on_drop))
 	ADD_TRAIT(holder, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 	holder.resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -203,7 +203,7 @@
 	linkedhandler = new
 	linkedhandler.linkedarm = src
 	ADD_TRAIT(linkedhandler, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
-	RegisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED, .proc/on_drop)
+	RegisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED, PROC_REF(on_drop))
 
 /obj/item/organ/cyberimp/arm/toolset/Destroy()
 	UnregisterSignal(linkedhandler, COMSIG_ITEM_PREDROPPED)
@@ -424,4 +424,10 @@
 	name = "revolutionary brainwashing implant"
 	desc = "An integrated flash projector used alongside syndicate subliminal messaging training to convert loyal crew into violent syndicate activists."
 	contents = newlist(/obj/item/assembly/flash/armimplant/rev)
+	syndicate_implant = TRUE
+
+/obj/item/organ/cyberimp/arm/stechkin_implant
+	name = "Stechkin implant"
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
+	contents = newlist(/obj/item/gun/ballistic/automatic/pistol/implant)
 	syndicate_implant = TRUE

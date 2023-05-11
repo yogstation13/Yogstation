@@ -86,7 +86,7 @@
 /obj/effect/decal/cleanable/greenglow/Initialize()
 	. = ..()
 	AddComponent(/datum/component/radioactive, 15, src, 0, FALSE)
-	addtimer(CALLBACK(src, .proc/Decay), 24 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Decay)), 24 SECONDS)
 
 /obj/effect/decal/cleanable/greenglow/proc/Decay()
 	var/datum/component/radioactive/R = GetComponent(/datum/component/radioactive)

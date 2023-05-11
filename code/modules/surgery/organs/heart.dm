@@ -39,7 +39,7 @@
 /obj/item/organ/heart/Remove(mob/living/carbon/M, special = 0)
 	..()
 	if(!special)
-		addtimer(CALLBACK(src, .proc/stop_if_unowned), 120)
+		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 120)
 
 /obj/item/organ/heart/proc/stop_if_unowned()
 	if(!owner)
@@ -51,7 +51,7 @@
 		user.visible_message("<span class='notice'>[user] squeezes [src] to \
 			make it beat again!</span>",span_notice("You squeeze [src] to make it beat again!"))
 		Restart()
-		addtimer(CALLBACK(src, .proc/stop_if_unowned), 80)
+		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 80)
 
 /obj/item/organ/heart/proc/Stop()
 	beating = 0
@@ -241,7 +241,7 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	Stop()
-	addtimer(CALLBACK(src, .proc/Restart), restartTimer/severity) //Can restart itself after an EMP so it isnt an insta death
+	addtimer(CALLBACK(src, PROC_REF(Restart)), restartTimer/severity) //Can restart itself after an EMP so it isnt an insta death
 
 /obj/item/organ/heart/cybernetic/upgraded
 	name = "upgraded cybernetic heart"
@@ -272,7 +272,7 @@
 		return
 	. = ..()
 	to_chat(owner, "<span class='warning'>Alert: Cybernetic heart failed one heartbeat</span>")
-	addtimer(CALLBACK(src, .proc/Restart), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Restart)), 10 SECONDS)
 
 /obj/item/organ/heart/freedom
 	name = "heart of freedom"

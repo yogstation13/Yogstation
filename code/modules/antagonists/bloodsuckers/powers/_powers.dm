@@ -164,7 +164,7 @@
 	// Wait for cooldown
 	COOLDOWN_START(src, bloodsucker_power_cooldown, this_cooldown)
 	cooldown_overlay = start_cooldown(button,world.time + this_cooldown)
-	addtimer(CALLBACK(src, .proc/alpha_in), this_cooldown)
+	addtimer(CALLBACK(src, PROC_REF(alpha_in)), this_cooldown)
 
 /datum/action/bloodsucker/proc/alpha_in()
 	if(cooldown_overlay)
@@ -190,7 +190,7 @@
 /datum/action/bloodsucker/proc/ActivatePower()
 	active = TRUE
 	if(power_flags & BP_AM_TOGGLE)
-		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/UsePower)
+		RegisterSignal(owner, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(UsePower))
 	owner.log_message("used [src][bloodcost != 0 ? " at the cost of [bloodcost]" : ""].", LOG_ATTACK, color="red")
 	UpdateButtonIcon()
 

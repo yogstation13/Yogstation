@@ -403,7 +403,6 @@
 			SSshuttle.arrivals.QueueAnnounce(humanc, rank)
 		else
 			AnnounceArrival(humanc, rank)
-		AddEmploymentContract(humanc)
 		if(GLOB.highlander)
 			to_chat(humanc, span_userdanger("<i>THERE CAN BE ONLY ONE!!!</i>"))
 			humanc.make_scottish()
@@ -431,14 +430,6 @@
 		SSquirks.AssignQuirks(humanc, humanc.client, TRUE)
 
 	log_manifest(character.mind.key,character.mind,character,latejoin = TRUE)
-
-/mob/dead/new_player/proc/AddEmploymentContract(mob/living/carbon/human/employee)
-	//TODO:  figure out a way to exclude wizards/nukeops/demons from this.
-	for(var/C in GLOB.employmentCabinets)
-		var/obj/structure/filingcabinet/employment/employmentCabinet = C
-		if(!employmentCabinet.virgin)
-			employmentCabinet.addFile(employee)
-
 
 /mob/dead/new_player/proc/create_character(transfer_after)
 	spawning = TRUE

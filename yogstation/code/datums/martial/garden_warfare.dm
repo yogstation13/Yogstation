@@ -214,11 +214,18 @@
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 100, "embedded_fall_chance" = 0)
 	var/passive_damage = 0.5
 
-/obj/item/splinter/on_embed_removal(mob/living/carbon/human/embedde)
-	qdel(src)
-	. = ..()
+/obj/item/splinter/Initialize()
+	..()
+	RegisterSignal(src, COMSIG_ITEM_EMBED_REMOVAL, PROC_REF(on_embed_removal))
+	RegisterSignal(src, COMSIG_ITEM_EMBED_TICK, PROC_REF(embed_tick))
 
-/obj/item/splinter/embed_tick(mob/living/carbon/human/embedde, obj/item/bodypart/part)
+/obj/item/splinter/proc/on_embed_removal(mob/living/carbon/human/embedde)
+	return COMSIG_ITEM_QDEL_EMBED_REMOVAL
+
+/obj/item/splinter/proc/embed_tick(mob/living/carbon/human/embedde)
+	var/obj/item/bodypart/part = embedde.get_embedded_part(src)
+	if(!part)
+		return
 	part.receive_damage(passive_damage, wound_bonus=-30, sharpness = TRUE)
 
 /datum/martial_art/gardern_warfare/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)

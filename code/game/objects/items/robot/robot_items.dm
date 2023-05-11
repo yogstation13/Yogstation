@@ -393,7 +393,7 @@
 	if(charging)
 		return
 	if(candy < candymax)
-		addtimer(CALLBACK(src, .proc/charge_lollipops), charge_delay)
+		addtimer(CALLBACK(src, PROC_REF(charge_lollipops)), charge_delay)
 		charging = TRUE
 
 /obj/item/borg/lollipop/proc/charge_lollipops()
@@ -518,7 +518,6 @@
 	projectile_type = /obj/item/projectile/bullet/reusable/gumball
 	click_cooldown_override = 2
 
-
 /obj/item/projectile/bullet/reusable/gumball
 	name = "gumball"
 	desc = "Oh noes! A fast-moving gumball!"
@@ -526,12 +525,10 @@
 	ammo_type = /obj/item/reagent_containers/food/snacks/gumball/cyborg
 	nodamage = TRUE
 
-/obj/item/projectile/bullet/reusable/gumball/handle_drop()
-	if(!dropped)
-		var/turf/T = get_turf(src)
-		var/obj/item/reagent_containers/food/snacks/gumball/S = new ammo_type(T)
-		S.color = color
-		dropped = TRUE
+/obj/item/projectile/bullet/reusable/gumball/Initialize()
+	. = ..()
+	ammo_type = new ammo_type(src)
+	color = ammo_type.color
 
 /obj/item/ammo_casing/caseless/lollipop	//NEEDS RANDOMIZED COLOR LOGIC.
 	name = "Lollipop"
@@ -550,17 +547,11 @@
 /obj/item/projectile/bullet/reusable/lollipop/Initialize()
 	. = ..()
 	var/obj/item/reagent_containers/food/snacks/lollipop/S = new ammo_type(src)
+	ammo_type = S
 	color2 = S.headcolor
 	var/mutable_appearance/head = mutable_appearance('icons/obj/projectiles.dmi', "lollipop_2")
 	head.color = color2
 	add_overlay(head)
-
-/obj/item/projectile/bullet/reusable/lollipop/handle_drop()
-	if(!dropped)
-		var/turf/T = get_turf(src)
-		var/obj/item/reagent_containers/food/snacks/lollipop/S = new ammo_type(T)
-		S.change_head_color(color2)
-		dropped = TRUE
 
 #define PKBORG_DAMPEN_CYCLE_DELAY 20
 

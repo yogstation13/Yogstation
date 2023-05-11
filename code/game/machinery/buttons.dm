@@ -195,7 +195,7 @@
 	if(device)
 		device.pulsed()
 
-	addtimer(CALLBACK(src, .proc/update_icon), 15)
+	addtimer(CALLBACK(src, PROC_REF(update_icon)), 15)
 
 /obj/machinery/button/door
 	name = "door button"
