@@ -299,7 +299,7 @@
 			var/mob/living/L = V
 			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
 				L.apply_damage(360 * power_multiplier, def_zone = BODY_ZONE_CHEST, wound_bonus=CANT_WOUND) // very long cooldown so make it really good at killing lavaland mobs
-			else if(L.mind?.martial_art && L.mind.martial_art.id == "ultra violence")
+			else if(L.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
 				L.apply_damage(45 * power_multiplier, def_zone = BODY_ZONE_CHEST, wound_bonus=CANT_WOUND) // DIE!!
 			else
 				L.apply_damage(15 * power_multiplier, def_zone = BODY_ZONE_CHEST, wound_bonus=CANT_WOUND)
