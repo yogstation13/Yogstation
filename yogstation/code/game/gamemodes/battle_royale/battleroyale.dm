@@ -178,7 +178,7 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/proc/loot_drop()
 	loot_spawn(1)
 
-/datum/game_mode/fortnite/proc/loot_spawn(amount = 2)
+/datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
 	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
 		var/area/AR = get_area(es)
 		for(var/I = 0, I < amount, I++)

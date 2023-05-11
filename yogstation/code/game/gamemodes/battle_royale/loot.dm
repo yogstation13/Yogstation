@@ -324,7 +324,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	var/selected
 	switch(type)
 		if(1)//weapon focus (to fuel the fight)
-			for(var/i in 1 to rand(2,3))
+			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_weapon)
 				new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_utility)
@@ -348,14 +348,18 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			new selected(src)
 
 		if(4)//KABOOOM AHAHAHAHAHA
-			for(var/i in 1 to rand(2,4))
+			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_utility)
 				new selected(src)
+			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
+			new selected(src)
 
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
-			for(var/i in 1 to rand(2,4))
+			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_healing)
 				new selected(src)
+			selected = pickweightAllowZero(GLOB.battleroyale_armour)
+			new selected(src)
 
 /obj/structure/closet/crate/battleroyale/open(mob/living/user)
 	. = ..()
@@ -363,7 +367,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		new /obj/structure/healingfountain(get_turf(src))
 		qdel(src)
 		return
-	QDEL_IN(src, 30 SECONDS)//to remove clutter after a bit
+	QDEL_IN(src, 15 SECONDS)//to remove clutter after a bit
 
 /obj/item/battleroyale
 	name = "This item is created and used by the battle royale gamemode"
