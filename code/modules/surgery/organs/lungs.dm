@@ -515,7 +515,7 @@
 	var/temperature = breath.return_temperature()
 	for(var/id in breath.get_gases())
 		var/moles = breath.get_moles(id)
-		total_heat_capacity += global.meta_gas_info[id][META_GAS_SPECIFIC_HEAT] * moles
+		total_heat_capacity += GLOB.meta_gas_info[id][META_GAS_SPECIFIC_HEAT] * moles
 	// Normal atmos is 0.416
 	// 20C -> 293K
 	// At about 50C overheating will begin
