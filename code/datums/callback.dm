@@ -85,7 +85,11 @@
 	var/list/calling_arguments = length(args) > 2 ? args.Copy(3) : null
 
 	if (thingtocall == GLOBAL_PROC)
-		call(proctocall)(arglist(calling_arguments))
+		try
+			call(proctocall)(arglist(calling_arguments))
+		catch(var/exception/e)
+			CRASH("Error calling global proc [proctocall].\n[e]")
+
 	else
 		call(thingtocall, proctocall)(arglist(calling_arguments))
 
@@ -119,7 +123,10 @@
 	if(datum_flags & DF_VAR_EDITED)
 		return WrapAdminProcCall(object, delegate, calling_arguments)
 	if (object == GLOBAL_PROC)
-		return call(delegate)(arglist(calling_arguments))
+		try
+			return call(delegate)(arglist(calling_arguments))
+		catch(var/exception/e)
+			CRASH("Error calling global proc [delegate].\n[e]")
 	return call(object, delegate)(arglist(calling_arguments))
 
 /**
@@ -154,7 +161,10 @@
 	if(datum_flags & DF_VAR_EDITED)
 		return WrapAdminProcCall(object, delegate, calling_arguments)
 	if (object == GLOBAL_PROC)
-		return call(delegate)(arglist(calling_arguments))
+		try
+			return call(delegate)(arglist(calling_arguments))
+		catch(var/exception/e)
+			CRASH("Error calling global proc [delegate].\n[e]")
 	return call(object, delegate)(arglist(calling_arguments))
 
 /**

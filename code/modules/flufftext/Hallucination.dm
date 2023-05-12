@@ -711,7 +711,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	// Display message
 	if (!is_radio && !target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 		var/image/speech_overlay = image('icons/mob/talk.dmi', person, "default0", layer = ABOVE_MOB_LAYER)
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, speech_overlay, list(target.client), 30)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), speech_overlay, list(target.client), 30)
 	if (target.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 		target.create_chat_message(person, understood_language, chosen, spans)
 	to_chat(target, message)
@@ -1122,7 +1122,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			return
 		to_chat(target, span_userdanger("You fall into the chasm!"))
 		target.Paralyze(40)
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), target, span_notice("It's surprisingly shallow.")), 15)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), target, span_notice("It's surprisingly shallow.")), 15)
 		QDEL_IN(src, 30)
 
 /obj/effect/hallucination/danger/anomaly

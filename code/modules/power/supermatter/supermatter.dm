@@ -398,7 +398,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			investigate_log("has exploded.", INVESTIGATE_SUPERMATTER)
 		if(antinoblium_attached)
 			explosion_mod += 1
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/empulse, T, explosion_power * explosion_mod, (explosion_power * explosion_mod * 2) + (explosion_power/4), TRUE, FALSE, FALSE, TRUE)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(empulse), T, explosion_power * explosion_mod, (explosion_power * explosion_mod * 2) + (explosion_power/4), TRUE, FALSE, FALSE, TRUE)
 		explosion(T, explosion_power * explosion_mod * 0.5 , explosion_power * explosion_mod + 2, explosion_power * explosion_mod + 4 , explosion_power * explosion_mod + 6, 1, 1)
 		radiation_pulse(src, (last_rads + 2400) * explosion_power)
 		if(power > POWER_PENALTY_THRESHOLD)

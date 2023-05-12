@@ -257,7 +257,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		QDEL_IN(manifestation, 3 SECONDS)
 
 	if (pocket_dim)
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(update_pocket_mirror), pocket_dim, manifested_at_x, manifested_at_y, manifested_at_z), 3.5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(update_pocket_mirror), pocket_dim, manifested_at_x, manifested_at_y, manifested_at_z), 3.5 SECONDS)
 
 	addtimer(VARSET_CALLBACK(src, manifesting, FALSE), 3 SECONDS)
 

@@ -501,9 +501,9 @@
 	if(istype(A, /area/fabric_of_reality))
 		var/area/fabric_of_reality/fabric = A
 		var/turf/T = fabric.origin
-		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(KillEveryoneOnZLevel), T.z)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(KillEveryoneOnZLevel), T.z)
 	else
-		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(KillEveryoneOnZLevel), z)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(KillEveryoneOnZLevel), z)
 
 /obj/machinery/nuclearbomb/proc/get_cinematic_type(off_station)
 	if(off_station < 2)
