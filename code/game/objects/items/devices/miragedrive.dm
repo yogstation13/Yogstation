@@ -11,34 +11,28 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	item_state = "mdrive"
 	w_class = WEIGHT_CLASS_SMALL
-	var/list/path = list()
 	var/next_dash = 0
-	var/turf/exturf
-	var/turf/noturf
 	var/next_hit
+	var/mob/living/L
+	var/access_card = new /obj/item/card/id/captains_spare()
 
 obj/item/mdrive/afterattack(atom/target, mob/user)
-	var/mob/living/L
 	var/turf/T = get_turf(target)
+	zoom(T, user)
+
+obj/item/mdrive/proc/zoom(turf/target, mob/user, turf/avoid = null, repeating = FALSE)
 	var/obj/item/offhand = user.get_inactive_held_item()
 	var/aoe_attack = FALSE
+	var/list/testpath = list()
+	if((target.density))
+		return
 	if(next_dash > world.time)
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
-	for(var/obj/machinery/door/D in exturf)// this bit is for the sake of ignoring turfs with closed doors when it comes to making a path to the destination
-		if(D.density == TRUE)
-			exturf = noturf
-	path = get_path_to(src, target, /turf/proc/Distance_cardinal, 0, 0, 0, /turf/proc/reachableTurftest, exclude = noturf, simulated_only = FALSE, get_best_attempt = TRUE)
-	if((T.density))
-		return
+	testpath = get_path_to(src, target, /turf/proc/Distance_cardinal, 0, 0, 0, /turf/proc/reachableTurftestdensity, id = access_card, simulated_only = FALSE, get_best_attempt = TRUE)
+	user.forceMove(testpath[testpath.len])
 	var/obj/effect/temp_visual/decoy/fading/halfsecond/F = new(get_turf(user), user)
-	for(var/i in 1 to path.len)
-		var/turf/next_step = path[i]
-		for(var/obj/machinery/door/D in next_step)
-			if(D.density == TRUE)
-				return
-	user.forceMove(path[path.len])
-	user.visible_message(span_warning("[user] appears at [T]!"))
+	user.visible_message(span_warning("[user] appears at [target]!"))
 	playsound(user, 'sound/effects/stealthoff.ogg', 50, 1, 1)
 	for(L in range(2, user))
 		if(L != user)
@@ -49,16 +43,15 @@ obj/item/mdrive/afterattack(atom/target, mob/user)
 			next_dash = world.time + COOLDOWN_DASH
 	for(L in range(2, user))
 		if(L != user)
-			if(get_dist(L, user) <= 1 && (next_hit < world.time))
+			if(get_dist(L, user) <= 1 && (next_hit < world.time) && (offhand))
 				offhand.attack(L, user)
 				aoe_attack = TRUE
 			else 
 				continue
-	for(var/i in 1 to path.len)
-		var/turf/next_step = path[i]
-		if(ISMULTIPLE(i, 2))
+	for(var/i in 1 to testpath.len)
+		var/turf/next_step = testpath[i]
+		if(ISMULTIPLE(i, 2) && (next_step))
 			F.forceMove(next_step)
 			sleep(0.1 SECONDS)
 	if(aoe_attack == TRUE)
 		next_hit = world.time + COOLDOWN_HIT
-
