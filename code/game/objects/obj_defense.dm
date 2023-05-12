@@ -242,7 +242,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 ///Called when the obj is hit by a tesla bolt.
 /obj/proc/tesla_act(power, tesla_flags, shocked_targets)
 	obj_flags |= BEING_SHOCKED
-	addtimer(CALLBACK(src, .proc/reset_shocked), 10)
+	addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
 	if(power < TESLA_MINI_POWER) //tesla bolts bounce twice, tesla miniball bolts bounce only once
 		return
 	var/power_bounced = power / 2

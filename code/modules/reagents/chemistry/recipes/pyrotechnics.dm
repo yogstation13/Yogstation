@@ -81,7 +81,7 @@
 			R.stun(20)
 			R.reveal(100)
 			R.adjustHealth(50)
-		addtimer(CALLBACK(src, .proc/divine_explosion, round(created_volume/48,1),get_turf(holder.my_atom)), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(divine_explosion), round(created_volume/48,1),get_turf(holder.my_atom)), 2 SECONDS)
 	..()
 
 /datum/chemical_reaction/reagent_explosion/potassium_explosion/holyboom/proc/divine_explosion(size, turf/T)
@@ -442,14 +442,14 @@
 	var/added_delay = 0.5 SECONDS
 	var/turf/T = get_turf(holder.my_atom)
 	if(created_volume >= 75)
-		addtimer(CALLBACK(src, .proc/zappy_zappy, T, T1), added_delay)
+		addtimer(CALLBACK(src, PROC_REF(zappy_zappy), T, T1), added_delay)
 		added_delay += 1.5 SECONDS
 	if(created_volume >= 40)
-		addtimer(CALLBACK(src, .proc/zappy_zappy, T, T2), added_delay)
+		addtimer(CALLBACK(src, PROC_REF(zappy_zappy), T, T2), added_delay)
 		added_delay += 1.5 SECONDS
 	if(created_volume >= 10)			//10 units minimum for lightning, 40 units for secondary blast, 75 units for tertiary blast.
-		addtimer(CALLBACK(src, .proc/zappy_zappy, T, T3), added_delay)
-	addtimer(CALLBACK(src, .proc/explode, holder, created_volume), added_delay)
+		addtimer(CALLBACK(src, PROC_REF(zappy_zappy), T, T3), added_delay)
+	addtimer(CALLBACK(src, PROC_REF(explode), holder, created_volume), added_delay)
 
 /datum/chemical_reaction/reagent_explosion/teslium_lightning/proc/zappy_zappy(turf/T, power)
 	if(QDELETED(T))

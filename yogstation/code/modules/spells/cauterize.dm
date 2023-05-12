@@ -15,7 +15,7 @@
 
 /obj/effect/proc_holder/spell/targeted/cauterize/cast(list/targets,mob/user = usr)
 	for(var/mob/living/target in targets)
-		INVOKE_ASYNC(src, .proc/do_cauterize, target)
+		INVOKE_ASYNC(src, PROC_REF(do_cauterize), target)
 
 /obj/effect/proc_holder/spell/targeted/cauterize/proc/do_cauterize(mob/living/target)
 	var/total_dam = target.getBruteLoss() + target.getFireLoss()

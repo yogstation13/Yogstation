@@ -50,7 +50,7 @@
 /datum/action/bloodsucker/targeted/haste/FireTargetedPower(atom/target_atom)
 	. = ..()
 	hit = list()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/on_move)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	var/mob/living/user = owner
 	var/turf/targeted_turf = isturf(target_atom) ? target_atom : get_turf(target_atom)
 	// Pulled? Not anymore.

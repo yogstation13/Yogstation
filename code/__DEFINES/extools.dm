@@ -32,7 +32,7 @@ GLOBAL_VAR_INIT(enable_memdump, 0)
 #if 0
 
 /proc/tffi_initialize()
-	return call(EXTOOLS, "tffi_initialize")() == EXTOOLS_SUCCESS
+	return LIBCALL(EXTOOLS, "tffi_initialize")() == EXTOOLS_SUCCESS
 
 GLOBAL_VAR_INIT(fallback_alerted, FALSE)
 GLOBAL_VAR_INIT(next_promise_id, 0)
@@ -73,7 +73,7 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 	var/list/arguments = args.Copy()
 	var/datum/promise/P = new
 	arguments.Insert(1, "\ref[P]")
-	call(EXTOOLS, "call_async")(arglist(arguments))
+	LIBCALL(EXTOOLS, "call_async")(arglist(arguments))
 	return P
 
 /proc/call_cb()
@@ -85,7 +85,7 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 	P.callback_context = context
 	P.callback_proc = callback
 	arguments.Insert(1, "\ref[P]")
-	call(EXTOOLS, "call_async")(arglist(arguments))
+	LIBCALL(EXTOOLS, "call_async")(arglist(arguments))
 	spawn(0)
 		P.__resolve_callback()
 
