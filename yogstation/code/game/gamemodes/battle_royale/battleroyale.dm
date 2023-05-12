@@ -259,7 +259,7 @@ GLOBAL_VAR(stormdamage)
 	START_PROCESSING(SSfastprocess, src)
 	GLOB.thebattlebus = src //So the GM code knows where to move people to!
 	starter_z = z
-	addtimer(CALLBACK(src, PROC_REF(cleanup)), 1 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(cleanup)), 2 MINUTES)
 
 /obj/structure/battle_bus/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
