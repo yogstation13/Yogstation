@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "EMPing an energy gun now takes 25/50% charge instead of 50/100%"
+  - tweak: "EMPing an energy gun now disables it for around 5 or 10 seconds"
