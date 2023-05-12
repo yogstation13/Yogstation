@@ -67,6 +67,7 @@ GLOBAL_VAR(stormdamage)
 	for(var/obj/machinery/door/W in GLOB.machines)//set all doors to all access
 		W.req_access = list()
 		W.req_one_access = list()
+		W.locked = FALSE //no bolted either
 	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
