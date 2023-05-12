@@ -20,7 +20,7 @@
 	allow_pai = 0
 	data_hud_type = DATA_HUD_SECURITY_ADVANCED
 	path_image_color = "#FF0000"
-	move_resist = MOVE_FORCE_VERY_STRONG //no pulling beepsky around the station
+	move_resist = MOVE_FORCE_STRONG //no pulling beepsky around the station
 
 	var/baton_type = /obj/item/melee/baton
 	var/mob/living/carbon/target
