@@ -221,7 +221,7 @@ GLOBAL_VAR(stormdamage)
 /datum/antagonist/battleroyale/proc/gamer_life()
 	var/mob/living/carbon/human/tfue = owner.current
 	if(tfue && isspaceturf(tfue.loc))
-		tfue.adjustFireLoss(GLOB.stormdamage * 2, TRUE, TRUE) //no hiding in space
+		tfue.adjustFireLoss(GLOB.stormdamage, TRUE, TRUE) //no hiding in space
 
 /datum/antagonist/battleroyale/greet()
 	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
