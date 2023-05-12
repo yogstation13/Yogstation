@@ -2770,7 +2770,7 @@
 
 /datum/supply_pack/costumes_toys/archery
 	name = "Archery Crate"
-	desc = "Shoot apples of peoples heads with this kit containing everything you need to start your archery carrier."
+	desc = "Shoot apples off of people's heads with this kit that contains everything you need to start your archery career."
 	cost = 1000
 	contains = list(/obj/item/gun/ballistic/bow,
 					/obj/item/storage/belt/quiver/full
