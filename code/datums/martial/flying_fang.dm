@@ -159,7 +159,7 @@
 	button_icon_state = "lizard_tackle"
 	background_icon_state = "bg_default"
 	desc = "Prepare to jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds."
-	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 	var/datum/martial_art/flyingfang/linked_martial
 
 /datum/action/innate/lizard_leap/New()
@@ -197,13 +197,13 @@
 		return
 	linked_martial.leaping = TRUE
 	A.Knockdown(5 SECONDS)
-	A.Immobilize(30 SECONDS) //prevents you from breaking out of your pounce
+	A.Immobilize(3 SECONDS, TRUE, TRUE) //prevents you from breaking out of your pounce
 	A.throw_at(target, get_dist(A,target)+1, 1, A, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), A))
 	Deactivate()
 	UpdateButtonIcon()
 
 /datum/action/innate/lizard_leap/proc/leap_end(mob/living/carbon/human/A)
-	A.SetImmobilized(1 SECONDS)
+	A.SetImmobilized(0.2 SECONDS, TRUE, TRUE)
 	linked_martial.leaping = FALSE
 	UpdateButtonIcon()
 
@@ -228,7 +228,8 @@
 			step_towards(src,L)
 		else if(hit_atom.density && !hit_atom.CanPass(A))
 			A.visible_message("<span class ='danger'>[A] smashes into [hit_atom]!</span>", "<span class ='danger'>You smash into [hit_atom]!</span>")
-			A.Paralyze(6 SECONDS, 1)
+			A.Paralyze(2 SECONDS, 1)
+			A.Knockdown(6 SECONDS)
 		if(leaping)
 			leaping = FALSE
 		linked_leap.UpdateButtonIcon()
@@ -262,6 +263,7 @@
 	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
 	H.physiology.stamina_mod *= 0.66
 	H.physiology.stun_mod *= 0.66
+	H.physiology.crawl_speed -= 2 // "funny lizard skitter around on the floor" - mqiib
 	var/datum/species/S = H.dna?.species
 	if(S)
 		S.add_no_equip_slot(H, SLOT_WEAR_SUIT)
@@ -274,6 +276,7 @@
 	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
 	H.physiology.stamina_mod /= 0.66
 	H.physiology.stun_mod /= 0.66
+	H.physiology.crawl_speed += 2
 	var/datum/species/S = H.dna?.species
 	if(S)
 		S.remove_no_equip_slot(H, SLOT_WEAR_SUIT)
