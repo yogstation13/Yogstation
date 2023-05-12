@@ -212,10 +212,10 @@ GLOBAL_VAR(stormdamage)
 	if(is_battleroyale(src))
 		var/datum/antagonist/battleroyale/gamer = mind.has_antag_datum(/datum/antagonist/battleroyale)
 		gamer.gamer_life()
-		
+
 /datum/antagonist/battleroyale/proc/gamer_life()
 	var/mob/living/carbon/human/tfue = owner.current
-	if(tfue && isspaceturf(tfue.loc))//to account for not being able to put the storm on space turf tiles (if someone reviewing this knows how, please tell me)
+	if(tfue && isspaceturf(tfue.loc))
 		tfue.adjustFireLoss(GLOB.stormdamage * 2, TRUE, TRUE) //no hiding in space
 
 /datum/antagonist/battleroyale/greet()
