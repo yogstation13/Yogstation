@@ -94,7 +94,7 @@
 			living_time = 12 MINUTES
 		else if(level_current >= 4)
 			living_time = 15 MINUTES //in general, they don't last long, make the most of them.
-		addtimer(CALLBACK(src, PROC_REF(/end_necromance), target), living_time)
+		addtimer(CALLBACK(src, PROC_REF(end_necromance), target), living_time)
 	else //extra check, but this shouldn't happen
 		owner.balloon_alert(owner, "Target is out of range or not dead yet.")
 		return FALSE
