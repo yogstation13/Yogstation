@@ -19,7 +19,7 @@
 	var/list/areaIgnore = list()//if you want areaTypesToWeather to ignore something specific, because mappers can't be consistent with that type of area the thing should be
 
 /datum/weather/royale/weather_act(mob/living/L)
-	L.adjustFireLoss(3, TRUE, TRUE)
+	L.adjustFireLoss(GLOB.stormdamage, TRUE, TRUE)
 
 /datum/weather/royale/New()
 	.=..()
