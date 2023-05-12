@@ -28,7 +28,7 @@ GLOBAL_VAR(stormdamage)
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.areas //Assuming we've gotten this far, let's spawn the battle bus.
-	GLOB.stormdamage = 5
+	GLOB.stormdamage = 3
 	if(A)
 		var/turf/T = safepick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
 		new /obj/structure/battle_bus(T)
