@@ -46,6 +46,7 @@
 	icon_state = "308box"
 	ammo_type = /obj/item/ammo_casing/m308
 	caliber = "m308"
+	max_ammo = 20
 
 /obj/item/ammo_box/a357/ironfeather
 	name = "speed loader (.357 Ironfeather)"
