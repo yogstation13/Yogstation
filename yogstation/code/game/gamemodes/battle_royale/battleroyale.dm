@@ -19,7 +19,7 @@ GLOBAL_VAR(stormdamage)
 	var/list/queued = list() //Who is queued to enter?
 	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering")
 	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes (changed for testing, don't forget to change back)
-	var/loot_interval = 90 SECONDS //roughly the time between loot drops
+	var/loot_interval = 75 SECONDS //roughly the time between loot drops
 	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
 	var/borderstage = 0
 	var/weightcull = 5 //anything above this gets culled
@@ -155,7 +155,7 @@ GLOBAL_VAR(stormdamage)
 
 	if(borderstage % 2 == 0) //so it scales, but not too hard
 		GLOB.stormdamage *= 1.5
-		
+
 	if(borderstage <= 9)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
