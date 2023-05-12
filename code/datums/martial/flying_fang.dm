@@ -235,8 +235,9 @@
 			step_towards(src,L)
 		else if(hit_atom.density && !hit_atom.CanPass(A))
 			A.visible_message("<span class ='danger'>[A] smashes into [hit_atom]!</span>", "<span class ='danger'>You smash into [hit_atom]!</span>")
-			A.Paralyze(2 SECONDS, 1)
+			A.Immobilize(1.5 SECONDS)
 			A.Knockdown(6 SECONDS)
+			playsound(A, 'sound/weapons/punch2.ogg', 50, 1) // ow oof ouch my head
 		if(leaping)
 			leaping = FALSE
 		linked_leap.UpdateButtonIcon()
