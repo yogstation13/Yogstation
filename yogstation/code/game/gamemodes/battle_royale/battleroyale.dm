@@ -259,6 +259,7 @@ GLOBAL_VAR(stormdamage)
 	START_PROCESSING(SSfastprocess, src)
 	GLOB.thebattlebus = src //So the GM code knows where to move people to!
 	starter_z = z
+	addtimer(CALLBACK(src, PROC_REF(cleanup)), 1 MINUTES)
 
 /obj/structure/battle_bus/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
@@ -282,8 +283,10 @@ GLOBAL_VAR(stormdamage)
 			var/obj/effect/landmark/observer_start/L = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
 			M.forceMove(get_turf(L))
 		qdel(src) // Thank you for your service
-	if(!contents)//in case Z-level loops
-		QDEL_IN(src, 10 SECONDS)
+
+/obj/structure/battle_bus/proc/cleanup()
+	if(!QDELETED(src))
+		qdel(src)
 
 /obj/structure/battle_bus/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(FALSE)
