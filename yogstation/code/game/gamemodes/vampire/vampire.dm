@@ -13,9 +13,6 @@
 	if(is_vampire(src))
 		var/datum/antagonist/vampire/vamp = mind.has_antag_datum(/datum/antagonist/vampire)
 		vamp.vampire_life()
-	if(is_battleroyale(src))
-		var/datum/antagonist/battleroyale/gamer = mind.has_antag_datum(/datum/antagonist/battleroyale)
-		gamer.gamer_life()
 
 /datum/game_mode/vampire
 	name = "vampire"

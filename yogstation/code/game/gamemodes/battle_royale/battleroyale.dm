@@ -207,6 +207,12 @@ GLOBAL_VAR(stormdamage)
 	var/mob/living/carbon/human/tfue = owner.current
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
 
+/mob/living/carbon/human/Life()
+	. = ..()
+	if(is_battleroyale(src))
+		var/datum/antagonist/battleroyale/gamer = mind.has_antag_datum(/datum/antagonist/battleroyale)
+		gamer.gamer_life()
+		
 /datum/antagonist/battleroyale/proc/gamer_life()
 	var/mob/living/carbon/human/tfue = owner.current
 	if(tfue && isspaceturf(tfue.loc))//to account for not being able to put the storm on space turf tiles (if someone reviewing this knows how, please tell me)
