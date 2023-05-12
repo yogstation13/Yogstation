@@ -51,11 +51,11 @@
 	projectile_type = /obj/item/projectile/bullet/incendiary/c9mm
 
 
-// .50AE (Desert Eagle)
+// .50 AE (Desert Eagle)
 
 /obj/item/ammo_casing/a50AE
-	name = ".50AE bullet casing"
-	desc = "A .50AE bullet casing."
-	caliber = ".50"
+	name = ".50 AE bullet casing"
+	desc = "A .50 AE bullet casing."
+	caliber = ".50ae"
 	projectile_type = /obj/item/projectile/bullet/a50AE
 
