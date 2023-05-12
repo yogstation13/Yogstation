@@ -389,12 +389,12 @@
 					if(INTENT_GRAB)
 						C.visible_message(span_danger("[L] is grabbed by [H]'s tentacle!"),span_userdanger("A tentacle grabs you and pulls you towards [H]!"))
 						C.Immobilize(2) //0.2 seconds of immobilize so the effect probably actually does something
-						C.throw_at(get_step_towards(H,C), 8, 2, H, TRUE, TRUE, callback=CALLBACK(src, .proc/tentacle_grab, H, C))
+						C.throw_at(get_step_towards(H,C), 8, 2, H, TRUE, TRUE, callback=CALLBACK(src, PROC_REF(tentacle_grab), H, C))
 						return BULLET_ACT_HIT
 
 					if(INTENT_HARM)
 						C.visible_message(span_danger("[L] is thrown towards [H] by a tentacle!"),span_userdanger("A tentacle grabs you and throws you towards [H]!"))
-						C.throw_at(get_step_towards(H,C), 8, 2, H, TRUE, TRUE, callback=CALLBACK(src, .proc/tentacle_stab, H, C))
+						C.throw_at(get_step_towards(H,C), 8, 2, H, TRUE, TRUE, callback=CALLBACK(src, PROC_REF(tentacle_stab), H, C))
 						return BULLET_ACT_HIT
 			else
 				L.visible_message(span_danger("[L] is pulled by [H]'s tentacle!"),span_userdanger("A tentacle grabs you and pulls you towards [H]!"))
@@ -619,7 +619,7 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		C.add_movespeed_modifier("flesh maul", update=TRUE, priority=101, multiplicative_slowdown=1)						//Slows the target because big whack
-		addtimer(CALLBACK(C, /mob.proc/remove_movespeed_modifier, "flesh maul"), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)	
+		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob, remove_movespeed_modifier), "flesh maul"), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)	
 		to_chat(target, span_danger("You are staggered from the blow!"))
 
 	else if(iscyborg(target))

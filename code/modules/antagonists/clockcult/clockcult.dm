@@ -190,7 +190,7 @@
 
 /datum/antagonist/clockcult/get_admin_commands()
 	. = ..()
-	.["Give slab"] = CALLBACK(src,.proc/admin_give_slab)
+	.["Give slab"] = CALLBACK(src, PROC_REF(admin_give_slab))
 
 /datum/antagonist/clockcult/proc/admin_give_slab(mob/admin)
 	if(!SSticker.mode.equip_servant(owner.current))

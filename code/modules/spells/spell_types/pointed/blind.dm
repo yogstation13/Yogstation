@@ -5,7 +5,7 @@
 	charge_max = 300
 	clothes_req = FALSE
 	invocation = "STI KALY"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	message = span_notice("Your eyes cry out in pain!")
 	cooldown_min = 50 //12 deciseconds reduction per rank
 	ranged_mousepointer = 'icons/effects/mouse_pointers/blind_target.dmi'

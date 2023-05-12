@@ -252,7 +252,7 @@
 			user.add_mob_blood(feed_target) // Put target's blood on us. The donor goes in the ( )
 			feed_target.add_mob_blood(feed_target)
 			feed_target.apply_damage(10, BRUTE, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)
-			INVOKE_ASYNC(feed_target, /mob.proc/emote, "scream")
+			INVOKE_ASYNC(feed_target, TYPE_PROC_REF(/mob, emote), "scream")
 			DeactivatePower()
 		return
 

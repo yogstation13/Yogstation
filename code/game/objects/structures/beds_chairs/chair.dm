@@ -23,11 +23,11 @@
 /obj/structure/chair/Initialize()
 	. = ..()
 	if(!anchored)	//why would you put these on the shuttle?
-		addtimer(CALLBACK(src, .proc/RemoveFromLatejoin), 0)
+		addtimer(CALLBACK(src, PROC_REF(RemoveFromLatejoin)), 0)
 
 /obj/structure/chair/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, .proc/can_user_rotate),CALLBACK(src, .proc/can_be_rotated),null)
+	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, PROC_REF(can_user_rotate)),CALLBACK(src, PROC_REF(can_be_rotated)),null)
 
 /obj/structure/chair/proc/can_be_rotated(mob/user)
 	return TRUE
@@ -523,7 +523,7 @@
 /obj/structure/chair/comfy/plastic/post_buckle_mob(mob/living/M)
 	. = ..()
 	music_time = world.time + 60 SECONDS
-	addtimer(CALLBACK(src, .proc/motivate, M), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(motivate), M), 60 SECONDS)
 
 /obj/structure/chair/comfy/plastic/post_unbuckle_mob(mob/living/M)
 	. = ..()

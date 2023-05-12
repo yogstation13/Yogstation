@@ -432,7 +432,9 @@
   * Default behaviour is to send the COMSIG_ATOM_BULLET_ACT and then call on_hit() on the projectile
   */
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
-	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone)
+	var/sig_return = SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone)
+	if(sig_return != NONE)
+		return sig_return
 	. = P.on_hit(src, 0, def_zone)
 
 ///Return true if we're inside the passed in atom
@@ -573,7 +575,7 @@
   */
 /atom/proc/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	if(density && !has_gravity(AM)) //thrown stuff bounces off dense stuff in no grav, unless the thrown stuff ends up inside what it hit(embedding, bola, etc...).
-		addtimer(CALLBACK(src, .proc/hitby_react, AM), 2)
+		addtimer(CALLBACK(src, PROC_REF(hitby_react), AM), 2)
 
 /**
   * We have have actually hit the passed in atom
@@ -773,7 +775,7 @@
 		to_chat(user,span_warning("You can't dump the contents of [src_object.parent] into itself!"))
 		return
 	//yogs end
-	while (do_after(user, 1 SECONDS, src, TRUE, FALSE, CALLBACK(STR, /datum/component/storage.proc/handle_mass_item_insertion, things, src_object, user, progress)))
+	while (do_after(user, 1 SECONDS, src, TRUE, FALSE, CALLBACK(STR, TYPE_PROC_REF(/datum/component/storage, handle_mass_item_insertion), things, src_object, user, progress)))
 		stoplag(1)
 	qdel(progress)
 	to_chat(user, span_notice("You dump as much of [src_object.parent]'s contents into [STR.insert_preposition]to [src] as you can."))

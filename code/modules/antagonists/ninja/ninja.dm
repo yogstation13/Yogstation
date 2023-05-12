@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	var/mob/living/M = mob_override || owner.current
 	for(var/obj/item/implant/explosive/E in M.implants)
 		if(E)
-			RegisterSignal(E, COMSIG_IMPLANT_ACTIVATED, .proc/on_death)
+			RegisterSignal(E, COMSIG_IMPLANT_ACTIVATED, PROC_REF(on_death))
 	update_ninja_icons_added(M)
 
 /datum/antagonist/ninja/remove_innate_effects(mob/living/mob_override)

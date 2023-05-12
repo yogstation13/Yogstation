@@ -6,14 +6,14 @@
 	charge_max = 150
 	clothes_req = FALSE
 	invocation = "ETERNAL FLAMES"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	action_icon = 'icons/mob/actions/actions_changeling.dmi'
 	action_icon_state = "transform"
 	action_background_icon_state = "bg_demon"
 	var/list/stored_access
 
 /obj/effect/proc_holder/spell/targeted/touch/envy/on_gain(mob/living/user)
-	RegisterSignal(user, COMSIG_MOB_ALLOWED, .proc/envy_access)
+	RegisterSignal(user, COMSIG_MOB_ALLOWED, PROC_REF(envy_access))
 
 /obj/effect/proc_holder/spell/targeted/touch/envy/on_lose(mob/living/user)
 	UnregisterSignal(user, COMSIG_MOB_ALLOWED)

@@ -87,7 +87,7 @@
 	T.update_icon()
 	update_icon()
 	to_chat(user, span_warning("Container is resealing..."))
-	addtimer(CALLBACK(src, .proc/seal), 50)
+	addtimer(CALLBACK(src, PROC_REF(seal)), 50)
 	return TRUE
 
 /obj/item/antinoblium_container/proc/unload(obj/item/hemostat/antinoblium/T, mob/user)

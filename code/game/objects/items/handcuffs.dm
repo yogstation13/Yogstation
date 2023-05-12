@@ -337,7 +337,7 @@
 
 /obj/item/restraints/legcuffs/beartrap/energy/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/dissipate), 100)
+	addtimer(CALLBACK(src, PROC_REF(dissipate)), 100)
 
 /obj/item/restraints/legcuffs/beartrap/energy/proc/dissipate()
 	if(!ismob(loc))
@@ -427,7 +427,7 @@
 	name = "gonbola"
 	desc = "Hey, if you have to be hugged in the legs by anything, it might as well be this little guy."
 	icon_state = "gonbola"
-	item_state = "ebola"
+	item_state = "bola_r"
 	breakouttime = 300
 	slowdown = 0
 	var/datum/status_effect/gonbolaPacify/effectReference

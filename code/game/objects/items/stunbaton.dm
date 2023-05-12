@@ -55,7 +55,7 @@
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
-	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, .proc/throwbaton)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, PROC_REF(throwbaton))
 	update_icon()
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
