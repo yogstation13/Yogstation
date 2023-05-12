@@ -361,7 +361,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		new /obj/structure/healingfountain(get_turf(src))
 		qdel(src)
 		return
-	QDEL_IN(src, 15 SECONDS)//to remove clutter after a bit
+	QDEL_IN(src, 10 SECONDS)//to remove clutter after a bit
 
 /obj/item/battleroyale
 	name = "This item is created and used by the battle royale gamemode"

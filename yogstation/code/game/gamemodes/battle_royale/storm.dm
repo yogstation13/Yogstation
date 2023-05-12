@@ -6,7 +6,7 @@
 	weather_overlay = "ash_storm"
 	telegraph_overlay = "light_ash"
 	end_message = null
-	telegraph_duration = 3 SECONDS //actually give them a brief moment to react
+	telegraph_duration = 10 SECONDS //actually give them a brief moment to react
 	end_duration = 1
 	immunity_type = "fuckno"
 	telegraph_sound = 'yogstation/sound/effects/battleroyale/stormclosing.ogg'

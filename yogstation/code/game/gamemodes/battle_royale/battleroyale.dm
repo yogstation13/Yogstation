@@ -29,7 +29,7 @@ GLOBAL_VAR(stormdamage)
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.areas //Assuming we've gotten this far, let's spawn the battle bus.
-	GLOB.stormdamage = 3
+	GLOB.stormdamage = 2
 	if(A)
 		var/turf/T = safepick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
 		new /obj/structure/battle_bus(T)
@@ -147,13 +147,15 @@ GLOBAL_VAR(stormdamage)
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
 
-	GLOB.stormdamage += 1
 
 	if(borderstage)//doesn't cull during round start
 		ItemCull()
 
 	borderstage++
 
+	if(borderstage % 2 == 0) //so it scales, but not too hard
+		GLOB.stormdamage *= 1.5
+		
 	if(borderstage <= 9)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
@@ -179,7 +181,7 @@ GLOBAL_VAR(stormdamage)
 		message_admins("battle royale loot drop lists have been depleted somehow, PANIC")
 
 /datum/game_mode/fortnite/proc/loot_drop()
-	loot_spawn(rand(1,2))
+	loot_spawn(1)
 	var/nextdelay = loot_interval + (rand(1, loot_deviation * 2) - loot_deviation)
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), nextdelay)//literally just keep calling it
 
