@@ -203,7 +203,7 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/lizard_leap/proc/leap_end(mob/living/carbon/human/A)
-	A.SetImmobilized(0.2 SECONDS, TRUE, TRUE)
+	A.SetImmobilized(0, TRUE, TRUE)
 	linked_martial.leaping = FALSE
 	UpdateButtonIcon()
 
