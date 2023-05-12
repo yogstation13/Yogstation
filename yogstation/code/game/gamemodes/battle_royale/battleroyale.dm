@@ -206,16 +206,10 @@ GLOBAL_VAR(stormdamage)
 	objectives += O
 	var/mob/living/carbon/human/tfue = owner.current
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
-	START_PROCESSING(SSprocessing, src)
 
-/datum/antagonist/battleroyale/on_removal()
-	. = ..()
-	STOP_PROCESSING(SSprocessing, src)
-
-/datum/antagonist/battleroyale/process(delta_time)
-	. = ..()
+/datum/antagonist/battleroyale/proc/gamer_life()
 	var/mob/living/carbon/human/tfue = owner.current
-	if(tfue && isspaceturf(get_turf(tfue)))//to account for not being able to put the storm on space turf tiles (if someone reviewing this knows how, please tell me)
+	if(tfue && isspaceturf(tfue.loc))//to account for not being able to put the storm on space turf tiles (if someone reviewing this knows how, please tell me)
 		tfue.adjustFireLoss(GLOB.stormdamage * 2, TRUE, TRUE) //no hiding in space
 
 /datum/antagonist/battleroyale/greet()
