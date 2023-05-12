@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/disqualified = 0 //keep track of everyone disqualified for log reasons
 
 	for(var/mob/living/player in GLOB.battleroyale_players)
-		if(player.stat == DEAD || !player.client)
+		if(player.stat == DEAD)
 			disqualified++
 			continue
 		if(!is_station_level(player.z) || player.onCentCom() || player.onSyndieBase())
