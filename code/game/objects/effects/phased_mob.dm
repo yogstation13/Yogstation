@@ -27,7 +27,7 @@
 				to_chat(living_cheaterson, span_userdanger("This area has a heavy universal force occupying it, and you are scattered to the cosmos!"))
 				if(ishuman(living_cheaterson))
 					shake_camera(living_cheaterson, 20, 1)
-					addtimer(CALLBACK(living_cheaterson, /mob/living/carbon.proc/vomit), 2 SECONDS)
+					addtimer(CALLBACK(living_cheaterson, TYPE_PROC_REF(/mob/living/carbon, vomit)), 2 SECONDS)
 			phasing_in.forceMove(find_safe_turf(max(z,2)))
 	return ..()
 

@@ -87,7 +87,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/death), 100)
+	addtimer(CALLBACK(src, PROC_REF(death)), 100)
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/CanAllowThrough(atom/movable/mover, turf/target)
 	if(istype(mover, /mob/living/simple_animal/hostile/asteroid/hivelord))

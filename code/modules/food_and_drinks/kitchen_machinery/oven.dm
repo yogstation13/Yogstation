@@ -108,7 +108,7 @@
 	oven_tray.pixel_y = OVEN_TRAY_Y_OFFSET
 	oven_tray.pixel_x = OVEN_TRAY_X_OFFSET
 
-	RegisterSignal(used_tray, COMSIG_MOVABLE_MOVED, .proc/ItemMoved)
+	RegisterSignal(used_tray, COMSIG_MOVABLE_MOVED, PROC_REF(ItemMoved))
 	update_baking_audio()
 	update_icon()
 

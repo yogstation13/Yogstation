@@ -29,7 +29,7 @@
 	var/obj/effect/mine/pickup/bloodbath/B = new(H)
 	B.duration = duration
 
-	INVOKE_ASYNC(B, /obj/effect/mine/pickup/bloodbath/.proc/mineEffect, H) //could use moving out from the mine
+	INVOKE_ASYNC(B, TYPE_PROC_REF(/obj/effect/mine/pickup/bloodbath, mineEffect), H) //could use moving out from the mine
 
 	for(var/mob/living/carbon/human/P in GLOB.player_list)
 		if(P == H)
@@ -39,8 +39,8 @@
 		var/obj/item/I = new /obj/item/kitchen/knife/butcher(get_turf(P))
 		P.put_in_hands(I, del_on_fail=TRUE)
 		QDEL_IN(I, duration)
-		INVOKE_ASYNC(src, .proc/end_the_hunt, duration, P)
-	INVOKE_ASYNC(src, .proc/end_the_hunt, duration + (0.5 SECONDS), null)
+		INVOKE_ASYNC(src, PROC_REF(end_the_hunt), duration, P)
+	INVOKE_ASYNC(src, PROC_REF(end_the_hunt), duration + (0.5 SECONDS), null)
 		
 
 /datum/antagonist/blood_contract/proc/end_the_hunt(delay, mob/living/carbon/human/P)

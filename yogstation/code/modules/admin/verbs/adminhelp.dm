@@ -216,7 +216,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			to_chat(client, span_danger("Ticket opened with no active admins. Ticket will be sent to discord in 30 seconds if not taken."), confidential=TRUE)
 			if(!found_deadmin)
 				found_deadmin = TRUE
-				addtimer(CALLBACK(src, .proc/send_to_discord), 30 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(send_to_discord)), 30 SECONDS)
 	if(!found_deadmin)
 		send_to_discord()
 

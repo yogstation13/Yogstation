@@ -152,8 +152,8 @@ Difficulty: Very Hard
 	visible_message(span_colossus("\"<b>Die.</b>\""))
 
 	SLEEP_CHECK_DEATH(10)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, FALSE)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), FALSE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/spiral_shoot(negative = pick(TRUE, FALSE), counter_start = 8)
 	var/turf/start_turf = get_step(src, pick(GLOB.alldirs))
@@ -741,7 +741,7 @@ Difficulty: Very Hard
 	charge_max = 200
 	clothes_req = FALSE
 	invocation = "none"
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	range = 0
 	summon_type = list(
 		/obj/structure/flora/ausbushes,
@@ -881,7 +881,7 @@ Difficulty: Very Hard
 	desc = "Exits the body you are possessing."
 	charge_max = 60
 	clothes_req = 0
-	invocation_type = "none"
+	invocation_type = SPELL_INVOCATION_NONE
 	max_targets = 1
 	range = -1
 	include_user = TRUE
