@@ -116,7 +116,7 @@
 		user.visible_message(span_notice("[user] attempts to stab [src]!"), span_suicide("[I] bounces off of [src]'s back before breaking into millions of pieces... [src] glares at [user]!")) // You fucked up now son
 		I.play_tool_sound(src)
 		qdel(I)
-		addtimer(CALLBACK(user, /mob/living/.proc/gib), 3 SECONDS)
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, gib)), 3 SECONDS)
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat/attackby(obj/item/I,mob/living/user,params)
 	if(I.is_sharp())

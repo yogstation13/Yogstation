@@ -98,6 +98,8 @@
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		power_usage -= 50 * M.rating
 	active_power_usage = power_usage
+	if(obj_flags & EMAGGED)
+		active_power_usage *= 5
 
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
@@ -106,7 +108,7 @@
 
 /obj/machinery/power/emitter/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, .proc/can_be_rotated))
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, PROC_REF(can_be_rotated)))
 
 /obj/machinery/power/emitter/proc/can_be_rotated(mob/user,rotation_type)
 	if (anchored)
@@ -345,6 +347,9 @@
 	return
 
 /obj/machinery/power/emitter/proc/integrate(obj/item/gun/energy/E,mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, span_warning("The power limiter seems to be broken!"))
+		return FALSE
 	if(istype(E, /obj/item/gun/energy))
 		if(!user.transferItemToLoc(E, src))
 			return
@@ -380,8 +385,15 @@
 		return
 	locked = FALSE
 	obj_flags |= EMAGGED
+	sparks.start()
 	if(user)
-		user.visible_message("[user.name] emags [src].",span_notice("You short out the lock."))
+		user.visible_message("[src] starts to spark and hum as its power exceeds the recommended limit.", span_notice("You short out the lock and disable the power limiters."))
+	if(gun)
+		to_chat(user, span_warning("[src] ejects [gun] as you disable the power limiter."))
+		remove_gun(user)
+	active_power_usage *= 5
+	projectile_type = /obj/item/projectile/beam/emitter/pulse
+	projectile_sound = 'sound/weapons/pulse.ogg'
 
 
 /obj/machinery/power/emitter/prototype

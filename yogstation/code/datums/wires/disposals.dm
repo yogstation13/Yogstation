@@ -29,7 +29,7 @@
 		if(WIRE_SORT_SCAN) // freeze sorting for 10 seconds
 			if(A.sort_scan)
 				A.sort_scan = FALSE
-			addtimer(CALLBACK(A, /obj/structure/disposalpipe/sorting.proc/reset_scan), 100)
+			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/structure/disposalpipe/sorting, reset_scan)), 100)
 		if(WIRE_SORT_FORWARD) // make things go forward if frozen
 			A.last_sort = FALSE
 		if(WIRE_SORT_SIDE) // make things go sideways if frozen
