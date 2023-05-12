@@ -36,6 +36,7 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/clothing/suit/space/fragile = 5,
 		/obj/item/clothing/head/helmet/space/fragile = 5,
 		/obj/item/clothing/suit/hooded/wintercoat = 5,
+		/obj/item/clothing/suit/hooded/wintercoat/northern = 5, //it's a donator item, but it's my donator item so i'm adding it
 		//Weight of 4 - mostly minor stats, space suits with slowdown
 		/obj/item/shield/riot/buckler = 4,
 		/obj/item/clothing/head/helmet/space/nasavoid = 4,

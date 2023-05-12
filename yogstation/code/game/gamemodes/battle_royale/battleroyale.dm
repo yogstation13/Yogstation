@@ -208,6 +208,8 @@ GLOBAL_VAR(stormdamage)
 	O.owner = owner
 	objectives += O
 	var/mob/living/carbon/human/tfue = owner.current
+	for(var/obj/item/I in tfue.get_equipped_items(TRUE))//remove all clothes before giving the antag clothes
+		qdel(I)
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
 
 /mob/living/carbon/human/Life()
