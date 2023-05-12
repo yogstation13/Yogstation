@@ -102,7 +102,6 @@
 			thrust_y -= sy * side_maxthrust
 			last_thrust_right = -side_maxthrust
 
-	log_world("Doing spacepod physics [!!cell] [thrust_x] [thrust_y] [time]")
 	if(cell && cell.use(10 * sqrt((thrust_x*thrust_x)+(thrust_y*thrust_y)) * time))
 		velocity_x += thrust_x * time
 		velocity_y += thrust_y * time
