@@ -687,3 +687,5 @@ DYNAMIC_CONFIG_ENABLED
 
 ## Force Engine - 1 for SM, 2 for Sing/Tesla, 3 for any, 4 for TEG
 ENGINE_TYPE 3
+## Do we automatically raise to blue on shiftstart?
+#AUTO_BLUE_ALERT
