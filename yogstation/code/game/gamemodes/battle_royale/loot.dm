@@ -329,17 +329,13 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_weapon)
 				new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_utility)
-			new selected(src)
 
 		if(2)//armour focus (so people can select what they want)
 			for(var/i in 1 to 3)//less than weapons because guns can run out
 				selected = pickweightAllowZero(GLOB.battleroyale_armour)
 				new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_healing)
-			new selected(src)
 
-		if(3)//allrounder
+		if(3)//allrounder, technically has more items than the others
 			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
 			new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_armour)
@@ -353,15 +349,11 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_utility)
 				new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
-			new selected(src)
 
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
 			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_healing)
 				new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_armour)
-			new selected(src)
 
 /obj/structure/closet/crate/battleroyale/open(mob/living/user)
 	. = ..()

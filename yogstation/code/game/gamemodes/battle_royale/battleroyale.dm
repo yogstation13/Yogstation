@@ -179,7 +179,7 @@ GLOBAL_VAR(stormdamage)
 		message_admins("battle royale loot drop lists have been depleted somehow, PANIC")
 
 /datum/game_mode/fortnite/proc/loot_drop()
-	loot_spawn(1)
+	loot_spawn(rand(1,2))
 	var/nextdelay = loot_interval + (rand(1, loot_deviation * 2) - loot_deviation)
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), nextdelay)//literally just keep calling it
 
