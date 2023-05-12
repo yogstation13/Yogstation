@@ -19,7 +19,8 @@ GLOBAL_VAR(stormdamage)
 	var/list/queued = list() //Who is queued to enter?
 	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering")
 	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes (changed for testing, don't forget to change back)
-	var/loot_interval = 1 MINUTES
+	var/loot_interval = 90 SECONDS //roughly the time between loot drops
+	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
 	var/borderstage = 0
 	var/weightcull = 5 //anything above this gets culled
 	var/finished = FALSE
@@ -71,7 +72,7 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_LOOP)//literally just keep calling it
+	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
@@ -179,6 +180,8 @@ GLOBAL_VAR(stormdamage)
 
 /datum/game_mode/fortnite/proc/loot_drop()
 	loot_spawn(1)
+	var/nextdelay = loot_interval + (rand(1, loot_deviation * 2) - loot_deviation)
+	addtimer(CALLBACK(src, PROC_REF(loot_drop)), nextdelay)//literally just keep calling it
 
 /datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
 	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
