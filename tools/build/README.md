@@ -41,13 +41,13 @@ Example dm_versions.json file:
 ```
 [
   {
-    "name": "515.1594",
-    "path": "C:\\Repo\\ByondVersions\\515.1594_byond\\byond\\bin\\dm.exe",
+    "name": "515.1606",
+    "path": "C:\\Repo\\ByondVersions\\515.1606_byond\\byond\\bin\\dm.exe",
     "default": false
   },
   {
     "name": "funny_version",
-    "path": "D:\\Repo\\ByondVersions\\514.1589_byond\\byond\\bin\\dm.exe",
+    "path": "D:\\Repo\\ByondVersions\\515.1606_byond\\byond\\bin\\dm.exe",
     "default": true
   }
 ]
