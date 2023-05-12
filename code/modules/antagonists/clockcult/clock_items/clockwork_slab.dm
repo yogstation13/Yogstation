@@ -100,7 +100,7 @@
 
 /obj/item/clockwork/slab/dropped(mob/user)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/check_on_mob, user), 1) //dropped is called before the item is out of the slot, so we need to check slightly later
+	addtimer(CALLBACK(src, PROC_REF(check_on_mob), user), 1) //dropped is called before the item is out of the slot, so we need to check slightly later
 
 /obj/item/clockwork/slab/worn_overlays(isinhands = FALSE, icon_file)
 	. = list()
@@ -468,7 +468,7 @@
 		if("toggle")
 			recollecting = !recollecting
 		if("recite")
-			INVOKE_ASYNC(src, .proc/recite_scripture, text2path(params["category"]), usr, FALSE)
+			INVOKE_ASYNC(src, PROC_REF(recite_scripture), text2path(params["category"]), usr, FALSE)
 		if("select")
 			selected_scripture = params["category"]
 		if("bind")

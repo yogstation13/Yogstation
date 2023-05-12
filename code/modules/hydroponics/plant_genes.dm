@@ -167,6 +167,9 @@
 /datum/plant_gene/trait/proc/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	return
 
+/datum/plant_gene/trait/proc/on_attack(obj/item/reagent_containers/food/snacks/grown/G, mob/living/target, mob/living/user, def_zone)
+	return
+
 /datum/plant_gene/trait/proc/on_attackby(obj/item/reagent_containers/food/snacks/grown/G, obj/item/I, mob/user)
 	return
 
@@ -201,7 +204,7 @@
 	if(!istype(G, /obj/item/grown/bananapeel) && (!G.reagents || !G.reagents.has_reagent(/datum/reagent/lube)))
 		stun_len /= 3
 
-	G.AddComponent(/datum/component/slippery, min(stun_len,140), NONE, CALLBACK(src, .proc/handle_slip, G))
+	G.AddComponent(/datum/component/slippery, min(stun_len,140), NONE, CALLBACK(src, PROC_REF(handle_slip), G))
 
 /datum/plant_gene/trait/slip/proc/handle_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/M)
 	for(var/datum/plant_gene/trait/T in G.seed.genes)
@@ -320,13 +323,17 @@
 
 /datum/plant_gene/trait/teleport/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	if(isliving(target))
-		var/teleport_radius = max(round(G.seed.potency / 10), 1)
+		var/teleport_radius = max(round(G.seed.potency * rate), 1)	//max of 5
 		var/turf/T = get_turf(target)
 		new /obj/effect/decal/cleanable/molten_object(T) //Leave a pile of goo behind for dramatic effect...
 		do_teleport(target, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
+		if(iscarbon(target))
+			var/mob/living/carbon/C = target
+			C.adjust_disgust(15)	//Two teleports is safe
+			C.confused += 7
 
 /datum/plant_gene/trait/teleport/on_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/C)
-	var/teleport_radius = max(round(G.seed.potency / 10), 1)
+	var/teleport_radius = max(round(G.seed.potency * rate), 1)	//max of 5
 	var/turf/T = get_turf(C)
 	to_chat(C, span_warning("You slip through spacetime!"))
 	do_teleport(C, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
@@ -389,17 +396,24 @@
 	name = "Hypodermic Prickles"
 
 /datum/plant_gene/trait/stinging/on_slip(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
-	on_throw_impact(G, target)
+	if(isliving(target))
+		on_attack(G, target, null, pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
 
-/datum/plant_gene/trait/stinging/on_throw_impact(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
-	if(isliving(target) && G.reagents && G.reagents.total_volume)
-		var/mob/living/L = target
-		if(L.reagents && L.can_inject(null, 0))
-			var/injecting_amount = max(1, G.seed.potency*0.2) // Minimum of 1, max of 20
-			var/fraction = min(injecting_amount/G.reagents.total_volume, 1)
-			G.reagents.reaction(L, INJECT, fraction)
-			G.reagents.trans_to(L, injecting_amount)
-			to_chat(target, span_danger("You are pricked by [G]!"))
+/datum/plant_gene/trait/stinging/on_attack(obj/item/reagent_containers/food/snacks/grown/G, mob/living/target, mob/living/user, def_zone)
+	var/obj/item/bodypart/BP = target.get_bodypart(def_zone)
+	if(G.reagents && G.reagents.total_volume && target.reagents && target.can_inject(user, 0, def_zone) && !(BP && BP.status == BODYPART_ROBOTIC))
+		if(user)
+			var/contained = G.reagents.log_list()
+			user.log_message("pricked [target == user ? "themselves" : target ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
+			if(target != user && target.ckey && user.ckey) // injecting people with plants now creates admin logs (stolen from hypospray code)
+				log_attack("[user.name] ([user.ckey]) pricked [target.name] ([target.ckey]) with [G], which had [contained] (INTENT: [uppertext(user.a_intent)])")
+		var/injecting_amount = max(G.seed.potency * 0.2) / target.getarmor(def_zone, BIO) // Maximum of 20, reduced by bio protection
+		if(injecting_amount < 1)
+			return
+		var/fraction = min(injecting_amount/G.reagents.total_volume, 1)
+		G.reagents.reaction(target, INJECT, fraction)
+		G.reagents.trans_to(target, injecting_amount)
+		to_chat(target, span_danger("You are pricked by [G]!"))
 
 /datum/plant_gene/trait/smoke
 	name = "gaseous decomposition"

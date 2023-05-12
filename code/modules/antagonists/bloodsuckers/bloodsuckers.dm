@@ -107,7 +107,7 @@
 
 /// These handles the application of antag huds/special abilities
 /datum/antagonist/bloodsucker/apply_innate_effects(mob/living/mob_override)
-	RegisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE, .proc/LifeTick)
+	RegisterSignal(owner.current, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(LifeTick))
 	if((owner.assigned_role == "Clown"))
 		var/mob/living/carbon/H = owner.current
 		if(H && istype(H))
@@ -124,14 +124,14 @@
 
 /datum/antagonist/bloodsucker/get_admin_commands()
 	. = ..()
-	.["Give Level"] = CALLBACK(src, .proc/RankUp)
+	.["Give Level"] = CALLBACK(src, PROC_REF(RankUp))
 	if(bloodsucker_level_unspent >= 1)
-		.["Remove Level"] = CALLBACK(src, .proc/RankDown)
+		.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
 
 	if(broke_masquerade)
-		.["Fix Masquerade"] = CALLBACK(src, .proc/fix_masquerade)
+		.["Fix Masquerade"] = CALLBACK(src, PROC_REF(fix_masquerade))
 	else
-		.["Break Masquerade"] = CALLBACK(src, .proc/break_masquerade)
+		.["Break Masquerade"] = CALLBACK(src, PROC_REF(break_masquerade))
 
 /// Called by the add_antag_datum() mind proc after the instanced datum is added to the mind's antag_datums list.
 /datum/antagonist/bloodsucker/on_gain()

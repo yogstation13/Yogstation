@@ -266,7 +266,7 @@
 			return
 	if(!target)
 		return
-	if(NO_DNA_COPY in target.dna.species.species_traits)
+	if((NO_DNA_COPY in target.dna.species.species_traits) || (NOHUSK in target.dna.species.species_traits)) // if they can't be husked absorbing them will break and make them unrevivable
 		if(verbose)
 			to_chat(user, span_warning("[target] is not compatible with our biology."))
 		return
@@ -382,7 +382,7 @@
 	if(!isliving(living_mob))
 		return
 
-	RegisterSignals(living_mob, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON), .proc/on_click_sting)
+	RegisterSignals(living_mob, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON), PROC_REF(on_click_sting))
 
 	//Brains optional.
 	var/obj/item/organ/brain/our_ling_brain = living_mob.getorganslot(ORGAN_SLOT_BRAIN)
@@ -556,7 +556,7 @@
 /datum/antagonist/changeling/get_admin_commands()
 	. = ..()
 	if(stored_profiles.len && (owner.current.real_name != first_prof.name))
-		.["Transform to initial appearance."] = CALLBACK(src,.proc/admin_restore_appearance)
+		.["Transform to initial appearance."] = CALLBACK(src, PROC_REF(admin_restore_appearance))
 
 /datum/antagonist/changeling/proc/admin_restore_appearance(mob/admin)
 	if(!stored_profiles.len || !iscarbon(owner.current))

@@ -1,0 +1,4 @@
+author: " BurgerBB"
+delete-after: true 
+changes: 
+  - rscdel: "The alert level is no longer raised to blue on shift start."

@@ -93,7 +93,7 @@
 			do_gib = TRUE
 			
 	if(!do_gib)
-		addtimer(CALLBACK(src, .proc/fake_gib, L), gibtime)
+		addtimer(CALLBACK(src, PROC_REF(fake_gib), L), gibtime)
 		return
 	
 	var/sourcenutriment = L.nutrition / 15
@@ -137,7 +137,7 @@
 	L.death(1)
 	L.ghostize()
 	qdel(L)
-	addtimer(CALLBACK(src, .proc/gib_antag, skin, allmeat, meat_produced, gibtype, diseases), gibtime)
+	addtimer(CALLBACK(src, PROC_REF(gib_antag), skin, allmeat, meat_produced, gibtype, diseases), gibtime)
 
 /obj/machinery/power/validhunter_engine/proc/gib_antag(obj/item/stack/sheet/animalhide/skin, list/obj/item/reagent_containers/food/snacks/meat/slab/allmeat, meat_produced, gibtype, list/datum/disease/diseases)
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)

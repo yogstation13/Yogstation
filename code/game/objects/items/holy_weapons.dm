@@ -7,7 +7,7 @@
 
 /obj/item/nullrod
 	name = "null rod"
-	desc = "A rod of pure obsidian; its very presence disrupts and dampens the powers of Nar-Sie and Ratvar's followers."
+	desc = "A rod of pure obsidian; its very presence disrupts and dampens the powers of Nar'sie and Ratvar's followers."
 	icon_state = "nullrod"
 	item_state = "nullrod"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -41,7 +41,7 @@
 		var/mob/living/carbon/human/H = user
 		H.SetImmobilized(10 SECONDS)
 	animate(user, pixel_y = (32*8), time = 10 SECONDS)
-	addtimer(CALLBACK(src, .proc/suicide, user), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(suicide), user), 10 SECONDS)
 	return MANUAL_SUICIDE
 
 /obj/item/nullrod/proc/suicide(mob/user)
@@ -115,7 +115,7 @@
 	switch(action)
 		if("confirm")
 			var/rodPath = text2path(params["rodPath"])
-			if(!ispath(rodPath))
+			if(!ispath(rodPath, /obj/item/nullrod))
 				return FALSE
 			var/obj/item/nullrod/holy_weapon = new rodPath
 			GLOB.holy_weapon_type = holy_weapon.type
@@ -432,16 +432,144 @@
 	. = ..()
 	if(M == user)
 		return
-	var/throw_direction = get_dir(user, M)
-	var/atom/throw_target = get_edge_target_turf(M, throw_direction)
-	var/turf/throw_location = get_step_towards(M, throw_target)
-	M.SpinAnimation(5, 1)
-	if(throw_location.density)
+	var/atom/throw_target = get_edge_target_turf(M, user.dir)
+	ADD_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
+	var/distance = rand(1,5)
+	if(prob(1))
+		distance = 50 //hehe funny hallway launch
+	M.throw_at(throw_target, distance, 3, user, TRUE, TRUE, callback = CALLBACK(src, PROC_REF(afterimpact), M))
+
+/obj/item/twohanded/required/nullrod/proc/afterimpact(mob/living/M)
+	REMOVE_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
+
+/obj/item/nullrod/dualsword
+	name = "blades of the apostate"
+	desc = "You can't seem to make out the writing on the side."
+	icon = 'icons/obj/clothing/belts.dmi'
+	icon_state = "fulldual"
+	item_state = "fulldual"
+	slot_flags = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_HUGE
+	force = 12
+	block_chance = 10
+	wound_bonus = -20
+	attack_verb = list("thwacked")
+	menutab = MENU_WEAPON
+	additional_desc = "Strap the sheathe to your waist, and these blades will never fail you."
+	var/swords = TRUE
+	var/obj/item/nullrod/handedsword/swordright
+	var/obj/item/nullrod/handedsword/other/swordleft
+
+/obj/item/nullrod/dualsword/AltClick(mob/user)
+	. = ..()
+	if(loc != user)
+		user.balloon_alert(user, span_notice("you struggle to pull the blades out of the sheathe..."))
 		return
-	for(var/obj/D in throw_location.contents)
-		if(D.density)
+	if(swords)
+		if(LAZYLEN(user.get_empty_held_indexes()) < 2)
+			user.balloon_alert(user, span_warning("you need both hands free to unsheathe \the [src]!"))
 			return
-	M.forceMove(throw_location)
+
+		user.drop_all_held_items() //in case they have some sneaky 3rd hand shit
+
+		if(!swordright)
+			swordright = new(src) //copies stats from the sheathe to the weapons to allow for varedit shenanigans
+			swordright.sheath = src
+			swordright.force = force
+			swordright.armour_penetration = armour_penetration
+			swordright.block_chance = block_chance
+			swordright.wound_bonus = wound_bonus
+			swordright.bare_wound_bonus = bare_wound_bonus
+			swordright.reskinned = TRUE
+		user.put_in_r_hand(swordright)
+
+		if(!swordleft)
+			swordleft = new(src)
+			swordleft.sheath = src
+			swordleft.force = force
+			swordleft.armour_penetration = armour_penetration
+			swordleft.block_chance = block_chance
+			swordleft.wound_bonus = wound_bonus
+			swordleft.bare_wound_bonus = bare_wound_bonus
+			swordleft.reskinned = TRUE
+		user.put_in_l_hand(swordleft)
+
+		user.balloon_alert(user, "you unsheathe \the [src].")
+		playsound(user, 'sound/items/unsheath.ogg', 25, TRUE)
+		swords = FALSE
+		update_icon()
+
+/obj/item/nullrod/dualsword/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/nullrod/handedsword))
+		swords = TRUE
+
+		var/obj/item/otherhand = user.get_inactive_held_item()
+		if(istype(otherhand, /obj/item/nullrod/handedsword))
+			otherhand.forceMove(src)
+		I.forceMove(src)
+
+		user.balloon_alert(user, "You sheathe \the [src].")
+		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
+		update_icon()
+		
+/obj/item/nullrod/dualsword/update_icon()
+	. = ..()
+	item_state = swords ? "fulldual" : "emptydual"
+	icon_state = item_state
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		H.update_inv_belt()
+
+/obj/item/nullrod/handedsword
+	name = "Justice"
+	desc = "Ashes to ashes... Rust to rust..."
+	icon = 'icons/obj/weapons/swords.dmi'
+	icon_state = "dualright"
+	item_state = "dualright"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "ripped", "diced", "cut")
+	hitsound = 'sound/weapons/rapierhit.ogg'
+	sharpness = SHARP_EDGED
+	w_class = WEIGHT_CLASS_HUGE
+	chaplain_spawnable = FALSE
+	var/obj/item/nullrod/dualsword/sheath //so the sheathe is refilled when the swords are dropped
+
+/obj/item/nullrod/handedsword/other
+	name = "Splendor"
+	desc = "\"I'm going to ultrakill you!\" -Righteous Judge"
+	icon = 'icons/obj/weapons/swords.dmi'
+	icon_state = "dualleft"
+	item_state = "dualleft"
+
+/obj/item/nullrod/handedsword/attack(mob/living/M, mob/living/user, secondattack = FALSE)
+	. = ..()
+	var/obj/item/nullrod/handedsword/secondsword = user.get_inactive_held_item()
+	if(istype(secondsword, /obj/item/nullrod/handedsword) && !secondattack)
+		addtimer(CALLBACK(src, PROC_REF(secondattack), M, user, secondsword), 2, TIMER_UNIQUE | TIMER_OVERRIDE)
+	return
+
+/obj/item/nullrod/handedsword/proc/secondattack(mob/living/M, mob/living/user, obj/item/nullrod/handedsword/secondsword)
+	if(QDELETED(secondsword) || QDELETED(src))
+		return
+	user.swap_hand()
+	secondsword.attack(M, user, TRUE)
+	user.changeNext_move(CLICK_CD_MELEE)
+
+/obj/item/nullrod/handedsword/dropped(mob/user, silent = TRUE)
+	. = ..()
+	if(sheath)
+		if(sheath.swordright)
+			sheath.swordright.forceMove(sheath)
+		if(sheath.swordleft)
+			sheath.swordleft.forceMove(sheath)
+		if(!sheath.swords)
+			user.balloon_alert(user, "you sheathe \the [sheath].")
+			sheath.update_icon()
+			playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
+		sheath.swords = TRUE
+	
 
 /*---------------------------------------------------------------------------
 |
@@ -590,21 +718,33 @@
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
 	throwforce = 0
-	slowdown = -0.3 //give up a weapon, get some speed
+	slowdown = 0.3 //slower until speed is built up
 	menutab = MENU_CLOTHING
 	additional_desc = "The blessing of Hermes imbues the wearer with incredible speed."
+	var/steps = 0 //how many steps currently at
+	var/speedperstep = -0.05 //how much speed increases per step
+	var/maxspeed = -0.4 //what is the max amount of speed someone can get
+	var/stilltimer = 8 //how long (in deciseconds) someone can standstill without losing stacks
+	COOLDOWN_DECLARE(standstill)
 
 /obj/item/nullrod/hermes/equipped(mob/user, slot, initial)
 	. = ..()
 	if(slot == SLOT_SHOES)
-		RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, .proc/move_react)
+		RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
 
 /obj/item/nullrod/hermes/dropped(mob/user, silent)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
 
 /obj/item/nullrod/hermes/proc/move_react()
-	new /obj/effect/temp_visual/flowers(get_turf(src))
+	if(COOLDOWN_FINISHED(src, standstill))
+		steps = 0
+	COOLDOWN_START(src, standstill, stilltimer)
+	slowdown = max(initial(slowdown) + (steps * speedperstep), maxspeed)
+	steps ++
+	if(slowdown < 0)//only see the effect if you're getting extra speed
+		playsound(src, 'sound/effects/fairyboots.ogg', 45, FALSE)
+		new /obj/effect/temp_visual/flowers(get_turf(src))
 
 /obj/effect/temp_visual/flowers
 	layer = BELOW_MOB_LAYER
@@ -707,8 +847,8 @@
 	holy_glow_fx = mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 	user.add_overlay(holy_glow_fx)
 	holy_glow_light = user.mob_light(_color = LIGHT_COLOR_HOLY_MAGIC, _range = 2)
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
-	RegisterSignal(src, COMSIG_ITEM_PREDROPPED, .proc/drop_unwield)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(unwield))
+	RegisterSignal(src, COMSIG_ITEM_PREDROPPED, PROC_REF(drop_unwield))
 	START_PROCESSING(SSfastprocess, src)
 
 /obj/item/nullrod/cross/Destroy()
@@ -848,8 +988,11 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	attack_verb = list("chopped", "sliced", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
+	sharpness = SHARP_EDGED
 	throw_speed = 2 //make it slow so it has time to look cool
 	throwforce = 0 //it doesn't actually use this because we override throw impact, it's just for letting pacifists throw it
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	var/possessed = FALSE
 	var/walking = FALSE //check to tell if they're flying around or not
 	var/mob/living/simple_animal/shade/soul //when they're just a blade (stored inside the blade at all times)
@@ -910,8 +1053,13 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	if(isliving(hit_atom))//only transform if it doesn't hit a person
 		var/mob/living/target = hit_atom
 		if(owner && target == owner)
-			owner.put_in_active_hand(src)
-			visible_message("[owner] catches the flying [src] out of the air!")
+			var/caught = owner.put_in_hands(src)
+			if(caught)
+				visible_message("[owner] catches the flying [src] out of the air!")
+			else
+				playsound(target, 'sound/weapons/rapierhit.ogg', 30, 1, -1)
+				owner.take_overall_damage(5)
+				visible_message("[src] smacks [owner] in the face as [owner.p_they()] try to catch it with [owner.p_their()] hands full!")
 	else if(possessed)
 		transform = initial(transform)//to reset rotation for when it drops to the ground
 		blade = new /mob/living/simple_animal/nullrod(get_turf(src))
@@ -942,6 +1090,13 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	action_icon = 'icons/mob/actions/actions_spells.dmi'
 	action_icon_state = "swordrecall"
 
+/obj/effect/proc_holder/spell/targeted/recallnullrod/cast_check(skipcharge = 0, mob/user = usr)
+	if(sword.loc == user)
+		to_chat(user, span_notice("[sword] is already in your hand"))
+		revert_cast()
+		return FALSE
+	return ..()
+	
 /obj/effect/proc_holder/spell/targeted/recallnullrod/cast(list/targets, mob/user)
 	if(sword)
 		if(sword.walking)
@@ -1020,24 +1175,27 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	if(isliving(hit_atom))
 		var/mob/living/target = hit_atom
 		if(sword?.owner && target == sword.owner)
-			sword.owner.put_in_active_hand(sword)
+			var/caught = sword.owner.put_in_hands(sword)
 			mind.transfer_to(sword.soul)
 			sword.walking = FALSE
-			visible_message("[sword.owner] catches the flying blade out of the air!")
 			qdel(src)
+			if(caught)
+				visible_message("[sword.owner] catches the flying blade out of the air!")
+			else
+				playsound(target, 'sound/weapons/rapierhit.ogg', 30, 1, -1)
+				sword.owner.take_overall_damage(5)
+				visible_message("The flying blade smacks [sword.owner] in the face as [sword.owner.p_they()] try to catch it with [sword.owner.p_their()] hands full!")
 	else
 		..()
 
 /obj/effect/proc_holder/spell/targeted/nullroddrop
-	name = "Land"
+	name = "land"
 	desc = "Return to the ground for people to wield you."
 	school = "transmutation"
 	panel = "Chaplain"
 	charge_max = 10 SECONDS
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
-	invocation = "COME"
-	invocation_type = "shout"
 	range = -1
 	level_max = 0 //cannot be improved
 	cooldown_min = 10 SECONDS

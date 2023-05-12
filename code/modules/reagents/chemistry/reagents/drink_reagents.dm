@@ -597,7 +597,7 @@
 	..()
 
 /datum/reagent/consumable/lemon_lime
-	name = "Lemon Lime"
+	name = "Spite"
 	description = "A tangy substance made of 0.5% natural citrus!"
 	color = "#8CFF00" // rgb: 135, 255, 0
 	taste_description = "tangy lime and lemon soda"
@@ -829,7 +829,6 @@
 
 /datum/reagent/consumable/cherryshake/on_mob_life(mob/living/carbon/C)
 	if(isjellyperson(C))
-		to_chat(C, span_notice("Just like us, just like jelly!"))
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
 			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
 	..()

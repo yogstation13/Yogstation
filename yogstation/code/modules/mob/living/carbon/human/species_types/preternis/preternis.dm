@@ -47,7 +47,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	//deathsound = //change this when sprite gets reworked
 	yogs_draw_robot_hair = TRUE //remove their hair when they get the new sprite
 	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
-	wings_icon = "Robotic" //maybe change this eventually
+	wings_icon = "Robotic"
 	species_language_holder = /datum/language_holder/machine
 	//new variables
 	var/datum/action/innate/maglock/maglock
@@ -76,7 +76,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(istype(BP,/obj/item/bodypart/l_leg) || istype(BP,/obj/item/bodypart/r_leg))//my dudes skip leg day
 			BP.max_damage = 30
 
-	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, .proc/drain_power_from)
+	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
 
 	if(ishuman(C))
 		maglock = new
@@ -274,8 +274,9 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
 	. = ..()
-	if(ispreternis(user) && !attacker_style?.nonlethal && !user.mind.has_martialart() && !(user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)))
-		user.next_move += 3 //adds 0.3 second delay to combat
+	if(!ispreternis(user) || attacker_style?.nonlethal || (user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)) || (user.mind.martial_art.type in subtypesof(/datum/martial_art)))
+		return	
+	user.next_move += 2 //adds 0.2 second delay to combat
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE

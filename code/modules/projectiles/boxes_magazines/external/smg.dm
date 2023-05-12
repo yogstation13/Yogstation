@@ -68,11 +68,12 @@
 
 /obj/item/ammo_box/magazine/wt550m9/wt_airburst
 	name = "\improper WT-550 magazine (Airburst Rounds 4.6x30mm)"
-	desc = "A 20-round 4.6x30mm magazine, designed for the WT-550 Carbine. \
+	desc = "A 10-round 4.6x30mm magazine, designed for the WT-550 Carbine. \
 			These rounds travel a few feet, then pop and split into many smaller projectiles. The initial bullet is nigh useless however."
 	icon_state = "46x30mmtB-20"
 	ammo_type = /obj/item/ammo_casing/c46x30mm/airburst
 	sprite_designation = "B"
+	max_ammo = 10
 
 /obj/item/ammo_box/magazine/wt550m9/wt_airburst/update_icon() // Snowflake code snowflake code
 	..()

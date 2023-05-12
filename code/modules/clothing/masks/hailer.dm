@@ -15,6 +15,7 @@
 	visor_flags_inv = HIDEFACIALHAIR|HIDEFACE
 	flags_cover = MASKCOVERSMOUTH
 	visor_flags_cover = MASKCOVERSMOUTH
+	mutantrace_variation = MUTANTRACE_VARIATION
 	var/aggressiveness = 2
 	var/cooldown_special
 	var/recent_uses = 0
@@ -31,6 +32,7 @@
 	aggressiveness = 3
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES|HIDEEARS|HIDEHAIR
 	visor_flags_inv = 0
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/sechailer/swat/encrypted
 	name = "\improper MK.II SWAT mask"
