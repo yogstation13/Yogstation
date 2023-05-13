@@ -450,7 +450,7 @@
 			ac.owner = owner
 			objectives += ac
 	*/
-		if(2 || 3 || 4) //only give the murder other changelings goal if they're not in a team.
+		if(2 to 4) //only give the murder other changelings goal if they're not in a team.
 			var/datum/objective/absorb_changeling/ac = new
 			ac.owner = owner
 			objectives += ac
