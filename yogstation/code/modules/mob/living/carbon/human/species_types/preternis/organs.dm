@@ -4,6 +4,7 @@
 	see_in_dark = PRETERNIS_NV_ON
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	//preternis eyes need to be powered by a preternis to function, in a non preternis they slowly power down to blindness
+	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
 
 	low_threshold_passed = span_info("Your Preternis eyes switch to battery saver mode.")
