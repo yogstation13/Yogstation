@@ -269,7 +269,8 @@
 			var/mob/living/L = V
 			if(iscultist(L))
 				L.heal_overall_damage(10 * power_multiplier, 10 * power_multiplier)
-			if(is_servant_of_ratvar(L))
+			if(is_servant_of_ratvar(L) && ishuman(L))
+				var/mob/living/carbon/human/H = L
 				var/obj/item/bodypart/BP = pick(H.bodyparts)
 				BP.generic_bleedstacks += 5 * power_multiplier
 
