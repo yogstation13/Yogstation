@@ -438,18 +438,19 @@
 			other_changelings_exist = TRUE
 			break
 
-	var/changeling_objective = other_changelings_exist ? pick(1,3) : 1 //yogs - fuck absorb most
+	var/changeling_objective = other_changelings_exist ? pick(1,2,3,4) : 1 //yogs - fuck absorb most
 	switch(changeling_objective) //yogs - see above
 		if(1)
 			var/datum/objective/absorb/absorb_objective = new
 			absorb_objective.owner = owner
 			absorb_objective.gen_amount_goal(3, 5) //yogs, 6-8 -> 3-5
 			objectives += absorb_objective
-		if(2)
+	/*	if(2)
 			var/datum/objective/absorb_most/ac = new
 			ac.owner = owner
 			objectives += ac
-		if(3) //only give the murder other changelings goal if they're not in a team.
+	*/
+		if(2 || 3 || 4) //only give the murder other changelings goal if they're not in a team.
 			var/datum/objective/absorb_changeling/ac = new
 			ac.owner = owner
 			objectives += ac
