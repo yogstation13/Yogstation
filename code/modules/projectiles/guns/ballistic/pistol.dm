@@ -49,7 +49,7 @@
 	desc = "A robust .50 AE handgun."
 	icon_state = "deagle"
 	force = 14
-	fire_delay = 8
+	fire_delay = 7 //Very slightly slower than the .357
 	mag_type = /obj/item/ammo_box/magazine/m50
 	can_suppress = FALSE
 	mag_display = TRUE

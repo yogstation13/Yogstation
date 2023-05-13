@@ -51,8 +51,8 @@
 //M1911 Pistol
 
 /obj/item/ammo_box/magazine/m45
-	name = "handgun magazine (.45)"
-	desc = "An 8-round .45 magazine designed for the M1911 pistol."
+	name = "handgun magazine (.45 ACP)"
+	desc = "An 8-round .45 ACP magazine designed for the M1911 pistol."
 	icon_state = "45-8"
 	ammo_type = /obj/item/ammo_casing/c45
 	caliber = ".45"
@@ -99,8 +99,8 @@
 //Vatra M38 Pistol
 
 /obj/item/ammo_box/magazine/v38
-	name = "handgun magazine (.38)"
-	desc = "A 8-round .38 magazine designed for the Vatra M38 pistol. Not great against armor."
+	name = "handgun magazine (.38 special)"
+	desc = "A 8-round .38 special magazine designed for the Vatra M38 pistol. Not great against armor."
 	icon_state = "v38-8"
 	ammo_type = /obj/item/ammo_casing/c38
 	caliber = "38"
