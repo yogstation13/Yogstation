@@ -588,7 +588,7 @@
 					failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Recovery of patient impossible. Further attempts futile.")
 				else if (H.hellbound)
 					failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Patient's soul unrecoverable.  Further attempts futile.")
-				else if(total_burn >= (MAX_REVIVE_FIRE_DAMAGE || total_brute >= MAX_REVIVE_BRUTE_DAMAGE) & (isipc(H))) 
+				else if((total_burn >= MAX_REVIVE_FIRE_DAMAGE || total_brute >= MAX_REVIVE_BRUTE_DAMAGE) & (isipc(H))) 
 					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Severe chassis damage makes patient recovery impossible via defibrillation or reboot board. Mechanical repairs via tools may result in successful operation.")
 				else if(total_burn >= MAX_REVIVE_FIRE_DAMAGE || total_brute >= MAX_REVIVE_BRUTE_DAMAGE)
 					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Surgical repair may allow for successful resuscitation.")
