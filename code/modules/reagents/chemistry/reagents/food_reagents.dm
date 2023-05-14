@@ -892,21 +892,21 @@
 	taste_mult = 2
 	taste_description = "fizzy sweetness"
 
-/datum/reagent/consumable/korta_flour
-	name = "Korta Flour"
-	description = "A coarsely ground, peppery flour made from korta nut shells."
+/datum/reagent/consumable/oublmox_flour
+	name = "Oublmox Flour"
+	description = "A coarsely ground, peppery flour made from oublmox nut shells."
 	taste_description = "earthy heat"
 	color = "#EEC39A"
 
-/datum/reagent/consumable/korta_milk
-	name = "Korta Milk"
-	description = "A milky liquid made by crushing the centre of a korta nut."
+/datum/reagent/consumable/oublmox_milk
+	name = "Oublmox Milk"
+	description = "A milky liquid made by crushing the centre of a oublmox nut."
 	taste_description = "sugary milk"
 	color = "#FFFFFF"
 
-/datum/reagent/consumable/korta_nectar
-	name = "Korta Nectar"
-	description = "A sweet, sugary syrup made from crushed sweet korta nuts."
+/datum/reagent/consumable/oublmox_nectar
+	name = "Oulbmox Nectar"
+	description = "A sweet, sugary syrup made from crushed sweet oublmox nuts."
 	color = "#d3a308"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	metabolization_rate = 1 * REAGENTS_METABOLISM
