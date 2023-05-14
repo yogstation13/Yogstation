@@ -1,7 +1,8 @@
 /obj/item/mdrive
 	name = "mirage drive"
 	desc = "A device that functions to increase the user's kinetic energy and direct it. Should the user land near other beings, the device will draw from them, slowing them down \
-	and allowing the device to be used sooner. The recharge time for the device scales with the distance traveled, capping out at one minute."
+	and allowing the device to be used sooner. The recharge time for the device scales with the distance traveled, capping out at one minute. If the user's legs are restrained, \
+	they will only be able to jump to a target directly within their vision."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "miragedrive"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
