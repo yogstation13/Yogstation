@@ -335,7 +335,7 @@
 			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
 				damage_applied *= 24
 			else if(L.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
-				damage_applied *= 3 // DIE!
+				damage_applied *= 2 // DIE!
 			L.apply_damage(damage_applied, def_zone = BODY_ZONE_CHEST, wound_bonus=CANT_WOUND)
 
 	//BLEED
