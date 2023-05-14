@@ -905,7 +905,7 @@
 	color = "#FFFFFF"
 
 /datum/reagent/consumable/oublmox_nectar
-	name = "Oulbmox Nectar"
+	name = "Oublmox Nectar"
 	description = "A sweet, sugary syrup made from crushed sweet oublmox nuts."
 	color = "#d3a308"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
