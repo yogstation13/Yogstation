@@ -889,10 +889,14 @@
 	required_reagents = list(/datum/reagent/consumable/ethanol/irishcoffee = 2, /datum/reagent/consumable/ethanol/beer/stout = 1)
 
 /datum/chemical_reaction/drink/mushroom_tea
+	name = "Mushroom Tea"
+	id = /datum/reagent/consumable/mushroom_tea
 	results = list(/datum/reagent/consumable/mushroom_tea = 5)
 	required_reagents = list(/datum/reagent/toxin/mushroom_powder = 1, /datum/reagent/water = 5)
 
 /datum/chemical_reaction/drink/mushi_kombucha
+	name = "Mushi Kombucha"
+	id = /datum/reagent/consumable/ethanol/mushi_kombucha
 	results = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 5)
 	required_reagents = list(/datum/reagent/consumable/mushroom_tea = 3, /datum/reagent/consumable/korta_nectar = 2)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 1)

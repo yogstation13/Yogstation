@@ -1042,7 +1042,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.adjustFireLoss(-2)
 	return ..()
 
-/datum/reagent/consumable/ethanol/mushi_kombucha/reaction_mob(mob/living/M, method=TOUCH)
+/datum/reagent/consumable/ethanol/aloe/reaction_mob(mob/living/M, method=TOUCH)
 	if(method == INGEST)
 		to_chat(M, span_notice("You remember that Aloe heals burns, so drinking it surely would work too right?"))
 	return ..()
