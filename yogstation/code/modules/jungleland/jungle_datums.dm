@@ -420,53 +420,6 @@
 			return
 
 	//instead of it being chance based, malaria is based on time
-#define NOON_DIVISOR 5 
-#define LIGHTING_GRANULARITY 3.4
-#define UPDATES_IN_QUARTER_DAY 5
-
-/datum/daynight_cycle 
-	var/daynight_cycle = TRUE
-	var/update_interval = 60 SECONDS
-	var/updates = 0 
-	var/cached_luminosity = 0
-	var/list/affected_areas = list()
-	var/list/affected_mobs = list()
-
-/datum/daynight_cycle/proc/finish_generation()
-	INVOKE_ASYNC(src,.proc/daynight_cycle)
-
-/datum/daynight_cycle/proc/daynight_cycle()
-	set waitfor = FALSE
-	updates += 1
-	//whew that's quite a bit of math! it's quite simple once you get it tho, think of (current_inteval/update_interval) as x, sin(x * arcsin(1)) turns sin()'s period from 2*PI to 4,
-	//working with integers is nicer, all the other stuff is mostly fluff to make it so it takes 10 update_interval to go from day to night and back.
-	var/new_luminosity = 0.3 + (CEILING(LIGHTING_GRANULARITY * sin(updates * arcsin(1)/5),1) + 3)/10
-	
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JUNGLELAND_DAYNIGHT_NEXT_PHASE,updates,new_luminosity)
-	for(var/i in GLOB.mob_living_list)
-		var/mob/living/L = i
-		if(!L.client)
-			continue
-		var/area/A = get_area(L)
-		if(!(A in affected_areas))
-			continue
-		if(!(L.real_name in affected_mobs))
-			affected_mobs += L.real_name
-			RegisterSignal(L,COMSIG_MOVABLE_MOVED,.proc/check_on_move)
-		if(new_luminosity <= 0.6)
-			L.overlay_fullscreen("night_overlay",/atom/movable/screen/fullscreen/night,((1 - new_luminosity) - 0.4)*10)
-		else 
-			L.clear_fullscreen("night_overlay",TRUE)
-	cached_luminosity = new_luminosity
-
-	addtimer(CALLBACK(src,.proc/daynight_cycle), update_interval, TIMER_UNIQUE | TIMER_OVERRIDE)
-
-/datum/daynight_cycle/proc/check_on_move(mob/living/L, atom/OldLoc, Dir, Forced)
-	var/area/A = get_area(L)
-	if(!(A in affected_areas))
-		L.clear_fullscreen("night_overlay",TRUE)
-		UnregisterSignal(L,COMSIG_MOVABLE_MOVED)
-		affected_mobs -= L.real_name
 
 /datum/action/cooldown/tar_crown_spawn_altar
 	name = "Summon tar altar"
@@ -538,3 +491,7 @@
 	id = "poultice_alt2"
 	required_temp = 420
 	required_reagents = list(/datum/reagent/cellulose = 40, /datum/reagent/ash = 15, /datum/reagent/space_cleaner/sterilizine/primal = 4)
+
+/datum/reagent/toxin/concentrated 
+	name = "Concentrated toxin"
+	toxpwr = 2

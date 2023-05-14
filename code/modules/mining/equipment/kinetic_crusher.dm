@@ -129,6 +129,11 @@
 				if(!QDELETED(C))
 					C.total_damage += detonation_damage
 				L.apply_damage(detonation_damage, BRUTE, blocked = def_check)
+			//YOGS EDIT BEGIN
+			for(var/t in trophies)
+				var/obj/item/crusher_trophy/T = t 
+				T.after_mark_detonation(target,user,src,target_health-L.health)
+			//YOGS EDIT END
 
 /obj/item/twohanded/kinetic_crusher/proc/Recharge(magmite = FALSE)
 	if(magmite == TRUE)
@@ -225,6 +230,7 @@
 
 /obj/item/crusher_trophy/proc/on_mark_application(mob/living/target, datum/status_effect/crusher_mark/mark, had_mark,obj/item/twohanded/kinetic_crusher/hammer_synced) //YOGS EDIT
 /obj/item/crusher_trophy/proc/on_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced) //YOGS EDIT
+/obj/item/crusher_trophy/proc/after_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced, damage_dealt) //YOGS EDIT
 //goliath
 /obj/item/crusher_trophy/goliath_tentacle
 	name = "goliath tentacle"

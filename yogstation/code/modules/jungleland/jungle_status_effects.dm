@@ -239,7 +239,7 @@
 
 /atom/movable/screen/alert/status_effect/glory_of_victory
 	name = "Glory of victory"
-	desc = "The forest gives and forest takes no longer. I will take what's rightfully mine."
+	desc = "The forest gives and forest takes, no longer. I will take what's rightfully mine."
 	icon = 'yogstation/icons/mob/screen_alert.dmi'
 	icon_state = "glory_of_victory"
 

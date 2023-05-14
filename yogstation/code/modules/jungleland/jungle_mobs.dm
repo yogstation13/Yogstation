@@ -367,12 +367,6 @@
 	var/has_blood = FALSE
 	var/overshoot_dist = 5
 
-	var/awoke = TRUE
-
-/mob/living/simple_animal/hostile/yog_jungle/mosquito/Initialize()
-	. = ..()
-	RegisterSignal(SSdcs,COMSIG_GLOB_JUNGLELAND_DAYNIGHT_NEXT_PHASE,.proc/react_to_daynight_change)
-
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/Aggro()
 	. = ..()
 	prepare_charge()
@@ -404,14 +398,6 @@
 	melee_damage_upper = 50
 	icon_state = "mosquito_blood"
 	animate(src,color = initial(color),time = charge_ramp_up*2)
-
-/mob/living/simple_animal/hostile/yog_jungle/mosquito/attacked_by(obj/item/I, mob/living/user)
-	. = ..()
-	if(!awoke && stat != DEAD)
-		toggle_ai(AI_ON) 
-		awoke = TRUE 
-		icon_state = icon_living
-		FindTarget(user)
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/prepare_charge()
 	if(!get_charge())
@@ -449,20 +435,6 @@
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/get_charge()
 	return can_charge 
 
-/mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/react_to_daynight_change(updates,luminosity)
-	if(stat == DEAD)
-		return 
-
-	if(luminosity > 0.6 && awoke && !target)
-		toggle_ai(AI_OFF)
-		awoke = FALSE 
-		icon_state = "mosquito_sleeping"
-	
-	if(luminosity <= 0.6 && !awoke)
-		toggle_ai(AI_ON) 
-		awoke = TRUE 
-		icon_state = has_blood ? "mosquito_blood" : icon_living
-
 //jungle version of the wasp. Slightly weaker and faster, with different loot. Renamed to avoid confusion. Credit to original creator.
 /mob/living/simple_animal/hostile/yog_jungle/yellowjacket
 	name = "yellow jacket"
@@ -492,6 +464,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	butcher_results = list(/obj/item/stinger = 1)
 	loot = list()
+	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket
 	var/charging = FALSE
 	var/revving_charge = FALSE
 	var/poison_type = /datum/reagent/toxin

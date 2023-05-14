@@ -609,5 +609,37 @@
 		timer -= delta_time
 		if(timer == 0)
 			remove_bonuses()
-	 
 
+/obj/item/crusher_trophy/jungleland/mosquito_sack
+	name = "Mosquito's bloodsack"
+	desc = "It used to be filled with blood, now it is empty."
+	icon_state = "mosquito_sack"
+	denied_type = /obj/item/crusher_trophy/jungleland/mosquito_sack
+
+/obj/item/crusher_trophy/jungleland/mosquito_sack/effect_desc()
+	return "Detonating a mark heals you for 10% of the damage applied."
+
+/obj/item/crusher_trophy/jungleland/mosquito_sack/after_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced,damage_dealt)
+	user.adjustBruteLoss(-0.1 * damage_dealt)
+	user.adjustFireLoss(-0.1 * damage_dealt)
+	user.adjustToxLoss(-0.1 * damage_dealt)
+	
+/obj/item/crusher_trophy/jungleland/wasp_head
+	name = "Matriarch wasp's head"
+	desc = "It's eyes still stare at you."
+	icon_state = "wasp_head"
+	denied_type = /obj/item/crusher_trophy/jungleland/wasp_head
+
+	var/damage_per_dist = 4
+	var/first_loc
+
+/obj/item/crusher_trophy/jungleland/wasp_head/effect_desc()
+	return "Increases the damage of mark detonation proprotionally to distance travelled."
+
+/obj/item/crusher_trophy/jungleland/wasp_head/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
+	first_loc = get_turf(user)
+
+/obj/item/crusher_trophy/jungleland/wasp_head/after_mark_detonation(mob/living/target, mob/living/user, obj/item/twohanded/kinetic_crusher/hammer_synced, damage_dealt)
+	var/dist = get_dist(get_turf(target),first_loc)
+	var/damage = dist * damage_per_dist 
+	target.apply_damage(damage, BRUTE, blocked = target.getarmor(type = BOMB))

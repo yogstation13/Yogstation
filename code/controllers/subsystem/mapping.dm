@@ -89,7 +89,6 @@ SUBSYSTEM_DEF(mapping)
 		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/dying_forest), jungleland_dying_ruins_templates, clear_below = TRUE)
 		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/toxic_pit), jungleland_swamp_ruins_templates, clear_below = TRUE)
 		seedRuins(jungle_ruins, CONFIG_GET(number/jungleland_budget), list(/area/jungleland/barren_rocks), jungleland_barren_ruins_templates, clear_below = TRUE)
-		GLOB.jungleland_daynight_cycle.finish_generation() // I HAVE NO IDEA  WHERE TO PUT THIS, BUT THIS NEEDS TO BE WAY AFTER MAPGEN IS OVER	
 	else
 		run_map_generation()
 	//YOGS EDIT

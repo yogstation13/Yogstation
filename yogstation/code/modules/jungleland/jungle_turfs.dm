@@ -29,11 +29,6 @@ Temperature: 126.85 °C (400 K)
 	requires_power = TRUE
 	outdoors = TRUE
 
-/area/jungleland/Initialize()
-	. = ..()
-	if(outdoors)
-		GLOB.jungleland_daynight_cycle.affected_areas += src
-
 /area/jungleland/explored
 	name = "Explored Jungle"
 

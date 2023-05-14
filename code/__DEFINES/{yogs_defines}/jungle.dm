@@ -32,6 +32,5 @@ GLOBAL_LIST_INIT(quarry_ores, list( \
 		ORE_URANIUM = new /datum/ore_patch/uranium(),
 ))
 
-GLOBAL_DATUM_INIT(jungleland_daynight_cycle, /datum/daynight_cycle,new)
 
 GLOBAL_LIST_EMPTY(tar_pits)
