@@ -219,7 +219,7 @@
 
 	var/static/regex/narsian_words = regex("praise narsie|praise nar-sie|praise nar'sie") //why is it spelled so many ways can you KEEP IT CONSISTENT PLEASE
 	var/static/regex/ratvarian_words = regex("hail ratvar|honor ratvar|honour ratvar|purge all untruths") //bri'ish spelling
-	var/static/regex/knockdown_words = regex("drop|fall|trip|knockdown|kneel|lie|down")
+	var/static/regex/knockdown_words = regex("drop|fall|trip|knockdown|kneel|lie|get down")
 	var/static/regex/vomit_words = regex("vomit|throw up|sick")
 	var/static/regex/silence_words = regex("shut up|silence|be silent|ssh|quiet|hush")
 	var/static/regex/hallucinate_words = regex("see the truth|hallucinate|the truth is out there")
