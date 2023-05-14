@@ -9,6 +9,7 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	item_state = "mdrive"
 	w_class = WEIGHT_CLASS_SMALL
+	var/cooldown_coefficient = 4 //determines how many deciseconds each tile traveled adds to the cooldown
 	var/access_card = new /obj/item/card/id/captains_spare()
 	var/recharged = TRUE
 	var/cooldown_remaining
@@ -37,7 +38,7 @@
 			L.apply_status_effect(STATUS_EFFECT_CATCHUP)
 			slowing = TRUE
 	recharged = FALSE
-	bonus_cd = 4*testpath.len
+	bonus_cd = cooldown_coefficient*testpath.len
 	next_dash = next_dash + bonus_cd
 	if(slowing == TRUE)
 		next_dash = next_dash/2
