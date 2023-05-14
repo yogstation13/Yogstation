@@ -1764,7 +1764,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	kinetic energy and use it in a way that moves the user to their destination at a speed comparable to teleportation. Additionally, if there are other beings near the landing\
 	 site, the mirage drive will draw on their energy to recharge itself, slowing them down in the process."
 	item = /obj/item/mdrive
-	cost = 6
+	cost = 7
 	manufacturer = /datum/corporation/traitor/waffleco
 
 /datum/uplink_item/device_tools/singularity_beacon
