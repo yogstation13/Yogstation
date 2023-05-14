@@ -44,7 +44,7 @@
 	if(next_dash >= 600)
 		next_dash = 600
 	cooldown_remaining = next_dash*10 + world.time
-	addtimer(CALLBACK(src, .proc/reload), next_dash)
+	addtimer(CALLBACK(src, PROC_REF(reload)), next_dash)
 	user.forceMove(testpath[testpath.len])
 	var/obj/effect/temp_visual/decoy/fading/halfsecond/F = new(get_turf(user), user)
 	user.visible_message(span_warning("[user] appears at [target]!"))
