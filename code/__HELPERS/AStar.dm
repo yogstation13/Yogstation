@@ -231,6 +231,6 @@ Actual Adjacent procs :
 /turf/proc/reachableTurftestdensity(caller, var/turf/T, ID, simulated_only) //used for the sake of pathfinding while excluding turfs with dense objects
 	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
 		for(var/obj/D in T)
-			if(D.density == TRUE)
+			if(D.density)
 				return FALSE
 		return TRUE

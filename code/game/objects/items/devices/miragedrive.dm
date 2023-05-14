@@ -19,7 +19,7 @@
 	var/list/testpath = list()
 	var/bonus_cd = 0
 	var/slowing = FALSE
-	if((target.density))
+	if(target.density)
 		return
 	if(recharged == FALSE)
 		to_chat(user, span_warning("You can't dash for another [seconds_remaining()] seconds!"))
@@ -47,7 +47,7 @@
 	user.forceMove(testpath[testpath.len])
 	var/obj/effect/temp_visual/decoy/fading/halfsecond/F = new(get_turf(user), user)
 	user.visible_message(span_warning("[user] appears at [target]!"))
-	playsound(user, 'sound/effects/stealthoff.ogg', 50, 1, 1)
+	playsound(user, 'sound/effects/stealthoff.ogg', 50, 1)
 	for(var/i in 1 to testpath.len)
 		var/turf/next_step = testpath[i]
 		if(ISMULTIPLE(i, 2) && (next_step))
