@@ -2552,7 +2552,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A strange cocktail with a cracked egg believed to treat hangovers."
 	shot_glass_icon_state = "ambermoonshotglass"
 
-/datum/reagent/consumable/ethanol/bilk/kortara
+/datum/reagent/consumable/ethanol/kortara
 	name = "Kortara"
 	description = "A sweet, milky nut-based drink traditional in vuulek cuisine. Frequently mixed with fruit juices and cocoa for extra refreshment."
 	boozepwr = 25

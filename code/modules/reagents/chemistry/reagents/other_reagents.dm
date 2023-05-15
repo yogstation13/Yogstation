@@ -1683,7 +1683,7 @@
 	name = "Ash"
 	description = "Supposedly phoenixes rise from these, but you've never seen it."
 	reagent_state = LIQUID
-	color = "#C8A5DC"
+	color = "#808080"
 	taste_description = "ash"
 
 /datum/reagent/acetone

@@ -1315,6 +1315,8 @@
 				prying_so_hard = TRUE
 				if(do_after(user, time_to_open, src))
 					open(2)
+					if(!istype(I,/obj/item/jawsoflife/jimmy)) //You get to be special
+						take_damage(max_integrity/8) //Forcing open a door messes it up a little
 					if(density && !open(2))
 						to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
 				prying_so_hard = FALSE

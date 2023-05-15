@@ -382,6 +382,40 @@
 /obj/item/twohanded/dualsaber/toy/IsReflect()//Stops Toy Dualsabers from reflecting energy projectiles
 	return 0
 
+/*
+ * Subtype of Vxtvul Hammer
+ */
+/obj/item/twohanded/vxtvulhammer/toy
+	name = "toy sledgehammer"
+	desc = "A Donksoft motorized hammer with realistic flashing lights and speakers."
+	force = 0
+	force_wielded = 0 // after recreating the dozen procs this thing has I decided it should be a subtype
+	throwforce = 0
+	resistance_flags = NONE
+	armour_penetration = 0
+	block_chance = 0
+	w_class = WEIGHT_CLASS_NORMAL
+	toy = TRUE
+	var/pirated = FALSE // knockoff brand!
+
+/obj/item/twohanded/vxtvulhammer/toy/Initialize()
+	. = ..()
+	if(pirated || prob(10)) // man i got scammed!
+		pirated = TRUE
+		name = "toy pirate sledgehammer"
+		desc += " This one looks different from the ones you see on commercials..."
+		icon_state = "vxtvul_hammer_pirate0-0"
+		update_icon()
+
+/obj/item/twohanded/vxtvulhammer/toy/update_icon()
+	if(!pirated)
+		icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
+	else
+		icon_state = "vxtvul_hammer[wielded]-[supercharged]"
+
+/obj/item/twohanded/vxtvulhammer/toy/pirate
+	pirated = TRUE
+
 /obj/item/toy/katana
 	name = "replica katana"
 	desc = "Woefully underpowered in D20."

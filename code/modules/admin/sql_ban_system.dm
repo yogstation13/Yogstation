@@ -59,7 +59,7 @@
 		FROM [format_table_name("bound_credentials")]
 		WHERE
 			ckey = :ckey AND 
-			FIND_IN_SET('bypass_bans', [format_table_name("bound_credentials")].flags) 
+			FIND_IN_SET('[DB_BOUND_CREDENTIALS_FLAG_BYPASS_BANS]', [format_table_name("bound_credentials")].flags) 
 	"}, list("ckey" = player_ckey));
 	if(!query_get_bypass_creds.warn_execute())
 		qdel(query_get_bypass_creds)

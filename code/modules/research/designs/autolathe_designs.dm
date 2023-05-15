@@ -902,7 +902,7 @@
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 20000)
 	build_path = /obj/item/ammo_box/c38/rubber
-	category = list("Security")
+	category = list("initial", "Security")
 
 /datum/design/c38
 	name = ".38 Speedloader"

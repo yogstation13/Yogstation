@@ -302,11 +302,14 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	. += generate_station_goal_report()
 
 	desc += "\n\n[generate_station_trait_announcement()]"
-
-	print_command_report(., "Central Command Status Summary", announce=FALSE)
-	priority_announce(desc, title, ANNOUNCER_INTERCEPT)
-	if(GLOB.security_level < SEC_LEVEL_BLUE)
-		set_security_level(SEC_LEVEL_BLUE)
+		
+	if(CONFIG_GET(flag/auto_blue_alert))
+		print_command_report(., "Central Command Status Summary", announce=FALSE)
+		priority_announce(desc, title, ANNOUNCER_INTERCEPT)
+		if(GLOB.security_level < SEC_LEVEL_BLUE)
+			set_security_level(SEC_LEVEL_BLUE)
+	else
+		print_command_report(., "Central Command Status Summary")
 
 	if(ISINRANGE(threat_level, 50, 80))
 		for(var/pack in SSshuttle.supply_packs)
