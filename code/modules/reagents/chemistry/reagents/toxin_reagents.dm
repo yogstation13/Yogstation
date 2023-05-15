@@ -64,6 +64,13 @@
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
 		holder.remove_reagent(/datum/reagent/medicine/epinephrine, 2*REM)
 	C.adjustPlasma(20)
+	if(isplasmaman(C))
+		toxpwr = 0
+		C.adjustBruteLoss(-0.5*REM, FALSE)
+		C.adjustFireLoss(-0.5*REM, FALSE)
+		C.adjustToxLoss(-1*REM, FALSE)
+	else
+		toxpwr = initial(toxpwr)
 	return ..()
 
 /datum/reagent/toxin/plasma/reaction_obj(obj/O, reac_volume)
