@@ -305,7 +305,19 @@
 /obj/item/assembly/flash/armimplant/rev
 	name = "syndicate flash"
 	desc = "A flash which, used with certain hypnotic and subliminal messaging techniques, can turn loyal crewmembers into vicious revolutionaries."
+	icon_state = "revflash"
+	item_state = "revflash"
+	flashing_overlay = "revflash-f"
 	can_convert = TRUE
+
+/obj/item/assembly/flash/armimplant/rev/try_use_flash(mob/user)
+	if(user)
+		var/datum/antagonist/rev/head/RH = is_head_revolutionary(user)
+		if(RH && RH.rev_team?.members?.len) // just in case
+			flashcd = max(RH.rev_team.members.len * 10, initial(flashcd)) // cooldown is one second for every member of the revolution, minimum of 2 seconds
+		else
+			flashcd = initial(flashcd)
+	return ..()
 
 /obj/item/assembly/flash/hypnotic
 	desc = "A modified flash device, programmed to emit a sequence of subliminal flashes that can send a vulnerable target into a hypnotic trance."
