@@ -535,7 +535,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/list/datum/mind/owners = get_owners()
 	for(var/O in owners)
 		var/datum/mind/M = O
-		if(!considered_escaped(M, requires_being_alive = FALSE)) //NO MAN LEFT BEHIND
+		if(!considered_escaped(M, FALSE)) //NO MAN LEFT BEHIND
 			return FALSE
 		if(considered_alive(M))
 			has_survivor = TRUE
