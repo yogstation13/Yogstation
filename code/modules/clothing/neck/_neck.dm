@@ -476,7 +476,7 @@
 	actions_types = list(/datum/action/item_action/blow_whistle)
 
 /obj/item/clothing/neck/secconwhistle/ui_action_click(mob/user)
-	if(!COOLDOWN_FINISHED(src, recharge_time)
+	if(!COOLDOWN_FINISHED(src, recharge_time))
 		to_chat(user, span_warning("You need to catch your breath first!"))
 		return
 	playsound(get_turf(src), 'sound/misc/policewhistle.ogg', 30, TRUE, -1)
