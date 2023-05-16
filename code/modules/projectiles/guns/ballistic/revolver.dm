@@ -16,6 +16,12 @@
 	tac_reloads = FALSE
 	var/spin_delay = 10
 	var/recent_spin = 0
+	var/can_spin = TRUE
+
+/obj/item/gun/ballistic/revolver/Initialize()
+	. = ..()
+	if(!can_spin)
+		verbs -= /obj/item/gun/ballistic/revolver/verb/spin
 
 /obj/item/gun/ballistic/revolver/chamber_round(spin_cylinder = TRUE)
 	if(spin_cylinder)
@@ -38,7 +44,7 @@
 
 	var/mob/M = usr
 
-	if(M.stat || !in_range(M,src))
+	if(M.stat || !in_range(M,src) || !can_spin)
 		return
 
 	if (recent_spin > world.time)
@@ -271,6 +277,4 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/derringer
 	fire_sound_volume = 40
 	fire_delay = 0 // Pow pow!
-
-/obj/item/gun/ballistic/revolver/spin()
-	return
+	can_spin = FALSE
