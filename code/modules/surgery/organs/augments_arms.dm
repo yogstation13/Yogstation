@@ -425,3 +425,9 @@
 	desc = "An integrated flash projector used alongside syndicate subliminal messaging training to convert loyal crew into violent syndicate activists."
 	contents = newlist(/obj/item/assembly/flash/armimplant/rev)
 	syndicate_implant = TRUE
+
+/obj/item/organ/cyberimp/arm/stechkin_implant
+	name = "Stechkin implant"
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
+	contents = newlist(/obj/item/gun/ballistic/automatic/pistol/implant)
+	syndicate_implant = TRUE

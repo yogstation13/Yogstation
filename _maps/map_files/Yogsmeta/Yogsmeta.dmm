@@ -50533,27 +50533,6 @@
 "ebO" = (
 /turf/closed/wall,
 /area/engine/atmos/hfr)
-"ebZ" = (
-/obj/machinery/button/door{
-	id = "chemistry_shutters";
-	name = "chemistry shutters control";
-	pixel_x = 24;
-	pixel_y = 24;
-	req_access_txt = "5; 33"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "chemistry_shutters";
-	name = "chemistry shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/medical/chemistry)
 "ecc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -60539,6 +60518,12 @@
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"kzY" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "kBb" = (
 /obj/structure/chair/comfy/beige,
 /obj/effect/landmark/start/head_of_security,
@@ -65482,12 +65467,6 @@
 /mob/living/simple_animal/sloth/citrus,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"nxK" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "nyc" = (
 /obj/effect/turf_decal/tile/green/half/contrasted,
 /turf/open/floor/plasteel,
@@ -73043,6 +73022,27 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"suo" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	frequency = 1485;
+	name = "Station Intercom (Medbay)";
+	pixel_x = 32
+	},
+/obj/machinery/button/door{
+	id = "chemistry_shutters";
+	name = "chemistry shutters control";
+	pixel_x = 26;
+	pixel_y = -9;
+	req_access_txt = "5; 33"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "suM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -80328,20 +80328,6 @@
 /obj/structure/bookcase/manuals/research_and_development,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"wVZ" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/line{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	frequency = 1485;
-	name = "Station Intercom (Medbay)";
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "wWP" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -108901,8 +108887,8 @@ ckQ
 dsq
 wjN
 uSP
-wVZ
-nxK
+suo
+kzY
 awz
 kPz
 uIu
@@ -109157,7 +109143,7 @@ gAI
 iox
 jjT
 cga
-ebZ
+iDY
 cga
 iDY
 cga

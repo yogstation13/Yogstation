@@ -18,7 +18,7 @@
 			add_overlay("[icon_state]_o_full")
 		else
 			add_overlay("[icon_state]_o_mid")
-		
+
 
 /obj/item/ammo_box/magazine/recharge/attack_self() //No popping out the "bullets"
 	return
@@ -69,12 +69,20 @@
 
 /obj/item/ammo_box/magazine/recharge/ntusp/emp_act(severity) //shooting physical bullets wont stop you dying to an EMP
 	. = ..()
-	if(!(. & EMP_PROTECT_CONTENTS)) 
+	if(!(. & EMP_PROTECT_CONTENTS))
 		var/bullet_count = ammo_count()
-		var/bullets_to_remove = round(bullet_count / severity)
+		var/bullets_to_remove = round(bullet_count / (severity*2))
 		for(var/i = 0; i < bullets_to_remove, i++)
 			qdel(get_round())
 		update_icon()
+		if(isgun(loc))
+			var/obj/item/gun/ballistic/G = loc
+			if(!G.magazine == src)
+				return
+			G.semicd = TRUE
+			// 5-10 seconds depending on severity, then give or take 0.2 seconds to prevent piercing ears
+			var/unjam_time = ((10/severity) + (rand(-20,20)*0.01)) SECONDS
+			addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/gun, reset_semicd)), unjam_time)
 
 /obj/item/ammo_casing/caseless/c22hl
 	caliber = ENERGY
