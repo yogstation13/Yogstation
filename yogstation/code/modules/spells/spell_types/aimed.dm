@@ -4,7 +4,7 @@
 	charge_max = 60
 	clothes_req = FALSE
 	invocation = "ONA ANIMATUS"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 20
 	cooldown_min = 20 //10 deciseconds reduction per rank
 	projectile_type = /obj/item/projectile/magic/animate

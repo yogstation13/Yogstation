@@ -728,7 +728,7 @@
 		target.playsound_local(null, 'sound/effects/explosion_distant.ogg', 40, TRUE)
 		target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
 		target.Jitter(15)
-		INVOKE_ASYNC(target, /mob.proc/emote, "laugh")
+		INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "laugh")
 		//remove_victim(target) // Remove on CLICK ONLY!
 	use_lock = FALSE
 
@@ -775,7 +775,7 @@
 		span_danger("[user] performs a ritual, spilling some of [target]'s blood from their [target_string] and shaking them up!"),
 		span_userdanger("[user] performs a ritual, spilling some blood from your [target_string], shaking you up!"),
 	)
-	INVOKE_ASYNC(target, /mob.proc/emote, "scream")
+	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "scream")
 	target.Jitter(5)
 	target.apply_damages(brute = torture_dmg_brute, burn = torture_dmg_burn, def_zone = (selected_bodypart ? selected_bodypart.body_zone : null)) // take_overall_damage(6,0)
 	return TRUE
@@ -1212,7 +1212,7 @@
 		span_boldnotice("You sit down onto [src]."),
 	)
 	if(IS_BLOODSUCKER(user))
-		RegisterSignal(user, COMSIG_MOB_SAY, .proc/handle_speech)
+		RegisterSignal(user, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		user.Paralyze(6 SECONDS)
 		to_chat(user, span_cult("The power of the blood throne overwhelms you!"))

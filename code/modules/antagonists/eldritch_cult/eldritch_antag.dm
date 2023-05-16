@@ -181,9 +181,9 @@
 
 /datum/antagonist/heretic/get_admin_commands()
 	. = ..()
-	.["Equip"] = CALLBACK(src,.proc/equip_cultist)
-	.["Edit Research Points (Current: [charge])"] = CALLBACK(src, .proc/admin_edit_research)
-	.["Give Knowledge"] = CALLBACK(src, .proc/admin_give_knowledge)
+	.["Equip"] = CALLBACK(src, PROC_REF(equip_cultist))
+	.["Edit Research Points (Current: [charge])"] = CALLBACK(src, PROC_REF(admin_edit_research))
+	.["Give Knowledge"] = CALLBACK(src, PROC_REF(admin_give_knowledge))
 
 /datum/antagonist/heretic/proc/admin_edit_research(mob/admin)
 	var/research2add = input(admin, "Enter an amount to change research by (Negative numbers remove research)", "Research Grant") as null|num
