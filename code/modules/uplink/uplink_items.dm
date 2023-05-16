@@ -671,10 +671,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
-/datum/uplink_item/stealthy_weapons/dehy_carp
+/datum/uplink_item/stealthy_weapons/derringer
 	name = "Derringer Pistol"
 	desc = "A concealable double-chamber pistol loaded directly with .357 rounds. Fits in boots."
-	item = /obj/item/toy/plush/carpplushie/dehy_carp
+	item = /obj/item/gun/ballistic/revolver/derringer
 	cost = 3
 	manufacturer = /datum/corporation/traitor/donkco
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
