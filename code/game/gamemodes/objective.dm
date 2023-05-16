@@ -513,7 +513,6 @@ GLOBAL_LIST_EMPTY(objectives)
 	name = "escape"
 	explanation_text = "Escape on the shuttle or an escape pod alive and without being in custody."
 	team_explanation_text = "Have all members of your team escape on a shuttle or pod alive, without being in custody."
-	var/requires_being_alive = TRUE
 
 /datum/objective/escape/check_completion()
 	if(..())
@@ -521,7 +520,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	// Require all owners escape safely.
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
-		if(!considered_escaped(M, requires_being_alive))
+		if(!considered_escaped(M))
 			return FALSE
 	return TRUE
 
