@@ -26,7 +26,7 @@
 /obj/item/gun/ballistic/revolver/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	..()
 	chamber_round(TRUE)
- 
+
 /obj/item/gun/ballistic/revolver/AltClick(mob/user)
 	..()
 	spin()
@@ -236,9 +236,9 @@
 			user.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
 		if (3)
 			user.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
-	user.apply_damage(300, BRUTE, affecting) 
+	user.apply_damage(300, BRUTE, affecting)
 	user.visible_message(span_danger("[user.name] fires [src] at [user.p_their()] head!"), span_userdanger("You fire [src] at your head!"), span_italics("You hear a gunshot, then everything goes silent."))
-	
+
 /obj/item/gun/ballistic/revolver/russian/soul
 	name = "cursed Russian revolver"
 	desc = "To play with this revolver requires wagering your very soul."
@@ -262,3 +262,15 @@
 		user.emote("scream")
 		user.drop_all_held_items()
 		user.Paralyze(80)
+
+/obj/item/gun/ballistic/revolver/derringer
+	name = "derringer pistol"
+	desc = "A old-style double-chamber pistol. Load with .357 rounds."
+	icon_state = "revolver" // TO-DO: sprite
+	w_class = WEIGHT_CLASS_TINY
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/derringer
+	fire_sound_volume = 40
+	fire_delay = 0 // Pow pow!
+
+/obj/item/gun/ballistic/revolver/spin()
+	return
