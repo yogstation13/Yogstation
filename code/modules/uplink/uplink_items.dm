@@ -673,7 +673,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_weapons/derringer
 	name = "Derringer Pistol"
-	desc = "A concealable double-chamber pistol loaded directly with .357 rounds. Fits in boots."
+	desc = "A concealable double-chamber pistol loaded with individual .357 rounds. Fits in boots."
 	item = /obj/item/gun/ballistic/revolver/derringer
 	cost = 3
 	manufacturer = /datum/corporation/traitor/donkco

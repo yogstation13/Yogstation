@@ -271,10 +271,15 @@
 
 /obj/item/gun/ballistic/revolver/derringer
 	name = "derringer pistol"
-	desc = "A old-style double-chamber pistol. Load with .357 rounds."
+	desc = "A old-style double-chamber pistol. Load individually with .357 rounds."
 	icon_state = "revolver" // TO-DO: sprite
 	w_class = WEIGHT_CLASS_TINY
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/derringer
 	fire_sound_volume = 40
 	fire_delay = 0 // Pow pow!
 	can_spin = FALSE
+
+/obj/item/gun/ballistic/revolver/derringer/attackby(obj/item/A, mob/user, params)
+	if(istype(A, /obj/item/ammo_box))
+		return TRUE
+	. = ..()
