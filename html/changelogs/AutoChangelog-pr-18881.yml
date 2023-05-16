@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixed preternis lungs and eyes not having the correct flags (they are actually robotic as intended now)"

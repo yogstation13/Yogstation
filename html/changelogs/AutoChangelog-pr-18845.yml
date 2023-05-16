@@ -1,5 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - tweak: "Nagant revolver now sounds like a .38 revolver instead of the beefy .357 revolver"
-  - soundadd: "New firing sound for deagle, m1911, and vatra m38"
