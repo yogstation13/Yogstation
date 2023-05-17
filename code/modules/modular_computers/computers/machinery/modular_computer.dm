@@ -50,6 +50,17 @@
 /obj/machinery/modular_computer/examine(mob/user)
 	. = ..()
 	. += get_modular_computer_parts_examine(user)
+	if(cpu && !(cpu.resistance_flags & INDESTRUCTIBLE))
+		if(cpu.resistance_flags & ON_FIRE)
+			. += span_warning("It's on fire!")
+		var/healthpercent = (cpu.obj_integrity/cpu.max_integrity) * 100
+		switch(healthpercent)
+			if(50 to 99)
+				. += "It looks slightly damaged."
+			if(25 to 50)
+				. += "It appears heavily damaged."
+			if(0 to 25)
+				. += span_warning("It's falling apart!")
 
 /obj/machinery/modular_computer/attack_ghost(mob/dead/observer/user)
 	. = ..()
@@ -141,4 +152,3 @@
 /obj/machinery/modular_computer/bullet_act(obj/item/projectile/Proj)
 	if(cpu)
 		cpu.bullet_act(Proj)
-	. = ..()
