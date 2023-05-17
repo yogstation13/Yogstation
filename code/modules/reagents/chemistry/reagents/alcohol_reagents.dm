@@ -2495,16 +2495,16 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "A strange cocktail with a cracked egg believed to treat hangovers."
 	shot_glass_icon_state = "ambermoonshotglass"
 
-/datum/reagent/consumable/ethanol/oublmoxa
-	name = "Oublmoxa"
+/datum/reagent/consumable/ethanol/utri
+	name = "Utri"
 	description = "A sweet, milky nut-based drink traditional in vuulek cuisine. Frequently mixed with fruit juices and cocoa for extra refreshment."
 	boozepwr = 25
 	color = "#EEC39A"
 	quality = DRINK_GOOD
 	taste_description = "sweet nectar"
-	glass_icon_state = "oublmoxa_glass"
-	glass_name = "glass of oublmoxa"
-	glass_desc = "The fermented nectar of the Oublmoxa nut, as enjoyed by lizards galaxywide."
+	glass_icon_state = "utri_glass"
+	glass_name = "glass of utri"
+	glass_desc = "The fermented nectar of the Ute nut, as enjoyed by lizards galaxywide."
 
 /datum/reagent/consumable/ethanol/sea_breeze
 	name = "Sea Breeze"
@@ -2523,7 +2523,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/white_tiziran
 	name = "Kriiya"
-	description = "A mix of vodka and oublmoxa, often utilized during vuulek celebrations."
+	description = "A mix of vodka and utri, often utilized during vuulek celebrations."
 	boozepwr = 65
 	color = "#A68340"
 	quality = DRINK_GOOD
@@ -2550,7 +2550,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/protein_blend
 	name = "Protein Blend"
-	description = "A vile blend of protein, pure grain alcohol, oublmox flour, and blood. Useful for bulking up, if you can keep it down."
+	description = "A vile blend of protein, pure grain alcohol, ute flour, and blood. Useful for bulking up, if you can keep it down."
 	boozepwr = 65
 	color = "#FF5B69"
 	quality = DRINK_NICE

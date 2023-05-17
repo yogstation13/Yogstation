@@ -898,20 +898,20 @@
 	name = "Mushi Kombucha"
 	id = /datum/reagent/consumable/ethanol/mushi_kombucha
 	results = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 5)
-	required_reagents = list(/datum/reagent/consumable/mushroom_tea = 3, /datum/reagent/consumable/oublmox_nectar = 2)
+	required_reagents = list(/datum/reagent/consumable/mushroom_tea = 3, /datum/reagent/consumable/ute_nectar = 2)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 1)
 
 /datum/chemical_reaction/drink/sea_breeze
 	name = "Sea Breeze"
 	id = /datum/reagent/consumable/ethanol/sea_breeze
 	results = list(/datum/reagent/consumable/ethanol/sea_breeze = 5)
-	required_reagents = list(/datum/reagent/consumable/ethanol/oublmoxa = 3, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/ethanol/creme_de_cacao = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/utri = 3, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/ethanol/creme_de_cacao = 1)
 
 /datum/chemical_reaction/drink/white_tiziran
 	name = "Kriiya"
 	id = /datum/reagent/consumable/ethanol/white_tiziran
 	results = list(/datum/reagent/consumable/ethanol/white_tiziran = 8)
-	required_reagents = list(/datum/reagent/consumable/ethanol/black_russian = 5, /datum/reagent/consumable/ethanol/oublmoxa = 3)
+	required_reagents = list(/datum/reagent/consumable/ethanol/black_russian = 5, /datum/reagent/consumable/ethanol/utri = 3)
 
 /datum/chemical_reaction/drink/drunken_espatier
 	name = "Drunken Espatier"
@@ -924,7 +924,7 @@
 	name = "Protein Blend"
 	id = /datum/reagent/consumable/ethanol/protein_blend
 	results = list(/datum/reagent/consumable/ethanol/protein_blend = 5)
-	required_reagents = list(/datum/reagent/toxin/bad_food = 1, /datum/reagent/consumable/oublmox_flour = 1, /datum/reagent/blood = 1, /datum/reagent/consumable/ethanol = 2)
+	required_reagents = list(/datum/reagent/toxin/bad_food = 1, /datum/reagent/consumable/ute_flour = 1, /datum/reagent/blood = 1, /datum/reagent/consumable/ethanol = 2)
 
 /datum/chemical_reaction/drink/triumphal_arch
 	name = "Triumphal Arch"
