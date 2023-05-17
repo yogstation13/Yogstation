@@ -19,13 +19,13 @@
 	var/icon_state_powered = null						// Icon state when the computer is turned on.
 	var/screen_icon_state_menu = "menu"					// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.
 	var/screen_icon_screensaver = "standby"				// Icon state overlay when the computer is powered, but not 'switched on'.
-	var/overlay_skin = null		
+	var/overlay_skin = null
 	var/max_hardware_size = 0							// Maximal hardware size. Currently, tablets have 1, laptops 2 and consoles 3. Limits what hardware types can be installed.
 	var/steel_sheet_cost = 10							// Amount of steel sheets refunded when disassembling an empty frame of this computer.
 	var/light_strength = 0								// Light luminosity when turned on
 	var/base_active_power_usage = 100					// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_idle_power_usage = 10						// Power usage when the computer is idle and screen is off (currently only applies to laptops)
-	
+
 	// Stuff for presets
 	var/list/starting_components = list()
 	var/list/starting_files = list()
@@ -141,3 +141,4 @@
 /obj/machinery/modular_computer/bullet_act(obj/item/projectile/Proj)
 	if(cpu)
 		cpu.bullet_act(Proj)
+	. = ..()
