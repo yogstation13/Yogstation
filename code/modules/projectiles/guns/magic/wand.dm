@@ -207,7 +207,7 @@
 	fire_sound = 'sound/magic/fireball.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/fireball
 	icon_state = "firewand"
-	max_charges = 10 //10, 5, 5, 4
+	max_charges = 8 //8, 4, 4, 3
 
 /obj/item/gun/magic/wand/fireball/zap_self(mob/living/user)
 	..()
