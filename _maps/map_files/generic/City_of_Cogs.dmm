@@ -95,12 +95,6 @@
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"aD" = (
-/obj/machinery/door/airlock/clockwork/brass{
-	name = "Listening Station"
-	},
-/turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
 "aE" = (
 /obj/machinery/door/airlock/clockwork/brass{
 	name = "Observation Room"
@@ -3474,15 +3468,15 @@ ab
 ab
 ab
 ab
-ai
-ai
-ai
-ai
-ai
-ai
-ai
 aa
-ai
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 ab
@@ -3564,8 +3558,8 @@ ab
 ab
 ab
 ab
-ai
-ai
+aa
+aa
 az
 mj
 ai
@@ -3655,7 +3649,7 @@ ab
 ab
 ab
 ab
-ai
+aa
 au
 aj
 aj
@@ -3663,7 +3657,7 @@ ag
 aj
 aj
 aj
-aD
+aE
 aj
 at
 aF
@@ -3744,9 +3738,9 @@ ab
 ab
 ab
 ab
-ai
-ai
-ai
+aa
+aa
+aa
 av
 aj
 aj
@@ -3834,8 +3828,8 @@ ab
 ab
 ab
 ab
-ai
-ai
+aa
+aa
 au
 ax
 aH
@@ -3925,7 +3919,7 @@ ab
 ab
 ab
 ab
-ai
+aa
 bj
 aj
 aj
@@ -4016,7 +4010,7 @@ ab
 ab
 ab
 ab
-ai
+aa
 wm
 aj
 aj
@@ -4123,9 +4117,9 @@ ah
 ah
 ah
 ai
-aD
+aE
 ai
-ai
+aa
 aa
 aa
 aa
@@ -4281,7 +4275,7 @@ ac
 ad
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -4398,7 +4392,7 @@ aj
 aj
 aj
 aj
-aa
+ai
 aj
 aj
 aj
@@ -4467,7 +4461,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -4498,7 +4492,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aG
 ac
@@ -4676,7 +4670,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -4861,7 +4855,7 @@ aj
 aj
 aO
 aj
-aj
+aO
 aj
 aG
 ac
@@ -4919,7 +4913,7 @@ ac
 ad
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -5015,7 +5009,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -5032,7 +5026,7 @@ ai
 at
 aF
 ah
-aj
+aa
 aj
 aj
 aj
@@ -5131,7 +5125,7 @@ aj
 aj
 aO
 aj
-aj
+aO
 aj
 aO
 aj
@@ -5199,7 +5193,7 @@ aj
 aj
 aO
 aj
-aj
+aO
 aj
 aj
 aj
@@ -5286,7 +5280,7 @@ ad
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
@@ -5310,7 +5304,7 @@ aj
 aj
 aO
 aj
-aj
+aO
 aj
 aj
 aj
@@ -5379,6 +5373,11 @@ aj
 aj
 aj
 aj
+aO
+aj
+aj
+aj
+aO
 aj
 aj
 aj
@@ -5392,12 +5391,7 @@ aj
 aj
 aj
 aj
-aj
-aj
-aj
-aj
-aj
-aj
+aO
 aj
 aj
 aj
@@ -5480,9 +5474,9 @@ aj
 aj
 aO
 aj
+aO
 aj
-aj
-aj
+aO
 aj
 aj
 aj
@@ -5576,7 +5570,7 @@ aj
 aj
 aj
 aj
-aj
+aO
 aj
 aj
 aj
