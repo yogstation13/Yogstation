@@ -82,11 +82,11 @@
 //Desert Eagle
 
 /obj/item/ammo_box/magazine/m50
-	name = "handgun magazine (.50ae)"
-	desc = "A 7-round .50ae magazine designed for the Desert Eagle."
+	name = "handgun magazine (.50 AE)"
+	desc = "A 7-round .50 AE magazine designed for the Desert Eagle."
 	icon_state = "50ae-7"
 	ammo_type = /obj/item/ammo_casing/a50AE
-	caliber = ".50"
+	caliber = ".50ae"
 	max_ammo = 7
 
 /obj/item/ammo_box/magazine/m50/update_icon()
