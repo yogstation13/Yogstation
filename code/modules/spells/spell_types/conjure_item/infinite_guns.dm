@@ -29,7 +29,7 @@
 		Learning this spell makes you unable to learn Arcane Barrage."
 	button_icon_state = "bolt_action"
 
-	item_type = /obj/item/gun/ballistic/rifle/boltaction
+	item_type = /obj/item/gun/ballistic/rifle/boltaction/enchanted
 
 /datum/action/cooldown/spell/conjure_item/infinite_guns/arcane_barrage
 	name = "Arcane Barrage"

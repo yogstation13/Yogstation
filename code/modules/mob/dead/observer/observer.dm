@@ -881,6 +881,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!isobserver(usr))
 		return
 
+	// In nullspace, invalid as a POI. provisonary till we get new POI system
+	if(ismob(target))
+		var/mob/mob_target = target
+		if(!mob_target.loc)
+			return
+
 	var/mob/chosen_target = possible_destinations[target]
 
 	do_observe(chosen_target)
