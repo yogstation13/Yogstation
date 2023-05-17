@@ -476,7 +476,7 @@
 	results = list(/datum/reagent/frigorific_mixture = 2)
 	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/ice = 1)
 
-/datum/chemical_reaction/cryostylane/on_reaction(datum/reagents/holder, created_volume)
+/datum/chemical_reaction/frigorific_mixture/on_reaction(datum/reagents/holder, created_volume)
 	holder.chem_temp = 20 // cools the fuck down
 	return
 
