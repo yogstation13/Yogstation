@@ -904,7 +904,7 @@
 	taste_description = "sugary milk"
 	color = "#FFFFFF"
 
-/datum/reagent/consumable/Ute_nectar
+/datum/reagent/consumable/ute_nectar
 	name = "Ute Nectar"
 	description = "A sweet, sugary syrup made from crushed sweet ute nuts."
 	color = "#d3a308"

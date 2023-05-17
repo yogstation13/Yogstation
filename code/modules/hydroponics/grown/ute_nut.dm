@@ -28,7 +28,7 @@
 
 //Sweet Ute Nut
 /obj/item/seeds/ute_nut/sweet
-	name = "pack of sweet oublmox nut seeds"
+	name = "pack of sweet ute nut seeds"
 	desc = "These seeds grow into sweet ute nuts, a mutation of the original species that produces a thick syrup that vuulen use in desserts."
 	icon_state = "seed-sweetute"
 	species = "utenut"

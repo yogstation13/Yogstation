@@ -2504,7 +2504,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "sweet nectar"
 	glass_icon_state = "utri_glass"
 	glass_name = "glass of utri"
-	glass_desc = "The fermented nectar of the Ute nut, as enjoyed by lizards galaxywide."
+	glass_desc = "The fermented nectar of the ute nut, as enjoyed by lizards galaxywide."
 
 /datum/reagent/consumable/ethanol/sea_breeze
 	name = "Sea Breeze"
