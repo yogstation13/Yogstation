@@ -927,7 +927,7 @@
 	required_reagents = list(/datum/reagent/toxin/bad_food = 1, /datum/reagent/consumable/oublmox_flour = 1, /datum/reagent/blood = 1, /datum/reagent/consumable/ethanol = 2)
 
 /datum/chemical_reaction/drink/triumphal_arch
-	name = "Triumphal_arch"
+	name = "Triumphal Arch"
 	id = /datum/reagent/consumable/ethanol/triumphal_arch
 	results = list(/datum/reagent/consumable/ethanol/triumphal_arch = 10)
 	required_reagents = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 5, /datum/reagent/consumable/ethanol/grappa = 2, /datum/reagent/consumable/lemonjuice = 2, /datum/reagent/gold = 1)
