@@ -2,7 +2,7 @@
 /obj/item/seeds/ute_nut
 	name = "pack of ute nut seeds"
 	desc = "These seeds grow into ute nut bushes, native to Sangris."
-	icon_state = "seed-oublmox"
+	icon_state = "seed-ute"
 	species = "utenut"
 	plantname = "Ute Nut Bush"
 	product = /obj/item/reagent_containers/food/snacks/grown/ute_nut
