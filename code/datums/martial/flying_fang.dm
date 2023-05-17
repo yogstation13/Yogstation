@@ -10,7 +10,7 @@
 	help_verb = /mob/living/carbon/human/proc/flyingfang_help
 	///used to keep track of the pounce ability
 	var/leaping = FALSE
-	var/next_leap = 0
+	COOLDOWN_DECLARE(next_leap)
 	var/datum/action/innate/lizard_leap/linked_leap
 
 /datum/martial_art/flyingfang/can_use(mob/living/carbon/human/H)
@@ -180,9 +180,9 @@
 		return FALSE
 
 /datum/action/innate/lizard_leap/Activate(silent)
-	if(world.time < linked_martial.next_leap)
+	if(!COOLDOWN_FINISHED(linked_martial, next_leap))
 		to_chat(owner, span_warning("You aren\'t ready to pounce again yet!"))
-		return
+		return FALSE
 	if(!silent)
 		owner.visible_message(span_danger("[owner] prepares to pounce!"), "<b><i>You will now pounce as your next attack.</i></b>")
 	owner.click_intercept = src
@@ -200,7 +200,7 @@
 	if(linked_martial.leaping)
 		return
 	linked_martial.leaping = TRUE
-	linked_martial.next_leap = world.time + 5 SECONDS
+	COOLDOWN_START(linked_martial, next_leap, 5 SECONDS)
 	A.Knockdown(5 SECONDS)
 	A.Immobilize(3 SECONDS, TRUE, TRUE) //prevents you from breaking out of your pounce
 	A.throw_at(target, get_dist(A,target)+1, 1, A, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), A))
@@ -229,8 +229,8 @@
 			L.Immobilize(6 SECONDS)
 			A.SetKnockdown(0)
 			A.SetImmobilized(10 SECONDS) //due to our stun resistance this is actually about 6.6 seconds
-			if(!blocked)
-				next_leap = 0 // landing the leap resets the cooldown
+			if(linked_leap && !blocked)
+				COOLDOWN_RESET(src, next_leap) // landing the leap resets the cooldown
 			sleep(0.2 SECONDS)//Runtime prevention (infinite bump() calls on hulks)
 			step_towards(src,L)
 		else if(hit_atom.density && !hit_atom.CanPass(A))
