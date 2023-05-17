@@ -112,6 +112,7 @@
 /area/ruin/powered)
 "r" = (
 /obj/structure/table/wood,
+/obj/structure/constructshell,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "s" = (
@@ -125,11 +126,6 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"u" = (
-/obj/structure/table/wood,
-/obj/item/book/granter/spell/random,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "v" = (
@@ -363,7 +359,7 @@ a
 a
 a
 x
-u
+r
 h
 g
 h
