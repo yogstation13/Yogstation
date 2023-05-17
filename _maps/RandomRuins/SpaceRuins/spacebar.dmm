@@ -974,7 +974,7 @@
 "KL" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line,
-/mob/living/carbon/monkey/punpun,
+/mob/living/carbon/human/species/monkey/punpun,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"

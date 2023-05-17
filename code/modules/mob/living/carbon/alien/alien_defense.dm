@@ -68,7 +68,7 @@ In all, this is a lot like the monkey code. /N
 	return 0
 
 
-/mob/living/carbon/alien/attack_paw(mob/living/carbon/monkey/M)
+/mob/living/carbon/alien/attack_paw(mob/living/carbon/human/M)
 	if(..())
 		if (stat != DEAD)
 			var/obj/item/bodypart/affecting = get_bodypart(ran_zone(M.zone_selected))

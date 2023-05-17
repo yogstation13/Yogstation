@@ -12,7 +12,7 @@
 	range = 7
 	cooldown_min = 30
 	selection_type = "range"
-	var/static/list/compatible_mobs_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/carbon/monkey))
+	var/static/list/compatible_mobs_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/carbon/human/species/monkey))
 	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "barn"
 

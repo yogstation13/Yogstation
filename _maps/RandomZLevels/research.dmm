@@ -1209,7 +1209,7 @@
 /turf/open/floor/plating,
 /area/awaymission/research/interior/genetics)
 "cT" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
@@ -1373,7 +1373,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
@@ -4084,7 +4084,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},

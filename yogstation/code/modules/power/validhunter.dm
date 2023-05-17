@@ -117,9 +117,7 @@
 		var/mob/living/carbon/C = L
 		typeofmeat = C.type_of_meat
 		gibtype = C.gib_type
-		if(ismonkey(C))
-			typeofskin = /obj/item/stack/sheet/animalhide/monkey
-		else if(isalien(C))
+		if(isalien(C))
 			typeofskin = /obj/item/stack/sheet/animalhide/xeno
 
 	for (var/i = 1 to meat_produced)

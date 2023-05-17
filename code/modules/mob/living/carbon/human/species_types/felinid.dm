@@ -94,7 +94,7 @@
 ///used to transmogrificate spacemen into or from catboys/girls. Arguments H = target spaceman and silent = TRUE/FALSE whether or not we alert them to their transformation with cute flavortext
 /proc/purrbation_toggle(mob/living/carbon/human/H, silent = FALSE)
 	if(!ishumanbasic(H))
-		var/catgirlcheck = istype(H.getorganslot(ORGAN_SLOT_EARS), /obj/item/organ/ears/cat) || istype(H.getorganslot(ORGAN_SLOT_TAIL), /obj/item/organ/tail/cat) //if they've got cat parts they are likely an unfortunate victim of admin black magic AKA "fun", turn them back
+		var/catgirlcheck = istype(H.get_organ_slot(ORGAN_SLOT_EARS), /obj/item/organ/ears/cat) || istype(H.get_organ_slot(ORGAN_SLOT_TAIL), /obj/item/organ/tail/cat) //if they've got cat parts they are likely an unfortunate victim of admin black magic AKA "fun", turn them back
 		if(catgirlcheck)
 			purrbation_remove(H, silent)
 			return FALSE
@@ -128,12 +128,12 @@
 
 	if(!ishumanbasic(H))
 		var/obj/item/organ/cattification = new /obj/item/organ/tail/cat()
-		var/old_part = H.getorganslot(ORGAN_SLOT_TAIL)
+		var/old_part = H.get_organ_slot(ORGAN_SLOT_TAIL)
 		cattification.Insert(H)
 		if(istype(old_part, /obj/item/organ/tail/cat))	//Won't delete non-cat tails
 			qdel(old_part)								//No duplicate tails allowed, but different tails can share because it's funny
 		cattification = new /obj/item/organ/ears/cat()
-		old_part = H.getorganslot(ORGAN_SLOT_EARS)
+		old_part = H.get_organ_slot(ORGAN_SLOT_EARS)
 		cattification.Insert(H)
 		qdel(old_part)
 		H.regenerate_icons()
@@ -147,7 +147,7 @@
 		to_chat(H, "You are no longer a cat.")
 	if(!ishumanbasic(H)) //not a basic human, nonhumans tend to have different appearances so turning them into humans would be lazy. Give them their normal ears and shit back
 		var/obj/item/organ/decattification = H.dna?.species.mutanttail
-		var/old_part = H.getorganslot(ORGAN_SLOT_TAIL)
+		var/old_part = H.get_organ_slot(ORGAN_SLOT_TAIL)
 		qdel(old_part) //do this here since they potentially don't normally have a tail
 		if(decattification)
 			decattification = new decattification
@@ -157,7 +157,7 @@
 				nyaamrrow.spines = H.dna.features["spines"]
 			decattification.Insert(H)
 		decattification = H.dna?.species.mutantears
-		old_part = H.getorganslot(ORGAN_SLOT_EARS)
+		old_part = H.get_organ_slot(ORGAN_SLOT_EARS)
 		qdel(old_part) //do this here since they potentially don't normally have ears which would SUCK
 		if(decattification)
 			decattification = new decattification

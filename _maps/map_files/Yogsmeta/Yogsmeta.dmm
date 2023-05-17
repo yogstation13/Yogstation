@@ -35734,7 +35734,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
-/mob/living/carbon/monkey/punpun,
+/mob/living/carbon/human/species/monkey/punpun,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "bTF" = (
@@ -37640,7 +37640,7 @@
 "ccb" = (
 /obj/machinery/light,
 /obj/structure/flora/ausbushes/ppflowers,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "ccc" = (
@@ -51382,7 +51382,7 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
 "eAJ" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "eBd" = (
@@ -55370,7 +55370,7 @@
 /area/security/brig)
 "hjp" = (
 /obj/structure/sink/puddle,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "hjz" = (
@@ -66127,7 +66127,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "nRn" = (
@@ -66630,7 +66630,7 @@
 	dir = 10
 	},
 /obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "ojx" = (
@@ -71212,7 +71212,7 @@
 /area/medical/medbay/aft)
 "rfv" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/virology)
 "rfM" = (
@@ -74951,7 +74951,7 @@
 	dir = 4
 	},
 /obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "tAl" = (

@@ -361,7 +361,7 @@
 				msg += "[t_He] [t_is][stun_absorption[i]["examine_message"]]\n"
 
 	if(!glasses && mind && mind.has_antag_datum(ANTAG_DATUM_THRALL))
-		if(getorganslot(ORGAN_SLOT_EYES))
+		if(get_organ_slot(ORGAN_SLOT_EYES))
 			msg += "[t_His] eyes seem unnaturally dark and soulless.\n" // I'VE BECOME SO NUMB, I CAN'T FEEL YOU THERE
 		else
 			msg += "The pair of holes where [t_His] eyes would be seem unnaturally dark and soulless.\n"
@@ -400,7 +400,7 @@
 				if (HAS_TRAIT(src, TRAIT_BLIND))
 					msg += "[t_He] appear[p_s()] to be staring off into space.\n"
 				//Yogs -- Fixing being unable to detect some varieties of deafness
-				var/obj/item/organ/ears/ears = src.getorganslot(ORGAN_SLOT_EARS)
+				var/obj/item/organ/ears/ears = src.get_organ_slot(ORGAN_SLOT_EARS)
 				if (HAS_TRAIT(src, TRAIT_DEAF) || !istype(ears) || ears.deaf)
 					msg += "[t_He] appear[p_s()] to not be responding to noises.\n"
 				//Yogs end

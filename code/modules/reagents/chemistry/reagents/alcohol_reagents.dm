@@ -41,7 +41,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		if(HAS_TRAIT(C, TRAIT_LIGHT_DRINKER))
 			booze_power *= 2
 		C.drunkenness = max((C.drunkenness + (sqrt(volume) * booze_power * ALCOHOL_RATE)), 0) //Volume, power, and server alcohol rate effect how quickly one gets drunk
-		var/obj/item/organ/liver/L = C.getorganslot(ORGAN_SLOT_LIVER)
+		var/obj/item/organ/liver/L = C.get_organ_slot(ORGAN_SLOT_LIVER)
 		if (istype(L))
 			L.applyOrganDamage(((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * L.alcohol_tolerance, 0))/150))
 	return ..()
@@ -217,7 +217,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		to_chat(M, span_notice("[pick("You have a really bad headache.", "Your eyes hurt.", "You find it hard to stay still.", "You feel your heart practically beating out of your chest.")]"))
 
 	if(prob(5) && iscarbon(M))
-		var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
+		var/obj/item/organ/eyes/eyes = M.get_organ_slot(ORGAN_SLOT_EYES)
 		if(HAS_TRAIT(M, TRAIT_BLIND))
 			if(istype(eyes))
 				eyes.Remove(M)
@@ -825,7 +825,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(isethereal(M))
 		to_chat(M, span_notice("Danger! Danger! High Voltage!! When we drink..."))
 		var/mob/living/carbon/C = M
-		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
+		var/obj/item/organ/stomach/ethereal/stomach = C.get_organ_slot(ORGAN_SLOT_STOMACH)
 		if(istype(stomach))
 			stomach.adjust_charge(M.reagents.get_reagent_amount(/datum/reagent/consumable/ethanol/manhattan_proj) * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 	return ..()
@@ -1329,7 +1329,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/bacchus_blessing/on_mob_life(mob/living/carbon/C)
 	. = ..()
 	if(HAS_TRAIT(C, TRAIT_ALCOHOL_TOLERANCE))
-		var/obj/item/organ/liver/L = C.getorganslot(ORGAN_SLOT_LIVER)
+		var/obj/item/organ/liver/L = C.get_organ_slot(ORGAN_SLOT_LIVER)
 		if(istype(L)) // Bacchus is proud
 			L.damage = min(L.damage - 1, 0)
 

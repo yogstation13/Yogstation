@@ -13533,7 +13533,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -17441,7 +17441,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "ixK" = (
@@ -26116,7 +26116,7 @@
 /area/engine/engineering)
 "mSU" = (
 /obj/structure/sink/puddle,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "mSX" = (
@@ -30364,7 +30364,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "piL" = (
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -47363,7 +47363,7 @@
 /area/engine/atmos/distro)
 "xBM" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "xCs" = (

@@ -4,7 +4,7 @@
 				/datum/surgery_step/heal,
 				/datum/surgery_step/close)
 
-	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_CHEST)
 	replaced_by = /datum/surgery
 	ignore_clothes = TRUE

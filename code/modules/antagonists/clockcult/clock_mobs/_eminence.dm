@@ -50,7 +50,7 @@
 		forceMove(T)
 		Moved(OldLoc, direct)
 
-/mob/camera/eminence/Process_Spacemove(movement_dir = 0)
+/mob/camera/eminence/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE
 
 /mob/camera/eminence/Login()

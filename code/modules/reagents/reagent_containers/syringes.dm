@@ -66,10 +66,7 @@
 			return
 
 	// chance of monkey retaliation
-	if(ismonkey(target) && prob(MONKEY_SYRINGE_RETALIATION_PROB))
-		var/mob/living/carbon/monkey/M
-		M = target
-		M.retaliate(user)
+	SEND_SIGNAL(target, COMSIG_LIVING_TRY_SYRINGE, user)
 
 	switch(mode)
 		if(SYRINGE_DRAW)
@@ -113,7 +110,7 @@
 
 		if(SYRINGE_INJECT)
 			// Always log attemped injections for admins
-			var/contained = reagents.log_list()
+			var/contained = reagents.get_reagent_log_string()
 			log_combat(user, target, "attempted to inject", src, addition="which had [contained]")
 
 			if(!reagents.total_volume)

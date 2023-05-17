@@ -23,6 +23,9 @@
 
 
 /datum/surgery_step/replace_limb/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)//change this so digitigrade species can only use digitigrade limbs
+	if(NOAUGMENTS in target.dna.species.species_traits)
+		to_chat(user, span_warning("[target] cannot be augmented!"))
+		return -1
 	if(istype(tool, /obj/item/organ_storage) && istype(tool.contents[1], /obj/item/bodypart))
 		tool = tool.contents[1]
 	var/obj/item/bodypart/aug = tool

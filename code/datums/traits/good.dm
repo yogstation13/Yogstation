@@ -324,7 +324,7 @@
 	if(isjellyperson(H))
 		temp -= ORGAN_SLOT_LIVER
 	var/organ_slot = pick(temp)
-	var/obj/item/organ/old_part = H.getorganslot(organ_slot)
+	var/obj/item/organ/old_part = H.get_organ_slot(organ_slot)
 	var/obj/item/organ/prosthetic
 	switch(organ_slot)
 		if(ORGAN_SLOT_LUNGS)
@@ -388,7 +388,7 @@
 	if(specific)
 		H.grant_language(specific, TRUE, TRUE, LANGUAGE_MULTILINGUAL)
 	else
-		var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
+		var/obj/item/organ/tongue/T = H.get_organ_slot(ORGAN_SLOT_TONGUE)
 		var/list/languages_possible = T.languages_possible
 		languages_possible = languages_possible - blacklisted_languages
 		languages_possible = languages_possible - H.language_holder.understood_languages

@@ -166,7 +166,7 @@
 		randomize = pick("monkey","robot","slime","xeno","humanoid","animal")
 	switch(randomize)
 		if("monkey")
-			new_mob = new /mob/living/carbon/monkey(M.loc)
+			new_mob = new /mob/living/carbon/human/species/monkey(M.loc)
 
 		if("robot")
 			var/robot = pick(200;/mob/living/silicon/robot,
@@ -311,7 +311,7 @@
 	B.desc = "What appears to be [M.real_name] reformed into a wheel of delicious parmesan..."
 	B.name = "[M.name] Parmesan"
 	B.real_name = "[M.name] Parmesan"
-	B.stat = CONSCIOUS
+	B.set_stat(CONSCIOUS)
 	B.a_intent = INTENT_HARM
 	if(M.mind)
 		M.mind.transfer_to(B)
@@ -336,7 +336,7 @@
 	..()
 
 /atom/proc/animate_atom_living(var/mob/living/owner = null)
-	if((isitem(src) || isstructure(src)) && !is_type_in_list(src, GLOB.protected_objects))
+	if((isitem(src) || isstructure(src)) && !is_type_in_list(src, GLOB.animatable_blacklist))
 		if(istype(src, /obj/structure/statue/petrified))
 			var/obj/structure/statue/petrified/P = src
 			if(P.petrified_mob)

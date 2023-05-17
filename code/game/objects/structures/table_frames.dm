@@ -16,6 +16,7 @@
 	icon_state = "table_frame"
 	density = FALSE
 	anchored = FALSE
+	pass_flags_self = PASSTABLE | LETPASSTHROW
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
 	max_integrity = 100
 	var/framestack = /obj/item/stack/rods

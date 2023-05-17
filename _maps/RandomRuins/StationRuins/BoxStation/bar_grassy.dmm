@@ -245,7 +245,7 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/kitchen)
 "bM" = (
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	name = "Pun Pun"
 	},
 /turf/open/floor/wood,
@@ -723,7 +723,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
 "wQ" = (
@@ -760,7 +760,7 @@
 	},
 /area/crew_quarters/kitchen)
 "zC" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
 "zW" = (

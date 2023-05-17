@@ -69,7 +69,7 @@ BONUS
 /*
 //////////////////////////////////////
 Revitiligo
-	Slightly noticable.
+	Slightly noticeable.
 	Increases resistance.
 	Increases stage speed slightly.
 	Increases transmission.

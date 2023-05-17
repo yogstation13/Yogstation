@@ -29,6 +29,7 @@ God bless America.
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "fryer_off"
 	density = TRUE
+	pass_flags_self = PASSMACHINE | LETPASSTHROW
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	layer = BELOW_OBJ_LAYER
@@ -202,7 +203,7 @@ God bless America.
 				the_nugget.nugget_man = new(the_nugget)
 				the_nugget.nugget_man.real_name = the_nugget.name
 				the_nugget.nugget_man.name = the_nugget.name
-				the_nugget.nugget_man.stat = CONSCIOUS
+				the_nugget.nugget_man.set_stat(CONSCIOUS)
 				the_guy.mind.transfer_to(the_nugget.nugget_man)
 			qdel(the_guy)
 			return

@@ -638,6 +638,12 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 /datum/holiday/festive_season/greet()
 	return "Have a nice festive season!"
 
+/datum/holiday/monkey
+	name = MONKEYDAY
+	begin_day = 14
+	begin_month = DECEMBER
+	drone_hat = /obj/item/clothing/mask/gas/monkeymask
+
 /datum/holiday/boxing
 	name = "Boxing Day"
 	begin_day = 26

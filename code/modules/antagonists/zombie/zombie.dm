@@ -205,7 +205,7 @@
 		if(alert(H, "Are you sure you want to kill yourself, and revive as a zombie some time after?", "Confirmation", "Yes", "No") == "No")
 			return FALSE
 
-	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
+	if(!H.get_organ_slot(ORGAN_SLOT_ZOMBIE))
 		var/obj/item/organ/zombie_infection/gamemode/ZI = new()
 		ZI.Insert(H)
 

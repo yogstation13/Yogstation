@@ -160,8 +160,17 @@
 	. += "</span>"
 
 /mob/living/carbon/examine_more(mob/user)
-	if(!all_scars)
-		return ..()
+	. = ..()
+	. += span_notice("<i>You examine [src] closer, and note the following...</i>")
+
+/*	if(dna) //not all carbons have it. eg - xenos
+		//On closer inspection, this man isnt a man at all!
+		var/list/covered_zones = get_covered_body_zones()
+		for(var/obj/item/bodypart/part as anything in bodyparts)
+			if(part.body_zone in covered_zones)
+				continue
+			if(part.limb_id != (dna.species.examine_limb_id ? dna.species.examine_limb_id : dna.species.id))
+				. += "[span_info("[p_they(TRUE)] [p_have()] \an [part.name].")]" */
 
 	var/list/visible_scars
 	for(var/i in all_scars)
@@ -169,14 +178,10 @@
 		if(S.is_visible(user))
 			LAZYADD(visible_scars, S)
 
-	if(!visible_scars)
-		return ..()
-
-	var/msg = list(span_notice("<i>You examine [src] closer, and note the following...</i>"))
 	for(var/i in visible_scars)
 		var/datum/scar/S = i
 		var/scar_text = S.get_examine_description(user)
 		if(scar_text)
-			msg += "[scar_text]"
+			. += "[scar_text]"
 
-	return msg
+	return .

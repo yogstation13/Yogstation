@@ -3,7 +3,7 @@
 
 Hyphema (Eye bleeding)
 
-	Slightly noticable.
+	Slightly noticeable.
 	Lowers resistance tremendously.
 	Decreases stage speed tremendously.
 	Decreases transmittablity.
@@ -48,7 +48,7 @@ Bonus
 	if(!.)
 		return
 	var/mob/living/carbon/M = A.affected_mob
-	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = M.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes)
 		switch(A.stage)
 			if(1, 2)

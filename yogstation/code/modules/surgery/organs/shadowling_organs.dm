@@ -3,7 +3,7 @@
 	name = "shadowling eyes"
 	desc = "The eyes of a spooky shadowling!"
 
-/obj/item/organ/internal/shadowtumor
+/obj/item/organ/shadowtumor
 	name = "black tumor"
 	desc = "A tiny black mass with red tendrils trailing from it. It seems to shrivel in the light."
 	icon_state = "blacktumor"
@@ -12,15 +12,15 @@
 	slot = "brain_tumor"
 	var/organ_health = 3
 
-/obj/item/organ/internal/shadowtumor/New()
+/obj/item/organ/shadowtumor/New()
 	..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/organ/internal/shadowtumor/Destroy()
+/obj/item/organ/shadowtumor/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	..()
 
-/obj/item/organ/internal/shadowtumor/process()
+/obj/item/organ/shadowtumor/process()
 	if(isturf(loc))
 		var/turf/T = loc
 		var/light_count = T.get_lumcount()
@@ -34,15 +34,15 @@
 	else
 		organ_health = min(organ_health+0.5, 3)
 
-/obj/item/organ/internal/shadowtumor/Insert(mob/living/carbon/M, special, drop_if_replaced)
+/obj/item/organ/shadowtumor/Insert(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
 	M.add_thrall()
 
-/obj/item/organ/internal/shadowtumor/on_find(mob/living/finder)
+/obj/item/organ/shadowtumor/on_find(mob/living/finder)
 	. = ..()
 	finder.visible_message(span_danger("[finder] opens up [owner]'s skull, revealing a pulsating black mass, with red tendrils attaching it to [owner.p_their()] brain."))
 
-/obj/item/organ/internal/shadowtumor/Remove(mob/living/carbon/M, special)
+/obj/item/organ/shadowtumor/Remove(mob/living/carbon/M, special)
 	if(M.dna.species.id == "l_shadowling") //Empowered thralls cannot be deconverted
 		to_chat(M, span_shadowling("<b><i>NOT LIKE THIS!</i></b>"))
 		M.visible_message(span_danger("[M] suddenly slams upward and knocks down everyone!"))
@@ -61,7 +61,7 @@
 				S.adjustBruteLoss(20)
 				playsound(S, 'sound/effects/bang.ogg', 50, 1)
 		return FALSE
-	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = M.get_organ_slot(ORGAN_SLOT_EYES)
 	eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	eyes.sight_flags = initial(eyes.sight_flags)
 	M.update_sight()

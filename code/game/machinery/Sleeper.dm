@@ -213,7 +213,7 @@
 					organs = shuffle(organs)
 					for(var/o in organs)
 						var/healed = FALSE
-						var/obj/item/organ/heal_target = C.getorganslot(o)
+						var/obj/item/organ/heal_target = C.get_organ_slot(o)
 						if(heal_target?.damage >= 1)
 							var/organ_healing = C.stat == DEAD ? 0.5 : 1
 							heal_target.applyOrganDamage(-organ_healing)

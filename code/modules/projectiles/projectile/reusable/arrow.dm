@@ -261,7 +261,7 @@
 	wound_bonus = -30
 	irradiate = 500
 	range = 20
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOOR
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOOR
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/xray
 
 /obj/item/projectile/energy/arrow/shock //Hardlight projectile. Replicable tasers are fair and balanced.
@@ -289,7 +289,7 @@
 			addtimer(CALLBACK(C, /mob/living/carbon.proc/do_jitter_animation, jitter), 5)
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
-			var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
+			var/obj/item/organ/stomach/ethereal/stomach = H.get_organ_slot(ORGAN_SLOT_STOMACH)
 			if(istype(stomach))
 				stomach.adjust_charge(10 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 				to_chat(C,span_notice("You get charged by [src]."))

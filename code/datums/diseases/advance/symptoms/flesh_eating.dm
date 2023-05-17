@@ -1,7 +1,7 @@
 /*
 //////////////////////////////////////
 Necrotizing Fasciitis (AKA Flesh-Eating Disease)
-	Very very noticable.
+	Very very noticeable.
 	Lowers resistance tremendously.
 	No changes to stage speed.
 	Decreases transmittablity temrendously.
@@ -68,7 +68,7 @@ Bonus
 /*
 //////////////////////////////////////
 Autophagocytosis (AKA Programmed mass cell death)
-	Very noticable.
+	Very noticeable.
 	Lowers resistance.
 	Fast stage speed.
 	Decreases transmittablity.

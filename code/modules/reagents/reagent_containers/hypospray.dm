@@ -452,7 +452,7 @@
 				to_chat(user, span_notice("Medicine won't work on a robotic limb!"))
 				return
 
-		log_combat(user, C, "attemped to spray", src, addition = "which had [container.reagents.log_list()]")
+		log_combat(user, C, "attemped to spray", src, addition = "which had [container.reagents.get_reagent_log_string()]")
 
 		//Pre messages
 		to_chat(C, span_warning("You feel a tiny prick!"))
@@ -469,7 +469,7 @@
 		playsound(loc, pick(inject_sound), 25)
 
 		//Logging
-		var/contained = container.reagents.log_list()
+		var/contained = container.reagents.get_reagent_log_string()
 		user.log_message("applied [src] to  [C == user ? "themselves" : C ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
 		if(C != user)
 			log_attack("[user.name] ([user.ckey]) applied [src] to [C.name] ([C.ckey]), which had [contained] (INTENT: [uppertext(user.a_intent)]) (MODE: [mode])")
@@ -500,7 +500,7 @@
 				to_chat(user, span_notice("Medicine won't work on a robotic limb!"))
 				return
 
-		log_combat(user, C, "attemped to spray", src, addition = "which had [container.reagents.log_list()]")
+		log_combat(user, C, "attemped to spray", src, addition = "which had [container.reagents.get_reagent_log_string()]")
 
 		//Pre messages
 		to_chat(user, span_notice("You begin to spray [C] with [src]."))
@@ -516,7 +516,7 @@
 		playsound(loc, pick(spray_sound), 25)
 
 		//Logging
-		var/contained = container.reagents.log_list()
+		var/contained = container.reagents.get_reagent_log_string()
 		user.log_message("applied [src] to  [C == user ? "themselves" : C ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
 		if(C != user)
 			log_attack("[user.name] ([user.ckey]) applied [src] to [C.name] ([C.ckey]), which had [contained] (INTENT: [uppertext(user.a_intent)]) (MODE: [mode])")

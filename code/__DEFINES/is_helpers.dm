@@ -89,9 +89,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define issnail(A) (is_species(A, /datum/species/snail))
 #define isandroid(A) (is_species(A, /datum/species/android))
 #define isdummy(A) (istype(A, /mob/living/carbon/human/dummy))
-
-//more carbon mobs
-#define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
+#define ismonkey(A) (is_species(A, /datum/species/monkey))
 
 #define isalien(A) (istype(A, /mob/living/carbon/alien))
 
@@ -191,7 +189,7 @@ GLOBAL_LIST_INIT(clawfootmob, typecacheof(list(
 	)))
 
 GLOBAL_LIST_INIT(barefootmob, typecacheof(list(
-	/mob/living/carbon/monkey,
+	/mob/living/carbon/human/species/monkey,
 	/mob/living/simple_animal/pet/penguin,
 	/mob/living/simple_animal/hostile/gorilla,
 	/mob/living/simple_animal/hostile/jungle/mook

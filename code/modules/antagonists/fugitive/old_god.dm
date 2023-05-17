@@ -33,7 +33,7 @@
 	SHOULD_CALL_PARENT(FALSE)
 	return TRUE
 
-/mob/camera/yalp_elor/Process_Spacemove(movement_dir = 0)
+/mob/camera/yalp_elor/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE
 
 /mob/camera/yalp_elor/Login() // Yogs -- better Login() dialogue

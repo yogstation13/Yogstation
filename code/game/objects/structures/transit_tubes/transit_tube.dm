@@ -7,6 +7,7 @@
 	density = TRUE
 	layer = LOW_ITEM_LAYER
 	anchored = TRUE
+	pass_flags_self = PASSGLASS
 	climbable = 1
 	var/tube_construction = /obj/structure/c_transit_tube
 	var/list/tube_dirs //list of directions this tube section can connect to.

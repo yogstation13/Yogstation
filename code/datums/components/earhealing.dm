@@ -24,7 +24,7 @@
 		STOP_PROCESSING(SSobj, src)
 		return
 	if(!HAS_TRAIT(wearer, TRAIT_DEAF))
-		var/obj/item/organ/ears/ears = wearer.getorganslot(ORGAN_SLOT_EARS)
+		var/obj/item/organ/ears/ears = wearer.get_organ_slot(ORGAN_SLOT_EARS)
 		if (ears)
 			var/minDeaf = 0
 			if(ears.damage >= ears.maxHealth)

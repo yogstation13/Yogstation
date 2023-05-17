@@ -611,7 +611,7 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
 "ce" = (
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	name = "Pun Pun"
 	},
 /turf/open/floor/plasteel/vaporwave,

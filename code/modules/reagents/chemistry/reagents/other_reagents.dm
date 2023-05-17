@@ -1897,13 +1897,13 @@
 
 /datum/reagent/romerol/reaction_mob(mob/living/carbon/human/H, method=TOUCH, reac_volume)
 	// Silently add the zombie infection organ to be activated upon death
-	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
+	if(!H.get_organ_slot(ORGAN_SLOT_ZOMBIE))
 		var/obj/item/organ/zombie_infection/nodamage/ZI = new()
 		ZI.Insert(H)
 	..()
 
 /datum/reagent/romerol/on_mob_life(mob/living/carbon/human/H)
-	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
+	if(!H.get_organ_slot(ORGAN_SLOT_ZOMBIE))
 		var/obj/item/organ/zombie_infection/nodamage/ZI = new()
 		ZI.Insert(H)
 	if(holder)
@@ -1917,7 +1917,7 @@
 
 /datum/reagent/magillitis/on_mob_life(mob/living/carbon/M)
 	..()
-	if((ismonkey(M) || ishuman(M)) && current_cycle >= 10)
+	if(ishuman(M) && current_cycle >= 10)
 		M.gorillize()
 
 /datum/reagent/growthserum

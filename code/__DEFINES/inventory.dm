@@ -151,6 +151,9 @@
 #define DIGITIGRADE_STYLE 	2
 #define DIGIALT_STYLE       3		//Yogs
 
+///has a sprite for monkeys
+#define CLOTHING_MONKEY_VARIATION (1<<1) //strays away from the default in sake of someone padronizing (using the tg system) in the future (since i don't want to bloat this more)
+
 //flags for digitigrade checks related to footwear. Only Human accessible / Both accessible / Only funny leg accessible.
 #define NO_DIGIT			0
 #define EITHER_STYLE		1

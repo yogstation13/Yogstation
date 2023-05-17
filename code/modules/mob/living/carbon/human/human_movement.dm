@@ -93,7 +93,7 @@
 				var/obj/item/clothing/neck/N = wear_neck
 				SEND_SIGNAL(N, COMSIG_NECK_STEP_ACTION)
 
-/mob/living/carbon/human/Process_Spacemove(movement_dir = 0) //Temporary laziness thing. Will change to handles by species reee.
+/mob/living/carbon/human/Process_Spacemove(movement_dir = 0, continuous_move = FALSE) //Temporary laziness thing. Will change to handles by species reee.
 	if(dna.species.space_move(src))
 		return TRUE
 	return ..()

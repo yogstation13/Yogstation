@@ -7,6 +7,8 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	dir = NONE
+	var/obj/structure/disposalpipe/last_pipe
+	var/obj/structure/disposalpipe/current_pipe
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	var/datum/gas_mixture/gas	// gas used to flush, will appear at exit point
 	var/active = FALSE			// true if the holder is moving, otherwise inactive
@@ -18,6 +20,8 @@
 /obj/structure/disposalholder/Destroy()
 	QDEL_NULL(gas)
 	active = FALSE
+	last_pipe = null
+	current_pipe = null
 	return ..()
 
 // initialize a holder from the contents of a disposal unit
@@ -61,27 +65,38 @@
 	forceMove(D.trunk)
 	active = TRUE
 	setDir(DOWN)
-	move()
+	start_moving()
 
-// movement process, persists while holder is moving through pipes
-/obj/structure/disposalholder/proc/move()
-	set waitfor = FALSE
-	var/ticks = 1
-	var/obj/structure/disposalpipe/last
-	while(active)
-		var/obj/structure/disposalpipe/curr = loc
-		if(istype(curr))
-			last = curr
-			set_glide_size(DELAY_TO_GLIDE_SIZE(ticks * world.tick_lag))
-			curr = curr.transfer(src)
-			if(!curr && active)
-				last.expel(src, loc, dir)
+/// Starts the movement process, persists while the holder is moving through pipes
+/obj/structure/disposalholder/proc/start_moving()
+	var/delay = world.tick_lag
+	var/datum/move_loop/our_loop = SSmove_manager.move_disposals(src, delay = delay, timeout = delay * count)
+	if(our_loop)
+		RegisterSignal(our_loop, COMSIG_MOVELOOP_PREPROCESS_CHECK, PROC_REF(pre_move))
+		RegisterSignal(our_loop, COMSIG_MOVELOOP_POSTPROCESS, PROC_REF(try_expel))
+		RegisterSignal(our_loop, COMSIG_PARENT_QDELETING, PROC_REF(movement_stop))
+		current_pipe = loc
 
-			ticks = stoplag()
-			if(!(count--))
-				active = FALSE
-		else
-			active = FALSE
+/// Handles the preprocess check signal, sets the current pipe as the last pipe
+/obj/structure/disposalholder/proc/pre_move(datum/move_loop/source)
+	SIGNAL_HANDLER
+	last_pipe = loc
+
+/// Handles the postprocess check signal, tries to leave the pipe
+/obj/structure/disposalholder/proc/try_expel(datum/move_loop/source, result, visual_delay)
+	SIGNAL_HANDLER
+	if(current_pipe || !active)
+		return
+	last_pipe.expel(src, get_turf(src), dir)
+
+/// Handles what happens to the contents when the qdel signal triggers
+/obj/structure/disposalholder/proc/movement_stop(datum/source)
+	SIGNAL_HANDLER
+	current_pipe = null
+	last_pipe = null
+	active = FALSE
+	for(var/mob/living/piperider in contents)
+		to_chat(piperider, span_notice("Your movement has slowed to a stop. If you tried, you could probably <b>struggle</b> free."))
 
 // find the turf which should contain the next pipe
 /obj/structure/disposalholder/proc/nextloc()
@@ -118,6 +133,21 @@
 	for(var/mob/M in range(5, get_turf(src)))
 		M.show_message("<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>", MSG_AUDIBLE)
 	playsound(src.loc, 'sound/effects/clang.ogg', 50, 0, 0)
+
+//failsafe in the case the holder is somehow forcemoved somewhere that's not a disposal pipe. Otherwise the above loop breaks.
+/obj/structure/disposalholder/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+	. = ..()
+	var/static/list/pipes_typecache = typecacheof(/obj/structure/disposalpipe)
+	//Moved to nullspace gang
+	if(!loc || pipes_typecache[loc.type])
+		return
+	var/turf/T = get_turf(loc)
+	if(T)
+		vent_gas(T)
+	for(var/A in contents)
+		var/atom/movable/AM = A
+		AM.forceMove(drop_location())
+	qdel(src)
 
 // called to vent all gas in holder to a location
 /obj/structure/disposalholder/proc/vent_gas(turf/T)

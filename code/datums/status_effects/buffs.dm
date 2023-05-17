@@ -609,7 +609,7 @@
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			s_such_strength = new(get_turf(H),H)
-			walk_towards(s_such_strength, H)
+			SSmove_manager.move_towards(s_such_strength, H)
 			animate(s_such_strength, alpha = 100, color = "#d40a0a", transform = matrix()*1.25, time = 0.25 SECONDS)
 			H.ignore_slowdown(type)
 			H.physiology.brute_mod *= 0.5

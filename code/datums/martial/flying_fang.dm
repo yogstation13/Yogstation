@@ -54,7 +54,7 @@
 	if(!can_use(A))
 		return
 	A.emote("spin")
-	var/obj/item/organ/tail = A.getorganslot(ORGAN_SLOT_TAIL)
+	var/obj/item/organ/tail = A.get_organ_slot(ORGAN_SLOT_TAIL)
 	if(!istype(tail, /obj/item/organ/tail/lizard))
 		A.visible_message(span_danger("[A] spins around."), \
 						  span_userdanger("You spin around like a doofus."))

@@ -52,85 +52,47 @@
 	user.newtonian_move(get_dir(A, user))
 
 	var/turf/T = get_turf(src)
-	var/contained = reagents.log_list()
+	var/contained = reagents.get_reagent_log_string()
 
 	log_combat(user, T, "sprayed", src, addition="which had [contained]")
 	log_game("[key_name(user)] fired [contained] from \a [src] at [AREACOORD(T)].") //copypasta falling out of my pockets
 	return
 
 
-/obj/item/reagent_containers/spray/proc/spray(atom/A, mob/living/user, log = 1) // yogs - makes log activate if a living mob is sprayed
-	var/range = max(min(current_range, get_dist(src, A)), 1)
-	var/obj/effect/decal/chempuff/D = new /obj/effect/decal/chempuff(get_turf(src))
-	D.create_reagents(amount_per_transfer_from_this)
+/// Handles creating a chem puff that travels towards the target atom, exposing reagents to everything it hits on the way.
+/obj/item/reagent_containers/spray/proc/spray(atom/target, mob/user)
+	var/range = max(min(current_range, get_dist(src, target)), 1)
+
+	var/obj/effect/decal/chempuff/reagent_puff = new /obj/effect/decal/chempuff(get_turf(src))
+
+	reagent_puff.create_reagents(amount_per_transfer_from_this)
 	var/puff_reagent_left = range //how many turf, mob or dense objet we can react with before we consider the chem puff consumed
 	if(stream_mode)
-		reagents.trans_to(D, amount_per_transfer_from_this)
+		reagents.trans_to(reagent_puff, amount_per_transfer_from_this)
 		puff_reagent_left = 1
 	else
-		reagents.trans_to(D, amount_per_transfer_from_this, 1/range)
-// yogs start - viruslist stuff
-	if(log && user)
-		var/list/sprayed = list()
-		var/viruslist = ""
-		for(var/datum/reagent/R in reagents.reagent_list)
-			sprayed += R.name
-			if(istype(R, /datum/reagent/blood))
-				var/datum/reagent/blood/RR = R
-				for(var/datum/disease/Disease in RR.data["viruses"])
-					if(viruslist)
-						viruslist += " and "
-					viruslist += "[Disease.name]"
-					if(istype(Disease, /datum/disease/advance))
-						var/datum/disease/advance/DD = Disease
-						viruslist += " \[ symptoms: "
-						for(var/datum/symptom/S in DD.symptoms)
-							viruslist += "[S.name] "
-						viruslist += "\]"
-		if(viruslist)
-			investigate_log("[user.real_name] ([user.ckey]) sprayed \a [src] containing [viruslist]", INVESTIGATE_VIROLOGY)
-			log_game("[user.real_name] ([user.ckey]) sprayed \a [src] containing [viruslist]")
-// yogs end
-	D.color = mix_color_from_reagents(D.reagents.reagent_list)
-	do_spray(A, D, range, puff_reagent_left, user)
+		reagents.trans_to(reagent_puff, amount_per_transfer_from_this, 1/range)
+	reagent_puff.color = mix_color_from_reagents(reagent_puff.reagents.reagent_list)
+	var/wait_step = max(round(2+3/range), 2)
 
-/obj/item/reagent_containers/spray/proc/do_spray(atom/A, obj/effect/decal/chempuff/D, range, puff_reagent_left, mob/user)
-	set waitfor = FALSE
-	var/range_left = range
-	for(var/i=0, i<range, i++)
-		range_left--
-		step_towards(D,A)
-		sleep(0.2 SECONDS)
+	var/puff_reagent_string = reagent_puff.reagents.get_reagent_log_string()
+	var/turf/src_turf = get_turf(src)
 
-		for(var/atom/T in get_turf(D))
-			if(T == D || T.invisibility) //we ignore the puff itself and stuff below the floor
-				continue
-			if(puff_reagent_left <= 0)
-				break
+	log_combat(user, src_turf, "fired a puff of reagents from", src, addition="with a range of \[[range]\], containing [puff_reagent_string].")
+	user.log_message("fired a puff of reagents from \a [src] with a range of \[[range]\] and containing [puff_reagent_string].", LOG_ATTACK)
 
-			if(stream_mode)
-				if(isliving(T))
-					var/mob/living/M = T
-					if((M.mobility_flags & MOBILITY_STAND) || !range_left)
-						D.reagents.reaction(M, TOUCH)
-						puff_reagent_left -= 1
-						var/contained = D.reagents.log_list() // looks like more copypasta but now the reagents are in a different place fuck you old coder
-						log_combat(user, M,  "sprayed with", src, addition="which had [contained]")
-				else if(!range_left)
-					D.reagents.reaction(T, TOUCH)
-			else
-				D.reagents.reaction(T, VAPOR)
-				if(ismob(T))
-					puff_reagent_left -= 1
+	// do_spray includes a series of step_towards and sleeps. As a result, it will handle deletion of the chempuff.
+	do_spray(target, wait_step, reagent_puff, range, puff_reagent_left, user)
 
-		if(puff_reagent_left > 0 && (!stream_mode || !range_left))
-			D.reagents.reaction(get_turf(D), VAPOR)
-			puff_reagent_left -= 1
-
-		if(puff_reagent_left <= 0) // we used all the puff so we delete it.
-			qdel(D)
-			return
-	qdel(D)
+/// Handles exposing atoms to the reagents contained in a spray's chempuff. Deletes the chempuff when it's completed.
+/obj/item/reagent_containers/spray/proc/do_spray(atom/target, wait_step, obj/effect/decal/chempuff/reagent_puff, range, puff_reagent_left, mob/user)
+	var/datum/move_loop/our_loop = SSmove_manager.move_towards_legacy(reagent_puff, target, wait_step, timeout = range * wait_step, flags = MOVEMENT_LOOP_START_FAST, priority = MOVEMENT_ABOVE_SPACE_PRIORITY)
+	reagent_puff.user = user
+	reagent_puff.sprayer = src
+	reagent_puff.lifetime = puff_reagent_left
+	reagent_puff.stream = stream_mode
+	reagent_puff.RegisterSignal(our_loop, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/obj/effect/decal/chempuff, loop_ended))
+	reagent_puff.RegisterSignal(our_loop, COMSIG_MOVELOOP_POSTPROCESS, TYPE_PROC_REF(/obj/effect/decal/chempuff, check_move))
 
 /obj/item/reagent_containers/spray/attack_self(mob/user)
 	stream_mode = !stream_mode

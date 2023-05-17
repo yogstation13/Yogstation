@@ -367,15 +367,16 @@
 			. += span_warning("<b>They are freaking out from being tipped over!</b>")
 
 /mob/living/simple_animal/bot/medbot/handle_automated_action()
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 
-	if(mode == BOT_TIPPED)
-		handle_panic()
-		return
-
-	if(mode == BOT_HEALING)
-		return
+	switch(mode)
+		if(BOT_TIPPED)
+			handle_panic()
+			return
+		if(BOT_HEALING)
+			return
 
 	if(IsStun() || IsParalyzed())
 		oldpatient = patient
@@ -388,26 +389,33 @@
 		soft_reset()
 
 	if(QDELETED(patient))
+//		if(medical_mode_flags & MEDBOT_SPEAK_MODE && prob(1))
 		if(!shut_up && prob(1))
-			if((emagged || !shut_up) && prob(emagged ? 8 : 1))
-				var/list/i_need_scissors = list('sound/voice/medbot/fuck_you.ogg', 'sound/voice/medbot/turn_off.ogg', 'sound/voice/medbot/im_different.ogg', 'sound/voice/medbot/close.ogg', 'sound/voice/medbot/shindemashou.ogg')
+//			if(bot_cover_flags & BOT_COVER_EMAGGED && prob(30))
+			if(emagged == 2 && prob(30))
+				var/list/i_need_scissors = list(
+					'sound/voice/medbot/fuck_you.ogg',
+					'sound/voice/medbot/turn_off.ogg',
+					'sound/voice/medbot/im_different.ogg',
+					'sound/voice/medbot/close.ogg',
+					'sound/voice/medbot/shindemashou.ogg',
+				)
 				playsound(src, pick(i_need_scissors), 70)
 			else
-				var/list/messagevoice = list("Radar, put a mask on!" = 'sound/voice/medbot/radar.ogg',"There's always a catch, and I'm the best there is." = 'sound/voice/medbot/catch.ogg',"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/surgeon.ogg',"Delicious!" = 'sound/voice/medbot/delicious.ogg', "Why are we still here? Just to suffer?" = 'sound/voice/medbot/why.ogg')
-				if(prob( 100 / (LAZYLEN(messagevoice) + 1) )) // Simulate the odds of it still being in the list
-					var/any_dead = FALSE
-					for(var/mob/living/carbon/C in view(6))
-						if(C.stat == DEAD)
-							any_dead = TRUE
-							break
-					if(any_dead) // But only actually choose to insult medbay if they actually have dead patients
-						messagevoice = list("What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/flies.ogg')
+				var/static/list/messagevoice = list(
+					"Delicious!" = 'sound/voice/medbot/delicious.ogg',
+					"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/surgeon.ogg',
+					"Radar, put a mask on!" = 'sound/voice/medbot/radar.ogg',
+					"There's always a catch, and I'm the best there is." = 'sound/voice/medbot/catch.ogg',
+					"What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/flies.ogg',
+					"Why are we still here? Just to suffer?" = 'sound/voice/medbot/why.ogg',
+				)
 				var/message = pick(messagevoice)
 				speak(message)
 				playsound(src, messagevoice[message], 50)
-
-		var/scan_range = (stationary_mode ? 1 : DEFAULT_SCAN_RANGE) //If in stationary mode, scan range is limited to adjacent patients.
-		patient = scan(/mob/living/carbon/human, oldpatient, scan_range)
+	//	var/scan_range = (medical_mode_flags & MEDBOT_STATIONARY_MODE ? 1 : DEFAULT_SCAN_RANGE) //If in stationary mode, scan range is limited to adjacent patients.
+		var/scan_range = (stationary_mode ? 1 : DEFAULT_SCAN_RANGE)
+		patient = scan(list(/mob/living/carbon/human), oldpatient, scan_range)
 		oldpatient = patient
 
 	if(patient && (get_dist(src,patient) <= 1)) //Patient is next to us, begin treatment!
@@ -424,15 +432,16 @@
 		mode = BOT_IDLE
 		last_found = world.time
 
-	else if(stationary_mode && patient) //Since we cannot move in this mode, ignore the patient and wait for another.
+//	else if(medical_mode_flags & MEDBOT_STATIONARY_MODE && patient) //Since we cannot move in this mode, ignore the patient and wait for another.
+	else if(stationary_mode && patient)
 		soft_reset()
 		return
 
 	if(patient && path.len == 0 && (get_dist(src,patient) > 1))
-		path = get_path_to(src, get_turf(patient), /turf/proc/Distance_cardinal, 0, 30,id=access_card)
+		path = get_path_to(src, patient, max_distance=30, id=access_card)
 		mode = BOT_MOVING
 		if(!path.len) //try to get closer if you can't reach the patient directly
-			path = get_path_to(src, get_turf(patient), /turf/proc/Distance_cardinal, 0, 30,1,id=access_card)
+			path = get_path_to(src, patient, max_distance=30, mintargetdist=1, id=access_card)
 			if(!path.len) //Do not chase a patient we cannot reach.
 				soft_reset()
 
@@ -445,14 +454,13 @@
 	if(path.len > 8 && patient)
 		frustration++
 
+//	if(bot_mode_flags & BOT_MODE_AUTOPATROL && !(medical_mode_flags & MEDBOT_STATIONARY_MODE) && !patient)
 	if(auto_patrol && !stationary_mode && !patient)
-		if(mode == BOT_IDLE || mode == BOT_START_PATROL)
-			start_patrol()
-
-		if(mode == BOT_PATROL)
-			bot_patrol()
-
-	return
+		switch(mode)
+			if(BOT_IDLE, BOT_START_PATROL)
+				start_patrol()
+			if(BOT_PATROL)
+				bot_patrol()
 
 /mob/living/simple_animal/bot/medbot/proc/assess_patient(mob/living/carbon/C)
 	//Time to see if they need medical help!

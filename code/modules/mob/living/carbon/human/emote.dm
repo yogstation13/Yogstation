@@ -68,7 +68,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
+	var/obj/item/organ/tongue/T = H.get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(istype(T, /obj/item/organ/tongue/lizard))
 		return 'sound/voice/lizard/hiss.ogg'
 	if(istype(T, /obj/item/organ/tongue/polysmorph))
@@ -80,7 +80,7 @@
 	if(!ishuman(user))
 		return FALSE
 	var/mob/living/carbon/human/H = user
-	var/obj/item/organ/tongue/T = H.getorganslot(ORGAN_SLOT_TONGUE)
+	var/obj/item/organ/tongue/T = H.get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(iscatperson(user)) //yogs: cat people can hiss!
 		return TRUE
 	return is_type_in_list(T, viable_tongues)
@@ -116,6 +116,13 @@
 		return
 	if(H.dna?.species) //yogs start: grabs scream from screamsound located in the appropriate species file.
 		return H.dna.species.get_scream_sound(H) //yogs end - current added screams: basic human, moth, lizard, preternis, felinid.
+
+/datum/emote/living/carbon/human/scream/screech //If a human tries to screech it'll just scream.
+	key = "screech"
+	key_third_person = "screeches"
+	message = "screeches."
+	emote_type = EMOTE_AUDIBLE
+	vary = FALSE
 
 /datum/emote/living/carbon/meow
 	key = "meow"
@@ -254,7 +261,7 @@
 	emote_type = EMOTE_AUDIBLE //emotes that require robotic voicebox are audible by default, because it's a sound-making device
 
 /datum/emote/living/carbon/human/robot_tongue/can_run_emote(mob/user, status_check = TRUE , intentional)
-	var/obj/item/organ/tongue/T = user.getorganslot("tongue")
+	var/obj/item/organ/tongue/T = user.get_organ_slot("tongue")
 	return T?.status == ORGAN_ROBOTIC && ..()
 
 /datum/emote/living/carbon/human/robot_tongue/beep
@@ -328,3 +335,43 @@
 
 /datum/emote/living/carbon/human/robot_tongue/clown/sad/run_emote(mob/living/user)
 	return 'sound/misc/sadtrombone.ogg'
+
+///Snowflake emotes only for le epic chimp
+/datum/emote/living/carbon/human/monkey
+
+/datum/emote/living/carbon/human/monkey/can_run_emote(mob/user, status_check = TRUE, intentional)
+	if(ismonkey(user))
+		return ..()
+	return FALSE
+
+/datum/emote/living/carbon/human/monkey/gnarl
+	key = "gnarl"
+	key_third_person = "gnarls"
+	message = "gnarls and shows its teeth..."
+
+/datum/emote/living/carbon/human/monkey/roll
+	key = "roll"
+	key_third_person = "rolls"
+	message = "rolls."
+	restraint_check = TRUE
+
+/datum/emote/living/carbon/human/monkey/scratch
+	key = "scratch"
+	key_third_person = "scratches"
+	message = "scratches."
+	restraint_check = TRUE
+
+/datum/emote/living/carbon/human/monkey/screech/roar
+	key = "roar"
+	key_third_person = "roars"
+	message = "roars."
+
+/datum/emote/living/carbon/human/monkey/tail
+	key = "tail"
+	message = "waves their tail."
+
+/datum/emote/living/carbon/human/monkeysign
+	key = "sign"
+	key_third_person = "signs"
+	message_param = "signs the number %t."
+	restraint_check = TRUE

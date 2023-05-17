@@ -5,6 +5,7 @@
 	icon_state = "railing"
 	density = TRUE
 	anchored = TRUE
+	pass_flags_self = LETPASSTHROW|PASSSTRUCTURE
 	climbable = TRUE
 	pixel_y = -16
 	climb_time = 10 // not that hard to jump a rail

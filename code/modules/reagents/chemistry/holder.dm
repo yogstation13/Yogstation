@@ -92,7 +92,7 @@
 /**
   * Used in attack logs for reagents in pills and such
   */
-/datum/reagents/proc/log_list()
+/datum/reagents/proc/get_reagent_log_string()
 	if(!length(reagent_list))
 		return "no reagents"
 
@@ -217,7 +217,7 @@
 
 	if(transfered_by && target_atom)
 		target_atom.add_hiddenprint(transfered_by) //log prints so admins can figure out who touched it last.
-		log_combat(transfered_by, target_atom, "transferred reagents ([log_list()]) from [my_atom] to")
+		log_combat(transfered_by, target_atom, "transferred reagents ([get_reagent_log_string()]) from [my_atom] to")
 
 	amount = min(min(amount, src.total_volume), R.maximum_volume-R.total_volume)
 	var/part = amount / src.total_volume

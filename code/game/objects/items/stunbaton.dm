@@ -185,7 +185,7 @@
 	//yogs edit begin ---------------------------------
 	if(status && ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
+		var/obj/item/organ/stomach/ethereal/stomach = H.get_organ_slot(ORGAN_SLOT_STOMACH)
 		if(istype(stomach))
 			stomach.adjust_charge(10 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 			to_chat(M,span_notice("You get charged by [src]."))

@@ -47,7 +47,7 @@
 	if(H.restrained() || H.get_active_held_item() || HAS_TRAIT(H, TRAIT_PACIFISM) || !(H.mobility_flags & MOBILITY_MOVE) || H.stat != CONSCIOUS)
 		for(var/atom/movable/K in thrown)
 			thrown.Remove(K)
-			walk(K,0)
+			SSmove_manager.stop_looping(K)
 			K.density = old_density
 			animate(K, time = 0 SECONDS, pixel_y = 0)
 		for(var/obj/structure/bed/grip/F in get_turf(H))
@@ -140,7 +140,7 @@
 		animate(I, time = 0.2 SECONDS, pixel_y = 20)
 		I.forceMove(Z)
 		I.density = FALSE 
-		walk_towards(I, user, 0, 0)
+		SSmove_manager.move_towards(I, user, 0, 0)
 		// Reset the item to its original state
 		if(get_dist(I, user) > 1)
 			I.density = old_density
@@ -159,7 +159,7 @@
 		to_chat(L, span_userdanger("[user] grapples you and lifts you up into the air! Resist [user.p_their()] grip!"))
 		L.forceMove(Z)
 		F.buckle_mob(target)
-		walk_towards(F, user, 0, 0)
+		SSmove_manager.move_towards(F, user, 0, 0)
 		if(get_dist(L, user) > 1)
 			L.density = old_density
 			return
@@ -174,7 +174,7 @@
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
 	var/atom/tossed = thrown[1]
-	walk(tossed,0)
+	SSmove_manager.stop_looping(tossed)
 	tossed.density = old_density
 	user.stop_pulling()
 	if(get_dist(tossed, user) > 1)//cant reach the thing i was supposed to be throwing anymore
@@ -309,7 +309,7 @@
 		if(T)
 			sleep(0.01 SECONDS)
 			user.forceMove(T) // Move us forward
-			walk_towards(F, user, 0, 1.5)
+			SSmove_manager.move_towards(F, user, 0, 1.5)
 			animate(F, alpha = 0, color = "#d40a0a", time = 0.5 SECONDS) // Cool after-image
 			for(var/mob/living/mophead in T.contents) // Take all mobs we encounter with us
 				if(mophead != user) 

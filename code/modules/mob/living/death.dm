@@ -49,7 +49,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 
 
 /mob/living/death(gibbed)
-	stat = DEAD
+	set_stat(DEAD)
 	unset_machine()
 	timeofdeath = world.time
 	tod = station_time_timestamp()

@@ -45,6 +45,8 @@
 		var/mutable_appearance/creamoverlay = mutable_appearance('icons/effects/creampie.dmi')
 		if(H.dna.species.limbs_id == "lizard")
 			creamoverlay.icon_state = "creampie_lizard"
+		else if(H.dna.species.limbs_id == "monkey")
+			creamoverlay.icon_state = "creampie_monkey"
 		else
 			creamoverlay.icon_state = "creampie_human"
 		if(stunning)
@@ -62,7 +64,7 @@
 	stunning = FALSE
 
 /obj/item/reagent_containers/food/snacks/pie/cream/admin
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW | PASSDOOR | PASSMACHINES | PASSCOMPUTER
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSBLOB | PASSCLOSEDTURF | LETPASSTHROW | PASSDOOR | PASSMACHINE | PASSCOMPUTER
 
 /obj/item/reagent_containers/food/snacks/pie/berryclafoutis
 	name = "berry clafoutis"

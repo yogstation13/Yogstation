@@ -94,21 +94,6 @@
 #define DNA_MUTATION_BLOCKS			8
 #define DNA_UNIQUE_ENZYMES_LEN		32
 
-//Transformation proc stuff
-#define TR_KEEPITEMS	(1<<0)
-#define TR_KEEPVIRUS	(1<<1)
-#define TR_KEEPDAMAGE	(1<<2)
-/// hashing names (e.g. monkey(e34f)) (only in monkeyize)
-#define TR_HASHNAME		(1<<3)
-#define TR_KEEPIMPLANTS	(1<<4)
-/// changelings shouldn't edit the DNA's SE when turning into a monkey
-#define TR_KEEPSE		(1<<5)
-#define TR_DEFAULTMSG	(1<<6)
-#define TR_KEEPORGANS	(1<<8)
-#define TR_KEEPSTUNS	(1<<9)
-#define TR_KEEPREAGENTS	(1<<10)
-
-
 #define CLONER_FRESH_CLONE "fresh"
 #define CLONER_MATURE_CLONE "mature"
 
@@ -143,9 +128,9 @@
 #define NOEYESPRITES	22
 /// Used for determining which wounds are applicable to this species.
 /// if we have flesh (can suffer slash/piercing/burn wounds, requires they don't have NOBLOOD)
-#define HAS_FLESH	23
+#define HAS_FLESH		23
 /// if we have bones (can suffer bone wounds)
-#define HAS_BONE	24
+#define HAS_BONE		24
 /// Can't be husked.
 #define NOHUSK			25
 /// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
@@ -155,6 +140,10 @@
 /// has a tail
 #define HAS_TAIL		28
 #define NONANITES		29
+/// Do not draw blood overlay
+#define NOBLOODOVERLAY 	30
+///No augments, for monkeys in specific because they will turn into fucking freakazoids https://cdn.discordapp.com/attachments/326831214667235328/791313258912153640/102707682-fa7cad80-4294-11eb-8f13-8c689468aeb0.png
+#define NOAUGMENTS 		31
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

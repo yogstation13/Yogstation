@@ -85,7 +85,7 @@
 	density = TRUE
 	anchored = FALSE
 	climbable = TRUE
-	pass_flags = LETPASSTHROW
+	pass_flags_self = LETPASSTHROW
 	can_buckle = FALSE
 	var/task_completed = FALSE
 	var/sacrifices = 0

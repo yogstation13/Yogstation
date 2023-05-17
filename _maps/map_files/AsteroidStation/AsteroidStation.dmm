@@ -28,7 +28,7 @@
 /turf/closed/wall,
 /area/medical/patients_rooms/room_b)
 "aak" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 5
 	},
@@ -24554,7 +24554,7 @@
 /area/engine/atmos)
 "hig" = (
 /obj/effect/turf_decal/sand,
-/mob/living/carbon/monkey/punpun,
+/mob/living/carbon/human/species/monkey/punpun,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "hii" = (
@@ -34446,7 +34446,7 @@
 	pixel_x = -8;
 	pixel_y = 11
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/grass,
 /area/medical/genetics)
 "kva" = (
@@ -54407,7 +54407,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "qTl" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
 	},
@@ -64134,7 +64134,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "ubJ" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/item/reagent_containers/food/snacks/grown/banana{
 	pixel_x = -12;
 	pixel_y = 7
@@ -68642,7 +68642,7 @@
 	name = "Monkey Pen";
 	req_access_txt = "9"
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -73079,7 +73079,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "wZf" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/structure/flora/ausbushes/sparsegrass{
 	pixel_x = 5;
 	pixel_y = -2

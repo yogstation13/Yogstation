@@ -3,7 +3,7 @@
 
 Weight Loss
 
-	Very Very Noticable.
+	Very Very Noticeable.
 	Decreases resistance.
 	Decreases stage speed.
 	Reduced Transmittable.

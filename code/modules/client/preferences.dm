@@ -512,6 +512,11 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/character_preview_view)
 	if(GetQuirkBalance() < 0)
 		all_quirks = list()
 
+/// Sanitizes the preferences, applies the randomization prefs, and then applies the preference to the human mob.
+/datum/preferences/proc/safe_transfer_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE, is_antag = FALSE)
+	apply_character_randomization_prefs(is_antag)
+	apply_prefs_to(character, icon_updates)
+
 /datum/preferences/proc/apply_prefs_to(mob/living/carbon/human/character, icon_updates = TRUE)
 	character.dna.features = list()
 

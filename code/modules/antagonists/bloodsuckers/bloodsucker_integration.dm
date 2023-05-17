@@ -46,7 +46,7 @@
 // INTEGRATION: Adding Procs and Datums to existing "classes" //
 
 /mob/living/proc/HaveBloodsuckerBodyparts(displaymessage = "") // displaymessage can be something such as "rising from death" for Torpid Sleep. givewarningto is the person receiving messages.
-	if(!getorganslot(ORGAN_SLOT_HEART))
+	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		if(displaymessage != "")
 			to_chat(src, span_warning("Without a heart, you are incapable of [displaymessage]."))
 		return FALSE

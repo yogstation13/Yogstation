@@ -1525,7 +1525,7 @@
 		to_chat(user, span_warning("You aren't a human!"))	//this shouldn't ever trigger
 		return FALSE
 	var/mob/living/carbon/human/ethereal = user
-	var/obj/item/organ/stomach/maybe_stomach = ethereal.getorganslot(ORGAN_SLOT_STOMACH)
+	var/obj/item/organ/stomach/maybe_stomach = ethereal.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(!istype(maybe_stomach, /obj/item/organ/stomach/ethereal))
 		to_chat(ethereal, span_warning("You don't have the correct stomach for this!"))
 		return FALSE

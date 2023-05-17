@@ -8,7 +8,7 @@
 				/datum/surgery_step/clamp_bleeders, 
 				/datum/surgery_step/fix_eyes, 
 				/datum/surgery_step/close)
-	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_PRECISE_EYES)
 
 /datum/surgery/eye_surgery/mechanic
@@ -29,7 +29,7 @@
 	time = 6.4 SECONDS
 
 /datum/surgery/eye_surgery/can_start(mob/user, mob/living/carbon/target)
-	var/obj/item/organ/eyes/E = target.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/E = target.get_organ_slot(ORGAN_SLOT_EYES)
 	if(!E)
 		to_chat(user, "It's hard to do surgery on someone's eyes when [target.p_they()] [target.p_do()]n't have any.")
 		return FALSE
@@ -41,7 +41,7 @@
 		"[user] begins to perform surgery on [target]'s eyes.")
 
 /datum/surgery_step/fix_eyes/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	var/obj/item/organ/eyes/E = target.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/E = target.get_organ_slot(ORGAN_SLOT_EYES)
 	user.visible_message("[user] successfully fixes [target]'s eyes!", span_notice("You succeed in fixing [target]'s eyes."))
 	display_results(user, target, span_notice("You succeed in fixing [target]'s eyes."),
 		"[user] successfully fixes [target]'s eyes!",

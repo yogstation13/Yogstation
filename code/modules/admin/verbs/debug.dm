@@ -419,6 +419,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			matches[key] = value
 	return matches
 
+/proc/return_typenames(type)
+	return splittext("[type]", "/")
+
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all(object as text)
 	set category = "Misc.Server Debug"

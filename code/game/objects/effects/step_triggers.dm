@@ -49,14 +49,13 @@
 	var/speed = 1	// delay of movement
 	var/facedir = 0 // if 1: atom faces the direction of movement
 	var/nostop = 0 // if 1: will only be stopped by teleporters
+	///List of moving atoms mapped to their inital direction
 	var/list/affecting = list()
 
 /obj/effect/step_trigger/thrower/Trigger(atom/A)
 	if(!A || !ismovable(A))
 		return
 	var/atom/movable/AM = A
-	var/curtiles = 0
-	var/stopthrow = 0
 	for(var/obj/effect/step_trigger/thrower/T in orange(2, src))
 		if(AM in T.affecting)
 			return
@@ -66,36 +65,6 @@
 		if(immobilize)
 			M.mobility_flags &= ~MOBILITY_MOVE
 
-	affecting.Add(AM)
-	while(AM && !stopthrow)
-		if(tiles)
-			if(curtiles >= tiles)
-				break
-		if(AM.z != src.z)
-			break
-
-		curtiles++
-
-		sleep(speed)
-
-		// Calculate if we should stop the process
-		if(!nostop)
-			for(var/obj/effect/step_trigger/T in get_step(AM, direction))
-				if(T.stopper && T != src)
-					stopthrow = 1
-		else
-			for(var/obj/effect/step_trigger/teleporter/T in get_step(AM, direction))
-				if(T.stopper)
-					stopthrow = 1
-
-		if(AM)
-			var/predir = AM.dir
-			step(AM, direction)
-			if(!facedir)
-				AM.setDir(predir)
-
-
-
 	affecting.Remove(AM)
 
 	if(isliving(AM))
@@ -103,6 +72,45 @@
 		if(immobilize)
 			M.mobility_flags |= MOBILITY_MOVE
 		M.update_mobility()
+
+	affecting[AM] = AM.dir
+	var/datum/move_loop/loop = SSmove_manager.move(AM, direction, speed, tiles ? tiles * speed : INFINITY)
+	RegisterSignal(loop, COMSIG_MOVELOOP_PREPROCESS_CHECK, PROC_REF(pre_move))
+	RegisterSignal(loop, COMSIG_MOVELOOP_POSTPROCESS, PROC_REF(post_move))
+	RegisterSignal(loop, COMSIG_PARENT_QDELETING, PROC_REF(set_to_normal))
+
+/obj/effect/step_trigger/thrower/proc/pre_move(datum/move_loop/source)
+	SIGNAL_HANDLER
+	var/atom/movable/being_moved = source.moving
+	affecting[being_moved] = being_moved.dir
+
+/obj/effect/step_trigger/thrower/proc/post_move(datum/move_loop/source)
+	SIGNAL_HANDLER
+	var/atom/movable/being_moved = source.moving
+	if(!facedir)
+		being_moved.setDir(affecting[being_moved])
+	if(being_moved.z != z)
+		qdel(source)
+		return
+	if(!nostop)
+		for(var/obj/effect/step_trigger/T in get_turf(being_moved))
+			if(T.stopper && T != src)
+				qdel(source)
+				return
+	else
+		for(var/obj/effect/step_trigger/teleporter/T in get_turf(being_moved))
+			if(T.stopper)
+				qdel(source)
+				return
+
+/obj/effect/step_trigger/thrower/proc/set_to_normal(datum/move_loop/source)
+	SIGNAL_HANDLER
+	var/atom/movable/being_moved = source.moving
+	affecting -= being_moved
+	if(isliving(being_moved))
+		var/mob/living/shitass = being_moved
+		shitass.SetImmobilized(0)
+//	REMOVE_TRAIT(being_moved, TRAIT_IMMOBILIZED, REF(src))
 
 /* Stops things thrown by a thrower, doesn't do anything */
 

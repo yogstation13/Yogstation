@@ -11,7 +11,7 @@
 	/datum/surgery_step/fix_brain,
 	/datum/surgery_step/close)
 
-	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_HEAD)
 
 /datum/surgery/brain_surgery/mechanic
@@ -56,16 +56,16 @@
 	failure_sound = 'sound/machines/defib_zap.ogg'
 
 /datum/surgery/brain_surgery/can_start(mob/user, mob/living/carbon/target)
-	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/B = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!B)
 		return FALSE
-	return !istype(target.getorganslot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)
+	return !istype(target.get_organ_slot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)
 
 /datum/surgery/brain_surgery/mechanic/positron/can_start(mob/user, mob/living/carbon/target)
-	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/B = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!B)
 		return FALSE
-	return istype(target.getorganslot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)
+	return istype(target.get_organ_slot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)
 
 /datum/surgery_step/fix_brain/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(user, target, span_notice("You begin to fix [target]'s brain..."),
@@ -86,7 +86,7 @@
 	return TRUE
 
 /datum/surgery_step/fix_brain/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(target.getorganslot(ORGAN_SLOT_BRAIN))
+	if(target.get_organ_slot(ORGAN_SLOT_BRAIN))
 		display_results(user, target, span_warning("You screw up, causing more damage!"),
 			span_warning("[user] screws up, causing brain damage!"),
 			"[user] completes the surgery on [target]'s brain.")

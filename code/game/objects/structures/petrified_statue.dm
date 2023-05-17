@@ -82,21 +82,13 @@
 
 /mob/living/carbon/human/petrify(statue_timer)
 	if(!isturf(loc))
-		return 0
+		return FALSE
 	var/obj/structure/statue/petrified/S = new(loc, src, statue_timer)
 	S.name = "statue of [name]"
 	bleedsuppress = 1
 	S.copy_overlays(src)
 	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 	S.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
-	return S // yogs
-
-/mob/living/carbon/monkey/petrify(statue_timer)
-	if(!isturf(loc))
-		return 0
-	var/obj/structure/statue/petrified/S = new(loc, src, statue_timer)
-	S.name = "statue of a monkey"
-	S.icon_state = "monkey"
 	return S // yogs
 
 /mob/living/simple_animal/pet/dog/corgi/petrify(statue_timer)

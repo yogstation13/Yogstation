@@ -924,7 +924,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "PV" = (
-/mob/living/carbon/monkey/punpun,
+/mob/living/carbon/human/species/monkey/punpun,
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},

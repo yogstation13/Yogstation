@@ -189,7 +189,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	if(istype(saymode,/datum/saymode/vocalcords)) // Yogs -- some hack to make sure that the message gets to Voice of God unscathed
 		if(iscarbon(src))
 			var/mob/living/carbon/C = src
-			var/obj/item/organ/vocal_cords/V = C.getorganslot(ORGAN_SLOT_VOICE)
+			var/obj/item/organ/vocal_cords/V = C.get_organ_slot(ORGAN_SLOT_VOICE)
 			if(V)
 				if(V.does_modify_message())
 					message = V.modify_message(message)

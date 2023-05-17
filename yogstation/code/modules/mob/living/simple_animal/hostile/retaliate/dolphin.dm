@@ -37,7 +37,7 @@
 
 	faction = list("dolphin")//why do carps not attack dolphins again? //i dunno now they do
 
-/mob/living/simple_animal/hostile/retaliate/dolphin/Process_Spacemove(movement_dir = 0)
+/mob/living/simple_animal/hostile/retaliate/dolphin/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
 	return TRUE	//No drifting in space for space dolphins!	//original comments do not steal //Too late.
 
 /mob/living/simple_animal/hostile/retaliate/dolphin/AttackingTarget()

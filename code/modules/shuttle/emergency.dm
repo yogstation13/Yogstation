@@ -314,7 +314,7 @@
 		if(shuttle_areas[get_area(player)])
 			//Non-xeno present. Can't hijack.
 			if(!isalien(player))
-				if(!HAS_TRAIT(player, TRAIT_XENO_HOST) && !player.getorganslot(ORGAN_SLOT_PARASITE_EGG)) //if they are hosts / egged skip them,
+				if(!HAS_TRAIT(player, TRAIT_XENO_HOST) && !player.get_organ_slot(ORGAN_SLOT_PARASITE_EGG)) //if they are hosts / egged skip them,
 					return FALSE																  //checks twice just incase cause the system is wacky
 			has_xenos = TRUE
 

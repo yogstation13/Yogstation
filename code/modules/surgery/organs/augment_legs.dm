@@ -101,9 +101,9 @@
 	. = ..()
 	
 /obj/item/organ/cyberimp/leg/proc/HasBoth()
-	if(owner.getorganslot(ORGAN_SLOT_RIGHT_LEG_AUG) && owner.getorganslot(ORGAN_SLOT_LEFT_LEG_AUG))
-		var/obj/item/organ/cyberimp/leg/left = owner.getorganslot(ORGAN_SLOT_LEFT_LEG_AUG)
-		var/obj/item/organ/cyberimp/leg/right = owner.getorganslot(ORGAN_SLOT_RIGHT_LEG_AUG)
+	if(owner.get_organ_slot(ORGAN_SLOT_RIGHT_LEG_AUG) && owner.get_organ_slot(ORGAN_SLOT_LEFT_LEG_AUG))
+		var/obj/item/organ/cyberimp/leg/left = owner.get_organ_slot(ORGAN_SLOT_LEFT_LEG_AUG)
+		var/obj/item/organ/cyberimp/leg/right = owner.get_organ_slot(ORGAN_SLOT_RIGHT_LEG_AUG)
 		if(left.implant_type == right.implant_type)
 			return TRUE
 	return FALSE

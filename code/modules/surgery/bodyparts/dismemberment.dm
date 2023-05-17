@@ -200,7 +200,7 @@
 		LB.brainmob = brainmob
 		brainmob = null
 		LB.brainmob.forceMove(LB)
-		LB.brainmob.stat = DEAD
+		LB.brainmob.set_stat(DEAD)
 
 /obj/item/organ/eyes/transfer_to_limb(obj/item/bodypart/head/LB, mob/living/carbon/human/C)
 	LB.eyes = src
@@ -293,7 +293,7 @@
 			pill.forceMove(src)
 
 	//Make sure de-zombification happens before organ removal instead of during it
-	var/obj/item/organ/zombie_infection/ooze = owner.getorganslot(ORGAN_SLOT_ZOMBIE)
+	var/obj/item/organ/zombie_infection/ooze = owner.get_organ_slot(ORGAN_SLOT_ZOMBIE)
 	if(istype(ooze))
 		ooze.transfer_to_limb(src, owner)
 

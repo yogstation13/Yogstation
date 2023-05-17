@@ -28,13 +28,13 @@
 /mob/living/carbon/human/spawn_gibs(with_bodyparts)
 	if(with_bodyparts)
 		switch(dna.species.species_gibs)
-			if("human")
+			if("human" || "monkey")
 				new /obj/effect/gibspawner/human(get_turf(src), dna, get_static_viruses())
 			if("robotic")
 				new /obj/effect/gibspawner/robot(get_turf(src))
 	else
 		switch(dna.species.species_gibs)
-			if("human")
+			if("human" || "monkey")
 				new /obj/effect/gibspawner/human(get_turf(src), dna, get_static_viruses())
 			if("robotic")
 				new /obj/effect/gibspawner/robot(get_turf(src))
@@ -44,7 +44,7 @@
 		new /obj/effect/decal/cleanable/ash(loc)
 	else
 		switch(dna.species.species_gibs)
-			if("human")
+			if("human" || "monkey")
 				new /obj/effect/decal/remains/human(loc)
 			if("robotic")
 				new /obj/effect/decal/remains/robot(loc)
@@ -53,7 +53,7 @@
 	if(stat == DEAD)
 		return
 	stop_sound_channel(CHANNEL_HEARTBEAT)
-	var/obj/item/organ/heart/H = getorganslot(ORGAN_SLOT_HEART)
+	var/obj/item/organ/heart/H = get_organ_slot(ORGAN_SLOT_HEART)
 	if(H)
 		H.beat = BEAT_NONE
 

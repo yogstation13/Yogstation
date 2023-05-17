@@ -46,12 +46,6 @@
 		return FALSE
 	return ..()
 
-/datum/emote/living/carbon/gnarl
-	key = "gnarl"
-	key_third_person = "gnarls"
-	message = "gnarls and shows its teeth..."
-	mob_type_allowed_typecache = list(/mob/living/carbon/monkey)
-
 /datum/emote/living/carbon/moan
 	key = "moan"
 	key_third_person = "moans"
@@ -70,27 +64,26 @@
 	key = "roll"
 	key_third_person = "rolls"
 	message = "rolls."
-	mob_type_allowed_typecache = list(/mob/living/carbon/monkey, /mob/living/carbon/alien)
+	mob_type_allowed_typecache = list(/mob/living/carbon/human/species/monkey, /mob/living/carbon/alien)
 	restraint_check = TRUE
 
 /datum/emote/living/carbon/scratch
 	key = "scratch"
 	key_third_person = "scratches"
 	message = "scratches."
-	mob_type_allowed_typecache = list(/mob/living/carbon/monkey, /mob/living/carbon/alien)
+	mob_type_allowed_typecache = list(/mob/living/carbon/alien)
 	restraint_check = TRUE
 
-/datum/emote/living/carbon/screech
-	key = "screech"
-	key_third_person = "screeches"
-	message = "screeches."
-	mob_type_allowed_typecache = list(/mob/living/carbon/monkey, /mob/living/carbon/alien)
+/datum/emote/living/carbon/screech/roar
+	key = "roar"
+	key_third_person = "roars"
+	message = "roars."
 
 /datum/emote/living/carbon/sign
 	key = "sign"
 	key_third_person = "signs"
 	message_param = "signs the number %t."
-	mob_type_allowed_typecache = list(/mob/living/carbon/monkey, /mob/living/carbon/alien)
+	mob_type_allowed_typecache = list(/mob/living/carbon/alien)
 	restraint_check = TRUE
 
 /datum/emote/living/carbon/sign/select_param(mob/user, params)
@@ -108,7 +101,7 @@
 /datum/emote/living/carbon/tail
 	key = "tail"
 	message = "waves their tail."
-	mob_type_allowed_typecache = list(/mob/living/carbon/monkey, /mob/living/carbon/alien)
+	mob_type_allowed_typecache = list(/mob/living/carbon/alien)
 
 /datum/emote/living/carbon/wink
 	key = "wink"

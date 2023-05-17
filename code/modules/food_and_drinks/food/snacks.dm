@@ -113,7 +113,7 @@ All foods are distributed among various categories. Use common sense.
 					return
 				if(!do_mob(user, M))
 					return
-				log_combat(user, M, "fed", reagents.log_list())
+				log_combat(user, M, "fed", reagents.get_reagent_log_string())
 			else
 				to_chat(user, span_warning("[M] doesn't seem to have a mouth!"))
 				return

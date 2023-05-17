@@ -228,7 +228,7 @@ GENE SCANNER
 	if(advanced)
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
-			var/obj/item/organ/ears/ears = C.getorganslot(ORGAN_SLOT_EARS)
+			var/obj/item/organ/ears/ears = C.get_organ_slot(ORGAN_SLOT_EARS)
 			combined_msg += "\t<span class='info'><b>==EAR STATUS==</b></span>"
 			if(istype(ears))
 				var/healthy = TRUE
@@ -249,7 +249,7 @@ GENE SCANNER
 					combined_msg += "\t[span_info("Healthy.")]"
 			else
 				combined_msg += "\t[span_alert("Subject does not have ears.")]"
-			var/obj/item/organ/eyes/eyes = C.getorganslot(ORGAN_SLOT_EYES)
+			var/obj/item/organ/eyes/eyes = C.get_organ_slot(ORGAN_SLOT_EYES)
 			combined_msg += "\t<span class='info'><b>==EYE STATUS==</b></span>"
 			if(istype(eyes))
 				var/healthy = TRUE

@@ -576,7 +576,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "bV" = (
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	name = "Pun Pun"
 	},
 /turf/open/floor/wood,

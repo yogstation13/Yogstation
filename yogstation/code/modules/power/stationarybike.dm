@@ -102,7 +102,7 @@
 		if(!BM || BM.stat == DEAD)
 			operating = 0
 			return
-		else if(istype(BM,/mob/living/carbon/monkey) || istype(BM, /mob/living/simple_animal))
+		else if(istype(BM,/mob/living/carbon/human/species/monkey) || istype(BM, /mob/living/simple_animal))
 			operating = simple_power
 		else if(istype(BM,/mob/living/carbon/human))
 			if(!BM.mind)

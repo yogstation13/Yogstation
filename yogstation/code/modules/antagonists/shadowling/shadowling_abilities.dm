@@ -62,7 +62,7 @@
 	. = ..()
 	if(!target)
 		return
-	if(!caller.getorganslot(ORGAN_SLOT_EYES))
+	if(!caller.get_organ_slot(ORGAN_SLOT_EYES))
 		to_chat(user, span_warning("You need eyes to glare!"))
 		revert_cast()
 		return
@@ -344,7 +344,7 @@
 			if(G)
 				M.dna.remove_mutation(GLOWY)
 		target.mind.special_role = "thrall"
-		var/obj/item/organ/internal/shadowtumor/ST = new
+		var/obj/item/organ/shadowtumor/ST = new
 		ST.Insert(target, FALSE, FALSE)
 		target.add_thrall()
 		if(target.reagents.has_reagent(/datum/reagent/consumable/frostoil)) //Stabilize body temp incase the sling froze them earlier
@@ -914,7 +914,7 @@
 
 /obj/effect/proc_holder/spell/targeted/lesser_glare/cast(list/targets,mob/user = usr)
 	for(var/mob/living/target in targets)
-		if(!user.getorganslot(ORGAN_SLOT_EYES))
+		if(!user.get_organ_slot(ORGAN_SLOT_EYES))
 			to_chat(user, span_warning("You need eyes to glare!"))
 			revert_cast()
 			return
@@ -973,7 +973,7 @@
 	if(!is_shadow_or_thrall(user))
 		revert_cast()
 		return
-	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(!eyes)
 		return
 	eyes.sight_flags = initial(eyes.sight_flags)

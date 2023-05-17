@@ -141,8 +141,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
   */
 /mob/living/simple_animal/mouse/proc/evolve()
 	var/mob/living/simple_animal/hostile/regalrat/rat = new(get_turf(src))
-	if(mind)
-		mind.transfer_to(rat)
+	mind?.transfer_to(rat)
 	qdel(src)
 	visible_message(span_warning("[src] devours the cheese! He morphs into something... greater!"))
 	rat.say("RISE, MY SUBJECTS! SCREEEEEEE!")
@@ -216,14 +215,13 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	layer = BELOW_OPEN_DOOR_LAYER
 
 /mob/living/simple_animal/mouse/proc/can_eat(atom/A)
-	. = FALSE
-
 	if(eating)
 		return FALSE
 	if(is_type_in_list(A, GLOB.mouse_comestible))
 		return TRUE
 	if(istype(A, /obj/item/reagent_containers/food) && !(locate(/obj/structure/table) in get_turf(A)))
 		return TRUE
+	return FALSE
 
 /mob/living/simple_animal/mouse/proc/regen_health(amt = 5)
 	var/overheal = max(health + amt - maxHealth, 0)
@@ -239,9 +237,6 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 
 /mob/living/simple_animal/mouse/proc/cheese_up()
 	regen_health(15)
-	if(cheesed)
-		cheese_time = cheese_time + 3 MINUTES
-		return
 	cheesed = TRUE
 	resize = 2
 	update_transform()
@@ -250,6 +245,8 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	health = maxHealth
 	to_chat(src, span_userdanger("You ate cheese! You are now stronger, bigger and faster!"))
 	cheese_time = cheese_time + 3 MINUTES
+	pixel_x = 26
+	pixel_y = 5
 
 /mob/living/simple_animal/mouse/proc/cheese_down()
 	cheesed = FALSE
@@ -259,6 +256,8 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	update_transform()
 	remove_movespeed_modifier(MOVESPEED_ID_MOUSE_CHEESE, TRUE)
 	to_chat(src, span_userdanger("A feeling of sadness comes over you as the effects of the cheese wears off. You. Must. Get. More."))
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
 
 /mob/living/simple_animal/mouse/proc/mouse_eat(obj/item/reagent_containers/food/snacks/F)
 	var/list/cheeses = list(/obj/item/reagent_containers/food/snacks/cheesewedge, /obj/item/reagent_containers/food/snacks/cheesewheel,
@@ -304,7 +303,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 /obj/item/reagent_containers/food/snacks/deadmouse
 	name = "dead mouse"
 	desc = "It looks like somebody dropped the bass on it. A Lizard's favorite meal."
-	icon = 'icons/mob/animal.dmi'
+	icon = 'icons/mob/mouse.dmi'
 	icon_state = "mouse_gray_dead"
 	bitesize = 3
 	eatverb = "devour"

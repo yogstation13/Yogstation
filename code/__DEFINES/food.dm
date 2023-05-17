@@ -44,3 +44,6 @@
 #define DRINK_VERYGOOD	3
 #define DRINK_FANTASTIC	4
 #define FOOD_AMAZING 5
+
+//#define IS_EDIBLE(O) (O.GetComponent(/datum/component/edible))
+#define IS_EDIBLE(O) istype(O, /obj/item/reagent_containers/food) //for now

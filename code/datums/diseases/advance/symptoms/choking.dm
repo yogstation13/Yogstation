@@ -3,7 +3,7 @@
 
 Choking
 
-	Very very noticable.
+	Very very noticeable.
 	Lowers resistance.
 	Decreases stage speed.
 	Decreases transmittablity tremendously.
@@ -77,7 +77,7 @@ Bonus
 
 Asphyxiation
 
-	Very very noticable.
+	Very very noticeable.
 	Decreases stage speed.
 	Decreases transmittablity.
 

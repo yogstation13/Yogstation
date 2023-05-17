@@ -63,6 +63,7 @@
 	item_state = "waiter"
 	can_adjust = FALSE
 	mutantrace_variation = MUTANTRACE_VARIATION
+	supports_variations_flags = CLOTHING_MONKEY_VARIATION
 
 /obj/item/clothing/under/rank/prisoner
 	name = "prison jumpsuit"

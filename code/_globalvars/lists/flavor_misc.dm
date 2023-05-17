@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(caps_list)
 GLOBAL_LIST_EMPTY(ipc_screens_list)
 GLOBAL_LIST_EMPTY(ipc_antennas_list)
 GLOBAL_LIST_EMPTY(ipc_chassis_list)
+GLOBAL_LIST_EMPTY(tails_list_monkey)
 GLOBAL_LIST_INIT(plasmaman_helmet_list, list(
 	"None" = "",
 	"Slit" = "slit",

@@ -41,7 +41,7 @@
 /mob/camera/imaginary_friend/mrat/proc/update_available_icons()
 	icons_available = list()
 
-	icons_available += list("Mouse" = image(icon = 'icons/mob/animal.dmi', icon_state = "mouse_white"))
+	icons_available += list("Mouse" = image(icon = 'icons/mob/mouse.dmi', icon_state = "mouse_white"))
 	icons_available += list("Moonrat" = image(icon = 'yogstation/icons/mob/pets.dmi', icon_state = "moonrat"))
 	icons_available += list("Hologram" = image(icon = 'icons/mob/ai.dmi', icon_state = "default"))
 	icons_available += list("Spaceman" = image(icon = 'icons/mob/animal.dmi', icon_state = "old"))
@@ -58,7 +58,7 @@
 
 		switch(selection)
 			if("Mouse")
-				human_image = icon('icons/mob/animal.dmi', icon_state = "mouse_white")
+				human_image = icon('icons/mob/mouse.dmi', icon_state = "mouse_white")
 				color = "#1ABC9C"
 				Show()
 			if("Moonrat")

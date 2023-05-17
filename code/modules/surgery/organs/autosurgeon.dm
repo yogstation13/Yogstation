@@ -31,14 +31,14 @@
 		return
 	if(istype(storedorgan, /obj/item/organ/cyberimp/arm)) //these cunts have two limbs to select from, we'll want to check both because players are too lazy to do that themselves
 		var/obj/item/organ/cyberimp/arm/bastard = storedorgan
-		if(user.getorganslot(bastard.slot)) //FUCK IT WE BALL
+		if(user.get_organ_slot(bastard.slot)) //FUCK IT WE BALL
 			var/original_zone = storedorgan.zone
 			if(bastard.zone == BODY_ZONE_R_ARM) // i do not like them sam i am  i do not like if else and ham
 				bastard.zone = BODY_ZONE_L_ARM
 			else
 				bastard.zone = BODY_ZONE_R_ARM
 			bastard.SetSlotFromZone()
-			if(user.getorganslot(bastard.slot)) //NEVERMIND WE ARE NOT BALLING
+			if(user.get_organ_slot(bastard.slot)) //NEVERMIND WE ARE NOT BALLING
 				bastard.zone = original_zone //MISSION ABORT
 				bastard.SetSlotFromZone()
 			bastard.update_icon()
@@ -308,14 +308,14 @@
 	for(var/obj/item/organ/toimplant in storedorgan)
 		if(istype(toimplant, /obj/item/organ/cyberimp/arm)) //these cunts have two limbs to select from, we'll want to check both because players are too lazy to do that themselves
 			var/obj/item/organ/cyberimp/arm/bastard = toimplant
-			if(user.getorganslot(bastard.slot)) //FUCK IT WE BALL
+			if(user.get_organ_slot(bastard.slot)) //FUCK IT WE BALL
 				var/original_zone = toimplant.zone
 				if(bastard.zone == BODY_ZONE_R_ARM) // i do not like them sam i am  i do not like if else and ham
 					bastard.zone = BODY_ZONE_L_ARM
 				else
 					bastard.zone = BODY_ZONE_R_ARM
 				bastard.SetSlotFromZone()
-				if(user.getorganslot(bastard.slot)) //NEVERMIND WE ARE NOT BALLING
+				if(user.get_organ_slot(bastard.slot)) //NEVERMIND WE ARE NOT BALLING
 					bastard.zone = original_zone //MISSION ABORT
 					bastard.SetSlotFromZone()
 				bastard.update_icon()

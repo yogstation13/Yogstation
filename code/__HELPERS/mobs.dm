@@ -118,7 +118,8 @@
 		"pod_hair" = pick(GLOB.pod_hair_list),
 		"ipc_screen" = pick(GLOB.ipc_screens_list),
 		"ipc_antenna" = pick(GLOB.ipc_antennas_list),
-		"ipc_chassis" = pick(GLOB.ipc_chassis_list)
+		"ipc_chassis" = pick(GLOB.ipc_chassis_list),
+		"tail_monkey" = "None"
 	))
 
 /proc/random_hair_style(gender)
@@ -278,9 +279,9 @@ GLOBAL_LIST_EMPTY(species_list)
 		return 0
 	var/user_loc = user.loc
 
-	var/drifting = 0
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = 1
+	var/drifting = FALSE
+	if(SSmove_manager.processing_on(user, SSspacedrift))
+		drifting = TRUE
 
 	var/target_loc = target.loc
 
@@ -292,23 +293,23 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/endtime = world.time+time
 	var/starttime = world.time
-	. = 1
+	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
 		if (progress)
 			progbar.update(world.time - starttime)
 		if(QDELETED(user) || QDELETED(target))
-			. = 0
+			. = FALSE
 			break
 		if(uninterruptible)
 			continue
 
-		if(drifting && !user.inertia_dir)
-			drifting = 0
+		if(drifting && !SSmove_manager.processing_on(user, SSspacedrift))
+			drifting = FALSE
 			user_loc = user.loc
 
 		if((!drifting && user.loc != user_loc) || target.loc != target_loc || user.get_active_held_item() != holding || user.incapacitated() || (extra_checks && !extra_checks.Invoke()))
-			. = 0
+			. = FALSE
 			break
 	if (progress)
 		qdel(progbar)
@@ -342,7 +343,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	var/atom/user_loc = user.loc
 
 	var/drifting = FALSE
-	if(!user.Process_Spacemove() && user.inertia_dir)
+	if(SSmove_manager.processing_on(user, SSspacedrift))
 		drifting = TRUE
 
 	var/holding = user.get_active_held_item()
@@ -365,7 +366,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		if (progress)
 			progbar.update(world.time - starttime)
 
-		if(drifting && !user.inertia_dir)
+		if(drifting && !SSmove_manager.processing_on(user, SSspacedrift))
 			drifting = FALSE
 			user_loc = user.loc
 
@@ -416,9 +417,9 @@ GLOBAL_LIST_EMPTY(species_list)
 		targets = list(targets)
 	var/user_loc = user.loc
 
-	var/drifting = 0
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = 1
+	var/drifting = FALSE
+	if(SSmove_manager.processing_on(user, SSspacedrift))
+		drifting = TRUE
 
 	var/list/originalloc = list()
 	for(var/atom/target in targets)
@@ -447,7 +448,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			if(uninterruptible)
 				continue
 
-			if(drifting && !user.inertia_dir)
+			if(drifting && !SSmove_manager.processing_on(user, SSspacedrift))
 				drifting = 0
 				user_loc = user.loc
 

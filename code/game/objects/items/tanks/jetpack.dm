@@ -14,13 +14,23 @@
 	var/stabilizers = FALSE
 	var/full_speed = TRUE // If the jetpack will have a speedboost in space/nograv or not
 	var/classic = TRUE // If the jetpack uses the classic two-tank sprite. False if it has its own special sprite (syndicate jetpack, or void jetpack)
-	var/datum/effect_system/trail_follow/ion/ion_trail
 	var/jetspeed = -0.3 // Negative increases speed
+	var/datum/callback/get_mover
+	var/datum/callback/check_on_move
 
 /obj/item/tank/jetpack/Initialize()
 	. = ..()
-	ion_trail = new
-	ion_trail.set_up(src)
+	get_mover = CALLBACK(src, PROC_REF(get_user))
+	check_on_move = CALLBACK(src, PROC_REF(allow_thrust), 0.01)
+	refresh_jetpack()
+
+/obj/item/tank/jetpack/Destroy()
+	get_mover = null
+	check_on_move = null
+	return ..()
+
+/obj/item/tank/jetpack/proc/refresh_jetpack()
+	AddComponent(/datum/component/jetpack, stabilizers, COMSIG_JETPACK_ACTIVATED, COMSIG_JETPACK_DEACTIVATED, JETPACK_ACTIVATION_FAILED, get_mover, check_on_move, /datum/effect_system/trail_follow/ion)
 
 /obj/item/tank/jetpack/populate_gas()
 	if(gas_type)
@@ -31,11 +41,10 @@
 		cycle(user)
 	else if(istype(action, /datum/action/item_action/jetpack_stabilization))
 		if(on)
-			stabilizers = !stabilizers
+			set_stabilizers(!stabilizers)
 			to_chat(user, span_notice("You turn the jetpack stabilization [stabilizers ? "on" : "off"]."))
 	else
 		toggle_internals(user)
-
 
 /obj/item/tank/jetpack/proc/cycle(mob/user)
 	if(user.incapacitated())
@@ -51,14 +60,20 @@
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
 
+/obj/item/tank/jetpack/proc/set_stabilizers(new_stabilizers)
+	if(new_stabilizers == stabilizers)
+		return
+	stabilizers = new_stabilizers
+	refresh_jetpack()
 
 /obj/item/tank/jetpack/proc/turn_on(mob/user)
+	if(SEND_SIGNAL(src, COMSIG_JETPACK_ACTIVATED) & JETPACK_ACTIVATION_FAILED)
+		return FALSE
 	on = TRUE
 	update_icon()
-	ion_trail.start()
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/move_react)
 	if(full_speed)
 		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=jetspeed, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
+	return TRUE
 
 /obj/item/tank/jetpack/update_icon()
 	icon_state = initial(icon_state)
@@ -70,41 +85,43 @@
 			add_overlay("on_overlay")
 
 /obj/item/tank/jetpack/proc/turn_off(mob/user)
+	SEND_SIGNAL(src, COMSIG_JETPACK_DEACTIVATED)
 	on = FALSE
-	stabilizers = FALSE
+	set_stabilizers(FALSE)
 	update_icon()
-	ion_trail.stop()
-	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-	user.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)
+	user?.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)
 
-/obj/item/tank/jetpack/proc/move_react(mob/user)
-	allow_thrust(0.01, user)
-
-/obj/item/tank/jetpack/proc/allow_thrust(num, mob/living/user)
-	if(!on)
-		return
+/obj/item/tank/jetpack/proc/allow_thrust(num, use_fuel = TRUE)
 	if((num < 0.005 || air_contents.total_moles() < num))
-		turn_off(user)
-		return
+		turn_off(get_user())
+		return FALSE
 
-	var/datum/gas_mixture/removed = air_contents.remove(num)
+	// We've got the gas, it's chill
+	if(!use_fuel)
+		return TRUE
+
+	var/datum/gas_mixture/removed = remove_air(num)
 	if(removed.total_moles() < 0.005)
-		turn_off(user)
-		return
+		turn_off(get_user())
+		return FALSE
 
-	var/turf/T = get_turf(user)
+	var/turf/T = get_turf(src)
 	T.assume_air(removed)
-
 	return TRUE
 
+// Gives the jetpack component the user it expects
+/obj/item/tank/jetpack/proc/get_user()
+	if(!ismob(loc))
+		return null
+	return loc
+
 /obj/item/tank/jetpack/suicide_act(mob/user)
-	if (istype(user, /mob/living/carbon/human/))
-		var/mob/living/carbon/human/H = user
-		H.forcesay("WHAT THE FUCK IS CARBON DIOXIDE?")
-		H.visible_message(span_suicide("[user] is suffocating [user.p_them()]self with [src]! It looks like [user.p_they()] didn't read what that jetpack says!"))
-		return (OXYLOSS)
-	else
-		..()
+	if (!istype(user, /mob/living/carbon/human))
+		return ..()
+	var/mob/living/carbon/human/suffocater = user
+	suffocater.say("WHAT THE FUCK IS CARBON DIOXIDE?")
+	suffocater.visible_message(span_suicide("[user] is suffocating [user.p_them()]self with [src]! It looks like [user.p_they()] didn't read what that jetpack says!"))
+	return (OXYLOSS)
 
 /obj/item/tank/jetpack/improvised
 	name = "improvised jetpack"
@@ -115,26 +132,15 @@
 	gas_type = null //it starts empty
 	full_speed = FALSE //moves at hardsuit jetpack speeds
 
-/obj/item/tank/jetpack/improvised/allow_thrust(num, mob/living/user)
-	if(!on)
-		return
-	if((num < 0.005 || air_contents.total_moles() < num))
-		turn_off(user)
-		return
+/obj/item/tank/jetpack/improvised/allow_thrust(num)
+	var/mob/user = get_user()
+	if(!user)
+		return FALSE
 	if(rand(0,250) == 0)
 		to_chat(user, span_notice("You feel your jetpack's engines cut out."))
 		turn_off(user)
 		return
-
-	var/datum/gas_mixture/removed = air_contents.remove(num)
-	if(removed.total_moles() < 0.005)
-		turn_off(user)
-		return
-
-	var/turf/T = get_turf(user)
-	T.assume_air(removed)
-
-	return TRUE
+	return ..()
 
 /obj/item/tank/jetpack/void
 	name = "void jetpack (oxygen)"

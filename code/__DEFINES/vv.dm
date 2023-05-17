@@ -75,6 +75,7 @@
 #define VV_HK_AUTO_RENAME "auto_rename"
 #define VV_HK_RADIATE "radiate"
 #define VV_HK_SHOW_HIDDENPRINTS "show_hiddenprints"
+#define VV_HK_ADD_AI "add_ai"
 
 // /obj
 #define VV_HK_OSAY "osay"
@@ -116,3 +117,5 @@
 #define VV_HK_MARTIAL_ART "give_martial_art"
 #define VV_HK_GIVE_TRAUMA "give_trauma"
 #define VV_HK_CURE_TRAUMA "cure_trauma"
+
+#define VV_HK_WEAKREF_RESOLVE "weakref_resolve"

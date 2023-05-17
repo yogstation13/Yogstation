@@ -90,6 +90,7 @@ Class Procs:
 	verb_say = "beeps"
 	verb_yell = "blares"
 	pressure_resistance = 15
+	pass_flags_self = PASSMACHINE
 	max_integrity = 200
 	layer = BELOW_OBJ_LAYER //keeps shit coming out of the machine from ending up underneath it.
 
@@ -608,7 +609,7 @@ Class Procs:
 
 /obj/machinery/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover) && (mover.pass_flags & PASSMACHINES))
+	if(istype(mover) && (mover.pass_flags & PASSMACHINE))
 		return TRUE
 
 /obj/machinery/proc/end_processing()
@@ -677,7 +678,7 @@ Class Procs:
 				to_chat(user, "<span class='warning'>You fail to climb onto [src].</span>")
 	machineclimber = null
 
-/obj/machinery/CanAStarPass(ID, dir, caller)
+/obj/machinery/CanAStarPass(obj/item/card/id/ID, to_dir, atom/movable/caller, no_id = FALSE)
 	. = ..()
 	if(climbable)
 		return TRUE

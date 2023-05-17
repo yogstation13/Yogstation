@@ -857,12 +857,13 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/captured_amount = 0
 	var/area/centcom/holding/A = GLOB.areas_by_type[/area/centcom/holding]
 	for(var/mob/living/carbon/human/M in A)//Humans.
+		if(ismonkey(M))
+			captured_amount+=0.1
+			continue
 		if(!istype(src,/datum/objective/capture/living) && M.stat == DEAD)
 			captured_amount+= 0.5
 		else
 			captured_amount+= 1 //dont care if they are dead or alive in living capture because you shouldn't be able to capture them if they dead
-	for(var/mob/living/carbon/monkey/M in A)//Monkeys are almost worthless, you failure.
-		captured_amount+=0.1
 	for(var/mob/living/carbon/alien/larva/M in A)//Larva are important for research.
 		if(M.stat == DEAD)
 			captured_amount+=0.5
@@ -1298,7 +1299,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	var/list/pets = list(/mob/living/simple_animal/pet/dog/corgi/Ian,
 						 /mob/living/simple_animal/pet/cat/Runtime,
 						 /mob/living/simple_animal/pet/penguin/emperor/shamebrero,
-						 /mob/living/carbon/monkey/punpun,
+						 /mob/living/carbon/human/species/monkey/punpun,
 						 /mob/living/simple_animal/parrot/Poly,
 						 /mob/living/simple_animal/pet/fox/Renault,
 						 /mob/living/simple_animal/pet/fox/fennec/Autumn)

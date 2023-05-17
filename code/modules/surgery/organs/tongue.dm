@@ -131,7 +131,7 @@
 	if(!istype(H))
 		return
 
-	var/obj/item/organ/tongue/abductor/T = H.getorganslot(ORGAN_SLOT_TONGUE)
+	var/obj/item/organ/tongue/abductor/T = H.get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(!istype(T))
 		return
 
@@ -159,7 +159,7 @@
 	var/rendered = span_abductor("<b>[user.real_name]:</b> [message]")
 	user.log_talk(message, LOG_SAY, tag="abductor")
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-		var/obj/item/organ/tongue/abductor/T = H.getorganslot(ORGAN_SLOT_TONGUE)
+		var/obj/item/organ/tongue/abductor/T = H.get_organ_slot(ORGAN_SLOT_TONGUE)
 		if(!istype(T))
 			continue
 		if(mothership == T.mothership)
@@ -330,3 +330,8 @@
 /obj/item/organ/tongue/slime/Initialize(mapload)
 	. = ..()
 	languages_possible |= languages_possible_jelly
+
+/obj/item/organ/tongue/monkey
+	name = "primitive tongue"
+	desc = "For aggressively chimpering. And consuming bananas."
+	say_mod = "chimpers"

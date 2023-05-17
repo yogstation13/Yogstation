@@ -112,7 +112,7 @@
 	dir = 1;
 	icon_state = "tube"
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/carpet,
 /area/ruin/powered)
 "at" = (
@@ -167,7 +167,7 @@
 	dir = 1;
 	icon_state = "bulb"
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered)
 "az" = (
@@ -178,7 +178,7 @@
 /turf/open/floor/carpet,
 /area/ruin/powered)
 "aB" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/carpet,
 /area/ruin/powered)
 "aC" = (
@@ -201,7 +201,7 @@
 	dir = 1;
 	icon_state = "tile_corner"
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/plasteel,
 /area/ruin/powered)
 "aE" = (
