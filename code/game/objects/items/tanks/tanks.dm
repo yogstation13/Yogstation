@@ -259,9 +259,7 @@
 	var/pressure = air_contents.return_pressure()
 	var/temperature = air_contents.return_temperature()
 
-	if(pressure > TANK_FRAGMENT_PRESSURE)
-		if(!istype(src.loc, /obj/item/transfer_valve))
-			log_bomber(get_mob_by_key(fingerprintslast), "was last key to touch", src, "which ruptured explosively")
+	if(pressure > TANK_FRAGMENT_PRESSURE && istype(src.loc, /obj/item/transfer_valve))
 		//Give the gas a chance to build up more pressure through reacting
 		air_contents.react(src)
 		air_contents.react(src)
@@ -269,16 +267,12 @@
 		pressure = air_contents.return_pressure()
 		var/range = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE
 		var/turf/epicenter = get_turf(loc)
-
-
 		explosion(epicenter, round(range*0.25), round(range*0.5), round(range), round(range*1.5))
-		if(istype(src.loc, /obj/item/transfer_valve))
-			qdel(src.loc)
-		else
-			qdel(src)
+		qdel(src.loc)
 
 	else if(pressure > TANK_RUPTURE_PRESSURE || temperature > TANK_MELT_TEMPERATURE)
 		if(integrity <= 0)
+			log_bomber(get_mob_by_key(fingerprintslast), "was last key to touch", src, "which ruptured, spilling its contents")
 			var/turf/T = get_turf(src)
 			if(!T)
 				return
