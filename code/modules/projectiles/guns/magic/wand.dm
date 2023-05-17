@@ -91,7 +91,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/heal
 	fire_sound = 'sound/magic/staff_healing.ogg'
 	icon_state = "revivewand"
-	max_charges = 10 //10, 5, 5, 4
+	max_charges = 3 //3, 2, 2, 1
 
 /obj/item/gun/magic/wand/resurrection/zap_self(mob/living/user)
 	..()
@@ -123,7 +123,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/change
 	icon_state = "polywand"
 	fire_sound = 'sound/magic/staff_change.ogg'
-	max_charges = 10 //10, 5, 5, 4
+	max_charges = 5 //6, 3, 3, 2
 
 /obj/item/gun/magic/wand/polymorph/zap_self(mob/living/user)
 	..() //because the user mob ceases to exists by the time wabbajack fully resolves
@@ -207,7 +207,7 @@
 	fire_sound = 'sound/magic/fireball.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/fireball
 	icon_state = "firewand"
-	max_charges = 8 //8, 4, 4, 3
+	max_charges = 10 //10, 5, 5, 4
 
 /obj/item/gun/magic/wand/fireball/zap_self(mob/living/user)
 	..()
