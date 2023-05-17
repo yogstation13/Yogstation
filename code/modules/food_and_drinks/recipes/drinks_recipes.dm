@@ -908,7 +908,7 @@
 	required_reagents = list(/datum/reagent/consumable/ethanol/oublmoxa = 3, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/ethanol/creme_de_cacao = 1)
 
 /datum/chemical_reaction/drink/white_tiziran
-	name = "White Tiziran"
+	name = "Kriiya"
 	id = /datum/reagent/consumable/ethanol/white_tiziran
 	results = list(/datum/reagent/consumable/ethanol/white_tiziran = 8)
 	required_reagents = list(/datum/reagent/consumable/ethanol/black_russian = 5, /datum/reagent/consumable/ethanol/oublmoxa = 3)
