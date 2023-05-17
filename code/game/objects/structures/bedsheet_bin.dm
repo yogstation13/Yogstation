@@ -22,6 +22,7 @@ LINEN BINS
 	resistance_flags = FLAMMABLE
 	dying_key = DYE_REGISTRY_BEDSHEET
 	var/newbedpath = null
+	var/randomizable = TRUE //can appear via random bedsheets
 
 	dog_fashion = /datum/dog_fashion/head/ghost
 	var/list/dream_messages = list("white")
@@ -281,7 +282,11 @@ LINEN BINS
 /obj/item/bedsheet/random/Initialize()
 	..()
 	var/type = pick(typesof(/obj/item/bedsheet) - /obj/item/bedsheet/random)
-	new type(loc)
+	var/obj/item/bedsheet/sheet = new type(loc)
+	while(sheet && !sheet.randomizable)
+		qdel(sheet)
+		type = pick(typesof(/obj/item/bedsheet) - /obj/item/bedsheet/random)
+		sheet = new type(loc)
 	return INITIALIZE_HINT_QDEL
 
 /obj/item/bedsheet/dorms
