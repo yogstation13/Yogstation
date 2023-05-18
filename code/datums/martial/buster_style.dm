@@ -21,7 +21,7 @@
 
 /datum/martial_art/buster_style/proc/grab(mob/living/user, mob/living/target, damage)
 		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
+		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 15)
 		target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
 //animation procs

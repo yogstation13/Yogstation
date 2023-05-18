@@ -30,10 +30,12 @@
 /// Remove our actions, re-enable gloves
 /obj/item/bodypart/l_arm/robot/buster/drop_limb(special)
 	var/mob/living/carbon/N = owner
+	var/obj/item/bodypart/r_arm/robot/buster/R = N.get_bodypart(BODY_ZONE_R_ARM)
 	megabuster_action.Remove(N)
-	buster_style.remove(N)
 	N.click_intercept = null
-	to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
+	if(!R)
+		buster_style.remove(N)
+		to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
 	..()
 
 /// Attacking a human mob with the arm causes it to instantly replace their arm
@@ -80,10 +82,12 @@
 /// Remove our actions, re-enable gloves
 /obj/item/bodypart/r_arm/robot/buster/drop_limb(special)
 	var/mob/living/carbon/N = owner
+	var/obj/item/bodypart/l_arm/robot/buster/L = N.get_bodypart(BODY_ZONE_L_ARM)
 	megabuster_action.Remove(N)
-	buster_style.remove(N)
 	N.click_intercept = null
-	to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
+	if(!L)
+		buster_style.remove(N)
+		to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
 	..()
 
 /// Attacking a human mob with the arm causes it to instantly replace their arm
