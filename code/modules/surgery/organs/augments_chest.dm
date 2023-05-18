@@ -23,7 +23,7 @@
 		synthesizing = TRUE
 		to_chat(owner, span_notice("You feel less hungry..."))
 		owner.adjust_nutrition(50)
-		addtimer(CALLBACK(src, .proc/synth_cool), 50)
+		addtimer(CALLBACK(src, PROC_REF(synth_cool)), 50)
 
 /obj/item/organ/cyberimp/chest/nutriment/proc/synth_cool()
 	synthesizing = FALSE
@@ -57,7 +57,7 @@
 /obj/item/organ/cyberimp/chest/reviver/on_life()
 	if(reviving)
 		if(owner.stat == UNCONSCIOUS || owner.stat == SOFT_CRIT)
-			addtimer(CALLBACK(src, .proc/heal), 2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(heal)), 2 SECONDS)
 		else
 			cooldown = revive_cost + world.time
 			reviving = FALSE
@@ -104,7 +104,7 @@
 		if(H.stat != DEAD && prob(50 / severity) && H.can_heartattack())
 			H.set_heartattack(TRUE)
 			to_chat(H, span_userdanger("You feel a horrible agony in your chest!"))
-			addtimer(CALLBACK(src, .proc/undo_heart_attack), 10 SECONDS / severity)
+			addtimer(CALLBACK(src, PROC_REF(undo_heart_attack)), 10 SECONDS / severity)
 
 /obj/item/organ/cyberimp/chest/reviver/proc/undo_heart_attack()
 	var/mob/living/carbon/human/H = owner
@@ -276,7 +276,7 @@
 		owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
 		owner.next_move_modifier *= 0.7
 		owner?.dna?.species?.action_speed_coefficient *= 0.7
-		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/move_react)
+		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
 	else
 		if(COOLDOWN_FINISHED(src, endsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
