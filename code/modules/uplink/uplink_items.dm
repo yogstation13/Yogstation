@@ -2101,6 +2101,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/implants/stechkin_implant
+	name = "Stechkin arm implant"
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
+	item = /obj/item/autosurgeon/arm/syndicate/stechkin_implant
+	cost = 9
+
 /datum/uplink_item/implants/noslipall
 	name = "Slip Prevention Implant"
 	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."

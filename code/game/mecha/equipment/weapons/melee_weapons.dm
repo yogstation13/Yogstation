@@ -59,7 +59,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	addtimer(CALLBACK(src, .proc/set_ready_state, 1), chassis.melee_cooldown * attack_speed_modifier * check_eva())	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
+	addtimer(CALLBACK(src, PROC_REF(set_ready_state), 1), chassis.melee_cooldown * attack_speed_modifier * check_eva())	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
 
 //Melee weapon attacks are a little different in that they'll override the standard melee attack
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/action(atom/target, params)
@@ -407,7 +407,7 @@
 	if(get_dist(chassis, target) > 1)	//First we hop forward
 		do_lunge_at(target)
 	if(get_dist(get_turf(src.chassis), get_turf(target)) > 1)	//If we weren't able to get within range we don't attack
-		addtimer(CALLBACK(src, .proc/set_ready_state, 1, chassis.melee_cooldown * check_eva() * 0.5) )	//half cooldown on a failed lunge attack
+		addtimer(CALLBACK(src, PROC_REF(set_ready_state), 1, chassis.melee_cooldown * check_eva() * 0.5) )	//half cooldown on a failed lunge attack
 		return
 	for(var/i in 1 to stab_number)
 		special_hit(target)

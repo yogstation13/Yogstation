@@ -61,4 +61,4 @@ obj/effect/particle_effect/expl_particles/Initialize(mapload)
 
 /datum/effect_system/explosion/smoke/start()
 	..()
-	addtimer(CALLBACK(src, .proc/create_smoke), 5)
+	addtimer(CALLBACK(src, PROC_REF(create_smoke)), 5)

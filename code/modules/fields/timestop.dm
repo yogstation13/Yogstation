@@ -50,7 +50,7 @@
 	playsound(src, start_sound, 75, 1, -1)
 	chronofield = make_field(/datum/proximity_monitor/advanced/timestop, list("current_range" = freezerange, "host" = src, "immune" = immune, "check_anti_magic" = check_anti_magic, "check_holy" = check_holy))
 	if(duration - start_sound_len * 2 > 0) // Needs to have enough time for both sounds to play in full
-		addtimer(CALLBACK(src, .proc/time_resumes), duration - start_sound_len)
+		addtimer(CALLBACK(src, PROC_REF(time_resumes)), duration - start_sound_len)
 	QDEL_IN(src, duration)
 
 /obj/effect/timestop/proc/time_resumes() // toki wa ugoki dasu
@@ -107,8 +107,8 @@
 	A.move_resist = INFINITY
 	global_frozen_atoms[A] = src
 	into_the_negative_zone(A)
-	RegisterSignal(A, COMSIG_MOVABLE_PRE_MOVE, .proc/unfreeze_atom)
-	RegisterSignal(A, COMSIG_ITEM_PICKUP, .proc/unfreeze_atom)
+	RegisterSignal(A, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(unfreeze_atom))
+	RegisterSignal(A, COMSIG_ITEM_PICKUP, PROC_REF(unfreeze_atom))
 
 	return TRUE
 

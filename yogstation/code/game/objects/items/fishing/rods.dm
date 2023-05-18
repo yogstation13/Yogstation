@@ -68,9 +68,9 @@
 	var/turf/fishing_turf = fishing_component.parent
 	fishing_turf.add_overlay(bobber)
 	fisher = user
-	RegisterSignal(user,COMSIG_MOVABLE_MOVED, .proc/reel_in_forced,TRUE)
-	RegisterSignal(src,COMSIG_MOVABLE_MOVED, .proc/reel_in_forced,TRUE)
-	RegisterSignal(src,COMSIG_ITEM_DROPPED, .proc/reel_in_forced,TRUE)
+	RegisterSignal(user,COMSIG_MOVABLE_MOVED, PROC_REF(reel_in_forced),TRUE)
+	RegisterSignal(src,COMSIG_MOVABLE_MOVED, PROC_REF(reel_in_forced),TRUE)
+	RegisterSignal(src,COMSIG_ITEM_DROPPED, PROC_REF(reel_in_forced),TRUE)
 	START_PROCESSING(SSobj,src)
 	playsound(fishing_component, 'sound/effects/splash.ogg', 50, FALSE, -5)
 	to_chat(fisher, span_italics("You cast out your fishing rod..."))

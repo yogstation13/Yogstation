@@ -49,8 +49,8 @@
 
 /datum/antagonist/vampire/get_admin_commands()
 	. = ..()
-	.["Full Power"] = CALLBACK(src,.proc/admin_set_full_power)
-	.["Set Blood Amount"] = CALLBACK(src,.proc/admin_set_blood)
+	.["Full Power"] = CALLBACK(src, PROC_REF(admin_set_full_power))
+	.["Set Blood Amount"] = CALLBACK(src, PROC_REF(admin_set_blood))
 
 /datum/antagonist/vampire/proc/admin_set_full_power(mob/admin)
 	usable_blood = ALL_POWERS_UNLOCKED

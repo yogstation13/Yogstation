@@ -113,12 +113,12 @@
 
 
 /datum/antagonist/zombie/proc/start_timer()
-	addtimer(CALLBACK(src, .proc/add_button_timed), 15 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(add_button_timed)), 15 MINUTES)
 
 /datum/antagonist/zombie/proc/add_button_timed()
 	zombify.Grant(owner.current)
 	to_chat(owner.current, span_userdanger("<b>You can now turn into a zombie! The ability INSTANTLY kills you, and starts the process of turning into a zombie. IN 5 MINUTES YOU WILL FORCIBLY BE ZOMBIFIED IF YOU HAVEN'T.<b>"))
-	addtimer(CALLBACK(src, .proc/force_zombify), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(force_zombify)), 5 MINUTES)
 
 /datum/antagonist/zombie/proc/force_zombify()
 	if(!zombified)
@@ -133,8 +133,8 @@
 
 /datum/antagonist/zombie/get_admin_commands()
 	. = ..()
-	.["Give Button"] = CALLBACK(src,.proc/admin_give_button)
-	.["Remove Button"] = CALLBACK(src,.proc/remove_button)
+	.["Give Button"] = CALLBACK(src, PROC_REF(admin_give_button))
+	.["Remove Button"] = CALLBACK(src, PROC_REF(remove_button))
 
 /datum/antagonist/zombie/proc/admin_give_button(mob/admin)
 	zombify.Grant(owner.current)
@@ -143,7 +143,7 @@
 	zombify.Remove(owner.current)
 
 /datum/antagonist/zombie/proc/start_evolution_2()
-	addtimer(CALLBACK(src, .proc/finish_evolution_2), TIER_2_TIME)
+	addtimer(CALLBACK(src, PROC_REF(finish_evolution_2)), TIER_2_TIME)
 
 /datum/antagonist/zombie/proc/finish_evolution_2()
 	evolution_ready = TRUE
@@ -425,7 +425,7 @@
 	ready = TRUE
 
 /obj/effect/proc_holder/zombie/proc/start_cooldown()
-	addtimer(CALLBACK(src, .proc/reset_cooldown), cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown_time)
 	cooldown_ends = world.time + cooldown_time
 	ready = FALSE
 

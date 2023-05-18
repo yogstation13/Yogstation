@@ -457,7 +457,7 @@
     begin_month = NOVEMBER
 
 /datum/holiday/remembrance/celebrate()
-    SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
+    SSticker.OnRoundstart(CALLBACK(src, PROC_REF(roundstart_celebrate)))
 
 /datum/holiday/remembrance/proc/roundstart_celebrate()
     for(var/mob/living/carbon/human/H in GLOB.player_list)
@@ -611,7 +611,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	return "Have a merry Christmas!"
 
 /datum/holiday/xmas/celebrate()
-	SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
+	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(roundstart_celebrate)))
 	//Start of yogstation loot changes.
 	GLOB.maintenance_loot_traditional += list(
 		/obj/item/toy/xmas_cracker = 300,

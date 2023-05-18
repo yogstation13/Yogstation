@@ -46,7 +46,7 @@
 	D.visible_message(span_danger("[A] slams into [D], knocking them off balance!"), \
 					  span_userdanger("[A] slams into you, knocking you off  balance!"))
 	D.add_movespeed_modifier("tail slap", update=TRUE, priority=101, multiplicative_slowdown=0.9)
-	addtimer(CALLBACK(D, /mob.proc/remove_movespeed_modifier, "tail slap"), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/mob, remove_movespeed_modifier), "tail slap"), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	log_combat(A, D, "slammed (Flying Fang)")
 
 ///last hit of the tail slap combo, causes a short stun or throws whatever blocks the attack
@@ -125,7 +125,7 @@
 	D.blur_eyes(4)
 	if(!istype(D.head, /obj/item/clothing/head/helmet))
 		D.dna.species.aiminginaccuracy += 25
-		addtimer(CALLBACK(src, .proc/remove_bonk, D), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(remove_bonk), D), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	D.visible_message(span_danger("[A] headbutts [D]!"), \
 					  span_userdanger("[A] headbutts you!"))
 	log_combat(A, D, "headbutted (Flying Fang)")
@@ -198,7 +198,7 @@
 	linked_martial.leaping = TRUE
 	A.Knockdown(5 SECONDS)
 	A.Immobilize(30 SECONDS) //prevents you from breaking out of your pounce
-	A.throw_at(target, get_dist(A,target)+1, 1, A, FALSE, TRUE, callback = CALLBACK(src, .proc/leap_end, A))
+	A.throw_at(target, get_dist(A,target)+1, 1, A, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), A))
 	Deactivate()
 	UpdateButtonIcon()
 

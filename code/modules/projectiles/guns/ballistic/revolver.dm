@@ -150,6 +150,7 @@
 	desc = "An old model of revolver that originated in Russia. Able to be suppressed. Uses 7.62x38mmR ammo."
 	icon_state = "nagant"
 	fire_delay = 5 //Mild trigger pull, the gun was known for it
+	fire_sound = 'sound/weapons/revolver38shot.ogg' //Lower caliber = lesser smack
 	can_suppress = TRUE
 
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762

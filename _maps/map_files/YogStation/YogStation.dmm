@@ -20406,6 +20406,19 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"dXN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "dYm" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/effect/turf_decal/stripes/corner,
@@ -95399,8 +95412,8 @@ vJk
 vJk
 vJk
 vJk
-ojr
 vJk
+dXN
 vJk
 vJk
 djp

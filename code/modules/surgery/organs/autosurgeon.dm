@@ -161,6 +161,10 @@
 		return
 	..()
 
+/obj/item/autosurgeon/arm/syndicate/stechkin_implant
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/stechkin_implant
+
 /obj/item/autosurgeon/nt_mantis
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/nt_mantis
@@ -338,3 +342,4 @@
 /obj/item/multisurgeon/magboots //for ce
 	desc = "A single-use multisurgeon that contains magboot implants for each leg."
 	starting_organ = list(/obj/item/organ/cyberimp/leg/magboot, /obj/item/organ/cyberimp/leg/magboot/l)
+

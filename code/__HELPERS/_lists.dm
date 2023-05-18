@@ -342,13 +342,15 @@
 	var/total = 0
 	var/item
 	for (item in L)
-		if (!L[item])
-			L[item] = 0
+		if (L[item] <= 0)//edited to also allow negatives
+			continue //edited to not modify the input list
 		total += L[item]
 
 	total = rand(0, total)
 	for (item in L)
-		total -=L [item]
+		if (L[item] <= 0) //edited to skip all numbers not actually added to the total
+			continue
+		total -= L[item]
 		if (total <= 0 && L[item])
 			return item
 

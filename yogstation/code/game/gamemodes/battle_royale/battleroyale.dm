@@ -16,9 +16,11 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
-	var/list/randomweathers = list("royale north", "royale south", "royale east")
-	var/stage_interval = 1200 //Copied from Nich's homework. Storm shrinks every 2 minutes
+	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering")
+	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes (changed for testing, don't forget to change back)
+	var/loot_interval = 1 MINUTES
 	var/borderstage = 0
+	var/weightcull = 5 //anything above this gets culled
 	var/finished = FALSE
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
 	title_icon = "ss13"
@@ -43,6 +45,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	message_admins("Battle Royale Mode has disabled late-joining. If you re-enable it you will break everything.")
 	for(var/datum/mind/virgin in queued)
 		SEND_SOUND(virgin.current, 'yogstation/sound/effects/battleroyale/battlebus.ogg')
+		virgin.current.set_species(/datum/species/human) //Fuck plasmamen -- before giving datum so species without shoes still get them
 		virgin.add_antag_datum(antag_datum_type)
 		if(!GLOB.thebattlebus) //Ruhoh.
 			virgin.current.forceMove(pick(GLOB.start_landmarks_list))
@@ -50,16 +53,21 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
+		virgin.current.status_flags |= GODMODE //to prevent space from hurting
+		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
-		virgin.current.set_species(/datum/species/human) //Fuck plasmamen
-
+		
 	if(!GLOB.battleroyale_players.len)
 		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
 
-	addtimer(CALLBACK(src, .proc/check_win), 300)
-	addtimer(CALLBACK(src, .proc/shrinkborders), 10)
+	for(var/obj/machinery/door/airlock/W in GLOB.machines)//set all doors to all access
+		W.req_access = list()
+	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
+	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_LOOP)//literally just keep calling it
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
@@ -110,7 +118,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
 		finished = TRUE
 		return
-	addtimer(CALLBACK(src, .proc/check_win), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
+	addtimer(CALLBACK(src, PROC_REF(check_win)), 300) //Check win every 30 seconds. This is so it doesn't fuck the processing time up
 
 /datum/game_mode/fortnite/set_round_result()
 	..()
@@ -120,39 +128,64 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		SSticker.mode_result = "loss - nobody won the battle royale!"
 
 /datum/game_mode/fortnite/proc/shrinkborders()
-	loot_spawn()
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
-		if(1)
+		if(1)//get them out of maints
 			SSweather.run_weather("royale maint", 2)
-		if(2 to 4)
+		if(2 to 7)//close off the map
 			var/weather = pick(randomweathers)
 			SSweather.run_weather(weather, 2)
 			randomweathers -= weather
-
-		if(5)
-			SSweather.run_weather("royale west", 2)
-		if(6)
+		if(8)
+			SSweather.run_weather("royale hallway", 2)//force them to bridge
+		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
+
+	if(borderstage)//doesn't cull during round start
+		ItemCull()
 
 	borderstage++
 
-	if(borderstage <= 6)
-		addtimer(CALLBACK(src, .proc/shrinkborders), stage_interval)
+	if(borderstage <= 9)
+		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
-/datum/game_mode/fortnite/proc/loot_spawn()
-	var/num = rand(1,3)
+/datum/game_mode/fortnite/proc/ItemCull()//removes items that are too weak, adds stronger items into the loot pool
+	for(var/item in GLOB.battleroyale_armour)
+		GLOB.battleroyale_armour[item] ++
+		if(GLOB.battleroyale_armour[item] > weightcull)
+			GLOB.battleroyale_armour -= item
+
+	for(var/item in GLOB.battleroyale_weapon)
+		GLOB.battleroyale_weapon[item] ++
+		if(GLOB.battleroyale_weapon[item] > weightcull)
+			GLOB.battleroyale_weapon -= item
+
+	//healing doesn't scale because max health doesn't scale
+
+	for(var/item in GLOB.battleroyale_utility)
+		GLOB.battleroyale_utility[item] ++
+		if(GLOB.battleroyale_utility[item] > weightcull)
+			GLOB.battleroyale_utility -= item
+
+	if(!GLOB.battleroyale_armour.len || !GLOB.battleroyale_weapon.len || !GLOB.battleroyale_healing.len || !GLOB.battleroyale_utility.len)
+		message_admins("battle royale loot drop lists have been depleted somehow, PANIC")
+
+/datum/game_mode/fortnite/proc/loot_drop()
+	loot_spawn(rand(1, 2))
+
+/datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
 	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
 		var/area/AR = get_area(es)
-		for(var/I = 0, I < num, I++)
+		for(var/I = 0, I < amount, I++)
 			var/turf/turfy = pick(get_area_turfs(AR))
+			while(turfy.density)//so it doesn't spawn inside walls
+				turfy = pick(get_area_turfs(AR))
 			var/obj/structure/closet/supplypod/centcompod/pod = new()
 			new /obj/structure/closet/crate/battleroyale(pod)
 			new /obj/effect/DPtarget(turfy, pod)
 
 //Antag and items
-
 /datum/antagonist/battleroyale
 	name = "Battle Royale Contestant"
 	antagpanel_category = "Default Skin"
@@ -167,6 +200,17 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	objectives += O
 	var/mob/living/carbon/human/tfue = owner.current
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
+	START_PROCESSING(SSprocessing, src)
+
+/datum/antagonist/battleroyale/on_removal()
+	. = ..()
+	STOP_PROCESSING(SSprocessing, src)
+
+/datum/antagonist/battleroyale/process(delta_time)
+	. = ..()
+	var/mob/living/carbon/human/tfue = owner.current
+	if(tfue && isspaceturf(get_turf(tfue)))//to account for not being able to put the storm on space turf tiles (if someone reviewing this knows how, please tell me)
+		tfue.adjustFireLoss(4) //no hiding in space
 
 /datum/antagonist/battleroyale/greet()
 	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
@@ -221,6 +265,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 /obj/structure/battle_bus/proc/exit(var/mob/living/carbon/human/Ltaker)
 	Ltaker.forceMove(get_turf(src))
 	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "virginity")
+	Ltaker.status_flags &= ~GODMODE //to make shit hurt again
 	Ltaker.update_sight()
 	SEND_SOUND(Ltaker, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
 
@@ -232,6 +277,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			var/obj/effect/landmark/observer_start/L = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
 			M.forceMove(get_turf(L))
 		qdel(src) // Thank you for your service
+	if(!contents)//in case Z-level loops
+		QDEL_IN(src, 10 SECONDS)
 
 /obj/structure/battle_bus/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(FALSE)

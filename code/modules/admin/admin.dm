@@ -62,8 +62,6 @@
 		body += "<br><br><b>Show related accounts by:</b> "
 		body += "\[ <a href='?_src_=holder;[HrefToken()];showrelatedacc=cid;client=[REF(M.client)]'>CID</a> | "
 		body += "<a href='?_src_=holder;[HrefToken()];showrelatedacc=ip;client=[REF(M.client)]'>IP</a> \]"
-		if(CONFIG_GET(string/vpn_lookup_api) && CONFIG_GET(string/vpn_lookup_key) && M.lastKnownIP)
-			body += " \[<a href='?_src_=holder;[HrefToken()];vpnlookup=[M.lastKnownIP]'>Check for VPN</a>\]"
 		var/rep = 0
 		rep += SSpersistence.antag_rep[M.ckey]
 		body += "<br><br>Antagonist reputation: [rep]"

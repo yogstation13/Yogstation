@@ -144,7 +144,7 @@
 			G.glowth.set_light(0, 0) // Set glowy to no light
 			if(G.current_nullify_timer)
 				deltimer(G.current_nullify_timer) // Stacks
-			G.current_nullify_timer = addtimer(CALLBACK(src, .proc/giveGlowyBack, M), 40 SECONDS, TIMER_STOPPABLE)
+			G.current_nullify_timer = addtimer(CALLBACK(src, PROC_REF(giveGlowyBack), M), 40 SECONDS, TIMER_STOPPABLE)
 
 /obj/effect/proc_holder/spell/aoe_turf/proc/giveGlowyBack(mob/living/carbon/M)
 	if(!M)
@@ -959,7 +959,7 @@
 /obj/effect/proc_holder/spell/self/lesser_shadow_walk/cast(mob/living/carbon/human/user)
 	user.visible_message(span_warning("[user] suddenly fades away!"), span_shadowling("You veil yourself in darkness, making you harder to see."))
 	user.alpha = 10
-	addtimer(CALLBACK(src, .proc/reappear, user), 40)
+	addtimer(CALLBACK(src, PROC_REF(reappear), user), 40)
 
 /obj/effect/proc_holder/spell/self/thrall_night_vision //Toggleable night vision for thralls
 	name = "Thrall Darksight"

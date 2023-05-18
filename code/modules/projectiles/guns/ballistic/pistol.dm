@@ -37,6 +37,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/m45
 	can_suppress = FALSE
+	fire_sound = "sound/weapons/pistolshotsmall.ogg"
 	feedback_types = list(
 		"fire" = 3
 	)
@@ -53,6 +54,7 @@
 	mag_type = /obj/item/ammo_box/magazine/m50
 	can_suppress = FALSE
 	mag_display = TRUE
+	fire_sound = "sound/weapons/deaglefire.ogg"
 	feedback_types = list(
 		"fire" = 3
 	)
@@ -108,6 +110,10 @@
 	spawnwithmagazine = FALSE
 	fire_delay = 6
 
+/obj/item/gun/ballistic/automatic/pistol/implant
+	name = "Stechkin implant"
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows for easy concealment."
+
 /obj/item/gun/ballistic/automatic/pistol/v38
 	name = "\improper Vatra M38 Pistol"
 	desc = "A moderately-sized handgun that loads irregular .38 special magazines. Commonly found among Serbian police forces. 'Vatra Arms - 2506' is etched into the slide."
@@ -115,6 +121,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/v38
 	can_suppress = FALSE
+	fire_sound = "sound/weapons/pistolshotmedium.ogg"
 	feedback_types = list(
 		"fire" = 3
 	)
