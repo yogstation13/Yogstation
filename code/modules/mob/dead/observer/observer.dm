@@ -905,7 +905,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			sight = null //we dont want ghosts to see through walls in secret areas
 		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_observing_z_changed), TRUE)
 		if(!UO)
-			UO = new // Convinent way to unobserve
+			UO = new(src) // Convinent way to unobserve
 		UO.Grant(src)
 		if(mob_eye.hud_used)
 			client.screen = list()
@@ -918,6 +918,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	desc = "Stops observing the person."
 	button_icon = 'icons/mob/mob.dmi'
 	button_icon_state = "ghost_nodir"
+	show_to_observers = FALSE
 
 /datum/action/unobserve/Trigger()
 	owner.reset_perspective(null)
