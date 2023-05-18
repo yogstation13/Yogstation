@@ -188,7 +188,7 @@
 		return
 
 	var/access_card = new /obj/item/card/id/captains_spare()
-	var/list/trail = get_path_to(owner, get_turf(pos), id = access_card, simulated_only = FALSE, get_best_attempt = TRUE)
+	var/list/trail = get_path_to(owner, get_turf(pos), id = access_card, simulated_only = FALSE)
 	
 	if(!trail || trail.len <= 2)
 		to_chat(owner,span_warning("You can't get a good read on the trail, maybe you should try again from a different spot."))

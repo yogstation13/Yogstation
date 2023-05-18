@@ -79,7 +79,7 @@
 	trail.set_up(moving)
 
 /datum/component/jetpack/proc/activate(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	var/mob/moving = get_mover.Invoke()
 	if(!thrust(moving))
 		return return_flag
@@ -102,7 +102,7 @@
 		UnregisterSignal(moving, COMSIG_MOVABLE_DRIFT_BLOCK_INPUT)
 
 /datum/component/jetpack/proc/move_react(mob/user)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	if(!user || !user.client)//Don't allow jet self using
 		return
 	if(!isturf(user.loc))//You can't use jet in nowhere or from mecha/closet
@@ -121,7 +121,7 @@
 	trail.oldposition = get_turf(user)
 
 /datum/component/jetpack/proc/spacemove_react(mob/user, movement_dir, continuous_move)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	if(!continuous_move && movement_dir)
 		return COMSIG_MOVABLE_STOP_SPACEMOVE
 	// Check if we have the fuel to stop this. Do NOT cosume any fuel, just check

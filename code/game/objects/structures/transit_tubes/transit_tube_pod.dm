@@ -114,7 +114,7 @@
 	setDir(source.direction)
 
 /obj/structure/transit_tube_pod/proc/after_pipe_transfer(datum/move_loop/move/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 
 	if(current_tube.should_stop_pod(src, source.direction))
 		current_tube.pod_stopped(src, dir)

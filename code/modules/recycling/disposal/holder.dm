@@ -84,7 +84,7 @@
 
 /// Handles the postprocess check signal, tries to leave the pipe
 /obj/structure/disposalholder/proc/try_expel(datum/move_loop/source, result, visual_delay)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	if(current_pipe || !active)
 		return
 	last_pipe.expel(src, get_turf(src), dir)
