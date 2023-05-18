@@ -570,7 +570,7 @@
 /obj/item/storage/box/syndie_kit/pistolcaselessammo
 	real_name = "10mm caseless magazine box"
 
-/obj/item/storage/box/syndie_kit/pistolsleepyammo/PopulateContents()
+/obj/item/storage/box/syndie_kit/pistolcaselessammo/PopulateContents()
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/magazine/m10mm/cs(src)
 
