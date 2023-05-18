@@ -411,7 +411,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/twohanded/dualsaber
 	player_minimum = 25
 	cost = 16
-	include_modes = list(/datum/game_mode/nuclear)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/dangerous/doublesword/get_discount()
 	return pick(4;0.8,2;0.65,1;0.5)
@@ -1380,7 +1380,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 35 //Yogs change
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 	cant_discount = TRUE
-	
+
 /datum/uplink_item/support/mauler
 	name = "Mauler Exosuit"
 	desc = "A massive and incredibly deadly military-grade exosuit. Features long-range targeting, thrust vectoring \
@@ -1448,7 +1448,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	manufacturer = /datum/corporation/traitor/cybersun
 	exclude_modes = list(/datum/game_mode/nuclear)
-	
+
 /datum/uplink_item/stealthy_tools/chameleon/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(is_species(user, /datum/species/plasmaman))
 		spawn_path = /obj/item/storage/box/syndie_kit/chameleon/plasmaman
@@ -3307,7 +3307,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/nt/gear/sechud
 	name = "Security HUDglasses"
 	desc = "A pair of sunglasses fitted with a security HUD."
-	item = /obj/item/clothing/glasses/hud/security/sunglasses 
+	item = /obj/item/clothing/glasses/hud/security/sunglasses
 	cost = 1
 	required_ert_uplink = NT_ERT_TROOPER
 
@@ -3343,7 +3343,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "CentCom Official Stamp"
 	desc = "To let them know you're the real deal."
 	item = /obj/item/stamp/cent
-	cost = 1 
+	cost = 1
 
 /datum/uplink_item/nt/gear/ntposters
 	name = "Box of Posters"
