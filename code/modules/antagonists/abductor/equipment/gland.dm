@@ -75,7 +75,7 @@
 	active_mind_control = FALSE
 	return TRUE
 
-/obj/item/organ/heart/gland/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/heart/gland/Remove(mob/living/carbon/M, special = FALSE)
 	active = 0
 	if(initial(uses) == 1)
 		uses = initial(uses)
@@ -138,7 +138,7 @@
 	owner.faction |= "slime"
 	owner.grant_language(/datum/language/slime)
 
-/obj/item/organ/heart/gland/slime/Remove(mob/living/carbon/M, special)
+/obj/item/organ/heart/gland/slime/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
 	owner.faction -= "slime"
 	owner.remove_language(/datum/language/slime)
@@ -231,7 +231,7 @@
 /obj/item/organ/heart/gland/access/proc/free_access(datum/source, obj/O)
 	return TRUE
 
-/obj/item/organ/heart/gland/access/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/heart/gland/access/Remove(mob/living/carbon/M, special = FALSE)
 	UnregisterSignal(owner, COMSIG_MOB_ALLOWED)
 	..()
 
@@ -265,7 +265,7 @@
 	previous_ventcrawling = owner.ventcrawler
 	owner.ventcrawler = VENTCRAWLER_ALWAYS
 
-/obj/item/organ/heart/gland/ventcrawling/Remove(mob/living/carbon/M, special)
+/obj/item/organ/heart/gland/ventcrawling/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
 	owner.ventcrawler = previous_ventcrawling
 	previous_ventcrawling = VENTCRAWLER_NONE
@@ -431,7 +431,7 @@
 	..()
 	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, "abductor_gland")
 
-/obj/item/organ/heart/gland/electric/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/heart/gland/electric/Remove(mob/living/carbon/M, special = FALSE)
 	REMOVE_TRAIT(owner, TRAIT_SHOCKIMMUNE, "abductor_gland")
 	..()
 

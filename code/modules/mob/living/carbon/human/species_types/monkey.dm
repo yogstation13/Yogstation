@@ -232,11 +232,11 @@
 	UpdateButtonIcon()
 
 
-/obj/item/organ/brain/primate/Insert(mob/living/carbon/primate)
+/obj/item/organ/brain/primate/Insert(mob/living/carbon/primate, special = FALSE)
 	. = ..()
 	RegisterSignal(primate, COMSIG_MOVABLE_CROSS, PROC_REF(on_crossed), TRUE)
 
-/obj/item/organ/brain/primate/Remove(mob/living/carbon/primate)
+/obj/item/organ/brain/primate/Remove(mob/living/carbon/primate, special = FALSE)
 	. = ..()
 	UnregisterSignal(primate, COMSIG_MOVABLE_CROSS)
 

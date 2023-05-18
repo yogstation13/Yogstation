@@ -118,7 +118,7 @@
 		preserved(TRUE)
 		owner.visible_message(span_notice("[src] stabilizes as it's inserted."))
 
-/obj/item/organ/regenerative_core/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/regenerative_core/Remove(mob/living/carbon/M, special = FALSE)
 	if(!inert && !special)
 		owner.visible_message(span_notice("[src] rapidly decays as it's removed."))
 		go_inert()

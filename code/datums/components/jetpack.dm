@@ -91,7 +91,7 @@
 	RegisterSignal(moving, COMSIG_MOVABLE_DRIFT_BLOCK_INPUT, PROC_REF(ignore_ending_block))
 
 /datum/component/jetpack/proc/deactivate(datum/source)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 	QDEL_NULL(trail)
 	var/mob/moving = get_mover.Invoke()
 	if(moving)

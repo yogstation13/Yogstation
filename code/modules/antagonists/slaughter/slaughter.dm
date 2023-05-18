@@ -99,7 +99,7 @@
 	if(M.mind)
 		M.mind.AddSpell(new /obj/effect/proc_holder/spell/bloodcrawl(null))
 
-/obj/item/organ/heart/demon/Remove(mob/living/carbon/M, special = 0)
+/obj/item/organ/heart/demon/Remove(mob/living/carbon/M, special = FALSE)
 	..()
 	if(M.mind)
 		M.mind.RemoveSpell(/obj/effect/proc_holder/spell/bloodcrawl)
