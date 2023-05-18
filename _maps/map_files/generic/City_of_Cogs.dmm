@@ -175,6 +175,10 @@
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
+"er" = (
+/obj/effect/landmark/servant_of_ratvar/scarab,
+/turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
 "fi" = (
 /obj/machinery/stasis{
 	dir = 4;
@@ -240,6 +244,7 @@
 /area/reebe)
 "Nw" = (
 /obj/item/clockwork/alloy_shards,
+/obj/effect/landmark/servant_of_ratvar/scarab,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 
@@ -4741,7 +4746,7 @@ aj
 aj
 ah
 Nw
-aj
+er
 aH
 aj
 aj
