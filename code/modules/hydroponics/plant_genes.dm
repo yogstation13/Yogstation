@@ -403,7 +403,7 @@
 	var/obj/item/bodypart/BP = target.get_bodypart(def_zone)
 	if(G.reagents && G.reagents.total_volume && target.reagents && target.can_inject(user, 0, def_zone) && !(BP && BP.status == BODYPART_ROBOTIC))
 		if(user)
-			var/contained = G.reagents.log_list()
+			var/contained = G.reagents.get_reagent_log_string()
 			user.log_message("pricked [target == user ? "themselves" : target ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
 			if(target != user && target.ckey && user.ckey) // injecting people with plants now creates admin logs (stolen from hypospray code)
 				log_attack("[user.name] ([user.ckey]) pricked [target.name] ([target.ckey]) with [G], which had [contained] (INTENT: [uppertext(user.a_intent)])")
