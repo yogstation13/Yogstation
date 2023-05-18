@@ -125,7 +125,7 @@
 
 /obj/item/ammo_box/c10mm/cs
 	name = "ammo box (10mm caseless)"
-	ammo_type = /obj/item/ammo_casing/c10mm/cs
+	ammo_type = /obj/item/ammo_casing/caseless/c10mm/cs
 
 /obj/item/ammo_box/c10mm/sp
 	name = "ammo box (10mm soporific)"

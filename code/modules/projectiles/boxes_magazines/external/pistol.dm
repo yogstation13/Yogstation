@@ -13,7 +13,7 @@
 	name = "pistol magazine (10mm Caseless)"
 	icon_state = "9x19pC"
 	desc = "An 10-round 10mm magazine designed for the Stechkin pistol. Loaded with rounds which are engineered without casings, but suffer damage and speed as a result."
-	ammo_type = /obj/item/ammo_casing/c10mm/cs
+	ammo_type = /obj/item/ammo_casing/caseless/c10mm/cs
 
 /obj/item/ammo_box/magazine/m10mm/fire
 	name = "pistol magazine (10mm Incendiary)"
