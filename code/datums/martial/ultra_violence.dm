@@ -62,7 +62,7 @@
 
 /datum/martial_art/ultra_violence/proc/speed_boost(mob/living/carbon/human/A, duration, tag)
 	A.add_movespeed_modifier(tag, update=TRUE, priority=101, multiplicative_slowdown = -0.5, blacklisted_movetypes=(FLOATING))
-	addtimer(CALLBACK(src, .proc/remove_boost, A, tag), duration, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(remove_boost), A, tag), duration, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /datum/martial_art/ultra_violence/proc/remove_boost(mob/living/carbon/human/A, tag)
 	A.remove_movespeed_modifier(tag)
@@ -136,7 +136,7 @@
 /obj/item/gun/ballistic/revolver/ipcmartial/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, "martial")
-	RegisterSignal(src, COMSIG_ITEM_PREDROPPED, .proc/on_drop)
+	RegisterSignal(src, COMSIG_ITEM_PREDROPPED, PROC_REF(on_drop))
 
 /obj/item/gun/ballistic/revolver/ipcmartial/process_chamber(empty_chamber, from_firing, chamber_next_round)
 	. = ..()
@@ -224,10 +224,10 @@
 	else
 		H.apply_status_effect(STATUS_EFFECT_DODGING)
 		playsound(H, 'sound/effects/dodge.ogg', 50)
-		dash_timer = addtimer(CALLBACK(src, .proc/regen_dash, H), 4 SECONDS, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
+		dash_timer = addtimer(CALLBACK(src, PROC_REF(regen_dash), H), 4 SECONDS, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
 		H.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the dash
 		dashing = TRUE
-		H.throw_at(A, MAX_DASH_DIST, DASH_SPEED, H, FALSE, TRUE, callback = CALLBACK(src, .proc/dash_end, H))
+		H.throw_at(A, MAX_DASH_DIST, DASH_SPEED, H, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(dash_end), H))
 		dashes -= 1
 		H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
 

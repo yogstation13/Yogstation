@@ -17,7 +17,7 @@
 		var/direct = pick(GLOB.alldirs)
 		var/steps_amt = pick(1;25,2;50,3,4;200)
 		for(var/j in 1 to steps_amt)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/_step, expl, direct), j) //yogs end
+			addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(_step), expl, direct), j) //yogs end
 
 /obj/effect/explosion
 	name = "fire"
@@ -56,4 +56,4 @@
 
 /datum/effect_system/explosion/smoke/start()
 	..()
-	addtimer(CALLBACK(src, .proc/create_smoke), 5)
+	addtimer(CALLBACK(src, PROC_REF(create_smoke)), 5)

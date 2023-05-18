@@ -57,8 +57,8 @@
 		AddAbility(attack_action)
 		dragon_actions |= attack_action
 		attack_action.drake = src
-	RegisterSignal(src, COMSIG_MOVABLE_BUCKLE, .proc/give_abilities)
-	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, .proc/remove_abilities)
+	RegisterSignal(src, COMSIG_MOVABLE_BUCKLE, PROC_REF(give_abilities))
+	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(remove_abilities))
 
 /mob/living/simple_animal/hostile/drakeling/proc/give_abilities(mob/living/drake, mob/living/M, force = FALSE)
 	toggle_ai(AI_OFF)
@@ -160,9 +160,9 @@
 		remove_ranged_ability(L)
 		return  TRUE
 	drake.attack_cooldown = cooldown + world.time
-	addtimer(CALLBACK(src, .proc/cooldown_over, L), cooldown)
+	addtimer(CALLBACK(src, PROC_REF(cooldown_over), L), cooldown)
 	if(L != drake)
-		addtimer(CALLBACK(src, .proc/cooldown_over, drake), cooldown)
+		addtimer(CALLBACK(src, PROC_REF(cooldown_over), drake), cooldown)
 
 /obj/effect/proc_holder/drakeling/proc/cooldown_over(mob/living/L)
 	to_chat(L, "<span class='notice'>You[L == drake ? "are" : "r dragon is"] ready for another attack!")
@@ -191,7 +191,7 @@
 	var/list/turfs = list()
 	var/list/protected = list(drake, L)
 	turfs = drake.line_target(range, A)
-	INVOKE_ASYNC(src, .proc/drakeling_fire_line, drake, turfs, damage, protected)
+	INVOKE_ASYNC(src, PROC_REF(drakeling_fire_line), drake, turfs, damage, protected)
 
 ///gets the list of turfs the fire breath attack hits
 /mob/living/simple_animal/hostile/drakeling/proc/line_target(var/range, var/atom/at)
@@ -311,7 +311,7 @@
 		passtable_off(L, VEHICLE_TRAIT)
 		passtable_off(dragon, VEHICLE_TRAIT)
 		if(locate(/obj/structure/table) in dragon.loc.contents)
-			addtimer(CALLBACK(dragon, /mob/living/simple_animal/hostile/drakeling.proc/grind), 2)
+			addtimer(CALLBACK(dragon, TYPE_PROC_REF(/mob/living/simple_animal/hostile/drakeling, grind)), 2)
 		next_ollie = world.time + 50 //this gives a "slight" speed boost when used and unlike the skateboard variant doesn't have much of a downside so the cooldown is longer
 
 /mob/living/simple_animal/hostile/drakeling/proc/grind()
@@ -321,7 +321,7 @@
 		return
 	if(has_buckled_mobs() && locate(/obj/structure/table) in loc.contents)
 		playsound(src, 'sound/vehicles/skateboard_roll.ogg', 50, TRUE)
-		addtimer(CALLBACK(src, .proc/grind), 2)
+		addtimer(CALLBACK(src, PROC_REF(grind)), 2)
 		return
 	else
 		grinding = FALSE

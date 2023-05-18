@@ -47,7 +47,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	//deathsound = //change this when sprite gets reworked
 	yogs_draw_robot_hair = TRUE //remove their hair when they get the new sprite
 	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
-	wings_icon = "Robotic" //maybe change this eventually
+	wings_icon = "Robotic"
 	species_language_holder = /datum/language_holder/machine
 	//new variables
 	var/datum/action/innate/maglock/maglock
@@ -76,7 +76,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(istype(BP,/obj/item/bodypart/l_leg) || istype(BP,/obj/item/bodypart/r_leg))//my dudes skip leg day
 			BP.max_damage = 30
 
-	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, .proc/drain_power_from)
+	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
 
 	if(ishuman(C))
 		maglock = new

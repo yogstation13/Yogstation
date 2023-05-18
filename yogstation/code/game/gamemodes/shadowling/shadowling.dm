@@ -160,7 +160,7 @@ Made by Xhuis
 	C.draw_yogs_parts(TRUE)
 	eyes_overlay = mutable_appearance('yogstation/icons/mob/sling.dmi', "eyes", 25)
 	C.add_overlay(eyes_overlay)
-	RegisterSignal(C, COMSIG_MOVABLE_MOVED, .proc/apply_darkness_speed)
+	RegisterSignal(C, COMSIG_MOVABLE_MOVED, PROC_REF(apply_darkness_speed))
 	. = ..()
 
 /datum/species/shadow/ling/on_species_loss(mob/living/carbon/human/C)

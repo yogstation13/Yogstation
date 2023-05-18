@@ -77,7 +77,7 @@
 
 /datum/antagonist/infiltrator/get_admin_commands()
 	. = ..()
-	.["Send to base"] = CALLBACK(src,.proc/admin_send_to_base)
+	.["Send to base"] = CALLBACK(src, PROC_REF(admin_send_to_base))
 
 /datum/antagonist/infiltrator/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.assigned_role = ROLE_INFILTRATOR

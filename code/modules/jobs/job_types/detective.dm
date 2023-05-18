@@ -35,12 +35,10 @@
 
 	mail_goodies = list(
 		///obj/item/storage/fancy/cigarettes = 25,
-		/obj/item/ammo_box/c38 = 25,
+		/obj/item/ammo_box/c38/rubber = 25,
+		/obj/item/ammo_box/c38 = 5,
 		///obj/item/ammo_box/c38/dumdum = 5,
-		/obj/item/ammo_box/c38/hotshot = 5,
-		/obj/item/ammo_box/c38/iceblox = 5,
 		///obj/item/ammo_box/c38/match = 5,
-		/obj/item/ammo_box/c38/gutterpunch = 5
 		///obj/item/storage/belt/holster/detective/full = 1
 	)
 

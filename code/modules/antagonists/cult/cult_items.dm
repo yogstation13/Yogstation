@@ -253,7 +253,7 @@
 	sword.spinning = TRUE
 	sword.block_chance = 100
 	sword.slowdown += 1.5
-	addtimer(CALLBACK(src, .proc/stop_spinning), 50)
+	addtimer(CALLBACK(src, PROC_REF(stop_spinning)), 50)
 	holder.update_action_buttons_icon()
 
 /datum/action/innate/cult/spin2win/proc/stop_spinning()
@@ -287,7 +287,7 @@
 	name = "ancient cultist hood"
 	icon_state = "culthood"
 	desc = "A torn, dust-caked hood. Strange letters line the inside."
-	flags_inv = HIDEFACE|HIDEHAIR|HIDEEARS
+	flags_inv = HIDEHAIR|HIDEEARS
 	flags_cover = HEADCOVERSEYES
 	armor = list(MELEE = 40, BULLET = 30, LASER = 40,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
 	cold_protection = HEAD
@@ -303,11 +303,11 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
 	armor = list(MELEE = 40, BULLET = 30, LASER = 40,ENERGY = 20, BOMB = 25, BIO = 10, RAD = 0, FIRE = 10, ACID = 10)
-	flags_inv = HIDEJUMPSUIT
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 
 /obj/item/clothing/head/culthood/alt
@@ -669,12 +669,13 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	slot_flags = 0
-	force = 10
-	force_wielded = 25
-	throwforce = 40
+	force = 12
+	force_wielded = 16
+	throwforce = 35
 	throw_speed = 2
-	armour_penetration = 30
-	block_chance = 50
+	armour_penetration = 20
+	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
+	wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
 	attack_verb = list("attacked", "impaled", "stabbed", "torn", "gored")
 	sharpness = SHARP_POINTY
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -705,9 +706,9 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		else if(!..())
 			if(!L.anti_magic_check())
 				if(is_servant_of_ratvar(L))
-					L.Paralyze(100)
+					L.Paralyze(20)
 				else
-					L.Paralyze(50)
+					L.Paralyze(10)
 			break_spear(T)
 	else
 		..()
@@ -722,20 +723,6 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			new /obj/effect/decal/cleanable/blood/splatter(T)
 			playsound(T, 'sound/effects/glassbr3.ogg', 100)
 	qdel(src)
-
-/obj/item/twohanded/cult_spear/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(!wielded)
-		final_block_chance = 0
-	if(prob(final_block_chance))
-		if(attack_type == PROJECTILE_ATTACK)
-			owner.visible_message(span_danger("[owner] deflects [attack_text] with [src]!"))
-			playsound(src, pick('sound/weapons/effects/ric1.ogg', 'sound/weapons/effects/ric2.ogg', 'sound/weapons/effects/ric3.ogg', 'sound/weapons/effects/ric4.ogg', 'sound/weapons/effects/ric5.ogg'), 100, 1)
-			return TRUE
-		else
-			playsound(src, 'sound/weapons/parry.ogg', 100, 1)
-			owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
-			return TRUE
-	return FALSE
 
 /datum/action/innate/cult/spear
 	name = "Bloody Bond"
@@ -756,7 +743,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		return
 	var/ST = get_turf(spear)
 	var/OT = get_turf(owner)
-	if(get_dist(OT, ST) > 10)
+	if(get_dist(OT, ST) > 20)
 		to_chat(owner,span_cult("The spear is too far away!"))
 	else
 		cooldown = world.time + 20
@@ -764,7 +751,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			var/mob/living/L = spear.loc
 			L.dropItemToGround(spear)
 			L.visible_message(span_warning("An unseen force pulls the blood spear from [L]'s hands!"))
-		spear.throw_at(owner, 10, 2, owner)
+		spear.throw_at(owner, 20, 2, owner)
 
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/arcane_barrage/blood
@@ -842,10 +829,10 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		qdel(src)
 		return
 	charging = TRUE
-	INVOKE_ASYNC(src, .proc/charge, user)
+	INVOKE_ASYNC(src, PROC_REF(charge), user)
 	if(do_after(user, 9 SECONDS, user))
 		firing = TRUE
-		INVOKE_ASYNC(src, .proc/pewpew, user, params)
+		INVOKE_ASYNC(src, PROC_REF(pewpew), user, params)
 		var/obj/structure/emergency_shield/invoker/N = new(user.loc)
 		if(do_after(user, 9 SECONDS, user))
 			user.Paralyze(40)
@@ -918,7 +905,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 						playsound(L, 'sound/hallucinations/wail.ogg', 50, 1)
 						L.emote("scream")
 		var/datum/beam/current_beam = new(user,temp_target,time=7,beam_icon_state="blood_beam",btype=/obj/effect/ebeam/blood)
-		INVOKE_ASYNC(current_beam, /datum/beam.proc/Start)
+		INVOKE_ASYNC(current_beam, TYPE_PROC_REF(/datum/beam, Start))
 
 
 /obj/effect/ebeam/blood
@@ -959,7 +946,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			if(illusions > 0)
 				playsound(src, 'sound/weapons/parry.ogg', 100, 1)
 				illusions--
-				addtimer(CALLBACK(src, /obj/item/shield/mirror.proc/readd), 450)
+				addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/shield/mirror, readd)), 450)
 				if(prob(60))
 					var/mob/living/simple_animal/hostile/illusion/M = new(owner.loc)
 					M.faction = list("cult")
@@ -1013,9 +1000,9 @@ GLOBAL_VAR_INIT(curselimit, 0)
 					L.buckled.unbuckle_mob(L)
 
 				if(is_servant_of_ratvar(L))
-					L.Paralyze(60)
+					L.Knockdown(60)
 				else
-					L.Paralyze(30)
+					L.Knockdown(30)
 				if(D?.thrower)
 					for(var/mob/living/Next in orange(2, T))
 						if(!Next.density || iscultist(Next))

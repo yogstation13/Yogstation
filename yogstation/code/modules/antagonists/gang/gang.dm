@@ -98,11 +98,11 @@
 // Admin commands
 /datum/antagonist/gang/get_admin_commands()
 	. = ..()
-	.["Promote"] = CALLBACK(src,.proc/admin_promote)
-	.["Set Influence"] = CALLBACK(src, .proc/admin_adjust_influence)
-	.["Set Uniform Influence"] = CALLBACK(src, .proc/admin_adjust_uniform_influence)
+	.["Promote"] = CALLBACK(src, PROC_REF(admin_promote))
+	.["Set Influence"] = CALLBACK(src, PROC_REF(admin_adjust_influence))
+	.["Set Uniform Influence"] = CALLBACK(src, PROC_REF(admin_adjust_uniform_influence))
 	if(gang.domination_time != NOT_DOMINATING)
-		.["Set domination time left"] = CALLBACK(src, .proc/set_dom_time_left)
+		.["Set domination time left"] = CALLBACK(src, PROC_REF(set_dom_time_left))
 
 /datum/antagonist/gang/admin_add(datum/mind/new_owner,mob/admin)
 	var/new_or_existing = input(admin, "Which gang do you want to be assigned to the user?", "Gangs") as null|anything in list("New","Existing")
@@ -251,9 +251,9 @@
 /datum/antagonist/gang/boss/get_admin_commands()
 	. = ..()
 	. -= "Promote"
-	.["Take gangtool"] = CALLBACK(src,.proc/admin_take_gangtool)
-	.["Give gangtool"] = CALLBACK(src,.proc/admin_give_gangtool)
-	.["Demote"] = CALLBACK(src,.proc/admin_demote)
+	.["Take gangtool"] = CALLBACK(src, PROC_REF(admin_take_gangtool))
+	.["Give gangtool"] = CALLBACK(src, PROC_REF(admin_give_gangtool))
+	.["Demote"] = CALLBACK(src, PROC_REF(admin_demote))
 
 /datum/antagonist/gang/boss/proc/demote()
 	var/old_gang = gang
@@ -333,7 +333,7 @@
 				CJ.add_antag_datum(bossdatum, src)
 				bossdatum.equip_gang()
 	next_point_time = world.time + INFLUENCE_INTERVAL
-	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
+	addtimer(CALLBACK(src, PROC_REF(handle_territories)), INFLUENCE_INTERVAL)
 
 /datum/team/gang/Destroy()
 	GLOB.gangs -= src
@@ -422,7 +422,7 @@
 		uniform_influence = new_uniform_influence
 		message += "Your gang now has <b>[influence] influence</b> and <b>[uniform_influence] supply points</b>.<BR>"
 	message_gangtools(message)
-	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
+	addtimer(CALLBACK(src, PROC_REF(handle_territories)), INFLUENCE_INTERVAL)
 
 /datum/team/gang/proc/total_claimable_territories()
 	var/list/valid_territories = list()
