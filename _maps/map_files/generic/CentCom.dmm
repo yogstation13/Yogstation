@@ -25795,13 +25795,13 @@
 /obj/structure/goalnet/goalpost/right{
 	dir = 1
 	},
-/turf/open/indestructible/grass,
+/turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
 "gbG" = (
 /obj/structure/goalnet{
 	dir = 1
 	},
-/turf/open/indestructible/grass,
+/turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
 "gkW" = (
 /obj/item/twohanded/required/kirbyplants/photosynthetic,
@@ -26072,13 +26072,13 @@
 /turf/open/floor/engine/cult,
 /area/wizard_station)
 "nYo" = (
-/turf/open/indestructible/grass,
+/turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
 "obi" = (
 /obj/structure/goalnet/goalpost/left{
 	dir = 1
 	},
-/turf/open/indestructible/grass,
+/turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
 "oxS" = (
 /obj/item/clothing/shoes/combat/coldres{
@@ -26209,7 +26209,7 @@
 /area/centcom/evac)
 "rVP" = (
 /obj/item/soccerball,
-/turf/open/indestructible/grass,
+/turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
 "spc" = (
 /turf/open/indestructible/wiki/title{
@@ -26223,7 +26223,7 @@
 /area/centcom/testchamber)
 "twc" = (
 /obj/structure/goalnet/goalpost/left,
-/turf/open/indestructible/grass,
+/turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
 "tID" = (
 /turf/open/indestructible/wiki/info{
@@ -26320,7 +26320,7 @@
 /area/centcom/testchamber)
 "vpx" = (
 /obj/structure/goalnet/goalpost/right,
-/turf/open/indestructible/grass,
+/turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
 "vsA" = (
 /obj/effect/turf_decal/tile/blue{
@@ -26383,7 +26383,7 @@
 /area/centcom/testchamber)
 "wnI" = (
 /obj/structure/goalnet,
-/turf/open/indestructible/grass,
+/turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
 "wyM" = (
 /obj/effect/turf_decal/tile/blue{
