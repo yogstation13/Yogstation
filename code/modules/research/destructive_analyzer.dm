@@ -92,7 +92,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(can_research_items && !researched_items[thing.type])
 		var/points = (rand() + 1) * 300 // 300-600 points, juicy
 		linked_console.stored_research.add_stored_point_type(TECHWEB_POINT_TYPE_DEFAULT, points)
-		balloon_alert_to_viewers("Gained [points] points from \the [thing]!")
+		balloon_alert_to_viewers("gained [points] points from \the [thing]!")
 		researched_items[thing.type] = TRUE
 	reclaim_materials_from(thing)
 	for(var/mob/M in thing)
