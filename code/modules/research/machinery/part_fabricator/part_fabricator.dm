@@ -401,7 +401,7 @@
 		if(icon_state == "processing")
 			icon_state = initial(icon_state)
 			flick("up", src)
-		balloon_alert_to_viewers("Failed!")
+		balloon_alert_to_viewers("failed!")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 		production_progress = 0
 		printing = null
