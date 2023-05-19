@@ -486,7 +486,7 @@
 			else
 				CRASH("Part fabricator tried to print unknown or null part: [printing]")
 
-		balloon_alert_to_viewers("Success!")
+		balloon_alert_to_viewers("success!")
 		playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 		icon_state = initial(icon_state)
 		flick("up", src)
