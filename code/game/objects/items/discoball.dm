@@ -70,7 +70,7 @@
 	set_light_color(current_color)
 	add_atom_colour("#[current_color]", FIXED_COLOUR_PRIORITY)
 	update_icon()
-	TimerID = addtimer(CALLBACK(src, .proc/DiscoFever), 5, TIMER_STOPPABLE)  //Call ourselves every 0.5 seconds to change colors
+	TimerID = addtimer(CALLBACK(src, PROC_REF(DiscoFever)), 5, TIMER_STOPPABLE)  //Call ourselves every 0.5 seconds to change colors
 
 /obj/structure/discoball/update_icon()
 	cut_overlays()
@@ -185,7 +185,7 @@
 				glow.set_light_range_power_color(glow.light_range * DISCO_INFENO_RANGE, glow.light_power * 0.68, LIGHT_COLOR_RED)
 				continue
 		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
-			INVOKE_ASYNC(src, .proc/hierofunk)
+			INVOKE_ASYNC(src, PROC_REF(hierofunk))
 		sleep(0.5 SECONDS)
 
 #undef DISCO_INFENO_RANGE

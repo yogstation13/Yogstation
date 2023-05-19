@@ -103,7 +103,7 @@
 	empty_indicator = TRUE
 
 /obj/item/gun/ballistic/automatic/wt550/armory
-	mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
+	starting_mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
 
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
@@ -383,7 +383,7 @@
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
 	name = "\improper syndicate sniper rifle"
-	desc = "An illegally modified .50 cal sniper rifle with suppression compatibility. Quickscoping still doesn't work."
+	desc = "An illegally modified .50 BMG sniper rifle with suppression compatibility. Quickscoping still doesn't work."
 	can_suppress = TRUE
 	can_unsuppress = TRUE
 	pin = /obj/item/firing_pin/implant/pindicate

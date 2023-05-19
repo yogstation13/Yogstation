@@ -2,7 +2,7 @@
 	name = "Mimicry"
 	desc = "Why fight your foes when you can simply outwit them? Disguises the caster as a random crewmember. The body-covering shell keeps your form as is, and protects you from body-altering effects."
 	invocation = "CONJR DIS GUISE"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	school = "transmutation"
 	charge_max = 60 SECONDS
 	cooldown_min = 50 SECONDS
@@ -18,7 +18,7 @@
 		//We need to undo the cloak after non-humanoid disguises because when the wizard becomes a non human during the spell, it will mess up their sprite. But since they are non human, we can't actually undo the spell. This leaves our recloaking bugged as hell, and breaks a lot of stuff.
 		return FALSE
 	if(ishuman(user) && (wasbeast == TRUE))
-		addtimer(CALLBACK(src, .proc/undocloak, user), 2)
+		addtimer(CALLBACK(src, PROC_REF(undocloak), user), 2)
 	return TRUE
 
 /obj/effect/proc_holder/spell/disguise/choose_targets(mob/user = usr)
@@ -53,7 +53,7 @@
 	C.update_inv_hands()
 	log_game("[C.name] has disguised as [target.name]!") 
 	is_disguised = TRUE
-	addtimer(CALLBACK(src, .proc/undocloak, C), (40 SECONDS + (level * 3))) //Sets it up so this is unchanged on default level, and goes up per level invested.
+	addtimer(CALLBACK(src, PROC_REF(undocloak), C), (40 SECONDS + (level * 3))) //Sets it up so this is unchanged on default level, and goes up per level invested.
 		
 /obj/effect/proc_holder/spell/disguise/proc/undocloak(var/mob/living/carbon/human/C) //Code shortcut to disable the disguise.
 	if((ishuman(C) && (C.mind)) || wasbeast == TRUE) //Shapeshift spell takes out your mind, buckles you to a body, and then puts your mind in a summoned animal. We need this bullshit to both check that this is not happening, and then override it when we have to fix the bullshit.

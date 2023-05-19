@@ -2,13 +2,12 @@
 	name = "Curse of the Cluwne"
 	desc = "This spell dooms the fate of any unlucky soul to the live of a pitiful cluwne, a terrible creature that is hunted for fun."
 	school = "transmutation"
-	charge_type = "recharge"
 	charge_max	= 600
 	charge_counter = 0
 	clothes_req = 1
 	stat_allowed = 0
 	invocation = "CLU WO'NIS CA'TE'BEST'IS MAXIMUS!"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 3
 	cooldown_min = 75
 	selection_type = "range"

@@ -51,7 +51,7 @@
 	. = ..()
 	if(user)
 		sniffer = user
-	RegisterSignal(src, COMSIG_MOVABLE_CROSSED, .proc/Sniffed)
+	RegisterSignal(src, COMSIG_MOVABLE_CROSSED, PROC_REF(Sniffed))
 	if(!scent_color || color)
 		scent_color = sanitize_hexcolor(color, 6, TRUE, COLOR_RED)
 	
@@ -80,7 +80,7 @@
 /obj/effect/temp_visual/scent_trail/Destroy()
 	UnregisterSignal(src, COMSIG_MOVABLE_CROSSED)
 	animate(img, alpha = 0, time = 1 SECONDS, easing = EASE_OUT) //fade out
-	INVOKE_ASYNC(src, .proc/Fade)
+	INVOKE_ASYNC(src, PROC_REF(Fade))
 	return ..()
 
 /obj/effect/temp_visual/scent_trail/proc/Fade()

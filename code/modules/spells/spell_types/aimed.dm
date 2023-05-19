@@ -22,7 +22,7 @@
 		return
 	if(active)
 		msg = span_notice("[deactive_msg]")
-		if(charge_type == "recharge")
+		if(charge_type == SPELL_CHARGE_TYPE_RECHARGE)
 			var/refund_percent = current_amount/projectile_amount
 			charge_counter = charge_max * refund_percent
 			start_recharge()
@@ -95,7 +95,7 @@
 	charge_max = 100
 	clothes_req = FALSE
 	invocation = "UN'LTD P'WAH"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	cooldown_min = 30
 	active_icon_state = "lightning"
 	base_icon_state = "lightning"
@@ -113,7 +113,7 @@
 	charge_max = 60
 	clothes_req = FALSE
 	invocation = "ONI SOMA"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 20
 	cooldown_min = 20 //10 deciseconds reduction per rank
 	projectile_type = /obj/item/projectile/magic/aoe/fireball
@@ -132,7 +132,7 @@
 	charge_max = 50
 	clothes_req = FALSE
 	invocation = "Sigi'lu M'Fan 'Tasia"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	range = 40
 	cooldown_min = 10
 	projectile_amount = 5
@@ -148,7 +148,7 @@
 
 /obj/effect/proc_holder/spell/aimed/spell_cards/on_activation(mob/M)
 	QDEL_NULL(lockon_component)
-	lockon_component = M.AddComponent(/datum/component/lockon_aiming, 5, typecacheof(list(/mob/living)), 1, null, CALLBACK(src, .proc/on_lockon_component))
+	lockon_component = M.AddComponent(/datum/component/lockon_aiming, 5, typecacheof(list(/mob/living)), 1, null, CALLBACK(src, PROC_REF(on_lockon_component)))
 
 /obj/effect/proc_holder/spell/aimed/spell_cards/proc/on_lockon_component(list/locked_weakrefs)
 	if(!length(locked_weakrefs))
