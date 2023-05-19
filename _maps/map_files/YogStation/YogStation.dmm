@@ -19294,6 +19294,19 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"dDM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "dDZ" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
@@ -95273,8 +95286,8 @@ vJk
 vJk
 vJk
 vJk
-ojr
 vJk
+dDM
 vJk
 vJk
 djp
