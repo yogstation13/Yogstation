@@ -56,9 +56,9 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 					return	
 				sendcooldown = world.time + 1 MINUTES
 				if (destination in GLOB.admin_departments)
-					INVOKE_ASYNC(src, .proc/send_admin_fax, usr, destination)
+					INVOKE_ASYNC(src, PROC_REF(send_admin_fax), usr, destination)
 				else
-					INVOKE_ASYNC(src, .proc/sendfax, destination)
+					INVOKE_ASYNC(src, PROC_REF(sendfax), destination)
 			return
 		if("remove")
 			if(copy)

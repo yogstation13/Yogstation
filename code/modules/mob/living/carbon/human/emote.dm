@@ -23,7 +23,7 @@
 		var/list/key_emotes = GLOB.emote_list["cry"]
 		for(var/datum/emote/living/carbon/human/cry/human_emote in key_emotes)
 			// The existing timer restarts if it is already running
-			addtimer(CALLBACK(human_emote, .proc/end_visual, human_user), CRY_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE)
+			addtimer(CALLBACK(human_emote, PROC_REF(end_visual), human_user), CRY_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 /datum/emote/living/carbon/human/cry/proc/end_visual(mob/living/carbon/human/human_user)
 	if(!QDELETED(human_user))
@@ -224,6 +224,9 @@
 	if("wings" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "wings"
 		dna.species.mutant_bodyparts |= "wingsopen"
+		if("wingsdetail" in dna.species.mutant_bodyparts)
+			dna.species.mutant_bodyparts -= "wingsdetail"
+			dna.species.mutant_bodyparts |= "wingsdetailopen"
 	if("moth_wings" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts |= "moth_wingsopen"
 		dna.features["moth_wingsopen"] = "moth_wings"
@@ -236,6 +239,9 @@
 	if("wingsopen" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "wingsopen"
 		dna.species.mutant_bodyparts |= "wings"
+		if("wingsdetailopen" in dna.species.mutant_bodyparts)
+			dna.species.mutant_bodyparts -= "wingsdetailopen"
+			dna.species.mutant_bodyparts |= "wingsdetail"
 	if("moth_wingsopen" in dna.species.mutant_bodyparts)
 		dna.species.mutant_bodyparts -= "moth_wingsopen"
 		dna.species.mutant_bodyparts |= "moth_wings"

@@ -3,44 +3,19 @@
 /////////////////////////////////////////
 
 /datum/design/c38_sec
-	name = "Speed Loader (.38)"
+	name = "Speed Loader (.38 rubber)"
 	desc = "Designed to quickly reload revolvers."
 	id = "sec_38"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/ammo_box/c38/rubber
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/c38_sec/lethal
+	name = "Speed Loader (.38)"
+	id = "sec_38_lethal"
 	build_path = /obj/item/ammo_box/c38
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
-/datum/design/c38_hotshot
-	name = "Speed Loader (.38 Hot Shot)"
-	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
-	id = "c38_hotshot"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/hotshot
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
-/datum/design/c38_iceblox
-	name = "Speed Loader (.38 Iceblox)"
-	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
-	id = "c38_iceblox"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/iceblox
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
-/datum/design/c38_gutterpunch
-	name = "Speed Loader (.38 Gutterpunch)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
-	id = "c38_gutterpunch"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/gutterpunch
-	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/rubbershot/sec
@@ -364,6 +339,53 @@
 	materials = list(/datum/material/iron = 7500, /datum/material/titanium = 2000, /datum/material/uranium = 1000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_snakebite
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+//Vatra M38 Magazines
+
+/datum/design/mag_v38
+	name = "Vatra M38 Magazine (.38)"
+	desc = "A 8-round magazine for the Vatra M38 service handgun."
+	id = "mag_v38"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000)
+	build_path = /obj/item/ammo_box/magazine/v38
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/mag_v38/ap_mag
+	name = "Vatra M38 Magazine (.38 armor-piercing)"
+	desc = "A 8-round armor-piercing magazine for the Vatra M38 service handgun."
+	id = "mag_v38_ap"
+	materials = list(/datum/material/iron = 3000, /datum/material/silver = 450)
+	build_path = /obj/item/ammo_box/magazine/v38/ap
+
+/datum/design/mag_v38/rubber_mag
+	name = "Vatra M38 Rubber Magazine (.38 rubber)"
+	desc = "A 8-round rubber magazine for the Vatra M38 service handgun."
+	id = "mag_v38_rubber"
+	build_path = /obj/item/ammo_box/magazine/v38/rubber
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/mag_v38/frost_mag
+	name = "Vatra M38 Frost Magazine (.38 frost)"
+	desc = "A 8-round frost magazine for the Vatra M38 service handgun."
+	id = "mag_v38_frost"
+	materials = list(/datum/material/iron = 3000, /datum/material/silver = 450, /datum/material/diamond = 400)
+	build_path = /obj/item/ammo_box/magazine/v38/frost
+
+/datum/design/mag_v38/talon_mag
+	name = "Vatra M38 Talon Magazine (.38 talon)"
+	desc = "A 8-round talon magazine for the Vatra M38 service handgun."
+	id = "mag_v38_talon"
+	materials = list(/datum/material/iron = 3000, /datum/material/silver = 450, /datum/material/glass = 750)
+	build_path = /obj/item/ammo_box/magazine/v38/talon
+
+/datum/design/mag_v38/bluespace_mag
+	name = "Vatra M38 Bluespace Magazine (.38 bluespace)"
+	desc = "A 8-round bluespace magazine for the Vatra M38 service handgun."
+	id = "mag_v38_bluespace"
+	materials = list(/datum/material/iron = 4000, /datum/material/titanium = 1500, /datum/material/plasma = 450, /datum/material/bluespace = 400)
+	build_path = /obj/item/ammo_box/magazine/v38/bluespace
 
 /datum/design/stunshell
 	name = "Stun Shell"

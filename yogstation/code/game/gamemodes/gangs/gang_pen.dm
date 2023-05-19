@@ -26,7 +26,7 @@
 	cooldown = TRUE
 	icon_state = "pen_blink"
 	var/cooldown_time = 600/gang.leaders.len
-	addtimer(CALLBACK(src, .proc/cooldown), cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(cooldown)), cooldown_time)
 
 /obj/item/pen/gang/proc/cooldown()
 	cooldown = FALSE
@@ -50,6 +50,6 @@
 	H.silent = max(H.silent, 5)
 	H.Knockdown(100)
 	if(is_banned_from(gangster_mind.current.ckey, ROLE_GANG))
-		INVOKE_ASYNC(src, /datum/game_mode.proc/replace_jobbaned_player, gangster_mind.current, ROLE_GANG, ROLE_GANG) // will gangster_mind point to the new dude's mind? dunno honestly, i hope it does
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/datum/game_mode, replace_jobbaned_player), gangster_mind.current, ROLE_GANG, ROLE_GANG) // will gangster_mind point to the new dude's mind? dunno honestly, i hope it does
 	gangster_mind.add_antag_datum(/datum/antagonist/gang, gang)
 	return TRUE

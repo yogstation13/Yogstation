@@ -59,7 +59,7 @@
 /obj/machinery/vr_sleeper/emag_act(mob/user)
 	you_die_in_the_game_you_die_for_real = TRUE
 	sparks.start()
-	addtimer(CALLBACK(src, .proc/emagNotify), 150)
+	addtimer(CALLBACK(src, PROC_REF(emagNotify)), 150)
 
 /obj/machinery/vr_sleeper/update_icon()
 	icon_state = "[initial(icon_state)][state_open ? "-open" : ""]"
@@ -225,7 +225,7 @@
 /obj/effect/vr_clean_master/Initialize()
 	. = ..()
 	vr_area = get_area(src)
-	addtimer(CALLBACK(src, .proc/clean_up), 3 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(clean_up)), 3 MINUTES)
 
 /obj/effect/vr_clean_master/proc/clean_up()
 	if (vr_area)
@@ -236,4 +236,4 @@
 		for (var/mob/living/carbon/human/virtual_reality/H in vr_area)
 			if (H.stat == DEAD && !H.vr_sleeper && !H.real_mind)
 				qdel(H)
-		addtimer(CALLBACK(src, .proc/clean_up), 3 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(clean_up)), 3 MINUTES)
