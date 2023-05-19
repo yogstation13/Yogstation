@@ -73,14 +73,14 @@
 	if(!(stat & (BROKEN|NOPOWER)) && isliving(AM))
 		perform_scan(AM)
 
-/obj/machinery/scanner_gate/proc/set_scanline(stype, duration)
-	if(blocking && stype == "passive") // Set us back to blocking mode
+/obj/machinery/scanner_gate/proc/set_scanline(scan_type, duration)
+	if(blocking && scan_type == "passive") // Set us back to blocking mode
 		density = TRUE
-	else if(stype == "scanning") // If they pass, let them through
+	else if(scan_type == "scanning") // If they pass, let them through
 		density = FALSE
 	cut_overlays()
 	deltimer(scanline_timer)
-	add_overlay(stype)
+	add_overlay(scan_type)
 	if(duration)
 		scanline_timer = addtimer(CALLBACK(src, .proc/set_scanline, "passive"), duration, TIMER_STOPPABLE)
 
