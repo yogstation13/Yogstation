@@ -3892,7 +3892,6 @@
 #include "yogstation\code\modules\jobs\job_types\tourist.dm"
 #include "yogstation\code\modules\language\darkspeak.dm"
 #include "yogstation\code\modules\language\japanese.dm"
-#include "yogstation\code\modules\libvg\utf8.dm"
 #include "yogstation\code\modules\mentor\follow.dm"
 #include "yogstation\code\modules\mentor\mentor.dm"
 #include "yogstation\code\modules\mentor\mentor_memo.dm"

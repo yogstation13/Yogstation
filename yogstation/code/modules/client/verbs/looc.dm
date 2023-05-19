@@ -29,7 +29,7 @@
 		to_chat(src, span_danger("You have been banned from LOOC."))
 		return
 
-	msg = copytext(sanitize(to_utf8(msg)), 1, MAX_MESSAGE_LEN)
+	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
 
 	if(!msg)
