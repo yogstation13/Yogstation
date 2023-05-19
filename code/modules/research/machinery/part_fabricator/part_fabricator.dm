@@ -139,8 +139,7 @@
 	part_recipes_generated = TRUE
 
 /obj/machinery/part_fabricator/Destroy()
-	for(var/V in fillers)
-		var/obj/structure/filler/filler = V
+	for(var/obj/structure/filler/filler as anything in fillers)
 		filler.parent = null
 		qdel(filler)
 	. = ..()
