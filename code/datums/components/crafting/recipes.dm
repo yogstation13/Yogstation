@@ -197,7 +197,7 @@
 	reqs = list(/obj/item/paper = 5)
 	category = CAT_MISC
 
-/datum/crafting_recipe/papersack
+/datum/crafting_recipe/estasismanifold
 	name = "Electrical Stasis Manifold"
 	result = /obj/item/electrical_stasis_manifold
 	time = 1 SECONDS
