@@ -5,16 +5,16 @@
 #define FAB_MANIPULATOR 5
 
 /// The Production Producer
-/obj/machinery/part_fabricator
+/obj/machinery/exp_part_fabricator
 	name = "experimental part fabricator"
 	desc = "A strange machine that condenses materials into advanced parts."
 	icon = 'icons/obj/machines/part_fabricator.dmi'
 	icon_state = "default"
 	circuit = /obj/item/circuitboard/machine/part_fabricator
 	resistance_flags = INDESTRUCTIBLE // dont want it to be destroyed by radballs
-	
+
 	pixel_x = -32
-	
+
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5000
 	active_power_usage = 10000000 // 10MW
@@ -36,17 +36,17 @@
 	var/printing
 	var/production_progress = 0
 
-/obj/machinery/part_fabricator/attackby(obj/item/inserted, mob/living/user, params)
+/obj/machinery/exp_part_fabricator/attackby(obj/item/inserted, mob/living/user, params)
 	if(production_progress <= 0 && default_deconstruction_screwdriver(user, "screwed_open", initial(icon_state), inserted))
 		update_icon()
 		return
-	
+
 	if(default_deconstruction_crowbar(inserted))
 		return
 
 	if(is_refillable() && inserted.is_drainable())
 		return FALSE //inserting reagents into the machine
-	
+
 	if(inserted.get_item_credit_value() || is_type_in_typecache(inserted, acceptable_items))
 		flick("get_mat", src)
 		inserted.forceMove(src)
@@ -54,17 +54,17 @@
 		return TRUE
 	else if(user.a_intent == INTENT_HELP) // if they're bashing it they probably don't care
 		to_chat(user, span_danger("\The [src] rejects \the [inserted]!"))
-	
+
 	return ..()
 
-/obj/machinery/part_fabricator/examine(mob/user)
+/obj/machinery/exp_part_fabricator/examine(mob/user)
 	. = ..()
 	if(panel_open)
 		. += span_notice("\The [src]'s maintenance hatch is open!")
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("Production speed at [CEILING(production_speed*100, 0.0001)]%")
 
-/obj/machinery/part_fabricator/RefreshParts()
+/obj/machinery/exp_part_fabricator/RefreshParts()
 	production_speed = initial(production_speed)
 	for(var/obj/item/stock_parts/P in component_parts)
 		switch(P.rating)
@@ -82,14 +82,14 @@
 			reagents.maximum_volume += G.volume
 			G.reagents.trans_to(src, G.reagents.total_volume)
 
-/obj/machinery/part_fabricator/on_deconstruction()
+/obj/machinery/exp_part_fabricator/on_deconstruction()
 	for(var/obj/item/reagent_containers/glass/G in component_parts)
 		reagents.trans_to(G, G.reagents.maximum_volume)
 	for(var/obj/item/item in contents)
 		item.forceMove(get_turf(src)) // Eject anything we may be holding
 		adjust_item_drop_location(item)
 
-/obj/machinery/part_fabricator/Initialize()
+/obj/machinery/exp_part_fabricator/Initialize()
 	. = ..()
 	create_reagents(0, OPENCONTAINER)
 	RefreshParts()
@@ -105,7 +105,7 @@
 
 	if(part_recipes_generated)
 		return
-	
+
 	capacitor_energy_requirement = (rand() * 0.5 + 0.75) * 1000000000 // 0.75-1.25 GW
 
 	matterbin_freon_moles_requirement = (rand() * 0.5 + 0.5) * 100 // 50-100 moles
@@ -138,13 +138,13 @@
 
 	part_recipes_generated = TRUE
 
-/obj/machinery/part_fabricator/Destroy()
+/obj/machinery/exp_part_fabricator/Destroy()
 	for(var/obj/structure/filler/filler as anything in fillers)
 		filler.parent = null
 		qdel(filler)
 	. = ..()
 
-/obj/machinery/part_fabricator/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/exp_part_fabricator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!is_operational())
 		return
@@ -152,7 +152,7 @@
 		ui = new(user, src, "PartFabricator", name)
 		ui.open()
 
-/obj/machinery/part_fabricator/ui_data(mob/user)
+/obj/machinery/exp_part_fabricator/ui_data(mob/user)
 	var/list/data = ..()
 
 	var/current_ESMs = 0
@@ -189,7 +189,7 @@
 			current_money += loaded_item.get_item_credit_value()
 		else if(is_type_in_list(loaded_item, manipulator_plant_requirement.wanted_types))
 			current_plants++
-		
+
 	// Capacitor requirements /////////////////////////////////////////////////////////////////
 	data["current_ESMs"] = current_ESMs
 	data["current_energy"] = get_power()
@@ -223,7 +223,7 @@
 
 	return data
 
-/obj/machinery/part_fabricator/ui_static_data(mob/user)
+/obj/machinery/exp_part_fabricator/ui_static_data(mob/user)
 	var/list/data = ..()
 	data["capacitor_energy"] = capacitor_energy_requirement
 	data["matterbin_moles"] = matterbin_freon_moles_requirement
@@ -238,11 +238,11 @@
 	data["manipulator_temp"] = manipulator_temp_requirement
 	return data
 
-/obj/machinery/part_fabricator/ui_act(action, list/params)
+/obj/machinery/exp_part_fabricator/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
-	
+
 	switch(action)
 		if("tryPrint")
 			var/tab = params["tab"]
@@ -273,10 +273,10 @@
 		if("ejectPlants")
 			eject_type(manipulator_plant_requirement.wanted_types)
 			return TRUE
-		
+
 
 /// Returns the power of the powernet of the APC of the room we're in
-/obj/machinery/part_fabricator/proc/get_power()
+/obj/machinery/exp_part_fabricator/proc/get_power()
 	var/area/my_area = get_area(src)
 	if(!my_area)
 		return 0
@@ -285,7 +285,7 @@
 		return 0
 	return my_apc.terminal?.powernet?.avail
 
-/obj/machinery/part_fabricator/proc/eject_type(list/eject_types)
+/obj/machinery/exp_part_fabricator/proc/eject_type(list/eject_types)
 	if(!islist(eject_types))
 		eject_types = typecacheof(list(eject_types))
 	if(!eject_types.len)
@@ -294,11 +294,11 @@
 		if(is_type_in_typecache(item, eject_types))
 			eject_item(item)
 
-/obj/machinery/part_fabricator/proc/eject_item(atom/movable/item)
+/obj/machinery/exp_part_fabricator/proc/eject_item(atom/movable/item)
 	item.forceMove(get_step(drop_location(), WEST))
 	adjust_item_drop_location(item)
 
-/obj/machinery/part_fabricator/proc/try_print(tab)
+/obj/machinery/exp_part_fabricator/proc/try_print(tab)
 	if(!ISINTEGER(tab) || tab < FAB_CAPACITOR || tab > FAB_MANIPULATOR)
 		return FALSE
 	if(panel_open)
@@ -321,7 +321,7 @@
 	START_PROCESSING(SSobj, src)
 	return TRUE
 
-/obj/machinery/part_fabricator/proc/is_satisfied()
+/obj/machinery/exp_part_fabricator/proc/is_satisfied()
 	switch(printing)
 		if(FAB_CAPACITOR)
 			var/current_ESMs = 0
@@ -329,7 +329,7 @@
 				current_ESMs++
 			if(current_ESMs < 1)
 				return FALSE
-			
+
 			if(get_power() < capacitor_energy_requirement)
 				return FALSE
 			return TRUE
@@ -340,7 +340,7 @@
 				current_augurs++
 			if(current_augurs < 1)
 				return FALSE
-			
+
 			var/datum/gas_mixture/my_gas = return_air()
 			var/current_moles = my_gas.get_moles(/datum/gas/freon)
 			if(current_moles < matterbin_freon_moles_requirement)
@@ -355,7 +355,7 @@
 					return FALSE
 			if(!has_posi)
 				return FALSE
-			
+
 			for(var/datum/bounty/reagent/bounty in scanner_chemicals_requirement)
 				if(!reagents.has_reagent(bounty.wanted_reagent.type, bounty.required_volume))
 					return FALSE
@@ -391,10 +391,10 @@
 				return FALSE
 			return TRUE
 
-/obj/machinery/part_fabricator/process(delta_time)
+/obj/machinery/exp_part_fabricator/process(delta_time)
 	if(!printing)
 		return PROCESS_KILL
-	
+
 	production_progress += production_speed * delta_time
 
 	if(!is_satisfied())

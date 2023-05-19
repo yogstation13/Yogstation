@@ -1025,7 +1025,7 @@
 		/obj/item/stock_parts/capacitor = 2,
 		/obj/item/stack/sheet/glass = 2,
 		/obj/item/stack/cable_coil = 1)
-		
+
 /obj/item/circuitboard/machine/ai_core_display
 	name = "AI Core Display (Machine Board)"
 	icon_state = "science"
@@ -1061,7 +1061,7 @@
 /obj/item/circuitboard/machine/part_fabricator
 	name = "Experimental Part Fabricator (Machine Board)"
 	icon_state = "science"
-	build_path = /obj/machinery/part_fabricator
+	build_path = /obj/machinery/exp_part_fabricator
 	req_components = list(
 		/obj/item/stack/sheet/mineral/plastitanium = 10,
 		/obj/item/reagent_containers/glass/beaker = 2,
