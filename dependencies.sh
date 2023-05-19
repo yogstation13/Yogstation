@@ -4,7 +4,6 @@
 #Final authority on what's required to fully build the project
 
 # byond version
-# Extracted from the Dockerfile. Change by editing Dockerfile's FROM command.
 export BYOND_MAJOR=514
 export BYOND_MINOR=1589
 
