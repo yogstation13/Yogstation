@@ -1,3 +1,4 @@
+#define STAMINA_REGENERATION_COEFFICIENT 0.65 // How effective stamina regeneration is, with 1 being 100%
 
 /obj/item/bodypart
 	name = "limb"
@@ -211,7 +212,7 @@
 		else
 			for(var/dam_instance in stamina_cache)
 				if(world.time > dam_instance["expiration"])
-					heal_damage(0, 0, dam_instance["amount"], null, FALSE)
+					heal_damage(0, 0, dam_instance["amount"] * STAMINA_REGENERATION_COEFFICIENT, null, FALSE)
 					stamina_cache -= dam_instance
 					. |= BODYPART_LIFE_UPDATE_HEALTH
 
