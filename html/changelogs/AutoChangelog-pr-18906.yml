@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed donator posters being labeled as specific posters when they aren't"
