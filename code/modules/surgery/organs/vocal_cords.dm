@@ -225,7 +225,7 @@
 	var/static/regex/hallucinate_words = regex("see the truth|hallucinate|the truth is out there")
 	var/static/regex/wakeup_words = regex("wake up|awaken")
 	var/static/regex/heal_words = regex("live|heal|survive|mend|life|heroes never die|rest")
-	var/static/regex/hurt_words = regex("die|suffer|hurt|pain|death|kill|judgement|thy end is now") // THY END IS NOW
+	var/static/regex/hurt_words = regex("die|suffer|hurt|pain|death|kill|judgement|thy end is now|crush") // THY END IS NOW
 	var/static/regex/bleed_words = regex("bleed|blood")
 	var/static/regex/burn_words = regex("burn|ignite|fire|flame")
 	var/static/regex/hot_words = regex("heat|hot|hell")
