@@ -1,5 +1,6 @@
 GLOBAL_VAR(thebattlebus)
 GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
+GLOBAL_VAR(stormdamage)
 
 /datum/game_mode/fortnite
 	name = "battle royale"
@@ -18,7 +19,8 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	var/list/queued = list() //Who is queued to enter?
 	var/list/randomweathers = list("royale science", "royale medbay", "royale service", "royale cargo", "royale security", "royale engineering")
 	var/stage_interval = 2 MINUTES //Copied from Nich's homework. Storm shrinks every 2 minutes (changed for testing, don't forget to change back)
-	var/loot_interval = 1 MINUTES
+	var/loot_interval = 75 SECONDS //roughly the time between loot drops
+	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
 	var/borderstage = 0
 	var/weightcull = 5 //anything above this gets culled
 	var/finished = FALSE
@@ -27,6 +29,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 
 /datum/game_mode/fortnite/pre_setup()
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.areas //Assuming we've gotten this far, let's spawn the battle bus.
+	GLOB.stormdamage = 2
 	if(A)
 		var/turf/T = safepick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
 		new /obj/structure/battle_bus(T)
@@ -53,7 +56,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
-		virgin.current.status_flags |= GODMODE //to prevent space from hurting
+		virgin.current.apply_status_effect(STATUS_EFFECT_DODGING_STALWART) //to prevent space from hurting
 		ADD_TRAIT(virgin.current, TRAIT_NOHUNGER, "getthatbreadgamers") //so they don't need to worry about annoyingly running out of food
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
@@ -62,12 +65,14 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	if(!GLOB.battleroyale_players.len)
 		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
 
-	for(var/obj/machinery/door/airlock/W in GLOB.machines)//set all doors to all access
+	for(var/obj/machinery/door/W in GLOB.machines)//set all doors to all access
 		W.req_access = list()
+		W.req_one_access = list()
+		W.locked = FALSE //no bolted either
 	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_LOOP)//literally just keep calling it
+	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 	return ..()
 
 /datum/game_mode/fortnite/check_win()
@@ -142,10 +147,14 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
 
+
 	if(borderstage)//doesn't cull during round start
 		ItemCull()
 
 	borderstage++
+
+	if(borderstage % 2 == 0) //so it scales, but not too hard
+		GLOB.stormdamage *= 1.5
 
 	if(borderstage <= 9)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
@@ -172,7 +181,9 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 		message_admins("battle royale loot drop lists have been depleted somehow, PANIC")
 
 /datum/game_mode/fortnite/proc/loot_drop()
-	loot_spawn(rand(1, 2))
+	loot_spawn(1)
+	var/nextdelay = loot_interval + (rand(1, loot_deviation * 2) - loot_deviation)
+	addtimer(CALLBACK(src, PROC_REF(loot_drop)), nextdelay)//literally just keep calling it
 
 /datum/game_mode/fortnite/proc/loot_spawn(amount = 3)
 	for(var/obj/effect/landmark/event_spawn/es in GLOB.landmarks_list)
@@ -199,18 +210,20 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	O.owner = owner
 	objectives += O
 	var/mob/living/carbon/human/tfue = owner.current
+	for(var/obj/item/I in tfue.get_equipped_items(TRUE))//remove all clothes before giving the antag clothes
+		qdel(I)
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
-	START_PROCESSING(SSprocessing, src)
 
-/datum/antagonist/battleroyale/on_removal()
+/mob/living/carbon/human/Life()
 	. = ..()
-	STOP_PROCESSING(SSprocessing, src)
+	if(is_battleroyale(src))
+		var/datum/antagonist/battleroyale/gamer = mind.has_antag_datum(/datum/antagonist/battleroyale)
+		gamer.gamer_life()
 
-/datum/antagonist/battleroyale/process(delta_time)
-	. = ..()
+/datum/antagonist/battleroyale/proc/gamer_life()
 	var/mob/living/carbon/human/tfue = owner.current
-	if(tfue && isspaceturf(get_turf(tfue)))//to account for not being able to put the storm on space turf tiles (if someone reviewing this knows how, please tell me)
-		tfue.adjustFireLoss(4) //no hiding in space
+	if(tfue && isspaceturf(tfue.loc))
+		tfue.adjustFireLoss(GLOB.stormdamage, TRUE, TRUE) //no hiding in space
 
 /datum/antagonist/battleroyale/greet()
 	SEND_SOUND(owner.current, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
@@ -253,6 +266,7 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 	START_PROCESSING(SSfastprocess, src)
 	GLOB.thebattlebus = src //So the GM code knows where to move people to!
 	starter_z = z
+	addtimer(CALLBACK(src, PROC_REF(cleanup)), 2 MINUTES)
 
 /obj/structure/battle_bus/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
@@ -265,7 +279,6 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 /obj/structure/battle_bus/proc/exit(var/mob/living/carbon/human/Ltaker)
 	Ltaker.forceMove(get_turf(src))
 	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "virginity")
-	Ltaker.status_flags &= ~GODMODE //to make shit hurt again
 	Ltaker.update_sight()
 	SEND_SOUND(Ltaker, 'yogstation/sound/effects/battleroyale/exitbus.ogg')
 
@@ -277,8 +290,10 @@ GLOBAL_LIST_EMPTY(battleroyale_players) //reduce iteration cost
 			var/obj/effect/landmark/observer_start/L = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
 			M.forceMove(get_turf(L))
 		qdel(src) // Thank you for your service
-	if(!contents)//in case Z-level loops
-		QDEL_IN(src, 10 SECONDS)
+
+/obj/structure/battle_bus/proc/cleanup()
+	if(!QDELETED(src))
+		qdel(src)
 
 /obj/structure/battle_bus/CanPass(atom/movable/mover, turf/target)
 	SHOULD_CALL_PARENT(FALSE)
