@@ -1,7 +1,7 @@
 #define IPCMARTIAL "ipcmartialtrait"
-#define GUN_HAND "GHG"
+#define GUN_HAND "HG"
 #define POCKET_PISTOL "GG"
-#define BLOOD_BURST "HHH"
+#define BLOOD_BURST "HH"
 #define MAX_DASH_DIST 4
 #define DASH_SPEED 2
 
@@ -13,6 +13,7 @@
 	reroute_deflection = TRUE
 	help_verb = /mob/living/carbon/human/proc/ultra_violence_help
 	///used to keep track of the dash stuff
+	var/recalibration = /mob/living/carbon/human/proc/violence_recalibration
 	var/dashing = FALSE
 	var/dashes = 3
 	var/dash_timer = null
@@ -27,7 +28,7 @@
 	if(findtext(streak, POCKET_PISTOL))
 		streak = ""
 		pocket_pistol(A,D)
-		speed_boost(A, 2 SECONDS, "pocketpistol")
+		speed_boost(A, -0.2, "pocketpistol")
 		return TRUE
 
 	if(A == D) //you can pull your gun out by "grabbing" yourself
@@ -36,13 +37,13 @@
 	if(findtext(streak, BLOOD_BURST))
 		streak = ""
 		blood_burst(A,D)
-		speed_boost(A, 6 SECONDS, "bloodburst")
+		speed_boost(A, -0.5, "bloodburst")
 		return TRUE
 
 	if(findtext(streak, GUN_HAND))
 		streak = ""
 		gun_hand(A, D)
-		speed_boost(A, 6 SECONDS, "gunhand")
+		speed_boost(A, -0.5, "gunhand")
 		return TRUE
 
 /datum/martial_art/ultra_violence/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -60,13 +61,18 @@
 	check_streak(A,D)
 	return FALSE
 
-/datum/martial_art/ultra_violence/proc/speed_boost(mob/living/carbon/human/A, duration, tag)
-	A.add_movespeed_modifier(tag, update=TRUE, priority=101, multiplicative_slowdown = -0.5, blacklisted_movetypes=(FLOATING))
-	addtimer(CALLBACK(src, PROC_REF(remove_boost), A, tag), duration, TIMER_UNIQUE|TIMER_OVERRIDE)
+/datum/martial_art/ultra_violence/proc/speed_boost(mob/living/carbon/human/A, strength, tag)
+	A.add_movespeed_modifier(tag, update=TRUE, priority=101, multiplicative_slowdown = strength, blacklisted_movetypes=(FLOATING))
+	addtimer(CALLBACK(src, PROC_REF(remove_boost), A, tag), 6 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /datum/martial_art/ultra_violence/proc/remove_boost(mob/living/carbon/human/A, tag)
 	A.remove_movespeed_modifier(tag)
 
+/*---------------------------------------------------------------
+
+	start of blood burst section 
+
+---------------------------------------------------------------*/
 /datum/martial_art/ultra_violence/proc/blood_burst(mob/living/carbon/human/A, mob/living/carbon/human/D)
 
 	A.add_mob_blood(D)
@@ -80,13 +86,18 @@
 		D.bleed(130)
 		D.death()
 		//bonus healing to incentivise execution
-		var/heal_amt = 80 //heals brute first, then burn with any excess
+		var/heal_amt = 40 //heals brute first, then burn with any excess
 		var/brute_before = A.getBruteLoss()
 		A.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
 		heal_amt -= max(brute_before - A.getBruteLoss(), 0)
 		A.adjustFireLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
 		new /obj/effect/gibspawner/generic(D.loc)
 
+/*---------------------------------------------------------------
+
+	end of blood burst section 
+
+---------------------------------------------------------------*/
 /*---------------------------------------------------------------
 
 	start of pocket pistol section 
@@ -120,11 +131,12 @@
 	projectile_type = /obj/item/projectile/bullet/ipcmartial
 	click_cooldown_override = 0.1 //this gun shoots faster
 
-/obj/item/projectile/bullet/ipcmartial	//one shot, make it count
+/obj/item/projectile/bullet/ipcmartial //literally just default 357 with mob piercing
 	name = ".357 piercer bullet"
 	damage = 40
-	armour_penetration = 40
-	wound_bonus = -30	//more wounds
+	armour_penetration = 15
+	wound_bonus = -45
+	wound_falloff_tile = -2.5
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
@@ -165,30 +177,17 @@
 ---------------------------------------------------------------*/
 
 /datum/martial_art/ultra_violence/proc/gun_hand(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	var/obj/item/ammo_casing/caseless/ipcmartial/ammo = new /obj/item/ammo_casing/caseless/ipcmartial()
+	var/obj/item/ammo_casing/a357/ironfeather/ammo = new /obj/item/ammo_casing/a357/ironfeather()
 	A.put_in_active_hand(ammo)
 	ammo.fire_casing(D, A)
+	if(!QDELETED(ammo))
+		ammo.moveToNullspace()//get rid of the spent casing
+		QDEL_NULL(ammo)
+
 	playsound(A, "sound/weapons/shotgunshot.ogg", 90, FALSE)
 	to_chat(A, span_notice("You shoot [D] with your gun hand."))
+	D.add_splatter_floor(D.loc, TRUE)
 	streak = ""
-
-/obj/item/ammo_casing/caseless/ipcmartial
-	projectile_type = /obj/item/projectile/bullet/pellet/ipcmartial
-	pellets = 6
-	variance = 15
-
-/obj/item/projectile/bullet/pellet/ipcmartial //one shot, make it count
-	name = "violence buckshot pellet"
-	damage = 16 //don't let them point blank you
-	wound_bonus = 5
-	bare_wound_bonus = 5
-	wound_falloff_tile = -1 // less wound falloff
-
-/obj/item/projectile/bullet/pellet/ipcmartial/on_hit(atom/target, blocked)//the real reason i made a whole new ammo type
-	. = ..()
-	if(ishuman(target) && !blocked)
-		var/mob/living/carbon/human/H = target
-		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
 
 /*---------------------------------------------------------------
 
@@ -266,9 +265,20 @@
 	
 	to_chat(usr, "[span_notice("Disarm Intent")]: Dash in a direction granting brief invulnerability.")
 	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for three shots. Target must be living, but can be yourself.")
-	to_chat(usr, "[span_notice("Gun Hand")]: Grab Harm Grab. Shoots the target with the shotgun in your hand.")
-	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere.")
-	to_chat(usr, span_notice("Completing any combo will give a speed buff with a duration scaling based on combo difficulty."))
+	to_chat(usr, "[span_notice("Gun Hand")]: Harm Grab. Shoots the target with the shotgun in your hand.")
+	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere.")
+	to_chat(usr, span_notice("Completing any combo will give a speed buff with the strength of the Pocket Revolver speed boost being weaker."))
+	to_chat(usr, span_notice("Should your dash cease functioning, use the 'Reinitialize Module' function."))
+
+/mob/living/carbon/human/proc/violence_recalibration()
+	set name = "Reinitialize Module"
+	set desc = "Turn your Ultra Violence module off and on again to fix problems."
+	set category = "Ultra Violence"
+	var/list/combined_msg = list()
+	combined_msg +=  "<b><i>You reboot your Ultra Violence module to remove any runtime errors.</i></b>"
+	to_chat(usr, examine_block(combined_msg.Join("\n")))
+
+	usr.click_intercept = usr.mind.martial_art
 
 /datum/martial_art/ultra_violence/teach(mob/living/carbon/human/H, make_temporary=0)//brace your eyes for this mess of buffs
 	..()
@@ -277,8 +287,6 @@
 	H.dna.species.punchdamagehigh += 4 //no fancy comboes, just punches
 	H.dna.species.punchstunthreshold += 50 //disables punch stuns
 	H.dna.species.staminamod = 0 //my god, why must you make me add all these additional things, stop trying to disable them, just kill them
-	H.dna.species.speedmod -= 0.1
-	H.update_movespeed(TRUE)
 	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)//instead of giving them more health, just remove crit entirely, fits better thematically too
 	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
@@ -287,6 +295,7 @@
 	ADD_TRAIT(H, TRAIT_NODISMEMBER, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, IPCMARTIAL)///mainly so emps don't end you instantly, they still do damage though
 	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
+	add_verb(H, recalibration)
 	usr.click_intercept = src //probably breaks something, don't know what though
 	H.dna.species.GiveSpeciesFlight(H)//because... c'mon
 
@@ -297,8 +306,6 @@
 	H.dna.species.punchdamagehigh -= 4 
 	H.dna.species.punchstunthreshold -= 50
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
-	H.dna.species.speedmod += 0.1
-	H.update_movespeed(TRUE)
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
@@ -308,6 +315,7 @@
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, IPCMARTIAL)
 	deltimer(dash_timer)
 	H.clear_alert("dash_charge")
+	remove_verb(H, recalibration)
 	usr.click_intercept = null //un-breaks the thing that i don't know is broken
 	//not likely they'll lose the martial art i guess, so i guess they can keep the wings since i don't know how to remove them
 
