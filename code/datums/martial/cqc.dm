@@ -264,8 +264,8 @@
 			return TRUE
 		log_combat(A, D, "began to chokehold(CQC)")
 		D.visible_message(
-			span_danger(isipc(D) ? "[A] attempts to deactivate [D]!" : "[A] puts [D] into a chokehold!"),
-			span_userdanger(isipc(D) ? "[A] attempts to deactivate you!" : "[A] puts you into a chokehold!")
+			span_danger("[isipc(D) ? "[A] attempts to deactivate [D]!" : "[A] puts [D] into a chokehold!"]"),
+			span_userdanger("[isipc(D) ? "[A] attempts to deactivate you!" : "[A] puts you into a chokehold!"]")
 		)
 		if(handle_chokehold(A, D))
 			D.Unconscious(40 SECONDS)

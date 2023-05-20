@@ -242,6 +242,7 @@
 		//Lower chance of someone needing to do an additional objective, but getting hijack instead of DaGD
 		if(prob(PROB_ACTUAL_TRAITOR)) //20%
 			company = /datum/corporation/gorlex //Should not double wammy the corporate introduction, I hope
+			name = "Gorlex Marauders Exile"
 			owner.special_role = TRAITOR_AGENT_ROLE
 			special_role = TRAITOR_AGENT_SROLE
 			marauder = TRUE

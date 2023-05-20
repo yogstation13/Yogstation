@@ -34,7 +34,6 @@
 	if(!msg)
 		message_admins("[key_name_admin(src)] decided not to answer [ADMIN_LOOKUPFLW(M)]'s prayer")
 		return
-	msg = to_utf8(msg, src)
 	if(usr)
 		if (usr.client)
 			if(usr.client.holder)
@@ -75,7 +74,6 @@
 	if(!input)
 		message_admins("[key_name_admin(src)] decided not to answer [key_name_admin(H)]'s [sender] request.")
 		return
-	input = to_utf8(input, src)
 
 	log_directed_talk(mob, H, input, LOG_ADMIN, "reply")
 	message_admins("[key_name_admin(src)] replied to [key_name_admin(H)]'s [sender] message with: \"[input]\"")
@@ -140,7 +138,6 @@
 
 	if (!msg)
 		return
-	msg = to_utf8(msg, src)
 	to_chat(world, "[msg]")
 	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")
 	message_admins(span_adminnotice("[key_name_admin(usr)] Sent a global narrate"))
@@ -164,8 +161,6 @@
 	if( !msg )
 		return
 
-	msg = to_utf8(msg, src)
-
 	to_chat(M, msg)
 	log_admin("DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]")
 	msg = "DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]" // yogs - Yog Tickets
@@ -187,7 +182,6 @@
 	var/msg = input("Message:", text("Enter the text you wish to appear to everyone within view:")) as text|null
 	if (!msg)
 		return
-	msg = to_utf8(msg, src)
 	for(var/mob/M in view(range,A))
 		to_chat(M, msg)
 

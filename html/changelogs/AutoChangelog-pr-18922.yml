@@ -1,0 +1,6 @@
+author: "dcxgame"
+delete-after: true 
+changes: 
+  - rscadd: "added soccer to the game"
+  - imageadd: "added sprites for a soccer ball and goal net"
+  - mapping: "new holodeck room to play soccer in"
