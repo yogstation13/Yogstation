@@ -649,6 +649,7 @@
 #include "code\datums\martial\psychotic_brawl.dm"
 #include "code\datums\martial\sleeping_carp.dm"
 #include "code\datums\martial\ultra_violence.dm"
+#include "code\datums\martial\worldshaker.dm"
 #include "code\datums\martial\wrestling.dm"
 #include "code\datums\materials\_material.dm"
 #include "code\datums\materials\basemats.dm"

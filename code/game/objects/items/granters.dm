@@ -10,9 +10,11 @@
 	var/reading = FALSE //sanity
 	var/oneuse = TRUE //default this is true, but admins can var this to 0 if we wanna all have a pass around of the rod form book
 	var/used = FALSE //only really matters if oneuse but it might be nice to know if someone's used it for admin investigations perhaps
+	var/sound = TRUE //to turn off the page turn sound if desired
 
 /obj/item/book/granter/proc/turn_page(mob/user)
-	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, 1)
+	if(sound)
+		playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, 1)
 	if(do_after(user, 5 SECONDS, user))
 		if(remarks.len && ordered)
 			to_chat(user, span_notice("[popleft(remarks)]"))
@@ -342,7 +344,8 @@
 	return FALSE
 
 /obj/item/book/granter/martial/on_reading_start(mob/user)
-	to_chat(user, span_notice("You start reading about [martialname]..."))
+	if(sound)
+		to_chat(user, span_notice("You start reading about [martialname]..."))
 
 /obj/item/book/granter/martial/on_reading_finished(mob/user)
 	to_chat(user, "[greet]")
@@ -522,6 +525,32 @@
 	if(oneuse == TRUE)
 		desc = "It's a damaged upgrade module."
 		name = "damaged board"
+
+/obj/item/book/granter/martial/worldshaker
+	martial = /datum/martial_art/worldshaker
+	name = "prototype worldshaker compound"
+	martialname = "Worldshaker"
+	desc = "A foul concoction made by reverse engineering chemicals compounds found in an ancient Vxtrin military outpost."
+	greet = "<span class='sciradio'>You feel weirdly good, good enough to shake the world to it's very core. \
+	Your plates feel like they are growing past their normal limits. The protection will come in handy, but it will eventually slow you down.\
+	You can think about all the things you are now capable of by using the Worldshaker tab.</span>"
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "flaming_moe"
+	remarks = list("Is... it bubbling?", "What's that gross residue on the sides of the vial?", "Am I really considering drinking this?", "I'm pretty sure I just saw a dead fly dissolve in it.", "This is temporary, right?", "I sure hope someone's tested this.")
+	sound = FALSE //not a book, it's a vial
+
+/obj/item/book/granter/martial/worldshaker/already_known(mob/user)
+	if(!ispreternis(user))
+		to_chat(user, span_warning("There is no way in hell i'm drinking this."))
+		return TRUE
+	return ..()
+
+/obj/item/book/granter/martial/worldshaker/onlearned(mob/living/carbon/user)
+	..()
+	if(oneuse == TRUE)
+		var/obj/item/reagent_containers/glass/bottle/vial/empty = new()
+		user.put_in_active_hand(empty)
+		qdel(src)
 
 // I did not include mushpunch's grant, it is not a book and the item does it just fine.
 
