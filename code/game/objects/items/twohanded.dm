@@ -1353,7 +1353,7 @@ Broom
 #define BROOM_PUSH_LIMIT 20
 /obj/item/twohanded/broom
 	name = "broom"
-	desc = "This is my BROOMSTICK! It can be used manually or braced with two hands to sweep items as you move. It has a telescopic handle for compact storage."
+	desc = "This is my BROOMSTICK! It can be used manually or braced with two hands to sweep items as you move."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "broom0"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
@@ -1362,9 +1362,8 @@ Broom
 	throwforce = 10
 	throw_speed = 3
 	throw_range = 7
-	w_class = WEIGHT_CLASS_NORMAL
-	force = 8
-	force_wielded = 12
+	w_class = WEIGHT_CLASS_BULKY
+	force_wielded = 4
 	attack_verb = list("swept", "brushed off", "bludgeoned", "whacked")
 	resistance_flags = FLAMMABLE
 
@@ -1376,8 +1375,8 @@ Broom
 	if(!wielded)
 		return
 
-	to_chat(user, "<span class='notice'>You brace the [src] against the ground in a firm sweeping stance.</span>")
-	RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, .proc/sweep)
+	to_chat(user, span_notice("You brace the [src] against the ground in a firm sweeping stance."))
+	RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(sweep))
 
 /obj/item/twohanded/broom/unwield(mob/user)
 	. = ..()
@@ -1391,7 +1390,7 @@ Broom
 
 /obj/item/twohanded/broom/proc/sweep(mob/user, atom/A)
 
-	var/turf/current_item_loc = isturf(A) ? A : A.loc
+	var/turf/current_item_loc = isturf(A) ? A : get_turf(A)
 	if (!isturf(current_item_loc))
 		return
 	var/turf/new_item_loc = get_step(current_item_loc, user.dir)
@@ -1409,7 +1408,7 @@ Broom
 	if (i > 1)
 		if (target_bin)
 			target_bin.update_icon()
-			to_chat(user, "<span class='notice'>You sweep the pile of garbage into [target_bin].</span>")
+			to_chat(user, span_notice("You sweep the pile of garbage into [target_bin]."))
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 30, TRUE, -1)
 
 /obj/item/twohanded/broom/proc/janicart_insert(mob/user, obj/structure/janitorialcart/J) //bless you whoever fixes this copypasta
@@ -1421,5 +1420,5 @@ Broom
 	name = "robotic push broom"
 
 /obj/item/twohanded/broom/cyborg/janicart_insert(mob/user, obj/structure/janitorialcart/J)
-	to_chat(user, "<span class='notice'>You cannot place your [src] into the [J]</span>")
+	to_chat(user, span_notice("You cannot place your [src] into the [J]"))
 	return FALSE

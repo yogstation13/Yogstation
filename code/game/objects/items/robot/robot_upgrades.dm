@@ -895,20 +895,18 @@
 	module_flags = BORG_MODULE_JANITOR
 
 /obj/item/borg/upgrade/broomer/action(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (!.)
+	if (!..())
 		return
 	var/obj/item/twohanded/broom/cyborg/BR = locate() in R.module.modules
 	if (BR)
-		to_chat(user, "<span class='warning'>This janiborg is already equipped with an experimental broom!</span>")
+		to_chat(user, span_warning("This janiborg is already equipped with an experimental broom!"))
 		return FALSE
 	BR = new(R.module)
 	R.module.basic_modules += BR
 	R.module.add_module(BR, FALSE, TRUE)
 
 /obj/item/borg/upgrade/broomer/deactivate(mob/living/silicon/robot/R, user = usr)
-	. = ..()
-	if (!.)
+	if (!..())
 		return
 	var/obj/item/twohanded/broom/cyborg/BR = locate() in R.module.modules
 	if (BR)
