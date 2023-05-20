@@ -56,7 +56,9 @@
 		to_chat(M,span_warning("You feel more tired than you usually do, perhaps if you rest your eyes for a bit..."))
 		M.adjustStaminaLoss(-100, TRUE)
 		M.Sleeping(10 SECONDS)
-	M.clear_stamina_regen()
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.clear_stamina_regen()
 	..()
 	. = TRUE
 
