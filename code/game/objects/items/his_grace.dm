@@ -47,6 +47,14 @@
 	else
 		..()
 
+/obj/item/his_grace/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(!QDELETED(A) && (istype(A, /obj/machinery/door) || istype(A, /obj/structure/door_assembly)))
+		var/obj/O = A
+		O.take_damage(force*2, BRUTE, MELEE, FALSE, null, armour_penetration)
+
 /obj/item/his_grace/CtrlClick(mob/user) //you can't pull his grace
 	return
 
