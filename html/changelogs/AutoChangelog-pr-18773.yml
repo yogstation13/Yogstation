@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "EMPs remove a small % of current charge rather than a flat amount"
