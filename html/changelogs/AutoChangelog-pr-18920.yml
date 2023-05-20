@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Living Hearts now display their target when examined by a ghost"
