@@ -3478,7 +3478,7 @@
 	frequency = 1442;
 	name = "Nitrogen Supply Control";
 	output_tag = "syndie_lavaland_n2_out";
-	sensors = list("syndie_lavaland_n2_sensor" = "Tank")
+	sensors = list("syndie_lavaland_n2_sensor"="Tank")
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red,
@@ -3929,7 +3929,7 @@
 	frequency = 1442;
 	name = "Oxygen Supply Control";
 	output_tag = "syndie_lavaland_o2_out";
-	sensors = list("syndie_lavaland_o2_sensor" = "Tank")
+	sensors = list("syndie_lavaland_o2_sensor"="Tank")
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -4262,7 +4262,7 @@
 	frequency = 1442;
 	name = "Toxins Supply Control";
 	output_tag = "syndie_lavaland_tox_out";
-	sensors = list("syndie_lavaland_tox_sensor" = "Tank")
+	sensors = list("syndie_lavaland_tox_sensor"="Tank")
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -5520,7 +5520,7 @@
 "Ay" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/syndichem{
-	products = list(/obj/item/stack/cable_coil/random = 20, /obj/item/assembly/igniter = 80, /obj/item/assembly/prox_sensor = 20, /obj/item/assembly/signaler = 20, /obj/item/assembly/timer = 20, /obj/item/assembly/voice = 20, /obj/item/assembly/health = 20, /obj/item/assembly/infra = 20, /obj/item/grenade/chem_grenade = 20, /obj/item/grenade/chem_grenade/large = 20, /obj/item/grenade/chem_grenade/pyro = 20, /obj/item/grenade/chem_grenade/cryo = 20, /obj/item/grenade/chem_grenade/adv_release = 20, /obj/item/reagent_containers/food/drinks/bottle/holywater = 1)
+	products = list(/obj/item/stack/cable_coil/random=20,/obj/item/assembly/igniter=80,/obj/item/assembly/prox_sensor=20,/obj/item/assembly/signaler=20,/obj/item/assembly/timer=20,/obj/item/assembly/voice=20,/obj/item/assembly/health=20,/obj/item/assembly/infra=20,/obj/item/grenade/chem_grenade=20,/obj/item/grenade/chem_grenade/large=20,/obj/item/grenade/chem_grenade/pyro=20,/obj/item/grenade/chem_grenade/cryo=20,/obj/item/grenade/chem_grenade/adv_release=20,/obj/item/reagent_containers/food/drinks/bottle/holywater=1)
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 6
