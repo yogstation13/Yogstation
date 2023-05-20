@@ -5,7 +5,7 @@
 	backstab_multiplier = mult
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/on_attack)
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(on_attack))
 
 /datum/component/backstabs/proc/on_attack(obj/item/source, mob/living/target, mob/living/user)
 	// No bypassing pacifism nerd

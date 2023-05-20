@@ -529,7 +529,7 @@
 		to_chat(victim, span_userdanger("An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."))
 
 	leaving = TRUE
-	if(do_after(src, 10 SECONDS, victim, extra_checks = CALLBACK(src, .proc/is_leaving), stayStill = FALSE))
+	if(do_after(src, 10 SECONDS, victim, extra_checks = CALLBACK(src, PROC_REF(is_leaving)), stayStill = FALSE))
 		release_host()
 
 /mob/living/simple_animal/horror/proc/release_host()
@@ -721,7 +721,7 @@
 	var/delay = 20 SECONDS
 	if(has_upgrade("fast_control"))
 		delay -= 12 SECONDS
-	if(do_after(src, delay, victim, extra_checks = CALLBACK(src, .proc/is_bonding), stayStill = FALSE))
+	if(do_after(src, delay, victim, extra_checks = CALLBACK(src, PROC_REF(is_bonding)), stayStill = FALSE))
 		assume_control()
 
 /mob/living/simple_animal/horror/proc/assume_control()
@@ -736,7 +736,7 @@
 		bonding = FALSE
 		return
 	else
-		RegisterSignal(victim, COMSIG_MOB_APPLY_DAMAGE, .proc/hit_detatch)
+		RegisterSignal(victim, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(hit_detatch))
 		log_game("[src]/([src.ckey]) assumed control of [victim]/([victim.ckey] with eldritch powers.")
 		to_chat(src, span_warning("You plunge your probosci deep into the cortex of the host brain, interfacing directly with [victim.p_their()] nervous system.")) // Yogs -- pronouns
 		to_chat(victim, span_userdanger("You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours."))

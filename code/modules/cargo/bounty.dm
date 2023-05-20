@@ -1,4 +1,5 @@
 GLOBAL_LIST_EMPTY(bounties_list)
+GLOBAL_LIST_EMPTY(bounties_list_syndicate)
 
 /datum/bounty
 	var/name
@@ -6,6 +7,10 @@ GLOBAL_LIST_EMPTY(bounties_list)
 	var/reward = 1000 // In credits.
 	var/claimed = FALSE
 	var/high_priority = FALSE
+
+//SYNDICATE BOUNTY
+/datum/bounty/syndicate
+
 
 // Displayed on bounty UI screen.
 /datum/bounty/proc/completion_string()
@@ -53,16 +58,19 @@ GLOBAL_LIST_EMPTY(bounties_list)
 /proc/bounty_ship_item_and_contents(atom/movable/AM, dry_run=FALSE)
 	if(!GLOB.bounties_list.len)
 		setup_bounties()
+	if(!GLOB.bounties_list_syndicate.len)
+		setup_syndicate_bounties()
 
 	var/list/matched_one = FALSE
 	for(var/thing in reverseRange(AM.GetAllContents()))
 		var/matched_this = FALSE
-		for(var/datum/bounty/B in GLOB.bounties_list)
-			if(B.applies_to(thing))
-				matched_one = TRUE
-				matched_this = TRUE
-				if(!dry_run)
-					B.ship(thing)
+		for(var/list/i in list(GLOB.bounties_list,GLOB.bounties_list_syndicate))
+			for(var/datum/bounty/B in i)
+				if(B.applies_to(thing))
+					matched_one = TRUE
+					matched_this = TRUE
+					if(!dry_run)
+						B.ship(thing)
 		if(!dry_run && matched_this)
 			qdel(thing)
 	return matched_one
@@ -195,6 +203,23 @@ GLOBAL_LIST_EMPTY(bounties_list)
 
 	for(var/low_priority_bounty in low_priority_strict_type_list)
 		try_add_bounty(new low_priority_bounty)
+
+/proc/setup_syndicate_bounties() //Much simpler as we're only picking from one pool of bounties
+	for(var/i in 0 to 5)
+		var/pick = pick(subtypesof(/datum/bounty/item/syndicate))
+		if(!(try_add_syndie_bounty(new pick)))
+			i -= 1
+		
+
+/proc/try_add_syndie_bounty(datum/bounty/new_bounty)
+	if(!new_bounty || !new_bounty.name || !new_bounty.description)
+		return FALSE
+	for(var/i in GLOB.bounties_list_syndicate)
+		var/datum/bounty/B = i
+		if(!B.compatible_with(new_bounty) || !new_bounty.compatible_with(B))
+			return FALSE
+	GLOB.bounties_list_syndicate += new_bounty
+	return TRUE
 
 /proc/completed_bounty_count()
 	var/count = 0

@@ -91,7 +91,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	saved_screen = C.dna.features["ipc_screen"]
 	C.dna.features["ipc_screen"] = "BSOD"
 	C.update_body()
-	addtimer(CALLBACK(src, .proc/post_death, C), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(post_death), C), 5 SECONDS)
 
 /datum/species/ipc/proc/post_death(mob/living/carbon/C)
 	if(C.stat < DEAD)
@@ -210,7 +210,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
 	H.update_body()
-	addtimer(CALLBACK(src, .proc/afterrevive, H), 0)
+	addtimer(CALLBACK(src, PROC_REF(afterrevive), H), 0)
 	return
 
 /datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)
@@ -249,11 +249,15 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 	if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))//ipc martial art blood heal check
 		if(H.blood_in_hands > 0 || H.wash(CLEAN_TYPE_BLOOD))
-			H.blood_in_hands = 0
-			to_chat(H,"You absorb the blood covering you to heal.")
-			H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
-			H.adjustBruteLoss(-20, FALSE, FALSE, BODYPART_ANY)//getting covered in blood isn't actually that common
-			H.adjustFireLoss(-20, FALSE, FALSE, BODYPART_ANY)
+      H.blood_in_hands = 0
+      H.wash(CLEAN_TYPE_BLOOD)
+      to_chat(H,"You absorb the blood covering you to heal.")
+      H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
+      var/heal_amt = 30 //heals brute first, then burn with any excess
+      var/brute_before = H.getBruteLoss()
+      H.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
+      heal_amt -= max(brute_before - H.getBruteLoss(), 0)
+      H.adjustFireLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
 
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
@@ -310,14 +314,14 @@ ipc martial arts stuff
 			add_empproof(H)
 			throw_lightning(H)
 		else//if just getting hit
-			addtimer(CALLBACK(src, .proc/add_empproof, H), 1, TIMER_UNIQUE)
-		addtimer(CALLBACK(src, .proc/remove_empproof, H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+			addtimer(CALLBACK(src, PROC_REF(add_empproof), H), 1, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(remove_empproof), H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
 	else if(severity == EMP_HEAVY)
 		H.emote("warn") // *chuckles* i'm in danger!
 
 /datum/species/ipc/proc/throw_lightning(mob/living/carbon/human/H)
 	siemens_coeff = 0
-	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
+	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE)
 	siemens_coeff = initial(siemens_coeff)
 
 /datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)
