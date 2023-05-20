@@ -4,11 +4,11 @@
 #define ALMOST_DETONATE_COMBO "PD" 	//Sets streak to "Q"
 #define PRE_DETONATE_COMBO "HH" 	//Sets streak to "P"
 
-#define LIFEFORCE_TRADE_COMBO "MG" 
+#define LIFEFORCE_TRADE_COMBO "MG"
 #define ALMOST_LIFEFORCE_TRADE_COMBO "LD" 	//Sets streak to "M"
 #define PRE_LIFEFORCE_TRADE_COMBO "DG" 		//Sets streak to "L"
 
-#define IMMOLATE_COMBO "JG" 
+#define IMMOLATE_COMBO "JG"
 #define ALMOST_IMMOLATE_COMBO "ID"	//Sets streak to "J"
 #define PRE_IMMOLATE_COMBO "DH"  	//Sets strak to "I"
 
@@ -57,19 +57,19 @@
 	add_to_streak("D",D)
 	if(check_streak(A,D))
 		return TRUE
-	return FALSE  
+	return FALSE
 
 /datum/martial_art/explosive_fist/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
 	if(findtext(streak, EXPLOSIVE_DISARM_COMBO))
-		streak = "" 
+		streak = ""
 		explosive_disarm(A,D)
 		return TRUE
 	if(findtext(streak, DETONATE_COMBO))	// End Detonate Chain
 		streak = ""
 		detonate(A,D)
-		return TRUE	
+		return TRUE
 	if(findtext(streak, ALMOST_DETONATE_COMBO))
 		streak = "Q"	//Q comes after P
 		almost_detonate(A,D)
@@ -131,7 +131,7 @@
 	explosion(get_turf(D), -1, 0, 2, 0, 0, 2)
 	D.IgniteMob()
 	playsound(D, 'sound/effects/explosion1.ogg', 50, TRUE, -1)
-	
+
 	var/obj/item/bodypart/affecting = A.get_bodypart(BODY_ZONE_CHEST)
 	var/armor_block = A.run_armor_check(affecting, BOMB)
 	A.apply_damage(A.get_punchdamagehigh() * 1.5 + 4.5, BRUTE, BODY_ZONE_CHEST, armor_block) 	//15 brute (vs bomb)
@@ -151,7 +151,7 @@
 	D.apply_damage(damage_to_deal + 10, STAMINA, selected_zone, armor_block) 	//Always does at least 10
 
 	D.visible_message(span_danger("[A] activates [D]!"), \
-					span_userdanger("[A] activates you!")) 
+					span_userdanger("[A] activates you!"))
 	log_combat(A, D, "activates(Explosive Fist)")
 	D.adjust_fire_stacks(4)
 
@@ -168,7 +168,7 @@
 	D.apply_damage(A.get_punchdamagehigh() + 5, BURN, selected_zone, burn_block) 	//12 burn (vs bomb armor)
 	D.adjust_fire_stacks(2)
 	D.visible_message(span_danger("[A] primes [D]!"), \
-					span_userdanger("[A] primes you!"))		
+					span_userdanger("[A] primes you!"))
 	log_combat(A, D, "primes(Explosive Fist)")
 
 /datum/martial_art/explosive_fist/proc/lifeforce_trade(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -188,11 +188,11 @@
 		var/obj/item/bodypart/affecting_p = A.get_bodypart(BODY_ZONE_HEAD)
 		var/brute_block_p = A.run_armor_check(affecting_p, MELEE)
 		var/burn_block_p = A.run_armor_check(affecting_p, BOMB)
-		A.apply_damage(5, BRUTE, BODY_ZONE_HEAD, brute_block_p) 
-		A.apply_damage(5, BURN, BODY_ZONE_HEAD, burn_block_p) 
+		A.apply_damage(5, BRUTE, BODY_ZONE_HEAD, brute_block_p)
+		A.apply_damage(5, BURN, BODY_ZONE_HEAD, burn_block_p)
 
 		D.visible_message(span_danger("[A] headbutts [D]!"), \
-						span_userdanger("[A] headbutts you!"))		
+						span_userdanger("[A] headbutts you!"))
 		log_combat(A, D, "headbutts(Explosive Fist)")
 		streak = ""
 	else
@@ -201,7 +201,7 @@
 		if(!(A.pulling == D))
 			D.grabbedby(A, 1)
 		D.visible_message(span_danger("[A] violently grabs [D]'s neck!"), \
-						span_userdanger("[A] violently grabs your neck!"))		
+						span_userdanger("[A] violently grabs your neck!"))
 		log_combat(A, D, "grabs by the neck(Explosive Fist)")
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 		streak = ""
@@ -215,11 +215,11 @@
 /datum/martial_art/explosive_fist/proc/almost_lifeforce_trade(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
-	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)			
+	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
 	playsound(get_turf(D), 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 
 	D.visible_message(span_danger("[A] staggers [D]!"), \
-					span_userdanger("[A] staggers you!"))		
+					span_userdanger("[A] staggers you!"))
 	log_combat(A, D, "staggers(Explosive Fist)")
 
 	var/selected_zone = A.zone_selected
@@ -235,7 +235,7 @@
 
 	D.dna.species.aiminginaccuracy += 25
 	addtimer(CALLBACK(src, PROC_REF(remove_stagger), D), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
-	
+
 /datum/martial_art/explosive_fist/proc/pre_lifeforce_trade(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
@@ -248,7 +248,7 @@
 	D.apply_damage(A.get_punchdamagehigh() * 2 + 6, BURN, selected_zone, armor_block)	//20 burn (vs bomb armor)
 
 	D.visible_message(span_danger("[A] burns [D]!"), \
-					span_userdanger("[A] burns you!"))		
+					span_userdanger("[A] burns you!"))
 	log_combat(A, D, "burns(Explosive Fist)")
 
 /datum/martial_art/explosive_fist/proc/immolate(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -258,27 +258,27 @@
 	if(A.get_item_by_slot(ITEM_SLOT_HEAD))   //No helmets???
 		streak = ""
 		return FALSE
-	else 
+	else
 		for(var/mob/living/target in view_or_range(2, A, "range"))
-			if(target == A)  
+			if(target == A)
 				continue
 			target.adjustFireLoss(30)
 			if(get_dist(get_turf(A), get_turf(target)) <= 1)	//If they're close we ignite them too
-				target.IgniteMob() 	
+				target.IgniteMob()
 
 		var/obj/item/bodypart/hed = D.get_bodypart(BODY_ZONE_HEAD)
 		var/armor_block = D.run_armor_check(hed, BOMB)
 		D.apply_damage(A.get_punchdamagehigh() + 3, BURN, BODY_ZONE_HEAD, armor_block) 		//10 burn (vs bomb armor)
-		D.emote("scream")		
+		D.emote("scream")
 		D.blur_eyes(4)
 
 		A.apply_damage(10, BURN, BODY_ZONE_CHEST, 0) 	//Take some unblockable damage since you're using your inner flame or something
 
 		A.visible_message(span_danger("[A] explodes violently!"), \
 					span_userdanger("You unleash the flames from yourself!"))
-		log_combat(A, D, "immolates(Explosive Fist)")	
-		playsound(get_turf(A), 'sound/effects/explosion1.ogg', 50, TRUE, -1)			
-	
+		log_combat(A, D, "immolates(Explosive Fist)")
+		playsound(get_turf(A), 'sound/effects/explosion1.ogg', 50, TRUE, -1)
+
 /datum/martial_art/explosive_fist/proc/almost_immolate(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
@@ -292,7 +292,7 @@
 		target.apply_damage(A.get_punchdamagehigh() - 2, BRUTE, selected_zone, brute_block)	//5 burn (vs bomb armor)
 	D.visible_message(span_danger("[A] primes [D]!"), \
 				span_userdanger("[A] primes you!"))
-	log_combat(A, D, "primes(Explosive Fist)")	
+	log_combat(A, D, "primes(Explosive Fist)")
 	playsound(get_turf(D), 'sound/effects/explosion1.ogg', 50, TRUE, -1)
 
 
@@ -308,12 +308,12 @@
 	D.apply_damage(A.get_punchdamagehigh() * 2 + 6, BURN, selected_zone, armor_block)	//20 burn (vs bomb armor)
 
 	D.visible_message(span_danger("[A] burns [D]!"), \
-					span_userdanger("[A] burns you!"))		
+					span_userdanger("[A] burns you!"))
 	log_combat(A, D, "burns(Explosive Fist)")
 
 	return TRUE
 
-/datum/martial_art/explosive_fist/proc/proceed_lifeforce_trade(mob/living/carbon/human/A, mob/living/carbon/human/D)	
+/datum/martial_art/explosive_fist/proc/proceed_lifeforce_trade(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_suck_life(A, D))
 		return
 	if(!do_mob(A, D, 1 SECONDS))
@@ -327,11 +327,12 @@
 		D.emote("scream")
 	D.adjustFireLoss(succ_damage)
 	D.adjustStaminaLoss(succ_damage * 2)		//YOU ARE HELPLESS TO RESIST THE SPOOKY SKELETON
+	D.clear_stamina_regen()
 	A.heal_overall_damage(succ_damage/2, succ_damage/2, 0, CONSCIOUS, TRUE)
 	to_chat(A, span_notice("You drain lifeforce from [D]"))
 	succ_damage++	//+1 damage per succ
 	proceed_lifeforce_trade(A, D)
-	
+
 /datum/martial_art/explosive_fist/proc/can_suck_life(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return

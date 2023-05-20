@@ -343,6 +343,7 @@
 		M.emote("cough")
 
 	M.adjustStaminaLoss(3)
+	M.clear_stamina_regen()
 	..()
 
 /datum/reagent/consumable/sodiumchloride

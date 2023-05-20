@@ -40,6 +40,8 @@
 	var/max_stamina_damage = 0
 	var/max_damage = 0
 
+	var/stamina_cache = list() // Lists the times that we should clear stamina damage and for how much
+
 	var/brute_reduction = 0 //Subtracted to brute damage taken
 	var/burn_reduction = 0	//Subtracted to burn damage taken
 
@@ -201,9 +203,17 @@
 	return bodypart_organs
 //Return TRUE to get whatever mob this is in to update health.
 /obj/item/bodypart/proc/on_life(stam_regen)
-	if(stamina_dam > DAMAGE_PRECISION && stam_regen)					//DO NOT update health here, it'll be done in the carbon's life.
-		heal_damage(0, 0, INFINITY, null, FALSE)
-		. |= BODYPART_LIFE_UPDATE_HEALTH
+	if(stamina_dam > DAMAGE_PRECISION)					//DO NOT update health here, it'll be done in the carbon's life.
+		if(stam_regen)
+			heal_damage(0, 0, INFINITY, null, FALSE)
+			stamina_cache = list()
+			. |= BODYPART_LIFE_UPDATE_HEALTH
+		else
+			for(var/dam_instance in stamina_cache)
+				if(world.time > dam_instance["expiration"])
+					heal_damage(0, 0, dam_instance["amount"], null, FALSE)
+					stamina_cache -= dam_instance
+					. |= BODYPART_LIFE_UPDATE_HEALTH
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
@@ -316,6 +326,7 @@
 			owner.updatehealth()
 			if(stamina > DAMAGE_PRECISION)
 				owner.update_stamina()
+				stamina_cache += list("expiration" = world.time + STAMINA_REGEN_BLOCK_TIME, "amount" = stamina)
 				owner.stam_regen_start_time = world.time + STAMINA_REGEN_BLOCK_TIME
 				. = TRUE
 	return update_bodypart_damage_state() || .
@@ -382,7 +393,7 @@
 
 	if(HAS_TRAIT(owner, TRAIT_EASYDISMEMBER))
 		damage *= 1.1
-	
+
 	// If we have an open surgery site here, wound more easily
 	for(var/datum/surgery/S in owner.surgeries)
 		if(S.operated_bodypart == src)
@@ -465,7 +476,7 @@
 
 		if(H?.physiology?.armor?.wound)//if there is any innate wound armor (poly or genetics)
 			armor_ablation += H.physiology.armor.getRating(WOUND)
-		
+
 		var/list/clothing = H.clothingonpart(src)
 		for(var/c in clothing)
 			var/obj/item/clothing/C = c
