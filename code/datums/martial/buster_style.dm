@@ -44,6 +44,11 @@
 /datum/martial_art/buster_style/can_use(mob/living/carbon/human/H)
 	var/obj/item/bodypart/r_arm/robot/buster/R = H.get_bodypart(BODY_ZONE_R_ARM)
 	var/obj/item/bodypart/l_arm/robot/buster/L = H.get_bodypart(BODY_ZONE_L_ARM)
+	var/obj/item/bodypart/l_arm/robot/buster/left
+	var/obj/item/bodypart/r_arm/robot/buster/right 
+	if(!(right && left in H.bodyparts))
+		src.remove(H)
+		return
 	if(H.restrained() || H.get_active_held_item() || HAS_TRAIT(H, TRAIT_PACIFISM) || !(H.mobility_flags & MOBILITY_MOVE) || H.stat != CONSCIOUS)
 		for(var/atom/movable/K in thrown)
 			thrown.Remove(K)
