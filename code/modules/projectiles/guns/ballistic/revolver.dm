@@ -272,7 +272,7 @@
 /obj/item/gun/ballistic/revolver/derringer
 	name = "derringer pistol"
 	desc = "A old-style double-chamber pistol. Load individually with .357 rounds."
-	icon_state = "revolver" // TO-DO: sprite
+	icon_state = "derringer" // Icon by SynnGraffkin https://github.com/Whitesands13/Whitesands/pull/655
 	w_class = WEIGHT_CLASS_TINY
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/derringer
 	fire_sound_volume = 40
