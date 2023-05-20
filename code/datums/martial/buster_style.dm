@@ -46,9 +46,9 @@
 	var/obj/item/bodypart/l_arm/robot/buster/L = H.get_bodypart(BODY_ZONE_L_ARM)
 	var/obj/item/bodypart/l_arm/robot/buster/left
 	var/obj/item/bodypart/r_arm/robot/buster/right 
-	if(!(right && left in H.bodyparts))
+	if(!(right & left in H.bodyparts))
 		src.remove(H)
-		return
+		return 
 	if(H.restrained() || H.get_active_held_item() || HAS_TRAIT(H, TRAIT_PACIFISM) || !(H.mobility_flags & MOBILITY_MOVE) || H.stat != CONSCIOUS)
 		for(var/atom/movable/K in thrown)
 			thrown.Remove(K)
