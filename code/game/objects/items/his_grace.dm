@@ -52,8 +52,12 @@
 	if(!proximity)
 		return
 	if(!QDELETED(A) && (istype(A, /obj/machinery/door) || istype(A, /obj/structure/door_assembly)))
-		var/obj/O = A // Do triple damage to airlocks
-		O.take_damage(force*2, BRUTE, MELEE, FALSE, null, armour_penetration)
+		var/obj/O = A
+		// If the initial hit didn't count and we're pretending to have triple damage, make up for it
+		if(O.damage_deflection > force)
+			O.take_damage(force*3, BRUTE, MELEE, FALSE, null, armour_penetration)
+		else
+			O.take_damage(force*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /obj/item/his_grace/CtrlClick(mob/user) //you can't pull his grace
 	return
