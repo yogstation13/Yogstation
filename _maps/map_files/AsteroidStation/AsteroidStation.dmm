@@ -10900,6 +10900,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"cCl" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/psych,
+/turf/open/floor/wood,
+/area/medical/psych)
 "cCz" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -32039,13 +32047,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
-"jEj" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "jEp" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -32605,10 +32606,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"jOO" = (
-/obj/machinery/chem_dispenser,
-/turf/open/floor/wood,
-/area/medical/psych)
 "jOQ" = (
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
@@ -52315,6 +52312,21 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
+"qkj" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/obj/item/flashlight/pen{
+	pixel_x = -6;
+	pixel_y = -1
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "qkk" = (
 /mob/living/simple_animal/pet/fox/Renault,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -62136,22 +62148,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/physician)
-"tpx" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/pen{
-	pixel_x = -6;
-	pixel_y = -1
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = 2;
-	pixel_y = 7
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "tpz" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -64604,14 +64600,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"ukc" = (
-/obj/machinery/chem_master,
-/obj/item/book/manual/wiki/chemistry,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "ukp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -76258,6 +76246,26 @@
 /obj/effect/landmark/start/warden,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
+"yeX" = (
+/obj/structure/table/wood,
+/obj/item/storage/pill_bottle/psicodine{
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/obj/item/storage/pill_bottle/psicodine{
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/obj/item/storage/pill_bottle/gummies/mindbreaker{
+	pixel_x = -2;
+	pixel_y = 9
+	},
+/obj/item/storage/pill_bottle/gummies/mindbreaker{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "yff" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/o2{
@@ -76271,6 +76279,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"yfh" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/structure/bookcase/random/reference,
+/turf/open/floor/wood,
+/area/medical/psych)
 "yfr" = (
 /obj/structure/grille,
 /turf/open/space,
@@ -109379,9 +109395,9 @@ xVJ
 uut
 aVN
 kME
-tpx
-jOO
-ukc
+yfh
+yeX
+qkj
 aVN
 mNt
 aPk
@@ -109895,7 +109911,7 @@ aVN
 cmB
 qDC
 kAU
-jEj
+cCl
 aVN
 mNt
 oQP
