@@ -107,9 +107,6 @@
 /area/holodeck/rec_center/gym
 	name = "Holodeck - Gym"
 
-/area/holodeck/rec_center/soccer
-	name = "Holodeck - Soccer Field"
-
 // Bad programs
 
 /area/holodeck/rec_center/burn

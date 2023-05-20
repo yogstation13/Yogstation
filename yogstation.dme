@@ -3590,7 +3590,6 @@
 #include "yogstation\code\datums\wires\disposals.dm"
 #include "yogstation\code\datums\wires\smartfridge.dm"
 #include "yogstation\code\game\communications.dm"
-#include "yogstation\code\game\soccer.dm"
 #include "yogstation\code\game\world.dm"
 #include "yogstation\code\game\area\areas.dm"
 #include "yogstation\code\game\area\Space_Station_13_areas.dm"

@@ -18823,7 +18823,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -19806,7 +19806,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -20444,7 +20444,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -22648,7 +22648,7 @@
 /area/holodeck/rec_center/chapelcourt)
 "aTW" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -25791,18 +25791,6 @@
 	icon_state = "title5"
 	},
 /area/centcom/testchamber)
-"fAk" = (
-/obj/structure/goalnet/goalpost/right{
-	dir = 1
-	},
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
-"gbG" = (
-/obj/structure/goalnet{
-	dir = 1
-	},
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "gkW" = (
 /obj/item/twohanded/required/kirbyplants/photosynthetic,
 /turf/open/floor/wood,
@@ -26071,15 +26059,6 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
-"nYo" = (
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
-"obi" = (
-/obj/structure/goalnet/goalpost/left{
-	dir = 1
-	},
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "oxS" = (
 /obj/item/clothing/shoes/combat/coldres{
 	pixel_x = 6;
@@ -26207,10 +26186,6 @@
 /obj/effect/landmark/centcom,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"rVP" = (
-/obj/item/soccerball,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "spc" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title9"
@@ -26221,10 +26196,6 @@
 	icon_state = "info10"
 	},
 /area/centcom/testchamber)
-"twc" = (
-/obj/structure/goalnet/goalpost/left,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "tID" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info6"
@@ -26318,10 +26289,6 @@
 	icon_state = "title10"
 	},
 /area/centcom/testchamber)
-"vpx" = (
-/obj/structure/goalnet/goalpost/right,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "vsA" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -26381,10 +26348,6 @@
 	icon_state = "info30"
 	},
 /area/centcom/testchamber)
-"wnI" = (
-/obj/structure/goalnet,
-/turf/open/floor/holofloor/grass,
-/area/holodeck/rec_center/soccer)
 "wyM" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -26465,7 +26428,7 @@
 /area/centcom/testchamber)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /turf/open/floor/plasteel,
@@ -78985,17 +78948,17 @@ aag
 aag
 aag
 aab
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -79242,17 +79205,17 @@ acS
 acY
 adh
 abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -79499,17 +79462,17 @@ afj
 acY
 adh
 abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -79756,17 +79719,17 @@ acS
 acY
 adh
 abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -80013,17 +79976,17 @@ acS
 acY
 adh
 abj
-twc
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-fAk
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -80270,17 +80233,17 @@ acS
 acY
 adh
 abj
-wnI
-nYo
-nYo
-rVP
-nYo
-nYo
-nYo
-nYo
-nYo
-gbG
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -80527,17 +80490,17 @@ acT
 acY
 adh
 abj
-vpx
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-obi
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -80784,17 +80747,17 @@ acU
 acY
 adh
 abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -81041,17 +81004,17 @@ acS
 acY
 adh
 abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -81298,17 +81261,17 @@ acS
 acY
 adh
 abj
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-nYo
-abj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
