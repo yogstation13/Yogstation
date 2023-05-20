@@ -249,15 +249,15 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 	if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))//ipc martial art blood heal check
 		if(H.blood_in_hands > 0 || H.wash(CLEAN_TYPE_BLOOD))
-      H.blood_in_hands = 0
-      H.wash(CLEAN_TYPE_BLOOD)
-      to_chat(H,"You absorb the blood covering you to heal.")
-      H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
-      var/heal_amt = 30 //heals brute first, then burn with any excess
-      var/brute_before = H.getBruteLoss()
-      H.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
-      heal_amt -= max(brute_before - H.getBruteLoss(), 0)
-      H.adjustFireLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
+			H.blood_in_hands = 0
+			H.wash(CLEAN_TYPE_BLOOD)
+			to_chat(H,"You absorb the blood covering you to heal.")
+			H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
+			var/heal_amt = 30 //heals brute first, then burn with any excess
+			var/brute_before = H.getBruteLoss()
+			H.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
+			heal_amt -= max(brute_before - H.getBruteLoss(), 0)
+			H.adjustFireLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
 
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
