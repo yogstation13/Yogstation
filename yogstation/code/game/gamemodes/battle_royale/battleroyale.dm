@@ -47,6 +47,8 @@ GLOBAL_VAR(stormdamage)
 	GLOB.enter_allowed = FALSE
 	message_admins("Battle Royale Mode has disabled late-joining. If you re-enable it you will break everything.")
 	for(var/datum/mind/virgin in queued)
+		if(!(virgin.current) || !isliving(virgin.current))//don't put ghosts in the battle bus
+			continue
 		SEND_SOUND(virgin.current, 'yogstation/sound/effects/battleroyale/battlebus.ogg')
 		virgin.current.set_species(/datum/species/human) //Fuck plasmamen -- before giving datum so species without shoes still get them
 		virgin.add_antag_datum(antag_datum_type)
@@ -61,8 +63,8 @@ GLOBAL_VAR(stormdamage)
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
-		
-	if(!GLOB.battleroyale_players.len)
+    
+	if(!LAZYLEN(GLOB.battleroyale_players))
 		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
 
 	for(var/obj/machinery/door/W in GLOB.machines)//set all doors to all access
@@ -79,45 +81,40 @@ GLOBAL_VAR(stormdamage)
 	. = ..()
 	if(finished)
 		return
-	var/list/royalers = list()
-	if(GLOB.player_list.len <= 1) //It's a localhost testing
+	if(LAZYLEN(GLOB.player_list) <= 1) //It's a localhost testing
 		return
 	if(!LAZYLEN(GLOB.battleroyale_players)) //sanity check for if this gets called before people are added to the list somehow
 		message_admins("Somehow no one is signed up to battle royale but check_win has been called, please contact someone to fix it.")
 		return
 
+	var/list/royalers = list() //make a new list
+	var/disqualified = 0 //keep track of everyone disqualified for log reasons
+
 	for(var/mob/living/player in GLOB.battleroyale_players)
 		if(player.stat == DEAD)
-			GLOB.battleroyale_players -= player
+			disqualified++
 			continue
-		if(!player.client)
-			GLOB.battleroyale_players -= player
-			continue //No AFKS allowed!!!
-		if(player.onCentCom())
-			GLOB.battleroyale_players -= player
+		if(!is_station_level(player.z) || player.onCentCom() || player.onSyndieBase())
+			disqualified++
 			to_chat(player, "You left the station! You have been disqualified from battle royale.")
 			continue
-		else if(player.onSyndieBase())
-			GLOB.battleroyale_players -= player
-			to_chat(player, "You left the station! You have been disqualified from battle royale.")
-			continue
-		if(!is_station_level(player.z))
-			GLOB.battleroyale_players -= player
-			to_chat(player, "You left the station! You have been disqualified from battle royale.")
-			continue
-		royalers += player
+		royalers += player //add everyone not disqualified for one reason or another to the new list
 
-	if(!royalers.len)
+	log_game("DQ'd ([disqualified]) people, From ([LAZYLEN(GLOB.battleroyale_players)]) to ([LAZYLEN(royalers)])")
+
+	GLOB.battleroyale_players = royalers //replace the old list with the new list
+
+	if(!LAZYLEN(GLOB.battleroyale_players))
 		SSticker.mode.check_finished(TRUE)
 		SSticker.force_ending = 1
 		to_chat(world, "<span_class='ratvar'>L. Nobody wins!</span>")
 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/L.ogg')
 		finished = TRUE
 		return
-	if(royalers.len == 1) //We have a wiener!
+	if(LAZYLEN(GLOB.battleroyale_players) == 1) //We have a wiener!
 		SSticker.mode.check_finished(TRUE)
 		SSticker.force_ending = 1
-		winner = pick(royalers)
+		winner = pick(GLOB.battleroyale_players)
 		to_chat(world, "<img src='https://cdn.discordapp.com/attachments/351367327184584704/539903688857092106/victoryroyale.png'>")
 		to_chat(world, "<span_class='bigbold'>#1 VICTORY ROYALE: [winner] </span>")
 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/greet_br.ogg')
