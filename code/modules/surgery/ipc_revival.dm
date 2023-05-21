@@ -74,3 +74,14 @@
 	else
 		user.visible_message("<span class='warning'>[user] suddenly notices that the brain [user.p_they()] [user.p_were()] working on is not there anymore.", span_warning("You suddenly notice that the brain you were working on is not there anymore."))
 	return FALSE
+
+/obj/item/paper/guides/jobs/robotics/ipc_repair
+	name = "paper- 'IPC Repair 101'"
+	info = "<B>A quick guide to repairing a non-functional IPC</B><BR>\
+	-Fix any external damage with a welding tool and coils of wire.<BR>\
+	-Place the non-functional unit on an operating surface.<BR>\
+	-Use a screwdriver to initiate posibrain reactivation and unscrew the maintenance panel located on the unit's chest.<BR>\
+	-Open the panel with a free hand and use your multitool to begin the reboot process.<BR>\
+	-After reactivation, use a screwdriver to screw the panel back into place.<BR>\
+	-If the unit breaks down shortly after reactivation, replace any missing internal components and reboot again if necessary.<BR>\
+	Nanotrasen is not liable for any damages caused during the repair process."
