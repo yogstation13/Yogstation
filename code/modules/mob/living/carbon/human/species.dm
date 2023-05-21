@@ -119,8 +119,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/inert_mutation 	= DWARFISM
 	///used to set the mobs deathsound on species change
 	var/deathsound
-	///Sounds to override barefeet walkng
+	///Sounds to override barefeet walking
 	var/list/special_step_sounds
+	///How loud to play the step override
+	var/special_step_volume = 50
 	///Sounds to play while walking regardless of wearing shoes
 	var/list/special_walk_sounds
 	///Special sound for grabbing
