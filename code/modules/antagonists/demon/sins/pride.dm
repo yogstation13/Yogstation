@@ -20,8 +20,8 @@
 	school = "evocation"
 	charge_max = 120
 	clothes_req = FALSE
-	invocation = "TORMENT"
-	invocation_type = SPELL_INVOCATION_SAY
+	invocation = "Taste of Sin"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	action_icon = 'icons/mob/actions/actions_changeling.dmi'
 	action_icon_state = "fleshmend"
 	action_background_icon_state = "bg_demon"
@@ -46,7 +46,6 @@
 	M.adjustBruteLoss(-20)
 	M.adjustFireLoss(-20)
 	M.visible_message(span_bold("[M] appears to flash colors of red, before seemingly appearing healthier!"))
-	M.emote("scream")
 	to_chat(M, span_warning("You feel a sinister feeling of soothing recovery."))
 	return ..()
 

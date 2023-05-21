@@ -103,10 +103,12 @@
 		return
 	playsound(user, 'sound/magic/demon_attack1.ogg', 75, TRUE)
 	M.blur_eyes(15) //huge array of relatively minor effects.
-	M.confused = max(M.confused, 8)
-	M.adjust_disgust(30)
-	M.hallucination += 5
-	M.Immobilize(2 SECONDS)
+	M.Jitter(5)
+	M.confused = max(M.confused, 10)
+	M.adjust_disgust(40)
+	M.hallucination += 10
+	M.Immobilize(30)
+	M.Stun(10)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25)
 	M.visible_message(span_danger("[M] cringes in pain as they hold their head for a second!"))
 	M.emote("scream")

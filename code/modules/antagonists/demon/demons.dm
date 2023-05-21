@@ -29,7 +29,9 @@
 		/obj/effect/proc_holder/spell/aoe_turf/conjure/summon_greedslots,
 		/obj/effect/proc_holder/spell/targeted/inflict_handler/ignite,
 		/obj/effect/proc_holder/spell/targeted/touch/envy,
-		/obj/effect/proc_holder/spell/aoe_turf/conjure/summon_mirror))
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/summon_mirror,
+		/obj/effect/proc_holder/spell/targeted/touch/mend,
+		/obj/effect/proc_holder/spell/targeted/touch/torment))
 
 	var/static/list/sinfuldemon_traits = list(
 		TRAIT_GENELESS,
