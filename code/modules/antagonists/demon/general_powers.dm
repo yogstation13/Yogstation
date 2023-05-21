@@ -70,3 +70,45 @@
 	else
 		if(src.stat != DEAD) //You passively lose 2 health every 2 seconds (technically 1 a second), don't stay in demon form for too long.
 			adjustHealth(2)
+
+//not really a general power, but more than 1 sin has it
+/obj/effect/proc_holder/spell/targeted/touch/torment
+	name = "Torment"
+	desc = "Engulfs your arm in a vindictive might. Striking someone with it will severely debilitate them, though will cause no visible damage."
+	hand_path = /obj/item/melee/touch_attack/torment
+	school = "evocation"
+	charge_max = 200
+	clothes_req = FALSE
+	invocation = "TORMENT"
+	invocation_type = SPELL_INVOCATION_SAY
+	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	action_icon_state = "mutate"
+	action_background_icon_state = "bg_demon"
+
+/obj/item/melee/touch_attack/torment
+	name = "Vindictive Hand"
+	desc = "An utterly scornful mass of hateful energy, ready to strike."
+	icon_state = "flagellation"
+	item_state = "hivemind"
+	catchphrase = "PAIN AND SUFFERING!!"
+
+/obj/item/melee/touch_attack/torment/afterattack(atom/target, mob/living/carbon/human/user, proximity_flag, click_parameters)
+	if(!proximity_flag)
+		return
+	var/mob/living/M = target
+	if(M.anti_magic_check())
+		to_chat(user, span_warning("[M] resists your torment!"))
+		to_chat(M, span_warning("A hideous feeling of agony dances around your mind before being suddenly dispelled."))
+		..()
+		return
+	playsound(user, 'sound/magic/demon_attack1.ogg', 75, TRUE)
+	M.blur_eyes(15) //huge array of relatively minor effects.
+	M.confused = max(M.confused, 8)
+	M.adjust_disgust(30)
+	M.hallucination += 5
+	M.Immobilize(2 SECONDS)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25)
+	M.visible_message(span_danger("[M] cringes in pain as they hold their head for a second!"))
+	M.emote("scream")
+	to_chat(M, span_warning("You feel an explosion of pain erupt in your mind!"))
+	return ..()
