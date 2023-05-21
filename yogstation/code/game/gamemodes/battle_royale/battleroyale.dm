@@ -130,6 +130,16 @@ GLOBAL_VAR(stormdamage)
 		SSticker.mode_result = "loss - nobody won the battle royale!"
 
 /datum/game_mode/fortnite/proc/shrinkborders()
+	switch(borderstage)//to keep it seperate and not fuck with weather selection
+		if(1)
+			set_security_level("blue")
+		if(4)
+			set_security_level("red")
+		if(7)
+			set_security_level("gamma")
+		if(9)
+			set_security_level("epsilon")
+
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
@@ -143,16 +153,6 @@ GLOBAL_VAR(stormdamage)
 			SSweather.run_weather("royale hallway", 2)//force them to bridge
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
-
-	switch(borderstage)//to keep it seperate and not fuck with weather selection
-		if(1)
-			set_security_level("blue")
-		if(5)
-			set_security_level("red")
-		if(8)
-			set_security_level("gamma")
-		if(9)
-			set_security_level("epsilon")
 
 	if(borderstage)//doesn't cull during round start
 		ItemCull()
