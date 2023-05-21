@@ -1,0 +1,10 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Buffs plasmeme martial art"
+  - tweak: "detonate explosion has a 1 tile larger fire explosion"
+  - bugfix: "detonate no longer does damage to yourself instead of the target"
+  - tweak: "Immolate creates hotspots and ignites within the damage radius"
+  - tweak: "Harm act creates a hotspot on the target and ignites them"
+  - tweak: "Lifeforce grab starts with higher base drain and scales exponentially per tick"
+  - tweak: "plasmeme martial art also gives immunity to damage slowdown"
