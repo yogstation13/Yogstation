@@ -37606,6 +37606,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+/obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "sHD" = (
@@ -40472,6 +40473,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/structure/grille/broken,
+/obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "ugA" = (
@@ -41868,6 +41871,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+/obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "uSv" = (
@@ -43726,6 +43730,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "vNq" = (
