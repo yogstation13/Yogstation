@@ -144,6 +144,15 @@ GLOBAL_VAR(stormdamage)
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
 
+	switch(borderstage)//to keep it seperate and not fuck with weather selection
+		if(1)
+			set_security_level("blue")
+		if(5)
+			set_security_level("red")
+		if(8)
+			set_security_level("gamma")
+		if(9)
+			set_security_level("epsilon")
 
 	if(borderstage)//doesn't cull during round start
 		ItemCull()
