@@ -6,6 +6,12 @@
 	caliber = "10mm"
 	projectile_type = /obj/item/projectile/bullet/c10mm
 
+/obj/item/ammo_casing/caseless/c10mm/cs
+	name = "10mm caseless bullet"
+	desc = "A 10mm caseless bullet."
+	caliber = "10mm"
+	projectile_type = /obj/item/projectile/bullet/c10mm/cs
+
 /obj/item/ammo_casing/c10mm/ap
 	name = "10mm armor-piercing bullet casing"
 	desc = "A 10mm armor-piercing bullet casing."
