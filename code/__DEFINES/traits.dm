@@ -266,6 +266,8 @@
 #define TRAIT_ALIEN_SNEAK "sneaking_alien"
 /// This mob is phased out of reality from magic, either a jaunt or rod form
 #define TRAIT_MAGICALLY_PHASED "magically_phased"
+///This mob can't use vehicles
+#define TRAIT_NOVEHICLE	"no_vehicle"
 
 /// This person is crying
 #define TRAIT_CRYING "crying"

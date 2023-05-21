@@ -117,9 +117,6 @@
 	///Should only be a key-value list of north/south/east/west = atom/movable/screen.
 	var/list/char_render_holders
 
-	///LibVG encoding
-	var/encoding = "1252"
-
 	///Messages currently seen by this client
 	var/list/seen_messages
 

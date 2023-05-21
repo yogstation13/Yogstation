@@ -6,7 +6,7 @@
 	weather_overlay = "ash_storm"
 	telegraph_overlay = "light_ash"
 	end_message = null
-	telegraph_duration = 3 SECONDS //actually give them a brief moment to react
+	telegraph_duration = 10 SECONDS //actually give them a brief moment to react
 	end_duration = 1
 	immunity_type = "fuckno"
 	telegraph_sound = 'yogstation/sound/effects/battleroyale/stormclosing.ogg'
@@ -19,7 +19,7 @@
 	var/list/areaIgnore = list()//if you want areaTypesToWeather to ignore something specific, because mappers can't be consistent with that type of area the thing should be
 
 /datum/weather/royale/weather_act(mob/living/L)
-	L.adjustFireLoss(3)
+	L.adjustFireLoss(GLOB.stormdamage, TRUE, TRUE)
 
 /datum/weather/royale/New()
 	.=..()

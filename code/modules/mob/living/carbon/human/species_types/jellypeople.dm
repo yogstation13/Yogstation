@@ -698,7 +698,7 @@
 		Remove(H)
 		return
 
-	var/message = sanitize(to_utf8(input("Message:", "Slime Telepathy") as text|null))
+	var/message = sanitize(input("Message:", "Slime Telepathy") as text|null)
 
 	if(!species || !(H in species.linked_mobs))
 		to_chat(H, span_warning("The link seems to have been severed..."))
@@ -749,7 +749,7 @@
 	if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
 		to_chat(H, span_notice("As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled."))
 		return
-	var/msg = sanitize(to_utf8(input("Message:", "Telepathy") as text|null))
+	var/msg = sanitize(input("Message:", "Telepathy") as text|null)
 	if(msg)
 		if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
 			to_chat(H, span_notice("As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled."))

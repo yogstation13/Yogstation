@@ -567,6 +567,13 @@
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/magazine/m10mm(src)
 
+/obj/item/storage/box/syndie_kit/pistolcaselessammo
+	real_name = "10mm caseless magazine box"
+
+/obj/item/storage/box/syndie_kit/pistolcaselessammo/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/ammo_box/magazine/m10mm/cs(src)
+
 /obj/item/storage/box/syndie_kit/pistolsleepyammo
 	real_name = "10mm soporific magazine box"
 
@@ -640,7 +647,7 @@
 	new /obj/item/radio/headset/chameleon/syndicate(src)
 	new /obj/item/stamp/chameleon/syndicate(src)
 	new /obj/item/pda/chameleon/syndicate(src)
-	
+
 /obj/item/storage/box/syndie_kit/chameleon/plasmaman
 	real_name = "chameleon kit"
 

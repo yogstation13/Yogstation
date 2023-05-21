@@ -165,6 +165,7 @@ GLOBAL_LIST_EMPTY(lockers)
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
 		return FALSE
+
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in T)
 		if(L.anchored || (open_flags & HORIZONTAL_LID) && L.mob_size > MOB_SIZE_TINY && L.density)

@@ -94,6 +94,9 @@
 	max_charges = 10 //10, 5, 5, 4
 
 /obj/item/gun/magic/wand/resurrection/zap_self(mob/living/user)
+	to_chat(user, span_notice("You steady the wand, ready to fire it at yourself..."))
+	if(!do_after(user, 7 SECONDS, user))
+		return
 	..()
 	charges--
 	if(user.anti_magic_check())
