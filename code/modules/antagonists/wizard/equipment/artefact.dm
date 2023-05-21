@@ -133,7 +133,7 @@
 		insaneinthemembrane.sanity = 0
 		for(var/lore in typesof(/datum/brain_trauma/severe))
 			C.gain_trauma(lore)
-		addtimer(CALLBACK(src, /obj/singularity/wizard.proc/deranged, C), 100)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/singularity/wizard, deranged), C), 100)
 
 /obj/singularity/wizard/proc/deranged(mob/living/carbon/C)
 	if(!C || C.stat == DEAD)
@@ -339,7 +339,6 @@
 		switch(user.zone_selected)
 			if(BODY_ZONE_PRECISE_MOUTH)
 				var/wgw =  sanitize(input(user, "What would you like the victim to say", "Voodoo", null)  as text)
-				wgw = to_utf8(wgw, src)
 				target.say(wgw, forced = "voodoo doll")
 				log_game("[key_name(user)] made [key_name(target)] say [wgw] with a voodoo doll.")
 			if(BODY_ZONE_PRECISE_EYES)

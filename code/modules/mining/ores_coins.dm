@@ -312,7 +312,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		else
 			user.visible_message(span_warning("[user] strikes \the [src], causing a chain reaction!"), span_danger("You strike \the [src], causing a chain reaction."))
 			log_bomber(user, "has primed a", src, "for detonation", notify_admins)
-		det_timer = addtimer(CALLBACK(src, .proc/detonate, notify_admins), det_time, TIMER_STOPPABLE)
+		det_timer = addtimer(CALLBACK(src, PROC_REF(detonate), notify_admins), det_time, TIMER_STOPPABLE)
 
 /obj/item/twohanded/required/gibtonite/proc/detonate(notify_admins)
 	if(primed)
@@ -364,7 +364,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if (!attack_self(user))
 		user.visible_message(span_suicide("[user] couldn't flip \the [src]!"))
 		return SHAME
-	addtimer(CALLBACK(src, .proc/manual_suicide, user), 10)//10 = time takes for flip animation
+	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), 10)//10 = time takes for flip animation
 	return MANUAL_SUICIDE_NONLETHAL
 
 /obj/item/coin/proc/manual_suicide(mob/living/user)
@@ -591,17 +591,17 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		visible_message(span_danger("[P] ricochets off of [src]!"))
 		playsound(loc, 'sound/weapons/ricochet.ogg', 50, 1)
 		if(cooldown < world.time)
-			INVOKE_ASYNC(src, .proc/flip, null, TRUE) //flip the coin if it isn't already doing that
+			INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE) //flip the coin if it isn't already doing that
 		return BULLET_ACT_FORCE_PIERCE
 			
 	//we instead flip the coin
-	INVOKE_ASYNC(src, .proc/flip, null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
+	INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
 	return BULLET_ACT_TURF
 
 /obj/item/coin/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
 	if(cooldown < world.time) // Flip the coin when thrown
 		spin = 0 // looks weird if it spins and flips at the same time
-		INVOKE_ASYNC(src, .proc/flip, null, TRUE)
+		INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE)
 	..()
 
 /obj/item/coinstack

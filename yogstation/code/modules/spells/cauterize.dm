@@ -9,13 +9,13 @@
 	var/cauterize_duration = 20 //in seconds
 	include_user = TRUE
 	invocation = "AMOS INO!"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "cauterize"
 
 /obj/effect/proc_holder/spell/targeted/cauterize/cast(list/targets,mob/user = usr)
 	for(var/mob/living/target in targets)
-		INVOKE_ASYNC(src, .proc/do_cauterize, target)
+		INVOKE_ASYNC(src, PROC_REF(do_cauterize), target)
 
 /obj/effect/proc_holder/spell/targeted/cauterize/proc/do_cauterize(mob/living/target)
 	var/total_dam = target.getBruteLoss() + target.getFireLoss()

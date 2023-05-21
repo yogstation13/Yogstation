@@ -110,7 +110,7 @@
 	if(C.is_real_hivehost())
 		var/eject_time = rand(1400,1600) //2.5 minutes +- 10 seconds
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, user_warning), rand(500,1300)) // If the host has assimilated an enemy hive host, alert the enemy before booting them from the hive after a short while
-		addtimer(CALLBACK(src, .proc/handle_ejection, C), eject_time)
+		addtimer(CALLBACK(src, PROC_REF(handle_ejection), C), eject_time)
 	else if(active_one_mind)
 		C.hive_awaken(final_form=active_one_mind)
 

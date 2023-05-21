@@ -460,7 +460,7 @@
 			if(!result)
 				client.recent_examines[A] = world.time + EXAMINE_MORE_WINDOW
 				result = A.examine(src)
-				addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), RECENT_EXAMINE_MAX_WINDOW)
+				addtimer(CALLBACK(src, PROC_REF(clear_from_recent_examines), A), RECENT_EXAMINE_MAX_WINDOW)
 				handle_eye_contact(A)
 	else
 		result = A.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
@@ -554,11 +554,11 @@
 	// check to see if their face is blocked or, if not, a signal blocks it
 	if(examined_mob.is_face_visible() && SEND_SIGNAL(src, COMSIG_MOB_EYECONTACT, examined_mob, TRUE) != COMSIG_BLOCK_EYECONTACT)
 		var/msg = span_smallnotice("You make eye contact with [examined_mob].")
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, src, msg), 3) // so the examine signal has time to fire and this will print after
+		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), src, msg), 3) // so the examine signal has time to fire and this will print after
 
 	if(!imagined_eye_contact && is_face_visible() && SEND_SIGNAL(examined_mob, COMSIG_MOB_EYECONTACT, src, FALSE) != COMSIG_BLOCK_EYECONTACT)
 		var/msg = span_smallnotice("[src] makes eye contact with you.")
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, examined_mob, msg), 3)
+		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), examined_mob, msg), 3)
 
 /**
   * Point at an atom
@@ -860,11 +860,11 @@
 	for(var/obj/effect/proc_holder/spell/S in spells)
 		if(S.can_be_cast_by(src))
 			switch(S.charge_type)
-				if("recharge")
+				if(SPELL_CHARGE_TYPE_RECHARGE)
 					L[++L.len] = list("[S.panel]", "[S.charge_counter/10.0]/[S.charge_max/10]", S.name, REF(S))
-				if("charges")
+				if(SPELL_CHARGE_TYPE_CHARGES)
 					L[++L.len] = list("[S.panel]", "[S.charge_counter]/[S.charge_max]", S.name, REF(S))
-				if("holdervar")
+				if(SPELL_CHARGE_TYPE_HOLDERVAR)
 					L[++L.len] = list("[S.panel]", "[S.holder_var_type] [S.holder_var_amount]", S.name, REF(S))
 	return L
 

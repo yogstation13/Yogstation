@@ -67,7 +67,7 @@
 
 /obj/item/gun/ballistic/revolver/detective
 	name = "\improper Colt Detective Special"
-	desc = "A classic, if not outdated, law enforcement firearm. Uses .38-special rounds."
+	desc = "A classic, if not outdated, law enforcement firearm. Uses .38 special rounds."
 	fire_sound = 'sound/weapons/revolver38shot.ogg'
 	icon_state = "detective"
 	fire_delay = 0
@@ -150,6 +150,7 @@
 	desc = "An old model of revolver that originated in Russia. Able to be suppressed. Uses 7.62x38mmR ammo."
 	icon_state = "nagant"
 	fire_delay = 5 //Mild trigger pull, the gun was known for it
+	fire_sound = 'sound/weapons/revolver38shot.ogg' //Lower caliber = lesser smack
 	can_suppress = TRUE
 
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762

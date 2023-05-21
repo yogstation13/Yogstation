@@ -408,7 +408,7 @@
 				icon_state = icon_living
 			else
 				icon_state = icon_dead
-			addtimer(CALLBACK(src, .proc/generateWool), 3 MINUTES)
+			addtimer(CALLBACK(src, PROC_REF(generateWool)), 3 MINUTES)
 
 		return
 	..()

@@ -1672,7 +1672,7 @@
 	name = "Ash"
 	description = "Supposedly phoenixes rise from these, but you've never seen it."
 	reagent_state = LIQUID
-	color = "#C8A5DC"
+	color = "#808080"
 	taste_description = "ash"
 
 /datum/reagent/acetone
@@ -2025,7 +2025,7 @@
 	if(L.mind)
 		var/datum/antagonist/changeling/changeling = L.mind.has_antag_datum(/datum/antagonist/changeling)
 		if(changeling)
-			changeling.chem_charges = max(changeling.chem_charges-2, 0)
+			changeling.chem_charges = max(changeling.chem_charges-6, 0)
 	return ..()
 
 /datum/reagent/pax/peaceborg

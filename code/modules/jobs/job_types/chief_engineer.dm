@@ -18,7 +18,7 @@
 	exp_requirements = 720
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_ENGINEERING
-	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer")
+	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer", "Chief Engineering Officer")
 
 	outfit = /datum/outfit/job/ce
 

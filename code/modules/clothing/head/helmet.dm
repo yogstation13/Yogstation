@@ -345,6 +345,8 @@
 	desc = "A helmet made from durathread and leather."
 	icon_state = "durathread"
 	item_state = "durathread"
+	flags_inv = NONE
+	flags_cover = NONE
 	armor = list(MELEE = 25, BULLET = 10, LASER = 20,ENERGY = 10, BOMB = 30, BIO = 15, RAD = 20, FIRE = 100, ACID = 50, WOUND = 5)
 	strip_delay = 60
 

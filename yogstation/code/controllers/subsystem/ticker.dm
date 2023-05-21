@@ -61,7 +61,8 @@
 		"https://www.youtube.com/watch?v=4q-La8uR0HU",						// Blinch - Loop Hero OST - Dark Matter Moon
 		"https://www.youtube.com/watch?v=pP6nEgo9UTs",						// Banda Municipal de Manizales - El Pilon
 		"https://www.youtube.com/watch?v=V52QTyn6e-A",						// Alistair Lindsay - RimWorld OST - Waiting For The Sun
-		"https://www.youtube.com/watch?v=0-CLAPJ1PLs"						// Pizza Tower OST - Tunnely Shimbers
+		"https://www.youtube.com/watch?v=0-CLAPJ1PLs",						// Pizza Tower OST - Tunnely Shimbers
+		"https://www.youtube.com/watch?v=4JkIs37a2JE"						// Jamiroquai - Virtual Insanity
 		)						
 	selected_lobby_music = pick(songs)
 

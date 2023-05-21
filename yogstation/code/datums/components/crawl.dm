@@ -28,7 +28,7 @@
 /datum/component/crawl/Initialize()
 	if(!istype(parent, /mob/living))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_MOB_ALTCLICKON, .proc/try_crawl)
+	RegisterSignal(parent, COMSIG_MOB_ALTCLICKON, PROC_REF(try_crawl))
 	var/mob/living/M = parent
 	on_gain(M)
 
@@ -205,7 +205,7 @@
 		newcolor = rgb(43, 186, 0)
 	user.add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 	// but only for a few seconds
-	addtimer(CALLBACK(user, /atom/.proc/remove_atom_colour, TEMPORARY_COLOUR_PRIORITY, newcolor), 3 SECONDS)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, remove_atom_colour), TEMPORARY_COLOUR_PRIORITY, newcolor), 3 SECONDS)
 
 /datum/component/crawl/blood/demonic
 	kidnap = TRUE
@@ -360,7 +360,7 @@ GLOBAL_LIST_EMPTY(vomit_spots)
 		C.regenerate_icons()
 		C.ExtinguishMob()
 	enteredvomit = target
-	RegisterSignal(target, COMSIG_PARENT_PREQDELETED, .proc/throw_out)
+	RegisterSignal(target, COMSIG_PARENT_PREQDELETED, PROC_REF(throw_out))
 	user.visible_message(span_warning("[user] sinks into the pool of vomit!?"))
 	playsound(get_turf(target), 'sound/magic/mutate.ogg', 50, 1, -1)
 	holder = new /obj/effect/dummy/crawling/vomit(get_turf(user))
@@ -377,7 +377,7 @@ GLOBAL_LIST_EMPTY(vomit_spots)
 
 	user.add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 	// but only for a few seconds
-	addtimer(CALLBACK(user, /atom/.proc/remove_atom_colour, TEMPORARY_COLOUR_PRIORITY, newcolor), 10 SECONDS) //vomit doesn't wash off as easily as blood
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, remove_atom_colour), TEMPORARY_COLOUR_PRIORITY, newcolor), 10 SECONDS) //vomit doesn't wash off as easily as blood
 
 /datum/component/crawl/vomit/stop_crawling(atom/target, mob/living/user)
 	target.visible_message(span_warning("[target] starts to bubble...?"))

@@ -14,9 +14,10 @@
 	damage_overlay_type = ""
 	var/datum/action/innate/regenerate_limbs/regenerate_limbs
 	liked_food = MEAT
-	coldmod = 6   // = 3x cold damage
-	heatmod = 0.5 // = 1/4x heat damage
+	coldmod = 6
+	heatmod = 0.5
 	burnmod = 1 // = regular burn damage unlike other slimes
+	armor = -10	//Squishy
 	payday_modifier = 0.6 //literally a pile of toxic ooze walking around, definitely a health hazard
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
@@ -684,7 +685,7 @@
 		Remove(H)
 		return
 
-	var/message = sanitize(to_utf8(input("Message:", "Slime Telepathy") as text|null))
+	var/message = sanitize(input("Message:", "Slime Telepathy") as text|null)
 
 	if(!species || !(H in species.linked_mobs))
 		to_chat(H, span_warning("The link seems to have been severed..."))
@@ -734,7 +735,7 @@
 	if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
 		to_chat(H, span_notice("As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled."))
 		return
-	var/msg = sanitize(to_utf8(input("Message:", "Telepathy") as text|null))
+	var/msg = sanitize(input("Message:", "Telepathy") as text|null)
 	if(msg)
 		if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
 			to_chat(H, span_notice("As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled."))

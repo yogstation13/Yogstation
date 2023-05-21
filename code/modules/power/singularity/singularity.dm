@@ -585,8 +585,8 @@
 
 /obj/item/singularity_shard/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] is trying to break open the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
-	addtimer(CALLBACK(user, /mob/.proc/gib), 99)
-	addtimer(CALLBACK(src, .proc/spawnsing), 100)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob, gib)), 99)
+	addtimer(CALLBACK(src, PROC_REF(spawnsing)), 100)
 	return MANUAL_SUICIDE
 
 /obj/item/singularity_shard/proc/spawnsing()
