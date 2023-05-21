@@ -206,8 +206,9 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
-		H.dna.features["ipc_screen"] = saved_screen
-		H.update_body()
+		if(saved_screen)
+			H.dna.features["ipc_screen"] = saved_screen
+			H.update_body()
 		return ..()
 	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
