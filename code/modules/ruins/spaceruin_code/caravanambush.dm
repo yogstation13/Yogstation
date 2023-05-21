@@ -121,7 +121,7 @@
 	req_access = list(ACCESS_SYNDICATE)
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate1
 	shuttleId = "caravansyndicate1"
-	possible_destinations = "caravansyndicate1_custom;caravansyndicate1_ambush;caravansyndicate1_listeningpost"
+	possible_destinations = "caravansyndicate1_custom;caravansyndicate1_ambush;listeningpost"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/caravan/syndicate1
 	name = "Syndicate Fighter Navigation Computer"
@@ -131,7 +131,7 @@
 	shuttleId = "caravansyndicate1"
 	lock_override = NONE
 	shuttlePortId = "caravansyndicate1_custom"
-	jumpto_ports = list("caravansyndicate1_ambush" = 1, "caravansyndicate1_listeningpost" = 1)
+	jumpto_ports = list("caravansyndicate1_ambush" = 1, "listeningpost" = 1)
 	view_range = 0
 	x_offset = 2
 	y_offset = 0
@@ -145,7 +145,7 @@
 	light_color = LIGHT_COLOR_RED
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate2
 	shuttleId = "caravansyndicate2"
-	possible_destinations = "caravansyndicate2_custom;caravansyndicate2_ambush;caravansyndicate1_listeningpost"
+	possible_destinations = "caravansyndicate2_custom;caravansyndicate2_ambush;listeningpost"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/caravan/syndicate2
 	name = "Syndicate Fighter Navigation Computer"
@@ -155,7 +155,7 @@
 	shuttleId = "caravansyndicate2"
 	lock_override = NONE
 	shuttlePortId = "caravansyndicate2_custom"
-	jumpto_ports = list("caravansyndicate2_ambush" = 1, "caravansyndicate1_listeningpost" = 1)
+	jumpto_ports = list("caravansyndicate2_ambush" = 1, "listeningpost" = 1)
 	view_range = 0
 	x_offset = 0
 	y_offset = 2
@@ -169,7 +169,7 @@
 	light_color = LIGHT_COLOR_RED
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate3
 	shuttleId = "caravansyndicate3"
-	possible_destinations = "caravansyndicate3_custom;caravansyndicate3_ambush;caravansyndicate3_listeningpost"
+	possible_destinations = "caravansyndicate3_custom;caravansyndicate3_ambush;listeningpost"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/caravan/syndicate3
 	name = "Syndicate Drop Ship Navigation Computer"
@@ -179,7 +179,7 @@
 	shuttleId = "caravansyndicate3"
 	lock_override = NONE
 	shuttlePortId = "caravansyndicate3_custom"
-	jumpto_ports = list("caravansyndicate3_ambush" = 1, "caravansyndicate3_listeningpost" = 1)
+	jumpto_ports = list("caravansyndicate3_ambush" = 1, "listeningpost" = 1)
 	view_range = 2.5
 	x_offset = -1
 	y_offset = -3
