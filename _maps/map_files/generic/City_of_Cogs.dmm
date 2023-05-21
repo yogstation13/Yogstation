@@ -105,6 +105,9 @@
 "aG" = (
 /obj/effect/clockwork/servant_blocker,
 /obj/structure/lattice/catwalk/clockwork,
+/obj/effect/clockwork/servant_blocker{
+	dir = 1
+	},
 /turf/open/indestructible/reebe_void,
 /area/reebe/city_of_cogs)
 "aH" = (
