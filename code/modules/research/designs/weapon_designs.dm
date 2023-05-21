@@ -415,7 +415,7 @@
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 200, /datum/material/plasma = 50, /datum/material/bluespace = 50)
 	build_path = /obj/item/ammo_casing/shotgun/hardlight
 	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/suppressor
 	name = "Suppressor"
