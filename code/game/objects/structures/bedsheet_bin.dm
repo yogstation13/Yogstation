@@ -281,12 +281,16 @@ LINEN BINS
 
 /obj/item/bedsheet/random/Initialize()
 	..()
-	var/type = pick(typesof(/obj/item/bedsheet) - /obj/item/bedsheet/random)
-	var/obj/item/bedsheet/sheet = new type(loc)
-	while(sheet && !sheet.randomizable)
+	var/list/sheets = list(typesof(/obj/item/bedsheet) - /obj/item/bedsheet/random)
+	sheets = shuffle(sheets)
+	var/obj/item/bedsheet/sheet
+	for(var/i in sheets)
+		sheet = new i(loc)
+		if(sheet.randomizable)
+			break
 		qdel(sheet)
-		type = pick(typesof(/obj/item/bedsheet) - /obj/item/bedsheet/random)
-		sheet = new type(loc)
+	if(!sheet)
+		log_game("Random bedsheet failed to spawn")
 	return INITIALIZE_HINT_QDEL
 
 /obj/item/bedsheet/dorms
