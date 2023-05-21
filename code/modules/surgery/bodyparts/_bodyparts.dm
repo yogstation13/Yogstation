@@ -82,7 +82,7 @@
 	/// This number is subtracted from all wound rolls on this bodypart, higher numbers mean more defense, negative means easier to wound
 	var/wound_resistance = 0
 	/// When this bodypart hits max damage, this number is added to all wound rolls. Obviously only relevant for bodyparts that have damage caps.
-	var/disabled_wound_penalty = 15
+	var/disabled_wound_penalty = 30
 
 	/// A hat won't cover your face, but a shirt covering your chest will cover your... you know, chest
 	var/scars_covered_by_clothes = TRUE
