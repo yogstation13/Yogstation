@@ -47,7 +47,7 @@ GLOBAL_VAR(stormdamage)
 	GLOB.enter_allowed = FALSE
 	message_admins("Battle Royale Mode has disabled late-joining. If you re-enable it you will break everything.")
 	for(var/datum/mind/virgin in queued)
-		if(!(virgin.current) || !isliving(virgin.current))//don't put ghosts in the battle bus
+		if(!(virgin.current) || !ishuman(virgin.current))//don't put ghosts, borgs, or ai in the battle bus
 			continue
 		SEND_SOUND(virgin.current, 'yogstation/sound/effects/battleroyale/battlebus.ogg')
 		virgin.current.set_species(/datum/species/human) //Fuck plasmamen -- before giving datum so species without shoes still get them
