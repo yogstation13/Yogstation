@@ -20,9 +20,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	var/breakout_time = 1200
 	var/message_cooldown
 	var/can_weld_shut = TRUE
-	var/horizontal = FALSE
-	var/allow_objects = FALSE
-	var/allow_dense = FALSE
+	var/open_flags = 0
 	var/dense_when_open = FALSE //if it's dense when open or not
 	var/max_mob_size = MOB_SIZE_HUMAN //Biggest mob_size accepted by the container
 	var/mob_storage_capacity = 3 // how many human sized mob/living can fit together inside a closet.
@@ -54,7 +52,7 @@ GLOBAL_LIST_EMPTY(lockers)
 
 /obj/structure/closet/Initialize(mapload)
 	if(mapload && !opened)		// if closed, any item at the crate's loc is put in the contents
-		addtimer(CALLBACK(src, .proc/take_contents), 0)
+		addtimer(CALLBACK(src, PROC_REF(take_contents)), 0)
 	. = ..()
 	update_icon()
 	PopulateContents()
@@ -117,7 +115,7 @@ GLOBAL_LIST_EMPTY(lockers)
 			animate(door_obj, transform = M, icon_state = door_state, layer = door_layer, time = world.tick_lag, flags = ANIMATION_END_NOW)
 		else
 			animate(transform = M, icon_state = door_state, layer = door_layer, time = world.tick_lag)
-	addtimer(CALLBACK(src,.proc/end_door_animation),door_anim_time,TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(end_door_animation)),door_anim_time,TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/structure/closet/proc/end_door_animation()
 	is_animating_door = FALSE
@@ -156,9 +154,10 @@ GLOBAL_LIST_EMPTY(lockers)
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
 		return FALSE
+
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in T)
-		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
+		if(L.anchored || (open_flags & HORIZONTAL_LID) && L.mob_size > MOB_SIZE_TINY && L.density)
 			if(user)
 				to_chat(user, span_danger("There's something large on top of [src], preventing it from opening.") )
 			return FALSE
@@ -170,7 +169,7 @@ GLOBAL_LIST_EMPTY(lockers)
 		if(closet != src && !closet.wall_mounted)
 			return FALSE
 	for(var/mob/living/L in T)
-		if(L.anchored || horizontal && L.mob_size > MOB_SIZE_TINY && L.density)
+		if(L.anchored || (open_flags & HORIZONTAL_LID) && L.mob_size > MOB_SIZE_TINY && L.density)
 			if(user)
 				to_chat(user, span_danger("There's something too large in [src], preventing it from closing."))
 			return FALSE
@@ -222,7 +221,7 @@ GLOBAL_LIST_EMPTY(lockers)
 		if(L.anchored || L.buckled || L.incorporeal_move || L.has_buckled_mobs())
 			return FALSE
 		if(L.mob_size > MOB_SIZE_TINY) // Tiny mobs are treated as items.
-			if(horizontal && L.density)
+			if((open_flags & HORIZONTAL_HOLD) && L.density)
 				return FALSE
 			if(L.mob_size > max_mob_size)
 				return FALSE
@@ -235,11 +234,11 @@ GLOBAL_LIST_EMPTY(lockers)
 	else if(istype(AM, /obj/structure/closet))
 		return FALSE
 	else if(isobj(AM))
-		if((!allow_dense && AM.density) || AM.anchored || AM.has_buckled_mobs())
+		if((!(open_flags & ALLOW_DENSE) && AM.density) || AM.anchored || AM.has_buckled_mobs())
 			return FALSE
 		else if(isitem(AM) && !HAS_TRAIT(AM, TRAIT_NODROP))
 			return TRUE
-		else if(!allow_objects && !istype(AM, /obj/effect/dummy/chameleon))
+		else if(!(open_flags & ALLOW_OBJECTS) && !istype(AM, /obj/effect/dummy/chameleon))
 			return FALSE
 	else
 		return FALSE

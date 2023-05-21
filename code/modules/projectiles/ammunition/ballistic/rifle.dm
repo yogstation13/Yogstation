@@ -55,7 +55,7 @@
 	icon_state = "556r-casing"
 	projectile_type = /obj/item/projectile/bullet/a556/rubber
 
-// .308 (LWT-650 DMR)
+// .308 (Winton Mk. VI Repeating Rifle + LWT-650 DMR)
 
 /obj/item/ammo_casing/m308
 	name = ".308 bullet casing"

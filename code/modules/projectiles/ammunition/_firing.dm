@@ -55,8 +55,9 @@
 			direct_target = target
 	if(!direct_target)
 		BB.preparePixelProjectile(target, user, params, spread)
-	BB.fire(null, direct_target)
+	var/obj/item/projectile/old_BB = BB // Need to set BB to null first, otherwise casings that create new projectiles when they land witll break if fired point blank
 	BB = null
+	old_BB.fire(null, direct_target)
 	return TRUE
 
 /obj/item/ammo_casing/proc/spread(turf/target, turf/current, distro)

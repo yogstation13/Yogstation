@@ -7,6 +7,11 @@
 	///Target
 	var/mob/living/carbon/human/target
 
+/obj/item/living_heart/examine(mob/user)
+	. = ..()
+	if(isobserver(user))
+		. += span_notice("This heart is currently set to target <b>[target.real_name]</b>.")
+
 /obj/item/living_heart/attack_self(mob/user)
 	. = ..()
 	if(!IS_HERETIC(user))
@@ -187,7 +192,7 @@
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eye_medalion"
 	w_class = WEIGHT_CLASS_SMALL
-	resistance_flags = FIRE_PROOF 
+	resistance_flags = FIRE_PROOF
 	///What trait do we want to add upon equipiing
 	var/trait = TRAIT_THERMAL_VISION
 
@@ -223,7 +228,7 @@
 	desc = "A ragged, dusty set of robes. Strange eyes line the inside."
 	icon_state = "eldritch_armor"
 	item_state = "eldritch_armor"
-	flags_inv = HIDESHOES|HIDEJUMPSUIT 
+	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch

@@ -96,7 +96,7 @@ obj/effect/proc_holder/spell/aimed/firebreath/fire_projectile(mob/user)
 	antimagic_allowed = TRUE
 	charge_max = 600
 	invocation = "DOOOOOOOOOOOOOOOOOOOOM!!!"
-	invocation_type = "shout"
+	invocation_type = SPELL_INVOCATION_SAY
 	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	action_icon_state = "void_magnet"
 

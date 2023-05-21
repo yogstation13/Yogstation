@@ -10,7 +10,7 @@
 
 
 /obj/effect/proc_holder/zombie/tank/proc/run_ability(mob/living/carbon/human/user)
-	addtimer(CALLBACK(src, .proc/stop, user), duration)
+	addtimer(CALLBACK(src, PROC_REF(stop), user), duration)
 	user.dna.species.armor += armor_boost
 	user.adjustBruteLoss(-(heal * user.getBruteLoss()))
 	user.adjustFireLoss(-(heal * user.getFireLoss()))

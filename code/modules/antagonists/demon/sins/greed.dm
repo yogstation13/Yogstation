@@ -2,7 +2,7 @@
 	name = "Summon Slotmachine"
 	desc = "Summon forth a temporary slot machine of greed, allowing you to offer patrons a deadly game where the price is their life (and some money if you'd like) and the possible prize is a one use die of fate."
 	invocation = "Just one game?"
-	invocation_type = "whisper"
+	invocation_type = SPELL_INVOCATION_WHISPER
 	clothes_req = FALSE
 	charge_max = 600
 	cooldown_min = 200

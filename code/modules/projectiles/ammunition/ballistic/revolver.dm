@@ -41,7 +41,7 @@
 	caliber = "n762"
 	projectile_type = /obj/item/projectile/bullet/n762
 
-// .38 (Detective's Gun)
+// .38 (Colt Detective Special + Vatra M38)
 
 /obj/item/ammo_casing/c38
 	name = ".38 bullet casing"
@@ -49,20 +49,30 @@
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38
 
-/obj/item/ammo_casing/c38/hotshot
-	name = ".38 Hot Shot bullet casing"
-	desc = "A .38 Hot Shot bullet casing."
-	projectile_type = /obj/item/projectile/bullet/c38/hotshot
+/obj/item/ammo_casing/c38/rubber
+	name = ".38 rubber bullet casing"
+	desc = "A .38 rubber bullet casing."
+	projectile_type = /obj/item/projectile/bullet/c38/rubber
 
-/obj/item/ammo_casing/c38/iceblox
-	name = ".38 Iceblox bullet casing"
-	desc = "A .38 Iceblox bullet casing."
-	projectile_type = /obj/item/projectile/bullet/c38/iceblox
+/obj/item/ammo_casing/c38/ap
+	name = ".38 armor-piercing bullet casing"
+	desc = "A .38 armor-piercing bullet casing."
+	projectile_type = /obj/item/projectile/bullet/c38/ap
 
-/obj/item/ammo_casing/c38/gutterpunch
-	name = ".38 Gutterpunch bullet casing"
-	desc = "A .38 Gutterpunch bullet casing"
-	projectile_type = /obj/item/projectile/bullet/c38/gutterpunch
+/obj/item/ammo_casing/c38/frost
+	name = ".38 frost bullet casing"
+	desc = "A .38 frost bullet casing."
+	projectile_type = /obj/item/projectile/bullet/c38/frost
+
+/obj/item/ammo_casing/c38/talon
+	name = ".38 talon bullet casing"
+	desc = "A .38 talon bullet casing."
+	projectile_type = /obj/item/projectile/bullet/c38/talon
+
+/obj/item/ammo_casing/c38/bluespace
+	name = ".38 bluespace bullet casing"
+	desc = "A .38 bluespace bullet casing."
+	projectile_type = /obj/item/projectile/bullet/c38/bluespace
 
 // .32 (Caldwell Tracking Revolver)
 
