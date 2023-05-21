@@ -218,3 +218,12 @@
 	pellets = 3
 	variance = 25
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_thundershot
+
+/obj/item/ammo_casing/shotgun/hardlight
+	name = "hardlight shell"
+	desc = "An advanced shotgun shell that fires a hardlight beam and scatters it."
+	icon_state = "hshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/hardlight
+	harmful = FALSE
+	pellets = 6
+	variance = 20
