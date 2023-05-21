@@ -192,4 +192,4 @@
 	flag = ENERGY
 	damage_type = STAMINA // Doesn't do "real" damage
 	sharpness = SHARP_NONE
-	armour_penetration = -30 // Energy armor is usually very low so uhh
+	armour_penetration = -40 // Energy armor is usually very low so uhh

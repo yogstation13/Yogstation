@@ -227,3 +227,15 @@
 	harmful = FALSE
 	pellets = 6
 	variance = 20
+
+/obj/item/ammo_casing/shotgun/hardlight/emp_act(severity)
+	if (. & EMP_PROTECT_SELF)
+		return
+	variance = 60 // yikes
+	if(severity == EMP_HEAVY)
+		pellets = 3 // also yikes
+	addtimer(CALLBACK(src, PROC_REF(remove_emp)), 10 SECONDS / severity, TIMER_OVERRIDE|TIMER_UNIQUE)
+
+/obj/item/ammo_casing/shotgun/hardlight/proc/remove_emp()
+	variance = initial(variance)
+	pellets = initial(pellets)
