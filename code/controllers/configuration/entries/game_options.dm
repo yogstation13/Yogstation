@@ -419,6 +419,10 @@
 	config_entry_value = 64
 	min_val = 0
 
+/datum/config_entry/number/slimecap
+	config_entry_value = 256
+	min_val = 0
+
 /datum/config_entry/number/ratcap
 	default = 64
 	min_val = 0
