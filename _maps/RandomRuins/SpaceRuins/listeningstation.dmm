@@ -1222,14 +1222,6 @@
 /obj/item/storage/firstaid/emergency,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
-"nJ" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/quarters)
 "nK" = (
 /obj/machinery/griddle,
 /turf/open/floor/wood,
@@ -1418,6 +1410,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
+"tG" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/machinery/hydroponics/constructable,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "tH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -1987,6 +1987,11 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/shoes/magboots/syndie{
+	slowdown_active = 5;
+	name = "old magboots";
+	desc = "Old Syndicate-made magboots with a very heavy pull."
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "HT" = (
@@ -3873,7 +3878,7 @@ NO
 as
 Cn
 il
-nJ
+tG
 az
 az
 DC
