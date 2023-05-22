@@ -4,6 +4,7 @@
 #define STOMP_DAMAGERADIUS 3
 #define COOLDOWN_LEAP 3 SECONDS
 #define LEAP_RADIUS 1
+#define COOLDOWN_PUMMEL 0.8 SECONDS //basically melee
 #define STAGGER_DURATION 3 SECONDS
 #define WARNING_RANGE 10 //extra range to certain sound effects
 #define PLATE_INTERVAL 20 SECONDS //how often a plate grows
@@ -25,6 +26,7 @@
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_leap)
 	COOLDOWN_DECLARE(next_balloon)
+	COOLDOWN_DECLARE(next_pummel)
 	var/datum/action/cooldown/worldstomp/linked_stomp
 	var/leaping = FALSE
 	var/plates = 0
@@ -151,6 +153,7 @@
 	materials = list(/datum/material/iron=2000, /datum/material/plasma=2000)
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "smashed")
 	force = 5
+	w_class = WEIGHT_CLASS_HUGE //no storing them
 	throwforce = 10 //more of a ranged CC than a ranged weapon
 	throw_speed = 3
 	throw_range = 8
@@ -188,9 +191,10 @@
 	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (plates * 2))//longer cooldown the more plates you have
 
 	//telegraph ripped entirely from bubblegum charge
-	var/telegraph = get_turf(target)
-	if(telegraph && (telegraph in view(15, get_turf(user))))//only show the telegraph if the telegraph is actually correct, hard to get an accurate one since raycasting isn't a thing afaik
-		new /obj/effect/temp_visual/dragon_swoop/bubblegum(telegraph)
+	if(heavy)
+		var/telegraph = get_turf(target)
+		if(telegraph && (telegraph in view(15, get_turf(user))))//only show the telegraph if the telegraph is actually correct, hard to get an accurate one since raycasting isn't a thing afaik
+			new /obj/effect/temp_visual/dragon_swoop/bubblegum(telegraph)
 
 	leaping = TRUE
 	var/jumpspeed = heavy ? 1 : 3
@@ -224,6 +228,8 @@
 		L.apply_damage(damage, STAMINA)
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
 		push_away(user, L)
+		if(L.loc == user.loc && isanimal(L) && L.stat == DEAD)
+			L.gib()
 	for(var/obj/item/I in range(range, user))
 		push_away(user, I)
 
@@ -377,6 +383,9 @@
 /datum/martial_art/worldshaker/proc/pummel(mob/living/user, mob/living/target)
 	if(user == target)
 		return
+	if(!COOLDOWN_FINISHED(src, next_pummel))
+		return
+	COOLDOWN_START(src, next_pummel, COOLDOWN_PUMMEL)
 	for(var/mob/living/L in range(1, target))
 		var/damage = 10
 		if(L == user)
@@ -393,7 +402,7 @@
 	for(var/obj/item/I in range(1, target))
 		push_away(user, I)
 
-	user.do_attack_animation(target)
+	user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
 	playsound(user, 'sound/effects/gravhit.ogg', 20, TRUE, -1)
 	playsound(user, 'sound/effects/meteorimpact.ogg', 50, TRUE, -1)
 	
@@ -454,6 +463,8 @@
 			L.Stun(5 SECONDS)
 		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
 		linked_martial.push_away(owner, L, throwdistance)
+		if(L.loc == owner.loc && isanimal(L) && L.stat == DEAD)//gib any animals you are standing on
+			L.gib()
 	for(var/obj/item/I in range(STOMP_RADIUS + plates, owner))
 		linked_martial.push_away(owner, I, 2)
 	for(var/obj/structure/S in range(STOMP_DAMAGERADIUS + (plates/2), owner))
