@@ -9,6 +9,12 @@
 	max_ammo = 10
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
+/obj/item/ammo_box/magazine/m10mm/cs
+	name = "pistol magazine (10mm Caseless)"
+	icon_state = "9x19pC"
+	desc = "An 10-round 10mm magazine designed for the Stechkin pistol. Loaded with rounds which are engineered without casings, but suffer damage and speed as a result."
+	ammo_type = /obj/item/ammo_casing/caseless/c10mm/cs
+
 /obj/item/ammo_box/magazine/m10mm/fire
 	name = "pistol magazine (10mm Incendiary)"
 	icon_state = "9x19pI"
@@ -82,11 +88,11 @@
 //Desert Eagle
 
 /obj/item/ammo_box/magazine/m50
-	name = "handgun magazine (.50ae)"
-	desc = "A 7-round .50ae magazine designed for the Desert Eagle."
+	name = "handgun magazine (.50 AE)"
+	desc = "A 7-round .50 AE magazine designed for the Desert Eagle."
 	icon_state = "50ae-7"
 	ammo_type = /obj/item/ammo_casing/a50AE
-	caliber = ".50"
+	caliber = ".50ae"
 	max_ammo = 7
 
 /obj/item/ammo_box/magazine/m50/update_icon()
