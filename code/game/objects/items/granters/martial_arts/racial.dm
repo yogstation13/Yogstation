@@ -95,8 +95,8 @@
 	name = "Version one upgrade module"
 	martial_name = "Ultra Violence"
 	desc = "A module full of forbidden techniques from a horrific event long since passed, or perhaps yet to come."
-	greet = "<span class='sciradio'>You have installed how to perform Ultra Violence! You are able to redirect electromagnetic pulses, \
-		blood heals you, and you CANNOT BE STOPPED. You can mentally practice by using Cyber Grind in the Ultra Violence tab.</span>"
+	greet = span_sciradio("You have installed how to perform Ultra Violence! You are able to redirect electromagnetic pulses, \
+		blood heals you, and you CANNOT BE STOPPED. You can mentally practice by using Cyber Grind in the Ultra Violence tab.")
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
 	remarks = list("MANKIND IS DEAD.", "BLOOD IS FUEL.", "HELL IS FULL.")
@@ -114,3 +114,35 @@
 		name = "damaged board"
 
 // I did not include mushpunch's grant, it is not a book and the item does it just fine.
+
+/obj/item/book/granter/martial/worldshaker
+	martial = /datum/martial_art/worldshaker
+	name = "prototype worldshaker compound"
+	martial_name = "Worldshaker"
+	desc = "A foul concoction made by reverse engineering chemicals compounds found in an ancient Vxtrin military outpost."
+	greet = span_sciradio("You feel weirdly good, good enough to shake the world to it's very core. \
+	Your plates feel like they are growing past their normal limits. The protection will come in handy, but it will eventually slow you down.\
+	You can think about all the things you are now capable of by using the Worldshaker tab.")
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "flaming_moe"
+	remarks = list(
+		"Is... it bubbling?", 
+		"What's that gross residue on the sides of the vial?", 
+		"Am I really considering drinking this?", 
+		"I'm pretty sure I just saw a dead fly dissolve in it.", 
+		"This is temporary, right?", 
+		"I sure hope someone's tested this.")
+	book_sounds = list('sound/items/drink.ogg') //it's a drink, not a book
+
+/obj/item/book/granter/martial/ultra_violence/can_learn(mob/user)
+	if(!ispreternis(user))
+		to_chat(user, span_warning("There is no way in hell i'm drinking this."))
+		return FALSE
+	return ..()
+
+/obj/item/book/granter/martial/ultra_violence/on_reading_finished(mob/living/carbon/user)
+	..()
+	if(!uses)
+		var/obj/item/reagent_containers/glass/bottle/vial/empty = new(get_turf(user))
+		user.put_in_active_hand(empty)
+		qdel(src)

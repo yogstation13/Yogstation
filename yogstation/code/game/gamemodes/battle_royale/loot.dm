@@ -236,7 +236,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/storage/box/syndie_kit/throwing_weapons = 4,
 		/obj/item/grenade/plastic/c4 = 4,
 		/obj/item/storage/toolbox/mechanical = 4,
-
 		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
 
 		/obj/item/autosurgeon/cmo = 2,

@@ -283,7 +283,7 @@
 				L.heal_overall_damage(10 * power_multiplier, 10 * power_multiplier)
 			if(iscultist(L))
 				L.adjust_fire_stacks(1 * power_multiplier)
-				L.IgniteMob()
+				L.ignite_mob()
 
 	//KNOCKDOWN
 	else if(findtext(message, knockdown_words))
