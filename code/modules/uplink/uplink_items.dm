@@ -328,6 +328,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	from the arm which momentarily keeps victims in place. Due to its unorthodox nature, the box includes 3 monkey cubes to familiarize the user with the arm functions. Users are \
 	warned that the arm renders them unable to wear gloves and sticks out of most outerwear."
 	item = /obj/item/storage/box/syndie_kit/buster
+	player_minimum = 25
 	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
