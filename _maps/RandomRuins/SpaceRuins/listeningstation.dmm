@@ -513,14 +513,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
-"ce" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/quarters)
 "cv" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -1677,6 +1669,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/listeningstation/hallway)
+"yt" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/sand/plating,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "yN" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation/telecomms)
@@ -1967,6 +1967,9 @@
 	},
 /obj/structure/cable/yellow,
 /obj/machinery/power/port_gen/pacman,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
 "Hy" = (
@@ -2666,11 +2669,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "Tv" = (
-/obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/sand/plating,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
+/obj/machinery/hydroponics/constructable,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "TF" = (
@@ -3867,7 +3870,7 @@ NO
 as
 Cn
 il
-ce
+Tv
 az
 az
 DC
@@ -3907,7 +3910,7 @@ NO
 as
 js
 Oa
-Tv
+yt
 as
 Mw
 ab
