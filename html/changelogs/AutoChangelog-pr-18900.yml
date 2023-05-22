@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "ckey locked bedsheet no longer spawns as a random bedsheet"
