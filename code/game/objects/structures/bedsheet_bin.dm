@@ -283,13 +283,13 @@ LINEN BINS
 	..()
 	var/list/sheets = list(typesof(/obj/item/bedsheet) - /obj/item/bedsheet/random)
 	sheets = shuffle(sheets)
-	var/obj/item/bedsheet/sheet
-	for(var/i in sheets)
-		sheet = new i(loc)
-		if(sheet.randomizable)
+	var/obj/item/bedsheet/actualsheet
+	for(var/obj/item/bedsheet/sheet as anything in sheets)
+		if(initial(sheet.randomizable))
+			actualsheet = new sheet(loc)
 			break
-		qdel(sheet)
-	if(!sheet)
+	
+	if(!actualsheet)
 		log_game("Random bedsheet failed to spawn")
 	return INITIALIZE_HINT_QDEL
 
