@@ -74,7 +74,6 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/duct,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "aj" = (
@@ -471,7 +470,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/obj/machinery/duct,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -592,6 +590,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
+"dV" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/sand/plating,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "dX" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -709,7 +715,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/duct,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -824,11 +829,10 @@
 /area/ruin/space/has_grav/listeningstation/quarters)
 "hA" = (
 /obj/machinery/light/small,
-/obj/structure/reagent_dispensers/plumbed{
-	name = "syndicate-brand drinking water";
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/reagent_dispensers/watertank/high{
+	name = "syndicate-brand drinking water"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "hW" = (
@@ -909,7 +913,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/crate/large,
-/obj/structure/reagent_dispensers/watertank/high,
+/obj/structure/reagent_dispensers/watertank/high{
+	name = "syndicate-brand drinking water"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "iu" = (
@@ -1183,7 +1189,6 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/duct,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "mj" = (
@@ -1491,7 +1496,6 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/duct,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "vr" = (
@@ -1785,7 +1789,9 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Cn" = (
-/obj/structure/reagent_dispensers/watertank/high,
+/obj/structure/reagent_dispensers/watertank/high{
+	name = "syndicate-brand drinking water"
+	},
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Cw" = (
@@ -1813,7 +1819,6 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/duct,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Dk" = (
@@ -1885,7 +1890,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/duct,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -1942,7 +1946,6 @@
 	icon_state = "1-4"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/duct,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Gg" = (
@@ -2599,14 +2602,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
-"Sq" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/quarters)
 "St" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -2660,11 +2655,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "Tv" = (
-/obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/sand/plating,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
+/obj/machinery/hydroponics/constructable,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "TF" = (
@@ -2915,7 +2910,6 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/duct,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "XI" = (
@@ -3013,7 +3007,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/duct,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -3863,7 +3856,7 @@ NO
 as
 Cn
 il
-Sq
+Tv
 az
 az
 DC
@@ -3903,7 +3896,7 @@ NO
 as
 js
 Oa
-Tv
+dV
 as
 Mw
 ab
