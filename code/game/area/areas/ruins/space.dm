@@ -436,7 +436,7 @@
 	icon_state = "engine"
 
 /area/ruin/space/has_grav/listeningstation/quarters
-	name = "Listening Post Quarters"
+	name = "Listening Post Crew Quarters"
 	icon_state = "green"
 
 /area/ruin/space/has_grav/listeningstation/warehouse
