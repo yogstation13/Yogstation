@@ -1,8 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - rscadd: "added more keywords to voice of god"
-  - tweak: "voice of god doesn't stun anymore"
-  - tweak: "voice of god knockdown just makes you lie down instead of stunning you"
-  - tweak: "voice of god does more damage to lavaland mobs and IPCs with ultra violence"
-  - tweak: "increased voice of god power modifier slightly for security and significantly for heretics"
