@@ -590,14 +590,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
-"dV" = (
-/obj/machinery/hydroponics/constructable,
-/obj/effect/turf_decal/sand/plating,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/quarters)
 "dX" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -867,7 +859,9 @@
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/crate/critter,
-/mob/living/simple_animal/pet/cat/kitten,
+/mob/living/simple_animal/pet/cat/kitten{
+	faction = list("Syndicate")
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "ip" = (
@@ -1730,6 +1724,14 @@
 "zw" = (
 /obj/machinery/vending/cigarette/syndicate,
 /turf/open/floor/plasteel/grimy,
+/area/ruin/space/has_grav/listeningstation/quarters)
+"zy" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/sand/plating,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "zF" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3896,7 +3898,7 @@ NO
 as
 js
 Oa
-dV
+zy
 as
 Mw
 ab
