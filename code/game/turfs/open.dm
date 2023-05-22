@@ -574,9 +574,9 @@
 
 		var/turf/target = get_ranged_target_turf(slipper, olddir, 4)
 		if(lube & SLIDE)
-			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 4), 1, FALSE, CALLBACK(C, TYPE_PROC_REF(/mob/living/carbon, spin), 1, 1))
+			new /datum/forced_movement(slipper, target, 1, FALSE, CALLBACK(slipper, TYPE_PROC_REF(/mob/living/carbon, spin), 1, 1))
 		else if(lube&SLIDE_ICE)
-			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
+			new /datum/forced_movement(slipper, get_ranged_target_turf(slipper, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
 		return 1
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)

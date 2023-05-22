@@ -239,7 +239,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
 
 		/obj/item/autosurgeon/cmo = 2,
-		/obj/item/book/granter/spell/smoke/lesser = 2,
+		/obj/item/book/granter/action/spell/smoke/lesser = 2,
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
 		/obj/item/autosurgeon/reviver = 1,
@@ -263,7 +263,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/dragons_blood = -2,
 		/obj/item/desynchronizer = -2,
 		/obj/item/book/granter/martial/cqc = -2,
-		/obj/item/book/granter/spell/smoke = -2,
+		/obj/item/book/granter/action/spell/smoke = -2,
 
 		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,
