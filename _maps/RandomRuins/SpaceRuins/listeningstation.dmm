@@ -1222,6 +1222,14 @@
 /obj/item/storage/firstaid/emergency,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
+"nJ" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/machinery/hydroponics/constructable,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "nK" = (
 /obj/machinery/griddle,
 /turf/open/floor/wood,
@@ -1669,14 +1677,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/listeningstation/hallway)
-"yt" = (
-/obj/machinery/hydroponics/constructable,
-/obj/effect/turf_decal/sand/plating,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/quarters)
 "yN" = (
 /turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation/telecomms)
@@ -1863,7 +1863,7 @@
 /area/ruin/space/has_grav/listeningstation/hallway)
 "EM" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/effect/turf_decal/tile/red/half/contrasted{
+/obj/effect/turf_decal/tile/red/anticorner/contrasted{
 	dir = 1
 	},
 /obj/machinery/airalarm/syndicate{
@@ -2669,11 +2669,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "Tv" = (
-/obj/effect/turf_decal/sand/plating,
 /obj/machinery/hydroponics/constructable,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
+/obj/effect/turf_decal/sand/plating,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "TF" = (
@@ -2801,6 +2801,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
@@ -3870,7 +3873,7 @@ NO
 as
 Cn
 il
-Tv
+nJ
 az
 az
 DC
@@ -3910,7 +3913,7 @@ NO
 as
 js
 Oa
-yt
+Tv
 as
 Mw
 ab
