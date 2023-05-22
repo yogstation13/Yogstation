@@ -849,6 +849,9 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "il" = (
+/obj/item/shovel/spade,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/hatchet/wooden,
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "im" = (
@@ -1028,14 +1031,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
 "js" = (
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/structure/fermenting_barrel,
+/obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "jK" = (
@@ -1605,6 +1601,14 @@
 "wW" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/listeningstation/quarters)
+"xb" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/sand/plating,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "xp" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1786,7 +1790,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Cn" = (
-/obj/machinery/hydroponics/constructable,
+/obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Cw" = (
@@ -2306,6 +2310,8 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/item/storage/bag/plants/portaseeder,
+/obj/item/cultivator,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Od" = (
@@ -2537,6 +2543,7 @@
 	},
 /obj/item/toy/crayon/spraycan,
 /obj/item/toy/crayon/spraycan,
+/obj/item/stack/sheet/mineral/wood/fifty,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "Ri" = (
@@ -2644,8 +2651,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "Tv" = (
-/obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/sand/plating,
+/obj/machinery/hydroponics/constructable,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "TF" = (
@@ -3878,7 +3888,7 @@ NO
 as
 js
 Oa
-Tv
+xb
 as
 Mw
 ab
