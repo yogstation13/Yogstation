@@ -1130,6 +1130,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/airlock)
 "kW" = (
@@ -1600,14 +1603,6 @@
 /area/ruin/space/has_grav/listeningstation/hallway)
 "wW" = (
 /turf/closed/wall,
-/area/ruin/space/has_grav/listeningstation/quarters)
-"xb" = (
-/obj/machinery/hydroponics/constructable,
-/obj/effect/turf_decal/sand/plating,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "xp" = (
 /obj/structure/cable{
@@ -2418,6 +2413,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
 "Pa" = (
@@ -2580,6 +2578,9 @@
 	brightness = 3;
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/airlock)
 "Si" = (
@@ -2598,6 +2599,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
+"Sq" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/machinery/hydroponics/constructable,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
+/obj/item/seeds/potato,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "St" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -2651,11 +2660,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "Tv" = (
-/obj/effect/turf_decal/sand/plating,
 /obj/machinery/hydroponics/constructable,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
+/obj/effect/turf_decal/sand/plating,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
+/obj/item/seeds/tower,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "TF" = (
@@ -2740,6 +2749,9 @@
 	id_tag = "syndie_listeningpost_external";
 	req_access_txt = "150"
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/airlock)
 "VH" = (
@@ -2768,6 +2780,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
@@ -3848,7 +3863,7 @@ NO
 as
 Cn
 il
-Tv
+Sq
 az
 az
 DC
@@ -3888,7 +3903,7 @@ NO
 as
 js
 Oa
-xb
+Tv
 as
 Mw
 ab
