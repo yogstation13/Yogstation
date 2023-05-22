@@ -414,7 +414,7 @@
 	cooldown_time = COOLDOWN_STOMP
 	var/charging = FALSE
 
-/datum/action/cooldown/worldstomp/IsAvailable()
+/datum/action/cooldown/worldstomp/IsAvailable(feedback = FALSE)
 	if(!linked_martial || !linked_martial.can_use(owner))
 		return FALSE
 	return ..()
