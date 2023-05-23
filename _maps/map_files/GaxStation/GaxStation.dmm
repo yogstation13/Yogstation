@@ -40474,7 +40474,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/grille/broken,
-/obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "ugA" = (
