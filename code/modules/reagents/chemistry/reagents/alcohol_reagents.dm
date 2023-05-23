@@ -1217,8 +1217,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/silencer/on_mob_life(mob/living/carbon/M)
 	if(ishuman(M) && M.job == "Mime")
-		M.silent = max(M.silent, MIMEDRINK_SILENCE_DURATION)
-		M.heal_bodypart_damage(1.5,1.5)
+		if(holder.has_reagent(/datum/reagent/consumable/nothing))
+			holder.remove_reagent(/datum/reagent/consumable/nothing, 5)
+		if(holder.has_reagent(/datum/reagent/consumable/ethanol/blank_paper))
+			holder.remove_reagent(/datum/reagent/consumable/ethanol/blank_paper, 5)
+		else
+			M.silent = max(M.silent, MIMEDRINK_SILENCE_DURATION)
+			M.heal_bodypart_damage(1.5,1.5)
 		. = 1
 	return ..() || .
 
@@ -1932,8 +1937,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/blank_paper/on_mob_life(mob/living/carbon/M)
 	if(ishuman(M) && M.job == "Mime")
-		M.silent = max(M.silent, MIMEDRINK_SILENCE_DURATION)
-		M.heal_bodypart_damage(2.5,2.5)
+		if(holder.has_reagent(/datum/reagent/consumable/nothing))
+			holder.remove_reagent(/datum/reagent/consumable/nothing, 5)
+		if(holder.has_reagent(/datum/reagent/consumable/ethanol/silencer))
+			holder.remove_reagent(/datum/reagent/consumable/ethanol/silencer, 5)
+		else
+			M.silent = max(M.silent, MIMEDRINK_SILENCE_DURATION)
+			M.heal_bodypart_damage(2.5,2.5)
 		. = 1
 	return ..()
 
