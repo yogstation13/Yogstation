@@ -401,10 +401,10 @@
 	name = "Unloaded Technological Shotshell"
 	desc = "A high-tech shotgun shell which can be loaded with materials to produce unique effects."
 	id = "techshotshell"
-	build_type = PROTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 200)
 	build_path = /obj/item/ammo_casing/shotgun/techshell
-	category = list("Ammo")
+	category = list("hacked", "Security", "Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/suppressor
