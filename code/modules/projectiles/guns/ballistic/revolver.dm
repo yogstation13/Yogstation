@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/revolver
 	name = "\improper .357 revolver"
-	desc = "A suspicious revolver. Uses .357 ammo." //usually used by syndicates
+	desc = "A suspicious revolver. Uses .357 magnum ammo." //usually used by syndicates
 	icon_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder
 	fire_sound = 'sound/weapons/revolver357shot.ogg'
@@ -137,14 +137,16 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/tra32
 
 /obj/item/gun/ballistic/revolver/mateba
-	name = "\improper Unica 6 auto-revolver"
-	desc = "A retro high-powered autorevolver typically used by officers of the New Russia military. Uses .357 ammo."
+	name = "\improper Unica 6 autorevolver"
+	desc = "A retro, high-powered autorevolver typically worn by high-ranking officers within various militaries. Loads .44 magnum rounds."
 	icon_state = "mateba"
-	fire_delay = 0 //Admin-only therefore massive L
+	fire_delay = 9 //Chunky, but powerful
+	fire_sound = 'sound/weapons/44fire.ogg'
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev44
 
 /obj/item/gun/ballistic/revolver/golden
 	name = "\improper Golden revolver"
-	desc = "This ain't no game, ain't never been no show, And I'll gladly gun down the oldest lady you know. Uses .357 ammo."
+	desc = "This ain't no game, ain't never been no show, And I'll gladly gun down the oldest lady you know. Uses .357 magnum ammo."
 	icon_state = "goldrevolver"
 	fire_delay = 0 //Yee-haw
 	fire_sound = 'sound/weapons/resonator_blast.ogg'
@@ -158,7 +160,6 @@
 	fire_delay = 5 //Mild trigger pull, the gun was known for it
 	fire_sound = 'sound/weapons/revolver38shot.ogg' //Lower caliber = lesser smack
 	can_suppress = TRUE
-
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762
 
 
@@ -167,7 +168,7 @@
 
 /obj/item/gun/ballistic/revolver/russian
 	name = "\improper Russian revolver"
-	desc = "A Russian-made revolver for drinking games. Uses .357 ammo, and has a mechanism requiring you to spin the chamber before each trigger pull."
+	desc = "A Russian-made revolver for drinking games. Uses .357 magnum ammo, and has a mechanism requiring you to spin the chamber before each trigger pull."
 	icon_state = "russianrevolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rus357
 	var/spun = FALSE
