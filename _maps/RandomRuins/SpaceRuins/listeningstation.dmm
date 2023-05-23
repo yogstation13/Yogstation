@@ -25,6 +25,7 @@
 /obj/effect/turf_decal/box/white,
 /obj/effect/turf_decal/trimline/yellow,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/baseturf_helper/asteroid/airless,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/listeningstation/hallway)
 "af" = (
@@ -282,6 +283,7 @@
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
+/obj/effect/baseturf_helper/asteroid/airless,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
 "aV" = (
@@ -910,6 +912,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/baseturf_helper/asteroid/airless,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "is" = (
@@ -1051,6 +1054,10 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/listeningstation/quarters)
+"jB" = (
+/obj/effect/baseturf_helper/asteroid/airless,
+/turf/closed/wall/rust,
+/area/ruin/space/has_grav/listeningstation/warehouse)
 "jK" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible{
 	dir = 8
@@ -1170,6 +1177,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
+"lm" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/effect/baseturf_helper/asteroid/airless,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "lq" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1287,6 +1299,23 @@
 "pZ" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/listeningstation/telecomms)
+"qd" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/advanced_airlock_controller{
+	req_access = list(150);
+	pixel_x = -24
+	},
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/engineering)
 "qk" = (
 /obj/machinery/computer/arcade/battle,
 /obj/effect/turf_decal/tile/red/half/contrasted{
@@ -1648,23 +1677,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
-"xs" = (
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/advanced_airlock_controller{
-	req_access = list(150);
-	pixel_x = -24
-	},
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/engineering)
 "xu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -2638,6 +2650,21 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/airlock)
+"RS" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	id_tag = "syndie_listeningpost_external_engi";
+	req_access_txt = "150"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/engineering)
 "Si" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -2696,6 +2723,7 @@
 "SH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/baseturf_helper/asteroid/airless,
 /turf/open/floor/plating/rust,
 /area/ruin/space/has_grav/listeningstation/engineering)
 "Tk" = (
@@ -2850,21 +2878,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
-"Wq" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/door/airlock/external{
-	id_tag = "syndie_listeningpost_external_engi";
-	req_access_txt = "150"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/engineering)
 "WK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -3684,7 +3697,7 @@ at
 wW
 cd
 wo
-tg
+lm
 aK
 aK
 aK
@@ -3708,7 +3721,7 @@ NO
 Gg
 EM
 xT
-ak
+jB
 YC
 Zv
 dX
@@ -4042,8 +4055,8 @@ jK
 SH
 by
 aO
-xs
-Wq
+qd
+RS
 bF
 km
 NO
