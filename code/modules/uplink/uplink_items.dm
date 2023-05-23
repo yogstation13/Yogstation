@@ -2233,13 +2233,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/book/granter/martial/flyingfang
 	restricted_species = list("lizard", "draconid")
 
-/datum/uplink_item/race_restricted/dragonjuice
-	name = "Refined Dragons Blood"
-	desc = "This bottle of blood, painstakingly extracted from the corpse of a slain ash drake and refined down to just its pure essence, should awaken the more draconic side of any ordinary, weak little lizard!"
-	cost = 7
-	item = /obj/item/dragons_blood/syndicate
-	restricted_species = list("lizard")
-
 /datum/uplink_item/race_restricted/angelcoolboy
 	name = "Angel Potion"
 	desc = "We mixed a bird and a human and we somehow made a potion that turns you into a holy creature."
