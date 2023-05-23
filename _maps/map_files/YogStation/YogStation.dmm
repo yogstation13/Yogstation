@@ -59958,6 +59958,7 @@
 /area/ai_monitored/turret_protected/ai_upload)
 "uaw" = (
 /obj/structure/table,
+/obj/item/paper/guides/jobs/robotics/ipc_repair,
 /obj/item/crowbar,
 /obj/item/toy/figure/roboticist{
 	pixel_x = -9;
