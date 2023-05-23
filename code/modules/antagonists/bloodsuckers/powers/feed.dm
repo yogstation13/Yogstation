@@ -40,6 +40,8 @@
 	var/warning_full = FALSE
 	var/warning_target_bloodvol = 99999
 	var/was_alive = FALSE
+	//can you silently feed? Hecata can't.
+	var/suppressible = 1 
 
 /datum/action/bloodsucker/feed/CheckCanUse(mob/living/carbon/user)
 	. = ..()
@@ -77,6 +79,10 @@
 	// Bloodsuckers can be fed off of if they are grabbed more than Passively.
 	if(IS_BLOODSUCKER(target) && target == owner.pulling && owner.grab_state <= GRAB_PASSIVE)
 		to_chat(owner, span_warning("Other Bloodsuckers will not fall for your subtle approach."))
+		return FALSE
+	// As Hecata, you can't feed off of anyone if they aren't grabbed more than Passively.
+	if(suppressible == 0 && owner.grab_state <= GRAB_PASSIVE)
+		to_chat(owner, span_warning("Feeding as a Hecata would cause enough pain to the victim to make silent feeding like this impossible."))
 		return FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/target_user = target
