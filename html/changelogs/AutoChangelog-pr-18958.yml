@@ -1,0 +1,11 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Worldshaker pummel has a proper cooldown"
+  - bugfix: "Worldshaker pummel has a proper attack animation"
+  - tweak: "Worldshaker costs 20tc instead of 16"
+  - tweak: "Worldshaker has a 25 population minimum"
+  - tweak: "Worldshaker plates are now huge"
+  - tweak: "Worldshaker is now brought to you by Vahlen Pharmaceuticals"
+  - tweak: "Worldshaker leap only telegraphs on heavy leaps"
+  - tweak: "Worldshaker leap and worldstomp gib dead simplemobs that are landed/stood on"
