@@ -1,0 +1,8 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - rscadd: "adds IPC reactivation surgery (screwdriver -> hand -> multitool -> screwdriver)"
+  - rscdel: "removes IPC revival boards"
+  - soundadd: "adds dial-up internet sound to IPC revival"
+  - imageadd: "adds icon for IPC reactivation surgery"
+  - bugfix: "fixed IPCs not getting their original screen back after being admin revived"
