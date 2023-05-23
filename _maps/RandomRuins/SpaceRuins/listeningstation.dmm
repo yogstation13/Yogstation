@@ -1992,6 +1992,10 @@
 	name = "old magboots";
 	desc = "Old Syndicate-made magboots with a very heavy pull."
 	},
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "HT" = (
@@ -2660,6 +2664,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/rust,
 /area/ruin/space/has_grav/listeningstation/engineering)
+"Te" = (
+/obj/machinery/firealarm{
+	dir = 2;
+	pixel_y = 24
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/listeningstation/telecomms)
 "Tk" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3381,7 +3397,7 @@ zj
 Of
 it
 Cy
-nM
+Te
 eM
 aB
 Tk
