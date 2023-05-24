@@ -9080,8 +9080,8 @@
 /area/centcom/ferry)
 "atG" = (
 /obj/item/storage/box/handcuffs,
-/obj/item/ammo_box/a357,
-/obj/item/ammo_box/a357,
+/obj/item/ammo_box/m44,
+/obj/item/ammo_box/m44,
 /obj/item/gun/ballistic/revolver/mateba,
 /obj/structure/table/reinforced,
 /obj/machinery/firealarm{

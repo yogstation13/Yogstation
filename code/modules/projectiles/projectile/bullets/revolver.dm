@@ -9,15 +9,15 @@
 // .50AE (Desert Eagle)
 
 /obj/item/projectile/bullet/a50AE
-	name = ".50AE bullet"
-	damage = 40
+	name = ".50 AE bullet"
+	damage = 45 //.357 gets armor penetration, this doesn't
 	wound_bonus = -35
 	wound_falloff_tile = -2.5
 
 // .38 (Colt Detective Special + Vatra M38)
 
 /obj/item/projectile/bullet/c38
-	name = ".38 bullet"
+	name = ".38 special bullet"
 	damage = 21
 	armour_penetration = -30 //Armor hit by this is modified by x1.43. IF THIS IS EVER MADE POSITIVE, PLEASE REVISE FORMULA IN .38 TALON ON-HIT PROC
 	wound_bonus = -30
@@ -91,7 +91,7 @@
 // .357 (Syndie Revolver)
 
 /obj/item/projectile/bullet/a357
-	name = ".357 bullet"
+	name = ".357 magnum bullet"
 	damage = 40
 	armour_penetration = 15
 	wound_bonus = -45
@@ -144,3 +144,12 @@
 		var/atom/movable/M = target
 		var/atom/throw_target = get_edge_target_turf(M, get_dir(src, get_step_away(M, src)))
 		M.safe_throw_at(throw_target, 2, 2) //Extra ten damage if they hit a wall, resolves against melee armor
+
+// .44 (Mateba)
+
+/obj/item/projectile/bullet/m44
+	name = ".44 magnum bullet"
+	damage = 55
+	armour_penetration = 20
+	wound_bonus = -70
+	wound_falloff_tile = -2.5

@@ -3508,6 +3508,7 @@
 #include "code\modules\surgery\helpers.dm"
 #include "code\modules\surgery\hepatectomy.dm"
 #include "code\modules\surgery\implant_removal.dm"
+#include "code\modules\surgery\ipc_revival.dm"
 #include "code\modules\surgery\limb_augmentation.dm"
 #include "code\modules\surgery\lipoplasty.dm"
 #include "code\modules\surgery\lobectomy.dm"

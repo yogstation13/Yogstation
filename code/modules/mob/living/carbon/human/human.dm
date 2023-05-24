@@ -1082,6 +1082,13 @@
 	. *= physiology.do_after_speed
 	. *= dna.species.action_speed_coefficient
 
+/mob/living/carbon/human/update_mobility()
+	..()
+	if(physiology?.crawl_speed && !(mobility_flags & MOBILITY_STAND))
+		add_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE, multiplicative_slowdown = physiology.crawl_speed)
+	else
+		remove_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE)
+
 /mob/living/carbon/human/updatehealth()
 	var/oldhealth = health
 	. = ..()
