@@ -1271,6 +1271,9 @@
 /obj/item/paper_bin,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
+"oq" = (
+/turf/closed/mineral/gibtonite,
+/area/ruin/unpowered)
 "ou" = (
 /turf/open/floor/engine/o2,
 /area/ruin/space/has_grav/listeningstation/engineering)
@@ -1651,6 +1654,9 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/window/reinforced/survival_pod,
 /obj/machinery/door/firedoor/border_only,
+/obj/item/paper{
+	info = "In order to help increase the power of your onboard self-destruct, the asteroid selected has extremely high gibtonite concentration. If you do decide to mine, take a scanner with you to avoid the impromptu evaporation of the base."
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
 "wW" = (
@@ -2609,6 +2615,7 @@
 /obj/item/toy/crayon/spraycan,
 /obj/item/toy/crayon/spraycan,
 /obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/mining_scanner,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "Ri" = (
@@ -3365,7 +3372,7 @@ NO
 NO
 NO
 NO
-NO
+oq
 yN
 zg
 aC
@@ -3457,12 +3464,12 @@ aD
 fL
 KS
 yN
-NO
+oq
 NO
 as
 as
 as
-NO
+oq
 NO
 Mw
 Mw
@@ -3710,7 +3717,7 @@ uR
 FV
 hA
 as
-NO
+oq
 NO
 "}
 (16,1,1) = {"
@@ -3885,7 +3892,7 @@ NO
 NO
 NO
 NO
-NO
+oq
 bn
 bn
 Dk
@@ -3935,7 +3942,7 @@ Nl
 bx
 bw
 bn
-NO
+oq
 NO
 as
 as
