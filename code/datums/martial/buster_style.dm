@@ -490,7 +490,7 @@
 
 	combined_msg +=  span_warning("Should your moves cease to function altogether, utilize the 'Recalibrate Arm' function.")
 
-	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 50% for 2 seconds.</b>")
+	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 25% for 2 seconds.</b>")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
