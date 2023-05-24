@@ -1056,15 +1056,6 @@
 	construction_time = 100
 	category = list("IPC Components") 
 
-/datum/design/ipcrevive
-	name = "IPC Revival Board"
-	id = "ipcrevive"
-	build_type = MECHFAB
-	build_path = /obj/item/ipcrevive
-	materials = list(/datum/material/iron = 20000 , /datum/material/glass = 5000)
-	construction_time = 120
-	category = list("IPC Components") 
-
 /datum/design/ipclimbs
 	build_type = MECHFAB
 	materials = list(/datum/material/iron = 10000 , /datum/material/glass = 5000)

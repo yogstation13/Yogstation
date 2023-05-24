@@ -98,7 +98,10 @@
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
 		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
-			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
+			if(isipc(src))
+				. += span_warning("<B>Their monitor hums quietly, with an underlying collection of blood-red pixels swirling faintly.</B>")
+			else
+				. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 
 	//ears
 	if(ears && !(SLOT_EARS in obscured))
@@ -584,8 +587,10 @@
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
 		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
-			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
-
+			if(isipc(src))
+				. += span_warning("<B>Their monitor hums quietly, with an underlying collection of blood-red pixels swirling faintly.</B>")
+			else
+				. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 	//ears
 	if(ears && !(SLOT_EARS in obscured))
 		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."
