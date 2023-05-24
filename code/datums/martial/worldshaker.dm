@@ -149,7 +149,7 @@
 	plate.linked_martial = src
 
 /datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
-	heavy = plates > MAX_PLATES
+	heavy = plates >= MAX_PLATES
 	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
 	user.remove_movespeed_modifier(type)
 	user.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = platespeed, blacklisted_movetypes=(FLOATING))
