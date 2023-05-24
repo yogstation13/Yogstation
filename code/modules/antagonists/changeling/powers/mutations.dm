@@ -331,7 +331,7 @@
 			H.swap_hand()
 		if(H.get_active_held_item())
 			return
-		if((user.mobility_flags & MOBILITY_STAND))
+		if((H.mobility_flags & MOBILITY_STAND))
 			C.grabbedby(H)
 			C.grippedby(H, instant = TRUE) //instant aggro grab
 
