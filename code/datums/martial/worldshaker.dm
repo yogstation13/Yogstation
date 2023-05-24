@@ -4,13 +4,14 @@
 #define STOMP_DAMAGERADIUS 3
 #define COOLDOWN_LEAP 3 SECONDS
 #define LEAP_RADIUS 1
-#define COOLDOWN_PUMMEL 0.8 SECONDS //basically melee
+#define COOLDOWN_PUMMEL 1 SECONDS //basically melee
 #define STAGGER_DURATION 3 SECONDS
 #define WARNING_RANGE 10 //extra range to certain sound effects
-#define PLATE_INTERVAL 20 SECONDS //how often a plate grows
+#define PLATE_INTERVAL 15 SECONDS //how often a plate grows
 #define PLATE_REDUCTION 10 //how much DR per plate
-#define MAX_PLATES 7 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
+#define MAX_PLATES 10 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
 #define PLATE_CAP MAX_PLATES * 2 //hard cap of plates to prevent station wide fuckery
+#define PLATE_BREAK 30 //How much damage it takes to break a plate
 #define BALLOON_COOLDOWN 1 SECONDS  //limit the balloon alert spam of rapid click
 #define THROW_TOSSDMG 10 //the damage dealt by the initial throw
 #define THROW_SLAMDMG 5 //the damage dealt per object impacted during a throw
@@ -21,7 +22,6 @@
 	id = MARTIALART_WORLDSHAKER
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/worldshaker_help
-	block_chance = 90 //validhunters cry
 	var/recalibration = /mob/living/carbon/human/proc/worldshaker_recalibration
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_leap)
@@ -32,6 +32,7 @@
 	var/plates = 0
 	var/plate_timer = null
 	var/heavy = FALSE //
+	var/currentplate = 0 //how much damage the current plate has taken
 
 /datum/martial_art/worldshaker/can_use(mob/living/carbon/human/H)
 	if(H.stat == DEAD || H.IsUnconscious() || H.IsFrozen() || HAS_TRAIT(H, TRAIT_PACIFISM))
@@ -85,6 +86,8 @@
 /datum/martial_art/worldshaker/proc/push_away(mob/living/user, atom/movable/victim, distance = 1)
 	if(victim.anchored)
 		return
+	if(get_turf(victim) == get_turf(user))
+		return
 	var/throwdirection = get_dir(user, victim)
 	var/atom/throw_target = get_edge_target_turf(victim, throwdirection)
 	var/throwspeed = 3
@@ -102,7 +105,6 @@
 	if(plates >= PLATE_CAP || user.stat == DEAD)//no quaking the entire station
 		return
 	user.balloon_alert(user, span_notice("your plates grow thicker!"))
-	user.heal_overall_damage(-2, -1, BODYPART_ANY)//more for flavour than actual gameplay (and so the damage from tearing off a plate isn't annoying)
 	plates++
 	if(plates <= MAX_PLATES)
 		user.physiology.damage_resistance += PLATE_REDUCTION
@@ -113,8 +115,8 @@
 		to_chat(user, span_warning("Your plates are too thin to tear off a piece!"))
 		return
 	user.balloon_alert(user, span_notice("you tear off a loose plate!"))
-	user.take_overall_damage(1, 0, BODYPART_ANY)//literally tearing off part of your "skin" (more for flavour than actual gameplay)
 
+	currentplate = 0
 	if(plates <= MAX_PLATES)
 		user.physiology.damage_resistance -= PLATE_REDUCTION
 	plates--
@@ -125,8 +127,28 @@
 	user.changeNext_move(0.1)//entirely to prevent hitting yourself instantly
 	user.throw_mode_on()
 
+/datum/martial_art/worldshaker/proc/lose_plate(mob/living/carbon/human/user, damage, damagetype, def_zone)
+	if(plates <= 0)//no plate to lose
+		return
+
+	if(damagetype != BRUTE && damagetype != BURN)
+		return //no toxin, oxy, stamina, or brain damage
+
+	currentplate += damage
+
+	if(currentplate < PLATE_BREAK)
+		return
+
+	user.visible_message(span_notice("one of [user]'s plates falls to the ground!"), span_userdanger("one of your loose plates falls off from excessive wear!"))
+	currentplate = 0
+	if(plates <= MAX_PLATES)
+		user.physiology.damage_resistance -= PLATE_REDUCTION
+	plates--
+	update_platespeed(user)
+	var/obj/item/worldplate/plate = new(get_turf(user))//dropped to the ground
+	plate.linked_martial = src
+
 /datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
-	block_chance = plates ? initial(block_chance) : 0
 	heavy = plates > MAX_PLATES
 	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
 	user.remove_movespeed_modifier(type)
@@ -188,7 +210,8 @@
 		return
 	if(!target || leaping)
 		return
-	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (plates * 2))//longer cooldown the more plates you have
+	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (plates * 3))//longer cooldown the more plates you have
+	drop() //doesn't work nicely anyways
 
 	//telegraph ripped entirely from bubblegum charge
 	if(heavy)
@@ -262,7 +285,7 @@
 	var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
 	target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 	
-/datum/martial_art/worldshaker/proc/drop(mob/living/target)//proc for clearing the thrown list, mostly so the lob proc doesnt get triggered when it shouldn't
+/datum/martial_art/worldshaker/proc/drop()//proc for clearing the thrown list, mostly so the lob proc doesnt get triggered when it shouldn't
 	for(var/atom/movable/thing in thrown)
 		thrown.Remove(thing)
 
@@ -488,14 +511,6 @@
 /*---------------------------------------------------------------
 	end of stomp section
 ---------------------------------------------------------------*/
-/datum/martial_art/worldshaker/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)
-	if(plates <= MAX_PLATES)
-		user.physiology.damage_resistance -= PLATE_REDUCTION
-	plates--
-	update_platespeed(user)
-	user.visible_message("With a burst of metal, [user] sends [attacker] flying.", "You shed a plate to repel [attacker]'s attack.")
-	push_away(user, attacker, 20)//don't EVER come at me with that B
-	
 /*---------------------------------------------------------------
 	training related section
 ---------------------------------------------------------------*/
@@ -531,8 +546,6 @@
 	The shockwave will knock back and stagger all mobs in a larger radius. Objects and structures within the extended radius will be thrown or damaged respectively. \
 	The radius, knockback, and damage all scale with number of plates."
 
-	combined_msg +=  "[span_notice("Landslide")]: If hit by a melee attack while in throw mode, you will expel one of your loose plates to block it and send the attacker flying."
-
 	combined_msg += span_notice("Being in this state causes you to burn energy significantly faster.")
 	combined_msg += span_notice("Your considerably increased weight will prevent you from using most conventional vehicles.")
 	combined_msg += span_notice("Should your strength fail you, an attempt to regain strength can be made with the 'Flush Circuits' function.")
@@ -553,7 +566,7 @@
 	..()
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//burn bright my friend
-		S.power_drain *= 3
+		S.power_drain *= 5
 		S.punchdamagelow += 5
 		S.punchdamagehigh += 5
 		S.punchstunthreshold += 5
@@ -566,6 +579,7 @@
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 	ADD_TRAIT(H, TRAIT_NOVEHICLE, type)
+	RegisterSignal(H, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(lose_plate))
 	if(!linked_stomp)
 		linked_stomp = new
 		linked_stomp.linked_martial = src
@@ -574,7 +588,7 @@
 /datum/martial_art/worldshaker/on_remove(mob/living/carbon/human/H)
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//but not that bright
-		S.power_drain /= 3
+		S.power_drain /= 5
 		S.punchdamagelow -= 5
 		S.punchdamagehigh -= 5
 		S.punchstunthreshold -= 5
@@ -588,6 +602,7 @@
 	REMOVE_TRAIT(H, TRAIT_BOMBIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_NOVEHICLE, type)
+	UnregisterSignal(H, COMSIG_MOB_APPLY_DAMAGE)
 	if(linked_stomp)
 		linked_stomp.Remove(H)
 	return ..()
@@ -597,6 +612,7 @@
 #undef STOMP_DAMAGERADIUS
 #undef COOLDOWN_LEAP
 #undef LEAP_RADIUS
+#undef COOLDOWN_PUMMEL
 #undef STAGGER_DURATION
 #undef WARNING_RANGE
 #undef PLATE_INTERVAL
