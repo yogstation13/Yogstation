@@ -70,12 +70,12 @@
 	owner.announce_objectives()
 
 /datum/antagonist/cult/on_gain()
+	add_objectives()
 	. = ..()
 	var/mob/living/current = owner.current
 	if(ishuman(current))
 		var/mob/living/carbon/human/H = current
 		original_eye_color = H.eye_color
-	add_objectives()
 	if(give_equipment)
 		equip_cultist(TRUE)
 	SSticker.mode.cult += owner // Only add after they've been given objectives

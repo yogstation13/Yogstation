@@ -103,7 +103,7 @@
 		forge_objectives()
 	handle_clown_mutation(owner.current, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
 	owner.current.grant_all_languages(FALSE, FALSE, TRUE)	//Grants omnitongue. We are able to transform our body after all.
-	. = ..()
+	return ..()
 
 /datum/antagonist/changeling/on_removal()
 	//We'll be using this from now on
