@@ -211,7 +211,6 @@
 	if(!target || leaping)
 		return
 	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (plates * 3))//longer cooldown the more plates you have
-	drop() //doesn't work nicely anyways
 
 	//telegraph ripped entirely from bubblegum charge
 	if(heavy)
