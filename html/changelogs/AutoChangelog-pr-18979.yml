@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "the hand teleporter no longer acts quirky when failing to dispel portals, which would result in attempting to dispel it a second time or teleporting you through it"
