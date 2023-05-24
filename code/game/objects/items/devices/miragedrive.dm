@@ -56,9 +56,10 @@
 			F.forceMove(next_step)
 			sleep(0.1 SECONDS)
 
-/obj/item/mdrive/examine(mob/user)
+/obj/item/mdrive/examine(datum/source, mob/user, list/examine_list)
 	. = ..()
-	. += {"A digital display on it reads "[seconds_remaining()]"."}
+	if(recharged == FALSE)
+		. += {"A digital display on it reads "[seconds_remaining()]"."}
 
 /obj/item/mdrive/proc/reload(recharged = FALSE)
 	src.recharged = TRUE
@@ -66,5 +67,4 @@
 	return
 
 /obj/item/mdrive/proc/seconds_remaining()
-	if(recharged == FALSE)
 		. = max(0, round((cooldown_remaining - world.time) / 100))
