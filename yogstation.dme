@@ -3911,6 +3911,7 @@
 #include "yogstation\code\modules\jungleland\jungle_structures.dm"
 #include "yogstation\code\modules\jungleland\jungle_turfs.dm"
 #include "yogstation\code\modules\jungleland\jungleland_crafting.dm"
+#include "yogstation\code\modules\jungleland\kinetic_javelin.dm"
 #include "yogstation\code\modules\language\darkspeak.dm"
 #include "yogstation\code\modules\language\japanese.dm"
 #include "yogstation\code\modules\libvg\utf8.dm"
