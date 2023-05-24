@@ -233,7 +233,7 @@
 	var/selected_zone = A.zone_selected
 	var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(selected_zone))
 	var/stamina_block = D.run_armor_check(affecting, MELEE, 0)
-	var/burn_block = D.run_armor_check(affecting, BOMB, 0
+	var/burn_block = D.run_armor_check(affecting, BOMB, 0)
 	D.apply_damage(A.get_punchdamagehigh() * 2 + 6, STAMINA, selected_zone, stamina_block) 	//20 stamina
 	D.apply_damage(A.get_punchdamagehigh() - 2, BURN, selected_zone, burn_block) 			//5 burn (vs bomb armor)
 
