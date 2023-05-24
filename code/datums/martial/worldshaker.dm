@@ -92,6 +92,14 @@
 		throwspeed *= 2
 		distance *= 2
 	victim.throw_at(throw_target, distance, throwspeed, user)
+
+/datum/martial_art/worldshaker/proc/hurt(mob/living/user, mob/living/target, damage)//proc the moves will use for damage dealing
+	stagger(target)
+	var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
+	var/meleearmor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 25)
+	var/bombarmor = target.run_armor_check(limb_to_hit, BOMB, armour_penetration = 40)//more ap for bomb armour since a number of armours hit 100%
+	var/truearmor = (meleearmor + bombarmor) / 2 //take an average of melee and bomb armour
+	target.apply_damage(damage, BRUTE, blocked = truearmor)
 /*---------------------------------------------------------------
 	end of helpers section
 ----------------------------------------------------------------*/
@@ -218,15 +226,15 @@
 	for(var/mob/living/L in range(range,user))
 		if(L == user)
 			continue
-		stagger(L)
 		var/damage = heavy ? 25 : 15 //chunky boy does more damage
 
 		if(L.loc == user.loc)
 			to_chat(L, span_userdanger("[user] lands directly ontop of you, crushing you beneath their immense weight!"))
 			damage *= 2//for the love of god, don't get landed on
 
+
+		hurt(user, L, damage)
 		L.apply_damage(damage, STAMINA)
-		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
 		push_away(user, L)
 		if(L.loc == user.loc && isanimal(L) && L.stat == DEAD)
 			L.gib()
@@ -255,13 +263,7 @@
 ---------------------------------------------------------------*/
 /*---------------------------------------------------------------
 	start of grapple section
----------------------------------------------------------------*/
-/datum/martial_art/worldshaker/proc/grab(mob/living/user, mob/living/target, damage)//proc the moves will use for damage dealing
-	stagger(target)
-	var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-	var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
-	target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
-	
+---------------------------------------------------------------*/	
 /datum/martial_art/worldshaker/proc/drop(mob/living/target)//proc for clearing the thrown list, mostly so the lob proc doesnt get triggered when it shouldn't
 	for(var/atom/movable/thing in thrown)
 		thrown.Remove(thing)
@@ -301,7 +303,7 @@
 		var/mob/living/carbon/tossedliving = thrown[1]
 		if(!tossedliving.buckled)
 			return
-		grab(user, tossedliving, THROW_TOSSDMG) // Apply damage
+		hurt(user, tossedliving, THROW_TOSSDMG) // Apply damage
 		for(var/obj/structure/bed/grip/holder in view(1, user))
 			holder.Destroy()
 	user.visible_message(span_warning("[user] throws [tossed]!"))
@@ -322,7 +324,7 @@
 	var/turf/T = get_step(get_turf(tossed), dir_to_target)
 	if(T.density) // crash into a wall and damage everything flying towards it before stopping 
 		for(var/mob/living/victim in thrown)
-			grab(user, victim, THROW_SLAMDMG) 
+			hurt(user, victim, THROW_SLAMDMG) 
 			victim.Knockdown(1 SECONDS)
 			victim.Immobilize(0.5 SECONDS)
 			if(isanimal(victim) && victim.stat == DEAD)
@@ -334,7 +336,7 @@
 	for(var/obj/thing in T.contents) // crash into something solid and damage it along with thrown objects that hit it
 		if(thing.density) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
 			for(var/mob/living/victim in thrown) 
-				grab(user, victim, THROW_SLAMDMG) 
+				hurt(user, victim, THROW_SLAMDMG) 
 				victim.Knockdown(1 SECONDS)
 				victim.Immobilize(0.5 SECONDS)
 				if(isanimal(victim) && victim.stat == DEAD)
@@ -354,10 +356,10 @@
 				return
 	for(var/mob/living/hit in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
 		if(user != hit)
-			grab(user, hit, THROW_SLAMDMG) 
+			hurt(user, hit, THROW_SLAMDMG) 
 			hit.Knockdown(1 SECONDS) 
 			for(var/mob/living/victim in thrown)
-				grab(user, victim, THROW_SLAMDMG) 
+				hurt(user, victim, THROW_SLAMDMG) 
 				victim.Knockdown(1 SECONDS) 
 			thrown |= hit
 	if(T) // if the next tile wont stop the thrown mass from continuing
@@ -396,9 +398,8 @@
 		if(L.anchored)
 			L.anchored = FALSE
 		push_away(user, L)
-		stagger(L)
-		L.apply_damage(damage, BRUTE, user.zone_selected, wound_bonus = 10, bare_wound_bonus = 20)
-		L.apply_damage(damage, STAMINA, user.zone_selected)
+		hurt(user, L, damage)
+		L.apply_damage(damage, STAMINA)
 	for(var/obj/item/I in range(1, target))
 		push_away(user, I)
 
@@ -450,7 +451,6 @@
 	for(var/mob/living/L in range(STOMP_RADIUS + plates, owner))
 		if(L == owner)
 			continue
-		linked_martial.stagger(L)
 		var/damage = heavy ? 10 : 5
 		var/throwdistance = 1
 		if(L in range(STOMP_DAMAGERADIUS + (plates/2), owner))//more damage and CC if closer
@@ -461,7 +461,7 @@
 			to_chat(L, span_userdanger("[owner] slams you into the ground with so much force that you're certain your ribs have been collapsed!"))
 			damage *= 3
 			L.Stun(5 SECONDS)
-		L.apply_damage(damage, BRUTE, wound_bonus = 10, bare_wound_bonus = 20)
+		linked_martial.hurt(owner, L, damage)
 		linked_martial.push_away(owner, L, throwdistance)
 		if(L.loc == owner.loc && isanimal(L) && L.stat == DEAD)//gib any animals you are standing on
 			L.gib()
