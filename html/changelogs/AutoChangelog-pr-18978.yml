@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "thw singularity no longer obliterates particles from the particle accelerator before recieving power from them"
