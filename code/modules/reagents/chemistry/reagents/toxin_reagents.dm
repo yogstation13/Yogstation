@@ -66,9 +66,9 @@
 	C.adjustPlasma(20)
 	if(isplasmaman(C))
 		toxpwr = 0
-		C.adjustBruteLoss(-0.5*REM, FALSE)
-		C.adjustFireLoss(-0.5*REM, FALSE)
-		C.adjustToxLoss(-1*REM, FALSE)
+		C.adjustBruteLoss(-0.25*REM, FALSE)
+		C.adjustFireLoss(-0.25*REM, FALSE)
+		C.adjustToxLoss(-0.5*REM, FALSE)
 	else
 		toxpwr = initial(toxpwr)
 	return ..()
