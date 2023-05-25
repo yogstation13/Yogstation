@@ -1,5 +1,0 @@
-author: "LazennG"
-delete-after: true 
-changes: 
-  - bugfix: "fixed buster style not working"
-  - tweak: "tweaked buster arm buff & disabling"

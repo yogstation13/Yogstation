@@ -1,6 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - rscdel: "Refined dragons blood is no longer available to lizard traitors"
-  - tweak: "Refined blood can now drop instead of normal blood (25% chance) from ash drakes"
-  - tweak: "Refined blood can be used by any species now"
