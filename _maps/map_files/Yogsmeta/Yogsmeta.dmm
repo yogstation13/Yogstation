@@ -48338,10 +48338,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"dfW" = (
-/obj/machinery/chem_dispenser,
-/turf/open/floor/wood,
-/area/medical/psych)
 "dgi" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/plating,
@@ -50533,27 +50529,6 @@
 "ebO" = (
 /turf/closed/wall,
 /area/engine/atmos/hfr)
-"ebZ" = (
-/obj/machinery/button/door{
-	id = "chemistry_shutters";
-	name = "chemistry shutters control";
-	pixel_x = 24;
-	pixel_y = 24;
-	req_access_txt = "5; 33"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "chemistry_shutters";
-	name = "chemistry shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/medical/chemistry)
 "ecc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -53844,18 +53819,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"gdq" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/pen/fountain{
-	pixel_x = -4;
-	pixel_y = 1
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "gdD" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -56450,11 +56413,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"hYx" = (
-/obj/machinery/chem_master,
-/obj/item/book/manual/wiki/chemistry,
-/turf/open/floor/wood,
-/area/medical/psych)
 "hYG" = (
 /obj/structure/chair,
 /obj/effect/landmark/start/assistant,
@@ -60539,6 +60497,12 @@
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"kzY" = (
+/obj/effect/turf_decal/trimline/chemorange/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "kBb" = (
 /obj/structure/chair/comfy/beige,
 /obj/effect/landmark/start/head_of_security,
@@ -65482,12 +65446,6 @@
 /mob/living/simple_animal/sloth/citrus,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"nxK" = (
-/obj/effect/turf_decal/trimline/chemorange/filled/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "nyc" = (
 /obj/effect/turf_decal/tile/green/half/contrasted,
 /turf/open/floor/plasteel,
@@ -70317,6 +70275,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
+"qGP" = (
+/obj/structure/bookcase/random/religion,
+/turf/open/floor/wood,
+/area/medical/psych)
 "qGY" = (
 /turf/open/space,
 /area/space/nearstation)
@@ -70538,6 +70500,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"qMu" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/floor/wood,
+/area/medical/psych)
 "qNp" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -73043,6 +73009,27 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"suo" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/chemorange/filled/line{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	frequency = 1485;
+	name = "Station Intercom (Medbay)";
+	pixel_x = 32
+	},
+/obj/machinery/button/door{
+	id = "chemistry_shutters";
+	name = "chemistry shutters control";
+	pixel_x = 26;
+	pixel_y = -9;
+	req_access_txt = "5; 33"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "suM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -80285,6 +80272,29 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"wSK" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/pen/fountain{
+	pixel_x = 6
+	},
+/obj/item/storage/pill_bottle/psicodine{
+	pixel_x = -1;
+	pixel_y = 8
+	},
+/obj/item/storage/pill_bottle/gummies/mindbreaker{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/storage/pill_bottle/gummies/mindbreaker{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "wSR" = (
 /turf/open/floor/engine/air,
 /area/engine/atmos/distro)
@@ -80328,20 +80338,6 @@
 /obj/structure/bookcase/manuals/research_and_development,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"wVZ" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/chemorange/filled/line{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	frequency = 1485;
-	name = "Station Intercom (Medbay)";
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "wWP" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -106099,7 +106095,7 @@ uex
 auQ
 caS
 yaA
-gdq
+wSK
 vYl
 auQ
 lMW
@@ -107641,8 +107637,8 @@ vRk
 auQ
 mTn
 bSe
-dfW
-hYx
+qGP
+qMu
 mWz
 qkN
 cZr
@@ -108901,8 +108897,8 @@ ckQ
 dsq
 wjN
 uSP
-wVZ
-nxK
+suo
+kzY
 awz
 kPz
 uIu
@@ -109157,7 +109153,7 @@ gAI
 iox
 jjT
 cga
-ebZ
+iDY
 cga
 iDY
 cga

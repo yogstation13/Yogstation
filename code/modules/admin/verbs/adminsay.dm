@@ -14,7 +14,6 @@
 	webhook_send_asay(key_name(src), msg)
 
 	msg = sanitize(msg)
-	msg = to_utf8(msg)
 
 	mob.log_talk(msg, LOG_ADMIN_PRIVATE)
 

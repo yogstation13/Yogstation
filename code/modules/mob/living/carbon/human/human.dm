@@ -1081,6 +1081,13 @@
 	. *= physiology.do_after_speed
 	. *= dna.species.action_speed_coefficient
 
+/mob/living/carbon/human/update_mobility()
+	..()
+	if(physiology?.crawl_speed && !(mobility_flags & MOBILITY_STAND))
+		add_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE, multiplicative_slowdown = physiology.crawl_speed)
+	else
+		remove_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE)
+
 /mob/living/carbon/human/updatehealth()
 	var/oldhealth = health
 	. = ..()
@@ -1361,12 +1368,3 @@
 	if(dna.check_mutation(ACTIVE_HULK) && confused && (world.time - last_bumped) > 15)
 		Bumped(AM)
 		return AM.attack_hulk(src)
-
-/mob/living/carbon/human/fall(forced)
-	. = ..()
-	if(resting)
-		return
-	var/obj/item/clothing/head/hat = get_item_by_slot(SLOT_HEAD)
-	if(istype(hat) && hat.hattable && prob(25))
-		visible_message("[src]'s [lowertext(hat.name)] falls off.")
-		dropItemToGround(hat)
