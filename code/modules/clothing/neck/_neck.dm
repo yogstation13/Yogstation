@@ -382,10 +382,10 @@
 	update_signals()
 
 /obj/item/clothing/neck/cloak/ranger/proc/on_unequip(force, newloc, no_move, invdrop = TRUE, silent = FALSE)
-	current_user = NULL
+	current_user = null
 	update_signals()
 
-/obj/item/clothing/neck/cloak/ranger/proc/Destroy()
+/obj/item/clothing/neck/cloak/ranger/Destroy()
 	set_cloak(0)
 	. = ..()
 	
