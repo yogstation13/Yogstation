@@ -2,15 +2,16 @@
 #define COOLDOWN_STOMP 15 SECONDS
 #define STOMP_RADIUS 6 //the base radius for the charged stomp
 #define STOMP_DAMAGERADIUS 3
-#define COOLDOWN_LEAP 3 SECONDS
+#define COOLDOWN_LEAP 2 SECONDS
+#define PLATE_LEAP 0.4 SECONDS //number of seconds added to cooldown per plate
 #define LEAP_RADIUS 1
-#define COOLDOWN_PUMMEL 1 SECONDS //basically melee
+#define COOLDOWN_PUMMEL 1.2 SECONDS //basically melee
 #define STAGGER_DURATION 3 SECONDS
 #define WARNING_RANGE 10 //extra range to certain sound effects
 #define PLATE_INTERVAL 15 SECONDS //how often a plate grows
 #define PLATE_REDUCTION 10 //how much DR per plate
 #define MAX_PLATES 10 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
-#define PLATE_CAP MAX_PLATES * 2 //hard cap of plates to prevent station wide fuckery
+#define PLATE_CAP MAX_PLATES + 5 //hard cap of plates to prevent station wide fuckery
 #define PLATE_BREAK 30 //How much damage it takes to break a plate
 #define BALLOON_COOLDOWN 1 SECONDS  //limit the balloon alert spam of rapid click
 #define THROW_TOSSDMG 10 //the damage dealt by the initial throw
@@ -159,10 +160,16 @@
 			S.special_step_sounds = list('sound/effects/gravhit.ogg')//heavy boy get stompy footsteps
 			S.special_step_volume = 9 //prevent it from blowing out ears
 			ADD_TRAIT(user, TRAIT_BOMBIMMUNE, type)//maxcap suicide bombers can go fuck themselves
+			ADD_TRAIT(user, TRAIT_RESISTCOLD, type)
+			ADD_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
+			ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
 		else
 			S.special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
 			S.special_step_volume = 50
 			REMOVE_TRAIT(user, TRAIT_BOMBIMMUNE, type)
+			REMOVE_TRAIT(user, TRAIT_RESISTCOLD, type)
+			REMOVE_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
+			REMOVE_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
 
 /obj/item/worldplate
 	name = "worldshaker plate"
@@ -210,7 +217,7 @@
 		return
 	if(!target || leaping)
 		return
-	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (plates * 3))//longer cooldown the more plates you have
+	COOLDOWN_START(src, next_leap, COOLDOWN_LEAP + (plates * PLATE_LEAP))//longer cooldown the more plates you have
 
 	//telegraph ripped entirely from bubblegum charge
 	if(heavy)
@@ -570,6 +577,8 @@
 		S.punchdamagelow += 5
 		S.punchdamagehigh += 5
 		S.punchstunthreshold += 5
+		S.add_no_equip_slot(H, SLOT_WEAR_SUIT)
+		S.add_no_equip_slot(H, SLOT_HEAD)
 	usr.click_intercept = src 
 	add_verb(H, recalibration)
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
@@ -592,6 +601,8 @@
 		S.punchdamagelow -= 5
 		S.punchdamagehigh -= 5
 		S.punchstunthreshold -= 5
+		S.remove_no_equip_slot(H, SLOT_WEAR_SUIT)
+		S.remove_no_equip_slot(H, SLOT_HEAD)
 	usr.click_intercept = null 
 	remove_verb(H, recalibration)
 	H.physiology.damage_resistance -= PLATE_REDUCTION * min(plates, MAX_PLATES)
@@ -611,6 +622,7 @@
 #undef STOMP_RADIUS
 #undef STOMP_DAMAGERADIUS
 #undef COOLDOWN_LEAP
+#undef PLATE_LEAP
 #undef LEAP_RADIUS
 #undef COOLDOWN_PUMMEL
 #undef STAGGER_DURATION
