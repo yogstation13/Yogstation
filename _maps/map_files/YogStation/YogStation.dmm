@@ -1875,6 +1875,12 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"akH" = (
+/obj/machinery/shower{
+	pixel_y = 20
+	},
+/turf/open/floor/noslip,
+/area/medical/sleeper)
 "akP" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
@@ -3154,16 +3160,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"aud" = (
-/obj/machinery/shower{
-	pixel_y = 20
-	},
-/obj/machinery/camera{
-	c_tag = "Medbay Treatment Center";
-	network = list("ss13","medbay")
-	},
-/turf/open/floor/noslip,
-/area/medical/sleeper)
 "aue" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -31206,15 +31202,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"iiw" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/stasis{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/sleeper)
 "iiE" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -46064,6 +46051,19 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
+"opk" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/stasis{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Medbay Treatment Center";
+	network = list("ss13","medbay")
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/sleeper)
 "opJ" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -48030,6 +48030,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"pfx" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/medical/sleeper)
 "pfA" = (
 /obj/structure/table/wood,
 /obj/item/radio/intercom{
@@ -53434,11 +53443,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"roc" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/sleeper)
 "ron" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
@@ -107208,7 +107212,7 @@ lKd
 kub
 pDs
 bvj
-iiw
+opk
 sha
 bDR
 lXo
@@ -107465,7 +107469,7 @@ aww
 kub
 hLI
 bvj
-aud
+akH
 sha
 jJP
 lXo
@@ -107984,7 +107988,7 @@ hRR
 bDR
 shN
 nAj
-roc
+pfx
 kpp
 mFt
 iTq
