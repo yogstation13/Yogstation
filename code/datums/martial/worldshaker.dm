@@ -158,6 +158,9 @@
 		var/obj/item/worldplate/plate = new(get_turf(user))//dropped to the ground
 		plate.linked_martial = src
 
+		if(plates <= 0)//can't lose any more plates if you have none
+			currentplate = 0
+
 /datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
 	heavy = plates >= MAX_PLATES
 	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
