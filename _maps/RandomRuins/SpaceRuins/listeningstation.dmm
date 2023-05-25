@@ -1878,6 +1878,7 @@
 	pixel_y = -32
 	},
 /obj/item/bedsheet/syndie,
+/obj/structure/bed,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Ag" = (
@@ -1922,6 +1923,7 @@
 	pixel_y = -32
 	},
 /obj/item/bedsheet/syndie,
+/obj/structure/bed,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Cn" = (
