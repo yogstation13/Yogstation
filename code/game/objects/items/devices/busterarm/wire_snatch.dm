@@ -144,6 +144,7 @@
 		zip(H, target) // Pull us towards it if it's anchored
 	if(isliving(target)) // If it's somebody
 		H.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)
+		H.swap_hand(0) //for the sake of throttling people you catch
 		var/mob/living/L = target
 		var/turf/T = get_step(get_turf(H), H.dir)
 		var/turf/Q = get_turf(H)

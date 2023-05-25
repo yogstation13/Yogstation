@@ -601,7 +601,7 @@
 
 /atom/movable/screen/alert/status_effect/doubledown
 	name = "Doubling Down"
-	desc = "Taking 50% less damage, go all in!"
+	desc = "Taking 25% less damage, go all in!"
 	icon_state = "aura"
 
 /datum/status_effect/doubledown/on_apply()
@@ -613,12 +613,12 @@
 			walk_towards(s_such_strength, H)
 			animate(s_such_strength, alpha = 100, color = "#d40a0a", transform = matrix()*1.25, time = 0.25 SECONDS)
 			H.ignore_slowdown(type)
-			H.physiology.brute_mod *= 0.5
-			H.physiology.burn_mod *= 0.5
-			H.physiology.tox_mod *= 0.5
-			H.physiology.oxy_mod *= 0.5
-			H.physiology.clone_mod *= 0.5
-			H.physiology.stamina_mod *= 0.5
+			H.physiology.brute_mod *= 0.25
+			H.physiology.burn_mod *= 0.25
+			H.physiology.tox_mod *= 0.25
+			H.physiology.oxy_mod *= 0.25
+			H.physiology.clone_mod *= 0.25
+			H.physiology.stamina_mod *= 0.25
 		owner.log_message("gained buster damage reduction", LOG_ATTACK)
 
 /datum/status_effect/doubledown/on_remove()
@@ -626,10 +626,10 @@
 		qdel(s_such_strength)
 		var/mob/living/carbon/human/H = owner
 		H.unignore_slowdown(type)
-		H.physiology.brute_mod /= 0.5
-		H.physiology.burn_mod /= 0.5
-		H.physiology.tox_mod /= 0.5
-		H.physiology.oxy_mod /= 0.5
-		H.physiology.clone_mod /= 0.5
-		H.physiology.stamina_mod /= 0.5
+		H.physiology.brute_mod /= 0.25
+		H.physiology.burn_mod /= 0.25
+		H.physiology.tox_mod /= 0.25
+		H.physiology.oxy_mod /= 0.25
+		H.physiology.clone_mod /= 0.25
+		H.physiology.stamina_mod /= 0.25
 	owner.log_message("lost buster damage reduction", LOG_ATTACK)//yogs end

@@ -942,7 +942,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(3)
 			new /obj/item/dragon_egg(src)
 		if(4)
-			new /obj/item/dragons_blood(src)
+			if(prob(25))	//Still same chance but now you know if you're turning into a lizard (ew)
+				new /obj/item/dragons_blood/refined(src)
+			else
+				new /obj/item/dragons_blood(src)
 
 /obj/structure/closet/crate/necropolis/dragon/crusher
 	name = "firey dragon chest"
@@ -1060,48 +1063,36 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 
 	var/mob/living/carbon/human/H = user
-	var/random = rand(1,4)
+	var/random = rand(1,3)
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
-			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.set_species(/datum/species/lizard/draconid)
-			H.eye_color = "fee5a3"
-			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-			H.updateappearance()
-		if(2)
 			to_chat(user, span_danger("Your flesh begins to melt! Miraculously, you seem fine otherwise."))
 			H.set_species(/datum/species/skeleton)
-		if(3)
+		if(2)
 			to_chat(user, span_danger("Power courses through you! You can now shift your form at will."))
 			var/datum/action/cooldown/spell/shapeshift/dragon/dragon_shapeshift = new(user.mind || user)
 			dragon_shapeshift.Grant(user)
-		if(4)
+		if(3)
 			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
 			H.weather_immunities |= "lava"
 
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 
-/obj/item/dragons_blood/syndicate
+/obj/item/dragons_blood/refined
 	name = "bottle of refined dragons blood"
 	desc = "You're totally going to drink this, aren't you?"
 
-/obj/item/dragons_blood/syndicate/attack_self(mob/living/carbon/human/user)
+/obj/item/dragons_blood/refined/attack_self(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
 
 	var/mob/living/carbon/human/H = user
+	to_chat(user, span_danger("You feel warmth spread through you, paired with an odd desire to burn down a village. You're suddenly a very small, humanoid ash dragon!"))
+	H.set_species(/datum/species/lizard/draconid)
 
-	if(!islizard(H))	//Something about it being refined to only work on lizards or whatever
-		to_chat(user, span_danger("You're about to take a sip, but the acrid fumes from whatever's in this bottle make you reconsider."))
-		return
-	else
-		to_chat(user, span_danger("You feel the warmth spread through you, scales hardening and claws growing sharper. You feel... strong!"))
-		H.set_species(/datum/species/lizard/draconid)
-
-		playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
+	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 
 
