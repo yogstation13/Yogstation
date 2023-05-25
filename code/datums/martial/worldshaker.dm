@@ -111,7 +111,7 @@
 	start of plates section 
 ---------------------------------------------------------------*/
 /datum/martial_art/worldshaker/proc/grow_plate(mob/living/carbon/human/user)
-	if(plates >= PLATE_CAP || user.stat == DEAD)//no quaking the entire station
+	if(plates >= PLATE_CAP || user.stat == DEAD || !can_use(user))//no quaking the entire station
 		return
 	user.balloon_alert(user, span_notice("your plates grow thicker!"))
 	plates++
@@ -421,7 +421,7 @@
 	for(var/mob/living/L in range(1, target))
 		if(L == user)
 			continue
-		var/damage = heavy ? 8 : 5
+		var/damage = heavy ? 7 : 5
 		if(L == target)
 			damage *= 3 //the target takes more stamina and brute damage
 
@@ -579,7 +579,6 @@
 		S.punchdamagehigh += 5
 		S.punchstunthreshold += 5
 		S.add_no_equip_slot(H, SLOT_WEAR_SUIT)
-		S.add_no_equip_slot(H, SLOT_HEAD)
 	usr.click_intercept = src 
 	add_verb(H, recalibration)
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
@@ -603,7 +602,6 @@
 		S.punchdamagehigh -= 5
 		S.punchstunthreshold -= 5
 		S.remove_no_equip_slot(H, SLOT_WEAR_SUIT)
-		S.remove_no_equip_slot(H, SLOT_HEAD)
 	usr.click_intercept = null 
 	remove_verb(H, recalibration)
 	H.physiology.damage_resistance -= PLATE_REDUCTION * min(plates, MAX_PLATES)
