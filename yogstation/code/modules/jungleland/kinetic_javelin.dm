@@ -31,7 +31,7 @@
 	item_state = "kinetic_javelin"
 	force = 10
 	throw_range = 9
-	throw_speed = 4
+	throw_speed = 3
 	w_class = WEIGHT_CLASS_NORMAL
 	var/unmodified_throwforce = 15
 	var/exotic_damage_multiplier = 4 // yes you heard me, it deals 8 times more damage in exotic environments.
@@ -90,9 +90,10 @@
 		. += "You can insert a core by using it on the javelin."
 
 /obj/item/kinetic_javelin/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	var/mob/living/carbon/user = throwingdatum.thrower
 	if(ismineralturf(hit_atom))
 		var/turf/closed/mineral/M = hit_atom
-		M.attempt_drill(firer, 0, power)
+		M.attempt_drill(user, 0, 1)
 		return ..()
 	
 	if(istype(hit_atom,/turf/open/floor/plating/dirt/jungleland))
@@ -108,13 +109,11 @@
 		throwforce = 0 //without a core it is blunt
 		return ..()
 
-	var/mob/living/carbon/user = throwingdatum.thrower
 	if(lavaland_equipment_pressure_check(get_turf(hit_atom)) && user)
 		throwforce = unmodified_throwforce * exotic_damage_multiplier
 		if(isliving(hit_atom))
 			if(!always_recall)
 				user.put_in_active_hand(src)
-				user.throw_mode_on()
 			charge_up()
 			if(charged)
 				core.charged_effect(hit_atom,src,user)
@@ -126,7 +125,6 @@
 
 	if(always_recall && user)
 		user.put_in_active_hand(src)
-		user.throw_mode_on()
 		
 	. = ..()
 
@@ -222,11 +220,11 @@
 
 /obj/item/kinetic_javelin_core/purple/on_insert(obj/item/kinetic_javelin/javelin)
 	javelin.always_recall = TRUE
-	javelin.throw_speed = 2
+	javelin.throw_speed = 1
 
 /obj/item/kinetic_javelin_core/purple/on_remove(obj/item/kinetic_javelin/javelin)
 	javelin.always_recall = FALSE
-	javelin.throw_speed = 4
+	javelin.throw_speed = 3
 
 /obj/item/kinetic_javelin/blue 
 	core = /obj/item/kinetic_javelin_core/blue
