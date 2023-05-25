@@ -5181,10 +5181,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
-"aQd" = (
-/obj/machinery/vending/donksofttoyvendor,
-/turf/open/floor/plasteel,
-/area/crew_quarters/locker)
 "aQh" = (
 /turf/closed/wall,
 /area/science/explab)
@@ -22258,7 +22254,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/vending/donksofttoyvendor,
+/obj/structure/table,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "gvf" = (
@@ -27837,6 +27833,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/library)
+"ikp" = (
+/obj/structure/table,
+/turf/closed/wall/r_wall,
+/area/teleporter)
 "ikB" = (
 /obj/item/chair/stool,
 /turf/open/floor/plasteel,
@@ -69087,6 +69087,7 @@
 /obj/structure/table,
 /obj/item/beacon,
 /obj/item/clothing/mask/cigarette/cigar/cohiba,
+/obj/structure/table,
 /turf/open/floor/mineral/titanium,
 /area/teleporter)
 "vMO" = (
@@ -72606,6 +72607,7 @@
 "wTF" = (
 /obj/structure/table,
 /obj/item/hand_tele,
+/obj/structure/table,
 /turf/open/floor/mineral/titanium,
 /area/teleporter)
 "wTL" = (
@@ -90315,7 +90317,7 @@ bzm
 qTR
 tmW
 uVl
-aQd
+aeM
 sfH
 jdd
 aXp
@@ -90572,7 +90574,7 @@ kRi
 aAw
 ckm
 uVl
-aeM
+aii
 lEF
 wNI
 aXp
@@ -102907,7 +102909,7 @@ pfh
 aZG
 wPR
 oCc
-aCG
+ikp
 euL
 wTF
 vME
