@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "changeling tentacle can no longer give you a semi-permanent slowdown effect if you use it on grab intent while knocked down"
