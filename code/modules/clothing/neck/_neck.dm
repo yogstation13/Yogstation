@@ -365,7 +365,7 @@
 	/// How much the cloak charges per process
 	var/cloak_charge_rate = 35
 	/// How much the cloak decreases when moving
-	var/cloak_move_loss = 5
+	var/cloak_move_loss = 7
 	/// How much the cloak decreases on a successful dodge
 	var/cloak_dodge_loss = 30
 
@@ -450,6 +450,7 @@
 	desc = "A dark red cape that uses advanced chameleon technology to make the wearer nearly invisible and aid them in dodging projectiles. Unable to sustain its image under distress or EMP."
 	icon_state = "syndie_cloak"
 	max_cloak = 75 //Max 75% dodge is a little quirky
+	cloak_move_loss = 5
 	cloak_charge_rate = 20
 	cloak_dodge_loss = 40
 	var/cloak_emp_disable_duration = 10 SECONDS
