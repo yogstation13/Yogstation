@@ -1,5 +1,5 @@
 //variables for fun balance tweaks
-#define COOLDOWN_STOMP 15 SECONDS
+#define COOLDOWN_STOMP 30 SECONDS
 #define STOMP_RADIUS 6 //the base radius for the charged stomp
 #define STOMP_DAMAGERADIUS 3
 #define COOLDOWN_LEAP 2 SECONDS
@@ -149,13 +149,14 @@
 		return
 
 	user.visible_message(span_notice("one of [user]'s plates falls to the ground!"), span_userdanger("one of your loose plates falls off from excessive wear!"))
-	currentplate = 0
-	if(plates <= MAX_PLATES)
-		user.physiology.damage_resistance -= PLATE_REDUCTION
-	plates--
-	update_platespeed(user)
-	var/obj/item/worldplate/plate = new(get_turf(user))//dropped to the ground
-	plate.linked_martial = src
+	while(currentplate >= PLATE_BREAK)
+		currentplate -= PLATE_BREAK
+		if(plates <= MAX_PLATES)
+			user.physiology.damage_resistance -= PLATE_REDUCTION
+		plates--
+		update_platespeed(user)
+		var/obj/item/worldplate/plate = new(get_turf(user))//dropped to the ground
+		plate.linked_martial = src
 
 /datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
 	heavy = plates >= MAX_PLATES
@@ -418,9 +419,9 @@
 		return
 	COOLDOWN_START(src, next_pummel, COOLDOWN_PUMMEL)
 	for(var/mob/living/L in range(1, target))
-		var/damage = 10
 		if(L == user)
 			continue
+		var/damage = heavy ? 8 : 5
 		if(L == target)
 			damage *= 3 //the target takes more stamina and brute damage
 
