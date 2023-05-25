@@ -382,8 +382,13 @@
 	update_signals()
 
 /obj/item/clothing/neck/cloak/ranger/proc/on_unequip(force, newloc, no_move, invdrop = TRUE, silent = FALSE)
+	current_user = NULL
 	update_signals()
 
+/obj/item/clothing/neck/cloak/ranger/proc/Destroy()
+	set_cloak(0)
+	. = ..()
+	
 /obj/item/clothing/neck/cloak/ranger/proc/update_signals(user)
 	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(SLOT_NECK) == src)
 		return TRUE
