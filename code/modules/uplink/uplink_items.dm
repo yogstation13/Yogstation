@@ -776,13 +776,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
-/datum/uplink_item/ammo/pistol
+/datum/uplink_item/ammo/pistol/cs
 	name = "Pair of 10mm Caseless Magazines"
 	desc = "A box that contains two additional 10-round 10mm magazines; compatible with the Stechkin Pistol. \
 			These rounds will leave no casings behind when fired."
 	item = /obj/item/storage/box/syndie_kit/pistolcaselessammo
-	cost = 1
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistol/ap
 	name = "10mm Armor-Piercing Magazine"
