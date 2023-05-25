@@ -42,4 +42,8 @@
 	name = "mission briefing"
 	info = "<b>Mission Details</b>: You have been assigned to a newly constructed listening post constructed within an asteroid in Nanotrasen space to monitor their plasma mining operations. Accurate intel is crucial to the success of our operatives onboard, do not fail us."
 
+/obj/item/paper/fluff/ruins/listeningstation/frequencies
+	name = "radio frequencies guide"
+	info = "The following is a list of Nanotrasen-standard radio frequencies.<br><ul><li>145.9 - Common Channel</li><li>144.7 - Private AI Channel</li><li>135.9 - Security Channel</li><li>135.7 - Engineering Channel</li><li>135.5 - Medical Channel</li><li>135.3 - Command Channel</li><li>135.1 - Science Channel</li><li>134.9 - Service Channel</li><li>134.7 - Supply Channel</li>"
+
 
