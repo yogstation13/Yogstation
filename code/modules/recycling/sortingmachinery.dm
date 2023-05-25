@@ -199,7 +199,7 @@
 /obj/item/destTagger/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user,src,ui)
 	if(!ui)
-		ui = new(user,src,"DestinationTagger")
+		ui = new(user, src, "DestinationTagger")
 		ui.open()
 
 /obj/item/destTagger/ui_act(action,list/params)
@@ -213,7 +213,7 @@
 
 /obj/item/destTagger/ui_data(mob/user)
 	var/list/data = list()
-	data["destinations"] = GLOB.TAGGERLOCATIONS
-	data["currentTag"] = currTag
+	data["destinations"] = GLOB.TAGGERLOCATIONS_DEPARTMENTAL
+	data["currentTag"] = currTag ? GLOB.TAGGERLOCATIONS[currTag] : "None"
 
 	return data

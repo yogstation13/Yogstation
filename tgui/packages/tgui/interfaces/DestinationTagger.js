@@ -11,25 +11,30 @@ export const DestinationTagger = (props, context) => {
     destinations,
   } = data;
 
-  const mapped_destinations = destinations.map(destination => {
-    return (
-      <Button width="144px" lineHeight={1.85} selected={destinations[currentTag - 1] === destination} key={destination} onClick={() => act('ChangeSelectedTag', { 'tag': destination })}>{destination}</Button>
-    );
-  });
-
   return (
-    <Window title="TagMaster 3.0" width={450} height={350}>
+    <Window title="TagMaster 3.0" width={462} height={750}>
       <Window.Content>
         <Section title="TagMaster 3.0 - The future, 20 years ago!">
           <LabeledList>
             <LabeledList.Item label="Current Destination">
-              {(currentTag) !== "" ? destinations[currentTag - 1] : "NONE"}
+              {currentTag}
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        {mapped_destinations}
-
-
+        {
+          Object.entries(destinations).map((department, index) => {
+            let wa = department[0];
+            return(
+              <Section title={wa} key={wa}>
+                {
+                  department[1].map(destination => {
+                    return(<Button width="144px" lineHeight={1.85} selected={currentTag === destination} key={destination} onClick={() => act('ChangeSelectedTag', { 'tag': destination })}>{destination}</Button>);
+                  })
+                }
+              </Section>
+            );
+          })
+        }
       </Window.Content>
     </Window>
   );
