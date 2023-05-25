@@ -63,8 +63,8 @@ GLOBAL_LIST_EMPTY(objectives)
 
 	update_explanation_text()
 
-/datum/objective/proc/considered_escaped(datum/mind/M)
-	if(!considered_alive(M))
+/datum/objective/proc/considered_escaped(datum/mind/M, needs_living = TRUE)
+	if((needs_living && !considered_alive(M)))
 		return FALSE
 	if(M.force_escaped)
 		return TRUE
@@ -523,6 +523,23 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(!considered_escaped(M))
 			return FALSE
 	return TRUE
+
+/datum/objective/escape/onesurvivor
+	name = "escape team can die"
+	team_explanation_text = "Have all members of your team escape outside custody on a shuttle or pod, with at least one surviving member."
+
+/datum/objective/escape/onesurvivor/check_completion()
+	if(completed)
+		return TRUE
+	var/has_survivor = FALSE	//is there a surviving member of the team?
+	var/list/datum/mind/owners = get_owners()
+	for(var/O in owners)
+		var/datum/mind/M = O
+		if(!considered_escaped(M, FALSE)) //NO MAN LEFT BEHIND
+			return FALSE
+		if(considered_alive(M))
+			has_survivor = TRUE
+	return has_survivor
 
 /datum/objective/escape/escape_with_identity/is_valid_target(possible_target)
 	var/list/datum/mind/owners = get_owners()
