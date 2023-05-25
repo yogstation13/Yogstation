@@ -369,6 +369,8 @@
 	/// How much the cloak decreases on a successful dodge
 	var/cloak_dodge_loss = 30
 
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 75, ACID = 75)	//Resistant to the dangers of the natural world or something
+
 /obj/item/clothing/neck/cloak/ranger/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_unequip))
