@@ -46,6 +46,9 @@
 /obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!M.can_inject(user, TRUE))
 		return
+	if(INTERACTING_WITH(user, M))
+		to_chat(user, span_warning("You are already interacting with [M]!"))
+		return
 	if(M == user)
 		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
