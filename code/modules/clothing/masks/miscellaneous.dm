@@ -79,6 +79,21 @@
 	desc = "Express your happiness or hide your sorrows with this laughing face with crying tears of joy cutout."
 	icon_state = "joy"
 
+
+GLOBAL_LIST_INIT(cursed_animal_masks, list(
+		/obj/item/clothing/mask/pig/cursed,
+		/obj/item/clothing/mask/frog/cursed,
+		/obj/item/clothing/mask/cowmask/cursed,
+		/obj/item/clothing/mask/horsehead/cursed,
+//		/obj/item/clothing/mask/animal/small/rat/cursed,
+//		/obj/item/clothing/mask/animal/small/fox/cursed,
+//		/obj/item/clothing/mask/animal/small/bee/cursed,
+//		/obj/item/clothing/mask/animal/small/bear/cursed,
+//		/obj/item/clothing/mask/animal/small/bat/cursed,
+//		/obj/item/clothing/mask/animal/small/raven/cursed,
+//		/obj/item/clothing/mask/animal/small/jackal/cursed
+	))
+
 /obj/item/clothing/mask/pig
 	name = "pig mask"
 	desc = "A rubber pig mask with a built in voice modulator."

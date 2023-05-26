@@ -60,17 +60,6 @@
 		cultie.add_antag_datum(new_antag)
 	return ..()
 
-
-/datum/game_mode/proc/update_heretic_icons_added(datum/mind/heretic)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_HERETIC]
-	hud.join_hud(heretic.current)
-	set_antag_hud(heretic.current, (IS_HERETIC(heretic.current) ?  "heretic" : "heretic_beast"))
-
-/datum/game_mode/proc/update_heretic_icons_removed(datum/mind/heretic)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_HERETIC]
-	hud.leave_hud(heretic.current)
-	set_antag_hud(heretic.current, null)
-
 /datum/game_mode/heretics/generate_report()
 	return "Cybersun Industries has announced that they have successfully raided a high-security library. The library contained a very dangerous book that was \
 	shown to possess anomalous properties. We suspect that the book has been copied over, Stay vigilant!"

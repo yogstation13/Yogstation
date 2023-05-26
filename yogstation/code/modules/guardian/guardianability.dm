@@ -3,7 +3,7 @@
 	var/desc = "You should not see this!"
 	var/cost = 0
 	var/spell_type
-	var/obj/effect/proc_holder/spell/spell
+	var/datum/action/cooldown/spell/spell
 	var/list/action_types = list()
 	var/list/actions = list()
 	var/datum/guardian_stats/master_stats
@@ -19,8 +19,8 @@
 /datum/guardian_ability/proc/Apply()
 	if(spell_type && !spell)
 		spell = new spell_type
-	if(spell && !(spell in guardian.mob_spell_list))
-		guardian.AddSpell(spell)
+	if(spell && !(spell in guardian.actions))
+		spell.Grant(guardian)
 	for (var/action_type in action_types)
 		var/datum/action/action = new action_type
 		action.Grant(guardian)
@@ -28,7 +28,7 @@
 
 /datum/guardian_ability/proc/Remove()
 	if (spell)
-		guardian.RemoveSpell(spell)
+		spell.Remove(guardian)
 	for (var/A in actions)
 		var/datum/action/action = A
 		action.Remove(guardian)
@@ -85,7 +85,7 @@
 /datum/guardian_ability/minor
 
 /datum/action/guardian
-	icon_icon = 'icons/mob/actions_guardian.dmi'
+	button_icon = 'icons/mob/actions_guardian.dmi'
 	background_icon_state = null
 
 /datum/action/guardian/Trigger()

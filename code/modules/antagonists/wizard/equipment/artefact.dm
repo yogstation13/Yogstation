@@ -339,7 +339,6 @@
 		switch(user.zone_selected)
 			if(BODY_ZONE_PRECISE_MOUTH)
 				var/wgw =  sanitize(input(user, "What would you like the victim to say", "Voodoo", null)  as text)
-				wgw = to_utf8(wgw, src)
 				target.say(wgw, forced = "voodoo doll")
 				log_game("[key_name(user)] made [key_name(target)] say [wgw] with a voodoo doll.")
 			if(BODY_ZONE_PRECISE_EYES)
@@ -357,7 +356,7 @@
 				GiveHint(target)
 			if(BODY_ZONE_HEAD)
 				to_chat(user, span_notice("You smack the doll's head with your hand."))
-				target.Dizzy(10)
+				target.adjust_dizzy(10)
 				to_chat(target, span_warning("You suddenly feel as if your head was hit with a hammer!"))
 				GiveHint(target,user)
 		cooldown = world.time + cooldown_time
@@ -389,7 +388,7 @@
 /obj/item/voodoo/fire_act(exposed_temperature, exposed_volume)
 	if(target)
 		target.adjust_fire_stacks(20)
-		target.IgniteMob()
+		target.ignite_mob()
 		GiveHint(target,1)
 	return ..()
 
@@ -402,7 +401,7 @@
 
 //Warp Whistle: Provides uncontrolled long distance teleportation.
 
-/obj/item/warpwhistle
+/obj/item/warp_whistle
 	name = "warp whistle"
 	desc = "One toot on this whistle will send you to a far away land!"
 	icon = 'icons/obj/wizard.dmi'
@@ -410,18 +409,18 @@
 	var/on_cooldown = 0 //0: usable, 1: in use, 2: on cooldown
 	var/mob/living/carbon/last_user
 
-/obj/item/warpwhistle/proc/interrupted(mob/living/carbon/user)
+/obj/item/warp_whistle/proc/interrupted(mob/living/carbon/user)
 	if(!user || QDELETED(src) || user.notransform)
 		on_cooldown = FALSE
 		return TRUE
 	return FALSE
 
-/obj/item/warpwhistle/proc/end_effect(mob/living/carbon/user)
+/obj/item/warp_whistle/proc/end_effect(mob/living/carbon/user)
 	user.invisibility = initial(user.invisibility)
 	user.status_flags &= ~GODMODE
 	user.update_mobility()
 
-/obj/item/warpwhistle/attack_self(mob/living/carbon/user)
+/obj/item/warp_whistle/attack_self(mob/living/carbon/user)
 	if(!istype(user) || on_cooldown)
 		return
 	on_cooldown = TRUE
@@ -457,7 +456,7 @@
 	sleep(4 SECONDS)
 	on_cooldown = 0
 
-/obj/item/warpwhistle/Destroy()
+/obj/item/warp_whistle/Destroy()
 	if(on_cooldown == 1 && last_user) //Flute got dunked somewhere in the teleport
 		end_effect(last_user)
 	return ..()

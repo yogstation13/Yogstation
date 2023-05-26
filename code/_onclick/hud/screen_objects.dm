@@ -375,7 +375,7 @@
 		else
 			to_chat(C, span_warning("You don't have a suitable tank!"))
 			return
-	C.update_action_buttons_icon()
+	C.update_mob_action_buttons()
 
 /atom/movable/screen/mov_intent
 	name = "run/walk toggle"

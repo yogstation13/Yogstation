@@ -4,8 +4,10 @@
 	antagpanel_category = "Blob"
 	show_to_ghosts = TRUE
 	job_rank = ROLE_BLOB
-
+	ui_name = "AntagInfoBlob"
+	/// Action to release a blob infection
 	var/datum/action/innate/blobpop/pop_action
+	/// Initial points for a human blob
 	var/starting_points_human_blob = 60
 	var/point_rate_human_blob = 2
 
@@ -69,7 +71,7 @@
 /datum/action/innate/blobpop
 	name = "Pop"
 	desc = "Unleash the blob"
-	icon_icon = 'icons/mob/blob.dmi'
+	button_icon = 'icons/mob/blob.dmi'
 	button_icon_state = "blob"
 	var/autoplace_time = OVERMIND_STARTING_AUTO_PLACE_TIME
 

@@ -68,9 +68,22 @@ SUBSYSTEM_DEF(statpanels)
 				set_SDQL2_tab(target)
 		if(target.mob)
 			var/mob/target_mob = target.mob
-			if((target.stat_tab in target.spell_tabs) || !length(target.spell_tabs) && (length(target_mob.mob_spell_list) || length(target_mob.mind?.spell_list)))
-				if(num_fires % default_wait == 0)
-					set_spells_tab(target, target_mob)
+
+			// Handle the action panels of the stat panel
+			var/update_actions = FALSE
+			// We're on a spell tab, update the tab so we can see cooldowns progressing and such
+			if(target.stat_tab in target.spell_tabs)
+				update_actions = TRUE
+			// We're not on a spell tab per se, but we have cooldown actions, and we've yet to
+			// set up our spell tabs at all
+			if(!length(target.spell_tabs) && locate(/datum/action/cooldown) in target_mob.actions)
+				update_actions = TRUE
+
+			if(update_actions && num_fires % default_wait == 0)
+				set_action_tabs(target, target_mob)
+
+			// Handle the examined turf of the stat panel
+
 			if(target_mob?.listed_turf && num_fires % default_wait == 0)
 				if(!target_mob.TurfAdjacent(target_mob.listed_turf))
 					target << output("", "statbrowser:remove_listedturf")
@@ -105,18 +118,15 @@ SUBSYSTEM_DEF(statpanels)
 	sdql2A += sdql2B
 	target << output(url_encode(json_encode(sdql2A)), "statbrowser:update_sdql2")
 
-/datum/controller/subsystem/statpanels/proc/set_spells_tab(client/target, mob/target_mob)
-	var/list/proc_holders = target_mob.get_proc_holders()
+/// Set up the various action tabs.
+/datum/controller/subsystem/statpanels/proc/set_action_tabs(client/target, mob/target_mob)
+	var/list/actions = target_mob.get_actions_for_statpanel()
 	target.spell_tabs.Cut()
 
-	for(var/proc_holder_list as anything in proc_holders)
-		target.spell_tabs |= proc_holder_list[1]
+	for(var/action_data in actions)
+		target.spell_tabs |= action_data[1]
 
-	var/proc_holders_encoded = ""
-	if(length(proc_holders))
-		proc_holders_encoded = url_encode(json_encode(proc_holders))
-
-	target << output("[url_encode(json_encode(target.spell_tabs))];[proc_holders_encoded]", "statbrowser:update_spells")
+	target << output("[url_encode(json_encode(target.spell_tabs))];[actions]", "statbrowser:update_spells")
 
 /datum/controller/subsystem/statpanels/proc/set_turf_examine_tab(client/target, mob/target_mob)
 	var/list/overrides = list()
@@ -183,9 +193,21 @@ SUBSYSTEM_DEF(statpanels)
 		return TRUE
 
 	var/mob/target_mob = target.mob
-	if((target.stat_tab in target.spell_tabs) || !length(target.spell_tabs) && (length(target_mob.mob_spell_list) || length(target_mob.mind?.spell_list)))
-		set_spells_tab(target, target_mob)
+	
+	// Handle actions
+
+	var/update_actions = FALSE
+	if(target.stat_tab in target.spell_tabs)
+		update_actions = TRUE
+
+	if(!length(target.spell_tabs) && locate(/datum/action/cooldown) in target_mob.actions)
+		update_actions = TRUE
+
+	if(update_actions)
+		set_action_tabs(target, target_mob)
 		return TRUE
+
+	// Handle turfs
 
 	if(target_mob?.listed_turf)
 		if(!target_mob.TurfAdjacent(target_mob.listed_turf))
@@ -208,6 +230,9 @@ SUBSYSTEM_DEF(statpanels)
 
 	else if(length(GLOB.sdql2_queries) && target.stat_tab == "SDQL2")
 		set_SDQL2_tab(target)
+
+/// Stat panel window declaration
+/client/var/datum/tgui_window/stat_panel
 
 /atom/proc/remove_from_cache()
 	SSstatpanels.cached_images -= REF(src)
