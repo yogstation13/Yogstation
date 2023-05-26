@@ -1,8 +1,0 @@
-author: "Skrem7"
-delete-after: true 
-changes: 
-  - rscadd: "Adds .44 magnum rounds and makes the Mateba load them"
-  - tweak: "Deagle does 45 damage per shot up from 40 and its fire delay has been reduced by one decisecond"
-  - soundadd: "Chunky .44 sound"
-  - imageadd: "New bullet/speed loader sprites"
-  - spellcheck: "Added a lot of extra words to magazines/bullets to make the caliber descriptions a tish more accurate I guess?"
