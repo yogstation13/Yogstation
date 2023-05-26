@@ -35,10 +35,9 @@ GLOBAL_VAR(stormdamage)
 		new /obj/structure/battle_bus(T)
 	else //please don't ever happen
 		message_admins("Something has gone terribly wrong and the bus couldn't spawn, please alert a maintainer or someone comparable.")
-	for(var/mob/L in GLOB.player_list)//fix this it spawns them with gear on
-		if(!L.mind || !L.client)
-			if(isobserver(L) || !L.mind || !L.client)
-				continue
+	for(var/mob/L in GLOB.player_list)
+		if(!L.mind || !L.client || isobserver(L))
+			continue
 		var/datum/mind/virgin = L.mind
 		queued += virgin
 	return TRUE
@@ -55,6 +54,7 @@ GLOBAL_VAR(stormdamage)
 		if(!GLOB.thebattlebus) //Ruhoh.
 			virgin.current.forceMove(pick(GLOB.start_landmarks_list))
 			message_admins("There is no battle bus! Attempting to spawn players at random.")
+			log_game("There is no battle bus! Attempting to spawn players at random.")
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
@@ -63,10 +63,10 @@ GLOBAL_VAR(stormdamage)
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
-		log_game("[virgin.current] has been added as a battle royaler")
     
 	if(!LAZYLEN(GLOB.battleroyale_players))
 		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
+		log_game("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
 
 	for(var/obj/machinery/door/W in GLOB.machines)//set all doors to all access
 		W.req_access = list()
