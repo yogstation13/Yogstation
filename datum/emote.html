@@ -11,25 +11,201 @@
     <a href="index.html">Yogstation 13</a> -
     <a href="index.html#modules">Modules</a> -
     <a href="index.html#types">Types</a>
- &mdash; <a href="datum/emote.html#proc">Proc Details</a></header>
+ &mdash; <a href="datum/emote.html#var">Var Details</a> - <a href="datum/emote.html#proc">Proc Details</a></header>
 <main>
 <h1>/<a href="datum.html">datum</a>/<a href="datum/emote.html">emote</a>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/datums/emotes.dm#L4">
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L4">
         <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 4"/></a></h1>
 
-<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
-            <tr><th><a href="datum/emote.html#proc/check_cooldown">check_cooldown</a></th><td>For handling emote cooldown, return true to allow the emote to happen</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/check_cooldown"><aside class="declaration">proc </aside>check_cooldown<aside>(/<a href="mob.html">mob</a>/user, intentional, update, is_keybind) 
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/emote.html#var/cooldown">cooldown</a></th><td>The cooldown between the uses of the emote.</td></tr>
+            <tr><th><a href="datum/emote.html#var/emote_type">emote_type</a></th><td>Whether the emote is visible and/or audible bitflag</td></tr>
+            <tr><th><a href="datum/emote.html#var/hands_use_check">hands_use_check</a></th><td>Checks if the mob can use its hands before performing the emote.</td></tr>
+            <tr><th><a href="datum/emote.html#var/key">key</a></th><td>What calls the emote.</td></tr>
+            <tr><th><a href="datum/emote.html#var/key_third_person">key_third_person</a></th><td>This will also call the emote.</td></tr>
+            <tr><th><a href="datum/emote.html#var/message">message</a></th><td>Message displayed when emote is used.</td></tr>
+            <tr><th><a href="datum/emote.html#var/message_AI">message_AI</a></th><td>Message displayed if the user is an AI.</td></tr>
+            <tr><th><a href="datum/emote.html#var/message_alien">message_alien</a></th><td>Message displayed if the user is a grown alien.</td></tr>
+            <tr><th><a href="datum/emote.html#var/message_ipc">message_ipc</a></th><td>Message to display if the user is an IPC</td></tr>
+            <tr><th><a href="datum/emote.html#var/message_larva">message_larva</a></th><td>Message displayed if the user is an alien larva.</td></tr>
+            <tr><th><a href="datum/emote.html#var/message_mime">message_mime</a></th><td>Message displayed if the user is a mime.</td></tr>
+            <tr><th><a href="datum/emote.html#var/message_monkey">message_monkey</a></th><td>Message displayed if the user is a monkey.</td></tr>
+            <tr><th><a href="datum/emote.html#var/message_param">message_param</a></th><td>Message with %t at the end to allow adding params to the message, like for mobs doing an emote relatively to something else.</td></tr>
+            <tr><th><a href="datum/emote.html#var/message_robot">message_robot</a></th><td>Message displayed if the user is a robot.</td></tr>
+            <tr><th><a href="datum/emote.html#var/message_simple">message_simple</a></th><td>Message to display if the user is a simple_animal or basic mob.</td></tr>
+            <tr><th><a href="datum/emote.html#var/mob_type_allowed_typecache">mob_type_allowed_typecache</a></th><td>Types that are allowed to use that emote.</td></tr>
+            <tr><th><a href="datum/emote.html#var/mob_type_blacklist_typecache">mob_type_blacklist_typecache</a></th><td>Types that are NOT allowed to use that emote.</td></tr>
+            <tr><th><a href="datum/emote.html#var/mob_type_ignore_stat_typecache">mob_type_ignore_stat_typecache</a></th><td>Types that can use this emote regardless of their state.</td></tr>
+            <tr><th><a href="datum/emote.html#var/muzzle_ignore">muzzle_ignore</a></th><td>Will only work if the emote is EMOTE_AUDIBLE.</td></tr>
+            <tr><th><a href="datum/emote.html#var/only_forced_audio">only_forced_audio</a></th><td>Can only code call this event instead of the player.</td></tr>
+            <tr><th><a href="datum/emote.html#var/sound">sound</a></th><td>Sound to play when emote is called.</td></tr>
+            <tr><th><a href="datum/emote.html#var/stat_allowed">stat_allowed</a></th><td>In which state can you use this emote? (Check stat.dm for a full list of them)</td></tr>
+            <tr><th><a href="datum/emote.html#var/vary">vary</a></th><td>Used for the honk borg emote.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/emote.html#proc/can_run_emote">can_run_emote</a></th><td>Check to see if the user is allowed to run the emote.</td></tr>
+            <tr><th><a href="datum/emote.html#proc/check_cooldown">check_cooldown</a></th><td>For handling emote cooldown, return true to allow the emote to happen</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/cooldown"><aside class="declaration">var </aside>cooldown
+            <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/datums/emotes.dm#L81">
-        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 81"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 50"/></a></h3>
+        <p>The cooldown between the uses of the emote.</p><h3 id="var/emote_type"><aside class="declaration">var </aside>emote_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 30"/></a></h3>
+        <p>Whether the emote is visible and/or audible bitflag</p><h3 id="var/hands_use_check"><aside class="declaration">var </aside>hands_use_check
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 32"/></a></h3>
+        <p>Checks if the mob can use its hands before performing the emote.</p><h3 id="var/key"><aside class="declaration">var </aside>key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 6"/></a></h3>
+        <p>What calls the emote.</p><h3 id="var/key_third_person"><aside class="declaration">var </aside>key_third_person
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 8"/></a></h3>
+        <p>This will also call the emote.</p><h3 id="var/message"><aside class="declaration">var </aside>message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 10"/></a></h3>
+        <p>Message displayed when emote is used.</p><h3 id="var/message_AI"><aside class="declaration">var </aside>message_AI
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 20"/></a></h3>
+        <p>Message displayed if the user is an AI.</p><h3 id="var/message_alien"><aside class="declaration">var </aside>message_alien
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 14"/></a></h3>
+        <p>Message displayed if the user is a grown alien.</p><h3 id="var/message_ipc"><aside class="declaration">var </aside>message_ipc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 24"/></a></h3>
+        <p>Message to display if the user is an IPC</p><h3 id="var/message_larva"><aside class="declaration">var </aside>message_larva
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 16"/></a></h3>
+        <p>Message displayed if the user is an alien larva.</p><h3 id="var/message_mime"><aside class="declaration">var </aside>message_mime
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 12"/></a></h3>
+        <p>Message displayed if the user is a mime.</p><h3 id="var/message_monkey"><aside class="declaration">var </aside>message_monkey
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 22"/></a></h3>
+        <p>Message displayed if the user is a monkey.</p><h3 id="var/message_param"><aside class="declaration">var </aside>message_param
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 28"/></a></h3>
+        <p>Message with %t at the end to allow adding params to the message, like for mobs doing an emote relatively to something else.</p><h3 id="var/message_robot"><aside class="declaration">var </aside>message_robot
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 18"/></a></h3>
+        <p>Message displayed if the user is a robot.</p><h3 id="var/message_simple"><aside class="declaration">var </aside>message_simple
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 26"/></a></h3>
+        <p>Message to display if the user is a simple_animal or basic mob.</p><h3 id="var/mob_type_allowed_typecache"><aside class="declaration">var </aside>mob_type_allowed_typecache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 36"/></a></h3>
+        <p>Types that are allowed to use that emote.</p><h3 id="var/mob_type_blacklist_typecache"><aside class="declaration">var </aside>mob_type_blacklist_typecache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 38"/></a></h3>
+        <p>Types that are NOT allowed to use that emote.</p><h3 id="var/mob_type_ignore_stat_typecache"><aside class="declaration">var </aside>mob_type_ignore_stat_typecache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 40"/></a></h3>
+        <p>Types that can use this emote regardless of their state.</p><h3 id="var/muzzle_ignore"><aside class="declaration">var </aside>muzzle_ignore
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 34"/></a></h3>
+        <p>Will only work if the emote is EMOTE_AUDIBLE.</p><h3 id="var/only_forced_audio"><aside class="declaration">var </aside>only_forced_audio
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 48"/></a></h3>
+        <p>Can only code call this event instead of the player.</p><h3 id="var/sound"><aside class="declaration">var </aside>sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 44"/></a></h3>
+        <p>Sound to play when emote is called.</p><h3 id="var/stat_allowed"><aside class="declaration">var </aside>stat_allowed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 42"/></a></h3>
+        <p>In which state can you use this emote? (Check stat.dm for a full list of them)</p><h3 id="var/vary"><aside class="declaration">var </aside>vary
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 46"/></a></h3>
+        <p>Used for the honk borg emote.</p><h2 id="proc">Proc Details</h2><h3 id="proc/can_run_emote"><aside class="declaration">proc </aside>can_run_emote<aside>(/<a href="mob.html">mob</a>/user, status_check, intentional) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 165"/></a></aside>
+        </h3>
+        <p>Check to see if the user is allowed to run the emote.</p>
+<p>Arguments:</p>
+<ul>
+<li>user - Person that is trying to send the emote.</li>
+<li>status_check - Bool that says whether we should check their stat or not.</li>
+<li>intentional - Bool that says whether the emote was forced (FALSE) or not (TRUE).</li>
+</ul>
+<p>Returns a bool about whether or not the user can run the emote.</p><h3 id="proc/check_cooldown"><aside class="declaration">proc </aside>check_cooldown<aside>(/<a href="mob.html">mob</a>/user, intentional, update, is_keybind) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/datums/emotes.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;emotes.dm 104"/></a></aside>
         </h3>
         <p>For handling emote cooldown, return true to allow the emote to happen</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/1430980207839fc022f0115448050abeba3c0fef">1430980</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/f2580f4fedb64c7d50876f6826a8b243d572c4ff">f2580f4</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>

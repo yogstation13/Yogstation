@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;cooldown&#x2F;bloodsucker - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/cooldown/bloodsucker.html#var">Var Details</a> - <a href="datum/action/cooldown/bloodsucker.html#proc">Proc Details</a></header>
+<main>
+<h1>Vampiric Gift <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/cooldown.html">cooldown</a>/<a href="datum/action/cooldown/bloodsucker.html">bloodsucker</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/active">active</a></th><td>If the Power is currently active.</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/active_background_icon_state">active_background_icon_state</a></th><td>Background icon when the Power is active.</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/additional_text">additional_text</a></th><td>If the Power has any additional descriptions coming from either 3rd partys or the power itself</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/base_background_icon_state">base_background_icon_state</a></th><td>Background icon when the Power is NOT active.</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/bloodcost">bloodcost</a></th><td>The cost to ACTIVATE this Power</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/bloodsuckerdatum_power">bloodsuckerdatum_power</a></th><td>The owner's stored Bloodsucker datum</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/check_flags">check_flags</a></th><td>Requirement flags for checks</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/constant_bloodcost">constant_bloodcost</a></th><td>The cost to MAINTAIN this Power - Only used for Constant Cost Powers</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/cooldown_time">cooldown_time</a></th><td>Cooldown you'll have to wait between each use, decreases depending on level.</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/level_current">level_current</a></th><td>Can increase to yield new abilities - Each Power ranks up each Rank</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/power_explanation">power_explanation</a></th><td>The text that appears when using the help verb, meant to explain how the Power changes when ranking up.</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/power_flags">power_flags</a></th><td>The effects on this Power (Toggled/Single Use/Static Cooldown)</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#var/purchase_flags">purchase_flags</a></th><td>Who can purchase the Power</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#proc/CanUse">CanUse</a></th><td>Checks if the Power is available to use.</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#proc/ContinueActive">ContinueActive</a></th><td>Checks to make sure this power can stay active</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#proc/StartCooldown">StartCooldown</a></th><td>NOTE: With this formula, you'll hit half cooldown at level 8 for that power.</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#proc/process">process</a></th><td>Used by powers that are continuously active (That have BP_AM_TOGGLE flag)</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#proc/remove_after_use">remove_after_use</a></th><td>Used to unlearn Single-Use Powers</td></tr>
+            <tr><th><a href="datum/action/cooldown/bloodsucker.html#proc/upgrade_power">upgrade_power</a></th><td>Called when the Power is upgraded.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active"><aside class="declaration">var </aside>active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 34"/></a></h3>
+        <p>If the Power is currently active.</p><h3 id="var/active_background_icon_state"><aside class="parent"><a title="/datum/action/cooldown" href="datum/action/cooldown.html#var/active_background_icon_state">&uarr;</a></aside>active_background_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 15"/></a></h3>
+        <p>Background icon when the Power is active.</p><h3 id="var/additional_text"><aside class="declaration">var </aside>additional_text
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 42"/></a></h3>
+        <p>If the Power has any additional descriptions coming from either 3rd partys or the power itself</p><h3 id="var/base_background_icon_state"><aside class="parent"><a title="/datum/action/cooldown" href="datum/action/cooldown.html#var/base_background_icon_state">&uarr;</a></aside>base_background_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 17"/></a></h3>
+        <p>Background icon when the Power is NOT active.</p><h3 id="var/bloodcost"><aside class="declaration">var </aside>bloodcost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 38"/></a></h3>
+        <p>The cost to ACTIVATE this Power</p><h3 id="var/bloodsuckerdatum_power"><aside class="declaration">var </aside>bloodsuckerdatum_power
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/antagonist.html">antagonist</a>/<a href="datum/antagonist/bloodsucker.html">bloodsucker</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 22"/></a></h3>
+        <p>The owner's stored Bloodsucker datum</p><h3 id="var/check_flags"><aside class="parent"><a title="/datum/action" href="datum/action.html#var/check_flags">&uarr;</a></aside>check_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 28"/></a></h3>
+        <p>Requirement flags for checks</p><h3 id="var/constant_bloodcost"><aside class="declaration">var </aside>constant_bloodcost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 40"/></a></h3>
+        <p>The cost to MAINTAIN this Power - Only used for Constant Cost Powers</p><h3 id="var/cooldown_time"><aside class="parent"><a title="/datum/action/cooldown" href="datum/action/cooldown.html#var/cooldown_time">&uarr;</a></aside>cooldown_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 12"/></a></h3>
+        <p>Cooldown you'll have to wait between each use, decreases depending on level.</p><h3 id="var/level_current"><aside class="declaration">var </aside>level_current
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 36"/></a></h3>
+        <p>Can increase to yield new abilities - Each Power ranks up each Rank</p><h3 id="var/power_explanation"><aside class="declaration">var </aside>power_explanation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 20"/></a></h3>
+        <p>The text that appears when using the help verb, meant to explain how the Power changes when ranking up.</p><h3 id="var/power_flags"><aside class="declaration">var </aside>power_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 26"/></a></h3>
+        <p>The effects on this Power (Toggled/Single Use/Static Cooldown)</p><h3 id="var/purchase_flags"><aside class="declaration">var </aside>purchase_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 30"/></a></h3>
+        <p>Who can purchase the Power</p><h2 id="proc">Proc Details</h2><h3 id="proc/CanUse"><aside class="declaration">proc </aside>CanUse<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/user) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 118"/></a></aside>
+        </h3>
+        <p>Checks if the Power is available to use.</p><h3 id="proc/ContinueActive"><aside class="declaration">proc </aside>ContinueActive<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L215">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 215"/></a></aside>
+        </h3>
+        <p>Checks to make sure this power can stay active</p><h3 id="proc/StartCooldown"><aside class="parent"><a title="/datum/action/cooldown" href="datum/action/cooldown.html#proc/StartCooldown">&uarr;</a></aside>StartCooldown<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 150"/></a></aside>
+        </h3>
+        <p>NOTE: With this formula, you'll hit half cooldown at level 8 for that power.</p><h3 id="proc/process"><aside class="parent"><a title="/datum" href="datum.html#proc/process">&uarr;</a></aside>process<aside>(seconds_per_tick) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 199"/></a></aside>
+        </h3>
+        <p>Used by powers that are continuously active (That have BP_AM_TOGGLE flag)</p><h3 id="proc/remove_after_use"><aside class="declaration">proc </aside>remove_after_use<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L222">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 222"/></a></aside>
+        </h3>
+        <p>Used to unlearn Single-Use Powers</p><h3 id="proc/upgrade_power"><aside class="declaration">proc </aside>upgrade_power<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/powers/_powers.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;powers&#x2F;_powers.dm 114"/></a></aside>
+        </h3>
+        <p>Called when the Power is upgraded.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/f2580f4fedb64c7d50876f6826a8b243d572c4ff">f2580f4</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

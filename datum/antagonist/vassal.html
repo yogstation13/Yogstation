@@ -16,101 +16,101 @@
 <h1>Vassal <aside>/<a href="datum.html">datum</a>/<a href="datum/antagonist.html">antagonist</a>/<a href="datum/antagonist/vassal.html">vassal</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L6">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 6"/></a></h1>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 6"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
-            <tr><th><a href="datum/antagonist/vassal.html#var/favorite_vassal">favorite_vassal</a></th><td>The favorite vassal gets unique features.</td></tr>
             <tr><th><a href="datum/antagonist/vassal.html#var/master">master</a></th><td>The Master Bloodsucker's antag datum.</td></tr>
             <tr><th><a href="datum/antagonist/vassal.html#var/powers">powers</a></th><td>List of all Purchased Powers, like Bloodsuckers.</td></tr>
-            <tr><th><a href="datum/antagonist/vassal.html#var/vassal_level">vassal_level</a></th><td>Bloodsucker levels, but for Vassals.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/antagonist/vassal.html#var/special_type">special_type</a></th><td>Whether this vassal is already a special type of Vassal.</td></tr>
+            <tr><th><a href="datum/antagonist/vassal.html#var/vassal_description">vassal_description</a></th><td>Description of what this Vassal does.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
             <tr><th><a href="datum/antagonist/vassal.html#proc/BuyPower">BuyPower</a></th><td>Used when your Master teaches you a new Power.</td></tr>
+            <tr><th><a href="datum/antagonist/vassal.html#proc/admin_add">admin_add</a></th><td>Message told to your (former) Master.</td></tr>
             <tr><th><a href="datum/antagonist/vassal.html#proc/can_be_owned">can_be_owned</a></th><td>If we weren't created by a bloodsucker, then we cannot be a vassal (assigned from antag panel)</td></tr>
             <tr><th><a href="datum/antagonist/vassal.html#proc/farewell">farewell</a></th><td>Message told to your Master.</td></tr>
-            <tr><th><a href="datum/antagonist/vassal.html#proc/make_favorite">make_favorite</a></th><td>Message told to your (former) Master.
-Called when we are made into the Favorite Vassal</td></tr>
+            <tr><th><a href="datum/antagonist/vassal.html#proc/make_special">make_special</a></th><td>Called when we are made into the Favorite Vassal</td></tr>
             <tr><th><a href="datum/antagonist/vassal.html#proc/on_removal">on_removal</a></th><td>Enslave them to their Master
 Give Recuperate Power
 Give Objectives
 Give Vampire Language &amp; Hud</td></tr>
-            <tr><th><a href="datum/antagonist/vassal.html#proc/update_vassal_icons_added">update_vassal_icons_added</a></th><td></td></tr>
-            <tr><th><a href="datum/antagonist/vassal.html#proc/update_vassal_icons_removed">update_vassal_icons_removed</a></th><td>Located in icons/mob/hud.dmi
-FULP ADDITION! Check prepare_huds in mob.dm to see why.</td></tr></table>
-    <h2 id="var">Var Details</h2><h3 id="var/favorite_vassal"><aside class="declaration">var </aside>favorite_vassal
-            <aside>&ndash; </aside>
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L19">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 19"/></a></h3>
-        <p>The favorite vassal gets unique features.</p><h3 id="var/master"><aside class="declaration">var </aside>master
+            <tr><th><a href="datum/antagonist/vassal.html#proc/return_vassal_examine">return_vassal_examine</a></th><td>Returns a Vassals's examine strings.
+Args:
+viewer - The person examining.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/master"><aside class="declaration">var </aside>master
             <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/antagonist.html">antagonist</a>/<a href="datum/antagonist/bloodsucker.html">bloodsucker</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L14">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 14"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 15"/></a></h3>
         <p>The Master Bloodsucker's antag datum.</p><h3 id="var/powers"><aside class="declaration">var </aside>powers
             <aside>&ndash; /list/datum/action</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L17">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 17"/></a></h3>
-        <p>List of all Purchased Powers, like Bloodsuckers.</p><h3 id="var/vassal_level"><aside class="declaration">var </aside>vassal_level
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 18"/></a></h3>
+        <p>List of all Purchased Powers, like Bloodsuckers.</p><h3 id="var/special_type"><aside class="declaration">var </aside>special_type
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L23">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 23"/></a></h3>
-        <p>Bloodsucker levels, but for Vassals.</p><h2 id="proc">Proc Details</h2><h3 id="proc/BuyPower"><aside class="declaration">proc </aside>BuyPower<aside>(/<a href="datum.html">datum</a>/<a href="datum/action/bloodsucker.html">action/bloodsucker</a>/power) 
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 20"/></a></h3>
+        <p>Whether this vassal is already a special type of Vassal.</p><h3 id="var/vassal_description"><aside class="declaration">var </aside>vassal_description
+            <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L171">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 171"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 24"/></a></h3>
+        <p>Description of what this Vassal does.</p><h2 id="proc">Proc Details</h2><h3 id="proc/BuyPower"><aside class="declaration">proc </aside>BuyPower<aside>(/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/cooldown.html">cooldown</a>/<a href="datum/action/cooldown/bloodsucker.html">bloodsucker</a>/power) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 200"/></a></aside>
         </h3>
-        <p>Used when your Master teaches you a new Power.</p><h3 id="proc/can_be_owned">can_be_owned<aside>(/<a href="datum.html">datum</a>/<a href="datum/mind.html">mind</a>/new_owner) 
+        <p>Used when your Master teaches you a new Power.</p><h3 id="proc/admin_add">admin_add<aside>(/<a href="datum.html">datum</a>/<a href="datum/mind.html">mind</a>/new_owner, /<a href="mob.html">mob</a>/admin) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L147">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 147"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 147"/></a></aside>
+        </h3>
+        <p>Message told to your (former) Master.</p><h3 id="proc/can_be_owned">can_be_owned<aside>(/<a href="datum.html">datum</a>/<a href="datum/mind.html">mind</a>/new_owner) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 177"/></a></aside>
         </h3>
         <p>If we weren't created by a bloodsucker, then we cannot be a vassal (assigned from antag panel)</p><h3 id="proc/farewell">farewell<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L97">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 97"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 134"/></a></aside>
         </h3>
-        <p>Message told to your Master.</p><h3 id="proc/make_favorite"><aside class="declaration">proc </aside>make_favorite<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/master) 
+        <p>Message told to your Master.</p><h3 id="proc/make_special"><aside class="declaration">proc </aside>make_special<aside>(/<a href="datum.html">datum</a>/<a href="datum/antagonist.html">antagonist</a>/<a href="datum/antagonist/vassal.html">vassal</a>/vassal_type) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L109">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 109"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L209">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 209"/></a></aside>
         </h3>
-        <p>Message told to your (former) Master.
-Called when we are made into the Favorite Vassal</p><h3 id="proc/on_removal">on_removal<aside>() 
+        <p>Called when we are made into the Favorite Vassal</p><h3 id="proc/on_removal">on_removal<aside>() 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L55">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 55"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 92"/></a></aside>
         </h3>
         <p>Enslave them to their Master
 Give Recuperate Power
 Give Objectives
-Give Vampire Language &amp; Hud</p><h3 id="proc/update_vassal_icons_added"><aside class="declaration">proc </aside>update_vassal_icons_added<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/vassal, icontype) 
+Give Vampire Language &amp; Hud</p><h3 id="proc/return_vassal_examine"><aside class="declaration">proc </aside>return_vassal_examine<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/viewer) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L214">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 214"/></a></aside>
+            <a href="https://github.com/yogstation13/Yogstation/blob/f2580f4fedb64c7d50876f6826a8b243d572c4ff/code/modules/antagonists/bloodsuckers/vassal/vassal.dm#L356">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal&#x2F;vassal.dm 356"/></a></aside>
         </h3>
-        <h1 id="hud">HUD</h1><h3 id="proc/update_vassal_icons_removed"><aside class="declaration">proc </aside>update_vassal_icons_removed<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/vassal) 
-        
-    
-            <a href="https://github.com/yogstation13/Yogstation/blob/1430980207839fc022f0115448050abeba3c0fef/code/modules/antagonists/bloodsuckers/vassal.dm#L221">
-        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;antagonists&#x2F;bloodsuckers&#x2F;vassal.dm 221"/></a></aside>
-        </h3>
-        <p>Located in icons/mob/hud.dmi
-FULP ADDITION! Check prepare_huds in mob.dm to see why.</p></main>
+        <p>Returns a Vassals's examine strings.
+Args:
+viewer - The person examining.</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/1430980207839fc022f0115448050abeba3c0fef">1430980</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/f2580f4fedb64c7d50876f6826a8b243d572c4ff">f2580f4</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
