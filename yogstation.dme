@@ -1600,6 +1600,7 @@
 #include "code\modules\antagonists\bloodsuckers\clans\_clan.dm"
 #include "code\modules\antagonists\bloodsuckers\clans\clan_flavortext.dm"
 #include "code\modules\antagonists\bloodsuckers\clans\clan_gangrel.dm"
+#include "code\modules\antagonists\bloodsuckers\clans\clan_hecata.dm"
 #include "code\modules\antagonists\bloodsuckers\clans\clan_lasombra.dm"
 #include "code\modules\antagonists\bloodsuckers\clans\clan_toreador.dm"
 #include "code\modules\antagonists\bloodsuckers\clans\clan_tzimisce.dm"

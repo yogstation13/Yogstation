@@ -6,16 +6,15 @@
 //And can send messages to vassals anywhere globally via Dark Communion.
 //In addition, raising the dead with Necromancy turns them into Sanguine Zombies
 //They are pseudo zombies, which have high punch damage and special resistances, but aren't infectious nor can they use guns.
-/datum/action/bloodsucker/targeted/hecata
+/datum/action/cooldown/bloodsucker/targeted/hecata
 	purchase_flags = HECATA_CAN_BUY
+	background_icon = 'icons/mob/actions/actions_hecata_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_hecata_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_hecata_bloodsucker.dmi'
-	background_icon_state = "hecata_power_off"
-	background_icon_state_on = "hecata_power_on"
-	background_icon_state_off = "hecata_power_off"
-/datum/action/bloodsucker/targeted/hecata/necromancy
+	active_background_icon_state = "hecata_power_on"
+	base_background_icon_state = "hecata_power_off"
+
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy
 	name = "Necromancy"
-	level_current = 1
 	button_icon_state = "power_necromancy"
 	desc = "Raise the dead as temporary vassals, or revive a dead vassal as a zombie permanently. Temporary vassals last longer as this ability ranks up."
 	power_explanation = "Necromancy:\n\
@@ -26,16 +25,16 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
 	power_flags = BP_AM_STATIC_COOLDOWN
 	bloodcost = 35
-	cooldown = 45 SECONDS
+	cooldown_time = 45 SECONDS
 	target_range = 1
 	prefire_message = "Select a target."
 	
-/datum/action/bloodsucker/targeted/hecata/necromancy/CheckValidTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
 	return isliving(target_atom)
-/datum/action/bloodsucker/targeted/hecata/necromancy/CheckCanTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/CheckCanTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -53,7 +52,7 @@
 		to_chat(owner, "[current_target] is still alive.")
 		return FALSE
 	return TRUE
-/datum/action/bloodsucker/targeted/hecata/necromancy/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/FireTargetedPower(atom/target_atom)
 	. = ..()
 	var/mob/living/target = target_atom
 	var/mob/living/user = owner
@@ -63,7 +62,7 @@
 		if(!do_mob(user, target, 6 SECONDS, NONE, TRUE))
 			return FALSE
 		if(IS_VASSAL(target))
-			PowerActivatedSuccessfully()
+			power_activated_sucessfully()
 			to_chat(user, span_warning("We revive [target]!"))
 			zombify(target)
 			bloodsuckerdatum.clanprogress++ //counts a succesful necromancy towards your objective progress
@@ -73,52 +72,54 @@
 			to_chat(target, span_notice("Their body refuses to react..."))
 			DeactivatePower()
 			return
-		if(!bloodsuckerdatum_power.attempt_turn_vassal(target, TRUE))
-			return FALSE
 		zombify(target)
-		PowerActivatedSuccessfully()
+		power_activated_sucessfully()
 		bloodsuckerdatum.clanprogress++ //counts a succesful necromancy towards your objective progress
 		to_chat(user, span_warning("We revive [target]!"))
 		var/living_time
+		if(level_current == 0)
+			living_time = 2 MINUTES
 		if(level_current == 1)
 			living_time = 5 MINUTES
 		else if(level_current == 2)
 			living_time = 8 MINUTES
 		else if(level_current == 3)
-			living_time = 12 MINUTES
-		else if(level_current >= 4)
-			living_time = 15 MINUTES //in general, they don't last long, make the most of them.
+			living_time = 11 MINUTES
+		else if(level_current == 4)
+			living_time = 14 MINUTES 
+		else if(level_current >= 5)
+			living_time = 17 MINUTES //in general, they don't last long, make the most of them.
 		addtimer(CALLBACK(src, PROC_REF(end_necromance), target), living_time)
 	else //extra check, but this shouldn't happen
 		owner.balloon_alert(owner, "Target is out of range or not dead yet.")
 		return FALSE
 	DeactivatePower()
 	
-/datum/action/bloodsucker/targeted/hecata/necromancy/proc/end_necromance(mob/living/user)
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/end_necromance(mob/living/user)
 	user.mind.remove_antag_datum(/datum/antagonist/vassal)
 	to_chat(user, span_warning("You feel the shadows around you weaken, your form falling limp like a puppet cut from its strings!"))
 	user.set_species(/datum/species/krokodil_addict) //they will turn into a fake zombie on death, that still retains blood and isnt so powerful.
 	user.death()
-/datum/action/bloodsucker/targeted/hecata/necromancy/proc/zombify(mob/living/user)
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/zombify(mob/living/user)
 	user.mind.grab_ghost()
-	user.revive(full_heal = TRUE, admin_revive = TRUE)
+	user.mind.add_antag_datum(/datum/antagonist/vassal)
 	user.set_species(/datum/species/zombie/hecata) //imitation zombies that shamble around and beat people with their fists
+	user.revive(full_heal = TRUE, admin_revive = TRUE)
 	user.visible_message(span_danger("[user] suddenly convulses, as [user.p_they()] stagger to their feet and gain a ravenous hunger in [user.p_their()] eyes!"), span_alien("You RISE!"))
 	playsound(owner.loc, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	to_chat(user, span_warning("Your broken form is picked up by strange shadows. If you were previously not a vassal, it is unlikely these shadows will be strong enough to keep you going for very long."))
 	to_chat(user, span_notice("You are resilient to many things like the vacuum of space, can punch harder, and can take more damage before dropping. However, you are unable to use guns and are slower."))
-/datum/action/bloodsucker/hecata
+
+/datum/action/cooldown/bloodsucker/hecata
 	purchase_flags = HECATA_CAN_BUY
+	background_icon = 'icons/mob/actions/actions_hecata_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_hecata_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_hecata_bloodsucker.dmi'
-	background_icon_state = "hecata_power_off"
-	background_icon_state_on = "hecata_power_on"
-	background_icon_state_off = "hecata_power_off"
+	active_background_icon_state = "hecata_power_on"
+	base_background_icon_state = "hecata_power_off"
 //summon wraiths (weakened shades) to attack anyone who isn't a zombie. This includes non-zombified vassals. However, you can get around this by zombifying your vassals.
 //to do this, you can make someone your favorite vassal, or you can kill them and then revive them with necromancy.
-/datum/action/bloodsucker/hecata/spiritcall
+/datum/action/cooldown/bloodsucker/hecata/spiritcall
 	name = "Spirit Call"
-	level_current = 1
 	desc = "Summon two angry wraiths which will attack anyone whose flesh is still alive. Summon amount increases as this ability levels up."
 	button_icon_state = "power_spiritcall"
 	power_explanation = "Spirit Call:\n\
@@ -130,11 +131,11 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
 	power_flags = BP_AM_STATIC_COOLDOWN
 	bloodcost = 15
-	cooldown = 60 SECONDS
+	cooldown_time = 60 SECONDS
 	var/num_spirits = 2
-/datum/action/bloodsucker/hecata/spiritcall/vassal //this variant has to exist, as hecata favorite vassals are technically in 'torpor'
+/datum/action/cooldown/bloodsucker/hecata/spiritcall/vassal //this variant has to exist, as hecata favorite vassals are technically in 'torpor'
 	check_flags = BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
-/datum/action/bloodsucker/hecata/spiritcall/ActivatePower(mob/user = usr)
+/datum/action/cooldown/bloodsucker/hecata/spiritcall/ActivatePower(mob/user = usr)
 	. = ..()
 	if(level_current == 2)
 		num_spirits = 3
@@ -154,10 +155,10 @@
 	cast_effect() // POOF
 	DeactivatePower()
 	
-/datum/action/bloodsucker/hecata/spiritcall/proc/summonWraiths(list/targets, mob/user = usr)
+/datum/action/cooldown/bloodsucker/hecata/spiritcall/proc/summonWraiths(list/targets, mob/user = usr)
 	for(var/T in targets)
 		new /mob/living/simple_animal/hostile/bloodsucker/wraith(T)
-/datum/action/bloodsucker/hecata/spiritcall/proc/cast_effect() //same as veil of many faces, makes smoke and stuff when casted
+/datum/action/cooldown/bloodsucker/hecata/spiritcall/proc/cast_effect() //same as veil of many faces, makes smoke and stuff when casted
 	// Effect
 	playsound(get_turf(owner), 'sound/magic/smoke.ogg', 20, 1)
 	var/datum/effect_system/steam_spread/puff = new /datum/effect_system/steam_spread/()
@@ -166,9 +167,8 @@
 	puff.attach(owner) //OPTIONAL
 	puff.start()
 	owner.spin(8, 1) //Spin around like a loon.
-/datum/action/bloodsucker/hecata/communion
+/datum/action/cooldown/bloodsucker/hecata/communion
 	name = "Deathly Communion"
-	level_current = 1
 	desc = "Send a message to all your vassals."
 	button_icon_state = "power_communion"
 	power_explanation = "Deathly Communion:\n\
@@ -179,14 +179,14 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
 	power_flags = NONE
 	bloodcost = 8
-	cooldown = 30 SECONDS
-/datum/action/bloodsucker/hecata/communion/ActivatePower()
+	cooldown_time = 30 SECONDS
+/datum/action/cooldown/bloodsucker/hecata/communion/ActivatePower()
 	. = ..()
 	var/input = stripped_input(usr, "Choose a message to tell your vassals.", "Voice of Blood", "")
 	if(!input || !IsAvailable())
 		return FALSE
 	deathly_commune(usr, input)
-/datum/action/bloodsucker/hecata/communion/proc/deathly_commune(mob/living/user, message) //code from Fulpstation
+/datum/action/cooldown/bloodsucker/hecata/communion/proc/deathly_commune(mob/living/user, message) //code from Fulpstation
 	var/rendered = span_cultlarge("<b>Master [user.real_name] announces:</b> [message]")
 	user.log_talk(message, LOG_SAY, tag=ROLE_BLOODSUCKER)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
