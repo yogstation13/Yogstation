@@ -91,7 +91,7 @@
 			var/turf/turf = object.loc
 			if(turf.intact && object.level == 1) //hidden under the floor
 				continue
-		reagents.reaction(object, TOUCH, fraction)
+		reagents.reaction(object, VAPOR, fraction)
 
 	var/hit = 0
 	for(var/mob/living/foamer in location)
@@ -99,7 +99,7 @@
 	if(hit)
 		lifetime += ds_delta_time //this is so the decrease from mobs hit and the natural decrease don't cumulate.
 
-	reagents.reaction(location, TOUCH, fraction)
+	reagents.reaction(location, VAPOR, fraction)
 
 /**
  * Applies the effect of this foam to a mob.
@@ -120,7 +120,7 @@
 
 	delta_time = min(delta_time SECONDS, lifetime)
 	var/fraction = (delta_time * MINIMUM_FOAM_DILUTION) / (initial(lifetime) * max(MINIMUM_FOAM_DILUTION, group.total_size))
-	reagents.reaction(foaming, TOUCH, fraction)
+	reagents.reaction(foaming, VAPOR, fraction)
 	lifetime -= delta_time
 	return TRUE
 
