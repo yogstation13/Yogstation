@@ -216,8 +216,8 @@
 	if(is_hijacker)
 		if(!locate(/datum/objective/hijack) in objectives)
 			add_objective(new/datum/objective/hijack)
-	else if(!locate(/datum/objective/escape) in objectives)
-		add_objective(new/datum/objective/escape)
+	else if(!locate(/datum/objective/escape/onesurvivor) in objectives)
+		add_objective(new/datum/objective/escape/onesurvivor)
 
 /datum/team/brother_team/proc/forge_single_objective()
 	if(prob(50))

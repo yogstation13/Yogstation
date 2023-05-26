@@ -138,8 +138,8 @@
 //C-20r SMG
 
 /obj/item/ammo_box/magazine/smgm45
-	name = "SMG magazine (.45)"
-	desc = "A 24-round magazine for the C-20r SMG that contains .45 rounds."
+	name = "SMG magazine (.45 ACP)"
+	desc = "A 24-round magazine for the C-20r SMG that contains .45 ACP rounds."
 	icon_state = "c20r45-24"
 	ammo_type = /obj/item/ammo_casing/c45
 	caliber = ".45"
@@ -176,8 +176,8 @@
 //Thompson SMG
 
 /obj/item/ammo_box/magazine/tommygunm45
-	name = "drum magazine (.45)"
-	desc = "A massive 50-round drum magazine for usage in the Thompson SMG. It contains .45 rounds."
+	name = "drum magazine (.45 ACP)"
+	desc = "A massive 50-round drum magazine for usage in the Thompson SMG. It contains .45 ACP rounds."
 	icon_state = "drum45"
 	ammo_type = /obj/item/ammo_casing/c45
 	caliber = ".45"

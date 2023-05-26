@@ -46,8 +46,8 @@
 // .45 (M1911 + Surplus Carbine + C20r)
 
 /obj/item/ammo_casing/c45
-	name = ".45 bullet casing"
-	desc = "A .45 bullet casing."
+	name = ".45 ACP bullet casing"
+	desc = "A .45 ACP bullet casing."
 	caliber = ".45"
 	projectile_type = /obj/item/projectile/bullet/c45
 
