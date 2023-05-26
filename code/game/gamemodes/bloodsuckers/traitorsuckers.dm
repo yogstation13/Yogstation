@@ -19,7 +19,7 @@
 
 	var/list/possible_bloodsuckers = list()
 	var/list/bloodsuckers = list()
-	var/const/bloodsucker_amount = 2
+	var/const/bloodsucker_amount = 3
 
 /datum/game_mode/traitor/bloodsucker/can_start()
 	. = ..()

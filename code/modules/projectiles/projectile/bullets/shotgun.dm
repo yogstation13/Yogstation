@@ -184,4 +184,12 @@
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 500 //one shot to break a window or 3 shots to breach an airlock door
 	..()
-	
+
+/obj/item/projectile/bullet/pellet/hardlight
+	name = "scattered hardlight beam"
+	icon_state = "disabler_bullet"
+	damage = 10 // Less damage than buckshot or rubbershot
+	flag = ENERGY
+	damage_type = STAMINA // Doesn't do "real" damage
+	sharpness = SHARP_NONE
+	armour_penetration = -40 // Energy armor is usually very low so uhh

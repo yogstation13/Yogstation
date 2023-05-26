@@ -41,7 +41,7 @@
 	icon_state = "adamantine_cords"
 
 /datum/action/item_action/organ_action/use/adamantine_vocal_cords/Trigger()
-	if(!IsAvailable())
+	if(!IsAvailable(feedback = FALSE))
 		return
 	var/message = input(owner, "Resonate a message to all nearby golems.", "Resonate")
 	if(QDELETED(src) || QDELETED(owner) || !message)
@@ -82,7 +82,7 @@
 	..()
 	cords = target
 
-/datum/action/item_action/organ_action/colossus/IsAvailable()
+/datum/action/item_action/organ_action/colossus/IsAvailable(feedback = FALSE)
 	if(world.time < cords.next_command)
 		return FALSE
 	if(!owner)
@@ -98,7 +98,7 @@
 
 /datum/action/item_action/organ_action/colossus/Trigger()
 	. = ..()
-	if(!IsAvailable())
+	if(!IsAvailable(feedback = FALSE))
 		if(world.time < cords.next_command)
 			to_chat(owner, span_notice("You must wait [DisplayTimeText(cords.next_command - world.time)] before Speaking again."))
 		return
@@ -283,7 +283,7 @@
 				L.heal_overall_damage(10 * power_multiplier, 10 * power_multiplier)
 			if(iscultist(L))
 				L.adjust_fire_stacks(1 * power_multiplier)
-				L.IgniteMob()
+				L.ignite_mob()
 
 	//KNOCKDOWN
 	else if(findtext(message, knockdown_words))
@@ -351,7 +351,7 @@
 		for(var/V in listeners)
 			var/mob/living/L = V
 			L.adjust_fire_stacks(1 * power_multiplier)
-			L.IgniteMob()
+			L.ignite_mob()
 
 	//HOT
 	else if((findtext(message, hot_words)))

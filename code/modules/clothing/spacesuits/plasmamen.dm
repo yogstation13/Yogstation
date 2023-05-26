@@ -31,7 +31,7 @@
 			next_extinguish = world.time + extinguish_cooldown
 			extinguishes_left--
 			H.visible_message(span_warning("[H]'s suit automatically extinguishes [H.p_them()]!"),span_warning("Your suit automatically extinguishes you."))
-			H.ExtinguishMob()
+			H.extinguish_mob()
 			new /obj/effect/particle_effect/water(get_turf(H))
 
 
@@ -88,7 +88,7 @@
 		user.add_overlay(helmet_mob_overlay)
 	user.update_inv_head()
 	for(var/datum/action/A as anything in actions)
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/clothing/head/helmet/space/plasmaman/equipped(mob/living/user, slot)
 	. = ..()

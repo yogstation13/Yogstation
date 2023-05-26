@@ -196,6 +196,7 @@
 				user.blood_volume += 10
 		adjustFireLoss(2.5)
 		updatehealth() //3 minutes to die
+
 	if(satiation >= 3)
 		to_chat(src, span_notice("It has been fed. You turn back to normal."))
 		qdel(src)

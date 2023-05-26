@@ -306,7 +306,7 @@
 	heirloom.AddComponent(/datum/component/heirloom, quirk_holder.mind, family_name)
 
 /datum/quirk/family_heirloom/on_process()
-	if(heirloom in quirk_holder.GetAllContents())
+	if(heirloom in quirk_holder.get_all_contents())
 		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "family_heirloom_missing")
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "family_heirloom", /datum/mood_event/family_heirloom)
 	else

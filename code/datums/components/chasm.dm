@@ -81,7 +81,7 @@
 			return FALSE
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
-			for(var/obj/item/wormhole_jaunter/J in H.GetAllContents())
+			for(var/obj/item/wormhole_jaunter/J in H.get_all_contents())
 				//To freak out any bystanders
 				H.visible_message(span_boldwarning("[H] falls into [parent]!"))
 				J.chasm_react(H)
@@ -220,7 +220,7 @@
 		var/list/fishing_contents = list()
 		for(var/turf/T in range(3, src.parent))
 			if(ischasm(T))
-				fishing_contents += T.GetAllContents()
+				fishing_contents += T.get_all_contents()
 
 		if(!length(fishing_contents))
 			to_chat(user, span_warning("There's nothing here!"))
