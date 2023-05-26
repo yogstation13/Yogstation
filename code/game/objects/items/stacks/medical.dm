@@ -47,7 +47,6 @@
 	if(!M.can_inject(user, TRUE))
 		return
 	if(INTERACTING_WITH(user, M))
-		to_chat(user, span_warning("You are already interacting with [M]!"))
 		return
 	if(M == user)
 		playsound(src, pick(apply_sounds), 25)
