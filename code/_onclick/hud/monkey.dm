@@ -90,13 +90,6 @@
 	pull_icon.screen_loc = ui_above_movement
 	static_inventory += pull_icon
 
-	lingchemdisplay = new /atom/movable/screen/ling/chems()
-	infodisplay += lingchemdisplay
-
-	lingstingdisplay = new /atom/movable/screen/ling/sting()
-	infodisplay += lingstingdisplay
-
-
 	zone_select = new /atom/movable/screen/zone_sel()
 	zone_select.icon = ui_style
 	zone_select.update_icon(mymob)

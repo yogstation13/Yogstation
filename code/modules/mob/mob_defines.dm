@@ -21,6 +21,12 @@
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	var/datum/mind/mind
 	var/static/next_mob_id = 0
+	/// The current client inhabiting this mob. Managed by login/logout
+	/// This exists so we can do cleanup in logout for occasions where a client was transfere rather then destroyed
+	/// We need to do this because the mob on logout never actually has a reference to client
+	/// We also need to clear this var/do other cleanup in client/Destroy, since that happens before logout
+	/// HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+	var/client/canon_client
 
 	/// List of movement speed modifiers applying to this mob
 	var/list/movespeed_modification				//Lazy list, see mob_movespeed.dm
@@ -30,8 +36,9 @@
 	var/list/datum/action/actions = list()
 	/// Actions that belong to this mob used in observers
 	var/list/datum/action/originalactions = list()
-	/// A special action? No idea why this lives here
-	var/list/datum/action/chameleon_item_actions
+	/// A list of chameleon actions we have specifically
+	/// This can be unified with the actions list
+	var/list/datum/action/item_action/chameleon/chameleon_item_actions
 
 	/// Whether a mob is alive or dead. TODO: Move this to living - Nodrak (2019, still here)
 	var/stat = CONSCIOUS
@@ -85,13 +92,6 @@
 
 	/// Default body temperature
 	var/bodytemperature = BODYTEMP_NORMAL	//310.15K / 98.6F
-	/// Drowsyness level of the mob
-	var/drowsyness = 0//Carbon
-	/// Dizziness level of the mob
-	var/dizziness = 0//Carbon
-	/// Jitteryness level of the mob
-	var/jitteriness = 0//Carbon
-	/// Hunger level of the mob
 	var/nutrition = NUTRITION_LEVEL_START_MIN // randomised in Initialize
 	/// Satiation level of the mob
 	var/satiety = 0//Carbon
@@ -153,15 +153,6 @@
 
 	///A weakref to the last mob/living/carbon to push/drag/grab this mob (exclusively used by slimes friend recognition)
 	var/datum/weakref/LAssailant = null
-
-	/**
-	  * construct spells and mime spells.
-	  *
-	  * Spells that do not transfer from one mob to another and can not be lost in mindswap.
-	  * obviously do not live in the mind
-	  */
-	var/list/mob_spell_list = list()
-
 
 	/// bitflags defining which status effects can be inflicted (replaces canknockdown, canstun, etc)
 	var/status_flags = CANSTUN|CANKNOCKDOWN|CANUNCONSCIOUS|CANPUSH

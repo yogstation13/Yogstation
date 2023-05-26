@@ -937,6 +937,15 @@
 	id = "c10mm_disk"
 	category = list("Security")
 
+/datum/design/c10mm/cs
+	name = "Ammo Box (10mm caseless)"
+	id = "c10mm_cs"
+	build_path = /obj/item/ammo_box/c10mm/cs
+
+/datum/design/c10mm/cs/disk
+	id = "c10mm_cs_disk"
+	category = list("Security")
+
 /datum/design/c10mm/sp
 	name = "Ammo Box (10mm soporific)"
 	id = "c10mm_sp"
@@ -950,7 +959,7 @@
 	name = "Illegal Ammo Design Disk"
 	desc = "A disk containing designs for both standard and non-standard 10mm and .357 bullet designs."
 	icon_state = "datadisk1"
-	var/list/ammo_types = list(/datum/design/c10mm/disk, /datum/design/c10mm/sp/disk, /datum/design/c10mm/ap, /datum/design/c10mm/hp, /datum/design/c10mm/inc, /datum/design/c10mm/emp, 
+	var/list/ammo_types = list(/datum/design/c10mm/disk, /datum/design/c10mm/cs/disk, /datum/design/c10mm/sp/disk, /datum/design/c10mm/ap, /datum/design/c10mm/hp, /datum/design/c10mm/inc, /datum/design/c10mm/emp,
 								/datum/design/box_a357/disk, /datum/design/box_a357/ironfeather/disk, /datum/design/box_a357/nutcracker, /datum/design/box_a357/metalshock, /datum/design/box_a357/heartpiercer, /datum/design/box_a357/wallstake)
 
 /obj/item/disk/design_disk/illegal_ammo/Initialize()

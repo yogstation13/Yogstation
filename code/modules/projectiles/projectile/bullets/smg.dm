@@ -1,7 +1,7 @@
 // .45 (M1911 & Surplus Carbine & C-20r SMG)
 
 /obj/item/projectile/bullet/c45
-	name = ".45 bullet"
+	name = ".45 ACP bullet"
 	damage = 30
 	wound_bonus = -10
 

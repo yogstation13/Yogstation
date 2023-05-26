@@ -26,7 +26,8 @@
 			return FALSE
 		if(specific_cult && specific_cult.is_sacrifice_target(M.mind))
 			return FALSE
-		if(M.mind.enslaved_to && !iscultist(M.mind.enslaved_to))
+		var/mob/living/master = M.mind.enslaved_to?.resolve()
+		if(master && !iscultist(master))
 			return FALSE
 		if(M.mind.unconvertable)
 			return FALSE
@@ -137,16 +138,6 @@
 			cult_mind.current.Unconscious(100)
 		return TRUE
 
-/datum/game_mode/proc/update_cult_icons_added(datum/mind/cult_mind)
-	var/datum/atom_hud/antag/culthud = GLOB.huds[ANTAG_HUD_CULT]
-	culthud.join_hud(cult_mind.current)
-	set_antag_hud(cult_mind.current, "cult")
-
-/datum/game_mode/proc/update_cult_icons_removed(datum/mind/cult_mind)
-	var/datum/atom_hud/antag/culthud = GLOB.huds[ANTAG_HUD_CULT]
-	culthud.leave_hud(cult_mind.current)
-	set_antag_hud(cult_mind.current, null)
-
 /datum/game_mode/cult/proc/check_cult_victory()
 	return main_cult.check_cult_victory()
 
@@ -244,7 +235,7 @@
 			cultist.health *= 0.75
 		else
 			cultist.Stun(20)
-			cultist.confused += 15 //30 seconds of confusion
+			cultist.adjust_confusion(15 SECONDS)
 		to_chat(cultist, span_narsiesmall("Your mind is flooded with pain as the last bloodstone is destroyed!"))
 
 /datum/game_mode/proc/cult_loss_anchor()
@@ -263,9 +254,9 @@
 				cultist.maxHealth *= 0.5
 				cultist.health *= 0.5
 			else
-				cultist.Stun(40)
-				cultist.confused += 30 //one minute of confusion
-			to_chat(cultist, span_narsiesmall("You feel a bleakness as the destruction of the anchor cuts off your connection to Nar'sie!"))
+				cultist.Stun(4 SECONDS)
+				cultist.adjust_confusion(1 MINUTES)
+			to_chat(cultist, span_narsiesmall("You feel a bleakness as the destruction of the anchor cuts off your connection to Nar-Sie!"))
 
 /datum/game_mode/proc/disable_bloodstone_cooldown()
 	bloodstone_cooldown = FALSE

@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 		return
 	var/mob/living/carbon/carbon_mob = affected_mob
 	carbon_mob.fire_stacks++
-	carbon_mob.IgniteMob()
+	carbon_mob.ignite_mob()
 
 /obj/structure/slime_crystal/orange/process()
 	. = ..()

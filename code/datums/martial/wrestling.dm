@@ -440,7 +440,7 @@
 	A.start_pulling(D)
 	D.visible_message(span_danger("[A] gets [D] in a cinch!"), \
 								span_userdanger("[A] gets [D] in a cinch!"))
-	D.Stun(rand(60,100))
+	D.Stun(rand(6, 10) SECONDS)
 	log_combat(A, D, "cinched")
 	return 1
 

@@ -13,6 +13,11 @@
 	delivery_icon = "deliverycrate"
 	door_anim_time = 0 // no animation
 	var/obj/item/paper/fluff/jobs/cargo/manifest/manifest
+	breakout_time = 20 SECONDS
+	///The resident (owner) of this crate/coffin.
+	var/mob/living/resident
+	///The time it takes to pry this open with a crowbar.
+	var/pry_lid_timer = 25 SECONDS
 
 /obj/structure/closet/crate/Initialize()
 	. = ..()

@@ -19,7 +19,7 @@
 
 /obj/effect/clockwork/servant_blocker/Cross(atom/movable/M)
 	. = ..()
-	var/list/target_contents = M.GetAllContents() + M
+	var/list/target_contents = M.get_all_contents() + M
 	for(var/mob/living/L in target_contents)
 		if(is_servant_of_ratvar(L) && get_dir(M, src) != dir && L.stat != DEAD) //Unless we're on the side the arrow is pointing directly away from, no-go
 			to_chat(L, span_danger("The space beyond here can't be accessed by you or other servants."))

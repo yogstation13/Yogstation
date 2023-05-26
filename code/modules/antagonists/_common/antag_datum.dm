@@ -16,6 +16,10 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/task_memory = ""//Optional little objectives that are to be removed on a certain milestone
 	var/antag_moodlet //typepath of moodlet that the mob will gain with their status
 	var/can_hijack = HIJACK_NEUTRAL //If these antags are alone on shuttle hijack happens.
+	///The antag hud's icon file
+	var/hud_icon = 'yogstation/icons/mob/antag_hud.dmi'
+	///Name of the antag hud we provide to this mob.
+	var/antag_hud_name
 
 	//Antag panel properties
 	var/show_in_antagpanel = TRUE	//This will hide adding this antag type in antag panel, use only for internal subtypes that shouldn't be added directly but still show if possessed by mind
@@ -28,6 +32,15 @@ GLOBAL_LIST_EMPTY(antagonists)
 	/// The typepath for the outfit to show in the preview for the preferences menu.
 	var/preview_outfit
 
+	//ANTAG UI
+
+	///name of the UI that will try to open, right now using a generic ui
+	var/ui_name = "AntagInfoGeneric"
+	///weakref to button to access antag interface
+	var/datum/weakref/info_button_ref
+	/// A weakref to the HUD shown to teammates, created by `add_team_hud`
+	var/datum/weakref/team_hud_ref
+
 
 /datum/antagonist/New()
 	GLOB.antagonists += src
@@ -37,6 +50,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	GLOB.antagonists -= src
 	if(owner)
 		LAZYREMOVE(owner.antag_datums, src)
+	QDEL_NULL(team_hud_ref)
 	owner = null
 	return ..()
 
@@ -61,6 +75,10 @@ GLOBAL_LIST_EMPTY(antagonists)
 	remove_innate_effects(old_body)
 	if(old_body && old_body.stat != DEAD && !LAZYLEN(old_body.mind?.antag_datums))
 		old_body.remove_from_current_living_antags()
+	var/datum/action/antag_info/info_button = info_button_ref?.resolve()
+	if(info_button)
+		info_button.Remove(old_body)
+		info_button.Grant(new_body)
 	apply_innate_effects(new_body)
 	if(new_body.stat != DEAD)
 		new_body.add_to_current_living_antags()
@@ -71,7 +89,20 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //This handles the removal of antag huds/special abilities
 /datum/antagonist/proc/remove_innate_effects(mob/living/mob_override)
+	handle_clown_mutation(mob_override || owner.current, removing = FALSE)
 	return
+
+/// Handles adding and removing the clumsy mutation from clown antags. Gets called in apply/remove_innate_effects
+/datum/antagonist/proc/handle_clown_mutation(mob/living/mob_override, message, removing = TRUE)
+	if(!ishuman(mob_override) || owner.assigned_role != "Clown")
+		return
+	var/mob/living/carbon/human/human_override = mob_override
+	if(removing) // They're a clown becoming an antag, remove clumsy
+		human_override.dna.remove_mutation(CLOWNMUT)
+		if(!silent && message)
+			to_chat(human_override, span_boldnotice("[message]"))
+	else
+		human_override.dna.add_mutation(CLOWNMUT) // We're removing their antag status, add back clumsy
 
 //Assign default team and creates one for one of a kind team antagonists
 /datum/antagonist/proc/create_team(datum/team/team)
@@ -80,12 +111,21 @@ GLOBAL_LIST_EMPTY(antagonists)
 //Called by the add_antag_datum() mind proc after the instanced datum is added to the mind's antag_datums list.
 /datum/antagonist/proc/on_gain()
 	SHOULD_CALL_PARENT(TRUE)
+	var/datum/action/antag_info/info_button
 	if(!owner)
 		CRASH("[src] ran on_gain() without a mind")
 	if(!owner.current)
 		CRASH("[src] ran on_gain() on a mind without a mob")
-	greet()
-	apply_innate_effects(owner.current)
+	if(ui_name)//in the future, this should entirely replace greet.
+		info_button = new(src)
+		info_button.Grant(owner.current)
+		info_button_ref = WEAKREF(info_button)
+	if(!silent)
+		greet()
+		if(ui_name)
+			to_chat(owner.current, span_boldnotice("For more info, read the panel. you can always come back to it using the button in the top left."))
+			info_button.Trigger()
+	apply_innate_effects()
 	give_antag_moodies()
 	if(is_banned(owner.current) && replace_banned)
 		replace_banned_player()
@@ -93,6 +133,8 @@ GLOBAL_LIST_EMPTY(antagonists)
 		owner.current.client.holder.auto_deadmin()
 	if(owner.current.stat != DEAD)
 		owner.current.add_to_current_living_antags()
+	
+	SEND_SIGNAL(owner, COMSIG_ANTAGONIST_GAINED, src)
 
 /datum/antagonist/proc/is_banned(mob/M)
 	if(!M)
@@ -117,17 +159,29 @@ GLOBAL_LIST_EMPTY(antagonists)
 //Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 /datum/antagonist/proc/on_removal()
 	SHOULD_CALL_PARENT(TRUE)
-	remove_innate_effects(owner.current)
+	if(!owner)
+		CRASH("Antag datum with no owner.")
+
+	remove_innate_effects()
 	clear_antag_moodies()
-	if(owner)
-		LAZYREMOVE(owner.antag_datums, src)
-		if(!LAZYLEN(owner.antag_datums))
-			owner.current.remove_from_current_living_antags()
-		if(!silent && owner.current)
-			farewell()
+	LAZYREMOVE(owner.antag_datums, src)
+	if(!LAZYLEN(owner.antag_datums))
+		owner.current.remove_from_current_living_antags()
+	if(info_button_ref)
+		QDEL_NULL(info_button_ref)
+	if(!silent && owner.current)
+		farewell()
 	var/datum/team/team = get_team()
 	if(team)
 		team.remove_member(owner)
+	SEND_SIGNAL(owner, COMSIG_ANTAGONIST_REMOVED, src)
+
+	// Remove HUDs that they should no longer see
+	var/mob/living/current = owner.current
+	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
+		if (!antag_hud.mobShouldSee(current))
+			antag_hud.hide_from(current)
+
 	qdel(src)
 
 /datum/antagonist/proc/greet()
@@ -288,13 +342,36 @@ GLOBAL_LIST_EMPTY(antagonists)
 	antag_memory = new_memo
 	task_memory = new_memo
 
+/// Adds a HUD that will show you other members with the same antagonist.
+/// If an antag typepath is passed to `antag_to_check`, will check that, otherwise will use the source type.
+/datum/antagonist/proc/add_team_hud(mob/target, antag_to_check)
+	QDEL_NULL(team_hud_ref)
+
+	team_hud_ref = WEAKREF(target.add_alt_appearance(
+		/datum/atom_hud/alternate_appearance/basic/has_antagonist,
+		"antag_team_hud_[REF(src)]",
+		hud_image_on(target),
+		antag_to_check || type,
+	))
+
+	// Add HUDs that they couldn't see before
+	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
+		if (antag_hud.mobShouldSee(owner.current))
+			antag_hud.show_to(owner.current)
+
+/// Takes a location, returns an image drawing "on" it that matches this antag datum's hud icon
+/datum/antagonist/proc/hud_image_on(mob/hud_loc)
+	var/image/hud = image(hud_icon, hud_loc, antag_hud_name)
+	hud.plane = ABOVE_HUD_PLANE //not quite but needed
+	return hud
+
 //This one is created by admin tools for custom objectives
 /datum/antagonist/custom
 	antagpanel_category = "Custom"
 	show_name_in_check_antagonists = TRUE //They're all different
 	var/datum/team/custom_team
 
-datum/antagonist/custom/create_team(datum/team/team)
+/datum/antagonist/custom/create_team(datum/team/team)
 	custom_team = team
 
 /datum/antagonist/custom/get_team()
@@ -307,3 +384,68 @@ datum/antagonist/custom/create_team(datum/team/team)
 	else
 		return
 	..()
+
+///ANTAGONIST UI STUFF
+
+/datum/antagonist/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, ui_name, name)
+		ui.open()
+
+/datum/antagonist/ui_state(mob/user)
+	return GLOB.always_state
+
+///generic helper to send objectives as data through tgui.
+/datum/antagonist/proc/get_objectives()
+	var/objective_count = 1
+	var/list/objective_data = list()
+	//all obj
+	for(var/datum/objective/objective in objectives)
+		objective_data += list(list(
+			"count" = objective_count,
+			"name" = objective.objective_name,
+			"explanation" = objective.explanation_text,
+			"complete" = objective.completed,
+		))
+		objective_count++
+	return objective_data
+
+/datum/antagonist/ui_static_data(mob/user)
+	var/list/data = list()
+	data["antag_name"] = name
+	data["objectives"] = get_objectives()
+	return data
+
+//button for antags to review their descriptions/info
+
+/datum/action/antag_info
+	name = "Open Antag Information:"
+	button_icon_state = "info"
+	show_to_observers = FALSE
+
+/datum/action/antag_info/New(Target)
+	. = ..()
+	if(!button_icon_state)
+		button_icon_state = initial(button_icon_state)
+	name += " [target]"
+
+/datum/action/antag_info/Trigger()
+	. = ..()
+	if(!.)
+		return
+
+	target.ui_interact(owner)
+
+/datum/action/antag_info/IsAvailable(feedback = FALSE)
+	if(!target)
+		stack_trace("[type] was used without a target antag datum!")
+		return FALSE
+	. = ..()
+	if(!.)
+		return
+	if(!owner.mind)
+		return FALSE
+	if(!(target in owner.mind.antag_datums))
+		return FALSE
+	return TRUE

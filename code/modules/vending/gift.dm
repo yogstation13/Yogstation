@@ -23,6 +23,7 @@
 					/obj/item/hourglass = 2,
 					/obj/item/toy/frisbee = 2,
 					/obj/item/toy/boomerang = 2,
+					/obj/item/soccerball = 2,
 					/obj/item/storage/bag/photo = 5,
 					/obj/item/toy/plush/bubbleplush = 2,
 					/obj/item/toy/plush/plushvar = 2,

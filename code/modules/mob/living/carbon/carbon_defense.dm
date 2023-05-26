@@ -332,8 +332,7 @@
 				do_sparks(5, TRUE, src)
 				var/power = M.powerlevel + rand(0,3)
 				Paralyze(power*20)
-				if(stuttering < power)
-					stuttering = power
+				set_stutter_if_lower(power * 2 SECONDS)
 				if (prob(stunprob) && M.powerlevel >= 8)
 					adjustFireLoss(M.powerlevel * rand(6,10))
 					updatehealth()
@@ -398,15 +397,12 @@
 		span_userdanger("You feel a powerful shock coursing through your body!"), \
 		span_italics("You hear a heavy electrical crack.") \
 		)
-	jitteriness += 1000 //High numbers for violent convulsions
-	do_jitter_animation(jitteriness)
-	stuttering += 2
-	if((!tesla_shock || (tesla_shock && siemens_coeff > 0.5)) && stun)
-		Paralyze(40)
-	spawn(20)
-		jitteriness = max(jitteriness - 990, 10) //Still jittery, but vastly less
-		if((!tesla_shock || (tesla_shock && siemens_coeff > 0.5)) && stun)
-			Paralyze(60)
+	do_jitter_animation(300)
+	adjust_stutter(4 SECONDS)
+	adjust_jitter(20 SECONDS)
+	var/should_stun = !tesla_shock || (tesla_shock && siemens_coeff > 0.5) && stun
+	Paralyze(4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(secondary_shock), should_stun), 2 SECONDS)
 	if(stat == DEAD && can_defib()) //yogs: ZZAPP
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(80))
 			set_heartattack(FALSE)
@@ -414,12 +410,17 @@
 			adjustToxLoss(-50)
 			revive()
 			INVOKE_ASYNC(src, PROC_REF(emote), "gasp")
-			Jitter(100)
+			adjust_jitter(10 SECONDS)
 			adjustOrganLoss(ORGAN_SLOT_BRAIN, 100, 199) //yogs end
 	if(override)
 		return override
 	else
 		return shock_damage
+
+///Called slightly after electrocute act to apply a secondary stun.
+/mob/living/carbon/proc/secondary_shock(should_stun)
+	if(should_stun)
+		Paralyze(6 SECONDS)
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(on_fire)
@@ -464,12 +465,13 @@
 		else if(averagestacks < -1)
 			to_chat(src, span_notice("The hug [M] gave you was a little wet..."))
 
-	AdjustStun(-60)
-	AdjustKnockdown(-60)
-	AdjustUnconscious(-60)
-	AdjustSleeping(-100)
-	AdjustParalyzed(-60)
-	AdjustImmobilized(-60)
+	AdjustStun(-6 SECONDS)
+	AdjustKnockdown(-6 SECONDS)
+	AdjustUnconscious(-6 SECONDS)
+	AdjustSleeping(-10 SECONDS)
+	AdjustParalyzed(-6 SECONDS)
+	AdjustImmobilized(-6 SECONDS)
+//	adjustStaminaLoss(-10) if you want hugs to recover stamina damage, uncomment this
 	if(dna && dna.check_mutation(ACTIVE_HULK))
 		if(prob(30))
 			adjustStaminaLoss(10)
@@ -525,14 +527,10 @@
 
 			else
 				to_chat(src, span_warning("Your eyes are really starting to hurt. This can't be good for you!"))
-		if(has_bane(BANE_LIGHT))
-			mind.disrupt_spells(-500)
 		return TRUE
 	else if(damage == 0) // just enough protection
 		if(prob(20))
 			to_chat(src, span_notice("Something bright flashes in the corner of your vision!"))
-		if(has_bane(BANE_LIGHT))
-			mind.disrupt_spells(0)
 
 
 /mob/living/carbon/soundbang_act(intensity = 1, conf_pwr = 20, damage_pwr = 5, deafen_pwr = 15)
@@ -544,7 +542,7 @@
 	var/effect_amount = intensity - ear_safety
 	if(effect_amount > 0)
 		if(conf_pwr)
-			confused += conf_pwr*effect_amount
+			adjust_confusion(conf_pwr*effect_amount)
 
 		if(istype(ears) && (deafen_pwr || damage_pwr))
 			var/ear_damage = damage_pwr * effect_amount

@@ -336,6 +336,7 @@ SUBSYSTEM_DEF(vote)
 /datum/action/vote
 	name = "Vote!"
 	button_icon_state = "vote"
+	show_to_observers = FALSE
 
 /datum/action/vote/Trigger()
 	if(owner)
@@ -343,7 +344,7 @@ SUBSYSTEM_DEF(vote)
 		remove_from_client()
 		Remove(owner)
 
-/datum/action/vote/IsAvailable()
+/datum/action/vote/IsAvailable(feedback = FALSE)
 	return TRUE
 
 /datum/action/vote/proc/remove_from_client()

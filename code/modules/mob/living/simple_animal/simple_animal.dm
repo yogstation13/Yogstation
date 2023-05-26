@@ -156,15 +156,8 @@
 		if(health <= 0)
 			death()
 		else
-			stat = CONSCIOUS
+			set_stat(CONSCIOUS)
 	med_hud_set_status()
-
-/mob/living/simple_animal/handle_status_effects()
-	..()
-	if(stuttering)
-		stuttering = 0
-	if(slurring)
-		slurring = max(slurring-1,0)
 
 /mob/living/simple_animal/proc/handle_automated_action()
 	set waitfor = FALSE
@@ -375,10 +368,10 @@
 /mob/living/simple_animal/handle_fire()
 	return TRUE
 
-/mob/living/simple_animal/IgniteMob()
+/mob/living/simple_animal/ignite_mob()
 	return FALSE
 
-/mob/living/simple_animal/ExtinguishMob()
+/mob/living/simple_animal/extinguish_mob()
 	return
 
 /mob/living/simple_animal/revive(full_heal = 0, admin_revive = 0)
@@ -457,7 +450,7 @@
 		walk(src, 0) //stop mid walk
 
 	update_transform()
-	update_action_buttons_icon()
+	update_mob_action_buttons()
 
 /mob/living/simple_animal/update_transform()
 	var/matrix/ntransform = matrix(transform) //aka transform.Copy()

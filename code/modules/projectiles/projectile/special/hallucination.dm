@@ -167,11 +167,11 @@
 
 /obj/item/projectile/hallucination/taser/hal_apply_effect()
 	hal_target.Paralyze(100)
-	hal_target.stuttering += 20
+	hal_target.adjust_stutter(2 SECONDS)
 	if(hal_target.dna && (hal_target.dna.check_mutation(HULK)|| hal_target.dna.check_mutation(ACTIVE_HULK)))
 		hal_target.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
 	else if((hal_target.status_flags & CANKNOCKDOWN) && !HAS_TRAIT(hal_target, TRAIT_STUNIMMUNE))
-		addtimer(CALLBACK(hal_target, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 20), 5)
+		addtimer(CALLBACK(hal_target, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 20), 0.5 SECONDS)
 
 /obj/item/projectile/hallucination/disabler
 	name = "disabler beam"
@@ -200,7 +200,7 @@
 
 /obj/item/projectile/hallucination/ebow/hal_apply_effect()
 	hal_target.Paralyze(100)
-	hal_target.stuttering += 5
+	hal_target.adjust_stutter(5 SECONDS)
 	hal_target.adjustStaminaLoss(8)
 
 /obj/item/projectile/hallucination/change

@@ -164,7 +164,7 @@
 		damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_R
 	prepare_huds()
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_electrified()
 
 	rebuild_parts()
@@ -440,7 +440,7 @@
 			D.removeMe(src)
 	qdel(note)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.remove_from_hud(src)
+		diag_hud.remove_atom_from_hud(src)
 	if(brace) //yogs
 		brace.remove() //yogs
 	return ..()
@@ -1315,6 +1315,8 @@
 				prying_so_hard = TRUE
 				if(do_after(user, time_to_open, src))
 					open(2)
+					if(!istype(I,/obj/item/jawsoflife/jimmy)) //You get to be special
+						take_damage(max_integrity/8) //Forcing open a door messes it up a little
 					if(density && !open(2))
 						to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
 				prying_so_hard = FALSE
@@ -1819,7 +1821,7 @@
 	for(var/mob/living/carbon/human/H in orange(2,src))
 		H.Unconscious(160)
 		H.adjust_fire_stacks(20)
-		H.IgniteMob() //Guaranteed knockout and ignition for nearby people
+		H.ignite_mob() //Guaranteed knockout and ignition for nearby people
 		H.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
 
 

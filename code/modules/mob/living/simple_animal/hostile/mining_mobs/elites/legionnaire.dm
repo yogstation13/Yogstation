@@ -275,7 +275,7 @@
 	if(isliving(mover))
 		var/mob/living/L = mover
 		L.adjust_fire_stacks(3)
-		L.IgniteMob()
+		L.ignite_mob()
 	. = ..()
 
 /obj/structure/legionnaire_bonfire/Destroy()
@@ -355,18 +355,18 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/proc/give_abilities(mob/living/elite, mob/living/M, force = FALSE)
 	toggle_ai(AI_OFF)
-	if(istype(click_intercept, /obj/effect/proc_holder/drakeling))
-		var/obj/effect/proc_holder/drakeling/D = click_intercept
-		D.remove_ranged_ability()
-	for(var/action in attack_action_types)
-		RemoveAbility(action)
-		M.AddAbility(action)
+	if(istype(click_intercept, /datum/action/cooldown/spell/pointed/drakeling))
+		var/datum/action/cooldown/spell/pointed/drakeling/D = click_intercept
+		D.unset_click_ability(D.owner)
+	for(var/datum/action/action in attack_action_types)
+		action.Remove(src)
+		action.Grant(M)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/proc/remove_abilities(mob/living/elite, mob/living/M, force = FALSE)
 	toggle_ai(AI_ON)
-	if(istype(M.click_intercept, /obj/effect/proc_holder/drakeling))
-		var/obj/effect/proc_holder/drakeling/D = M.click_intercept
-		D.remove_ranged_ability()
-	for(var/action in attack_action_types)
-		M.RemoveAbility(action)
-		AddAbility(action)
+	if(istype(M.click_intercept, /datum/action/cooldown/spell/pointed/drakeling))
+		var/datum/action/cooldown/spell/pointed/drakeling/D = M.click_intercept
+		D.unset_click_ability(D.owner)
+	for(var/datum/action/action in attack_action_types)
+		action.Remove(M)
+		action.Grant(src)

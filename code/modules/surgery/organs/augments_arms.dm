@@ -163,7 +163,7 @@
 		playsound(get_turf(owner), 'sound/weapons/flashbang.ogg', 100, 1)
 		to_chat(owner, span_userdanger("You feel an explosion erupt inside your [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm as your implant breaks!"))
 		owner.adjust_fire_stacks(20)
-		owner.IgniteMob()
+		owner.ignite_mob()
 		owner.adjustFireLoss(25)
 		organ_flags |= ORGAN_FAILING
 
@@ -424,4 +424,10 @@
 	name = "revolutionary brainwashing implant"
 	desc = "An integrated flash projector used alongside syndicate subliminal messaging training to convert loyal crew into violent syndicate activists."
 	contents = newlist(/obj/item/assembly/flash/armimplant/rev)
+	syndicate_implant = TRUE
+
+/obj/item/organ/cyberimp/arm/stechkin_implant
+	name = "Stechkin implant"
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
+	contents = newlist(/obj/item/gun/ballistic/automatic/pistol/implant)
 	syndicate_implant = TRUE

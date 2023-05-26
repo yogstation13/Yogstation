@@ -78,7 +78,7 @@
 	. = ..()
 	remove_verb(src, /mob/living/verb/pulled)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 
 /mob/living/simple_animal/hostile/swarmer/med_hud_set_health()
 	var/image/holder = hud_list[DIAG_HUD]
@@ -248,7 +248,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/victim = target
 		if(!victim.handcuffed)
-			victim.handcuffed = new /obj/item/restraints/handcuffs/energy/used(victim)
+			victim.set_handcuffed(new /obj/item/restraints/handcuffs/energy/used(victim))
 			victim.update_handcuffed()
 			log_combat(src, victim, "handcuffed")
 

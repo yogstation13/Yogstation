@@ -123,11 +123,11 @@
 			var/mob/living/summoned = new /mob/living/simple_animal/hostile/eldritch/armsy/prime(loc,TRUE,10)
 			summoned.ghostize(0)
 			user.SetImmobilized(0)
-			for(var/obj/effect/proc_holder/spell/S in user.mind.spell_list)
-				if(istype(S, /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash)) //vitally important since ashen passage breaks the shit out of armsy
-					user.mind.spell_list.Remove(S)
-					qdel(S)
-			priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report a singular entity of immeasurable power that is quickly growing in volume. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
+			for(var/datum/action/cooldown/spell/spells in user.actions)
+				if(istype(spells, /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash)) //vitally important since ashen passage breaks the shit out of armsy
+					spells.Remove(user)
+					qdel(spells)
+			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for King of Arms has ascended! Our Lord of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
 			set_security_level(SEC_LEVEL_GAMMA)
 			log_game("[user.real_name] ascended as [summoned.real_name].")
 			var/mob/living/carbon/carbon_user = user

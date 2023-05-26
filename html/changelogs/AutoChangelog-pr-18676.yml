@@ -1,9 +1,0 @@
-author: " Skrem_7, ToasterBiome"
-delete-after: true 
-changes: 
-  - rscadd: "Adds the Winton Mk. VI Repeating Rifle, a lever-action rifle that loads eight .308 rounds in a tube and an additional in the chamber"
-  - rscadd: "Adds three cargo crates in the Armory section related to the rifle"
-  - tweak: "Bandoliers can hold all ballistic casings now (but not if it's caseless, like an arrow or a rocket)"
-  - tweak: "Combat shotgun single pack costs 7200, from 6000"
-  - soundadd: "Adds new firing, loading, and racking sounds for the rifle"
-  - imageadd: "Add icon and item sprites for the rifle, plus icon sprite for the ammo box"
