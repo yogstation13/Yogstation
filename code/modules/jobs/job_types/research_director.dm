@@ -33,6 +33,8 @@
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SCI
 
+	liver_traits = list(TRAIT_BALLMER_SCIENTIST)
+
 	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
 	minimal_character_age = 26 //Barely knows more than actual scientists, just responsibility and AI things
 
@@ -42,9 +44,16 @@
 	)
 
 	mail_goodies = list(
-		/obj/item/storage/box/monkeycubes = 30,
+		/obj/effect/spawner/lootdrop/aimodule_neutral = 15,
+		/obj/item/transfer_valve = 15,
+		/obj/effect/spawner/lootdrop/aimodule_harmless = 10,
+		/obj/item/clothing/mask/facehugger/toy = 5,
 		///obj/item/circuitboard/machine/sleeper/party = 3,
-		/obj/item/borg/upgrade/ai = 2
+		/obj/item/borg/upgrade/ai = 2,
+		/obj/effect/spawner/lootdrop/surgery_tool_alien = 2,
+		/obj/effect/spawner/lootdrop/engineering_tool_alien = 2,
+		/obj/effect/spawner/lootdrop/organ_spawner = 2,
+		/obj/item/stack/ore/bluespace_crystal/refined/nt = 1
 	)
 
 	smells_like = "theorhetical education"
@@ -79,4 +88,4 @@
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/hardsuit/rd
 	suit_store = /obj/item/tank/internals/oxygen
-	internals_slot = SLOT_S_STORE
+	internals_slot = SLOT_SUIT_STORE

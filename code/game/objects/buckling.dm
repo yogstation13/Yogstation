@@ -94,7 +94,7 @@
 	if(.)
 		if(resistance_flags & ON_FIRE) //Sets the mob on fire if you buckle them to a burning atom/movableect
 			M.adjust_fire_stacks(1)
-			M.IgniteMob()
+			M.ignite_mob()
 
 /atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force=FALSE)
 	if(istype(buckled_mob) && buckled_mob.buckled == src && (buckled_mob.can_unbuckle() || force))
@@ -142,20 +142,19 @@
 				span_italics("You hear metal clanking."))
 
 /atom/movable/proc/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
-	var/mob/living/M = unbuckle_mob(buckled_mob)
-	if(M)
-		if(M != user)
-			M.visible_message(\
-				span_notice("[user] unbuckles [M] from [src]."),\
+	if(unbuckle_mob(buckled_mob))
+		if(buckled_mob != user)
+			buckled_mob.visible_message(\
+				span_notice("[user] unbuckles [buckled_mob] from [src]."),\
 				span_notice("[user] unbuckles you from [src]."),\
 				span_italics("You hear metal clanking."))
 		else
-			M.visible_message(\
-				span_notice("[M] unbuckles [M.p_them()]self from [src]."),\
+			buckled_mob.visible_message(\
+				span_notice("[buckled_mob] unbuckles [buckled_mob.p_them()]self from [src]."),\
 				span_notice("You unbuckle yourself from [src]."),\
 				span_italics("You hear metal clanking."))
 		add_fingerprint(user)
-		if(isliving(M.pulledby))
-			var/mob/living/L = M.pulledby
-			L.set_pull_offsets(M, L.grab_state)
-	return M
+		if(isliving(buckled_mob.pulledby))
+			var/mob/living/L = buckled_mob.pulledby
+			L.set_pull_offsets(buckled_mob, L.grab_state)
+	return buckled_mob

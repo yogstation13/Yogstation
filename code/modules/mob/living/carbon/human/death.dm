@@ -5,12 +5,25 @@
 		if("robotic")
 			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-r")
 
+/mob/living/carbon/human/dust(just_ash, drop_items, force)
+	if(drop_items)
+		unequip_everything()
+
+	if(buckled)
+		buckled.unbuckle_mob(src, force = TRUE)
+
+	Stun(100, TRUE, TRUE)//hold them still as they get deleted so they don't fuck up the animation
+	notransform = TRUE
+	dust_animation()
+	spawn_dust(just_ash)
+	QDEL_IN(src, 20) // since this is sometimes called in
+
 /mob/living/carbon/human/dust_animation()
-	switch(dna.species.species_gibs)
-		if("human")
-			new /obj/effect/temp_visual/dust_animation(loc, "dust-h")
-		if("robotic")
-			new /obj/effect/temp_visual/dust_animation(loc, "dust-r")
+	var/obj/effect/dusting_anim/dust_effect = new(loc, ref(src))
+	filters += filter(type = "displace", size = 256, render_source = "*snap[ref(src)]")
+	animate(src, alpha = 0, time = 20, easing = (EASE_IN | SINE_EASING))
+
+	QDEL_IN(dust_effect, 20)
 
 /mob/living/carbon/human/spawn_gibs(with_bodyparts)
 	if(with_bodyparts)
@@ -46,9 +59,6 @@
 
 	. = ..()
 
-	dizziness = 0
-	jitteriness = 0
-
 	if(ismecha(loc))
 		var/obj/mecha/M = loc
 		if(M.occupant == src)
@@ -60,7 +70,7 @@
 		SSblackbox.ReportDeath(src)
 		log_game("[key_name(src)] has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()]) ([AREACOORD(src)])")
 	if(is_devil(src))
-		INVOKE_ASYNC(is_devil(src), /datum/antagonist/devil.proc/beginResurrectionCheck, src)
+		INVOKE_ASYNC(is_devil(src), TYPE_PROC_REF(/datum/antagonist/devil, beginResurrectionCheck), src)
 	if(is_hivemember(src))
 		remove_hivemember(src)
 	if(is_hivehost(src))

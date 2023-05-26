@@ -49,14 +49,14 @@
 		to_chat(user, span_notice("You turn the jetpack off."))
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 
 /obj/item/tank/jetpack/proc/turn_on(mob/user)
 	on = TRUE
 	update_icon()
 	ion_trail.start()
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/move_react)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 	if(full_speed)
 		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=jetspeed, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 

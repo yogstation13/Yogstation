@@ -1,6 +1,9 @@
 
 // **** Security gas mask ****
 
+/datum/action/item_action/halt
+	name = "HALT!"
+
 /obj/item/clothing/mask/gas/sechailer
 	name = "security gas mask"
 	desc = "A standard issue Security gas mask with integrated 'Compli-o-nator 3000' device. Plays over a dozen pre-recorded compliance phrases designed to get scumbags to stand still whilst you tase them. Do not tamper with the device."
@@ -15,6 +18,7 @@
 	visor_flags_inv = HIDEFACIALHAIR|HIDEFACE
 	flags_cover = MASKCOVERSMOUTH
 	visor_flags_cover = MASKCOVERSMOUTH
+	mutantrace_variation = MUTANTRACE_VARIATION
 	var/aggressiveness = 2
 	var/cooldown_special
 	var/recent_uses = 0
@@ -31,6 +35,7 @@
 	aggressiveness = 3
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES|HIDEEARS|HIDEHAIR
 	visor_flags_inv = 0
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/gas/sechailer/swat/encrypted
 	name = "\improper MK.II SWAT mask"

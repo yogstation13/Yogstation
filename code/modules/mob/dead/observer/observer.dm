@@ -63,6 +63,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	// Current Viewrange
 	var/view = 0
+
 /mob/dead/observer/Initialize()
 	set_invisibility(GLOB.observer_default_invisibility)
 
@@ -720,12 +721,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/proc/show_data_huds()
 	for(var/hudtype in datahuds)
 		var/datum/atom_hud/H = GLOB.huds[hudtype]
-		H.add_hud_to(src)
+		H.show_to(src)
 
 /mob/dead/observer/proc/remove_data_huds()
 	for(var/hudtype in datahuds)
 		var/datum/atom_hud/H = GLOB.huds[hudtype]
-		H.remove_hud_from(src)
+		H.hide_from(src)
 
 /mob/dead/observer/verb/toggle_data_huds()
 	set name = "Toggle Sec/Med/Diag HUD"
@@ -851,64 +852,78 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/proc/cleanup_observe()
 	var/mob/target = observetarget
+	observetarget = null
 	client?.perspective = initial(client.perspective)
 	sight = initial(sight)
-	UnregisterSignal(target, COMSIG_MOVABLE_Z_CHANGED)
-	if(target && target.observers)
-		target.observers -= src
-		UNSETEMPTY(target.observers)
-	observetarget = null
+	if(target)
+		UnregisterSignal(target, COMSIG_MOVABLE_Z_CHANGED)
+		hide_other_mob_action_buttons(target)
+		LAZYREMOVE(target.observers, src)
 	actions = originalactions
 	actions -= UO
 	update_action_buttons()
 
 /mob/dead/observer/verb/observe()
 	set name = "Observe"
-	set category = "OOC"
+	set category = "Ghost"
 
-	var/list/creatures = getpois()
+	if(!isobserver(usr)) //Make sure they're an observer!
+		return
 
 	reset_perspective(null)
 
-	var/eye_name = null
+	var/list/possible_destinations = getpois()
+	var/target = null
 
-	eye_name = input("Please, select a player!", "Observe", null, null) as null|anything in creatures
-
-	if (!eye_name)
+	target = tgui_input_list(usr, "Please, select a player!", "Jump to Mob", possible_destinations)
+	if(isnull(target))
+		return
+	if(!isobserver(usr))
 		return
 
-	do_observe(creatures[eye_name])
+	// In nullspace, invalid as a POI. provisonary till we get new POI system
+	if(ismob(target))
+		var/mob/mob_target = target
+		if(!mob_target.loc)
+			return
+
+	var/mob/chosen_target = possible_destinations[target]
+
+	do_observe(chosen_target)
 
 /mob/dead/observer/proc/do_observe(mob/mob_eye)
+	if(isnewplayer(mob_eye))
+		stack_trace("/mob/dead/new_player: \[[mob_eye]\] is being observed by [key_name(src)]. This should never happen and has been blocked.")
+		message_admins("[ADMIN_LOOKUPFLW(src)] attempted to observe someone in the lobby: [ADMIN_LOOKUPFLW(mob_eye)]. This should not be possible and has been blocked.")
+		return
+
 	//Istype so we filter out points of interest that are not mobs
 	if(client && mob_eye && istype(mob_eye))
 		client.eye = mob_eye
 		client.perspective = EYE_PERSPECTIVE
 		if(is_secret_level(mob_eye.z) && !client?.holder)
 			sight = null //we dont want ghosts to see through walls in secret areas
-		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, .proc/on_observing_z_changed, TRUE)
+		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_observing_z_changed), TRUE)
 		if(!UO)
-			UO = new // Convinent way to unobserve
+			UO = new(src) // Convinent way to unobserve
 		UO.Grant(src)
 		if(mob_eye.hud_used)
-			actions = mob_eye.actions + originalactions
-			LAZYINITLIST(mob_eye.observers)
-			mob_eye.observers |= src
+			client.screen = list()
+			LAZYOR(mob_eye.observers, src)
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
-			update_action_buttons()
-			mob_eye.update_action_buttons()
 			observetarget = mob_eye
 
 /datum/action/unobserve
 	name = "Stop Observing"
 	desc = "Stops observing the person."
-	icon_icon = 'icons/mob/mob.dmi'
+	button_icon = 'icons/mob/mob.dmi'
 	button_icon_state = "ghost_nodir"
+	show_to_observers = FALSE
 
 /datum/action/unobserve/Trigger()
 	owner.reset_perspective(null)
 
-/datum/action/unobserve/IsAvailable()
+/datum/action/unobserve/IsAvailable(feedback = FALSE)
 	return TRUE
 
 /mob/dead/observer/proc/on_observing_z_changed(datum/source, oldz, newz)

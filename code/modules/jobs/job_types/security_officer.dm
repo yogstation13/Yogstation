@@ -36,9 +36,10 @@
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/donut/jelly = 10,
 		/obj/item/reagent_containers/food/snacks/donut/meat = 10,
-		/obj/item/reagent_containers/food/snacks/donut/spaghetti = 5
-		///obj/item/clothing/mask/whistle = 5,
-		///obj/item/melee/baton/security/boomerang/loaded = 1
+		/obj/item/reagent_containers/food/snacks/donut/spaghetti = 5,
+		/obj/item/grenade/chem_grenade/teargas = 4,
+		/obj/item/grenade/flashbang = 2,
+		/obj/item/clothing/mask/gas/sechailer/swat = 1
 	)
 
 	smells_like = "donuts"
@@ -122,7 +123,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 		else
 			var/safety = 0
 			while(safety < 25)
-				T = safepick(get_area_turfs(destination))
+				T = pick(get_area_turfs(destination))
 				if(T && !H.Move(T))
 					safety += 1
 					continue

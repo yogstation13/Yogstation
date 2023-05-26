@@ -22,6 +22,7 @@ LINEN BINS
 	resistance_flags = FLAMMABLE
 	dying_key = DYE_REGISTRY_BEDSHEET
 	var/newbedpath = null
+	var/randomizable = TRUE //can appear via random bedsheets
 
 	dog_fashion = /datum/dog_fashion/head/ghost
 	var/list/dream_messages = list("white")
@@ -240,7 +241,7 @@ LINEN BINS
 
 /obj/item/bedsheet/cult
 	name = "cultist's bedsheet"
-	desc = "You might dream of Nar'Sie if you sleep with this. It seems rather tattered and glows of an eldritch presence."
+	desc = "You might dream of Nar'sie if you sleep with this. It seems rather tattered and glows of an eldritch presence."
 	icon_state = "sheetcult"
 	item_state = "sheetcult"
 	dream_messages = list("a tome", "a floating red crystal", "a glowing sword", "a bloody symbol", "a massive humanoid figure")
@@ -280,8 +281,16 @@ LINEN BINS
 
 /obj/item/bedsheet/random/Initialize()
 	..()
-	var/type = pick(typesof(/obj/item/bedsheet) - /obj/item/bedsheet/random)
-	new type(loc)
+	var/list/sheets = list(typesof(/obj/item/bedsheet) - /obj/item/bedsheet/random)
+	sheets = shuffle(sheets)
+	var/obj/item/bedsheet/actualsheet
+	for(var/obj/item/bedsheet/sheet as anything in sheets)
+		if(initial(sheet.randomizable))
+			actualsheet = new sheet(loc)
+			break
+	
+	if(!actualsheet)
+		log_game("Random bedsheet failed to spawn")
 	return INITIALIZE_HINT_QDEL
 
 /obj/item/bedsheet/dorms

@@ -36,6 +36,7 @@
 	chameleon_action.chameleon_name = "Hardsuit"
 	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/clothing/suit/space/hardsuit/shielded/swat, /obj/item/clothing/suit/space/hardsuit), only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
+	add_item_action(chameleon_action)
 
 /obj/item/clothing/suit/space/hardsuit/infiltration/emp_act(severity)
 	chameleon_action.emp_randomise()

@@ -2,29 +2,52 @@
 #define EMOTE_AUDIBLE 2
 
 /datum/emote
-	var/key = "" //What calls the emote
-	var/key_third_person = "" //This will also call the emote
-	var/message = "" //Message displayed when emote is used
-	var/message_mime = "" //Message displayed if the user is a mime
-	var/message_alien = "" //Message displayed if the user is a grown alien
-	var/message_larva = "" //Message displayed if the user is an alien larva
-	var/message_robot = "" //Message displayed if the user is a robot
-	var/message_AI = "" //Message displayed if the user is an AI
-	var/message_monkey = "" //Message displayed if the user is a monkey
-	var/message_ipc = "" // Message to display if the user is an IPC
-	var/message_simple = "" //Message to display if the user is a simple_animal
-	var/message_param = "" //Message to display if a param was given
-	var/emote_type = EMOTE_VISIBLE //Whether the emote is visible or audible
-	var/restraint_check = FALSE //Checks if the mob is restrained before performing the emote
-	var/muzzle_ignore = FALSE //Will only work if the emote is EMOTE_AUDIBLE
-	var/list/mob_type_allowed_typecache = /mob //Types that are allowed to use that emote
-	var/list/mob_type_blacklist_typecache //Types that are NOT allowed to use that emote
+	/// What calls the emote.
+	var/key = ""
+	/// This will also call the emote.
+	var/key_third_person = ""
+	/// Message displayed when emote is used.
+	var/message = ""
+	/// Message displayed if the user is a mime.
+	var/message_mime = ""
+	/// Message displayed if the user is a grown alien.
+	var/message_alien = ""
+	/// Message displayed if the user is an alien larva.
+	var/message_larva = ""
+	/// Message displayed if the user is a robot.
+	var/message_robot = ""
+	/// Message displayed if the user is an AI.
+	var/message_AI = ""
+	/// Message displayed if the user is a monkey.
+	var/message_monkey = ""
+	/// Message to display if the user is an IPC
+	var/message_ipc = ""
+	/// Message to display if the user is a simple_animal or basic mob.
+	var/message_simple = ""
+	/// Message with %t at the end to allow adding params to the message, like for mobs doing an emote relatively to something else.
+	var/message_param = ""
+	/// Whether the emote is visible and/or audible bitflag
+	var/emote_type = EMOTE_VISIBLE 
+	/// Checks if the mob can use its hands before performing the emote.
+	var/hands_use_check = FALSE
+	/// Will only work if the emote is EMOTE_AUDIBLE.
+	var/muzzle_ignore = FALSE
+	/// Types that are allowed to use that emote.
+	var/list/mob_type_allowed_typecache = /mob
+	/// Types that are NOT allowed to use that emote.
+	var/list/mob_type_blacklist_typecache
+	/// Types that can use this emote regardless of their state.
 	var/list/mob_type_ignore_stat_typecache
+	/// In which state can you use this emote? (Check stat.dm for a full list of them)
 	var/stat_allowed = CONSCIOUS
-	var/sound //Sound to play when emote is called
-	var/vary = FALSE	//used for the honk borg emote
-	var/only_forced_audio = FALSE //can only code call this event instead of the player.
-	var/cooldown = 0.4 SECONDS
+	/// Sound to play when emote is called.
+	var/sound
+	/// Used for the honk borg emote.
+	var/vary = FALSE
+	/// Can only code call this event instead of the player.
+	var/only_forced_audio = FALSE
+	/// The cooldown between the uses of the emote.
+	var/cooldown = 0.8 SECONDS
 
 /datum/emote/New()
 	if (ispath(mob_type_allowed_typecache))
@@ -129,8 +152,17 @@
 /datum/emote/proc/select_param(mob/user, params)
 	return replacetext(message_param, "%t", params)
 
+/**
+ * Check to see if the user is allowed to run the emote.
+ *
+ * Arguments:
+ * * user - Person that is trying to send the emote.
+ * * status_check - Bool that says whether we should check their stat or not.
+ * * intentional - Bool that says whether the emote was forced (FALSE) or not (TRUE).
+ *
+ * Returns a bool about whether or not the user can run the emote.
+ */
 /datum/emote/proc/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)
-	. = TRUE
 	if(!is_type_in_typecache(user, mob_type_allowed_typecache))
 		return FALSE
 	if(is_type_in_typecache(user, mob_type_blacklist_typecache))
@@ -147,24 +179,16 @@
 				if(DEAD)
 					to_chat(user, span_notice("You cannot [key] while dead."))
 			return FALSE
-		if(restraint_check)
-			if(isliving(user))
-				var/mob/living/L = user
-				if(L.IsParalyzed() || L.IsStun())
-					if(!intentional)
-						return FALSE
-					to_chat(user, span_notice("You cannot [key] while stunned."))
-					return FALSE
-		if(restraint_check && user.restrained())
+		if(hands_use_check && HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 			if(!intentional)
 				return FALSE
-			to_chat(user, span_notice("You cannot [key] while restrained."))
+			to_chat(user, span_warning("You cannot use your hands to [key] right now!"))
 			return FALSE
 
-	if(isliving(user))
-		var/mob/living/L = user
-		if(HAS_TRAIT(L, TRAIT_EMOTEMUTE))
-			return FALSE
+	if(HAS_TRAIT(user, TRAIT_EMOTEMUTE))
+		return FALSE
+
+	return TRUE
 
 /**
 * Allows the intrepid coder to send a basic emote

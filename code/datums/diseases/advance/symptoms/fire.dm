@@ -60,12 +60,12 @@ Bonus
 				to_chat(M, span_warning("[pick("You feel hot.", "You hear a crackling noise.", "You smell smoke.")]"))
 		if(4)
 			Firestacks_stage_4(M, A)
-			M.IgniteMob()
+			M.ignite_mob()
 			to_chat(M, span_userdanger("Your skin bursts into flames!"))
 			M.emote("scream")
 		if(5)
 			Firestacks_stage_5(M, A)
-			M.IgniteMob()
+			M.ignite_mob()
 			to_chat(M, span_userdanger("Your skin erupts into an inferno!"))
 			M.emote("scream")
 
@@ -121,6 +121,7 @@ Bonus
 		"Stage Speed 8" = "Increases explosion radius and explosion damage to the host when the host is wet.",
 		"Transmission 8" = "Additionally synthesizes chlorine trifluoride and napalm inside the host. More chemicals are synthesized if the resistance 9 threshold has been met."
 	)
+	process_flags = ORGANIC | SYNTHETIC //is funny
 
 /datum/symptom/alkali/Start(datum/disease/advance/A)
 	. = ..()
@@ -146,7 +147,7 @@ Bonus
 				to_chat(M, span_warning("[pick("Your veins boil.", "You feel hot.", "You smell meat cooking.")]"))
 		if(4)
 			Alkali_fire_stage_4(M, A)
-			M.IgniteMob()
+			M.ignite_mob()
 			to_chat(M, span_userdanger("Your sweat bursts into flames!"))
 			M.emote("scream")
 		if(5)
@@ -155,7 +156,7 @@ Bonus
 				explosion(get_turf(M),0,0,2 * explosion_power)
 				Alkali_fire_stage_5(M, A)
 			Alkali_fire_stage_5(M, A)
-			M.IgniteMob()
+			M.ignite_mob()
 			to_chat(M, span_userdanger("Your skin erupts into an inferno!"))
 			M.emote("scream")
 			

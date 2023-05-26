@@ -55,18 +55,18 @@
 	//Update the body's icon so it doesnt appear debrained anymore
 	C.update_hair()
 
-/obj/item/organ/brain/Remove(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
+/obj/item/organ/brain/Remove(mob/living/carbon/C, special = FALSE, no_id_transfer = FALSE)
 	..()
 	if(!special)
 		if(C.has_horror_inside())
 			var/mob/living/simple_animal/horror/B = C.has_horror_inside()
 			B.leave_victim()
-	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling))
-		var/datum/antagonist/changeling/bruh = C.mind.has_antag_datum(/datum/antagonist/changeling)
-		for(var/d in bruh.purchasedpowers)
-			if(istype(d, /datum/action/changeling/fakedeath))
-				var/datum/action/changeling/fakedeath/ack = d
-				ack.sting_action(C)
+		if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling))
+			var/datum/antagonist/changeling/bruh = C.mind.has_antag_datum(/datum/antagonist/changeling)
+			for(var/d in bruh.purchasedpowers)
+				if(istype(d, /datum/action/changeling/fakedeath))
+					var/datum/action/changeling/fakedeath/ack = d
+					ack.sting_action(C)
 
 	for(var/X in traumas)
 		var/datum/brain_trauma/BT = X

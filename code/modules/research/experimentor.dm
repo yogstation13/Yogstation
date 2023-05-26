@@ -395,7 +395,7 @@
 			if(MT)
 				visible_message(span_danger("[src] dangerously overheats, launching a flaming fuel orb!"))
 				investigate_log("Experimentor has launched a <font color='red'>fireball</font> at [M]!", INVESTIGATE_EXPERIMENTOR)
-				var/obj/item/projectile/magic/aoe/fireball/FB = new /obj/item/projectile/magic/aoe/fireball(start)
+				var/obj/item/projectile/magic/fireball/FB = new /obj/item/projectile/magic/fireball(start)
 				FB.preparePixelProjectile(MT, start)
 				FB.fire()
 		else if(prob(EFFECT_PROB_LOW-badThingCoeff))
@@ -561,7 +561,7 @@
 		use_power(500000)
 		investigate_log("Experimentor has drained power from its APC", INVESTIGATE_EXPERIMENTOR)
 
-	addtimer(CALLBACK(src, .proc/reset_exp), resetTime)
+	addtimer(CALLBACK(src, PROC_REF(reset_exp)), resetTime)
 
 /obj/machinery/rnd/experimentor/proc/reset_exp()
 	update_icon()
@@ -629,7 +629,7 @@
 			cooldown = TRUE
 			call(src,realProc)(user)
 			if(!QDELETED(src))
-				addtimer(CALLBACK(src, .proc/cd), cooldownMax)
+				addtimer(CALLBACK(src, PROC_REF(cd)), cooldownMax)
 	else
 		to_chat(user, span_notice("You aren't quite sure what to do with this yet."))
 
@@ -646,7 +646,7 @@
 /obj/item/relic/proc/corgicannon(mob/user)
 	playsound(src, "sparks", rand(25,50), 1)
 	var/mob/living/simple_animal/pet/dog/corgi/C = new/mob/living/simple_animal/pet/dog/corgi(get_turf(user))
-	C.throw_at(pick(oview(10,user)), 10, rand(3,8), callback = CALLBACK(src, .proc/throwSmoke, C))
+	C.throw_at(pick(oview(10,user)), 10, rand(3,8), callback = CALLBACK(src, PROC_REF(throwSmoke), C))
 	warn_admins(user, "Corgi Cannon", 0)
 
 /obj/item/relic/proc/clean(mob/user)
@@ -696,7 +696,7 @@
 
 /obj/item/relic/proc/explode(mob/user)
 	to_chat(user, span_danger("[src] begins to heat up!"))
-	addtimer(CALLBACK(src, .proc/do_explode, user), rand(35, 100))
+	addtimer(CALLBACK(src, PROC_REF(do_explode), user), rand(35, 100))
 
 /obj/item/relic/proc/do_explode(mob/user)
 	if(loc == user)
@@ -707,7 +707,7 @@
 
 /obj/item/relic/proc/teleport(mob/user)
 	to_chat(user, span_notice("[src] begins to vibrate!"))
-	addtimer(CALLBACK(src, .proc/do_the_teleport, user), rand(10, 30))
+	addtimer(CALLBACK(src, PROC_REF(do_the_teleport), user), rand(10, 30))
 
 /obj/item/relic/proc/do_the_teleport(mob/user)
 	var/turf/userturf = get_turf(user)

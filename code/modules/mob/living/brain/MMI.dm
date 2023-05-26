@@ -69,7 +69,7 @@
 		brainmob.container = src
 		var/fubar_brain = newbrain.brain_death && newbrain.suicided && brainmob.suiciding //brain is damaged beyond repair or from a suicider
 		if(!fubar_brain && !(newbrain.organ_flags & ORGAN_FAILING)) // the brain organ hasn't been beaten to death, nor was from a suicider.
-			brainmob.stat = CONSCIOUS //we manually revive the brain mob
+			brainmob.set_stat(CONSCIOUS) //we manually revive the brain mob
 			brainmob.remove_from_dead_mob_list()
 			brainmob.add_to_alive_mob_list()
 		else if(!fubar_brain && newbrain.organ_flags & ORGAN_FAILING) // the brain is damaged, but not from a suicider
@@ -121,7 +121,7 @@
 /obj/item/mmi/proc/eject_brain(mob/user)
 	brainmob.container = null //Reset brainmob mmi var.
 	brainmob.forceMove(brain) //Throw mob into brain.
-	brainmob.stat = DEAD
+	brainmob.set_stat(DEAD)
 	brainmob.emp_damage = 0
 	brainmob.reset_perspective() //so the brainmob follows the brain organ instead of the mmi. And to update our vision
 	brainmob.remove_from_alive_mob_list() //Get outta here
@@ -245,15 +245,15 @@
 	rebooting = TRUE
 	visible_message(span_danger("The indicator lights on [src] begin to glow faintly as the reboot process begins"))
 	to_chat(brainmob, span_userdanger("You begin to reboot after being removed from the destroyed body"))
-	reboot_timer = addtimer(CALLBACK(src, .proc/halfwayReboot), remove_window / 2, TIMER_STOPPABLE)
+	reboot_timer = addtimer(CALLBACK(src, PROC_REF(halfwayReboot)), remove_window / 2, TIMER_STOPPABLE)
 
 /obj/item/mmi/proc/halfwayReboot()
 	visible_message(span_danger("The indicator lights on [src] begin to glow stronger and the reboot process approaches the halfway point"))
-	reboot_timer = addtimer(CALLBACK(src, .proc/rebootNoReturn), remove_window / 2, TIMER_STOPPABLE)
+	reboot_timer = addtimer(CALLBACK(src, PROC_REF(rebootNoReturn)), remove_window / 2, TIMER_STOPPABLE)
 
 /obj/item/mmi/proc/rebootNoReturn()
 	visible_message(span_danger("The indicator lights on [src] begin to blink as the reboot process nears completion"))
-	reboot_timer = addtimer(CALLBACK(src, .proc/rebootFinish), remove_time, TIMER_STOPPABLE)
+	reboot_timer = addtimer(CALLBACK(src, PROC_REF(rebootFinish)), remove_time, TIMER_STOPPABLE)
 
 /obj/item/mmi/proc/rebootFinish()
 	visible_message(span_danger("The indicator lights on [src] return to normal as the reboot process completes"))

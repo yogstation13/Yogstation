@@ -535,7 +535,21 @@
 	name = "Pay Stand (Machine Board)"
 	icon_state = "generic"
 	build_path = /obj/machinery/paystand
+	var/cash_register = FALSE
 	req_components = list()
+
+/obj/item/circuitboard/machine/paystand/attackby(obj/item/held_item, mob/user, params)
+	if(held_item.tool_behaviour)
+		if(held_item.tool_behaviour == TOOL_SCREWDRIVER && user.a_intent == INTENT_HELP)
+			if(cash_register)
+				to_chat(user,span_info("You change the holo-emitter selector to it's default setting."))
+				build_path = /obj/machinery/paystand
+				return
+			to_chat(user,span_info("You change the holo-emitter selector to 'cash register.'"))
+			build_path = /obj/machinery/paystand/register
+			return
+	return ..()
+			
 
 /obj/item/circuitboard/machine/ticketmachine
 	name = "Ticket Machine (Machine Board)"
@@ -545,6 +559,20 @@
 	req_components = list(
 		/obj/item/hand_labeler = 1,
 		/obj/item/stack/sheet/glass = 1)
+
+/obj/item/circuitboard/machine/inspector_booth
+	name = "Inspector Booth (Machine Board)"
+	icon_state = "generic"
+	build_path = /obj/machinery/inspector_booth
+	req_components = list(
+		// Make sure stamp is second because otherwise the machine frame will treat the denied stamp as granted
+		/obj/item/stamp/denied = 1,
+		/obj/item/stamp = 1,
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/stack/sheet/glass = 1
+	)
 
 /obj/item/circuitboard/machine/protolathe
 	name = "Protolathe (Machine Board)"

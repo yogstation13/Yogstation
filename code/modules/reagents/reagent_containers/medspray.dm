@@ -109,7 +109,4 @@
 /obj/item/reagent_containers/medspray/sterilizine
 	name = "sterilizer spray"
 	desc = "Spray bottle loaded with non-toxic sterilizer. Useful in preparation for surgery."
-	list_reagents = list(/datum/reagent/space_cleaner/sterilizine = 100)
-	can_fill_from_container = FALSE
-	amount_per_transfer_from_this = 25
-	volume = 100
+	list_reagents = list(/datum/reagent/space_cleaner/sterilizine = 30)

@@ -55,6 +55,34 @@
 		"ntosradarpointerS.png" = 'icons/UI_Icons/tgui/ntosradar_pointer_S.png'
 	)
 
+/datum/asset/simple/inspector_booth
+	assets = list(
+		"desk_bg.png" = 'icons/UI_Icons/tgui/inspector_booth/desk_bg.png',
+		"window.png" = 'icons/UI_Icons/tgui/inspector_booth/window.png',
+		"speaker.png" = 'icons/UI_Icons/tgui/inspector_booth/speaker.png',
+		"desk_top.png" = 'icons/UI_Icons/tgui/inspector_booth/desk_top.png',
+		"desk_bottom.png" = 'icons/UI_Icons/tgui/inspector_booth/desk_bottom.png',
+		"tray_end.png" = 'icons/UI_Icons/tgui/inspector_booth/tray_end.png',
+		"tray_segment.png" = 'icons/UI_Icons/tgui/inspector_booth/tray_segment.png',
+		"tray_cover.png" = 'icons/UI_Icons/tgui/inspector_booth/tray_cover.png',
+		"idcard.png" = 'icons/UI_Icons/tgui/inspector_booth/idcard.png',
+		"idcard_silver.png" = 'icons/UI_Icons/tgui/inspector_booth/idcard_silver.png',
+		"idcard_gold.png" = 'icons/UI_Icons/tgui/inspector_booth/idcard_gold.png',
+		"stamp_approve.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_approve.png',
+		"stamp_deny.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_deny.png',
+		"stamp_cap.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_cap.png',
+		"stamp_hop.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_hop.png',
+		"stamp_cmo.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_cmo.png',
+		"stamp_hos.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_hos.png',
+		"stamp_qm.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_qm.png',
+		"stamp_law.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_law.png',
+		"stamp_rd.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_rd.png',
+		"stamp_ce.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_ce.png',
+		"stamp_clown.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_clown.png',
+		"stamp_unknown.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_unknown.png',
+		"paper.png" = 'icons/UI_Icons/tgui/inspector_booth/paper.png',
+	)
+
 /datum/asset/spritesheet/simple/pda
 	name = "pda"
 	assets = list(

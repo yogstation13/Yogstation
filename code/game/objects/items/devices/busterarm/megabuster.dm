@@ -1,7 +1,7 @@
 /* Formatting for these files, from top to bottom:
 	* Action
 	* Trigger()
-	* IsAvailable()
+	* IsAvailable(feedback = FALSE)
 	* Items
 	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
@@ -45,7 +45,7 @@
 				owner.swap_hand(0)
 			StartCooldown()
 
-/datum/action/cooldown/buster/megabuster/l/IsAvailable()
+/datum/action/cooldown/buster/megabuster/l/IsAvailable(feedback = FALSE)
 	. = ..()
 	var/mob/living/O = owner
 	var/obj/item/bodypart/l_arm/L = O.get_bodypart(BODY_ZONE_L_ARM)
@@ -53,7 +53,7 @@
 		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
 
-/datum/action/cooldown/buster/megabuster/r/IsAvailable()
+/datum/action/cooldown/buster/megabuster/r/IsAvailable(feedback = FALSE)
 	. = ..()
 	var/mob/living/O = owner
 	var/obj/item/bodypart/r_arm/R = O.get_bodypart(BODY_ZONE_R_ARM)

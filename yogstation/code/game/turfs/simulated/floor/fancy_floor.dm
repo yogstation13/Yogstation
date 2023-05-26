@@ -50,17 +50,17 @@
 /turf/open/floor/plasteel/stairs/goon/white_stairs_middle
 	icon_state ="medstairs_middle"
 
-
-
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_alone
 	icon_state ="woodstairs_alone"
 
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide
 	icon_state ="woodstairs_wide"
 
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_middle
+	icon_state ="woodstairs_middle"
+
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2
 	icon_state ="woodstairs2_wide"
-
 
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_alone
 	icon_state ="darkstairs_alone"

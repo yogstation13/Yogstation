@@ -312,16 +312,16 @@
 				victim.emote("scream")
 			victim.blur_eyes(14)
 			victim.blind_eyes(10)
-			victim.confused = max(M.confused, 10)
+			victim.set_confusion_if_lower(10 SECONDS)
 			victim.damageoverlaytemp = 75
-			victim.Paralyze(100)
+			victim.Paralyze(10 SECONDS)
 			M.adjustStaminaLoss(3)
 			return
 		else if ( eyes_covered ) // Eye cover is better than mouth cover
 			if(prob(20))
 				victim.emote("cough")
 			victim.blur_eyes(4)
-			victim.confused = max(M.confused, 6)
+			victim.set_confusion_if_lower(5 SECONDS)
 			victim.damageoverlaytemp = 50
 			M.adjustStaminaLoss(3)
 			return
@@ -330,9 +330,9 @@
 				victim.emote("scream")
 			victim.blur_eyes(14)
 			victim.blind_eyes(10)
-			victim.confused = max(M.confused, 12)
+			victim.set_confusion_if_lower(12 SECONDS)
 			victim.damageoverlaytemp = 100
-			victim.Paralyze(140)
+			victim.Paralyze(14 SECONDS)
 			M.adjustStaminaLoss(5)
 		victim.update_damage_hud()
 
@@ -351,12 +351,6 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
 	taste_description = "salt"
-
-/datum/reagent/consumable/sodiumchloride/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(!istype(M))
-		return
-	if(M.has_bane(BANE_SALT))
-		M.mind.disrupt_spells(-200)
 
 /datum/reagent/consumable/sodiumchloride/reaction_turf(turf/T, reac_volume) //Creates an umbra-blocking salt pile
 	if(!istype(T))
@@ -402,23 +396,22 @@
 	taste_description = "mushroom"
 
 /datum/reagent/drug/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
-	if(!M.slurring)
-		M.slurring = 1
+	M.set_slurring_if_lower(1 SECONDS)
 	switch(current_cycle)
 		if(1 to 5)
-			M.Dizzy(5)
+			M.adjust_dizzy(5 SECONDS)
 			M.set_drugginess(30)
 			if(prob(10))
 				M.emote(pick("twitch","giggle"))
 		if(5 to 10)
-			M.Jitter(10)
-			M.Dizzy(10)
+			M.adjust_jitter(10 SECONDS)
+			M.adjust_dizzy(10 SECONDS)
 			M.set_drugginess(35)
 			if(prob(20))
 				M.emote(pick("twitch","giggle"))
 		if (10 to INFINITY)
-			M.Jitter(20)
-			M.Dizzy(20)
+			M.adjust_jitter(20 SECONDS)
+			M.adjust_dizzy(20 SECONDS)
 			M.set_drugginess(40)
 			if(prob(30))
 				M.emote(pick("twitch","giggle"))
@@ -436,7 +429,7 @@
 		if(prob(min(25,current_cycle)))
 			to_chat(M, span_danger("You can't get the scent of garlic out of your nose! You can barely think..."))
 			M.Paralyze(10)
-			M.Jitter(10)
+			M.adjust_jitter(10 SECONDS)
 	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.job == "Cook")
@@ -706,7 +699,7 @@
 	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = living_holder.mob_light(2)
 	mob_light_obj.set_light_color("#b5a213")
 	LAZYSET(mobs_affected, living_holder, mob_light_obj)
-	RegisterSignal(living_holder, COMSIG_PARENT_QDELETING, .proc/on_living_holder_deletion)
+	RegisterSignal(living_holder, COMSIG_PARENT_QDELETING, PROC_REF(on_living_holder_deletion))
 
 /datum/reagent/consumable/tinlux/proc/remove_reagent_light(mob/living/living_holder)
 	UnregisterSignal(living_holder, COMSIG_PARENT_QDELETING)
