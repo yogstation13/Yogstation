@@ -26,7 +26,7 @@
 		//TRAIT_VENTCRAWLER_NUDE,
 		//TRAIT_WEAK_SOUL,
 	)
-	no_equip = list(SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_S_STORE)
+	no_equip = list(SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_SUIT_STORE)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN | SLIME_EXTRACT
 	liked_food = MEAT | FRUIT
 	disliked_food = CLOTH
@@ -212,7 +212,7 @@
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "lesser_form"
 	background_icon_state = "bg_default_on"
-//	overlay_icon_state = "bg_default_border" //bals proc holder pr when
+	overlay_icon_state = "bg_default_border"
 
 /datum/action/item_action/organ_action/toggle_trip/Trigger(trigger_flags)
 	. = ..()
@@ -228,9 +228,7 @@
 		monkey_brain.tripping = TRUE
 		background_icon_state = "bg_default_on"
 		to_chat(monkey_brain.owner, span_notice("You will now stumble while while colliding with people who are in combat mode."))
-//	build_all_button_icons()
-	UpdateButtonIcon()
-
+	build_all_button_icons()
 
 /obj/item/organ/brain/primate/Insert(mob/living/carbon/primate, special = FALSE)
 	. = ..()

@@ -59,7 +59,7 @@
 		revert_cast()
 		return FALSE
 	var/mob/living/carbon/target = target_atom
-	if(!caller.getorganslot(ORGAN_SLOT_EYES))
+	if(!caller.get_organ_slot(ORGAN_SLOT_EYES))
 		to_chat(owner, span_warning("You need eyes to glare!"))
 		revert_cast()
 		return FALSE
@@ -934,7 +934,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!user.getorganslot(ORGAN_SLOT_EYES))
+	if(!user.get_organ_slot(ORGAN_SLOT_EYES))
 		to_chat(user, span_warning("You need eyes to glare!"))
 		return
 	if(!ishuman(target) || !target)

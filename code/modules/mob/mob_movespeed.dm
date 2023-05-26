@@ -61,13 +61,6 @@ Key procs
 		update_movespeed(FALSE)
 	return TRUE
 
-/mob/proc/set_stat(new_stat)
-	if(new_stat == stat)
-		return
-	. = stat
-	stat = new_stat
-	SEND_SIGNAL(src, COMSIG_MOB_STATCHANGE, new_stat, .)
-
 ///Handles the special case of editing the movement var
 /mob/vv_edit_var(var_name, var_value)
 	var/slowdown_edit = (var_name == NAMEOF(src, cached_multiplicative_slowdown))

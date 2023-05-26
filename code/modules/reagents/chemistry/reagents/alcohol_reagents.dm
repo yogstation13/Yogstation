@@ -43,7 +43,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		// Volume, power, and server alcohol rate effect how quickly one gets drunk
 		drinker.adjust_drunk_effect(sqrt(volume) * booze_power * ALCOHOL_RATE * REM)
 		if(boozepwr > 0)
-			var/obj/item/organ/liver/liver = drinker.getorganslot(ORGAN_SLOT_LIVER)
+			var/obj/item/organ/liver/liver = drinker.get_organ_slot(ORGAN_SLOT_LIVER)
 			if (istype(liver))
 				liver.applyOrganDamage(((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * liver.alcohol_tolerance, 0))/150))
 	return ..()

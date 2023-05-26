@@ -14,10 +14,10 @@
 /datum/surgery/ipc_revival/can_start(mob/user, mob/living/target)
 	if(target.stat != DEAD)
 		return FALSE // they're already activated
-	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/B = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!B) // you can't reactivate a brain that DOESN'T EXIST
 		return FALSE
-	return istype(target.getorganslot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)
+	return istype(target.get_organ_slot(ORGAN_SLOT_BRAIN), /obj/item/organ/brain/positron)
 
 /datum/surgery_step/revive_ipc
 	name = "reactivate brain"
@@ -40,7 +40,7 @@
 		"[user] begins to reactivate [target]'s brain.")
 
 /datum/surgery_step/revive_ipc/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	var/obj/item/organ/brain/positron/B = target.getorganslot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/brain/positron/B = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!B)
 		to_chat(user, span_warning("[target] has no brain to reactivate!"))
 		return TRUE
@@ -66,7 +66,7 @@
 	return TRUE
 	
 /datum/surgery_step/revive_ipc/failure(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(target.getorganslot(ORGAN_SLOT_BRAIN))
+	if(target.get_organ_slot(ORGAN_SLOT_BRAIN))
 		display_results(user, target, span_warning("You screw up, causing more damage!"),
 			span_warning("[user] screws up, causing damage to [target]'s brain!"),
 			"[user] completes the surgery on [target]'s brain.")
