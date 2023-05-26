@@ -7,9 +7,9 @@
 	closingLayer = ABOVE_WINDOW_LAYER
 	resistance_flags = ACID_PROOF
 	var/base_state = "left"
-	max_integrity = 200 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
+	max_integrity = 150 //If you change this, consider changing ../door/window/brigdoor/ max_integrity at the bottom of this .dm file
 	integrity_failure = 0
-	armor = list(MELEE = 60, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 70, ACID = 100)
+	armor = list(MELEE = 60, BULLET = -40, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	flags_1 = ON_BORDER_1
 	opacity = 0
@@ -365,7 +365,7 @@
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	var/id = null
-	max_integrity = 350 //Stronger doors for prison (regular window door health is 200)
+	max_integrity = 250 //Stronger doors for prison (regular window door health is 200)
 	reinf = 1
 	explosion_block = 1
 
