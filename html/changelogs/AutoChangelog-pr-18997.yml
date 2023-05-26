@@ -1,0 +1,4 @@
+author: "dcxgame"
+delete-after: true 
+changes: 
+  - bugfix: "tweaked soccer net sprite to take care of pattern issue"
