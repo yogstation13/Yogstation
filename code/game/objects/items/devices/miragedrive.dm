@@ -11,7 +11,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	var/cooldown_coefficient = 4 //determines how many deciseconds each tile traveled adds to the cooldown
 	var/access_card = new /obj/item/card/id/captains_spare()
-	var/cooldown_remaining
 	COOLDOWN_DECLARE(last_dash)
 
 
