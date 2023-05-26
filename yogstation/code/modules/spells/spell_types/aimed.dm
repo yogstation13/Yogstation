@@ -1,16 +1,16 @@
-/obj/effect/proc_holder/spell/aimed/animation
+/datum/action/cooldown/spell/pointed/projectile/animation
 	name = "Animation"
 	desc = "This spell fires an animation bolt at a target."
-	charge_max = 60
-	clothes_req = FALSE
-	invocation = "ONA ANIMATUS"
-	invocation_type = SPELL_INVOCATION_SAY
-	range = 20
-	cooldown_min = 20 //10 deciseconds reduction per rank
-	projectile_type = /obj/item/projectile/magic/animate
 	base_icon_state = "staffofanimation"
-	action_icon_state = "staffofanimation"
+
+	invocation = "ONA ANIMATUS"
+	invocation_type = INVOCATION_SHOUT
+
 	sound = 'sound/magic/staff_animation.ogg'
+	cast_range = 20
+	cooldown_time = 6 SECONDS
+	cooldown_reduction_per_rank = 1 SECONDS
+	projectile_type = /obj/item/projectile/magic/animate
 	active_msg = "You prepare to cast your animation spell!"
 	deactive_msg = "You stop casting your animation spell... for now."
-	active = FALSE
+	spell_requirements = NONE

@@ -139,14 +139,14 @@
 
 		if(stat == CONSCIOUS && stasis)
 			to_chat(src, span_danger("Nerve gas in the air has put you in stasis!"))
-			stat = UNCONSCIOUS
+			set_stat(UNCONSCIOUS)
 			powerlevel = 0
 			rabid = 0
 			update_mobility()
 			regenerate_icons()
 		else if(stat == UNCONSCIOUS && !stasis)
 			to_chat(src, span_notice("You wake up from the stasis."))
-			stat = CONSCIOUS
+			set_stat(CONSCIOUS)
 			update_mobility()
 			regenerate_icons()
 
@@ -253,7 +253,7 @@
 	else if (nutrition >= get_grow_nutrition() && amount_grown < SLIME_EVOLUTION_THRESHOLD)
 		adjust_nutrition(-20)
 		amount_grown++
-		update_action_buttons_icon()
+		update_mob_action_buttons()
 
 	if(amount_grown >= SLIME_EVOLUTION_THRESHOLD && !buckled && !Target && !ckey)
 		if(is_adult)

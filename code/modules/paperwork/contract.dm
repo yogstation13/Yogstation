@@ -66,7 +66,7 @@
 		H.say("OH GREAT INFERNO!  I DEMAND YOU COLLECT YOUR BOUNTY IMMEDIATELY!", forced = "infernal contract suicide")
 		H.visible_message(span_suicide("[H] holds up a contract claiming [user.p_their()] soul, then immediately catches fire.  It looks like [user.p_theyre()] trying to commit suicide!"))
 		H.adjust_fire_stacks(20)
-		H.IgniteMob()
+		H.ignite_mob()
 		return(FIRELOSS)
 	return ..()
 
@@ -237,7 +237,8 @@
 /obj/item/paper/contract/infernal/wealth/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind) // How in the hell could that happen?
 		return -1
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_wealth(null))
+	var/datum/action/cooldown/spell/summon_wealth/money = new(user)
+	money.Grant(user)
 	return ..()
 
 /obj/item/paper/contract/infernal/prestige/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
@@ -278,19 +279,24 @@
 /obj/item/paper/contract/infernal/magic/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/robeless(null))
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock(null))
+	var/datum/action/cooldown/spell/conjure_item/spellpacket/spell_packet = new(user)
+	spell_packet.Grant(user)
+
+	var/datum/action/cooldown/spell/aoe/knock/all_access = new(user)
+	all_access.Grant(user)
 	return ..()
 
 /obj/item/paper/contract/infernal/knowledge/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
 	user.dna.add_mutation(XRAY)
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/view_range(null))
+	var/datum/action/cooldown/spell/view_range/view_range = new(user)
+	view_range.Grant(user)
 	return ..()
 
 /obj/item/paper/contract/infernal/friend/fulfillContract(mob/living/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_friend(null))
+	var/datum/action/cooldown/spell/summon_friend/friend = new(user)
+	friend.Grant(user)
 	return ..()

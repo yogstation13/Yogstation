@@ -152,6 +152,13 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	resistance_flags = FLAMMABLE
 
+//Stickmemes
+/datum/action/item_action/stickmen
+	name = "Summon Stick Minions"
+	desc = "Allows you to summon faithful stickmen allies to aide you in battle."
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon_state = "art_summon"
+
 /obj/item/clothing/suit/wizrobe/paper
 	name = "papier-mâché robe" // yogs -- we live in the future
 	desc = "A robe held together by various bits of clear-tape and paste."

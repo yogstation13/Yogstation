@@ -1,7 +1,7 @@
-/obj/effect/proc_holder/zombie/acid
+/*/obj/effect/proc_holder/zombie/acid
 	name = "Corrosive Acid"
 	desc = "Drench an object in acid, destroying it over time."
-	action_icon_state = "alien_acid"
+	button_icon_state = "alien_acid"
 	cooldown_time = 2.5 MINUTES
 
 /obj/effect/proc_holder/zombie/acid/on_gain(mob/living/carbon/user)
@@ -39,7 +39,7 @@
 	if(!isinfected(usr))
 		return
 	var/mob/living/carbon/user = usr
-	var/obj/effect/proc_holder/zombie/acid/A = locate() in user.abilities
+	var/obj/effect/proc_holder/zombie/acid/A = locate() in user.actions
 	if(!A)
 		return
 
@@ -49,3 +49,4 @@
 
 	if(A.corrode(O, user))
 		A.start_cooldown()
+*/

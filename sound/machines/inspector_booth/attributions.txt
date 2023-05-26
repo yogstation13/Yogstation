@@ -1,0 +1,8 @@
+inspector booth sounds are from Papers, Please by Lucas Pope:
+speech-announce
+stampbar-close
+stambar-open
+stamp-down
+stamp-up
+paper-dragstart1
+paper-dragstop1

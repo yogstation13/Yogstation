@@ -33,6 +33,8 @@
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SCI
 
+	liver_traits = list(TRAIT_BALLMER_SCIENTIST)
+
 	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
 	minimal_character_age = 26 //Barely knows more than actual scientists, just responsibility and AI things
 
@@ -86,4 +88,4 @@
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/hardsuit/rd
 	suit_store = /obj/item/tank/internals/oxygen
-	internals_slot = SLOT_S_STORE
+	internals_slot = SLOT_SUIT_STORE

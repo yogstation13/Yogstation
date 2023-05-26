@@ -37,6 +37,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/m45
 	can_suppress = FALSE
+	fire_sound = "sound/weapons/pistolshotsmall.ogg"
 	feedback_types = list(
 		"fire" = 3
 	)
@@ -49,10 +50,11 @@
 	desc = "A robust .50 AE handgun."
 	icon_state = "deagle"
 	force = 14
-	fire_delay = 8
+	fire_delay = 7 //Very slightly slower than the .357
 	mag_type = /obj/item/ammo_box/magazine/m50
 	can_suppress = FALSE
 	mag_display = TRUE
+	fire_sound = "sound/weapons/deaglefire.ogg"
 	feedback_types = list(
 		"fire" = 3
 	)
@@ -119,6 +121,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/v38
 	can_suppress = FALSE
+	fire_sound = "sound/weapons/pistolshotmedium.ogg"
 	feedback_types = list(
 		"fire" = 3
 	)

@@ -47,7 +47,7 @@
 		if(inform_admins)
 			message_admins("[parent] has been moved out of bounds in [ADMIN_VERBOSEJMP(currentturf)]. Moving it to [ADMIN_VERBOSEJMP(targetturf)].")
 
-/datum/component/stationloving/proc/check_soul_imbue()
+/datum/component/stationloving/proc/check_soul_imbue(datum/source)
 	return disallow_soul_imbue
 
 /datum/component/stationloving/proc/in_bounds()
