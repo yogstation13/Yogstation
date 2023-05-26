@@ -41,7 +41,7 @@
 		icon_state = initial(icon_state)
 
 	for(var/datum/action/A as anything in actions)
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/organ/regenerative_core/Initialize()
 	. = ..()
@@ -150,15 +150,6 @@
 /obj/item/organ/regenerative_core/legion/Initialize()
 	. = ..()
 	update_icon()
-
-/obj/item/organ/regenerative_core/update_icon()
-	icon_state = inert ? "legion_soul_inert" : "legion_soul"
-	cut_overlays()
-	if(!inert && !preserved)
-		add_overlay("legion_soul_crackle")
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.build_all_button_icons()
 
 /obj/item/organ/regenerative_core/legion/go_inert()
 	..()
