@@ -445,7 +445,7 @@ mob/living/simple_animal/hostile/space_dragon/proc/dragon_fire_line(turf/T)
 /obj/structure/carp_rift/Initialize(mapload)
 	. = ..()
 	carp_stored = 1
-	time_charged = 1
+	time_charged = 0
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/carp_rift/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
