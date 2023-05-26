@@ -63,6 +63,7 @@ GLOBAL_VAR(stormdamage)
 		virgin.current.update_sight()
 		to_chat(virgin.current, "<font_color='red'><b> You are now in the battle bus! Click it to exit.</b></font>")
 		GLOB.battleroyale_players += virgin.current
+		log_game("[virgin.current] has been added as a battle royaler")
     
 	if(!LAZYLEN(GLOB.battleroyale_players))
 		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
