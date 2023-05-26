@@ -4537,11 +4537,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/storage/tech)
-"cgY" = (
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/abandoned,
-/turf/open/space/basic,
-/area/maintenance/department/science)
 "cgZ" = (
 /obj/structure/table/wood/poker,
 /turf/open/floor/wood,
@@ -79214,7 +79209,7 @@ eLb
 eLb
 eLb
 eLb
-oUb
+rZk
 eLb
 eLb
 qwU
@@ -79987,7 +79982,7 @@ eLb
 wCC
 wCC
 wCC
-oUb
+rZk
 qwU
 eLb
 vRP
@@ -82044,7 +82039,7 @@ eLb
 wCC
 wCC
 wCC
-oUb
+rZk
 qwU
 eLb
 vRP
@@ -82813,7 +82808,7 @@ eLb
 keq
 eLb
 eLb
-oUb
+rZk
 eLb
 eLb
 qwU
@@ -86925,7 +86920,7 @@ gCc
 tZp
 tZp
 tZp
-cgY
+pAD
 tZp
 tZp
 vRP
@@ -87441,7 +87436,7 @@ tZp
 bMz
 bMz
 bMz
-cgY
+pAD
 gCc
 gCc
 kYi
