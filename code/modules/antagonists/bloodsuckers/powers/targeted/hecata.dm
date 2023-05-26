@@ -73,6 +73,8 @@
 			DeactivatePower()
 			return
 		zombify(target)
+		if(bloodsuckerdatum.make_vassal(target))
+			SEND_SIGNAL(src, BLOODSUCKER_MADE_VASSAL, user, target)
 		power_activated_sucessfully()
 		bloodsuckerdatum.clanprogress++ //counts a succesful necromancy towards your objective progress
 		to_chat(user, span_warning("We revive [target]!"))
@@ -102,7 +104,6 @@
 	user.death()
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/zombify(mob/living/user)
 	user.mind.grab_ghost()
-	user.mind.add_antag_datum(/datum/antagonist/vassal)
 	user.set_species(/datum/species/zombie/hecata) //imitation zombies that shamble around and beat people with their fists
 	user.revive(full_heal = TRUE, admin_revive = TRUE)
 	user.visible_message(span_danger("[user] suddenly convulses, as [user.p_they()] stagger to their feet and gain a ravenous hunger in [user.p_their()] eyes!"), span_alien("You RISE!"))
