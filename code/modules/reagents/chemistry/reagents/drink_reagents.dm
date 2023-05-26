@@ -597,7 +597,7 @@
 	..()
 
 /datum/reagent/consumable/lemon_lime
-	name = "Spite"
+	name = "Spit"
 	description = "A tangy substance made of 0.5% natural citrus!"
 	color = "#8CFF00" // rgb: 135, 255, 0
 	taste_description = "tangy lime and lemon soda"
