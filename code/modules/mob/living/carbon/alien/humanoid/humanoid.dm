@@ -15,8 +15,6 @@
 	var/pounce_cooldown_time = 30
 	var/custom_pixel_x_offset = 0 //for admin fuckery.
 	var/custom_pixel_y_offset = 0
-	var/sneaking = 0 //For sneaky-sneaky mode and appropriate slowdown
-	var/drooling = 0 //For Neruotoxic spit overlays
 	deathsound = 'sound/voice/hiss6.ogg'
 	bodyparts = list(/obj/item/bodypart/chest/alien, /obj/item/bodypart/head/alien, /obj/item/bodypart/l_arm/alien,
 					 /obj/item/bodypart/r_arm/alien, /obj/item/bodypart/r_leg/alien, /obj/item/bodypart/l_leg/alien)
@@ -113,8 +111,38 @@
 		return A
 	return FALSE
 
-
 /mob/living/carbon/alien/humanoid/check_breath(datum/gas_mixture/breath)
-	if(breath && breath.total_moles() > 0 && !sneaking)
+	if(breath?.total_moles() > 0 && !HAS_TRAIT(src, TRAIT_ALIEN_SNEAK))
 		playsound(get_turf(src), pick('sound/voice/lowHiss2.ogg', 'sound/voice/lowHiss3.ogg', 'sound/voice/lowHiss4.ogg'), 50, 0, -5)
-	..()
+	return ..()
+
+/mob/living/carbon/alien/adult/proc/grab(mob/living/carbon/human/target)
+	if(target.check_block())
+		target.visible_message(span_warning("[target] blocks [src]'s grab!"), \
+						span_userdanger("You block [src]'s grab!"), span_hear("You hear a swoosh!"), COMBAT_MESSAGE_RANGE, src)
+		to_chat(src, span_warning("Your grab at [target] was blocked!"))
+		return FALSE
+	target.grabbedby(src)
+	return TRUE
+
+/mob/living/carbon/alien/adult/setGrabState(newstate)
+	if(newstate == grab_state)
+		return
+	if(newstate > GRAB_AGGRESSIVE)
+		newstate = GRAB_AGGRESSIVE
+	SEND_SIGNAL(src, COMSIG_MOVABLE_SET_GRAB_STATE, newstate)
+	. = grab_state
+	grab_state = newstate
+	switch(grab_state) // Current state.
+		if(GRAB_PASSIVE)
+			REMOVE_TRAIT(pulling, TRAIT_IMMOBILIZED, CHOKEHOLD_TRAIT)
+			if(. >= GRAB_NECK) // Previous state was a a neck-grab or higher.
+				REMOVE_TRAIT(pulling, TRAIT_FLOORED, CHOKEHOLD_TRAIT)
+		if(GRAB_AGGRESSIVE)
+			if(. >= GRAB_NECK) // Grab got downgraded.
+				REMOVE_TRAIT(pulling, TRAIT_FLOORED, CHOKEHOLD_TRAIT)
+			else // Grab got upgraded from a passive one.
+				ADD_TRAIT(pulling, TRAIT_IMMOBILIZED, CHOKEHOLD_TRAIT)
+		if(GRAB_NECK, GRAB_KILL)
+			if(. <= GRAB_AGGRESSIVE)
+				ADD_TRAIT(pulling, TRAIT_FLOORED, CHOKEHOLD_TRAIT)

@@ -34,7 +34,7 @@
 		
 	if(arrow.flaming)
 		L.adjust_fire_stacks(1)
-		L.IgniteMob()
+		L.ignite_mob()
 		arrow.flaming = FALSE
 
 	arrow.update_icon()

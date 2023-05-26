@@ -4,12 +4,12 @@
 	name = "Time Erasure"
 	desc = "The guardian can erase a short period of time."
 	cost = 4
-	spell_type = /obj/effect/proc_holder/spell/self/erase_time
+	spell_type = /datum/action/cooldown/spell/erase_time
 	arrow_weight = 0.2
 
 /datum/guardian_ability/major/time/Apply()
 	. = ..()
-	var/obj/effect/proc_holder/spell/self/erase_time/S = spell
+	var/datum/action/cooldown/spell/erase_time/S = spell
 	S.length = master_stats.potential * 2 * 10
 
 /datum/guardian_ability/major/time/Manifest()
@@ -18,18 +18,20 @@
 		jaunt.forceMove(guardian.summoner.current.loc)
 		return TRUE
 
-/obj/effect/proc_holder/spell/self/erase_time
+/datum/action/cooldown/spell/erase_time
 	name = "Erase Time"
 	desc = "Erase the very concept of time for a short period of time."
-	clothes_req = FALSE
-	human_req = FALSE
-	charge_max = 90 SECONDS
-	action_icon_state = "time"
+	button_icon_state = "time"
+
+	cooldown_time = 90 SECONDS
+	spell_requirements = NONE
 	var/length = 10 SECONDS
 
-/obj/effect/proc_holder/spell/self/erase_time/cast(list/targets, mob/user)
+/datum/action/cooldown/spell/erase_time/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if (!isturf(user.loc) || !isguardian(user))
-		revert_cast()
 		return
 	var/list/immune = list(user)
 	if (isguardian(user))
@@ -40,10 +42,11 @@
 				immune |= other
 	for(var/mob/living/L in immune)
 		disappear(L, length, immune)
-	charge_counter = 0
-	addtimer(CALLBACK(src, PROC_REF(start_recharge)), length)
+	addtimer(CALLBACK(src, PROC_REF(StartCooldown)), length)
 
-/obj/effect/proc_holder/spell/self/erase_time/proc/disappear(mob/living/target, length, list/immune)
+	return TRUE
+
+/datum/action/cooldown/spell/erase_time/proc/disappear(mob/living/target, length, list/immune)
 	SEND_SOUND(target, sound('yogstation/sound/effects/kingcrimson_start.ogg'))
 	target.SetAllImmobility(0)
 	target.setStaminaLoss(0, 0)
@@ -69,7 +72,7 @@
 	jaunt.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/king_crimson, "king_crimson", invisible, NONE, immune)
 	addtimer(CALLBACK(src, PROC_REF(reappear), target, fake, jaunt), length)
 
-/obj/effect/proc_holder/spell/self/erase_time/proc/reappear(mob/living/target, mob/living/fake, obj/effect/dummy/phased_mob/king_crimson/jaunt)
+/datum/action/cooldown/spell/erase_time/proc/reappear(mob/living/target, mob/living/fake, obj/effect/dummy/phased_mob/king_crimson/jaunt)
 	if (fake)
 		fake.death()
 	SEND_SOUND(target, sound('yogstation/sound/effects/kingcrimson_end.ogg'))
@@ -163,7 +166,7 @@
 	src.seers = seers
 	for(var/mob/M in GLOB.mob_list)
 		if (mobShouldSee(M))
-			add_hud_to(M)
+			show_to(M)
 			M.reload_huds()
 
 /datum/atom_hud/alternate_appearance/basic/king_crimson/mobShouldSee(mob/M)

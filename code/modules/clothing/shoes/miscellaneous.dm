@@ -324,7 +324,7 @@
 	desc = "They'll sure kindle something in you, and it's not childhood nostalgia..."
 	icon_state = "kindleKicks"
 	item_state = "kindleKicks"
-	actions_types = list(/datum/action/item_action/kindleKicks)
+	actions_types = list(/datum/action/item_action/kindle_kicks)
 	light_system = MOVABLE_LIGHT
 	light_range = 2
 	light_power = 3
@@ -544,6 +544,18 @@
 	xenoshoe = YES_DIGIT
 	mutantrace_variation = MUTANTRACE_VARIATION
 
+/datum/action/item_action/dash
+	name = "Dash"
+	desc = "Momentarily maximizes the jets of the shoes, allowing the user to dash a short distance."
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "thrust"
+
+/datum/action/item_action/airshoes
+	name = "Toggle thrust on air shoes."
+	desc = "Switch between walking and hovering."
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "airshoes_a"
+
 /obj/item/clothing/shoes/airshoes
 	name = "air shoes"
 	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
@@ -551,7 +563,8 @@
 	obj_flags = UNIQUE_RENAME //im not fucking naming them 'sonic 11's you can do that yourself ffm
 	actions_types = list(/datum/action/item_action/airshoes, /datum/action/item_action/dash)
 	var/airToggle = FALSE
-	var/obj/vehicle/ridden/scooter/airshoes/A
+	///Secret vehicle that helps us move around at mach speeds
+	var/obj/vehicle/ridden/scooter/airshoes/shoes_of_air
 	permeability_coefficient = 0.05
 	var/recharging_time = 0
 	var/jumpdistance = 7 //Increased distance so it might see some offensive use
@@ -561,7 +574,7 @@
 
 /obj/item/clothing/shoes/airshoes/Initialize()
 	. = ..()
-	A = new/obj/vehicle/ridden/scooter/airshoes(null)
+	shoes_of_air = new /obj/vehicle/ridden/scooter/airshoes(null)
 
 /obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
 	if(!isliving(user))
@@ -569,24 +582,24 @@
 	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/airshoes))
 		to_chat(user, span_warning("You must be wearing the air shoes to use them!"))
 		return
-	if(istype(action,/datum/action/item_action/airshoes))
-		if(!(A.is_occupant(user)))
+	if(istype(action, /datum/action/item_action/airshoes))
+		if(!(shoes_of_air.is_occupant(user)))
 			airToggle = FALSE
 		if(airToggle)
-			A.unbuckle_mob(user)
+			shoes_of_air.unbuckle_mob(user)
 			airToggle = FALSE
 			return
-		A.forceMove(get_turf(user))
-		A.buckle_mob(user)
+		shoes_of_air.forceMove(get_turf(user))
+		shoes_of_air.buckle_mob(user)
 		airToggle = TRUE
-	else if(istype(action,/datum/action/item_action/dash))
+	else if(istype(action, /datum/action/item_action/dash))
 		if(recharging_time > world.time)
 			to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
 			return
 
 		var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 		if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
-			playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
+			playsound(src, 'sound/effects/stealthoff.ogg', 50, TRUE, 1)
 			user.visible_message(span_warning("[usr] dashes forward into the air!"))
 			recharging_time = world.time + recharging_rate
 		else
@@ -594,11 +607,12 @@
 
 /obj/item/clothing/shoes/airshoes/dropped(mob/user)
 	if(airToggle)
-		A.unbuckle_mob(user)
+		shoes_of_air.unbuckle_mob(user)
 		airToggle = FALSE
 	..()
+
 /obj/item/clothing/shoes/airshoes/Destroy()
-	QDEL_NULL(A)
+	QDEL_NULL(shoes_of_air)
 	. = ..()
 
 /obj/item/clothing/shoes/drip

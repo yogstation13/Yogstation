@@ -143,7 +143,7 @@
 		add_overlay("legion_soul_crackle")
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/organ/regenerative_core/legion/go_inert()
 	..()

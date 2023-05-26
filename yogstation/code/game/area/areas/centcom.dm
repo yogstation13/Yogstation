@@ -32,3 +32,4 @@
 	has_gravity = TRUE
 	noteleport = TRUE
 	flags_1 = NONE
+	area_flags = NOTELEPORT

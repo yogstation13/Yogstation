@@ -30,7 +30,7 @@
 /datum/mood_event/creampie
 	description = "<span class='warning'>I've been creamed. Tastes like pie flavor.</span>\n"
 	mood_change = -2
-	timeout = 1800
+	timeout = 3 MINUTES
 
 /datum/mood_event/slipped
 	description = "<span class='warning'>I slipped. I should be more careful next time...</span>\n"

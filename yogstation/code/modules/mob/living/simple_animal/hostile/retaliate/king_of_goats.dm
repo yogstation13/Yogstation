@@ -304,7 +304,7 @@ Difficulty: Insanely Hard
 			L.gib()
 		if(prob(stun_chance))
 			L.Paralyze(5)
-			L.confused += 1
+			L.adjust_confusion(1 SECONDS)
 			visible_message(span_warning("\The [L] is bowled over by the impact of [src]'s attack!"))
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget()

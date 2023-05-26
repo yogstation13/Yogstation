@@ -253,7 +253,7 @@
 	else if (nutrition >= get_grow_nutrition() && amount_grown < SLIME_EVOLUTION_THRESHOLD)
 		adjust_nutrition(-20)
 		amount_grown++
-		update_action_buttons_icon()
+		update_mob_action_buttons()
 
 	if(amount_grown >= SLIME_EVOLUTION_THRESHOLD && !buckled && !Target && !ckey)
 		if(is_adult)

@@ -3,6 +3,7 @@
 	antagpanel_category = "Brother"
 	job_rank = ROLE_BROTHER
 	var/special_role = ROLE_BROTHER
+	antag_hud_name = "brother"
 	var/datum/team/brother_team/team
 	antag_moodlet = /datum/mood_event/focused
 	can_hijack = HIJACK_HIJACKER
@@ -102,7 +103,6 @@
 	for(var/datum/mind/M in team.members) // Link the implants of all team members
 		var/obj/item/implant/bloodbrother/T = locate() in M.current.implants
 		I.link_implant(T)
-	SSticker.mode.update_brother_icons_added(owner)
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/brother/admin_add(datum/mind/new_owner,mob/admin)
@@ -133,7 +133,7 @@
 	.["Convert To Traitor"] = CALLBACK(src, PROC_REF(make_traitor))
 
 /datum/antagonist/brother/proc/make_traitor()
-	if(alert("Are you sure? This will turn the blood brother into a traitor with the same objectives!",,"Yes","No") != "Yes")
+	if(tgui_alert("Are you sure? This will turn the blood brother into a traitor with the same objectives!",,list("Yes","No")) != "Yes")
 		return
 
 	var/datum/antagonist/traitor/tot = new()
@@ -216,8 +216,8 @@
 	if(is_hijacker)
 		if(!locate(/datum/objective/hijack) in objectives)
 			add_objective(new/datum/objective/hijack)
-	else if(!locate(/datum/objective/escape) in objectives)
-		add_objective(new/datum/objective/escape)
+	else if(!locate(/datum/objective/escape/onesurvivor) in objectives)
+		add_objective(new/datum/objective/escape/onesurvivor)
 
 /datum/team/brother_team/proc/forge_single_objective()
 	if(prob(50))

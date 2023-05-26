@@ -1,8 +1,9 @@
-GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/spell/self/lesser_shadowling_hivemind, /obj/effect/proc_holder/spell/targeted/lesser_glare, /obj/effect/proc_holder/spell/self/lesser_shadow_walk, /obj/effect/proc_holder/spell/self/thrall_night_vision)))
+GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/datum/action/cooldown/spell/lesser_shadowling_hivemind, /datum/action/cooldown/spell/pointed/lesser_glare, /datum/action/cooldown/spell/lesser_shadow_walk, /datum/action/cooldown/spell/thrall_night_vision)))
 
 /datum/antagonist/thrall
 	name = "Shadowling Thrall"
 	job_rank = ROLE_SHADOWLING
+	antag_hud_name = "thrall"
 	roundend_category = "thralls"
 	antagpanel_category = "Shadowlings"
 	antag_moodlet = /datum/mood_event/thrall
@@ -23,26 +24,27 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(list(/obj/effect/proc_holder/sp
 
 /datum/antagonist/thrall/on_gain()
 	. = ..()
-	SSticker.mode.update_shadow_icons_added(owner)
 	SSticker.mode.thralls += owner
 	owner.special_role = "thrall"
 	message_admins("[key_name_admin(owner.current)] was enthralled by a shadowling!")
 	log_game("[key_name(owner.current)] was enthralled by a shadowling!")
-	owner.AddSpell(new /obj/effect/proc_holder/spell/self/lesser_shadowling_hivemind(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/lesser_glare(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/self/lesser_shadow_walk(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/self/thrall_night_vision(null))
+	for(var/datum/action/cooldown/spell/spells as anything in GLOB.thrall_spell_types)
+		spells = new(owner.current)
+		spells.Grant(owner.current)
+
+/datum/antagonist/thrall/apply_innate_effects(mob/living/mob_override)
+	. = ..()
+	var/mob/living/current_mob = mob_override || owner.current
+	add_team_hud(current_mob, /datum/antagonist/shadowling)
 
 /datum/antagonist/thrall/on_removal()
-	SSticker.mode.update_shadow_icons_removed(owner)
 	SSticker.mode.thralls -= owner
 	message_admins("[key_name_admin(owner.current)] was dethralled!")
 	log_game("[key_name(owner.current)] was dethralled!")
 	owner.special_role = null
-	for(var/X in owner.spell_list)
-		var/obj/effect/proc_holder/spell/S = X
-		if(is_type_in_typecache(S, GLOB.thrall_spell_types)) //only remove thrall spells!
-			owner.RemoveSpell(S)
+	for(var/datum/action/cooldown/spell/spells in owner.current.actions)
+		if(is_type_in_typecache(spells, GLOB.thrall_spell_types)) //only remove thrall spells!
+			spells.Remove(owner.current)
 	var/mob/living/M = owner.current
 	if(issilicon(M))
 		M.audible_message(span_notice("[M] lets out a short blip, followed by a low-pitched beep."))

@@ -1,9 +1,10 @@
-/obj/effect/proc_holder/spell/targeted/seismic
-	clothes_req = FALSE
-	include_user = TRUE
-	range = -1
+/datum/action/cooldown/spell/pointed/seismic
+	spell_requirements = SPELL_REQUIRES_HUMAN
 
-/obj/effect/proc_holder/spell/targeted/seismic/can_cast(mob/living/user)
+/datum/action/cooldown/spell/pointed/seismic/can_cast_spell()
+	if(!isliving(owner))
+		return FALSE
+	var/mob/living/user = owner
 	var/obj/item/bodypart/r_arm/R = user.get_bodypart(BODY_ZONE_R_ARM)
 	if(R?.bodypart_disabled)
 		to_chat(user, span_warning("The arm isn't in a functional state right now!"))
@@ -12,15 +13,19 @@
 		return FALSE
 	return TRUE
 
-/obj/effect/proc_holder/spell/targeted/seismic/lariat
+/datum/action/cooldown/spell/pointed/seismic/lariat
 	name = "Lariat"
 	desc = "Dash forward, catching whatever animal you hit with your arm and knocking them over."
-	action_icon = 'icons/mob/actions/actions_arm.dmi'
-	action_icon_state = "lariat"
-	charge_max = 70
+	button_icon = 'icons/mob/actions/actions_arm.dmi'
+	button_icon_state = "lariat"
+
+	cooldown_time = 7 SECONDS
 	var/jumpdistance = 4
 
-/obj/effect/proc_holder/spell/targeted/seismic/lariat/cast(atom/target,mob/living/user)
+/datum/action/cooldown/spell/pointed/seismic/lariat/InterceptClickOn(mob/living/user, params, atom/target)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(user.incapacitated())
 		return
 	var/turf/T = get_step(get_turf(user), user.dir)
@@ -62,16 +67,22 @@
 						L.adjustBruteLoss(12)
 					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
 			T = get_step(user,user.dir)
+	
+	return TRUE
 			
-/obj/effect/proc_holder/spell/targeted/seismic/mop
+/datum/action/cooldown/spell/pointed/seismic/mop
 	name = "Mop the Floor"
 	desc = "Launch forward and drag whoever's in front of you on the ground. The power of this move increases with closeness to the target upon using it."
-	action_icon = 'icons/mob/actions/actions_arm.dmi'
-	action_icon_state = "mop"
-	charge_max = 70	
+	button_icon = 'icons/mob/actions/actions_arm.dmi'
+	button_icon_state = "mop"
+	
+	cooldown_time = 7 SECONDS
 	var/jumpdistance = 4
 
-/obj/effect/proc_holder/spell/targeted/seismic/mop/cast(atom/target,mob/living/user)
+/datum/action/cooldown/spell/pointed/seismic/mop/InterceptClickOn(mob/living/user, params, atom/target)
+	. = ..()
+	if(!.)
+		return
 	if(user.incapacitated())
 		return
 	var/turf/T = get_step(get_turf(user), user.dir)
@@ -133,14 +144,20 @@
 		if(C.stat == CONSCIOUS && C.resting == FALSE)
 			animate(C, transform = null, time = 0.5 SECONDS, loop = 0)
 
-/obj/effect/proc_holder/spell/targeted/seismic/suplex
+	return TRUE
+
+/datum/action/cooldown/spell/pointed/seismic/suplex
 	name = "Suplex"
 	desc = "Grab the target in front of you and slam them back onto the ground."
-	action_icon = 'icons/mob/actions/actions_arm.dmi'	
-	action_icon_state = "suplex"
-	charge_max = 10
+	button_icon = 'icons/mob/actions/actions_arm.dmi'	
+	button_icon_state = "suplex"
 
-/obj/effect/proc_holder/spell/targeted/seismic/suplex/cast(atom/target,mob/living/user)
+	cooldown_time = 1 SECONDS
+
+/datum/action/cooldown/spell/pointed/seismic/suplex/InterceptClickOn(mob/living/user, params, atom/target)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/turf/T = get_step(get_turf(user), user.dir)
 	var/turf/Z = get_turf(user)
 	user.visible_message(span_warning("[user] outstretches [user.p_their()] arm and goes for a grab!"))
@@ -186,18 +203,23 @@
 		if(L.stat == CONSCIOUS && L.resting == FALSE)
 			animate(L, transform = null, time = 0.1 SECONDS, loop = 0)
 		
-/obj/effect/proc_holder/spell/targeted/seismic/righthook
+/datum/action/cooldown/spell/pointed/seismic/righthook
 	name = "Right Hook"
 	desc = "Put the arm through its paces, cranking the outputs located at the front and back of the hand to full capacity for a powerful blow. This attack can only be readied for five seconds and connecting with it will temporarily overwhelm the entire arm for fifteen."
-	action_icon = 'icons/mob/actions/actions_arm.dmi'
-	action_icon_state = "ponch"
-	charge_max = 30
+	button_icon = 'icons/mob/actions/actions_arm.dmi'
+	button_icon_state = "ponch"
 
-/obj/effect/proc_holder/spell/targeted/seismic/righthook/cast(list/targets, mob/living/user)
+	cooldown_time = 3 SECONDS
+
+/datum/action/cooldown/spell/pointed/seismic/InterceptClickOn(mob/living/user, params, atom/target)
+	. = ..()
+	if(!.)
+		return FALSE
 	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE)
 	user.put_in_r_hand(new /obj/item/overcharged_emitter)
 	user.visible_message(span_warning("[user]'s arm begins crackling loudly!"))
+	return TRUE
 
 /obj/item/overcharged_emitter
 	name = "supercharged emitter"
@@ -290,15 +312,12 @@
 
 /obj/item/bodypart/r_arm/robot/seismic/attach_limb(mob/living/carbon/C, special)
 	. = ..()
-	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/seismic/lariat)
-	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/seismic/mop)
-	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/seismic/suplex)
-	C.AddSpell (new /obj/effect/proc_holder/spell/targeted/seismic/righthook)
+	for(var/datum/action/cooldown/spell/pointed/seismic/spells as anything in subtypesof(/datum/action/cooldown/spell/pointed/seismic))
+		spells = new(C)
+		spells.Grant(C)
 
 /obj/item/bodypart/r_arm/robot/seismic/drop_limb(special)
 	var/mob/living/carbon/C = owner
-	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/seismic/lariat)
-	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/seismic/mop)
-	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/seismic/suplex)
-	C.RemoveSpell (/obj/effect/proc_holder/spell/targeted/seismic/righthook)
-	..()
+	for(var/datum/action/cooldown/spell/pointed/seismic/spells in C.actions)
+		spells.Remove(C)
+	return ..()

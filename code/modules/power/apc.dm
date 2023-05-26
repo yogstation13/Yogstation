@@ -1474,10 +1474,9 @@
 		INVOKE_ASYNC(src, PROC_REF(break_lights))
 
 /obj/machinery/power/apc/proc/break_lights()
-	for(var/obj/machinery/light/L in area)
-		L.on = TRUE
-		L.break_light_tube()
-		L.on = FALSE
+	for(var/obj/machinery/light/breaked_light in area)
+		breaked_light.on = TRUE
+		breaked_light.break_light_tube()
 		stoplag()
 
 /obj/machinery/power/apc/proc/shock(mob/user, prb)

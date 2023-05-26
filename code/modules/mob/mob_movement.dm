@@ -120,9 +120,9 @@
 	if(!(L.mobility_flags & MOBILITY_MOVE))
 		return FALSE
 
-	if(isobj(mob.loc) || ismob(mob.loc))	//Inside an object, tell it we moved
-		var/atom/O = mob.loc
-		return O.relaymove(mob, direct)
+	if(ismovable(mob.loc))	//Inside an object, tell it we moved
+		var/atom/loc_atom = mob.loc
+		return loc_atom.relaymove(mob, direct)
 
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
@@ -147,18 +147,6 @@
 	//Basically an optional override for our glide size
 	//Sometimes you want to look like you're moving with a delay you don't actually have yet
 	visual_delay = 0
-
-	if(L.confused)
-		var/newdir = 0
-		if(L.confused > 40)
-			newdir = pick(GLOB.alldirs)
-		else if(prob(L.confused * 1.5))
-			newdir = angle2dir(dir2angle(direct) + pick(90, -90))
-		else if(prob(L.confused * 3))
-			newdir = angle2dir(dir2angle(direct) + pick(45, -45))
-		if(newdir)
-			direct = newdir
-			n = get_step(L, direct)
 
 	. = ..()
 
@@ -192,18 +180,18 @@
   * Called by client/Move()
   */
 /client/proc/Process_Grab()
-	if(mob.pulledby)
-		if((mob.pulledby == mob.pulling) && (mob.pulledby.grab_state == GRAB_PASSIVE))			//Don't autoresist passive grabs if we're grabbing them too.
-			return
-		if(mob.incapacitated(ignore_restraints = 1))
-			move_delay = world.time + 10
-			return TRUE
-		else if(mob.restrained(ignore_grab = 1))
-			move_delay = world.time + 10
-			to_chat(src, span_warning("You're restrained! You can't move!"))
-			return TRUE
-		else
-			return mob.resist_grab(1)
+	if(!mob.pulledby)
+		return FALSE
+	if(mob.pulledby == mob.pulling && mob.pulledby.grab_state == GRAB_PASSIVE) //Don't autoresist passive grabs if we're grabbing them too.
+		return FALSE
+	if(HAS_TRAIT(mob, TRAIT_INCAPACITATED))
+		COOLDOWN_START(src, move_delay, 1 SECONDS)
+		return TRUE
+	else if(mob.restrained(ignore_grab = TRUE))
+		COOLDOWN_START(src, move_delay, 1 SECONDS)
+		to_chat(src, span_warning("You're restrained! You can't move!"))
+		return TRUE
+	return mob.resist_grab(TRUE)
 
 /**
   * Allows mobs to ignore density and phase through objects
@@ -551,6 +539,10 @@
 	set name = "Move Upwards"
 	set category = "IC"
 
+	if(ismovable(loc)) //Inside an object, tell it we moved
+		var/atom/loc_atom = loc
+		return loc_atom.relaymove(src, UP)
+
 	if(zMove(UP, TRUE))
 		to_chat(src, span_notice("You move upwards."))
 
@@ -558,6 +550,10 @@
 /mob/verb/down()
 	set name = "Move Down"
 	set category = "IC"
+
+	if(ismovable(loc)) //Inside an object, tell it we moved
+		var/atom/loc_atom = loc
+		return loc_atom.relaymove(src, DOWN)
 
 	if(zMove(DOWN, TRUE))
 		to_chat(src, span_notice("You move down."))

@@ -31,15 +31,28 @@
 #define ITEM_SLOT_ID			(1<<8)
 #define ITEM_SLOT_BELT			(1<<9)
 #define ITEM_SLOT_BACK			(1<<10)
+/// Dextrous simplemob "hands" (used for Drones and Dextrous Guardians)
+#define ITEM_SLOT_DEX_STORAGE 	(1<<11)
 /// this is to allow items with a w_class of WEIGHT_CLASS_NORMAL or WEIGHT_CLASS_BULKY to fit in pockets.
-#define ITEM_SLOT_POCKET		(1<<11)
+#define ITEM_SLOT_POCKET		(1<<12)
 /// this is to deny items with a w_class of WEIGHT_CLASS_SMALL or WEIGHT_CLASS_TINY to fit in pockets.
-#define ITEM_SLOT_DENYPOCKET	(1<<12)
-#define ITEM_SLOT_NECK			(1<<13)
-#define ITEM_SLOT_HANDS			(1<<14)
-#define ITEM_SLOT_BACKPACK		(1<<15)
+#define ITEM_SLOT_DENYPOCKET	(1<<13)
+#define ITEM_SLOT_NECK			(1<<14)
+#define ITEM_SLOT_HANDS			(1<<15)
+#define ITEM_SLOT_BACKPACK		(1<<16)
 /// Prevents items from being stored in suit storage
-#define ITEM_SLOT_DENY_S_STORE	(1<<16)
+#define ITEM_SLOT_DENY_S_STORE	(1<<17)
+/// Suit Storage slot
+#define ITEM_SLOT_SUITSTORE 	(1<<18)
+/// Left Pocket slot
+#define ITEM_SLOT_LPOCKET 		(1<<19)
+/// Right Pocket slot
+#define ITEM_SLOT_RPOCKET 		(1<<20)
+/// Handcuff slot
+#define ITEM_SLOT_HANDCUFFED 	(1<<21)
+/// Legcuff slot (bolas, beartraps)
+#define ITEM_SLOT_LEGCUFFED 	(1<<22)
+
 
 //SLOTS
 #define SLOT_BACK			1
@@ -60,7 +73,7 @@
 #define SLOT_W_UNIFORM		14
 #define SLOT_L_STORE		15
 #define SLOT_R_STORE		16
-#define SLOT_S_STORE		17
+#define SLOT_SUIT_STORE		17
 #define SLOT_IN_BACKPACK	18
 #define SLOT_LEGCUFFED		19
 #define SLOT_GENERC_DEXTROUS_STORAGE	20
@@ -101,6 +114,8 @@
 			. = ITEM_SLOT_HANDS
 		if(SLOT_IN_BACKPACK)
 			. = ITEM_SLOT_BACKPACK
+		if(SLOT_SUIT_STORE)
+			. = ITEM_SLOT_SUITSTORE
 
 
 //Bit flags for the flags_inv variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.

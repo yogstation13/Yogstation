@@ -200,7 +200,7 @@
 		if(check_streak(A,D)) //if a combo is made no grab upgrade is done
 			return TRUE
 		if(D.grabbedby(A))
-			D.Stun(15)
+			D.Stun(1.5 SECONDS)
 		if(A.grab_state < 1)
 			restraining = FALSE
 		return TRUE
@@ -252,7 +252,7 @@
 			playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 			if(I && D.temporarilyRemoveItemFromInventory(I))
 				A.put_in_hands(I)
-			D.Jitter(2)
+			D.adjust_jitter(2 SECONDS)
 			D.apply_damage(A.get_punchdamagehigh()/2, STAMINA) //5 damage
 		else
 			D.visible_message(span_danger("[A] grabs at [D]'s arm, but misses!"), \

@@ -1,7 +1,7 @@
 //Surplus Carbine
 
 /obj/item/ammo_box/magazine/m10mm/rifle
-	name = "carbine magazine (.45)"
+	name = "carbine magazine (.45 ACP)"
 	desc = "A well-worn magazine fitted for the surplus carbine."
 	icon_state = "75-8"
 	ammo_type = /obj/item/ammo_casing/c45

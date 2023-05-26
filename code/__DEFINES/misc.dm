@@ -355,11 +355,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define BEAT_SLOW 2
 #define BEAT_NONE 0
 
-//https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
-#define MOUSE_OPACITY_TRANSPARENT 0
-#define MOUSE_OPACITY_ICON 1
-#define MOUSE_OPACITY_OPAQUE 2
-
 //world/proc/shelleo
 #define SHELLEO_ERRORLEVEL 1
 #define SHELLEO_STDOUT 2
@@ -400,13 +395,23 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define STACK_CHECK_ADJACENT "adjacent" //checks if there is an object of the result type within one tile
 
 //text files
+/// File location for brain damage traumas
 #define BRAIN_DAMAGE_FILE "traumas.json"
+/// File location for AI ion laws
 #define ION_FILE "ion_laws.json"
+/// File location for pirate names
 #define PIRATE_NAMES_FILE "pirates.json"
+/// File location for redpill questions
 #define REDPILL_FILE "redpill.json"
+/// File location for wanted posters messages
 #define WANTED_FILE "wanted_message.json"
+/// File location for really dumb suggestions memes
+#define VISTA_FILE "steve.json"
+/// File location for flesh wound descriptions
 #define FLESH_SCAR_FILE "wounds/flesh_scar_desc.json"
+/// File location for bone wound descriptions
 #define BONE_SCAR_FILE "wounds/bone_scar_desc.json"
+/// File location for scar wound descriptions
 #define SCAR_LOC_FILE "wounds/scar_loc.json"
 
 //Fullscreen overlay resolution in tiles.
@@ -449,6 +454,9 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define CAMERA_SEE_GHOSTS_ORBIT 2
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
+
+/// Possible value of [/atom/movable/buckle_lying]. If set to a different (positive-or-zero) value than this, the buckling thing will force a lying angle on the buckled.
+#define NO_BUCKLE_LYING -1
 
 #define AREASELECT_CORNERA "corner A"
 #define AREASELECT_CORNERB "corner B"

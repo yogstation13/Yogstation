@@ -59,7 +59,7 @@
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/gun/ballistic/automatic/c20r
 	name = "\improper C-20r SMG"
@@ -223,7 +223,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw
 	name = "\improper L6 SAW"
-	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2506' engraved on the receiver below the designation."
+	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2503' engraved on the receiver below the designation."
 	icon_state = "l6"
 	item_state = "l6closedmag"
 	w_class = WEIGHT_CLASS_HUGE

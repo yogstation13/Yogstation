@@ -9,7 +9,7 @@
 	psi_addendum = " to activate and per second"
 	lucidity_price = 2
 
-/datum/action/innate/darkspawn/creep/IsAvailable()
+/datum/action/innate/darkspawn/creep/IsAvailable(feedback = FALSE)
 	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows))
 		return
 	return ..()

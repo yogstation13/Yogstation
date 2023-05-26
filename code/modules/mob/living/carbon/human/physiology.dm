@@ -29,5 +29,7 @@
 	var/punchdamagelow_bonus = 0		//Increased minimum punch damage
 	var/punchstunthreshold_bonus = 0	//Increased stun threshhold on punches so we don't get knockdown hands
 
+	var/crawl_speed = 0		// Movement speed modifier when crawling
+
 /datum/physiology/New()
 	armor = new

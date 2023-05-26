@@ -90,16 +90,6 @@
 	else
 		SSticker.mode_result = "loss - staff stopped the darkspawn"
 
-/datum/game_mode/proc/update_darkspawn_icons_added(datum/mind/darkspawn_mind)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_DARKSPAWN]
-	hud.join_hud(darkspawn_mind.current)
-	set_antag_hud(darkspawn_mind.current, ((isdarkspawn(darkspawn_mind.current)) ? "darkspawn" : "veil"))
-
-/datum/game_mode/proc/update_darkspawn_icons_removed(datum/mind/darkspawn_mind)
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_DARKSPAWN]
-	hud.leave_hud(darkspawn_mind.current)
-	set_antag_hud(darkspawn_mind.current, null)
-
 /mob/living/proc/add_darkspawn()
 	if(!istype(mind))
 		return FALSE

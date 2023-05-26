@@ -347,6 +347,9 @@
 #undef RESIN_LAUNCHER
 #undef RESIN_FOAM
 
+/datum/action/item_action/activate_injector
+	name = "Activate Injector"
+
 /obj/item/reagent_containers/chemtank
 	name = "backpack chemical injector"
 	desc = "A chemical autoinjector that can be carried on your back."
