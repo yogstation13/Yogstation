@@ -50,7 +50,7 @@
 /obj/item/reagent_containers/syringe/attackby(obj/item/I, mob/user, params)
 	return
 
-/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user , proximity)
+/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(busy)
 		return
@@ -59,16 +59,9 @@
 	if(!target.reagents)
 		return
 
-	var/mob/living/L
-	if(isliving(target))
-		L = target
-		if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
-			return
-
 	// chance of monkey retaliation
 	if(ismonkey(target) && prob(MONKEY_SYRINGE_RETALIATION_PROB))
-		var/mob/living/carbon/monkey/M
-		M = target
+		var/mob/living/carbon/monkey/M = target
 		M.retaliate(user)
 
 	switch(mode)
@@ -78,7 +71,8 @@
 				to_chat(user, span_notice("The syringe is full."))
 				return
 
-			if(L) //living mob
+			if(isliving(target)) //living mob
+				var/mob/living/L = target
 				var/drawn_amount = reagents.maximum_volume - reagents.total_volume
 				if(target != user)
 					target.visible_message(span_danger("[user] is trying to take a blood sample from [target]!"), \
@@ -120,7 +114,7 @@
 				to_chat(user, span_notice("[src] is empty."))
 				return
 
-			if(!L && !target.is_injectable(user)) //only checks on non-living mobs, due to how can_inject() handles
+			if(!isliving(target) && !target.is_injectable(user)) //only checks on non-living mobs, due to how can_inject() handles
 				to_chat(user, span_warning("You cannot directly fill [target]!"))
 				return
 
@@ -128,7 +122,9 @@
 				to_chat(user, span_notice("[target] is full."))
 				return
 
-			if(L) //living mob
+			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+			if(isliving(target)) //living mob
+				var/mob/living/L = target
 				if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
 					return
 				if(L != user)
@@ -164,8 +160,7 @@
 					log_combat(user, L, "injected", src, addition="which had [contained]")
 				else
 					L.log_message("injected themselves ([contained]) with [src.name]", LOG_ATTACK, color="orange")
-			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
-			reagents.reaction(L, INJECT, fraction)
+				reagents.reaction(L, INJECT, fraction)
 			reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 			to_chat(user, span_notice("You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units."))
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)

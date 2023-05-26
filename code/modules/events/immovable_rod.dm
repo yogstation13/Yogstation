@@ -50,7 +50,6 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	density = TRUE
 	anchored = TRUE
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
-	var/mob/living/wizard
 	var/z_original = 0
 	var/destination
 	var/notify = TRUE
@@ -149,21 +148,34 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		L.ex_act(EXPLODE_HEAVY)
 
 /obj/effect/immovablerod/attack_hand(mob/living/user)
-	if(ishuman(user))
-		var/mob/living/carbon/human/U = user
-		if(U.job in list("Research Director"))
-			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
-			for(var/mob/M in urange(8, src))
-				if(!M.stat)
-					shake_camera(M, 2, 3)
-			if(wizard)
-				U.visible_message(span_boldwarning("[src] transforms into [wizard] as [U] suplexes them!"), span_warning("As you grab [src], it suddenly turns into [wizard] as you suplex them!"))
-				to_chat(wizard, span_boldwarning("You're suddenly jolted out of rod-form as [U] somehow manages to grab you, slamming you into the ground!"))
-				wizard.Stun(60)
-				wizard.apply_damage(25, BRUTE)
-				qdel(src)
-			else
-				U.visible_message(span_boldwarning("[U] suplexes [src] into the ground!"), span_warning("You suplex [src] into the ground!"))
-				new /obj/structure/festivus/anchored(drop_location())
-				new /obj/effect/anomaly/flux(drop_location())
-				qdel(src)
+	. = ..()
+	if(.)
+		return
+
+	var/mob/living/carbon/human/U = user
+	if(!(U.job in list("Research Director")))
+		return
+	playsound(src, 'sound/effects/meteorimpact.ogg', 100, TRUE)
+	for(var/mob/living/nearby_mob in urange(8, src))
+		if(nearby_mob.stat != CONSCIOUS)
+			continue
+		shake_camera(nearby_mob, 2, 3)
+
+	return suplex_rod(user)
+
+/**
+ * Called when someone manages to suplex the rod.
+ *
+ * Arguments
+ * * strongman - the suplexer of the rod.
+ */
+/obj/effect/immovablerod/proc/suplex_rod(mob/living/strongman)
+//	strongman.client?.give_award(/datum/award/achievement/misc/feat_of_strength, strongman)
+	strongman.visible_message(
+		span_boldwarning("[strongman] suplexes [src] into the ground!"),
+		span_warning("You suplex [src] into the ground!")
+		)
+	new /obj/structure/festivus/anchored(drop_location())
+	new /obj/effect/anomaly/flux(drop_location())
+	qdel(src)
+	return TRUE

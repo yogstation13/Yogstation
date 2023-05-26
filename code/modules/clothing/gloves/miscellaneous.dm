@@ -141,7 +141,7 @@
 	desc = "Wristbands fashioned after one of the hungriest slaughter demons. Wearing these invokes a hunger in the wearer that can only be sated by bloodshed."
 	icon_state = "cuff"
 	item_state = "cuff"
-	var/obj/effect/proc_holder/swipe/swipe_ability
+	var/datum/action/cooldown/swipe/swipe_ability
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
 
 /obj/item/clothing/gloves/bracer/cuffs/Initialize()
@@ -151,52 +151,45 @@
 /obj/item/clothing/gloves/bracer/cuffs/equipped(mob/living/user, slot)
 	. = ..()
 	if(ishuman(user) && slot == ITEM_SLOT_GLOVES)
-		user.AddAbility(swipe_ability)
+		swipe_ability = new(user)
+		swipe_ability.Grant(user)
 
 /obj/item/clothing/gloves/bracer/cuffs/dropped(mob/living/user)
 	. = ..()
-	user.RemoveAbility(swipe_ability)
+	swipe_ability?.Remove(user)
 
-obj/effect/proc_holder/swipe
+/datum/action/cooldown/swipe //you stupid
 	name = "Swipe"
 	desc = "Swipe at a target area, dealing damage to heal yourself. Creatures take 60 damage while people and cyborgs take 20 damage. Living creatures hit with this ability will heal the user for 13 brute/burn/poison while dead ones heal for 20 and get butchered, while killing a creature with a swipe will heal the user for 33. People and cyborgs hit will heal for 5."
-	action_background_icon_state = "bg_demon"
-	action_icon = 'icons/mob/actions/actions_items.dmi'
-	action_icon_state = "cuff"
+	background_icon_state = "bg_demon"
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "cuff"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_target.dmi'
-	var/cooldown = 10 SECONDS
-	COOLDOWN_DECLARE(scan_cooldown)
+	cooldown_time = 10 SECONDS
 
-/obj/effect/proc_holder/swipe/on_lose(mob/living/user)
-	remove_ranged_ability()
-	
-/obj/effect/proc_holder/swipe/Click(location, control, params)
-	. = ..()
-	if(!isliving(usr))
-		return TRUE
-	var/mob/living/user = usr
-	fire(user)
+/datum/action/cooldown/swipe/Remove(mob/living/user)
+	unset_click_ability(user)
+	return ..()
 
-/obj/effect/proc_holder/swipe/fire(mob/living/carbon/user)
+/datum/action/cooldown/swipe/Trigger(mob/living/carbon/user)
+	if(!isliving(owner))
+		return FALSE
 	if(user.handcuffed) 
 		to_chat(user, span_danger("You can't attack while handcuffed!"))
-		return
-	if(active)
-		remove_ranged_ability(span_notice("You relax your arms."))
-	else
-		add_ranged_ability(user, span_notice("You ready your cuffs. <B>Left-click a creature or nearby location to swipe at it!</B>"), TRUE)
+		return FALSE
+	return ..()
 
-/obj/effect/proc_holder/swipe/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/swipe/InterceptClickOn(mob/living/caller, params, atom/target)
 	. = ..()
 	var/turf/open/T = get_turf(target)
 	var/mob/living/L = target
-	if(.)
+	if(!.)
 		return
-	if(ranged_ability_user.stat)
-		remove_ranged_ability()
+	if(owner.stat)
+		unset_click_ability(caller)
 		return
-	if(!COOLDOWN_FINISHED(src, scan_cooldown))
-		to_chat(ranged_ability_user, span_warning("Your cuffs aren't ready to do that yet. Give them some time to recharge!"))
+	if(!COOLDOWN_FINISHED(src, next_use_time))
+		to_chat(owner, span_warning("Your cuffs aren't ready to do that yet. Give them some time to recharge!"))
 		return
 	if(!istype(T))
 		return
@@ -206,7 +199,7 @@ obj/effect/proc_holder/swipe
 	new /obj/effect/temp_visual/bubblegum_hands/rightpaw(T)
 	new /obj/effect/temp_visual/bubblegum_hands/rightthumb(T)
 	to_chat(L, span_userdanger("Claws reach out from the floor and maul you!"))
-	to_chat(ranged_ability_user, "You summon claws at [L]'s location!")
+	to_chat(owner, "You summon claws at [L]'s location!")
 	L.visible_message(span_warning("[caller] rends [L]!"))
 	for(L in range(0,T))
 		playsound(T, 'sound/magic/demon_attack1.ogg', 80, 5, -1)
@@ -229,12 +222,11 @@ obj/effect/proc_holder/swipe
 			caller.adjustBruteLoss(-5)
 			caller.adjustFireLoss(-5)
 			caller.adjustToxLoss(-5)
-	COOLDOWN_START(src, scan_cooldown, cooldown)
-	addtimer(CALLBACK(src, PROC_REF(cooldown_over), ranged_ability_user), cooldown)
-	remove_ranged_ability()
+	addtimer(CALLBACK(src, PROC_REF(cooldown_over), owner), cooldown_time)
+	unset_click_ability(owner)
 	return TRUE
 
-/obj/effect/proc_holder/swipe/proc/cooldown_over()
+/datum/action/cooldown/swipe/proc/cooldown_over()
 	to_chat(usr, (span_notice("You're ready to swipe again!")))
 
 /obj/item/clothing/gloves/gauntlets

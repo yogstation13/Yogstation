@@ -346,7 +346,7 @@
 		set_panels(azimuth_target)
 	if(powernet && force_auto)
 		search_for_connected() //are we actually connected to anything useful?
-		if(connected_tracker && !isemptylist(connected_panels))
+		if(connected_tracker && length(connected_panels))
 			track = SOLAR_TRACK_AUTO
 			connected_tracker.sun_update(SSsun, SSsun.azimuth)
 	update_icon()

@@ -60,10 +60,10 @@
 /datum/action/innate/heretic_shatter
 	name = "Shattering Offer"
 	desc = "Smash your blade to release the entropic energies within it, teleporting you out of danger."
-	background_icon_state = "bg_ecult"
+	background_icon_state = "bg_heretic"
 	button_icon_state = "shatter"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE
 	var/mob/living/carbon/human/holder
 	var/obj/item/gun/magic/hook/sickly_blade/sword
 
@@ -73,7 +73,7 @@
 	//i know what im doing
 	return ..()
 
-/datum/action/innate/heretic_shatter/IsAvailable()
+/datum/action/innate/heretic_shatter/IsAvailable(feedback = FALSE)
 	if(IS_HERETIC(holder) || IS_HERETIC_MONSTER(holder))
 		return TRUE
 	else

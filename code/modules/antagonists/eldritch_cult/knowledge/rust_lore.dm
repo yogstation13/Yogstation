@@ -79,12 +79,12 @@
 		var/mob/living/living_target = target
 		living_target.apply_status_effect(/datum/status_effect/eldritch/rust)
 
-/datum/eldritch_knowledge/area_conversion
+/datum/eldritch_knowledge/spell/area_conversion
 	name = "Aggressive Spread"
 	gain_text = "It never succumbs in a day. Always, an infection takes hold at the base, and spreads. Rot and filth collapse bodies and structures alike."
 	desc = "An instant spell that spreads rust onto nearby tiles, destroying any already rusted."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/aoe_turf/rust_conversion)
+	spell_to_add = /datum/action/cooldown/spell/aoe/rust_conversion
 	route = PATH_RUST
 	tier = TIER_2
 
@@ -103,12 +103,12 @@
 		var/mob/living/carbon/carbon_target = target
 		carbon_target.reagents.add_reagent(/datum/reagent/eldritch, 2)
 
-/datum/eldritch_knowledge/entropic_plume
+/datum/eldritch_knowledge/spell/entropic_plume
 	name = "Entropic Plume"
 	gain_text = "The fumes that began to flow from the Corroded Sewers choked the River Krym dead. Legends still say the Vermin Duke is within its fogged tunnels, his form nearly petrified from age."
 	desc = "A cone spell that expels a befuddling plume that rusts tiles, then blinds, poisons, and forces targets to strike each other."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/cone/staggered/entropic_plume)
+	spell_to_add = /datum/action/cooldown/spell/cone/staggered/entropic_plume
 	route = PATH_RUST
 	tier = TIER_3
 

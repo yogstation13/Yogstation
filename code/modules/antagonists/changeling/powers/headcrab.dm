@@ -31,7 +31,7 @@
 			H.Stun(20)
 			H.blur_eyes(20)
 			eyes.applyOrganDamage(5)
-			H.confused += 3
+			H.adjust_confusion(3 SECONDS)
 	for(var/mob/living/silicon/S in range(2,user))
 		to_chat(S, span_userdanger("Your sensors are disabled by a shower of blood!"))
 		S.Paralyze(60)

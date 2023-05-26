@@ -61,7 +61,7 @@
 
 /obj/item/soulstone/attack(mob/living/carbon/human/M, mob/living/user)
 	if(!iscultist(user) && !iswizard(user) && !usability)
-		user.Unconscious(100)
+		user.Unconscious(10 SECONDS)
 		to_chat(user, span_userdanger("Your body is wracked with debilitating pain!"))
 		return
 	if(spent)
@@ -69,12 +69,17 @@
 		return
 	if(!ishuman(M))//If target is not a human.
 		return ..()
-	if(iscultist(M))
-		if(iscultist(user))
-			to_chat(user, span_cultlarge("\"Come now, do not capture your bretheren's soul.\""))
-			return
+	if(iscultist(M) && iscultist(user))
+		to_chat(user, span_cultlarge("\"Come now, do not capture your bretheren's soul.\""))
+		return
 	if(purified && iscultist(user))
 		to_chat(user, span_warning("Holy magic resides within the stone, you cannot use it."))
+		return
+	/*if(theme == THEME_HOLY && IS_CULTIST(user))
+		hot_potato(user)
+		return*/
+	if(HAS_TRAIT(M, TRAIT_NO_SOUL))
+		to_chat(user, span_warning("This body does not possess a soul to capture."))
 		return
 	log_combat(user, M, "captured [M.name]'s soul", src)
 	transfer_soul("VICTIM", M, user)
@@ -131,8 +136,9 @@
 		var/obj/item/soulstone/SS = O
 		if(!iscultist(user) && !iswizard(user) && !SS.purified)
 			to_chat(user, span_danger("An overwhelming feeling of dread comes over you as you attempt to place the soulstone into the shell. It would be wise to be rid of this quickly."))
-			user.Dizzy(30)
-			return
+			if(isliving(user))
+				var/mob/living/living_user = user
+				living_user.set_dizzy_if_lower(1 MINUTES)
 		if(SS.purified && iscultist(user))
 			to_chat(user, span_warning("Holy magic resides within the stone, you cannot use it."))
 			return
@@ -238,7 +244,6 @@
 				for(var/datum/mind/B in SSticker.mode.cult)
 					if(B == A.mind)
 						SSticker.mode.cult -= A.mind
-						SSticker.mode.update_cult_icons_removed(A.mind)
 				qdel(T)
 				qdel(src)
 			else

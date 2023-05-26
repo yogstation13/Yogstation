@@ -974,12 +974,12 @@ nobliumformation = 1001
 	if (location)
 		radiation_pulse(location, consumed_amount * 2, 2.5, TRUE, FALSE)
 		for(var/mob/living/carbon/L in location)
-			L.hallucination += (energy_released * 0.7) // Yogs -- fixed accidental "path * number"
-
-	var/new_heat_capacity = air.heat_capacity()
-	if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-		air.set_temperature(max((old_temperature * old_heat_capacity + energy_released) / new_heat_capacity, TCMB))
-
+			L.adjust_hallucinations(air.get_moles(/datum/gas/bz) * 0.7) // Yogs -- fixed accidental "path * number"
+	energy_released += 100
+	if(energy_released)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.set_temperature(max((old_temperature * old_heat_capacity + energy_released) / new_heat_capacity, TCMB))
 	return REACTING
 
 /datum/gas_reaction/pluonium_tritium_response

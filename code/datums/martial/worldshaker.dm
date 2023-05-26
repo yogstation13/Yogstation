@@ -449,15 +449,15 @@
 /datum/action/cooldown/worldstomp
 	name = "Worldstomp"
 	desc = "Put all your weight and strength into a singular stomp."
-	icon_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	button_icon_state = "lightning"
 	background_icon_state = "bg_default"
-	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
 	var/datum/martial_art/worldshaker/linked_martial
 	cooldown_time = COOLDOWN_STOMP
 	var/charging = FALSE
 
-/datum/action/cooldown/worldstomp/IsAvailable()
+/datum/action/cooldown/worldstomp/IsAvailable(feedback = FALSE)
 	if(!linked_martial || !linked_martial.can_use(owner))
 		return FALSE
 	return ..()

@@ -1,6 +1,7 @@
 /datum/antagonist/veil
 	name = "Darkspawn Veil"
 	job_rank = ROLE_DARKSPAWN
+	antag_hud_name = "veil"
 	roundend_category = "veils"
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall
@@ -8,14 +9,12 @@
 
 /datum/antagonist/veil/on_gain()
 	. = ..()
-	SSticker.mode.update_darkspawn_icons_added(owner)
 	SSticker.mode.veils += owner
 	owner.special_role = "veil"
 	message_admins("[key_name_admin(owner.current)] was veiled by a darkspawn!")
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
 
 /datum/antagonist/veil/on_removal()
-	SSticker.mode.update_darkspawn_icons_removed(owner)
 	SSticker.mode.veils -= owner
 	message_admins("[key_name_admin(owner.current)] was deveiled!")
 	log_game("[key_name(owner.current)] was deveiled!")
@@ -32,13 +31,16 @@
 	return ..()
 
 /datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
-	mob_override.maxHealth -= 40
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.maxHealth -= 40
 	veil_sigils = mutable_appearance('yogstation/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
-	mob_override.add_overlay(veil_sigils)
+	current_mob.add_overlay(veil_sigils)
+	add_team_hud(current_mob, /datum/antagonist/darkspawn)
 
 /datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
-	mob_override.maxHealth += 40
-	mob_override.cut_overlay(veil_sigils)
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.maxHealth += 40
+	current_mob.cut_overlay(veil_sigils)
 	QDEL_NULL(veil_sigils)
 
 /datum/antagonist/veil/greet()

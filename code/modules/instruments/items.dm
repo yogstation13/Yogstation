@@ -213,6 +213,17 @@
 	icon_state = "recorder"
 	allowed_instrument_ids = "recorder"
 
+/datum/action/item_action/instrument
+	name = "Use Instrument"
+	desc = "Use the instrument specified."
+
+/datum/action/item_action/instrument/Trigger()
+	if(istype(target, /obj/item/instrument))
+		var/obj/item/instrument/I = target
+		I.interact(usr)
+		return
+	return ..()
+
 /obj/item/instrument/harmonica
 	name = "harmonica"
 	desc = "For when you get a bad case of the space blues."

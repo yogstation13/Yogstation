@@ -338,7 +338,7 @@
 
 /obj/item/twohanded/fireaxe/energy/attack(mob/living/M, mob/living/user)
 	..()
-	M.IgniteMob() // Ignites you if you're flammable
+	M.ignite_mob() // Ignites you if you're flammable
 
 /obj/item/twohanded/fireaxe/energy/afterattack(atom/A, mob/user, proximity)
 	. = ..()
@@ -699,6 +699,10 @@
 		qdel(src)
 
 // CHAINSAW
+
+/datum/action/item_action/startchainsaw
+	name = "Pull The Starting Cord"
+
 /obj/item/twohanded/required/chainsaw
 	name = "chainsaw"
 	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
@@ -755,7 +759,7 @@
 		user.update_inv_hands()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/twohanded/required/chainsaw/doomslayer
 	name = "THE GREAT COMMUNICATOR"
@@ -936,6 +940,19 @@
 /obj/item/twohanded/vibro_weapon/update_icon()
 	icon_state = "hfrequency[wielded]"
 
+/obj/item/twohanded/vibro_weapon/wizard
+	desc = "A blade that was mastercrafted by a legendary blacksmith. Its' enchantments let it slash through anything."
+	force = 8
+	throwforce = 20
+	wound_bonus = 20
+	bare_wound_bonus = 25
+
+/obj/item/twohanded/vibro_weapon/wizard/wizard/attack_self(mob/user, modifiers)
+	if(!iswizard(user))
+		balloon_alert(user, "you're too weak!")
+		return
+	return ..()
+
 /*
  * Bone Axe
  */
@@ -1059,6 +1076,14 @@
 /*
  * Vxtvul Hammer
  */
+
+/datum/action/item_action/charge_hammer
+	name = "Charge the Blast Pads"
+
+/datum/action/item_action/charge_hammer/Trigger()
+	var/obj/item/twohanded/vxtvulhammer/vxtvulhammer = target
+	if(istype(vxtvulhammer))
+		vxtvulhammer.charge_hammer(owner)
 
 /obj/item/twohanded/vxtvulhammer
 	icon = 'icons/obj/weapons/misc.dmi'

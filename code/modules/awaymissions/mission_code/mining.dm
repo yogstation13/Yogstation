@@ -13,7 +13,7 @@
 	mask = /obj/item/clothing/mask/gas/explorer
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/tank/internals/oxygen
-	internals_slot = SLOT_S_STORE
+	internals_slot = SLOT_SUIT_STORE
 	backpack_contents = list(
 		/obj/item/gun/energy/kinetic_accelerator=2)
 
@@ -197,7 +197,7 @@
 		/obj/item/reagent_containers/glass/bottle/potion/flight=1,
 		/obj/item/organ/heart/cursed/wizard=1,
 		/obj/item/immortality_talisman=1,
-		/obj/item/book/granter/spell/summonitem=1,
+		/obj/item/book/granter/action/spell/summonitem=1,
 		/obj/item/extinguisher=1)
 
 /datum/component/spawner/megafauna

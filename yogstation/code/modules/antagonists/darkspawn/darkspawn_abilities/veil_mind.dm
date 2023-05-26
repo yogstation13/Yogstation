@@ -4,7 +4,7 @@
 	id = "veil_mind"
 	desc = "Converts nearby eligible targets into veils. To be eligible, they must be alive and recently drained by Devour Will."
 	button_icon_state = "veil_mind"
-	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	psi_cost = 60 //since this is only useful when cast directly after a succ it should be pretty expensive
 	lucidity_price = 2
 
@@ -41,5 +41,5 @@
 				else
 					to_chat(L, span_boldwarning("...and it scrambles your thoughts!"))
 					L.dir = pick(GLOB.cardinals)
-					L.confused += 2
+					L.adjust_confusion(2 SECONDS)
 	return TRUE
