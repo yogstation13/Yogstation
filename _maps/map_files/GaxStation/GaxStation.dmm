@@ -44776,8 +44776,7 @@
 /area/quartermaster/storage)
 "vuM" = (
 /turf/open/floor/wood{
-	icon_state = "wood-broken6";
-	tag = "icon-wood-broken6"
+	icon_state = "wood-broken6"
 	},
 /area/maintenance/department/science)
 "vuO" = (
