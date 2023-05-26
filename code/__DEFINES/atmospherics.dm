@@ -110,9 +110,18 @@
 
 //REACTIONS
 //return values for reactions (bitflags)
-#define NO_REACTION		0
-#define REACTING		1
-#define STOP_REACTIONS 	2
+///The gas mixture is not reacting
+#define NO_REACTION 0
+///The gas mixture is reacting
+#define REACTING 1
+///The gas mixture is able to stop all reactions
+#define STOP_REACTIONS 2
+
+//Fusion
+///Maximum instability before the reaction goes endothermic
+#define FUSION_INSTABILITY_ENDOTHERMALITY_HFR 4
+///Maximum reachable fusion temperature
+#define FUSION_MAXIMUM_TEMPERATURE 1e8
 
 // Pressure limits.
 /// This determins at what pressure the ultra-high pressure red icon is displayed. (This one is set as a constant)
@@ -262,15 +271,13 @@
 #define ATMOS_TANK_H2				"hydrogen=100000;TEMP=293.15"
 #define ATMOS_TANK_HYPERNOBLIUM		"nob=100000;TEMP=293.15"
 #define ATMOS_TANK_MIASMA			"miasma=100000;TEMP=293.15"
-#define ATMOS_TANK_NO2				"no2=100000;TEMP=293.15"
+#define ATMOS_TANK_NITRIUM "nitrium=100000;TEMP=293.15"
 #define ATMOS_TANK_PLUOXIUM			"pluox=100000;TEMP=293.15"
-#define ATMOS_TANK_pluonium	"pluonium=100000;TEMP=293.15"
-#define ATMOS_TANK_STIMULUM			"stim=100000;TEMP=293.15"
+#define ATMOS_TANK_PLUONIUM	"pluonium=100000;TEMP=293.15"
 #define ATMOS_TANK_TRITIUM			"tritium=100000;TEMP=293.15"
 #define ATMOS_TANK_H2O				"water_vapor=100000;TEMP=293.15"
 #define ATMOS_TANK_ZAUKER			"zauker=100000;TEMP=293.15"
-#define ATMOS_TANK_HELIUM			"helium=100000;TEMP=293.15"
-#define ATMOS_TANK_ANTINOBLIUM		"antinoblium=100000;TEMP=293.15"
+#define ATMOS_TANK_ANTINOBLIUM "antinoblium=100000;TEMP=293.15"
 #define ATMOS_TANK_AIRMIX			"o2=2644;n2=10580;TEMP=293.15"
 
 //LAVALAND
@@ -338,9 +345,9 @@
 #define ATMOS_GAS_MONITOR_OUTPUT_MIASMA "miasma_out"
 #define ATMOS_GAS_MONITOR_SENSOR_MIASMA "miasma_sensor"
 
-#define ATMOS_GAS_MONITOR_INPUT_NO2 "no2_in"
-#define ATMOS_GAS_MONITOR_OUTPUT_NO2 "no2_out"
-#define ATMOS_GAS_MONITOR_SENSOR_NO2 "no2_sensor"
+#define ATMOS_GAS_MONITOR_INPUT_NITRIUM "nitrium_in"
+#define ATMOS_GAS_MONITOR_OUTPUT_NITRIUM "nitrium_out"
+#define ATMOS_GAS_MONITOR_SENSOR_NITRIUM "nitrium_sensor"
 
 #define ATMOS_GAS_MONITOR_INPUT_PLUOXIUM "pluoxium_in"
 #define ATMOS_GAS_MONITOR_OUTPUT_PLUOXIUM "pluoxium_out"
@@ -349,10 +356,6 @@
 #define ATMOS_GAS_MONITOR_INPUT_pluonium "proto-nitrate_in"
 #define ATMOS_GAS_MONITOR_OUTPUT_pluonium "proto-nitrate_out"
 #define ATMOS_GAS_MONITOR_SENSOR_pluonium "proto-nitrate_sensor"
-
-#define ATMOS_GAS_MONITOR_INPUT_STIMULUM "stimulum_in"
-#define ATMOS_GAS_MONITOR_OUTPUT_STIMULUM "stimulum_out"
-#define ATMOS_GAS_MONITOR_SENSOR_STIMULUM "stimulum_sensor"
 
 #define ATMOS_GAS_MONITOR_INPUT_TRITIUM "tritium_in"
 #define ATMOS_GAS_MONITOR_OUTPUT_TRITIUM "tritium_out"
@@ -365,10 +368,6 @@
 #define ATMOS_GAS_MONITOR_INPUT_ZAUKER "zauker_in"
 #define ATMOS_GAS_MONITOR_OUTPUT_ZAUKER "zauker_out"
 #define ATMOS_GAS_MONITOR_SENSOR_ZAUKER "zauker_sensor"
-
-#define ATMOS_GAS_MONITOR_INPUT_HELIUM "helium_in"
-#define ATMOS_GAS_MONITOR_OUTPUT_HELIUM "helium_out"
-#define ATMOS_GAS_MONITOR_SENSOR_HELIUM "helium_sensor"
 
 #define ATMOS_GAS_MONITOR_INPUT_ANTINOBLIUM "antinoblium_in"
 #define ATMOS_GAS_MONITOR_OUTPUT_ANTINOBLIUM "antinoblium_out"
@@ -470,7 +469,7 @@ GLOBAL_VAR(atmos_extools_initialized) // this must be an uninitialized (null) on
 #define ATMOS_EXTOOLS_CHECK if(!GLOB.atmos_extools_initialized){\
 	GLOB.atmos_extools_initialized=TRUE;\
 	if(fexists(EXTOOLS)){\
-		var/result = call(EXTOOLS,"init_monstermos")();\
+		var/result = LIBCALL(EXTOOLS,"init_monstermos")();\
 		if(result != "ok") {CRASH(result);}\
 	} else {\
 		CRASH("byond-extools.dll does not exist!");\

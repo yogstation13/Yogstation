@@ -50,17 +50,17 @@
 		var/pukeprob = 5 + 0.05 * H.disgust
 		if(H.disgust >= DISGUST_LEVEL_GROSS)
 			if(prob(10))
-				H.stuttering += 1
-				H.confused += 2
+				H.adjust_stutter(1 SECONDS)
+				H.adjust_confusion(2 SECONDS)
 			if(prob(10) && !H.stat)
 				to_chat(H, span_warning("You feel kind of iffy..."))
-			H.jitteriness = max(H.jitteriness - 3, 0)
+			H.adjust_jitter(-6 SECONDS)
 		if(H.disgust >= DISGUST_LEVEL_VERYGROSS)
 			if(prob(pukeprob)) //iT hAndLeS mOrE ThaN PukInG
-				H.confused += 2.5
-				H.stuttering += 1
+				H.adjust_confusion(2.5 SECONDS)
+				H.adjust_stutter(1 SECONDS)
 				H.vomit(10, 0, 1, 0, 1, 0)
-			H.Dizzy(5)
+			H.adjust_dizzy(5 SECONDS)
 		if(H.disgust >= DISGUST_LEVEL_DISGUSTED)
 			if(prob(25))
 				H.blur_eyes(3) //We need to add more shit down here
@@ -94,16 +94,16 @@
 	name = "cybernetic stomach"
 	desc = "A cybernetic metabolic furnace that can be connected to a digestive system in place of a stomach."
 	icon_state = "stomach-c"
-	maxHealth = 1.2 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
-	disgust_metabolism = 1.2	//Slightly more efficient at stabilizing itself
+	disgust_metabolism = 1.5	//Slightly more efficient at stabilizing itself
 
 /obj/item/organ/stomach/cybernetic/upgraded
 	name = "upgraded cybernetic stomach"
 	desc = "An upgraded metabolic furnace that can be connected to a digestive system in place of a stomach. Both hardier and capable of storing excess nutrition if the body is already well sustained."
 	icon_state = "stomach-c-u"
-	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD
 	var/nutriment_stashed = 0
 	disgust_metabolism = 2		//Twice as efficient as stabilizing itself
 
@@ -152,7 +152,7 @@
 
 /obj/item/organ/stomach/cell/Insert(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
-	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
+	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 
 /obj/item/organ/stomach/cell/Remove(mob/living/carbon/M, special)
 	. = ..()
@@ -180,8 +180,8 @@
 
 /obj/item/organ/stomach/ethereal/Insert(mob/living/carbon/M, special = 0)
 	..()
-	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
-	RegisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT, .proc/on_electrocute)
+	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
+	RegisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(on_electrocute))
 
 /obj/item/organ/stomach/ethereal/Remove(mob/living/carbon/M, special = 0)
 	UnregisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)

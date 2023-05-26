@@ -35,11 +35,11 @@
 /datum/martial_art/plasma_fist/proc/Tornado(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.say("TORNADO SWEEP!", forced="plasma fist")
 	TornadoAnimate(A)
-	var/obj/effect/proc_holder/spell/aoe_turf/repulse/R = new(null)
-	var/list/turfs = list()
-	for(var/turf/T in range(1,A))
-		turfs.Add(T)
-	R.cast(turfs)
+
+	var/datum/action/cooldown/spell/aoe/repulse/tornado_spell = new(src)
+	tornado_spell.cast(A)
+	qdel(tornado_spell)
+
 	log_combat(A, D, "tornado sweeped(Plasma Fist)")
 	return
 

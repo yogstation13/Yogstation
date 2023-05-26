@@ -39,7 +39,7 @@
 /obj/item/organ/heart/Remove(mob/living/carbon/M, special = 0)
 	..()
 	if(!special)
-		addtimer(CALLBACK(src, .proc/stop_if_unowned), 120)
+		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 120)
 
 /obj/item/organ/heart/proc/stop_if_unowned()
 	if(!owner)
@@ -51,7 +51,7 @@
 		user.visible_message("<span class='notice'>[user] squeezes [src] to \
 			make it beat again!</span>",span_notice("You squeeze [src] to make it beat again!"))
 		Restart()
-		addtimer(CALLBACK(src, .proc/stop_if_unowned), 80)
+		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 80)
 
 /obj/item/organ/heart/proc/Stop()
 	beating = 0
@@ -88,7 +88,7 @@
 			H.stop_sound_channel(CHANNEL_HEARTBEAT)
 			beat = BEAT_NONE
 
-		if(H.jitteriness)
+		if(owner.has_status_effect(/datum/status_effect/jitter))
 			if(H.health > HEALTH_THRESHOLD_FULLCRIT && (!beat || beat == BEAT_SLOW))
 				H.playsound_local(get_turf(H),fastbeat,40,0, channel = CHANNEL_HEARTBEAT)
 				beat = BEAT_FAST
@@ -204,7 +204,7 @@
 	fakingit = FALSE
 	return ..()
 
-/obj/item/organ/heart/vampheart/proc/FakeStart()
+/obj/item/organ/heart/vampheart/proc/fake_start_heart()
 	fakingit = TRUE // We're pretending to beat, to fool people.
 
 /// Bloodsuckers don't have a heartbeat at all when stopped (default is "an unstable")
@@ -231,22 +231,28 @@
 	name = "cybernetic heart"
 	desc = "An electronic device designed to mimic the functions of an organic human heart."
 	icon_state = "heart-c"
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 2
 	organ_flags = ORGAN_SYNTHETIC
+	var/restartTimer = 10 SECONDS
 
-/obj/item/organ/heart/cybernetic/emp_act()
+/obj/item/organ/heart/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
 	Stop()
+	addtimer(CALLBACK(src, PROC_REF(Restart)), restartTimer/severity) //Can restart itself after an EMP so it isnt an insta death
 
 /obj/item/organ/heart/cybernetic/upgraded
 	name = "upgraded cybernetic heart"
 	desc = "An electronic device designed to mimic the functions of an organic human heart. Fitted with a blood synthesizer, it also holds an emergency epinephrine synthesizer that supplies a dosage if the body is critically damaged."
 	icon_state = "heart-c-u"
-	organ_efficiency = 1.5
+	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 3
 	var/dose_available = TRUE
 	var/rid = /datum/reagent/medicine/epinephrine
 	var/ramount = 10
+	restartTimer = 5 SECONDS //restarts faster
 
 /obj/item/organ/heart/cybernetic/upgraded/on_life()
 	. = ..()
@@ -258,10 +264,6 @@
 	dose_available = FALSE
 	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
 
-/obj/item/organ/heart/cybernetic/upgraded/emp_act()
-	. = ..()
-	addtimer(CALLBACK(src, .proc/Restart), 8 SECONDS) //Can restart itself after an EMP so it isnt an insta death
-
 /obj/item/organ/heart/cybernetic/ipc
 	desc = "An electronic device that appears to mimic the functions of an organic heart."
 
@@ -270,7 +272,7 @@
 		return
 	. = ..()
 	to_chat(owner, "<span class='warning'>Alert: Cybernetic heart failed one heartbeat</span>")
-	addtimer(CALLBACK(src, .proc/Restart), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Restart)), 10 SECONDS)
 
 /obj/item/organ/heart/freedom
 	name = "heart of freedom"

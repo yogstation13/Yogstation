@@ -17,7 +17,7 @@
 	affecting.receive_damage(clamp(brute_dam/2 * affecting.body_damage_coeff, 15, 50), clamp(burn_dam/2 * affecting.body_damage_coeff, 0, 50), wound_bonus=CANT_WOUND) //Damage the chest based on limb's existing damage
 	if(!silent)
 		C.visible_message(span_danger("<B>[C]'s [name] is violently dismembered!</B>"))
-	INVOKE_ASYNC(C, /mob.proc/emote, "scream")
+	INVOKE_ASYNC(C, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(get_turf(C), 'sound/effects/dismember.ogg', 80, TRUE)
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	drop_limb()
@@ -200,7 +200,7 @@
 		LB.brainmob = brainmob
 		brainmob = null
 		LB.brainmob.forceMove(LB)
-		LB.brainmob.stat = DEAD
+		LB.brainmob.set_stat(DEAD)
 
 /obj/item/organ/eyes/transfer_to_limb(obj/item/bodypart/head/LB, mob/living/carbon/human/C)
 	LB.eyes = src
@@ -225,7 +225,7 @@
 		if(C.handcuffed)
 			C.handcuffed.forceMove(drop_location())
 			C.handcuffed.dropped(C)
-			C.handcuffed = null
+			C.set_handcuffed(null)
 			C.update_handcuffed()
 		if(C.hud_used)
 			var/atom/movable/screen/inventory/hand/R = C.hud_used.hand_slots["[held_index]"]
@@ -243,7 +243,7 @@
 		if(C.handcuffed)
 			C.handcuffed.forceMove(drop_location())
 			C.handcuffed.dropped(C)
-			C.handcuffed = null
+			C.set_handcuffed(null)
 			C.update_handcuffed()
 		if(C.hud_used)
 			var/atom/movable/screen/inventory/hand/L = C.hud_used.hand_slots["[held_index]"]

@@ -72,8 +72,8 @@
  */
 /datum/computer_file/program/supermatter_monitor/proc/set_signals()
 	if(active)
-		RegisterSignal(active, COMSIG_SUPERMATTER_DELAM_ALARM, .proc/send_alert, override = TRUE)
-		RegisterSignal(active, COMSIG_SUPERMATTER_DELAM_START_ALARM, .proc/send_start_alert, override = TRUE)
+		RegisterSignal(active, COMSIG_SUPERMATTER_DELAM_ALARM, PROC_REF(send_alert), override = TRUE)
+		RegisterSignal(active, COMSIG_SUPERMATTER_DELAM_START_ALARM, PROC_REF(send_start_alert), override = TRUE)
 
 /**
   * Removes the signal listener for Supermatter delaminations from the selected supermatter.

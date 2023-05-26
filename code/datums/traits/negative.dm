@@ -385,9 +385,9 @@
 	mob_trait = TRAIT_ANXIOUS
 
 /datum/quirk/social_anxiety/add()
-	RegisterSignal(quirk_holder, COMSIG_MOB_EYECONTACT, .proc/eye_contact)
-	RegisterSignal(quirk_holder, COMSIG_MOB_EXAMINATE, .proc/looks_at_floor)
-	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(quirk_holder, COMSIG_MOB_EYECONTACT, PROC_REF(eye_contact))
+	RegisterSignal(quirk_holder, COMSIG_MOB_EXAMINATE, PROC_REF(looks_at_floor))
+	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/quirk/social_anxiety/remove()
 	UnregisterSignal(quirk_holder, list(COMSIG_MOB_EYECONTACT, COMSIG_MOB_EXAMINATE, COMSIG_MOB_SAY))
@@ -420,7 +420,7 @@
 					break
 			if(prob(max(5,(nearby_people*12.5*moodmod)))) //Minimum 1/20 chance of stutter
 				// Add a short stutter, THEN treat our word
-				quirker.stuttering += max(3, quirker.stuttering)
+				quirker.adjust_stutter(0.5 SECONDS)
 				new_message += quirker.treat_message(word)
 
 			else
@@ -449,7 +449,7 @@
 	if(prob(85) || (istype(mind_check) && mind_check.mind))
 		return
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, quirk_holder, span_smallnotice("You make eye contact with [A].")), 3)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), quirk_holder, span_smallnotice("You make eye contact with [A].")), 3)
 
 /datum/quirk/social_anxiety/proc/eye_contact(datum/source, mob/living/other_mob, triggering_examiner)
 	var/mob/living/carbon/human/quirker = quirk_holder
@@ -463,17 +463,17 @@
 
 	switch(rand(1,3))
 		if(1)
-			quirker.Jitter(5)
+			quirker.adjust_jitter(5 SECONDS)
 			msg += "causing you to start fidgeting!"
 		if(2)
-			quirker.stuttering = max(3, quirker.stuttering)
+			quirker.adjust_stutter(3 SECONDS)
 			msg += "causing you to start stuttering!"
 		if(3)
 			quirker.Stun(2 SECONDS)
 			msg += "causing you to freeze up!"
 
 	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "anxiety_eyecontact", /datum/mood_event/anxiety_eyecontact)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, quirk_holder, span_userdanger("[msg]")), 3) // so the examine signal has time to fire and this will print after
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), quirk_holder, span_userdanger("[msg]")), 3) // so the examine signal has time to fire and this will print after
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/mood_event/anxiety_eyecontact
@@ -747,12 +747,12 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
 
-/datum/quirk/hemophilia //basically permanent heparin
+/datum/quirk/hemophilia //basically permanent weak heparin
 	name = "Hemophiliac"
 	desc = "You can't naturally clot bleeding wounds and bleed much more from them than most people, making even small cuts possibly life threatening."
 	icon = "droplet"
-	value = -6
-	mob_trait = TRAIT_BLOODY_MESS
+	value = -4
+	mob_trait = TRAIT_BLOODY_MESS_LITE
 	gain_text = span_danger("You feel like your blood is thin.")
 	lose_text = span_notice("You feel like your blood is of normal thickness once more.")
 	medical_record_text = "Patient appears unable to naturally form blood clots."
@@ -773,7 +773,7 @@
 	name = "Brain Damage"
 	desc = "The shuttle ride was a bit bumpy to the station."
 	icon = "brain"
-	value = -7
+	value = -6
 	gain_text = span_danger("Your head hurts.")
 	lose_text = span_notice("Your head feels good again.")
 	medical_record_text = "Patient appears to have brain damage."
@@ -782,7 +782,7 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/datum/brain_trauma/badtimes = list(BRAIN_TRAUMA_MILD, BRAIN_TRAUMA_SEVERE)
 	var/amount = 0 // Pray you dont get fucked
-	amount = rand(1, 4)
+	amount = rand(1, 3)
 
 	for(var/i = 0 to amount)
 		H.gain_trauma_type(pick(badtimes), TRAUMA_RESILIENCE_ABSOLUTE) // Mr bones wild rides takes no breaks

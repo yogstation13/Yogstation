@@ -36,14 +36,14 @@
 			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //See above
 			new /obj/item/flashlight/emp(src) //2 TC
 
-		if("bloodyspai") //32 TCish
+		if("bloodyspai") //30 TCish
 			new /obj/item/clothing/under/chameleon/syndicate(src) //1 TC, has only two parts of the massive kit
 			new /obj/item/clothing/mask/chameleon/syndicate(src) //See above
 			new /obj/item/card/id/syndicate(src) //2 TC
 			new /obj/item/multitool/ai_detect(src) //1 TC
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/reagent_containers/syringe/mulligan(src) //4 TC
-			new /obj/item/switchblade/backstab(src) //5 TC
+			new /obj/item/switchblade/backstab(src) //3 TC
 			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/chameleon(src) //7 TC
@@ -181,9 +181,9 @@
 			new /obj/item/clothing/suit/yogs/armor/sith_suit(src) //See above
 			new /obj/item/clothing/shoes/combat(src) //See above
 			new /obj/item/clothing/gloves/combat(src) //Maybe 1 TC, so you don't shock yourself
-			new /obj/item/book/granter/spell/lightningbolt(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that doesn't require robes and provides ranged potential
-			new /obj/item/book/granter/spell/forcewall(src) //It has the word force in it? But more importantly, it doesn't require robes and it's 1 SP and it's VERY good defense
-			new /obj/item/book/granter/spell/summonitem(src) //So you can throw your lightsaber and call it back. A 1 SP cost spell that doesn't require robes
+			new /obj/item/book/granter/action/spell/lightningbolt(src) //Lightning bolt, LIGHTNING BOLT. A 2 SP cost spell that doesn't require robes and provides ranged potential
+			new /obj/item/book/granter/action/spell/forcewall(src) //It has the word force in it? But more importantly, it doesn't require robes and it's 1 SP and it's VERY good defense
+			new /obj/item/book/granter/action/spell/summonitem(src) //So you can throw your lightsaber and call it back. A 1 SP cost spell that doesn't require robes
 
 		if("white_whale_holy_grail") //Unique items that don't appear anywhere else, more than 100 carps or your TC back
 			new /obj/item/pneumatic_cannon/speargun(src)
@@ -567,6 +567,13 @@
 	for(var/i in 1 to 2)
 		new /obj/item/ammo_box/magazine/m10mm(src)
 
+/obj/item/storage/box/syndie_kit/pistolcaselessammo
+	real_name = "10mm caseless magazine box"
+
+/obj/item/storage/box/syndie_kit/pistolcaselessammo/PopulateContents()
+	for(var/i in 1 to 2)
+		new /obj/item/ammo_box/magazine/m10mm/cs(src)
+
 /obj/item/storage/box/syndie_kit/pistolsleepyammo
 	real_name = "10mm soporific magazine box"
 
@@ -640,7 +647,7 @@
 	new /obj/item/radio/headset/chameleon/syndicate(src)
 	new /obj/item/stamp/chameleon/syndicate(src)
 	new /obj/item/pda/chameleon/syndicate(src)
-	
+
 /obj/item/storage/box/syndie_kit/chameleon/plasmaman
 	real_name = "chameleon kit"
 
@@ -685,8 +692,8 @@
 	new /obj/item/gun/ballistic/revolver/reverse(src)
 
 /obj/item/storage/box/syndie_kit/mimery/PopulateContents()
-	new /obj/item/book/granter/spell/mimery_blockade(src)
-	new /obj/item/book/granter/spell/mimery_guns(src)
+	new /obj/item/book/granter/action/spell/mime/mimery_blockade(src)
+	new /obj/item/book/granter/action/spell/mime/mimery_guns(src)
 
 /obj/item/storage/box/syndie_kit/centcom_costume/PopulateContents()
 	new /obj/item/clothing/under/rank/centcom_officer(src)
@@ -769,3 +776,11 @@
 
 /obj/item/storage/box/syndie_kit/emp_shield/PopulateContents()
 	new /obj/item/implanter/empshield(src)
+
+/obj/item/storage/box/syndie_kit/prisonerbag
+	real_name = "Prisoner kit"
+
+/obj/item/storage/box/syndie_kit/prisonerbag/PopulateContents()
+	var/obj/item/bodybag/environmental/prisoner/syndicate/pbag = new(src)
+	var/obj/item/syndicate_prisoner_remote/remote = new(src)
+	remote.bag = pbag

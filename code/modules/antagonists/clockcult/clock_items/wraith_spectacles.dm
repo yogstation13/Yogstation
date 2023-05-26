@@ -49,7 +49,7 @@
 /obj/item/clothing/glasses/wraith_spectacles/proc/blind_cultist(mob/living/victim)
 	var/obj/item/organ/eyes/eyes = victim.getorganslot(ORGAN_SLOT_EYES)
 	if(iscultist(victim))
-		to_chat(victim, "[span_heavy_brass("\"It looks like Nar-Sie's dogs really don't value their eyes.\"")]")
+		to_chat(victim, "[span_heavy_brass("\"It looks like Nar'sie's dogs really don't value their eyes.\"")]")
 		to_chat(victim, span_userdanger("Your eyes explode with horrific pain!"))
 		victim.emote("scream")
 		eyes.applyOrganDamage(eyes.maxHealth)

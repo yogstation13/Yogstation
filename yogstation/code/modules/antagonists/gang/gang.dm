@@ -1,6 +1,7 @@
 /datum/antagonist/gang
 	name = "Gangster"
 	roundend_category = "gangsters"
+	antag_hud_name = "hud_gangster"
 	can_coexist_with_others = FALSE
 	job_rank = ROLE_GANG
 	antagpanel_category = "Gang"
@@ -16,12 +17,7 @@
 			return FALSE
 
 /datum/antagonist/gang/apply_innate_effects(mob/living/mob_override)
-	var/mob/living/M = mob_override || owner.current
-	update_gang_icons_added(M)
-
-/datum/antagonist/gang/remove_innate_effects(mob/living/mob_override)
-	var/mob/living/M = mob_override || owner.current
-	update_gang_icons_removed(M)
+	add_team_hud(mob_override || owner.current, /datum/antagonist/gang)
 
 /datum/antagonist/gang/get_team()
 	return gang
@@ -56,22 +52,6 @@
 /datum/antagonist/gang/proc/equip_gang() // Bosses get equipped with their tools
 	return
 
-/datum/antagonist/gang/proc/update_gang_icons_added(mob/living/M)
-	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.hud_entry_num]
-	if(!ganghud)
-		ganghud = new/datum/atom_hud/antag/gang()
-		gang.hud_entry_num = GLOB.huds.len+1 // this is the index the gang hud will be added at
-		GLOB.huds += ganghud
-	ganghud.color = gang.color
-	ganghud.join_hud(M)
-	set_antag_hud(M,hud_type)
-
-/datum/antagonist/gang/proc/update_gang_icons_removed(mob/living/M)
-	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.hud_entry_num]
-	if(ganghud)
-		ganghud.leave_hud(M)
-		set_antag_hud(M, null)
-
 /datum/antagonist/gang/proc/can_be_converted(mob/living/candidate)
 	if(!candidate.mind)
 		return FALSE
@@ -98,11 +78,11 @@
 // Admin commands
 /datum/antagonist/gang/get_admin_commands()
 	. = ..()
-	.["Promote"] = CALLBACK(src,.proc/admin_promote)
-	.["Set Influence"] = CALLBACK(src, .proc/admin_adjust_influence)
-	.["Set Uniform Influence"] = CALLBACK(src, .proc/admin_adjust_uniform_influence)
+	.["Promote"] = CALLBACK(src, PROC_REF(admin_promote))
+	.["Set Influence"] = CALLBACK(src, PROC_REF(admin_adjust_influence))
+	.["Set Uniform Influence"] = CALLBACK(src, PROC_REF(admin_adjust_uniform_influence))
 	if(gang.domination_time != NOT_DOMINATING)
-		.["Set domination time left"] = CALLBACK(src, .proc/set_dom_time_left)
+		.["Set domination time left"] = CALLBACK(src, PROC_REF(set_dom_time_left))
 
 /datum/antagonist/gang/admin_add(datum/mind/new_owner,mob/admin)
 	var/new_or_existing = input(admin, "Which gang do you want to be assigned to the user?", "Gangs") as null|anything in list("New","Existing")
@@ -177,11 +157,7 @@
 	..()
 	if(gang)
 		gang.leaders += owner
-	var/mob/living/carbon/human/H = owner.current
-	if(istype(H))
-		if(owner.assigned_role == "Clown")
-			to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
-			H.dna.remove_mutation(CLOWNMUT)
+	handle_clown_mutation(owner.current, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 
 /datum/antagonist/gang/boss/on_removal()
 	if(gang)
@@ -251,9 +227,9 @@
 /datum/antagonist/gang/boss/get_admin_commands()
 	. = ..()
 	. -= "Promote"
-	.["Take gangtool"] = CALLBACK(src,.proc/admin_take_gangtool)
-	.["Give gangtool"] = CALLBACK(src,.proc/admin_give_gangtool)
-	.["Demote"] = CALLBACK(src,.proc/admin_demote)
+	.["Take gangtool"] = CALLBACK(src, PROC_REF(admin_take_gangtool))
+	.["Give gangtool"] = CALLBACK(src, PROC_REF(admin_give_gangtool))
+	.["Demote"] = CALLBACK(src, PROC_REF(admin_demote))
 
 /datum/antagonist/gang/boss/proc/demote()
 	var/old_gang = gang
@@ -333,7 +309,7 @@
 				CJ.add_antag_datum(bossdatum, src)
 				bossdatum.equip_gang()
 	next_point_time = world.time + INFLUENCE_INTERVAL
-	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
+	addtimer(CALLBACK(src, PROC_REF(handle_territories)), INFLUENCE_INTERVAL)
 
 /datum/team/gang/Destroy()
 	GLOB.gangs -= src
@@ -422,7 +398,7 @@
 		uniform_influence = new_uniform_influence
 		message += "Your gang now has <b>[influence] influence</b> and <b>[uniform_influence] supply points</b>.<BR>"
 	message_gangtools(message)
-	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
+	addtimer(CALLBACK(src, PROC_REF(handle_territories)), INFLUENCE_INTERVAL)
 
 /datum/team/gang/proc/total_claimable_territories()
 	var/list/valid_territories = list()

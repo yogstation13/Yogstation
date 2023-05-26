@@ -1,29 +1,6 @@
 /obj/item/organ/alien
 	icon_state = "xgibmid2"
 	visual = FALSE
-	var/list/alien_powers = list()
-
-/obj/item/organ/alien/Initialize()
-	. = ..()
-	for(var/A in alien_powers)
-		if(ispath(A))
-			alien_powers -= A
-			alien_powers += new A(src)
-
-/obj/item/organ/alien/Destroy()
-	QDEL_LIST(alien_powers)
-	return ..()
-
-/obj/item/organ/alien/Insert(mob/living/carbon/M, special = 0)
-	..()
-	for(var/obj/effect/proc_holder/alien/P in alien_powers)
-		M.AddAbility(P)
-
-
-/obj/item/organ/alien/Remove(mob/living/carbon/M, special = 0)
-	for(var/obj/effect/proc_holder/alien/P in alien_powers)
-		M.RemoveAbility(P)
-	..()
 
 /obj/item/organ/alien/prepare_eat()
 	var/obj/S = ..()
@@ -37,23 +14,31 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	zone = BODY_ZONE_CHEST
 	slot = "plasmavessel"
-	alien_powers = list(/obj/effect/proc_holder/alien/plant, /obj/effect/proc_holder/alien/transfer)
 
-	var/storedPlasma = 100
+	actions_types = list(
+		/datum/action/cooldown/alien/make_structure/plant_weeds,
+		/datum/action/cooldown/alien/transfer,
+	)
+
+	/// The current amount of stored plasma.
+	var/stored_plasma = 100
+	/// The maximum plasma this organ can store.
 	var/max_plasma = 250
+	/// The rate this organ regenerates its owners health at per damage type per second.
 	var/heal_rate = 5
+	/// The rate this organ regenerates plasma at per second.
 	var/plasma_rate = 10
 
 /obj/item/organ/alien/plasmavessel/prepare_eat()
 	var/obj/S = ..()
-	S.reagents.add_reagent(/datum/reagent/toxin/plasma, storedPlasma/10)
+	S.reagents.add_reagent(/datum/reagent/toxin/plasma, stored_plasma/10)
 	return S
 
 /obj/item/organ/alien/plasmavessel/large
 	name = "large plasma vessel"
 	icon_state = "plasma_large"
 	w_class = WEIGHT_CLASS_BULKY
-	storedPlasma = 200
+	stored_plasma = 200
 	max_plasma = 500
 	plasma_rate = 15
 
@@ -64,7 +49,7 @@
 	name = "small plasma vessel"
 	icon_state = "plasma_small"
 	w_class = WEIGHT_CLASS_SMALL
-	storedPlasma = 100
+	stored_plasma = 100
 	max_plasma = 150
 	plasma_rate = 5
 
@@ -73,12 +58,12 @@
 	icon_state = "plasma_tiny"
 	w_class = WEIGHT_CLASS_TINY
 	max_plasma = 100
-	alien_powers = list(/obj/effect/proc_holder/alien/transfer)
+	actions_types = list(/datum/action/cooldown/alien/transfer)
 
 /obj/item/organ/alien/plasmavessel/synthetic
 	name = "synthetic plasma vessel"
 	icon_state = "plasma-c"
-	storedPlasma = 50
+	stored_plasma = 50
 	max_plasma = 100
 
 /obj/item/organ/alien/plasmavessel/on_life()
@@ -110,7 +95,7 @@
 		var/mob/living/carbon/alien/A = M
 		A.updatePlasmaDisplay()
 
-#define QUEEN_DEATH_DEBUFF_DURATION 2400
+#define QUEEN_DEATH_DEBUFF_DURATION 4 MINUTES
 
 /obj/item/organ/alien/hivenode
 	name = "hive node"
@@ -118,8 +103,9 @@
 	zone = BODY_ZONE_HEAD
 	slot = "hivenode"
 	w_class = WEIGHT_CLASS_TINY
-	var/recent_queen_death = 0 //Indicates if the queen died recently, aliens are heavily weakened while this is active.
-	alien_powers = list(/obj/effect/proc_holder/alien/whisper)
+	actions_types = list(/datum/action/cooldown/alien/whisper)
+	/// Indicates if the queen died recently, aliens are heavily weakened while this is active.
+	var/recent_queen_death = FALSE
 
 /obj/item/organ/alien/hivenode/Insert(mob/living/carbon/M, special = 0)
 	..()
@@ -144,13 +130,13 @@
 		owner.emote("scream")
 		owner.Paralyze(100)
 
-	owner.jitteriness += 30
-	owner.confused += 30
-	owner.stuttering += 30
+	owner.adjust_jitter(30 SECONDS)
+	owner.adjust_confusion(30 SECONDS)
+	owner.adjust_stutter(30 SECONDS)
 
 	recent_queen_death = 1
 	owner.throw_alert("alien_noqueen", /atom/movable/screen/alert/alien_vulnerable)
-	addtimer(CALLBACK(src, .proc/clear_queen_death), QUEEN_DEATH_DEBUFF_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(clear_queen_death)), QUEEN_DEATH_DEBUFF_DURATION)
 
 
 /obj/item/organ/alien/hivenode/proc/clear_queen_death()
@@ -169,7 +155,7 @@
 	icon_state = "stomach-x"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = "resinspinner"
-	alien_powers = list(/obj/effect/proc_holder/alien/resin)
+	actions_types = list(/datum/action/cooldown/alien/make_structure/resin)
 
 
 /obj/item/organ/alien/acid
@@ -177,7 +163,7 @@
 	icon_state = "acid"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = "acidgland"
-	alien_powers = list(/obj/effect/proc_holder/alien/acid)
+	actions_types = list(/datum/action/cooldown/alien/acid/corrosion)
 
 
 /obj/item/organ/alien/neurotoxin
@@ -185,7 +171,7 @@
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = "neurotoxingland"
-	alien_powers = list(/obj/effect/proc_holder/alien/neurotoxin)
+	actions_types = list(/datum/action/cooldown/alien/acid/neurotoxin)
 
 
 /obj/item/organ/alien/eggsac
@@ -194,4 +180,4 @@
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = "eggsac"
 	w_class = WEIGHT_CLASS_BULKY
-	alien_powers = list(/obj/effect/proc_holder/alien/lay_egg)
+	actions_types = list(/datum/action/cooldown/alien/make_structure/lay_egg)

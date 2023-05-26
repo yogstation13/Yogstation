@@ -38,7 +38,10 @@
 	mail_goodies = list(
 		/obj/item/clothing/mask/cigarette/cigar/havana = 20,
 		///obj/item/storage/fancy/cigarettes/cigars/havana = 15,
-		/obj/item/reagent_containers/food/drinks/bottle/champagne = 10
+		/obj/item/reagent_containers/food/drinks/bottle/champagne = 10,
+		/obj/item/fakeartefact = 5,
+		/obj/item/skub = 1,
+		/obj/item/greentext = 1
 	)
 
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
@@ -51,7 +54,7 @@
 
 /datum/job/captain/announce(mob/living/carbon/human/H)
 	..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Captain [H.real_name] on deck!"))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(minor_announce), "Captain [H.real_name] on deck!"))
 
 /datum/outfit/job/captain
 	name = "Captain"

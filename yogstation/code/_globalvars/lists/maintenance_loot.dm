@@ -424,6 +424,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
 	/obj/item/toy/snappop/phoenix = W_LEGENDARY,
 	/obj/item/toy/spinningtoy = W_RARE,
 	/obj/item/toy/sword = W_RARE,
+	/obj/item/twohanded/vxtvulhammer/toy = W_RARE,
 	/obj/item/toy/syndicateballoon = W_RARE,
 	/obj/item/toy/talking/AI = W_RARE,
 	/obj/item/toy/talking/codex_gigas = W_RARE,
@@ -459,7 +460,8 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
 	/obj/item/storage/box/ingredients/wildcard = W_RARE,
 	/obj/item/storage/box/mre = W_ESSENTIAL,
 	/obj/item/storage/box/mre/menu2 = W_RARE,
-	/obj/item/storage/box/mre/menu3 = W_MYTHICAL
+	/obj/item/storage/box/mre/menu3 = W_MYTHICAL,
+	/obj/item/relic = W_ESSENTIAL
 ))
 
 //Makeshift/shitty/suspicious assistant-tier stuff goes here. Some makeshift equipment is in other places (like weapons).

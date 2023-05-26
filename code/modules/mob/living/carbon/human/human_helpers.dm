@@ -6,8 +6,7 @@
 /mob/living/carbon/human/canBeHandcuffed()
 	if(get_num_arms(FALSE) >= 2)
 		return TRUE
-	else
-		return FALSE
+	return FALSE
 
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
@@ -150,7 +149,7 @@
 		if(!istype(mind.martial_art, /datum/martial_art/ultra_violence))
 			to_chat(src, span_warning("Use of ranged weaponry would bring dishonor to the clan."))
 			return FALSE
-		else if(!istype(G, /obj/item/gun/ballistic/revolver/ipcmartial) && !istype(G, /obj/item/gun/ballistic/shotgun/ipcmartial))//more snowflake shit
+		else if(!istype(G, /obj/item/gun/ballistic/revolver/ipcmartial))//more snowflake shit
 			to_chat(src, span_warning("This gun is not compliant with Ultra Violence standards."))
 			return FALSE
 	return .

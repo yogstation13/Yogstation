@@ -33,7 +33,7 @@
 	wound_bonus = 0
 	speed = 0.6 // higher power = faster, that's how light works right
 
-/obj/projectile/beam/laser/hellfire/Initialize()
+/obj/item/projectile/beam/laser/hellfire/Initialize()
 	. = ..()
 	transform *= 2
 
@@ -49,7 +49,7 @@
 /obj/item/projectile/beam/laser/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target
-		M.IgniteMob()
+		M.ignite_mob()
 	else if(isturf(target))
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
 	return ..()
@@ -74,7 +74,7 @@
 	damage = 10
 	irradiate = 300
 	range = 15
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOOR
 
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = LIGHT_COLOR_GREEN
@@ -149,6 +149,25 @@
 
 /obj/item/projectile/beam/emitter/singularity_pull()
 	return //don't want the emitters to miss
+
+/obj/item/projectile/beam/emitter/pulse
+	name = "overcharged emitter beam"
+	icon_state = "u_laser"
+	damage = 50 // EVEN MORE power for the SM
+	range = 250 // More power means longer range
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
+	light_color = LIGHT_COLOR_BLUE
+	tracer_type = /obj/effect/projectile/tracer/pulse
+	muzzle_type = /obj/effect/projectile/muzzle/pulse
+	impact_type = /obj/effect/projectile/impact/pulse
+
+/obj/item/projectile/beam/emitter/pulse/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
+		if(isobj(target))
+			SSexplosions.low_mov_atom += target
+		else
+			SSexplosions.lowturf += target
 
 /obj/item/projectile/beam/lasertag
 	name = "laser tag beam"

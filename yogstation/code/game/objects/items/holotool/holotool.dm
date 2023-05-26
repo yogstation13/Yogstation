@@ -67,7 +67,7 @@
 			return
 		current_color = C
 	update_icon()
-	action.UpdateButtonIcon()
+	action.build_all_button_icons()
 	user.regenerate_icons()
 
 /obj/item/holotool/proc/switch_tool(mob/user, datum/holotool_mode/mode)
@@ -116,7 +116,7 @@
 		set_light(0)
 
 	for(var/datum/action/A in actions)
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/holotool/proc/check_menu(mob/living/user)
 	if(!istype(user))
@@ -127,7 +127,7 @@
 
 /obj/item/holotool/attack_self(mob/user)
 	update_listing()
-	var/chosen = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, .proc/check_menu,user))
+	var/chosen = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, PROC_REF(check_menu),user))
 	if(!check_menu(user))
 		return
 	if(chosen)

@@ -22,6 +22,8 @@
 	var/last_battery_percent = 0
 	var/last_world_time = "00:00"
 	var/list/last_header_icons
+	///A pAI currently loaded into the modular computer.
+	var/obj/item/paicard/inserted_pai
 
 	/// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_active_power_usage = 50
@@ -113,7 +115,7 @@
 	if(active_program?.tap(A, user, params))
 		user.do_attack_animation(A) //Emulate this animation since we kill the attack in three lines
 		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
-		addtimer(CALLBACK(src, .proc/play_ping), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
+		addtimer(CALLBACK(src, PROC_REF(play_ping)), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
 		return
 	return ..()
 

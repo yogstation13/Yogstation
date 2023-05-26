@@ -20,6 +20,7 @@
 	var/refined_type = null //What this ore defaults to being refined into
 	novariants = TRUE // Ore stacks handle their icon updates themselves to keep the illusion that there's more going
 	var/list/stack_overlays
+	var/edible = FALSE //can a preternis eat it for some funny effect?
 
 /obj/item/stack/ore/update_icon()
 	var/difference = min(ORESTACK_OVERLAYS_MAX, amount) - (LAZYLEN(stack_overlays)+1)
@@ -65,6 +66,29 @@
 			new refined_type(drop_location(),amountrefined)
 			qdel(src)
 
+/obj/item/stack/ore/attack(mob/living/M, mob/living/user)
+	if(!edible || user.a_intent == INTENT_HARM || M != user || !ishuman(user))
+		return ..()
+	
+	var/mob/living/carbon/human/H = user
+	var/obj/item/organ/stomach/S = H.getorganslot(ORGAN_SLOT_STOMACH)
+
+	if(!istype(S, /obj/item/organ/stomach/preternis))//need a fancy stomach for it
+		return ..()
+
+	H.visible_message("[H] takes a bite of [src], crunching happily.", "You take a bite of [src], minerals do a body good.")
+	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
+	
+	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
+		H.changeNext_move(CLICK_CD_MELEE * 0.5)
+
+	use(1)//only eat one at a time
+	eaten(H)
+	
+
+/obj/item/stack/ore/proc/eaten(mob/living/carbon/human/H)//override to give certain ores effects when eaten
+	return
+
 /obj/item/stack/ore/uranium
 	name = "uranium ore"
 	icon_state = "Uranium ore"
@@ -82,6 +106,10 @@
 	points = 1
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/metal
+	edible = TRUE
+
+/obj/item/stack/ore/iron/eaten(mob/living/carbon/human/H)
+	H.heal_overall_damage(2, 0, 0, BODYPART_ROBOTIC)
 
 /obj/item/stack/ore/glass
 	name = "sand pile"
@@ -110,7 +138,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		return
 	C.adjust_blurriness(6)
 	C.adjustStaminaLoss(15)//the pain from your eyes burning does stamina damage
-	C.confused += 5
+	C.adjust_confusion(5 SECONDS)
 	to_chat(C, span_userdanger("\The [src] gets into your eyes! The pain, it burns!"))
 	qdel(src)
 
@@ -133,6 +161,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 15
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/plasma
+	edible = TRUE
+
+/obj/item/stack/ore/plasma/eaten(mob/living/carbon/human/H)
+	H.heal_overall_damage(0, 2, 0, BODYPART_ROBOTIC)
 
 /obj/item/stack/ore/plasma/welder_act(mob/living/user, obj/item/I)
 	to_chat(user, span_warning("You can't hit a high enough temperature to smelt [src] properly!"))
@@ -280,7 +312,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		else
 			user.visible_message(span_warning("[user] strikes \the [src], causing a chain reaction!"), span_danger("You strike \the [src], causing a chain reaction."))
 			log_bomber(user, "has primed a", src, "for detonation", notify_admins)
-		det_timer = addtimer(CALLBACK(src, .proc/detonate, notify_admins), det_time, TIMER_STOPPABLE)
+		det_timer = addtimer(CALLBACK(src, PROC_REF(detonate), notify_admins), det_time, TIMER_STOPPABLE)
 
 /obj/item/twohanded/required/gibtonite/proc/detonate(notify_admins)
 	if(primed)
@@ -332,7 +364,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if (!attack_self(user))
 		user.visible_message(span_suicide("[user] couldn't flip \the [src]!"))
 		return SHAME
-	addtimer(CALLBACK(src, .proc/manual_suicide, user), 10)//10 = time takes for flip animation
+	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), 10)//10 = time takes for flip animation
 	return MANUAL_SUICIDE_NONLETHAL
 
 /obj/item/coin/proc/manual_suicide(mob/living/user)
@@ -559,17 +591,17 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		visible_message(span_danger("[P] ricochets off of [src]!"))
 		playsound(loc, 'sound/weapons/ricochet.ogg', 50, 1)
 		if(cooldown < world.time)
-			INVOKE_ASYNC(src, .proc/flip, null, TRUE) //flip the coin if it isn't already doing that
+			INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE) //flip the coin if it isn't already doing that
 		return BULLET_ACT_FORCE_PIERCE
 			
 	//we instead flip the coin
-	INVOKE_ASYNC(src, .proc/flip, null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
+	INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE) //we don't want to wait for flipping to finish in order to do the impact
 	return BULLET_ACT_TURF
 
 /obj/item/coin/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, quickstart)
 	if(cooldown < world.time) // Flip the coin when thrown
 		spin = 0 // looks weird if it spins and flips at the same time
-		INVOKE_ASYNC(src, .proc/flip, null, TRUE)
+		INVOKE_ASYNC(src, PROC_REF(flip), null, TRUE)
 	..()
 
 /obj/item/coinstack

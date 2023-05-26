@@ -3,7 +3,6 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
 DROP TABLE IF EXISTS `achievements`;
 CREATE TABLE IF NOT EXISTS `achievements` (
   `name` mediumtext NOT NULL,
@@ -122,7 +121,7 @@ CREATE TABLE `bound_credentials` (
   `ckey` varchar(32) NOT NULL,
   `computerid` varchar(32) DEFAULT NULL,
   `ip` int(10) unsigned DEFAULT NULL,
-  `flags` set('bypass_bans') DEFAULT NULL,
+  `flags` set('bypass_bans','allow_proxies') DEFAULT NULL,
   `comment` text NULL,
   PRIMARY KEY (`id`),
   KEY `idx_ckey_lookup` (`ckey`),
@@ -326,6 +325,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `lasteditor` varchar(32) DEFAULT NULL,
   `edits` mediumtext DEFAULT NULL,
   `deleted` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `playtime` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_msg_ckey_time` (`targetckey`,`timestamp`,`deleted`),
   KEY `idx_msg_type_ckeys_time` (`type`,`targetckey`,`adminckey`,`timestamp`,`deleted`),
@@ -532,6 +532,19 @@ CREATE TABLE IF NOT EXISTS `stickyban_matched_ip` (
   PRIMARY KEY (`stickyban`,`matched_ip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `proxy_cache`;
+CREATE TABLE `proxy_cache` (
+  `ip` int(11) unsigned NOT NULL,
+  `data` mediumtext NOT NULL,
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`ip`),
+  CONSTRAINT `data` CHECK (json_valid(`data`))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE OR REPLACE EVENT proxy_cache_ttl
+    ON SCHEDULE EVERY 1 HOUR
+    DO
+      DELETE FROM proxy_cache WHERE (last_updated + INTERVAL 1 DAY) < current_timestamp();
 
 -- Dumping structure for trigger yogstation_copy.role_timeTlogdelete
 DROP TRIGGER IF EXISTS `role_timeTlogdelete`;
@@ -559,6 +572,11 @@ CREATE TRIGGER `role_timeTlogupdate` AFTER UPDATE ON `role_time` FOR EACH ROW BE
 END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+DROP TRIGGER IF EXISTS `messagesTloghours`;
+CREATE TRIGGER `messagesTloghours`
+    BEFORE INSERT ON `messages` FOR EACH ROW
+    SET NEW.playtime = (SELECT minutes FROM role_time rt WHERE rt.ckey = NEW.targetckey AND rt.job = 'Living');
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

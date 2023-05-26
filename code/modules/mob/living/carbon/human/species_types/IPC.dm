@@ -5,8 +5,8 @@
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
 	sexes = FALSE
-	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
+	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
 	mutantbrain = /obj/item/organ/brain/positron
 	mutantheart = /obj/item/organ/heart/cybernetic/ipc
@@ -38,8 +38,11 @@
 	screamsound = 'goon/sound/robot_scream.ogg'
 	allow_numbers_in_name = TRUE
 	deathsound = 'sound/voice/borg_deathsound.ogg'
+	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
+	special_walk_sounds = list('sound/effects/servostep.ogg')
 	wings_icon = "Robotic"
 	var/saved_screen //for saving the screen when they die
+	species_language_holder = /datum/language_holder/machine
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	// Hats need to be 1 up
 	offset_features = list(OFFSET_HEAD = list(0,1))
@@ -72,7 +75,7 @@
 		else if(MUTCOLORS in C.dna.species.species_traits)
 			C.dna.species.species_traits -= MUTCOLORS
 
-datum/species/ipc/on_species_loss(mob/living/carbon/C)
+/datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	QDEL_NULL(C.particles)
 	if(change_screen)
@@ -88,7 +91,7 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	saved_screen = C.dna.features["ipc_screen"]
 	C.dna.features["ipc_screen"] = "BSOD"
 	C.update_body()
-	addtimer(CALLBACK(src, .proc/post_death, C), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(post_death), C), 5 SECONDS)
 
 /datum/species/ipc/proc/post_death(mob/living/carbon/C)
 	if(C.stat < DEAD)
@@ -123,11 +126,11 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 /datum/action/innate/change_screen
 	name = "Change Display"
 	check_flags = AB_CHECK_CONSCIOUS
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "drone_vision"
 
 /datum/action/innate/change_screen/Activate()
-	var/screen_choice = input(usr, "Which screen do you want to use?", "Screen Change") as null | anything in GLOB.ipc_screens_list
+	var/screen_choice = tgui_input_list(usr, "Which screen do you want to use?", "Screen Change", GLOB.ipc_screens_list)
 	var/color_choice = input(usr, "Which color do you want your screen to be?", "Color Change") as null | color
 	if(!screen_choice)
 		return
@@ -203,11 +206,15 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H, admin_revive)
 	if(admin_revive)
+		if(saved_screen)
+			H.dna.features["ipc_screen"] = saved_screen
+			H.update_body()
 		return ..()
 	H.Stun(9 SECONDS) // No moving either
 	H.dna.features["ipc_screen"] = "BSOD"
 	H.update_body()
-	addtimer(CALLBACK(src, .proc/afterrevive, H), 0)
+	playsound(H, 'sound/machines/dial-up.ogg', 50, FALSE)
+	addtimer(CALLBACK(src, PROC_REF(afterrevive), H), 0)
 	return
 
 /datum/species/ipc/proc/afterrevive(mob/living/carbon/human/H)
@@ -244,13 +251,17 @@ datum/species/ipc/on_species_loss(mob/living/carbon/C)
 			to_chat(H, "<span class='warning'>Alert: Internal temperature regulation systems offline; thermal damage sustained. Shutdown imminent.</span>")
 			H.visible_message("[H]'s cooling system fans stutter and stall. There is a faint, yet rapid beeping coming from inside their chassis.")
 
-	if(H.mind && H.mind.martial_art && H.mind.martial_art.id == "ultra violence" && (H.blood_in_hands > 0 || H?.wash(CLEAN_TYPE_BLOOD)))//ipc martial art blood heal check
-		H.blood_in_hands = 0
-		H.wash(CLEAN_TYPE_BLOOD)
-		to_chat(H,"You absorb the blood covering you to heal.")
-		H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
-		H.adjustBruteLoss(-20, FALSE, FALSE, BODYPART_ANY)//getting covered in blood isn't actually that common
-		H.adjustFireLoss(-20, FALSE, FALSE, BODYPART_ANY)
+	if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))//ipc martial art blood heal check
+		if(H.blood_in_hands > 0 || H.wash(CLEAN_TYPE_BLOOD))
+			H.blood_in_hands = 0
+			H.wash(CLEAN_TYPE_BLOOD)
+			to_chat(H,"You absorb the blood covering you to heal.")
+			H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
+			var/heal_amt = 30 //heals brute first, then burn with any excess
+			var/brute_before = H.getBruteLoss()
+			H.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
+			heal_amt -= max(brute_before - H.getBruteLoss(), 0)
+			H.adjustFireLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
 
 /datum/species/ipc/eat_text(fullness, eatverb, obj/O, mob/living/carbon/C, mob/user)
 	. = TRUE
@@ -307,12 +318,14 @@ ipc martial arts stuff
 			add_empproof(H)
 			throw_lightning(H)
 		else//if just getting hit
-			addtimer(CALLBACK(src, .proc/add_empproof, H), 1, TIMER_UNIQUE)
-		addtimer(CALLBACK(src, .proc/remove_empproof, H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+			addtimer(CALLBACK(src, PROC_REF(add_empproof), H), 1, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(remove_empproof), H), 5 SECONDS, TIMER_OVERRIDE | TIMER_UNIQUE)//removes the emp immunity after a 5 second delay
+	else if(severity == EMP_HEAVY)
+		H.emote("warn") // *chuckles* i'm in danger!
 
 /datum/species/ipc/proc/throw_lightning(mob/living/carbon/human/H)
 	siemens_coeff = 0
-	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE | TESLA_MOB_STUN)
+	tesla_zap(H, 10, 20000, TESLA_MOB_DAMAGE)
 	siemens_coeff = initial(siemens_coeff)
 
 /datum/species/ipc/proc/add_empproof(mob/living/carbon/human/H)

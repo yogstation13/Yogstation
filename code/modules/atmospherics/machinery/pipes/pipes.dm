@@ -111,7 +111,7 @@
 			var/obj/machinery/atmospherics/N = nodes[i]
 			N.update_icon()
 
-/obj/machinery/atmospherics/pipe/returnPipenets()
+/obj/machinery/atmospherics/pipe/return_pipenets()
 	. = list(parent)
 
 /obj/machinery/atmospherics/pipe/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)

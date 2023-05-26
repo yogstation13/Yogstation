@@ -80,7 +80,7 @@
 		var/mob/living/carbon/human/H = O
 		if(H.shoes && blood_state && bloodiness && !HAS_TRAIT(H, TRAIT_LIGHT_STEP))
 			var/obj/item/clothing/shoes/S = H.shoes
-			if(!S.can_be_bloody)
+			if(!istype(S) || !S.can_be_bloody)
 				return
 			var/add_blood = 0
 			if(bloodiness >= BLOOD_GAIN_PER_STEP)
@@ -94,11 +94,29 @@
 			update_icon()
 			H.update_inv_shoes()
 
+
+/**
+ * Checks if this decal is a valid decal that can be blood crawled in.
+ */
 /obj/effect/decal/cleanable/proc/can_bloodcrawl_in()
 	if((blood_state != BLOOD_STATE_OIL) && (blood_state != BLOOD_STATE_NOT_BLOODY))
 		return bloodiness
-	else
-		return 0
+
+	return FALSE
+
+/**
+ * Gets the color associated with the any blood present on this decal. If there is no blood, returns null.
+ */
+/obj/effect/decal/cleanable/proc/get_blood_color()
+	switch(blood_state)
+		if(BLOOD_STATE_HUMAN)
+			return rgb(149, 10, 10)
+		if(BLOOD_STATE_XENO)
+			return rgb(43, 186, 0)
+		if(BLOOD_STATE_OIL)
+			return rgb(22, 22, 22)
+
+	return null
 
 /obj/effect/decal/cleanable/wash(clean_types)
 	..()

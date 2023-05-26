@@ -1,7 +1,6 @@
 /obj/item/implant/infiltrator
 	name = "infiltration implant"
 	desc = "A sneaky implant for sneaky infiltrators"
-	activated = FALSE
 	var/obj/item/radio/alert_radio
 	var/datum/team/infiltrator/team
 	var/upgraded = FALSE

@@ -32,7 +32,10 @@
 	var/obj/item/back = null
 	var/obj/item/clothing/mask/wear_mask = null
 	var/obj/item/clothing/neck/wear_neck = null
+	/// Equipped air tank. Never set this manually.
 	var/obj/item/tank/internal = null
+	/// "External" air tank. Never set this manually. Not required to stay directly equipped on the mob (i.e. could be a machine or MOD suit module).
+	var/obj/item/tank/external = null
 	var/obj/item/clothing/head = null
 
 	var/obj/item/clothing/gloves = null //only used by humans
@@ -69,13 +72,10 @@
 	var/image/halbody
 	var/obj/halitem
 	var/hal_screwyhud = SCREWYHUD_NONE
-	var/next_hallucination = 0
 	var/cpr_time = 1 //CPR cooldown.
 	var/damageoverlaytemp = 0
 
-	var/drunkenness = 0 //Overall drunkenness - check handle_alcohol() in life.dm for effects
 	var/stam_regen_start_time = 0 //used to halt stamina regen temporarily
-	var/stam_paralyzed = FALSE //knocks you down
 
 	/// All of the wounds a carbon has afflicted throughout their limbs
 	var/list/all_wounds

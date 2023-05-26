@@ -31,7 +31,7 @@
 			next_extinguish = world.time + extinguish_cooldown
 			extinguishes_left--
 			H.visible_message(span_warning("[H]'s suit automatically extinguishes [H.p_them()]!"),span_warning("Your suit automatically extinguishes you."))
-			H.ExtinguishMob()
+			H.extinguish_mob()
 			new /obj/effect/particle_effect/water(get_turf(H))
 
 
@@ -88,7 +88,7 @@
 		user.add_overlay(helmet_mob_overlay)
 	user.update_inv_head()
 	for(var/datum/action/A as anything in actions)
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/clothing/head/helmet/space/plasmaman/equipped(mob/living/user, slot)
 	. = ..()
@@ -134,6 +134,13 @@
 	desc = "A tougher, space-worthy envirohelm designed for engineering personnel."
 	icon_state = "engineer_envirohelm"
 	item_state = "engineer_envirohelm"
+	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 100, RAD = 20, FIRE = 100, ACID = 75, WOUND = 10)
+
+/obj/item/clothing/head/helmet/space/plasmaman/chief_engineer
+	name = "chief engineer's envirosuit helmet"
+	desc = "A tougher, space-worthy, yet still comfortable envirohelm designed for plasmamen with the rank of \"Chief Engineer\"."
+	icon_state = "ce_envirohelm"
+	item_state = "ce_envirohelm"
 	armor = list(MELEE = 15, BULLET = 5, LASER = 20, ENERGY = 10, BOMB = 20, BIO = 100, RAD = 20, FIRE = 100, ACID = 75, WOUND = 10)
 
 /obj/item/clothing/head/helmet/space/plasmaman/curator

@@ -16,6 +16,7 @@
 	required_organs = list(/obj/item/organ/heart)
 	bypasses_immunity = TRUE // Immunity is based on not having an appendix; this isn't a virus
 	var/sound = FALSE
+	var/obj/item/organ/heart/original
 
 /datum/disease/heart_failure/Copy()
 	var/datum/disease/heart_failure/D = ..()
@@ -25,15 +26,17 @@
 /datum/disease/heart_failure/stage_act()
 	..()
 	var/obj/item/organ/heart/O = affected_mob.getorgan(/obj/item/organ/heart)
+	if(!original)
+		original = O
 	var/mob/living/carbon/H = affected_mob
-	if(O && H.can_heartattack())
+	if(original && O && original == O && H.can_heartattack())
 		switch(stage)
 			if(1 to 2)
 				if(prob(2))
 					to_chat(H, span_warning("You feel [pick("discomfort", "pressure", "a burning sensation", "pain")] in your chest."))
 				if(prob(2))
 					to_chat(H, span_warning("You feel dizzy."))
-					H.confused += 6
+					H.adjust_confusion(6 SECONDS)
 				if(prob(3))
 					to_chat(H, span_warning("You feel [pick("full", "nauseated", "sweaty", "weak", "tired", "short on breath", "uneasy")]."))
 			if(3 to 4)
@@ -49,7 +52,7 @@
 					H.losebreath += 4
 				if(prob(3))
 					to_chat(H, span_danger("You feel very weak and dizzy..."))
-					H.confused += 8
+					H.adjust_confusion(8 SECONDS)
 					H.adjustStaminaLoss(40)
 					H.emote("cough")
 			if(5)

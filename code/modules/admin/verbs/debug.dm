@@ -20,7 +20,7 @@
 /* 21st Sept 2010
 Updated by Skie -- Still not perfect but better!
 Stuff you can't do:
-Call proc /mob/proc/Dizzy() for some player
+Call proc /mob/proc/adjust_dizzy() for some player
 Because if you select a player mob as owner it tries to do the proc for
 /mob/living/carbon/human/ instead. And that gives a run-time error.
 But you can call procs that are of type /mob/living/carbon/human/proc/ for that player.
@@ -285,34 +285,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	log_admin("[key_name(src)] has animalized [M.key].")
 	spawn(0)
 		M.Animalize()
-
-
-/client/proc/makepAI(turf/T in GLOB.mob_list)
-	set category = "Admin.Player Interaction"
-	set name = "Make pAI"
-	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
-
-	var/list/available = list()
-	for(var/mob/C in GLOB.mob_list)
-		if(C.key)
-			available.Add(C)
-	var/mob/choice = input(usr, "Choose a player to play the pAI", "Spawn pAI", sortNames(available))
-	if(!choice)
-		return 0
-	if(!isobserver(choice))
-		var/confirm = tgui_alert(usr, "[choice.key] isn't ghosting right now. Are you sure you want to yank him out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", list("Yes", "No"))
-		if(confirm != "Yes")
-			return 0
-	var/obj/item/paicard/card = new(T)
-	var/mob/living/silicon/pai/pai = new(card)
-	pai.name = input(choice, "Enter your pAI name:", "pAI Name", "Personal AI") as text
-	pai.real_name = pai.name
-	pai.key = choice.key
-	card.setPersonality(pai)
-	for(var/datum/paiCandidate/candidate in SSpai.candidates)
-		if(candidate.key == choice.key)
-			SSpai.candidates.Remove(candidate)
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Make pAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_alienize(mob/M in GLOB.mob_list)
 	set category = "Admin.Player Interaction"
@@ -611,7 +583,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	for(var/area/A as anything in GLOB.areas)
 		if(on_station)
-			var/turf/picked = safepick(get_area_turfs(A.type))
+			var/turf/picked = pick(get_area_turfs(A.type))
 			if(picked && is_station_level(picked.z))
 				if(!(A.type in areas_all) && !is_type_in_typecache(A, station_areas_blacklist))
 					areas_all.Add(A.type)

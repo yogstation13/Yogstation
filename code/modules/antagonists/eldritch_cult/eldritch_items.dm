@@ -7,6 +7,11 @@
 	///Target
 	var/mob/living/carbon/human/target
 
+/obj/item/living_heart/examine(mob/user)
+	. = ..()
+	if(isobserver(user))
+		. += span_notice("This heart is currently set to target <b>[target.real_name]</b>.")
+
 /obj/item/living_heart/attack_self(mob/user)
 	. = ..()
 	if(!IS_HERETIC(user))
@@ -55,10 +60,10 @@
 /datum/action/innate/heretic_shatter
 	name = "Shattering Offer"
 	desc = "Smash your blade to release the entropic energies within it, teleporting you out of danger."
-	background_icon_state = "bg_ecult"
+	background_icon_state = "bg_heretic"
 	button_icon_state = "shatter"
-	icon_icon = 'icons/mob/actions/actions_ecult.dmi'
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN
+	button_icon = 'icons/mob/actions/actions_ecult.dmi'
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE
 	var/mob/living/carbon/human/holder
 	var/obj/item/gun/magic/hook/sickly_blade/sword
 
@@ -68,7 +73,7 @@
 	//i know what im doing
 	return ..()
 
-/datum/action/innate/heretic_shatter/IsAvailable()
+/datum/action/innate/heretic_shatter/IsAvailable(feedback = FALSE)
 	if(IS_HERETIC(holder) || IS_HERETIC_MONSTER(holder))
 		return TRUE
 	else
@@ -187,6 +192,7 @@
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eye_medalion"
 	w_class = WEIGHT_CLASS_SMALL
+	resistance_flags = FIRE_PROOF
 	///What trait do we want to add upon equipiing
 	var/trait = TRAIT_THERMAL_VISION
 
@@ -206,13 +212,16 @@
 	desc = "A strange medallion. Peering through the crystalline surface, the light refracts into new and terrifying spectrums of color. You see yourself, reflected off cascading mirrors, warped into improbable shapes."
 	trait = TRAIT_XRAY_VISION
 
+
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	name = "ominous hood"
 	desc = "A torn, dust-caked hood. You feel it watching you."
 	icon_state = "eldritch"
+	item_state = "eldritch"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	flash_protect = 2
+	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch
 	name = "ominous armor"
@@ -224,6 +233,7 @@
 	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book)
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 35, BIO = 20, RAD = 0, FIRE = 20, ACID = 20) //Who knows why it's this good
+	resistance_flags = FIRE_PROOF // ash heretic go brrr
 
 /obj/item/reagent_containers/glass/beaker/eldritch
 	name = "flask of eldritch essence"

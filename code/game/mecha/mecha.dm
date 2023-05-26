@@ -11,6 +11,8 @@
 #define SIDE_ARMOUR 2
 #define BACK_ARMOUR 3
 
+#define MECHA_MAX_COOLDOWN 30 // Prevents long cooldown equipment from messing up combat
+
 /obj/mecha
 	name = "mecha"
 	desc = "Exosuit"
@@ -162,7 +164,7 @@
 	GLOB.mechas_list += src //global mech list
 	prepare_huds()
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_mechhealth()
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
@@ -512,7 +514,7 @@
 	if (occupant && !enclosed && !silicon_pilot)
 		if (occupant.fire_stacks < 5)
 			occupant.adjust_fire_stacks(1)
-		occupant.IgniteMob()
+		occupant.ignite_mob()
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return
@@ -559,13 +561,13 @@
 	if(!omnidirectional_attacks && dir_to_target && !(dir_to_target & dir))//wrong direction
 		return
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
-		target = safepick(view(3,target))
+		target = pick(view(3,target))
 		if(!target)
 			return
 
 	// No shotgun swapping
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/W in equipment)
-		if(!W.equip_ready)
+		if(!W.equip_ready && (W.equip_cooldown < MECHA_MAX_COOLDOWN))
 			return
 
 	var/mob/living/L = user
@@ -595,7 +597,7 @@
 			selected.start_cooldown()
 	else
 		if(internal_damage & MECHA_INT_CONTROL_LOST)
-			target = safepick(oview(1,src))
+			target = pick(oview(1,src))
 		if(!melee_can_hit || !istype(target, /atom))
 			return
 		if(equipment_disabled)
@@ -774,19 +776,19 @@
 ///////////////////////////////////
 
 /obj/mecha/proc/check_for_internal_damage(list/possible_int_damage,ignore_threshold=null)
-	if(!islist(possible_int_damage) || isemptylist(possible_int_damage))
+	if(!islist(possible_int_damage) || !length(possible_int_damage))
 		return
 	if(prob(20))
 		if(ignore_threshold || obj_integrity*100/max_integrity < internal_damage_threshold)
 			for(var/T in possible_int_damage)
 				if(internal_damage & T)
 					possible_int_damage -= T
-			var/int_dam_flag = safepick(possible_int_damage)
+			var/int_dam_flag = pick(possible_int_damage)
 			if(int_dam_flag)
 				setInternalDamage(int_dam_flag)
 	if(prob(5))
 		if(ignore_threshold || obj_integrity*100/max_integrity < internal_damage_threshold)
-			var/obj/item/mecha_parts/mecha_equipment/ME = safepick(equipment)
+			var/obj/item/mecha_parts/mecha_equipment/ME = pick(equipment)
 			if(ME)
 				qdel(ME)
 	return

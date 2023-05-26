@@ -171,7 +171,7 @@
 	display_name = "Anomaly Research"
 	description = "Unlock the potential of the mysterious anomalies that appear on station."
 	prereq_ids = list("adv_engi", "practical_bluespace")
-	design_ids = list("reactive_armor", "anomaly_neutralizer")
+	design_ids = list("reactive_armor", "anomaly_quiver", "anomaly_neutralizer")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 
 /datum/techweb_node/high_efficiency
@@ -359,7 +359,7 @@
 	display_name = "Artificial Intelligence"
 	description = "AI unit research."
 	prereq_ids = list("base")
-	design_ids = list("server_cabinet", "ai_data_core", "ai_core_display", "ai_server_overview", "ram1", "basic_ai_cpu", "ai_resource_distribution", "aifixer", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module", "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "mother_module", "silicop_module", "construction_module", "metaexperiment_module", "researcher_module", "siliconcollective_module", "spotless_module", "clown_module", "chapai_module", "druid_module", "detective_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
+	design_ids = list("server_cabinet", "ai_data_core", "ai_core_display", "ai_server_overview", "ram1", "basic_ai_cpu", "ai_resource_distribution", "aifixer", "safeguard_module", "onehuman_module", "protectstation_module", "quarantine_module", "oxygen_module", "freeform_module", "reset_module", "purge_module", "remove_module", "freeformcore_module", "asimov_module", "crewsimov_module", "paladin_module", "tyrant_module", "overlord_module", "ceo_module", "cowboy_module", "mother_module", "silicop_module", "construction_module", "metaexperiment_module", "researcher_module", "siliconcollective_module", "spotless_module", "clown_module", "chapai_module", "druid_module", "detective_module", "reporter_module", "default_module", "borg_ai_control", "mecha_tracking_ai_control", "intellicard")
 	research_costs = list(TECHWEB_POINT_TYPE_AI = 1000)
 
 /////////////////////////EMP tech/////////////////////////
@@ -504,7 +504,7 @@
 	display_name = "IPC Parts"
 	description = "We have the technology to replace him."
 	prereq_ids = list("cyber_organs","robotics")
-	design_ids = list("robotic_liver", "robotic_eyes", "robotic_tongue", "robotic_stomach", "robotic_ears", "power_cord", "ipcrevive", "ipc_lungs", "blankipc")
+	design_ids = list("robotic_liver", "robotic_eyes", "robotic_tongue", "robotic_stomach", "robotic_ears", "power_cord", "ipc_lungs", "blankipc")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 
 /datum/techweb_node/cyber_implants
@@ -678,7 +678,7 @@
 	display_name = "Hardlight Weaponry"
 	description = "Weaponized forcefields!"
 	prereq_ids = list("weaponry", "emp_super")
-	design_ids = list("hardlightbow", "ntusp_conversion", "vib_blade")
+	design_ids = list("hardlightbow", "ntusp_conversion", "vib_blade", "hardlight_shell")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/radioactive_weapons
@@ -726,7 +726,7 @@
 	display_name = "Ballistic Weaponry"
 	description = "This isn't research.. This is reverse-engineering!"
 	prereq_ids = list("weaponry")
-	design_ids = list("mag_oldsmg", "mag_oldsmg_ap", "mag_oldsmg_ic", "mag_oldsmg_rubber")
+	design_ids = list("mag_v38", "mag_v38_ap", "mag_v38_rubber", "mag_oldsmg", "mag_oldsmg_ap", "mag_oldsmg_ic", "mag_oldsmg_rubber")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/exotic_ammo
@@ -734,7 +734,7 @@
 	display_name = "Exotic Ammunition"
 	description = "They won't know what hit em."
 	prereq_ids = list("adv_weaponry")
-	design_ids = list("techshotshell", "c38_hotshot", "c38_iceblox", "c38_gutterpunch")
+	design_ids = list("mag_v38_frost", "mag_v38_talon")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/gravity_gun
@@ -743,6 +743,14 @@
 	description = "Fancy wording for gravity gun."
 	prereq_ids = list("adv_weaponry", "bluespace_travel")
 	design_ids = list("gravitygun", "mech_gravcatapult")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+/datum/techweb_node/exotic_ammo
+	id = "experimental_ammo"
+	display_name = "Experimental Ammunition"
+	description = "We're hitting levels of power that shouldn't be possible."
+	prereq_ids = list("exotic_ammo","ballistic_weapons")
+	design_ids = list("techshotshell", "mag_v38_bluespace", "mag_oldsmg_kraken", "mag_oldsmg_snakebite")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 ////////////////////////mech technology////////////////////////

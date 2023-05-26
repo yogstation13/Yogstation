@@ -46,7 +46,7 @@
 	log_game("[key_name_admin(human_target)] has become a ghoul, their master is [user.real_name]")
 	//we change it to true only after we know they passed all the checks
 	. = TRUE
-	RegisterSignal(human_target,COMSIG_GLOB_MOB_DEATH,.proc/remove_ghoul)
+	RegisterSignal(human_target,COMSIG_GLOB_MOB_DEATH, PROC_REF(remove_ghoul))
 	human_target.revive(full_heal = TRUE, admin_revive = TRUE)
 	human_target.setMaxHealth(25)
 	human_target.health = 25
@@ -111,12 +111,12 @@
 	route = PATH_FLESH
 	tier = TIER_2
 
-/datum/eldritch_knowledge/blood_siphon
+/datum/eldritch_knowledge/spell/blood_siphon
 	name = "Blood Siphon"
 	gain_text = "The meat of another being is a delicacy that many enjoy. The Gravekeeper's hunger may be decadent, but you will come to know the strength it yields."
 	desc = "A touch spell that drains a target's health and restores yours."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/touch/blood_siphon)
+	spell_to_add = /datum/action/cooldown/spell/pointed/blood_siphon
 	tier = TIER_2
 
 /datum/eldritch_knowledge/flesh_blade_upgrade
