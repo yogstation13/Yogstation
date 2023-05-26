@@ -182,7 +182,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/energy/laser = -2,
 
 		/obj/item/gun/ballistic/revolver = -3,
-		/obj/item/gun/ballistic/bow/energy/syndicate = -3,
+		/obj/item/gun/ballistic/bow/energy = -3,
 		/obj/item/gun/energy/laser/captain = -3,
 
 		/obj/item/gun/ballistic/automatic/m90/unrestricted = -3,
@@ -201,6 +201,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/his_grace = -5,
 		/obj/item/twohanded/vibro_weapon = -5,
 		/obj/item/twohanded/required/chainsaw/doomslayer = -5,
+		/obj/item/gun/ballistic/bow/energy/ert = -5,
 		))
 
 GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max health doesn't scale, there's also less healing items than other items
@@ -233,7 +234,6 @@ GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max
 GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's not an explicit weapon, clothing piece, or healing item really
 		/obj/item/book/granter/action/spell/knock = 5,
 
-		/obj/item/storage/box/syndie_kit/throwing_weapons = 4,
 		/obj/item/grenade/plastic/c4 = 4,
 		/obj/item/storage/toolbox/mechanical = 4,
 		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
@@ -395,6 +395,14 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon_state = "cyborg_upgrade"
 	martial = /datum/martial_art/ultra_violence
 	species = /datum/species/ipc
+
+/obj/item/battleroyale/martial/worldshaker
+	name = "Worldshaker martial mutator"
+	desc = "Transforms you into a lumbering metal juggernaut."
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "flaming_moe"
+	martial = /datum/martial_art/worldshaker
+	species = /datum/species/preternis
 
 /obj/item/battleroyale/martial/lizard
 	name = "Lizard martial mutator"
