@@ -281,7 +281,7 @@
 	if(!id) return "ERROR: [input["id"]] is not a number"
 	var/datum/admin_help/ticket = GLOB.ahelp_tickets.TicketByID(id)
 	if(!ticket) return "ERROR: Ticket not found"
-	return ticket.DiscordAdminister(input["ckey"])
+	return ticket.DiscordAdminister(input["ckey"], TRUE)
 
 /datum/world_topic/ticket_reply
 	keyword = "ticket_reply"
