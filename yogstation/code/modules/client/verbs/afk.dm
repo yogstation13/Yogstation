@@ -93,8 +93,8 @@
 			adminhelp("I need to go AFK as '[important_role]' for duration of '[time]' [reason ? " with the reason: '[reason]'" : ""]")
 			mob.log_message("is now AFK for [time] [reason ? " with the reason: '[reason]'" : ""]", LOG_OWNERSHIP)
 			if(admins_are_going_to_kill_you)
-				message_admins("[ADMIN_LOOKUPFLW(usr)] attempted to exploit the antagonist late awaken system.")
-				log_admin("[ADMIN_LOOKUP(usr)] attempted to exploit the antagonist late awaken system.")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] has perhaps maybe once in a blue moon cautiously maybe not maybe, potentially perhaps, accidentally or maybe on purpose attempted to exploit the antagonist late awaken system.")
+				log_admin("[ADMIN_LOOKUP(usr)] has perhaps maybe once in a blue moon cautiously maybe not maybe, potentially perhaps, accidentally or maybe on purpose attempted to exploit the antagonist late awaken system.")
 		else
 			to_chat(src, span_danger("Admins will be subtly alerted, because you do not seem to be in a critical station role."))
 			var/normal_role = special_role || M.job || initial(M.name) || "unknown job"
