@@ -1786,6 +1786,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 25
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
+/datum/uplink_item/device_tools/mdrive
+	name = "Mirage Drive"
+	desc = "An experimental device created in an attempt to replicate the properties of bluespace. Utilizing coils with unique properties, the mirage drive is able to generate \
+	kinetic energy and use it in a way that moves the user to their destination at a speed comparable to teleportation. Additionally, if there are other beings near the landing\
+	 site, the mirage drive will draw on their energy to recharge itself, slowing them down in the process."
+	item = /obj/item/mdrive
+	cost = 7
+	manufacturer = /datum/corporation/traitor/waffleco
+
 /datum/uplink_item/device_tools/singularity_beacon
 	name = "Power Beacon"
 	desc = "When screwed to wiring attached to an electric grid and activated, this large device pulls any \
