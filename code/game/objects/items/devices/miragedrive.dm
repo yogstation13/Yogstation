@@ -1,3 +1,6 @@
+#define COOLDOWN_COEF 0.4 SECONDS//determines how many deciseconds each tile traveled adds to the cooldown
+#define COOLDOWN_MAX 60 SECONDS
+
 /obj/item/mdrive
 	name = "mirage drive"
 	desc = "A device that functions to increase the user's kinetic energy and direct it. Should the user land near other beings, the device will draw from them, slowing them down \
@@ -9,7 +12,6 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	item_state = "mdrive"
 	w_class = WEIGHT_CLASS_SMALL
-	var/cooldown_coefficient = 4 //determines how many deciseconds each tile traveled adds to the cooldown
 	var/access_card = new /obj/item/card/id/captains_spare()
 	COOLDOWN_DECLARE(last_dash)
 
@@ -36,12 +38,12 @@
 		if(L != user)
 			L.apply_status_effect(STATUS_EFFECT_CATCHUP)
 			slowing = TRUE
-	bonus_cd = cooldown_coefficient*testpath.len
+	bonus_cd = COOLDOWN_COEF*testpath.len
 	next_dash = next_dash + bonus_cd
 	if(slowing == TRUE)
 		next_dash = next_dash/2
-	if(next_dash >= 600)
-		next_dash = 600
+	if(next_dash >= COOLDOWN_MAX)
+		next_dash = COOLDOWN_MAX
 	COOLDOWN_START(src, last_dash, next_dash)
 	addtimer(CALLBACK(src, PROC_REF(reload)), COOLDOWN_TIMELEFT(src, last_dash))
 	user.forceMove(testpath[testpath.len])
