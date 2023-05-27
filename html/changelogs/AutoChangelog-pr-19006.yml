@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - rscadd: "Added the ability for admins to manage tickets from discord"
