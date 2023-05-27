@@ -418,3 +418,48 @@ GLOBAL_LIST_INIT(nests, list())
 	depressurization_margin = 36.896
 	depressurization_target = 20
 
+/obj/structure/tar_assistant_spawner 
+	name = "Ivory Pillar"
+	desc = "It calls towards it's master."
+	icon = 'yogstation/icons/obj/jungle32x48.dmi'
+	icon_state = "tar_assistant_base"
+
+	var/used = FALSE 
+
+/obj/structure/tar_assistant_spawner/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/structure/tar_assistant_spawner/examine(mob/user)
+	. = ..()
+	if(!used)
+		. += "There is a humanoid shape poking out of the pillar."
+		. += "There is a small opening big enough for your hand to fit in on the humanoid's chest."
+	else 
+		. += "There is a humanoid shaped hole carved into the pillar..."
+
+/obj/structure/tar_assistant_spawner/update_icon()
+	. = ..()	
+	cut_overlays()
+	if(!used)
+		add_overlay(image(icon=src.icon,icon_state="tar_assistant"))
+
+/obj/structure/tar_assistant_spawner/attack_hand(mob/user)
+	if(used)
+		return ..()
+	to_chat(user,span_notice("You insert the hand into the small hole in the pillar and a couple drops of blood spill down the spike..."))
+	INVOKE_ASYNC(src,PROC_REF(spawn_assistant),user)
+
+/obj/structure/tar_assistant_spawner/proc/spawn_assistant(mob/user) 
+	var/min = -2
+	var/max = 2
+	var/duration = 15 SECONDS
+	visible_message(span_notice("The pillar begins to shake violently and call out to the void!"))
+	poll_
+	for(var/i in 0 to duration-1)
+		if (i == 0)
+			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
+		else
+			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
+	sleep(15 SECONDS)
+	

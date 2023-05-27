@@ -1606,3 +1606,19 @@
 	))
 
 	return to_add
+
+/datum/species/golem/tar
+	name = "Tar Golem"
+	id = "tar golem"
+	species_traits = list(NOBLOOD,MUTCOLORS,NO_UNDERWEAR, NO_DNA_COPY, NOTRANSSTING)
+	inherent_traits = list(TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
+	inherent_biotypes = list(MOB_INORGANIC, MOB_HUMANOID)
+	speedmod = 1.5 // Slightly faster
+	armor = 25
+	punchstunthreshold = 13
+	fixed_mut_color = "48002b"
+	info_text = "As an <span class='danger'>Tar Golem</span>, you burn very very easily, but can transform into any living creature, attacking or being attacked breaks the illusion, additionally you can temporarily turn yourself into a pool of tar, in this form you are invulnerable to all attacks, but being on fire prevents you from entering this form."
+	random_eligible = FALSE //If false, the golem subtype can't be made through golem mutation toxin
+	prefix = "Tar"
+	special_names = list("Tar'ath", "Tar'eth", "Tar'kian", "Eth'ar", "Rum'tir")
+
