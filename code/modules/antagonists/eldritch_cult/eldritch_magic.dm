@@ -63,7 +63,6 @@
 /datum/action/cooldown/spell/touch/mansus_grasp/can_cast_spell(feedback = TRUE)
 	return ..() && !!IS_HERETIC(owner)
 
-
 /datum/action/cooldown/spell/touch/mansus_grasp/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	if(!isliving(victim))
 		return FALSE
@@ -78,6 +77,13 @@
 
 //	if(SEND_SIGNAL(caster, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, victim) & COMPONENT_BLOCK_HAND_USE)
 //		return FALSE
+
+	var/datum/antagonist/heretic/cultie = caster.mind?.has_antag_datum(/datum/antagonist/heretic)
+	var/list/knowledge = cultie.get_all_knowledge()
+
+	for(var/X in knowledge)
+		var/datum/eldritch_knowledge/EK = knowledge[X]
+		EK.on_mansus_grasp(victim, caster)
 
 	living_hit.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
 	if(iscarbon(victim))
