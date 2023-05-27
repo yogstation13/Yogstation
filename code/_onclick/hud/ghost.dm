@@ -4,53 +4,49 @@
 /atom/movable/screen/ghost/MouseEntered()
 	flick(icon_state + "_anim", src)
 
-/atom/movable/screen/ghost/jumptomob
-	name = "Jump to mob"
-	icon_state = "jumptomob"
-
-/atom/movable/screen/ghost/jumptomob/Click()
-	var/mob/dead/observer/G = usr
-	G.jumptomob()
-
 /atom/movable/screen/ghost/orbit
 	name = "Orbit"
 	icon_state = "orbit"
 
 /atom/movable/screen/ghost/orbit/Click()
-	var/mob/dead/observer/G = usr
-	G.follow()
+	var/mob/dead/observer/ghost = usr
+	ghost.follow()
 
 /atom/movable/screen/ghost/reenter_corpse
 	name = "Reenter corpse"
 	icon_state = "reenter_corpse"
 
 /atom/movable/screen/ghost/reenter_corpse/Click()
-	var/mob/dead/observer/G = usr
-	G.reenter_corpse()
+	var/mob/dead/observer/ghost = usr
+	ghost.reenter_corpse()
 
 /atom/movable/screen/ghost/teleport
 	name = "Teleport"
 	icon_state = "teleport"
 
 /atom/movable/screen/ghost/teleport/Click()
-	var/mob/dead/observer/G = usr
-	G.dead_tele()
+	var/mob/dead/observer/ghost = usr
+	ghost.dead_tele()
 
 /atom/movable/screen/ghost/spawners
 	name = "Ghost role spawners"
 	icon_state = "spawners"
 
 /atom/movable/screen/ghost/spawners/Click()
-	var/mob/dead/observer/G = usr
-	G.open_spawners_menu()
+	var/mob/dead/observer/ghost = usr
+	ghost.open_spawners_menu()
+
+/atom/movable/screen/ghost/observe
+	name = "Observe"
+	icon_state = "observe"
+
+/atom/movable/screen/ghost/observe/Click()
+	var/mob/dead/observer/ghost = usr
+	ghost.observe()
 
 /datum/hud/ghost/New(mob/owner)
 	..()
 	var/atom/movable/screen/using
-
-	using = new /atom/movable/screen/ghost/jumptomob()
-	using.screen_loc = ui_ghost_jumptomob
-	static_inventory += using
 
 	using = new /atom/movable/screen/ghost/orbit()
 	using.screen_loc = ui_ghost_orbit
@@ -66,6 +62,10 @@
 
 	using = new /atom/movable/screen/ghost/spawners()
 	using.screen_loc = ui_ghost_spawners
+	static_inventory += using
+
+	using = new /atom/movable/screen/ghost/observe()
+	using.screen_loc = ui_ghost_observe
 	static_inventory += using
 
 	using = new /atom/movable/screen/ghost/med_scan()

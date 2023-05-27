@@ -41,7 +41,11 @@
   * This proc is called whenever a new eldritch knowledge is added to an antag datum
   */
 /datum/eldritch_knowledge/proc/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
-	return
+	var/datum/antagonist/heretic/EC = user.mind?.has_antag_datum(/datum/antagonist/heretic)
+	for(var/X in unlocked_transmutations)
+		var/datum/eldritch_transmutation/ET = new X
+		EC.transmutations |= ET
+
 /**
   * What happens when you lose this
   *
@@ -49,6 +53,7 @@
   */
 /datum/eldritch_knowledge/proc/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
 	return
+
 /**
   * What happens every tick
   *

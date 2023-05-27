@@ -26,7 +26,7 @@
 /datum/action/cooldown/spell/cone/staggered/fire_breath
 	name = "Fire Breath"
 	desc = "You breathe a cone of fire directly in front of you."
-	button_icon_state = "fireball0"
+	button_icon_state = "fireball"
 	sound = 'sound/magic/demon_dies.ogg' //horrifying lizard noises
 
 	school = SCHOOL_EVOCATION

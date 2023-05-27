@@ -276,9 +276,6 @@
 	rest_icon.screen_loc = ui_above_movement
 	static_inventory += rest_icon
 
-	internals = new /atom/movable/screen/internals()
-	infodisplay += internals
-
 	healths = new /atom/movable/screen/healths()
 	infodisplay += healths
 
