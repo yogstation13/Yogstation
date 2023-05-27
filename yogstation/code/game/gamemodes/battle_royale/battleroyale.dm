@@ -23,6 +23,7 @@ GLOBAL_VAR(stormdamage)
 	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
 	var/borderstage = 0
 	var/weightcull = 5 //anything above this gets culled
+	var/can_end = FALSE //so it doesn't end during setup somehow
 	var/finished = FALSE
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
 	title_icon = "ss13"
@@ -72,6 +73,7 @@ GLOBAL_VAR(stormdamage)
 		W.req_access = list()
 		W.req_one_access = list()
 		W.locked = FALSE //no bolted either
+	addtimer(VARSET_CALLBACK(src, can_end, TRUE), 29 SECONDS) //let ending be possible
 	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
@@ -81,6 +83,8 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/check_win()
 	. = ..()
 	if(finished)
+		return
+	if(!can_end)
 		return
 	if(LAZYLEN(GLOB.player_list) <= 1) //It's a localhost testing
 		return
