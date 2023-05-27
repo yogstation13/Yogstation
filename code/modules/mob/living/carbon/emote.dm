@@ -4,7 +4,7 @@
 /datum/emote/living/carbon/airguitar
 	key = "airguitar"
 	message = "is strumming the air and headbanging like a safari chimp."
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/carbon/blink
 	key = "blink"
@@ -20,7 +20,7 @@
 	key_third_person = "claps"
 	message = "claps."
 	muzzle_ignore = TRUE
-	restraint_check = TRUE
+	hands_use_check = TRUE
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 
@@ -64,21 +64,21 @@
 	key_third_person = "pointsdown"
 	message = "points down."
 	message_param = "points down towards %t."
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/carbon/roll
 	key = "roll"
 	key_third_person = "rolls"
 	message = "rolls."
 	mob_type_allowed_typecache = list(/mob/living/carbon/monkey, /mob/living/carbon/alien)
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/carbon/scratch
 	key = "scratch"
 	key_third_person = "scratches"
 	message = "scratches."
 	mob_type_allowed_typecache = list(/mob/living/carbon/monkey, /mob/living/carbon/alien)
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/carbon/screech
 	key = "screech"
@@ -91,7 +91,7 @@
 	key_third_person = "signs"
 	message_param = "signs the number %t."
 	mob_type_allowed_typecache = list(/mob/living/carbon/monkey, /mob/living/carbon/alien)
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/carbon/sign/select_param(mob/user, params)
 	. = ..()
@@ -103,7 +103,7 @@
 	key_third_person = "signals"
 	message_param = "raises %t fingers."
 	mob_type_allowed_typecache = list(/mob/living/carbon/human)
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/carbon/tail
 	key = "tail"
@@ -122,7 +122,7 @@
 	message_param = "snaps their fingers at %t."
 	emote_type = EMOTE_AUDIBLE
 	mob_type_allowed_typecache = list(/mob/living/carbon/human)
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/snap/get_sound(mob/living/user)
 	return pick('sound/misc/fingersnap1.ogg', 'sound/misc/fingersnap2.ogg')

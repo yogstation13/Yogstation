@@ -53,7 +53,7 @@
 	for(var/M in buckled_mobs)
 		var/mob/living/buckled_mob = M
 		buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
-		buckled_mob.jitteriness = 0
+		buckled_mob.remove_status_effect(/datum/status_effect/jitter)
 
 /obj/structure/bed/roller/e_roller/MouseDrop()
 	return

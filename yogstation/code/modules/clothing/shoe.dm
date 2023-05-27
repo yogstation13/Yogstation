@@ -11,7 +11,7 @@
 
 /obj/item/clothing/shoes/yogs/cluwne/Initialize()
 	.=..()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
 /obj/item/clothing/shoes/yogs/cluwne/step_action()
 	if(footstep > 1)

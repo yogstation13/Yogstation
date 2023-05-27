@@ -44,7 +44,7 @@
 	M.radiation = 0
 	M.heal_bodypart_damage(5,5)
 	M.adjustToxLoss(-5, 0, TRUE)
-	M.hallucination = 0
+	M.remove_status_effect(/datum/status_effect/hallucination)
 	REMOVE_TRAITS_NOT_IN(M, list(SPECIES_TRAIT, ROUNDSTART_TRAIT, ORGAN_TRAIT))
 	M.set_blurriness(0)
 	M.set_blindness(0)
@@ -54,14 +54,14 @@
 	M.SetParalyzed(0, FALSE)
 	M.SetImmobilized(0, FALSE)
 	M.silent = FALSE
-	M.dizziness = 0
+	M.remove_status_effect(/datum/status_effect/dizziness)
 	M.disgust = 0
-	M.drowsyness = 0
-	M.stuttering = 0
-	M.slurring = 0
-	M.confused = 0
+	M.remove_status_effect(/datum/status_effect/drowsiness)
+	M.remove_status_effect(/datum/status_effect/speech/stutter)
+	M.remove_status_effect(/datum/status_effect/speech/slurring)
+	M.remove_status_effect(/datum/status_effect/confusion)
 	M.SetSleeping(0, 0)
-	M.jitteriness = 0
+	M.remove_status_effect(/datum/status_effect/jitter)
 	if(M.blood_volume < BLOOD_VOLUME_NORMAL(M))
 		M.blood_volume = BLOOD_VOLUME_NORMAL(M)
 
@@ -87,18 +87,18 @@
 	description = "Increases resistance to stuns as well as reducing drowsiness and hallucinations."
 	color = "#FF00FF"
 
-/datum/reagent/medicine/synaptizine/on_mob_life(mob/living/carbon/M)
-	M.drowsyness = max(M.drowsyness-5, 0)
-	M.AdjustStun(-20, FALSE)
-	M.AdjustKnockdown(-20, FALSE)
-	M.AdjustUnconscious(-20, FALSE)
-	M.AdjustImmobilized(-20, FALSE)
-	M.AdjustParalyzed(-20, FALSE)
+/datum/reagent/medicine/synaptizine/on_mob_life(mob/living/carbon/affected_mob)
+	affected_mob.adjust_drowsiness(-10 SECONDS * REM)
+	affected_mob.AdjustStun(-20, FALSE)
+	affected_mob.AdjustKnockdown(-20, FALSE)
+	affected_mob.AdjustUnconscious(-20, FALSE)
+	affected_mob.AdjustImmobilized(-20, FALSE)
+	affected_mob.AdjustParalyzed(-20, FALSE)
 	if(holder.has_reagent(/datum/reagent/toxin/mindbreaker))
 		holder.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
-	M.hallucination = max(0, M.hallucination - 10)
+	affected_mob.adjust_hallucinations(-20 SECONDS * REM)
 	if(prob(30))
-		M.adjustToxLoss(1, 0)
+		affected_mob.adjustToxLoss(1, 0)
 		. = 1
 	..()
 
@@ -108,12 +108,12 @@
 	color = "#EC536D" // rgb: 236, 83, 109
 
 /datum/reagent/medicine/synaphydramine/on_mob_life(mob/living/carbon/M)
-	M.drowsyness = max(M.drowsyness-5, 0)
+	M.adjust_drowsiness(-10 SECONDS * REM)
 	if(holder.has_reagent(/datum/reagent/toxin/mindbreaker))
 		holder.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
 	if(holder.has_reagent(/datum/reagent/toxin/histamine))
 		holder.remove_reagent(/datum/reagent/toxin/histamine, 5)
-	M.hallucination = max(0, M.hallucination - 10)
+	M.adjust_hallucinations(-20 SECONDS * REM)
 	if(prob(30))
 		M.adjustToxLoss(1, 0)
 		. = 1
@@ -220,8 +220,8 @@
 
 /datum/reagent/medicine/rezadone/overdose_process(mob/living/M)
 	M.adjustToxLoss(1, 0)
-	M.Dizzy(5)
-	M.Jitter(5)
+	M.adjust_dizzy(5)
+	M.adjust_jitter(5 SECONDS)
 	..()
 	. = 1
 
@@ -637,7 +637,7 @@
 		var/obj/item/I = M.get_active_held_item()
 		if(I && M.dropItemToGround(I))
 			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
-			M.Jitter(10)
+			M.adjust_jitter(10 SECONDS)
 
 	M.AdjustAllImmobility(-20, FALSE)
 	M.adjustStaminaLoss(-1*REM, FALSE)
@@ -663,8 +663,8 @@
 /datum/reagent/medicine/ephedrine/addiction_act_stage1(mob/living/M)
 	if(prob(3) && iscarbon(M))
 		M.visible_message(span_danger("[M] starts having a seizure!"), span_userdanger("You have a seizure!"))
-		M.Unconscious(100)
-		M.Jitter(350)
+		M.Unconscious(10 SECONDS)
+		M.adjust_jitter(350 SECONDS)
 
 	if(prob(33))
 		M.adjustToxLoss(2*REM, 0)
@@ -675,8 +675,8 @@
 /datum/reagent/medicine/ephedrine/addiction_act_stage2(mob/living/M)
 	if(prob(6) && iscarbon(M))
 		M.visible_message(span_danger("[M] starts having a seizure!"), span_userdanger("You have a seizure!"))
-		M.Unconscious(100)
-		M.Jitter(350)
+		M.Unconscious(10 SECONDS)
+		M.adjust_jitter(350 SECONDS)
 
 	if(prob(33))
 		M.adjustToxLoss(3*REM, 0)
@@ -688,7 +688,7 @@
 	if(prob(12) && iscarbon(M))
 		M.visible_message(span_danger("[M] starts having a seizure!"), span_userdanger("You have a seizure!"))
 		M.Unconscious(100)
-		M.Jitter(350)
+		M.adjust_jitter(350)
 
 	if(prob(33))
 		M.adjustToxLoss(4*REM, 0)
@@ -700,7 +700,7 @@
 	if(prob(24) && iscarbon(M))
 		M.visible_message(span_danger("[M] starts having a seizure!"), span_userdanger("You have a seizure!"))
 		M.Unconscious(100)
-		M.Jitter(350)
+		M.adjust_jitter(350)
 
 	if(prob(33))
 		M.adjustToxLoss(5*REM, 0)
@@ -718,14 +718,14 @@
 
 /datum/reagent/medicine/diphenhydramine/on_mob_life(mob/living/carbon/M)
 	if(prob(10))
-		M.drowsyness += 1
-	M.jitteriness -= 1
+		M.adjust_drowsiness(1 SECONDS)
+	M.adjust_jitter(-1 SECONDS)
 	M.reagents.remove_reagent(/datum/reagent/toxin/histamine,3)
 	..()
 
 /datum/reagent/medicine/diphenhydramine/overdose_process(mob/living/M)
 	M.set_drugginess(15)
-	M.hallucination += 5*REM
+	M.adjust_hallucinations(20 SECONDS * REM)
 	..()
 
 /datum/reagent/medicine/morphine
@@ -753,7 +753,7 @@
 		if(11)
 			to_chat(M, span_warning("You start to feel tired...") )
 		if(12 to 24)
-			M.drowsyness += 1
+			M.adjust_drowsiness(1 SECONDS)
 		if(24 to INFINITY)
 			M.Sleeping(40, 0)
 			. = 1
@@ -762,14 +762,14 @@
 /datum/reagent/medicine/morphine/overdose_process(mob/living/M)
 	if(prob(33))
 		M.drop_all_held_items()
-		M.Dizzy(2)
-		M.Jitter(2)
+		M.adjust_dizzy(2)
+		M.adjust_jitter(2 SECONDS)
 	..()
 
 /datum/reagent/medicine/morphine/addiction_act_stage1(mob/living/M)
 	if(prob(33))
 		M.drop_all_held_items()
-		M.Jitter(2)
+		M.adjust_jitter(2 SECONDS)
 	..()
 
 /datum/reagent/medicine/morphine/addiction_act_stage2(mob/living/M)
@@ -777,8 +777,8 @@
 		M.drop_all_held_items()
 		M.adjustToxLoss(1*REM, 0)
 		. = 1
-		M.Dizzy(3)
-		M.Jitter(3)
+		M.adjust_dizzy(3)
+		M.adjust_jitter(3 SECONDS)
 	..()
 
 /datum/reagent/medicine/morphine/addiction_act_stage3(mob/living/M)
@@ -786,8 +786,8 @@
 		M.drop_all_held_items()
 		M.adjustToxLoss(2*REM, 0)
 		. = 1
-		M.Dizzy(4)
-		M.Jitter(4)
+		M.adjust_dizzy(4)
+		M.adjust_jitter(4 SECONDS)
 	..()
 
 /datum/reagent/medicine/morphine/addiction_act_stage4(mob/living/M)
@@ -795,8 +795,8 @@
 		M.drop_all_held_items()
 		M.adjustToxLoss(3*REM, 0)
 		. = 1
-		M.Dizzy(5)
-		M.Jitter(5)
+		M.adjust_dizzy(5)
+		M.adjust_jitter(5 SECONDS)
 	..()
 
 /datum/reagent/medicine/oculine
@@ -845,15 +845,15 @@
 		. = 1
 	M.losebreath = 0
 	if(prob(20))
-		M.Dizzy(5)
-		M.Jitter(5)
+		M.adjust_dizzy(5)
+		M.adjust_jitter(5 SECONDS)
 	..()
 
 /datum/reagent/medicine/atropine/overdose_process(mob/living/M)
 	M.adjustToxLoss(0.5*REM, 0)
 	. = 1
-	M.Dizzy(1)
-	M.Jitter(1)
+	M.adjust_dizzy(1)
+	M.adjust_jitter(1 SECONDS)
 	..()
 
 /datum/reagent/medicine/epinephrine
@@ -973,7 +973,7 @@
 	taste_description = "acid"
 
 /datum/reagent/medicine/mutadone/on_mob_life(mob/living/carbon/M)
-	M.jitteriness = 0
+	M.remove_status_effect(/datum/status_effect/jitter)
 	if(M.has_dna())
 		M.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
 	if(!QDELETED(M)) //We were a monkey, now a human
@@ -984,17 +984,21 @@
 	description = "Purges alcoholic substance from the patient's body and eliminates its side effects."
 	color = "#00B4C8"
 	taste_description = "raw egg"
+	/// All status effects we remove on metabolize.
+	/// Does not include drunk (despite what you may think) as that's decresed gradually
+	var/static/list/status_effects_to_clear = list(
+		/datum/status_effect/confusion,
+		/datum/status_effect/dizziness,
+		/datum/status_effect/drowsiness,
+		/datum/status_effect/speech/slurring/drunk,
+	)
 
-/datum/reagent/medicine/antihol/on_mob_life(mob/living/carbon/M)
-	M.dizziness = 0
-	M.drowsyness = 0
-	M.slurring = 0
-	M.confused = 0
-	M.reagents.remove_all_type(/datum/reagent/consumable/ethanol, 3*REM, 0, 1)
-	M.adjustToxLoss(-0.2*REM, 0)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		H.drunkenness = max(H.drunkenness - 10, 0)
+/datum/reagent/medicine/antihol/on_mob_life(mob/living/carbon/affected_mob)
+	for(var/effect in status_effects_to_clear)
+		affected_mob.remove_status_effect(effect)
+	affected_mob.reagents.remove_all_type(/datum/reagent/consumable/ethanol, 3*REM, 0, 1)
+	affected_mob.adjustToxLoss(-0.2*REM, 0)
+	affected_mob.adjust_drunk_effect(-10 * REM)
 	..()
 	. = 1
 
@@ -1261,14 +1265,14 @@
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2 * REM, 150) //This does, after all, come from ambrosia, and the most powerful ambrosia in existence, at that!
 	M.adjustCloneLoss(-1 * REM, 0)
 	M.adjustStaminaLoss(-30 * REM, 0)
-	M.jitteriness = min(max(0, M.jitteriness + 3), 30)
-	M.druggy = min(max(0, M.druggy + 10), 15) //See above
+	M.adjust_jitter_up_to(6 SECONDS * REM, 1 MINUTES)
+	M.adjust_drugginess_up_to(20 SECONDS * REM, 30 SECONDS * REM) //See above
 	..()
 	. = 1
 
-/datum/reagent/medicine/earthsblood/overdose_process(mob/living/M)
-	M.hallucination = min(max(0, M.hallucination + 5), 60)
-	M.adjustToxLoss(5 * REM, 0)
+/datum/reagent/medicine/earthsblood/overdose_process(mob/living/affected_mob)
+	affected_mob.adjust_hallucinations_up_to(10 SECONDS * REM, 120 SECONDS)
+	affected_mob.adjustToxLoss(5 * REM, 0)
 	..()
 	. = 1
 
@@ -1282,11 +1286,9 @@
 /datum/reagent/medicine/haloperidol/on_mob_life(mob/living/carbon/M)
 	for(var/datum/reagent/drug/R in M.reagents.reagent_list)
 		M.reagents.remove_reagent(R.type,5)
-	M.drowsyness += 2
-	if(M.jitteriness >= 3)
-		M.jitteriness -= 3
-	if (M.hallucination >= 5)
-		M.hallucination -= 5
+	M.adjust_drowsiness(2 SECONDS)
+	M.adjust_jitter(-3 SECONDS)
+	M.adjust_hallucinations(-5 SECONDS)
 	if(prob(20))
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 50)
 	M.adjustStaminaLoss(2.5*REM, 0)
@@ -1409,7 +1411,7 @@
 		overdose_threshold = overdose_threshold + rand(-10,10)/10 // for extra fun
 		M.AdjustAllImmobility(-5, FALSE)
 		M.adjustStaminaLoss(-0.5*REM, 0)
-		M.Jitter(1)
+		M.adjust_jitter(1 SECONDS)
 		metabolization_rate = 0.01 * REAGENTS_METABOLISM * rand(5,20) // randomizes metabolism between 0.02 and 0.08 per tick
 		. = TRUE
 	..()
@@ -1422,17 +1424,17 @@
 	overdose_progress++
 	switch(overdose_progress)
 		if(1 to 40)
-			M.jitteriness = min(M.jitteriness+1, 10)
-			M.stuttering = min(M.stuttering+1, 10)
-			M.Dizzy(5)
+			M.adjust_jitter_up_to(1 SECONDS, 10 SECONDS)
+			M.adjust_stutter_up_to(1 SECONDS, 10 SECONDS)
+			M.adjust_dizzy(5)
 			if(prob(50))
 				M.losebreath++
 		if(41 to 80)
 			M.adjustOxyLoss(0.1*REM, 0)
 			M.adjustStaminaLoss(0.1*REM, 0)
-			M.jitteriness = min(M.jitteriness+1, 20)
-			M.stuttering = min(M.stuttering+1, 20)
-			M.Dizzy(10)
+			M.adjust_jitter_up_to(1 SECONDS, 20 SECONDS)
+			M.adjust_stutter_up_to(1 SECONDS, 20 SECONDS)
+			M.adjust_dizzy(10)
 			if(prob(50))
 				M.losebreath++
 			if(prob(20))
@@ -1466,20 +1468,20 @@
 	REMOVE_TRAIT(L, TRAIT_FEARLESS, type)
 	..()
 
-/datum/reagent/medicine/psicodine/on_mob_life(mob/living/carbon/M)
-	M.jitteriness = max(0, M.jitteriness-6)
-	M.dizziness = max(0, M.dizziness-6)
-	M.confused = max(0, M.confused-6)
-	M.disgust = max(0, M.disgust-6)
-	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
+/datum/reagent/medicine/psicodine/on_mob_life(mob/living/carbon/affected_mob, delta_time, times_fired)
+	affected_mob.adjust_jitter(-12 SECONDS * REM)
+	affected_mob.adjust_dizzy(-12 SECONDS * REM)
+	affected_mob.adjust_confusion(-6 SECONDS * REM)
+	affected_mob.disgust = max(affected_mob.disgust - (6 * REM), 0)
+	var/datum/component/mood/mood = affected_mob.GetComponent(/datum/component/mood)
 	if(mood && mood.sanity <= SANITY_NEUTRAL) // only take effect if in negative sanity and then...
 		mood.setSanity(min(mood.sanity+5, SANITY_NEUTRAL)) // set minimum to prevent unwanted spiking over neutral
 	..()
 	. = 1
 
-/datum/reagent/medicine/psicodine/overdose_process(mob/living/M)
-	M.hallucination = min(max(0, M.hallucination + 5), 60)
-	M.adjustToxLoss(1, 0)
+/datum/reagent/medicine/psicodine/overdose_process(mob/living/affected_mob)
+	affected_mob.adjust_hallucinations_up_to(10 SECONDS * REM, 120 SECONDS)
+	affected_mob.adjustToxLoss(1, 0)
 	..()
 	. = 1
 
@@ -1699,9 +1701,9 @@
 				M.emote("twitch")
 			if(prob(90))
 				M.adjustToxLoss(tox_roll*REM, 0)
-			M.Jitter(jitter)
+			M.adjust_jitter(jitter)
 		if(prob(1)) // Last set of non OD probability effects
-			M.Dizzy(jitter)
+			M.adjust_dizzy(jitter)
 			M.apply_effect(slur, EFFECT_SLUR) // End of base probability effects
 		if(heal_roll < 0) // Healing payload after calculations
 			M.adjustFireLoss(heal_roll*REM, 0)
@@ -1714,12 +1716,12 @@
 			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0,1,2,2.5,-1,-2))
 		if(prob(15))
 			M.set_drugginess(rand(2,6))
-		M.Jitter(jitter)
+		M.adjust_jitter(jitter)
 		if(prob(40))
 			M.adjustToxLoss(pick(1,-1)*REM, 0)
 		if(prob(1))
-			M.Dizzy(jitter) // end last set of OD probability effects
-		M.Jitter(jitter) // OD slur and jitter after calculations
+			M.adjust_dizzy(jitter) // end last set of OD probability effects
+		M.adjust_jitter(jitter) // OD slur and jitter after calculations
 		M.apply_effect(slur, EFFECT_SLUR)
 		if(heal_roll < 0) // OD Healing payload after calculations
 			M.adjustFireLoss(heal_roll*REM, FALSE, FALSE, BODYPART_ORGANIC)
@@ -1731,7 +1733,7 @@
 		if(!overdosed)
 			jitter += 5
 			slur += 25
-			M.drowsyness += 0.5
+			M.adjust_drowsiness(0.5 SECONDS)
 			heal_roll -= 0.2
 		else if(overdosed)
 			heal_roll -= 0.4
@@ -1775,7 +1777,7 @@
 			if(prob(30))
 				jitter = 50
 			if(prob(30))
-				M.drowsyness += 0.5
+				M.adjust_drowsiness(0.5 SECONDS)
 				if(prob(2))
 					to_chat(M, "<span class ='notice'>Your fingers spasm!</span>")
 					M.drop_all_held_items() // end IF both drugs present
@@ -1874,7 +1876,7 @@
 	if(M.stat != DEAD)
 		return
 	M.revive(full_heal = TRUE)
-	M.Jitter(10 SECONDS)
+	M.adjust_jitter(10 SECONDS)
 	M.emote("gasp")
 
 /datum/reagent/medicine/naniteremover

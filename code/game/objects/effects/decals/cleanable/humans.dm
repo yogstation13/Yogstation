@@ -25,6 +25,9 @@
 	. = ..()
 	icon_state = "[icon_state]-old" //change from the normal blood icon selected from random_icon_states in the parent's Initialize to the old dried up blood.
 
+/obj/effect/decal/cleanable/blood/old/can_bloodcrawl_in() //Yogs -- dried blood bloodcrawl
+	return TRUE
+
 /obj/effect/decal/cleanable/blood/splatter
 	icon_state = "gibbl1"
 	random_icon_states = list("gibbl1", "gibbl2", "gibbl3", "gibbl4", "gibbl5")

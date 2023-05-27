@@ -61,9 +61,15 @@
 		return
 	whisper(message)
 
-///whisper a message
-/mob/proc/whisper(message, datum/language/language=null)
-	say(message, language) //only living mobs actually whisper, everything else just talks
+/**
+ * Whisper a message.
+ *
+ * Basic level implementation just speaks the message, nothing else.
+ */
+/mob/proc/whisper(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language, ignore_spam = FALSE, forced, filterproof)
+	if(!message)
+		return
+	say(message, language = language)
 
 /mob/verb/me_wrapper()
 	set name = ".me"

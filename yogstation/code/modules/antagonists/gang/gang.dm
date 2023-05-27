@@ -1,6 +1,7 @@
 /datum/antagonist/gang
 	name = "Gangster"
 	roundend_category = "gangsters"
+	antag_hud_name = "hud_gangster"
 	can_coexist_with_others = FALSE
 	job_rank = ROLE_GANG
 	antagpanel_category = "Gang"
@@ -16,12 +17,7 @@
 			return FALSE
 
 /datum/antagonist/gang/apply_innate_effects(mob/living/mob_override)
-	var/mob/living/M = mob_override || owner.current
-	update_gang_icons_added(M)
-
-/datum/antagonist/gang/remove_innate_effects(mob/living/mob_override)
-	var/mob/living/M = mob_override || owner.current
-	update_gang_icons_removed(M)
+	add_team_hud(mob_override || owner.current, /datum/antagonist/gang)
 
 /datum/antagonist/gang/get_team()
 	return gang
@@ -55,22 +51,6 @@
 
 /datum/antagonist/gang/proc/equip_gang() // Bosses get equipped with their tools
 	return
-
-/datum/antagonist/gang/proc/update_gang_icons_added(mob/living/M)
-	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.hud_entry_num]
-	if(!ganghud)
-		ganghud = new/datum/atom_hud/antag/gang()
-		gang.hud_entry_num = GLOB.huds.len+1 // this is the index the gang hud will be added at
-		GLOB.huds += ganghud
-	ganghud.color = gang.color
-	ganghud.join_hud(M)
-	set_antag_hud(M,hud_type)
-
-/datum/antagonist/gang/proc/update_gang_icons_removed(mob/living/M)
-	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.hud_entry_num]
-	if(ganghud)
-		ganghud.leave_hud(M)
-		set_antag_hud(M, null)
 
 /datum/antagonist/gang/proc/can_be_converted(mob/living/candidate)
 	if(!candidate.mind)
@@ -177,11 +157,7 @@
 	..()
 	if(gang)
 		gang.leaders += owner
-	var/mob/living/carbon/human/H = owner.current
-	if(istype(H))
-		if(owner.assigned_role == "Clown")
-			to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
-			H.dna.remove_mutation(CLOWNMUT)
+	handle_clown_mutation(owner.current, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 
 /datum/antagonist/gang/boss/on_removal()
 	if(gang)

@@ -1,7 +1,6 @@
 /obj/item/implant/gang
 	name = "gang implant"
 	desc = "Makes you a gangster."
-	activated = FALSE
 	var/datum/team/gang/gang
 
 /obj/item/implant/gang/Initialize(loc, setgang)

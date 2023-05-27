@@ -202,16 +202,16 @@
 //Gets blood from mob to a container or other mob, preserving all data in it.
 /mob/living/proc/transfer_blood_to(atom/movable/AM, total_amount, forced)
 	if(!blood_volume || !AM.reagents)
-		return 0
+		return FALSE
 	if(blood_volume < BLOOD_VOLUME_BAD(src) && !forced)
-		return 0
+		return FALSE
 
 	if(blood_volume < total_amount)
 		total_amount = blood_volume
 
 	var/blood_id = get_blood_id()
 	if(!blood_id)
-		return 0
+		return FALSE
 
 	var/amount = total_amount
 	var/chems_amount = 0
@@ -221,6 +221,9 @@
 		amount = total_amount * blood_proportion
 		chems_amount = total_amount * (1 - blood_proportion)
 
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
+	if(bloodsuckerdatum)
+		bloodsuckerdatum.bloodsucker_blood_volume -= amount
 	blood_volume -= amount
 
 	var/list/blood_data = get_blood_data(blood_id)
@@ -237,15 +240,15 @@
 						C.ForceContractDisease(D)
 				if(!(blood_data["blood_type"] in get_safe_blood(C.dna.blood_type)))
 					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
-					return 1
+					return TRUE
 
 			C.blood_volume = min(C.blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM(C))
-			return 1
+			return TRUE
 
 	AM.reagents.add_reagent(blood_id, amount, blood_data, bodytemperature)
 	if(chems_amount)
 		reagents.trans_to(AM, chems_amount)
-	return 1
+	return TRUE
 
 
 /mob/living/proc/get_blood_data(blood_id)

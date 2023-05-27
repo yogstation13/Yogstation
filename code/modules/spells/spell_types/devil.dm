@@ -1,112 +1,117 @@
-/obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork
+/datum/action/cooldown/spell/conjure_item/summon_pitchfork
 	name = "Summon Pitchfork"
 	desc = "A devil's weapon of choice.  Use this to summon/unsummon your pitchfork."
-	invocation_type = SPELL_INVOCATION_NONE
-	include_user = TRUE
-	range = -1
-	clothes_req = FALSE
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon_state = "pitchfork"
+	background_icon_state = "bg_demon"
+
+	school = SCHOOL_CONJURATION
+	invocation_type = INVOCATION_NONE
+
 	item_type = /obj/item/twohanded/pitchfork/demonic
+	cooldown_time = 15 SECONDS
+	spell_requirements = NONE
 
-	school = "conjuration"
-	charge_max = 150
-	cooldown_min = 10
-	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	action_icon_state = "pitchfork"
-	action_background_icon_state = "bg_demon"
-
-/obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork/greater
+/datum/action/cooldown/spell/conjure_item/summon_pitchfork/greater
 	item_type = /obj/item/twohanded/pitchfork/demonic/greater
 
-/obj/effect/proc_holder/spell/targeted/conjure_item/summon_pitchfork/ascended
+/datum/action/cooldown/spell/conjure_item/summon_pitchfork/ascended
 	item_type = /obj/item/twohanded/pitchfork/demonic/ascended
 
-/obj/effect/proc_holder/spell/targeted/conjure_item/violin
-	item_type = /obj/item/instrument/violin/golden
-	desc = "A devil's instrument of choice.  Use this to summon/unsummon your golden violin."
-	invocation_type = SPELL_INVOCATION_WHISPER
-	invocation = "I aint have this much fun since Georgia."
-	action_icon_state = "golden_violin"
+/datum/action/cooldown/spell/conjure_item/violin
 	name = "Summon golden violin"
-	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	action_background_icon_state = "bg_demon"
+	desc = "A devil's instrument of choice. \n\
+		Use this to summon/unsummon your golden violin."
+	button_icon_state = "golden_violin"
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	background_icon_state = "bg_demon"
 
-/obj/effect/proc_holder/spell/targeted/summon_contract
+	invocation = "I aint have this much fun since Georgia."
+	invocation_type = INVOCATION_WHISPER
+
+	item_type = /obj/item/instrument/violin/golden
+
+/datum/action/cooldown/spell/pointed/summon_contract
 	name = "Summon infernal contract"
 	desc = "Skip making a contract by hand, just do it by magic."
-	invocation_type = SPELL_INVOCATION_WHISPER
+	button_icon_state = "spell_default"
+	background_icon_state = "bg_demon"
+
+	school = SCHOOL_CONJURATION
 	invocation = "Just sign on the dotted line."
-	include_user = FALSE
-	range = 5
-	clothes_req = FALSE
+	invocation_type = INVOCATION_WHISPER
 
-	school = "conjuration"
-	charge_max = 150
-	cooldown_min = 10
-	action_icon_state = "spell_default"
-	action_background_icon_state = "bg_demon"
+	cast_range = 5
+	cooldown_time = 15 SECONDS
+	spell_requirements = NONE
 
-/obj/effect/proc_holder/spell/targeted/summon_contract/cast(list/targets, mob/user = usr)
-	for(var/mob/living/carbon/C in targets)
-		if(C.mind && user.mind)
-			if(C.stat == DEAD)
-				if(user.dropItemToGround(user.get_active_held_item()))
-					var/obj/item/paper/contract/infernal/revive/contract = new(user.loc, C.mind, user.mind)
-					user.put_in_hands(contract)
-			else
-				var/obj/item/paper/contract/infernal/contract  // = new(user.loc, C.mind, contractType, user.mind)
-				var/contractTypeName = input(user, "What type of contract?") in list ("Power", "Wealth", "Prestige", "Magic", "Knowledge", "Friendship")
-				switch(contractTypeName)
-					if("Power")
-						contract = new /obj/item/paper/contract/infernal/power(C.loc, C.mind, user.mind)
-					if("Wealth")
-						contract = new /obj/item/paper/contract/infernal/wealth(C.loc, C.mind, user.mind)
-					if("Prestige")
-						contract = new /obj/item/paper/contract/infernal/prestige(C.loc, C.mind, user.mind)
-					if("Magic")
-						contract = new /obj/item/paper/contract/infernal/magic(C.loc, C.mind, user.mind)
-					if("Knowledge")
-						contract = new /obj/item/paper/contract/infernal/knowledge(C.loc, C.mind, user.mind)
-					if("Friendship")
-						contract = new /obj/item/paper/contract/infernal/friend(C.loc, C.mind, user.mind)
-				C.put_in_hands(contract)
-		else
-			to_chat(user, span_notice("[C] seems to not be sentient.  You cannot summon a contract for [C.p_them()]."))
-			action.UpdateButtonIcon()
-			charge_counter = charge_max
-			recharging = FALSE
+/datum/action/cooldown/spell/pointed/summon_contract/InterceptClickOn(mob/living/user, params, atom/target)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!iscarbon(target))
+		return FALSE
+	var/mob/living/carbon/carbon_target = target
+	if(!carbon_target.mind)
+		to_chat(user, span_notice("[carbon_target] seems to not be sentient. \
+								You cannot summon a contract for [carbon_target.p_them()]."))
+		return FALSE
+	if(carbon_target.stat == DEAD)
+		if(carbon_target.dropItemToGround(carbon_target.get_active_held_item()))
+			var/obj/item/paper/contract/infernal/revive/contract = new(owner.loc, carbon_target.mind, owner.mind)
+			user.put_in_hands(contract)
+			return TRUE
+		return FALSE
 
-/obj/effect/proc_holder/spell/aimed/fireball/hellish
+	var/obj/item/paper/contract/infernal/contract  // = new(user.loc, C.mind, contractType, user.mind)
+	var/contractTypeName = tgui_input_list(owner, "What type of contract?", "Devilish", list("Power", "Wealth", "Prestige", "Magic", "Knowledge", "Friendship"))
+	switch(contractTypeName)
+		if("Power")
+			contract = new /obj/item/paper/contract/infernal/power(carbon_target.loc, carbon_target.mind, owner.mind)
+		if("Wealth")
+			contract = new /obj/item/paper/contract/infernal/wealth(carbon_target.loc, carbon_target.mind, owner.mind)
+		if("Prestige")
+			contract = new /obj/item/paper/contract/infernal/prestige(carbon_target.loc, carbon_target.mind, owner.mind)
+		if("Magic")
+			contract = new /obj/item/paper/contract/infernal/magic(carbon_target.loc, carbon_target.mind, owner.mind)
+		if("Knowledge")
+			contract = new /obj/item/paper/contract/infernal/knowledge(carbon_target.loc, carbon_target.mind, owner.mind)
+		if("Friendship")
+			contract = new /obj/item/paper/contract/infernal/friend(carbon_target.loc, carbon_target.mind, owner.mind)
+	carbon_target.put_in_hands(contract)
+
+	return TRUE
+
+/datum/action/cooldown/spell/pointed/projectile/fireball/hellish
 	name = "Hellfire"
 	desc = "This spell launches hellfire at the target."
+	background_icon_state = "bg_demon"
 
-	school = "evocation"
-	charge_max = 80
-	clothes_req = FALSE
+	school = SCHOOL_EVOCATION
 	invocation = "Your very soul will catch fire!"
-	invocation_type = SPELL_INVOCATION_SAY
-	range = 2
+	invocation_type = INVOCATION_SHOUT
 
-	projectile_type = /obj/item/projectile/magic/aoe/fireball/infernal
+	cooldown_time = 6 SECONDS
+	cast_range = 2
+	spell_requirements = NONE
 
-	action_background_icon_state = "bg_demon"
+	projectile_type = /obj/item/projectile/magic/fireball/infernal
 
-/obj/effect/proc_holder/spell/targeted/infernal_jaunt
+/datum/action/cooldown/spell/jaunt/infernal_jaunt
 	name = "Infernal Jaunt"
 	desc = "Use hellfire to phase out of existence."
-	charge_max = 200
-	clothes_req = FALSE
-	selection_type = "range"
-	range = -1
-	cooldown_min = 0
-	overlay = null
-	include_user = TRUE
-	action_icon_state = "jaunt"
-	action_background_icon_state = "bg_demon"
-	phase_allowed = TRUE
+	button_icon_state = "jaunt"
+	background_icon_state = "bg_demon"
 
-/obj/effect/proc_holder/spell/targeted/infernal_jaunt/cast(list/targets, mob/living/user = usr)
+	cooldown_time = 20 SECONDS
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/jaunt/infernal_jaunt/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(istype(user))
-		if(istype(user.loc, /obj/effect/dummy/phased_mob))
+		if(is_jaunting(user))
 			if(valid_location(user))
 				to_chat(user, span_warning("You are now phasing in."))
 				if(do_mob(user,user,150))
@@ -117,7 +122,6 @@
 
 			else
 				to_chat(user, span_warning("You can only re-appear near a potential signer."))
-				revert_cast()
 				return ..()
 		else
 			user.notransform = TRUE
@@ -129,11 +133,11 @@
 				to_chat(user, span_warning("You must remain still while exiting."))
 				user.notransform = FALSE
 				user.fakefireextinguish()
-		start_recharge()
 		return
-	revert_cast()
 
-/obj/effect/proc_holder/spell/targeted/infernal_jaunt/proc/valid_location(mob/living/user = usr)
+	return TRUE
+
+/datum/action/cooldown/spell/jaunt/infernal_jaunt/proc/valid_location(mob/living/user = usr)
 	if(istype(get_area(user), /area/shuttle/)) // Can always phase in in a shuttle.
 		return TRUE
 	else
@@ -148,7 +152,7 @@
 	visible_message(span_warning("[src] disappears in a flashfire!"))
 	playsound(get_turf(src), 'sound/magic/enter_blood.ogg', 100, 1, -1)
 	var/obj/effect/dummy/phased_mob/holder = new /obj/effect/dummy/phased_mob(loc)
-	ExtinguishMob()
+	extinguish_mob()
 	forceMove(holder)
 	holder = holder
 	notransform = FALSE
@@ -165,57 +169,51 @@
 	playsound(get_turf(src), 'sound/magic/exit_blood.ogg', 100, 1, -1)
 	addtimer(CALLBACK(src, PROC_REF(fakefireextinguish)), 15, TIMER_UNIQUE)
 
-/obj/effect/proc_holder/spell/targeted/sintouch
+/datum/action/cooldown/spell/aoe/sintouch
 	name = "Sin Touch"
 	desc = "Subtly encourage someone to sin."
-	charge_max = 1800
-	clothes_req = FALSE
-	selection_type = "range"
-	range = 2
-	cooldown_min = 0
-	overlay = null
-	include_user = FALSE
-	action_icon = 'icons/mob/actions/actions_cult.dmi'
-	action_icon_state = "sintouch"
-	action_background_icon_state = "bg_demon"
-	phase_allowed = FALSE
-	random_target = TRUE
-	random_target_priority = TARGET_RANDOM
-	max_targets = 3
-	invocation = "TASTE SIN AND INDULGE!!"
-	invocation_type = SPELL_INVOCATION_SAY
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "sintouch"
+	background_icon_state = "bg_demon"
 
-/obj/effect/proc_holder/spell/targeted/sintouch/ascended
-	name = "Greater sin touch"
-	charge_max = 100
-	range = 7
+	invocation = "TASTE SIN AND INDULGE!!"
+	invocation_type = INVOCATION_SHOUT
+
+	cooldown_time = 3 MINUTES
+	aoe_radius = 2
+	max_targets = 3
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/aoe/sintouch/ascended
+	name = "Greater Sin Touch"
+	cooldown_time = 10 SECONDS
+	aoe_radius = 7
 	max_targets = 10
 
-/obj/effect/proc_holder/spell/targeted/sintouch/cast(list/targets, mob/living/user = usr)
-	for(var/mob/living/carbon/human/H in targets)
-		if(!H.mind)
-			continue
-		if(H.mind.has_antag_datum(/datum/antagonist/sintouched))
-			continue
-		if(H.anti_magic_check(FALSE, TRUE))
-			continue
-		H.mind.add_antag_datum(/datum/antagonist/sintouched)
-		H.Paralyze(400)
+/datum/action/cooldown/spell/aoe/sintouch/cast_on_thing_in_aoe(atom/target, atom/caster)
+	if(!iscarbon(target))
+		return
+	var/mob/living/carbon/target_carbon = target
+	if(!target_carbon.mind)
+		return
+	if(target_carbon.mind.has_antag_datum(/datum/antagonist/sintouched))
+		return
+	if(target_carbon.anti_magic_check(FALSE, TRUE))
+		return
+	target_carbon.mind.add_antag_datum(/datum/antagonist/sintouched)
+	target_carbon.Paralyze(40 SECONDS)
 
-
-/obj/effect/proc_holder/spell/targeted/summon_dancefloor
+/datum/action/cooldown/spell/summon_dancefloor
 	name = "Summon Dancefloor"
 	desc = "When what a Devil really needs is funk."
-	include_user = TRUE
-	range = -1
-	clothes_req = FALSE
 
-	school = "conjuration"
-	charge_max = 10
-	cooldown_min = 50 //5 seconds, so the smoke can't be spammed
-	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	action_icon_state = "funk"
-	action_background_icon_state = "bg_demon"
+	school = SCHOOL_CONJURATION
+
+	cooldown_time = 5 SECONDS //so the smoke can't be spammed
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon_state = "funk"
+	background_icon_state = "bg_demon"
+	spell_requirements = NONE
 
 	var/list/dancefloor_turfs
 	var/list/dancefloor_turfs_types
@@ -223,7 +221,10 @@
 	var/datum/effect_system/fluid_spread/smoke/transparent/dancefloor_devil/smoke
 
 
-/obj/effect/proc_holder/spell/targeted/summon_dancefloor/cast(list/targets, mob/user = usr)
+/datum/action/cooldown/spell/summon_dancefloor/cast(mob/living/carbon/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	LAZYINITLIST(dancefloor_turfs)
 	LAZYINITLIST(dancefloor_turfs_types)
 
@@ -252,6 +253,8 @@
 			dancefloor_turfs_types[i] = T.type
 			T.ChangeTurf((i % 2 == 0) ? /turf/open/floor/light/colour_cycle/dancefloor_a : /turf/open/floor/light/colour_cycle/dancefloor_b, flags = CHANGETURF_INHERIT_AIR)
 			i++
+
+	return TRUE
 
 /datum/effect_system/fluid_spread/smoke/transparent/dancefloor_devil
 	effect_type = /obj/effect/particle_effect/fluid/smoke/transparent/dancefloor_devil

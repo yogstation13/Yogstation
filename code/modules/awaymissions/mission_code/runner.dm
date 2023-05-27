@@ -103,8 +103,8 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 			if(locate(A) in GLOB.vr_runner_players)
 				if(!A.throwing)
 					var/mob/living/carbon/human/H = A
-					var/obj/effect/proc_holder/spell/portal_recall/findspell = locate(/obj/effect/proc_holder/spell/portal_recall) in H.mind.spell_list
-					findspell.Click(H)
+					var/datum/action/cooldown/spell/portal_recall/findspell = locate(/datum/action/cooldown/spell/portal_recall) in H.actions
+					findspell.Trigger()
 			else
 				qdel(A)
 		else if(!not_reset) // make sure it's not already currently falling
@@ -119,9 +119,9 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 	not_reset = FALSE
 	color = COLOR_ALMOST_BLACK
 	for(var/mob/living/carbon/human/H in contents)
-		var/obj/effect/proc_holder/spell/portal_recall/findspell = locate(/obj/effect/proc_holder/spell/portal_recall) in H.mind.spell_list
+		var/datum/action/cooldown/spell/portal_recall/findspell = locate(/datum/action/cooldown/spell/portal_recall) in H.actions
 		if(H)
-			findspell.Click(H)
+			findspell.Trigger()
 
 /turf/open/indestructible/runner/proc/reset_fall()
 	not_reset = FALSE

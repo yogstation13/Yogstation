@@ -50,7 +50,7 @@
 /datum/reagent/medicine/c2/probital/overdose_process(mob/living/M)
 	M.adjustStaminaLoss(3 * REM, 0)
 	if(M.getStaminaLoss() >= 80)
-		M.drowsyness += 1 * REM
+		M.adjust_drowsiness(2 SECONDS * REM)
 	if(M.getStaminaLoss() >= 100)
 		to_chat(M,span_warning("You feel more tired than you usually do, perhaps if you rest your eyes for a bit..."))
 		M.adjustStaminaLoss(-100, TRUE)
@@ -136,7 +136,7 @@
 	exposed_mob.adjust_bodytemperature(-reac_volume * TEMPERATURE_DAMAGE_COEFFICIENT, 50)
 	exposed_mob.adjust_fire_stacks(-reac_volume / 2)
 	if(reac_volume >= metabolization_rate)
-		exposed_mob.ExtinguishMob()
+		exposed_mob.extinguish_mob()
 
 /datum/reagent/medicine/c2/rhigoxane/overdose_process(mob/living/carbon/M)
 	M.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT * REM, 50) //chilly chilly
@@ -157,7 +157,7 @@
 	M.adjustOxyLoss(-3 * REM)
 	M.adjustStaminaLoss(2 * REM)
 	if(drowsycd && COOLDOWN_FINISHED(src, drowsycd))
-		M.drowsyness += 10
+		M.adjust_drowsiness(20 SECONDS)
 		COOLDOWN_START(src, drowsycd, 45 SECONDS)
 	else if(!drowsycd)
 		COOLDOWN_START(src, drowsycd, 15 SECONDS)

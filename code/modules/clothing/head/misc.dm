@@ -434,6 +434,10 @@
 	icon_state = "taqiyahred"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
 
+/datum/action/item_action/hatsky_voiceline
+	name = "Press Voice Button"
+	desc = "Engage the voice box on your Hatsky to hear a classic line from the real Officer Beepsky!"
+
 /obj/item/clothing/head/hatsky
 	name = "officer hatsky"
 	desc = "A hat for true Beepsky appreciators. Not guaranteed to actually keep you safe from anything."

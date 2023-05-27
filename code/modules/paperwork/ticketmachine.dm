@@ -91,7 +91,7 @@
 		theirticket.fire_act()
 		user.dropItemToGround(theirticket)
 		user.adjust_fire_stacks(1)
-		user.IgniteMob()
+		user.ignite_mob()
 		return
 
 /obj/machinery/ticket_machine/attackby(obj/item/O, mob/user, params)
@@ -163,7 +163,7 @@
 			user.visible_message(span_warning("[user] accidentally ignites [user.p_them()]self!"), span_userdanger("You miss the ticket and accidentally light yourself on fire!"))
 			user.dropItemToGround(P)
 			user.adjust_fire_stacks(1)
-			user.IgniteMob()
+			user.ignite_mob()
 			return
 
 		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper
