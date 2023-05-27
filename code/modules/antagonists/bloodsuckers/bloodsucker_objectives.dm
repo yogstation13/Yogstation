@@ -47,7 +47,7 @@
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/lair/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum && bloodsuckerdatum.coffin && bloodsuckerdatum.lair)
+	if(bloodsuckerdatum && bloodsuckerdatum.coffin && bloodsuckerdatum.bloodsucker_lair_area)
 		return TRUE
 	return FALSE
 
@@ -100,7 +100,7 @@
 			target_department = VASSALIZE_COMMAND
 		// Vassalize a certain department
 		else
-			target_amount = rand(2,3)
+			target_amount = rand(2, 3)
 			target_department = pick(departments)
 	..()
 
@@ -198,7 +198,7 @@
 	if(!owner.current)
 		return FALSE
 
-	var/list/all_items = owner.current.GetAllContents()
+	var/list/all_items = owner.current.get_all_contents()
 	var/heart_count = 0
 	for(var/obj/item/organ/heart/current_hearts in all_items)
 		if(current_hearts.organ_flags & ORGAN_SYNTHETIC) // No robo-hearts allowed
@@ -350,12 +350,12 @@
 	name = "frenzy"
 
 /datum/objective/bloodsucker/frenzy/New()
-	target_amount = rand(3,4)
+	target_amount = rand(1, 2)
 	..()
 
 /datum/objective/bloodsucker/frenzy/update_explanation_text()
 	. = ..()
-	explanation_text = "Enter Frenzy [target_amount] of times without succumbing to Final Death."
+	explanation_text = "Enter Frenzy [target_amount == 1 ? "atleast once" : "2 times"] without succumbing to Final Death."
 
 /datum/objective/bloodsucker/frenzy/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -369,12 +369,12 @@
 	name = "hierarchy"
 
 /datum/objective/bloodsucker/hierarchy/New()
-	target_amount = rand(4,5)
+	target_amount = rand(1, 2)
 	..()
 
 /datum/objective/bloodsucker/hierarchy/update_explanation_text()
 	. = ..()
-	explanation_text = "Ascend [target_amount] abilities using a Resting Place altar."
+	explanation_text = "Ascend [target_amount == 1 ? "atleast 1 ability" : "2 abilities"] using a Resting Place altar."
 
 /datum/objective/bloodsucker/hierarchy/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -413,17 +413,17 @@
 	name = "leader"
 
 /datum/objective/bloodsucker/leader/New()
-	target_amount = rand(2,3)
+	target_amount = rand(2, 3)
 	..()
 
 // EXPLANATION 
 /datum/objective/bloodsucker/leader/update_explanation_text()
 	. = ..()
-	explanation_text = "Convert [target_amount] of Vassals into your vassals."
+	explanation_text = "Convert [target_amount] mortal beings into your vassals."
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/leader/check_completion()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum && bloodsuckerdatum.vassals >= target_amount)
+	if(LAZYLEN(bloodsuckerdatum?.vassals) >= target_amount)
 		return TRUE
 	return FALSE

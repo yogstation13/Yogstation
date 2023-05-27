@@ -71,7 +71,7 @@
 	if(istype(M))
 		if(method != INGEST && method != INJECT)
 			M.adjust_fire_stacks(min(reac_volume/5, 10))
-			M.IgniteMob()
+			M.ignite_mob()
 			if(!locate(/obj/effect/hotspot) in M.loc)
 				new /obj/effect/hotspot(M.loc)
 
@@ -100,7 +100,7 @@
 /datum/reagent/blackpowder/on_mob_life(mob/living/carbon/M)
 	..()
 	if(isplasmaman(M))
-		M.hallucination += 5
+		M.adjust_hallucinations(20 SECONDS)
 
 /datum/reagent/blackpowder/on_ex_act()
 	var/location = get_turf(holder.my_atom)
@@ -143,7 +143,7 @@
 	M.adjust_fire_stacks(1)
 	var/burndmg = max(0.3*M.fire_stacks, 0.3)
 	M.adjustFireLoss(burndmg, 0)
-	M.IgniteMob()
+	M.ignite_mob()
 	..()
 
 /datum/reagent/phlogiston/on_mob_life(mob/living/carbon/M)
@@ -291,5 +291,5 @@
 /datum/reagent/firefighting_foam/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method in list(VAPOR, TOUCH))
 		M.adjust_fire_stacks(-reac_volume)
-		M.ExtinguishMob()
+		M.extinguish_mob()
 	..()

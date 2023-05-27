@@ -15,7 +15,7 @@
 			continue
 		turfs.Add(T)
 
-	var/turf/T = safepick(turfs)
+	var/turf/T = pick(turfs)
 	if(!T)
 		to_chat(src, "Nowhere to jump to!", confidential=TRUE)
 		return

@@ -749,7 +749,7 @@
 
 				if("criminal_status")
 					if(active_security_record)
-						var/crime = input("Select a status", "Criminal Status Selection") as null|anything in list("None", "Arrest", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged")
+						var/crime = tgui_input_list(usr, "Select a status", "Criminal Status Selection", list("None", "Arrest", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged"))
 						if(!crime)
 							crime = "none"
 						var/old_field = active_security_record.fields["criminal"]

@@ -3,6 +3,7 @@
 /////////////////////////
 ///      Coffins      ///
 /////////////////////////
+
 /datum/crafting_recipe/blackcoffin
 	name = "Black Coffin"
 	result = /obj/structure/closet/crate/coffin/blackcoffin
@@ -52,6 +53,7 @@
 ////////////////////////////
 ///      Structures      ///
 ////////////////////////////
+
 /datum/crafting_recipe/bloodaltar
 	name = "Blood Altar"
 	result = /obj/structure/bloodsucker/bloodaltar
@@ -117,6 +119,18 @@
 	category = CAT_STRUCTURES
 	always_available = FALSE
 
+/datum/crafting_recipe/moldingstone
+	name = "Molding Stone"
+	result = /obj/structure/bloodsucker/moldingstone
+	tools = list(TOOL_WELDER, /obj/item/bloodsucker/chisel)
+	reqs = list(
+		/obj/item/stack/sheet/metal = 5,
+		/obj/item/stack/rods = 6,
+	)
+	time = 8 SECONDS
+	category = CAT_STRUCTURES
+	always_available = FALSE
+
 /*
 /datum/crafting_recipe/bloodthrone
 	name = "Blood Throne"
@@ -147,6 +161,7 @@
 ////////////////////////
 ///      Stakes      ///
 ////////////////////////
+
 /datum/crafting_recipe/stake
 	name = "Stake"
 	result = /obj/item/stake
@@ -190,3 +205,30 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 	always_available = FALSE
+
+////////////////////////
+///      Tools       ///
+////////////////////////
+
+/datum/crafting_recipe/chisel
+	name = "Chisel"
+	result = /obj/item/bloodsucker/chisel
+	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
+	reqs = list(
+		/obj/item/stack/sheet/metal = 3
+	)
+	time = 5 SECONDS
+	category = CAT_TOOLS
+	always_available = FALSE
+
+/*/datum/crafting_recipe/bloodybrush
+	name = "Artist's Brush"
+	result = /obj/item/bloodsucker/bloodybrush
+	tools = list(TOOL_HATCHET)
+	reqs = list(
+		/obj/item/stack/sheet/mineral/wood = 2,
+		/obj/item/stack/sheet/cloth = 1,
+	)
+	time = 5 SECONDS
+	category = CAT_TOOLS
+	always_available = FALSE*/
