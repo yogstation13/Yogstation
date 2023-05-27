@@ -10,7 +10,7 @@
 /obj/item/implant/uplink/Initialize(mapload, _owner)
 	. = ..()
 	AddComponent(/datum/component/uplink, _owner, TRUE, FALSE, null, starting_tc)
-	RegisterSignal(src, COMSIG_COMPONENT_REMOVING, .proc/_component_removal)
+	RegisterSignal(src, COMSIG_COMPONENT_REMOVING, PROC_REF(_component_removal))
 
 /**
  * Proc called when component is removed; ie. uplink component

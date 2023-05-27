@@ -59,7 +59,7 @@
 		// Will help make emagging the console not so easy to get away with.
 		MK.info += "<br><br><font color='red'>£%@%(*$%&(£&?*(%&£/{}</font>"
 		var/time = 100 * length(linkedServer.decryptkey)
-		addtimer(CALLBACK(src, .proc/UnmagConsole), time)
+		addtimer(CALLBACK(src, PROC_REF(UnmagConsole)), time)
 		message = rebootmsg
 	else
 		to_chat(user, span_notice("A no server error appears on the screen."))
@@ -395,7 +395,7 @@
 						//Get out list of viable PDAs
 						var/list/obj/item/pda/sendPDAs = get_viewable_pdas()
 						if(GLOB.PDAs && GLOB.PDAs.len > 0)
-							customrecepient = input(usr, "Select a PDA from the list.") as null|anything in sortNames(sendPDAs)
+							customrecepient = input(usr, "Select a PDA from the list.") as null|anything in sortUsernames(sendPDAs)
 						else
 							customrecepient = null
 

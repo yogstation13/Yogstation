@@ -151,7 +151,7 @@
 		set_frequency(frequency)
 
 	if(closeOtherId != null)
-		addtimer(CALLBACK(.proc/update_other_id), 5)
+		addtimer(CALLBACK(src, PROC_REF(update_other_id)), 5)
 	if(glass)
 		airlock_material = "glass"
 	if(security_level > AIRLOCK_SECURITY_METAL)
@@ -164,11 +164,11 @@
 		damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_R
 	prepare_huds()
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_electrified()
 
 	rebuild_parts()
-	RegisterSignal(src, COMSIG_MACHINERY_BROKEN, .proc/on_break)
+	RegisterSignal(src, COMSIG_MACHINERY_BROKEN, PROC_REF(on_break))
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -339,9 +339,9 @@
 				return
 
 			if(density)
-				INVOKE_ASYNC(src, .proc/open)
+				INVOKE_ASYNC(src, PROC_REF(open))
 			else
-				INVOKE_ASYNC(src, .proc/close)
+				INVOKE_ASYNC(src, PROC_REF(close))
 
 		if("bolt")
 			if(command_value == "on" && locked)
@@ -440,7 +440,7 @@
 			D.removeMe(src)
 	qdel(note)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.remove_from_hud(src)
+		diag_hud.remove_atom_from_hud(src)
 	if(brace) //yogs
 		brace.remove() //yogs
 	return ..()
@@ -492,7 +492,7 @@
 			if(cyclelinkedairlock.operating)
 				cyclelinkedairlock.delayed_close_requested = TRUE
 			else
-				addtimer(CALLBACK(cyclelinkedairlock, .proc/close), 2)
+				addtimer(CALLBACK(cyclelinkedairlock, PROC_REF(close)), 2)
 	if(locked && allowed(user) && aac)
 		aac.request_from_door(src)
 		return
@@ -552,7 +552,7 @@
 			secondsBackupPowerLost = 10
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
-	INVOKE_ASYNC(src, .proc/handlePowerRestore)
+	INVOKE_ASYNC(src, PROC_REF(handlePowerRestore))
 	update_icon()
 
 /obj/machinery/door/airlock/proc/loseBackupPower()
@@ -560,7 +560,7 @@
 		secondsBackupPowerLost = 60
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
-	INVOKE_ASYNC(src, .proc/handlePowerRestore)
+	INVOKE_ASYNC(src, PROC_REF(handlePowerRestore))
 	update_icon()
 
 /obj/machinery/door/airlock/proc/regainBackupPower()
@@ -1206,7 +1206,7 @@
 			user.visible_message("[user] is [welded ? "unwelding":"welding"] the airlock.", \
 							span_notice("You begin [welded ? "unwelding":"welding"] the airlock..."), \
 							span_italics("You hear welding."))
-			if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, .proc/weld_checks, W, user)))
+			if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(weld_checks), W, user)))
 				welded = !welded
 				user.visible_message("[user.name] has [welded? "welded shut":"unwelded"] [src].", \
 									span_notice("You [welded ? "weld the airlock shut":"unweld the airlock"]."))
@@ -1218,7 +1218,7 @@
 				user.visible_message("[user] is welding the airlock.", \
 								span_notice("You begin repairing the airlock..."), \
 								span_italics("You hear welding."))
-				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, .proc/weld_checks, W, user)))
+				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(weld_checks), W, user)))
 					obj_integrity = max_integrity
 					stat &= ~BROKEN
 					user.visible_message("[user.name] has repaired [src].", \
@@ -1265,12 +1265,18 @@
 			if(!F.wielded)
 				to_chat(user, span_warning("You need to be wielding the fire axe to do that!"))
 				return
-		INVOKE_ASYNC(src, (density ? .proc/open : .proc/close), 2)
+		INVOKE_ASYNC(src, (density ? PROC_REF(open) : PROC_REF(close)), 2)
 
-	if(istype(I, /obj/item/jawsoflife))
+	if(istype(I, /obj/item/jawsoflife) || istype(I, /obj/item/mantis/blade))
 		if(isElectrified())
 			shock(user,100)//it's like sticking a fork in a power socket
 			return
+
+		if(istype(I, /obj/item/mantis/blade))
+			var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
+			if(!istype(secondsword, /obj/item/mantis/blade))
+				to_chat(user, span_warning("You need a second [I] to pry open doors!"))
+				return
 
 		if(!density)//already open
 			return
@@ -1287,12 +1293,11 @@
 			to_chat(user, span_warning("The airlock won't budge!"))
 			return
 
-		var/time_to_open = 5
+		var/time_to_open = 7 SECONDS * I.toolspeed
+
 		if(hasPower() && !prying_so_hard)
 			if (I.tool_behaviour == TOOL_CROWBAR) //we need another check, futureproofing for if/when bettertools actually completely replaces the old jaws
-				time_to_open = 50
 				if(istype(I,/obj/item/jawsoflife/jimmy))
-					time_to_open = 30
 					var/obj/item/jawsoflife/jimmy/J = I
 					if(J.pump_charge >= J.pump_cost)
 						J.pump_charge = J.pump_charge - J.pump_cost
@@ -1300,7 +1305,7 @@
 							J.pump_charge = 0
 						playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
 						if(J.obj_flags & EMAGGED)
-							time_to_open = 15
+							time_to_open /= 2
 					else
 						if(user)
 							to_chat(user, span_warning("You do not have enough charge in the [J] for this. You need at least [J.pump_cost]% "))
@@ -1310,6 +1315,8 @@
 				prying_so_hard = TRUE
 				if(do_after(user, time_to_open, src))
 					open(2)
+					if(!istype(I,/obj/item/jawsoflife/jimmy)) //You get to be special
+						take_damage(max_integrity/8) //Forcing open a door messes it up a little
 					if(density && !open(2))
 						to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
 				prying_so_hard = FALSE
@@ -1391,7 +1398,7 @@
 	operating = FALSE
 	if(delayed_close_requested)
 		delayed_close_requested = FALSE
-		addtimer(CALLBACK(src, .proc/close), 1)
+		addtimer(CALLBACK(src, PROC_REF(close)), 1)
 	return TRUE
 
 
@@ -1554,7 +1561,7 @@
 	secondsElectrified = seconds
 	diag_hud_set_electrified()
 	if(secondsElectrified > MACHINE_NOT_ELECTRIFIED)
-		INVOKE_ASYNC(src, .proc/electrified_loop)
+		INVOKE_ASYNC(src, PROC_REF(electrified_loop))
 
 	if(user)
 		var/message
@@ -1814,7 +1821,7 @@
 	for(var/mob/living/carbon/human/H in orange(2,src))
 		H.Unconscious(160)
 		H.adjust_fire_stacks(20)
-		H.IgniteMob() //Guaranteed knockout and ignition for nearby people
+		H.ignite_mob() //Guaranteed knockout and ignition for nearby people
 		H.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
 
 

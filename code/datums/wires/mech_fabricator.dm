@@ -33,7 +33,7 @@
 		if(WIRE_HACK)
 			holder.visible_message(span_notice("[icon2html(F, viewers(holder))] The fabricator's control panel blinks temporarily."))
 			F.hacked = TRUE
-			addtimer(CALLBACK(F, /obj/machinery/mecha_part_fabricator.proc/reset, wire), 5)
+			addtimer(CALLBACK(F, TYPE_PROC_REF(/obj/machinery/mecha_part_fabricator, reset), wire), 5)
 		if(WIRE_ZAP)
 			holder.visible_message(span_danger("[icon2html(F, viewers(holder))] The fabricator's hands shake and twist aggressively, grabbing at limbs!"))
 			F.wire_break(usr)

@@ -19,11 +19,11 @@
 		else if (donor_hat_type)
 			var/obj/hat = new donor_hat_type()
 			if(!H.equip_to_appropriate_slot(hat))
-				var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
+				var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.get_all_contents()
 				if(BP)
 					hat.forceMove(BP)
 
-	var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
+	var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.get_all_contents()
 	if(BP)
 		var/datum/donator_gear/donor_item_datum = GLOB.donator_gear.item_names[C.prefs.read_preference(/datum/preference/choiced/donor_item)]
 		if (donor_item_datum)
@@ -46,18 +46,18 @@
 
 	switch(C.prefs.read_preference(/datum/preference/choiced/donor_pda))
 		if(PDA_COLOR_TRANSPARENT)
-			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
+			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.get_all_contents()
 			if(PDA)
 				PDA.finish_color = "glass"
 				PDA.update_icon()
 		if(PDA_COLOR_PIPBOY)
-			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
+			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.get_all_contents()
 			if(PDA)
 				PDA.finish_color = "pipboy"
 				PDA.slot_flags |= ITEM_SLOT_GLOVES
 				PDA.update_icon()
 		if(PDA_COLOR_RAINBOW)
-			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.GetAllContents()
+			var/obj/item/modular_computer/tablet/pda/PDA = locate(/obj/item/modular_computer/tablet/pda) in H.get_all_contents()
 			if(PDA)
 				PDA.finish_color = "rainbow"
 				PDA.update_icon()
@@ -107,7 +107,7 @@
 	var/spawn_map = C.prefs.read_preference(/datum/preference/toggle/spawn_map)
 	var/spawn_flare = C.prefs.read_preference(/datum/preference/toggle/spawn_flare)
 
-	var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.GetAllContents()
+	var/obj/item/storage/backpack/BP = locate(/obj/item/storage/backpack) in H.get_all_contents()
 	if(BP)
 		var/obj/item/storage/box/box = locate(/obj/item/storage/box) in BP
 		if(spawn_map)

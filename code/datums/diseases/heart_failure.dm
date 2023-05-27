@@ -36,7 +36,7 @@
 					to_chat(H, span_warning("You feel [pick("discomfort", "pressure", "a burning sensation", "pain")] in your chest."))
 				if(prob(2))
 					to_chat(H, span_warning("You feel dizzy."))
-					H.confused += 6
+					H.adjust_confusion(6 SECONDS)
 				if(prob(3))
 					to_chat(H, span_warning("You feel [pick("full", "nauseated", "sweaty", "weak", "tired", "short on breath", "uneasy")]."))
 			if(3 to 4)
@@ -52,7 +52,7 @@
 					H.losebreath += 4
 				if(prob(3))
 					to_chat(H, span_danger("You feel very weak and dizzy..."))
-					H.confused += 8
+					H.adjust_confusion(8 SECONDS)
 					H.adjustStaminaLoss(40)
 					H.emote("cough")
 			if(5)

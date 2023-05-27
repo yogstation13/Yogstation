@@ -5,10 +5,7 @@
 	else
 		verb_say = dna.species.say_mod
 	
-	if(slurring)
-		return "slurs"
-	else
-		. = ..()
+	. = ..()
 
 /mob/living/carbon/human/GetVoice()
 	if(istype(wear_mask, /obj/item/clothing/mask/chameleon))

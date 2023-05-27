@@ -66,7 +66,7 @@ New clothing items should be a subtype of ``/obj/item/clothing/CLOTHINGTYPE/yogs
 
 ### Actions and spells
 
-New actions and spells should use the "yogstation/icons/mob/actions.dmi" file. If it is a spell, put the code for the spell in "yogstation/code/modules/spells." To make sure that the spell uses the Yogs icon, please add ``action_icon = 'yogstation/icons/mob/actions.dmi'`` and the ``action_icon_state`` var.
+New actions and spells should use the "yogstation/icons/mob/actions.dmi" file. If it is a spell, put the code for the spell in "yogstation/code/modules/spells." To make sure that the spell uses the Yogs icon, please add ``button_icon = 'yogstation/icons/mob/actions.dmi'`` and the ``button_icon_state`` var.
 
 ### Reagents
 

@@ -220,11 +220,12 @@
 	var/held_index = 0
 
 /atom/movable/screen/inventory/hand/update_icon()
-	..()
+	. = ..()
 
 	if(!handcuff_overlay)
+		var/ui_style = hud?.mymob?.client?.prefs?.read_preference(/datum/preference/choiced/ui_style)
 		var/state = (!(held_index % 2)) ? "markus" : "gabrielle"
-		handcuff_overlay = mutable_appearance('icons/mob/screen_gen.dmi', state)
+		handcuff_overlay = mutable_appearance((ui_style ? ui_style2icon(ui_style) : 'icons/mob/screen_gen.dmi'), state)
 
 	cut_overlays()
 
@@ -374,7 +375,7 @@
 		else
 			to_chat(C, span_warning("You don't have a suitable tank!"))
 			return
-	C.update_action_buttons_icon()
+	C.update_mob_action_buttons()
 
 /atom/movable/screen/mov_intent
 	name = "run/walk toggle"
@@ -800,7 +801,7 @@
 	src.end_time = end_time
 	set_maptext("[round((end_time - world.time) / 10, 1)]")
 	if(need_timer)
-		timer = addtimer(CALLBACK(src, .proc/tick), 1 SECONDS, TIMER_STOPPABLE)
+		timer = addtimer(CALLBACK(src, PROC_REF(tick)), 1 SECONDS, TIMER_STOPPABLE)
 
 /atom/movable/screen/cooldown_overlay/proc/tick()
 	if(world.time >= end_time)
@@ -808,7 +809,7 @@
 		return
 	set_maptext("[round((end_time - world.time) / 10, 1)]")
 	if(timer)
-		timer = addtimer(CALLBACK(src, .proc/tick), 1 SECONDS, TIMER_STOPPABLE)
+		timer = addtimer(CALLBACK(src, PROC_REF(tick)), 1 SECONDS, TIMER_STOPPABLE)
 
 /atom/movable/screen/cooldown_overlay/proc/stop_cooldown()
 	parent_button.color = "#ffffffff"

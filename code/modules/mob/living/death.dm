@@ -49,7 +49,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 
 
 /mob/living/death(gibbed)
-	stat = DEAD
+	set_stat(DEAD)
 	unset_machine()
 	timeofdeath = world.time
 	tod = station_time_timestamp()
@@ -69,16 +69,17 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	blind_eyes(1)
 	reset_perspective(null)
 	reload_fullscreen()
-	update_action_buttons_icon()
+	update_mob_action_buttons()
 	update_damage_hud()
 	update_health_hud()
 	update_mobility()
 	med_hud_set_health()
 	med_hud_set_status()
 	if(!gibbed && !QDELETED(src))
-		addtimer(CALLBACK(src, .proc/med_hud_set_status), (DEFIB_TIME_LIMIT) + 1)
+		addtimer(CALLBACK(src, PROC_REF(med_hud_set_status)), (DEFIB_TIME_LIMIT) + 1)
 	stop_pulling()
 
+	SEND_SIGNAL(src, COMSIG_LIVING_DEATH, gibbed)
 	. = ..()
 
 	if (client)
