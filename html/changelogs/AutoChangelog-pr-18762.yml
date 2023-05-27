@@ -1,5 +1,0 @@
-author: "azzzertyy"
-delete-after: true 
-changes: 
-  - mapping: "Changed box library slightly to have nicer stairs and another camera."
-  - imageadd: "wooden_stair_middle added, just a variation on the existing wooden stairs"

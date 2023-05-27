@@ -449,9 +449,9 @@
 			inherent = templaws.inherent
 
 		if(3)
-			pick_weighted_lawset()
+			pickweighted_lawset()
 
-/datum/ai_laws/proc/pick_weighted_lawset()
+/datum/ai_laws/proc/pickweighted_lawset()
 	var/datum/ai_laws/lawtype
 	var/list/law_weights = CONFIG_GET(keyed_list/law_weight)
 	while(!lawtype && law_weights.len)

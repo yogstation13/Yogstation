@@ -68,7 +68,7 @@
 /obj/item/gun/magic/wand/death/zap_self(mob/living/user)
 	..()
 	to_chat(user, "<span class='warning'>You irradiate yourself with pure energy! \
-	[pick("Do not pass go. Do not collect 200 zorkmids.","You feel more confident in your spell casting skills.","You Die...","Do you want your possessions identified?")]\
+	[pick("Do not pass go. Do not collect 200 zorkmids.","You feel more confident in your spell casting skills.","You die...","Do you want your possessions identified?")]\
 	</span>")
 	user.adjustOxyLoss(500)
 	charges--
@@ -94,6 +94,9 @@
 	max_charges = 10 //10, 5, 5, 4
 
 /obj/item/gun/magic/wand/resurrection/zap_self(mob/living/user)
+	to_chat(user, span_notice("You steady the wand, ready to fire it at yourself..."))
+	if(!do_after(user, 7 SECONDS, user))
+		return
 	..()
 	charges--
 	if(user.anti_magic_check())

@@ -197,7 +197,7 @@
 
 /datum/action/innate/pai
 	name = "PAI Action"
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	var/mob/living/silicon/pai/P
 
 /datum/action/innate/pai/Trigger()
@@ -209,6 +209,7 @@
 	name = "Software Interface"
 	button_icon_state = "pai"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/software/Trigger()
 	..()
@@ -218,6 +219,7 @@
 	name = "Toggle Holoform"
 	button_icon_state = "pai_holoform"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/shell/Trigger()
 	..()
@@ -230,6 +232,7 @@
 	name = "Holochassis Appearance Composite"
 	button_icon_state = "pai_chassis"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/chassis/Trigger()
 	..()
@@ -239,6 +242,7 @@
 	name = "Rest"
 	button_icon_state = "pai_rest"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/rest/Trigger()
 	..()
@@ -246,9 +250,10 @@
 
 /datum/action/innate/pai/light
 	name = "Toggle Integrated Lights"
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "emp"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/light/Trigger()
 	..()

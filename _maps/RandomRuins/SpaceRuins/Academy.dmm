@@ -201,7 +201,7 @@
 /area/awaymission/academy/academyclassroom)
 "du" = (
 /obj/structure/table/wood,
-/obj/item/book/granter/spell/smoke/lesser,
+/obj/item/book/granter/action/spell/smoke/lesser,
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
 "dw" = (
@@ -358,7 +358,7 @@
 "gg" = (
 /obj/structure/closet/crate,
 /obj/item/crowbar/red,
-/obj/item/book/granter/spell/smoke/lesser,
+/obj/item/book/granter/action/spell/smoke/lesser,
 /turf/open/floor/plasteel/dark,
 /area/awaymission/academy/academyclassroom)
 "gr" = (
@@ -952,7 +952,7 @@
 "kH" = (
 /obj/structure/rack,
 /obj/item/pen/fourcolor,
-/obj/item/book/granter/spell/summonitem,
+/obj/item/book/granter/action/spell/summonitem,
 /turf/open/floor/vault,
 /area/awaymission/academy/academycellar)
 "kJ" = (

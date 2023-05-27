@@ -33,7 +33,7 @@
 			if(prob(20))
 				if (prob(50))
 					affected_mob.adjust_fire_stacks(2)
-					affected_mob.IgniteMob()
+					affected_mob.ignite_mob()
 				else
 					affected_mob.emote("gasp")
 					to_chat(affected_mob, span_danger("You feel a burning beat inside..."))
