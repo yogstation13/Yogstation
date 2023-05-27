@@ -38,6 +38,7 @@
 		
 		var/text // The text that this guy will broadcast as best he can in IC channels.
 		var/alert_admins = FALSE
+		var/admins_are_going_to_kill_you = FALSE
 		var/special_role
 		var/list/channels = list() // What channels to broadcast their IC message on
 		if(isdrone(M))// :altoids:
@@ -66,6 +67,9 @@
 					switch(special_role)
 						if("Nuclear Operative","Clown Operative","Syndicate Cyborg","Lone Operative") // Le nukie bois
 							channels = list(".t") // Broadcast their AFK-hood on syndicate channels
+						if("Traitor")
+							admins_are_going_to_kill_you = !H.mind.has_antag_datum(/datum/antagonist/traitor) //OOH I'M TELLING
+
 				if(H.mind.has_antag_datum(/datum/antagonist/ert)) // A bit awkward, but they lack a special_role (nor a consistently unique assigned_role) and it would break some things to make them have one
 					alert_admins = TRUE
 					special_role = H.mind.assigned_role // This normally works.
@@ -88,6 +92,9 @@
 			var/important_role = special_role || M.job || initial(M.name) || "something important"
 			adminhelp("I need to go AFK as '[important_role]' for duration of '[time]' [reason ? " with the reason: '[reason]'" : ""]")
 			mob.log_message("is now AFK for [time] [reason ? " with the reason: '[reason]'" : ""]", LOG_OWNERSHIP)
+			if(admins_are_going_to_kill_you)
+				message_admins("[ADMIN_LOOKUPFLW(usr)] attempted to exploit the antagonist late awaken system.")
+				log_admin("[ADMIN_LOOKUP(usr)] attempted to exploit the antagonist late awaken system.")
 		else
 			to_chat(src, span_danger("Admins will be subtly alerted, because you do not seem to be in a critical station role."))
 			var/normal_role = special_role || M.job || initial(M.name) || "unknown job"
