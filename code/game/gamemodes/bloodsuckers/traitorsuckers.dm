@@ -40,7 +40,7 @@
 	var/list/datum/mind/possible_bloodsuckers = get_players_for_role(ROLE_BLOODSUCKER)
 
 	var/num_bloodsuckers = 1
-	num_bloodsuckers = clamp(round(bloodsucker_amount/2), 1, num_players())
+	num_bloodsuckers = clamp(round(num_players()/15), 1, bloodsucker_amount)
 
 	if(possible_bloodsuckers.len>0)
 		for(var/j = 0, j < num_bloodsuckers, j++)
