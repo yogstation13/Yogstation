@@ -18,12 +18,12 @@
 #define THROW_SLAMDMG 5 //the damage dealt per object impacted during a throw
 #define THROW_OBJDMG 500 //Total amount of structure damage that can be done
 
-/datum/martial_art/worldshaker
-	name = "Worldshaker"
-	id = MARTIALART_WORLDSHAKER
+/datum/martial_art/worldbreaker
+	name = "Worldbreaker"
+	id = MARTIALART_WORLDBREAKER
 	no_guns = TRUE
-	help_verb = /mob/living/carbon/human/proc/worldshaker_help
-	var/recalibration = /mob/living/carbon/human/proc/worldshaker_recalibration
+	help_verb = /mob/living/carbon/human/proc/worldbreaker_help
+	var/recalibration = /mob/living/carbon/human/proc/worldbreaker_recalibration
 	var/list/thrown = list()
 	COOLDOWN_DECLARE(next_leap)
 	COOLDOWN_DECLARE(next_balloon)
@@ -35,18 +35,18 @@
 	var/heavy = FALSE //
 	var/currentplate = 0 //how much damage the current plate has taken
 
-/datum/martial_art/worldshaker/can_use(mob/living/carbon/human/H)
+/datum/martial_art/worldbreaker/can_use(mob/living/carbon/human/H)
 	if(H.stat == DEAD || H.IsUnconscious() || H.IsFrozen() || HAS_TRAIT(H, TRAIT_PACIFISM))
 		return FALSE
 	return ispreternis(H)
 
-/datum/martial_art/worldshaker/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/worldbreaker/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	return TRUE //you're doing enough pushing as is
 
-/datum/martial_art/worldshaker/harm_act(mob/living/carbon/human/A, mob/living/D)
+/datum/martial_art/worldbreaker/harm_act(mob/living/carbon/human/A, mob/living/D)
 	return TRUE //no punch, just pummel
 
-/datum/martial_art/worldshaker/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
+/datum/martial_art/worldbreaker/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
 	var/list/modifiers = params2list(params)
 	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
 		return
@@ -74,17 +74,17 @@
 /*-------------------------------------------------------------
 	start of helpers section
 ---------------------------------------------------------*/
-/datum/martial_art/worldshaker/proc/stagger(mob/living/victim)
+/datum/martial_art/worldbreaker/proc/stagger(mob/living/victim)
 	if(HAS_TRAIT(victim, TRAIT_STUNIMMUNE))
 		return
 	victim.set_resting(TRUE)//basically a trip
 	victim.add_movespeed_modifier(id, update=TRUE, priority=101, multiplicative_slowdown = 0.5)
 	addtimer(CALLBACK(src, PROC_REF(stagger_end), victim), STAGGER_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE)
 
-/datum/martial_art/worldshaker/proc/stagger_end(mob/living/victim)
+/datum/martial_art/worldbreaker/proc/stagger_end(mob/living/victim)
 	victim.remove_movespeed_modifier(id)
 
-/datum/martial_art/worldshaker/proc/push_away(mob/living/user, atom/movable/victim, distance = 1)
+/datum/martial_art/worldbreaker/proc/push_away(mob/living/user, atom/movable/victim, distance = 1)
 	if(victim.anchored)
 		return
 	if(get_turf(victim) == get_turf(user))
@@ -97,7 +97,7 @@
 		distance *= 2
 	victim.throw_at(throw_target, distance, throwspeed, user)
 
-/datum/martial_art/worldshaker/proc/hurt(mob/living/user, mob/living/target, damage)//proc the moves will use for damage dealing
+/datum/martial_art/worldbreaker/proc/hurt(mob/living/user, mob/living/target, damage)//proc the moves will use for damage dealing
 	stagger(target)
 	var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
 	var/meleearmor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 25)
@@ -110,7 +110,7 @@
 /*---------------------------------------------------------------
 	start of plates section 
 ---------------------------------------------------------------*/
-/datum/martial_art/worldshaker/proc/grow_plate(mob/living/carbon/human/user)
+/datum/martial_art/worldbreaker/proc/grow_plate(mob/living/carbon/human/user)
 	if(plates >= PLATE_CAP || user.stat == DEAD || !can_use(user))//no quaking the entire station
 		return
 	user.balloon_alert(user, span_notice("your plates grow thicker!"))
@@ -119,7 +119,7 @@
 		user.physiology.damage_resistance += PLATE_REDUCTION
 	update_platespeed(user)
 
-/datum/martial_art/worldshaker/proc/rip_plate(mob/living/carbon/human/user)
+/datum/martial_art/worldbreaker/proc/rip_plate(mob/living/carbon/human/user)
 	if(plates <= 0)
 		to_chat(user, span_warning("Your plates are too thin to tear off a piece!"))
 		return
@@ -136,7 +136,7 @@
 	user.changeNext_move(0.1)//entirely to prevent hitting yourself instantly
 	user.throw_mode_on()
 
-/datum/martial_art/worldshaker/proc/lose_plate(mob/living/carbon/human/user, damage, damagetype, def_zone)
+/datum/martial_art/worldbreaker/proc/lose_plate(mob/living/carbon/human/user, damage, damagetype, def_zone)
 	if(plates <= 0)//no plate to lose
 		return
 
@@ -161,7 +161,7 @@
 		if(plates <= 0)//can't lose any more plates if you have none
 			currentplate = 0
 
-/datum/martial_art/worldshaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
+/datum/martial_art/worldbreaker/proc/update_platespeed(mob/living/carbon/human/user)//slowdown scales infinitely (damage reduction doesn't)
 	heavy = plates >= MAX_PLATES
 	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
 	user.remove_movespeed_modifier(type)
@@ -184,7 +184,7 @@
 			REMOVE_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
 
 /obj/item/worldplate
-	name = "worldshaker plate"
+	name = "worldbreaker plate"
 	desc = "A sizeable plasteel plate, you can barely imagine the strength it would take to throw this."
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "sharp"
@@ -198,13 +198,13 @@
 	throwforce = 10 //more of a ranged CC than a ranged weapon
 	throw_speed = 3
 	throw_range = 8
-	var/datum/martial_art/worldshaker/linked_martial
+	var/datum/martial_art/worldbreaker/linked_martial
 
 /obj/item/worldplate/equipped(mob/user, slot, initial)//difficult for regular people to throw
 	. = ..()
-	var/worldshaker = (user.mind?.martial_art && istype(user.mind.martial_art, /datum/martial_art/worldshaker))
-	throw_speed = worldshaker ? 3 : 1
-	throw_range = worldshaker ? 8 : 3
+	var/worldbreaker = (user.mind?.martial_art && istype(user.mind.martial_art, /datum/martial_art/worldbreaker))
+	throw_speed = worldbreaker ? 3 : 1
+	throw_range = worldbreaker ? 8 : 3
 
 /obj/item/worldplate/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
@@ -221,7 +221,7 @@
 /*---------------------------------------------------------------
 	start of leap section
 ---------------------------------------------------------------*/
-/datum/martial_art/worldshaker/proc/leap(mob/living/user, atom/target)
+/datum/martial_art/worldbreaker/proc/leap(mob/living/user, atom/target)
 	if(!COOLDOWN_FINISHED(src, next_leap))
 		if(COOLDOWN_FINISHED(src, next_balloon))
 			COOLDOWN_START(src, next_balloon, BALLOON_COOLDOWN)
@@ -249,7 +249,7 @@
 	playsound(user, 'sound/effects/gravhit.ogg', 15)
 	playsound(user, 'sound/effects/dodge.ogg', 15, TRUE)
 
-/datum/martial_art/worldshaker/proc/leap_end(mob/living/carbon/human/user)
+/datum/martial_art/worldbreaker/proc/leap_end(mob/living/carbon/human/user)
 	user.SetImmobilized(0 SECONDS, ignore_canstun = TRUE)
 	leaping = FALSE
 	var/range = LEAP_RADIUS
@@ -284,10 +284,10 @@
 	animate(shockwave, alpha = 0, transform = matrix().Scale(range/3), time = 1 + (range/10))
 	QDEL_IN(shockwave, 2 + (range/10))
 
-/datum/martial_art/worldshaker/proc/reset_pixel(mob/living/user)//in case something happens, we don't permanently float
+/datum/martial_art/worldbreaker/proc/reset_pixel(mob/living/user)//in case something happens, we don't permanently float
 	animate(user, time = 0.1 SECONDS, pixel_y = 0)
 
-/datum/martial_art/worldshaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
+/datum/martial_art/worldbreaker/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(leaping)
 		return TRUE
 	return ..()
@@ -297,11 +297,11 @@
 /*---------------------------------------------------------------
 	start of grapple section
 ---------------------------------------------------------------*/	
-/datum/martial_art/worldshaker/proc/drop()//proc for clearing the thrown list, mostly so the lob proc doesnt get triggered when it shouldn't
+/datum/martial_art/worldbreaker/proc/drop()//proc for clearing the thrown list, mostly so the lob proc doesnt get triggered when it shouldn't
 	for(var/atom/movable/thing in thrown)
 		thrown.Remove(thing)
 
-/datum/martial_art/worldshaker/proc/grapple(mob/living/user, atom/target) //proc for picking something up to toss
+/datum/martial_art/worldbreaker/proc/grapple(mob/living/user, atom/target) //proc for picking something up to toss
 	var/turf/Z = get_turf(user)
 	target.add_fingerprint(user, FALSE)
 
@@ -321,7 +321,7 @@
 		thrown |= victim // Marks the mob to throw
 		return
 
-/datum/martial_art/worldshaker/proc/throw_start(mob/living/user, atom/target)//proc for throwing something you picked up with grapple
+/datum/martial_art/worldbreaker/proc/throw_start(mob/living/user, atom/target)//proc for throwing something you picked up with grapple
 	var/target_dist = get_dist(user, target)
 	var/turf/D = get_turf(target)	
 	var/atom/tossed = thrown[1]
@@ -343,7 +343,7 @@
 
 	throw_process(user, target_dist, 1, tossed, D, THROW_OBJDMG)
 
-/datum/martial_art/worldshaker/proc/throw_process(mob/living/user, target_dist, current_dist, atom/tossed, turf/target, remaining_damage)//each call of the throw loop
+/datum/martial_art/worldbreaker/proc/throw_process(mob/living/user, target_dist, current_dist, atom/tossed, turf/target, remaining_damage)//each call of the throw loop
 	if(!target_dist || !current_dist || !tossed || current_dist > target_dist)
 		drop()
 		return
@@ -415,7 +415,7 @@
 /*---------------------------------------------------------------
 	start of pummel section
 ---------------------------------------------------------------*/
-/datum/martial_art/worldshaker/proc/pummel(mob/living/user, mob/living/target)
+/datum/martial_art/worldbreaker/proc/pummel(mob/living/user, mob/living/target)
 	if(user == target)
 		return
 	if(!COOLDOWN_FINISHED(src, next_pummel))
@@ -453,7 +453,7 @@
 	button_icon_state = "lightning"
 	background_icon_state = "bg_default"
 	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
-	var/datum/martial_art/worldshaker/linked_martial
+	var/datum/martial_art/worldbreaker/linked_martial
 	cooldown_time = COOLDOWN_STOMP
 	var/charging = FALSE
 
@@ -524,10 +524,10 @@
 /*---------------------------------------------------------------
 	training related section
 ---------------------------------------------------------------*/
-/mob/living/carbon/human/proc/worldshaker_help()
-	set name = "Worldshaker"
+/mob/living/carbon/human/proc/worldbreaker_help()
+	set name = "Worldbreaker"
 	set desc = "Imagine all the things you would be capable of with this power."
-	set category = "Worldshaker"
+	set category = "Worldbreaker"
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You imagine all the things you would be capable of with this power.</i></b>"
 
@@ -563,17 +563,17 @@
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
-/mob/living/carbon/human/proc/worldshaker_recalibration()
+/mob/living/carbon/human/proc/worldbreaker_recalibration()
 	set name = "Flush Circuits"
 	set desc = "Flush 'clogged' circuits in order to regain lost strength."
-	set category = "Worldshaker"
+	set category = "Worldbreaker"
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You flush your circuits with excess power to reduce built up strain on your limbs.</i></b>"
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
 	usr.click_intercept = usr.mind.martial_art
 
-/datum/martial_art/worldshaker/teach(mob/living/carbon/human/H, make_temporary=0)
+/datum/martial_art/worldbreaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//burn bright my friend
@@ -597,7 +597,7 @@
 		linked_stomp.linked_martial = src
 	linked_stomp.Grant(H)
 
-/datum/martial_art/worldshaker/on_remove(mob/living/carbon/human/H)
+/datum/martial_art/worldbreaker/on_remove(mob/living/carbon/human/H)
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//but not that bright
 		S.power_drain /= 5

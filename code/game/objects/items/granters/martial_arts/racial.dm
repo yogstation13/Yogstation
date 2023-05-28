@@ -115,14 +115,14 @@
 
 // I did not include mushpunch's grant, it is not a book and the item does it just fine.
 
-/obj/item/book/granter/martial/worldshaker
-	martial = /datum/martial_art/worldshaker
-	name = "prototype worldshaker compound"
-	martial_name = "Worldshaker"
+/obj/item/book/granter/martial/worldbreaker
+	martial = /datum/martial_art/worldbreaker
+	name = "prototype worldbreaker compound"
+	martial_name = "Worldbreaker"
 	desc = "A foul concoction made by reverse engineering chemicals compounds found in an ancient Vxtrin military outpost."
 	greet = span_sciradio("You feel weirdly good, good enough to shake the world to it's very core. \
 	Your plates feel like they are growing past their normal limits. The protection will come in handy, but it will eventually slow you down.\
-	You can think about all the things you are now capable of by using the Worldshaker tab.")
+	You can think about all the things you are now capable of by using the Worldbreaker tab.")
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "flaming_moe"
 	remarks = list(
