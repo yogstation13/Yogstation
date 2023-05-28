@@ -554,6 +554,8 @@ By design, d1 is the smallest direction and d2 is the highest
 		to_chat(user, span_warning("[affecting] is already in good condition!"))
 		return FALSE
 	if(affecting && affecting.status == BODYPART_ROBOTIC)
+		if(INTERACTING_WITH(user, H))
+			return FALSE
 		user.visible_message(span_notice("[user] starts to fix some of the wires in [H]'s [affecting.name]."), span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.name]."))
 		heal_robo_limb(src, H, user, 0, 15, 1)
 		user.visible_message(span_notice("[user] fixes the wires in [H]'s [affecting.name]."), span_notice("You fix the wires in [H == user ? "your" : "[H]'s"] [affecting.name]."))
