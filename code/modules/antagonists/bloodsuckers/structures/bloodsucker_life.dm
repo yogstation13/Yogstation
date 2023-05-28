@@ -137,21 +137,26 @@
 	if((bruteheal + fireheal > 0) && mult != 0) // Just a check? Don't heal/spend, and return.
 		// We have damage. Let's heal (one time)
 		
-		var/list/hurt_limbs = owner.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)//heal all organic limbs for 100% effectiveness
+		var/realbrute = bruteheal * mult
+		var/realfire = fireheal * mult
+
+		var/list/hurt_limbs = user.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)//heal all organic limbs for 100% effectiveness
 		var/num_limbs = LAZYLEN(hurt_limbs)
 		if(num_limbs)
 			for(var/X in hurt_limbs)
 				var/obj/item/bodypart/affecting = X
-				if(affecting.heal_damage(bruteheal/num_limbs, fireheal/num_limbs, null, BODYPART_ANY))
-					owner.update_damage_overlays()
+				if(affecting.heal_damage(realbrute/num_limbs, realfire/num_limbs, null, BODYPART_ANY))
+					user.update_damage_overlays()
 		
-		hurt_limbs = owner.get_damaged_bodyparts(1, 1, null, BODYPART_ROBOTIC)//heal all robotics limbs for 50% effectiveness
+		hurt_limbs = user.get_damaged_bodyparts(1, 1, null, BODYPART_ROBOTIC)//heal all robotics limbs for 50% effectiveness
 		num_limbs = LAZYLEN(hurt_limbs)
+		realbrute /= 2
+		realfire /= 2
 		if(num_limbs)
 			for(var/X in hurt_limbs)
 				var/obj/item/bodypart/affecting = X
-				if(affecting.heal_damage((bruteheal/num_limbs)/2, (fireheal/num_limbs)/2, null, BODYPART_ANY))
-					owner.update_damage_overlays()
+				if(affecting.heal_damage(realbrute/num_limbs, realfire/num_limbs, null, BODYPART_ANY))
+					user.update_damage_overlays()
 
 		AddBloodVolume(((bruteheal * -0.5) + (fireheal * -1)) * costMult * mult) // Costs blood to heal
 		return TRUE
