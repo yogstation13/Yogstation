@@ -575,6 +575,24 @@
 	return TRUE
 
 /*********Holy Light**********/
+/datum/religion_rites/holysight
+	name = "Holy Sight"
+	desc = "Creates a medhud implant."
+	ritual_length = 15 SECONDS
+	ritual_invocations = list(
+	"To aid in our journey to heal...",
+	"...Grant us the ability to see within...",
+	)
+	invoke_msg = "So that we may seek the injured!"
+	favor_cost = 150
+
+/datum/religion_rites/holysight/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	var/altar_turf = get_turf(religious_tool)
+	var/atom/newitem = new /obj/item/autosurgeon/cmo (altar_turf)
+	newitem.name = "autosurgeon of truesight"
+	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
+	return TRUE
+
 /datum/religion_rites/medibot
 	name = "Angelic Assistance"
 	desc = "Creates a medibot."
@@ -585,30 +603,12 @@
 	"...Grant us this sustaining robot...",
 	)
 	invoke_msg = "So that we may live forever!"
-	favor_cost = 150
+	favor_cost = 250
 
 /datum/religion_rites/medibot/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	var/altar_turf = get_turf(religious_tool)
 	var/atom/newitem = new /mob/living/simple_animal/bot/medbot (altar_turf)
 	newitem.name = "\improper Holy Medibot"
-	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
-	return TRUE
-
-/datum/religion_rites/holysight
-	name = "Holy Sight"
-	desc = "Creates a medhud implant."
-	ritual_length = 15 SECONDS
-	ritual_invocations = list(
-	"To aid in our journey to heal...",
-	"...Grant us the ability to see within...",
-	)
-	invoke_msg = "So that we may seek the injured!"
-	favor_cost = 250
-
-/datum/religion_rites/holysight/invoke_effect(mob/living/user, atom/movable/religious_tool)
-	var/altar_turf = get_turf(religious_tool)
-	var/atom/newitem = new /obj/item/autosurgeon/cmo (altar_turf)
-	newitem.name = "autosurgeon of truesight"
 	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 50, TRUE)
 	return TRUE
 
