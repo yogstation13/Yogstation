@@ -21,7 +21,7 @@
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /datum/eldritch_knowledge/base_ash/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 
 	if(!iscarbon(target))
 		return
