@@ -59,7 +59,7 @@
 	light_amount = T.get_lumcount()
 
 
-	if(light_amount > 0.2)
+	if(light_amount > LIGHTING_TILE_IS_DARK)
 		to_chat(M, span_warning("It's too bright here to use [src.name]!"))
 		return 0
 

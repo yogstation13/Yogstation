@@ -41,7 +41,7 @@
 	icon_state = "adamantine_cords"
 
 /datum/action/item_action/organ_action/use/adamantine_vocal_cords/Trigger()
-	if(!IsAvailable())
+	if(!IsAvailable(feedback = FALSE))
 		return
 	var/message = input(owner, "Resonate a message to all nearby golems.", "Resonate")
 	if(QDELETED(src) || QDELETED(owner) || !message)
@@ -82,7 +82,7 @@
 	..()
 	cords = target
 
-/datum/action/item_action/organ_action/colossus/IsAvailable()
+/datum/action/item_action/organ_action/colossus/IsAvailable(feedback = FALSE)
 	if(world.time < cords.next_command)
 		return FALSE
 	if(!owner)
@@ -98,7 +98,7 @@
 
 /datum/action/item_action/organ_action/colossus/Trigger()
 	. = ..()
-	if(!IsAvailable())
+	if(!IsAvailable(feedback = FALSE))
 		if(world.time < cords.next_command)
 			to_chat(owner, span_notice("You must wait [DisplayTimeText(cords.next_command - world.time)] before Speaking again."))
 		return
@@ -166,16 +166,17 @@
 		if(user.mind.assigned_role == "Chaplain")
 			power_multiplier *= 2
 		//Command staff has authority
-		if(user.mind.assigned_role in GLOB.command_positions)
+		if(IS_COMMAND(user))
 			power_multiplier *= 1.4
+		//I AM THE LAW
+		if(IS_SECURITY(user))
+			power_multiplier *= 1.2
 		//Why are you speaking
 		if(user.mind.assigned_role == "Mime")
 			power_multiplier *= 0.5
 
 	//Cultists are closer to their gods and are more powerful, but they'll give themselves away
-	if(iscultist(user))
-		power_multiplier *= 2
-	else if (is_servant_of_ratvar(user))
+	if(iscultist(user) || is_servant_of_ratvar(user) || IS_HERETIC(user))
 		power_multiplier *= 2
 
 	//Try to check if the speaker specified a name or a job to focus on
@@ -216,22 +217,22 @@
 		power_multiplier *= (1 + (1/specific_listeners.len)) //2x on a single guy, 1.5x on two and so on
 		message = copytext(message, length(found_string) + 1)
 
-	var/static/regex/stun_words = regex("stop|wait|stand still|hold on|halt")
-	var/static/regex/knockdown_words = regex("drop|fall|trip|knockdown")
-	var/static/regex/sleep_words = regex("sleep|slumber|rest")
+	var/static/regex/narsian_words = regex("praise narsie|praise nar-sie|praise nar'sie") //why is it spelled so many ways can you KEEP IT CONSISTENT PLEASE
+	var/static/regex/ratvarian_words = regex("hail ratvar|honor ratvar|honour ratvar|purge all untruths") //bri'ish spelling
+	var/static/regex/knockdown_words = regex("drop|fall|trip|knockdown|kneel|lie|get down")
 	var/static/regex/vomit_words = regex("vomit|throw up|sick")
 	var/static/regex/silence_words = regex("shut up|silence|be silent|ssh|quiet|hush")
-	var/static/regex/hallucinate_words = regex("see the truth|hallucinate")
+	var/static/regex/hallucinate_words = regex("see the truth|hallucinate|the truth is out there")
 	var/static/regex/wakeup_words = regex("wake up|awaken")
-	var/static/regex/heal_words = regex("live|heal|survive|mend|life|heroes never die")
-	var/static/regex/hurt_words = regex("die|suffer|hurt|pain|death")
-	var/static/regex/bleed_words = regex("bleed|there will be blood")
-	var/static/regex/burn_words = regex("burn|ignite")
+	var/static/regex/heal_words = regex("live|heal|survive|mend|life|heroes never die|rest")
+	var/static/regex/hurt_words = regex("die|suffer|hurt|pain|death|kill|judgement|thy end is now|crush") // THY END IS NOW
+	var/static/regex/bleed_words = regex("bleed|blood")
+	var/static/regex/burn_words = regex("burn|ignite|fire|flame")
 	var/static/regex/hot_words = regex("heat|hot|hell")
-	var/static/regex/cold_words = regex("cold|cool down|chill|freeze")
+	var/static/regex/cold_words = regex("cold|cool|chill|freeze|ice|winter") // WHAT'S COOLER THAN BEING COOL
 	var/static/regex/repulse_words = regex("shoo|go away|leave me alone|begone|flee|fus ro dah|get away|repulse")
 	var/static/regex/attract_words = regex("come here|come to me|get over here|attract")
-	var/static/regex/whoareyou_words = regex("who are you|say your name|state your name|identify")
+	var/static/regex/whoareyou_words = regex("who are you|say your name|state your name|identify|who goes there")
 	var/static/regex/saymyname_words = regex("say my name|who am i|whoami")
 	var/static/regex/knockknock_words = regex("knock knock")
 	var/static/regex/move_words = regex("move|walk")
@@ -257,41 +258,52 @@
 	var/static/regex/deathgasp_words = regex("play dead")
 	var/static/regex/clap_words = regex("clap|applaud")
 	var/static/regex/honk_words = regex("ho+nk") //hooooooonk
-	var/static/regex/multispin_words = regex("like a record baby|right round")
+	var/static/regex/multispin_words = regex("like a record baby|right round|spin")
 
 	var/i = 0
-	//STUN
-	if(findtext(message, stun_words))
-		cooldown = COOLDOWN_STUN
+
+	//PRAISE NAR-SIE
+	if(findtext(message, narsian_words) && iscultist(user))
+		cooldown = COOLDOWN_DAMAGE
 		for(var/V in listeners)
 			var/mob/living/L = V
-			L.Stun(60 * power_multiplier)
+			if(iscultist(L))
+				L.heal_overall_damage(10 * power_multiplier, 10 * power_multiplier)
+			if(is_servant_of_ratvar(L) && ishuman(L))
+				var/mob/living/carbon/human/H = L
+				var/obj/item/bodypart/BP = pick(H.bodyparts)
+				BP.generic_bleedstacks += 5 * power_multiplier
+
+	//HAIL RATVAR
+	else if(findtext(message, narsian_words) && is_servant_of_ratvar(user))
+		cooldown = COOLDOWN_DAMAGE
+		for(var/V in listeners)
+			var/mob/living/L = V
+			if(is_servant_of_ratvar(L))
+				L.heal_overall_damage(10 * power_multiplier, 10 * power_multiplier)
+			if(iscultist(L))
+				L.adjust_fire_stacks(1 * power_multiplier)
+				L.ignite_mob()
 
 	//KNOCKDOWN
 	else if(findtext(message, knockdown_words))
 		cooldown = COOLDOWN_STUN
 		for(var/V in listeners)
 			var/mob/living/L = V
-			L.Paralyze(60 * power_multiplier)
-
-	//SLEEP
-	else if((findtext(message, sleep_words)))
-		cooldown = COOLDOWN_STUN
-		for(var/mob/living/carbon/C in listeners)
-			C.Sleeping(40 * power_multiplier)
+			L.set_resting(TRUE)
 
 	//VOMIT
 	else if((findtext(message, vomit_words)))
 		cooldown = COOLDOWN_STUN
 		for(var/mob/living/carbon/C in listeners)
-			C.vomit(10 * power_multiplier, distance = power_multiplier)
+			C.vomit(10 * power_multiplier, distance = power_multiplier, stun = FALSE)
 
 	//SILENCE
 	else if((findtext(message, silence_words)))
 		cooldown = COOLDOWN_STUN
+		if(user.mind && (user.mind.assigned_role == "Curator" || user.mind.assigned_role == "Mime"))
+			power_multiplier *= 3
 		for(var/mob/living/carbon/C in listeners)
-			if(user.mind && (user.mind.assigned_role == "Curator" || user.mind.assigned_role == "Mime"))
-				power_multiplier *= 3
 			C.silent += (10 * power_multiplier)
 
 	//HALLUCINATE
@@ -319,7 +331,12 @@
 		cooldown = COOLDOWN_DAMAGE
 		for(var/V in listeners)
 			var/mob/living/L = V
-			L.apply_damage(15 * power_multiplier, def_zone = BODY_ZONE_CHEST, wound_bonus=CANT_WOUND)
+			var/damage_applied = 15 * power_multiplier
+			if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
+				damage_applied *= 24
+			else if(L.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
+				damage_applied *= 2 // DIE!
+			L.apply_damage(damage_applied, def_zone = BODY_ZONE_CHEST, wound_bonus=CANT_WOUND)
 
 	//BLEED
 	else if((findtext(message, bleed_words)))
@@ -334,7 +351,7 @@
 		for(var/V in listeners)
 			var/mob/living/L = V
 			L.adjust_fire_stacks(1 * power_multiplier)
-			L.IgniteMob()
+			L.ignite_mob()
 
 	//HOT
 	else if((findtext(message, hot_words)))

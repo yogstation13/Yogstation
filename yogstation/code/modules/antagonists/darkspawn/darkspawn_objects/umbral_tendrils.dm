@@ -59,7 +59,7 @@
 			var/mob/living/L = target
 			if(isethereal(target))
 				target.emp_act(EMP_LIGHT)
-			for(var/obj/item/O in target.GetAllContents())
+			for(var/obj/item/O in target.get_all_contents())
 				if(O.light_range && O.light_power)
 					disintegrate(O)
 				if(L.pulling && L.pulling.light_range && isitem(L.pulling))

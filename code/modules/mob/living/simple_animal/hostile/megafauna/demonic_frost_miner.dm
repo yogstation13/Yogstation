@@ -48,21 +48,21 @@ Difficulty: Extremely Hard
 
 /datum/action/innate/megafauna_attack/frost_orbs
 	name = "Fire Frost Orbs"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = span_colossus("You are now sending out frost orbs to track in on a target.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/snowball_machine_gun
 	name = "Fire Snowball Machine Gun"
-	icon_icon = 'icons/obj/guns/energy.dmi'
+	button_icon = 'icons/obj/guns/energy.dmi'
 	button_icon_state = "kineticgun"
 	chosen_message = span_colossus("You are now firing a snowball machine gun at a target.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/ice_shotgun
 	name = "Fire Ice Shotgun"
-	icon_icon = 'icons/obj/guns/projectile.dmi'
+	button_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "shotgun"
 	chosen_message = span_colossus("You are now firing shotgun ice blasts.")
 	chosen_attack_num = 3
@@ -284,7 +284,7 @@ Difficulty: Extremely Hard
 
 /obj/item/clothing/shoes/winterboots/ice_boots/speedy/Initialize()
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
 /obj/item/pickaxe/drill/jackhammer/demonic
 	name = "demonic jackhammer"

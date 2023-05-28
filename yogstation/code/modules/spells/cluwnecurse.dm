@@ -1,42 +1,34 @@
-/obj/effect/proc_holder/spell/targeted/cluwnecurse
+/datum/action/cooldown/spell/pointed/cluwnecurse
 	name = "Curse of the Cluwne"
 	desc = "This spell dooms the fate of any unlucky soul to the live of a pitiful cluwne, a terrible creature that is hunted for fun."
-	school = "transmutation"
-	charge_max	= 600
-	charge_counter = 0
-	clothes_req = 1
-	stat_allowed = 0
-	invocation = "CLU WO'NIS CA'TE'BEST'IS MAXIMUS!"
-	invocation_type = SPELL_INVOCATION_SAY
-	range = 3
-	cooldown_min = 75
-	selection_type = "range"
-	var/list/compatible_mobs = list(/mob/living/carbon/human)
-	action_icon = 'yogstation/icons/mob/actions.dmi'
-	action_icon_state = "cluwne"
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	base_icon_state = "cluwne"
+	ranged_mousepointer = 'icons/effects/mouse_pointers/cluwne_target.dmi'
 
-/obj/effect/proc_holder/spell/targeted/cluwnecurse/cast(list/targets, mob/user = usr)
-	if(!targets.len)
-		to_chat(user, span_notice("No target found in range."))
-		return
-	var/mob/living/carbon/target = targets[1]
+	school = SCHOOL_TRANSMUTATION
+	invocation = "CLU WO'NIS CA'TE'BEST'IS MAXIMUS!"
+	invocation_type = INVOCATION_SHOUT
+
+	cast_range = 3
+	cooldown_time = 1 MINUTES
+	cooldown_reduction_per_rank = 12.5 SECONDS
+	var/list/compatible_mobs = list(/mob/living/carbon/human)
+
+/datum/action/cooldown/spell/pointed/cluwnecurse/InterceptClickOn(mob/living/caller, params, atom/click_target)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/carbon/target = click_target
 	if(!(target.type in compatible_mobs))
-		to_chat(user, span_notice("You are unable to curse [target]!"))
-		return
-	if(!(target in oview(range)))
-		to_chat(user, span_notice("They are too far away!"))
-		return
+		to_chat(owner, span_notice("You are unable to curse [target]!"))
+		return FALSE
 	if(target.anti_magic_check())
-		to_chat(user, span_notice("They didn't laugh!"))
-		return
+		to_chat(owner, span_notice("They didn't laugh!"))
+		return FALSE
 	var/mob/living/carbon/human/H = target
 	H.cluwneify()
+	return TRUE
 
 /datum/spellbook_entry/cluwnecurse
 	name = "Cluwne Curse"
-	spell_type = /obj/effect/proc_holder/spell/targeted/cluwnecurse
-
-/datum/action/spell_action/New(Target)
-	..()
-	var/obj/effect/proc_holder/spell/S = Target
-	icon_icon = S.action_icon
+	spell_type = /datum/action/cooldown/spell/pointed/cluwnecurse

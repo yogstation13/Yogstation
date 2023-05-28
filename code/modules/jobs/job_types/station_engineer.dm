@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	suit = /obj/item/clothing/suit/space/hardsuit/engine
 	suit_store = /obj/item/tank/internals/oxygen
 	head = null
-	internals_slot = SLOT_S_STORE
+	internals_slot = SLOT_SUIT_STORE
 
 /obj/item/radio/headset/headset_eng/department/Initialize()
 	. = ..()

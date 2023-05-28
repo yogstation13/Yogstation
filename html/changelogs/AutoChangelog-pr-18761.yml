@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Lavaland EMT as a mining medic title"
-  - rscdel: "Junior mining medic as a mining medic title"
-  - spellcheck: "fixes grammar in mining medic description"

@@ -66,6 +66,63 @@
 	speed = -0.7
 	attacktext = "slashes"
 	deathmessage = "falls apart into a fine dust."
+	
+/mob/living/simple_animal/hostile/netherworld/fcult/thrall
+	name = "thrall"
+	desc = "A humanoid robed figure. You can't quite see it's face."
+	icon_state = "thrall"
+	icon_living = "thrall"
+	gold_core_spawnable = NO_SPAWN
+	health = 100
+	maxHealth = 100
+	attacktext = "pierces"
+	deathmessage = "flashes away into nothingness."
+	loot = list(/obj/item/kitchen/knife/combat/bone)
+	del_on_death = 1
+	see_in_dark = 3
+
+/mob/living/simple_animal/hostile/netherworld/fcult/blindone
+	name = "acolyte"
+	desc = "A barely humanoid figure, there's an empty hole where its face should be."
+	icon_state = "blindone"
+	icon_living = "blindone"
+	gold_core_spawnable = NO_SPAWN
+	health = 200
+	maxHealth = 200
+	attacktext = "stabs"
+	deathmessage = "flashes away into nothingness."
+	loot = list(/obj/item/kitchen/knife/ritual)
+	del_on_death = 1
+	see_in_dark = 7
+
+/mob/living/simple_animal/hostile/netherworld/fcult/pentarox
+	name = "phantasm"
+	desc = "A blithering shadow of violence."
+	icon_state = "pentarox"
+	icon_living = "pentarox"
+	gold_core_spawnable = NO_SPAWN
+	health = 150
+	maxHealth = 150
+	attacktext = "defiles"
+	deathmessage = "flashes away into nothingness."
+	deathsound = "sound/voice/pentarox.ogg"
+	del_on_death = 1
+	see_in_dark = 7
+
+/mob/living/simple_animal/hostile/netherworld/fcult/wretch
+	name = "wretch"
+	desc = "A crawling mass of corruption."
+	icon_state = "wretch"
+	icon_living = "wretch"
+	gold_core_spawnable = NO_SPAWN
+	health = 80
+	maxHealth = 80
+	attacktext = "claws"
+	deathmessage = "flashes away into nothingness."
+	ventcrawler = VENTCRAWLER_ALWAYS
+	deathsound = "sound/voice/wretch.ogg"
+	del_on_death = 1
+	see_in_dark = 7
 
 /obj/structure/spawner/nether
 	name = "netherworld link"
@@ -76,7 +133,7 @@
 	max_mobs = 15
 	icon = 'icons/mob/nest.dmi'
 	spawn_text = "crawls through"
-	mob_types = list(/mob/living/simple_animal/hostile/netherworld/migo, /mob/living/simple_animal/hostile/netherworld, /mob/living/simple_animal/hostile/netherworld/blankbody)
+	mob_types = list(/mob/living/simple_animal/hostile/netherworld/migo, /mob/living/simple_animal/hostile/netherworld, /mob/living/simple_animal/hostile/netherworld/blankbody, /mob/living/simple_animal/hostile/netherworld/fcult/wretch, /mob/living/simple_animal/hostile/netherworld/fcult/pentarox)
 	faction = list("nether")
 
 /obj/structure/spawner/nether/Initialize()

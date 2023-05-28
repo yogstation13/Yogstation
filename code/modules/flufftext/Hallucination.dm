@@ -1,4 +1,4 @@
-#define HAL_LINES_FILE "hallucination.json"
+#define HALLUCINATION_FILE "hallucination.json"
 
 GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/chat = 100,
@@ -24,28 +24,16 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/oh_yeah = 1
 	))
 
-
-/mob/living/carbon/proc/handle_hallucinations()
-	hallucination = max(0, hallucination)
-	if(hallucination <= 0)
-		return
-
-	hallucination--
-
-	if(world.time < next_hallucination)
-		return
-
-	var/halpick = pickweight(GLOB.hallucination_list)
-	new halpick(src, FALSE)
-
-	next_hallucination = world.time + rand(100, 600)
-
 /mob/living/carbon/proc/set_screwyhud(hud_type)
 	hal_screwyhud = hud_type
 	update_health_hud()
 
 /datum/hallucination
 	var/natural = TRUE
+	/// What is this hallucination's weight in the random hallucination pool?
+	var/random_hallucination_weight = 0
+	/// Who's our next highest abstract parent type?
+	var/abstract_hallucination_parent = /datum/hallucination
 	var/mob/living/carbon/target
 	var/feedback_details //extra info for investigate
 
@@ -53,6 +41,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	set waitfor = FALSE
 	target = C
 	natural = !forced
+
+/datum/hallucination/proc/start()
+	return TRUE //unfortunate
 
 /datum/hallucination/proc/wake_and_restore()
 	target.set_screwyhud(SCREWYHUD_NONE)
@@ -148,6 +139,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 #define FAKE_FLOOD_MAX_RADIUS 10
 
 /datum/hallucination/fake_flood
+	random_hallucination_weight = 7
 	//Plasma starts flooding from the nearby vent
 	var/turf/center
 	var/list/flood_images = list()
@@ -231,6 +223,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.visible_message(span_danger("[target] flails around wildly."),"<span class ='userdanger'>[name] pounces on you!</span>")
 
 /datum/hallucination/xeno_attack
+	random_hallucination_weight = 2
 	//Xeno crawls from nearby vent,jumps at you, and goes back in
 	var/obj/machinery/atmospherics/components/unary/vent_pump/pump = null
 	var/obj/effect/hallucination/simple/xeno/xeno = null
@@ -278,6 +271,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	px = -32
 
 /datum/hallucination/oh_yeah
+	random_hallucination_weight = 1
 	var/obj/effect/hallucination/simple/bubblegum/bubblegum
 	var/image/fakebroken
 	var/image/fakerune
@@ -333,6 +327,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	return ..()
 
 /datum/hallucination/battle
+	random_hallucination_weight = 3
 
 /datum/hallucination/battle/New(mob/living/carbon/C, forced = TRUE, battle_type)
 	set waitfor = FALSE
@@ -408,6 +403,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	qdel(src)
 
 /datum/hallucination/items_other
+	random_hallucination_weight = 1
 
 /datum/hallucination/items_other/New(mob/living/carbon/C, forced = TRUE, item_type)
 	set waitfor = FALSE
@@ -511,6 +507,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	qdel(src)
 
 /datum/hallucination/delusion
+	random_hallucination_weight = 1
 	var/list/image/delusions = list()
 
 /datum/hallucination/delusion/New(mob/living/carbon/C, forced, force_kind = null , duration = 300,skip_nearby = TRUE, custom_icon = null, custom_icon_file = null, custom_name = null)
@@ -566,6 +563,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	return ..()
 
 /datum/hallucination/self_delusion
+	random_hallucination_weight = 1
 	var/image/delusion
 
 /datum/hallucination/self_delusion/New(mob/living/carbon/C, forced, force_kind = null , duration = 300, custom_icon = null, custom_icon_file = null, wabbajack = TRUE) //set wabbajack to false if you want to use another fake source
@@ -607,6 +605,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	return ..()
 
 /datum/hallucination/bolts
+	random_hallucination_weight = 7
 	var/list/locks = list()
 
 /datum/hallucination/bolts/New(mob/living/carbon/C, forced, door_number)
@@ -658,26 +657,27 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		return FALSE
 
 /datum/hallucination/chat
+	random_hallucination_weight = 100
 
 /datum/hallucination/chat/New(mob/living/carbon/C, forced = TRUE, force_radio, specific_message)
 	set waitfor = FALSE
 	..()
 	var/target_name = target.first_name()
-	var/speak_messages = list("[pick_list_replacements(HAL_LINES_FILE, "suspicion")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "conversation")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "greetings")][target.first_name()]!",\
-		"[pick_list_replacements(HAL_LINES_FILE, "getout")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "weird")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "didyouhearthat")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "doubt")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "aggressive")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "help")]!!",\
-		"[pick_list_replacements(HAL_LINES_FILE, "escape")]",\
-		"I'm infected, [pick_list_replacements(HAL_LINES_FILE, "infection_advice")]!")
+	var/speak_messages = list("[pick_list_replacements(HALLUCINATION_FILE, "suspicion")]",\
+		"[pick_list_replacements(HALLUCINATION_FILE, "conversation")]",\
+		"[pick_list_replacements(HALLUCINATION_FILE, "greetings")][target.first_name()]!",\
+		"[pick_list_replacements(HALLUCINATION_FILE, "getout")]",\
+		"[pick_list_replacements(HALLUCINATION_FILE, "weird")]",\
+		"[pick_list_replacements(HALLUCINATION_FILE, "didyouhearthat")]",\
+		"[pick_list_replacements(HALLUCINATION_FILE, "doubt")]",\
+		"[pick_list_replacements(HALLUCINATION_FILE, "aggressive")]",\
+		"[pick_list_replacements(HALLUCINATION_FILE, "help")]!!",\
+		"[pick_list_replacements(HALLUCINATION_FILE, "escape")]",\
+		"I'm infected, [pick_list_replacements(HALLUCINATION_FILE, "infection_advice")]!")
 
-	var/radio_messages = list("[pick_list_replacements(HAL_LINES_FILE, "people")] is [pick_list_replacements(HAL_LINES_FILE, "accusations")]!",\
+	var/radio_messages = list("[pick_list_replacements(HALLUCINATION_FILE, "people")] is [pick_list_replacements(HALLUCINATION_FILE, "accusations")]!",\
 		"Help!",\
-		"[pick_list_replacements(HAL_LINES_FILE, "threat")] in [pick_list_replacements(HAL_LINES_FILE, "location")][prob(50)?"!":"!!"]",\
+		"[pick_list_replacements(HALLUCINATION_FILE, "threat")] in [pick_list_replacements(HALLUCINATION_FILE, "location")][prob(50)?"!":"!!"]",\
 		"[pick("Where's [target.first_name()]?", "Set [target.first_name()] to arrest!")]",\
 		"[pick("C","Ai, c","Someone c","Rec")]all the shuttle!",\
 		"AI [pick("rogue", "is dead")]!!")
@@ -718,6 +718,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	qdel(src)
 
 /datum/hallucination/message
+	random_hallucination_weight = 60
 
 /datum/hallucination/message/New(mob/living/carbon/C, forced = TRUE)
 	set waitfor = FALSE
@@ -766,13 +767,14 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			span_warning("You hear skittering on the ceiling."),
 			span_warning("You see an inhumanly tall silhouette moving in the distance."))
 	if(prob(10))
-		message_pool.Add("[pick_list_replacements(HAL_LINES_FILE, "advice")]")
+		message_pool.Add("[pick_list_replacements(HALLUCINATION_FILE, "advice")]")
 	var/chosen = pick(message_pool)
 	feedback_details += "Message: [chosen]"
 	to_chat(target, chosen)
 	qdel(src)
 
 /datum/hallucination/sounds
+	random_hallucination_weight = 5
 
 /datum/hallucination/sounds/New(mob/living/carbon/C, forced = TRUE, sound_type)
 	set waitfor = FALSE
@@ -829,6 +831,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	qdel(src)
 
 /datum/hallucination/weird_sounds
+	random_hallucination_weight = 1
 
 /datum/hallucination/weird_sounds/New(mob/living/carbon/C, forced = TRUE, sound_type)
 	set waitfor = FALSE
@@ -873,6 +876,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	qdel(src)
 
 /datum/hallucination/stationmessage
+	random_hallucination_weight = 1
 
 /datum/hallucination/stationmessage/New(mob/living/carbon/C, forced = TRUE, message)
 	set waitfor = FALSE
@@ -919,6 +923,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			to_chat(target, span_boldannounce("You feel reality distort for a moment..."))
 
 /datum/hallucination/hudscrew
+	random_hallucination_weight = 4
 
 /datum/hallucination/hudscrew/New(mob/living/carbon/C, forced = TRUE, screwyhud_type)
 	set waitfor = FALSE
@@ -934,6 +939,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	qdel(src)
 
 /datum/hallucination/fake_alert
+	random_hallucination_weight = 1
 
 /datum/hallucination/fake_alert/New(mob/living/carbon/C, forced = TRUE, specific, duration = 15 SECONDS)
 	set waitfor = FALSE
@@ -989,6 +995,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	qdel(src)
 
 /datum/hallucination/items
+	random_hallucination_weight = 1
 
 /datum/hallucination/items/New(mob/living/carbon/C, forced = TRUE)
 	set waitfor = FALSE
@@ -1051,6 +1058,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	qdel(src)
 
 /datum/hallucination/dangerflash
+	random_hallucination_weight = 5
 
 /datum/hallucination/dangerflash/New(mob/living/carbon/C, forced = TRUE, danger_type)
 	set waitfor = FALSE
@@ -1151,6 +1159,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		new /datum/hallucination/shock(target)
 
 /datum/hallucination/death
+	random_hallucination_weight = 1
 
 /datum/hallucination/death/New(mob/living/carbon/C, forced = TRUE)
 	set waitfor = FALSE
@@ -1179,6 +1188,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	qdel(src)
 
 /datum/hallucination/fire
+	random_hallucination_weight = 3
+
 	var/active = TRUE
 	var/stage = 0
 	var/image/fire_overlay
@@ -1230,6 +1241,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	qdel(src)
 
 /datum/hallucination/shock
+	random_hallucination_weight = 1
 	var/image/shock_image
 	var/image/electrocution_skeleton_anim
 
@@ -1246,13 +1258,12 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(target.client)
 		target.client.images |= shock_image
 		target.client.images |= electrocution_skeleton_anim
-	addtimer(CALLBACK(src, PROC_REF(reset_shock_animation)), 40)
+	addtimer(CALLBACK(src, PROC_REF(reset_shock_animation)), 4 SECONDS)
 	target.playsound_local(get_turf(src), "sparks", 100, 1)
 	target.staminaloss += 50
-	target.Stun(40)
-	target.jitteriness += 1000
-	target.do_jitter_animation(target.jitteriness)
-	addtimer(CALLBACK(src, PROC_REF(shock_drop)), 20)
+	target.Stun(4 SECONDS)
+	target.do_jitter_animation(1000)
+	addtimer(CALLBACK(src, PROC_REF(shock_drop)), 2 SECONDS)
 
 /datum/hallucination/shock/proc/reset_shock_animation()
 	if(target.client)
@@ -1260,10 +1271,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.client.images.Remove(electrocution_skeleton_anim)
 
 /datum/hallucination/shock/proc/shock_drop()
-	target.jitteriness = max(target.jitteriness - 990, 10) //Still jittery, but vastly less
-	target.Paralyze(60)
+	target.adjust_jitter(10 SECONDS) //Still jittery, but vastly less
+	target.Paralyze(6 SECONDS)
 
 /datum/hallucination/husks
+	random_hallucination_weight = 8
 
 /datum/hallucination/husks/New(mob/living/carbon/C, forced = TRUE)
 	set waitfor = FALSE
@@ -1296,6 +1308,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 //hallucination projectile code in code/modules/projectiles/projectile/special.dm
 /datum/hallucination/stray_bullet
+	random_hallucination_weight = 7
 
 /datum/hallucination/stray_bullet/New(mob/living/carbon/C, forced = TRUE)
 	set waitfor = FALSE

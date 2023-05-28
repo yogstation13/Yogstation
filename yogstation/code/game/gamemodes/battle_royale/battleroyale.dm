@@ -31,7 +31,7 @@ GLOBAL_VAR(stormdamage)
 	var/area/hallway/secondary/A = locate(/area/hallway/secondary) in GLOB.areas //Assuming we've gotten this far, let's spawn the battle bus.
 	GLOB.stormdamage = 2
 	if(A)
-		var/turf/T = safepick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
+		var/turf/T = pick(get_area_turfs(A)) //Move to a random turf in arrivals. Please ensure there are no space turfs in arrivals!!!
 		new /obj/structure/battle_bus(T)
 	else //please don't ever happen
 		message_admins("Something has gone terribly wrong and the bus couldn't spawn, please alert a maintainer or someone comparable.")
@@ -47,7 +47,7 @@ GLOBAL_VAR(stormdamage)
 	GLOB.enter_allowed = FALSE
 	message_admins("Battle Royale Mode has disabled late-joining. If you re-enable it you will break everything.")
 	for(var/datum/mind/virgin in queued)
-		if(!(virgin.current) || !isliving(virgin.current))//don't put ghosts in the battle bus
+		if(!(virgin.current) || !ishuman(virgin.current))//don't put ghosts, borgs, or ai in the battle bus
 			continue
 		SEND_SOUND(virgin.current, 'yogstation/sound/effects/battleroyale/battlebus.ogg')
 		virgin.current.set_species(/datum/species/human) //Fuck plasmamen -- before giving datum so species without shoes still get them
@@ -130,6 +130,16 @@ GLOBAL_VAR(stormdamage)
 		SSticker.mode_result = "loss - nobody won the battle royale!"
 
 /datum/game_mode/fortnite/proc/shrinkborders()
+	switch(borderstage)//to keep it seperate and not fuck with weather selection
+		if(1)
+			set_security_level("blue")
+		if(4)
+			set_security_level("red")
+		if(7)
+			set_security_level("gamma")
+		if(9)
+			set_security_level("epsilon")
+
 	switch(borderstage)
 		if(0)
 			SSweather.run_weather("royale start",2)
@@ -143,7 +153,6 @@ GLOBAL_VAR(stormdamage)
 			SSweather.run_weather("royale hallway", 2)//force them to bridge
 		if(9)//finish it
 			SSweather.run_weather("royale centre", 2)
-
 
 	if(borderstage)//doesn't cull during round start
 		ItemCull()

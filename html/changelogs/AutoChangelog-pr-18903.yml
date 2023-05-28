@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Modular computers will now have proper damage examines whether you attack it directly or with bullets"
