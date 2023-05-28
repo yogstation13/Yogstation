@@ -356,6 +356,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	explode()
 
 /obj/machinery/power/supermatter_crystal/proc/explode()
+	if (is_main_engine)
+		SSpersistence.rounds_since_engine_exploded = ROUNDCOUNT_ENGINE_JUST_EXPLODED
+		for (var/obj/structure/sign/delamination_counter/sign as anything in GLOB.map_delamination_counters)
+			sign.update_count(ROUNDCOUNT_ENGINE_JUST_EXPLODED)
 	for(var/mob in GLOB.alive_mob_list)
 		var/mob/living/M = mob
 		var/turf/T2 = get_turf_global(M)
