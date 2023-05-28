@@ -301,7 +301,7 @@
 	desc = "Are we making meth or growing plants?"
 	icon_state = "botany_uniform"
 	item_state = "botany_uniform"
-	permeability_coefficient = 0.5
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0)
 	can_adjust = FALSE
 
 /obj/item/clothing/under/yogs/casualcaptain

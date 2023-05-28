@@ -392,7 +392,7 @@
 /datum/reagent/blood/bloodsucker
 	name = "Blood two" //real
 
-/datum/reagent/blood/bloodsucker/reaction_mob(mob/living/exposed_mob, methods, reac_volume, show_message, touch_protection)
+/datum/reagent/blood/bloodsucker/reaction_mob(mob/living/exposed_mob, methods, reac_volume, show_message, permeability)
 	var/datum/antagonist/ex_vassal/former_vassal = exposed_mob.mind.has_antag_datum(/datum/antagonist/ex_vassal)
 	if(former_vassal)
 		to_chat(exposed_mob, span_cult("You feel the blood restore you... You feel safe."))

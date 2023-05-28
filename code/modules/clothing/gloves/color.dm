@@ -7,7 +7,7 @@
 	icon_state = "yellow"
 	item_state = "ygloves"
 	siemens_coefficient = 0
-	permeability_coefficient = 0.05
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
 	resistance_flags = NONE
 
 /obj/item/clothing/gloves/color/fyellow                             //Cheap Chinese Crap
@@ -16,7 +16,7 @@
 	icon_state = "yellow"
 	item_state = "ygloves"
 	siemens_coefficient = 0
-	permeability_coefficient = 0.05
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
 	resistance_flags = NONE
 	var/damaged = FALSE
 
@@ -93,7 +93,7 @@
 	name = "insulated gloves"
 	desc = "These gloves will protect the wearer from electric shock."
 	siemens_coefficient = 0
-	permeability_coefficient = 0.05
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
 	resistance_flags = NONE
 
 /obj/item/clothing/gloves/color/rainbow
@@ -144,13 +144,12 @@
 	icon_state = "captain"
 	item_state = "egloves"
 	siemens_coefficient = 0
-	permeability_coefficient = 0.05
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	strip_delay = 60
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 70, ACID = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 70, ACID = 50)
 
 /obj/item/clothing/gloves/color/captain/centcom
 	desc = "Regal green gloves, with a nice gold trim, a diamond anti-shock coating, and an integrated thermal barrier. Swanky."
@@ -170,9 +169,9 @@
 	icon_state = "latex"
 	item_state = "lgloves"
 	siemens_coefficient = 0.3
-	permeability_coefficient = 0.01
 	transfer_prints = TRUE
 	resistance_flags = NONE
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
 	var/carrytrait = TRAIT_QUICK_CARRY
 	var/surgeryspeed = 0.9	//how much these gloves speed up surgery
 

@@ -305,7 +305,7 @@
 /obj/item/clothing/shoes/combat/gang
 	name = "Wetwork boots"
 	desc = "A gang's best hitmen are prepared for anything."
-	permeability_coefficient = 0.01
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 100, RAD = 0, FIRE = 70, ACID = 50)
 	clothing_flags = NOSLIP
 
 /datum/gang_item/equipment/pen

@@ -88,8 +88,8 @@
 	else
 		return initial(pixel_x)
 
-/mob/living/carbon/alien/humanoid/get_permeability_protection(list/target_zones)
-	return 0.8
+/mob/living/carbon/alien/humanoid/get_permeability(list/target_zones)
+	return 0.2
 
 /mob/living/carbon/alien/humanoid/alien_evolve(mob/living/carbon/alien/humanoid/new_xeno)
 	drop_all_held_items()

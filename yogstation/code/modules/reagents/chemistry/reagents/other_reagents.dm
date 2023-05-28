@@ -12,8 +12,8 @@
 	can_synth = FALSE
 	taste_description = "something funny"
 
-/datum/reagent/cluwnification/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
-	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
+/datum/reagent/cluwnification/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
+	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/cluwnification(), FALSE, TRUE)
 
 /datum/reagent/shadowling_blindness_smoke

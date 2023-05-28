@@ -45,7 +45,7 @@
 /obj/item/clothing/shoes/sneakers/white
 	name = "white shoes"
 	icon_state = "white"
-	permeability_coefficient = 0.01
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/shoes/sneakers/rainbow
 	name = "rainbow shoes"
