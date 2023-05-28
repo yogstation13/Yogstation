@@ -265,11 +265,19 @@
 						var/sender = src
 						var/sendername = key
 						var/reply = input(recipient, msg,"Admin PM from-[sendername]", "") as message|null	//show message and await a reply
-						if(recipient && reply)
+						if(!recipient) // User logged off
+							return
+
+						var/temp = usr
+						usr = recipient.mob
+						if(!reply) // User dismissed popup
+							recipient.current_ticket.AddInteraction("Dismissed popup")
+						else
 							if(sender)
 								recipient.cmd_admin_pm(sender,reply)										//sender is still about, let's reply to them
 							else
 								adminhelp(reply)													//sender has left, adminhelp instead
+						usr = temp
 						return
 
 			else		//neither are admins
