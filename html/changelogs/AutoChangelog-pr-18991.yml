@@ -1,0 +1,5 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - tweak: "stack healing items can no longer be spammed on the same limb to heal super fast"
+  - tweak: "welding and cable healing for robotic limbs can no longer be spammed on the same limb to heal super fast"
