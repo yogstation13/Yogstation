@@ -35,6 +35,7 @@
 		"stamp-rd" = "stamp_rd.png",
 		"stamp-ce" = "stamp_ce.png",
 		"stamp-law" = "stamp_law.png",
+		"stamp-clown" = "stamp_clown.png",
 		"stamp-syndi" = "stamp_syndi.png",
 		"stamp-cent" = "stamp_cent.png",
 		"stamp-syndiround" = "stamp_syndiround.png",
