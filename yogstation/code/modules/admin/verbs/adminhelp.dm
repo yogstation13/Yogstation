@@ -363,6 +363,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	webhook_send_ticket_resolve(id, TRUE)
 
+	if(!handling_admin_ckey)
+		Administer(FALSE)
+
 	RemoveActive()
 	state = AHELP_CLOSED
 	AddInteraction("Closed by [usr.ckey].")
