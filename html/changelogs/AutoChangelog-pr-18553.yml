@@ -1,0 +1,6 @@
+author: "solwashere"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a dedicated hit sound for the unpowered hammer"
+  - tweak: "changed the charged up attack hit sound"
+  - soundadd: "adds powerhammerhit.ogg, hammerhitbasic.ogg, and electrichum.ogg (unused for now)"
