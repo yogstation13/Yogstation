@@ -69,7 +69,6 @@
 	return TRUE
 
 /datum/action/cooldown/spell/pointed/InterceptClickOn(mob/living/caller, params, atom/click_target)
-
 	var/atom/aim_assist_target
 	if(aim_assist && isturf(click_target))
 		// Find any human in the list. We aren't picky, it's aim assist after all
