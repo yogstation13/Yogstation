@@ -4,6 +4,7 @@
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "transform"
 	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
 
 	school = SCHOOL_EVOCATION
 	invocation = "I'M BETTER THAN YOU!!"

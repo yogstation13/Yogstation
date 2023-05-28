@@ -4,6 +4,7 @@
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "magic_mirror"
 	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
 
 	invocation = "Aren't I so amazing?"
 	invocation_type = INVOCATION_WHISPER
@@ -20,6 +21,7 @@
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "fleshmend"
 	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
 
 	school = SCHOOL_EVOCATION
 	invocation = "Taste of Sin"
@@ -47,5 +49,5 @@
 	M.adjustBruteLoss(-20)
 	M.adjustFireLoss(-20)
 	M.visible_message(span_bold("[M] appears to flash colors of red, before seemingly appearing healthier!"))
-	to_chat(M, span_warning("You feel a sinister feeling of soothing recovery."))
+	to_chat(M, span_warning("You feel a sinister feeling of recovery."))
 	return TRUE

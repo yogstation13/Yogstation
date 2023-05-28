@@ -4,6 +4,7 @@
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "slots"
 	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
 
 	invocation = "Just one game?"
 	invocation_type = INVOCATION_WHISPER

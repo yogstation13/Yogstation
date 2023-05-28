@@ -6,6 +6,7 @@
 	background_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "daemontransform"
 	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
 	spell_requirements = NONE
 
 	invocation = "COWER, MORTALS!!"
@@ -81,6 +82,7 @@
 	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
 	button_icon_state = "mutate"
 	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
 	
 	school = SCHOOL_EVOCATION
 	invocation = "TORMENT"
