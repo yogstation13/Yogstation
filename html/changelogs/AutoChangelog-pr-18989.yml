@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes ranger cloak giving permanent invisibility and no invisibility"
-  - tweak: "Ranger cloak move penalty to cloaking increased by 40%"
