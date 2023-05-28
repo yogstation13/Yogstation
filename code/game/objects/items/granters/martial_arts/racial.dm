@@ -134,15 +134,15 @@
 		"I sure hope someone's tested this.")
 	book_sounds = list('sound/items/drink.ogg') //it's a drink, not a book
 
-/obj/item/book/granter/martial/ultra_violence/can_learn(mob/user)
+/obj/item/book/granter/martial/worldbreaker/can_learn(mob/user)
 	if(!ispreternis(user))
 		to_chat(user, span_warning("There is no way in hell i'm drinking this."))
 		return FALSE
 	return ..()
 
-/obj/item/book/granter/martial/ultra_violence/on_reading_finished(mob/living/carbon/user)
+/obj/item/book/granter/martial/worldbreaker/on_reading_finished(mob/living/carbon/user)
 	..()
 	if(!uses)
 		var/obj/item/reagent_containers/glass/bottle/vial/empty = new(get_turf(user))
-		user.put_in_active_hand(empty)
 		qdel(src)
+		user.put_in_active_hand(empty)
