@@ -154,17 +154,6 @@
 	cost = 11
 	item = /obj/item/book/granter/martial/preternis_stealth
 	restricted_species = list("preternis")
-
-/datum/uplink_item/race_restricted/worldshaker
-	name = "Prototype worldshaker compound"
-	desc = "A foul concoction made by reverse engineering chemicals compounds found in an ancient Vxtrin military outpost.\
-	Said to cause rapid muscle and plate growth in any Preternis that consumes it. It's believed to have been used by Vxtrin to transform their workers into highly effective commando units.\
-	It is not uncommon for Preterni that have consumed it to be crushed under the weight of their own ever-growing skin. The weight will also prevent use of conventional vehicles."
-	cost = 20
-	player_minimum = 25 //basically a fuckin megafauna
-	item = /obj/item/book/granter/martial/worldshaker
-	manufacturer = /datum/corporation/traitor/vahlen
-	restricted_species = list("preternis")
 	
 /datum/uplink_item/race_restricted/explosive_fist_art
 	name = "Burned scroll"
@@ -172,15 +161,6 @@
 	cost = 14
 	item = /obj/item/book/granter/martial/explosive_fist
 	restricted_species = list("plasmaman")
-
-/datum/uplink_item/race_restricted/ultra_violence
-	name = "Version one upgrade module"
-	desc = "A module full of forbidden techniques that will make you capable of ultimate bloodshed. \
-			If you install this, it will make you incapable of pushing and pulling. \
-			There are no half-measures, either you succeed or you die."
-	cost = 16
-	item = /obj/item/book/granter/martial/ultra_violence
-	restricted_species = list("ipc")
 
 /datum/uplink_item/stealthy_weapons/camera_flash
 	name = "Camera Flash"
