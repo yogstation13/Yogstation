@@ -20,7 +20,7 @@
 	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
 
 /datum/eldritch_knowledge/base_flesh/proc/on_mansus_grasp(mob/living/source, mob/living/target)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER godammit
 
 	if(!ishuman(target) || target == source)
 		return
@@ -50,7 +50,6 @@
 	LAZYADD(spooky_scaries, human_target)
 	log_game("[key_name_admin(human_target)] has become a ghoul, their master is [source.real_name]")
 	//we change it to true only after we know they passed all the checks
-	. = TRUE
 	RegisterSignal(human_target,COMSIG_GLOB_MOB_DEATH, PROC_REF(remove_ghoul))
 	human_target.revive(full_heal = TRUE, admin_revive = TRUE)
 	human_target.setMaxHealth(25)
@@ -60,7 +59,6 @@
 	var/datum/antagonist/heretic_monster/heretic_monster = human_target.mind.add_antag_datum(/datum/antagonist/heretic_monster)
 	var/datum/antagonist/heretic/master = source.mind.has_antag_datum(/datum/antagonist/heretic)
 	heretic_monster.set_owner(master)
-	return
 
 /datum/eldritch_knowledge/base_flesh/proc/remove_ghoul(datum/source)
 	var/mob/living/carbon/human/humie = source
