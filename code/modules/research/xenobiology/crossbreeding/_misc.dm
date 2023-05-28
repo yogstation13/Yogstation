@@ -94,7 +94,7 @@ Slimecrossing Items
 	else if(isobj(parent))
 		var/obj/O = parent
 		integrity = O.obj_integrity
-	addtimer(CALLBACK(src, .proc/rewind), DEJAVU_REWIND_INTERVAL)
+	addtimer(CALLBACK(src, PROC_REF(rewind)), DEJAVU_REWIND_INTERVAL)
 
 /datum/component/dejavu/proc/rewind()
 	to_chat(parent, "<span class=notice>You remember a time not so long ago...</span>")
@@ -126,7 +126,7 @@ Slimecrossing Items
 
 	rewinds_remaining --
 	if(rewinds_remaining)
-		addtimer(CALLBACK(src, .proc/rewind), DEJAVU_REWIND_INTERVAL)
+		addtimer(CALLBACK(src, PROC_REF(rewind)), DEJAVU_REWIND_INTERVAL)
 	else
 		to_chat(parent, "<span class=notice>But the memory falls out of your reach.</span>")
 
@@ -209,7 +209,7 @@ Slimecrossing Items
 	icon_state = "slimebarrier_thick"
 	CanAtmosPass = ATMOS_PASS_NO
 	opacity = TRUE
-	timeleft = 100
+	initial_duration = 10 SECONDS
 
 //Rainbow barrier - Chilling Rainbow
 /obj/effect/forcefield/slimewall/rainbow

@@ -128,10 +128,10 @@
 	neck = /obj/item/clothing/neck/pauldron/commander
 	belt = /obj/item/gun/ballistic/revolver/mateba //The time for negotiations have come to an end.
 	r_pocket = /obj/item/lighter
-	l_pocket = /obj/item/ammo_box/a357
+	l_pocket = /obj/item/ammo_box/m44
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id/centcom/gold
-	backpack_contents = list(/obj/item/ammo_box/a357 =2, /obj/item/restraints/handcuffs/cable/zipties=1, /obj/item/melee/classic_baton/telescopic=1)
+	backpack_contents = list(/obj/item/ammo_box/m44 =2, /obj/item/restraints/handcuffs/cable/zipties=1, /obj/item/melee/classic_baton/telescopic=1)
 
 /datum/outfit/centcom/commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -163,10 +163,10 @@
 	neck = /obj/item/clothing/neck/pauldron/colonel
 	belt = /obj/item/gun/ballistic/revolver/mateba
 	r_pocket = /obj/item/lighter
-	l_pocket = /obj/item/ammo_box/a357
+	l_pocket = /obj/item/ammo_box/m44
 	back = /obj/item/storage/backpack/satchel/leather
 	id = /obj/item/card/id/centcom/gold
-	backpack_contents = list(/obj/item/ammo_box/a357 =2, /obj/item/restraints/handcuffs/cable/zipties=1, /obj/item/melee/classic_baton/telescopic=1)
+	backpack_contents = list(/obj/item/ammo_box/m44 =2, /obj/item/restraints/handcuffs/cable/zipties=1, /obj/item/melee/classic_baton/telescopic=1)
 
 /datum/outfit/centcom/colonel/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)

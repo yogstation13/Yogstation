@@ -109,6 +109,6 @@
 	L.Unconscious(15)
 	L.apply_effect(EFFECT_STUTTER, 20)
 	L.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
-	addtimer(CALLBACK(linked_ability, /datum/action/innate/darkspawn/devour_will/.proc/make_eligible, L), 600)
+	addtimer(CALLBACK(linked_ability, TYPE_PROC_REF(/datum/action/innate/darkspawn/devour_will, make_eligible), L), 600)
 	qdel(src, force = TRUE)
 	return TRUE

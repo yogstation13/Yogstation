@@ -116,7 +116,7 @@
 	return (OXYLOSS)
 
 /obj/item/storage/backpack/santabag/proc/regenerate_presents()
-	addtimer(CALLBACK(src, .proc/regenerate_presents), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(regenerate_presents)), 30 SECONDS)
 
 	var/mob/M = get(loc, /mob)
 	if(!istype(M))
@@ -366,6 +366,20 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 30
+
+/obj/item/storage/backpack/duffelbag/cursed
+	name = "living duffel bag"
+	desc = "A cursed clown duffel bag that hungers for food of any kind. A warning label suggests that it eats food inside. \
+		If that food happens to be a horribly ruined mess or the chef scrapped out of the microwave, or poisoned in some way, \
+		then it might have negative effects on the bag..."
+	icon_state = "duffel-curse"
+	item_state = "duffel-curse"
+	slowdown = 1.5
+	max_integrity = 100
+
+/obj/item/storage/backpack/duffelbag/cursed/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/curse_of_hunger, add_dropdel = TRUE)
 
 /obj/item/storage/backpack/duffelbag/captain
 	name = "captain's duffel bag"

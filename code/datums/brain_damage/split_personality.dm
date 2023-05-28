@@ -19,12 +19,12 @@
 
 /datum/brain_trauma/severe/split_personality/proc/make_backseats()
 	stranger_backseat = new(owner, src)
-	var/obj/effect/proc_holder/spell/targeted/personality_commune/stranger_spell = new(src)
-	stranger_backseat.AddSpell(stranger_spell)
+	var/datum/action/cooldown/spell/personality_commune/stranger_spell = new(src)
+	stranger_spell.Grant(stranger_backseat)
 
 	owner_backseat = new(owner, src)
-	var/obj/effect/proc_holder/spell/targeted/personality_commune/owner_spell = new(src)
-	owner_backseat.AddSpell(owner_spell)
+	var/datum/action/cooldown/spell/personality_commune/owner_spell = new(src)
+	owner_spell.Grant(owner_backseat)
 
 
 /datum/brain_trauma/severe/split_personality/proc/get_ghost()
@@ -203,7 +203,7 @@
 	var/message = hearing_args[HEARING_MESSAGE]
 	if(findtext(message, codeword))
 		hearing_args[HEARING_MESSAGE] = replacetext(message, codeword, span_warning("[codeword]"))
-		addtimer(CALLBACK(src, /datum/brain_trauma/severe/split_personality.proc/switch_personalities), 10)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/brain_trauma/severe/split_personality, switch_personalities)), 10)
 
 /datum/brain_trauma/severe/split_personality/brainwashing/handle_speech(datum/source, list/speech_args)
 	if(findtext(speech_args[SPEECH_MESSAGE], codeword))

@@ -12,6 +12,8 @@
 	var/datum/admins/holder = null
  	///Needs to implement InterceptClickOn(user,params,atom) proc
 	var/datum/click_intercept = null
+	///Time when the click was intercepted
+	var/click_intercept_time = 0
 	///Used for admin AI interaction
 	var/AI_Interact = FALSE
 
@@ -81,6 +83,8 @@
 	var/mouse_up_icon = null
 	///used to make a special mouse cursor, this one for mouse up icon
 	var/mouse_down_icon = null
+	///used to override the mouse cursor so it doesnt get reset
+	var/mouse_override_icon = null
 
 	///Used for ip intel checking to identify evaders, disabled because of issues with traffic
 	var/ip_intel = "Disabled"
@@ -112,9 +116,6 @@
 
 	///Should only be a key-value list of north/south/east/west = atom/movable/screen.
 	var/list/char_render_holders
-
-	///LibVG encoding
-	var/encoding = "1252"
 
 	///Messages currently seen by this client
 	var/list/seen_messages
@@ -170,3 +171,6 @@
 
 	/// Whether or not this client has standard hotkeys enabled
 	var/hotkeys = TRUE
+
+	/// Whether or not this client has the combo HUD enabled
+	var/combo_hud_enabled = FALSE

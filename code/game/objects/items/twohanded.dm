@@ -267,13 +267,19 @@
 	. = ..()
 	if(!proximity)
 		return
-	if(wielded && !QDELETED(A)) //destroys windows and grilles in one hit
+	if(wielded && !QDELETED(A)) //destroys windows and grilles in one or two hits, most of the time
 		if(istype(A, /obj/structure/window))
 			var/obj/structure/window/W = A
 			W.take_damage(W.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 		else if(istype(A, /obj/structure/grille))
 			var/obj/structure/grille/G = A
 			G.take_damage(G.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
+		else if(istype(A, /obj/machinery/door)) //Nines hits for reinforced airlock, seven for normal
+			var/obj/machinery/door/D = A
+			D.take_damage((force+25), BRUTE, MELEE, FALSE, null, armour_penetration)
+		else if(istype(A, /obj/structure/door_assembly)) //Two hits for frames left behind
+			var/obj/machinery/door/D = A
+			D.take_damage((force+25), BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /*
  * Metal Hydrogen Axe
@@ -332,7 +338,7 @@
 
 /obj/item/twohanded/fireaxe/energy/attack(mob/living/M, mob/living/user)
 	..()
-	M.IgniteMob() // Ignites you if you're flammable
+	M.ignite_mob() // Ignites you if you're flammable
 
 /obj/item/twohanded/fireaxe/energy/afterattack(atom/A, mob/user, proximity)
 	. = ..()
@@ -468,7 +474,7 @@
 		impale(user)
 		return
 	if((wielded) && prob(50))
-		INVOKE_ASYNC(src, .proc/jedi_spin, user)
+		INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
 
 /obj/item/twohanded/dualsaber/proc/jedi_spin(mob/living/user)
 	for(var/i in list(NORTH,SOUTH,EAST,WEST,EAST,SOUTH,NORTH,SOUTH,EAST,WEST,EAST,SOUTH))
@@ -540,7 +546,7 @@
 	playsound(loc, hitsound, get_clamped_volume(), 1, -1)
 	add_fingerprint(user)
 	// Light your candles while spinning around the room
-	INVOKE_ASYNC(src, .proc/jedi_spin, user)
+	INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
 
 /obj/item/twohanded/dualsaber/green
 	possible_colors = list("green")
@@ -693,6 +699,10 @@
 		qdel(src)
 
 // CHAINSAW
+
+/datum/action/item_action/startchainsaw
+	name = "Pull The Starting Cord"
+
 /obj/item/twohanded/required/chainsaw
 	name = "chainsaw"
 	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
@@ -749,7 +759,7 @@
 		user.update_inv_hands()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/twohanded/required/chainsaw/doomslayer
 	name = "THE GREAT COMMUNICATOR"
@@ -930,6 +940,19 @@
 /obj/item/twohanded/vibro_weapon/update_icon()
 	icon_state = "hfrequency[wielded]"
 
+/obj/item/twohanded/vibro_weapon/wizard
+	desc = "A blade that was mastercrafted by a legendary blacksmith. Its' enchantments let it slash through anything."
+	force = 8
+	throwforce = 20
+	wound_bonus = 20
+	bare_wound_bonus = 25
+
+/obj/item/twohanded/vibro_weapon/wizard/wizard/attack_self(mob/user, modifiers)
+	if(!iswizard(user))
+		balloon_alert(user, "you're too weak!")
+		return
+	return ..()
+
 /*
  * Bone Axe
  */
@@ -1005,8 +1028,8 @@
 	. = ..()
 	if(!wielded)
 		return
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
-	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(unwield))
+	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate))
 	listeningTo = user
 	user.visible_message("[user] holds [src] up to [user.p_their()] eyes.","You hold [src] up to your eyes.")
 	item_state = "binoculars_wielded"
@@ -1054,6 +1077,14 @@
  * Vxtvul Hammer
  */
 
+/datum/action/item_action/charge_hammer
+	name = "Charge the Blast Pads"
+
+/datum/action/item_action/charge_hammer/Trigger()
+	var/obj/item/twohanded/vxtvulhammer/vxtvulhammer = target
+	if(istype(vxtvulhammer))
+		vxtvulhammer.charge_hammer(owner)
+
 /obj/item/twohanded/vxtvulhammer
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "vxtvul_hammer0-0"
@@ -1063,7 +1094,7 @@
 	desc = "A relic sledgehammer with charge packs wired to two blast pads on its head. \
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 	force = 4 //It's heavy as hell
-	force_wielded = 24 
+	force_wielded = 24
 	armour_penetration = 50 //Designed for shattering walls in a single blow, I don't think it cares much about armor
 	throwforce = 18
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
@@ -1074,6 +1105,7 @@
 	max_integrity = 200
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	w_class = WEIGHT_CLASS_HUGE
+	hitsound = 'sound/effects/hammerhitbasic.ogg'
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list(/datum/action/item_action/charge_hammer)
 	light_system = MOVABLE_LIGHT
@@ -1083,6 +1115,7 @@
 	var/datum/effect_system/spark_spread/spark_system //It's a surprise tool that'll help us later
 	var/charging = FALSE
 	var/supercharged = FALSE
+	var/toy = FALSE
 
 /obj/item/twohanded/vxtvulhammer/Initialize() //For the sparks when you begin to charge it
 	. = ..()
@@ -1133,8 +1166,9 @@
 	supercharged = !supercharged
 	if(supercharged)
 		set_light_on(TRUE) //Glows when charged
-		force = initial(force) + (wielded ? force_wielded : 0) + 12 //12 additional damage for a total of 40 has to be a massively irritating check because of how force_wielded works
-		armour_penetration = 100
+		if(!toy)
+			force = initial(force) + (wielded ? force_wielded : 0) + 12 //12 additional damage for a total of 40 has to be a massively irritating check because of how force_wielded works
+			armour_penetration = 100
 	else
 		set_light_on(FALSE)
 		force = initial(force) + (wielded ? force_wielded : 0)
@@ -1184,11 +1218,11 @@
 		var/turf/target_turf = get_turf(target) //Does the nice effects first so whatever happens to what's about to get clapped doesn't affect it
 		var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
 		K.color = color
-		playsound(loc, 'sound/effects/gravhit.ogg', 80, TRUE) //Mainly this sound
+		playsound(loc, 'sound/effects/powerhammerhit.ogg', 80, FALSE) //Mainly this sound
 		playsound(loc, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
 		supercharge() //At start so it doesn't give an unintentional message if you hit yourself
 
-		if(ismachinery(target))
+		if(ismachinery(target) && !toy)
 			var/obj/machinery/machine = target
 			machine.take_damage(machine.max_integrity * 2) //Should destroy machines in one hit
 			if(istype(target, /obj/machinery/door))
@@ -1201,7 +1235,7 @@
 					light.take_damage(light.max_integrity * 2)
 			user.visible_message(span_danger("The hammer thunders against the [target.name], demolishing it!"))
 
-		else if(isstructure(target))
+		else if(isstructure(target) && !toy)
 			var/obj/structure/struct = target
 			struct.take_damage(struct.max_integrity * 2) //Destroy structures in one hit too
 			if(istype(target, /obj/structure/table))
@@ -1209,13 +1243,13 @@
 					platform.take_damage(platform.max_integrity * 2) //Destroys table frames left behind
 			user.visible_message(span_danger("The hammer thunders against the [target.name], destroying it!"))
 
-		else if(iswallturf(target))
+		else if(iswallturf(target) && !toy)
 			var/turf/closed/wall/fort = target
 			fort.dismantle_wall(1) //Deletes the wall but drop the materials, just like destroying a machine above
 			user.visible_message(span_danger("The hammer thunders against the [target.name], shattering it!"))
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 50, TRUE) //Otherwise there's no sound for hitting the wall, since it's just dismantled
 
-		else if(ismecha(target))
+		else if(ismecha(target) && !toy)
 			var/obj/mecha/mech = target
 			mech.take_damage(mech.max_integrity/3) //A third of its max health is dealt as an untyped damage, in addition to the normal damage of the weapon (which has high AP)
 			user.visible_message(span_danger("The hammer thunders as it massively dents the plating of the [target.name]!"))
@@ -1223,11 +1257,18 @@
 		else if(isliving(target))
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
 			var/mob/living/victim = target
-			victim.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
-			victim.Paralyze(2 SECONDS)
-			user.visible_message(span_danger("The hammer thunders as it viscerally strikes [target.name]!"))
-			to_chat(victim, span_userdanger("Agony sears through you as [user]'s blow cracks your body off its feet!"))
-			victim.emote("scream")
+			if(toy)
+				ADD_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
+				victim.safe_throw_at(throw_target, rand(1,2), 3, callback = CALLBACK(src, PROC_REF(afterimpact), victim))
+			else
+				victim.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
+				victim.Paralyze(2 SECONDS)
+				user.visible_message(span_danger("The hammer thunders as it viscerally strikes [target.name]!"))
+				to_chat(victim, span_userdanger("Agony sears through you as [user]'s blow cracks your body off its feet!"))
+				victim.emote("scream")
+
+/obj/item/twohanded/vxtvulhammer/proc/afterimpact(mob/living/victim)
+	REMOVE_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
 
 /obj/item/twohanded/vxtvulhammer/pirate //Exact same but different text and sprites
 	icon_state = "vxtvul_hammer_pirate0-0"

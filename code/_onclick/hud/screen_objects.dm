@@ -375,7 +375,7 @@
 		else
 			to_chat(C, span_warning("You don't have a suitable tank!"))
 			return
-	C.update_action_buttons_icon()
+	C.update_mob_action_buttons()
 
 /atom/movable/screen/mov_intent
 	name = "run/walk toggle"
@@ -801,7 +801,7 @@
 	src.end_time = end_time
 	set_maptext("[round((end_time - world.time) / 10, 1)]")
 	if(need_timer)
-		timer = addtimer(CALLBACK(src, .proc/tick), 1 SECONDS, TIMER_STOPPABLE)
+		timer = addtimer(CALLBACK(src, PROC_REF(tick)), 1 SECONDS, TIMER_STOPPABLE)
 
 /atom/movable/screen/cooldown_overlay/proc/tick()
 	if(world.time >= end_time)
@@ -809,7 +809,7 @@
 		return
 	set_maptext("[round((end_time - world.time) / 10, 1)]")
 	if(timer)
-		timer = addtimer(CALLBACK(src, .proc/tick), 1 SECONDS, TIMER_STOPPABLE)
+		timer = addtimer(CALLBACK(src, PROC_REF(tick)), 1 SECONDS, TIMER_STOPPABLE)
 
 /atom/movable/screen/cooldown_overlay/proc/stop_cooldown()
 	parent_button.color = "#ffffffff"

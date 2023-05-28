@@ -49,7 +49,9 @@
 // Interfaces
 @include meta.load-css('./interfaces/AlertModal.scss');
 @include meta.load-css('./interfaces/CameraConsole.scss');
+@include meta.load-css('./interfaces/InspectorBooth.scss');
 @include meta.load-css('./interfaces/ListInput.scss');
+@include meta.load-css('./interfaces/HellishRunes.scss');
 @include meta.load-css('./interfaces/Hypertorus.scss');
 @include meta.load-css('./interfaces/NuclearBomb.scss');
 @include meta.load-css('./interfaces/PreferencesMenu.scss');

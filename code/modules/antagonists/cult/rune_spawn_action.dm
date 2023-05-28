@@ -3,10 +3,12 @@
 	name = "Summon Rune"
 	desc = "Summons a rune"
 	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
+
 	var/obj/effect/rune/rune_type
 	var/cooldown = 0
-	var/base_cooldown = 1800
-	var/scribe_time = 60
+	var/base_cooldown = 3 MINUTES
+	var/scribe_time = 6 SECONDS
 	var/damage_interrupt = TRUE
 	var/action_interrupt = TRUE
 	var/obj/effect/temp_visual/cult/rune_spawn/rune_word_type
@@ -14,7 +16,7 @@
 	var/obj/effect/temp_visual/cult/rune_spawn/rune_center_type
 	var/rune_color
 
-/datum/action/innate/cult/create_rune/IsAvailable()
+/datum/action/innate/cult/create_rune/IsAvailable(feedback = FALSE)
 	if(!rune_type || cooldown > world.time)
 		return FALSE
 	return ..()
@@ -56,8 +58,8 @@
 			R4 = new rune_center_type(T, scribe_time, rune_color)
 
 		cooldown = base_cooldown + world.time
-		owner.update_action_buttons_icon()
-		addtimer(CALLBACK(owner, /mob.proc/update_action_buttons_icon), base_cooldown)
+		owner.update_mob_action_buttons()
+		addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_mob_action_buttons)), base_cooldown)
 		var/list/health
 		if(damage_interrupt && isliving(owner))
 			var/mob/living/L = owner
@@ -66,7 +68,7 @@
 		if(istype(T, /turf/open/floor/engine/cult))
 			scribe_mod *= 0.5
 		playsound(T, 'sound/magic/enter_blood.ogg', 100, FALSE)
-		if(do_after(owner, scribe_mod, owner, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, health, action_interrupt)))
+		if(do_after(owner, scribe_mod, owner, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), health, action_interrupt)))
 			var/obj/effect/rune/new_rune = new rune_type(owner.loc)
 			new_rune.keyword = chosen_keyword
 		else
@@ -78,7 +80,7 @@
 			if(R4)
 				qdel(R4)
 			cooldown = 0
-			owner.update_action_buttons_icon()
+			owner.update_mob_action_buttons()
 
 //teleport rune
 /datum/action/innate/cult/create_rune/tele

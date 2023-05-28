@@ -775,7 +775,7 @@
 		var/status = ""
 		var/brutedamage = LB.brute_dam
 		var/burndamage = LB.burn_dam
-		if(hallucination)
+		if(has_status_effect(/datum/status_effect/hallucination))
 			if(prob(30))
 				brutedamage += rand(30,40)
 			if(prob(30))

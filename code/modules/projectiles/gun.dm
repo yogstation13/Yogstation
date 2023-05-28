@@ -384,7 +384,7 @@
 	if(burst_size > 1)
 		firing_burst = TRUE
 		for(var/i = 1 to burst_size)
-			addtimer(CALLBACK(src, .proc/process_burst, user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), fire_delay * (i - 1))
+			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), fire_delay * (i - 1))
 	else
 		if(chambered)
 			if(HAS_TRAIT(user, TRAIT_PACIFISM)) // If the user has the pacifist trait, then they won't be able to fire [src] if the round chambered inside of [src] is lethal.
@@ -411,7 +411,7 @@
 		process_chamber()
 		update_icon()
 		semicd = TRUE
-		addtimer(CALLBACK(src, .proc/reset_semicd), fire_delay)
+		addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
 
 	if(user)
 		user.update_inv_hands()
@@ -632,7 +632,7 @@
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/gun/proc/update_attachments()
 	for(var/mutable_appearance/M in attachment_overlays)
@@ -649,7 +649,7 @@
 
 	update_icon(TRUE)
 	for(var/datum/action/A as anything in actions)
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/gun/pickup(mob/user)
 	..()
@@ -732,15 +732,15 @@
 
 /datum/action/toggle_scope_zoom
 	name = "Toggle Scope"
-	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_LYING
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_LYING
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	var/obj/item/gun/gun = null
 
 /datum/action/toggle_scope_zoom/Trigger()
 	gun.zoom(owner, owner.dir)
 
-/datum/action/toggle_scope_zoom/IsAvailable()
+/datum/action/toggle_scope_zoom/IsAvailable(feedback = FALSE)
 	. = ..()
 	if(!. && gun)
 		gun.zoom(owner, owner.dir, FALSE)
@@ -767,7 +767,7 @@
 			zoomed = !zoomed
 
 	if(zoomed)
-		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
+		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate))
 		user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, direc)
 	else
 		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)

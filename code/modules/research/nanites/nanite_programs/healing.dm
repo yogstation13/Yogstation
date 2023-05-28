@@ -225,7 +225,7 @@
 		return
 
 	host_mob.notify_ghost_cloning("Your heart is being defibrillated by nanites. Re-enter your corpse if you want to be revived!")
-	addtimer(CALLBACK(src, .proc/zap), 50)
+	addtimer(CALLBACK(src, PROC_REF(zap)), 50)
 
 /datum/nanite_program/triggered/defib/proc/zap()
 	var/mob/living/carbon/C = host_mob
@@ -237,7 +237,7 @@
 		C.set_heartattack(FALSE)
 		C.revive()
 		C.emote("gasp")
-		C.Jitter(10 SECONDS)
+		C.adjust_jitter(10 SECONDS)
 		SEND_SIGNAL(C, COMSIG_LIVING_MINOR_SHOCK)
 	else
 		playsound(C, 'sound/machines/defib_failed.ogg', 50, 0)

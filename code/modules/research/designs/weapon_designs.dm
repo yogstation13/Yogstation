@@ -346,6 +346,7 @@
 	name = "Vatra M38 Magazine (.38)"
 	desc = "A 8-round magazine for the Vatra M38 service handgun."
 	id = "mag_v38"
+	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000)
 	build_path = /obj/item/ammo_box/magazine/v38
 	category = list("Ammo")
@@ -405,6 +406,16 @@
 	build_path = /obj/item/ammo_casing/shotgun/techshell
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/hardlightshell
+	name = "Hardlight Shotshell"
+	desc = "An advanced shotgun shell which fires a hardlight beam and scatters it."
+	id = "hardlight_shell"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 200, /datum/material/plasma = 50, /datum/material/bluespace = 50)
+	build_path = /obj/item/ammo_casing/shotgun/hardlight
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/suppressor
 	name = "Suppressor"

@@ -48,7 +48,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 
 /obj/effect/rune/ComponentInitialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_act)
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_act))
 
 /obj/effect/rune/Destroy()
 	UnregisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT)
@@ -302,8 +302,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 				message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(H)]) to replace a jobbanned player.")
 				H.key = C.key
 		H.uncuff()
-		H.stuttering = 0
-		H.cultslurring = 0
+		H.remove_status_effect(/datum/status_effect/speech/slurring/cult)
+		H.remove_status_effect(/datum/status_effect/speech/stutter)
 	return TRUE
 
 /obj/effect/rune/convert/proc/do_sacrifice(mob/living/sacrificial, list/invokers)
@@ -489,7 +489,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	outer_portal = new(T, 600, color)
 	light_range = 4
 	update_light()
-	addtimer(CALLBACK(src, .proc/close_portal), 600, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(close_portal)), 600, TIMER_UNIQUE)
 
 /obj/effect/rune/teleport/proc/close_portal()
 	qdel(inner_portal)
@@ -737,7 +737,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		var/oldcolor = color
 		add_atom_colour("#696969", FIXED_COLOUR_PRIORITY)
 		animate(src, color = oldcolor, time = 10 SECONDS, easing = EASE_IN) //yogs: 10 seconds instead of 5
-		addtimer(CALLBACK(src, .proc/recharge), 10 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(recharge)), 10 SECONDS)
 
 /obj/effect/rune/wall/proc/recharge()
 	recharging = FALSE
@@ -747,7 +747,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	deltimer(density_timer)
 	air_update_turf(1)
 	if(density)
-		density_timer = addtimer(CALLBACK(src, .proc/lose_density), 300, TIMER_STOPPABLE) //yogs: 30 seconds instead of 300 I could microwave a pizza before a barrier rune went down naturally
+		density_timer = addtimer(CALLBACK(src, PROC_REF(lose_density)), 300, TIMER_STOPPABLE) //yogs: 30 seconds instead of 300 I could microwave a pizza before a barrier rune went down naturally
 		var/mutable_appearance/shimmer = mutable_appearance('icons/effects/effects.dmi', "barriershimmer", ABOVE_MOB_LAYER)
 		shimmer.appearance_flags |= RESET_COLOR
 		shimmer.alpha = 200 //yogs: way less invisible
@@ -1057,12 +1057,12 @@ structure_check() searches for nearby cultist structures required for the invoca
 			continue
 		if(ishuman(M))
 			if(!iscultist(M))
-				AH.remove_hud_from(M)
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/hudFix, M), duration)
+				AH.hide_from(M)
+				addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(hudFix), M), duration)
 			var/image/A = image('icons/mob/mob.dmi',M,"cultist", ABOVE_MOB_LAYER)
 			A.override = 1
 			add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/noncult, "human_apoc", A, NONE)
-			addtimer(CALLBACK(M,/atom/.proc/remove_alt_appearance,"human_apoc",TRUE), duration)
+			addtimer(CALLBACK(M, TYPE_PROC_REF(/atom, remove_alt_appearance),"human_apoc",TRUE), duration)
 			images += A
 			SEND_SOUND(M, pick(sound('sound/ambience/antag/bloodcult.ogg'),sound('sound/spookoween/ghost_whisper.ogg'),sound('sound/spookoween/ghosty_wind.ogg')))
 		else
@@ -1070,13 +1070,13 @@ structure_check() searches for nearby cultist structures required for the invoca
 			var/image/B = image('icons/mob/mob.dmi',M,construct, ABOVE_MOB_LAYER)
 			B.override = 1
 			add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/noncult, "mob_apoc", B, NONE)
-			addtimer(CALLBACK(M,/atom/.proc/remove_alt_appearance,"mob_apoc",TRUE), duration)
+			addtimer(CALLBACK(M, TYPE_PROC_REF(/atom, remove_alt_appearance),"mob_apoc",TRUE), duration)
 			images += B
 		if(!iscultist(M))
 			if(M.client)
 				var/image/C = image('icons/effects/cult_effects.dmi',M,"bloodsparkles", ABOVE_MOB_LAYER)
 				add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/cult, "cult_apoc", C, NONE)
-				addtimer(CALLBACK(M,/atom/.proc/remove_alt_appearance,"cult_apoc",TRUE), duration)
+				addtimer(CALLBACK(M, TYPE_PROC_REF(/atom, remove_alt_appearance),"cult_apoc",TRUE), duration)
 				images += C
 		else
 			to_chat(M, span_cultlarge("An Apocalypse Rune was invoked in the [place.name], it is no longer available as a summoning site!"))
@@ -1150,4 +1150,4 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/obj/O = target.get_item_by_slot(SLOT_GLASSES)
 	if(istype(O, /obj/item/clothing/glasses/hud/security))
 		var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-		AH.add_hud_to(target)
+		AH.show_to(target)

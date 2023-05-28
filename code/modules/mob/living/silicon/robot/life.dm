@@ -79,7 +79,7 @@
 		fire_stacks--
 		fire_stacks = max(0, fire_stacks)
 	else
-		ExtinguishMob()
+		extinguish_mob()
 		return TRUE
 
 	//adjustFireLoss(3)
@@ -97,4 +97,4 @@
 	else
 		mobility_flags = MOBILITY_FLAGS_DEFAULT
 	update_transform()
-	update_action_buttons_icon()
+	update_mob_action_buttons()

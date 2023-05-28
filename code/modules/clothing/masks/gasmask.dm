@@ -96,7 +96,7 @@
 		user.update_inv_wear_mask()
 		for(var/X in actions)
 			var/datum/action/A = X
-			A.UpdateButtonIcon()
+			A.build_all_button_icons()
 		to_chat(user, span_notice("Your Clown Mask has now morphed into [choice], all praise the Honkmother!"))
 		return TRUE
 
@@ -150,7 +150,7 @@
 		user.update_inv_wear_mask()
 		for(var/X in actions)
 			var/datum/action/A = X
-			A.UpdateButtonIcon()
+			A.build_all_button_icons()
 		to_chat(user, span_notice("Your Mime Mask has now morphed into [choice]!"))
 		return TRUE
 
@@ -240,7 +240,7 @@
 		user.update_inv_wear_mask()
 		for(var/X in actions)
 			var/datum/action/A = X
-			A.UpdateButtonIcon()
+			A.build_all_button_icons()
 		to_chat(M, "The Tiki Mask has now changed into the [choice] Mask!")
 		return 1
 

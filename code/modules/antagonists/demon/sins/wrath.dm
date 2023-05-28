@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/spell/targeted/shapeshift/demon/wrath //emergency get out of jail card, but better.
+/datum/action/cooldown/spell/shapeshift/demon/wrath //emergency get out of jail card, but better.
 	name = "Wrath Demon Form"
 	shapeshift_type = /mob/living/simple_animal/lesserdemon/wrath
 
@@ -10,32 +10,37 @@
 	icon_state = "lesserdaemon_wrath"
 	icon_living = "lesserdaemon_wrath"
 
-/obj/effect/proc_holder/spell/pointed/trigger/ignite
+#define WRATHFUL_FIRE_AMOUNT 5
+
+/datum/action/cooldown/spell/pointed/ignite
 	name = "Ignite"
 	desc = "This ranged spell sets a person on fire."
-	school = "transmutation"
-	charge_max = 600
-	clothes_req = FALSE
-	invocation = "BURN IN HELL!!"
-	invocation_type = SPELL_INVOCATION_SAY
-	message = span_notice("You ignite in a flash of hellfire!")
-	cooldown_min = 75
-	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
-	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
-	action_icon_state = "sacredflame"
+	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	base_icon_state = "sacredflame"
 	active_msg = "You prepare to ignite a target..."
+	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
 
-/obj/effect/proc_holder/spell/targeted/inflict_handler/ignite
-	name = "Ignite"
-	desc = "This spell sets a person on fire from range."
-	school = "transmutation"
+	school = SCHOOL_TRANSMUTATION
 	invocation = "BURN IN HELL!!"
-	invocation_type = SPELL_INVOCATION_SAY
-	charge_max = 600
-	clothes_req = FALSE
-	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
-	action_icon_state = "sacredflame"
-	amt_firestacks = 5
-	ignites = TRUE       
+	invocation_type = INVOCATION_SHOUT
+
 	sound = 'sound/magic/fireball.ogg'
+	cooldown_time = 1 MINUTES
+	active_msg = span_notice("You ignite in a flash of hellfire!")
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/pointed/ignite/InterceptClickOn(mob/living/demon, params, atom/victim)
+	. = ..()
+	if(!.)
+		return FALSE
+	
+	if(!isliving(victim))
+		return FALSE
+	var/mob/living/target = victim
+	target.ignite_mob()
+	target.adjust_fire_stacks(WRATHFUL_FIRE_AMOUNT)
+
+	return TRUE
+
+#undef WRATHFUL_FIRE_AMOUNT
 

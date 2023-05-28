@@ -20,7 +20,7 @@
 /obj/item/clothing/mask/equipped(mob/M, slot)
 	. = ..()
 	if (slot == SLOT_WEAR_MASK && modifies_speech)
-		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
 
@@ -76,4 +76,4 @@
 		user.wear_mask_update(src, toggle_off = mask_adjusted)
 	if(loc == user)
 		// Update action button icon for adjusted mask, if someone is holding it.
-		user.update_action_buttons_icon()
+		user.update_mob_action_buttons()

@@ -15,7 +15,7 @@
 	selection_color = "#ddddff"
 	req_admin_notify = 1
 	minimal_player_age = 10
-	exp_requirements = 720
+	exp_requirements = 720 //fairly low skill job
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SUPPLY
 	alt_titles = list("Chief of Staff", "Head of Internal Affairs", "First Officer")
