@@ -17,22 +17,24 @@
 /datum/action/cooldown/spell/touch/mend
 	name = "Mend"
 	desc = "Engulfs your arm in a healing powers. Striking someone with it will heal them a moderate amount. Can't target yourself."
-	hand_path = /obj/item/melee/touch_attack/mend
-	school = "evocation"
-	charge_max = 120
-	clothes_req = FALSE
+	button_icon = 'icons/mob/actions/actions_changeling.dmi'
+	button_icon_state = "fleshmend"
+	background_icon_state = "bg_demon"
+
+	school = SCHOOL_EVOCATION
 	invocation = "Taste of Sin"
-	invocation_type = SPELL_INVOCATION_WHISPER
-	action_icon = 'icons/mob/actions/actions_changeling.dmi'
-	action_icon_state = "fleshmend"
-	action_background_icon_state = "bg_demon"
+	invocation_type = INVOCATION_WHISPER
+
+	cooldown_time = 12 SECONDS
+	spell_requirements = NONE
+
+	hand_path = /obj/item/melee/touch_attack/mend
 
 /obj/item/melee/touch_attack/mend
 	name = "Mending Hand"
 	desc = "A seemingly pleasant mass of mending energy, ready to heal."
 	icon_state = "flagellation"
 	item_state = "hivemind"
-	catchphrase = "Bask in my aura."
 
 /obj/item/melee/touch_attack/mend/afterattack(atom/target, mob/living/carbon/human/user, proximity_flag, click_parameters)
 	if(!proximity_flag)

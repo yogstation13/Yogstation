@@ -74,25 +74,28 @@
 			adjustHealth(2)
 
 //not really a general power, but more than 1 sin has it
-/obj/effect/proc_holder/spell/targeted/touch/torment
+/datum/action/cooldown/spell/touch/torment
 	name = "Torment"
 	desc = "Engulfs your arm in a vindictive might. Striking someone with it will severely debilitate them, though will cause no visible damage."
-	hand_path = /obj/item/melee/touch_attack/torment
-	school = "evocation"
-	charge_max = 200
-	clothes_req = FALSE
+	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
+	button_icon_state = "mutate"
+	background_icon_state = "bg_demon"
+	
+	school = SCHOOL_EVOCATION
 	invocation = "TORMENT"
-	invocation_type = SPELL_INVOCATION_SAY
-	action_icon = 'icons/mob/actions/humble/actions_humble.dmi'
-	action_icon_state = "mutate"
-	action_background_icon_state = "bg_demon"
+	invocation_type = INVOCATION_SHOUT
+
+	cooldown_time = 20 SECONDS
+	spell_requirements = NONE
+
+	hand_path = /obj/item/melee/touch_attack/torment
+	
 
 /obj/item/melee/touch_attack/torment
 	name = "Vindictive Hand"
 	desc = "An utterly scornful mass of hateful energy, ready to strike."
 	icon_state = "flagellation"
 	item_state = "hivemind"
-	catchphrase = "PAIN AND SUFFERING!!"
 
 /obj/item/melee/touch_attack/torment/afterattack(atom/target, mob/living/carbon/human/user, proximity_flag, click_parameters)
 	if(!proximity_flag)
@@ -105,10 +108,10 @@
 		return
 	playsound(user, 'sound/magic/demon_attack1.ogg', 75, TRUE)
 	M.blur_eyes(15) //huge array of relatively minor effects.
-	M.Jitter(5)
-	M.confused = max(M.confused, 10)
+	M.adjust_jitter(5 SECONDS)
+	M.set_confusion_if_lower(5 SECONDS)
 	M.adjust_disgust(40)
-	M.hallucination += 10
+	M.adjust_hallucinations(20 SECONDS)
 	M.Immobilize(30)
 	M.Stun(10)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25)
