@@ -86,7 +86,7 @@
 		D.bleed(130)
 		D.death()
 		//bonus healing to incentivise execution
-		var/heal_amt = 40 //heals brute first, then burn with any excess
+		var/heal_amt = 35 //heals brute first, then burn with any excess
 		var/brute_before = A.getBruteLoss()
 		A.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
 		heal_amt -= max(brute_before - A.getBruteLoss(), 0)
@@ -133,7 +133,7 @@
 
 /obj/item/projectile/bullet/ipcmartial //literally just default 357 with mob piercing
 	name = ".357 piercer bullet"
-	damage = 40
+	damage = 35
 	armour_penetration = 15
 	wound_bonus = -45
 	wound_falloff_tile = -2.5
@@ -289,7 +289,8 @@
 	H.dna.species.staminamod = 0 //my god, why must you make me add all these additional things, stop trying to disable them, just kill them
 	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)//instead of giving them more health, just remove crit entirely, fits better thematically too
-	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
+	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, IPCMARTIAL)
+	ADD_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_NODISMEMBER, IPCMARTIAL)
@@ -308,7 +309,8 @@
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)
-	REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
+	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, IPCMARTIAL)
+	REMOVE_TRAIT(H, TRAIT_RESISTDAMAGESLOWDOWN, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_NODISMEMBER, IPCMARTIAL)

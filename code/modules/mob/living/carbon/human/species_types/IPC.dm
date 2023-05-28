@@ -253,6 +253,11 @@
 	H.dna.features["ipc_screen"] = saved_screen
 	H.update_body()
 
+/datum/species/ipc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	if(chem.type == exotic_blood)
+		return FALSE
+	. = ..()
+	
 /particles/smoke/ipc // exact same smoke visual, but no offset
 	position = list(0, 0, 0)
 	spawning = 0
@@ -280,7 +285,7 @@
 			H.wash(CLEAN_TYPE_BLOOD)
 			to_chat(H,"You absorb the blood covering you to heal.")
 			H.add_splatter_floor(H.loc, TRUE)//just for that little bit more blood
-			var/heal_amt = 30 //heals brute first, then burn with any excess
+			var/heal_amt = 25 //heals brute first, then burn with any excess
 			var/brute_before = H.getBruteLoss()
 			H.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
 			heal_amt -= max(brute_before - H.getBruteLoss(), 0)
@@ -324,19 +329,8 @@
 ipc martial arts stuff
 
 --------------------------*/
-/datum/species/ipc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
-	if(chem.type == exotic_blood)
-		return FALSE
-	. = ..()
-	if(H.mind?.martial_art && H.mind.martial_art.id == "ultra violence")
-		if(H.reagents.has_reagent(/datum/reagent/blood, 30))//BLOOD IS FUEL eh, might as well let them drink it
-			H.adjustBruteLoss(-25, FALSE, FALSE, BODYPART_ANY)
-			H.adjustFireLoss(-25, FALSE, FALSE, BODYPART_ANY)
-			H.reagents.del_reagent(chem.type)//only one big tick of healing
-
-
 /datum/species/ipc/spec_emp_act(mob/living/carbon/human/H, severity)
-	if(H.mind.martial_art && H.mind.martial_art.id == "ultra violence")
+	if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
 		if(H.in_throw_mode)//if countering the emp
 			add_empproof(H)
 			throw_lightning(H)
