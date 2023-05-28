@@ -87,17 +87,6 @@
 	var/datum/action/cooldown/spell/created_spell = created_spell_ref?.resolve()
 	created_spell?.Remove(user)
 
-
-
-/**
-  * Mansus grasp act
-  *
-  * Gives addtional effects to mansus grasp spell
-  */
-/datum/eldritch_knowledge/proc/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
-	return FALSE
-
-
 /**
   * Sickly blade act
   *

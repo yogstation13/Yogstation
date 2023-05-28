@@ -208,11 +208,11 @@
 
 //Ghosts
 
+#define ui_ghost_jump_to_mob "SOUTH:6,CENTER-3:24"
 #define ui_ghost_orbit "SOUTH:6,CENTER-2:24"
 #define ui_ghost_reenter_corpse "SOUTH:6,CENTER-1:24"
 #define ui_ghost_teleport "SOUTH:6,CENTER:24"
 #define ui_ghost_spawners "SOUTH: 6, CENTER+1:24"
-#define ui_ghost_observe "SOUTH:6,CENTER-3:24"
 #define ui_ghost_language_menu "SOUTH: 22,CENTER+2:8"
 #define ui_ghost_pai "SOUTH: 6,CENTER+2:8"
 #define ui_ghost_med "SOUTH: 6,CENTER+3:-8"
