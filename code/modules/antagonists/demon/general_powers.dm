@@ -6,10 +6,11 @@
 	background_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "daemontransform"
 	background_icon_state = "bg_demon"
+	spell_requirements = NONE
 
 	invocation = "COWER, MORTALS!!"
 
-	shapeshift_type = /mob/living/simple_animal/lesserdemon
+	possible_shapes = list(/mob/living/simple_animal/lesserdemon)
 
 /mob/living/simple_animal/lesserdemon
 	name = "demon"
@@ -48,7 +49,7 @@
 	loot = (/obj/effect/decal/cleanable/blood)
 	del_on_death = TRUE
 
-/mob/living/simple_animal/lesserdemon/attackby(obj/item/W, mob/living/user, params)
+/mob/living/simple_animal/lesserdemon/attackby(obj/item/W, mob/living/caster, params)
 	. = ..()
 	if(istype(W, /obj/item/nullrod))
 		visible_message(span_warning("[src] screams in unholy pain from the blow!"), \
@@ -97,16 +98,14 @@
 	icon_state = "flagellation"
 	item_state = "hivemind"
 
-/obj/item/melee/touch_attack/torment/afterattack(atom/target, mob/living/carbon/human/user, proximity_flag, click_parameters)
-	if(!proximity_flag)
-		return
-	var/mob/living/M = target
+/datum/action/cooldown/spell/touch/torment/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
+	var/mob/living/M = victim
 	if(M.anti_magic_check())
-		to_chat(user, span_warning("[M] resists your torment!"))
+		to_chat(caster, span_warning("[M] resists your torment!"))
 		to_chat(M, span_warning("A hideous feeling of agony dances around your mind before being suddenly dispelled."))
 		..()
-		return
-	playsound(user, 'sound/magic/demon_attack1.ogg', 75, TRUE)
+		return TRUE
+	playsound(caster, 'sound/magic/demon_attack1.ogg', 75, TRUE)
 	M.blur_eyes(15) //huge array of relatively minor effects.
 	M.adjust_jitter(5 SECONDS)
 	M.set_confusion_if_lower(5 SECONDS)
@@ -118,4 +117,4 @@
 	M.visible_message(span_danger("[M] cringes in pain as they hold their head for a second!"))
 	M.emote("scream")
 	to_chat(M, span_warning("You feel an explosion of pain erupt in your mind!"))
-	return ..()
+	return TRUE

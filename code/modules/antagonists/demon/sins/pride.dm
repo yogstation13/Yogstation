@@ -36,18 +36,16 @@
 	icon_state = "flagellation"
 	item_state = "hivemind"
 
-/obj/item/melee/touch_attack/mend/afterattack(atom/target, mob/living/carbon/human/user, proximity_flag, click_parameters)
-	if(!proximity_flag)
-		return
-	var/mob/living/M = target
+/datum/action/cooldown/spell/touch/mend/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
+	var/mob/living/M = victim
 	if(M.anti_magic_check())
-		to_chat(user, span_warning("[M] resists your pride!"))
+		to_chat(caster, span_warning("[M] resists your pride!"))
 		to_chat(M, span_warning("A deceptive feeling of pleasre dances around your mind before being suddenly dispelled."))
 		..()
-		return
-	playsound(user, 'sound/magic/demon_attack1.ogg', 75, TRUE)
+		return TRUE
+	playsound(caster, 'sound/magic/demon_attack1.ogg', 75, TRUE)
 	M.adjustBruteLoss(-20)
 	M.adjustFireLoss(-20)
 	M.visible_message(span_bold("[M] appears to flash colors of red, before seemingly appearing healthier!"))
 	to_chat(M, span_warning("You feel a sinister feeling of soothing recovery."))
-	return ..()
+	return TRUE

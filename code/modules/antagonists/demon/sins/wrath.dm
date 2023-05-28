@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/shapeshift/demon/wrath //emergency get out of jail card, but better.
 	name = "Wrath Demon Form"
-	shapeshift_type = /mob/living/simple_animal/lesserdemon/wrath
+	possible_shapes = list(/mob/living/simple_animal/lesserdemon/wrath)
 
 /mob/living/simple_animal/lesserdemon/wrath //slightly more damage.
 	name = "wrathful demon"

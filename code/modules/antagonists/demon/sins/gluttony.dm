@@ -17,7 +17,7 @@
 	and you will slowly lose life while in this form, while also being especially weak to holy influences. \
 	Be aware low health transfers between forms. If gravely wounded, attack live mortals to siphon life energy from them! \
 	Your unique form as a demon of gluttony also allows you to eat corpses to heal yourself."
-	shapeshift_type = /mob/living/simple_animal/lesserdemon/gluttony
+	possible_shapes = list(/mob/living/simple_animal/lesserdemon/gluttony)
 
 /mob/living/simple_animal/lesserdemon/gluttony //capable of devouring corpses for health
 	name = "gluttonous demon"
