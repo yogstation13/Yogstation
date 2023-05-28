@@ -43,6 +43,8 @@
 			if(affecting.brute_dam <= 0)
 				to_chat(user, span_warning("[affecting] is already in good condition!"))
 				return FALSE
+			if(INTERACTING_WITH(user, H))
+				return FALSE
 			user.changeNext_move(CLICK_CD_MELEE)
 			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			heal_robo_limb(src, H, user, 15, 0, 0, 50)
@@ -67,7 +69,7 @@
 			return
 		current_color = C
 	update_icon()
-	action.UpdateButtonIcon()
+	action.build_all_button_icons()
 	user.regenerate_icons()
 
 /obj/item/holotool/proc/switch_tool(mob/user, datum/holotool_mode/mode)
@@ -116,7 +118,7 @@
 		set_light(0)
 
 	for(var/datum/action/A in actions)
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/holotool/proc/check_menu(mob/living/user)
 	if(!istype(user))

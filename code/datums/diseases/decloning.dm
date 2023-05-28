@@ -43,7 +43,7 @@
 				affected_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1, 170)
 				affected_mob.adjustCloneLoss(2)
 			if(prob(15))
-				affected_mob.stuttering += 3
+				affected_mob.adjust_stutter(3 SECONDS)
 		if(5)
 			if(prob(2))
 				affected_mob.emote("itch")

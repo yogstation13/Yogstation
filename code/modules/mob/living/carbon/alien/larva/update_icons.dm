@@ -16,7 +16,7 @@
 		icon_state = "larva[state]_cuff"
 	else if(!(mobility_flags & MOBILITY_STAND))
 		icon_state = "larva[state]_sleep"
-	else if(IsStun())
+	else if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
 		icon_state = "larva[state]_stun"
 	else
 		icon_state = "larva[state]"

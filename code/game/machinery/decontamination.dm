@@ -105,7 +105,7 @@
 				mob_occupant.adjustFireLoss(rand(15, 26))
 				mob_occupant.radiation += 500
 				mob_occupant.adjust_fire_stacks(2)
-				mob_occupant.IgniteMob()
+				mob_occupant.ignite_mob()
 			if(iscarbon(mob_occupant) && mob_occupant.stat < UNCONSCIOUS)
 				//Awake, organic and screaming
 				mob_occupant.emote("scream")
@@ -152,10 +152,10 @@
 		mob_occupant.radiation = 0
 	else
 		visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
-	var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
+	var/list/things_to_clear = list() //Done this way since using get_all_contents on the SSU itself would include circuitry and such.
 	if(occupant)
 		things_to_clear += occupant
-		things_to_clear += occupant.GetAllContents()
+		things_to_clear += occupant.get_all_contents()
 		dump_mob()
 	if(contents.len)
 		things_to_clear += contents

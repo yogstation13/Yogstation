@@ -338,7 +338,7 @@
 
 /obj/item/twohanded/fireaxe/energy/attack(mob/living/M, mob/living/user)
 	..()
-	M.IgniteMob() // Ignites you if you're flammable
+	M.ignite_mob() // Ignites you if you're flammable
 
 /obj/item/twohanded/fireaxe/energy/afterattack(atom/A, mob/user, proximity)
 	. = ..()
@@ -699,6 +699,10 @@
 		qdel(src)
 
 // CHAINSAW
+
+/datum/action/item_action/startchainsaw
+	name = "Pull The Starting Cord"
+
 /obj/item/twohanded/required/chainsaw
 	name = "chainsaw"
 	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
@@ -755,7 +759,7 @@
 		user.update_inv_hands()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/twohanded/required/chainsaw/doomslayer
 	name = "THE GREAT COMMUNICATOR"
@@ -936,6 +940,19 @@
 /obj/item/twohanded/vibro_weapon/update_icon()
 	icon_state = "hfrequency[wielded]"
 
+/obj/item/twohanded/vibro_weapon/wizard
+	desc = "A blade that was mastercrafted by a legendary blacksmith. Its' enchantments let it slash through anything."
+	force = 8
+	throwforce = 20
+	wound_bonus = 20
+	bare_wound_bonus = 25
+
+/obj/item/twohanded/vibro_weapon/wizard/wizard/attack_self(mob/user, modifiers)
+	if(!iswizard(user))
+		balloon_alert(user, "you're too weak!")
+		return
+	return ..()
+
 /*
  * Bone Axe
  */
@@ -1060,6 +1077,14 @@
  * Vxtvul Hammer
  */
 
+/datum/action/item_action/charge_hammer
+	name = "Charge the Blast Pads"
+
+/datum/action/item_action/charge_hammer/Trigger()
+	var/obj/item/twohanded/vxtvulhammer/vxtvulhammer = target
+	if(istype(vxtvulhammer))
+		vxtvulhammer.charge_hammer(owner)
+
 /obj/item/twohanded/vxtvulhammer
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "vxtvul_hammer0-0"
@@ -1080,6 +1105,7 @@
 	max_integrity = 200
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	w_class = WEIGHT_CLASS_HUGE
+	hitsound = 'sound/effects/hammerhitbasic.ogg'
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list(/datum/action/item_action/charge_hammer)
 	light_system = MOVABLE_LIGHT
@@ -1192,7 +1218,7 @@
 		var/turf/target_turf = get_turf(target) //Does the nice effects first so whatever happens to what's about to get clapped doesn't affect it
 		var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
 		K.color = color
-		playsound(loc, 'sound/effects/gravhit.ogg', 80, TRUE) //Mainly this sound
+		playsound(loc, 'sound/effects/powerhammerhit.ogg', 80, FALSE) //Mainly this sound
 		playsound(loc, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
 		supercharge() //At start so it doesn't give an unintentional message if you hit yourself
 

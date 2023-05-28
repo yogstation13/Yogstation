@@ -23,7 +23,6 @@
 	health = 25
 	spacewalk = TRUE
 
-	harm_intent_damage = 8
 	obj_damage = 50
 	melee_damage_lower = 20
 	melee_damage_upper = 20
