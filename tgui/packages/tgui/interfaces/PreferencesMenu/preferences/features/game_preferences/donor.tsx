@@ -100,3 +100,20 @@ export const purrbation: FeatureToggle = {
     />);
   },
 };
+
+export const donor_eorg: Feature<string> = {
+  name: "End-Round Item",
+  category: "DONATOR",
+  description: "Choose one item from the uplink to have spawned on you when the round ends.",
+  component: (
+    props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+    context,
+  ) => {
+    const { data } = useBackend<PreferencesMenuData>(context);
+
+    return (<FeatureDropdownInput
+      {...props}
+      disabled={(data.content_unlocked & 2) === 0}
+    />);
+  },
+};
