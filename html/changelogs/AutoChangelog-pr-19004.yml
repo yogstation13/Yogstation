@@ -1,0 +1,4 @@
+author: "Kaithyl"
+delete-after: true 
+changes: 
+  - bugfix: "Readds sec_38_lethal to tech web"
