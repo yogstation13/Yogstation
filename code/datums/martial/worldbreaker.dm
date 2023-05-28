@@ -159,6 +159,7 @@
 	user.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = platespeed, blacklisted_movetypes=(FLOATING))
 	user.physiology.damage_resistance = min(plates, MAX_PLATES) * PLATE_REDUCTION
 	user.physiology.stamina_mod = plates/PLATE_CAP
+	user.physiology.stun_mod = plates/PLATE_CAP
 	var/datum/species/preternis/S = user.dna.species
 	if(istype(S))
 		if(heavy)//sort of a sound indicator that you're in "heavy mode"
