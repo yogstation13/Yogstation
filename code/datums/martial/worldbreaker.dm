@@ -111,7 +111,7 @@
 	if(plates >= PLATE_CAP || user.stat == DEAD || !can_use(user))//no quaking the entire station
 		return
 	user.balloon_alert(user, span_notice("your plates grow thicker!"))
-	adjust_plates(1)
+	adjust_plates(user, 1)
 	update_platespeed(user)
 
 /datum/martial_art/worldbreaker/proc/rip_plate(mob/living/carbon/human/user)
@@ -121,7 +121,7 @@
 	user.balloon_alert(user, span_notice("you tear off a loose plate!"))
 
 	currentplate = 0
-	adjust_plates(-1)
+	adjust_plates(user, -1)
 	update_platespeed(user)
 	var/obj/item/worldplate/plate = new()
 	plate.linked_martial = src
@@ -144,7 +144,7 @@
 	user.visible_message(span_notice("one of [user]'s plates falls to the ground!"), span_userdanger("one of your loose plates falls off from excessive wear!"))
 	while(currentplate >= PLATE_BREAK)
 		currentplate -= PLATE_BREAK
-		adjust_plates(-1)
+		adjust_plates(user, -1)
 		update_platespeed(user)
 		var/obj/item/worldplate/plate = new(get_turf(user))//dropped to the ground
 		plate.linked_martial = src
@@ -174,12 +174,13 @@
 			REMOVE_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
 			REMOVE_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
 
-/datum/martial_art/worldbreaker/proc/adjust_plates(amount = 0)
+/datum/martial_art/worldbreaker/proc/adjust_plates(mob/living/carbon/human/user, amount = 0)
 	if(amount == 0)
 		return
 
-	var/armour = clamp(amount, -plates, max(0, min(amount, MAX_PLATES - plates)))
-	user.physiology.armor.modifyAllRatings(armour * PLATE_REDUCTION)
+	var/plate_change = clamp(amount + plates, 0, MAX_PLATES) - plates
+	if(plate_change)
+		user.physiology.armor.modifyAllRatings(plate_change * PLATE_REDUCTION)
 
 	plates += amount
 	plates = clamp(plates, 0, PLATE_CAP)
