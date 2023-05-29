@@ -179,7 +179,7 @@
 		return
 
 	var/armour = clamp(amount, -plates, max(0, min(amount, MAX_PLATES - plates)))
-	user.physiology.armor.modifyAllRatings(amount * PLATE_REDUCTION)
+	user.physiology.armor.modifyAllRatings(armour * PLATE_REDUCTION)
 
 	plates += amount
 	plates = clamp(plates, 0, PLATE_CAP)
