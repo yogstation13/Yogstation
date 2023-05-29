@@ -188,6 +188,7 @@
 	power_flags = NONE
 	bloodcost = 8
 	cooldown_time = 30 SECONDS
+
 /datum/action/cooldown/bloodsucker/hecata/communion/ActivatePower()
 	. = ..()
 	var/input = stripped_input(usr, "Choose a message to tell your vassals.", "Voice of Blood", "")
