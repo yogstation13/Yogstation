@@ -158,11 +158,11 @@
 
 	for(var/datum/uplink_item/path as anything in GLOB.uplink_items)
 		// Any item from any uplink, traitor, nukies, ert, as long as it fits this price range
-		if(initial(path.cost) == 0)
+		if(initial(path.cost) <= 0)
 			continue
-		if(initial(path.cost) > 20)
+		if(initial(path.cost) > TELECRYSTALS_DEFAULT)
 			continue
-		values += path
+		values += "[path]"
 
 	return values
 
@@ -174,7 +174,7 @@
 	for (var/choice in get_choices())
 		if (choice == "None")
 			continue
-		var/datum/uplink_item/uipath = choice
+		var/datum/uplink_item/uipath = text2path(choice)
 		display_names[choice] = initial(uipath.name)
 
 	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = display_names
