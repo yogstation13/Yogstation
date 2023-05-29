@@ -27,8 +27,6 @@
 	var/datum/weakref/target_ref
 	///Are we feeding with passive grab or not?
 	var/silent_feed = TRUE 
-	//can you silently feed? Hecata can't.
-	var/suppressible = 1 
 
 /datum/action/cooldown/bloodsucker/feed/CanUse(mob/living/carbon/user)
 	. = ..()
@@ -43,7 +41,7 @@
 	if(user.is_mouth_covered())
 		owner.balloon_alert(owner, "mouth covered!")
 		return FALSE
-	if(suppressible == 0 && owner.grab_state <= GRAB_PASSIVE)
+	if(bloodsuckerdatum_power.my_clan.blood_drink_type != BLOODSUCKER_DRINK_PAINFUL && owner.grab_state <= GRAB_PASSIVE)
 		to_chat(owner, span_warning("Feeding as a Hecata would cause enough pain to the victim to make silent feeding like this impossible."))
 		return FALSE
 	//Find target, it will alert what the problem is, if any.

@@ -93,7 +93,7 @@
 			living_time = 17 MINUTES //in general, they don't last long, make the most of them.
 		addtimer(CALLBACK(src, PROC_REF(end_necromance), target), living_time)
 	else //extra check, but this shouldn't happen
-		owner.balloon_alert(owner, "Target is out of range or not dead yet.")
+		owner.balloon_alert(owner, "out of range/not dead.")
 		return FALSE
 	DeactivatePower()
 	

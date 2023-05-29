@@ -22,6 +22,8 @@
 #define BLOODSUCKER_DRINK_SNOBBY "bloodsucker_drink_snobby"
 ///Drinks blood from disgusting creatures without Humanity consequences.
 #define BLOODSUCKER_DRINK_INHUMANELY "bloodsucker_drink_imhumanely"
+///Drinks blood only from aggressive or higher grabs, no silent feeding.
+#define BLOODSUCKER_DRINK_PAINFUL "bloodsucker_drink_painful"
 
 ///Controls blood, just like all Bloodsuckers do
 #define BLOODSUCKER_CONTROL_BLOOD 1

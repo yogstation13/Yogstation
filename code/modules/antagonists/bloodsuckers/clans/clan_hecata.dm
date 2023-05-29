@@ -8,13 +8,10 @@
 	clan_objective = /datum/objective/bloodsucker/necromance
 	join_icon_state = "hecata"
 	join_description = "Raise zombie hordes from the dead, and then coordinate them from anywhere anytime."
+	blood_drink_type = BLOODSUCKER_DRINK_PAINFUL
 
 /datum/bloodsucker_clan/hecata/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
-	for(var/datum/action/cooldown/bloodsucker/feed/feed_spell in bloodsuckerdatum.powers)
-		if(!istype(feed_spell))
-			continue
-		feed_spell.suppressible = 0
 	bloodsuckerdatum.BuyPower(new /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy)
 	bloodsuckerdatum.BuyPower(new /datum/action/cooldown/bloodsucker/hecata/spiritcall)
 	bloodsuckerdatum.BuyPower(new /datum/action/cooldown/bloodsucker/hecata/communion)

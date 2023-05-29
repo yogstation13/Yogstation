@@ -294,15 +294,13 @@
 	status_flags = CANPUSH
 	movement_type = FLYING
 	loot = list(/obj/item/ectoplasm)
+	deathmessage = "withers away into nothing."
 
 /mob/living/simple_animal/hostile/bloodsucker/wraith/Life()
 	. = ..()
-	if(!src)
-		return
-	if(src.stat != DEAD) //Wraith loses 1 health every 2 seconds, which means it will disperse after 60 seconds if not damaged.
+	if(stat != DEAD) //Wraith loses 1 health every 2 seconds, which means it will disperse after 60 seconds if not damaged.
 		adjustHealth(1)
 
 /mob/living/simple_animal/hostile/bloodsucker/wraith/death()
-	deathmessage = "withers away into nothing."
 	qdel(src) //Del on death for some reason doesn't work, might be due to previous code preventing it for /bloodsucker mobs.
 	..()
