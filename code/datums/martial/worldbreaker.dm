@@ -157,9 +157,8 @@
 	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
 	user.remove_movespeed_modifier(type)
 	user.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = platespeed, blacklisted_movetypes=(FLOATING))
-	user.physiology.damage_resistance = min(plates, MAX_PLATES) * PLATE_REDUCTION
-	user.physiology.stamina_mod = plates/PLATE_CAP
-	user.physiology.stun_mod = plates/PLATE_CAP
+	var/armour = min(plates, MAX_PLATES) * PLATE_REDUCTION
+	user.physiology.armor.setRating(armour, armour, armour, armour, armour, armour, armour, armour, armour, armour, armour)
 	var/datum/species/preternis/S = user.dna.species
 	if(istype(S))
 		if(heavy)//sort of a sound indicator that you're in "heavy mode"
@@ -584,6 +583,7 @@
 	update_platespeed(H)
 	ADD_TRAIT(H, TRAIT_RESISTHEAT, type) //walk through that fire all you like, hope you don't care about your clothes
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_NOVEHICLE, type)
 	RegisterSignal(H, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(lose_plate))
 	if(!linked_stomp)
@@ -606,6 +606,7 @@
 	update_platespeed(H)
 	REMOVE_TRAIT(H, TRAIT_RESISTHEAT, type)
 	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_NOVEHICLE, type)
 	UnregisterSignal(H, COMSIG_MOB_APPLY_DAMAGE)
 	if(linked_stomp)
