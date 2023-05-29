@@ -111,7 +111,7 @@
 	if(plates >= PLATE_CAP || user.stat == DEAD || !can_use(user))//no quaking the entire station
 		return
 	user.balloon_alert(user, span_notice("your plates grow thicker!"))
-	plates++
+	adjust_plates(1)
 	update_platespeed(user)
 
 /datum/martial_art/worldbreaker/proc/rip_plate(mob/living/carbon/human/user)
@@ -121,7 +121,7 @@
 	user.balloon_alert(user, span_notice("you tear off a loose plate!"))
 
 	currentplate = 0
-	plates--
+	adjust_plates(-1)
 	update_platespeed(user)
 	var/obj/item/worldplate/plate = new()
 	plate.linked_martial = src
@@ -144,7 +144,7 @@
 	user.visible_message(span_notice("one of [user]'s plates falls to the ground!"), span_userdanger("one of your loose plates falls off from excessive wear!"))
 	while(currentplate >= PLATE_BREAK)
 		currentplate -= PLATE_BREAK
-		plates--
+		adjust_plates(-1)
 		update_platespeed(user)
 		var/obj/item/worldplate/plate = new(get_turf(user))//dropped to the ground
 		plate.linked_martial = src
@@ -157,8 +157,6 @@
 	var/platespeed = (plates * 0.2) - 0.5 //faster than normal if either no or few plates
 	user.remove_movespeed_modifier(type)
 	user.add_movespeed_modifier(type, update=TRUE, priority=101, multiplicative_slowdown = platespeed, blacklisted_movetypes=(FLOATING))
-	var/armour = min(plates, MAX_PLATES) * PLATE_REDUCTION
-	user.physiology.armor.setRating(armour, armour, armour, armour, armour, armour, armour, armour, armour, armour, armour)
 	var/datum/species/preternis/S = user.dna.species
 	if(istype(S))
 		if(heavy)//sort of a sound indicator that you're in "heavy mode"
@@ -175,6 +173,16 @@
 			REMOVE_TRAIT(user, TRAIT_RESISTCOLD, type)
 			REMOVE_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
 			REMOVE_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
+
+/datum/martial_art/worldbreaker/proc/adjust_plates(amount = 0)
+	if(amount == 0)
+		return
+
+	var/armour = clamp(amount, -plates, max(0, min(amount, MAX_PLATES - plates)))
+	user.physiology.armor.modifyAllRatings(amount * PLATE_REDUCTION)
+
+	plates += amount
+	plates = clamp(plates, 0, PLATE_CAP)
 
 //the plates in question
 /obj/item/worldplate
