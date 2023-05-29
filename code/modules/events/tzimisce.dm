@@ -64,6 +64,7 @@
 	bloodsuckerdatum.add_team_hud(tzimisce)
 	bloodsuckerdatum.bloodsucker_level_unspent += round(world.time / (15 MINUTES), 1)
 	bloodsuckerdatum.my_clan = new /datum/bloodsucker_clan/tzimisce(bloodsuckerdatum)
+	bloodsuckerdatum.owner.announce_objectives()
 
 	spawned_mobs += tzimisce
 	message_admins("[ADMIN_LOOKUPFLW(tzimisce)] has been made into a tzimisce bloodsucker an event.")

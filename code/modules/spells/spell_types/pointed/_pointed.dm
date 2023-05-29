@@ -77,6 +77,8 @@
 			// If we didn't find a human, we settle for any living at all
 			aim_assist_target = locate(/mob/living) in click_target
 
+	caller.face_atom(click_target)
+
 	return ..(caller, params, aim_assist_target || click_target)
 
 /datum/action/cooldown/spell/pointed/is_valid_target(atom/cast_on)
