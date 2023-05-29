@@ -75,6 +75,8 @@
 	start of helpers section
 ---------------------------------------------------------*/
 /datum/martial_art/worldbreaker/proc/stagger(mob/living/victim)
+	if(HAS_TRAIT(TRAIT_STUNIMMUNE))
+		return
 	victim.add_movespeed_modifier(id, update=TRUE, priority=101, multiplicative_slowdown = 0.5)
 	addtimer(CALLBACK(src, PROC_REF(stagger_end), victim), STAGGER_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE)
 
