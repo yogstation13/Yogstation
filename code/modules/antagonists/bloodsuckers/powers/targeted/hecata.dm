@@ -104,6 +104,7 @@
 	to_chat(user, span_warning("You feel the shadows around you weaken, your form falling limp like a puppet cut from its strings!"))
 	user.set_species(/datum/species/krokodil_addict) //they will turn into a fake zombie on death, that still retains blood and isnt so powerful.
 	user.death()
+
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/proc/zombify(mob/living/user)
 	user.mind.grab_ghost()
 	user.set_species(/datum/species/zombie/hecata) //imitation zombies that shamble around and beat people with their fists
