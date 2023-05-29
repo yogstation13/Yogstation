@@ -34,6 +34,7 @@
 	if(!.)
 		return FALSE
 	return isliving(target_atom)
+
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/CheckCanTarget(atom/target_atom)
 	. = ..()
 	if(!.)
