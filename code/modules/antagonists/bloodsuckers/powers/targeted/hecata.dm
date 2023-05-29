@@ -147,7 +147,7 @@
 		num_spirits = 3
 	else if(level_current >= 3)
 		num_spirits = 4
-	var/list/turf/locs = new
+	var/list/turf/locs = list()
 	for(var/direction in GLOB.alldirs) //looking for spirit spawns
 		if(locs.len == num_spirits) //we found the number of spots needed and thats all we need
 			break
