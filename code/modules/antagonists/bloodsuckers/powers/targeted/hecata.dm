@@ -174,6 +174,7 @@
 	puff.attach(owner) //OPTIONAL
 	puff.start()
 	owner.spin(8, 1) //Spin around like a loon.
+
 /datum/action/cooldown/bloodsucker/hecata/communion
 	name = "Deathly Communion"
 	desc = "Send a message to all your vassals."
