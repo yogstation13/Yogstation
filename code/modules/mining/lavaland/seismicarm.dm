@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/seismic
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
-/datum/action/cooldown/spell/pointed/seismic/can_cast_spell()
+/datum/action/cooldown/spell/pointed/seismic/can_cast_spell(feedback = TRUE)
 	if(!isliving(owner))
 		return FALSE
 	var/mob/living/user = owner
@@ -226,7 +226,7 @@
 
 	hand_path = /obj/item/melee/touch_attack/overcharged_emitter
 
-/datum/action/cooldown/spell/touch/righthook/can_cast_spell()
+/datum/action/cooldown/spell/touch/righthook/can_cast_spell(feedback = TRUE)
 	if(!isliving(owner))
 		return FALSE
 	var/mob/living/user = owner
