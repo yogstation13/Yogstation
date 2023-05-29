@@ -470,7 +470,6 @@
 			var/mob/living/M = loc
 			M.show_message("\red Your [src] critically overheats!", 1)
 			M.adjust_fire_stacks(3)
-			M.IgniteMob()
 		if(T)
 			T.hotspot_expose(700,125)
 			explosion(T, -1, -1, 2, 3)
