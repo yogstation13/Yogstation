@@ -529,8 +529,8 @@
 	combined_msg += span_notice("<b>All attacks apply stagger. Stagger knocks people prone and applies a brief slow.</b>")
 
 	combined_msg +=  "[span_notice("Plates")]: You will progressively grow plates every [PLATE_INTERVAL/10] seconds. \
-	Each plate provides [PLATE_REDUCTION]% damage reduction but also slows you down. The damage reduction caps at [PLATE_REDUCTION * MAX_PLATES]% but the slowdown can continue scaling. \
-	While at maximum damage reduction you are considered \"heavy\" and most of your attacks will be slower, but do more damage in a larger area. \
+	Each plate provides [PLATE_REDUCTION]% armour but also slows you down. The armour caps at [PLATE_REDUCTION * MAX_PLATES]% but the slowdown can continue scaling. \
+	While at maximum armour you are considered \"heavy\" and most of your attacks will be slower, but do more damage in a larger area. \
 	Taking brute or burn damage will wear away at your plates until they fall off on their own."
 
 	combined_msg +=  "[span_notice("Rip Plate")]: Help intent yourself to rip off a plate. The plate can be thrown at people to stagger them and knock them back. \
