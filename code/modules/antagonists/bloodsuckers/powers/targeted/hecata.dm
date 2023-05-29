@@ -119,6 +119,7 @@
 	button_icon = 'icons/mob/actions/actions_hecata_bloodsucker.dmi'
 	active_background_icon_state = "hecata_power_on"
 	base_background_icon_state = "hecata_power_off"
+
 //summon wraiths (weakened shades) to attack anyone who isn't a zombie. This includes non-zombified vassals. However, you can get around this by zombifying your vassals.
 //to do this, you can make someone your favorite vassal, or you can kill them and then revive them with necromancy.
 /datum/action/cooldown/bloodsucker/hecata/spiritcall
