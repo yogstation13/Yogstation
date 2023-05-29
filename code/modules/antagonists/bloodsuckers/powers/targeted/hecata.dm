@@ -195,6 +195,7 @@
 	if(!input || !IsAvailable())
 		return FALSE
 	deathly_commune(usr, input)
+
 /datum/action/cooldown/bloodsucker/hecata/communion/proc/deathly_commune(mob/living/user, message) //code from Fulpstation
 	var/rendered = span_cultlarge("<b>Master [user.real_name] announces:</b> [message]")
 	user.log_talk(message, LOG_SAY, tag=ROLE_BLOODSUCKER)
