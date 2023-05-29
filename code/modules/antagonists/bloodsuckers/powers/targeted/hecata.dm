@@ -168,7 +168,7 @@
 /datum/action/cooldown/bloodsucker/hecata/spiritcall/proc/cast_effect() //same as veil of many faces, makes smoke and stuff when casted
 	// Effect
 	playsound(get_turf(owner), 'sound/magic/smoke.ogg', 20, 1)
-	var/datum/effect_system/steam_spread/puff = new /datum/effect_system/steam_spread/()
+	var/datum/effect_system/steam_spread/puff = new /datum/effect_system/steam_spread/bloodsucker()
 	puff.effect_type = /obj/effect/particle_effect/fluid/smoke/vampsmoke
 	puff.set_up(3, 0, get_turf(owner))
 	puff.attach(owner) //OPTIONAL
