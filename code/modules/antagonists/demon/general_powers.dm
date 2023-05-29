@@ -9,7 +9,7 @@
 
 	invocation = "COWER, MORTALS!!"
 
-	shapeshift_type = /mob/living/simple_animal/lesserdemon
+	possible_shapes = list(/mob/living/simple_animal/lesserdemon)
 
 /mob/living/simple_animal/lesserdemon
 	name = "demon"

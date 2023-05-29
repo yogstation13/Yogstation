@@ -193,6 +193,7 @@
 /datum/action/cooldown/spell/aoe/blindness
 	name = "Blindness"
 	desc = "Your prey will be momentarily blind for you to advance on them."
+	button_icon_state = "blind2"
 
 	cooldown_time = 1 MINUTES
 	spell_requirements = NONE

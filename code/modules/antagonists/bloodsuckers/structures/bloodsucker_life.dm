@@ -102,7 +102,7 @@
 	total_blood_drank += blood_taken
 	if(frenzied)
 		frenzy_blood_drank += blood_taken
-	if(current_task)
+	if(has_task)
 		if(target.mind)
 			task_blood_drank += blood_taken
 		else

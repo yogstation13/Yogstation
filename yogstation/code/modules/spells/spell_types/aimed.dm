@@ -1,11 +1,13 @@
 /datum/action/cooldown/spell/pointed/projectile/animation
 	name = "Animation"
 	desc = "This spell fires an animation bolt at a target."
-	base_icon_state = "staffofanimation"
+	button_icon = 'icons/obj/guns/magic.dmi'
+	button_icon_state = "staffofanimation"
 
 	invocation = "ONA ANIMATUS"
 	invocation_type = INVOCATION_SHOUT
 
+	base_icon_state = "staffofanimation"
 	sound = 'sound/magic/staff_animation.ogg'
 	cast_range = 20
 	cooldown_time = 6 SECONDS

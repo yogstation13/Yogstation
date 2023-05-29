@@ -33,7 +33,7 @@
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
 	///If we have a task assigned
-	var/current_task = FALSE
+	var/has_task = FALSE
 	///How many times have we used a blood altar
 	var/altar_uses = 0
 
