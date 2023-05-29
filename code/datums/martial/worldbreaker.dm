@@ -537,7 +537,7 @@
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You imagine all the things you would be capable of with this power.</i></b>"
 
-	combined_msg += span_notice("<b>All attacks apply stagger. Stagger knocks people prone and applies a brief slow.</b>")
+	combined_msg += span_notice("<b>All attacks apply stagger. Stagger applies a brief slow.</b>")
 
 	combined_msg +=  "[span_notice("Plates")]: You will progressively grow plates every [PLATE_INTERVAL/10] seconds. \
 	Each plate provides [PLATE_REDUCTION]% armour but also slows you down. The armour caps at [PLATE_REDUCTION * MAX_PLATES]% but the slowdown can continue scaling. \
