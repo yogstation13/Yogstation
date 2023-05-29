@@ -1,0 +1,5 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "fixed some antag bugs (i.e clockcult and heretic)"
+  - bugfix: "fixed some action bugs (i.e jumpboots and quickbinds) + correct a typing mistakes that caused a status effect bug"
