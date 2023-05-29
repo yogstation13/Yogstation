@@ -65,3 +65,17 @@
 	caliber = ".50ae"
 	projectile_type = /obj/item/projectile/bullet/a50AE
 
+// Bolt Pistol
+
+/obj/item/ammo_casing/boltpistol
+	name = ".75 bolt round casing"
+	desc = "A .75 bolt round casing."
+	caliber = ".75"
+	projectile_type = /obj/item/projectile/bullet/boltpistol
+
+/obj/item/ammo_casing/boltpistol/admin
+	name = ".75 bolt round casing"
+	desc = "A .75 bolt round casing. This one feels more powerful somehow..."
+	caliber = ".75"
+	projectile_type = /obj/item/projectile/bullet/boltpistol/admin
+

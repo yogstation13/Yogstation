@@ -2116,6 +2116,7 @@
 #include "code\modules\clothing\outfits\amber.dm"
 #include "code\modules\clothing\outfits\ert.dm"
 #include "code\modules\clothing\outfits\event.dm"
+#include "code\modules\clothing\outfits\imperial.dm"
 #include "code\modules\clothing\outfits\occupying.dm"
 #include "code\modules\clothing\outfits\plasmaman.dm"
 #include "code\modules\clothing\outfits\standard.dm"
