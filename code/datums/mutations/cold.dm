@@ -32,6 +32,7 @@
 	name = "Cryobeam"
 	desc = "This power fires a frozen bolt at a target."
 	button_icon_state = "icebeam"
+	active_icon_state = "icebeam_active"
 	base_icon_state = "icebeam"
 	active_overlay_icon_state = "bg_spell_border_active_blue"
 	cooldown_time = 16 SECONDS

@@ -1251,7 +1251,7 @@
 	else
 		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
 
-
+	SEND_SIGNAL(src, COMSIG_LIVING_SET_BODY_POSITION, mobility_flags, .) //REMOVE THIS WHEN LAYING DOWN GETS PORTED
 
 	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms
 	if(canitem)

@@ -13,11 +13,6 @@
 /datum/action/innate/slab/IsAvailable(feedback = FALSE)
 	return TRUE
 
-/datum/action/innate/slab/unset_ranged_ability(mob/living/on_who)
-	. = ..()
-	finished = TRUE
-	QDEL_IN(src, 1 SECONDS)
-
 /datum/action/innate/slab/InterceptClickOn(mob/living/caller, params, atom/clicked_on)
 	if(in_progress)
 		return FALSE
@@ -26,8 +21,15 @@
 		return FALSE
 
 	. = ..()
-	if(.)
-		unset_ranged_ability(caller || usr)
+	if(!.)
+		return FALSE
+	var/mob/living/i_hate_this = caller || owner || usr
+	i_hate_this?.client?.mouse_override_icon = initial(caller?.client?.mouse_override_icon)
+	i_hate_this?.update_mouse_pointer()
+	i_hate_this?.click_intercept = null
+	finished = TRUE
+	QDEL_IN(src, 0.1 SECONDS)
+	return TRUE
 
 //For the Hateful Manacles scripture; applies replicant handcuffs to the clicked_on.
 /datum/action/innate/slab/hateful_manacles
@@ -242,7 +244,7 @@
 
 //For the cyborg Judicial Marker scripture, places a judicial marker
 /datum/action/innate/slab/judicial
-	ranged_mousepointer = 'icons/effects/visor_reticule.dmi'
+	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 
 /datum/action/innate/slab/judicial/do_ability(mob/living/caller, params, atom/clicked_on)
 	var/turf/T = caller.loc

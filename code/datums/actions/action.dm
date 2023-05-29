@@ -55,7 +55,7 @@
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
 
 	if(isatom(target))
-		RegisterSignal(target, COMSIG_ATOM_UPDATED_ICON, PROC_REF(update_status_on_signal))
+		RegisterSignal(target, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_target_icon_update))
 
 	if(istype(target, /datum/mind))
 		RegisterSignal(target, COMSIG_MIND_TRANSFERRED, PROC_REF(on_target_mind_swapped))

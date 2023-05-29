@@ -173,11 +173,13 @@
 	var/icon/I = icon(host_mob.icon, host_mob.icon_state, host_mob.dir)
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = null
+	host_mob.set_hud_image_inactive(DIAG_NANITE_FULL_HUD)
 	if(remove || stealth)
 		return //bye icon
 	var/nanite_percent = (nanite_volume / max_nanites) * 100
 	nanite_percent = clamp(CEILING(nanite_percent, 10), 10, 100)
 	holder.icon_state = "nanites[nanite_percent]"
+	host_mob.set_hud_image_active(DIAG_NANITE_FULL_HUD)
 
 /datum/component/nanites/proc/on_emp(datum/source, severity)
 	var/datum/component/empprotection/empproof = host_mob.GetExactComponent(/datum/component/empprotection)

@@ -63,28 +63,27 @@
 /datum/action/cooldown/spell/touch/mansus_grasp/can_cast_spell(feedback = TRUE)
 	return ..() && !!IS_HERETIC(owner)
 
+/datum/action/cooldown/spell/touch/mansus_grasp/on_antimagic_triggered(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
+	victim.visible_message(
+		span_danger("The spell bounces off of [victim]!"),
+		span_danger("The spell bounces off of you!"),
+	)
 
 /datum/action/cooldown/spell/touch/mansus_grasp/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
-	if(!isliving(victim))
-		return FALSE
-
-	var/mob/living/living_hit = victim
-	if(living_hit.can_block_magic(antimagic_flags))
-		victim.visible_message(
-			span_danger("The spell bounces off of [victim]!"),
-			span_danger("The spell bounces off of you!"),
-		)
-		return FALSE
-
-//	if(SEND_SIGNAL(caster, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, victim) & COMPONENT_BLOCK_HAND_USE)
+//	if(!isliving(victim)) for now, makes heretic hand hit everything but it's for the best
 //		return FALSE
 
-	living_hit.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
-	if(iscarbon(victim))
-		var/mob/living/carbon/carbon_hit = victim
-		carbon_hit.adjust_timed_status_effect(4 SECONDS, /datum/status_effect/speech/slurring/heretic)
-		carbon_hit.AdjustKnockdown(5 SECONDS)
-		carbon_hit.adjustStaminaLoss(80)
+	if(SEND_SIGNAL(caster, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, victim) & COMPONENT_BLOCK_HAND_USE)
+		return FALSE
+
+	if(isliving(victim))
+		var/mob/living/living_hit = victim
+		living_hit.apply_damage(10, BRUTE, wound_bonus = CANT_WOUND)
+		if(iscarbon(victim))
+			var/mob/living/carbon/carbon_hit = victim
+			carbon_hit.adjust_timed_status_effect(4 SECONDS, /datum/status_effect/speech/slurring/heretic)
+			carbon_hit.AdjustKnockdown(5 SECONDS)
+			carbon_hit.adjustStaminaLoss(80)
 
 	return TRUE
 
@@ -98,7 +97,7 @@
 
 /obj/item/melee/touch_attack/mansus_fist/ignition_effect(atom/A, mob/user)
 	. = span_notice("[user] effortlessly snaps [user.p_their()] fingers near [A], igniting it with eldritch energies. Fucking badass!")
-	qdel(src)
+	remove_hand_with_no_refund(user)
 
 /datum/action/cooldown/spell/aoe/rust_conversion
 	name = "Aggressive Spread"

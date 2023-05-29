@@ -10,14 +10,13 @@
 	var/active = FALSE //If the visor is online
 	var/recharging = FALSE //If the visor is currently recharging
 	var/datum/action/cooldown/judicial_visor/blaster
-	var/recharge_cooldown = 300 //divided by 10 if ratvar is alive
-	actions_types = list(/datum/action/item_action/clock/toggle_visor)
+	var/recharge_cooldown = 30 SECONDS //divided by 10 if ratvar is alive
+	actions_types = list(/datum/action/cooldown/judicial_visor)
 
 /obj/item/clothing/glasses/judicial_visor/Initialize()
 	. = ..()
 	GLOB.all_clockwork_objects += src
 	blaster = new(src)
-	blaster.visor = src
 
 /obj/item/clothing/glasses/judicial_visor/Destroy()
 	GLOB.all_clockwork_objects -= src
@@ -99,42 +98,53 @@
 		user.update_inv_glasses()
 
 /datum/action/cooldown/judicial_visor
-	ranged_mousepointer = 'icons/effects/visor_reticule.dmi'
+	name = "Create Judicial Marker"
+	desc = "Allows you to create a stunning Judicial Marker at any location in view. Click again to disable."
+	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
+	button_icon = 'icons/obj/clothing/clockwork_garb.dmi'
+	button_icon_state = "judicial_visor_1"
+	background_icon_state = "bg_clock"
+	click_to_activate = TRUE
+	var/judgment_range = 7
 	var/obj/item/clothing/glasses/judicial_visor/visor
 
-/datum/action/cooldown/judicial_visor/InterceptClickOn(mob/living/caller, params, atom/target)
-	if(!..())
+/datum/action/cooldown/judicial_visor/link_to(Target)
+	. = ..()
+	visor = Target
+
+/datum/action/cooldown/judicial_visor/IsAvailable(feedback = FALSE)
+	if(!is_servant_of_ratvar(owner))
+		return FALSE
+	if(visor.recharging)
 		return FALSE
 	if(owner.incapacitated() || !visor || visor != owner.get_item_by_slot(SLOT_GLASSES))
-		unset_click_ability(owner)
 		return FALSE
-
-	var/turf/T = owner.loc
-	if(!isturf(T))
+	if(!isturf(owner.loc))
 		return FALSE
-
-	if(target in view(7, get_turf(owner)))
-		visor.recharging = TRUE
-		visor.update_status()
-		for(var/obj/item/clothing/glasses/judicial_visor/V in caller.get_all_contents())
-			if(V == visor)
-				continue
-			V.recharging = TRUE //To prevent exploiting multiple visors to bypass the cooldown
-			V.update_status()
-			addtimer(CALLBACK(V, TYPE_PROC_REF(/obj/item/clothing/glasses/judicial_visor, recharge_visor), owner), (GLOB.ratvar_awakens ? visor.recharge_cooldown*0.1 : visor.recharge_cooldown) * 2)
-		clockwork_say(owner, text2ratvar("Kneel, heathens!"))
-		owner.visible_message(span_warning("[owner]'s judicial visor fires a stream of energy at [target], creating a strange mark!"), "[span_heavy_brass("You direct [visor]'s power to [target]. You must wait for some time before doing this again.")]")
-		var/turf/targetturf = get_turf(target)
-		new/obj/effect/clockwork/judicial_marker(targetturf, owner)
-		log_combat(owner, targetturf, "created a judicial marker")
-		owner.update_mob_action_buttons()
-		owner.update_inv_glasses()
-		addtimer(CALLBACK(visor, TYPE_PROC_REF(/obj/item/clothing/glasses/judicial_visor, recharge_visor), owner), GLOB.ratvar_awakens ? visor.recharge_cooldown*0.1 : visor.recharge_cooldown)//Cooldown is reduced by 10x if Ratvar is up
-		unset_click_ability(owner)
-
-		return FALSE
-
 	return TRUE
+
+/datum/action/cooldown/judicial_visor/Activate(atom/target_atom)
+	var/mob/living/living_owner = owner
+	if(owner && get_dist(get_turf(owner), get_turf(target_atom)) > judgment_range)
+		target_atom.balloon_alert(owner, "too far away!")
+		return
+	visor.recharging = TRUE
+	visor.update_status()
+	for(var/obj/item/clothing/glasses/judicial_visor/V in living_owner.get_all_contents())
+		if(V == visor)
+			continue
+		V.recharging = TRUE //To prevent exploiting multiple visors to bypass the cooldown
+		V.update_status()
+		addtimer(CALLBACK(V, TYPE_PROC_REF(/obj/item/clothing/glasses/judicial_visor, recharge_visor), owner), (GLOB.ratvar_awakens ? visor.recharge_cooldown*0.1 : visor.recharge_cooldown) * 2)
+	clockwork_say(owner, text2ratvar("Kneel, heathens!"))
+	owner.visible_message(span_warning("[owner]'s judicial visor fires a stream of energy at [target_atom], creating a strange mark!"), "[span_heavy_brass("You direct [visor]'s power to [target_atom]. You must wait for some time before doing this again.")]")
+	var/turf/target_turf = get_turf(target_atom)
+	new /obj/effect/clockwork/judicial_marker(target_turf, owner)
+	log_combat(owner, target_turf, "created a judicial marker")
+	owner.update_mob_action_buttons()
+	owner.update_inv_glasses()
+	addtimer(CALLBACK(visor, TYPE_PROC_REF(/obj/item/clothing/glasses/judicial_visor, recharge_visor), owner), GLOB.ratvar_awakens ? visor.recharge_cooldown*0.1 : visor.recharge_cooldown)//Cooldown is reduced by 10x if Ratvar is up
+	unset_click_ability(owner)
 
 //Judicial marker: Created by the judicial visor. Immediately applies Belligerent and briefly knocks down, then after 3 seconds does large damage and briefly knocks down again
 /obj/effect/clockwork/judicial_marker

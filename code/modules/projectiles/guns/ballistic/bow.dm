@@ -394,9 +394,12 @@
 		returning = TRUE
 	var/obj/item/break_blade/secondblade = thrower.get_inactive_held_item()
 	if(istype(secondblade))
-		sleep(0.2 SECONDS)
-		thrower.dropItemToGround(secondblade, silent = TRUE)
-		secondblade.throw_at(target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart)
+		addtimer(CALLBACK(src, PROC_REF(finish_throw), secondblade, target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart), 0.2 SECONDS)
+
+/obj/item/break_blade/proc/finish_throw(obj/item/break_blade/secondblade, atom/target, range, speed, mob/thrower, \
+										spin, diagonals_first, datum/callback/callback, force, quickstart)
+	thrower.dropItemToGround(secondblade, silent = TRUE)
+	secondblade.throw_at(target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart)
 
 /obj/item/break_blade/proc/return_to(mob/living/user)
 	if(!istype(user))
