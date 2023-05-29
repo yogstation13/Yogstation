@@ -161,7 +161,7 @@
 	cast_effect() // POOF
 	DeactivatePower()
 	
-/datum/action/cooldown/bloodsucker/hecata/spiritcall/proc/summonWraiths(list/targets, mob/user = usr)
+/datum/action/cooldown/bloodsucker/hecata/spiritcall/proc/summonWraiths(list/targets, mob/living/user)
 	for(var/T in targets)
 		new /mob/living/simple_animal/hostile/bloodsucker/wraith(T)
 /datum/action/cooldown/bloodsucker/hecata/spiritcall/proc/cast_effect() //same as veil of many faces, makes smoke and stuff when casted
