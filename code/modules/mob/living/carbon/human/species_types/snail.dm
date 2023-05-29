@@ -61,7 +61,7 @@
 
 /obj/item/storage/backpack/snail/Initialize()
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
 /datum/species/snail/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()

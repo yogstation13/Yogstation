@@ -31,11 +31,13 @@
 	)
 
 	mail_goodies = list(
-		/obj/item/storage/box/lights/mixed = 20,
-		/obj/item/lightreplacer = 10,
+		/obj/item/stack/sheet/metal/fifty = 25,
+		/obj/item/stack/sheet/glass/fifty = 25,
 		/obj/item/holosign_creator/engineering = 8,
 		/obj/item/rcd_ammo = 5,
-		/obj/item/clothing/head/hardhat/red/upgraded = 1
+		/obj/item/stack/sheet/plasteel/twenty = 5,
+		/obj/item/clothing/head/hardhat/red/upgraded = 2,
+		/obj/item/clothing/suit/space/hardsuit/engine = 1
 	)
 
 	smells_like = "welding fuel"
@@ -123,7 +125,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	suit = /obj/item/clothing/suit/space/hardsuit/engine
 	suit_store = /obj/item/tank/internals/oxygen
 	head = null
-	internals_slot = SLOT_S_STORE
+	internals_slot = SLOT_SUIT_STORE
 
 /obj/item/radio/headset/headset_eng/department/Initialize()
 	. = ..()

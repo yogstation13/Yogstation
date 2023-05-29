@@ -15,7 +15,7 @@
 	selection_color = "#c1e1ec"
 	req_admin_notify = 1
 	minimal_player_age = 7
-	exp_requirements = 720
+	exp_requirements = 1500 //25 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_MEDICAL
 	alt_titles = list("Medical Director", "Head of Medical")
@@ -41,6 +41,7 @@
 		/obj/effect/spawner/lootdrop/organ_spawner = 10,
 		/obj/effect/spawner/lootdrop/memeorgans = 8,
 		/obj/effect/spawner/lootdrop/surgery_tool_advanced = 4,
+		/obj/item/statuebust/hippocratic = 2,
 		/obj/effect/spawner/lootdrop/surgery_tool_alien = 1
 	)
 

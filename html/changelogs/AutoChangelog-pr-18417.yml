@@ -1,5 +1,0 @@
-author: "Mqiib"
-delete-after: true 
-changes: 
-  - bugfix: "Fixes beret sprites not existing"
-  - bugfix: "Gives the brown wizard hat icon a name"

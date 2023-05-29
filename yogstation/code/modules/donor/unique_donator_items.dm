@@ -123,6 +123,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	ckey = "cuackles"
 	unlock_path = /obj/item/clothing/suit/yogs/cyberpunk
 
+/datum/donator_gear/molti
+	name = "northern coat (molti)"
+	ckey = "molti"
+	unlock_path = /obj/item/clothing/suit/hooded/wintercoat/northern
+
 /datum/donator_gear/hisa
 	name = "Hunter Stash (hisakaki)"
 	ckey = "hisakaki"
@@ -149,6 +154,11 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "Gold Trimmed Fedora & Falcon"
 	ckey = "boxta"
 	unlock_path = /obj/item/storage/box/boxta
+
+/datum/donator_gear/ynot
+	name = "Golden Lighter"
+	ckey = "ynot01"
+	unlock_path = /obj/item/lighter/gold
 
 ///Generic donator hats, ckey agnostic.
 /datum/donator_gear/beanie
@@ -553,10 +563,10 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "lime lipstick"
 	unlock_path = /obj/item/lipstick/random
 /datum/donator_gear/rolled_poster
-	name = "contraband poster - Lusty Xenomorph"
+	name = "random contraband poster"
 	unlock_path = /obj/item/poster/random_contraband
 /datum/donator_gear/rolled_legit
-	name = "motivational poster - Help Others"
+	name = "random motivational poster"
 	unlock_path = /obj/item/poster/random_official
 /datum/donator_gear/razor
 	name = "electric razor"
@@ -585,6 +595,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/sword0
 	name = "toy sword"
 	unlock_path = /obj/item/toy/sword
+/datum/donator_gear/hammer
+	name = "toy sledgehammer"
+	unlock_path = /obj/item/twohanded/vxtvulhammer/toy
 
 //plushies - kill me, for fuck sake
 /datum/donator_gear/plushvar
@@ -593,7 +606,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	plush = TRUE
 
 /datum/donator_gear/narplush
-	name = "Nar'Sie"
+	name = "Nar'sie"
 	unlock_path = /obj/item/toy/plush/narplush/hugbox
 	plush = TRUE
 

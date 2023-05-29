@@ -33,6 +33,7 @@
 		/obj/item/grenade/gas_crystal/pluonium_crystal = 10,
 		/obj/item/grenade/gas_crystal/healium_crystal = 10,
 		/obj/item/grenade/gas_crystal/nitrous_oxide_crystal = 5,
+		/obj/item/clothing/suit/space/hardsuit/engine/atmos = 1,
 	)
 
 	smells_like = "a gas leak"
@@ -63,4 +64,4 @@
 	mask = /obj/item/clothing/mask/gas
 	suit = /obj/item/clothing/suit/space/hardsuit/engine/atmos
 	suit_store = /obj/item/tank/internals/oxygen
-	internals_slot = SLOT_S_STORE
+	internals_slot = SLOT_SUIT_STORE

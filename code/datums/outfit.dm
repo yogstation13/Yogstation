@@ -183,7 +183,7 @@
 	if(id)
 		H.equip_to_slot_or_del(SSwardrobe.provide_type(id, H), SLOT_WEAR_ID, TRUE)
 	if(suit_store)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(suit_store, H), SLOT_S_STORE, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(suit_store, H), SLOT_SUIT_STORE, TRUE)
 
 	if(accessory)
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -226,8 +226,7 @@
 	if(!visualsOnly)
 		apply_fingerprints(H)
 		if(internals_slot)
-			H.internal = H.get_item_by_slot(internals_slot)
-			H.update_action_buttons_icon()
+			H.open_internals(H.get_item_by_slot(internals_slot))
 		if(implants)
 			for(var/implant_type in implants)
 				var/obj/item/implant/I = SSwardrobe.provide_type(implant_type, H)

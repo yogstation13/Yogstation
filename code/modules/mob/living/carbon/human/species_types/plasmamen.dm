@@ -49,7 +49,7 @@
 					H.adjust_fire_stacks(0.5)
 					if(!H.on_fire && H.fire_stacks > 0)
 						H.visible_message(span_danger("[H]'s body reacts with the atmosphere and bursts into flames!"),span_userdanger("Your body reacts with the atmosphere and bursts into flame!"))
-					H.IgniteMob()
+					H.ignite_mob()
 					internal_fire = TRUE
 	else
 		if(H.fire_stacks)
@@ -179,8 +179,7 @@
 			O = new /datum/outfit/job/plasmaman/hop
 
 	H.equipOutfit(O, visualsOnly)
-	H.internal = H.get_item_for_held_index(2)
-	H.update_internals_hud_icon(1)
+	H.open_internals(H.get_item_for_held_index(2))
 
 	var/obj/item/clothing/head/helmet/space/plasmaman/plasmeme_helmet = H.head
 	plasmeme_helmet.set_design(H)

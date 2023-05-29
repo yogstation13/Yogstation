@@ -89,7 +89,7 @@
 	name = "mini energy crossbow"
 	desc = "A weapon favored by syndicate stealth specialists. Each bolt injects some poison into the victim."
 	icon_state = "crossbow"
-	item_state = "crossbow"
+	item_state = "ecrossbow"
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(/datum/material/iron=2000)
 	suppressed = TRUE
@@ -106,7 +106,7 @@
 	name = "candy corn crossbow"
 	desc = "A weapon favored by Syndicate trick-or-treaters."
 	icon_state = "crossbow_halloween"
-	item_state = "crossbow"
+	item_state = "ecrossbow"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/halloween)
 
 /obj/item/gun/energy/plasmacutter
@@ -200,9 +200,10 @@
 
 /obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks, robo_check)
 	if(amount)
-		target.add_overlay(GLOB.welding_sparks)
+		var/mutable_appearance/sparks = mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
+		target.add_overlay(sparks)
 		. = ..()
-		target.cut_overlay(GLOB.welding_sparks)	
+		target.cut_overlay(sparks)
 	else
 		. = ..(amount=1)
 

@@ -380,7 +380,7 @@
 /obj/item/clothing/head/frenchberet/equipped(mob/M, slot)
 	. = ..()
 	if (slot == SLOT_HEAD)
-		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
 
@@ -433,6 +433,10 @@
 	desc = "An extra-mustahabb way of showing your devotion to Allah."
 	icon_state = "taqiyahred"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
+
+/datum/action/item_action/hatsky_voiceline
+	name = "Press Voice Button"
+	desc = "Engage the voice box on your Hatsky to hear a classic line from the real Officer Beepsky!"
 
 /obj/item/clothing/head/hatsky
 	name = "officer hatsky"

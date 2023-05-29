@@ -33,6 +33,16 @@
 
 	smells_like = "crimson guardianship"
 
+	mail_goodies = list(
+		/obj/item/storage/firstaid/regular = 20,
+		/obj/item/reagent_containers/autoinjector/medipen/atropine = 10,
+		/obj/item/storage/firstaid/hypospray/brute = 10,
+		/obj/item/storage/firstaid/hypospray/burn = 10,
+		/obj/item/stack/medical/suture/medicated = 5,
+		/obj/item/stack/medical/mesh/advanced = 5,
+		/obj/item/reagent_containers/spray/pepper = 4
+	)
+
 /datum/outfit/job/brigphysician
 	name = "Brig Physician"
 	jobtype = /datum/job/brigphysician

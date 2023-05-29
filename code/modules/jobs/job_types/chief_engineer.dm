@@ -15,10 +15,10 @@
 	selection_color = "#ffeeaa"
 	req_admin_notify = 1
 	minimal_player_age = 7
-	exp_requirements = 720
+	exp_requirements = 1500 //25 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_ENGINEERING
-	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer")
+	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer", "Chief Engineering Officer")
 
 	outfit = /datum/outfit/job/ce
 
@@ -41,10 +41,9 @@
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/cracker = 25, //you know. for poly
 		/obj/item/stack/sheet/mineral/diamond = 15,
-		///obj/item/stack/sheet/mineral/uranium/five = 15,
-		///obj/item/stack/sheet/mineral/plasma/five = 15,
-		/obj/item/stack/sheet/mineral/gold = 15
-		///obj/effect/spawner/random/engineering/tool_advanced = 3
+		/obj/item/stack/sheet/mineral/gold = 15,
+		/obj/effect/spawner/lootdrop/engineering_tool_advanced = 3,
+		/obj/effect/spawner/lootdrop/engineering_tool_alien = 1
 	)
 
 	smells_like = "industry leadership"
@@ -85,4 +84,4 @@
 	glasses = /obj/item/clothing/glasses/meson/sunglasses
 	gloves = /obj/item/clothing/gloves/color/yellow
 	head = null
-	internals_slot = SLOT_S_STORE
+	internals_slot = SLOT_SUIT_STORE

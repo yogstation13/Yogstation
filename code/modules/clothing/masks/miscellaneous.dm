@@ -79,6 +79,21 @@
 	desc = "Express your happiness or hide your sorrows with this laughing face with crying tears of joy cutout."
 	icon_state = "joy"
 
+
+GLOBAL_LIST_INIT(cursed_animal_masks, list(
+		/obj/item/clothing/mask/pig/cursed,
+		/obj/item/clothing/mask/frog/cursed,
+		/obj/item/clothing/mask/cowmask/cursed,
+		/obj/item/clothing/mask/horsehead/cursed,
+//		/obj/item/clothing/mask/animal/small/rat/cursed,
+//		/obj/item/clothing/mask/animal/small/fox/cursed,
+//		/obj/item/clothing/mask/animal/small/bee/cursed,
+//		/obj/item/clothing/mask/animal/small/bear/cursed,
+//		/obj/item/clothing/mask/animal/small/bat/cursed,
+//		/obj/item/clothing/mask/animal/small/raven/cursed,
+//		/obj/item/clothing/mask/animal/small/jackal/cursed
+	))
+
 /obj/item/clothing/mask/pig
 	name = "pig mask"
 	desc = "A rubber pig mask with a built in voice modulator."
@@ -245,6 +260,7 @@
 	slot_flags = ITEM_SLOT_MASK
 	adjusted_flags = ITEM_SLOT_HEAD
 	icon_state = "bandbotany"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/bandana/attack_self(mob/user)
 	adjustmask(user)
@@ -278,36 +294,43 @@
 	name = "red bandana"
 	desc = "A fine red bandana with nanotech lining."
 	icon_state = "bandred"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/bandana/blue
 	name = "blue bandana"
 	desc = "A fine blue bandana with nanotech lining."
 	icon_state = "bandblue"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/bandana/green
 	name = "green bandana"
 	desc = "A fine green bandana with nanotech lining."
 	icon_state = "bandgreen"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/bandana/gold
 	name = "gold bandana"
 	desc = "A fine gold bandana with nanotech lining."
 	icon_state = "bandgold"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/bandana/black
 	name = "black bandana"
 	desc = "A fine black bandana with nanotech lining."
 	icon_state = "bandblack"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/bandana/skull
 	name = "skull bandana"
 	desc = "A fine black bandana with nanotech lining and a skull emblem."
 	icon_state = "bandskull"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/bandana/durathread
 	name = "durathread bandana"
 	desc =  "A bandana made from durathread, you wish it would provide some protection to its wearer, but it's far too thin..."
 	icon_state = "banddurathread"
+	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/mask/bandana/durathread/tied/Initialize()
 	. = ..()

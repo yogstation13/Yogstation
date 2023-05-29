@@ -595,7 +595,7 @@ SUBSYSTEM_DEF(job)
 	job.give_donor_stuff(living_mob, M) // yogs - Donor Features
 	job.give_cape(living_mob, M)
 	job.give_map_flare(living_mob, M)
-	var/obj/item/modular_computer/RPDA = locate(/obj/item/modular_computer/tablet) in living_mob.GetAllContents()
+	var/obj/item/modular_computer/RPDA = locate(/obj/item/modular_computer/tablet) in living_mob.get_all_contents()
 	if(istype(RPDA))
 		RPDA.device_theme = GLOB.pda_themes[M.client?.prefs.read_preference(/datum/preference/choiced/pda_theme)]
 		var/obj/item/computer_hardware/hard_drive/hard_drive = RPDA.all_components[MC_HDD]
@@ -792,7 +792,7 @@ SUBSYSTEM_DEF(job)
 	var/oldjobs = SSjob.occupations
 	sleep(2 SECONDS)
 	for (var/datum/job/J in oldjobs)
-		INVOKE_ASYNC(src, .proc/RecoverJob, J)
+		INVOKE_ASYNC(src, PROC_REF(RecoverJob), J)
 
 /datum/controller/subsystem/job/proc/RecoverJob(datum/job/J)
 	var/datum/job/newjob = GetJob(J.title)

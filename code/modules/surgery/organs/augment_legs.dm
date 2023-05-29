@@ -32,10 +32,10 @@
 		return
 
 	L.set_disabled(TRUE)	//disable the bodypart
-	addtimer(CALLBACK(src, .proc/reenableleg), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(reenableleg)), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
-	if(severity & EMP_HEAVY && prob(5))	//put probabilities into a calculator before you try fucking with this
-		to_chat(owner, span_warning("The EMP causes your [src] to thrash your [L] around wildly breaking it!"))	
+	if(severity & EMP_HEAVY && prob(5) && !syndicate_implant)	//put probabilities into a calculator before you try fucking with this
+		to_chat(owner, span_warning("The EMP causes your [src] to thrash your [L] around wildly, breaking it!"))	
 		var/datum/wound/blunt/severe/breakdown = new
 		breakdown.apply_wound(L)
 		L.receive_damage(20)
@@ -166,7 +166,7 @@
 /obj/item/organ/cyberimp/leg/clownshoes/AddEffect()
 	owner.add_movespeed_modifier("Clownshoesimplant", update=TRUE, priority=100, multiplicative_slowdown=1, blacklisted_movetypes=(FLYING|FLOATING))
 	waddle = owner.AddComponent(/datum/component/waddling)
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/SqueakyStep)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(SqueakyStep))
 	
 /obj/item/organ/cyberimp/leg/clownshoes/RemoveEffect()
 	owner.remove_movespeed_modifier("Clownshoesimplant")
@@ -201,9 +201,9 @@
 /datum/action/cooldown/boost
 	name = "Dash"
 	desc = "Dash forward."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	cooldown_time = 6 SECONDS
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 	var/jumpspeed = 3
@@ -256,9 +256,9 @@
 /datum/action/innate/wheelies
 	name = "Toggle Wheely-Heel's Wheels"
 	desc = "Pops out or in your wheely-heel's wheels."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "wheelys"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
 	var/mob/living/carbon/human/holder
 	var/wheelToggle = FALSE //False means wheels are not popped out
 	var/obj/vehicle/ridden/scooter/wheelys/W
@@ -317,9 +317,9 @@
 /datum/action/innate/airshoes
 	name = "Toggle thrust on air shoes."
 	desc = "Switch between walking and hovering."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "airshoes_a"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
 	var/mob/living/carbon/human/holder
 	var/wheelToggle = FALSE //False means wheels are not popped out
 	var/obj/vehicle/ridden/scooter/airshoes/W
@@ -371,14 +371,14 @@
 	name = "Maglock"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "magboots0"
-	icon_icon = 'icons/obj/clothing/shoes.dmi'
+	button_icon = 'icons/obj/clothing/shoes.dmi'
 	background_icon_state = "bg_default"
 
 /datum/action/innate/magboots/Grant(mob/M)
 	if(!ishuman(M))
 		return
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/UpdateSpeed)
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(UpdateSpeed))
 
 /datum/action/innate/magboots/Remove(mob/M)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
@@ -395,7 +395,7 @@
 		REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "maglock_implant")
 		REMOVE_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
 		button_icon_state = "magboots0"
-	UpdateButtonIcon()
+	build_all_button_icons()
 	lockdown = !lockdown
 	to_chat(owner, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
 	owner.update_gravity(owner.has_gravity())

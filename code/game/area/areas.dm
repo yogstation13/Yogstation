@@ -23,7 +23,7 @@
 	/// There is a risk of this and contained_turfs leaking, so a subsystem will run it down to 0 incrementally if it gets too large
 	var/list/turf/turfs_to_uncontain = list()
 
-	var/area_flags = 0
+	var/area_flags = NONE
 
 	var/map_name // Set in New(); preserves the name set by the map maker, even if renamed by the Blueprints.
 
@@ -363,7 +363,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 				if(D.operating)
 					D.nextstate = opening ? FIREDOOR_OPEN : FIREDOOR_CLOSED
 				else if(!(D.density ^ opening))
-					INVOKE_ASYNC(D, (opening ? /obj/machinery/door/firedoor.proc/open : /obj/machinery/door/firedoor.proc/close))
+					INVOKE_ASYNC(D, (opening ? TYPE_PROC_REF(/obj/machinery/door/firedoor, open) : TYPE_PROC_REF(/obj/machinery/door/firedoor, close)))
 
 /**
   * Generate an firealarm alert for this area
@@ -468,7 +468,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		var/mob/living/silicon/SILICON = i
 		if(SILICON.triggerAlarm("Burglar", src, cameras, trigger))
 			//Cancel silicon alert after 1 minute
-			addtimer(CALLBACK(SILICON, /mob/living/silicon.proc/cancelAlarm,"Burglar",src,trigger), 600)
+			addtimer(CALLBACK(SILICON, TYPE_PROC_REF(/mob/living/silicon, cancelAlarm),"Burglar",src,trigger), 600)
 
 	var/obj/item/radio/radio = new /obj/item/radio(trigger)
 	radio.set_frequency(FREQ_SECURITY)
@@ -673,7 +673,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		if(!L.client.played)
 			SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE))
 			L.client.played = TRUE
-			addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 600)
+			addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 1 MINUTES)
 
 /**
   * Called when an atom exits an area

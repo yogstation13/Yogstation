@@ -257,13 +257,13 @@
 
 		var/bz_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/bz))
 		if(bz_pp > BZ_trip_balls_min)
-			H.hallucination += 10
+			H.adjust_hallucinations(10 SECONDS)
 			H.reagents.add_reagent(/datum/reagent/bz_metabolites,5)
 			if(prob(33))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 
 		else if(bz_pp > 0.01)
-			H.hallucination += 5
+			H.adjust_hallucinations(5 SECONDS)
 			H.reagents.add_reagent(/datum/reagent/bz_metabolites,1)
 
 
@@ -353,7 +353,7 @@
 	// Hexane
 		gas_breathed = breath.get_moles(/datum/gas/hexane)
 		if(gas_breathed > gas_stimulation_min)
-			H.hallucination += 50
+			H.adjust_hallucinations(50 SECONDS)
 			H.reagents.add_reagent(/datum/reagent/hexane,5)
 			if(prob(33))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
@@ -592,7 +592,8 @@
 	desc = "A cybernetic version of the lungs found in traditional humanoid entities. Slightly more effecient than organic lungs."
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_SYNTHETIC
-	maxHealth = 1.1 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 1.5
 	safe_oxygen_min = 13
 
 /obj/item/organ/lungs/cybernetic/emp_act()
@@ -605,8 +606,8 @@
 	name = "upgraded cybernetic lungs"
 	desc = "A more advanced version of the stock cybernetic lungs, more efficient at, well, breathing. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
 	icon_state = "lungs-c-u"
-	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
-	organ_efficiency = 1.5
+	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 2
 	safe_oxygen_min = 10
 	safe_co2_max = 20
 	safe_toxins_max = 20 //Higher resistance to most harmful gasses

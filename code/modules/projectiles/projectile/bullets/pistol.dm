@@ -22,6 +22,11 @@
 	damage = 30
 	wound_bonus = -30
 
+/obj/item/projectile/bullet/c10mm/cs
+	name = "10mm caseless bullet"
+	damage = 27
+	speed = 0.5
+
 /obj/item/projectile/bullet/c10mm/ap
 	name = "10mm armor-piercing bullet"
 	damage = 27

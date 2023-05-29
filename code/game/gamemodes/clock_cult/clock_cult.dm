@@ -55,7 +55,8 @@ Credit where due:
 	if(M.mind)
 		if(ishuman(M) && (M.mind.assigned_role in list("Captain", "Chaplain")))
 			return FALSE
-		if(M.mind.enslaved_to && !is_servant_of_ratvar(M.mind.enslaved_to))
+		var/mob/living/master = M.mind.enslaved_to?.resolve()
+		if(master && !iscultist(master))
 			return FALSE
 		if(M.mind.unconvertable)
 			return FALSE
@@ -260,18 +261,6 @@ Credit where due:
 	working for this entity and utilizing highly-advanced technology to cross the great distance at will. If they should turn out to be a credible threat, the task falls on you and \
 	your crew to dispatch it in a timely manner."
 
-/datum/game_mode/proc/update_servant_icons_added(datum/mind/M)
-	var/datum/atom_hud/antag/A = GLOB.huds[ANTAG_HUD_CLOCKWORK]
-	A.join_hud(M.current)
-	set_antag_hud(M.current, "clockwork")
-
-/datum/game_mode/proc/update_servant_icons_removed(datum/mind/M)
-	var/datum/atom_hud/antag/A = GLOB.huds[ANTAG_HUD_CLOCKWORK]
-	A.leave_hud(M.current)
-	set_antag_hud(M.current, null)
-
-
-
 //Servant of Ratvar outfit
 /datum/outfit/servant_of_ratvar
 	name = "Servant of Ratvar"
@@ -283,7 +272,9 @@ Credit where due:
 	belt = /obj/item/storage/belt/utility/servant //Take this off and pour it into a toolbox if you want
 	backpack_contents = list(/obj/item/storage/box/engineer = 1, \
 	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
-	id = /obj/item/pda
+
+	var/obj/item/id_type = /obj/item/card/id
+	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	var/plasmaman //We use this to determine if we should activate internals in post_equip()
 
 /datum/outfit/servant_of_ratvar/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -295,23 +286,29 @@ Credit where due:
 		plasmaman = TRUE
 
 /datum/outfit/servant_of_ratvar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/obj/item/card/id/W = new(H)
-	var/obj/item/pda/PDA = H.wear_id
-	W.assignment = "Assistant"
-	W.originalassignment = "Assistant"
-	W.access += ACCESS_MAINT_TUNNELS
-	W.registered_name = H.real_name
-	W.update_label()
-	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
-		H.internal = H.get_item_for_held_index(2)
-		H.update_internals_hud_icon(1)
-	PDA.hidden = TRUE
-	PDA.owner = H.real_name
-	PDA.ownjob = "Assistant"
-	PDA.update_label()
-	PDA.id_check(H, W)
-	H.sec_hud_set_ID()
+	var/obj/item/card/id/C = new id_type()
+	if(istype(C))
+		C.access += ACCESS_MAINT_TUNNELS
+		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
+		C.registered_name = H.real_name
+		C.assignment = "Assistant"
+		C.originalassignment = "Assistant"
+		if(H.age)
+			C.registered_age = H.age
+		C.update_label()
+		H.sec_hud_set_ID()
 
+	var/obj/item/modular_computer/PDA = new pda_type()
+	if(istype(PDA))
+		PDA.InsertID(C)
+		H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+
+		PDA.update_label()
+		PDA.update_icon()
+		PDA.update_filters()
+
+	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
+		H.open_internals(H.get_item_for_held_index(2))
 
 //This paper serves as a quick run-down to the cult as well as a changelog to refer to.
 //Check strings/clockwork_cult_changelog.txt for the changelog, and update it when you can!

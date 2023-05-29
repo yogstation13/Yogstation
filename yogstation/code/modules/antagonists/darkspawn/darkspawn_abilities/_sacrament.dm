@@ -4,7 +4,7 @@
 	id = "sacrament"
 	desc = "Ascends into a progenitor. Unless someone else has performed the Sacrament, you must have drained lucidity from 15-30 (check your objective) different people for this to work, and purchased all passive upgrades."
 	button_icon_state = "sacrament"
-	check_flags = AB_CHECK_STUN | AB_CHECK_CONSCIOUS
+	check_flags =  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	blacklisted = TRUE //baseline
 	var/datum/looping_sound/sacrament/soundloop
 
@@ -69,11 +69,11 @@
 	user.visible_message(span_userdanger("[user] rises into the air, crackling with power!"), "<span class='velvet bold'>AND THE WEAK WILL KNOW <i>FEAR--</i></span>")
 	for(var/turf/T in range(7, owner))
 		if(prob(25))
-			addtimer(CALLBACK(src, .proc/unleashed_psi, T), rand(0.1, 4) SECONDS)
-	addtimer(CALLBACK(src, .proc/shatter_lights), 3.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(unleashed_psi), T), rand(0.1, 4) SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(shatter_lights)), 3.5 SECONDS)
 	QDEL_IN(soundloop, 39)
 	animate(user, pixel_y = user.pixel_y + 20, time = 4 SECONDS)
-	addtimer(CALLBACK(darkspawn, /datum/antagonist/darkspawn/.proc/sacrament), 4 SECONDS)
+	addtimer(CALLBACK(darkspawn, TYPE_PROC_REF(/datum/antagonist/darkspawn, sacrament)), 4 SECONDS)
 
 /datum/action/innate/darkspawn/sacrament/proc/unleashed_psi(turf/T)
 	playsound(T, 'yogstation/sound/magic/divulge_end.ogg', 25, FALSE)

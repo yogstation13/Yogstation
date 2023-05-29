@@ -17,6 +17,7 @@
 #define MARTIALART_GARDENWARFARE "garden warfare"
 #define MARTIALART_ULTRAVIOLENCE "ultra violence"
 #define MARTIALART_BUSTERSTYLE "buster style"
+#define MARTIALART_WORLDBREAKER "worldbreaker"
 
 
 //Weapon stat defines
