@@ -53,6 +53,7 @@
 		to_chat(owner, "[current_target] is still alive.")
 		return FALSE
 	return TRUE
+
 /datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/FireTargetedPower(atom/target_atom)
 	. = ..()
 	var/mob/living/target = target_atom
