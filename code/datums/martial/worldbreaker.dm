@@ -184,8 +184,7 @@
 	if(plate_change)
 		user.physiology.armor.modifyAllRatings(plate_change * PLATE_REDUCTION)
 
-	plates += amount
-	plates = clamp(plates, 0, PLATE_CAP)
+	plates = clamp(plates + amount, 0, PLATE_CAP)
 
 //the plates in question
 /obj/item/worldplate
