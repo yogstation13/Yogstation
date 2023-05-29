@@ -141,6 +141,7 @@
 
 /datum/action/cooldown/bloodsucker/hecata/spiritcall/vassal //this variant has to exist, as hecata favorite vassals are technically in 'torpor'
 	check_flags = BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
+	
 /datum/action/cooldown/bloodsucker/hecata/spiritcall/ActivatePower(mob/user = usr)
 	. = ..()
 	if(level_current == 2)
