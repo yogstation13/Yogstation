@@ -753,7 +753,7 @@
 	var/total_permeability = 0
 	for(var/obj/item/bodypart/BP in bodyparts)
 		total_bodyparts++
-		var/protection = getarmor(BP.body_zone)
+		var/protection = getarmor(BP.body_zone, BIO)
 		if(protection < 100)
 			total_permeability += 1 / (2**(protection / 15)) // every 15 bio armor reduces permeability by half (15 is 0.5, 30 is 0.25, 60 is 0.0625, etc)
 
