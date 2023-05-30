@@ -158,7 +158,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 				SSexplosions.low_mov_atom += thing
 
 	//then, ram the turf if it still exists
-	if(T)
+	if(T && !isspaceturf(T))
 		switch(hitpwr)
 			if(EXPLODE_DEVASTATE)
 				SSexplosions.highturf += T
