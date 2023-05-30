@@ -181,7 +181,6 @@
 		return
 
 	var/plate_change = clamp(amount + plates, 0, MAX_PLATES) - min(plates, MAX_PLATES)
-	to_chat(world, "plate_change is [plate_change ? plate_change : "non-existent"]")
 	if(plate_change)
 		user.physiology.armor = user.physiology.armor.modifyAllRatings(plate_change * PLATE_REDUCTION)
 
@@ -476,8 +475,8 @@
 	charging = TRUE
 	owner.visible_message(span_danger("[owner] prepares to stomp the ground with all their might!"), span_notice("you build up power in your legs, preparing to stomp with all you have!"))
 	var/obj/effect/temp_visual/decoy/tensecond/D = new /obj/effect/temp_visual/decoy/tensecond(owner.loc, owner)
-	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = (heavy ? STOMP_WINDUP * 2 : STOMP_WINDUP) SECONDS)
-	if(!do_after(owner, (heavy ? STOMP_WINDUP * 2 : STOMP_WINDUP) SECONDS, owner) || !IsAvailable())
+	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = (heavy ? STOMP_WINDUP * 2 : STOMP_WINDUP))
+	if(!do_after(owner, (heavy ? STOMP_WINDUP * 2 : STOMP_WINDUP), owner) || !IsAvailable())
 		charging = FALSE
 		qdel(D)
 		return
