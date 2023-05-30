@@ -433,3 +433,64 @@
 	item_state = "gravity_gun"
 	icon_state = "gravity_gun"
 	var/power = 4
+
+// 40K Weapons Below
+
+/obj/item/gun/energy/plasma
+	name = "Plasma Weapon"
+	desc = "A very deadly weapon. Fires plasma."
+	icon_state = "ppistol"
+	item_state = "plaspistol"
+	icon = 'icons/obj/guns/grimdark.dmi'
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma)
+	cell_type = "/obj/item/stock_parts/cell/high"
+	COOLDOWN_DECLARE(overheat_alert)
+
+/obj/item/gun/energy/plasma/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/gun/energy/plasma/process()
+	if(heat > 0)
+		heat --
+	if(icon_state == "[initial(icon_state)]-crit" && heat < 25)
+		icon_state = "[initial(icon_state)]"
+
+/obj/item/gun/energy/plasma/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+	..()
+	heat += 2
+	if(heat >= 25)
+		icon_state = "[initial(icon_state)]-crit"
+		if(COOLDOWN_FINISHED(src, overheat_alert))
+			to_chat(user, span_warning("The gun begins to heat up in your hands! Careful!"))
+			COOLDOWN_START(src, overheat_alert, 2 SECONDS)
+	if(heat >= 30 && prob(20))
+		var/turf/T = get_turf(src.loc)
+		if (isliving(loc))
+			var/mob/living/M = loc
+			M.show_message("\red Your [src] critically overheats!", 1)
+			M.adjust_fire_stacks(3)
+		if(T)
+			T.hotspot_expose(700,125)
+			explosion(T, -1, -1, 2, 3)
+		STOP_PROCESSING(SSobj, src)
+		qdel(src)
+	return
+
+/obj/item/gun/energy/plasma/pistol
+	name = "Plasma Pistol"
+	desc = "A very deadly weapon used by high-ranking members of the Imperium."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "ppistol"
+	item_state = "ppistol"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/pistol)
+	w_class = WEIGHT_CLASS_SMALL
+
+
+/obj/item/gun/energy/plasma/rifle
+	name = "Heavy Plasma Rifle"
+	desc = "A very deadly weapon used by high-ranking members of the Imperium."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "prifle"
+	item_state = "prifle"
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma)	

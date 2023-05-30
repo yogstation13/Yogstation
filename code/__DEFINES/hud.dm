@@ -124,8 +124,8 @@
 //Middle right (status indicators)
 #define ui_healthdoll "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
-#define ui_internal "EAST-1:28,CENTER:17"
-#define ui_mood "EAST-1:28,CENTER-4:10"
+#define ui_internal "EAST-1:28,CENTER+1:17"
+#define ui_mood "EAST-1:28,CENTER:17"
 #define ui_stamina "EAST-1:28,CENTER-3:10"
 
 //living
@@ -208,7 +208,7 @@
 
 //Ghosts
 
-#define ui_ghost_jumptomob "SOUTH:6,CENTER-3:24"
+#define ui_ghost_jump_to_mob "SOUTH:6,CENTER-3:24"
 #define ui_ghost_orbit "SOUTH:6,CENTER-2:24"
 #define ui_ghost_reenter_corpse "SOUTH:6,CENTER-1:24"
 #define ui_ghost_teleport "SOUTH:6,CENTER:24"

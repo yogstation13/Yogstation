@@ -78,9 +78,6 @@
 	throw_icon.screen_loc = ui_drop_throw
 	hotkeybuttons += throw_icon
 
-	internals = new /atom/movable/screen/internals()
-	infodisplay += internals
-
 	healths = new /atom/movable/screen/healths()
 	infodisplay += healths
 
