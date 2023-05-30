@@ -419,7 +419,7 @@
 		return shock_damage
 
 ///Called slightly after electrocute act to apply a secondary stun.
-/mob/living/carbon/proc/secondary_shock(should_stun)
+/mob/living/carbon/proc/secondary_shock()
 	Paralyze(6 SECONDS)
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
