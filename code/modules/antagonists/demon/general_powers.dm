@@ -100,8 +100,7 @@
 	icon_state = "flagellation"
 	item_state = "hivemind"
 
-/datum/action/cooldown/spell/touch/torment/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
-	var/mob/living/M = victim
+/datum/action/cooldown/spell/touch/torment/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
 	if(M.anti_magic_check())
 		to_chat(caster, span_warning("[M] resists your torment!"))
 		to_chat(M, span_warning("A hideous feeling of agony dances around your mind before being suddenly dispelled."))
