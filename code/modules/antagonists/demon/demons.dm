@@ -31,7 +31,7 @@
 		/datum/action/cooldown/spell/touch/envy,
 		/datum/action/cooldown/spell/conjure/summon_mirror,
 		/datum/action/cooldown/spell/touch/mend,
-		/datum/action/cooldown/spell/touch/torment
+		/datum/action/cooldown/spell/touch/torment,
 		))
 
 	var/static/list/sinfuldemon_traits = list(
