@@ -197,7 +197,7 @@
 			if(!mybroom)
 				return
 			user.put_in_hands(mybroom)
-			to_chat(user, "<span class='notice'>You take [mybroom] from [src].</span>")
+			to_chat(user, span_notice("You take [mybroom] from [src]."))
 			mybroom = null
 		if("Sign")
 			if(signs <= 0)
