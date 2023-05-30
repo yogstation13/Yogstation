@@ -442,7 +442,7 @@
 	icon_state = "ppistol"
 	item_state = "plaspistol"
 	icon = 'icons/obj/guns/grimdark.dmi'
-	ammo_type = list(/obj/item/ammo_casing/energy/plasma)
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/blast)
 	cell_type = "/obj/item/stock_parts/cell/high"
 	COOLDOWN_DECLARE(overheat_alert)
 
@@ -483,7 +483,7 @@
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "ppistol"
 	item_state = "ppistol"
-	ammo_type = list(/obj/item/ammo_casing/energy/plasma/pistol)
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/blast/pistol)
 	w_class = WEIGHT_CLASS_SMALL
 
 
@@ -493,4 +493,4 @@
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "prifle"
 	item_state = "prifle"
-	ammo_type = list(/obj/item/ammo_casing/energy/plasma)	
+	ammo_type = list(/obj/item/ammo_casing/energy/plasma/blast)	
