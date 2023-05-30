@@ -90,7 +90,7 @@
 		return
 	var/throwdirection = get_dir(user, victim)
 	var/atom/throw_target = get_edge_target_turf(victim, throwdirection)
-	var/throwspeed = 3
+	var/throwspeed = 2
 	if(heavy)
 		throwspeed *= 2
 		distance *= 2
