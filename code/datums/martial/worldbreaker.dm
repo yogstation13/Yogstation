@@ -181,6 +181,7 @@
 		return
 
 	var/plate_change = clamp(amount + plates, 0, MAX_PLATES) - min(plates, MAX_PLATES)
+	to_chat(world, "plate_change is [plate_change ? plate_change : "non-existent"]")
 	if(plate_change)
 		user.physiology.armor.modifyAllRatings(plate_change * PLATE_REDUCTION)
 
@@ -242,7 +243,7 @@
 			new /obj/effect/temp_visual/dragon_swoop/bubblegum(telegraph)
 
 	leaping = TRUE
-	var/jumpspeed = heavy ? 1 : 3
+	var/jumpspeed = heavy ? 1 : 2
 	user.throw_at(target, 15, jumpspeed, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
 
