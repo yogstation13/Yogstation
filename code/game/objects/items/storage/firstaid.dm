@@ -563,7 +563,7 @@
 		/obj/item/reagent_containers/glass/bottle/vial/large/combat = 2,
 		/obj/item/reagent_containers/glass/bottle/vial/large/omnizine = 1,
 		/obj/item/reagent_containers/glass/bottle/vial/large/morphine = 1,
-		/obj/item/reagent_containers/glass/bottle/vial/large/epi = 1,
+		/obj/item/reagent_containers/glass/bottle/vial/large/crit = 1,
 		/obj/item/healthanalyzer = 1
 		)
 	generate_items_inside(items_inside,src)

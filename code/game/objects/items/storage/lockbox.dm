@@ -304,7 +304,7 @@
 	new /obj/item/reagent_containers/glass/bottle/vial/large/burn(src)
 	new /obj/item/reagent_containers/glass/bottle/vial/large/tox(src)
 	new /obj/item/reagent_containers/glass/bottle/vial/large/oxy(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/epi(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/crit(src)
 
 /obj/item/storage/lockbox/vialbox/virology
 	name = "virology vial box"

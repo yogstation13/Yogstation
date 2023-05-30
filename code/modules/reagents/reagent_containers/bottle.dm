@@ -645,27 +645,27 @@
 /obj/item/reagent_containers/glass/bottle/vial/large/brute
 	name = "large vial (Brute)"
 	icon_state = "viallarge_red"
-	list_reagents = list(/datum/reagent/medicine/c2/libital = 30)
+	list_reagents = list(/datum/reagent/medicine/c2/libital = 10, /datum/reagent/medicine/bicaridine = 10, /datum/reagent/medicine/sal_acid = 10)
 
 /obj/item/reagent_containers/glass/bottle/vial/large/burn
 	name = "large vial (Burn)"
 	icon_state = "viallarge_orange"
-	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 30)
+	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 10, /datum/reagent/medicine/kelotane = 10, /datum/reagent/medicine/oxandrolone = 10)
 
 /obj/item/reagent_containers/glass/bottle/vial/large/tox
 	name = "large vial (Toxic)"
 	icon_state = "viallarge_green"
-	list_reagents = list(/datum/reagent/medicine/charcoal = 30)
+	list_reagents = list(/datum/reagent/medicine/pen_acid = 30)
 
 /obj/item/reagent_containers/glass/bottle/vial/large/oxy
 	name = "large vial (Oxygen)"
 	icon_state = "viallarge_blue"
-	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 30)
+	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 15, /datum/reagent/medicine/salbutamol = 15)
 
-/obj/item/reagent_containers/glass/bottle/vial/large/epi
-	name = "large vial (Epinephrine)"
+/obj/item/reagent_containers/glass/bottle/vial/large/crit
+	name = "large vial (Critical Care)"
 	icon_state = "viallarge_white"
-	list_reagents = list(/datum/reagent/medicine/epinephrine = 24, /datum/reagent/medicine/coagulant = 6)
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 12, /datum/reagent/medicine/atropine = 12, /datum/reagent/medicine/coagulant = 6)
 
 /obj/item/reagent_containers/glass/bottle/vial/large/combat
 	name = "large vial (Combat Hypospray Mix)"
