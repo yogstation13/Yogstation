@@ -205,12 +205,12 @@
 	name = "Imperial Marksman"
 	belt = /obj/item/storage/belt/military/imperial/sniper
 	suit_store = /obj/item/gun/ballistic/automatic/laser/longlas
-	l_pocket = /obj/item/gun/energy/plasma/pistol
+	l_pocket = /obj/item/gun/energy/grimdark/pistol
 
 /datum/outfit/imperial/plasma
 	name = "Imperial Plasma Gunner"
 	belt = /obj/item/storage/belt/military/imperial/plasma
-	suit_store = /obj/item/gun/energy/plasma/rifle
+	suit_store = /obj/item/gun/energy/grimdark/rifle
 	l_pocket = /obj/item/gun/ballistic/automatic/laser/laspistol
 
 /datum/outfit/imperial/veteran

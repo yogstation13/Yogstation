@@ -436,27 +436,27 @@
 
 // 40K Weapons Below
 
-/obj/item/gun/energy/plasma
+/obj/item/gun/energy/grimdark
 	name = "Plasma Weapon"
 	desc = "A very deadly weapon. Fires plasma."
 	icon_state = "ppistol"
 	item_state = "plaspistol"
 	icon = 'icons/obj/guns/grimdark.dmi'
-	ammo_type = list(/obj/item/ammo_casing/energy/plasma)
+	ammo_type = list(/obj/item/ammo_casing/energy/grimdark)
 	cell_type = "/obj/item/stock_parts/cell/high"
 	COOLDOWN_DECLARE(overheat_alert)
 
-/obj/item/gun/energy/plasma/Initialize()
+/obj/item/gun/energy/grimdark/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/gun/energy/plasma/process()
+/obj/item/gun/energy/grimdark/process()
 	if(heat > 0)
 		heat --
 	if(icon_state == "[initial(icon_state)]-crit" && heat < 25)
 		icon_state = "[initial(icon_state)]"
 
-/obj/item/gun/energy/plasma/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/energy/grimdark/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
 	heat += 2
 	if(heat >= 25)
@@ -477,20 +477,20 @@
 		qdel(src)
 	return
 
-/obj/item/gun/energy/plasma/pistol
+/obj/item/gun/energy/grimdark/pistol
 	name = "Plasma Pistol"
 	desc = "A very deadly weapon used by high-ranking members of the Imperium."
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "ppistol"
 	item_state = "ppistol"
-	ammo_type = list(/obj/item/ammo_casing/energy/plasma/pistol)
+	ammo_type = list(/obj/item/ammo_casing/energy/grimdark/pistol)
 	w_class = WEIGHT_CLASS_SMALL
 
 
-/obj/item/gun/energy/plasma/rifle
+/obj/item/gun/energy/grimdark/rifle
 	name = "Heavy Plasma Rifle"
 	desc = "A very deadly weapon used by high-ranking members of the Imperium."
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "prifle"
 	item_state = "prifle"
-	ammo_type = list(/obj/item/ammo_casing/energy/plasma)	
+	ammo_type = list(/obj/item/ammo_casing/energy/grimdark)	
