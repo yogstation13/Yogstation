@@ -39,14 +39,14 @@
 	item_state = "hivemind"
 
 /datum/action/cooldown/spell/touch/mend/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
-	if(M.anti_magic_check())
-		to_chat(caster, span_warning("[M] resists your pride!"))
-		to_chat(M, span_warning("A deceptive feeling of pleasre dances around your mind before being suddenly dispelled."))
+	if(victim.anti_magic_check())
+		to_chat(caster, span_warning("[victim] resists your pride!"))
+		to_chat(victim, span_warning("A deceptive feeling of pleasre dances around your mind before being suddenly dispelled."))
 		..()
 		return TRUE
 	playsound(caster, 'sound/magic/demon_attack1.ogg', 75, TRUE)
-	M.adjustBruteLoss(-20)
-	M.adjustFireLoss(-20)
-	M.visible_message(span_bold("[M] appears to flash colors of red, before seemingly appearing healthier!"))
-	to_chat(M, span_warning("You feel a sinister feeling of recovery."))
+	victim.adjustBruteLoss(-20)
+	victim.adjustFireLoss(-20)
+	victim.visible_message(span_bold("[victim] appears to flash colors of red, before seemingly appearing healthier!"))
+	to_chat(victim, span_warning("You feel a sinister feeling of recovery."))
 	return TRUE

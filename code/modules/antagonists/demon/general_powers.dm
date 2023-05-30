@@ -101,21 +101,21 @@
 	item_state = "hivemind"
 
 /datum/action/cooldown/spell/touch/torment/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/victim, mob/living/carbon/caster)
-	if(M.anti_magic_check())
-		to_chat(caster, span_warning("[M] resists your torment!"))
-		to_chat(M, span_warning("A hideous feeling of agony dances around your mind before being suddenly dispelled."))
+	if(victim.anti_magic_check())
+		to_chat(caster, span_warning("[victim] resists your torment!"))
+		to_chat(victim, span_warning("A hideous feeling of agony dances around your mind before being suddenly dispelled."))
 		..()
 		return TRUE
 	playsound(caster, 'sound/magic/demon_attack1.ogg', 75, TRUE)
-	M.blur_eyes(15) //huge array of relatively minor effects.
-	M.adjust_jitter(5 SECONDS)
-	M.set_confusion_if_lower(5 SECONDS)
-	M.adjust_disgust(40)
-	M.adjust_hallucinations(20 SECONDS)
-	M.Immobilize(30)
-	M.Stun(10)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25)
-	M.visible_message(span_danger("[M] cringes in pain as they hold their head for a second!"))
-	M.emote("scream")
-	to_chat(M, span_warning("You feel an explosion of pain erupt in your mind!"))
+	victim.blur_eyes(15) //huge array of relatively minor effects.
+	victim.adjust_jitter(5 SECONDS)
+	victim.set_confusion_if_lower(5 SECONDS)
+	victim.adjust_disgust(40)
+	victim.adjust_hallucinations(20 SECONDS)
+	victim.Immobilize(30)
+	victim.Stun(10)
+	victim.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25)
+	victim.visible_message(span_danger("[victim] cringes in pain as they hold their head for a second!"))
+	victim.emote("scream")
+	to_chat(victim, span_warning("You feel an explosion of pain erupt in your mind!"))
 	return TRUE
