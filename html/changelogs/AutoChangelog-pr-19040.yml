@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Swapped the costs of the medhud and medbot rites (now 150 and 250) in the Holy Light sect to make medhud cheaper"
