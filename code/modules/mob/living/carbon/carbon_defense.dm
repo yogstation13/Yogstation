@@ -400,9 +400,10 @@
 	do_jitter_animation(300)
 	adjust_stutter(4 SECONDS)
 	adjust_jitter(20 SECONDS)
-	var/should_stun = !tesla_shock || (tesla_shock && siemens_coeff > 0.5) && stun
-	Paralyze(4 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(secondary_shock), should_stun), 2 SECONDS)
+	if(stun)
+		Paralyze(4 SECONDS)
+		if(!tesla_shock || (tesla_shock && siemens_coeff > 0.5))
+			addtimer(CALLBACK(src, PROC_REF(secondary_shock)), 2 SECONDS)
 	if(stat == DEAD && can_defib()) //yogs: ZZAPP
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(80))
 			set_heartattack(FALSE)
@@ -419,8 +420,7 @@
 
 ///Called slightly after electrocute act to apply a secondary stun.
 /mob/living/carbon/proc/secondary_shock(should_stun)
-	if(should_stun)
-		Paralyze(6 SECONDS)
+	Paralyze(6 SECONDS)
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(on_fire)
