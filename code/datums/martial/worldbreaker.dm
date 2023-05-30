@@ -180,7 +180,7 @@
 	if(amount == 0)
 		return
 
-	var/plate_change = clamp(amount + plates, 0, MAX_PLATES) - plates
+	var/plate_change = clamp(amount + plates, 0, MAX_PLATES) - min(plates, MAX_PLATES)
 	if(plate_change)
 		user.physiology.armor.modifyAllRatings(plate_change * PLATE_REDUCTION)
 
