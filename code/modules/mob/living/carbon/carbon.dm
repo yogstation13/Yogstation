@@ -747,7 +747,10 @@
 // permeability: now slightly more sane and probably functional!
 /mob/living/carbon/get_permeability(def_zone)
 	if(def_zone)
-		return 1 / (2**(getarmor(def_zone, BIO) / 15))
+		var/permeability = 1 / (2**(getarmor(def_zone, BIO) / 15))
+		if(permeability <= 0.01)
+			return 0
+		return permeability
 
 	var/total_bodyparts = 0
 	var/total_permeability = 0
