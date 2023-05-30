@@ -10,6 +10,7 @@
 	invocation_type = INVOCATION_SHOUT
 
 	wall_type = /obj/effect/gluttony/timed
+	spell_requirements = NONE
 
 /datum/action/cooldown/spell/shapeshift/demon/gluttony //emergency get out of jail card, but better. It also eats everything.
 	name = "Gluttony Demon Form"

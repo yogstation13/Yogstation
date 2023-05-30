@@ -11,6 +11,8 @@
 
 	possible_shapes = list(/mob/living/simple_animal/lesserdemon)
 
+	spell_requirements = NONE
+
 /mob/living/simple_animal/lesserdemon
 	name = "demon"
 	real_name = "demon"
