@@ -90,7 +90,7 @@
 	icon_state = "bunnyhead"
 	item_state = "bunnyhead"
 	desc = "Considerably more cute than 'Frank'."
-	slowdown = -.3
+	slowdown = -0.3
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
 /obj/item/clothing/suit/bunnysuit
