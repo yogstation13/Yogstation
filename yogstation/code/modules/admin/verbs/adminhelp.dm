@@ -57,7 +57,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help_tickets/proc/CKey2ActiveTicket(ckey)
 	for(var/I in tickets_list)
 		var/datum/admin_help/AH = I
-		if(AH.initiator_ckey == ckey)
+		if(AH.initiator_ckey == ckey && AH.state == AHELP_ACTIVE)
 			return AH
 
 
