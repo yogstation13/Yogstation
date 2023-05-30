@@ -183,7 +183,7 @@
 	var/plate_change = clamp(amount + plates, 0, MAX_PLATES) - min(plates, MAX_PLATES)
 	to_chat(world, "plate_change is [plate_change ? plate_change : "non-existent"]")
 	if(plate_change)
-		user.physiology.armor.modifyAllRatings(plate_change * PLATE_REDUCTION)
+		user.physiology.armor = user.physiology.armor.modifyAllRatings(plate_change * PLATE_REDUCTION)
 
 	plates = clamp(plates + amount, 0, PLATE_CAP)
 
