@@ -1538,7 +1538,7 @@
 //	if(body_position == STANDING_UP) //force them on the ground
 //		set_lying_angle(pick(90, 270))
 //		set_body_position(LYING_DOWN)
-//		on_fall()
+	on_fall()
 	set_resting(TRUE)
 
 /// Proc to append behavior to the condition of being floored. Called when the condition ends.

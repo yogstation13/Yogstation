@@ -224,8 +224,11 @@
 
 /obj/docking_port/stationary/transit
 	name = "In Transit"
+	/// The turf reservation returned by the transit area request
 	var/datum/turf_reservation/reserved_area
+	/// The area created during the transit area reservation
 	var/area/shuttle/transit/assigned_area
+	/// The mobile port that owns this transit port
 	var/obj/docking_port/mobile/owner
 
 /obj/docking_port/stationary/transit/Initialize()

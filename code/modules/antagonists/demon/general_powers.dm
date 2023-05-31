@@ -3,13 +3,13 @@
 	desc = "Take on your true demon form. This form is strong but very obvious. It's full demonic nature in this realm is taxing on you \
 	and you will slowly lose life while in this form, while also being especially weak to holy influences. \
 	Be aware low health transfers between forms. If gravely wounded, attack live mortals to siphon life energy from them!"
-	background_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "daemontransform"
 	background_icon_state = "bg_demon"
 
 	invocation = "COWER, MORTALS!!"
 
-	shapeshift_type = /mob/living/simple_animal/lesserdemon
+	possible_shapes = list(/mob/living/simple_animal/lesserdemon)
 
 	spell_requirements = NONE
 

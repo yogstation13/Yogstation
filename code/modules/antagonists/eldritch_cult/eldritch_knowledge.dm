@@ -41,6 +41,7 @@
   * This proc is called whenever a new eldritch knowledge is added to an antag datum
   */
 /datum/eldritch_knowledge/proc/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
+	SHOULD_CALL_PARENT(TRUE) //for now
 	var/datum/antagonist/heretic/EC = user.mind?.has_antag_datum(/datum/antagonist/heretic)
 	for(var/X in unlocked_transmutations)
 		var/datum/eldritch_transmutation/ET = new X
@@ -82,6 +83,7 @@
 	var/datum/action/cooldown/spell/created_spell = created_spell_ref?.resolve() || new spell_to_add(user)
 	created_spell.Grant(user)
 	created_spell_ref = WEAKREF(created_spell)
+	. = ..()
 
 /datum/eldritch_knowledge/spell/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
 	var/datum/action/cooldown/spell/created_spell = created_spell_ref?.resolve()
