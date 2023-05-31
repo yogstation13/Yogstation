@@ -223,6 +223,31 @@
 	name = "HONK Squad Trooper"
 	outfit = /datum/outfit/centcom_clown/honk_squad
 	role = "HONKER"
+	
+/datum/antagonist/ert/imperial
+	name = "Imperial Guardsman"
+	outfit = /datum/outfit/imperial
+	role = "Guardsman"
+
+/datum/antagonist/ert/imperial/hotshot
+	name = "Imperial Guardsman Veteran"
+	outfit = /datum/outfit/imperial/veteran
+	role = "Guard Veteran"
+
+/datum/antagonist/ert/imperial/plasma
+	name = "Imperial Guardsman Plasma Gunner"
+	outfit = /datum/outfit/imperial/plasma
+	role = "Plasma Gunner"
+
+/datum/antagonist/ert/imperial/sniper
+	name = "Imperial Guardsman Marksman"
+	outfit = /datum/outfit/imperial/marksman
+	role = "Marksman"
+
+/datum/antagonist/ert/imperial/sergeant
+	name = "Imperial Sergeant"
+	outfit = /datum/outfit/imperial/commander
+	role = "Sergeant"
 
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))

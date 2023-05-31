@@ -681,7 +681,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 			if(!is_unique_objective(possible_item.targetitem,dupe_search_range))
 				continue
 			for(var/datum/mind/M in owners)
-				if(M.current.mind.assigned_role in possible_item.excludefromjob)
+				if(M.assigned_role in possible_item.excludefromjob)
 					continue check_items
 			approved_targets += possible_item
 	return set_target(pick(approved_targets))

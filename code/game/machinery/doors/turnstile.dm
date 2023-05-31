@@ -15,7 +15,6 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	layer = OPEN_DOOR_LAYER
 	climbable = FALSE
-	CanAtmosPass = ATMOS_PASS_NO
 
 /obj/machinery/turnstile/brig
 	name = "Brig turnstile"
@@ -23,7 +22,7 @@
 	req_one_access = list(ACCESS_SEC_DOORS)
 	max_integrity = 400 /// Made of damn good steel
 	damage_deflection = 21 /// Same as airlocks!
-	
+
 /obj/machinery/turnstile/Initialize()
 	. = ..()
 	icon_state = "turnstile"

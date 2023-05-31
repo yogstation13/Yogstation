@@ -81,3 +81,13 @@
 	e_cost = 200
 	select_name = "stun"
 	projectile_type = /obj/item/projectile/energy/tesla/revolver
+
+/obj/item/ammo_casing/energy/grimdark
+	projectile_type = /obj/item/projectile/beam/grimdark
+	select_name = "plasma round"
+	fire_sound = 'sound/weapons/plasma.ogg'
+	e_cost = 800
+
+/obj/item/ammo_casing/energy/grimdark/pistol
+	projectile_type = /obj/item/projectile/beam/grimdark/pistol
+	e_cost = 500
