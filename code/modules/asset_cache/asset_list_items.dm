@@ -79,6 +79,9 @@
 		"stamp_rd.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_rd.png',
 		"stamp_ce.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_ce.png',
 		"stamp_clown.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_clown.png',
+		"stamp_syndi.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_syndi.png',
+		"stamp_cent.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_cent.png',
+		"stamp_syndiround.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_syndiround.png',
 		"stamp_unknown.png" = 'icons/UI_Icons/tgui/inspector_booth/stamp_unknown.png',
 		"paper.png" = 'icons/UI_Icons/tgui/inspector_booth/paper.png',
 	)
