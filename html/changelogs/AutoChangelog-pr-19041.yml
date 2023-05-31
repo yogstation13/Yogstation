@@ -1,5 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - rscadd: "Added log when ticket popups are dismissed"
-  - bugfix: "fixed admins talking to themselves"
