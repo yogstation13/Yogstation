@@ -418,7 +418,7 @@ GLOBAL_LIST_EMPTY(lockers)
 		return
 	if(!(user.mobility_flags & MOBILITY_STAND) && get_dist(src, user) > 0)
 		return
-	if((user.mind?.martial_art) && istype(user.mind.martial_art, /datum/martial_art/buster_style) && (user.a_intent == INTENT_GRAB))
+	if((user.mind?.has_martialart(MARTIALART_BUSTERSTYLE)) && (user.a_intent == INTENT_GRAB))
 		return //buster arm shit since trying to pick up an open locker just stuffs you in it
 	if(!toggle(user))
 		togglelock(user)
