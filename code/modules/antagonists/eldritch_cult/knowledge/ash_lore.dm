@@ -15,17 +15,20 @@
 		H.physiology.heat_mod *= 0.6
 	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/ash
 	user.put_in_hands(realknife)
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
-/datum/eldritch_knowledge/base_ash/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
+/datum/eldritch_knowledge/base_ash/on_lose(mob/user)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/base_ash/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+//	SIGNAL_HANDLER
+
 	if(!iscarbon(target))
 		return
 	var/mob/living/carbon/C = target
-	var/atom/throw_target = get_edge_target_turf(C, user.dir)
+	var/atom/throw_target = get_edge_target_turf(C, source.dir)
 	if(!C.anchored)
-		. = TRUE
-		C.throw_at(throw_target, rand(4,8), 14, user)
-	return
+		C.throw_at(throw_target, rand(4,8), 14, source)
 
 /datum/eldritch_knowledge/base_ash/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
@@ -66,10 +69,17 @@
 	route = PATH_ASH
 	tier = TIER_MARK
 
-/datum/eldritch_knowledge/ash_mark/on_mansus_grasp(atom/target,mob/user,proximity_flag,click_parameters)
+/datum/eldritch_knowledge/ash_mark/on_gain(mob/user)
 	. = ..()
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+
+/datum/eldritch_knowledge/ash_mark/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/ash_mark/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+	SIGNAL_HANDLER
+
 	if(isliving(target))
-		. = TRUE
 		var/mob/living/living_target = target
 		living_target.apply_status_effect(/datum/status_effect/eldritch/ash, 5)
 

@@ -168,6 +168,8 @@
 
 /datum/antagonist/clockcult/on_removal()
 	SSticker.mode.servants_of_ratvar -= owner
+	for(var/datum/action/item_action/clock/quickbind/existing_binds in owner.current.actions)
+		existing_binds.Remove(owner.current) //regenerate all our quickbound scriptures
 	if(!silent)
 		owner.current.visible_message("[span_deconversion_message("[owner.current] seems to have remembered [owner.current.p_their()] true allegiance!")]", null, null, null, owner.current)
 		to_chat(owner, span_userdanger("A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant."))
@@ -175,7 +177,7 @@
 	owner.special_role = null
 	if(iscyborg(owner.current))
 		to_chat(owner.current, span_warning("Despite your freedom from Ratvar's influence, you are still irreparably damaged and no longer possess certain functions such as AI linking."))
-	. = ..()
+	return ..()
 
 
 /datum/antagonist/clockcult/admin_add(datum/mind/new_owner,mob/admin)
