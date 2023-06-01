@@ -249,7 +249,7 @@
 
 /datum/martial_art/ultra_violence/proc/regen_dash(mob/living/carbon/human/H)
 	dashes=3
-	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dash+1)
+	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
 
 /datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A)
 	if(H.a_intent != INTENT_DISARM || H.stat == DEAD || H.IsUnconscious() || H.IsFrozen() || H.get_active_held_item() || A == H)
