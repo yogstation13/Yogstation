@@ -1,11 +1,14 @@
-//Hecata, the unified clan of death.
-//Focuses more on their vassals than other clans.
-//Has to rely more on vassals for ranks and blood, as they cannot use the blood altar for leveling up and cannot silent feed.
-//In exchange, they can raise the dead as temporary vassals to do their bidding, or permanently revive dead existing vassals.
-//In addition, they can summon Wraiths (shades) around them for both offense and defense
-//And can send messages to vassals anywhere globally via Dark Communion.
-//In addition, raising the dead with Necromancy turns them into Sanguine Zombies
-//They are pseudo zombies, which have high punch damage and special resistances, but aren't infectious nor can they use guns.
+/**
+  * Hecata, the unified clan of death.
+  *
+  * Focuses more on their vassals than other clans.
+  * Has to rely more on vassals for ranks and blood, as they cannot use the blood altar for leveling up and cannot silent feed.
+  * In exchange, they can raise the dead as temporary vassals to do their bidding, or permanently revive dead existing vassals.
+  * In addition, they can summon Wraiths (shades) around them for both offense and defense
+  * And can send messages to vassals anywhere globally via Dark Communion.
+  * In addition, raising the dead with Necromancy turns them into Sanguine Zombies
+  * They are pseudo zombies, which have high punch damage and special resistances, but aren't infectious nor can they use guns.
+  */
 /datum/action/cooldown/bloodsucker/targeted/hecata
 	purchase_flags = HECATA_CAN_BUY
 	background_icon = 'icons/mob/actions/actions_hecata_bloodsucker.dmi'
