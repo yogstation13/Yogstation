@@ -301,7 +301,6 @@
 	SSshuttle.mobile += src
 
 /obj/docking_port/mobile/proc/unregister()
-	. = ..()
 	SSshuttle.mobile -= src
 
 /obj/docking_port/mobile/Destroy(force)
