@@ -31,7 +31,7 @@
 	SIGNAL_HANDLER
 
 	for(var/atom/movable/movable in contents)
-		INVOKE_ASYNC(src, PROC_REF(throw_atom), movable)
+		INVOKE_ASYNC(src, GLOBAL_PROC_REF(throw_atom), movable)
 
 /proc/throw_atom(atom/movable/dumpee)
 	var/max = world.maxx-TRANSITIONEDGE
