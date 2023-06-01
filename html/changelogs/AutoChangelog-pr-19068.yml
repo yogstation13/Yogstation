@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - experiment: "meteors will no longer explode empty space tiles, which should impact nothing since the tile would be empty anyways, but may possibly reduce the amount of stress they put on everything else"
