@@ -352,6 +352,13 @@
 "bg" = (
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/listeningstation/telecomms)
+"bh" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered)
 "bk" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1293,6 +1300,15 @@
 /obj/item/storage/firstaid/emergency,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
+"nG" = (
+/obj/machinery/vending/hydronutrients{
+	default_price = 0;
+	extra_price = 0;
+	fair_market_price = 0;
+	chef_price = 0
+	},
+/turf/open/floor/plating/asteroid,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "nK" = (
 /obj/machinery/griddle,
 /turf/open/floor/wood,
@@ -1588,6 +1604,13 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
+"uH" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/unpowered)
 "uP" = (
 /obj/structure/closet/emcloset/anchored,
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
@@ -1597,6 +1620,11 @@
 /obj/item/pickaxe/emergency,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
+"uQ" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/structure/fermenting_barrel,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "uR" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2452,6 +2480,24 @@
 "NO" = (
 /turf/closed/mineral/random,
 /area/ruin/unpowered)
+"NS" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/storage/bag/plants/portaseeder,
+/obj/item/cultivator,
+/obj/item/seeds/grape,
+/obj/item/seeds/grape,
+/obj/item/seeds/grape,
+/obj/item/seeds/grape,
+/obj/item/seeds/eggplant,
+/obj/item/seeds/eggplant,
+/obj/item/seeds/eggplant,
+/obj/item/seeds/eggplant,
+/obj/item/seeds/eggplant,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "NT" = (
 /obj/structure/dresser,
 /obj/machinery/airalarm/syndicate{
@@ -2473,20 +2519,6 @@
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Oa" = (
 /obj/effect/turf_decal/sand/plating,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/item/storage/bag/plants/portaseeder,
-/obj/item/cultivator,
-/obj/item/seeds/grape,
-/obj/item/seeds/grape,
-/obj/item/seeds/grape,
-/obj/item/seeds/grape,
-/obj/item/seeds/eggplant,
-/obj/item/seeds/eggplant,
-/obj/item/seeds/eggplant,
-/obj/item/seeds/eggplant,
-/obj/item/seeds/eggplant,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Od" = (
@@ -4114,8 +4146,8 @@ NO
 as
 js
 Oa
-Tv
-as
+uQ
+az
 Mw
 ab
 ab
@@ -4152,9 +4184,9 @@ NO
 NO
 NO
 az
-az
-as
-as
+nG
+NS
+Tv
 as
 Mw
 Mw
@@ -4191,12 +4223,12 @@ bF
 km
 NO
 NO
-NO
-NO
-ay
-bF
-bF
-aj
+az
+az
+as
+as
+as
+uH
 aj
 aj
 er
@@ -4231,12 +4263,12 @@ NO
 yO
 NO
 NO
-vw
-aj
-er
 NO
 NO
-NO
+ay
+bF
+bF
+bh
 NO
 NO
 NO
@@ -4271,9 +4303,9 @@ NO
 lq
 NO
 vw
-hd
-NO
-NO
+vw
+aj
+er
 NO
 NO
 NO
