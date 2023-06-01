@@ -57,7 +57,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help_tickets/proc/CKey2ActiveTicket(ckey)
 	for(var/I in tickets_list)
 		var/datum/admin_help/AH = I
-		if(AH.initiator_ckey == ckey)
+		if(AH.initiator_ckey == ckey && AH.state == AHELP_ACTIVE)
 			return AH
 
 
@@ -363,6 +363,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	webhook_send_ticket_resolve(id, TRUE)
 
+	if(!handling_admin_ckey)
+		Administer(FALSE)
+
 	RemoveActive()
 	state = AHELP_CLOSED
 	AddInteraction("Closed by [usr.ckey].")
@@ -398,6 +401,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	else // AHELP_CLOSED
 		to_chat(usr, span_warning("This ticket has been closed and can't be unresolved."), confidential=TRUE)
 		return
+
+	if(!handling_admin_ckey)
+		Administer(FALSE)
 
 	if(resolved)
 		AddInteraction("Ticket #[id] marked as resolved by [usr.ckey].")
@@ -444,6 +450,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	else // AHELP_CLOSED
 		return "ERROR: This ticket has been closed and can't be unresolved."
 
+	if(!handling_admin_ckey)
+		DiscordAdminister(ckey, FALSE)
+
 	if(resolved)
 		AddInteraction("Ticket #[id] marked as resolved by [ckey].", ckey=ckey)
 		to_chat(initiator, span_adminhelp("Your ticket has been marked as resolved by [ckey]."), confidential=TRUE)
@@ -464,7 +473,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(SSticker.current_state == GAME_STATE_FINISHED && !GLOB.ahelp_tickets.ticketAmount)
 		message_admins("All tickets have been closed, round can be restarted")
-	
+
 	return "Ticket resolved"
 
 //Close and return ahelp verb, use if ticket is incoherent
@@ -694,7 +703,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			html = span_notice("[key_name(usr, TRUE, FALSE)] has taken your ticket and will respond shortly."),
 			confidential = TRUE)
 
-/datum/admin_help/proc/DiscordAdminister(ckey)
+/datum/admin_help/proc/DiscordAdminister(ckey, announce = FALSE)
 	handling_admin_ckey = ckey
 	discord_admin = TRUE
 
@@ -710,7 +719,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	log_admin_private(msg)
 	webhook_send_ticket_administer(ckey, id)
 
-	if(initiator)
+	if(announce && initiator)
 		to_chat(initiator,
 			type = MESSAGE_TYPE_ADMINPM,
 			html = span_notice("[ckey] has taken your ticket and will respond shortly."),

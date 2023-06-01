@@ -1,7 +1,4 @@
-/datum/antagonist/bloodsucker/proc/assign_clan_and_bane(tzimisce = FALSE)
-	if(tzimisce)
-		my_clan = new /datum/bloodsucker_clan/tzimisce(owner.current)
-		return
+/datum/antagonist/bloodsucker/proc/assign_clan_and_bane()
 	if(my_clan)	
 		return
 	var/list/options = list()

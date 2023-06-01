@@ -326,6 +326,7 @@
 	button_icon_state = "coffin"
 	background_icon_state = "bg_vampire"
 	overlay_icon_state = "bg_vampire_border"
+	check_flags = NONE
 
 	school = SCHOOL_SANGUINE
 

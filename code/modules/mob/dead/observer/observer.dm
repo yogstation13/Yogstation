@@ -59,7 +59,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/deadchat_name
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
-	var/datum/action/unobserve/UO
 
 	// Current Viewrange
 	var/view = 0
@@ -415,24 +414,27 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Teleport"
 	set desc= "Teleport to a location"
 	if(!isobserver(usr))
-		to_chat(usr, "Not when you're not dead!")
+		to_chat(usr, span_warning("Not when you're not dead!"))
 		return
 	var/list/filtered = list()
 	for(var/area/A as anything in get_sorted_areas())
 		if(!A.hidden)
 			filtered += A
-	var/area/thearea  = input("Area to jump to", "BOOYEA") as null|anything in filtered
+	var/area/thearea = tgui_input_list(usr, "Area to jump to", "BOOYEA", filtered)
 
 	if(!thearea)
+		return
+	if(!isobserver(usr))
+		to_chat(usr, span_warning("Not when you're not dead!"))
 		return
 
 	var/list/L = list()
 	for(var/turf/T in get_area_turfs(thearea.type))
 		L+=T
 
-	if(!L || !L.len)
-		to_chat(usr, "No area available.")
-		return
+	if(!L || !length(L))
+		to_chat(usr, span_warning("No area available."))
+		return	
 
 	usr.forceMove(pick(L))
 	update_parallax_contents()
@@ -483,7 +485,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	pixel_y = 0
 	animate(src, pixel_y = 2, time = 1 SECONDS, loop = -1)
 
-/mob/dead/observer/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
+/mob/dead/observer/verb/jump_to_mob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
 	set name = "Jump to Mob"
 	set desc = "Teleport to a mob"
@@ -491,16 +493,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(isobserver(usr)) //Make sure they're an observer!
 
 
-		var/list/dest = list() //List of possible destinations (mobs)
+		var/list/possible_destinations = getpois(mobs_only = TRUE) //List of possible destinations (mobs)
 		var/target = null	   //Chosen target.
 
-		dest += getpois(mobs_only = TRUE) //Fill list, prompt user with list
-		target = input("Please, select a player!", "Jump to Mob", null, null) as null|anything in dest
+		target = tgui_input_list(usr, "Please, select a player!", "Jump to Mob", possible_destinations)
 
 		if (!target)//Make sure we actually have a target
 			return
 		else
-			var/mob/M = dest[target] //Destination mob
+			var/mob/M = possible_destinations[target] //Destination mob
 			var/mob/A = src			 //Source mob
 			var/turf/T = get_turf(M) //Turf of the destination mob
 
@@ -525,7 +526,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/list/views = list()
 		for(var/i in 7 to max_view)
 			views |= i
-		var/new_view = input("Choose your new view", "Modify view range", 0) as null|anything in views
+		var/new_view = tgui_input_list(usr, "Choose your new view", "Modify view range", views)
 		if(new_view)
 			client.rescale_view(new_view, 0, ((max_view*2)+1) - 15)
 	else
@@ -637,7 +638,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!(L in GLOB.player_list) && !L.mind)
 			possessible += L
 
-	var/mob/living/target = input("Your new life begins today!", "Possess Mob", null, null) as null|anything in possessible
+	var/mob/living/target = tgui_input_list(usr, "Your new life begins today!", "Possess Mob", sortUsernames(possessible))
 
 	if(!target)
 		return 0
@@ -840,7 +841,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				remove_verb(src, /mob/dead/observer/verb/possess)
 
 /mob/dead/observer/reset_perspective(atom/A)
-	UO?.Remove(src)
 	if(client)
 		if(ismob(client.eye) && (client.eye != src))
 			cleanup_observe()
@@ -860,7 +860,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		hide_other_mob_action_buttons(target)
 		LAZYREMOVE(target.observers, src)
 	actions = originalactions
-	actions -= UO
 	update_action_buttons()
 
 /mob/dead/observer/verb/observe()
@@ -904,26 +903,24 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(is_secret_level(mob_eye.z) && !client?.holder)
 			sight = null //we dont want ghosts to see through walls in secret areas
 		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_observing_z_changed), TRUE)
-		if(!UO)
-			UO = new(src) // Convinent way to unobserve
-		UO.Grant(src)
 		if(mob_eye.hud_used)
 			client.screen = list()
 			LAZYOR(mob_eye.observers, src)
 			mob_eye.hud_used.show_hud(mob_eye.hud_used.hud_version, src)
 			observetarget = mob_eye
 
-/datum/action/unobserve
+/datum/action/innate/unobserve
 	name = "Stop Observing"
 	desc = "Stops observing the person."
 	button_icon = 'icons/mob/mob.dmi'
 	button_icon_state = "ghost_nodir"
 	show_to_observers = FALSE
 
-/datum/action/unobserve/Trigger()
-	owner.reset_perspective(null)
+/datum/action/innate/unobserve/Activate()
+	var/mob/dead/observer/ghost = owner
+	ghost.reset_perspective(null)
 
-/datum/action/unobserve/IsAvailable(feedback = FALSE)
+/datum/action/innate/unobserve/IsAvailable(feedback = FALSE)
 	return TRUE
 
 /mob/dead/observer/proc/on_observing_z_changed(datum/source, oldz, newz)
