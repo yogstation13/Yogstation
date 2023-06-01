@@ -1,8 +1,0 @@
-author: "solwashere"
-delete-after: true 
-changes: 
-  - tweak: "Explorer Suit has lower base melee armour,"
-  - tweak: "Goliath Cloak is overall weaker but a slightly better base explorer suit"
-  - tweak: "Pathfinder laser/energy/bullet resist has been murdered, from 40 to 15 max, as well as given 15 more bomb resist"
-  - tweak: "Drake has had it's bullet/laser/energy/bomb armour stats lowered"
-  - tweak: "HECK has had it's bullet/laser/energy stats lowered but bomb armour increased"
