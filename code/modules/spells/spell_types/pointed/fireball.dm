@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/projectile/fireball
 	name = "Fireball"
 	desc = "This spell fires an explosive fireball at a target."
-	button_icon_state = "fireball0"
+	button_icon_state = "fireball"
 
 	sound = 'sound/magic/fireball.ogg'
 	school = SCHOOL_EVOCATION
@@ -13,6 +13,7 @@
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
 	base_icon_state = "fireball"
+	active_icon_state = "fireball_active"
 	active_msg = "You prepare to cast your fireball spell!"
 	deactive_msg = "You extinguish your fireball... for now."
 	cast_range = 8

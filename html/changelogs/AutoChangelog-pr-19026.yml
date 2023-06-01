@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Hypodermic Prickles now works against targets with bioarmor of 0."

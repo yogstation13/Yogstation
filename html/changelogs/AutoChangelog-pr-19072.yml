@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Empty lasgun mags now look like something rather than nothing"
+  - imageadd: "Plasma gun projectiles now look like a funny blue dot instead of just an eerie blue glowing aura of \"you are about to eat shit\""

@@ -1,0 +1,5 @@
+author: "azzzertyy"
+delete-after: true 
+changes: 
+  - rscadd: "Added missing stamps to inspector booth"
+  - imageadd: "Added missing stamp images to inspector booth"

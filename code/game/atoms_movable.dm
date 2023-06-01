@@ -956,6 +956,10 @@
 		return FALSE
 	return TRUE
 
+/// Called when mob changes from a standing position into a prone while lacking the ability to stand up at the moment.
+/mob/living/proc/on_fall()
+	return
+
 /**
  * Updates the grab state of the movable
  *

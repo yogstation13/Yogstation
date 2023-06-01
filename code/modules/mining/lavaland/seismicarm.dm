@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/seismic
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
-/datum/action/cooldown/spell/pointed/seismic/can_cast_spell()
+/datum/action/cooldown/spell/pointed/seismic/can_cast_spell(feedback = TRUE)
 	if(!isliving(owner))
 		return FALSE
 	var/mob/living/user = owner
@@ -27,7 +27,7 @@
 	if(!.)
 		return FALSE
 	if(user.incapacitated())
-		return
+		return FALSE
 	var/turf/T = get_step(get_turf(user), user.dir)
 	var/turf/Z = get_turf(user)
 	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
@@ -35,40 +35,42 @@
 	playsound(user,'sound/effects/gravhit.ogg', 20, 1)
 	for(var/i = 0 to jumpdistance)
 		if(T.density)
-			return
+			return FALSE
 		for(var/obj/D in T.contents)
-			if(D.density == TRUE)
-				return
+			if(D.density)
+				return FALSE
 		for(var/turf/open/chasm/C in T.contents)
-			return
+			return FALSE
 		for(var/turf/closed/indestructible/I in T.contents)
-			return
+			return FALSE
 		for(var/turf/open/lava/V in T.contents)
-			return
+			return FALSE
 		for(var/obj/machinery/door/window/E in Z.contents)
-			if(E.density == TRUE)
-				return 
+			if(E.density)
+				return FALSE
 		if(T)
-			sleep(0.1 SECONDS)
-			user.forceMove(T)
-			walk_towards(F,user,0, 1.5)
-			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
-			for(var/mob/living/L in T.contents)
-				if(L != user)
-					user.forceMove(get_turf(L))
-					to_chat(L, span_userdanger("[user] catches you with [user.p_their()] arm and clotheslines you!"))
-					user.visible_message(span_warning("[user] hits [L] with a lariat!"))
-					L.SpinAnimation(0.5 SECONDS, 1)
-					if(isanimal(L))
-						L.adjustBruteLoss(50)
-					if(iscarbon(L))
-						L.adjustBruteLoss(10)
-					if(issilicon(L))
-						L.adjustBruteLoss(12)
-					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
-			T = get_step(user,user.dir)
+			addtimer(CALLBACK(src, PROC_REF(finish_lariat), user, T, F), 0.1 SECONDS)
 	
 	return TRUE
+
+/datum/action/cooldown/spell/pointed/seismic/lariat/proc/finish_lariat(mob/living/user, turf/target_turf, obj/effect/temp_visual/decoy/fading/threesecond/effect)
+	user.forceMove(target_turf)
+	walk_towards(effect,user,0, 1.5)
+	animate(effect, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
+	for(var/mob/living/L in target_turf.contents)
+		if(L != user)
+			user.forceMove(get_turf(L))
+			to_chat(L, span_userdanger("[user] catches you with [user.p_their()] arm and clotheslines you!"))
+			user.visible_message(span_warning("[user] hits [L] with a lariat!"))
+			L.SpinAnimation(0.5 SECONDS, 1)
+			if(isanimal(L))
+				L.adjustBruteLoss(50)
+			if(iscarbon(L))
+				L.adjustBruteLoss(10)
+			if(issilicon(L))
+				L.adjustBruteLoss(12)
+		playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
+	target_turf = get_step(user,user.dir)
 			
 /datum/action/cooldown/spell/pointed/seismic/mop
 	name = "Mop the Floor"
@@ -82,69 +84,70 @@
 /datum/action/cooldown/spell/pointed/seismic/mop/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()
 	if(!.)
-		return
+		return FALSE
 	if(user.incapacitated())
-		return
+		return FALSE
 	var/turf/T = get_step(get_turf(user), user.dir)
 	var/turf/Z = get_turf(user)
 	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
-	var/list/mopped = list()
 	user.visible_message(span_warning("[user] sprints forward with [user.p_their()] hand outstretched!"))
 	playsound(user,'sound/effects/gravhit.ogg', 20, 1)
 	for(var/i = 0 to jumpdistance)
 		if(T.density)
-			return
+			return FALSE
 		for(var/obj/D in T.contents)
-			if(D.density == TRUE)
-				return
-		for (var/turf/open/chasm/C in T.contents)
-			return
-		for (var/turf/closed/indestructible/I in T.contents)
-			return
+			if(D.density)
+				return FALSE
+		for(var/turf/open/chasm/C in T.contents)
+			return FALSE
+		for(var/turf/closed/indestructible/I in T.contents)
+			return FALSE
 		for(var/obj/machinery/door/window/E in Z.contents)
-			if(E.density == TRUE)
-				return 
+			if(E.density)
+				return FALSE
 		if(T)
-			sleep(0.1 SECONDS)
-			user.forceMove(T)
-			walk_towards(F,user,0, 1.5)
-			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
-			for(var/mob/living/L in T.contents)
-				if(L != user)
-					mopped |= L
-					var/turf/Q = get_step(get_turf(user), user.dir)
-					var/mob/living/U = user
-					animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
-					if(ismineralturf(Q))
-						var/turf/closed/mineral/M = Q
-						M.attempt_drill()
-						L.adjustBruteLoss(5)
-					if(Q.density)
-						return
-					for(var/obj/D in Q.contents)
-						if(D.density == TRUE)
-							return
-					U.forceMove(get_turf(L))
-					to_chat(L, span_userdanger("[U] catches you with [U.p_their()] hand and drags you down!"))
-					U.visible_message(span_warning("[U] hits [L] and drags them through the dirt!"))
-					L.forceMove(Q)
-					if(isanimal(L))
-						U.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)//guaranteed extended contact with a fauna so i have to make it not a death sentence
-						L.adjustBruteLoss(20)
-						if(L.stat == DEAD)
-							L.visible_message(span_warning("[L] is ground into paste!"))
-							L.gib()
-					if(iscarbon(L))
-						L.adjustBruteLoss(4)
-					if(issilicon(L))
-						L.adjustBruteLoss(5)
-					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
-			T = get_step(user,user.dir)
+			addtimer(CALLBACK(src, PROC_REF(finish_mop), user, T, F), 0.1 SECONDS)
+
+	return TRUE
+
+/datum/action/cooldown/spell/pointed/seismic/mop/proc/finish_mop(mob/living/user, turf/target_turf, obj/effect/temp_visual/decoy/fading/threesecond/effect)
+	user.forceMove(target_turf)
+	walk_towards(effect,user,0, 1.5)
+	animate(effect, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
+	var/list/mopped = list()
+	for(var/mob/living/L in target_turf.contents)
+		if(L != user)
+			mopped |= L
+			var/turf/Q = get_step(get_turf(user), user.dir)
+			animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+			if(ismineralturf(Q))
+				var/turf/closed/mineral/M = Q
+				M.attempt_drill()
+				L.adjustBruteLoss(5)
+			if(Q.density)
+				return FALSE
+			for(var/obj/D in Q.contents)
+				if(D.density)
+					return FALSE
+			user.forceMove(get_turf(L))
+			to_chat(L, span_userdanger("[user] catches you with [user.p_their()] hand and drags you down!"))
+			user.visible_message(span_warning("[user] hits [L] and drags them through the dirt!"))
+			L.forceMove(Q)
+			if(isanimal(L))
+				user.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)//guaranteed extended contact with a fauna so i have to make it not a death sentence
+				L.adjustBruteLoss(20)
+				if(L.stat == DEAD)
+					L.visible_message(span_warning("[L] is ground into paste!"))
+					L.gib()
+			if(iscarbon(L))
+				L.adjustBruteLoss(4)
+			if(issilicon(L))
+				L.adjustBruteLoss(5)
+			playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
+	target_turf = get_step(user, user.dir)
 	for(var/mob/living/C in mopped)
 		if(C.stat == CONSCIOUS && C.resting == FALSE)
 			animate(C, transform = null, time = 0.5 SECONDS, loop = 0)
-
-	return TRUE
 
 /datum/action/cooldown/spell/pointed/seismic/suplex
 	name = "Suplex"
@@ -199,11 +202,15 @@
 			L.adjustBruteLoss(6)
 		if(issilicon(L))
 			L.adjustBruteLoss(8)
-		sleep(0.5 SECONDS)
-		if(L.stat == CONSCIOUS && L.resting == FALSE)
-			animate(L, transform = null, time = 0.1 SECONDS, loop = 0)
+		addtimer(CALLBACK(src, PROC_REF(fix_target_anim), L), 0.5 SECONDS)
 		
-/datum/action/cooldown/spell/pointed/seismic/righthook
+	return TRUE
+
+/datum/action/cooldown/spell/pointed/seismic/suplex/proc/fix_target_anim(mob/living/target)
+	if(target.stat == CONSCIOUS && target.resting == FALSE)
+		animate(target, transform = null, time = 0.1 SECONDS, loop = 0)
+
+/datum/action/cooldown/spell/touch/righthook
 	name = "Right Hook"
 	desc = "Put the arm through its paces, cranking the outputs located at the front and back of the hand to full capacity for a powerful blow. This attack can only be readied for five seconds and connecting with it will temporarily overwhelm the entire arm for fifteen."
 	button_icon = 'icons/mob/actions/actions_arm.dmi'
@@ -211,17 +218,27 @@
 
 	cooldown_time = 3 SECONDS
 
-/datum/action/cooldown/spell/pointed/seismic/InterceptClickOn(mob/living/user, params, atom/target)
-	. = ..()
-	if(!.)
+	sound = 'sound/effects/gravhit.ogg'
+	draw_message = span_notice("Your arm begins crackling loudly!")
+	drop_message = span_notice("You dissipate the power in your hand.")
+
+	spell_requirements = SPELL_REQUIRES_HUMAN
+
+	hand_path = /obj/item/melee/touch_attack/overcharged_emitter
+
+/datum/action/cooldown/spell/touch/righthook/can_cast_spell(feedback = TRUE)
+	if(!isliving(owner))
 		return FALSE
-	playsound(user,'sound/effects/beepskyspinsabre.ogg', 60, 1)
-	do_after(user, 2 SECONDS, user, TRUE, stayStill = FALSE)
-	user.put_in_r_hand(new /obj/item/overcharged_emitter)
-	user.visible_message(span_warning("[user]'s arm begins crackling loudly!"))
+	var/mob/living/user = owner
+	var/obj/item/bodypart/r_arm/R = user.get_bodypart(BODY_ZONE_R_ARM)
+	if(R?.bodypart_disabled)
+		to_chat(user, span_warning("The arm isn't in a functional state right now!"))
+		return FALSE
+	if(user.IsParalyzed() || user.IsStun() || user.restrained())
+		return FALSE
 	return TRUE
 
-/obj/item/overcharged_emitter
+/obj/item/melee/touch_attack/overcharged_emitter
 	name = "supercharged emitter"
 	desc = "The result of all the prosthetic's power building up in its palm. It's fading fast."
 	icon = 'icons/obj/wizard.dmi'
@@ -232,7 +249,7 @@
 	w_class = 5
 	var/flightdist = 8
 
-/obj/item/overcharged_emitter/afterattack(mob/living/L, mob/living/user, proximity)
+/obj/item/melee/touch_attack/overcharged_emitter/afterattack(mob/living/L, mob/living/user, proximity)
 	var/direction = user.dir
 	var/obj/item/bodypart/r_arm/R = user.get_bodypart(BODY_ZONE_R_ARM)
 	var/list/knockedback = list()
@@ -246,7 +263,7 @@
 		qdel(src, force = TRUE)
 		L.SpinAnimation(0.5 SECONDS, 2)
 		playsound(L,'sound/effects/gravhit.ogg', 60, 1)
-		(R?.set_disabled(TRUE))
+		R?.set_disabled(TRUE)
 		to_chat(user, span_warning("The huge impact takes the arm out of commission!"))
 		shake_camera(L, 4, 3)
 		shake_camera(user, 2, 3)
@@ -294,13 +311,18 @@
 			for(var/mob/living/S in knockedback)
 				S.forceMove(T)
 				S.SpinAnimation(0.2 SECONDS, 1)
-				sleep(0.001 SECONDS)
 
-/obj/item/overcharged_emitter/Initialize()
+/obj/item/melee/touch_attack/overcharged_emitter/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	animate(src, alpha = 50, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
+
+/obj/item/melee/touch_attack/overcharged_emitter/Destroy()
+	var/datum/action/cooldown/spell/our_spell = spell_which_made_us?.resolve()
+	if(our_spell)
+		our_spell.build_all_button_icons()
+	return ..()
 
 //Seismic Arm
 /obj/item/bodypart/r_arm/robot/seismic
@@ -309,15 +331,22 @@
 	icon = 'icons/mob/augmentation/augments_seismic.dmi'
 	icon_state = "seismic_r_arm"
 	max_damage = 60
+	var/list/seismic_arm_moves = list(
+		/datum/action/cooldown/spell/pointed/seismic/lariat,
+		/datum/action/cooldown/spell/pointed/seismic/mop,
+		/datum/action/cooldown/spell/pointed/seismic/suplex,
+		/datum/action/cooldown/spell/touch/righthook,
+	)
 
 /obj/item/bodypart/r_arm/robot/seismic/attach_limb(mob/living/carbon/C, special)
 	. = ..()
-	for(var/datum/action/cooldown/spell/pointed/seismic/spells as anything in subtypesof(/datum/action/cooldown/spell/pointed/seismic))
-		spells = new(C)
-		spells.Grant(C)
+	for(var/datum/action/cooldown/spell/moves as anything in seismic_arm_moves)
+		moves = new moves(C)
+		moves.Grant(C)
 
 /obj/item/bodypart/r_arm/robot/seismic/drop_limb(special)
 	var/mob/living/carbon/C = owner
-	for(var/datum/action/cooldown/spell/pointed/seismic/spells in C.actions)
-		spells.Remove(C)
+	for(var/datum/action/cooldown/spell/moves in C.actions)
+		if(LAZYFIND(seismic_arm_moves, moves))
+			moves.Remove(C)
 	return ..()
