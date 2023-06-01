@@ -589,10 +589,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/structure/showcase/mecha/marauder{
-	icon_state = "darkgygax";
-	desc = "A stand with an empty old Syndicate combat mech bolted to it, described as being an extremely fast assault exosuit."
-	},
+/obj/structure/showcase/mecha/gygax/dark,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/listeningstation/hallway)
@@ -1791,10 +1788,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/structure/showcase/mecha/marauder{
-	icon_state = "mauler";
-	desc = "A stand with an empty old Syndicate combat mech bolted to it, described as a veritable tank of an exosuit."
-	},
+/obj/structure/showcase/mecha/marauder/mauler,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/listeningstation/hallway)
