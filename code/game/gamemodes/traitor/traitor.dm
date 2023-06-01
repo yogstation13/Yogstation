@@ -121,7 +121,8 @@
 			to_chat(traitor.current, span_danger("Remembering a tune, you slowly find the melody. Coded phrases and dark rooms flutter behind your eyelids. What could it mean? You should probably keep this to yourself."))
 			addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_mode/traitor, add_traitor_delayed), traitor, cached_antag), 1 MINUTES)
 		if(ANTAG_AWAKE)
-			traitor.add_antag_datum(cached_antag)
+			traitor.current.playsound_local(get_turf(traitor.current), 'sound/ambience/antag/tatoralert_buildup.ogg', 100, FALSE, pressure_affected = FALSE)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(traitor, add_antag_datum), cached_antag), 2 SECONDS)
 
 /datum/game_mode/traitor/proc/create_new_traitor()
 	var/list/potential_candidates = list()
