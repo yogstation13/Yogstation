@@ -37,7 +37,7 @@
 
 	if(isobserver(user))
 		var/mob/dead/observer/dead_mob = user
-		if(dead_mob.observetarget) // Observers can only click on action buttons if they're not observing something
+		if(dead_mob.observetarget && linked_action.owner != dead_mob) // Observers can only click on action buttons if they're not observing something and aren't owners
 			return FALSE
 
 	if(linked_action)
