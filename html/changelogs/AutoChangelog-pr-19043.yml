@@ -1,0 +1,4 @@
+author: "LazennG"
+delete-after: true 
+changes: 
+  - bugfix: "fixed buster arm grab opening ui's on stuff and toggling lockers"
