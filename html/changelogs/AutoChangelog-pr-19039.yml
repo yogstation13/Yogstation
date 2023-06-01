@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "ashwalkers require 6kPa of oxygen to breathe instead of 17kPa of nitrogen, removed a few redundant variable definitions"
