@@ -31,7 +31,7 @@
 	icon_deny = "wallhypo-deny"
 	tiltable = FALSE
 	density = FALSE
-	// No default products, all of this shit costs money
+	// yes default products because vending machines need them to work
 	products = list(/obj/item/hypospray = 55,
 					/obj/item/hypospray_upgrade/quickload = 55,
 					/obj/item/reagent_containers/glass/bottle/vial/libital = 60,
