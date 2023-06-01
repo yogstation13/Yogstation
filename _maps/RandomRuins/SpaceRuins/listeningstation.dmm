@@ -889,6 +889,7 @@
 /obj/item/shovel/spade,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/hatchet/wooden,
+/obj/item/seeds/grape,
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "im" = (
@@ -2477,6 +2478,15 @@
 	},
 /obj/item/storage/bag/plants/portaseeder,
 /obj/item/cultivator,
+/obj/item/seeds/grape,
+/obj/item/seeds/grape,
+/obj/item/seeds/grape,
+/obj/item/seeds/grape,
+/obj/item/seeds/eggplant,
+/obj/item/seeds/eggplant,
+/obj/item/seeds/eggplant,
+/obj/item/seeds/eggplant,
+/obj/item/seeds/eggplant,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Od" = (
