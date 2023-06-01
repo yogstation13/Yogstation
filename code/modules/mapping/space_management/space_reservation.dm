@@ -104,7 +104,7 @@
 /datum/turf_reservation/transit/proc/space_dump(atom/source, atom/movable/enterer)
 	SIGNAL_HANDLER
 
-	INVOKE_ASYNC(src, GLOBAL_PROC_REF(throw_atom), enterer)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(throw_atom), enterer)
 
 /datum/turf_reservation/proc/Reserve(width, height, zlevel)
 	src.width = width
