@@ -42,7 +42,7 @@
 		owner.balloon_alert(owner, "mouth covered!")
 		return FALSE
 	if(bloodsuckerdatum_power.my_clan.blood_drink_type != BLOODSUCKER_DRINK_PAINFUL && owner.grab_state <= GRAB_PASSIVE)
-		to_chat(owner, span_warning("Feeding as a Hecata would cause enough pain to the victim to make silent feeding like this impossible."))
+		owner.balloon_alert(owner, "can't silent feed!")
 		return FALSE
 	//Find target, it will alert what the problem is, if any.
 	if(!find_target())
