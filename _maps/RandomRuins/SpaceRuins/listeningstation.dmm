@@ -485,6 +485,10 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/suit_storage_unit/open,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
 "bF" = (
@@ -1827,10 +1831,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 26
-	},
 /turf/open/floor/wood/broken/six,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "zg" = (
@@ -2009,10 +2009,6 @@
 	},
 /obj/machinery/airalarm/syndicate{
 	pixel_y = 24
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
@@ -2631,10 +2627,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -28
-	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Po" = (
@@ -2743,13 +2735,6 @@
 /obj/structure/holosign/barrier/atmos,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
-"Ro" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
-	},
-/turf/open/floor/plasteel/grimy,
-/area/ruin/space/has_grav/listeningstation/quarters)
 "RB" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
 	dir = 8
@@ -3681,7 +3666,7 @@ sb
 kz
 aY
 pp
-Ro
+aV
 af
 wj
 cR
