@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "worldbreaker granter now properly becomes an empty vial after use"

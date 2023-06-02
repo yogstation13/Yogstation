@@ -1,9 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "make permeability actually work"
-  - bugfix: "fixes xeno neurotoxin only working on targets with protection from it"
-  - tweak: "toxin damage from neurotoxin spit cares about bio armor instead of bullet armor"
-  - tweak: "reagent/disease permeability now uses bio armor instead of a permeability coefficient"
-  - tweak: "certain touch chems now take permeability into account when they previously did not"
-  - tweak: "changed the bio armor on lots of stuff so they have the same or similar intended permeability as before"

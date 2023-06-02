@@ -1,5 +1,0 @@
-author: "Addust"
-delete-after: true 
-changes: 
-  - rscadd: "Literally entirely reworks the Syndicate listening post."
-  - rscadd: "The Syndicate Shiv-class Fighter can now recharge by docking to the Listening Post, as otherwise it could not get power."
