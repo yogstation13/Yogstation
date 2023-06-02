@@ -63,6 +63,8 @@
 		var/datum/reagent/blood/B = reagents.has_reagent(/datum/reagent/blood)
 		if(B && B.data && B.data["blood_type"])
 			blood_type = B.data["blood_type"]
+		else if(reagents.has_reagent(/datum/reagent/consumable/liquidelectricity))
+			blood_type = "LE"
 		else
 			blood_type = null
 	update_pack_name()
