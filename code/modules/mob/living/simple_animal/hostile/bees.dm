@@ -63,7 +63,7 @@
 	generate_bee_visuals()
 	AddComponent(/datum/component/swarming)
 	angery_eye = mutable_appearance('icons/mob/bees.dmi', "angery_eye",MOB_LAYER)
-	RegisterSignal(src, COMSIG_MOB_APPLY_DAMAGE, .proc/alert_hive)
+	RegisterSignal(src, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(alert_hive))
 
 /mob/living/simple_animal/hostile/poison/bees/Destroy()
 	if(beehome)
@@ -319,4 +319,4 @@
 
 /mob/living/simple_animal/hostile/poison/bees/short/Initialize(mapload, timetolive=50 SECONDS)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/death), timetolive)
+	addtimer(CALLBACK(src, PROC_REF(death)), timetolive)

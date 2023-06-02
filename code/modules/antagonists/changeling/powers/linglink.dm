@@ -58,7 +58,7 @@
 				target.say("[MODE_TOKEN_CHANGELING] AAAAARRRRGGGGGHHHHH!!")
 				to_chat(target, "<span class='changeling bold'>You can now communicate in the changeling hivemind, say \"[MODE_TOKEN_CHANGELING] message\" to communicate!</span>")
 				target.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 40) // So they don't choke to death while you interrogate them
-				addtimer(CALLBACK(src, .proc/sever_connection, user, target), 3 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(sever_connection), user, target), 3 MINUTES)
 				return
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("[name]", "[i]"))
 		if(!do_mob(user, target, 2 SECONDS))

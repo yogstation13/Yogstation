@@ -125,7 +125,7 @@
 	for(var/mob/living/simple_animal/hostile/poison/bees/B in bees)
 		B.toggle_angery(angery)
 	if(angery)
-		addtimer(CALLBACK(src, .proc/toggle_angery, FALSE), 300, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(toggle_angery), FALSE), 300, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/structure/beebox/examine(mob/user)
 	. = ..()

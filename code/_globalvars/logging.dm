@@ -24,6 +24,10 @@ GLOBAL_VAR(world_pda_log)
 GLOBAL_PROTECT(world_pda_log)
 GLOBAL_VAR(world_telecomms_log)
 GLOBAL_PROTECT(world_telecomms_log)
+
+GLOBAL_VAR(world_uplink_log)
+GLOBAL_PROTECT(world_uplink_log)
+
 GLOBAL_VAR(world_ntsl_log)
 GLOBAL_PROTECT(world_ntsl_log)
 GLOBAL_VAR(world_manifest_log)

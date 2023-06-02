@@ -29,6 +29,7 @@
 		if(istype(src, seed.product)) // no adding reagents if it is just a trash item
 			seed.prepare_result(src)
 		transform *= TRANSFORM_USING_VARIABLE(seed.potency, 100) + 0.5
+		w_class = round((seed.potency / 100) * 2, 1) + 1 //more potent plants are larger
 		add_juice()
 
 /// Ghost attack proc

@@ -11,7 +11,7 @@
 	if(iscarbon(loc))
 		var/mob/living/carbon/M = loc
 		if(M.handcuffed == src)
-			M.handcuffed = null
+			M.set_handcuffed(null)
 			M.update_handcuffed()
 			if(M.buckled && M.buckled.buckle_requires_restraints)
 				M.buckled.unbuckle_mob(M)
@@ -104,7 +104,7 @@
 		cuffs = new type()
 
 	cuffs.forceMove(target)
-	target.handcuffed = cuffs
+	target.set_handcuffed(cuffs)
 
 	target.update_handcuffed()
 	if(trashtype && !dispense)
@@ -337,7 +337,7 @@
 
 /obj/item/restraints/legcuffs/beartrap/energy/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/dissipate), 100)
+	addtimer(CALLBACK(src, PROC_REF(dissipate)), 100)
 
 /obj/item/restraints/legcuffs/beartrap/energy/proc/dissipate()
 	if(!ismob(loc))

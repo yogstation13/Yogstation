@@ -35,9 +35,9 @@
 	overlay = mutable_appearance('icons/effects/effects.dmi', "thermite")
 	master.add_overlay(overlay)
 
-	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_react)
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/attackby_react)
-	RegisterSignal(parent, COMSIG_ATOM_FIRE_ACT, .proc/flame_react)
+	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_react))
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby_react))
+	RegisterSignal(parent, COMSIG_ATOM_FIRE_ACT, PROC_REF(flame_react))
 
 /datum/component/thermite/Destroy()
 	var/turf/master = parent

@@ -15,12 +15,12 @@
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/gun/energy/kinetic_accelerator, /obj/item/tank/internals/ipc_coolant, /obj/item/crowbar)
 
 	var/list/funny_signals = list(
-		COMSIG_MOB_SAY = .proc/handle_speech,
-		COMSIG_MOB_DEATH = .proc/handle_death,
-		COMSIG_LIVING_IGNITED = .proc/handle_ignite,
-		COMSIG_LIVING_ELECTROCUTE_ACT = .proc/handle_shock,
-		COMSIG_CARBON_GAIN_WOUND = .proc/handle_wound_add,
-		COMSIG_MOB_APPLY_DAMAGE = .proc/handle_damage
+		COMSIG_MOB_SAY = PROC_REF(handle_speech),
+		COMSIG_MOB_DEATH = PROC_REF(handle_death),
+		COMSIG_LIVING_IGNITED = PROC_REF(handle_ignite),
+		COMSIG_LIVING_ELECTROCUTE_ACT = PROC_REF(handle_shock),
+		COMSIG_CARBON_GAIN_WOUND = PROC_REF(handle_wound_add),
+		COMSIG_MOB_APPLY_DAMAGE = PROC_REF(handle_damage)
 	)
 
 	var/static/list/wound_to_sound = list(
@@ -71,7 +71,7 @@
 	if(!length(sound_queue))
 		return
 
-	addtimer(CALLBACK(src, .proc/process_sound_queue), sound_delay)
+	addtimer(CALLBACK(src, PROC_REF(process_sound_queue)), sound_delay)
 
 /obj/item/clothing/suit/armor/nerd/emag_act(mob/user)
 
@@ -95,7 +95,7 @@
 	sound_queue += list(list(desired_file,desired_delay)) //BYOND is fucking weird so you have to do this bullshit if you want to add a list to a list.
 
 	if(was_empty_sound_queue)
-		addtimer(CALLBACK(src, .proc/process_sound_queue), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(process_sound_queue)), 1 SECONDS)
 
 	return TRUE
 

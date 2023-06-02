@@ -63,8 +63,16 @@
 		return
 
 	if(W)
-		// buckled cannot prevent machine interlinking but stops arm movement
-		if( buckled || incapacitated())
+		if(incapacitated())
+			return
+
+		//while buckled, you can still connect to and control things like doors, but you can't use your modules
+		if(buckled)
+			to_chat(src, span_warning("You can't use modules while buckled to [buckled]!"))
+			return
+
+		//if your "hands" are blocked you shouldn't be able to use modules
+		if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 			return
 
 		if(W == A)
@@ -170,7 +178,10 @@
 	change attack_robot() above to the proper function
 */
 /mob/living/silicon/robot/UnarmedAttack(atom/A)
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		return
 	A.attack_robot(src)
+
 /mob/living/silicon/robot/RangedAttack(atom/A)
 	A.attack_robot(src)
 

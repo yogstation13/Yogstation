@@ -10,7 +10,7 @@
 	max_integrity = 25
 	can_be_unanchored = TRUE
 	resistance_flags = ACID_PROOF
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 100)
+	armor = list(MELEE = 0, BULLET = -50, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 100)
 	CanAtmosPass = ATMOS_PASS_PROC
 	rad_insulation = RAD_VERY_LIGHT_INSULATION
 	var/ini_dir = null
@@ -65,7 +65,7 @@
 
 /obj/structure/window/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS ,null,CALLBACK(src, .proc/can_be_rotated),CALLBACK(src,.proc/after_rotation))
+	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS ,null,CALLBACK(src, PROC_REF(can_be_rotated)),CALLBACK(src, PROC_REF(after_rotation)))
 
 /obj/structure/window/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)
@@ -195,7 +195,7 @@
 		if(I.tool_behaviour == TOOL_SCREWDRIVER)
 			I.play_tool_sound(src, 75)
 			to_chat(user, span_notice("You begin to [anchored ? "unscrew the window from":"screw the window to"] the floor..."))
-			if(I.use_tool(src, user, decon_speed, extra_checks = CALLBACK(src, .proc/check_anchored, anchored)))
+			if(I.use_tool(src, user, decon_speed, extra_checks = CALLBACK(src, PROC_REF(check_anchored), anchored)))
 				setAnchored(!anchored)
 				to_chat(user, span_notice("You [anchored ? "fasten the window to":"unfasten the window from"] the floor."))
 			return
@@ -203,7 +203,7 @@
 		else if(I.tool_behaviour == TOOL_CROWBAR && reinf && (state == WINDOW_OUT_OF_FRAME))
 			to_chat(user, span_notice("You begin to lever the window into the frame..."))
 			I.play_tool_sound(src, 75)
-			if(I.use_tool(src, user, 100, extra_checks = CALLBACK(src, .proc/check_state_and_anchored, state, anchored)))
+			if(I.use_tool(src, user, 100, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 				state = RWINDOW_SECURE
 				to_chat(user, span_notice("You pry the window into the frame."))
 			return
@@ -211,7 +211,7 @@
 		else if(I.tool_behaviour == TOOL_WRENCH && !anchored)
 			I.play_tool_sound(src, 75)
 			to_chat(user, span_notice(" You begin to disassemble [src]..."))
-			if(I.use_tool(src, user, decon_speed, extra_checks = CALLBACK(src, .proc/check_state_and_anchored, state, anchored)))
+			if(I.use_tool(src, user, decon_speed, extra_checks = CALLBACK(src, PROC_REF(check_state_and_anchored), state, anchored)))
 				var/obj/item/stack/sheet/G = new glass_type(user.loc, glass_amount)
 				G.add_fingerprint(user)
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -390,10 +390,10 @@
 	icon_state = "rwindow"
 	reinf = TRUE
 	heat_resistance = 1600
-	armor = list(MELEE = 80, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 25, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
+	armor = list(MELEE = 60, BULLET = -50, LASER = 0, ENERGY = 0, BOMB = 25, BIO = 100, RAD = 100, FIRE = 80, ACID = 100)
 	max_integrity = 75
 	explosion_block = 1
-	damage_deflection = 11
+	damage_deflection = 10
 	state = RWINDOW_SECURE
 	glass_type = /obj/item/stack/sheet/rglass
 	rad_insulation = RAD_HEAVY_INSULATION
@@ -416,7 +416,7 @@
 				if(I.use_tool(src, user, 8 SECONDS, volume = 100))
 					to_chat(user, span_notice("The security bolts are glowing white hot and look ready to be removed."))
 					state = RWINDOW_BOLTS_HEATED
-					addtimer(CALLBACK(src, .proc/cool_bolts), 300)
+					addtimer(CALLBACK(src, PROC_REF(cool_bolts)), 300)
 				return
 		if(RWINDOW_BOLTS_HEATED)
 			if(I.tool_behaviour == TOOL_SCREWDRIVER)
@@ -492,7 +492,7 @@
 	icon_state = "plasmawindow"
 	reinf = FALSE
 	heat_resistance = 25000
-	armor = list(MELEE = 60, BULLET = 5, LASER = 0, ENERGY = 100, BOMB = 45, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 60, BULLET = -45, LASER = 0, ENERGY = 100, BOMB = 45, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_integrity = 150
 	explosion_block = 1
 	glass_type = /obj/item/stack/sheet/plasmaglass
@@ -531,7 +531,7 @@
 	icon_state = "plasmarwindow"
 	reinf = TRUE
 	heat_resistance = 50000
-	armor = list(MELEE = 80, BULLET = 20, LASER = 0, ENERGY = 100, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 80, BULLET = 5, LASER = 0, ENERGY = 100, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_integrity = 500
 	damage_deflection = 21
 	explosion_block = 2
@@ -548,7 +548,7 @@
 				if(I.use_tool(src, user, 180, volume = 100))
 					to_chat(user, span_notice("The security screws are glowing white hot and look ready to be removed."))
 					state = RWINDOW_BOLTS_HEATED
-					addtimer(CALLBACK(src, .proc/cool_bolts), 300)
+					addtimer(CALLBACK(src, PROC_REF(cool_bolts)), 300)
 				return
 		if(RWINDOW_BOLTS_HEATED)
 			if(I.tool_behaviour == TOOL_SCREWDRIVER)

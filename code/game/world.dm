@@ -120,6 +120,7 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_pda_log = "[GLOB.log_directory]/pda.log"
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
+	GLOB.world_uplink_log = "[GLOB.log_directory]/uplink.log"
 	GLOB.world_ntsl_log = "[GLOB.log_directory]/ntsl.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
@@ -277,7 +278,7 @@ GLOBAL_VAR(restart_counter)
 		num_deleted++
 	log_world("Deallocated [num_deleted] gas mixtures")
 	if(fexists(EXTOOLS))
-		call(EXTOOLS, "cleanup")()
+		LIBCALL(EXTOOLS, "cleanup")()
 	..()
 
 /world/proc/update_status() //yogs -- Mirrored in the Yogs folder in March 2019. Do not edit, swallow, or submerge in acid

@@ -200,7 +200,7 @@
 		if(check_streak(A,D)) //if a combo is made no grab upgrade is done
 			return TRUE
 		if(D.grabbedby(A))
-			D.Stun(15)
+			D.Stun(1.5 SECONDS)
 		if(A.grab_state < 1)
 			restraining = FALSE
 		return TRUE
@@ -252,7 +252,7 @@
 			playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 			if(I && D.temporarilyRemoveItemFromInventory(I))
 				A.put_in_hands(I)
-			D.Jitter(2)
+			D.adjust_jitter(2 SECONDS)
 			D.apply_damage(A.get_punchdamagehigh()/2, STAMINA) //5 damage
 		else
 			D.visible_message(span_danger("[A] grabs at [D]'s arm, but misses!"), \
@@ -264,8 +264,8 @@
 			return TRUE
 		log_combat(A, D, "began to chokehold(CQC)")
 		D.visible_message(
-			span_danger(isipc(D) ? "[A] attempts to deactivate [D]!" : "[A] puts [D] into a chokehold!"),
-			span_userdanger(isipc(D) ? "[A] attempts to deactivate you!" : "[A] puts you into a chokehold!")
+			span_danger("[isipc(D) ? "[A] attempts to deactivate [D]!" : "[A] puts [D] into a chokehold!"]"),
+			span_userdanger("[isipc(D) ? "[A] attempts to deactivate you!" : "[A] puts you into a chokehold!"]")
 		)
 		if(handle_chokehold(A, D))
 			D.Unconscious(40 SECONDS)

@@ -4,16 +4,6 @@
 // Return the item currently in the slot ID
 /mob/living/carbon/human/get_item_by_slot(slot_id)
 	switch(slot_id)
-		if(SLOT_BACK)
-			return back
-		if(SLOT_WEAR_MASK)
-			return wear_mask
-		if(SLOT_NECK)
-			return wear_neck
-		if(SLOT_HANDCUFFED)
-			return handcuffed
-		if(SLOT_LEGCUFFED)
-			return legcuffed
 		if(SLOT_BELT)
 			return belt
 		if(SLOT_WEAR_ID)
@@ -24,8 +14,6 @@
 			return glasses
 		if(SLOT_GLOVES)
 			return gloves
-		if(SLOT_HEAD)
-			return head
 		if(SLOT_SHOES)
 			return shoes
 		if(SLOT_WEAR_SUIT)
@@ -36,9 +24,48 @@
 			return l_store
 		if(SLOT_R_STORE)
 			return r_store
-		if(SLOT_S_STORE)
+		if(SLOT_SUIT_STORE)
 			return s_store
-	return null
+	return ..()
+
+/mob/living/carbon/human/get_slot_by_item(obj/item/looking_for)
+	if(looking_for == belt)
+		return ITEM_SLOT_BELT
+
+	if(looking_for == wear_id)
+		return ITEM_SLOT_ID
+
+	if(looking_for == ears)
+		return ITEM_SLOT_EARS
+
+	if(looking_for == glasses)
+		return ITEM_SLOT_EYES
+
+	if(looking_for == gloves)
+		return ITEM_SLOT_GLOVES
+
+	if(looking_for == head)
+		return ITEM_SLOT_HEAD
+
+	if(looking_for == shoes)
+		return ITEM_SLOT_FEET
+
+	if(looking_for == wear_suit)
+		return ITEM_SLOT_OCLOTHING
+
+	if(looking_for == w_uniform)
+		return ITEM_SLOT_ICLOTHING
+
+	if(looking_for == r_store)
+		return ITEM_SLOT_RPOCKET
+
+	if(looking_for == l_store)
+		return ITEM_SLOT_LPOCKET
+
+	if(looking_for == s_store)
+		return ITEM_SLOT_SUITSTORE
+
+	return ..()
 
 /mob/living/carbon/human/proc/get_all_slots()
 	. = get_head_slots() | get_body_slots()
@@ -120,7 +147,7 @@
 				update_inv_w_uniform()
 			if(wear_suit.breakouttime) //when equipping a straightjacket
 				stop_pulling() //can't pull if restrained
-				update_action_buttons_icon() //certain action buttons will no longer be usable.
+				update_mob_action_buttons() //certain action buttons will no longer be usable.
 			update_inv_wear_suit()
 		if(SLOT_W_UNIFORM)
 			w_uniform = I
@@ -132,7 +159,7 @@
 		if(SLOT_R_STORE)
 			r_store = I
 			update_inv_pockets()
-		if(SLOT_S_STORE)
+		if(SLOT_SUIT_STORE)
 			s_store = I
 			update_inv_s_store()
 		else
@@ -156,7 +183,7 @@
 			dropItemToGround(s_store, TRUE) //It makes no sense for your suit storage to stay on you if you drop your suit.
 		if(wear_suit.breakouttime) //when unequipping a straightjacket
 			drop_all_held_items() //suit is restraining
-			update_action_buttons_icon() //certain action buttons may be usable again.
+			update_mob_action_buttons() //certain action buttons may be usable again.
 		wear_suit = null
 		if(!QDELETED(src)) //no need to update we're getting deleted anyway
 			if(I.flags_inv & HIDEJUMPSUIT)
@@ -370,12 +397,12 @@
 
 /mob/living/carbon/human/proc/smart_equipsuit()
 	var/obj/item/thing = get_active_held_item()
-	var/obj/item/equipped_suit = get_item_by_slot(SLOT_S_STORE)
+	var/obj/item/equipped_suit = get_item_by_slot(SLOT_SUIT_STORE)
 	if(!equipped_suit) 
 		if(!thing)
 			to_chat(src, span_notice("You have no suit storage to take something out of."))
 			return
-		if(equip_to_slot_if_possible(thing, SLOT_S_STORE))
+		if(equip_to_slot_if_possible(thing, SLOT_SUIT_STORE))
 			update_inv_hands()
 		return
 	if(!SEND_SIGNAL(equipped_suit, COMSIG_CONTAINS_STORAGE)) // not a storage item

@@ -93,7 +93,7 @@
 		if(admin)
 			PrintReport() // admin scanner bypasses print wait
 		else
-			addtimer(CALLBACK(src, .proc/PrintReport), (scan_speed * 25) )
+			addtimer(CALLBACK(src, PROC_REF(PrintReport)), (scan_speed * 25) )
 	else
 		to_chat(user, span_notice("The scanner has no logs or is in use."))
 

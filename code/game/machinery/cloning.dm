@@ -212,13 +212,13 @@ GLOBAL_VAR_INIT(clones, 0)
 			if(G.suiciding) // The ghost came from a body that is suiciding.
 				return NONE
 		if(clonemind.damnation_type) //Can't clone the damned.
-			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
 			update_icon()
 			return NONE
 		if(clonemind.zombified) //Can't clone the damned x2
-			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
 			update_icon()

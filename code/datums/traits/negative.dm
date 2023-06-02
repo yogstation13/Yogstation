@@ -385,9 +385,9 @@
 	mob_trait = TRAIT_ANXIOUS
 
 /datum/quirk/social_anxiety/add()
-	RegisterSignal(quirk_holder, COMSIG_MOB_EYECONTACT, .proc/eye_contact)
-	RegisterSignal(quirk_holder, COMSIG_MOB_EXAMINATE, .proc/looks_at_floor)
-	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(quirk_holder, COMSIG_MOB_EYECONTACT, PROC_REF(eye_contact))
+	RegisterSignal(quirk_holder, COMSIG_MOB_EXAMINATE, PROC_REF(looks_at_floor))
+	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/quirk/social_anxiety/remove()
 	UnregisterSignal(quirk_holder, list(COMSIG_MOB_EYECONTACT, COMSIG_MOB_EXAMINATE, COMSIG_MOB_SAY))
@@ -420,7 +420,7 @@
 					break
 			if(prob(max(5,(nearby_people*12.5*moodmod)))) //Minimum 1/20 chance of stutter
 				// Add a short stutter, THEN treat our word
-				quirker.stuttering += max(3, quirker.stuttering)
+				quirker.adjust_stutter(0.5 SECONDS)
 				new_message += quirker.treat_message(word)
 
 			else
@@ -449,7 +449,7 @@
 	if(prob(85) || (istype(mind_check) && mind_check.mind))
 		return
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, quirk_holder, span_smallnotice("You make eye contact with [A].")), 3)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), quirk_holder, span_smallnotice("You make eye contact with [A].")), 3)
 
 /datum/quirk/social_anxiety/proc/eye_contact(datum/source, mob/living/other_mob, triggering_examiner)
 	var/mob/living/carbon/human/quirker = quirk_holder
@@ -463,17 +463,17 @@
 
 	switch(rand(1,3))
 		if(1)
-			quirker.Jitter(5)
+			quirker.adjust_jitter(5 SECONDS)
 			msg += "causing you to start fidgeting!"
 		if(2)
-			quirker.stuttering = max(3, quirker.stuttering)
+			quirker.adjust_stutter(3 SECONDS)
 			msg += "causing you to start stuttering!"
 		if(3)
 			quirker.Stun(2 SECONDS)
 			msg += "causing you to freeze up!"
 
 	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "anxiety_eyecontact", /datum/mood_event/anxiety_eyecontact)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, quirk_holder, span_userdanger("[msg]")), 3) // so the examine signal has time to fire and this will print after
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), quirk_holder, span_userdanger("[msg]")), 3) // so the examine signal has time to fire and this will print after
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/mood_event/anxiety_eyecontact

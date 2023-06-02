@@ -78,7 +78,7 @@
 	if(!emagged)
 		emagged = TRUE
 		visible_message(span_warning("[user] swipes a card through [src]."), span_notice("You overload [src]s internal reactor."))
-		addtimer(CALLBACK(src, .proc/explode), 1000)
+		addtimer(CALLBACK(src, PROC_REF(explode)), 1000)
 
 /mob/living/simple_animal/pet/dog/corgi/borgi/proc/explode()
 	visible_message(span_warning("[src] makes an odd whining noise."))
@@ -298,7 +298,7 @@
 /mob/living/simple_animal/pet/dog/corgi/proc/place_on_head(obj/item/item_to_add, mob/user)
 
 	if(istype(item_to_add, /obj/item/grenade/plastic)) // last thing he ever wears, I guess
-		INVOKE_ASYNC(item_to_add, /obj/item.proc/afterattack, src, user, 1)
+		INVOKE_ASYNC(item_to_add, TYPE_PROC_REF(/obj/item, afterattack), src, user, 1)
 		return
 
 	if(inventory_head)

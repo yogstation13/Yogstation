@@ -50,7 +50,7 @@
 /obj/item/gun/ballistic/bow/dropped()
 	. = ..()
 	if(!QDELING(src))
-		addtimer(CALLBACK(src, .proc/release_draw_if_not_held))
+		addtimer(CALLBACK(src, PROC_REF(release_draw_if_not_held)))
 
 /obj/item/gun/ballistic/bow/proc/release_draw_if_not_held()
 	if(!ismob(loc))
@@ -390,13 +390,16 @@
 	if(!thrower)
 		return
 	if(!returning)
-		addtimer(CALLBACK(src, .proc/return_to, thrower), 3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(return_to), thrower), 3 SECONDS)
 		returning = TRUE
 	var/obj/item/break_blade/secondblade = thrower.get_inactive_held_item()
 	if(istype(secondblade))
-		sleep(0.2 SECONDS)
-		thrower.dropItemToGround(secondblade, silent = TRUE)
-		secondblade.throw_at(target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart)
+		addtimer(CALLBACK(src, PROC_REF(finish_throw), secondblade, target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart), 0.2 SECONDS)
+
+/obj/item/break_blade/proc/finish_throw(obj/item/break_blade/secondblade, atom/target, range, speed, mob/thrower, \
+										spin, diagonals_first, datum/callback/callback, force, quickstart)
+	thrower.dropItemToGround(secondblade, silent = TRUE)
+	secondblade.throw_at(target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart)
 
 /obj/item/break_blade/proc/return_to(mob/living/user)
 	if(!istype(user))
@@ -484,7 +487,7 @@
 	. = ..()
 	if(recharge_time)
 		TIMER_COOLDOWN_START(src, "arrow_recharge", recharge_time)
-		addtimer(CALLBACK(src, .proc/end_cooldown), recharge_time)
+		addtimer(CALLBACK(src, PROC_REF(end_cooldown)), recharge_time)
 
 /obj/item/gun/ballistic/bow/energy/proc/end_cooldown()
 	playsound(src, 'sound/effects/sparks4.ogg', 25, 0)

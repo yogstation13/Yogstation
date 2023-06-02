@@ -73,28 +73,28 @@ Difficulty: Medium
 
 /datum/action/innate/megafauna_attack/fire_cone
 	name = "Fire Cone"
-	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "fireball"
 	chosen_message = span_colossus("You are now shooting fire at your target.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/fire_cone_meteors
 	name = "Fire Cone With Meteors"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = span_colossus("You are now shooting fire at your target and raining fire around you.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/mass_fire
 	name = "Mass Fire Attack"
-	icon_icon = 'icons/effects/fire.dmi'
+	button_icon = 'icons/effects/fire.dmi'
 	button_icon_state = "1"
 	chosen_message = span_colossus("You are now shooting mass fire at your target.")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/lava_swoop
 	name = "Lava Swoop"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "lavastaff_warn"
 	chosen_message = span_colossus("You are now swooping and raining lava at your target.")
 	chosen_attack_num = 4
@@ -155,7 +155,7 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/lava_swoop(var/amount = 30)
 	if(health < maxHealth * 0.5)
 		return swoop_attack(lava_arena = TRUE, swoop_cooldown = 60)
-	INVOKE_ASYNC(src, .proc/lava_pools, amount)
+	INVOKE_ASYNC(src, PROC_REF(lava_pools), amount)
 	swoop_attack(FALSE, target, 1000) // longer cooldown until it gets reset below
 	SLEEP_CHECK_DEATH(0)
 	fire_cone()
@@ -174,7 +174,7 @@ Difficulty: Medium
 		var/increment = 360 / spiral_count
 		for(var/j = 1 to spiral_count)
 			var/list/turfs = line_target(j * increment + i * increment / 2, range, src)
-			INVOKE_ASYNC(src, .proc/fire_line, turfs)
+			INVOKE_ASYNC(src, PROC_REF(fire_line), turfs)
 		SLEEP_CHECK_DEATH(25)
 	SetRecoveryTime(30)
 
@@ -241,19 +241,19 @@ Difficulty: Medium
 	playsound(get_turf(src),'sound/magic/fireball.ogg', 200, 1)
 	SLEEP_CHECK_DEATH(0)
 	if(prob(50) && meteors)
-		INVOKE_ASYNC(src, .proc/fire_rain)
+		INVOKE_ASYNC(src, PROC_REF(fire_rain))
 	var/range = 15
 	var/list/turfs = list()
 	turfs = line_target(-50, range, at)
-	INVOKE_ASYNC(src, .proc/fire_line, turfs)
+	INVOKE_ASYNC(src, PROC_REF(fire_line), turfs)
 	turfs = line_target(-25, range, at)
-	INVOKE_ASYNC(src, .proc/fire_line, turfs)
+	INVOKE_ASYNC(src, PROC_REF(fire_line), turfs)
 	turfs = line_target(0, range, at)
-	INVOKE_ASYNC(src, .proc/fire_line, turfs)
+	INVOKE_ASYNC(src, PROC_REF(fire_line), turfs)
 	turfs = line_target(25, range, at)
-	INVOKE_ASYNC(src, .proc/fire_line, turfs)
+	INVOKE_ASYNC(src, PROC_REF(fire_line), turfs)
 	turfs = line_target(50, range, at)
-	INVOKE_ASYNC(src, .proc/fire_line, turfs)
+	INVOKE_ASYNC(src, PROC_REF(fire_line), turfs)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/line_target(var/offset, var/range, var/atom/at = target)
 	if(!at)
@@ -444,7 +444,7 @@ Difficulty: Medium
 
 /obj/effect/temp_visual/lava_warning/Initialize(mapload, var/reset_time = 1 SECONDS)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/fall, reset_time)
+	INVOKE_ASYNC(src, PROC_REF(fall), reset_time)
 	src.alpha = 63.75
 	animate(src, alpha = 255, time = duration)
 
@@ -512,7 +512,7 @@ Difficulty: Medium
 
 /obj/effect/temp_visual/dragon_flight/Initialize(mapload, negative)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/flight, negative)
+	INVOKE_ASYNC(src, PROC_REF(flight), negative)
 
 /obj/effect/temp_visual/dragon_flight/proc/flight(negative)
 	if(negative)
@@ -564,7 +564,7 @@ Difficulty: Medium
 
 /obj/effect/temp_visual/target/Initialize(mapload, list/flame_hit)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/fall, flame_hit)
+	INVOKE_ASYNC(src, PROC_REF(fall), flame_hit)
 
 /obj/effect/temp_visual/target/proc/fall(list/flame_hit)
 	var/turf/T = get_turf(src)

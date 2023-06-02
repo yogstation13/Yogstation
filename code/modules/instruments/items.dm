@@ -86,8 +86,8 @@
 
 /obj/item/instrument/piano_synth/headphones/ComponentInitialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_SONG_START, .proc/start_playing)
-	RegisterSignal(src, COMSIG_SONG_END, .proc/stop_playing)
+	RegisterSignal(src, COMSIG_SONG_START, PROC_REF(start_playing))
+	RegisterSignal(src, COMSIG_SONG_END, PROC_REF(stop_playing))
 
 /**
   * Called by a component signal when our song starts playing.
@@ -213,6 +213,17 @@
 	icon_state = "recorder"
 	allowed_instrument_ids = "recorder"
 
+/datum/action/item_action/instrument
+	name = "Use Instrument"
+	desc = "Use the instrument specified."
+
+/datum/action/item_action/instrument/Trigger()
+	if(istype(target, /obj/item/instrument))
+		var/obj/item/instrument/I = target
+		I.interact(usr)
+		return
+	return ..()
+
 /obj/item/instrument/harmonica
 	name = "harmonica"
 	desc = "For when you get a bad case of the space blues."
@@ -230,7 +241,7 @@
 
 /obj/item/instrument/harmonica/equipped(mob/M, slot)
 	. = ..()
-	RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /obj/item/instrument/harmonica/dropped(mob/M)
 	. = ..()

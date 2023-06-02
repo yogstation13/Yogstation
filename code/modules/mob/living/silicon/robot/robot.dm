@@ -51,7 +51,6 @@
 	var/obj/item/stock_parts/cell/cell = null
 
 	var/opened = FALSE
-	var/emagged = FALSE
 	var/emag_cooldown = 0
 	var/wiresexposed = FALSE
 
@@ -124,7 +123,7 @@
 	wires = new /datum/wires/robot(src)
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
-	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
+	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 
 	robot_modules_background = new()
 	robot_modules_background.icon_state = "block"
@@ -192,7 +191,7 @@
 			mmi.forceMove(T)
 		if(mmi.brainmob)
 			if(mmi.brainmob.stat == DEAD)
-				mmi.brainmob.stat = CONSCIOUS
+				mmi.brainmob.set_stat(CONSCIOUS)
 				mmi.brainmob.remove_from_dead_mob_list()
 				mmi.brainmob.add_to_alive_mob_list()
 			mind.transfer_to(mmi.brainmob)
@@ -896,7 +895,7 @@
 	cell = new /obj/item/stock_parts/cell/hyper(src, 25000)
 	radio = new /obj/item/radio/borg/syndicate(src)
 	laws = new /datum/ai_laws/syndicate_override()
-	addtimer(CALLBACK(src, .proc/show_playstyle), 5)
+	addtimer(CALLBACK(src, PROC_REF(show_playstyle)), 5)
 
 /mob/living/silicon/robot/modules/syndicate/create_modularInterface()
 	if(!modularInterface)
@@ -1055,12 +1054,12 @@
 			return
 		if(IsUnconscious() || IsStun() || IsKnockdown() || IsParalyzed() || getOxyLoss() > maxHealth*0.5)
 			if(stat == CONSCIOUS)
-				stat = UNCONSCIOUS
+				set_stat(UNCONSCIOUS)
 				blind_eyes(1)
 				update_mobility()
 		else
 			if(stat == UNCONSCIOUS)
-				stat = CONSCIOUS
+				set_stat(CONSCIOUS)
 				adjust_blindness(-1)
 				update_mobility()
 	diag_hud_set_status()
@@ -1203,7 +1202,7 @@
 /datum/action/innate/undeployment
 	name = "Disconnect from shell"
 	desc = "Stop controlling your shell and resume normal core operations."
-	icon_icon = 'icons/mob/actions/actions_AI.dmi'
+	button_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_core"
 
 /datum/action/innate/undeployment/Trigger()

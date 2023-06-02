@@ -23,7 +23,7 @@
 
 	new /obj/effect/temp_visual/monkeyify(loc)
 
-	transformation_timer = addtimer(CALLBACK(src, .proc/finish_monkeyize, tr_flags), TRANSFORMATION_DURATION, TIMER_UNIQUE)
+	transformation_timer = addtimer(CALLBACK(src, PROC_REF(finish_monkeyize), tr_flags), TRANSFORMATION_DURATION, TIMER_UNIQUE)
 
 /mob/living/carbon/proc/finish_monkeyize(tr_flags)
 	transformation_timer = null
@@ -199,7 +199,7 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	new /obj/effect/temp_visual/monkeyify/humanify(loc)
 
-	transformation_timer = addtimer(CALLBACK(src, .proc/finish_humanize, tr_flags, chosen_prof), TRANSFORMATION_DURATION, TIMER_UNIQUE)
+	transformation_timer = addtimer(CALLBACK(src, PROC_REF(finish_humanize), tr_flags, chosen_prof), TRANSFORMATION_DURATION, TIMER_UNIQUE)
 
 /mob/living/carbon/proc/finish_humanize(tr_flags, datum/changelingprofile/chosen_prof)
 	transformation_timer = null
@@ -442,7 +442,7 @@
 
 	. = R
 	if(R.ckey && is_banned_from(R.ckey, "Cyborg"))
-		INVOKE_ASYNC(R, /mob/living/silicon/robot.proc/replace_banned_cyborg)
+		INVOKE_ASYNC(R, TYPE_PROC_REF(/mob/living/silicon/robot, replace_banned_cyborg))
 	qdel(src)
 
 /mob/living/silicon/robot/proc/replace_banned_cyborg()

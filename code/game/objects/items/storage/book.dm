@@ -202,7 +202,8 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 				SS.usability = TRUE
 				for(var/mob/living/simple_animal/shade/EX in SS)
 					SSticker.mode.remove_cultist(EX.mind, 1, 0)
-					EX.icon_state = "ghost1"
+
+					EX.icon_state = "shade_holy"
 					EX.name = "Purified [EX.name]"
 				SS.release_shades(user)
 				qdel(SS)
@@ -241,7 +242,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 				to_chat(S, span_userdanger("You were destroyed by the exorcism!"))
 				qdel(S)
 			if(sword.owner)
-				sword.owner.RemoveSpell(sword.summon)
+				sword.summon.Remove(sword.owner)
 				sword.owner = null
 			sword.possessed = FALSE //allows the chaplain (or someone else) to reroll a new spirit for their sword
 			sword.name = initial(sword.name)

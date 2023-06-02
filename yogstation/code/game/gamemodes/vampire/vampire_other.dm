@@ -48,5 +48,5 @@
 	if(!(user.mind && user.mind.holy_role) && is_vampire(user))
 		to_chat(user, span_danger("[deity_name] channels through \the [src] and sets you ablaze for your blasphemy!"))
 		user.adjust_fire_stacks(5)
-		user.IgniteMob()
+		user.ignite_mob()
 		user.emote("scream", 1)

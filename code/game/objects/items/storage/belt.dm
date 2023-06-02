@@ -739,7 +739,7 @@
 		/obj/item/clothing/gloves,
 		/obj/item/melee/flyswatter,
 		/obj/item/assembly/mousetrap,
-		/obj/item/paint/paint_remover
+		/obj/item/paint/paint_remover,
 		))
 
 /obj/item/storage/belt/janitor/full/PopulateContents()
@@ -751,7 +751,7 @@
 
 /obj/item/storage/belt/bandolier
 	name = "bandolier"
-	desc = "A bandolier for holding shotgun ammunition."
+	desc = "A bandolier for holding ballistic ammunition."
 	icon_state = "bandolier"
 	item_state = "bandolier"
 
@@ -762,8 +762,19 @@
 	STR.max_combined_w_class = 24
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
-		/obj/item/ammo_casing/shotgun
+		//Can hold just about every ballistic bullet type
+		/obj/item/ammo_casing
+		), list(
+		//Can't hold arrows, rockets, and the like (but it can hold foam darts!)
+		/obj/item/ammo_casing/caseless,
+		/obj/item/ammo_casing/reusable/arrow
 		))
+
+/obj/item/storage/belt/bandolier/sharpshooter/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/ammo_casing/m308 = 24
+	)
+	generate_items_inside(items_inside, src)
 
 /obj/item/storage/belt/holster
 	name = "shoulder holster"
@@ -874,7 +885,7 @@
 /obj/item/storage/belt/quiver/returning/proc/mark_arrow_return(target, atom/movable/AM, atom/new_location)
 	if(!istype(AM, return_type))
 		return
-	addtimer(CALLBACK(src, .proc/check_arrow_return, AM), return_time)
+	addtimer(CALLBACK(src, PROC_REF(check_arrow_return), AM), return_time)
 
 /obj/item/storage/belt/quiver/returning/proc/check_arrow_return(atom/movable/arrow)
 	if(!istype(arrow, return_type) || arrow.loc == src || (ismob(loc) && (loc == arrow.loc) || (istype(arrow.loc) && loc == arrow.loc.loc)))

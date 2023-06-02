@@ -94,7 +94,7 @@
 		L.visible_message(span_revennotice("A strange purple glow wraps itself around [L] as [L.p_they()] suddenly fall[L.p_s()] unconscious."),
 			span_revendanger("[desc]"))
 		// Don't let them sit suround unconscious forever
-		addtimer(CALLBACK(src, .proc/sleeper_dreams, L), 100)
+		addtimer(CALLBACK(src, PROC_REF(sleeper_dreams), L), 100)
 
 	// Existing sleepers
 	for(var/i in found)
@@ -265,17 +265,17 @@
 
 	var/list/counted_money = list()
 
-	for(var/obj/item/coin/C in AM.GetAllContents())
+	for(var/obj/item/coin/C in AM.get_all_contents())
 		if(payees[AM] >= threshold)
 			break
 		payees[AM] += C.value
 		counted_money += C
-	for(var/obj/item/stack/spacecash/S in AM.GetAllContents())
+	for(var/obj/item/stack/spacecash/S in AM.get_all_contents())
 		if(payees[AM] >= threshold)
 			break
 		payees[AM] += S.value * S.amount
 		counted_money += S
-	for(var/obj/item/holochip/H in AM.GetAllContents())
+	for(var/obj/item/holochip/H in AM.get_all_contents())
 		if(payees[AM] >= threshold)
 			break
 		payees[AM] += H.credits

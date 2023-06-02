@@ -200,3 +200,4 @@
 	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
 	icon_state = "sheetpride"
 	item_state = "sheetpride"
+	randomizable = FALSE

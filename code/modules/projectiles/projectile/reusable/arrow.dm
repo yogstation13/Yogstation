@@ -34,7 +34,7 @@
 		
 	if(arrow.flaming)
 		L.adjust_fire_stacks(1)
-		L.IgniteMob()
+		L.ignite_mob()
 		arrow.flaming = FALSE
 
 	arrow.update_icon()
@@ -223,6 +223,8 @@
 	var/obj/item/embed_type = /obj/item/ammo_casing/reusable/arrow/energy
 	
 /obj/item/projectile/energy/arrow/on_hit(atom/target, blocked = FALSE)
+	if(istype(target, /obj/structure/blob))
+		damage = damage / 2
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/embede = target
 		var/obj/item/bodypart/part = embede.get_bodypart(def_zone)
@@ -286,7 +288,7 @@
 		if(C.dna && (C.dna.check_mutation(HULK) || C.dna.check_mutation(ACTIVE_HULK)))
 			C.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
 		else if((C.status_flags & CANKNOCKDOWN) && !HAS_TRAIT(C, TRAIT_STUNIMMUNE))
-			addtimer(CALLBACK(C, /mob/living/carbon.proc/do_jitter_animation, jitter), 5)
+			addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), jitter), 5)
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)

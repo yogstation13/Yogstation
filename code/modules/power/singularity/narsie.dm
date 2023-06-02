@@ -37,7 +37,7 @@
 	if(A)
 		var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/cult_effects.dmi', "ghostalertsie")
 		notify_ghosts("Nar'sie has risen in \the [A.name]. Reach out to the Geometer to be given a new shell for your soul.", source = src, alert_overlay = alert_overlay, action=NOTIFY_ATTACK)
-	INVOKE_ASYNC(src, .proc/narsie_spawn_animation)
+	INVOKE_ASYNC(src, PROC_REF(narsie_spawn_animation))
 
 /obj/singularity/narsie/large/cult  // For the new cult ending, guaranteed to end the round within 3 minutes
 	var/list/souls_needed = list()
@@ -73,7 +73,7 @@
 			singulo.target = src
 	
 	soul_goal = round(1 + LAZYLEN(souls_needed) * 0.75)
-	INVOKE_ASYNC(GLOBAL_PROC, .proc/begin_the_end)
+	INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(begin_the_end))
 
 /proc/begin_the_end()
 	ending_helper()
@@ -81,7 +81,7 @@
 		priority_announce("Status report? We detected a anomaly, but it disappeared almost immediately.","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
 		GLOB.cult_narsie = null
 		sleep(20)
-		INVOKE_ASYNC(GLOBAL_PROC, .proc/cult_ending_helper, 2)
+		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(cult_ending_helper), 2)
 		return
 	sleep(5 SECONDS)
 	priority_announce("An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 30 SECONDS.","Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
@@ -90,7 +90,7 @@
 		priority_announce("Termination of event has been detected. Please note that further damage to company property or wastage of company resources will not be tolerated.","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
 		GLOB.cult_narsie = null
 		sleep(20)
-		INVOKE_ASYNC(GLOBAL_PROC, .proc/cult_ending_helper, 2)
+		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(cult_ending_helper), 2)
 		return
 	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: 30 SECONDS.","Central Command Higher Dimensional Affairs")
 	sleep(5 SECONDS)
@@ -105,12 +105,12 @@
 		set_security_level("red")
 		SSshuttle.clearHostileEnvironment()
 		SSshuttle.lockdown = FALSE
-		INVOKE_ASYNC(GLOBAL_PROC, .proc/cult_ending_helper, 2)
+		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(cult_ending_helper), 2)
 		return
 	if(GLOB.cult_narsie.resolved == FALSE)
 		GLOB.cult_narsie.resolved = TRUE
 		sound_to_playing_players('sound/machines/alarm.ogg')
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/cult_ending_helper), 12 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(cult_ending_helper)), 12 SECONDS)
 
 /obj/singularity/narsie/large/cult/Destroy()
 	send_to_playing_players("<span class='narsie'>\"<b>[pick("Nooooo...", "Not die. How-", "Die. Mort-", "Sas tyen re-")]\"</b></span>")

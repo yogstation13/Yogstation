@@ -23,7 +23,7 @@
 
 	. = list("<span class='info'>This is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
 
-	var/vampDesc = ReturnVampExamine(user) // Fulpstation Bloodsuckers edit STARTS
+	var/vampDesc = return_vamp_examine(user) // Fulpstation Bloodsuckers edit STARTS
 	var/vassDesc = ReturnVassalExamine(user)
 	if(vampDesc != "")
 		. += vampDesc
@@ -31,7 +31,6 @@
 		. += vassDesc // Fulpstation Bloodsucker edit ENDS
 
 	var/list/obscured = check_obscured_slots()
-	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
 	//uniform
 	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
@@ -50,7 +49,7 @@
 	if(wear_suit)
 		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
 		//suit/armor storage
-		if(s_store && !(SLOT_S_STORE in obscured))
+		if(s_store && !(SLOT_SUIT_STORE in obscured))
 			. += "[t_He] [t_is] carrying [s_store.get_examine_string(user)] on [t_his] [wear_suit.name]."
 	//back
 	if(back)
@@ -98,7 +97,10 @@
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
 		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
-			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
+			if(isipc(src))
+				. += span_warning("<B>Their monitor hums quietly, with an underlying collection of blood-red pixels swirling faintly.</B>")
+			else
+				. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 
 	//ears
 	if(ears && !(SLOT_EARS in obscured))
@@ -110,15 +112,6 @@
 
 	//Status effects
 	. += status_effect_examines()
-
-	//Jitters
-	switch(jitteriness)
-		if(300 to INFINITY)
-			. += span_warning("<B>[t_He] [t_is] convulsing violently!</B>")
-		if(200 to 300)
-			. += span_warning("[t_He] [t_is] extremely jittery.")
-		if(100 to 200)
-			. += span_warning("[t_He] [t_is] twitching ever so slightly.")
 
 	if(islist(dna.features) && dna.features["wings"] && dna.features["wings"] != "None")
 		var/badwings = ""
@@ -370,21 +363,6 @@
 		msg += "[t_His] whole body is covered in sigils!\n"
 
 	if(!appears_dead)
-		if(drunkenness && !skipface) //Drunkenness
-			switch(drunkenness)
-				if(11 to 21)
-					msg += "[t_He] [t_is] slightly flushed.\n"
-				if(21.01 to 41) //.01s are used in case drunkenness ends up to be a small decimal
-					msg += "[t_He] [t_is] flushed.\n"
-				if(41.01 to 51)
-					msg += "[t_He] [t_is] quite flushed and [t_his] breath smells of alcohol.\n"
-				if(51.01 to 61)
-					msg += "[t_He] [t_is] very flushed and [t_his] movements jerky, with breath reeking of alcohol.\n"
-				if(61.01 to 91)
-					msg += "[t_He] look[p_s()] like a drunken mess.\n"
-				if(91.01 to INFINITY)
-					msg += "[t_He] [t_is] a shitfaced, slobbering wreck.\n"
-
 		if(src != user)
 			if(HAS_TRAIT(user, TRAIT_EMPATH))
 				if (a_intent != INTENT_HELP)
@@ -584,8 +562,10 @@
 		if(glasses)
 			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
 		else if(eye_color == BLOODCULT_EYE && HAS_TRAIT(src, CULT_EYES))
-			. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
-
+			if(isipc(src))
+				. += span_warning("<B>Their monitor hums quietly, with an underlying collection of blood-red pixels swirling faintly.</B>")
+			else
+				. += span_warning("<B>[t_His] eyes are glowing an unnatural red!</B>")
 	//ears
 	if(ears && !(SLOT_EARS in obscured))
 		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."

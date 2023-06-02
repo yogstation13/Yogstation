@@ -563,10 +563,10 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "lime lipstick"
 	unlock_path = /obj/item/lipstick/random
 /datum/donator_gear/rolled_poster
-	name = "contraband poster - Lusty Xenomorph"
+	name = "random contraband poster"
 	unlock_path = /obj/item/poster/random_contraband
 /datum/donator_gear/rolled_legit
-	name = "motivational poster - Help Others"
+	name = "random motivational poster"
 	unlock_path = /obj/item/poster/random_official
 /datum/donator_gear/razor
 	name = "electric razor"
@@ -595,6 +595,9 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/sword0
 	name = "toy sword"
 	unlock_path = /obj/item/toy/sword
+/datum/donator_gear/hammer
+	name = "toy sledgehammer"
+	unlock_path = /obj/item/twohanded/vxtvulhammer/toy
 
 //plushies - kill me, for fuck sake
 /datum/donator_gear/plushvar

@@ -21,7 +21,9 @@
   * make sure you add an update to the schema_version stable in the db changelog
   */
 
-#define DB_MINOR_VERSION 12
+#define DB_MINOR_VERSION 13
+#define DB_BOUND_CREDENTIALS_FLAG_BYPASS_BANS "bypass_bans"
+#define DB_BOUND_CREDENTIALS_FLAG_ALLOW_PROXIES "allow_proxies"
 
 //! ## Timing subsystem
 /**
@@ -156,6 +158,7 @@
 #define INIT_ORDER_OVERLAY			-6
 #define INIT_ORDER_XKEYSCORE		-10
 #define INIT_ORDER_STICKY_BAN		-10
+#define INIT_ORDER_ECHELON			-10
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
 #define INIT_ORDER_MINOR_MAPPING	-40

@@ -8,7 +8,7 @@
 	visor_flags = MASKINTERNALS
 	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.1
-	permeability_coefficient = 0.5
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0)
 	actions_types = list(/datum/action/item_action/adjust)
 	flags_cover = MASKCOVERSMOUTH
 	visor_flags_cover = MASKCOVERSMOUTH
@@ -48,6 +48,6 @@
 	name = "medical mask"
 	icon_state = "medical"
 	item_state = "m_mask"
-	permeability_coefficient = 0.01
 	equip_delay_other = 10
 	mutantrace_variation = MUTANTRACE_VARIATION
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 0, ACID = 0)

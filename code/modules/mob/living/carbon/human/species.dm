@@ -119,8 +119,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/inert_mutation 	= DWARFISM
 	///used to set the mobs deathsound on species change
 	var/deathsound
-	///Sounds to override barefeet walkng
+	///Sounds to override barefeet walking
 	var/list/special_step_sounds
+	///How loud to play the step override
+	var/special_step_volume = 50
 	///Sounds to play while walking regardless of wearing shoes
 	var/list/special_walk_sounds
 	///Special sound for grabbing
@@ -333,7 +335,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(slot == ORGAN_SLOT_BRAIN)
 				var/obj/item/organ/brain/brain = oldorgan
 				if(!brain.decoy_override)//"Just keep it if it's fake" - confucius, probably
-					brain.Remove(C,TRUE, TRUE) //brain argument used so it doesn't cause any... sudden death.
+					brain.Remove(C, TRUE, TRUE) //brain argument used so it doesn't cause any... sudden death.
 					QDEL_NULL(brain)
 					oldorgan = null //now deleted
 			else
@@ -1231,7 +1233,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if( I.w_class <= WEIGHT_CLASS_SMALL || (I.slot_flags & ITEM_SLOT_POCKET) )
 				return TRUE
 			return FALSE
-		if(SLOT_S_STORE)
+		if(SLOT_SUIT_STORE)
 			if(HAS_TRAIT(I, TRAIT_NODROP))
 				return FALSE
 			if(H.s_store && H.s_store != I)
@@ -1356,7 +1358,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		else if(H.satiety < 0)
 			H.satiety++
 			if(prob(round(-H.satiety/40)))
-				H.Jitter(5)
+				H.adjust_jitter(5 SECONDS)
 			hunger_rate = 3 * HUNGER_FACTOR
 		hunger_rate *= H.physiology.hunger_mod
 		H.adjust_nutrition(-hunger_rate)
@@ -1428,7 +1430,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(radiation > RAD_MOB_HAIRLOSS)
 		if(prob(15) && !(H.hair_style == "Bald") && (HAIR in species_traits))
 			to_chat(H, span_danger("Your hair starts to fall out in clumps..."))
-			addtimer(CALLBACK(src, .proc/go_bald, H), 50)
+			addtimer(CALLBACK(src, PROC_REF(go_bald), H), 50)
 
 /datum/species/proc/go_bald(mob/living/carbon/human/H)
 	if(QDELETED(H))	//may be called from a timer
@@ -1826,7 +1828,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 						if(H.stat == CONSCIOUS)
 							H.visible_message(span_danger("[H] has been knocked senseless!"), \
 											span_userdanger("[H] has been knocked senseless!"))
-							H.confused = max(H.confused, 20)
+							H.set_confusion_if_lower(20 SECONDS)
 							H.adjust_blurriness(10)
 						if(prob(10))
 							H.gain_trauma(/datum/brain_trauma/mild/concussion)
@@ -2074,7 +2076,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 //////////
 
 /datum/species/proc/handle_fire(mob/living/carbon/human/H, no_protection = FALSE)
-	if(!CanIgniteMob(H))
+	if(!Canignite_mob(H))
 		return TRUE
 	if(H.on_fire)
 		//the fire tries to damage the exposed clothes and items
@@ -2135,12 +2137,12 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 2))
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
 
-/datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)
+/datum/species/proc/Canignite_mob(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))
 		return FALSE
 	return TRUE
 
-/datum/species/proc/ExtinguishMob(mob/living/carbon/human/H)
+/datum/species/proc/extinguish_mob(mob/living/carbon/human/H)
 	return
 
 /datum/species/proc/spec_revival(mob/living/carbon/human/H, admin_revive = FALSE)
@@ -2283,7 +2285,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		buckled_obj.unbuckle_mob(H)
 		step(buckled_obj, olddir)
 	else
-		new /datum/forced_movement(H, get_ranged_target_turf(H, olddir, 4), 1, FALSE, CALLBACK(H, /mob/living/carbon/.proc/spin, 1, 1))
+		new /datum/forced_movement(H, get_ranged_target_turf(H, olddir, 4), 1, FALSE, CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon, spin), 1, 1))
 	return TRUE
 
 //UNSAFE PROC, should only be called through the Activate or other sources that check for CanFly
@@ -2306,8 +2308,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/action/innate/flight
 	name = "Toggle Flight"
-	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_STUN
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	check_flags = AB_CHECK_CONSCIOUS| AB_CHECK_IMMOBILE
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "flight"
 
 /datum/action/innate/flight/Activate()

@@ -314,8 +314,8 @@
 /datum/action/innate/resist_control
 	name = "Resist control"
 	desc = "Try to take back control over your brain. A strong nerve impulse should do it."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_horror.dmi'
+	background_icon_state = "bg_heretic"
+	button_icon = 'icons/mob/actions/actions_horror.dmi'
 	button_icon_state = "resist_control"
 
 /datum/action/innate/resist_control/Activate()
@@ -332,7 +332,7 @@
 		delay += rand(20 SECONDS,30 SECONDS)
 	to_chat(src, span_danger("You begin doggedly resisting the parasite's control."))
 	to_chat(H.victim, span_danger("You feel the captive mind of [src] begin to resist your control."))
-	addtimer(CALLBACK(src, .proc/return_control), delay)
+	addtimer(CALLBACK(src, PROC_REF(return_control)), delay)
 
 /mob/living/captive_brain/proc/return_control()
     if(!H || !H.controlling)

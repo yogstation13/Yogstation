@@ -23,7 +23,7 @@
 		synthesizing = TRUE
 		to_chat(owner, span_notice("You feel less hungry..."))
 		owner.adjust_nutrition(50)
-		addtimer(CALLBACK(src, .proc/synth_cool), 50)
+		addtimer(CALLBACK(src, PROC_REF(synth_cool)), 50)
 
 /obj/item/organ/cyberimp/chest/nutriment/proc/synth_cool()
 	synthesizing = FALSE
@@ -57,7 +57,7 @@
 /obj/item/organ/cyberimp/chest/reviver/on_life()
 	if(reviving)
 		if(owner.stat == UNCONSCIOUS || owner.stat == SOFT_CRIT)
-			addtimer(CALLBACK(src, .proc/heal), 2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(heal)), 2 SECONDS)
 		else
 			cooldown = revive_cost + world.time
 			reviving = FALSE
@@ -104,7 +104,7 @@
 		if(H.stat != DEAD && prob(50 / severity) && H.can_heartattack())
 			H.set_heartattack(TRUE)
 			to_chat(H, span_userdanger("You feel a horrible agony in your chest!"))
-			addtimer(CALLBACK(src, .proc/undo_heart_attack), 10 SECONDS / severity)
+			addtimer(CALLBACK(src, PROC_REF(undo_heart_attack)), 10 SECONDS / severity)
 
 /obj/item/organ/cyberimp/chest/reviver/proc/undo_heart_attack()
 	var/mob/living/carbon/human/H = owner
@@ -151,7 +151,7 @@
 		on = TRUE
 		if(allow_thrust(0.01))
 			ion_trail.start()
-			RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/move_react)
+			RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 			owner.add_movespeed_modifier(MOVESPEED_ID_CYBER_THRUSTER, priority=100, multiplicative_slowdown=-0.3, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 			if(!silent)
 				to_chat(owner, span_notice("You turn your thrusters set on."))
@@ -171,7 +171,7 @@
 		icon_state = "imp_jetpack"
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/thrusters/proc/move_react()
 	allow_thrust(0.01)
@@ -254,7 +254,7 @@
 		owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
 		owner.next_move_modifier *= 0.7
 		owner?.dna?.species?.action_speed_coefficient *= 0.7
-		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/move_react)
+		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
 	else
 		if(COOLDOWN_FINISHED(src, endsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
@@ -275,7 +275,7 @@
 		icon_state = "imp_spinal"
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage
 	var/turf/currentloc = get_turf(owner)
@@ -315,7 +315,7 @@
 				if(COOLDOWN_FINISHED(src, alertcooldown))
 					to_chat(owner, span_alert("You feel your spine tingle."))
 					COOLDOWN_START(src, alertcooldown, 10 SECONDS)
-				owner.hallucination += 5
+				owner.adjust_hallucinations(20 SECONDS)
 				owner.adjustFireLoss(1)
 			if(50 to 100)
 				if(COOLDOWN_FINISHED(src, alertcooldown) || !hasexerted)
@@ -323,7 +323,7 @@
 					COOLDOWN_START(src, alertcooldown, 5 SECONDS)
 				hasexerted = TRUE
 				owner.set_drugginess(10)
-				owner.hallucination += 100
+				owner.adjust_hallucinations(20 SECONDS)
 				owner.adjustFireLoss(5)
 			if(100 to INFINITY)//no infinite abuse
 				to_chat(owner, span_userdanger("You feel a slight sense of shame as your brain and spine rip themselves apart from overexertion."))
@@ -340,18 +340,18 @@
 	. = ..()
 	switch(severity)//i don't want emps to just be damage again, that's boring
 		if(EMP_HEAVY)
-			owner.adjust_drugginess(40)
-			owner.hallucination += 500
+			owner.set_drugginess(40)
+			owner.adjust_hallucinations(500 SECONDS)
 			owner.blur_eyes(20)
-			owner.dizziness += 10
+			owner.adjust_dizzy(10 SECONDS)
 			time_on += 10
 			owner.adjustFireLoss(10)
 			to_chat(owner, span_warning("Your spinal implant malfunctions and you feel it scramble your brain!"))
 		if(EMP_LIGHT)
-			owner.adjust_drugginess(20)
-			owner.hallucination += 200
+			owner.set_drugginess(20)
+			owner.adjust_hallucinations(200 SECONDS)
 			owner.blur_eyes(10)
-			owner.dizziness += 5
+			owner.adjust_dizzy(5 SECONDS)
 			time_on += 5
 			owner.adjustFireLoss(5)
 			to_chat(owner, span_danger("Your spinal implant malfunctions and you suddenly feel... wrong."))

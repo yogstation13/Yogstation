@@ -14,7 +14,6 @@
 		var/datum/antagonist/vampire/vamp = mind.has_antag_datum(/datum/antagonist/vampire)
 		vamp.vampire_life()
 
-
 /datum/game_mode/vampire
 	name = "vampire"
 	config_tag = "vampire"
@@ -90,17 +89,6 @@
 
 /proc/is_vampire(mob/living/M)
 	return M?.mind?.has_antag_datum(/datum/antagonist/vampire)
-
-/datum/game_mode/proc/update_vampire_icons_added(datum/mind/traitor_mind)
-	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_VAMPIRE]
-	vamphud.join_hud(traitor_mind.current)
-	set_antag_hud(traitor_mind.current, "vampire")
-
-/datum/game_mode/proc/update_vampire_icons_removed(datum/mind/traitor_mind)
-	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_VAMPIRE]
-	vamphud.leave_hud(traitor_mind.current)
-	set_antag_hud(traitor_mind.current, null)
-
 
 /datum/game_mode/vampire/generate_report()
 	return "The Wizard Federation has created a new being based off ancient mythology. \

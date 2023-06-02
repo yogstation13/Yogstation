@@ -7,7 +7,7 @@
 	layer = 2.9
 	density = TRUE
 	var/list/inventory = list()
-	var/list/allowed_types = list()
+	var/list/allowed_types = list(/obj/item/ammo_box/magazine/recharge/ntusp)
 	
 	contents = newlist(/obj/item/gun/energy/disabler, 
 					   /obj/item/gun/ballistic/automatic/pistol/ntusp)

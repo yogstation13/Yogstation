@@ -34,7 +34,7 @@
 	add()
 	if(spawn_effects)
 		on_spawn()
-		addtimer(CALLBACK(src, .proc/post_add), 30)
+		addtimer(CALLBACK(src, PROC_REF(post_add)), 30)
 
 /datum/quirk/Destroy()
 	if(not_init) // Yogs -- Allows quirks to be instantiated without all the song & dance below happening

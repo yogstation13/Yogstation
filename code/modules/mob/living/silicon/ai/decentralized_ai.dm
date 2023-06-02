@@ -31,7 +31,7 @@
 		to_chat(src, span_userdanger("Connection to data core lost. Attempting to reaquire connection..."))
 	
 	if(!GLOB.data_cores.len)
-		INVOKE_ASYNC(src, /mob/living/silicon/ai.proc/death_prompt)
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/mob/living/silicon/ai, death_prompt))
 		is_dying = TRUE
 		return
 
@@ -40,7 +40,7 @@
 	var/obj/machinery/ai/data_core/new_data_core = available_ai_cores()
 
 	if(!new_data_core || (new_data_core && !new_data_core.can_transfer_ai()))
-		INVOKE_ASYNC(src, /mob/living/silicon/ai.proc/death_prompt)
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/mob/living/silicon/ai, death_prompt))
 		is_dying = TRUE
 		return
 

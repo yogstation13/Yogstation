@@ -41,11 +41,11 @@
 			if(6)
 				owner.Stun(1)
 				owner.Knockdown(20)
-				owner.Jitter(500)
+				owner.adjust_jitter(500 SECONDS)
 
 /datum/mutation/human/cluwne/on_losing(mob/living/carbon/human/owner)
 	owner.adjust_fire_stacks(1)
-	owner.IgniteMob()
+	owner.ignite_mob()
 	owner.dna.add_mutation(CLUWNEMUT)
 
 /mob/living/carbon/human/proc/cluwneify()

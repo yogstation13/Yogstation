@@ -139,6 +139,7 @@
 /area/shuttle/supply
 	name = "Supply Shuttle"
 	blob_allowed = FALSE
+	area_flags = NOTELEPORT
 
 /area/shuttle/ai
 	name = "AI Ship Shuttle"
@@ -152,10 +153,12 @@
 
 /area/shuttle/escape/luxury
 	name = "Luxurious Emergency Shuttle"
+	area_flags = NOTELEPORT
 
 /area/shuttle/escape/arena
 	name = "The Arena"
 	noteleport = TRUE
+	area_flags = NOTELEPORT
 
 /area/shuttle/escape/meteor
 	name = "\proper a meteor with engines strapped to it"

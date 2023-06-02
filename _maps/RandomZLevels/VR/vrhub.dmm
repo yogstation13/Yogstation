@@ -612,7 +612,7 @@
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "ek" = (
-/obj/item/book/granter/spell/charge,
+/obj/item/book/granter/action/spell/charge,
 /turf/open/floor/bronze{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
@@ -625,7 +625,7 @@
 	},
 /area/awaymission/vr/syndicate)
 "eq" = (
-/obj/item/book/granter/spell/forcewall,
+/obj/item/book/granter/action/spell/forcewall,
 /turf/open/floor/bronze{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
@@ -1565,7 +1565,7 @@
 /turf/closed/indestructible/fakeglass,
 /area/awaymission/vr/syndicate)
 "uE" = (
-/obj/item/book/granter/spell/fireball,
+/obj/item/book/granter/action/spell/fireball,
 /turf/open/floor/bronze{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
@@ -2953,7 +2953,7 @@
 /turf/open/indestructible,
 /area/awaymission/vr/hub)
 "RY" = (
-/obj/item/book/granter/spell/sacredflame,
+/obj/item/book/granter/action/spell/sacredflame,
 /turf/open/floor/bronze{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
@@ -3054,7 +3054,7 @@
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "Uf" = (
-/obj/item/book/granter/spell/barnyard,
+/obj/item/book/granter/action/spell/barnyard,
 /turf/open/floor/bronze{
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},

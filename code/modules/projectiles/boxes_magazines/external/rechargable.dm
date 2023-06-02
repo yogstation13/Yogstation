@@ -18,10 +18,40 @@
 			add_overlay("[icon_state]_o_full")
 		else
 			add_overlay("[icon_state]_o_mid")
-		
+
 
 /obj/item/ammo_box/magazine/recharge/attack_self() //No popping out the "bullets"
 	return
+
+/obj/item/ammo_box/magazine/recharge/lasgun
+	max_ammo = 30
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "lasgunmag"
+	desc = "A rechargeable, detachable battery that serves as a magazine for las weaponry."
+	
+/obj/item/ammo_box/magazine/recharge/lasgun/update_icon()
+	..()
+	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
+	if(ammo_count())
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]_0"
+
+/obj/item/ammo_box/magazine/recharge/lasgun/attack_self() //No popping out the "bullets"
+	return
+
+/obj/item/ammo_box/magazine/recharge/lasgun/pistol
+	max_ammo = 15
+	desc = "A smaller, lighter version of the standard lasgun power-pack. Holds less charge but fits into handguns."
+	icon_state = "laspistolmag"
+
+/obj/item/ammo_box/magazine/recharge/lasgun/hotshot
+	max_ammo = 20
+	desc = "A power-pack tuned to discharge more power with each shot, allowing for the hotshot lasgun to deal more damage."
+
+/obj/item/ammo_box/magazine/recharge/lasgun/sniper
+	max_ammo = 8
+	desc = "A standard power-pack for las weaponry, this one expending more power into focusing shots so they land on far-away targets."
 
 /obj/item/gun/ballistic/automatic/pistol/ntusp
 	name = "NT-USP pistol"
@@ -69,12 +99,20 @@
 
 /obj/item/ammo_box/magazine/recharge/ntusp/emp_act(severity) //shooting physical bullets wont stop you dying to an EMP
 	. = ..()
-	if(!(. & EMP_PROTECT_CONTENTS)) 
+	if(!(. & EMP_PROTECT_CONTENTS))
 		var/bullet_count = ammo_count()
-		var/bullets_to_remove = round(bullet_count / severity)
+		var/bullets_to_remove = round(bullet_count / (severity*2))
 		for(var/i = 0; i < bullets_to_remove, i++)
 			qdel(get_round())
 		update_icon()
+		if(isgun(loc))
+			var/obj/item/gun/ballistic/G = loc
+			if(!G.magazine == src)
+				return
+			G.semicd = TRUE
+			// 5-10 seconds depending on severity, then give or take 0.2 seconds to prevent piercing ears
+			var/unjam_time = ((10/severity) + (rand(-20,20)*0.01)) SECONDS
+			addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/gun, reset_semicd)), unjam_time)
 
 /obj/item/ammo_casing/caseless/c22hl
 	caliber = ENERGY

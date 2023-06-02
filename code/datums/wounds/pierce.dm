@@ -68,10 +68,10 @@
 
 	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS) && (victim.stat != DEAD))
 		blood_flow += 0.5 // old heparin used to just add +2 bleed stacks per tick, this adds 0.5 bleed flow to all open cuts which is probably even stronger as long as you can cut them first
-	
+
 	if(HAS_TRAIT(victim, TRAIT_BLOODY_MESS_LITE) && (victim.stat != DEAD)) //hemophiliac version, half strength
 		blood_flow += 0.25
-		
+
 	if(limb.current_gauze)
 		blood_flow -= limb.current_gauze.absorption_rate * gauzed_clot_rate
 		limb.current_gauze.absorption_capacity -= limb.current_gauze.absorption_rate
@@ -105,10 +105,12 @@
 /// If someone is using a suture to close this puncture
 /datum/wound/pierce/proc/suture(obj/item/stack/medical/suture/I, mob/user)
 	var/self_penalty_mult = (user == victim ? 1.4 : 1)
+	if(LAZYLEN(user.mind?.antag_datums) && severity > WOUND_SEVERITY_MODERATE) //antagonists can heal wounds better with ghetto alternatives, since they don't have as much access to proper medical treatment
+		self_penalty_mult = 1
 	user.visible_message(span_notice("[user] begins stitching [victim]'s [limb.name] with [I]..."), span_notice("You begin stitching [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
 	playsound(I, pick(I.apply_sounds), 25)
 	
-	if(!do_after(user, base_treat_time * self_penalty_mult * I.treatment_speed, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * self_penalty_mult * I.treatment_speed, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	user.visible_message(span_green("[user] stitches up some of the bleeding on [victim]."), span_green("You stitch up some of the bleeding on [user == victim ? "yourself" : "[victim]"]."))
@@ -127,12 +129,16 @@
 	var/improv_penalty_mult = (I.tool_behaviour == TOOL_CAUTERY ? 1 : 1.25) // 25% longer and less effective if you don't use a real cautery
 	var/self_penalty_mult = (user == victim ? 1.5 : 1) // 50% longer and less effective if you do it to yourself
 
+	if(LAZYLEN(user.mind?.antag_datums) && severity > WOUND_SEVERITY_MODERATE)
+		improv_penalty_mult = 1
+		self_penalty_mult = 0.5
+
 	user.visible_message(span_danger("[user] begins cauterizing [victim]'s [limb.name] with [I]..."), span_warning("You begin cauterizing [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
 	playsound(I, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff = 1)
 	
-	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult, victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
-	
+
 	playsound(I, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff = 1)
 	user.visible_message(span_green("[user] cauterizes some of the bleeding on [victim]."), span_green("You cauterize some of the bleeding on [victim]."))
 	limb.receive_damage(burn = 2 + severity, wound_bonus = CANT_WOUND)

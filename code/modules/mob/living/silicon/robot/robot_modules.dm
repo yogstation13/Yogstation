@@ -201,7 +201,7 @@
 	RM.rebuild_modules()
 	R.radio.recalculateChannels()
 
-	INVOKE_ASYNC(RM, .proc/do_transform_animation)
+	INVOKE_ASYNC(RM, PROC_REF(do_transform_animation))
 	qdel(src)
 	return RM
 
@@ -546,7 +546,7 @@
 		"Kent" = image(icon = 'icons/mob/robots.dmi', icon_state = "kent"),
 		"Tophat" = image(icon = 'icons/mob/robots.dmi', icon_state = "tophat")
 		))
-	var/service_robot_icon = show_radial_menu(R, R , service_icons, custom_check = CALLBACK(src, .proc/check_menu, R), radius = 42, require_near = TRUE)
+	var/service_robot_icon = show_radial_menu(R, R , service_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), R), radius = 42, require_near = TRUE)
 	switch(service_robot_icon)
 		if("Waitress")
 			cyborg_base_icon = "service_f"
