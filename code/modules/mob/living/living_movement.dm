@@ -51,7 +51,7 @@
 		if(drag_slowdown && !(L.mobility_flags & MOBILITY_STAND) && !L.buckled && grab_state < GRAB_AGGRESSIVE && !istype(L, /mob/living/simple_animal))
 			add_movespeed_modifier(MOVESPEED_ID_PRONE_DRAGGING, multiplicative_slowdown = PULL_PRONE_SLOWDOWN)
 			return
-		else if(drag_slowdown && istype(L, /mob/living/simple_animal/bot/secbot))//snowflake proc to stop sec from dragging beepsky everywhere
+		else if(drag_slowdown && istype(L, /mob/living/simple_animal/bot))//No more pulling bots fast. Why would this just apply to sec?
 			add_movespeed_modifier(MOVESPEED_ID_PRONE_DRAGGING, multiplicative_slowdown = PULL_PRONE_SLOWDOWN)
 			return
 	remove_movespeed_modifier(MOVESPEED_ID_PRONE_DRAGGING)
