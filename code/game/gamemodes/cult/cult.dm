@@ -138,13 +138,9 @@
 			cult_mind.current.Unconscious(100)
 		return TRUE
 
-/datum/game_mode/cult/proc/check_cult_victory()
-	return main_cult.check_cult_victory()
-
-
 /datum/game_mode/cult/set_round_result()
 	..()
-	if(check_cult_victory())
+	if(main_cult.check_cult_victory())
 		SSticker.mode_result = "win - cult win"
 		SSticker.news_report = CULT_SUMMON
 	else
