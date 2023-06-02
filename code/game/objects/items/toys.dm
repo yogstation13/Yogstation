@@ -1687,7 +1687,7 @@ obj/item/toy/turn_tracker
 
 /obj/item/gun/magic/hook/sickly_blade_toy
 	name = "plastic replica blade"
-	desc = "A sickly, green crescent blade, decorated with a plastic eye. You feel like this was cheaply made. A Donk Co logo is on the hilt of this heretical blade."
+	desc = "A sickly, green crescent blade, decorated with a plastic eye. You feel like this was cheaply made. A Donk Co logo is on the hilt."
 	icon = 'icons/obj/eldritch.dmi'
 	icon_state = "eldritch_blade"
 	item_state = "eldritch_blade"
@@ -1699,7 +1699,6 @@ obj/item/toy/turn_tracker
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 5
-	hitsound = 'sound/items/bikehorn.ogg'
 	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
 	/// Hook stuff
 	//Same as real hook with the exception of doing no paralysis and a few word changes
@@ -1724,23 +1723,23 @@ obj/item/toy/turn_tracker
 
 /obj/item/gun/magic/hook/sickly_blade_toy/attack(mob/living/M, mob/living/user)
 	if((IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
-		to_chat(user,span_danger("You feel a pulse of the old gods lash out at your mind laughing how you're using a fake blade!")) //the outer gods need a lil chuckle every now and then
+		to_chat(user,span_danger("You feel a pulse of the old gods lash out at your mind, laughing how you're using a fake blade!")) //the outer gods need a lil chuckle every now and then
 	return ..()
 
 /obj/item/gun/magic/hook/sickly_blade_toy/rust_toy
 	name = "rustic replica blade"
-	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten teeth. A Donk Co logo is on the hilt of this heretical blade."
+	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten foam. A Donk Co logo is on the hilt."
 	icon_state = "rust_blade"
 	item_state = "rust_blade"
 
 /obj/item/gun/magic/hook/sickly_blade_toy/ash_toy
-	name = "metalic replica blade"
-	desc = "A hunk of molten soft injection plastic warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is, as it has a Donk Co logo is on the hilt."
+	name = "metallic replica blade"
+	desc = "A hunk of molten soft injection plastic warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is. A Donk Co logo is on the hilt."
 	icon_state = "ash_blade"
 	item_state = "ash_blade"
 
 /obj/item/gun/magic/hook/sickly_blade_toy/flesh_toy
 	name = "flesh-like replica blade"
-	desc = "A blade of strange material born from a fleshwarped creature. Keenly aware, it seeks to spread the excruciating comedy it has endured from dread origins. A Donk Co logo is on the hilt of this heretical blade."
+	desc = "A blade of strange material born from a fleshwarped creature. Keenly aware, it seeks to spread the excruciating comedy it has endured from dread origins. A Donk Co logo is on the hilt."
 	icon_state = "flesh_blade"
 	item_state = "flesh_blade"
