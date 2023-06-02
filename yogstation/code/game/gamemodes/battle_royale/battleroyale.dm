@@ -77,6 +77,7 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 1.5 SECONDS)//so shitters don't immediately rush everything
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 	return ..()
 
@@ -169,6 +170,13 @@ GLOBAL_VAR(stormdamage)
 
 	if(borderstage <= 9)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
+
+/datum/game_mode/fortnite/proc/delete_armoury()
+	var/area/ai_monitored/security/armory/A = locate(/area/ai_monitored/security/armory) in GLOB.areas
+	for(var/obj/item/thing in A)
+		if(thing.anchored || !thing.force)//only target something that is possibly a weapon
+			continue
+		qdel(thing)
 
 /datum/game_mode/fortnite/proc/ItemCull()//removes items that are too weak, adds stronger items into the loot pool
 	for(var/item in GLOB.battleroyale_armour)
