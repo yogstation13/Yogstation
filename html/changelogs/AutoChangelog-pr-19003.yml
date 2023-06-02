@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - experiment: "Battle royale mode is fucky, hopefully this unfucks it a bit"
