@@ -238,22 +238,22 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 
-/datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/medicine/silver_sulfadiazine/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		if(method in list(INGEST, VAPOR, INJECT))
-			M.adjustToxLoss(0.5*reac_volume)
-			if(show_message)
+			M.adjustToxLoss(0.5*reac_volume*permeability)
+			if(show_message && permeability)
 				to_chat(M, span_warning("You don't feel so good..."))
 		else if(M.getFireLoss())
 			var/datum/reagent/S = M.reagents?.get_reagent(/datum/reagent/medicine/silver_sulfadiazine)
-			var/heal_amt = clamp(reac_volume, 0, TOUCH_CHEM_MAX * 0.75 - S?.volume)
+			var/heal_amt = clamp(reac_volume * permeability, 0, TOUCH_CHEM_MAX * 0.75 - S?.volume)
 			M.adjustFireLoss(-heal_amt)
 			if(show_message)
 				to_chat(M, span_danger("You feel your burns healing! It stings like hell!"))
 			M.emote("scream")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 			if(method == TOUCH)
-				M.reagents.add_reagent(/datum/reagent/medicine/silver_sulfadiazine, reac_volume)
+				M.reagents.add_reagent(/datum/reagent/medicine/silver_sulfadiazine, reac_volume * permeability)
 	..()
 
 /datum/reagent/medicine/silver_sulfadiazine/on_mob_life(mob/living/carbon/M)
@@ -289,22 +289,22 @@
 	reagent_state = LIQUID
 	color = "#FF9696"
 
-/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/medicine/styptic_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		if(method in list(INGEST, VAPOR, INJECT))
-			M.adjustToxLoss(0.5*reac_volume)
-			if(show_message)
+			M.adjustToxLoss(0.5*reac_volume*permeability)
+			if(show_message && permeability)
 				to_chat(M, span_warning("You don't feel so good..."))
 		else if(M.getBruteLoss())
 			var/datum/reagent/S = M.reagents?.get_reagent(/datum/reagent/medicine/styptic_powder)
-			var/heal_amt = clamp(reac_volume, 0, TOUCH_CHEM_MAX * 0.75 - S?.volume)
+			var/heal_amt = clamp(reac_volume * permeability, 0, TOUCH_CHEM_MAX * 0.75 - S?.volume)
 			M.adjustBruteLoss(-heal_amt)
 			if(show_message)
 				to_chat(M, span_danger("You feel your bruises healing! It stings like hell!"))
 			M.emote("scream")
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 			if(method == TOUCH)
-				M.reagents.add_reagent(/datum/reagent/medicine/styptic_powder, reac_volume)
+				M.reagents.add_reagent(/datum/reagent/medicine/styptic_powder, reac_volume * permeability)
 	..()
 
 
@@ -419,7 +419,7 @@
 				M.adjustBruteLoss(-2*heal_amt)
 				M.adjustFireLoss(-2*heal_amt)
 				if(method == TOUCH)
-					M.reagents.add_reagent(/datum/reagent/medicine/synthflesh, reac_volume)
+					M.reagents.add_reagent(/datum/reagent/medicine/synthflesh, reac_volume) // no permeability modifier because it only works on dead bodies anyway and would just be an inconvenience
 				if(HAS_TRAIT_FROM(M, TRAIT_HUSK, BURN) && (S?.volume + reac_volume >= SYNTHFLESH_UNHUSK_AMOUNT && M.getFireLoss() <= UNHUSK_DAMAGE_THRESHOLD) && M.cure_husk(BURN)) //cure husk will return true if it cures the final husking source
 					M.visible_message(span_notice("The synthflesh soaks into [M]'s burns and they regain their natural color!"))
 	..()
