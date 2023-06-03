@@ -758,7 +758,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 #define COOLDOWN_SUMMON 1 MINUTES
 /obj/item/eflowers
 	name ="enchanted flowers"
-	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouqet to summon tamed creatures. Megafauna cannot be summoned.<b>Megafauna need to be exposed 35 times to become friendly.</b>"
+	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouquet to summon tamed creatures. Megafauna cannot be summoned. <b>Megafauna need to be exposed 35 times to become friendly.</b>"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "eflower"
 	var/next_summon = 0
@@ -774,7 +774,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(is_station_level(T.z) && !A.outdoors)
 		to_chat(user, span_warning("You feel like calling a bunch of animals indoors is a bad idea."))
 		return
-	user.visible_message(span_warning("[user] holds the bouqet out, summoning their allies!"))
+	user.visible_message(span_warning("[user] holds the bouquet out, summoning their allies!"))
 	for(var/mob/m in summons)
 		m.forceMove(T)
 	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
@@ -807,7 +807,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(!do_after(user, 1.5 SECONDS, M))
 		return
-	M.visible_message(span_notice("[M] seems happy with you after exposure to the bouqet!"))
+	M.visible_message(span_notice("[M] seems happy with you after exposure to the bouquet!"))
 	M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
 	M.drop_loot()
 	M.faction = user.faction
