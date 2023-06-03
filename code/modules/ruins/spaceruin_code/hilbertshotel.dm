@@ -76,8 +76,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
         do_sparks(3, FALSE, get_turf(user))
         user.forceMove(locate(roomReservation.bottom_left_coords[1] + hotelRoomTemp.landingZoneRelativeX, roomReservation.bottom_left_coords[2] + hotelRoomTemp.landingZoneRelativeY, roomReservation.bottom_left_coords[3]))
         return TRUE
-    else
-        return FALSE
+    return FALSE
 
 /obj/item/hilbertshotel/proc/tryStoredRoom(var/roomNumber, var/mob/user)
     if(storedRooms["[roomNumber]"])
@@ -99,8 +98,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
         do_sparks(3, FALSE, get_turf(user))
         user.forceMove(locate(roomReservation.bottom_left_coords[1] + hotelRoomTemp.landingZoneRelativeX, roomReservation.bottom_left_coords[2] + hotelRoomTemp.landingZoneRelativeY, roomReservation.bottom_left_coords[3]))
         return TRUE
-    else
-        return FALSE
+    return FALSE
 
 /obj/item/hilbertshotel/proc/sendToNewRoom(var/roomNumber, var/mob/user)
     var/datum/turf_reservation/roomReservation = SSmapping.RequestBlockReservation(hotelRoomTemp.width, hotelRoomTemp.height)

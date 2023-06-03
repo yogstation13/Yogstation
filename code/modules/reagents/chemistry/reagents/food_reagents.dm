@@ -125,7 +125,7 @@
 			F.fry(volume)
 			F.reagents.add_reagent(/datum/reagent/consumable/cooking_oil, reac_volume)
 
-/datum/reagent/consumable/cooking_oil/reaction_mob(mob/living/M, method = TOUCH, reac_volume, show_message = 1, touch_protection = 0)
+/datum/reagent/consumable/cooking_oil/reaction_mob(mob/living/M, method = TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(M))
 		return
 	var/boiling = FALSE
@@ -137,7 +137,7 @@
 		return TRUE
 	var/oil_damage = ((holder.chem_temp / fry_temperature) * 0.33) //Damage taken per unit
 	if(method == TOUCH)
-		oil_damage *= 1 - M.get_permeability_protection()
+		oil_damage *= M.get_permeability()
 	var/FryLoss = round(min(38, oil_damage * reac_volume))
 	if(!HAS_TRAIT(M, TRAIT_OIL_FRIED))
 		M.visible_message(span_warning("The boiling oil sizzles as it covers [M]!"), \

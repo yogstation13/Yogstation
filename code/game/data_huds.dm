@@ -55,10 +55,12 @@
 /datum/atom_hud/data/diagnostic
 
 /datum/atom_hud/data/diagnostic/basic
-	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD, DIAG_NANITE_FULL_HUD)
+	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, \
+						DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD, NANITE_HUD, DIAG_NANITE_FULL_HUD)
 
 /datum/atom_hud/data/diagnostic/advanced
-	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD, DIAG_PATH_HUD, DIAG_NANITE_FULL_HUD)
+	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, 
+						DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD, DIAG_PATH_HUD, NANITE_HUD, DIAG_NANITE_FULL_HUD)
 
 /datum/atom_hud/data/bot_path
 	// This hud exists so the bot can see itself, that's all
@@ -309,6 +311,7 @@ Diagnostic HUDs!
 		holder.icon_state = "huddiagdead"
 	else
 		holder.icon_state = "huddiag[RoundDiagBar(health/maxHealth)]"
+	set_hud_image_active(DIAG_HUD)
 
 /mob/living/silicon/proc/diag_hud_set_status()
 	var/image/holder = hud_list[DIAG_STAT_HUD]
@@ -321,6 +324,7 @@ Diagnostic HUDs!
 			holder.icon_state = "hudoffline"
 		else
 			holder.icon_state = "huddead2"
+	set_hud_image_active(DIAG_STAT_HUD)
 
 //Borgie battery tracking!
 /mob/living/silicon/robot/proc/diag_hud_set_borgcell()
@@ -332,6 +336,7 @@ Diagnostic HUDs!
 		holder.icon_state = "hudbatt[RoundDiagBar(chargelvl)]"
 	else
 		holder.icon_state = "hudnobatt"
+	set_hud_image_active(DIAG_BATT_HUD)
 
 //borg-AI shell tracking
 /mob/living/silicon/robot/proc/diag_hud_set_aishell() //Shows tracking beacons on the mech
@@ -368,7 +373,7 @@ Diagnostic HUDs!
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = "huddiag[RoundDiagBar(obj_integrity/max_integrity)]"
-
+	set_hud_image_active(DIAG_MECH_HUD)
 
 /obj/mecha/proc/diag_hud_set_mechcell()
 	var/image/holder = hud_list[DIAG_BATT_HUD]
@@ -379,6 +384,7 @@ Diagnostic HUDs!
 		holder.icon_state = "hudbatt[RoundDiagBar(chargelvl)]"
 	else
 		holder.icon_state = "hudnobatt"
+	set_hud_image_active(DIAG_BATT_HUD)
 
 /obj/mecha/proc/diag_hud_set_mechstat()
 	var/image/holder = hud_list[DIAG_STAT_HUD]
@@ -413,6 +419,7 @@ Diagnostic HUDs!
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = "huddiag[RoundDiagBar(health/maxHealth)]"
+	set_hud_image_active(DIAG_HUD)
 
 /mob/living/simple_animal/bot/proc/diag_hud_set_botstat() //On (With wireless on or off), Off, EMP'ed
 	var/image/holder = hud_list[DIAG_STAT_HUD]
@@ -424,6 +431,7 @@ Diagnostic HUDs!
 		holder.icon_state = "hudoffline"
 	else //Bot is off
 		holder.icon_state = "huddead2"
+	set_hud_image_active(DIAG_STAT_HUD)
 
 /mob/living/simple_animal/bot/proc/diag_hud_set_botmode() //Shows a bot's current operation
 	var/image/holder = hud_list[DIAG_BOT_HUD]
@@ -446,6 +454,7 @@ Diagnostic HUDs!
 			holder.icon_state = "hudmove"
 		else
 			holder.icon_state = ""
+	set_hud_image_active(DIAG_BOT_HUD)
 
 /mob/living/simple_animal/bot/mulebot/proc/diag_hud_set_mulebotcell()
 	var/image/holder = hud_list[DIAG_BATT_HUD]
@@ -456,6 +465,7 @@ Diagnostic HUDs!
 		holder.icon_state = "hudbatt[RoundDiagBar(chargelvl)]"
 	else
 		holder.icon_state = "hudnobatt"
+	set_hud_image_active(DIAG_BATT_HUD)
 
 /*~~~~~~~~~~~~
 	Airlocks!

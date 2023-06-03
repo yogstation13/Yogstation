@@ -60,6 +60,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
 
+	///Action to quickly unobserve someone
+	var/datum/action/innate/unobserve/unobserve_button
+
 	// Current Viewrange
 	var/view = 0
 
@@ -841,6 +844,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				remove_verb(src, /mob/dead/observer/verb/possess)
 
 /mob/dead/observer/reset_perspective(atom/A)
+	unobserve_button?.Remove(src)
 	if(client)
 		if(ismob(client.eye) && (client.eye != src))
 			cleanup_observe()
@@ -860,6 +864,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		hide_other_mob_action_buttons(target)
 		LAZYREMOVE(target.observers, src)
 	actions = originalactions
+	actions -= unobserve_button
 	update_action_buttons()
 
 /mob/dead/observer/verb/observe()
@@ -903,6 +908,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(is_secret_level(mob_eye.z) && !client?.holder)
 			sight = null //we dont want ghosts to see through walls in secret areas
 		RegisterSignal(mob_eye, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_observing_z_changed), TRUE)
+		if(!unobserve_button)
+			unobserve_button = new(src)
+		unobserve_button.Grant(src)
 		if(mob_eye.hud_used)
 			client.screen = list()
 			LAZYOR(mob_eye.observers, src)
@@ -917,8 +925,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	show_to_observers = FALSE
 
 /datum/action/innate/unobserve/Activate()
-	var/mob/dead/observer/ghost = owner
-	ghost.reset_perspective(null)
+	owner.reset_perspective(null)
 
 /datum/action/innate/unobserve/IsAvailable(feedback = FALSE)
 	return TRUE
