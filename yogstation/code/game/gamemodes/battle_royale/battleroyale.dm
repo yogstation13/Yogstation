@@ -96,12 +96,17 @@ GLOBAL_VAR(stormdamage)
 	var/disqualified = 0 //keep track of everyone disqualified for log reasons
 
 	for(var/mob/living/player in GLOB.battleroyale_players)
+		if(QDELETED(player))
+			disqualified++
+			continue
 		if(player.stat == DEAD)
 			disqualified++
+			player.dust(TRUE, TRUE)
 			continue
 		if(!is_station_level(player.z) || player.onCentCom() || player.onSyndieBase())
 			disqualified++
 			to_chat(player, "You left the station! You have been disqualified from battle royale.")
+			player.dust(TRUE, TRUE)
 			continue
 		royalers += player //add everyone not disqualified for one reason or another to the new list
 
