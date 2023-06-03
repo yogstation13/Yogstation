@@ -140,6 +140,7 @@
 				return
 
 			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
+				to_chat(usr, span_warning("The system is not able to change the security alert level more than once per minute, please wait."))
 				return
 
 			// Check if they have
@@ -150,7 +151,7 @@
 					to_chat(usr, span_warning("You need to swipe your ID!"))
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
-				if (!(ACCESS_CAPTAIN in id_card.access))
+				if (!(ACCESS_HEADS in id_card.access))
 					to_chat(usr, span_warning("You are not authorized to do this!"))
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
