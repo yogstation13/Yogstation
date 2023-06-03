@@ -125,7 +125,7 @@
 			F.fry(volume)
 			F.reagents.add_reagent(/datum/reagent/consumable/cooking_oil, reac_volume)
 
-/datum/reagent/consumable/cooking_oil/reaction_mob(mob/living/M, method = TOUCH, reac_volume, show_message = 1, touch_protection = 0)
+/datum/reagent/consumable/cooking_oil/reaction_mob(mob/living/M, method = TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(M))
 		return
 	var/boiling = FALSE
@@ -137,7 +137,7 @@
 		return TRUE
 	var/oil_damage = ((holder.chem_temp / fry_temperature) * 0.33) //Damage taken per unit
 	if(method == TOUCH)
-		oil_damage *= 1 - M.get_permeability_protection()
+		oil_damage *= M.get_permeability()
 	var/FryLoss = round(min(38, oil_damage * reac_volume))
 	if(!HAS_TRAIT(M, TRAIT_OIL_FRIED))
 		M.visible_message(span_warning("The boiling oil sizzles as it covers [M]!"), \
@@ -397,22 +397,23 @@
 
 /datum/reagent/drug/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
 	M.set_slurring_if_lower(1 SECONDS)
+
 	switch(current_cycle)
 		if(1 to 5)
-			M.adjust_dizzy(5 SECONDS)
-			M.set_drugginess(30)
+			M.set_dizzy_if_lower(5 SECONDS)
+			M.set_drugginess_if_lower(30 SECONDS)
 			if(prob(10))
 				M.emote(pick("twitch","giggle"))
 		if(5 to 10)
-			M.adjust_jitter(10 SECONDS)
-			M.adjust_dizzy(10 SECONDS)
-			M.set_drugginess(35)
+			M.set_jitter_if_lower(20 SECONDS)
+			M.set_dizzy_if_lower(10 SECONDS)
+			M.set_drugginess_if_lower(35 SECONDS)
 			if(prob(20))
 				M.emote(pick("twitch","giggle"))
 		if (10 to INFINITY)
-			M.adjust_jitter(20 SECONDS)
+			M.set_jitter_if_lower(40 SECONDS)
 			M.adjust_dizzy(20 SECONDS)
-			M.set_drugginess(40)
+			M.set_drugginess_if_lower(40 SECONDS)
 			if(prob(30))
 				M.emote(pick("twitch","giggle"))
 	..()

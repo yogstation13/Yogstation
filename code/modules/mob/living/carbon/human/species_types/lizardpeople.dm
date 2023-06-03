@@ -2,8 +2,8 @@
 
 /datum/species/lizard
 	// Reptilian humanoids with scaled skin and tails.
-	name = "Lizardperson"
-	plural_form = "Lizardfolk"
+	name = "Vuulek"
+	plural_form = "Vuulen"
 	id = "lizard"
 	say_mod = "hisses"
 	default_color = "00FF00"
@@ -145,7 +145,7 @@
 		offered significantly less privilege than what would be expected.",
  
 		"Vuulek communities are organized in clans, though their impact on the culture of the individuals is limited. \
-		They tend to live like humans due to their colonization,  only occasionally practicing some of \
+		They tend to live like humans due to their colonization, only occasionally practicing some of \
 		their clan traditions. Despite efforts to integrate vuulen into the SIC through establishments such \
 		as habituation stations, a certain pridefulness nonetheless survived amongst vuulen, as they're often \
 		eager to prove their worth and qualities. In addition, strength and honor are still values commonly held \
@@ -182,8 +182,7 @@
 	limbs_id = "lizard"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_traits = list(TRAIT_NOGUNS) //yogs start - ashwalkers have special lungs and actually breathe
-	mutantlungs = /obj/item/organ/lungs/ashwalker
-	breathid = "n2" // yogs end
+	mutantlungs = /obj/item/organ/lungs/ashwalker // yogs end
 	species_language_holder = /datum/language_holder/lizard/ash //ashwalker dum
 
 // yogs start - Ashwalkers now have ash immunity

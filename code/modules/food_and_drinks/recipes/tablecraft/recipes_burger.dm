@@ -73,7 +73,7 @@
 /datum/crafting_recipe/food/burger
 	name = "Burger"
 	reqs = list(
-			/obj/item/reagent_containers/food/snacks/patty = 1,
+			/obj/item/reagent_containers/food/snacks/patty/plain = 1,
 			/obj/item/reagent_containers/food/snacks/bun = 1
 	)
 

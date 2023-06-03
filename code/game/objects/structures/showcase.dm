@@ -62,6 +62,20 @@
 	icon = 'icons/mecha/mecha.dmi'
 	icon_state = "marauder"
 
+/obj/structure/showcase/mecha/marauder/mauler
+	desc = "A stand with an empty old Syndicate combat mech bolted to it. It is described as a hard-hitting premier unit for nuclear strike teams."
+	icon_state = "mauler"
+
+/obj/structure/showcase/mecha/gygax
+	name = "combat mech exhibit"
+	desc = "A stand with an empty old Nanotrasen Corporation combat mech bolted to it. It is described as a lightweight forward combat exosuit for security teams."
+	icon = 'icons/mecha/mecha.dmi'
+	icon_state = "gygax"
+
+/obj/structure/showcase/mecha/gygax/dark
+	desc = "A stand with an empty old Syndicate combat mech bolted to it. It is described as a high-speed unit for nuclear strike teams."
+	icon_state = "darkgygax"
+
 /obj/structure/showcase/mecha/ripley
 	name = "construction mech exhibit"
 	desc = "A stand with a retired construction mech bolted to it. The clamps are rated at 9300PSI. It seems to be falling apart."

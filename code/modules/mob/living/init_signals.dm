@@ -121,7 +121,7 @@
 //	SIGNAL_HANDLER
 
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
-//		on_fall()
+		on_fall()
 //		set_lying_down()
 //	else if(resting)
 //		set_lying_down()
