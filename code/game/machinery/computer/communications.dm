@@ -136,9 +136,6 @@
 			SSshuttle.requestEvac(usr, reason)
 			post_status("shuttle")
 		if ("changeSecurityLevel")
-			if (!authenticated_as_silicon_or_captain(usr))
-				return
-
 			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
 				to_chat(usr, span_warning("The system is not able to change the security alert level more than once per minute, please wait."))
 				return
@@ -345,8 +342,6 @@
 			state = STATE_MAIN
 			playsound(src, 'sound/machines/terminal_on.ogg', 50, FALSE)
 		if ("toggleEmergencyAccess")
-			if (!authenticated_as_silicon_or_captain(usr))
-				return
 			if (GLOB.emergency_access)
 				if (!COOLDOWN_FINISHED(src, important_action_cooldown))
 					to_chat(usr, span_alert("Maintenance airlock communications relays recharging. Please stand by."))
@@ -405,8 +400,8 @@
 				data["canRecallShuttles"] = !issilicon(user)
 				data["canRequestNuke"] = FALSE
 				data["canSendToSectors"] = FALSE
-				data["canSetAlertLevel"] = FALSE
-				data["canToggleEmergencyAccess"] = FALSE
+				data["canSetAlertLevel"] = TRUE
+				data["canToggleEmergencyAccess"] = TRUE
 				data["importantActionReady"] = COOLDOWN_FINISHED(src, important_action_cooldown)
 				data["shuttleCalled"] = FALSE
 				data["shuttleLastCalled"] = FALSE
