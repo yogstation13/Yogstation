@@ -676,7 +676,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "potionflask"
+	icon_state = "syndi_potionflask"
+	desc = "An ornate red bottle, with an \"S\" embossed into the underside. Filled with an experimental flight potion. Mileage may vary."
+	
 
 /obj/item/reagent_containers/glass/bottle/potion/flight
 	name = "strange elixir"
@@ -685,9 +687,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/reagent_containers/glass/bottle/potion/update_icon()
 	if(reagents.total_volume)
-		icon_state = "potionflask"
+		icon_state = initial(icon_state)
+		desc = initial(desc)
 	else
-		icon_state = "potionflask_empty"
+		icon_state = "[initial(icon_state)]_empty"
+		desc = "An ornate red bottle, with an \"S\" embossed into the underside."
 
 /datum/reagent/flightpotion
 	name = "Flight Potion"
