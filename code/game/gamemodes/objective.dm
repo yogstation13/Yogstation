@@ -1401,13 +1401,15 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Assassinate the HoP's assistant, Ian."
 	/// Pet
 	var/mob/living/pet
-	var/list/pets = list(/mob/living/simple_animal/pet/dog/corgi/Ian,
-						 /mob/living/simple_animal/pet/cat/Runtime,
-						 /mob/living/simple_animal/pet/penguin/emperor/shamebrero,
-						 /mob/living/carbon/human/species/monkey/punpun,
-						 /mob/living/simple_animal/parrot/Poly,
-						 /mob/living/simple_animal/pet/fox/Renault,
-						 /mob/living/simple_animal/pet/fox/fennec/Autumn)
+	var/list/pets = list(
+		/mob/living/simple_animal/pet/dog/corgi/Ian,
+		/mob/living/simple_animal/pet/cat/Runtime,
+		/mob/living/simple_animal/pet/penguin/emperor/shamebrero,
+		/mob/living/carbon/human/species/monkey/punpun,
+		/mob/living/simple_animal/parrot/Poly,
+		/mob/living/simple_animal/pet/fox/Renault,
+		/mob/living/simple_animal/pet/fox/fennec/Autumn
+		)
 
 /**
   * Chooses and finds pet.area

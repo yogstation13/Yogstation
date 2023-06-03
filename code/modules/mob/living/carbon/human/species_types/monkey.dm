@@ -69,7 +69,7 @@
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target, modifiers)
 	// If our hands are not blocked, dont try to bite them
 //	if(!HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
-	if(!user.incapacitated(check_immobilized = TRUE))
+	if(!user.incapacitated(/*check_immobilized = TRUE*/))
 		// if we aren't an advanced tool user, we call attack_paw and cancel the preceeding attack chain
 		if(!user.IsAdvancedToolUser())
 			target.attack_paw(user, modifiers)

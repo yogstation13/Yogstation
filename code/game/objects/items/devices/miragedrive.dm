@@ -12,7 +12,6 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	item_state = "mdrive"
 	w_class = WEIGHT_CLASS_SMALL
-	var/access_card = new /obj/item/card/id/captains_spare()
 	COOLDOWN_DECLARE(last_dash)
 
 
@@ -27,7 +26,7 @@
 	if(!COOLDOWN_FINISHED(src, last_dash))
 		to_chat(user, span_warning("You can't use the drive for another [COOLDOWN_TIMELEFT(src, last_dash)/10] seconds!."))
 		return
-	testpath = get_path_to(src, T, /turf/proc/Distance_cardinal, 0, 0, 0, /turf/proc/reachableTurftestdensity, id = access_card, simulated_only = FALSE, get_best_attempt = TRUE)
+	testpath = get_path_to(src, T, 30, 0, simulated_only = FALSE)
 	if(testpath.len == 0)
 		to_chat(user, span_warning("There's no unobstructed path to the destination!"))
 		return

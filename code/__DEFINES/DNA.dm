@@ -128,9 +128,9 @@
 #define NOEYESPRITES	22
 /// Used for determining which wounds are applicable to this species.
 /// if we have flesh (can suffer slash/piercing/burn wounds, requires they don't have NOBLOOD)
-#define HAS_FLESH		23
+#define HAS_FLESH 23
 /// if we have bones (can suffer bone wounds)
-#define HAS_BONE		24
+#define HAS_BONE 24
 /// Can't be husked.
 #define NOHUSK			25
 /// limbs start out as robotic; but also use organic icons. If you want to use the default ones, you'll have to use on_species_gain
@@ -141,9 +141,9 @@
 #define HAS_TAIL		28
 #define NONANITES		29
 /// Do not draw blood overlay
-#define NOBLOODOVERLAY 	30
+#define NOBLOODOVERLAY 30
 ///No augments, for monkeys in specific because they will turn into fucking freakazoids https://cdn.discordapp.com/attachments/326831214667235328/791313258912153640/102707682-fa7cad80-4294-11eb-8f13-8c689468aeb0.png
-#define NOAUGMENTS 		31
+#define NOAUGMENTS 	31
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

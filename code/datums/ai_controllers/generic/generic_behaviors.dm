@@ -217,7 +217,7 @@
 /datum/ai_behavior/drop_item/perform(seconds_per_tick, datum/ai_controller/controller)
 	. = ..()
 	var/mob/living/living_pawn = controller.pawn
-	var/obj/item/best_held = GetBestWeapon(controller, null, living_pawn.held_items)
+	var/obj/item/best_held = get_best_weapon(controller, null, living_pawn.held_items)
 	for(var/obj/item/held as anything in living_pawn.held_items)
 		if(!held || held == best_held)
 			continue

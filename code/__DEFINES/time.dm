@@ -21,7 +21,7 @@
 #define HALLOWEEN				"Halloween"
 #define CHRISTMAS				"Christmas"
 #define FESTIVE_SEASON			"Festive Season"
-#define MONKEYDAY				 "Monkey Day"
+#define MONKEYDAY "Monkey Day"
 
 /*
 

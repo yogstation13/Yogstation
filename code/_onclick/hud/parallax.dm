@@ -358,11 +358,10 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/parallax_layer)
 	AddComponent(/datum/component/connect_mob_behalf, owner.client, connections)
 	on_z_change(owner)
 
-/atom/movable/screen/parallax_layer/planet/proc/on_mob_logout(mob/source)
+/atom/movable/screen/parallax_layer/planet/proc/on_mob_logout(mob/boss)
 	SIGNAL_HANDLER
 //	var/client/boss = source.canon_client
-	var/client/boss = source.client
-	on_z_change(boss.mob)
+	on_z_change(boss)
 
 /atom/movable/screen/parallax_layer/planet/proc/on_z_change(mob/source)
 	SIGNAL_HANDLER

@@ -488,8 +488,8 @@
 			return FALSE
 
 ///Is the passed in mob an admin ghost
-/proc/IsAdminGhost(var/mob/user)
-	if(!user)		//Are they a mob? Auto interface updates call this with a null src
+/proc/IsAdminGhost(mob/user)
+	if(!istype(user))		//Are they a mob? Auto interface updates call this with a null src
 		return
 	if(!user.client) // Do they have a client?
 		return

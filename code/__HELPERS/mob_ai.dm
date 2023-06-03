@@ -1,8 +1,8 @@
 //this file has procs that help ais think good. used by behaviors mostly
 
 
-/// Returns either the best weapon from the given choices or null if held weapons are better
-/proc/GetBestWeapon(datum/ai_controller/controller, list/choices, list/held_weapons)
+/// Returns either the best weapon from the given choices or null if held weapons are better //GetBestWeapon <- used on tg so faster for searching this proc up
+/proc/get_best_weapon(datum/ai_controller/controller, list/choices, list/held_weapons)
 	var/gun_neurons_activated = controller.blackboard[BB_MONKEY_GUN_NEURONS_ACTIVATED]
 	var/top_force = 0
 	var/obj/item/top_force_item
