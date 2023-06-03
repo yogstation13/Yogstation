@@ -241,7 +241,7 @@
 							PP.visible_message(span_warning("[L] screams in pain as [L.p_their()] [NB] melts down to the bone!"), \
 											  span_userdanger("You scream out in pain as your [NB] melts down to the bone, leaving an eerie plasma-like glow where flesh used to be!"))
 						if(!plasma_parts.len && !robo_parts.len) //a person with no potential organic limbs left AND no robotic limbs, time to turn them into a plasmaman
-							PP.IgniteMob()
+							PP.ignite_mob()
 							PP.set_species(/datum/species/plasmaman)
 							PP.visible_message(span_warning("[L] bursts into a brilliant purple flame as [L.p_their()] entire body is that of a skeleton!"), \
 											  span_userdanger("Your senses numb as all of your remaining flesh is turned into a purple slurry, sloshing off your body and leaving only your bones to show in a vibrant purple!"))
@@ -473,8 +473,8 @@
 	name = "dungeon lite"
 	loot = list(/obj/item/melee/classic_baton = 11,
 				/obj/item/melee/classic_baton/telescopic = 12,
-				/obj/item/book/granter/spell/smoke = 10,
-				/obj/item/book/granter/spell/blind = 10,
+				/obj/item/book/granter/action/spell/smoke = 10,
+				/obj/item/book/granter/action/spell/blind = 10,
 				/obj/item/storage/firstaid/regular = 45,
 				/obj/item/storage/firstaid/toxin = 35,
 				/obj/item/storage/firstaid/brute = 27,
@@ -497,9 +497,9 @@
 				/obj/item/gun/magic/wand/fireball/inert = 3,
 				/obj/item/pneumatic_cannon = 15,
 				/obj/item/melee/transforming/energy/sword = 7,
-				/obj/item/book/granter/spell/knock = 15,
-				/obj/item/book/granter/spell/summonitem = 20,
-				/obj/item/book/granter/spell/forcewall = 17,
+				/obj/item/book/granter/action/spell/knock = 15,
+				/obj/item/book/granter/action/spell/summonitem = 20,
+				/obj/item/book/granter/action/spell/forcewall = 17,
 				/obj/item/storage/backpack/holding = 12,
 				/obj/item/grenade/spawnergrenade/manhacks = 6,
 				/obj/item/grenade/spawnergrenade/spesscarp = 7,
@@ -508,7 +508,7 @@
 				/obj/item/stack/sheet/mineral/uranium{amount = 15} = 10,
 				/obj/item/stack/sheet/mineral/plasma{amount = 15} = 10,
 				/obj/item/stack/sheet/mineral/gold{amount = 15} = 10,
-				/obj/item/book/granter/spell/barnyard = 4,
+				/obj/item/book/granter/action/spell/barnyard = 4,
 				/obj/item/pickaxe/drill/diamonddrill = 6,
 				/obj/item/borg/upgrade/vtec = 7,
 				/obj/item/borg/upgrade/disablercooler = 7)
@@ -526,9 +526,9 @@
 				/obj/item/gun/magic/wand/resurrection/inert = 15,
 				/obj/item/gun/magic/wand/resurrection = 10,
 				/obj/item/uplink/old = 2,
-				/obj/item/book/granter/spell/charge = 12,
+				/obj/item/book/granter/action/spell/charge = 12,
 				/obj/item/grenade/clusterbuster/syndie/spawner_manhacks = 15,
-				/obj/item/book/granter/spell/fireball = 10,
+				/obj/item/book/granter/action/spell/fireball = 10,
 				/obj/item/pickaxe/drill/jackhammer = 30,
 				/obj/item/borg/upgrade/syndicate = 13,
 				/obj/item/borg/upgrade/selfrepair = 17)

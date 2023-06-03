@@ -31,7 +31,6 @@
 	mail_goodies = list(
 		/obj/item/storage/box/flashes = 20,
 		/obj/item/stack/sheet/metal/fifty = 15,
-		/obj/item/ipcrevive = 10,
 		/obj/item/stack/sheet/plasteel/twenty = 5,
 		/obj/item/modular_computer/tablet/preset/advanced = 5,
 		/obj/item/stock_parts/cell/bluespace = 5,

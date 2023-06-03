@@ -54,16 +54,16 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	var/mob/camera/aiEye/remote/pocket/eye
 	var/manifesting = FALSE
 	var/list/manifestations = list()
-	var/obj/effect/proc_holder/spell/self/pocket_dim/manifest_spell
-	var/obj/effect/proc_holder/spell/self/pocket_dim_move/move_spell
+	var/datum/action/cooldown/spell/pocket_dim/manifest_spell
+	var/datum/action/cooldown/spell/pocket_dim_move/move_spell
 
 /datum/guardian_ability/major/special/pocket/Apply()
-	manifest_spell = new
+	manifest_spell = new(guardian)
 	manifest_spell.guardian = guardian
-	move_spell = new
+	move_spell = new(guardian)
 	move_spell.guardian = guardian
-	guardian.AddSpell(manifest_spell)
-	guardian.AddSpell(move_spell)
+	manifest_spell.Grant(guardian)
+	move_spell.Grant(guardian)
 	RegisterSignal(guardian, COMSIG_MOVABLE_MOVED, PROC_REF(auto_demanifest))
 	if (!LAZYLEN(pocket_dim))
 		var/list/errorList = list()
@@ -85,8 +85,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		eye.forceMove(get_turf(guardian))
 
 /datum/guardian_ability/major/special/pocket/Remove()
-	guardian.RemoveSpell(manifest_spell)
-	guardian.RemoveSpell(move_spell)
+	manifest_spell.Remove(guardian)
+	move_spell.Remove(guardian)
 	UnregisterSignal(guardian, COMSIG_MOVABLE_MOVED)
 	if (LAZYLEN(manifestations))
 		demanifest_dimension()
@@ -321,17 +321,20 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		animate(offset=f:offset-1, time=next)
 		next_animate = world.time + next
 
-/obj/effect/proc_holder/spell/self/pocket_dim
+/datum/action/cooldown/spell/pocket_dim
 	name = "Dimensional Intersection"
 	desc = "(De)manifest a pocket dimension."
-	clothes_req = FALSE
-	human_req = FALSE
-	charge_max = 45 SECONDS
-	action_icon = 'icons/obj/objects.dmi'
-	action_icon_state = "anom"
+	button_icon = 'icons/obj/objects.dmi'
+	button_icon_state = "anom"
+
+	cooldown_time = 45 SECONDS
+	spell_requirements = NONE
 	var/mob/living/simple_animal/hostile/guardian/guardian
 
-/obj/effect/proc_holder/spell/self/pocket_dim/Click()
+/datum/action/cooldown/spell/pocket_dim/Trigger()
+	. = ..()
+	if(!.)
+		return FALSE
 	if (!guardian || !istype(guardian))
 		return
 	if (!guardian.is_deployed())
@@ -362,9 +365,6 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		PD.eye.forceMove(get_turf(guardian))
 		PD.bring_mobs_into_pocket_dimension()
 		PD.demanifest_dimension()
-		charge_counter = 0
-		start_recharge()
-		action.UpdateButtonIcon()
 	else
 		if (get_final_z(guardian) == pocket_z)
 			PD.manifest_dimension(TRUE)
@@ -374,21 +374,20 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 			guardian.visible_message(span_warning("[guardian] emits a burst of energy, distorting the space around it!"))
 			PD.manifest_dimension()
 			PD.eye.forceMove(get_turf(guardian))
-		charge_counter = max(0, charge_max - 3 SECONDS)
-		start_recharge()
-		action.UpdateButtonIcon()
 
-/obj/effect/proc_holder/spell/self/pocket_dim_move
+/datum/action/cooldown/spell/pocket_dim_move
 	name = "Dimensional Movement"
-	action_icon = 'icons/mob/actions/actions_silicon.dmi'
-	action_icon_state = "camera_jump"
-	clothes_req = FALSE
-	human_req = FALSE
-	charge_max = 0
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon_state = "camera_jump"
+
+	spell_requirements = NONE
 	var/mob/living/simple_animal/hostile/guardian/guardian
 
 
-/obj/effect/proc_holder/spell/self/pocket_dim_move/cast(list/targets, mob/living/user)
+/datum/action/cooldown/spell/pocket_dim_move/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	if (!guardian || !istype(guardian))
 		return
 	var/datum/guardian_ability/major/special/pocket/PD = guardian?.stats?.ability
@@ -422,8 +421,10 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	else
 		give_eye(eyeobj)
 		eyeobj.setLoc(locate(PD.manifested_at_x || T.x, PD.manifested_at_y || T.y, PD.manifested_at_z || T.z))
+		
+	return TRUE
 
-/obj/effect/proc_holder/spell/self/pocket_dim_move/proc/give_eye(mob/camera/aiEye/remote/pocket/eyeobj)
+/datum/action/cooldown/spell/pocket_dim_move/proc/give_eye(mob/camera/aiEye/remote/pocket/eyeobj)
 	eyeobj.eye_user = guardian
 	eyeobj.name = "Guardian Eye ([guardian.name])"
 	guardian.remote_control = eyeobj

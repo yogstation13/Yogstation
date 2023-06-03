@@ -16,7 +16,6 @@
 	stop_automated_movement = 1
 	status_flags = CANPUSH
 	attack_sound = 'sound/magic/demon_attack1.ogg'
-	var/feast_sound = 'sound/magic/demon_consume.ogg'
 	deathsound = 'sound/magic/demon_dies.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
@@ -35,18 +34,22 @@
 	sharpness = SHARP_EDGED
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+
 	var/playstyle_string = "<span class='big bold'>You are a slaughter demon,</span><B> a terrible creature from another realm. You have a single desire: To kill.  \
 							Alt-click blood pools to travel through them, appearing and disappearing from the station at will. \
 							Pulling a dead or unconscious mob while you enter a pool will pull them in with you, allowing you to feast and regain your health. \
 							You move quickly upon leaving a pool of blood, but the material world will soon sap your strength and leave you sluggish. \
 							You gain strength the more attacks you land on live humanoids, though this resets when you return to the blood zone. You can also \
-							launch a devastating slam attack with ctrl+shift+click, capable of smashing bones in one strike.</B>"
+							launch a devastating slam attack with <B>Alt Click</B>, capable of smashing bones in one strike.</B>"
 
 	loot = list(/obj/effect/decal/cleanable/blood, \
 				/obj/effect/decal/cleanable/blood/innards, \
 				/obj/item/organ/heart/demon)
-	del_on_death = 1
+
+	del_on_death = TRUE
 	deathmessage = "screams in anger as it collapses into a puddle of viscera!"
+
+	var/crawl_type = /datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon
 	/// How long it takes for the alt-click slam attack to come off cooldown
 	var/slam_cooldown_time = 45 SECONDS
 	/// The actual instance var for the cooldown
@@ -60,22 +63,39 @@
 
 /mob/living/simple_animal/slaughter/Initialize()
 	. = ..()
-	var/datum/component/crawl/blood/demonic/bloodcrawl = AddComponent(/datum/component/crawl/blood/demonic)
-	if(bloodcrawl && istype(loc, /obj/effect/dummy/crawling))
-		bloodcrawl.holder = loc
+	var/datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon/crawl = new crawl_type(src)
+	crawl.Grant(src)
+	RegisterSignal(src, list(COMSIG_MOB_ENTER_JAUNT, COMSIG_MOB_AFTER_EXIT_JAUNT), PROC_REF(on_crawl))
 
-/mob/living/simple_animal/slaughter/CtrlShiftClickOn(atom/A)
-	if(!isliving(A))
-		return ..()
-	if(!Adjacent(A))
-		to_chat(src, span_warning("You are too far away to use your slam attack on [A]!"))
+/// Whenever we enter or exit blood crawl, reset our bonus and hitstreaks.
+/mob/living/simple_animal/slaughter/proc/on_crawl(datum/source)
+	SIGNAL_HANDLER
+
+	// Grant us a speed boost if we're on the mortal plane
+	if(isturf(loc))
+		add_movespeed_modifier(MOVESPEED_ID_SLAUGHTER, TRUE, 100, override = TRUE, multiplicative_slowdown = -1)
+		addtimer(CALLBACK(src, PROC_REF(remove_movespeed_modifier), MOVESPEED_ID_SLAUGHTER, TRUE), 6 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+	// Reset our streaks
+	current_hitstreak = 0
+	wound_bonus = initial(wound_bonus)
+	bare_wound_bonus = initial(bare_wound_bonus)
+
+/// Performs the classic slaughter demon bodyslam on the attack_target. Yeets them a screen away.
+/mob/living/simple_animal/slaughter/proc/bodyslam(atom/attack_target)
+	if(!isliving(attack_target))
 		return
+
+	if(!Adjacent(attack_target))
+		to_chat(src, span_warning("You are too far away to use your slam attack on [attack_target]!"))
+		return
+
 	if(slam_cooldown + slam_cooldown_time > world.time)
 		to_chat(src, span_warning("Your slam ability is still on cooldown!"))
 		return
 
-	face_atom(A)
-	var/mob/living/victim = A
+	face_atom(attack_target)
+	var/mob/living/victim = attack_target
 	victim.take_bodypart_damage(brute=20, wound_bonus=wound_bonus) // don't worry, there's more punishment when they hit something
 	visible_message(span_danger("[src] slams into [victim] with monstrous strength!"), span_danger("You slam into [victim] with monstrous strength!"), ignored_mobs=victim)
 	to_chat(victim, span_userdanger("[src] slams into you with monstrous strength, sending you flying like a ragdoll!"))
@@ -83,6 +103,9 @@
 	victim.throw_at(yeet_target, 10, 5, src)
 	slam_cooldown = world.time
 	log_combat(src, victim, "slaughter slammed")
+
+/mob/living/simple_animal/slaughter/AltClickOn(atom/A)
+	bodyslam(A)
 
 /mob/living/simple_animal/slaughter/UnarmedAttack(atom/A, proximity)
 	if(iscarbon(A))
@@ -116,27 +139,34 @@
 /obj/item/organ/heart/demon/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)
 		return ..()
-	user.visible_message(span_warning("[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!"), \
-						 span_danger("An unnatural hunger consumes you. You raise [src] your mouth and devour it!"))
-	playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
-	if(user.GetComponent(/datum/component/crawl/blood))
+	user.visible_message(span_warning(
+		"[user] raises [src] to [user.p_their()] mouth and tears into it with [user.p_their()] teeth!"),
+		span_danger("An unnatural hunger consumes you. You raise [src] your mouth and devour it!"),
+		)
+	playsound(user, 'sound/magic/demon_consume.ogg', 50, TRUE)
+
+	if(locate(/datum/action/cooldown/spell/jaunt/bloodcrawl) in user.actions)
 		to_chat(user, span_warning("...and you don't feel any different."))
 		qdel(src)
 		return
-	user.visible_message(span_warning("[user]'s eyes flare a deep crimson!"), \
-						 span_userdanger("You feel a strange power seep into your body... you have absorbed the demon's blood-travelling powers!"))
+
+	user.visible_message(
+		span_warning("[user]'s eyes flare a deep crimson!"),
+		span_userdanger("You feel a strange power seep into your body... you have absorbed the demon's blood-travelling powers!"),
+	)
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
 	src.Insert(user) //Consuming the heart literally replaces your heart with a demon heart. H A R D C O R E
 
 /obj/item/organ/heart/demon/Insert(mob/living/carbon/M, special = 0)
 	..()
-	M.AddComponent(/datum/component/crawl/blood)
+	// Gives a non-eat-people crawl to the new owner
+	var/datum/action/cooldown/spell/jaunt/bloodcrawl/crawl = new(M)
+	crawl.Grant(M)
 
 /obj/item/organ/heart/demon/Remove(mob/living/carbon/M, special = 0)
 	..()
-	var/datum/component/crawl/blood/B = M.GetComponent(/datum/component/crawl/blood)
-	if(B)
-		B.RemoveComponent()
+	var/datum/action/cooldown/spell/jaunt/bloodcrawl/crawl = locate() in M.actions
+	qdel(crawl)
 
 /obj/item/organ/heart/demon/Stop()
 	return 0 // Always beating.
@@ -153,7 +183,6 @@
 	attacktext = "wildly tickles"
 
 	attack_sound = 'sound/items/bikehorn.ogg'
-	feast_sound = 'sound/spookoween/scary_horn2.ogg'
 	deathsound = 'sound/misc/sadtrombone.ogg'
 
 	icon_state = "bowmon"
@@ -161,6 +190,8 @@
 	deathmessage = "fades out, as all of its friends are released from its \
 		prison of hugs."
 	loot = list(/mob/living/simple_animal/pet/cat/kitten{name = "Laughter"})
+
+	crawl_type = /datum/action/cooldown/spell/jaunt/bloodcrawl/slaughter_demon/funny
 
 	playstyle_string = "<span class='big bold'>You are a laughter \
 	demon,</span><B> a wonderful creature from another realm. You have a single \
@@ -178,19 +209,6 @@
 	released and fully healed, because in the end it's just a jape, \
 	sibling!</B>"
 
-/mob/living/simple_animal/slaughter/laughter/Initialize()
-	. = ..()
-	var/datum/component/crawl/blood/demonic/scary = GetComponent(/datum/component/crawl/blood/demonic)
-	if(scary)
-		scary.RemoveComponent(del_holder=FALSE)
-	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = AddComponent(/datum/component/crawl/blood/demonic/hilarious)
-	if(bloodcrawl && istype(loc, /obj/effect/dummy/crawling))
-		bloodcrawl.holder = loc
-
-/mob/living/simple_animal/slaughter/laughter/Destroy()
-	release_friends()
-	. = ..()
-
 /mob/living/simple_animal/slaughter/laughter/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -199,28 +217,3 @@
 			adjustBruteLoss(60)
 		if(3)
 			adjustBruteLoss(30)
-
-/mob/living/simple_animal/slaughter/laughter/proc/release_friends()
-	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = GetComponent(/datum/component/crawl/blood/demonic/hilarious)
-	if(!bloodcrawl || !bloodcrawl.friends)
-		return
-	for(var/mob/living/M in bloodcrawl.friends)
-		if(!M)
-			continue
-		var/turf/T = find_safe_turf()
-		if(!T)
-			T = get_turf(src)
-		M.forceMove(T)
-		if(M.revive(full_heal = TRUE, admin_revive = TRUE))
-			M.grab_ghost(force = TRUE)
-			playsound(T, feast_sound, 50, 1, -1)
-			to_chat(M, span_clown("You leave [src]'s warm embrace, and feel ready to take on the world.")) //Why the fuck was there a random tab in this message?
-
-/mob/living/simple_animal/slaughter/laughter/bloodcrawl_swallow(var/mob/living/victim)
-	var/datum/component/crawl/blood/demonic/hilarious/bloodcrawl = GetComponent(/datum/component/crawl/blood/demonic/hilarious)
-	if(!bloodcrawl || !bloodcrawl.friends)
-		victim.forceMove(get_turf(victim))
-		victim.exit_blood_effect()
-		victim.visible_message("[victim] falls out of the air, covered in blood, looking highly confused. And dead.")
-		return
-	bloodcrawl.friends += victim

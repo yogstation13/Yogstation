@@ -155,13 +155,15 @@
 	item = /obj/item/book/granter/martial/preternis_stealth
 	restricted_species = list("preternis")
 
-/datum/uplink_item/race_restricted/worldshaker
-	name = "Prototype worldshaker compound"
+/datum/uplink_item/race_restricted/worldbreaker
+	name = "Prototype worldbreaker compound"
 	desc = "A foul concoction made by reverse engineering chemicals compounds found in an ancient Vxtrin military outpost.\
 	Said to cause rapid muscle and plate growth in any Preternis that consumes it. It's believed to have been used by Vxtrin to transform their workers into highly effective commando units.\
 	It is not uncommon for Preterni that have consumed it to be crushed under the weight of their own ever-growing skin. The weight will also prevent use of conventional vehicles."
-	cost = 16
-	item = /obj/item/book/granter/martial/worldshaker
+	cost = 20
+	player_minimum = 25 //basically a fuckin megafauna
+	item = /obj/item/book/granter/martial/worldbreaker
+	manufacturer = /datum/corporation/traitor/vahlen
 	restricted_species = list("preternis")
 	
 /datum/uplink_item/race_restricted/explosive_fist_art

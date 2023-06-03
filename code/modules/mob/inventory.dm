@@ -423,7 +423,7 @@
 	if(hidden_slots & HIDESHOES)
 		obscured |= SLOT_SHOES
 	if(hidden_slots & HIDESUITSTORAGE)
-		obscured |= SLOT_S_STORE
+		obscured |= SLOT_SUIT_STORE
 
 	return obscured
 
@@ -510,7 +510,7 @@
 			hand_bodyparts[i] = BP
 	..() //Don't redraw hands until we have organs for them
 
-//GetAllContents that is reasonable and not stupid
+//get_all_contents that is reasonable and not stupid
 /mob/living/carbon/proc/get_all_gear()
 	var/list/processing_list = get_equipped_items(TRUE) + held_items
 	listclearnulls(processing_list) // handles empty hands

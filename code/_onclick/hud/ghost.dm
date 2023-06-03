@@ -4,13 +4,13 @@
 /atom/movable/screen/ghost/MouseEntered()
 	flick(icon_state + "_anim", src)
 
-/atom/movable/screen/ghost/jumptomob
+/atom/movable/screen/ghost/jump_to_mob
 	name = "Jump to mob"
-	icon_state = "jumptomob"
+	icon_state = "jump_to_mob"
 
-/atom/movable/screen/ghost/jumptomob/Click()
+/atom/movable/screen/ghost/jump_to_mob/Click()
 	var/mob/dead/observer/G = usr
-	G.jumptomob()
+	G.jump_to_mob()
 
 /atom/movable/screen/ghost/orbit
 	name = "Orbit"
@@ -48,8 +48,8 @@
 	..()
 	var/atom/movable/screen/using
 
-	using = new /atom/movable/screen/ghost/jumptomob()
-	using.screen_loc = ui_ghost_jumptomob
+	using = new /atom/movable/screen/ghost/jump_to_mob()
+	using.screen_loc = ui_ghost_jump_to_mob
 	static_inventory += using
 
 	using = new /atom/movable/screen/ghost/orbit()

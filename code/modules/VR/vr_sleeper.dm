@@ -188,8 +188,7 @@
 		QDEL_NULL(vr_human)
 
 /obj/machinery/vr_sleeper/proc/emagNotify()
-	if(vr_human)
-		vr_human.Dizzy(10)
+	vr_human?.adjust_dizzy(10 SECONDS)
 
 /obj/effect/landmark/vr_spawn //places you can spawn in VR, auto selected by the vr_sleeper during get_vr_spawnpoint()
 	var/vr_category = "default" //So we can have specific sleepers, eg: "Basketball VR Sleeper", etc.

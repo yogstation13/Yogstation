@@ -15,13 +15,13 @@
 	//Ask and you shall receive
 	switch(rand(1, 3))
 		if(1)
-			stuttering = 1
+			adjust_stutter(1 MINUTES / severity)
 			to_chat(src, span_danger("Warning: Feedback loop detected in speech module."))
 		if(2)
-			slurring = 1
+			adjust_slurring(INFINITY)
 			to_chat(src, span_danger("Warning: Audio synthesizer CPU stuck."))
 		if(3)
-			derpspeech = 1
+			set_derpspeech(INFINITY)
 			to_chat(src, span_danger("Warning: Vocabulary databank corrupted."))
 	if(prob(40))
 		mind.language_holder.selected_language = get_random_spoken_language()
@@ -70,7 +70,7 @@
 /mob/living/silicon/pai/stripPanelEquip(obj/item/what, mob/who, where) //prevents stripping
 	to_chat(src, span_warning("Your holochassis stutters and warps intensely as you attempt to interact with the object, forcing you to cease lest the field fail."))
 
-/mob/living/silicon/pai/IgniteMob(var/mob/living/silicon/pai/P)
+/mob/living/silicon/pai/ignite_mob(var/mob/living/silicon/pai/P)
 	return FALSE //No we're not flammable
 
 /mob/living/silicon/pai/proc/take_holo_damage(amount)
@@ -80,10 +80,10 @@
 	to_chat(src, span_userdanger("The impact degrades your holochassis!"))
 	return amount
 
-/mob/living/silicon/pai/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/silicon/pai/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	return take_holo_damage(amount)
 
-/mob/living/silicon/pai/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/silicon/pai/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	return take_holo_damage(amount)
 
 /mob/living/silicon/pai/adjustStaminaLoss(amount, updating_health, forced = FALSE)

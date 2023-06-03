@@ -73,7 +73,7 @@
 
 	//SECHUD
 	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	secsensor.add_hud_to(src)
+	secsensor.show_to(src)
 
 /mob/living/simple_animal/bot/ed209/turn_on()
 	. = ..()
@@ -545,8 +545,8 @@ Auto Patrol[]"},
 	spawn(2)
 		icon_state = "[lasercolor]ed209[on]"
 	var/threat = 5
-	C.Paralyze(100)
-	C.stuttering = 5
+	C.Paralyze(10 SECONDS)
+	C.adjust_stutter(5 SECONDS)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		var/judgement_criteria = judgement_criteria()
@@ -568,6 +568,6 @@ Auto Patrol[]"},
 		if( !on || !Adjacent(C) || !isturf(C.loc) ) //if he's in a closet or not adjacent, we cancel cuffing.
 			return
 		if(!C.handcuffed)
-			C.handcuffed = new /obj/item/restraints/handcuffs/cable/zipties/used(C)
+			C.set_handcuffed(new /obj/item/restraints/handcuffs/cable/zipties/used(C))
 			C.update_handcuffed()
 			back_to_idle()

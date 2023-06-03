@@ -180,7 +180,7 @@
 /datum/action/vehicle/ridden/wheelchair/explosive/kaboom
 	name = "Ding!"
 	desc = "Ring the cute little bell on your wheelchair."
-	icon_icon = 'icons/obj/bell.dmi'
+	button_icon = 'icons/obj/bell.dmi'
 	button_icon_state = "bell"
 	var/exploding = FALSE
 	var/explode_delay = 2 SECONDS

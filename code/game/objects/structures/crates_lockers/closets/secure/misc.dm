@@ -15,8 +15,8 @@
 		new /obj/item/ammo_box/magazine/m50(src)
 		new /obj/item/gun/ballistic/automatic/pistol/deagle(src)
 	else
-		new /obj/item/ammo_box/a357(src)
-		new /obj/item/ammo_box/a357(src)
+		new /obj/item/ammo_box/m44(src)
+		new /obj/item/ammo_box/m44(src)
 		new /obj/item/gun/ballistic/revolver/mateba(src)
 
 /obj/structure/closet/secure_closet/ertSec

@@ -161,7 +161,7 @@
 	icon_state = "tribalcoat"
 	item_state = "tribalcoat"
 	blood_overlay_type = "armor"
-	armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 5, BOMB = 50, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10) //Better against bomb than goliath, but worse in other ways
+	armor = list(MELEE = 35, BULLET = 10, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10) //Better against bomb than goliath, but worse in other ways
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	resistance_flags = FLAMMABLE
 
@@ -171,7 +171,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
 	icon_state = "pathcloak"
 	item_state = "pathcloak"
-	armor = list(MELEE = 35, BULLET = 25, LASER = 25, ENERGY = 10, BOMB = 50, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
+	armor = list(MELEE = 30, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
 	resistance_flags = FIRE_PROOF
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
@@ -182,7 +182,7 @@
 
 /obj/item/clothing/suit/armor/pathfinder/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate, null, null, list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5)) //maximum armor 65/40/40/25
+	AddComponent(/datum/component/armor_plate, null, null, list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 5)) //maximum armor 60/15/15/15/65
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof armor"
@@ -375,7 +375,7 @@
 	icon_state = "dragon"
 	desc = "A suit of armour fashioned from the remains of an ash drake."
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/twohanded/spear, /obj/item/twohanded/bonespear, /obj/item/claymore/bone, /obj/item/gun/ballistic/bow, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat)
-	armor = list(MELEE = 70, BULLET = 20, LASER = 30, ENERGY = 20, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 70, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 60, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/drake
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -387,7 +387,7 @@
 	name = "drake helm"
 	icon_state = "dragon"
 	desc = "The skull of a dragon."
-	armor = list(MELEE = 70, BULLET = 20, LASER = 30, ENERGY = 20, BOMB = 70, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 70, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 60, BIO = 60, RAD = 50, FIRE = 100, ACID = 100)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF

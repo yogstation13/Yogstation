@@ -41,7 +41,6 @@
 	zone_select.icon = ui_style
 	zone_select.update_icon(mymob)
 
-	lingchemdisplay = new /atom/movable/screen/ling/chems()
 	devilsouldisplay = new /atom/movable/screen/devil/soul_counter
 	infodisplay += devilsouldisplay
 

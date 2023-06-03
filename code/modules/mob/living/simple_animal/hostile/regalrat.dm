@@ -25,7 +25,6 @@
 	unique_name = TRUE
 	faction = list("rat")
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	var/datum/action/cooldown/coffer
 	var/datum/action/cooldown/riot
 	var/datum/action/cooldown/domain
 	var/opening_airlock = FALSE
@@ -33,10 +32,8 @@
 
 /mob/living/simple_animal/hostile/regalrat/Initialize()
 	. = ..()
-	coffer = new /datum/action/cooldown/coffer
 	riot = new /datum/action/cooldown/riot
 	domain = new /datum/action/cooldown/domain
-	coffer.Grant(src)
 	riot.Grant(src)
 	domain.Grant(src)
 	var/kingdom = pick("Plague","Miasma","Maintenance","Trash","Garbage","Rat","Vermin","Cheese")
@@ -47,8 +44,6 @@
 /mob/living/simple_animal/hostile/regalrat/handle_automated_action()
 	if(prob(20))
 		riot.Trigger()
-	else if(prob(50))
-		coffer.Trigger()
 	return ..()
 
 /mob/living/simple_animal/hostile/regalrat/CanAttack(atom/the_target)
@@ -84,71 +79,39 @@
 		heal_bodypart_damage(1)
 
 /**
-  *This action creates trash, money, dirt, and cheese.
-  */
-/datum/action/cooldown/coffer
-	name = "Fill Coffers"
-	desc = "Your newly granted regality and poise let you scavenge for lost junk, but more importantly, cheese."
-	icon_icon = 'icons/mob/actions/actions_ratking.dmi'
-	background_icon_state = "bg_clock"
-	button_icon_state = "coffer"
-	cooldown_time = 50
-
-/datum/action/cooldown/coffer/Trigger()
-	. = ..()
-	if(!.)
-		return
-	var/turf/T = owner.loc
-	if(!istype(T))
-		to_chat(owner, "There is no cheese in here!")
-		return
-	var/loot = rand(1,100)
-	switch(loot)
-		if(1 to 5)
-			to_chat(owner, "<span class='notice'>Score! You find some cheese!</span>")
-			var/cheesetype = pick(subtypesof(/obj/item/reagent_containers/food/snacks/cheesewedge) - /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar/custom)
-			new cheesetype(T)
-		if(6 to 10)
-			var/pickedcoin = pick(GLOB.ratking_coins)
-			to_chat(owner, "<span class='notice'>You find some leftover coins. More for the royal treasury!</span>")
-			for(var/i = 1 to rand(1,3))
-				new pickedcoin(T)
-		if(11)
-			to_chat(owner, "<span class='notice'>You find a... Hunh. This coin doesn't look right.</span>")
-			var/rarecoin = rand(1,2)
-			if (rarecoin == 1)
-				new /obj/item/coin/twoheaded(T)
-			else
-				new /obj/item/coin/antagtoken(T)
-		if(12 to 40)
-			var/pickedtrash = pick(GLOB.ratking_trash)
-			to_chat(owner, "<span class='notice'>You just find more garbage and dirt. Lovely, but beneath you now.</span>")
-			new /obj/effect/decal/cleanable/dirt(T)
-			new pickedtrash(T)
-		if(41 to 100)
-			to_chat(owner, "<span class='notice'>Drat. Nothing.</span>")
-			new /obj/effect/decal/cleanable/dirt(T)
-	StartCooldown()
-
-/**
   *This action checks all nearby mice, and converts them into hostile rats. If no mice are nearby, creates a new one.
   */
 
 /datum/action/cooldown/riot
 	name = "Raise Army"
 	desc = "Raise an army out of the hordes of mice and pests crawling around the maintenance shafts."
-	icon_icon = 'icons/mob/actions/actions_ratking.dmi'
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = "riot"
 	background_icon_state = "bg_clock"
-	cooldown_time = 80
-	///Checks to see if there are any nearby mice. Does not count Rats.
+	overlay_icon_state = "bg_clock_border"
+	cooldown_time = 8 SECONDS
+	melee_cooldown_time = 0 SECONDS
+	/// How close does something need to be for us to recruit it?
+	var/range = 5
+	/// Commands you can give to your mouse army
+//	var/static/list/mouse_commands = list(
+//		/datum/pet_command/idle,
+//		/datum/pet_command/free,
+//		/datum/pet_command/follow,
+//		/datum/pet_command/point_targetting/attack/mouse
+//	)
+	/// Commands you can give to glockroaches
+//	var/static/list/glockroach_commands = list(
+//		/datum/pet_command/idle,
+//		/datum/pet_command/free,
+//		/datum/pet_command/follow,
+//		/datum/pet_command/point_targetting/attack/glockroach
+//	)
 
-/datum/action/cooldown/riot/Trigger()
-	. = ..()
-	if(!.)
-		return
+/datum/action/cooldown/riot/Activate()
 	if(!isopenturf(owner.loc))
-		to_chat(owner,"<span class='warning'>You can't use raise soldiers while in an object!</span>")
+		to_chat(owner, span_warning("You can't use raise soldiers while in an object!"))
 		return
 	var/cap = CONFIG_GET(number/ratcap)
 	var/something_from_nothing = FALSE
@@ -183,17 +146,16 @@
 /datum/action/cooldown/domain
 	name = "Rat King's Domain"
 	desc = "Corrupts this area to be more suitable for your rat army."
-	check_flags = AB_CHECK_CONSCIOUS
-	cooldown_time = 10 SECONDS
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
+	cooldown_time = 6 SECONDS
+	melee_cooldown_time = 0 SECONDS
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	background_icon_state = "bg_clock"
-	button_icon_state = "smoke"
+	overlay_icon_state = "bg_clock_border"
+	button_icon_state = "coffer"
 
-/datum/action/cooldown/domain/Trigger()
-	var/turf/T = owner.loc
-	if(!istype(T))
-		to_chat(owner, "Building our domain here is for cowards!")
-		return FALSE
+/datum/action/cooldown/domain/proc/domain()
+	var/turf/T = get_turf(owner)
 	T.atmos_spawn_air("miasma=4;TEMP=[T20C]")
 	switch (rand(1,10))
 		if (8)
@@ -204,6 +166,11 @@
 			new /obj/effect/decal/cleanable/oil/slippery(T)
 		else
 			new /obj/effect/decal/cleanable/dirt(T)
+	StartCooldown()
+
+/datum/action/cooldown/domain/Activate()
+	StartCooldown(10 SECONDS)
+	domain()
 	StartCooldown()
 
 #define REGALRAT_INTERACTION "regalrat"

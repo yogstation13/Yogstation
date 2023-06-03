@@ -7,13 +7,14 @@
 	density = TRUE
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/storage/bag/trash/mybag	= null
-	var/obj/item/mop/mymop = null
-	var/obj/item/reagent_containers/spray/cleaner/myspray = null
-	var/obj/item/lightreplacer/myreplacer = null
-	var/obj/item/paint/paint_remover/myremover = null
-	var/obj/item/melee/flyswatter/myswatter = null
-	var/obj/item/flashlight/mylight = null
+	var/obj/item/storage/bag/trash/mybag
+	var/obj/item/mop/mymop
+	var/obj/item/twohanded/broom/mybroom
+	var/obj/item/reagent_containers/spray/cleaner/myspray 
+	var/obj/item/lightreplacer/myreplacer
+	var/obj/item/paint/paint_remover/myremover
+	var/obj/item/melee/flyswatter/myswatter
+	var/obj/item/flashlight/mylight
 	var/signs = 0
 	var/const/max_signs = 4
 
@@ -93,6 +94,12 @@
 			l.janicart_insert(user,src)
 		else
 			to_chat(user, fail_msg)
+	else if(istype(I, /obj/item/twohanded/broom))
+		if(!mybroom)
+			var/obj/item/twohanded/broom/b=I
+			b.janicart_insert(user,src)
+		else
+			to_chat(user, fail_msg)
 	else if(istype(I, /obj/item/clothing/suit/caution))
 		if(signs < max_signs)
 			put_in_cart(I, user)
@@ -131,6 +138,8 @@
 		items += list("Flashlight" = image(icon = mylight.icon, icon_state = mylight.icon_state))
 	if(myreplacer)
 		items += list("Light replacer" = image(icon = myreplacer.icon, icon_state = myreplacer.icon_state))
+	if(mybroom)
+		items += list("Broom" = image(icon = mybroom.icon, icon_state = mybroom.icon_state))
 	var/obj/item/clothing/suit/caution/sign = locate() in src
 	if(sign)
 		items += list("Sign" = image(icon = sign.icon, icon_state = sign.icon_state))
@@ -184,6 +193,12 @@
 			user.put_in_hands(myreplacer)
 			to_chat(user, span_notice("You take [myreplacer] from [src]."))
 			myreplacer = null
+		if("Broom")
+			if(!mybroom)
+				return
+			user.put_in_hands(mybroom)
+			to_chat(user, span_notice("You take [mybroom] from [src]."))
+			mybroom = null
 		if("Sign")
 			if(signs <= 0)
 				return
@@ -228,4 +243,6 @@
 		add_overlay("cart_sign[signs]")
 	if(reagents.total_volume > 0)
 		add_overlay("cart_water")
+	if(mybroom)
+		add_overlay("cart_broom")
 

@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 		else
 			var/safety = 0
 			while(safety < 25)
-				T = safepick(get_area_turfs(destination))
+				T = pick(get_area_turfs(destination))
 				if(T && !H.Move(T))
 					safety += 1
 					continue

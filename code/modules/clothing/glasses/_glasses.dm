@@ -396,6 +396,7 @@
 	chameleon_action.chameleon_name = "Glasses"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/glasses/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
+	add_item_action(chameleon_action)
 
 /obj/item/clothing/glasses/thermal/syndi/emp_act(severity)
 	. = ..()
@@ -459,31 +460,35 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	clothing_flags = SCAN_REAGENTS
+	var/datum/action/cooldown/expose/expose_ability
 	var/hud_type = DATA_HUD_MEDICAL_ADVANCED
-	var/obj/effect/proc_holder/expose/expose_ability
 
 /obj/item/clothing/glasses/godeye/Initialize()
 	. = ..()
-	expose_ability = new(expose_ability)
+	expose_ability = new(src)
+
+/obj/item/clothing/glasses/godeye/Destroy()
+	QDEL_NULL(expose_ability)
+	return ..()
 
 /obj/item/clothing/glasses/godeye/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(ishuman(user) && slot == ITEM_SLOT_EYES)
 		ADD_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
-		user.AddAbility(expose_ability)
+		expose_ability.Grant(user)
 		if(hud_type)
 			var/datum/atom_hud/H = GLOB.huds[hud_type]
-			H.add_hud_to(user)
+			H.show_to(user)
 
 /obj/item/clothing/glasses/godeye/dropped(mob/living/carbon/human/user)
 	. = ..()
 	// Behead someone, their "glasses" drop on the floor
 	// and thus, the god eye should no longer be sticky
 	REMOVE_TRAIT(src, TRAIT_NODROP, EYE_OF_GOD_TRAIT)
-	user.RemoveAbility(expose_ability)
+	expose_ability.Remove(user)
 	if(hud_type && istype(user) && user.glasses == src)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.remove_hud_from(user)
+		H.hide_from(user)
 
 /obj/item/clothing/glasses/godeye/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(istype(W, src) && W != src && W.loc == user)
@@ -497,58 +502,42 @@
 			qdel(src)
 	..()
 
-/obj/effect/proc_holder/expose
+/datum/action/cooldown/expose
 	name = "Expose"
 	desc = "Expose an enemy, increasing all damage dealt to them by 15% for 10 seconds, effect is magnified on megafauna."
-	action_background_icon_state = "bg_demon"
-	action_icon = 'icons/mob/actions/actions_items.dmi'
-	action_icon_state = "expose"
+	background_icon_state =  "bg_demon"
+	overlay_icon_state = "bg_demon_border"
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "expose"
+
+	click_to_activate = TRUE
+	cooldown_time = 45 SECONDS
 	ranged_mousepointer = 'icons/effects/mouse_pointers/expose_target.dmi'
-	var/cooldown_time = 1 MINUTES
-	COOLDOWN_DECLARE(scan_cooldown)
 
-/obj/effect/proc_holder/expose/on_lose(mob/living/user)
-	remove_ranged_ability()
+/datum/action/cooldown/expose/IsAvailable(feedback = FALSE)
+	return ..() && isliving(owner)
 
-/obj/effect/proc_holder/expose/Click(location, control, params)
-	. = ..()
-	if(!isliving(usr))
-		return TRUE
-	var/mob/living/user = usr
-	fire(user)
+/datum/action/cooldown/expose/Activate(atom/exposed)
+	StartCooldown(15 SECONDS)
 
-/obj/effect/proc_holder/expose/fire(mob/living/carbon/user)
-	if(active)
-		remove_ranged_ability(span_notice("You relax your god eye."))
-	else
-		add_ranged_ability(user, span_notice("You squint your god eye. <B>Left-click a creature to expose it!</B>"), TRUE)
+	if(owner.stat != CONSCIOUS)
+		return FALSE
+	if(!isliving(exposed) || exposed == owner)
+		owner.balloon_alert(owner, "invalid exposed!")
+		return FALSE
+	
+	var/mob/living/living_exposed = exposed
+	living_exposed.apply_status_effect(STATUS_EFFECT_EXPOSED)
+	living_exposed.adjust_jitter(5 SECONDS)
+	to_chat(living_exposed, span_warning("You feel the gaze of a malevolent presence focus on you!"))
+	owner.playsound_local(get_turf(owner), 'sound/magic/smoke.ogg', 50, TRUE)
 
-/obj/effect/proc_holder/expose/InterceptClickOn(mob/living/caller, params, atom/target)
-	. = ..()
-	if(.)
-		return
-	if(ranged_ability_user.stat)
-		remove_ranged_ability()
-		return
-	if(!COOLDOWN_FINISHED(src, scan_cooldown))
-		to_chat(ranged_ability_user, span_warning("You try to focus your god eye, but it's too tired. Give it some time to recharge!"))
-		return
-	if(!isliving(target) || target == ranged_ability_user)
-		return
-	var/mob/living/living_target = target
-	living_target.apply_status_effect(STATUS_EFFECT_EXPOSED)
-	living_target.Jitter(5)
-	to_chat(living_target, span_warning("You feel the gaze of a malevolent presence focus on you!"))
-	ranged_ability_user.playsound_local(get_turf(ranged_ability_user), 'sound/magic/smoke.ogg', 50, TRUE)
-	living_target.playsound_local(get_turf(living_target), 'sound/hallucinations/i_see_you1.ogg', 50, TRUE)
-	to_chat(ranged_ability_user, "You glare at [living_target], exposing them!")
-	COOLDOWN_START(src, scan_cooldown, cooldown_time)
-	addtimer(CALLBACK(src, PROC_REF(cooldown_over), ranged_ability_user), cooldown_time)
-	remove_ranged_ability()
+	living_exposed.playsound_local(get_turf(living_exposed), 'sound/hallucinations/i_see_you1.ogg', 50, TRUE)
+	owner.balloon_alert(owner, "[living_exposed] exposed!")
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, balloon_alert), owner, "eye recharged"), cooldown_time)
+
+	StartCooldown()
 	return TRUE
-
-/obj/effect/proc_holder/expose/proc/cooldown_over()
-	to_chat(usr, (span_notice("Your god eye is focused enough to expose again!")))
 
 /obj/item/clothing/glasses/AltClick(mob/user)
 	if(glass_colour_type && ishuman(user))

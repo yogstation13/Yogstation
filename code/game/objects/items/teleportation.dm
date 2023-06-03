@@ -167,27 +167,22 @@
 			. += "<span class='notice'>A tier <b>[manipulator.rating]</b> micro manipulator is installed. It is <i>screwed</i> in place.<span>"
 
 /obj/item/hand_tele/pre_attack(atom/target, mob/user, params)
-	if(try_dispel_portal(target, user))
+	if(is_parent_of_portal(target))
+		try_dispel_portal(target, user)
 		return FALSE
 	return ..()
 
 /obj/item/hand_tele/proc/try_dispel_portal(atom/target, mob/user)
-	if(is_parent_of_portal(target))
+	if(is_parent_of_portal(target)) //dispel me from this horrid realm
 		var/dispel_time = 5 - manipulator.rating
 		if(dispel_time == 0)
 			qdel(target)
 			to_chat(user, span_notice("You dispel [target] with \the [src]!"))
-			return TRUE
+			return
 		balloon_alert(user, "Dispelling portal...")
 		if(do_after(user, dispel_time SECONDS, target))
 			qdel(target)
 			to_chat(user, span_notice("You dispel [target] with \the [src]!"))
-			return TRUE
-	return FALSE
-
-/obj/item/hand_tele/afterattack(atom/target, mob/user)
-	try_dispel_portal(target, user)
-	. = ..()
 
 /obj/item/hand_tele/attack_self(mob/user)
 	var/turf/current_location = get_turf(user)//What turf is the user on?

@@ -2,7 +2,7 @@
 	name = "Signal dispatch"
 	desc = "Opens up a quick select wheel for reporting crimes, including your current location, to your fellow security officers."
 	button_icon_state = "dispatch"
-	icon_icon = 'yogstation/icons/mob/actions/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions/actions.dmi'
 
 /obj/item/clothing/mask/gas/sechailer
 	var/obj/item/radio/radio //For engineering alerts.

@@ -71,7 +71,9 @@
 	P.gun = attached_gun
 	P.color = laser_color
 	var/turf/curloc = get_turf(src)
-	var/turf/targloc = get_turf(current_user.client.mouseObject)
+	
+	var/atom/target_atom = current_user.client.mouse_object_ref?.resolve()
+	var/turf/targloc = get_turf(target_atom)
 	if(!istype(targloc))
 		if(!istype(curloc))
 			return
@@ -137,3 +139,52 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	QDEL_LIST(attached_gun?.current_tracers)
 	return ..()
+
+/datum/action/item_action/toggle_laser_sight
+	name = "Toggle Laser Sight"
+	button_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "laser_sight"
+	var/obj/item/attachment/laser_sight/att
+
+/datum/action/item_action/toggle_laser_sight/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/parent_gun = target
+			for(var/obj/item/attachment/A in parent_gun.current_attachments)
+				if(istype(A, /obj/item/attachment/laser_sight))
+					att = A
+					break
+	att?.toggle_on()
+	build_all_button_icons(UPDATE_BUTTON_ICON)
+
+/datum/action/item_action/toggle_laser_sight/apply_button_icon(atom/movable/screen/movable/action_button/button, force)
+	var/obj/item/attachment/laser_sight/sight = target
+	if(istype(sight))
+		button_icon_state = "laser_sight[att?.is_on ? "_on" : ""]"
+
+	return ..()
+
+/datum/action/item_action/change_laser_sight_color
+	name = "Change Laser Sight Color"
+	button_icon = 'icons/obj/guns/attachment.dmi'
+	button_icon_state = "laser_sight"
+	var/obj/item/attachment/laser_sight/att
+
+/datum/action/item_action/change_laser_sight_color/Trigger()
+	if(!att)
+		if(istype(target, /obj/item/gun))
+			var/obj/item/gun/H = target
+			for(var/obj/item/attachment/A in H.current_attachments)
+				if(istype(A, /obj/item/attachment/laser_sight))
+					att = A
+					break
+	if(att && owner)
+		var/C = input(owner, "Select Laser Color", "Select laser color", att.laser_color) as null|color
+		if(!C || QDELETED(att))
+			return
+		att.laser_color = C
+	build_all_button_icons(UPDATE_BUTTON_ICON)
+
+/datum/action/item_action/change_laser_sight_color/apply_button_icon(atom/movable/screen/movable/action_button/button, force)
+	button_icon_state = "laser_sight[att?.is_on ? "_on" : ""]"
+	..()

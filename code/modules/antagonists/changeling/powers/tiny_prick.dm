@@ -21,17 +21,17 @@
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	changeling.chosen_sting = src
 
-	user.hud_used.lingstingdisplay.icon = 'icons/obj/changeling.dmi'
-	user.hud_used.lingstingdisplay.icon_state = sting_icon
-	user.hud_used.lingstingdisplay.invisibility = 0
+	changeling.lingstingdisplay.icon = 'icons/obj/changeling.dmi'
+	changeling.lingstingdisplay.icon_state = sting_icon
+	changeling.lingstingdisplay.invisibility = 0
 
 /datum/action/changeling/sting/proc/unset_sting(mob/user)
 	to_chat(user, span_warning("We retract our sting, we can't sting anyone for now."))
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	changeling.chosen_sting = null
 
-	user.hud_used.lingstingdisplay.icon_state = null
-	user.hud_used.lingstingdisplay.invisibility = INVISIBILITY_ABSTRACT
+	changeling.lingstingdisplay.icon_state = null
+	changeling.lingstingdisplay.invisibility = INVISIBILITY_ABSTRACT
 
 /mob/living/carbon/proc/unset_sting()
 	if(mind)
