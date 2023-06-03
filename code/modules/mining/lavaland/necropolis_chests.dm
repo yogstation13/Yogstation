@@ -673,13 +673,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "potionflask"
 
-
 /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "syndi_potionflask"
 	desc = "An ornate red bottle, with an \"S\" embossed into the underside. Filled with an experimental flight potion. Mileage may vary."
 	
-
 /obj/item/reagent_containers/glass/bottle/potion/flight
 	name = "strange elixir"
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
