@@ -407,7 +407,7 @@
 			user.log_message("pricked [target == user ? "themselves" : target ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
 			if(target != user && target.ckey && user.ckey) // injecting people with plants now creates admin logs (stolen from hypospray code)
 				log_attack("[user.name] ([user.ckey]) pricked [target.name] ([target.ckey]) with [G], which had [contained] (INTENT: [uppertext(user.a_intent)])")
-		var/injecting_amount = max(G.seed.potency * 0.2) / target.getarmor(def_zone, BIO) // Maximum of 20, reduced by bio protection
+		var/injecting_amount = G.seed.potency * 0.2 * clamp(1 - target.getarmor(def_zone, BIO)/100, 0, 1) // A number between 0 and 20, reduced by bio armor as a percent
 		if(injecting_amount < 1)
 			return
 		var/fraction = min(injecting_amount/G.reagents.total_volume, 1)

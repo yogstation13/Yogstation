@@ -133,7 +133,7 @@
 	.["Convert To Traitor"] = CALLBACK(src, PROC_REF(make_traitor))
 
 /datum/antagonist/brother/proc/make_traitor()
-	if(tgui_alert("Are you sure? This will turn the blood brother into a traitor with the same objectives!",,list("Yes","No")) != "Yes")
+	if(tgui_alert(usr, "Are you sure? This will turn the blood brother into a traitor with the same objectives!",,list("Yes","No")) != "Yes")
 		return
 
 	var/datum/antagonist/traitor/tot = new()

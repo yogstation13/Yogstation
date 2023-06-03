@@ -165,6 +165,9 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 		qdel(src)
 
 /obj/effect/meteor/proc/ram_turf(turf/T)
+	if(isspaceturf(T))
+		return
+
 	//first yell at mobs about them dying horribly
 	for(var/mob/living/thing in T)
 		thing.visible_message(span_warning("[src] slams into [thing]."), span_userdanger("[src] slams into you!."))

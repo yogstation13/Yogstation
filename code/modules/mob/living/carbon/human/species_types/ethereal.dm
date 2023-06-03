@@ -209,16 +209,32 @@
 	return features
 
 /datum/species/ethereal/get_species_description()
-	return /*"Coming from the planet of Sprout, the theocratic ethereals are \
-		separated socially by caste, and espouse a dogma of aiding the weak and \
-		downtrodden."*/
+	return "Ethereals are one of the two other spacefaring species encountered by the SIC. Strange slime-based humanoids that emit light based on their \
+		general health, ethereals are also well-known for their general benevolence and naivety. While not common within SIC space, they are still \
+		a relatively accepted species in its borders."
 
 /datum/species/ethereal/get_species_lore()
-	return list("TBD",/*
-		"Ethereals are a species native to the planet Sprout. \
-		When they were originally discovered, they were at a medieval level of technological progression, \
-		but due to their natural acclimation with electricity, they felt easy among the large NanoTrasen installations.",
-	*/)
+	return list(
+		"On their homeplanet of Borealia, the ethereal people came to being through the bizarre process known as electro-organic attunement (or EOA). While still not fully understood, the process occurs through the combination of slime, \
+		meat, and lightning in highly specific barometric conditions. As Borealia's atmosphere is highly unstable, beyond reliably long summers and even longer winters, the ethereal people grew within the underground, crystalline caverns that sprawl \
+		the high-g planet. Settling near bodies of water and electric crystal packets, the absence of any light but their own created a great emphasis on an individual's light as reflective of their health, mood, and literal location. While the creation \
+		of new ethereals was slow, and the number of ethereals who managed to migrate to existing settlements was even lower, the long lifespans of the strange entities meant that knowledge and organization quickly grew.",
+
+		"Above all else, a kinship with the stars began to develop within the various cultures of ethereals. As parchment and writing were almost non-existent, the oral traditions of a group known as the Lightseers quickly became dominant as the ethereal \
+		people moved toward their ultimate goal to reach the divine bodies in the skies. Conflict was rare, and, with the massive abundance of stabilized bluespace crystals, it's estimated that ethereal vehicles made of crystals, metal, and stone broke \
+		the planet's atmosphere in about 1541 C.E.. FTL travel became available much sooner as well, and though their numbers grew slowly, ethereals worked their way around the Elix system. As the discovery of wood and paper finally came into their civilization, \
+		cultural splits that were quickly occurring due to differences in oral tellings were quenched with the spread of literacy. By 2323, ethereals encountered the ex'hau, and the two species quickly established friendly relations. Over a century later, they \
+		would also go on to meet the SIC through the ex'hau, despite their many voyages into deep space, arriving in systems such as Alpha Centauri or Palt.",
+
+		"Ethereals are highly communal and altruistic, though they tend toward theocratic authority from their own people. Survival is not difficult within temperate environments, thus ethereals often focus on spiritual or other fulfilling measures \
+		to fill their long lifespans. Older, priestly ethereals are universally respected among their people, often sought out for wisdom in both active and future affairs. Entertainment in the form of drama and visual arts are highly revered among them, \
+		and those creative are considered to be more valuable than those more pragmatic. While not exceptionally prideful or violent, ethereals tend to be honest and genuine in their interactions with others, seeking not only to reward themselves with meaningful \
+		conversations, but also enrich others in the great journey of life that all walk.",
+
+		"Today, most ethereals in SIC are generally found in passing, either on a pilgrimage or working to earn enough assets to permit one. While the ethereal people have been tempered slightly by threats of piracy, they still remain largely unmolested \
+		by the widespread conflicts that fraught SIC and ex'hau space. Most concerns that exist currently involve the inexplicable disappearance of a variety of ships after bluespace jumping: ones that simply do not re-appear. Investigations into these \
+		vanishing ships are still ongoing, but they're largely dismissed by the other species in the nearly-formed Innergalactic Union.",
+	)
 
 /datum/species/ethereal/create_pref_unique_perks()
 	var/list/to_add = list()

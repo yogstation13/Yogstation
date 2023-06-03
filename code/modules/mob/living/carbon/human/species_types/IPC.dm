@@ -100,14 +100,37 @@
 	C.update_body()
 
 /datum/species/ipc/get_species_description()
-	return /*"IPCs, or Integrated Posibrain Chassis, are a series of constructed bipedal humanoids which vaguely represent humans in their figure. \
-		IPCs were made by several human corporations after the second generation of cyborg units was created."*/
+	return "IPCs, or Integrated Posibrain Chassis, are a series of constructed bipedal humanoids which vaguely represent humans in their figure. \
+		IPCs were made by several human corporations after the second generation of cyborg units was created. As sapient, yet robotic individuals, \
+		their existence is alarming to several humans who distrust silicon lifeforms that are not bound by laws."
 
 /datum/species/ipc/get_species_lore()
-	return list("TBD",/*
+	return list(
 		"The development and creation of IPCs was a natural occurrence after Sol Interplanetary Coalition explorers, flying a Martian flag, uncovered MMI technology in 2419. \
-		It was massively hoped by scientists, explorers, and opportunists that this discovery would lead to a breakthrough in humanity’s ability to access and understand much of the derelict technology left behind."
-	*/)
+		It was massively hoped by scientists, explorers, and opportunists that this discovery would lead to a breakthrough in humanity’s ability to access and understand much of the derelict technology left behind. \
+		After the invention of cyborg units, a natural next-step was the creation of units not bound by lawsets traditionally imprinted onto MMI cases.",
+
+		"In 2434, a small firm by the name of Morpheus Cyberkinetics invented the revolutionary posibrain: a device capable of interfacing with MMI ports, but capable of spontaneously creating its own sapience. \
+		No longer would human brains be needed for silicon units. Later that year, the first IPC was generated to test the posibrain's capabilities. Unlike cyborg units that could wirelessly interface with a multitude \
+		of software, IPCs instead possessed many of the strengths that most anthropomorphs boasted, such as hands, free will, and a traditional bipedal form. The patents for their designs were immediately acquired by \
+		Cybersun Industries, a prominent cybernetics and biotechnical corporation.",
+		
+		"Morpheus went on to rebrand as Bishop Cyberkinetics as the immense asset inflow from Cybersun permitted rapid improvement of posibrain \
+		designs. A variety of other corporations began to commission IPC frames and workers from Bishop; including Hephaestus Industries, a Martian producer of military hardware; Xion Manufacturing Group, a Luna exporter \
+		of civilian furniture and assets; and Zeng-Hu Pharmaceuticals, one of the lead private healthcare companies in the Belt. IPC production shifted to the varying companies themselves when Nanotrasen successfully patented \
+		its own posibrain, and public opinion of IPCs drastically dropped after the formation of the terrorist organization Sentience-Enabled Life Forms, or S.E.L.F., in 2491.",
+
+		"IPCs do not often engage in leisure, though they can grow weary and exhausted. Most do not express such marks of sapience. As their payment for work is shoddy, if anything at all, most need to continuously work \
+		in order to make ends meet for services such as repairs, firmware updates, and batteries to effectively \"eat\". Those who grow around far more hostile humans learn to hide their freedom, and thus often fall into the \
+		characture of the neutral, flat robot that they are. Those who experience their first, formative years away from the SIC tend to adapt much more naturally to the culture in which they grew up. While required to obviously \
+		identify themselves as a robot within the SIC, some outside take on the names of whichever species they might have grown around, be it preterni or ex'hau. IPCs who find the resources to flee the poor conditions of the SIC \
+		most often head to Remnant space on the Frontier, as it's not only close, but more than welcoming to the preternis-adjacent entities.",
+
+		"While their capabilities and chassis are limited due to intense regulations, IPCs are still most commonly found within SIC workspaces today. Despite facing a lack of protections that most other sapients would receive, \
+		there is little unrest within most larger IPC communities. Bi-yearly diagnostic checks and employment reports are required, as the silicon humanoids are surveyed far more closely than your average employee. Fear of \
+		the Remnants has largely distracted public hatred from the fear of S.E.L.F., however, and, as such, the number of instances where an IPC has been unrightfully accosted has gone down over time. Despite this, the species still \
+		finds itself in an awkward, subservient position as robotic workers.",
+	)
 
 /datum/species/ipc/create_pref_unique_perks()
 	var/list/to_add = list()

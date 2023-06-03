@@ -1457,7 +1457,7 @@
 			return
 
 		var/mob/M = locate(href_list["jumpto"])
-		usr.client.jumptomob(M)
+		usr.client.jump_to_mob(M)
 
 	else if(href_list["getmob"])
 		if(!check_rights(R_ADMIN))

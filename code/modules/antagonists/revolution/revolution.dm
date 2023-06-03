@@ -31,6 +31,7 @@
 				return FALSE
 
 /datum/antagonist/rev/apply_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/M = mob_override || owner.current
 	M.grant_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
 	add_team_hud(M, /datum/antagonist/rev)
@@ -38,6 +39,7 @@
 /datum/antagonist/rev/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	M.remove_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
+	return ..()
 
 /datum/antagonist/rev/proc/equip_rev()
 	return
@@ -50,7 +52,7 @@
 
 /datum/antagonist/rev/on_removal()
 	remove_objectives()
-	. = ..()
+	return ..()
 
 /datum/antagonist/rev/greet()
 	to_chat(owner, span_userdanger("You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!"))

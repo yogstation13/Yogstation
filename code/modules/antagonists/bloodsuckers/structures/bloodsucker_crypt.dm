@@ -132,13 +132,13 @@
 		to_chat(user, span_warning("You can't figure out how this works."))
 		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(bloodsuckerdatum.has_task && !check_completion(user)) //not done but has a task? put them on their way
+		to_chat(user, span_warning("You already have a rank up task!"))
+		return
 	if(bloodsuckerdatum.altar_uses >= ALTAR_RANKS_PER_DAY) //used the altar already
 		to_chat(user, span_notice("You have done all tasks for the night, come back tomorrow for more."))
 		return
-	if(!check_completion(user) && bloodsuckerdatum.current_task) //not done but has a task? put them on their way
-		to_chat(user, span_warning("You already have a rank up task!"))
-		return
-	var/want_rank = tgui_alert("Do you want to gain a task? This will cost 50 Blood.", "Task Manager", list("Yes", "No"))
+	var/want_rank = tgui_alert(user, "Do you want to gain a task? This will cost 50 Blood.", "Task Manager", list("Yes", "No"))
 	if(want_rank != "Yes" || QDELETED(src))
 		return
 	generate_task(user) //generate
@@ -163,7 +163,7 @@
 	if(crewmate.blood_volume < 50)
 		to_chat(user, span_danger("You don't have enough blood to gain a task!"))
 		return
-	crewmate.blood_volume -= 50
+	bloodsuckerdatum.AddBloodVolume(-50)
 	switch(rand(1, 3))
 		if(1,2)
 			bloodsuckerdatum.task_blood_required = suckamount
@@ -173,15 +173,15 @@
 			task = "Sacrifice [heartamount] hearts by using them on the altar."
 			sacrificialtask = TRUE
 	bloodsuckerdatum.task_memory += "<B>Current Rank Up Task</B>: [task]<br>"
-	bloodsuckerdatum.current_task = TRUE
+	bloodsuckerdatum.has_task = TRUE
 	to_chat(user, span_boldnotice("You have gained a new Task! [task] Remember to collect it by using the blood altar!"))
 
 /obj/structure/bloodsucker/bloodaltar/proc/check_completion(mob/living/user)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum.task_blood_drank < suckamount || sacrifices < heartamount)
+	if(bloodsuckerdatum.task_blood_drank < bloodsuckerdatum.task_blood_required || sacrifices < bloodsuckerdatum.task_heart_required)
 		return FALSE
 	bloodsuckerdatum.task_memory = null
-	bloodsuckerdatum.current_task = FALSE
+	bloodsuckerdatum.has_task = FALSE
 	bloodsuckerdatum.bloodsucker_level_unspent++
 	bloodsuckerdatum.altar_uses++
 	bloodsuckerdatum.task_blood_drank = 0
@@ -334,11 +334,11 @@
 				if(8 to INFINITY)
 					to_chat(user, span_notice("You have evolved all abilities possible."))
 					return
-			var/want_clantask = tgui_alert("Do you want to spend a rank to gain a shadowpoint? This will cost [rankspent] ranks.", "Dark Manager", list("Yes", "No"))
+			var/want_clantask = tgui_alert(user, "Do you want to spend a rank to gain a shadowpoint? This will cost [rankspent] ranks.", "Dark Manager", list("Yes", "No"))
 			if(want_clantask == "No" || QDELETED(src))
 				return
 			if(bloodsuckerdatum.bloodsucker_level_unspent < rankspent)
-				var/another_shot = tgui_alert("It seems like you don't have enough ranks, spend 550 blood instead?", "Dark Manager", list("Yes", "No"))
+				var/another_shot = tgui_alert(user, "It seems like you don't have enough ranks, spend 550 blood instead?", "Dark Manager", list("Yes", "No"))
 				if(another_shot == "No" || QDELETED(src))
 					return
 				var/mob/living/carbon/C = user

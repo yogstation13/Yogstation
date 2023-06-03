@@ -332,6 +332,7 @@
 	if(QDELETED(target) || !(ishuman(owner) || iscyborg(owner)) || !owner.canUseTopic(target))
 		return
 	if(!GLOB.servants_active) //No leaving unless there's servants from the get-go
+		to_chat(owner, "[span_sevtug_small("The Ark doesn't let you leave!")]")
 		return
 	if(warping)
 		cancel = TRUE

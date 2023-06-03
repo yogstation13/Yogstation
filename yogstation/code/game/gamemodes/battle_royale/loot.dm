@@ -396,12 +396,12 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	martial = /datum/martial_art/ultra_violence
 	species = /datum/species/ipc
 
-/obj/item/battleroyale/martial/worldshaker
-	name = "Worldshaker martial mutator"
+/obj/item/battleroyale/martial/worldbreaker
+	name = "Worldbreaker martial mutator"
 	desc = "Transforms you into a lumbering metal juggernaut."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "flaming_moe"
-	martial = /datum/martial_art/worldshaker
+	martial = /datum/martial_art/worldbreaker
 	species = /datum/species/preternis
 
 /obj/item/battleroyale/martial/lizard

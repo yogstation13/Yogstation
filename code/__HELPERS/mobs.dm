@@ -279,6 +279,9 @@ GLOBAL_LIST_EMPTY(species_list)
 		return 0
 	var/user_loc = user.loc
 
+	if(target)
+		LAZYADD(user.do_afters, target)
+		LAZYADD(target.targeted_by, user)
 	var/drifting = FALSE
 	if(SSmove_manager.processing_on(user, SSspacedrift))
 		drifting = TRUE
@@ -301,6 +304,11 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(QDELETED(user) || QDELETED(target))
 			. = FALSE
 			break
+
+		if(target && !(target in user.do_afters))
+			. = FALSE
+			break
+
 		if(uninterruptible)
 			continue
 
@@ -313,6 +321,10 @@ GLOBAL_LIST_EMPTY(species_list)
 			break
 	if (progress)
 		qdel(progbar)
+
+	if(!QDELETED(target))
+		LAZYREMOVE(user.do_afters, target)
+		LAZYREMOVE(target.targeted_by, user)
 
 
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action

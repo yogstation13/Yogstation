@@ -633,11 +633,11 @@
 				var/check = reaction_check(A, R)
 				if(!check)
 					continue
-				var/touch_protection = 0
+				var/permeability = 0
 				if(method == TOUCH || method == VAPOR)
 					var/mob/living/L = A
-					touch_protection = L.get_permeability_protection()
-				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection)
+					permeability = L.get_permeability()
+				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, permeability)
 			if("TURF")
 				R.reaction_turf(A, R.volume * volume_modifier, show_message)
 			if("OBJ")

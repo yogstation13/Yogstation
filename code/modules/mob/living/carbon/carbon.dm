@@ -293,9 +293,9 @@
 				usr.visible_message("[usr] successfully rips [I] out of [usr.p_their()] [L.name]!", span_notice("You successfully remove [I] from your [L.name]."))
 		return
 
-/mob/living/carbon/fall(forced)
-	if(loc)
-		loc.handle_fall(src, forced)//it's loc so it doesn't call the mob's handle_fall which does nothing
+/mob/living/carbon/on_fall()
+	. = ..()
+	loc.handle_fall(src)//it's loc so it doesn't call the mob's handle_fall which does nothing
 
 /mob/living/carbon/is_muzzled()
 	return(istype(src.wear_mask, /obj/item/clothing/mask/muzzle))
@@ -744,17 +744,27 @@
 	else
 		. += INFINITY
 
-/mob/living/carbon/get_permeability_protection(list/target_zones = list(HANDS,CHEST,GROIN,LEGS,FEET,ARMS,HEAD))
-	var/list/tally = list()
-	for(var/obj/item/I in get_equipped_items())
-		for(var/zone in target_zones)
-			if(I.body_parts_covered & zone)
-				tally["[zone]"] = max(1 - I.permeability_coefficient, target_zones["[zone]"])
-	var/protection = 0
-	for(var/key in tally)
-		protection += tally[key]
-	protection *= INVERSE(target_zones.len)
-	return protection
+// permeability: now slightly more sane and probably functional!
+/mob/living/carbon/get_permeability(def_zone)
+	if(def_zone)
+		var/permeability = 1 / (2**(getarmor(def_zone, BIO) / 15))
+		if(permeability <= 0.01)
+			return 0
+		return permeability
+
+	var/total_bodyparts = 0
+	var/total_permeability = 0
+	for(var/obj/item/bodypart/BP in bodyparts)
+		total_bodyparts++
+		var/protection = getarmor(BP.body_zone, BIO)
+		if(protection < 100)
+			total_permeability += 1 / (2**(protection / 15)) // every 15 bio armor reduces permeability by half (15 is 0.5, 30 is 0.25, 60 is 0.0625, etc)
+
+	var/permeability = clamp(total_permeability / total_bodyparts, 0, 1)
+	if(permeability <= 0.01)
+		return 0
+
+	return permeability
 
 //this handles hud updates
 /mob/living/carbon/update_damage_hud()
