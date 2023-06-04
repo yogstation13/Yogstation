@@ -194,9 +194,6 @@
 "aI" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/listeningstation/engineering)
-"aJ" = (
-/turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/listeningstation/warehouse)
 "aK" = (
 /obj/structure/lattice,
 /turf/template_noop,
@@ -405,6 +402,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "bv" = (
@@ -1222,6 +1220,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "lm" = (
@@ -3846,7 +3845,7 @@ qP
 qP
 vx
 na
-aJ
+fp
 tz
 im
 ak
