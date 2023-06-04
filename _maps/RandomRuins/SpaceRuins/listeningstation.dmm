@@ -1157,6 +1157,7 @@
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/clothing/under/syndicate/camo,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/suppressor,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "kw" = (
@@ -4303,7 +4304,7 @@ NO
 lq
 NO
 vw
-vw
+aj
 aj
 er
 NO
