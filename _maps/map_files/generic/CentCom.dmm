@@ -500,7 +500,7 @@
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/pet_lounge)
 "abo" = (
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /obj/item/book/manual/wiki/barman_recipes,
 /turf/open/floor/holofloor{
 	dir = 9;
@@ -859,7 +859,7 @@
 	},
 /area/holodeck/rec_center/medical)
 "ach" = (
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /turf/open/floor/holofloor{
 	dir = 9;
 	icon_state = "wood"
@@ -1759,7 +1759,7 @@
 	},
 /area/holodeck/rec_center/chapelcourt)
 "aeq" = (
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /obj/structure/window/reinforced{
 	dir = 4;
 	layer = 2.9
@@ -11556,7 +11556,7 @@
 /turf/open/floor/mineral/titanium/white,
 /area/centcom/evac)
 "ayM" = (
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /obj/structure/safe/floor,
 /obj/item/seeds/cherry/bomb,
 /turf/open/floor/wood,
@@ -13759,9 +13759,7 @@
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
 "aCU" = (
-/obj/structure/table/wood/bar{
-	boot_dir = 8
-	},
+/obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
@@ -16937,7 +16935,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/shaker{
 	pixel_x = -12;
 	pixel_y = 1
@@ -18178,9 +18176,7 @@
 	},
 /area/holodeck/rec_center/medical)
 "aKX" = (
-/obj/structure/table/wood/bar{
-	boot_dir = 8
-	},
+/obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
@@ -19907,9 +19903,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "aOy" = (
-/obj/structure/table/wood/bar{
-	boot_dir = 8
-	},
+/obj/structure/table/wood,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
@@ -22204,7 +22198,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /obj/item/bikehorn/airhorn,
 /turf/open/floor/holofloor{
 	icon_state = "darkfull"
@@ -22329,7 +22323,7 @@
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aTq" = (
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /obj/item/stack/sheet/glass/fifty,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/storage/toolbox/mechanical,
@@ -22521,7 +22515,7 @@
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "aTK" = (
-/obj/structure/table/wood/bar,
+/obj/structure/table/wood,
 /obj/structure/mirror{
 	pixel_y = 28
 	},
