@@ -525,7 +525,8 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/survival_pod{
-	dir = 10
+	dir = 10;
+	density = 0
 	},
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/plasteel/dark,
@@ -676,7 +677,8 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/survival_pod{
-	dir = 5
+	dir = 5;
+	density = 0
 	},
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/plasteel/dark,
@@ -1265,7 +1267,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/corner,
 /obj/structure/window/reinforced/survival_pod{
-	dir = 6
+	dir = 6;
+	density = 0
 	},
 /obj/item/phone,
 /obj/effect/turf_decal/tile/red/fourcorners,
@@ -2416,7 +2419,8 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/survival_pod{
-	dir = 9
+	dir = 9;
+	density = 0
 	},
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/plasteel/dark,
