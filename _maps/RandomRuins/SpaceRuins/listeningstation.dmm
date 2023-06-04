@@ -194,6 +194,9 @@
 "aI" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/listeningstation/engineering)
+"aJ" = (
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered)
 "aK" = (
 /obj/structure/lattice,
 /turf/template_noop,
@@ -3238,7 +3241,11 @@
 /area/ruin/space/has_grav/listeningstation/quarters)
 "YH" = (
 /obj/item/pickaxe,
-/turf/open/floor/plating/asteroid/airless,
+/turf/open/floor/plating/asteroid,
+/area/ruin/unpowered)
+"Zg" = (
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating,
 /area/ruin/unpowered)
 "Zh" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible{
@@ -3471,9 +3478,9 @@ NO
 NO
 NO
 NO
-Mw
-Mw
-Mw
+aJ
+aJ
+aJ
 NO
 NO
 aa
@@ -3511,10 +3518,10 @@ NO
 NO
 NO
 YH
-Mw
-Mw
-Mw
-Mw
+aJ
+aJ
+aJ
+aJ
 NO
 NO
 aa
@@ -3550,12 +3557,12 @@ NO
 NO
 NO
 NO
-Mw
-Mw
-Mw
-ab
-Mw
-Mw
+aJ
+aJ
+aJ
+Zg
+aJ
+aJ
 NO
 aa
 "}
@@ -3589,13 +3596,13 @@ NO
 NO
 NO
 NO
-Mw
-Mw
-Mw
-Mw
-ab
-ab
-ab
+aJ
+aJ
+aJ
+aJ
+Zg
+Zg
+Zg
 NO
 NO
 "}
@@ -3630,8 +3637,8 @@ as
 as
 oq
 NO
-Mw
-Mw
+aJ
+aJ
 as
 fi
 FD
