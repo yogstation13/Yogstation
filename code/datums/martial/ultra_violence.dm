@@ -356,9 +356,9 @@
 	to_chat(usr, span_notice("<b>Getting covered in blood will heal you.</b>"))
 	
 	to_chat(usr, "[span_notice("Disarm Intent")]: Dash in a direction granting brief invulnerability.")
-	to_chat(usr, "[span_notice("Whiplash")]")
+	to_chat(usr, "[span_notice("Whiplash")]: Disarm Disarm. Extends a grappling hook from your arm that pulls you to targets. Whoever you hit will be immobilized for two seconds. Consumes one dash charge.")
 	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for three shots. Target must be living, but can be yourself. Consumes one dash charge.")
-	to_chat(usr, "[span_notice("Gun Hand")]: Harm Grab. Shoots the target with a weak shotgun shell. Restores one dash charge.")
+	to_chat(usr, "[span_notice("Gun Hand")]: Grab Harm. Shoots the target with a weak shotgun shell. Restores one dash charge.")
 	to_chat(usr, "[span_notice("Ultrakill")]: Harm Harm Harm Harm. Blasts the target with a strong shotgun shell, and explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere. Fully recharges stamina.")
 	to_chat(usr, span_notice("Completing any combo will give a speed buff with the strength of the Pocket Revolver speed boost being weaker."))
 	to_chat(usr, span_notice("Should your dash cease functioning, use the 'Reinitialize Module' function."))
@@ -414,7 +414,7 @@
 
 #undef GUN_HAND
 #undef POCKET_PISTOL
-#undef BLOOD_BURST
+#undef SUPERKILL
 #undef MAX_DASH_DIST
 #undef DASH_SPEED
 #undef IPCMARTIAL
