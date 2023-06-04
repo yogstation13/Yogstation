@@ -12,12 +12,6 @@
 		return TRUE
 	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
 
-/datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
-	for(var/datum/objective/sacrifice/sac_objective in objectives)
-		if(mind == sac_objective.target)
-			return TRUE
-	return FALSE
-
 /proc/is_convertable_to_cult(mob/living/M,datum/team/cult/specific_cult)
 	if(!istype(M))
 		return FALSE
@@ -113,7 +107,7 @@
 	if (..())
 		return TRUE
 
-	return 1 - main_cult.check_sacrifice_status()
+	return main_cult.check_cult_victory()
 
 /datum/game_mode/proc/add_cultist(datum/mind/cult_mind, stun , equip = FALSE, datum/team/cult/cult_team = null)
 	if (!istype(cult_mind))

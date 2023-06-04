@@ -9,11 +9,6 @@
 		return
 	. = ..()
 
-// Overwrites mob/living/life.dm instead of doing handle_changeling
-/mob/living/carbon/human/Life(delta_time = (SSmobs.wait/10), times_fired)
-	. = ..()
-	SEND_SIGNAL(src, COMSIG_LIVING_BIOLOGICAL_LIFE, delta_time, times_fired)
-
 // Used when analyzing a Bloodsucker, Masquerade will hide brain traumas
 /mob/living/carbon/get_traumas()
 	if(!mind)

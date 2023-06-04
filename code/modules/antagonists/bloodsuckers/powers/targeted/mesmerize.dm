@@ -28,6 +28,7 @@
 	target_range = 8
 	power_activates_immediately = FALSE
 	prefire_message = "Whom will you subvert to your will?"
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/mesmerize/shadow
 	var/mesmerizingtime = 5 SECONDS
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/CanUse(mob/living/carbon/user)

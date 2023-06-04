@@ -38,7 +38,7 @@
 	else
 		playsound(loc, 'sound/voice/moth/scream_moth.ogg', 50, TRUE)
 
-/mob/living/simple_animal/pet/mothroach/Life()
+/mob/living/simple_animal/pet/mothroach/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!stat && !buckled && !client)
 		if(prob(1))

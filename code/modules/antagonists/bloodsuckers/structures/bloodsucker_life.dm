@@ -1,7 +1,7 @@
 ///How much Blood it costs to live.
 #define BLOODSUCKER_PASSIVE_BLOOD_DRAIN 0.1
 
-/// Runs from COMSIG_LIVING_BIOLOGICAL_LIFE, handles Bloodsucker constant proccesses.
+/// Runs from COMSIG_LIVING_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick(mob/living/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
 

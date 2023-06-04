@@ -13,6 +13,7 @@
 	bloodcost = 5
 	constant_bloodcost = 0.2
 	cooldown_time = 5 SECONDS
+	ascended_power = /datum/action/cooldown/bloodsucker/cloak/shadow
 	var/was_running
 	var/runbound = TRUE
 

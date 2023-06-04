@@ -7,8 +7,6 @@
 #define TORTURE_BLOOD_HALF_COST 8
 /// Cost to convert someone after successful torture, in blood
 #define TORTURE_CONVERSION_COST 50
-/// Deals with constant processes off of LifeTick()
-#define COMSIG_LIVING_BIOLOGICAL_LIFE "biological_life"
 /// Once blood is this low, will enter Frenzy
 #define FRENZY_THRESHOLD_ENTER 112
 /// Once blood is this high, will exit Frenzy

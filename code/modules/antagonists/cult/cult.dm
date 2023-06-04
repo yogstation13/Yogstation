@@ -84,6 +84,17 @@
 	if(cult_team.blood_target && cult_team.blood_target_image && current.client)
 		current.client.images += cult_team.blood_target_image
 
+/datum/antagonist/cult/on_removal()
+	SSticker.mode.cult -= owner
+	if(!silent)
+		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just reverted to [owner.current.p_their()] old faith!")]", null, null, null, owner.current)
+		to_chat(owner.current, span_userdanger("An unfamiliar white light flashes through your mind, cleansing the taint of the Geometer and all your memories as her servant."))
+		owner.current.log_message("has renounced the cult of Nar'sie!", LOG_ATTACK, color="#960000")
+	if(cult_team.blood_target && cult_team.blood_target_image && owner.current.client)
+		owner.current.client.images -= cult_team.blood_target_image
+
+	return ..()
+
 /*
 /datum/antagonist/cult/get_preview_icon()
 	var/icon/icon = render_preview_outfit(preview_outfit)
@@ -136,7 +147,9 @@
 	r_hand = /obj/item/melee/cultblade
 
 /datum/antagonist/cult/proc/equip_cultist(metal=TRUE)
-	handle_clown_mutation(owner.current, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
+	var/mob/living/carbon/H = owner.current
+	if(!istype(H))
+		return
 	. += cult_give_item(/obj/item/melee/cultblade/dagger, owner.current)
 	if(metal)
 		. += cult_give_item(/obj/item/stack/sheet/runed_metal/ten, owner.current)
@@ -155,7 +168,7 @@
 	var/where = current_mob.equip_in_one_of_slots(T, slots)
 	if(!where)
 		to_chat(current_mob, span_userdanger("Unfortunately, you weren't able to get a [item_name]. This is very bad and you should adminhelp immediately (press F1)."))
-		return 0
+		return FALSE
 	else
 		to_chat(current_mob, span_danger("You have a [item_name] in your [where]."))
 		if(where == "backpack")
@@ -167,6 +180,7 @@
 	var/mob/living/current = owner.current
 	if(mob_override)
 		current = mob_override
+	handle_clown_mutation(current, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 	current.faction |= "cult"
 	current.grant_language(/datum/language/narsie, TRUE, TRUE, LANGUAGE_CULTIST)
 	if(!cult_team.cult_master)
@@ -200,16 +214,6 @@
 		REMOVE_TRAIT(H, CULT_EYES, null)
 		H.remove_overlay(HALO_LAYER)
 		H.updateappearance()
-
-/datum/antagonist/cult/on_removal()
-	SSticker.mode.cult -= owner
-	if(!silent)
-		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just reverted to [owner.current.p_their()] old faith!")]", null, null, null, owner.current)
-		to_chat(owner.current, span_userdanger("An unfamiliar white light flashes through your mind, cleansing the taint of the Geometer and all your memories as her servant."))
-		owner.current.log_message("has renounced the cult of Nar'sie!", LOG_ATTACK, color="#960000")
-	if(cult_team.blood_target && cult_team.blood_target_image && owner.current.client)
-		owner.current.client.images -= cult_team.blood_target_image
-	. = ..()
 
 /datum/antagonist/cult/admin_add(datum/mind/new_owner,mob/admin)
 	give_equipment = FALSE
@@ -315,6 +319,8 @@
 
 	var/cult_got_mulligan = FALSE
 	var/cult_failed = FALSE
+	///list of cultists just before summoning Narsie
+	var/list/true_cultists = list()
 
 /datum/team/cult/proc/check_size()
 	if(cult_ascendent)
@@ -383,96 +389,15 @@
 	summon_objective.team = src
 	objectives += summon_objective
 
-/datum/team/cult/proc/get_sacrifice_target(allow_convertable = TRUE)
-	var/list/target_candidates = list()
-	for(var/mob/living/carbon/human/player in GLOB.player_list)
-		if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && !is_convertable_to_cult(player) && player.stat != DEAD)
-			// The chaplain gets triple relative weighting
-			if (player.mind.holy_role)
-				target_candidates[player.mind] = 3
-			else
-				target_candidates[player.mind] = 1
-
-	if(target_candidates.len == 0 && allow_convertable)
-		message_admins("Cult Sacrifice: Could not find unconvertible target, checking for convertible target.")
-		for(var/mob/living/carbon/human/player in GLOB.player_list)
-			if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && player.stat != DEAD)
-				target_candidates[player.mind] = 1
-
-	if(target_candidates.len != 0)
-		return pickweight(target_candidates)
-	else
-		return null
-
-// Checks if the current sacrifice target is still valid and gives the cult
-// their mulligan target if it isn't.  If the cult's mulligan target also fails,
-// returns FALSE; in that case, the round should end immediately.
-/datum/team/cult/proc/check_sacrifice_status()
-	var/datum/objective/sacrifice/sac_objective = locate() in objectives
-	if (!sac_objective)
-		message_admins("A cult somehow doesn't have a sacrifice objective at all, causing the round to end.")
-		return FALSE
-
-	// The point of this function is to detect and gracefully recover from the
-	// case that the target has their body destroyed completely without it being
-	// sacrificed.  Thus, if the target has their body or was sacrificed, no
-	// problem.
-	if (sac_objective.sacced)
-		return TRUE
-
-	var/mob/living/carbon/human/body = sac_objective.target.current
-	if (istype(body))
-		return TRUE
-
-	var/old_target = sac_objective.target
-	if (!cult_got_mulligan)
-		// If the cult was on its first sacrifice target, try to generate a new
-		// target that can't be converted.
-		var/datum/mind/new_target = get_sacrifice_target(FALSE)
-		if (new_target != null) // If no valid targets exist, no mulligan
-			cult_got_mulligan = TRUE
-
-			sac_objective.target = new_target
-			sac_objective.update_explanation_text()
-
-			var/datum/job/sacjob = SSjob.GetJob(sac_objective.target.assigned_role)
-			var/datum/preferences/sacface = sac_objective.target.current.client.prefs
-			var/icon/reshape = get_flat_human_icon(null, sacjob, sacface, list(SOUTH))
-			reshape.Shift(SOUTH, 4)
-			reshape.Shift(EAST, 1)
-			reshape.Crop(7,4,26,31)
-			reshape.Crop(-5,-3,26,30)
-
-			// Updates on its own every tick
-			sac_objective.sac_image = reshape
-
-			var/list/adjectives = list("sniveling", "cowardly", "worthless", "loyalist", "unhygenic")
-			var/list/nouns = list("dog", "maggot", "ant", "cow", "clown")
-			var/adjective = pick(adjectives)
-			var/noun = pick(nouns)
-			for (var/datum/mind/M in members)
-				to_chat(M.current, span_cultlarge("The Geometer is displeased with your failure to sacrifice the [adjective] [noun] [old_target]."))
-
-				// Handle the case where the new target is jobless
-				var/job = new_target.current.job
-				if (job == null)
-					job = "disgusting NEET"
-				to_chat(M.current, "<span class='cultlarge'>You will be given one more chance to serve by sacrificing the [job], [new_target].")
-				to_chat(M.current, span_narsiesmall("Do not fail me again."))
-
-			return TRUE
-	// At this point, the cultists have squandered their mulligan and the round is over.
-	for (var/datum/mind/M in members)
-		to_chat(M.current, span_narsiesmall("I will not be worshipped by failures."))
-		// Nar'sie is sick of your crap
-		M.current.reagents.add_reagent(/datum/reagent/toxin/heparin, 100)
-		M.current.reagents.add_reagent(/datum/reagent/toxin/initropidril, 100)
-	cult_failed = TRUE
-	return FALSE
-
 /datum/objective/sacrifice
 	var/sacced = FALSE
 	var/sac_image
+
+/datum/objective/sacrifice/is_valid_target(possible_target)
+	. = ..()
+	var/datum/mind/M = possible_target
+	if(istype(M) && isipc(M.current))
+		return FALSE
 
 /// Unregister signals from the old target so it doesn't cause issues when sacrificed of when a new target is found.
 /datum/objective/sacrifice/proc/clear_sacrifice()
@@ -543,12 +468,6 @@
 	RegisterSignal(target.current, COMSIG_PARENT_QDELETING, PROC_REF(on_target_body_del))
 	RegisterSignal(target.current, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_possible_mindswap))
 
-/datum/objective/sacrifice/is_valid_target(possible_target)
-	. = ..()
-	var/datum/mind/M = possible_target
-	if(istype(M) && isipc(M.current))
-		return FALSE
-
 /datum/objective/sacrifice/check_completion()
 	return sacced || completed
 
@@ -597,18 +516,9 @@
 	if(victory == CULT_NARSIE_KILLED) // Epic failure, you summoned your god and then someone killed it.
 		parts += "<span class='redtext big'>Nar'sie has been killed! The cult will haunt the universe no longer!</span>"
 	else if(victory)
-		parts += "<span class='greentext big'>The cult has succeeded! Nar'sie has snuffed out another torch in the void!</span>"
-		for(var/mind in members)
-			var/datum/mind/M = mind
-			if(M.current?.client)
-				SSachievements.unlock_achievement(/datum/achievement/greentext/narsie,M.current.client)
-				if(M.has_antag_datum(/datum/antagonist/cult/master))
-					SSachievements.unlock_achievement(/datum/achievement/greentext/narsie/master,M.current.client)
+		parts += "<span class='greentext big'>The cult has succeeded! Nar'Sie has snuffed out another torch in the void!</span>"
 	else
-		if (cult_failed)
-			parts += "<span class='redtext big'>The cult lost the favor of Nar'sie!  Next time, don't let your target's body get destroyed!</span>"
-		else
-			parts += "<span class='redtext big'>The staff managed to stop the cult! Dark words and heresy are no match for Nanotrasen's finest!</span>"
+		parts += "<span class='redtext big'>The staff managed to stop the cult! Dark words and heresy are no match for Nanotrasen's finest!</span>"
 
 	if(objectives.len)
 		parts += "<b>The cultists' objectives were:</b>"
@@ -622,9 +532,18 @@
 
 	if(members.len)
 		parts += span_header("The cultists were:")
-		parts += printplayerlist(members)
+		if(length(true_cultists))
+			parts += printplayerlist(true_cultists)
+		else
+			parts += printplayerlist(members)
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
+
+/datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
+	for(var/datum/objective/sacrifice/sac_objective in objectives)
+		if(mind == sac_objective.target)
+			return TRUE
+	return FALSE
 
 /datum/team/cult/is_gamemode_hero()
 	return SSticker.mode.name == "cult"

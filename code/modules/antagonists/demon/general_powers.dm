@@ -63,7 +63,7 @@
 			adjustHealth(-maxHealth * 0.05)
 	return ..()
 
-/mob/living/simple_animal/lesserdemon/Life()
+/mob/living/simple_animal/lesserdemon/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!src)
 		return

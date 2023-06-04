@@ -5,7 +5,7 @@
 #define SIN_ENVY "envy"
 #define SIN_PRIDE "pride"
 
-/mob/living/carbon/human/Life()
+/mob/living/carbon/human/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(is_sinfuldemon(src))
 		var/datum/antagonist/sinfuldemon/demon = mind.has_antag_datum(/datum/antagonist/sinfuldemon)

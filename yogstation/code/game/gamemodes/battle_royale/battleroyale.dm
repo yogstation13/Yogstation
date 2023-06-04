@@ -225,7 +225,7 @@ GLOBAL_VAR(stormdamage)
 		qdel(I)
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
 
-/mob/living/carbon/human/Life()
+/mob/living/carbon/human/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(is_battleroyale(src))
 		var/datum/antagonist/battleroyale/gamer = mind.has_antag_datum(/datum/antagonist/battleroyale)

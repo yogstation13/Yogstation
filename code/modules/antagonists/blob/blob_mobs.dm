@@ -115,7 +115,7 @@
 	if(linked_node.overmind && istype(linked_node.overmind.blobstrain, /datum/blobstrain/reagent/distributed_neurons) && !istype(src, /mob/living/simple_animal/hostile/blob/blobspore/weak))
 		notify_ghosts("A controllable spore has been created in \the [get_area(src)].", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Sentient Spore Created")
 
-/mob/living/simple_animal/hostile/blob/blobspore/Life()
+/mob/living/simple_animal/hostile/blob/blobspore/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!is_zombie && isturf(src.loc))
 		for(var/mob/living/carbon/human/H in view(src,1)) //Only for corpse right next to/on same tile
 			if(H.stat == DEAD)
@@ -251,7 +251,7 @@
 	mob_size = MOB_SIZE_LARGE
 	hud_type = /datum/hud/living/blobbernaut
 
-/mob/living/simple_animal/hostile/blob/blobbernaut/Life()
+/mob/living/simple_animal/hostile/blob/blobbernaut/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(..())
 		var/list/blobs_in_area = range(2, src)
 		if(independent)

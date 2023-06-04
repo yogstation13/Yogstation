@@ -14,7 +14,7 @@
 	var/charging = 0
 	var/atom/movable/screen/alert/chargealert
 
-/mob/living/simple_animal/hostile/guardian/charger/Life()
+/mob/living/simple_animal/hostile/guardian/charger/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(ranged_cooldown <= world.time)
 		if(!chargealert)

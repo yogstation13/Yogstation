@@ -17,6 +17,7 @@
 	bloodcost = 10
 	cooldown_time = 10 SECONDS
 	power_activates_immediately = FALSE
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/lunge/shadow
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/upgrade_power()
 	. = ..()

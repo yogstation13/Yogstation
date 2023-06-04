@@ -16,6 +16,7 @@
 	target_range = 1
 	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/brawn/shadow
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/ActivatePower(trigger_flags)
 	// Did we break out of our handcuffs?

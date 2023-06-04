@@ -266,7 +266,7 @@ Difficulty: Insanely Hard
 	transform = M
 	pixel_y = 10
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Life()
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(move_to_delay < 3)
 		move_to_delay += 0.1

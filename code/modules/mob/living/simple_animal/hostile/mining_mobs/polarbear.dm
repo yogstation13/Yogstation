@@ -42,7 +42,7 @@
 	else
 		rapid_melee = initial(rapid_melee)
 
-/mob/living/simple_animal/hostile/asteroid/polarbear/Life()
+/mob/living/simple_animal/hostile/asteroid/polarbear/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(target == null)
 		adjustHealth(-maxHealth*0.025)

@@ -400,7 +400,7 @@
 		desc = "At a ripe old age of [record_age] Ian's not as spry as he used to be, but he'll always be the HoP's beloved corgi." //RIP
 		turns_per_move = 20
 
-/mob/living/simple_animal/pet/dog/corgi/Ian/Life()
+/mob/living/simple_animal/pet/dog/corgi/Ian/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
 		Write_Memory(FALSE)
 		memory_saved = TRUE
@@ -453,7 +453,7 @@
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
 
-/mob/living/simple_animal/pet/dog/corgi/Ian/Life()
+/mob/living/simple_animal/pet/dog/corgi/Ian/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 
 	//Feeding, chasing food, FOOOOODDDD
@@ -528,7 +528,7 @@
 	nofur = TRUE
 	unique_pet = TRUE
 
-/mob/living/simple_animal/pet/dog/corgi/narsie/Life()
+/mob/living/simple_animal/pet/dog/corgi/narsie/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	for(var/mob/living/simple_animal/pet/P in range(1, src))
 		if(P != src && prob(5))
@@ -658,7 +658,7 @@
 		return
 	..()
 
-/mob/living/simple_animal/pet/dog/corgi/Lisa/Life()
+/mob/living/simple_animal/pet/dog/corgi/Lisa/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 
 	make_babies()
@@ -671,7 +671,7 @@
 					setDir(i)
 					sleep(0.1 SECONDS)
 
-/mob/living/simple_animal/pet/dog/pug/Life()
+/mob/living/simple_animal/pet/dog/pug/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 
 	if(!stat && !resting && !buckled)
