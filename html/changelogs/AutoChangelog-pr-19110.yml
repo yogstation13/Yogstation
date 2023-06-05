@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - tweak: "moves syndicate angel potion to stealthy tools"
+  - imageadd: "Angel potion has a new sprite"
