@@ -732,16 +732,12 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "fi" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "lpost_privacy_left"
+/obj/item/pickaxe{
+	pixel_y = 6;
+	pixel_x = -4
 	},
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/quarters)
+/turf/open/floor/plating/asteroid,
+/area/ruin/space/has_grav/listeningstation)
 "fn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -832,6 +828,13 @@
 	pixel_y = 1
 	},
 /obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/listeningstation)
+"gM" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/listeningstation)
 "hb" = (
@@ -960,13 +963,12 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "is" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "lpost_privacy_right"
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 8
 	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/quarters)
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/listeningstation)
 "it" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
@@ -1624,11 +1626,6 @@
 "uy" = (
 /turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/listeningstation)
-"uB" = (
-/obj/effect/turf_decal/stripes/asteroid/corner,
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
 "uH" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/structure/cable{
@@ -2023,8 +2020,8 @@
 /area/ruin/space/has_grav/listeningstation/engineering)
 "DC" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "lpost_privacy_right"
+/obj/machinery/door/poddoor/shutters{
+	id = "lpost_privacy_left"
 	},
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -2094,6 +2091,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
+"Fz" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation)
 "FB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -2105,7 +2109,7 @@
 /area/ruin/space/has_grav/listeningstation/hallway)
 "FD" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/door/poddoor/shutters/preopen{
+/obj/machinery/door/poddoor/shutters{
 	id = "lpost_privacy_left"
 	},
 /obj/structure/cable{
@@ -2291,7 +2295,7 @@
 /area/ruin/space/has_grav/listeningstation/engineering)
 "Jr" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/door/poddoor/shutters/preopen{
+/obj/machinery/door/poddoor/shutters{
 	id = "lpost_privacy_left"
 	},
 /obj/structure/cable,
@@ -2594,13 +2598,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
-"OB" = (
-/obj/item/pickaxe{
-	pixel_y = 6;
-	pixel_x = -4
-	},
-/turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/listeningstation)
 "OF" = (
 /obj/structure/closet/crate,
 /obj/item/reagent_containers/food/snacks/rationpack,
@@ -3009,13 +3006,6 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
-"Va" = (
-/obj/effect/turf_decal/stripes/asteroid/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
 "Vb" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/donkpockets,
@@ -3229,17 +3219,10 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
-"XT" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 8
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
 "Yt" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "lpost_privacy_right"
+/obj/machinery/door/poddoor/shutters{
+	id = "lpost_privacy_left"
 	},
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -3298,10 +3281,8 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "YH" = (
+/obj/effect/turf_decal/stripes/asteroid/corner,
 /obj/effect/turf_decal/sand/plating,
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation)
 "Zh" = (
@@ -3620,7 +3601,7 @@ NO
 NO
 NO
 NO
-OB
+fi
 uy
 uy
 aJ
@@ -3662,10 +3643,10 @@ NO
 uy
 uy
 uy
-uB
 YH
-YH
-YH
+Fz
+Fz
+Fz
 NO
 NO
 "}
@@ -3703,7 +3684,7 @@ NO
 uy
 uy
 as
-fi
+DC
 FD
 Jr
 az
@@ -4185,7 +4166,7 @@ az
 az
 DC
 Yt
-is
+Jr
 az
 NO
 "}
@@ -4222,10 +4203,10 @@ js
 Oa
 uQ
 az
-Va
-XT
-XT
-XT
+is
+gM
+gM
+gM
 NO
 NO
 "}
