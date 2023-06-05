@@ -28,7 +28,7 @@
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	GLOB.poi_list += src
-	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, .proc/move_gracefully)
+	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(move_gracefully))
 
 /obj/item/his_grace/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
@@ -39,13 +39,25 @@
 
 /obj/item/his_grace/attack_self(mob/living/user)
 	if(!awakened)
-		INVOKE_ASYNC(src, .proc/awaken, user)
+		INVOKE_ASYNC(src, PROC_REF(awaken), user)
 
 /obj/item/his_grace/attack(mob/living/M, mob/user)
 	if(awakened && M.stat)
 		consume(M)
 	else
 		..()
+
+/obj/item/his_grace/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(!QDELETED(A) && (istype(A, /obj/machinery/door) || istype(A, /obj/structure/door_assembly)))
+		var/obj/O = A
+		// If the initial hit didn't count and we're pretending to have triple damage, make up for it
+		if(O.damage_deflection > force)
+			O.take_damage(force*3, BRUTE, MELEE, FALSE, null, armour_penetration)
+		else
+			O.take_damage(force*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /obj/item/his_grace/CtrlClick(mob/user) //you can't pull his grace
 	return
@@ -74,14 +86,14 @@
 		user.forceMove(get_turf(src))
 		user.visible_message(span_warning("[user] scrambles out of [src]!"), span_notice("You climb out of [src]!"))
 
-/obj/item/his_grace/process()
+/obj/item/his_grace/process(delta_time)
 	if(!bloodthirst)
 		drowse()
 		return
 	if(bloodthirst < HIS_GRACE_CONSUME_OWNER && !ascended)
-		adjust_bloodthirst(1 + FLOOR(LAZYLEN(contents) * 0.5, 1)) //Maybe adjust this?
+		adjust_bloodthirst((1 + FLOOR(LAZYLEN(contents) * 0.5, 1)) * delta_time) //Maybe adjust this?
 	else
-		adjust_bloodthirst(1) //don't cool off rapidly once we're at the point where His Grace consumes all.
+		adjust_bloodthirst(1 * delta_time) //don't cool off rapidly once we're at the point where His Grace consumes all.
 	var/mob/living/master = get_atom_on_turf(src, /mob/living)
 	if(istype(master) && (src in master.held_items))
 		switch(bloodthirst)

@@ -75,7 +75,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/claymore/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 40, 105)
-	
+
 /obj/item/claymore/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
 		final_block_chance = 0 //Don't bring a sword to a gunfight
@@ -84,13 +84,13 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/claymore/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is falling on [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return(BRUTELOSS)
-	
+
 /obj/item/claymore/ruin
 	name = "ancient sword"
 	desc = "A cracked and blunted sword, clearly weathered over the ages."
 	force = 21
 	block_chance = 30
-	
+
 /obj/item/claymore/ruin/excalibur
 	name = "Excalibur"
 	desc = "A legendary sword passed down through the ages, though it seems to have lost its magic."
@@ -294,7 +294,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		if (user.getStaminaLoss() >= 100)
 			user.throw_at(landing_turf, 2, 2)
 			user.Paralyze(4 SECONDS)
-			user.visible_message(span_warning("You're too tired tired to finish the roll!"))
+			user.visible_message(span_notice("[user] collapses on the ground, exhausted!"), span_warning("You're too tired to finish the roll!"))
 		else
 			playsound(user, 'yogstation/sound/items/dodgeroll.ogg', 50, TRUE)
 			user.apply_status_effect(STATUS_EFFECT_DODGING)
@@ -302,8 +302,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 				spin_direction = TRUE
 			passtable_on(user, src)
 			user.setMovetype(user.movement_type | FLYING)
-			user.safe_throw_at(landing_turf, 4, 1, spin = FALSE)	
-			user.SpinAnimation(speed = 3, loops = 1, clockwise = spin_direction, segments = 3, parallel = TRUE)			
+			user.safe_throw_at(landing_turf, 4, 1, spin = FALSE)
+			user.SpinAnimation(speed = 3, loops = 1, clockwise = spin_direction, segments = 3, parallel = TRUE)
 			passtable_off(user, src)
 			user.setMovetype(user.movement_type & ~FLYING)
 		next_roll = world.time + 1 SECONDS
@@ -408,7 +408,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/switchblade/attack_self(mob/user)
 	extended = !extended
-	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
+	playsound(src.loc, 'sound/weapons/batonextend.ogg', 15, 1)
 	if(extended)
 		force = 20
 		w_class = WEIGHT_CLASS_NORMAL
@@ -429,6 +429,20 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/switchblade/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is slitting [user.p_their()] own throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
+
+/obj/item/switchblade/backstab
+	var/nt = FALSE
+
+/obj/item/switchblade/backstab/nt
+	nt = TRUE
+
+/obj/item/switchblade/backstab/examine(mob/user)
+	. = ..()
+	. += span_danger("\The [src] has a [nt ? "Nanotrasen" : "Syndicate"] marking on the blade.")
+
+/obj/item/switchblade/backstab/Initialize()
+	. = ..()
+	AddComponent(/datum/component/backstabs, 1.75) // 35 damage
 
 /obj/item/phone
 	name = "red phone"
@@ -457,7 +471,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	if(!input || !(usr in view(1,src)))
 		return
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-	message_syndicate(input, usr)
+	message_redphone_syndicate(input, usr)
 	to_chat(usr, span_danger("Message sent. Pray you made the right choice."))
 	usr.log_talk(input, LOG_SAY, tag="Syndicate announcement")
 	deadchat_broadcast(" has messaged the Syndicate using the red phone, \"[input]\" at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
@@ -726,25 +740,34 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	throwforce = 0
 	item_flags = DROPDEL | ABSTRACT
 	attack_verb = list("slapped")
-	hitsound = 'sound/effects/snap.ogg'
 
 /obj/item/slapper/attack(mob/living/M, mob/living/carbon/human/user)
 	if(ishuman(M))
 		var/mob/living/carbon/human/L = M
 		if(L && L.dna && L.dna.species)
 			L.dna.species.stop_wagging_tail(M)
-	user.do_attack_animation(M)
-	var/slap_volume = 50
+
+	var/slap_volume = 30
+	var/hard_slap = FALSE
+	if(!HAS_TRAIT(user, TRAIT_PACIFISM) && user.a_intent == INTENT_HARM)
+		hard_slap = TRUE
+		slap_volume = 60
+		force = 2
+		..()
+		qdel(src) // hurts your hand to slap so hard
+	else
+		user.do_attack_animation(M)
+
 	if(user.zone_selected == BODY_ZONE_HEAD || user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
-		user.visible_message("<span class='danger'>[user] slaps [M] in the face!</span>",
-			"<span class='notice'>You slap [M] in the face!</span>",
+		user.visible_message("<span class='danger'>[user] slaps [M] in the face[hard_slap ? " really hard" : ""]!</span>",
+			"<span class='notice'>You slap [M] in the face[hard_slap ? " really hard" : ""]!</span>",
 			"<span class='hear'>You hear a slap.</span>")
 	else
-		user.visible_message("<span class='danger'>[user] slaps [M]!</span>",
-			"<span class='notice'>You slap [M]!</span>",
+		user.visible_message("<span class='danger'>[user] slaps [M][hard_slap ? " really hard" : ""]!</span>",
+			"<span class='notice'>You slap [M][hard_slap ? " really hard" : ""]!</span>",
 			"<span class='hear'>You hear a slap.</span>")
 	playsound(M, 'sound/weapons/slap.ogg', slap_volume, TRUE, -1)
-	return
+	return TRUE
 
 /obj/item/slapper/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!istype(target, /obj/structure/table))
@@ -800,3 +823,20 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		to_chat(user, span_warning("[M] is too close to use [src] on."))
 		return
 	M.attack_hand(user)
+
+/obj/item/twohanded/required/raisedhands
+	name = "raised hands"
+	desc = "What are you, French?"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "latexballon"
+	item_state = "nothing"
+	force = 0
+	throwforce = 0
+	item_flags = DROPDEL | ABSTRACT
+
+/obj/item/twohanded/required/raisedhands/attack(mob/living/M, mob/living/user)
+  return
+
+/obj/item/twohanded/required/raisedhands/dropped(mob/user)
+	user.visible_message(span_userdanger(("[user] lowers their hands!")))
+	..()

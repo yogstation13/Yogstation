@@ -58,6 +58,7 @@ Slimecrossing Weapons
 	w_class = WEIGHT_CLASS_HUGE
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 0, BOMB = 30, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)
 	slot_flags = ITEM_SLOT_BACK
+	slowdown = 0.2	//it's a big heavy shield, it's gonna slow you at least a bit
 	block_chance = 75
 	throw_range = 1 //How far do you think you're gonna throw a solid crystalline shield...?
 	throw_speed = 2
@@ -86,11 +87,11 @@ Slimecrossing Weapons
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
-/obj/item/gun/magic/bloodchill/process()
-	charge_tick++
-	if(charge_tick < recharge_rate || charges >= max_charges)
+/obj/item/gun/magic/bloodchill/process(delta_time)
+	charge_timer += delta_time
+	if(charge_timer < recharge_rate || charges >= max_charges)
 		return 0
-	charge_tick = 0
+	charge_timer = 0
 	var/mob/living/M = loc
 	if(istype(M) && M.blood_volume >= 20)
 		charges++

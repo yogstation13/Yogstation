@@ -10,11 +10,11 @@
 
 /datum/guardian_ability/major/healing/Apply()
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	medsensor.add_hud_to(guardian)
+	medsensor.show_to(guardian)
 
 /datum/guardian_ability/major/healing/Remove()
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	medsensor.remove_hud_from(guardian)
+	medsensor.hide_from(guardian)
 
 /datum/guardian_ability/major/healing/Attack(atom/target)
 	if (mode)

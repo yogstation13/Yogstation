@@ -71,7 +71,7 @@
 
 	var/emitterhealth = 20
 	var/emittermaxhealth = 20
-	var/emitterregen = 0.25
+	var/emitter_regen_per_second = 1.25
 	var/emittercd = 50
 	var/emitteroverloadcd = 100
 	var/emittersemicd = FALSE
@@ -128,7 +128,7 @@
 	. = ..()
 
 	emittersemicd = TRUE
-	addtimer(CALLBACK(src, .proc/emittercool), 600)
+	addtimer(CALLBACK(src, PROC_REF(emittercool)), 600)
 
 /mob/living/silicon/pai/Life()
 	if(hacking)
@@ -197,7 +197,7 @@
 
 /datum/action/innate/pai
 	name = "PAI Action"
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	var/mob/living/silicon/pai/P
 
 /datum/action/innate/pai/Trigger()
@@ -209,6 +209,7 @@
 	name = "Software Interface"
 	button_icon_state = "pai"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/software/Trigger()
 	..()
@@ -218,6 +219,7 @@
 	name = "Toggle Holoform"
 	button_icon_state = "pai_holoform"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/shell/Trigger()
 	..()
@@ -230,6 +232,7 @@
 	name = "Holochassis Appearance Composite"
 	button_icon_state = "pai_chassis"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/chassis/Trigger()
 	..()
@@ -239,6 +242,7 @@
 	name = "Rest"
 	button_icon_state = "pai_rest"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/rest/Trigger()
 	..()
@@ -246,9 +250,10 @@
 
 /datum/action/innate/pai/light
 	name = "Toggle Integrated Lights"
-	icon_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "emp"
 	background_icon_state = "bg_tech"
+	overlay_icon_state = "bg_tech_border"
 
 /datum/action/innate/pai/light/Trigger()
 	..()
@@ -284,8 +289,8 @@
 	health = maxHealth - getBruteLoss() - getFireLoss()
 	update_stat()
 
-/mob/living/silicon/pai/process()
-	emitterhealth = clamp((emitterhealth + emitterregen), -50, emittermaxhealth)
+/mob/living/silicon/pai/process(delta_time)
+	emitterhealth = clamp((emitterhealth + (emitter_regen_per_second * delta_time)), -50, emittermaxhealth)
 
 /obj/item/paicard/attackby(obj/item/W, mob/user, params)
 	..()

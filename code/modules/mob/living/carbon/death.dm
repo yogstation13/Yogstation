@@ -6,7 +6,7 @@
 	losebreath = 0
 
 	if(!gibbed)
-		INVOKE_ASYNC(src, .proc/emote, "deathgasp")
+		INVOKE_ASYNC(src, PROC_REF(emote), "deathgasp")
 
 	. = ..()
 
@@ -61,6 +61,13 @@
 			I.Remove(src)
 			I.forceMove(Tsec)
 			I.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
+	if(!no_brain && !no_organs)//drop other heads/brains carried if your own would be dropped
+		for(var/X in src.get_all_contents())
+			if(istype(X, /obj/item/organ/brain) || istype(X, /obj/item/bodypart/head))
+				var/obj/item/H = X
+				if(H)
+					H.forceMove(Tsec)
+					H.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),5)
 
 
 /mob/living/carbon/spread_bodyparts()

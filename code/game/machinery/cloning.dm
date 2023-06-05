@@ -154,6 +154,9 @@ GLOBAL_VAR_INIT(clones, 0)
 		tempbiomass += biomass_per_slab
 		handle_biomass(W, tempbiomass, user)
 
+	else
+		return ..()
+
 //Clonepod
 
 /obj/machinery/clonepod/examine(mob/user)
@@ -209,13 +212,13 @@ GLOBAL_VAR_INIT(clones, 0)
 			if(G.suiciding) // The ghost came from a body that is suiciding.
 				return NONE
 		if(clonemind.damnation_type) //Can't clone the damned.
-			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
 			update_icon()
 			return NONE
 		if(clonemind.zombified) //Can't clone the damned x2
-			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
 			update_icon()
@@ -338,7 +341,8 @@ GLOBAL_VAR_INIT(clones, 0)
 			mob_occupant.Unconscious(80)
 			var/dmg_mult = CONFIG_GET(number/damage_multiplier)
 			 //Slowly get that clone healed and finished.
-			mob_occupant.adjustCloneLoss(-((speed_coeff / 2) * dmg_mult))
+			var/telomere_boost = HAS_TRAIT(mob_occupant,TRAIT_LONG_TELOMERES) ? 1.2 : 1.0 //clone 20% faster with long telomere quirk
+			mob_occupant.adjustCloneLoss(-((speed_coeff / 2) * dmg_mult * telomere_boost))
 			var/progress = CLONE_INITIAL_DAMAGE - mob_occupant.getCloneLoss()
 			// To avoid the default cloner making incomplete clones
 			progress += (100 - MINIMUM_HEAL_LEVEL)

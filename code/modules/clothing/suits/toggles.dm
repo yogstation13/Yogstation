@@ -43,7 +43,7 @@
 		hood?.forceMove(src)
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/clothing/suit/hooded/dropped()
 	..()
@@ -65,7 +65,7 @@
 				H.update_inv_wear_suit()
 				for(var/X in actions)
 					var/datum/action/A = X
-					A.UpdateButtonIcon()
+					A.build_all_button_icons()
 	else
 		RemoveHood()
 
@@ -118,7 +118,7 @@
 	usr.update_inv_wear_suit()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/clothing/suit/toggle/examine(mob/user)
 	. = ..()
@@ -130,10 +130,11 @@
 	. = ..()
 
 /obj/item/clothing/suit/space/hardsuit/Destroy()
-	if(helmet)
+	if(!QDELETED(helmet))
 		helmet.suit = null
-		qdel(helmet)
-	qdel(jetpack)
+		QDEL_NULL(helmet)
+	if(jetpack && istype(jetpack))
+		QDEL_NULL(jetpack)
 	return ..()
 
 /obj/item/clothing/head/helmet/space/hardsuit/Destroy()

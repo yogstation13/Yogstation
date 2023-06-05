@@ -240,7 +240,7 @@
 				Every plant we are blessed with can be used in some way. 
 				All are not dangerous when consumed in moderation, save for mushroom caps.
 				All may be fermented and brewed into substances that induce a woozy and feel-good high.
-				Cacti fruit is rich in juices that will nurtur and heal your body.
+				Cacti fruit is rich in juices that will nurture and heal your body.
 				Polypore shavings are tough and can be used for crafts such as bowls and wood substitute, and contain a higher than average resin content.
 				Porcini leaves contain a similar content to cacti fruit along with a substance that increases brain focus.
 				Inocybe caps contain deadly toxins in their raw state, but with ash and heat can be neutralized to instead detox the body.
@@ -380,10 +380,10 @@
 	page_link = "Infections"
 
 /obj/item/book/manual/wiki/telescience
-	name = "Teleportation Science - Bluespace for dummies!"
+	name = "Teleportation Science - Bluespace for Dummies!"
 	icon_state = "book7"
 	author = "University of Bluespace"
-	title = "Teleportation Science - Bluespace for dummies!"
+	title = "Teleportation Science - Bluespace for Dummies!"
 	page_link = "Guide_to_telescience"
 
 /obj/item/book/manual/wiki/engineering_hacking

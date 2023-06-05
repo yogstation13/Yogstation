@@ -11,7 +11,7 @@
  *		Guns
  *		Safe code hints
  *		Captain's safe
- *		Modified Nar-Sie
+ *		Modified Nar'sie
  */
 
 
@@ -26,7 +26,7 @@
 	..()
 	var/obj/item/storage/book/bible/B = new /obj/item/storage/book/bible/booze(loc)
 	B.name = "The Holy book of the Geometer"
-	B.deity_name = "Narsie"
+	B.deity_name = "Nar'sie"
 	B.icon_state = "melted"
 	B.item_state = "melted"
 	B.lefthand_file = 'icons/mob/inhands/misc/books_lefthand.dmi'
@@ -138,7 +138,7 @@ GLOBAL_VAR_INIT(sc_safecode5, "[rand(0,9)]")
 	new /obj/item/stack/ore/diamond(src)
 
 /*
- * Modified Nar-Sie
+ * Modified Nar'sie
  */
 /obj/singularity/narsie/mini
 	desc = "Your body becomes weak and your feel your mind slipping away as you try to comprehend what you know can't be possible."
@@ -148,9 +148,9 @@ GLOBAL_VAR_INIT(sc_safecode5, "[rand(0,9)]")
 /obj/singularity/narsie/mini/admin_investigate_setup()
 	return
 
-/obj/singularity/narsie/mini/process()
+/obj/singularity/narsie/mini/process(delta_time)
 	eat()
-	if(prob(25))
+	if(DT_PROB(13, delta_time))
 		mezzer()
 
 /obj/singularity/narsie/mini/ex_act()

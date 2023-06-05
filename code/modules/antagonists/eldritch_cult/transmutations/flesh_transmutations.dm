@@ -1,7 +1,7 @@
 /datum/eldritch_transmutation/flesh_blade
 	name = "Flesh Blade"
 	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/blood)
-	result_atoms = list(/obj/item/melee/sickly_blade/flesh)
+	result_atoms = list(/obj/item/gun/magic/hook/sickly_blade/flesh)
 	required_shit_list = "A pool of blood and a knife."
 
 /datum/eldritch_transmutation/voiceless_dead
@@ -10,7 +10,7 @@
 	var/max_amt = 2
 	var/current_amt = 0
 	var/list/ghouls = list()
-	required_shit_list = "A poppy and your deceased to rise."
+	required_shit_list = "A poppy and a dead body."
 
 /datum/eldritch_transmutation/voiceless_dead/on_finished_recipe(mob/living/user,list/atoms,loc)
 	var/mob/living/carbon/human/humie = locate() in atoms
@@ -29,7 +29,7 @@
 	humie.grab_ghost()
 
 	if(!humie.mind || !humie.client)
-		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [humie.real_name], a voiceless dead", ROLE_HERETIC, null, ROLE_HERETIC, 50,humie)
+		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [humie.real_name], a Voiceless Dead?", ROLE_HERETIC, null, ROLE_HERETIC, 50,humie)
 		if(!LAZYLEN(candidates))
 			return
 		var/mob/dead/observer/C = pick(candidates)
@@ -38,7 +38,7 @@
 		humie.key = C.key
 
 	ADD_TRAIT(humie,TRAIT_MUTE,MAGIC_TRAIT)
-	log_game("[key_name_admin(humie)] has become a voiceless dead, their master is [user.real_name]")
+	log_game("[key_name_admin(humie)] has become a Voiceless Dead, their master is [user.real_name].")
 	humie.revive(full_heal = TRUE, admin_revive = TRUE)
 	humie.setMaxHealth(50)
 	humie.health = 50 // Voiceless dead are much tougher than ghouls
@@ -49,14 +49,14 @@
 	var/datum/antagonist/heretic/master = user.mind.has_antag_datum(/datum/antagonist/heretic)
 	heretic_monster.set_owner(master)
 	atoms -= humie
-	RegisterSignal(humie,COMSIG_MOB_DEATH,.proc/remove_ghoul)
+	RegisterSignal(humie,COMSIG_GLOB_MOB_DEATH, PROC_REF(remove_ghoul))
 	ghouls += humie
 
 /datum/eldritch_transmutation/voiceless_dead/proc/remove_ghoul(datum/source)
 	var/mob/living/carbon/human/humie = source
 	ghouls -= humie
 	humie.mind.remove_antag_datum(/datum/antagonist/heretic_monster)
-	UnregisterSignal(source,COMSIG_MOB_DEATH)
+	UnregisterSignal(source,COMSIG_GLOB_MOB_DEATH)
 
 /datum/eldritch_transmutation/summon/raw_prophet
 	name = "Summon Raw Prophet"
@@ -74,10 +74,10 @@
 	name = "Summon Ashman"
 	required_atoms = list(/obj/effect/decal/cleanable/ash,/obj/item/bodypart/head,/obj/item/book)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/ash_spirit
-	required_shit_list = "A pile of ash, a head and a book."
+	required_shit_list = "A pile of ash, a head, and a book."
 
 /datum/eldritch_transmutation/summon/rusty
-	name = "Summon Rust Walker"
+	name = "Summon Rustwalker"
 	required_atoms = list(/obj/effect/decal/cleanable/vomit,,/obj/item/book)
 	mob_to_summon = /mob/living/simple_animal/hostile/eldritch/rust_spirit
 	required_shit_list = "A pool of vomit and a book."
@@ -88,13 +88,13 @@
 	required_shit_list = "Three dead bodies."
 
 /datum/eldritch_transmutation/final/flesh_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	var/alert_ = alert(user,"Do you want to ascend as the Lord of the Night or empower yourself and summon a Terror of the Night?","...","Yes","No")
+	var/alert_ = tgui_alert(user, "Do you want to ascend as a Thirstly Serpent, or instead shatter the Red Oath, empowering yourself and summoning a Lavish Serpent?", "...", list("Yes","No"))
 	user.SetImmobilized(10 HOURS) // no way someone will stand 10 hours in a spot, just so he can move while the alert is still showing.
 	switch(alert_)
 		if("No")
 			var/mob/living/summoned = new /mob/living/simple_animal/hostile/eldritch/armsy(loc)
-			message_admins("[summoned.name] is being summoned by [user.real_name] in [loc]")
-			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [summoned.real_name]", ROLE_HERETIC, null, ROLE_HERETIC, 100,summoned)
+			message_admins("[summoned.name] is being summoned by [user.real_name] in [loc].")
+			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [summoned.real_name]?", ROLE_HERETIC, null, ROLE_HERETIC, 100,summoned)
 			user.SetImmobilized(0)
 			if(LAZYLEN(candidates) == 0)
 				to_chat(user,span_warning("No ghost could be found..."))
@@ -109,7 +109,7 @@
 			var/datum/eldritch_transmutation/voiceless_dead/ghoul2 = heretic.get_transmutation(/datum/eldritch_transmutation/voiceless_dead)
 			ghoul2.max_amt *= 3
 			var/mob/dead/observer/ghost_candidate = pick(candidates)
-			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for Vassal of Arms has ascended! The Terror of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
+			priority_announce("Immense destabilization of the bluespace veil has been observed. Our scanners report two entitites of immeasurable power, one of which is of a considerable volume of organic mass. Immediate evacuation is advised.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 			set_security_level(SEC_LEVEL_GAMMA)
 			log_game("[key_name_admin(ghost_candidate)] has taken control of ([key_name_admin(summoned)]).")
 			summoned.ghostize(FALSE)
@@ -123,16 +123,17 @@
 			var/mob/living/summoned = new /mob/living/simple_animal/hostile/eldritch/armsy/prime(loc,TRUE,10)
 			summoned.ghostize(0)
 			user.SetImmobilized(0)
-			for(var/obj/effect/proc_holder/spell/S in user.mind.spell_list)
-				if(istype(S, /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash)) //vitally important since ashen passage breaks the shit out of armsy
-					user.mind.spell_list.Remove(S)
-					qdel(S)
+			for(var/datum/action/cooldown/spell/spells in user.actions)
+				if(istype(spells, /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash)) //vitally important since ashen passage breaks the shit out of armsy
+					spells.Remove(user)
+					qdel(spells)
 			priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the dark, for King of Arms has ascended! Our Lord of the Night has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", ANNOUNCER_SPANOMALIES)
 			set_security_level(SEC_LEVEL_GAMMA)
-			log_game("[user.real_name] ascended as [summoned.real_name]")
+			log_game("[user.real_name] ascended as [summoned.real_name].")
 			var/mob/living/carbon/carbon_user = user
 			var/datum/antagonist/heretic/ascension = carbon_user.mind.has_antag_datum(/datum/antagonist/heretic)
 			ascension.ascended = TRUE
+			ascension.transformed = TRUE
 			carbon_user.mind.transfer_to(summoned, TRUE)
 			carbon_user.gib()
 

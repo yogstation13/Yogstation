@@ -108,7 +108,7 @@
 							H.electrocution_animation(20)
 						C.jitteriness += 1000
 						C.do_jitter_animation(jitteriness)
-						C.stuttering += 1
+						C.adjust_stutter(1 SECONDS)
 						spawn(20)
 							if(C)
 								C.jitteriness = max(C.jitteriness - 990, 10)

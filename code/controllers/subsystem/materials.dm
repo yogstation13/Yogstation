@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(materials)
 
 /datum/controller/subsystem/materials/Initialize(timeofday)
 	InitializeMaterials()
-	return ..()
+	return SS_INIT_SUCCESS
 
 ///Ran on initialize, populated the materials and materials_by_category dictionaries with their appropiate vars (See these variables for more info)
 /datum/controller/subsystem/materials/proc/InitializeMaterials(timeofday)

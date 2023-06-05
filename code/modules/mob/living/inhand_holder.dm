@@ -15,6 +15,12 @@
 	. = ..()
 	if(weight > MOB_SIZE_SMALL)
 		w_class = weight + 2 // rough conversion
+	if(clothing_layer)
+		alternate_worn_layer = clothing_layer
+	if(held_icon)
+		mob_overlay_icon = held_icon
+	if(worn_state)
+		item_state = worn_state
 	if(lh_icon)
 		lefthand_file = lh_icon
 	if(rh_icon)	

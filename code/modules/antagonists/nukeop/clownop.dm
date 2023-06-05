@@ -3,7 +3,9 @@
 	name = "Clown Operative"
 	roundend_category = "clown operatives"
 	antagpanel_category = "ClownOp"
+	job_rank = ROLE_CLOWNOP
 	nukeop_outfit = /datum/outfit/syndicate/clownop
+	preview_outfit = /datum/outfit/syndicate/clownop
 
 /datum/antagonist/nukeop/clownop/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/hornin.ogg', 100, FALSE, pressure_affected = FALSE)

@@ -37,7 +37,7 @@
 	areas = list()
 
 	var/list/new_latejoin = list()
-	for(var/area/shuttle/arrival/A in GLOB.sortedAreas)
+	for(var/area/shuttle/arrival/A in GLOB.areas)
 		for(var/obj/structure/chair/C in A)
 			new_latejoin += C
 		if(!console)
@@ -79,7 +79,7 @@
 		damaged = TRUE
 		if(console)
 			console.say("Alert, hull breach detected!")
-		var/obj/machinery/announcement_system/announcer = safepick(GLOB.announcement_systems)
+		var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
 		if(!QDELETED(announcer))
 			announcer.announce("ARRIVALS_BROKEN", channels = list())
 		if(mode != SHUTTLE_CALL)
@@ -197,7 +197,7 @@
 	if(mode != SHUTTLE_CALL)
 		AnnounceArrival(mob, rank)
 	else
-		LAZYADD(queued_announces, CALLBACK(GLOBAL_PROC, .proc/AnnounceArrival, mob, rank))
+		LAZYADD(queued_announces, CALLBACK(GLOBAL_PROC, PROC_REF(AnnounceArrival), mob, rank))
 
 /obj/docking_port/mobile/arrivals/vv_edit_var(var_name, var_value)
 	switch(var_name)

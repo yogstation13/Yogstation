@@ -29,8 +29,8 @@
 	var/obj/item/radio/borg/radio = null
 	var/obj/machinery/camera/camera = null
 	var/obj/item/mmi/mmi = null
-	var/req_access = ACCESS_ROBOTICS //Access needed to pop out the brain.
-	var/emagged = 0
+	var/req_access = ACCESS_ROBO_CONTROL //Access needed to pop out the brain.
+	var/emagged = FALSE
 	var/obj/item/held_item = null //Storage for single item they can hold.
 
 /mob/living/simple_animal/spiderbot/attackby(obj/item/O, mob/user)
@@ -172,10 +172,10 @@
 	add_verb(src, list(/mob/living/simple_animal/spiderbot/proc/hide, \
 			  /mob/living/simple_animal/spiderbot/proc/drop_held_item, \
 			  /mob/living/simple_animal/spiderbot/proc/get_item))
-	RegisterSignal(src, COMSIG_MOB_DEATH, .proc/on_death)
+	RegisterSignal(src, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_death))
 
 /mob/living/simple_animal/spiderbot/proc/on_death()
-	UnregisterSignal(src, COMSIG_MOB_DEATH)
+	UnregisterSignal(src, COMSIG_GLOB_MOB_DEATH)
 	gib()
 
 /mob/living/simple_animal/spiderbot/Destroy()
@@ -191,7 +191,7 @@
 	if(mmi)
 		mmi.forceMove(loc)
 		mmi = null
-	UnregisterSignal(src, COMSIG_MOB_DEATH)
+	UnregisterSignal(src, COMSIG_GLOB_MOB_DEATH)
 	. = ..()
 
 /mob/living/simple_animal/spiderbot/proc/hide()

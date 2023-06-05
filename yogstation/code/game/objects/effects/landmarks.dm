@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return TRUE
 
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM" = 50, "Engine Singulo And Tesla" = 30, "Engine TEG" = 20)
+	template_names = list("Engine SM" = 50, "Engine Singulo And Tesla" = 50, "Engine TEG" = 0)
 	icon = 'yogstation/icons/rooms/box/engine.dmi'
 
 /obj/effect/landmark/stationroom/box/engine/choose()
@@ -137,7 +137,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	template_names = list("Transfer 1", "Transfer 2", "Transfer 3", "Transfer 4", "Transfer 5", "Transfer 6", "Transfer 7", "Transfer 8", "Transfer 9", "Transfer 10")
 
 /obj/effect/landmark/stationroom/meta/engine
-	template_names = list("Meta Singulo And Tesla" = 30, "Meta SM" = 50, "Meta TEG" = 20)
+	template_names = list("Meta Singulo And Tesla" = 50, "Meta SM" = 50, "Meta TEG" = 0)
 
 /obj/effect/landmark/stationroom/meta/engine/choose()
 	. = ..()
@@ -152,8 +152,6 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 		if(4)
 			return "Meta TEG"
 
-/obj/effect/landmark/stationroom/eclipse/bar
-	template_names = list("Eclipse Bar Default", "Eclipse Bar Beach", "Eclipse Bar Western", "Eclipse Bar Clock", "Eclipse Bar Disco", "Eclipse Bar Casino")
 
 /obj/effect/landmark/stationroom/maint/
 	unique = TRUE
@@ -162,7 +160,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	template_names = list("Maint 2storage", "Maint 9storage", "Maint airstation", "Maint biohazard", "Maint boxbedroom", "Maint boxchemcloset", "Maint boxclutter2", "Maint boxclutter3", "Maint boxclutter4", "Maint boxclutter5", "Maint boxclutter6", "Maint boxclutter8",
 	"Maint boxwindow", "Maint bubblegumaltar", "Maint deltajanniecloset", "Maint deltaorgantrade", "Maint donutcapgun", "Maint dronehole", "Maint gibs", "Maint hazmat", "Maint hobohut", "Maint hullbreach", "Maint kilolustymaid", "Maint kilomechcharger", "Maint kilotheatre",
 	"Maint medicloset", "Maint memorial", "Maint metaclutter2", "Maint metaclutter4", "Maint metagamergear", "Maint owloffice", "Maint plasma", "Maint pubbyartism", "Maint pubbyclutter1", "Maint pubbyclutter2", "Maint pubbyclutter3", "Maint radspill", "Maint shrine", "Maint singularity",
-	"Maint tanning", "Maint tranquility", "Maint wash", "Maint command", "Maint dummy", "Maint spaceart", "Maint containmentcell", "Maint naughtyroom", "Maint vendoraccident", "Maint donut")
+	"Maint tanning", "Maint tranquility", "Maint wash", "Maint command", "Maint dummy", "Maint spaceart", "Maint containmentcell", "Maint naughtyroom", "Maint vendoraccident", "Maint donut", "Maint lair" = 0.25, "Maint lair2" = 0.25, "Maint lair3" = 0.25, "Maint lair4" = 0.25)
 
 /obj/effect/landmark/stationroom/maint/threexfive
 	template_names = list("Maint airlockstorage", "Maint boxclutter7", "Maint boxkitchen", "Maint boxmaintfreezers", "Maint canisterroom", "Maint checkpoint", "Maint hank", "Maint junkcloset", "Maint kilomobden", "Maint laststand", "Maint monky", "Maint onioncult", "Maint pubbyclutter5",

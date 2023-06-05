@@ -182,7 +182,7 @@
 		used = FALSE
 		return FALSE
 	//alerts user in case they didn't know
-	var/list/all_items = user.GetAllContents()
+	var/list/all_items = user.get_all_contents()
 	for (var/obj/I in all_items) //Check for mori
 		if (istype(I, /obj/item/clothing/neck/necklace/memento_mori))
 			to_chat(user, span_danger("The [I] revolts at the sight of the [src]!"))
@@ -200,7 +200,7 @@
 		G.summoner = user.mind
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(user)
-		G.RegisterSignal(user, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
+		G.RegisterSignal(user, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/living/simple_animal/hostile/guardian, OnMoved))
 		var/datum/antagonist/guardian/S = new
 		S.stats = saved_stats
 		S.summoner = user.mind
@@ -216,7 +216,7 @@
 				to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> has been summoned!"))
 			if ("carp")
 				to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> has been caught!"))
-		add_verb(user, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset))
+		add_verb(user, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
 		user.update_sight()
 		//surprise another check in case you tried to get around the first one and now you have no holoparasite :)
 		for (var/obj/H in all_items)
@@ -258,7 +258,7 @@
 
 /obj/item/guardiancreator/ComponentInitialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_REFUND, .proc/refund_check)
+	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
 	
 /obj/item/guardiancreator/proc/refund_check()
 	return !builder.used

@@ -49,6 +49,10 @@
 	id = "SCIENCE"
 	organization = "Nanotrasen"
 
+/datum/techweb/ruin	//Global ruintechweb for RND consoles.
+	id = "RUIN"
+	organization = "Neutral"
+
 /datum/techweb/Destroy()
 	researched_nodes = null
 	researched_designs = null

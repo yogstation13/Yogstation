@@ -18,6 +18,7 @@
 #define MOVE_INTENT_RUN  "run"
 
 //Blood volumes, in cL
+#define BLOOD_VOLUME_MAX_LETHAL		2150 // The lethal amount for a good semaritan, based off IRL data about vampires
 #define BLOOD_VOLUME_GENERIC		560 // The default amount of blood in a blooded creature, in cL, based off IRL data about humans
 #define BLOOD_VOLUME_MONKEY			325 // Based on IRL data bout Chimpanzees
 #define BLOOD_VOLUME_XENO			700 // Based off data from my asshole
@@ -42,6 +43,7 @@
 #define BLOOD_DEAD 0
 
 //Defines to get the actual volumes for these varying states
+//YOGS: Keep in mind that in BYOND, initial() is a non-const function and doesn't work correctly in switch statements!
 #define BLOOD_VOLUME_MAXIMUM(L)		(initial(##L.blood_volume) * BLOOD_MAXIMUM_MULTI)
 #define BLOOD_VOLUME_NORMAL(L)		(initial(##L.blood_volume))
 #define BLOOD_VOLUME_SAFE(L)		(initial(##L.blood_volume) * BLOOD_SAFE_MULTI)
@@ -380,3 +382,8 @@
 
 ///Define for spawning megafauna instead of a mob for cave gen
 #define SPAWN_MEGAFAUNA "bluh bluh huge boss"
+
+///Swarmer flags
+#define SWARMER_LIGHT_ON (1<<0)
+
+#define ACCENT_NONE "None"

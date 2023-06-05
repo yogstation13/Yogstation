@@ -535,6 +535,11 @@
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		return 
 
+	if(HAS_TRAIT(mob_occupant,TRAIT_SHORT_TELOMERES))
+		say("Error: Scan indicates occupant's DNA telomeres are too short to properly scan. Aborting.")
+		return
+
+
 	var/datum/data/record/R = new()
 	if(dna.species)
 		// We store the instance rather than the path, because some

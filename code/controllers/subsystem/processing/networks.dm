@@ -14,7 +14,7 @@ PROCESSING_SUBSYSTEM_DEF(networks)
 /datum/controller/subsystem/processing/networks/Initialize()
 	station_network = new
 	station_network.register_map_supremecy()
-	. = ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/processing/networks/proc/register_network(datum/ntnet/network)
 	if(!networks_by_id[network.network_id])

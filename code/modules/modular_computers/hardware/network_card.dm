@@ -87,13 +87,15 @@
 	if(!modularInterface || !istype(modularInterface))
 		return FALSE //wrong type of tablet
 
-	if(!modularInterface.borgo)
-		return FALSE //No borg found
+	if(istype(modularInterface.borgo, /mob/living/silicon/robot))
+		var/mob/living/silicon/robot/R = modularInterface.borgo
+		if(!R)
+			return FALSE //No borg found
 
-	if(modularInterface.borgo.lockcharge)
-		return FALSE //lockdown restricts borg networking
+		if(R.lockcharge)
+			return FALSE //lockdown restricts borg networking
 
-	if(!modularInterface.borgo.cell || modularInterface.borgo.cell.charge == 0)
-		return FALSE //borg cell dying restricts borg networking
+		if(!R.cell || R.cell.charge == 0)
+			return FALSE //borg cell dying restricts borg networking
 
 	return ..()

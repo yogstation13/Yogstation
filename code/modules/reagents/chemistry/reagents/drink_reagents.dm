@@ -351,12 +351,12 @@
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
 
 /datum/reagent/consumable/coffee/overdose_process(mob/living/M)
-	M.Jitter(5)
+	M.adjust_jitter(5 SECONDS)
 	..()
 
 /datum/reagent/consumable/coffee/on_mob_life(mob/living/carbon/M)
-	M.dizziness = max(0,M.dizziness-5)
-	M.drowsyness = max(0,M.drowsyness-3)
+	M.adjust_dizzy(-10 SECONDS * REM)
+	M.adjust_drowsiness(-6 SECONDS * REM)
 	M.AdjustSleeping(-40, FALSE)
 	//310.15 is the normal bodytemp.
 	M.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
@@ -376,9 +376,9 @@
 	glass_desc = "Drinking it from here would not seem right."
 
 /datum/reagent/consumable/tea/on_mob_life(mob/living/carbon/M)
-	M.dizziness = max(0,M.dizziness-2)
-	M.drowsyness = max(0,M.drowsyness-1)
-	M.jitteriness = max(0,M.jitteriness-3)
+	M.adjust_dizzy(-2 SECONDS)
+	M.adjust_drowsiness(-1 SECONDS)
+	M.adjust_jitter(-3 SECONDS)
 	M.AdjustSleeping(-20, FALSE)
 	if(M.getToxLoss() && prob(20))
 		M.adjustToxLoss(-1, 0)
@@ -440,11 +440,11 @@
 	glass_desc = "A drink to perk you up and refresh you!"
 
 /datum/reagent/consumable/icecoffee/on_mob_life(mob/living/carbon/M)
-	M.dizziness = max(0,M.dizziness-5)
-	M.drowsyness = max(0,M.drowsyness-3)
+	M.adjust_dizzy(-5 SECONDS)
+	M.adjust_drowsiness(-3 SECONDS)
 	M.AdjustSleeping(-40, FALSE)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
-	M.Jitter(5)
+	M.adjust_jitter(5 SECONDS)
 	..()
 	. = 1
 
@@ -459,8 +459,8 @@
 	glass_desc = "All natural, antioxidant-rich flavour sensation."
 
 /datum/reagent/consumable/icetea/on_mob_life(mob/living/carbon/M)
-	M.dizziness = max(0,M.dizziness-2)
-	M.drowsyness = max(0,M.drowsyness-1)
+	M.adjust_dizzy(-2 SECONDS)
+	M.adjust_drowsiness(-1 SECONDS)
 	M.AdjustSleeping(-40, FALSE)
 	if(M.getToxLoss() && prob(20))
 		M.adjustToxLoss(-1, 0)
@@ -478,7 +478,7 @@
 	glass_desc = "A glass of refreshing Space Cola."
 
 /datum/reagent/consumable/space_cola/on_mob_life(mob/living/carbon/M)
-	M.drowsyness = max(0,M.drowsyness-5)
+	M.adjust_drowsiness(-5 SECONDS)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
@@ -492,7 +492,7 @@
 	glass_desc = "A glass of refreshing fizzing root beer."
 
 /datum/reagent/consumable/rootbeer/on_mob_life(mob/living/carbon/M)
-	M.drowsyness = max(0,M.drowsyness-5)
+	M.adjust_drowsiness(-5 SECONDS)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
@@ -515,10 +515,10 @@
 	..()
 
 /datum/reagent/consumable/nuka_cola/on_mob_life(mob/living/carbon/M)
-	M.Jitter(20)
+	M.adjust_jitter(20 SECONDS)
 	M.set_drugginess(30)
-	M.dizziness +=1.5
-	M.drowsyness = 0
+	M.adjust_dizzy(1.5 SECONDS)
+	M.remove_status_effect(/datum/status_effect/drowsiness)
 	M.AdjustSleeping(-40, FALSE)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	M.apply_effect(5,EFFECT_IRRADIATE,0)
@@ -544,9 +544,9 @@
 	..()
 
 /datum/reagent/consumable/grey_bull/on_mob_life(mob/living/carbon/M)
-	M.Jitter(20)
-	M.dizziness +=1
-	M.drowsyness = 0
+	M.adjust_jitter(20 SECONDS)
+	M.adjust_dizzy(1 SECONDS)
+	M.remove_status_effect(/datum/status_effect/drowsiness)
 	M.AdjustSleeping(-40, FALSE)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
@@ -561,10 +561,10 @@
 	glass_desc = "Space Mountain Wind. As you know, there are no mountains in space, only wind."
 
 /datum/reagent/consumable/spacemountainwind/on_mob_life(mob/living/carbon/M)
-	M.drowsyness = max(0,M.drowsyness-7)
+	M.adjust_drowsiness(-7 SECONDS)
 	M.AdjustSleeping(-20, FALSE)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
-	M.Jitter(5)
+	M.adjust_jitter(5 SECONDS)
 	..()
 	. = 1
 
@@ -578,7 +578,7 @@
 	glass_desc = "Dr. Gibb. Not as dangerous as the glass_name might imply."
 
 /datum/reagent/consumable/dr_gibb/on_mob_life(mob/living/carbon/M)
-	M.drowsyness = max(0,M.drowsyness-6)
+	M.adjust_drowsiness(-6 SECONDS)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
@@ -597,7 +597,7 @@
 	..()
 
 /datum/reagent/consumable/lemon_lime
-	name = "Lemon Lime"
+	name = "Spite"
 	description = "A tangy substance made of 0.5% natural citrus!"
 	color = "#8CFF00" // rgb: 135, 255, 0
 	taste_description = "tangy lime and lemon soda"
@@ -645,8 +645,8 @@
 	glass_desc = "Soda water. Why not make a scotch and soda?"
 
 /datum/reagent/consumable/sodawater/on_mob_life(mob/living/carbon/M)
-	M.dizziness = max(0,M.dizziness-5)
-	M.drowsyness = max(0,M.drowsyness-3)
+	M.adjust_dizzy(-5 SECONDS)
+	M.adjust_drowsiness(-3 SECONDS)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
@@ -660,8 +660,8 @@
 	glass_desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
 
 /datum/reagent/consumable/tonic/on_mob_life(mob/living/carbon/M)
-	M.dizziness = max(0,M.dizziness-5)
-	M.drowsyness = max(0,M.drowsyness-3)
+	M.adjust_dizzy(-5 SECONDS)
+	M.adjust_drowsiness(-3 SECONDS)
 	M.AdjustSleeping(-40, FALSE)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
@@ -676,12 +676,12 @@
 	glass_name = "glass of Monkey Energy"
 	glass_desc = "You can unleash the ape, but without the pop of the can?"
 
-/datum/reagent/consumable/monkey_energy/on_mob_life(mob/living/carbon/M)
-	M.Jitter(20)
-	M.dizziness +=1
-	M.drowsyness = 0
-	M.AdjustSleeping(-40, FALSE)
-	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+/datum/reagent/consumable/monkey_energy/on_mob_life(mob/living/carbon/affected_mob)
+	affected_mob.adjust_jitter(20 SECONDS)
+	affected_mob.adjust_dizzy(2 SECONDS * REM)
+	affected_mob.remove_status_effect(/datum/status_effect/drowsiness)
+	affected_mob.AdjustSleeping(-40, FALSE)
+	affected_mob.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
 	..()
 
 /datum/reagent/consumable/monkey_energy/on_mob_metabolize(mob/living/L)
@@ -718,11 +718,11 @@
 	glass_desc = "A nice and refreshing beverage while you're reading."
 
 /datum/reagent/consumable/soy_latte/on_mob_life(mob/living/carbon/M)
-	M.dizziness = max(0,M.dizziness-5)
-	M.drowsyness = max(0,M.drowsyness-3)
+	M.adjust_dizzy(-5 SECONDS)
+	M.adjust_drowsiness(-3 SECONDS)
 	M.SetSleeping(0, FALSE)
 	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
-	M.Jitter(5)
+	M.adjust_jitter(5 SECONDS)
 	if(M.getBruteLoss() && prob(20))
 		M.heal_bodypart_damage(1,0, 0)
 	..()
@@ -739,11 +739,11 @@
 	glass_desc = "A nice, strong and refreshing beverage while you're reading."
 
 /datum/reagent/consumable/cafe_latte/on_mob_life(mob/living/carbon/M)
-	M.dizziness = max(0,M.dizziness-5)
-	M.drowsyness = max(0,M.drowsyness-3)
+	M.adjust_dizzy(-10 SECONDS * REM)
+	M.adjust_drowsiness(-12 SECONDS * REM)
 	M.SetSleeping(0, FALSE)
 	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
-	M.Jitter(5)
+	M.adjust_jitter(5 SECONDS)
 	if(M.getBruteLoss() && prob(20))
 		M.heal_bodypart_damage(1,0, 0)
 	..()
@@ -781,6 +781,18 @@
 	glass_name = "chocolate pudding"
 	glass_desc = "Tasty."
 
+/datum/reagent/consumable/chocolate/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+		M.heal_bodypart_damage(2.0,0, 0)
+	..()
+	. = TRUE
+
+/datum/reagent/consumable/chocolate/reaction_mob(mob/living/M, method=TOUCH)
+	if(method == INGEST)
+		if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+			to_chat(M, span_notice("This is like Milk, but better!?"))
+	return ..()
+
 /datum/reagent/consumable/vanillapudding
 	name = "Vanilla Pudding"
 	description = "A great dessert for vanilla lovers."
@@ -791,6 +803,18 @@
 	glass_icon_state = "vanillapudding"
 	glass_name = "vanilla pudding"
 	glass_desc = "Tasty."
+
+/datum/reagent/consumable/vanillapudding/on_mob_life(mob/living/carbon/M)
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+		M.heal_bodypart_damage(2.0,0, 0)
+	..()
+	. = TRUE
+
+/datum/reagent/consumable/vanillapudding/reaction_mob(mob/living/M, method=TOUCH)
+	if(method == INGEST)
+		if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
+			to_chat(M, span_notice("This is like Milk, but better!?"))
+	return ..()
 
 /datum/reagent/consumable/cherryshake
 	name = "Cherry Shake"
@@ -803,6 +827,18 @@
 	glass_name = "cherry shake"
 	glass_desc = "A cherry flavored milkshake."
 
+/datum/reagent/consumable/cherryshake/on_mob_life(mob/living/carbon/C)
+	if(isjellyperson(C))
+		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
+			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
+	..()
+
+/datum/reagent/consumable/cherryshake/reaction_mob(mob/living/C, method=TOUCH)
+	if(method == INGEST)
+		if(isjellyperson(C))
+			to_chat(C, span_notice("Just like us, just like jelly!"))
+	return ..()
+
 /datum/reagent/consumable/bluecherryshake
 	name = "Blue Cherry Shake"
 	description = "An exotic milkshake."
@@ -813,6 +849,18 @@
 	glass_icon_state = "bluecherryshake"
 	glass_name = "blue cherry shake"
 	glass_desc = "An exotic blue milkshake."
+
+/datum/reagent/consumable/bluecherryshake/on_mob_life(mob/living/carbon/C)
+	if(isjellyperson(C))
+		if(C.blood_volume < BLOOD_VOLUME_NORMAL(C))
+			C.blood_volume = min(BLOOD_VOLUME_NORMAL(C), C.blood_volume + 4.0)
+	..()
+
+/datum/reagent/consumable/bluecherryshake/reaction_mob(mob/living/C, method=TOUCH)
+	if(method == INGEST)
+		if(isjellyperson(C))
+			to_chat(C, span_notice("Just like us, just like jelly!"))
+	return ..()
 
 /datum/reagent/consumable/pumpkin_latte
 	name = "Pumpkin Latte"
@@ -1037,8 +1085,13 @@
 	glass_name = "glass of mushroom tea"
 	glass_desc = "Oddly savoury for a drink."
 
-/datum/reagent/consumable/mushroom_tea/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
-	if(islizard(M))
-		M.adjustOxyLoss(-0.5 * REM * delta_time, 0)
+/datum/reagent/consumable/mushroom_tea/on_mob_life(mob/living/carbon/C)
+	if(islizard(C))
+		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, -2.5*REM)
 	..()
-	. = TRUE
+
+/datum/reagent/consumable/mushroom_tea/reaction_mob(mob/living/M, method=TOUCH)
+	if(method == INGEST)
+		if(islizard(M))
+			to_chat(M, span_notice("The most important thing to a Lizard is their brains.... Probably"))
+	return ..()

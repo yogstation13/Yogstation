@@ -1,5 +1,20 @@
 //Speech verbs.
 
+/mob/verb/say_wrapper()
+	set name = ".Say"
+	set hidden = TRUE
+
+	create_typing_indicator()
+	window_typing = TRUE
+
+	var/message = input("", "Say \"text\"") as null|text
+
+	window_typing = FALSE
+	remove_typing_indicator()
+
+	if (message)
+		say_verb(message)
+
 ///Say verb
 /mob/verb/say_verb(message as text)
 	set name = "Say"
@@ -16,7 +31,7 @@
 		log_say(log_message)
 		return
 	if(isliving(src))
-		message = minor_filter(to_utf8(message)) //yogs end - pretty filter
+		message = minor_filter(message) //yogs end - pretty filter
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
@@ -39,16 +54,37 @@
 		message_admins(log_message)
 		log_say(log_message)
 		return
-	message = to_utf8(minor_filter(message)) //yogs end - pretty filter
+	message = minor_filter(message) //yogs end - pretty filter
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 	whisper(message)
 
-///whisper a message
-/mob/proc/whisper(message, datum/language/language=null)
-	say(message, language) //only living mobs actually whisper, everything else just talks
+/**
+ * Whisper a message.
+ *
+ * Basic level implementation just speaks the message, nothing else.
+ */
+/mob/proc/whisper(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language, ignore_spam = FALSE, forced, filterproof)
+	if(!message)
+		return
+	say(message, language = language)
+
+/mob/verb/me_wrapper()
+	set name = ".me"
+	set hidden = TRUE
+
+	create_typing_indicator()
+	window_typing = TRUE
+
+	var/message = input("", "Me \"text\"") as null|text
+
+	window_typing = FALSE
+	remove_typing_indicator()
+
+	if (message)
+		me_verb(message)
 
 ///The me emote verb
 /mob/verb/me_verb(message as text)

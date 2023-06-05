@@ -36,7 +36,7 @@ export const LibraryConsole = (props, context) => {
               lineHeight="23px"
               selected={tab === 3}
               onClick={() => setTab(3)}>
-              Libriarian Access
+              Librarian Access
             </Tabs.Tab>
           )}
         </Tabs>

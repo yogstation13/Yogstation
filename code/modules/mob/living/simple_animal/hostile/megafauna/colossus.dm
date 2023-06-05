@@ -58,28 +58,28 @@ Difficulty: Very Hard
 
 /datum/action/innate/megafauna_attack/spiral_attack
 	name = "Spiral Shots"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = span_colossus("You are now firing in a spiral.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/aoe_attack
 	name = "All Directions"
-	icon_icon = 'icons/effects/effects.dmi'
+	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "at_shield2"
 	chosen_message = span_colossus("You are now firing in all directions.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/shotgun
 	name = "Shotgun Fire"
-	icon_icon = 'icons/obj/guns/projectile.dmi'
+	button_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "shotgun"
 	chosen_message = span_colossus("You are now firing shotgun shots where you aim.")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/alternating_cardinals
 	name = "Alternating Shots"
-	icon_icon = 'icons/obj/guns/projectile.dmi'
+	button_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "pistol"
 	chosen_message = span_colossus("You are now firing in alternating cardinal directions.")
 	chosen_attack_num = 4
@@ -152,8 +152,8 @@ Difficulty: Very Hard
 	visible_message(span_colossus("\"<b>Die.</b>\""))
 
 	SLEEP_CHECK_DEATH(10)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, FALSE)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), FALSE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/spiral_shoot(negative = pick(TRUE, FALSE), counter_start = 8)
 	var/turf/start_turf = get_step(src, pick(GLOB.alldirs))
@@ -214,6 +214,7 @@ Difficulty: Very Hard
 	for(var/mob/M in range(10,src))
 		if(M.client)
 			flash_color(M.client, "#C80000", 1)
+			sleep(0.5 SECONDS)
 			shake_camera(M, 4, 3)
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, 1)
 
@@ -233,6 +234,7 @@ Difficulty: Very Hard
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "at_shield2"
 	layer = FLY_LAYER
+	light_system = MOVABLE_LIGHT
 	light_range = 2
 	duration = 8
 	var/target
@@ -240,7 +242,7 @@ Difficulty: Very Hard
 /obj/effect/temp_visual/at_shield/Initialize(mapload, new_target)
 	. = ..()
 	target = new_target
-	INVOKE_ASYNC(src, /atom/movable/proc/orbit, target, 0, FALSE, 0, 0, FALSE, TRUE)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable/, orbit), target, 0, FALSE, 0, 0, FALSE, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/colossus/bullet_act(obj/item/projectile/P)
 	if(!stat)
@@ -633,7 +635,7 @@ Difficulty: Very Hard
 	if(.)
 		return
 	if(ready_to_deploy)
-		var/be_helper = alert("Become a Lightgeist? (Warning, You can no longer be cloned!)",,"Yes","No")
+		var/be_helper = tgui_alert(usr,"Become a Lightgeist? (Warning, You can no longer be revived!)",,list("Yes","No"))
 		if(be_helper == "Yes" && !QDELETED(src) && isobserver(user))
 			var/mob/living/simple_animal/hostile/lightgeist/healing/W = new /mob/living/simple_animal/hostile/lightgeist/healing(get_turf(loc))
 			W.key = user.key
@@ -684,12 +686,32 @@ Difficulty: Very Hard
 	AIStatus = AI_OFF
 	stop_automated_movement = TRUE
 
+/mob/living/simple_animal/hostile/lightgeist/healing/Initialize()
+	. = ..()
+	remove_verb(src, /mob/living/verb/pulled)
+	remove_verb(src, /mob/verb/me_verb)
+	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+	medsensor.show_to(src)
+
+/mob/living/simple_animal/hostile/lightgeist/ghostize()
+	. = ..()
+	if(.)
+		death()
+
 /mob/living/simple_animal/hostile/lightgeist/healing
 	var/heal_power = 5
+	var/heal_color = "#80F5FF"
 
-/mob/living/simple_animal/hostile/lightgeist/photogeist
+/mob/living/simple_animal/hostile/lightgeist/healing/AttackingTarget()
+	. = ..()
+	if(isliving(target) && target != src)
+		var/mob/living/L = target
+		if(L.stat != DEAD)
+			L.heal_overall_damage(heal_power, heal_power)
+			new /obj/effect/temp_visual/heal(get_turf(target), heal_color)
+
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist
 	name = "photogeist"
-	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
 	icon_state = "photogeist"
 	icon_living = "photogeist"
 	friendly = "shines on"
@@ -699,25 +721,29 @@ Difficulty: Very Hard
 	health = 10
 	light_range = 6
 	ventcrawler = VENTCRAWLER_NONE //they dont really need to be ventcrawling
-	var/heal_power = 3
+	heal_power = 3
+	heal_color = "#5bf563"
 
-/mob/living/simple_animal/hostile/lightgeist/Initialize()
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/Initialize()
 	. = ..()
-	remove_verb(src, /mob/living/verb/pulled)
-	remove_verb(src, /mob/verb/me_verb)
-	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	medsensor.add_hud_to(src)
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/plants)
+	var/datum/action/cooldown/spell/conjure/plants/terrarium = new(src)
+	terrarium.Grant(src)
 
-/obj/effect/proc_holder/spell/aoe_turf/conjure/plants
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/AttackingTarget() //photogeists can only heal plantlike stuff
+	var/mob/living/L = target
+	if(!("vines" in L.faction) && !("plants" in L.faction))
+		return FALSE
+	. = ..()
+
+/datum/action/cooldown/spell/conjure/plants
 	name = "Seed Plants"
 	desc = "This spell seeds a random plant into the floor."
-	school = "conjuration"
-	charge_max = 200
-	clothes_req = FALSE
-	invocation = "none"
-	invocation_type = "none"
-	range = 0
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
+	button_icon_state = "plant"
+
+	invocation_type = INVOCATION_NONE
+
+	cooldown_time = 20 SECONDS
 	summon_type = list(
 		/obj/structure/flora/ausbushes,
 		/obj/structure/flora/ausbushes/leafybush,
@@ -727,25 +753,7 @@ Difficulty: Very Hard
 		/obj/structure/flora/ausbushes/ppflowers,
 		/obj/structure/flora/ausbushes/fullgrass
 	)
-	action_icon = 'icons/mob/actions/actions_animal.dmi'
-	action_icon_state = "plant"
-
-/mob/living/simple_animal/hostile/lightgeist/healing/AttackingTarget()
-	. = ..()
-	if(isliving(target) && target != src)
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			L.heal_overall_damage(heal_power, heal_power)
-			new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
-
-/mob/living/simple_animal/hostile/lightgeist/photogeist/AttackingTarget() //photogeists can only heal plantlike stuff
-	. = ..()
-	if(isliving(target) && target != src)
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			if(("vines" in L.faction) || ("plants" in L.faction))
-				L.heal_overall_damage(heal_power, heal_power)
-				new /obj/effect/temp_visual/heal(get_turf(target), "#5bf563")
+	spell_requirements = NONE
 
 /obj/effect/mob_spawn/photogeist
 	name = "dormant photogeist"
@@ -755,7 +763,7 @@ Difficulty: Very Hard
 	density = FALSE
 	anchored = FALSE
 
-	mob_type = /mob/living/simple_animal/hostile/lightgeist/photogeist
+	mob_type = /mob/living/simple_animal/hostile/lightgeist/healing/photogeist
 	mob_name = "photogeist"
 	death = FALSE
 	roundstart = FALSE
@@ -767,11 +775,6 @@ Difficulty: Very Hard
 	var/area/A = get_area(src)
 	if(A)
 		notify_ghosts("A photogeist has been summoned in [A.name].", 'sound/effects/shovel_dig.ogg', source = src, action = NOTIFY_ATTACKORBIT, flashwindow = FALSE)
-
-/mob/living/simple_animal/hostile/lightgeist/ghostize()
-	. = ..()
-	if(.)
-		death()
 
 /mob/living/simple_animal/hostile/lightgeist/healing/slime
 	name = "crystalline lightgeist"
@@ -850,8 +853,8 @@ Difficulty: Very Hard
 		ADD_TRAIT(L, TRAIT_MUTE, STASIS_MUTE)
 		L.status_flags |= GODMODE
 		L.mind.transfer_to(holder_animal)
-		var/obj/effect/proc_holder/spell/targeted/exit_possession/P = new /obj/effect/proc_holder/spell/targeted/exit_possession
-		holder_animal.mind.AddSpell(P)
+		var/datum/action/exit_possession/escape = new(holder_animal)
+		escape.Grant(holder_animal)
 		remove_verb(holder_animal, /mob/living/verb/pulled)
 
 /obj/structure/closet/stasis/dump_contents(var/kill = 1)
@@ -862,7 +865,7 @@ Difficulty: Very Hard
 		L.notransform = 0
 		if(holder_animal)
 			holder_animal.mind.transfer_to(L)
-			L.mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/exit_possession)
+			holder_animal.gib()
 		if(kill || !isanimal(loc))
 			L.death(0)
 	..()
@@ -873,32 +876,28 @@ Difficulty: Very Hard
 /obj/structure/closet/stasis/ex_act()
 	return
 
-/obj/effect/proc_holder/spell/targeted/exit_possession
+/datum/action/exit_possession
 	name = "Exit Possession"
-	desc = "Exits the body you are possessing."
-	charge_max = 60
-	clothes_req = 0
-	invocation_type = "none"
-	max_targets = 1
-	range = -1
-	include_user = TRUE
-	selection_type = "view"
-	action_icon = 'icons/mob/actions/actions_spells.dmi'
-	action_icon_state = "exit_possession"
-	sound = null
+	desc = "Exits the body you are possessing. They will explode violently when this occurs."
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon_state = "exit_possession"
 
-/obj/effect/proc_holder/spell/targeted/exit_possession/cast(list/targets, mob/user = usr)
-	if(!isfloorturf(user.loc))
-		return
-	var/datum/mind/target_mind = user.mind
-	for(var/i in user)
-		if(istype(i, /obj/structure/closet/stasis))
-			var/obj/structure/closet/stasis/S = i
-			S.dump_contents(0)
-			qdel(S)
-			break
-	user.gib()
-	target_mind.RemoveSpell(/obj/effect/proc_holder/spell/targeted/exit_possession)
+/datum/action/exit_possession/IsAvailable(feedback = FALSE)
+	return ..() && isfloorturf(owner.loc)
+
+
+/datum/action/exit_possession/Trigger(trigger_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/obj/structure/closet/stasis/stasis = locate() in owner
+	if(!stasis)
+		CRASH("[type] did not find a stasis closet thing in the owner.")
+
+	stasis.dump_contents(FALSE)
+	qdel(stasis)
+	qdel(src)
 
 
 #undef ACTIVATE_TOUCH

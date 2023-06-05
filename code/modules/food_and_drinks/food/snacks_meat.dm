@@ -117,9 +117,8 @@
 /obj/item/reagent_containers/food/snacks/raw_meatball/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/rollingpin))
 		if(isturf(loc))
-			if(!do_after(user, 1 SECONDS, src)) {
+			if(!do_after(user, 1 SECONDS, src))
 				return
-			}
 			new patty_type(loc)
 			to_chat(user, span_notice("You flatten [src]."))
 			qdel(src)
@@ -284,12 +283,15 @@
 
 /obj/item/reagent_containers/food/snacks/sausage/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/kitchen/knife))
-		if(!do_after(user, 1 SECONDS, src)) {
+		if(isturf(loc)) //CHECK IF ITS ON A TABLE OR OTHER SURFACE FOR THE LOVE OF GOD
+			if(!do_after(user, 1 SECONDS, src))
+				return
+			new /obj/item/reagent_containers/food/snacks/sausage/american(loc)
+			to_chat(user, span_notice("You snip [src]."))
+			qdel(src)
+		else
+			to_chat(user, span_warning("You need to put [src] on a surface to snip it!"))
 			return
-		}
-		new /obj/item/reagent_containers/food/snacks/sausage/american(loc)
-		to_chat(user, span_notice("You snip [src]."))
-		qdel(src)
 	else
 		..()
 
@@ -425,7 +427,8 @@
 /obj/item/reagent_containers/food/snacks/monkeycube
 	name = "monkey cube"
 	desc = "Just add water!"
-	icon_state = "monkeycube"
+	icon = 'icons/obj/food/animalcubes.dmi'
+	icon_state = "monkey"
 	bitesize = 12
 	list_reagents = list(/datum/reagent/monkey_powder = 30)
 	filling_color = "#CD853F"
@@ -460,7 +463,7 @@
 		return SHAME
 	playsound(M, 'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	M.temporarilyRemoveItemFromInventory(src) //removes from hands, keeps in M
-	addtimer(CALLBACK(src, .proc/finish_suicide, M), 15) //you've eaten it, you can run now
+	addtimer(CALLBACK(src, PROC_REF(finish_suicide), M), 15) //you've eaten it, you can run now
 	return MANUAL_SUICIDE
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/finish_suicide(mob/living/M) ///internal proc called by a monkeycube's suicide_act using a timer and callback. takes as argument the mob/living who activated the suicide
@@ -479,15 +482,26 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/gorilla
 	name = "gorilla cube"
 	desc = "A Waffle Co. brand gorilla cube. Now with extra molecules! Just add water!"
+	icon_state = "gorilla"
 	bitesize = 35
 	list_reagents = list(/datum/reagent/gorilla_powder = 30, /datum/reagent/medicine/strange_reagent = 5)
 	tastes = list("the jungle" = 1, "bananas" = 1, "power" = 1)
 	spawned_mob = /mob/living/simple_animal/hostile/gorilla
 	foodtype = MEAT | SUGAR | RAW
 
+/obj/item/reagent_containers/food/snacks/monkeycube/bee
+	name = "bee cube"
+	desc = "We were sure it was a good idea. Just add water."
+	icon_state = "bee"
+	bitesize = 20
+	list_reagents = list(/datum/reagent/consumable/honey = 10, /datum/reagent/toxin = 5, /datum/reagent/medicine/strange_reagent = 1)
+	tastes = list("buzzing" = 1, "honey" = 1, "regret" = 1)
+	spawned_mob = /mob/living/simple_animal/hostile/poison/bees/toxin
+
 /obj/item/reagent_containers/food/snacks/monkeycube/sheep
 	name = "sheep cube"
 	desc = "A Farm Town brand sheep cube. Just add water!"
+	icon_state = "sheep"
 	bitesize = 35
 	list_reagents = list(/datum/reagent/sheep_powder = 30, /datum/reagent/consumable/nutriment = 5)
 	tastes = list("fluff" = 1, "the farm" = 1)
@@ -497,6 +511,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/cow
 	name = "cow cube"
 	desc = "A Farm Town brand cow cube. Just add water!"
+	icon_state = "cow"
 	bitesize = 45
 	list_reagents = list(/datum/reagent/cow_powder = 30, /datum/reagent/consumable/nutriment = 15)
 	tastes = list("milk" = 1, "blood" = 1, "the farm" = 1)
@@ -506,8 +521,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/goat
 	name = "goat cube"
 	desc = "A Goat Tech Industries goat cube. Just add water!"
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "goatcube"
+	icon_state = "goat"
 	bitesize = 40
 	list_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/consumable/nutriment = 10)
 	tastes = list("fur" = 1, "blood" = 1, "rage" = 1)
@@ -517,8 +531,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/chicken
 	name = "chicken cube"
 	desc = "A Farm Town brand chicken cube. Just add water!"
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "chickencube"
+	icon_state = "chicken"
 	bitesize = 40
 	list_reagents = list(/datum/reagent/chicken_powder = 30, /datum/reagent/consumable/nutriment = 10)
 	tastes = list("feathers" = 1, "blood" = 1, "albumin" = 1)
@@ -528,8 +541,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/mouse
 	name = "mouse cube"
 	desc = "A Waffle Co. brand mouse cube. Just add water!"
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "mousecube"
+	icon_state = "mouse"
 	bitesize = 40
 	list_reagents = list(/datum/reagent/mouse_powder = 30, /datum/reagent/consumable/nutriment = 10)
 	tastes = list("fur" = 1, "blood" = 1, "cheese" = 1)

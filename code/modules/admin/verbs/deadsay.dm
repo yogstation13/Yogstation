@@ -1,7 +1,8 @@
-/client/proc/dsay(msg as text)
+/client/verb/dsay(msg as text)
 	set category = "Misc.Unused"
 	set name = "Dsay"
 	set hidden = TRUE
+
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
 		return
@@ -40,6 +41,5 @@
 	// yogs start - Cancel button
 	var/msg = input(src, null, "dsay \"text\"") as text|null
 	if(msg)
-		msg = to_utf8(msg, src)
 		dsay(msg)
 	// yogs end

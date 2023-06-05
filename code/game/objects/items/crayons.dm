@@ -315,11 +315,9 @@
 			drawing = pick(all_drawables)
 
 
-	var/temp = "rune"
-	if(is_alpha(drawing))
-		temp = "letter"
-	else if(is_digit(drawing))
-		temp = "number"
+	var/temp = "scribble"
+	if (drawing in runes)
+		temp = "rune"
 	else if(drawing in punctuation)
 		temp = "punctuation mark"
 	else if(drawing in symbols)
@@ -328,11 +326,15 @@
 		temp = "drawing"
 	else if(drawing in graffiti|oriented)
 		temp = "graffiti"
+	else if(is_digit(drawing))
+		temp = "number"
+	else if(is_alpha(drawing))
+		temp = "letter"
 	var/gang_check = hippie_gang_check(user,target) // yogs start -- gang check and temp setting
 	if(!gang_check)
 		return
-	else if(gang_check == "gang graffiti")
-		temp = gang_check // yogs end
+	//else if(gang_check == "gang graffiti")
+	//	temp = gang_check // yogs end
 
 
 	var/graf_rot
@@ -666,7 +668,7 @@
 			C.blur_eyes(3)
 			C.blind_eyes(1)
 		if(C.get_eye_protection() <= 0) // no eye protection? ARGH IT BURNS.
-			C.confused = max(C.confused, 3)
+			C.adjust_confusion(3)
 			C.Knockdown(20)
 		if(ishuman(C) && actually_paints)
 			var/mob/living/carbon/human/H = C

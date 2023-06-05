@@ -112,6 +112,16 @@
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/vialbox
+	name = "vial box"
+	desc = "A small box that can hold up to six vials in a sealed enviroment."
+	id = "vialbox"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 1500)
+	build_path = /obj/item/storage/lockbox/vialbox/printed
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/bluespacebodybag
 	name = "Bluespace Body Bag"
 	desc = "A bluespace body bag, powered by experimental bluespace technology. It can hold loads of bodies and the largest of creatures."
@@ -268,6 +278,16 @@
 	build_path = /obj/item/hypospray_upgrade/piercing
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 2000, /datum/material/diamond = 1000)
+	category = list("Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+	
+/datum/design/hyposprayspeedupg
+	name = "Hypospray Speed Upgrade"
+	desc = "An upgrade for hyposprays that installs a springloaded mechanism, allowing it to inject with reduced delay."
+	id = "hyposprayspeedupg"
+	build_path = /obj/item/hypospray_upgrade/speed
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/silver = 1000, /datum/material/titanium = 500)
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
@@ -473,6 +493,50 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/cymberimp_noslipwater
+	name = "Slip Resistance Implant"
+	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it. It probably won't help if the floor is too slippery."
+	id = "ci-noslipwater"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1500, /datum/material/silver = 1000, /datum/material/diamond = 1000, /datum/material/uranium = 400)
+	build_path = /obj/item/organ/cyberimp/leg/galosh
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/cymberimp_jumpboots
+	name = "Jumpboots implant"
+	desc = "An implant with a specialized propulsion system for rapid foward movement."
+	id = "ci-jumpboots"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/uranium = 1000)
+	build_path = /obj/item/organ/cyberimp/leg/jumpboots
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/cymberimp_wheelies
+	name = "Wheelies implant"
+	desc = "Wicked sick wheelies, but now they're not in the heel of your shoes, they just in your heels."
+	id = "ci-wheelies"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/gold = 500)
+	build_path = /obj/item/organ/cyberimp/leg/wheelies
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/cymberimp_magboot
+	name = "Magboot implant"
+	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
+	id = "ci-magboots"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 80
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 1000, /datum/material/gold = 500, /datum/material/diamond = 200)
+	build_path = /obj/item/organ/cyberimp/leg/magboot
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+		
 /////////////////////////////////////////
 ////////////Regular Implants/////////////
 /////////////////////////////////////////
@@ -754,7 +818,7 @@
 	name = "DNA Recovery"
 	desc = "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
 	id = "surgery_dna_recovery"
-	surgery = list(/datum/surgery/advanced/dna_recovery, /datum/surgery/advanced/dna_recovery/alien)
+	surgery = list(/datum/surgery/advanced/dna_recovery, /datum/surgery/advanced/dna_recovery/mechanic, /datum/surgery/advanced/dna_recovery/alien)
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/brainwashing

@@ -16,9 +16,6 @@ export const NtosMain = (props, context) => {
   } = data;
   return (
     <NtosWindow
-      title={device_theme === 'syndicate'
-        && 'Syndix Main Menu'
-        || 'NtOS Main Menu'}
       theme={device_theme}
       width={400}
       height={500}

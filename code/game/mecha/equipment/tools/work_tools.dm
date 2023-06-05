@@ -11,7 +11,7 @@
 	/// How much damage does it apply when used
 	var/dam_force = 20
 	var/obj/mecha/working/ripley/cargo_holder
-	harmful = TRUE
+	harmful = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/can_attach(obj/mecha/working/ripley/M as obj)
 	if(..())
@@ -239,9 +239,9 @@
 /obj/item/mecha_parts/mecha_equipment/extinguisher/get_equip_info()
 	return "[..()] \[[src.reagents.total_volume]\]"
 
-/obj/item/mecha_parts/mecha_equipment/extinguisher/can_attach(obj/mecha/working/M as obj)
+/obj/item/mecha_parts/mecha_equipment/extinguisher/can_attach(obj/mecha/M as obj)
 	if(..())
-		if(istype(M))
+		if(istype(M, /obj/mecha/working) || istype(M, /obj/mecha/combat/sidewinder))
 			return 1
 	return 0
 
@@ -256,6 +256,7 @@
 	range = MECHA_MELEE|MECHA_RANGED
 	item_flags = NO_MAT_REDEMPTION
 	var/mode = 0 //0 - deconstruct, 1 - wall or floor, 2 - airlock.
+	var/play_sound = TRUE //so fancy mime RCD can be silent
 
 /obj/item/mecha_parts/mecha_equipment/rcd/Initialize()
 	. = ..()
@@ -273,7 +274,8 @@
 		target = get_turf(target)
 	if(!action_checks(target) || get_dist(chassis, target)>3)
 		return
-	playsound(chassis, 'sound/machines/click.ogg', 50, 1)
+	if(play_sound)
+		playsound(chassis, 'sound/machines/click.ogg', 50, 1)
 
 	switch(mode)
 		if(0)
@@ -284,7 +286,8 @@
 				if(do_after_cooldown(W))
 					chassis.spark_system.start()
 					W.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-					playsound(W, 'sound/items/deconstruct.ogg', 50, 1)
+					if(play_sound)
+						playsound(W, 'sound/items/deconstruct.ogg', 50, 1)
 				if(target == /turf/closed/wall/r_wall)
 					energy_drain = 2000
 			else if(isfloorturf(target))
@@ -294,21 +297,24 @@
 				if(do_after_cooldown(target))
 					chassis.spark_system.start()
 					F.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-					playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
+					if(play_sound)
+						playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
 			else if (istype(target, /obj/machinery/door/airlock))
 				energy_drain = 500
 				occupant_message("Deconstructing [target]...")
 				if(do_after_cooldown(target))
 					chassis.spark_system.start()
 					qdel(target)
-					playsound(target, 'sound/items/deconstruct.ogg', 50, 1)
+					if(play_sound)
+						playsound(target, 'sound/items/deconstruct.ogg', 50, 1)
 		if(1)
 			if(isspaceturf(target))
 				var/turf/open/space/S = target
 				occupant_message("Building Floor...")
 				if(do_after_cooldown(S))
 					S.PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
-					playsound(S, 'sound/items/deconstruct.ogg', 50, 1)
+					if(play_sound)
+						playsound(S, 'sound/items/deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()
 			else if(isfloorturf(target))
 				var/turf/open/floor/F = target
@@ -316,7 +322,8 @@
 				occupant_message("Building Wall...")
 				if(do_after_cooldown(F))
 					F.PlaceOnTop(/turf/closed/wall)
-					playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
+					if(play_sound)
+						playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()
 		if(2)
 			if(isfloorturf(target))
@@ -326,8 +333,9 @@
 					chassis.spark_system.start()
 					var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock(target)
 					T.autoclose = TRUE
-					playsound(target, 'sound/items/deconstruct.ogg', 50, 1)
-					playsound(target, 'sound/effects/sparks2.ogg', 50, 1)
+					if(play_sound)
+						playsound(target, 'sound/items/deconstruct.ogg', 50, 1)
+						playsound(target, 'sound/effects/sparks2.ogg', 50, 1)
 
 
 
@@ -354,6 +362,10 @@
 	return "[..()] \[<a href='?src=[REF(src)];mode=0'>D</a>|<a href='?src=[REF(src)];mode=1'>C</a>|<a href='?src=[REF(src)];mode=2'>A</a>\]"
 
 
+/obj/item/mecha_parts/mecha_equipment/rcd/mime //special silent RCD
+	name = "silenced mounted RCD"
+	desc = "An expertly mimed exosuit-mounted Rapid Construction Device. Not a sound is made."
+	play_sound = FALSE
 
 
 /obj/item/mecha_parts/mecha_equipment/cable_layer
@@ -370,15 +382,15 @@
 	. = ..()
 	cable = new(src, 0)
 
-/obj/item/mecha_parts/mecha_equipment/cable_layer/can_attach(obj/mecha/working/M)
+/obj/item/mecha_parts/mecha_equipment/cable_layer/can_attach(obj/mecha/M)
 	if(..())
-		if(istype(M))
+		if(istype(M, /obj/mecha/working) || istype(M, /obj/mecha/combat/sidewinder))
 			return 1
 	return 0
 
 /obj/item/mecha_parts/mecha_equipment/cable_layer/attach()
 	..()
-	event = chassis.events.addEvent("onMove", CALLBACK(src, .proc/layCable))
+	event = chassis.events.addEvent("onMove", CALLBACK(src, PROC_REF(layCable)))
 	return
 
 /obj/item/mecha_parts/mecha_equipment/cable_layer/detach()

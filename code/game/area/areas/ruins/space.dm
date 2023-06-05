@@ -328,7 +328,7 @@
 	icon_state = "hallS"
 
 /area/ruin/space/derelict/hallway/primary/port
-	name = "Derelict Port Hallway"
+	name = "Derelict Port (W) Hallway"
 	icon_state = "hallFP"
 
 /area/ruin/space/derelict/arrival
@@ -367,11 +367,11 @@
 	icon_state = "chapel"
 
 /area/solar/derelict_starboard
-	name = "Derelict Starboard Solar Array"
+	name = "Derelict Starboard (E) Solar Array"
 	icon_state = "panelsS"
 
 /area/solar/derelict_aft
-	name = "Derelict Aft Solar Array"
+	name = "Derelict Aft (S) Solar Array"
 	icon_state = "yellow"
 
 /area/ruin/space/derelict/singularity_engine
@@ -426,6 +426,32 @@
 /area/ruin/space/has_grav/listeningstation
 	name = "Listening Post"
 	icon_state = "yellow"
+
+/area/ruin/space/has_grav/listeningstation/telecomms
+	name = "Listening Post Telecommunications"
+	icon_state = "tcomsatcham"
+
+/area/ruin/space/has_grav/listeningstation/engineering
+	name = "Listening Post Maintenance"
+	icon_state = "engine"
+
+/area/ruin/space/has_grav/listeningstation/quarters
+	name = "Listening Post Crew Quarters"
+	icon_state = "green"
+
+/area/ruin/space/has_grav/listeningstation/warehouse
+	name = "Listening Post Warehouse"
+	icon_state = "storage"
+
+/area/ruin/space/has_grav/listeningstation/hallway
+	name = "Listening Post Central Hallway"
+	icon_state = "hallP"
+
+/area/ruin/space/has_grav/listeningstation/airlock
+	name = "Listening Post Dock"
+	icon_state = "red"
+
+//ANCIENT SHUTTLE
 
 /area/ruin/space/has_grav/powered/ancient_shuttle
 	name = "Ancient Shuttle"

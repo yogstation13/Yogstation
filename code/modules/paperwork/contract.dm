@@ -13,43 +13,6 @@
 /obj/item/paper/contract/update_icon()
 	return
 
-
-/obj/item/paper/contract/employment
-	icon_state = "paper_words"
-
-/obj/item/paper/contract/employment/New(atom/loc, mob/living/nOwner)
-	. = ..()
-	if(!nOwner || !nOwner.mind)
-		qdel(src)
-		return -1
-	target = nOwner.mind
-	update_text()
-
-
-/obj/item/paper/contract/employment/update_text()
-	name = "paper- [target] employment contract"
-	info = "<center>Conditions of Employment</center><BR><BR><BR><BR>This Agreement is made and entered into as of the date of last signature below, by and between [target] (hereafter referred to as SLAVE), and Nanotrasen (hereafter referred to as the omnipresent and helpful watcher of humanity).<BR>WITNESSETH:<BR>WHEREAS, SLAVE is a natural born human or humanoid, possessing skills upon which he can aid the omnipresent and helpful watcher of humanity, who seeks employment in the omnipresent and helpful watcher of humanity.<BR>WHEREAS, the omnipresent and helpful watcher of humanity agrees to sporadically provide payment to SLAVE, in exchange for permanent servitude.<BR>NOW THEREFORE in consideration of the mutual covenants herein contained, and other good and valuable consideration, the parties hereto mutually agree as follows:<BR>In exchange for paltry payments, SLAVE agrees to work for the omnipresent and helpful watcher of humanity, for the remainder of his or her current and future lives.<BR>Further, SLAVE agrees to transfer ownership of his or her soul to the loyalty department of the omnipresent and helpful watcher of humanity.<BR>Should transfership of a soul not be possible, a lien shall be placed instead.<BR>Signed,<BR><i>[target]</i>"
-
-
-/obj/item/paper/contract/employment/attack(mob/living/M, mob/living/carbon/human/user)
-	var/deconvert = FALSE
-	if(M.mind == target && !M.owns_soul())
-		if(user.mind && (user.mind.assigned_role == "Lawyer"))
-			deconvert = TRUE
-		else if (user.mind && (user.mind.assigned_role =="Head of Personnel") || (user.mind.assigned_role == "CentCom Commander"))
-			deconvert = prob (25) // the HoP doesn't have AS much legal training
-		else
-			deconvert = prob (5)
-	if(deconvert)
-		M.visible_message(span_notice("[user] reminds [M] that [M]'s soul was already purchased by Nanotrasen!"))
-		to_chat(M, span_boldnotice("You feel that your soul has returned to its rightful owner, Nanotrasen."))
-		M.return_soul()
-	else
-		M.visible_message(span_danger("[user] beats [M] over the head with [src]!"), \
-			span_userdanger("[user] beats [M] over the head with [src]!"))
-	return ..()
-
-
 /obj/item/paper/contract/infernal
 	var/contractType = 0
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -103,7 +66,7 @@
 		H.say("OH GREAT INFERNO!  I DEMAND YOU COLLECT YOUR BOUNTY IMMEDIATELY!", forced = "infernal contract suicide")
 		H.visible_message(span_suicide("[H] holds up a contract claiming [user.p_their()] soul, then immediately catches fire.  It looks like [user.p_theyre()] trying to commit suicide!"))
 		H.adjust_fire_stacks(20)
-		H.IgniteMob()
+		H.ignite_mob()
 		return(FIRELOSS)
 	return ..()
 
@@ -181,7 +144,7 @@
 	add_fingerprint(user)
 	if(M == user && target == M?.mind?.soulOwner != owner && attempt_signature(user, 1))
 		user.visible_message(span_danger("[user] slices [user.p_their()] wrist with [src], and scrawls [user.p_their()] name in blood."), span_danger("You slice your wrist open and scrawl your name in blood."))
-		user.blood_volume = max(user.blood_volume - 100, 0)
+		user.blood_volume = max(user.blood_volume - 25, 0) //devil blood cost quartered from 100 because otherwise people with the blood deficiency trait fucking die
 	else
 		return ..()
 
@@ -192,14 +155,11 @@
 	if(user.mind != target)
 		to_chat(user, span_notice("Your signature simply slides off the sheet, it seems this contract is not meant for you to sign."))
 		return 0
-	if(user.mind.soulOwner == owner)
-		to_chat(user, span_notice("This devil already owns your soul, you may not sell it to [owner.p_them()] again."))
+	if(user.mind.soulOwner != user.mind) //fixes a really, really stupid bug where you could sell souls you didnt have to multiple devils, scamming them.
+		to_chat(user, span_notice("You do not own a soul to sell."))
 		return 0
 	if(signed)
 		to_chat(user, span_notice("This contract has already been signed.  It may not be signed again."))
-		return 0
-	if(!user.mind.hasSoul)
-		to_chat(user, span_notice("You do not possess a soul."))
 		return 0
 	if(HAS_TRAIT(user, TRAIT_DUMB))
 		to_chat(user, span_notice("You quickly scrawl 'your name' on the contract."))
@@ -238,7 +198,7 @@
 			user.visible_message(span_notice("With a sudden blaze, [H] stands back up."))
 			H.fakefire()
 			fulfillContract(H, 1)//Revival contracts are always signed in blood
-			addtimer(CALLBACK(H, /mob/living/carbon/human.proc/fakefireextinguish), 5, TIMER_UNIQUE)
+			addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, fakefireextinguish)), 5, TIMER_UNIQUE)
 		addtimer(CALLBACK(src, "resetcooldown"), 300, TIMER_UNIQUE)
 	else
 		..()
@@ -259,7 +219,7 @@
 	devilInfo.add_soul(user.mind)
 	update_text(user.real_name, blood)
 	to_chat(user, span_notice("A profound emptiness washes over you as you lose ownership of your soul."))
-	to_chat(user, span_boldnotice("This does NOT make you an antagonist if you were not already."))
+	to_chat(user, span_userdanger("This does NOT make you an antagonist if you were not already."))
 	return TRUE
 
 /obj/item/paper/contract/infernal/proc/signIncorrectly(mob/living/carbon/human/user = target.current, blood = FALSE)
@@ -277,7 +237,8 @@
 /obj/item/paper/contract/infernal/wealth/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind) // How in the hell could that happen?
 		return -1
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_wealth(null))
+	var/datum/action/cooldown/spell/summon_wealth/money = new(user)
+	money.Grant(user)
 	return ..()
 
 /obj/item/paper/contract/infernal/prestige/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
@@ -318,19 +279,24 @@
 /obj/item/paper/contract/infernal/magic/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/robeless(null))
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock(null))
+	var/datum/action/cooldown/spell/conjure_item/spellpacket/spell_packet = new(user)
+	spell_packet.Grant(user)
+
+	var/datum/action/cooldown/spell/aoe/knock/all_access = new(user)
+	all_access.Grant(user)
 	return ..()
 
 /obj/item/paper/contract/infernal/knowledge/fulfillContract(mob/living/carbon/human/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
 	user.dna.add_mutation(XRAY)
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/view_range(null))
+	var/datum/action/cooldown/spell/view_range/view_range = new(user)
+	view_range.Grant(user)
 	return ..()
 
 /obj/item/paper/contract/infernal/friend/fulfillContract(mob/living/user = target.current, blood = 0)
 	if(!istype(user) || !user.mind)
 		return -1
-	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_friend(null))
+	var/datum/action/cooldown/spell/summon_friend/friend = new(user)
+	friend.Grant(user)
 	return ..()

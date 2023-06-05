@@ -1,6 +1,8 @@
 /datum/job/artist
 	title = "Artist"
+	description = "Create unique pieces of art for display by the crew around the station."
 	flag = ARTIST
+	orbit_icon = "paintbrush"
 	department_head = list("Head of Personnel")
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -18,6 +20,22 @@
 
 	display_order = JOB_DISPLAY_ORDER_ARTIST
 	minimal_character_age = 18 //Young folks can be crazy crazy artists, something talented that can be self-taught feasibly
+
+	mail_goodies = list(
+	  	/obj/item/grenade/chem_grenade/colorful = 10,
+		/obj/item/toy/crayon/spraycan = 10,
+		/obj/item/choice_beacon/music = 5,
+		/obj/item/storage/toolbox/artistic = 5,
+		/obj/item/paint/anycolor = 5,
+		/obj/item/cardboard_cutout = 3,
+		/obj/item/toy/crayon/rainbow = 2
+	)
+
+	departments_list = list(
+		/datum/job_department/service,
+	)
+
+	smells_like = "pain-t"
 
 /datum/outfit/job/artist
 	name = "Artist"

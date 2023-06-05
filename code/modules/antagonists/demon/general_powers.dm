@@ -1,13 +1,17 @@
-/obj/effect/proc_holder/spell/targeted/shapeshift/demon //emergency get out of jail card.
+/datum/action/cooldown/spell/shapeshift/demon //emergency get out of jail card.
 	name = "Lesser Demon Form"
 	desc = "Take on your true demon form. This form is strong but very obvious. It's full demonic nature in this realm is taxing on you \
 	and you will slowly lose life while in this form, while also being especially weak to holy influences. \
 	Be aware low health transfers between forms. If gravely wounded, attack live mortals to siphon life energy from them!"
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon_state = "daemontransform"
+	background_icon_state = "bg_demon"
+
 	invocation = "COWER, MORTALS!!"
-	shapeshift_type = /mob/living/simple_animal/lesserdemon
-	action_icon = 'icons/mob/actions/actions_minor_antag.dmi'
-	action_icon_state = "daemontransform"
-	action_background_icon_state = "bg_demon"
+
+	possible_shapes = list(/mob/living/simple_animal/lesserdemon)
+
+	spell_requirements = NONE
 
 /mob/living/simple_animal/lesserdemon
 	name = "demon"

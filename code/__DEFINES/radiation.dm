@@ -34,9 +34,9 @@ Ask ninjanomnom if they're around
 #define RAD_VERY_LIGHT_INSULATION 0.9				// What girders have
 #define RAD_LIGHT_INSULATION 0.8
 #define RAD_MEDIUM_INSULATION  0.7					// What common walls have
-#define RAD_HEAVY_INSULATION 0.6					// What reinforced walls have
+#define RAD_HEAVY_INSULATION 0.6					// What reinforced windows have
 #define RAD_EXTREME_INSULATION 0.5					// What rad collectors have
-#define RAD_FULL_INSULATION 0						// Unused
+#define RAD_FULL_INSULATION 0						// What plasma materials have
 
 // WARNING: The defines below could have disastrous consequences if tweaked incorrectly. See: The great SM purge of Oct.6.2017
 // contamination_chance		=	(strength-RAD_MINIMUM_CONTAMINATION) * RAD_CONTAMINATION_CHANCE_COEFFICIENT * min(1/(steps*RAD_DISTANCE_COEFFICIENT), 1))
@@ -47,3 +47,6 @@ Ask ninjanomnom if they're around
 #define RAD_DISTANCE_COEFFICIENT 1					// Lower means further rad spread
 
 #define RAD_HALF_LIFE 30							// The half-life of contaminated objects
+
+#define RAD_GEIGER_RC 4								// RC-constant for the LP filter for geiger counters. See #define LPFILTER for more info.
+#define RAD_GEIGER_GRACE_PERIOD 4                   // How many seconds after we last detect a radiation pulse until we stop blipping

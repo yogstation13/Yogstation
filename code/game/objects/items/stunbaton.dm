@@ -55,7 +55,7 @@
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
-	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, .proc/throwbaton)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, PROC_REF(throwbaton))
 	update_icon()
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -187,7 +187,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/stomach/ethereal/stomach = H.getorganslot(ORGAN_SLOT_STOMACH)
 		if(istype(stomach))
-			stomach.adjust_charge(20)
+			stomach.adjust_charge(10 * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 			to_chat(M,span_notice("You get charged by [src]."))
 	//yogs edit end  ----------------------------------
 	if(iscyborg(M))
@@ -233,8 +233,6 @@
 		if(!deductcharge(hitcost))
 			return FALSE
 
-	var/trait_check = HAS_TRAIT(L, TRAIT_STUNRESISTANCE)
-
 	var/obj/item/bodypart/affecting = L.get_bodypart(user? user.zone_selected : BODY_ZONE_CHEST)
 	var/armor_block = L.run_armor_check(affecting, ENERGY) //check armor on the limb because that's where we are slapping...
 	L.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, armor_block) //...then deal damage to chest so we can't do the old hit-a-disabled-limb-200-times thing, batons are electrical not directed.
@@ -245,20 +243,18 @@
 
 	if(current_stamina_damage >= 90)
 		if(!L.IsParalyzed())
-			to_chat(L, span_warning("You muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]"))
-		if(trait_check)
-			L.Paralyze(stunforce * 0.1)
+			to_chat(L, span_warning("You muscles seize, making you collapse!"))
 		else
 			L.Paralyze(stunforce)
-		L.Jitter(20)
-		L.confused = max(8, L.confused)
+		L.adjust_jitter(20 SECONDS)
+		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage > 70)
-		L.Jitter(10)
-		L.confused = max(8, L.confused)
+		L.adjust_jitter(10 SECONDS)
+		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage >= 20)
-		L.Jitter(5)
+		L.adjust_jitter(5 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 
 	if(user)

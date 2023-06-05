@@ -85,7 +85,7 @@ Regenerative extracts:
 
 /obj/item/slimecross/regenerative/yellow/core_effect(mob/living/target, mob/user)
 	var/list/batteries = list()
-	for(var/obj/item/stock_parts/cell/C in target.GetAllContents())
+	for(var/obj/item/stock_parts/cell/C in target.get_all_contents())
 		if(C.charge < C.maxcharge)
 			batteries += C
 	if(batteries.len)
@@ -262,7 +262,11 @@ Regenerative extracts:
 	if(target == user)
 		return
 	var/mob/living/U = user
-	U.revive(full_heal = 1)
+	U.adjustBruteLoss(-25)
+	U.adjustFireLoss(-25)
+	U.adjustOxyLoss(-25)
+	U.adjustToxLoss(-25)
+	U.adjustCloneLoss(-50)
 	to_chat(U, span_notice("Some of the milky goo sprays onto you, as well!"))
 
 /obj/item/slimecross/regenerative/adamantine

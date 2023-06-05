@@ -116,7 +116,7 @@
 	return (OXYLOSS)
 
 /obj/item/storage/backpack/santabag/proc/regenerate_presents()
-	addtimer(CALLBACK(src, .proc/regenerate_presents), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(regenerate_presents)), 30 SECONDS)
 
 	var/mob/M = get(loc, /mob)
 	if(!istype(M))
@@ -360,12 +360,26 @@
 	desc = "A large duffel bag for holding extra things."
 	icon_state = "duffel"
 	item_state = "duffel"
-	slowdown = 1
+	slowdown = 0.5
 
 /obj/item/storage/backpack/duffelbag/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 30
+
+/obj/item/storage/backpack/duffelbag/cursed
+	name = "living duffel bag"
+	desc = "A cursed clown duffel bag that hungers for food of any kind. A warning label suggests that it eats food inside. \
+		If that food happens to be a horribly ruined mess or the chef scrapped out of the microwave, or poisoned in some way, \
+		then it might have negative effects on the bag..."
+	icon_state = "duffel-curse"
+	item_state = "duffel-curse"
+	slowdown = 1.5
+	max_integrity = 100
+
+/obj/item/storage/backpack/duffelbag/cursed/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/curse_of_hunger, add_dropdel = TRUE)
 
 /obj/item/storage/backpack/duffelbag/captain
 	name = "captain's duffel bag"
@@ -671,7 +685,9 @@
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
 	new /obj/item/clothing/under/rank/head_of_personnel/skirt(src)
 	new /obj/item/clothing/head/hopcap(src)
+	new /obj/item/clothing/head/beret/hop(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
 	new /obj/item/clothing/under/yogs/hopcasual(src)
@@ -692,7 +708,9 @@
 	new /obj/item/clothing/under/rank/research_director/turtleneck(src)
 	new /obj/item/clothing/under/rank/research_director/turtleneck/skirt(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/science/rd(src)
+	new /obj/item/clothing/head/beret/rd(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/under/yogs/rdema(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/ce
@@ -710,6 +728,7 @@
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/gloves/color/yellow(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/under/yogs/ceturtleneck(src)
 	new /obj/item/clothing/under/yogs/cecasual(src)
 	new /obj/item/clothing/head/beret/ce(src)
@@ -802,5 +821,6 @@
 	new /obj/item/clothing/under/rank/chief_medical_officer(src)
 	new /obj/item/clothing/under/rank/chief_medical_officer/skirt(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
+	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/head/beret/cmo(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/medical/cmo(src)

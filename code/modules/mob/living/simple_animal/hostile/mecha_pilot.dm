@@ -32,7 +32,7 @@
 
 	//Vars that control when the pilot uses their mecha's abilities (if the mecha has that ability)
 	var/threat_use_mecha_smoke = 5 //5 mobs is enough to engage crowd control
-	var/defence_mode_chance = 35 //Chance to engage Defence mode when damaged
+	var/defence_mode_chance = 35 //Chance to engage defense mode when damaged
 	var/smoke_chance = 20 //Chance to deploy smoke for crowd control
 	var/retreat_chance = 40 //Chance to run away
 
@@ -65,7 +65,7 @@
 	if(spawn_mecha_type)
 		var/obj/mecha/M = new spawn_mecha_type (get_turf(src))
 		if(istype(M))
-			INVOKE_ASYNC(src, .proc/enter_mecha, M)
+			INVOKE_ASYNC(src, PROC_REF(enter_mecha), M)
 
 
 /mob/living/simple_animal/hostile/syndicate/mecha_pilot/proc/enter_mecha(obj/mecha/M)
@@ -183,7 +183,7 @@
 
 		if(mecha.melee_can_hit)
 			mecha_face_target(target)
-			target.mech_melee_attack(mecha)
+			target.mech_melee_attack(mecha, TRUE)
 	else
 		if(ismecha(target))
 			var/obj/mecha/M = target
@@ -226,19 +226,19 @@
 				if(mecha.smoke_action && mecha.smoke_action.owner && mecha.smoke)
 					mecha.smoke_action.Activate()
 
-			//Heavy damage - Defence Power or Retreat
+			//Heavy damage - defence Power or Retreat
 			if(mecha.obj_integrity < mecha.max_integrity*0.25)
 				if(prob(defence_mode_chance))
-					if(mecha.defense_action && mecha.defense_action.owner && !mecha.defence_mode)
+					if(mecha.defence_action && mecha.defence_action.owner && !mecha.defence_mode)
 						mecha.leg_overload_mode = 0
-						mecha.defense_action.Activate(TRUE)
-						addtimer(CALLBACK(mecha.defense_action, /datum/action/innate/mecha/mech_defence_mode.proc/Activate, FALSE), 100) //10 seconds of defence, then toggle off
+						mecha.defence_action.Activate(TRUE)
+						addtimer(CALLBACK(mecha.defence_action, TYPE_PROC_REF(/datum/action/innate/mecha/mech_defence_mode, Activate), FALSE), 100) //10 seconds of defence, then toggle off
 
 				else if(prob(retreat_chance))
 					//Speed boost if possible
 					if(mecha.overload_action && mecha.overload_action.owner && !mecha.leg_overload_mode)
 						mecha.overload_action.Activate(TRUE)
-						addtimer(CALLBACK(mecha.overload_action, /datum/action/innate/mecha/mech_defence_mode.proc/Activate, FALSE), 100) //10 seconds of speeeeed, then toggle off
+						addtimer(CALLBACK(mecha.overload_action, TYPE_PROC_REF(/datum/action/innate/mecha/mech_defence_mode, Activate), FALSE), 100) //10 seconds of speeeeed, then toggle off
 
 					retreat_distance = 50
 					spawn(100)

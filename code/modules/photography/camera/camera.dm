@@ -8,8 +8,11 @@
 	item_state = "camera"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	light_color = LIGHT_COLOR_WHITE
+	light_system = MOVABLE_LIGHT //Used as a flash here.
+	light_range = 8
+	light_color = COLOR_WHITE
 	light_power = FLASH_LIGHT_POWER
+	light_on = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_NECK
@@ -151,7 +154,7 @@
 	if(on) // EMP will only work on cameras that are on as it has power going through it
 		icon_state = state_off
 		on = FALSE
-		addtimer(CALLBACK(src, .proc/emp_after), (600/severity))
+		addtimer(CALLBACK(src, PROC_REF(emp_after)), (600/severity))
 
 /obj/item/camera/proc/emp_after()
 	on = TRUE
@@ -180,11 +183,11 @@
 	var/mob/living/carbon/human/H = user
 	if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER))
 		realcooldown *= 0.5
-	addtimer(CALLBACK(src, .proc/cooldown), realcooldown)
+	addtimer(CALLBACK(src, PROC_REF(cooldown)), realcooldown)
 
 	icon_state = state_off
 
-	INVOKE_ASYNC(src, .proc/captureimage, target, user, flag, picture_size_x - 1, picture_size_y - 1)
+	INVOKE_ASYNC(src, PROC_REF(captureimage), target, user, flag, picture_size_x - 1, picture_size_y - 1)
 
 
 /obj/item/camera/proc/cooldown()
@@ -200,7 +203,8 @@
 
 /obj/item/camera/proc/captureimage(atom/target, mob/user, flag, size_x = 1, size_y = 1)
 	if(flash_enabled)
-		flash_lighting_fx(8, light_power, light_color)
+		set_light_on(TRUE)
+		addtimer(CALLBACK(src, PROC_REF(flash_end)), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	blending = TRUE
 	var/turf/target_turf = get_turf(target)
 	if(!isturf(target_turf))
@@ -248,6 +252,9 @@
 	after_picture(user, P, flag)
 	blending = FALSE
 
+/obj/item/camera/proc/flash_end()
+	set_light_on(FALSE)
+
 /obj/item/camera/proc/after_picture(mob/user, datum/picture/picture, proximity_flag)
 	printpicture(user, picture)
 
@@ -256,23 +263,23 @@
 	if(in_range(src, user)) //needed because of TK
 		user.put_in_hands(p)
 		pictures_left--
-		to_chat(user, span_notice("[pictures_left] photos left."))
-		if(can_customise && camera_mode == CAMERA_DESCRIPTION)
-			var/customise = "No"
-			customise = alert(user, "Do you want to customize the photo?", "Customization", "Yes", "No")
-			if(customise == "Yes")
-				var/name1 = stripped_input(user, "Set a name for this photo, or leave blank. 32 characters max.", "Name", max_length = 32)
-				var/desc1 = stripped_input(user, "Set a description to add to photo, or leave blank. 128 characters max.", "Caption", max_length = 128)
-				var/caption = stripped_input(user, "Set a caption for this photo, or leave blank. 256 characters max.", "Caption", max_length = 256)
-				if(name1)
-					picture.picture_name = name1
-				if(desc1)
-					picture.picture_desc = "[desc1] - [picture.picture_desc]"
-				if(caption)
-					picture.caption = caption
-			else
-				if(default_picture_name)
-					picture.picture_name = default_picture_name
+		to_chat(user, "<span class='notice'>[pictures_left] photos left.</span>")
+		var/customise = "No"
+		if(can_customise)
+			customise = tgui_alert(user, "Do you want to customize the photo?", "Customization", list("Yes", "No"))
+		if(customise == "Yes")
+			var/name1 = stripped_input(user, "Set a name for this photo, or leave blank. 32 characters max.", "Name", max_length = 32)
+			var/desc1 = stripped_input(user, "Set a description to add to photo, or leave blank. 128 characters max.", "Caption", max_length = 128)
+			var/caption = stripped_input(user, "Set a caption for this photo, or leave blank. 256 characters max.", "Caption", max_length = 256)
+			if(name1)
+				picture.picture_name = name1
+			if(desc1)
+				picture.picture_desc = "[desc1] - [picture.picture_desc]"
+			if(caption)
+				picture.caption = caption
+		else
+			if(default_picture_name)
+				picture.picture_name = default_picture_name
 
 		p.set_picture(picture, TRUE, TRUE)
 		if(CONFIG_GET(flag/picture_logging_camera))

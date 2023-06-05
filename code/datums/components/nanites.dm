@@ -24,8 +24,13 @@
 	if(isliving(parent))
 		host_mob = parent
 
-		if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes)) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
-			return COMPONENT_INCOMPATIBLE
+		if(iscarbon(host_mob))
+			var/mob/living/carbon/carbon_occupant = host_mob
+			if((NONANITES in carbon_occupant.dna.species.species_traits))
+				return COMPONENT_INCOMPATIBLE
+		else
+			if((issilicon(host_mob))) //Shouldn't happen, but this avoids HUD runtimes in case a silicon gets them somehow.
+				return COMPONENT_INCOMPATIBLE
 
 		host_mob.hud_set_nanite_indicator()
 		START_PROCESSING(SSnanites, src)
@@ -36,29 +41,29 @@
 	qdel(src)
 
 /datum/component/nanites/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_HAS_NANITES, .proc/confirm_nanites)
-	RegisterSignal(parent, COMSIG_NANITE_UI_DATA, .proc/nanite_ui_data)
-	RegisterSignal(parent, COMSIG_NANITE_GET_PROGRAMS, .proc/get_programs)
-	RegisterSignal(parent, COMSIG_NANITE_SET_VOLUME, .proc/set_volume)
-	RegisterSignal(parent, COMSIG_NANITE_ADJUST_VOLUME, .proc/adjust_nanites)
-	RegisterSignal(parent, COMSIG_NANITE_SET_MAX_VOLUME, .proc/set_max_volume)
-	RegisterSignal(parent, COMSIG_NANITE_SET_CLOUD, .proc/set_cloud)
-	RegisterSignal(parent, COMSIG_NANITE_SET_SAFETY, .proc/set_safety)
-	RegisterSignal(parent, COMSIG_NANITE_SET_REGEN, .proc/set_regen)
-	RegisterSignal(parent, COMSIG_NANITE_ADD_PROGRAM, .proc/add_program)
-	RegisterSignal(parent, COMSIG_NANITE_SCAN, .proc/nanite_scan)
-	RegisterSignal(parent, COMSIG_NANITE_SYNC, .proc/sync)
-	RegisterSignal(parent, COMSIG_NANITE_DELETE, .proc/delete_nanites)
+	RegisterSignal(parent, COMSIG_HAS_NANITES, PROC_REF(confirm_nanites))
+	RegisterSignal(parent, COMSIG_NANITE_UI_DATA, PROC_REF(nanite_ui_data))
+	RegisterSignal(parent, COMSIG_NANITE_GET_PROGRAMS, PROC_REF(get_programs))
+	RegisterSignal(parent, COMSIG_NANITE_SET_VOLUME, PROC_REF(set_volume))
+	RegisterSignal(parent, COMSIG_NANITE_ADJUST_VOLUME, PROC_REF(adjust_nanites))
+	RegisterSignal(parent, COMSIG_NANITE_SET_MAX_VOLUME, PROC_REF(set_max_volume))
+	RegisterSignal(parent, COMSIG_NANITE_SET_CLOUD, PROC_REF(set_cloud))
+	RegisterSignal(parent, COMSIG_NANITE_SET_SAFETY, PROC_REF(set_safety))
+	RegisterSignal(parent, COMSIG_NANITE_SET_REGEN, PROC_REF(set_regen))
+	RegisterSignal(parent, COMSIG_NANITE_ADD_PROGRAM, PROC_REF(add_program))
+	RegisterSignal(parent, COMSIG_NANITE_SCAN, PROC_REF(nanite_scan))
+	RegisterSignal(parent, COMSIG_NANITE_SYNC, PROC_REF(sync))
+	RegisterSignal(parent, COMSIG_NANITE_DELETE, PROC_REF(delete_nanites))
 
 	if(isliving(parent))
-		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, .proc/on_emp)
-		RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/on_death)
-		RegisterSignal(parent, COMSIG_MOB_ALLOWED, .proc/check_access)
-		RegisterSignal(parent, COMSIG_LIVING_ELECTROCUTE_ACT, .proc/on_shock)
-		RegisterSignal(parent, COMSIG_LIVING_MINOR_SHOCK, .proc/on_minor_shock)
-		RegisterSignal(parent, COMSIG_SPECIES_GAIN, .proc/check_viable_biotype)
-		RegisterSignal(parent, COMSIG_NANITE_SIGNAL, .proc/receive_signal)
-		RegisterSignal(parent, COMSIG_NANITE_COMM_SIGNAL, .proc/receive_comm_signal)
+		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp))
+		RegisterSignal(parent, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_death))
+		RegisterSignal(parent, COMSIG_MOB_ALLOWED, PROC_REF(check_access))
+		RegisterSignal(parent, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(on_shock))
+		RegisterSignal(parent, COMSIG_LIVING_MINOR_SHOCK, PROC_REF(on_minor_shock))
+		RegisterSignal(parent, COMSIG_SPECIES_GAIN, PROC_REF(check_viable_biotype))
+		RegisterSignal(parent, COMSIG_NANITE_SIGNAL, PROC_REF(receive_signal))
+		RegisterSignal(parent, COMSIG_NANITE_COMM_SIGNAL, PROC_REF(receive_comm_signal))
 
 /datum/component/nanites/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_HAS_NANITES,
@@ -74,7 +79,7 @@
 								COMSIG_NANITE_SCAN,
 								COMSIG_NANITE_SYNC,
 								COMSIG_ATOM_EMP_ACT,
-								COMSIG_MOB_DEATH,
+								COMSIG_GLOB_MOB_DEATH,
 								COMSIG_MOB_ALLOWED,
 								COMSIG_LIVING_ELECTROCUTE_ACT,
 								COMSIG_LIVING_MINOR_SHOCK,
@@ -93,14 +98,14 @@
 	host_mob = null
 	return ..()
 
-/datum/component/nanites/InheritComponent(datum/component/nanites/new_nanites, i_am_original, list/arguments)
+/datum/component/nanites/InheritComponent(datum/component/nanites/new_nanites, i_am_original, _amount, _cloud)
 	if(new_nanites)
 		adjust_nanites(null, new_nanites.nanite_volume)
 	else
-		adjust_nanites(null, arguments[1]) //just add to the nanite volume
+		adjust_nanites(null, _amount) //just add to the nanite volume
 
-/datum/component/nanites/process()
-	adjust_nanites(null, regen_rate)
+/datum/component/nanites/process(delta_time)
+	adjust_nanites(null, regen_rate * delta_time)
 	add_research()
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
@@ -168,23 +173,28 @@
 	var/icon/I = icon(host_mob.icon, host_mob.icon_state, host_mob.dir)
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = null
+	host_mob.set_hud_image_inactive(DIAG_NANITE_FULL_HUD)
 	if(remove || stealth)
 		return //bye icon
 	var/nanite_percent = (nanite_volume / max_nanites) * 100
 	nanite_percent = clamp(CEILING(nanite_percent, 10), 10, 100)
 	holder.icon_state = "nanites[nanite_percent]"
+	host_mob.set_hud_image_active(DIAG_NANITE_FULL_HUD)
 
 /datum/component/nanites/proc/on_emp(datum/source, severity)
-	nanite_volume *= (rand(0.60, 0.90))		//Lose 10-40% of nanites
-	adjust_nanites(null, -(rand(5, 50)))		//Lose 5-50 flat nanite volume
-	if(prob(40/severity))
-		cloud_id = 0
+	var/datum/component/empprotection/empproof = host_mob.GetExactComponent(/datum/component/empprotection)
+	if(empproof && (empproof.getEmpFlags() & EMP_PROTECT_SELF))
+		return // don't do EMP effects if they're protected from EMPs
+	nanite_volume *= (rand(0.75, 0.90))		//Lose 10-25% of nanites
+	adjust_nanites(null, -(rand(5, 30)))		//Lose 5-30 flat nanite volume
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.on_emp(severity)
+	addtimer(VARSET_CALLBACK(src, cloud_id, cloud_id), NANITE_SYNC_DELAY, TIMER_UNIQUE)//return it to normal, intentionally missing the next sync timer
+	cloud_id = 0 //temporarily disable resyncing so rogue programs actually have a chance to do something
 
 /datum/component/nanites/proc/on_shock(datum/source, shock_damage)
-	nanite_volume *= (rand(0.45, 0.80))		//Lose 20-55% of nanites
+	nanite_volume *= (rand(0.65, 0.90))		//Lose 10-35% of nanites
 	adjust_nanites(null, -(rand(5, 50)))			//Lose 5-50 flat nanite volume
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
@@ -213,7 +223,7 @@
 			NP.receive_comm_signal(comm_code, comm_message, comm_source)
 
 /datum/component/nanites/proc/check_viable_biotype()
-	if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes))
+	if(!(MOB_ORGANIC in host_mob.mob_biotypes) && !(MOB_UNDEAD in host_mob.mob_biotypes) && !isipc(host_mob))
 		qdel(src) //bodytype no longer sustains nanites
 
 /datum/component/nanites/proc/check_access(datum/source, obj/O)
@@ -265,6 +275,7 @@
 	if(host_mob.stat == DEAD)
 		research_value *= 0.75
 	SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_NANITES = research_value))
+	SSresearch.ruin_tech.add_point_list(list(TECHWEB_POINT_TYPE_NANITES = research_value))
 
 /datum/component/nanites/proc/nanite_scan(datum/source, mob/user, full_scan)
 	if(!full_scan)

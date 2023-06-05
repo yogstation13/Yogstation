@@ -125,7 +125,7 @@
 	for(var/mob/living/simple_animal/hostile/poison/bees/B in bees)
 		B.toggle_angery(angery)
 	if(angery)
-		addtimer(CALLBACK(src, .proc/toggle_angery, FALSE), 300, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(toggle_angery), FALSE), 300, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/structure/beebox/examine(mob/user)
 	. = ..()
@@ -220,7 +220,7 @@
 		else
 			visible_message(span_danger("[user] disturbs the [name] to no effect!"))
 	else
-		var/option = alert(user, "What action do you wish to perform?","Apiary","Remove a Honey Frame","Remove the Queen Bee", "Cancel")
+		var/option = tgui_alert(user, "What action do you wish to perform?","Apiary",list("Remove a Honey Frame","Remove the Queen Bee", "Cancel"))
 		if(!Adjacent(user))
 			return
 		switch(option)

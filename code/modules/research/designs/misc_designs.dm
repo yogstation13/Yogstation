@@ -147,6 +147,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/clownshoesimplant
+	name = "Clownshoes implant"
+	desc = "Advanced clown technology has allowed the implanting of bananium to allow for heightened prankage."
+	id = "clownshoesimplant"
+	build_type = PROTOLATHE | MECHFAB
+	materials = list(/datum/material/iron = 4000, /datum/material/bananium = 1000)
+	build_path = /obj/item/organ/cyberimp/leg/clownshoes
+	category = list("Implants", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/mesons
 	name = "Optical Meson Scanners"
 	desc = "Used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting condition."
@@ -225,7 +235,17 @@
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
 	build_path = /obj/item/clothing/glasses/science
 	category = list("Equipment")
-	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/night_sci_goggles
+	name = "Night Vision Science Goggles"
+	desc = "Goggles fitted with a portable analyzer, capable of determining the research worth of an item or components of a machine. Now with night vision!"
+	id = "nightscigoggles"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/uranium = 1000, /datum/material/silver = 350, /datum/material/plastic = 150)
+	build_path = /obj/item/clothing/glasses/science/night
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/diskplantgene
 	name = "Plant Data Disk"
@@ -413,6 +433,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/holosignclown
+	name = "HONK holobanana projector"
+	desc = "A holographic projector that creates hardlight bananas"
+	id = "holosignclown"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/plastic = 500, /datum/material/bananium = 1000)
+	build_path = /obj/item/holosign_creator/clown
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/holosignsec
 	name = "Security Holobarrier Projector"
 	desc = "A holographic projector that creates holographic security barriers."
@@ -476,6 +506,16 @@
 	build_path = /obj/item/reactive_armor_shell
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/anomaly_quiver
+	name = "Anomaly Quiver"
+	desc = "An empty, experimental quiver with not much space inside. A bluespace, pyroclastic, or gravitational anomaly can be inserted for varying effects."
+	id = "anomaly_quiver"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 7500, /datum/material/diamond = 3750, /datum/material/uranium = 6000, /datum/material/silver = 3500, /datum/material/gold = 3750)
+	build_path = /obj/item/storage/belt/quiver/anomaly
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/platingmki
 	name = "MK.I bluespace plating"

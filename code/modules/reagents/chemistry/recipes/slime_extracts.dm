@@ -88,6 +88,14 @@
 	required_reagents = list(/datum/reagent/lithium = 1) //battery material makes electricity people
 	required_other = TRUE
 	required_container = /obj/item/slime_extract/green
+	
+/datum/chemical_reaction/slime/slimepreternis
+	name = "Preternis Mutation Toxin"
+	id = "preternismuttoxin"
+	results = list(/datum/reagent/mutationtoxin/preternis = 1)
+	required_reagents = list(/datum/reagent/stable_plasma = 1)
+	required_other = TRUE
+	required_container = /obj/item/slime_extract/green
 
 /datum/chemical_reaction/slime/slimemoth
 	name = "Moth Mutation Toxin"
@@ -154,11 +162,12 @@
 	var/obj/item/slime_extract/M = holder.my_atom
 	deltimer(M.qdel_timer)
 	..()
-	M.qdel_timer = addtimer(CALLBACK(src, .proc/delete_extract, holder), 55, TIMER_STOPPABLE)
+	M.qdel_timer = addtimer(CALLBACK(src, PROC_REF(delete_extract), holder), 55, TIMER_STOPPABLE)
 
 /datum/chemical_reaction/slime/slimemobspawn/proc/summon_mobs(datum/reagents/holder, turf/T)
+	var/obj/item/slime_extract/M = holder.my_atom
 	T.visible_message(span_danger("The slime extract begins to vibrate violently!"))
-	addtimer(CALLBACK(src, .proc/chemical_mob_spawn, holder, 5, "Gold Slime", HOSTILE_SPAWN), 50)
+	addtimer(CALLBACK(src, PROC_REF(chemical_mob_spawn), holder, 5, "Gold Slime", HOSTILE_SPAWN), M.react_time)
 
 /datum/chemical_reaction/slime/slimemobspawn/lesser
 	name = "Slime Crit Lesser"
@@ -166,8 +175,9 @@
 	required_reagents = list(/datum/reagent/blood = 1)
 
 /datum/chemical_reaction/slime/slimemobspawn/lesser/summon_mobs(datum/reagents/holder, turf/T)
+	var/obj/item/slime_extract/M = holder.my_atom
 	T.visible_message(span_danger("The slime extract begins to vibrate violently!"))
-	addtimer(CALLBACK(src, .proc/chemical_mob_spawn, holder, 3, "Lesser Gold Slime", HOSTILE_SPAWN, "neutral"), 50)
+	addtimer(CALLBACK(src, PROC_REF(chemical_mob_spawn), holder, 3, "Lesser Gold Slime", HOSTILE_SPAWN, "neutral"), M.react_time)
 
 /datum/chemical_reaction/slime/slimemobspawn/friendly
 	name = "Slime Crit Friendly"
@@ -175,8 +185,9 @@
 	required_reagents = list(/datum/reagent/water = 1)
 
 /datum/chemical_reaction/slime/slimemobspawn/friendly/summon_mobs(datum/reagents/holder, turf/T)
+	var/obj/item/slime_extract/M = holder.my_atom
 	T.visible_message(span_danger("The slime extract begins to vibrate adorably!"))
-	addtimer(CALLBACK(src, .proc/chemical_mob_spawn, holder, 1, "Friendly Gold Slime", FRIENDLY_SPAWN, "neutral"), 50)
+	addtimer(CALLBACK(src, PROC_REF(chemical_mob_spawn), holder, 1, "Friendly Gold Slime", FRIENDLY_SPAWN, "neutral"), M.react_time)
 
 /datum/chemical_reaction/slime/slimemobspawn/spider
 	name = "Slime Crit Traitor Spider"
@@ -184,8 +195,9 @@
 	required_reagents = list(/datum/reagent/spider_extract = 1)
 
 /datum/chemical_reaction/slime/slimemobspawn/spider/summon_mobs(datum/reagents/holder, turf/T)
+	var/obj/item/slime_extract/M = holder.my_atom
 	T.visible_message(span_danger("The slime extract begins to vibrate crikey-ingly!"))
-	addtimer(CALLBACK(src, .proc/chemical_mob_spawn, holder, 3, "Traitor Spider Slime", /mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife, "neutral", FALSE), 50)
+	addtimer(CALLBACK(src, PROC_REF(chemical_mob_spawn), holder, 3, "Traitor Spider Slime", /mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife, "neutral", FALSE), M.react_time)
 
 
 //Silver
@@ -268,12 +280,12 @@
 
 /datum/chemical_reaction/slime/slimefreeze/on_reaction(datum/reagents/holder)
 	var/turf/T = get_turf(holder.my_atom)
-	T.visible_message(span_danger("The slime extract starts to feel extremely cold!"))
-	addtimer(CALLBACK(src, .proc/freeze, holder), 50)
 	var/obj/item/slime_extract/M = holder.my_atom
+	T.visible_message(span_danger("The slime extract starts to feel extremely cold!"))
+	addtimer(CALLBACK(src, PROC_REF(freeze), holder), M.react_time)
 	deltimer(M.qdel_timer)
 	..()
-	M.qdel_timer = addtimer(CALLBACK(src, .proc/delete_extract, holder), 55, TIMER_STOPPABLE)
+	M.qdel_timer = addtimer(CALLBACK(src, PROC_REF(delete_extract), holder), 55, TIMER_STOPPABLE)
 
 /datum/chemical_reaction/slime/slimefreeze/proc/freeze(datum/reagents/holder)
 	if(holder && holder.my_atom)
@@ -312,12 +324,12 @@
 
 /datum/chemical_reaction/slime/slimefire/on_reaction(datum/reagents/holder)
 	var/turf/T = get_turf(holder.my_atom)
-	T.visible_message(span_danger("The slime extract begins to vibrate adorably!"))
-	addtimer(CALLBACK(src, .proc/slime_burn, holder), 50)
 	var/obj/item/slime_extract/M = holder.my_atom
+	T.visible_message(span_danger("The slime extract begins to vibrate adorably!"))
+	addtimer(CALLBACK(src, PROC_REF(slime_burn), holder), M.react_time)
 	deltimer(M.qdel_timer)
 	..()
-	M.qdel_timer = addtimer(CALLBACK(src, .proc/delete_extract, holder), 55, TIMER_STOPPABLE)
+	M.qdel_timer = addtimer(CALLBACK(src, PROC_REF(delete_extract), holder), 55, TIMER_STOPPABLE)
 
 /datum/chemical_reaction/slime/slimefire/proc/slime_burn(datum/reagents/holder)
 	if(holder && holder.my_atom)
@@ -495,16 +507,15 @@
 	message_admins("Slime Explosion reaction started at [ADMIN_VERBOSEJMP(T)]. Last Fingerprint: [touch_msg]")
 	log_game("Slime Explosion reaction started at [AREACOORD(T)]. Last Fingerprint: [lastkey ? lastkey : "N/A"].")
 	T.visible_message(span_danger("The slime extract begins to vibrate violently !"))
-	addtimer(CALLBACK(src, .proc/boom, holder), 50)
 	var/obj/item/slime_extract/M = holder.my_atom
+	addtimer(CALLBACK(src, PROC_REF(boom), holder), M.react_time)
 	deltimer(M.qdel_timer)
 	..()
-	M.qdel_timer = addtimer(CALLBACK(src, .proc/delete_extract, holder), 55, TIMER_STOPPABLE)
+	M.qdel_timer = addtimer(CALLBACK(src, PROC_REF(delete_extract), holder), 55, TIMER_STOPPABLE)
 
 /datum/chemical_reaction/slime/slimeexplosion/proc/boom(datum/reagents/holder)
 	if(holder && holder.my_atom)
-		explosion(get_turf(holder.my_atom), 0 ,4, 8)
-
+		explosion(get_turf(holder.my_atom), 0 , 0, 4, flame_range = 12) //same radius as before 4 heavy + 8 light is 12
 
 /datum/chemical_reaction/slime/slimecornoil
 	name = "Slime Corn Oil"
@@ -618,7 +629,8 @@
 	required_other = TRUE
 
 /datum/chemical_reaction/slime/slimestop/on_reaction(datum/reagents/holder)
-	addtimer(CALLBACK(src, .proc/slime_stop, holder), 5 SECONDS)
+	var/obj/item/slime_extract/M = holder.my_atom
+	addtimer(CALLBACK(src, PROC_REF(slime_stop), holder), M.react_time)
 
 /datum/chemical_reaction/slime/slimestop/proc/slime_stop(datum/reagents/holder)
 	var/obj/item/slime_extract/sepia/extract = holder.my_atom
@@ -694,7 +706,8 @@
 		S.visible_message(span_danger("Infused with plasma, the core begins to expand uncontrollably!"))
 		S.icon_state = "[S.base_state]_active"
 		S.active = TRUE
-		addtimer(CALLBACK(S, /obj/item/grenade.proc/prime), rand(15,60))
+		var/obj/item/slime_extract/M = holder.my_atom
+		addtimer(CALLBACK(S, TYPE_PROC_REF(/obj/item/grenade, prime)), rand((M.react_time - 35),(M.react_time + 10)))
 		qdel(holder.my_atom) //deleto
 	else
 		var/mob/living/simple_animal/slime/random/S = new (get_turf(holder.my_atom))
@@ -713,7 +726,8 @@
 	S.visible_message(span_danger("Infused with slime jelly, the core begins to expand uncontrollably!"))
 	S.icon_state = "[S.base_state]_active"
 	S.active = TRUE
-	addtimer(CALLBACK(S, /obj/item/grenade.proc/prime), rand(15,60))
+	var/obj/item/slime_extract/M = holder.my_atom
+	addtimer(CALLBACK(S, TYPE_PROC_REF(/obj/item/grenade, prime)), rand((M.react_time - 35),(M.react_time + 10)))
 	qdel(holder.my_atom) //deleto
 	..()
 

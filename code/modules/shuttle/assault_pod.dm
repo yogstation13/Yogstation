@@ -20,7 +20,7 @@
 /obj/item/assault_pod
 	name = "Assault Pod Targeting Device"
 	icon = 'icons/obj/device.dmi'
-	icon_state = "gangtool-red"
+	icon_state = "assaultpod-remote"
 	item_state = "radio"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
@@ -42,7 +42,7 @@
 	if(!src || QDELETED(src))
 		return
 
-	var/turf/T = safepick(get_area_turfs(picked_area))
+	var/turf/T = pick(get_area_turfs(picked_area))
 	if(!T)
 		return
 	var/obj/docking_port/stationary/landing_zone = new /obj/docking_port/stationary(T)

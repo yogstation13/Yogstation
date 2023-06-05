@@ -58,6 +58,8 @@ SUBSYSTEM_DEF(ticker)
 	var/mode_result = "undefined"
 	var/end_state = "undefined"
 
+	var/music_available = 0
+
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
@@ -140,7 +142,7 @@ SUBSYSTEM_DEF(ticker)
 		gametime_offset = rand(0, 23) HOURS
 	else if(CONFIG_GET(flag/shift_time_realtime))
 		gametime_offset = world.timeofday
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ticker/fire()
 	if(seclevel2num(get_security_level()) < SEC_LEVEL_GAMMA && !GLOB.cryopods_enabled)
@@ -302,7 +304,7 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, span_notice("<B>Welcome to [station_name()], enjoy your stay!</B>"))
-	
+
 	var/random_sound = SSstation.announcer.get_rand_welcome_sound()
 	var/default_sound = SSstation.default_announcer.get_rand_welcome_sound()
 	if(istype(SSstation.announcer, /datum/centcom_announcer/default))
@@ -310,7 +312,7 @@ SUBSYSTEM_DEF(ticker)
 
 	for(var/mob/P in GLOB.player_list)
 		if(P.client && P.client.prefs)
-			if(P.client.prefs.disable_alternative_announcers)
+			if(P.client.prefs.read_preference(/datum/preference/toggle/disable_alternative_announcers))
 				SEND_SOUND(P, sound(default_sound))
 				continue
 		SEND_SOUND(P, sound(random_sound))
@@ -441,12 +443,12 @@ SUBSYSTEM_DEF(ticker)
 			qdel(player)
 			living.notransform = TRUE
 			if(living.client)
-				var/obj/screen/splash/S = new(living.client, TRUE)
+				var/atom/movable/screen/splash/S = new(living.client, TRUE)
 				S.Fade(TRUE)
 				living.client.init_verbs()
 			livings += living
 	if(livings.len)
-		addtimer(CALLBACK(src, .proc/release_characters, livings), 30, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, PROC_REF(release_characters), livings), 30, TIMER_CLIENT_TIME)
 
 /datum/controller/subsystem/ticker/proc/release_characters(list/livings)
 	for(var/I in livings)
@@ -472,17 +474,17 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/check_queue()
 	if(!queued_players.len)
 		return
-	var/hpc = CONFIG_GET(number/hard_popcap)
+	var/hard_popcap = CONFIG_GET(number/hard_popcap)
 	//yogs start -- fixes queue when extreme is set but not hard
-	if(!hpc)
-		hpc = CONFIG_GET(number/extreme_popcap)
+	if(!hard_popcap)
+		hard_popcap = CONFIG_GET(number/extreme_popcap)
 	//yogs end
-	if(!hpc)
+	if(!hard_popcap)
 		listclearnulls(queued_players)
-		for (var/mob/dead/new_player/NP in queued_players)
-			to_chat(NP, span_userdanger("The alive players limit has been released!<br><a href='?src=[REF(NP)];late_join=override'>[html_encode(">>Join Game<<")]</a>"))
-			SEND_SOUND(NP, sound('sound/misc/notice1.ogg'))
-			NP.LateChoices()
+		for (var/mob/dead/new_player/new_player in queued_players)
+			to_chat(new_player, span_userdanger("The alive players limit has been released!<br><a href='?src=[REF(new_player)];late_join=override'>[html_encode(">>Join Game<<")]</a>"))
+			SEND_SOUND(new_player, sound('sound/misc/notice1.ogg'))
+			GLOB.latejoin_menu.ui_interact(new_player)
 		queued_players.len = 0
 		queue_delay = 0
 		return
@@ -493,11 +495,11 @@ SUBSYSTEM_DEF(ticker)
 	switch(queue_delay)
 		if(5) //every 5 ticks check if there is a slot available
 			listclearnulls(queued_players)
-			if(living_player_count() < hpc)
+			if(living_player_count() < hard_popcap)
 				if(next_in_line && next_in_line.client)
 					to_chat(next_in_line, span_userdanger("A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];late_join=override'>\>\>Join Game\<\<</a>"))
 					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg'))
-					next_in_line.LateChoices()
+					next_in_line.ui_interact(next_in_line)
 					return
 				queued_players -= next_in_line //Client disconnected, remove he
 			queue_delay = 0 //No vacancy: restart timer
@@ -519,7 +521,7 @@ SUBSYSTEM_DEF(ticker)
 	//map rotate chance defaults to 75% of the length of the round (in minutes)
 	if (!prob((world.time/600)*CONFIG_GET(number/maprotatechancedelta)))
 		return
-	INVOKE_ASYNC(SSmapping, /datum/controller/subsystem/mapping/.proc/maprotate)
+	INVOKE_ASYNC(SSmapping, TYPE_PROC_REF(/datum/controller/subsystem/mapping, maprotate))
 
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING
@@ -630,7 +632,7 @@ SUBSYSTEM_DEF(ticker)
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.ready == PLAYER_READY_TO_OBSERVE && player.mind)
 			//Break chain since this has a sleep input in it
-			addtimer(CALLBACK(player, /mob/dead/new_player.proc/make_me_an_observer), 1)
+			addtimer(CALLBACK(player, TYPE_PROC_REF(/mob/dead/new_player, make_me_an_observer)), 1)
 
 /datum/controller/subsystem/ticker/proc/load_mode()
 	var/mode = trim(file2text("data/mode.txt"))

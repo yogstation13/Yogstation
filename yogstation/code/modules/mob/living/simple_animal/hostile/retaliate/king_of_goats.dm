@@ -154,7 +154,7 @@ Difficulty: Insanely Hard
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/pope
 	name = "Goat Pope"
-	desc = "For what is a God without a pope to spread their holy words"
+	desc = "For what is a God without a pope to spread their holy words."
 	icon_state = "goat_pope"
 	icon_living = "goat_pope"
 	icon_dead = "goat_pope_dead"
@@ -291,7 +291,7 @@ Difficulty: Insanely Hard
 		new /obj/item/toy/plush/goatplushie/angry/kinggoat(loc) //If someone dies from this after beating the king goat im going to laugh
 		new /obj/item/t_scanner/adv_mining_scanner/goat_scanner(loc)
 		new /obj/item/gem/dark(loc)
-		
+
 /mob/living/simple_animal/hostile/retaliate/goat/king/death()
 	..()
 	OnDeath()
@@ -304,7 +304,7 @@ Difficulty: Insanely Hard
 			L.gib()
 		if(prob(stun_chance))
 			L.Paralyze(5)
-			L.confused += 1
+			L.adjust_confusion(1 SECONDS)
 			visible_message(span_warning("\The [L] is bowled over by the impact of [src]'s attack!"))
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/AttackingTarget()

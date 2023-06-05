@@ -42,7 +42,7 @@ TRICORDER
 /obj/item/multitool/tricorder/attack(mob/living/M, mob/living/user, obj/item/I)
 	add_fingerprint(user)
 	var/turf/U = get_turf(I)
-	atmosanalyzer_scan(U.return_air(), user, I)
+	atmosanalyzer_scan(user, U)
 	if(user.stat || user.eye_blind)
 		return
 	if (isslime(M))

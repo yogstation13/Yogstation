@@ -6,7 +6,7 @@
 	dir_in = 1 //Facing North.
 	max_integrity = 250
 	deflect_chance = 5
-	armor = list(MELEE = 25, BULLET = 20, LASER = 30, ENERGY = 15, BOMB = 0, BIO = 100, RAD = 40, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 25, BULLET = 20, LASER = 30, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 40, FIRE = 100, ACID = 100)
 	max_temperature = 25000
 	infra_luminosity = 6
 	wreckage = /obj/structure/mecha_wreckage/gygax
@@ -20,13 +20,13 @@
 	icon_state = "darkgygax"
 	max_integrity = 300
 	deflect_chance = 15
-	armor = list(MELEE = 40, BULLET = 40, LASER = 50, ENERGY = 35, BOMB = 20, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 40, BULLET = 40, LASER = 50, ENERGY = 0, BOMB = 20, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 35000
 	leg_overload_coeff = 100
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)
 	wreckage = /obj/structure/mecha_wreckage/gygax/dark
-	max_equip = 4
+	max_equip = 5
 	destruction_sleep_duration = 20
 
 /obj/mecha/combat/gygax/dark/loaded/Initialize()
@@ -34,6 +34,8 @@
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/rapier
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/teleporter
 	ME.attach(src)

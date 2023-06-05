@@ -54,10 +54,16 @@
 		air_update_turf()
 
 /obj/machinery/atmospherics/pipe/return_air()
-	return parent.air
+	if(parent)
+		return parent.air
+
+/obj/machinery/atmospherics/pipe/return_analyzable_air()
+	if(parent)
+		return parent.air
 
 /obj/machinery/atmospherics/pipe/remove_air(amount)
-	return parent.air.remove(amount)
+	if(parent)
+		return parent.air.remove(amount)
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pipe_meter))
@@ -66,9 +72,6 @@
 		meter.setAttachLayer(piping_layer)
 	else
 		return ..()
-
-/obj/machinery/atmospherics/pipe/analyzer_act(mob/living/user, obj/item/I)
-	atmosanalyzer_scan(parent.air, user, src)
 
 /obj/machinery/atmospherics/pipe/examine(mob/dead/observer/user)
 	if(istype(user))
@@ -108,7 +111,7 @@
 			var/obj/machinery/atmospherics/N = nodes[i]
 			N.update_icon()
 
-/obj/machinery/atmospherics/pipe/returnPipenets()
+/obj/machinery/atmospherics/pipe/return_pipenets()
 	. = list(parent)
 
 /obj/machinery/atmospherics/pipe/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)

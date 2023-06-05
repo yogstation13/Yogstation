@@ -34,12 +34,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"aj" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "ak" = (
 /obj/machinery/door/window/southleft{
 	base_state = "left";
@@ -124,12 +118,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "ax" = (
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"ay" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aA" = (
@@ -1219,6 +1207,15 @@
 	},
 /turf/open/floor/plasteel/vaporwave,
 /area/crew_quarters/kitchen)
+"KJ" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "KY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4;
@@ -1295,6 +1292,12 @@
 /obj/effect/landmark/blobstart,
 /obj/item/clothing/mask/cigarette/rollie/cannabis,
 /turf/open/floor/plating,
+/area/crew_quarters/bar)
+"Uo" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Yu" = (
 /obj/item/reagent_containers/food/drinks/shaker,
@@ -1535,7 +1538,7 @@ cE
 ab
 "}
 (15,1,1) = {"
-aj
+Uo
 ax
 aL
 cD
@@ -1552,7 +1555,7 @@ ab
 "}
 (16,1,1) = {"
 ab
-ay
+KJ
 aD
 ab
 ab

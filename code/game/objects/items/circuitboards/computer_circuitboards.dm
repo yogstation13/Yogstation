@@ -345,6 +345,11 @@
 	icon_state = "science"
 	build_path = /obj/machinery/computer/rdconsole/core
 
+/obj/item/circuitboard/computer/rdconsole/ruin
+	name = "Experimental R&D Console (Computer Board)"
+	icon_state = "science"
+	build_path = /obj/machinery/computer/rdconsole/nolock/ruin
+
 /obj/item/circuitboard/computer/rdconsole/production
 	name = "R&D Console Production Only (Computer Board)"
 	build_path = /obj/machinery/computer/rdconsole/production

@@ -28,6 +28,10 @@
 
 	var/next_activate = 0 //When we're next allowed to activate - for spam control
 
+/obj/item/assembly/Destroy()
+	holder = null
+	return ..()
+
 /obj/item/assembly/get_part_rating()
 	return 1
 
@@ -57,9 +61,9 @@
 //Called when another assembly acts on this one, var/radio will determine where it came from for wire calcs
 /obj/item/assembly/proc/pulsed(radio = FALSE)
 	if(wire_type & WIRE_RECEIVE)
-		INVOKE_ASYNC(src, .proc/activate)
+		INVOKE_ASYNC(src, PROC_REF(activate))
 	if(radio && (wire_type & WIRE_RADIO_RECEIVE))
-		INVOKE_ASYNC(src, .proc/activate)
+		INVOKE_ASYNC(src, PROC_REF(activate))
 	return TRUE
 
 

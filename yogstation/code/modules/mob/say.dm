@@ -1,13 +1,5 @@
 #define TYPING_INDICATOR_RANGE 7
 
-/mob/proc/get_say()
-	create_typing_indicator()
-	window_typing = TRUE
-	var/msg = input(src, null, "say \"text\"") as text|null
-	window_typing = FALSE
-	remove_typing_indicator()
-	say_verb(msg)
-
 /mob
 	var/image/typing_overlay
 	var/list/speech_bubble_recipients
@@ -17,7 +9,7 @@
 	var/bar_typing = FALSE
 
 /mob/proc/handle_typing_indicator()
-	INVOKE_ASYNC(src,.proc/typing_indicator_process)
+	INVOKE_ASYNC(src, PROC_REF(typing_indicator_process))
 
 /mob/proc/typing_indicator_process()
 	if(!GLOB.typing_indicators)

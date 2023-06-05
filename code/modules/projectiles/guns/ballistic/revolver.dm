@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/revolver
 	name = "\improper .357 revolver"
-	desc = "A suspicious revolver. Uses .357 ammo." //usually used by syndicates
+	desc = "A suspicious revolver. Uses .357 magnum ammo." //usually used by syndicates
 	icon_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder
 	fire_sound = 'sound/weapons/revolver357shot.ogg'
@@ -16,6 +16,12 @@
 	tac_reloads = FALSE
 	var/spin_delay = 10
 	var/recent_spin = 0
+	var/can_spin = TRUE
+
+/obj/item/gun/ballistic/revolver/Initialize()
+	. = ..()
+	if(!can_spin)
+		verbs -= /obj/item/gun/ballistic/revolver/verb/spin
 
 /obj/item/gun/ballistic/revolver/chamber_round(spin_cylinder = TRUE)
 	if(spin_cylinder)
@@ -38,7 +44,7 @@
 
 	var/mob/M = usr
 
-	if(M.stat || !in_range(M,src))
+	if(M.stat || !in_range(M,src) || !can_spin)
 		return
 
 	if (recent_spin > world.time)
@@ -67,7 +73,7 @@
 
 /obj/item/gun/ballistic/revolver/detective
 	name = "\improper Colt Detective Special"
-	desc = "A classic, if not outdated, law enforcement firearm. Uses .38-special rounds."
+	desc = "A classic, if not outdated, law enforcement firearm. Uses .38 special rounds."
 	fire_sound = 'sound/weapons/revolver38shot.ogg'
 	icon_state = "detective"
 	fire_delay = 0
@@ -99,8 +105,7 @@
 				to_chat(user, span_warning("You can't modify it!"))
 				return TRUE
 			magazine.caliber = "357"
-			fire_delay = 12 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder
-			spread = 25 //Can be wildly inaccurate randomly
+			fire_delay = 8 //What no you don't get to mag dump plus the bullet isn't meant for this cylinder. Plus, if you perfectly slam fire with the .38 and hit all your shots, you (should) do more lethal damage than using .357 at this fire_delay
 			fire_sound = 'sound/weapons/revolver357shot.ogg'
 			desc = "The barrel and chamber assembly seems to have been modified."
 			to_chat(user, span_notice("You reinforce the barrel of [src]. Now it will fire .357 rounds."))
@@ -115,7 +120,7 @@
 				to_chat(user, span_warning("You can't modify it!"))
 				return
 			magazine.caliber = "38"
-			fire_delay = 0 //Fixed again
+			fire_delay = 0 //Blessed mag dump
 			spread = 0
 			fire_sound = 'sound/weapons/revolver38shot.ogg'
 			desc = initial(desc)
@@ -132,14 +137,16 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/tra32
 
 /obj/item/gun/ballistic/revolver/mateba
-	name = "\improper Unica 6 auto-revolver"
-	desc = "A retro high-powered autorevolver typically used by officers of the New Russia military. Uses .357 ammo."
+	name = "\improper Unica 6 autorevolver"
+	desc = "A retro, high-powered autorevolver typically worn by high-ranking officers within various militaries. Loads .44 magnum rounds."
 	icon_state = "mateba"
-	fire_delay = 0 //Admin-only therefore massive L
+	fire_delay = 9 //Chunky, but powerful
+	fire_sound = 'sound/weapons/44fire.ogg'
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev44
 
 /obj/item/gun/ballistic/revolver/golden
 	name = "\improper Golden revolver"
-	desc = "This ain't no game, ain't never been no show, And I'll gladly gun down the oldest lady you know. Uses .357 ammo."
+	desc = "This ain't no game, ain't never been no show, And I'll gladly gun down the oldest lady you know. Uses .357 magnum ammo."
 	icon_state = "goldrevolver"
 	fire_delay = 0 //Yee-haw
 	fire_sound = 'sound/weapons/resonator_blast.ogg'
@@ -151,8 +158,8 @@
 	desc = "An old model of revolver that originated in Russia. Able to be suppressed. Uses 7.62x38mmR ammo."
 	icon_state = "nagant"
 	fire_delay = 5 //Mild trigger pull, the gun was known for it
+	fire_sound = 'sound/weapons/revolver38shot.ogg' //Lower caliber = lesser smack
 	can_suppress = TRUE
-
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762
 
 
@@ -161,7 +168,7 @@
 
 /obj/item/gun/ballistic/revolver/russian
 	name = "\improper Russian revolver"
-	desc = "A Russian-made revolver for drinking games. Uses .357 ammo, and has a mechanism requiring you to spin the chamber before each trigger pull."
+	desc = "A Russian-made revolver for drinking games. Uses .357 magnum ammo, and has a mechanism requiring you to spin the chamber before each trigger pull."
 	icon_state = "russianrevolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rus357
 	var/spun = FALSE
@@ -231,8 +238,13 @@
 	user.visible_message(span_danger("[user.name] tries to fire \the [src] at the same time, but only succeeds at looking like an idiot."), span_danger("\The [src]'s anti-combat mechanism prevents you from firing it at the same time!"))
 
 /obj/item/gun/ballistic/revolver/russian/proc/shoot_self(mob/living/carbon/human/user, affecting = BODY_ZONE_HEAD)
+	switch(rand(1,3))
+		if (1 to 2)
+			user.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
+		if (3)
+			user.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 	user.apply_damage(300, BRUTE, affecting)
-	user.visible_message(span_danger("[user.name] fires [src] at [user.p_their()] head!"), span_userdanger("You fire [src] at your head!"), span_italics("You hear a gunshot!"))
+	user.visible_message(span_danger("[user.name] fires [src] at [user.p_their()] head!"), span_userdanger("You fire [src] at your head!"), span_italics("You hear a gunshot, then everything goes silent."))
 
 /obj/item/gun/ballistic/revolver/russian/soul
 	name = "cursed Russian revolver"
@@ -257,3 +269,18 @@
 		user.emote("scream")
 		user.drop_all_held_items()
 		user.Paralyze(80)
+
+/obj/item/gun/ballistic/revolver/derringer
+	name = "derringer pistol"
+	desc = "A old-style double-chamber pistol. Load individually with .357 rounds."
+	icon_state = "derringer" // Icon by SynnGraffkin https://github.com/Whitesands13/Whitesands/pull/655
+	w_class = WEIGHT_CLASS_TINY
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/derringer
+	fire_sound_volume = 40
+	fire_delay = 0 // Pow pow!
+	can_spin = FALSE
+
+/obj/item/gun/ballistic/revolver/derringer/attackby(obj/item/A, mob/user, params)
+	if(istype(A, /obj/item/ammo_box))
+		return TRUE
+	. = ..()

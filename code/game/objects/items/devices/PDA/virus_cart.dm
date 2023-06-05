@@ -71,7 +71,7 @@
 				difficulty++ //if cartridge has manifest access it has extra snowflake difficulty
 			else
 				difficulty += 2
-		if(SEND_SIGNAL(target, COMSIG_PDA_CHECK_DETONATE) & COMPONENT_PDA_NO_DETONATE || prob(difficulty * 15))
+		if(SEND_SIGNAL(target, COMSIG_TABLET_CHECK_DETONATE) & COMPONENT_TABLET_NO_DETONATE || prob(difficulty * 15))
 			U.show_message(span_danger("An error flashes on your [src]."), MSG_VISUAL)
 		else
 			log_bomber(U, "triggered a PDA explosion on", target, "[!is_special_character(U) ? "(TRIGGED BY NON-ANTAG)" : ""]")

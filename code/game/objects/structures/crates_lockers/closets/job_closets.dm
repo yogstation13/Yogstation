@@ -26,7 +26,7 @@
 
 /obj/structure/closet/chefcloset
 	name = "\proper chef's closet"
-	desc = "It's a storage unit for foodservice garments and mouse traps."
+	desc = "It's a storage unit for food service garments and mouse traps."
 	icon_door = "black"
 
 /obj/structure/closet/chefcloset/PopulateContents()
@@ -53,7 +53,6 @@
 /obj/structure/closet/jcloset/PopulateContents()
 	..()
 	new /obj/item/clothing/under/rank/janitor(src)
-	new /obj/item/cartridge/janitor(src)
 	new /obj/item/clothing/gloves/color/black(src)
 	new /obj/item/clothing/head/soft/purple(src)
 	new /obj/item/paint/paint_remover(src)

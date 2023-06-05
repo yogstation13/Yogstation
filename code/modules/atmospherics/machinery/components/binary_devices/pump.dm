@@ -28,14 +28,18 @@
 	pipe_state = "pump"
 
 /obj/machinery/atmospherics/components/binary/pump/CtrlClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
+	if(can_interact(user))
 		on = !on
 		update_icon()
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/pump/AltClick(mob/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || issilicon(user))
+	if(can_interact(user))
 		target_pressure = MAX_OUTPUT_PRESSURE
+		var/msg = "was set to [target_pressure] kPa by [key_name(usr)]"
+		investigate_log(msg, INVESTIGATE_ATMOS)
+		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
+		balloon_alert(user, "pressure output set to [target_pressure] kPa")
 		update_icon()
 	return ..()
 
@@ -112,8 +116,9 @@
 	switch(action)
 		if("power")
 			on = !on
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
+			var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
+			investigate_log(msg, INVESTIGATE_ATMOS)
+			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
 			. = TRUE
 		if("pressure")
 			var/pressure = params["pressure"]
@@ -129,8 +134,9 @@
 				. = TRUE
 			if(.)
 				target_pressure = clamp(pressure, 0, MAX_OUTPUT_PRESSURE)
-				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
-				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
+				var/msg = "was set to [target_pressure] kPa by [key_name(usr)]"
+				investigate_log(msg, INVESTIGATE_ATMOS)
+				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
 	update_icon()
 
 /obj/machinery/atmospherics/components/binary/pump/atmosinit()

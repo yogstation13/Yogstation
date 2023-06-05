@@ -302,11 +302,14 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	. += generate_station_goal_report()
 
 	desc += "\n\n[generate_station_trait_announcement()]"
-
-	print_command_report(., "Central Command Status Summary", announce=FALSE)
-	priority_announce(desc, title, ANNOUNCER_INTERCEPT)
-	if(GLOB.security_level < SEC_LEVEL_BLUE)
-		set_security_level(SEC_LEVEL_BLUE)
+		
+	if(CONFIG_GET(flag/auto_blue_alert))
+		print_command_report(., "Central Command Status Summary", announce=FALSE)
+		priority_announce(desc, title, ANNOUNCER_INTERCEPT)
+		if(GLOB.security_level < SEC_LEVEL_BLUE)
+			set_security_level(SEC_LEVEL_BLUE)
+	else
+		print_command_report(., "Central Command Status Summary")
 
 	if(ISINRANGE(threat_level, 50, 80))
 		for(var/pack in SSshuttle.supply_packs)
@@ -329,7 +332,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 /datum/game_mode/dynamic/proc/show_threatlog(mob/admin)
 	if(!SSticker.HasRoundStarted())
-		alert("The round hasn't started yet!")
+		tgui_alert(usr, "The round hasn't started yet!")
 		return
 
 	if(!check_rights(R_ADMIN))
@@ -453,7 +456,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 	for(var/datum/dynamic_ruleset/roundstart/rule in executed_rules)
 		rule.candidates.Cut() // The rule should not use candidates at this point as they all are null.
-		addtimer(CALLBACK(src, /datum/game_mode/dynamic/.proc/execute_roundstart_rule, rule), rule.delay)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_mode/dynamic, execute_roundstart_rule), rule), rule.delay)
 	..()
 
 /// A simple roundstart proc used when dynamic_forced_roundstart_ruleset has rules in it.
@@ -732,7 +735,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		if (forced_latejoin_rule.ready(TRUE))
 			if (!forced_latejoin_rule.repeatable)
 				latejoin_rules = remove_from_list(latejoin_rules, forced_latejoin_rule.type)
-			addtimer(CALLBACK(src, /datum/game_mode/dynamic/.proc/execute_midround_latejoin_rule, forced_latejoin_rule), forced_latejoin_rule.delay)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_mode/dynamic, execute_midround_latejoin_rule), forced_latejoin_rule), forced_latejoin_rule.delay)
 		forced_latejoin_rule = null
 
 	else if (latejoin_injection_cooldown < world.time && prob(get_injection_chance()))
@@ -748,7 +751,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 				rule.candidates = list(newPlayer)
 				rule.trim_candidates()
-				if(!rule.candidates || isemptylist(rule.candidates))
+				if(!rule.candidates || !length(rule.candidates))
 					continue
 				if (rule.ready())
 					drafted_rules[rule] = rule.get_weight()

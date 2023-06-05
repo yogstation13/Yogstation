@@ -14,7 +14,7 @@
 	var/productivity = 0
 	var/max_items = 40
 	var/datum/techweb/stored_research
-	var/list/show_categories = list("Food", "Botany Chemicals", "Organic Materials")
+	var/list/show_categories = list("Food","Kitchen Chemicals","Botany Chemicals","Organic Materials")
 	/// Currently selected category in the UI
 	var/selected_cat
 
@@ -214,7 +214,7 @@
 	return TRUE
 
 /obj/machinery/biogenerator/proc/create_product(datum/design/D, amount)
-	if(!beaker || !loc)
+	if(!loc)
 		return FALSE
 
 	if(ispath(D.build_path, /obj/item/stack))
@@ -296,15 +296,20 @@
 		var/list/cat = list(
 			"name" = category,
 			"items" = (category == selected_cat ? list() : null))
+		var/needs_chem //Buffer because I am stupid
 		for(var/item in categories[category])
 			var/datum/design/D = item
+			if(!D.make_reagents)
+				needs_chem = FALSE
+			else
+				needs_chem = TRUE
 			cat["items"] += list(list(
 				"id" = D.id,
 				"name" = D.name,
 				"cost" = D.materials[getmaterialref(/datum/material/biomass)]/efficiency,
+				"chem" = needs_chem,
 			))
 		data["categories"] += list(cat)
-
 	return data
 
 /obj/machinery/biogenerator/ui_act(action, list/params)

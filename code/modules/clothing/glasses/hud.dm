@@ -8,13 +8,13 @@
 	..()
 	if(hud_type && slot == SLOT_GLASSES)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.add_hud_to(user)
+		H.show_to(user)
 
 /obj/item/clothing/glasses/hud/dropped(mob/living/carbon/human/user)
 	..()
 	if(hud_type && istype(user) && user.glasses == src)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.remove_hud_from(user)
+		H.hide_from(user)
 
 /obj/item/clothing/glasses/hud/emp_act(severity)
 	. = ..()
@@ -65,6 +65,11 @@
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/blue
 
+/obj/item/clothing/glasses/hud/health/sunglasses/cmo
+	name = "medical advanced HUDSunglasses"
+	desc = "Sunglasses with a medical HUD. This one is augmented with a reagent scanner."
+	clothing_flags = SCAN_REAGENTS
+
 /obj/item/clothing/glasses/hud/diagnostic
 	name = "diagnostic HUD"
 	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits."
@@ -90,6 +95,11 @@
 	flash_protect = 1
 	tint = 1
 
+/obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd
+	name = "diagnostic advanced sunglasses"
+	desc = "Sunglasses with a diagnostic HUD. This one is augmented with a reagent scanner."
+	clothing_flags = SCAN_REAGENTS
+
 /obj/item/clothing/glasses/hud/security
 	name = "security HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
@@ -113,6 +123,7 @@
 	chameleon_action.chameleon_name = "Glasses"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/glasses/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
+	add_item_action(chameleon_action)
 
 /obj/item/clothing/glasses/hud/security/chameleon/emp_act(severity)
 	. = ..()
@@ -134,6 +145,11 @@
 	flash_protect = 1
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/darkred
+
+/obj/item/clothing/glasses/hud/security/sunglasses/hos
+	name = "security advanced HUDSunglasses"
+	desc = "Sunglasses with a security HUD. This one is augmented with a medical scanner."
+	hud_type = DATA_HUD_SECURITY_MEDICAL
 
 /obj/item/clothing/glasses/hud/security/night
 	name = "night vision security HUD"
@@ -164,6 +180,16 @@
 	force = 12
 	throwforce = 12
 
+/obj/item/clothing/glasses/hud/personnel
+	name = "personnel HUD sunglasses"
+	desc = "Sunglasses with a personnel HUD."
+	icon_state = "sunhudhop"
+	item_state = "glasses"
+	hud_type = DATA_HUD_SECURITY_BASIC // Apparently the basic sec HUD is just IDs and the basic ones we use (mindshield detection etc. are "advanced" sec HUDs.
+	flash_protect = 1
+	tint = 1
+	glass_colour_type = /datum/client_colour/glass_colour/blue
+	
 /obj/item/clothing/glasses/hud/toggle
 	name = "Toggle HUD"
 	desc = "A HUD with multiple functions."
@@ -178,7 +204,7 @@
 
 	if (hud_type)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.remove_hud_from(user)
+		H.hide_from(user)
 
 	if (hud_type == DATA_HUD_MEDICAL_ADVANCED)
 		hud_type = null
@@ -189,7 +215,10 @@
 
 	if (hud_type)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.add_hud_to(user)
+		H.show_to(user)
+
+/datum/action/item_action/switch_hud
+	name = "Switch HUD"
 
 /obj/item/clothing/glasses/hud/toggle/thermal
 	name = "thermal HUD scanner"

@@ -2,6 +2,7 @@
 	name = "brain"
 	desc = "A piece of juicy meat found in a person's head."
 	icon_state = "brain"
+	visual = TRUE
 	throw_speed = 3
 	throw_range = 5
 	layer = ABOVE_MOB_LAYER
@@ -54,18 +55,18 @@
 	//Update the body's icon so it doesnt appear debrained anymore
 	C.update_hair()
 
-/obj/item/organ/brain/Remove(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
+/obj/item/organ/brain/Remove(mob/living/carbon/C, special = FALSE, no_id_transfer = FALSE)
 	..()
 	if(!special)
 		if(C.has_horror_inside())
 			var/mob/living/simple_animal/horror/B = C.has_horror_inside()
 			B.leave_victim()
-	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling))
-		var/datum/antagonist/changeling/bruh = C.mind.has_antag_datum(/datum/antagonist/changeling)
-		for(var/d in bruh.purchasedpowers)
-			if(istype(d, /datum/action/changeling/fakedeath))
-				var/datum/action/changeling/fakedeath/ack = d
-				ack.sting_action(C)
+		if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling))
+			var/datum/antagonist/changeling/bruh = C.mind.has_antag_datum(/datum/antagonist/changeling)
+			for(var/d in bruh.purchasedpowers)
+				if(istype(d, /datum/action/changeling/fakedeath))
+					var/datum/action/changeling/fakedeath/ack = d
+					ack.sting_action(C)
 
 	for(var/X in traumas)
 		var/datum/brain_trauma/BT = X
@@ -252,7 +253,7 @@
 	slot = "brain"
 	zone = "chest"
 	status = ORGAN_ROBOTIC
-	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. In order for this Posibrain to be used as a newly built Positronic Brain, it must be coupled with an MMI."
+	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves. It has an IPC serial number engraved on the top. In order for this posibrain to be used as a newly built Positronic Brain, it must be coupled with an MMI."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain-ipc"
 	organ_flags = ORGAN_SYNTHETIC
@@ -260,13 +261,14 @@
 /obj/item/organ/brain/positron/emp_act(severity)
 	if(prob(25))
 		return
+
+	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50/severity)
+	owner.adjust_drugginess(40/severity)
 	switch(severity)
 		if(1)
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 60)
-			to_chat(owner, "<span class='warning'>Alert: Posibrain heavily damaged.</span>")
+			to_chat(owner, span_warning("Alert: Posibrain heavily damaged."))
 		if(2)
-			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25)
-			to_chat(owner, "<span class='warning'>Alert: Posibrain damaged.</span>") 
+			to_chat(owner, span_warning("Alert: Posibrain damaged.")) 
 
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////

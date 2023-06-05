@@ -18,6 +18,7 @@
 	var/check_anti_magic = FALSE
 	var/check_holy = FALSE
 	var/start_sound = 'sound/magic/timeparadox2.ogg'
+	var/start_sound_len = 3.3 SECONDS
 
 /obj/effect/timestop/Initialize(mapload, radius, time, list/immune_atoms, start = TRUE)	//Immune atoms assoc list atom = TRUE
 	. = ..()
@@ -27,29 +28,29 @@
 		freezerange = radius
 	for(var/A in immune_atoms)
 		immune[A] = TRUE
-	for(var/mob/living/L in GLOB.player_list)
-		if(locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in L.mind.spell_list) //People who can stop time are immune to its effects
-			immune[L] = TRUE
-	for(var/mob/living/simple_animal/hostile/guardian/G in GLOB.parasites)
-		if(G.summoner && locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.summoner.spell_list) //It would only make sense that a person's stand would also be immune.
-			immune[G] = TRUE
-		if(locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.mob_spell_list)
-			immune[G] = TRUE
-			if(G.summoner?.current)
-				immune[G.summoner.current] = TRUE
+	for(var/mob/living/to_check in GLOB.player_list)
+		if(HAS_TRAIT(to_check, TRAIT_TIME_STOP_IMMUNE))
+			immune[to_check] = TRUE
+	for(var/mob/living/simple_animal/hostile/guardian/stand in GLOB.parasites)
+		if(stand.summoner && HAS_TRAIT(stand.summoner, TRAIT_TIME_STOP_IMMUNE)) //It would only make sense that a person's stand would also be immune.
+			immune[stand] = TRUE
 	if(start)
 		timestop()
 
 /obj/effect/timestop/Destroy()
-	qdel(chronofield)
-	playsound(src, start_sound, 75, TRUE, frequency = -1) //reverse!
+	QDEL_NULL(chronofield)
 	return ..()
 
 /obj/effect/timestop/proc/timestop()
 	target = get_turf(src)
 	playsound(src, start_sound, 75, 1, -1)
 	chronofield = make_field(/datum/proximity_monitor/advanced/timestop, list("current_range" = freezerange, "host" = src, "immune" = immune, "check_anti_magic" = check_anti_magic, "check_holy" = check_holy))
+	if(duration - start_sound_len * 2 > 0) // Needs to have enough time for both sounds to play in full
+		addtimer(CALLBACK(src, PROC_REF(time_resumes)), duration - start_sound_len)
 	QDEL_IN(src, duration)
+
+/obj/effect/timestop/proc/time_resumes() // toki wa ugoki dasu
+	playsound(src, start_sound, 75, TRUE, frequency = -1) //reverse!
 
 /obj/effect/timestop/wizard
 	check_anti_magic = TRUE
@@ -102,8 +103,8 @@
 	A.move_resist = INFINITY
 	global_frozen_atoms[A] = src
 	into_the_negative_zone(A)
-	RegisterSignal(A, COMSIG_MOVABLE_PRE_MOVE, .proc/unfreeze_atom)
-	RegisterSignal(A, COMSIG_ITEM_PICKUP, .proc/unfreeze_atom)
+	RegisterSignal(A, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(unfreeze_atom))
+	RegisterSignal(A, COMSIG_ITEM_PICKUP, PROC_REF(unfreeze_atom))
 
 	return TRUE
 

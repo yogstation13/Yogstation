@@ -75,6 +75,7 @@
 					/obj/item/staff/broom = 1,
 					/obj/item/clothing/suit/wizrobe/fake = 1,
 					/obj/item/clothing/head/wizard/fake = 1,
+					/obj/item/clothing/head/wizard/fake/brown = 1,
 					/obj/item/staff = 3,
 					/obj/item/toy/dummy = 2,
 					/obj/item/clothing/mask/gas/sexyclown = 1,

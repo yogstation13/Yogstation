@@ -174,8 +174,14 @@
 	LAZYCLEARLIST(round_end_events)
 
 	RollCredits()
-	for(var/client/C in GLOB.clients)
-		C.playtitlemusic(40)
+	// Don't interrupt admin music
+	if(REALTIMEOFDAY >= SSticker.music_available)
+		for(var/client/C in GLOB.clients)
+			C.playtitlemusic(40)
+	else // this looks worse but is better than uselessly comparing for every client
+		for(var/client/C in GLOB.clients)
+			if(!(C.prefs.toggles & SOUND_MIDI))
+				C.playtitlemusic(40)
 
 	var/popcount = gather_roundend_feedback()
 	display_report(popcount)
@@ -183,10 +189,9 @@
 	CHECK_TICK
 
 	// Add AntagHUD to everyone, see who was really evil the whole time!
-	for(var/datum/atom_hud/antag/H in GLOB.huds)
-		for(var/m in GLOB.player_list)
-			var/mob/M = m
-			H.add_hud_to(M)
+	for(var/datum/atom_hud/alternate_appearance/basic/antagonist_hud/antagonist_hud in GLOB.active_alternate_appearances)
+		for(var/mob/player as anything in GLOB.player_list)
+			antagonist_hud.show_to(player)
 
 	CHECK_TICK
 
@@ -216,6 +221,21 @@
 			total_antagonists[A.name] = list()
 		total_antagonists[A.name] += "[key_name(A.owner)]"
 
+	CHECK_TICK
+
+	// Reward people who stayed alive and escaped
+	if(CONFIG_GET(flag/use_antag_rep))
+		for(var/mob/M in GLOB.player_list)
+			if(M.stat == DEAD || !M.ckey) // Skip dead or clientless players
+				continue
+			if(SSpersistence.antag_rep_change[M.ckey] < 0) // don't want to punish antags for being alive hehe
+				continue
+			else if(M.onCentCom() || SSticker.force_ending || SSticker.mode.station_was_nuked)
+				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/escaped_alive_bonus) // Reward for escaping alive
+			else
+				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/stayed_alive_bonus) // Reward for staying alive
+			SSpersistence.antag_rep_change[M.ckey] = round(SSpersistence.antag_rep_change[M.ckey]) // rounds down
+	
 	CHECK_TICK
 
 	//Now print them all into the log!
@@ -565,12 +585,13 @@
 /datum/action/report
 	name = "Show roundend report"
 	button_icon_state = "round_end"
+	show_to_observers = FALSE
 
 /datum/action/report/Trigger()
 	if(owner && GLOB.common_report && SSticker.current_state == GAME_STATE_FINISHED)
 		SSticker.show_roundend_report(owner.client, FALSE)
 
-/datum/action/report/IsAvailable()
+/datum/action/report/IsAvailable(feedback = FALSE)
 	return 1
 
 /datum/action/report/Topic(href,href_list)

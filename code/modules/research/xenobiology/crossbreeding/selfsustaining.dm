@@ -21,15 +21,12 @@ Self-sustaining extracts:
 	for(var/i = 0, i < 4, i++)
 		var/obj/item/autoslime/A = new /obj/item/autoslime(src.loc)
 		var/obj/item/slime_extract/X = new extract_type(A)
+		A.name = "self-sustaining " + X.name
 		A.extract = X
 		A.icon = icon
 		A.icon_state = icon_state
 		A.color = color
 	return INITIALIZE_HINT_QDEL
-
-/obj/item/autoslime/Initialize()
-	name = "self-sustaining " + extract.name
-	return ..()
 
 /obj/item/autoslime/attack_self(mob/user)
 	var/reagentselect = input(user, "Choose the reagent the extract will produce.", "Self-sustaining Reaction") as null|anything in extract.activate_reagents
@@ -147,3 +144,4 @@ Self-sustaining extracts:
 /obj/item/slimecross/selfsustaining/rainbow
 	extract_type = /obj/item/slime_extract/rainbow
 	colour = "rainbow"
+	

@@ -5,6 +5,10 @@
 	icon_state = "armor_polish"
 	w_class = WEIGHT_CLASS_TINY
 	var/remaining_uses = 2
+	var/melee_armor_max = 30
+	var/bullet_armor_max = 30
+	var/laser_armor_max = 20
+	var/energy_armor_max = 25
 
 /obj/item/armorpolish/examine(mob/user)
 	. = ..()
@@ -16,13 +20,13 @@ obj/item/armorpolish/afterattack(atom/target, mob/user, proximity)
 		var/obj/item/clothing/I = target;
 		//theos said 30/30/20/25
 		//make sure it's not too strong already ((busted))
-		if((I.armor.melee < 30) || (I.armor.bullet < 30) || (I.armor.laser < 20) || (I.armor.energy < 25))
+		if((I.armor.melee < melee_armor_max) || (I.armor.bullet < bullet_armor_max) || (I.armor.laser < laser_armor_max) || (I.armor.energy < energy_armor_max))
 			//it is weak enough to benefit
 			I.armor = I.armor.setRating(
-				melee = I.armor.melee < 30 ? 30 : I.armor.melee,
-				bullet = I.armor.bullet < 30 ? 30 : I.armor.bullet,
-				laser = I.armor.laser < 20 ? 20 : I.armor.laser,
-				energy = I.armor.energy < 25 ? 25 : I.armor.energy
+				melee = I.armor.melee < melee_armor_max ? melee_armor_max : I.armor.melee,
+				bullet = I.armor.bullet < bullet_armor_max ? bullet_armor_max : I.armor.bullet,
+				laser = I.armor.laser < laser_armor_max ? laser_armor_max : I.armor.laser,
+				energy = I.armor.energy < energy_armor_max ? energy_armor_max : I.armor.energy
 			)
 			remaining_uses -= 1
 			to_chat(user, "You apply [src] to the [target.name].")
@@ -43,3 +47,15 @@ obj/item/armorpolish/afterattack(atom/target, mob/user, proximity)
 			
 	else
 		to_chat(user, span_warning("You can only polish suits and headgear!"))
+
+/obj/item/armorpolish/adamantine
+	name = "adamantine dust"
+	desc = "A handful of adamantine dust capable of mildly reinforcing thicker outer clothing."
+	icon = 'icons/mob/slimes.dmi'
+	icon_state = "adamantine slime extract"
+	w_class = WEIGHT_CLASS_TINY
+	remaining_uses = 1
+	melee_armor_max = 15
+	bullet_armor_max = 10
+	laser_armor_max = 10
+	energy_armor_max = 10

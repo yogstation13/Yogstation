@@ -4,16 +4,6 @@
 // Return the item currently in the slot ID
 /mob/living/carbon/human/get_item_by_slot(slot_id)
 	switch(slot_id)
-		if(SLOT_BACK)
-			return back
-		if(SLOT_WEAR_MASK)
-			return wear_mask
-		if(SLOT_NECK)
-			return wear_neck
-		if(SLOT_HANDCUFFED)
-			return handcuffed
-		if(SLOT_LEGCUFFED)
-			return legcuffed
 		if(SLOT_BELT)
 			return belt
 		if(SLOT_WEAR_ID)
@@ -24,8 +14,6 @@
 			return glasses
 		if(SLOT_GLOVES)
 			return gloves
-		if(SLOT_HEAD)
-			return head
 		if(SLOT_SHOES)
 			return shoes
 		if(SLOT_WEAR_SUIT)
@@ -36,9 +24,48 @@
 			return l_store
 		if(SLOT_R_STORE)
 			return r_store
-		if(SLOT_S_STORE)
+		if(SLOT_SUIT_STORE)
 			return s_store
-	return null
+	return ..()
+
+/mob/living/carbon/human/get_slot_by_item(obj/item/looking_for)
+	if(looking_for == belt)
+		return ITEM_SLOT_BELT
+
+	if(looking_for == wear_id)
+		return ITEM_SLOT_ID
+
+	if(looking_for == ears)
+		return ITEM_SLOT_EARS
+
+	if(looking_for == glasses)
+		return ITEM_SLOT_EYES
+
+	if(looking_for == gloves)
+		return ITEM_SLOT_GLOVES
+
+	if(looking_for == head)
+		return ITEM_SLOT_HEAD
+
+	if(looking_for == shoes)
+		return ITEM_SLOT_FEET
+
+	if(looking_for == wear_suit)
+		return ITEM_SLOT_OCLOTHING
+
+	if(looking_for == w_uniform)
+		return ITEM_SLOT_ICLOTHING
+
+	if(looking_for == r_store)
+		return ITEM_SLOT_RPOCKET
+
+	if(looking_for == l_store)
+		return ITEM_SLOT_LPOCKET
+
+	if(looking_for == s_store)
+		return ITEM_SLOT_SUITSTORE
+
+	return ..()
 
 /mob/living/carbon/human/proc/get_all_slots()
 	. = get_head_slots() | get_body_slots()
@@ -120,7 +147,7 @@
 				update_inv_w_uniform()
 			if(wear_suit.breakouttime) //when equipping a straightjacket
 				stop_pulling() //can't pull if restrained
-				update_action_buttons_icon() //certain action buttons will no longer be usable.
+				update_mob_action_buttons() //certain action buttons will no longer be usable.
 			update_inv_wear_suit()
 		if(SLOT_W_UNIFORM)
 			w_uniform = I
@@ -132,7 +159,7 @@
 		if(SLOT_R_STORE)
 			r_store = I
 			update_inv_pockets()
-		if(SLOT_S_STORE)
+		if(SLOT_SUIT_STORE)
 			s_store = I
 			update_inv_s_store()
 		else
@@ -156,26 +183,26 @@
 			dropItemToGround(s_store, TRUE) //It makes no sense for your suit storage to stay on you if you drop your suit.
 		if(wear_suit.breakouttime) //when unequipping a straightjacket
 			drop_all_held_items() //suit is restraining
-			update_action_buttons_icon() //certain action buttons may be usable again.
+			update_mob_action_buttons() //certain action buttons may be usable again.
 		wear_suit = null
 		if(!QDELETED(src)) //no need to update we're getting deleted anyway
 			if(I.flags_inv & HIDEJUMPSUIT)
 				update_inv_w_uniform()
 			update_inv_wear_suit()
 	else if(I == w_uniform)
-		if(invdrop)
-			if(r_store)
-				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
-			if(l_store)
-				dropItemToGround(l_store, TRUE)
-			if(wear_id)
-				dropItemToGround(wear_id)
-			if(belt)
-				dropItemToGround(belt)
 		w_uniform = null
 		update_suit_sensors()
 		if(!QDELETED(src))
 			update_inv_w_uniform()
+		if(invdrop)
+			if(r_store && !can_equip(r_store, SLOT_R_STORE, TRUE))
+				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
+			if(l_store && !can_equip(l_store, SLOT_L_STORE, TRUE))
+				dropItemToGround(l_store, TRUE)
+			if(wear_id && !can_equip(wear_id, SLOT_WEAR_ID, TRUE))
+				dropItemToGround(wear_id)
+			if(belt && !can_equip(belt, SLOT_BELT, TRUE))
+				dropItemToGround(belt)
 	else if(I == gloves)
 		gloves = null
 		if(!QDELETED(src))
@@ -189,7 +216,7 @@
 			update_tint()
 		if(G.vision_correction)
 			if(HAS_TRAIT(src, TRAIT_NEARSIGHT))
-				overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
+				overlay_fullscreen("nearsighted", /atom/movable/screen/fullscreen/impaired, 1)
 		if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
 			update_sight()
 		if(!QDELETED(src))
@@ -224,12 +251,44 @@
 		if(!QDELETED(src))
 			update_inv_s_store()
 
+/mob/living/carbon/human/toggle_internals(obj/item/tank, is_external = FALSE)
+	// Just close the tank if it's the one the mob already has open.
+	var/obj/item/existing_tank = is_external ? external : internal
+	if(tank == existing_tank)
+		return toggle_close_internals(is_external)
+	// Use breathing tube regardless of mask.
+	if(can_breathe_tube())
+		return toggle_open_internals(tank, is_external)
+	// Use mask in absence of tube.
+	if(isclothing(wear_mask) && ((wear_mask.visor_flags & MASKINTERNALS) || (wear_mask.clothing_flags & MASKINTERNALS)))
+		// Adjust dishevelled breathing mask back onto face.
+		if (wear_mask.mask_adjusted)
+			wear_mask.adjustmask(src)
+		return toggle_open_internals(tank, is_external)
+	// Use helmet in absence of tube or valid mask.
+	if(can_breathe_helmet())
+		return toggle_open_internals(tank, is_external)
+	// Notify user of missing valid breathing apparatus.
+	if (wear_mask)
+		// Invalid mask
+		to_chat(src, span_warning("[wear_mask] can't use [tank]!"))
+	else if (head)
+		// Invalid headgear
+		to_chat(src, span_warning("[head] isn't airtight! You need a mask!"))
+	else
+		// Not wearing any breathing apparatus.
+		to_chat(src, span_warning("You need a mask!"))
+
+/// Returns TRUE if the tank successfully toggles open/closed. Opens the tank only if a breathing apparatus is found.
+/mob/living/carbon/human/toggle_externals(obj/item/tank)
+	return toggle_internals(tank, TRUE)
+
 /mob/living/carbon/human/wear_mask_update(obj/item/I, toggle_off = 1)
 	if((I.flags_inv & (HIDEHAIR|HIDEFACIALHAIR)) || (initial(I.flags_inv) & (HIDEHAIR|HIDEFACIALHAIR)))
 		update_hair()
-	if(toggle_off && internal && !getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-		update_internals_hud_icon(0)
-		internal = null
+	// Close internal air tank if mask was the only breathing apparatus.
+	if(invalid_internals())
+		cutoff_internals()
 	if(I.flags_inv & HIDEEYES)
 		update_inv_glasses()
 	sec_hud_set_security_status()
@@ -242,6 +301,9 @@
 		var/obj/item/clothing/C = I
 		if(istype(C) && C.dynamic_hair_suffix)
 			update_hair()
+	// Close internal air tank if helmet was the only breathing apparatus.
+	if (invalid_internals())
+		cutoff_internals()
 	if(I.flags_inv & HIDEEYES || forced)
 		update_inv_glasses()
 	if(I.flags_inv & HIDEEARS || forced)
@@ -257,9 +319,9 @@
 	else
 		O = outfit
 		if(!istype(O))
-			return 0
+			return FALSE
 	if(!O)
-		return 0
+		return FALSE
 
 	return O.equip(src, visualsOnly)
 
@@ -270,3 +332,94 @@
 		qdel(slot)
 	for(var/obj/item/I in held_items)
 		qdel(I)
+
+/mob/living/carbon/human/proc/smart_equipbag() // take most recent item out of bag or place held item in bag
+	if(incapacitated())
+		return
+	var/obj/item/thing = get_active_held_item()
+	var/obj/item/equipped_back = get_item_by_slot(SLOT_BACK)
+	if(!equipped_back) // We also let you equip a backpack like this
+		if(!thing)
+			to_chat(src, "<span class='warning'>You have no backpack to take something out of!</span>")
+			return
+		if(equip_to_slot_if_possible(thing, SLOT_BACK))
+			update_inv_hands()
+		return
+	if(!SEND_SIGNAL(equipped_back, COMSIG_CONTAINS_STORAGE)) // not a storage item
+		if(!thing)
+			equipped_back.attack_hand(src)
+		else
+			to_chat(src, "<span class='warning'>You can't fit anything in!</span>")
+		return
+	if(thing) // put thing in backpack
+		if(!SEND_SIGNAL(equipped_back, COMSIG_TRY_STORAGE_INSERT, thing, src))
+			to_chat(src, "<span class='warning'>You can't fit anything in!</span>")
+		return
+	if(!equipped_back.contents.len) // nothing to take out
+		to_chat(src, "<span class='warning'>There's nothing in your backpack to take out!</span>")
+		return
+	var/obj/item/stored = equipped_back.contents[equipped_back.contents.len]
+	if(!stored || stored.on_found(src))
+		return
+	stored.attack_hand(src) // take out thing from backpack
+	return
+
+/mob/living/carbon/human/proc/smart_equipbelt() // put held thing in belt or take most recent item out of belt
+	if(incapacitated())
+		return
+	var/obj/item/thing = get_active_held_item()
+	var/obj/item/equipped_belt = get_item_by_slot(SLOT_BELT)
+	if(!equipped_belt) // We also let you equip a belt like this
+		if(!thing)
+			to_chat(src, "<span class='warning'>You have no belt to take something out of!</span>")
+			return
+		if(equip_to_slot_if_possible(thing, SLOT_BELT))
+			update_inv_hands()
+		return
+	if(!SEND_SIGNAL(equipped_belt, COMSIG_CONTAINS_STORAGE)) // not a storage item
+		if(!thing)
+			equipped_belt.attack_hand(src)
+		else
+			to_chat(src, "<span class='warning'>You can't fit anything in!</span>")
+		return
+	if(thing) // put thing in belt
+		if(!SEND_SIGNAL(equipped_belt, COMSIG_TRY_STORAGE_INSERT, thing, src))
+			to_chat(src, "<span class='warning'>You can't fit anything in!</span>")
+		return
+	if(!equipped_belt.contents.len) // nothing to take out
+		to_chat(src, "<span class='warning'>There's nothing in your belt to take out!</span>")
+		return
+	var/obj/item/stored = equipped_belt.contents[equipped_belt.contents.len]
+	if(!stored || stored.on_found(src))
+		return
+	stored.attack_hand(src) // take out thing from belt
+	return
+
+/mob/living/carbon/human/proc/smart_equipsuit()
+	var/obj/item/thing = get_active_held_item()
+	var/obj/item/equipped_suit = get_item_by_slot(SLOT_SUIT_STORE)
+	if(!equipped_suit) 
+		if(!thing)
+			to_chat(src, span_notice("You have no suit storage to take something out of."))
+			return
+		if(equip_to_slot_if_possible(thing, SLOT_SUIT_STORE))
+			update_inv_hands()
+		return
+	if(!SEND_SIGNAL(equipped_suit, COMSIG_CONTAINS_STORAGE)) // not a storage item
+		if(!thing)
+			equipped_suit.attack_hand(src)
+		else
+			to_chat(src, span_notice("You can't fit anything in."))
+		return
+	if(thing) // put thing in suit storage
+		if(!SEND_SIGNAL(equipped_suit, COMSIG_TRY_STORAGE_INSERT, thing, src))
+			to_chat(src, span_notice("You can't fit anything in."))
+		return
+	if(!equipped_suit.contents.len) // nothing to take out
+		to_chat(src, span_notice("There's nothing in your suit storage to take out."))
+		return
+	var/obj/item/stored = equipped_suit.contents[equipped_suit.contents.len]
+	if(!stored || stored.on_found(src))
+		return
+	stored.attack_hand(src) // take out thing from suit storage
+	return

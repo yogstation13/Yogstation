@@ -3,8 +3,22 @@ What are the archived variables for?
 	Calculations are done using the archived variables with the results merged into the regular variables.
 	This prevents race conditions that arise based on the order of tile processing.
 */
-#define MINIMUM_HEAT_CAPACITY	0.0003
-#define MINIMUM_MOLE_COUNT		0.01
+
+/**
+ *I feel the need to document what happens here. Basically this is used
+ *catch rounding errors, and make gas go away in small portions.
+ *People have raised it to higher levels in the past, do not do this. Consider this number a soft limit
+ *If you're making gasmixtures that have unexpected behavior related to this value, you're doing something wrong.
+ *
+ *On an unrelated note this may cause a bug that creates negative gas, related to round(). When it has a second arg it will round up.
+ *So for instance round(0.5, 1) == 1. I've hardcoded a fix for this into share, by forcing the garbage collect.
+ *Any other attempts to fix it just killed atmos. I leave this to a greater man then I
+ */
+/// The minimum heat capacity of a gas
+#define MINIMUM_HEAT_CAPACITY 0.0003
+/// Minimum mole count of a gas
+#define MINIMUM_MOLE_COUNT 0.01
+
 #define QUANTIZE(variable)		(round(variable,0.0000001))/*I feel the need to document what happens here. Basically this is used to catch most rounding errors, however it's previous value made it so that
 															once gases got hot enough, most procedures wouldnt occur due to the fact that the mole counts would get rounded away. Thus, we lowered it a few orders of magnititude */
 GLOBAL_LIST_INIT(meta_gas_info, meta_gas_list()) //see ATMOSPHERICS/gas_types.dm
@@ -185,6 +199,8 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 		reactions += SSair.gas_reactions[I]
 	if(!length(reactions))
 		return
+	if (length(reactions) > 1)
+		reactions = sortTim(reactions, /proc/cmp_gas_reaction)
 	reaction_results = new
 	var/temp = return_temperature()
 	var/ener = thermal_energy()
@@ -311,3 +327,55 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 
 		return TRUE
 	return FALSE
+
+/datum/gas_mixture/proc/remove_specific_ratio(gas_id, ratio)
+	if(ratio <= 0)
+		return null
+	ratio = min(ratio, 1)
+
+	var/datum/gas_mixture/removed = new
+
+	removed.set_temperature(return_temperature())
+
+	var/current_moles = get_moles(gas_id)
+	var/moles_to_remove = QUANTIZE(current_moles * ratio)
+	var/moles_left = current_moles - moles_to_remove
+
+	// sanitize moles to ensure we aren't writing any invalid or tiny values
+	moles_left = clamp(moles_left, 0, current_moles)
+	if (moles_left < MINIMUM_MOLE_COUNT)
+		moles_left = 0
+		moles_to_remove = current_moles
+
+	removed.set_moles(gas_id, moles_to_remove)
+	set_moles(gas_id, moles_left)
+
+	return removed
+
+///Distributes the contents of two mixes equally between themselves
+//Returns: bool indicating whether gases moved between the two mixes
+/datum/gas_mixture/proc/equalize(datum/gas_mixture/other)
+	. = FALSE
+
+	var/self_temp = return_temperature()
+	var/other_temp = other.return_temperature()
+	if(abs(self_temp - other_temp) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
+		. = TRUE
+		var/self_heat_cap = heat_capacity()
+		var/other_heat_cap = other.heat_capacity()
+		var/new_temp = (self_temp * self_heat_cap + other_temp * other_heat_cap) / (self_heat_cap + other_heat_cap)
+		set_temperature(new_temp)
+		other.set_temperature(new_temp)
+
+	var/min_p_delta = 0.1
+	var/total_volume = return_volume() + other.return_volume()
+	var/list/gas_list = get_gases() | other.get_gases()
+	for(var/gas_id in gas_list)
+		//math is under the assumption temperatures are equal
+		var/self_moles = get_moles(gas_id)
+		var/other_moles = other.get_moles(gas_id)
+		if(abs(self_moles / return_volume() - other_moles / other.return_volume()) > min_p_delta / (R_IDEAL_GAS_EQUATION * return_temperature()))
+			. = TRUE
+			var/total_moles = self_moles + other_moles
+			set_moles(gas_id, total_moles * (return_volume() / total_volume))
+			other.set_moles(gas_id, total_moles * (other.return_volume() / total_volume))

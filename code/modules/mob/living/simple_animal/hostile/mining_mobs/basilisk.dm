@@ -101,6 +101,7 @@
 	icon_dead = "watcher_magmawing_dead"
 	maxHealth = 235 //Compensate for the lack of slowdown on projectiles with a bit of extra health
 	health = 235
+	light_system = MOVABLE_LIGHT
 	light_range = 3
 	light_power = 2.5
 	light_color = LIGHT_COLOR_LAVA
@@ -138,7 +139,7 @@
 		var/mob/living/L = target
 		if (istype(L))
 			L.adjust_fire_stacks(0.1)
-			L.IgniteMob()
+			L.ignite_mob()
 
 /obj/item/projectile/temp/basilisk/icewing
 	damage = 5

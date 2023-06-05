@@ -1,6 +1,10 @@
 /datum/job/captain
 	title = "Captain"
+	description = "Be responsible for the station, manage your Heads of Staff, \
+		keep the crew alive, be prepared to do anything and everything or die \
+		horribly trying."
 	flag = CAPTAIN
+	orbit_icon = "crown"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("CentCom")
 	department_flag = ENGSEC
@@ -12,10 +16,10 @@
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs
 	minimal_player_age = 14
-	exp_requirements = 300
+	exp_requirements = 900 //15 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
-	alt_titles = list("Station Commander", "Facility Director")
+	alt_titles = list("Station Commander", "Facility Director", "Chief Executive Officer")
 
 	outfit = /datum/outfit/job/captain
 
@@ -24,17 +28,33 @@
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SEC
 
+	department_for_prefs = /datum/job_department/captain
+	departments_list = list(
+		/datum/job_department/command,
+	)
+
 	mind_traits = list(TRAIT_DISK_VERIFIER)
+
+	mail_goodies = list(
+		/obj/item/clothing/mask/cigarette/cigar/havana = 20,
+		///obj/item/storage/fancy/cigarettes/cigars/havana = 15,
+		/obj/item/reagent_containers/food/drinks/bottle/champagne = 10,
+		/obj/item/fakeartefact = 5,
+		/obj/item/skub = 1,
+		/obj/item/greentext = 1
+	)
 
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	minimal_character_age = 35 //Feasibly expected to know everything and potentially do anything. Leagues of experience, briefing, training, and trust required for this role
+
+	smells_like = "unquestionable leadership"
 
 /datum/job/captain/get_access()
 	return get_all_accesses()
 
 /datum/job/captain/announce(mob/living/carbon/human/H)
 	..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Captain [H.real_name] on deck!"))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(minor_announce), "Captain [H.real_name] on deck!"))
 
 /datum/outfit/job/captain
 	name = "Captain"
@@ -42,8 +62,8 @@
 
 	id_type = /obj/item/card/id/gold
 	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
-	
-	glasses = /obj/item/clothing/glasses/sunglasses
+
+	glasses = /obj/item/clothing/glasses/hud/personnel
 	ears = /obj/item/radio/headset/heads/captain/alt
 	gloves = /obj/item/clothing/gloves/color/captain
 	uniform =  /obj/item/clothing/under/rank/captain

@@ -83,22 +83,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)
-"j" = (
-/obj/machinery/door/airlock/shuttle,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/arrival)
 "k" = (
 /obj/effect/turf_decal/caution{
 	dir = 4
@@ -273,6 +257,23 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/arrival)
+"N" = (
+/obj/machinery/door/airlock/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/shuttle/arrival)
 "Q" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
@@ -292,14 +293,14 @@
 a
 d
 f
-j
+N
 f
 R
 A
 d
 A
 A
-j
+N
 F
 f
 a

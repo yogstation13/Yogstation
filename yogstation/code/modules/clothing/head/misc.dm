@@ -1,13 +1,13 @@
 /obj/item/clothing/head/yogs/goatpelt
 	name = "goat pelt hat"
-	desc = "Fuzzy and Warm!"
+	desc = "Fuzzy and warm!"
 	icon_state = "goatpelt"
 	item_state = "goatpelt"
 
 
 /obj/item/clothing/head/yogs/goatpelt/king
 	name = "king goat pelt hat"
-	desc = "Fuzzy, Warm and Robust!"
+	desc = "Fuzzy, warm and robust!"
 	icon_state = "goatpelt"
 	item_state = "goatpelt"
 	color = "#ffd700"

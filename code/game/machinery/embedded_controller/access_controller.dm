@@ -5,7 +5,7 @@
 #define CYCLE_INTERIOR	5
 
 /obj/machinery/doorButtons
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -78,7 +78,7 @@
 					controller.cycleClose(door)
 		else
 			controller.onlyClose(door)
-		addtimer(CALLBACK(src, .proc/not_busy), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(not_busy)), 2 SECONDS)
 
 /obj/machinery/doorButtons/access_button/proc/not_busy()
 	busy = FALSE

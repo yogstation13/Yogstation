@@ -5,7 +5,7 @@
 
 /obj/item/storage/byummie
 	name = "borer yummies"
-	desc = "These'll squeeze your brains out, and make your mind go poppin!"
+	desc = "These'll squeeze your brains out, and make your mind go poppin'!"
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "byummie"
 	w_class = WEIGHT_CLASS_TINY

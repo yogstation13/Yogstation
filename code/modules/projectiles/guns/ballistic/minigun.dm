@@ -14,7 +14,7 @@
 	var/obj/item/gun/ballistic/minigunosprey/gun
 	var/armed = FALSE //whether the gun is attached, FALSE is attached, TRUE is the gun is wielded.
 	var/overheat = 0
-	var/overheat_max = 30
+	var/overheat_max = 50
 	var/heat_stage = 0
 	var/heat_diffusion = 2
 
@@ -76,8 +76,8 @@
 
 		if(!M.incapacitated())
 
-			if(istype(over_object, /obj/screen/inventory/hand))
-				var/obj/screen/inventory/hand/H = over_object
+			if(istype(over_object, /atom/movable/screen/inventory/hand))
+				var/atom/movable/screen/inventory/hand/H = over_object
 				M.putItemFromInventoryInHandIfPossible(src, H.held_index)
 
 
@@ -109,7 +109,7 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_left.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/minigun_inhand_right.dmi'
 	flags_1 = CONDUCT_1
-	slowdown = 2
+	slowdown = 1.4
 	slot_flags = null
 	w_class = WEIGHT_CLASS_HUGE
 	materials = list()
@@ -137,6 +137,10 @@
 		return INITIALIZE_HINT_QDEL //No pack, no gun
 
 	return ..()
+
+//To prevent unloading the gun
+/obj/item/gun/ballistic/minigunosprey/attack_hand(mob/user)
+	return
 
 /obj/item/gun/ballistic/minigunosprey/attack_self(mob/living/user)
 	return

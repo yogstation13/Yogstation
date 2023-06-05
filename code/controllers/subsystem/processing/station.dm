@@ -27,7 +27,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	announcer = new announcer() //Initialize the station's announcer datum
 	default_announcer = new default_announcer()
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 ///Rolls for the amount of traits and adds them to the traits list
 /datum/controller/subsystem/processing/station/proc/SetupTraits()
@@ -75,7 +75,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 			continue
 		report += "[trait.get_report()]<BR><hr>"
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/print_command_report, report, "Central Command Divergency Report", FALSE), rand(REPORT_WAIT_TIME_MINIMUM, REPORT_WAIT_TIME_MAXIMUM))
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(print_command_report), report, "Central Command Divergency Report", FALSE), rand(REPORT_WAIT_TIME_MINIMUM, REPORT_WAIT_TIME_MAXIMUM))
 
 #undef REPORT_WAIT_TIME_MINIMUM
 #undef REPORT_WAIT_TIME_MAXIMUM

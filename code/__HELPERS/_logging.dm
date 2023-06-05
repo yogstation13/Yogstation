@@ -183,6 +183,11 @@
 	if (CONFIG_GET(flag/log_job_debug))
 		WRITE_LOG(GLOB.world_job_debug_log, "JOB: [text]")
 
+/// Logging for wizard powers learned
+/proc/log_spellbook(text)
+	if (CONFIG_GET(flag/log_uplink))
+		WRITE_LOG(GLOB.world_uplink_log, "SPELLBOOK: [text]")
+
 /* Log to both DD and the logfile. */
 /proc/log_world(text)
 #ifdef USE_CUSTOM_ERROR_HANDLER
@@ -194,6 +199,9 @@
 /proc/log_runtime(text)
 	WRITE_LOG(GLOB.world_runtime_log, text)
 
+/proc/log_signal(text)
+	WRITE_LOG(GLOB.signals_log, text)
+
 /* Rarely gets called; just here in case the config breaks. */
 /proc/log_config(text)
 	WRITE_LOG(GLOB.config_error_log, text)
@@ -201,6 +209,7 @@
 
 /proc/log_mapping(text)
 	WRITE_LOG(GLOB.world_map_error_log, text)
+	
 
 /**
  * Appends a tgui-related log entry. All arguments are optional.

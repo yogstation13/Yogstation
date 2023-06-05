@@ -129,13 +129,18 @@ Yogs End*/
 
 				if(reject_bound_cid || reject_bound_ip)
 					var/cause = reject_bound_cid ? "computer ID" : "IP address"
-					var/msg = {"This [cause] has been bound to another account.
+					var/msg = {"Round ID [GLOB.round_id]: This [cause] has been bound to another account.
 					Please visit [CONFIG_GET(string/banappeals) || "the forums"] if this was done in error or if you have recently changed BYOND accounts."}
 					log_access("Failed Login: [key] [computer_id] [address] - Bound [cause]")
 					key_cache[key] = 0
 					return list("reason" = "bound [cause]", "desc" = msg)
 				
 				qdel(query_get_bound_creds)
+
+				if(SSechelon.is_match(ckey, address))
+					log_access("Failed Login: [key] [computer_id] [address] - Blocked due to proxy")
+					key_cache[key] = FALSE
+					return list("reason" = "proxy", "desc" = "Round ID [GLOB.round_id]: Your connection has been blocked due to originating from a suspicious IP. If you are using a VPN product, disable it and reconnect. If you are not using a VPN or if you are required to use one to connect to the server, please visit [CONFIG_GET(string/banappeals) || "the forums"].")
 
 			var/list/ban_details = is_banned_from_with_details(ckey, address, computer_id, "Server")
 			for(var/i in ban_details)

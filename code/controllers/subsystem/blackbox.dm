@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(blackbox)
 	name = "Blackbox"
-	wait = 6000
-	flags = SS_NO_TICK_CHECK
+	wait = 10 MINUTES
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	init_order = INIT_ORDER_BLACKBOX
 
@@ -12,7 +11,7 @@ SUBSYSTEM_DEF(blackbox)
 	var/list/versions = list("antagonists" = 3,
 							"admin_secrets_fun_used" = 2,
 							"explosion" = 2,
-							"time_dilation_current" = 3,
+							"time_dilation_current" = 4,
 							"science_techweb_unlock" = 2,
 							"round_end_stats" = 2,
 							"testmerged_prs" = 2) //associative list of any feedback variables that have had their format changed since creation and their current version, remember to update this
@@ -23,7 +22,7 @@ SUBSYSTEM_DEF(blackbox)
 	record_feedback("amount", "dm_version", DM_VERSION)
 	record_feedback("amount", "byond_version", world.byond_version)
 	record_feedback("amount", "byond_build", world.byond_build)
-	. = ..()
+	return SS_INIT_SUCCESS
 
 //poll population
 /datum/controller/subsystem/blackbox/fire()

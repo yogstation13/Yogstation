@@ -49,6 +49,11 @@
 	var/ricochet_chance = 30
 	var/force_hit = FALSE //If the object being hit can pass ths damage on to something else, it should not do it for this bullet.
 
+	//Atom penetration, set to mobs by default
+	var/penetrating = FALSE
+	var/penetrations = INFINITY
+	var/penetration_type = 0 //Set to 1 if you only want to have it penetrate objects. Set to 2 if you want it to penetrate objects and mobs.
+
 	//Hitscan
 	var/hitscan = FALSE		//Whether this is hitscan. If it is, speed is basically ignored.
 	var/list/beam_segments	//assoc list of datum/point or datum/point/vector, start = end. Used for hitscan effect generation.
@@ -71,6 +76,7 @@
 
 	//Homing
 	var/homing = FALSE
+	var/homing_away = FALSE		// In case you want it to instead turn away from the target, useful for when the projectile is going haywire!
 	var/atom/homing_target
 	var/homing_turn_speed = 10		//Angle per tick.
 	var/homing_inaccuracy_min = 0		//in pixels for these. offsets are set once when setting target.
@@ -105,11 +111,15 @@
 	var/dismemberment = 0 //The higher the number, the greater the bonus to dismembering. 0 will not dismember at all.
 	var/impact_effect_type //what type of impact effect to show when hitting something
 	var/log_override = FALSE //is this type spammed enough to not log? (KAs)
+	/// We ignore mobs with these factions.
+	var/list/ignored_factions
 
 	var/temporary_unstoppable_movement = FALSE
 
 	///How much we want to drop both wound_bonus and bare_wound_bonus (to a minimum of 0 for the latter) per tile, for falloff purposes
 	var/wound_falloff_tile
+
+	var/splatter = FALSE // Make a cool splatter effect even if it doesn't do brute damage
 
 /obj/item/projectile/Initialize()
 	. = ..()
@@ -162,17 +172,26 @@
 
 		W.add_dent(WALL_DENT_SHOT, hitx, hity)
 
+		if(penetrating && (penetration_type == 1 || penetration_type == 2) && penetrations > 0)
+			penetrations -= 1
+			return BULLET_ACT_FORCE_PIERCE
+
 		return BULLET_ACT_HIT
 
 	if(!isliving(target))
 		if(impact_effect_type && !hitscan)
 			new impact_effect_type(target_loca, hitx, hity)
+
+		if(penetrating && (penetration_type == 1 || penetration_type == 2) && penetrations > 0)
+			penetrations -= 1
+			return BULLET_ACT_FORCE_PIERCE
+
 		return BULLET_ACT_HIT
 
 	var/mob/living/L = target
 
 	if(blocked != 100) // not completely blocked
-		if(damage && L.blood_volume && damage_type == BRUTE)
+		if(damage && L.blood_volume && (damage_type == BRUTE || splatter))
 			var/mob/living/carbon/C = L
 			var/splatter_dir = dir
 			if(starting)
@@ -184,7 +203,7 @@
 			else
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter/genericsplatter(target_loca, splatter_dir)
 			var/obj/item/bodypart/B = L.get_bodypart(def_zone)
-			if(B.status == BODYPART_ROBOTIC) // So if you hit a robotic, it sparks instead of bloodspatters
+			if(B?.status == BODYPART_ROBOTIC) // So if you hit a robotic, it sparks instead of bloodspatters
 				do_sparks(2, FALSE, target.loc)
 				if(prob(25))
 					new /obj/effect/decal/cleanable/oil(target_loca)
@@ -324,18 +343,18 @@
 		if(!can_hit_target(M, permutated, M == original, TRUE))
 			continue
 		mobs += M
-	var/mob/M = safepick(mobs)
-	if(M)
-		return M.lowest_buckled_mob()
+	if(LAZYLEN(mobs))
+		var/mob/M = pick(mobs)
+		return M?.lowest_buckled_mob()
 	var/list/obj/possible_objs = typecache_filter_list(T, GLOB.typecache_machine_or_structure)
 	var/list/obj/objs = list()
 	for(var/obj/O in possible_objs)
 		if(!can_hit_target(O, permutated, O == original, TRUE))
 			continue
 		objs += O
-	var/obj/O = safepick(objs)
-	if(O)
-		return O
+	if(LAZYLEN(objs))
+		var/obj/object_chosen = pick(objs)
+		return object_chosen
 	//Nothing else is here that we can hit, hit the turf if we haven't.
 	if(!(T in permutated) && can_hit_target(T, permutated, T == original, TRUE))
 		return T
@@ -545,7 +564,7 @@
 	PT.x += clamp(homing_offset_x, 1, world.maxx)
 	PT.y += clamp(homing_offset_y, 1, world.maxy)
 	var/angle = closer_angle_difference(Angle, angle_between_points(RETURN_PRECISE_POINT(src), PT))
-	setAngle(Angle + clamp(angle, -homing_turn_speed, homing_turn_speed))
+	setAngle(Angle + clamp(homing_away ? -angle : angle, -homing_turn_speed, homing_turn_speed))
 
 /obj/item/projectile/proc/set_homing_target(atom/A)
 	if(!A || (!isturf(A) && !isturf(A.loc)))
@@ -570,7 +589,11 @@
 			var/mob/living/L = M
 			if((target in L.hasparasites()) && target.loc == L.loc)
 				return FALSE
-		if((target == firer) || ((target == firer.loc) && (ismecha(firer.loc) || isspacepod(firer.loc))) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target))) //cannot shoot yourself or your mech // yogs - or your spacepod)
+		if((target == firer) || ((target == firer.loc) && (ismecha(firer.loc) || isspacepod(firer.loc))) || !ismovable(M) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target))) //cannot shoot yourself or your mech // yogs - or your spacepod)
+			return FALSE
+	if(ignored_factions?.len && ismob(target) && !direct_target)
+		var/mob/target_mob = target
+		if(faction_check(target_mob.faction, ignored_factions))
 			return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE
@@ -584,7 +607,7 @@
 	else
 		var/mob/living/L = target
 		if(!direct_target)
-			if(!CHECK_BITFIELD(L.mobility_flags, MOBILITY_STAND) && (L in range(2, starting))) //if we're shooting over someone who's prone and nearby bc formations are cool and not going to be unbalanced
+			if(!CHECK_BITFIELD(L.mobility_flags, MOBILITY_STAND) && (L in range(1, starting))) //if we're shooting over someone who's prone and nearby bc formations are cool and not going to be unbalanced
 				return FALSE
 			if(!CHECK_BITFIELD(L.mobility_flags, MOBILITY_USE | MOBILITY_STAND | MOBILITY_MOVE) || !(L.stat == CONSCIOUS))		//If they're able to 1. stand or 2. use items or 3. move, AND they are not softcrit,  they are not stunned enough to dodge projectiles passing over.
 				return FALSE
@@ -640,12 +663,10 @@
 		var/y = text2num(screen_loc_Y[1]) * 32 + text2num(screen_loc_Y[2]) - 32
 
 		//Calculate the "resolution" of screen based on client's view and world's icon size. This will work if the user can view more tiles than average.
-		var/list/screenview = getviewsize(user.client.view)
-		var/screenviewX = screenview[1] * world.icon_size
-		var/screenviewY = screenview[2] * world.icon_size
+		var/list/screenview = view_to_pixels(user.client.view)
 
-		var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
-		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
+		var/ox = round(screenview[1] / 2) - user.client.pixel_x //"origin" x
+		var/oy = round(screenview[2] / 2) - user.client.pixel_y //"origin" y
 		angle = ATAN2(y - oy, x - ox)
 	return list(angle, p_x, p_y)
 

@@ -1,12 +1,13 @@
 /datum/antagonist/gang
 	name = "Gangster"
 	roundend_category = "gangsters"
+	antag_hud_name = "gangster"
 	can_coexist_with_others = FALSE
 	job_rank = ROLE_GANG
 	antagpanel_category = "Gang"
-	var/hud_type = "gangster"
 	var/message_name = "Gangster"
 	var/datum/team/gang/gang
+	preview_outfit = /datum/outfit/gangster
 
 /datum/antagonist/gang/can_be_owned(datum/mind/new_owner)
 	. = ..()
@@ -15,12 +16,34 @@
 			return FALSE
 
 /datum/antagonist/gang/apply_innate_effects(mob/living/mob_override)
-	var/mob/living/M = mob_override || owner.current
-	update_gang_icons_added(M)
+	add_team_hud(mob_override || owner.current)
 
-/datum/antagonist/gang/remove_innate_effects(mob/living/mob_override)
-	var/mob/living/M = mob_override || owner.current
-	update_gang_icons_removed(M)
+/datum/antagonist/gang/add_team_hud(mob/target)
+	QDEL_NULL(team_hud_ref)
+
+	team_hud_ref = WEAKREF(target.add_alt_appearance(
+		/datum/atom_hud/alternate_appearance/basic/has_antagonist,
+		"antag_team_hud_[REF(src)]",
+		hud_image_on(target),
+	))
+
+	var/datum/atom_hud/alternate_appearance/basic/has_antagonist/hud = team_hud_ref.resolve()
+
+	var/list/mob/living/mob_list = list()
+	for(var/datum/mind/collegues_minds as anything in gang.members)
+		mob_list += collegues_minds.current
+
+	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
+		if(!(antag_hud.target in mob_list))
+			continue
+		antag_hud.show_to(target)
+		hud.show_to(antag_hud.target)
+
+/datum/antagonist/gang/hud_image_on(mob/hud_loc)
+	var/image/hud = image(hud_icon, hud_loc, antag_hud_name)
+	hud.color = gang.color
+	hud.plane = ABOVE_HUD_PLANE //not quite but needed
+	return hud
 
 /datum/antagonist/gang/get_team()
 	return gang
@@ -55,22 +78,6 @@
 /datum/antagonist/gang/proc/equip_gang() // Bosses get equipped with their tools
 	return
 
-/datum/antagonist/gang/proc/update_gang_icons_added(mob/living/M)
-	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.hud_entry_num]
-	if(!ganghud)
-		ganghud = new/datum/atom_hud/antag/gang()
-		gang.hud_entry_num = GLOB.huds.len+1 // this is the index the gang hud will be added at
-		GLOB.huds += ganghud
-	ganghud.color = gang.color
-	ganghud.join_hud(M)
-	set_antag_hud(M,hud_type)
-
-/datum/antagonist/gang/proc/update_gang_icons_removed(mob/living/M)
-	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.hud_entry_num]
-	if(ganghud)
-		ganghud.leave_hud(M)
-		set_antag_hud(M, null)
-
 /datum/antagonist/gang/proc/can_be_converted(mob/living/candidate)
 	if(!candidate.mind)
 		return FALSE
@@ -97,11 +104,11 @@
 // Admin commands
 /datum/antagonist/gang/get_admin_commands()
 	. = ..()
-	.["Promote"] = CALLBACK(src,.proc/admin_promote)
-	.["Set Influence"] = CALLBACK(src, .proc/admin_adjust_influence)
-	.["Set Uniform Influence"] = CALLBACK(src, .proc/admin_adjust_uniform_influence)
+	.["Promote"] = CALLBACK(src, PROC_REF(admin_promote))
+	.["Set Influence"] = CALLBACK(src, PROC_REF(admin_adjust_influence))
+	.["Set Uniform Influence"] = CALLBACK(src, PROC_REF(admin_adjust_uniform_influence))
 	if(gang.domination_time != NOT_DOMINATING)
-		.["Set domination time left"] = CALLBACK(src, .proc/set_dom_time_left)
+		.["Set domination time left"] = CALLBACK(src, PROC_REF(set_dom_time_left))
 
 /datum/antagonist/gang/admin_add(datum/mind/new_owner,mob/admin)
 	var/new_or_existing = input(admin, "Which gang do you want to be assigned to the user?", "Gangs") as null|anything in list("New","Existing")
@@ -169,18 +176,14 @@
 // Boss type. Those can use gang tools to buy items for their gang, in particular the Dominator, used to win the gamemode, along with more gang tools to promote fellow gangsters to boss status.
 /datum/antagonist/gang/boss
 	name = "Gang boss"
-	hud_type = "gang_boss"
+	antag_hud_name = "gang_boss"
 	message_name = "Leader"
 
 /datum/antagonist/gang/boss/on_gain()
 	..()
 	if(gang)
 		gang.leaders += owner
-	var/mob/living/carbon/human/H = owner.current
-	if(istype(H))
-		if(owner.assigned_role == "Clown")
-			to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
-			H.dna.remove_mutation(CLOWNMUT)
+	handle_clown_mutation(owner.current, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 
 /datum/antagonist/gang/boss/on_removal()
 	if(gang)
@@ -250,9 +253,9 @@
 /datum/antagonist/gang/boss/get_admin_commands()
 	. = ..()
 	. -= "Promote"
-	.["Take gangtool"] = CALLBACK(src,.proc/admin_take_gangtool)
-	.["Give gangtool"] = CALLBACK(src,.proc/admin_give_gangtool)
-	.["Demote"] = CALLBACK(src,.proc/admin_demote)
+	.["Take gangtool"] = CALLBACK(src, PROC_REF(admin_take_gangtool))
+	.["Give gangtool"] = CALLBACK(src, PROC_REF(admin_give_gangtool))
+	.["Demote"] = CALLBACK(src, PROC_REF(admin_demote))
 
 /datum/antagonist/gang/boss/proc/demote()
 	var/old_gang = gang
@@ -332,7 +335,7 @@
 				CJ.add_antag_datum(bossdatum, src)
 				bossdatum.equip_gang()
 	next_point_time = world.time + INFLUENCE_INTERVAL
-	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
+	addtimer(CALLBACK(src, PROC_REF(handle_territories)), INFLUENCE_INTERVAL)
 
 /datum/team/gang/Destroy()
 	GLOB.gangs -= src
@@ -421,7 +424,7 @@
 		uniform_influence = new_uniform_influence
 		message += "Your gang now has <b>[influence] influence</b> and <b>[uniform_influence] supply points</b>.<BR>"
 	message_gangtools(message)
-	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
+	addtimer(CALLBACK(src, PROC_REF(handle_territories)), INFLUENCE_INTERVAL)
 
 /datum/team/gang/proc/total_claimable_territories()
 	var/list/valid_territories = list()
@@ -473,6 +476,13 @@
 
 /datum/team/gang/proc/adjust_uniform_influence(value)
 	uniform_influence = max(0, uniform_influence + value)
+
+/datum/outfit/gangster
+	name = "Gangster (Preview only)"
+	mask = /obj/item/clothing/mask/cigarette/cigar/havana
+	uniform = /obj/item/clothing/under/rank/vice
+	neck = /obj/item/clothing/neck/necklace/dope
+	head = /obj/item/clothing/head/fedora
 
 /datum/team/gang/proc/count_members()
 	for(var/datum/mind/gangmind in members)

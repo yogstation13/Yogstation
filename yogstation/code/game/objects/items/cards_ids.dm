@@ -88,7 +88,7 @@
 
 /obj/item/card/id/gasclerk
 	name = "Clerk"
-	desc = "A employee ID used to access areas around the gastation."
+	desc = "An employee ID used to access areas around the gas station."
 	access = list(ACCESS_MANUFACTURING)
 
 /obj/item/card/id/gasclerk/New()

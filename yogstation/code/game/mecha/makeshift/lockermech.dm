@@ -4,7 +4,7 @@
 	icon = 'yogstation/icons/mecha/lockermech.dmi'
 	icon_state = "lockermech"
 	max_integrity = 100 //its made of scraps
-	lights_power = 5
+	light_power = 5
 	step_in = 4 //Same speed as a ripley, for now.
 	armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 70, ACID = 60) //Same armour as a locker
 	internal_damage_threshold = 30 //Its got shitty durability

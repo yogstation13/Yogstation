@@ -180,5 +180,5 @@
 		return
 	if(!bud.finish_time)
 		return -1
-	var/time_left = max(0, (bud.finish_time - world.time) / 10)
+	var/time_left = CEILING(max(0, (bud.finish_time - world.time) / 10), 1)
 	return time_left

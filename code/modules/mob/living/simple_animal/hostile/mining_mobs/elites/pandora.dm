@@ -36,6 +36,7 @@
 	speed = 4
 	move_to_delay = 10
 	mouse_opacity = MOUSE_OPACITY_ICON
+	internal_type = /obj/item/gps/internal/pandora
 	deathsound = 'sound/magic/repulse.ogg'
 	deathmessage = "'s lights flicker, before its top part falls down."
 	loot_drop = /obj/item/clothing/accessory/pandora_hope
@@ -118,7 +119,7 @@
 	new /obj/effect/temp_visual/hierophant/blast/pandora(T, src)
 	T = get_step(T, angleused)
 	procsleft = procsleft - 1
-	addtimer(CALLBACK(src, .proc/singular_shot_line, procsleft, angleused, T), 2)
+	addtimer(CALLBACK(src, PROC_REF(singular_shot_line), procsleft, angleused, T), 2)
 
 /mob/living/simple_animal/hostile/asteroid/elite/pandora/proc/magic_box(target)
 	ranged_cooldown = world.time + cooldown_time
@@ -134,7 +135,7 @@
 	new /obj/effect/temp_visual/hierophant/telegraph(T, src)
 	new /obj/effect/temp_visual/hierophant/telegraph(source, src)
 	playsound(source,'sound/machines/airlockopen.ogg', 200, 1)
-	addtimer(CALLBACK(src, .proc/pandora_teleport_2, T, source), 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(pandora_teleport_2), T, source), 0.2 SECONDS)
 
 /mob/living/simple_animal/hostile/asteroid/elite/pandora/proc/pandora_teleport_2(var/turf/T, var/turf/source)
 	new /obj/effect/temp_visual/hierophant/telegraph/teleport(T, src)
@@ -146,7 +147,7 @@
 	animate(src, alpha = 0, time = 0.2 SECONDS, easing = EASE_OUT) //fade out
 	visible_message("[span_hierophant_warning("[src] fades out!")]")
 	density = FALSE
-	addtimer(CALLBACK(src, .proc/pandora_teleport_3, T), 0.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(pandora_teleport_3), T), 0.2 SECONDS)
 
 /mob/living/simple_animal/hostile/asteroid/elite/pandora/proc/pandora_teleport_3(var/turf/T)
 	forceMove(T)
@@ -159,7 +160,7 @@
 	var/turf/T = get_turf(target)
 	new /obj/effect/temp_visual/hierophant/blast/pandora(T, src)
 	var/max_size = 2
-	addtimer(CALLBACK(src, .proc/aoe_squares_2, T, 0, max_size), 2)
+	addtimer(CALLBACK(src, PROC_REF(aoe_squares_2), T, 0, max_size), 2)
 
 /mob/living/simple_animal/hostile/asteroid/elite/pandora/proc/aoe_squares_2(var/turf/T, var/ring, var/max_size)
 	if(ring > max_size)
@@ -167,7 +168,18 @@
 	for(var/t in spiral_range_turfs(ring, T))
 		if(get_dist(t, T) == ring)
 			new /obj/effect/temp_visual/hierophant/blast/pandora(t, src)
-	addtimer(CALLBACK(src, .proc/aoe_squares_2, T, (ring + 1), max_size), 2)
+	addtimer(CALLBACK(src, PROC_REF(aoe_squares_2), T, (ring + 1), max_size), 2)
+
+/obj/item/gps/internal/pandora
+	icon_state = null
+	gpstag = "Chaotic Signal"
+	desc = "You opened the box."
+	invisibility = 100
+
+/mob/living/simple_animal/hostile/asteroid/elite/pandora/death()
+	QDEL_NULL(internal) // removes signal from a deceased elite.
+	. = ..()
+
 
 //The specific version of hiero's squares pandora uses
 /obj/effect/temp_visual/hierophant/blast/pandora

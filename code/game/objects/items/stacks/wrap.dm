@@ -69,6 +69,9 @@
 		return
 	if(target.anchored)
 		return
+	if(HAS_TRAIT(target, TRAIT_NODROP))
+		to_chat(user, span_warning("You can't seem to figure out a way to wrap this."))
+		return
 
 	if(isitem(target))
 		var/obj/item/I = target

@@ -7,7 +7,7 @@
 	resistance_flags = FIRE_PROOF
 	armor = list(MELEE = 65, BULLET = 35, LASER = 25, ENERGY = 10, BOMB = 35, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/gun/energy/kinetic_accelerator)
+	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/gun/energy/kinetic_accelerator)
 
 /obj/item/clothing/suit/armor/vest/rycliesarmour
 	name = "war armour"

@@ -91,12 +91,16 @@
 	throw_speed = 3
 	throw_range = 7
 	w_class = WEIGHT_CLASS_SMALL
-
+	var/nt_datum = /datum/component/uplink/nanotrasen //Component for the uplink to use.
 	var/wc_start = 20 // Starting warpcrystal amount
+	var/datum_owner //i dont know what this does and i'm too afraid to ask
 
 /obj/item/ntuplink/Initialize(mapload, owner)
 	. = ..()
-	AddComponent(/datum/component/uplink/nanotrasen, owner, FALSE, TRUE, null, wc_start)
+	datum_owner = owner
+	
+/obj/item/ntuplink/proc/finalize()
+	AddComponent(nt_datum, datum_owner, FALSE, TRUE, null, wc_start)
 
 /obj/item/ntuplink/official
 	name = "centcom official uplink"

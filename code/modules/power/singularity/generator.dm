@@ -15,15 +15,25 @@
 	buckle_requires_restraints = TRUE
 
 	var/energy = 0
-	var/creation_type = /obj/singularity
+	var/creation_type = /obj/singularity/gravitational
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH)
 		default_unfasten_wrench(user, W, 0)
 	else
 		return ..()
+/obj/machinery/the_singularitygen/update_icon(power)
+	if(power)
+		if(power>150)
+			animate(src, icon_state = "[initial(icon_state)]_3", 10)
+		else if(power>100)
+			animate(src, icon_state = "[initial(icon_state)]_2", 10)
+		else if(power>50)
+			animate(src, icon_state = "[initial(icon_state)]_1", 10)
+		else
+			animate(src, icon_state = initial(icon_state), 10)
 
-/obj/machinery/the_singularitygen/process()
+/obj/machinery/the_singularitygen/process(delta_time)
 	if(energy > 0)
 		if(energy >= 200)
 			var/turf/T = get_turf(src)
@@ -32,4 +42,5 @@
 			transfer_fingerprints_to(S)
 			qdel(src)
 		else
-			energy -= 1
+			energy -= delta_time * 0.5
+			update_icon(energy)

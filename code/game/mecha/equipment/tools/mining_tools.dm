@@ -12,7 +12,7 @@
 	equip_cooldown = 15
 	energy_drain = 10
 	force = 15
-	harmful = TRUE
+	harmful = FALSE
 	/// Time in deciseconds it takes to drill
 	var/drill_delay = 7
 	/// Affects if it can bust through reinforced walls (DRILL_HARDENED)

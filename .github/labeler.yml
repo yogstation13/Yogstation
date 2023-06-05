@@ -15,21 +15,26 @@ DME Edit:
   - './*.dme'
   - '**/*.dme'
 
-# Any .dmi changes
+# Changes to a .dmi or anything in the icons folder
 Sprites: 
   - '**/*.dmi'
+  - 'icons/*.dmi'
 
 # Javascript changes
 Javascript: 
   - '**/*.js'
 
-# Changes to a .dmm
-Map Change: 
+# Changes to a .dmm or anything in the _maps folder or any of the map definitions
+Mapping: 
   - '**/*.dmm'
+  - '_maps/**'
+  - 'code/datums/ruins/**'
+  - 'code/datums/shuttles.dm'
 
-# Any changes to .ogg files are marked as sound
+# Changes to a .ogg or anything in the sound folder
 Sound: 
   - '**/*.ogg'
+  - 'sound/**'
 
 # Changes to the SQL subfolder
 SQL: 

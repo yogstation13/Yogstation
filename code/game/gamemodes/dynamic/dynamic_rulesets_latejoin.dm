@@ -94,6 +94,7 @@
 	var/required_heads_of_staff = 3
 	var/finished = FALSE
 	var/datum/team/revolution/revolution
+	minimum_players = 30
 
 /datum/dynamic_ruleset/latejoin/provocateur/ready(forced=FALSE)
 	if (forced)
@@ -202,7 +203,7 @@
 	weight = 4
 	cost = 15
 	requirements = list(45,40,40,35,30,30,20,20,20,20)
-	minimum_players = 30
+	minimum_players = 15
 	repeatable = TRUE
 
 
@@ -249,7 +250,7 @@
 	minimum_players = 25
 	repeatable = FALSE
 
-/datum/dynamic_ruleset/latejoin/trim_candidates()
+/datum/dynamic_ruleset/latejoin/bloodsucker/trim_candidates()
 	. = ..()
 	for(var/mob/living/carbon/C in candidates)
 		if(C?.dna?.species && (NOBLOOD in C?.dna?.species.species_traits))
@@ -267,7 +268,7 @@
 			assigned -= selected_player
 			message_admins("[ADMIN_LOOKUPFLW(selected_player)] was selected by the [name] ruleset, but couldn't be made into a Bloodsucker.")
 			return FALSE
-		sucker.bloodsucker_level_unspent = rand(2,3)
+		sucker.bloodsucker_level_unspent = rand(3,4)
 		message_admins("[ADMIN_LOOKUPFLW(selected_player)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
 		log_game("DYNAMIC: [key_name(selected_player)] was selected by the [name] ruleset and has been made into a midround Bloodsucker.")
 	return TRUE

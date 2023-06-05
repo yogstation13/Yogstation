@@ -1,5 +1,5 @@
 GLOBAL_LIST_INIT(mentor_verbs, list(
-	/client/proc/cmd_mentor_say,
+	/client/verb/cmd_mentor_say,
 	/client/proc/show_mentor_memo,
 	/client/proc/show_mentor_tickets,
 	/client/proc/cmd_mentor_pm_context,

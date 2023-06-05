@@ -15,6 +15,9 @@
 /// Maximum ping timeout allowed to detect zombie windows
 #define TGUI_PING_TIMEOUT 4 SECONDS
 
+/// Used for rate-limiting to prevent DoS by excessively refreshing a TGUI window
+#define TGUI_REFRESH_FULL_UPDATE_COOLDOWN 5 SECONDS
+
 /// Window does not exist
 #define TGUI_WINDOW_CLOSED 0
 /// Window was just opened, but is still not ready to be sent data

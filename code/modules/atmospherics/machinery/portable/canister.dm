@@ -6,6 +6,9 @@
 	icon = 'icons/obj/atmospherics/canister.dmi'
 	icon_state = "hazard"
 	density = TRUE
+	light_system = MOVABLE_LIGHT
+	light_range = 1.4
+	light_on = FALSE
 	var/valve_open = FALSE
 	var/obj/machinery/atmospherics/components/binary/passive_gate/pump
 	var/release_log = ""
@@ -45,13 +48,12 @@
 		"co2" = /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 		"plasma" = /obj/machinery/portable_atmospherics/canister/toxins,
 		"n2o" = /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-		"no2" = /obj/machinery/portable_atmospherics/canister/nitryl,
+		"nitrium" = /obj/machinery/portable_atmospherics/canister/nitrium,
 		"bz" = /obj/machinery/portable_atmospherics/canister/bz,
 		"air" = /obj/machinery/portable_atmospherics/canister/air,
 		"water vapor" = /obj/machinery/portable_atmospherics/canister/water_vapor,
 		"tritium" = /obj/machinery/portable_atmospherics/canister/tritium,
 		"hyper-noblium" = /obj/machinery/portable_atmospherics/canister/nob,
-		"stimulum" = /obj/machinery/portable_atmospherics/canister/stimulum,
 		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
 		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma,
@@ -134,17 +136,11 @@
 	icon_state = "hypno"
 	gas_type = /datum/gas/hypernoblium
 
-/obj/machinery/portable_atmospherics/canister/nitryl
-	name = "Nitryl canister"
-	desc = "Nitryl gas. Feels great 'til the acid eats your lungs."
-	icon_state = "nitryl"
-	gas_type = /datum/gas/nitryl
-
-/obj/machinery/portable_atmospherics/canister/stimulum
-	name = "Stimulum canister"
-	desc = "Stimulum. High energy gas, high energy people."
-	icon_state = "stimulum"
-	gas_type = /datum/gas/stimulum
+/obj/machinery/portable_atmospherics/canister/nitrium
+	name = "Nitrium canister"
+	desc = "Nitrium gas. Feels great 'til the acid eats your lungs."
+	icon_state = "nitrium"
+	gas_type = /datum/gas/nitrium
 
 /obj/machinery/portable_atmospherics/canister/pluoxium
 	name = "Pluoxium canister"
@@ -195,7 +191,7 @@
 
 /obj/machinery/portable_atmospherics/canister/pluonium
 	name = "Pluonium canister"
-	desc = "Pluonium, react differently with various gases"
+	desc = "Pluonium, reacts differently with various gases"
 	icon_state = "pluonium"
 	gas_type = /datum/gas/pluonium
 	filled = 1
@@ -219,6 +215,13 @@
 	desc = "Zauker, highly toxic"
 	icon_state = "zauker"
 	gas_type = /datum/gas/zauker
+	filled = 1
+
+/obj/machinery/portable_atmospherics/canister/antinoblium
+	name = "Antinoblium canister"
+	desc = "Antinoblium, we still don't know what it does, but it sells for a lot"
+	icon_state = "halon"
+	gas_type = /datum/gas/antinoblium
 	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/proc/get_time_left()
@@ -300,6 +303,9 @@
 #define CANISTER_UPDATE_PRESSURE_5	(1<<9)
 #define CANISTER_UPDATE_FULL		(1<<10)
 #define CANISTER_UPDATE_FUSION		(1<<11)
+#define CANISTER_LIGHT_RANGE 0.4
+#define CANISTER_LIGHT_POWER 0.5
+
 /obj/machinery/portable_atmospherics/canister/update_icon()
 	if(stat & BROKEN)
 		cut_overlays()
@@ -345,45 +351,57 @@
 
 	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-	set_light(FALSE)
+
 	if(update & CANISTER_UPDATE_OPEN)
 		add_overlay("can-open")
 	if(update & CANISTER_UPDATE_HOLDING)
 		add_overlay("can-tank")
 	if(update & CANISTER_UPDATE_CONNECTED)
 		add_overlay("can-connector")
+
 	if(update & CANISTER_UPDATE_PRESSURE_0)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o0", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o0", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_RED_LIGHT)
+		set_light_on(TRUE)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_RED_LIGHT)
 	else if(update & CANISTER_UPDATE_PRESSURE_1)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o1", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o1", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_RED_LIGHT)
+		set_light_on(TRUE)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_RED_LIGHT)
 	else if(update & CANISTER_UPDATE_PRESSURE_2)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o2", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o2", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_ORANGE)
+		set_light_on(TRUE)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_ORANGE)
 	else if(update & CANISTER_UPDATE_PRESSURE_3)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o3", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o3", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_ORANGE)
+		set_light_on(TRUE)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_ORANGE)
 	else if(update & CANISTER_UPDATE_PRESSURE_4)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o4", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o4", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_YELLOW)
+		set_light_on(TRUE)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_YELLOW)
 	else if(update & CANISTER_UPDATE_PRESSURE_5)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o5", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o5", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_LIME)
+		set_light_on(TRUE)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_LIME)
 	else if(update & CANISTER_UPDATE_FULL)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o6", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o6", layer, EMISSIVE_PLANE, dir)
-		set_light(1.4, 1, COLOR_GREEN)
+		set_light_on(TRUE)
+		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_GREEN)
 	else if(update & CANISTER_UPDATE_FUSION)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-oF", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-oF", layer, EMISSIVE_PLANE, dir)
-		set_light(2, 2, COLOR_WHITE)
+		set_light_on(TRUE)
+		set_light_range_power_color(2, 2, COLOR_WHITE)
+	else
+		set_light_on(FALSE)
+
 #undef CANISTER_UPDATE_HOLDING
 #undef CANISTER_UPDATE_CONNECTED
 #undef CANISTER_UPDATE_OPEN
@@ -396,6 +414,8 @@
 #undef CANISTER_UPDATE_PRESSURE_5
 #undef CANISTER_UPDATE_FULL
 #undef CANISTER_UPDATE_FUSION
+#undef CANISTER_LIGHT_RANGE
+#undef CANISTER_LIGHT_POWER
 
 /obj/machinery/portable_atmospherics/canister/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > temperature_resistance)
@@ -490,32 +510,43 @@
 		ui = new(user, src, "Canister", name)
 		ui.open()
 
+/obj/machinery/portable_atmospherics/canister/ui_static_data(mob/user)
+	return list(
+		"defaultReleasePressure" = round(CAN_DEFAULT_RELEASE_PRESSURE),
+		"minReleasePressure" = round(can_min_release_pressure),
+		"maxReleasePressure" = round(can_max_release_pressure),
+		"holdingTankLeakPressure" = round(TANK_LEAK_PRESSURE),
+		"holdingTankFragPressure" = round(TANK_FRAGMENT_PRESSURE)
+	)
+
 /obj/machinery/portable_atmospherics/canister/ui_data()
-	var/data = list()
-	data["portConnected"] = connected_port ? 1 : 0
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
-	data["releasePressure"] = round(release_pressure ? release_pressure : 0)
-	data["defaultReleasePressure"] = round(CAN_DEFAULT_RELEASE_PRESSURE)
-	data["minReleasePressure"] = round(can_min_release_pressure)
-	data["maxReleasePressure"] = round(can_max_release_pressure)
-	data["valveOpen"] = valve_open ? 1 : 0
+	. = list(
+		"portConnected" = !!connected_port,
+		"tankPressure" = round(air_contents.return_pressure()),
+		"releasePressure" = round(release_pressure),
+		"valveOpen" = !!valve_open,
+		"isPrototype" = !!prototype,
+		"hasHoldingTank" = !!holding
+	)
 
-	data["isPrototype"] = prototype ? 1 : 0
 	if (prototype)
-		data["restricted"] = restricted
-		data["timing"] = timing
-		data["time_left"] = get_time_left()
-		data["timer_set"] = timer_set
-		data["timer_is_not_default"] = timer_set != default_timer_set
-		data["timer_is_not_min"] = timer_set != minimum_timer_set
-		data["timer_is_not_max"] = timer_set != maximum_timer_set
+		. += list(
+			"restricted" = restricted,
+			"timing" = timing,
+			"time_left" = get_time_left(),
+			"timer_set" = timer_set,
+			"timer_is_not_default" = timer_set != default_timer_set,
+			"timer_is_not_min" = timer_set != minimum_timer_set,
+			"timer_is_not_max" = timer_set != maximum_timer_set
+		)
 
-	data["hasHoldingTank"] = holding ? 1 : 0
 	if (holding)
-		data["holdingTank"] = list()
-		data["holdingTank"]["name"] = holding.name
-		data["holdingTank"]["tankPressure"] = round(holding.air_contents.return_pressure())
-	return data
+		. += list(
+			"holdingTank" = list(
+				"name" = holding.name,
+				"tankPressure" = round(holding.air_contents.return_pressure())
+			)
+		)
 
 /obj/machinery/portable_atmospherics/canister/ui_act(action, params)
 	if(..())
@@ -677,7 +708,7 @@
 	desc = "This should never be spawned in game except for testing purposes."
 	icon_state = "danger"
 /obj/machinery/portable_atmospherics/canister/stimball_test/create_gas()
-	air_contents.set_moles(/datum/gas/stimulum, 1000)
+	air_contents.set_moles(/datum/gas/nitrium, 1000)
 	air_contents.set_moles(/datum/gas/plasma, 1000)
 	air_contents.set_moles(/datum/gas/pluoxium, 1000)
 	air_contents.set_temperature(FIRE_MINIMUM_TEMPERATURE_TO_EXIST-1)

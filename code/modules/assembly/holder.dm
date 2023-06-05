@@ -16,9 +16,8 @@
 
 /obj/item/assembly_holder/ComponentInitialize()
 	. = ..()
-	AddComponent(
-		/datum/component/simple_rotation,
-		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS)
+	var/static/rotation_flags = ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS
+	AddComponent(/datum/component/simple_rotation, rotation_flags)
 
 /obj/item/assembly_holder/IsAssemblyHolder()
 	return TRUE
@@ -143,7 +142,7 @@
 		to_chat(user, span_danger("Assembly part missing!"))
 		return
 	if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
-		switch(alert("Which side would you like to use?",,"Left","Right"))
+		switch(tgui_alert(usr,"Which side would you like to use?",,list("Left","Right")))
 			if("Left")
 				a_left.attack_self(user)
 			if("Right")

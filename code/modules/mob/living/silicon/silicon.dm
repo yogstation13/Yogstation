@@ -7,6 +7,7 @@
 	verb_yell = "alarms"
 	initial_language_holder = /datum/language_holder/synthetic
 	see_in_dark = 8
+	infra_luminosity = 0
 	bubble_icon = "machine"
 	weather_immunities = list("ash")
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
@@ -42,9 +43,12 @@
 	var/law_change_counter = 0
 	var/obj/machinery/camera/builtInCamera = null
 	var/updating = FALSE //portable camera camerachunk update
-
+	///Whether we have been emagged
+	var/emagged = FALSE
 	var/hack_software = FALSE //Will be able to use hacking actions
 	var/interaction_range = 7			//wireless control range
+	///The reference to the built-in tablet that borgs carry.
+	var/obj/item/modular_computer/tablet/integrated/modularInterface
 	var/obj/item/pda/aiPDA
 
 /mob/living/silicon/Initialize()
@@ -52,7 +56,7 @@
 	GLOB.silicon_mobs += src
 	faction += "silicon"
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_status()
 	diag_hud_set_health()
 
@@ -373,17 +377,17 @@
 	var/datum/atom_hud/secsensor = GLOB.huds[sec_hud]
 	var/datum/atom_hud/medsensor = GLOB.huds[med_hud]
 	var/datum/atom_hud/diagsensor = GLOB.huds[d_hud]
-	secsensor.remove_hud_from(src)
-	medsensor.remove_hud_from(src)
-	diagsensor.remove_hud_from(src)
+	secsensor.hide_from(src)
+	medsensor.hide_from(src)
+	diagsensor.hide_from(src)
 
 /mob/living/silicon/proc/add_sensors()
 	var/datum/atom_hud/secsensor = GLOB.huds[sec_hud]
 	var/datum/atom_hud/medsensor = GLOB.huds[med_hud]
 	var/datum/atom_hud/diagsensor = GLOB.huds[d_hud]
-	secsensor.add_hud_to(src)
-	medsensor.add_hud_to(src)
-	diagsensor.add_hud_to(src)
+	secsensor.show_to(src)
+	medsensor.show_to(src)
+	diagsensor.show_to(src)
 
 /mob/living/silicon/proc/toggle_sensors(silent = FALSE)
 	if(incapacitated())
@@ -468,11 +472,37 @@
 	var/datum/mind/mega = usr.mind
 	if(!istype(mega))
 		return
-	var/aksent = input(usr, "Choose your accent:","Available Accents") as null|anything in (assoc_list_strip_value(strings("accents.json", "accent_file_names", directory = "strings/accents")) + "None")
+	var/aksent = input(usr, "Choose your accent:","Available Accents") as null|anything in (assoc_to_keys(strings("accents.json", "accent_file_names", directory = "strings/accents")) + "None")
 	if(aksent) // Accents were an accidents why the fuck do I have to do mind.RegisterSignal(mob, COMSIG_MOB_SAY)
 		if(aksent == "None")
 			mega.accent_name = null
 			mega.UnregisterSignal(L, COMSIG_MOB_SAY)
 		else
 			mega.accent_name = aksent
-			mega.RegisterSignal(L, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech, TRUE)
+			mega.RegisterSignal(L, COMSIG_MOB_SAY, TYPE_PROC_REF(/datum/mind, handle_speech), TRUE)
+
+/mob/living/silicon/proc/create_modularInterface()
+	if(!modularInterface)
+		modularInterface = new /obj/item/modular_computer/tablet/integrated(src)
+	modularInterface.layer = ABOVE_HUD_PLANE
+	modularInterface.plane = ABOVE_HUD_PLANE
+
+/mob/living/silicon/replace_identification_name(oldname,newname)
+	if(modularInterface)
+		var/obj/item/computer_hardware/hard_drive/hard_drive = modularInterface.all_components[MC_HDD]
+		var/datum/computer_file/program/pdamessager/msgr = hard_drive?.find_file_by_name("pda_client")
+		if(istype(msgr))
+			var/jobname
+			if(job)
+				jobname = job
+			else if(istype(src, /mob/living/silicon/robot))
+				jobname = "[designation ? "[designation] " : ""]Cyborg"
+			else if(designation)
+				jobname = designation
+			else if(istype(src, /mob/living/silicon/ai))
+				jobname = "AI"
+			else if(istype(src, /mob/living/silicon/pai))
+				jobname = "pAI"
+			else
+				jobname = "Silicon"
+			msgr.username = "[newname] ([jobname])"

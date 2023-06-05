@@ -117,7 +117,7 @@
 			if(!valid)
 				return FALSE
 
-			var/area/A = locate(program_to_load) in GLOB.sortedAreas
+			var/area/A = locate(program_to_load) in GLOB.areas
 			if(A)
 				if(istype(A, /area/holodeck/rec_center/burn))
 					message_admins("[key_name(usr)] has used the [A.name].") //ADMIN LOG: Ckey/(Ic Name) has used the Holodeck - Atmospheric Burn Test.
@@ -131,10 +131,10 @@
 				emergency_shutdown()
 			nerf(obj_flags & EMAGGED)
 
-/obj/machinery/computer/holodeck/process()
-	if(damaged && prob(10))
+/obj/machinery/computer/holodeck/process(delta_time)
+	if(damaged && DT_PROB(5, delta_time))
 		for(var/turf/T in linked)
-			if(prob(5))
+			if(DT_PROB(2.5, delta_time))
 				do_sparks(2, 1, T)
 				return
 
@@ -209,7 +209,7 @@
 
 	if(toggleOn)
 		if(last_program && last_program != offline_program)
-			addtimer(CALLBACK(src, .proc/load_program, last_program, TRUE), 25)
+			addtimer(CALLBACK(src, PROC_REF(load_program), last_program, TRUE), 25)
 		active = TRUE
 	else
 		last_program = program
@@ -271,7 +271,7 @@
 		S.flags_1 |= NODECONSTRUCT_1
 	effects = list()
 
-	addtimer(CALLBACK(src, .proc/finish_spawn), 30)
+	addtimer(CALLBACK(src, PROC_REF(finish_spawn)), 30)
 
 /obj/machinery/computer/holodeck/proc/finish_spawn()
 	var/list/added = list()
@@ -291,7 +291,7 @@
 	// Emagging a machine creates an anomaly in the derez systems.
 	if(O && (obj_flags & EMAGGED) && !stat && !forced)
 		if((ismob(O) || ismob(O.loc)) && prob(50))
-			addtimer(CALLBACK(src, .proc/derez, O, silent), 50) // may last a disturbingly long time
+			addtimer(CALLBACK(src, PROC_REF(derez), O, silent), 50) // may last a disturbingly long time
 			return
 
 	spawned -= O

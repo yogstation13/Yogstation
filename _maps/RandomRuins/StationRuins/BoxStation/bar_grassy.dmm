@@ -250,12 +250,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"bT" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "bU" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -415,6 +409,15 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/wood,
+/area/crew_quarters/bar)
+"ko" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "kW" = (
 /obj/structure/disposalpipe/segment,
@@ -826,12 +829,6 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
-"Cb" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/bar)
 "Cn" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/grass,
@@ -964,6 +961,12 @@
 "JJ" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/grass,
+/area/crew_quarters/bar)
+"JV" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/plasteel,
 /area/crew_quarters/bar)
 "JW" = (
 /obj/structure/flora/grass/jungle,
@@ -1495,7 +1498,7 @@ pg
 ac
 "}
 (15,1,1) = {"
-Cb
+JV
 bD
 uD
 ru
@@ -1512,7 +1515,7 @@ ac
 "}
 (16,1,1) = {"
 ag
-bT
+ko
 hc
 ag
 ag

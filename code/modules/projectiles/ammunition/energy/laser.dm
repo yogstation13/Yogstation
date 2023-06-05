@@ -68,10 +68,24 @@
 
 /obj/item/ammo_casing/energy/xray
 	projectile_type = /obj/item/projectile/beam/xray
-	e_cost = 50
+	select_name = "irradiate"
+	e_cost = 100
 	fire_sound = 'sound/weapons/laser3.ogg'
 
+/obj/item/ammo_casing/energy/xray/optimized
+	e_cost = 70 //14 shots
+
 /obj/item/ammo_casing/energy/mindflayer
-	projectile_type = /obj/item/projectile/beam/mindflayer
+	projectile_type = /obj/item/projectile/beam/anoxia/mindflayer
 	select_name = "MINDFUCK"
 	fire_sound = 'sound/weapons/laser.ogg'
+
+/obj/item/ammo_casing/energy/anoxia
+	projectile_type = /obj/item/projectile/beam/anoxia
+	select_name = "suffocate"
+	e_cost = 50
+	fire_sound = 'sound/weapons/laser.ogg'
+
+/obj/item/ammo_casing/energy/anoxia/bounce
+	projectile_type = /obj/item/projectile/beam/anoxia/bounce
+	e_cost = 62

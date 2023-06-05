@@ -60,15 +60,15 @@
 			if(0.75 to INFINITY)
 				clear_alert("charge")
 			if(0.5 to 0.75)
-				throw_alert("charge", /obj/screen/alert/lowcell, 1)
+				throw_alert("charge", /atom/movable/screen/alert/lowcell, 1)
 			if(0.25 to 0.5)
-				throw_alert("charge", /obj/screen/alert/lowcell, 2)
+				throw_alert("charge", /atom/movable/screen/alert/lowcell, 2)
 			if(0.01 to 0.25)
-				throw_alert("charge", /obj/screen/alert/lowcell, 3)
+				throw_alert("charge", /atom/movable/screen/alert/lowcell, 3)
 			else
-				throw_alert("charge", /obj/screen/alert/emptycell)
+				throw_alert("charge", /atom/movable/screen/alert/emptycell)
 	else
-		throw_alert("charge", /obj/screen/alert/nocell)
+		throw_alert("charge", /atom/movable/screen/alert/nocell)
 
 //Robots on fire
 /mob/living/silicon/robot/handle_fire()
@@ -79,7 +79,7 @@
 		fire_stacks--
 		fire_stacks = max(0, fire_stacks)
 	else
-		ExtinguishMob()
+		extinguish_mob()
 		return TRUE
 
 	//adjustFireLoss(3)
@@ -97,4 +97,4 @@
 	else
 		mobility_flags = MOBILITY_FLAGS_DEFAULT
 	update_transform()
-	update_action_buttons_icon()
+	update_mob_action_buttons()

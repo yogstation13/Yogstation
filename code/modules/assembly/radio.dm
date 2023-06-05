@@ -72,14 +72,14 @@
 
 // Command
 /obj/item/assembly/radio/bell/meeting
-	message = "Presence requested at the meeting room"
+	message = "Presence requested at the meeting room."
 	required_area = /area/bridge/meeting_room
 	radio_key = /obj/item/encryptionkey/headset_com
 	radio_channel = RADIO_CHANNEL_COMMAND
 	use_command = TRUE
 
 /obj/item/assembly/radio/bell/hop
-	message = "Presence requested at the Head of Personnel's office"
+	message = "Presence requested at the Head of Personnel's office."
 	required_area = /area/crew_quarters/heads/hop
 	radio_key = /obj/item/encryptionkey/headset_com
 	radio_channel = RADIO_CHANNEL_COMMAND
@@ -91,21 +91,21 @@
 	radio_channel = RADIO_CHANNEL_SECURITY
 
 /obj/item/assembly/radio/bell/sec_meeting
-	message = "Presence requested at the security office"
+	message = "Presence requested at the security office."
 	required_area = /area/security/main
 	radio_key = /obj/item/encryptionkey/headset_sec
 	radio_channel = RADIO_CHANNEL_SECURITY
 	use_command = TRUE
 
 /obj/item/assembly/radio/bell/warden
-	message = "Presence requested at the brig control"
+	message = "Presence requested at the brig control."
 	required_area = /area/security/warden
 	radio_key = /obj/item/encryptionkey/headset_sec
 	radio_channel = RADIO_CHANNEL_SECURITY
 	use_command = TRUE
 
 /obj/item/assembly/radio/bell/armory
-	message = "Presence requested at the armory"
+	message = "Presence requested at the armory."
 	required_area = /area/ai_monitored/security/armory
 	radio_key = /obj/item/encryptionkey/headset_sec
 	radio_channel = RADIO_CHANNEL_SECURITY
@@ -118,7 +118,7 @@
 	radio_channel = RADIO_CHANNEL_ENGINEERING
 
 /obj/item/assembly/radio/bell/atmos
-	message = "Presence requested at the atmospherics desk"
+	message = "Presence requested at the atmospherics desk."
 	required_area = /area/engine/atmos
 	radio_key = /obj/item/encryptionkey/headset_eng
 	radio_channel = RADIO_CHANNEL_ENGINEERING
@@ -130,13 +130,13 @@
 	radio_channel = RADIO_CHANNEL_SCIENCE
 
 /obj/item/assembly/radio/bell/robotics
-	message = "Presence requested at the robotics desk"
+	message = "Presence requested at the robotics desk."
 	required_area = /area/science/robotics/lab
 	radio_key = /obj/item/encryptionkey/headset_sci
 	radio_channel = RADIO_CHANNEL_SCIENCE
 
 /obj/item/assembly/radio/bell/xenobio
-	message = "Presence requested at the xenobiology desk"
+	message = "Presence requested at the xenobiology desk."
 	required_area = /area/science/xenobiology
 	radio_key = /obj/item/encryptionkey/headset_sci
 	radio_channel = RADIO_CHANNEL_SCIENCE
@@ -148,19 +148,19 @@
 	radio_channel = RADIO_CHANNEL_MEDICAL
 
 /obj/item/assembly/radio/bell/chemistry
-	message = "Presence requested at the chemistry desk"
+	message = "Presence requested at the chemistry desk."
 	required_area = /area/medical/chemistry
 	radio_key = /obj/item/encryptionkey/headset_med
 	radio_channel = RADIO_CHANNEL_MEDICAL
 
 /obj/item/assembly/radio/bell/genetics
-	message = "Presence requested at the genetics desk"
+	message = "Presence requested at the genetics desk."
 	required_area = /area/medical/genetics
 	radio_key = /obj/item/encryptionkey/headset_med
 	radio_channel = RADIO_CHANNEL_MEDICAL
 
 /obj/item/assembly/radio/bell/paramedic
-	message = "Presence requested at the paramedic desk"
+	message = "Presence requested at the paramedic desk."
 	required_area = /area/medical/paramedic
 	radio_key = /obj/item/encryptionkey/headset_med
 	radio_channel = RADIO_CHANNEL_MEDICAL
@@ -172,32 +172,32 @@
 	radio_channel = RADIO_CHANNEL_SUPPLY
 
 /obj/item/assembly/radio/bell/delivery
-	message = "Presence requested at the delivery desk"
+	message = "Presence requested at the delivery desk."
 	required_area = /area/quartermaster/sorting
 	radio_key = /obj/item/encryptionkey/headset_cargo
 	radio_channel = RADIO_CHANNEL_SUPPLY
 
 // Service
 /obj/item/assembly/radio/bell/kitchen
-	message = "Presence requested at the kitchen"
+	message = "Presence requested at the kitchen."
 	required_area = /area/crew_quarters/kitchen
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE
 
 /obj/item/assembly/radio/bell/bar
-	message = "Presence requested at the bar"
+	message = "Presence requested at the bar."
 	required_area = /area/crew_quarters/bar
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE
 
 /obj/item/assembly/radio/bell/hydroponics
-	message = "Presence requested at the hydroponics desk"
+	message = "Presence requested at the hydroponics desk."
 	required_area = /area/hydroponics
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE
 
 /obj/item/assembly/radio/bell/library
-	message = "Presence requested at the library"
+	message = "Presence requested at the library."
 	required_area = /area/library
 	radio_key = /obj/item/encryptionkey/headset_service
 	radio_channel = RADIO_CHANNEL_SERVICE

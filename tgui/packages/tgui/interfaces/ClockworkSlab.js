@@ -11,7 +11,10 @@ export const ClockworkSlab = (props, context) => {
   const { act, data } = useBackend(context);
 
   return (
-    <Window theme="clockwork" width={800} height={420} resizeable>
+    <Window
+      theme="clockwork"
+      width={860}
+      height={700}>
       <Window.Content>
         <Section>
           <Button

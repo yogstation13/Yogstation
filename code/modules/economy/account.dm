@@ -12,6 +12,7 @@
 	var/withdrawDelay = 0
 	var/is_bourgeois = FALSE // Marks whether we've tried giving them the achievement already, this round.
 	var/bounties_claimed = 0 // Marks how many bounties this person has successfully claimed
+	var/sec_weapon_claimed = FALSE // If this account has claimed a weapon \code\modules\vending\security_armaments.dm
 
 /datum/bank_account/New(newname, job, modifier = 1)
 	var/limiter = 0

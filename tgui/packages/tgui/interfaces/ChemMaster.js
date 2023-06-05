@@ -1,4 +1,3 @@
-import { Fragment } from 'inferno';
 import { useBackend, useSharedState } from '../backend';
 import { AnimatedNumber, Box, Button, ColorBox, LabeledList, NumberInput, Section, Table } from '../components';
 import { Window } from '../layouts';
@@ -39,11 +38,11 @@ const ChemMasterContent = (props, context) => {
     return <AnalysisResults />;
   }
   return (
-    <Fragment>
+    <>
       <Section
         title="Beaker"
         buttons={!!data.isBeakerLoaded && (
-          <Fragment>
+          <>
             <Box inline color="label" mr={2}>
               <AnimatedNumber
                 value={beakerCurrentVolume}
@@ -54,7 +53,7 @@ const ChemMasterContent = (props, context) => {
               icon="eject"
               content="Eject"
               onClick={() => act('eject')} />
-          </Fragment>
+          </>
         )}>
         {!isBeakerLoaded && (
           <Box color="label" mt="3px" mb="5px">
@@ -78,7 +77,7 @@ const ChemMasterContent = (props, context) => {
       <Section
         title="Buffer"
         buttons={(
-          <Fragment>
+          <>
             <Box inline color="label" mr={1}>
               Mode:
             </Box>
@@ -87,7 +86,7 @@ const ChemMasterContent = (props, context) => {
               icon={data.mode ? 'exchange-alt' : 'times'}
               content={data.mode ? 'Transfer' : 'Destroy'}
               onClick={() => act('toggleMode')} />
-          </Fragment>
+          </>
         )}>
         {bufferContents.length === 0 && (
           <Box color="label" mt="3px" mb="5px">
@@ -111,7 +110,7 @@ const ChemMasterContent = (props, context) => {
         <Section
           title="Pill Bottle"
           buttons={(
-            <Fragment>
+            <>
               <Box inline color="label" mr={2}>
                 {pillBottleCurrentAmount} / {pillBottleMaxAmount} pills
               </Box>
@@ -119,10 +118,10 @@ const ChemMasterContent = (props, context) => {
                 icon="eject"
                 content="Eject"
                 onClick={() => act('ejectPillBottle')} />
-            </Fragment>
+            </>
           )} />
       )}
-    </Fragment>
+    </>
   );
 };
 
@@ -267,7 +266,7 @@ const PackagingControls = (props, context) => {
           label="Pills"
           amount={pillAmount}
           amountUnit="pills"
-          sideNote="max 10u"
+          sideNote="max 15u"
           onChangeAmount={(e, value) => setPillAmount(value)}
           onCreate={() => act('create', {
             type: 'pill',
@@ -306,7 +305,7 @@ const PackagingControls = (props, context) => {
           label="Gummy Bears"
           amount={gummyAmount}
           amountUnit="gummies"
-          sideNote="max 15u"
+          sideNote="max 30u"
           onChangeAmount={(e, value) => setGummyAmount(value)}
           onCreate={() => act('create', {
             type: 'gummy',
@@ -319,7 +318,7 @@ const PackagingControls = (props, context) => {
           label="Gummy Bears"
           amount={gummyAmount}
           amountUnit="gummies"
-          sideNote="max 15u"
+          sideNote="max 30u"
           onChangeAmount={(e, value) => setGummyAmount(value)}
           onCreate={() => act('create', {
             type: 'gummy',

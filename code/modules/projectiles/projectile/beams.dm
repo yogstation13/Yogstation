@@ -5,14 +5,16 @@
 	damage = 20
 	wound_bonus = -20
 	bare_wound_bonus = 10
-	light_range = 2
 	damage_type = BURN
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	flag = LASER
 	eyeblur = 2
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	light_system = MOVABLE_LIGHT
+	light_range = 2
 	light_color = LIGHT_COLOR_RED
+	light_flags = LIGHT_NO_LUMCOUNT
 	ricochets_max = 50	//Honk!
 	ricochet_chance = 80
 	reflectable = REFLECT_NORMAL
@@ -31,7 +33,7 @@
 	wound_bonus = 0
 	speed = 0.6 // higher power = faster, that's how light works right
 
-/obj/projectile/beam/laser/hellfire/Initialize()
+/obj/item/projectile/beam/laser/hellfire/Initialize()
 	. = ..()
 	transform *= 2
 
@@ -47,7 +49,7 @@
 /obj/item/projectile/beam/laser/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target
-		M.IgniteMob()
+		M.ignite_mob()
 	else if(isturf(target))
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
 	return ..()
@@ -69,10 +71,10 @@
 /obj/item/projectile/beam/xray
 	name = "\improper X-ray beam"
 	icon_state = "xray"
-	damage = 15
+	damage = 10
 	irradiate = 300
 	range = 15
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOOR
 
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 	light_color = LIGHT_COLOR_GREEN
@@ -83,7 +85,7 @@
 /obj/item/projectile/beam/disabler
 	name = "disabler beam"
 	icon_state = "omnilaser"
-	damage = 25
+	damage = 30
 	damage_type = STAMINA
 	flag = ENERGY
 	hitsound = 'sound/weapons/tap.ogg'
@@ -93,6 +95,16 @@
 	tracer_type = /obj/effect/projectile/tracer/disabler
 	muzzle_type = /obj/effect/projectile/muzzle/disabler
 	impact_type = /obj/effect/projectile/impact/disabler
+
+/obj/item/projectile/beam/disabler/bounce
+	name = "bouncing disabler ball"
+	icon_state = "omnibouncer"
+	damage = 20
+	ricochets_max = 5
+	ricochet_chance = 100
+
+/obj/item/projectile/beam/disabler/bounce/check_ricochet_flag(atom/A)
+	return TRUE //whatever it is, we bounce on it
 
 /obj/item/projectile/beam/pulse
 	name = "pulse"
@@ -137,6 +149,25 @@
 
 /obj/item/projectile/beam/emitter/singularity_pull()
 	return //don't want the emitters to miss
+
+/obj/item/projectile/beam/emitter/pulse
+	name = "overcharged emitter beam"
+	icon_state = "u_laser"
+	damage = 50 // EVEN MORE power for the SM
+	range = 250 // More power means longer range
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
+	light_color = LIGHT_COLOR_BLUE
+	tracer_type = /obj/effect/projectile/tracer/pulse
+	muzzle_type = /obj/effect/projectile/muzzle/pulse
+	impact_type = /obj/effect/projectile/impact/pulse
+
+/obj/item/projectile/beam/emitter/pulse/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
+		if(isobj(target))
+			SSexplosions.low_mov_atom += target
+		else
+			SSexplosions.lowturf += target
 
 /obj/item/projectile/beam/lasertag
 	name = "laser tag beam"
@@ -203,3 +234,39 @@
 		var/mob/living/carbon/M = target
 		M.visible_message(span_danger("[M] explodes into a shower of gibs!"))
 		M.gib()
+
+/obj/item/projectile/beam/grimdark
+	pass_flags = NONE
+	light_color = LIGHT_COLOR_BLUE
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
+	name = "plasma blast"
+	icon_state = "blue_laser"
+	damage = 50
+	wound_bonus = 0
+	speed = 1.4 // plasma ball slow
+
+/obj/item/projectile/beam/grimdark/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
+		if(isobj(target))
+			SSexplosions.med_mov_atom += target
+		else
+			SSexplosions.medturf += target
+
+/obj/item/projectile/beam/grimdark/pistol
+	damage = 35
+
+/obj/item/projectile/beam/laser/lasgun
+	name = "Las bolt"
+	icon_state = "las_laser"
+	speed = 0.8
+
+/obj/item/projectile/beam/laser/lasgun/longlas
+	damage = 25
+
+/obj/item/projectile/beam/laser/lasgun/laspistol
+	damage = 15
+
+/obj/item/projectile/beam/laser/lasgun/hotshot
+	damage = 30
+	wound_bonus = -5

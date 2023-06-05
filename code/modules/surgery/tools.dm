@@ -119,16 +119,16 @@
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_DRILL
-	force = 15
+	force = 10
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("drilled")
 	sharpness = SHARP_POINTY
-	wound_bonus = 10
-	bare_wound_bonus = 10
+	wound_bonus = 7
+	bare_wound_bonus = 5
 
 /obj/item/surgicaldrill/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] rams [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!"))
-	addtimer(CALLBACK(user, /mob/living/carbon.proc/gib, null, null, TRUE, TRUE), 25)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, gib), null, null, TRUE, TRUE), 25)
 	user.SpinAnimation(3, 10)
 	playsound(user, 'sound/machines/juicer.ogg', 20, TRUE)
 	SSachievements.unlock_achievement(/datum/achievement/likearecord, user.client)
@@ -163,7 +163,7 @@
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_SCALPEL
 
-	force = 10
+	force = 4
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
 	throw_speed = 3
@@ -172,8 +172,8 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
-	wound_bonus = 10
-	bare_wound_bonus = 15
+	wound_bonus = 2
+	bare_wound_bonus = 4
 
 /obj/item/scalpel/Initialize()
 	. = ..()
@@ -188,7 +188,7 @@
 	desc = "Ultra-sharp blade attached directly to your bone for extra-accuracy."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "scalpel"
-	force = 10
+	force = 4
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
 	throw_speed = 3
@@ -223,7 +223,7 @@
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 	tool_behaviour = TOOL_SAW
-	force = 15
+	force = 8
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 9
 	throw_speed = 2
@@ -231,8 +231,8 @@
 	materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharpness = SHARP_EDGED
-	wound_bonus = 15
-	bare_wound_bonus = 10
+	wound_bonus = 5
+	bare_wound_bonus = 3
 
 /obj/item/circular_saw/Initialize()
 	. = ..()
@@ -247,7 +247,7 @@
 	desc = "A small but very fast spinning saw. Edges dulled to prevent accidental cutting inside of the surgeon."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "saw"
-	force = 10
+	force = 8
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 9
 	throw_speed = 2
@@ -392,9 +392,12 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "scalpel_a"
 	hitsound = 'sound/weapons/blade1.ogg'
-	force = 16
+	force = 10
 	toolspeed = 0.7
+	light_system = MOVABLE_LIGHT
+	light_range = 1
 	light_color = LIGHT_COLOR_GREEN
+	light_power = 0.2	//Barely glows on low power
 	sharpness = SHARP_EDGED
 
 
@@ -403,13 +406,15 @@
 	if(tool_behaviour == TOOL_SCALPEL)
 		tool_behaviour = TOOL_SAW
 		to_chat(user, span_notice("You increase the power, now it can cut bones."))
-		set_light(2)
+		set_light_range(2)
+		set_light_power(1)
 		force += 1 //we don't want to ruin sharpened stuff
 		icon_state = "saw_a"
 	else
 		tool_behaviour = TOOL_SCALPEL
 		to_chat(user, span_notice("You lower the power, it can now make precise incisions."))
-		set_light(1)
+		set_light_range(1)
+		set_light_power(0.2)
 		force -= 1
 		icon_state = "scalpel_a"
 
@@ -447,10 +452,6 @@
 	hitsound = 'sound/items/welder.ogg'
 	toolspeed = 0.7
 	light_color = LIGHT_COLOR_RED
-
-/obj/item/cautery/advanced/Initialize()
-	. = ..()
-	set_light(1)
 
 /obj/item/cautery/advanced/attack_self(mob/user)
 

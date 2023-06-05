@@ -68,9 +68,9 @@
 	var/turf/fishing_turf = fishing_component.parent
 	fishing_turf.add_overlay(bobber)
 	fisher = user
-	RegisterSignal(user,COMSIG_MOVABLE_MOVED, .proc/reel_in_forced,TRUE)
-	RegisterSignal(src,COMSIG_MOVABLE_MOVED, .proc/reel_in_forced,TRUE)
-	RegisterSignal(src,COMSIG_ITEM_DROPPED, .proc/reel_in_forced,TRUE)
+	RegisterSignal(user,COMSIG_MOVABLE_MOVED, PROC_REF(reel_in_forced),TRUE)
+	RegisterSignal(src,COMSIG_MOVABLE_MOVED, PROC_REF(reel_in_forced),TRUE)
+	RegisterSignal(src,COMSIG_ITEM_DROPPED, PROC_REF(reel_in_forced),TRUE)
 	START_PROCESSING(SSobj,src)
 	playsound(fishing_component, 'sound/effects/splash.ogg', 50, FALSE, -5)
 	to_chat(fisher, span_italics("You cast out your fishing rod..."))
@@ -79,6 +79,8 @@
 	if(!forced && bite) // we got something!!!
 		playsound(fishing_component, 'sound/effects/water_emerge.ogg', 50, FALSE, -5)
 		var/power = 0
+		if(istype(bait, /obj/item/reagent_containers/food/snacks/bait/type))
+			SEND_SIGNAL(fisher, COMSIG_ADD_MOOD_EVENT, "typebait", /datum/mood_event/type_bait)
 		if(iscarbon(fisher)) //sorry, non-carbons don't get to wear cool fishing outfits
 			var/mob/living/carbon/carbonfisher = fisher
 			power = carbonfisher.fishing_power
@@ -163,14 +165,17 @@
 	if(bait)
 		fishing_power += bait.fishing_power
 
-/obj/item/twohanded/fishingrod/collapsable
-	name = "collapsable fishing rod"
+/obj/item/twohanded/fishingrod/collapsible
+	name = "collapsible fishing rod"
+	desc = "A collapsible fishing rod! This one can fit into your backpack for space hikes and the like."
 	icon_state = "fishing_rod_collapse_c"
-	desc = "A collapsable fishing rod! This one can fit into your backpack for space hikes and the like."
-	var/opened = FALSE
 	fishing_power = 15
+	w_class = WEIGHT_CLASS_SMALL //it starts collapsed and small
+	var/opened = FALSE
+	var/rod_icon_state = "fishing_rod_collapse"
+	
 
-/obj/item/twohanded/fishingrod/collapsable/attackby(obj/item/B, mob/user, params)
+/obj/item/twohanded/fishingrod/collapsible/attackby(obj/item/B, mob/user, params)
 	if(!istype(B,/obj/item/reagent_containers/food/snacks/bait))
 		return
 	if(!opened)
@@ -178,12 +183,12 @@
 		return
 	..()
 
-/obj/item/twohanded/fishingrod/collapsable/AltClick(mob/living/user)
+/obj/item/twohanded/fishingrod/collapsible/AltClick(mob/living/user)
 	if(bait)
 		return ..()
 	toggle(user)
 
-/obj/item/twohanded/fishingrod/collapsable/proc/toggle(mob/user)
+/obj/item/twohanded/fishingrod/collapsible/proc/toggle(mob/user)
 	if(wielded)
 		to_chat(user,"You can't collapse the rod if you are holding it with both hands")
 		return
@@ -196,18 +201,27 @@
 	w_class = opened ? WEIGHT_CLASS_BULKY : WEIGHT_CLASS_SMALL
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	update_icon()
+	user.regenerate_icons()
 
-/obj/item/twohanded/fishingrod/collapsable/update_icon()
-	icon_state = "fishing_rod_collapse[opened ? "" : "_c"]"
+/obj/item/twohanded/fishingrod/collapsible/update_icon()
+	item_state = opened ? "fishing_rod" : ""
+	icon_state = "[rod_icon_state][opened ? "" : "_c"]"
 
-/obj/item/twohanded/fishingrod/collapsable/attack_self(mob/user)
+/obj/item/twohanded/fishingrod/collapsible/attack_self(mob/user)
 	if(!opened)
 		toggle(user)
 		return
 	..()
 
-/obj/item/twohanded/fishingrod/collapsable/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/twohanded/fishingrod/collapsible/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!opened)
-		to_chat(user,"The collapsable rod has to be open before you can do anything!")
+		to_chat(user,"The collapsible rod has to be open before you can do anything!")
 		return
 	..()
+
+/obj/item/twohanded/fishingrod/collapsible/miningmedic
+	name = "ol' reliable"
+	desc = "Hey! I caught a miner!"
+	icon_state = "fishing_rod_miningmedic_c"
+	rod_icon_state = "fishing_rod_miningmedic"
+	fishing_power = 1 //Rescue Yo Miners Bitch Damn! Fuck You Doin Fishin For!

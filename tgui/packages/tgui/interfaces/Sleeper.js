@@ -1,7 +1,7 @@
 import { useBackend } from '../backend';
-import { Box, Section, LabeledList, Button, ProgressBar, AnimatedNumber } from '../components';
-import { Fragment } from 'inferno';
+import { Box, Button, LabeledList, ProgressBar, Section, AnimatedNumber } from '../components';
 import { Window } from '../layouts';
+import { toFixed } from 'common/math';
 
 export const Sleeper = (props, context) => {
   const { act, data } = useBackend(context);
@@ -12,6 +12,7 @@ export const Sleeper = (props, context) => {
     occupied,
     active_treatment,
     can_sedate,
+    sedate_text,
   } = data;
 
   const treatments = data.treatments || [];
@@ -37,7 +38,7 @@ export const Sleeper = (props, context) => {
 
   return (
     <Window width={400} height={520}>
-      <Window.Content scrollable>
+      <Window.Content >
         <Section
           title={occupant.name ? occupant.name : 'No Occupant'}
           minHeight="210px"
@@ -50,7 +51,7 @@ export const Sleeper = (props, context) => {
             </Box>
           )}>
           {!!occupied && (
-            <Fragment>
+            <>
               <ProgressBar
                 value={occupant.health}
                 minValue={occupant.minHealth}
@@ -84,7 +85,7 @@ export const Sleeper = (props, context) => {
                   {occupant.brainLoss ? 'Abnormal' : 'Healthy'}
                 </LabeledList.Item>
               </LabeledList>
-            </Fragment>
+            </>
           )}
         </Section>
         {!!occupied && (
@@ -94,7 +95,7 @@ export const Sleeper = (props, context) => {
             buttons={(
               <Button
                 icon={'flask'}
-                content={'Sedate'}
+                content={sedate_text}
                 disabled={!can_sedate}
                 onClick={() => act('sedate')} />
             )} >

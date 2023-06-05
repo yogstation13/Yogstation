@@ -2,6 +2,17 @@ GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwis
 GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc color
 
+GLOBAL_LIST_EMPTY(ooc_shadow_muted)
+GLOBAL_LIST_EMPTY(ooc_new_long_messages)
+GLOBAL_LIST_EMPTY(ooc_new_last_messsage)
+GLOBAL_LIST_EMPTY(ooc_new_long_messages_short)
+GLOBAL_LIST_EMPTY(ooc_new_long_messages_very)
+
+/client/verb/ooc_wrapper()
+	set hidden = TRUE
+	var/message = input("", "OOC \"text\"") as null|text
+	ooc(message)
+
 /client/verb/ooc(msg as text)
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
@@ -38,12 +49,8 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	msg = pretty_filter(msg) //yogs
 	msg = emoji_parse(msg)
 
-	//yogs start -- smarter ick ock detection
-	var/regex/ickock = regex(@"^\s*(#.*|,.*|(:|;)(\w|\s|\d)|(say \x22)|\.\.?(?!\.))","i")
-	//captures a lot of accidental in character speech in ooc chat
-	if(length(msg) > 4 && ickock.Find(msg))
-	//yogs end
-		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
+	if(SSticker.HasRoundStarted() && (msg[1] in list(".",";",":","#") || findtext_char(msg, "say", 1, 5)))
+		if(tgui_alert(usr,"Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", list("Yes", "No")) != "Yes")
 			return
 
 	if(!holder)
@@ -59,17 +66,56 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 		to_chat(src, span_danger("You have OOC muted."))
 		return
 
+	var/keyname = key
+	if(prefs.unlock_content)
+		if(prefs.toggles & MEMBER_PUBLIC)
+			keyname = "<font color='[prefs.read_preference(/datum/preference/color/ooc_color) || GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
+	//YOG START - Yog OOC
+
+	if(get_exp_living(TRUE) <= 300 && length(msg) >= 450)
+		if(GLOB.ooc_new_long_messages[key])
+			GLOB.ooc_new_long_messages_very[key]++
+		else
+			GLOB.ooc_new_long_messages_very[key] = 1
+
+	if(get_exp_living(TRUE) <= 300 && length(msg) >= 300)
+		if(GLOB.ooc_new_long_messages[key])
+			GLOB.ooc_new_long_messages[key]++
+		else
+			GLOB.ooc_new_long_messages[key] = 1
+
+	if(get_exp_living(TRUE) <= 300 && length(msg) >= 150)
+		if(GLOB.ooc_new_long_messages_short[key])
+			GLOB.ooc_new_long_messages_short[key]++
+		else
+			GLOB.ooc_new_long_messages_short[key] = 1
+
+	if(GLOB.ooc_new_long_messages_very[key] > 0 && !GLOB.ooc_shadow_muted[key])
+		GLOB.ooc_shadow_muted[key] = TRUE
+		message_admins("Shadow muted [key] from OOC. Will reset when round ends.")
+
+	if(GLOB.ooc_new_long_messages[key] > 1 && !GLOB.ooc_shadow_muted[key])
+		GLOB.ooc_shadow_muted[key] = TRUE
+		message_admins("Shadow muted [key] from OOC. Will reset when round ends.")
+
+	if(GLOB.ooc_new_long_messages_short[key] >= 3 && !GLOB.ooc_shadow_muted[key])
+		GLOB.ooc_shadow_muted[key] = TRUE
+		message_admins("Shadow muted [key] from OOC. Will reset when round ends.")
+
+	if(!GLOB.ooc_shadow_muted[key])
+		if(GLOB.ooc_new_last_messsage[key] > (world.time))
+			to_chat(src, span_warning("Please wait a [(GLOB.ooc_new_last_messsage[key] - world.time) / 10 ] seconds before sending another OOC message"))
+			return
+
+	if(get_exp_living(TRUE) <= 300)
+		GLOB.ooc_new_last_messsage[key] = world.time + 5 SECONDS
+
 	mob.log_talk(raw_msg, LOG_OOC)
 	if(holder && holder.fakekey) //YOGS start - webhook support
 		webhook_send_ooc(holder.fakekey, msg)
 	else
-		webhook_send_ooc(key, msg) //YOGS end - webhook support
-
-	var/keyname = key
-	if(prefs.unlock_content)
-		if(prefs.toggles & MEMBER_PUBLIC)
-			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
-	//YOG START - Yog OOC
+		if(!GLOB.ooc_shadow_muted[key])
+			webhook_send_ooc(key, msg) //YOGS end - webhook support
 
 	//PINGS
 	var/regex/ping = regex(@"@+(((([\s]{0,1}[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})[\s]*[^\s@]{0,30})","g")//Now lets check if they pinged anyone
@@ -99,7 +145,8 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	var/oocmsg_toadmins = FALSE; // The message sent to admins.
 	if(holder) // If the speaker is an admin or something
 		if(check_rights_for(src, R_ADMIN)) // If they're supposed to have their own admin OOC colour
-			oocmsg += "<span class='adminooc'>[(CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor) ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>[find_admin_rank(src)]" // The header for an Admin's OOC.
+			var/ooc_color = prefs.read_preference(/datum/preference/color/ooc_color)
+			oocmsg += "<span class='adminooc'>[(CONFIG_GET(flag/allow_admin_ooccolor) && ooc_color) ? "<font color=[ooc_color]>" :"" ]<span class='prefix'>[find_admin_rank(src)]" // The header for an Admin's OOC.
 		else // Else if they're an AdminObserver
 			oocmsg += "<span class='adminobserverooc'><span class='prefix'>[find_admin_rank(src)]" // The header for an AO's OOC.
 		//Check yogstation\code\module\client\verbs\ooc for the find_admin_rank definition.
@@ -118,7 +165,7 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 			mposition = src.mentor_datum?.position
 			oocmsg = "<span class='ooc'>\["
 			oocmsg += "[mposition]"
-			oocmsg += "]<font color='[prefs.ooccolor]'>"
+			oocmsg += "]<font color='[prefs.read_preference(/datum/preference/color/ooc_color)]'>"
 		else
 			oocmsg = "<span class='ooc'>[(is_donator(src) && !CONFIG_GET(flag/everyone_is_donator)) ? "(Donator)" : ""]"
 			oocmsg += "<font color='[bussedcolor]'>"
@@ -126,21 +173,24 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 		oocmsg_toadmins = oocmsg
 
 	//SENDING THE MESSAGES OUT
-	for(var/c in GLOB.clients)
-		var/client/C = c // God bless typeless for-loops
-		if( (!C.prefs || (C.prefs.chat_toggles & CHAT_OOC)) && (holder || !(key in C.prefs?.ignoring)) )
-			var/sentmsg // The message we're sending to this specific person
-			if(C.holder) // If they're an admin-ish
-				sentmsg = oocmsg_toadmins // Get the admin one
-			else
-				sentmsg = oocmsg
-			if( (ckey(C.key) in pinged) || (C.holder && C.holder.fakekey && (C.holder.fakekey in pinged)) )
-				var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
-				pingsound.volume = 50
-				pingsound.pan = 80
-				SEND_SOUND(C,pingsound)
-				sentmsg = "<span style='background-color: #ccccdd'>" + sentmsg + "</span>"
-			to_chat(C,sentmsg)
+	if(!(key in GLOB.ooc_shadow_muted))
+		for(var/c in GLOB.clients)
+			var/client/C = c // God bless typeless for-loops
+			if( (!C.prefs || (C.prefs.chat_toggles & CHAT_OOC)) && (holder || !(key in C.prefs?.ignoring)) )
+				var/sentmsg // The message we're sending to this specific person
+				if(C.holder) // If they're an admin-ish
+					sentmsg = oocmsg_toadmins // Get the admin one
+				else
+					sentmsg = oocmsg
+				if( (ckey(C.key) in pinged) || (C.holder && C.holder.fakekey && (C.holder.fakekey in pinged)) )
+					var/sound/pingsound = sound('yogstation/sound/misc/bikehorn_alert.ogg')
+					pingsound.volume = 50
+					pingsound.pan = 80
+					SEND_SOUND(C,pingsound)
+					sentmsg = "<span style='background-color: #ccccdd'>" + sentmsg + "</span>"
+				to_chat(C,sentmsg)
+	else
+		to_chat(src,oocmsg)
 	//YOGS END
 	var/data = list()
 	data["normal"] = oocmsg
@@ -149,8 +199,8 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	var/source = list()
 	source["is_admin"] = !!holder
 	source["key"] = key
-
-	send2otherserver(json_encode(source), json_encode(data), "ooc_relay")
+	if(!GLOB.ooc_shadow_muted[key])
+		send2otherserver(json_encode(source), json_encode(data), "ooc_relay")
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
@@ -175,40 +225,23 @@ GLOBAL_VAR_INIT(mentor_ooc_colour, YOGS_MENTOR_OOC_COLOUR) // yogs - mentor ooc 
 	set name = "Set Player OOC Color"
 	set desc = "Modifies player OOC Color"
 	set category = "Server"
-	GLOB.OOC_COLOR = sanitize_ooccolor(newColor)
+	GLOB.OOC_COLOR = sanitize_color(newColor)
 
 /client/proc/reset_ooc()
 	set name = "Reset Player OOC Color"
 	set desc = "Returns player OOC Color to default"
 	set category = "Server"
+	if(IsAdminAdvancedProcCall())
+		return
+	if(tgui_alert(usr, "Are you sure you want to reset the OOC color of all players?", "Reset Player OOC Color", list("Yes", "No")) != "Yes")
+		return
+	if(!check_rights(R_FUN))
+		message_admins("[usr.key] has attempted to use the Reset Player OOC Color verb!")
+		log_admin("[key_name(usr)] tried to reset player ooc color without authorization.")
+		return
+	message_admins("[key_name_admin(usr)] has reset the players' ooc color.")
+	log_admin("[key_name_admin(usr)] has reset player ooc color.")
 	GLOB.OOC_COLOR = null
-
-/client/verb/colorooc()
-	set name = "Set Your OOC Color"
-	set category = "Preferences"
-
-	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!is_content_unlocked())
-			return
-
-	var/new_ooccolor = input(src, "Please select your OOC color.", "OOC color", prefs.ooccolor) as color|null
-	if(new_ooccolor)
-		prefs.ooccolor = sanitize_ooccolor(new_ooccolor)
-		prefs.save_preferences()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set OOC Color") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
-/client/verb/resetcolorooc()
-	set name = "Reset Your OOC Color"
-	set desc = "Returns your OOC Color to default"
-	set category = "Preferences"
-
-	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!is_content_unlocked())
-			return
-
-		prefs.ooccolor = initial(prefs.ooccolor)
-		prefs.save_preferences()
 
 //Checks admin notice
 /client/verb/admin_notice()

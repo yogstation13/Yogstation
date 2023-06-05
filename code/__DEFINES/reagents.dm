@@ -16,9 +16,9 @@
 #define OPENCONTAINER 	(REFILLABLE | DRAINABLE | TRANSPARENT)
 
 
-#define TOUCH			1	// splashing
+#define TOUCH			1	// splashing, foam
 #define INGEST			2	// ingestion
-#define VAPOR			3	// foam, spray, blob attack
+#define VAPOR			3	// spray, blob attack
 #define PATCH			4	// patches
 #define INJECT			5	// injection
 

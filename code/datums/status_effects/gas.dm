@@ -2,17 +2,17 @@
 	id = "frozen"
 	duration = 100
 	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /obj/screen/alert/status_effect/freon
+	alert_type = /atom/movable/screen/alert/status_effect/freon
 	var/icon/cube
 	var/can_melt = TRUE
 
-/obj/screen/alert/status_effect/freon
+/atom/movable/screen/alert/status_effect/freon
 	name = "Frozen Solid"
 	desc = "You're frozen inside an ice cube, and cannot move! You can still do stuff, like shooting. Resist out of the cube!"
 	icon_state = "frozen"
 
 /datum/status_effect/freon/on_apply()
-	RegisterSignal(owner, COMSIG_LIVING_RESIST, .proc/owner_resist)
+	RegisterSignal(owner, COMSIG_LIVING_RESIST, PROC_REF(owner_resist))
 	if(!owner.stat)
 		to_chat(owner, span_userdanger("You become frozen in a cube!"))
 	cube = icon('icons/effects/freeze.dmi', "ice_cube")

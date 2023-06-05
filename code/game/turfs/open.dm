@@ -208,7 +208,6 @@
 	icon = 'icons/turf/snow.dmi'
 	desc = "Looks cold."
 	icon_state = "snow"
-	slowdown = 2
 	bullet_sizzle = TRUE
 	footstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
@@ -512,7 +511,7 @@
 	air.set_temperature(air.return_temperature() + temp)
 	air_update_turf()
 
-/turf/open/proc/freon_gas_act()
+/turf/open/proc/freeze_turf()
 	for(var/obj/I in contents)
 		if(I.resistance_flags & FREEZE_PROOF)
 			return
@@ -522,7 +521,7 @@
 		if(L.bodytemperature <= 50)
 			L.apply_status_effect(/datum/status_effect/freon)
 	MakeSlippery(TURF_WET_PERMAFROST, 50)
-	return 1
+	return TRUE
 
 /turf/open/proc/water_vapor_gas_act()
 	MakeSlippery(TURF_WET_WATER, min_wet_time = 100, wet_time_to_add = 50)
@@ -538,47 +537,46 @@
 		movable_content.wash(CLEAN_WASH)
 	return TRUE
 
-/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, stun_amount, force_drop)
-	if(C.movement_type & FLYING)
-		return 0
+/turf/open/handle_slip(mob/living/carbon/slipper, knockdown_amount, obj/slippable, lube, paralyze_amount, force_drop)
+	if(slipper.movement_type & (FLYING | FLOATING))
+		return FALSE
 	if(has_gravity(src))
 		var/obj/buckled_obj
-		if(C.buckled)
-			buckled_obj = C.buckled
+		if(slipper.buckled)
+			buckled_obj = slipper.buckled
 			if(!(lube&GALOSHES_DONT_HELP)) //can't slip while buckled unless it's lube.
 				return 0
 		else
-			if(!(lube&SLIP_WHEN_CRAWLING) && (!(C.mobility_flags & MOBILITY_STAND) || !(C.status_flags & CANKNOCKDOWN))) // can't slip unbuckled mob if they're lying or can't fall.
+			if(!(lube & SLIP_WHEN_CRAWLING) && (!(slipper.mobility_flags & MOBILITY_STAND)) || !(slipper.status_flags & CANKNOCKDOWN)) // can't slip unbuckled mob if they're lying or can't fall.
 				return 0
-			if(C.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
+			if(slipper.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
 				return 0
 		if(!(lube&SLIDE_ICE))
-			to_chat(C, span_notice("You slipped[ O ? " on the [O.name]" : ""]!"))
-			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
+			to_chat(slipper, span_notice("You slipped[ slippable ? " on the [slippable.name]" : ""]!"))
+			playsound(slipper.loc, 'sound/misc/slip.ogg', 50, TRUE, -3)
 
-		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
+		SEND_SIGNAL(slipper, COMSIG_ON_CARBON_SLIP)
 		if(force_drop)
-			for(var/obj/item/I in C.held_items)
-				C.accident(I)
+			for(var/obj/item/I in slipper.held_items)
+				slipper.accident(I)
 
-		var/olddir = C.dir
-		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
+		var/olddir = slipper.dir
+		slipper.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
-			C.Knockdown(knockdown_amount)
-			C.Stun(stun_amount)
-			C.stop_pulling()
+			slipper.Knockdown(knockdown_amount)
+			slipper.Paralyze(paralyze_amount)
+			slipper.stop_pulling()
 		else
-			C.Knockdown(20)
+			slipper.Knockdown(20)
 		if(buckled_obj)
-			buckled_obj.unbuckle_mob(C)
+			buckled_obj.unbuckle_mob(slipper)
 			lube |= SLIDE_ICE
 
-		if(lube&SLIDE)
-			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 4), 1, FALSE, CALLBACK(C, /mob/living/carbon/.proc/spin, 1, 1))
+		var/turf/target = get_ranged_target_turf(slipper, olddir, 4)
+		if(lube & SLIDE)
+			new /datum/forced_movement(slipper, target, 1, FALSE, CALLBACK(slipper, TYPE_PROC_REF(/mob/living/carbon, spin), 1, 1))
 		else if(lube&SLIDE_ICE)
-			if(C.force_moving) //If we're already slipping extend it
-				qdel(C.force_moving)
-			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
+			new /datum/forced_movement(slipper, get_ranged_target_turf(slipper, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
 		return 1
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)
@@ -593,15 +591,15 @@
 /turf/open/proc/ClearWet()//Nuclear option of immediately removing slipperyness from the tile instead of the natural drying over time
 	qdel(GetComponent(/datum/component/wet_floor))
 
-/turf/open/rad_act(pulse_strength)
+/turf/open/rad_act(pulse_strength, collectable_radiation)
 	. = ..()
-	if (air.get_moles(/datum/gas/carbon_dioxide) && air.get_moles(/datum/gas/oxygen))
+	if (air.get_moles(/datum/gas/carbon_dioxide) && air.get_moles(/datum/gas/oxygen) && !(air.get_moles(/datum/gas/hypernoblium)>=REACTION_OPPRESSION_THRESHOLD))
 		pulse_strength = min(pulse_strength,air.get_moles(/datum/gas/carbon_dioxide)*1000,air.get_moles(/datum/gas/oxygen)*2000) //Ensures matter is conserved properly
 		air.set_moles(/datum/gas/carbon_dioxide, max(air.get_moles(/datum/gas/carbon_dioxide)-(pulse_strength * 0.001),0))
 		air.set_moles(/datum/gas/oxygen, max(air.get_moles(/datum/gas/oxygen)-(pulse_strength * 0.002),0))
 		air.adjust_moles(/datum/gas/pluoxium, pulse_strength * 0.004)
 		air_update_turf()
-	if (air.get_moles(/datum/gas/hydrogen))
+	if (air.get_moles(/datum/gas/hydrogen) && !(air.get_moles(/datum/gas/hypernoblium)>=REACTION_OPPRESSION_THRESHOLD))
 		pulse_strength = min(pulse_strength, air.get_moles(/datum/gas/hydrogen) * 1000)
 		air.set_moles(/datum/gas/hydrogen, max(air.get_moles(/datum/gas/hydrogen) - (pulse_strength * 0.001), 0))
 		air.adjust_moles(/datum/gas/tritium, pulse_strength * 0.001)

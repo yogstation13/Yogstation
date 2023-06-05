@@ -25,6 +25,7 @@
 
 /obj/machinery/food_cart/Destroy()
 	QDEL_NULL(mixer)
+	stored_food.Cut()
 	return ..()
 
 /obj/machinery/food_cart/ui_interact(mob/user)

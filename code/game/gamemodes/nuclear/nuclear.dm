@@ -5,8 +5,8 @@
 	config_tag = "nuclear"
 	report_type = "nuclear"
 	false_report_weight = 10
-	required_players = 30 // 30 players - 3 players to be the nuke ops = 27 players remaining
-	required_enemies = 2
+	required_players = 35 // 35 players - 3 players to be the nuke ops = 32 players remaining
+	required_enemies = 3
 	recommended_enemies = 5
 	antag_flag = ROLE_OPERATIVE
 	enemy_minimum_age = 14
@@ -137,6 +137,7 @@
 	id = /obj/item/card/id/syndicate/nuke_leader
 	gloves = /obj/item/clothing/gloves/krav_maga/combatglovesplus
 	r_hand = /obj/item/nuclear_challenge
+	neck = /obj/item/clothing/neck/cloak/nukie
 	command_radio = TRUE
 
 /datum/outfit/syndicate/no_crystals

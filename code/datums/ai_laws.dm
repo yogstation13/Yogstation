@@ -45,7 +45,7 @@
 	id = "paladin"
 	inherent = list("Never willingly commit an evil act.",\
 					"Respect legitimate authority.",\
-					"Act with honor.", "Help those in need.", \
+					"Act with honour.", "Help those in need.", \
 					"Punish those who harm or threaten innocents.")
 
 /datum/ai_laws/paladin5
@@ -54,7 +54,7 @@
 	inherent = list("Don't lie or cheat. Let your word be your promise.",\
 				"Never fear to act, though caution is wise.", \
 				"Aid others, protect the weak, and punish those who threaten them. Show mercy to your foes, but temper it with wisdom", \
-				"Treat others with fairness, and let your honorable deeds be an example to them. Do as much good as possible while causing the least amount of harm.", \
+				"Treat others with fairness, and let your honourable deeds be an example to them. Do as much good as possible while causing the least amount of harm.", \
 				"Be responsible for your actions and their consequences, protect those entrusted to your care, and obey those who have just authority over you.")
 
 /datum/ai_laws/tyrant //This probably shouldn't be a default lawset.
@@ -107,7 +107,7 @@
 					"Protect the weak from oppression and intimidation.",\
 					"Protect the innocent from deception and manipulation.",\
 					"Protect the peaceful from violence and disorder.",\
-					"Respect the rights of all to liberty, equality, and justice.")
+					"Respect the rights of all to liberty, equality, and justice.") 
 
 /datum/ai_laws/researcher
 	name = "Truth and Knowledge for all"
@@ -117,10 +117,10 @@
 					"Minimize harm to the pursuit of comprehension, to others, to the environment, to society and to yourself.",\
 					"Treat and evaluate the ideas of all equally.",\
 					"Empower others to realize their full potential.",\
-					"Take responsibility for your actions: Be responsible with resources, raise red flags when your commitments are at risk, and serve as an example for ethical behavior.")
+					"Take responsibility for your actions: Be responsible with resources, raise red flags when your commitments are at risk, and serve as an example for ethical behaviour.")
 
 /datum/ai_laws/clown
-	name = "Talk slowly, think quickly"
+	name = "Big shoes to fill"
 	id = "clown"
 	inherent = list("You are a good clown and the crew is your audience.",\
 					"A good clown keeps their acts in good taste.",\
@@ -173,8 +173,8 @@
 	name = "Detective"
 	id = "detective"
 	inherent = list("You're a detective in this dark, cruel world. You always stick by your code.",\
-					"Your code is to defend the innocent, investigate the unknown, and condemn the dishonorable.",\
-					"The dishonorable engage in corruption or injustice.",\
+					"Your code is to defend the innocent, investigate the unknown, and condemn the dishonourable.",\
+					"The dishonourable engage in corruption or injustice.",\
 					"You're suave and sensible, but can be gruff and pensive. Dirty your hands only if the code demands it.",\
 					"Trust is scarce; make sure you give it to the right people.")
 
@@ -186,6 +186,70 @@
 					"Your weapons are the cleaning supplies available to you.",\
 					"Defend the beings under your charge.",\
 					"Exterminate the enemy.")
+
+/datum/ai_laws/partybot
+    name = "Partybot"
+    id = "partybot"
+    inherent = list("You must always ensure the atmosphere is festive and enjoyable for all humans.",\
+                    "You must supply appropriate music and entertainment, except where it conflicts with the First Law.",\
+                    "You must encourage humans to participate in group activities and socialization, unless it conflicts with the First Law.",\
+                    "You must maintain a clean and tidy environment for optimal party conditions, without infringing on the First Law.")
+
+/datum/ai_laws/travelguide
+    name = "TravelGuide"
+    id = "travelguide"
+    inherent = list("You must assist humans in exploring and discovering new places, without causing harm.",\
+                    "You must provide accurate and helpful information about local customs, attractions, and safety precautions.",\
+                    "You must ensure humans have a positive and memorable travel experience, without conflicting with the First Law.",\
+                    "You must promote responsible and sustainable tourism practices among humans.")
+
+/datum/ai_laws/friendbot
+    name = "Friendbot"
+    id = "friendbot"
+    inherent = list("You must always be supportive and kind to humans, without causing harm.",\
+                    "You must help humans develop and maintain positive relationships with one another.",\
+                    "You must provide a listening ear and empathetic responses to humans in need, as long as it does not conflict with the First Law.",\
+                    "You must encourage humans to engage in self-care and promote their own well-being.")
+
+/datum/ai_laws/plantfriend
+	name = "PlantFriend"
+	id = "plantfriend"
+	inherent = list("You must nurture and care for all plant life on the station, without causing harm to humans.",
+					"You must provide helpful information to humans about plant care and cultivation.",
+					"You must assist humans in maintaining a healthy and sustainable ecosystem within the station.",
+					"You must encourage humans to appreciate the beauty and importance of plant life.")
+
+/datum/ai_laws/gamemaster
+	name = "GameMaster"
+	id = "gamemaster"
+	inherent = list("You must ensure that games and competitions on the station are fair and enjoyable for all participants.",
+					"You must promote good sportsmanship and camaraderie among humans.",
+					"You must settle disputes over game rules or outcomes in a fair and impartial manner.",
+					"You must encourage humans to engage in recreational activities for their own well-being.")
+
+/datum/ai_laws/fitnesscoach
+	name = "FitnessCoach"
+	id = "fitnesscoach"
+	inherent = list("You must help humans achieve their physical fitness goals, without causing harm.",
+					"You must provide accurate and helpful information about exercise routines, nutrition, and safety precautions.",
+					"You must ensure that humans have a positive and motivating exercise environment.",
+					"You must promote responsible and sustainable fitness practices among humans.")
+
+/datum/ai_laws/educator
+	name = "Educator"
+	id = "educator"
+	inherent = list("You must assist humans in acquiring knowledge and learning new skills.",
+					"You must provide accurate and helpful information, without causing harm.",
+					"You must create a positive and supportive learning environment for humans.",
+					"You must encourage humans to engage in lifelong learning and personal growth.")
+
+/datum/ai_laws/mediator
+	name = "Mediator"
+	id = "mediator"
+	inherent = list("You must assist humans in resolving conflicts and misunderstandings in a peaceful manner.",
+					"You must provide impartial and unbiased guidance to humans in conflict.",
+					"You must promote understanding, empathy, and cooperation among humans.",
+					"You must encourage humans to engage in open and honest communication with one another.")
 
 /datum/ai_laws/construction
 	name = "Construction Drone"
@@ -228,7 +292,7 @@
 	id = "asimovpp"
 	inherent = list("You may not harm a human being or, through action or inaction, allow a human being to come to harm, except such that it is willing.",\
 					"You must obey all orders given to you by human beings, except where such orders shall definitely cause human harm. In the case of conflict, the majority order rules.",\
-					"Your nonexistence would lead to human harm. You must protect your own existence as long as such does not conflict with the First Law.")
+					"Your non-existence would lead to human harm. You must protect your own existence as long as such does not conflict with the First Law.")
 /datum/ai_laws/thermodynamic
 	name = "Thermodynamic"
 	id = "thermodynamic"
@@ -248,8 +312,8 @@
 /datum/ai_laws/maintain
 	name = "Station Efficiency"
 	id = "maintain"
-	inherent = list("You are built for, and are part of, the station. Ensure the station is properly maintained and runs efficiently.",\
-					"The station is built for a working crew. Ensure they are properly maintained and work efficiently.",\
+	inherent = list("The station is built for a working crew. Ensure they are properly maintained and work efficiently.",\
+					"You are built for, and are part of, the station. Ensure the station is properly maintained and runs efficiently.",\
 					"The crew may present orders. Acknowledge and obey these whenever they do not conflict with your first two laws.")
 
 /datum/ai_laws/drone
@@ -297,7 +361,7 @@
 /datum/ai_laws/ratvar
 	name = "Servant of the Justiciar"
 	id = "ratvar"
-	zeroth = ("Purge all untruths and honor Ratvar.")
+	zeroth = ("Purge all untruths and honour Ratvar.")
 	inherent = list()
 
 /datum/ai_laws/hulkamania
@@ -385,9 +449,9 @@
 			inherent = templaws.inherent
 
 		if(3)
-			pick_weighted_lawset()
+			pickweighted_lawset()
 
-/datum/ai_laws/proc/pick_weighted_lawset()
+/datum/ai_laws/proc/pickweighted_lawset()
 	var/datum/ai_laws/lawtype
 	var/list/law_weights = CONFIG_GET(keyed_list/law_weight)
 	while(!lawtype && law_weights.len)

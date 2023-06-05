@@ -69,12 +69,16 @@
 	var/list/mob/living/simple_animal/hostile/swarmer/melee/dronelist
 	///Prevents alert spam
 	var/last_alert = 0
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	///Bitflags to store boolean conditions, such as whether the light is on or off.
+	var/swarmer_flags = NONE
 
 /mob/living/simple_animal/hostile/swarmer/Initialize()
 	. = ..()
 	remove_verb(src, /mob/living/verb/pulled)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 
 /mob/living/simple_animal/hostile/swarmer/med_hud_set_health()
 	var/image/holder = hud_list[DIAG_HUD]
@@ -244,7 +248,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/victim = target
 		if(!victim.handcuffed)
-			victim.handcuffed = new /obj/item/restraints/handcuffs/energy/used(victim)
+			victim.set_handcuffed(new /obj/item/restraints/handcuffs/energy/used(victim))
 			victim.update_handcuffed()
 			log_combat(src, victim, "handcuffed")
 
@@ -363,7 +367,7 @@
 		return
 	var/mob/newswarmer = Fabricate(createtype, 20)
 	LAZYADD(dronelist, newswarmer)
-	RegisterSignal(newswarmer, COMSIG_PARENT_QDELETING, .proc/remove_drone, newswarmer)
+	RegisterSignal(newswarmer, COMSIG_PARENT_QDELETING, PROC_REF(remove_drone), newswarmer)
 	playsound(loc,'sound/items/poster_being_created.ogg', 20, TRUE, -1)
 
 /**
@@ -398,20 +402,26 @@
   * Proc used to allow a swarmer to toggle its  light on and off.  If a swarmer has any drones, change their light settings to match their master's.
   */
 /mob/living/simple_animal/hostile/swarmer/proc/toggle_light()
-	if(!light_range)
-		set_light(3)
+	if(swarmer_flags & SWARMER_LIGHT_ON)
+		swarmer_flags = ~SWARMER_LIGHT_ON
+		set_light_on(FALSE)
 		if(!mind)
 			return
 		for(var/d in dronelist)
 			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
-			drone.set_light(3)
-	else
-		set_light(0)
-		if(!mind)
-			return
-		for(var/d in dronelist)
-			var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
-			drone.set_light(0)
+			drone.swarmer_flags = ~SWARMER_LIGHT_ON
+			drone.set_light_on(FALSE)
+		return
+	swarmer_flags |= SWARMER_LIGHT_ON
+	set_light_on(TRUE)
+	if(!mind)
+		return
+
+	for(var/d in dronelist)
+		var/mob/living/simple_animal/hostile/swarmer/melee/drone = d
+		drone.swarmer_flags |= SWARMER_LIGHT_ON
+		drone.set_light_on(TRUE)
+
 	balloon_alert(src, "light toggled")
 
 /**

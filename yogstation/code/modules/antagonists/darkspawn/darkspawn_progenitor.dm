@@ -68,10 +68,10 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/proc/roar()
-	playsound(src, 'yogstation/sound/creatures/progenitor_roar.ogg', 100, TRUE)
+	playsound(src, 'yogstation/sound/creatures/progenitor_roar.ogg', 50, TRUE)
 	for(var/mob/M in GLOB.player_list)
 		if(get_dist(M, src) > 7)
-			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 75, FALSE, falloff = 5)
+			M.playsound_local(src, 'yogstation/sound/creatures/progenitor_distant.ogg', 25, FALSE, falloff = 5)
 		else if(isliving(M))
 			var/mob/living/L = M
 			if(L != src) //OH GOD OH FUCK I'M SCARING MYSELF
@@ -79,25 +79,26 @@
 				L.Stun(20)
 	time_to_next_roar = world.time + 30 SECONDS
 
-/obj/effect/proc_holder/spell/targeted/progenitor_curse
+/datum/action/cooldown/spell/list_target/progenitor_curse
 	name = "Viscerate Mind"
 	desc = "Unleash a powerful psionic barrage into the mind of the target."
-	charge_max = 50
-	clothes_req = FALSE
-	action_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	action_icon_state = "veil_mind"
-	action_background_icon_state = "bg_alien"
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	button_icon_state = "veil_mind"
+	background_icon_state = "bg_alien"
 
-/obj/effect/proc_holder/spell/targeted/progenitor_curse/cast(list/targets, mob/user = usr)
-	if(!targets.len)
-		to_chat(user, span_notice("You can't reach anyone's minds."))
-		return
-	var/mob/living/target = targets[1]
-	var/mob/living/M = target
+	cooldown_time = 5 SECONDS
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/list_target/progenitor_curse/cast(atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/mob/living/target = target_atom
 	var/zoinks = pick(0.1, 0.5, 1)//like, this isn't even my final form!
-	usr.visible_message(span_warning("[usr]'s sigils flare as it glances at [M]!"), \
-						span_velvet("You direct [zoinks]% of your psionic power into [M]'s mind!."))
-	M.apply_status_effect(STATUS_EFFECT_PROGENITORCURSE)
+	usr.visible_message(span_warning("[usr]'s sigils flare as it glances at [target]!"), \
+						span_velvet("You direct [zoinks]% of your psionic power into [target]'s mind!."))
+	target.apply_status_effect(STATUS_EFFECT_PROGENITORCURSE)
+	return TRUE
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor/narsie_act()
 	return

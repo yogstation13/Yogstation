@@ -44,9 +44,9 @@ GLOBAL_LIST_INIT(guardian_bomb_life, list(
 		if (bomb_cooldown <= world.time && !guardian.stat)
 			to_chat(guardian, span_bolddanger("Success! Bomb armed!"))
 			bomb_cooldown = world.time + 200
-			RegisterSignal(target, COMSIG_PARENT_EXAMINE, .proc/display_examine)
-			RegisterSignal(target, boom_signals, .proc/kaboom)
-			addtimer(CALLBACK(src, .proc/disable, target), GLOB.guardian_bomb_life[guardian.stats.potential], TIMER_UNIQUE|TIMER_OVERRIDE)
+			RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(display_examine))
+			RegisterSignal(target, boom_signals, PROC_REF(kaboom))
+			addtimer(CALLBACK(src, PROC_REF(disable), target), GLOB.guardian_bomb_life[guardian.stats.potential], TIMER_UNIQUE|TIMER_OVERRIDE)
 			bombs += target
 		else
 			to_chat(guardian, span_bolddanger("Your powers are on cooldown! You must wait 20 seconds between bombs."))

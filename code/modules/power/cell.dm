@@ -48,9 +48,9 @@
 				STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/stock_parts/cell/process()
+/obj/item/stock_parts/cell/process(delta_time)
 	if(self_recharge)
-		give(chargerate * 0.25)
+		give(chargerate * 0.125 * delta_time)
 	else
 		return PROCESS_KILL
 
@@ -136,7 +136,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	charge -= 1000 / severity
+	charge -= max((charge * 0.1), 500) / severity
 	if (charge < 0)
 		charge = 0
 

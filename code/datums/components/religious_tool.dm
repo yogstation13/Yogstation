@@ -27,8 +27,8 @@
 		catalyst_type = override_catalyst_type
 
 /datum/component/religious_tool/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY,.proc/AttemptActions)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/on_examine)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(AttemptActions))
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/religious_tool/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY, COMSIG_PARENT_EXAMINE))
@@ -96,6 +96,9 @@
 			return
 		var/selection2type = easy_access_sect.rites_list[rite_select]
 		performing_rite = new selection2type(parent)
+		if(!performing_rite)
+			to_chat(user, span_warning("Type [rite_select] is not a valid rite! Please make a bug report!"))
+			return
 		if(!performing_rite.perform_rite(user, parent))
 			QDEL_NULL(performing_rite)
 		else
@@ -145,5 +148,5 @@
 	if(!easy_access_sect.rites_list)
 		return //if we dont have rites it doesnt do us much good if the object can be used to invoke them!
 	if(operation_flags & RELIGION_TOOL_INVOKE)
-		examine_list += "List of available Rites:"
+		examine_list += "List of available rites:"
 		examine_list += easy_access_sect.rites_list

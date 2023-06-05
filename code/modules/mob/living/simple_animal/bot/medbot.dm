@@ -301,7 +301,10 @@
 		if(user.name == tipper_name)
 			messagevoice = list("I forgive you." = 'sound/voice/medbot/forgive.ogg')
 		else
-			messagevoice = list("Thank you!" = 'sound/voice/medbot/thank_you.ogg', "You are a good person." = 'sound/voice/medbot/youre_good.ogg')
+			if(prob(1)) // if you're reading this you are a good
+				messagevoice = list("You are a good." = 'sound/voice/medbot/you_are_a_good.ogg')
+			else
+				messagevoice = list("Thank you!" = 'sound/voice/medbot/thank_you.ogg', "You are a good person." = 'sound/voice/medbot/youre_good.ogg')
 	else
 		visible_message(span_notice("[src] manages to writhe wiggle enough to right itself."))
 		messagevoice = list("Fuck you." = 'sound/voice/medbot/fuck_you.ogg', "Your behavior has been reported, have a nice day." = 'sound/voice/medbot/reported.ogg')
@@ -390,7 +393,15 @@
 				var/list/i_need_scissors = list('sound/voice/medbot/fuck_you.ogg', 'sound/voice/medbot/turn_off.ogg', 'sound/voice/medbot/im_different.ogg', 'sound/voice/medbot/close.ogg', 'sound/voice/medbot/shindemashou.ogg')
 				playsound(src, pick(i_need_scissors), 70)
 			else
-				var/list/messagevoice = list("Radar, put a mask on!" = 'sound/voice/medbot/radar.ogg',"There's always a catch, and I'm the best there is." = 'sound/voice/medbot/catch.ogg',"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/surgeon.ogg',"What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/flies.ogg',"Delicious!" = 'sound/voice/medbot/delicious.ogg', "Why are we still here? Just to suffer?" = 'sound/voice/medbot/why.ogg')
+				var/list/messagevoice = list("Radar, put a mask on!" = 'sound/voice/medbot/radar.ogg',"There's always a catch, and I'm the best there is." = 'sound/voice/medbot/catch.ogg',"I knew it, I should've been a plastic surgeon." = 'sound/voice/medbot/surgeon.ogg',"Delicious!" = 'sound/voice/medbot/delicious.ogg', "Why are we still here? Just to suffer?" = 'sound/voice/medbot/why.ogg')
+				if(prob( 100 / (LAZYLEN(messagevoice) + 1) )) // Simulate the odds of it still being in the list
+					var/any_dead = FALSE
+					for(var/mob/living/carbon/C in view(6))
+						if(C.stat == DEAD)
+							any_dead = TRUE
+							break
+					if(any_dead) // But only actually choose to insult medbay if they actually have dead patients
+						messagevoice = list("What kind of medbay is this? Everyone's dropping like flies." = 'sound/voice/medbot/flies.ogg')
 				var/message = pick(messagevoice)
 				speak(message)
 				playsound(src, messagevoice[message], 50)
@@ -502,7 +513,7 @@
 	if((!C.reagents.has_reagent(treatment_fire_avoid)) && ((C.getFireLoss()-robotic_burn) >= heal_threshold) && (!C.reagents.has_reagent(treatment_fire)))
 		return TRUE
 
-	if((!C.reagents.has_reagent(treatment_tox_avoid)) && (C.getToxLoss() >= heal_threshold) && (!C.reagents.has_reagent(treatment_tox)))
+	if((!C.reagents.has_reagent(treatment_tox_avoid)) && (C.getToxLoss() >= heal_threshold) && (!C.reagents.has_reagent(treatment_tox)) && !(TRAIT_TOXINLOVER in C?.dna?.species?.inherent_traits))
 		return TRUE
 
 	if(treat_virus && !C.reagents.has_reagent(treatment_virus_avoid) && !C.reagents.has_reagent(treatment_virus))
@@ -604,7 +615,7 @@
 			if(!C.reagents.has_reagent(treatment_fire) && !C.reagents.has_reagent(treatment_fire_avoid))
 				reagent_id = treatment_fire
 
-		if(!reagent_id && (C.getToxLoss() >= heal_threshold))
+		if(!reagent_id && (C.getToxLoss() >= heal_threshold) && !(TRAIT_TOXINLOVER in C?.dna?.species?.inherent_traits))
 			if(!C.reagents.has_reagent(treatment_tox) && !C.reagents.has_reagent(treatment_tox_avoid))
 				reagent_id = treatment_tox
 
@@ -695,7 +706,7 @@
 	declare_cooldown = world.time + 200
 
 /obj/machinery/bot_core/medbot
-	req_one_access = list(ACCESS_MEDICAL, ACCESS_ROBOTICS)
+	req_one_access = list(ACCESS_MEDICAL, ACCESS_ROBO_CONTROL)
 
 #undef MEDBOT_PANIC_NONE
 #undef MEDBOT_PANIC_LOW

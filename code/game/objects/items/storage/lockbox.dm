@@ -233,7 +233,7 @@
 //Yogs: Vial Holder
 /obj/item/storage/lockbox/vialbox
 	name = "vial box"
-	desc = "A small box that can hold up to six vials in a sealed enviroment."
+	desc = "A small box that can hold up to six vials in a sealed environment."
 	icon = 'icons/obj/vial_box.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "vialbox"
@@ -295,7 +295,7 @@
 
 /obj/item/storage/lockbox/vialbox/hypo_deluxe
 	name = "deluxe hypospray vial box"
-	desc = "A small box that can hold up to six vials in a sealed enviroment. This one contains a plethora of different vials for various medical ailments, designed for use in a deluxe hypospray."
+	desc = "A small box that can hold up to six vials in a sealed environment. This one contains a plethora of different vials for various medical ailments, designed for use in a deluxe hypospray."
 	req_access = list(ACCESS_MEDICAL)
 
 /obj/item/storage/lockbox/vialbox/hypo_deluxe/PopulateContents()
@@ -308,7 +308,7 @@
 
 /obj/item/storage/lockbox/vialbox/virology
 	name = "virology vial box"
-	desc = "A small box that can hold up to six vials in a sealed enviroment. This one requires virology access to open."
+	desc = "A small box that can hold up to six vials in a sealed environment. This one requires virology access to open."
 	req_access = list(ACCESS_MEDICAL)
 
 /obj/item/storage/lockbox/vialbox/virology/PopulateContents()
@@ -319,8 +319,11 @@
 
 /obj/item/storage/lockbox/vialbox/blood
 	name = "blood sample box"
-	desc = "A small box that can hold up to six vials in a sealed enviroment. This one is intended to store blood."
+	desc = "A small box that can hold up to six vials in a sealed environment. This one is intended to store blood."
 
 /obj/item/storage/lockbox/vialbox/blood/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/reagent_containers/glass/bottle/vial(src)
+
+/obj/item/storage/lockbox/vialbox/printed
+	req_access = null

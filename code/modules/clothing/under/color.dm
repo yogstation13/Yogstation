@@ -4,6 +4,7 @@
 	mutantrace_variation = MUTANTRACE_VARIATION
 
 /obj/item/clothing/under/skirt/color
+	dying_key = DYE_REGISTRY_JUMPSKIRT
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	fitted = FEMALE_UNIFORM_TOP

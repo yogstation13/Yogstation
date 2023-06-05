@@ -100,7 +100,7 @@
 	if(I.tool_behaviour == TOOL_CROWBAR && user.a_intent != INTENT_HARM)
 		user.visible_message("[user.name] starts prying [src.name] apart.", \
 							span_notice("You start prying the barricade apart"))
-		if(I.use_tool(src, user, 190, volume=50))
+		if(I.use_tool(src, user, 10 SECONDS, volume=50))
 			to_chat(user, span_notice("You disassemble the barricade."))
 			new /obj/item/stack/sheet/mineral/wood(user.loc, 5)
 			qdel(src)
@@ -144,7 +144,7 @@
 
 /obj/structure/barricade/security/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/deploy), deploy_time)
+	addtimer(CALLBACK(src, PROC_REF(deploy)), deploy_time)
 
 /obj/structure/barricade/security/proc/deploy()
 	icon_state = "barrier1"

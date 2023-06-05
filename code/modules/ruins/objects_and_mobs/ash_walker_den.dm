@@ -57,6 +57,22 @@
 
 /obj/structure/lavaland/ash_walker/proc/spawn_mob()
 	if(meat_counter >= ASH_WALKER_SPAWN_THRESHOLD)
-		new /obj/effect/mob_spawn/human/ash_walker(get_step(loc, pick(GLOB.alldirs)), ashies)
+		//spawn a shaman if there isn't a living one, or an egg for one
+		var/shaman = TRUE
+		for(var/mob/living/carbon/human/lizardfinder in GLOB.mob_living_list)
+			if(is_species(lizardfinder, /datum/species/lizard/ashwalker/shaman))
+				shaman = FALSE //lizard found
+		if(shaman)
+			for(var/spawners in GLOB.mob_spawners)//if an admin spawns in a shaman egg somewhere randomly, that will prevent any eggs from spawning normally
+				for(var/egg in GLOB.mob_spawners[spawners])
+					if(istype(egg, /obj/effect/mob_spawn/human/ash_walker/shaman))
+						shaman = FALSE
+						break
+
+		if(shaman)//is a shaman being spawned?
+			new /obj/effect/mob_spawn/human/ash_walker/shaman(get_step(loc, pick(GLOB.alldirs)), ashies)
+		else
+			new /obj/effect/mob_spawn/human/ash_walker(get_step(loc, pick(GLOB.alldirs)), ashies)
+
 		visible_message(span_danger("One of the eggs swells to an unnatural size and tumbles free. It's ready to hatch!"))
 		meat_counter -= ASH_WALKER_SPAWN_THRESHOLD

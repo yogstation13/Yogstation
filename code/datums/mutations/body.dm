@@ -13,14 +13,15 @@
 	if(prob(1 * GET_MUTATION_SYNCHRONIZER(src)) && owner.stat == CONSCIOUS)
 		owner.visible_message(span_danger("[owner] starts having a seizure!"), span_userdanger("You have a seizure!"))
 		owner.Unconscious(200 * GET_MUTATION_POWER(src))
-		owner.Jitter(1000 * GET_MUTATION_POWER(src))
+		owner.adjust_jitter(1000 * GET_MUTATION_POWER(src))
 		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "epilepsy", /datum/mood_event/epilepsy)
-		addtimer(CALLBACK(src, .proc/jitter_less), 90)
+		addtimer(CALLBACK(src, PROC_REF(jitter_less)), 90)
 
 /datum/mutation/human/epilepsy/proc/jitter_less()
-	if(owner)
-		owner.jitteriness = 10
+	if(QDELETED(owner))
+		return
 
+	owner.set_jitter(20 SECONDS)
 
 //Unstable DNA induces random mutations!
 /datum/mutation/human/bad_dna
@@ -77,7 +78,7 @@
 	if(prob(5) && owner.stat == CONSCIOUS)
 		owner.emote("scream")
 		if(prob(25))
-			owner.hallucination += 20
+			owner.adjust_hallucinations(20 SECONDS)
 
 //Dwarfism shrinks your body and lets you pass tables.
 /datum/mutation/human/dwarfism
@@ -194,7 +195,7 @@
 	var/obj/effect/dummy/luminescent_glow/glowth //shamelessly copied from luminescents
 	var/glow = 3.5
 	var/range = 2.5
-	var/color
+	var/current_nullify_timer // For veil yogstation\code\modules\antagonists\shadowling\shadowling_abilities.dm
 	power_coeff = 1
 	conflicts = list(/datum/mutation/human/glow/anti)
 
@@ -205,19 +206,23 @@
 	glowth = new(owner)
 	modify()
 
+// Override modify here without a parent call, because we don't actually give an action.
 /datum/mutation/human/glow/modify()
 	if(!glowth)
 		return
-	var/power = GET_MUTATION_POWER(src)
+
+	var/glow_color
+
 	if(owner.dna.features["mcolor"][1] != "#")
 		//if it doesn't start with a pound, it needs that for the color
-		color += "#"
+		glow_color += "#"
 	if(length(owner.dna.features["mcolor"]) < 6)
 		//this atrocity converts shorthand hex rgb back into full hex that's required for light to be given a functional value
-		color += owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][3] + owner.dna.features["mcolor"][3]
+		glow_color += owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][1] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][2] + owner.dna.features["mcolor"][3] + owner.dna.features["mcolor"][3]
 	else
-		color += owner.dna.features["mcolor"]
-	glowth.set_light(range * power, glow * power, color)
+		glow_color += owner.dna.features["mcolor"]
+
+	glowth.set_light_range_power_color(range * GET_MUTATION_POWER(src), glow, glow_color)
 
 /datum/mutation/human/glow/on_losing(mob/living/carbon/human/owner)
 	. = ..()
@@ -318,7 +323,7 @@
 /datum/mutation/human/fire/on_life()
 	if(prob((1+(100-dna.stability)/10)) * GET_MUTATION_SYNCHRONIZER(src))
 		owner.adjust_fire_stacks(2 * GET_MUTATION_POWER(src))
-		owner.IgniteMob()
+		owner.ignite_mob()
 
 /datum/mutation/human/fire/on_acquiring(mob/living/carbon/human/owner)
 	if(..())

@@ -3,7 +3,7 @@
 #define POWER_RESTORATION_SEARCH_APC 2
 #define POWER_RESTORATION_APC_FOUND 3
 
-/mob/living/silicon/ai/Life(seconds)
+/mob/living/silicon/ai/Life()
 	if (stat == DEAD)
 		return
 	else //I'm not removing that shitton of tabs, unneeded as they are. -- Urist
@@ -14,7 +14,7 @@
 		handle_status_effects()
 
 		if(dashboard)
-			dashboard.tick(seconds)
+			dashboard.tick(2 SECONDS * 0.1)
 
 		process_hijack() // yogs
 		process_integrate()
@@ -47,8 +47,8 @@
 
 		if(!lacks_power())
 			var/area/home = get_area(src)
-			if(home.powered(EQUIP))
-				home.use_power(1000, EQUIP)
+			if(home.powered(AREA_USAGE_EQUIP))
+				home.use_power(1000, AREA_USAGE_EQUIP)
 
 			if(aiRestorePowerRoutine >= POWER_RESTORATION_SEARCH_APC)
 				ai_restore_power()
@@ -105,7 +105,7 @@
 			death()
 			return
 		else if(stat == UNCONSCIOUS)
-			stat = CONSCIOUS
+			set_stat(CONSCIOUS)
 			adjust_blindness(-1)
 	diag_hud_set_status()
 
@@ -208,7 +208,7 @@
 	
 	update_sight()
 	to_chat(src, "You've lost power!")
-	addtimer(CALLBACK(src, .proc/start_RestorePowerRoutine), 20)
+	addtimer(CALLBACK(src, PROC_REF(start_RestorePowerRoutine)), 20)
 
 #undef POWER_RESTORATION_OFF
 #undef POWER_RESTORATION_START

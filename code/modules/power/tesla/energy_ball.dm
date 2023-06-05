@@ -114,7 +114,7 @@
 		energy_to_raise = energy_to_raise * 1.25
 
 		playsound(src.loc, 'sound/magic/lightning_chargeup.ogg', 100, 1, extrarange = 30)
-		addtimer(CALLBACK(src, .proc/new_mini_ball), 100)
+		addtimer(CALLBACK(src, PROC_REF(new_mini_ball)), 100)
 
 	else if(energy < energy_to_lower && orbiting_balls.len)
 		energy_to_raise = energy_to_raise / 1.25
@@ -165,6 +165,8 @@
 		var/turf/throw_at = get_ranged_target_turf(src, get_dir(user, src), 2)
 		throw_at(throw_at, 2, 1)
 		user.changeNext_move(CLICK_CD_RANGE)
+		return TRUE
+	. = ..()
 
 /obj/singularity/energy_ball/orbit(obj/singularity/energy_ball/target)
 	if (istype(target))

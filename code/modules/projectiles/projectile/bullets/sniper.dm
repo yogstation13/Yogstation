@@ -33,10 +33,10 @@
 	name = ".50 penetrator bullet"
 	icon_state = "gauss"
 	damage = 60
-	movement_type = FLYING | UNSTOPPABLE
+	penetrating = TRUE //Passes through everything and anything until it reaches the end of its range
+	penetration_type = 2
 	dismemberment = 0 //It goes through you cleanly.
 	paralyze = 0
-	breakthings = FALSE
 
 /obj/item/projectile/bullet/p50/penetrator/shuttle //Nukeop Shuttle Variety
 	icon_state = "gaussstrong"

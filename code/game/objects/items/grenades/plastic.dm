@@ -110,7 +110,7 @@
 	if(ismob(AM) && !can_attach_mob)
 		return
 	if(AM.GetComponent(/datum/component/storage))
-		var/fuckup_safety = alert(user, "Doing this will arm the explosive and attach it to the [AM.name], not put it inside. Are you sure you want to do this?", "Are you sure?", "Yes", "No")
+		var/fuckup_safety = tgui_alert(user, "Doing this will arm the explosive and attach it to the [AM.name], not put it inside. Are you sure you want to do this?", "Are you sure?", list("Yes", "No"))
 		if(fuckup_safety != "Yes")
 			return
 
@@ -139,7 +139,7 @@
 		target.add_overlay(plastic_overlay, TRUE)
 		if(!nadeassembly)
 			to_chat(user, span_notice("You plant the bomb. Timer counting down from [det_time]."))
-			addtimer(CALLBACK(src, .proc/prime), det_time*10)
+			addtimer(CALLBACK(src, PROC_REF(prime)), det_time*10)
 		else
 			qdel(src)	//How?
 

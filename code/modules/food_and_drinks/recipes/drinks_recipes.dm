@@ -319,6 +319,11 @@
 	results = list(/datum/reagent/consumable/ethanol/barefoot = 3)
 	required_reagents = list(/datum/reagent/consumable/berryjuice = 1, /datum/reagent/consumable/cream = 1, /datum/reagent/consumable/ethanol/vermouth = 1)
 
+/datum/chemical_reaction/moscow_mule
+	id = /datum/reagent/consumable/ethanol/moscow_mule
+	results = list(/datum/reagent/consumable/ethanol/moscow_mule = 10)
+	required_reagents = list(/datum/reagent/consumable/sodawater = 5, /datum/reagent/consumable/ethanol/vodka = 5, /datum/reagent/consumable/limejuice = 1, /datum/reagent/consumable/ice = 1)
+	mix_sound = 'sound/effects/bubbles2.ogg'
 
 ////DRINKS THAT REQUIRED IMPROVED SPRITES BELOW:: -Agouri/////
 
@@ -813,7 +818,7 @@
 	name = "Catsip"
 	id = /datum/reagent/consumable/ethanol/catsip
 	results = list(/datum/reagent/consumable/ethanol/catsip = 4)
-	required_reagents = list(/datum/reagent/consumable/ethanol/sake = 2, /datum/reagent/consumable/soymilk = 2, /datum/reagent/consumable/corn_syrup = 1, /datum/reagent/consumable/grenadine = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/sake = 2, /datum/reagent/consumable/soymilk = 2, /datum/reagent/consumable/grenadine = 1)
 
 /datum/chemical_reaction/flaming_moe
 	name = "Flaming Moe"
@@ -873,7 +878,7 @@
 
 /datum/chemical_reaction/blackvelvet
 	name = "Black Velvet"
-	id = /datum/reagent/consumable/ethanol/beer/stout/blackvelvet 
+	id = /datum/reagent/consumable/ethanol/beer/stout/blackvelvet
 	results = list(/datum/reagent/consumable/ethanol/beer/stout/blackvelvet = 2)
 	required_reagents = list(/datum/reagent/consumable/ethanol/champagne = 1, /datum/reagent/consumable/ethanol/beer/stout = 1)
 
@@ -894,11 +899,11 @@
 
 /datum/chemical_reaction/drink/sea_breeze
 	results = list(/datum/reagent/consumable/ethanol/sea_breeze = 5)
-	required_reagents = list(/datum/reagent/consumable/ethanol/bilk/kortara = 3, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/ethanol/creme_de_cacao = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol/kortara = 3, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/ethanol/creme_de_cacao = 1)
 
 /datum/chemical_reaction/drink/white_tiziran
 	results = list(/datum/reagent/consumable/ethanol/white_tiziran = 8)
-	required_reagents = list(/datum/reagent/consumable/ethanol/black_russian = 5, /datum/reagent/consumable/ethanol/bilk/kortara = 3)
+	required_reagents = list(/datum/reagent/consumable/ethanol/black_russian = 5, /datum/reagent/consumable/ethanol/kortara = 3)
 
 /datum/chemical_reaction/drink/drunken_espatier
 	results = list(/datum/reagent/consumable/ethanol/drunken_espatier = 5)

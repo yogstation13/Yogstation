@@ -4,6 +4,7 @@
 	roundend_category = "clock cultists"
 	antagpanel_category = "Clockcult"
 	job_rank = ROLE_SERVANT_OF_RATVAR
+	antag_hud_name = "clockwork"
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/cult
 	var/datum/action/innate/hierophant/hierophant_network = new()
@@ -62,7 +63,6 @@
 /datum/antagonist/clockcult/on_gain()
 	var/mob/living/current = owner.current
 	SSticker.mode.servants_of_ratvar += owner
-	SSticker.mode.update_servant_icons_added(owner)
 	owner.special_role = ROLE_SERVANT_OF_RATVAR
 	owner.current.log_message("has been converted to the cult of Ratvar!", LOG_ATTACK, color="#BE8700")
 	if(issilicon(current))
@@ -90,7 +90,7 @@
 	GLOB.all_clockwork_mobs += current
 	current.faction |= "ratvar"
 	current.grant_language(/datum/language/ratvar)
-	current.update_action_buttons_icon() //because a few clockcult things are action buttons and we may be wearing/holding them for whatever reason, we need to update buttons
+	current.update_mob_action_buttons() //because a few clockcult things are action buttons and we may be wearing/holding them for whatever reason, we need to update buttons
 	if(issilicon(current))
 		var/mob/living/silicon/S = current
 		if(iscyborg(S))
@@ -129,11 +129,13 @@
 		hierophant_network.span_for_name = "nezbere"
 		hierophant_network.span_for_message = "brass"
 	hierophant_network.Grant(current)
-	current.throw_alert("clockinfo", /obj/screen/alert/clockwork/infodump)
+	current.throw_alert("clockinfo", /atom/movable/screen/alert/clockwork/infodump)
 	if(clockwork_ark_active() && ishuman(current))
 		current.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))
+	add_team_hud(current)
 
 /datum/antagonist/clockcult/remove_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/current = owner.current
 	if(istype(mob_override))
 		current = mob_override
@@ -156,18 +158,18 @@
 		S.update_icons()
 		S.show_laws()
 	var/mob/living/temp_owner = current
-	..()
 	if(iscyborg(temp_owner))
 		var/mob/living/silicon/robot/R = temp_owner
 		R.module.rebuild_modules()
 	if(temp_owner)
-		temp_owner.update_action_buttons_icon() //because a few clockcult things are action buttons and we may be wearing/holding them, we need to update buttons
+		temp_owner.update_mob_action_buttons() //because a few clockcult things are action buttons and we may be wearing/holding them, we need to update buttons
 	temp_owner.cut_overlays()
 	temp_owner.regenerate_icons()
 
 /datum/antagonist/clockcult/on_removal()
 	SSticker.mode.servants_of_ratvar -= owner
-	SSticker.mode.update_servant_icons_removed(owner)
+	for(var/datum/action/item_action/clock/quickbind/existing_binds in owner.current.actions)
+		existing_binds.Remove(owner.current) //regenerate all our quickbound scriptures
 	if(!silent)
 		owner.current.visible_message("[span_deconversion_message("[owner.current] seems to have remembered [owner.current.p_their()] true allegiance!")]", null, null, null, owner.current)
 		to_chat(owner, span_userdanger("A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant."))
@@ -175,7 +177,7 @@
 	owner.special_role = null
 	if(iscyborg(owner.current))
 		to_chat(owner.current, span_warning("Despite your freedom from Ratvar's influence, you are still irreparably damaged and no longer possess certain functions such as AI linking."))
-	. = ..()
+	return ..()
 
 
 /datum/antagonist/clockcult/admin_add(datum/mind/new_owner,mob/admin)
@@ -190,9 +192,9 @@
 
 /datum/antagonist/clockcult/get_admin_commands()
 	. = ..()
-	.["Give slab"] = CALLBACK(src,.proc/admin_give_slab)
+	.["Equip Cultist"] = CALLBACK(src, PROC_REF(admin_equip))
 
-/datum/antagonist/clockcult/proc/admin_give_slab(mob/admin)
+/datum/antagonist/clockcult/proc/admin_equip(mob/admin)
 	if(!SSticker.mode.equip_servant(owner.current))
 		to_chat(admin, span_warning("Failed to outfit [owner.current]!"))
 	else
@@ -259,3 +261,10 @@
 	if(ratio >= SERVANT_HARDMODE_PERCENT)
 		GLOB.clockwork_hardmode_active = TRUE
 		hierophant_message("<span class='large_brass bold'>As the cult increases in size, the Ark's connection to the material plane weakens. Warping with camera consoles will take substantially more time unless the destination is a clockwork tile!</span>")
+
+/datum/antagonist/clockcult/get_preview_icon()
+	var/icon/clockie_icon = icon('icons/effects/512x512.dmi', "ratvar")
+
+	clockie_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return clockie_icon

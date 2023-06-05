@@ -126,8 +126,8 @@
 		var/speedbase = abs((4 SECONDS) / limbs_to_dismember.len)
 		for(bodypart in limbs_to_dismember)
 			i++
-			addtimer(CALLBACK(src, .proc/suicide_dismember, user, bodypart), speedbase * i)
-	addtimer(CALLBACK(src, .proc/manual_suicide, user), (5 SECONDS) * i)
+			addtimer(CALLBACK(src, PROC_REF(suicide_dismember), user, bodypart), speedbase * i)
+	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), (5 SECONDS) * i)
 	return MANUAL_SUICIDE
 
 /obj/item/melee/sabre/proc/suicide_dismember(mob/living/user, obj/item/bodypart/affecting)
@@ -247,7 +247,7 @@
 		return
 
 	// Special effects
-	if(affecting.stamina_dam >= 50 && (istype(affecting, /obj/item/bodypart/l_leg) || istype(affecting, /obj/item/bodypart/r_leg)))
+	if(affecting?.stamina_dam >= 50 && (istype(affecting, /obj/item/bodypart/l_leg) || istype(affecting, /obj/item/bodypart/r_leg)))
 		desc = get_stun_description(target, user)
 		target.Knockdown(knockdown_time_carbon)
 
@@ -454,8 +454,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NONE
 	force = 5
-
-	cooldown = 25
+	cooldown = 2.5 SECONDS
 	stamina_damage = 85
 	affect_silicon = TRUE
 	on_sound = 'sound/weapons/contractorbatonextend.ogg'
@@ -498,15 +497,15 @@
 	if(!iscarbon(user))
 		target.LAssailant = null
 	else
-		target.LAssailant = user
+		target.LAssailant = WEAKREF(user)
 	cooldown_check = world.time + cooldown
 
 /obj/item/melee/classic_baton/telescopic/contractor_baton/get_wait_description()
 	return span_danger("The baton is still charging!")
 
 /obj/item/melee/classic_baton/telescopic/contractor_baton/additional_effects_carbon(mob/living/target, mob/living/user)
-	target.Jitter(20)
-	target.stuttering += 20
+	target.set_jitter_if_lower(40 SECONDS)
+	target.set_stutter_if_lower(40 SECONDS)
 
 /obj/item/melee/supermatter_sword
 	name = "supermatter sword"
@@ -622,14 +621,18 @@
 
 /obj/item/melee/singularity_sword/afterattack(target, mob/user, proximity_flag)
 	. = ..()
-	if(proximity_flag && istype(target, /mob))
-		var/mob/M = target
-		var/turf/T = get_turf(M)
-		M.visible_message(span_danger("[target] is consumed by the singularity!"))
-		new /obj/singularity(T)
-		M.gib()
+	if(proximity_flag)
+		var/turf/T = get_turf(target)
+		var/obj/singularity/gravitational/S = new(T)
+		S.consume(target)
 	else
 		return FALSE
+
+/obj/item/melee/singularity_sword/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	var/turf/T = get_turf(hit_atom)
+	var/obj/singularity/gravitational/S = new(T)
+	S.consume(hit_atom)
 
 /// Simple whip that does additional damage(8 brute to be exact) to simple animals
 /obj/item/melee/curator_whip

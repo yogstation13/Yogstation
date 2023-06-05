@@ -2,8 +2,7 @@
 	name = "critter crate"
 	desc = "A crate designed for safe transport of animals. It has an oxygen tank for safe transport in space."
 	icon_state = "crittercrate"
-	horizontal = FALSE
-	allow_objects = FALSE
+	open_flags = ALLOW_DENSE
 	breakout_time = 600
 	material_drop = /obj/item/stack/sheet/mineral/wood
 	material_drop_amount = 4
@@ -36,3 +35,9 @@
 		return tank.air_contents
 	else
 		return loc.return_air()
+
+/obj/structure/closet/crate/critter/return_analyzable_air()
+	if(tank)
+		return tank.return_analyzable_air()
+	else
+		return null

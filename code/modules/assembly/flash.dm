@@ -10,14 +10,29 @@
 	w_class = WEIGHT_CLASS_TINY
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 300)
 	light_color = LIGHT_COLOR_WHITE
+	light_system = MOVABLE_LIGHT //Used as a flash here.
+	light_range = FLASH_LIGHT_RANGE
 	light_power = FLASH_LIGHT_POWER
+	light_on = FALSE
+	fryable = TRUE
+	///flicked when we flash
 	var/flashing_overlay = "flash-f"
-	var/times_used = 0 //Number of times it's been used.
-	var/burnt_out = FALSE     //Is the flash burnt out?
+	///Number of times the flash has been used.
+	var/times_used = 0
+	///Is the flash burnt out?
+	var/burnt_out = FALSE
+	///reduction to burnout % chance
 	var/burnout_resistance = 0
-	var/last_used = 0 //last world.time it was used.
+	///last world.time this flash was used
+	var/last_used = 0
+	///self explanatory, cooldown on flash use
 	var/cooldown = 0
-	var/last_trigger = 0 //Last time it was successfully triggered.
+	///last time we actually flashed
+	var/last_trigger = 0
+	///can we convert people to revolution
+	var/can_convert = FALSE
+	///can we stun silicons
+	var/borgstun = TRUE
 
 /obj/item/assembly/flash/suicide_act(mob/living/user)
 	if(burnt_out)
@@ -39,7 +54,7 @@
 	if(flash)
 		add_overlay(flashing_overlay)
 		attached_overlays += flashing_overlay
-		addtimer(CALLBACK(src, .proc/update_icon), 5)
+		addtimer(CALLBACK(src, PROC_REF(update_icon)), 5)
 	if(holder)
 		holder.update_icon()
 
@@ -90,7 +105,7 @@
 	if(isturf(target_loc) || (ismob(target_loc) && isturf(target_loc.loc)))
 		return viewers(range, get_turf(target_loc))
 	else
-		return typecache_filter_list(target_loc.GetAllContents(), GLOB.typecache_living)
+		return typecache_filter_list(target_loc.get_all_contents(), GLOB.typecache_living)
 
 /obj/item/assembly/flash/proc/try_use_flash(mob/user = null)
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
@@ -100,13 +115,17 @@
 		return FALSE
 	last_trigger = world.time
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
-	flash_lighting_fx(FLASH_LIGHT_RANGE, light_power, light_color)
+	set_light_on(TRUE)
+	addtimer(CALLBACK(src, PROC_REF(flash_end)), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	times_used++
 	flash_recharge()
 	update_icon(TRUE)
 	if(user && !clown_check(user))
 		return FALSE
 	return TRUE
+
+/obj/item/assembly/flash/proc/flash_end()
+	set_light_on(FALSE)
 
 /obj/item/assembly/flash/proc/flash_carbon(mob/living/carbon/M, mob/user, power = 15, targeted = TRUE, generic_message = FALSE)
 	if(!istype(M))
@@ -119,17 +138,20 @@
 		to_chat(M, span_disarm("[src] emits a blinding light!"))
 	if(targeted)
 		if(M.flash_act(1, 1))
-			if(M.confused < power)
-				var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
-				M.confused += min(power, diff)
+			M.set_confusion_if_lower(power * CONFUSION_STACK_MAX_MULTIPLIER SECONDS)
 			if(user)
 				terrible_conversion_proc(M, user)
 				visible_message(span_disarm("[user] blinds [M] with the flash!"))
 				to_chat(user, span_danger("You blind [M] with the flash!"))
 				to_chat(M, span_userdanger("[user] blinds you with the flash!"))
+				for(var/datum/brain_trauma/trauma in M.get_traumas())
+					trauma.on_flash(user, M)
 			else
 				to_chat(M, span_userdanger("You are blinded by [src]!"))
-			M.Paralyze(rand(80,120))
+			if(M.IsParalyzed() || M.IsKnockdown())
+				M.Knockdown(rand(20,30))
+			else
+				M.Knockdown(rand(80,120))
 		else if(user)
 			visible_message(span_disarm("[user] fails to blind [M] with the flash!"))
 			to_chat(user, span_warning("You fail to blind [M] with the flash!"))
@@ -138,8 +160,7 @@
 			to_chat(M, span_danger("[src] fails to blind you!"))
 	else
 		if(M.flash_act())
-			var/diff = power * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
-			M.confused += min(power, diff)
+			M.set_confusion_if_lower(power * CONFUSION_STACK_MAX_MULTIPLIER SECONDS)
 
 /obj/item/assembly/flash/attack(mob/living/M, mob/user)
 	if(!try_use_flash(user))
@@ -147,24 +168,23 @@
 	if(iscarbon(M))
 		flash_carbon(M, user, 5, 1)
 		return TRUE
-	else if(issilicon(M))
+	else if(issilicon(M) && borgstun)
 		var/mob/living/silicon/robot/R = M
 		if(!R.sensor_protection)
 			log_combat(user, R, "flashed", src)
 			update_icon(1)
 			R.Paralyze(rand(80,120))
-			var/diff = 5 * CONFUSION_STACK_MAX_MULTIPLIER - M.confused
-			R.confused += min(5, diff)
+			R.set_confusion_if_lower(5 SECONDS * CONFUSION_STACK_MAX_MULTIPLIER)
 			R.flash_act(affect_silicon = 1)
 			user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
 			return TRUE
 		else
-			R.overlay_fullscreen("reducedflash", /obj/screen/fullscreen/flash/static)
+			R.overlay_fullscreen("reducedflash", /atom/movable/screen/fullscreen/flash/static)
 			R.uneq_all()
 			R.stop_pulling()
 			R.break_all_cyborg_slots(TRUE)
-			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/clear_fullscreen, "reducedflash"), 5 SECONDS)
-			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/repair_all_cyborg_slots), 5 SECONDS)
+			addtimer(CALLBACK(R, TYPE_PROC_REF(/mob/living/silicon/robot, clear_fullscreen), "reducedflash"), 5 SECONDS)
+			addtimer(CALLBACK(R, TYPE_PROC_REF(/mob/living/silicon/robot, repair_all_cyborg_slots)), 5 SECONDS)
 			to_chat(R, span_danger("Your sensors were momentarily dazzled!"))
 			user.visible_message(span_disarm("[user] overloads [R]'s sensors with the flash!"), span_danger("You overload [R]'s sensors with the flash!"))
 			return TRUE
@@ -193,24 +213,31 @@
 	AOE_flash()
 
 /obj/item/assembly/flash/proc/terrible_conversion_proc(mob/living/carbon/H, mob/user)
-	if(istype(H) && H.stat != DEAD)
-		if(user.mind)
-			var/datum/antagonist/rev/head/converter = user.mind.has_antag_datum(/datum/antagonist/rev/head)
-			if(!converter)
-				return
-			if(!H.client)
-				to_chat(user, span_warning("This mind is so vacant that it is not susceptible to influence!"))
-				return
-			if(H.stat != CONSCIOUS)
-				to_chat(user, span_warning("They must be conscious before you can convert [H.p_them()]!"))
-				return
-			if(converter.add_revolutionary(H.mind))
-				times_used -- //Flashes less likely to burn out for headrevs when used for conversion
-			else
-				to_chat(user, span_warning("This mind seems resistant to the flash!"))
+	if(!can_convert)
+		return
+	if(H?.stat == DEAD)
+		return
+	if(!user.mind)
+		return
+	var/datum/antagonist/rev/head/converter = user.mind.has_antag_datum(/datum/antagonist/rev/head)
+	if(!converter)
+		return
+	if(!H.client)
+		to_chat(user, span_warning("This mind is so vacant that it is not susceptible to influence!"))
+		return
+	if(H.stat != CONSCIOUS)
+		to_chat(user, span_warning("They must be conscious before you can convert [H.p_them()]!"))
+		return
+	if(converter.add_revolutionary(H.mind))
+		times_used -- //Flashes less likely to burn out for headrevs when used for conversion
+	else
+		to_chat(user, span_warning("This mind seems resistant to the flash!"))
 
 
 /obj/item/assembly/flash/cyborg
+	name = "cyborg flash"
+	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production. This variant is unable to stun cyborgs."
+	borgstun = FALSE
 
 /obj/item/assembly/flash/cyborg/attack(mob/living/M, mob/user)
 	..()
@@ -224,6 +251,11 @@
 	return
 /obj/item/assembly/flash/cyborg/screwdriver_act(mob/living/user, obj/item/I)
 	return
+	
+/obj/item/assembly/flash/cyborg/combat
+	name = "combat cyborg flash"
+	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production. This variant is able to stun cyborgs."
+	borgstun = TRUE
 
 /obj/item/assembly/flash/memorizer
 	name = "memorizer"
@@ -246,7 +278,7 @@
 		to_chat(I.owner, span_warning("Your photon projector implant overheats and deactivates!"))
 		I.Retract()
 	overheat = TRUE
-	addtimer(CALLBACK(src, .proc/cooldown), flashcd * 2)
+	addtimer(CALLBACK(src, PROC_REF(cooldown)), flashcd * 2)
 
 /obj/item/assembly/flash/armimplant/try_use_flash(mob/user = null)
 	if(user && HAS_TRAIT(user, TRAIT_NO_STUN_WEAPONS))
@@ -257,7 +289,7 @@
 			to_chat(I.owner, span_warning("Your photon projector is running too hot to be used again so quickly!"))
 		return FALSE
 	overheat = TRUE
-	addtimer(CALLBACK(src, .proc/cooldown), flashcd)
+	addtimer(CALLBACK(src, PROC_REF(cooldown)), flashcd)
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
 	update_icon(1)
 	return TRUE
@@ -265,6 +297,11 @@
 
 /obj/item/assembly/flash/armimplant/proc/cooldown()
 	overheat = FALSE
+
+/obj/item/assembly/flash/armimplant/rev
+	name = "syndicate flash"
+	desc = "A flash which, used with certain hypnotic and subliminal messaging techniques, can turn loyal crewmembers into vicious revolutionaries."
+	can_convert = TRUE
 
 /obj/item/assembly/flash/hypnotic
 	desc = "A modified flash device, programmed to emit a sequence of subliminal flashes that can send a vulnerable target into a hypnotic trance."
@@ -294,10 +331,10 @@
 
 			if(!hypnosis)
 				to_chat(M, span_notice("The light makes you feel oddly relaxed..."))
-				M.confused += min(M.confused + 10, 20)
-				M.dizziness += min(M.dizziness + 10, 20)
-				M.drowsyness += min(M.drowsyness + 10, 20)
-				M.apply_status_effect(STATUS_EFFECT_PACIFY, 100)
+				M.adjust_confusion_up_to(10 SECONDS, 20 SECONDS)
+				M.adjust_dizzy_up_to(20 SECONDS, 40 SECONDS)
+				M.adjust_drowsiness_up_to(20 SECONDS, 40 SECONDS)
+				M.apply_status_effect(STATUS_EFFECT_PACIFY, 10 SECONDS)
 			else
 				M.apply_status_effect(/datum/status_effect/trance, 200, TRUE)
 
@@ -308,7 +345,7 @@
 
 	else if(M.flash_act())
 		to_chat(M, span_notice("Such a pretty light..."))
-		M.confused += min(M.confused + 4, 20)
-		M.dizziness += min(M.dizziness + 4, 20)
-		M.drowsyness += min(M.drowsyness + 4, 20)
+		M.adjust_confusion_up_to(4 SECONDS, 20 SECONDS)
+		M.adjust_dizzy_up_to(8 SECONDS, 40 SECONDS)
+		M.adjust_drowsiness_up_to(8 SECONDS, 40 SECONDS)
 		M.apply_status_effect(STATUS_EFFECT_PACIFY, 40)

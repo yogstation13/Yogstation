@@ -118,9 +118,9 @@
 		else
 			to_chat(user, span_warning("\The [W] is empty!"))
 		safety = safety_save
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/item/extinguisher/afterattack(atom/target, mob/user , flag)
 	. = ..()

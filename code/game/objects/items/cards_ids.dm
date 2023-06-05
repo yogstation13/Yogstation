@@ -53,7 +53,7 @@
 	icon_state = "data_2"
 
 /obj/item/card/data/disk
-	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one inexplicibly looks like a floppy disk."
+	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one inexplicably looks like a floppy disk."
 	icon_state = "data_3"
 
 /*
@@ -99,13 +99,10 @@
 			if (prob(5))
 				var/mob/living/M = user
 				M.adjust_fire_stacks(1)
-				M.IgniteMob()
+				M.ignite_mob()
 				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
 			log_combat(user, target, "attempted to emag")
-			if (!istype(target, /obj/machinery/computer/cargo))
-				target.emag_act(user)
-			else
-				to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
+			target.emag_act(user)
 		emagging = FALSE
 
 /obj/item/card/emag/improvised/attackby(obj/item/W, mob/user, params)
@@ -161,9 +158,28 @@
 	var/originalassignment = null
 	var/access_txt // mapping aid
 	var/datum/bank_account/registered_account
-	var/obj/machinery/paystand/my_store
 	var/registered_age = 21 // default age for ss13 players
 	var/critter_money = FALSE //does exactly what it says
+
+	//yogs: redd ports holopay but as paystands
+	/// Linked holopay.
+	var/obj/machinery/paystand/my_store = null
+	/// List of logos available for holopay customization - via font awesome 5
+	var/static/list/available_logos = list("angry", "ankh", "bacon", "band-aid", "cannabis", "cat", "cocktail", "coins", "comments-dollar",
+	"cross", "cut", "dog", "donate", "dna", "fist-raised", "flask", "glass-cheers", "glass-martini-alt", "hamburger", "hand-holding-usd",
+	"hat-wizard", "head-side-cough-slash", "heart", "heart-broken",  "laugh-beam", "leaf", "money-check-alt", "music", "piggy-bank",
+	"pizza-slice", "prescription-bottle-alt", "radiation", "robot", "smile", "skull-crossbones", "smoking", "space-shuttle", "tram",
+	"trash", "user-ninja", "utensils", "wrench")
+	/// Replaces the "pay whatever" functionality with a set amount when non-zero.
+	var/holopay_fee = 0
+	/// The holopay icon chosen by the user
+	var/holopay_logo = "donate"
+	/// Maximum forced fee. It's unlikely for a user to encounter this type of money, much less pay it willingly.
+	var/holopay_max_fee = 5000
+	/// Minimum forced fee for holopay stations. Registers as "pay what you want."
+	var/holopay_min_fee = 0
+	/// The holopay name chosen by the user
+	var/holopay_name = "registered pay stand"
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
@@ -171,10 +187,10 @@
 		access = text2access(access_txt)
 
 /obj/item/card/id/Destroy()
-	if (registered_account)
+	if(registered_account)
 		registered_account.bank_cards -= src
-	if (my_store && my_store.my_card == src)
-		my_store.my_card = null
+	if(my_store && my_store.linked_card == src)
+		my_store.linked_card = null
 	return ..()
 
 /obj/item/card/id/attack_self(mob/user)
@@ -412,12 +428,12 @@ update_label("John Doe", "Clowny")
 			else
 				return ..()
 
-		var/popup_input = alert(user, "Choose Action", "Agent ID", "Show", "Forge/Reset", "Change Account ID")
+		var/popup_input = tgui_alert(user, "Choose Action", "Agent ID", list("Show", "Forge/Reset", "Change Account ID"))
 		if(user.incapacitated())
 			return
 		if(popup_input == "Forge/Reset" && !forged)
 			var/input_name = stripped_input(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
-			input_name = reject_bad_name(input_name)
+			input_name = reject_bad_name(input_name, TRUE) //some species (IPCs) can have numbers in their name
 			if(!input_name)
 				// Invalid/blank names give a randomly generated one.
 				if(user.gender == FEMALE)
@@ -515,7 +531,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/makeshift/attack_self(mob/user)
 	if(isliving(user) && user.mind)
-		var/popup_input = alert(user, "Choose Action", "ID", "Show", "Forge/Reset")
+		var/popup_input = tgui_alert(user, "Choose Action", "Action?", list("ID", "Show", "Forge/Reset"))
 		if(user.incapacitated())
 			return
 		if(popup_input == "Forge/Reset")
@@ -578,7 +594,7 @@ update_label("John Doe", "Clowny")
 	. = ..()
 	access -= ACCESS_CHANGE_IDS
 	access -= ACCESS_HEADS
-	addtimer(CALLBACK(src, .proc/wipe_id), 50 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(wipe_id)), 50 SECONDS)
 
 /obj/item/card/id/captains_spare/temporary/proc/wipe_id()
 	visible_message(span_danger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"))
@@ -586,7 +602,7 @@ update_label("John Doe", "Clowny")
 	if(isliving(loc))
 		var/mob/living/M = loc
 		M.adjust_fire_stacks(1)
-		M.IgniteMob()
+		M.ignite_mob()
 	if(istype(loc,/obj/structure/fireaxecabinet/bridge/spare)) //if somebody is being naughty and putting the temporary spare in the cabinet
 		var/obj/structure/fireaxecabinet/bridge/spare/holder = loc
 		forceMove(holder.loc)
@@ -604,6 +620,44 @@ update_label("John Doe", "Clowny")
 		holder.spareid = null
 		holder.update_icon()
 	burn()
+
+//yogs: redd ports holopay but as paystands
+/**
+ * Setter for the shop logo on linked holopays
+ *
+ * Arguments:
+ * * new_logo - The new logo to be set.
+ */
+/obj/item/card/id/proc/set_holopay_logo(new_logo)
+	if(!available_logos.Find(new_logo))
+		CRASH("User input a holopay shop logo that didn't exist.")
+	holopay_logo = new_logo
+
+/**
+ * Setter for changing the force fee on a holopay.
+ *
+ * Arguments:
+ * * new_fee - The new fee to be set.
+ */
+/obj/item/card/id/proc/set_holopay_fee(new_fee)
+	if(!isnum(new_fee))
+		CRASH("User input a non number into the holopay fee field.")
+	if(new_fee < holopay_min_fee || new_fee > holopay_max_fee)
+		CRASH("User input a number outside of the valid range into the holopay fee field.")
+	holopay_fee = new_fee
+
+/**
+ * Setter for changing the holopay name.
+ *
+ * Arguments:
+ * * new_name - The new name to be set.
+ */
+/obj/item/card/id/proc/set_holopay_name(name)
+	if(length(name) < 3 || length(name) > MAX_NAME_LEN)
+		to_chat(usr, span_warning("Must be between 3 - 42 characters."))
+	else
+		holopay_name = html_encode(trim(name, MAX_NAME_LEN))
+//yogs end
 
 /obj/item/card/id/centcom
 	name = "\improper CentCom ID"

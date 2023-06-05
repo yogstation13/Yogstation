@@ -24,7 +24,7 @@
 	layer = GHOST_LAYER
 	healable = FALSE
 	spacewalk = TRUE
-	sight = SEE_SELF
+	sight = SEE_MOBS | SEE_OBJS | SEE_TURFS | SEE_SELF
 	throwforce = 0
 
 	see_in_dark = 8
@@ -71,12 +71,27 @@
 	. = ..()
 	flags_1 |= RAD_NO_CONTAMINATE_1
 	ADD_TRAIT(src, TRAIT_SIXTHSENSE, INNATE_TRAIT)
-	AddSpell(new /obj/effect/proc_holder/spell/targeted/night_vision/revenant(null))
-	AddSpell(new /obj/effect/proc_holder/spell/targeted/telepathy/revenant(null))
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/defile(null))
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/overload(null))
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/blight(null))
-	AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/revenant/malfunction(null))
+
+	// Starting spells
+	var/datum/action/cooldown/spell/night_vision/revenant/vision = new(src)
+	vision.Grant(src)
+
+	var/datum/action/cooldown/spell/list_target/telepathy/revenant/telepathy = new(src)
+	telepathy.Grant(src)
+
+	// Starting spells that start locked
+	var/datum/action/cooldown/spell/aoe/revenant/overload/lights_go_zap = new(src)
+	lights_go_zap.Grant(src)
+
+	var/datum/action/cooldown/spell/aoe/revenant/defile/windows_go_smash = new(src)
+	windows_go_smash.Grant(src)
+
+	var/datum/action/cooldown/spell/aoe/revenant/blight/botany_go_mad = new(src)
+	botany_go_mad.Grant(src)
+
+	var/datum/action/cooldown/spell/aoe/revenant/malfunction/shuttle_go_emag = new(src)
+	shuttle_go_emag.Grant(src)
+
 	random_revenant_name()
 	LoadComponent(/datum/component/walk/jaunt) //yogs
 
@@ -117,9 +132,7 @@
 		unreveal_time = 0
 		revealed = FALSE
 		incorporeal_move = INCORPOREAL_MOVE_JAUNT
-		var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
-		if(incorp)
-			incorp.signal_enabled = TRUE //yogs end
+		AddComponent(/datum/component/walk/jaunt)
 		invisibility = INVISIBILITY_REVENANT
 		to_chat(src, span_revenboldnotice("You are once more concealed."))
 	if(unstun_time && world.time >= unstun_time)
@@ -128,7 +141,7 @@
 		to_chat(src, span_revenboldnotice("You can move again!"))
 	if(essence_regenerating && !inhibited && essence < essence_regen_cap) //While inhibited, essence will not regenerate
 		essence = min(essence_regen_cap, essence+essence_regen_amount)
-		update_action_buttons_icon() //because we update something required by our spells in life, we need to update our buttons
+		update_mob_action_buttons() //because we update something required by our spells in life, we need to update our buttons
 	update_spooky_icon()
 	update_health_hud()
 	..()
@@ -199,12 +212,12 @@
 						span_revendanger("As \the [W] passes through you, you feel your essence draining away!"))
 		adjustBruteLoss(25) //hella effective
 		inhibited = TRUE
-		update_action_buttons_icon()
-		addtimer(CALLBACK(src, .proc/reset_inhibit), 30)
+		update_mob_action_buttons()
+		addtimer(CALLBACK(src, PROC_REF(reset_inhibit)), 30)
 
 /mob/living/simple_animal/revenant/proc/reset_inhibit()
 	inhibited = FALSE
-	update_action_buttons_icon()
+	update_mob_action_buttons()
 
 /mob/living/simple_animal/revenant/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && !revealed)
@@ -256,9 +269,7 @@
 	revealed = TRUE
 	invisibility = 0
 	incorporeal_move = FALSE
-	var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
-	if(incorp)
-		incorp.signal_enabled = FALSE //yogs end
+	qdel(GetComponent(/datum/component/walk/jaunt))
 	if(!unreveal_time)
 		to_chat(src, span_revendanger("You have been revealed!"))
 		unreveal_time = world.time + time
@@ -316,7 +327,7 @@
 	if(essence_excess < essence_cost)
 		return FALSE
 	essence_excess -= essence_cost
-	update_action_buttons_icon()
+	update_mob_action_buttons()
 	return TRUE
 
 /mob/living/simple_animal/revenant/proc/change_essence_amount(essence_amt, silent = FALSE, source = null)
@@ -329,7 +340,7 @@
 	if(essence_amt > 0)
 		essence_accumulated = max(0, essence_accumulated+essence_amt)
 		essence_excess = max(0, essence_excess+essence_amt)
-	update_action_buttons_icon()
+	update_mob_action_buttons()
 	if(!silent)
 		if(essence_amt > 0)
 			to_chat(src, span_revennotice("Gained [essence_amt]E[source ? " from [source]":""]."))
@@ -345,9 +356,8 @@
 	inhibited = FALSE
 	draining = FALSE
 	incorporeal_move = INCORPOREAL_MOVE_JAUNT
-	var/datum/component/walk/jaunt/incorp = GetComponent(/datum/component/walk/jaunt) //yogs start
-	if(incorp)
-		incorp.signal_enabled = TRUE //yogs end
+	if (!GetComponent(/datum/component/walk/jaunt))
+		AddComponent(/datum/component/walk/jaunt)
 	invisibility = INVISIBILITY_REVENANT
 	alpha=255
 	stasis = FALSE
@@ -368,7 +378,7 @@
 
 /obj/item/ectoplasm/revenant/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/try_reform), 600)
+	addtimer(CALLBACK(src, PROC_REF(try_reform)), 600)
 
 /obj/item/ectoplasm/revenant/proc/scatter()
 	qdel(src)

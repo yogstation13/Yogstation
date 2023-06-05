@@ -37,7 +37,7 @@
 			"[user] finishes the operation on [target]'s face.")
 	else
 		var/chosen_name = stripped_input(user, "Choose a new name to assign.", "Plastic Surgery", null, MAX_NAME_LEN)
-		if(!chosen_name || !isnotpretty(chosen_name))
+		if(!chosen_name || isnotpretty(chosen_name))
 			return
 		var/oldname = target.real_name
 		target.real_name = chosen_name

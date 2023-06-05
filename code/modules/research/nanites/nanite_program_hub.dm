@@ -24,7 +24,14 @@
 
 /obj/machinery/nanite_program_hub/Initialize()
 	. = ..()
-	linked_techweb = SSresearch.science_tech
+	find_tech()
+
+/obj/machinery/nanite_program_hub/proc/find_tech()
+	var/ruin_tech = locate(/obj/machinery/computer/rdconsole/nolock/ruin) in range(20, src)
+	if(ruin_tech)
+		linked_techweb = SSresearch.ruin_tech
+	else
+		linked_techweb = SSresearch.science_tech
 
 /obj/machinery/nanite_program_hub/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/disk/nanite_program))

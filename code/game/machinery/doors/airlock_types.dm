@@ -366,6 +366,8 @@
 	explosion_block = 2
 	normal_integrity = 400 // reverse engieneerd: 400 * 1.5 (sec lvl 6) = 600 = original
 	security_level = 6
+	rad_insulation = RAD_FULL_INSULATION
+	armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 80, ACID = 70) //only changed energy to 100
 
 //////////////////////////////////
 /*
@@ -409,6 +411,8 @@
 	normal_integrity = 500
 	security_level = 1
 	damage_deflection = 30
+	rad_insulation = RAD_FULL_INSULATION
+	armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 80, ACID = 70) //only changed energy to 100
 
 //////////////////////////////////
 /*

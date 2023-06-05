@@ -48,7 +48,7 @@
 	qdel(query_validate_time)
 
 	var/adminonly
-	switch(alert("Admin only poll?",,"Yes","No","Cancel"))
+	switch(tgui_alert(usr, "Admin only poll?",,list("Yes","No","Cancel")))
 		if("Yes")
 			adminonly = 1
 		if("No")
@@ -56,7 +56,7 @@
 		else
 			return
 	var/dontshow
-	switch(alert("Hide poll results from tracking until completed?",,"Yes","No","Cancel"))
+	switch(tgui_alert(usr, "Hide poll results from tracking until completed?",,list("Yes","No","Cancel")))
 		if("Yes")
 			dontshow = 1
 		if("No")
@@ -76,7 +76,7 @@
 				return
 			var/default_percentage_calc = 0
 			if(polltype != POLLTYPE_IRV)
-				switch(alert("Should this option be included by default when poll result percentages are generated?",,"Yes","No","Cancel"))
+				switch(tgui_alert(usr, "Should this option be included by default when poll result percentages are generated?",,list("Yes","No","Cancel")))
 					if("Yes")
 						default_percentage_calc = 1
 					if("No")
@@ -108,7 +108,7 @@
 				if(descmax == null)
 					return
 			sql_option_list += list(list("text" = "[option]", "minval" = "[minval]", "maxval" = "[maxval]", "descmin" = "[descmin]", "descmid" = "[descmid]", "descmax" = "[descmax]", "default_percentage_calc" = "[default_percentage_calc]"))
-			switch(alert(" ",,"Add option","Finish", "Cancel"))
+			switch(tgui_alert(usr, " ",,list("Add option","Finish", "Cancel")))
 				if("Add option")
 					add_option = 1
 				if("Finish")

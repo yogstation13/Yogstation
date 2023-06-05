@@ -2,13 +2,13 @@
 	info = "Antinoblium Shard User's Manual<br>\
 	<ul>\
 	<li>Approach an active supermatter crystal with radiation shielded personal protective equipment. DO NOT MAKE PHYSICAL CONTACT.</li>\
-	<li>Attach the data corruptor (provided) to the supermatter control infrastructure to allow the attachment of the antinoblium shard.</li>\
+	<li>Attach the data corruptor (provided) on the base of the supermatter crystal, where the control infrastructure is, to allow the attachment of the antinoblium shard.</li>\
 	<li>Open the antinoblium container (also provided).</li>\
 	<li>Use antinoblium extraction tongs (also provided) and apply the shard to the crystal. Take note that an EMP pulse will be emitted upon attachment. Prepare accordingly. </li>\
 	<li>Physical contact of any object with the antinoblium shard will fracture the shard and cause a spontaneous energy release.</li>\
 	<li>Extricate yourself immediately. You have approximately 5 minutes before the infrastructure fails completely.</li>\
 	<li>Upon complete infrastructure failure, the crystal well will destabilize and emit electromagnetic waves that span the entire station.</li>\
-	<li>Nanotresen safety controls will announce the destabilization of the crystal. Your identity will likely be compromised, but nothing can be done about the crystal.</li>\
+	<li>Nanotrasen safety controls will announce the destabilization of the crystal. Your identity will likely be compromised, but nothing can be done about the crystal.</li>\
 	</ul>"
 
 /obj/item/supermatter_delaminator/Initialize()
@@ -64,7 +64,7 @@
 
 /obj/item/antinoblium_container
 	name = "antinoblium bin"
-	desc = "A small cube that houses a stable antinoblium shard  to be safely stored."
+	desc = "A small cube that houses a stable antinoblium shard to be safely stored."
 	icon = 'icons/obj/supermatter_delaminator.dmi'
 	icon_state = "antinoblium_container_sealed"
 	var/obj/item/supermatter_delaminator/antinoblium_shard/shard
@@ -87,7 +87,7 @@
 	T.update_icon()
 	update_icon()
 	to_chat(user, span_warning("Container is resealing..."))
-	addtimer(CALLBACK(src, .proc/seal), 50)
+	addtimer(CALLBACK(src, PROC_REF(seal)), 50)
 	return TRUE
 
 /obj/item/antinoblium_container/proc/unload(obj/item/hemostat/antinoblium/T, mob/user)

@@ -14,6 +14,7 @@
 
 /obj/item/radio/intercom/unscrewed
 	unfastened = TRUE
+	unscrewed = TRUE
 
 /obj/item/radio/intercom/ratvar
 	name = "hierophant intercom"
@@ -62,11 +63,13 @@
 			if(I.use_tool(src, user, 30, volume=50))
 				user.visible_message(span_notice("[user] tightens [src]'s screws!"), span_notice("You tighten [src]'s screws."))
 				unfastened = FALSE
+				unscrewed = FALSE
 		else
 			user.visible_message(span_notice("[user] starts loosening [src]'s screws..."), span_notice("You start unscrewing [src]..."))
 			if(I.use_tool(src, user, 40, volume=50))
 				user.visible_message(span_notice("[user] loosens [src]'s screws!"), span_notice("You unscrew [src], loosening it from the wall."))
 				unfastened = TRUE
+				unscrewed = TRUE
 		return
 	else if(I.tool_behaviour == TOOL_WRENCH)
 		if(!unfastened)
@@ -127,7 +130,7 @@
 		if(!A || emped)
 			on = FALSE
 		else
-			on = A.powered(EQUIP) // set "on" to the power status
+			on = A.powered(AREA_USAGE_EQUIP) // set "on" to the power status
 
 		if(!on)
 			icon_state = "intercom-p"

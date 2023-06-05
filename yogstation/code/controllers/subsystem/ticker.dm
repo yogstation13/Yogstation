@@ -4,7 +4,8 @@
 /datum/controller/subsystem/ticker/proc/choose_lobby_music()
 	//Add/remove songs from this list individually, rather than multiple at once. This makes it easier to judge PRs that change the list, since PRs that change it up heavily are less likely to meet broad support
 	//Add a comment after the song link in the format [Artist - Name]
-	var/list/songs = list("https://www.youtube.com/watch?v=lIrum6iFz6U", 	// Electric Light Orchestra - Mr. Blue Sky
+	var/list/songs = list(
+		"https://www.youtube.com/watch?v=lIrum6iFz6U", 						// Electric Light Orchestra - Mr. Blue Sky
 		"https://www.youtube.com/watch?v=Ae2N5310MXE",						// SolusLunes - Endless Space
 		"https://www.youtube.com/watch?v=WEhS9Y9HYjU", 						// Noel Harrison - The Windmills of Your Mind
 		"https://www.youtube.com/watch?v=UPHmazxB38g", 						// MashedByMachines - Sector11
@@ -49,11 +50,20 @@
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
 		"https://www.youtube.com/watch?v=VJ817kvh_DM",						// Ben Prunty - FTL - Theme Song
 		"https://www.youtube.com/watch?v=7F_xOzLWy5U",						// Ataraxia - Deja Vuzz
-		"https://www.youtube.com/watch?v=hZb_6_WfquU",            // Steam Powered Giraffe - Fire Fire
-		"https://www.youtube.com/watch?v=52Gg9CqhbP8",  					//Stuck in the Sound - Let's G
-		"https://www.youtube.com/watch?v=8GW6sLrK40k",						//HOME - Resonance
-		"https://www.youtube.com/watch?v=8DNoXUnaQ9k",						//Chris Christodoulou - Dies Irae
-		"https://www.youtube.com/watch?v=Nn9trJXUrp0"						//Chris Christodoulou - ...con lentitud poderosa
+		"https://www.youtube.com/watch?v=hZb_6_WfquU",            			// Steam Powered Giraffe - Fire Fire
+		"https://www.youtube.com/watch?v=52Gg9CqhbP8",  					// Stuck in the Sound - Let's G
+		"https://www.youtube.com/watch?v=8GW6sLrK40k",						// HOME - Resonance
+		"https://www.youtube.com/watch?v=8DNoXUnaQ9k",						// Chris Christodoulou - Dies Irae
+		"https://www.youtube.com/watch?v=Nn9trJXUrp0",						// Chris Christodoulou - ...con lentitud poderosa
+		"https://www.youtube.com/watch?v=rkas-NHQnsI",						// Clint Eastwood - Magnum Force Theme 
+		"https://www.youtube.com/watch?v=e3t_dbLaw-M",						// DM Dokuro - Treasures Within The Abomination
+		"https://www.youtube.com/watch?v=2O4C8J4bcXw",						// Blinch - Loop Hero OST - Loop Blues
+		"https://www.youtube.com/watch?v=4q-La8uR0HU",						// Blinch - Loop Hero OST - Dark Matter Moon
+		"https://www.youtube.com/watch?v=pP6nEgo9UTs",						// Banda Municipal de Manizales - El Pilon
+		"https://www.youtube.com/watch?v=V52QTyn6e-A",						// Alistair Lindsay - RimWorld OST - Waiting For The Sun
+		"https://www.youtube.com/watch?v=0-CLAPJ1PLs",						// Pizza Tower OST - Tunnely Shimbers
+		"https://www.youtube.com/watch?v=4JkIs37a2JE",						// Jamiroquai - Virtual Insanity
+		"https://www.youtube.com/watch?v=z01VlftkqY8"						// PilotRedSun - The Grinch's Ultimatum
 		)						
 	selected_lobby_music = pick(songs)
 

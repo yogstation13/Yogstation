@@ -4,6 +4,7 @@
 /obj/item/organ/liver
 	name = "liver"
 	icon_state = "liver"
+	visual = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LIVER
@@ -11,6 +12,7 @@
 	maxHealth = STANDARD_ORGAN_THRESHOLD
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY // smack in the middle of decay times
+	var/operated = FALSE	//whether we can still have our damages fixed through surgery
 	var/alcohol_tolerance = ALCOHOL_RATE//affects how much damage the liver takes from alcohol
 	var/toxTolerance = LIVER_DEFAULT_TOX_TOLERANCE//maximum amount of toxins the liver can just shrug off
 	var/toxLethality = LIVER_DEFAULT_TOX_LETHALITY//affects how much damage toxins do to the liver
@@ -64,6 +66,9 @@
 	S.reagents.add_reagent(/datum/reagent/iron, 5)
 	return S
 
+/obj/item/organ/liver/get_availability(datum/species/species)
+	return !(NOLIVER in species.species_traits)
+
 /obj/item/organ/liver/fly
 	name = "insectoid liver"
 	icon_state = "liver-x" //xenomorph liver? It's just a black liver so it fits.
@@ -88,7 +93,7 @@
 	desc = "An electronic device designed to mimic the functions of a human liver. Handles toxins slightly better than an organic liver."
 	organ_flags = ORGAN_SYNTHETIC
 	alcohol_tolerance = 0.001
-	maxHealth = 1.1 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	toxTolerance = 3.3
 	toxLethality = 0.009
 
@@ -97,7 +102,7 @@
 	icon_state = "liver-c-u"
 	desc = "An upgraded version of the cybernetic liver, designed to handle extreme levels of toxins. It can even heal minor amounts of toxin damage."
 	alcohol_tolerance = 0.0005
-	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD //150% health of a normal liver
+	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD //300% health of a normal liver
 	healing_factor = 2 * STANDARD_ORGAN_HEALING //Can regenerate from damage quicker
 	toxTolerance = 20
 	toxLethality = 0.007
@@ -112,17 +117,14 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	switch(severity)
-		if(1)
-			damage+=100
-		if(2)
-			damage+=50
+
+	damage += 50/severity
 
 /obj/item/organ/liver/cybernetic/upgraded/ipc
 	name = "substance processor"
 	icon_state = "substance_processor"
 	attack_verb = list("processed")
-	desc = "A machine component, installed in the chest. This grants the Machine the ability to process chemicals that enter its systems."
+	desc = "A machine component, installed in the chest. This grants the machine the ability to process chemicals that enter its systems."
 	alcohol_tolerance = 0
 	toxTolerance = -1
 	toxLethality = 0
@@ -132,8 +134,4 @@
 	if(prob(10))
 		return
 	to_chat(owner, "<span class='warning'>Alert: Your Substance Processor has been damaged. An internal chemical leak is affecting performance.</span>")
-	switch(severity)
-		if(1)
-			owner.toxloss += 15
-		if(2)
-			owner.toxloss += 5 
+	owner.adjustToxLoss(10/severity)

@@ -53,7 +53,7 @@
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/clothing/glasses/meson/engine/attack_self(mob/user)
 	toggle_mode(user, TRUE)
@@ -103,9 +103,8 @@
 	if(!port)
 		return
 	var/list/shuttle_areas = port.shuttle_areas
-	for(var/r in shuttle_areas)
-		var/area/region = r
-		for(var/turf/place in region.contents)
+	for(var/area/region as anything in shuttle_areas)
+		for(var/turf/place as anything in region.get_contained_turfs())
 			if(get_dist(user, place) > 7)
 				continue
 			var/image/pic

@@ -114,13 +114,16 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			if(ishuman(A))
 				var/mob/living/carbon/human/L = A
 				L.SetUnconscious(0)
-				L.drowsyness = 0
+				L.remove_status_effect(/datum/status_effect/drowsiness)
 				L.SetSleeping(0)
 			sleep(3 SECONDS)
 			var/list/flooring_near_beacon = list()
 			for(var/turf/open/floor in orange(1, beacon))
 				flooring_near_beacon += floor
-			holder_obj.forceMove(pick(flooring_near_beacon))
+			if(LAZYLEN(flooring_near_beacon) > 0)
+				holder_obj.forceMove(pick(flooring_near_beacon))
+			else
+				to_chat(user, span_userdanger("The beacon malfunctions! It couldn't find a place to land!"))
 			animate(holder_obj, pixel_z = 10, time = 5 SECONDS)
 			sleep(5 SECONDS)
 			animate(holder_obj, pixel_z = 15, time = 1 SECONDS)
@@ -183,7 +186,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 		var/mob/living/L = A
 		if(L.stat != DEAD)
 			return 1
-	for(var/thing in A.GetAllContents())
+	for(var/thing in A.get_all_contents())
 		if(isliving(A))
 			var/mob/living/L = A
 			if(L.stat != DEAD)

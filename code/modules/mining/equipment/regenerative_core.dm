@@ -22,6 +22,7 @@
 	name = "regenerative core"
 	desc = "All that remains of a hivelord. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."
 	icon_state = "roro core 2"
+	visual = FALSE
 	item_flags = NOBLUDGEON
 	slot = "hivecore"
 	force = 0
@@ -31,7 +32,7 @@
 
 /obj/item/organ/regenerative_core/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/inert_check), 2400)
+	addtimer(CALLBACK(src, PROC_REF(inert_check)), 2400)
 
 /obj/item/organ/regenerative_core/proc/inert_check()
 	if(!preserved)
@@ -142,7 +143,7 @@
 		add_overlay("legion_soul_crackle")
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/organ/regenerative_core/legion/go_inert()
 	..()

@@ -16,15 +16,18 @@
 	var/shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
 	var/old_ratio = 0 // stores the gun's previous ammo "ratio" to see if it needs an updated icon
 	var/selfcharge = 0
-	var/charge_tick = 0
-	var/charge_delay = 4
+	var/charge_timer = 0
+	var/charge_delay = 8
 	var/charge_amount = 1
 	var/use_cyborg_cell = FALSE //whether the gun's cell drains the cyborg user's cell to recharge
 	var/dead_cell = FALSE //set to true so the gun is given an empty cell
+	var/emp_jammed = FALSE
+	var/emp_jam_timer
 
 	available_attachments = list(
 		/obj/item/attachment/scope/simple,
 		/obj/item/attachment/scope/holo,
+		/obj/item/attachment/scope/infrared,
 		/obj/item/attachment/laser_sight,
 		/obj/item/attachment/grip/vertical,
 	)
@@ -34,10 +37,26 @@
 /obj/item/gun/energy/emp_act(severity)
 	. = ..()
 	if(!(. & EMP_PROTECT_CONTENTS))
-		cell.use(round(cell.charge / severity))
+		cell.use(round(cell.charge / (severity*2)))
+		emp_jammed = TRUE
+		deltimer(emp_jam_timer)
+		// 5-10 seconds depending on severity, then give or take 0.2 seconds to prevent piercing ears
+		var/unjam_time = ((10/severity) + (rand(-20,20)*0.01)) SECONDS
+		emp_jam_timer = addtimer(CALLBACK(src, PROC_REF(emp_unjam)), unjam_time, TIMER_STOPPABLE)
 		chambered = null //we empty the chamber
 		recharge_newshot() //and try to charge a new shot
 		update_icon()
+
+/obj/item/gun/energy/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	if(emp_jammed)
+		to_chat(user, span_danger("*EMP-JAMMED*"))
+		playsound(src, dry_fire_sound, 30, TRUE)
+	else
+		..()
+
+/obj/item/gun/energy/proc/emp_unjam()
+	emp_jammed = FALSE
+	playsound(src, "sound/machines/twobeep.ogg", 50)
 
 /obj/item/gun/energy/get_cell()
 	return cell
@@ -48,8 +67,8 @@
 		cell = new cell_type(src)
 	else
 		cell = new(src)
-	if(!dead_cell)
-		cell.give(cell.maxcharge)
+	if(dead_cell)
+		cell.charge = 0
 	update_ammo_types()
 	recharge_newshot(TRUE)
 	if(selfcharge)
@@ -72,12 +91,12 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/gun/energy/process()
+/obj/item/gun/energy/process(delta_time)
 	if(selfcharge && cell && cell.percent() < 100)
-		charge_tick++
-		if(charge_tick < charge_delay)
+		charge_timer += delta_time
+		if(charge_timer < charge_delay)
 			return
-		charge_tick = 0
+		charge_timer = 0
 		cell.give(100*charge_amount)
 		if(!chambered) //if empty chamber we try to charge a new shot
 			recharge_newshot(TRUE)
@@ -90,7 +109,7 @@
 
 /obj/item/gun/energy/can_shoot()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
-	return !QDELETED(cell) ? (cell.charge >= shot.e_cost) : FALSE
+	return (!QDELETED(cell) ? (cell.charge >= shot.e_cost) : FALSE) && !emp_jammed
 
 /obj/item/gun/energy/recharge_newshot(no_cyborg_drain)
 	if (!ammo_type || !cell)

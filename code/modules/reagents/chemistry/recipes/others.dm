@@ -11,6 +11,12 @@
 	results = list(/datum/reagent/lube = 4)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
+/datum/chemical_reaction/naniteremover
+	name = "Nanolytic Agent"
+	id = /datum/reagent/medicine/naniteremover
+	results = list(/datum/reagent/medicine/naniteremover = 3)
+	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/ammonia = 1)
+
 /datum/chemical_reaction/itching_powder
 	name = "Itching Powder"
 	id = /datum/reagent/itching_powder
@@ -146,6 +152,12 @@
 	results = list(/datum/reagent/nitrous_oxide = 5)
 	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/nitrogen = 1, /datum/reagent/oxygen = 2)
 	required_temp = 525
+
+/datum/chemical_reaction/lemolime
+	name = "Lemoline"
+	id = /datum/reagent/lemoline
+	required_reagents = list(/datum/reagent/consumable/lemonjuice = 2, /datum/reagent/consumable/limejuice = 2, /datum/reagent/consumable/ethanol = 4)
+	results = list(/datum/reagent/lemoline = 4)
 
 //Technically a mutation toxin
 /datum/chemical_reaction/mulligan
@@ -376,15 +388,7 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/mob/M in viewers(5, location))
-		to_chat(M, span_danger("The solution spews out foam!"))
-	var/datum/effect_system/foam_spread/s = new()
-	s.set_up(created_volume*2, location, holder)
-	s.start()
-	holder.clear_reagents()
-	return
-
+	holder.create_foam(/datum/effect_system/fluid_spread/foam, 2 * created_volume, notification = span_danger("The solution spews out foam!"))
 
 /datum/chemical_reaction/metalfoam
 	name = "Metal Foam"
@@ -393,15 +397,7 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
-
-	for(var/mob/M in viewers(5, location))
-		to_chat(M, span_danger("The solution spews out a metallic foam!"))
-
-	var/datum/effect_system/foam_spread/metal/s = new()
-	s.set_up(created_volume*5, location, holder, 1)
-	s.start()
-	holder.clear_reagents()
+	holder.create_foam(/datum/effect_system/fluid_spread/foam/metal, 5 * created_volume, /obj/structure/foamedmetal, span_danger("The solution spews out a metallic foam!"))
 
 /datum/chemical_reaction/smart_foam
 	name = "Smart Metal Foam"
@@ -410,12 +406,7 @@
 	mob_react = TRUE
 
 /datum/chemical_reaction/smart_foam/on_reaction(datum/reagents/holder, created_volume)
-	var/turf/location = get_turf(holder.my_atom)
-	location.visible_message(span_danger("The solution spews out metallic foam!"))
-	var/datum/effect_system/foam_spread/metal/smart/s = new()
-	s.set_up(created_volume * 5, location, holder, TRUE)
-	s.start()
-	holder.clear_reagents()
+	holder.create_foam(/datum/effect_system/fluid_spread/foam/metal/smart, 5 * created_volume, /obj/structure/foamedmetal, span_danger("The solution spews out metallic foam!"))
 
 /datum/chemical_reaction/ironfoam
 	name = "Iron Foam"
@@ -424,13 +415,7 @@
 	mob_react = FALSE
 
 /datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/mob/M in viewers(5, location))
-		to_chat(M, span_danger("The solution spews out a metallic foam!"))
-	var/datum/effect_system/foam_spread/metal/s = new()
-	s.set_up(created_volume*5, location, holder, 2)
-	s.start()
-	holder.clear_reagents()
+	holder.create_foam(/datum/effect_system/fluid_spread/foam/metal/iron, 5 * created_volume, /obj/structure/foamedmetal/iron, span_danger("The solution spews out a metallic foam!"))
 
 /datum/chemical_reaction/foaming_agent
 	name = "Foaming Agent"
@@ -754,9 +739,13 @@
 /datum/chemical_reaction/plastic_polymers
 	name = "plastic polymers"
 	id = /datum/reagent/plastic_polymers
-	results = list(/datum/reagent/plastic_polymers = 10)
 	required_reagents = list(/datum/reagent/oil = 5, /datum/reagent/toxin/acid = 2, /datum/reagent/ash = 3)
 	required_temp = 374
+
+/datum/chemical_reaction/plastic_polymers/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i in 1 to created_volume)
+		new /obj/item/stack/sheet/plastic(location)
 
 /datum/chemical_reaction/plastic_solidification
 	name = "plastic solidification"
@@ -808,11 +797,22 @@
 	for(var/i in 1 to created_volume)
 		new /obj/item/stack/sheet/ashresin(location)
 
-/datum/chemical_reaction/sulfuric_acid
+/datum/chemical_reaction/aloepastification
+	name = "Aloepastification"
+	id = "Aloepastification"
+	required_reagents = list(/datum/reagent/consumable/aloejuice = 30, /datum/reagent/ash  = 30)
+	mob_react = FALSE
+
+/datum/chemical_reaction/aloepastification/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/stack/medical/aloe(location)
+
+/datum/chemical_reaction/sulphuric_acid
 	name = /datum/reagent/toxin/acid
 	id = /datum/reagent/toxin/acid
 	results = list(/datum/reagent/toxin/acid = 2)
-	required_reagents = list(/datum/reagent/sulfur = 1, /datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/sulphur = 1, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/sugar
 	name = /datum/reagent/consumable/sugar

@@ -34,7 +34,7 @@ Burning extracts:
 /obj/item/slimecross/burning/grey/do_effect(mob/user)
 	var/mob/living/simple_animal/slime/S = new(get_turf(user),"grey")
 	S.visible_message(span_danger("A baby slime emerges from [src], and it nuzzles [user] before burbling hungrily!"))
-	S.Friends[user] = 20 //Gas, gas, gas
+	S.set_friendship(user, 20) //Gas, gas, gas
 	S.bodytemperature = T0C + 400 //We gonna step on the gas.
 	S.set_nutrition(S.get_hunger_nutrition()) //Tonight, we fight!
 	..()
@@ -45,11 +45,11 @@ Burning extracts:
 
 /obj/item/slimecross/burning/orange/do_effect(mob/user)
 	user.visible_message(span_danger("[src] boils over with a caustic gas!"))
-	var/datum/reagents/R = new/datum/reagents(100)
-	R.add_reagent(/datum/reagent/consumable/condensedcapsaicin, 100)
+	var/datum/reagents/tmp_holder = new/datum/reagents(100)
+	tmp_holder.add_reagent(/datum/reagent/consumable/condensedcapsaicin, 100)
 
-	var/datum/effect_system/smoke_spread/chem/smoke = new
-	smoke.set_up(R, 7, get_turf(user))
+	var/datum/effect_system/fluid_spread/smoke/chem/smoke = new
+	smoke.set_up(7, location = get_turf(user), carry = tmp_holder)
 	smoke.start()
 	..()
 
@@ -120,11 +120,11 @@ Burning extracts:
 
 /obj/item/slimecross/burning/darkblue/do_effect(mob/user)
 	user.visible_message(span_danger("[src] releases a burst of chilling smoke!"))
-	var/datum/reagents/R = new/datum/reagents(100)
-	R.add_reagent(/datum/reagent/consumable/frostoil, 40)
-	user.reagents.add_reagent(/datum/reagent/medicine/cryoxadone,10)
-	var/datum/effect_system/smoke_spread/chem/smoke = new
-	smoke.set_up(R, 7, get_turf(user))
+	var/datum/reagents/tmp_holder = new/datum/reagents(100)
+	tmp_holder.add_reagent(/datum/reagent/consumable/frostoil, 40)
+	user.reagents.add_reagent(/datum/reagent/medicine/regen_jelly, 10)
+	var/datum/effect_system/fluid_spread/smoke/chem/smoke = new
+	smoke.set_up(7, location = get_turf(user), carry = tmp_holder)
 	smoke.start()
 	..()
 
@@ -200,10 +200,10 @@ Burning extracts:
 	for(var/mob/living/simple_animal/slime/S in view(7, get_turf(user)))
 		if(user in S.Friends)
 			var/friendliness = S.Friends[user]
-			S.Friends = list()
-			S.Friends[user] = friendliness
+			S.clear_friends()
+			S.set_friendship(user, friendliness)
 		else
-			S.Friends = list()
+			S.clear_friends()
 		S.rabid = 1
 		S.visible_message(span_danger("The [S] is driven into a dangerous frenzy!"))
 	..()
@@ -260,7 +260,7 @@ Burning extracts:
 
 /obj/item/slimecross/burning/oil/do_effect(mob/user)
 	user.visible_message(span_warning("[user] activates [src]. It's going to explode!"), span_danger("You activate [src]. It crackles in anticipation"))
-	addtimer(CALLBACK(src, .proc/boom), 50)
+	addtimer(CALLBACK(src, PROC_REF(boom)), 50)
 
 /obj/item/slimecross/burning/oil/proc/boom()
 	var/turf/T = get_turf(src)
@@ -275,15 +275,14 @@ Burning extracts:
 	effect_desc = "Transforms the user into a slime. They can transform back at will and do not lose any items."
 
 /obj/item/slimecross/burning/black/do_effect(mob/user)
-	var/mob/living/L = user
-	if(!istype(L))
+	if(!isliving(user))
 		return
 	user.visible_message(span_danger("[src] absorbs [user], transforming [user.p_them()] into a slime!"))
-	var/obj/effect/proc_holder/spell/targeted/shapeshift/slimeform/S = new()
-	S.remove_on_restore = TRUE
-	user.mind.AddSpell(S)
-	S.cast(list(user),user)
-	..()
+	var/datum/action/cooldown/spell/shapeshift/slime_form/transform = new(user.mind || user)
+	transform.remove_on_restore = TRUE
+	transform.Grant(user)
+	transform.cast(user)
+	return ..()
 
 /obj/item/slimecross/burning/lightpink
 	colour = "light pink"

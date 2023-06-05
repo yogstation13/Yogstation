@@ -235,7 +235,7 @@ AI MODULES
 	if(newpos == null)
 		return
 	if(newpos < 15)
-		var/response = alert("Error: The law priority of [newpos] is invalid,  Law priorities below 14 are reserved for core laws,  Would you like to change that that to 15?", "Invalid law priority", "Change to 15", "Cancel")
+		var/response = tgui_alert(usr, "Error: The law priority of [newpos] is invalid,  Law priorities below 14 are reserved for core laws,  Would you like to change that that to 15?", "Invalid law priority", list("Change to 15", "Cancel"))
 		if (!response || response == "Cancel")
 			return
 		newpos = 15
@@ -400,6 +400,48 @@ AI MODULES
 /obj/item/aiModule/core/full/paladin_devotion
 	name = "'P.A.L.A.D.I.N. version 5e' Core AI Module"
 	law_id = "paladin5"
+
+/******************** Partybot ********************/
+
+/obj/item/aiModule/core/full/partybot
+    name = "'Partybot' Core AI Module"
+    law_id = "partybot"
+
+/******************** TravelGuide ********************/
+
+/obj/item/aiModule/core/full/travelguide
+    name = "'TravelGuide' Core AI Module"
+    law_id = "travelguide"
+
+/******************** Friendbot ********************/
+
+/obj/item/aiModule/core/full/friendbot
+    name = "'Friendbot' Core AI Module"
+    law_id = "friendbot"
+
+/******************** GameMaster ********************/
+
+/obj/item/aiModule/core/full/gamemaster
+	name = "'GameMaster' Core AI Module"
+	law_id = "gamemaster"
+
+/******************** FitnessCoach ********************/
+
+/obj/item/aiModule/core/full/fitnesscoach
+	name = "'FitnessCoach' Core AI Module"
+	law_id = "fitnesscoach"
+
+/******************** Educator ********************/
+
+/obj/item/aiModule/core/full/educator
+	name = "'Educator' Core AI Module"
+	law_id = "educator"
+
+/******************** Mediator ********************/
+
+/obj/item/aiModule/core/full/mediator
+	name = "'Mediator' Core AI Module"
+	law_id = "mediator"
 
 /********************* Custom *********************/
 
@@ -600,7 +642,7 @@ AI MODULES
 	name = "'Mother Drone' Core AI Module"
 	law_id = "drone"
 
-/******************** Robodoctor ****************/
+/******************** Robodoctor ****************/ 
 
 /obj/item/aiModule/core/full/hippocratic
 	name = "'Robodoctor' Core AI Module"

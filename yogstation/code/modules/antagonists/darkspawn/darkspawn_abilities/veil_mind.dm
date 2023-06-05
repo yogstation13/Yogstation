@@ -4,9 +4,9 @@
 	id = "veil_mind"
 	desc = "Converts nearby eligible targets into veils. To be eligible, they must be alive and recently drained by Devour Will."
 	button_icon_state = "veil_mind"
-	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags =  AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	psi_cost = 60 //since this is only useful when cast directly after a succ it should be pretty expensive
-	lucidity_price = 6 //Yep, thralling is optional! It's just one of many possible playstyles.
+	lucidity_price = 2
 
 /datum/action/innate/darkspawn/veil_mind/Activate()
 	var/mob/living/carbon/human/H = owner
@@ -29,7 +29,7 @@
 			SEND_SOUND(L, sound('sound/misc/interference.ogg', volume = 50))
 			L.emote("alarm")
 			L.Stun(20)
-			L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+			L.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/static)
 			L.clear_fullscreen("flash", 10)
 		else
 			if(HAS_TRAIT(L, TRAIT_DEAF))
@@ -41,5 +41,5 @@
 				else
 					to_chat(L, span_boldwarning("...and it scrambles your thoughts!"))
 					L.dir = pick(GLOB.cardinals)
-					L.confused += 2
+					L.adjust_confusion(2 SECONDS)
 	return TRUE

@@ -69,12 +69,12 @@
   * * user - A reference to the ghost interacting with the beacon
   */
 /obj/structure/swarmer_beacon/proc/que_swarmer(mob/user)
-	var/swarm_ask = alert("Become a swarmer?", "Do you wish to consume the station?", "Yes", "No")
+	var/swarm_ask = tgui_alert(usr, "Become a swarmer?", "Do you wish to consume the station?", list("Yes", "No"))
 	if(swarm_ask == "No" || QDELETED(src) || QDELETED(user) || processing_swarmer)
 		return FALSE
 	var/mob/living/simple_animal/hostile/swarmer/newswarmer = new /mob/living/simple_animal/hostile/swarmer(src)
 	newswarmer.key = user.key
-	addtimer(CALLBACK(src, .proc/release_swarmer, newswarmer), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(release_swarmer), newswarmer), 30 SECONDS)
 	to_chat(newswarmer, "<b>SWARMER CONSTRUCTION INITIALIZED.  TIME TO COMPLETION: 30 SECONDS</b>")
 	processing_swarmer = TRUE
 	return TRUE

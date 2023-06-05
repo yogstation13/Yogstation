@@ -92,7 +92,7 @@
 	if(!chosen_mob)
 		return FALSE
 	curse(chosen_mob)
-	addtimer(CALLBACK(src, .proc/uncurse, chosen_mob),timer)
+	addtimer(CALLBACK(src, PROC_REF(uncurse), chosen_mob),timer)
 	return TRUE
 
 /datum/eldritch_transmutation/curse/proc/curse(mob/living/chosen_mob)

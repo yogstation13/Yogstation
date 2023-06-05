@@ -2,6 +2,7 @@
 /obj/item/organ/cyberimp
 	name = "cybernetic implant"
 	desc = "A state-of-the-art implant that improves a baseline's functionality."
+	visual = FALSE
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
 	var/implant_color = "#FFFFFF"
@@ -28,13 +29,13 @@
 	implant_overlay = "brain_implant_overlay"
 	zone = BODY_ZONE_HEAD
 	w_class = WEIGHT_CLASS_TINY
+	var/stun_amount = 10 SECONDS //halve this for light emps
 
 /obj/item/organ/cyberimp/brain/emp_act(severity)
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
-	var/stun_amount = 200/severity
-	owner.Stun(stun_amount)
+	owner.Stun(stun_amount / severity)
 	to_chat(owner, span_warning("Your body seizes up!"))
 
 
@@ -109,23 +110,23 @@
 
 	var/stun_cap_amount = 4 SECONDS
 
+/obj/item/organ/cyberimp/brain/anti_stun/Insert()
+	. = ..()
+	RegisterSignal(owner, signalCache, PROC_REF(on_signal))
+	RegisterSignal(owner, COMSIG_CARBON_STATUS_STAMCRIT, PROC_REF(on_signal_stamina))
+
 /obj/item/organ/cyberimp/brain/anti_stun/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
 	UnregisterSignal(M, signalCache)
 	UnregisterSignal(M, COMSIG_CARBON_STATUS_STAMCRIT)
 
-/obj/item/organ/cyberimp/brain/anti_stun/Insert()
-	. = ..()
-	RegisterSignal(owner, signalCache, .proc/on_signal)
-	RegisterSignal(owner, COMSIG_CARBON_STATUS_STAMCRIT, .proc/on_signal_stamina)
-
 /obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal(datum/source, amount)
 	if(!(organ_flags & ORGAN_FAILING) && amount > 0)
-		addtimer(CALLBACK(src, .proc/clear_stuns), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(clear_stuns)), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal_stamina()
 	if(!(organ_flags & ORGAN_FAILING))
-		addtimer(CALLBACK(src, .proc/clear_stuns), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(clear_stuns)), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/clear_stuns()
 	if(owner && !(organ_flags & ORGAN_FAILING))
@@ -136,10 +137,35 @@
 	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
 		return
 	organ_flags |= ORGAN_FAILING
-	addtimer(CALLBACK(src, .proc/reboot), 90 / severity)
+	addtimer(CALLBACK(src, PROC_REF(reboot)), stun_cap_amount * 2 / severity)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/reboot()
+	clear_stuns()
 	organ_flags &= ~ORGAN_FAILING
+
+/obj/item/organ/cyberimp/brain/anti_stun/syndicate
+	name = "syndicate CNS rebooter implant"
+	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
+	syndicate_implant = TRUE
+	stun_cap_amount = 3 SECONDS
+
+/obj/item/organ/cyberimp/brain/anti_stun/syndicate/Insert()
+	..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.stamina_mod *= 0.8
+		H.physiology.stun_mod *= 0.8
+
+/obj/item/organ/cyberimp/brain/anti_stun/syndicate/Remove(mob/living/carbon/M, special)
+	. = ..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.stamina_mod *= 1.25
+		H.physiology.stun_mod *= 1.25
+
+/obj/item/organ/cyberimp/brain/anti_stun/syndicate/on_life()
+	..() // makes stamina damage decay over time
+	owner.adjustStaminaLoss(owner.getStaminaLoss() / -10)
 
 //[[[[MOUTH]]]]
 /obj/item/organ/cyberimp/mouth

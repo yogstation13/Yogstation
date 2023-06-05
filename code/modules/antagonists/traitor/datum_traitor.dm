@@ -6,7 +6,9 @@
 	roundend_category = "traitors"
 	antagpanel_category = "Traitor"
 	job_rank = ROLE_TRAITOR
+	antag_hud_name = "traitor"
 	antag_moodlet = /datum/mood_event/focused
+	preview_outfit = /datum/outfit/traitor
 	var/special_role = ROLE_TRAITOR
 	var/employer = "The Syndicate"
 	var/give_objectives = TRUE
@@ -37,23 +39,22 @@
 	if(give_objectives)
 		forge_traitor_objectives()
 	finalize_traitor()
-	RegisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
+	RegisterSignal(owner.current, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 	..()
 
 
-/datum/antagonist/traitor/apply_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			if(!silent)
-				to_chat(traitor_mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)
+/datum/antagonist/traitor/apply_innate_effects(mob/living/mob_override)
+	. = ..()
+	var/mob/living/silicon/ai/A = mob_override || owner.current
+	if(istype(A) && traitor_kind == TRAITOR_AI)
+		A.hack_software = TRUE
+	handle_clown_mutation(owner.current, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 
-/datum/antagonist/traitor/remove_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			traitor_mob.dna.add_mutation(CLOWNMUT)
+/datum/antagonist/traitor/remove_innate_effects(mob/living/mob_override)
+	. = ..()
+	var/mob/living/silicon/ai/A = mob_override || owner.current
+	if(istype(A)  && traitor_kind == TRAITOR_AI)
+		A.hack_software = FALSE
 
 /datum/antagonist/traitor/on_removal()
 	//Remove malf powers.
@@ -97,7 +98,7 @@
 		is_hijacker = prob(10)
 	var/martyr_chance = prob(20)
 	var/objective_count = is_hijacker 			//Hijacking counts towards number of objectives
-	if(!SSticker.mode.exchange_blue && SSticker.mode.traitors.len >= 8) 	//Set up an exchange if there are enough traitors
+	if(!SSticker.mode.exchange_blue && SSticker.mode.traitors.len >= 6) 	//Set up an exchange if there are enough traitors. YOGSTATION CHANGE: 8 TO 6.
 		if(!SSticker.mode.exchange_red)
 			SSticker.mode.exchange_red = owner
 		else
@@ -110,12 +111,19 @@
 		forge_single_objective()
 
 	if(is_hijacker && objective_count <= toa) //Don't assign hijack if it would exceed the number of objectives set in config.traitor_objectives_amount
-		if (!(locate(/datum/objective/hijack) in objectives))
-			var/datum/objective/hijack/hijack_objective = new
-			hijack_objective.owner = owner
-			add_objective(hijack_objective)
+		//Start of Yogstation change: adds /datum/objective/sole_survivor
+		if(!(locate(/datum/objective/hijack) in objectives) && !(locate(/datum/objective/hijack/sole_survivor) in objectives))
+			if(SSticker.mode.has_hijackers)
+				var/datum/objective/hijack/sole_survivor/survive_objective = new
+				survive_objective.owner = owner
+				add_objective(survive_objective)
+			else
+				var/datum/objective/hijack/hijack_objective = new
+				hijack_objective.owner = owner
+				add_objective(hijack_objective)
+			SSticker.mode.has_hijackers = TRUE
 			return
-
+		//End of yogstation change.
 
 	var/martyr_compatibility = 1 //You can't succeed in stealing if you're dead.
 	for(var/datum/objective/O in objectives)
@@ -240,16 +248,6 @@
 		give_codewords()
 	to_chat(owner.current, span_notice("Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck."))
 
-/datum/antagonist/traitor/proc/update_traitor_icons_added(datum/mind/traitor_mind)
-	var/datum/atom_hud/antag/traitorhud = GLOB.huds[ANTAG_HUD_TRAITOR]
-	traitorhud.join_hud(owner.current)
-	set_antag_hud(owner.current, "traitor")
-
-/datum/antagonist/traitor/proc/update_traitor_icons_removed(datum/mind/traitor_mind)
-	var/datum/atom_hud/antag/traitorhud = GLOB.huds[ANTAG_HUD_TRAITOR]
-	traitorhud.leave_hud(owner.current)
-	set_antag_hud(owner.current, null)
-
 /datum/antagonist/traitor/proc/finalize_traitor()
 	switch(traitor_kind)
 		if(TRAITOR_AI)
@@ -260,20 +258,6 @@
 			if(should_equip)
 				equip(silent)
 			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
-
-/datum/antagonist/traitor/apply_innate_effects(mob/living/mob_override)
-	. = ..()
-	update_traitor_icons_added()
-	var/mob/living/silicon/ai/A = mob_override || owner.current
-	if(istype(A) && traitor_kind == TRAITOR_AI)
-		A.hack_software = TRUE
-
-/datum/antagonist/traitor/remove_innate_effects(mob/living/mob_override)
-	. = ..()
-	update_traitor_icons_removed()
-	var/mob/living/silicon/ai/A = mob_override || owner.current
-	if(istype(A)  && traitor_kind == TRAITOR_AI)
-		A.hack_software = FALSE
 
 /datum/antagonist/traitor/proc/give_codewords()
 	if(!owner.current)
@@ -445,6 +429,19 @@
 
 	return message
 
-
 /datum/antagonist/traitor/is_gamemode_hero()
 	return SSticker.mode.name == "traitor"
+
+/datum/outfit/traitor
+	name = "Traitor (Preview only)"
+	uniform = /obj/item/clothing/under/color/grey
+	suit = /obj/item/clothing/suit/armor/laserproof
+	gloves = /obj/item/clothing/gloves/color/yellow
+	mask = /obj/item/clothing/mask/gas
+	l_hand = /obj/item/melee/transforming/energy/sword
+	r_hand = /obj/item/gun/energy/kinetic_accelerator/crossbow
+	head = /obj/item/clothing/head/helmet
+
+/datum/outfit/traitor/post_equip(mob/living/carbon/human/H, visualsOnly)
+	var/obj/item/melee/transforming/energy/sword/sword = locate() in H.held_items
+	sword.transform_weapon(H)

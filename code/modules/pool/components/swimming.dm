@@ -20,9 +20,9 @@
 	var/mob/M = parent
 	M.visible_message("<span class='notice'>[parent] starts splashing around in the water!</span>")
 	M.add_movespeed_modifier(MOVESPEED_ID_SWIMMING, update=TRUE, priority=50, multiplicative_slowdown=slowdown, movetypes=GROUND)
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/onMove)
-	RegisterSignal(parent, COMSIG_CARBON_SPECIESCHANGE, .proc/onChangeSpecies)
-	RegisterSignal(parent, COMSIG_MOB_ATTACK_HAND_TURF, .proc/try_leave_pool)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(onMove))
+	RegisterSignal(parent, COMSIG_CARBON_SPECIESCHANGE, PROC_REF(onChangeSpecies))
+	RegisterSignal(parent, COMSIG_MOB_ATTACK_HAND_TURF, PROC_REF(try_leave_pool))
 	START_PROCESSING(SSprocessing, src)
 	enter_pool()
 
@@ -92,7 +92,7 @@
 	else if(drowning)
 		stop_drowning(L)
 		drowning = FALSE
-	L.adjust_fire_stacks(-1)
+	L.adjust_fire_stacks(-3)
 
 /datum/component/swimming/proc/is_drowning(mob/living/victim)
 	var/obj/item/twohanded/required/pool/helditem = victim.get_active_held_item()
@@ -114,7 +114,7 @@
 		victim.emote("gasp")
 	if(ticks_drowned > 20)
 		if(prob(10))
-			victim.visible_message("<span class='warning'>[victim] falls unconcious for a moment!</span>")
+			victim.visible_message("<span class='warning'>[victim] falls unconscious for a moment!</span>")
 			victim.Unconscious(10)
 
 /datum/component/swimming/proc/start_drowning(mob/living/victim)

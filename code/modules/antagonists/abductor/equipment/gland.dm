@@ -50,6 +50,9 @@
 	else
 		holder.icon_state = "hudgland_spent"
 
+/obj/item/organ/heart/gland/update_icon()
+	return // stop it from switching to the non existent heart_on sprite
+	
 /obj/item/organ/heart/gland/proc/mind_control(command, mob/living/user)
 	if(!ownerCheck() || !mind_control_uses || active_mind_control)
 		return FALSE
@@ -59,9 +62,9 @@
 	active_mind_control = TRUE
 	message_admins("[key_name(user)] sent an abductor mind control message to [key_name(owner)]: [command]")
 	update_gland_hud()
-	var/obj/screen/alert/mind_control/mind_alert = owner.throw_alert("mind_control", /obj/screen/alert/mind_control)
+	var/atom/movable/screen/alert/mind_control/mind_alert = owner.throw_alert("mind_control", /atom/movable/screen/alert/mind_control)
 	mind_alert.command = command
-	addtimer(CALLBACK(src, .proc/clear_mind_control), mind_control_duration)
+	addtimer(CALLBACK(src, PROC_REF(clear_mind_control)), mind_control_duration)
 	return TRUE
 
 /obj/item/organ/heart/gland/proc/clear_mind_control()
@@ -77,7 +80,7 @@
 	if(initial(uses) == 1)
 		uses = initial(uses)
 	var/datum/atom_hud/abductor/hud = GLOB.huds[DATA_HUD_ABDUCTOR]
-	hud.remove_from_hud(owner)
+	hud.remove_atom_from_hud(owner)
 	clear_mind_control()
 	..()
 
@@ -86,7 +89,7 @@
 	if(special != 2 && uses) // Special 2 means abductor surgery
 		Start()
 	var/datum/atom_hud/abductor/hud = GLOB.huds[DATA_HUD_ABDUCTOR]
-	hud.add_to_hud(owner)
+	hud.add_atom_to_hud(owner)
 	update_gland_hud()
 
 /obj/item/organ/heart/gland/on_life()
@@ -145,8 +148,8 @@
 	owner.vomit(20)
 
 	var/mob/living/simple_animal/slime/Slime = new(get_turf(owner), "grey")
-	Slime.Friends = list(owner)
-	Slime.Leader = owner
+	Slime.set_friends(list(owner))
+	Slime.set_leader(owner)
 
 /obj/item/organ/heart/gland/mindshock
 	true_name = "neural crosstalk uninhibitor"
@@ -167,13 +170,13 @@
 		switch(pick(1,3))
 			if(1)
 				to_chat(H, span_userdanger("You hear a loud buzz in your head, silencing your thoughts!"))
-				H.Stun(50)
+				H.Stun(5 SECONDS)
 			if(2)
 				to_chat(H, span_warning("You hear an annoying buzz in your head."))
-				H.confused += 15
+				H.adjust_confusion(15 SECONDS)
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 160)
 			if(3)
-				H.hallucination += 60
+				H.adjust_hallucinations(1 MINUTES)
 
 /obj/item/organ/heart/gland/mindshock/mind_control(command, mob/living/user)
 	if(!ownerCheck() || !mind_control_uses || active_mind_control)
@@ -192,12 +195,12 @@
 
 		message_admins("[key_name(user)] broadcasted an abductor mind control message from [key_name(owner)] to [key_name(H)]: [command]")
 
-		var/obj/screen/alert/mind_control/mind_alert = H.throw_alert("mind_control", /obj/screen/alert/mind_control)
+		var/atom/movable/screen/alert/mind_control/mind_alert = H.throw_alert("mind_control", /atom/movable/screen/alert/mind_control)
 		mind_alert.command = command
 
 	if(LAZYLEN(broadcasted_mobs))
 		active_mind_control = TRUE
-		addtimer(CALLBACK(src, .proc/clear_mind_control), mind_control_duration)
+		addtimer(CALLBACK(src, PROC_REF(clear_mind_control)), mind_control_duration)
 
 	update_gland_hud()
 	return TRUE
@@ -223,7 +226,7 @@
 
 /obj/item/organ/heart/gland/access/activate()
 	to_chat(owner, span_notice("You feel like a VIP for some reason."))
-	RegisterSignal(owner, COMSIG_MOB_ALLOWED, .proc/free_access)
+	RegisterSignal(owner, COMSIG_MOB_ALLOWED, PROC_REF(free_access))
 
 /obj/item/organ/heart/gland/access/proc/free_access(datum/source, obj/O)
 	return TRUE
@@ -337,7 +340,7 @@
 		if(!iscarbon(M))
 			continue
 		entangled_mob = M
-		addtimer(CALLBACK(src, .proc/quantum_swap), rand(1 MINUTES, 4 MINUTES))
+		addtimer(CALLBACK(src, PROC_REF(quantum_swap)), rand(1 MINUTES, 4 MINUTES))
 		return
 
 /obj/item/organ/heart/gland/quantum/proc/quantum_swap()
@@ -357,7 +360,7 @@
 		if(entangled_mob && ishuman(entangled_mob) && (entangled_mob.stat < DEAD))
 			to_chat(entangled_mob, span_userdanger("You suddenly feel an irresistible compulsion to follow an order..."))
 			to_chat(entangled_mob, "[span_mind_control("[command]")]")
-			var/obj/screen/alert/mind_control/mind_alert = entangled_mob.throw_alert("mind_control", /obj/screen/alert/mind_control)
+			var/atom/movable/screen/alert/mind_control/mind_alert = entangled_mob.throw_alert("mind_control", /atom/movable/screen/alert/mind_control)
 			mind_alert.command = command
 			message_admins("[key_name(owner)] mirrored an abductor mind control message to [key_name(entangled_mob)]: [command]")
 			update_gland_hud()
@@ -436,7 +439,7 @@
 	owner.visible_message(span_danger("[owner]'s skin starts emitting electric arcs!"),\
 	span_warning("You feel electric energy building up inside you!"))
 	playsound(get_turf(owner), "sparks", 100, 1, -1)
-	addtimer(CALLBACK(src, .proc/zap), rand(30, 100))
+	addtimer(CALLBACK(src, PROC_REF(zap)), rand(30, 100))
 
 /obj/item/organ/heart/gland/electric/proc/zap()
 	tesla_zap(owner, 4, 8000, TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE | TESLA_MOB_STUN)
@@ -462,7 +465,7 @@
 	owner.adjustToxLoss(-5, TRUE, TRUE)
 	..()
 
-/obj/item/organ/heart/gland/plasma
+/obj/item/organ/heart/gland/gas //Yogstation change: plasma -> gas
 	true_name = "effluvium sanguine-synonym emitter"
 	cooldown_low = 2 MINUTES
 	cooldown_high = 3 MINUTES
@@ -470,16 +473,16 @@
 	mind_control_uses = 1
 	mind_control_duration = 80 SECONDS
 
-/obj/item/organ/heart/gland/plasma/activate()
+/obj/item/organ/heart/gland/gas/activate() //Yogstation change: plasma -> gas
 	to_chat(owner, span_warning("You feel bloated."))
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
-	addtimer(CALLBACK(src, .proc/vomit_plasma), 20 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(vomit_gas)), 20 SECONDS) //Yogstation change: plasma -> gas
 
-/obj/item/organ/heart/gland/plasma/proc/vomit_plasma()
+/obj/item/organ/heart/gland/gas/proc/vomit_gas() //Yogstation change: plasma -> gas
 	if(!owner)
 		return
-	owner.visible_message(span_danger("[owner] vomits a cloud of plasma!"))
+	owner.visible_message(span_danger("[owner] vomits a cloud of miasma!")) //Yogstation change: plasma -> miasma
 	var/turf/open/T = get_turf(owner)
 	if(istype(T))
-		T.atmos_spawn_air("plasma=50;TEMP=[T20C]")
+		T.atmos_spawn_air("miasma=50;TEMP=[T20C]") //Yogstation change: plasma -> miasma
 	owner.vomit()

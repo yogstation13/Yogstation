@@ -4,6 +4,7 @@
 	desc = "There are three parts to the ear. Inner, middle and outer. Only one of these parts should be normally visible."
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EARS
+	visual = FALSE
 	gender = PLURAL
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
@@ -92,6 +93,7 @@
 	name = "cat ears"
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "kitty"
+	visual = TRUE
 	damage_multiplier = 2
 
 /obj/item/organ/ears/cat/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
@@ -154,13 +156,13 @@
 /obj/item/organ/ears/robot/emp_act(severity)
 	switch(severity)
 		if(1)
-			owner.Jitter(30)
-			owner.Dizzy(30)
+			owner.adjust_jitter(30 SECONDS)
+			owner.adjust_dizzy(30)
 			owner.Knockdown(5 SECONDS)
 			deaf = 30
-			to_chat(owner, "<span class='warning'>Your robotic ears are ringing, uselessly.</span>")
+			to_chat(owner, span_warning("Your robotic ears are uselessly ringing."))
 		if(2)
-			owner.Jitter(15)
-			owner.Dizzy(15)
+			owner.adjust_jitter(15 SECONDS)
+			owner.adjust_dizzy(15)
 			owner.Knockdown(10 SECONDS)
-			to_chat(owner, "<span class='warning'>Your robotic ears buzz.</span>") 
+			to_chat(owner, span_warning("Your robotic ears buzz."))  

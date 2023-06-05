@@ -21,6 +21,16 @@
 	cartridge_wording = "shell"
 	tac_reloads = FALSE
 
+/obj/item/gun/ballistic/shotgun/automatic
+	name = "semi-auto shotgun"
+	desc = "A shotgun that automatically chambers a new round after firing."
+	rack_sound = "sound/weapons/gun_slide_lock_5.ogg"
+	rack_sound_vary = FALSE
+	bolt_type = BOLT_TYPE_LOCKING
+	semi_auto = TRUE
+	casing_ejector = TRUE
+	bolt_wording = "charging handle"
+
 /obj/item/gun/ballistic/shotgun/blow_up(mob/user)
 	. = 0
 	if(chambered && chambered.BB)
@@ -54,13 +64,9 @@
 
 // Automatic Shotguns//
 
-/obj/item/gun/ballistic/shotgun/automatic/shoot_live_shot(mob/living/user)
-	..()
-	rack()
-
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "combat shotgun"
-	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
+	desc = "A semi-automatic shotgun with tactical furniture and a six-shell capacity underneath."
 	fire_delay = 5
 	icon_state = "cshotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
@@ -68,7 +74,7 @@
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact
 	name = "compact combat shotgun"
-	desc = "A compact version of the semi automatic combat shotgun. For close encounters."
+	desc = "A compact version of the semi-automatic combat shotgun. For close encounters."
 	icon_state = "cshotgunc"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
 	w_class = WEIGHT_CLASS_BULKY
@@ -83,7 +89,6 @@
 	w_class = WEIGHT_CLASS_HUGE
 	var/toggled = FALSE
 	var/obj/item/ammo_box/magazine/internal/shot/alternate_magazine
-	semi_auto = TRUE
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/examine(mob/user)
 	. = ..()
@@ -115,6 +120,20 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	rack()
+
+/obj/item/gun/ballistic/shotgun/lever
+	name = "\improper Winton Mk. VI Repeating Rifle"
+	desc = "A lever-action rifle chambered in .308 with pristine wooden furniture. Favored by Frontier sharpshooters."
+	icon_state = "wintonrifle"
+	item_state = "wintonrifle"
+	fire_sound = "sound/weapons/leverfire.ogg"
+	fire_sound_volume = 50
+	rack_sound = "sound/weapons/leverrack.ogg"
+	load_sound = "sound/weapons/leverload.ogg"
+	fire_delay = 9
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/lever
+	bolt_wording = "lever"
+	cartridge_wording = "bullet"
 
 // Bulldog shotgun //
 

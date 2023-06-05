@@ -4,7 +4,7 @@
 /obj/machinery/computer/telecomms/server
 	name = "telecommunications server monitoring console"
 	icon_screen = "comm_logs"
-	desc = "A computer dedicated to monitoring telecommuncation server logs."
+	desc = "A computer dedicated to monitoring telecommunication server logs."
 
 	var/screen_state = MONITOR_MAINMENU	 // the screen state
 	var/list/cached_server_list = list() // The servers located by the computer

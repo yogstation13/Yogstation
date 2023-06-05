@@ -39,6 +39,9 @@
 	if(is_banned_from(user.key, ROLE_GHOSTBEACON))
 		to_chat(user, span_warning("You are banned from materializing"))
 		return
+	if(user.mind && LAZYLEN(user.mind.antag_datums))
+		to_chat(user, span_warning("You are unable to materialize when you've played as an antag!"))
+		return
 	var/response = alert("Materialize? (You will not be revivable)", "Beacon", "Yes", "No")
 	if(response == "No")
 		return
@@ -48,8 +51,7 @@
 		outfit = /datum/outfit/ghost/plasmaman
 	H.equipOutfit(outfit)
 	if(isplasmaman(H))
-		H.internal = H.get_item_for_held_index(2)
-		H.update_internals_hud_icon(1)
+		H.open_internals(H.get_item_for_held_index(2))
 	H.regenerate_icons()
 	ghosts |= H
 	H.visible_message(span_notice("[H] decends into this plane"), span_notice("You decend into the living plane."))

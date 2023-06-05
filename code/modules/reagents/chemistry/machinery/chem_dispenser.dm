@@ -3,7 +3,7 @@
 		if ("sacid")
 			return "sulphuricacid"
 		if ("facid")
-			return "fluorosulfuricacid"
+			return "fluorosulphuricacid"
 		if ("co2")
 			return "carbondioxide"
 		if ("mine_salve")
@@ -61,7 +61,7 @@
 		/datum/reagent/oil,
 		/datum/reagent/uranium/radium,
 		/datum/reagent/stable_plasma,
-		/datum/reagent/sulfur
+		/datum/reagent/sulphur
 	)
 	var/list/t2_upgrade_reagents = list(
 		/datum/reagent/consumable/sugar,
@@ -124,8 +124,8 @@
 		"Power efficiency increased by <b>[round((powerefficiency*1000)-100, 1)]%</b>.</span>"
 		//"Macro granularity at <b>[macroresolution]u</b>.</span>"
 
-/obj/machinery/chem_dispenser/process()
-	if (recharge_counter >= 4)
+/obj/machinery/chem_dispenser/process(delta_time)
+	if (recharge_counter >= 8)
 		if(!is_operational())
 			return
 		var/usedpower = cell.give(recharge_amount)
@@ -133,7 +133,7 @@
 			use_power(250*recharge_amount)
 		recharge_counter = 0
 		return
-	recharge_counter++
+	recharge_counter += delta_time
 
 /obj/machinery/chem_dispenser/proc/display_beaker()
 	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
@@ -309,7 +309,7 @@
 		if("clear_recipes")
 			if(!is_operational())
 				return
-			var/yesno = alert("Clear all recipes?",, "Yes","No")
+			var/yesno = tgui_alert(usr, "Clear all recipes?",, list("Yes","No"))
 			if(yesno == "Yes")
 				saved_recipes = list()
 		if("add_recipe")
@@ -357,8 +357,8 @@
 		if(HAS_TRAIT(I, TRAIT_NODROP))
 			to_chat(user, span_notice("[I] is stuck to your hand!"))
 			return
-		I.forceMove(src) // Force it out of our hands so we can put the old cell in it
 		if(istype(I, /obj/item/stock_parts/cell))
+			I.forceMove(src) // Force it out of our hands so we can put the old cell in it		
 			if(!user.put_in_hands(cell))
 				cell.forceMove(get_turf(src))
 			component_parts -= cell // Remove the old cell so the new one spawns when deconstructed
@@ -520,30 +520,37 @@
 		/datum/reagent/consumable/icetea,
 		/datum/reagent/consumable/space_cola,
 		/datum/reagent/consumable/rootbeer,
-		/datum/reagent/consumable/spacemountainwind,
-		/datum/reagent/consumable/dr_gibb,
-		/datum/reagent/consumable/space_up,
 		/datum/reagent/consumable/tonic,
 		/datum/reagent/consumable/sodawater,
 		/datum/reagent/consumable/lemon_lime,
-		/datum/reagent/consumable/pwr_game,
 		/datum/reagent/consumable/shamblers,
 		/datum/reagent/consumable/sugar,
-		/datum/reagent/consumable/pineapplejuice,
 		/datum/reagent/consumable/orangejuice,
 		/datum/reagent/consumable/grenadine,
 		/datum/reagent/consumable/limejuice,
-		/datum/reagent/consumable/tomatojuice,
 		/datum/reagent/consumable/lemonjuice,
-		/datum/reagent/consumable/menthol,
-		/datum/reagent/consumable/berryjuice
+		/datum/reagent/consumable/menthol
+		
 	)
-	t2_upgrade_reagents = null
-	t3_upgrade_reagents = null
-	t4_upgrade_reagents = null
+	t2_upgrade_reagents = list(
+		/datum/reagent/consumable/berryjuice,
+		/datum/reagent/consumable/pineapplejuice,
+		/datum/reagent/consumable/tomatojuice
+	)
+	t3_upgrade_reagents = list(
+		/datum/reagent/consumable/sol_dry,
+		/datum/reagent/consumable/spacemountainwind,
+		/datum/reagent/consumable/dr_gibb,
+		/datum/reagent/consumable/space_up,
+		/datum/reagent/consumable/pwr_game
+	)
+	t4_upgrade_reagents = list(
+		/datum/reagent/consumable/peachjuice
+	)
 	emagged_reagents = list(
 		/datum/reagent/consumable/ethanol/thirteenloko,
-		/datum/reagent/consumable/ethanol/whiskey_cola,
+		/datum/reagent/consumable/laughter,
+		/datum/reagent/consumable/nothing,
 		/datum/reagent/toxin/mindbreaker,
 		/datum/reagent/toxin/staminatoxin
 	)
@@ -596,13 +603,16 @@
 		/datum/reagent/consumable/ethanol/amaretto
 	)
 	t2_upgrade_reagents = null
-	t3_upgrade_reagents = null
-	t4_upgrade_reagents = null
-	emagged_reagents = list(
-		/datum/reagent/consumable/ethanol,
+	t3_upgrade_reagents = list(
+		/datum/reagent/consumable/ethanol/champagne
+	)
+	t4_upgrade_reagents = list(
 		/datum/reagent/iron,
+		/datum/reagent/consumable/ethanol
+	)
+	emagged_reagents = list(
 		/datum/reagent/toxin/minttoxin,
-		/datum/reagent/consumable/ethanol/atomicbomb,
+		/datum/reagent/consumable/ethanol/syndicatebomb,
 		/datum/reagent/consumable/ethanol/fernet
 	)
 
@@ -720,7 +730,7 @@
 		/datum/reagent/sodium,
 		/datum/reagent/stable_plasma,
 		/datum/reagent/consumable/sugar,
-		/datum/reagent/sulfur,
+		/datum/reagent/sulphur,
 		/datum/reagent/toxin/acid,
 		/datum/reagent/water,
 		/datum/reagent/fuel,

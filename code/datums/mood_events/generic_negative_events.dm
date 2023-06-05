@@ -30,7 +30,7 @@
 /datum/mood_event/creampie
 	description = "<span class='warning'>I've been creamed. Tastes like pie flavor.</span>\n"
 	mood_change = -2
-	timeout = 1800
+	timeout = 3 MINUTES
 
 /datum/mood_event/slipped
 	description = "<span class='warning'>I slipped. I should be more careful next time...</span>\n"
@@ -221,3 +221,6 @@
 	description = "<span class='boldwarning'>HE'S CUTTING ME OPEN!!</span>\n"
 	mood_change = -8
 
+/datum/mood_event/type_bait
+	description = "<span class='warning'>I caught that fish mid-conversation... I can't believe I did that...</span>\n"
+	mood_change = -1

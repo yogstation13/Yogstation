@@ -57,24 +57,24 @@
 
 /datum/round_event/portal_storm/announce(fake)
 	set waitfor = 0
-	sound_to_playing_players('sound/magic/lightning_chargeup.ogg')
+	sound_to_playing_players('sound/magic/lightning_chargeup.ogg', volume = 50)
 	sleep(8 SECONDS)
 	priority_announce("Massive bluespace anomaly detected en route to [station_name()]. Brace for impact.")
 	sleep(2 SECONDS)
-	sound_to_playing_players('sound/magic/lightningbolt.ogg')
+	sound_to_playing_players('sound/magic/lightningbolt.ogg', volume = 50)
 
 /datum/round_event/portal_storm/tick()
 	spawn_effects(get_random_station_turf())
 
 	if(spawn_hostile())
-		var/type = safepick(hostile_types)
+		var/type = pick(hostile_types)
 		hostile_types[type] = hostile_types[type] - 1
 		spawn_mob(type, hostiles_spawn)
 		if(!hostile_types[type])
 			hostile_types -= type
 
 	if(spawn_boss())
-		var/type = safepick(boss_types)
+		var/type = pick(boss_types)
 		boss_types[type] = boss_types[type] - 1
 		spawn_mob(type, boss_spawn)
 		if(!boss_types[type])

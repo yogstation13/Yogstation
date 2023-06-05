@@ -86,10 +86,7 @@ export const Canvas = (props, context) => {
   const { act, data } = useBackend(context);
   const [width, height] = getImageSize(data.grid);
   return (
-    <Window
-      width={Math.min(400, width * PX_PER_UNIT * 32 + 24)}
-      height={Math.min(400, height * PX_PER_UNIT * 32 + 24)}
-      resizable>
+    <Window>
       <Window.Content scrollable>
         <Box textAlign="center">
           <PaintCanvas

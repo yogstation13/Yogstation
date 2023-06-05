@@ -39,6 +39,7 @@
 	move_to_delay = 5
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	mouse_opacity = MOUSE_OPACITY_ICON
+	internal_type = /obj/item/gps/internal/broodmother
 	deathmessage = "explodes into gore!"
 	loot_drop = /obj/item/crusher_trophy/broodmother_tongue
 
@@ -137,7 +138,7 @@
 	color = "#FF0000"
 	set_varspeed(0)
 	move_to_delay = 3
-	addtimer(CALLBACK(src, .proc/reset_rage), 65)
+	addtimer(CALLBACK(src, PROC_REF(reset_rage)), 65)
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/reset_rage()
 	color = "#FFFFFF"
@@ -154,6 +155,16 @@
 		if(T)
 			child.forceMove(T)
 			playsound(src, 'sound/effects/bamf.ogg', 100, 1)
+
+/obj/item/gps/internal/broodmother
+	icon_state = null
+	gpstag = "Brooding Signal"
+	desc = "7.5/10 too many tentacles."
+	invisibility = 100
+
+/mob/living/simple_animal/hostile/asteroid/elite/broodmother/death()
+	QDEL_NULL(internal) // removes signal from a deceased elite.
+	. = ..()
 
 //The goliath's children.  Pretty weak, simple mobs which are able to put a single tentacle under their target when at range.
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother_child
@@ -182,6 +193,7 @@
 	deathmessage = "falls to the ground."
 	status_flags = CANPUSH
 	var/mob/living/simple_animal/hostile/asteroid/elite/broodmother/mother = null
+	true_spawn = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/OpenFire(target)
 	ranged_cooldown = world.time + 40
@@ -214,7 +226,7 @@
 		retract()
 	else
 		deltimer(timerid)
-		timerid = addtimer(CALLBACK(src, .proc/retract), 10, TIMER_STOPPABLE)
+		timerid = addtimer(CALLBACK(src, PROC_REF(retract)), 10, TIMER_STOPPABLE)
 
 /obj/effect/temp_visual/goliath_tentacle/broodmother/patch/Initialize(mapload, new_spawner)
 	. = ..()

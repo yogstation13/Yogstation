@@ -71,7 +71,7 @@
 	if(istype(M))
 		if(method != INGEST && method != INJECT)
 			M.adjust_fire_stacks(min(reac_volume/5, 10))
-			M.IgniteMob()
+			M.ignite_mob()
 			if(!locate(/obj/effect/hotspot) in M.loc)
 				new /obj/effect/hotspot(M.loc)
 
@@ -94,13 +94,13 @@
 	description = "Explodes. Violently."
 	reagent_state = LIQUID
 	color = "#000000"
-	metabolization_rate = 0.05
+	metabolization_rate = REAGENTS_METABOLISM * 2.5	//Yogs change - faster metabolization
 	taste_description = "salt"
 
 /datum/reagent/blackpowder/on_mob_life(mob/living/carbon/M)
 	..()
 	if(isplasmaman(M))
-		M.hallucination += 5
+		M.adjust_hallucinations(20 SECONDS)
 
 /datum/reagent/blackpowder/on_ex_act()
 	var/location = get_turf(holder.my_atom)
@@ -143,7 +143,7 @@
 	M.adjust_fire_stacks(1)
 	var/burndmg = max(0.3*M.fire_stacks, 0.3)
 	M.adjustFireLoss(burndmg, 0)
-	M.IgniteMob()
+	M.ignite_mob()
 	..()
 
 /datum/reagent/phlogiston/on_mob_life(mob/living/carbon/M)
@@ -214,8 +214,17 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "charged metal"
 	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 	var/shock_timer = 0
+	var/empremoval = FALSE
 
+/datum/reagent/teslium/on_mob_metabolize(mob/living/L)
+	. = ..()
+	var/datum/component/empprotection/empproof = L.GetExactComponent(/datum/component/empprotection)
+	if(!empproof)//only grant and remove emp protection if they didn't have it when drinking it
+		L.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+		empremoval = TRUE
+	
 /datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++
 	if(shock_timer >= rand(5,30)) //Random shocks are wildly unpredictable
@@ -223,6 +232,13 @@
 		M.electrocute_act(rand(5,20), "Teslium in their body", 1, 1) //Override because it's caused from INSIDE of you
 		playsound(M, "sparks", 50, 1)
 	..()
+
+/datum/reagent/teslium/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	if(empremoval)
+		var/datum/component/empprotection/empproof = L.GetExactComponent(/datum/component/empprotection)
+		if(empproof)
+			empproof.Destroy()	
 
 /datum/reagent/teslium/energized_jelly
 	name = "Energized Jelly"
@@ -249,25 +265,25 @@
 	color = "#A6FAFF55"
 	taste_description = "the inside of a fire extinguisher"
 
-/datum/reagent/firefighting_foam/reaction_turf(turf/open/T, reac_volume)
-	if (!istype(T))
+/datum/reagent/firefighting_foam/reaction_turf(turf/open/exposed_turf, reac_volume)
+	. = ..()
+	if (!istype(exposed_turf))
 		return
 
 	if(reac_volume >= 1)
-		var/obj/effect/particle_effect/foam/firefighting/F = (locate(/obj/effect/particle_effect/foam) in T)
-		if(!F)
-			F = new(T)
-		else if(istype(F))
-			F.lifetime = initial(F.lifetime) //reduce object churn a little bit when using smoke by keeping existing foam alive a bit longer
+		var/obj/effect/particle_effect/fluid/foam/firefighting/foam = (locate(/obj/effect/particle_effect/fluid/foam) in exposed_turf)
+		if(!foam)
+			foam = new(exposed_turf)
+		else if(istype(foam))
+			foam.lifetime = initial(foam.lifetime) //reduce object churn a little bit when using smoke by keeping existing foam alive a bit longer
 
-	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
-	if(hotspot && !isspaceturf(T))
-		if(T.air)
-			var/datum/gas_mixture/G = T.air
-			if(G.return_temperature() > T20C)
-				G.set_temperature(max(G.return_temperature()/2,T20C))
-			G.react(src)
-			qdel(hotspot)
+	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in exposed_turf)
+	if(hotspot && !isspaceturf(exposed_turf) && exposed_turf.air)
+		var/datum/gas_mixture/air = exposed_turf.air
+		if(air.return_temperature() > T20C)
+			air.set_temperature(max(air.return_temperature()/2, T20C))
+		air.react(src)
+		qdel(hotspot)
 
 /datum/reagent/firefighting_foam/reaction_obj(obj/O, reac_volume)
 	O.extinguish()
@@ -275,5 +291,5 @@
 /datum/reagent/firefighting_foam/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method in list(VAPOR, TOUCH))
 		M.adjust_fire_stacks(-reac_volume)
-		M.ExtinguishMob()
+		M.extinguish_mob()
 	..()

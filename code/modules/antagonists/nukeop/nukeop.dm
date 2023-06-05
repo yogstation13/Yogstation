@@ -3,6 +3,7 @@
 	roundend_category = "syndicate operatives" //just in case
 	antagpanel_category = "NukeOp"
 	job_rank = ROLE_OPERATIVE
+	antag_hud_name = "synd"
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE
 	var/datum/team/nuclear/nuke_team
@@ -11,24 +12,16 @@
 	var/nukeop_outfit = /datum/outfit/syndicate
 	can_hijack = HIJACK_HIJACKER //Alternative way to wipe out the station.
 
-/datum/antagonist/nukeop/proc/update_synd_icons_added(mob/living/M)
-	var/datum/atom_hud/antag/opshud = GLOB.huds[ANTAG_HUD_OPS]
-	opshud.join_hud(M)
-	set_antag_hud(M, "synd")
+	preview_outfit = /datum/outfit/nuclear_operative_elite
 
-/datum/antagonist/nukeop/proc/update_synd_icons_removed(mob/living/M)
-	var/datum/atom_hud/antag/opshud = GLOB.huds[ANTAG_HUD_OPS]
-	opshud.leave_hud(M)
-	set_antag_hud(M, null)
+	/// In the preview icon, the nukies who are behind the leader
+	var/preview_outfit_behind = /datum/outfit/nuclear_operative
 
 /datum/antagonist/nukeop/apply_innate_effects(mob/living/mob_override)
-	var/mob/living/M = mob_override || owner.current
-	update_synd_icons_added(M)
+	add_team_hud(mob_override || owner.current)
 	ADD_TRAIT(owner, TRAIT_DISK_VERIFIER, NUKEOP_TRAIT)
 
 /datum/antagonist/nukeop/remove_innate_effects(mob/living/mob_override)
-	var/mob/living/M = mob_override || owner.current
-	update_synd_icons_removed(M)
 	REMOVE_TRAIT(owner, TRAIT_DISK_VERIFIER, NUKEOP_TRAIT)
 
 /datum/antagonist/nukeop/proc/equip_op()
@@ -139,8 +132,8 @@
 
 /datum/antagonist/nukeop/get_admin_commands()
 	. = ..()
-	.["Send to base"] = CALLBACK(src,.proc/admin_send_to_base)
-	.["Tell code"] = CALLBACK(src,.proc/admin_tell_code)
+	.["Send to base"] = CALLBACK(src, PROC_REF(admin_send_to_base))
+	.["Tell code"] = CALLBACK(src, PROC_REF(admin_tell_code))
 
 /datum/antagonist/nukeop/proc/admin_send_to_base(mob/admin)
 	owner.current.forceMove(pick(GLOB.nukeop_start))
@@ -157,11 +150,48 @@
 	else
 		to_chat(admin, span_danger("No valid nuke found!"))
 
+/datum/antagonist/nukeop/get_preview_icon()
+	var/mob/living/carbon/human/dummy/consistent/captain = new
+	var/icon/final_icon = render_preview_outfit(preview_outfit, captain)
+	final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, -8, 0)
+	final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, 8, 0)
+
+	return finish_preview_icon(final_icon)
+
+/datum/antagonist/nukeop/proc/make_assistant_icon()
+	var/mob/living/carbon/human/dummy/assistant = new
+	var/icon/assistant_icon = render_preview_outfit(preview_outfit_behind, assistant)
+	assistant_icon.ChangeOpacity(0.5)
+
+	return assistant_icon
+
+/datum/outfit/nuclear_operative
+	name = "Nuclear Operative (Preview only)"
+	mask = /obj/item/clothing/mask/gas/syndicate
+	uniform = /obj/item/clothing/under/syndicate
+	suit = /obj/item/clothing/suit/space/hardsuit/syndi
+	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi
+
+/datum/outfit/nuclear_operative_elite
+	name = "Nuclear Operative (Elite, Preview only)"
+	mask = /obj/item/clothing/mask/gas/syndicate
+	uniform = /obj/item/clothing/under/syndicate 
+	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
+	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
+	r_hand = /obj/item/shield/energy
+
+/datum/outfit/nuclear_operative_elite/post_equip(mob/living/carbon/human/H, visualsOnly)
+	var/obj/item/shield/energy/shield = locate() in H.held_items
+	shield.icon_state = "[shield.base_icon_state]1"
+	H.update_inv_hands()
+
 /datum/antagonist/nukeop/leader
 	name = "Nuclear Operative Leader"
 	nukeop_outfit = /datum/outfit/syndicate/leader
 	always_new_team = TRUE
 	var/title
+	preview_outfit = /datum/outfit/nuclear_operative/leader
+	preview_outfit_behind = null
 
 /datum/antagonist/nukeop/leader/memorize_code()
 	..()
@@ -173,7 +203,7 @@
 		if(!istype(H))
 			P.forceMove(get_turf(H))
 		else
-			H.put_in_hands(P, TRUE)
+			H.put_in_hands(P, TRUE, no_sound = TRUE)
 			H.update_icons()
 
 /datum/antagonist/nukeop/leader/give_alias()
@@ -189,7 +219,7 @@
 	to_chat(owner, "<B>If you feel you are not up to this task, give your ID to another operative.</B>")
 	to_chat(owner, "<B>In your hand you will find a special item capable of triggering a greater challenge for your team. Examine it carefully and consult with your fellow operatives before activating it.</B>")
 	owner.announce_objectives()
-	addtimer(CALLBACK(src, .proc/nuketeam_name_assign), 1)
+	addtimer(CALLBACK(src, PROC_REF(nuketeam_name_assign)), 1)
 
 
 /datum/antagonist/nukeop/leader/proc/nuketeam_name_assign()
@@ -219,6 +249,10 @@
 			newname = randomname
 
 	return capitalize(newname)
+
+/datum/outfit/nuclear_operative/leader
+	name = "Nuclear Operative Leader (Preview only)"
+	neck = /obj/item/clothing/neck/cloak/nukie
 
 /datum/antagonist/nukeop/lone
 	name = "Lone Operative"
@@ -298,13 +332,13 @@
 
 	if(nuke_off_station == NUKE_SYNDICATE_BASE)
 		return NUKE_RESULT_FLUKE
-	else if(station_was_nuked && !syndies_didnt_escape)
+	else if(station_was_nuked && !nuke_off_station && !syndies_didnt_escape)
 		return NUKE_RESULT_NUKE_WIN
-	else if (station_was_nuked && syndies_didnt_escape)
+	else if (station_was_nuked && !nuke_off_station && syndies_didnt_escape)
 		return NUKE_RESULT_NOSURVIVORS
-	else if (!disk_rescued && !station_was_nuked && nuke_off_station && !syndies_didnt_escape)
+	else if (nuke_off_station && !syndies_didnt_escape)
 		return NUKE_RESULT_WRONG_STATION
-	else if (!disk_rescued && !station_was_nuked && nuke_off_station && syndies_didnt_escape)
+	else if (nuke_off_station && syndies_didnt_escape)
 		return NUKE_RESULT_WRONG_STATION_DEAD
 	else if ((disk_rescued && evacuation) && operatives_dead())
 		return NUKE_RESULT_CREW_WIN_SYNDIES_DEAD

@@ -35,7 +35,7 @@
 		return //don't know if this is needed...
 	var/turf/closed/mineral/location = get_turf(target)
 	location.attempt_drill(null,TRUE,3) //orange says it doesnt include the actual middle
-	for(var/turf/closed/mineral/rock in circlerangeturfs(location,boom_sizes[3]))
+	for(var/turf/closed/mineral/rock in circle_range_turfs(location,boom_sizes[3]))
 		var/distance = get_dist_euclidian(location,rock)
 		if(distance <= boom_sizes[1])
 			rock.attempt_drill(null,TRUE,3)

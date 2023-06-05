@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(dbcore)
 		if(2)
 			message_admins("Could not get schema version from database")
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/dbcore/fire()
 	for(var/I in active_queries)
@@ -195,9 +195,9 @@ SUBSYSTEM_DEF(dbcore)
 	for (var/thing in querys)
 		var/datum/DBQuery/query = thing
 		if (warn)
-			INVOKE_ASYNC(query, /datum/DBQuery.proc/warn_execute)
+			INVOKE_ASYNC(query, TYPE_PROC_REF(/datum/DBQuery, warn_execute))
 		else
-			INVOKE_ASYNC(query, /datum/DBQuery.proc/Execute)
+			INVOKE_ASYNC(query, TYPE_PROC_REF(/datum/DBQuery, Execute))
 
 	for (var/thing in querys)
 		var/datum/DBQuery/query = thing

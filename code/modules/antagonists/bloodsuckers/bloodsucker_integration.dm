@@ -1,14 +1,7 @@
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//			TG OVERWRITES
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/// Gives Curators their abilities
-/datum/outfit/job/curator/post_equip(mob/living/carbon/human/user, visualsOnly = FALSE)
-	. = ..()
-
-	ADD_TRAIT(user, TRAIT_BLOODSUCKER_HUNTER, JOB_TRAIT)
+/*
+ * OVERWRITES
+*/
 
 /datum/species/jelly/slime/spec_life(mob/living/carbon/human/user)
 	// Prevents Slimeperson 'gaming
@@ -31,7 +24,7 @@
 	. = ..()
 
 // Used to keep track of how much Blood we've drank so far
-/mob/living/carbon/human/get_status_tab_items()
+/mob/living/get_status_tab_items()
 	. = ..()
 	if(mind)
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -40,7 +33,7 @@
 			. += "Current Frenzy Enter: [FRENZY_THRESHOLD_ENTER + bloodsuckerdatum.humanity_lost * 10]"
 			. += "Current Frenzy Leave: [FRENZY_THRESHOLD_EXIT + bloodsuckerdatum.humanity_lost * 10]"
 			. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
-			if(bloodsuckerdatum.current_task)
+			if(bloodsuckerdatum.has_task)
 				. += "Task Blood Drank: [bloodsuckerdatum.task_blood_drank]"
 
 // INTEGRATION: Adding Procs and Datums to existing "classes" //
@@ -61,7 +54,7 @@
 	return TRUE
 
 // EXAMINING
-/mob/living/carbon/human/proc/ReturnVampExamine(mob/living/viewer)
+/mob/living/carbon/proc/return_vamp_examine(mob/living/viewer)
 	if(!mind || !viewer.mind)
 		return ""
 	// Target must be a Vamp
@@ -79,7 +72,7 @@
 		if(!(HAS_TRAIT(viewer, TRAIT_BLOODSUCKER_HUNTER) && bloodsuckerdatum.broke_masquerade))
 			return ""
 	// Default String
-	var/returnString = "\[<span class='warning'><EM>[bloodsuckerdatum.ReturnFullName(1)]</EM></span>\]"
+	var/returnString = "\[<span class='warning'><EM>[bloodsuckerdatum.return_full_name(1)]</EM></span>\]"
 	var/returnIcon = "[icon2html('icons/mob/vampiric.dmi', world, "bloodsucker")]"
 
 	// In Disguise (Veil)?
@@ -107,7 +100,7 @@
 			returnIcon = "[icon2html('icons/mob/vampiric.dmi', world, "vassal")]"
 		// Am I someone ELSE'S Vassal?
 		else if(IS_BLOODSUCKER(viewer) || IS_MONSTERHUNTER(viewer))
-			returnString +=	"This [dna.species.name] bears the mark of <span class='boldwarning'>[vassaldatum.master.ReturnFullName(vassaldatum.master.owner.current,TRUE)][vassaldatum.master.broke_masquerade ? " who has broken the Masquerade" : ""]</span>"
+			returnString +=	"This [dna.species.name] bears the mark of <span class='boldwarning'>[vassaldatum.master.return_full_name(vassaldatum.master.owner.current,TRUE)][vassaldatum.master.broke_masquerade ? " who has broken the Masquerade" : ""]</span>"
 			returnIcon = "[icon2html('icons/mob/vampiric.dmi', world, "vassal_grey")]"
 		// Are you serving the same master as I am?
 		else if(viewer.mind.has_antag_datum(/datum/antagonist/vassal) in vassaldatum?.master.vassals)
@@ -126,21 +119,17 @@
 /// Am I "pale" when examined? - Bloodsuckers on Masquerade will hide this.
 /mob/living/carbon/human/proc/ShowAsPaleExamine(mob/living/user, blood_volume)
 	if(!mind)
-		return BLOODSUCKER_HIDE_BLOOD
+		return BLOODSUCKER_SHOW_BLOOD
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	// Not a Bloodsucker?
 	if(!bloodsuckerdatum)
-		return BLOODSUCKER_HIDE_BLOOD
+		return BLOODSUCKER_SHOW_BLOOD
 	// Blood level too low to be hidden?
 	if(blood_volume <= BLOOD_VOLUME_BAD(user) || bloodsuckerdatum.frenzied)
-		return BLOODSUCKER_HIDE_BLOOD
+		return BLOODSUCKER_SHOW_BLOOD
 	// Special check: Nosferatu will always be Pale Death
 	if(HAS_TRAIT(src, TRAIT_MASQUERADE))
 		return BLOODSUCKER_HIDE_BLOOD
-	switch(blood_volume)
-		if(BLOOD_VOLUME_OKAY(user) to BLOOD_VOLUME_SAFE(user))
-			return "[p_they(TRUE)] [p_have()] pale skin.\n"
-		if(BLOOD_VOLUME_BAD(user) to BLOOD_VOLUME_OKAY(user))
-			return "<b>[p_they(TRUE)] look[p_s()] like pale death.</b>\n"
+	return BLOODSUCKER_SHOW_BLOOD
 	// If a Bloodsucker is malnourished, AND if his temperature matches his surroundings (aka he hasn't fed recently and looks COLD)
 //	return blood_volume < BLOOD_VOLUME_OKAY // && !(bodytemperature <= get_temperature() + 2)

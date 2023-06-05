@@ -635,6 +635,14 @@
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/board/inspector_booth
+	name = "Machine Design (Inspector Booth)"
+	desc = "The circuit board for an inspector booth."
+	id = "inspector_booth"
+	build_path = /obj/item/circuitboard/machine/inspector_booth
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/board/stacking_unit_console
 	name = "Machine Design (Stacking Machine Console)"
 	desc = "The circuit board for a Stacking Machine Console."
@@ -691,6 +699,22 @@
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/board/suit_storage_unit
+	name = "Machine Design (Suit Storage Unit)"
+	desc = "The circuit board for a suit storage unit."
+	id = "suit_storage_unit"
+	build_path = /obj/item/circuitboard/machine/suit_storage_unit
+	category = list ("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/board/decontamination_unit
+	name = "Machine Design (Decontamination Unit)"
+	desc = "The circuit board for a decontamination unit."
+	id = "decontamination_unit"
+	build_path = /obj/item/circuitboard/machine/decontamination_unit
+	category = list ("Engineering Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/board/crystallizer
 	name = "Machine Design (Crystallizer)"
 	desc = "The circuit board for a crystallizer."
@@ -729,5 +753,13 @@
 	desc = "The circuit board for a rack creator."
 	id = "rack_creator"
 	build_path = /obj/item/circuitboard/machine/rack_creator
+	category = list("Research Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/board/plort
+	name = "Machine Design (Plort Redemption Machine)"
+	desc = "The circuit board for a plort redemption machine."
+	id = "plort"
+	build_path = /obj/item/circuitboard/machine/plort
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

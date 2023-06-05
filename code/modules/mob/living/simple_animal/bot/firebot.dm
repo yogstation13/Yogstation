@@ -273,7 +273,9 @@
 
 /mob/living/simple_animal/bot/firebot/temperature_expose(datum/gas_mixture/air, temperature, volume)
 	if((temperature > T0C + 200 || temperature < BODYTEMP_COLD_DAMAGE_LIMIT) && foam_cooldown + FOAM_INTERVAL < world.time)
-		new /obj/effect/particle_effect/foam/firefighting(loc)
+		var/datum/effect_system/fluid_spread/foam/firefighting/foam = new
+		foam.set_up(3, holder = src, location = loc)
+		foam.start()
 		foam_cooldown = world.time
 	..()
 
@@ -318,7 +320,7 @@
 	..()
 
 /obj/machinery/bot_core/firebot
-	req_one_access = list(ACCESS_CONSTRUCTION, ACCESS_ROBOTICS)
+	req_one_access = list(ACCESS_CONSTRUCTION, ACCESS_ROBO_CONTROL)
 
 #undef SPEECH_INTERVAL
 #undef DETECTED_VOICE_INTERVAL

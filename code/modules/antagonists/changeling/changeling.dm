@@ -1,6 +1,8 @@
-#define LING_FAKEDEATH_TIME					400 //40 seconds
+/// The duration of the fakedeath coma.
+#define LING_FAKEDEATH_TIME 40 SECONDS
 #define LING_DEAD_GENETICDAMAGE_HEAL_CAP	50	//The lowest value of geneticdamage handle_changeling() can take it to while dead.
-#define LING_ABSORB_RECENT_SPEECH			8	//The amount of recent spoken lines to gain on absorbing a mob
+/// The number of recent spoken lines to gain on absorbing a mob
+#define LING_ABSORB_RECENT_SPEECH 8
 
 /datum/antagonist/changeling
 	name = "Changeling"
@@ -8,7 +10,9 @@
 	antagpanel_category = "Changeling"
 	show_to_ghosts = TRUE
 	job_rank = ROLE_CHANGELING
+	antag_hud_name = "changeling"
 	antag_moodlet = /datum/mood_event/changeling
+	ui_name = "AntagInfoChangeling"
 
 	var/you_are_greet = TRUE
 	var/give_objectives = TRUE
@@ -21,10 +25,10 @@
 	var/dna_max = 6 //How many extra DNA strands the changeling can store for transformation.
 	var/absorbedcount = 0
 	var/trueabsorbs = 0//dna gained using absorb, not dna sting
-	var/chem_charges = 20
-	var/chem_storage = 75
-	var/chem_recharge_rate = 1
-	var/chem_recharge_slowdown = 0
+	var/chem_charges = 50 // chems we have on spawn
+	var/chem_storage = 125 // max chems
+	var/chem_recharge_rate = 2 // how fast we restore chems
+	var/chem_recharge_slowdown = 0 // how much is our chem restore rate hampered (keep at 0)
 	var/sting_range = 2
 	var/changelingID = "Changeling"
 	var/geneticdamage = 0
@@ -38,9 +42,17 @@
 	var/canrespec = FALSE//set to TRUE in absorb.dm
 	var/changeling_speak = 0
 	var/datum/dna/chosen_dna
+	/// The currently active changeling sting.
 	var/datum/action/changeling/sting/chosen_sting
-	var/datum/cellular_emporium/cellular_emporium
+	/// A reference to our cellular emporium datum.
+	var/datum/antag_menu/cellular_emporium/cellular_emporium
+	/// A reference to our cellular emporium action (which opens the UI for the datum).
 	var/datum/action/innate/cellular_emporium/emporium_action
+
+	/// UI displaying how many chems we have
+	var/atom/movable/screen/ling/chems/lingchemdisplay
+	/// UI displayng our currently active sting
+	var/atom/movable/screen/ling/sting/lingstingdisplay
 
 	var/static/list/all_powers = typecacheof(/datum/action/changeling,TRUE)
 	var/list/stored_snapshots = list() //list of stored snapshots
@@ -57,7 +69,7 @@
 /datum/antagonist/changeling/Destroy()
 	QDEL_NULL(cellular_emporium)
 	QDEL_NULL(emporium_action)
-	. = ..()
+	return ..()
 
 /datum/antagonist/changeling/proc/generate_name()
 	var/honorific
@@ -83,14 +95,15 @@
 	generate_name()
 	create_actions()
 	reset_powers()
+	make_absorbable() // Lings need to be able to absorb other lings
 	create_initial_profile()
 	if(give_objectives)
 		if(team_mode)
 			forge_team_objectives()
 		forge_objectives()
-	remove_clownmut()
+	handle_clown_mutation(owner.current, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
 	owner.current.grant_all_languages(FALSE, FALSE, TRUE)	//Grants omnitongue. We are able to transform our body after all.
-	. = ..()
+	return ..()
 
 /datum/antagonist/changeling/on_removal()
 	//We'll be using this from now on
@@ -103,12 +116,30 @@
 	remove_changeling_powers()
 	. = ..()
 
-/datum/antagonist/changeling/proc/remove_clownmut()
-	if (owner)
-		var/mob/living/carbon/human/H = owner.current
-		if(istype(H) && owner.assigned_role == "Clown")
-			to_chat(H, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
-			H.dna.remove_mutation(CLOWNMUT)
+/datum/antagonist/changeling/proc/on_hud_created(datum/source)
+	SIGNAL_HANDLER
+
+	var/datum/hud/ling_hud = owner.current.hud_used
+
+	lingchemdisplay = new
+	lingchemdisplay.hud = ling_hud
+	ling_hud.infodisplay += lingchemdisplay
+
+	lingstingdisplay = new
+	lingstingdisplay.hud = ling_hud
+	ling_hud.infodisplay += lingstingdisplay
+
+	INVOKE_ASYNC(ling_hud, TYPE_PROC_REF(/datum/hud/, show_hud),ling_hud.hud_version)
+
+/datum/antagonist/changeling/proc/make_absorbable()
+	var/mob/living/carbon/C = owner.current
+	if(ishuman(C) && (NO_DNA_COPY in C.dna.species.species_traits || !C.has_dna()))
+		to_chat(C, span_userdanger("You have been made a human, as your original race had incompatible DNA."))
+		C.set_species(/datum/species/human, TRUE, TRUE)
+		if(C.client?.prefs?.read_preference(/datum/preference/name/backup_human) && !is_banned_from(C.client?.ckey, "Appearance"))
+			C.fully_replace_character_name(C.dna.real_name, C.client.prefs.read_preference(/datum/preference/name/backup_human))
+		else
+			C.fully_replace_character_name(C.dna.real_name, random_unique_name(C.gender))
 
 /datum/antagonist/changeling/proc/reset_properties()
 	changeling_speak = 0
@@ -137,11 +168,6 @@
 			p.Remove(owner.current)
 			
 		geneticpoints = additionalpoints
-
-	//MOVE THIS
-	if(owner.current.hud_used && owner.current.hud_used.lingstingdisplay)
-		owner.current.hud_used.lingstingdisplay.icon_state = null
-		owner.current.hud_used.lingstingdisplay.invisibility = INVISIBILITY_ABSTRACT
 
 /datum/antagonist/changeling/proc/reset_powers()
 	if(purchasedpowers)
@@ -255,7 +281,7 @@
 			return
 	if(!target)
 		return
-	if(NO_DNA_COPY in target.dna.species.species_traits)
+	if((NO_DNA_COPY in target.dna.species.species_traits) || (NOHUSK in target.dna.species.species_traits)) // if they can't be husked absorbing them will break and make them unrevivable
 		if(verbose)
 			to_chat(user, span_warning("[target] is not compatible with our biology."))
 		return
@@ -366,21 +392,46 @@
 	if(ishuman(C))
 		add_new_profile(C)
 
-/datum/antagonist/changeling/apply_innate_effects()
+/datum/antagonist/changeling/apply_innate_effects(mob/living/mob_override)
+	var/mob/mob_to_tweak = mob_override || owner.current
+	if(!isliving(mob_to_tweak))
+		return
+	handle_clown_mutation(mob_to_tweak, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
+	RegisterSignal(mob_to_tweak, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(on_life))
+	RegisterSignals(mob_to_tweak, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON), PROC_REF(on_click_sting))
 	//Brains optional.
-	var/mob/living/carbon/C = owner.current
-	if(istype(C))
-		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
-		if(B)
-			B.organ_flags &= ~ORGAN_VITAL
-			B.decoy_override = TRUE
-	update_changeling_icons_added()
-	return
+	var/obj/item/organ/brain/our_ling_brain = mob_to_tweak.getorganslot(ORGAN_SLOT_BRAIN)
+	if(our_ling_brain)
+		our_ling_brain.organ_flags &= ~ORGAN_VITAL
+		our_ling_brain.decoy_override = TRUE
 
-/datum/antagonist/changeling/remove_innate_effects()
-	update_changeling_icons_removed()
-	return
+	if(mob_to_tweak.hud_used)
+		var/datum/hud/hud_used = mob_to_tweak.hud_used
+		lingchemdisplay = new /atom/movable/screen/ling/chems()
+		lingchemdisplay.hud = hud_used
+		hud_used.infodisplay += lingchemdisplay
 
+		lingstingdisplay = new /atom/movable/screen/ling/sting()
+		lingstingdisplay.hud = hud_used
+		hud_used.infodisplay += lingstingdisplay
+
+		hud_used.show_hud(hud_used.hud_version)
+	else
+		RegisterSignal(mob_to_tweak, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
+
+
+/datum/antagonist/changeling/remove_innate_effects(mob/living/mob_override)
+	. = ..()
+	var/mob/living/living_mob = mob_override || owner.current
+	UnregisterSignal(living_mob, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON))
+
+	if(living_mob.hud_used)
+		var/datum/hud/hud_used = living_mob.hud_used
+
+		hud_used.infodisplay -= lingchemdisplay
+		hud_used.infodisplay -= lingstingdisplay
+		QDEL_NULL(lingchemdisplay)
+		QDEL_NULL(lingstingdisplay)
 
 /datum/antagonist/changeling/greet()
 	if (you_are_greet)
@@ -393,6 +444,34 @@
 
 /datum/antagonist/changeling/farewell()
 	to_chat(owner.current, span_userdanger("You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!"))
+
+/**
+ * Signal proc for [COMSIG_LIVING_BIOLOGICAL_LIFE].
+ * Handles regenerating chemicals on life ticks.
+ */
+/datum/antagonist/changeling/proc/on_life(datum/source, delta_time, times_fired)
+	SIGNAL_HANDLER
+
+	// If dead, we only regenerate up to half chem storage.
+	if(owner.current.stat == DEAD)
+		adjust_chemicals((chem_recharge_rate - chem_recharge_slowdown) * delta_time, chem_storage * 0.5)
+
+	// If we're not dead - we go up to the full chem cap.
+	else
+		adjust_chemicals((chem_recharge_rate - chem_recharge_slowdown) * delta_time)
+
+/*
+ * Adjust the chem charges of the ling by [amount]
+ * and clamp it between 0 and override_cap (if supplied) or chem_storage (if no override supplied)
+ */
+/datum/antagonist/changeling/proc/adjust_chemicals(amount, override_cap)
+	if(!isnum(amount))
+		return
+	var/cap_to = isnum(override_cap) ? override_cap : chem_storage
+	chem_charges = clamp(chem_charges + amount, 0, cap_to)
+
+	lingchemdisplay?.maptext = ANTAG_MAPTEXT(chem_charges, COLOR_CHANGELING_CHEMICALS)
+
 
 /datum/antagonist/changeling/proc/forge_team_objectives()
 	if(GLOB.changeling_team_objective_type)
@@ -498,15 +577,30 @@
 			objectives += identity_theft
 		escape_objective_possible = FALSE
 
-/datum/antagonist/changeling/proc/update_changeling_icons_added()
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_CHANGELING]
-	hud.join_hud(owner.current)
-	set_antag_hud(owner.current, "changeling")
+/**
+ * Signal proc for [COMSIG_MOB_MIDDLECLICKON] and [COMSIG_MOB_ALTCLICKON].
+ * Allows the changeling to sting people with a click.
+ */
+/datum/antagonist/changeling/proc/on_click_sting(mob/living/ling, atom/clicked)
+	SIGNAL_HANDLER
 
-/datum/antagonist/changeling/proc/update_changeling_icons_removed()
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_CHANGELING]
-	hud.leave_hud(owner.current)
-	set_antag_hud(owner.current, null)
+	// nothing to handle
+	if(!chosen_sting)
+		return
+
+	if(!isliving(ling) || clicked == ling || ling.stat != CONSCIOUS)
+		return
+
+	// sort-of hack done here: we use in_given_range here because it's quicker.
+	// actual ling stings do pathfinding to determine whether the target's "in range".
+	// however, this is "close enough" preliminary checks to not block click
+	if(!isliving(clicked) || !IN_GIVEN_RANGE(ling, clicked, sting_range))
+		return
+	
+	chosen_sting.try_to_sting(ling, clicked)
+	ling.next_click = world.time + 5
+
+	return COMSIG_MOB_CANCEL_CLICKON
 
 /datum/antagonist/changeling/admin_add(datum/mind/new_owner,mob/admin)
 	. = ..()
@@ -515,7 +609,7 @@
 /datum/antagonist/changeling/get_admin_commands()
 	. = ..()
 	if(stored_profiles.len && (owner.current.real_name != first_prof.name))
-		.["Transform to initial appearance."] = CALLBACK(src,.proc/admin_restore_appearance)
+		.["Transform to initial appearance."] = CALLBACK(src, PROC_REF(admin_restore_appearance))
 
 /datum/antagonist/changeling/proc/admin_restore_appearance(mob/admin)
 	if(!stored_profiles.len || !iscarbon(owner.current))
@@ -614,3 +708,33 @@
 
 /datum/antagonist/changeling/xenobio/antag_listing_name()
 	return ..() + "(Xenobio)"
+
+/datum/antagonist/changeling/get_preview_icon()
+	var/icon/final_icon = render_preview_outfit(/datum/outfit/changeling)
+	var/icon/split_icon = render_preview_outfit(/datum/outfit/job/engineer)
+
+	final_icon.Shift(WEST, world.icon_size / 2)
+	final_icon.Shift(EAST, world.icon_size / 2)
+
+	split_icon.Shift(EAST, world.icon_size / 2)
+	split_icon.Shift(WEST, world.icon_size / 2)
+
+	final_icon.Blend(split_icon, ICON_OVERLAY)
+
+	return finish_preview_icon(final_icon)
+
+/datum/antagonist/changeling/ui_data(mob/user)
+	var/list/data = list()
+
+	data["true_name"] = changelingID
+	data["stolen_antag_info"] = antag_memory
+	data["objectives"] = get_objectives()
+
+	return data
+
+/datum/outfit/changeling
+	name = "Changeling"
+
+	head = /obj/item/clothing/head/helmet/changeling
+	suit = /obj/item/clothing/suit/armor/changeling
+	l_hand = /obj/item/melee/arm_blade

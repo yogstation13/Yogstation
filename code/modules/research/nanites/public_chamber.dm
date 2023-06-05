@@ -45,9 +45,9 @@
 
 	//TODO OMINOUS MACHINE SOUNDS
 	set_busy(TRUE, "[initial(icon_state)]_raising")
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "[initial(icon_state)]_active"),20)
-	addtimer(CALLBACK(src, .proc/set_busy, TRUE, "[initial(icon_state)]_falling"),60)
-	addtimer(CALLBACK(src, .proc/complete_injection, locked_state, attacker),80)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "[initial(icon_state)]_active"),20)
+	addtimer(CALLBACK(src, PROC_REF(set_busy), TRUE, "[initial(icon_state)]_falling"),60)
+	addtimer(CALLBACK(src, PROC_REF(complete_injection), locked_state, attacker),80)
 
 /obj/machinery/public_nanite_chamber/proc/complete_injection(locked_state, mob/living/attacker)
 	//TODO MACHINE DING
@@ -129,16 +129,20 @@
 
 	. = TRUE
 
-	addtimer(CALLBACK(src, .proc/try_inject_nanites, attacker), 30) //If someone is shoved in give them a chance to get out before the injection starts
+	addtimer(CALLBACK(src, PROC_REF(try_inject_nanites), attacker), 30) //If someone is shoved in give them a chance to get out before the injection starts
 
 /obj/machinery/public_nanite_chamber/proc/try_inject_nanites(mob/living/attacker)
 	if(occupant)
 		var/mob/living/L = occupant
 		if(SEND_SIGNAL(L, COMSIG_HAS_NANITES))
 			return
-		if((MOB_ORGANIC in L.mob_biotypes) || (MOB_UNDEAD in L.mob_biotypes))
-			inject_nanites(attacker)
-
+		if(iscarbon(attacker))
+			var/mob/living/carbon/carbon_occupant = attacker
+			if(!(NONANITES in carbon_occupant.dna.species.species_traits))
+				inject_nanites(attacker)
+		else
+			if(!(issilicon(L)))
+				inject_nanites(attacker)
 /obj/machinery/public_nanite_chamber/open_machine()
 	if(state_open)
 		return FALSE

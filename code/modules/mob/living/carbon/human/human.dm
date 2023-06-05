@@ -19,13 +19,15 @@
 	if(dna.species)
 		set_species(dna.species.type)
 
+	prepare_huds() //Prevents a nasty runtime on human init
+
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
 	physiology = new()
 
 	. = ..()
 
-	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, .proc/clean_face)
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
 	AddComponent(/datum/component/personal_crafting)
 
 /mob/living/carbon/human/proc/setup_human_dna()
@@ -59,14 +61,23 @@
 	. = ..()
 	. += "Intent: [a_intent]"
 	. += "Move Mode: [m_intent]"
-	if (internal)
-		if (!internal.air_contents)
-			qdel(internal)
-		else
-			. += ""
-			. += "Internal Atmosphere Info: [internal.name]"
-			. += "Tank Pressure: [internal.air_contents.return_pressure()]"
-			. += "Distribution Pressure: [internal.distribute_pressure]"
+	var/obj/item/tank/target_tank = internal || external
+	if(target_tank)
+		var/datum/gas_mixture/internal_air = target_tank.return_air()
+		. += ""
+		. += "Internal Atmosphere Info: [target_tank.name]"
+		. += "Tank Pressure: [internal_air.return_pressure()]"
+		. += "Distribution Pressure: [target_tank.distribute_pressure]"
+
+	// CLOAKER BELT
+	if(istype(belt, /obj/item/storage/belt/military/shadowcloak))
+		var/obj/item/storage/belt/military/shadowcloak/SC = belt
+		var/turf/T = get_turf(src)
+		var/lumens = T.get_lumcount()
+		. += ""
+		. += "Cloaker Status: [SC.on ? "ON" : "OFF"]"
+		. += "Cloaker Charge: [round(100*SC.charge/SC.max_charge, 1)]%"
+		. += "Lumens Count: [round(lumens, 0.01)]"
 
 	var/datum/antagonist/hivemind/hivemind = mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(hivemind)
@@ -172,12 +183,12 @@
 
 	dat += "<tr><td><B>Exosuit:</B></td><td><A href='?src=[REF(src)];item=[SLOT_WEAR_SUIT]'>[(wear_suit && !(wear_suit.item_flags & ABSTRACT)) ? wear_suit : "<font color=grey>Empty</font>"]</A></td></tr>"
 	if(wear_suit)
-		if(SLOT_S_STORE in obscured)
+		if(SLOT_SUIT_STORE in obscured)
 			dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Suit Storage:</B></font></td></tr>"
 		else
-			dat += "<tr><td>&nbsp;&#8627;<B>Suit Storage:</B></td><td><A href='?src=[REF(src)];item=[SLOT_S_STORE]'>[(s_store && !(s_store.item_flags & ABSTRACT)) ? s_store : "<font color=grey>Empty</font>"]</A>"
+			dat += "<tr><td>&nbsp;&#8627;<B>Suit Storage:</B></td><td><A href='?src=[REF(src)];item=[SLOT_SUIT_STORE]'>[(s_store && !(s_store.item_flags & ABSTRACT)) ? s_store : "<font color=grey>Empty</font>"]</A>"
 			if(has_breathable_mask && istype(s_store, /obj/item/tank))
-				dat += "&nbsp;<A href='?src=[REF(src)];internal=[SLOT_S_STORE]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
+				dat += "&nbsp;<A href='?src=[REF(src)];internal=[SLOT_SUIT_STORE]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
 			dat += "</td></tr>"
 	else
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Suit Storage:</B></font></td></tr>"
@@ -290,6 +301,8 @@
 			if(pocket_item)
 				if(pocket_item == (pocket_id == SLOT_R_STORE ? r_store : l_store)) //item still in the pocket we search
 					dropItemToGround(pocket_item)
+					if(usr.IsAdvancedToolUser())
+						usr.put_in_hands(pocket_item)
 			else
 				if(place_item)
 					if(place_item.mob_can_equip(src, usr, pocket_id, FALSE, TRUE))
@@ -766,7 +779,7 @@
 			electrocution_skeleton_anim = mutable_appearance(icon, "electrocuted_base")
 			electrocution_skeleton_anim.appearance_flags |= RESET_COLOR|KEEP_APART
 		add_overlay(electrocution_skeleton_anim)
-		addtimer(CALLBACK(src, .proc/end_electrocution_animation, electrocution_skeleton_anim), anim_duration)
+		addtimer(CALLBACK(src, PROC_REF(end_electrocution_animation), electrocution_skeleton_anim), anim_duration)
 
 	else //or just do a generic animation
 		flick_overlay_view(image(icon,src,"electrocuted_generic",ABOVE_MOB_LAYER), src, anim_duration)
@@ -857,7 +870,6 @@
 		regenerate_organs()
 	remove_all_embedded_objects()
 	set_heartattack(FALSE)
-	drunkenness = 0
 	for(var/datum/mutation/human/HM in dna.mutations)
 		if(HM.quality != POSITIVE)
 			dna.remove_mutation(HM.name)
@@ -880,7 +892,7 @@
 	..()
 
 /mob/living/carbon/human/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
-	if(blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
+	if(!force && blood && (NOBLOOD in dna.species.species_traits) && !HAS_TRAIT(src, TRAIT_TOXINLOVER))
 		if(message)
 			visible_message(span_warning("[src] dry heaves!"), \
 							span_userdanger("You try to throw up, but there's nothing in your stomach!"))
@@ -965,7 +977,9 @@
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
-	return (istype(target) && target.stat == CONSCIOUS)
+	if (istype(target) && target.stat == CONSCIOUS && src.a_intent == INTENT_HELP)
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
 	return (ishuman(target) && !(target.mobility_flags & MOBILITY_STAND))
@@ -1066,6 +1080,14 @@
 /mob/living/carbon/human/do_after_coefficent()
 	. = ..()
 	. *= physiology.do_after_speed
+	. *= dna.species.action_speed_coefficient
+
+/mob/living/carbon/human/update_mobility()
+	..()
+	if(physiology?.crawl_speed && !(mobility_flags & MOBILITY_STAND))
+		add_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE, multiplicative_slowdown = physiology.crawl_speed)
+	else
+		remove_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE)
 
 /mob/living/carbon/human/updatehealth()
 	var/oldhealth = health
@@ -1250,6 +1272,9 @@
 /mob/living/carbon/human/species/lizard/ashwalker
 	race = /datum/species/lizard/ashwalker
 
+/mob/living/carbon/human/species/lizard/ashwalker/shaman
+	race = /datum/species/lizard/ashwalker/shaman
+
 /mob/living/carbon/human/species/lizard/draconid
 	race = /datum/species/lizard/draconid
 
@@ -1261,6 +1286,17 @@
 
 /mob/living/carbon/human/species/ipc
 	race = /datum/species/ipc
+
+/mob/living/carbon/human/species/ipc/empty //used for "cloning" ipcs
+
+/mob/living/carbon/human/species/ipc/empty/Initialize()
+	. = ..()
+	deathsound = null //make it a silent death
+	death()
+	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN) // There's no brain in here, perfect for recruitment to security
+	if(B)
+		B.Remove(src)
+		QDEL_NULL(B)
 
 /mob/living/carbon/human/species/plasma
 	race = /datum/species/plasmaman
@@ -1318,7 +1354,7 @@
 /mob/living/carbon/human/proc/hulk_stamina_check()
 	if(dna.check_mutation(ACTIVE_HULK))
 		if(staminaloss < 60 && prob(1))
-			confused = 7
+			adjust_confusion(7 SECONDS)
 			say("HULK SMASH!!")
 		if(staminaloss >= 90)
 			dna.remove_mutation(ACTIVE_HULK)
@@ -1330,15 +1366,6 @@
 
 /mob/living/carbon/human/Bump(atom/movable/AM)
 	..()
-	if(dna.check_mutation(ACTIVE_HULK) && confused && (world.time - last_bumped) > 15)
+	if(dna.check_mutation(ACTIVE_HULK) && has_status_effect(/datum/status_effect/confusion) && (world.time - last_bumped) > 15)
 		Bumped(AM)
 		return AM.attack_hulk(src)
-
-/mob/living/carbon/human/fall(forced)
-	. = ..()
-	if(resting)
-		return
-	var/obj/item/clothing/head/hat = get_item_by_slot(SLOT_HEAD)
-	if(istype(hat) && hat.hattable && prob(25))
-		visible_message("[src]'s [lowertext(hat.name)] falls off.")
-		dropItemToGround(hat)

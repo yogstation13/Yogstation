@@ -1,7 +1,9 @@
 GLOBAL_LIST_EMPTY(uplinks)
 
 #define PEN_ROTATIONS 2
-
+#define NT_ERT_TROOPER 1
+#define NT_ERT_MEDIC 2
+#define NT_ERT_ENGINEER 3
 /**
  * Uplinks
  *
@@ -33,29 +35,30 @@ GLOBAL_LIST_EMPTY(uplinks)
 	///Instructions on how to access the uplink based on location
 	var/unlock_text
 	var/list/previous_attempts
+	var/nt_uplink_type = null //for NT uplinks to enforce team variety.
 
 /datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, datum/game_mode/_gamemode, starting_tc = TELECRYSTALS_DEFAULT)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/OnAttackBy)
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/interact)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(OnAttackBy))
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(interact))
 	if(istype(parent, /obj/item/implant))
-		RegisterSignal(parent, COMSIG_IMPLANT_ACTIVATED, .proc/implant_activation)
-		RegisterSignal(parent, COMSIG_IMPLANT_IMPLANTING, .proc/implanting)
-		RegisterSignal(parent, COMSIG_IMPLANT_OTHER, .proc/old_implant)
-		RegisterSignal(parent, COMSIG_IMPLANT_EXISTING_UPLINK, .proc/new_implant)
+		RegisterSignal(parent, COMSIG_IMPLANT_ACTIVATED, PROC_REF(implant_activation))
+		RegisterSignal(parent, COMSIG_IMPLANT_IMPLANTING, PROC_REF(implanting))
+		RegisterSignal(parent, COMSIG_IMPLANT_OTHER, PROC_REF(old_implant))
+		RegisterSignal(parent, COMSIG_IMPLANT_EXISTING_UPLINK, PROC_REF(new_implant))
 	else if(istype(parent, /obj/item/pda))
-		RegisterSignal(parent, COMSIG_PDA_CHANGE_RINGTONE, .proc/new_ringtone)
-		RegisterSignal(parent, COMSIG_PDA_CHECK_DETONATE, .proc/check_detonate)
+		RegisterSignal(parent, COMSIG_TABLET_CHANGE_ID, PROC_REF(new_ringtone))
+		RegisterSignal(parent, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(check_detonate))
 	else if(istype(parent, /obj/item/modular_computer))
-		RegisterSignal(parent, COMSIG_NTOS_CHANGE_RINGTONE, .proc/ntos_ringtone)
-		RegisterSignal(parent, COMSIG_PDA_CHECK_DETONATE, .proc/check_detonate)
+		RegisterSignal(parent, COMSIG_NTOS_CHANGE_RINGTONE, PROC_REF(ntos_ringtone))
+		RegisterSignal(parent, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(check_detonate))
 	else if(istype(parent, /obj/item/radio))
-		RegisterSignal(parent, COMSIG_RADIO_NEW_FREQUENCY, .proc/new_frequency)
+		RegisterSignal(parent, COMSIG_RADIO_NEW_FREQUENCY, PROC_REF(new_frequency))
 	else if(istype(parent, /obj/item/pen))
-		RegisterSignal(parent, COMSIG_PEN_ROTATED, .proc/pen_rotation)
+		RegisterSignal(parent, COMSIG_PEN_ROTATED, PROC_REF(pen_rotation))
 
 	GLOB.uplinks += src
 	uplink_items = get_uplink_items(_gamemode, TRUE, allow_restricted, js_ui)
@@ -177,6 +180,10 @@ GLOBAL_LIST_EMPTY(uplinks)
 							break
 					if(is_inaccessible)
 						continue
+			if(istype(I, /datum/uplink_item/nt))
+				var/datum/uplink_item/nt/M = I
+				if(nt_uplink_type != null && M.required_ert_uplink != null && nt_uplink_type != M.required_ert_uplink) //Different roles in ERT uplinks have different equipment avaliable
+					continue
 			cat["items"] += list(list(
 				"name" = I.name,
 				"cost" = I.manufacturer && user.mind.is_employee(I.manufacturer) ? CEILING(I.cost * 0.8, 1) : I.cost,
@@ -291,7 +298,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	return COMPONENT_NTOS_STOP_RINGTONE_CHANGE
 
 /datum/component/uplink/proc/check_detonate()
-	return COMPONENT_PDA_NO_DETONATE
+	return COMPONENT_TABLET_NO_DETONATE
 
 // Radio signal responses
 
@@ -360,3 +367,10 @@ GLOBAL_LIST_EMPTY(uplinks)
 	name = "nanotrasen uplink"
 	js_ui = "NTUplink"
 	currency = /obj/item/stack/ore/bluespace_crystal/refined/nt
+
+/datum/component/uplink/nanotrasen/trooper
+	nt_uplink_type = NT_ERT_TROOPER
+/datum/component/uplink/nanotrasen/medic
+	nt_uplink_type = NT_ERT_MEDIC
+/datum/component/uplink/nanotrasen/engineer
+	nt_uplink_type = NT_ERT_ENGINEER

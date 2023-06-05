@@ -18,7 +18,7 @@
 	owner.update_body_parts()
 	owner.dna.species.handle_mutant_bodyparts(owner)
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "hulk", /datum/mood_event/hulk)
-	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/mutation/human/hulk/on_attack_hand(atom/target, proximity)
 	if(proximity) //no telekinetic hulk attack
@@ -48,7 +48,7 @@
 
 /datum/mutation/human/genetics_hulk
 	name = "Hulk"
-	desc = "A seemingly dormant genome, but reacts violently to aggitation."
+	desc = "A seemingly dormant genome, but reacts violently to agitation."
 	difficulty = 16
 	instability = 50
 	class = MUT_OTHER
@@ -74,7 +74,7 @@
 	text_gain_indication = span_notice("Your muscles hurt!")
 	health_req = 1
 	var/health_based = 0
-	power = /obj/effect/proc_holder/spell/aoe_turf/repulse/hulk
+	power_path = /datum/action/cooldown/spell/aoe/repulse/hulk
 
 /datum/mutation/human/active_hulk/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
@@ -83,7 +83,7 @@
 	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, TRAIT_HULK)
 	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
 	ADD_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_HULK)
-	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	if(istype(owner.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = owner.w_uniform
 		if(owner.canUnEquip(U))
@@ -102,7 +102,7 @@
 /datum/mutation/human/active_hulk/on_attack_hand(atom/target, proximity)
 	if(proximity) //no telekinetic hulk attack
 		if(prob(3))
-			owner.Jitter(10)
+			owner.adjust_jitter(10 SECONDS)
 		owner.adjustStaminaLoss(-0.5)
 		return target.attack_hulk(owner)
 
@@ -130,3 +130,17 @@
 		message = "[replacetext(message, ".", "!")]!!"
 	wrapped_message[1] = message
 	return COMPONENT_UPPERCASE_SPEECH
+
+/datum/action/cooldown/spell/aoe/repulse/hulk
+	name = "Ground Smash"
+	desc = "Smash the ground to throw your enemies back!"
+	invocation = "HULK SMASH!!"
+	button_icon = 'icons/mob/actions.dmi'
+	button_icon_state = "green_hand"
+
+/datum/action/cooldown/spell/aoe/repulse/hulk/cast_on_thing_in_aoe(atom/movable/victim, atom/caster)
+	var/turf/open/floor/turf = get_turf(victim)
+	if(istype(turf))
+		turf.break_tile()
+	playsound(usr.loc, 'sound/effects/meteorimpact.ogg', 30, TRUE, 2)
+	return ..()

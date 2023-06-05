@@ -16,13 +16,13 @@
 	return OXYLOSS
 
 /obj/item/paicard/Initialize()
-	SSpai.pai_card_list += src
+	SSpai.paicard_list += src
 	add_overlay("pai-off")
 	return ..()
 
 /obj/item/paicard/Destroy()
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
-	SSpai.pai_card_list -= src
+	SSpai.paicard_list -= src
 	if (!QDELETED(pai))
 		QDEL_NULL(pai)
 	return ..()
@@ -90,7 +90,7 @@
 				to_chat(pai, span_notice("You have been bound to a new master."))
 				pai.emittersemicd = FALSE
 		if(href_list["wipe"])
-			var/confirm = input("Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe") in list("Yes", "No")
+			var/confirm = tgui_alert(usr, "Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe", list("Yes", "No"))
 			if(confirm == "Yes")
 				if(pai)
 					to_chat(pai, span_warning("You feel yourself slipping away from reality."))

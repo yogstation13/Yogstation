@@ -14,42 +14,55 @@
 	materials = list(/datum/material/iron = 500)
 	actions_types = list(/datum/action/item_action/set_internals)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 80, ACID = 30)
+	/// The gases this tank contains. Don't modify this directly, use return_air() to get it instead
 	var/datum/gas_mixture/air_contents = null
+	/// The pressure of the gases this tank supplies to internals.
 	var/distribute_pressure = ONE_ATMOSPHERE
 	var/integrity = 3
+	/// The volume of this tank. Among other things gas tank explosions (including TTVs) scale off of this. Be sure to account for that if you change this or you will break ~~toxins~~ordinance.
 	var/volume = 70
+	/// Mob that is currently breathing from the tank.
+	var/mob/living/carbon/breathing_mob = null
+
+/obj/item/tank/dropped(mob/living/user, silent)
+	. = ..()
+	// Close open air tank if its current user got sent to the shadowrealm.
+	if (QDELETED(breathing_mob))
+		breathing_mob = null
+		return
+	// Close open air tank if it got dropped by it's current user.
+	if (loc != breathing_mob)
+		breathing_mob.cutoff_internals()
+
+/// Closes the tank if given to another mob while open.
+/obj/item/tank/equipped(mob/living/user, slot, initial)
+	. = ..()
+	// Close open air tank if it was equipped by a mob other than the current user.
+	if (breathing_mob && (user != breathing_mob))
+		breathing_mob.cutoff_internals()
+
+/// Called by carbons after they connect the tank to their breathing apparatus.
+/obj/item/tank/proc/after_internals_opened(mob/living/carbon/carbon_target)
+	breathing_mob = carbon_target
+	RegisterSignal(carbon_target, COMSIG_MOB_GET_STATUS_TAB_ITEMS, PROC_REF(get_status_tab_item))
+
+/// Called by carbons after they disconnect the tank from their breathing apparatus.
+/obj/item/tank/proc/after_internals_closed(mob/living/carbon/carbon_target)
+	breathing_mob = null
+	UnregisterSignal(carbon_target, COMSIG_MOB_GET_STATUS_TAB_ITEMS)
+
+/obj/item/tank/proc/get_status_tab_item(mob/living/source, list/items)
+	SIGNAL_HANDLER
+	items += "Internal Atmosphere Info: [name]"
+	items += "Tank Pressure: [air_contents.return_pressure()] kPa"
+	items += "Distribution Pressure: [distribute_pressure] kPa"
+
+/// Attempts to toggle the mob's internals on or off using this tank. Returns TRUE if successful.
+/obj/item/tank/proc/toggle_internals(mob/living/carbon/mob_target)
+	return mob_target.toggle_internals(src)
 
 /obj/item/tank/ui_action_click(mob/user)
 	toggle_internals(user)
-
-/obj/item/tank/proc/toggle_internals(mob/user)
-	var/mob/living/carbon/human/H = user
-	if(!istype(H))
-		return
-
-	if(H.internal == src)
-		to_chat(H, span_notice("You close [src] valve."))
-		H.internal = null
-		H.update_internals_hud_icon(0)
-	else
-		if(!H.getorganslot(ORGAN_SLOT_BREATHING_TUBE))
-			if(!H.wear_mask)
-				to_chat(H, span_warning("You need a mask!"))
-				return
-			if(H.wear_mask.mask_adjusted)
-				H.wear_mask.adjustmask(H)
-			if(!(H.wear_mask.clothing_flags & MASKINTERNALS))
-				to_chat(H, span_warning("[H.wear_mask] can't use [src]!"))
-				return
-
-		if(H.internal)
-			to_chat(H, span_notice("You switch your internals to [src]."))
-		else
-			to_chat(H, span_notice("You open [src] valve."))
-		H.internal = src
-		H.update_internals_hud_icon(1)
-	H.update_action_buttons_icon()
-
 
 /obj/item/tank/Initialize()
 	. = ..()
@@ -74,8 +87,8 @@
 /obj/item/tank/examine(mob/user)
 	var/obj/icon = src
 	. = ..()
-	if(istype(src.loc, /obj/item/assembly))
-		icon = src.loc
+	if(istype(loc, /obj/item/assembly))
+		icon = loc
 	if(!in_range(src, user) && !isobserver(user))
 		if(icon == src)
 			. += span_notice("If you want any more information you'll need to get closer.")
@@ -112,9 +125,6 @@
 
 		qdel(src)
 
-/obj/item/tank/analyzer_act(mob/living/user, obj/item/I)
-	atmosanalyzer_scan(air_contents, user, src)
-
 /obj/item/tank/deconstruct(disassembled = TRUE)
 	if(!disassembled)
 		var/turf/T = get_turf(src)
@@ -125,31 +135,31 @@
 	qdel(src)
 
 /obj/item/tank/suicide_act(mob/user)
-	var/mob/living/carbon/human/H = user
+	var/mob/living/carbon/human/human_user = user
 	user.visible_message(span_suicide("[user] is putting [src]'s valve to [user.p_their()] lips! It looks like [user.p_theyre()] trying to commit suicide!"))
 	playsound(loc, 'sound/effects/spray.ogg', 10, 1, -3)
-	if (!QDELETED(H) && air_contents && air_contents.return_pressure() >= 1000)
-		for(var/obj/item/W in H)
-			H.dropItemToGround(W)
+	if (!QDELETED(human_user) && air_contents && air_contents.return_pressure() >= 1000)
+		for(var/obj/item/W in human_user)
+			human_user.dropItemToGround(W)
 			if(prob(50))
 				step(W, pick(GLOB.alldirs))
-		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
-		for(var/i in H.bodyparts)
+		ADD_TRAIT(human_user, TRAIT_DISFIGURED, TRAIT_GENERIC)
+		for(var/i in human_user.bodyparts)
 			var/obj/item/bodypart/BP = i
 			BP.generic_bleedstacks += 5
-		H.gib_animation()
+		human_user.gib_animation()
 		sleep(0.3 SECONDS)
-		H.adjustBruteLoss(1000) //to make the body super-bloody
-		H.spawn_gibs()
-		H.spill_organs()
-		H.spread_bodyparts()
+		human_user.adjustBruteLoss(1000) //to make the body super-bloody
+		human_user.spawn_gibs()
+		human_user.spill_organs()
+		human_user.spread_bodyparts()
 
 	return (BRUTELOSS)
 
-/obj/item/tank/attackby(obj/item/W, mob/user, params)
+/obj/item/tank/attackby(obj/item/attacking_item, mob/user, params)
 	add_fingerprint(user)
-	if(istype(W, /obj/item/assembly_holder))
-		bomb_assemble(W,user)
+	if(istype(attacking_item, /obj/item/assembly_holder))
+		bomb_assemble(attacking_item, user)
 	else
 		. = ..()
 
@@ -162,24 +172,26 @@
 		ui = new(user, src, "Tank", name)
 		ui.open()
 
+/obj/item/tank/ui_static_data(mob/user)
+	. = list (
+		"defaultReleasePressure" = round(TANK_DEFAULT_RELEASE_PRESSURE),
+		"minReleasePressure" = round(TANK_MIN_RELEASE_PRESSURE),
+		"maxReleasePressure" = round(TANK_MAX_RELEASE_PRESSURE),
+		"leakPressure" = round(TANK_LEAK_PRESSURE),
+		"fragmentPressure" = round(TANK_FRAGMENT_PRESSURE)
+	)
+
 /obj/item/tank/ui_data(mob/user)
-	var/list/data = list()
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
-	data["releasePressure"] = round(distribute_pressure ? distribute_pressure : 0)
-	data["defaultReleasePressure"] = round(TANK_DEFAULT_RELEASE_PRESSURE)
-	data["minReleasePressure"] = round(TANK_MIN_RELEASE_PRESSURE)
-	data["maxReleasePressure"] = round(TANK_MAX_RELEASE_PRESSURE)
+	. = list(
+		"tankPressure" = round(air_contents.return_pressure()),
+		"releasePressure" = round(distribute_pressure)
+	)
 
-	var/mob/living/carbon/C = user
-	if(!istype(C))
-		C = loc.loc
-	if(!istype(C))
-		return data
-
-	if(C.internal == src)
-		data["connected"] = TRUE
-
-	return data
+	var/mob/living/carbon/carbon_user = user
+	if(!istype(carbon_user))
+		carbon_user = loc
+	if(istype(carbon_user) && carbon_user.internal == src)
+		.["connected"] = TRUE
 
 /obj/item/tank/ui_act(action, params)
 	if(..())
@@ -210,6 +222,9 @@
 	return air_contents.remove(amount)
 
 /obj/item/tank/return_air()
+	return air_contents
+
+/obj/item/tank/return_analyzable_air()
 	return air_contents
 
 /obj/item/tank/assume_air(datum/gas_mixture/giver)

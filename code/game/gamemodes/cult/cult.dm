@@ -1,4 +1,4 @@
-#define CULT_SCALING_COEFFICIENT 9.3 //Roughly one new cultist at roundstart per this many players
+#define CULT_SCALING_COEFFICIENT 8.3 //Roughly one new cultist at roundstart per this many players
 
 /datum/game_mode
 	var/list/datum/mind/cult = list()
@@ -8,6 +8,8 @@
 	var/bloodstone_cooldown = FALSE
 
 /proc/iscultist(mob/living/M)
+	if(istype(M, /mob/living/carbon/human/dummy))
+		return TRUE
 	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
 
 /datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
@@ -24,7 +26,8 @@
 			return FALSE
 		if(specific_cult && specific_cult.is_sacrifice_target(M.mind))
 			return FALSE
-		if(M.mind.enslaved_to && !iscultist(M.mind.enslaved_to))
+		var/mob/living/master = M.mind.enslaved_to?.resolve()
+		if(master && !iscultist(master))
 			return FALSE
 		if(M.mind.unconvertable)
 			return FALSE
@@ -51,8 +54,8 @@
 	title_icon = "cult"
 
 	announce_span = "cult"
-	announce_text = "Some crew members are trying to start a cult to Nar-Sie!\n\
-	<span class='cult'>Cultists</span>: Carry out Nar-Sie's will.\n\
+	announce_text = "Some crew members are trying to start a cult to Nar'sie!\n\
+	<span class='cult'>Cultists</span>: Carry out Nar'sie's will.\n\
 	<span class='notice'>Crew</span>: Prevent the cult from expanding and drive it out."
 
 	var/finished = 0
@@ -135,23 +138,9 @@
 			cult_mind.current.Unconscious(100)
 		return TRUE
 
-/datum/game_mode/proc/update_cult_icons_added(datum/mind/cult_mind)
-	var/datum/atom_hud/antag/culthud = GLOB.huds[ANTAG_HUD_CULT]
-	culthud.join_hud(cult_mind.current)
-	set_antag_hud(cult_mind.current, "cult")
-
-/datum/game_mode/proc/update_cult_icons_removed(datum/mind/cult_mind)
-	var/datum/atom_hud/antag/culthud = GLOB.huds[ANTAG_HUD_CULT]
-	culthud.leave_hud(cult_mind.current)
-	set_antag_hud(cult_mind.current, null)
-
-/datum/game_mode/cult/proc/check_cult_victory()
-	return main_cult.check_cult_victory()
-
-
 /datum/game_mode/cult/set_round_result()
 	..()
-	if(check_cult_victory())
+	if(main_cult.check_cult_victory())
 		SSticker.mode_result = "win - cult win"
 		SSticker.news_report = CULT_SUMMON
 	else
@@ -173,7 +162,7 @@
 /datum/game_mode/cult/generate_report()
 	return "Some stations in your sector have reported evidence of blood sacrifice and strange magic. Ties to the Wizards' Federation have been proven not to exist, and many employees \
 			have disappeared; even Central Command employees light-years away have felt strange presences and at times hysterical compulsions. Interrogations point towards this being the work of \
-			the cult of Nar-Sie. If evidence of this cult is discovered aboard your station, extreme caution and extreme vigilance must be taken going forward, and all resources should be \
+			the cult of Nar'sie. If evidence of this cult is discovered aboard your station, extreme caution and extreme vigilance must be taken going forward, and all resources should be \
 			devoted to stopping this cult. Note that holy water seems to weaken and eventually return the minds of cultists that ingest it, and mindshield implants will prevent conversion \
 			altogether."
 
@@ -191,7 +180,7 @@
 		bloodstone_areas.Add(A.map_name)
 
 	priority_announce("Figments of an eldritch god are being pulled through the veil anomaly in [bloodstone_areas[1]], [bloodstone_areas[2]], [bloodstone_areas[3]], and [bloodstone_areas[4]]! Destroy any occult structures located in those areas!","Central Command Higher Dimensional Affairs")
-	addtimer(CALLBACK(src, .proc/increase_bloodstone_power), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(increase_bloodstone_power)), 30 SECONDS)
 	set_security_level(SEC_LEVEL_GAMMA)
 
 /datum/game_mode/proc/increase_bloodstone_power()
@@ -204,7 +193,7 @@
 		else
 			B.current_fullness++
 		B.update_icon()
-	addtimer(CALLBACK(src, .proc/increase_bloodstone_power), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(increase_bloodstone_power)), 30 SECONDS)
 
 /datum/game_mode/proc/create_anchor_bloodstone()
 	if(SSticker.mode.anchor_bloodstone)
@@ -217,20 +206,20 @@
 			anchor_target = B
 	SSticker.mode.anchor_bloodstone = anchor_target
 	anchor_target.name = "anchor bloodstone"
-	anchor_target.desc = "It pulses rythmetically with migrane-inducing light. Something is being reflected on every surface, something that isn't quite there..."
+	anchor_target.desc = "It pulses rhythmically with migraine-inducing light. Something is being reflected on every surface, something that isn't quite there..."
 	anchor_target.anchor = TRUE
 	anchor_target.max_integrity = 1200
 	anchor_target.obj_integrity = 1200
 	anchor_time2kill -= anchor_power * 1 MINUTES //one minute of bloodfuckery shaved off per surviving bloodstone.
 	anchor_target.set_animate()
 	var/area/A = get_area(anchor_target)
-	addtimer(CALLBACK(anchor_target, /obj/structure/destructible/cult/bloodstone.proc/summon), anchor_time2kill)
+	addtimer(CALLBACK(anchor_target, TYPE_PROC_REF(/obj/structure/destructible/cult/bloodstone, summon)), anchor_time2kill)
 	priority_announce("The anomaly has weakened the veil to a hazardous level in [A.map_name]! Destroy whatever is causing it before something gets through!","Central Command Higher Dimensional Affairs")
 
 /datum/game_mode/proc/cult_loss_bloodstones()
 	priority_announce("The veil anomaly appears to have been destroyed, shuttle locks have been lifted.","Central Command Higher Dimensional Affairs")
 	bloodstone_cooldown = TRUE
-	addtimer(CALLBACK(src, .proc/disable_bloodstone_cooldown), 5 MINUTES) //5 minutes
+	addtimer(CALLBACK(src, PROC_REF(disable_bloodstone_cooldown)), 5 MINUTES) //5 minutes
 	for(var/datum/mind/M in cult)
 		var/mob/living/cultist = M.current
 		if(!cultist)
@@ -242,13 +231,13 @@
 			cultist.health *= 0.75
 		else
 			cultist.Stun(20)
-			cultist.confused += 15 //30 seconds of confusion
+			cultist.adjust_confusion(15 SECONDS)
 		to_chat(cultist, span_narsiesmall("Your mind is flooded with pain as the last bloodstone is destroyed!"))
 
 /datum/game_mode/proc/cult_loss_anchor()
 	priority_announce("Whatever you did worked. Veil density has returned to a safe level. Shuttle locks lifted.","Central Command Higher Dimensional Affairs")
 	bloodstone_cooldown = TRUE
-	addtimer(CALLBACK(src, .proc/disable_bloodstone_cooldown), 7 MINUTES) //7 minutes
+	addtimer(CALLBACK(src, PROC_REF(disable_bloodstone_cooldown)), 7 MINUTES) //7 minutes
 	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
 		qdel(B)
 		for(var/datum/mind/M in cult)
@@ -261,8 +250,8 @@
 				cultist.maxHealth *= 0.5
 				cultist.health *= 0.5
 			else
-				cultist.Stun(40)
-				cultist.confused += 30 //one minute of confusion
+				cultist.Stun(4 SECONDS)
+				cultist.adjust_confusion(1 MINUTES)
 			to_chat(cultist, span_narsiesmall("You feel a bleakness as the destruction of the anchor cuts off your connection to Nar-Sie!"))
 
 /datum/game_mode/proc/disable_bloodstone_cooldown()
@@ -280,14 +269,14 @@
 	var/list/round_credits = list()
 	var/len_before_addition
 
-	round_credits += "<center><h1>The Cult of Nar'Sie:</h1>"
+	round_credits += "<center><h1>The Cult of Nar'sie:</h1>"
 	len_before_addition = round_credits.len
 	for(var/datum/mind/cultist in cult)
 		round_credits += "<center><h2>[cultist.name] as a cult fanatic</h2>"
 
 	var/datum/objective/eldergod/summon_objective = locate() in main_cult.objectives
 	if(summon_objective && summon_objective.summoned)
-		round_credits += "<center><h2>Nar'Sie as the eldritch abomination</h2>"
+		round_credits += "<center><h2>Nar'sie as the eldritch abomination</h2>"
 
 	if(len_before_addition == round_credits.len)
 		round_credits += list("<center><h2>The cultists have learned the danger of eldritch magic!</h2>", "<center><h2>They all disappeared!</h2>")

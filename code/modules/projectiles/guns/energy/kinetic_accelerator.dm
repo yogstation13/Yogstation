@@ -19,7 +19,8 @@
 	can_bayonet = TRUE
 	knife_x_offset = 20
 	knife_y_offset = 12
-
+	recoil = 0
+	spread = 0 //Gitban ynot01
 	var/max_mod_capacity = 100
 	var/list/modkits = list()
 
@@ -98,7 +99,7 @@
 	if(!QDELING(src) && !holds_charge)
 		// Put it on a delay because moving item from slot to hand
 		// calls dropped().
-		addtimer(CALLBACK(src, .proc/empty_if_not_held), 2)
+		addtimer(CALLBACK(src, PROC_REF(empty_if_not_held)), 2)
 
 /obj/item/gun/energy/kinetic_accelerator/proc/empty_if_not_held()
 	if(!ismob(loc))
@@ -120,7 +121,7 @@
 
 	var/carried = 0
 	if(!unique_frequency)
-		for(var/obj/item/gun/energy/kinetic_accelerator/K in loc.GetAllContents())
+		for(var/obj/item/gun/energy/kinetic_accelerator/K in loc.get_all_contents())
 			if(!K.unique_frequency)
 				carried++
 
@@ -129,7 +130,7 @@
 		carried = 1
 
 	deltimer(recharge_timerid)
-	recharge_timerid = addtimer(CALLBACK(src, .proc/reload), recharge_time * carried, TIMER_STOPPABLE)
+	recharge_timerid = addtimer(CALLBACK(src, PROC_REF(reload)), recharge_time * carried, TIMER_STOPPABLE)
 
 /obj/item/gun/energy/kinetic_accelerator/emp_act(severity)
 	return
@@ -196,10 +197,6 @@
 /obj/item/projectile/kinetic/prehit(atom/target)
 	. = ..()
 	if(.)
-		if(kinetic_gun)
-			var/list/mods = kinetic_gun.get_modkits()
-			for(var/obj/item/borg/upgrade/modkit/M in mods)
-				M.projectile_prehit(src, target, kinetic_gun)
 		if(!lavaland_equipment_pressure_check(get_turf(target)))
 			name = "weakened [name]"
 			damage = damage * pressure_decrease
@@ -208,7 +205,11 @@
 			pressure_decrease = min(pressure_decrease * 2, 1) //if you have a pressure mod you get to ignore this because uhmmmmmm tc tax
 			name = "destabilized [name]"
 			damage = damage * pressure_decrease
-			pressure_decrease_active = TRUE 
+			pressure_decrease_active = TRUE
+		if(kinetic_gun)
+			var/list/mods = kinetic_gun.get_modkits()
+			for(var/obj/item/borg/upgrade/modkit/M in mods)
+				M.projectile_prehit(src, target, kinetic_gun)
 
 /obj/item/projectile/kinetic/on_range()
 	strike_thing()
@@ -469,7 +470,7 @@
 	name = "lifesteal crystal"
 	desc = "Causes kinetic accelerator shots to slightly heal the firer on striking a living target."
 	icon_state = "modkit_crystal"
-	modifier = 2.5 //Not a very effective method of healing.
+	modifier = 0.15 //Better at healing than it was before.
 	cost = 20
 	var/static/list/damage_heal_order = list(BRUTE, BURN, OXY)
 
@@ -479,7 +480,7 @@
 		if(L.stat == DEAD)
 			return
 		L = K.firer
-		L.heal_ordered_damage(modifier, damage_heal_order)
+		L.heal_ordered_damage(modifier*K.damage, damage_heal_order, BODYPART_ANY)
 
 /obj/item/borg/upgrade/modkit/resonator_blasts
 	name = "resonator blast"

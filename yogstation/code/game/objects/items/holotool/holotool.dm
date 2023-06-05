@@ -18,6 +18,7 @@
 	var/list/mode_names
 	var/list/radial_modes
 	var/current_color = "#48D1CC" //mediumturquoise
+
 /obj/item/holotool/Initialize()
 	. = ..()
 	internal_multitool = new /obj/item/multitool(src)
@@ -31,6 +32,32 @@
 	. += span_notice("It is currently set to [current_tool ? current_tool.name : "'off'"] mode.")
 	. += span_notice("Ctrl+Click it to open the radial menu!")
 
+/obj/item/holotool/attack(mob/living/M, mob/living/user)
+	if((tool_behaviour == TOOL_SCREWDRIVER) && !(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
+		return
+
+	if(tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
+		if(affecting?.status == BODYPART_ROBOTIC)
+			if(affecting.brute_dam <= 0)
+				to_chat(user, span_warning("[affecting] is already in good condition!"))
+				return FALSE
+			if(INTERACTING_WITH(user, H))
+				return FALSE
+			user.changeNext_move(CLICK_CD_MELEE)
+			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
+			heal_robo_limb(src, H, user, 15, 0, 0, 50)
+			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
+			return TRUE
+	. = ..()
+
+/obj/item/holotool/use(used)
+	return TRUE //it just always works, capiche!?
+
+/obj/item/holotool/tool_use_check(mob/living/user, amount)
+	return TRUE	//always has enough "fuel"
+
 /obj/item/holotool/ui_action_click(mob/user, datum/action/action)
 	if(istype(action, /datum/action/item_action/change_tool))
 		update_listing()
@@ -42,7 +69,7 @@
 			return
 		current_color = C
 	update_icon()
-	action.UpdateButtonIcon()
+	action.build_all_button_icons()
 	user.regenerate_icons()
 
 /obj/item/holotool/proc/switch_tool(mob/user, datum/holotool_mode/mode)
@@ -91,7 +118,7 @@
 		set_light(0)
 
 	for(var/datum/action/A in actions)
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/holotool/proc/check_menu(mob/living/user)
 	if(!istype(user))
@@ -102,7 +129,7 @@
 
 /obj/item/holotool/attack_self(mob/user)
 	update_listing()
-	var/chosen = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, .proc/check_menu,user))
+	var/chosen = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, PROC_REF(check_menu),user))
 	if(!check_menu(user))
 		return
 	if(chosen)

@@ -27,6 +27,11 @@
 		queue_smooth_neighbors(src)
 	return ..()
 
+/obj/structure/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(istype(mover) && (mover.pass_flags & PASSSTRUCTURE))
+		return TRUE
+
 /obj/structure/attack_hand(mob/user)
 	. = ..()
 	if(.)
@@ -70,7 +75,7 @@
 	user.visible_message(span_warning("[user] starts climbing onto [src]."), \
 								span_notice("You start climbing onto [src]..."))
 	var/adjusted_climb_time = climb_time
-	if(user.restrained()) //climbing takes twice as long when restrained.
+	if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED)) //climbing takes twice as long without help from the hands.
 		adjusted_climb_time *= 2
 	if(isalien(user))
 		adjusted_climb_time *= 0.25 //aliens are terrifyingly fast

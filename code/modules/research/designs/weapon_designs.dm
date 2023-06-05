@@ -2,41 +2,20 @@
 /////////////////Weapons/////////////////
 /////////////////////////////////////////
 
-/datum/design/c38/sec
+/datum/design/c38_sec
+	name = "Speed Loader (.38 rubber)"
+	desc = "Designed to quickly reload revolvers."
 	id = "sec_38"
 	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 20000)
+	build_path = /obj/item/ammo_box/c38/rubber
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-/datum/design/c38_hotshot
-	name = "Speed Loader (.38 Hot Shot)"
-	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
-	id = "c38_hotshot"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/hotshot
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
-/datum/design/c38_iceblox
-	name = "Speed Loader (.38 Iceblox)"
-	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
-	id = "c38_iceblox"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/iceblox
-	category = list("Ammo")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
-/datum/design/c38_gutterpunch
-	name = "Speed Loader (.38 Gutterpunch)"
-	desc = "A six-shot speed loader designed for .38 revolvers. \
-			These rounds trade exhaustive properties for an emetic payload which induces nausea in targets."
-	id = "c38_gutterpunch"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 20000, /datum/material/plasma = 5000)
-	build_path = /obj/item/ammo_box/c38/gutterpunch
-	category = list("Ammo")
+/datum/design/c38_sec/lethal
+	name = "Speed Loader (.38)"
+	id = "sec_38_lethal"
+	build_path = /obj/item/ammo_box/c38
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
 /datum/design/rubbershot/sec
@@ -92,16 +71,6 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 300)
 	build_path = /obj/item/firing_pin/test_range
-	category = list("Firing Pins")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
-
-/datum/design/pin_mindshield
-	name = "Mindshield Firing Pin"
-	desc = "This is a security firing pin which only authorizes users who are mindshield-implanted."
-	id = "pin_loyalty"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/silver = 600, /datum/material/diamond = 600, /datum/material/uranium = 200)
-	build_path = /obj/item/firing_pin/implant/mindshield
 	category = list("Firing Pins")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
@@ -175,6 +144,16 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
+/datum/design/ntusp_conversion
+	name = "NT-USP Conversion Kit"
+	desc = "A standard conversion kit for use in converting NT-USP magazines to be more lethal or less lethal."
+	id = "ntusp_conversion"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 200, /datum/material/silver = 200)
+	build_path = /obj/item/ntusp_conversion_kit
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
 /datum/design/tele_shield
 	name = "Telescopic Riot Shield"
 	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
@@ -206,15 +185,15 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
 
-/datum/design/rapidsyringe
-	name = "Rapid Syringe Gun"
-	desc = "A gun that fires many syringes."
-	id = "rapidsyringe"
+/datum/design/syringegun
+	name = "Syringe Gun"
+	desc = "A gun that fires syringes."
+	id = "syringegun"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000)
-	build_path = /obj/item/gun/syringe/rapidsyringe
+	build_path = /obj/item/gun/syringe
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL		//uwu
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY | DEPARTMENTAL_FLAG_MEDICAL	//uwu
 
 /datum/design/temp_gun
 	name = "Temperature Gun"
@@ -245,7 +224,7 @@
 	materials = list(/datum/material/iron = 3000)
 	build_path = /obj/item/grenade/chem_grenade/large
 	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/pyro_grenade
 	name = "Pyro Grenade"
@@ -311,7 +290,7 @@
 
 /datum/design/mag_oldsmg
 	name = "WT-550 Auto Gun Magazine (4.6x30mm)"
-	desc = "A 22 round magazine for the out of date security WT-550 Auto Carbine."
+	desc = "A 20-round magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000)
@@ -321,7 +300,7 @@
 
 /datum/design/mag_oldsmg/ap_mag
 	name = "WT-550 Auto Gun Armour Piercing Magazine (4.6x30mm AP)"
-	desc = "A 22 round armour piercing magazine for the out of date security WT-550 Auto Carbine."
+	desc = "A 20-round armour piercing magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_ap"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtap
@@ -329,7 +308,7 @@
 
 /datum/design/mag_oldsmg/ic_mag
 	name = "WT-550 Auto Gun Incendiary Magazine (4.6x30mm IC)"
-	desc = "A 22 round armour piercing magazine for the out of date security WT-550 Auto Carbine."
+	desc = "A 20-round incendiary magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_ic"
 	materials = list(/datum/material/iron = 6000, /datum/material/silver = 600, /datum/material/glass = 1000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtic
@@ -337,11 +316,76 @@
 
 /datum/design/mag_oldsmg/rubber_mag
 	name = "WT-550 Auto Gun Rubber Bullet Magazine (4.6x30mm Rubber)"
-	desc = "A 22 round rubber bullet magazine for the out of date security WT-550 Auto Carbine."
+	desc = "A 20-round rubber bullet magazine for the out of date security WT-550 Auto Carbine."
 	id = "mag_oldsmg_rubber"
 	materials = list(/datum/material/iron = 4000)
 	build_path = /obj/item/ammo_box/magazine/wt550m9/wtr
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+	// This is where the fun begins
+
+/datum/design/mag_oldsmg/kraken_mag
+	name = "WT-550 Auto Gun Kraken Bullet Magazine (4.6x30mm Kraken)"
+	desc = "A 20-round kraken magazine for the out of date security WT-550 Auto Carbine."
+	id = "mag_oldsmg_kraken"
+	materials = list(/datum/material/iron = 7500, /datum/material/titanium = 2000, /datum/material/diamond = 500)
+	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_kraken
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/mag_oldsmg/snakebite_mag
+	name = "WT-550 Auto Gun snakebite Bullet Magazine (4.6x30mm snakebite)"
+	desc = "A 20-round snakebite magazine for the out of date security WT-550 Auto Carbine."
+	id = "mag_oldsmg_snakebite"
+	materials = list(/datum/material/iron = 7500, /datum/material/titanium = 2000, /datum/material/uranium = 1000)
+	build_path = /obj/item/ammo_box/magazine/wt550m9/wt_snakebite
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+//Vatra M38 Magazines
+
+/datum/design/mag_v38
+	name = "Vatra M38 Magazine (.38)"
+	desc = "A 8-round magazine for the Vatra M38 service handgun."
+	id = "mag_v38"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 2000)
+	build_path = /obj/item/ammo_box/magazine/v38
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/mag_v38/ap_mag
+	name = "Vatra M38 Magazine (.38 armor-piercing)"
+	desc = "A 8-round armor-piercing magazine for the Vatra M38 service handgun."
+	id = "mag_v38_ap"
+	materials = list(/datum/material/iron = 3000, /datum/material/silver = 450)
+	build_path = /obj/item/ammo_box/magazine/v38/ap
+
+/datum/design/mag_v38/rubber_mag
+	name = "Vatra M38 Rubber Magazine (.38 rubber)"
+	desc = "A 8-round rubber magazine for the Vatra M38 service handgun."
+	id = "mag_v38_rubber"
+	build_path = /obj/item/ammo_box/magazine/v38/rubber
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/mag_v38/frost_mag
+	name = "Vatra M38 Frost Magazine (.38 frost)"
+	desc = "A 8-round frost magazine for the Vatra M38 service handgun."
+	id = "mag_v38_frost"
+	materials = list(/datum/material/iron = 3000, /datum/material/silver = 450, /datum/material/diamond = 400)
+	build_path = /obj/item/ammo_box/magazine/v38/frost
+
+/datum/design/mag_v38/talon_mag
+	name = "Vatra M38 Talon Magazine (.38 talon)"
+	desc = "A 8-round talon magazine for the Vatra M38 service handgun."
+	id = "mag_v38_talon"
+	materials = list(/datum/material/iron = 3000, /datum/material/silver = 450, /datum/material/glass = 750)
+	build_path = /obj/item/ammo_box/magazine/v38/talon
+
+/datum/design/mag_v38/bluespace_mag
+	name = "Vatra M38 Bluespace Magazine (.38 bluespace)"
+	desc = "A 8-round bluespace magazine for the Vatra M38 service handgun."
+	id = "mag_v38_bluespace"
+	materials = list(/datum/material/iron = 4000, /datum/material/titanium = 1500, /datum/material/plasma = 450, /datum/material/bluespace = 400)
+	build_path = /obj/item/ammo_box/magazine/v38/bluespace
 
 /datum/design/stunshell
 	name = "Stun Shell"
@@ -363,6 +407,16 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/hardlightshell
+	name = "Hardlight Shotshell"
+	desc = "An advanced shotgun shell which fires a hardlight beam and scatters it."
+	id = "hardlight_shell"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 1000, /datum/material/glass = 200, /datum/material/plasma = 50, /datum/material/bluespace = 50)
+	build_path = /obj/item/ammo_casing/shotgun/hardlight
+	category = list("Ammo")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_ARMORY
+
 /datum/design/suppressor
 	name = "Suppressor"
 	desc = "A reverse-engineered suppressor that fits on most small arms with threaded barrels."
@@ -383,16 +437,6 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/largecrossbow
-	name = "Energy Crossbow"
-	desc = "A reverse-engineered energy crossbow favored by syndicate infiltration teams and carp hunters."
-	id = "largecrossbow"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1500, /datum/material/uranium = 1500, /datum/material/silver = 1500)
-	build_path = /obj/item/gun/energy/kinetic_accelerator/crossbow/large
-	category = list("Weapons")
-	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
-
 /datum/design/hardlightbow
 	name = "Hardlight Bow"
 	desc = "A modern bow that can fabricate hardlight arrows using an internal energy."
@@ -402,6 +446,37 @@
 	build_path = /obj/item/gun/ballistic/bow/energy
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/vib_blade
+	name = "Vibration Blade"
+	desc = "A hard-light blade vibrating at rapid pace, enabling you to cut through armor and flesh with ease."
+	id = "vib_blade"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/silver = 2500, /datum/material/gold = 1000)
+	build_path = /obj/item/melee/transforming/vib_blade
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_ARMORY
+
+/datum/design/mindflayer
+	name = "Mind Flayer"
+	desc = "A compact weapon made to destroy the brain."
+	id = "mind_flayer"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 5000, /datum/material/glass = 3000, /datum/material/plasma = 1000, /datum/material/dilithium = 100)
+	build_path = /obj/item/gun/energy/mindflayer
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/bouncer
+	name = "Bouncer Energy Gun"
+	desc = "An atypical energy gun shooting bouncing projectiles."
+	id = "bouncer_egun"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 10000, /datum/material/silver = 1000, /datum/material/titanium = 1200)
+	reagents_list = list(/datum/reagent/sorium = 20)
+	build_path = /obj/item/gun/energy/e_gun/bouncer
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/simple_sight
 	name = "Simple Sight"
@@ -440,5 +515,15 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/gold = 1000, /datum/material/uranium = 1000, /datum/material/glass = 500)
 	build_path = /obj/item/attachment/laser_sight
+	category = list("Weapons")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+/datum/design/infra_sight
+	name = "Infrared Sight"
+	desc = "A polarizing camera that picks up infrared radiation. The quality is rather poor, so it ends up making it harder to aim."
+	id = "infra_sight"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000, /datum/material/glass = 2500, /datum/material/uranium = 1500, /datum/material/gold = 1000, /datum/material/plastic = 1000)
+	build_path = /obj/item/attachment/scope/infrared
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

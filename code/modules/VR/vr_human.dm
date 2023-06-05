@@ -74,7 +74,7 @@
 
 /datum/action/quit_vr
 	name = "Quit Virtual Reality"
-	icon_icon = 'icons/mob/actions/actions_vr.dmi'
+	button_icon = 'icons/mob/actions/actions_vr.dmi'
 	button_icon_state = "logout"
 
 /datum/action/quit_vr/Trigger()

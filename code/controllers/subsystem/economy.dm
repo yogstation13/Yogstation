@@ -56,6 +56,11 @@ SUBSYSTEM_DEF(economy)
 	var/bounty_modifier = 1
 	///The modifier multiplied to the value of cargo pack prices.
 	var/pack_price_modifier = 1
+		/// Number of mail items generated.
+	var/mail_waiting = 0
+	/// Mail Holiday: AKA does mail arrive today? Always blocked on Sundays.
+	var/mail_blocked = FALSE
+
 	//only re-tally jobs when this changes. based on race conditions means this isn't 100% accurate, but oh well
 	var/last_player_count
 
@@ -70,6 +75,8 @@ SUBSYSTEM_DEF(economy)
 	)
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
+	if(time2text(world.timeofday, "DDD") == SUNDAY)
+		mail_blocked = TRUE
 	for(var/A in department_accounts)
 		switch(A)
 			if(ACCOUNT_SEC)
@@ -80,7 +87,7 @@ SUBSYSTEM_DEF(economy)
 				continue
 			else
 				new /datum/bank_account/department(A, budget_starting_amt)
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
 	tally_departments() //see how many staff in each department
@@ -90,6 +97,7 @@ SUBSYSTEM_DEF(economy)
 	secmedsrv_payout() // Payout based on crew safety, health, and mood.
 	civ_payout() // Payout based on ??? Profit
 	car_payout() // Cargo's natural gain in the cash moneys.
+	var/delta_time = wait / (5 MINUTES)
 	var/list/dictionary = list()
 	for(var/datum/corporation/c in GLOB.corporations)
 		dictionary[c] = list()
@@ -101,6 +109,8 @@ SUBSYSTEM_DEF(economy)
 			if(B.account_holder in dictionary[c])
 				B.payday(c.paymodifier, TRUE)
 		B.payday(1)	
+	var/effective_mailcount = living_player_count()
+	mail_waiting += clamp(effective_mailcount, 1, MAX_MAIL_PER_MINUTE * delta_time)
 
 /datum/controller/subsystem/economy/proc/get_dep_account(dep_id)
 	for(var/datum/bank_account/department/D in generated_accounts)
@@ -145,8 +155,11 @@ SUBSYSTEM_DEF(economy)
 	if(moneysink)
 		engineering_cash += moneysink.payout()
 	var/datum/bank_account/D = get_dep_account(ACCOUNT_ENG)
+	var/datum/bank_account/C = get_dep_account(ACCOUNT_CAR)
 	if(D)
 		D.adjust_money(engineering_cash)
+	if(C)
+		C.adjust_money(engineering_cash*0.5)
 
 
 /datum/controller/subsystem/economy/proc/car_payout()

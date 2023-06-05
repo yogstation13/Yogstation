@@ -98,6 +98,8 @@
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		power_usage -= 50 * M.rating
 	active_power_usage = power_usage
+	if(obj_flags & EMAGGED)
+		active_power_usage *= 5
 
 /obj/machinery/power/emitter/examine(mob/user)
 	. = ..()
@@ -106,7 +108,7 @@
 
 /obj/machinery/power/emitter/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, .proc/can_be_rotated))
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, PROC_REF(can_be_rotated)))
 
 /obj/machinery/power/emitter/proc/can_be_rotated(mob/user,rotation_type)
 	if (anchored)
@@ -168,7 +170,7 @@
 	if(!anchored)
 		step(src, get_dir(M, src))
 
-/obj/machinery/power/emitter/process()
+/obj/machinery/power/emitter/process(delta_time)
 	if(stat & (BROKEN))
 		return
 	if(state != EMITTER_WELDED || (!powernet && active_power_usage))
@@ -192,7 +194,7 @@
 				log_game("Emitter lost power in [AREACOORD(src)]")
 			return
 		if(charge <= 80)
-			charge += 5
+			charge += 2.5 * delta_time
 		if(!check_delay() || manual == TRUE)
 			return FALSE
 		fire_beam()
@@ -345,6 +347,9 @@
 	return
 
 /obj/machinery/power/emitter/proc/integrate(obj/item/gun/energy/E,mob/user)
+	if(obj_flags & EMAGGED)
+		to_chat(user, span_warning("The power limiter seems to be broken!"))
+		return FALSE
 	if(istype(E, /obj/item/gun/energy))
 		if(!user.transferItemToLoc(E, src))
 			return
@@ -380,8 +385,15 @@
 		return
 	locked = FALSE
 	obj_flags |= EMAGGED
+	sparks.start()
 	if(user)
-		user.visible_message("[user.name] emags [src].",span_notice("You short out the lock."))
+		user.visible_message("[src] starts to spark and hum as its power exceeds the recommended limit.", span_notice("You short out the lock and disable the power limiters."))
+	if(gun)
+		to_chat(user, span_warning("[src] ejects [gun] as you disable the power limiter."))
+		remove_gun(user)
+	active_power_usage *= 5
+	projectile_type = /obj/item/projectile/beam/emitter/pulse
+	projectile_sound = 'sound/weapons/pulse.ogg'
 
 
 /obj/machinery/power/emitter/prototype
@@ -429,7 +441,7 @@
 	auto.Grant(M, src)
 
 /datum/action/innate/protoemitter
-	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	var/obj/machinery/power/emitter/prototype/PE
 	var/mob/living/carbon/U
 
@@ -454,7 +466,7 @@
 		for(var/obj/item/I in U.held_items)
 			if(istype(I, /obj/item/turret_control))
 				qdel(I)
-		UpdateButtonIcon()
+		build_all_button_icons()
 		return
 	else
 		playsound(PE,'sound/mecha/mechmove01.ogg', 50, TRUE)
@@ -471,7 +483,7 @@
 			else	//Entries in the list should only ever be items or null, so if it's not an item, we can assume it's an empty hand
 				var/obj/item/turret_control/TC = new /obj/item/turret_control()
 				U.put_in_hands(TC)
-		UpdateButtonIcon()
+		build_all_button_icons()
 
 
 /obj/item/turret_control

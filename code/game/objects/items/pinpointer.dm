@@ -88,12 +88,16 @@
 
 /obj/item/pinpointer/crew/proc/trackable(mob/living/carbon/human/H)
 	var/turf/here = get_turf(src)
-	if((H.z == 0 || H.z == here.z) && istype(H.w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/U = H.w_uniform
+	var/nanite_sensors = FALSE
+	if(H in SSnanites.nanite_monitored_mobs)
+		nanite_sensors = TRUE
+	if((H.z == 0 || H.z == here.z) && (istype(H.w_uniform, /obj/item/clothing/under) || nanite_sensors))
+		if(!nanite_sensors) // Does the mob have monitoring nanite?
+			var/obj/item/clothing/under/U = H.w_uniform
 
-		// Suit sensors must be on maximum.
-		if(!U.has_sensor || (U.sensor_mode < SENSOR_COORDS && !ignore_suit_sensor_level))
-			return FALSE
+			// Suit sensors must be on maximum.
+			if(!U.has_sensor || (U.sensor_mode < SENSOR_COORDS && !ignore_suit_sensor_level))
+				return FALSE
 
 		var/turf/there = get_turf(H)
 		return (H.z != 0 || (there && there.z == here.z))

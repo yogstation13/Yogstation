@@ -179,17 +179,6 @@
 "aB" = (
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"aC" = (
-/obj/machinery/status_display/evac{
-	pixel_x = 32
-	},
-/obj/structure/chair/stool/bar,
-/obj/machinery/light{
-	dir = 1;
-	light_color = "#c1caff"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "aD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -238,10 +227,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"aJ" = (
-/obj/machinery/computer/slot_machine,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aK" = (
@@ -952,6 +937,13 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"xZ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1;
+	icon_state = "scrub_map_on-3"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "zN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -964,6 +956,13 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"Af" = (
+/obj/machinery/computer/slot_machine,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "BJ" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -990,22 +989,6 @@
 /obj/machinery/griddle,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
-"Ew" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1;
-	icon_state = "scrub_map_on-3"
-	},
-/obj/machinery/reagentgrinder,
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "EV" = (
 /obj/structure/table,
 /obj/item/book/manual/chef_recipes,
@@ -1027,6 +1010,12 @@
 	name = "Bar Shutters Control";
 	pixel_y = 24;
 	req_access_txt = "25"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"HA" = (
+/obj/machinery/status_display/evac{
+	pixel_x = 32
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1052,6 +1041,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"KP" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/machinery/reagentgrinder,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "PB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1089,6 +1090,12 @@
 	},
 /obj/structure/sink/kitchen{
 	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"Xe" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1281,9 +1288,9 @@ ag
 (11,1,1) = {"
 ag
 as
-aJ
-aY
-IK
+Af
+HA
+vy
 nY
 iI
 PB
@@ -1298,8 +1305,8 @@ ag
 ag
 ag
 ag
-aC
-vy
+ag
+ag
 aB
 au
 aE
@@ -1313,8 +1320,8 @@ cC
 (13,1,1) = {"
 ae
 aK
-ag
-ag
+KP
+ba
 ag
 ul
 cD
@@ -1329,10 +1336,10 @@ cC
 (14,1,1) = {"
 ah
 at
-Ew
-ba
-ag
-Hm
+xZ
+aB
+bl
+aB
 au
 aB
 jf
@@ -1346,9 +1353,9 @@ ag
 oC
 au
 hk
-aB
-bl
-aB
+Xe
+ag
+Hm
 cE
 br
 bY

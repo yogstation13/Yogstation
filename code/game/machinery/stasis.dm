@@ -147,7 +147,7 @@
 	var/freq = rand(24750, 26550)
 	playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 2, frequency = freq)
 	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, stasis_amount)
-	target.ExtinguishMob()
+	target.extinguish_mob()
 	use_power = ACTIVE_POWER_USE
 	if(obj_flags & EMAGGED)
 		to_chat(target, span_warning("Your limbs start to feel numb..."))
@@ -206,7 +206,7 @@
 
 /obj/machinery/stasis/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning("The stasis bed's safeties are already overriden!"))
+		to_chat(user, span_warning("The stasis bed's safeties are already overridden!"))
 		return
 	to_chat(user, span_notice("You override the stasis bed's safeties!"))
 	obj_flags |= EMAGGED

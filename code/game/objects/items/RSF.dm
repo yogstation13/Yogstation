@@ -74,7 +74,7 @@ RSF
 	var/cost = 0
 	//Warning, prepare for bodgecode
 	while(islist(target))//While target is a list we continue the loop
-		var/picked = show_radial_menu(user, src, formRadial(target), custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
+		var/picked = show_radial_menu(user, src, formRadial(target), custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE)
 		if(!check_menu(user) || picked == null)
 			return
 		for(var/emem in target)//Back through target agian
@@ -201,8 +201,8 @@ RSF
 		to_dispense = /obj/item/reagent_containers/food/snacks/cookie
 		to_chat(user, "Cookie Synthesizer Reset")
 
-/obj/item/rsf/cookiesynth/process()
-	matter = min(matter + 1, max_matter) //We add 1 up to a point
+/obj/item/rsf/cookiesynth/process(delta_time)
+	matter = min(matter += delta_time, max_matter) //We add 1 up to a point
 	if(matter >= max_matter)
 		STOP_PROCESSING(SSprocessing, src)
 

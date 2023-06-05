@@ -8,13 +8,16 @@
 	roundend_category = "Monster Hunters"
 	antagpanel_category = "Monster Hunter"
 	job_rank = ROLE_MONSTERHUNTER
+	antag_hud_name = "monsterhunter"
+	preview_outfit = /datum/outfit/monsterhunter
 	var/list/datum/action/powers = list()
 	var/datum/martial_art/hunterfu/my_kungfu = new
 	var/give_objectives = TRUE
-	var/datum/action/bloodsucker/trackvamp = new /datum/action/bloodsucker/trackvamp()
-	var/datum/action/bloodsucker/fortitude = new /datum/action/bloodsucker/fortitude/hunter()
+	var/datum/action/cooldown/bloodsucker/trackvamp = new /datum/action/cooldown/bloodsucker/trackvamp()
+	var/datum/action/cooldown/bloodsucker/fortitude = new /datum/action/cooldown/bloodsucker/fortitude/hunter()
 
 /datum/antagonist/monsterhunter/apply_innate_effects(mob/living/mob_override)
+	.  = ..()
 	var/mob/living/current_mob = mob_override || owner.current
 	ADD_TRAIT(current_mob, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
 	ADD_TRAIT(current_mob, TRAIT_NOCRITDAMAGE, BLOODSUCKER_TRAIT)
@@ -22,6 +25,7 @@
 	my_kungfu.teach(current_mob, make_temporary = FALSE)
 
 /datum/antagonist/monsterhunter/remove_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
 	REMOVE_TRAIT(current_mob, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(current_mob, TRAIT_NOCRITDAMAGE, BLOODSUCKER_TRAIT)
@@ -32,11 +36,8 @@
 
 /datum/antagonist/monsterhunter/on_gain()
 	//Give Monster Hunter powers
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_MHUNTER]
 	trackvamp.Grant(owner.current)
 	fortitude.Grant(owner.current)
-	hud.join_hud(owner.current)
-	set_antag_hud(owner.current, "monsterhunter")
 	if(give_objectives)
 		//Give Hunter Objective
 		var/datum/objective/bloodsucker/monsterhunter/monsterhunter_objective = new
@@ -55,21 +56,17 @@
 
 /datum/antagonist/monsterhunter/on_removal()
 	//Remove Monster Hunter powers
-	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_MHUNTER]
 	trackvamp.Remove(owner.current)
 	fortitude.Remove(owner.current)
-	hud.leave_hud(owner.current)
-	set_antag_hud(owner.current, null)
 	to_chat(owner.current, span_userdanger("Your hunt has ended: You enter retirement once again, and are no longer a Monster Hunter."))
 	return ..()
 
 /datum/antagonist/monsterhunter/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()
-	for(var/datum/action/bloodsucker/all_powers as anything in powers)
+	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		all_powers.Remove(old_body)
 		all_powers.Grant(new_body)
 
-	
 /// Mind version
 /datum/mind/proc/make_monsterhunter()
 	var/datum/antagonist/monsterhunter/monsterhunterdatum = has_antag_datum(/datum/antagonist/monsterhunter)
@@ -119,13 +116,13 @@
 
 /// TAKEN FROM: /datum/action/changeling/pheromone_receptors    // pheromone_receptors.dm    for a version of tracking that Changelings have!
 /datum/status_effect/agent_pinpointer/hunter_edition
-	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/hunter_edition
+	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/hunter_edition
 	minimum_range = HUNTER_SCAN_MIN_DISTANCE
 	tick_interval = HUNTER_SCAN_PING_TIME
 	duration = 10 SECONDS
 	range_fuzz_factor = 5 //PINPOINTER_EXTRA_RANDOM_RANGE
 
-/obj/screen/alert/status_effect/agent_pinpointer/hunter_edition
+/atom/movable/screen/alert/status_effect/agent_pinpointer/hunter_edition
 	name = "Monster Tracking"
 	desc = "You always know where the hellspawn are."
 
@@ -155,3 +152,12 @@
 	if(scan_target)
 		to_chat(owner, span_notice("You've lost the trail."))
 	. = ..()
+
+/datum/outfit/monsterhunter
+	name = "Monster Hunter"
+
+	head = /obj/item/clothing/head/helmet/chaplain/witchunter_hat
+	uniform = /obj/item/clothing/under/rank/chaplain
+	suit = /obj/item/clothing/suit/armor/riot/chaplain/witchhunter
+	l_hand = /obj/item/stake
+	r_hand = /obj/item/stake/hardened/silver

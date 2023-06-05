@@ -57,7 +57,7 @@
 		start_harvest()
 
 /obj/machinery/harvester/proc/can_harvest()
-	if(!powered(EQUIP) || state_open || !occupant || !iscarbon(occupant))
+	if(!powered(AREA_USAGE_EQUIP) || state_open || !occupant || !iscarbon(occupant))
 		return
 	var/mob/living/carbon/C = occupant
 	if(!allow_clothing)
@@ -88,11 +88,11 @@
 	visible_message(span_notice("The [name] begins warming up!"))
 	say("Initializing harvest protocol.")
 	update_icon(TRUE)
-	addtimer(CALLBACK(src, .proc/harvest), interval)
+	addtimer(CALLBACK(src, PROC_REF(harvest)), interval)
 
 /obj/machinery/harvester/proc/harvest()
 	update_icon()
-	if(!harvesting || state_open || !powered(EQUIP) || !occupant || !iscarbon(occupant))
+	if(!harvesting || state_open || !powered(AREA_USAGE_EQUIP) || !occupant || !iscarbon(occupant))
 		return
 	playsound(src, 'sound/machines/juicer.ogg', 20, 1)
 	var/mob/living/carbon/C = occupant
@@ -112,7 +112,7 @@
 		operation_order.Remove(BP)
 		break
 	use_power(5000)
-	addtimer(CALLBACK(src, .proc/harvest), interval)
+	addtimer(CALLBACK(src, PROC_REF(harvest)), interval)
 
 /obj/machinery/harvester/proc/end_harvesting()
 	harvesting = FALSE

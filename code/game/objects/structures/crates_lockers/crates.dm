@@ -5,9 +5,7 @@
 	icon_state = "crate"
 	req_access = null
 	can_weld_shut = FALSE
-	horizontal = TRUE
-	allow_objects = TRUE
-	allow_dense = TRUE
+	open_flags = HORIZONTAL_HOLD | HORIZONTAL_LID | ALLOW_OBJECTS | ALLOW_DENSE
 	dense_when_open = TRUE
 	climbable = TRUE
 	climb_time = 10 //real fast, because let's be honest stepping into or onto a crate is easy
@@ -15,6 +13,11 @@
 	delivery_icon = "deliverycrate"
 	door_anim_time = 0 // no animation
 	var/obj/item/paper/fluff/jobs/cargo/manifest/manifest
+	breakout_time = 20 SECONDS
+	///The resident (owner) of this crate/coffin.
+	var/mob/living/resident
+	///The time it takes to pry this open with a crowbar.
+	var/pry_lid_timer = 25 SECONDS
 
 /obj/structure/closet/crate/Initialize()
 	. = ..()
@@ -328,7 +331,7 @@
 		if(16)
 			new /mob/living/simple_animal/hostile/retaliate/goat/pixel(loc)
 		if(17)
-			new /mob/living/simple_animal/hostile/retaliate/goat/radioactive(loc)
+			new /mob/living/simple_animal/hostile/retaliate/goat/rainbow(loc)
 		if(18)
 			new /mob/living/simple_animal/hostile/retaliate/goat/rainbow(loc)
 		if(19)

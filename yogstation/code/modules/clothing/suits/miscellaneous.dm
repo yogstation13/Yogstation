@@ -3,7 +3,7 @@
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "network admin's winter coat"
 	icon_state = "coatsignaltech"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/analyzer, /obj/item/multitool, /obj/item/assembly/signaler, /obj/item/tank/internals/plasmaman)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/analyzer, /obj/item/multitool, /obj/item/assembly/signaler, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
 
 /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
@@ -26,7 +26,7 @@
     icon = 'yogstation/icons/obj/clothing/suits.dmi'
     name = "Blue winter coat"
     icon_state = "coatwinterblue"
-    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
+    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/radio)
     hoodtype = /obj/item/clothing/head/hooded/winterhood/bluecoat
 
 /obj/item/clothing/head/hooded/winterhood/bluecoat
@@ -59,7 +59,7 @@
     desc = "A suit often worn by desert nomads."
     icon_state = "sandsuit"
     item_state = "sandsuit"
-    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
+    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/radio)
     hoodtype = /obj/item/clothing/head/hooded/sandsuit
 
 /obj/item/clothing/head/hooded/sandsuit
@@ -173,21 +173,21 @@
 	desc = "Aviators not included. Now in dark blue!"
 	icon_state = "navymiljacket"
 	item_state = "navymiljacket"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/yogs/desertmiljacket
 	name = "desert military jacket"
 	desc = "Aviators not included. Now in dark brown!"
 	icon_state = "desertmiljacket"
 	item_state = "desertmiljacket"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/yogs/denimjacket
 	name = "denim jacket"
 	desc = "A bit scratchy but pretty cool looking."
 	icon_state = "denim_jacket"
 	item_state = "denim_jacket"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
 
 /obj/item/clothing/suit/hooded/fiendcowl
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
@@ -196,7 +196,7 @@
 	desc = "Only a really evil person would wear such a fiendish cowl!"
 	icon_state = "fiendcowl"
 	item_state = "fiendcowl"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/radio)
 	hoodtype = /obj/item/clothing/head/hooded/fiendhood
 
 /obj/item/clothing/head/hooded/fiendhood
@@ -212,7 +212,7 @@
 	desc = "A tattered heretical cloak from a time long passed."
 	icon_state = "eldritchcowl"
 	item_state = "eldritchcowl"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/radio)
 	hoodtype = /obj/item/clothing/head/hooded/eldritchhood
 
 /obj/item/clothing/head/hooded/eldritchhood
@@ -234,7 +234,7 @@
 	desc = "Yeah, he will 'take care' of you alright."
 	icon_state = "caretakercloak"
 	item_state = "caretakercloak"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/tank/internals/plasmaman)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 	hoodtype = /obj/item/clothing/head/hooded/caretakerhood
 
 /obj/item/clothing/head/hooded/caretakerhood
@@ -294,7 +294,7 @@
 	desc = "It can't actually hold much, but it still looks cool!"
 	icon_state = "soldier_webbing"
 	item_state = "soldier_webbing"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/tank/internals/plasmaman)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 
 /obj/item/clothing/suit/yogs/monkrobes
 	name = "monk robes"
@@ -320,7 +320,7 @@
     desc = "A hoodie...IN SPESS!!!"
     icon_state = "spesshoodie"
     item_state = "spesshoodie"
-    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/tank/internals/plasmaman)
+    allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
     hoodtype = /obj/item/clothing/head/hooded/spesshoodie
 
 /obj/item/clothing/head/hooded/spesshoodie
@@ -334,6 +334,12 @@
 	desc = "Sunglasses and pompadour not included."
 	icon_state = "biker"
 	item_state = "biker"
+
+/obj/item/clothing/suit/yogs/battlejacket
+	name = "battle jacket"
+	desc = "Smells like stale beer and cigarettes. Must have been a good show!"
+	icon_state = "battlejacket"
+	item_state = "battlejacket"
 
 /obj/item/clothing/suit/yogs/varsity
 	name = "varsity jacket"
@@ -358,3 +364,16 @@
 	desc = "My Moon My Man."
 	icon_state = "punk"
 	item_state = "punk"
+
+/obj/item/clothing/suit/hooded/wintercoat/northern
+	name = "nothern coat"
+	desc = "A heavy jacket designed for weathering cold terran planets."
+	icon_state = "northern"
+	item_state = "northern"
+	hoodtype = /obj/item/clothing/head/hooded/winterhood/northern
+	
+/obj/item/clothing/head/hooded/winterhood/northern
+	name = "northern hat"
+	desc = "only this, and nothing more."
+	icon_state = "northern"
+	item_state = "northern"
