@@ -10,7 +10,7 @@
 	invocation_type = INVOCATION_WHISPER
 	
 	cooldown_time = 15 SECONDS
-	spell_requirements = NONE
+	spell_requirements = SPELL_REQUIRES_HUMAN
 
 	hand_path = /obj/item/melee/touch_attack/envy
 	///The ID acess we store
@@ -27,38 +27,38 @@
 /datum/action/cooldown/spell/touch/envy/proc/envy_access(datum/source, obj/access_checker)
 	return access_checker.check_access_list(stored_access)
 
+/datum/action/cooldown/spell/touch/envy/is_valid_target(atom/cast_on)
+	return ishuman(cast_on)
+
+/datum/action/cooldown/spell/touch/envy/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/human/target, mob/living/carbon/human/caster)
+	if(!istype(target))
+		return FALSE
+	if(target.anti_magic_check())
+		to_chat(caster, span_warning("[target] resists your unholy jealousy!"))
+		to_chat(target, span_warning("A creeping feeling of jealousy dances around your mind before being suddenly dispelled."))
+		return FALSE
+	playsound(caster, 'sound/magic/demon_attack1.ogg', 75, TRUE)
+
+	if(caster.real_name == target.dna.real_name)
+		caster.balloon_alert(caster, "you are already [target]!")
+		return FALSE
+
+	var/obj/item/card/id/ID = target.get_idcard()
+	stored_access = LAZYCOPY(ID?.access)
+	caster.fully_replace_character_name(caster.real_name, target.dna.real_name)
+	target.dna.transfer_identity(caster, transfer_SE=1)
+	caster.updateappearance(mutcolor_update=1)
+	caster.domutcheck()
+	caster.visible_message(
+	span_warning("[caster]'s appearance shifts into [target]'s!"), \
+	span_boldannounce("[target.p_they(TRUE)] think[target.p_s()] [target.p_theyre()] \
+				<i>sooo</i> much better than you. Not anymore, [target.p_they()] won't.")
+	)
+	
+	return TRUE
+
 /obj/item/melee/touch_attack/envy
 	name = "Envious Hand"
 	desc = "A writhing, burning aura of jealousy, ready to be unleashed."
 	icon_state = "flagellation"
 	item_state = "hivemind"
-
-/obj/item/melee/touch_attack/envy/afterattack(atom/target, mob/living/carbon/human/user, proximity_flag, click_parameters)
-	if(!proximity_flag)
-		return
-	var/mob/living/living_target = target
-	if(living_target.anti_magic_check())
-		to_chat(user, span_warning("[living_target] resists your unholy jealousy!"))
-		to_chat(living_target, span_warning("A creeping feeling of jealousy dances around your mind before being suddenly dispelled."))
-		return ..()
-	playsound(user, 'sound/magic/demon_attack1.ogg', 75, TRUE)
-	if(!ishuman(target))
-		return
-
-	var/mob/living/carbon/human/human_target = target
-	if(user.real_name == human_target.dna.real_name)
-		return
-
-	var/datum/action/cooldown/spell/touch/envy/envy_spell = spell_which_made_us?.resolve()
-	var/obj/item/card/id/ID = human_target.get_idcard()
-	envy_spell?.stored_access = ID?.access
-	user.fully_replace_character_name(user.real_name, human_target.dna.real_name)
-	human_target.dna.transfer_identity(user, transfer_SE=1)
-	user.updateappearance(mutcolor_update=1)
-	user.domutcheck()
-	user.visible_message(
-	span_warning("[user]'s appearance shifts into [human_target]'s!"), \
-	span_boldannounce("[human_target.p_they(TRUE)] think[human_target.p_s()] human_targetH.p_theyre()] \
-				<i>sooo</i> much better than you. Not anymore, [human_target.p_they()] won't.")
-	)
-	return ..()
