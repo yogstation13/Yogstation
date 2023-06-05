@@ -7,6 +7,20 @@
 /datum/preference/choiced/gender/init_possible_values()
 	return list(MALE, FEMALE, PLURAL)
 
+/datum/preference/choiced/gender/create_informed_default_value(datum/preferences/preferences)
+
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/datum/species/S = new species_type
+	
+	if(!S.sexes || (AGENDER in S.species_traits))
+		return list(PLURAL)
+	else if(FGENDER in S.species_traits)
+		return list(FEMALE)
+	else if(MGENDER in S.species_traits)
+		return list(MALE)
+
+	return list(MALE, FEMALE, PLURAL)
+
 /datum/preference/choiced/gender/apply_to_human(mob/living/carbon/human/target, value)
 	var/datum/species/S = target.dna.species
 

@@ -46,6 +46,7 @@
 		data[species_id]["enabled_features"] = species.get_features()
 		data[species_id]["perks"] = species.get_species_perks()
 		data[species_id]["diet"] =  species.get_species_diet()
+		data[species_id]["traits"] = species.species_traits
 
 		qdel(species)
 
