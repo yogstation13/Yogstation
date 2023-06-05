@@ -1,0 +1,4 @@
+author: "hedgehog1029"
+delete-after: true 
+changes: 
+  - bugfix: "fix vending machines not charging for premium products in some cases"
