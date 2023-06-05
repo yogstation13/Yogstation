@@ -732,12 +732,31 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "fi" = (
-/obj/item/pickaxe{
-	pixel_y = 6;
-	pixel_x = -4
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/shutters{
+	id = "lpost_privacy_left"
 	},
-/turf/open/floor/plating/asteroid,
-/area/ruin/space/has_grav/listeningstation)
+/obj/structure/cable{
+	icon_state = "0-2";
+	pixel_y = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
+"fl" = (
+/obj/structure/closet/crate/hydroponics{
+	name = "janitorial crate";
+	desc = "All you need to make the station clean."
+	},
+/obj/item/mop,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/soap/syndie,
+/obj/item/reagent_containers/glass/bucket,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/contraband/c20r{
+	pixel_y = -32
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "fn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -828,13 +847,6 @@
 	pixel_y = 1
 	},
 /obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
-"gM" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 8
-	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/listeningstation)
 "hb" = (
@@ -963,12 +975,13 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/telecomms)
 "is" = (
-/obj/effect/turf_decal/stripes/asteroid/corner{
-	dir = 8
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/shutters{
+	id = "lpost_privacy_left"
 	},
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/listeningstation)
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "it" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
@@ -1990,6 +2003,9 @@
 	pixel_y = 24
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/mineral/ore_redemption{
+	req_access = list(150)
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Cy" = (
@@ -2019,16 +2035,12 @@
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/listeningstation/engineering)
 "DC" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/door/poddoor/shutters{
-	id = "lpost_privacy_left"
+/obj/effect/turf_decal/stripes/asteroid/corner{
+	dir = 8
 	},
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/quarters)
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/listeningstation)
 "Ef" = (
 /obj/structure/closet/crate,
 /obj/machinery/firealarm{
@@ -2091,13 +2103,6 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
-"Fz" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation)
 "FB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -2294,13 +2299,12 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
 "Jr" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/door/poddoor/shutters{
-	id = "lpost_privacy_left"
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/quarters)
+/area/ruin/space/has_grav/listeningstation)
 "JQ" = (
 /obj/machinery/power/apc/auto_name/north{
 	req_access = list(150)
@@ -2395,6 +2399,11 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
+"Mc" = (
+/obj/effect/turf_decal/stripes/asteroid/corner,
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation)
 "Mo" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2409,17 +2418,7 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Mv" = (
-/obj/structure/closet/crate/hydroponics{
-	name = "janitorial crate"
-	},
-/obj/item/mop,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/soap/syndie,
-/obj/item/reagent_containers/glass/bucket,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/contraband/c20r{
-	pixel_y = -32
-	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Mw" = (
@@ -2653,6 +2652,13 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
+"OY" = (
+/obj/item/pickaxe{
+	pixel_y = 6;
+	pixel_x = -4
+	},
+/turf/open/floor/plating/asteroid,
+/area/ruin/space/has_grav/listeningstation)
 "OZ" = (
 /obj/machinery/power/apc/auto_name/north{
 	req_access = list(150)
@@ -2677,10 +2683,8 @@
 	dir = 9
 	},
 /obj/structure/closet/crate/engineering,
-/obj/item/stack/sheet/glass{
-	amount = 10
-	},
-/obj/item/stack/sheet/metal/twenty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/rods/twentyfive,
 /obj/item/stack/sheet/mineral/plasma{
 	amount = 30
@@ -2957,6 +2961,13 @@
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
+"TO" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/listeningstation)
 "TS" = (
 /obj/machinery/computer/camera_advanced/syndie{
 	dir = 4
@@ -3281,9 +3292,8 @@
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "YH" = (
-/obj/effect/turf_decal/stripes/asteroid/corner,
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating,
+/obj/effect/baseturf_helper/asteroid/airless,
+/turf/open/floor/plating/asteroid,
 /area/ruin/space/has_grav/listeningstation)
 "Zh" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible{
@@ -3561,7 +3571,7 @@ NO
 NO
 NO
 NO
-uy
+YH
 uy
 uy
 uy
@@ -3601,7 +3611,7 @@ NO
 NO
 NO
 NO
-fi
+OY
 uy
 uy
 aJ
@@ -3643,10 +3653,10 @@ NO
 uy
 uy
 uy
-YH
-Fz
-Fz
-Fz
+Mc
+Jr
+Jr
+Jr
 NO
 NO
 "}
@@ -3684,9 +3694,9 @@ NO
 uy
 uy
 as
-DC
+fi
 FD
-Jr
+is
 az
 NO
 "}
@@ -3885,9 +3895,9 @@ wW
 Da
 wW
 Cw
+Mv
 hb
 az
-NO
 NO
 "}
 (15,1,1) = {"
@@ -3925,9 +3935,9 @@ XG
 md
 uR
 FV
+Mv
 hA
 as
-oq
 NO
 "}
 (16,1,1) = {"
@@ -3966,8 +3976,8 @@ ai
 wW
 tw
 Mv
+fl
 as
-NO
 NO
 "}
 (17,1,1) = {"
@@ -4164,9 +4174,9 @@ il
 tG
 az
 az
-DC
+fi
 Yt
-Jr
+is
 az
 NO
 "}
@@ -4203,10 +4213,10 @@ js
 Oa
 uQ
 az
-is
-gM
-gM
-gM
+DC
+TO
+TO
+TO
 NO
 NO
 "}
