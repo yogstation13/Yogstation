@@ -892,6 +892,9 @@
 /obj/item/twohanded/required/kirbyplants,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
+"hv" = (
+/turf/closed/wall/explosive,
+/area/ruin/space/has_grav/listeningstation/warehouse)
 "hA" = (
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
@@ -1128,7 +1131,7 @@
 /area/ruin/space/has_grav/listeningstation)
 "jB" = (
 /obj/effect/baseturf_helper/asteroid/airless,
-/turf/closed/wall/rust,
+/turf/closed/wall/explosive,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "jK" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/visible{
@@ -1889,6 +1892,9 @@
 	dir = 4
 	},
 /turf/open/floor/plating/rust,
+/area/ruin/space/has_grav/listeningstation/engineering)
+"yV" = (
+/turf/closed/wall/explosive,
 /area/ruin/space/has_grav/listeningstation/engineering)
 "zc" = (
 /obj/structure/cable{
@@ -3074,6 +3080,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
+"VT" = (
+/turf/closed/wall/explosive,
+/area/ruin/space/has_grav/listeningstation/telecomms)
 "Wg" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3086,6 +3095,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/airlock)
+"Wp" = (
+/turf/closed/wall/explosive,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "WK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -3716,7 +3728,7 @@ kw
 ak
 bg
 pZ
-pZ
+VT
 WO
 pZ
 bg
@@ -3793,7 +3805,7 @@ FS
 bu
 Oi
 OF
-Cy
+hv
 Uw
 UV
 zV
@@ -3855,7 +3867,7 @@ aY
 MU
 wW
 wW
-wW
+Wp
 az
 az
 NO
@@ -3891,7 +3903,7 @@ aa
 tg
 Qq
 Fq
-wW
+Wp
 Da
 wW
 Cw
@@ -3921,7 +3933,7 @@ ae
 KJ
 ss
 at
-wW
+Wp
 cd
 wo
 lm
@@ -4013,7 +4025,7 @@ aF
 Mo
 wW
 Iv
-wW
+Wp
 aY
 aY
 az
@@ -4119,7 +4131,7 @@ Dk
 Dk
 aT
 aI
-aI
+yV
 Dk
 bn
 as
