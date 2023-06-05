@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - bugfix: "Forced-gender species (polys) no longer can spawn as the wrong gender"
