@@ -4,6 +4,7 @@
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "transform"
 	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
 
 	school = SCHOOL_EVOCATION
 	invocation = "I'M BETTER THAN YOU!!"
@@ -16,12 +17,12 @@
 	///The ID acess we store
 	var/list/stored_access
 
-/datum/action/cooldown/spell/touch/envy/Grant(mob/living/user)
+/datum/action/cooldown/spell/touch/envy/Grant(mob/living/caster)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_ALLOWED, PROC_REF(envy_access))
+	RegisterSignal(caster, COMSIG_MOB_ALLOWED, PROC_REF(envy_access))
 
-/datum/action/cooldown/spell/touch/envy/Remove(mob/living/user)
-	UnregisterSignal(user, COMSIG_MOB_ALLOWED)
+/datum/action/cooldown/spell/touch/envy/Remove(mob/living/caster)
+	UnregisterSignal(caster, COMSIG_MOB_ALLOWED)
 	return ..()
 
 /datum/action/cooldown/spell/touch/envy/proc/envy_access(datum/source, obj/access_checker)
