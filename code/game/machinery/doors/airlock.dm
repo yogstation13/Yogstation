@@ -1293,7 +1293,7 @@
 			to_chat(user, span_warning("The airlock won't budge!"))
 			return
 
-		var/time_to_open = 7 SECONDS * I.toolspeed
+		var/time_to_open = 7 SECONDS
 
 		if(hasPower() && !prying_so_hard)
 			if (I.tool_behaviour == TOOL_CROWBAR) //we need another check, futureproofing for if/when bettertools actually completely replaces the old jaws
@@ -1313,9 +1313,9 @@
 
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 				prying_so_hard = TRUE
-				if(do_after(user, time_to_open, src))
+				if(I.use_tool(src, user, time_to_open))
 					open(2)
-					if(!istype(I,/obj/item/jawsoflife/jimmy)) //You get to be special
+					if(!(istype(I,/obj/item/jawsoflife/jimmy) || IS_ENGINEERING(user))) //You get to be special
 						take_damage(max_integrity/8) //Forcing open a door messes it up a little
 					if(density && !open(2))
 						to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
