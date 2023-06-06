@@ -27,7 +27,6 @@
  *      Cult Sickles 
  */
 
-
 /obj/item/toy
 	throwforce = 0
 	throw_speed = 3
@@ -1736,6 +1735,7 @@ obj/item/toy/turn_tracker
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
 
+/obj/item/gun/magic/hook/sickly_blade/attack(mob/living/M, mob/living/user)
 	if((IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
 		to_chat(user,span_danger("You feel a pulse of the old gods lash out at your mind, laughing how you're using a fake blade!")) //the outer gods need a lil chuckle every now and then
 	return ..()
