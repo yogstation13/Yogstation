@@ -1,7 +1,0 @@
-author: "Therandomhoboo"
-delete-after: true 
-changes: 
-  - rscadd: "Ute and Utri nuts, flour, milk & nectar are now in including the sprites"
-  - rscdel: "Korta and Kortara nuts, flour, milk & nectar are now deader than my social life including the sprites"
-  - bugfix: "fixed the recipes of certain drinks having no id or name rendering them unmixable"
-  - tweak: "Aloe's text when drank is the right drink now"
