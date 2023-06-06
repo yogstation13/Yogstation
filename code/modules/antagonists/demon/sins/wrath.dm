@@ -19,6 +19,7 @@
 	base_icon_state = "sacredflame"
 	active_msg = "You prepare to ignite a target..."
 	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
+	overlay_icon_state = "bg_demon_border"
 
 	school = SCHOOL_TRANSMUTATION
 	invocation = "BURN IN HELL!!"
@@ -37,8 +38,8 @@
 	if(!isliving(victim))
 		return FALSE
 	var/mob/living/target = victim
-	target.ignite_mob()
 	target.adjust_fire_stacks(WRATHFUL_FIRE_AMOUNT)
+	target.ignite_mob()
 
 	return TRUE
 

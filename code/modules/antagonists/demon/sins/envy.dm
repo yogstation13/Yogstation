@@ -4,6 +4,7 @@
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "transform"
 	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
 
 	school = SCHOOL_EVOCATION
 	invocation = "I'M BETTER THAN YOU!!"
@@ -16,12 +17,12 @@
 	///The ID acess we store
 	var/list/stored_access
 
-/datum/action/cooldown/spell/touch/envy/Grant(mob/living/user)
+/datum/action/cooldown/spell/touch/envy/Grant(mob/living/caster)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_ALLOWED, PROC_REF(envy_access))
+	RegisterSignal(caster, COMSIG_MOB_ALLOWED, PROC_REF(envy_access))
 
-/datum/action/cooldown/spell/touch/envy/Remove(mob/living/user)
-	UnregisterSignal(user, COMSIG_MOB_ALLOWED)
+/datum/action/cooldown/spell/touch/envy/Remove(mob/living/caster)
+	UnregisterSignal(caster, COMSIG_MOB_ALLOWED)
 	return ..()
 
 /datum/action/cooldown/spell/touch/envy/proc/envy_access(datum/source, obj/access_checker)
@@ -33,32 +34,30 @@
 	icon_state = "flagellation"
 	item_state = "hivemind"
 
-/obj/item/melee/touch_attack/envy/afterattack(atom/target, mob/living/carbon/human/user, proximity_flag, click_parameters)
-	if(!proximity_flag)
-		return
-	var/mob/living/living_target = target
-	if(living_target.anti_magic_check())
-		to_chat(user, span_warning("[living_target] resists your unholy jealousy!"))
-		to_chat(living_target, span_warning("A creeping feeling of jealousy dances around your mind before being suddenly dispelled."))
-		return ..()
-	playsound(user, 'sound/magic/demon_attack1.ogg', 75, TRUE)
-	if(!ishuman(target))
-		return
+/datum/action/cooldown/spell/touch/envy/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
+	var/mob/living/living_victim = victim
+	if(living_victim.anti_magic_check())
+		to_chat(caster, span_warning("[living_victim] resists your unholy jealousy!"))
+		to_chat(living_victim, span_warning("A creeping feeling of jealousy dances around your mind before being suddenly dispelled."))
+		return TRUE
+	playsound(caster, 'sound/magic/demon_attack1.ogg', 75, TRUE)
+	if(!ishuman(victim))
+		return FALSE
 
-	var/mob/living/carbon/human/human_target = target
-	if(user.real_name == human_target.dna.real_name)
-		return
+	var/mob/living/carbon/human/human_victim = victim
+	if(caster.real_name == human_victim.dna.real_name)
+		return FALSE
 
-	var/datum/action/cooldown/spell/touch/envy/envy_spell = spell_which_made_us?.resolve()
-	var/obj/item/card/id/ID = human_target.get_idcard()
+	var/datum/action/cooldown/spell/touch/envy/envy_spell
+	var/obj/item/card/id/ID = human_victim.get_idcard()
 	envy_spell?.stored_access = ID?.access
-	user.fully_replace_character_name(user.real_name, human_target.dna.real_name)
-	human_target.dna.transfer_identity(user, transfer_SE=1)
-	user.updateappearance(mutcolor_update=1)
-	user.domutcheck()
-	user.visible_message(
-	span_warning("[user]'s appearance shifts into [human_target]'s!"), \
-	span_boldannounce("[human_target.p_they(TRUE)] think[human_target.p_s()] human_targetH.p_theyre()] \
-				<i>sooo</i> much better than you. Not anymore, [human_target.p_they()] won't.")
+	caster.fully_replace_character_name(caster.real_name, human_victim.dna.real_name)
+	human_victim.dna.transfer_identity(caster, transfer_SE=1)
+	caster.updateappearance(mutcolor_update=1)
+	caster.domutcheck()
+	caster.visible_message(
+	span_warning("[caster]'s appearance shifts into [human_victim]'s!"), \
+	span_boldannounce("[human_victim.p_they(TRUE)] think[human_victim.p_s()] human_victimH.p_theyre()] \
+				<i>sooo</i> much better than you. Not anymore, [human_victim.p_they()] won't.")
 	)
-	return ..()
+	return TRUE
