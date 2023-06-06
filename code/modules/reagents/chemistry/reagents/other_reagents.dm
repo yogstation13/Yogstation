@@ -186,8 +186,8 @@
 	if(!istype(M))
 		return
 	if(method == TOUCH)
-		M.adjust_fire_stacks(-(reac_volume / 10) * permeability)
-		M.extinguish_mob() // permeability affects the negative fire stacks not the extinguishing
+		M.adjust_fire_stacks(-(reac_volume / 10) * M.get_permeability(linear = TRUE))
+		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 	..()
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
