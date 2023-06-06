@@ -1394,7 +1394,7 @@
 
 /datum/reagent/freon
 	name = "Freon"
-	description = "A powerful heat adsorbant."
+	description = "A powerful heat absorbant."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hypernoblium are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
@@ -1411,22 +1411,68 @@
 
 /datum/reagent/hypernoblium
 	name = "Hyper-Noblium"
-	description = "A suppressive gas that stops gas reactions on those who inhale it."
+	description = "A suppressive gas that stops gas reactions on those who inhale or consume it."
 	reagent_state = GAS
 	metabolization_rate = REAGENTS_METABOLISM * 0.5 // Because nitrium/freon/hyper-nob are handled through gas breathing, metabolism must be lower for breathcode to keep up
 	color = "90560B"
 	can_synth = FALSE
+	process_flags = ORGANIC | SYNTHETIC // works in open air, don't think it cares what kind of body it's in
 	taste_description = "searingly cold"
 
-/datum/reagent/hypernoblium/on_mob_metabolize(mob/living/L)
+/datum/reagent/hypernoblium/on_mob_add(mob/living/L)
 	. = ..()
-	if(isplasmaman(L))
-		ADD_TRAIT(L, TRAIT_NOFIRE, type)
+	ADD_TRAIT(L, TRAIT_NOFIRE, type) // prevents you from being on fire, but doesn't actually make you take less damage from heat (which is what actually does the damage to you)
+	ADD_TRAIT(L, TRAIT_PRESERVED_ORGANS, type) // no reactions means no decay
 
-/datum/reagent/hypernoblium/on_mob_end_metabolize(mob/living/L)
-	if(isplasmaman(L))
-		REMOVE_TRAIT(L, TRAIT_NOFIRE, type)
+/datum/reagent/hypernoblium/on_mob_delete(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_NOFIRE, type)
+	REMOVE_TRAIT(L, TRAIT_PRESERVED_ORGANS, type)
 	return ..()
+
+/datum/reagent/hypernoblium/reaction_mob(mob/living/M, method, reac_volume, show_message, touch_protection)
+	. = ..()
+	if(reac_volume >= REACTION_OPPRESSION_THRESHOLD)
+		M.extinguish_mob()
+
+/datum/reagent/antinoblium
+	name = "Anti-Noblium"
+	description = "A rare gas that reacts violently with everything it touches, especially hyper-noblium."
+	reagent_state = GAS
+	metabolization_rate = REAGENTS_METABOLISM * 0.5 // handled through gas breathing, metabolism must be lower for breathcode to keep up
+	color = "000000"
+	can_synth = FALSE
+	process_flags = ORGANIC | SYNTHETIC // BURN IT ALLLLLL
+	taste_description = "searingly hot"
+	self_consuming = TRUE
+	var/flame_timer = 0
+
+/datum/reagent/antinoblium/reaction_mob(mob/living/M, method, reac_volume, show_message, touch_protection)
+	. = ..()
+	M.fire_stacks = max(reac_volume, M.fire_stacks)
+
+/datum/reagent/antinoblium/on_mob_life(mob/living/carbon/M)
+	flame_timer++
+	M.fire_stacks = max(0, M.fire_stacks)
+	M.adjust_fire_stacks(0.5) // perpetually flammable
+	if(M.reagents.has_reagent(/datum/reagent/hypernoblium))
+		var/annihilation_amount = min(M.reagents.get_reagent_amount(/datum/reagent/hypernoblium), M.reagents.get_reagent_amount(/datum/reagent/hypernoblium))
+		M.reagents.remove_reagent(/datum/reagent/hypernoblium, annihilation_amount)
+		M.reagents.remove_reagent(/datum/reagent/antinoblium, annihilation_amount)
+		M.adjust_fire_stacks(annihilation_amount)
+		M.adjustFireLoss(annihilation_amount * 5) // fireproof suits will not protect you
+		if(M.reagents.get_reagent_amount(/datum/reagent/hypernoblium) <= 0)
+			REMOVE_TRAIT(M, TRAIT_NOFIRE, /datum/reagent/hypernoblium) // remove the trait early so they can actually catch fire
+		flame_timer = INFINITY
+	if(flame_timer >= rand(5, 30))
+		if(!M.on_fire)
+			M.visible_message(span_warning("[M] suddenly bursts into flames!"), span_userdanger("You feel a searing pain throughout your very being as you start to burn from the inside out!"))
+		M.fire_stacks = max(0.5, M.fire_stacks) // make sure they're able to catch fire
+		M.ignite_mob()
+		flame_timer = 0
+		if(isplasmaman(M) && M.dna?.species) // the fire is INSIDE YOU
+			var/datum/species/plasmaman/P = M.dna.species
+			P.internal_fire = TRUE
+	..()
 
 /datum/reagent/healium
 	name = "Healium"
