@@ -183,7 +183,6 @@
 #define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
 #define ORGAN_SLOT_RIGHT_LEG_AUG "r_leg_device"
 #define ORGAN_SLOT_LEFT_LEG_AUG "l_leg_device"
-#define ORGAN_SLOT_IPC_POWERCORD "ipc_powercord"
 
 //organ defines
 #define STANDARD_ORGAN_THRESHOLD 	100
