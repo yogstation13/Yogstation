@@ -64,7 +64,7 @@
 	head = /obj/item/clothing/head/hardhat/white
 	gloves = /obj/item/clothing/gloves/color/black
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes eng budget
-	glasses = /obj/item/clothing/glasses/meson/sunglasses
+	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce
 
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng

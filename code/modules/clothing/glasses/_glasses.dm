@@ -107,6 +107,24 @@
 	flash_protect = 1
 	tint = 1
 
+/obj/item/clothing/glasses/meson/sunglasses/ce
+	name = "advanced engineering sunglasses"
+	desc = "A meson scanner, diagnostic HUD, and reactive welding shield built into a pair of sunglasses."
+	flash_protect = 2 // welding moment
+	var/hud_type = DATA_HUD_DIAGNOSTIC_BASIC
+
+/obj/item/clothing/glasses/meson/sunglasses/ce/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(slot == SLOT_GLASSES)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.show_to(user)
+
+/obj/item/clothing/glasses/meson/sunglasses/ce/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(istype(user) && user.glasses == src)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.hide_from(user)
+
 /obj/item/clothing/glasses/science
 	name = "science goggles"
 	desc = "A pair of snazzy goggles used to protect against chemical spills. Fitted with an analyzer for scanning items and reagents."
