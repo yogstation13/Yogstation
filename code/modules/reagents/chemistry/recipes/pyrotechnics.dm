@@ -119,9 +119,10 @@
 
 /datum/chemical_reaction/emp_pulse/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	// 100 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
-	// 200 created volume = 16 heavy range & 28 light range. 12 tiles larger than traitor EMP grenades. This is the maximum
-	created_volume = min(created_volume, 200)
+	// 100 created volume = 8 heavy range & 14 light range. 8 tiles smaller than traitor EMP grenades.
+	// 200 created volume = 16 heavy range & 28 light range. 14 tiles larger than traitor EMP grenades.
+	// 300 created volume = 25 heavy range & 42 light range. only attainable using bluespace beaker grenades. This is the maximum
+	created_volume = min(created_volume, 300)
 	empulse(location, round(created_volume / 12), round(created_volume / 7), 1)
 	holder.clear_reagents()
 
