@@ -437,7 +437,7 @@
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	border = TRUE
 
-/obj/structure/firelock_frame/border/ComponentInitialize()
+/obj/structure/firelock_frame/border/Initialize()
 	. = ..()
 	var/static/rotation_flags = ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS
 	AddComponent(/datum/component/simple_rotation, rotation_flags)

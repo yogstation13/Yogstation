@@ -36,6 +36,13 @@
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
 
+/obj/machinery/stasis/Initialize()
+	. = ..()
+	AddComponent(/datum/component/surgery_bed, \
+		success_chance = 1, \
+		op_computer_linkable = TRUE, \
+	)
+
 /obj/machinery/stasis/RefreshParts()
 	stasis_amount = initial(stasis_amount)
 	stasis_cooldown = initial(stasis_cooldown)
@@ -58,10 +65,6 @@
 	if(occupant)
 		thaw_them(occupant)
 		chill_out(occupant)
-	
-
-/obj/machinery/stasis/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 1, TRUE)
 
 /obj/machinery/stasis/examine(mob/user)
 	. = ..()

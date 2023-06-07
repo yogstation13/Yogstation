@@ -11,6 +11,7 @@
 	resistance_flags = LAVA_PROOF
 
 /obj/structure/blob/core/Initialize(mapload, client/new_overmind = null, placed = 0)
+	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 	GLOB.blob_cores += src
 	START_PROCESSING(SSobj, src)
 	GLOB.poi_list |= src
@@ -19,7 +20,7 @@
 		return INITIALIZE_HINT_QDEL
 	if(overmind)
 		update_icon()
-	. = ..()
+	return ..()
 
 /obj/structure/blob/core/scannerreport()
 	return "Directs the blob's expansion, gradually expands, and sustains nearby blob spores and blobbernauts."
@@ -67,10 +68,6 @@
 		if(DT_PROB(2.5, delta_time))
 			B.change_to(/obj/structure/blob/shield/core, overmind)
 	..()
-
-/obj/structure/blob/core/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 
 /obj/structure/blob/core/onTransitZ(old_z, new_z)
 	if(overmind && is_station_level(new_z))

@@ -24,9 +24,6 @@
 /obj/item/grenade/plastic/Initialize()
 	. = ..()
 	plastic_overlay = mutable_appearance(icon, "[item_state]2", HIGH_OBJ_LAYER)
-
-/obj/item/grenade/plastic/ComponentInitialize()
-	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
 /obj/item/grenade/plastic/Destroy()
