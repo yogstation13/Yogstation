@@ -224,8 +224,11 @@
 
 /obj/docking_port/stationary/transit
 	name = "In Transit"
+	/// The turf reservation returned by the transit area request
 	var/datum/turf_reservation/reserved_area
+	/// The area created during the transit area reservation
 	var/area/shuttle/transit/assigned_area
+	/// The mobile port that owns this transit port
 	var/obj/docking_port/mobile/owner
 
 /obj/docking_port/stationary/transit/Initialize()
@@ -297,15 +300,19 @@
 /obj/docking_port/mobile/proc/register()
 	SSshuttle.mobile += src
 
+/obj/docking_port/mobile/proc/unregister()
+	SSshuttle.mobile -= src
+
 /obj/docking_port/mobile/Destroy(force)
-	if(force)
-		SSshuttle.mobile -= src
-		destination = null
-		previous = null
-		QDEL_NULL(assigned_transit)		//don't need it where we're goin'!
-		shuttle_areas = null
-		remove_ripples()
-	. = ..()
+	unregister()
+	destination = null
+	previous = null
+	if(!QDELETED(assigned_transit))
+		qdel(assigned_transit, force = TRUE) //this is why you don't qdel_null everytime kids
+		assigned_transit = null
+	shuttle_areas = null
+	remove_ripples()
+	return ..()
 
 /obj/docking_port/mobile/Initialize(mapload)
 	. = ..()
@@ -625,17 +632,16 @@
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		shuttle_area.parallax_movedir = FALSE
-	if(assigned_transit && assigned_transit.assigned_area)
+	if(assigned_transit?.assigned_area)
 		assigned_transit.assigned_area.parallax_movedir = FALSE
 	var/list/L0 = return_ordered_turfs(x, y, z, dir)
 	for (var/thing in L0)
 		var/turf/T = thing
 		if(!T || !istype(T.loc, area_type))
 			continue
-		for (var/thing2 in T)
-			var/atom/movable/AM = thing2
-			if (length(AM.client_mobs_in_contents))
-				AM.update_parallax_contents()
+		for	(var/atom/movable/movable as anything in T)
+			if	(movable.client_mobs_in_contents)
+				movable.update_parallax_contents()
 
 /obj/docking_port/mobile/proc/check_transit_zone()
 	if(assigned_transit)
@@ -716,18 +722,13 @@
 /obj/docking_port/mobile/proc/get_status_text_tgui()
 	var/obj/docking_port/stationary/dockedAt = get_docked()
 	var/docked_at = dockedAt?.name || "Unknown"
-	if(istype(dockedAt, /obj/docking_port/stationary/transit))
-		if(timeLeft() > 1 HOURS)
-			return "Hyperspace"
-		else
-			var/obj/docking_port/stationary/dst
-			if(mode == SHUTTLE_RECALL)
-				dst = previous
-			else
-				dst = destination
-			return "In transit to [dst?.name || "unknown location"]"
-	else
+	if(!istype(dockedAt, /obj/docking_port/stationary/transit))
 		return docked_at
+	if(timeLeft() > 1 HOURS)
+		return "Hyperspace"
+	else
+		var/obj/docking_port/stationary/dst = (mode == SHUTTLE_RECALL) ? previous : destination
+		return "In transit to [dst?.name || "unknown location"]"
 
 /obj/docking_port/mobile/proc/getStatusText()
 	var/obj/docking_port/stationary/dockedAt = get_docked()

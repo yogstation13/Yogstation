@@ -673,11 +673,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "potionflask"
 
-
 /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "potionflask"
-
+	icon_state = "syndi_potionflask"
+	desc = "An ornate red bottle, with an \"S\" embossed into the underside. Filled with an experimental flight potion. Mileage may vary."
+	
 /obj/item/reagent_containers/glass/bottle/potion/flight
 	name = "strange elixir"
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
@@ -685,9 +685,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/reagent_containers/glass/bottle/potion/update_icon()
 	if(reagents.total_volume)
-		icon_state = "potionflask"
+		icon_state = initial(icon_state)
+		desc = initial(desc)
 	else
-		icon_state = "potionflask_empty"
+		icon_state = "[initial(icon_state)]_empty"
+		desc = "An ornate red bottle, with an \"S\" embossed into the underside."
 
 /datum/reagent/flightpotion
 	name = "Flight Potion"
@@ -758,7 +760,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 #define COOLDOWN_SUMMON 1 MINUTES
 /obj/item/eflowers
 	name ="enchanted flowers"
-	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouqet to summon tamed creatures. Megafauna cannot be summoned.<b>Megafauna need to be exposed 35 times to become friendly.</b>"
+	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouquet to summon tamed creatures. Megafauna cannot be summoned. <b>Megafauna need to be exposed 35 times to become friendly.</b>"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "eflower"
 	var/next_summon = 0
@@ -774,7 +776,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(is_station_level(T.z) && !A.outdoors)
 		to_chat(user, span_warning("You feel like calling a bunch of animals indoors is a bad idea."))
 		return
-	user.visible_message(span_warning("[user] holds the bouqet out, summoning their allies!"))
+	user.visible_message(span_warning("[user] holds the bouquet out, summoning their allies!"))
 	for(var/mob/m in summons)
 		m.forceMove(T)
 	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
@@ -807,7 +809,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(!do_after(user, 1.5 SECONDS, M))
 		return
-	M.visible_message(span_notice("[M] seems happy with you after exposure to the bouqet!"))
+	M.visible_message(span_notice("[M] seems happy with you after exposure to the bouquet!"))
 	M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
 	M.drop_loot()
 	M.faction = user.faction

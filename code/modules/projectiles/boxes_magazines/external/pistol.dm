@@ -153,3 +153,17 @@
 	icon_state = "v38B-8"
 	ammo_type = /obj/item/ammo_casing/c38/bluespace
 	sprite_designation = "B"
+	
+// Bolt Pistol
+
+/obj/item/ammo_box/magazine/boltpistol
+	name = "bolt pistol magazine"
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "bpistolmag"
+	desc = "A 10-round magazine holding specialty .75 bolt rounds."
+	max_ammo = 10
+	ammo_type = /obj/item/ammo_casing/boltpistol
+
+/obj/item/ammo_box/magazine/boltpistol/admin
+	desc = "A 10-round magazine holding specialty .75 bolt rounds. This one feels strangely powerful..."
+	ammo_type = /obj/item/ammo_casing/boltpistol/admin

@@ -102,7 +102,7 @@
 	total_blood_drank += blood_taken
 	if(frenzied)
 		frenzy_blood_drank += blood_taken
-	if(current_task)
+	if(has_task)
 		if(target.mind)
 			task_blood_drank += blood_taken
 		else
@@ -146,8 +146,28 @@
 	// Heal if Damaged
 	if((bruteheal + fireheal > 0) && mult != 0) // Just a check? Don't heal/spend, and return.
 		// We have damage. Let's heal (one time)
-		user.adjustBruteLoss(-bruteheal * mult, forced=TRUE) // Heal BRUTE / BURN in random portions throughout the body.
-		user.adjustFireLoss(-fireheal * mult, forced=TRUE)
+		
+		var/realbrute = bruteheal * mult
+		var/realfire = fireheal * mult
+
+		var/list/hurt_limbs = user.get_damaged_bodyparts(1, 1, null, BODYPART_ORGANIC)//heal all organic limbs for 100% effectiveness
+		var/num_limbs = LAZYLEN(hurt_limbs)
+		if(num_limbs)
+			for(var/X in hurt_limbs)
+				var/obj/item/bodypart/affecting = X
+				if(affecting.heal_damage(realbrute/num_limbs, realfire/num_limbs, null, BODYPART_ANY))
+					user.update_damage_overlays()
+		
+		hurt_limbs = user.get_damaged_bodyparts(1, 1, null, BODYPART_ROBOTIC)//heal all robotics limbs for 50% effectiveness
+		num_limbs = LAZYLEN(hurt_limbs)
+		realbrute /= 2
+		realfire /= 2
+		if(num_limbs)
+			for(var/X in hurt_limbs)
+				var/obj/item/bodypart/affecting = X
+				if(affecting.heal_damage(realbrute/num_limbs, realfire/num_limbs, null, BODYPART_ANY))
+					user.update_damage_overlays()
+
 		AddBloodVolume(((bruteheal * -0.5) + (fireheal * -1)) * costMult * mult) // Costs blood to heal
 		return TRUE
 

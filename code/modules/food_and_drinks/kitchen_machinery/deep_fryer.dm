@@ -214,8 +214,7 @@ God bless America.
 			return
 		user.visible_message("<span class = 'danger'>[user] dunks [C]'s face in [src]!</span>")
 		reagents.reaction(C, TOUCH)
-		var/permeability = 1 - C.get_permeability_protection(list(HEAD))
-		C.apply_damage(min(30 * permeability, reagents.total_volume), BURN, BODY_ZONE_HEAD)
+		C.apply_damage(min(30 * C.get_permeability(BODY_ZONE_HEAD), reagents.total_volume), BURN, BODY_ZONE_HEAD)
 		reagents.remove_any((reagents.total_volume/2))
 		C.Paralyze(60)
 		user.changeNext_move(CLICK_CD_MELEE)

@@ -23,6 +23,7 @@ GLOBAL_VAR(stormdamage)
 	var/loot_deviation = 30 SECONDS //how much plus or minus around the interval
 	var/borderstage = 0
 	var/weightcull = 5 //anything above this gets culled
+	var/can_end = FALSE //so it doesn't end during setup somehow
 	var/finished = FALSE
 	var/mob/living/winner // Holds the wiener of the victory royale battle fortnight.
 	title_icon = "ss13"
@@ -35,10 +36,9 @@ GLOBAL_VAR(stormdamage)
 		new /obj/structure/battle_bus(T)
 	else //please don't ever happen
 		message_admins("Something has gone terribly wrong and the bus couldn't spawn, please alert a maintainer or someone comparable.")
-	for(var/mob/L in GLOB.player_list)//fix this it spawns them with gear on
-		if(!L.mind || !L.client)
-			if(isobserver(L) || !L.mind || !L.client)
-				continue
+	for(var/mob/L in GLOB.player_list)
+		if(!L.mind || !L.client || isobserver(L))
+			continue
 		var/datum/mind/virgin = L.mind
 		queued += virgin
 	return TRUE
@@ -55,6 +55,7 @@ GLOBAL_VAR(stormdamage)
 		if(!GLOB.thebattlebus) //Ruhoh.
 			virgin.current.forceMove(pick(GLOB.start_landmarks_list))
 			message_admins("There is no battle bus! Attempting to spawn players at random.")
+			log_game("There is no battle bus! Attempting to spawn players at random.")
 			continue
 		virgin.current.forceMove(GLOB.thebattlebus)
 		ADD_TRAIT(virgin.current, TRAIT_XRAY_VISION, "virginity") //so they can see where theyre dropping
@@ -66,11 +67,13 @@ GLOBAL_VAR(stormdamage)
     
 	if(!LAZYLEN(GLOB.battleroyale_players))
 		message_admins("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
+		log_game("Somehow no one has been properly signed up to battle royale despite the round just starting, please contact someone to fix it.")
 
 	for(var/obj/machinery/door/W in GLOB.machines)//set all doors to all access
 		W.req_access = list()
 		W.req_one_access = list()
 		W.locked = FALSE //no bolted either
+	addtimer(VARSET_CALLBACK(src, can_end, TRUE), 29 SECONDS) //let ending be possible
 	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
@@ -80,6 +83,8 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/check_win()
 	. = ..()
 	if(finished)
+		return
+	if(!can_end)
 		return
 	if(LAZYLEN(GLOB.player_list) <= 1) //It's a localhost testing
 		return
