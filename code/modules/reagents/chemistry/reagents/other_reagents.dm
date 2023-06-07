@@ -1452,8 +1452,6 @@
 		heal_factor *= 0.1
 		M.adjust_disgust((40 - M.disgust) / 10) // makes you sick
 		M.adjust_jitter_up_to(2, 10)
-		if(M.getStaminaLoss() > 0)
-			heal_factor *= (max(M.maxHealth - M.getStaminaLoss(), 0) / M.maxHealth) // having stamina damage reduces the healing
 	else if(M.bodytemperature < T0C)
 		heal_factor *= (100 + max(T0C - M.bodytemperature, 200)) / 100 // if you're asleep, you get healed faster when you're cold (up to 3x at 73 kelvin)
 	M.adjustFireLoss(-7*heal_factor*REM)
