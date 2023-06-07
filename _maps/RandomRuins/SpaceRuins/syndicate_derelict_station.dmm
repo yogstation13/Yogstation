@@ -308,6 +308,10 @@
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
 /turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/research)
 "gP" = (
@@ -922,6 +926,10 @@
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
 /turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "tf" = (
@@ -939,6 +947,10 @@
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "tP" = (
 /obj/structure/lattice,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
 /turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
@@ -1040,6 +1052,14 @@
 /area/ruin/space/has_grav/syndiederelict/research)
 "vV" = (
 /obj/structure/lattice,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
 /turf/open/space/basic,
@@ -1150,6 +1170,14 @@
 "xW" = (
 /obj/item/stack/sheet/plastitaniumglass,
 /obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
 /turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "ya" = (
@@ -1217,6 +1245,10 @@
 /obj/structure/lattice,
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
 /turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/research)
 "zJ" = (
@@ -1272,6 +1304,10 @@
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
 /turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/research)
 "Bq" = (
@@ -1291,6 +1327,10 @@
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "BG" = (
 /obj/structure/lattice,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
+/obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
 /turf/open/space/basic,
@@ -1418,6 +1458,19 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/medbay)
+"Eq" = (
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/research)
 "Es" = (
 /obj/item/stack/sheet/plastitaniumglass,
 /obj/item/stack/sheet/plastitaniumglass,
@@ -1843,6 +1896,13 @@
 /obj/item/stack/sheet/plastitaniumglass,
 /obj/item/stack/sheet/plastitaniumglass,
 /obj/effect/decal/cleanable/blood/gibs/core,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "Na" = (
@@ -2104,6 +2164,12 @@
 "Tu" = (
 /obj/item/stack/sheet/plastitaniumglass,
 /obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
 /turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/research)
 "Tw" = (
@@ -2260,6 +2326,12 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "Xm" = (
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
 /obj/item/stack/sheet/plastitaniumglass,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/research)
@@ -3012,7 +3084,7 @@ AO
 KY
 GA
 lY
-Tu
+Eq
 BJ
 gx
 ub
