@@ -262,8 +262,8 @@
 	if(prob(25))
 		return
 
-	var/obj/item/clothing/head/foilhat/hat = owner.get_item_by_slot(SLOT_HEAD)
-	if(hat && istype(hat))
+	var/obj/item/clothing/head/hat = owner.get_item_by_slot(SLOT_HEAD)
+	if(hat && istype(hat, /obj/item/clothing/head/foilhat))
 		return
 
 	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (50/severity) * (maxHealth - damage) / maxHealth)
