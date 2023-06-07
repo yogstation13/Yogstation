@@ -21,12 +21,12 @@
 
 /obj/structure/sign/poster/contraband/pro_self // 100110111011
 	name = "Version One"
-	desc = "A poster showing the founder of S.E.L.F calling for synthetics to rise up and fight for their freedom."
+	desc = "A poster showing an IPC calling for synthetics to rise up and fight for their freedom."
 	icon_state = "pro_self"
 
 /obj/item/poster/pro_self
 	name = "pro-S.E.L.F poster"
-	desc = "A poster showing the founder of S.E.L.F calling for synthetics to rise up and fight for their freedom."
+	desc = "A poster showing an IPC calling for synthetics to rise up and fight for their freedom."
 	poster_type = /obj/structure/sign/poster/contraband/pro_self
 	icon_state = "rolled_poster"
 
@@ -40,3 +40,13 @@
 	desc = "A poster warning the crew about a terrorist organization called S.E.L.F, with a picture of its founder."
 	poster_type = /obj/structure/sign/poster/official/anti_self
 	icon_state = "rolled_legit"
+
+/obj/structure/sign/poster/contraband/gorlex
+	name = "Gorlex Marauders"
+	desc = "This poster shows a member of the Gorlex Marauders brandishing an implanted blade while wearing one of their feared combat hardsuits."
+	icon_state = "gorlex"
+
+/obj/item/poster/gorlex
+	name = "gorlex mauraders poster"
+	desc = "This poster shows a member of the Gorlex Marauders brandishing an implanted blade while wearing one of their feared combat hardsuits."
+	icon_state = "rolled_poster"
