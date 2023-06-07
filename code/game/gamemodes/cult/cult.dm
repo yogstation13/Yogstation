@@ -94,14 +94,13 @@
 
 
 /datum/game_mode/cult/post_setup()
+	. = ..()
 	main_cult = new
 
 	for(var/datum/mind/cult_mind in cultists_to_cult)
 		add_cultist(cult_mind, 0, equip=TRUE, cult_team = main_cult)
 
 	main_cult.setup_objectives() //Wait until all cultists are assigned to make sure none will be chosen as sacrifice.
-
-	. = ..()
 
 /datum/game_mode/cult/check_finished(force_ending)
 	if (..())
