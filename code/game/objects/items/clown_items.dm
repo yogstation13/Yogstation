@@ -121,7 +121,12 @@
 		if(do_after(user, src.cleanspeed, target))
 			to_chat(user, span_notice("You clean \the [target.name]."))
 			target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
-			target.set_opacity(initial(target.opacity))
+			var/obj/structure/window/our_window = target
+			if(our_window.bloodied)
+				for(var/obj/effect/decal/cleanable/blood/iter_blood in our_window)
+					our_window.vis_contents -= iter_blood
+					qdel(iter_blood)
+					our_window.bloodied = FALSE
 			decreaseUses(user)
 	else
 		user.visible_message("[user] begins to clean \the [target.name] with [src]...", span_notice("You begin to clean \the [target.name] with [src]..."))

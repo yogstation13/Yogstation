@@ -138,7 +138,7 @@
 		if(!spam_flag)
 			spam_flag = TRUE
 			playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)
-			addtimer(CALLBACK(src, .proc/reset_spamflag), 20)
+			addtimer(CALLBACK(src, PROC_REF(reset_spamflag)), 20)
 
 
 /obj/item/paper/attack_ai(mob/living/silicon/ai/user)
@@ -322,7 +322,7 @@
 								span_userdanger("You miss the paper and accidentally light yourself on fire!"))
 			user.dropItemToGround(P)
 			user.adjust_fire_stacks(1)
-			user.IgniteMob()
+			user.ignite_mob()
 			return
 
 		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper

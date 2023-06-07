@@ -362,7 +362,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(istype(M) && T2 && T2.z == z)
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(M, src) + 1)) ) )
+				H.adjust_hallucinations(max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(M, src) + 1)) ) ) )
 			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(M, src) + 1) )
 			M.rad_act(rads)
 
@@ -409,7 +409,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal/proc/surge(amount)
 	surging = amount
-	addtimer(CALLBACK(src, .proc/stopsurging), rand(30 SECONDS, 2 MINUTES))
+	addtimer(CALLBACK(src, PROC_REF(stopsurging)), rand(30 SECONDS, 2 MINUTES))
 
 /obj/machinery/power/supermatter_crystal/proc/stopsurging()
 	surging = 0
@@ -604,9 +604,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_RANGE(power))) // If they can see it without mesons on.  Bad on them.
 		if((!HAS_TRAIT(l, TRAIT_MESONS)) || corruptor_attached)
-			var/D = sqrt(1 / max(1, get_dist(l, src)))
-			l.hallucination += power * config_hallucination_power * D
-			l.hallucination = clamp(l.hallucination, 0, 200)
+			visible_hallucination_pulse(
+				center = src,
+				radius = HALLUCINATION_RANGE(power),
+				hallucination_duration = power * 0.1,
+				hallucination_max_duration = 400 SECONDS,
+			)
 
 	power -= ((power/500)**3) * powerloss_inhibitor
 
@@ -1204,7 +1207,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)
 		shard.say(span_danger("Supermatter is being charged up, please stand back."))
 		qdel(src)
-		addtimer(CALLBACK(shard, /obj/machinery/power/supermatter_crystal/shard.proc/trigger), 60)
+		addtimer(CALLBACK(shard, TYPE_PROC_REF(/obj/machinery/power/supermatter_crystal/shard, trigger)), 60)
 	return TRUE
 	
 /obj/machinery/power/supermatter_crystal/shard/proc/trigger()
@@ -1212,7 +1215,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	playsound(src, 'sound/machines/supermatter_alert.ogg', 75)
 	radio.talk_into(src, "Alert, new crystalline hyperstructure has been established in [A.map_name]", engineering_channel)
 	for(var/i=1 to 10)
-		addtimer(CALLBACK(src, .proc/chargedUp_zap), 30)
+		addtimer(CALLBACK(src, PROC_REF(chargedUp_zap)), 30)
 
 /obj/machinery/power/supermatter_crystal/shard/proc/chargedUp_zap()
 	supermatter_zap(src, 7, 3000)

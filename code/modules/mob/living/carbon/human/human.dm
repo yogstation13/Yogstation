@@ -19,13 +19,15 @@
 	if(dna.species)
 		set_species(dna.species.type)
 
+	prepare_huds() //Prevents a nasty runtime on human init
+
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
 	physiology = new()
 
 	. = ..()
 
-	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, .proc/clean_face)
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
 	AddComponent(/datum/component/personal_crafting)
 
 /mob/living/carbon/human/proc/setup_human_dna()
@@ -181,12 +183,12 @@
 
 	dat += "<tr><td><B>Exosuit:</B></td><td><A href='?src=[REF(src)];item=[SLOT_WEAR_SUIT]'>[(wear_suit && !(wear_suit.item_flags & ABSTRACT)) ? wear_suit : "<font color=grey>Empty</font>"]</A></td></tr>"
 	if(wear_suit)
-		if(SLOT_S_STORE in obscured)
+		if(SLOT_SUIT_STORE in obscured)
 			dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Suit Storage:</B></font></td></tr>"
 		else
-			dat += "<tr><td>&nbsp;&#8627;<B>Suit Storage:</B></td><td><A href='?src=[REF(src)];item=[SLOT_S_STORE]'>[(s_store && !(s_store.item_flags & ABSTRACT)) ? s_store : "<font color=grey>Empty</font>"]</A>"
+			dat += "<tr><td>&nbsp;&#8627;<B>Suit Storage:</B></td><td><A href='?src=[REF(src)];item=[SLOT_SUIT_STORE]'>[(s_store && !(s_store.item_flags & ABSTRACT)) ? s_store : "<font color=grey>Empty</font>"]</A>"
 			if(has_breathable_mask && istype(s_store, /obj/item/tank))
-				dat += "&nbsp;<A href='?src=[REF(src)];internal=[SLOT_S_STORE]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
+				dat += "&nbsp;<A href='?src=[REF(src)];internal=[SLOT_SUIT_STORE]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
 			dat += "</td></tr>"
 	else
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Suit Storage:</B></font></td></tr>"
@@ -777,7 +779,7 @@
 			electrocution_skeleton_anim = mutable_appearance(icon, "electrocuted_base")
 			electrocution_skeleton_anim.appearance_flags |= RESET_COLOR|KEEP_APART
 		add_overlay(electrocution_skeleton_anim)
-		addtimer(CALLBACK(src, .proc/end_electrocution_animation, electrocution_skeleton_anim), anim_duration)
+		addtimer(CALLBACK(src, PROC_REF(end_electrocution_animation), electrocution_skeleton_anim), anim_duration)
 
 	else //or just do a generic animation
 		flick_overlay_view(image(icon,src,"electrocuted_generic",ABOVE_MOB_LAYER), src, anim_duration)
@@ -868,7 +870,6 @@
 		regenerate_organs()
 	remove_all_embedded_objects()
 	set_heartattack(FALSE)
-	drunkenness = 0
 	for(var/datum/mutation/human/HM in dna.mutations)
 		if(HM.quality != POSITIVE)
 			dna.remove_mutation(HM.name)
@@ -1080,6 +1081,13 @@
 	. = ..()
 	. *= physiology.do_after_speed
 	. *= dna.species.action_speed_coefficient
+
+/mob/living/carbon/human/update_mobility()
+	..()
+	if(physiology?.crawl_speed && !(mobility_flags & MOBILITY_STAND))
+		add_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE, multiplicative_slowdown = physiology.crawl_speed)
+	else
+		remove_movespeed_modifier(MOVESPEED_ID_CRAWL_MODIFIER, TRUE)
 
 /mob/living/carbon/human/updatehealth()
 	var/oldhealth = health
@@ -1346,7 +1354,7 @@
 /mob/living/carbon/human/proc/hulk_stamina_check()
 	if(dna.check_mutation(ACTIVE_HULK))
 		if(staminaloss < 60 && prob(1))
-			confused = 7
+			adjust_confusion(7 SECONDS)
 			say("HULK SMASH!!")
 		if(staminaloss >= 90)
 			dna.remove_mutation(ACTIVE_HULK)
@@ -1358,15 +1366,6 @@
 
 /mob/living/carbon/human/Bump(atom/movable/AM)
 	..()
-	if(dna.check_mutation(ACTIVE_HULK) && confused && (world.time - last_bumped) > 15)
+	if(dna.check_mutation(ACTIVE_HULK) && has_status_effect(/datum/status_effect/confusion) && (world.time - last_bumped) > 15)
 		Bumped(AM)
 		return AM.attack_hulk(src)
-
-/mob/living/carbon/human/fall(forced)
-	. = ..()
-	if(resting)
-		return
-	var/obj/item/clothing/head/hat = get_item_by_slot(SLOT_HEAD)
-	if(istype(hat) && hat.hattable && prob(25))
-		visible_message("[src]'s [lowertext(hat.name)] falls off.")
-		dropItemToGround(hat)

@@ -63,12 +63,12 @@ the new instance inside the host to be updated to the template's stats.
 	SSdisease.archive_diseases[disease_template.GetDiseaseID()] = disease_template //important for stuff that uses disease IDs
 
 	var/datum/atom_hud/my_hud = GLOB.huds[DATA_HUD_SENTIENT_DISEASE]
-	my_hud.add_hud_to(src)
+	my_hud.show_to(src)
 
 	browser = new /datum/browser(src, "disease_menu", "Adaptation Menu", 1000, 770, src)
 
 	freemove_end = world.time + freemove_time
-	freemove_end_timerid = addtimer(CALLBACK(src, .proc/infect_random_patient_zero), freemove_time, TIMER_STOPPABLE)
+	freemove_end_timerid = addtimer(CALLBACK(src, PROC_REF(infect_random_patient_zero)), freemove_time, TIMER_STOPPABLE)
 
 /mob/camera/disease/Destroy()
 	. = ..()
@@ -229,7 +229,7 @@ the new instance inside the host to be updated to the template's stats.
 	MA.alpha = 200
 	holder.appearance = MA
 	var/datum/atom_hud/my_hud = GLOB.huds[DATA_HUD_SENTIENT_DISEASE]
-	my_hud.add_to_hud(V.affected_mob)
+	my_hud.add_atom_to_hud(V.affected_mob)
 
 	to_chat(src, span_notice("A new host, <b>[V.affected_mob.real_name]</b>, has been infected."))
 
@@ -245,7 +245,7 @@ the new instance inside the host to be updated to the template's stats.
 		to_chat(src, span_notice("One of your hosts, <b>[V.affected_mob.real_name]</b>, has been purged of your infection."))
 
 		var/datum/atom_hud/my_hud = GLOB.huds[DATA_HUD_SENTIENT_DISEASE]
-		my_hud.remove_from_hud(V.affected_mob)
+		my_hud.remove_atom_from_hud(V.affected_mob)
 
 		if(following_host == V.affected_mob)
 			follow_next()
@@ -262,7 +262,7 @@ the new instance inside the host to be updated to the template's stats.
 /mob/camera/disease/proc/set_following(mob/living/L)
 	if(following_host)
 		UnregisterSignal(following_host, COMSIG_MOVABLE_MOVED)
-	RegisterSignal(L, COMSIG_MOVABLE_MOVED, .proc/follow_mob)
+	RegisterSignal(L, COMSIG_MOVABLE_MOVED, PROC_REF(follow_mob))
 	following_host = L
 	follow_mob()
 
@@ -301,7 +301,7 @@ the new instance inside the host to be updated to the template's stats.
 /mob/camera/disease/proc/adapt_cooldown()
 	to_chat(src, span_notice("You have altered your genetic structure. You will be unable to adapt again for [DisplayTimeText(adaptation_cooldown)]."))
 	next_adaptation_time = world.time + adaptation_cooldown
-	addtimer(CALLBACK(src, .proc/notify_adapt_ready), adaptation_cooldown)
+	addtimer(CALLBACK(src, PROC_REF(notify_adapt_ready)), adaptation_cooldown)
 
 /mob/camera/disease/proc/notify_adapt_ready()
 	to_chat(src, span_notice("You are now ready to adapt again."))
@@ -399,7 +399,7 @@ the new instance inside the host to be updated to the template's stats.
 
 /datum/action/innate/disease_adapt
 	name = "Adaptation Menu"
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "disease_menu"
 
 /datum/action/innate/disease_adapt/Activate()

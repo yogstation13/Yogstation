@@ -78,7 +78,7 @@
 					controller.cycleClose(door)
 		else
 			controller.onlyClose(door)
-		addtimer(CALLBACK(src, .proc/not_busy), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(not_busy)), 2 SECONDS)
 
 /obj/machinery/doorButtons/access_button/proc/not_busy()
 	busy = FALSE

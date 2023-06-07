@@ -33,7 +33,7 @@
 	sound_to_playing_players('sound/effects/ratvar_reveal.ogg')
 	var/mutable_appearance/alert_overlay = mutable_appearance('icons/effects/clockwork_effects.dmi', "ratvar_alert")
 	notify_ghosts("The Justiciar's light calls to you! Reach out to Ratvar in [get_area_name(src)] to be granted a shell to spread his glory!", null, source = src, alert_overlay = alert_overlay)
-	INVOKE_ASYNC(SSshuttle.emergency, /obj/docking_port/mobile/emergency.proc/request, null, 10, null, FALSE, 0)
+	INVOKE_ASYNC(SSshuttle.emergency, TYPE_PROC_REF(/obj/docking_port/mobile/emergency, request), null, 10, null, FALSE, 0)
 
 /obj/structure/destructible/clockwork/massive/ratvar/Destroy()
 	GLOB.ratvar_awakens--

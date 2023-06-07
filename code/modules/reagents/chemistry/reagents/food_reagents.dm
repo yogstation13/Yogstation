@@ -125,7 +125,7 @@
 			F.fry(volume)
 			F.reagents.add_reagent(/datum/reagent/consumable/cooking_oil, reac_volume)
 
-/datum/reagent/consumable/cooking_oil/reaction_mob(mob/living/M, method = TOUCH, reac_volume, show_message = 1, touch_protection = 0)
+/datum/reagent/consumable/cooking_oil/reaction_mob(mob/living/M, method = TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(M))
 		return
 	var/boiling = FALSE
@@ -137,7 +137,7 @@
 		return TRUE
 	var/oil_damage = ((holder.chem_temp / fry_temperature) * 0.33) //Damage taken per unit
 	if(method == TOUCH)
-		oil_damage *= 1 - M.get_permeability_protection()
+		oil_damage *= M.get_permeability()
 	var/FryLoss = round(min(38, oil_damage * reac_volume))
 	if(!HAS_TRAIT(M, TRAIT_OIL_FRIED))
 		M.visible_message(span_warning("The boiling oil sizzles as it covers [M]!"), \
@@ -312,16 +312,16 @@
 				victim.emote("scream")
 			victim.blur_eyes(14)
 			victim.blind_eyes(10)
-			victim.confused = max(M.confused, 10)
+			victim.set_confusion_if_lower(10 SECONDS)
 			victim.damageoverlaytemp = 75
-			victim.Paralyze(100)
+			victim.Paralyze(10 SECONDS)
 			M.adjustStaminaLoss(3)
 			return
 		else if ( eyes_covered ) // Eye cover is better than mouth cover
 			if(prob(20))
 				victim.emote("cough")
 			victim.blur_eyes(4)
-			victim.confused = max(M.confused, 6)
+			victim.set_confusion_if_lower(5 SECONDS)
 			victim.damageoverlaytemp = 50
 			M.adjustStaminaLoss(3)
 			return
@@ -330,9 +330,9 @@
 				victim.emote("scream")
 			victim.blur_eyes(14)
 			victim.blind_eyes(10)
-			victim.confused = max(M.confused, 12)
+			victim.set_confusion_if_lower(12 SECONDS)
 			victim.damageoverlaytemp = 100
-			victim.Paralyze(140)
+			victim.Paralyze(14 SECONDS)
 			M.adjustStaminaLoss(5)
 		victim.update_damage_hud()
 
@@ -351,12 +351,6 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
 	taste_description = "salt"
-
-/datum/reagent/consumable/sodiumchloride/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(!istype(M))
-		return
-	if(M.has_bane(BANE_SALT))
-		M.mind.disrupt_spells(-200)
 
 /datum/reagent/consumable/sodiumchloride/reaction_turf(turf/T, reac_volume) //Creates an umbra-blocking salt pile
 	if(!istype(T))
@@ -402,24 +396,24 @@
 	taste_description = "mushroom"
 
 /datum/reagent/drug/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
-	if(!M.slurring)
-		M.slurring = 1
+	M.set_slurring_if_lower(1 SECONDS)
+
 	switch(current_cycle)
 		if(1 to 5)
-			M.Dizzy(5)
-			M.set_drugginess(30)
+			M.set_dizzy_if_lower(5 SECONDS)
+			M.set_drugginess_if_lower(30 SECONDS)
 			if(prob(10))
 				M.emote(pick("twitch","giggle"))
 		if(5 to 10)
-			M.Jitter(10)
-			M.Dizzy(10)
-			M.set_drugginess(35)
+			M.set_jitter_if_lower(20 SECONDS)
+			M.set_dizzy_if_lower(10 SECONDS)
+			M.set_drugginess_if_lower(35 SECONDS)
 			if(prob(20))
 				M.emote(pick("twitch","giggle"))
 		if (10 to INFINITY)
-			M.Jitter(20)
-			M.Dizzy(20)
-			M.set_drugginess(40)
+			M.set_jitter_if_lower(40 SECONDS)
+			M.adjust_dizzy(20 SECONDS)
+			M.set_drugginess_if_lower(40 SECONDS)
 			if(prob(30))
 				M.emote(pick("twitch","giggle"))
 	..()
@@ -436,7 +430,7 @@
 		if(prob(min(25,current_cycle)))
 			to_chat(M, span_danger("You can't get the scent of garlic out of your nose! You can barely think..."))
 			M.Paralyze(10)
-			M.Jitter(10)
+			M.adjust_jitter(10 SECONDS)
 	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.job == "Cook")
@@ -706,7 +700,7 @@
 	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = living_holder.mob_light(2)
 	mob_light_obj.set_light_color("#b5a213")
 	LAZYSET(mobs_affected, living_holder, mob_light_obj)
-	RegisterSignal(living_holder, COMSIG_PARENT_QDELETING, .proc/on_living_holder_deletion)
+	RegisterSignal(living_holder, COMSIG_PARENT_QDELETING, PROC_REF(on_living_holder_deletion))
 
 /datum/reagent/consumable/tinlux/proc/remove_reagent_light(mob/living/living_holder)
 	UnregisterSignal(living_holder, COMSIG_PARENT_QDELETING)
@@ -892,21 +886,21 @@
 	taste_mult = 2
 	taste_description = "fizzy sweetness"
 
-/datum/reagent/consumable/korta_flour
-	name = "Korta Flour"
-	description = "A coarsely ground, peppery flour made from korta nut shells."
+/datum/reagent/consumable/ute_flour
+	name = "Ute Flour"
+	description = "A coarsely ground, peppery flour made from ute nut shells."
 	taste_description = "earthy heat"
 	color = "#EEC39A"
 
-/datum/reagent/consumable/korta_milk
-	name = "Korta Milk"
-	description = "A milky liquid made by crushing the centre of a korta nut."
+/datum/reagent/consumable/ute_milk
+	name = "Ute Milk"
+	description = "A milky liquid made by crushing the centre of a ute nut."
 	taste_description = "sugary milk"
 	color = "#FFFFFF"
 
-/datum/reagent/consumable/korta_nectar
-	name = "Korta Nectar"
-	description = "A sweet, sugary syrup made from crushed sweet korta nuts."
+/datum/reagent/consumable/ute_nectar
+	name = "Ute Nectar"
+	description = "A sweet, sugary syrup made from crushed sweet ute nuts."
 	color = "#d3a308"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	metabolization_rate = 1 * REAGENTS_METABOLISM

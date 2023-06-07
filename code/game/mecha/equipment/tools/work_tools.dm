@@ -390,7 +390,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/cable_layer/attach()
 	..()
-	event = chassis.events.addEvent("onMove", CALLBACK(src, .proc/layCable))
+	event = chassis.events.addEvent("onMove", CALLBACK(src, PROC_REF(layCable)))
 	return
 
 /obj/item/mecha_parts/mecha_equipment/cable_layer/detach()

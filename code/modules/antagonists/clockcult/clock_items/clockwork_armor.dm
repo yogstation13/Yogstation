@@ -51,7 +51,7 @@
 			user.emote("scream")
 			user.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
 			user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30)
-		addtimer(CALLBACK(user, /mob/living.proc/dropItemToGround, src, TRUE), 1) //equipped happens before putting stuff on(but not before picking items up), 1). thus, we need to wait for it to be on before forcing it off.
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dropItemToGround), src, TRUE), 1) //equipped happens before putting stuff on(but not before picking items up), 1). thus, we need to wait for it to be on before forcing it off.
 
 /obj/item/clothing/head/helmet/clockwork/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
 	if(equipper && !is_servant_of_ratvar(equipper))
@@ -117,8 +117,8 @@
 			user.emote("scream")
 			user.apply_damage(15, BURN, BODY_ZONE_CHEST)
 			user.adjust_fire_stacks(2)
-			user.IgniteMob()
-		addtimer(CALLBACK(user, /mob/living.proc/dropItemToGround, src, TRUE), 1)
+			user.ignite_mob()
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dropItemToGround), src, TRUE), 1)
 
 /obj/item/clothing/gloves/clockwork
 	name = "clockwork gauntlets"
@@ -132,9 +132,8 @@
 	cold_protection = ARMS
 	heat_protection = ARMS
 	siemens_coefficient = 0
-	permeability_coefficient = 0.05
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list(MELEE = 80, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 80, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 60, RAD = 0, FIRE = 100, ACID = 100)
 
 /obj/item/clothing/gloves/clockwork/Initialize()
 	. = ..()
@@ -177,7 +176,7 @@
 			user.emote("scream")
 			user.apply_damage(7, BRUTE, BODY_ZONE_L_ARM)
 			user.apply_damage(7, BRUTE, BODY_ZONE_R_ARM)
-		addtimer(CALLBACK(user, /mob/living.proc/dropItemToGround, src, TRUE), 1)
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dropItemToGround), src, TRUE), 1)
 
 /obj/item/clothing/shoes/clockwork
 	name = "clockwork treads"
@@ -227,4 +226,4 @@
 			user.emote("scream")
 			user.apply_damage(7, BURN, BODY_ZONE_L_LEG)
 			user.apply_damage(7, BURN, BODY_ZONE_R_LEG)
-		addtimer(CALLBACK(user, /mob/living.proc/dropItemToGround, src, TRUE), 1)
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dropItemToGround), src, TRUE), 1)

@@ -64,6 +64,13 @@
 	if(holder.has_reagent(/datum/reagent/medicine/epinephrine))
 		holder.remove_reagent(/datum/reagent/medicine/epinephrine, 2*REM)
 	C.adjustPlasma(20)
+	if(isplasmaman(C))
+		toxpwr = 0
+		C.adjustBruteLoss(-0.25*REM, FALSE)
+		C.adjustFireLoss(-0.25*REM, FALSE)
+		C.adjustToxLoss(-0.5*REM, FALSE)
+	else
+		toxpwr = initial(toxpwr)
 	return ..()
 
 /datum/reagent/toxin/plasma/reaction_obj(obj/O, reac_volume)
@@ -198,9 +205,9 @@
 		return TRUE
 	switch(current_cycle)
 		if(1 to 5)
-			M.confused += 1
-			M.drowsyness += 1
-			M.slurring += 3
+			M.adjust_confusion(1 SECONDS)
+			M.adjust_drowsiness(1 SECONDS)
+			M.adjust_slurring(3 SECONDS)
 		if(5 to 8)
 			M.adjustStaminaLoss(40, 0)
 		if(9 to INFINITY)
@@ -236,7 +243,7 @@
 
 /datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/carbon/M)
 	if(!M.has_trauma_type(/datum/brain_trauma/mild/reality_dissociation))
-		M.hallucination += 5
+		M.adjust_hallucinations(20 SECONDS)
 	return ..()
 
 /datum/reagent/toxin/relaxant
@@ -316,7 +323,7 @@
 
 /datum/reagent/toxin/spore_burning/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
-	M.IgniteMob()
+	M.ignite_mob()
 	return ..()
 
 /datum/reagent/toxin/chloralhydrate
@@ -328,18 +335,18 @@
 	toxpwr = 0
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
-/datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/carbon/M)
+/datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/carbon/affected_mob)
 	switch(current_cycle)
 		if(1 to 10)
-			M.confused += 2
-			M.drowsyness += 2
+			affected_mob.adjust_confusion(2 SECONDS * REM)
+			affected_mob.adjust_drowsiness(4 SECONDS * REM)
 		if(10 to 50)
-			M.Sleeping(40, 0)
-			. = 1
+			affected_mob.Sleeping(4 SECONDS * REM)
+			. = TRUE
 		if(51 to INFINITY)
-			M.Sleeping(40, 0)
-			M.adjustToxLoss((current_cycle - 50)*REM, 0)
-			. = 1
+			affected_mob.Sleeping(4 SECONDS * REM )
+			affected_mob.adjustToxLoss(1 * (current_cycle - 50) * REM, FALSE)
+			. = TRUE
 	..()
 
 /datum/reagent/toxin/fakebeer	//disguised as normal beer for use by emagged brobots
@@ -400,6 +407,43 @@
 	data = max(data - 1, 3)
 	..()
 	. = 1
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien
+	name = "Alien Neurotoxin"
+	description = "A strong neurotoxin that puts the subject into a death-like state. Now 100% more concentrated!"
+	color = "#2E2E61" // rgb: 46, 46, 97
+	taste_description = "a numbing sensation"
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+	glass_icon_state = "neurotoxinglass"
+	glass_name = "Neurotoxin"
+	glass_desc = "A drink that is guaranteed to knock you silly."
+	var/list/paralyzeparts = list(TRAIT_PARALYSIS_L_ARM, TRAIT_PARALYSIS_R_ARM, TRAIT_PARALYSIS_R_LEG, TRAIT_PARALYSIS_L_LEG)
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/proc/pickparalyze()
+	var/selected = pick(paralyzeparts)
+	paralyzeparts -= selected
+	return selected
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/on_mob_life(mob/living/carbon/M)
+	M.adjust_dizzy(2 SECONDS)
+	if(prob(40))
+		if(prob(50))
+			var/part = pickparalyze()
+			if(part)
+				M.balloon_alert(M, "your limbs go numb!")
+				ADD_TRAIT(M, part, type)
+		else
+			M.drop_all_held_items()
+			to_chat(M, span_warning("You can't feel your hands!"))
+	. = 1
+	..()
+
+/datum/reagent/toxin/staminatoxin/neurotoxin_alien/on_mob_end_metabolize(mob/living/carbon/M)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_L_ARM, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_R_ARM, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_R_LEG, type)
+	REMOVE_TRAIT(M, TRAIT_PARALYSIS_L_LEG, type)
+	. = ..()
 
 /datum/reagent/toxin/polonium
 	name = "Polonium"
@@ -547,9 +591,9 @@
 	color = "#C8C8C8"
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
 
-/datum/reagent/itching_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/itching_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(method == TOUCH || method == VAPOR)
-		M.reagents?.add_reagent(/datum/reagent/itching_powder, reac_volume)
+		M.reagents?.add_reagent(/datum/reagent/itching_powder, reac_volume * permeability)
 
 /datum/reagent/itching_powder/on_mob_life(mob/living/carbon/M)
 	if(prob(15))

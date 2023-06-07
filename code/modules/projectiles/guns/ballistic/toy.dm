@@ -60,11 +60,6 @@
 	. = ..()
 	add_overlay("[icon_state]_toy")
 
-/obj/item/gun/ballistic/shotgun/toy/process_chamber(empty_chamber = 0)
-	..()
-	if(chambered && !chambered.BB)
-		qdel(chambered)
-
 /obj/item/gun/ballistic/shotgun/toy/unrestricted
 	pin = /obj/item/firing_pin
 
@@ -73,7 +68,7 @@
 	desc = "A weapon favored by many overactive children. Ages 8 and up."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "foamcrossbow"
-	item_state = "crossbow"
+	item_state = "ecrossbow"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/toy/crossbow
 	fire_sound = 'sound/items/syringeproj.ogg'
 	slot_flags = ITEM_SLOT_BELT

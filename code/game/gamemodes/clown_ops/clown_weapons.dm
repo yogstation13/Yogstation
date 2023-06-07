@@ -17,10 +17,9 @@
 	desc = "advanced clown shoes that protect the wearer and render them nearly immune to slipping on their own peels. They also squeak at 100% capacity."
 	clothing_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 10, RAD = 0, FIRE = 70, ACID = 50)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 60, RAD = 0, FIRE = 70, ACID = 50)
 	strip_delay = 70
 	resistance_flags = NONE
-	permeability_coefficient = 0.05
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
 /// Recharging rate in PPS (peels per second)
@@ -32,10 +31,9 @@
 	name = "mk-honk combat shoes"
 	desc = "The culmination of years of clown combat research, these shoes leave a trail of chaos in their wake. They will slowly recharge themselves over time, or can be manually charged with bananium."
 	slowdown = SHOES_SLOWDOWN
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 10, RAD = 0, FIRE = 70, ACID = 50)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 60, RAD = 0, FIRE = 70, ACID = 50)
 	strip_delay = 70
 	resistance_flags = NONE
-	permeability_coefficient = 0.05
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	always_noslip = TRUE
 
@@ -171,7 +169,7 @@
 			var/datum/component/slippery/slipper = GetComponent(/datum/component/slippery)
 			slipper.Slip(src, hit_atom)
 		if(thrownby && !caught)
-			addtimer(CALLBACK(src, /atom/movable.proc/throw_at, thrownby, throw_range+2, throw_speed, null, TRUE), 1)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	else
 		return ..()
 
@@ -241,7 +239,7 @@
 /obj/item/clothing/mask/fakemoustache/sticky/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
-	addtimer(CALLBACK(src, .proc/unstick), unstick_time)
+	addtimer(CALLBACK(src, PROC_REF(unstick)), unstick_time)
 
 /obj/item/clothing/mask/fakemoustache/sticky/proc/unstick()
 	REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)

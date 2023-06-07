@@ -1,7 +1,7 @@
 /* Formatting for these files, from top to bottom:
 	* Action
 	* Trigger()
-	* IsAvailable()
+	* IsAvailable(feedback = FALSE)
 	* Items
 	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
@@ -11,7 +11,7 @@
 	desc = "Extend a wire for reeling in foes from a distance. Reeled in targets will be unable to walk for 1.5 seconds. \
 			Anchored targets that are hit will pull you towards them instead. \
 			It can be used 3 times before reeling back into the arm."
-	icon_icon = 'icons/obj/guns/magic.dmi'
+	button_icon = 'icons/obj/guns/magic.dmi'
 	button_icon_state = "hook"
 	cooldown_time = 5 SECONDS
 
@@ -47,7 +47,7 @@
 		if(owner.active_hand_index % 2 == 0)
 			owner.swap_hand(0) //making the grappling hook hand (right) the active one so using it is streamlined
 
-/datum/action/cooldown/buster/wire_snatch/l/IsAvailable()
+/datum/action/cooldown/buster/wire_snatch/l/IsAvailable(feedback = FALSE)
 	. = ..()
 	var/mob/living/O = owner
 	var/obj/item/bodypart/l_arm/L = O.get_bodypart(BODY_ZONE_L_ARM)
@@ -55,7 +55,7 @@
 		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
 
-/datum/action/cooldown/buster/wire_snatch/r/IsAvailable()
+/datum/action/cooldown/buster/wire_snatch/r/IsAvailable(feedback = FALSE)
 	. = ..()
 	var/mob/living/O = owner
 	var/obj/item/bodypart/r_arm/R = O.get_bodypart(BODY_ZONE_R_ARM)
@@ -144,6 +144,7 @@
 		zip(H, target) // Pull us towards it if it's anchored
 	if(isliving(target)) // If it's somebody
 		H.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)
+		H.swap_hand(0) //for the sake of throttling people you catch
 		var/mob/living/L = target
 		var/turf/T = get_step(get_turf(H), H.dir)
 		var/turf/Q = get_turf(H)

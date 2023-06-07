@@ -79,28 +79,28 @@ Difficulty: Hard
 
 /datum/action/innate/megafauna_attack/triple_charge
 	name = "Triple Charge"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = span_colossus("You are now triple charging at the target you click on.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/hallucination_charge
 	name = "Hallucination Charge"
-	icon_icon = 'icons/effects/bubblegum.dmi'
+	button_icon = 'icons/effects/bubblegum.dmi'
 	button_icon_state = "smack ya one"
 	chosen_message = span_colossus("You are now charging with hallucinations at the target you click on.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/hallucination_surround
 	name = "Surround Target"
-	icon_icon = 'icons/turf/walls/wall.dmi'
+	button_icon = 'icons/turf/walls/wall.dmi'
 	button_icon_state = "wall"
 	chosen_message = span_colossus("You are now surrounding the target you click on with hallucinations.")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/blood_warp
 	name = "Blood Warp"
-	icon_icon = 'icons/effects/blood.dmi'
+	button_icon = 'icons/effects/blood.dmi'
 	button_icon_state = "floor1"
 	chosen_message = span_colossus("You are now warping to blood around your clicked position.")
 	chosen_attack_num = 4
@@ -166,7 +166,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/surround_with_hallucinations()
 	for(var/i = 1 to 5)
-		INVOKE_ASYNC(src, .proc/hallucination_charge_around, 2, 8, 2, 0, 4)
+		INVOKE_ASYNC(src, PROC_REF(hallucination_charge_around), 2, 8, 2, 0, 4)
 		if(ismob(target))
 			charge(delay = 6)
 		else
@@ -211,7 +211,7 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/try_bloodattack()
 	var/list/targets = get_mobs_on_blood()
 	if(targets.len)
-		INVOKE_ASYNC(src, .proc/bloodattack, targets, prob(50))
+		INVOKE_ASYNC(src, PROC_REF(bloodattack), targets, prob(50))
 		return TRUE
 	return FALSE
 
@@ -277,7 +277,7 @@ Difficulty: Hard
 				var/turf/targetturf = get_step(src, dir)
 				L.forceMove(targetturf)
 				playsound(targetturf, 'sound/magic/exit_blood.ogg', 100, 1, -1)
-				addtimer(CALLBACK(src, .proc/devour, L), 2)
+				addtimer(CALLBACK(src, PROC_REF(devour), L), 2)
 	SLEEP_CHECK_DEATH(1)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/blood_warp()
@@ -344,7 +344,7 @@ Difficulty: Hard
 	change_move_delay(3.75)
 	var/newcolor = rgb(149, 10, 10)
 	add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
-	var/datum/callback/cb = CALLBACK(src, .proc/blood_enrage_end)
+	var/datum/callback/cb = CALLBACK(src, PROC_REF(blood_enrage_end))
 	addtimer(cb, enrage_time)
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/blood_enrage_end(var/newcolor = rgb(149, 10, 10))
@@ -391,7 +391,7 @@ Difficulty: Hard
 				continue
 		var/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/B = new /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination(src.loc)
 		B.forceMove(place)
-		INVOKE_ASYNC(B, .proc/charge, chargeat, delay, chargepast)
+		INVOKE_ASYNC(B, PROC_REF(charge), chargeat, delay, chargepast)
 	if(useoriginal)
 		charge(chargeat, delay, chargepast)
 
@@ -401,7 +401,7 @@ Difficulty: Hard
 	desc = "You're not quite sure how a signal can be bloody."
 	invisibility = 100
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	. = ..()
 	if(. > 0 && prob(25))
 		var/obj/effect/decal/cleanable/blood/gibs/bubblegum/B = new /obj/effect/decal/cleanable/blood/gibs/bubblegum(loc)
@@ -549,7 +549,7 @@ Difficulty: Hard
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/Life()
 	return
 
-/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	return
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination/OpenFire()

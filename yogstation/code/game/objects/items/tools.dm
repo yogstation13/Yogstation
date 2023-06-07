@@ -14,7 +14,6 @@
 	force = 15
 	toolspeed = 0.7
 	tool_behaviour = TOOL_CROWBAR
-	var/pryforce = 1 // the speed at which airlocks are pried open. Default is 1 .
 
 //jaws of life changing jaw code
 /obj/item/jawsoflife/attack_self(mob/user)
@@ -163,7 +162,6 @@
 	materials = list(MAT_METAL=400,MAT_SILVER=10,MAT_TITANIUM=80)
 	toolspeed = 0.3 // Starting minimum value. Pump it up by using it up to the max
 	tool_behaviour = TOOL_CROWBAR
-	pryforce = 0.4
 	var/pump_charge = 0
 	var/pump_max = 100
 	var/pump_min = 0
@@ -186,8 +184,8 @@
 			pump_charge = (pump_charge + pump_rate) > pump_max ? pump_max : pump_charge + pump_rate
 			if(old_value != pump_charge)
 				playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE) // no need you pump; didn't pump but instead looked at the gage
-				addtimer(CALLBACK(src, .proc/pump_cooldown), 5) // cooldown between pumps
-				addtimer(CALLBACK(src, .proc/pump_powerdown), 300) // lose gained power after 30 seconds
+				addtimer(CALLBACK(src, PROC_REF(pump_cooldown)), 5) // cooldown between pumps
+				addtimer(CALLBACK(src, PROC_REF(pump_powerdown)), 300) // lose gained power after 30 seconds
 	return
 
 /obj/item/jawsoflife/jimmy/proc/pump_powerdown(mob/user)

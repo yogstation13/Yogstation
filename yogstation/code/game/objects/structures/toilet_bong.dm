@@ -20,8 +20,8 @@
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.max_combined_w_class = WEIGHT_CLASS_SMALL * 24
 	STR.max_items = 24
-	RegisterSignal(STR, COMSIG_STORAGE_INSERTED, .proc/update_icon)
-	RegisterSignal(STR, COMSIG_STORAGE_REMOVED, .proc/update_icon)
+	RegisterSignal(STR, COMSIG_STORAGE_INSERTED, PROC_REF(update_icon))
+	RegisterSignal(STR, COMSIG_STORAGE_REMOVED, PROC_REF(update_icon))
 
 /obj/structure/toilet_bong/update_icon()
 	. = ..()

@@ -8,13 +8,13 @@
 	..()
 	if(hud_type && slot == SLOT_GLASSES)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.add_hud_to(user)
+		H.show_to(user)
 
 /obj/item/clothing/glasses/hud/dropped(mob/living/carbon/human/user)
 	..()
 	if(hud_type && istype(user) && user.glasses == src)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.remove_hud_from(user)
+		H.hide_from(user)
 
 /obj/item/clothing/glasses/hud/emp_act(severity)
 	. = ..()
@@ -123,6 +123,7 @@
 	chameleon_action.chameleon_name = "Glasses"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/glasses/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
+	add_item_action(chameleon_action)
 
 /obj/item/clothing/glasses/hud/security/chameleon/emp_act(severity)
 	. = ..()
@@ -203,7 +204,7 @@
 
 	if (hud_type)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.remove_hud_from(user)
+		H.hide_from(user)
 
 	if (hud_type == DATA_HUD_MEDICAL_ADVANCED)
 		hud_type = null
@@ -214,7 +215,10 @@
 
 	if (hud_type)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.add_hud_to(user)
+		H.show_to(user)
+
+/datum/action/item_action/switch_hud
+	name = "Switch HUD"
 
 /obj/item/clothing/glasses/hud/toggle/thermal
 	name = "thermal HUD scanner"

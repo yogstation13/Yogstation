@@ -61,7 +61,7 @@
 /datum/syndicate_contract/proc/launch_extraction_pod(turf/empty_pod_turf)
 	var/obj/structure/closet/supplypod/extractionpod/empty_pod = new()
 
-	RegisterSignal(empty_pod, COMSIG_ATOM_ENTERED, .proc/enter_check)
+	RegisterSignal(empty_pod, COMSIG_ATOM_ENTERED, PROC_REF(enter_check))
 
 	empty_pod.stay_after_drop = TRUE
 	empty_pod.reversing = TRUE
@@ -154,7 +154,7 @@
 /datum/syndicate_contract/proc/handleVictimExperience(var/mob/living/M)
 	// Ship 'em back - dead or alive, 4 minutes wait.
 	// Even if they weren't the target, we're still treating them the same.
-	addtimer(CALLBACK(src, .proc/returnVictim, M), (6 SECONDS * 10) * 4)
+	addtimer(CALLBACK(src, PROC_REF(returnVictim), M), (6 SECONDS * 10) * 4)
 
 	if (M.stat != DEAD)
 		// Heal them up - gets them out of crit/soft crit. If omnizine is removed in the future, this needs to be replaced with a
@@ -162,16 +162,16 @@
 		M.reagents.add_reagent(/datum/reagent/medicine/omnizine, 20)
 
 		M.flash_act()
-		M.confused += 10
+		M.adjust_confusion(10 SECONDS)
 		M.blur_eyes(0.5 SECONDS)
 		to_chat(M, span_warning("You feel strange..."))
 		sleep(6 SECONDS)
 		to_chat(M, span_warning("That pod did something to you..."))
-		M.Dizzy(3.5 SECONDS)
+		M.adjust_dizzy(3.5 SECONDS)
 		sleep(6.5 SECONDS)
 		to_chat(M, span_warning("Your head pounds... It feels like it's going to burst out your skull!"))
 		M.flash_act()
-		M.confused += 20
+		M.adjust_confusion(20 SECONDS)
 		M.blur_eyes(3)
 		sleep(3 SECONDS)
 		to_chat(M, span_warning("Your head pounds..."))
@@ -182,8 +182,8 @@
 					we thank you for providing them. Your value is expended, and you will be ransomed back to your station. We always get paid, \
 					so it's only a matter of time before we ship you back...\"</i></span>")
 		M.blur_eyes(1 SECONDS)
-		M.Dizzy(1.5 SECONDS)
-		M.confused += 20
+		M.adjust_dizzy(1.5 SECONDS)
+		M.adjust_confusion(20 SECONDS)
 
 // We're returning the victim
 /datum/syndicate_contract/proc/returnVictim(var/mob/living/M)
@@ -221,8 +221,8 @@
 
 		M.flash_act()
 		M.blur_eyes(30)
-		M.Dizzy(35)
-		M.confused += 20
+		M.adjust_dizzy(35 SECONDS)
+		M.adjust_confusion(20 SECONDS)
 
 		new /obj/effect/DPtarget(possible_drop_loc[pod_rand_loc], return_pod)
 	else

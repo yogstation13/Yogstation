@@ -91,7 +91,7 @@
 
 	//Get the surgery bed component and adds available surgeries to the list
 	var/datum/component/surgery_bed/SB
-	for(var/obj/op_table in T.GetAllContents())
+	for(var/obj/op_table in T.get_all_contents())
 		SB = op_table.GetComponent(/datum/component/surgery_bed)
 		if(istype(SB))
 			break
@@ -163,7 +163,7 @@
 	var/probability = 0.5
 	var/turf/T = get_turf(target)
 
-	for(var/obj/op_table in T.GetAllContents())
+	for(var/obj/op_table in T.get_all_contents())
 		var/datum/component/surgery_bed/SB = op_table.GetComponent(/datum/component/surgery_bed)
 		if(SB)
 			probability = SB.success_chance

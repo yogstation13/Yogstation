@@ -438,7 +438,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		moveToNullspace()
 	powernet.remove_cable(src) //remove the cut cable from its powernet
 
-	addtimer(CALLBACK(O, .proc/auto_propogate_cut_cable, O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
+	addtimer(CALLBACK(O, PROC_REF(auto_propogate_cut_cable), O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
 
 	// Disconnect machines connected to nodes
 	if(d1 == 0) // if we cut a node (O-X) cable
@@ -554,6 +554,8 @@ By design, d1 is the smallest direction and d2 is the highest
 		to_chat(user, span_warning("[affecting] is already in good condition!"))
 		return FALSE
 	if(affecting && affecting.status == BODYPART_ROBOTIC)
+		if(INTERACTING_WITH(user, H))
+			return FALSE
 		user.visible_message(span_notice("[user] starts to fix some of the wires in [H]'s [affecting.name]."), span_notice("You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.name]."))
 		heal_robo_limb(src, H, user, 0, 15, 1)
 		user.visible_message(span_notice("[user] fixes the wires in [H]'s [affecting.name]."), span_notice("You fix the wires in [H == user ? "your" : "[H]'s"] [affecting.name]."))

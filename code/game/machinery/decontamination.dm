@@ -105,13 +105,13 @@
 				mob_occupant.adjustFireLoss(rand(15, 26))
 				mob_occupant.radiation += 500
 				mob_occupant.adjust_fire_stacks(2)
-				mob_occupant.IgniteMob()
+				mob_occupant.ignite_mob()
 			if(iscarbon(mob_occupant) && mob_occupant.stat < UNCONSCIOUS)
 				//Awake, organic and screaming
 				mob_occupant.emote("scream")
 		else
 			decon.start()
-		addtimer(CALLBACK(src, .proc/cook), 50)
+		addtimer(CALLBACK(src, PROC_REF(cook)), 50)
 	else
 		uv_cycles = initial(uv_cycles)
 		uv = FALSE
@@ -120,12 +120,12 @@
 			flick("tube_up", src)
 			decon_emagged.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject_emagged), flick_waitTime)
+			addtimer(CALLBACK(src, PROC_REF(decon_eject_emagged)), flick_waitTime)
 		else
 			flick("tube_up", src)
 			decon.stop()
 			playsound(src, 'sound/machines/decon/decon-up.ogg', 100, TRUE)
-			addtimer(CALLBACK(src, .proc/decon_eject), flick_waitTime)
+			addtimer(CALLBACK(src, PROC_REF(decon_eject)), flick_waitTime)
 
 /obj/machinery/decontamination_unit/proc/decon_eject_emagged()
 	var/mob/living/mob_occupant = occupant
@@ -152,10 +152,10 @@
 		mob_occupant.radiation = 0
 	else
 		visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
-	var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
+	var/list/things_to_clear = list() //Done this way since using get_all_contents on the SSU itself would include circuitry and such.
 	if(occupant)
 		things_to_clear += occupant
-		things_to_clear += occupant.GetAllContents()
+		things_to_clear += occupant.get_all_contents()
 		dump_mob()
 	if(contents.len)
 		things_to_clear += contents
@@ -237,7 +237,7 @@
 	if(locked)
 		visible_message(span_notice("You hear someone kicking against the doors of [src]!"), \
 			span_notice("You start kicking against the doors..."))
-		addtimer(CALLBACK(src, .proc/resist_open, user), 300)
+		addtimer(CALLBACK(src, PROC_REF(resist_open), user), 300)
 	else
 		open_machine()
 		dump_mob()

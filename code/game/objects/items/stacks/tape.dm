@@ -45,14 +45,14 @@
 	if(I.w_class > maximum_weight_class)
 		to_chat(user, span_warning("[I] is too big!"))
 		return
-	var/list/item_contents = I.GetAllContents()
+	var/list/item_contents = I.get_all_contents()
 	for(var/obj/item/C in item_contents)
 		if(is_type_in_typecache(C,tape_blacklist))
 			to_chat(user, span_warning("The [src] doesn't seem to stick to [I]!"))
 			return
 	to_chat(user, span_info("You wrap [I] with [src]."))
 	use(1)
-	I.embedding = I.embedding.setRating(100, fall_chance, 0, 0, 0, 0, removal_pain, removal_time, TRUE)
+	I.embedding = I.embedding.setRating(100, fall_chance, 0, 0, 0, 0, removal_pain, removal_time, TRUE, 0)
 	I.taped = TRUE
 
 /obj/item/stack/tape/guerrilla

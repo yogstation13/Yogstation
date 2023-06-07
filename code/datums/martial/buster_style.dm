@@ -14,13 +14,14 @@
 	COOLDOWN_DECLARE(next_mop)
 	COOLDOWN_DECLARE(next_grapple)
 	COOLDOWN_DECLARE(next_slam)
+	var/recalibration = /mob/living/carbon/human/proc/buster_recalibration
 	var/old_density //so people grappling something arent pushed by it until it's thrown
 
 //proc the moves will use for damage dealing
 
 /datum/martial_art/buster_style/proc/grab(mob/living/user, mob/living/target, damage)
 		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
+		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 15)
 		target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
 //animation procs
@@ -43,6 +44,24 @@
 /datum/martial_art/buster_style/can_use(mob/living/carbon/human/H)
 	var/obj/item/bodypart/r_arm/robot/buster/R = H.get_bodypart(BODY_ZONE_R_ARM)
 	var/obj/item/bodypart/l_arm/robot/buster/L = H.get_bodypart(BODY_ZONE_L_ARM)
+	if(L)
+		if(!istype(L, /obj/item/bodypart/l_arm/robot/buster))
+			if(R && !istype(R, /obj/item/bodypart/r_arm/robot/buster))
+				src.remove(H)
+				return FALSE
+		else
+			if(R && !istype(R, /obj/item/bodypart/r_arm/robot/buster))
+				if((L?.bodypart_disabled))
+					return FALSE
+	if(R)
+		if(!istype(R, /obj/item/bodypart/r_arm/robot/buster))
+			if(L && !istype(L, /obj/item/bodypart/l_arm/robot/buster))
+				src.remove(H)
+				return FALSE
+		else
+			if(L && !istype(L, /obj/item/bodypart/l_arm/robot/buster))
+				if((R?.bodypart_disabled))
+					return FALSE
 	if(H.restrained() || H.get_active_held_item() || HAS_TRAIT(H, TRAIT_PACIFISM) || !(H.mobility_flags & MOBILITY_MOVE) || H.stat != CONSCIOUS)
 		for(var/atom/movable/K in thrown)
 			thrown.Remove(K)
@@ -55,11 +74,6 @@
 	if(L && R)
 		if((L?.bodypart_disabled) && (R?.bodypart_disabled))
 			to_chat(H, span_warning("The arms aren't in a functional state right now!"))
-			return FALSE
-		return TRUE //still got the other arm to pop off with
-	if(R || L)
-		if(R?.bodypart_disabled || L?.bodypart_disabled)
-			to_chat(H, span_warning("The [L ? "left" : "right"] buster arm isn't in a functional state right now!"))
 			return FALSE
 	return ..()
 
@@ -363,7 +377,7 @@
 /datum/martial_art/buster_style/proc/slam(mob/living/user, mob/living/target)
 	var/supdam = 20
 	var/crashdam = 10
-	var/walldam = 30
+	var/walldam = 20
 	var/turf/Z = get_turf(user)
 	if(!COOLDOWN_FINISHED(src, next_slam))
 		to_chat(user, span_warning("You can't do that yet!"))
@@ -385,8 +399,8 @@
 		playsound(user, 'sound/effects/gravhit.ogg', 20, 1)
 		if(!istype(W, /turf/closed/wall/r_wall)) // Attempt to destroy the wall
 			W.dismantle_wall(1)
-			target.forceMove(Q) // Move the mob behind us
 		else		
+			grab(user, target, walldam) 
 			target.forceMove(Z) // If we couldn't smash the wall, put them under our tile
 			return // Stop here, don't apply any more damage or checks
 	for(var/obj/D in Q.contents) // If there's dense objects behind us, apply damage to the mob for each one they are slammed into
@@ -472,23 +486,36 @@
 	destroys it but uses up the attack. Attacking a living target uses up the attack and sends them flying and dismembers their limb if its damaged enough. Has a 15 second \
 	cooldown."
 
-	combined_msg +=  span_warning("You can't perform any of the moves if you have an occupied hand. Additionally, if your buster arm should become disabled, so shall\
-	 your moves.")
+	combined_msg +=  span_warning("You can't perform any of the moves if you have an occupied hand. Additionally, if your buster arm should become disabled, so shall your moves.")
 
-	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 50% for 2 seconds.</b>")
+	combined_msg +=  span_warning("Should your moves cease to function altogether, utilize the 'Recalibrate Arm' function.")
+
+	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 25% for 2 seconds.</b>")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
+
+/mob/living/carbon/human/proc/buster_recalibration()
+	set name = "Recalibrate Arm"
+	set desc = "You recalibrate the arm to restore missing functionality."
+	set category = "Buster Style"
+	var/list/combined_msg = list()
+	combined_msg +=  "<b><i>You recalibrate your arm in an attempt to restore its functionality.</i></b>"
+	to_chat(usr, examine_block(combined_msg.Join("\n")))
+
+	usr.click_intercept = usr.mind.martial_art
 
 /datum/martial_art/buster_style/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
 	var/datum/species/S = H.dna?.species
 	ADD_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
 	S.add_no_equip_slot(H, SLOT_GLOVES)
+	add_verb(H, recalibration)
 	usr.click_intercept = src 
 
 /datum/martial_art/buster_style/on_remove(mob/living/carbon/human/H)
 	var/datum/species/S = H.dna?.species
 	REMOVE_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
 	S.remove_no_equip_slot(H, SLOT_GLOVES)
+	remove_verb(H, recalibration)
 	usr.click_intercept = null 
 	..()

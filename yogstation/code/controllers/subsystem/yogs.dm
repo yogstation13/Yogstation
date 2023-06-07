@@ -206,4 +206,4 @@ SUBSYSTEM_DEF(Yogs)
 		if(ACCOUNT_SEC)
 			return "Security"
 		else
-			return "N/A report this to coders, see .proc/getDepartmentFromAccount"
+			return "N/A report this to coders, see PROC_REF(getDepartmentFromAccount)"

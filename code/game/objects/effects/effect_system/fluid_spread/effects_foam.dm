@@ -226,7 +226,7 @@
 
 /obj/effect/particle_effect/fluid/foam/firefighting/Initialize(mapload)
 	. = ..()
-	//RemoveElement(/datum/element/atmos_sensitive)
+	//Remove_element(/datum/element/atmos_sensitive)
 
 /obj/effect/particle_effect/fluid/foam/firefighting/process()
 	..()
@@ -261,7 +261,7 @@
 	if(!istype(foaming))
 		return
 	foaming.adjust_fire_stacks(-2)
-	foaming.ExtinguishMob()
+	foaming.extinguish_mob()
 
 /// A factory which produces firefighting foam
 /datum/effect_system/fluid_spread/foam/firefighting
@@ -399,6 +399,6 @@
 			comp.visible_message(span_danger("[comp] sealed shut!"))
 
 	for(var/mob/living/potential_tinder in location)
-		potential_tinder.ExtinguishMob()
+		potential_tinder.extinguish_mob()
 	for(var/obj/item/potential_tinder in location)
 		potential_tinder.extinguish()

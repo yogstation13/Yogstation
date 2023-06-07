@@ -86,7 +86,7 @@
 	// Okay here's a better name: It's a fucking *event handler*. Like the ones in javascript.
 	// a much more descriptive and less scary name than fucking "COMSIG". But noooooooooo
 	// the TG coders were too self important to pick a descriptive name and wanted to sound all scientific
-	RegisterSignal(SP, COMSIG_MOUSEDROPPED_ONTO, .proc/spacepod_mousedrop)
+	RegisterSignal(SP, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(spacepod_mousedrop))
 	SP.verbs |= /obj/spacepod/proc/unload_cargo
 
 /obj/item/spacepod_equipment/cargo/large/on_uninstall()
@@ -147,7 +147,7 @@
 
 /obj/item/spacepod_equipment/cargo/large/ore/on_install(obj/spacepod/SP)
 	..()
-	RegisterSignal(SP, COMSIG_MOVABLE_MOVED, .proc/spacepod_moved)
+	RegisterSignal(SP, COMSIG_MOVABLE_MOVED, PROC_REF(spacepod_moved))
 
 /obj/item/spacepod_equipment/cargo/large/ore/on_uninstall()
 	UnregisterSignal(spacepod, COMSIG_MOVABLE_MOVED)
@@ -291,7 +291,7 @@
 
 /obj/item/spacepod_equipment/lock/on_install(obj/spacepod/SP)
 	..()
-	RegisterSignal(SP, COMSIG_PARENT_ATTACKBY, .proc/spacepod_attackby)
+	RegisterSignal(SP, COMSIG_PARENT_ATTACKBY, PROC_REF(spacepod_attackby))
 	SP.lock = src
 
 /obj/item/spacepod_equipment/lock/on_uninstall()

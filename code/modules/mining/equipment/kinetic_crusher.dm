@@ -100,7 +100,7 @@
 		D.fire()
 		charged = FALSE
 		icon_state = "mining_hammer0_uncharged"
-		addtimer(CALLBACK(src, .proc/Recharge), charge_time)
+		addtimer(CALLBACK(src, PROC_REF(Recharge)), charge_time)
 		return
 	if(proximity_flag && isliving(target))
 		var/mob/living/L = target
@@ -301,7 +301,7 @@
 	icon_state = "frozen"
 
 /datum/status_effect/ice_wing_talisman/on_apply()
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/owner_moved)
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(owner_moved))
 	if(!owner.stat)
 		to_chat(owner, span_userdanger("You become frozen in a cube!"))
 	cube = icon('icons/effects/freeze.dmi', "ice_cube")
@@ -368,7 +368,7 @@
 			continue
 		playsound(L, 'sound/magic/fireball.ogg', 20, 1)
 		new /obj/effect/temp_visual/fire(L.loc)
-		addtimer(CALLBACK(src, .proc/pushback, L, user), 1) //no free backstabs, we push AFTER module stuff is done
+		addtimer(CALLBACK(src, PROC_REF(pushback), L, user), 1) //no free backstabs, we push AFTER module stuff is done
 		L.adjustFireLoss(bonus_value, forced = TRUE)
 
 /obj/item/crusher_trophy/tail_spike/proc/pushback(mob/living/target, mob/living/user)
@@ -432,7 +432,7 @@
 
 /obj/item/crusher_trophy/blaster_tubes/on_mark_detonation(mob/living/target, mob/living/user)
 	deadly_shot = TRUE
-	addtimer(CALLBACK(src, .proc/reset_deadly_shot), 300, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(reset_deadly_shot)), 300, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/item/crusher_trophy/blaster_tubes/proc/reset_deadly_shot()
 	deadly_shot = FALSE
@@ -503,7 +503,7 @@
         D.fire()
         icon_state = "magmite_crusher_uncharged"
         charged = FALSE
-        addtimer(CALLBACK(src, .proc/Recharge, TRUE), charge_time)
+        addtimer(CALLBACK(src, PROC_REF(Recharge), TRUE), charge_time)
         return
     ..()
 

@@ -5441,17 +5441,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"cHy" = (
-/obj/machinery/sleeper,
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 9
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "cHZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -7755,6 +7744,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"dSW" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 5
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 28
+	},
+/obj/machinery/anesthetic_machine/roundstart,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "dTo" = (
 /obj/machinery/light{
 	dir = 4
@@ -10646,6 +10646,18 @@
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
+"few" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "feB" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -11310,7 +11322,7 @@
 "fwr" = (
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -13384,7 +13396,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 4;
-	sensors = list("tox_sensor" = "Tank")
+	sensors = list("tox_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -15810,13 +15822,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"hER" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/girder,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "hFP" = (
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
@@ -16378,7 +16383,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 4;
-	sensors = list("o2_sensor" = "Tank")
+	sensors = list("o2_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /obj/machinery/door/firedoor/border_only{
@@ -16665,7 +16670,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 1;
-	sensors = list("co2_sensor" = "Tank")
+	sensors = list("co2_sensor"="Tank")
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -17199,7 +17204,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -23025,7 +23030,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 1;
-	sensors = list("n2o_sensor" = "Tank")
+	sensors = list("n2o_sensor"="Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -24975,7 +24980,7 @@
 	c_tag = "Engineering South";
 	dir = 6
 	},
-/obj/machinery/portable_atmospherics/pump,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -28962,19 +28967,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"orq" = (
-/obj/structure/bodycontainer/morgue{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 5
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "ors" = (
 /turf/closed/wall/r_wall,
 /area/security/prison)
@@ -33565,6 +33557,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
+/obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "qMm" = (
@@ -34642,6 +34635,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"rmU" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 9
+	},
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = 24
+	},
+/obj/structure/bodycontainer/morgue,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "rmW" = (
 /obj/machinery/status_display/evac{
 	layer = 4
@@ -37602,7 +37606,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/structure/grille,
+/obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "sHD" = (
@@ -40469,7 +40473,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/grille,
+/obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "ugA" = (
@@ -41013,7 +41017,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
 	dir = 4;
-	sensors = list("n2_sensor" = "Tank")
+	sensors = list("n2_sensor"="Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -41852,15 +41856,6 @@
 "uRB" = (
 /turf/open/floor/engine,
 /area/engine/engineering)
-"uRN" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "uRS" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
@@ -41875,7 +41870,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/structure/grille,
+/obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "uSv" = (
@@ -43734,7 +43729,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/grille,
+/obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "vNq" = (
@@ -45533,7 +45528,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
 	dir = 4;
-	sensors = list("air_sensor" = "Tank")
+	sensors = list("air_sensor"="Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -67993,13 +67988,13 @@ uRB
 nBw
 nBw
 sHi
-hER
 ffr
+wYp
 azX
 kjG
 hKH
+wYp
 jtS
-hER
 uSr
 uRB
 qGQ
@@ -73367,8 +73362,8 @@ bkG
 hRk
 stx
 qBn
-cHy
-uRN
+rmU
+few
 xst
 xeh
 xLJ
@@ -73881,7 +73876,7 @@ uYy
 kAo
 agN
 qBn
-orq
+dSW
 wPo
 hzT
 fra

@@ -88,7 +88,7 @@
 			linked_account.adjust_money(money_per_zap)
 		if(istype(linked_techweb))
 			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
-		addtimer(CALLBACK(src, .proc/reset_shocked), zap_cooldown)
+		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), zap_cooldown)
 		tesla_buckle_check(power)
 	else
 		..()
@@ -124,7 +124,7 @@
 			linked_account.adjust_money(money_per_zap)
 		if(istype(linked_techweb))
 			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
-		addtimer(CALLBACK(src, .proc/reset_shocked), zap_cooldown)
+		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), zap_cooldown)
 		tesla_buckle_check(power)
 	else
 		..()

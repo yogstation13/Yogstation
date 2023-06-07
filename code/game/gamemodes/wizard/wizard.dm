@@ -49,11 +49,15 @@
 
 /datum/game_mode/wizard/are_special_antags_dead()
 	for(var/datum/mind/wizard in wizards)
-		if(isliving(wizard.current) && wizard.current.stat!=DEAD)
+		if(isliving(wizard.current) && wizard.current.stat != DEAD)
 			return FALSE
 
-	for(var/obj/item/phylactery/P in GLOB.poi_list) //TODO : IsProperlyDead()
-		if(P.mind && P.mind.has_antag_datum(/datum/antagonist/wizard))
+
+	for(var/obj/item/phylactery in GLOB.poi_list) //TODO : IsProperlyDead()
+		if(!phylactery.GetComponent(/datum/component/phylactery))
+			continue
+		var/datum/component/phylactery/phylactery_component
+		if(phylactery_component?.lich_mind?.has_antag_datum(/datum/antagonist/wizard))
 			return FALSE
 
 	if(SSevents.wizardmode) //If summon events was active, turn it off

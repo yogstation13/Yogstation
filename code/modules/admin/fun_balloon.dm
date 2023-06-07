@@ -107,7 +107,7 @@
 
 /obj/effect/forcefield/arena_shuttle
 	name = "portal"
-	timeleft = 0
+	initial_duration = 0
 	var/list/warp_points = list()
 
 /obj/effect/forcefield/arena_shuttle/Bumped(atom/movable/AM)
@@ -124,7 +124,7 @@
 		qdel(L.pulling)
 		var/turf/LA = get_turf(pick(warp_points))
 		L.forceMove(LA)
-		L.hallucination = 0
+		L.remove_status_effect(/datum/status_effect/hallucination)
 		to_chat(L, "<span class='reallybig redtext'>The battle is won. Your bloodlust subsides.</span>")
 		for(var/obj/item/twohanded/required/chainsaw/doomslayer/chainsaw in L)
 			qdel(chainsaw)
@@ -142,7 +142,7 @@
 
 /obj/effect/forcefield/arena_shuttle_entrance
 	name = "portal"
-	timeleft = 0
+	initial_duration = 0
 	var/list/warp_points = list()
 
 /obj/effect/forcefield/arena_shuttle_entrance/Bumped(atom/movable/AM)

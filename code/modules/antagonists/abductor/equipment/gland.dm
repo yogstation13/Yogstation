@@ -64,7 +64,7 @@
 	update_gland_hud()
 	var/atom/movable/screen/alert/mind_control/mind_alert = owner.throw_alert("mind_control", /atom/movable/screen/alert/mind_control)
 	mind_alert.command = command
-	addtimer(CALLBACK(src, .proc/clear_mind_control), mind_control_duration)
+	addtimer(CALLBACK(src, PROC_REF(clear_mind_control)), mind_control_duration)
 	return TRUE
 
 /obj/item/organ/heart/gland/proc/clear_mind_control()
@@ -80,7 +80,7 @@
 	if(initial(uses) == 1)
 		uses = initial(uses)
 	var/datum/atom_hud/abductor/hud = GLOB.huds[DATA_HUD_ABDUCTOR]
-	hud.remove_from_hud(owner)
+	hud.remove_atom_from_hud(owner)
 	clear_mind_control()
 	..()
 
@@ -89,7 +89,7 @@
 	if(special != 2 && uses) // Special 2 means abductor surgery
 		Start()
 	var/datum/atom_hud/abductor/hud = GLOB.huds[DATA_HUD_ABDUCTOR]
-	hud.add_to_hud(owner)
+	hud.add_atom_to_hud(owner)
 	update_gland_hud()
 
 /obj/item/organ/heart/gland/on_life()
@@ -170,13 +170,13 @@
 		switch(pick(1,3))
 			if(1)
 				to_chat(H, span_userdanger("You hear a loud buzz in your head, silencing your thoughts!"))
-				H.Stun(50)
+				H.Stun(5 SECONDS)
 			if(2)
 				to_chat(H, span_warning("You hear an annoying buzz in your head."))
-				H.confused += 15
+				H.adjust_confusion(15 SECONDS)
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 160)
 			if(3)
-				H.hallucination += 60
+				H.adjust_hallucinations(1 MINUTES)
 
 /obj/item/organ/heart/gland/mindshock/mind_control(command, mob/living/user)
 	if(!ownerCheck() || !mind_control_uses || active_mind_control)
@@ -200,7 +200,7 @@
 
 	if(LAZYLEN(broadcasted_mobs))
 		active_mind_control = TRUE
-		addtimer(CALLBACK(src, .proc/clear_mind_control), mind_control_duration)
+		addtimer(CALLBACK(src, PROC_REF(clear_mind_control)), mind_control_duration)
 
 	update_gland_hud()
 	return TRUE
@@ -226,7 +226,7 @@
 
 /obj/item/organ/heart/gland/access/activate()
 	to_chat(owner, span_notice("You feel like a VIP for some reason."))
-	RegisterSignal(owner, COMSIG_MOB_ALLOWED, .proc/free_access)
+	RegisterSignal(owner, COMSIG_MOB_ALLOWED, PROC_REF(free_access))
 
 /obj/item/organ/heart/gland/access/proc/free_access(datum/source, obj/O)
 	return TRUE
@@ -340,7 +340,7 @@
 		if(!iscarbon(M))
 			continue
 		entangled_mob = M
-		addtimer(CALLBACK(src, .proc/quantum_swap), rand(1 MINUTES, 4 MINUTES))
+		addtimer(CALLBACK(src, PROC_REF(quantum_swap)), rand(1 MINUTES, 4 MINUTES))
 		return
 
 /obj/item/organ/heart/gland/quantum/proc/quantum_swap()
@@ -439,7 +439,7 @@
 	owner.visible_message(span_danger("[owner]'s skin starts emitting electric arcs!"),\
 	span_warning("You feel electric energy building up inside you!"))
 	playsound(get_turf(owner), "sparks", 100, 1, -1)
-	addtimer(CALLBACK(src, .proc/zap), rand(30, 100))
+	addtimer(CALLBACK(src, PROC_REF(zap)), rand(30, 100))
 
 /obj/item/organ/heart/gland/electric/proc/zap()
 	tesla_zap(owner, 4, 8000, TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE | TESLA_MOB_STUN)
@@ -475,8 +475,8 @@
 
 /obj/item/organ/heart/gland/gas/activate() //Yogstation change: plasma -> gas
 	to_chat(owner, span_warning("You feel bloated."))
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
-	addtimer(CALLBACK(src, .proc/vomit_gas), 20 SECONDS) //Yogstation change: plasma -> gas
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), owner, span_userdanger("A massive stomachache overcomes you.")), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(vomit_gas)), 20 SECONDS) //Yogstation change: plasma -> gas
 
 /obj/item/organ/heart/gland/gas/proc/vomit_gas() //Yogstation change: plasma -> gas
 	if(!owner)

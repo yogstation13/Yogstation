@@ -76,8 +76,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
         do_sparks(3, FALSE, get_turf(user))
         user.forceMove(locate(roomReservation.bottom_left_coords[1] + hotelRoomTemp.landingZoneRelativeX, roomReservation.bottom_left_coords[2] + hotelRoomTemp.landingZoneRelativeY, roomReservation.bottom_left_coords[3]))
         return TRUE
-    else
-        return FALSE
+    return FALSE
 
 /obj/item/hilbertshotel/proc/tryStoredRoom(var/roomNumber, var/mob/user)
     if(storedRooms["[roomNumber]"])
@@ -99,8 +98,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
         do_sparks(3, FALSE, get_turf(user))
         user.forceMove(locate(roomReservation.bottom_left_coords[1] + hotelRoomTemp.landingZoneRelativeX, roomReservation.bottom_left_coords[2] + hotelRoomTemp.landingZoneRelativeY, roomReservation.bottom_left_coords[3]))
         return TRUE
-    else
-        return FALSE
+    return FALSE
 
 /obj/item/hilbertshotel/proc/sendToNewRoom(var/roomNumber, var/mob/user)
     var/datum/turf_reservation/roomReservation = SSmapping.RequestBlockReservation(hotelRoomTemp.width, hotelRoomTemp.height)
@@ -316,7 +314,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     . = ..()
     if(istype(AM, /obj/item/hilbertshotel))
         relocate(AM)
-    var/list/obj/item/hilbertshotel/hotels = AM.GetAllContents(/obj/item/hilbertshotel)
+    var/list/obj/item/hilbertshotel/hotels = AM.get_all_contents(/obj/item/hilbertshotel)
     for(var/obj/item/hilbertshotel/H in hotels)
         if(parentSphere == H)
             relocate(H)
@@ -345,7 +343,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
         var/mob/M = AM
         if(M.mind)
             var/stillPopulated = FALSE
-            var/list/currentLivingMobs = GetAllContents(/mob/living) //Got to catch anyone hiding in anything
+            var/list/currentLivingMobs = get_all_contents(/mob/living) //Got to catch anyone hiding in anything
             for(var/mob/living/L in currentLivingMobs) //Check to see if theres any sentient mobs left.
                 if(L.mind)
                     stillPopulated = TRUE

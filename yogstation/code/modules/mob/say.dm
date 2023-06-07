@@ -9,7 +9,7 @@
 	var/bar_typing = FALSE
 
 /mob/proc/handle_typing_indicator()
-	INVOKE_ASYNC(src,.proc/typing_indicator_process)
+	INVOKE_ASYNC(src, PROC_REF(typing_indicator_process))
 
 /mob/proc/typing_indicator_process()
 	if(!GLOB.typing_indicators)

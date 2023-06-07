@@ -555,7 +555,7 @@ ROUNDSTART_RACES ipc
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal
-ROUNDSTART_RACES jelly
+#ROUNDSTART_RACES jelly
 #ROUNDSTART_RACES golem
 #ROUNDSTART_RACES adamantine
 #ROUNDSTART_RACES plasma
@@ -675,6 +675,9 @@ DISABLE_HUMAN_MOOD
 
 ## A cap on how many monkeys may be created via monkey cubes
 #MONKEYCAP 64
+
+## A cap on how many slimes may be spawned
+#SLIMECAP 256
 
 ## Cap on how many regal rat minions there can be
 #RATCAP 64

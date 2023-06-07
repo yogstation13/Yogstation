@@ -30,7 +30,7 @@
 	. = ..()
 	Make(S)
 	connect_to_network()
-	RegisterSignal(SSsun, COMSIG_SUN_MOVED, .proc/queue_update_solar_exposure)
+	RegisterSignal(SSsun, COMSIG_SUN_MOVED, PROC_REF(queue_update_solar_exposure))
 	panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
 	paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
 	paneloverlay.color = panelcolor
@@ -340,13 +340,13 @@
 /obj/machinery/power/solar_control/Initialize()
 	. = ..()
 	azimuth_rate = SSsun.base_rotation
-	RegisterSignal(SSsun, COMSIG_SUN_MOVED, .proc/timed_track)
+	RegisterSignal(SSsun, COMSIG_SUN_MOVED, PROC_REF(timed_track))
 	connect_to_network()
 	if(powernet)
 		set_panels(azimuth_target)
 	if(powernet && force_auto)
 		search_for_connected() //are we actually connected to anything useful?
-		if(connected_tracker && !isemptylist(connected_panels))
+		if(connected_tracker && length(connected_panels))
 			track = SOLAR_TRACK_AUTO
 			connected_tracker.sun_update(SSsun, SSsun.azimuth)
 	update_icon()

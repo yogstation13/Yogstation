@@ -2,7 +2,7 @@
 	name = "firearms authentication implant"
 	desc = "Lets you shoot your guns."
 	icon_state = "auth"
-	activated = 0
+	actions_types = null
 
 /obj/item/implant/weapons_auth/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
@@ -76,7 +76,6 @@
 
 /obj/item/implant/health
 	name = "health implant"
-	activated = 0
 	var/healthstring = ""
 
 /obj/item/implant/health/proc/sensehealth()
@@ -92,7 +91,6 @@
 
 /obj/item/implant/radio
 	name = "internal radio implant"
-	activated = TRUE
 	var/obj/item/radio/radio
 	var/radio_key
 	var/subspace_transmission = FALSE
@@ -156,7 +154,6 @@
 /obj/item/implant/empshield
 	name = "EMP shield implant"
 	desc = "An implant that completely protects from electro-magnetic pulses. It will shut down briefly if triggered too often."
-	activated = 0
 	var/lastemp = 0
 	var/numrecent = 0
 	var/warning = TRUE
@@ -166,7 +163,7 @@
 	if(..())
 		if(ishuman(target))
 			target.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
-			RegisterSignal(target, COMSIG_ATOM_EMP_ACT, .proc/overloaded, target)
+			RegisterSignal(target, COMSIG_ATOM_EMP_ACT, PROC_REF(overloaded), target)
 		return TRUE
 
 /obj/item/implant/empshield/removed(mob/target, silent = FALSE, special = 0)
@@ -191,7 +188,7 @@
 		var/datum/component/empprotection/empshield = target.GetExactComponent(/datum/component/empprotection)
 		if(empshield)
 			empshield.Destroy()
-		addtimer(CALLBACK(src, .proc/refreshed, target), overloadtimer, TIMER_OVERRIDE | TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(refreshed), target), overloadtimer, TIMER_OVERRIDE | TIMER_UNIQUE)
 
 /obj/item/implant/empshield/proc/refreshed(mob/living/target)
 	to_chat(target, span_usernotice("A familiar feeling resonates from your [src], it seems to be functioning properly again."))

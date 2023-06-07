@@ -76,7 +76,7 @@
 
 /datum/game_mode/traitor/post_setup()
 	for(var/datum/mind/traitor in pre_traitors)
-		addtimer(CALLBACK(src, /datum/game_mode/traitor.proc/add_traitor_delayed, traitor), rand(3 MINUTES, (5 MINUTES + 10 SECONDS)))
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_mode/traitor, add_traitor_delayed), traitor), rand(3 MINUTES, (5 MINUTES + 10 SECONDS)))
 		
 	if(!exchange_blue)
 		exchange_blue = -1 //Block latejoiners from getting exchange objectives

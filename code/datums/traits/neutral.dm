@@ -153,7 +153,7 @@
 /datum/quirk/random_accent/post_add()
 	var/mob/living/carbon/human/H = quirk_holder
 	if(!H.mind.accent_name)
-		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, /datum/mind/.proc/handle_speech)
+		H.mind.RegisterSignal(H, COMSIG_MOB_SAY, TYPE_PROC_REF(/datum/mind, handle_speech))
 	H.mind.accent_name = pick(assoc_to_keys(GLOB.accents_name2file))// Right now this pick just picks a straight random one from all implemented.
 
 /datum/quirk/colorist
@@ -306,7 +306,7 @@
 	heirloom.AddComponent(/datum/component/heirloom, quirk_holder.mind, family_name)
 
 /datum/quirk/family_heirloom/on_process()
-	if(heirloom in quirk_holder.GetAllContents())
+	if(heirloom in quirk_holder.get_all_contents())
 		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "family_heirloom_missing")
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "family_heirloom", /datum/mood_event/family_heirloom)
 	else

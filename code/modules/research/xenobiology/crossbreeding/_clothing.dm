@@ -13,7 +13,7 @@ Slimecrossing Armor
 	body_parts_covered = NONE
 	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0
-	permeability_coefficient = 0.5
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0)
 	flags_cover = MASKCOVERSMOUTH
 	resistance_flags = NONE
 
@@ -63,11 +63,11 @@ Slimecrossing Armor
 
 /datum/action/item_action/change_prism_colour
 	name = "Adjust Prismatic Lens"
-	icon_icon = 'icons/obj/slimecrossing.dmi'
+	button_icon = 'icons/obj/slimecrossing.dmi'
 	button_icon_state = "prismcolor"
 
 /datum/action/item_action/change_prism_colour/Trigger()
-	if(!IsAvailable())
+	if(!IsAvailable(feedback = FALSE))
 		return
 	var/obj/item/clothing/glasses/prism_glasses/glasses = target
 	var/new_color = input(owner, "Choose the lens color:", "Color change",glasses.glasses_color) as color|null
@@ -77,11 +77,11 @@ Slimecrossing Armor
 
 /datum/action/item_action/place_light_prism
 	name = "Fabricate Light Prism"
-	icon_icon = 'icons/obj/slimecrossing.dmi'
+	button_icon = 'icons/obj/slimecrossing.dmi'
 	button_icon_state = "lightprism"
 
 /datum/action/item_action/place_light_prism/Trigger()
-	if(!IsAvailable())
+	if(!IsAvailable(feedback = FALSE))
 		return
 	var/obj/item/clothing/glasses/prism_glasses/glasses = target
 	if(locate(/obj/structure/light_prism) in get_turf(owner))

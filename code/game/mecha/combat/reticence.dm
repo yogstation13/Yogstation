@@ -25,6 +25,7 @@
 	. = ..()
 	if(internal_tank)
 		internal_tank.set_light_on(FALSE) //remove the light that is granted by the internal canister
+		internal_tank.set_light_range_power_color(0, 0, COLOR_BLACK) //just turning it off isn't enough apparently
 
 /obj/mecha/combat/reticence/loaded/Initialize()
 	. = ..()

@@ -1,28 +1,30 @@
 //In here: Hatch and Ascendance
-/obj/effect/proc_holder/spell/self/shadowling_hatch
+/datum/action/cooldown/spell/shadowling_hatch
 	name = "Hatch"
 	desc = "Casts off your disguise."
 	panel = "Shadowling Evolution"
-	charge_max = 3000
-	human_req = TRUE
-	clothes_req = FALSE
-	action_icon = 'yogstation/icons/mob/actions.dmi'
-	action_icon_state = "hatch"
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon_state = "hatch"
+
+	cooldown_time = 5 MINUTES
+	spell_requirements = SPELL_REQUIRES_HUMAN
 
 /obj/structure/alien/resin/wall/shadowling //For chrysalis
 	name = "chrysalis wall"
 	desc = "Some sort of purple substance in an egglike shape. It pulses and throbs from within and seems impenetrable."
 	max_integrity = INFINITY
 
-/obj/effect/proc_holder/spell/self/shadowling_hatch/cast(list/targets,mob/user = usr)
-	if(user.stat || !ishuman(user) || !user || !is_shadow(user) || isinspace(user))
+/datum/action/cooldown/spell/shadowling_hatch/cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(user.stat || !ishuman(user) || !user || !is_shadow(user) || user.isinspace())
 		return
 	var/mob/living/carbon/human/H = user
-	var/hatch_or_no = alert(H,"Are you sure you want to hatch? You cannot undo this!",,"Yes","No")
+	var/hatch_or_no = tgui_alert(H,"Are you sure you want to hatch? You cannot undo this!","Ello",list("Yes","No"))
 	switch(hatch_or_no)
 		if("No")
 			to_chat(H, span_warning("You decide against hatching for now."))
-			charge_counter = charge_max
 			return
 		if("Yes")
 			H.notransform = TRUE
@@ -98,38 +100,61 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(H), SLOT_HEAD)
 			H.set_species(/datum/species/shadow/ling) //can't be a shadowling without being a shadowling
 			H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
-			H.mind.RemoveSpell(src)
+			Remove(H)
 			if(!do_mob(H,H,10,1))
 				return
 			to_chat(H, span_shadowling("<b><i>Your powers are awoken. You may now live to your fullest extent. Remember your goal. Cooperate with your thralls and allies.</b></i>"))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/enthrall(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/glare(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/veil(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/shadowwalk(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/flashfreeze(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/collective_mind(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_regenarmor(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle(null))
 
-/obj/effect/proc_holder/spell/self/shadowling_ascend
+			var/datum/action/cooldown/spell/pointed/enthrall/enthrall = new(H)
+			enthrall.Grant(H)
+
+			var/datum/action/cooldown/spell/pointed/sling/glare/glare = new(H)
+			glare.Grant(H)
+
+			var/datum/action/cooldown/spell/aoe/veil/veil = new(H)
+			veil.Grant(H)
+
+			var/datum/action/cooldown/spell/jaunt/void_jaunt/void_jaunt = new(H)
+			void_jaunt.Grant(H)
+
+			var/datum/action/cooldown/spell/jaunt/shadow_walk/shadow_walk = new(H)
+			shadow_walk.Grant(H)
+
+			var/datum/action/cooldown/spell/aoe/flashfreeze/flashfreeze = new(H)
+			flashfreeze.Grant(H)
+
+			var/datum/action/cooldown/spell/collective_mind/mind = new(H)
+			mind.Grant(H)
+	
+			var/datum/action/cooldown/spell/shadowling_regenarmor/regen_armor = new(H)
+			regen_armor.Grant(H)
+
+			var/datum/action/cooldown/spell/pointed/shadowling_extend_shuttle/shuttle_extend = new(H)
+			shuttle_extend.Grant(H)
+	
+	return TRUE
+
+/datum/action/cooldown/spell/shadowling_ascend
 	name = "Ascend"
 	desc = "Enters your true form."
 	panel = "Shadowling Evolution"
-	charge_max = 3000
-	clothes_req = FALSE
-	action_icon = 'yogstation/icons/mob/actions.dmi'
-	action_icon_state = "ascend"
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon_state = "ascend"
 
-/obj/effect/proc_holder/spell/self/shadowling_ascend/cast(list/targets,mob/user = usr)
+	cooldown_time = 5 MINUTES
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/shadowling_ascend/before_cast(mob/living/user)
+	. = ..()
+	if(!.)
+		return
 	var/mob/living/carbon/human/H = user
 	if(!shadowling_check(H))
 		return
-	var/hatch_or_no = alert(H,"It is time to ascend. Are you sure about this?",,"Yes","No")
+	var/hatch_or_no = tgui_alert(H,"It is time to ascend. Are you sure about this?",,list("Yes","No"))
 	switch(hatch_or_no)
 		if("No")
 			to_chat(H, span_warning("You decide against ascending for now."))
-			charge_counter = charge_max
 			return
 		if("Yes")
 			H.notransform = 1
@@ -169,15 +194,10 @@
 				A.overload_lighting()
 			SSachievements.unlock_achievement(/datum/achievement/greentext/slingascend, H.client)
 			var/mob/A = new /mob/living/simple_animal/ascendant_shadowling(H.loc)
-			for(var/X in H.mind.spell_list)
-				var/obj/effect/proc_holder/spell/S = X
-				if(S == src) continue
-				H.mind.RemoveSpell(S)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/annihilate(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/sling/hypnosis(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/ascendant_storm(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/void_jaunt/ascendant(null))
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/shadowling_hivemind_ascendant(null))
+			for(var/datum/action/spell in H.actions)
+				if(spell == src)
+					continue
+				spell.Remove(H)
 			H.mind.transfer_to(A)
 			A.name = H.real_name
 			if(A.real_name)
@@ -190,5 +210,19 @@
 				SSshuttle.emergency.request(null, 0.3)
 				SSshuttle.emergencyNoRecall = TRUE
 				SSticker.mode.shadowling_ascended = TRUE
-			A.mind.RemoveSpell(src)
+			var/datum/action/cooldown/spell/pointed/sling/annihilate/annihilate = new(A)
+			annihilate.Grant(A)
+
+			var/datum/action/cooldown/spell/pointed/sling/hypnosis/hypnosis = new(A)
+			hypnosis.Grant(A)
+
+			var/datum/action/cooldown/spell/aoe/ascendant_storm/storm = new(A)
+			storm.Grant(A)
+
+			var/datum/action/cooldown/spell/jaunt/void_jaunt/ascendant/jaunt = new(A)
+			jaunt.Grant(A)
+
+			var/datum/action/cooldown/spell/shadowling_hivemind_ascendant/hivemind = new(A)
+			hivemind.Grant(A)
+			Remove(A)
 			qdel(H)

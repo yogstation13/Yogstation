@@ -29,7 +29,7 @@
 	if(stored_mob)
 		stored_mob.life_tickrate = 0
 	if(temporary)
-		addtimer(CALLBACK(src, .proc/uncheeseify, src), 1 MINUTES, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(uncheeseify), src), 1 MINUTES, TIMER_UNIQUE)
 	if(stat)
 		return
 	if(health < maxHealth)

@@ -203,7 +203,7 @@
 		do_teleport(AM, locate(AM.x, AM.y, AM.z), 8, channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/effect/anomaly/bluespace/detonate()
-	var/turf/T = safepick(get_area_turfs(impact_area))
+	var/turf/T = pick(get_area_turfs(impact_area))
 	if(T)
 			// Calculate new position (searches through beacons in world)
 		var/obj/item/beacon/chosen
@@ -277,7 +277,7 @@
 		T.atmos_spawn_air("o2=5;plasma=5;TEMP=1000")
 
 /obj/effect/anomaly/pyro/detonate()
-	INVOKE_ASYNC(src, .proc/makepyroslime)
+	INVOKE_ASYNC(src, PROC_REF(makepyroslime))
 
 /obj/effect/anomaly/pyro/proc/makepyroslime()
 	var/turf/open/T = get_turf(src)

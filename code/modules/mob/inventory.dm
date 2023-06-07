@@ -109,7 +109,7 @@
 
 
 //Sad that this will cause some overhead, but the alias seems necessary
-//*I* may be happy with a million and one references to "indexes" but others won't be
+//*I* may be happy with a million and one references to "indexes" but others won't be	// This should be converted into a helper define to reduce proc overhead
 /mob/proc/is_holding(obj/item/I)
 	return get_held_index_of_item(I)
 
@@ -343,6 +343,7 @@
 			else
 				I.forceMove(newloc)
 		I.dropped(src, silent)
+	SEND_SIGNAL(I, COMSIG_ITEM_POST_UNEQUIP, force, newloc, no_move, invdrop, silent)
 	return TRUE
 
 //Outdated but still in use apparently. This should at least be a human proc.
@@ -422,7 +423,7 @@
 	if(hidden_slots & HIDESHOES)
 		obscured |= SLOT_SHOES
 	if(hidden_slots & HIDESUITSTORAGE)
-		obscured |= SLOT_S_STORE
+		obscured |= SLOT_SUIT_STORE
 
 	return obscured
 
@@ -453,13 +454,13 @@
 	to_chat(M, span_warning("You are unable to equip that!"))
 	return FALSE
 
-
+ 
 /mob/verb/quick_equip()
 	set name = "quick-equip"
 	set hidden = TRUE
 
 	var/obj/item/I = get_active_held_item()
-	if (I)
+	if (!CHECK_BITFIELD(SEND_SIGNAL(src, COMSIG_MOB_QUICK_EQUIP, I), COMPONENT_BLOCK_QUICK_EQUIP) && I)
 		I.equip_to_best_slot(src)
 
 //used in code for items usable by both carbon and drones, this gives the proper back slot for each mob.(defibrillator, backpack watertank, ...)
@@ -509,7 +510,7 @@
 			hand_bodyparts[i] = BP
 	..() //Don't redraw hands until we have organs for them
 
-//GetAllContents that is reasonable and not stupid
+//get_all_contents that is reasonable and not stupid
 /mob/living/carbon/proc/get_all_gear()
 	var/list/processing_list = get_equipped_items(TRUE) + held_items
 	listclearnulls(processing_list) // handles empty hands

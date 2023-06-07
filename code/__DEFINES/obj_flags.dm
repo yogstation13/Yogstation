@@ -32,6 +32,14 @@
 #define HAND_ITEM 				(1<<15) // If an item is just your hand (circled hand, slapper) and shouldn't block things like riding
 #define AUTOLATHED				(1<<16) // Autolathed item innit
 
+
+// Flags for the open_flags var on /obj/structure/closet
+
+#define ALLOW_OBJECTS			(1<<0) //whether or not it can allow chameleon dummies
+#define ALLOW_DENSE				(1<<1) //whether or not it can contain objects with density
+#define HORIZONTAL_HOLD			(1<<2) //whether people need to be lying down to enter it
+#define HORIZONTAL_LID			(1<<3) //whether people standing on it prevent opening and closing
+
 // Flags for the clothing_flags var on /obj/item/clothing
 
 #define LAVAPROTECT (1<<0)

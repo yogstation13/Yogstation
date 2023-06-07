@@ -322,39 +322,32 @@
 	max_charges = 75
 	
 /obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy)
-	var/copy_as_paper = TRUE
-	if(istype(copy, /obj/item/paper/contract/employment))
-		var/obj/item/paper/contract/employment/E = copy
-		var/obj/item/paper/contract/employment/C = new /obj/item/paper/contract/employment (loc, E.target.current)
-		if(C)
-			copy_as_paper = FALSE
-	if(copy_as_paper)
-		var/obj/item/paper/c = new /obj/item/paper (loc)
-		if(length(copy.info) || length(copy.written))	//Only print and add content if the copied doc has words on it
-			if(toner > 10)	//lots of toner, make it dark
-				c.coloroverride = "101010"
-			else			//no toner? shitty copies for you!
-				c.coloroverride = "808080"
-			var/copyinfo = copy.info
-			copyinfo = clearcolor(copyinfo)
-			c.info += copyinfo + "</font>"
-			//Now for copying the new $written var
-			for(var/L in copy.written)
-				if(istype(L,/datum/langtext))
-					var/datum/langtext/oldL = L
-					var/datum/langtext/newL = new(clearcolor(oldL.text),oldL.lang)
-					c.written += newL
-				else
-					c.written += L
-			c.name = copy.name
-			c.fields = copy.fields
-			c.update_icon()
-			c.stamps = copy.stamps
-			if(copy.stamped)
-				c.stamped = copy.stamped.Copy()
-			c.copy_overlays(copy, TRUE)
-			toner--
-		return c
+	var/obj/item/paper/c = new /obj/item/paper (loc)
+	if(length(copy.info) || length(copy.written))	//Only print and add content if the copied doc has words on it
+		if(toner > 10)	//lots of toner, make it dark
+			c.coloroverride = "101010"
+		else			//no toner? shitty copies for you!
+			c.coloroverride = "808080"
+		var/copyinfo = copy.info
+		copyinfo = clearcolor(copyinfo)
+		c.info += copyinfo + "</font>"
+		//Now for copying the new $written var
+		for(var/L in copy.written)
+			if(istype(L,/datum/langtext))
+				var/datum/langtext/oldL = L
+				var/datum/langtext/newL = new(clearcolor(oldL.text),oldL.lang)
+				c.written += newL
+			else
+				c.written += L
+		c.name = copy.name
+		c.fields = copy.fields
+		c.update_icon()
+		c.stamps = copy.stamps
+		if(copy.stamped)
+			c.stamped = copy.stamped.Copy()
+		c.copy_overlays(copy, TRUE)
+		toner--
+	return c
 
 
 /obj/machinery/photocopier/proc/photocopy(var/obj/item/photo/photocopy)

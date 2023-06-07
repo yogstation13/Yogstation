@@ -31,7 +31,7 @@
 			H.Stun(20)
 			H.blur_eyes(20)
 			eyes.applyOrganDamage(5)
-			H.confused += 3
+			H.adjust_confusion(3 SECONDS)
 	for(var/mob/living/silicon/S in range(2,user))
 		to_chat(S, span_userdanger("Your sensors are disabled by a shower of blood!"))
 		S.Paralyze(60)
@@ -42,7 +42,7 @@
 	user.transfer_observers_to(user_turf) // user is about to be deleted, store orbiters on the turf
 	user.gib()
 	. = TRUE
-	addtimer(CALLBACK(src, .proc/spawn_headcrab, M, user_turf, organs), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(spawn_headcrab), M, user_turf, organs), 0.5 SECONDS)
 
 /datum/action/changeling/headcrab/proc/spawn_headcrab(datum/mind/stored_mind, turf/spawn_location, list/organs)
 	var/mob/living/simple_animal/hostile/headcrab/crab = new(spawn_location)

@@ -15,7 +15,7 @@
 /mob/living/simple_animal/hostile/guardian/fire/Life()
 	. = ..()
 	if(summoner)
-		summoner.ExtinguishMob()
+		summoner.extinguish_mob()
 		summoner.fire_stacks = -1
 
 /mob/living/simple_animal/hostile/guardian/fire/AttackingTarget()
@@ -40,4 +40,4 @@
 		var/mob/living/M = AM
 		if(!hasmatchingsummoner(M) && M != summoner && M.fire_stacks < 7)
 			M.fire_stacks = 7
-			M.IgniteMob()
+			M.ignite_mob()
