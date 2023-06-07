@@ -84,7 +84,7 @@
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 
 	else if(reagents.total_volume)
-		if(user.a_intent == INTENT_HARM)
+		if(user.a_intent == INTENT_HARM && !istype(target, /obj/item/hypospray))
 			user.visible_message(span_danger("[user] splashes the contents of [src] onto [target]!"), \
 								span_notice("You splash the contents of [src] onto [target]."))
 			reagents.reaction(target, TOUCH)
