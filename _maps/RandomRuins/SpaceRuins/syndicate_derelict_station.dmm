@@ -330,8 +330,8 @@
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "hu" = (
 /obj/item/gun/ballistic/automatic/pistol,
-/obj/item/ammo_box/magazine/pistolm9mm,
 /obj/item/paper/crumpled/ruins/syndicate_derelict_station/important_note,
+/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "hx" = (
@@ -1347,6 +1347,7 @@
 /obj/item/stack/cable_coil/red,
 /obj/item/holosign_creator/atmos,
 /obj/structure/closet/crate/engineering,
+/obj/item/solar_assembly,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "CG" = (
