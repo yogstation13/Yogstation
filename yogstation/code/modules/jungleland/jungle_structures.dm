@@ -30,7 +30,7 @@
 //For some reason Initialize() doesnt want to get properly overloaded, so I'm forced to use this
 /obj/effect/tar_king/New(loc, datum/following, direction)
 	. = ..()
-	RegisterSignal(following,COMSIG_MOVABLE_MOVED,.proc/follow)
+	RegisterSignal(following,COMSIG_MOVABLE_MOVED,PROC_REF(follow))
 	setDir(direction)
 
 /obj/effect/tar_king/proc/follow(datum/source)
@@ -111,7 +111,7 @@
 /obj/effect/timed_attack/New(loc, ...)
 	. = ..()
 	flick(replace_icon_state,src)	 
-	addtimer(CALLBACK(src,.proc/finish_attack),animation_length)
+	addtimer(CALLBACK(src,PROC_REF(finish_attack)),animation_length)
 
 /obj/effect/timed_attack/proc/finish_attack()
 	qdel(src)
@@ -178,7 +178,7 @@
 	
 	add_overlay(image(icon = src.icon, icon_state = "tar_altar_crystal"))
 	qdel(I)
-	INVOKE_ASYNC(src,.proc/summon)
+	INVOKE_ASYNC(src,PROC_REF(summon))
 
 /obj/structure/tar_altar/proc/summon()
 	for(var/mob/living/L in range(7,src))
@@ -227,7 +227,7 @@
 		return 
 	
 	animate(src,time=2.49 SECONDS, color = "#e05a5a")
-	addtimer(CALLBACK(src,.proc/explode),2.5 SECONDS)
+	addtimer(CALLBACK(src,PROC_REF(explode)),2.5 SECONDS)
 
 /obj/structure/herb/explosive_shrooms/proc/explode()
 	dyn_explosion(get_turf(src),4)

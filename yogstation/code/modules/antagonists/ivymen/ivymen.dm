@@ -24,11 +24,11 @@
 /datum/antagonist/ivymen/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()
 	UnregisterSignal(old_body, COMSIG_MOB_EXAMINATE)
-	RegisterSignal(new_body, COMSIG_MOB_EXAMINATE, .proc/on_examinate)
+	RegisterSignal(new_body, COMSIG_MOB_EXAMINATE, PROC_REF(on_examinate))
 
 /datum/antagonist/ivymen/on_gain()
 	. = ..()
-	RegisterSignal(owner.current, COMSIG_MOB_EXAMINATE, .proc/on_examinate)
+	RegisterSignal(owner.current, COMSIG_MOB_EXAMINATE, PROC_REF(on_examinate))
 
 /datum/antagonist/ivymen/on_removal()
 	. = ..()

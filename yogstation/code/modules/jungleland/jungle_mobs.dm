@@ -126,7 +126,7 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/meduracha/Initialize()
 	. = ..()
-	RegisterSignal(src,COMSIG_MOVABLE_MOVED,.proc/on_sulking)
+	RegisterSignal(src,COMSIG_MOVABLE_MOVED,PROC_REF(on_sulking))
 
 /mob/living/simple_animal/hostile/yog_jungle/meduracha/AttackingTarget()
 	. = ..()
@@ -430,7 +430,7 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/use_charge()
 	can_charge = FALSE 
-	addtimer(CALLBACK(src,.proc/reset_charge),cooldown,TIMER_UNIQUE)
+	addtimer(CALLBACK(src,PROC_REF(reset_charge)),cooldown,TIMER_UNIQUE)
 
 /mob/living/simple_animal/hostile/yog_jungle/mosquito/proc/get_charge()
 	return can_charge 

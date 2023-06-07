@@ -311,7 +311,7 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito/proc/use_charge()
 	can_charge = FALSE 
-	addtimer(CALLBACK(src,.proc/reset_charge),cooldown,TIMER_UNIQUE)
+	addtimer(CALLBACK(src,PROC_REF(reset_charge)),cooldown,TIMER_UNIQUE)
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito/proc/get_charge()
 	return can_charge 

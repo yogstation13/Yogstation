@@ -202,7 +202,7 @@
 /obj/item/kinetic_javelin_core/yellow/charged_effect(mob/living/simple_animal/hostile/victim, obj/item/kinetic_javelin/javelin,mob/user)
 	walk(victim,0)
 	victim.move_to_delay = 600
-	addtimer(CALLBACK(src,.proc/remove_debuff,victim),3 SECONDS)
+	addtimer(CALLBACK(src,PROC_REF(remove_debuff,victim)),3 SECONDS)
 
 /obj/item/kinetic_javelin_core/yellow/proc/remove_debuff(mob/living/simple_animal/hostile/victim)
 	if(victim)

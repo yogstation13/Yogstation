@@ -10,7 +10,7 @@
 
 /datum/status_effect/toxic_buildup/on_creation(mob/living/new_owner, ...)
 	. = ..()
-	RegisterSignal(new_owner,COMSIG_REGEN_CORE_HEALED,.proc/cure)
+	RegisterSignal(new_owner,COMSIG_REGEN_CORE_HEALED,PROC_REF(cure))
 	update_stack(1)
 
 /datum/status_effect/toxic_buildup/tick()
@@ -116,7 +116,7 @@
 
 /datum/status_effect/tar_curse/on_apply()
 	. = ..()
-	RegisterSignal(owner,COMSIG_JUNGLELAND_TAR_CURSE_PROC,.proc/curse_used)
+	RegisterSignal(owner,COMSIG_JUNGLELAND_TAR_CURSE_PROC,PROC_REF(curse_used))
 
 /datum/status_effect/tar_curse/proc/curse_used()
 	qdel(src)
@@ -178,7 +178,7 @@
 	. = ..()
 	cached_image = mutable_appearance('yogstation/icons/effects/effects.dmi',"tar_shield")
 	owner.add_overlay(cached_image)
-	RegisterSignal(owner,COMSIG_MOB_CHECK_SHIELDS,.proc/react_to_attack)
+	RegisterSignal(owner,COMSIG_MOB_CHECK_SHIELDS,PROC_REF(react_to_attack))
 
 /datum/status_effect/tar_shield/on_remove()
 	owner.cut_overlay(cached_image)

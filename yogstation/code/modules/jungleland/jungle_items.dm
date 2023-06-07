@@ -53,7 +53,7 @@
 /obj/item/explosive_shroom/attack_self(mob/user)
 	. = ..()
 	animate(src,time=2.49 SECONDS, color = "#e05a5a")
-	addtimer(CALLBACK(src,.proc/explode),2.5 SECONDS)
+	addtimer(CALLBACK(src,PROC_REF(explode)),2.5 SECONDS)
 
 /obj/item/explosive_shroom/proc/explode()
 	dyn_explosion(get_turf(src),4)
@@ -324,7 +324,7 @@
 
 /obj/item/slime_sling/attack_self(mob/user)
 	. = ..()
-	RegisterSignal(user,COMSIG_MOB_CLICKON, .proc/sling)
+	RegisterSignal(user,COMSIG_MOB_CLICKON, PROC_REF(sling))
 	for(var/i in 1 to 3)
 		if(do_after(user,2.5 SECONDS, user))
 			state++
@@ -332,7 +332,7 @@
 		else 
 			cancel(user)
 			return
-	RegisterSignal(user,COMSIG_MOVABLE_MOVED, .proc/cancel)
+	RegisterSignal(user,COMSIG_MOVABLE_MOVED, PROC_REF(cancel))
 
 /obj/item/slime_sling/proc/cancel(mob/user)
 	UnregisterSignal(user,COMSIG_MOB_CLICKON)
@@ -476,7 +476,7 @@
 
 /obj/item/crusher_trophy/jungleland/meduracha_tentacles/on_mark_detonation(mob/living/target, mob/living/user)
 	. = ..()
-	addtimer(CALLBACK(src,.proc/delayed_damage,target),5 SECONDS)
+	addtimer(CALLBACK(src,PROC_REF(delayed_damage,target)),5 SECONDS)
 
 /obj/item/crusher_trophy/jungleland/meduracha_tentacles/proc/delayed_damage(mob/living/target)
 	if(!target || QDELETED(target) || target.health <= 0)
@@ -542,8 +542,8 @@
 
 /obj/item/crusher_trophy/jungleland/dryad_branch/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
 	. = ..()
-	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,.proc/clear_status_effects)
-	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,.proc/clear_status_effects)
+	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,PROC_REF(clear_status_effects))
+	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,PROC_REF(clear_status_effects))
 
 /obj/item/crusher_trophy/jungleland/dryad_branch/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
 	. = ..()
@@ -573,8 +573,8 @@
 
 /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/add_to(obj/item/twohanded/kinetic_crusher/H, mob/living/user)
 	. = ..()
-	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,.proc/remove_bonuses)
-	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,.proc/remove_bonuses)
+	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_ON_RANGE,PROC_REF(remove_bonuses))
+	RegisterSignal(H,COMSIG_KINETIC_CRUSHER_PROJECTILE_FAILED_TO_MARK,PROC_REF(remove_bonuses))
 	START_PROCESSING(SSprocessing,src)
 
 /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/remove_from(obj/item/twohanded/kinetic_crusher/H, mob/living/user)

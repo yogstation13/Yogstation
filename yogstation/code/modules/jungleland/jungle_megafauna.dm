@@ -64,7 +64,7 @@
 	
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/add_mob_profile(mob/living/L)
 	attack_adjustments[L.real_name] = ATTACK_MATRIX
-	RegisterSignal(L,COMSIG_MOVABLE_MOVED,.proc/react_after_move)
+	RegisterSignal(L,COMSIG_MOVABLE_MOVED,PROC_REF(react_after_move))
 
 /mob/living/simple_animal/hostile/megafauna/tar_king/proc/react_after_move(mob/living/L, old_loc, target_dir, forced)
 	if(!last_done_attack || last_done_attack == TAR_ATTACK ||last_done_attack == TELEPORT_ATTACK)
@@ -299,7 +299,7 @@
 /obj/effect/better_animated_temp_visual/tar_king_chaser_impale/Initialize(mapload, new_caster)
 	. = ..()
 	caster = new_caster
-	INVOKE_ASYNC(src, .proc/blast)
+	INVOKE_ASYNC(src, PROC_REF(blast))
 
 /obj/effect/better_animated_temp_visual/tar_king_chaser_impale/proc/blast()
 	var/turf/T = get_turf(src)
@@ -361,7 +361,7 @@
 	if(new_speed)
 		speed = new_speed
 	caster = new_caster
-	addtimer(CALLBACK(src, .proc/seek_target), 1)
+	addtimer(CALLBACK(src, PROC_REF(seek_target)), 1)
 
 /obj/effect/temp_visual/tar_king_chaser/proc/get_target_dir()
 	. = get_cardinal_dir(src, targetturf)
