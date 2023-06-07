@@ -120,6 +120,22 @@
 	always_place = TRUE
 	cost = 0
 
+/datum/map_template/ruin/jungle/all/tar_assistant
+	name = "Tar Assistant"
+	id = "jungle-proper-tar-assistant"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "tar_assistant.dmm"	
+	cost = 5
+
+
+/datum/map_template/ruin/jungle/all/tar_enchant
+	name = "Tar Enchant"
+	id = "jungle-proper-tar-enchant"
+	description = "Old ruin of a civilization long gone, only echoes of the past remain..."
+	suffix = "tar_enchant.dmm"	
+	cost = 5
+
+
 //MEGAFAUNA
 /datum/map_template/ruin/jungle/swamp/miner
 	name = "Blood Drunk Miner"

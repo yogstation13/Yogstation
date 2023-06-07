@@ -424,7 +424,8 @@ GLOBAL_LIST_INIT(nests, list())
 	icon = 'yogstation/icons/obj/jungle32x48.dmi'
 	icon_state = "tar_assistant_base"
 
-	var/used = FALSE 
+	var/used = FALSE
+	var/in_use = FALSE 
 
 /obj/structure/tar_assistant_spawner/Initialize()
 	. = ..()
@@ -447,19 +448,93 @@ GLOBAL_LIST_INIT(nests, list())
 /obj/structure/tar_assistant_spawner/attack_hand(mob/user)
 	if(used)
 		return ..()
-	to_chat(user,span_notice("You insert the hand into the small hole in the pillar and a couple drops of blood spill down the spike..."))
-	INVOKE_ASYNC(src,PROC_REF(spawn_assistant),user)
+	if(!in_use)
+		to_chat(user,span_notice("You insert the hand into the small hole in the pillar and a couple drops of blood spill down the spike..."))
+		INVOKE_ASYNC(src,PROC_REF(spawn_assistant),user)
+	else 
+		to_chat(user,span_notice("The pillar is still moving!"))
 
 /obj/structure/tar_assistant_spawner/proc/spawn_assistant(mob/user) 
 	var/min = -2
 	var/max = 2
 	var/duration = 15 SECONDS
 	visible_message(span_notice("The pillar begins to shake violently and call out to the void!"))
-	poll_
+	in_use = TRUE
 	for(var/i in 0 to duration-1)
 		if (i == 0)
-			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
+			animate(src, pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
 		else
-			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
-	sleep(15 SECONDS)
+			animate(src,pixel_x=rand(min,max), pixel_y=rand(min,max), time=0.1 SECONDS)
+	var/list/L = pollGhostCandidates("Do you want to play as a Tar Assistant?", ROLE_GOLEM, null, FALSE, 15 SECONDS, null)
+	if(!LAZYLEN(L))
+		to_chat(user,span_notice("The ivory pillar stops quaking as noone answered it's call."))	
+		in_use = FALSE
+		return
+	var/mob/living/carbon/human/H = new /mob/living/carbon/human(get_turf(src))
+	var/mob/dead/observer/C = pick(L)
+	H.ghostize(TRUE)
+	H.key = C.key
+	H.set_species(/datum/species/golem/tar)
+	log_game("[key_name_admin(C)] has taken control of [key_name_admin(H)], his master is [key_name_admin(user)]")
+	to_chat(H, span_boldnotice("Your master is [user], you are bound to his will, protect him at all cost."))
+	to_chat(user,span_boldnotice("A wave of unusual energy washes over you as you realize you are now the master of [H]."))
+	used = TRUE 
+	in_use = FALSE
+	update_icon()
+
+/obj/effect/dummy/phased_mob/tar_pool
+	name = "pool of tar"
+	desc = "you can feel someone's gaze when looking at it."
+	icon = 'yogstation/icons/effects/64x64.dmi'
+	icon_state = "tar_pool"
+	pixel_x = -16
+	pixel_y = -16
+	invisibility = 0
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
+/obj/effect/dummy/phased_mob/tar_pool/phased_check(mob/living/user, direction)
+	. = ..()
+	if(!.)
+		return
+	var/turf/newloc = get_step_multiz(src,direction)
+	if(isclosedturf(newloc))
+		return 
+
+/obj/structure/enchanting_table 
+	name = "Ivory Table"
+	desc = "Table made out of ivory, it has runes carved into it."
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "enchant_active"
+
+	var/used = FALSE 
+	var/in_use = FALSE
+
+/obj/structure/enchanting_table/examine(mob/user)
+	. = ..()
+	if(!used)
+		. += "It glows with incandescent power."
+
+/obj/structure/enchanting_table/attacked_by(obj/item/I, mob/living/user)
+	if(used)
+		return ..()
+	if(in_use)
+		return 
+	in_use = TRUE 
+	to_chat(user,span_notice("You begin to enchant [I]..."))
+
+	if(!do_after(user,5 SECONDS, src))
+		in_use = FALSE 	
+		return
+	in_use = FALSE 
+	used = TRUE 
+	I.AddComponent(/datum/component/fantasy,5)
 	
+	to_chat(user,span_notice("You successfully enchant [I]."))
+	update_icon()
+
+/obj/structure/enchanting_table/update_icon()
+	. = ..()
+	if(used)
+		icon_state = "enchant"
+	else 
+		icon_state = "enchant_active" 

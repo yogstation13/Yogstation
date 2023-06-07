@@ -1,0 +1,109 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/jungleland/explored)
+"c" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"g" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"m" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"y" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"B" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/tar_assistant_spawner,
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"C" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"G" = (
+/obj/structure/stone_tile,
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"U" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+"V" = (
+/obj/structure/stone_tile/block,
+/turf/open/water/tar_basin,
+/area/ruin/unpowered/tar_temple)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+g
+c
+C
+a
+"}
+(3,1,1) = {"
+a
+V
+B
+m
+a
+"}
+(4,1,1) = {"
+a
+G
+y
+U
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+"}

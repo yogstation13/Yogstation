@@ -166,42 +166,42 @@
 		new ore_type(T)
 /datum/ore_patch/iron
 	ore_type = /obj/item/stack/ore/iron
-	ore_quantity_upper = 5
+	ore_quantity_upper = 2
 	ore_quantity_lower = 1
 	ore_color = "#878687" 
 	overlay_state = "rock_Iron"
 
 /datum/ore_patch/plasma
 	ore_type = /obj/item/stack/ore/plasma
-	ore_quantity_upper = 3
+	ore_quantity_upper = 2
 	ore_quantity_lower = 1
 	ore_color = "#c716b8"
 	overlay_state = "rock_Plasma"
 
 /datum/ore_patch/uranium
 	ore_type = /obj/item/stack/ore/uranium
-	ore_quantity_upper = 3
+	ore_quantity_upper = 2
 	ore_quantity_lower = 1
 	ore_color = "#1fb83b"
 	overlay_state = "rock_Uranium"
 
 /datum/ore_patch/titanium
 	ore_type = /obj/item/stack/ore/titanium
-	ore_quantity_upper = 4
+	ore_quantity_upper = 2
 	ore_quantity_lower = 1
 	ore_color = "#b3c0c7"
 	overlay_state = "rock_Titanium"
 
 /datum/ore_patch/gold
 	ore_type = /obj/item/stack/ore/gold
-	ore_quantity_upper = 3
+	ore_quantity_upper = 1
 	ore_quantity_lower = 1
 	ore_color = "#f0972b"
 	overlay_state = "rock_Gold"
 
 /datum/ore_patch/silver
 	ore_type = /obj/item/stack/ore/silver
-	ore_quantity_upper = 4
+	ore_quantity_upper = 1
 	ore_quantity_lower = 1
 	ore_color = "#bdbebf"
 	overlay_state = "rock_Silver"
@@ -316,10 +316,10 @@
 					to_chat(affected_mob, span_warning("[pick("You feel dizzy.", "Your head spins.")]"))
 				else 
 					to_chat(affected_mob, span_userdanger("A wave of dizziness washes over you!"))
-					affected_mob.Dizzy(5)
+					affected_mob.adjust_dizzy(5)
 
 			if(prob(10))
-				affected_mob.Jitter(5)
+				affected_mob.adjust_jitter(5)
 				if(prob(30))
 					to_chat(affected_mob, span_warning("[pick("Your head hurts.", "Your head pounds.")]"))
 	
@@ -343,10 +343,10 @@
 					to_chat(affected_mob, span_warning("[pick("You feel dizzy.", "Your head spins.")]"))
 				else 
 					to_chat(affected_mob, span_userdanger("A wave of dizziness washes over you!"))
-					affected_mob.Dizzy(5)
+					affected_mob.adjust_dizzy(5)
 
 			if(prob(15))
-				affected_mob.Jitter(5)
+				affected_mob.adjust_jitter(5)
 				if(prob(30))
 					if(prob(50))
 						to_chat(affected_mob, span_warning("[pick("Your head hurts.", "Your head pounds.")]"))
@@ -375,7 +375,7 @@
 				affected_mob.emote("cough")
 
 			if(prob(15))
-				affected_mob.Jitter(5)
+				affected_mob.adjust_jitter(5)
 				if(prob(60))
 					if(prob(30))
 						to_chat(affected_mob, span_warning("[pick("Your head hurts.", "Your head pounds.")]"))
@@ -398,13 +398,13 @@
 					to_chat(affected_mob, span_warning("[pick("You feel dizzy.", "Your head spins.")]"))
 				else 
 					to_chat(affected_mob, span_userdanger("A wave of dizziness washes over you!"))
-					affected_mob.Dizzy(5)
+					affected_mob.adjust_dizzy(5)
 
 			if(prob(50))
 				affected_mob.emote("cough")
 
 			if(prob(20))
-				affected_mob.Jitter(5)
+				affected_mob.adjust_jitter(5)
 				if(prob(50))
 					to_chat(affected_mob, span_warning("[pick("Your head hurts a lot.", "Your head pounds incessantly.")]"))
 					affected_mob.adjustStaminaLoss(25)
@@ -425,9 +425,9 @@
 	name = "Summon tar altar"
 	desc = "Summons a tar altar at your current location (MAX 3)"
 	cooldown_time = 1 MINUTES
-	button_icon = 'yogstation/icons/mob/actions/backgrounds.dmi'
+	background_icon = 'yogstation/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "jungle"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "tar_crown_summon"
 	var/obj/item/clothing/head/yogs/tar_king_crown/crown 
 
@@ -455,9 +455,9 @@
 	name = "Teleport to a tar shrine"
 	desc = "Teleports you to a chosen tar shrine"
 	cooldown_time = 1 MINUTES
-	button_icon = 'yogstation/icons/mob/actions/backgrounds.dmi'
+	background_icon = 'yogstation/icons/mob/actions/backgrounds.dmi'
 	background_icon_state = "jungle"
-	icon_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon = 'yogstation/icons/mob/actions.dmi'
 	button_icon_state = "tar_crown_teleport"
 	var/obj/item/clothing/head/yogs/tar_king_crown/crown 
 

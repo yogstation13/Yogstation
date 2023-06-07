@@ -182,7 +182,7 @@
 	icon_state = inert ? "dryad_heart_decay" : "dryad_heart"
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/organ/regenerative_core/dryad/go_inert()
 	..()
@@ -207,7 +207,7 @@
 	icon_state = inert ? "dryad_heart_decay" : "dryad_heart"
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/organ/regenerative_core/dryad/go_inert()
 	..()
@@ -643,3 +643,11 @@
 	var/dist = get_dist(get_turf(target),first_loc)
 	var/damage = dist * damage_per_dist 
 	target.apply_damage(damage, BRUTE, blocked = target.getarmor(type = BOMB))
+
+/obj/item/stack/sheet/ivory_crumbles
+	name = "ivory crumbles"
+	desc = "pale and beautiful crumbles of past long gone."
+	singular_name = "ivory crumble"
+	icon_state = "sheet-ivory"
+	grind_results = list(/datum/reagent/potassium = 10) //ivory is a bone
+

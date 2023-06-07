@@ -1620,8 +1620,18 @@
 	armor = 25
 	punchstunthreshold = 13
 	fixed_mut_color = "48002b"
-	info_text = "As an <span class='danger'>Tar Golem</span>, you burn very very easily, but can transform into any living creature, attacking or being attacked breaks the illusion, additionally you can temporarily turn yourself into a pool of tar, in this form you are invulnerable to all attacks, but being on fire prevents you from entering this form."
+	info_text = "As a <span class='danger'>Tar Golem</span>, you burn very very easily and can temporarily turn yourself into a pool of tar, in this form you are invulnerable to all attacks."
 	random_eligible = FALSE //If false, the golem subtype can't be made through golem mutation toxin
 	prefix = "Tar"
 	special_names = list("Tar'ath", "Tar'eth", "Tar'kian", "Eth'ar", "Rum'tir")
+	var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/tar_pool/TP
 
+/datum/species/golem/tar/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
+	. = ..()
+	TP = new 
+	TP.Grant(C)
+
+
+/datum/species/golem/tar/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	. = ..()
+	TP?.Remove(C)
