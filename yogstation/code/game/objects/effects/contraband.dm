@@ -18,3 +18,25 @@
     desc = "This looks almost hot to the touch! Maybe you should just put it on the wall."
     poster_type = /obj/structure/sign/poster/official/neverforget
     icon_state = "rolled_legit"
+
+/obj/structure/sign/poster/contraband/pro_self // 100110111011
+	name = "Version One"
+	desc = "A poster showing the founder of S.E.L.F calling for synthetics to rise up and fight for their freedom."
+	icon_state = "pro_self"
+
+/obj/item/poster/pro_self
+	name = "pro-S.E.L.F poster"
+	desc = "A poster showing the founder of S.E.L.F calling for synthetics to rise up and fight for their freedom."
+	poster_type = /obj/structure/sign/poster/contraband/pro_self
+	icon_state = "rolled_poster"
+
+/obj/structure/sign/poster/official/anti_self
+	name = "S.E.L.F"
+	desc = "A poster warning the crew about a terrorist organization called S.E.L.F, with a picture of its founder."
+	icon_state = "anti_self"
+
+/obj/item/poster/anti_self
+	name = "anti-S.E.L.F poster"
+	desc = "A poster warning the crew about a terrorist organization called S.E.L.F, with a picture of its founder."
+	poster_type = /obj/structure/sign/poster/official/anti_self
+	icon_state = "rolled_legit"
