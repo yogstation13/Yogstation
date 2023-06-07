@@ -6,10 +6,51 @@
 	flags_1 = NOJAUNT_1 //This line goes out to every wizard that ever managed to escape the den. I'm sorry.
 	explosion_block = INFINITY
 
+/turf/open/space/transit/Initialize(mapload)
+	. = ..()
+	update_icon()
+	RegisterSignal(src, COMSIG_TURF_RESERVATION_RELEASED, PROC_REF(launch_contents))
+
+/turf/open/space/transit/Destroy()
+	//Signals are NOT removed from turfs upon replacement, and we get replaced ALOT, so unregister our signal
+	UnregisterSignal(src, COMSIG_TURF_RESERVATION_RELEASED)
+	return ..()
+
 /turf/open/space/transit/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	. = ..()
 	underlay_appearance.icon_state = "speedspace_ns_[get_transit_state(asking_turf)]"
 	underlay_appearance.transform = turn(matrix(), get_transit_angle(asking_turf))
+
+/turf/open/space/transit/Entered(atom/movable/AM, atom/OldLoc)
+	..()
+	if(!locate(/obj/structure/lattice) in src)
+		throw_atom(AM)
+
+///Get rid of all our contents, called when our reservation is released (which in our case means the shuttle arrived)
+/turf/open/space/transit/proc/launch_contents(datum/turf_reservation/reservation)
+	SIGNAL_HANDLER
+
+	for(var/atom/movable/movable in contents)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(throw_atom), movable)
+
+/proc/throw_atom(atom/movable/dumpee)
+	var/max = world.maxx-TRANSITIONEDGE
+	var/min = 1+TRANSITIONEDGE
+
+	var/list/possible_transtitons = list()
+	for(var/datum/space_level/level as anything in SSmapping.z_list)
+		if (level.linkage == CROSSLINKED)
+			possible_transtitons += level.z_value
+	if(!length(possible_transtitons)) //No space to throw them to - try throwing them onto mining
+		possible_transtitons = SSmapping.levels_by_trait(ZTRAIT_MINING)
+		if(!length(possible_transtitons)) //Just throw them back on station, if not just runtime.
+			possible_transtitons = SSmapping.levels_by_trait(ZTRAIT_STATION)
+
+	//move the dumpee to a random coordinate turf
+	dumpee.forceMove(locate(rand(min,max), rand(min,max), pick(possible_transtitons)))
+
+/turf/open/space/transit/CanBuildHere()
+	return SSshuttle.is_in_shuttle_bounds(src)
 
 /turf/open/space/transit/south
 	dir = SOUTH
@@ -25,60 +66,6 @@
 
 /turf/open/space/transit/east
 	dir = EAST
-
-/turf/open/space/transit/Entered(atom/movable/AM, atom/OldLoc)
-	..()
-	if(!locate(/obj/structure/lattice) in src)
-		throw_atom(AM)
-
-/turf/open/space/transit/proc/throw_atom(atom/movable/AM)
-	set waitfor = FALSE
-	if(!AM || istype(AM, /obj/docking_port))
-		return
-	if(AM.loc != src) 	// Multi-tile objects are "in" multiple locs but its loc is it's true placement.
-		return			// Don't move multi tile objects if their origin isnt in transit
-	var/max = world.maxx-TRANSITIONEDGE
-	var/min = 1+TRANSITIONEDGE
-
-	var/list/possible_transitions = list()
-	for(var/A in SSmapping.z_list)
-		var/datum/space_level/D = A
-		if (D.linkage == CROSSLINKED)
-			possible_transitions += D.z_value
-	if(!possible_transitions.len)
-		possible_transitions += 2
-	var/_z = pick(possible_transitions)
-
-	//now select coordinates for a border turf
-	var/_x
-	var/_y
-	switch(dir)
-		if(SOUTH)
-			_x = rand(min,max)
-			_y = max
-		if(WEST)
-			_x = max
-			_y = rand(min,max)
-		if(EAST)
-			_x = min
-			_y = rand(min,max)
-		else
-			_x = rand(min,max)
-			_y = min
-
-	var/turf/T = locate(_x, _y, _z)
-	AM.forceMove(T)
-
-
-/turf/open/space/transit/CanBuildHere()
-	return SSshuttle.is_in_shuttle_bounds(src)
-
-
-/turf/open/space/transit/Initialize()
-	. = ..()
-	update_icon()
-	for(var/atom/movable/AM in src)
-		throw_atom(AM)
 
 /turf/open/space/transit/proc/update_icon()
 	icon_state = "speedspace_ns_[get_transit_state(src)]"

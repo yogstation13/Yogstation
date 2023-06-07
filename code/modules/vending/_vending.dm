@@ -800,13 +800,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 				vend_ready = TRUE
 				return
 
+			var/is_premium = FALSE  // premium products always charge
 			if(coin_records.Find(R) || hidden_records.Find(R))
 				price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
+				is_premium = TRUE
 
 			if(LAZYLEN(R.returned_products))
 				price_to_use = 0 //returned items are free
 
-			if(!charge_user(price_to_use, R.name))
+			if(!charge_user(price_to_use, R.name, is_premium))
 				vend_ready = TRUE
 				return
 
@@ -855,7 +857,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			vend_ready = FALSE //One thing at a time!!
 
 			// Charge the user
-			if (!charge_user(chef_price, P.full_name))
+			if (!charge_user(chef_price, P.full_name, FALSE))
 				vend_ready = TRUE
 				return
 
@@ -876,7 +878,7 @@ GLOBAL_LIST_EMPTY(vending_products)
  * Charge the user during a vend
  * Returns false if the user could not buy this item
  */
-/obj/machinery/vending/proc/charge_user(price, item_name)
+/obj/machinery/vending/proc/charge_user(price, item_name, always_charge)
 	var/mob/living/L
 	if(isliving(usr))
 		L = usr
@@ -894,7 +896,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			flick(icon_deny,src)
 			return FALSE
 		var/datum/bank_account/account = C.registered_account
-		if(account.account_job && account.account_job.paycheck_department == payment_department)
+		if(!always_charge && account.account_job && account.account_job.paycheck_department == payment_department)
 			price = 0
 		if(price && !account.adjust_money(-price))
 			say("You do not possess the funds to purchase \the [item_name].")

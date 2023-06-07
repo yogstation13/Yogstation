@@ -363,33 +363,23 @@
 		H.overlays_standing[HALO_LAYER] = new_halo_overlay
 		H.apply_overlay(HALO_LAYER)
 
+/datum/team/cult/proc/make_image(datum/objective/sacrifice/sac_objective)
+	var/datum/job/job_of_sacrifice = sac_objective.target.assigned_role
+	var/datum/preferences/prefs_of_sacrifice = sac_objective.target.current.client.prefs
+	var/icon/reshape = get_flat_human_icon(null, job_of_sacrifice, prefs_of_sacrifice, list(SOUTH))
+	reshape.Shift(SOUTH, 4)
+	reshape.Shift(EAST, 1)
+	reshape.Crop(7,4,26,31)
+	reshape.Crop(-5,-3,26,30)
+	sac_objective.sac_image = reshape
+
 /datum/team/cult/proc/setup_objectives()
-	//SAC OBJECTIVE , todo: move this to objective internals
-	var/datum/objective/sacrifice/sac_objective = new
-	sac_objective.team = src
+	var/datum/objective/sacrifice/sacrifice_objective = new
+	sacrifice_objective.team = src
+	sacrifice_objective.find_target()
+	objectives += sacrifice_objective
 
-	var/datum/mind/sac_target = get_sacrifice_target()
-	if(sac_target != null)
-		sac_objective.target = sac_target
-		sac_objective.update_explanation_text()
-
-		var/datum/job/sacjob = SSjob.GetJob(sac_target.assigned_role)
-		var/datum/preferences/sacface = sac_target.current.client.prefs
-		var/icon/reshape = get_flat_human_icon(null, sacjob, sacface, list(SOUTH))
-		reshape.Shift(SOUTH, 4)
-		reshape.Shift(EAST, 1)
-		reshape.Crop(7,4,26,31)
-		reshape.Crop(-5,-3,26,30)
-		sac_objective.sac_image = reshape
-
-		objectives += sac_objective
-	else
-		message_admins("Cult Sacrifice: Could not find unconvertible or convertible target. WELP!")
-
-
-	//SUMMON OBJECTIVE
-
-	var/datum/objective/eldergod/summon_objective = new()
+	var/datum/objective/eldergod/summon_objective = new
 	summon_objective.team = src
 	objectives += summon_objective
 
@@ -483,6 +473,75 @@
 /datum/objective/sacrifice
 	var/sacced = FALSE
 	var/sac_image
+
+/// Unregister signals from the old target so it doesn't cause issues when sacrificed of when a new target is found.
+/datum/objective/sacrifice/proc/clear_sacrifice()
+	if(!target)
+		return
+	UnregisterSignal(target, COMSIG_MIND_TRANSFERRED)
+	if(target.current)
+		UnregisterSignal(target.current, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_MIND_TRANSFERRED_INTO))
+	target = null
+
+/datum/objective/sacrifice/find_target(dupe_search_range, list/blacklist)
+	clear_sacrifice()
+	if(!istype(team, /datum/team/cult))
+		return
+	var/datum/team/cult/cult = team
+	var/list/target_candidates = list()
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
+		if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && !is_convertable_to_cult(player) && player.stat != DEAD)
+			target_candidates += player.mind
+	if(target_candidates.len == 0)
+		message_admins("Cult Sacrifice: Could not find unconvertible target, checking for convertible target.")
+		for(var/mob/living/carbon/human/player in GLOB.player_list)
+			if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && player.stat != DEAD)
+				target_candidates += player.mind
+	listclearnulls(target_candidates)
+	if(LAZYLEN(target_candidates))
+		target = pick(target_candidates)
+		update_explanation_text()
+		// Register a bunch of signals to both the target mind and its body
+		// to stop cult from softlocking everytime the target is deleted before being actually sacrificed.
+		RegisterSignal(target, COMSIG_MIND_TRANSFERRED, PROC_REF(on_mind_transfer))
+		RegisterSignal(target.current, COMSIG_PARENT_QDELETING, PROC_REF(on_target_body_del))
+		RegisterSignal(target.current, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_possible_mindswap))
+	else
+		message_admins("Cult Sacrifice: Could not find unconvertible or convertible target. WELP!")
+		sacced = TRUE // Prevents another hypothetical softlock. This basically means every PC is a cultist.
+	if(!sacced)
+		cult.make_image(src)
+	for(var/datum/mind/mind in cult.members)
+		if(mind.current)
+			mind.current.clear_alert("bloodsense")
+			mind.current.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
+
+/datum/objective/sacrifice/proc/on_target_body_del()
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(find_target))
+
+/datum/objective/sacrifice/proc/on_mind_transfer(datum/source, mob/previous_body)
+	SIGNAL_HANDLER
+	//If, for some reason, the mind was transferred to a ghost (better safe than sorry), find a new target.
+	if(!isliving(target.current))
+		INVOKE_ASYNC(src, PROC_REF(find_target))
+		return
+	UnregisterSignal(previous_body, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_MIND_TRANSFERRED_INTO))
+	RegisterSignal(target.current, COMSIG_PARENT_QDELETING, PROC_REF(on_target_body_del))
+	RegisterSignal(target.current, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_possible_mindswap))
+
+/datum/objective/sacrifice/proc/on_possible_mindswap(mob/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(target.current, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_MIND_TRANSFERRED_INTO))
+	//we check if the mind is bodyless only after mindswap shenanigeans to avoid issues.
+	addtimer(CALLBACK(src, PROC_REF(do_we_have_a_body)), 0 SECONDS)
+
+/datum/objective/sacrifice/proc/do_we_have_a_body()
+	if(!target.current) //The player was ghosted and the mind isn't probably going to be transferred to another mob at this point.
+		find_target()
+		return
+	RegisterSignal(target.current, COMSIG_PARENT_QDELETING, PROC_REF(on_target_body_del))
+	RegisterSignal(target.current, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_possible_mindswap))
 
 /datum/objective/sacrifice/is_valid_target(possible_target)
 	. = ..()

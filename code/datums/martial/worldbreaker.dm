@@ -1,7 +1,7 @@
 //variables for fun balance tweaks
 #define COOLDOWN_STOMP 30 SECONDS
-#define STOMP_RADIUS 6 //the base radius for the charged stomp
-#define STOMP_DAMAGERADIUS 3
+#define STOMP_WINDUP 2 SECONDS //this gets doubled if heavy
+#define STOMP_RADIUS 6 //the base radius for the charged stomp, only does damage in an area half this size
 #define COOLDOWN_LEAP 2 SECONDS
 #define PLATE_LEAP 0.4 SECONDS //number of seconds added to cooldown per plate
 #define LEAP_RADIUS 1
@@ -10,9 +10,9 @@
 #define WARNING_RANGE 10 //extra range to certain sound effects
 #define PLATE_INTERVAL 15 SECONDS //how often a plate grows
 #define PLATE_REDUCTION 10 //how much DR per plate
-#define MAX_PLATES 10 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
-#define PLATE_CAP MAX_PLATES + 5 //hard cap of plates to prevent station wide fuckery
-#define PLATE_BREAK 30 //How much damage it takes to break a plate
+#define MAX_PLATES 8 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
+#define PLATE_CAP 15 //hard cap of plates to prevent station wide fuckery
+#define PLATE_BREAK 15 //How much damage it takes to break a plate
 #define BALLOON_COOLDOWN 1 SECONDS  //limit the balloon alert spam of rapid click
 #define THROW_TOSSDMG 10 //the damage dealt by the initial throw
 #define THROW_SLAMDMG 5 //the damage dealt per object impacted during a throw
@@ -77,7 +77,6 @@
 /datum/martial_art/worldbreaker/proc/stagger(mob/living/victim)
 	if(HAS_TRAIT(victim, TRAIT_STUNIMMUNE))
 		return
-	victim.set_resting(TRUE)//basically a trip
 	victim.add_movespeed_modifier(id, update=TRUE, priority=101, multiplicative_slowdown = 0.5)
 	addtimer(CALLBACK(src, PROC_REF(stagger_end), victim), STAGGER_DURATION, TIMER_UNIQUE | TIMER_OVERRIDE)
 
@@ -91,9 +90,9 @@
 		return
 	var/throwdirection = get_dir(user, victim)
 	var/atom/throw_target = get_edge_target_turf(victim, throwdirection)
-	var/throwspeed = 3
+	var/throwspeed = 1
 	if(heavy)
-		throwspeed *= 2
+		throwspeed *= 4
 		distance *= 2
 	victim.throw_at(throw_target, distance, throwspeed, user)
 
@@ -114,9 +113,7 @@
 	if(plates >= PLATE_CAP || user.stat == DEAD || !can_use(user))//no quaking the entire station
 		return
 	user.balloon_alert(user, span_notice("your plates grow thicker!"))
-	plates++
-	if(plates <= MAX_PLATES)
-		user.physiology.damage_resistance += PLATE_REDUCTION
+	adjust_plates(user, 1)
 	update_platespeed(user)
 
 /datum/martial_art/worldbreaker/proc/rip_plate(mob/living/carbon/human/user)
@@ -126,9 +123,7 @@
 	user.balloon_alert(user, span_notice("you tear off a loose plate!"))
 
 	currentplate = 0
-	if(plates <= MAX_PLATES)
-		user.physiology.damage_resistance -= PLATE_REDUCTION
-	plates--
+	adjust_plates(user, -1)
 	update_platespeed(user)
 	var/obj/item/worldplate/plate = new()
 	plate.linked_martial = src
@@ -151,9 +146,7 @@
 	user.visible_message(span_notice("one of [user]'s plates falls to the ground!"), span_userdanger("one of your loose plates falls off from excessive wear!"))
 	while(currentplate >= PLATE_BREAK)
 		currentplate -= PLATE_BREAK
-		if(plates <= MAX_PLATES)
-			user.physiology.damage_resistance -= PLATE_REDUCTION
-		plates--
+		adjust_plates(user, -1)
 		update_platespeed(user)
 		var/obj/item/worldplate/plate = new(get_turf(user))//dropped to the ground
 		plate.linked_martial = src
@@ -183,6 +176,17 @@
 			REMOVE_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
 			REMOVE_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
 
+/datum/martial_art/worldbreaker/proc/adjust_plates(mob/living/carbon/human/user, amount = 0)
+	if(amount == 0)
+		return
+
+	var/plate_change = clamp(amount + plates, 0, MAX_PLATES) - min(plates, MAX_PLATES)
+	if(plate_change)
+		user.physiology.armor = user.physiology.armor.modifyAllRatings(plate_change * PLATE_REDUCTION)
+
+	plates = clamp(plates + amount, 0, PLATE_CAP)
+
+//the plates in question
 /obj/item/worldplate
 	name = "worldbreaker plate"
 	desc = "A sizeable plasteel plate, you can barely imagine the strength it would take to throw this."
@@ -238,7 +242,7 @@
 			new /obj/effect/temp_visual/dragon_swoop/bubblegum(telegraph)
 
 	leaping = TRUE
-	var/jumpspeed = heavy ? 1 : 3
+	var/jumpspeed = heavy ? 1 : 2
 	user.throw_at(target, 15, jumpspeed, user, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), user))
 	user.Immobilize(1 SECONDS, ignore_canstun = TRUE) //to prevent cancelling the leap
 
@@ -424,7 +428,7 @@
 	for(var/mob/living/L in range(1, target))
 		if(L == user)
 			continue
-		var/damage = heavy ? 7 : 5
+		var/damage = heavy ? 6 : 4
 		if(L == target)
 			damage *= 3 //the target takes more stamina and brute damage
 
@@ -471,8 +475,8 @@
 	charging = TRUE
 	owner.visible_message(span_danger("[owner] prepares to stomp the ground with all their might!"), span_notice("you build up power in your legs, preparing to stomp with all you have!"))
 	var/obj/effect/temp_visual/decoy/tensecond/D = new /obj/effect/temp_visual/decoy/tensecond(owner.loc, owner)
-	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = (heavy ? 2 : 1) SECONDS)
-	if(!do_after(owner, (heavy ? 2 : 1) SECONDS, owner) || !IsAvailable())
+	animate(D, alpha = 128, color = "#000000", transform = matrix()*2, time = (heavy ? STOMP_WINDUP * 2 : STOMP_WINDUP))
+	if(!do_after(owner, (heavy ? STOMP_WINDUP * 2 : STOMP_WINDUP), owner) || !IsAvailable())
 		charging = FALSE
 		qdel(D)
 		return
@@ -481,26 +485,27 @@
 	animate(D, color = "#000000", transform = matrix()*0, time = 2)
 	QDEL_IN(D, 3)
 
-	for(var/mob/living/L in range(STOMP_RADIUS + plates, owner))
+	var/actual_range = STOMP_RADIUS + plates
+	for(var/mob/living/L in range(actual_range, owner))
 		if(L == owner)
 			continue
-		var/damage = heavy ? 10 : 5
+		var/damage = 0
 		var/throwdistance = 1
-		if(L in range(STOMP_DAMAGERADIUS + (plates/2), owner))//more damage and CC if closer
-			damage *= 3
+		if(L in range(actual_range/2, owner))//more damage and CC if closer
+			damage = heavy ? 20 : 10
 			throwdistance = 2
 			L.Knockdown(30)
 		if(L.loc == owner.loc)//if they are standing directly ontop of you, you're probably fucked
 			to_chat(L, span_userdanger("[owner] slams you into the ground with so much force that you're certain your ribs have been collapsed!"))
-			damage *= 3
+			damage *= 4
 			L.Stun(5 SECONDS)
 		linked_martial.hurt(owner, L, damage)
 		linked_martial.push_away(owner, L, throwdistance)
 		if(L.loc == owner.loc && isanimal(L) && L.stat == DEAD)//gib any animals you are standing on
 			L.gib()
-	for(var/obj/item/I in range(STOMP_RADIUS + plates, owner))
+	for(var/obj/item/I in range(actual_range, owner))
 		linked_martial.push_away(owner, I, 2)
-	for(var/obj/structure/S in range(STOMP_DAMAGERADIUS + (plates/2), owner))
+	for(var/obj/structure/S in range(actual_range/2, owner))
 		S.take_damage(25 + (plates * 3))
 
 	if(get_turf(owner))//fuck that tile up
@@ -531,11 +536,11 @@
 	var/list/combined_msg = list()
 	combined_msg +=  "<b><i>You imagine all the things you would be capable of with this power.</i></b>"
 
-	combined_msg += span_notice("<b>All attacks apply stagger. Stagger knocks people prone and applies a brief slow.</b>")
+	combined_msg += span_notice("<b>All attacks apply stagger. Stagger applies a brief slow.</b>")
 
 	combined_msg +=  "[span_notice("Plates")]: You will progressively grow plates every [PLATE_INTERVAL/10] seconds. \
-	Each plate provides [PLATE_REDUCTION]% damage reduction but also slows you down. The damage reduction caps at [PLATE_REDUCTION * MAX_PLATES]% but the slowdown can continue scaling. \
-	While at maximum damage reduction you are considered \"heavy\" and most of your attacks will be slower, but do more damage in a larger area. \
+	Each plate provides [PLATE_REDUCTION]% armour but also slows you down. The armour caps at [PLATE_REDUCTION * MAX_PLATES]% but the slowdown can continue scaling. \
+	While at maximum armour you are considered \"heavy\" and most of your attacks will be slower, but do more damage in a larger area. \
 	Taking brute or burn damage will wear away at your plates until they fall off on their own."
 
 	combined_msg +=  "[span_notice("Rip Plate")]: Help intent yourself to rip off a plate. The plate can be thrown at people to stagger them and knock them back. \
@@ -589,7 +594,6 @@
 	ADD_TRAIT(H, TRAIT_RESISTHEAT, type) //walk through that fire all you like, hope you don't care about your clothes
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
-	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, type)
 	ADD_TRAIT(H, TRAIT_NOVEHICLE, type)
 	RegisterSignal(H, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(lose_plate))
 	if(!linked_stomp)
@@ -607,12 +611,11 @@
 		S.remove_no_equip_slot(H, SLOT_WEAR_SUIT)
 	usr.click_intercept = null 
 	remove_verb(H, recalibration)
-	H.physiology.damage_resistance -= PLATE_REDUCTION * min(plates, MAX_PLATES)
 	deltimer(plate_timer)
-	H.remove_movespeed_modifier(type)
+	plates = 0
+	update_platespeed(H)
 	REMOVE_TRAIT(H, TRAIT_RESISTHEAT, type)
 	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
-	REMOVE_TRAIT(H, TRAIT_BOMBIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_NOVEHICLE, type)
 	UnregisterSignal(H, COMSIG_MOB_APPLY_DAMAGE)
@@ -621,8 +624,8 @@
 	return ..()
 
 #undef COOLDOWN_STOMP
+#undef STOMP_WINDUP
 #undef STOMP_RADIUS
-#undef STOMP_DAMAGERADIUS
 #undef COOLDOWN_LEAP
 #undef PLATE_LEAP
 #undef LEAP_RADIUS

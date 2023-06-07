@@ -144,5 +144,5 @@
 	..()
 	if(!uses)
 		var/obj/item/reagent_containers/glass/bottle/vial/empty = new(get_turf(user))
-		user.put_in_active_hand(empty)
 		qdel(src)
+		user.put_in_active_hand(empty)
