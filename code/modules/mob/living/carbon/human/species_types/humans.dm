@@ -5,6 +5,8 @@
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,HAS_FLESH,HAS_BONE)
 	default_features = list("mcolor" = "FFF", "wings" = "None")
 	use_skintones = 1
+	brutemod = 0
+	burnmod = 0
 	skinned_type = /obj/item/stack/sheet/animalhide/human
 	disliked_food = GROSS | RAW | MICE
 	liked_food = JUNKFOOD | FRIED | GRILLED
