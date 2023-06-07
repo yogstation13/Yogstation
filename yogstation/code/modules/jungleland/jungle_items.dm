@@ -476,7 +476,7 @@
 
 /obj/item/crusher_trophy/jungleland/meduracha_tentacles/on_mark_detonation(mob/living/target, mob/living/user)
 	. = ..()
-	addtimer(CALLBACK(src,PROC_REF(delayed_damage,target)),5 SECONDS)
+	addtimer(CALLBACK(src,PROC_REF(delayed_damage),target),5 SECONDS)
 
 /obj/item/crusher_trophy/jungleland/meduracha_tentacles/proc/delayed_damage(mob/living/target)
 	if(!target || QDELETED(target) || target.health <= 0)
