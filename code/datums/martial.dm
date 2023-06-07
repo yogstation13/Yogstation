@@ -34,6 +34,10 @@
 	var/nonlethal = FALSE
 	///if the martial art can be overridden by temporary arts
 	var/allow_temp_override = TRUE
+	///the message for when you try to use a gun you can't use
+	var/no_gun_message = "Use of ranged weaponry would bring dishonor to the clan."
+	///used to allow certain guns as exceptions
+	var/gun_exceptions = list()
 
 /**
   * martial art specific disarm attacks

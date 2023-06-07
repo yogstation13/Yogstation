@@ -516,6 +516,11 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	desc = "This is how many dash charges you have."
 	icon_state = "ipcdash"
 
+/atom/movable/screen/alert/style
+	name = "Style"
+	desc = "This is how stylish you are."
+	icon_state = "style"
+
 //SILICONS
 
 /atom/movable/screen/alert/nocell
