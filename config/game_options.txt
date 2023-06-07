@@ -105,7 +105,7 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 
 # New
 PROBABILITY DARKSPAWN 0 # Moved to midround event
-PROBABILITY HERESY 4
+PROBABILITY HERESY 6
 PROBABILITY INFILTRATION 0
 PROBABILITY BLOODSUCKER 5
 
