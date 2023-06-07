@@ -1462,8 +1462,8 @@
 	..()
 
 /datum/reagent/healium/on_mob_end_metabolize(mob/living/L)
-	L.SetSleeping(10, ignore_canstun = TRUE)
-	L.SetUnconscious(10, ignore_canstun = TRUE)
+	L.SetSleeping(1 SECONDS)
+	L.SetUnconscious(1 SECONDS)
 	L.remove_movespeed_modifier(type)
 	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, "healium")
 	return ..()
