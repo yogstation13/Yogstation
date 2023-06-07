@@ -423,6 +423,8 @@ GLOBAL_LIST_INIT(nests, list())
 	desc = "It calls towards it's master."
 	icon = 'yogstation/icons/obj/jungle32x48.dmi'
 	icon_state = "tar_assistant_base"
+	anchored = TRUE
+	density = TRUE
 
 	var/used = FALSE
 	var/in_use = FALSE 
@@ -482,7 +484,7 @@ GLOBAL_LIST_INIT(nests, list())
 	in_use = FALSE
 	update_icon()
 
-/obj/effect/dummy/phased_mob/tar_pool
+/obj/effect/dummy/phased_mob/spell_jaunt/tar_pool
 	name = "pool of tar"
 	desc = "you can feel someone's gaze when looking at it."
 	icon = 'yogstation/icons/effects/64x64.dmi'
@@ -491,21 +493,23 @@ GLOBAL_LIST_INIT(nests, list())
 	pixel_y = -16
 	invisibility = 0
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	movespeed = 3
+	movedelay = 3
 
-/obj/effect/dummy/phased_mob/tar_pool/phased_check(mob/living/user, direction)
+/obj/effect/dummy/phased_mob/spell_jaunt/tar_pool/phased_check(mob/living/user, direction)
 	. = ..()
 	if(!.)
 		return
-	var/turf/newloc = get_step_multiz(src,direction)
-	if(isclosedturf(newloc))
-		return 
+	if(isclosedturf(.))
+		return null
 
 /obj/structure/enchanting_table 
 	name = "Ivory Table"
 	desc = "Table made out of ivory, it has runes carved into it."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	icon_state = "enchant_active"
-
+	anchored = TRUE 
+	density = TRUE
 	var/used = FALSE 
 	var/in_use = FALSE
 
