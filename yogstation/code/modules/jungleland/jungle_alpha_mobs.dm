@@ -132,7 +132,7 @@
 /mob/living/simple_animal/hostile/yog_jungle/alpha_dryad
 	name ="Wrath of Gaia"
 	desc = "Collosal tree inhabited by all the furiours spirits of the jungle."
-	icon = 'yogstation/icons/mob/jungle64x64.dmi'
+	icon = 'yogstation/icons/mob/jungle96x96.dmi'
 	icon_state = "wrath_of_gaia"
 	icon_living = "wrath_of_gaia"
 	icon_dead = "wrath_of_gaia_dead"
@@ -164,7 +164,7 @@
 /mob/living/simple_animal/hostile/yog_jungle/alpha_corrupted_dryad
 	name ="Wrath of Corruption"
 	desc = "Collosal tree that used to be a home of the dryads. Now it serves as a weapon of corruption, spreading it's destruction wherever it goes."
-	icon = 'yogstation/icons/mob/jungle64x64.dmi'
+	icon = 'yogstation/icons/mob/jungle96x96.dmi'
 	icon_state = "wrath_of_corruption"
 	icon_living = "wrath_of_corruption"
 	icon_dead = "wrath_of_corruption_dead"
