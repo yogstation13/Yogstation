@@ -336,6 +336,7 @@
 /obj/item/gun/ballistic/automatic/pistol,
 /obj/item/paper/crumpled/ruins/syndicate_derelict_station/important_note,
 /obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "hx" = (
@@ -587,6 +588,19 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/research)
+"lV" = (
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/obj/item/stack/sheet/plastitaniumglass,
+/turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/research)
 "lW" = (
 /obj/structure/lattice,
@@ -1381,7 +1395,6 @@
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
-/obj/item/solar_assembly,
 /obj/item/electronics/tracker,
 /obj/item/stack/cable_coil/red,
 /obj/item/stack/cable_coil/red,
@@ -1458,19 +1471,6 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/medbay)
-"Eq" = (
-/obj/item/stack/sheet/plastitaniumglass,
-/obj/item/stack/sheet/plastitaniumglass,
-/obj/item/stack/sheet/plastitaniumglass,
-/obj/item/stack/sheet/plastitaniumglass,
-/obj/item/stack/sheet/plastitaniumglass,
-/obj/item/stack/sheet/plastitaniumglass,
-/obj/item/stack/sheet/plastitaniumglass,
-/obj/item/stack/sheet/plastitaniumglass,
-/obj/item/stack/sheet/plastitaniumglass,
-/obj/item/stack/sheet/plastitaniumglass,
-/turf/open/space/basic,
-/area/ruin/space/has_grav/syndiederelict/research)
 "Es" = (
 /obj/item/stack/sheet/plastitaniumglass,
 /obj/item/stack/sheet/plastitaniumglass,
@@ -1801,7 +1801,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plating/broken,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
 "KL" = (
@@ -2349,6 +2348,9 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/structure/closet/crate/secure/gear,
+/obj/item/melee/transforming/energy/sword,
+/obj/item/melee/transforming/energy/sword,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/virology)
 "XC" = (
@@ -3084,7 +3086,7 @@ AO
 KY
 GA
 lY
-Eq
+lV
 BJ
 gx
 ub
