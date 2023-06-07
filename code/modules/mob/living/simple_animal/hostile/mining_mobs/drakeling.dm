@@ -118,7 +118,7 @@
 	panel = "Dragon"
 
 	cooldown_time = 5 SECONDS
-	active_msg = span_notice("You prepare %YOUR ULTRA DRAGON ATTACK")
+	active_msg = span_notice("You prepare YOUR ULTRA MEGA DRAGON ATTACK")
 	deactive_msg = span_notice("You decide to spare the mortals for now...")
 	spell_requirements = NONE
 	var/mob/living/simple_animal/hostile/drakeling/drake

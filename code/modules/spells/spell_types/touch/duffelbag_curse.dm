@@ -57,7 +57,7 @@
 
 	// Put it on their back first
 	if(victim.dropItemToGround(victim.back))
-		victim.equip_to_slot_if_possible(conjured_duffel, ITEM_SLOT_BACK, TRUE, TRUE)
+		victim.equip_to_slot_if_possible(conjured_duffel, SLOT_BACK, TRUE, TRUE)
 		return TRUE
 
 	// If the back equip failed, put it in their hands first

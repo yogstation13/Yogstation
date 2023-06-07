@@ -305,6 +305,7 @@
 		var/datum/action/cooldown/bloodsucker/granted = new choice.ascended_power
 		bloodsuckerdatum.BuyPower(granted)
 		granted.level_current = rand(3, 4)
+		granted.UpdateDesc()
 		qdel(choice)
 		to_chat(user, span_boldnotice("You have ascended [choice]!"))
 		bloodsuckerdatum.clanpoints--

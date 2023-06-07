@@ -550,6 +550,8 @@
 	if(!LAZYLEN(.)) // lol ..length
 		return FALSE
 
+/atom/proc/update_icon()
+	return
 /**
   * An atom we are buckled or is contained within us has tried to move
   *

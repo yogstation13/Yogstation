@@ -54,7 +54,7 @@
 	if(flash)
 		add_overlay(flashing_overlay)
 		attached_overlays += flashing_overlay
-		addtimer(CALLBACK(src, PROC_REF(update_icon)), 5)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 5)
 	if(holder)
 		holder.update_icon()
 
