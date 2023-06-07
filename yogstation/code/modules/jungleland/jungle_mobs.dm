@@ -358,7 +358,7 @@
 	spacewalk = TRUE
 	melee_damage_lower = 10
 	melee_damage_upper = 40 
-
+	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito
 	var/can_charge = TRUE
 	var/cooldown = 15 SECONDS
 	var/charge_ramp_up = 2 SECONDS
