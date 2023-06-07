@@ -1748,6 +1748,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
+/obj/item/ammo_box/magazine/m10mm,
 /turf/open/floor/plating/broken,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
 "KL" = (
@@ -1951,6 +1952,8 @@
 /obj/item/electronics/apc,
 /obj/item/electronics/advanced_airlock_controller,
 /obj/item/electronics/advanced_airlock_controller,
+/obj/item/circuitboard/machine/protolathe,
+/obj/item/circuitboard/machine/circuit_imprinter,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "Pi" = (
