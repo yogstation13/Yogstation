@@ -113,8 +113,8 @@
 /obj/item/projectile/bullet/a357/frag13/on_hit(atom/target) //Basically breaching slug with 1.5x damage
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 750 //One shot to break a window, two shots for a door, three if reinforced
-	playsound(loc, get_sfx("explosion"), vol_by_damage(), TRUE, -1, null, get_rand_frequency()) // it explodes guys trust me
-	var/turf/T = get_turf()
+	playsound(loc, get_sfx("explosion"), vol_by_damage(), 1, frequency = get_rand_frequency()) // it explodes guys trust me
+	var/turf/T = get_turf(src)
 	if(T && istype(T))
 		new /obj/effect/hotspot(T)
 	..()
