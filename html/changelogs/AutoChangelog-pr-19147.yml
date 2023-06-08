@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - tweak: "electrolyzer can turn hypernoblium into antinoblium"
-  - bugfix: "fixed runtime error when the electrolyzer doesn't have a cell"

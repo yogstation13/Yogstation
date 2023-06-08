@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "hypospray quickload actually swaps the vials instead of dropping one onto the floor"
-  - bugfix: "trying to load a hypospray on harm intent no longer deletes the vial's contents"
