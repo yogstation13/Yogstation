@@ -74,6 +74,11 @@ GLOBAL_PROTECT(adminlog)
 
 GLOBAL_LIST_EMPTY(active_turfs_startlist)
 
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
+GLOBAL_LIST_EMPTY(test_log)
+GLOBAL_PROTECT(test_log)
+#endif
+
 /////Picture logging
 GLOBAL_VAR(picture_log_directory)
 GLOBAL_PROTECT(picture_log_directory)
