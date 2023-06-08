@@ -527,6 +527,7 @@
 	buckle_requires_restraints = TRUE
 
 /obj/structure/table/optable/Initialize()
+	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 1, \
 		extra_surgeries = TRUE, \
@@ -538,7 +539,7 @@
 	visible_message(span_notice("[user] lays [pushed_mob] on [src]."))
 
 /obj/structure/table/optable/debug/Initialize()
-	..()
+	. = ..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
 	SB.extra_surgeries = subtypesof(/datum/surgery)
 

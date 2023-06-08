@@ -15,6 +15,7 @@
 	var/link_angle = 0
 
 /obj/item/pod_parts/pod_frame/Initialize()
+	. = ..()
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE)
 
 /obj/item/pod_parts/pod_frame/proc/find_square()

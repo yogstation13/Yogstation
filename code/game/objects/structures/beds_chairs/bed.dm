@@ -23,6 +23,7 @@
 	var/bolts = TRUE
 
 /obj/structure/bed/Initialize()
+	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 0.8, \
 	)

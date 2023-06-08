@@ -209,6 +209,7 @@
 			CP.disable()
 
 /obj/structure/reagent_dispensers/plumbed/Initialize()
+	. = ..()
 	AddComponent(/datum/component/plumbing/simple_supply)
 
 /obj/structure/reagent_dispensers/plumbed/storage
@@ -217,4 +218,5 @@
 	reagent_id = null //start empty
 
 /obj/structure/reagent_dispensers/plumbed/storage/Initialize()
+	. = ..()
 	AddComponent(/datum/component/plumbing/tank)
