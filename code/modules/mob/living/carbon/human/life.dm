@@ -18,6 +18,12 @@
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
 
+#define ADRENALINE_THRESHOLD 25
+
+/mob/living/carbon/human
+	var/lasthealth
+	COOLDOWN_DECLARE(adrenal_cooldown)
+
 /mob/living/carbon/human/Life(times_fired)
 	set invisibility = 0
 	if (notransform)
@@ -36,6 +42,11 @@
 		if(stat != DEAD)
 			//heart attack stuff
 			handle_heart()
+
+		if(COOLDOWN_FINISHED(src, adrenal_cooldown) && ((health+ADRENALINE_THRESHOLD) < lasthealth))
+			reagents.add_reagent(/datum/reagent/adrenaline, 5)
+			COOLDOWN_START(src, adrenal_cooldown, 10 MINUTES)
+		lasthealth = health
 
 		dna.species.spec_life(src) // for mutantraces
 	else
