@@ -29,7 +29,9 @@
 		/datum/action/cooldown/spell/conjure/summon_greedslots,
 		/datum/action/cooldown/spell/pointed/ignite,
 		/datum/action/cooldown/spell/touch/envy,
-		/datum/action/cooldown/spell/conjure/summon_mirror
+		/datum/action/cooldown/spell/conjure/summon_mirror,
+		/datum/action/cooldown/spell/touch/mend,
+		/datum/action/cooldown/spell/touch/torment,
 		))
 
 	var/static/list/sinfuldemon_traits = list(
@@ -157,6 +159,9 @@
 			var/datum/action/cooldown/spell/pointed/ignite/not_fireball = new(owner.current)
 			not_fireball.Grant(owner.current)
 
+			var/datum/action/cooldown/spell/touch/torment/pain_hand = new(owner.current)
+			pain_hand.Grant(owner.current)
+
 		if(SIN_ENVY)
 			var/datum/action/cooldown/spell/shapeshift/demon/demon_form = new(owner.current)
 			demon_form.Grant(owner.current)
@@ -164,12 +169,18 @@
 			var/datum/action/cooldown/spell/touch/envy/agent_id = new(owner.current)
 			agent_id.Grant(owner.current)
 
+			var/datum/action/cooldown/spell/touch/torment/pain_hand = new(owner.current)
+			pain_hand.Grant(owner.current)
+
 		if(SIN_PRIDE)
 			var/datum/action/cooldown/spell/shapeshift/demon/demon_form = new(owner.current)
 			demon_form.Grant(owner.current)
 
 			var/datum/action/cooldown/spell/conjure/summon_mirror/space_hole = new(owner.current)
 			space_hole.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/touch/mend/heal_hand = new(owner.current)
+			heal_hand.Grant(owner.current)
 
 	return ..()
 

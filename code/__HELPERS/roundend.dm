@@ -164,7 +164,7 @@
 
 	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
 	log_admin("The round has ended.")
-	
+
 	if(LAZYLEN(GLOB.round_end_notifiees))
 		send2irc("Notice", "[GLOB.round_end_notifiees.Join(", ")] the round has ended.")
 
@@ -235,7 +235,7 @@
 			else
 				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/stayed_alive_bonus) // Reward for staying alive
 			SSpersistence.antag_rep_change[M.ckey] = round(SSpersistence.antag_rep_change[M.ckey]) // rounds down
-	
+
 	CHECK_TICK
 
 	//Now print them all into the log!
@@ -254,6 +254,38 @@
 	SSblackbox.Seal()
 
 	toggle_all_ctf()
+
+	// Give all donors their griff toys
+	// Create a fake uplink for purposes of stealing its component
+	// We create the one and use it for every item, as initializing 50 uplink components is expensive
+	var/obj/item/uplink/fake_uplink = new
+	var/datum/component/uplink/fake_uplink_component = fake_uplink.GetComponent(/datum/component/uplink)
+	for(var/mob/living/donor_mob in GLOB.player_list)
+		if(!is_donator(donor_mob))
+			continue
+
+		// Get their pref
+		var/eorg_path_string = donor_mob.client?.prefs?.read_preference(/datum/preference/choiced/donor_eorg)
+		if(!eorg_path_string)
+			continue
+
+		// Parse their pref
+		var/uplink_path = text2path(eorg_path_string)
+		if(!uplink_path || !ispath(uplink_path, /datum/uplink_item))
+			continue
+
+		// Initialize the uplink item because we need spawn_item()
+		var/datum/uplink_item/uplink_datum = new uplink_path
+		if(uplink_datum.cost <= 0 || uplink_datum.cost > TELECRYSTALS_DEFAULT) // Safety
+			qdel(uplink_datum)
+			continue
+		// The uplink item datum will handle the spawning. This is important for things like additional arm.
+		uplink_datum.spawn_item(uplink_datum.item, donor_mob, fake_uplink_component)
+		// Clean up
+		QDEL_NULL(uplink_datum)
+	// Clean up the fake uplink we created earlier
+	QDEL_NULL(fake_uplink) // component will be destroyed automatically by /datum/Destroy()
+	// End donor griff toys
 
 	sleep(5 SECONDS)
 	ready_for_reboot = TRUE

@@ -4,6 +4,7 @@
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "blob"
 	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
 
 	invocation = "INDULGE"
 	invocation_type = INVOCATION_SHOUT
