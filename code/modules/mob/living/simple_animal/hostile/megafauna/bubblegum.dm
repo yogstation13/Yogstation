@@ -28,7 +28,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum
 	name = "bubblegum"
-	desc = "In what passes for a hierarchy among slaughter demons, this one is king."
+	desc = "In what passes for a hierarchy among slaughter demons, this one is queen." //slay
 	health = 2500
 	maxHealth = 2500
 	attacktext = "rends"
@@ -40,6 +40,7 @@ Difficulty: Hard
 	friendly = "stares down"
 	icon = 'icons/mob/lavaland/96x96megafauna.dmi'
 	speak_emote = list("gurgles")
+	gender = FEMALE
 	armour_penetration = 40
 	melee_damage_lower = 40
 	melee_damage_upper = 40
