@@ -109,8 +109,8 @@
 	if(IS_MEDICAL(user))
 		speed_mod *= 0.8
 
-	if(istype(user.get_item_by_slot(SLOT_GLOVES), /obj/item/clothing/gloves/color/latex))
-		var/obj/item/clothing/gloves/color/latex/surgicalgloves = user.get_item_by_slot(SLOT_GLOVES)
+	if(istype(user.get_item_by_slot(ITEM_SLOT_GLOVES), /obj/item/clothing/gloves/color/latex))
+		var/obj/item/clothing/gloves/color/latex/surgicalgloves = user.get_item_by_slot(ITEM_SLOT_GLOVES)
 		speed_mod *= surgicalgloves.surgeryspeed
 
 	var/previous_loc = user.loc

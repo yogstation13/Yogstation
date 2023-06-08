@@ -46,7 +46,7 @@
 
 /obj/item/radio/headset/syndicate/alt/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/syndicate/alt/leader
 	name = "team leader headset"
@@ -77,7 +77,7 @@
 
 /obj/item/radio/headset/headset_sec/alt/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/headset_eng
 	name = "engineering radio headset"
@@ -144,7 +144,7 @@
 
 /obj/item/radio/headset/heads/captain/alt/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/heads/rd
 	name = "\proper the research director's headset"
@@ -166,7 +166,7 @@
 
 /obj/item/radio/headset/heads/hos/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/heads/ce
 	name = "\proper the chief engineer's headset"
@@ -226,7 +226,7 @@
 
 /obj/item/radio/headset/headset_cent/bowman/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/headset_cent/commander
 	name = "\improper CentCom bowman headset"
@@ -237,7 +237,7 @@
 
 /obj/item/radio/headset/headset_cent/alt/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/silicon/pai
 	name = "\proper mini Integrated Subspace Transceiver "

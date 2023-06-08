@@ -56,7 +56,7 @@
 	. = ..()
 	if(!ishuman(user))
 		return
-	if(slot == SLOT_WEAR_MASK)
+	if(slot == ITEM_SLOT_MASK)
 		play_laugh()
 		if(auto_cluwne)
 			var/mob/living/carbon/human/H = user
@@ -94,7 +94,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(slot == SLOT_WEAR_MASK)
+	if(slot == ITEM_SLOT_MASK)
 		if(does_cluwne)
 			log_admin("[key_name(H)] was made into a cluwne by [src]")
 			message_admins("[key_name(H)] got cluwned by [src]")

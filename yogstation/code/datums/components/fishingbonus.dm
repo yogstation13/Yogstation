@@ -18,7 +18,7 @@
 	var/obj/item/parent_item = parent
 	if(!parent_item)
 		return
-	if(parent_item.slot_flags == slotdefine2slotbit(slot))
+	if(parent_item.slot_flags == slot)
 		equipper.fishing_power += fishing_bonus
 		user = equipper
 

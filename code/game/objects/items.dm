@@ -512,9 +512,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	item_flags |= IN_INVENTORY
 	if(!initial)
-		if(equip_sound && !initial &&(slot_flags & slotdefine2slotbit(slot)))
+		if(equip_sound && !initial &&(slot_flags & slot))
 			playsound(src, equip_sound, EQUIP_SOUND_VOLUME, TRUE, ignore_walls = FALSE)
-		else if(slot == SLOT_HANDS)
+		else if(slot == ITEM_SLOT_HANDS)
 			playsound(src, pickup_sound, PICKUP_SOUND_VOLUME, ignore_walls = FALSE)
 
 /// Gives one of our item actions to a mob, when equipped to a certain slot
@@ -531,7 +531,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /// Sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_IN_BACKPACK || slot == SLOT_LEGCUFFED) //these aren't true slots, so avoid granting actions there
+	if(slot == ITEM_SLOT_BACKPACK || slot == ITEM_SLOT_LEGCUFFED) //these aren't true slots, so avoid granting actions there
 		return FALSE
 	return TRUE
 
@@ -755,7 +755,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(ismob(location))
 		var/mob/M = location
 		var/success = FALSE
-		if(src == M.get_item_by_slot(SLOT_WEAR_MASK) || (src in M.held_items))
+		if(src == M.get_item_by_slot(ITEM_SLOT_MASK) || (src in M.held_items))
 			success = TRUE
 		if(success)
 			location = get_turf(M)

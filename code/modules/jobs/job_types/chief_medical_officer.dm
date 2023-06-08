@@ -72,7 +72,7 @@
 
 	chameleon_extras = list(/obj/item/gun/syringe, /obj/item/stamp/cmo)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/cmo/hardsuit
 	name = "Chief Medical Officer (Hardsuit)"
