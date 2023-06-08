@@ -6,17 +6,19 @@
 			new /obj/effect/temp_visual/gib_animation(loc, "gibbed-r")
 
 /mob/living/carbon/human/dust(just_ash, drop_items, force)
+	death(TRUE)
+
 	if(drop_items)
 		unequip_everything()
 
 	if(buckled)
 		buckled.unbuckle_mob(src, force = TRUE)
 
-	Stun(100, TRUE, TRUE)//hold them still as they get deleted so they don't fuck up the animation
 	notransform = TRUE
+
 	dust_animation()
-	spawn_dust(just_ash)
-	QDEL_IN(src, 20) // since this is sometimes called in
+	QDEL_IN(src, 2 SECONDS) // since this is sometimes called in
+	addtimer(CALLBACK(src, PROC_REF(spawn_dust), just_ash), 1.5 SECONDS)//spawn the dust after the body disappears
 
 /mob/living/carbon/human/dust_animation()
 	var/obj/effect/dusting_anim/dust_effect = new(loc, ref(src))
