@@ -2161,7 +2161,12 @@
 	self_consuming = TRUE
 	/// Whether we've had at least WOUND_DETERMINATION_SEVERE (2.5u) of determination at any given time. No damage slowdown immunity or indication we're having a second wind if it's just a single moderate wound
 	var/significant = FALSE
+	can_synth = FALSE
 
+/datum/reagent/determination/on_mob_metabolize(mob/living/L)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	
 // "Second wind" reagent generated when someone suffers a wound. Epinephrine, adrenaline, and stimulants are all already taken so here we are
 /datum/reagent/determination/on_mob_end_metabolize(mob/living/carbon/M)
 	if(significant)
@@ -2172,6 +2177,7 @@
 		M.adjustStaminaLoss(stam_crash)
 	M.remove_status_effect(STATUS_EFFECT_DETERMINED)
 	..()
+	REMOVE_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 
 /datum/reagent/determination/on_mob_life(mob/living/carbon/M)
 	if(!significant && volume >= WOUND_DETERMINATION_SEVERE)
@@ -2199,20 +2205,6 @@
 /datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if((method == INGEST || method == TOUCH || method == INJECT) && prob(permeability*100)) //permeability is always 1 by default except with touch and vapor
 		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
-
-/datum/reagent/adrenaline
-	name = "Adrenaline"
-	description = "Powerful chemical that termporarily makes the user immune to slowdowns"
-	color = "#d1cd9a"
-	can_synth = FALSE
-
-/datum/reagent/adrenaline/on_mob_add(mob/living/L)
-	. = ..()
-	ADD_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
-
-/datum/reagent/adrenaline/on_mob_delete(mob/living/L)
-	. = ..()
-	REMOVE_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 
 /datum/reagent/liquidsoap
 	name = "Liquid soap"
