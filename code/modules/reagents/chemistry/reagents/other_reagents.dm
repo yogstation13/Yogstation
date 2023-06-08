@@ -2165,7 +2165,7 @@
 
 /datum/reagent/determination/on_mob_metabolize(mob/living/L)
 	. = ..()
-	ADD_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	ADD_TRAIT(M, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	
 // "Second wind" reagent generated when someone suffers a wound. Epinephrine, adrenaline, and stimulants are all already taken so here we are
 /datum/reagent/determination/on_mob_end_metabolize(mob/living/carbon/M)
@@ -2177,7 +2177,7 @@
 		M.adjustStaminaLoss(stam_crash)
 	M.remove_status_effect(STATUS_EFFECT_DETERMINED)
 	..()
-	REMOVE_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	REMOVE_TRAIT(M, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 
 /datum/reagent/determination/on_mob_life(mob/living/carbon/M)
 	if(!significant && volume >= WOUND_DETERMINATION_SEVERE)
