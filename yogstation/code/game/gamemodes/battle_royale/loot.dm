@@ -36,6 +36,7 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/clothing/suit/space/fragile = 5,
 		/obj/item/clothing/head/helmet/space/fragile = 5,
 		/obj/item/clothing/suit/hooded/wintercoat = 5,
+		/obj/item/clothing/suit/hooded/wintercoat/northern = 5, //it's a donator item, but it's my donator item so i'm adding it
 		//Weight of 4 - mostly minor stats, space suits with slowdown
 		/obj/item/shield/riot/buckler = 4,
 		/obj/item/clothing/head/helmet/space/nasavoid = 4,
@@ -152,10 +153,8 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/nullrod/hammer = 2,
 		/obj/item/nullrod/tribal_knife = 2,
 		/obj/item/nullrod/vibro = 2,
-		/obj/item/nullrod/talking = 2,
 
 		/obj/item/flamethrower/full/tank = 1,
-		/obj/item/twohanded/required/baseball_bat/metal_bat = 1,
 		/obj/item/twohanded/required/chainsaw = 1,
 		/obj/item/twohanded/fireaxe/metal_h2_axe = 1,
 		/obj/item/nullrod/whip = 1,
@@ -166,12 +165,14 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/revolver/detective = 0,
 		/obj/item/twohanded/required/baseball_bat/homerun = 0,
 		/obj/item/twohanded/fireaxe = 0,
+		/obj/item/nullrod/talking = 0,
 
 		/obj/item/melee/powerfist = -1,
 		/obj/item/gun/ballistic/automatic/pistol = -1,
 		/obj/item/gun/ballistic/shotgun/doublebarrel = -1,
 		/obj/item/melee/transforming/energy/sword = -1,
 		/obj/item/gun/energy/laser/retro/old = -1,
+		/obj/item/twohanded/required/baseball_bat/metal_bat = -1,
 
 		/obj/item/gun/ballistic/shotgun/automatic/combat = -2,
 		/obj/item/gun/ballistic/shotgun/automatic/combat/compact = -2,
@@ -181,7 +182,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/energy/laser = -2,
 
 		/obj/item/gun/ballistic/revolver = -3,
-		/obj/item/gun/ballistic/bow/energy/syndicate = -3,
+		/obj/item/gun/ballistic/bow/energy = -3,
 		/obj/item/gun/energy/laser/captain = -3,
 
 		/obj/item/gun/ballistic/automatic/m90/unrestricted = -3,
@@ -200,6 +201,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/his_grace = -5,
 		/obj/item/twohanded/vibro_weapon = -5,
 		/obj/item/twohanded/required/chainsaw/doomslayer = -5,
+		/obj/item/gun/ballistic/bow/energy/ert = -5,
 		))
 
 GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max health doesn't scale, there's also less healing items than other items
@@ -230,22 +232,19 @@ GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max
 		))
 
 GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's not an explicit weapon, clothing piece, or healing item really
-		/obj/item/book/granter/spell/knock = 5,
+		/obj/item/book/granter/action/spell/knock = 5,
 
-		/obj/item/storage/box/syndie_kit/throwing_weapons = 4,
 		/obj/item/grenade/plastic/c4 = 4,
 		/obj/item/storage/toolbox/mechanical = 4,
-
-		/obj/item/book/granter/spell/smoke/lesser = 3,
 		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
 
 		/obj/item/autosurgeon/cmo = 2,
-		/obj/item/nullrod/hermes = 2,
+		/obj/item/book/granter/action/spell/smoke/lesser = 2,
 
 		/obj/item/reagent_containers/glass/bottle/potion/flight = 1,
-		/obj/item/book/granter/spell/smoke = 1,
 		/obj/item/autosurgeon/reviver = 1,
 		/obj/item/nullrod/servoskull = 1,
+		/obj/item/nullrod/staff = 1,
 
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = 0,
 		/obj/item/teleportation_scroll/apprentice = 0,
@@ -257,13 +256,14 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/autosurgeon/thermal_eyes = -1,
 		/obj/item/autosurgeon/xray_eyes = -1,
 		/obj/item/multisurgeon/airshoes = -1,
-		/obj/item/nullrod/staff = -1,
+		/obj/item/nullrod/hermes = -1,
 
 		/obj/item/storage/box/syndie_kit/augmentation = -2,
 		/obj/item/grenade/syndieminibomb = -2,
-		/obj/item/desynchronizer = -2,
 		/obj/item/dragons_blood = -2,
+		/obj/item/desynchronizer = -2,
 		/obj/item/book/granter/martial/cqc = -2,
+		/obj/item/book/granter/action/spell/smoke = -2,
 
 		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,
@@ -325,22 +325,16 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	var/selected
 	switch(type)
 		if(1)//weapon focus (to fuel the fight)
-			for(var/i in 1 to rand(2,4))
+			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_weapon)
 				new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_utility)
-			new selected(src)
 
 		if(2)//armour focus (so people can select what they want)
-			for(var/i in 1 to 2)//less than weapons because guns can run out
+			for(var/i in 1 to 3)//less than weapons because guns can run out
 				selected = pickweightAllowZero(GLOB.battleroyale_armour)
 				new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
-			new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_healing)
-			new selected(src)
 
-		if(3)//allrounder
+		if(3)//allrounder, technically has more items than the others
 			selected = pickweightAllowZero(GLOB.battleroyale_weapon)
 			new selected(src)
 			selected = pickweightAllowZero(GLOB.battleroyale_armour)
@@ -351,16 +345,14 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 			new selected(src)
 
 		if(4)//KABOOOM AHAHAHAHAHA
-			for(var/i in 1 to rand(2,5))
+			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_utility)
 				new selected(src)
 
 		if(5)//https://www.youtube.com/watch?v=Z0Uh3OJCx3o
-			for(var/i in 1 to rand(2,4))
+			for(var/i in 1 to 3)
 				selected = pickweightAllowZero(GLOB.battleroyale_healing)
 				new selected(src)
-			selected = pickweightAllowZero(GLOB.battleroyale_armour)
-			new selected(src)
 
 /obj/structure/closet/crate/battleroyale/open(mob/living/user)
 	. = ..()
@@ -368,7 +360,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		new /obj/structure/healingfountain(get_turf(src))
 		qdel(src)
 		return
-	QDEL_IN(src, 30 SECONDS)//to remove clutter after a bit
+	QDEL_IN(src, 10 SECONDS)//to remove clutter after a bit
 
 /obj/item/battleroyale
 	name = "This item is created and used by the battle royale gamemode"
@@ -403,6 +395,14 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	icon_state = "cyborg_upgrade"
 	martial = /datum/martial_art/ultra_violence
 	species = /datum/species/ipc
+
+/obj/item/battleroyale/martial/worldbreaker
+	name = "Worldbreaker martial mutator"
+	desc = "Transforms you into a lumbering metal juggernaut."
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "flaming_moe"
+	martial = /datum/martial_art/worldbreaker
+	species = /datum/species/preternis
 
 /obj/item/battleroyale/martial/lizard
 	name = "Lizard martial mutator"

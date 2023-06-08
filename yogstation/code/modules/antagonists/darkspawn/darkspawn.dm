@@ -8,6 +8,7 @@
 	roundend_category = "darkspawn"
 	antagpanel_category = "Darkspawn"
 	job_rank = ROLE_DARKSPAWN
+	antag_hud_name = "darkspawn"
 	var/darkspawn_state = MUNDANE //0 for normal crew, 1 for divulged, and 2 for progenitor
 	antag_moodlet = /datum/mood_event/sling
 
@@ -27,6 +28,8 @@
 	//Ability and upgrade variables
 	var/list/abilities = list() //An associative list ("id" = ability datum) containing the abilities the darkspawn has
 	var/list/upgrades = list() //An associative list ("id" = null or TRUE) containing the passive upgrades the darkspawn has
+	var/datum/antag_menu/psi_web/psi_web //Antag menu used for opening the UI
+	var/datum/action/innate/darkspawn/psi_web/psi_web_action //Used to link the menu with our antag datum
 
 
 // Antagonist datum things like assignment //
@@ -37,7 +40,7 @@
 	owner.current.hud_used.psi_counter.invisibility = 0
 	update_psi_hud()
 	add_ability("divulge")
-	addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 13800) //this won't trigger if they've divulged when the proc runs
+	addtimer(CALLBACK(src, PROC_REF(begin_force_divulge)), 23 MINUTES) //this won't trigger if they've divulged when the proc runs
 	START_PROCESSING(SSprocessing, src)
 	var/datum/objective/darkspawn/O = new
 	objectives += O
@@ -48,28 +51,18 @@
 /datum/antagonist/darkspawn/on_removal()
 	SSticker.mode.darkspawn -= owner
 	owner.special_role = null
-	adjust_darkspawn_hud(FALSE)
 	owner.current.hud_used.psi_counter.invisibility = initial(owner.current.hud_used.psi_counter.invisibility)
 	owner.current.hud_used.psi_counter.maptext = ""
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-/datum/antagonist/darkspawn/apply_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			if(!silent)
-				to_chat(traitor_mob, "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)
-	adjust_darkspawn_hud(TRUE)
-	owner.current.grant_language(/datum/language/darkspawn)
+/datum/antagonist/darkspawn/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	handle_clown_mutation(current_mob, "Our powers allow us to overcome our clownish nature, allowing us to wield weapons with impunity.")
+	current_mob.grant_language(/datum/language/darkspawn)
+	add_team_hud(current_mob)
 
 /datum/antagonist/darkspawn/remove_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			traitor_mob.dna.add_mutation(CLOWNMUT)
-	adjust_darkspawn_hud(FALSE)
 	owner.current.remove_language(/datum/language/darkspawn)
 
 //Round end stuff
@@ -204,12 +197,6 @@
 		return TRUE
 	return (SSticker.mode.sacrament_done)
 
-/datum/antagonist/darkspawn/proc/adjust_darkspawn_hud(add_hud)
-	if(add_hud)
-		SSticker.mode.update_darkspawn_icons_added(owner)
-	else
-		SSticker.mode.update_darkspawn_icons_removed(owner)
-
 // Darkspawn-related things like Psi //
 
 /datum/antagonist/darkspawn/process() //This is here since it controls most of the Psi stuff
@@ -255,7 +242,7 @@
 	if(!owner.current || !owner.current.hud_used)
 		return
 	var/atom/movable/screen/counter = owner.current.hud_used.psi_counter
-	counter.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#7264FF'>[psi]</font></div>"
+	counter.maptext = ANTAG_MAPTEXT(psi, COLOR_DARKSPAWN_PSI)
 
 /datum/antagonist/darkspawn/proc/regain_abilities()
 	for(var/A in abilities)
@@ -318,7 +305,7 @@
 		return
 	to_chat(owner.current, span_userdanger("You feel the skin you're wearing crackling like paper - you will forcefully divulge soon! Get somewhere hidden and dark!"))
 	owner.current.playsound_local(owner.current, 'yogstation/sound/magic/divulge_01.ogg', 50, FALSE, pressure_affected = FALSE)
-	addtimer(CALLBACK(src, PROC_REF(force_divulge)), 1200)
+	addtimer(CALLBACK(src, PROC_REF(force_divulge), 2 MINUTES))
 
 /datum/antagonist/darkspawn/proc/force_divulge()
 	if(darkspawn_state != MUNDANE)
@@ -338,19 +325,26 @@
 		if(M.stat != DEAD && isdarkspawn(M))
 			to_chat(M, processed_message)
 	deadchat_broadcast(processed_message, null, H)
-	addtimer(CALLBACK(src, PROC_REF(divulge)), 25)
-	addtimer(CALLBACK(H, TYPE_PROC_REF(/atom, visible_message), span_boldwarning("[H]'s skin sloughs off, revealing black flesh covered in symbols!"), \
-	span_userdanger("You have forcefully divulged!")), 25)
+	addtimer(CALLBACK(src, PROC_REF(divulge), TRUE), 2.5 SECONDS)
 
-/datum/antagonist/darkspawn/proc/divulge()
+/datum/antagonist/darkspawn/proc/divulge(forced = FALSE)
 	if(darkspawn_state >= DIVULGED)
 		return
+	if(forced)
+		owner.current.visible_message(
+			span_boldwarning("[owner.current]'s skin sloughs off, revealing black flesh covered in symbols!"), 
+			span_userdanger("You have forcefully divulged!"))
 	var/mob/living/carbon/human/user = owner.current
 	to_chat(user, "<span class='velvet bold'>Your mind has expanded. The Psi Web is now available. Avoid the light. Keep to the shadows. Your time will come.</span>")
 	user.fully_heal()
 	user.set_species(/datum/species/darkspawn)
 	show_to_ghosts = TRUE
-	add_ability("psi_web", TRUE)
+	//Handles psi_web granting, has to be different to fulfill everything
+	psi_web = new(src)
+	psi_web_action = new(psi_web)
+	psi_web_action.Grant(owner.current)
+	psi_web_action.darkspawn = src
+	abilities[psi_web_action.id] = psi_web_action
 	add_ability("sacrament", TRUE)
 	add_ability("devour_will", TRUE)
 	add_ability("pass", TRUE)
@@ -371,7 +365,8 @@
 	var/mob/living/simple_animal/hostile/darkspawn_progenitor/progenitor = new(get_turf(user))
 	user.status_flags |= GODMODE
 	user.mind.transfer_to(progenitor)
-	progenitor.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/progenitor_curse(null))
+	var/datum/action/cooldown/spell/list_target/progenitor_curse/curse = new(progenitor)
+	curse.Grant(progenitor)
 	sound_to_playing_players('yogstation/sound/magic/sacrament_complete.ogg', 50, FALSE, pressure_affected = FALSE)
 	psi = 9999
 	psi_cap = 9999
@@ -384,77 +379,12 @@
 /datum/antagonist/darkspawn/proc/sacrament_shuttle_call()
 	SSshuttle.emergency.request(null, 0, null, FALSE, 0.1)
 
-
-// Psi Web code //
-
-/datum/antagonist/darkspawn/ui_state(mob/user)
-	return GLOB.always_state
-
-/datum/antagonist/darkspawn/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "PsiWeb", "Psi Web")
-		ui.open()
-
-/datum/antagonist/darkspawn/ui_data(mob/user)
-	var/list/data = list()
-
-	data["lucidity"] = "[lucidity]  |  [lucidity_drained] / 20 unique drained total"
-
-	var/list/abilities = list()
-	var/list/upgrades = list()
-
-	for(var/path in subtypesof(/datum/action/innate/darkspawn))
-		var/datum/action/innate/darkspawn/ability = path
-
-		if(initial(ability.blacklisted))
-			continue
-
-		var/list/AL = list() //This is mostly copy-pasted from the cellular emporium, but it should be fine regardless
-		AL["name"] = initial(ability.name)
-		AL["id"] = initial(ability.id)
-		AL["desc"] = initial(ability.desc)
-		AL["psi_cost"] = "[initial(ability.psi_cost)][initial(ability.psi_addendum)]"
-		AL["lucidity_cost"] = initial(ability.lucidity_price)
-		AL["owned"] = has_ability(initial(ability.id))
-		AL["can_purchase"] = !AL["owned"] && lucidity >= initial(ability.lucidity_price)
-
-		abilities += list(AL)
-
-	data["abilities"] = abilities
-
-	for(var/path in subtypesof(/datum/darkspawn_upgrade))
-		var/datum/darkspawn_upgrade/upgrade = path
-
-		var/list/DE = list()
-		DE["name"] = initial(upgrade.name)
-		DE["id"] = initial(upgrade.id)
-		DE["desc"] = initial(upgrade.desc)
-		DE["lucidity_cost"] = initial(upgrade.lucidity_price)
-		DE["owned"] = has_upgrade(initial(upgrade.id))
-		DE["can_purchase"] = !DE["owned"] && lucidity >= initial(upgrade.lucidity_price)
-
-		upgrades += list(DE)
-
-	data["upgrades"] = upgrades
-
-	return data
-
 /datum/antagonist/darkspawn/get_preview_icon()
 	var/icon/darkspawn_icon = icon('yogstation/icons/mob/darkspawn_progenitor.dmi', "darkspawn_progenitor")
 
 	darkspawn_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
 
 	return darkspawn_icon
-
-/datum/antagonist/darkspawn/ui_act(action, params)
-	if(..())
-		return
-	switch(action)
-		if("unlock")
-			add_ability(params["id"])
-		if("upgrade")
-			add_upgrade(params["id"])
 
 #undef MUNDANE
 #undef DIVULGED

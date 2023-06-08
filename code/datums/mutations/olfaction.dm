@@ -8,7 +8,7 @@
 	instability = 30
 	synchronizer_coeff = 1
 	
-	var/datum/action/bloodsucker/olfaction/acquire_scent/lesser/smelling
+	var/datum/action/cooldown/bloodsucker/olfaction/acquire_scent/lesser/smelling
 
 /datum/mutation/human/olfaction/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()

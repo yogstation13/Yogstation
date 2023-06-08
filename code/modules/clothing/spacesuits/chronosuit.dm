@@ -104,7 +104,7 @@
 			camera.remove_target_ui()
 			camera.forceMove(user)
 			user.reset_perspective(camera)
-		teleport_now.UpdateButtonIcon()
+		teleport_now.build_all_button_icons()
 
 /obj/item/clothing/suit/space/chronos/proc/chronowalk(atom/location)
 	var/mob/living/carbon/human/user = src.loc
@@ -118,7 +118,7 @@
 		if(camera)
 			camera.remove_target_ui()
 
-		teleport_now.UpdateButtonIcon()
+		teleport_now.build_all_button_icons()
 
 		var/list/nonsafe_slots = list(SLOT_BELT, SLOT_BACK)
 		var/list/exposed = list()
@@ -131,7 +131,7 @@
 			if(exposed_I && !(exposed_I.type in chronosafe_items) && user.dropItemToGround(exposed_I))
 				to_chat(user, span_notice("Your [exposed_I.name] got left behind."))
 
-		user.ExtinguishMob()
+		user.extinguish_mob()
 
 		for(var/obj/item/I in user.held_items)
 			ADD_TRAIT(I, TRAIT_NODROP, CHRONOSUIT_TRAIT)
@@ -326,7 +326,7 @@
 
 /datum/action/innate/chrono_teleport
 	name = "Teleport Now"
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "chrono_phase"
 	check_flags = AB_CHECK_CONSCIOUS //|AB_CHECK_INSIDE
 	var/obj/item/clothing/suit/space/chronos/chronosuit = null
@@ -335,10 +335,10 @@
 	chronosuit = null
 	return ..()
 
-/datum/action/innate/chrono_teleport/IsAvailable()
+/datum/action/innate/chrono_teleport/IsAvailable(feedback = FALSE)
 	return (chronosuit && chronosuit.activated && chronosuit.camera && !chronosuit.teleporting)
 
 /datum/action/innate/chrono_teleport/Activate()
-	if(IsAvailable())
+	if(IsAvailable(feedback = FALSE))
 		if(chronosuit.camera)
 			chronosuit.chronowalk(chronosuit.camera)

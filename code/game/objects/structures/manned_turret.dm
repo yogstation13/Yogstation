@@ -78,13 +78,14 @@
 	var/mob/living/controller = buckled_mobs[1]
 	if(!istype(controller))
 		return FALSE
-	var/client/C = controller.client
-	if(C)
-		var/atom/A = C.mouseObject
-		var/turf/T = get_turf(A)
-		if(istype(T))	//They're hovering over something in the map.
-			direction_track(controller, T)
-			calculated_projectile_vars = calculate_projectile_angle_and_pixel_offsets(controller, C.mouseParams)
+	var/client/controlling_client = controller.client
+	if(controlling_client)
+		var/modifiers = params2list(controlling_client.mouseParams)
+		var/atom/target_atom = controlling_client.mouse_object_ref?.resolve()
+		var/turf/target_turf = get_turf(target_atom)
+		if(istype(target_turf)) //They're hovering over something in the map.
+			direction_track(controller, target_turf)
+			calculated_projectile_vars = calculate_projectile_angle_and_pixel_offsets(controller, target_turf, modifiers)
 
 /obj/machinery/manned_turret/proc/direction_track(mob/user, atom/targeted)
 	if(user.incapacitated())

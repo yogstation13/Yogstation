@@ -39,14 +39,14 @@
 				precision = rand(1,100)
 
 			var/static/list/bag_cache = typecacheof(/obj/item/storage/backpack/holding)
-			var/list/bagholding = typecache_filter_list(teleatom.GetAllContents(), bag_cache)
+			var/list/bagholding = typecache_filter_list(teleatom.get_all_contents(), bag_cache)
 			if(bagholding.len)
 				precision = max(rand(1,100)*bagholding.len,100)
 				if(isliving(teleatom))
 					var/mob/living/MM = teleatom
 					to_chat(MM, span_warning("The bluespace interface on your bag of holding interferes with the teleport!"))
 					MM.adjust_disgust(20+(precision/10))	//20-30 disgust, pretty nasty
-					MM.confused += (10 + precision/20)		//10-15 confusion, little wobbly
+					MM.adjust_confusion(10 + precision/20)		//10-15 confusion, little wobbly
 
 			// if effects are not specified and not explicitly disabled, sparks
 			if ((!effectin || !effectout) && !no_effects)

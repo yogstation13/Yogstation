@@ -6,6 +6,12 @@
 	caliber = "10mm"
 	projectile_type = /obj/item/projectile/bullet/c10mm
 
+/obj/item/ammo_casing/caseless/c10mm/cs
+	name = "10mm caseless bullet"
+	desc = "A 10mm caseless bullet."
+	caliber = "10mm"
+	projectile_type = /obj/item/projectile/bullet/c10mm/cs
+
 /obj/item/ammo_casing/c10mm/ap
 	name = "10mm armor-piercing bullet casing"
 	desc = "A 10mm armor-piercing bullet casing."
@@ -58,4 +64,18 @@
 	desc = "A .50 AE bullet casing."
 	caliber = ".50ae"
 	projectile_type = /obj/item/projectile/bullet/a50AE
+
+// Bolt Pistol
+
+/obj/item/ammo_casing/boltpistol
+	name = ".75 bolt round casing"
+	desc = "A .75 bolt round casing."
+	caliber = ".75"
+	projectile_type = /obj/item/projectile/bullet/boltpistol
+
+/obj/item/ammo_casing/boltpistol/admin
+	name = ".75 bolt round casing"
+	desc = "A .75 bolt round casing. This one feels more powerful somehow..."
+	caliber = ".75"
+	projectile_type = /obj/item/projectile/bullet/boltpistol/admin
 

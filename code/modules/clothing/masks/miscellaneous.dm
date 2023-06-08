@@ -37,8 +37,7 @@
 	visor_flags_inv = HIDEFACE
 	visor_flags_cover = MASKCOVERSMOUTH
 	gas_transfer_coefficient = 0.9
-	permeability_coefficient = 0.01
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 25, RAD = 0, FIRE = 0, ACID = 0)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 0, ACID = 0)
 	actions_types = list(/datum/action/item_action/adjust)
 
 /obj/item/clothing/mask/surgical/attack_self(mob/user)
@@ -78,6 +77,21 @@
 	name = "joy mask"
 	desc = "Express your happiness or hide your sorrows with this laughing face with crying tears of joy cutout."
 	icon_state = "joy"
+
+
+GLOBAL_LIST_INIT(cursed_animal_masks, list(
+		/obj/item/clothing/mask/pig/cursed,
+		/obj/item/clothing/mask/frog/cursed,
+		/obj/item/clothing/mask/cowmask/cursed,
+		/obj/item/clothing/mask/horsehead/cursed,
+//		/obj/item/clothing/mask/animal/small/rat/cursed,
+//		/obj/item/clothing/mask/animal/small/fox/cursed,
+//		/obj/item/clothing/mask/animal/small/bee/cursed,
+//		/obj/item/clothing/mask/animal/small/bear/cursed,
+//		/obj/item/clothing/mask/animal/small/bat/cursed,
+//		/obj/item/clothing/mask/animal/small/raven/cursed,
+//		/obj/item/clothing/mask/animal/small/jackal/cursed
+	))
 
 /obj/item/clothing/mask/pig
 	name = "pig mask"

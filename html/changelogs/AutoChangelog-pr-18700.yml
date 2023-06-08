@@ -1,4 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - bugfix: "IPC no longer clean themselves of blood passively unless they have Ultraviolence"

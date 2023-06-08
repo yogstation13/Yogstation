@@ -1,8 +1,8 @@
-/datum/action/bloodsucker/targeted/brawn
+/datum/action/cooldown/bloodsucker/targeted/brawn
 	name = "Brawn"
 	desc = "Snap restraints, break lockers and doors, or deal terrible damage with your bare hands."
 	button_icon_state = "power_strength"
-	power_explanation = "<b>Brawn</b>:\n\
+	power_explanation = "Brawn:\n\
 		Click any person to bash into them, break restraints you have or knocking a grabber down. Only one of these can be done per use.\n\
 		Punching a Cyborg will heavily EMP them in addition to deal damage.\n\
 		At level 3, you get the ability to break closets open, additionally can both break restraints AND knock a grabber down in the same use.\n\
@@ -12,29 +12,25 @@
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 8
-	cooldown = 9 SECONDS
+	cooldown_time = 9 SECONDS
 	target_range = 1
 	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
 
-/datum/action/bloodsucker/targeted/brawn/CheckCanUse(mob/living/carbon/user)
-	. = ..()
-	if(!.) // Default checks
-		return FALSE
-
+/datum/action/cooldown/bloodsucker/targeted/brawn/ActivatePower(trigger_flags)
 	// Did we break out of our handcuffs?
-	if(CheckBreakRestraints())
-		PowerActivatedSuccessfully()
+	if(break_restraints())
+		power_activated_sucessfully()
 		return FALSE
 	// Did we knock a grabber down? We can only do this while not also breaking restraints if strong enough.
-	if(level_current >= 3 && CheckEscapePuller())
-		PowerActivatedSuccessfully()
+	if(level_current >= 3 && escape_puller())
+		power_activated_sucessfully()
 		return FALSE
 	// Did neither, now we can PUNCH.
-	return TRUE
+	return ..()
 
 // Look at 'biodegrade.dm' for reference
-/datum/action/bloodsucker/targeted/brawn/proc/CheckBreakRestraints()
+/datum/action/cooldown/bloodsucker/targeted/brawn/proc/break_restraints()
 	var/mob/living/carbon/human/user = owner
 	///Only one form of shackles removed per use
 	var/used = FALSE
@@ -49,7 +45,7 @@
 			span_warning("[closet] tears apart as you bash it open from within!"),
 		)
 		to_chat(user, span_warning("We bash [closet] wide open!"))
-		addtimer(CALLBACK(src, PROC_REF(break_closet), user, closet), 1)
+		addtimer(CALLBACK(src, PROC_REF(break_closet), user, closet), 0.1 SECONDS)
 		used = TRUE
 
 	// Remove both Handcuffs & Legcuffs
@@ -60,8 +56,8 @@
 			span_warning("[user] discards their restraints like it's nothing!"),
 			span_warning("We break through our restraints!"),
 		)
-		user.clear_cuffs(cuffs, TRUE)
-		user.clear_cuffs(legcuffs, TRUE)
+		user.clear_cuffs(cuffs, TRUE, TRUE)
+		user.clear_cuffs(legcuffs, TRUE, TRUE)
 		used = TRUE
 
 	// Remove Straightjackets
@@ -84,14 +80,14 @@
 	return used
 
 // This is its own proc because its done twice, to repeat code copypaste.
-/datum/action/bloodsucker/targeted/brawn/proc/break_closet(mob/living/carbon/human/user, obj/structure/closet/closet)
+/datum/action/cooldown/bloodsucker/targeted/brawn/proc/break_closet(mob/living/carbon/human/user, obj/structure/closet/closet)
 	if(closet)
 		closet.welded = FALSE
 		closet.locked = FALSE
 		closet.broken = TRUE
 		closet.open()
 
-/datum/action/bloodsucker/targeted/brawn/proc/CheckEscapePuller()
+/datum/action/cooldown/bloodsucker/targeted/brawn/proc/escape_puller()
 	if(!owner.pulledby) // || owner.pulledby.grab_state <= GRAB_PASSIVE)
 		return FALSE
 	var/mob/pulled_mob = owner.pulledby
@@ -115,14 +111,14 @@
 	owner.pulledby = null // It's already done, but JUST IN CASE.
 	return TRUE
 
-/datum/action/bloodsucker/targeted/brawn/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/brawn/FireTargetedPower(atom/target_atom)
 	. = ..()
 	var/mob/living/user = owner
 	// Target Type: Mob
 	if(isliving(target_atom))
 		var/mob/living/target = target_atom
 		var/mob/living/carbon/carbonuser = user
-		var/hitStrength = carbonuser.dna.species.punchdamagehigh * 1.25 + 2
+		var/hitStrength = carbonuser.dna.species.punchdamagehigh * 1.25 + level_current
 		// Knockdown!
 		var/powerlevel = min(5, 1 + level_current)
 		if(rand(5 + powerlevel) >= 5)
@@ -169,48 +165,48 @@
 			playsound(get_turf(target_airlock), 'sound/effects/bang.ogg', 30, TRUE, -1)
 			target_airlock.open(2) // open(2) is like a crowbar or jaws of life.
 
-/datum/action/bloodsucker/targeted/brawn/CheckValidTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/brawn/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
 	return isliving(target_atom) || istype(target_atom, /obj/machinery/door) || istype(target_atom, /obj/structure/closet)
 
-/datum/action/bloodsucker/targeted/brawn/CheckCanTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/brawn/CheckCanTarget(atom/target_atom)
 	// DEFAULT CHECKS (Distance)
 	. = ..()
 	if(!.) // Disable range notice for Brawn.
 		return FALSE
-	// Must outside Closet to target anyone!
+	// Must be outside Closet to target anyone!
 	if(!isturf(owner.loc))
 		return FALSE
 	// Target Type: Living
 	if(isliving(target_atom))
 		return TRUE
 	// Target Type: Door
-	else if(istype(target_atom, /obj/machinery/door))
+	if(istype(target_atom, /obj/machinery/door))
 		if(level_current < 4)
-			to_chat(owner, span_warning("You need [4 - level_current] more levels to be able to break open the [target_atom]!"))
+			owner.balloon_alert(owner, "you need [4 - level_current] more levels!")
 			return FALSE
 		return TRUE
 	// Target Type: Locker
-	else if(istype(target_atom, /obj/structure/closet))
+	if(istype(target_atom, /obj/structure/closet))
 		if(level_current < 3)
-			to_chat(owner, span_warning("You need [3 - level_current] more levels to be able to break open the [target_atom]!"))
+			owner.balloon_alert(owner, "you need [3 - level_current] more levels!")
 			return FALSE
 		return TRUE
 	return FALSE
 
-/datum/action/bloodsucker/targeted/brawn/shadow
+/datum/action/cooldown/bloodsucker/targeted/brawn/shadow
 	name = "Obliterate"
+	background_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
+	active_background_icon_state = "lasombra_power_on"
+	base_background_icon_state = "lasombra_power_off"
 	button_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
-	background_icon_state_on = "lasombra_power_on"
-	background_icon_state_off = "lasombra_power_off"
-	icon_icon = 'icons/mob/actions/actions_lasombra_bloodsucker.dmi'
 	button_icon_state = "power_obliterate"
 	additional_text = "Additionally afflicts the target with a shadow curse while in darkness and disables any lights they may possess."
 	purchase_flags = LASOMBRA_CAN_BUY
 
-/datum/action/bloodsucker/targeted/brawn/shadow/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/brawn/shadow/FireTargetedPower(atom/target_atom)
 	var/mob/living/carbon/human/H = target_atom
 	H.apply_status_effect(STATUS_EFFECT_SHADOWAFFLICTED)
 	var/turf/T = get_turf(H)

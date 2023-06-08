@@ -125,6 +125,8 @@
 			if(affecting.brute_dam <= 0)
 				to_chat(user, span_warning("[affecting] is already in good condition!"))
 				return FALSE
+			if(INTERACTING_WITH(user, H))
+				return FALSE
 			user.changeNext_move(CLICK_CD_MELEE)
 			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			heal_robo_limb(src, H, user, 15, 0, 1, 50)
@@ -151,7 +153,7 @@
 
 		if(isliving(O))
 			var/mob/living/L = O
-			if(L.IgniteMob())
+			if(L.ignite_mob())
 				message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(L)] on fire with [src] at [AREACOORD(user)]")
 				log_game("[key_name(user)] set [key_name(L)] on fire with [src] at [AREACOORD(user)]")
 
@@ -165,9 +167,10 @@
 	update_icon()
 
 /obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, robo_check)
-	target.add_overlay(GLOB.welding_sparks)
+	var/mutable_appearance/sparks = mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
+	target.add_overlay(sparks)
 	. = ..()
-	target.cut_overlay(GLOB.welding_sparks)
+	target.cut_overlay(sparks)
 
 // Returns the amount of fuel in the welder
 /obj/item/weldingtool/proc/get_fuel()

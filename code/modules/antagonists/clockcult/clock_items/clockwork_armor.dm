@@ -117,7 +117,7 @@
 			user.emote("scream")
 			user.apply_damage(15, BURN, BODY_ZONE_CHEST)
 			user.adjust_fire_stacks(2)
-			user.IgniteMob()
+			user.ignite_mob()
 		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dropItemToGround), src, TRUE), 1)
 
 /obj/item/clothing/gloves/clockwork
@@ -132,9 +132,8 @@
 	cold_protection = ARMS
 	heat_protection = ARMS
 	siemens_coefficient = 0
-	permeability_coefficient = 0.05
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list(MELEE = 80, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 80, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 60, RAD = 0, FIRE = 100, ACID = 100)
 
 /obj/item/clothing/gloves/clockwork/Initialize()
 	. = ..()

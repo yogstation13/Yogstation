@@ -76,7 +76,7 @@
 	RefreshAbilities()
 
 	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	hud.add_hud_to(src)
+	hud.show_to(src)
 	update_horror_hud()
 
 
@@ -117,7 +117,7 @@
 			return
 		Infect(C)
 		return
-	..()
+	return ..()
 
 /mob/living/simple_animal/horror/proc/has_chemicals(amt)
 	return chemicals >= amt
@@ -139,7 +139,7 @@
 		return
 	var/datum/hud/chemical_counter/H = hud_used
 	var/atom/movable/screen/counter = H.chemical_counter
-	counter.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#7264FF'>[chemicals]</font></div>"
+	counter.maptext = ANTAG_MAPTEXT(chemicals, COLOR_DARKSPAWN_PSI)
 
 /mob/living/simple_animal/horror/proc/can_use_ability()
 	if(stat != CONSCIOUS)
@@ -159,7 +159,8 @@
 	for(var/datum/mind/M in SSticker.minds)
 		if(M.current && M.current.stat != DEAD)
 			if(ishuman(M.current))
-				if(M.hasSoul && (mind.enslaved_to != M.current))
+				var/mob/living/master = mind.enslaved_to?.resolve()
+				if(M.hasSoul && (master != M.current))
 					possible_targets[M] = M
 
 	var/list/selected_targets = list()
@@ -201,7 +202,8 @@
 		to_chat(src, "This host doesn't have a soul!")
 		return
 
-	if(victim == mind.enslaved_to)
+	var/mob/living/master = mind.enslaved_to?.resolve()
+	if(victim == master)
 		to_chat(src, span_userdanger("No, not yet... We still need them..."))
 		return
 
@@ -345,7 +347,8 @@
 			return
 
 	if(isliving(A))
-		if(victim || A == src.mind.enslaved_to)
+		var/mob/living/master = mind.enslaved_to?.resolve()
+		if(victim || A == master)
 			healthscan(usr, A)
 			chemscan(usr, A)
 		else
@@ -670,7 +673,7 @@
 			if(nlog_type & LOG_SAY)
 				var/list/reversed = log_source[log_type]
 				if(islist(reversed))
-					say_log = reverseRange(reversed.Copy())
+					say_log = reverse_range(reversed.Copy())
 					break
 		if(LAZYLEN(say_log))
 			for(var/spoken_memory in say_log)
@@ -820,7 +823,7 @@
 	var/datum/action/innate/horror/action = has_ability(/datum/action/innate/horror/chameleon)
 	if(action)
 		action.button_icon_state = "horror_sneak_[invisible ? "true" : "false"]"
-		action.UpdateButtonIcon()
+		action.build_all_button_icons()
 
 /mob/living/simple_animal/horror/proc/GrantHorrorActions()
 	for(var/datum/action/innate/horror/ability in horrorabilities)

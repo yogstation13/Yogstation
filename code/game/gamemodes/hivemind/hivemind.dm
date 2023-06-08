@@ -26,9 +26,9 @@
 
 /mob/living/proc/is_real_hivehost() //This proc ignores mind controlled vessels
 	for(var/datum/antagonist/hivemind/hive in GLOB.antagonists)
-		if(!hive.owner?.spell_list)
+		if(!hive.owner?.current?.actions)
 			continue
-		var/obj/effect/proc_holder/spell/target_hive/hive_control/the_spell = locate(/obj/effect/proc_holder/spell/target_hive/hive_control) in hive.owner.spell_list
+		var/datum/action/cooldown/spell/aoe/target_hive/hive_control/the_spell = locate(/datum/action/cooldown/spell/aoe/target_hive/hive_control) in hive.owner.current.actions
 		if((!the_spell || !the_spell.active ) && mind == hive.owner)
 			return TRUE
 		if(the_spell?.active && the_spell.original_body == src)
@@ -41,7 +41,7 @@
 		return
 	if(!is_hivehost(M) || is_real_hivehost(M))
 		return M
-	var/obj/effect/proc_holder/spell/target_hive/hive_control/the_spell = locate(/obj/effect/proc_holder/spell/target_hive/hive_control) in M.mind.spell_list
+	var/datum/action/cooldown/spell/aoe/target_hive/hive_control/the_spell = locate(/datum/action/cooldown/spell/aoe/target_hive/hive_control) in M.actions
 	if(the_spell?.active)
 		return the_spell.original_body
 	return M

@@ -35,23 +35,24 @@
 /turf/cordon/ScrapeAway(amount, flags)
 	return src // :devilcat:
 
-/turf/cordon/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit)
+/turf/cordon/bullet_act(obj/item/projectile/hitting_projectile, def_zone, piercing_hit)
 	return BULLET_ACT_HIT
 
 /turf/cordon/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	return FALSE
 
-/area/cordon
+/// Area used in conjuction with the cordon turf to create a fully functioning world border.
+/area/misc/cordon
 	name = "CORDON"
 	icon_state = "cordon"
-
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	unique = TRUE
 	noteleport = TRUE
 	hidden = TRUE 
+	area_flags = NOTELEPORT
 	requires_power = FALSE
 
-/area/cordon/Entered(atom/movable/arrived, area/old_area)
+/area/misc/cordon/Entered(atom/movable/arrived, area/old_area)
 	. = ..()
 	for(var/mob/living/enterer as anything in arrived.get_all_contents_type(/mob/living))
 		to_chat(enterer, span_userdanger("This was a bad idea..."))

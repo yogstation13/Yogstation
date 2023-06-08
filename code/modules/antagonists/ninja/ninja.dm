@@ -4,6 +4,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	name = "Ninja"
 	antagpanel_category = "Ninja"
 	job_rank = ROLE_NINJA
+	antag_hud_name = "ninja"
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
@@ -22,14 +23,12 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	for(var/obj/item/implant/explosive/E in M.implants)
 		if(E)
 			RegisterSignal(E, COMSIG_IMPLANT_ACTIVATED, PROC_REF(on_death))
-	update_ninja_icons_added(M)
 
 /datum/antagonist/ninja/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	for(var/obj/item/implant/explosive/E in M.implants)
 		if(E)
 			UnregisterSignal(M, COMSIG_IMPLANT_ACTIVATED)
-	update_ninja_icons_removed(M)
 
 /datum/antagonist/ninja/proc/equip_space_ninja(mob/living/carbon/human/H = owner.current)
 	return H.equipOutfit(/datum/outfit/ninja)
@@ -187,13 +186,3 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	new_owner.add_antag_datum(src)
 	message_admins("[key_name_admin(admin)] has [adj] ninja'ed [key_name_admin(new_owner)].")
 	log_admin("[key_name(admin)] has [adj] ninja'ed [key_name(new_owner)].")
-
-/datum/antagonist/ninja/proc/update_ninja_icons_added(var/mob/living/carbon/human/ninja)
-	var/datum/atom_hud/antag/ninjahud = GLOB.huds[ANTAG_HUD_NINJA]
-	ninjahud.join_hud(ninja)
-	set_antag_hud(ninja, "ninja")
-
-/datum/antagonist/ninja/proc/update_ninja_icons_removed(var/mob/living/carbon/human/ninja)
-	var/datum/atom_hud/antag/ninjahud = GLOB.huds[ANTAG_HUD_NINJA]
-	ninjahud.leave_hud(ninja)
-	set_antag_hud(ninja, null)

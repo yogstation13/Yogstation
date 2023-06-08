@@ -6,12 +6,12 @@ SUBSYSTEM_DEF(pai)
 	var/list/candidates = list()
 	var/ghost_spam = FALSE
 	var/spam_delay = 100
-	var/list/pai_card_list = list()
+	var/list/paicard_list = list()
 
 /datum/controller/subsystem/pai/Topic(href, href_list[])
 	if(href_list["download"])
 		var/datum/paiCandidate/candidate = locate(href_list["candidate"]) in candidates
-		var/obj/item/paicard/card = locate(href_list["device"]) in pai_card_list
+		var/obj/item/paicard/card = locate(href_list["device"]) in paicard_list
 		if(card.pai)
 			return
 		if(istype(card, /obj/item/paicard) && istype(candidate, /datum/paiCandidate))
@@ -26,8 +26,6 @@ SUBSYSTEM_DEF(pai)
 			pai.key = candidate.key
 
 			card.setPersonality(pai)
-
-			SSticker.mode.update_cult_icons_removed(card.pai.mind)
 
 			candidates -= candidate
 			usr << browse(null, "window=findPai")
@@ -71,7 +69,7 @@ SUBSYSTEM_DEF(pai)
 			if("submit")
 				if(candidate)
 					candidate.ready = 1
-					for(var/obj/item/paicard/p in pai_card_list)
+					for(var/obj/item/paicard/p in paicard_list)
 						if(!p.pai)
 							p.alertUpdate()
 				usr << browse(null, "window=paiRecruit")

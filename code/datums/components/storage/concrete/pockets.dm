@@ -48,7 +48,7 @@
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
 		/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
-		/obj/item/firing_pin
+		/obj/item/firing_pin, /obj/item/gun/ballistic/revolver/derringer
 		),
 		list(/obj/item/handdrill)
 		)
@@ -60,7 +60,7 @@
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
 		/obj/item/reagent_containers/autoinjector/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
-		/obj/item/firing_pin, /obj/item/bikehorn),
+		/obj/item/firing_pin, /obj/item/gun/ballistic/revolver/derringer, /obj/item/bikehorn),
 		list(/obj/item/handdrill)
 		)
 

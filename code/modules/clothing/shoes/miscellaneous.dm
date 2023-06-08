@@ -12,10 +12,9 @@
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 10, RAD = 0, FIRE = 70, ACID = 50)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 60, RAD = 0, FIRE = 70, ACID = 50)
 	strip_delay = 70
 	resistance_flags = NONE
-	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
 /obj/item/clothing/shoes/combat/combat_knife/ComponentInitialize()
@@ -25,9 +24,8 @@
 /obj/item/clothing/shoes/combat/swat //overpowered boots for death squads
 	name = "\improper SWAT boots"
 	desc = "High speed, no drag combat boots."
-	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
-	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 30, RAD = 30, FIRE = 90, ACID = 50)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 100, RAD = 30, FIRE = 90, ACID = 50)
 
 /obj/item/clothing/shoes/sandal
 	desc = "A pair of rather plain wooden sandals."
@@ -35,7 +33,7 @@
 	icon_state = "wizard"
 	strip_delay = 50
 	equip_delay_other = 50
-	permeability_coefficient = 0.9
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 5, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "A pair of magic black shoes."
@@ -52,13 +50,12 @@
 	desc = "A pair of yellow rubber boots, designed to prevent slipping on wet surfaces."
 	name = "galoshes"
 	icon_state = "galoshes"
-	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+0.75
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = NONE
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 75)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 0, FIRE = 40, ACID = 75)
 	can_be_bloody = FALSE
 	custom_price = 100
 
@@ -133,8 +130,8 @@
 	strip_delay = 50
 	equip_delay_other = 50
 	resistance_flags = NONE
-	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
 	force = 1
 
 /obj/item/clothing/shoes/jackboots/fast
@@ -156,12 +153,12 @@
 	icon_state = "winterboots"
 	item_state = "winterboots"
 	clothing_flags = NOSLIP_ICE
-	permeability_coefficient = 0.15
 	cold_protection = FEET|LEGS
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT
 	heat_protection = FEET|LEGS
 	max_heat_protection_temperature = SHOES_MAX_TEMP_PROTECT
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/shoes/winterboots/ice_boots
 	name = "ice hiking boots"
@@ -177,10 +174,10 @@
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	permeability_coefficient = 0.15
 	strip_delay = 40
 	equip_delay_other = 40
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/shoes/workboots/mining
 	name = "mining boots"
@@ -228,7 +225,7 @@
 	item_state = "roman"
 	strip_delay = 100
 	equip_delay_other = 100
-	permeability_coefficient = 0.9
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 5, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/shoes/griffin
 	name = "griffon boots"
@@ -246,7 +243,7 @@
 	clothing_flags = NOSLIP_ICE
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	actions_types = list(/datum/action/cooldown/boost)
-	permeability_coefficient = 0.05
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 	var/jumpspeed = 3
 	var/recharging_rate = 6 SECONDS //default 6 seconds between each dash
@@ -324,7 +321,7 @@
 	desc = "They'll sure kindle something in you, and it's not childhood nostalgia..."
 	icon_state = "kindleKicks"
 	item_state = "kindleKicks"
-	actions_types = list(/datum/action/item_action/kindleKicks)
+	actions_types = list(/datum/action/item_action/kindle_kicks)
 	light_system = MOVABLE_LIGHT
 	light_range = 2
 	light_power = 3
@@ -361,9 +358,9 @@
 	name = "cowboy boots"
 	desc = "A small sticker lets you know they've been inspected for snakes, It is unclear how long ago the inspection took place..."
 	icon_state = "cowboy_brown"
-	permeability_coefficient = 0.05 //these are quite tall
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	custom_price = 35 //poor assistants cant afford 50 credits
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
 	var/list/occupants = list()
 	var/max_occupants = 4
 
@@ -417,13 +414,13 @@
 	name = "bilton wrangler boots"
 	desc = "A pair of authentic haute couture boots from Japanifornia. You doubt they have ever been close to cattle."
 	icon_state = "cowboy_fancy"
-	permeability_coefficient = 0.08
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 50, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/shoes/cowboy/lizard
 	name = "lizard skin boots"
 	desc = "You can hear a faint hissing from inside the boots; you hope it is just a mournful ghost."
 	icon_state = "lizardboots_green"
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 40, ACID = 0) //lizards like to stay warm
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 40, ACID = 0) //lizards like to stay warm
 
 /obj/item/clothing/shoes/cowboy/lizard/masterwork
 	name = "\improper Hugs-The-Feet lizard skin boots"
@@ -468,7 +465,7 @@
 	strip_delay = 2.5 SECONDS // Half time to take off
 	equip_delay_other = 2.5 SECONDS // Half time
 	resistance_flags = NONE
-	permeability_coefficient = 0.70 // Fabric is more permeable than boot, but still somewhat resistant
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 10, RAD = 0, FIRE = 0, ACID = 0) // Fabric is more permeable than boot, but still somewhat resistant
 
 /obj/item/clothing/shoes/xeno_wraps/command  // Not applicable unless 11505 merges - Digitigrade-exclusive shoes for Command positions
 	name = "command footwraps"
@@ -493,24 +490,22 @@
 	desc = "These make your feet feel snug and secure, while still being breathable and light."
 	icon_state = "footwraps_dragon"
 	item_state = "footwraps_dragon"
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 0)
+	armor = list(MELEE = 10, BULLET = 10, LASER = 15, ENERGY = 10, BOMB = 0, BIO = 10, RAD = 0, FIRE = 15, ACID = 0)
 	body_parts_covered = LEGS|FEET
 	strip_delay = 5 SECONDS
 	equip_delay_other = 5 SECONDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	permeability_coefficient = 0.70
 
 /obj/item/clothing/shoes/xeno_wraps/carpdragon
 	name = "carp dragon hide footwraps"
 	desc = "These make your feet feel snug and secure, while still being breathable and light."
 	icon_state = "footwraps_carpdragon"
 	item_state = "footwraps_carpdragon"
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 0)
+	armor = list(MELEE = 15, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 10, RAD = 0, FIRE = 10, ACID = 0)
 	body_parts_covered = LEGS|FEET
 	strip_delay = 5 SECONDS
 	equip_delay_other = 5 SECONDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	permeability_coefficient = 0.70
 
 /obj/item/clothing/shoes/xeno_wraps/engineering
 	name = "engineering footwraps"
@@ -544,6 +539,18 @@
 	xenoshoe = YES_DIGIT
 	mutantrace_variation = MUTANTRACE_VARIATION
 
+/datum/action/item_action/dash
+	name = "Dash"
+	desc = "Momentarily maximizes the jets of the shoes, allowing the user to dash a short distance."
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "thrust"
+
+/datum/action/item_action/airshoes
+	name = "Toggle thrust on air shoes."
+	desc = "Switch between walking and hovering."
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "airshoes_a"
+
 /obj/item/clothing/shoes/airshoes
 	name = "air shoes"
 	desc = "Footwear that uses propulsion technology to keep you above the ground and let you move faster."
@@ -551,8 +558,9 @@
 	obj_flags = UNIQUE_RENAME //im not fucking naming them 'sonic 11's you can do that yourself ffm
 	actions_types = list(/datum/action/item_action/airshoes, /datum/action/item_action/dash)
 	var/airToggle = FALSE
-	var/obj/vehicle/ridden/scooter/airshoes/A
-	permeability_coefficient = 0.05
+	///Secret vehicle that helps us move around at mach speeds
+	var/obj/vehicle/ridden/scooter/airshoes/shoes_of_air
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
 	var/recharging_time = 0
 	var/jumpdistance = 7 //Increased distance so it might see some offensive use
 	var/jumpspeed = 5 //fast
@@ -561,7 +569,7 @@
 
 /obj/item/clothing/shoes/airshoes/Initialize()
 	. = ..()
-	A = new/obj/vehicle/ridden/scooter/airshoes(null)
+	shoes_of_air = new /obj/vehicle/ridden/scooter/airshoes(null)
 
 /obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
 	if(!isliving(user))
@@ -569,24 +577,24 @@
 	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/airshoes))
 		to_chat(user, span_warning("You must be wearing the air shoes to use them!"))
 		return
-	if(istype(action,/datum/action/item_action/airshoes))
-		if(!(A.is_occupant(user)))
+	if(istype(action, /datum/action/item_action/airshoes))
+		if(!(shoes_of_air.is_occupant(user)))
 			airToggle = FALSE
 		if(airToggle)
-			A.unbuckle_mob(user)
+			shoes_of_air.unbuckle_mob(user)
 			airToggle = FALSE
 			return
-		A.forceMove(get_turf(user))
-		A.buckle_mob(user)
+		shoes_of_air.forceMove(get_turf(user))
+		shoes_of_air.buckle_mob(user)
 		airToggle = TRUE
-	else if(istype(action,/datum/action/item_action/dash))
+	else if(istype(action, /datum/action/item_action/dash))
 		if(recharging_time > world.time)
 			to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
 			return
 
 		var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 		if (user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
-			playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
+			playsound(src, 'sound/effects/stealthoff.ogg', 50, TRUE, 1)
 			user.visible_message(span_warning("[usr] dashes forward into the air!"))
 			recharging_time = world.time + recharging_rate
 		else
@@ -594,11 +602,12 @@
 
 /obj/item/clothing/shoes/airshoes/dropped(mob/user)
 	if(airToggle)
-		A.unbuckle_mob(user)
+		shoes_of_air.unbuckle_mob(user)
 		airToggle = FALSE
 	..()
+
 /obj/item/clothing/shoes/airshoes/Destroy()
-	QDEL_NULL(A)
+	QDEL_NULL(shoes_of_air)
 	. = ..()
 
 /obj/item/clothing/shoes/drip
@@ -609,11 +618,11 @@
 	icon_state = "dripshoes"
 	item_state = "dripshoes"
 	clothing_flags = NOSLIP_ICE | NOSLIP
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 10, RAD = 0, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 60, RAD = 0, FIRE = 100, ACID = 100)
 	resistance_flags = FIRE_PROOF | ACID_PROOF | LAVA_PROOF
 	strip_delay = 40
 	resistance_flags = NONE
-	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
+
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 	slowdown = -0.2
 

@@ -12,7 +12,32 @@
 			return handcuffed
 		if(SLOT_LEGCUFFED)
 			return legcuffed
-	return null
+
+	return ..()
+
+/mob/living/carbon/get_slot_by_item(obj/item/looking_for)
+	if(looking_for == back)
+		return ITEM_SLOT_BACK
+
+	if(back && (looking_for in back))
+		return ITEM_SLOT_BACKPACK
+
+	if(looking_for == wear_mask)
+		return ITEM_SLOT_MASK
+
+	if(looking_for == wear_neck)
+		return ITEM_SLOT_NECK
+
+	if(looking_for == head)
+		return ITEM_SLOT_HEAD
+
+	if(looking_for == handcuffed)
+		return ITEM_SLOT_HANDCUFFED
+
+	if(looking_for == legcuffed)
+		return ITEM_SLOT_LEGCUFFED
+
+	return ..()
 
 /mob/living/carbon/proc/equip_in_one_of_slots(obj/item/I, list/slots, qdel_on_fail = 1)
 	for(var/slot in slots)
@@ -63,7 +88,7 @@
 			wear_neck = I
 			update_inv_neck(I)
 		if(SLOT_HANDCUFFED)
-			handcuffed = I
+			set_handcuffed(I)
 			update_handcuffed()
 		if(SLOT_LEGCUFFED)
 			legcuffed = I
@@ -107,7 +132,7 @@
 		if(!QDELETED(src))
 			update_inv_neck(I)
 	else if(I == handcuffed)
-		handcuffed = null
+		set_handcuffed(null)
 		if(buckled && buckled.buckle_requires_restraints)
 			buckled.unbuckle_mob(src)
 		if(!QDELETED(src))
@@ -121,7 +146,7 @@
 	if(I == internal && (QDELETED(src) || QDELETED(I) || I.loc != src))
 		cutoff_internals()
 		if(!QDELETED(src))
-			update_action_buttons_icon(status_only = TRUE)
+			update_mob_action_buttons(UPDATE_BUTTON_STATUS)
 
 /// Returns TRUE if an air tank compatible helmet is equipped.
 /mob/living/carbon/proc/can_breathe_helmet()
@@ -164,7 +189,7 @@
 	else
 		internal = target_tank
 	target_tank.after_internals_opened(src)
-	update_action_buttons_icon()
+	update_mob_action_buttons()
 	return TRUE
 
 /**
@@ -196,7 +221,7 @@
 	else
 		internal = null
 	target_tank.after_internals_closed(src)
-	update_action_buttons_icon()
+	update_mob_action_buttons()
 	return TRUE
 
 /// Close the the currently open external (that's EX-ternal) air tank. Returns TREUE if successful.

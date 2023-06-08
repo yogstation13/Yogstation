@@ -311,7 +311,7 @@
 
 	// Extinguishes everything in the turf
 	for(var/mob/living/potential_tinder in chilly)
-		potential_tinder.ExtinguishMob()
+		potential_tinder.extinguish_mob()
 	for(var/obj/item/potential_tinder in chilly)
 		potential_tinder.extinguish()
 

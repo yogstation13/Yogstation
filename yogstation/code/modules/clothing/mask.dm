@@ -23,7 +23,7 @@
 
 /obj/item/clothing/mask/yogs/cluwne/Initialize()
 	.=..()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
 /**
   * Plays one of three cluwne laughs
@@ -81,7 +81,7 @@
 
 /obj/item/clothing/mask/yogs/cluwne/happy_cluwne/Initialize()
 	.=..()
-	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 	if(prob(1)) //this function pre-determines the logic of the cluwne mask. applying and reapplying the mask does not alter or change anything
 		does_cluwne = TRUE
 		does_floor_cluwne = FALSE
@@ -100,7 +100,7 @@
 			message_admins("[key_name(H)] got cluwned by [src]")
 			to_chat(H, span_userdanger("The masks straps suddenly tighten to your face and your thoughts are erased by a horrible green light!"))
 			H.dropItemToGround(src)
-			ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+			ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 			H.cluwneify()
 			qdel(src)
 		else if(does_floor_cluwne)

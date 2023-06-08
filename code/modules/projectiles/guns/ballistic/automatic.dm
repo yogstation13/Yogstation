@@ -59,7 +59,7 @@
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/gun/ballistic/automatic/c20r
 	name = "\improper C-20r SMG"
@@ -223,7 +223,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw
 	name = "\improper L6 SAW"
-	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2506' engraved on the receiver below the designation."
+	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2503' engraved on the receiver below the designation."
 	icon_state = "l6"
 	item_state = "l6closedmag"
 	w_class = WEIGHT_CLASS_HUGE
@@ -424,3 +424,51 @@
 	actions_types = list()
 	fire_sound = 'sound/weapons/laser.ogg'
 	casing_ejector = FALSE
+
+// 40k Laser Weaponry
+
+/obj/item/gun/ballistic/automatic/laser/lasgun
+	name ="Imperial Lasgun"
+	desc = "A relic of a weapon. Despite being immensely powerful, it has acquired a reputation of being essentially a flashlight."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "lasgun"
+	item_state = "lasgun"
+	mag_display = TRUE
+	empty_indicator = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun
+
+/obj/item/gun/ballistic/automatic/laser/longlas
+	name ="Imperial Longlas"
+	desc = "A sniper variant of the lasgun. Despite being immensely powerful, it has acquired  a reputation of being essentially a flashlight."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "longlas"
+	item_state = "longlas"
+	mag_display = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/sniper
+	zoomable = TRUE
+	zoom_amt = 8
+
+/obj/item/gun/ballistic/automatic/laser/laspistol
+	name ="Imperial Laspistol"
+	desc = "A smaller, pistol sized version of the lasgun. Despite being immensely powerful, it has acquired a reputation of being essentially a flashlight."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "laspistol"
+	item_state = "laspistol"
+	mag_display = TRUE
+	empty_indicator = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/pistol
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/gun/ballistic/automatic/laser/hotshot
+	name ="Imperial Hotshot Lasgun"
+	desc = "An amped-up version of the lasgun. One of the few models to not be regarded as completely useless by its users."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "hotshot"
+	mag_display = TRUE
+	empty_indicator = TRUE
+	item_state = "hotshot"
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/hotshot

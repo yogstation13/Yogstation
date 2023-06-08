@@ -146,10 +146,10 @@
 /datum/action/innate/clockwork_armaments
 	name = "Clockwork Armaments"
 	desc = "Outfits you in a full set of Ratvarian armor."
-	icon_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "clockwork_armor"
 	background_icon_state = "bg_clock"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	buttontooltipstyle = "clockcult"
 	var/cooldown = 0
 	var/static/list/ratvarian_armor_typecache = typecacheof(list(
@@ -162,7 +162,7 @@
 	/obj/item/clothing/head/helmet/space,
 	/obj/item/clothing/shoes/magboots)) //replace this only if ratvar is up
 
-/datum/action/innate/clockwork_armaments/IsAvailable()
+/datum/action/innate/clockwork_armaments/IsAvailable(feedback = FALSE)
 	if(!is_servant_of_ratvar(owner))
 		qdel(src)
 		return
@@ -188,8 +188,8 @@
 		owner.visible_message(span_warning("Strange armor appears on [owner]!"), "[span_heavy_brass("A bright shimmer runs down your body, equipping you with Ratvarian armor.")]")
 		playsound(owner, 'sound/magic/clockwork/fellowship_armory.ogg', 15 * do_message, TRUE) //get sound loudness based on how much we equipped
 	cooldown = CLOCKWORK_ARMOR_COOLDOWN + world.time
-	owner.update_action_buttons_icon()
-	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_action_buttons_icon)), CLOCKWORK_ARMOR_COOLDOWN)
+	owner.update_mob_action_buttons()
+	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_mob_action_buttons)), CLOCKWORK_ARMOR_COOLDOWN)
 	return TRUE
 
 /datum/action/innate/clockwork_armaments/proc/remove_item_if_better(obj/item/I, mob/user)

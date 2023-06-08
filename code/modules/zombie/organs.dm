@@ -141,9 +141,9 @@
 			return
 		GM.add_zombie(owner.mind)
 
-	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
-	if(!Z.evolution.owner)
-		Z.evolution.Grant(owner)
+//	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
+//	if(!Z.evolution.owner)
+//		Z.evolution.Grant(owner)
 
 	if(owner.handcuffed)
 		var/obj/O = owner.get_item_by_slot(SLOT_HANDCUFFED)

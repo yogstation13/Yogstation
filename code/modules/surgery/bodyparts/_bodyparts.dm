@@ -82,7 +82,7 @@
 	/// This number is subtracted from all wound rolls on this bodypart, higher numbers mean more defense, negative means easier to wound
 	var/wound_resistance = 0
 	/// When this bodypart hits max damage, this number is added to all wound rolls. Obviously only relevant for bodyparts that have damage caps.
-	var/disabled_wound_penalty = 15
+	var/disabled_wound_penalty = 30
 
 	/// A hat won't cover your face, but a shirt covering your chest will cover your... you know, chest
 	var/scars_covered_by_clothes = TRUE
@@ -571,6 +571,14 @@
 
 	// this block of checks is for limbs that can be disabled, but not through pure damage (AKA limbs that suffer wounds, human/monkey parts and such)
 	if(!disable_threshold)
+		if(!HAS_TRAIT(owner, TRAIT_STUNIMMUNE) && stamina_dam >= max_damage)
+			if(!last_maxed)
+				if(owner.stat < UNCONSCIOUS)
+					owner.emote("scream")
+				last_maxed = TRUE
+			set_disabled(TRUE)
+			return
+
 		if(total_damage < max_damage)
 			last_maxed = FALSE
 		else

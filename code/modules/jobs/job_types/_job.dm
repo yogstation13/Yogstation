@@ -75,8 +75,12 @@
 	var/paycheck = PAYCHECK_MINIMAL
 	/// Where to pull money to pay people
 	var/paycheck_department = ACCOUNT_CIV
-	/// Traits assigned from jobs
+	/// Traits added to the mind of the mob assigned this job
 	var/list/mind_traits
+
+	///Lazylist of traits added to the liver of the mob assigned this job (used for the classic "cops heal from donuts" reaction, among others)
+	var/list/liver_traits = null
+
 	/// Display order of the job
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
@@ -136,13 +140,17 @@
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
-/datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
-	//do actions on H but send messages to M as the key may not have been transferred_yet
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, H, M, latejoin)
-	if(mind_traits)
-		for(var/t in mind_traits)
-			ADD_TRAIT(H.mind, t, JOB_TRAIT)
-	H.mind.add_employee(/datum/corporation/nanotrasen)
+/datum/job/proc/after_spawn(mob/living/spawned, mob/M, latejoin = FALSE)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, spawned, M, latejoin)
+	for(var/trait in mind_traits)
+		ADD_TRAIT(spawned.mind, trait, JOB_TRAIT)
+
+	var/obj/item/organ/liver/liver = spawned.getorganslot(ORGAN_SLOT_LIVER)
+	if(liver)
+		for(var/trait in liver_traits)
+			ADD_TRAIT(liver, trait, JOB_TRAIT)
+	spawned.mind.add_employee(/datum/corporation/nanotrasen)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
@@ -337,7 +345,7 @@
 		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
 
 	if(H.stat != DEAD)//if a job has a gps and it isn't a decorative corpse, rename the GPS to the owner's name
-		for(var/obj/item/gps/G in H.GetAllContents())
+		for(var/obj/item/gps/G in H.get_all_contents())
 			G.gpstag = H.real_name
 			G.name = "global positioning system ([G.gpstag])"
 			continue
