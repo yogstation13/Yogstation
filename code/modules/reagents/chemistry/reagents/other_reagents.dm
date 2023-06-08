@@ -2163,7 +2163,7 @@
 	var/significant = FALSE
 	can_synth = FALSE
 
-/datum/reagent/determination/on_mob_metabolize(mob/living/L)
+/datum/reagent/determination/on_mob_metabolize(mob/living/carbon/M)
 	. = ..()
 	ADD_TRAIT(M, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	
