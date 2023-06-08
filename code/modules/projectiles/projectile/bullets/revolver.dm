@@ -106,13 +106,17 @@
 	tile_dropoff = 0.35 //Loses 0.05 damage less per tile than standard damaging pellets
 	wound_falloff_tile = -1.5 //Still probably won't cause wounds at range
 
-/obj/item/projectile/bullet/a357/nutcracker
-	name = ".357 Nutcracker bullet"
+/obj/item/projectile/bullet/a357/frag13
+	name = ".357 FRAG-13 bullet"
 	damage = 30
 
-/obj/item/projectile/bullet/a357/nutcracker/on_hit(atom/target) //Basically breaching slug with 1.5x damage
+/obj/item/projectile/bullet/a357/frag13/on_hit(atom/target) //Basically breaching slug with 1.5x damage
 	if(istype(target, /obj/structure/window) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/door_assembly))
 		damage = 750 //One shot to break a window, two shots for a door, three if reinforced
+	playsound(loc, get_sfx("explosion"), vol_by_damage(), 1, frequency = get_rand_frequency()) // it explodes guys trust me
+	var/turf/T = get_turf()
+	if(T && istype(T))
+		new /obj/effect/hotspot(T)
 	..()
 
 /obj/item/projectile/bullet/a357/metalshock

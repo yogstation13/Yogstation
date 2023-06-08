@@ -16,12 +16,12 @@
 	icon_state = "357feather"
 	ammo_type = /obj/item/ammo_casing/a357/ironfeather
 
-/obj/item/ammo_box/a357/nutcracker
-	name = "speed loader (.357 Nutcracker)"
+/obj/item/ammo_box/a357/frag13
+	name = "speed loader (.357 FRAG-13)"
 	desc = "A seven-shot speed loader designed for .357 revolver. \
 			These rounds lose moderate stopping power but are capable of destroying doors and windows quickly."
 	icon_state = "357cracker"
-	ammo_type = /obj/item/ammo_casing/a357/nutcracker
+	ammo_type = /obj/item/ammo_casing/a357/frag13
 
 /obj/item/ammo_box/a357/metalshock
 	name = "speed loader (.357 Metalshock)"
@@ -166,9 +166,9 @@
 	name = "ammo box (.357 Ironfeather)"
 	ammo_type = /obj/item/ammo_casing/a357/ironfeather
 
-/obj/item/ammo_box/no_direct/a357/nutcracker
-	name = "ammo box (.357 Nutcracker)"
-	ammo_type = /obj/item/ammo_casing/a357/nutcracker
+/obj/item/ammo_box/no_direct/a357/frag13
+	name = "ammo box (.357 FRAG-13)"
+	ammo_type = /obj/item/ammo_casing/a357/frag13
 
 /obj/item/ammo_box/no_direct/a357/metalshock
 	name = "ammo box (.357 Metalshock)"

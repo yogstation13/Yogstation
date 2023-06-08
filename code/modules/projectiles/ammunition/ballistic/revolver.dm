@@ -13,10 +13,10 @@
 	pellets = 6
 	variance = 20 //Same spread and pellets as buckshot
 
-/obj/item/ammo_casing/a357/nutcracker
-	name = ".357 Nutcracker bullet casing"
-	desc = "A .357 Nutcracker bullet casing."
-	projectile_type = /obj/item/projectile/bullet/a357/nutcracker
+/obj/item/ammo_casing/a357/frag13
+	name = ".357 FRAG-13 bullet casing"
+	desc = "A .357 FRAG-13 bullet casing."
+	projectile_type = /obj/item/projectile/bullet/a357/frag13
 
 /obj/item/ammo_casing/a357/metalshock
 	name = ".357 Metalshock bullet casing"

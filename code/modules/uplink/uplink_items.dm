@@ -874,11 +874,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Ironfeather shells contain six pellets which are less damaging than buckshot but mildly better over range."
 	item = /obj/item/storage/box/syndie_kit/revolvershotgunammo
 
-/datum/uplink_item/ammo/revolver/nutcracker
-	name = ".357 Nutcracker Speed Loader"
-	desc = "A speed loader that contains seven .357 Nutcracker rounds; usable with the Syndicate revolver. \
-			These rounds lose moderate stopping power in exchange for being able to rapidly destroy doors and windows."
-	item = /obj/item/ammo_box/a357/nutcracker
+/datum/uplink_item/ammo/revolver/frag13
+	name = ".357 FRAG-13 Speed Loader" // the revolver used to cost 13TC
+	desc = "A speed loader that contains seven explosive .357 FRAG-13 rounds; usable with the Syndicate revolver. \
+			These rounds lose moderate stopping power in exchange for being able to rapidly destroy doors and windows, as well as igniting targets."
+	item = /obj/item/ammo_box/a357/frag13
 
 /datum/uplink_item/ammo/revolver/metalshock
 	name = ".357 Metalshock Speed Loader"
