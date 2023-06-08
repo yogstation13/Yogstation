@@ -26,7 +26,7 @@ GLOBAL_VAR(restart_counter)
 
 	log_world("World loaded at [time_stamp()]!")
 
-	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
+	GLOB.test_log = GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
 
 	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
 
@@ -117,9 +117,7 @@ GLOBAL_VAR(restart_counter)
 		GLOB.picture_log_directory = "data/picture_logs/[override_dir]"
 
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
-#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 	GLOB.test_log = "[GLOB.log_directory]/unit_tests.log"
-#endif
 	GLOB.world_mecha_log = "[GLOB.log_directory]/mecha.log"
 	GLOB.world_virus_log = "[GLOB.log_directory]/virus.log"
 	GLOB.world_cloning_log = "[GLOB.log_directory]/cloning.log"
@@ -143,10 +141,7 @@ GLOBAL_VAR(restart_counter)
 
 	GLOB.demo_log = "[GLOB.log_directory]/demo.txt"
 
-#ifdef UNIT_TESTS
-	GLOB.test_log = file("[GLOB.log_directory]/tests.log")
 	start_log(GLOB.test_log)
-#endif
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_pda_log)
