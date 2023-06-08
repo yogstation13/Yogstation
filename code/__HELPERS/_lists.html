@@ -14,7 +14,7 @@
  &mdash; <a href="code/__HELPERS/_lists.html#define">Define Details</a></header>
 <main>
 <h1>code/__HELPERS/_lists.dm 
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -108,7 +108,7 @@ Is &lt; 10 ints</td></tr>
                 <td>Turns an associative list into a flat list of keys</td></tr></table><h2 id="define">Define Details</h2>
 <h3 id="define/BINARY_INSERT"><aside class="declaration">#define </aside>BINARY_INSERT
             <aside>(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L52">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L52">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 52"/></a>
     </h3>
     <p>Binary search sorted insert
@@ -119,7 +119,7 @@ COMPARE: The object to compare against, usualy the same as INPUT
 COMPARISON: The variable on the objects to compare
 COMPTYPE: How should the values be compared? Either COMPARE_KEY or COMPARE_VALUE.</p><h3 id="define/BINARY_INSERT_DEFINE"><aside class="declaration">#define </aside>BINARY_INSERT_DEFINE
             <aside>(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L125">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L125">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 125"/></a>
     </h3>
     <p>Even more custom binary search sorted insert, using defines instead of vars
@@ -130,7 +130,7 @@ COMPARE: The item to compare against, usualy the same as INPUT
 COMPARISON: A define that takes an item to compare as input, and returns their comparable value
 COMPTYPE: How should the list be compared? Either COMPARE_KEY or COMPARE_VALUE.</p><h3 id="define/BINARY_INSERT_PROC_COMPARE"><aside class="declaration">#define </aside>BINARY_INSERT_PROC_COMPARE
             <aside>(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L87">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L87">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 87"/></a>
     </h3>
     <p>Custom binary search sorted insert utilising comparison procs instead of vars.
@@ -140,57 +140,57 @@ TYPECONT: The typepath of the contents of the list
 COMPARE: The object to compare against, usualy the same as INPUT
 COMPARISON: The plaintext name of a proc on INPUT that takes a single argument to accept a single element from LIST and returns a positive, negative or zero number to perform a comparison.
 COMPTYPE: How should the values be compared? Either COMPARE_KEY or COMPARE_VALUE.</p><h3 id="define/COMPARE_KEY"><aside class="declaration">#define </aside>COMPARE_KEY
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L39">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L39">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 39"/></a>
     </h3>
     <p>Passed into BINARY_INSERT to compare keys</p><h3 id="define/COMPARE_VALUE"><aside class="declaration">#define </aside>COMPARE_VALUE
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L41">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L41">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 41"/></a>
     </h3>
     <p>Passed into BINARY_INSERT to compare values</p><h3 id="define/KEYBYINDEX"><aside class="declaration">#define </aside>KEYBYINDEX
             <aside>(L, index)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L518">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L518">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 518"/></a>
     </h3>
     <p>Returns the key based on the index</p><h3 id="define/LAZYACCESSASSOC"><aside class="declaration">#define </aside>LAZYACCESSASSOC
             <aside>(L, I, K)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L24">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L24">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 24"/></a>
     </h3>
     <p>Accesses an associative list, returns null if nothing is found</p><h3 id="define/LAZYCLEARLIST"><aside class="declaration">#define </aside>LAZYCLEARLIST
             <aside>(L)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L31">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L31">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 31"/></a>
     </h3>
     <p>Consider LAZYNULL instead</p><h3 id="define/LAZYCOPY"><aside class="declaration">#define </aside>LAZYCOPY
             <aside>(L)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L29">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L29">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 29"/></a>
     </h3>
     <p>Use LAZYLISTDUPLICATE instead if you want it to null with no entries</p><h3 id="define/LAZYNULL"><aside class="declaration">#define </aside>LAZYNULL
             <aside>(L)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L22">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L22">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 22"/></a>
     </h3>
     <p>Sets a list to null</p><h3 id="define/QDEL_LAZYLIST"><aside class="declaration">#define </aside>QDEL_LAZYLIST
             <aside>(L)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L26">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L26">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 26"/></a>
     </h3>
     <p>Qdel every item in the list before setting the list to null</p><h3 id="define/SANITIZE_LIST"><aside class="declaration">#define </aside>SANITIZE_LIST
             <aside>(L)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L33">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L33">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 33"/></a>
     </h3>
     <p>Returns the list if it's actually a valid list, otherwise will initialize it</p><h3 id="define/is_type_in_typecache"><aside class="declaration">#define </aside>is_type_in_typecache
             <aside>(A, L)</aside>
-            <a href="https://github.com/yogstation13/Yogstation/blob/758824fbe4558a7f77201b13cf2d942e5d4710e4/code/__HELPERS/_lists.dm#L203">
+            <a href="https://github.com/yogstation13/Yogstation/blob/621ce68aef250d60e3071a6c98df8df55d6cd91b/code/__HELPERS/_lists.dm#L203">
         <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 203"/></a>
     </h3>
     <p>Checks for specific types in specifically structured (Assoc &quot;type&quot; = TRUE) lists ('typecaches')</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/758824fbe4558a7f77201b13cf2d942e5d4710e4">758824f</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/621ce68aef250d60e3071a6c98df8df55d6cd91b">621ce68</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
