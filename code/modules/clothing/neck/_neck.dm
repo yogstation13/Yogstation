@@ -349,6 +349,24 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "falcon"
 	item_state = "falcon"
+
+/obj/item/clothing/neck/falcon/secconwhistle
+	name = "constable's whistle"
+	desc = "A small cylindrical whistle meant for blowing out crooks' eardrums."
+	icon_state = "secconwhistle"
+	item_state = "secconwhistle"
+	COOLDOWN_DECLARE(recharge_time)
+	var/recharge_rate = 5 SECONDS
+	actions_types = list(/datum/action/item_action/blow_whistle)
+
+/obj/item/clothing/neck/falcon/secconwhistle/ui_action_click(mob/user)
+	if(!COOLDOWN_FINISHED(src, recharge_time))
+		to_chat(user, span_warning("You need to catch your breath first!"))
+		return
+	playsound(get_turf(src), 'sound/misc/policewhistle.ogg', 30, TRUE, -1)
+	user.visible_message(span_warning("[user] blows their whistle!"))
+	COOLDOWN_START(src, recharge_time, recharge_rate)
+
 // Stealth cloaks
 
 /obj/item/clothing/neck/cloak/ranger
@@ -472,21 +490,3 @@
 	if(TIMER_COOLDOWN_CHECK(src, "cloak_emp_disable"))
 		return
 	return ..()
-
-/obj/item/clothing/neck/secconwhistle
-	name = "constable's whistle"
-	desc = "A small cylindrical whistle meant for blowing out crooks' eardrums."
-	w_class = WEIGHT_CLASS_SMALL
-	icon_state = "secconwhistle"
-	item_state = "secconwhistle"
-	COOLDOWN_DECLARE(recharge_time)
-	var/recharge_rate = 5 SECONDS
-	actions_types = list(/datum/action/item_action/blow_whistle)
-
-/obj/item/clothing/neck/secconwhistle/ui_action_click(mob/user)
-	if(!COOLDOWN_FINISHED(src, recharge_time))
-		to_chat(user, span_warning("You need to catch your breath first!"))
-		return
-	playsound(get_turf(src), 'sound/misc/policewhistle.ogg', 30, TRUE, -1)
-	user.visible_message(span_warning("[user] blows their whistle!"))
-	COOLDOWN_START(src, recharge_time, recharge_rate)

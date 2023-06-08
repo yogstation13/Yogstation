@@ -438,8 +438,8 @@
 	cost = 5000
 	contains = list(/obj/item/melee/classic_baton/secconbaton,
 					/obj/item/melee/classic_baton/secconbaton,
-					/obj/item/clothing/neck/secconwhistle,
-					/obj/item/clothing/neck/secconwhistle,
+					/obj/item/clothing/neck/falcon/secconwhistle,
+					/obj/item/clothing/neck/falcon/secconwhistle,
 					/obj/item/clothing/under/rank/security/secconuniform,
 					/obj/item/clothing/under/rank/security/secconuniform,
 					/obj/item/clothing/head/helmet/secconhelm,
