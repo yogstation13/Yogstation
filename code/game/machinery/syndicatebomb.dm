@@ -501,8 +501,8 @@
 /obj/item/bombcore/emp
 	name = "EMP payload"
 	desc = "A set of superconducting electromagnetic coils designed to release a powerful pulse to destroy electronics and scramble circuits"
-	range_heavy = 15
-	range_medium = 25
+	range_heavy = 30
+	range_medium = 50
 
 /obj/item/bombcore/emp/detonate()
 	if(adminlog)
