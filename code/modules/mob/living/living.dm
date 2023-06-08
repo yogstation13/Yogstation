@@ -575,7 +575,7 @@
 		var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
 		if(B)
 			if(B && B.decay_progress > 5 MINUTES && !admin_revive)
-				to_chat(src, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
+				to_chat(src, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
 				log_combat(src, "was revived with memory loss")
 			B.decay_progress = 0
 		if(IS_BLOODSUCKER(src))
