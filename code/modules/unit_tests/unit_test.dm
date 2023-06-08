@@ -160,7 +160,6 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 		if(length(log_entry))
 			message = log_entry.Join("\n")
 			log_test(message)
-			to_chat(world, message)
 
 		test_output_desc += " [duration / 10]s"
 		if (test.succeeded)
@@ -200,11 +199,9 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 	fdel(file_name)
 	file(file_name) << json_encode(test_results)
 
-//	SSticker.force_ending = TRUE
+	SSticker.force_ending = TRUE
 	//We have to call this manually because del_text can preceed us, and SSticker doesn't fire in the post game
-//	SSticker.declare_completion()
-
-/datum/map_template/ruin/space
+	SSticker.declare_completion()
 
 /datum/map_template/unit_tests
 	name = "Unit Tests Zone"
