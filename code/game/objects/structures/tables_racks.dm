@@ -35,6 +35,7 @@
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
 
 /obj/structure/table/Initialize()
+	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 0.8, \
 	)
