@@ -1,4 +1,4 @@
-#define SENSORS_UPDATE_PERIOD 100 //How often the sensor data updates.
+#define SENSORS_UPDATE_PERIOD 150 //How often the sensor data updates.
 
 /obj/machinery/computer/crew
 	name = "crew monitoring console"
