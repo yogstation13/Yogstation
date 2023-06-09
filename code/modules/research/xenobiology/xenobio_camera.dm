@@ -146,7 +146,7 @@
 		to_chat(user, span_notice("You feed [O] to [src]. It now has [monkeys] monkey cubes stored."))
 		qdel(O)
 		return
-	else if(istype(O, /obj/item/storage/bag))
+	else if(istype(O, /obj/item/storage/bag) || istype(O, /obj/item/storage/box/monkeycubes))
 		var/obj/item/storage/P = O
 		var/loaded = FALSE
 		for(var/obj/G in P.contents)

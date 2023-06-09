@@ -95,10 +95,16 @@
 	if(!removed)
 		return
 
-	var/proportion = min(removed.get_moles(/datum/gas/water_vapor), (3 * delta_time * workingPower)) //Works to max 12 moles at a time.
-	removed.adjust_moles(/datum/gas/water_vapor, -proportion)
-	removed.adjust_moles(/datum/gas/oxygen, proportion / 2)
-	removed.adjust_moles(/datum/gas/hydrogen, proportion)
+	var/proportion = 0
+	if(removed.get_moles(/datum/gas/water_vapor))
+		proportion = min(removed.get_moles(/datum/gas/water_vapor), (3 * delta_time * workingPower)) //Works to max 12 moles at a time.
+		removed.adjust_moles(/datum/gas/water_vapor, -proportion)
+		removed.adjust_moles(/datum/gas/oxygen, proportion / 2)
+		removed.adjust_moles(/datum/gas/hydrogen, proportion)
+	if(removed.get_moles(/datum/gas/hypernoblium))
+		proportion = min(removed.get_moles(/datum/gas/hypernoblium), (delta_time * workingPower)) // up to 4 moles at a time
+		removed.adjust_moles(/datum/gas/hypernoblium, -proportion)
+		removed.adjust_moles(/datum/gas/antinoblium, proportion)
 	env.merge(removed) //put back the new gases in the turf
 	air_update_turf()
 
@@ -112,7 +118,8 @@
 			working = FALSE
 	else
 		active_power_usage = (5 * proportion) / (efficiency + workingPower)
-		cell.give(charge_rate)
+		if(cell)
+			cell.give(charge_rate)
 
 	if(!working)
 		return PROCESS_KILL
