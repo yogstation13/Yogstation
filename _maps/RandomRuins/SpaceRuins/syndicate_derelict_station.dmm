@@ -457,7 +457,7 @@
 	},
 /obj/machinery/power/apc/syndicate{
 	name = "Syndicate Derelict Hydroponics";
-	dir = 8;
+	dir = 1;
 	start_charge = 0;
 	pixel_y = 24
 	},
@@ -602,10 +602,6 @@
 /obj/item/stack/sheet/plastitaniumglass,
 /turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/research)
-"lW" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/space/nearstation)
 "lY" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -969,8 +965,9 @@
 /turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "ub" = (
+/obj/structure/lattice,
 /turf/template_noop,
-/area/space/nearstation)
+/area/template_noop)
 "ui" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 1
@@ -1280,7 +1277,7 @@
 /obj/structure/lattice,
 /obj/structure/grille/broken,
 /turf/open/space/basic,
-/area/space/nearstation)
+/area/template_noop)
 "Aq" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
@@ -2232,7 +2229,7 @@
 /obj/structure/lattice,
 /obj/structure/grille,
 /turf/template_noop,
-/area/space/nearstation)
+/area/template_noop)
 "Wm" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /turf/open/floor/plasteel/airless/dark,
@@ -2357,7 +2354,7 @@
 /obj/structure/lattice,
 /obj/structure/grille/broken,
 /turf/template_noop,
-/area/space/nearstation)
+/area/template_noop)
 "XF" = (
 /obj/effect/decal/cleanable/blood/footprints,
 /obj/effect/decal/cleanable/blood/footprints{
@@ -2525,30 +2522,30 @@ qu
 (3,1,1) = {"
 qu
 qu
+qu
+qu
+qu
+qu
+qu
+qu
 ub
+qu
+qu
+qu
+qu
+qu
 ub
+qu
+qu
 ub
+qu
+qu
+qu
+qu
 ub
-ub
-ub
-lW
-ub
-ub
-ub
-ub
-ub
-lW
-ub
-ub
-lW
-ub
-ub
-ub
-ub
-lW
-ub
-ub
-ub
+qu
+qu
+qu
 qu
 qu
 qu
@@ -2557,7 +2554,7 @@ qu
 (4,1,1) = {"
 qu
 qu
-ub
+qu
 Fq
 Fq
 Pi
@@ -2580,16 +2577,16 @@ EC
 EC
 Yf
 Yf
-ub
-ub
-ub
+qu
+qu
+qu
 qu
 qu
 "}
 (5,1,1) = {"
 qu
-lW
 ub
+qu
 Fq
 qD
 Pi
@@ -2614,14 +2611,14 @@ SO
 UL
 Yf
 Yf
-ub
+qu
 Ak
 qu
 "}
 (6,1,1) = {"
 qu
 XC
-ub
+qu
 Fq
 Pi
 sQ
@@ -2646,14 +2643,14 @@ Qi
 uB
 No
 Yf
-lW
+ub
 VX
 qu
 "}
 (7,1,1) = {"
 qu
-lW
-lW
+ub
+ub
 Fq
 tP
 Pi
@@ -2678,14 +2675,14 @@ cH
 Na
 pJ
 EC
-ub
+qu
 VX
 qu
 "}
 (8,1,1) = {"
 qu
 XC
-ub
+qu
 Pi
 Pi
 Pi
@@ -2710,14 +2707,14 @@ YX
 DP
 zs
 EC
-ub
+qu
 qu
 qu
 "}
 (9,1,1) = {"
 qu
 VX
-ub
+qu
 qD
 sQ
 Fq
@@ -2742,14 +2739,14 @@ kz
 ZY
 JN
 EC
-ub
+qu
 VX
 qu
 "}
 (10,1,1) = {"
 qu
 qu
-ub
+qu
 Fq
 Pi
 xW
@@ -2774,14 +2771,14 @@ fu
 FA
 Lx
 EC
-ub
+qu
 VX
 qu
 "}
 (11,1,1) = {"
 qu
 qu
-ub
+qu
 BG
 Pi
 Fq
@@ -2806,14 +2803,14 @@ mv
 Gh
 yT
 Yf
-lW
+ub
 VX
 qu
 "}
 (12,1,1) = {"
 qu
 XC
-ub
+qu
 uQ
 uQ
 As
@@ -2838,14 +2835,14 @@ XA
 UL
 Yf
 Yf
-ub
+qu
 XC
 qu
 "}
 (13,1,1) = {"
 qu
 VX
-lW
+ub
 oh
 vw
 Uk
@@ -2868,16 +2865,16 @@ So
 Yf
 Yf
 Yf
-lW
+qu
 ub
-ub
+qu
 qu
 qu
 "}
 (14,1,1) = {"
 qu
 VX
-ub
+qu
 oh
 XG
 KK
@@ -2897,10 +2894,10 @@ LF
 Xs
 wY
 So
+qu
 ub
-lW
-ub
-XC
+qu
+qu
 VX
 VX
 qu
@@ -2909,7 +2906,7 @@ qu
 (15,1,1) = {"
 qu
 qu
-ub
+qu
 cd
 dX
 HF
@@ -2929,7 +2926,7 @@ BJ
 Vv
 wH
 So
-ub
+qu
 qu
 qu
 qu
@@ -2941,7 +2938,7 @@ qu
 (16,1,1) = {"
 qu
 qu
-ub
+qu
 cd
 dX
 fw
@@ -2961,7 +2958,7 @@ lY
 AR
 kM
 Mw
-ub
+qu
 VX
 qu
 qu
@@ -2973,7 +2970,7 @@ qu
 (17,1,1) = {"
 qu
 VX
-ub
+qu
 cd
 dX
 fw
@@ -2993,7 +2990,7 @@ BJ
 vO
 uG
 HL
-lW
+ub
 VX
 qu
 qu
@@ -3005,7 +3002,7 @@ qu
 (18,1,1) = {"
 qu
 VX
-lW
+ub
 cd
 dX
 nW
@@ -3025,7 +3022,7 @@ lY
 lY
 AR
 lY
-ub
+qu
 VX
 qu
 qu
@@ -3037,7 +3034,7 @@ qu
 (19,1,1) = {"
 qu
 VX
-ub
+qu
 oh
 ke
 Lo
@@ -3057,7 +3054,7 @@ lY
 zM
 Cq
 Tu
-ub
+qu
 XC
 qu
 qu
@@ -3069,7 +3066,7 @@ qu
 (20,1,1) = {"
 qu
 VX
-ub
+qu
 oh
 fe
 fw
@@ -3089,7 +3086,7 @@ lY
 lV
 BJ
 gx
-ub
+qu
 UH
 qu
 qu
@@ -3101,7 +3098,7 @@ qu
 (21,1,1) = {"
 qu
 XC
-lW
+ub
 oh
 oh
 Gd
@@ -3121,8 +3118,8 @@ HL
 lY
 lY
 lY
-lW
-lW
+ub
+ub
 qu
 qu
 qu
@@ -3133,7 +3130,7 @@ qu
 (22,1,1) = {"
 qu
 VX
-ub
+qu
 nA
 hu
 eO
@@ -3148,13 +3145,13 @@ ui
 JC
 qH
 nA
+qu
+qu
+qu
 ub
+qu
+qu
 ub
-ub
-lW
-ub
-ub
-lW
 UH
 qu
 qu
@@ -3165,7 +3162,7 @@ qu
 (23,1,1) = {"
 qu
 qu
-ub
+qu
 xd
 WV
 fT
@@ -3180,13 +3177,13 @@ lc
 oG
 oG
 xd
+qu
+VX
+VX
+VX
+XC
+XC
 ub
-VX
-VX
-VX
-XC
-XC
-lW
 qu
 qu
 qu
@@ -3197,7 +3194,7 @@ qu
 (24,1,1) = {"
 qu
 qu
-ub
+qu
 xd
 rU
 Iz
@@ -3213,7 +3210,7 @@ JV
 JV
 VB
 Bv
-ub
+qu
 qu
 qu
 qu
@@ -3229,7 +3226,7 @@ qu
 (25,1,1) = {"
 qu
 VX
-ub
+qu
 nA
 rU
 Fo
@@ -3244,7 +3241,7 @@ IT
 oX
 oX
 xd
-ub
+qu
 VX
 qu
 qu
@@ -3261,7 +3258,7 @@ qu
 (26,1,1) = {"
 qu
 Ak
-ub
+qu
 nA
 EB
 Fo
@@ -3276,7 +3273,7 @@ Ol
 Dp
 PH
 nA
-lW
+ub
 XC
 qu
 qu
@@ -3293,7 +3290,7 @@ qu
 (27,1,1) = {"
 qu
 VX
-lW
+ub
 nA
 rU
 Fo
@@ -3308,16 +3305,16 @@ nA
 xd
 nA
 nA
-ub
+qu
 VX
 VX
 Ak
 VX
-lW
+ub
 VX
 VX
 XC
-lW
+ub
 VX
 qu
 qu
@@ -3325,7 +3322,7 @@ qu
 (28,1,1) = {"
 qu
 VX
-ub
+qu
 xd
 rU
 QP
@@ -3336,28 +3333,28 @@ oz
 sr
 Xf
 nA
+qu
+qu
+qu
+qu
+qu
+qu
+qu
+qu
 ub
+qu
 ub
+qu
 ub
+qu
 ub
-ub
-ub
-ub
-ub
-lW
-ub
-lW
-ub
-lW
-ub
-lW
-ub
+qu
 VX
 "}
 (29,1,1) = {"
 qu
 VX
-ub
+qu
 xd
 rU
 af
@@ -3368,28 +3365,28 @@ af
 af
 af
 xd
-ub
+qu
 XC
 qu
 qu
 FK
 oE
 FK
-ub
+qu
 SZ
 wB
 rP
-ub
+qu
 FK
 Jd
 rP
-lW
+ub
 XC
 "}
 (30,1,1) = {"
 qu
 XC
-ub
+qu
 nA
 ns
 Js
@@ -3400,28 +3397,28 @@ Wt
 WH
 vv
 xd
-lW
+ub
 VX
 qu
 qu
 SZ
 ha
 rP
-ub
+qu
 FK
 Jd
 FK
-ub
+qu
 SZ
 ha
 FK
-ub
+qu
 VX
 "}
 (31,1,1) = {"
 qu
 qu
-ub
+qu
 nA
 nA
 xd
@@ -3432,54 +3429,54 @@ xd
 xd
 nA
 nA
-ub
+qu
 VX
 qu
 qu
 SZ
 eE
 FK
-ub
+qu
 FK
 TO
 rP
-ub
+qu
 FK
 eE
 FK
-lW
-lW
+ub
+ub
 "}
 (32,1,1) = {"
 qu
 qu
-ub
-ub
-ub
-ub
+qu
+qu
+qu
+qu
 nA
 dr
 nA
-ub
-ub
-lW
-ub
+qu
+qu
 ub
 qu
 qu
 qu
-ub
+qu
+qu
+qu
 oE
-ub
-ub
-ub
+qu
+qu
+qu
 oE
-ub
-ub
-ub
+qu
+qu
+qu
 oP
-ub
-ub
+qu
+qu
 VX
 "}
 (33,1,1) = {"
@@ -3488,11 +3485,11 @@ qu
 qu
 qu
 qu
-ub
+qu
 xd
 tl
 xd
-ub
+qu
 XC
 VX
 VX
@@ -3511,7 +3508,7 @@ ya
 oE
 iK
 OE
-ub
+qu
 VX
 "}
 (34,1,1) = {"
@@ -3520,11 +3517,11 @@ qu
 qu
 qu
 qu
-ub
+qu
 nA
 uk
 nA
-ub
+qu
 qu
 qu
 qu
@@ -3532,18 +3529,18 @@ qu
 qu
 oP
 qu
-ub
+qu
 TO
-ub
-ub
-ub
+qu
+qu
+qu
 oP
-ub
-ub
-ub
+qu
+qu
+qu
 oP
-ub
-ub
+qu
+qu
 XC
 "}
 (35,1,1) = {"
@@ -3552,11 +3549,11 @@ qu
 qu
 qu
 qu
-ub
+qu
 xd
 Wx
 xd
-ub
+qu
 qu
 qu
 qu
@@ -3567,15 +3564,15 @@ qu
 FK
 oP
 rP
-ub
+qu
 SZ
 ER
 FK
-ub
+qu
 FK
 TO
 FK
-lW
+ub
 VX
 "}
 (36,1,1) = {"
@@ -3584,11 +3581,11 @@ qu
 qu
 qu
 qu
-ub
-ub
+qu
+qu
 oP
-ub
-ub
+qu
+qu
 qu
 qu
 qu
@@ -3599,15 +3596,15 @@ qu
 FK
 Mz
 rP
-ub
+qu
 FK
 oP
 rP
-ub
+qu
 SZ
 ER
 FK
-ub
+qu
 VX
 "}
 (37,1,1) = {"
@@ -3631,16 +3628,16 @@ qu
 SZ
 Mz
 FK
-ub
+qu
 FK
 gr
 FK
-ub
+qu
 SZ
 Mz
 rP
-lW
-lW
+ub
+ub
 "}
 (38,1,1) = {"
 qu
@@ -3660,18 +3657,18 @@ Tc
 ya
 Mz
 qu
-lW
 ub
-lW
+qu
 ub
-lW
+qu
 ub
-lW
+qu
 ub
-lW
+qu
 ub
-lW
+qu
 ub
+qu
 XC
 "}
 (39,1,1) = {"
@@ -3695,12 +3692,12 @@ qu
 VX
 XC
 VX
-lW
+ub
 XC
 VX
 VX
 XC
-lW
+ub
 VX
 VX
 qu
