@@ -649,7 +649,7 @@
 	. = ..()
 	var/printout = "<b>Your feel your injuries fade as a rush of adrenaline pushes you forward!</b>"
 	if(isipc(owner))
-		printout = "<b>Chassis damage exceeded acceptible levels. Auxiliary leg actuator power supply activated.</b>"
+		printout = "<b>Chassis damage exceeded acceptable levels. Auxiliary leg actuator power supply activated.</b>"
 	to_chat(owner, span_notice(printout))
 	ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 
