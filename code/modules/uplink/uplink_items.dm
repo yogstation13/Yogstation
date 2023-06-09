@@ -1531,7 +1531,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/jammer
-	name = "Radio Jammer"
+	name = "Signal Jammer"
 	desc = "This device will disrupt any nearby outgoing radio communication when activated. Blocks suit sensors, but does not affect binary chat."
 	item = /obj/item/jammer
 	cost = 5

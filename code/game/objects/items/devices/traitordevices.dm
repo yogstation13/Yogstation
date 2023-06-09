@@ -261,7 +261,7 @@ effective or pretty fucking useless.
 
 
 /obj/item/jammer
-	name = "radio jammer"
+	name = "signal jammer"
 	desc = "Device used to disrupt nearby radio communications and suit sensors."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "jammer"
