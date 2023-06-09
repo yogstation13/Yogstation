@@ -361,11 +361,14 @@
 
 /obj/item/clothing/neck/falcon/secconwhistle/ui_action_click(mob/user)
 	if(!COOLDOWN_FINISHED(src, recharge_time))
-		to_chat(user, span_warning("You need to catch your breath first!"))
+		user.balloon_alert(user, "Catch your breath first!")
 		return
 	playsound(get_turf(src), 'sound/misc/policewhistle.ogg', 30, TRUE, -1)
 	user.visible_message(span_warning("[user] blows their whistle!"))
 	COOLDOWN_START(src, recharge_time, recharge_rate)
+
+/datum/action/item_action/blow_whistle
+	name = "Blow Your Whistle"
 
 // Stealth cloaks
 

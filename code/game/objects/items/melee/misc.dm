@@ -520,11 +520,14 @@
 /obj/item/melee/classic_baton/secconbaton/ui_action_click(mob/user)
 	tighten = !tighten
 	if(tighten)
-		to_chat(user, span_notice("You tighten the wrist strap."))
+		user.balloon_alert(user, "Wrist strap tightened.")
 		ADD_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
 	else
 		REMOVE_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
-		to_chat(user, span_notice("You untighten the wrist strap."))
+		user.balloon_alert(user, "Wrist strap loosened.")
+
+/datum/action/item_action/wrist_strap
+	name = "Adjust Wrist Strap"
 
 /obj/item/melee/supermatter_sword
 	name = "supermatter sword"

@@ -37,12 +37,6 @@
 
 /datum/action/item_action/toggle_welding_screen
 	name = "Toggle Welding Screen"
-
-/datum/action/item_action/blow_whistle
-	name = "Blow Your Whistle"
-
-/datum/action/item_action/wrist_strap
-	name = "Adjust Wrist Strap"
 	
 /datum/action/item_action/toggle_welding_screen/Trigger()
 	var/obj/item/clothing/head/hardhat/weldhat/H = target
