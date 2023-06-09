@@ -22,7 +22,7 @@
 
 /mob/living/carbon/human
 	var/lasthealth
-	COOLDOWN_DECLARE(adrenal_cooldown)
+	COOLDOWN_DECLARE(adrenaline_cooldown)
 
 /mob/living/carbon/human/Life(times_fired)
 	set invisibility = 0
@@ -43,9 +43,9 @@
 			//heart attack stuff
 			handle_heart()
 
-		if(COOLDOWN_FINISHED(src, adrenal_cooldown) && ((health+ADRENALINE_THRESHOLD) < lasthealth))
-			reagents.add_reagent(/datum/reagent/adrenaline, 5)
-			COOLDOWN_START(src, adrenal_cooldown, 10 MINUTES)
+		if(COOLDOWN_FINISHED(src, adrenaline_cooldown) && ((health+ADRENALINE_THRESHOLD) < lasthealth))
+			apply_status_effect(STATUS_EFFECT_ADRENALINE)
+			COOLDOWN_START(src, adrenaline_cooldown, 10 MINUTES)
 		lasthealth = health
 
 		dna.species.spec_life(src) // for mutantraces

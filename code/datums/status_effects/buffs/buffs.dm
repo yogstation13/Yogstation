@@ -633,3 +633,24 @@
 		H.physiology.clone_mod /= 0.75
 		H.physiology.stamina_mod /= 0.75
 	owner.log_message("lost buster damage reduction", LOG_ATTACK)//yogs end
+
+//adrenaline rush from combat damage
+/atom/movable/screen/alert/status_effect/adrenaline
+	name = "Adrenaline rush"
+	desc = "The sudden injuries you've recieved have put your body into fight-or-flight mode! Now's the time to look for an exit!"
+	icon_state = "default"
+
+/datum/status_effect/adrenaline
+	id = "adrenaline"
+	alert_type = /atom/movable/screen/alert/status_effect/adrenaline
+	duration = 30 SECONDS
+
+/datum/status_effect/adrenaline/on_apply()
+	. = ..()
+	to_chat(owner, span_notice("<b>Your feel your injuries fade as a rush of adrenaline pushes you forward!</b>"))
+	ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+
+/datum/status_effect/adrenaline/on_remove()
+	to_chat(owner, span_warning("<b>Your adrenaline rush dies off, and the weight of your battered body becomes apparent again...</b>"))
+	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
+	return ..()
