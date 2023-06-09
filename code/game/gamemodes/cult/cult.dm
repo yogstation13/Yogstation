@@ -94,7 +94,6 @@
 
 
 /datum/game_mode/cult/post_setup()
-	. = ..()
 	main_cult = new
 
 	for(var/datum/mind/cult_mind in cultists_to_cult)
@@ -102,11 +101,13 @@
 
 	main_cult.setup_objectives() //Wait until all cultists are assigned to make sure none will be chosen as sacrifice.
 
+	return ..()
+
 /datum/game_mode/cult/check_finished(force_ending)
 	if (..())
 		return TRUE
 
-	return main_cult.check_cult_victory()
+	return !main_cult.check_sacrifice_status() //we should remove this any time soon
 
 /datum/game_mode/proc/add_cultist(datum/mind/cult_mind, stun , equip = FALSE, datum/team/cult/cult_team = null)
 	if (!istype(cult_mind))
