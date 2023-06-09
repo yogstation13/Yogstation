@@ -169,7 +169,7 @@ Temperature: 126.85 °C (400 K)
 	ore_present = pick(GLOB.quarry_ores)
 
 /turf/open/floor/plating/dirt/jungleland/quarry/spawn_rock()
-	if(prob(50))
+	if(prob(75))
 		for(var/i in 2 to rand(4,10))
 			new /obj/item/stack/ore/glass/basalt()
 	else 

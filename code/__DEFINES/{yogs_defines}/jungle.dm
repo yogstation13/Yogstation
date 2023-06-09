@@ -27,9 +27,6 @@ GLOBAL_LIST_INIT(quarry_ores, list( \
 		ORE_GOLD = new /datum/ore_patch/gold(), 
 		ORE_SILVER = new /datum/ore_patch/silver(), 
 		ORE_PLASMA = new /datum/ore_patch/plasma(), 
-		ORE_DIAMOND = new /datum/ore_patch/diamond(), 
-		ORE_TITANIUM = new /datum/ore_patch/titanium(), 
-		ORE_URANIUM = new /datum/ore_patch/uranium(),
 ))
 
 
