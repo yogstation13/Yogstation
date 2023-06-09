@@ -13,6 +13,21 @@
 /obj/item/stack/rods,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
+"ar" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/hydroponics)
 "aw" = (
 /obj/structure/table,
 /obj/item/inducer,
@@ -37,6 +52,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "aP" = (
@@ -60,6 +76,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "bp" = (
@@ -74,6 +91,9 @@
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "bt" = (
 /obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "bv" = (
@@ -90,11 +110,15 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/footprints,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/research)
 "bJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 8
 	},
 /turf/open/floor/plating/broken/two,
 /area/ruin/space/has_grav/syndiederelict/hallway)
@@ -129,6 +153,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "cH" = (
@@ -221,6 +246,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "fe" = (
@@ -251,6 +279,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
 "fT" = (
@@ -266,6 +297,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/junction,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "fW" = (
@@ -337,6 +369,10 @@
 /obj/item/paper/crumpled/ruins/syndicate_derelict_station/important_note,
 /obj/item/ammo_box/magazine/m10mm,
 /obj/item/ammo_box/magazine/m10mm,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "hx" = (
@@ -368,6 +404,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "ic" = (
@@ -392,6 +431,9 @@
 /obj/machinery/disposal/bin,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
@@ -428,6 +470,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 4
 	},
 /turf/open/floor/plasteel/airless/broken,
 /area/ruin/space/has_grav/syndiederelict/hallway)
@@ -495,6 +540,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "kH" = (
@@ -544,6 +592,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "lk" = (
@@ -561,6 +610,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
+	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 4
 	},
 /turf/open/floor/plasteel/airless/broken,
 /area/ruin/space/has_grav/syndiederelict/engineering)
@@ -587,6 +639,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/research)
 "lV" = (
@@ -606,6 +661,13 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/ruin/space/has_grav/syndiederelict/research)
+"mo" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/broken{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
 "mv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -621,6 +683,9 @@
 "my" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
@@ -648,6 +713,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "ni" = (
@@ -696,6 +762,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
@@ -768,6 +837,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/research)
 "pp" = (
@@ -888,6 +958,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "sv" = (
@@ -908,6 +981,13 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/research)
+"sz" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/medbay)
 "sH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -920,6 +1000,9 @@
 	},
 /obj/item/stack/rods,
 /obj/item/shard,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "sL" = (
@@ -955,6 +1038,13 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
+"tC" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet,
+/turf/open/floor/plating/airless,
+/area/template_noop)
 "tP" = (
 /obj/structure/lattice,
 /obj/item/stack/sheet/mineral/plastitanium,
@@ -1004,6 +1094,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "ve" = (
@@ -1050,6 +1141,9 @@
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/glass,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless/burnt,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "vO" = (
@@ -1092,6 +1186,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/virology)
 "wB" = (
@@ -1110,6 +1207,7 @@
 	icon_state = "1-4"
 	},
 /obj/effect/decal/cleanable/glass,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless/burnt,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "wH" = (
@@ -1152,6 +1250,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "xw" = (
@@ -1160,6 +1261,12 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+"xK" = (
+/obj/structure/disposalpipe/broken{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
 "xQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -1239,6 +1346,10 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/virology)
+"zd" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/space/has_grav/syndiederelict/engineering)
 "zl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -1266,6 +1377,9 @@
 /obj/machinery/disposal/bin,
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/virology)
@@ -1406,6 +1520,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "CR" = (
@@ -1436,6 +1551,7 @@
 "Dw" = (
 /obj/effect/decal/cleanable/glass,
 /mob/living/simple_animal/hostile/pirate/melee/space,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless/broken/two,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "DJ" = (
@@ -1512,6 +1628,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/structure/disposalpipe/broken{
+	dir = 2
+	},
 /turf/open/floor/plating/broken/two,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "Fo" = (
@@ -1563,6 +1682,9 @@
 /obj/machinery/door/airlock/glass,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel/airless/dark,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
@@ -1617,6 +1739,9 @@
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless/broken/two,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "GA" = (
@@ -1656,6 +1781,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless/broken/two,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
 "HL" = (
@@ -1687,8 +1815,15 @@
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
+"HX" = (
+/obj/structure/disposalpipe/broken,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/kitchen)
 "Io" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -1804,6 +1939,14 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/research)
+"Kj" = (
+/obj/structure/lattice,
+/obj/structure/disposalpipe/broken{
+	dir = 1
+	},
+/obj/structure/disposalpipe/broken,
+/turf/open/space/basic,
+/area/ruin/space/has_grav/syndiederelict/hallway)
 "Ko" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1813,6 +1956,9 @@
 "KK" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
+	},
+/obj/structure/disposalpipe/broken{
+	dir = 4
 	},
 /turf/open/floor/plating/broken,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
@@ -1857,6 +2003,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hydroponics)
 "Lx" = (
@@ -1891,6 +2040,7 @@
 /area/ruin/space/has_grav/syndiederelict/research)
 "Mg" = (
 /obj/machinery/deepfryer,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/kitchen)
 "Mw" = (
@@ -2058,6 +2208,9 @@
 /obj/machinery/light/broken{
 	dir = 4
 	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/research)
 "Qi" = (
@@ -2096,6 +2249,15 @@
 /obj/item/stack/sheet/plastitaniumglass,
 /turf/open/floor/plating/broken/three,
 /area/ruin/space/has_grav/syndiederelict/research)
+"Rl" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space/has_grav/syndiederelict/engineering)
 "RG" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -2171,6 +2333,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "Tu" = (
@@ -2201,6 +2366,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel/airless/broken/two,
 /area/ruin/space/has_grav/syndiederelict/engineering)
@@ -2289,6 +2457,9 @@
 	pixel_y = 30
 	},
 /obj/effect/decal/cleanable/blood/gibs,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/hallway)
 "WH" = (
@@ -2302,6 +2473,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 1
+	},
 /turf/open/floor/plasteel/airless/broken/two,
 /area/ruin/space/has_grav/syndiederelict/medbay)
 "WU" = (
@@ -2314,6 +2488,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "Xf" = (
@@ -2324,6 +2501,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
 "Xg" = (
@@ -2455,6 +2633,9 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/syndiederelict/engineering)
@@ -2614,7 +2795,7 @@ Ci
 Lk
 QU
 dH
-Br
+sz
 TT
 hC
 ba
@@ -2706,7 +2887,7 @@ jv
 Pi
 OH
 El
-vx
+mo
 TA
 nS
 XY
@@ -2797,7 +2978,7 @@ qu
 qu
 BG
 Pi
-Fq
+HX
 Dw
 Mg
 bt
@@ -3026,7 +3207,7 @@ Bq
 vw
 dX
 oh
-DJ
+xK
 Pj
 So
 XK
@@ -3059,7 +3240,7 @@ vw
 gP
 oh
 jP
-vx
+Kj
 pn
 bx
 lO
@@ -3085,7 +3266,7 @@ VX
 qu
 oh
 fe
-fw
+ar
 iQ
 gl
 dX
@@ -3250,7 +3431,7 @@ Cz
 BS
 ve
 Gc
-Fo
+Rl
 nj
 pp
 IT
@@ -3314,7 +3495,7 @@ NC
 Io
 aw
 Sr
-Fo
+Rl
 cm
 hp
 nA
@@ -3348,8 +3529,8 @@ hy
 oz
 sr
 Xf
-nA
-qu
+zd
+tC
 qu
 qu
 qu
