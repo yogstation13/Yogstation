@@ -30,8 +30,8 @@
 	icon_state = "base"
 	item_state = "kinetic_javelin"
 	force = 10
-	throw_range = 9
-	throw_speed = 4
+	throw_range = 7
+	throw_speed = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	var/unmodified_throwforce = 15
 	var/exotic_damage_multiplier = 3 // yes you heard me, it deals 8 times more damage in exotic environments.
@@ -185,13 +185,13 @@
 	javelin_item_state = "kinetic_javelin_green"
 
 /obj/item/kinetic_javelin_core/green/get_effect_description()
-	return "Striking an enemy while charged heals 15 of each damage type." 
+	return "Striking an enemy while charged heals 5 of each damage type." 
 
 /obj/item/kinetic_javelin_core/green/charged_effect(mob/living/simple_animal/hostile/victim, obj/item/kinetic_javelin/javelin,mob/living/user)
-	user.adjustFireLoss(-15,FALSE)
-	user.adjustBruteLoss(-15,FALSE)
-	user.adjustToxLoss(-15,FALSE)
-	user.adjustOxyLoss(-15)
+	user.adjustFireLoss(-5,FALSE)
+	user.adjustBruteLoss(-5,FALSE)
+	user.adjustToxLoss(-5,FALSE)
+	user.adjustOxyLoss(-5)
 
 /obj/item/kinetic_javelin_core/yellow
 	name = "Radiant Kinetic Javelin Core"
@@ -224,12 +224,12 @@
 
 /obj/item/kinetic_javelin_core/purple/on_insert(obj/item/kinetic_javelin/javelin)
 	javelin.always_recall = TRUE
-	javelin.throw_speed = 8
+	javelin.throw_speed = 0.5
 	javelin.exotic_damage_multiplier = 2
 
 /obj/item/kinetic_javelin_core/purple/on_remove(obj/item/kinetic_javelin/javelin)
 	javelin.always_recall = FALSE
-	javelin.throw_speed = 4
+	javelin.throw_speed = 1
 	javelin.exotic_damage_multiplier = 3
 
 /obj/item/kinetic_javelin/blue 
