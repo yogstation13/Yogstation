@@ -31,10 +31,10 @@
 	item_state = "kinetic_javelin"
 	force = 10
 	throw_range = 9
-	throw_speed = 3
+	throw_speed = 4
 	w_class = WEIGHT_CLASS_NORMAL
 	var/unmodified_throwforce = 15
-	var/exotic_damage_multiplier = 4 // yes you heard me, it deals 8 times more damage in exotic environments.
+	var/exotic_damage_multiplier = 3 // yes you heard me, it deals 8 times more damage in exotic environments.
 	var/obj/item/kinetic_javelin_core/core 	
 	var/charges = 0
 	var/max_charges = 3
@@ -43,6 +43,7 @@
 
 /obj/item/kinetic_javelin/Initialize()
 	. = ..()
+	AddComponent(/datum/component/butchering, 60, 110)
 	if(core)
 		core = new core(src)
 		icon_state = core.javelin_icon_state
@@ -94,15 +95,18 @@
 	if(ismineralturf(hit_atom))
 		var/turf/closed/mineral/M = hit_atom
 		M.attempt_drill(user, 0, 1)
+		remove_charge()
 		return ..()
 	
 	if(istype(hit_atom,/turf/open/floor/plating/dirt/jungleland))
 		var/turf/open/floor/plating/dirt/jungleland/JG = hit_atom
 		JG.spawn_rock()
+		remove_charge()
 		return ..()
 
 	if(istype(hit_atom,/obj/structure/flora))
 		qdel(hit_atom)
+		remove_charge()
 		return ..()
 
 	if(!core)
@@ -126,7 +130,7 @@
 	if(always_recall && user)
 		user.put_in_active_hand(src)
 		
-	. = ..()
+	return ..()
 
 /obj/item/kinetic_javelin/proc/charge_up()
 	if(!core)
@@ -216,15 +220,17 @@
 	javelin_item_state = "kinetic_javelin_purple"
 
 /obj/item/kinetic_javelin_core/purple/get_effect_description()
-	return "Kinetic spear will always be able to be recalled, even when you miss an enemy, but drastically reduces it's flying speed." 
+	return "Kinetic spear will always be able to be recalled, even when you miss an enemy, but drastically reduces it's flying speed and damage." 
 
 /obj/item/kinetic_javelin_core/purple/on_insert(obj/item/kinetic_javelin/javelin)
 	javelin.always_recall = TRUE
-	javelin.throw_speed = 1
+	javelin.throw_speed = 8
+	javelin.exotic_damage_multiplier = 2
 
 /obj/item/kinetic_javelin_core/purple/on_remove(obj/item/kinetic_javelin/javelin)
 	javelin.always_recall = FALSE
-	javelin.throw_speed = 3
+	javelin.throw_speed = 4
+	javelin.exotic_damage_multiplier = 3
 
 /obj/item/kinetic_javelin/blue 
 	core = /obj/item/kinetic_javelin_core/blue

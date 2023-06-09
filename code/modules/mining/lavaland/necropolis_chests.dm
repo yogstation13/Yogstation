@@ -607,7 +607,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(isliving(target))
 		var/mob/living/L = target
-		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
+		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid) || istype(L,/mob/living/simple_animal/hostile/yog_jungle)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
 				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH, PROC_REF(roll_loot), TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.

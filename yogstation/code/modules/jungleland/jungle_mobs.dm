@@ -47,7 +47,7 @@
 	health = 60
 	spacewalk = TRUE
 	ranged = TRUE
-	loot = list(/obj/item/organ/regenerative_core/dryad)
+	loot = list(/obj/item/organ/regenerative_core/dryad,/obj/item/stack/sheet/bone = 3)
 	ranged_cooldown_time = 4 SECONDS
 	retreat_distance = 1
 	minimum_distance = 3
@@ -86,7 +86,7 @@
 	health = 120
 	spacewalk = TRUE
 	ranged = TRUE
-	loot = list (/obj/item/organ/regenerative_core/dryad/corrupted)
+	loot = list (/obj/item/organ/regenerative_core/dryad/corrupted,/obj/item/stack/sheet/bone = 3)
 	ranged_cooldown_time = 2 SECONDS
 	retreat_distance = 1
 	minimum_distance = 3
@@ -107,7 +107,7 @@
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
-	butcher_results = list(/obj/item/stack/sheet/meduracha = 1)
+	butcher_results = list(/obj/item/stack/sheet/meduracha = 1, /obj/item/stack/sheet/sinew = 2)
 	response_help  = "gently pokes"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
@@ -185,7 +185,7 @@
 	melee_damage_lower = 30
 	melee_damage_upper = 55 // ouch
 	rapid_melee = 2
-	butcher_results = list(/obj/item/stack/sheet/skin_twister = 2)
+	butcher_results = list(/obj/item/stack/sheet/skin_twister = 2,/obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2)
 	alpha_damage_boost = 0 // 30-55 damage is too much to be boosts by 50%
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_VERY_STRONG
@@ -306,19 +306,19 @@
 	
 	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_blobby
 
-	var/current_size = 4
+	var/current_size = 3
 
 
-/mob/living/simple_animal/hostile/yog_jungle/blobby/Initialize(mapload,spawned_size = 4)
+/mob/living/simple_animal/hostile/yog_jungle/blobby/Initialize(mapload,spawned_size = 3)
 	. = ..()
 	current_size = spawned_size > 0 ? spawned_size : current_size
 	melee_damage_lower = melee_damage_lower * current_size
 	melee_damage_upper = melee_damage_upper * current_size
 	var/matrix/M = new
-	M.Scale(current_size/2)
+	M.Scale(current_size/1.5)
 	transform = M
-	maxHealth = maxHealth * (current_size/4)
-	health = health * (current_size/4)
+	maxHealth = maxHealth * (current_size/3)
+	health = health * (current_size/3)
 
 /mob/living/simple_animal/hostile/yog_jungle/blobby/death(gibbed)
 	if(current_size > 1  && !gibbed)
@@ -349,7 +349,7 @@
 	speak_chance = 0
 	taunt_chance = 0
 	turns_per_move = 0
-	butcher_results = list(/obj/item/stinger = 1)
+	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/stack/sheet/sinew = 2)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
@@ -462,7 +462,7 @@
 	attack_sound = 'sound/voice/moth/scream_moth.ogg'
 	deathmessage = "rolls over, falling to the ground."
 	gold_core_spawnable = HOSTILE_SPAWN
-	butcher_results = list(/obj/item/stinger = 1)
+	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/stack/sheet/sinew = 2)
 	loot = list()
 	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket
 	var/charging = FALSE

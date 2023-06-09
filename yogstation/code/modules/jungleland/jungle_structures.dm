@@ -223,7 +223,7 @@
 
 /obj/structure/herb/explosive_shrooms/Cross(atom/movable/AM)
 	. = ..()
-	if(!isliving(AM))
+	if(!isliving(AM) || ishostile(AM))
 		return 
 	
 	animate(src,time=2.49 SECONDS, color = "#e05a5a")

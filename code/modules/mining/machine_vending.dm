@@ -22,7 +22,7 @@
 		new /datum/data/mining_equipment("Kinetic Crusher",				/obj/item/twohanded/kinetic_crusher,								750, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Resonator",					/obj/item/resonator,												800, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Super Resonator",				/obj/item/resonator/upgraded,										2500, VENDING_WEAPON),
-		new /datum/data/mining_equipment("Kinetic Javelin",				/obj/item/kinetic_javelin/blue,										800, VENDING_WEAPON), //YOGS EDIT
+		new /datum/data/mining_equipment("Kinetic Javelin",				/obj/item/kinetic_javelin/blue,										1000, VENDING_WEAPON), //YOGS EDIT
 		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/pickaxe/silver,											1000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,											2000, VENDING_WEAPON),
 		new /datum/data/mining_equipment("Mini Plasma Cutter",			/obj/item/gun/energy/plasmacutter/mini,								2500, VENDING_WEAPON),
@@ -41,8 +41,8 @@
 		new /datum/data/mining_equipment("Energized Kinetic Javelin Core",	/obj/item/kinetic_javelin_core/blue,							1000, VENDING_UPGRADE), //YOGS EDIT
 		new /datum/data/mining_equipment("Merciful Kinetic Javelin Core",	/obj/item/kinetic_javelin_core/green,							1000, VENDING_UPGRADE), //YOGS EDIT
 		new /datum/data/mining_equipment("Enraged Kinetic Javelin Core",	/obj/item/kinetic_javelin_core/red,								1500, VENDING_UPGRADE), //YOGS EDIT
-		new /datum/data/mining_equipment("Radiant Kinetic Javelin Core",/obj/item/kinetic_javelin_core/yellow,								1500, VENDING_UPGRADE), //YOGS EDIT
-		new /datum/data/mining_equipment("Loyal Kinetic Javelin Core",	/obj/item/kinetic_javelin_core/yellow,								2500, VENDING_UPGRADE), //YOGS EDIT
+		new /datum/data/mining_equipment("Radiant Kinetic Javelin Core",/obj/item/kinetic_javelin_core/yellow,								2500, VENDING_UPGRADE), //YOGS EDIT
+		new /datum/data/mining_equipment("Loyal Kinetic Javelin Core",	/obj/item/kinetic_javelin_core/purple,								3000, VENDING_UPGRADE), //YOGS EDIT
 		new /datum/data/mining_equipment("Shelter Capsule",				/obj/item/survivalcapsule,											400, VENDING_TOOL),
 		new /datum/data/mining_equipment("Luxury Shelter Capsule",		/obj/item/survivalcapsule/luxury,									3000, VENDING_TOOL),
 		new /datum/data/mining_equipment("Luxury Elite Bar Capsule",	/obj/item/survivalcapsule/luxuryelite,								20000, VENDING_TOOL),
