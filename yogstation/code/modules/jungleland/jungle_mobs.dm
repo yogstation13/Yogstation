@@ -297,8 +297,8 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
-	maxHealth = 100
-	health = 100
+	maxHealth = 120
+	health = 120
 	spacewalk = TRUE
 	loot  = list(/obj/item/stack/sheet/slime)
 	melee_damage_lower = 4
