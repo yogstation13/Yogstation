@@ -647,10 +647,16 @@
 
 /datum/status_effect/adrenaline/on_apply()
 	. = ..()
-	to_chat(owner, span_notice("<b>Your feel your injuries fade as a rush of adrenaline pushes you forward!</b>"))
+	var/printout = "<b>Your feel your injuries fade as a rush of adrenaline pushes you forward!</b>"
+	if(isipc(owner))
+		printout = "<b>Chassis damage exceeded acceptible levels. Auxiliary leg actuator power supply activated.</b>"
+	to_chat(owner, span_notice(printout))
 	ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 
 /datum/status_effect/adrenaline/on_remove()
-	to_chat(owner, span_warning("<b>Your adrenaline rush dies off, and the weight of your battered body becomes apparent again...</b>"))
+	var/printout = "<b>Your adrenaline rush dies off, and the weight of your battered body becomes apparent again...</b>"
+	if(isipc(owner))
+		printout = "<b>Auxiliary leg actuator power supply depleted. Movement returning to nominal levels.</b>"
+	to_chat(owner, span_warning(printout))
 	REMOVE_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 	return ..()
