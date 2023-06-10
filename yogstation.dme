@@ -3823,6 +3823,7 @@
 #include "yogstation\code\game\objects\items\grenades\glitterbombs.dm"
 #include "yogstation\code\game\objects\items\holotool\holotool.dm"
 #include "yogstation\code\game\objects\items\holotool\modes.dm"
+#include "yogstation\code\game\objects\items\holotool\modules.dm"
 #include "yogstation\code\game\objects\items\implants\implant_dusting.dm"
 #include "yogstation\code\game\objects\items\implants\implant_gang.dm"
 #include "yogstation\code\game\objects\items\implants\implant_infiltrator.dm"

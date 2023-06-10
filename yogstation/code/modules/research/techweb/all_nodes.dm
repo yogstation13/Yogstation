@@ -144,3 +144,30 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	prereq_ids = list("weaponry", "anomaly_research", "posibrain", "adv_biotech")
 	design_ids = list("nerd_suit")
+
+/datum/techweb_node/engineering
+	id = "engineering"
+	display_name = "Industrial Engineering"
+	description = "A refresher course on modern engineering technology."
+	prereq_ids = list("base")
+	design_ids = list("solarcontrol", "recharger", "powermonitor", "rped", "pacman", "adv_capacitor", "adv_scanning", "emitter", "high_cell", "adv_matter_bin", "scanner_gate",
+	"atmosalerts", "atmos_control", "recycler", "autolathe", "high_micro_laser", "nano_mani", "mesons", "thermomachine", "rad_collector", "tesla_coil", "grounding_rod",
+	"cell_charger", "stack_console", "stack_machine", "conveyor_belt", "conveyor_switch",
+	"oxygen_tank", "plasma_tank", "emergency_oxygen", "emergency_oxygen_engi", "plasmaman_tank_belt", "ipc_coolant_tank", "electrolyzer", "floorigniter", "crystallizer", "suit_storage_unit", "holotool", "holoscrew", "holocrow", "holomulti", "holowrench", "holosnips", "holowelder")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+
+/datum/techweb_node/high_efficiency
+	id = "high_efficiency"
+	display_name = "High Efficiency Parts"
+	description = "Finely-tooled manufacturing techniques allowing for picometer-perfect precision levels."
+	prereq_ids = list("engineering", "datatheory")
+	design_ids = list("pico_mani", "super_matter_bin", "advholotool", "holoscrewadvanced", "holocrowadvanced", "holomultiadvanced", "holowrenchadvanced", "holosnipsadvanced", "holowelderadvanced")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+
+/datum/techweb_node/micro_bluespace
+	id = "micro_bluespace"
+	display_name = "Miniaturized Bluespace Research"
+	description = "Extreme reduction in space required for bluespace engines, leading to portable bluespace technology."
+	prereq_ids = list("bluespace_travel", "practical_bluespace", "high_efficiency")
+	design_ids = list("bluespace_matter_bin", "femto_mani", "bluespacebodybag", "triphasic_scanning", "quantum_keycard", "wormholeprojector", "eliteholotool", "holoscrewelite", "holocrowelite", "holomultielite", "holowrenchelite", "holosnipselite", "holowelderelite")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)

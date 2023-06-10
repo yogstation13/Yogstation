@@ -1,6 +1,6 @@
 /obj/item/holotool
-	name = "experimental holotool"
-	desc = "A highly experimental holographic tool projector."
+	name = "basic holotool"
+	desc = "A device capable of holographically projecting various tools. Fit with upgrade cards to access more tools."
 	icon = 'yogstation/icons/obj/holotool.dmi'
 	icon_state = "holotool"
 	slot_flags = ITEM_SLOT_BELT
@@ -8,6 +8,8 @@
 	usesound = 'sound/items/pshoom.ogg'
 	lefthand_file = 'yogstation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/righthand.dmi'
+	var/maximum_toolage = 5
+	var/current_toolage = 0
 	actions_types = list(/datum/action/item_action/change_tool, /datum/action/item_action/change_ht_color)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
@@ -17,11 +19,60 @@
 	var/list/available_modes
 	var/list/mode_names
 	var/list/radial_modes
-	var/current_color = "#48D1CC" //mediumturquoise
+	var/current_color = "#a2adb9" //greyish
+
+/obj/item/holotool/advanced
+	name = "advanced holotool"
+	desc = "An upgraded holotool with an increased capacity for modules."
+	maximum_toolage = 10
+
+/obj/item/holotool/elite
+	name = "elite holotool"
+	desc = "An upgraded holotool that uses bluespace technology to hold more modules."
+	maximum_toolage = 15
+	
+/obj/item/holotool/rd
+	name = "experimental holotool"
+	desc = "A highly experimental holographic tool projector."
+	maximum_toolage = 20
+	current_color = "#48D1CC" //real deal gets a cooler color
 
 /obj/item/holotool/Initialize()
 	. = ..()
 	internal_multitool = new /obj/item/multitool(src)
+	new /obj/item/holotool_module/off(src)
+
+/obj/item/holotool/rd/Initialize()
+	. = ..()
+	new /obj/item/holotool_module/screwdriver/rd(src)
+	new /obj/item/holotool_module/crowbar/rd(src)
+	new /obj/item/holotool_module/multitool/rd(src)
+	new /obj/item/holotool_module/wrench/rd(src)
+	new /obj/item/holotool_module/snips/rd(src)
+	new /obj/item/holotool_module/welder/rd(src)
+	current_toolage = 12 //I can count :D
+
+/obj/item/holotool/attackby(obj/item/I, mob/U)
+	if(istype(I, /obj/item/holotool_module))
+		var/obj/item/holotool_module/card = I
+		if(current_toolage + card.toolage_use > maximum_toolage)
+			to_chat(U, span_warning("The " + src.name + " can't hold any more module cards!"))
+			return
+		card.forceMove(src)
+		current_toolage += card.toolage_use
+	..()
+
+/obj/item/holotool/screwdriver_act(mob/user, obj/item/tool)
+	if(!istype(current_tool, /datum/holotool_mode/off))
+		to_chat(user, span_notice("The holotool must be off to remove modules!"))
+		return
+	for(var/obj/item/holotool_module/module in contents)
+		if(istype(module, /obj/item/holotool_module/off))
+			continue
+		module.forceMove(get_turf(src))
+		current_toolage -= module.toolage_use
+	..()
+
 
 /obj/item/holotool/Destroy()
 	. = ..()
@@ -30,7 +81,7 @@
 /obj/item/holotool/examine(mob/user)
 	. = ..()
 	. += span_notice("It is currently set to [current_tool ? current_tool.name : "'off'"] mode.")
-	. += span_notice("Ctrl+Click it to open the radial menu!")
+	. += span_notice("It is currently at [current_toolage] out of [maximum_toolage] capacity for tool cards.")
 
 /obj/item/holotool/attack(mob/living/M, mob/living/user)
 	if((tool_behaviour == TOOL_SCREWDRIVER) && !(user.a_intent == INTENT_HARM) && attempt_initiate_surgery(src, M, user))
@@ -88,8 +139,8 @@
 	LAZYCLEARLIST(available_modes)
 	LAZYCLEARLIST(radial_modes)
 	LAZYCLEARLIST(mode_names)
-	for(var/A in subtypesof(/datum/holotool_mode))
-		var/datum/holotool_mode/M = new A
+	for(var/obj/item/holotool_module/A in contents)
+		var/datum/holotool_mode/M = A.mode
 		if(M.can_be_used(src))
 			LAZYADD(available_modes, M)
 			LAZYSET(mode_names, M.name, M)
@@ -148,4 +199,4 @@
 // Spawn in RD closet
 /obj/structure/closet/secure_closet/RD/PopulateContents()
 	. = ..()
-	new /obj/item/holotool(src)
+	new /obj/item/holotool/rd(src)
