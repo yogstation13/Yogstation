@@ -482,6 +482,7 @@
 			else if(isanimal(L))
 				var/mob/living/simple_animal/SM = L
 				SM.adjustHealth(-3.5 * efficiency, forced = TRUE)
+
 /datum/status_effect/good_music
 	id = "Good Music"
 	alert_type = null
