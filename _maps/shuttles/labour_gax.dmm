@@ -36,13 +36,6 @@
 "l" = (
 /turf/open/floor/mineral/titanium,
 /area/shuttle/labor)
-"n" = (
-/obj/machinery/mineral/labor_claim_console{
-	machinedir = 1;
-	pixel_x = 30
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/labor)
 "p" = (
 /obj/structure/closet/crate,
 /turf/open/floor/mineral/titanium,
@@ -55,6 +48,13 @@
 	},
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/labor)
+"D" = (
+/obj/machinery/mineral/labor_claim_console{
+	machinedir = 2;
+	pixel_x = 30
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/labor)
@@ -195,7 +195,7 @@ O
 V
 p
 l
-n
+D
 F
 N
 e
