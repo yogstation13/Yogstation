@@ -42,11 +42,17 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/labor)
 "k" = (
-/obj/machinery/mineral/stacking_machine/laborstacker{
-	input_dir = 2;
-	output_dir = 1
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/titanium{
+	name = "Labor Shuttle Airlock";
+	req_access_txt = "2"
+	},
+/turf/open/floor/plating,
 /area/shuttle/labor)
 "l" = (
 /turf/open/floor/mineral/titanium,
@@ -73,13 +79,19 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/labor)
-"y" = (
+"J" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/labor)
+"O" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/labor)
+"P" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
-	},
-/obj/machinery/door/airlock/titanium{
-	name = "Labor Shuttle Airlock";
-	req_access_txt = "2"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -93,30 +105,18 @@
 	port_direction = 4;
 	width = 9
 	},
-/turf/open/floor/plating,
-/area/shuttle/labor)
-"H" = (
 /obj/machinery/door/airlock/titanium{
 	id_tag = "prisonshuttle";
 	name = "Labor Shuttle Airlock"
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/shuttle/labor)
-"J" = (
-/obj/machinery/light,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/labor)
-"O" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 1
+"Q" = (
+/obj/machinery/mineral/stacking_machine/laborstacker{
+	input_dir = 1;
+	output_dir = 2
 	},
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/shuttle/labor)
 "T" = (
 /obj/machinery/button/flasher{
@@ -159,11 +159,11 @@
 (1,1,1) = {"
 a
 a
-y
+P
 a
 a
 a
-H
+k
 a
 a
 "}
@@ -173,7 +173,7 @@ V
 l
 x
 l
-k
+U
 f
 c
 b
@@ -195,7 +195,7 @@ V
 p
 l
 n
-U
+Q
 h
 e
 b
