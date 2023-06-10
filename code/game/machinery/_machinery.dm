@@ -151,7 +151,7 @@ Class Procs:
 
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/LateInitialize(mapload)
+/obj/machinery/LateInitialize()
 	. = ..()
 	power_change()
 	RegisterSignal(src, COMSIG_ENTER_AREA, PROC_REF(power_change))

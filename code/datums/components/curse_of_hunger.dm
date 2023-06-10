@@ -20,7 +20,7 @@
 	///The bag's current "health". IE, how many more times you need to poison it to stop it.
 	var/current_health = 2
 
-/datum/component/curse_of_hunger/Initialize(mapload, add_dropdel = FALSE, max_health = 2)
+/datum/component/curse_of_hunger/Initialize(add_dropdel = FALSE, max_health = 2)
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE

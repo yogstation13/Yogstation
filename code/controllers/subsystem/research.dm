@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(research)
 	//[88nodes * 5000points/node] / [1.5hr * 90min/hr * 60s/min]
 	//Around 450000 points max???
 
-/datum/controller/subsystem/research/Initialize(mapload)
+/datum/controller/subsystem/research/Initialize()
 	point_types = TECHWEB_POINT_TYPE_LIST_ASSOCIATIVE_NAMES
 	initialize_all_techweb_designs()
 	initialize_all_techweb_nodes()
@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(research)
 			techweb_nodes_starting[TN.id] = TRUE
 	for(var/id in techweb_nodes)
 		var/datum/techweb_node/TN = techweb_nodes[id]
-		TN.Initialize(mapload)
+		TN.Initialize()
 	techweb_nodes = returned
 	verify_techweb_nodes()				//Verify all nodes have ids and such.
 	calculate_techweb_nodes()

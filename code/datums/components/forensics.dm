@@ -18,7 +18,7 @@
 	check_blood()
 	return ..()
 
-/datum/component/forensics/Initialize(mapload, new_fingerprints, new_hiddenprints, new_blood_DNA, new_fibers, new_scents)
+/datum/component/forensics/Initialize(new_fingerprints, new_hiddenprints, new_blood_DNA, new_fibers, new_scents)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	fingerprints = new_fingerprints

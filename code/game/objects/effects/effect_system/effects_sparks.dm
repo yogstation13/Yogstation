@@ -30,7 +30,7 @@
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/particle_effect/sparks/LateInitialize(mapload)
+/obj/effect/particle_effect/sparks/LateInitialize()
 	flick(icon_state, src) // replay the animation
 	playsound(src, "sparks", 100, TRUE)
 	var/turf/T = loc

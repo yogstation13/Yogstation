@@ -2,7 +2,7 @@
 /datum/component/edit_complainer
 	var/list/say_lines
 
-/datum/component/edit_complainer/Initialize(mapload, list/text)
+/datum/component/edit_complainer/Initialize(list/text)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 

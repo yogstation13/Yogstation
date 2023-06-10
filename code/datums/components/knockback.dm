@@ -2,7 +2,7 @@
 	var/throw_distance
 	var/throw_anchored
 
-/datum/component/knockback/Initialize(mapload, throw_distance=1, throw_anchored=FALSE)
+/datum/component/knockback/Initialize(throw_distance=1, throw_anchored=FALSE)
 	if(!isitem(parent) && !ishostile(parent) && !isgun(parent) && !ismachinery(parent) && !isstructure(parent))
 		return COMPONENT_INCOMPATIBLE
 

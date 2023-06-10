@@ -195,7 +195,7 @@
   * that all atoms will actually exist in the "WORLD" at this time and that all their Intialization
   * code has been run
   */
-/atom/proc/LateInitialize(mapload)
+/atom/proc/LateInitialize()
 	return
 
 /// Put your AddComponent() calls here

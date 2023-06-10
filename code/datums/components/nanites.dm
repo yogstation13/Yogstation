@@ -13,7 +13,7 @@
 
 	var/stealth = FALSE //if TRUE, does not appear on HUDs and health scans, and does not display the program list on nanite scans
 
-/datum/component/nanites/Initialize(mapload, amount = 100, cloud = 0)
+/datum/component/nanites/Initialize(amount = 100, cloud = 0)
 	if(!isliving(parent) && !istype(parent, /datum/nanite_cloud_backup))
 		return COMPONENT_INCOMPATIBLE
 

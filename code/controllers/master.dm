@@ -204,11 +204,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		StartProcessing(10)
 	else
 		to_chat(world, span_boldannounce("The Master Controller is having some issues, we will need to re-initialize EVERYTHING"))
-		Initialize(mapload, 20, TRUE)
+		Initialize(20, TRUE)
 
 // Please don't stuff random bullshit here,
 // Make a subsystem, give it the SS_NO_FIRE flag, and do your work in it's Initialize(mapload)
-/datum/controller/master/Initialize(mapload, delay, init_sss, tgs_prime)
+/datum/controller/master/Initialize(delay, init_sss, tgs_prime)
 	set waitfor = 0
 
 	if(delay)
@@ -309,7 +309,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	current_initializing_subsystem = subsystem
 	rustg_time_reset(SS_INIT_TIMER_KEY)
 
-	var/result = subsystem.Initialize(mapload)
+	var/result = subsystem.Initialize()
 
 	// Capture end time
 	var/time = rustg_time_milliseconds(SS_INIT_TIMER_KEY)

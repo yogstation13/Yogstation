@@ -10,7 +10,7 @@
 	var/active = FALSE //FALSE to pretty much just not exist in the plumbing world so we can be moved, TRUE to go plumbo mode
 	var/turn_connects = TRUE
 
-/datum/component/plumbing/Initialize(mapload, start=TRUE, _turn_connects=TRUE) //turn_connects for wheter or not we spin with the object to change our pipes
+/datum/component/plumbing/Initialize(start=TRUE, _turn_connects=TRUE) //turn_connects for wheter or not we spin with the object to change our pipes
 	if(parent && !ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	var/atom/movable/AM = parent

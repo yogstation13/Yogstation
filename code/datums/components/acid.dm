@@ -21,7 +21,7 @@
 	/// The proc used to handle the parent [/atom] when processing. TODO: Unify damage and resistance flags so that this doesn't need to exist!
 	var/datum/callback/process_effect
 
-/datum/component/acid/Initialize(mapload, _acid_power, _acid_volume, _max_volume=null)
+/datum/component/acid/Initialize(_acid_power, _acid_volume, _max_volume=null)
 	if((_acid_power) <= 0 || (_acid_volume <= 0))
 		stack_trace("Acid component added with insufficient acid power ([_acid_power]) or acid volume ([_acid_power]).")
 		return COMPONENT_INCOMPATIBLE // Not enough acid or the acid's too weak, either one.

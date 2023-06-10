@@ -194,7 +194,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /**
   * Sets machine power levels in the area
   */
-/area/LateInitialize(mapload)
+/area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates icon
 
 /area/proc/RunGeneration()

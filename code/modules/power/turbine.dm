@@ -317,7 +317,7 @@
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/computer/turbine_computer/LateInitialize(mapload)
+/obj/machinery/computer/turbine_computer/LateInitialize()
 	locate_machinery()
 
 /obj/machinery/computer/turbine_computer/locate_machinery()

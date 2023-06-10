@@ -131,7 +131,7 @@
 	var/turf/T = src.loc
 	var/mob/living/carbon/human/wizbody = new(T)
 	wizbody.fully_replace_character_name(wizbody.real_name, "Academy Teacher")
-	wizbody.mind_Initialize(mapload)
+	wizbody.mind_Initialize()
 	var/datum/mind/wizmind = wizbody.mind
 	wizmind.special_role = "Academy Defender"
 	wizmind.add_antag_datum(/datum/antagonist/wizard/academy)

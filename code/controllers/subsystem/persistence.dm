@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/obj/structure/sign/picture_frame/photo_frames = list()
 	var/list/obj/item/storage/photo_album/photo_albums = list()
 
-/datum/controller/subsystem/persistence/Initialize(mapload)
+/datum/controller/subsystem/persistence/Initialize()
 	LoadPoly()
 	LoadChiselMessages()
 	LoadTrophies()

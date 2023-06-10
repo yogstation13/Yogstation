@@ -185,7 +185,7 @@
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/abductor/console/LateInitialize(mapload)
+/obj/machinery/abductor/console/LateInitialize()
 	if(!team_number)
 		return
 

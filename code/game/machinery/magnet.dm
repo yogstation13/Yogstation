@@ -35,7 +35,7 @@
 	SSradio.add_object(src, freq, RADIO_MAGNETS)
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/magnetic_module/LateInitialize(mapload)
+/obj/machinery/magnetic_module/LateInitialize()
 	magnetic_process()
 
 /obj/machinery/magnetic_module/Destroy()

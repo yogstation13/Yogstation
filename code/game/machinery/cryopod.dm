@@ -171,7 +171,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	GLOB.cryopods -= src
 	..()
 
-/obj/machinery/cryopod/LateInitialize(mapload)
+/obj/machinery/cryopod/LateInitialize()
 	update_icon()
 	find_control_computer()
 

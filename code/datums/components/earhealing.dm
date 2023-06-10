@@ -4,7 +4,7 @@
 /datum/component/earhealing
 	var/mob/living/carbon/wearer
 
-/datum/component/earhealing/Initialize(mapload)
+/datum/component/earhealing/Initialize()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(equippedChanged))

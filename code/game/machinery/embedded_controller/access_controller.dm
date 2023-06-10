@@ -22,7 +22,7 @@
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/doorButtons/LateInitialize(mapload)
+/obj/machinery/doorButtons/LateInitialize()
 	findObjsByTag()
 
 /obj/machinery/doorButtons/emag_act(mob/user)

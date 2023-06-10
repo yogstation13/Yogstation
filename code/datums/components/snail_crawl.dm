@@ -1,7 +1,7 @@
 /datum/component/snailcrawl
 	var/mob/living/carbon/snail
 
-/datum/component/snailcrawl/Initialize(mapload)
+/datum/component/snailcrawl/Initialize()
 	RegisterSignals(parent, list(COMSIG_MOVABLE_MOVED), PROC_REF(lubricate))
 	snail = parent
 

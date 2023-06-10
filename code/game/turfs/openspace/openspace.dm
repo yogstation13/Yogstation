@@ -18,7 +18,7 @@
 	layer = OPENSPACE_LAYER
 	return INITIALIZE_HINT_LATELOAD
 
-/turf/open/openspace/LateInitialize(mapload)
+/turf/open/openspace/LateInitialize()
 	update_multiz(TRUE, TRUE)
 
 /turf/open/openspace/Destroy()

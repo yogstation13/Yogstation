@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	if(mapload && autolinkers.len)
 		return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/telecomms/LateInitialize(mapload)
+/obj/machinery/telecomms/LateInitialize()
 	..()
 	for(var/obj/machinery/telecomms/T in (long_range_link ? GLOB.telecomms_list : urange(20, src, 1)))
 		add_link(T)

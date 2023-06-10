@@ -5,7 +5,7 @@
 	var/speciestype
 	var/damage_multiplier
 
-/datum/component/bane/Initialize(mapload, mobtype, damage_multiplier=1)
+/datum/component/bane/Initialize(mobtype, damage_multiplier=1)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	

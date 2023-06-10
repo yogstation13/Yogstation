@@ -16,7 +16,7 @@ handles linking back and forth.
 	var/allow_standalone
 	var/local_size = INFINITY
 
-/datum/component/remote_materials/Initialize(mapload, category, mapload, allow_standalone = TRUE, force_connect = FALSE)
+/datum/component/remote_materials/Initialize(category, mapload, allow_standalone = TRUE, force_connect = FALSE)
 	if (!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -31,7 +31,7 @@ handles linking back and forth.
 	else if (allow_standalone)
 		_MakeLocal()
 
-/datum/component/remote_materials/proc/LateInitialize(mapload)
+/datum/component/remote_materials/proc/LateInitialize()
 	silo = GLOB.ore_silo_default
 	if (silo)
 		silo.connected += src

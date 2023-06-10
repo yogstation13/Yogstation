@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(persistent_paintings)
 	/// A map of identifiers (such as library) to paintings from paintings.json
 	var/list/paintings = list()
 
-/datum/controller/subsystem/persistent_paintings/Initialize(mapload, start_timeofday)
+/datum/controller/subsystem/persistent_paintings/Initialize(start_timeofday)
 	var/json_file = file("data/paintings.json")
 	if(fexists(json_file))
 		paintings = json_decode(file2text(json_file))

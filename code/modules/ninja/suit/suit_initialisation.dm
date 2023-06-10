@@ -3,9 +3,9 @@
 		to_chat(loc, "[span_userdanger("ERROR")]: You cannot use this function at this time.")
 		return FALSE
 	if(s_initialized)
-		deInitialize(mapload)
+		deInitialize()
 	else
-		nInitialize(mapload)
+		nInitialize()
 	. = TRUE
 
 /obj/item/clothing/suit/space/space_ninja/proc/nInitialize(mapload, delay = s_delay, mob/living/carbon/human/U = loc)

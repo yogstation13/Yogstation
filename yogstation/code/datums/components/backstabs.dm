@@ -1,7 +1,7 @@
 /datum/component/backstabs
 	var/backstab_multiplier = 2 // 2x damage by default
 
-/datum/component/backstabs/Initialize(mapload, mult)
+/datum/component/backstabs/Initialize(mult)
 	backstab_multiplier = mult
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE

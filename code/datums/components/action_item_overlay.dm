@@ -11,7 +11,7 @@
 	/// The appearance of the item we've applied
 	var/mutable_appearance/item_appearance
 
-/datum/component/action_item_overlay/Initialize(mapload, atom/movable/item, datum/callback/item_callback)
+/datum/component/action_item_overlay/Initialize(atom/movable/item, datum/callback/item_callback)
 	if(!istype(parent, /datum/action))
 		return COMPONENT_INCOMPATIBLE
 

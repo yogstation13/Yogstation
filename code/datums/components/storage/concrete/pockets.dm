@@ -25,7 +25,7 @@
 	max_w_class = WEIGHT_CLASS_TINY
 	attack_hand_interact = FALSE
 
-/datum/component/storage/concrete/pockets/small/fedora/Initialize(mapload)
+/datum/component/storage/concrete/pockets/small/fedora/Initialize()
 	. = ..()
 	var/static/list/exception_cache = typecacheof(list(
 		/obj/item/katana, /obj/item/toy/katana, /obj/item/nullrod/claymore/katana,
@@ -41,7 +41,7 @@
 	quickdraw = TRUE
 	silent = TRUE
 
-/datum/component/storage/concrete/pockets/shoes/Initialize(mapload)
+/datum/component/storage/concrete/pockets/shoes/Initialize()
 	. = ..()
 	set_holdable(list(
 		/obj/item/kitchen/knife, /obj/item/switchblade, /obj/item/pen,
@@ -53,7 +53,7 @@
 		list(/obj/item/handdrill)
 		)
 
-/datum/component/storage/concrete/pockets/shoes/clown/Initialize(mapload)
+/datum/component/storage/concrete/pockets/shoes/clown/Initialize()
 	. = ..()
 	set_holdable(list(
 		/obj/item/kitchen/knife, /obj/item/switchblade, /obj/item/pen,
@@ -69,7 +69,7 @@
 	max_w_class = WEIGHT_CLASS_TINY
 	var/atom/original_parent
 
-/datum/component/storage/concrete/pockets/pocketprotector/Initialize(mapload)
+/datum/component/storage/concrete/pockets/pocketprotector/Initialize()
 	original_parent = parent
 	. = ..()
 	set_holdable(list( //Same items as a PDA
@@ -88,7 +88,7 @@
 	quickdraw = TRUE
 	max_combined_w_class = 6
 
-/datum/component/storage/concrete/pockets/helmet/Initialize(mapload)
+/datum/component/storage/concrete/pockets/helmet/Initialize()
 	. = ..()
 	set_holdable(list(/obj/item/reagent_containers/food/drinks/bottle/vodka,
 					  /obj/item/reagent_containers/food/drinks/bottle/molotov,
@@ -101,6 +101,6 @@
 	max_items = 6
 	max_w_class = WEIGHT_CLASS_TINY
 
-/datum/component/storage/concrete/pockets/hosarmor/Initialize(mapload)
+/datum/component/storage/concrete/pockets/hosarmor/Initialize()
 	. = ..()
 	set_holdable(list(/obj/item/clothing/mask/cigarette))

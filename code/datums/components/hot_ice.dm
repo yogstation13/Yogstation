@@ -3,7 +3,7 @@
 	var/gas_amount
 	var/temp_amount
 
-/datum/component/hot_ice/Initialize(mapload, gas_name, gas_amount, temp_amount)
+/datum/component/hot_ice/Initialize(gas_name, gas_amount, temp_amount)
 
 	src.gas_name = gas_name
 	src.gas_amount = gas_amount

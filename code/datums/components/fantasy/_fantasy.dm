@@ -12,7 +12,7 @@
 
 	var/static/list/affixListing
 
-/datum/component/fantasy/Initialize(mapload, quality, list/affixes = list(), canFail=FALSE, announce=FALSE)
+/datum/component/fantasy/Initialize(quality, list/affixes = list(), canFail=FALSE, announce=FALSE)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 

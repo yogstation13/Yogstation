@@ -23,7 +23,7 @@
 	/// A timerid to the current revival timer.
 	var/revive_timer
 
-/datum/component/phylactery/Initialize(mapload, 
+/datum/component/phylactery/Initialize(
 	datum/mind/lich_mind,
 	base_respawn_time = 3 MINUTES,
 	time_per_resurrection = 0 SECONDS,

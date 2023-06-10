@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/music_available = 0
 
-/datum/controller/subsystem/ticker/Initialize(mapload, timeofday)
+/datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
 	/*var/list/byond_sound_formats = list( //yogs start - goonchat lobby music

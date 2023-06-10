@@ -190,7 +190,7 @@
 	/// Whether music of the same typepath is shared
 	var/shared = TRUE
 
-/datum/component/music_player/Initialize(mapload, _music_path)
+/datum/component/music_player/Initialize(_music_path)
 	if(_music_path)
 		music_path = _music_path
 	START_PROCESSING(SSprocessing, src)

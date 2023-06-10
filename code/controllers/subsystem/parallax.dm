@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(parallax)
 	var/random_layer
 	var/random_parallax_color
 
-/datum/controller/subsystem/parallax/Initialize(mapload, timeofday)
+/datum/controller/subsystem/parallax/Initialize(timeofday)
 	if(prob(70))	//70% chance to pick a special extra layer
 		random_layer = pick(/atom/movable/screen/parallax_layer/random/space_gas, /atom/movable/screen/parallax_layer/random/asteroids)
 		random_parallax_color = pick(COLOR_TEAL, COLOR_GREEN, COLOR_SILVER, COLOR_YELLOW, COLOR_CYAN, COLOR_ORANGE, COLOR_PURPLE)//Special color for random_layer1. Has to be done here so everyone sees the same color.

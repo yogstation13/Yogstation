@@ -5,7 +5,7 @@
 /datum/component/art
 	var/impressiveness = 0
 
-/datum/component/art/Initialize(mapload, impress)
+/datum/component/art/Initialize(impress)
 	impressiveness = impress
 	if(isobj(parent))
 		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_obj_examine))

@@ -29,7 +29,7 @@
 /datum/component/New(list/raw_args)
 	parent = raw_args[1]
 	var/list/arguments = raw_args.Copy(2)
-	if(Initialize(mapload, arglist(arguments)) == COMPONENT_INCOMPATIBLE)
+	if(Initialize(arglist(arguments)) == COMPONENT_INCOMPATIBLE)
 		qdel(src, TRUE, TRUE)
 		CRASH("Incompatible [type] assigned to a [parent.type]! args: [json_encode(arguments)]")
 
@@ -40,7 +40,7 @@
  *
  * Do not call `qdel(src)` from this function, `return COMPONENT_INCOMPATIBLE` instead
  */
-/datum/component/proc/Initialize(mapload, ...)
+/datum/component/proc/Initialize(...)
 	return
 
 /**

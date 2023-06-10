@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(events)
 	var/list/holidays			//List of all holidays occuring today or null if no holidays
 	var/wizardmode = FALSE
 
-/datum/controller/subsystem/events/Initialize(mapload, time, zlevel)
+/datum/controller/subsystem/events/Initialize(time, zlevel)
 	for(var/type in typesof(/datum/round_event_control))
 		var/datum/round_event_control/E = new type()
 		if(!E.typepath)

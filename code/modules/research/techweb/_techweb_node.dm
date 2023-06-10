@@ -23,7 +23,7 @@
 	display_name = "ERROR"
 	description = "This usually means something in the database has corrupted. If it doesn't go away automatically, inform Central Command for their techs to fix it ASAP(tm)"
 
-/datum/techweb_node/proc/Initialize(mapload)
+/datum/techweb_node/proc/Initialize()
 	//Make lists associative for lookup
 	for(var/id in prereq_ids)
 		prereq_ids[id] = TRUE
@@ -64,7 +64,7 @@
 	VARSET_FROM_LIST(input, autounlock_by_boost)
 	VARSET_FROM_LIST(input, research_costs)
 	VARSET_FROM_LIST(input, category)
-	Initialize(mapload)
+	Initialize()
 	return src
 
 /datum/techweb_node/proc/on_design_deletion(datum/design/D)

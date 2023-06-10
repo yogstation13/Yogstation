@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(atoms)
 
 	initialized = INITIALIZATION_INSSATOMS
 
-/datum/controller/subsystem/atoms/Initialize(mapload, timeofday)
+/datum/controller/subsystem/atoms/Initialize(timeofday)
 	init_start_time = world.time
 	GLOB.fire_overlay.appearance_flags = RESET_COLOR
 	setupGenetics() //to set the mutations' sequence
@@ -51,7 +51,7 @@ SUBSYSTEM_DEF(atoms)
 			//I hate that we need this
 			if(QDELETED(A))
 				continue
-			A.LateInitialize(mapload)
+			A.LateInitialize()
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
 	
@@ -106,7 +106,7 @@ SUBSYSTEM_DEF(atoms)
 	var/start_tick = world.time
 	#endif
 
-	var/result = A.Initialize(mapload, arglist(arguments))
+	var/result = A.Initialize(arglist(arguments))
 
 	#ifdef UNIT_TESTS
 	if(start_tick != world.time)
@@ -122,7 +122,7 @@ SUBSYSTEM_DEF(atoms)
 			if(arguments[1]) //mapload
 				late_loaders += A
 			else
-				A.LateInitialize(mapload)
+				A.LateInitialize()
 		if (INITIALIZE_HINT_QDEL)
 			qdel(A)
 			qdeleted = TRUE

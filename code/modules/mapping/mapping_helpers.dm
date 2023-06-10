@@ -16,7 +16,7 @@
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/baseturf_helper/LateInitialize(mapload)
+/obj/effect/baseturf_helper/LateInitialize()
 	if(!baseturf_to_replace)
 		baseturf_to_replace = typecacheof(/turf/open/space)
 	else if(!length(baseturf_to_replace))
@@ -191,7 +191,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	var/component_type
 
 //Late init so everything is likely ready and loaded (no warranty)
-/obj/effect/mapping_helpers/component_injector/LateInitialize(mapload)
+/obj/effect/mapping_helpers/component_injector/LateInitialize()
 	if(!ispath(component_type,/datum/component))
 		CRASH("Wrong component type in [type] - [component_type] is not a component")
 	var/turf/T = get_turf(src)
@@ -228,7 +228,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	icon_state = "deadbodyplacer"
 	var/bodycount = 2 //number of bodies to spawn
 
-/obj/effect/mapping_helpers/dead_body_placer/LateInitialize(mapload)
+/obj/effect/mapping_helpers/dead_body_placer/LateInitialize()
 	var/area/a = get_area(src)
 	var/list/trays = list()
 	for (var/i in a.contents)

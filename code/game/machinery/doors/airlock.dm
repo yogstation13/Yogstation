@@ -172,7 +172,7 @@
 
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/door/airlock/LateInitialize(mapload)
+/obj/machinery/door/airlock/LateInitialize()
 	. = ..()
 	if(cyclelinkedx || cyclelinkedy)	//yogs start
 		cyclelinkairlock_target()

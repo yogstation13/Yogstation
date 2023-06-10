@@ -309,7 +309,7 @@
 		pad = I.buffer
 		return TRUE
 
-/obj/machinery/computer/piratepad_control/LateInitialize(mapload)
+/obj/machinery/computer/piratepad_control/LateInitialize()
 	. = ..()
 	if(cargo_hold_id)
 		for(var/obj/machinery/piratepad/P in GLOB.machines)

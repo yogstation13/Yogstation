@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(achievements)
   * Arguments:
   * * timeofday - Time of initialization, used to calculate how long SS initialization took
   */
-/datum/controller/subsystem/achievements/Initialize(mapload, timeofday)
+/datum/controller/subsystem/achievements/Initialize(timeofday)
 	for(var/i in subtypesof(/datum/achievement))
 		var/datum/achievement/A = new i
 		achievements[A] = A.id

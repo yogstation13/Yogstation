@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(echelon)
 	flags = SS_NO_FIRE
 	var/enabled = TRUE
 
-/datum/controller/subsystem/echelon/Initialize(mapload, timeofday, zlevel)
+/datum/controller/subsystem/echelon/Initialize(timeofday, zlevel)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/echelon/proc/is_exception(ckey)
