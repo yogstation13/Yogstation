@@ -539,6 +539,7 @@
 
 	pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 
+	belt = /obj/item/storage/belt/medical
 	head = /obj/item/clothing/head/helmet/space/plasmaman/blue
 	r_hand= /obj/item/tank/internals/plasmaman/belt/full
 	mask = /obj/item/clothing/mask/breath
