@@ -10,7 +10,7 @@ if grep -El '^\".+\" = \(.+\)' _maps/**/*.dmm;	then
     echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
 fi;
-if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\) code/**/*.dm' then
+if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\) code/**/*.dm'; then
     echo "ERROR: changed files contains proc argument starting with 'var'"
     st=1
 fi;
