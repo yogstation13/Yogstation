@@ -335,15 +335,15 @@
 	icon_state = "quiver"
 	item_state = "quiver"
 
-/obj/item/storage/magspear_quiver/ComponentInitialize()
+/obj/item/storage/magspear_quiver/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 20
 	STR.max_combined_w_class = 40
 	STR.display_numerical_stacking = TRUE
 	STR.set_holdable(list(
-		/obj/item/throwing_star/magspear
-		))
+		/obj/item/throwing_star/magspear,
+	))
 
 /obj/item/storage/magspear_quiver/PopulateContents()
 	for(var/i in 1 to 20)

@@ -677,6 +677,8 @@
 /obj/item/storage/belt/chameleon/Initialize()
 	. = ..()
 
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.silent = TRUE
 	chameleon_action = new(src)
 	if(syndicate)
 		chameleon_action.syndicate = TRUE
@@ -684,11 +686,6 @@
 	chameleon_action.chameleon_name = "Belt"
 	chameleon_action.initialize_disguises()
 	add_item_action(chameleon_action)
-
-/obj/item/storage/belt/chameleon/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.silent = TRUE
 
 /obj/item/storage/belt/chameleon/emp_act(severity)
 	. = ..()

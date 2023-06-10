@@ -18,10 +18,8 @@
 
 /obj/machinery/power/liquid_pump/Initialize()
 	create_reagents(volume)
-	return ..()
-
-/obj/machinery/power/liquid_pump/ComponentInitialize()
 	AddComponent(/datum/component/plumbing/simple_supply)
+	return ..()
 
 /obj/machinery/power/liquid_pump/wrench_act(mob/living/user, obj/item/I)
 	default_unfasten_wrench(user, I)
