@@ -1,6 +1,6 @@
 /datum/objective_item/steal/holotool
-	name = "the holotool."
-	targetitem = /obj/item/holotool
+	name = "the experimental holotool."
+	targetitem = /obj/item/holotool/rd
 	difficulty = 5
 	excludefromjob = list("Research Director")
 
