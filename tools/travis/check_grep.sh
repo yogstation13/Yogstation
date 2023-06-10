@@ -42,7 +42,7 @@ if grep -i 'centcomm' _maps/**/*.dmm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1
 fi;
-if grep 'balloon_alert\(.*?, ?"[A-Z]'; then
+if grep -i 'balloon_alert\(.*?, ?"[A-Z]'; then
 	echo
 	echo "${RED}ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT().${NC}"
 	st=1
@@ -55,7 +55,7 @@ if ls _maps/*.json | grep -P "[A-Z]"; then
     echo "ERROR: Uppercase in a map json detected, these must be all lowercase."
 	st=1
 fi;
-if grep '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)'; then
+if grep -P '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)'; then
 	echo "ERROR: Initialize override without 'mapload' argument.${NC}"
 	st=1
 fi;
