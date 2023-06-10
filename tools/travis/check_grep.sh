@@ -10,6 +10,10 @@ if grep -El '^\".+\" = \(.+\)' _maps/**/*.dmm;	then
     echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
 fi;
+if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
+    echo "ERROR: changed files contains proc argument starting with 'var'"
+    st=1
+fi;
 if grep -P '^\ttag = \"icon' _maps/**/*.dmm;	then
     echo "ERROR: tag vars from icon state generation detected in maps, please remove them."
     st=1
@@ -43,7 +47,11 @@ if grep '\.proc/' code/**/*.dm | grep -v 'code/__byond_version_compat.dm'; then
 	st=1
 fi;
 if ls _maps/*.json | grep -P "[A-Z]"; then
-    echo "Uppercase in a map json detected, these must be all lowercase."
+    echo "ERROR: Uppercase in a map json detected, these must be all lowercase."
+	st=1
+fi;
+if grep '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)'; then
+	echo "ERROR: Initialize override without 'mapload' argument.${NC}"
 	st=1
 fi;
 for json in _maps/*.json
