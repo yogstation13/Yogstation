@@ -10,7 +10,7 @@ if grep -El '^\".+\" = \(.+\)' _maps/**/*.dmm;	then
     echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
 fi;
-if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
+if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)'; then
     echo "ERROR: changed files contains proc argument starting with 'var'"
     st=1
 fi;
@@ -30,17 +30,22 @@ if grep -P '\W\/turf\s*[,\){]' _maps/**/*.dmm; then
     echo "ERROR: base /turf path use detected in maps, please replace with proper paths."
     st=1
 fi;
-if grep -P '^/*var/' code/**/*.dm; then
+if grep -P '^/*var/'; then
     echo "ERROR: Unmanaged global var use detected in code, please use the helpers."
     st=1
 fi;
-if grep -i 'centcomm' code/**/*.dm; then
+if grep -i 'centcomm'; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
     st=1
 fi;
 if grep -i 'centcomm' _maps/**/*.dmm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1
+fi;
+if grep 'balloon_alert\(.*?, ?"[A-Z]'; then
+	echo
+	echo "${RED}ERROR: Balloon alerts should not start with capital letters. This includes text like 'AI'. If this is a false positive, wrap the text in UNLINT().${NC}"
+	st=1
 fi;
 if grep '\.proc/' code/**/*.dm | grep -v 'code/__byond_version_compat.dm'; then
 	echo "ERROR: Direct reference to .proc, use PROC_REF instead"
