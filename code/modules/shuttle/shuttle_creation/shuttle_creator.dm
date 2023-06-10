@@ -163,7 +163,7 @@ GLOBAL_LIST_EMPTY(custom_shuttle_machines)		//Machines that require updating (He
 		position = WEST
 	return position
 
-/obj/item/shuttle_creator/proc/invertDir(var/input_dir)
+/obj/item/shuttle_creator/proc/invertDir(input_dir)
 	if(input_dir == NORTH)
 		return SOUTH
 	else if(input_dir == SOUTH)
