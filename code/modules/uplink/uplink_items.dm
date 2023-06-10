@@ -1553,7 +1553,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/armorpolish
 	cost = 2
 
-
+/datum/uplink_item/stealthy_tools/angelcoolboy
+	name = "Syndicate Angel Potion"
+	desc = "After many failed attempts, the syndicate has reverse engineered an angel potion smuggled off of the lava planet V-227. \
+			Preliminary testing could only sprout wings in Humans, Vuulen, Ex'hau, Preterni, IPCs, and Phytosians."
+	cost = 2
+	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 
 //Space Suits and Hardsuits
 /datum/uplink_item/suits
@@ -2240,13 +2245,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 14
 	item = /obj/item/book/granter/martial/flyingfang
 	restricted_species = list("lizard", "draconid")
-
-/datum/uplink_item/race_restricted/angelcoolboy
-	name = "Angel Potion"
-	desc = "We mixed a bird and a human and we somehow made a potion that turns you into a holy creature."
-	cost = 2
-	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
-	restricted_species = list("human", "lizard", "moth", "skeleton", "preternis", "ipc", "pod")
 
 /datum/uplink_item/race_restricted/hammerimplant
 	name = "Vxtvul Hammer Implant"

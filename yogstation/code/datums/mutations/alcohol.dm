@@ -4,6 +4,7 @@
 	quality = POSITIVE
 	text_gain_indication = span_notice("Your liver feels amazing.")
 	text_lose_indication = span_danger("Your liver feels sad.")
+	instability = 5
 
 /datum/mutation/human/alcohol_tolerance/on_acquiring(mob/living/carbon/human/owner)
 	if(..())

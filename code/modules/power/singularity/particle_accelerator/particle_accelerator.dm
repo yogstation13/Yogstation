@@ -46,6 +46,10 @@
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			. += "The panel is open."
 
+/obj/structure/particle_accelerator/Initialize()
+	. = ..()
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
+
 /obj/structure/particle_accelerator/Destroy()
 	construction_state = PA_CONSTRUCTION_UNSECURED
 	if(master)
@@ -53,11 +57,6 @@
 		master.assembled = 0
 		master = null
 	return ..()
-
-/obj/structure/particle_accelerator/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
-
 
 /obj/structure/particle_accelerator/attackby(obj/item/W, mob/user, params)
 	if(user.a_intent == INTENT_HARM)

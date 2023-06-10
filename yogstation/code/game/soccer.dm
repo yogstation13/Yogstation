@@ -17,7 +17,7 @@
 /obj/structure/goalnet/goalpost/right
 	icon_state = "goal_post_right"
 
-/obj/structure/goalnet/ComponentInitialize()
+/obj/structure/goalnet/Initialize()
 	. = ..()
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE,CALLBACK(src, PROC_REF(can_user_rotate)),CALLBACK(src, PROC_REF(can_be_rotated)),null)
 

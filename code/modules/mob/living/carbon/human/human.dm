@@ -16,6 +16,9 @@
 
 	setup_human_dna()
 
+	if(!(CONFIG_GET(flag/disable_human_mood)))
+		AddComponent(/datum/component/mood)
+
 	if(dna.species)
 		set_species(dna.species.type)
 
@@ -35,11 +38,6 @@
 	create_dna(src)
 	randomize_human(src)
 	dna.initialize_dna()
-
-/mob/living/carbon/human/ComponentInitialize()
-	. = ..()
-	if(!(CONFIG_GET(flag/disable_human_mood)))
-		AddComponent(/datum/component/mood)
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)

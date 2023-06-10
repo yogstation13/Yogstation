@@ -16,9 +16,6 @@
 /obj/structure/altar_of_gods/Initialize(mapload)
 	. = ..()
 	reflect_sect_in_icons()
-
-/obj/structure/altar_of_gods/ComponentInitialize()
-	. = ..()
 	AddComponent(/datum/component/religious_tool, ALL, FALSE, CALLBACK(src, PROC_REF(reflect_sect_in_icons)))
 
 /obj/structure/altar_of_gods/attack_hand(mob/living/user)

@@ -289,6 +289,8 @@
 			to_chat(I.owner, span_warning("Your photon projector is running too hot to be used again so quickly!"))
 		return FALSE
 	overheat = TRUE
+	set_light_on(TRUE)
+	addtimer(CALLBACK(src, PROC_REF(flash_end)), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	addtimer(CALLBACK(src, PROC_REF(cooldown)), flashcd)
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
 	update_icon(1)

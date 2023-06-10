@@ -188,8 +188,6 @@
 		custom_materials = null //Null the list to prepare for applying the materials properly
 		set_custom_materials(temp_list)
 
-	ComponentInitialize()
-
 	if(ispath(ai_controller))
 		ai_controller = new ai_controller(src)
 
@@ -208,10 +206,6 @@
   * code has been run
   */
 /atom/proc/LateInitialize()
-	return
-
-/// Put your AddComponent() calls here
-/atom/proc/ComponentInitialize()
 	return
 
 /**

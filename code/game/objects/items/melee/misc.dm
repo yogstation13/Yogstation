@@ -507,6 +507,28 @@
 	target.set_jitter_if_lower(40 SECONDS)
 	target.set_stutter_if_lower(40 SECONDS)
 
+/obj/item/melee/classic_baton/secconbaton
+	name = "billy club"
+	desc = "A dark wooden club with the Space Queen's crest burned onto its bottom. Its wrist strap will help keep it in your hands and out of crooks'."
+	icon_state = "secconbaton"
+	item_state = "secconbaton"
+	force = 10
+	stamina_damage = 15
+	var/tighten = FALSE
+	actions_types = list(/datum/action/item_action/wrist_strap)
+
+/obj/item/melee/classic_baton/secconbaton/ui_action_click(mob/user)
+	tighten = !tighten
+	if(tighten)
+		user.balloon_alert(user, "Wrist strap tightened.")
+		ADD_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
+	else
+		REMOVE_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
+		user.balloon_alert(user, "Wrist strap loosened.")
+
+/datum/action/item_action/wrist_strap
+	name = "Adjust Wrist Strap"
+
 /obj/item/melee/supermatter_sword
 	name = "supermatter sword"
 	desc = "In a station full of bad ideas, this might just be the worst."

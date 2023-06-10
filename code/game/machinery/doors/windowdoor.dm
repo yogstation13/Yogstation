@@ -25,6 +25,7 @@
 
 /obj/machinery/door/window/Initialize(mapload, set_dir)
 	. = ..()
+	AddComponent(/datum/component/ntnet_interface)
 	if(set_dir)
 		setDir(set_dir)
 	if(req_access && req_access.len)
@@ -36,10 +37,6 @@
 		debris += new /obj/item/stack/rods(src, rods)
 	if(cable)
 		debris += new /obj/item/stack/cable_coil(src, cable)
-
-/obj/machinery/door/window/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/ntnet_interface)
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE

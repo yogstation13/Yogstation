@@ -39,7 +39,9 @@
 		air = new
 		air.copy_from_turf(src)
 		update_air_ref()
-	. = ..()
+	if(wet)
+		AddComponent(/datum/component/wet_floor, wet, INFINITY, 0, INFINITY, TRUE)
+	return ..()
 
 /turf/open/Destroy()
 	if(active_hotspot)
