@@ -70,6 +70,7 @@
 	name = "Secret Base"
 	icon_state = "dk_yellow"
 	ambientsounds = HIGHSEC
+	hidden = FALSE
 
 /area/ruin/powered/kinggoat_arena //yogs start
 	name = "King Goat Arena"
@@ -113,6 +114,9 @@
 
 /area/ruin/powered/syndicate_lava_base/telecomms
 	name = "Syndicate Lavaland Telecommunications"
+
+/area/ruin/powered/syndicate_lava_base/vault
+	name = "Syndicate Lavaland Vault"
 
 /area/ruin/unpowered/dragonslair //yogs start
 	name = "Dragons Lair"
