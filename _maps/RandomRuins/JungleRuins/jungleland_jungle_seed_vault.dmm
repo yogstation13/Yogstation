@@ -72,6 +72,12 @@
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
+"m" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
 "n" = (
 /obj/structure/closet/crate/hydroponics,
 /obj/structure/beebox,
@@ -100,6 +106,12 @@
 /obj/machinery/chem_dispenser/mutagensaltpeter,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
+"r" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/template_noop)
 "s" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal/bin,
@@ -482,7 +494,7 @@ s
 e
 e
 O
-T
+m
 J
 o
 T
@@ -504,7 +516,7 @@ u
 F
 x
 g
-T
+r
 T
 T
 T
