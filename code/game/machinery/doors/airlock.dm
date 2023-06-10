@@ -136,6 +136,9 @@
 	/// Log of who is shocking this door
 	var/list/shocking_log
 
+	///Whether wires should all cut themselves when this door is broken.
+	var/cut_wires_on_break = TRUE
+
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
 
@@ -168,9 +171,18 @@
 	diag_hud_set_electrified()
 
 	rebuild_parts()
-	RegisterSignal(src, COMSIG_MACHINERY_BROKEN, PROC_REF(on_break))
+	AddComponent(/datum/component/ntnet_interface)
 
 	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/door/airlock/obj_break(damage_flag)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!panel_open)
+		panel_open = TRUE
+	if(cut_wires_on_break)
+		wires.cut_all()
 
 /obj/machinery/door/airlock/LateInitialize()
 	. = ..()
@@ -203,10 +215,6 @@
 			if(24 to 30)
 				panel_open = TRUE
 	update_icon()
-
-/obj/machinery/door/airlock/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/ntnet_interface)
 
 /obj/machinery/door/airlock/proc/rebuild_parts()
 	if(part_overlays)
@@ -1550,12 +1558,6 @@
 		set_electrified(MACHINE_NOT_ELECTRIFIED)
 		open()
 		safe = TRUE
-
-
-/obj/machinery/door/airlock/proc/on_break()
-	if(!panel_open)
-		panel_open = TRUE
-	wires.cut_all()
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)
 	secondsElectrified = seconds

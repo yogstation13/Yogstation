@@ -630,11 +630,8 @@
 /obj/item/radio/headset/wolfears/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
-	make_syndie()
-
-/obj/item/radio/headset/wolfears/ComponentInitialize()
-	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+	make_syndie()
 
 /obj/item/clothing/gloves/wolfclaws/Initialize()
 	. = ..()

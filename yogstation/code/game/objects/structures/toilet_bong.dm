@@ -9,11 +9,6 @@
 
 /obj/structure/toilet_bong/Initialize()
 	. = ..()
-	weed_overlay = mutable_appearance('yogstation/icons/obj/watercloset.dmi', "weed")
-	START_PROCESSING(SSobj, src)
-
-/obj/structure/toilet_bong/ComponentInitialize()
-	. = ..()
 	var/datum/component/storage/STR = AddComponent(/datum/component/storage/concrete)
 	STR.attack_hand_interact = FALSE
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/grown/cannabis, /obj/item/reagent_containers/food/snacks/grown/tobacco))
@@ -22,6 +17,8 @@
 	STR.max_items = 24
 	RegisterSignal(STR, COMSIG_STORAGE_INSERTED, PROC_REF(update_icon))
 	RegisterSignal(STR, COMSIG_STORAGE_REMOVED, PROC_REF(update_icon))
+	weed_overlay = mutable_appearance('yogstation/icons/obj/watercloset.dmi', "weed")
+	START_PROCESSING(SSobj, src)
 
 /obj/structure/toilet_bong/update_icon()
 	. = ..()

@@ -9,10 +9,10 @@
 	/// Linked computer for getting surgeries
 	var/obj/machinery/computer/operating/computer
 
-/datum/component/surgery_bed/Initialize(_success_chance = 1, _op_computer_linkable = FALSE, _extra_surgeries)
-	success_chance = _success_chance
-	op_computer_linkable = _op_computer_linkable
-	extra_surgeries = _extra_surgeries
+/datum/component/surgery_bed/Initialize(success_chance = 1, op_computer_linkable = FALSE, extra_surgeries = FALSE)
+	src.success_chance = success_chance
+	src.op_computer_linkable = op_computer_linkable
+	src.extra_surgeries = extra_surgeries
 	get_computer()
 
 /datum/component/surgery_bed/Destroy()
