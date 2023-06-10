@@ -30,7 +30,7 @@ if grep -P '\W\/turf\s*[,\){]' _maps/**/*.dmm; then
     echo "ERROR: base /turf path use detected in maps, please replace with proper paths."
     st=1
 fi;
-if grep -P '^/*var/'; then
+if grep -P '^/*var/' code/**/*.dm; then
     echo "ERROR: Unmanaged global var use detected in code, please use the helpers."
     st=1
 fi;
@@ -38,7 +38,7 @@ if grep -i 'centcomm'; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
     st=1
 fi;
-if grep -i 'centcomm' _maps/**/*.dmm; then
+if grep -i 'centcomm' _maps/**/*.dmm code/**/*.dm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1
 fi;
