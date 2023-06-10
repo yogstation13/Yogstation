@@ -1,0 +1,4 @@
+author: "Gaxeer"
+delete-after: true 
+changes: 
+  - bugfix: "fixed medical kiosk ui"
