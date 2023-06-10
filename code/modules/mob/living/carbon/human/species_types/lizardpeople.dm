@@ -26,7 +26,7 @@
 	skinned_type = /obj/item/stack/sheet/animalhide/lizard
 	exotic_bloodtype = "L"
 	disliked_food = SUGAR | VEGETABLES
-	liked_food = MEAT | GRILLED | SEAFOOD | MICE
+	liked_food = MEAT | GRILLED | SEAFOOD | MICE | FRUIT
 	inert_mutation = FIREBREATH
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
 	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream

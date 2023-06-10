@@ -1555,8 +1555,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_tools/angelcoolboy
 	name = "Syndicate Angel Potion"
-	desc = "After many failed attempts, the syndicate has reverse engineered an angel potion smuggled off of Lavaland. \
-			Preliminary testing could only sprout wings in Humans, Vullen, Ex'hau, Preterni, IPCs, and Phytosians."
+	desc = "After many failed attempts, the syndicate has reverse engineered an angel potion smuggled off of the lava planet V-227. \
+			Preliminary testing could only sprout wings in Humans, Vuulen, Ex'hau, Preterni, IPCs, and Phytosians."
 	cost = 2
 	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 

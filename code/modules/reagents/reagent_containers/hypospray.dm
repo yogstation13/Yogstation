@@ -362,11 +362,12 @@
 		return
 
 /obj/item/hypospray/attackby(obj/item/I, mob/living/user)
+	var/quickloading = FALSE
 	if((istype(I, /obj/item/reagent_containers/glass/bottle/vial) && container != null))
 		if(!quickload)
 			to_chat(user, span_warning("[src] can not hold more than one container!"))
 			return FALSE
-		unload_hypo(user)
+		quickloading = TRUE
 	if(I.w_class <= max_container_size)
 		var/obj/item/reagent_containers/glass/bottle/vial/V = I
 		if(!is_type_in_list(V, allowed_containers))
@@ -374,6 +375,8 @@
 			return FALSE
 		if(!user.transferItemToLoc(V,src))
 			return FALSE
+		if(quickloading)
+			unload_hypo(user)
 		container = V
 		user.visible_message(span_notice("[user] has loaded [container] into [src]."),span_notice("You have loaded [container] into [src]."))
 		update_icon()

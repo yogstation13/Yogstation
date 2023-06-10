@@ -432,6 +432,22 @@
 					/obj/item/storage/box/wall_flash)
 	crate_name = "wall-mounted flash crate"
 
+/datum/supply_pack/security/secconclothes
+	name = "Constable Supply Crate"
+	desc = "Contains two different sets of constable uniforms and two billy clubs and whistles to go with them. Requires Security access to open."
+	cost = 5000
+	contains = list(/obj/item/melee/classic_baton/secconbaton,
+					/obj/item/melee/classic_baton/secconbaton,
+					/obj/item/clothing/neck/falcon/secconwhistle,
+					/obj/item/clothing/neck/falcon/secconwhistle,
+					/obj/item/clothing/under/rank/security/secconuniform,
+					/obj/item/clothing/under/rank/security/secconuniform,
+					/obj/item/clothing/head/helmet/secconhelm,
+					/obj/item/clothing/suit/armor/secconcoat,
+					/obj/item/clothing/head/beret/sec/secconhat,
+					/obj/item/clothing/suit/armor/secconvest)
+	crate_name = "constable supply crate"
+	
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Armory //////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
