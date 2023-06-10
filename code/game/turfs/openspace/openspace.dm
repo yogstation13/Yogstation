@@ -12,13 +12,13 @@
 	..()
 	return TRUE
 
-/turf/open/openspace/Initialize() // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
+/turf/open/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
 	. = ..()
 	plane = FLOOR_OPENSPACE_PLANE
 	layer = OPENSPACE_LAYER
 	return INITIALIZE_HINT_LATELOAD
 
-/turf/open/openspace/LateInitialize()
+/turf/open/openspace/LateInitialize(mapload)
 	update_multiz(TRUE, TRUE)
 
 /turf/open/openspace/Destroy()

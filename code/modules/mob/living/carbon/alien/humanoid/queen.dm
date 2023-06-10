@@ -24,7 +24,7 @@
 	icon_state = "alienq"
 	var/datum/timedevent/time_to_shuttle
 
-/mob/living/carbon/alien/humanoid/royal/queen/Initialize()
+/mob/living/carbon/alien/humanoid/royal/queen/Initialize(mapload)
 	if(!is_centcom_level(get_turf(src)))
 		SSshuttle.registerHostileEnvironment(src) //yogs: aliens delay shuttle
 		time_to_shuttle = addtimer(CALLBACK(src, PROC_REF(game_end)), 30 MINUTES, TIMER_STOPPABLE) //yogs: time until shuttle is freed/called

@@ -28,12 +28,12 @@
 /obj/machinery/reagentgrinder/kitchen //starts with a mixing bowl inside instead
 	container = /obj/item/reagent_containers/glass/mixbowl
 
-/obj/machinery/reagentgrinder/Initialize()
+/obj/machinery/reagentgrinder/Initialize(mapload)
 	. = ..()
 	holdingitems = list()
 	container = new container(src)
 
-/obj/machinery/reagentgrinder/constructed/Initialize()
+/obj/machinery/reagentgrinder/constructed/Initialize(mapload)
 	. = ..()
 	holdingitems = list()
 	QDEL_NULL(container)

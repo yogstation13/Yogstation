@@ -387,7 +387,7 @@
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
-/obj/item/clothing/glasses/thermal/syndi/Initialize()
+/obj/item/clothing/glasses/thermal/syndi/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	if(syndicate)
@@ -463,7 +463,7 @@
 	var/datum/action/cooldown/expose/expose_ability
 	var/hud_type = DATA_HUD_MEDICAL_ADVANCED
 
-/obj/item/clothing/glasses/godeye/Initialize()
+/obj/item/clothing/glasses/godeye/Initialize(mapload)
 	. = ..()
 	expose_ability = new(src)
 

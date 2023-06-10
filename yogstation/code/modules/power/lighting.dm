@@ -1,4 +1,4 @@
-/obj/machinery/light/ComponentInitialize()
+/obj/machinery/light/ComponentInitialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_light))
 

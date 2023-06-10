@@ -21,11 +21,11 @@
 	var/full_damage_on_mobs = FALSE
 	var/alert_admins = TRUE
 
-/obj/item/grenade/plastic/Initialize()
+/obj/item/grenade/plastic/Initialize(mapload)
 	. = ..()
 	plastic_overlay = mutable_appearance(icon, "[item_state]2", HIGH_OBJ_LAYER)
 
-/obj/item/grenade/plastic/ComponentInitialize()
+/obj/item/grenade/plastic/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
@@ -187,7 +187,7 @@
 	var/open_panel = 0
 	can_attach_mob = TRUE
 
-/obj/item/grenade/plastic/c4/Initialize()
+/obj/item/grenade/plastic/c4/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/explosive/c4(src)
 

@@ -476,7 +476,7 @@
 	desc = "It looks upsettingly familiar..."
 	icon_state = "statue"
 
-/obj/structure/bloodsucker/bloodstatue/ComponentInitialize()
+/obj/structure/bloodsucker/bloodstatue/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/art, 30)
 
@@ -1321,7 +1321,7 @@
 	var/mutable_appearance/armrest
 
 // Add rotating and armrest
-/obj/structure/bloodsucker/bloodthrone/Initialize()
+/obj/structure/bloodsucker/bloodthrone/Initialize(mapload)
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE)
 	armrest = GetArmrest()
 	armrest.layer = ABOVE_MOB_LAYER

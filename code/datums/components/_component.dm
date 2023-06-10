@@ -21,7 +21,7 @@
 /**
  * Create a new component.
  *
- * Additional arguments are passed to [Initialize()][/datum/component/proc/Initialize]
+ * Additional arguments are passed to [Initialize(mapload)][/datum/component/proc/Initialize]
  *
  * Arguments:
  * * datum/P the parent datum this component reacts to signals from
@@ -29,7 +29,7 @@
 /datum/component/New(list/raw_args)
 	parent = raw_args[1]
 	var/list/arguments = raw_args.Copy(2)
-	if(Initialize(arglist(arguments)) == COMPONENT_INCOMPATIBLE)
+	if(Initialize(mapload, arglist(arguments)) == COMPONENT_INCOMPATIBLE)
 		qdel(src, TRUE, TRUE)
 		CRASH("Incompatible [type] assigned to a [parent.type]! args: [json_encode(arguments)]")
 
@@ -40,7 +40,7 @@
  *
  * Do not call `qdel(src)` from this function, `return COMPONENT_INCOMPATIBLE` instead
  */
-/datum/component/proc/Initialize(...)
+/datum/component/proc/Initialize(mapload, ...)
 	return
 
 /**

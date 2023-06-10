@@ -68,11 +68,11 @@
 	..()
 	GLOB.telecomms_list += src
 
-/obj/machinery/computer/message_monitor/Initialize()
+/obj/machinery/computer/message_monitor/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/computer/message_monitor/LateInitialize()
+/obj/machinery/computer/message_monitor/LateInitialize(mapload)
 	//Is the server isn't linked to a server, and there's a server available, default it to the first one in the list.
 	if(!linkedServer)
 		for(var/obj/machinery/telecomms/message_server/S in GLOB.telecomms_list)
@@ -467,7 +467,7 @@
 	info = "<center><h2>Daily Key Reset</h2></center><br>The new message monitor key is '[server.decryptkey]'.<br>Please keep this a secret and away from the clown.<br>If necessary, change the password to a more secure one."
 	add_overlay("paper_words")
 
-/obj/item/paper/monitorkey/LateInitialize()
+/obj/item/paper/monitorkey/LateInitialize(mapload)
 	for (var/obj/machinery/telecomms/message_server/preset/server in GLOB.telecomms_list)
 		if (server.decryptkey)
 			print(server)

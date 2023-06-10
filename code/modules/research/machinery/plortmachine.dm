@@ -49,6 +49,6 @@
 	linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
 
 
-/obj/machinery/plortrefinery/Initialize()
+/obj/machinery/plortrefinery/Initialize(mapload)
 	. = ..()
 	linked_techweb = SSresearch.science_tech

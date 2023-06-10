@@ -25,7 +25,7 @@
 	update_icon()
 	component_parts = list(new /obj/item/circuitboard/machine/generator)
 
-/obj/machinery/power/generator/ComponentInitialize()
+/obj/machinery/power/generator/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
 

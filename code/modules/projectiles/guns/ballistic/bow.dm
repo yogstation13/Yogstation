@@ -237,7 +237,7 @@
 
 	var/obj/item/assembly/assembly = /obj/item/assembly/voice_box/bow
 
-/obj/item/gun/ballistic/bow/toy/Initialize()
+/obj/item/gun/ballistic/bow/toy/Initialize(mapload)
 	. = ..()
 	if(ispath(assembly))
 		assembly = new assembly(src)
@@ -314,7 +314,7 @@
 	draw_slowdown = 0 //They're a wizard they need to zoom around
 	var/bladetype = /obj/item/break_blade
 
-/obj/item/gun/ballistic/bow/break_bow/Initialize()
+/obj/item/gun/ballistic/bow/break_bow/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10)
 
@@ -350,7 +350,7 @@
 	var/bowtype = /obj/item/gun/ballistic/bow/break_bow
 	var/returning = FALSE
 
-/obj/item/break_blade/Initialize()
+/obj/item/break_blade/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10)
 
@@ -444,7 +444,7 @@
 	//var/stored_ammo ///what was stored in the magazine before being folded?
 	var/fold_sound = 'sound/weapons/batonextend.ogg'
 
-/obj/item/gun/ballistic/bow/energy/Initialize()
+/obj/item/gun/ballistic/bow/energy/Initialize(mapload)
 	if(folded)
 		toggle_folded(TRUE)
 	. = ..()

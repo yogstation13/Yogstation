@@ -21,7 +21,7 @@
 	///if the mask should cluwne you when you put it on
 	var/auto_cluwne = TRUE
 
-/obj/item/clothing/mask/yogs/cluwne/Initialize()
+/obj/item/clothing/mask/yogs/cluwne/Initialize(mapload)
 	.=..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
@@ -79,7 +79,7 @@
 	/// If active, creates a floor cluwne with the user as a target
 	var/does_floor_cluwne = FALSE
 
-/obj/item/clothing/mask/yogs/cluwne/happy_cluwne/Initialize()
+/obj/item/clothing/mask/yogs/cluwne/happy_cluwne/Initialize(mapload)
 	.=..()
 	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 	if(prob(1)) //this function pre-determines the logic of the cluwne mask. applying and reapplying the mask does not alter or change anything

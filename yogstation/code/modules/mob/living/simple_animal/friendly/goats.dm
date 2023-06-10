@@ -201,7 +201,7 @@
 	melee_damage_upper = 20
 	gold_core_spawnable = NO_SPAWN
 
-/mob/living/simple_animal/hostile/retaliate/goat/huge/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/huge/Initialize(mapload)
 	. = ..()
 	transform *= 2
 
@@ -212,7 +212,7 @@
 	melee_damage_upper = 1
 	gold_core_spawnable = NO_SPAWN
 
-/mob/living/simple_animal/hostile/retaliate/goat/tiny/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/tiny/Initialize(mapload)
 	. = ..()
 	transform *= 0.5
 
@@ -345,7 +345,7 @@
 	tame = 1
 	gold_core_spawnable = NO_SPAWN
 
-/mob/living/simple_animal/hostile/retaliate/goat/legitgoat/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/legitgoat/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/waddling)
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)

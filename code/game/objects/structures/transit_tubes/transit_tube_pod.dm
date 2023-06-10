@@ -8,7 +8,7 @@
 	var/datum/gas_mixture/air_contents = new()
 	var/cargo = FALSE
 
-/obj/structure/transit_tube_pod/Initialize()
+/obj/structure/transit_tube_pod/Initialize(mapload)
 	. = ..()
 	air_contents.set_moles(/datum/gas/oxygen, MOLES_O2STANDARD)
 	air_contents.set_moles(/datum/gas/nitrogen, MOLES_N2STANDARD)

@@ -4,6 +4,6 @@
 	var/datum/mind/buyer
 	var/tc_cost = 0
 
-/datum/component/refundable/Initialize(datum/mind/buyer, tc_cost)
+/datum/component/refundable/Initialize(mapload, datum/mind/buyer, tc_cost)
 	src.buyer = buyer
 	src.tc_cost = tc_cost

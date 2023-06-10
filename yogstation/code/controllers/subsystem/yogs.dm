@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(Yogs)
 
 	var/list/datum/department_goal/department_goals = list()
 
-/datum/controller/subsystem/Yogs/Initialize()
+/datum/controller/subsystem/Yogs/Initialize(mapload)
 	mentortickets = list()
 
 	//PRIZEPOOL MODIFIER THING

@@ -72,7 +72,7 @@ SUBSYSTEM_DEF(demo)
 	write_event_line("chat [target_text] [last_chat_message == json_encoded ? "=" : json_encoded]")
 	last_chat_message = json_encoded
 
-/datum/controller/subsystem/demo/Initialize()
+/datum/controller/subsystem/demo/Initialize(mapload)
 	if(!CONFIG_GET(flag/demos_enabled))
 		flags |= SS_NO_FIRE
 		can_fire = FALSE

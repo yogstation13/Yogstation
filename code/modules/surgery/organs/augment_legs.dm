@@ -9,7 +9,7 @@
 	var/implant_type = "leg implant"
 	COOLDOWN_DECLARE(emp_notice)
 
-/obj/item/organ/cyberimp/leg/Initialize()
+/obj/item/organ/cyberimp/leg/Initialize(mapload)
 	. = ..()
 	update_icon()
 	SetSlotFromZone()
@@ -159,7 +159,7 @@
 /obj/item/organ/cyberimp/leg/clownshoes/l
 	zone = BODY_ZONE_L_LEG
 
-/obj/item/organ/cyberimp/leg/clownshoes/Initialize()
+/obj/item/organ/cyberimp/leg/clownshoes/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg'=1,'sound/effects/clownstep2.ogg'=1), 50)
 

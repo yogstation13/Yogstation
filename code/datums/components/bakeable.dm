@@ -14,7 +14,7 @@
 	var/customized = FALSE
 
 
-/datum/component/bakeable/Initialize(bake_result, required_bake_time, positive_result, use_large_steam_sprite, custom = FALSE)
+/datum/component/bakeable/Initialize(mapload, bake_result, required_bake_time, positive_result, use_large_steam_sprite, custom = FALSE)
 	. = ..()
 	if(!isitem(parent)) //Only items support baking at the moment
 		return COMPONENT_INCOMPATIBLE

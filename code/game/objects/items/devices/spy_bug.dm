@@ -3,7 +3,7 @@
 	var/datum/signal/subspace/vocal/signal = new(hearing_args[HEARING_SPEAKER], FREQ_SYNDICATE, speaker, /datum/language/common, hearing_args[HEARING_RAW_MESSAGE], list(SPAN_ROBOT), list())
 	signal.send_to_receivers()
 
-/datum/component/bugged/Initialize()
+/datum/component/bugged/Initialize(mapload)
 	RegisterSignals(parent, list(COMSIG_MOVABLE_HEAR), PROC_REF(Hear))
 
 /obj/item/spy_bug

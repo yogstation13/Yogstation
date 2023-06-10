@@ -26,7 +26,7 @@
 	var/list/spotlights = list()
 	var/list/sparkles = list()
 
-/obj/structure/discoball/Initialize()
+/obj/structure/discoball/Initialize(mapload)
 	. = ..()
 	update_icon()
 

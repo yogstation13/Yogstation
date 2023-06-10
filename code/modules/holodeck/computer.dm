@@ -47,7 +47,7 @@
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/computer/holodeck/LateInitialize()
+/obj/machinery/computer/holodeck/LateInitialize(mapload)
 	if(ispath(holodeck_type, /area))
 		linked = pop(get_areas(holodeck_type, FALSE))
 	if(ispath(offline_program, /area))

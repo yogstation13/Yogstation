@@ -16,7 +16,7 @@
 	if(!F.check_variables() && !override_checks)
 		QDEL_NULL(F)
 	if(start_field && (F || override_checks))
-		F.Initialize()
+		F.Initialize(mapload)
 	return F
 
 /datum/proximity_monitor/advanced
@@ -82,7 +82,7 @@
 	if(requires_processing)
 		START_PROCESSING(SSfields, src)
 
-/datum/proximity_monitor/advanced/proc/Initialize()
+/datum/proximity_monitor/advanced/proc/Initialize(mapload)
 	setup_field()
 	post_setup_field()
 
@@ -285,7 +285,7 @@
 	var/datum/proximity_monitor/advanced/current = null
 	var/mob/listeningTo
 
-/obj/item/multitool/field_debug/Initialize()
+/obj/item/multitool/field_debug/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

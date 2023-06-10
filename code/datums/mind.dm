@@ -754,7 +754,7 @@
 			return src in c.employees
 
 /mob/proc/sync_mind()
-	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)
+	mind_Initialize(mapload)	//updates the mind (or creates and initializes one if one doesn't exist)
 	mind.active = 1		//indicates that the mind is currently synced with a client
 
 /datum/mind/proc/has_martialart(string)
@@ -769,7 +769,7 @@
 	return
 
 //Initialisation procs
-/mob/proc/mind_initialize()
+/mob/proc/mind_Initialize(mapload)
 	if(mind)
 		mind.key = key
 
@@ -782,28 +782,28 @@
 	// There's nowhere else to set this up, mind code makes me depressed
 	mind.antag_hud = add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/antagonist_hud, "combo_hud", mind)
 
-/mob/living/carbon/mind_initialize()
+/mob/living/carbon/mind_Initialize(mapload)
 	..()
 	last_mind = mind
 
 //HUMAN
-/mob/living/carbon/human/mind_initialize()
+/mob/living/carbon/human/mind_Initialize(mapload)
 	..()
 	if(!mind.assigned_role)
 		mind.assigned_role = "Unassigned" //default
 
 //AI
-/mob/living/silicon/ai/mind_initialize()
+/mob/living/silicon/ai/mind_Initialize(mapload)
 	..()
 	mind.assigned_role = "AI"
 
 //BORG
-/mob/living/silicon/robot/mind_initialize()
+/mob/living/silicon/robot/mind_Initialize(mapload)
 	..()
 	mind.assigned_role = "Cyborg"
 
 //PAI
-/mob/living/silicon/pai/mind_initialize()
+/mob/living/silicon/pai/mind_Initialize(mapload)
 	..()
 	mind.assigned_role = ROLE_PAI
 	mind.special_role = ""

@@ -117,7 +117,7 @@
 	item_state = "beaker"
 	materials = list(/datum/material/glass=500)
 
-/obj/item/reagent_containers/glass/beaker/Initialize()
+/obj/item/reagent_containers/glass/beaker/Initialize(mapload)
 	. = ..()
 	update_icon()
 

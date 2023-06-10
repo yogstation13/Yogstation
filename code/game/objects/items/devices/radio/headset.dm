@@ -14,7 +14,7 @@
 	user.visible_message(span_suicide("[user] begins putting \the [src]'s antenna up [user.p_their()] nose! It looks like [user.p_theyre()] trying to give [user.p_them()]self cancer!"))
 	return TOXLOSS
 
-/obj/item/radio/headset/Initialize()
+/obj/item/radio/headset/Initialize(mapload)
 	. = ..()
 	recalculateChannels()
 
@@ -44,7 +44,7 @@
 	icon_state = "syndie_headset"
 	item_state = "syndie_headset"
 
-/obj/item/radio/headset/syndicate/alt/ComponentInitialize()
+/obj/item/radio/headset/syndicate/alt/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
@@ -52,12 +52,12 @@
 	name = "team leader headset"
 	command = TRUE
 
-/obj/item/radio/headset/syndicate/Initialize()
+/obj/item/radio/headset/syndicate/Initialize(mapload)
 	. = ..()
 	make_syndie()
 
 /obj/item/radio/headset/binary
-/obj/item/radio/headset/binary/Initialize()
+/obj/item/radio/headset/binary/Initialize(mapload)
 	. = ..()
 	qdel(keyslot)
 	keyslot = new /obj/item/encryptionkey/binary
@@ -75,7 +75,7 @@
 	icon_state = "sec_headset_alt"
 	item_state = "sec_headset_alt"
 
-/obj/item/radio/headset/headset_sec/alt/ComponentInitialize()
+/obj/item/radio/headset/headset_sec/alt/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
@@ -142,7 +142,7 @@
 	icon_state = "com_headset_alt"
 	item_state = "com_headset_alt"
 
-/obj/item/radio/headset/heads/captain/alt/ComponentInitialize()
+/obj/item/radio/headset/heads/captain/alt/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
@@ -164,7 +164,7 @@
 	icon_state = "com_headset_alt"
 	item_state = "com_headset_alt"
 
-/obj/item/radio/headset/heads/hos/ComponentInitialize()
+/obj/item/radio/headset/heads/hos/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
@@ -224,7 +224,7 @@
 	icon_state = "cent_headset_alt"
 	item_state = "cent_headset_alt"
 
-/obj/item/radio/headset/headset_cent/bowman/ComponentInitialize()
+/obj/item/radio/headset/headset_cent/bowman/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
@@ -235,7 +235,7 @@
 	item_state = "cent_headset_alt"
 	keyslot = new /obj/item/encryptionkey/heads/captain
 
-/obj/item/radio/headset/headset_cent/alt/ComponentInitialize()
+/obj/item/radio/headset/headset_cent/alt/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 

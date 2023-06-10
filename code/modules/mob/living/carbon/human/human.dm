@@ -5,7 +5,7 @@
 	icon_state = "human_basic"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 
-/mob/living/carbon/human/Initialize()
+/mob/living/carbon/human/Initialize(mapload)
 	add_verb(src, /mob/living/proc/mob_sleep)
 	add_verb(src, /mob/living/proc/lay_down)
 
@@ -36,7 +36,7 @@
 	randomize_human(src)
 	dna.initialize_dna()
 
-/mob/living/carbon/human/ComponentInitialize()
+/mob/living/carbon/human/ComponentInitialize(mapload)
 	. = ..()
 	if(!(CONFIG_GET(flag/disable_human_mood)))
 		AddComponent(/datum/component/mood)
@@ -1130,7 +1130,7 @@
 /mob/living/carbon/human/species
 	var/race = null
 
-/mob/living/carbon/human/species/Initialize()
+/mob/living/carbon/human/species/Initialize(mapload)
 	. = ..()
 	set_species(race)
 
@@ -1289,7 +1289,7 @@
 
 /mob/living/carbon/human/species/ipc/empty //used for "cloning" ipcs
 
-/mob/living/carbon/human/species/ipc/empty/Initialize()
+/mob/living/carbon/human/species/ipc/empty/Initialize(mapload)
 	. = ..()
 	deathsound = null //make it a silent death
 	death()

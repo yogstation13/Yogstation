@@ -12,7 +12,7 @@
 	var/datum/action/cooldown/yalp_heal/heal
 	var/hunters_release_time // Yogs -- making Login() dialogue make more sense
 
-/mob/camera/yalp_elor/Initialize()
+/mob/camera/yalp_elor/Initialize(mapload)
 	. = ..()
 	transmit = new
 	transport = new

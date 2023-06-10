@@ -270,7 +270,7 @@ GLOBAL_VAR(stormdamage)
 		return
 	exit(user)
 
-/obj/structure/battle_bus/Initialize()
+/obj/structure/battle_bus/Initialize(mapload)
 	. = ..()
 	if(GLOB.thebattlebus)
 		qdel(src) //There can be ONLY ONE

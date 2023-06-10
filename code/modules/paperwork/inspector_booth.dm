@@ -53,7 +53,7 @@
 	)
 
 
-/obj/machinery/inspector_booth/Initialize()
+/obj/machinery/inspector_booth/Initialize(mapload)
 	. = ..()
 	update_icon()
 

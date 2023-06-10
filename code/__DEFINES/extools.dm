@@ -7,7 +7,7 @@ GLOBAL_VAR_INIT(enable_memdump, 0)
 	Initializing any other modules also initializes this so it shouldn't be necessary to call this.
 */
 
-/proc/extools_initialize()
+/proc/extools_Initialize(mapload)
 	return LIBCALL(EXTOOLS, "core_initialize")() == EXTOOLS_SUCCESS
 
 /*
@@ -31,7 +31,7 @@ GLOBAL_VAR_INIT(enable_memdump, 0)
 
 #if 0
 
-/proc/tffi_initialize()
+/proc/tffi_Initialize(mapload)
 	return LIBCALL(EXTOOLS, "tffi_initialize")() == EXTOOLS_SUCCESS
 
 GLOBAL_VAR_INIT(fallback_alerted, FALSE)
@@ -108,7 +108,7 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 		- Disables profiling for explosions. Any currently running profiles will stop when the proc finishes executing or enters a sleep.
 */
 
-/proc/profiling_initialize()
+/proc/profiling_Initialize(mapload)
 	return LIBCALL(EXTOOLS, "extended_profiling_initialize")() == EXTOOLS_SUCCESS
 
 /proc/start_profiling(procpath)
@@ -125,7 +125,7 @@ GLOBAL_VAR_INIT(next_promise_id, 0)
 	Call with pause = TRUE to wait until the debugger connected and immediately break on the next instruction after the call.
 */
 
-/proc/debugger_initialize(pause = FALSE)
+/proc/debugger_Initialize(mapload, pause = FALSE)
 	return LIBCALL(EXTOOLS, "debug_initialize")(pause ? "pause" : "") == EXTOOLS_SUCCESS
 
 /*

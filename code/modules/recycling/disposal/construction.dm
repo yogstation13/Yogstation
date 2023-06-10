@@ -14,7 +14,7 @@
 	var/obj/pipe_type = /obj/structure/disposalpipe/segment
 	var/pipename
 
-/obj/structure/disposalconstruct/Initialize(loc, _pipe_type, _dir = SOUTH, flip = FALSE, obj/make_from)
+/obj/structure/disposalconstruct/Initialize(mapload, loc, _pipe_type, _dir = SOUTH, flip = FALSE, obj/make_from)
 	. = ..()
 	if(make_from)
 		pipe_type = make_from.type
@@ -87,7 +87,7 @@
 			dpdir |= turn(dir, 180)
 	return dpdir
 
-/obj/structure/disposalconstruct/ComponentInitialize()
+/obj/structure/disposalconstruct/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_FLIP | ROTATION_VERBS ,null,CALLBACK(src, PROC_REF(can_be_rotated)), CALLBACK(src, PROC_REF(after_rot)))
 

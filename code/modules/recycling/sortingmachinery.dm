@@ -8,7 +8,7 @@
 	var/giftwrapped = FALSE
 	var/sortTag = 0
 
-/obj/structure/bigDelivery/Initialize()
+/obj/structure/bigDelivery/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposal_handling))
 
@@ -96,7 +96,7 @@
 	var/giftwrapped = 0
 	var/sortTag = 0
 
-/obj/item/smallDelivery/Initialize()
+/obj/item/smallDelivery/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposal_handling))
 

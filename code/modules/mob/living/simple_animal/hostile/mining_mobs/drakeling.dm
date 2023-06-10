@@ -41,7 +41,7 @@
 	var/grinding = FALSE
 	var/datum/action/drake_ollie/dollie
 
-/mob/living/simple_animal/hostile/drakeling/Initialize()
+/mob/living/simple_animal/hostile/drakeling/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8, MOB_LAYER), TEXT_SOUTH = list(0, 8, MOB_LAYER), TEXT_EAST = list(0, 8, MOB_LAYER), TEXT_WEST = list( 0, 8, MOB_LAYER)))

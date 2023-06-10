@@ -45,7 +45,7 @@
 	var/tcoords
 	var/targetdest = "None"
 
-/obj/machinery/sci_bombardment/Initialize()
+/obj/machinery/sci_bombardment/Initialize(mapload)
 	. = ..()
 	for(var/Z in 1 to world.maxz) //define Lavaland Z-level
 		if(is_mining_level(Z))

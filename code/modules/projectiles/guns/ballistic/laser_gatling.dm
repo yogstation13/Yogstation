@@ -18,7 +18,7 @@
 	var/heat_stage = 0
 	var/heat_diffusion = 0.5
 
-/obj/item/minigunpack/Initialize()
+/obj/item/minigunpack/Initialize(mapload)
 	. = ..()
 	gun = new(src)
 	START_PROCESSING(SSobj, src)
@@ -122,7 +122,7 @@
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
 	var/obj/item/minigunpack/ammo_pack
 
-/obj/item/gun/ballistic/minigun/Initialize()
+/obj/item/gun/ballistic/minigun/Initialize(mapload)
 	if(istype(loc, /obj/item/minigunpack)) //We should spawn inside an ammo pack so let's use that one.
 		ammo_pack = loc
 	else

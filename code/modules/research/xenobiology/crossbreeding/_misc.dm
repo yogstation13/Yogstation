@@ -72,7 +72,7 @@ Slimecrossing Items
 	var/z
 	var/rewinds_remaining
 
-/datum/component/dejavu/Initialize(rewinds = 1)
+/datum/component/dejavu/Initialize(mapload, rewinds = 1)
 	rewinds_remaining = rewinds
 	var/turf/T = get_turf(parent)
 	if(T)
@@ -252,7 +252,7 @@ Slimecrossing Items
 	max_integrity = 100
 	armor = list(MELEE = 30, BULLET = 50, LASER = -50, ENERGY = -50, BOMB = 0, BIO = 100, RAD = 100, FIRE = -80, ACID = 30)
 
-/obj/structure/ice_stasis/Initialize()
+/obj/structure/ice_stasis/Initialize(mapload)
 	. = ..()
 	playsound(src, 'sound/magic/ethereal_exit.ogg', 50, 1)
 

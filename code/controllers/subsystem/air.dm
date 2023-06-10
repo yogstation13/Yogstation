@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(air)
 	return ..()
 
 
-/datum/controller/subsystem/air/Initialize(timeofday)
+/datum/controller/subsystem/air/Initialize(mapload, timeofday)
 	extools_update_ssair()
 	map_loading = FALSE
 	setup_allturfs()

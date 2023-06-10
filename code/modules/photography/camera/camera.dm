@@ -41,7 +41,7 @@
 	var/flash_enabled = TRUE
 	var/start_full = TRUE // does the camera spawn full of film
 
-/obj/item/camera/Initialize()
+/obj/item/camera/Initialize(mapload)
 	. = ..()
 	if(start_full)
 		pictures_left = pictures_max // future proofed if anyone ever creates a camera with a different max
@@ -289,7 +289,7 @@
 	var/obj/item/assembly/flash/tator/flashy
 	COOLDOWN_DECLARE(flash_cooldown)
 
-/obj/item/camera/tator/Initialize()
+/obj/item/camera/tator/Initialize(mapload)
 	. = ..()
 	flashy = new (src)
 

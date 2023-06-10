@@ -30,7 +30,7 @@
 	var/disrupted = FALSE
 
 // *extremely bad russian accent* no!
-/datum/component/gunpoint/Initialize(mob/living/targ, obj/item/gun/wep)
+/datum/component/gunpoint/Initialize(mapload, mob/living/targ, obj/item/gun/wep)
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 

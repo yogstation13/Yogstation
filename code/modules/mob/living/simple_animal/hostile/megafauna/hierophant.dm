@@ -84,7 +84,7 @@ Difficulty: Hard
 	music_component = /datum/component/music_player/battle
 	music_path = /datum/music/sourced/battle/hierophant
 
-/mob/living/simple_animal/hostile/megafauna/hierophant/Initialize()
+/mob/living/simple_animal/hostile/megafauna/hierophant/Initialize(mapload)
 	. = ..()
 	spawned_beacon = new(loc)
 

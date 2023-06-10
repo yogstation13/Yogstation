@@ -4,7 +4,7 @@
 
 #define SHADOWWALK_THRESHOLD 0.02
 
-/datum/component/walk/Initialize()
+/datum/component/walk/Initialize(mapload)
 	if(!istype(parent, /mob/living))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_PRE_MOVE, PROC_REF(handle_move))

@@ -3,7 +3,7 @@
 	var/obj/machinery/vr_sleeper/vr_sleeper
 	var/datum/action/quit_vr/quit_action
 
-/mob/living/carbon/human/virtual_reality/Initialize()
+/mob/living/carbon/human/virtual_reality/Initialize(mapload)
 	. = ..()
 	quit_action = new()
 	quit_action.Grant(src)

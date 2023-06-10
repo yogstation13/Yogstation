@@ -290,7 +290,7 @@
 	icon_state = "pillaralt-enter"
 	alt = 1
 
-/obj/structure/destructible/cult/pillar/Initialize()
+/obj/structure/destructible/cult/pillar/Initialize(mapload)
 	..()
 	var/turf/T = loc
 	if (!T)
@@ -347,7 +347,7 @@
 	var/anchor = FALSE //are we the bloodstone used to summon Nar'sie? used in the final part of the summoning
 	is_endgame = TRUE
 
-/obj/structure/destructible/cult/bloodstone/Initialize()
+/obj/structure/destructible/cult/bloodstone/Initialize(mapload)
 	..()
 	if (!src.loc)
 		message_admins("Blood Cult: A blood stone was somehow spawned in nullspace. It has been destroyed.")

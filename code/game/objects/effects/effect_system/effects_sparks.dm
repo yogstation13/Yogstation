@@ -26,11 +26,11 @@
 	light_color = LIGHT_COLOR_FIRE
 	light_flags = LIGHT_NO_LUMCOUNT
 
-/obj/effect/particle_effect/sparks/Initialize()
+/obj/effect/particle_effect/sparks/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/particle_effect/sparks/LateInitialize()
+/obj/effect/particle_effect/sparks/LateInitialize(mapload)
 	flick(icon_state, src) // replay the animation
 	playsound(src, "sparks", 100, TRUE)
 	var/turf/T = loc

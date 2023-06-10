@@ -291,7 +291,7 @@
 	return types
 
 /// Return a list of types to pregenerate for later equipping
-/// This should not be things that do unique stuff in Initialize() based off their location, since we'll be storing them for a while
+/// This should not be things that do unique stuff in Initialize(mapload) based off their location, since we'll be storing them for a while
 /datum/outfit/proc/get_types_to_preload()
 	var/list/preload = list()
 	preload += id

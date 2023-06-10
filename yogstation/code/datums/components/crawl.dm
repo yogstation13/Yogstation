@@ -25,7 +25,7 @@
 	var/gain_message = span_notice("Make an issue on github stating what you were doing when this message appeared!")
 	var/loss_message = span_notice("Make an issue on github stating what you were doing when this message appeared!")
 
-/datum/component/crawl/Initialize()
+/datum/component/crawl/Initialize(mapload)
 	if(!istype(parent, /mob/living))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_MOB_ALTCLICKON, PROC_REF(try_crawl))
@@ -269,7 +269,7 @@
 	var/thing = "meme"
 	var/crawl_name
 
-/datum/component/crawl/meme/Initialize()
+/datum/component/crawl/meme/Initialize(mapload)
 	if(!crawl_name)
 		crawl_name = thing
 	gain_message = span_boldnotice("You can now [crawl_name]! Alt-click on [thing] to phase in and out.")
@@ -412,7 +412,7 @@ GLOBAL_LIST_EMPTY(vomit_spots)
 	icon = 'icons/effects/blood.dmi'
 	item_flags = ABSTRACT | DROPDEL
 
-/obj/item/vomitcrawl/Initialize()
+/obj/item/vomitcrawl/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 

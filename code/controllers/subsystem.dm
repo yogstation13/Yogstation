@@ -262,7 +262,7 @@
 /**
  * Used to initialize the subsystem. This is expected to be overriden by subtypes.
  */
-/datum/controller/subsystem/Initialize()
+/datum/controller/subsystem/Initialize(mapload)
 	return SS_INIT_NONE
 
 /datum/controller/subsystem/stat_entry(msg)

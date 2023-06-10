@@ -346,7 +346,7 @@ Credit where due:
 	<hr>\
 	<b>Good luck!</b>"
 
-/obj/item/paper/servant_primer/Initialize()
+/obj/item/paper/servant_primer/Initialize(mapload)
 	. = ..()
 	var/changelog = world.file2list("strings/clockwork_cult_changelog.txt")
 	var/changelog_contents = ""

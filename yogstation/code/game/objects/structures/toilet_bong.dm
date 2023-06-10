@@ -7,12 +7,12 @@
 	anchored = TRUE
 	var/mutable_appearance/weed_overlay
 
-/obj/structure/toilet_bong/Initialize()
+/obj/structure/toilet_bong/Initialize(mapload)
 	. = ..()
 	weed_overlay = mutable_appearance('yogstation/icons/obj/watercloset.dmi', "weed")
 	START_PROCESSING(SSobj, src)
 
-/obj/structure/toilet_bong/ComponentInitialize()
+/obj/structure/toilet_bong/ComponentInitialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = AddComponent(/datum/component/storage/concrete)
 	STR.attack_hand_interact = FALSE

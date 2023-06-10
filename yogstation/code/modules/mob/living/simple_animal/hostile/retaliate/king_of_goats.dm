@@ -103,7 +103,7 @@ Difficulty: Insanely Hard
 	var/special_attacks = 0
 	stun_chance = 7
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Initialize(mapload)
 	. = ..()
 	update_icon()
 

@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(lighting)
 	return ..()
 
 
-/datum/controller/subsystem/lighting/Initialize(timeofday)
+/datum/controller/subsystem/lighting/Initialize(mapload, timeofday)
 	if(!initialized)
 		if (CONFIG_GET(flag/starlight))
 			for(var/I in GLOB.areas)

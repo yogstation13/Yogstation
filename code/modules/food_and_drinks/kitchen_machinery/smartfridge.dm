@@ -36,7 +36,7 @@
 	var/power_wire_cut = FALSE
 	var/list/slogan_list = list()
 
-/obj/machinery/smartfridge/Initialize()
+/obj/machinery/smartfridge/Initialize(mapload)
 	. = ..()
 	create_reagents(100, NO_REACT)
 
@@ -415,7 +415,7 @@
 	pitches = FALSE
 	var/drying = FALSE
 
-/obj/machinery/smartfridge/drying_rack/Initialize()
+/obj/machinery/smartfridge/drying_rack/Initialize(mapload)
 	. = ..()
 	if(component_parts && component_parts.len)
 		component_parts.Cut()

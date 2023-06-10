@@ -5,7 +5,7 @@
 	health = 150
 	icon_state = "aliens"
 
-/mob/living/carbon/alien/humanoid/sentinel/Initialize()
+/mob/living/carbon/alien/humanoid/sentinel/Initialize(mapload)
 	var/datum/action/cooldown/alien/sneak/sneaky_beaky = new(src)
 	sneaky_beaky.Grant(src)
 	return ..()

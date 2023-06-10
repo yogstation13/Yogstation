@@ -179,7 +179,7 @@
 		custom_materials = null //Null the list to prepare for applying the materials properly
 		set_custom_materials(temp_list)
 
-	ComponentInitialize()
+	ComponentInitialize(mapload)
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -195,11 +195,11 @@
   * that all atoms will actually exist in the "WORLD" at this time and that all their Intialization
   * code has been run
   */
-/atom/proc/LateInitialize()
+/atom/proc/LateInitialize(mapload)
 	return
 
 /// Put your AddComponent() calls here
-/atom/proc/ComponentInitialize()
+/atom/proc/ComponentInitialize(mapload)
 	return
 
 /**

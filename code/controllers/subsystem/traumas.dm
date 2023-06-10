@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(traumas)
 
 #define PHOBIA_FILE "phobia.json"
 
-/datum/controller/subsystem/traumas/Initialize()
+/datum/controller/subsystem/traumas/Initialize(mapload)
 	//phobia types is to pull from randomly for brain traumas, e.g. conspiracies is for special assignment only
 	phobia_types = list("spiders", "space", "security", "clowns", "greytide", "lizards",
 						"skeletons", "snakes", "robots", "doctors", "authority", "the supernatural",

@@ -16,7 +16,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 	var/datum/centcom_announcer/announcer = /datum/centcom_announcer/default
 	var/datum/centcom_announcer/default_announcer = /datum/centcom_announcer/default
 
-/datum/controller/subsystem/processing/station/Initialize(timeofday)
+/datum/controller/subsystem/processing/station/Initialize(mapload, timeofday)
 
 	//If doing unit tests we don't do none of that trait shit ya know?
 	#ifndef UNIT_TESTS

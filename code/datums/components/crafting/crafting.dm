@@ -1,4 +1,4 @@
-/datum/component/personal_crafting/Initialize()
+/datum/component/personal_crafting/Initialize(mapload)
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, PROC_REF(create_mob_button))

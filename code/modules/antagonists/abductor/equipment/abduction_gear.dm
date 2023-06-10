@@ -625,7 +625,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	. = ..()
 	make_syndie()
 
-/obj/item/radio/headset/abductor/ComponentInitialize()
+/obj/item/radio/headset/abductor/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 

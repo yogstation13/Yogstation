@@ -15,7 +15,7 @@
 	///Do we use the large steam sprite?
 	var/use_large_steam_sprite = FALSE
 
-/datum/component/grillable/Initialize(cook_result, required_cook_time, positive_result, use_large_steam_sprite)
+/datum/component/grillable/Initialize(mapload, cook_result, required_cook_time, positive_result, use_large_steam_sprite)
 	. = ..()
 	if(!isitem(parent)) //Only items support grilling at the moment
 		return COMPONENT_INCOMPATIBLE

@@ -31,7 +31,7 @@
 	movement_type = FLYING
 	var/time_to_next_roar = 0
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize()
+/mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_HOLY, "ohgodohfuck") //sorry no magic
 	alpha = 0

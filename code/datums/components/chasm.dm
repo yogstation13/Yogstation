@@ -25,7 +25,7 @@
 		/obj/effect/dummy/crawling //yogs
 		))
 
-/datum/component/chasm/Initialize(turf/target)
+/datum/component/chasm/Initialize(mapload, turf/target)
 	RegisterSignals(parent, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), PROC_REF(Entered))
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(fish))
 	target_turf = target

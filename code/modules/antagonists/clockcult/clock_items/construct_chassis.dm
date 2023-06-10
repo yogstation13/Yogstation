@@ -11,7 +11,7 @@
 	var/creation_message = span_brass("The chassis shudders and hums to life!")
 	var/construct_type //The construct this shell will create
 
-/obj/item/clockwork/construct_chassis/Initialize()
+/obj/item/clockwork/construct_chassis/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	if(A && construct_type)

@@ -145,7 +145,7 @@
 #define COMSIG_MOB_QUICK_EQUIP "quick_equip"
 	/// return this if you want to stop the rest of the quick equip logic
 	#define COMPONENT_BLOCK_QUICK_EQUIP (1<<0)
-///From /datum/component/creamed/Initialize()
+///From /datum/component/creamed/Initialize(mapload)
 #define COMSIG_MOB_CREAMED "mob_creamed"
 ///From /obj/item/gun/proc/check_botched()
 #define COMSIG_MOB_CLUMSY_SHOOT_FOOT "mob_clumsy_shoot_foot"

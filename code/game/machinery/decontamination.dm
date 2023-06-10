@@ -31,7 +31,7 @@
 	state_open = TRUE
 	density = FALSE
 
-/obj/machinery/decontamination_unit/Initialize()
+/obj/machinery/decontamination_unit/Initialize(mapload)
 	. = ..()
 	decon = new(list(src), FALSE)
 	decon_emagged = new(list(src), FALSE)

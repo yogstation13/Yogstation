@@ -26,7 +26,7 @@
 	disconnect()
 	return ..()
 
-/obj/structure/ladder/LateInitialize()
+/obj/structure/ladder/LateInitialize(mapload)
 	// By default, discover ladders above and below us vertically
 	var/turf/T = get_turf(src)
 	var/obj/structure/ladder/L
@@ -148,7 +148,7 @@
 	var/id
 	var/height = 0  // higher numbers are considered physically higher
 
-/obj/structure/ladder/unbreakable/Initialize()
+/obj/structure/ladder/unbreakable/Initialize(mapload)
 	GLOB.ladders += src
 	return ..()
 
@@ -157,7 +157,7 @@
 	if (. != QDEL_HINT_LETMELIVE)
 		GLOB.ladders -= src
 
-/obj/structure/ladder/unbreakable/LateInitialize()
+/obj/structure/ladder/unbreakable/LateInitialize(mapload)
 	// Override the parent to find ladders based on being height-linked
 	if (!id || (up && down))
 		update_icon()
@@ -197,8 +197,8 @@
 			var/obj/structure/ladder/unbreakable/U = new (T)
 			U.id = id
 			U.height = height+1
-			LateInitialize() // LateInit both of these to build the links. It's fine.
-			U.LateInitialize()
+			LateInitialize(mapload) // LateInit both of these to build the links. It's fine.
+			U.LateInitialize(mapload)
 			for(var/turf/TT in range(2,U))
 				TT.TerraformTurf(/turf/open/indestructible/binary, /turf/open/indestructible/binary, CHANGETURF_INHERIT_AIR)
 		active = TRUE

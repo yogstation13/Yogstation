@@ -23,7 +23,7 @@
 
 	if(LAZYLEN(candidates))
 		var/mob/living/carbon/human/M = new /mob/living/carbon/human(get_turf(usr))
-		M.mind_initialize()
+		M.mind_Initialize(mapload)
 		var/mob/dead/observer/C = pick(candidates)
 		M.set_species(/datum/species/zombie/infectious/gamemode/necromanced_minion)
 		M.key = C.key

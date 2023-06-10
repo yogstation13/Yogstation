@@ -52,7 +52,7 @@
 	///The amount of steps we should take until we rest for a time.
 	var/num_steps = 0
 	
-/mob/living/simple_animal/bot/mulebot/Initialize()
+/mob/living/simple_animal/bot/mulebot/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/mulebot(src)
 	var/datum/job/cargo_tech/J = new/datum/job/cargo_tech
@@ -65,7 +65,7 @@
 	set_id(suffix || id || "#[mulebot_count]")
 	suffix = null
 
-/mob/living/simple_animal/bot/mulebot/ComponentInitialize()
+/mob/living/simple_animal/bot/mulebot/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ntnet_interface)
 

@@ -10,7 +10,7 @@
 	var/last_spawned_time = 0
 	var/list/spawned_mobs = list()
 
-/datum/component/summoning/Initialize(mob_types, spawn_chance=100, max_mobs=3, spawn_delay=100, spawn_text="appears out of nowhere", spawn_sound='sound/magic/summon_magic.ogg', faction)
+/datum/component/summoning/Initialize(mapload, mob_types, spawn_chance=100, max_mobs=3, spawn_delay=100, spawn_text="appears out of nowhere", spawn_sound='sound/magic/summon_magic.ogg', faction)
 	if(!isitem(parent) && !ishostile(parent) && !isgun(parent) && !ismachinery(parent) && !isstructure(parent))
 		return COMPONENT_INCOMPATIBLE
 

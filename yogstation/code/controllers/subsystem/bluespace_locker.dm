@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(bluespace_locker)
 	var/obj/structure/closet/bluespace/internal/internal_locker = null
 	var/obj/structure/closet/bluespace/external/external_locker = null
 
-/datum/controller/subsystem/bluespace_locker/Initialize()
+/datum/controller/subsystem/bluespace_locker/Initialize(mapload)
 	bluespaceify_random_locker()
 	if(external_locker)
 		external_locker.take_contents()

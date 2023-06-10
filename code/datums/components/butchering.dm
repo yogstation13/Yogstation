@@ -5,7 +5,7 @@
 	var/butcher_sound = 'sound/weapons/slice.ogg' //sound played when butchering
 	var/butchering_enabled = TRUE
 
-/datum/component/butchering/Initialize(_speed, _effectiveness, _bonus_modifier, _butcher_sound, disabled)
+/datum/component/butchering/Initialize(mapload, _speed, _effectiveness, _bonus_modifier, _butcher_sound, disabled)
 	if(_speed)
 		speed = _speed
 	if(_effectiveness)

@@ -4,7 +4,7 @@
 	var/expire_time
 	var/required_clean_types = CLEAN_TYPE_DISEASE
 
-/datum/component/infective/Initialize(list/datum/disease/_diseases, expire_in)
+/datum/component/infective/Initialize(mapload, list/datum/disease/_diseases, expire_in)
 	if(islist(_diseases))
 		diseases = _diseases
 	else

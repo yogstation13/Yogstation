@@ -19,7 +19,7 @@
 	var/range = 3
 	var/list/times
 
-/obj/item/grenade/iedcasing/Initialize()
+/obj/item/grenade/iedcasing/Initialize(mapload)
 	. = ..()
 	add_overlay("improvised_grenade_filled")
 	add_overlay("improvised_grenade_wired")
@@ -74,7 +74,7 @@
 	var/armed = 0
 	display_timer = 0
 
-/obj/item/grenade/pipebomb/Initialize()
+/obj/item/grenade/pipebomb/Initialize(mapload)
 	. = ..()
 
 /obj/item/grenade/pipebomb/attack_self(mob/user)

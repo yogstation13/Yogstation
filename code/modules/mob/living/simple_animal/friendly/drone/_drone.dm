@@ -89,7 +89,7 @@
 	. += "<h2>Current Drone Laws:</h2>"
 	. += replacetext(laws, "\n", "<br>")
 
-/mob/living/simple_animal/drone/Initialize()
+/mob/living/simple_animal/drone/Initialize(mapload)
 	. = ..()
 	GLOB.drones_list += src
 	access_card = new /obj/item/card/id(src)

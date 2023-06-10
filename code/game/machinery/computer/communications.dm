@@ -47,7 +47,7 @@
 /obj/machinery/computer/communications/unlocked
 	unlocked = TRUE
 
-/obj/machinery/computer/communications/Initialize()
+/obj/machinery/computer/communications/Initialize(mapload)
 	. = ..()
 	GLOB.shuttle_caller_list += src
 

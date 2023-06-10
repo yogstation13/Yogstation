@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(atoms)
 
 	initialized = INITIALIZATION_INSSATOMS
 
-/datum/controller/subsystem/atoms/Initialize(timeofday)
+/datum/controller/subsystem/atoms/Initialize(mapload, timeofday)
 	init_start_time = world.time
 	GLOB.fire_overlay.appearance_flags = RESET_COLOR
 	setupGenetics() //to set the mutations' sequence
@@ -51,7 +51,7 @@ SUBSYSTEM_DEF(atoms)
 			//I hate that we need this
 			if(QDELETED(A))
 				continue
-			A.LateInitialize()
+			A.LateInitialize(mapload)
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
 	
@@ -106,7 +106,7 @@ SUBSYSTEM_DEF(atoms)
 	var/start_tick = world.time
 	#endif
 
-	var/result = A.Initialize(arglist(arguments))
+	var/result = A.Initialize(mapload, arglist(arguments))
 
 	#ifdef UNIT_TESTS
 	if(start_tick != world.time)
@@ -122,7 +122,7 @@ SUBSYSTEM_DEF(atoms)
 			if(arguments[1]) //mapload
 				late_loaders += A
 			else
-				A.LateInitialize()
+				A.LateInitialize(mapload)
 		if (INITIALIZE_HINT_QDEL)
 			qdel(A)
 			qdeleted = TRUE
@@ -192,13 +192,13 @@ SUBSYSTEM_DEF(atoms)
 		. += "Path : [path] \n"
 		var/fails = BadInitializeCalls[path]
 		if(fails & BAD_INIT_DIDNT_INIT)
-			. += "- Didn't call atom/Initialize()\n"
+			. += "- Didn't call atom/Initialize(mapload)\n"
 		if(fails & BAD_INIT_NO_HINT)
 			. += "- Didn't return an Initialize hint\n"
 		if(fails & BAD_INIT_QDEL_BEFORE)
 			. += "- Qdel'd in New()\n"
 		if(fails & BAD_INIT_SLEPT)
-			. += "- Slept during Initialize()\n"
+			. += "- Slept during Initialize(mapload)\n"
 
 /// Prepares an atom to be deleted once the atoms SS is initialized.
 /datum/controller/subsystem/atoms/proc/prepare_deletion(atom/target)

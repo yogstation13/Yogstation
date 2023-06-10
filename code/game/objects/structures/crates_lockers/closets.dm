@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	AddElement(/datum/element/connect_loc, loc_connections)
 	GLOB.lockers += src
 
-/obj/structure/closet/LateInitialize()
+/obj/structure/closet/LateInitialize(mapload)
 	. = ..()
 
 	take_contents()

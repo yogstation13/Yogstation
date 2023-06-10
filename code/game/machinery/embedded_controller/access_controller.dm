@@ -18,11 +18,11 @@
 /obj/machinery/doorButtons/proc/findObjsByTag()
 	return
 
-/obj/machinery/doorButtons/Initialize()
+/obj/machinery/doorButtons/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/doorButtons/LateInitialize()
+/obj/machinery/doorButtons/LateInitialize(mapload)
 	findObjsByTag()
 
 /obj/machinery/doorButtons/emag_act(mob/user)

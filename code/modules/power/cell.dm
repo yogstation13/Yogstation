@@ -165,7 +165,7 @@
 	return rating * maxcharge
 
 /* Cell variants*/
-/obj/item/stock_parts/cell/empty/Initialize()
+/obj/item/stock_parts/cell/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 
@@ -175,7 +175,7 @@
 	maxcharge = 500
 	materials = list(/datum/material/glass=40)
 
-/obj/item/stock_parts/cell/crap/empty/Initialize()
+/obj/item/stock_parts/cell/crap/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 	update_icon()
@@ -197,7 +197,7 @@
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 	materials = list(/datum/material/glass=40)
 
-/obj/item/stock_parts/cell/secborg/empty/Initialize()
+/obj/item/stock_parts/cell/secborg/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 	update_icon()
@@ -233,7 +233,7 @@
 	maxcharge = 15000
 	chargerate = 2250
 
-/obj/item/stock_parts/cell/high/empty/Initialize()
+/obj/item/stock_parts/cell/high/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 	update_icon()
@@ -245,7 +245,7 @@
 	materials = list(/datum/material/glass=300)
 	chargerate = 2000
 
-/obj/item/stock_parts/cell/super/empty/Initialize()
+/obj/item/stock_parts/cell/super/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 	update_icon()
@@ -257,7 +257,7 @@
 	materials = list(/datum/material/glass=400)
 	chargerate = 3000
 
-/obj/item/stock_parts/cell/hyper/empty/Initialize()
+/obj/item/stock_parts/cell/hyper/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 	update_icon()
@@ -270,7 +270,7 @@
 	materials = list(/datum/material/glass=600)
 	chargerate = 4000
 
-/obj/item/stock_parts/cell/bluespace/empty/Initialize()
+/obj/item/stock_parts/cell/bluespace/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 	update_icon()
@@ -323,12 +323,12 @@
 	maxcharge = 500
 	rating = 3
 
-/obj/item/stock_parts/cell/emproof/empty/Initialize()
+/obj/item/stock_parts/cell/emproof/empty/Initialize(mapload)
 	. = ..()
 	charge = 0
 	update_icon()
 
-/obj/item/stock_parts/cell/emproof/empty/ComponentInitialize()
+/obj/item/stock_parts/cell/emproof/empty/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
 
@@ -357,7 +357,7 @@
 	materials = list(/datum/material/glass = 20)
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/stock_parts/cell/emergency_light/Initialize()
+/obj/item/stock_parts/cell/emergency_light/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	if(!A.lightswitch || !A.light_power)

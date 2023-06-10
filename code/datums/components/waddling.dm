@@ -1,7 +1,7 @@
 /datum/component/waddling
     dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
-/datum/component/waddling/Initialize()
+/datum/component/waddling/Initialize(mapload)
     if(!isliving(parent))
         return COMPONENT_INCOMPATIBLE
     RegisterSignals(parent, list(COMSIG_MOVABLE_MOVED), PROC_REF(Waddle))

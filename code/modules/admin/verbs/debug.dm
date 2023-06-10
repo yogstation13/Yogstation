@@ -943,8 +943,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /client/proc/cmd_display_init_log()
 	set category = "Misc.Server Debug"
-	set name = "Display Initialize() Log"
-	set desc = "Displays a list of things that didn't handle Initialize() properly"
+	set name = "Display Initialize(mapload) Log"
+	set desc = "Displays a list of things that didn't handle Initialize(mapload) properly"
 
 	usr << browse("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + replacetext(SSatoms.InitLog(), "\n", "<br>") + "</BODY></HTML>", "window=initlog")
 

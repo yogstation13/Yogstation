@@ -30,7 +30,7 @@
 	/// this text will show on the tgui menu when picking the nullrod form they want. should give a better idea of the nullrod's gimmick or quirks without giving away numbers 
 	var/additional_desc = "How are you seeing this? This is the default Nullrod bonus description. I makey a mistakey."
 
-/obj/item/nullrod/Initialize()
+/obj/item/nullrod/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 
@@ -212,7 +212,7 @@
 	menutab = MENU_WEAPON
 	additional_desc = "The cutting edge vibrates rapidly enabling it to cut cleanly through the unrighteous, no matter what armor or form they hide behind."
 
-/obj/item/nullrod/vibro/Initialize()
+/obj/item/nullrod/vibro/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 70, 110) //the harvest gives a high bonus chance
 
@@ -337,7 +337,7 @@
 	menutab = MENU_WEAPON
 	additional_desc = "A holy weapon, capable at meting out righteousness from a distance."
 	
-/obj/item/nullrod/whip/Initialize()
+/obj/item/nullrod/whip/Initialize(mapload)
 	. = ..()
 	weapon_stats[REACH] = 4 //closest to a ranged weapon chaplain should ever get (that or maybe a throwing weapon)
 
@@ -424,7 +424,7 @@
 	attack_verb = list("smashed", "bashed", "hammered", "crunched", "clobbered")
 	sharpness = SHARP_NONE
 
-/obj/item/twohanded/required/nullrod/Initialize()
+/obj/item/twohanded/required/nullrod/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE) //trust me, this is better than re-coding two-handed weapons
 
@@ -593,7 +593,7 @@
 	menutab = MENU_ARM
 	additional_desc = "Give up your hand to God and let it be the instrument of his will."
 
-/obj/item/nullrod/godhand/Initialize()
+/obj/item/nullrod/godhand/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
@@ -617,7 +617,7 @@
 	menutab = MENU_ARM
 	additional_desc = "Do you really need TWO arms? Consider one arm and a chainsaw arm."
 
-/obj/item/nullrod/chainsaw/Initialize()
+/obj/item/nullrod/chainsaw/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 30, 100, 0, hitsound)
@@ -640,7 +640,7 @@
 	menutab = MENU_ARM
 	additional_desc = "Channel all your sins into one arm and watch it twist and contort into an instrument of pure violence. Use it to protect the innocent as your penance."
 
-/obj/item/nullrod/armblade/Initialize()
+/obj/item/nullrod/armblade/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
@@ -799,7 +799,7 @@
 	icon_state = "quantum_sparks"
 	duration = 6
 
-/obj/effect/temp_visual/flowers/Initialize()
+/obj/effect/temp_visual/flowers/Initialize(mapload)
 	. = ..()
 	animate(src, alpha = 0, time = duration - 1)
 
@@ -976,7 +976,7 @@
 	menutab = MENU_MISC
 	additional_desc = "This banana is comedically sharp."
 	
-/obj/item/nullrod/clown/Initialize()
+/obj/item/nullrod/clown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 40)
 
@@ -1187,7 +1187,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	var/obj/item/nullrod/talking/sword //the sword they're part of
 	var/datum/action/cooldown/spell/nullrod_drop/button //suicide button so they can return to being an item if need be
 
-/mob/living/simple_animal/nullrod/Initialize()
+/mob/living/simple_animal/nullrod/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
 	button = new(src)

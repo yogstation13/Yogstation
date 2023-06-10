@@ -282,7 +282,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		forceMove(NewLoc)
 		return 1
 
-/mob/camera/blob/mind_initialize()
+/mob/camera/blob/mind_Initialize(mapload)
 	. = ..()
 	var/datum/antagonist/blob/B = mind.has_antag_datum(/datum/antagonist/blob)
 	if(!B)

@@ -37,7 +37,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 	var/obj/machinery/gulag_item_reclaimer/linked_reclaimer
 
 
-/obj/machinery/gulag_processor/Initialize()
+/obj/machinery/gulag_processor/Initialize(mapload)
 	. = ..()
 	locate_reclaimer()
 

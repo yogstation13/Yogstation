@@ -141,7 +141,7 @@
 
 	var/static/list/airlock_overlays = list()
 
-/obj/machinery/door/airlock/Initialize()
+/obj/machinery/door/airlock/Initialize(mapload)
 	. = ..()
 	bolt_log = list() //yogs
 	shocking_log = list() //yogs
@@ -172,7 +172,7 @@
 
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/door/airlock/LateInitialize()
+/obj/machinery/door/airlock/LateInitialize(mapload)
 	. = ..()
 	if(cyclelinkedx || cyclelinkedy)	//yogs start
 		cyclelinkairlock_target()
@@ -204,7 +204,7 @@
 				panel_open = TRUE
 	update_icon()
 
-/obj/machinery/door/airlock/ComponentInitialize()
+/obj/machinery/door/airlock/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ntnet_interface)
 

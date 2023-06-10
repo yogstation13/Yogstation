@@ -40,7 +40,7 @@
 
 	var/obj/item/hat // Keeps track of the hat while transforming, to attempt to place back on the borg's head
 
-/obj/item/robot_module/Initialize()
+/obj/item/robot_module/Initialize(mapload)
 	. = ..()
 	for(var/i in basic_modules)
 		var/obj/item/I = new i(src)

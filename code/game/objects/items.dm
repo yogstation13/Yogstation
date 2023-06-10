@@ -142,7 +142,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/printed = FALSE
 
-/obj/item/Initialize()
+/obj/item/Initialize(mapload)
 
 	materials =	typelist("materials", materials)
 
@@ -185,7 +185,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	else if (islist(embedding))
 		embedding = getEmbeddingBehavior(arglist(embedding))
 	else if (!istype(embedding, /datum/embedding_behavior))
-		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize()")
+		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize(mapload)")
 
 /obj/item/Destroy()
 	item_flags &= ~DROPDEL	//prevent reqdels

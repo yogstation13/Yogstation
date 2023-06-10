@@ -8,7 +8,7 @@
 	var/turf/source_turf
 	var/max_range = 12
 
-/mob/camera/aiEye/remote/shuttle_creation/Initialize()
+/mob/camera/aiEye/remote/shuttle_creation/Initialize(mapload)
 	. = ..()
 	setLoc(get_turf(source_turf))
 	icon_state = "construction_drone"

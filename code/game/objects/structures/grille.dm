@@ -300,7 +300,7 @@
 	grille_type = /obj/structure/grille
 	broken_type = null
 
-/obj/structure/grille/broken/Initialize()
+/obj/structure/grille/broken/Initialize(mapload)
 	. = ..()
 	holes = (holes | 16)
 	update_icon()
@@ -313,7 +313,7 @@
 	broken_type = /obj/structure/grille/ratvar/broken
 	smooth = SMOOTH_FALSE
 
-/obj/structure/grille/ratvar/Initialize()
+/obj/structure/grille/ratvar/Initialize(mapload)
 	. = ..()
 	if(broken)
 		new /obj/effect/temp_visual/ratvar/grille/broken(get_turf(src))

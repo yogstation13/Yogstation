@@ -68,7 +68,7 @@
 			B.change_to(/obj/structure/blob/shield/core, overmind)
 	..()
 
-/obj/structure/blob/core/ComponentInitialize()
+/obj/structure/blob/core/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 

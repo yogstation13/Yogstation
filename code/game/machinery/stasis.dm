@@ -60,7 +60,7 @@
 		chill_out(occupant)
 	
 
-/obj/machinery/stasis/ComponentInitialize()
+/obj/machinery/stasis/ComponentInitialize(mapload)
 	AddComponent(/datum/component/surgery_bed, 1, TRUE)
 
 /obj/machinery/stasis/examine(mob/user)

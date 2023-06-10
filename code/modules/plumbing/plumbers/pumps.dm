@@ -16,11 +16,11 @@
 	var/volume = 200
 
 
-/obj/machinery/power/liquid_pump/Initialize()
+/obj/machinery/power/liquid_pump/Initialize(mapload)
 	create_reagents(volume)
 	return ..()
 
-/obj/machinery/power/liquid_pump/ComponentInitialize()
+/obj/machinery/power/liquid_pump/ComponentInitialize(mapload)
 	AddComponent(/datum/component/plumbing/simple_supply)
 
 /obj/machinery/power/liquid_pump/wrench_act(mob/living/user, obj/item/I)

@@ -54,12 +54,12 @@ field_generator power level display
 		add_overlay("+p[power_level]")
 
 
-/obj/machinery/field/generator/Initialize()
+/obj/machinery/field/generator/Initialize(mapload)
 	. = ..()
 	fields = list()
 	connected_gens = list()
 
-/obj/machinery/field/generator/ComponentInitialize()
+/obj/machinery/field/generator/ComponentInitialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 

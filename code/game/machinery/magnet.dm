@@ -27,7 +27,7 @@
 	var/center_y = 0
 	var/max_dist = 20 // absolute value of center_x,y cannot exceed this integer
 
-/obj/machinery/magnetic_module/Initialize()
+/obj/machinery/magnetic_module/Initialize(mapload)
 	..()
 	var/turf/T = loc
 	hide(T.intact)
@@ -35,7 +35,7 @@
 	SSradio.add_object(src, freq, RADIO_MAGNETS)
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/magnetic_module/LateInitialize()
+/obj/machinery/magnetic_module/LateInitialize(mapload)
 	magnetic_process()
 
 /obj/machinery/magnetic_module/Destroy()
@@ -218,7 +218,7 @@
 	var/datum/radio_frequency/radio_connection
 
 
-/obj/machinery/magnetic_controller/Initialize()
+/obj/machinery/magnetic_controller/Initialize(mapload)
 	. = ..()
 	if(autolink)
 		for(var/obj/machinery/magnetic_module/M in GLOB.machines)

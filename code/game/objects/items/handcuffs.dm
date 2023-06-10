@@ -262,7 +262,7 @@
 	var/armed = 0
 	var/trap_damage = 20
 
-/obj/item/restraints/legcuffs/beartrap/Initialize()
+/obj/item/restraints/legcuffs/beartrap/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -335,7 +335,7 @@
 	flags_1 = NONE
 	break_strength = 2
 
-/obj/item/restraints/legcuffs/beartrap/energy/Initialize()
+/obj/item/restraints/legcuffs/beartrap/energy/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(dissipate)), 100)
 

@@ -28,7 +28,7 @@
 	grav_pull = 10
 	consume_range = 12 //How many tiles out do we eat
 
-/obj/singularity/narsie/large/Initialize()
+/obj/singularity/narsie/large/Initialize(mapload)
 	. = ..()
 	send_to_playing_players(span_narsie("NAR-SIE HAS RISEN"))
 	sound_to_playing_players('sound/creatures/narsie_rises.ogg')
@@ -45,7 +45,7 @@
 	var/souls = 0
 	var/resolved = FALSE
 
-/obj/singularity/narsie/large/cult/Initialize()
+/obj/singularity/narsie/large/cult/Initialize(mapload)
 	. = ..()
 	GLOB.cult_narsie = src
 	var/list/all_cults = list()

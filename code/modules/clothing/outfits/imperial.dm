@@ -105,7 +105,7 @@
 
 
 // Belts
-/obj/item/storage/belt/military/imperial/guardsman/ComponentInitialize() // Imperial Guardsman
+/obj/item/storage/belt/military/imperial/guardsman/ComponentInitialize(mapload) // Imperial Guardsman
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun(src)
 	new /obj/item/ammo_box/magazine/recharge/lasgun(src)
@@ -115,7 +115,7 @@
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/jawsoflife/jimmy(src)
 
-/obj/item/storage/belt/military/imperial/plasma/ComponentInitialize() // Plasma gunner
+/obj/item/storage/belt/military/imperial/plasma/ComponentInitialize(mapload) // Plasma gunner
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
 	new /obj/item/ammo_box/magazine/recharge/lasgun/pistol(src)
@@ -125,7 +125,7 @@
 	new /obj/item/jawsoflife/jimmy(src)
 	new /obj/item/stack/medical/mesh(src) // for when his gun inevitably explodes
 
-/obj/item/storage/belt/military/imperial/hotshot/ComponentInitialize() // Veteran
+/obj/item/storage/belt/military/imperial/hotshot/ComponentInitialize(mapload) // Veteran
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun/hotshot(src)
 	new /obj/item/ammo_box/magazine/recharge/lasgun/hotshot(src)
@@ -135,7 +135,7 @@
 	new /obj/item/restraints/handcuffs/cable/zipties(src)
 	new /obj/item/jawsoflife/jimmy(src)
 
-/obj/item/storage/belt/military/imperial/sniper/ComponentInitialize() // Marksman
+/obj/item/storage/belt/military/imperial/sniper/ComponentInitialize(mapload) // Marksman
 	. = ..()
 	new /obj/item/ammo_box/magazine/recharge/lasgun/sniper(src)
 	new /obj/item/ammo_box/magazine/recharge/lasgun/sniper(src)
@@ -146,7 +146,7 @@
 	new /obj/item/twohanded/binoculars(src)
 
 
-/obj/item/storage/belt/military/imperial/sergeant/ComponentInitialize() // Sergeant
+/obj/item/storage/belt/military/imperial/sergeant/ComponentInitialize(mapload) // Sergeant
 	. = ..()
 	new /obj/item/ammo_box/magazine/boltpistol(src)
 	new /obj/item/ammo_box/magazine/boltpistol(src)

@@ -12,11 +12,11 @@
 
 	layer = POINT_LAYER
 
-/obj/effect/baseturf_helper/Initialize()
+/obj/effect/baseturf_helper/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/baseturf_helper/LateInitialize()
+/obj/effect/baseturf_helper/LateInitialize(mapload)
 	if(!baseturf_to_replace)
 		baseturf_to_replace = typecacheof(/turf/open/space)
 	else if(!length(baseturf_to_replace))
@@ -92,7 +92,7 @@
 	icon_state = ""
 	var/late = FALSE
 
-/obj/effect/mapping_helpers/Initialize()
+/obj/effect/mapping_helpers/Initialize(mapload)
 	..()
 	return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
 
@@ -177,7 +177,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 /obj/effect/mapping_helpers/no_lava
 	icon_state = "no_lava"
 
-/obj/effect/mapping_helpers/no_lava/Initialize()
+/obj/effect/mapping_helpers/no_lava/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
 	T.flags_1 |= NO_LAVA_GEN_1
@@ -191,7 +191,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	var/component_type
 
 //Late init so everything is likely ready and loaded (no warranty)
-/obj/effect/mapping_helpers/component_injector/LateInitialize()
+/obj/effect/mapping_helpers/component_injector/LateInitialize(mapload)
 	if(!ispath(component_type,/datum/component))
 		CRASH("Wrong component type in [type] - [component_type] is not a component")
 	var/turf/T = get_turf(src)
@@ -228,7 +228,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	icon_state = "deadbodyplacer"
 	var/bodycount = 2 //number of bodies to spawn
 
-/obj/effect/mapping_helpers/dead_body_placer/LateInitialize()
+/obj/effect/mapping_helpers/dead_body_placer/LateInitialize(mapload)
 	var/area/a = get_area(src)
 	var/list/trays = list()
 	for (var/i in a.contents)
@@ -255,7 +255,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	late = FALSE
 	icon_state = "teleport_anchor"
 
-/obj/effect/mapping_helpers/teleport_anchor/Initialize() //add the tile it is on to areas prefered teleportaiton list
+/obj/effect/mapping_helpers/teleport_anchor/Initialize(mapload) //add the tile it is on to areas prefered teleportaiton list
 	. = ..()
 	var/area/a = get_area(loc)
 	a.teleport_anchors += loc
@@ -266,7 +266,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	/// List of traits to add to this.
 	var/list/traits_to_add = list()
 
-/obj/effect/mapping_helpers/ztrait_injector/Initialize()
+/obj/effect/mapping_helpers/ztrait_injector/Initialize(mapload)
 	. = ..()
 	var/datum/space_level/level = SSmapping.z_list[z]
 	if(!level || !length(traits_to_add))

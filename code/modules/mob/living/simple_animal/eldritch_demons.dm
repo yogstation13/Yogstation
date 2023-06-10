@@ -32,7 +32,7 @@
 	///Innate spells that are supposed to be added when a beast is created
 	var/list/actions_to_add
 
-/mob/living/simple_animal/hostile/eldritch/Initialize()
+/mob/living/simple_animal/hostile/eldritch/Initialize(mapload)
 	. = ..()
 	for(var/spell in actions_to_add)
 		var/datum/action/cooldown/spell/new_spell = new spell(src)
@@ -60,7 +60,7 @@
 	/// A weakref to the last target we smacked. Hitting targets consecutively does more damage.
 	var/datum/weakref/last_target
 
-/mob/living/simple_animal/hostile/eldritch/raw_prophet/Initialize()
+/mob/living/simple_animal/hostile/eldritch/raw_prophet/Initialize(mapload)
 	. = ..()
 	var/on_link_message = "You feel something new enter your sphere of mind... \
 		You hear whispers of people far away, screeches of horror and a huming of welcome to [src]'s Mansus Link."

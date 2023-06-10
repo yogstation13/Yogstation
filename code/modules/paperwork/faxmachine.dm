@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	var/department = "Unknown" // our department
 	var/destination = "Central Command" // the department we're sending to
 
-/obj/machinery/photocopier/faxmachine/Initialize()
+/obj/machinery/photocopier/faxmachine/Initialize(mapload)
 	. = ..()
 	GLOB.allfaxes += src
 	if( !((department in GLOB.alldepartments) || (department in GLOB.admin_departments)) )

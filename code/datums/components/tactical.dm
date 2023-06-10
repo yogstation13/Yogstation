@@ -1,7 +1,7 @@
 /datum/component/tactical
 	var/allowed_slot
 
-/datum/component/tactical/Initialize(allowed_slot)
+/datum/component/tactical/Initialize(mapload, allowed_slot)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 

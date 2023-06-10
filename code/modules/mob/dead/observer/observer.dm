@@ -66,7 +66,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	// Current Viewrange
 	var/view = 0
 
-/mob/dead/observer/Initialize()
+/mob/dead/observer/Initialize(mapload)
 	set_invisibility(GLOB.observer_default_invisibility)
 
 	add_verb(src, list(
@@ -719,7 +719,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 //We don't want to update the current var
 //But we will still carry a mind.
-/mob/dead/observer/mind_initialize()
+/mob/dead/observer/mind_Initialize(mapload)
 	return
 
 /mob/dead/observer/proc/show_data_huds()

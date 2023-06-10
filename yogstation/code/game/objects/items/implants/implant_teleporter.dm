@@ -7,7 +7,7 @@
 	var/on = FALSE
 	var/retrievalmessage = "Retrieval complete."
 
-/obj/item/implant/teleporter/Initialize()
+/obj/item/implant/teleporter/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	.=..()
 

@@ -6,7 +6,7 @@
 	var/proctype = PROC_REF(pass)
 	var/mobtype = /mob/living
 
-/datum/component/wearertargeting/Initialize()
+/datum/component/wearertargeting/Initialize(mapload)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))

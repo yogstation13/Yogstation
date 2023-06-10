@@ -204,11 +204,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		StartProcessing(10)
 	else
 		to_chat(world, span_boldannounce("The Master Controller is having some issues, we will need to re-initialize EVERYTHING"))
-		Initialize(20, TRUE)
+		Initialize(mapload, 20, TRUE)
 
 // Please don't stuff random bullshit here,
-// Make a subsystem, give it the SS_NO_FIRE flag, and do your work in it's Initialize()
-/datum/controller/master/Initialize(delay, init_sss, tgs_prime)
+// Make a subsystem, give it the SS_NO_FIRE flag, and do your work in it's Initialize(mapload)
+/datum/controller/master/Initialize(mapload, delay, init_sss, tgs_prime)
 	set waitfor = 0
 
 	if(delay)
@@ -309,7 +309,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	current_initializing_subsystem = subsystem
 	rustg_time_reset(SS_INIT_TIMER_KEY)
 
-	var/result = subsystem.Initialize()
+	var/result = subsystem.Initialize(mapload)
 
 	// Capture end time
 	var/time = rustg_time_milliseconds(SS_INIT_TIMER_KEY)
@@ -322,9 +322,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(result && !(result in valid_results))
 		warning("[subsystem.name] subsystem initialized, returning invalid result [result]. This is a bug.")
 
-	// just returned ..() or didn't implement Initialize() at all
+	// just returned ..() or didn't implement Initialize(mapload) at all
 	if(result == SS_INIT_NONE)
-		warning("[subsystem.name] subsystem does not implement Initialize() or it returns ..(). If the former is true, the SS_NO_INIT flag should be set for this subsystem.")
+		warning("[subsystem.name] subsystem does not implement Initialize(mapload) or it returns ..(). If the former is true, the SS_NO_INIT flag should be set for this subsystem.")
 
 	if(result != SS_INIT_FAILURE)
 		// Some form of success, implicit failure, or the SS in unused.

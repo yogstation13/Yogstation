@@ -9,7 +9,7 @@
 	var/datum/fishing_loot/loot = new /datum/fishing_loot/water
 
 
-/datum/component/fishable/Initialize()
+/datum/component/fishable/Initialize(mapload)
 	if(!istype(parent, /turf))
 		return COMPONENT_INCOMPATIBLE
 

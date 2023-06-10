@@ -5,7 +5,7 @@
 	icon_state = "cypherkey"
 	var/list/linked_implants // All other implants that this communicates to
 
-/obj/item/implant/bloodbrother/Initialize()
+/obj/item/implant/bloodbrother/Initialize(mapload)
 	. = ..()
 	linked_implants = list()
 

@@ -3,7 +3,7 @@
 	var/fishing_bonus = 0
 	var/mob/living/carbon/user
 
-/datum/component/fishingbonus/Initialize(fishing_bonus = 0)
+/datum/component/fishingbonus/Initialize(mapload, fishing_bonus = 0)
 	src.fishing_bonus = fishing_bonus
 	if(isclothing(parent))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(OnEquip))

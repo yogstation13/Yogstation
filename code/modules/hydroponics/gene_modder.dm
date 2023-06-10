@@ -434,7 +434,7 @@
 	var/read_only = 0 //Well, it's still a floppy disk
 	obj_flags = UNIQUE_RENAME
 
-/obj/item/disk/plantgene/Initialize()
+/obj/item/disk/plantgene/Initialize(mapload)
 	. = ..()
 	update_icon()
 	src.pixel_x = rand(-5, 5)

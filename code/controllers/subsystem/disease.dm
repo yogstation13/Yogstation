@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(disease)
 	if(!diseases)
 		diseases = subtypesof(/datum/disease)
 
-/datum/controller/subsystem/disease/Initialize(timeofday)
+/datum/controller/subsystem/disease/Initialize(mapload, timeofday)
 	var/list/all_common_diseases = diseases - typesof(/datum/disease/advance)
 	for(var/common_disease_type in all_common_diseases)
 		var/datum/disease/prototype = new common_disease_type()

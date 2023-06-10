@@ -1,7 +1,7 @@
 /datum/component/igniter
 	var/fire_stacks
 
-/datum/component/igniter/Initialize(fire_stacks=1)
+/datum/component/igniter/Initialize(mapload, fire_stacks=1)
 	if(!isitem(parent) && !ishostile(parent) && !isgun(parent) && !ismachinery(parent) && !isstructure(parent))
 		return COMPONENT_INCOMPATIBLE
 

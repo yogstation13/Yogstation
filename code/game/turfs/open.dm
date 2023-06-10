@@ -16,7 +16,7 @@
 	var/clawfootstep = null
 	var/heavyfootstep = null
 
-/turf/open/ComponentInitialize()
+/turf/open/ComponentInitialize(mapload)
 	. = ..()
 	if(wet)
 		AddComponent(/datum/component/wet_floor, wet, INFINITY, 0, INFINITY, TRUE)
@@ -91,7 +91,7 @@
 	heavyfootstep = FOOTSTEP_LAVA
 	tiled_dirt = FALSE
 
-/turf/open/indestructible/necropolis/Initialize()
+/turf/open/indestructible/necropolis/Initialize(mapload)
 	. = ..()
 	if(prob(12))
 		icon_state = "necro[rand(2,3)]"
@@ -319,7 +319,7 @@
 	light_color = "#AAD84B"
 	color = "#53003f"
 
-/turf/open/floor/grass/fairy/Initialize()
+/turf/open/floor/grass/fairy/Initialize(mapload)
 	. = ..()
 	icon_state = "fairygrass[rand(1,4)]"
 	update_icon()
@@ -448,7 +448,7 @@
 /turf/open/indestructible/brazil/necropolis
 	icon_state = "necro1"
 
-/turf/open/indestructible/brazil/necropolis/Initialize()
+/turf/open/indestructible/brazil/necropolis/Initialize(mapload)
 	. = ..()
 	if(prob(12))
 		icon_state = "necro[rand(2,3)]"

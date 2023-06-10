@@ -13,7 +13,7 @@
 	desc = "Signal used to connect remotely with silicons."
 	invisibility = 100
 
-/obj/machinery/computer/upload/Initialize()
+/obj/machinery/computer/upload/Initialize(mapload)
 	embedded_gps = new embedded_gps_type(src)
 	return ..()
 

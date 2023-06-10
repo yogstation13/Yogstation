@@ -74,7 +74,7 @@ SUBSYSTEM_DEF(economy)
 		ACCOUNT_SEC = 0,
 	)
 
-/datum/controller/subsystem/economy/Initialize(timeofday)
+/datum/controller/subsystem/economy/Initialize(mapload, timeofday)
 	if(time2text(world.timeofday, "DDD") == SUNDAY)
 		mail_blocked = TRUE
 	for(var/A in department_accounts)

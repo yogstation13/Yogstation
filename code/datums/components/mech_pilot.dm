@@ -3,5 +3,5 @@
 	/// Modifier of mech delay, based on percentage 1 = 100%. lower is faster
 	var/piloting_speed = 1
 
-/datum/component/mech_pilot/Initialize(_piloting_speed = 1)
+/datum/component/mech_pilot/Initialize(mapload, _piloting_speed = 1)
 	piloting_speed = _piloting_speed

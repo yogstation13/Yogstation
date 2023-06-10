@@ -1,4 +1,4 @@
-/datum/component/magnetic_catch/Initialize()
+/datum/component/magnetic_catch/Initialize(mapload)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine))

@@ -30,7 +30,7 @@
 	var/opening_airlock = FALSE
 	///Number assigned to rats and mice, checked when determining infighting.
 
-/mob/living/simple_animal/hostile/regalrat/Initialize()
+/mob/living/simple_animal/hostile/regalrat/Initialize(mapload)
 	. = ..()
 	riot = new /datum/action/cooldown/riot
 	domain = new /datum/action/cooldown/domain
@@ -273,7 +273,7 @@
 /mob/living/simple_animal/hostile/regalrat/controlled
 	name = "regal rat"
 
-/mob/living/simple_animal/hostile/regalrat/controlled/Initialize()
+/mob/living/simple_animal/hostile/regalrat/controlled/Initialize(mapload)
 	. = ..()
 	INVOKE_ASYNC(src, PROC_REF(get_player))
 

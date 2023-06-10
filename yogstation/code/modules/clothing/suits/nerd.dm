@@ -48,7 +48,7 @@
 	COOLDOWN_DECLARE(next_damage_notify)
 	COOLDOWN_DECLARE(next_morphine)
 
-/obj/item/clothing/suit/armor/nerd/Initialize()
+/obj/item/clothing/suit/armor/nerd/Initialize(mapload)
 	. = ..()
 	GC = new(src)
 	GC.scanning = TRUE

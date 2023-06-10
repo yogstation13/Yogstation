@@ -300,7 +300,7 @@
 	/// The sound that plays when you draw from someone with the hypospray
 	var/draw_sound = 'sound/items/autoinjector.ogg'
 
-/obj/item/hypospray/Initialize()
+/obj/item/hypospray/Initialize(mapload)
 	. = ..()
 	if(ispath(container))
 		container = new container

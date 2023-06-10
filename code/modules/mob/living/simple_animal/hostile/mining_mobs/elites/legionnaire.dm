@@ -288,7 +288,7 @@
 	duration = 10
 	color = rgb(0,0,0)
 
-/obj/effect/temp_visual/dragon_swoop/legionnaire/Initialize()
+/obj/effect/temp_visual/dragon_swoop/legionnaire/Initialize(mapload)
 	. = ..()
 	transform *= 0.33
 
@@ -341,7 +341,7 @@
 	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
 		L.apply_damage(fauna_damage_bonus, BRUTE)
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/Initialize()
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(10,40, MOB_LAYER), TEXT_SOUTH = list(-10, 40, MOB_LAYER), TEXT_EAST = list(0, 40, MOB_LAYER), TEXT_WEST = list( 0, 40, MOB_LAYER)))

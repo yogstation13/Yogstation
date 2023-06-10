@@ -13,7 +13,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
 	foodtype = GRAIN | MEAT
 
-/obj/item/reagent_containers/food/snacks/burger/plain/Initialize()
+/obj/item/reagent_containers/food/snacks/burger/plain/Initialize(mapload)
 	. = ..()
 	if(prob(1))
 		new/obj/effect/particle_effect/fluid/smoke(get_turf(src))

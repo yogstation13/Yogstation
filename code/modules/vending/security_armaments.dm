@@ -13,7 +13,7 @@
 					   /obj/item/gun/ballistic/automatic/pistol/ntusp)
 
 
-/obj/machinery/armaments_dispenser/Initialize()
+/obj/machinery/armaments_dispenser/Initialize(mapload)
 	. = ..()
 	inventory = contents.Copy()
 	for(var/obj/item/wep in inventory)

@@ -4,7 +4,7 @@
 	var/disallow_soul_imbue = TRUE
 	var/allow_death = FALSE
 
-/datum/component/stationloving/Initialize(inform_admins = FALSE, allow_death = FALSE)
+/datum/component/stationloving/Initialize(mapload, inform_admins = FALSE, allow_death = FALSE)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignals(parent, list(COMSIG_MOVABLE_Z_CHANGED), PROC_REF(check_in_bounds))

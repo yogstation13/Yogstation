@@ -6,7 +6,7 @@
 	var/crit_rate_increase = 10 //% crit chance per hit
 	var/crit_dropoff_coeff = 0.85 //% of crit chance remaining after dropoff
 
-/datum/component/randomcrits/Initialize(force)
+/datum/component/randomcrits/Initialize(mapload, force)
 	crit_force = force
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
