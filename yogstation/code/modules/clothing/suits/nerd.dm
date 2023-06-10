@@ -85,7 +85,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/clothing/suit/armor/nerd/proc/add_queue(desired_file,var/desired_delay,var/purge_queue=FALSE)
+/obj/item/clothing/suit/armor/nerd/proc/add_queue(desired_file, desired_delay, purge_queue=FALSE)
 
 	var/was_empty_sound_queue = !length(sound_queue)
 

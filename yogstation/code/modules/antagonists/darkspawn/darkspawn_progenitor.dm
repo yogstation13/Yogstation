@@ -59,7 +59,7 @@
 	if(time_to_next_roar + 10 SECONDS <= world.time) //gives time to roar manually if you like want to do that
 		roar()
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/simple_animal/hostile/darkspawn_progenitor/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	..()
 	if(time_to_next_roar <= world.time)
 		roar()
