@@ -1734,8 +1734,9 @@ obj/item/toy/turn_tracker
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
+	ammo_type = null // Hook remover (tm)
 
-/obj/item/gun/magic/hook/sickly_blade/attack(mob/living/M, mob/living/user)
+/obj/item/gun/magic/hook/sickly_blade_toy/attack(mob/living/M, mob/living/user)
 	if((IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
 		to_chat(user,span_danger("You feel a pulse of the old gods lash out at your mind, laughing how you're using a fake blade!")) //the outer gods need a lil chuckle every now and then
 	return ..()
