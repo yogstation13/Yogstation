@@ -361,7 +361,7 @@
 	else
 		to_chat(user, span_warning("You need two of [src] to combine them!"))
 
-/obj/item/break_blade/proc/form_bow(mob/living/user, var/obj/item/break_blade/other_blade)
+/obj/item/break_blade/proc/form_bow(mob/living/user, obj/item/break_blade/other_blade)
 	if(!istype(other_blade))
 		return
 	moveToNullspace()

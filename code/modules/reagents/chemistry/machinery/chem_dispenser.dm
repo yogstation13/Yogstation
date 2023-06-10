@@ -451,13 +451,13 @@
 			return FALSE
 	return TRUE
 
-/obj/machinery/chem_dispenser/proc/check_macro_part(var/part, var/res = macroresolution)
+/obj/machinery/chem_dispenser/proc/check_macro_part(part, res = macroresolution)
 	var/detail = splittext(part, "=")
 	if (text2num(detail[2]) < res)
 		return FALSE
 	return TRUE
 
-/obj/machinery/chem_dispenser/proc/process_recipe_list(var/recipe)
+/obj/machinery/chem_dispenser/proc/process_recipe_list(recipe)
 	var/list/key_list = list()
 	var/list/final_list = list()
 	var/list/first_process = splittext(recipe, ";")

@@ -377,7 +377,7 @@
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_ADMIN)
 	return preview_icon
 
-/datum/admins/proc/makeEmergencyresponseteam(var/datum/ert/ertemplate = null)
+/datum/admins/proc/makeEmergencyresponseteam(datum/ert/ertemplate = null)
 	if (ertemplate)
 		ertemplate = new ertemplate
 	else
@@ -493,7 +493,7 @@
 	return
 
 // Uplink-equipped Centcom Response Team
-/datum/admins/proc/makeUplinkEmergencyResponseTeam(var/datum/ert/ertemplate = null)
+/datum/admins/proc/makeUplinkEmergencyResponseTeam(datum/ert/ertemplate = null)
 	if (ertemplate)
 		ertemplate = new ertemplate
 	else

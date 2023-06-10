@@ -33,7 +33,7 @@
 		heat_stage = 0
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/minigunbackpack/attack_hand(var/mob/living/carbon/user)
+/obj/item/minigunbackpack/attack_hand(mob/living/carbon/user)
 	if(loc == user)
 		if(!armed)
 			if(user.get_item_by_slot(SLOT_BACK) == src)
@@ -87,7 +87,7 @@
 	else
 		icon_state = "holstered"
 
-/obj/item/minigunbackpack/proc/attach_gun(var/mob/user)
+/obj/item/minigunbackpack/proc/attach_gun(mob/user)
 	if(!gun)
 		gun = new(src)
 	gun.forceMove(src)

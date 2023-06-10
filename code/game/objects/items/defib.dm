@@ -342,7 +342,7 @@
 			visible_message(span_notice("[src] snap back into [defib]."))
 			snap_back()
 
-/obj/item/twohanded/shockpaddles/proc/recharge(var/time)
+/obj/item/twohanded/shockpaddles/proc/recharge(time)
 	if(req_defib || !time)
 		return
 	cooldown = TRUE

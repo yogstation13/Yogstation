@@ -204,7 +204,7 @@
 					to_chat(usr, span_warning("Access denied. Please seek assistance from station AI or Research Director."))
 			update_icon()
 			. = TRUE
-		if("count")//Prompts user to change countdown timer (Minimum based on var/mincount)
+		if("count")//Prompts user to change countdown timer (Minimum based on mincount)
 			if(locked)
 				return
 			var/a = text2num(stripped_input(usr, "Set a new countdown timer. (Minimum [mincount])", name, mincount))

@@ -175,7 +175,7 @@
 			playsound(T, feast_sound, 50, 1, -1)
 			to_chat(M, span_clown("You leave [src]'s warm embrace,	and feel ready to take on the world."))
 
-/mob/living/simple_animal/slaughter/laughter/bloodcrawl_swallow(var/mob/living/victim)
+/mob/living/simple_animal/slaughter/laughter/bloodcrawl_swallow(mob/living/victim)
 	if(consumed_mobs)
 		// Keep their corpse so rescue is possible
 		consumed_mobs += victim

@@ -322,7 +322,7 @@
 /obj/structure/destructible/cult/pillar/conceal()
 	return
 
-/obj/structure/destructible/cult/pillar/ex_act(var/severity)
+/obj/structure/destructible/cult/pillar/ex_act(severity)
 	switch(severity)
 		if (EXPLODE_DEVASTATE)
 			take_damage(200)
@@ -410,7 +410,7 @@
 	..()
 	update_icon()
 
-/obj/structure/destructible/cult/bloodstone/ex_act(var/severity)
+/obj/structure/destructible/cult/bloodstone/ex_act(severity)
 	switch(severity)
 		if (EXPLODE_DEVASTATE)
 			take_damage(200)

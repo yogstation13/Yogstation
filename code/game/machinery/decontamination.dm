@@ -458,7 +458,7 @@
 			O.forceMove(src)
 			return TRUE
 
-/obj/machinery/decontamination_unit/proc/dispense(obj/item/O, var/mob/M)
+/obj/machinery/decontamination_unit/proc/dispense(obj/item/O, mob/M)
 	if(!M.put_in_hands(O))
 		O.forceMove(get_turf(M))
 		adjust_item_drop_location(O)

@@ -22,7 +22,7 @@
 		return
 	. = ..()
 
-/datum/antagonist/changeling/select_dna(var/prompt, var/title)
+/datum/antagonist/changeling/select_dna(prompt, title)
 	var/mob/living/carbon/user = owner.current
 	if(!istype(user))
 		return
@@ -164,7 +164,7 @@
 	changeling_transform(user, chosen_prof)
 	return TRUE
 
-/datum/antagonist/changeling/proc/select_dna(var/prompt, var/title)
+/datum/antagonist/changeling/proc/select_dna(prompt, title)
 	var/mob/living/carbon/user = owner.current
 	if(!istype(user))
 		return

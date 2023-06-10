@@ -12,7 +12,7 @@
 	starting_area = get_area(loc)
 	icon_state = "construction_drone" // Overrides /mob/camera/aiEye/Initialize() in \modules\mob\living\silicon\ai\freelook\eye
 
-/mob/camera/aiEye/remote/base_construction/setLoc(var/t)
+/mob/camera/aiEye/remote/base_construction/setLoc(t)
 	var/area/curr_area = get_area(t)
 	if(curr_area == starting_area || istype(curr_area, /area/shuttle/auxiliary_base))
 		return ..()

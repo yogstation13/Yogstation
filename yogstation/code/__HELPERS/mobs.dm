@@ -5,7 +5,7 @@
 		if(!findname(.))
 			break
 
-/proc/is_admin(var/user)
+/proc/is_admin(user)
 	if(ismob(user))
 		var/mob/temp = user
 		if(temp && temp.client && temp.client.holder)
@@ -36,7 +36,7 @@
 
 	return FALSE
 
-/proc/is_deadmin(var/user)
+/proc/is_deadmin(user)
 	if(ismob(user))
 		var/mob/temp = user
 		if(temp)
@@ -103,7 +103,7 @@
 	qdel(query)
 	return GLOB.donators
 
-/proc/compare_ckey(var/user, var/target)
+/proc/compare_ckey(user, target)
 	if(!user || !target)
 		return FALSE
 

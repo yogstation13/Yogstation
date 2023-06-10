@@ -35,7 +35,7 @@
 	var/sound_scanner_nomatch = 'sound/items/scanner_nomatch.ogg'
 	var/sound_scanner_match = 'sound/items/scanner_match.ogg'
 
-/obj/item/detective_scanner/proc/feedback(sound_file , var/sound_only = FALSE)
+/obj/item/detective_scanner/proc/feedback(sound_file , sound_only = FALSE)
 	if(sound_only)
 		playsound(src, sound_file, 50, 0)
 		return

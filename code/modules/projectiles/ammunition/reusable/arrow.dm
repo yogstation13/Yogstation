@@ -277,7 +277,7 @@
 		if(istype(M) && M.anti_magic_check(chargecost = 0))
 			BB.homing_away = TRUE // And there it goes!
 
-/obj/item/ammo_casing/reusable/arrow/magic/on_land(var/obj/item/projectile/old_projectile)
+/obj/item/ammo_casing/reusable/arrow/magic/on_land(obj/item/projectile/old_projectile)
 	dulled = TRUE
 	force = 3
 	throwforce = 0

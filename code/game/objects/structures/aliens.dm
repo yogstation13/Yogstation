@@ -142,7 +142,7 @@
 			if(3)
 				icon = 'icons/obj/smooth_structures/alien/weeds3.dmi'
 
-/obj/structure/alien/weeds/Click(var/atom/A)
+/obj/structure/alien/weeds/Click(atom/A)
 	var/turf/T = loc
 	if(T)
 		if(istype(A, /mob/living/carbon))

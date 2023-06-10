@@ -166,7 +166,7 @@
 	return TRUE
 
 ///gets the list of turfs the fire breath attack hits
-/mob/living/simple_animal/hostile/drakeling/proc/line_target(var/range, var/atom/at)
+/mob/living/simple_animal/hostile/drakeling/proc/line_target(range, atom/at)
 	if(!at)
 		return
 	var/angle = ATAN2(at.x - src.x, at.y - src.y)
@@ -179,7 +179,7 @@
 	return (getline(src, T) - get_turf(src))
 
 ///actual bit that shoots fire for the fire breath attack
-/datum/action/cooldown/spell/pointed/drakeling/proc/drakeling_fire_line(var/source, var/list/turfs, var/damage, var/list/protected)
+/datum/action/cooldown/spell/pointed/drakeling/proc/drakeling_fire_line(source, list/turfs, damage, list/protected)
 	var/list/hit_list = list()
 	for(var/turf/T in turfs)
 		if(istype(T, /turf/closed))

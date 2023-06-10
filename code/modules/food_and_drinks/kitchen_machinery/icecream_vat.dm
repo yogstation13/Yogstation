@@ -182,7 +182,7 @@
 	create_reagents(20)
 	reagents.add_reagent(/datum/reagent/consumable/nutriment, 4)
 
-/obj/item/reagent_containers/food/snacks/icecream/proc/set_cone_type(var/cone_name)
+/obj/item/reagent_containers/food/snacks/icecream/proc/set_cone_type(cone_name)
 	cone_type = cone_name
 	icon_state = "icecream_cone_[cone_name]"
 	switch (cone_type)
@@ -194,7 +194,7 @@
 	desc = "Delicious [cone_name] cone, but no ice cream."
 
 
-/obj/item/reagent_containers/food/snacks/icecream/proc/add_ice_cream(var/flavour_name)
+/obj/item/reagent_containers/food/snacks/icecream/proc/add_ice_cream(flavour_name)
 	name = "[flavour_name] icecream"
 	src.add_overlay("icecream_[flavour_name]")
 	switch (flavour_name) // adding the actual reagents advertised in the ingredient list

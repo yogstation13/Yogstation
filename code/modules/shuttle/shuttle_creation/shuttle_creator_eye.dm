@@ -38,7 +38,7 @@
 	else
 		sprint = initial
 
-/mob/camera/aiEye/remote/shuttle_creation/proc/can_move_to(var/turf/T)
+/mob/camera/aiEye/remote/shuttle_creation/proc/can_move_to(turf/T)
 	var/origin_x = source_turf.x
 	var/origin_y = source_turf.y
 	var/change_X = abs(origin_x - T.x)

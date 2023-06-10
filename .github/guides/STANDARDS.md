@@ -270,7 +270,7 @@ Bad:
 
 Good:
 ```dm
-/obj/machine/update_overlays(var/blah)
+/obj/machine/update_overlays(blah)
 	var/static/on_overlay
 	var/static/off_overlay
 	var/static/broken_overlay
@@ -298,7 +298,7 @@ Associated lists that could instead be variables or statically defined number in
 
 Bad:
 ```dm
-/obj/machine/update_overlays(var/blah)
+/obj/machine/update_overlays(blah)
 	var/static/our_overlays
 	if (isnull(our_overlays))
 		our_overlays = list("on" = iconstate2appearance(overlay_icon, "on"), "off" = iconstate2appearance(overlay_icon, "off"), "broken" = iconstate2appearance(overlay_icon, "broken"))
@@ -314,7 +314,7 @@ Good:
 #define OUR_OFF_OVERLAY 2
 #define OUR_BROKEN_OVERLAY 3
 
-/obj/machine/update_overlays(var/blah)
+/obj/machine/update_overlays(blah)
 	var/static/our_overlays
 	if (isnull(our_overlays))
 		our_overlays = list(iconstate2appearance(overlay_icon, "on"), iconstate2appearance(overlay_icon, "off"), iconstate2appearance(overlay_icon, "broken"))
@@ -331,7 +331,7 @@ Storing these in a flat (non-associated) list saves on memory, and using defines
 
 Also good:
 ```dm
-/obj/machine/update_overlays(var/blah)
+/obj/machine/update_overlays(blah)
 	var/static/on_overlay
 	var/static/off_overlay
 	var/static/broken_overlay
