@@ -41,19 +41,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/labor)
-"k" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/titanium{
-	name = "Labor Shuttle Airlock";
-	req_access_txt = "2"
-	},
-/turf/open/floor/plating,
-/area/shuttle/labor)
 "l" = (
 /turf/open/floor/mineral/titanium,
 /area/shuttle/labor)
@@ -79,6 +66,26 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/labor)
+"E" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/titanium{
+	name = "Labor Shuttle Airlock";
+	req_access_txt = "2"
+	},
+/turf/open/floor/plating,
+/area/shuttle/labor)
+"G" = (
+/obj/machinery/mineral/stacking_machine/laborstacker{
+	input_dir = 1;
+	output_dir = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/labor)
 "J" = (
 /obj/machinery/light,
 /turf/open/floor/mineral/titanium,
@@ -88,35 +95,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/shuttle/labor)
-"P" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/docking_port/mobile{
-	dir = 4;
-	dwidth = 2;
-	height = 5;
-	id = "laborcamp";
-	name = "labor camp shuttle";
-	port_direction = 4;
-	width = 9
-	},
-/obj/machinery/door/airlock/titanium{
-	id_tag = "prisonshuttle";
-	name = "Labor Shuttle Airlock"
-	},
-/turf/open/floor/plating,
-/area/shuttle/labor)
-"Q" = (
-/obj/machinery/mineral/stacking_machine/laborstacker{
-	input_dir = 1;
-	output_dir = 2
-	},
-/turf/open/floor/plating,
 /area/shuttle/labor)
 "T" = (
 /obj/machinery/button/flasher{
@@ -148,6 +126,28 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/shuttle/labor)
+"X" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/docking_port/mobile{
+	dir = 4;
+	dwidth = 2;
+	height = 5;
+	id = "laborcamp";
+	name = "labor camp shuttle";
+	port_direction = 4;
+	width = 9
+	},
+/obj/machinery/door/airlock/titanium{
+	id_tag = "prisonshuttle";
+	name = "Labor Shuttle Airlock"
+	},
+/turf/open/floor/plating,
+/area/shuttle/labor)
 "Z" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -159,11 +159,11 @@
 (1,1,1) = {"
 a
 a
-P
+X
 a
 a
 a
-k
+E
 a
 a
 "}
@@ -195,7 +195,7 @@ V
 p
 l
 n
-Q
+G
 h
 e
 b
