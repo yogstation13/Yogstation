@@ -10,7 +10,7 @@ if grep -El '^\".+\" = \(.+\)' _maps/**/*.dmm;	then
     echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
 fi;
-if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)'; then
+if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\) code/**/*.dm' then
     echo "ERROR: changed files contains proc argument starting with 'var'"
     st=1
 fi;
@@ -55,7 +55,7 @@ if ls _maps/*.json | grep -P "[A-Z]"; then
     echo "ERROR: Uppercase in a map json detected, these must be all lowercase."
 	st=1
 fi;
-if grep -P '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)'; then
+if grep -P '^/(obj|mob|turf|area|atom)/.+/Initialize\((?!mapload).*\)' code/**/*.dm; then
 	echo "ERROR: Initialize override without 'mapload' argument.${NC}"
 	st=1
 fi;
