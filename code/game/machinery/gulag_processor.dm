@@ -178,7 +178,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 		for(var/r in GLOB.data_core.security)
 			var/datum/data/record/R = r
 			if(R.fields["name"] == prisoner.real_name)
-				R.fields["criminal"] = "Incarcerated"
+				R.fields["criminal"] = WANTED_PRISONER
 
 	open_machine()
 	prisoner.Paralyze(stun_duration)
