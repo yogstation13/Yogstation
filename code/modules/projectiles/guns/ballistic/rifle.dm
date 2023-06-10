@@ -63,12 +63,6 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	can_be_sawn_off = TRUE
 	weapon_weight = WEAPON_HEAVY
 
-/obj/item/gun/ballistic/rifle/boltaction/sawoff(mob/user)
-	. = ..()
-	if(.)
-		spread = 36
-		can_bayonet = FALSE
-
 /obj/item/gun/ballistic/rifle/boltaction/blow_up(mob/user)
 	. = 0
 	if(chambered && chambered.BB)
@@ -90,7 +84,8 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 		return
 	. = ..()
 	if(.)
-		spread = 36
+		name = "\improper Mosin Obrez"
+		rack_delay *= 2
 		can_bayonet = FALSE
 		weapon_weight = WEAPON_LIGHT
 
