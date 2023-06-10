@@ -47115,87 +47115,27 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "xAk" = (
-/obj/item/stock_parts/subspace/amplifier{
-	pixel_x = -10;
-	pixel_y = -10
-	},
-/obj/item/stock_parts/subspace/amplifier{
-	pixel_x = -10;
-	pixel_y = -10
-	},
-/obj/item/stock_parts/subspace/amplifier{
-	pixel_x = -10;
-	pixel_y = -10
-	},
-/obj/item/stock_parts/subspace/analyzer{
-	pixel_x = -5;
-	pixel_y = -5
-	},
-/obj/item/stock_parts/subspace/analyzer{
-	pixel_x = -5;
-	pixel_y = -5
-	},
-/obj/item/stock_parts/subspace/analyzer{
-	pixel_x = -5;
-	pixel_y = -5
-	},
-/obj/item/stock_parts/subspace/ansible{
-	pixel_x = 10;
-	pixel_y = -10
-	},
-/obj/item/stock_parts/subspace/ansible{
-	pixel_x = 10;
-	pixel_y = -10
-	},
-/obj/item/stock_parts/subspace/ansible{
-	pixel_x = 10;
-	pixel_y = -10
-	},
-/obj/item/stock_parts/subspace/crystal{
-	pixel_x = 10;
-	pixel_y = 10
-	},
-/obj/item/stock_parts/subspace/crystal{
-	pixel_x = 10;
-	pixel_y = 10
-	},
-/obj/item/stock_parts/subspace/crystal{
-	pixel_x = 10;
-	pixel_y = 10
-	},
-/obj/item/stock_parts/subspace/filter{
-	pixel_x = -10;
-	pixel_y = 10
-	},
-/obj/item/stock_parts/subspace/filter{
-	pixel_x = -10;
-	pixel_y = 10
-	},
-/obj/item/stock_parts/subspace/filter{
-	pixel_x = -10;
-	pixel_y = 10
-	},
-/obj/item/stock_parts/subspace/transmitter{
-	pixel_y = 5
-	},
-/obj/item/stock_parts/subspace/transmitter{
-	pixel_y = 5
-	},
-/obj/item/stock_parts/subspace/transmitter{
-	pixel_y = 5
-	},
-/obj/item/stock_parts/subspace/treatment{
-	pixel_x = 5;
-	pixel_y = -5
-	},
-/obj/item/stock_parts/subspace/treatment{
-	pixel_x = 5;
-	pixel_y = -5
-	},
-/obj/item/stock_parts/subspace/treatment{
-	pixel_x = 5;
-	pixel_y = -5
-	},
+/obj/item/stock_parts/subspace/amplifier,
+/obj/item/stock_parts/subspace/amplifier,
+/obj/item/stock_parts/subspace/amplifier,
+/obj/item/stock_parts/subspace/analyzer,
+/obj/item/stock_parts/subspace/analyzer,
+/obj/item/stock_parts/subspace/analyzer,
+/obj/item/stock_parts/subspace/ansible,
+/obj/item/stock_parts/subspace/ansible,
+/obj/item/stock_parts/subspace/ansible,
+/obj/item/stock_parts/subspace/crystal,
+/obj/item/stock_parts/subspace/crystal,
+/obj/item/stock_parts/subspace/crystal,
+/obj/item/stock_parts/subspace/filter,
+/obj/item/stock_parts/subspace/filter,
+/obj/item/stock_parts/subspace/filter,
+/obj/item/stock_parts/subspace/transmitter,
+/obj/item/stock_parts/subspace/transmitter,
+/obj/item/stock_parts/subspace/transmitter,
+/obj/item/stock_parts/subspace/treatment,
+/obj/item/stock_parts/subspace/treatment,
+/obj/item/stock_parts/subspace/treatment,
 /obj/structure/closet{
 	name = "TeleComm parts"
 	},
