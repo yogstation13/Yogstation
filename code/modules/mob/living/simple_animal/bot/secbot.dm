@@ -451,7 +451,7 @@ Auto Patrol: []"},
 		var/mob/living/carbon/C = AM
 		if(!istype(C) || !C || in_range(src, target))
 			return
-		knockOver(C)
+		knock_over(C)
 		return
 	..()
 

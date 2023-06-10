@@ -126,7 +126,7 @@
 /obj/item/projectile/magic/door/on_hit(atom/target)
 	. = ..()
 	if(istype(target, /obj/machinery/door))
-		OpenDoor(target)
+		open_door(target)
 	else
 		var/turf/T = get_turf(target)
 		if(isclosedturf(T) && !isindestructiblewall(T))
@@ -138,7 +138,7 @@
 	T.ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	D.Open()
 
-/obj/item/projectile/magic/door/proc/OpenDoor(var/obj/machinery/door/D)
+/obj/item/projectile/magic/door/proc/open_door(obj/machinery/door/D)
 	if(istype(D, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/A = D
 		A.locked = FALSE

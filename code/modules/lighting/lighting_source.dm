@@ -137,7 +137,7 @@
 		REMOVE_CORNER(corner)
 		LAZYREMOVE(corner.affecting, src)
 
-/datum/light_source/proc/recalc_corner(var/datum/lighting_corner/corner)
+/datum/light_source/proc/recalc_corner(datum/lighting_corner/corner)
 	LAZYINITLIST(effect_str)
 	if (effect_str[corner]) // Already have one.
 		REMOVE_CORNER(corner)

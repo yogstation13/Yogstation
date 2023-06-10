@@ -100,7 +100,7 @@
 	blacklistItems[I] ++
 	return FALSE
 
-/mob/living/carbon/monkey/proc/pickup_and_wear(var/obj/item/clothing/C)
+/mob/living/carbon/monkey/proc/pickup_and_wear(obj/item/clothing/C)
 	if(!equip_to_appropriate_slot(C))
 		monkeyDrop(get_item_by_slot(C)) // remove the existing item if worn
 		sleep(0.5 SECONDS)
@@ -417,7 +417,7 @@
 		var/mob/living/carbon/monkey/M = AM
 		if(!istype(M) || !M)
 			return
-		knockOver(M)
+		knock_over(M)
 		return
 	..()
 
