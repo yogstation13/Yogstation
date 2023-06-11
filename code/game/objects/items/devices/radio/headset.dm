@@ -44,7 +44,7 @@
 	icon_state = "syndie_headset"
 	item_state = "syndie_headset"
 
-/obj/item/radio/headset/syndicate/alt/ComponentInitialize()
+/obj/item/radio/headset/syndicate/alt/Initialize()
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
@@ -75,7 +75,7 @@
 	icon_state = "sec_headset_alt"
 	item_state = "sec_headset_alt"
 
-/obj/item/radio/headset/headset_sec/alt/ComponentInitialize()
+/obj/item/radio/headset/headset_sec/alt/Initialize()
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
@@ -142,7 +142,7 @@
 	icon_state = "com_headset_alt"
 	item_state = "com_headset_alt"
 
-/obj/item/radio/headset/heads/captain/alt/ComponentInitialize()
+/obj/item/radio/headset/heads/captain/alt/Initialize()
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
@@ -164,7 +164,7 @@
 	icon_state = "com_headset_alt"
 	item_state = "com_headset_alt"
 
-/obj/item/radio/headset/heads/hos/ComponentInitialize()
+/obj/item/radio/headset/heads/hos/Initialize()
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
@@ -224,7 +224,7 @@
 	icon_state = "cent_headset_alt"
 	item_state = "cent_headset_alt"
 
-/obj/item/radio/headset/headset_cent/bowman/ComponentInitialize()
+/obj/item/radio/headset/headset_cent/bowman/Initialize()
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 
@@ -235,7 +235,7 @@
 	item_state = "cent_headset_alt"
 	keyslot = new /obj/item/encryptionkey/heads/captain
 
-/obj/item/radio/headset/headset_cent/alt/ComponentInitialize()
+/obj/item/radio/headset/headset_cent/alt/Initialize()
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
 

@@ -38,7 +38,7 @@
 
 	))
 
-/obj/item/storage/belt/tool_switcher/ComponentInitialize()
+/obj/item/storage/belt/tool_switcher/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	var/static/list/can_hold = typecacheof(list(
@@ -57,9 +57,6 @@
 		/obj/item/hemostat,
 		))
 	STR.can_hold = can_hold
-
-/obj/item/storage/belt/tool_switcher/Initialize()
-	. = ..()
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)

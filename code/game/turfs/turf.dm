@@ -89,7 +89,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if (opacity)
 		has_opaque_atom = TRUE
 
-	ComponentInitialize()
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 	return INITIALIZE_HINT_NORMAL

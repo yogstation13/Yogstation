@@ -208,7 +208,8 @@
 		else
 			CP.disable()
 
-/obj/structure/reagent_dispensers/plumbed/ComponentInitialize()
+/obj/structure/reagent_dispensers/plumbed/Initialize()
+	. = ..()
 	AddComponent(/datum/component/plumbing/simple_supply)
 
 /obj/structure/reagent_dispensers/plumbed/storage
@@ -216,5 +217,6 @@
 	icon_state = "tank_stationairy"
 	reagent_id = null //start empty
 
-/obj/structure/reagent_dispensers/plumbed/storage/ComponentInitialize()
+/obj/structure/reagent_dispensers/plumbed/storage/Initialize()
+	. = ..()
 	AddComponent(/datum/component/plumbing/tank)

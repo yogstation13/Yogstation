@@ -39,7 +39,7 @@
 	drop_sound = 'sound/items/handling/toolbelt_drop.ogg'
 	pickup_sound =  'sound/items/handling/toolbelt_pickup.ogg'
 
-/obj/item/storage/belt/utility/ComponentInitialize()
+/obj/item/storage/belt/utility/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 11
@@ -88,7 +88,7 @@
 	icon_state = "makeshiftbelt"
 	item_state = "makeshiftutility"
 
-/obj/item/storage/belt/utility/makeshift/ComponentInitialize()
+/obj/item/storage/belt/utility/makeshift/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7 //It's a very crappy belt
@@ -237,7 +237,7 @@
 	item_state = "medical"
 	content_overlays = TRUE
 
-/obj/item/storage/belt/medical/ComponentInitialize()
+/obj/item/storage/belt/medical/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_BULKY
@@ -315,7 +315,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	content_overlays = TRUE
 
-/obj/item/storage/belt/security/ComponentInitialize()
+/obj/item/storage/belt/security/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -364,7 +364,7 @@
 	icon_state = "securitybelt_hos"
 	item_state = "security_hos"
 
-/obj/item/storage/belt/security/chief/ComponentInitialize()
+/obj/item/storage/belt/security/chief/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -388,7 +388,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	custom_premium_price = 200
 
-/obj/item/storage/belt/security/webbing/ComponentInitialize()
+/obj/item/storage/belt/security/webbing/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -400,7 +400,7 @@
 	icon_state = "explorer1"
 	item_state = "explorer1"
 
-/obj/item/storage/belt/mining/ComponentInitialize()
+/obj/item/storage/belt/mining/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 8
@@ -472,7 +472,7 @@
 	icon_state = "ebelt"
 	item_state = "ebelt"
 
-/obj/item/storage/belt/mining/primitive/ComponentInitialize()
+/obj/item/storage/belt/mining/primitive/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -483,7 +483,7 @@
 	icon_state = "soulstonebelt"
 	item_state = "soulstonebelt"
 
-/obj/item/storage/belt/soulstone/ComponentInitialize()
+/obj/item/storage/belt/soulstone/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -506,7 +506,7 @@
 	item_state = "champion"
 	materials = list(/datum/material/gold=400)
 
-/obj/item/storage/belt/champion/ComponentInitialize()
+/obj/item/storage/belt/champion/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1
@@ -521,7 +521,7 @@
 	item_state = "militarywebbing"
 	resistance_flags = FIRE_PROOF
 
-/obj/item/storage/belt/military/ComponentInitialize()
+/obj/item/storage/belt/military/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
@@ -534,7 +534,7 @@
 	var/sponsor = pick("DonkCo", "Waffle Co.", "Roffle Co.", "Gorlax Marauders", "Tiger Cooperative")
 	desc = "A set of snack-tical webbing worn by athletes of the [sponsor] VR sports division."
 
-/obj/item/storage/belt/military/snack/ComponentInitialize()
+/obj/item/storage/belt/military/snack/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -606,7 +606,7 @@
 	item_state = "security"
 	content_overlays = TRUE // This won't end well
 
-/obj/item/storage/belt/admin/ComponentInitialize()
+/obj/item/storage/belt/admin/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1000
@@ -657,7 +657,7 @@
 	icon_state = "grenadebeltnew"
 	item_state = "security"
 
-/obj/item/storage/belt/grenade/ComponentInitialize()
+/obj/item/storage/belt/grenade/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 30
@@ -697,7 +697,7 @@
 	icon_state = "soulstonebelt"
 	item_state = "soulstonebelt"
 
-/obj/item/storage/belt/wands/ComponentInitialize()
+/obj/item/storage/belt/wands/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -722,7 +722,7 @@
 	icon_state = "janibelt"
 	item_state = "janibelt"
 
-/obj/item/storage/belt/janitor/ComponentInitialize()
+/obj/item/storage/belt/janitor/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -755,7 +755,7 @@
 	icon_state = "bandolier"
 	item_state = "bandolier"
 
-/obj/item/storage/belt/bandolier/ComponentInitialize()
+/obj/item/storage/belt/bandolier/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 24
@@ -784,7 +784,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	alternate_worn_layer = UNDER_SUIT_LAYER
 
-/obj/item/storage/belt/holster/ComponentInitialize()
+/obj/item/storage/belt/holster/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
@@ -806,7 +806,7 @@
 	name = "syndicate shoulder holster"
 	desc = "A modified holster that can carry more than enough firepower."
 
-/obj/item/storage/belt/holster/syndicate/ComponentInitialize()
+/obj/item/storage/belt/holster/syndicate/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 4
@@ -831,7 +831,7 @@
 		override_state = "[icon_state]_empty"
 	return ..()
 
-/obj/item/storage/belt/quiver/ComponentInitialize()
+/obj/item/storage/belt/quiver/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 20
@@ -941,7 +941,7 @@
 	content_overlays = FALSE // The arrows are stored in the quiver, so none of it hangs out
 	anti_magic_check = FALSE
 
-/obj/item/storage/belt/quiver/returning/holding/ComponentInitialize()
+/obj/item/storage/belt/quiver/returning/holding/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 50
@@ -953,7 +953,7 @@
 	icon_state = "quiver_anomaly_empty"
 	item_state = "quiver_anomaly_empty"
 
-/obj/item/storage/belt/quiver/anomaly/ComponentInitialize()
+/obj/item/storage/belt/quiver/anomaly/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 10	// Less space for arrows due to all the parts inside
@@ -962,10 +962,10 @@
 /obj/item/storage/belt/quiver/anomaly/attackby(obj/item/I, mob/user, params)
 	..()
 	var/static/list/anomaly_quiver_types = list(
-		/obj/effect/anomaly/grav	                = /obj/item/storage/belt/quiver/anomaly/vacuum,
-		/obj/effect/anomaly/pyro	  			    = /obj/item/storage/belt/quiver/anomaly/pyro,
-		/obj/effect/anomaly/bluespace 	            = /obj/item/storage/belt/quiver/returning/holding
-		)
+		/obj/effect/anomaly/grav = /obj/item/storage/belt/quiver/anomaly/vacuum,
+		/obj/effect/anomaly/pyro = /obj/item/storage/belt/quiver/anomaly/pyro,
+		/obj/effect/anomaly/bluespace = /obj/item/storage/belt/quiver/returning/holding,
+	)
 
 	if(istype(I, /obj/item/assembly/signaler/anomaly))
 		var/obj/item/assembly/signaler/anomaly/A = I
@@ -1061,7 +1061,7 @@
 	content_overlays = FALSE
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/storage/belt/quiver/admin/ComponentInitialize()
+/obj/item/storage/belt/quiver/admin/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 100
@@ -1102,7 +1102,7 @@
 	dying_key = DYE_REGISTRY_FANNYPACK
 	custom_price = 15
 
-/obj/item/storage/belt/fannypack/ComponentInitialize()
+/obj/item/storage/belt/fannypack/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
@@ -1164,7 +1164,7 @@
 	icon_state = "sheath"
 	item_state = "sheath"
 
-/obj/item/storage/belt/sabre/ComponentInitialize()
+/obj/item/storage/belt/sabre/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1
