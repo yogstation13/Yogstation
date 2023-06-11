@@ -324,59 +324,6 @@
 	icon = 'icons/mob/screen_cyborg.dmi'
 	screen_loc = ui_borg_intents
 
-/atom/movable/screen/internals
-	name = "toggle internals"
-	icon_state = "internal0"
-	screen_loc = ui_internal
-
-/atom/movable/screen/internals/Click()
-	if(!iscarbon(usr))
-		return
-
-	var/mob/living/carbon/C = usr
-	if(C.incapacitated())
-		return
-
-	if(C.internal)
-		C.close_internals()
-		to_chat(C, span_notice("You are no longer running on internals."))
-		icon_state = "internal0"
-	else
-		if (!C.can_breathe_internals())
-			to_chat(C, span_warning("You are not wearing a suitable internals mask!"))
-			return
-
-		var/obj/item/I = C.is_holding_item_of_type(/obj/item/tank)
-		if(I)
-			to_chat(C, span_notice("You are now running on internals from [I] in your [C.get_held_index_name(C.get_held_index_of_item(I))]."))
-			C.open_internals(I)
-		else if(ishuman(C))
-			var/mob/living/carbon/human/H = C
-			if(istype(H.s_store, /obj/item/tank))
-				to_chat(H, span_notice("You are now running on internals from [H.s_store] on your [H.wear_suit.name]."))
-				H.open_internals(H.s_store)
-			else if(istype(H.belt, /obj/item/tank))
-				to_chat(H, span_notice("You are now running on internals from [H.belt] on your belt."))
-				H.open_internals(H.belt)
-			else if(istype(H.l_store, /obj/item/tank))
-				to_chat(H, span_notice("You are now running on internals from [H.l_store] in your left pocket."))
-				H.open_internals(H.l_store)
-			else if(istype(H.r_store, /obj/item/tank))
-				to_chat(H, span_notice("You are now running on internals from [H.r_store] in your right pocket."))
-				H.open_internals(H.r_store)
-
-		//Separate so CO2 jetpacks are a little less cumbersome.
-		if(!C.internal && istype(C.back, /obj/item/tank))
-			to_chat(C, span_notice("You are now running on internals from [C.back] on your back."))
-			C.open_internals(C.back)
-
-		if(C.internal)
-			icon_state = "internal1"
-		else
-			to_chat(C, span_warning("You don't have a suitable tank!"))
-			return
-	C.update_action_buttons_icon()
-
 /atom/movable/screen/mov_intent
 	name = "run/walk toggle"
 	icon = 'icons/mob/screen_midnight.dmi'

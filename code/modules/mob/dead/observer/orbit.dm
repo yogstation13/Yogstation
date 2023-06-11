@@ -87,7 +87,7 @@
 
 				for (var/_A in mind.antag_datums)
 					var/datum/antagonist/A = _A
-					if (A.show_to_ghosts)
+					if (A.show_to_ghosts || is_admin(user))
 						was_antagonist = TRUE
 						serialized["antag"] = A.name
 						antagonists += list(serialized)
@@ -105,7 +105,7 @@
 	data["misc"] = misc
 	data["npcs"] = npcs
 	return data
-	
+
 /datum/orbit_menu/ui_assets()
 	. = ..() || list()
 	. += get_asset_datum(/datum/asset/simple/orbit)

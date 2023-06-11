@@ -39,9 +39,8 @@
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		H.update_inv_head()
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.UpdateButtonIcon(force = TRUE)
+	for(var/datum/action/A as anything in actions)
+		A.build_all_button_icons(force = TRUE)
 	..()
 
 /obj/item/clothing/head/hardhat/proc/turn_on(mob/user)
@@ -137,6 +136,13 @@
 /obj/item/clothing/head/hardhat/weldhat/AltClick(mob/user)
 	if(user.canUseTopic(src, BE_CLOSE))
 		toggle_welding_screen(user)
+
+/obj/item/clothing/head/hardhat/weldhat/ui_action_click(mob/user, actiontype)
+	if(istype(actiontype, /datum/action/item_action/toggle_welding_screen))
+		toggle_welding_screen(user)
+		return
+
+	return ..()
 
 /obj/item/clothing/head/hardhat/weldhat/proc/toggle_welding_screen(mob/living/user)
 	if(weldingvisortoggle(user))

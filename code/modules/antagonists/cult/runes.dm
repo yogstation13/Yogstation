@@ -45,9 +45,6 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	var/image/I = image(icon = 'icons/effects/blood.dmi', icon_state = null, loc = src)
 	I.override = TRUE
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cult_runes", I)
-
-/obj/effect/rune/ComponentInitialize()
-	. = ..()
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_act))
 
 /obj/effect/rune/Destroy()
@@ -302,8 +299,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 				message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(H)]) to replace a jobbanned player.")
 				H.key = C.key
 		H.uncuff()
-		H.stuttering = 0
-		H.cultslurring = 0
+		H.remove_status_effect(/datum/status_effect/speech/slurring/cult)
+		H.remove_status_effect(/datum/status_effect/speech/stutter)
 	return TRUE
 
 /obj/effect/rune/convert/proc/do_sacrifice(mob/living/sacrificial, list/invokers)
@@ -1057,7 +1054,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			continue
 		if(ishuman(M))
 			if(!iscultist(M))
-				AH.remove_hud_from(M)
+				AH.hide_from(M)
 				addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(hudFix), M), duration)
 			var/image/A = image('icons/mob/mob.dmi',M,"cultist", ABOVE_MOB_LAYER)
 			A.override = 1
@@ -1150,4 +1147,4 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/obj/O = target.get_item_by_slot(SLOT_GLASSES)
 	if(istype(O, /obj/item/clothing/glasses/hud/security))
 		var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-		AH.add_hud_to(target)
+		AH.show_to(target)

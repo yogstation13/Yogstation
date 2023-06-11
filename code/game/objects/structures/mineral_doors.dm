@@ -219,9 +219,6 @@
 	max_integrity = 300
 	light_range = 2
 
-/obj/structure/mineral_door/uranium/ComponentInitialize()
-	return
-
 /obj/structure/mineral_door/sandstone
 	name = "sandstone door"
 	icon_state = "sandstone"
@@ -240,9 +237,6 @@
 	name = "plasma door"
 	icon_state = "plasma"
 	sheetType = /obj/item/stack/sheet/mineral/plasma
-
-/obj/structure/mineral_door/transparent/plasma/ComponentInitialize()
-	return
 
 /obj/structure/mineral_door/transparent/plasma/welder_act(mob/living/user, obj/item/I)
 	return
@@ -339,9 +333,6 @@
 			return TRUE
 
 	return ..()
-
-/obj/structure/mineral_door/paperframe/ComponentInitialize()
-	return
 
 /obj/structure/mineral_door/paperframe/Destroy()
 	queue_smooth_neighbors(src)

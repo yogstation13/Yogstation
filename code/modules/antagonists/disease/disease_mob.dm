@@ -63,7 +63,7 @@ the new instance inside the host to be updated to the template's stats.
 	SSdisease.archive_diseases[disease_template.GetDiseaseID()] = disease_template //important for stuff that uses disease IDs
 
 	var/datum/atom_hud/my_hud = GLOB.huds[DATA_HUD_SENTIENT_DISEASE]
-	my_hud.add_hud_to(src)
+	my_hud.show_to(src)
 
 	browser = new /datum/browser(src, "disease_menu", "Adaptation Menu", 1000, 770, src)
 
@@ -229,7 +229,7 @@ the new instance inside the host to be updated to the template's stats.
 	MA.alpha = 200
 	holder.appearance = MA
 	var/datum/atom_hud/my_hud = GLOB.huds[DATA_HUD_SENTIENT_DISEASE]
-	my_hud.add_to_hud(V.affected_mob)
+	my_hud.add_atom_to_hud(V.affected_mob)
 
 	to_chat(src, span_notice("A new host, <b>[V.affected_mob.real_name]</b>, has been infected."))
 
@@ -245,7 +245,7 @@ the new instance inside the host to be updated to the template's stats.
 		to_chat(src, span_notice("One of your hosts, <b>[V.affected_mob.real_name]</b>, has been purged of your infection."))
 
 		var/datum/atom_hud/my_hud = GLOB.huds[DATA_HUD_SENTIENT_DISEASE]
-		my_hud.remove_from_hud(V.affected_mob)
+		my_hud.remove_atom_from_hud(V.affected_mob)
 
 		if(following_host == V.affected_mob)
 			follow_next()
@@ -399,7 +399,7 @@ the new instance inside the host to be updated to the template's stats.
 
 /datum/action/innate/disease_adapt
 	name = "Adaptation Menu"
-	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "disease_menu"
 
 /datum/action/innate/disease_adapt/Activate()

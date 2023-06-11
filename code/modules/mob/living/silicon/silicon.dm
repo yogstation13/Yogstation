@@ -43,7 +43,8 @@
 	var/law_change_counter = 0
 	var/obj/machinery/camera/builtInCamera = null
 	var/updating = FALSE //portable camera camerachunk update
-
+	///Whether we have been emagged
+	var/emagged = FALSE
 	var/hack_software = FALSE //Will be able to use hacking actions
 	var/interaction_range = 7			//wireless control range
 	///The reference to the built-in tablet that borgs carry.
@@ -55,7 +56,7 @@
 	GLOB.silicon_mobs += src
 	faction += "silicon"
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_status()
 	diag_hud_set_health()
 
@@ -376,17 +377,17 @@
 	var/datum/atom_hud/secsensor = GLOB.huds[sec_hud]
 	var/datum/atom_hud/medsensor = GLOB.huds[med_hud]
 	var/datum/atom_hud/diagsensor = GLOB.huds[d_hud]
-	secsensor.remove_hud_from(src)
-	medsensor.remove_hud_from(src)
-	diagsensor.remove_hud_from(src)
+	secsensor.hide_from(src)
+	medsensor.hide_from(src)
+	diagsensor.hide_from(src)
 
 /mob/living/silicon/proc/add_sensors()
 	var/datum/atom_hud/secsensor = GLOB.huds[sec_hud]
 	var/datum/atom_hud/medsensor = GLOB.huds[med_hud]
 	var/datum/atom_hud/diagsensor = GLOB.huds[d_hud]
-	secsensor.add_hud_to(src)
-	medsensor.add_hud_to(src)
-	diagsensor.add_hud_to(src)
+	secsensor.show_to(src)
+	medsensor.show_to(src)
+	diagsensor.show_to(src)
 
 /mob/living/silicon/proc/toggle_sensors(silent = FALSE)
 	if(incapacitated())

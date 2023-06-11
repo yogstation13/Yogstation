@@ -1,7 +1,6 @@
 /obj/item/implant/mindshield/tot
 	name = "mindshield implant"
 	desc = "Protects against brainwashing."
-	activated = 0
 
 /obj/item/implant/mindshield/tot/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
@@ -30,7 +29,7 @@
 		if(host)
 			var/datum/mind/M = host.owner
 			if(M)
-				var/obj/effect/proc_holder/spell/target_hive/hive_control/the_spell = locate(/obj/effect/proc_holder/spell/target_hive/hive_control) in M.spell_list
+				var/datum/action/cooldown/spell/aoe/target_hive/hive_control/the_spell = locate(/datum/action/cooldown/spell/aoe/target_hive/hive_control) in M.current.actions
 				if(the_spell && the_spell.active)
 					the_spell.release_control()
 

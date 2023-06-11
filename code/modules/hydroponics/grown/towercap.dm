@@ -263,7 +263,7 @@
 		else if(isliving(A))
 			var/mob/living/L = A
 			L.adjust_fire_stacks(fire_stack_strength * 0.5 * delta_time)
-			L.IgniteMob()
+			L.ignite_mob()
 
 /obj/structure/bonfire/proc/Cook(delta_time = 2)
 	var/turf/current_location = get_turf(src)
@@ -274,7 +274,7 @@
 		else if(isliving(A)) //It's still a fire, idiot.
 			var/mob/living/L = A
 			L.adjust_fire_stacks(fire_stack_strength * 0.5 * delta_time)
-			L.IgniteMob()
+			L.ignite_mob()
 		else if(G.GetComponent(/datum/component/grillable))
 			if(SEND_SIGNAL(G, COMSIG_ITEM_GRILLED, src) & COMPONENT_HANDLED_GRILLING)
 				continue

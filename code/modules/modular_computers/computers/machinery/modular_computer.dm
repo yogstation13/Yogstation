@@ -19,13 +19,13 @@
 	var/icon_state_powered = null						// Icon state when the computer is turned on.
 	var/screen_icon_state_menu = "menu"					// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.
 	var/screen_icon_screensaver = "standby"				// Icon state overlay when the computer is powered, but not 'switched on'.
-	var/overlay_skin = null		
+	var/overlay_skin = null
 	var/max_hardware_size = 0							// Maximal hardware size. Currently, tablets have 1, laptops 2 and consoles 3. Limits what hardware types can be installed.
 	var/steel_sheet_cost = 10							// Amount of steel sheets refunded when disassembling an empty frame of this computer.
 	var/light_strength = 0								// Light luminosity when turned on
 	var/base_active_power_usage = 100					// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_idle_power_usage = 10						// Power usage when the computer is idle and screen is off (currently only applies to laptops)
-	
+
 	// Stuff for presets
 	var/list/starting_components = list()
 	var/list/starting_files = list()
@@ -50,6 +50,17 @@
 /obj/machinery/modular_computer/examine(mob/user)
 	. = ..()
 	. += get_modular_computer_parts_examine(user)
+	if(cpu && !(cpu.resistance_flags & INDESTRUCTIBLE))
+		if(cpu.resistance_flags & ON_FIRE)
+			. += span_warning("The CPU is on fire!")
+		var/healthpercent = (cpu.obj_integrity/cpu.max_integrity) * 100
+		switch(healthpercent)
+			if(50 to 99)
+				. += "The CPU looks slightly damaged."
+			if(25 to 50)
+				. += "The CPU appears heavily damaged."
+			if(0 to 25)
+				. += span_warning("The CPU is falling apart!")
 
 /obj/machinery/modular_computer/attack_ghost(mob/dead/observer/user)
 	. = ..()

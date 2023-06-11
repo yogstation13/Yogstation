@@ -250,20 +250,20 @@
 					secHUD = !secHUD
 					if(secHUD)
 						var/datum/atom_hud/sec = GLOB.huds[sec_hud]
-						sec.add_hud_to(src)
+						sec.show_to(src)
 					else
 						var/datum/atom_hud/sec = GLOB.huds[sec_hud]
-						sec.remove_hud_from(src)
+						sec.hide_from(src)
 
 			if("medicalhud")
 				if(href_list["toggle"])
 					medHUD = !medHUD
 					if(medHUD)
 						var/datum/atom_hud/med = GLOB.huds[med_hud]
-						med.add_hud_to(src)
+						med.show_to(src)
 					else
 						var/datum/atom_hud/med = GLOB.huds[med_hud]
-						med.remove_hud_from(src)
+						med.hide_from(src)
 
 			if("hostscan")
 				if(href_list["toggle"])

@@ -13,11 +13,16 @@
 	lose_text = ""
 
 /datum/brain_trauma/mild/hallucinations/on_life()
-	owner.hallucination = min(owner.hallucination + 10, 50)
+	if(owner.stat != CONSCIOUS || owner.IsSleeping() || owner.IsUnconscious())
+		return
+//	if(HAS_TRAIT(owner, TRAIT_RDS_SUPPRESSED))
+//		return
+
+	owner.adjust_hallucinations_up_to(10 SECONDS, 100 SECONDS)
 	..()
 
 /datum/brain_trauma/mild/hallucinations/on_lose()
-	owner.hallucination = 0
+	owner.remove_status_effect(/datum/status_effect/hallucination)
 	..()
 
 /datum/brain_trauma/mild/reality_dissociation
@@ -31,13 +36,13 @@
 
 /datum/brain_trauma/mild/reality_dissociation/on_life()
 	if(owner.reagents.has_reagent(/datum/reagent/toxin/mindbreaker, needs_metabolizing = TRUE))
-		owner.hallucination = 0
+		owner.remove_status_effect(/datum/status_effect/hallucination)
 	else if(prob(2))
-		owner.hallucination += rand(10, 25)
+		owner.adjust_hallucinations(rand(10, 25))
 	..()
 
 /datum/brain_trauma/mild/reality_dissociation/on_lose()
-	owner.hallucination = 0
+	owner.remove_status_effect(/datum/status_effect/hallucination)
 	..()
 
 /datum/brain_trauma/mild/stuttering
@@ -48,11 +53,11 @@
 	lose_text = ""
 
 /datum/brain_trauma/mild/stuttering/on_life()
-	owner.stuttering = min(owner.stuttering + 5, 25)
+	owner.adjust_stutter_up_to(5 SECONDS, 50 SECONDS)
 	..()
 
 /datum/brain_trauma/mild/stuttering/on_lose()
-	owner.stuttering = 0
+	owner.remove_status_effect(/datum/status_effect/speech/stutter)
 	..()
 
 /datum/brain_trauma/mild/dumbness
@@ -68,7 +73,7 @@
 	..()
 
 /datum/brain_trauma/mild/dumbness/on_life()
-	owner.derpspeech = min(owner.derpspeech + 5, 25)
+	owner.adjust_derpspeech_up_to(5 SECONDS, 50 SECONDS)
 	if(prob(3))
 		owner.emote("drool")
 	else if(owner.stat == CONSCIOUS && prob(3))
@@ -77,7 +82,7 @@
 
 /datum/brain_trauma/mild/dumbness/on_lose()
 	REMOVE_TRAIT(owner, TRAIT_DUMB, TRAUMA_TRAIT)
-	owner.derpspeech = 0
+	owner.remove_status_effect(/datum/status_effect/speech/stutter/derpspeech)
 	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "dumb")
 	..()
 
@@ -109,12 +114,12 @@
 			if(1)
 				owner.vomit()
 			if(2,3)
-				owner.dizziness += 10
+				owner.adjust_dizzy(20 SECONDS)
 			if(4,5)
-				owner.confused += 10
+				owner.adjust_confusion(10 SECONDS)
 				owner.blur_eyes(10)
 			if(6 to 9)
-				owner.slurring += 30
+				owner.adjust_slurring(1 MINUTES)
 			if(10)
 				to_chat(owner, span_notice("You forget for a moment what you were doing."))
 				owner.Stun(20)
@@ -238,13 +243,7 @@
 	return new_word + jointext(shuffled, "") + word[length(word)]
 
 /datum/brain_trauma/mild/expressive_aphasia/handle_speech(datum/source, list/speech_args)
-	if(ishuman(source))
-		var/mob/living/carbon/human/H = source
-		if(H.drunkenness > 10)
-			return
-	
 	var/message = speech_args[SPEECH_MESSAGE]
-
 	if(message)
 		var/list/message_split = splittext(message, " ")
 		var/list/new_message = list()
@@ -252,29 +251,27 @@
 		for(var/word in message_split)
 			var/suffix = ""
 			var/suffix_foundon = 0
-			for(var/potential_suffix in list(".", ",", ";", "!", ":", "?"))
+			for(var/potential_suffix in list("." , "," , ";" , "!" , ":" , "?"))
 				suffix_foundon = findtext(word, potential_suffix, -length(potential_suffix))
 				if(suffix_foundon)
-					suffix = copytext(word,suffix_foundon,length(word)+1)
+					suffix = potential_suffix
 					break
 
 			if(suffix_foundon)
 				word = copytext(word, 1, suffix_foundon)
-
 			word = html_decode(word)
 
-			if((length(word) < 8) || (lowertext(word) in common_words) || is_simple(word))
+			if(lowertext(word) in common_words)
 				new_message += word + suffix
 			else
-				var/new_word = ""
-				if(prob(70))
-					new_word += stutter(word)
-					if(prob(40))
-						new_word += pick(stutter(lowertext(word)), partial_shuffle(lowertext(word)) + suffix)
+				if(prob(30) && message_split.len > 2)
+					new_message += pick("uh","erm")
+					break
 				else
-					new_word += partial_shuffle(word) + suffix
-				new_message += new_word
-				break
+					var/list/charlist = text2charlist(word)
+					charlist.len = round(charlist.len * 0.5, 1)
+					shuffle_inplace(charlist)
+					new_message += jointext(charlist, "") + suffix
 
 		message = jointext(new_message, " ")
 

@@ -1,15 +1,15 @@
 //ABILITIES
 
 /datum/action/innate/horror
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_horror.dmi'
+	background_icon_state = "bg_heretic"
+	button_icon = 'icons/mob/actions/actions_horror.dmi'
 	var/blacklisted = FALSE //If the ability can't be mutated
 	var/soul_price = 0 //How much souls the ability costs to buy; if this is 0, it isn't listed on the catalog
 	var/chemical_cost = 0 //How much chemicals the ability costs to use
 	var/mob/living/simple_animal/horror/B //Horror holding the ability
 	var/category  //category for when the ability is active, "horror" is for creature, "infest" is during infestation, "controlling" is when a horror is controlling a body
 
-/datum/action/innate/horror/IsAvailable()
+/datum/action/innate/horror/IsAvailable(feedback = FALSE)
 	if(!B)
 		return
 	if(!B.has_chemicals(chemical_cost))
@@ -68,7 +68,7 @@
 /datum/action/innate/horror/toggle_hide/Activate()
 	B.hide()
 	button_icon_state = "horror_hiding_[B.hiding ? "true" : "false"]"
-	UpdateButtonIcon()
+	build_all_button_icons()
 
 /datum/action/innate/horror/talk_to_horror
 	name = "Converse with Horror"
@@ -77,7 +77,7 @@
 	blacklisted = TRUE
 	var/mob/living/O
 
-/datum/action/innate/horror/talk_to_horror/IsAvailable()
+/datum/action/innate/horror/talk_to_horror/IsAvailable(feedback = FALSE)
 	if(owner.stat == DEAD)
 		return
 	return TRUE
@@ -129,7 +129,7 @@
 /datum/action/innate/horror/make_chems
 	name = "Secrete chemicals"
 	desc = "Push some chemicals into your host's bloodstream."
-	icon_icon = 'icons/obj/chemical.dmi'
+	button_icon = 'icons/obj/chemical.dmi'
 	button_icon_state = "minidispenser"
 	blacklisted = TRUE
 	category = list("infest")
@@ -146,10 +146,10 @@
 
 /datum/action/innate/horror/freeze_victim/Activate()
 	B.freeze_victim()
-	UpdateButtonIcon()
-	addtimer(CALLBACK(src, PROC_REF(UpdateButtonIcon)), 150)
+	build_all_button_icons()
+	addtimer(CALLBACK(src, PROC_REF(build_all_button_icons)), 15 SECONDS)
 
-/datum/action/innate/horror/freeze_victim/IsAvailable()
+/datum/action/innate/horror/freeze_victim/IsAvailable(feedback = FALSE)
 	if(world.time - B.used_freeze < 150)
 		return FALSE
 	else
@@ -165,7 +165,7 @@
 	category = list("infest", "control")
 	soul_price = 2
 
-/datum/action/innate/horror/tentacle/IsAvailable()
+/datum/action/innate/horror/tentacle/IsAvailable(feedback = FALSE)
 	if(!active && !B.has_chemicals(chemical_cost))
 		return
 	return ..()
@@ -181,7 +181,7 @@
 /datum/action/innate/horror/tentacle/process()
 	..()
 	active = locate(/obj/item/horrortentacle) in B.victim
-	UpdateButtonIcon()
+	build_all_button_icons()
 
 
 /datum/action/innate/horror/tentacle/Activate()
@@ -308,7 +308,7 @@
 /datum/action/innate/horror/chameleon/Activate()
 	B.go_invisible()
 	button_icon_state = "horror_sneak_[B.invisible ? "true" : "false"]"
-	UpdateButtonIcon()
+	build_all_button_icons()
 
 /datum/action/innate/horror/lube_spill
 	name = "Lube spill"
@@ -319,7 +319,7 @@
 	soul_price = 2
 	var/cooldown = 0
 
-/datum/action/innate/horror/lube_spill/IsAvailable()
+/datum/action/innate/horror/lube_spill/IsAvailable(feedback = FALSE)
 	if(cooldown > world.time || !B.has_chemicals(chemical_cost) || !B.can_use_ability())
 		return
 	return ..()
@@ -327,8 +327,8 @@
 /datum/action/innate/horror/lube_spill/Activate()
 	B.use_chemicals(chemical_cost)
 	cooldown = world.time + 10 SECONDS
-	UpdateButtonIcon()
-	addtimer(CALLBACK(src, PROC_REF(UpdateButtonIcon)), 10 SECONDS)
+	build_all_button_icons()
+	addtimer(CALLBACK(src, PROC_REF(build_all_button_icons)), 10 SECONDS)
 	B.visible_message(span_warning("[B] spins and throws some sort of substance!"), span_notice("Your flail oily substance around you!"))
 	flick("horror_spin", B)
 	playsound(B, 'sound/effects/blobattack.ogg', 25, 1)

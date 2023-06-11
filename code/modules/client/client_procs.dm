@@ -417,7 +417,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	send_resources()
 
-	generate_clickcatcher()
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
@@ -836,6 +835,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		ip_intel = res.intel
 
 /client/Click(atom/object, atom/location, control, params)
+	if(click_intercept_time)
+		if(click_intercept_time >= world.time)
+			click_intercept_time = 0 //Reset and return. Next click should work, but not this one.
+			return
+		click_intercept_time = 0 //Just reset. Let's not keep re-checking forever.
+
 	if(src.afreeze)
 		to_chat(src, span_userdanger("You have been frozen by an administrator."))
 		return
@@ -847,7 +852,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(dragged && !L[dragged])
 		return
 
-	if (object && object == middragatom && L["left"])
+	if (object && IS_WEAKREF_OF(object, middle_drag_atom_ref) && LAZYACCESS(L, LEFT_CLICK))
 		ab = max(0, 5 SECONDS-(world.time-middragtime)*0.1)
 
 	var/mcl = CONFIG_GET(number/minute_click_limit)
@@ -895,6 +900,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	else
 		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
+
+	SEND_SIGNAL(src, COMSIG_CLIENT_CLICK, object, location, control, params, usr)
 
 	..()
 
@@ -1031,11 +1038,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/mob/living/M = mob
 		M.update_damage_hud()
 	if (prefs.read_preference(/datum/preference/toggle/auto_fit_viewport))
-		addtimer(CALLBACK(src,.verb/fit_viewport,10)) //Delayed to avoid wingets from Login calls.
+		addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS)) //Delayed to avoid wingets from Login calls.
 
 /client/proc/generate_clickcatcher()
 	if(!void)
 		void = new()
+	if(!(void in screen))
 		screen += void
 
 /client/proc/apply_clickcatcher()

@@ -53,7 +53,7 @@
 	name = "plague doctor's hat"
 	desc = "These were once used by plague doctors. They're pretty much useless."
 	icon_state = "plaguedoctor"
-	permeability_coefficient = 0.01
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
 
 /obj/item/clothing/head/hasturhood
 	name = "hastur's hood"
@@ -433,6 +433,10 @@
 	desc = "An extra-mustahabb way of showing your devotion to Allah."
 	icon_state = "taqiyahred"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
+
+/datum/action/item_action/hatsky_voiceline
+	name = "Press Voice Button"
+	desc = "Engage the voice box on your Hatsky to hear a classic line from the real Officer Beepsky!"
 
 /obj/item/clothing/head/hatsky
 	name = "officer hatsky"

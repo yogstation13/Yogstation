@@ -45,21 +45,22 @@
 	var/list/restricted_roles = list()
 	var/list/datum/objective/objectives = list()
 
-	var/list/spell_list = list() // Wizard mode & "Give Spell" badmin button.
-
 	var/linglink
 	var/datum/martial_art/martial_art
 	var/static/default_martial_art = new/datum/martial_art
 	var/miming = FALSE // Mime's vow of silence
 	var/list/antag_datums
-	var/antag_hud_icon_state = null //this mind's ANTAG_HUD should have this icon_state
-	var/datum/atom_hud/antag/antag_hud = null //this mind's antag HUD
+	/// this mind's ANTAG_HUD should have this icon_state
+	var/antag_hud_icon_state = null
+	///this mind's antag HUD
+	var/datum/atom_hud/alternate_appearance/basic/antagonist_hud/antag_hud = null //this mind's antag HUD
 	var/damnation_type = 0
 	var/datum/mind/soulOwner //who owns the soul.  Under normal circumstances, this will point to src
 	var/hasSoul = TRUE // If false, renders the character unable to sell their soul.
 	var/holy_role = NONE //is this person a chaplain or admin role allowed to use bibles, Any rank besides 'NONE' allows for this.
 
-	var/mob/living/enslaved_to //If this mind's master is another mob (i.e. adamantine golems)
+	///If this mind's master is another mob (i.e. adamantine golems). Weakref of a /living.
+	var/datum/weakref/enslaved_to
 	var/datum/language_holder/language_holder
 	var/unconvertable = FALSE
 	var/late_joiner = FALSE
@@ -138,12 +139,13 @@
 	if(new_character.mind)								//disassociate any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
-	var/datum/atom_hud/antag/hud_to_transfer = antag_hud//we need this because leave_hud() will clear this list
 	var/mob/living/old_current = current
 	if(current)
 		current.transfer_observers_to(new_character)	//transfer anyone observing the old character to the new one
 	current = new_character								//associate ourself with our new body
+	QDEL_NULL(antag_hud)
 	new_character.mind = src							//and associate our new body with ourself
+	antag_hud = new_character.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/antagonist_hud, "combo_hud", src)
 	for(var/a in antag_datums)	//Makes sure all antag datums effects are applied in the new body
 		var/datum/antagonist/A = a
 		A.on_body_transfer(old_current, current)
@@ -155,8 +157,6 @@
 			var/mob/living/carbon/human/H = C
 			H.AddComponent(/datum/component/mood)
 		// Yogs End
-	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
-	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
 	transfer_parasites()
 	RegisterSignal(new_character, COMSIG_GLOB_MOB_DEATH, PROC_REF(set_death_time))
@@ -168,6 +168,8 @@
 		new_character.client.init_verbs() // re-initialize character specific verbs
 		LAZYCLEARLIST(new_character.client.recent_examines)
 	current.update_atom_languages()
+	SEND_SIGNAL(src, COMSIG_MIND_TRANSFERRED, old_current)
+	SEND_SIGNAL(current, COMSIG_MOB_MIND_TRANSFERRED_INTO)
 
 /datum/mind/proc/set_death_time()
 	last_death = world.time
@@ -252,7 +254,6 @@
 /datum/mind/proc/remove_brother()
 	if(src in SSticker.mode.brothers)
 		remove_antag_datum(/datum/antagonist/brother)
-	SSticker.mode.update_brother_icons_removed(src)
 
 /datum/mind/proc/remove_nukeop()
 	var/datum/antagonist/nukeop/nuke = has_antag_datum(/datum/antagonist/nukeop,TRUE)
@@ -291,7 +292,6 @@
 	remove_wizard()
 	remove_cultist()
 	remove_rev()
-	SSticker.mode.update_cult_icons_removed(src)
 
 /datum/mind/proc/equip_traitor(employer = "The Syndicate", silent = FALSE, datum/antagonist/uplink_owner)
 	if(!current)
@@ -300,7 +300,7 @@
 	if (!istype(traitor_mob))
 		return
 
-	var/list/all_contents = traitor_mob.GetAllContents()
+	var/list/all_contents = traitor_mob.get_all_contents()
 	var/obj/item/modular_computer/PDA = locate() in all_contents
 	var/obj/item/radio/R = locate() in all_contents
 	var/obj/item/pen/P
@@ -394,7 +394,7 @@
 		add_antag_datum(N,converter.nuke_team)
 
 
-	enslaved_to = creator
+	enslaved_to = WEAKREF(creator)
 
 	current.faction |= creator.faction
 	creator.faction |= current.faction
@@ -634,7 +634,7 @@
 		obj_count++
 
 /datum/mind/proc/find_syndicate_uplink()
-	var/list/L = current.GetAllContents()
+	var/list/L = current.get_all_contents()
 	for (var/i in L)
 		var/atom/movable/I = i
 		. = I.GetComponent(/datum/component/uplink)
@@ -706,29 +706,8 @@
 	add_antag_datum(head)
 	special_role = ROLE_REV_HEAD
 
-/datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S)
-	spell_list += S
-	S.action.Grant(current)
-	S.on_gain(current)
-
 /datum/mind/proc/owns_soul()
 	return soulOwner == src
-
-//To remove a specific spell from a mind
-/datum/mind/proc/RemoveSpell(obj/effect/proc_holder/spell/spell)
-	if(!spell)
-		return
-	for(var/X in spell_list)
-		var/obj/effect/proc_holder/spell/S = X
-		if(istype(S, spell))
-			spell_list -= S
-			S.on_lose(current)
-			qdel(S)
-	current?.client << output(null, "statbrowser:check_spells")
-
-/datum/mind/proc/RemoveAllSpells()
-	for(var/obj/effect/proc_holder/S in spell_list)
-		RemoveSpell(S)
 
 /datum/mind/proc/transfer_martial_arts(mob/living/new_character)
 	if(!ishuman(new_character))
@@ -738,37 +717,6 @@
 			martial_art.remove(new_character)
 		else
 			martial_art.teach(new_character)
-
-/datum/mind/proc/transfer_actions(mob/living/new_character)
-	if(current && current.actions)
-		for(var/datum/action/A in current.actions)
-			A.Grant(new_character)
-	transfer_mindbound_actions(new_character)
-
-//Check if there is a specific spell in mind
-/datum/mind/proc/CheckSpell(var/obj/effect/proc_holder/spell/spell)
-	if(!spell) return
-	for(var/X in spell_list)
-		var/obj/effect/proc_holder/spell/S = X
-		if(istype(S, spell))
-			return TRUE
-	return FALSE
-
-/datum/mind/proc/transfer_mindbound_actions(mob/living/new_character)
-	for(var/X in spell_list)
-		var/obj/effect/proc_holder/spell/S = X
-		S.action.Grant(new_character)
-		S.on_gain(new_character)
-
-/datum/mind/proc/disrupt_spells(delay, list/exceptions = New())
-	for(var/X in spell_list)
-		var/obj/effect/proc_holder/spell/S = X
-		for(var/type in exceptions)
-			if(istype(S, type))
-				continue
-		S.charge_counter = delay
-		S.updateButtonIcon()
-		INVOKE_ASYNC(S, TYPE_PROC_REF(/obj/effect/proc_holder/spell, start_recharge))
 
 /datum/mind/proc/get_ghost(even_if_they_cant_reenter, ghosts_with_clients)
 	for(var/mob/dead/observer/G in (ghosts_with_clients ? GLOB.player_list : GLOB.dead_mob_list))
@@ -831,6 +779,8 @@
 	if(!mind.name)
 		mind.name = real_name
 	mind.current = src
+	// There's nowhere else to set this up, mind code makes me depressed
+	mind.antag_hud = add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/antagonist_hud, "combo_hud", mind)
 
 /mob/living/carbon/mind_initialize()
 	..()

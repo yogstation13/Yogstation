@@ -673,6 +673,54 @@
 	menutab = MENU_CLOTHING
 	additional_desc = "This gaudy hat has surprisingly good weight distribution, you could probably throw it very effectively."
 
+/obj/item/nullrod/tribal_knife/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+	AddComponent(/datum/component/butchering, 50, 100)
+
+/obj/item/nullrod/tribal_knife/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/nullrod/tribal_knife/process()
+	slowdown = rand(-2, 2)
+
+
+/obj/item/nullrod/pitchfork
+	icon = 'icons/obj/weapons/spears.dmi'
+	icon_state = "pitchfork0"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	name = "unholy pitchfork"
+	w_class = WEIGHT_CLASS_NORMAL
+	desc = "Holding this makes you look absolutely devilish."
+	attack_verb = list("poked", "impaled", "pierced", "jabbed")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	sharpness = SHARP_POINTY
+
+/obj/item/nullrod/egyptian
+	name = "egyptian staff"
+	desc = "A tutorial in mummification is carved into the staff. You could probably craft the wraps if you had some cloth."
+	icon = 'icons/obj/guns/magic.dmi'
+	icon_state = "pharoah_sceptre"
+	item_state = "pharoah_sceptre"
+	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	attack_verb = list("bashes", "smacks", "whacks")
+
+/obj/item/nullrod/servoskull/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(hud_type && slot == SLOT_GLASSES)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.show_to(user)
+
+/obj/item/nullrod/servoskull/dropped(mob/living/carbon/human/user)
+	..()
+	if(hud_type && istype(user) && user.glasses == src)
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.hide_from(user)
+
 /obj/item/nullrod/servoskull
 	name = "servitor skull"
 	desc = "Even in death, I still serve"
@@ -694,17 +742,17 @@
 	if(hud_type && slot == SLOT_NECK)
 		to_chat(user, "Sensory augmentation initiated")
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.add_hud_to(user)
+		H.show_to(user)
 		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
-		H2.add_hud_to(user)
+		H2.show_to(user)
 
 /obj/item/nullrod/servoskull/dropped(mob/living/carbon/human/user)
 	..()
 	if(hud_type && istype(user) && user.wear_neck == src)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.remove_hud_from(user)
+		H.hide_from(user)
 		var/datum/atom_hud/H2 = GLOB.huds[hud_type2]
-		H2.remove_hud_from(user)
+		H2.hide_from(user)
 
 /obj/item/nullrod/hermes 
 	name = "fairy boots"
@@ -998,7 +1046,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	var/mob/living/simple_animal/shade/soul //when they're just a blade (stored inside the blade at all times)
 	var/mob/living/simple_animal/nullrod/blade //when they're flying around (blade stored inside them (soul is inside that blade))
 	var/mob/living/owner //the person with the recall spell
-	var/obj/effect/proc_holder/spell/targeted/recallnullrod/summon //the recall spell in question
+	var/datum/action/cooldown/spell/recall_nullrod/summon //the recall spell in question
 	menutab = MENU_MISC
 	additional_desc = "You feel an unwoken presence in this one."
 
@@ -1032,9 +1080,9 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 			soul.fully_replace_character_name(null, "The spirit of [input]")
 
 		to_chat(owner, "You feel the spirit within the blade stir and waken.")
-		summon = new /obj/effect/proc_holder/spell/targeted/recallnullrod
+		summon = new(owner)
 		summon.sword = src
-		owner.AddSpell(summon)
+		summon.Grant(owner)
 	else
 		to_chat(user, "The blade is dormant. Maybe you can try again later.")
 		possessed = FALSE
@@ -1044,7 +1092,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	if(soul)
 		if(owner && summon)
 			to_chat(owner, "You feel weakened as your blade fades from this world.")
-			owner.RemoveSpell(summon)
+			summon.Remove(owner)
 		to_chat(soul, "You were destroyed!")
 		qdel(soul)
 	return ..()
@@ -1071,33 +1119,28 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	else
 		. = ..()
 	
-/obj/effect/proc_holder/spell/targeted/recallnullrod
+/datum/action/cooldown/spell/recall_nullrod
 	name = "Sword Recall"
 	desc = "Pulls your possessed sword back to you."
-	school = "transmutation"
 	panel = "Chaplain"
-	charge_max = 10 SECONDS
-	clothes_req = FALSE
-	antimagic_allowed = TRUE
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon_state = "swordrecall"
+
+	school = SCHOOL_CONJURATION
 	invocation = "COME"
-	invocation_type = "shout"
-	range = -1
-	level_max = 0 //cannot be improved
-	cooldown_min = 10 SECONDS
-	include_user = TRUE
+	invocation_type = INVOCATION_SHOUT
 
+	cooldown_time = 10 SECONDS
+	spell_requirements = NONE
 	var/obj/item/nullrod/talking/sword
-	action_icon = 'icons/mob/actions/actions_spells.dmi'
-	action_icon_state = "swordrecall"
 
-/obj/effect/proc_holder/spell/targeted/recallnullrod/cast_check(skipcharge = 0, mob/user = usr)
-	if(sword.loc == user)
-		to_chat(user, span_notice("[sword] is already in your hand"))
-		revert_cast()
+/datum/action/cooldown/spell/recall_nullrod/before_cast(atom/cast_on)
+	if(sword.loc == cast_on)
+		to_chat(cast_on, span_notice("[sword] is already in your hand"))
 		return FALSE
 	return ..()
-	
-/obj/effect/proc_holder/spell/targeted/recallnullrod/cast(list/targets, mob/user)
+
+/datum/action/cooldown/spell/recall_nullrod/cast(mob/living/carbon/user)
 	if(sword)
 		if(sword.walking)
 			sword.blade.throw_at(user, 20, 3) //remember, sword is the item, blade is the mob
@@ -1115,7 +1158,7 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	real_name = "Shade"
 	desc = "A bound spirit."
 	gender = PLURAL
-	icon = 'icons/mob/mob.dmi'
+	icon = 'icons/mob/nonhuman-player/holy.dmi'
 	icon_state = "talking_sword"
 	icon_living = "talking_sword"
 	mob_biotypes = list(MOB_INORGANIC, MOB_SPIRIT)
@@ -1142,13 +1185,13 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	movement_type = FLYING
 	initial_language_holder = /datum/language_holder/universal
 	var/obj/item/nullrod/talking/sword //the sword they're part of
-	var/obj/effect/proc_holder/spell/targeted/nullroddrop/button //suicide button so they can return to being an item if need be
+	var/datum/action/cooldown/spell/nullrod_drop/button //suicide button so they can return to being an item if need be
 
 /mob/living/simple_animal/nullrod/Initialize()
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE)
-	button = new /obj/effect/proc_holder/spell/targeted/nullroddrop
-	AddSpell(button)
+	button = new(src)
+	button.Grant(src)
 
 /mob/living/simple_animal/nullrod/death()
 	if(sword)
@@ -1159,52 +1202,48 @@ it also swaps back if it gets thrown into the chaplain, but the chaplain catches
 	qdel(src)
 
 /mob/living/simple_animal/nullrod/canSuicide()
-	return 0 //you're a sword, you can't suicide
+	return FALSE //you're a sword, you can't suicide
 
 /mob/living/simple_animal/nullrod/attack_hand(mob/living/carbon/human/M)
-	if(sword?.owner && M == sword.owner)//let the chaplain pick it up in one hit
-		sword.owner.put_in_active_hand(sword)
-		mind.transfer_to(sword.soul)
-		sword.walking = FALSE
-		visible_message("[sword.owner] grabs [src] by the hilt.")
-		qdel(src)
-	else
-		..()
+	if(!sword.owner || M != sword.owner)//let the chaplain pick it up in one hit
+		return ..()
+	sword.owner.put_in_active_hand(sword)
+	mind.transfer_to(sword.soul)
+	sword.walking = FALSE
+	visible_message("[sword.owner] grabs [src] by the hilt.")
+	qdel(src)
 
 /mob/living/simple_animal/nullrod/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(isliving(hit_atom))
-		var/mob/living/target = hit_atom
-		if(sword?.owner && target == sword.owner)
-			var/caught = sword.owner.put_in_hands(sword)
-			mind.transfer_to(sword.soul)
-			sword.walking = FALSE
-			qdel(src)
-			if(caught)
-				visible_message("[sword.owner] catches the flying blade out of the air!")
-			else
-				playsound(target, 'sound/weapons/rapierhit.ogg', 30, 1, -1)
-				sword.owner.take_overall_damage(5)
-				visible_message("The flying blade smacks [sword.owner] in the face as [sword.owner.p_they()] try to catch it with [sword.owner.p_their()] hands full!")
-	else
-		..()
+	if(!isliving(hit_atom))
+		return ..()
+	var/mob/living/target = hit_atom
+	if(sword?.owner && target == sword.owner)
+		var/caught = sword.owner.put_in_hands(sword)
+		mind.transfer_to(sword.soul)
+		sword.walking = FALSE
+		qdel(src)
+		if(caught)
+			visible_message("[sword.owner] catches the flying blade out of the air!")
+		else
+			playsound(target, 'sound/weapons/rapierhit.ogg', 30, 1, -1)
+			sword.owner.take_overall_damage(5)
+			visible_message("The flying blade smacks [sword.owner] in the face as [sword.owner.p_they()] try to catch it with [sword.owner.p_their()] hands full!")
 
-/obj/effect/proc_holder/spell/targeted/nullroddrop
+/datum/action/cooldown/spell/nullrod_drop
 	name = "land"
 	desc = "Return to the ground for people to wield you."
-	school = "transmutation"
 	panel = "Chaplain"
-	charge_max = 10 SECONDS
-	clothes_req = FALSE
-	antimagic_allowed = TRUE
-	range = -1
-	level_max = 0 //cannot be improved
-	cooldown_min = 10 SECONDS
-	include_user = TRUE
+	button_icon = 'icons/mob/actions/actions_spells.dmi'
+	button_icon_state = "sworddrop"
 
-	action_icon = 'icons/mob/actions/actions_spells.dmi'
-	action_icon_state = "sworddrop"
+	school = SCHOOL_TRANSMUTATION
+	invocation = "COME"
+	invocation_type = INVOCATION_SHOUT
 
-/obj/effect/proc_holder/spell/targeted/nullroddrop/cast(list/targets, mob/user)
+	cooldown_time = 10 SECONDS
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/nullrod_drop/cast(mob/living/user)
 	user.death()//basically a glorified suicide button PLEASE don't give it to any actual player
 	. = ..()
 

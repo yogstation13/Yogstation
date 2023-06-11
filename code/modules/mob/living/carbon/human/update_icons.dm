@@ -310,7 +310,7 @@ There are several things that need to be remembered:
 	remove_overlay(SUIT_STORE_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_S_STORE]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_SUIT_STORE]
 		inv.update_icon()
 
 	if(s_store)

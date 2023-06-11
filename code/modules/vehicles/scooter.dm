@@ -252,7 +252,6 @@
 	name = "Wheely-Heels"
 	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either."
 	icon = null
-	density = FALSE
 
 /obj/vehicle/ridden/scooter/wheelys/Initialize()
 	. = ..()

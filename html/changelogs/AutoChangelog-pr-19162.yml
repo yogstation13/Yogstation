@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - imageadd: "adds three new posters"
+  - tweak: "resprites enlist poster"

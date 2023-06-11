@@ -136,7 +136,7 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	charge -= 1000 / severity
+	charge -= max((charge * 0.1), 500) / severity
 	if (charge < 0)
 		charge = 0
 
@@ -323,14 +323,14 @@
 	maxcharge = 500
 	rating = 3
 
+/obj/item/stock_parts/cell/emproof/Initialize()
+	. = ..()
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+
 /obj/item/stock_parts/cell/emproof/empty/Initialize()
 	. = ..()
 	charge = 0
 	update_icon()
-
-/obj/item/stock_parts/cell/emproof/empty/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/stock_parts/cell/emproof/corrupt()
 	return

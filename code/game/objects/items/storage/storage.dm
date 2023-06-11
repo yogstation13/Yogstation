@@ -14,10 +14,8 @@
 
 /obj/item/storage/Initialize()
 	. = ..()
-	PopulateContents()
-
-/obj/item/storage/ComponentInitialize()
 	AddComponent(component_type)
+	PopulateContents()
 
 /obj/item/storage/AllowDrop()
 	return FALSE

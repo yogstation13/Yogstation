@@ -182,7 +182,7 @@
 		used = FALSE
 		return FALSE
 	//alerts user in case they didn't know
-	var/list/all_items = user.GetAllContents()
+	var/list/all_items = user.get_all_contents()
 	for (var/obj/I in all_items) //Check for mori
 		if (istype(I, /obj/item/clothing/neck/necklace/memento_mori))
 			to_chat(user, span_danger("The [I] revolts at the sight of the [src]!"))
@@ -254,12 +254,9 @@
 
 /obj/item/guardiancreator/Initialize()
 	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
 	builder = new(mob_name, theme, failure_message, max_points, allowspecial, debug_mode)
 
-/obj/item/guardiancreator/ComponentInitialize()
-	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
-	
 /obj/item/guardiancreator/proc/refund_check()
 	return !builder.used
 

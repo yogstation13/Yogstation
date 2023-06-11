@@ -420,7 +420,7 @@
 					break
 			if(prob(max(5,(nearby_people*12.5*moodmod)))) //Minimum 1/20 chance of stutter
 				// Add a short stutter, THEN treat our word
-				quirker.stuttering += max(3, quirker.stuttering)
+				quirker.adjust_stutter(0.5 SECONDS)
 				new_message += quirker.treat_message(word)
 
 			else
@@ -463,10 +463,10 @@
 
 	switch(rand(1,3))
 		if(1)
-			quirker.Jitter(5)
+			quirker.adjust_jitter(5 SECONDS)
 			msg += "causing you to start fidgeting!"
 		if(2)
-			quirker.stuttering = max(3, quirker.stuttering)
+			quirker.adjust_stutter(3 SECONDS)
 			msg += "causing you to start stuttering!"
 		if(3)
 			quirker.Stun(2 SECONDS)

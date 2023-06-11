@@ -28,7 +28,7 @@
 		egg_rper = new(src)
 		egg_rper.real_name = name
 		egg_rper.name = name
-		egg_rper.stat = CONSCIOUS
+		egg_rper.set_stat(CONSCIOUS)
 		user.mind.transfer_to(egg_rper)
 	return BRUTELOSS
 

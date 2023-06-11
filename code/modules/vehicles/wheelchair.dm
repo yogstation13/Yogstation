@@ -20,9 +20,6 @@
 	D.set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
 	D.set_vehicle_dir_layer(EAST, OBJ_LAYER)
 	D.set_vehicle_dir_layer(WEST, OBJ_LAYER)
-
-/obj/vehicle/ridden/wheelchair/ComponentInitialize()	//Since it's technically a chair I want it to have chair properties
-	. = ..()
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, PROC_REF(can_user_rotate)),CALLBACK(src, PROC_REF(can_be_rotated)),null)
 
 /obj/vehicle/ridden/wheelchair/obj_destruction(damage_flag)
@@ -180,7 +177,7 @@
 /datum/action/vehicle/ridden/wheelchair/explosive/kaboom
 	name = "Ding!"
 	desc = "Ring the cute little bell on your wheelchair."
-	icon_icon = 'icons/obj/bell.dmi'
+	button_icon = 'icons/obj/bell.dmi'
 	button_icon_state = "bell"
 	var/exploding = FALSE
 	var/explode_delay = 2 SECONDS

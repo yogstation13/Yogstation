@@ -14,7 +14,7 @@
 	key_third_person = "bows"
 	message = "bows."
 	message_param = "bows to %t."
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/burp
 	key = "burp"
@@ -33,7 +33,7 @@
 	key = "cross"
 	key_third_person = "crosses"
 	message = "crosses their arms."
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/chuckle
 	key = "chuckle"
@@ -68,7 +68,7 @@
 	key = "dance"
 	key_third_person = "dances"
 	message = "dances around happily."
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/deathgasp
 	key = "deathgasp"
@@ -129,7 +129,7 @@
 	key = "flap"
 	key_third_person = "flaps"
 	message = "flaps their wings."
-	restraint_check = TRUE
+	hands_use_check = TRUE
 	var/wing_time = 20
 
 /datum/emote/living/flap/run_emote(mob/user, params, type_override, intentional)
@@ -149,7 +149,7 @@
 	key = "aflap"
 	key_third_person = "aflaps"
 	message = "flaps their wings ANGRILY!"
-	restraint_check = TRUE
+	hands_use_check = TRUE
 	wing_time = 10
 
 /datum/emote/living/frown
@@ -205,7 +205,7 @@
 	key = "handsup"
 	key_third_person = "raiseshands"
 	message	= span_surrender("raises their hands in the air, they surrender!")
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/handsup/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
@@ -220,7 +220,7 @@
 	key = "jump"
 	key_third_person = "jumps"
 	message = "jumps!"
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/kiss
 	key = "kiss"
@@ -271,7 +271,7 @@
 	key_third_person = "points"
 	message = "points."
 	message_param = "points at %t."
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/point/run_emote(mob/user, params, type_override, intentional)
 	message_param = initial(message_param) // reset
@@ -461,7 +461,7 @@
 		to_chat(user, "You cannot send IC messages (muted).")
 		return FALSE
 	else if(!params)
-		var/custom_emote = copytext(sanitize(to_utf8(input("Choose an emote to display.") as text|null)), 1, MAX_MESSAGE_LEN)
+		var/custom_emote = copytext(sanitize(input("Choose an emote to display.") as text|null), 1, MAX_MESSAGE_LEN)
 		if(custom_emote && !check_invalid(user, custom_emote))
 			var/type = input("Is this a visible or hearable emote?") as null|anything in list("Visible", "Hearable")
 			switch(type)
@@ -533,7 +533,7 @@
 /datum/emote/living/circle
 	key = "circle"
 	key_third_person = "circles"
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/circle/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -547,7 +547,7 @@
 /datum/emote/living/slap
 	key = "slap"
 	key_third_person = "slaps"
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/slap/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -564,7 +564,7 @@
 	key_third_person = "thumbs"
 	message = "gives a thumbs up."
 	message_param = "gives a thumbs up to %t."
-	restraint_check = TRUE
+	hands_use_check = TRUE
 
 /datum/emote/living/clueless
 	key = "clueless"

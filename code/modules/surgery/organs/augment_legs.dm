@@ -189,7 +189,7 @@
 
 /obj/item/organ/cyberimp/leg/jumpboots/AddEffect()
 	ADD_TRAIT(owner, TRAIT_NOSLIPICE, "Jumpboot_implant")
-	implant_ability = new
+	implant_ability = new(src)
 	implant_ability.Grant(owner)
 
 /obj/item/organ/cyberimp/leg/jumpboots/RemoveEffect()
@@ -201,13 +201,12 @@
 /datum/action/cooldown/boost
 	name = "Dash"
 	desc = "Dash forward."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED | AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	cooldown_time = 6 SECONDS
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 	var/jumpspeed = 3
-	var/mob/living/carbon/human/holder
 
 /datum/action/cooldown/boost/link_to(target)
 	..()
@@ -216,24 +215,18 @@
 		LAZYINITLIST(I.actions)
 		I.actions += src
 
-/datum/action/cooldown/boost/Grant(mob/user)
-	. = ..()
-	holder = user
+/datum/action/cooldown/boost/Activate()
+	var/mob/living/carbon/user = owner
+	var/atom/target = get_edge_target_turf(owner, owner.dir) //gets the user's direction
 
-/datum/action/cooldown/boost/Trigger()
-	. = ..()
-	if(!.)
+	if(!owner.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
+		to_chat(owner, span_warning("Something prevents you from dashing forward!"))
 		return
 
-	var/atom/target = get_edge_target_turf(holder, holder.dir) //gets the user's direction
-
-	if (holder.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
-		StartCooldown()
-		holder.Immobilize(0.1 SECONDS)
-		playsound(holder, 'sound/effects/stealthoff.ogg', 50, 1, 1)
-		holder.visible_message(span_warning("[usr] dashes forward into the air!"))
-	else
-		to_chat(holder, span_warning("Something prevents you from dashing forward!"))
+	user.Immobilize(0.1 SECONDS)
+	playsound(owner, 'sound/effects/stealthoff.ogg', 50, TRUE, 1)
+	owner.visible_message(span_warning("[owner] dashes forward into the air!"))
+	StartCooldown()
 
 //------------wheelies implant
 /obj/item/organ/cyberimp/leg/wheelies
@@ -256,9 +249,9 @@
 /datum/action/innate/wheelies
 	name = "Toggle Wheely-Heel's Wheels"
 	desc = "Pops out or in your wheely-heel's wheels."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "wheelys"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
 	var/mob/living/carbon/human/holder
 	var/wheelToggle = FALSE //False means wheels are not popped out
 	var/obj/vehicle/ridden/scooter/wheelys/W
@@ -317,9 +310,9 @@
 /datum/action/innate/airshoes
 	name = "Toggle thrust on air shoes."
 	desc = "Switch between walking and hovering."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "airshoes_a"
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS|AB_CHECK_LYING
 	var/mob/living/carbon/human/holder
 	var/wheelToggle = FALSE //False means wheels are not popped out
 	var/obj/vehicle/ridden/scooter/airshoes/W
@@ -371,7 +364,7 @@
 	name = "Maglock"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "magboots0"
-	icon_icon = 'icons/obj/clothing/shoes.dmi'
+	button_icon = 'icons/obj/clothing/shoes.dmi'
 	background_icon_state = "bg_default"
 
 /datum/action/innate/magboots/Grant(mob/M)
@@ -395,7 +388,7 @@
 		REMOVE_TRAIT(owner, TRAIT_NOSLIPICE, "maglock_implant")
 		REMOVE_TRAIT(owner, TRAIT_MAGBOOTS, "maglock implant")
 		button_icon_state = "magboots0"
-	UpdateButtonIcon()
+	build_all_button_icons()
 	lockdown = !lockdown
 	to_chat(owner, span_notice("You [lockdown ? "enable" : "disable"] your mag-pulse traction system."))
 	owner.update_gravity(owner.has_gravity())

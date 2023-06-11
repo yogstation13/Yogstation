@@ -210,7 +210,7 @@
 /datum/action/innate/dash/cult
 	name = "Rend the Veil"
 	desc = "Use the sword to shear open the flimsy fabric of this reality and teleport to your target."
-	icon_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "phaseshift"
 	dash_sound = 'sound/magic/enter_blood.ogg'
 	recharge_sound = 'sound/magic/exit_blood.ogg'
@@ -218,7 +218,7 @@
 	phasein = /obj/effect/temp_visual/dir_setting/cult/phase
 	phaseout = /obj/effect/temp_visual/dir_setting/cult/phase/out
 
-/datum/action/innate/dash/cult/IsAvailable()
+/datum/action/innate/dash/cult/IsAvailable(feedback = FALSE)
 	if(iscultist(holder) && current_charges)
 		return TRUE
 	else
@@ -240,7 +240,7 @@
 	sword = bastard
 	holder = user
 
-/datum/action/innate/cult/spin2win/IsAvailable()
+/datum/action/innate/cult/spin2win/IsAvailable(feedback = FALSE)
 	if(iscultist(holder) && cooldown <= world.time)
 		return TRUE
 	else
@@ -254,14 +254,14 @@
 	sword.block_chance = 100
 	sword.slowdown += 1.5
 	addtimer(CALLBACK(src, PROC_REF(stop_spinning)), 50)
-	holder.update_action_buttons_icon()
+	holder.update_mob_action_buttons()
 
 /datum/action/innate/cult/spin2win/proc/stop_spinning()
 	sword.spinning = FALSE
 	sword.block_chance = 50
 	sword.slowdown -= 1.5
 	sleep(sword.spin_cooldown)
-	holder.update_action_buttons_icon()
+	holder.update_mob_action_buttons()
 
 /obj/item/restraints/legcuffs/bola/cult
 	name = "nar'sien bola"
@@ -414,7 +414,7 @@
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 			to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
 			user.dropItemToGround(src, TRUE)
-			user.Dizzy(30)
+			user.adjust_dizzy(3 SECONDS)
 			user.Paralyze(100)
 		else
 			to_chat(user, span_cultlarge("\"Trying to use things you don't own is bad, you know.\""))
@@ -466,7 +466,7 @@
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 			to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
 			user.dropItemToGround(src, TRUE)
-			user.Dizzy(30)
+			user.adjust_dizzy(30)
 			user.Paralyze(100)
 		else
 			to_chat(user, span_cultlarge("\"Trying to use things you don't own is bad, you know.\""))
@@ -487,7 +487,7 @@
 	if(!iscultist(user))
 		to_chat(user, span_cultlarge("\"You want to be blind, do you?\""))
 		user.dropItemToGround(src, TRUE)
-		user.Dizzy(30)
+		user.adjust_dizzy(30)
 		user.Paralyze(100)
 		user.blind_eyes(30)
 
@@ -646,7 +646,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 			to_chat(user, "<span class='cult italic'>[cultist_to_receive] is not a follower of the Geometer!</span>")
 			log_game("Void torch failed - target was deconverted")
 			return
-		if(A in user.GetAllContents())
+		if(A in user.get_all_contents())
 			to_chat(user, "<span class='cult italic'>[A] must be on a surface in order to teleport it!</span>")
 			return
 		to_chat(user, "<span class='cult italic'>You ignite [A] with \the [src], turning it to ash, but through the torch's flames you see that [A] has reached [cultist_to_receive]!</span>")
@@ -728,15 +728,16 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	name = "Bloody Bond"
 	desc = "Call the blood spear back to your hand!"
 	background_icon_state = "bg_demon"
+	overlay_icon_state = "bg_demon_border"
+
 	button_icon_state = "bloodspear"
+	default_button_position = "6:157,4:-2"
 	var/obj/item/twohanded/cult_spear/spear
 	var/cooldown = 0
 
 /datum/action/innate/cult/spear/Grant(mob/user, obj/blood_spear)
 	. = ..()
 	spear = blood_spear
-	button.screen_loc = "6:157,4:-2"
-	button.moved = "6:157,4:-2"
 
 /datum/action/innate/cult/spear/Activate()
 	if(owner == spear.loc || cooldown > world.time)

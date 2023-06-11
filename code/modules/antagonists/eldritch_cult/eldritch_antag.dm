@@ -4,7 +4,9 @@
 	antagpanel_category = "Heretic"
 	antag_moodlet = /datum/mood_event/heretics
 	job_rank = ROLE_HERETIC
+	antag_hud_name = "heretic"
 	can_hijack = HIJACK_HIJACKER
+	show_to_ghosts = TRUE
 	preview_outfit = /datum/outfit/heretic
 	var/give_equipment = TRUE
 	var/list/researched_knowledge = list()
@@ -20,11 +22,11 @@
 	var/tier_counter = 0
 ///list of knowledges available, by path. every odd tier is an exclusive upgrade, and every even one is a set of upgrades of which 3 need to be picked to move on.
 	var/list/knowledges = list(	TIER_PATH = list(/datum/eldritch_knowledge/base_ash, /datum/eldritch_knowledge/base_flesh, /datum/eldritch_knowledge/base_rust),
-	 							TIER_1 = list(/datum/eldritch_knowledge/ashen_shift, /datum/eldritch_knowledge/ashen_eyes, /datum/eldritch_knowledge/flesh_ghoul, /datum/eldritch_knowledge/rust_regen, /datum/eldritch_knowledge/armor, /datum/eldritch_knowledge/essence),
+	 							TIER_1 = list(/datum/eldritch_knowledge/spell/ashen_shift, /datum/eldritch_knowledge/ashen_eyes, /datum/eldritch_knowledge/flesh_ghoul, /datum/eldritch_knowledge/rust_regen, /datum/eldritch_knowledge/armor, /datum/eldritch_knowledge/essence),
 	 							TIER_MARK = list(/datum/eldritch_knowledge/ash_mark, /datum/eldritch_knowledge/flesh_mark, /datum/eldritch_knowledge/rust_mark),
-	 							TIER_2 = list(/datum/eldritch_knowledge/blindness, /datum/eldritch_knowledge/corrosion, /datum/eldritch_knowledge/paralysis, /datum/eldritch_knowledge/raw_prophet, /datum/eldritch_knowledge/blood_siphon, /datum/eldritch_knowledge/area_conversion),
+	 							TIER_2 = list(/datum/eldritch_knowledge/blindness, /datum/eldritch_knowledge/corrosion, /datum/eldritch_knowledge/paralysis, /datum/eldritch_knowledge/raw_prophet, /datum/eldritch_knowledge/spell/blood_siphon, /datum/eldritch_knowledge/spell/area_conversion),
 	 							TIER_BLADE = list(/datum/eldritch_knowledge/ash_blade_upgrade, /datum/eldritch_knowledge/flesh_blade_upgrade, /datum/eldritch_knowledge/rust_blade_upgrade),
-	 							TIER_3 = list(/datum/eldritch_knowledge/flame_birth, /datum/eldritch_knowledge/cleave, /datum/eldritch_knowledge/stalker, /datum/eldritch_knowledge/ashy, /datum/eldritch_knowledge/rusty, /datum/eldritch_knowledge/entropic_plume),
+	 							TIER_3 = list(/datum/eldritch_knowledge/spell/flame_birth, /datum/eldritch_knowledge/spell/cleave, /datum/eldritch_knowledge/stalker, /datum/eldritch_knowledge/ashy, /datum/eldritch_knowledge/rusty, /datum/eldritch_knowledge/spell/entropic_plume),
 	 							TIER_ASCEND = list(/datum/eldritch_knowledge/ash_final, /datum/eldritch_knowledge/flesh_final, /datum/eldritch_knowledge/rust_final))
 
 /datum/antagonist/heretic/admin_add(datum/mind/new_owner,mob/admin)
@@ -65,14 +67,12 @@
 	return finish_preview_icon(icon)
 
 /datum/antagonist/heretic/on_gain()
-	var/mob/living/current = owner.current
-	if(ishuman(current))
+	if(ishuman(owner.current))
 		forge_primary_objectives()
-		gain_knowledge(/datum/eldritch_knowledge/basic)
-	current.log_message("has been made a student of the Mansus!", LOG_ATTACK, color="#960000")
+		gain_knowledge(/datum/eldritch_knowledge/spell/basic)
+	owner.current.log_message("has been made a student of the Mansus!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.AddMind(owner)
 	START_PROCESSING(SSprocessing,src)
-	SSticker.mode.update_heretic_icons_added(owner)
 	if(give_equipment)
 		equip_cultist()
 	return ..()
@@ -88,8 +88,6 @@
 		owner.current.log_message("has lost their link to the Mansus!", LOG_ATTACK, color="#960000")
 	GLOB.reality_smash_track.RemoveMind(owner)
 	STOP_PROCESSING(SSprocessing,src)
-
-	SSticker.mode.update_heretic_icons_removed(owner)
 
 	return ..()
 
@@ -161,12 +159,7 @@
 	var/mob/living/current = owner.current
 	if(mob_override)
 		current = mob_override
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			if(!silent)
-				to_chat(traitor_mob, "Your knowledge allow you to overcome your clownish nature, allowing you to wield weapons with impunity.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)
+	handle_clown_mutation(current, "Ancient knowledge described to you has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 	current.faction |= "heretics"
 
 /datum/antagonist/heretic/remove_innate_effects(mob/living/mob_override)
@@ -174,9 +167,6 @@
 	var/mob/living/current = owner.current
 	if(mob_override)
 		current = mob_override
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		traitor_mob.dna.add_mutation(CLOWNMUT)
 	current.faction -= "heretics"
 
 /datum/antagonist/heretic/get_admin_commands()
@@ -485,10 +475,11 @@
 // Knowledge //
 ////////////////
 
-/datum/antagonist/heretic/proc/gain_knowledge(datum/eldritch_knowledge/EK, forced = FALSE)
-	if(get_knowledge(EK))
+/datum/antagonist/heretic/proc/gain_knowledge(datum/eldritch_knowledge/knowledge_type, forced = FALSE)
+	if(!ispath(knowledge_type))
+		stack_trace("[type] gain_knowledge was given an invalid path! (Got: [knowledge_type])")
 		return FALSE
-	var/datum/eldritch_knowledge/initialized_knowledge = new EK
+	var/datum/eldritch_knowledge/initialized_knowledge = new knowledge_type()
 	researched_knowledge[initialized_knowledge.type] = initialized_knowledge
 	initialized_knowledge.on_gain(owner.current)
 	charge -= initialized_knowledge.cost

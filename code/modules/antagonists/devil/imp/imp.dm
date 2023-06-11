@@ -62,6 +62,7 @@
 /datum/antagonist/imp
 	name = "Imp"
 	antagpanel_category = "Devil"
+	ui_name = "AntagInfoDemon"
 	show_in_roundend = FALSE
 
 /datum/antagonist/imp/on_gain()

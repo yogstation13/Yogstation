@@ -107,7 +107,7 @@
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, "[enter_message]")
 		if(mob_occupant && stasis)
-			mob_occupant.ExtinguishMob()
+			mob_occupant.extinguish_mob()
 		if(close_sound)
 			playsound(src, close_sound, 40)
 

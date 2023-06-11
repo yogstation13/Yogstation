@@ -63,4 +63,4 @@
 	usr.update_inv_shoes()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()

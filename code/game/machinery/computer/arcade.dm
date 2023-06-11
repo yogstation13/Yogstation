@@ -476,7 +476,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				if(obj_flags & EMAGGED)
 					var/mob/living/M = user
 					M.adjust_fire_stacks(5)
-					M.IgniteMob() //flew into a star, so you're on fire
+					M.ignite_mob() //flew into a star, so you're on fire
 					to_chat(user, span_userdanger("You feel an immense wave of heat emanate from the arcade machine. Your skin bursts into flames."))
 
 		if(obj_flags & EMAGGED)
@@ -549,7 +549,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 					if(ORION_TRAIL_RAIDERS)
 						if(prob(50))
 							to_chat(usr, span_userdanger("You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?"))
-							M.hallucination += 30
+							M.adjust_hallucinations(30 SECONDS)
 						else
 							to_chat(usr, span_userdanger("Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there..."))
 							M.take_bodypart_damage(30)

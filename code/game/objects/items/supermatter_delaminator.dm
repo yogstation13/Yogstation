@@ -2,7 +2,7 @@
 	info = "Antinoblium Shard User's Manual<br>\
 	<ul>\
 	<li>Approach an active supermatter crystal with radiation shielded personal protective equipment. DO NOT MAKE PHYSICAL CONTACT.</li>\
-	<li>Attach the data corruptor (provided) to the supermatter control infrastructure to allow the attachment of the antinoblium shard.</li>\
+	<li>Attach the data corruptor (provided) on the base of the supermatter crystal, where the control infrastructure is, to allow the attachment of the antinoblium shard.</li>\
 	<li>Open the antinoblium container (also provided).</li>\
 	<li>Use antinoblium extraction tongs (also provided) and apply the shard to the crystal. Take note that an EMP pulse will be emitted upon attachment. Prepare accordingly. </li>\
 	<li>Physical contact of any object with the antinoblium shard will fracture the shard and cause a spontaneous energy release.</li>\

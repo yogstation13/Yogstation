@@ -89,6 +89,13 @@
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(death)), 100)
 
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/CanAllowThrough(atom/movable/mover, turf/target)
+	if(istype(mover, /mob/living/simple_animal/hostile/asteroid/hivelord))
+		var/mob/living/simple_animal/hostile/asteroid/hivelord/HL = mover
+		if(istype(src, HL.brood_type))
+			return TRUE
+	return ..()
+
 //Legion
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion
 	name = "legion"

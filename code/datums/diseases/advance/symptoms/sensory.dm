@@ -36,23 +36,22 @@
 
 
 	if(A.stage >= 3)
-		M.dizziness = max(0, M.dizziness - 2)
-		M.drowsyness = max(0, M.drowsyness - 2)
-		M.slurring = max(0, M.slurring - 2)
-		M.confused = max(0, M.confused - 2)
+		M.adjust_dizzy(-4 SECONDS)
+		M.adjust_drowsiness(-4 SECONDS)
+		M.adjust_slurring(-1 SECONDS)
+		M.adjust_confusion(-2 SECONDS)
 		if(purge_alcohol)
 			M.reagents.remove_all_type(/datum/reagent/consumable/ethanol, 3)
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				H.drunkenness = max(H.drunkenness - 5, 0)
+			M.adjust_drunk_effect(-5)
 
 	if(A.stage >= 4)
-		M.drowsyness = max(0, M.drowsyness - 2)
+		M.adjust_drowsiness(-4 SECONDS)
 		if(M.reagents.has_reagent(/datum/reagent/toxin/mindbreaker))
 			M.reagents.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
 		if(M.reagents.has_reagent(/datum/reagent/toxin/histamine))
 			M.reagents.remove_reagent(/datum/reagent/toxin/histamine, 5)
-		M.hallucination = max(0, M.hallucination - 10)
+
+		M.adjust_hallucinations(-20 SECONDS)
 
 	if(A.stage >= 5)
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3)
@@ -60,9 +59,11 @@
 			var/mob/living/carbon/C = M
 			if(prob(10))
 				if(trauma_heal_severe)
-					C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
+					C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_SURGERY)
 				else
 					C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
+
+
 
 
 

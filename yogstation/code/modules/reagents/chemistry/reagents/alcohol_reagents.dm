@@ -68,9 +68,9 @@
 	taste_description = "pancake syrup"
 	glass_name = "glass of candy corn liquor"
 	glass_desc = "Good for your Imagination."
-	var/hal_amt = 4
+	var/hal_amt = 4 SECONDS
 
 /datum/reagent/consumable/ethanol/whiskey/candycorn/on_mob_life(mob/living/carbon/M)
 	if(prob(10))
-		M.hallucination += hal_amt //conscious dreamers can be treasurers to their own currency
+		M.adjust_hallucinations(hal_amt) //conscious dreamers can be treasurers to their own currency
 	..()

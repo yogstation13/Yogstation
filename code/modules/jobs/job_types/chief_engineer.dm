@@ -15,7 +15,7 @@
 	selection_color = "#ffeeaa"
 	req_admin_notify = 1
 	minimal_player_age = 7
-	exp_requirements = 720
+	exp_requirements = 1500 //25 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_ENGINEERING
 	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer", "Chief Engineering Officer")
@@ -84,4 +84,4 @@
 	glasses = /obj/item/clothing/glasses/meson/sunglasses
 	gloves = /obj/item/clothing/gloves/color/yellow
 	head = null
-	internals_slot = SLOT_S_STORE
+	internals_slot = SLOT_SUIT_STORE

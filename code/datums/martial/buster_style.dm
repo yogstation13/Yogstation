@@ -21,7 +21,7 @@
 
 /datum/martial_art/buster_style/proc/grab(mob/living/user, mob/living/target, damage)
 		var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
+		var/armor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 15)
 		target.apply_damage(damage, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND)
 
 //animation procs
@@ -44,6 +44,24 @@
 /datum/martial_art/buster_style/can_use(mob/living/carbon/human/H)
 	var/obj/item/bodypart/r_arm/robot/buster/R = H.get_bodypart(BODY_ZONE_R_ARM)
 	var/obj/item/bodypart/l_arm/robot/buster/L = H.get_bodypart(BODY_ZONE_L_ARM)
+	if(L)
+		if(!istype(L, /obj/item/bodypart/l_arm/robot/buster))
+			if(R && !istype(R, /obj/item/bodypart/r_arm/robot/buster))
+				src.remove(H)
+				return FALSE
+		else
+			if(R && !istype(R, /obj/item/bodypart/r_arm/robot/buster))
+				if((L?.bodypart_disabled))
+					return FALSE
+	if(R)
+		if(!istype(R, /obj/item/bodypart/r_arm/robot/buster))
+			if(L && !istype(L, /obj/item/bodypart/l_arm/robot/buster))
+				src.remove(H)
+				return FALSE
+		else
+			if(L && !istype(L, /obj/item/bodypart/l_arm/robot/buster))
+				if((R?.bodypart_disabled))
+					return FALSE
 	if(H.restrained() || H.get_active_held_item() || HAS_TRAIT(H, TRAIT_PACIFISM) || !(H.mobility_flags & MOBILITY_MOVE) || H.stat != CONSCIOUS)
 		for(var/atom/movable/K in thrown)
 			thrown.Remove(K)
@@ -56,11 +74,6 @@
 	if(L && R)
 		if((L?.bodypart_disabled) && (R?.bodypart_disabled))
 			to_chat(H, span_warning("The arms aren't in a functional state right now!"))
-			return FALSE
-		return TRUE //still got the other arm to pop off with
-	if(R || L)
-		if(R?.bodypart_disabled || L?.bodypart_disabled)
-			to_chat(H, span_warning("The [L ? "left" : "right"] buster arm isn't in a functional state right now!"))
 			return FALSE
 	return ..()
 
@@ -477,7 +490,7 @@
 
 	combined_msg +=  span_warning("Should your moves cease to function altogether, utilize the 'Recalibrate Arm' function.")
 
-	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 50% for 2 seconds.</b>")
+	combined_msg += span_notice("<b>After landing an attack, you become resistant to damage slowdown and all incoming damage by 25% for 2 seconds.</b>")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 
