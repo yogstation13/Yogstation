@@ -890,10 +890,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/ancientstation/deltaai)
-"cO" = (
-/obj/effect/decal/cleanable/oil,
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/ancientstation/deltaai)
 "cQ" = (
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/ancientstation/hydroponics)
@@ -5073,10 +5069,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
-"ud" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/ruin/space/has_grav/ancientstation/kitchen)
 "uk" = (
 /obj/structure/rack,
 /obj/item/borg/upgrade/panel_access_remover,
@@ -7785,10 +7777,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation)
-"RL" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/rust,
-/area/ruin/space/has_grav/ancientstation/rnd)
 "RR" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/end{
 	dir = 1
@@ -10428,7 +10416,7 @@ kV
 gI
 gY
 gI
-ud
+gI
 gI
 gI
 gI
@@ -12290,7 +12278,7 @@ dy
 WR
 uG
 FL
-RL
+dy
 Wz
 Wz
 eY
@@ -12664,7 +12652,7 @@ bw
 bG
 bA
 cv
-cO
+ac
 ac
 gK
 gK

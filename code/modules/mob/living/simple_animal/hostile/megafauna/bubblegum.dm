@@ -465,7 +465,10 @@ Difficulty: Hard
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Moved(atom/OldLoc, Dir, Forced = FALSE)
+	var/turf/current_turf = get_turf(src) //do not directly insert the get_turf proc into the helpers
 	if(Dir)
+		if(!isturf(current_turf) || isclosedturf(current_turf) || isgroundlessturf(current_turf)) //do not spawn blood where it shouldn't be
+			return
 		new /obj/effect/decal/cleanable/blood/bubblegum(src.loc)
 	if(charging)
 		DestroySurroundings()

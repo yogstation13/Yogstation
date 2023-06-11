@@ -98,8 +98,11 @@
 		return
 	if(mapload)
 		for (var/i = 1, i < range, i++)
+			var/turf/turf_sending = get_step(src, direction)
+			if(isclosedturf(turf_sending) || (isgroundlessturf(turf_sending) && !SSmapping.get_turf_below(turf_sending)))
+				continue
 			new /obj/effect/decal/cleanable/blood/splatter(loc, streak_diseases)
-			if (!step_to(src, get_step(src, direction), 0))
+			if (!step_to(src, turf_sending, 0))
 				break
 		return
 

@@ -123,8 +123,11 @@
 	if(!do_after(user, 1.5 SECONDS, target = user))
 		return
 	user.temporarilyRemoveItemFromInventory(src, TRUE)
-	for (var/content in contents)
-		user.put_in_hands(content)
+	for(var/obj/stuff as anything in contents) // Mail and envelope actually can have more than 1 item.
+		if(isitem(stuff))
+			user.put_in_hands(stuff)
+		else
+			stuff.forceMove(drop_location())
 	playsound(loc, 'sound/items/poster_ripped.ogg', 50, TRUE)
 	if(recipient_real) // If this is official NT mail for someone, give cargo money for delivering it successfully
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
@@ -187,7 +190,12 @@
 
 	if(prob(25))
 		special_name = TRUE
-		junk = pick(list(/obj/item/paper/pamphlet/gateway, /obj/item/paper/pamphlet/centcom/visitor_info, /obj/item/paper/fluff/junkmail_redpill, /obj/effect/decal/cleanable/ash))
+		junk = pick(list(
+			/obj/item/paper/pamphlet/gateway, 
+			/obj/item/paper/pamphlet/centcom/visitor_info, 
+			/obj/item/paper/fluff/junkmail_redpill, 
+			/obj/effect/decal/cleanable/ash,
+		))
 
 	var/list/junk_names = list(
 		/obj/item/paper/pamphlet/gateway = "[initial(name)] for [pick(GLOB.adjectives)] adventurers",
@@ -273,7 +281,6 @@
 /obj/structure/closet/crate/mail/full/Initialize(mapload)
 	. = ..()
 	populate(INFINITY)
-
 
 /// Mailbag.
 /obj/item/storage/bag/mail

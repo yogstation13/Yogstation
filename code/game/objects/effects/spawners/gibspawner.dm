@@ -70,7 +70,11 @@
 
 /obj/effect/gibspawner/generic/Initialize()
 	if(!gibdirections.len)
-		gibdirections = list(list(WEST, NORTHWEST, SOUTHWEST, NORTH),list(EAST, NORTHEAST, SOUTHEAST, SOUTH), list())
+		gibdirections = list(
+			list(WEST, NORTHWEST, SOUTHWEST, NORTH),
+			list(EAST, NORTHEAST, SOUTHEAST, SOUTH), 
+			list(),
+		)
 	return ..()
 
 /obj/effect/gibspawner/generic/animal

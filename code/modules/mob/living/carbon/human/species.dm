@@ -1470,7 +1470,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 ////////////////
 
 /datum/species/proc/movement_delay(mob/living/carbon/human/H)
-	. = (1 / INFINITY)	//We start at the least possible but never 0.
+	. = 0
 	var/flight = 0	//Check for flight and flying items
 	var/gravity = 0
 	if(H.movement_type & FLYING)

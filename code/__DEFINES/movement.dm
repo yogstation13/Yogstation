@@ -15,8 +15,8 @@ GLOBAL_VAR_INIT(glide_size_multiplier, 1.0)
 /// Not very readable but it works
 #define DELAY_TO_GLIDE_SIZE(delay) (clamp(((world.icon_size / max((delay) / world.tick_lag, 1)) * GLOB.glide_size_multiplier), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE))
 
-///Similar to DELAY_TO_GLIDE_SIZE, except without the clamping, and it supports piping in an unrelated scalar /world.tick_lag kept at max because turdis keeps fucking it up
-#define MOVEMENT_ADJUSTED_GLIDE_SIZE(delay, movement_disparity) (world.icon_size / ((delay) / max(world.tick_lag, 1)) * movement_disparity * GLOB.glide_size_multiplier)
+///Similar to DELAY_TO_GLIDE_SIZE, except without the clamping, and it supports piping in an unrelated scalar
+#define MOVEMENT_ADJUSTED_GLIDE_SIZE(delay, movement_disparity) (world.icon_size / ((delay) / world.tick_lag) * movement_disparity * GLOB.glide_size_multiplier)
 
 //Movement loop priority. Only one loop can run at a time, this dictates that
 // Higher numbers beat lower numbers

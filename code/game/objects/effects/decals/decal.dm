@@ -3,19 +3,26 @@
 	plane = FLOOR_PLANE
 	anchored = TRUE
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	///Boolean on whether this decal can be placed inside of groundless turfs/walls. If FALSE, will runtime and delete if it happens.
 	var/turf_loc_check = TRUE
 
 /obj/effect/decal/Initialize()
 	. = ..()
-	if(turf_loc_check && (!isturf(loc) || NeverShouldHaveComeHere(loc)))
+	if(turf_loc_check && NeverShouldHaveComeHere(loc))
+		stack_trace("[name] spawned in a bad turf ([loc]) at [AREACOORD(src)] in \the [get_area(src)]. \
+					Please remove it or set turf_loc_check to FALSE on the decal if intended.")
 		return INITIALIZE_HINT_QDEL
+	var/static/list/loc_connections = list(
+		COMSIG_TURF_CHANGE = TYPE_PROC_REF(/atom/, HandleTurfChange),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/effect/decal/blob_act(obj/structure/blob/B)
 	if(B && B.loc == loc)
 		qdel(src)
 
 /obj/effect/decal/proc/NeverShouldHaveComeHere(turf/T)
-	return isclosedturf(T) || isgroundlessturf(T)
+	return isclosedturf(T) || (isgroundlessturf(T) && !SSmapping.get_turf_below(T))
 
 /obj/effect/decal/ex_act(severity, target)
 	qdel(src)

@@ -278,30 +278,38 @@
 		return TRUE
 
 
-/mob/living/attack_paw(mob/living/carbon/human/M)
+/mob/living/attack_paw(mob/living/carbon/human/monkee)
 	if(isturf(loc) && istype(loc.loc, /area/start))
-		to_chat(M, "No attacking people at spawn, you jackass.")
+		to_chat(monkee, "No attacking people at spawn, you jackass.")
 		return FALSE
 
-	if (M.a_intent == INTENT_HARM)
-		if(HAS_TRAIT(M, TRAIT_PACIFISM))
-			to_chat(M, span_notice("You don't want to hurt anyone!"))
-			return FALSE
+	if(!monkee.a_intent == INTENT_HARM)
+		return FALSE
 
-		if(M.is_muzzled() || M.is_mouth_covered(FALSE, TRUE))
-			to_chat(M, span_warning("You can't bite with your mouth covered!"))
-			return FALSE
-		M.do_attack_animation(src, ATTACK_EFFECT_BITE)
-		if (prob(75))
-			last_damage = "minor laceration"
-			log_combat(M, src, "attacked")
-			playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
-			visible_message(span_danger("[M.name] bites [src]!"), \
-					span_userdanger("[M.name] bites [src]!"), null, COMBAT_MESSAGE_RANGE)
-			return TRUE
-		else
-			visible_message(span_danger("[M.name] has attempted to bite [src]!"), \
-				span_userdanger("[M.name] has attempted to bite [src]!"), null, COMBAT_MESSAGE_RANGE)
+	if(HAS_TRAIT(monkee, TRAIT_PACIFISM))
+		to_chat(monkee, span_notice("You don't want to hurt anyone!"))
+		return FALSE
+
+	if(monkee.is_muzzled() || monkee.is_mouth_covered(FALSE, TRUE))
+		to_chat(monkee, span_warning("You can't bite with your mouth covered!"))
+		return FALSE
+	monkee.do_attack_animation(src, ATTACK_EFFECT_BITE)
+	if (prob(75))
+		last_damage = "minor laceration"
+		log_combat(monkee, src, "attacked")
+		playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
+		visible_message(
+			span_danger("[monkee.name] bites [src]!"), \
+			span_userdanger("[monkee.name] bites [src]!"), \
+			span_hear("You hear a chomp!"), COMBAT_MESSAGE_RANGE, monkee)
+		to_chat(monkee, span_danger("You bite [src]!"))
+		return TRUE
+	///you miszed
+	visible_message(
+		span_danger("[monkee.name] has attempted to bite [src]!"), \
+		span_userdanger("[monkee.name] has attempted to bite [src]!"), \
+		span_hear("You hear the sound of jaws snapping shut!"), COMBAT_MESSAGE_RANGE, monkee)
+	to_chat(monkee, span_warning("Your bite misses [src]!"))
 	return FALSE
 
 /mob/living/attack_larva(mob/living/carbon/alien/larva/L)

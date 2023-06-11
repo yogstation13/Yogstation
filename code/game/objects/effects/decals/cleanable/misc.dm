@@ -9,6 +9,7 @@
 	desc = "Ashes to ashes, dust to dust, and into space."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "ash"
+	turf_loc_check = FALSE //yog - king goat arena
 	mergeable_decal = FALSE
 
 /obj/effect/decal/cleanable/ash/Initialize()

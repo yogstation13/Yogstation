@@ -13721,11 +13721,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"aCQ" = (
-/obj/structure/lattice/catwalk/swarmer_catwalk,
-/obj/effect/decal/cleanable/blood/gibs/core,
-/turf/open/space/basic,
-/area/centcom/testchamber)
 "aCR" = (
 /obj/machinery/computer/security{
 	dir = 8
@@ -19239,11 +19234,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base/jail)
-"aNf" = (
-/obj/structure/lattice/catwalk/swarmer_catwalk,
-/obj/effect/decal/cleanable/blood/gibs/down,
-/turf/open/space/basic,
-/area/centcom/testchamber)
 "aNg" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/holofloor/beach,
@@ -19876,11 +19866,6 @@
 	icon_state = "white"
 	},
 /area/holodeck/rec_center/medical)
-"aOu" = (
-/obj/structure/lattice/catwalk/swarmer_catwalk,
-/obj/effect/decal/cleanable/blood/gibs/bubblegum,
-/turf/open/space/basic,
-/area/centcom/testchamber)
 "aOv" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20780,11 +20765,6 @@
 	icon_state = "darkfull"
 	},
 /area/holodeck/rec_center/gym)
-"aQq" = (
-/obj/structure/lattice/catwalk/swarmer_catwalk,
-/obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/space/basic,
-/area/centcom/testchamber)
 "aQr" = (
 /obj/effect/light_emitter{
 	set_cap = 1;
@@ -20933,11 +20913,6 @@
 	icon_state = "wood"
 	},
 /area/holodeck/rec_center/lounge)
-"aQE" = (
-/obj/structure/lattice/catwalk/swarmer_catwalk,
-/obj/effect/decal/cleanable/shreds,
-/turf/open/space/basic,
-/area/centcom/testchamber)
 "aQF" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 1
@@ -21054,12 +21029,6 @@
 /obj/machinery/computer/arcade/minesweeper,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"aQQ" = (
-/obj/structure/lattice/catwalk/swarmer_catwalk,
-/obj/effect/decal/cleanable/leaper_sludge,
-/mob/living/simple_animal/hostile/carp/ranged/chaos,
-/turf/open/space/basic,
-/area/centcom/testchamber)
 "aQR" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien9";
@@ -21716,11 +21685,6 @@
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
-"aSa" = (
-/obj/structure/lattice/catwalk/swarmer_catwalk,
-/obj/effect/decal/cleanable/robot_debris/old,
-/turf/open/space/basic,
-/area/centcom/testchamber)
 "aSb" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -21811,11 +21775,6 @@
 /obj/effect/holodeck_effect/mobspawner/penguin_baby,
 /turf/open/floor/holofloor/snow,
 /area/holodeck/rec_center/winterwonderland)
-"aSo" = (
-/obj/structure/lattice/catwalk/swarmer_catwalk,
-/obj/effect/decal/cleanable/blood/gibs/body,
-/turf/open/space/basic,
-/area/centcom/testchamber)
 "aSp" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "b"
@@ -25164,11 +25123,6 @@
 	},
 /obj/effect/decal/cleanable/robot_debris/gib,
 /turf/open/floor/plasteel,
-/area/centcom/testchamber)
-"aZg" = (
-/obj/structure/lattice/catwalk/swarmer_catwalk,
-/obj/effect/decal/cleanable/leaper_sludge,
-/turf/open/space/basic,
 /area/centcom/testchamber)
 "aZh" = (
 /obj/effect/turf_decal/tile/green{
@@ -72487,9 +72441,9 @@ aNt
 aZf
 azt
 aWx
-aQE
+aXI
 aZZ
-aQQ
+aZZ
 aNt
 aaa
 aaa
@@ -72746,7 +72700,7 @@ aVo
 aWx
 aXI
 aQB
-aOu
+aXI
 aNt
 aaa
 aaa
@@ -73001,8 +72955,8 @@ aNt
 aOM
 aYY
 aWx
-aZg
-aQE
+aXI
+aXI
 aZZ
 aNt
 aaa
@@ -73516,7 +73470,7 @@ aWB
 aqG
 aWx
 aXI
-aCQ
+aXI
 aNx
 aNt
 aaa
@@ -74031,7 +73985,7 @@ ayW
 aWx
 aXI
 aNx
-aQq
+aXI
 aNt
 aaa
 aaa
@@ -74543,7 +74497,7 @@ aNt
 aWB
 aqG
 aWx
-aZg
+aXI
 aXI
 aXI
 aNt
@@ -74802,7 +74756,7 @@ aVo
 aWx
 aXI
 aMj
-aSo
+aXI
 aNt
 aaa
 aaa
@@ -75057,9 +75011,9 @@ aNt
 aOM
 ayW
 aWx
-aSa
+aXI
 aRA
-aNf
+aXI
 aNt
 aaa
 aaa
