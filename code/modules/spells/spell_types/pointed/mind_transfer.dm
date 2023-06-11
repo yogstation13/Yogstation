@@ -92,7 +92,7 @@
 
 	// Gives the target a mind if we don't require one and they don't have one
 	if(!to_swap.mind && !target_requires_mind)
-		to_swap.mind_Initialize()
+		to_swap.mind_initialize()
 
 	var/datum/mind/mind_to_swap = to_swap.mind
 	if(to_swap.can_block_magic(antimagic_flags) \

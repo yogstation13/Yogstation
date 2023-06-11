@@ -135,7 +135,7 @@ the new instance inside the host to be updated to the template's stats.
 	to_chat(src, "[link] [message]")
 
 
-/mob/camera/disease/mind_Initialize()
+/mob/camera/disease/mind_initialize()
 	. = ..()
 	if(!mind.has_antag_datum(/datum/antagonist/disease))
 		mind.add_antag_datum(/datum/antagonist/disease)

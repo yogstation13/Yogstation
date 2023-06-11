@@ -33,7 +33,7 @@
 	return swarmer_team
 
 //SWARMER
-/mob/living/simple_animal/hostile/swarmer/mind_Initialize()
+/mob/living/simple_animal/hostile/swarmer/mind_initialize()
 	..()
 	if(!mind.has_antag_datum(/datum/antagonist/swarmer))
 		mind.add_antag_datum(/datum/antagonist/swarmer)

@@ -39,7 +39,7 @@
 	return kudzu_team
 
 //Gives antag datum to minded plants without it
-/mob/living/simple_animal/hostile/venus_human_trap/mind_Initialize()
+/mob/living/simple_animal/hostile/venus_human_trap/mind_initialize()
 	..()
 	if(!mind.has_antag_datum(/datum/antagonist/kudzu))
 		mind.add_antag_datum(/datum/antagonist/kudzu)

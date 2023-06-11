@@ -165,7 +165,7 @@
 	if(H)
 		cleanup_vr_human()
 		vr_human = new /mob/living/carbon/human/virtual_reality(location)
-		vr_human.mind_Initialize()
+		vr_human.mind_initialize()
 		vr_human.vr_sleeper = src
 		vr_human.real_mind = H.mind
 		H.dna.transfer_identity(vr_human)

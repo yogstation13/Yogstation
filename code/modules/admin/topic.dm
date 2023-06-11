@@ -1546,7 +1546,7 @@
 		if(!ismob(M) || M.mind)
 			to_chat(usr, "This can only be used on instances on mindless mobs", confidential=TRUE)
 			return
-		M.mind_Initialize()
+		M.mind_initialize()
 
 	else if(href_list["create_object"])
 		if(!check_rights(R_SPAWN))
