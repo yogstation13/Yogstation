@@ -1128,7 +1128,7 @@
 /area/ruin/powered/syndicate_lava_base/medbay)
 "gH" = (
 /obj/structure/lattice{
-	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
+	armor = list("melee"=50,"bullet"=0,"laser"=0,"energy"=0,"bomb"=0,"bio"=0,"rad"=0,"fire"=100,"acid"=50)
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
@@ -7483,10 +7483,10 @@ fF
 mI
 fF
 fF
-mJ
-mJ
-mJ
-mJ
+fF
+fF
+fF
+fF
 mJ
 ju
 ey
@@ -7538,9 +7538,9 @@ fF
 kS
 fF
 fF
-mJ
-mJ
-mJ
+fF
+fF
+fF
 mJ
 mJ
 ju
@@ -7593,8 +7593,8 @@ rK
 mI
 fF
 fF
-mJ
-mJ
+fF
+fF
 mJ
 mJ
 mJ
