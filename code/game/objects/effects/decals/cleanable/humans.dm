@@ -32,7 +32,7 @@
 /obj/effect/decal/cleanable/blood/colourless/ethereal/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
 	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
-	addtimer(CALLBACK(src, PROC_REF(Fade)), 24 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
 
 /obj/effect/decal/cleanable/blood/colourless/ethereal/proc/Fade()
 	name = "faded \"blood\""
