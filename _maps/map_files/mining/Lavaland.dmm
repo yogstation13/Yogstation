@@ -506,6 +506,21 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors/explored)
+"ha" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/skeleton/templar{
+	faction = list("skeleton","mining");
+	loot = list(/obj/effect/decal/remains/human);
+	name = "Jim The Door Technician";
+	wander = 0
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "hb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -579,20 +594,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/mine/laborcamp)
-"hP" = (
-/obj/structure/stone_tile/block{
-	dir = 8
-	},
-/obj/structure/stone_tile/block{
-	dir = 4
-	},
-/mob/living/simple_animal/hostile/skeleton/templar{
-	faction = list("skeleton","mining");
-	loot = list(/obj/effect/decal/remains/human);
-	name = "Jim The Door Technician"
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "hW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/red/filled/corner{
@@ -35856,7 +35857,7 @@ ac
 ac
 af
 lg
-hP
+ha
 kj
 fT
 fT
