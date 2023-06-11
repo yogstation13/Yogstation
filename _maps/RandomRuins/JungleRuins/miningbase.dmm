@@ -7,7 +7,7 @@
 /obj/structure/sign/departments/minsky/supply/mining{
 	pixel_y = -32
 	},
-/turf/open/indestructible/grass/sand,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/mine/eva_secondary)
 "ak" = (
 /turf/open/indestructible/grass/sand,
@@ -38,12 +38,8 @@
 /turf/open/floor/plating,
 /area/mine/vacant)
 "aD" = (
-/obj/vehicle/ridden/atv,
-/obj/effect/turf_decal/delivery,
-/obj/structure/window/spawner/east,
-/obj/machinery/modular_computer/telescreen/preset/medical{
-	pixel_y = 32
-	},
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/l3closet,
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "aJ" = (
@@ -489,6 +485,8 @@
 	dir = 1;
 	icon_state = "scrub_map_on-3"
 	},
+/obj/item/bedsheet/medical,
+/obj/structure/bed,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "dz" = (
@@ -541,6 +539,13 @@
 /obj/structure/closet/crate/secure/loot,
 /turf/open/floor/plating,
 /area/mine/storage)
+"em" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/optable,
+/turf/open/floor/plasteel/white,
+/area/mine/infirmary)
 "en" = (
 /obj/structure/mopbucket,
 /obj/item/reagent_containers/glass/bucket,
@@ -834,7 +839,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/indestructible/grass/sand,
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
 /area/mine/eva)
 "hH" = (
 /obj/machinery/door/airlock{
@@ -1315,18 +1320,8 @@
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "oU" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/white,
-/area/mine/infirmary)
+/turf/open/floor/plating/dirt/jungleland/dying_forest,
+/area/jungleland/explored)
 "pc" = (
 /obj/machinery/space_heater,
 /obj/structure/window/spawner/east,
@@ -1572,11 +1567,18 @@
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "sC" = (
-/obj/machinery/light{
-	dir = 4
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/preopen{
+	id = "mining1";
+	name = "Mining Lockdown Blast Doors"
 	},
-/obj/structure/table/optable,
-/turf/open/floor/plasteel/white,
+/obj/structure/curtain{
+	density = 1;
+	icon_state = "closed";
+	opacity = 1;
+	open = 0
+	},
+/turf/open/floor/plating,
 /area/mine/infirmary)
 "sU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -1803,18 +1805,23 @@
 /turf/open/floor/plating,
 /area/mine/storage)
 "wN" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/door/poddoor/preopen{
-	id = "mining1";
-	name = "Mining Lockdown Blast Doors"
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
 	},
-/obj/structure/curtain{
-	density = 1;
-	icon_state = "closed";
-	opacity = 1;
-	open = 0
+/obj/machinery/door/airlock/medical/glass{
+	name = "Infirmary";
+	req_one_access_txt = "54;63"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/white,
+/area/mine/infirmary)
+"wP" = (
+/obj/structure/table,
+/obj/item/book/manual/wiki/surgery{
+	pixel_x = 5
+	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "wU" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1844,16 +1851,10 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "xv" = (
-/obj/machinery/computer/operating{
-	dir = 8
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 32
-	},
 /obj/structure/sign/departments/minsky/medical/medical2{
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "xx" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -2000,6 +2001,19 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
+"Ao" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "Ap" = (
 /turf/open/water/toxic_pit,
@@ -2480,6 +2494,9 @@
 /obj/structure/chair/office/light,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
+"Fd" = (
+/turf/open/water/toxic_pit,
+/area/template_noop)
 "Fi" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 4
@@ -2531,15 +2548,13 @@
 /turf/open/floor/plasteel/dark,
 /area/mine/break_room)
 "Gd" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
+/obj/vehicle/ridden/atv,
+/obj/effect/turf_decal/delivery,
+/obj/structure/window/spawner/east,
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = 32
 	},
-/obj/machinery/door/airlock/medical/glass{
-	name = "Infirmary";
-	req_one_access_txt = "54;63"
-	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "Gi" = (
 /obj/machinery/atmospherics/components/unary/tank{
@@ -2929,11 +2944,12 @@
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "ML" = (
-/obj/structure/table,
-/obj/item/book/manual/wiki/surgery{
-	pixel_x = 5
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 32
 	},
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/machinery/computer/operating{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "MO" = (
@@ -2955,9 +2971,6 @@
 /area/mine/eva)
 "Np" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/machinery/light_switch{
-	pixel_y = 32
-	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "ND" = (
@@ -3565,6 +3578,9 @@
 /turf/open/floor/plasteel/dark,
 /area/mine/maintenance)
 "Wd" = (
+/obj/machinery/light_switch{
+	pixel_x = -29
+	},
 /turf/open/floor/plasteel/dark,
 /area/mine/infirmary)
 "Wn" = (
@@ -3654,8 +3670,6 @@
 /turf/open/floor/plating,
 /area/mine/break_room)
 "Yy" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
 /obj/machinery/camera{
 	c_tag = "Recovery Room";
 	dir = 8;
@@ -3917,7 +3931,7 @@ ab
 ab
 ab
 ab
-ak
+oU
 Ap
 Ap
 ab
@@ -3954,23 +3968,23 @@ ab
 ab
 ab
 ab
-ak
+oU
 ab
-ak
+oU
 Ap
 Ap
 Ap
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
 ab
 ab
 ab
 Ap
 Ap
-ak
-ak
+oU
+oU
 Ap
 Ap
 Ap
@@ -4005,18 +4019,18 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
 Ap
 zW
 zW
 qR
 zW
 zW
-ak
-ak
+oU
+oU
 Ap
 Ap
 Ap
@@ -4056,20 +4070,20 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
 Ap
 zW
 id
 iC
 lm
 zW
-ak
-ak
-ak
+oU
+oU
+oU
 Ap
 Ap
 pB
@@ -4107,23 +4121,23 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 Ap
 zW
 iQ
 tY
 iZ
 zW
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
 pB
 HE
 TG
@@ -4243,7 +4257,7 @@ qK
 Cv
 Cv
 Ap
-ak
+oU
 ab
 ab
 ab
@@ -4262,8 +4276,8 @@ ab
 ab
 ab
 ab
-ak
-ak
+oU
+oU
 YA
 XC
 aJ
@@ -4295,7 +4309,7 @@ sW
 sW
 Cv
 Ap
-ak
+oU
 ab
 ab
 ab
@@ -4313,9 +4327,9 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
+oU
+oU
+oU
 YA
 XC
 aW
@@ -4347,8 +4361,8 @@ qK
 sW
 Cv
 Ap
-ak
-ak
+oU
+oU
 ab
 ab
 ab
@@ -4365,9 +4379,9 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
+oU
+oU
+oU
 YA
 sp
 jX
@@ -4399,11 +4413,11 @@ sW
 sW
 Cv
 Ap
-ak
-ak
+oU
+oU
 ab
-ak
-ak
+oU
+oU
 ab
 ab
 ab
@@ -4416,10 +4430,10 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
 YA
 yf
 SI
@@ -4450,13 +4464,13 @@ bD
 qK
 Cv
 Cv
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 "}
@@ -4466,12 +4480,12 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 YA
 YA
 YA
@@ -4501,29 +4515,29 @@ vl
 vl
 Cv
 Cv
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 "}
 (16,1,1) = {"
 ab
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 RR
 FR
 Zm
@@ -4552,30 +4566,30 @@ qc
 eN
 ND
 Cv
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 "}
 (17,1,1) = {"
 ab
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 RR
 RK
 Zm
@@ -4604,26 +4618,26 @@ iT
 VP
 ND
 Cv
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 "}
 (18,1,1) = {"
 ab
 ab
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
 ai
 cU
 RR
@@ -4659,24 +4673,24 @@ vl
 ND
 vl
 hq
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 "}
 (19,1,1) = {"
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 RR
 pC
 aN
@@ -4710,25 +4724,25 @@ cl
 IX
 tX
 ND
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 "}
 (20,1,1) = {"
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 qL
 EB
 nU
@@ -4762,25 +4776,25 @@ xP
 er
 ey
 PQ
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 "}
 (21,1,1) = {"
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 RR
 eg
 YN
@@ -4814,24 +4828,24 @@ eP
 Is
 xV
 ND
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 "}
 (22,1,1) = {"
 ab
 ab
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
 ai
 cU
 RR
@@ -4867,26 +4881,26 @@ vl
 ND
 vl
 hq
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 "}
 (23,1,1) = {"
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 Ap
 RR
 RK
@@ -4918,13 +4932,13 @@ ne
 Ng
 Ap
 Ap
+oU
+oU
 ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
 ab
 ab
 "}
@@ -4932,13 +4946,13 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 Ap
 RR
 RK
@@ -4969,14 +4983,14 @@ eN
 ND
 Ap
 Ap
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 "}
@@ -4985,12 +4999,12 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 Ap
 Uf
 Uf
@@ -5020,14 +5034,14 @@ mr
 kD
 kD
 Ap
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 ab
@@ -5037,13 +5051,13 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 Uf
 Rl
 Rl
@@ -5072,13 +5086,13 @@ hO
 bG
 kD
 ez
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 ab
@@ -5090,12 +5104,12 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
+oU
+oU
+oU
 ab
-ak
-ak
+oU
+oU
 Bx
 Rl
 Hi
@@ -5125,12 +5139,12 @@ fA
 rL
 ez
 ez
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 ab
@@ -5142,9 +5156,9 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
+oU
+oU
+oU
 ab
 ab
 Ap
@@ -5168,8 +5182,8 @@ kD
 qi
 Eu
 dy
+kD
 Gd
-fA
 uZ
 sq
 TI
@@ -5177,12 +5191,12 @@ Gv
 Fc
 QQ
 ez
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 ab
@@ -5194,8 +5208,8 @@ ab
 ab
 ab
 ab
-ak
-ak
+oU
+oU
 ab
 ab
 ab
@@ -5220,7 +5234,7 @@ kD
 WO
 Er
 Yy
-kD
+wN
 fA
 fA
 fA
@@ -5229,12 +5243,12 @@ Cs
 Cl
 ez
 ez
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 ab
@@ -5274,19 +5288,19 @@ RO
 kD
 kD
 xv
-sC
-ML
-oU
+fA
+fA
+fA
 TQ
 kD
 ez
 Ap
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 ab
@@ -5325,19 +5339,19 @@ Ad
 vZ
 Wd
 kD
-kD
-kD
-kD
-kD
+ML
+em
+wP
+Ao
 kD
 kD
 Ap
 Ap
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 ab
@@ -5359,37 +5373,37 @@ Ap
 Ap
 ab
 ab
-ak
-ak
-ak
+oU
+oU
+oU
 zW
 TS
 Bo
 qD
 zW
-ak
-ak
+oU
+oU
 Ap
-ak
-ak
-kD
+oU
+oU
+sC
 Np
 Ug
 VL
-wN
-ak
-ak
-ak
+kD
+kD
+kD
+kD
+kD
+kD
 Ap
 Ap
 Ap
-Ap
-Ap
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
 ab
 ab
 ab
@@ -5412,14 +5426,14 @@ ab
 ab
 ab
 ab
-ak
-ak
+oU
+oU
 zW
 we
 fO
 Or
 zW
-ak
+oU
 Ap
 Ap
 Ap
@@ -5429,18 +5443,18 @@ MI
 pF
 jW
 kD
-ak
+oU
 Ap
 Ap
 Ap
 Ap
+Ap
+Ap
+Ap
+oU
 ab
-Ap
-Ap
-ak
-ab
-ak
-ak
+oU
+oU
 ab
 ab
 ab
@@ -5464,14 +5478,14 @@ ab
 ab
 ab
 ab
-ak
-ak
+oU
+oU
 zW
 zW
 lH
 zW
 zW
-ak
+oU
 Ap
 ab
 ab
@@ -5485,11 +5499,11 @@ Ap
 Ap
 ab
 ab
-ab
-ab
+Fd
+Fd
 ab
 Ap
-ak
+oU
 ab
 ab
 ab
@@ -5515,14 +5529,14 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
+oU
+oU
 Ap
 Ap
 ab
@@ -5532,7 +5546,7 @@ Ap
 Ap
 Ap
 Ap
-ak
+oU
 Ap
 Ap
 ab
@@ -5570,12 +5584,12 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
+oU
+oU
 Ap
 ab
 Ap
@@ -5623,10 +5637,10 @@ ab
 ab
 ab
 ab
-ak
-ak
-ak
-ak
+oU
+oU
+oU
+oU
 ab
 ab
 ab
@@ -5676,7 +5690,7 @@ ab
 ab
 ab
 ab
-ak
+oU
 ab
 ab
 ab

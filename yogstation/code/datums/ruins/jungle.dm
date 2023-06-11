@@ -15,7 +15,7 @@
 	description = "A testing facility, were bodily experiments were conducted on people, safely remote from scrutiny."
 	suffix = "jungleland_dead_testingfacility.dmm"
 
-/datum/map_template/ruin/jungle/proper/ivymen_nest
+/datum/map_template/ruin/jungle/all/ivymen_nest
 	name = "Ivymen Nest"
 	id = "jungle-ivymen-next"
 	description = "A dormant nest filled with primal plant creatures, waiting to hatch."
