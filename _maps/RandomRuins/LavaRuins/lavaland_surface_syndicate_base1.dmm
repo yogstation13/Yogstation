@@ -1640,6 +1640,11 @@
 /obj/item/disk/nuclear/fake{
 	desc = "While at first glance it looks like the real deal, the station number stamped on the bottom reads '12'. Huh."
 	},
+/obj/item/toy/plush/carpplushie/dehy_carp{
+	name = "cayenne plushie";
+	desc = "An adorable stuffed toy that resembles Cayenne. Faintly smells of explosives.";
+	break_message = "%SRC vanishes in a small explosion."
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/vault)
 "ic" = (
