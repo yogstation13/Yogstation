@@ -16,7 +16,7 @@
 	beams = list()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/assembly/infra/ComponentInitialize(mapload)
+/obj/item/assembly/infra/ComponentInitialize()
 	. = ..()
 	var/static/rotation_flags = ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS
 	AddComponent(/datum/component/simple_rotation, rotation_flags, after_rotation=CALLBACK(src, PROC_REF(after_rotation)))

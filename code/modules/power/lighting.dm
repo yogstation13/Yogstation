@@ -881,7 +881,7 @@
 	. = ..()
 	update()
 
-/obj/item/light/ComponentInitialize(mapload)
+/obj/item/light/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/caltrop, force)
 

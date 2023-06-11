@@ -179,7 +179,7 @@
 		custom_materials = null //Null the list to prepare for applying the materials properly
 		set_custom_materials(temp_list)
 
-	ComponentInitialize(mapload)
+	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -199,7 +199,7 @@
 	return
 
 /// Put your AddComponent() calls here
-/atom/proc/ComponentInitialize(mapload)
+/atom/proc/ComponentInitialize()
 	return
 
 /**

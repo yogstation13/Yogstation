@@ -26,7 +26,7 @@
 	if(attached_light)
 		alight = new(src)
 
-/obj/item/clothing/head/helmet/ComponentInitialize(mapload)
+/obj/item/clothing/head/helmet/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_HEAD))
 

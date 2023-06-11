@@ -65,7 +65,7 @@
 	set_id(suffix || id || "#[mulebot_count]")
 	suffix = null
 
-/mob/living/simple_animal/bot/mulebot/ComponentInitialize(mapload)
+/mob/living/simple_animal/bot/mulebot/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/ntnet_interface)
 

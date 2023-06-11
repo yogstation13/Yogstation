@@ -40,7 +40,7 @@
 	..()
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/turf_decal/ComponentInitialize(mapload)
+/obj/effect/turf_decal/ComponentInitialize()
 	. = ..()
 	var/turf/T = loc
 	if(!istype(T)) //you know this will happen somehow

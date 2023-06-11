@@ -16,7 +16,7 @@
 	. = ..()
 	PopulateContents()
 
-/obj/item/storage/ComponentInitialize(mapload)
+/obj/item/storage/ComponentInitialize()
 	AddComponent(component_type)
 
 /obj/item/storage/AllowDrop()

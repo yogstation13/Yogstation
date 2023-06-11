@@ -52,7 +52,7 @@
 	if (opacity)
 		has_opaque_atom = TRUE
 
-	ComponentInitialize(mapload)
+	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL
 

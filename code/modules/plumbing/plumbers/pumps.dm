@@ -20,7 +20,7 @@
 	create_reagents(volume)
 	return ..()
 
-/obj/machinery/power/liquid_pump/ComponentInitialize(mapload)
+/obj/machinery/power/liquid_pump/ComponentInitialize()
 	AddComponent(/datum/component/plumbing/simple_supply)
 
 /obj/machinery/power/liquid_pump/wrench_act(mob/living/user, obj/item/I)

@@ -202,7 +202,7 @@
 		C.throw_mode_on()
 	bomb.preprime(loc, null, FALSE)
 
-/obj/item/grown/bananapeel/bombanana/ComponentInitialize(mapload)
+/obj/item/grown/bananapeel/bombanana/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, det_time)
 

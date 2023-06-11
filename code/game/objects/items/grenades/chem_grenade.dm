@@ -16,7 +16,7 @@
 	var/casedesc = "This basic model accepts both beakers and bottles. It heats contents by 10°K upon ignition." // Appears when examining empty casings.
 	var/obj/item/assembly/prox_sensor/landminemode = null
 
-/obj/item/grenade/chem_grenade/ComponentInitialize(mapload)
+/obj/item/grenade/chem_grenade/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 

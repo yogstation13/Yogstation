@@ -256,7 +256,7 @@
 	. = ..()
 	builder = new(mob_name, theme, failure_message, max_points, allowspecial, debug_mode)
 
-/obj/item/guardiancreator/ComponentInitialize(mapload)
+/obj/item/guardiancreator/ComponentInitialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
 	

@@ -12,7 +12,7 @@
 	weed_overlay = mutable_appearance('yogstation/icons/obj/watercloset.dmi', "weed")
 	START_PROCESSING(SSobj, src)
 
-/obj/structure/toilet_bong/ComponentInitialize(mapload)
+/obj/structure/toilet_bong/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = AddComponent(/datum/component/storage/concrete)
 	STR.attack_hand_interact = FALSE

@@ -70,7 +70,7 @@
 	spawn_type = /obj/item/reagent_containers/food/snacks/donut
 	fancy_open = TRUE
 
-/obj/item/storage/box/fancy/donut_box/ComponentInitialize(mapload)
+/obj/item/storage/box/fancy/donut_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -84,7 +84,7 @@
 	spawn_type = /obj/item/reagent_containers/food/snacks/donut/deadly
 	fancy_open = TRUE
 
-/obj/item/storage/box/fancy/donut_box/ComponentInitialize(mapload)
+/obj/item/storage/box/fancy/donut_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -106,7 +106,7 @@
 	desc = "A carton for containing eggs."
 	spawn_type = /obj/item/reagent_containers/food/snacks/egg
 
-/obj/item/storage/box/fancy/egg_box/ComponentInitialize(mapload)
+/obj/item/storage/box/fancy/egg_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 12
@@ -132,7 +132,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/box/fancy/candle_box/ComponentInitialize(mapload)
+/obj/item/storage/box/fancy/candle_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 5
@@ -154,7 +154,7 @@
 	spawn_type = /obj/item/clothing/mask/cigarette/space_cigarette
 	age_restricted = TRUE
 
-/obj/item/storage/box/fancy/cigarettes/ComponentInitialize(mapload)
+/obj/item/storage/box/fancy/cigarettes/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -298,7 +298,7 @@
 	icon_type = "rolling paper"
 	spawn_type = /obj/item/rollingpaper
 
-/obj/item/storage/box/fancy/rollingpapers/ComponentInitialize(mapload)
+/obj/item/storage/box/fancy/rollingpapers/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 10
@@ -322,7 +322,7 @@
 	icon_type = "premium cigar"
 	spawn_type = /obj/item/clothing/mask/cigarette/cigar
 
-/obj/item/storage/box/fancy/cigarettes/cigars/ComponentInitialize(mapload)
+/obj/item/storage/box/fancy/cigarettes/cigars/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 5
@@ -369,7 +369,7 @@
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	spawn_type = /obj/item/reagent_containers/food/snacks/tinychocolate
 
-/obj/item/storage/box/fancy/heart_box/ComponentInitialize(mapload)
+/obj/item/storage/box/fancy/heart_box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 8

@@ -219,7 +219,7 @@
 	max_integrity = 300
 	light_range = 2
 
-/obj/structure/mineral_door/uranium/ComponentInitialize(mapload)
+/obj/structure/mineral_door/uranium/ComponentInitialize()
 	return
 
 /obj/structure/mineral_door/sandstone
@@ -241,7 +241,7 @@
 	icon_state = "plasma"
 	sheetType = /obj/item/stack/sheet/mineral/plasma
 
-/obj/structure/mineral_door/transparent/plasma/ComponentInitialize(mapload)
+/obj/structure/mineral_door/transparent/plasma/ComponentInitialize()
 	return
 
 /obj/structure/mineral_door/transparent/plasma/welder_act(mob/living/user, obj/item/I)
@@ -340,7 +340,7 @@
 
 	return ..()
 
-/obj/structure/mineral_door/paperframe/ComponentInitialize(mapload)
+/obj/structure/mineral_door/paperframe/ComponentInitialize()
 	return
 
 /obj/structure/mineral_door/paperframe/Destroy()

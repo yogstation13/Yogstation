@@ -11,7 +11,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_price = 20
 
-/obj/item/storage/byummie/ComponentInitialize(mapload)
+/obj/item/storage/byummie/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 4

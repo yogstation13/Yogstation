@@ -328,7 +328,7 @@
 	charge = 0
 	update_icon()
 
-/obj/item/stock_parts/cell/emproof/empty/ComponentInitialize(mapload)
+/obj/item/stock_parts/cell/emproof/empty/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
 

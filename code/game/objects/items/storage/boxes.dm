@@ -490,7 +490,7 @@
 	illustration=null
 	var/donktype = /obj/item/reagent_containers/food/snacks/donkpocket
 
-/obj/item/storage/box/donkpockets/ComponentInitialize(mapload)
+/obj/item/storage/box/donkpockets/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/donkpocket))
@@ -536,7 +536,7 @@
 	illustration = null
 	var/cube_type = /obj/item/reagent_containers/food/snacks/monkeycube
 
-/obj/item/storage/box/monkeycubes/ComponentInitialize(mapload)
+/obj/item/storage/box/monkeycubes/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -555,7 +555,7 @@
 	desc = "Waffle Co. brand mouse cubes. Just add water and a dash of subterfuge!"
 	cube_type = /obj/item/reagent_containers/food/snacks/monkeycube/mouse/syndicate
 
-/obj/item/storage/box/monkeycubes/syndicate/mice/ComponentInitialize(mapload)
+/obj/item/storage/box/monkeycubes/syndicate/mice/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 24
@@ -571,7 +571,7 @@
 	icon_state = "monkeycubebox"
 	illustration = null
 
-/obj/item/storage/box/gorillacubes/ComponentInitialize(mapload)
+/obj/item/storage/box/gorillacubes/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
@@ -587,7 +587,7 @@
 	icon_state = "monkeycubebox"
 	illustration = null
 
-/obj/item/storage/box/mixedcubes/ComponentInitialize(mapload)
+/obj/item/storage/box/mixedcubes/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -753,7 +753,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "spbox"
 
-/obj/item/storage/box/snappops/ComponentInitialize(mapload)
+/obj/item/storage/box/snappops/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(list(/obj/item/toy/snappop))
@@ -773,7 +773,7 @@
 	drop_sound = 'sound/items/handling/matchbox_drop.ogg'
 	pickup_sound =  'sound/items/handling/matchbox_pickup.ogg'
 
-/obj/item/storage/box/matches/ComponentInitialize(mapload)
+/obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 10
@@ -796,7 +796,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 
-/obj/item/storage/box/lights/ComponentInitialize(mapload)
+/obj/item/storage/box/lights/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 21
@@ -912,7 +912,7 @@
 	icon_state = "rubbershot_box"
 	illustration = null
 
-/obj/item/storage/box/rubbershot/ComponentInitialize(mapload)
+/obj/item/storage/box/rubbershot/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -928,7 +928,7 @@
 	icon_state = "lethalshot_box"
 	illustration = null
 
-/obj/item/storage/box/lethalshot/ComponentInitialize(mapload)
+/obj/item/storage/box/lethalshot/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -944,7 +944,7 @@
 	icon_state = "breachershot_box"
 	illustration = null
 
-/obj/item/storage/box/breacherslug/ComponentInitialize(mapload)
+/obj/item/storage/box/breacherslug/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -960,7 +960,7 @@
 	icon_state = "rubbershot_box"
 	illustration = null
 
-/obj/item/storage/box/beanbag/ComponentInitialize(mapload)
+/obj/item/storage/box/beanbag/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -1320,7 +1320,7 @@
 		/obj/item/stack/sheet/mineral/bananium/fifty = 1)
 	generate_items_inside(items_inside,src)
 
-/obj/item/storage/box/materials/ComponentInitialize(mapload)
+/obj/item/storage/box/materials/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 200

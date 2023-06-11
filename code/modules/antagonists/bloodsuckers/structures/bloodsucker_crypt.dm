@@ -476,7 +476,7 @@
 	desc = "It looks upsettingly familiar..."
 	icon_state = "statue"
 
-/obj/structure/bloodsucker/bloodstatue/ComponentInitialize(mapload)
+/obj/structure/bloodsucker/bloodstatue/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/art, 30)
 

@@ -22,7 +22,7 @@
 	var/buildstackamount = 2
 	var/bolts = TRUE
 
-/obj/structure/bed/ComponentInitialize(mapload)
+/obj/structure/bed/ComponentInitialize()
 	AddComponent(/datum/component/surgery_bed, 0.8)
 
 /obj/structure/bed/examine(mob/user)

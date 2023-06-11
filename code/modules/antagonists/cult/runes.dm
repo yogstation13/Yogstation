@@ -46,7 +46,7 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	I.override = TRUE
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cult_runes", I)
 
-/obj/effect/rune/ComponentInitialize(mapload)
+/obj/effect/rune/ComponentInitialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_act))
 
