@@ -1269,8 +1269,8 @@
 
 	if(istype(I, /obj/item/jawsoflife) || istype(I, /obj/item/mantis/blade))
 		if(isElectrified())
-			shock(user,100)//it's like sticking a fork in a power socket
-			return
+			if(shock(user,100))//it's like sticking a fork in a power socket
+				return
 
 		if(istype(I, /obj/item/mantis/blade))
 			var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
@@ -1293,7 +1293,7 @@
 			to_chat(user, span_warning("The airlock won't budge!"))
 			return
 
-		var/time_to_open = 7 SECONDS
+		var/time_to_open = 9 SECONDS
 
 		if(hasPower() && !prying_so_hard)
 			if (I.tool_behaviour == TOOL_CROWBAR) //we need another check, futureproofing for if/when bettertools actually completely replaces the old jaws
