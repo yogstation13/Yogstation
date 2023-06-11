@@ -12,6 +12,7 @@
 	custom_price = 20
 
 /obj/item/storage/byummie/Initialize(mapload)
+	. = ..()
 	var/obj/item/reagent_containers/food/snacks/borer/B
 	for(var/i, i < 4, i++)
 		B = new(src)
