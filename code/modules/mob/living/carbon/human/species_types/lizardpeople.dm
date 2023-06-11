@@ -224,7 +224,7 @@
 
 //basic touch ability that heals brute and burn, only accessed by the ashwalker shaman
 /datum/action/cooldown/spell/touch/heal
-	name = "healing touch"
+	name = "Healing Touch"
 	desc = "This spell charges your hand with the vile energy of the Necropolis, permitting you to undo some external injuries from a target."
 	panel = "Ashwalker"
 	button_icon_state = "spell_default"
@@ -238,10 +238,12 @@
 	cooldown_time = 20 SECONDS
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/touch/heal/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
-	var/mob/living/M = target
-	new /obj/effect/temp_visual/heal(get_turf(M), "#899d39")
-	M.heal_overall_damage(LIZARD_HEAL_AMOUNT, LIZARD_HEAL_AMOUNT, 0, BODYPART_ANY, TRUE) //notice it doesn't heal toxins, still need to learn chems for that
+/datum/action/cooldown/spell/touch/heal/is_valid_target(atom/cast_on)
+	return isliving(cast_on)
+
+/datum/action/cooldown/spell/touch/heal/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/target, mob/living/carbon/caster)
+	new /obj/effect/temp_visual/heal(get_turf(target), "#899d39")
+	target.heal_overall_damage(LIZARD_HEAL_AMOUNT, LIZARD_HEAL_AMOUNT, 0, BODYPART_ANY, TRUE) //notice it doesn't heal toxins, still need to learn chems for that
 	return TRUE
 
 #undef LIZARD_HEAL_AMOUNT

@@ -34,7 +34,7 @@
 		var/icon/icon_to_mix = getFlatIcon(user)
 		icon_to_mix.Blend(icon('icons/mob/mutant_bodyparts.dmi', "m_ears_cat_FRONT"), ICON_OVERLAY)
 		option.image = icon_to_mix
-		option.info = "[iscatperson(user) ? "Lizard" : "Felinid"]: Increased agility and speed, but decreased defense."
+		option.info = "[iscatperson(user) ? "Lizard" : "Felinid"]: Increased agility, speed and interaction speed, but decreased defense."
 		radial_display["Lizard/Felinid"] = option //haha yeah
 	if(bloodsuckerdatum.total_blood_drank >= 250)
 		var/datum/radial_menu_choice/option = new
@@ -47,7 +47,7 @@
 		body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_chest_m"), ICON_OVERLAY)
 		body.Blend(icon('yogstation/icons/mob/human_parts.dmi', "gorilla_head_m"), ICON_OVERLAY)
 		option.image = body
-		option.info = "Gorilla: Increased durability and strength, but less speed."
+		option.info = "Gorilla: Increased durability and strength, but less speed and interaction speed."
 		radial_display["Gorilla"] = option
 	if(bloodsuckerdatum.total_blood_drank >= 750)
 		var/datum/radial_menu_choice/option = new
@@ -56,7 +56,7 @@
 		radial_display["Bat"] = option
 	var/chosen_transform = show_radial_menu(user, user, radial_display)
 	transform(chosen_transform) //actually transform
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/bloodsucker/gangrel/transform/proc/transform(chosen_transform)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker)
@@ -74,7 +74,7 @@
 				user_species.species_traits += DIGITIGRADE
 				user.dna.species.armor -= 20 //careful
 				user.dna.species.speedmod = -0.5
-				user.dna.species.action_speed_coefficient = 0.7
+				user.dna.species.action_speed_coefficient *= 0.7
 				bloodsuckerdatum.AddBloodVolume(75)
 		if("Gorilla")
 			user.set_species(/datum/species/gorilla)
@@ -84,6 +84,7 @@
 			user.dna.species.punchdamagelow += 10
 			user.dna.species.punchdamagehigh += 10 //very stronk
 			user.dna.species.punchstunthreshold += 10
+			user.dna.species.action_speed_coefficient *= 1.3
 			user.dna.species.armor += 40
 			bloodsuckerdatum.AddBloodVolume(50)
 		if("Bat")
@@ -123,7 +124,7 @@
 	var/mob/living/simple_animal/hostile/bloodsucker/bs
 	if(istype(owner, bs))
 		qdel(bs)
-	. = ..()
+	return ..()
 /*
 ////////////////||\\\\\\\\\\\\\\\\
 \\           Bat Only           //
@@ -211,7 +212,7 @@
 			var/mob/living/carbon/C = target
 			C.Knockdown(0.1)
 		return BULLET_ACT_HIT
-	. = ..()
+	return ..()
 
 /datum/action/cooldown/bloodsucker/gangrel/wingslam
 	name = "Wing Slam"
@@ -227,6 +228,7 @@
 	bloodcost = 0
 
 /datum/action/cooldown/bloodsucker/gangrel/wingslam/ActivatePower()
+	. = ..()
 	var/mob/living/user = owner
 	var/list/choices = list()
 	for(var/mob/living/carbon/C in view(1, user))
