@@ -16,7 +16,7 @@
 	mutantliver = /obj/item/organ/liver/plasmaman
 	mutantstomach = /obj/item/organ/stomach/plasmaman
 	brutemod = 1.3 //Rattle me bones, but less because plasma bones are very hard
-	burnmod = 0.8 //Plasma is a surprisingly good insulator if not around oxygen
+	burnmod = 0.9 //Plasma is a surprisingly good insulator if not around oxygen
 	heatmod = 1.5 //Don't let the plasma actually heat up though
 	punchdamagehigh = 7 //Bone punches are weak and usually inside soft suit gloves
 	punchstunthreshold = 7 //Stuns on max hit as usual, somewhat higher stun chance because math
