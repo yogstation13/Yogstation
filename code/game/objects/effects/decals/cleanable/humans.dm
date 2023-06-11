@@ -14,6 +14,22 @@
 			C.bloodiness += bloodiness
 	return ..()
 
+/obj/effect/decal/cleanable/blood/colourless
+	name = "\"blood\""
+	desc = "It's an unsettling colour. Perhaps it's the chef's cooking?"
+	icon_state = "genericsplatter1"
+	random_icon_states = list("genericsplatter1", "genericsplatter2", "genericsplatter3", "genericsplatter4", "genericsplatter5", "genericsplatter6")
+	blood_state = ""
+	bloodiness = 0
+
+/obj/effect/decal/cleanable/blood/colourless/ethereal
+	name = "glowing \"blood\""
+	desc = "It has a faded glow. Perhaps it's the chef's cooking?"
+
+/obj/effect/decal/cleanable/blood/colourless/ethereal/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	add_atom_colour("#eef442", FIXED_COLOUR_PRIORITY)
+
 /obj/effect/decal/cleanable/blood/old
 	name = "dried blood"
 	desc = "Looks like it's been here a while.  Eew."
