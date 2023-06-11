@@ -8,7 +8,7 @@
 		nInitialize()
 	. = TRUE
 
-/obj/item/clothing/suit/space/space_ninja/proc/nInitialize(mapload, delay = s_delay, mob/living/carbon/human/U = loc)
+/obj/item/clothing/suit/space/space_ninja/proc/nInitialize(delay = s_delay, mob/living/carbon/human/U = loc)
 	if(!U.mind)
 		return //Not sure how this could happen.
 	s_busy = TRUE
@@ -53,7 +53,7 @@
 
 
 
-/obj/item/clothing/suit/space/space_ninja/proc/deInitialize(mapload, delay = s_delay)
+/obj/item/clothing/suit/space/space_ninja/proc/deInitialize(delay = s_delay)
 	if(affecting==loc)
 		var/mob/living/carbon/human/U = affecting
 		if(alert("Are you certain you wish to remove the suit? This will take time and remove all abilities.",,"Yes","No")=="No")

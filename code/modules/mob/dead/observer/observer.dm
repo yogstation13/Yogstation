@@ -719,7 +719,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 //We don't want to update the current var
 //But we will still carry a mind.
-/mob/dead/observer/mind_Initialize(mapload)
+/mob/dead/observer/mind_Initialize()
 	return
 
 /mob/dead/observer/proc/show_data_huds()

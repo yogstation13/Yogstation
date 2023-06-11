@@ -769,7 +769,7 @@
 	return
 
 //Initialisation procs
-/mob/proc/mind_Initialize(mapload)
+/mob/proc/mind_Initialize()
 	if(mind)
 		mind.key = key
 
@@ -782,28 +782,28 @@
 	// There's nowhere else to set this up, mind code makes me depressed
 	mind.antag_hud = add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/antagonist_hud, "combo_hud", mind)
 
-/mob/living/carbon/mind_Initialize(mapload)
+/mob/living/carbon/mind_Initialize()
 	..()
 	last_mind = mind
 
 //HUMAN
-/mob/living/carbon/human/mind_Initialize(mapload)
+/mob/living/carbon/human/mind_Initialize()
 	..()
 	if(!mind.assigned_role)
 		mind.assigned_role = "Unassigned" //default
 
 //AI
-/mob/living/silicon/ai/mind_Initialize(mapload)
+/mob/living/silicon/ai/mind_Initialize()
 	..()
 	mind.assigned_role = "AI"
 
 //BORG
-/mob/living/silicon/robot/mind_Initialize(mapload)
+/mob/living/silicon/robot/mind_Initialize()
 	..()
 	mind.assigned_role = "Cyborg"
 
 //PAI
-/mob/living/silicon/pai/mind_Initialize(mapload)
+/mob/living/silicon/pai/mind_Initialize()
 	..()
 	mind.assigned_role = ROLE_PAI
 	mind.special_role = ""
