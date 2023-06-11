@@ -13,6 +13,11 @@
 	RegisterSignal(new_owner,COMSIG_REGEN_CORE_HEALED,PROC_REF(cure))
 	update_stack(1)
 
+/datum/status_effect/toxic_buildup/on_apply()
+	if(HAS_TRAIT(owner, TRAIT_TOXIMMUNE))
+		return FALSE
+	return ..()
+
 /datum/status_effect/toxic_buildup/tick()
 	current_stack_decay += initial(tick_interval)
 	if(current_stack_decay >= stack_decay_time)
@@ -23,13 +28,17 @@
 			qdel(src)
 			return
 
+	if(HAS_TRAIT(owner, TRAIT_TOXIMMUNE))
+		return
 	if(!ishuman(owner))
 		return 
 	var/mob/living/carbon/human/human_owner = owner	
-
+	var/toxinlover = HAS_TRAIT(human_owner, TRAIT_TOXINLOVER) // delicious toxins
 	if(prob(10))
-		if(!isipc(human_owner))
-			to_chat(human_owner,span_alert("The toxins run a course through your veins, you feel sick."))	
+		if(toxinlover)
+			to_chat(human_owner,span_alert("You feel replenished as the toxins run a course through your veins."))
+		else if(!isipc(human_owner))
+			to_chat(human_owner,span_alert("The toxins run a course through your veins, you feel sick."))
 			human_owner.adjust_disgust(5)
 		else 
 			to_chat(human_owner,span_alert("You are covered in a corrosive substance, it digs deep into your plating!"))
@@ -41,17 +50,17 @@
 			human_owner.adjustToxLoss(0.5)
 		if(2)
 			human_owner.adjustToxLoss(1)
-			if(prob(1))
+			if(prob(1) && !toxinlover)
 				human_owner.vomit()
 				current_stack_decay += 5 SECONDS
 		if(3)
 			human_owner.adjustToxLoss(2)
-			if(prob(2))
+			if(prob(2) && !toxinlover)
 				human_owner.vomit()
 				current_stack_decay += 5 SECONDS
 		if(4)
 			human_owner.adjustToxLoss(3)
-			if(prob(5))
+			if(prob(5) && !toxinlover)
 				human_owner.vomit()
 				current_stack_decay += 5 SECONDS
 
