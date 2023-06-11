@@ -763,7 +763,7 @@
 	if(reac_volume < 3)
 		return
 
-	var/obj/effect/decal/cleanable/blood/colourless/ethereal/B = locate() in T //find some blood here
+	var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T //find some blood here
 	if(!B)
 		B = new(T)
 
