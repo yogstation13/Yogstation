@@ -248,7 +248,7 @@
 	appearance = initial(appearance)
 	cut_overlays()
 
-	QDEL_NULL(victim_ref)
+	victim_ref = null
 
 	speak_chance = initial(speak_chance)
 	taunt_chance = initial(taunt_chance)
