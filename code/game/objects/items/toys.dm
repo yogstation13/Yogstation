@@ -1734,7 +1734,31 @@ obj/item/toy/turn_tracker
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
-	ammo_type = null // Hook remover (tm)
+	recharge_rate = 3 // seconds
+	ammo_type = /obj/item/ammo_casing/magic/hook/sickly_blade_toy
+	fire_sound = 'sound/effects/snap.ogg'
+	item_flags = NEEDS_PERMIT // doesn't include NOBLUDGEON for obvious reasons
+
+/obj/item/gun/magic/hook/sickly_blade_toy/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
+
+/obj/item/ammo_casing/magic/hook/sickly_blade_toy
+	projectile_type = /obj/item/projectile/hook/sickly_blade_toy
+
+/obj/item/projectile/hook/sickly_blade_toy
+	damage = 0
+	knockdown = 0
+	immobilize = 0 // there's no escape
+	range = 5 // hey now cowboy
+	armour_penetration = 0 // no piercing shields
+	knockdown = 0
+	hitsound = 'sound/effects/gravhit.ogg'
+
+/obj/item/projectile/hook/sickly_blade_toy/on_hit(atom/target, blocked)
+	if(ismovable(target) && blocked != 100)
+		var/atom/movable/A = target
+		A.visible_message(span_danger("[A] is snagged by [firer]'s hook!"))
+	return 
 
 /obj/item/gun/magic/hook/sickly_blade_toy/attack(mob/living/M, mob/living/user)
 	if((IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
