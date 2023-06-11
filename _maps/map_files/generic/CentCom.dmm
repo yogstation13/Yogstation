@@ -25711,6 +25711,10 @@
 "cgW" = (
 /turf/open/indestructible/wiki/whitescreen,
 /area/centcom/testchamber)
+"cnZ" = (
+/obj/machinery/vending/donksofttoyvendor,
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "crH" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info29"
@@ -26074,6 +26078,10 @@
 "nYo" = (
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
+"oaj" = (
+/obj/machinery/vending/wardrobe/chef_wardrobe,
+/turf/open/floor/plasteel,
+/area/centcom/testchamber)
 "obi" = (
 /obj/structure/goalnet/goalpost/left{
 	dir = 1
@@ -26157,14 +26165,14 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ctf)
-"qbd" = (
-/obj/machinery/vending/wardrobe/chef_wardrobe,
-/turf/open/floor/plasteel,
-/area/centcom/testchamber)
 "qhf" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info11"
 	},
+/area/centcom/testchamber)
+"qTD" = (
+/obj/machinery/vending/wardrobe/bar_wardrobe,
+/turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "ria" = (
 /obj/machinery/recharge_station/fullupgrade,
@@ -26321,10 +26329,6 @@
 /turf/open/indestructible/wiki/title{
 	icon_state = "title10"
 	},
-/area/centcom/testchamber)
-"vjN" = (
-/obj/machinery/vending/donksofttoyvendor,
-/turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "vpx" = (
 /obj/structure/goalnet/goalpost/right,
@@ -72499,7 +72503,7 @@ aQE
 aZZ
 aQQ
 aNt
-vjN
+cnZ
 aNt
 aaa
 aaa
@@ -72756,7 +72760,7 @@ aXI
 aQB
 aOu
 aNt
-qbd
+oaj
 aNt
 aaa
 aaa
@@ -73013,7 +73017,7 @@ aZg
 aQE
 aZZ
 aNt
-aNt
+qTD
 aNt
 aaa
 aaa
@@ -73270,8 +73274,8 @@ aNt
 aNt
 aNt
 aNt
-aaa
-aaa
+aNt
+aNt
 aaa
 aaa
 aaa
