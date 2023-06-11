@@ -515,7 +515,7 @@
 /obj/item/storage/box/syndie_kit/space
 	real_name = "boxed space suit and helmet"
 
-/obj/item/storage/box/syndie_kit/space/ComponentInitialize()
+/obj/item/storage/box/syndie_kit/space/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -541,7 +541,7 @@
 /obj/item/storage/box/syndie_kit/chemical
 	real_name = "chemical kit"
 
-/obj/item/storage/box/syndie_kit/chemical/ComponentInitialize()
+/obj/item/storage/box/syndie_kit/chemical/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 12

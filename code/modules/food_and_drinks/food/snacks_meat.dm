@@ -418,7 +418,7 @@
 	tastes = list("meat" = 5, "clowns" = 3, "sixteen teslas" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/meatclown/ComponentInitialize()
+/obj/item/reagent_containers/food/snacks/meatclown/Initialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 30)
 

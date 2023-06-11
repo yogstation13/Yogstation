@@ -15,9 +15,6 @@
 	. = ..()
 	beams = list()
 	START_PROCESSING(SSobj, src)
-
-/obj/item/assembly/infra/ComponentInitialize()
-	. = ..()
 	var/static/rotation_flags = ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS
 	AddComponent(/datum/component/simple_rotation, rotation_flags, after_rotation=CALLBACK(src, PROC_REF(after_rotation)))
 
@@ -85,7 +82,7 @@
 		return
 	if(holder)
 		if(holder.master) //incase the sensor is part of an assembly that's contained in another item, such as a single tank bomb
-			if(!holder.master.IsSpecialAssembly() || !isturf(holder.master.loc))
+			if(!istype(holder.master, /obj/item/onetankbomb) || !isturf(holder.master.loc))
 				return
 		else if(!isturf(holder.loc)) //else just check where the holder is
 			return

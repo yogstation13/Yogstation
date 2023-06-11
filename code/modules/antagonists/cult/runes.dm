@@ -45,9 +45,6 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	var/image/I = image(icon = 'icons/effects/blood.dmi', icon_state = null, loc = src)
 	I.override = TRUE
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cult_runes", I)
-
-/obj/effect/rune/ComponentInitialize()
-	. = ..()
 	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_act))
 
 /obj/effect/rune/Destroy()

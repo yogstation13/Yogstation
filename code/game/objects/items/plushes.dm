@@ -516,7 +516,7 @@
 	icon_state = "plushie_awake"
 	item_state = "plushie_awake"
 
-/obj/item/toy/plush/awakenedplushie/ComponentInitialize()
+/obj/item/toy/plush/awakenedplushie/Initialize()
 	. = ..()
 	AddComponent(/datum/component/edit_complainer)
 

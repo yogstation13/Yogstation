@@ -160,7 +160,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	material_flags = MATERIAL_NO_COLOR
 
-/obj/item/storage/toolbox/syndicate/ComponentInitialize()
+/obj/item/storage/toolbox/syndicate/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.silent = TRUE
@@ -205,7 +205,7 @@
 	var/fabricator_type = /obj/item/clockwork/replica_fabricator/scarab
 	material_flags = MATERIAL_NO_COLOR
 
-/obj/item/storage/toolbox/brass/ComponentInitialize()
+/obj/item/storage/toolbox/brass/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -243,7 +243,7 @@
 	item_state = "artistic_toolbox"
 	w_class = WEIGHT_CLASS_GIGANTIC //Holds more than a regular toolbox!
 
-/obj/item/storage/toolbox/artistic/ComponentInitialize()
+/obj/item/storage/toolbox/artistic/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 20

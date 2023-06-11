@@ -62,7 +62,7 @@
 	item_state = "firstaid"
 	desc = "A high capacity aid kit for doctors, full of medical supplies and basic surgical equipment"
 
-/obj/item/storage/firstaid/medical/ComponentInitialize()
+/obj/item/storage/firstaid/medical/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 12
@@ -241,7 +241,7 @@
 	item_state = "firstaid-rad"
 	custom_premium_price = 600
 
-/obj/item/storage/firstaid/advanced/ComponentInitialize()
+/obj/item/storage/firstaid/advanced/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 12
@@ -266,7 +266,7 @@
 	icon_state = "bezerk"
 	item_state = "firstaid-bezerk"
 
-/obj/item/storage/firstaid/tactical/ComponentInitialize()
+/obj/item/storage/firstaid/tactical/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -320,7 +320,7 @@
 	custom_premium_price = 100
 	var/stored_hypo
 
-/obj/item/storage/firstaid/hypospray/ComponentInitialize()
+/obj/item/storage/firstaid/hypospray/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -582,7 +582,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/storage/pill_bottle/ComponentInitialize()
+/obj/item/storage/pill_bottle/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.allow_quick_gather = TRUE
@@ -769,7 +769,7 @@
 	icon_state = "pill_canister_large"
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/storage/pill_bottle/gummies/ComponentInitialize()
+/obj/item/storage/pill_bottle/gummies/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.allow_quick_gather = TRUE
