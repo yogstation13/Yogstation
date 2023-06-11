@@ -414,8 +414,8 @@ GLOBAL_LIST_INIT(nests, list())
 	QDEL_IN(src,duration)
 
 /obj/machinery/advanced_airlock_controller/jungleland
-	exterior_pressure = 202 
-	depressurization_margin = 40
+	exterior_pressure = 205 
+	depressurization_margin = 50
 	depressurization_target = 20
 
 /obj/structure/tar_assistant_spawner 

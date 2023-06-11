@@ -539,13 +539,6 @@
 /obj/structure/closet/crate/secure/loot,
 /turf/open/floor/plating,
 /area/mine/storage)
-"em" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table/optable,
-/turf/open/floor/plasteel/white,
-/area/mine/infirmary)
 "en" = (
 /obj/structure/mopbucket,
 /obj/item/reagent_containers/glass/bucket,
@@ -574,8 +567,10 @@
 /turf/open/floor/plating,
 /area/mine/living_quarters)
 "er" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "es" = (
@@ -584,6 +579,9 @@
 /area/mine/vacant)
 "ey" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
 "ez" = (
@@ -644,6 +642,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"eS" = (
+/obj/structure/table,
+/obj/item/book/manual/wiki/surgery{
+	pixel_x = 5
+	},
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/plasteel/dark,
+/area/mine/infirmary)
 "eV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -917,6 +923,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"ir" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/mine/infirmary)
 "iy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -1163,6 +1182,9 @@
 	},
 /turf/open/floor/plating,
 /area/mine/living_quarters)
+"lK" = (
+/turf/open/water/toxic_pit,
+/area/template_noop)
 "lM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -1295,10 +1317,10 @@
 /turf/open/floor/plasteel/dark,
 /area/mine/break_room)
 "nU" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
 "nZ" = (
@@ -1815,14 +1837,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
-"wP" = (
-/obj/structure/table,
-/obj/item/book/manual/wiki/surgery{
-	pixel_x = 5
-	},
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
 "wU" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4;
@@ -2001,19 +2015,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/mine/infirmary)
-"Ao" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
 /area/mine/infirmary)
 "Ap" = (
 /turf/open/water/toxic_pit,
@@ -2440,6 +2441,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4,
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
 "ED" = (
@@ -2494,9 +2496,6 @@
 /obj/structure/chair/office/light,
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
-"Fd" = (
-/turf/open/water/toxic_pit,
-/area/template_noop)
 "Fi" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 4
@@ -2714,9 +2713,6 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/mine/eva)
 "IX" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
-	dir = 4
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -3102,6 +3098,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"Pi" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/optable,
+/turf/open/floor/plasteel/white,
+/area/mine/infirmary)
 "Pk" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -3696,15 +3699,11 @@
 /turf/open/floor/wood,
 /area/mine/break_room)
 "YN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/layer4{
-	dir = 8
-	},
-/obj/machinery/advanced_airlock_controller/lavaland{
-	dir = 8;
-	pixel_x = 24
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+	},
+/obj/machinery/advanced_airlock_controller/jungleland{
+	pixel_x = 23
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva_secondary)
@@ -5340,9 +5339,9 @@ vZ
 Wd
 kD
 ML
-em
-wP
-Ao
+Pi
+eS
+ir
 kD
 kD
 Ap
@@ -5499,8 +5498,8 @@ Ap
 Ap
 ab
 ab
-Fd
-Fd
+lK
+lK
 ab
 Ap
 oU
