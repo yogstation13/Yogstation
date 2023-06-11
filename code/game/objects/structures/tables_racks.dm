@@ -34,7 +34,7 @@
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
 
-/obj/structure/table/Initialize()
+/obj/structure/table/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 0.8, \
@@ -527,7 +527,7 @@
 	can_buckle = TRUE
 	buckle_requires_restraints = TRUE
 
-/obj/structure/table/optable/Initialize()
+/obj/structure/table/optable/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 1, \
@@ -539,7 +539,7 @@
 	pushed_mob.set_resting(TRUE, TRUE)
 	visible_message(span_notice("[user] lays [pushed_mob] on [src]."))
 
-/obj/structure/table/optable/debug/Initialize()
+/obj/structure/table/optable/debug/Initialize(mapload)
 	. = ..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
 	SB.extra_surgeries = subtypesof(/datum/surgery)

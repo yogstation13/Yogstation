@@ -53,7 +53,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "holosign_banana"
 
-/obj/structure/holosign/holobanana/Initialize()
+/obj/structure/holosign/holobanana/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 120, GALOSHES_DONT_HELP)
 
@@ -202,7 +202,7 @@
 		projector = null
 	return ..()
 
-/obj/structure/holobed/Initialize()
+/obj/structure/holobed/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 0.8, \

@@ -17,7 +17,7 @@
 	resistance_flags = FLAMMABLE
 	custom_price = 40
 
-/obj/item/clothing/ears/earmuffs/Initialize()
+/obj/item/clothing/ears/earmuffs/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/earhealing)
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))

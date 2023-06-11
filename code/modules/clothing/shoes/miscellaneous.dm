@@ -17,7 +17,7 @@
 	resistance_flags = NONE
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
-/obj/item/clothing/shoes/combat/combat_knife/Initialize()
+/obj/item/clothing/shoes/combat/combat_knife/Initialize(mapload)
 	. = ..()
 	new /obj/item/kitchen/knife/combat(src)
 

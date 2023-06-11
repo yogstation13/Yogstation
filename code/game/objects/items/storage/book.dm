@@ -9,7 +9,7 @@
 	resistance_flags = FLAMMABLE
 	var/title = "book"
 
-/obj/item/storage/book/Initialize()
+/obj/item/storage/book/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1

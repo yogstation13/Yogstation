@@ -18,7 +18,7 @@
 
 	return FALSE
 
-/proc/is_mentor(var/user) //Why is this needed
+/proc/is_mentor(user) //Why is this needed
 	if(is_admin(user))
 		return TRUE
 
@@ -49,7 +49,7 @@
 
 	return FALSE
 
-/proc/is_donator(var/user)
+/proc/is_donator(user)
 	if(is_admin(user))
 		return TRUE
 

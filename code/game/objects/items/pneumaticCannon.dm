@@ -335,7 +335,7 @@
 	icon_state = "quiver"
 	item_state = "quiver"
 
-/obj/item/storage/magspear_quiver/Initialize()
+/obj/item/storage/magspear_quiver/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 20

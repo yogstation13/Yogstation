@@ -38,7 +38,7 @@
 	query.Add(list("id" = id, "round" = GLOB.round_id ? GLOB.round_id : 0))
 	webhook_send("ticket_new", query)
 
-/proc/webhook_send_ticket_administer(var/admin_ckey, id)
+/proc/webhook_send_ticket_administer(admin_ckey, id)
 	webhook_send("ticket_administer", list("ckey" = admin_ckey, "id" = id))
 
 /proc/webhook_send_ticket_interaction(ckey, message, id)

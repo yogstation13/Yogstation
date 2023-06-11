@@ -22,7 +22,7 @@
 	var/buildstackamount = 2
 	var/bolts = TRUE
 
-/obj/structure/bed/Initialize()
+/obj/structure/bed/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 0.8, \
