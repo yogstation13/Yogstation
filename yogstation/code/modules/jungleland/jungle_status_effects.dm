@@ -37,7 +37,6 @@
 	if(prob(10))
 		if(toxinlover)
 			to_chat(human_owner,span_alert("You feel replenished as the toxins run a course through your veins."))
-			human_owner.adjustToxLoss(5)
 		else if(!isipc(human_owner))
 			to_chat(human_owner,span_alert("The toxins run a course through your veins, you feel sick."))
 			human_owner.adjust_disgust(5)
