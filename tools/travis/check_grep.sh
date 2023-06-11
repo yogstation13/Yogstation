@@ -34,11 +34,11 @@ if grep -P '^/*var/' code/**/*.dm; then
     echo "ERROR: Unmanaged global var use detected in code, please use the helpers."
     st=1
 fi;
-if grep -i 'centcomm'; then
+if grep -i 'centcomm' code/**/*.dm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
     st=1
 fi;
-if grep -i 'centcomm' _maps/**/*.dmm code/**/*.dm; then
+if grep -i 'centcomm' _maps/**/*.dmm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1
 fi;
