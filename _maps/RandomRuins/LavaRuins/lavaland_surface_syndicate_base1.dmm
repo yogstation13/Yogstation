@@ -2417,6 +2417,7 @@
 /obj/item/clothing/under/syndicate/camo,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/crowbar/red,
+/obj/item/toy/plush/carpplushie,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "ki" = (
@@ -3464,6 +3465,7 @@
 /obj/item/clothing/under/syndicate/camo,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/crowbar/red,
+/obj/item/toy/plush/carpplushie,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "nO" = (
