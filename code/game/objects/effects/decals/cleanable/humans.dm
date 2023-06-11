@@ -16,7 +16,7 @@
 
 /obj/effect/decal/cleanable/blood/colourless
 	name = "\"blood\""
-	desc = "It's an unsettling colour. Perhaps it's the chef's cooking?"
+	desc = "It's an unsettling colour. Maybe it's the chef's cooking?"
 	icon_state = "genericsplatter1"
 	random_icon_states = list("genericsplatter1", "genericsplatter2", "genericsplatter3", "genericsplatter4", "genericsplatter5", "genericsplatter6")
 	blood_state = ""
@@ -24,11 +24,21 @@
 
 /obj/effect/decal/cleanable/blood/colourless/ethereal
 	name = "glowing \"blood\""
-	desc = "It has a faded glow. Perhaps it's the chef's cooking?"
+	desc = "It has a fading glow. Surely it's the chef's cooking?"
+	light_power = 1
+	light_range = 2
+	light_color = "#eef442"
 
 /obj/effect/decal/cleanable/blood/colourless/ethereal/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
-	add_atom_colour("#eef442", FIXED_COLOUR_PRIORITY)
+	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
+	addtimer(CALLBACK(src, PROC_REF(Fade)), 24 SECONDS)
+
+/obj/effect/decal/cleanable/blood/colourless/ethereal/proc/Fade()
+	name = "faded \"blood\""
+	light_power = 0
+	light_range = 0
+	update_light()
 
 /obj/effect/decal/cleanable/blood/old
 	name = "dried blood"
