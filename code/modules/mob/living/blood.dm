@@ -351,7 +351,7 @@
 			B.transfer_mob_blood_dna(src)
 		return
 	if(isethereal(src))
-		var/obj/effect/decal/cleanable/blood/colourless/ethereal/B = locate() in T.contents
+		var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T.contents
 		if(!B)
 			B = new(T)
 			B.transfer_mob_blood_dna(src)
