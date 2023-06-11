@@ -91,6 +91,10 @@
 		. += "You can insert a core by using it on the javelin."
 
 /obj/item/kinetic_javelin/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(!core)
+		throwforce = 0 //without a core it is blunt
+		return ..()
+
 	var/mob/living/carbon/user = throwingdatum.thrower
 	if(ismineralturf(hit_atom))
 		var/turf/closed/mineral/M = hit_atom
@@ -101,16 +105,16 @@
 	if(istype(hit_atom,/turf/open/floor/plating/dirt/jungleland))
 		var/turf/open/floor/plating/dirt/jungleland/JG = hit_atom
 		JG.spawn_rock()
-		remove_charge()
+		remove_charge()	
+		if(always_recall && user)
+			user.put_in_active_hand(src)
 		return ..()
 
 	if(istype(hit_atom,/obj/structure/flora))
 		qdel(hit_atom)
 		remove_charge()
-		return ..()
-
-	if(!core)
-		throwforce = 0 //without a core it is blunt
+		if(always_recall && user)
+			user.put_in_active_hand(src)
 		return ..()
 
 	if(lavaland_equipment_pressure_check(get_turf(hit_atom)) && user)
