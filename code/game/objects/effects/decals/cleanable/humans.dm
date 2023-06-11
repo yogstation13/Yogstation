@@ -24,7 +24,7 @@
 
 /obj/effect/decal/cleanable/blood/colourless/ethereal
 	name = "glowing \"blood\""
-	desc = "It has a fading glow. Surely it's the chef's cooking?"
+	desc = "It has a fading glow. Surely it's just the chef's cooking?"
 	light_power = 1
 	light_range = 2
 	light_color = "#eef442"
