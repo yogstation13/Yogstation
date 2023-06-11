@@ -225,6 +225,24 @@
 "Ad" = (
 /turf/closed/mineral/ash_rock/jungle/deepjungle,
 /area/jungleland/explored)
+"AZ" = (
+/obj/structure/table/wood,
+/obj/item/storage/belt/quiver/weaver/ashwalker{
+	pixel_y = 2
+	},
+/obj/item/storage/belt/quiver/weaver/ashwalker{
+	pixel_y = -2
+	},
+/obj/item/gun/ballistic/bow{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/gun/ballistic/bow{
+	pixel_x = -1;
+	pixel_y = -1
+	},
+/turf/open/floor/plating/dirt/jungleland/jungle,
+/area/ruin/unpowered/ivymen)
 "Ez" = (
 /obj/item/seeds/cotton,
 /turf/open/floor/plating/dirt/jungleland/jungle,
@@ -262,24 +280,6 @@
 /obj/item/twohanded/bamboospear,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/jungleland/explored)
-"Uu" = (
-/obj/structure/table/wood,
-/obj/item/storage/belt/quiver/ashwalker{
-	pixel_y = 2
-	},
-/obj/item/storage/belt/quiver/ashwalker{
-	pixel_y = -2
-	},
-/obj/item/gun/ballistic/bow{
-	pixel_x = 1;
-	pixel_y = 1
-	},
-/obj/item/gun/ballistic/bow{
-	pixel_x = -1;
-	pixel_y = -1
-	},
-/turf/open/floor/plating/dirt/jungleland/jungle,
-/area/ruin/unpowered/ivymen)
 
 (1,1,1) = {"
 Ad
@@ -308,7 +308,7 @@ Ad
 Ad
 aG
 aG
-Uu
+AZ
 LK
 aG
 ay
