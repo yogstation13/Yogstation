@@ -3164,6 +3164,8 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
+/obj/structure/table/wood,
+/obj/structure/bedsheetbin,
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "mA" = (
@@ -3405,6 +3407,8 @@
 "ny" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/light,
+/obj/structure/table/wood,
+/obj/machinery/computer/libraryconsole/bookmanagement,
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "nz" = (
@@ -3608,6 +3612,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/structure/bookcase/random,
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "oj" = (
