@@ -12,7 +12,7 @@
 	punchdamagelow = 5
 	punchdamagehigh = 14
 	punchstunthreshold = 11 //about 40% chance to stun
-	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_SUIT_STORE)
+	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
 	nojumpsuit = 1
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	sexes = 1
@@ -1154,8 +1154,8 @@
 
 /datum/species/golem/capitalist/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.equip_to_slot_or_del(new /obj/item/clothing/head/that (), SLOT_HEAD)
-	C.equip_to_slot_or_del(new /obj/item/clothing/glasses/monocle (), SLOT_GLASSES)
+	C.equip_to_slot_or_del(new /obj/item/clothing/head/that (), ITEM_SLOT_HEAD)
+	C.equip_to_slot_or_del(new /obj/item/clothing/glasses/monocle (), ITEM_SLOT_EYES)
 	C.revive(full_heal = TRUE)
 	to_chat(C, span_alert("You are now a capitalist golem! Do not harm fellow capitalist golems. Kill communist golems and hit people with your fists to spread the industrializing light of capitalism to others! Hello I like money!")) //yogs memes
 	to_chat(C, span_userdanger("Hit non-golems several times in order to get them fat and on your side!"))
@@ -1227,7 +1227,7 @@
 
 /datum/species/golem/soviet/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka (), SLOT_HEAD)
+	C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka (), ITEM_SLOT_HEAD)
 	C.revive(full_heal = TRUE)
 	to_chat(C, span_alert("You are now a soviet golem! Do not harm fellow soviet golems. Kill captalist golems and hit people with your fists to spread the glorious light of communism to others! Cyka Blyat!"))
 	to_chat(C, span_userdanger("Hit non-golems several times in order to get them starving and on your side!"))

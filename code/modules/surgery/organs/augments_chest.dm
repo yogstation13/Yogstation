@@ -80,10 +80,10 @@
 		owner.adjustOxyLoss(-5)
 		revive_cost += 0.5 SECONDS
 	if(owner.getBruteLoss())
-		owner.adjustBruteLoss(-2)
+		owner.adjustBruteLoss(-2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getFireLoss())
-		owner.adjustFireLoss(-2)
+		owner.adjustFireLoss(-2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getToxLoss())
 		owner.adjustToxLoss(-1)

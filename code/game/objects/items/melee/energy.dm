@@ -89,7 +89,7 @@
 
 /obj/item/melee/transforming/energy/sword
 	name = "energy sword"
-	desc = "May the force be within you."
+	desc = "A powerful energy-based hardlight sword that is easily stored when not in use. 'May the force be within you' is carved on the side of the handle."
 	icon_state = "sword0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'

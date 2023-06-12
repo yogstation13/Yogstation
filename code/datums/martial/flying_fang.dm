@@ -274,7 +274,7 @@
 	H.physiology.crawl_speed -= 2 // "funny lizard skitter around on the floor" - mqiib
 	var/datum/species/S = H.dna?.species
 	if(S)
-		S.add_no_equip_slot(H, SLOT_WEAR_SUIT)
+		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
 
 /datum/martial_art/flyingfang/on_remove(mob/living/carbon/human/H)
 	..()
@@ -287,4 +287,4 @@
 	H.physiology.crawl_speed += 2
 	var/datum/species/S = H.dna?.species
 	if(S)
-		S.remove_no_equip_slot(H, SLOT_WEAR_SUIT)
+		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING)

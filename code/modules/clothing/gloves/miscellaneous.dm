@@ -18,7 +18,7 @@
 /obj/item/clothing/gloves/fingerless/equipped(mob/user, slot)
 	..()
 	var/mob/living/carbon/human/boss = user
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		if(!worn) //Literally just in case there's some weirdness so you can't cheese this
 			boss.physiology.do_after_speed *= tacticalspeed //Does channels 10% faster
 			worn = TRUE
@@ -41,7 +41,7 @@
 
 /obj/item/clothing/gloves/fingerless/bigboss/equipped(mob/user, slot)
 	..()
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/fingerless/bigboss/dropped(mob/user)
@@ -247,7 +247,7 @@
 
 /obj/item/clothing/gloves/gauntlets/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		tool_behaviour = TOOL_MINING
 		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(rocksmash))
 		RegisterSignal(user, COMSIG_MOVABLE_BUMP, PROC_REF(rocksmash))
