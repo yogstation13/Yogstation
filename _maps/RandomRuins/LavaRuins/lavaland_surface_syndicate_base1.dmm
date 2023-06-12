@@ -52,6 +52,7 @@
 /obj/item/storage/toolbox/syndicate,
 /obj/item/storage/toolbox/syndicate,
 /obj/structure/closet/toolcloset,
+/obj/item/holosign_creator/atmos,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "ak" = (
@@ -154,6 +155,11 @@
 	dir = 5
 	},
 /obj/structure/table/reinforced,
+/obj/item/toy/cards/deck/syndicate{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/machinery/reagentgrinder/kitchen,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
 "bg" = (
@@ -1015,6 +1021,7 @@
 	req_access_txt = "150"
 	},
 /obj/item/gun/syringe/rapidsyringe,
+/obj/item/storage/firstaid/hypospray/syndicate,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "gq" = (
@@ -1106,11 +1113,24 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "gH" = (
-/obj/structure/lattice{
-	armor = list("melee"=50,"bullet"=0,"laser"=0,"energy"=0,"bomb"=0,"bio"=0,"rad"=0,"fire"=100,"acid"=50)
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
-/turf/open/lava/smooth/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = -4;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/beer{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/syndicate_lava_base/bar)
 "gI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -1360,6 +1380,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},
+/obj/item/kitchen/knife/butcher,
+/obj/item/clothing/suit/apron/chef,
+/obj/item/clothing/suit/toggle/chef,
+/obj/item/clothing/head/chefhat,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
 "hs" = (
@@ -2150,6 +2174,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/item/holosign_creator/atmos,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "jD" = (
@@ -2696,6 +2721,8 @@
 /obj/item/ammo_casing/shotgun/syndie,
 /obj/item/ammo_casing/shotgun/syndie,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/glasses/sunglasses/reagent,
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
 "kO" = (
@@ -2790,8 +2817,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/structure/table/reinforced,
-/obj/item/kitchen/knife,
+/obj/machinery/oven,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
 "lg" = (
@@ -2803,6 +2829,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/bar,
+/obj/item/toy/cards/deck/syndicate{
+	pixel_x = -6;
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
 "lh" = (
@@ -2874,6 +2904,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "lA" = (
+/obj/structure/chair/stool/bar{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
 "lF" = (
@@ -3193,6 +3226,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
 "mx" = (
@@ -4989,6 +5023,10 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
+/obj/item/kitchen/rollingpin,
+/obj/item/kitchen/knife{
+	pixel_x = 6
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
 "Kp" = (
@@ -5045,6 +5083,7 @@
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/siding/wood,
+/obj/machinery/reagentgrinder/kitchen,
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
 "Ls" = (
@@ -5721,6 +5760,14 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
+"Ws" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/item/toy/cards/deck/syndicate,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/syndicate_lava_base/bar)
 "WP" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/dormitories)
@@ -6133,8 +6180,8 @@ ab
 ab
 ab
 LH
-gH
-gH
+dS
+dS
 LH
 ab
 ab
@@ -6187,10 +6234,10 @@ ab
 ab
 ab
 ab
-gH
+dS
 ab
 ab
-gH
+dS
 ab
 ab
 ab
@@ -6637,7 +6684,7 @@ RE
 hY
 eh
 je
-iT
+Ws
 mw
 Kp
 Kn
@@ -6860,7 +6907,7 @@ jL
 jY
 jk
 lg
-lg
+gH
 oV
 lV
 kH
@@ -6958,7 +7005,7 @@ iV
 ab
 ab
 ab
-ab
+dS
 ab
 ab
 ab
@@ -7120,7 +7167,7 @@ Cm
 OK
 oP
 iV
-ab
+dS
 iN
 Gv
 it
@@ -7288,7 +7335,7 @@ iV
 ab
 ab
 ab
-ab
+dS
 ab
 ab
 ab
