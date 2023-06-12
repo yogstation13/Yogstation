@@ -1,0 +1,6 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "jaws of life are normal-sized"
+  - tweak: "non-engineers take longer to pry open doors with jaws of life"
+  - bugfix: "fixes not being able to pry open shocked doors with insulated gloves on"
