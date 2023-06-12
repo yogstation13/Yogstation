@@ -113,9 +113,6 @@
 		else
 			var/obj/item/twohanded/dualsaber/makeshift/newSaber = new /obj/item/twohanded/dualsaber/makeshift(user.loc)
 			to_chat(user, span_notice("You crudely attach both [src]s together in order to make a [newSaber]."))
-			if(hacked)
-				newSaber.hacked = TRUE
-				newSaber.saber_color = "rainbow"
 			qdel(I)
 			qdel(src)
 			return
