@@ -3078,6 +3078,9 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/railing{
+	dir = 8
+	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "md" = (
@@ -3294,6 +3297,9 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/railing/corner{
+	dir = 1
+	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "nd" = (
@@ -4138,6 +4144,9 @@
 	dir = 10
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/railing{
+	dir = 10
+	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "vZ" = (
