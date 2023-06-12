@@ -1,0 +1,4 @@
+author: "Addust"
+delete-after: true 
+changes: 
+  - bugfix: "some centcom and possibly holodeck wood tables are no longer flingy"
