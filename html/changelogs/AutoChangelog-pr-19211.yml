@@ -1,4 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - bugfix: "Flipped things around so the stacking machine correctly counts points"

@@ -1,4 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - bugfix: "The nerd suit now properly plays a flatlining sound when you die."
