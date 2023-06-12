@@ -1685,6 +1685,37 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"aAu" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/obj/structure/closet/crate/secure/weapon{
+	desc = "A secure clothing crate.";
+	name = "formal uniform crate";
+	req_access_txt = "3"
+	},
+/obj/item/clothing/under/rank/security/navyblue,
+/obj/item/clothing/under/rank/security/navyblue,
+/obj/item/clothing/under/rank/security/navyblue,
+/obj/item/clothing/under/rank/security/navyblue,
+/obj/item/clothing/under/rank/security/navyblue,
+/obj/item/clothing/under/rank/security/navyblue,
+/obj/item/clothing/under/rank/warden/navyblue,
+/obj/item/clothing/under/rank/head_of_security/navyblue,
+/obj/item/clothing/head/beret/sec/navyofficer,
+/obj/item/clothing/head/beret/sec/navyofficer,
+/obj/item/clothing/head/beret/sec/navyofficer,
+/obj/item/clothing/head/beret/sec/navyofficer,
+/obj/item/clothing/head/beret/sec/navyofficer,
+/obj/item/clothing/head/beret/sec/navyofficer,
+/obj/item/clothing/head/beret/sec/navywarden,
+/obj/item/clothing/head/beret/sec/navyhos,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/security/warden)
 "aBh" = (
 /obj/machinery/power/apc{
 	areastring = "/area/hallway/secondary/service";
@@ -10782,6 +10813,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"dhp" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/button/door{
+	desc = "A remote control-switch for secure storage.";
+	id = "Secure Storage";
+	name = "Engineering Secure Storage";
+	pixel_x = -24;
+	pixel_y = -23;
+	req_access_txt = "11"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "dhu" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
 /obj/effect/turf_decal/delivery,
@@ -23849,16 +23894,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"gNH" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/holywater{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/organ/heart,
-/obj/item/soulstone/anybody/chaplain,
-/turf/open/floor/plasteel/cult,
-/area/chapel/office)
 "gNO" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -34223,6 +34258,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"jJC" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/wood,
+/area/lawoffice)
 "jJN" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -37603,20 +37646,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/captain/private)
-"kGC" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/machinery/button/door{
-	desc = "A remote control-switch for secure storage.";
-	id = "Secure Storage";
-	name = "Engineering Secure Storage";
-	pixel_x = -24;
-	pixel_y = -23;
-	req_access_txt = "11"
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "kGG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -54039,45 +54068,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"pnp" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/airalarm{
-	pixel_y = 24
-	},
-/obj/structure/closet/crate/secure/weapon{
-	desc = "A secure clothing crate.";
-	name = "formal uniform crate";
-	req_access_txt = "3"
-	},
-/obj/item/clothing/under/rank/security/navyblue,
-/obj/item/clothing/under/rank/security/navyblue,
-/obj/item/clothing/under/rank/security/navyblue,
-/obj/item/clothing/under/rank/security/navyblue,
-/obj/item/clothing/under/rank/security/navyblue,
-/obj/item/clothing/under/rank/security/navyblue,
-/obj/item/clothing/suit/security/officer,
-/obj/item/clothing/suit/security/officer,
-/obj/item/clothing/suit/security/officer,
-/obj/item/clothing/suit/security/officer,
-/obj/item/clothing/suit/security/officer,
-/obj/item/clothing/suit/security/officer,
-/obj/item/clothing/under/rank/warden/navyblue,
-/obj/item/clothing/suit/security/warden,
-/obj/item/clothing/under/rank/head_of_security/navyblue,
-/obj/item/clothing/suit/security/hos,
-/obj/item/clothing/head/beret/sec/navyofficer,
-/obj/item/clothing/head/beret/sec/navyofficer,
-/obj/item/clothing/head/beret/sec/navyofficer,
-/obj/item/clothing/head/beret/sec/navyofficer,
-/obj/item/clothing/head/beret/sec/navyofficer,
-/obj/item/clothing/head/beret/sec/navyofficer,
-/obj/item/clothing/head/beret/sec/navywarden,
-/obj/item/clothing/head/beret/sec/navyhos,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel,
-/area/security/warden)
 "pnz" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -54302,23 +54292,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"pqL" = (
-/obj/machinery/button/door{
-	id = "hop";
-	name = "Privacy Shutters Control";
-	pixel_x = -24;
-	pixel_y = -6;
-	req_access_txt = "28"
-	},
-/obj/machinery/light_switch{
-	pixel_x = -25;
-	pixel_y = 5
-	},
-/obj/machinery/photocopier{
-	pixel_y = 3
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hop)
 "pqN" = (
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
@@ -75480,14 +75453,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
-"vtk" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/structure/filingcabinet,
-/turf/open/floor/wood,
-/area/lawoffice)
 "vtq" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon,
@@ -82426,6 +82391,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"xrL" = (
+/obj/machinery/button/door{
+	id = "hop";
+	name = "Privacy Shutters Control";
+	pixel_x = -24;
+	pixel_y = -6;
+	req_access_txt = "28"
+	},
+/obj/machinery/light_switch{
+	pixel_x = -25;
+	pixel_y = 5
+	},
+/obj/machinery/photocopier{
+	pixel_y = 3
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hop)
 "xrS" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -84139,6 +84121,16 @@
 	},
 /turf/open/floor/plasteel/white/corner,
 /area/quartermaster/sorting)
+"xKS" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/holywater{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/organ/heart,
+/obj/item/soulstone/anybody/chaplain,
+/turf/open/floor/plasteel/cult,
+/area/chapel/office)
 "xKX" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
@@ -108509,7 +108501,7 @@ lxx
 kyD
 rsQ
 psE
-gNH
+xKS
 psE
 omp
 hav
@@ -109480,7 +109472,7 @@ sYq
 xvm
 hwv
 rDB
-pqL
+xrL
 hfk
 aDR
 sYq
@@ -113035,7 +113027,7 @@ mUQ
 mUQ
 mUQ
 mUQ
-pnp
+aAu
 uRY
 gMj
 wtP
@@ -117941,7 +117933,7 @@ nAu
 vWK
 bMB
 wfz
-vtk
+jJC
 jfC
 lOi
 kLj
@@ -126421,7 +126413,7 @@ rQP
 rQP
 kdt
 qTk
-kGC
+dhp
 ddP
 rQP
 xAm
