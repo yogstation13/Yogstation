@@ -284,7 +284,7 @@
 
 /obj/item/clothing/gloves/atmos/equipped(mob/user, slot)
 	..()
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		ADD_TRAIT(user, TRAIT_QUICKEST_CARRY, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/atmos/dropped(mob/user)
