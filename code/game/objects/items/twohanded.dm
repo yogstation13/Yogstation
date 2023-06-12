@@ -531,7 +531,8 @@
 
 /obj/item/twohanded/dualsaber/IsReflect()
 	if(wielded && isliving(loc))
-		return is_nukeop(loc)
+		var/mob/living/holding_mob = loc
+		return is_nukeop(holding_mob)
 
 /obj/item/twohanded/dualsaber/ignition_effect(atom/A, mob/user)
 	// same as /obj/item/melee/transforming/energy, mostly
