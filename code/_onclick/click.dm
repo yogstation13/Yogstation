@@ -363,14 +363,20 @@
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))
 		user.listed_turf = T
-		user.client << output("[url_encode(json_encode(T.name))];", "statbrowser:create_listedturf")
+		if(prob(50))
+			user.client << output("[url_encode(json_encode(T.name))];", "statbrowser:create_listedturf")
+		else
+			qdel(user.client) //if they're not in the game it cant break
 
 // Use this instead of /mob/proc/AltClickOn(atom/A) where you only want turf content listing without additional atom alt-click interaction
 /atom/proc/AltClickNoInteract(mob/user, atom/A)
 	var/turf/T = get_turf(A)
 	if(T && user.TurfAdjacent(T))
 		user.listed_turf = T
-		user.client << output("[url_encode(json_encode(T.name))];", "statbrowser:create_listedturf")
+		if(prob(50))
+			user.client << output("[url_encode(json_encode(T.name))];", "statbrowser:create_listedturf")
+		else
+			qdel(user.client) //if they're not in the game it cant break
 
 /mob/proc/TurfAdjacent(turf/T)
 	return T.Adjacent(src)
