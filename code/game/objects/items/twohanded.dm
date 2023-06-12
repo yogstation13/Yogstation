@@ -299,7 +299,7 @@
 
 /obj/item/twohanded/fireaxe/energy
 	name = "energy fire axe"
-	desc = "Glory to atmosia."
+	desc = "A massive, two handed, energy-based hardlight axe capable of cutting through solid metal. 'Glory to atmosia' is carved on the side of the handle."
 	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "energy-fireaxe0"
 	force_wielded = 25
@@ -383,7 +383,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "double-bladed energy sword"
-	desc = "Handle with care."
+	desc = "A more powerful version on the energy sword, it is more capable of blocking energy projectiles than its single bladed counterpart. 'At last we will have revenge' is carved on the side of the handle."
 	force = 3
 	throwforce = 5
 	throw_speed = 3
