@@ -212,7 +212,7 @@ Credit where due:
 	to_chat(M, span_brass("You have approximately <b>[ark_time]</b> minutes until the Ark activates."))
 	to_chat(M, span_brass("Unlock <b>Script</b> scripture by converting a new servant."))
 	to_chat(M, span_brass("<b>Application</b> scripture will be unlocked halfway until the Ark's activation."))
-	to_chat(M, span_brass("Soon, we shall create a new City of Cogs, and forge a golden age for all sentient beings."))
+	to_chat(M, span_brass("Soon, Ratvar shall create a new City of Cogs, and forge a golden age for all sentient beings."))
 	M.playsound_local(get_turf(M), 'sound/ambience/antag/clockcultalr.ogg', 100, FALSE, pressure_affected = FALSE)
 	return 1
 
