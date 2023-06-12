@@ -4,6 +4,17 @@
 ///////////////////////////////////////////////////
 
 // Weapons
+/datum/crafting_recipe/dualsaber
+	name = "Makeshift double-bladed energy sword"
+	result = /obj/item/twohanded/dualsaber/makeshift
+	reqs = list(/obj/item/melee/transforming/energy/sword = 2,
+				/obj/item/stack/tape = 1
+				)
+	tools = list(TOOL_WIRECUTTER) //to cut the tape to length
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_available = FALSE
+
 /datum/crafting_recipe/metal_baseball_bat
 	name = "Titanium Baseball Bat"
 	result = /obj/item/twohanded/required/baseball_bat/metal_bat

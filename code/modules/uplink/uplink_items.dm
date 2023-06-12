@@ -412,7 +412,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/twohanded/dualsaber
 	player_minimum = 25
 	cost = 16
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
+	include_modes = list(/datum/game_mode/nuclear) // yogs: infiltration
 
 /datum/uplink_item/dangerous/doublesword/get_discount()
 	return pick(4;0.8,2;0.65,1;0.5)

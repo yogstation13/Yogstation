@@ -530,7 +530,7 @@
 
 /obj/item/twohanded/dualsaber/IsReflect()
 	if(wielded)
-		return 1
+		return TRUE
 
 /obj/item/twohanded/dualsaber/ignition_effect(atom/A, mob/user)
 	// same as /obj/item/melee/transforming/energy, mostly
@@ -570,6 +570,13 @@
 			to_chat(user, span_warning("It's starting to look like a triple rainbow - no, nevermind."))
 	else
 		return ..()
+
+/obj/item/twohanded/dualsaber/makeshift
+	name = "makeshift double-bladed energy sword"
+	desc = "Two energy swords taped crudely together. 'at last we finally get some revenge' is scribbled on the side with crayon."
+
+/obj/item/twohanded/dualsaber/makeshift/IsReflect()
+	return FALSE//because full immunity to security's ranged arsenal is dumb
 
 //spears
 /obj/item/twohanded/spear
