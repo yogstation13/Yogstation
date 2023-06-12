@@ -23934,6 +23934,23 @@
 /obj/item/cigbutt,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"gPm" = (
+/obj/machinery/button/door{
+	id = "hop";
+	name = "Privacy Shutters Control";
+	pixel_x = -24;
+	pixel_y = -6;
+	req_access_txt = "28"
+	},
+/obj/machinery/light_switch{
+	pixel_x = -25;
+	pixel_y = 5
+	},
+/obj/machinery/photocopier{
+	pixel_y = 3
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hop)
 "gPy" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -30252,6 +30269,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"iHg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/button/door{
+	desc = "A remote control-switch for secure storage.";
+	id = "Secure Storage";
+	name = "Engineering Secure Storage";
+	pixel_x = -24;
+	pixel_y = -23;
+	req_access_txt = "11"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "iHs" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -36608,14 +36639,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"kqe" = (
-/obj/structure/filingcabinet/employment,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/wood,
-/area/lawoffice)
 "kqq" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/costume,
@@ -53284,20 +53307,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
-"pbv" = (
-/obj/machinery/button/door{
-	id = "hop";
-	name = "Privacy Shutters Control";
-	pixel_x = -24;
-	pixel_y = -6;
-	req_access_txt = "28"
-	},
-/obj/machinery/light_switch{
-	pixel_x = -25;
-	pixel_y = 5
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hop)
 "pbV" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -68293,6 +68302,14 @@
 	dir = 8
 	},
 /area/medical/medbay/central)
+"tnc" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/wood,
+/area/lawoffice)
 "tnm" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -109466,7 +109483,7 @@ sYq
 xvm
 hwv
 rDB
-pbv
+gPm
 hfk
 aDR
 sYq
@@ -117927,7 +117944,7 @@ nAu
 vWK
 bMB
 wfz
-kqe
+tnc
 jfC
 lOi
 kLj
@@ -126407,7 +126424,7 @@ rQP
 rQP
 kdt
 qTk
-hjh
+iHg
 ddP
 rQP
 xAm
