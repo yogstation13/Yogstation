@@ -252,12 +252,10 @@
 			reagent_transfer += 0.5 * delta_time
 			if(reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 				reagent_transfer = 0
-		if(air1.get_moles(/datum/gas/healium) > 5) //healium check, if theres enough we get some extra healing from our favorite pink gas.
-			mob_occupant.adjustBruteLoss(-5) //healium healing factor from lungs, occupant should be asleep.
-			mob_occupant.adjustToxLoss(-5)
-			mob_occupant.adjustFireLoss(-7)
-			air1.adjust_moles(/datum/gas/healium, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency))
-
+		if(air1.get_moles(/datum/gas/healium) > 1) //healium check, if theres enough we get some extra healing from our favorite pink gas.
+			var/existing = mob_occupant.reagents.get_reagent_amount(/datum/reagent/healium)
+			mob_occupant.reagents.add_reagent(/datum/reagent/healium, 1 - existing)
+			air1.set_moles(/datum/gas/healium, max(0, air1.get_moles(/datum/gas/healium) - 0.1 / efficiency))
 	return 1
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos()
