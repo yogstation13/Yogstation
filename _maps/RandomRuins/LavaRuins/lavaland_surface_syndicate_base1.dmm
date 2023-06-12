@@ -630,25 +630,6 @@
 "eK" = (
 /turf/closed/wall/mineral/plastitanium/explosive,
 /area/ruin/powered/syndicate_lava_base/medbay)
-"eM" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/item/reagent_containers/glass/rag{
-	pixel_x = -4;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
 "eN" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/grass,
@@ -1132,12 +1113,19 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "gH" = (
+/obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/item/toy/cards/deck/syndicate,
-/obj/structure/table/wood,
-/turf/open/floor/wood,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/item/toy/cards/deck/syndicate{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
 "gI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -2837,9 +2825,13 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/bar,
-/obj/item/toy/cards/deck/syndicate{
-	pixel_x = -6;
-	pixel_y = 6
+/obj/item/reagent_containers/glass/rag{
+	pixel_x = -4;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/beer{
+	pixel_x = 5;
+	pixel_y = -2
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
@@ -4301,6 +4293,14 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/telecomms)
+"yK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/item/toy/cards/deck/syndicate,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/syndicate_lava_base/bar)
 "yP" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -6684,7 +6684,7 @@ RE
 hY
 eh
 je
-gH
+yK
 mw
 Kp
 Kn
@@ -6906,8 +6906,8 @@ jy
 jL
 jY
 jk
+gH
 lg
-eM
 oV
 lV
 kH
@@ -7754,7 +7754,7 @@ aa
 ab
 ab
 ab
-mJ
+ab
 mJ
 mJ
 Ub
@@ -7809,7 +7809,7 @@ aa
 ab
 ab
 ab
-mJ
+ab
 mJ
 mJ
 mJ
@@ -7864,8 +7864,8 @@ aa
 ab
 ab
 ab
-mJ
-mJ
+ab
+ab
 mJ
 mJ
 mJ
@@ -7919,8 +7919,8 @@ aa
 ab
 ab
 ab
-mJ
-mJ
+ab
+ab
 mJ
 mJ
 mJ
@@ -7971,12 +7971,12 @@ aa
 aa
 "}
 (39,1,1) = {"
-aa
 ab
 ab
-mJ
-mJ
-mJ
+ab
+ab
+ab
+ab
 mJ
 mJ
 mJ
@@ -8026,12 +8026,12 @@ aa
 aa
 "}
 (40,1,1) = {"
-aa
 ab
 ab
 ab
-mJ
-mJ
+ab
+ab
+ab
 mJ
 mJ
 mJ
@@ -8081,12 +8081,12 @@ aa
 aa
 "}
 (41,1,1) = {"
-aa
 ab
 ab
 ab
-mJ
-mJ
+ab
+ab
+ab
 mJ
 mJ
 mJ
@@ -8136,12 +8136,12 @@ aa
 aa
 "}
 (42,1,1) = {"
-aa
-aa
 ab
 ab
-mJ
-mJ
+ab
+ab
+ab
+ab
 mJ
 mJ
 fF
@@ -8192,12 +8192,12 @@ aa
 "}
 (43,1,1) = {"
 aa
-aa
 ab
 ab
 ab
-mJ
-mJ
+ab
+ab
+ab
 ab
 ab
 ab
