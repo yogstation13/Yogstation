@@ -82,7 +82,7 @@
 		return
 	if(holder)
 		if(holder.master) //incase the sensor is part of an assembly that's contained in another item, such as a single tank bomb
-			if(!istype(holder.master, /obj/item/onetankbomb) || !isturf(holder.master.loc))
+			if(!istype(holder.master, /obj/item/tank) || !isturf(holder.master.loc))
 				return
 		else if(!isturf(holder.loc)) //else just check where the holder is
 			return
