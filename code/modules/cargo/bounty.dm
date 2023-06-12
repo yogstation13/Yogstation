@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(bounties_list_syndicate)
 		setup_syndicate_bounties()
 
 	var/list/matched_one = FALSE
-	for(var/thing in reverseRange(AM.GetAllContents()))
+	for(var/thing in reverse_range(AM.get_all_contents()))
 		var/matched_this = FALSE
 		for(var/list/i in list(GLOB.bounties_list,GLOB.bounties_list_syndicate))
 			for(var/datum/bounty/B in i)

@@ -47,7 +47,7 @@
 	var/stay_after_drop = FALSE
 	var/specialised = FALSE // It's not a general use pod for cargo/admin use
 	var/effectShrapnel = FALSE
-	//var/shrapnel_type = /obj/projectile/bullet/shrapnel
+	//var/shrapnel_type = /obj/item/projectile/bullet/shrapnel
 	var/shrapnel_magnitude = 3
 	var/rubble_type //Rubble effect associated with this supplypod
 	var/decal = "default" //What kind of extra decals we add to the pod to make it look nice

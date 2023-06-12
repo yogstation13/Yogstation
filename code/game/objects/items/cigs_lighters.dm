@@ -75,7 +75,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/match/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!isliving(M))
 		return
-	if(lit && M.IgniteMob())
+	if(lit && M.ignite_mob())
 		message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(M)] on fire with [src] at [AREACOORD(user)]")
 		log_game("[key_name(user)] set [key_name(M)] on fire with [src] at [AREACOORD(user)]")
 	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
@@ -91,7 +91,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		..()
 
 /obj/item/proc/help_light_cig(mob/living/M)
-	var/mask_item = M.get_item_by_slot(SLOT_WEAR_MASK)
+	var/mask_item = M.get_item_by_slot(ITEM_SLOT_MASK)
 	if(istype(mask_item, /obj/item/clothing/mask/cigarette))
 		return mask_item
 
@@ -144,7 +144,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		reagents.add_reagent_list(list_reagents)
 	if(starts_lit)
 		light()
-	AddComponent(/datum/component/knockoff,90,list(BODY_ZONE_PRECISE_MOUTH),list(SLOT_WEAR_MASK))//90% to knock off when wearing a mask
+	AddComponent(/datum/component/knockoff,90,list(BODY_ZONE_PRECISE_MOUTH),list(ITEM_SLOT_MASK))//90% to knock off when wearing a mask
 
 /obj/item/clothing/mask/cigarette/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -262,7 +262,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/turf/location = get_turf(src)
 	var/mob/living/M = loc
 	if(isliving(loc))
-		M.IgniteMob()
+		M.ignite_mob()
 	smoketime -= delta_time
 	if(smoketime <= 0)
 		new type_butt(location)
@@ -658,7 +658,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		. = ..()
 
 /obj/item/lighter/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(lit && M.IgniteMob())
+	if(lit && M.ignite_mob())
 		message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(M)] on fire with [src] at [AREACOORD(user)]")
 		log_game("[key_name(user)] set [key_name(M)] on fire with [src] at [AREACOORD(user)]")
 	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
@@ -880,7 +880,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/vape/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_WEAR_MASK)
+	if(slot == ITEM_SLOT_MASK)
 		if(!screw)
 			to_chat(user, span_notice("You start puffing on the vape."))
 			DISABLE_BITFIELD(reagents.flags, NO_REACT)
@@ -890,7 +890,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/vape/dropped(mob/user)
 	. = ..()
-	if(user.get_item_by_slot(SLOT_WEAR_MASK) == src)
+	if(user.get_item_by_slot(ITEM_SLOT_MASK) == src)
 		ENABLE_BITFIELD(reagents.flags, NO_REACT)
 		STOP_PROCESSING(SSobj, src)
 
@@ -906,7 +906,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				if(reagents.get_reagent_amount(/datum/reagent/fuel))
 					//HOT STUFF
 					C.fire_stacks = 2
-					C.IgniteMob()
+					C.ignite_mob()
 
 				if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
 					var/datum/effect_system/reagents_explosion/e = new()
@@ -932,7 +932,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/mob/living/M = loc
 
 	if(isliving(loc))
-		M.IgniteMob()
+		M.ignite_mob()
 
 	vapetime += delta_time
 

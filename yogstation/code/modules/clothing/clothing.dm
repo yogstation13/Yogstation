@@ -56,7 +56,9 @@
 		return
 
 	take_teardamage(20)
-	permeability_coefficient += 0.20
+	armor.modifyRating(bio = -5)
+	if(armor.getRating(BIO) < 0)
+		armor.setRating(bio = 0) // best to prevent negative bio armor from this
 	if (user)
 		if (user.loc)
 			new /obj/item/clothing/torncloth(user.loc)

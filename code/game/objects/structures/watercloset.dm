@@ -256,7 +256,7 @@
 
 	if(washing_face)
 		SEND_SIGNAL(user, COMSIG_COMPONENT_CLEAN_FACE_ACT, CLEAN_WASH)
-		user.drowsyness = max(user.drowsyness - rand(2,3), 0) //Washing your face wakes you up if you're falling asleep
+		user.adjust_drowsiness_up_to(-rand(2,3), 0) //Washing your face wakes you up if you're falling asleep
 		user.wash_cream()
 	else if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
@@ -291,7 +291,7 @@
 				flick("baton_active", src)
 				var/stunforce = B.stunforce
 				user.Paralyze(stunforce)
-				user.stuttering = stunforce/20
+				user.adjust_stutter(stunforce/(2 SECONDS))
 				B.deductcharge(B.hitcost)
 				user.visible_message(span_warning("[user] shocks [user.p_them()]self while attempting to wash the active [B.name]!"), \
 									span_userdanger("You unwisely attempt to wash [B] while it's still on."))

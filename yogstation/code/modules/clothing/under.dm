@@ -10,12 +10,12 @@
 
 /obj/item/clothing/under/yogs/cluwne/Initialize()
 	.=..()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
 /obj/item/clothing/under/yogs/cluwne/equipped(mob/living/carbon/user, slot)
 	if(!ishuman(user))
 		return
-	if(slot == SLOT_W_UNIFORM)
+	if(slot == ITEM_SLOT_ICLOTHING)
 		var/mob/living/carbon/human/H = user
 		H.dna.add_mutation(CLUWNEMUT)
 	return ..()

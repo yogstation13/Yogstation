@@ -332,7 +332,7 @@
 
 
 /mob/proc/has_dna()
-	return
+	return FALSE
 
 /mob/living/carbon/has_dna()
 	return dna

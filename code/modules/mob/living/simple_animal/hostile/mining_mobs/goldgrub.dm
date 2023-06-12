@@ -52,15 +52,15 @@
 			retreat_distance = 10
 			minimum_distance = 10
 			if(will_burrow)
-				addtimer(CALLBACK(src, PROC_REF(Burrow)), chase_time)
+				addtimer(CALLBACK(src, PROC_REF(burrow)), chase_time)
 
 /mob/living/simple_animal/hostile/asteroid/goldgrub/AttackingTarget()
 	if(wanted_objects[target.type])
-		EatOre(target)
+		eat_ore(target)
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/asteroid/goldgrub/proc/EatOre(atom/targeted_ore)
+/mob/living/simple_animal/hostile/asteroid/goldgrub/proc/eat_ore(atom/targeted_ore)
 	var/obj/item/stack/ore/O = targeted_ore
 	if(length(loot) < max_loot)
 		var/using = min(max_loot - length(loot), O.amount)
@@ -72,7 +72,7 @@
 		search_objects = 0
 		visible_message(span_notice("\The [name] nibbles some of the ore and then stops. \She seems to be full!"))
 
-/mob/living/simple_animal/hostile/asteroid/goldgrub/proc/Burrow()//You failed the chase to kill the goldgrub in time!
+/mob/living/simple_animal/hostile/asteroid/goldgrub/proc/burrow()//You failed the chase to kill the goldgrub in time!
 	if(stat == CONSCIOUS)
 		visible_message(span_danger("\The [name] buries into the ground, vanishing from sight!"))
 		qdel(src)

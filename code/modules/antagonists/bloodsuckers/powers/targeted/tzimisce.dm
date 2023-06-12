@@ -2,27 +2,26 @@
 #define SIZE_MEDIUM 2
 #define SIZE_BIG 4
 
-/datum/action/bloodsucker/targeted/dice
+/datum/action/cooldown/bloodsucker/targeted/dice
 	name = "Dice" 
 	desc = "Slice, cut, sever. The Flesh obeys as my fingers lay touch on it."
+	background_icon = 'icons/mob/actions/actions_tzimisce_bloodsucker.dmi'
+	button_icon = 'icons/mob/actions/actions_tzimisce_bloodsucker.dmi'
+	background_icon_state = "tzimisce_power_off"
+	active_background_icon_state = "tzimisce_power_on"
+	base_background_icon_state = "tzimisce_power_off"
 	button_icon_state = "power_dice"
-	power_explanation = "<b>Dice</b>:\n\
+	power_explanation = "Dice:\n\
 		Use on a dead corpse to extract muscle from it to be able to feed it to a vassalrack.\n\
 		This won't take long and is your primary source of muscle acquiring, necessary for future endeavours.\n\
 		This ability takes well to leveling up, higher levels will increase your mastery over a person's flesh while using the ability for it's combat purpose.\n\
 		You shouldn't use this on your allies.."
 	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
 	bloodcost = 10
-	button_icon = 'icons/mob/actions/actions_tzimisce_bloodsucker.dmi'
-	icon_icon = 'icons/mob/actions/actions_tzimisce_bloodsucker.dmi'
-	background_icon_state = "tzimisce_power_off"
-	background_icon_state_on = "tzimisce_power_on"
-	background_icon_state_off = "tzimisce_power_off"
 	purchase_flags = TZIMISCE_CAN_BUY
-	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
 	check_flags = BP_AM_COSTLESS_UNCONSCIOUS
 	target_range = 1
-	cooldown = 10 SECONDS
+	cooldown_time = 10 SECONDS
 
 /obj/item/muscle
 	name = "muscle"
@@ -54,14 +53,14 @@
 /obj/item/muscle/examine(mob/user)
 	. = ..()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(IS_BLOODSUCKER(user) && bloodsuckerdatum.my_clan == CLAN_TZIMISCE)
-		. += span_cult("By looking at it you comprehend that it would yield [size] points for ritual usage.")
+	if(IS_BLOODSUCKER(user) && bloodsuckerdatum.my_clan?.control_type == BLOODSUCKER_CONTROL_FLESH)
+		. += span_cult("It will yield [size] points for ritual usage.")
 
 /obj/item/muscle/attackby(obj/item/I, mob/user, params) // handles muscle crafting
 	var/newsize = 0
 	var/quantity = 1
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(!(IS_BLOODSUCKER(user) && bloodsuckerdatum.my_clan == CLAN_TZIMISCE))
+	if(!(IS_BLOODSUCKER(user) && bloodsuckerdatum.my_clan?.control_type == BLOODSUCKER_CONTROL_FLESH))
 		return
 	if(istype(I, /obj/item/muscle))
 		var/obj/item/muscle/muscle2 = I
@@ -99,7 +98,7 @@
 			new /obj/item/muscle/big(user.drop_location())
 	qdel(src)
 
-/datum/action/bloodsucker/targeted/dice/FireTargetedPower(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/dice/FireTargetedPower(atom/target_atom)
 	var/mob/living/target = target_atom
 	var/mob/living/carbon/user = owner
 	user.face_atom(target)
@@ -164,13 +163,13 @@
 	target.gib()
 	new /obj/item/muscle/medium(target.loc)
 
-/datum/action/bloodsucker/targeted/dice/CheckValidTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/dice/CheckValidTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
 	return isliving(target_atom)
 
-/datum/action/bloodsucker/targeted/dice/CheckCanTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/dice/CheckCanTarget(atom/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE

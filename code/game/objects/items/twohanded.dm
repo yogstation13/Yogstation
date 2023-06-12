@@ -46,7 +46,7 @@
 	else //something wrong
 		name = "[initial(name)]"
 	update_icon()
-	if(user.get_item_by_slot(SLOT_BACK) == src)
+	if(user.get_item_by_slot(ITEM_SLOT_BACK) == src)
 		user.update_inv_back()
 	else
 		user.update_inv_hands()
@@ -199,14 +199,13 @@
 
 /obj/item/twohanded/required/equipped(mob/user, slot)
 	..()
-	var/slotbit = slotdefine2slotbit(slot)
-	if(slot_flags & slotbit)
+	if(slot_flags & slot)
 		var/datum/O = user.is_holding_item_of_type(/obj/item/twohanded/offhand)
 		if(!O || QDELETED(O))
 			return
 		qdel(O)
 		return
-	if(slot == SLOT_HANDS)
+	if(slot == ITEM_SLOT_HANDS)
 		wield(user)
 	else
 		unwield(user)
@@ -300,7 +299,7 @@
 
 /obj/item/twohanded/fireaxe/energy
 	name = "energy fire axe"
-	desc = "Glory to atmosia."
+	desc = "A massive, two handed, energy-based hardlight axe capable of cutting through solid metal. 'Glory to atmosia' is carved on the side of the handle."
 	icon = 'icons/obj/weapons/energy.dmi'
 	icon_state = "energy-fireaxe0"
 	force_wielded = 25
@@ -338,7 +337,7 @@
 
 /obj/item/twohanded/fireaxe/energy/attack(mob/living/M, mob/living/user)
 	..()
-	M.IgniteMob() // Ignites you if you're flammable
+	M.ignite_mob() // Ignites you if you're flammable
 
 /obj/item/twohanded/fireaxe/energy/afterattack(atom/A, mob/user, proximity)
 	. = ..()
@@ -384,7 +383,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "double-bladed energy sword"
-	desc = "Handle with care."
+	desc = "A more powerful version on the energy sword, it is more capable of blocking energy projectiles than its single bladed counterpart. 'At last we will have revenge' is carved on the side of the handle."
 	force = 3
 	throwforce = 5
 	throw_speed = 3
@@ -699,6 +698,10 @@
 		qdel(src)
 
 // CHAINSAW
+
+/datum/action/item_action/startchainsaw
+	name = "Pull The Starting Cord"
+
 /obj/item/twohanded/required/chainsaw
 	name = "chainsaw"
 	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
@@ -755,7 +758,7 @@
 		user.update_inv_hands()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/twohanded/required/chainsaw/doomslayer
 	name = "THE GREAT COMMUNICATOR"
@@ -936,6 +939,19 @@
 /obj/item/twohanded/vibro_weapon/update_icon()
 	icon_state = "hfrequency[wielded]"
 
+/obj/item/twohanded/vibro_weapon/wizard
+	desc = "A blade that was mastercrafted by a legendary blacksmith. Its' enchantments let it slash through anything."
+	force = 8
+	throwforce = 20
+	wound_bonus = 20
+	bare_wound_bonus = 25
+
+/obj/item/twohanded/vibro_weapon/wizard/wizard/attack_self(mob/user, modifiers)
+	if(!iswizard(user))
+		balloon_alert(user, "you're too weak!")
+		return
+	return ..()
+
 /*
  * Bone Axe
  */
@@ -1060,6 +1076,14 @@
  * Vxtvul Hammer
  */
 
+/datum/action/item_action/charge_hammer
+	name = "Charge the Blast Pads"
+
+/datum/action/item_action/charge_hammer/Trigger()
+	var/obj/item/twohanded/vxtvulhammer/vxtvulhammer = target
+	if(istype(vxtvulhammer))
+		vxtvulhammer.charge_hammer(owner)
+
 /obj/item/twohanded/vxtvulhammer
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "vxtvul_hammer0-0"
@@ -1080,6 +1104,7 @@
 	max_integrity = 200
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	w_class = WEIGHT_CLASS_HUGE
+	hitsound = 'sound/effects/hammerhitbasic.ogg'
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list(/datum/action/item_action/charge_hammer)
 	light_system = MOVABLE_LIGHT
@@ -1192,7 +1217,7 @@
 		var/turf/target_turf = get_turf(target) //Does the nice effects first so whatever happens to what's about to get clapped doesn't affect it
 		var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
 		K.color = color
-		playsound(loc, 'sound/effects/gravhit.ogg', 80, TRUE) //Mainly this sound
+		playsound(loc, 'sound/effects/powerhammerhit.ogg', 80, FALSE) //Mainly this sound
 		playsound(loc, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
 		supercharge() //At start so it doesn't give an unintentional message if you hit yourself
 
@@ -1359,3 +1384,81 @@
 	hitsound = wielded ? 'yogstation/sound/weapons/bat_hit.ogg' : 'sound/items/trayhit1.ogg' //big donk if wielded
 	item_state = "bigspoon[wielded]" //i don't know why it's item_state rather than icon_state like every other wielded weapon
 	return
+
+
+/*
+Broom
+*/
+
+#define BROOM_PUSH_LIMIT 20
+/obj/item/twohanded/broom
+	name = "broom"
+	desc = "This is my BROOMSTICK! It can be used manually or braced with two hands to sweep items as you move."
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "broom0"
+	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
+	force = 8
+	throwforce = 10
+	throw_speed = 3
+	throw_range = 7
+	w_class = WEIGHT_CLASS_BULKY
+	force_wielded = 4
+	attack_verb = list("swept", "brushed off", "bludgeoned", "whacked")
+	resistance_flags = FLAMMABLE
+
+/obj/item/twohanded/broom/update_icon()
+	icon_state = "broom[wielded]"
+
+/obj/item/twohanded/broom/wield(mob/user)
+	. = ..()
+	if(!wielded)
+		return
+
+	to_chat(user, span_notice("You brace the [src] against the ground in a firm sweeping stance."))
+	RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(sweep))
+
+/obj/item/twohanded/broom/unwield(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
+
+/obj/item/twohanded/broom/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	sweep(user, A)
+
+/obj/item/twohanded/broom/proc/sweep(mob/user, atom/A)
+
+	var/turf/current_item_loc = isturf(A) ? A : get_turf(A)
+	if (!isturf(current_item_loc))
+		return
+	var/turf/new_item_loc = get_step(current_item_loc, user.dir)
+	var/obj/machinery/disposal/bin/target_bin = locate(/obj/machinery/disposal/bin) in new_item_loc.contents
+	var/i = 1
+	for (var/obj/item/garbage in current_item_loc.contents)
+		if (!garbage.anchored)
+			if (target_bin)
+				garbage.forceMove(target_bin)
+			else
+				garbage.Move(new_item_loc, user.dir)
+			i++
+		if (i > BROOM_PUSH_LIMIT)
+			break
+	if (i > 1)
+		if (target_bin)
+			target_bin.update_icon()
+			to_chat(user, span_notice("You sweep the pile of garbage into [target_bin]."))
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 30, TRUE, -1)
+
+/obj/item/twohanded/broom/proc/janicart_insert(mob/user, obj/structure/janitorialcart/J) //bless you whoever fixes this copypasta
+	J.put_in_cart(src, user)
+	J.mybroom=src
+	J.update_icon()
+
+/obj/item/twohanded/broom/cyborg
+	name = "robotic push broom"
+
+/obj/item/twohanded/broom/cyborg/janicart_insert(mob/user, obj/structure/janitorialcart/J)
+	to_chat(user, span_notice("You cannot place your [src] into the [J]"))
+	return FALSE

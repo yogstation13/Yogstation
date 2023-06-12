@@ -626,7 +626,7 @@
 	name = "Refill Atropine Autoinjector"
 	result = /obj/item/reagent_containers/autoinjector/medipen/atropine
 	time = 4 SECONDS
-	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine,
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine = 1,
 				/datum/reagent/medicine/atropine = 10)
 	category = CAT_MEDICAL
 
@@ -634,7 +634,7 @@
 	name = "Refill Maintenance Pump-Up"
 	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
 	time = 4 SECONDS
-	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup,
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup = 1,
 				/datum/reagent/drug/pumpup = 15)
 	category = CAT_MEDICAL
 

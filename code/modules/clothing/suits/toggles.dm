@@ -24,11 +24,11 @@
 	ToggleHood()
 
 /obj/item/clothing/suit/hooded/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_WEAR_SUIT)
+	if(slot == ITEM_SLOT_OCLOTHING)
 		return 1
 
 /obj/item/clothing/suit/hooded/equipped(mob/user, slot)
-	if(slot != SLOT_WEAR_SUIT)
+	if(slot != ITEM_SLOT_OCLOTHING)
 		RemoveHood()
 	..()
 
@@ -43,7 +43,7 @@
 		hood?.forceMove(src)
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/clothing/suit/hooded/dropped()
 	..()
@@ -59,13 +59,13 @@
 			if(H.head)
 				to_chat(H, span_warning("You're already wearing something on your head!"))
 				return
-			else if(H.equip_to_slot_if_possible(hood,SLOT_HEAD,0,0,1))
+			else if(H.equip_to_slot_if_possible(hood,ITEM_SLOT_HEAD,0,0,1))
 				suittoggled = TRUE
 				src.icon_state = "[initial(icon_state)]_t"
 				H.update_inv_wear_suit()
 				for(var/X in actions)
 					var/datum/action/A = X
-					A.UpdateButtonIcon()
+					A.build_all_button_icons()
 	else
 		RemoveHood()
 
@@ -84,7 +84,7 @@
 
 /obj/item/clothing/head/hooded/equipped(mob/user, slot)
 	..()
-	if(slot != SLOT_HEAD)
+	if(slot != ITEM_SLOT_HEAD)
 		if(suit)
 			suit.RemoveHood()
 		else
@@ -118,7 +118,7 @@
 	usr.update_inv_wear_suit()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/clothing/suit/toggle/examine(mob/user)
 	. = ..()
@@ -157,7 +157,7 @@
 /obj/item/clothing/suit/space/hardsuit/equipped(mob/user, slot)
 	if(!helmettype)
 		return
-	if(slot != SLOT_WEAR_SUIT)
+	if(slot != ITEM_SLOT_OCLOTHING)
 		RemoveHelmet()
 	..()
 
@@ -194,7 +194,7 @@
 			if(H.head)
 				to_chat(H, span_warning("You're already wearing something on your head!"))
 				return
-			else if(H.equip_to_slot_if_possible(helmet,SLOT_HEAD,0,0,1))
+			else if(H.equip_to_slot_if_possible(helmet,ITEM_SLOT_HEAD,0,0,1))
 				to_chat(H, span_notice("You engage the helmet on the hardsuit."))
 				suittoggled = TRUE
 				H.update_inv_wear_suit()

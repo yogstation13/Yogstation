@@ -15,17 +15,20 @@
 		H.physiology.heat_mod *= 0.6
 	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/ash
 	user.put_in_hands(realknife)
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
-/datum/eldritch_knowledge/base_ash/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
+/datum/eldritch_knowledge/base_ash/on_lose(mob/user)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/base_ash/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+//	SIGNAL_HANDLER
+
 	if(!iscarbon(target))
 		return
 	var/mob/living/carbon/C = target
-	var/atom/throw_target = get_edge_target_turf(C, user.dir)
+	var/atom/throw_target = get_edge_target_turf(C, source.dir)
 	if(!C.anchored)
-		. = TRUE
-		C.throw_at(throw_target, rand(4,8), 14, user)
-	return
+		C.throw_at(throw_target, rand(4,8), 14, source)
 
 /datum/eldritch_knowledge/base_ash/on_eldritch_blade(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
@@ -34,19 +37,18 @@
 	var/mob/living/carbon/C = target
 	var/datum/status_effect/eldritch/E = C.has_status_effect(/datum/status_effect/eldritch/rust) || C.has_status_effect(/datum/status_effect/eldritch/ash) || C.has_status_effect(/datum/status_effect/eldritch/flesh)
 	if(E)
-		E.on_effect()
-		for(var/X in user.mind.spell_list)
-			if(!istype(X,/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp))
-				continue
-			var/obj/effect/proc_holder/spell/targeted/touch/mansus_grasp/MG = X
-			MG.charge_counter = min(round(MG.charge_counter + MG.charge_max * 0.75),MG.charge_max) // refunds 75% of charge.
+		// Also refunds 75% of charge!
+		var/datum/action/cooldown/spell/touch/mansus_grasp/grasp = locate() in user.actions
+		if(grasp)
+			grasp.next_use_time = min(round(grasp.next_use_time - grasp.cooldown_time * 0.75, 0), 0)
+			grasp.build_all_button_icons()
 
-/datum/eldritch_knowledge/ashen_shift
+/datum/eldritch_knowledge/spell/ashen_shift
 	name = "Ashen Shift"
 	gain_text = "Essence is versatile, flexible. It is so easy for grains to blow into all sorts of small crevices."
 	desc = "A very short range jaunt that can help you escape from bad situations or navigate past obstacles."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/ash)
+	spell_to_add = /datum/action/cooldown/spell/jaunt/ethereal_jaunt/ash
 	route = PATH_ASH
 	tier = TIER_1
 
@@ -67,12 +69,19 @@
 	route = PATH_ASH
 	tier = TIER_MARK
 
-/datum/eldritch_knowledge/ash_mark/on_mansus_grasp(atom/target,mob/user,proximity_flag,click_parameters)
+/datum/eldritch_knowledge/ash_mark/on_gain(mob/user)
 	. = ..()
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+
+/datum/eldritch_knowledge/ash_mark/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/ash_mark/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+	SIGNAL_HANDLER
+
 	if(isliving(target))
-		. = TRUE
 		var/mob/living/living_target = target
-		living_target.apply_status_effect(/datum/status_effect/eldritch/ash,5)
+		living_target.apply_status_effect(/datum/status_effect/eldritch/ash, 5)
 
 /datum/eldritch_knowledge/blindness
 	name = "Curse of Blindness"
@@ -113,23 +122,23 @@
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		C.adjust_fire_stacks(2)
-		C.IgniteMob()
+		C.ignite_mob()
 
-/datum/eldritch_knowledge/flame_birth
+/datum/eldritch_knowledge/spell/flame_birth
 	name = "Flame Birth"
 	gain_text = "The Nightwatcher was a man of principles, yet he arose from the chaos he vowed to protect from. This incantation sealed the fate of Amgala."
 	desc = "A healing-damage spell that saps the life from those on fire nearby, killing any who are in a critical condition."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/fiery_rebirth)
+	spell_to_add = /datum/action/cooldown/spell/aoe/fiery_rebirth
 	route = PATH_ASH
 	tier = TIER_3
 
-/datum/eldritch_knowledge/cleave
+/datum/eldritch_knowledge/spell/cleave
 	name = "Blood Cleave"
 	gain_text = "The Shrouded One connects all. This technique, a particular favorite of theirs, rips at the bodies of those who hunch too close to permit casuality."
 	desc = "A powerful ranged spell that causes heavy bleeding and blood loss in an area around your target."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/pointed/cleave)
+	spell_to_add = /datum/action/cooldown/spell/pointed/cleave
 	tier = TIER_3
 
 /datum/eldritch_knowledge/ash_final

@@ -56,12 +56,10 @@
 /obj/machinery/computer/camera_advanced/remove_eye_control(mob/living/user)
 	if(!user)
 		return
-	for(var/V in actions)
-		var/datum/action/A = V
+	for(var/datum/action/A as anything in actions)
 		A.Remove(user)
 	actions.Cut()
-	for(var/V in eyeobj.visibleCameraChunks)
-		var/datum/camerachunk/C = V
+	for(var/datum/camerachunk/C as anything in eyeobj.visibleCameraChunks)
 		C.remove(eyeobj)
 	if(user.client)
 		user.reset_perspective(null)
@@ -229,7 +227,7 @@
 
 /datum/action/innate/camera_off
 	name = "End Camera View"
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_off"
 
 /datum/action/innate/camera_off/Activate()
@@ -242,7 +240,7 @@
 
 /datum/action/innate/camera_jump
 	name = "Jump To Camera"
-	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
+	button_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_jump"
 
 /datum/action/innate/camera_jump/Activate()
@@ -287,10 +285,11 @@
 	desc = "A console used to snoop on the station's goings-on. A jet of steam occasionally whooshes out from slats on its sides."
 	use_power = FALSE
 	networks = list("ss13", "minisat") //:eye:
-	var/datum/action/innate/servant_warp/warp_action = new
+	var/datum/action/innate/servant_warp/warp_action
 
 /obj/machinery/computer/camera_advanced/ratvar/Initialize()
 	. = ..()
+	warp_action = new(src)
 	ratvar_act()
 
 /obj/machinery/computer/camera_advanced/ratvar/process()
@@ -305,11 +304,10 @@
 	eyeobj.icon_state = "generic_camera"
 
 /obj/machinery/computer/camera_advanced/ratvar/GrantActions(mob/living/carbon/user)
-	..()
-	if(warp_action)
-		warp_action.Grant(user)
-		warp_action.target = src
-		actions += warp_action
+	. = ..()
+	warp_action = new(src)
+	warp_action.Grant(user)
+	actions += warp_action
 
 /obj/machinery/computer/camera_advanced/ratvar/can_use(mob/living/user)
 	if(!is_servant_of_ratvar(user))
@@ -323,7 +321,7 @@
 /datum/action/innate/servant_warp
 	name = "Warp"
 	desc = "Warps to the tile you're viewing. You can use the Abscond scripture to return. Clicking this button again cancels the warp."
-	icon_icon = 'icons/mob/actions/actions_clockcult.dmi'
+	button_icon = 'icons/mob/actions/actions_clockcult.dmi'
 	button_icon_state = "warp_down"
 	background_icon_state = "bg_clock"
 	buttontooltipstyle = "clockcult"
@@ -334,49 +332,51 @@
 	if(QDELETED(target) || !(ishuman(owner) || iscyborg(owner)) || !owner.canUseTopic(target))
 		return
 	if(!GLOB.servants_active) //No leaving unless there's servants from the get-go
+		to_chat(owner, "[span_sevtug_small("The Ark doesn't let you leave!")]")
 		return
 	if(warping)
 		cancel = TRUE
 		return
 	var/mob/living/carbon/human/user = owner
 	var/mob/camera/aiEye/remote/remote_eye = user.remote_control
-	var/obj/machinery/computer/camera_advanced/ratvar/R  = target
-	var/turf/T = get_turf(remote_eye)
-	if(!is_reebe(user.z) || !is_station_level(T.z))
+	var/obj/machinery/computer/camera_advanced/ratvar/camera_console = target
+	var/turf/teleport_turf = get_turf(remote_eye)
+	if(!is_reebe(user.z) || !is_station_level(teleport_turf.z))
 		return
-	if(isclosedturf(T))
+	if(isclosedturf(teleport_turf))
 		to_chat(user, "[span_sevtug_small("You can't teleport into a wall.")]")
 		return
-	else if(isspaceturf(T))
+	else if(isspaceturf(teleport_turf))
 		to_chat(user, "[span_sevtug_small("[prob(1) ? "Servant cannot into space." : "You can't teleport into space."]")]")
 		return
-	else if(T.flags_1 & NOJAUNT_1)
+	else if(teleport_turf.flags_1 & NOJAUNT_1)
 		to_chat(user, "[span_sevtug_small("This tile is blessed by strange energies and deflects the warp.")]")
 		return
-	else if(locate(/obj/effect/blessing, T))
+	else if(locate(/obj/effect/blessing, teleport_turf))
 		to_chat(user, "[span_sevtug_small("This tile is blessed by holy water and deflects the warp.")]")
 		return
-	var/area/AR = get_area(T)
-	if(!AR.clockwork_warp_allowed)
-		to_chat(user, "[span_sevtug_small("[AR.clockwork_warp_fail]")]")
+	var/area/teleport_area = get_area(teleport_turf)
+	if(!teleport_area.clockwork_warp_allowed)
+		to_chat(user, "[span_sevtug_small("[teleport_area.clockwork_warp_fail]")]")
 		return
 
-	if (user.w_uniform && user.w_uniform.name == initial(user.w_uniform.name))
-		if (tgui_alert(user, "ARE YOU SURE YOU WANT TO WARP WITHOUT CAMOUFLAGING YOUR JUMPSUIT?", "Preflight Check", list("Yes", "No")) == "No" )
+	if(user.w_uniform && user.w_uniform.name == initial(user.w_uniform.name))
+		if(tgui_alert(user, "ARE YOU SURE YOU WANT TO WARP WITHOUT CAMOUFLAGING YOUR JUMPSUIT?", "Preflight Check", list("Yes", "No")) == "No" )
 			return
 	
-	if(tgui_alert(user, "Are you sure you want to warp to [AR]?", target.name, list("Warp", "Cancel")) == "Cancel" || QDELETED(R) || !user.canUseTopic(R))
+	if(tgui_alert(user, "Are you sure you want to warp to [teleport_area]?", camera_console.name, list("Warp", "Cancel")) == \
+		"Cancel" || QDELETED(camera_console) || !user.canUseTopic(camera_console))
 		return
 	do_sparks(5, TRUE, user)
-	do_sparks(5, TRUE, T)
-	user.visible_message(span_warning("[user]'s [target.name] flares!"), "<span class='bold sevtug_small'>You begin warping to [AR]...</span>")
+	do_sparks(5, TRUE, teleport_turf)
+	user.visible_message(span_warning("[user]'s [camera_console.name] flares!"), "<span class='bold sevtug_small'>You begin warping to [teleport_area]...</span>")
 	button_icon_state = "warp_cancel"
 	owner.update_action_buttons()
-	var/warp_time = 50
-	if(!istype(T, /turf/open/floor/clockwork) && GLOB.clockwork_hardmode_active)
-		to_chat(user, "[span_sevtug_small("The [target.name]'s inner machinery protests vehemently as it attempts to warp you to a non-brass tile, this will take time...")]")
-		warp_time = 300
-	warping = new(T, user, warp_time)
+	var/warp_time = 5 SECONDS
+	if(!istype(teleport_turf, /turf/open/floor/clockwork) && GLOB.clockwork_hardmode_active)
+		to_chat(user, "[span_sevtug_small("The [camera_console.name]'s inner machinery protests vehemently as it attempts to warp you to a non-brass tile, this will take time...")]")
+		warp_time = 30 SECONDS
+	warping = new(teleport_turf, user, warp_time)
 	if(!do_after(user, warp_time, warping, extra_checks = CALLBACK(src, PROC_REF(is_canceled))))
 		to_chat(user, "<span class='bold sevtug_small'>Warp interrupted.</span>")
 		QDEL_NULL(warping)
@@ -386,13 +386,13 @@
 		return
 	button_icon_state = "warp_down"
 	owner.update_action_buttons()
-	T.visible_message(span_warning("[user] warps in!"))
+	teleport_turf.visible_message(span_warning("[user] warps in!"))
 	playsound(user, 'sound/magic/magic_missile.ogg', 50, TRUE)
-	playsound(T, 'sound/magic/magic_missile.ogg', 50, TRUE)
-	user.forceMove(get_turf(T))
+	playsound(teleport_turf, 'sound/magic/magic_missile.ogg', 50, TRUE)
+	user.forceMove(get_turf(teleport_turf))
 	user.setDir(SOUTH)
 	flash_color(user, flash_color = "#AF0AAF", flash_time = 5)
-	R.remove_eye_control(user)
+	camera_console.remove_eye_control(user)
 	QDEL_NULL(warping)
 
 /datum/action/innate/servant_warp/proc/is_canceled()

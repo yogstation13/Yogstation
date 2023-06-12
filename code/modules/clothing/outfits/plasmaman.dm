@@ -359,7 +359,7 @@
 	satchel = /obj/item/storage/backpack/satchel/tox
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/plasmaman/engineer
 	name = "Plasmaman Station Engineer"
@@ -381,7 +381,7 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/plasmaman/atmos
 	name = "Plasmaman Atmospheric Technician"
@@ -402,7 +402,7 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/plasmaman/mime
 	name = "Plasmaman Mime"
@@ -462,7 +462,7 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	backpack_contents = list(/obj/item/storage/box/plasmaman = 1)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/plasmaman/miningmedic
 	name = "Plasmaman Mining Medic"
@@ -490,7 +490,7 @@
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/plasmaman/paramedic
 	name = "Plasmaman Paramedic"

@@ -56,7 +56,7 @@
 
 /obj/item/organ/cyberimp/chest/reviver/on_life()
 	if(reviving)
-		if(owner.stat == UNCONSCIOUS || owner.stat == SOFT_CRIT)
+		if(owner.stat)
 			addtimer(CALLBACK(src, PROC_REF(heal)), 2 SECONDS)
 		else
 			cooldown = revive_cost + world.time
@@ -66,7 +66,7 @@
 
 	if(cooldown > world.time)
 		return
-	if(owner.stat != UNCONSCIOUS)
+	if(!owner.stat)
 		return
 	if(owner.suiciding)
 		return
@@ -80,10 +80,10 @@
 		owner.adjustOxyLoss(-5)
 		revive_cost += 0.5 SECONDS
 	if(owner.getBruteLoss())
-		owner.adjustBruteLoss(-2)
+		owner.adjustBruteLoss(-2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getFireLoss())
-		owner.adjustFireLoss(-2)
+		owner.adjustFireLoss(-2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getToxLoss())
 		owner.adjustToxLoss(-1)
@@ -171,7 +171,7 @@
 		icon_state = "imp_jetpack"
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/thrusters/proc/move_react()
 	allow_thrust(0.01)
@@ -275,7 +275,7 @@
 		icon_state = "imp_spinal"
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage
 	var/turf/currentloc = get_turf(owner)
@@ -315,7 +315,7 @@
 				if(COOLDOWN_FINISHED(src, alertcooldown))
 					to_chat(owner, span_alert("You feel your spine tingle."))
 					COOLDOWN_START(src, alertcooldown, 10 SECONDS)
-				owner.hallucination += 5
+				owner.adjust_hallucinations(20 SECONDS)
 				owner.adjustFireLoss(1)
 			if(50 to 100)
 				if(COOLDOWN_FINISHED(src, alertcooldown) || !hasexerted)
@@ -323,7 +323,7 @@
 					COOLDOWN_START(src, alertcooldown, 5 SECONDS)
 				hasexerted = TRUE
 				owner.set_drugginess(10)
-				owner.hallucination += 100
+				owner.adjust_hallucinations(20 SECONDS)
 				owner.adjustFireLoss(5)
 			if(100 to INFINITY)//no infinite abuse
 				to_chat(owner, span_userdanger("You feel a slight sense of shame as your brain and spine rip themselves apart from overexertion."))
@@ -340,18 +340,18 @@
 	. = ..()
 	switch(severity)//i don't want emps to just be damage again, that's boring
 		if(EMP_HEAVY)
-			owner.adjust_drugginess(40)
-			owner.hallucination += 500
+			owner.set_drugginess(40)
+			owner.adjust_hallucinations(500 SECONDS)
 			owner.blur_eyes(20)
-			owner.dizziness += 10
+			owner.adjust_dizzy(10 SECONDS)
 			time_on += 10
 			owner.adjustFireLoss(10)
 			to_chat(owner, span_warning("Your spinal implant malfunctions and you feel it scramble your brain!"))
 		if(EMP_LIGHT)
-			owner.adjust_drugginess(20)
-			owner.hallucination += 200
+			owner.set_drugginess(20)
+			owner.adjust_hallucinations(200 SECONDS)
 			owner.blur_eyes(10)
-			owner.dizziness += 5
+			owner.adjust_dizzy(5 SECONDS)
 			time_on += 5
 			owner.adjustFireLoss(5)
 			to_chat(owner, span_danger("Your spinal implant malfunctions and you suddenly feel... wrong."))

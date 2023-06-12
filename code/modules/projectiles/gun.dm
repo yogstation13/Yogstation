@@ -632,7 +632,7 @@
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/gun/proc/update_attachments()
 	for(var/mutable_appearance/M in attachment_overlays)
@@ -649,7 +649,7 @@
 
 	update_icon(TRUE)
 	for(var/datum/action/A as anything in actions)
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/gun/pickup(mob/user)
 	..()
@@ -732,15 +732,15 @@
 
 /datum/action/toggle_scope_zoom
 	name = "Toggle Scope"
-	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_LYING
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_LYING
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	var/obj/item/gun/gun = null
 
 /datum/action/toggle_scope_zoom/Trigger()
 	gun.zoom(owner, owner.dir)
 
-/datum/action/toggle_scope_zoom/IsAvailable()
+/datum/action/toggle_scope_zoom/IsAvailable(feedback = FALSE)
 	. = ..()
 	if(!. && gun)
 		gun.zoom(owner, owner.dir, FALSE)

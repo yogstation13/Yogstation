@@ -18,9 +18,6 @@
 	attached_device = null
 	return ..()
 
-/obj/item/transfer_valve/IsAssemblyHolder()
-	return TRUE
-
 /obj/item/transfer_valve/attackby(obj/item/item, mob/user, params)
 	if(istype(item, /obj/item/tank))
 		if(tank_one && tank_two)

@@ -25,10 +25,7 @@
 	. = ..()
 	if(attached_light)
 		alight = new(src)
-
-/obj/item/clothing/head/helmet/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_HEAD))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_HEAD))
 
 /obj/item/clothing/head/helmet/Destroy()
 	var/obj/item/flashlight/seclite/old_light = set_attached_light(null)
@@ -334,11 +331,11 @@
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	heat_protection = HEAD
-	armor = list(MELEE = 35, BULLET = 20, LASER = 20, ENERGY = 10, BOMB = 50, BIO = 5, RAD = 10, FIRE = 50, ACID = 50, WOUND = 5)
+	armor = list(MELEE = 35, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 5)
 
 /obj/item/clothing/head/helmet/kasa/Initialize()
 	. = ..()
-	AddComponent(/datum/component/armor_plate, null, null, list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5)) //maximum armor 65/35/35/25
+	AddComponent(/datum/component/armor_plate, null, null, list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 5)) //maximum armor 65/15/15/15/65
 
 /obj/item/clothing/head/helmet/durathread
 	name = "durathread helmet"
@@ -447,7 +444,7 @@
 		update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/clothing/head/helmet/stormtrooper
 	name = "Storm Trooper Helmet"

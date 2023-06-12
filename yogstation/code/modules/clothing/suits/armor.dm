@@ -41,6 +41,18 @@
 	icon_state = "secmiljacket"
 	item_state = "secmiljacket"
 
+/obj/item/clothing/suit/armor/secconcoat
+	name = "constable's coat"
+	desc = "A dark black coat with silver buttons. It smells faintly of fish and chips."
+	icon_state = "secconcoat"
+	item_state = "secconcoat"
+
+/obj/item/clothing/suit/armor/secconvest
+	name = "constable's vest"
+	desc = "A vest commonly worn by those who prefer running down crooks."
+	icon_state = "secconvest"
+	item_state = "secconvest"
+
 /obj/item/clothing/suit/armor/vest/hosjacket
 	name = "head of security jacket"
 	desc = "all the style of a jacket with all the protection of a armor vest!"

@@ -183,7 +183,13 @@
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
 
-/datum/config_entry/flag/no_intercept_report	//Whether or not to send a communications intercept report roundstart. This may be overridden by gamemodes.
+/datum/config_entry/flag/no_summon_guns //No
+
+/datum/config_entry/flag/no_summon_magic //Fun
+
+/datum/config_entry/flag/no_summon_events //Allowed
+
+/datum/config_entry/flag/no_intercept_report //Whether or not to send a communications intercept report roundstart. This may be overridden by gamemodes.
 
 /datum/config_entry/number/arrivals_shuttle_dock_window	//Time from when a player late joins on the arrivals shuttle to when the shuttle docks on the station
 	config_entry_value = 55
@@ -417,6 +423,10 @@
 
 /datum/config_entry/number/monkeycap
 	config_entry_value = 64
+	min_val = 0
+
+/datum/config_entry/number/slimecap
+	config_entry_value = 256
 	min_val = 0
 
 /datum/config_entry/number/ratcap

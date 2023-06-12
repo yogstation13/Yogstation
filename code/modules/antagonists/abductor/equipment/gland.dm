@@ -80,7 +80,7 @@
 	if(initial(uses) == 1)
 		uses = initial(uses)
 	var/datum/atom_hud/abductor/hud = GLOB.huds[DATA_HUD_ABDUCTOR]
-	hud.remove_from_hud(owner)
+	hud.remove_atom_from_hud(owner)
 	clear_mind_control()
 	..()
 
@@ -89,7 +89,7 @@
 	if(special != 2 && uses) // Special 2 means abductor surgery
 		Start()
 	var/datum/atom_hud/abductor/hud = GLOB.huds[DATA_HUD_ABDUCTOR]
-	hud.add_to_hud(owner)
+	hud.add_atom_to_hud(owner)
 	update_gland_hud()
 
 /obj/item/organ/heart/gland/on_life()
@@ -170,13 +170,13 @@
 		switch(pick(1,3))
 			if(1)
 				to_chat(H, span_userdanger("You hear a loud buzz in your head, silencing your thoughts!"))
-				H.Stun(50)
+				H.Stun(5 SECONDS)
 			if(2)
 				to_chat(H, span_warning("You hear an annoying buzz in your head."))
-				H.confused += 15
+				H.adjust_confusion(15 SECONDS)
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10, 160)
 			if(3)
-				H.hallucination += 60
+				H.adjust_hallucinations(1 MINUTES)
 
 /obj/item/organ/heart/gland/mindshock/mind_control(command, mob/living/user)
 	if(!ownerCheck() || !mind_control_uses || active_mind_control)

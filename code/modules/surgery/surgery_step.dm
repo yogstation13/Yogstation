@@ -109,8 +109,8 @@
 	if(IS_MEDICAL(user))
 		speed_mod *= 0.8
 
-	if(istype(user.get_item_by_slot(SLOT_GLOVES), /obj/item/clothing/gloves/color/latex))
-		var/obj/item/clothing/gloves/color/latex/surgicalgloves = user.get_item_by_slot(SLOT_GLOVES)
+	if(istype(user.get_item_by_slot(ITEM_SLOT_GLOVES), /obj/item/clothing/gloves/color/latex))
+		var/obj/item/clothing/gloves/color/latex/surgicalgloves = user.get_item_by_slot(ITEM_SLOT_GLOVES)
 		speed_mod *= surgicalgloves.surgeryspeed
 
 	var/previous_loc = user.loc
@@ -269,7 +269,7 @@
 			ouchie_mod *= ouchie_modifying_chems[R]
 	if(target.stat == UNCONSCIOUS)
 		ouchie_mod *= 0.8
-	ouchie_mod *= clamp(1 - target.drunkenness / 100, 0, 1)
+	ouchie_mod *= clamp(1 - target.get_drunk_amount() / 100, 0, 1)
 	if(!success)
 		ouchie_mod *= 2
 	var/final_ouchie_chance = SURGERY_FUCKUP_CHANCE * ouchie_mod

@@ -84,7 +84,7 @@
 	custom_price = 125
 	instrument_range = 1
 
-/obj/item/instrument/piano_synth/headphones/ComponentInitialize()
+/obj/item/instrument/piano_synth/headphones/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_SONG_START, PROC_REF(start_playing))
 	RegisterSignal(src, COMSIG_SONG_END, PROC_REF(stop_playing))
@@ -212,6 +212,17 @@
 	force = 5
 	icon_state = "recorder"
 	allowed_instrument_ids = "recorder"
+
+/datum/action/item_action/instrument
+	name = "Use Instrument"
+	desc = "Use the instrument specified."
+
+/datum/action/item_action/instrument/Trigger()
+	if(istype(target, /obj/item/instrument))
+		var/obj/item/instrument/I = target
+		I.interact(usr)
+		return
+	return ..()
 
 /obj/item/instrument/harmonica
 	name = "harmonica"

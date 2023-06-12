@@ -165,17 +165,17 @@
 	thermal_protection = round(thermal_protection)
 	return thermal_protection
 
-/mob/living/carbon/human/IgniteMob()
+/mob/living/carbon/human/ignite_mob()
 	//If have no DNA or can be Ignited, call parent handling to light user
 	//If firestacks are high enough
-	if(!dna || dna.species.CanIgniteMob(src))
+	if(!dna || dna.species.Canignite_mob(src))
 		if(get_thermal_protection() > FIRE_SUIT_MAX_TEMP_PROTECT*0.95) // If they're resistant to fire (slightly undercut to make sure get_thermal_protection doesn't fuck over this achievement due to floating-point errors
 			SSachievements.unlock_achievement(/datum/achievement/engineering/toasty,src.client) // Fear the reaper man!
 		return ..()
 	. = FALSE //No ignition
 
-/mob/living/carbon/human/ExtinguishMob()
-	if(!dna || !dna.species.ExtinguishMob(src))
+/mob/living/carbon/human/extinguish_mob()
+	if(!dna || !dna.species.extinguish_mob(src))
 		last_fire_update = null
 		..()
 //END FIRE CODE

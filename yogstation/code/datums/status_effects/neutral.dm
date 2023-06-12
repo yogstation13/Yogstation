@@ -66,7 +66,7 @@
 	if(scent_trail)
 		scent_trail.Destroy()
 	if(smell_hud)
-		smell_hud.remove_hud_from(owner)
+		smell_hud.hide_from(owner)
 	if(sniffer?.client?.images)
 		for(var/image/I in sniffer.client.images)
 			if(I.name==id)

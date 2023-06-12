@@ -18,6 +18,7 @@
 #define MOVE_INTENT_RUN  "run"
 
 //Blood volumes, in cL
+#define BLOOD_VOLUME_MAX_LETHAL		2150 // The lethal amount for a good semaritan, based off IRL data about vampires
 #define BLOOD_VOLUME_GENERIC		560 // The default amount of blood in a blooded creature, in cL, based off IRL data about humans
 #define BLOOD_VOLUME_MONKEY			325 // Based on IRL data bout Chimpanzees
 #define BLOOD_VOLUME_XENO			700 // Based off data from my asshole

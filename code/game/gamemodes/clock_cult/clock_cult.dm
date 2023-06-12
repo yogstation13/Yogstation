@@ -55,7 +55,8 @@ Credit where due:
 	if(M.mind)
 		if(ishuman(M) && (M.mind.assigned_role in list("Captain", "Chaplain")))
 			return FALSE
-		if(M.mind.enslaved_to && !is_servant_of_ratvar(M.mind.enslaved_to))
+		var/mob/living/master = M.mind.enslaved_to?.resolve()
+		if(master && !iscultist(master))
 			return FALSE
 		if(M.mind.unconvertable)
 			return FALSE
@@ -218,7 +219,7 @@ Credit where due:
 	L.equipOutfit(/datum/outfit/servant_of_ratvar)
 	var/obj/item/clockwork/slab/S = new
 	var/slot = "At your feet"
-	var/list/slots = list("In your left pocket" = SLOT_L_STORE, "In your right pocket" = SLOT_R_STORE, "In your backpack" = SLOT_IN_BACKPACK, "On your belt" = SLOT_BELT)
+	var/list/slots = list("In your left pocket" = ITEM_SLOT_LPOCKET, "In your right pocket" = ITEM_SLOT_RPOCKET, "In your backpack" = ITEM_SLOT_BACKPACK, "On your belt" = ITEM_SLOT_BELT)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		slot = H.equip_in_one_of_slots(S, slots)
@@ -260,18 +261,6 @@ Credit where due:
 	working for this entity and utilizing highly-advanced technology to cross the great distance at will. If they should turn out to be a credible threat, the task falls on you and \
 	your crew to dispatch it in a timely manner."
 
-/datum/game_mode/proc/update_servant_icons_added(datum/mind/M)
-	var/datum/atom_hud/antag/A = GLOB.huds[ANTAG_HUD_CLOCKWORK]
-	A.join_hud(M.current)
-	set_antag_hud(M.current, "clockwork")
-
-/datum/game_mode/proc/update_servant_icons_removed(datum/mind/M)
-	var/datum/atom_hud/antag/A = GLOB.huds[ANTAG_HUD_CLOCKWORK]
-	A.leave_hud(M.current)
-	set_antag_hud(M.current, null)
-
-
-
 //Servant of Ratvar outfit
 /datum/outfit/servant_of_ratvar
 	name = "Servant of Ratvar"
@@ -312,7 +301,7 @@ Credit where due:
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
 		PDA.InsertID(C)
-		H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+		H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
 
 		PDA.update_label()
 		PDA.update_icon()

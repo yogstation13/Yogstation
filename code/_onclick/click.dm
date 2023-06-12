@@ -72,7 +72,7 @@
 		return
 	next_click = world.time + 1
 
-	if(check_click_intercept(params,A))
+	if(check_click_intercept(params, A))
 		return
 
 	if(notransform)
@@ -116,9 +116,9 @@
 		var/obj/mecha/M = loc
 		return M.click_action(A,src,params)
 
-	if(restrained())
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		changeNext_move(CLICK_CD_HANDCUFFED)   //Doing shit in cuffs shall be vey slow
-		RestrainedClickOn(A)
+		UnarmedAttack(A, FALSE)
 		return
 
 	if(in_throw_mode)
@@ -216,7 +216,7 @@
 	return ..() + contents
 
 /mob/living/DirectAccess(atom/target)
-	return ..() + GetAllContents()
+	return ..() + get_all_contents()
 
 /atom/proc/AllowClick()
 	return FALSE
@@ -503,7 +503,7 @@
 
 /mob/proc/check_click_intercept(params,A)
 	//Client level intercept
-	if(client && client.click_intercept)
+	if(client?.click_intercept)
 		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
 			return TRUE
 

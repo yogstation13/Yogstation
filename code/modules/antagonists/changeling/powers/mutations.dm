@@ -122,8 +122,8 @@
 	user.dropItemToGround(user.head)
 	user.dropItemToGround(user.wear_suit)
 
-	user.equip_to_slot_if_possible(new suit_type(user), SLOT_WEAR_SUIT, 1, 1, 1)
-	user.equip_to_slot_if_possible(new helmet_type(user), SLOT_HEAD, 1, 1, 1)
+	user.equip_to_slot_if_possible(new suit_type(user), ITEM_SLOT_OCLOTHING, 1, 1, 1)
+	user.equip_to_slot_if_possible(new helmet_type(user), ITEM_SLOT_HEAD, 1, 1, 1)
 
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	changeling.chem_recharge_slowdown += recharge_slowdown
@@ -138,7 +138,7 @@
 	name = "Arm Blade"
 	desc = "We reform one of our arms into a deadly blade. Costs 20 chemicals."
 	helptext = "We may retract our armblade in the same manner as we form it. Cannot be used while in lesser form."
-//	button_icon = 'icons/obj/changeling.dmi'
+//	background_icon = 'icons/obj/changeling.dmi'
 	button_icon_state = "armblade"
 	chemical_cost = 20
 	dna_cost = 2
@@ -331,8 +331,9 @@
 			H.swap_hand()
 		if(H.get_active_held_item())
 			return
-		C.grabbedby(H)
-		C.grippedby(H, instant = TRUE) //instant aggro grab
+		if((H.mobility_flags & MOBILITY_STAND))
+			C.grabbedby(H)
+			C.grippedby(H, instant = TRUE) //instant aggro grab
 
 /obj/item/projectile/tentacle/proc/tentacle_stab(mob/living/carbon/human/H, mob/living/carbon/C)
 	if(H.Adjacent(C))
@@ -570,7 +571,7 @@
 	name = "Flesh Maul"
 	desc = "We reform one of our arms into a dense mass of flesh and bone. Costs 20 chemicals."
 	helptext = "We may reabsorb the mass in the same way it was formed. It is too heavy to be used in our lesser form."
-//	button_icon = 'icons/obj/changeling.dmi'
+//	background_icon = 'icons/obj/changeling.dmi'
 	button_icon_state = "flesh_maul"
 	chemical_cost = 20
 	dna_cost = 3

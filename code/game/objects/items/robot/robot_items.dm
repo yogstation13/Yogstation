@@ -36,15 +36,15 @@
 			to_chat(M, span_warning("You muscles seize, making you collapse!"))
 		else
 			M.Paralyze(stunforce)
-		M.Jitter(20)
-		M.confused = max(8, M.confused)
+		M.adjust_jitter(20 SECONDS)
+		M.adjust_confusion_up_to(8 SECONDS, 40 SECONDS)
 		M.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage > 70)
-		M.Jitter(10)
-		M.confused = max(8, M.confused)
+		M.adjust_jitter(10 SECONDS)
+		M.adjust_confusion_up_to(8 SECONDS, 40 SECONDS)
 		M.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage >= 20)
-		M.Jitter(5)
+		M.adjust_jitter(5 SECONDS)
 		M.apply_effect(EFFECT_STUTTER, stunforce)
 
 	M.visible_message(span_danger("[user] has prodded [M] with [src]!"), \
@@ -329,7 +329,7 @@
 			span_danger("The siren pierces your hearing!"))
 		for(var/mob/living/carbon/M in get_hearers_in_view(9, user))
 			if(M.get_ear_protection() == FALSE)
-				M.confused += 6
+				M.adjust_confusion(6 SECONDS)
 		audible_message("<font color='red' size='7'>HUMAN HARM</font>")
 		playsound(get_turf(src), 'sound/ai/default/harmalarm.ogg', 70, 3)
 		cooldown = world.time + 200
@@ -346,16 +346,16 @@
 			var/bang_effect = C.soundbang_act(2, 0, 0, 5)
 			switch(bang_effect)
 				if(1)
-					C.confused += 5
-					C.stuttering += 10
-					C.Jitter(10)
+					C.adjust_confusion(5 SECONDS)
+					C.adjust_stutter(10 SECONDS)
+					C.adjust_jitter(10 SECONDS)
 				if(2)
-					C.Paralyze(40)
-					C.confused += 10
-					C.stuttering += 15
-					C.Jitter(25)
+					C.Paralyze(4 SECONDS)
+					C.adjust_confusion(10 SECONDS)
+					C.adjust_stutter(15 SECONDS)
+					C.adjust_jitter(25 SECONDS)
 		playsound(get_turf(src), 'sound/machines/warning-buzzer.ogg', 130, 3)
-		cooldown = world.time + 600
+		cooldown = world.time + 1 MINUTES
 		log_game("[key_name(user)] used an emagged Cyborg Harm Alarm in [AREACOORD(user)]")
 
 #define DISPENSE_LOLLIPOP_MODE 1

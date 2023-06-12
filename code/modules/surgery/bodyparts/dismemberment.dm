@@ -200,7 +200,7 @@
 		LB.brainmob = brainmob
 		brainmob = null
 		LB.brainmob.forceMove(LB)
-		LB.brainmob.stat = DEAD
+		LB.brainmob.set_stat(DEAD)
 
 /obj/item/organ/eyes/transfer_to_limb(obj/item/bodypart/head/LB, mob/living/carbon/human/C)
 	LB.eyes = src
@@ -225,7 +225,7 @@
 		if(C.handcuffed)
 			C.handcuffed.forceMove(drop_location())
 			C.handcuffed.dropped(C)
-			C.handcuffed = null
+			C.set_handcuffed(null)
 			C.update_handcuffed()
 		if(C.hud_used)
 			var/atom/movable/screen/inventory/hand/R = C.hud_used.hand_slots["[held_index]"]
@@ -243,7 +243,7 @@
 		if(C.handcuffed)
 			C.handcuffed.forceMove(drop_location())
 			C.handcuffed.dropped(C)
-			C.handcuffed = null
+			C.set_handcuffed(null)
 			C.update_handcuffed()
 		if(C.hud_used)
 			var/atom/movable/screen/inventory/hand/L = C.hud_used.hand_slots["[held_index]"]
