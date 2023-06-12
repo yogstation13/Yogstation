@@ -530,8 +530,8 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/twohanded/dualsaber/IsReflect()
-	if(wielded)
-		return 1
+	if(wielded && isliving(loc))
+		return is_nukeop(loc)
 
 /obj/item/twohanded/dualsaber/ignition_effect(atom/A, mob/user)
 	// same as /obj/item/melee/transforming/energy, mostly
