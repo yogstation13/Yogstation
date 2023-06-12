@@ -164,7 +164,7 @@
 	transfer_prints = TRUE
 	resistance_flags = NONE
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
-	clothing_flags = list(TRAIT_QUICK_CARRY)
+	clothing_traits = list(TRAIT_QUICK_CARRY)
 	var/surgeryspeed = 0.9	//how much these gloves speed up surgery
 
 /obj/item/clothing/gloves/color/latex/nitrile
