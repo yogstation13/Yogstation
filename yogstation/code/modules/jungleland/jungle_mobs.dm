@@ -526,7 +526,7 @@
 	icon_state = "emeraldspider"
 	icon_living = "emeraldspider"
 	icon_dead = "emeraldspider_dead"
-	butcher_results = list(/obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/reagent_containers/food/snacks/meat/slab/spider = 2)
+	butcher_results = list(/obj/item/stack/sheet/bone = 4, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/reagent_containers/food/snacks/meat/slab/spider = 2)
 	loot = list()
 	attacktext = "bites"
 	gold_core_spawnable = HOSTILE_SPAWN
