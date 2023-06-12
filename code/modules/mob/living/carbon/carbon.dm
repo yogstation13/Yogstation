@@ -764,7 +764,7 @@
 			continue
 		var/protection = getarmor(BP.body_zone, BIO)
 		if(protection < 100)
-			total_permeability += linear ? (100 - getarmor(def_zone, BIO)) / 100 : 1 / (2**(protection / 15)) // every 15 bio armor reduces permeability by half (15 is 0.5, 30 is 0.25, 60 is 0.0625, etc) unless otherwise specified to use a linear calculation
+			total_permeability += linear ? (100 - protection) / 100 : 1 / (2**(protection / 15)) // every 15 bio armor reduces permeability by half (15 is 0.5, 30 is 0.25, 60 is 0.0625, etc) unless otherwise specified to use a linear calculation
 
 	var/permeability = clamp(total_permeability / total_bodyparts, 0, 1)
 	if(permeability <= 0.01)
