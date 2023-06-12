@@ -235,7 +235,7 @@
 /obj/item/clothing/neck/yogs/skin_twister/equipped(mob/user, slot)
 	. = ..()
 	active = FALSE
-	if(slot != SLOT_NECK)
+	if(slot != ITEM_SLOT_NECK)
 		return
 	active = TRUE
 	cached_faction_list = user.faction.Copy() // we dont keep the reference to it 
@@ -373,7 +373,7 @@
 	return ..()
 
 /obj/item/clothing/head/yogs/tar_king_crown/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_HEAD)
+	if(slot == ITEM_SLOT_HEAD)
 		return TRUE
 	return FALSE
 
