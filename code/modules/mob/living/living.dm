@@ -967,7 +967,7 @@
 	return 1
 
 //used in datum/reagents/reaction() proc
-/mob/living/proc/get_permeability(list/target_zones)
+/mob/living/proc/get_permeability(def_zone, linear = FALSE)
 	return 1
 
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
