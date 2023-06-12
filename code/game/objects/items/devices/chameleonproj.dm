@@ -49,6 +49,8 @@
 		return
 	if(istype(target, /obj/structure/falsewall))
 		return
+	if(istype(target, /obj/structure/chisel_message))
+		return
 	if(target.alpha != 255)
 		return
 	if(target.invisibility != 0)
