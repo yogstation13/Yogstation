@@ -1314,9 +1314,9 @@
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 				prying_so_hard = TRUE
 				if(I.use_tool(src, user, time_to_open))
-					open(2)
 					if(!istype(I,/obj/item/jawsoflife/jimmy)) //You get to be special
-						take_damage(max_integrity/8) //Forcing open a door messes it up a little
+						take_damage(max_integrity/8, sound_effect = FALSE) //Forcing open a door messes it up a little
+					open(2)
 					if(density && !open(2))
 						to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
 				prying_so_hard = FALSE
