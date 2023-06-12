@@ -1,0 +1,4 @@
+author: "airlines7"
+delete-after: true 
+changes: 
+  - bugfix: "Crystal foam is no longer invisible"
