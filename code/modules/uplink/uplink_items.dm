@@ -1553,6 +1553,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/armorpolish
 	cost = 2
 
+/datum/uplink_item/stealthy_tools/mousecubes
+	name = "Box of Mouse Cubes"
+	desc = "A box with twenty four Waffle Co. brand mouse cubes. Deploy near wiring. \
+			Caution: Product may rehydrate when exposed to water."
+	item = /obj/item/storage/box/monkeycubes/syndicate/mice
+	cost = 1
+	manufacturer = /datum/corporation/traitor/waffleco
+  
 /datum/uplink_item/stealthy_tools/angelcoolboy
 	name = "Syndicate Angel Potion"
 	desc = "After many failed attempts, the syndicate has reverse engineered an angel potion smuggled off of the lava planet V-227. \
@@ -2271,15 +2279,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	item = /obj/item/grenade/chem_grenade/radiation
 	restricted_species = list("plasmaman")
-
-/datum/uplink_item/race_restricted/mousecubes
-	name = "Box of Mouse Cubes"
-	desc = "A box with twenty four Waffle Co. brand mouse cubes. Deploy near wiring. \
-			Caution: Product may rehydrate when exposed to water."
-	item = /obj/item/storage/box/monkeycubes/syndicate/mice
-	cost = 1
-	manufacturer = /datum/corporation/traitor/waffleco
-	restricted_species = list("felinid")
 
 // Role-specific items
 /datum/uplink_item/role_restricted
