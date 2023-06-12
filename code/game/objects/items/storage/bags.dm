@@ -19,7 +19,7 @@
 /obj/item/storage/bag
 	slot_flags = ITEM_SLOT_BELT
 
-/obj/item/storage/bag/ComponentInitialize()
+/obj/item/storage/bag/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.allow_quick_gather = TRUE
@@ -42,7 +42,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	var/insertable = TRUE
 
-/obj/item/storage/bag/trash/ComponentInitialize()
+/obj/item/storage/bag/trash/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
@@ -89,7 +89,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
 	item_flags = NO_MAT_REDEMPTION
 
-/obj/item/storage/bag/trash/bluespace/ComponentInitialize()
+/obj/item/storage/bag/trash/bluespace/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 60
@@ -107,13 +107,13 @@
 	desc = "This little bugger can be used to store and transport ores."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKET
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_NORMAL
 	component_type = /datum/component/storage/concrete/stack
 	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
 	var/mob/listeningTo
 
-/obj/item/storage/bag/ore/ComponentInitialize()
+/obj/item/storage/bag/ore/Initialize()
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.allow_quick_empty = TRUE
@@ -184,7 +184,7 @@
 	desc = "A revolution in convenience, this satchel allows for huge amounts of ore storage. It's been outfitted with anti-malfunction safety measures."
 	icon_state = "satchel_bspace"
 
-/obj/item/storage/bag/ore/holding/ComponentInitialize()
+/obj/item/storage/bag/ore/holding/Initialize()
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.max_items = INFINITY
@@ -195,13 +195,13 @@
 	desc = "You thought it would be more like what those cartoon robbers wear."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "gem_satchel"
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKET
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_NORMAL
 	component_type = /datum/component/storage/concrete
 	var/spam_protection = FALSE //If this is TRUE, the holder won't receive any messages when they fail to pick up ore through crossing it
 	var/mob/listeningTo
 
-/obj/item/storage/bag/gem/ComponentInitialize()
+/obj/item/storage/bag/gem/Initialize()
 	. = ..()
 	var/datum/component/storage/concrete/STR = GetComponent(/datum/component/storage/concrete)
 	STR.allow_quick_empty = TRUE
@@ -258,7 +258,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/plants/ComponentInitialize()
+/obj/item/storage/bag/plants/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -297,7 +297,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	component_type = /datum/component/storage/concrete/stack
 
-/obj/item/storage/bag/sheetsnatcher/ComponentInitialize()
+/obj/item/storage/bag/sheetsnatcher/Initialize()
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.allow_quick_empty = TRUE
@@ -313,7 +313,7 @@
 	desc = ""
 	capacity = 1000//Borgs get more because >specialization
 
-/obj/item/storage/bag/sheetsnatcher/borg/ComponentInitialize()
+/obj/item/storage/bag/sheetsnatcher/borg/Initialize()
 	. = ..()
 	var/datum/component/storage/concrete/stack/STR = GetComponent(/datum/component/storage/concrete/stack)
 	STR.max_items = 1000
@@ -330,7 +330,7 @@
 	w_class = WEIGHT_CLASS_BULKY //Bigger than a book because physics
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/books/ComponentInitialize()
+/obj/item/storage/bag/books/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -355,7 +355,7 @@
 	flags_1 = CONDUCT_1
 	materials = list(/datum/material/iron=3000)
 
-/obj/item/storage/bag/tray/ComponentInitialize()
+/obj/item/storage/bag/tray/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.insert_preposition = "on"
@@ -409,7 +409,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/chemistry/ComponentInitialize()
+/obj/item/storage/bag/chemistry/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 50
@@ -429,7 +429,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/bio/ComponentInitialize()
+/obj/item/storage/bag/bio/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 100
@@ -449,7 +449,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/construction/ComponentInitialize()
+/obj/item/storage/bag/construction/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 50
@@ -459,7 +459,7 @@
 	STR.set_holdable(list(/obj/item/stack/ore/bluespace_crystal, /obj/item/assembly, /obj/item/stock_parts, /obj/item/reagent_containers/glass/beaker, /obj/item/stack/cable_coil, /obj/item/circuitboard, /obj/item/electronics, /obj/item/modular_computer))
 
 
-/obj/item/storage/bag/construction/admin/full/ComponentInitialize()
+/obj/item/storage/bag/construction/admin/full/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 1000
@@ -487,7 +487,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/medpouch/ComponentInitialize()
+/obj/item/storage/bag/medpouch/Initialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 50

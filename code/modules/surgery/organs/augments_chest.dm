@@ -57,7 +57,7 @@
 
 /obj/item/organ/cyberimp/chest/reviver/on_life()
 	if(reviving)
-		if(owner.stat == UNCONSCIOUS || owner.stat == SOFT_CRIT)
+		if(owner.stat)
 			addtimer(CALLBACK(src, PROC_REF(heal)), 2 SECONDS)
 		else
 			cooldown = revive_cost + world.time
@@ -67,7 +67,7 @@
 
 	if(cooldown > world.time)
 		return
-	if(owner.stat != UNCONSCIOUS)
+	if(!owner.stat)
 		return
 	if(owner.suiciding)
 		return
@@ -81,10 +81,10 @@
 		owner.adjustOxyLoss(-heal_amount * 5)
 		revive_cost += 0.5 SECONDS
 	if(owner.getBruteLoss())
-		owner.adjustBruteLoss(-heal_amount * 2)
+		owner.adjustBruteLoss(-heal_amount * 2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getFireLoss())
-		owner.adjustFireLoss(-heal_amount * 2)
+		owner.adjustFireLoss(-heal_amount * 2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getToxLoss())
 		owner.adjustToxLoss(-heal_amount)

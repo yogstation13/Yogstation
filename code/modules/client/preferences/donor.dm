@@ -12,7 +12,7 @@
 	values += "None"
 
 	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot != SLOT_HEAD)
+		if(S.slot != ITEM_SLOT_HEAD)
 			continue
 
 		values += S.name
@@ -25,7 +25,7 @@
 	var/list/key_locked = list()
 
 	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot != SLOT_HEAD && !S.plush)
+		if(S.slot != ITEM_SLOT_HEAD && !S.plush)
 			continue
 
 		if (!S.ckey)
@@ -52,7 +52,7 @@
 	values += "None"
 
 	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot == SLOT_HEAD && !S.plush)
+		if(S.slot == ITEM_SLOT_HEAD && !S.plush)
 			continue
 
 		values += S.name
@@ -65,7 +65,7 @@
 	var/list/key_locked = list()
 
 	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot == SLOT_HEAD)
+		if(S.slot == ITEM_SLOT_HEAD)
 			continue
 
 		if (!S.ckey)
@@ -103,7 +103,7 @@
 	var/list/key_locked = list()
 
 	for(var/datum/donator_gear/S as anything in GLOB.donator_gear.donor_items)
-		if(S.slot == SLOT_HEAD)
+		if(S.slot == ITEM_SLOT_HEAD)
 			continue
 
 		if(!S.plush)

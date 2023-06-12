@@ -14,14 +14,10 @@
 	var/obj/item/assembly/a_left = null
 	var/obj/item/assembly/a_right = null
 
-/obj/item/assembly_holder/ComponentInitialize()
+/obj/item/assembly_holder/Initialize()
 	. = ..()
 	var/static/rotation_flags = ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS
 	AddComponent(/datum/component/simple_rotation, rotation_flags)
-
-/obj/item/assembly_holder/IsAssemblyHolder()
-	return TRUE
-
 
 /obj/item/assembly_holder/proc/assemble(obj/item/assembly/A, obj/item/assembly/A2, mob/user)
 	attach(A,user)

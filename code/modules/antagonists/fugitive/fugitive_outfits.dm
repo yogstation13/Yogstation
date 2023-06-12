@@ -54,11 +54,11 @@
 	H.facial_hair_color = H.hair_color
 
 	var/list/no_drops = list()
-	no_drops += H.get_item_by_slot(SLOT_SHOES)
-	no_drops += H.get_item_by_slot(SLOT_W_UNIFORM)
-	no_drops += H.get_item_by_slot(SLOT_WEAR_SUIT)
-	no_drops += H.get_item_by_slot(SLOT_HEAD)
-	no_drops += H.get_item_by_slot(SLOT_GLASSES)
+	no_drops += H.get_item_by_slot(ITEM_SLOT_FEET)
+	no_drops += H.get_item_by_slot(ITEM_SLOT_ICLOTHING)
+	no_drops += H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	no_drops += H.get_item_by_slot(ITEM_SLOT_HEAD)
+	no_drops += H.get_item_by_slot(ITEM_SLOT_EYES)
 	for(var/obj/item/trait_needed as anything in no_drops)
 		ADD_TRAIT(trait_needed, TRAIT_NODROP, CURSED_ITEM_TRAIT(trait_needed.type))
 

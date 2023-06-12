@@ -284,7 +284,7 @@
 	//worn_icon_state = "bookbag"
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/mail/ComponentInitialize()
+/obj/item/storage/bag/mail/Initialize()
 	. = ..()
 	var/datum/component/storage/storage = GetComponent(/datum/component/storage)
 	storage.max_w_class = WEIGHT_CLASS_NORMAL

@@ -508,14 +508,14 @@
 	..()
 	var/datum/species/S = H.dna?.species
 	ADD_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
-	S.add_no_equip_slot(H, SLOT_GLOVES)
+	S.add_no_equip_slot(H, ITEM_SLOT_GLOVES)
 	add_verb(H, recalibration)
 	usr.click_intercept = src 
 
 /datum/martial_art/buster_style/on_remove(mob/living/carbon/human/H)
 	var/datum/species/S = H.dna?.species
 	REMOVE_TRAIT(H, TRAIT_SHOCKIMMUNE, type)
-	S.remove_no_equip_slot(H, SLOT_GLOVES)
+	S.remove_no_equip_slot(H, ITEM_SLOT_GLOVES)
 	remove_verb(H, recalibration)
 	usr.click_intercept = null 
 	..()

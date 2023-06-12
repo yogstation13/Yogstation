@@ -102,7 +102,7 @@
 //Signal handling.
 /obj/item/clothing/suit/armor/nerd/equipped(mob/M, slot)
 	. = ..()
-	if(slot == SLOT_WEAR_SUIT && iscarbon(M))
+	if(slot == ITEM_SLOT_OCLOTHING && iscarbon(M))
 		for(var/k in funny_signals)
 			RegisterSignal(M, k, funny_signals[k])
 		add_queue('sound/voice/nerdsuit/bell.ogg',2 SECONDS,purge_queue=TRUE)

@@ -271,7 +271,7 @@
 	var/uniform_skirt = null
 
 	/// Which slot the PDA defaults to
-	var/pda_slot = SLOT_BELT
+	var/pda_slot = ITEM_SLOT_BELT
 
 	/// What shoes digitgrade crew should wear
 	var/digitigrade_shoes
@@ -335,14 +335,14 @@
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
 		PDA.InsertID(C)
-		H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+		H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
 
 		PDA.update_label()
 		PDA.update_icon()
 		PDA.update_filters()
 		
 	else
-		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+		H.equip_to_slot_if_possible(C, ITEM_SLOT_ID)
 
 	if(H.stat != DEAD)//if a job has a gps and it isn't a decorative corpse, rename the GPS to the owner's name
 		for(var/obj/item/gps/G in H.get_all_contents())

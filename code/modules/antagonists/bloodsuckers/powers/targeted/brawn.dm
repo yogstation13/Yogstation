@@ -49,8 +49,8 @@
 		used = TRUE
 
 	// Remove both Handcuffs & Legcuffs
-	var/obj/cuffs = user.get_item_by_slot(SLOT_HANDCUFFED)
-	var/obj/legcuffs = user.get_item_by_slot(SLOT_LEGCUFFED)
+	var/obj/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
+	var/obj/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
 	if(!used && (istype(cuffs) || istype(legcuffs)))
 		user.visible_message(
 			span_warning("[user] discards their restraints like it's nothing!"),
@@ -62,7 +62,7 @@
 
 	// Remove Straightjackets
 	if(user.wear_suit?.breakouttime && !used)
-		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(SLOT_WEAR_SUIT)
+		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		if(!istype(straightjacket))
 			return
 		user.visible_message(
