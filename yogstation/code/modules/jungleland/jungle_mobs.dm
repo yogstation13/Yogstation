@@ -462,7 +462,7 @@
 	attack_sound = 'sound/voice/moth/scream_moth.ogg'
 	deathmessage = "rolls over, falling to the ground."
 	gold_core_spawnable = HOSTILE_SPAWN
-	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 2, /obj/item/stack/sheet/sinew = 1)
+	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 1, /obj/item/stack/sheet/sinew = 1, /obj/item/stack/sheet/bone = 1)
 	loot = list()
 	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket
 	var/charging = FALSE
