@@ -31,22 +31,13 @@
 		worn = FALSE
 
 /obj/item/clothing/gloves/fingerless/bigboss
-	var/carrytrait = TRAIT_QUICKER_CARRY
 	tacticalspeed = 0.66 //Does channels 34% faster
+	clothing_traits = list(TRAIT_QUICKER_CARRY)
 
 /obj/item/clothing/gloves/fingerless/bigboss/Touch(mob/living/target, proximity = TRUE)
 	var/mob/living/M = loc
 	M.changeNext_move(CLICK_CD_CLICK_ABILITY) //0.6 seconds instead of 0.8, but affects any intent instead of just harm
 	. = FALSE
-
-/obj/item/clothing/gloves/fingerless/bigboss/equipped(mob/user, slot)
-	..()
-	if(slot == ITEM_SLOT_GLOVES)
-		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/fingerless/bigboss/dropped(mob/user)
-	..()
-	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/fingerless/weaver
 	name = "weaver chitin gloves"
@@ -281,15 +272,7 @@
 	siemens_coefficient = 0.2
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 90, RAD = 0, FIRE = 100, ACID = 90)
 	clothing_flags = THICKMATERIAL
-
-/obj/item/clothing/gloves/atmos/equipped(mob/user, slot)
-	..()
-	if(slot == ITEM_SLOT_GLOVES)
-		ADD_TRAIT(user, TRAIT_QUICKEST_CARRY, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/atmos/dropped(mob/user)
-	..()
-	REMOVE_TRAIT(user, TRAIT_QUICKEST_CARRY, CLOTHING_TRAIT)
+	clothing_traits = list(TRAIT_QUICKEST_CARRY, TRAIT_RESISTHEATHANDS)
 
 /obj/item/clothing/gloves/atmos/ce
 	name = "advanced insulated gloves"

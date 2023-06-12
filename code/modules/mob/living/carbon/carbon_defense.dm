@@ -481,15 +481,15 @@
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
-/mob/living/carbon/proc/try_extinguish(mob/living/carbon/human/H)
+/mob/living/carbon/proc/try_extinguish(mob/living/carbon/C)
 	if(!on_fire)
 		return FALSE
-	if(istype(H) && H.gloves && istype(H.gloves, /obj/item/clothing/gloves/atmos))
+	if(HAS_TRAIT(C, TRAIT_RESISTHEAT) || HAS_TRAIT(C, TRAIT_RESISTHEATHANDS) || HAS_TRAIT(C, TRAIT_NOFIRE))
 		extinguish_mob()
-		to_chat(H, span_notice("You extinguish [src]!"))
-		to_chat(src, span_userdanger("[H] extinguishes you!"))
+		to_chat(C, span_notice("You extinguish [src]!"))
+		to_chat(src, span_userdanger("[C] extinguishes you!"))
 		return TRUE
-	to_chat(H, span_warning("You can't put [p_them()] out with just your bare hands!"))
+	to_chat(C, span_warning("You can't put [p_them()] out with just your bare hands!"))
 	return TRUE
 
 /mob/living/carbon/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0)

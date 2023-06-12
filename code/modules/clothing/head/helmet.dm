@@ -459,14 +459,7 @@
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
 	strip_delay = 60
 	flags_cover = HEADCOVERSEYES
-
-/obj/item/clothing/head/helmet/stormtrooper/equipped(mob/living/user)
-	ADD_TRAIT(user, TRAIT_POOR_AIM, CLOTHING_TRAIT)
-	..()
-
-/obj/item/clothing/head/helmet/stormtrooper/dropped(mob/living/user)
-	REMOVE_TRAIT(user, TRAIT_POOR_AIM, CLOTHING_TRAIT)
-	..()
+	clothing_traits = list(TRAIT_POOR_AIM)
 
 /obj/item/clothing/head/helmet/shaman
 	name = "ritual headdress"
