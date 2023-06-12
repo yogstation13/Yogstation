@@ -23849,6 +23849,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"gNH" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/holywater{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/organ/heart,
+/obj/item/soulstone/anybody/chaplain,
+/turf/open/floor/plasteel/cult,
+/area/chapel/office)
 "gNO" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -23934,23 +23944,6 @@
 /obj/item/cigbutt,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"gPm" = (
-/obj/machinery/button/door{
-	id = "hop";
-	name = "Privacy Shutters Control";
-	pixel_x = -24;
-	pixel_y = -6;
-	req_access_txt = "28"
-	},
-/obj/machinery/light_switch{
-	pixel_x = -25;
-	pixel_y = 5
-	},
-/obj/machinery/photocopier{
-	pixel_y = 3
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hop)
 "gPy" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -30269,20 +30262,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"iHg" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/machinery/button/door{
-	desc = "A remote control-switch for secure storage.";
-	id = "Secure Storage";
-	name = "Engineering Secure Storage";
-	pixel_x = -24;
-	pixel_y = -23;
-	req_access_txt = "11"
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "iHs" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -37624,6 +37603,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/captain/private)
+"kGC" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/button/door{
+	desc = "A remote control-switch for secure storage.";
+	id = "Secure Storage";
+	name = "Engineering Secure Storage";
+	pixel_x = -24;
+	pixel_y = -23;
+	req_access_txt = "11"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "kGG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -47546,19 +47539,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/teleporter)
-"ntO" = (
-/obj/structure/table/wood,
-/obj/item/book/granter/spell/smoke/lesser{
-	name = "mysterious old book of cloud-chasing"
-	},
-/obj/item/reagent_containers/food/drinks/bottle/holywater{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/organ/heart,
-/obj/item/soulstone/anybody/chaplain,
-/turf/open/floor/plasteel/cult,
-/area/chapel/office)
 "nua" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -54322,6 +54302,23 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"pqL" = (
+/obj/machinery/button/door{
+	id = "hop";
+	name = "Privacy Shutters Control";
+	pixel_x = -24;
+	pixel_y = -6;
+	req_access_txt = "28"
+	},
+/obj/machinery/light_switch{
+	pixel_x = -25;
+	pixel_y = 5
+	},
+/obj/machinery/photocopier{
+	pixel_y = 3
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hop)
 "pqN" = (
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
@@ -68302,14 +68299,6 @@
 	dir = 8
 	},
 /area/medical/medbay/central)
-"tnc" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/structure/filingcabinet,
-/turf/open/floor/wood,
-/area/lawoffice)
 "tnm" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -75491,6 +75480,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/hos)
+"vtk" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/wood,
+/area/lawoffice)
 "vtq" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/snow/icemoon,
@@ -108512,7 +108509,7 @@ lxx
 kyD
 rsQ
 psE
-ntO
+gNH
 psE
 omp
 hav
@@ -109483,7 +109480,7 @@ sYq
 xvm
 hwv
 rDB
-gPm
+pqL
 hfk
 aDR
 sYq
@@ -117944,7 +117941,7 @@ nAu
 vWK
 bMB
 wfz
-tnc
+vtk
 jfC
 lOi
 kLj
@@ -126424,7 +126421,7 @@ rQP
 rQP
 kdt
 qTk
-iHg
+kGC
 ddP
 rQP
 xAm
