@@ -47,7 +47,7 @@
 	health = 60
 	spacewalk = TRUE
 	ranged = TRUE
-	loot = list(/obj/item/organ/regenerative_core/dryad,/obj/item/stack/sheet/bone = 3)
+	loot = list(/obj/item/organ/regenerative_core/dryad)
 	ranged_cooldown_time = 4 SECONDS
 	retreat_distance = 1
 	minimum_distance = 3
@@ -86,7 +86,7 @@
 	health = 120
 	spacewalk = TRUE
 	ranged = TRUE
-	loot = list (/obj/item/organ/regenerative_core/dryad/corrupted,/obj/item/stack/sheet/bone = 3)
+	loot = list (/obj/item/organ/regenerative_core/dryad/corrupted)
 	ranged_cooldown_time = 2 SECONDS
 	retreat_distance = 1
 	minimum_distance = 3
@@ -349,7 +349,7 @@
 	speak_chance = 0
 	taunt_chance = 0
 	turns_per_move = 0
-	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/stack/sheet/sinew = 2)
+	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 1, /obj/item/stack/sheet/sinew = 2)
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
@@ -462,7 +462,7 @@
 	attack_sound = 'sound/voice/moth/scream_moth.ogg'
 	deathmessage = "rolls over, falling to the ground."
 	gold_core_spawnable = HOSTILE_SPAWN
-	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/stack/sheet/sinew = 2)
+	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 2, /obj/item/stack/sheet/sinew = 1)
 	loot = list()
 	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket
 	var/charging = FALSE

@@ -161,12 +161,12 @@
 	javelin_item_state = "kinetic_javelin_blue"
 
 /obj/item/kinetic_javelin_core/blue/get_effect_description()
-	return "When charged, the next successfuly hit against an enemy unleashes a massive surge of electricity, targeting all exotic lifeforms." 
+	return "When charged, the next successful hit against an enemy unleashes a surge of electricity that targets all nearby exotic lifeforms." 
 
 /obj/item/kinetic_javelin_core/blue/charged_effect(mob/living/simple_animal/hostile/victim, obj/item/kinetic_javelin/javelin,mob/user)
 	for(var/mob/living/simple_animal/hostile/H in range(4,victim) - victim)
 		victim.Beam(H,"lightning[rand(1,12)]",time = 15)
-		H.adjustFireLoss(35)
+		H.adjustFireLoss(15)
 
 /obj/item/kinetic_javelin_core/red 
 	name = "Enraged Kinetic Javelin Core"
