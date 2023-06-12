@@ -491,7 +491,7 @@
 	return ret
 
 // Living mobs use can_inject() to make sure that the mob is not syringe-proof in general.
-/mob/living/proc/can_inject()
+/mob/living/proc/can_inject(mob/user, error_msg, target_zone, penetrate_thick = 0)
 	return TRUE
 
 /mob/living/is_injectable(mob/user, allowmobs = TRUE)
@@ -967,7 +967,7 @@
 	return 1
 
 //used in datum/reagents/reaction() proc
-/mob/living/proc/get_permeability(list/target_zones)
+/mob/living/proc/get_permeability(def_zone, linear = FALSE)
 	return 1
 
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering

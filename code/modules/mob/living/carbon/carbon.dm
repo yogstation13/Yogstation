@@ -745,9 +745,13 @@
 		. += INFINITY
 
 // permeability: now slightly more sane and probably functional!
-/mob/living/carbon/get_permeability(def_zone)
+/mob/living/carbon/get_permeability(def_zone, linear = FALSE)
 	if(def_zone)
-		var/permeability = 1 / (2**(getarmor(def_zone, BIO) / 15))
+		if(!can_inject(target_zone = def_zone))
+			return 0
+		if(getarmor(def_zone, BIO) >= 100)
+			return 0
+		var/permeability = linear ? (100 - getarmor(def_zone, BIO)) / 100 : 1 / (2**(getarmor(def_zone, BIO) / 15))
 		if(permeability <= 0.01)
 			return 0
 		return permeability
@@ -756,9 +760,11 @@
 	var/total_permeability = 0
 	for(var/obj/item/bodypart/BP in bodyparts)
 		total_bodyparts++
+		if(!can_inject(target_zone = BP.body_zone))
+			continue
 		var/protection = getarmor(BP.body_zone, BIO)
 		if(protection < 100)
-			total_permeability += 1 / (2**(protection / 15)) // every 15 bio armor reduces permeability by half (15 is 0.5, 30 is 0.25, 60 is 0.0625, etc)
+			total_permeability += linear ? (100 - protection) / 100 : 1 / (2**(protection / 15)) // every 15 bio armor reduces permeability by half (15 is 0.5, 30 is 0.25, 60 is 0.0625, etc) unless otherwise specified to use a linear calculation
 
 	var/permeability = clamp(total_permeability / total_bodyparts, 0, 1)
 	if(permeability <= 0.01)
