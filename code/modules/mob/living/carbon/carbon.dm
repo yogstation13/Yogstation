@@ -747,7 +747,7 @@
 // permeability: now slightly more sane and probably functional!
 /mob/living/carbon/get_permeability(def_zone, linear = FALSE)
 	if(def_zone)
-		if(!can_inject(def_zone))
+		if(!can_inject(target_zone = def_zone))
 			return 0
 		if(getarmor(def_zone, BIO) >= 100)
 			return 0
@@ -760,7 +760,7 @@
 	var/total_permeability = 0
 	for(var/obj/item/bodypart/BP in bodyparts)
 		total_bodyparts++
-		if(!can_inject(BP.body_zone))
+		if(!can_inject(target_zone = BP.body_zone))
 			continue
 		var/protection = getarmor(BP.body_zone, BIO)
 		if(protection < 100)
