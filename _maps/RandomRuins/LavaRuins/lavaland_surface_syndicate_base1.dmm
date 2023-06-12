@@ -485,20 +485,17 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
 "em" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/wood{
+/obj/effect/turf_decal/siding/green{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/item/toy/cards/deck/syndicate{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel,
-/area/ruin/powered/syndicate_lava_base/bar)
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/syndicate_lava_base/virology)
 "eo" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/effect/turf_decal/siding/yellow{
@@ -966,25 +963,18 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "gf" = (
-/obj/effect/turf_decal/siding/green{
-	dir = 5
+/obj/machinery/door/poddoor/preopen{
+	id = "lavalandsyndi_telecomms"
 	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 26
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
 	},
-/obj/structure/table/reinforced,
-/obj/structure/reagent_dispensers/virusfood{
-	pixel_y = 28
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 6
 	},
-/obj/item/healthanalyzer{
-	pixel_x = -4;
-	pixel_y = -2
-	},
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/glasses/hud/health,
-/turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/telecomms)
 "gg" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -1029,17 +1019,21 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
 "gj" = (
-/obj/effect/turf_decal/siding/green{
-	dir = 4
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing{
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+/obj/structure/disposaloutlet{
 	dir = 8
 	},
-/turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/lavaland/surface/outdoors)
 "gp" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 8
@@ -1145,11 +1139,12 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "gH" = (
-/obj/effect/turf_decal/siding/green{
-	dir = 4
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
-/turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/ruin/powered/syndicate_lava_base/dormitories)
 "gI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -1516,26 +1511,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
-"hH" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 8
-	},
-/obj/structure/closet/crate/hydroponics{
-	name = "janitorial crate";
-	desc = "All you need to destroy dirt."
-	},
-/obj/item/soap/syndie,
-/obj/item/soap/syndie,
-/obj/item/soap/syndie,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/mop/advanced{
-	name = "syndicate mop";
-	desc = "A Syndicate-brand advanced mop."
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/syndicate_lava_base/cargo)
 "hJ" = (
 /obj/machinery/power/apc/auto_name/east{
 	req_access = list(150)
@@ -2167,18 +2142,25 @@
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "jw" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "lavalandsyndi_telecomms"
+/obj/effect/turf_decal/siding/green{
+	dir = 5
 	},
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/firedoor/window{
-	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
 	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 6
+/obj/structure/table/reinforced,
+/obj/structure/reagent_dispensers/virusfood{
+	pixel_y = 28
 	},
-/turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/telecomms)
+/obj/item/healthanalyzer{
+	pixel_x = -4;
+	pixel_y = -2
+	},
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/glasses/hud/health,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/syndicate_lava_base/virology)
 "jy" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/bar)
@@ -2676,21 +2658,20 @@
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/testlab)
 "kx" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/railing{
+/obj/effect/turf_decal/siding/green{
 	dir = 6
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
+/obj/structure/table/reinforced,
+/obj/item/clothing/glasses/science,
+/obj/item/storage/box/beakers{
+	pixel_x = 6;
+	pixel_y = 9
 	},
-/obj/structure/disposaloutlet{
-	dir = 8
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/turf/open/floor/plating/lavaland_baseturf,
-/area/lavaland/surface/outdoors)
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/syringe/antiviral,
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/syndicate_lava_base/virology)
 "ky" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 8
@@ -2826,6 +2807,10 @@
 	},
 /obj/machinery/airalarm/syndicate{
 	pixel_y = 24
+	},
+/obj/structure/table/wood,
+/obj/machinery/computer/security/wooden_tv{
+	pixel_y = 7
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
@@ -3028,20 +3013,13 @@
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "lN" = (
-/obj/effect/turf_decal/siding/green{
-	dir = 6
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
 	},
-/obj/structure/table/reinforced,
-/obj/item/clothing/glasses/science,
-/obj/item/storage/box/beakers{
-	pixel_x = 6;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/syringe/antiviral,
-/turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/virology)
+/obj/item/toy/cards/deck/syndicate,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/powered/syndicate_lava_base/bar)
 "lO" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/engineering)
@@ -4097,6 +4075,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
+"tp" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/item/toy/cards/deck/syndicate{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel,
+/area/ruin/powered/syndicate_lava_base/bar)
 "ts" = (
 /obj/docking_port/stationary{
 	dir = 2;
@@ -4327,13 +4320,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
-"wN" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/dormitories)
 "xd" = (
 /obj/item/paper{
 	info = "Only heat meth in here if you want to kill everyone in the base, yourself included, or are really good at making meth.";
@@ -4631,6 +4617,12 @@
 /obj/structure/flora/ash/cacti,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"CI" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/powered/syndicate_lava_base/virology)
 "CN" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -4701,6 +4693,13 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
+"Ed" = (
+/mob/living/carbon/monkey{
+	faction = list("neutral","Syndicate")
+	},
+/obj/effect/baseturf_helper/asteroid/basalt,
+/turf/open/floor/grass,
+/area/ruin/powered/syndicate_lava_base/virology)
 "Eq" = (
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 8
@@ -5111,13 +5110,6 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
-"JP" = (
-/mob/living/carbon/monkey{
-	faction = list("neutral","Syndicate")
-	},
-/obj/effect/baseturf_helper/asteroid/basalt,
-/turf/open/floor/grass,
-/area/ruin/powered/syndicate_lava_base/virology)
 "JV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/machinery/firealarm{
@@ -5706,13 +5698,16 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
 "Tx" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/preopen{
+	id = "lavalandsyndi_virology"
 	},
-/obj/item/toy/cards/deck/syndicate,
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/ruin/powered/syndicate_lava_base/bar)
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/virology)
 "TA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -5983,16 +5978,25 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
 "Zr" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/poddoor/preopen{
-	id = "lavalandsyndi_virology"
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
 	},
-/obj/machinery/door/firedoor/window{
-	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+/obj/structure/closet/crate/hydroponics{
+	name = "janitorial crate";
+	desc = "All you need to destroy dirt."
 	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/virology)
+/obj/item/soap/syndie,
+/obj/item/soap/syndie,
+/obj/item/soap/syndie,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/mop/advanced{
+	name = "syndicate mop";
+	desc = "A Syndicate-brand advanced mop."
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/cargo)
 "Zw" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
@@ -6543,8 +6547,8 @@ tZ
 dM
 kp
 ks
-Zr
-kx
+Tx
+gj
 mc
 mc
 mc
@@ -6649,10 +6653,10 @@ hs
 QQ
 vu
 eh
-gf
-gH
-gj
-lN
+jw
+CI
+em
+kx
 eh
 tS
 jy
@@ -6815,12 +6819,12 @@ Bd
 VA
 eh
 og
-JP
+Ed
 RE
 hY
 eh
 je
-Tx
+lN
 mw
 Kp
 Kn
@@ -7020,7 +7024,7 @@ Lg
 ap
 Lg
 Eq
-hH
+Zr
 jT
 aq
 Fv
@@ -7042,7 +7046,7 @@ jy
 jL
 jY
 jk
-em
+tp
 lg
 oV
 lV
@@ -7425,7 +7429,7 @@ hd
 da
 fD
 mB
-wN
+gH
 lF
 kO
 ll
@@ -8024,7 +8028,7 @@ gS
 hT
 fO
 mn
-jw
+gf
 jc
 mn
 jv
