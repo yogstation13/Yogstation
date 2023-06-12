@@ -423,8 +423,7 @@
 		Paralyze(6 SECONDS)
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if(on_fire)
-		to_chat(M, span_warning("You can't put [p_them()] out with just your bare hands!"))
+	if(try_extinguish(M))
 		return
 
 	if(!(mobility_flags & MOBILITY_STAND))
@@ -482,6 +481,16 @@
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
+/mob/living/carbon/proc/try_extinguish(mob/living/carbon/human/H)
+	if(!on_fire)
+		return FALSE
+	if(istype(H) && H.gloves && istype(H.gloves, /obj/item/clothing/gloves/atmos))
+		extinguish_mob()
+		to_chat(H, span_notice("You extinguish [src]!"))
+		to_chat(src, span_userdanger("[H] extinguishes you!"))
+		return TRUE
+	to_chat(H, span_warning("You can't put [p_them()] out with just your bare hands!"))
+	return TRUE
 
 /mob/living/carbon/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0)
 	if(NOFLASH in dna?.species?.species_traits)

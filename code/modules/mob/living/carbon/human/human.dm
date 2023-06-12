@@ -985,7 +985,10 @@
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
 	var/carrydelay = 50 //if you have latex you are faster at grabbing
 	var/skills_space = "" // Changes depending on glove type
-	if(HAS_TRAIT(src, TRAIT_QUICKER_CARRY))
+	if(HAS_TRAIT(src, TRAIT_QUICKEST_CARRY))
+		carrydelay = 25
+		skills_space = "masterfully"
+	else if(HAS_TRAIT(src, TRAIT_QUICKER_CARRY))
 		carrydelay = 30
 		skills_space = "expertly"
 	else if(HAS_TRAIT(src, TRAIT_QUICK_CARRY))

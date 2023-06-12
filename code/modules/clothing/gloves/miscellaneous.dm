@@ -268,3 +268,31 @@
 		return
 	A.attackby(src, user)
 	return COMPONENT_NO_ATTACK_OBJ
+
+/obj/item/clothing/gloves/atmos
+	name = "firefighter gloves"
+	desc = "Heavy duty gloves for firefighters. These are thick, non-flammable and let you carry people faster."
+	icon_state = "atmos"
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	siemens_coefficient = 0.2
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 90, RAD = 0, FIRE = 100, ACID = 90)
+	clothing_flags = THICKMATERIAL
+
+/obj/item/clothing/gloves/atmos/equipped(mob/user, slot)
+	..()
+	if(slot == SLOT_GLOVES)
+		ADD_TRAIT(user, TRAIT_QUICKEST_CARRY, CLOTHING_TRAIT)
+
+/obj/item/clothing/gloves/color/black/goliath/dropped(mob/user)
+	..()
+	REMOVE_TRAIT(user, TRAIT_QUICKEST_CARRY, CLOTHING_TRAIT)
+
+/obj/item/clothing/gloves/atmos/ce
+	name = "advanced insulated gloves"
+	desc = "These gloves provide excellent thermal and electrical insulation."
+	icon_state = "ce_insuls"
+	siemens_coefficient = 0
