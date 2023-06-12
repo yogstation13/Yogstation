@@ -38,7 +38,7 @@
 
 /obj/item/clothing/head/helmet/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_HEAD && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_HEAD && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] head!"), span_warning("The helmet flickers off your head, leaving only nausea!"))
@@ -104,7 +104,7 @@
 
 /obj/item/clothing/suit/armor/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_WEAR_SUIT && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_OCLOTHING && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] body!"), span_warning("The cuirass flickers off your body, leaving only nausea!"))
@@ -163,7 +163,7 @@
 
 /obj/item/clothing/gloves/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_GLOVES && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_GLOVES && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] arms!"), span_warning("The gauntlets flicker off your arms, leaving only nausea!"))
@@ -213,7 +213,7 @@
 
 /obj/item/clothing/shoes/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_SHOES && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_FEET && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] feet!"), span_warning("The treads flicker off your feet, leaving only nausea!"))

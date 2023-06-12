@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	if(ears)
 		if(H.ears)
 			qdel(H.ears)
-		H.equip_to_slot_or_del(new ears(H),SLOT_EARS)
+		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
 
 	var/obj/item/card/id/W = H.get_idcard()
 	W.access |= dep_access
@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/engineer/gloved
 	name = "Station Engineer (Gloves)"
@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	suit = /obj/item/clothing/suit/space/hardsuit/engine
 	suit_store = /obj/item/tank/internals/oxygen
 	head = null
-	internals_slot = SLOT_SUIT_STORE
+	internals_slot = ITEM_SLOT_SUITSTORE
 
 /obj/item/radio/headset/headset_eng/department/Initialize()
 	. = ..()

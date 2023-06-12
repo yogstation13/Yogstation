@@ -220,7 +220,7 @@
 	. = ..()
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		if(C.get_item_by_slot(SLOT_NECK) == src)
+		if(C.get_item_by_slot(ITEM_SLOT_NECK) == src)
 			to_chat(user, span_warning("You can't untie [src] while wearing it!"))
 			return
 		if(user.is_holding(src))
@@ -413,7 +413,7 @@
 	. = ..()
 	
 /obj/item/clothing/neck/cloak/ranger/proc/update_signals(user)
-	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(SLOT_NECK) == src)
+	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(ITEM_SLOT_NECK) == src)
 		return TRUE
 
 	set_cloak(0)
@@ -422,7 +422,7 @@
 		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
 
 	var/mob/new_user = loc
-	if(istype(new_user) && new_user.get_item_by_slot(SLOT_NECK) == src)
+	if(istype(new_user) && new_user.get_item_by_slot(ITEM_SLOT_NECK) == src)
 		current_user = new_user
 		RegisterSignal(current_user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 		RegisterSignal(current_user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_projectile_hit))
@@ -440,7 +440,7 @@
 	if(!update_signals())
 		return
 	var/mob/user = loc
-	if(!istype(user) || !user.get_item_by_slot(SLOT_NECK) == src)
+	if(!istype(user) || !user.get_item_by_slot(ITEM_SLOT_NECK) == src)
 		
 		return
 	set_cloak(cloak + (cloak_charge_rate * delta_time))
