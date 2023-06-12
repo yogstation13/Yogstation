@@ -77,6 +77,21 @@
 /obj/effect/decal/cleanable/trail_holder/can_bloodcrawl_in()
 	return TRUE
 
+/obj/effect/decal/cleanable/trail_holder/proc/Etherealify()
+	update_icon()
+	light_power = 1
+	light_range = 2
+	light_color = "#eef442"
+	update_light()
+	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
+	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
+
+/obj/effect/decal/cleanable/trail_holder/proc/Fade()
+	name = "faded \"blood\""
+	light_power = 0
+	light_range = 0
+	update_light()
+
 /obj/effect/decal/cleanable/blood/gibs
 	name = "gibs"
 	desc = "They look bloody and gruesome."
