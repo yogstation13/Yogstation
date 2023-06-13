@@ -11901,15 +11901,6 @@
 /obj/machinery/rnd/experimentor,
 /turf/open/floor/engine,
 /area/science/explab)
-"bAS" = (
-/obj/structure/chair,
-/obj/effect/landmark/start/yogs/clerk,
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/tile/green/opposingcorners{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "bAV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -18571,26 +18562,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"dop" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/tile/green/opposingcorners{
-	dir = 1
-	},
-/obj/machinery/door/window/southleft{
-	req_access_txt = "36"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/poddoor/shutters{
-	id = "giftshop"
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "doM" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -19139,15 +19110,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"dAE" = (
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/tile/green/opposingcorners{
-	dir = 1
-	},
-/obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plasteel,
-/area/clerk)
 "dAH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -23553,16 +23515,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"fjo" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/tile/green/opposingcorners{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "fju" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 1
@@ -24117,19 +24069,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"fub" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -26
-	},
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/tile/green/opposingcorners{
-	dir = 1
-	},
-/obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plasteel,
-/area/clerk)
 "fuj" = (
 /obj/machinery/camera{
 	c_tag = "Arrivals Escape Pod 1";
@@ -25876,6 +25815,21 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/secondarydatacore)
+"gdM" = (
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/table/wood,
+/turf/open/floor/plasteel,
+/area/clerk)
 "gdU" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -27598,20 +27552,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"gSx" = (
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/tile/green/opposingcorners{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters{
-	id = "giftshop"
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "gSB" = (
 /obj/effect/turf_decal/pool{
 	dir = 1
@@ -35528,23 +35468,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/foyer)
-"jZg" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/tile/green/opposingcorners{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters{
-	id = "giftshop"
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "jZi" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/incinerator_input{
 	dir = 8
@@ -36195,6 +36118,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"kox" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "giftshop"
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "koy" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
@@ -43821,6 +43761,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/maintenance/department/tcoms)
+"nsg" = (
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "giftshop"
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "nsk" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Office";
@@ -44198,6 +44152,20 @@
 	},
 /turf/open/space/basic,
 /area/ai_monitored/storage/satellite)
+"nzT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	dir = 1
+	},
+/obj/effect/landmark/start/yogs/clerk,
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "nzW" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "garbage";
@@ -45577,6 +45545,15 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"ofd" = (
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	dir = 1
+	},
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel,
+/area/clerk)
 "ofy" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -49446,6 +49423,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
+"pFx" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	dir = 1
+	},
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel,
+/area/clerk)
 "pFA" = (
 /obj/machinery/atmospherics/components/binary/valve{
 	dir = 8;
@@ -53704,21 +53694,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
-"rwA" = (
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/tile/green/opposingcorners{
-	dir = 1
-	},
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/structure/table/wood,
-/turf/open/floor/plasteel,
-/area/clerk)
 "rwP" = (
 /obj/machinery/camera{
 	c_tag = "Central Hallway North-East"
@@ -55726,6 +55701,20 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
+"smf" = (
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	dir = 1
+	},
+/obj/machinery/door/window/southleft{
+	req_access_txt = "36"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/poddoor/shutters{
+	id = "giftshop"
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "smk" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -64102,20 +64091,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
-"vIa" = (
-/obj/machinery/paystand/register{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/shutters{
-	id = "giftshop"
-	},
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/yellow/opposingcorners,
-/obj/effect/turf_decal/tile/green/opposingcorners{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/clerk)
 "vIb" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
@@ -68175,6 +68150,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"xtL" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "giftshop"
+	},
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "xtP" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/effect/turf_decal/siding/thinplating{
@@ -70165,6 +70151,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
+"yiE" = (
+/obj/effect/turf_decal/tile/yellow/opposingcorners,
+/obj/effect/turf_decal/tile/green/opposingcorners{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "giftshop"
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/paystand/register{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/clerk)
 "yiM" = (
 /obj/machinery/door/airlock/research{
 	name = "Xenobiology Lab";
@@ -103078,10 +103081,10 @@ bur
 nkw
 ayG
 mCj
-fub
-dAE
-dAE
-rwA
+pFx
+ofd
+ofd
+gdM
 dDt
 csF
 vDS
@@ -103338,7 +103341,7 @@ omI
 jtT
 cSk
 cSk
-fjo
+nzT
 uTy
 csF
 vDS
@@ -103592,11 +103595,11 @@ bur
 prw
 bFt
 mzx
-bAS
-vIa
-gSx
-jZg
-gSx
+cSk
+xtL
+yiE
+kox
+nsg
 csF
 qTf
 aJq
@@ -103850,7 +103853,7 @@ qhJ
 ayG
 tup
 sCm
-dop
+smf
 cSk
 eyF
 ePe
