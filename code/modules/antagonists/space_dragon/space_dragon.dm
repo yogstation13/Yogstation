@@ -36,7 +36,7 @@
 	to_chat(owner, span_boldwarning(
 		"You have five minutes to find a safe location to place down the first rift. \
 		If you take longer than five minutes to place a rift, you will be returned from whence you came. \
-		Use ALT-CLICK to wing f	lap around you, throwing anything away but making you tired, requiring careful usage.")
+		Use ALT-CLICK to wing flap around you, throwing anything away but making you tired, requiring careful usage.")
 		)
 	owner.announce_objectives()
 	SEND_SOUND(owner.current, sound('sound/magic/demon_attack1.ogg'))
