@@ -109,6 +109,7 @@
 	button_icon_state = "power_bomb"
 	additional_text = "Additionally disables lightframes in range and confuses nearby mortals."
 	purchase_flags = LASOMBRA_CAN_BUY
+	ascended_power = null
 
 /datum/action/cooldown/bloodsucker/targeted/haste/shadow/on_move()
 	. = ..()

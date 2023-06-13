@@ -87,6 +87,7 @@
 	purchase_flags = LASOMBRA_CAN_BUY
 	constant_bloodcost = 0.3
 	runbound = FALSE
+	ascended_power = null
 
 /obj/item/clothing/neck/yogs/sith_cloak/cloak
 	name = "cloak of shadows"

@@ -133,6 +133,7 @@
 	button_icon_state = "power_glare"
 	additional_text = "Additionally makes the stun downtime based on distance, being instant when adjacent."
 	purchase_flags = LASOMBRA_CAN_BUY
+	ascended_power = null
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/shadow/FireTargetedPower(atom/target_atom)
 	var/mob/living/target = target_atom

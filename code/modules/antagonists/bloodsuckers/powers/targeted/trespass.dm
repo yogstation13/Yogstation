@@ -124,3 +124,4 @@
 	additional_text = "Additionally allows you pass through walls, albeit at a slower rate."
 	purchase_flags = LASOMBRA_CAN_BUY
 	wallbound = FALSE
+	ascended_power = null
