@@ -5738,6 +5738,10 @@
 /obj/effect/turf_decal/tile/white{
 	dir = 8
 	},
+/obj/structure/table,
+/obj/item/twohanded/required/kirbyplants/photosynthetic{
+	pixel_y = 10
+	},
 /turf/open/floor/black,
 /area/ai_monitored/turret_protected/aisat_interior)
 "aVi" = (
@@ -46325,10 +46329,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/structure/table/reinforced,
-/obj/item/twohanded/required/kirbyplants/photosynthetic{
-	pixel_y = 10
-	},
+/obj/machinery/status_display/ai_core,
 /turf/open/floor/circuit/green,
 /area/ai_monitored/turret_protected/ai_upload)
 "ouT" = (
@@ -73948,7 +73949,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/status_display/ai_core,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},

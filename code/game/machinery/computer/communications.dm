@@ -136,10 +136,8 @@
 			SSshuttle.requestEvac(usr, reason)
 			post_status("shuttle")
 		if ("changeSecurityLevel")
-			if (!authenticated_as_silicon_or_captain(usr))
-				return
-
 			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
+				to_chat(usr, span_warning("The system is not able to change the security alert level more than once per minute, please wait."))
 				return
 
 			// Check if they have
@@ -150,7 +148,7 @@
 					to_chat(usr, span_warning("You need to swipe your ID!"))
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
-				if (!(ACCESS_CAPTAIN in id_card.access))
+				if (!(ACCESS_HEADS in id_card.access))
 					to_chat(usr, span_warning("You are not authorized to do this!"))
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
@@ -344,8 +342,6 @@
 			state = STATE_MAIN
 			playsound(src, 'sound/machines/terminal_on.ogg', 50, FALSE)
 		if ("toggleEmergencyAccess")
-			if (!authenticated_as_silicon_or_captain(usr))
-				return
 			if (GLOB.emergency_access)
 				if (!COOLDOWN_FINISHED(src, important_action_cooldown))
 					to_chat(usr, span_alert("Maintenance airlock communications relays recharging. Please stand by."))
@@ -404,8 +400,8 @@
 				data["canRecallShuttles"] = !issilicon(user)
 				data["canRequestNuke"] = FALSE
 				data["canSendToSectors"] = FALSE
-				data["canSetAlertLevel"] = FALSE
-				data["canToggleEmergencyAccess"] = FALSE
+				data["canSetAlertLevel"] = TRUE
+				data["canToggleEmergencyAccess"] = TRUE
 				data["importantActionReady"] = COOLDOWN_FINISHED(src, important_action_cooldown)
 				data["shuttleCalled"] = FALSE
 				data["shuttleLastCalled"] = FALSE

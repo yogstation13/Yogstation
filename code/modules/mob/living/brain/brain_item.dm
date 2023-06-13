@@ -262,7 +262,7 @@
 	if(prob(25))
 		return
 
-	var/obj/item/clothing/head/hat = owner.get_item_by_slot(SLOT_HEAD)
+	var/obj/item/clothing/head/hat = owner.get_item_by_slot(ITEM_SLOT_HEAD)
 	if(hat && istype(hat, /obj/item/clothing/head/foilhat))
 		return
 

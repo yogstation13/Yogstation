@@ -22,6 +22,7 @@
 	name = "Healium crystal"
 	desc = "A crystal made from the Healium gas, it's cold to the touch."
 	icon_state = "healium_crystal"
+	grind_results = list(/datum/reagent/healium = 20)
 	///Amount of stamina damage mobs will take if in range
 	var/stamina_damage = 30
 	///Range of the grenade that will cool down and affect mobs

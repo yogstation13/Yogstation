@@ -331,7 +331,7 @@
 /obj/item/storage/magspear_quiver
 	name = "quiver"
 	desc = "A quiver for holding magspears."
-	slot_flags = ITEM_SLOT_POCKET
+	slot_flags = ITEM_SLOT_POCKETS
 	icon_state = "quiver"
 	item_state = "quiver"
 

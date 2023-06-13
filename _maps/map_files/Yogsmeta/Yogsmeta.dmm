@@ -11136,6 +11136,7 @@
 "aDm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/holopad,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
 "aDn" = (
@@ -11657,7 +11658,7 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aEm" = (
-/obj/machinery/holopad,
+/obj/machinery/status_display/ai_core,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
@@ -13734,18 +13735,20 @@
 /obj/machinery/newscaster{
 	pixel_x = -31
 	},
+/obj/item/pen/red,
 /turf/open/floor/wood,
 /area/lawoffice)
 "aIV" = (
 /obj/structure/table/wood,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/pen/red,
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching Prison Wing holding areas.";
 	name = "Prison Monitor";
 	network = list("prison");
 	pixel_y = 30
+	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Law Office";
+	name = "Law Office Fax Machine"
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -16132,7 +16135,6 @@
 	},
 /obj/item/pen,
 /obj/item/taperecorder,
-/obj/item/cartridge/lawyer,
 /turf/open/floor/wood,
 /area/lawoffice)
 "aOo" = (
@@ -56990,6 +56992,8 @@
 /obj/item/folder/red,
 /obj/item/folder/red,
 /obj/item/folder/red,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/open/floor/wood,
 /area/lawoffice)
 "itu" = (
@@ -67387,7 +67391,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
-/obj/machinery/status_display/ai_core,
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "oPx" = (
@@ -76424,7 +76427,8 @@
 "uqF" = (
 /obj/structure/table/glass,
 /obj/machinery/photocopier/faxmachine{
-	department = "Medical"
+	department = "Medical";
+	name = "Chief Medical Officer's Fax Machine"
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/cmo)

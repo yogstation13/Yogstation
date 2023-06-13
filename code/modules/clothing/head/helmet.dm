@@ -25,7 +25,7 @@
 	. = ..()
 	if(attached_light)
 		alight = new(src)
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_HEAD))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_HEAD))
 
 /obj/item/clothing/head/helmet/Destroy()
 	var/obj/item/flashlight/seclite/old_light = set_attached_light(null)
