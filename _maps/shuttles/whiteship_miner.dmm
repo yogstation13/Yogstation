@@ -128,6 +128,16 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
+"ei" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/oven,
+/turf/open/floor/plasteel/showroomfloor,
+/area/shuttle/abandoned)
 "fk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -253,6 +263,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/table,
 /turf/open/floor/carpet/black,
+/area/shuttle/abandoned)
+"kQ" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder{
+	pixel_y = 6
+	},
+/obj/item/storage/box/mixedcubes,
+/turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
 "lc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -501,6 +519,33 @@
 "tr" = (
 /turf/open/floor/plating/airless,
 /area/shuttle/abandoned)
+"ue" = (
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/reagent_containers/food/condiment/soymilk,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/item/reagent_containers/food/condiment/sugar,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/item/storage/box/fancy/egg_box{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/shuttle/abandoned)
 "uk" = (
 /obj/structure/table,
 /obj/item/megaphone,
@@ -567,30 +612,6 @@
 "vW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/shuttle/abandoned)
-"vZ" = (
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 6
-	},
-/obj/structure/table,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/soymilk,
-/obj/item/reagent_containers/food/condiment/soymilk,
-/obj/item/reagent_containers/food/condiment/sugar,
-/obj/item/reagent_containers/food/condiment/sugar,
-/obj/item/reagent_containers/food/condiment/sugar,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -688,6 +709,26 @@
 	pixel_y = 2
 	},
 /turf/open/floor/plasteel/shuttle,
+/area/shuttle/abandoned)
+"zF" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	layer = 5
+	},
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = 12
+	},
+/obj/item/kitchen/rollingpin,
+/obj/item/kitchen/knife,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
 "zG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1020,25 +1061,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/shuttle/abandoned)
-"Mw" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/storage/box/mixedcubes,
-/obj/item/storage/box/fancy/egg_box{
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 4
-	},
-/obj/item/kitchen/knife,
-/turf/open/floor/plasteel/showroomfloor,
-/area/shuttle/abandoned)
 "Mz" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -1366,21 +1388,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
-"Vc" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 5
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = 12
-	},
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/showroomfloor,
-/area/shuttle/abandoned)
 "Vy" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -1424,13 +1431,6 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/shuttle,
-/area/shuttle/abandoned)
-"VJ" = (
-/obj/structure/table,
-/obj/machinery/reagentgrinder{
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
 "VL" = (
 /obj/machinery/syndicatebomb/training{
@@ -1747,7 +1747,7 @@ lc
 Uk
 SD
 KJ
-VJ
+kQ
 EI
 "}
 (11,1,1) = {"
@@ -1762,7 +1762,7 @@ Zl
 EI
 EI
 EI
-Mw
+ei
 hU
 cH
 dN
@@ -1781,7 +1781,7 @@ ir
 EI
 Eq
 hU
-Vc
+zF
 dN
 "}
 (13,1,1) = {"
@@ -1798,7 +1798,7 @@ Fd
 EI
 HC
 zG
-vZ
+ue
 EI
 "}
 (14,1,1) = {"
