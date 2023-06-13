@@ -531,7 +531,7 @@
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 1, \
-		extra_surgeries = TRUE, \
+		op_computer_linkable = TRUE, \
 	)
 
 /obj/structure/table/optable/tablepush(mob/living/user, mob/living/pushed_mob)
