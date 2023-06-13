@@ -390,7 +390,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	var/w_class_on = WEIGHT_CLASS_BULKY
-	force_wielded = 30
+	force_wielded = 31
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
 	hitsound = "swing_hit"
@@ -574,6 +574,7 @@
 /obj/item/twohanded/dualsaber/makeshift
 	name = "makeshift double-bladed energy sword"
 	desc = "Two energy swords taped crudely together. 'at last we finally get some revenge' is scribbled on the side with crayon."
+	force_wielded = 27 //total of 30 to be equal to an esword, it's literally just two duct taped together
 
 /obj/item/twohanded/dualsaber/makeshift/IsReflect()//only 50% chance to reflect, so it still has the cool effect, but not 100% chance
 	if(prob(50))
