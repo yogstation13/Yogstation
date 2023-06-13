@@ -218,7 +218,7 @@
 
 /obj/item/organ/brain/process(delta_time)	//needs to run in life AND death
 	..()
-	if(!(owner && (owner.stat < DEAD || HAS_TRAIT(owner, TRAIT_PRESERVED_ORGANS))))
+	if(!((organ_flags & ORGAN_SYNTHETIC) || (owner && (owner.stat < DEAD || HAS_TRAIT(owner, TRAIT_PRESERVED_ORGANS)))))
 		decay_progress += delta_time
 	//if we're not more injured than before, return without gambling for a trauma
 	if(damage <= prev_damage)
