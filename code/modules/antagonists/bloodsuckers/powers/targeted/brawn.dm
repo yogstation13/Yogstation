@@ -16,6 +16,7 @@
 	target_range = 1
 	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/brawn/shadow
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/ActivatePower(trigger_flags)
 	// Did we break out of our handcuffs?
@@ -205,6 +206,7 @@
 	button_icon_state = "power_obliterate"
 	additional_text = "Additionally afflicts the target with a shadow curse while in darkness and disables any lights they may possess."
 	purchase_flags = LASOMBRA_CAN_BUY
+	ascended_power = null
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/shadow/FireTargetedPower(atom/target_atom)
 	var/mob/living/carbon/human/H = target_atom

@@ -1,7 +1,7 @@
 ///How much Blood it costs to live.
 #define BLOODSUCKER_PASSIVE_BLOOD_DRAIN 0.1
 
-/// Runs from COMSIG_LIVING_BIOLOGICAL_LIFE, handles Bloodsucker constant proccesses.
+/// Runs from COMSIG_LIVING_LIFE, handles Bloodsucker constant proccesses.
 /datum/antagonist/bloodsucker/proc/LifeTick(mob/living/source, seconds_per_tick, times_fired)
 	SIGNAL_HANDLER
 
@@ -130,8 +130,9 @@
 	/// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
 	if(amInCoffin && HAS_TRAIT(user, TRAIT_NODEATH))
-		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && my_clan?.get_clan() != CLAN_TOREADOR)
-			to_chat(user, span_warning("You will not heal while your Masquerade ability is active."))
+		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
+			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
+			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_MASQUERADE)
 			return
 		fireheal = min(user.getFireLoss_nonProsthetic(), actual_regen)
 		mult *= 8 // Increase multiplier if we're sleeping in a coffin.
@@ -207,12 +208,9 @@
 	// Step 2 NOTE: Giving passive organ regeneration will cause Torpor to spam /datum/client_colour/monochrome at the Bloodsucker, permanently making them colorblind!
 	for(var/obj/item/organ/organ as anything in bloodsuckeruser.internal_organs)
 		organ.setOrganDamage(0)
-	var/obj/item/organ/heart/current_heart = bloodsuckeruser.getorganslot(ORGAN_SLOT_HEART)
-	if(!istype(current_heart, /obj/item/organ/heart/vampheart) && !istype(current_heart, /obj/item/organ/heart/demon) && !istype(current_heart, /obj/item/organ/heart/cursed && !istype(current_heart, /obj/item/organ/heart/nightmare)))
-		qdel(current_heart)
-		var/obj/item/organ/heart/vampheart/vampiric_heart = new
-		vampiric_heart.Insert(owner.current)
-		vampiric_heart.Stop()
+	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
+		var/obj/item/organ/heart/current_heart = bloodsuckeruser.getorganslot(ORGAN_SLOT_HEART)
+		current_heart.beating = FALSE
 	var/obj/item/organ/eyes/current_eyes = bloodsuckeruser.getorganslot(ORGAN_SLOT_EYES)
 	if(current_eyes)
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, - 1)
@@ -419,9 +417,9 @@
 	var/total_burn = user.getFireLoss_nonProsthetic()
 	var/total_damage = total_brute + total_burn
 	if(total_burn >= 199)
-		return
+		return FALSE
 	if(SSsunlight.sunlight_active)
-		return
+		return FALSE
 	// You are in a Coffin, so instead we'll check TOTAL damage, here.
 	if(istype(user.loc, /obj/structure/closet/crate/coffin))
 		if(total_damage <= 10)
@@ -433,17 +431,14 @@
 /datum/antagonist/bloodsucker/proc/torpor_begin()
 	var/mob/living/carbon/human/bloodsucker = owner.current
 	to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
-	/// Force them to go to sleep
+	// Force them to go to sleep
 	REMOVE_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
-	/// Without this, you'll just keep dying while you recover.
-	ADD_TRAIT(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(owner.current, TRAIT_FAKEDEATH, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(owner.current, TRAIT_DEATHCOMA, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(owner.current, TRAIT_RESISTLOWPRESSURE, BLOODSUCKER_TRAIT)
+	// Without this, you'll just keep dying while you recover.
+	owner.current.add_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
 	bloodsucker.physiology.brute_mod *= 0
 	bloodsucker.physiology.burn_mod *= 0.75
 	owner.current.set_timed_status_effect(0 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
-	/// Disable ALL Powers
+	// Disable ALL Powers
 	DisableAllPowers()
 
 /datum/antagonist/bloodsucker/proc/torpor_end()
@@ -452,11 +447,9 @@
 	to_chat(owner.current, span_warning("You have recovered from Torpor."))
 	bloodsucker.physiology.brute_mod = initial(bloodsucker.physiology.brute_mod)
 	bloodsucker.physiology.burn_mod = initial(bloodsucker.physiology.brute_mod)
-	REMOVE_TRAIT(owner.current, TRAIT_RESISTLOWPRESSURE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(owner.current, TRAIT_DEATHCOMA, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(owner.current, TRAIT_FAKEDEATH, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(owner.current, TRAIT_NODEATH, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
+	owner.current.remove_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
+	if(!HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
+		ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
 	heal_vampire_organs()
 
 	SEND_SIGNAL(src, BLOODSUCKER_EXIT_TORPOR)

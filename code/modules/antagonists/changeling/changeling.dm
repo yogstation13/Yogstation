@@ -397,7 +397,7 @@
 	if(!isliving(mob_to_tweak))
 		return
 	handle_clown_mutation(mob_to_tweak, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
-	RegisterSignal(mob_to_tweak, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(on_life))
+	RegisterSignal(mob_to_tweak, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 	RegisterSignals(mob_to_tweak, list(COMSIG_MOB_MIDDLECLICKON, COMSIG_MOB_ALTCLICKON), PROC_REF(on_click_sting))
 	//Brains optional.
 	var/obj/item/organ/brain/our_ling_brain = mob_to_tweak.getorganslot(ORGAN_SLOT_BRAIN)
@@ -446,7 +446,7 @@
 	to_chat(owner.current, span_userdanger("You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!"))
 
 /**
- * Signal proc for [COMSIG_LIVING_BIOLOGICAL_LIFE].
+ * Signal proc for [COMSIG_LIVING_LIFE].
  * Handles regenerating chemicals on life ticks.
  */
 /datum/antagonist/changeling/proc/on_life(datum/source, delta_time, times_fired)

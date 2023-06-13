@@ -165,7 +165,7 @@
 		if(!hopping)
 			Hop()
 
-/mob/living/simple_animal/hostile/jungle/leaper/Life()
+/mob/living/simple_animal/hostile/jungle/leaper/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	update_icons()
 

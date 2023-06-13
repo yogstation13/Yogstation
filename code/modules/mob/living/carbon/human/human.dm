@@ -421,7 +421,7 @@
 							R = find_record("name", perpname, GLOB.data_core.security)
 							if(R)
 								if(href_list["status"])
-									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged", "Cancel")
+									var/setcriminal = tgui_input_list(usr, "Specify a new criminal status for this person.", "Security HUD", list(WANTED_NONE, WANTED_ARREST, WANTED_SEARCH, WANTED_PRISONER, WANTED_SUSPECT, WANTED_PAROLE, WANTED_DISCHARGED, "Cancel"))
 									if(setcriminal != "Cancel")
 										if(R)
 											if(H.canUseHUD())
@@ -572,13 +572,13 @@
 		var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.security)
 		if(R && R.fields["criminal"])
 			switch(R.fields["criminal"])
-				if("*Arrest*")
+				if(WANTED_ARREST)
 					threatcount += 5
-				if("Incarcerated")
+				if(WANTED_PRISONER)
 					threatcount += 2
-				if("Suspected")
+				if(WANTED_SUSPECT)
 					threatcount += 2
-				if("Paroled")
+				if(WANTED_PAROLE)
 					threatcount += 2
 
 	//Check for dresscode violations

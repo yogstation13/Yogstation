@@ -524,7 +524,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Im not sure what the heck this does, somethign to do with weather being able to set icon
   * states on areas?? where the heck would that even display?
   */
-/area/proc/update_icon()
+/area/update_icon()
 	var/weather_icon
 	for(var/V in SSweather.processing)
 		var/datum/weather/W = V

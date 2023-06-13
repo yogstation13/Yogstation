@@ -29,8 +29,6 @@
 
 /datum/action/cooldown/spell/erase_time/cast(mob/living/user)
 	. = ..()
-	if(!.)
-		return FALSE
 	if (!isturf(user.loc) || !isguardian(user))
 		return
 	var/list/immune = list(user)

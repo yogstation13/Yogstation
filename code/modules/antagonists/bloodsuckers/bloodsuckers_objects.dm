@@ -57,17 +57,6 @@
 		close_trap()
 
 //////////////////////
-//      HEART       //
-//////////////////////
-
-/datum/antagonist/bloodsucker/proc/RemoveVampOrgans()
-	var/obj/item/organ/heart/newheart = owner.current.getorganslot(ORGAN_SLOT_HEART)
-	if(newheart)
-		qdel(newheart)
-	newheart = new()
-	newheart.Insert(owner.current)
-
-//////////////////////
 //      STAKES      //
 //////////////////////
 

@@ -54,7 +54,7 @@
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic, "smolgenitor", I)
 	time_to_next_roar = world.time + 30 SECONDS
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Life()
+/mob/living/simple_animal/hostile/darkspawn_progenitor/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(time_to_next_roar + 10 SECONDS <= world.time) //gives time to roar manually if you like want to do that
 		roar()

@@ -251,7 +251,7 @@
 		else
 			to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
 		return
-	. = ..()
+	return ..()
 
 /obj/effect/reality_smash/attack_hand(mob/user, list/modifiers) // this is important
 	if(!IS_BLOODSUCKER(user)) //only bloodsucker will attack this with their hand
@@ -271,87 +271,83 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(!IS_BLOODSUCKER(user))
 		return ..()
+
 	if(!anchored)
 		return ..()
+
 	if(LAZYLEN(buckled_mobs))
 		do_sacrifice(buckled_mobs, user)
-	if(bloodsuckerdatum.my_clan?.control_type == BLOODSUCKER_CONTROL_SHADOWS)
-		if(bloodsuckerdatum.clanpoints)
-			var/list/upgradablepowers = list()
-			var/list/unupgradablepowers = list(/datum/action/cooldown/bloodsucker/feed, /datum/action/cooldown/bloodsucker/masquerade, /datum/action/cooldown/bloodsucker/veil)
-			for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.powers)
-				if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY)
-					upgradablepowers += power
-				if(is_type_in_list(power, unupgradablepowers))
-					upgradablepowers -= power
-			var/choice = tgui_input_list(usr, "What Power do you wish to ascend? This resets the powers level.", "Darkness Manager", upgradablepowers)
-			if(!choice)
-				return
-			if((locate(upgradablepowers[choice]) in bloodsuckerdatum.powers))
-				return
-			var/datum/action/cooldown/bloodsucker/granted = null
-			switch(choice)
-				if(/datum/action/cooldown/bloodsucker/targeted/brawn)
-					granted = new /datum/action/cooldown/bloodsucker/targeted/brawn/shadow
-				if(/datum/action/cooldown/bloodsucker/targeted/haste)
-					granted = new /datum/action/cooldown/bloodsucker/targeted/haste/shadow
-				if(/datum/action/cooldown/bloodsucker/fortitude)
-					granted = new /datum/action/cooldown/bloodsucker/fortitude/shadow // i hate this
-				if(/datum/action/cooldown/bloodsucker/targeted/mesmerize)
-					granted = new /datum/action/cooldown/bloodsucker/targeted/mesmerize/shadow
-				if(/datum/action/cooldown/bloodsucker/targeted/trespass)
-					granted = new /datum/action/cooldown/bloodsucker/targeted/trespass/shadow
-				if(/datum/action/cooldown/bloodsucker/targeted/lunge)
-					granted = new /datum/action/cooldown/bloodsucker/targeted/lunge/shadow
-				if(/datum/action/cooldown/bloodsucker/cloak/)
-					granted = new /datum/action/cooldown/bloodsucker/cloak/shadow
-			bloodsuckerdatum.BuyPower(granted)
-			var/datum/action/cooldown/bloodsucker/now_level_it_up = LAZYFIND(bloodsuckerdatum.powers, granted)
-			now_level_it_up.level_current = rand(3, 4)
-			qdel(choice)
-			to_chat(user, span_boldnotice("You have ascended [choice]!"))
-			bloodsuckerdatum.clanpoints--
+		return
+
+	if(bloodsuckerdatum.my_clan?.control_type != BLOODSUCKER_CONTROL_SHADOWS)
+		return ..()
+
+	if(bloodsuckerdatum.bloodsucker_level < 4)
+		to_chat(user, span_warning("Uncontent with your age, the resting place blocks its secrets. (You need to be rank 4)"))
+		return ..()
+
+	if(bloodsuckerdatum.clanpoints)
+		var/list/upgradablepowers = list()
+		var/list/unupgradablepowers = list(/datum/action/cooldown/bloodsucker/feed, /datum/action/cooldown/bloodsucker/masquerade, /datum/action/cooldown/bloodsucker/veil)
+		for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.powers)
+			if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY)
+				upgradablepowers += power
+			if(is_type_in_list(power, unupgradablepowers))
+				upgradablepowers -= power
+			if(initial(power.ascended_power) == null)
+				upgradablepowers -= power
+
+		var/datum/action/cooldown/bloodsucker/choice = tgui_input_list(user, "What Power do you wish to ascend?", "Darkness Manager", upgradablepowers)
+		if(!choice)
 			return
-		if(bloodsuckerdatum.bloodsucker_level >= 4)
-			if(!awoken) //don't want this to affect power upgrading if you make another one
-				to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
-				return
-			icon_state = initial(icon_state) + (awoken ? "_idle" : "_awaken")
-			update_icon()
-			var/rankspent
-			switch(bloodsuckerdatum.clanprogress)
-				if(0)
-					bloodsuckerdatum.clanprogress++
-					bloodsuckerdatum.clanpoints++
-					to_chat(user, span_notice("As you touch the [src] you feel the a slight abyssal pulse flow through you... You have gained a point!"))
-					return
-				if(1 to 3)
-					rankspent = 1
-				if(4 to 6)
-					rankspent = 2
-				if(7)
-					rankspent = 3
-				if(8 to INFINITY)
-					to_chat(user, span_notice("You have evolved all abilities possible."))
-					return
-			var/want_clantask = tgui_alert(user, "Do you want to spend a rank to gain a shadowpoint? This will cost [rankspent] ranks.", "Dark Manager", list("Yes", "No"))
-			if(want_clantask == "No" || QDELETED(src))
-				return
-			if(bloodsuckerdatum.bloodsucker_level_unspent < rankspent)
-				var/another_shot = tgui_alert(user, "It seems like you don't have enough ranks, spend 550 blood instead?", "Dark Manager", list("Yes", "No"))
-				if(another_shot == "No" || QDELETED(src))
-					return
-				var/mob/living/carbon/C = user
-				if(C.blood_volume < 550)
-					to_chat(user, span_danger("You don't have enough blood to gain a shadowpoint!"))
-					return
-				C.blood_volume -= 550
-			else
-				bloodsuckerdatum.bloodsucker_level_unspent -= rankspent
-			bloodsuckerdatum.clanpoints++
+		if((locate(upgradablepowers[choice]) in bloodsuckerdatum.powers))
+			return
+		var/datum/action/cooldown/bloodsucker/granted = new choice.ascended_power
+		bloodsuckerdatum.BuyPower(granted)
+		granted.level_current = rand(3, 4)
+		granted.UpdateDesc()
+		qdel(choice)
+		to_chat(user, span_boldnotice("You have ascended [choice]!"))
+		bloodsuckerdatum.clanpoints--
+		return
+
+	if(!awoken) //don't want this to affect power upgrading if you make another one
+		to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
+		return
+
+	icon_state = initial(icon_state) + (awoken ? "_idle" : "_awaken")
+	update_icon()
+	var/rankspent
+	switch(bloodsuckerdatum.clanprogress)
+		if(0)
 			bloodsuckerdatum.clanprogress++
+			bloodsuckerdatum.clanpoints++
+			to_chat(user, span_notice("As you touch the [src] you feel a slight pulse flow through you... You have gained a point!"))
 			return
-	return ..()
+		if(1 to 3)
+			rankspent = 1
+		if(4 to 6)
+			rankspent = 2
+		if(7)
+			rankspent = 3
+		if(8 to INFINITY)
+			to_chat(user, span_notice("You have evolved all abilities possible."))
+			return
+	var/want_clantask = tgui_alert(user, "Do you want to spend a rank to gain a shadowpoint? This will cost [rankspent] ranks.", "Dark Manager", list("Yes", "No"))
+	if(want_clantask == "No" || QDELETED(src))
+		return
+	if(bloodsuckerdatum.bloodsucker_level_unspent < rankspent)
+		var/another_shot = tgui_alert(user, "It seems like you don't have enough ranks, spend 550 blood instead?", "Dark Manager", list("Yes", "No"))
+		if(another_shot == "No" || QDELETED(src))
+			return
+		if(bloodsuckerdatum.bloodsucker_blood_volume < 550)
+			to_chat(user, span_danger("You don't have enough blood to gain a shadowpoint!"))
+			return
+		bloodsuckerdatum.AddBloodVolume(-550)
+	else
+		bloodsuckerdatum.bloodsucker_level_unspent -= rankspent
+	bloodsuckerdatum.clanpoints++
+	bloodsuckerdatum.clanprogress++
 
 /obj/structure/bloodsucker/bloodaltar/restingplace/proc/do_sacrifice(list/pig, mob/living/carbon/user)
 	var/mob/living/carbon/sacrifice = pick(pig)
@@ -367,7 +363,7 @@
 		return
 	playsound(get_turf(sacrifice), 'sound/weapons/slash.ogg', 50, TRUE, -1)
 	sacrifice.adjustBruteLoss(200)
-	balloon_alert(user, "sucess!")
+	balloon_alert(user, "success!")
 	new /obj/item/bloodsucker/abyssal_essence(get_turf(src))
 
 #define METALLIMIT 50
@@ -782,7 +778,7 @@
 		do_ritual(user, buckled_carbons)
 		return
 	if(vassaldatum && (vassaldatum in bloodsuckerdatum.vassals))
-		SEND_SIGNAL(src, BLOODSUCKER_PRE_MAKE_FAVORITE, bloodsuckerdatum, vassaldatum)
+		SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_PRE_MAKE_FAVORITE, vassaldatum)
 		return
 
 	// Not our Vassal, but Alive & We're a Bloodsucker, good to torture!
@@ -918,7 +914,7 @@
 	// Convert to Vassal!
 	bloodsuckerdatum.AddBloodVolume(-TORTURE_CONVERSION_COST)
 	if(bloodsuckerdatum.make_vassal(target))
-		SEND_SIGNAL(src, BLOODSUCKER_MADE_VASSAL, user, target)
+		SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_MADE_VASSAL, user, target)
 
 /obj/structure/bloodsucker/vassalrack/proc/do_torture(mob/living/user, mob/living/carbon/target, mult = 1)
 	// Fifteen seconds if you aren't using anything. Shorter with weapons and such.

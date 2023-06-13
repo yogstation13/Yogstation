@@ -225,14 +225,18 @@ GLOBAL_VAR(stormdamage)
 		qdel(I)
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
 
-/mob/living/carbon/human/Life()
-	. = ..()
-	if(is_battleroyale(src))
-		var/datum/antagonist/battleroyale/gamer = mind.has_antag_datum(/datum/antagonist/battleroyale)
-		gamer.gamer_life()
+/datum/antagonist/battleroyale/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	handle_clown_mutation(current_mob, mob_override ? null : "Your overwhelming swagness allows you to wield weapons!")
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(gamer_life))
 
-/datum/antagonist/battleroyale/proc/gamer_life()
-	var/mob/living/carbon/human/tfue = owner.current
+/datum/antagonist/battleroyale/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	return ..()
+
+/datum/antagonist/battleroyale/proc/gamer_life(mob/living/source, seconds_per_tick, times_fired)
+	var/mob/living/carbon/human/tfue = source
 	if(tfue && isspaceturf(tfue.loc))
 		tfue.adjustFireLoss(GLOB.stormdamage, TRUE, TRUE) //no hiding in space
 
