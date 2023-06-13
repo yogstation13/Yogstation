@@ -574,9 +574,12 @@
 /obj/item/twohanded/dualsaber/makeshift
 	name = "makeshift double-bladed energy sword"
 	desc = "Two energy swords taped crudely together. 'at last we finally get some revenge' is scribbled on the side with crayon."
+	block_chance = 50 //reduce block chance because 75% block is fucked
 
-/obj/item/twohanded/dualsaber/makeshift/IsReflect()
-	return FALSE//because full immunity to security's ranged arsenal is dumb
+/obj/item/twohanded/dualsaber/makeshift/IsReflect()//only 50% chance to reflect, so it still has the cool effect, but not 100% chance
+	if(prob(50))
+		return ..()
+	return FALSE
 
 //spears
 /obj/item/twohanded/spear
