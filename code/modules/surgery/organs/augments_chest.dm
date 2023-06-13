@@ -53,6 +53,7 @@
 	var/revive_cost = 0
 	var/reviving = 0
 	var/cooldown = 0
+	var/heal_amount = 1
 
 /obj/item/organ/cyberimp/chest/reviver/on_life()
 	if(reviving)
@@ -77,16 +78,16 @@
 
 /obj/item/organ/cyberimp/chest/reviver/proc/heal()
 	if(owner.getOxyLoss())
-		owner.adjustOxyLoss(-5)
+		owner.adjustOxyLoss(-heal_amount * 5)
 		revive_cost += 0.5 SECONDS
 	if(owner.getBruteLoss())
-		owner.adjustBruteLoss(-2, required_status = BODYPART_ANY)
+		owner.adjustBruteLoss(-heal_amount * 2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getFireLoss())
-		owner.adjustFireLoss(-2, required_status = BODYPART_ANY)
+		owner.adjustFireLoss(-heal_amount * 2, required_status = BODYPART_ANY)
 		revive_cost += 4 SECONDS
 	if(owner.getToxLoss())
-		owner.adjustToxLoss(-1)
+		owner.adjustToxLoss(-heal_amount)
 		revive_cost += 4 SECONDS
 
 /obj/item/organ/cyberimp/chest/reviver/emp_act(severity)
@@ -99,7 +100,7 @@
 	else
 		cooldown += 20 SECONDS
 
-	if(ishuman(owner))
+	if(ishuman(owner) && !syndicate_implant)
 		var/mob/living/carbon/human/H = owner
 		if(H.stat != DEAD && prob(50 / severity) && H.can_heartattack())
 			H.set_heartattack(TRUE)
@@ -114,6 +115,12 @@
 	if(H.stat == CONSCIOUS)
 		to_chat(H, span_notice("You feel your heart beating again!"))
 
+/obj/item/organ/cyberimp/chest/reviver/syndicate
+	name = "syndicate reviver implant"
+	desc = "This implant will attempt to revive and heal you if you lose consciousness. This experimental version is stronger than widely available versions. For the faint of heart!"
+	implant_color = "#600000"
+	syndicate_implant = TRUE
+	heal_amount = 2
 
 /obj/item/organ/cyberimp/chest/thrusters
 	name = "implantable thrusters set"

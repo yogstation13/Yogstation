@@ -2070,9 +2070,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted = TRUE
 
 /datum/uplink_item/implants/reviver
-	name = "Reviver Implant"
-	desc = "This implant will attempt to revive and heal you if you lose consciousness. Comes with an autosurgeon."
-	item = /obj/item/autosurgeon/reviver
+	name = "Syndicate reviver Implant"
+	desc = "This implant will attempt to revive and heal you if you lose consciousness. This experimental version is stronger than widely available versions. Comes with an autosurgeon."
+	item = /obj/item/autosurgeon/reviver/syndicate
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
 	surplus = 0
