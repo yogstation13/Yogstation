@@ -1,4 +1,0 @@
-author: "azzzertyy"
-delete-after: true 
-changes: 
-  - mapping: "Moved ai core display to upload on all maps except gax"
