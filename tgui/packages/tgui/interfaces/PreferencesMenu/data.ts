@@ -42,7 +42,6 @@ export type Species = {
 
   use_skintones: BooleanLike;
   sexes: BooleanLike;
-  traits: string[];
 
   enabled_features: string[];
 

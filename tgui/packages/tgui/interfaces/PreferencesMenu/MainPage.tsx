@@ -26,7 +26,6 @@ const CharacterControls = (props: {
   gender: Gender,
   setGender: (gender: Gender) => void,
   showGender: boolean,
-  lockedGender: boolean,
 }) => {
   return (
     <Stack>
@@ -515,11 +514,8 @@ export const MainPage = (props: {
                       act("cycle");
                     }}
                     setGender={createSetPreference(act, "gender")}
-                    lockedGender={
-                      currentSpeciesData.traits.includes('FGENDER') || currentSpeciesData.traits.includes('MGENDER') || currentSpeciesData.traits.includes('AGENDER')
-                    }
                     showGender={
-                      currentSpeciesData ? (currentSpeciesData.sexes && !lockedGender) : true
+                      currentSpeciesData ? !!currentSpeciesData.sexes : true
                     }
                   />
                 </Stack.Item>
