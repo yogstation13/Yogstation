@@ -57,7 +57,7 @@
 	SIGNAL_HANDLER
 	var/obj/item/at_least_item = parent
 	// Items with no slot flags curse on pickup (because hand slot)
-	if(at_least_item.slot_flags && !(at_least_item.slot_flags & slotdefine2slotbit(slot)))
+	if(at_least_item.slot_flags && !(at_least_item.slot_flags & slot))
 		return
 	the_curse_begins(equipper)
 
