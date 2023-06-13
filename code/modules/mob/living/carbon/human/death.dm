@@ -16,7 +16,7 @@
 
 	QDEL_IN(src, 2 SECONDS) // since this is sometimes called in
 	dust_animation()
-	addtimer(CALLBACK(src, PROC_REF(spawn_dust), just_ash), 1.5 SECONDS)//spawn the dust after the body disappears
+	spawn_dust(just_ash)
 
 /mob/living/carbon/human/dust_animation()
 	var/obj/effect/dusting_anim/dust_effect = new(loc, ref(src))
