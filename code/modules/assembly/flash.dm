@@ -303,6 +303,9 @@
 /obj/item/assembly/flash/armimplant/rev
 	name = "syndicate flash"
 	desc = "A flash which, used with certain hypnotic and subliminal messaging techniques, can turn loyal crewmembers into vicious revolutionaries."
+	icon_state = "revflash"
+	item_state = "revflash"
+	flashing_overlay = "revflash-f"
 	can_convert = TRUE
 
 /obj/item/assembly/flash/hypnotic

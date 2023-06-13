@@ -632,7 +632,7 @@
 /obj/item/radio/headset/wolfears/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 	make_syndie()
 
 /obj/item/clothing/gloves/wolfclaws/Initialize()
@@ -653,7 +653,7 @@
 		return
 	if(!IS_BLOODSUCKER(user))
 		return
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		var/mob/living/carbon/human/H = user
 		tearaction.Grant(H)
 
@@ -664,5 +664,5 @@
 	if(!IS_BLOODSUCKER(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.get_item_by_slot(SLOT_GLOVES) == src)
+	if(H.get_item_by_slot(ITEM_SLOT_GLOVES) == src)
 		tearaction.Remove(H)

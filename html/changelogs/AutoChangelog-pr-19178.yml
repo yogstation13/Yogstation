@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds a syndicate reviver implant that replaces the regular one in the uplink"

@@ -146,5 +146,5 @@
 //		Z.evolution.Grant(owner)
 
 	if(owner.handcuffed)
-		var/obj/O = owner.get_item_by_slot(SLOT_HANDCUFFED)
+		var/obj/O = owner.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 		qdel(O)

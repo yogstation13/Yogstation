@@ -64,7 +64,7 @@
 	if(!D.default_hatmask && seasonal_hats && possible_seasonal_hats.len)
 		var/hat_type = pick(possible_seasonal_hats)
 		var/obj/item/new_hat = new hat_type(D)
-		D.equip_to_slot_or_del(new_hat, SLOT_HEAD)
+		D.equip_to_slot_or_del(new_hat, ITEM_SLOT_HEAD)
 	D.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
 	message_admins("[ADMIN_LOOKUPFLW(user)] has taken possession of \a [src] in [AREACOORD(src)].")
 	log_game("[key_name(user)] has taken possession of \a [src] in [AREACOORD(src)].")

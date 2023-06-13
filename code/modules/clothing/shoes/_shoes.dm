@@ -66,7 +66,7 @@
 					adjusted = DIGITIGRADE_STYLE
 		user.update_inv_shoes()
 	. = ..()
-	if(offset && slot_flags & slotdefine2slotbit(slot))
+	if(offset && slot_flags & slot)
 		user.pixel_y += offset
 		worn_y_dimension -= (offset * 2)
 		equipped_before_drop = TRUE

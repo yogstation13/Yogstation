@@ -159,31 +159,31 @@
 
 	//Start with uniform,suit,backpack for additional slots
 	if(uniform)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(uniform, H), SLOT_W_UNIFORM, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(uniform, H), ITEM_SLOT_ICLOTHING, TRUE)
 	if(suit)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(suit, H), SLOT_WEAR_SUIT, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(suit, H), ITEM_SLOT_OCLOTHING, TRUE)
 	if(back)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(back, H), SLOT_BACK, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(back, H), ITEM_SLOT_BACK, TRUE)
 	if(belt)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(belt, H), SLOT_BELT, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(belt, H), ITEM_SLOT_BELT, TRUE)
 	if(gloves)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(gloves, H), SLOT_GLOVES, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(gloves, H), ITEM_SLOT_GLOVES, TRUE)
 	if(shoes)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(shoes, H), SLOT_SHOES, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(shoes, H), ITEM_SLOT_FEET, TRUE)
 	if(head)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(head, H), SLOT_HEAD, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(head, H), ITEM_SLOT_HEAD, TRUE)
 	if(mask)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(mask, H), SLOT_WEAR_MASK, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(mask, H), ITEM_SLOT_MASK, TRUE)
 	if(neck)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(neck, H), SLOT_NECK, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(neck, H), ITEM_SLOT_NECK, TRUE)
 	if(ears)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(ears, H), SLOT_EARS, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(ears, H), ITEM_SLOT_EARS, TRUE)
 	if(glasses)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(glasses, H), SLOT_GLASSES, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(glasses, H), ITEM_SLOT_EYES, TRUE)
 	if(id)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(id, H), SLOT_WEAR_ID, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(id, H), ITEM_SLOT_ID, TRUE)
 	if(suit_store)
-		H.equip_to_slot_or_del(SSwardrobe.provide_type(suit_store, H), SLOT_SUIT_STORE, TRUE)
+		H.equip_to_slot_or_del(SSwardrobe.provide_type(suit_store, H), ITEM_SLOT_SUITSTORE, TRUE)
 
 	if(accessory)
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -199,9 +199,9 @@
 
 	if(!visualsOnly) // Items in pockets or backpack don't show up on mob's icon.
 		if(l_pocket)
-			H.equip_to_slot_or_del(SSwardrobe.provide_type(l_pocket, H), SLOT_L_STORE, TRUE)
+			H.equip_to_slot_or_del(SSwardrobe.provide_type(l_pocket, H), ITEM_SLOT_LPOCKET, TRUE)
 		if(r_pocket)
-			H.equip_to_slot_or_del(SSwardrobe.provide_type(r_pocket, H), SLOT_R_STORE, TRUE)
+			H.equip_to_slot_or_del(SSwardrobe.provide_type(r_pocket, H), ITEM_SLOT_RPOCKET, TRUE)
 
 		if(box)
 			if(!backpack_contents)
@@ -215,7 +215,7 @@
 				if(!isnum(number))//Default to 1
 					number = 1
 				for(var/i in 1 to number)
-					H.equip_to_slot_or_del(SSwardrobe.provide_type(path, H),SLOT_IN_BACKPACK, TRUE)
+					H.equip_to_slot_or_del(SSwardrobe.provide_type(path, H),ITEM_SLOT_BACKPACK, TRUE)
 
 	if(!H.head && toggle_helmet && istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit))
 		var/obj/item/clothing/suit/space/hardsuit/HS = H.wear_suit
