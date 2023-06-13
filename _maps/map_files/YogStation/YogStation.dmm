@@ -15886,6 +15886,18 @@
 /obj/effect/decal/cleanable/xenoblood,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"cqX" = (
+/obj/structure/sign/departments/minsky/engineering/engineering{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/aft)
 "crk" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space,
@@ -27725,18 +27737,6 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"gUd" = (
-/obj/structure/sign/departments/minsky/engineering/engineering{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/aft)
 "gUw" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -29424,28 +29424,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/storage)
-"hAO" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower,
-/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/aft)
 "hAT" = (
 /obj/machinery/door/window/northleft{
 	base_state = "right";
@@ -32357,19 +32335,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft_starboard)
-"iGh" = (
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = 20
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/aft)
 "iGn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -33994,6 +33959,19 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"jpK" = (
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = 20
+	},
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/aft)
 "jpL" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -69808,6 +69786,24 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"ydI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/aft)
 "yeb" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 1
@@ -100558,9 +100554,9 @@ vKp
 vKp
 vKp
 vKp
-iGh
-hAO
-gUd
+jpK
+ydI
+cqX
 cfb
 cdi
 cfb
