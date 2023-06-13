@@ -856,10 +856,10 @@
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
 
-/datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, methods=TOUCH, reac_volume)
+/datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(C))
 		return
-	reac_volume = round(reac_volume,0.1)
+	reac_volume = round(reac_volume * permeability, 0.1)
 	if(methods & INGEST)
 		if(!HAS_TRAIT(C, TRAIT_ACIDBLOOD))
 			C.adjustBruteLoss(min(6*toxpwr, reac_volume * toxpwr))
