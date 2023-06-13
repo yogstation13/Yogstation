@@ -62915,15 +62915,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"rQu" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "rQz" = (
 /obj/machinery/door/airlock/mining{
 	name = "Cargo Bay";
@@ -70687,6 +70678,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/central)
+"uav" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/mob/living/simple_animal/hostile/asteroid/goliath/beast/joe,
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "uaA" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -164949,7 +164950,7 @@ wMi
 wMi
 lTL
 abs
-rQu
+uav
 xwf
 lTL
 wMi
