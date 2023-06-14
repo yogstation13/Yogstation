@@ -8105,23 +8105,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"dXg" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	on = 0;
-	pixel_x = -6;
-	pixel_y = 8
-	},
-/obj/item/storage/box/deputy,
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Head of Security's Desk";
-	departmentType = 5;
-	name = "Head of Security RC";
-	pixel_x = -32
-	},
-/turf/open/floor/carpet/red,
-/area/crew_quarters/heads/hos)
 "dXK" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /obj/structure/reagent_dispensers/water_cooler,
@@ -36873,6 +36856,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"shM" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	on = 0;
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/storage/box/deputy,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Head of Security's Desk";
+	departmentType = 5;
+	name = "Head of Security RC";
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/red,
+/area/crew_quarters/heads/hos)
 "sif" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 6
@@ -37398,21 +37398,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"stv" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/folder/yellow{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/item/pen/red{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "stx" = (
 /obj/machinery/camera{
 	c_tag = "Fore Primary Hallway West";
@@ -39417,6 +39402,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"ttn" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/folder/yellow{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/pen/red{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "ttR" = (
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
@@ -70107,7 +70107,7 @@ qjt
 wnQ
 iMQ
 kPU
-dXg
+shM
 lHC
 sTH
 xGP
@@ -75799,7 +75799,7 @@ maX
 pQR
 ley
 aUj
-stv
+ttn
 pcW
 pQR
 bDB
