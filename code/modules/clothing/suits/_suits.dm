@@ -70,8 +70,7 @@
 		return
 	if(user)
 		to_chat(user, span_notice("You attach [I] to [src]."))
-	var/accessory_state = attached_badge.icon_state
-	badge_overlay = mutable_appearance(attached_badge.mob_overlay_icon, "[accessory_state]")
+	badge_overlay = mutable_appearance(attached_badge.mob_overlay_icon, "[attached_badge.accessory_state]")
 	badge_overlay.alpha = attached_badge.alpha
 	badge_overlay.color = attached_badge.color
 	if(ishuman(loc))

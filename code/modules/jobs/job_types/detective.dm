@@ -47,17 +47,17 @@
 /datum/job/detective/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	if(M?.client?.prefs)
-		var/exp_rank = "Deputy"
+		var/obj/item/badge/security/badge
 		switch(M.client.prefs.exp[title] / 60)
 			if(200 to INFINITY)
-				exp_rank = "Chief Inspector"
+				badge = new /obj/item/badge/security/det3
 			if(50 to 200)
-				exp_rank = "Investigator"
-		var/obj/item/badge/security/generated_badge = new
-		generated_badge.name = "[generated_badge.name] ([exp_rank])"
-		generated_badge.owner_string = H.real_name
+				badge = new /obj/item/badge/security/det2
+			else
+				badge = new /obj/item/badge/security/det1
+		badge.owner_string = H.real_name
 		var/obj/item/clothing/suit/my_suit = H.wear_suit
-		my_suit.attach_badge(generated_badge)
+		my_suit.attach_badge(badge)
 
 /datum/outfit/job/detective
 	name = "Detective"

@@ -131,17 +131,17 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 					break
 
 	if(M?.client?.prefs)
-		var/exp_rank = "Corporal"
+		var/obj/item/badge/security/badge
 		switch(M.client.prefs.exp[title] / 60)
 			if(200 to INFINITY)
-				exp_rank = "Staff Sergeant"
+				badge = new /obj/item/badge/security/officer3
 			if(50 to 200)
-				exp_rank = "Sergeant"
-		var/obj/item/badge/security/generated_badge = new
-		generated_badge.name = "[generated_badge.name] ([exp_rank])"
-		generated_badge.owner_string = H.real_name
+				badge = new /obj/item/badge/security/officer2
+			else
+				badge = new /obj/item/badge/security/officer1
+		badge.owner_string = H.real_name
 		var/obj/item/clothing/suit/my_suit = H.wear_suit
-		my_suit.attach_badge(generated_badge)
+		my_suit.attach_badge(badge)
 
 	if(department)
 		to_chat(M, "<b>You have been assigned to [department]!</b>")
