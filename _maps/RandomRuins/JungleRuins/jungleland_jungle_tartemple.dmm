@@ -6,11 +6,20 @@
 "c" = (
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
+"d" = (
+/obj/effect/decal/remains/human,
+/obj/structure/punji_sticks,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
 "e" = (
 /turf/template_noop,
 /area/template_noop)
 "f" = (
 /obj/structure/stone_tile/slab/cracked,
+/turf/open/floor/plating/dirt/jungleland/barren_rocks,
+/area/ruin/unpowered/tar_temple)
+"g" = (
+/obj/structure/punji_sticks,
 /turf/open/floor/plating/dirt/jungleland/barren_rocks,
 /area/ruin/unpowered/tar_temple)
 "h" = (
@@ -92,10 +101,6 @@
 /turf/closed/indestructible/riveted/boss,
 /area/ruin/unpowered/tar_temple)
 "A" = (
-/turf/open/floor/plating/dirt/jungleland/jungle,
-/area/template_noop)
-"C" = (
-/obj/structure/punji_sticks,
 /turf/open/floor/plating/dirt/jungleland/jungle,
 /area/template_noop)
 "D" = (
@@ -590,7 +595,7 @@ c
 x
 K
 K
-c
+g
 c
 z
 z
@@ -598,7 +603,7 @@ A
 z
 A
 P
-C
+A
 q
 A
 "}
@@ -624,11 +629,11 @@ K
 K
 K
 c
-c
+g
 z
 A
 z
-C
+A
 A
 A
 A
@@ -663,7 +668,7 @@ z
 A
 A
 A
-C
+A
 A
 "}
 (16,1,1) = {"
@@ -725,7 +730,7 @@ z
 z
 z
 A
-C
+A
 A
 v
 P
@@ -752,7 +757,7 @@ K
 K
 K
 c
-c
+g
 z
 A
 z
@@ -782,13 +787,13 @@ c
 c
 K
 K
-x
+d
 c
 z
 z
 A
 z
-C
+A
 A
 A
 A
@@ -823,7 +828,7 @@ A
 v
 A
 G
-C
+A
 P
 "}
 (21,1,1) = {"
