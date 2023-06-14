@@ -13,7 +13,7 @@
 	var/owner_string
 
 /obj/item/badge/proc/try_attach(obj/item/clothing/suit/suit_target, mob/user)
-	if(suit_target.attached_badge)
+	if (suit_target.attached_badge)
 		to_chat(user, span_warning("There's already a badge on \the [suit_target]."))
 		return FALSE
 	suit_target.attached_badge = src
