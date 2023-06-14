@@ -50211,26 +50211,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"dUW" = (
-/obj/structure/closet/secure_closet/quartermaster,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/item/gps{
-	gpstag = "QM0"
-	},
-/obj/item/storage/box/fancy/cigarettes/cigars{
-	pixel_y = 4
-	},
-/obj/item/lighter,
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "dVi" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
@@ -57400,17 +57380,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
-"iJf" = (
-/obj/structure/table/wood,
-/obj/item/storage/secure/briefcase{
-	pixel_x = -2
-	},
-/obj/item/book/manual/wiki/security_space_law,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/hos)
 "iJJ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -58703,15 +58672,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
-"jtB" = (
-/obj/machinery/newscaster{
-	pixel_y = -30
-	},
-/obj/structure/table,
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/heads/hor)
 "jtW" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Medbay Maintenance";
@@ -68128,6 +68088,15 @@
 	dir = 1
 	},
 /area/security/prison)
+"pkH" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp{
+	pixel_x = -1;
+	pixel_y = 10
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/chief)
 "pkQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -70869,6 +70838,26 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"qVg" = (
+/obj/structure/closet/secure_closet/quartermaster,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/item/gps{
+	gpstag = "QM0"
+	},
+/obj/item/storage/box/fancy/cigarettes/cigars{
+	pixel_y = 4
+	},
+/obj/item/lighter,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "qVi" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -73276,15 +73265,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/virology)
-"sBE" = (
-/obj/structure/table/reinforced,
-/obj/item/flashlight/lamp{
-	pixel_x = -1;
-	pixel_y = 10
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/chief)
 "sBK" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -80555,6 +80535,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"xeA" = (
+/obj/structure/table/wood,
+/obj/item/storage/secure/briefcase{
+	pixel_x = -2
+	},
+/obj/item/book/manual/wiki/security_space_law,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/hos)
 "xfa" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -81833,6 +81824,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/bridge/showroom/corporate)
+"xUe" = (
+/obj/machinery/newscaster{
+	pixel_y = -30
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/heads/hor)
 "xUj" = (
 /obj/item/storage/box/gloves{
 	pixel_x = 3;
@@ -102395,7 +102395,7 @@ azS
 aAt
 aAU
 dne
-dUW
+qVg
 aHW
 aQq
 aRK
@@ -112133,7 +112133,7 @@ aaa
 adZ
 adZ
 afi
-iJf
+xeA
 agW
 ahC
 adZ
@@ -114276,7 +114276,7 @@ cuQ
 rTU
 cdD
 cdO
-jtB
+xUe
 crQ
 cyA
 cBs
@@ -121678,7 +121678,7 @@ aTE
 axY
 aWy
 aYp
-sBE
+pkH
 emB
 aNP
 beg

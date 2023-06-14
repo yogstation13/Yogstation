@@ -17471,18 +17471,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"daM" = (
-/obj/structure/table/reinforced,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/item/folder/yellow,
-/obj/item/stamp/ce{
-	pixel_x = -8;
-	pixel_y = 9
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/chief)
 "daW" = (
 /obj/machinery/light{
 	dir = 4
@@ -17993,6 +17981,29 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
+"dno" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Head of Security's Desk";
+	departmentType = 5;
+	name = "Head of Security RC";
+	pixel_y = 30
+	},
+/obj/item/radio/intercom{
+	dir = 4;
+	name = "Station Intercom (General)";
+	pixel_x = -31
+	},
+/obj/structure/table/wood,
+/obj/item/storage/box/deputy,
+/obj/machinery/button/door{
+	id = "hosspace";
+	name = "Space Shutters Control";
+	pixel_x = -26;
+	pixel_y = 34
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "doM" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
@@ -32799,14 +32810,6 @@
 	},
 /turf/open/floor/engine/co2,
 /area/engine/atmos/distro)
-"jeL" = (
-/obj/structure/table,
-/obj/item/coin/silver,
-/obj/item/folder/yellow,
-/obj/item/pen/red,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "jeO" = (
 /obj/structure/sign/painting{
 	persistence_id = "public";
@@ -42817,24 +42820,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"nmV" = (
-/obj/structure/table,
-/obj/machinery/camera{
-	c_tag = "Research Director's Office";
-	dir = 1;
-	network = list("ss13","rd")
-	},
-/obj/item/radio/intercom{
-	name = "Station Intercom (General)";
-	pixel_y = -29
-	},
-/obj/item/folder/white{
-	pixel_x = 8;
-	pixel_y = -2
-	},
-/obj/item/toy/figure/rd,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/hor)
 "nnx" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -43981,6 +43966,24 @@
 /obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"nLy" = (
+/obj/structure/table,
+/obj/machinery/camera{
+	c_tag = "Research Director's Office";
+	dir = 1;
+	network = list("ss13","rd")
+	},
+/obj/item/radio/intercom{
+	name = "Station Intercom (General)";
+	pixel_y = -29
+	},
+/obj/item/folder/white{
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/obj/item/toy/figure/rd,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/hor)
 "nMQ" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/processing";
@@ -46496,6 +46499,14 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"oNS" = (
+/obj/structure/table,
+/obj/item/coin/silver,
+/obj/item/folder/yellow,
+/obj/item/pen/red,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "oNV" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/firealarm{
@@ -57930,6 +57941,18 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/storage/tech)
+"tBu" = (
+/obj/structure/table/reinforced,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/folder/yellow,
+/obj/item/stamp/ce{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/chief)
 "tBG" = (
 /obj/structure/railing,
 /turf/open/floor/wood,
@@ -68840,29 +68863,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"ycj" = (
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Head of Security's Desk";
-	departmentType = 5;
-	name = "Head of Security RC";
-	pixel_y = 30
-	},
-/obj/item/radio/intercom{
-	dir = 4;
-	name = "Station Intercom (General)";
-	pixel_x = -31
-	},
-/obj/structure/table/wood,
-/obj/item/storage/box/deputy,
-/obj/machinery/button/door{
-	id = "hosspace";
-	name = "Space Shutters Control";
-	pixel_x = -26;
-	pixel_y = 34
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "ycl" = (
 /obj/machinery/hydroponics/soil,
 /obj/effect/decal/cleanable/dirt,
@@ -90914,7 +90914,7 @@ uWZ
 edT
 obs
 kTR
-jeL
+oNS
 sOj
 aaa
 aaa
@@ -100456,7 +100456,7 @@ aaz
 lMD
 oqf
 wMq
-daM
+tBu
 leU
 sTO
 hnh
@@ -102406,7 +102406,7 @@ aaa
 aaa
 aaf
 abq
-ycj
+dno
 acq
 ixV
 adm
@@ -118670,7 +118670,7 @@ bxi
 byp
 bzJ
 aDa
-nmV
+nLy
 bvK
 bEu
 tbz

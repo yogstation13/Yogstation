@@ -16978,6 +16978,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"ihv" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/folder/yellow{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/pen/red{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "ihC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -25503,6 +25518,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"mxY" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	on = 0;
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/storage/box/deputy,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Head of Security's Desk";
+	departmentType = 5;
+	name = "Head of Security RC";
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/red,
+/area/crew_quarters/heads/hos)
 "mye" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
@@ -36856,23 +36888,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"shM" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	on = 0;
-	pixel_x = -6;
-	pixel_y = 8
-	},
-/obj/item/storage/box/deputy,
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Head of Security's Desk";
-	departmentType = 5;
-	name = "Head of Security RC";
-	pixel_x = -32
-	},
-/turf/open/floor/carpet/red,
-/area/crew_quarters/heads/hos)
 "sif" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 6
@@ -39402,21 +39417,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"ttn" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/folder/yellow{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/item/pen/red{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "ttR" = (
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
@@ -70107,7 +70107,7 @@ qjt
 wnQ
 iMQ
 kPU
-shM
+mxY
 lHC
 sTH
 xGP
@@ -75799,7 +75799,7 @@ maX
 pQR
 ley
 aUj
-ttn
+ihv
 pcW
 pQR
 bDB
