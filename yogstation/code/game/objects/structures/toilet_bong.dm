@@ -15,8 +15,8 @@
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.max_combined_w_class = WEIGHT_CLASS_SMALL * 24
 	STR.max_items = 24
-	RegisterSignal(STR, COMSIG_STORAGE_INSERTED, PROC_REF(update_icon))
-	RegisterSignal(STR, COMSIG_STORAGE_REMOVED, PROC_REF(update_icon))
+	RegisterSignal(STR, COMSIG_STORAGE_INSERTED, TYPE_PROC_REF(/atom/, update_icon))
+	RegisterSignal(STR, COMSIG_STORAGE_REMOVED, TYPE_PROC_REF(/atom/, update_icon))
 	weed_overlay = mutable_appearance('yogstation/icons/obj/watercloset.dmi', "weed")
 	START_PROCESSING(SSobj, src)
 

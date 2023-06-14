@@ -35,6 +35,12 @@
 		desc += " This one has a rating of [DisplayEnergy(maxcharge)], and you should not swallow it."
 	update_icon()
 
+	RegisterSignal(src, COMSIG_ITEM_MAGICALLY_CHARGED, PROC_REF(on_magic_charge))
+	var/static/list/loc_connections = list(
+		COMSIG_ITEM_MAGICALLY_CHARGED = PROC_REF(on_magic_charge),
+	)
+	AddElement(/datum/element/connect_loc, loc_connections)
+
 /obj/item/stock_parts/cell/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -47,6 +53,42 @@
 			else
 				STOP_PROCESSING(SSobj, src)
 	. = ..()
+
+/**
+ * Signal proc for [COMSIG_ITEM_MAGICALLY_CHARGED]
+ *
+ * If we, or the item we're located in, is subject to the charge spell, gain some charge back
+ */
+/obj/item/stock_parts/cell/proc/on_magic_charge(datum/source, datum/action/cooldown/spell/charge/spell, mob/living/caster)
+	SIGNAL_HANDLER
+
+	// This shouldn't be running if we're not being held by a mob,
+	// or if we're not within an object being held by a mob, but just in case...
+	if(!ismovable(loc))
+		return
+
+	. = COMPONENT_ITEM_CHARGED
+
+	if(prob(80))
+		maxcharge -= 200
+
+	if(maxcharge <= 1) // Div by 0 protection
+		maxcharge = 1
+		. |= COMPONENT_ITEM_BURNT_OUT
+
+	charge = maxcharge
+	update_icon()
+
+	// Guns need to process their chamber when we've been charged
+	if(isgun(loc))
+		var/obj/item/gun/gun_loc = loc
+		gun_loc.process_chamber()
+
+	// The thing we're in might have overlays or icon states for whether the cell is charged
+	if(!ismob(loc))
+		loc.update_icon()
+
+	return .
 
 /obj/item/stock_parts/cell/process(delta_time)
 	if(self_recharge)

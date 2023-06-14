@@ -33,7 +33,8 @@
 			span_notice("You take a sip from the [src]."),
 		)
 		var/datum/antagonist/vampire/V = is_vampire(user)
-		V?.usable_blood += 5
+		if(V)
+			V.usable_blood += 5
 		reagents.reaction(user, INGEST, BLOODBAG_GULP_SIZE)
 		reagents.trans_to(user, BLOODBAG_GULP_SIZE, transfered_by = user)
 		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), TRUE)

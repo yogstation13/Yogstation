@@ -79,7 +79,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	return TRUE
 
 
-/mob/living/simple_animal/hostile/floor_cluwne/Life()
+/mob/living/simple_animal/hostile/floor_cluwne/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	do_jitter_animation(1000)
 	pixel_y = 8
 	var/area/A = get_area(loc) // Has to be separated from the below since is_type_in_typecache is also a funky macro

@@ -13,6 +13,22 @@
 		return FALSE
 	return TRUE
 
+/datum/action/cooldown/spell/pointed/seismic/proc/check_turf(turf/turf_to_check)
+	if(turf_to_check.density)
+		return FALSE
+	if(ischasm(turf_to_check))
+		return FALSE
+	if(isindestructiblewall(turf_to_check))
+		return FALSE
+	if(islava(turf_to_check))
+		return FALSE
+	for(var/obj/object in turf_to_check.contents)
+		if(object.density)
+			return FALSE
+	return TRUE
+
+#define LARIAT_JUMP_DISTANCE 4
+
 /datum/action/cooldown/spell/pointed/seismic/lariat
 	name = "Lariat"
 	desc = "Dash forward, catching whatever animal you hit with your arm and knocking them over."
@@ -20,58 +36,42 @@
 	button_icon_state = "lariat"
 
 	cooldown_time = 7 SECONDS
-	var/jumpdistance = 4
 
 /datum/action/cooldown/spell/pointed/seismic/lariat/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(user.incapacitated())
-		return FALSE
-	var/turf/T = get_step(get_turf(user), user.dir)
-	var/turf/Z = get_turf(user)
-	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
+	var/turf/turf_ahead = get_step(get_turf(user), user.dir)
+	var/obj/effect/temp_visual/decoy/fading/threesecond/followup_effect = new(get_turf(user), user)
 	user.visible_message(span_warning("[user] sprints forward with [user.p_their()] arm outstretched!"))
-	playsound(user,'sound/effects/gravhit.ogg', 20, 1)
-	for(var/i = 0 to jumpdistance)
-		if(T.density)
-			return FALSE
-		for(var/obj/D in T.contents)
-			if(D.density)
-				return FALSE
-		for(var/turf/open/chasm/C in T.contents)
-			return FALSE
-		for(var/turf/closed/indestructible/I in T.contents)
-			return FALSE
-		for(var/turf/open/lava/V in T.contents)
-			return FALSE
-		for(var/obj/machinery/door/window/E in Z.contents)
-			if(E.density)
-				return FALSE
-		if(T)
-			addtimer(CALLBACK(src, PROC_REF(finish_lariat), user, T, F), 0.1 SECONDS)
+	playsound(user,'sound/effects/gravhit.ogg', 20, TRUE)
+	for(var/i = 0 to LARIAT_JUMP_DISTANCE)
+		if(!check_turf(turf_ahead))
+			return TRUE //TRUE as in: start cooldown
+		user.forceMove(turf_ahead)
+		walk_towards(followup_effect, user, 0, 1.5)
+		animate(followup_effect, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
+		for(var/mob/living/assaulted in turf_ahead.contents)
+			if(assaulted != user)
+				user.forceMove(get_turf(assaulted))
+				to_chat(assaulted, span_userdanger("[user] catches you with [user.p_their()] arm and clotheslines you!"))
+				user.visible_message(span_warning("[user] hits [assaulted] with a lariat!"))
+				assaulted.SpinAnimation(0.5 SECONDS, 1)
+				if(isanimal(assaulted))
+					assaulted.adjustBruteLoss(50)
+				if(iscarbon(assaulted))
+					assaulted.adjustBruteLoss(10)
+				if(issilicon(assaulted))
+					assaulted.adjustBruteLoss(12)
+			playsound(assaulted,'sound/effects/meteorimpact.ogg', 60, 1)
+		turf_ahead = get_step(turf_ahead, user.dir)
 	
 	return TRUE
-
-/datum/action/cooldown/spell/pointed/seismic/lariat/proc/finish_lariat(mob/living/user, turf/target_turf, obj/effect/temp_visual/decoy/fading/threesecond/effect)
-	user.forceMove(target_turf)
-	walk_towards(effect,user,0, 1.5)
-	animate(effect, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
-	for(var/mob/living/L in target_turf.contents)
-		if(L != user)
-			user.forceMove(get_turf(L))
-			to_chat(L, span_userdanger("[user] catches you with [user.p_their()] arm and clotheslines you!"))
-			user.visible_message(span_warning("[user] hits [L] with a lariat!"))
-			L.SpinAnimation(0.5 SECONDS, 1)
-			if(isanimal(L))
-				L.adjustBruteLoss(50)
-			if(iscarbon(L))
-				L.adjustBruteLoss(10)
-			if(issilicon(L))
-				L.adjustBruteLoss(12)
-		playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
-	target_turf = get_step(user,user.dir)
 			
+#undef LARIAT_JUMP_DISTANCE
+
+#define MOP_JUMP_DISTANCE 4
+
 /datum/action/cooldown/spell/pointed/seismic/mop
 	name = "Mop the Floor"
 	desc = "Launch forward and drag whoever's in front of you on the ground. The power of this move increases with closeness to the target upon using it."
@@ -79,75 +79,59 @@
 	button_icon_state = "mop"
 	
 	cooldown_time = 7 SECONDS
-	var/jumpdistance = 4
 
 /datum/action/cooldown/spell/pointed/seismic/mop/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(user.incapacitated())
-		return FALSE
-	var/turf/T = get_step(get_turf(user), user.dir)
-	var/turf/Z = get_turf(user)
-	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, user)
+	var/turf/turf_ahead = get_step(get_turf(user), user.dir)
+	var/obj/effect/temp_visual/decoy/fading/threesecond/followup_effect = new(get_turf(user), user)
 	user.visible_message(span_warning("[user] sprints forward with [user.p_their()] hand outstretched!"))
 	playsound(user,'sound/effects/gravhit.ogg', 20, 1)
-	for(var/i = 0 to jumpdistance)
-		if(T.density)
-			return FALSE
-		for(var/obj/D in T.contents)
-			if(D.density)
-				return FALSE
-		for(var/turf/open/chasm/C in T.contents)
-			return FALSE
-		for(var/turf/closed/indestructible/I in T.contents)
-			return FALSE
-		for(var/obj/machinery/door/window/E in Z.contents)
-			if(E.density)
-				return FALSE
-		if(T)
-			addtimer(CALLBACK(src, PROC_REF(finish_mop), user, T, F), 0.1 SECONDS)
+	for(var/i = 0 to MOP_JUMP_DISTANCE)
+		if(!check_turf(turf_ahead))
+			return TRUE
+		user.forceMove(turf_ahead)
+		walk_towards(followup_effect, user, 0, 1.5)
+		animate(followup_effect, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
+		var/list/mopped = list()
+		for(var/mob/living/L in turf_ahead.contents)
+			if(L != user)
+				mopped |= L
+				var/turf/Q = get_step(get_turf(user), user.dir)
+				animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+				if(ismineralturf(Q))
+					var/turf/closed/mineral/M = Q
+					M.attempt_drill()
+					L.adjustBruteLoss(5)
+				if(Q.density)
+					return FALSE
+				for(var/obj/D in Q.contents)
+					if(D.density)
+						return FALSE
+				user.forceMove(get_turf(L))
+				to_chat(L, span_userdanger("[user] catches you with [user.p_their()] hand and drags you down!"))
+				user.visible_message(span_warning("[user] hits [L] and drags them through the dirt!"))
+				L.forceMove(Q)
+				if(isanimal(L))
+					user.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)//guaranteed extended contact with a fauna so i have to make it not a death sentence
+					L.adjustBruteLoss(20)
+					if(L.stat == DEAD)
+						L.visible_message(span_warning("[L] is ground into paste!"))
+						L.gib()
+				if(iscarbon(L))
+					L.adjustBruteLoss(4)
+				if(issilicon(L))
+					L.adjustBruteLoss(5)
+				playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
+		turf_ahead = get_step(turf_ahead, user.dir)
+		for(var/mob/living/C in mopped)
+			if(C.stat == CONSCIOUS && C.resting == FALSE)
+				animate(C, transform = null, time = 0.5 SECONDS, loop = 0)
 
 	return TRUE
 
-/datum/action/cooldown/spell/pointed/seismic/mop/proc/finish_mop(mob/living/user, turf/target_turf, obj/effect/temp_visual/decoy/fading/threesecond/effect)
-	user.forceMove(target_turf)
-	walk_towards(effect,user,0, 1.5)
-	animate(effect, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
-	var/list/mopped = list()
-	for(var/mob/living/L in target_turf.contents)
-		if(L != user)
-			mopped |= L
-			var/turf/Q = get_step(get_turf(user), user.dir)
-			animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
-			if(ismineralturf(Q))
-				var/turf/closed/mineral/M = Q
-				M.attempt_drill()
-				L.adjustBruteLoss(5)
-			if(Q.density)
-				return FALSE
-			for(var/obj/D in Q.contents)
-				if(D.density)
-					return FALSE
-			user.forceMove(get_turf(L))
-			to_chat(L, span_userdanger("[user] catches you with [user.p_their()] hand and drags you down!"))
-			user.visible_message(span_warning("[user] hits [L] and drags them through the dirt!"))
-			L.forceMove(Q)
-			if(isanimal(L))
-				user.apply_status_effect(STATUS_EFFECT_BLOODDRUNK)//guaranteed extended contact with a fauna so i have to make it not a death sentence
-				L.adjustBruteLoss(20)
-				if(L.stat == DEAD)
-					L.visible_message(span_warning("[L] is ground into paste!"))
-					L.gib()
-			if(iscarbon(L))
-				L.adjustBruteLoss(4)
-			if(issilicon(L))
-				L.adjustBruteLoss(5)
-			playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
-	target_turf = get_step(user, user.dir)
-	for(var/mob/living/C in mopped)
-		if(C.stat == CONSCIOUS && C.resting == FALSE)
-			animate(C, transform = null, time = 0.5 SECONDS, loop = 0)
+#undef MOP_JUMP_DISTANCE
 
 /datum/action/cooldown/spell/pointed/seismic/suplex
 	name = "Suplex"

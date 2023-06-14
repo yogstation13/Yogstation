@@ -221,8 +221,18 @@
 			return
 	vamp_burn(TRUE)
 
-/datum/antagonist/vampire/proc/vampire_life()
-	var/mob/living/carbon/C = owner.current
+/datum/antagonist/vampire/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	handle_clown_mutation(current_mob, mob_override ? null : "Your bloodlusting desire overcomes your clownish heritage, you are able to use weapons!")
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(vampire_life))
+
+/datum/antagonist/vampire/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	return ..()
+
+/datum/antagonist/vampire/proc/vampire_life(mob/living/source, seconds_per_tick, times_fired)
+	var/mob/living/carbon/C = source
 	if(!C)
 		return
 	if(owner && C.hud_used && C.hud_used.vamp_blood_display)

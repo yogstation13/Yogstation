@@ -39,7 +39,7 @@
 		return
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/H = hit_atom
-		if(prob(33) && H.equip_to_slot_if_possible(src, SLOT_HEAD))
+		if(prob(33) && H.equip_to_slot_if_possible(src, ITEM_SLOT_HEAD))
 			H.visible_message("The [src] lands gracefully on [H]'s head")
 			return TRUE
 		H.visible_message("The [src] hits [H]'s head")

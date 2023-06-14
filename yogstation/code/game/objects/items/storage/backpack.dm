@@ -132,7 +132,7 @@
 
 /obj/item/storage/backpack/holding/equipped(mob/living/carbon/user, slot)
 	. = ..()
-	if(slot == SLOT_HEAD)
+	if(slot == ITEM_SLOT_HEAD)
 		// time to wonkize this shit
 		var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 		var/datum/component/storage/concrete/master = STR.master()

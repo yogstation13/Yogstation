@@ -136,7 +136,7 @@
 	status_flags |= GODMODE
 	timer = rand(1,15)
 
-/mob/living/simple_animal/shade/howling_ghost/Life()
+/mob/living/simple_animal/shade/howling_ghost/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	timer--
 	if(prob(20))
@@ -201,7 +201,7 @@
 /mob/living/simple_animal/hostile/retaliate/clown/insane/ex_act()
 	return
 
-/mob/living/simple_animal/hostile/retaliate/clown/insane/Life()
+/mob/living/simple_animal/hostile/retaliate/clown/insane/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	timer--
 	if(target)
 		stalk()

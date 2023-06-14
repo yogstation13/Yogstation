@@ -21,7 +21,7 @@
 	. = ..()
 	stealthcooldown = 0
 
-/mob/living/simple_animal/hostile/guardian/assassin/Life()
+/mob/living/simple_animal/hostile/guardian/assassin/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	updatestealthalert()
 	if(loc == summoner && toggle)

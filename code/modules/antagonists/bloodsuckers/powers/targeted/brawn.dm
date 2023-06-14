@@ -16,6 +16,7 @@
 	target_range = 1
 	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/brawn/shadow
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/ActivatePower(trigger_flags)
 	// Did we break out of our handcuffs?
@@ -49,8 +50,8 @@
 		used = TRUE
 
 	// Remove both Handcuffs & Legcuffs
-	var/obj/cuffs = user.get_item_by_slot(SLOT_HANDCUFFED)
-	var/obj/legcuffs = user.get_item_by_slot(SLOT_LEGCUFFED)
+	var/obj/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
+	var/obj/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
 	if(!used && (istype(cuffs) || istype(legcuffs)))
 		user.visible_message(
 			span_warning("[user] discards their restraints like it's nothing!"),
@@ -62,7 +63,7 @@
 
 	// Remove Straightjackets
 	if(user.wear_suit?.breakouttime && !used)
-		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(SLOT_WEAR_SUIT)
+		var/obj/item/clothing/suit/straightjacket = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		if(!istype(straightjacket))
 			return
 		user.visible_message(
@@ -205,6 +206,7 @@
 	button_icon_state = "power_obliterate"
 	additional_text = "Additionally afflicts the target with a shadow curse while in darkness and disables any lights they may possess."
 	purchase_flags = LASOMBRA_CAN_BUY
+	ascended_power = null
 
 /datum/action/cooldown/bloodsucker/targeted/brawn/shadow/FireTargetedPower(atom/target_atom)
 	var/mob/living/carbon/human/H = target_atom

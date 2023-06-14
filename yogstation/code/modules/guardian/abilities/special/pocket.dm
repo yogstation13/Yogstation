@@ -331,10 +331,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	spell_requirements = NONE
 	var/mob/living/simple_animal/hostile/guardian/guardian
 
-/datum/action/cooldown/spell/pocket_dim/Trigger()
+/datum/action/cooldown/spell/pocket_dim/cast(atom/cast_on)
 	. = ..()
-	if(!.)
-		return FALSE
 	if (!guardian || !istype(guardian))
 		return
 	if (!guardian.is_deployed())
@@ -383,11 +381,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	spell_requirements = NONE
 	var/mob/living/simple_animal/hostile/guardian/guardian
 
-
 /datum/action/cooldown/spell/pocket_dim_move/cast(mob/living/user)
 	. = ..()
-	if(!.)
-		return FALSE
 	if (!guardian || !istype(guardian))
 		return
 	var/datum/guardian_ability/major/special/pocket/PD = guardian?.stats?.ability

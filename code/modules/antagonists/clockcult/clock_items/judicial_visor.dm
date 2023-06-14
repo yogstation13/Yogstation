@@ -27,13 +27,13 @@
 	return ..()
 
 /obj/item/clothing/glasses/judicial_visor/item_action_slot_check(slot, mob/user)
-	if(slot != SLOT_GLASSES)
+	if(slot != ITEM_SLOT_EYES)
 		return 0
 	return ..()
 
 /obj/item/clothing/glasses/judicial_visor/equipped(mob/living/user, slot)
 	..()
-	if(slot != SLOT_GLASSES)
+	if(slot != ITEM_SLOT_EYES)
 		update_status(FALSE)
 		if(blaster.owner)
 			blaster.unset_click_ability(blaster.owner)
@@ -54,13 +54,13 @@
 	addtimer(CALLBACK(src, PROC_REF(check_on_mob), user), 1) //dropped is called before the item is out of the slot, so we need to check slightly later
 
 /obj/item/clothing/glasses/judicial_visor/proc/check_on_mob(mob/user)
-	if(user && src != user.get_item_by_slot(SLOT_GLASSES)) //if we happen to check and we AREN'T in the slot, we need to remove our shit from whoever we got dropped from
+	if(user && src != user.get_item_by_slot(ITEM_SLOT_EYES)) //if we happen to check and we AREN'T in the slot, we need to remove our shit from whoever we got dropped from
 		update_status(FALSE)
 		if(blaster.owner)
 			blaster.unset_click_ability(user)
 
 /obj/item/clothing/glasses/judicial_visor/attack_self(mob/user)
-	if(is_servant_of_ratvar(user) && src == user.get_item_by_slot(SLOT_GLASSES))
+	if(is_servant_of_ratvar(user) && src == user.get_item_by_slot(ITEM_SLOT_EYES))
 		blaster.Trigger()
 
 /obj/item/clothing/glasses/judicial_visor/proc/update_status(change_to)
@@ -88,7 +88,7 @@
 	if(!src)
 		return 0
 	recharging = FALSE
-	if(user && src == user.get_item_by_slot(SLOT_GLASSES))
+	if(user && src == user.get_item_by_slot(ITEM_SLOT_EYES))
 		to_chat(user, span_brass("Your [name] hums. It is ready."))
 	else
 		active = FALSE
@@ -117,7 +117,7 @@
 		return FALSE
 	if(visor.recharging)
 		return FALSE
-	if(owner.incapacitated() || !visor || visor != owner.get_item_by_slot(SLOT_GLASSES))
+	if(owner.incapacitated() || !visor || visor != owner.get_item_by_slot(ITEM_SLOT_EYES))
 		return FALSE
 	if(!isturf(owner.loc))
 		return FALSE

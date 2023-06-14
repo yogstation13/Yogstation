@@ -102,6 +102,10 @@
 				M.ignite_mob()
 				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
 			log_combat(user, target, "attempted to emag")
+			if(istype(target, /obj/machinery/computer/bounty)) //we can't have nice things
+				to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
+				emagging = FALSE
+				return
 			target.emag_act(user)
 		emagging = FALSE
 

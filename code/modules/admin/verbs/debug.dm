@@ -459,7 +459,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 					id.forceMove(W)
 					W.update_icon()
 			else
-				H.equip_to_slot(id,SLOT_WEAR_ID)
+				H.equip_to_slot(id,ITEM_SLOT_ID)
 	else if(isanimal(M))
 		var/mob/living/simple_animal/SA = M
 		SA.access_card = new /obj/item/card/id/ert/debug

@@ -268,7 +268,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	. = ..()
 	if(iscarbon(user) && !bypass)
 		var/mob/living/carbon/C = user
-		if((C.get_item_by_slot(SLOT_HEAD == src)) || (C.get_item_by_slot(SLOT_WEAR_MASK) == src))
+		if((C.get_item_by_slot(ITEM_SLOT_HEAD == src)) || (C.get_item_by_slot(ITEM_SLOT_MASK) == src))
 			to_chat(user, span_warning("You can't tie [src] while wearing it!"))
 			return
 	if(slot_flags & ITEM_SLOT_HEAD && !bypass)

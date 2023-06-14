@@ -123,6 +123,9 @@
 /obj/item/autosurgeon/reviver
 	starting_organ = /obj/item/organ/cyberimp/chest/reviver
 
+/obj/item/autosurgeon/reviver/syndicate
+	starting_organ = /obj/item/organ/cyberimp/chest/reviver/syndicate
+
 /obj/item/autosurgeon/medibeam
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/medibeam

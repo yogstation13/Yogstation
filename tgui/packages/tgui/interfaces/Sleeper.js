@@ -57,8 +57,8 @@ export const Sleeper = (props, context) => {
                 minValue={occupant.minHealth}
                 maxValue={occupant.maxHealth}
                 ranges={{
-                  good: [50, Infinity],
-                  average: [0, 50],
+                  good: [occupant.maxHealth / 2, Infinity],
+                  average: [0, occupant.maxHealth / 2],
                   bad: [-Infinity, 0],
                 }} />
               <Box mt={1} />

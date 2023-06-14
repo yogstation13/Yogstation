@@ -13,7 +13,7 @@
 
 	var/alt_inhands_file = 'icons/mob/alienqueen.dmi'
 
-/mob/living/carbon/alien/humanoid/royal/can_inject()
+/mob/living/carbon/alien/humanoid/royal/can_inject(mob/user, error_msg, target_zone, penetrate_thick = 0)
 	return 0
 
 /mob/living/carbon/alien/humanoid/royal/queen

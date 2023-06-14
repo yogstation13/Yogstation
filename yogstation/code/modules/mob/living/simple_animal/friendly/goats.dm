@@ -67,7 +67,7 @@
 	attacked_sound = 'sound/items/eatfood.ogg'
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/candy = 3)
 
-/mob/living/simple_animal/hostile/retaliate/goat/cottoncandy/Life()
+/mob/living/simple_animal/hostile/retaliate/goat/cottoncandy/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(stat)
 		return

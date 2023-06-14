@@ -418,6 +418,7 @@
 	name = "power cord implant"
 	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
 	contents = newlist(/obj/item/apc_powercord)
+	slot = ORGAN_SLOT_STOMACH_AID //so ipcs don't get shafted for nothing
 	zone = "l_arm"
 
 /obj/item/organ/cyberimp/arm/flash/rev

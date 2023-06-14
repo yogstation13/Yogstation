@@ -57,17 +57,6 @@
 		close_trap()
 
 //////////////////////
-//      HEART       //
-//////////////////////
-
-/datum/antagonist/bloodsucker/proc/RemoveVampOrgans()
-	var/obj/item/organ/heart/newheart = owner.current.getorganslot(ORGAN_SLOT_HEART)
-	if(newheart)
-		qdel(newheart)
-	newheart = new()
-	newheart.Insert(owner.current)
-
-//////////////////////
 //      STAKES      //
 //////////////////////
 
@@ -207,7 +196,7 @@
 	name = "chisel"
 	desc = "Despite not being the most precise or faster tool, it feels the best to work with nonetheless."
 	icon_state = "chisel"
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKET
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("chiseled", "stabbed", "poked")
 	sharpness = SHARP_POINTY

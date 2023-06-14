@@ -128,7 +128,7 @@
 
 /obj/item/clothing/head/soft/fishfear/legendary/equipped(mob/user, slot)
 	. = ..()
-	if(ishuman(user) && slot == SLOT_HEAD)
+	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
 		to_chat(user, span_notice("You feel like you could catch anything in the sea!"))
 
 /obj/item/clothing/head/soft/sec

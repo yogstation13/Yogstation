@@ -724,6 +724,9 @@
 	if(!istype(M))
 		return
 
+	if(try_extinguish(M))
+		return
+
 	if(src == M)
 		if(has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 			to_chat(src, span_notice("You attempt to remove the durathread strand from around your neck."))

@@ -590,7 +590,7 @@
 					upl.nt_datum = /datum/component/uplink/nanotrasen/engineer
 				upl.finalize()
 				if(istype(upl))
-					ERTOperative.equip_to_slot_or_del(upl, SLOT_IN_BACKPACK)
+					ERTOperative.equip_to_slot_or_del(upl, ITEM_SLOT_BACKPACK)
 					ert_team.uplink_type = ertemplate.uplinktype // Type path
 
 				//Logging and cleanup

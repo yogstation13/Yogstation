@@ -182,7 +182,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/mob/living/carbon/human/active_owner
 
 /obj/item/clothing/neck/necklace/memento_mori/item_action_slot_check(slot)
-	return slot == SLOT_NECK
+	return slot == ITEM_SLOT_NECK
 
 /obj/item/clothing/neck/necklace/memento_mori/attack_hand(mob/user)
 	if(active_owner && user == active_owner)

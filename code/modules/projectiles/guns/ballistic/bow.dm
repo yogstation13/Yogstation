@@ -34,8 +34,6 @@
 	var/draw_slowdown = 0.75
 	var/draw_sound = 'sound/weapons/sound_weapons_bowdraw.ogg'
 	var/mutable_appearance/arrow_overlay
-	/// If the bow can be equipped when an arrow is loaded
-	var/equip_when_loaded = FALSE
 	/// If the last loaded arrow was a toy arrow or not, used to see if foam darts / arrows should do stamina damage
 	var/nerfed = FALSE
 
@@ -148,12 +146,6 @@
 		slowdown = draw_slowdown
 	else
 		slowdown = initial(slowdown)
-	if(equip_when_loaded)
-		return
-	if(get_ammo())
-		slot_flags = ITEM_SLOT_DENY_S_STORE // So you can't put a drawn bow in your suit storage slot
-	else
-		slot_flags = initial(slot_flags)
 
 /obj/item/gun/ballistic/bow/can_shoot()
 	return chambered
@@ -196,7 +188,6 @@
 	draw_slowdown = FALSE
 	drop_release_draw = FALSE
 	move_drawing = FALSE
-	equip_when_loaded = TRUE
 	
 /obj/item/gun/ballistic/bow/crossbow/ashen
 	name = "bone crossbow"
