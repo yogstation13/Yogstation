@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Brig physician spawns with an empty medical belt worn"
