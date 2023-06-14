@@ -530,7 +530,7 @@
 
 /obj/item/twohanded/dualsaber/IsReflect()
 	if(wielded)
-		return 1
+		return TRUE
 
 /obj/item/twohanded/dualsaber/ignition_effect(atom/A, mob/user)
 	// same as /obj/item/melee/transforming/energy, mostly
@@ -570,6 +570,16 @@
 			to_chat(user, span_warning("It's starting to look like a triple rainbow - no, nevermind."))
 	else
 		return ..()
+
+/obj/item/twohanded/dualsaber/makeshift
+	name = "makeshift double-bladed energy sword"
+	desc = "Two energy swords taped crudely together. 'at last we finally get some revenge' is scribbled on the side with crayon."
+	force_wielded = 27 //total of 30 to be equal to an esword, it's literally just two duct taped together
+
+/obj/item/twohanded/dualsaber/makeshift/IsReflect()//only 50% chance to reflect, so it still has the cool effect, but not 100% chance
+	if(prob(50))
+		return ..()
+	return FALSE
 
 //spears
 /obj/item/twohanded/spear
