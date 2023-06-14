@@ -126,7 +126,7 @@
 	name = "implantable thrusters set"
 	desc = "An implantable set of thruster ports. They use the gas from environment or subject's internals for propulsion in zero-gravity areas. \
 	Unlike regular jetpacks, this device has no stabilization system."
-	slot = ORGAN_SLOT_THRUSTERS
+	slot = ORGAN_SLOT_TORSO_IMPLANT
 	icon_state = "imp_jetpack"
 	implant_overlay = null
 	implant_color = null
@@ -228,7 +228,7 @@
 /obj/item/organ/cyberimp/chest/spinalspeed
 	name = "neural overclocker implant"
 	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
-	slot = ORGAN_SLOT_THRUSTERS
+	slot = ORGAN_SLOT_TORSO_IMPLANT
 	icon_state = "imp_spinal"
 	implant_overlay = null
 	implant_color = null
