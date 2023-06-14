@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Can no longer use both CNS rebooter and Antidrop implants at the same time"
+  - tweak: "IPC powercord implant no longer takes up the arm implant slot"

@@ -260,6 +260,16 @@
 	suffix = "transfer10.dmm"
 	name = "Transfer 10"
 
+/datum/map_template/ruin/station/box/chapel/chapel1
+	id = "chapel1"
+	suffix = "chapel1.dmm"
+	name = "Chapel 1"
+
+/datum/map_template/ruin/station/box/chapel/chapel2
+	id = "chapel2"
+	suffix = "chapel2.dmm"
+	name = "Chapel 2"
+
 /datum/map_template/ruin/station/meta
 	prefix = "_maps/RandomRuins/StationRuins/MetaStation/"
 

@@ -16,11 +16,6 @@
 	var/clawfootstep = null
 	var/heavyfootstep = null
 
-/turf/open/ComponentInitialize()
-	. = ..()
-	if(wet)
-		AddComponent(/datum/component/wet_floor, wet, INFINITY, 0, INFINITY, TRUE)
-
 //direction is direction of travel of A
 /turf/open/zPassIn(atom/movable/A, direction, turf/source)
 	return (direction == DOWN)

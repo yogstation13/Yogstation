@@ -18,9 +18,6 @@
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud = null // A reference to the owner HUD, if any.
 
-/atom/movable/screen/proc/update_icon()
-	return
-
 /atom/movable/screen/Destroy()
 	master = null
 	hud = null

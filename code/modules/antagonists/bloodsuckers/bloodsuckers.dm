@@ -115,7 +115,7 @@
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
 	RegisterSignal(current_mob, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
-	RegisterSignal(current_mob, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(LifeTick))
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
@@ -139,7 +139,7 @@
 /datum/antagonist/bloodsucker/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
-	UnregisterSignal(current_mob, list(COMSIG_LIVING_BIOLOGICAL_LIFE, COMSIG_PARENT_EXAMINE, COMSIG_LIVING_DEATH))
+	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_PARENT_EXAMINE, COMSIG_LIVING_DEATH))
 
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
@@ -212,9 +212,8 @@
 /datum/antagonist/bloodsucker/on_removal()
 	/// End Sunlight? (if last Vamp)
 	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RANKUP_BLOODSUCKERS, COMSIG_SOL_NEAR_START, COMSIG_SOL_END, COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
-	ClearAllPowersAndStats()
+	clear_powers_and_stats()
 	check_cancel_sunlight() //check if sunlight should end
-	QDEL_NULL(my_clan)
 	return ..()
 
 /datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
@@ -256,9 +255,9 @@
 		new_species.punchstunthreshold += (old_punchstunthreshold - old_species_punchstunthreshold)
 
 	//Give Bloodsucker Traits
-	for(var/all_traits in bloodsucker_traits)
-		REMOVE_TRAIT(old_body, all_traits, BLOODSUCKER_TRAIT)
-		ADD_TRAIT(new_body, all_traits, BLOODSUCKER_TRAIT)
+	if(old_body)
+		old_body.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
+	new_body.add_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
 
 
 /datum/antagonist/bloodsucker/greet()
@@ -517,8 +516,7 @@
 		user_species.punchdamagehigh += 1 //highest possible punch damage - 9
 		user_species.punchstunthreshold += 1	//To not change rng knockdowns
 	/// Give Bloodsucker Traits
-	for(var/all_traits in bloodsucker_traits)
-		ADD_TRAIT(owner.current, all_traits, BLOODSUCKER_TRAIT)
+	owner.current.add_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
 	/// No Skittish "People" allowed
 	if(HAS_TRAIT(owner.current, TRAIT_SKITTISH))
 		REMOVE_TRAIT(owner.current, TRAIT_SKITTISH, ROUNDSTART_TRAIT)
@@ -528,29 +526,43 @@
 	/// Clear Disabilities & Organs
 	heal_vampire_organs()
 
-/datum/antagonist/bloodsucker/proc/ClearAllPowersAndStats()
+/**
+ * ##clear_power_and_stats()
+ *
+ * Removes all Bloodsucker related Powers/Stats changes, setting them back to pre-Bloodsucker
+ * Order of steps and reason why:
+ * Remove clan - Clans like Nosferatu give Powers on removal, we have to make sure this is given before removing Powers.
+ * Powers - Remove all Powers, so things like Masquerade are off.
+ * Species traits, Traits, MaxHealth, Language - Misc stuff, has no priority.
+ * Organs - At the bottom to ensure everything that changes them has reverted themselves already.
+ * Update Sight - Done after Eyes are regenerated.
+ */
+/datum/antagonist/bloodsucker/proc/clear_powers_and_stats()
+	// Remove clan first
+	if(my_clan)
+		QDEL_NULL(my_clan)
 	// Powers
 	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
 		RemovePower(all_powers)
 	/// Stats
 	if(ishuman(owner.current))
-		var/mob/living/carbon/human/user = owner.current
-		var/datum/species/user_species = user.dna.species
+		var/mob/living/carbon/human/human_user = owner.current
+		var/datum/species/user_species = human_user.dna.species
 		user_species.species_traits -= DRINKSBLOOD
 		// Clown
-		if(istype(user) && owner.assigned_role == "Clown")
-			user.dna.add_mutation(CLOWNMUT)
-	/// Remove ALL Traits, as long as its from BLOODSUCKER_TRAIT's source. - This is because of unique cases like Nosferatu getting Ventcrawling.
-	for(var/all_status_traits in owner.current.status_traits)
-		REMOVE_TRAIT(owner.current, all_status_traits, BLOODSUCKER_TRAIT)
-	/// Update Health
-	owner.current.setMaxHealth(100)
+		if(istype(human_user) && owner.assigned_role == "Clown")
+			human_user.dna.add_mutation(CLOWNMUT)
+	// Remove all bloodsucker traits
+	owner.current.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
+	// Update Health
+	owner.current.setMaxHealth(initial(owner.current.maxHealth))
 	// Language
 	owner.current.remove_language(/datum/language/vampiric)
-	/// Heart
-	RemoveVampOrgans()
-	/// Eyes
+	// Heart & Eyes
 	var/mob/living/carbon/user = owner.current
+	var/obj/item/organ/heart/newheart = owner.current.getorganslot(ORGAN_SLOT_HEART)
+	if(newheart)
+		newheart.beating = initial(newheart.beating)
 	var/obj/item/organ/eyes/user_eyes = user.getorganslot(ORGAN_SLOT_EYES)
 	if(user_eyes)
 		user_eyes.flash_protect += 1

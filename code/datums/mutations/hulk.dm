@@ -94,7 +94,7 @@
 		if(owner.canUnEquip(S))
 			owner.dropItemToGround(S)
 	owner.undershirt = "Nude"
-	owner.dna.species.no_equip.Add(SLOT_WEAR_SUIT, SLOT_W_UNIFORM)
+	owner.dna.species.no_equip.Add(ITEM_SLOT_OCLOTHING, ITEM_SLOT_ICLOTHING)
 	owner.say("PUNY HUMANS!!")
 	owner.physiology.stamina_mod = 0.3
 	owner.update_body()
@@ -119,7 +119,7 @@
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_HULK)
 	REMOVE_TRAIT(owner, TRAIT_IGNORESLOWDOWN, TRAIT_HULK)
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
-	owner.dna.species.no_equip.Remove(SLOT_WEAR_SUIT, SLOT_W_UNIFORM)
+	owner.dna.species.no_equip.Remove(ITEM_SLOT_OCLOTHING, ITEM_SLOT_ICLOTHING)
 	owner.physiology.stamina_mod = initial(owner.physiology.stamina_mod)
 	owner.update_body_parts()
 	owner.dna.species.handle_mutant_bodyparts(owner)

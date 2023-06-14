@@ -44,7 +44,7 @@
 	..()
 	boost = world.time + 30
 
-/mob/living/simple_animal/imp/Life()
+/mob/living/simple_animal/imp/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(boost<world.time)
 		speed = 1

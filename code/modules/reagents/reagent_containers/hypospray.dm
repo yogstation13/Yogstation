@@ -283,7 +283,6 @@
 	var/spray_self = 1 SECONDS
 
 	//  Misc Vars  //
-	var/quickload = FALSE
 	var/penetrates = FALSE
 	var/speedup = FALSE
 	var/can_remove_container = TRUE
@@ -337,8 +336,6 @@
 	. = ..()
 	if(!initial(antispam))
 		. += span_notice("[src] has a rapispray needle, allowing for spraying multiple patients at once.")
-	if(quickload)
-		. += span_notice("[src] has a quickloading mechanism, allowing tactical reloads by using a container on it.")
 	if(penetrates)
 		. += span_notice("[src] has a diamond tipped needle, allowing it to pierce thick clothing.")
 	if(speedup)
@@ -364,10 +361,7 @@
 /obj/item/hypospray/attackby(obj/item/I, mob/living/user)
 	var/quickloading = FALSE
 	if((istype(I, /obj/item/reagent_containers/glass/bottle/vial) && container != null))
-		if(!quickload)
-			to_chat(user, span_warning("[src] can not hold more than one container!"))
-			return FALSE
-		quickloading = TRUE
+		unload_hypo(user)
 	if(I.w_class <= max_container_size)
 		var/obj/item/reagent_containers/glass/bottle/vial/V = I
 		if(!is_type_in_list(V, allowed_containers))
@@ -608,7 +602,6 @@
 	allowed_containers = list(/obj/item/reagent_containers)
 	container = /obj/item/reagent_containers/glass/bottle/adminordrazine
 	max_container_size = WEIGHT_CLASS_TINY
-	quickload = TRUE
 	penetrates = TRUE
 	possible_transfer_amounts = list(0.1, 1, 5, 10, 15, 20, 30, 50, 100)
 	spray_wait = 0 SECONDS
@@ -625,14 +618,12 @@
 	inject_self = 0 SECONDS
 	spray_wait = 0 SECONDS
 	spray_self = 0 SECONDS
-	quickload = TRUE
 	penetrates = TRUE
 
 /obj/item/hypospray/qmc
 	name = "QMC hypospray"
 	desc = "A modified, well used quick-mix capital combat hypospray designed to treat those on the field with hardsuits."
 	icon_state = "hypo_qmc"
-	quickload = TRUE
 	penetrates = TRUE
 
 /obj/item/hypospray/syringe
@@ -680,18 +671,6 @@
 /obj/item/hypospray_upgrade/proc/install(var/obj/item/hypospray/hypo, mob/user)
 	to_chat(user, span_notice("The modkit you're trying to install is not meant to exist."))
 	return FALSE
-
-/obj/item/hypospray_upgrade/quickload
-	name = "hypospray quickload upgrade"
-	desc = "An upgrade for hyposprays that installs a quickloading mechanism, allowing tactical reloads by using a container on it."
-
-/obj/item/hypospray_upgrade/quickload/install(var/obj/item/hypospray/hypo, mob/user)
-	if(hypo.quickload)
-		to_chat(user, span_notice("[hypo] already has a quickloading mechanism!"))
-		return FALSE
-	else
-		hypo.quickload = TRUE
-		return TRUE
 
 /obj/item/hypospray_upgrade/piercing
 	name = "hypospray piercing upgrade"

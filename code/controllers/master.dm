@@ -88,11 +88,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	// Highlander-style: there can only be one! Kill off the old and replace it with the new.
 
 	if(!random_seed)
-		#ifdef UNIT_TESTS
+#ifdef UNIT_TESTS
 		random_seed = 29051994
-		#else
+#else
 		random_seed = rand(1, 1e9)
-		#endif
+#endif
 		rand_seed(random_seed)
 
 	var/list/_subsystems = list()

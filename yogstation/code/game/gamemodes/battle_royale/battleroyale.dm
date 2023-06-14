@@ -77,6 +77,7 @@ GLOBAL_VAR(stormdamage)
 	addtimer(CALLBACK(src, PROC_REF(check_win)), 30 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(loot_spawn)), 0.5 SECONDS)//make sure this happens before shrinkborders
 	addtimer(CALLBACK(src, PROC_REF(shrinkborders)), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(delete_armoury)), 1.5 SECONDS)//so shitters don't immediately rush everything
 	addtimer(CALLBACK(src, PROC_REF(loot_drop)), loot_interval)//literally just keep calling it
 	return ..()
 
@@ -96,12 +97,17 @@ GLOBAL_VAR(stormdamage)
 	var/disqualified = 0 //keep track of everyone disqualified for log reasons
 
 	for(var/mob/living/player in GLOB.battleroyale_players)
+		if(QDELETED(player))
+			disqualified++
+			continue
 		if(player.stat == DEAD)
 			disqualified++
+			player.dust(TRUE, TRUE)
 			continue
 		if(!is_station_level(player.z) || player.onCentCom() || player.onSyndieBase())
 			disqualified++
 			to_chat(player, "You left the station! You have been disqualified from battle royale.")
+			player.dust(TRUE, TRUE)
 			continue
 		royalers += player //add everyone not disqualified for one reason or another to the new list
 
@@ -170,6 +176,13 @@ GLOBAL_VAR(stormdamage)
 	if(borderstage <= 9)
 		addtimer(CALLBACK(src, PROC_REF(shrinkborders)), stage_interval)
 
+/datum/game_mode/fortnite/proc/delete_armoury()
+	var/area/ai_monitored/security/armory/A = locate(/area/ai_monitored/security/armory) in GLOB.areas
+	for(var/obj/item/thing in A)
+		if(thing.anchored || !thing.force)//only target something that is possibly a weapon
+			continue
+		qdel(thing)
+
 /datum/game_mode/fortnite/proc/ItemCull()//removes items that are too weak, adds stronger items into the loot pool
 	for(var/item in GLOB.battleroyale_armour)
 		GLOB.battleroyale_armour[item] ++
@@ -225,14 +238,18 @@ GLOBAL_VAR(stormdamage)
 		qdel(I)
 	tfue.equipOutfit(/datum/outfit/battleroyale, visualsOnly = FALSE)
 
-/mob/living/carbon/human/Life()
-	. = ..()
-	if(is_battleroyale(src))
-		var/datum/antagonist/battleroyale/gamer = mind.has_antag_datum(/datum/antagonist/battleroyale)
-		gamer.gamer_life()
+/datum/antagonist/battleroyale/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	handle_clown_mutation(current_mob, mob_override ? null : "Your overwhelming swagness allows you to wield weapons!")
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(gamer_life))
 
-/datum/antagonist/battleroyale/proc/gamer_life()
-	var/mob/living/carbon/human/tfue = owner.current
+/datum/antagonist/battleroyale/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	return ..()
+
+/datum/antagonist/battleroyale/proc/gamer_life(mob/living/source, seconds_per_tick, times_fired)
+	var/mob/living/carbon/human/tfue = source
 	if(tfue && isspaceturf(tfue.loc))
 		tfue.adjustFireLoss(GLOB.stormdamage, TRUE, TRUE) //no hiding in space
 
