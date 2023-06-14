@@ -633,7 +633,7 @@
 				var/check = reaction_check(A, R)
 				if(!check)
 					continue
-				var/permeability = 0
+				var/permeability = 1
 				if(method == TOUCH || method == VAPOR)
 					var/mob/living/L = A
 					permeability = L.get_permeability()

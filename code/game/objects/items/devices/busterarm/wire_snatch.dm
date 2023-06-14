@@ -136,7 +136,7 @@
 			I.throw_at(get_step_towards(H,I), 8, 2)
 			H.visible_message(span_danger("[I] is pulled by [H]'s wire!"))
 			if(istype(I, /obj/item/clothing/head))
-				H.equip_to_slot_if_possible(I, SLOT_HEAD)
+				H.equip_to_slot_if_possible(I, ITEM_SLOT_HEAD)
 				H.visible_message(span_danger("[H] pulls [I] onto [H.p_their()] head!"))
 			else
 				H.put_in_hands(I)

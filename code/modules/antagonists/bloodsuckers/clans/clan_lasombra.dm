@@ -9,6 +9,7 @@
 	control_type = BLOODSUCKER_CONTROL_SHADOWS
 	join_icon_state = "lasombra"
 	join_description = "Heal more on the dark, transform abilties into upgraded ones, become one with the darkness."
+	control_type = BLOODSUCKER_CONTROL_SHADOWS
 
 /datum/bloodsucker_clan/lasombra/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()

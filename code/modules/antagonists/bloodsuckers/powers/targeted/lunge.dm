@@ -17,6 +17,7 @@
 	bloodcost = 10
 	cooldown_time = 10 SECONDS
 	power_activates_immediately = FALSE
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/lunge/shadow
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/upgrade_power()
 	. = ..()
@@ -146,7 +147,7 @@
 	// Is my target a Monster hunter?
 	var/mob/living/carbon/human/H = target
 	if(IS_MONSTERHUNTER(target) || H?.is_shove_knockdown_blocked())
-		owner.balloon_alert(owner, "you get pushed away!")
+		owner.balloon_alert(owner, "pushed away!")
 		target.grabbedby(owner)
 		return	
 
@@ -186,6 +187,7 @@
 	button_icon_state = "power_embrace"
 	additional_text = "Additionally makes the target walk."
 	purchase_flags = LASOMBRA_CAN_BUY
+	ascended_power = null
 
 /datum/action/cooldown/bloodsucker/targeted/lunge/shadow/lunge_end(atom/hit_atom)
 	. = ..()

@@ -59,18 +59,15 @@
 	user.physiology.stamina_mod *= 0.4
 
 	// Give the other Frenzy effects
-	ADD_TRAIT(owner, TRAIT_MUTE, FRENZY_TRAIT)
-	ADD_TRAIT(owner, TRAIT_DEAF, FRENZY_TRAIT)
-	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, FRENZY_TRAIT)
-	ADD_TRAIT(owner, TRAIT_STUNIMMUNE, FRENZY_TRAIT)
+	owner.add_traits(list(TRAIT_MUTE, TRAIT_DEAF, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_STUNIMMUNE), FRENZY_TRAIT)
 	if(user.IsAdvancedToolUser())
 		was_tooluser = TRUE
 		ADD_TRAIT(owner, TRAIT_MONKEYLIKE, SPECIES_TRAIT)
 	owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.4, blacklisted_movetypes=(FLYING|FLOATING))
 	bloodsuckerdatum.frenzygrab.teach(user, TRUE)
 	owner.add_client_colour(/datum/client_colour/cursed_heart_blood)
-	var/obj/item/cuffs = user.get_item_by_slot(SLOT_HANDCUFFED)
-	var/obj/item/legcuffs = user.get_item_by_slot(SLOT_LEGCUFFED)
+	var/obj/item/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
+	var/obj/item/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
 	if(user.handcuffed || user.legcuffed)
 		user.clear_cuffs(cuffs, TRUE, TRUE)
 		user.clear_cuffs(legcuffs, TRUE, TRUE)
@@ -82,10 +79,7 @@
 /datum/status_effect/frenzy/on_remove()
 	var/mob/living/carbon/human/user = owner
 	owner.balloon_alert(owner, "you come back to your senses.")
-	REMOVE_TRAIT(owner, TRAIT_MUTE, FRENZY_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_DEAF, FRENZY_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, FRENZY_TRAIT)
-	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, FRENZY_TRAIT)
+	owner.remove_traits(list(TRAIT_MUTE, TRAIT_DEAF), FRENZY_TRAIT)
 	if(was_tooluser)
 		REMOVE_TRAIT(owner, TRAIT_MONKEYLIKE, SPECIES_TRAIT)
 		was_tooluser = FALSE
@@ -101,8 +95,8 @@
 
 /datum/status_effect/frenzy/tick()
 	var/mob/living/carbon/human/user = owner
-	var/obj/item/cuffs = user.get_item_by_slot(SLOT_HANDCUFFED)
-	var/obj/item/legcuffs = user.get_item_by_slot(SLOT_LEGCUFFED)
+	var/obj/item/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
+	var/obj/item/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
 	if(user.handcuffed || user.legcuffed)
 		user.clear_cuffs(cuffs, TRUE, TRUE)
 		user.clear_cuffs(legcuffs, TRUE, TRUE)

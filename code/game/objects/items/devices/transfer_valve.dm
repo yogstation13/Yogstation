@@ -18,9 +18,6 @@
 	attached_device = null
 	return ..()
 
-/obj/item/transfer_valve/IsAssemblyHolder()
-	return TRUE
-
 /obj/item/transfer_valve/attackby(obj/item/item, mob/user, params)
 	if(istype(item, /obj/item/tank))
 		if(tank_one && tank_two)
@@ -189,7 +186,7 @@
 
 		merge_gases()
 		for(var/i in 1 to 6)
-			addtimer(CALLBACK(src, PROC_REF(update_icon)), 20 + (i - 1) * 10)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 20 + (i - 1) * 10)
 
 	else if(valve_open && tank_one && tank_two)
 		split_gases()

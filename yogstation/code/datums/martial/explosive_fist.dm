@@ -191,7 +191,7 @@
 /datum/martial_art/explosive_fist/proc/can_suck_life(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
-	if(A.get_item_by_slot(SLOT_HEAD))
+	if(A.get_item_by_slot(ITEM_SLOT_HEAD))
 		return FALSE
 	if(!A.pulling)
 		return FALSE
@@ -247,7 +247,7 @@
 /datum/martial_art/explosive_fist/proc/lifeforce_trade(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
-	if(A.get_item_by_slot(SLOT_HEAD))
+	if(A.get_item_by_slot(ITEM_SLOT_HEAD))
 		A.do_attack_animation(D, ATTACK_EFFECT_SMASH)			//BONK
 		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
 

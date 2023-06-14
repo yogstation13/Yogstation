@@ -757,6 +757,10 @@
 		if(24 to INFINITY)
 			M.Sleeping(40, 0)
 			. = 1
+	if(M.stat > CONSCIOUS)
+		M.adjustBruteLoss(-1*REM)
+		M.adjustFireLoss(-1*REM)
+		M.adjustOxyLoss(-1*REM)
 	..()
 
 /datum/reagent/medicine/morphine/overdose_process(mob/living/M)

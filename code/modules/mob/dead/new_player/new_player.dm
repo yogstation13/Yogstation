@@ -29,8 +29,6 @@
 	else
 		forceMove(locate(1,1,1))
 
-	ComponentInitialize()
-
 	add_verb(usr, /datum/latejoin_menu/verb/open_fallback_ui)
 
 	. = ..()

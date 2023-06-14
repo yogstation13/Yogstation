@@ -393,6 +393,8 @@
 #define PULLED_WHILE_SOFTCRIT_TRAIT "pulled-while-softcrit"
 /// Source trait for Bloodsuckers-related traits
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
+/// Source trait for Monster Hunter-related traits
+#define HUNTER_TRAIT "monsterhunter_trait"
 /// Source trait during a Frenzy
 #define FRENZY_TRAIT "frenzy_trait"
 /// Source trait while Feeding
@@ -402,6 +404,7 @@
 #define SINFULDEMON_TRAIT "sinfuldemon"
 #define CHANGESTING_TRAIT "changesting"
 #define POSIBRAIN_TRAIT "positrait"
+#define WRIST_STRAP_TRAIT "wrist_strap"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

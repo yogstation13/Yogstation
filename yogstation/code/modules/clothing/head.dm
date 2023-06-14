@@ -48,6 +48,18 @@
 	icon_state = "namhelm"
 	item_state = "namhelm"
 
+/obj/item/clothing/head/helmet/secconhelm
+	name = "constable's helmet"
+	desc = "A helmet to proudly show crooks that you mean buisness."
+	icon_state = "secconhelm"
+	item_state = "secconhelm"
+
+/obj/item/clothing/head/beret/sec/secconhat
+	name = "constable's hat"
+	desc = "Reinforced with kevlar, this hat will keep your noggin safe."
+	icon_state = "secconhat"
+	item_state = "secconhat"
+
 /obj/item/clothing/head/yogs/headpiece
 	name = "indian chief hat"
 	desc = "Perfect for an Indian play!"

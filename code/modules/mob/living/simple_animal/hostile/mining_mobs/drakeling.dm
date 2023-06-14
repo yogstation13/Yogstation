@@ -36,8 +36,6 @@
 	buckle_lying = 0
 	var/attack_cooldown = 0
 	var/list/food_items = list(/obj/item/reagent_containers/food/snacks/meat/slab/goliath = 20, /obj/item/reagent_containers/food/snacks/meat/steak/goliath = 40)
-	var/list/action_types = list(/datum/action/cooldown/spell/pointed/drakeling/fire_breath, /datum/action/cooldown/spell/pointed/drakeling/wing_flap)
-	var/list/dragon_actions = list()
 	var/grinding = FALSE
 	var/datum/action/drake_ollie/dollie
 
@@ -52,11 +50,7 @@
 	D.vehicle_move_delay = 1
 	dollie = new
 	dollie.dragon = src
-	for(var/datum/action/cooldown/spell/pointed/drakeling/attack_action in action_types)
-		attack_action = new(src)
-		attack_action.Grant(src)
-		dragon_actions |= attack_action
-		attack_action.drake = src
+	remove_abilities(src)
 	RegisterSignal(src, COMSIG_MOVABLE_BUCKLE, PROC_REF(give_abilities))
 	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(remove_abilities))
 
@@ -66,19 +60,30 @@
 		var/datum/action/cooldown/spell/pointed/drakeling/D = click_intercept
 		D.unset_click_ability(D.owner)
 	dollie.Grant(M)
-	for(var/datum/action/cooldown/spell/pointed/drakeling/attack_action as anything in dragon_actions)
+	for(var/datum/action/cooldown/spell/pointed/drakeling/attack_action in actions)
 		attack_action.Remove(src)
-		attack_action.Grant(M)
+
+	var/datum/action/cooldown/spell/pointed/drakeling/wing_flap/the_flappening = new(src) //having to do this cause the lists don't want to work
+	the_flappening.Grant(M)
+
+	var/datum/action/cooldown/spell/pointed/drakeling/fire_breath/the_breathening = new(src)
+	the_breathening.Grant(M)
 
 /mob/living/simple_animal/hostile/drakeling/proc/remove_abilities(mob/living/drake, mob/living/M, force = FALSE)
 	toggle_ai(AI_ON)
-	if(istype(M.click_intercept, /datum/action/cooldown/spell/pointed/drakeling))
-		var/datum/action/cooldown/spell/pointed/drakeling/D = M.click_intercept
-		D.unset_click_ability(D.owner)
-	dollie.Remove(M)
-	for(var/datum/action/cooldown/spell/pointed/drakeling/attack_action as anything in dragon_actions)
-		attack_action.Remove(M)
-		attack_action.Grant(src)
+	if(M)
+		if(istype(M.click_intercept, /datum/action/cooldown/spell/pointed/drakeling))
+			var/datum/action/cooldown/spell/pointed/drakeling/D = M.click_intercept
+			D.unset_click_ability(D.owner)
+		dollie.Remove(M)
+		for(var/datum/action/cooldown/spell/pointed/drakeling/attack_action in M.actions)
+			attack_action.Remove(M)
+
+	var/datum/action/cooldown/spell/pointed/drakeling/wing_flap/the_flappening = new(src)
+	the_flappening.Grant(src)
+
+	var/datum/action/cooldown/spell/pointed/drakeling/fire_breath/the_breathening = new(src)
+	the_breathening.Grant(src)
 
 /mob/living/simple_animal/hostile/drakeling/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/clothing/neck/petcollar))
@@ -113,10 +118,14 @@
 	panel = "Dragon"
 
 	cooldown_time = 5 SECONDS
-	active_msg = span_notice("You prepare %YOUR ULTRA DRAGON ATTACK")
+	active_msg = span_notice("You prepare YOUR ULTRA MEGA DRAGON ATTACK")
 	deactive_msg = span_notice("You decide to spare the mortals for now...")
 	spell_requirements = NONE
 	var/mob/living/simple_animal/hostile/drakeling/drake
+
+/datum/action/cooldown/spell/pointed/drakeling/link_to(Target)
+	. = ..()	
+	drake = Target || target
 
 /datum/action/cooldown/spell/pointed/drakeling/InterceptClickOn(mob/living/caller, params, atom/target)
 	. = ..()
@@ -129,12 +138,12 @@
 	drake.attack_cooldown = cooldown_time + world.time
 	addtimer(CALLBACK(src, PROC_REF(cooldown_over), owner), cooldown_time)
 	if(owner != drake)
-		addtimer(CALLBACK(src, .PROC_REF(cooldown_over), drake), cooldown_time)
+		addtimer(CALLBACK(src, PROC_REF(cooldown_over), drake), cooldown_time)
 
 	return TRUE
 
 /datum/action/cooldown/spell/pointed/drakeling/proc/cooldown_over(mob/living/L)
-	to_chat(L, "<span class='notice'>You[L == drake ? "are" : "r dragon is"] ready for another attack!")
+	to_chat(L, span_notice("You[L == drake ? "are" : "r dragon is"] ready for another attack!"))
 
 /datum/action/cooldown/spell/pointed/drakeling/Destroy()
 	drake = null
@@ -147,7 +156,7 @@
 	button_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "fireball"
 	cooldown_time = 1.6 SECONDS //kinetic gun
-	active_msg = span_notice("You prepare %YOUR fire breath attack")
+	active_msg = span_notice("You prepare the fire breath attack")
 	deactive_msg = span_notice("You decide to refrain from roasting more peasants for the time.")
 
 /datum/action/cooldown/spell/pointed/drakeling/fire_breath/InterceptClickOn(mob/living/L, params, atom/A)
@@ -179,7 +188,7 @@
 	return (getline(src, T) - get_turf(src))
 
 ///actual bit that shoots fire for the fire breath attack
-/datum/action/cooldown/spell/pointed/drakeling/proc/drakeling_fire_line(var/source, var/list/turfs, var/damage, var/list/protected)
+/datum/action/cooldown/spell/pointed/drakeling/fire_breath/proc/drakeling_fire_line(var/source, var/list/turfs, var/damage, var/list/protected)
 	var/list/hit_list = list()
 	for(var/turf/T in turfs)
 		if(istype(T, /turf/closed))
@@ -203,7 +212,7 @@
 	button_icon_state = "tornado"
 	button_icon = 'icons/obj/wizard.dmi'
 	cooldown_time = 1 SECONDS //adv cutter
-	active_msg = span_notice("You prepare %YOUR wings.")
+	active_msg = span_notice("You ready the wings.")
 	deactive_msg = span_notice("You stop the flapping.")
 	var/shootie = /obj/item/projectile/wing
 

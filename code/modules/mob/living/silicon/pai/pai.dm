@@ -130,7 +130,7 @@
 	emittersemicd = TRUE
 	addtimer(CALLBACK(src, PROC_REF(emittercool)), 600)
 
-/mob/living/silicon/pai/Life()
+/mob/living/silicon/pai/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(hacking)
 		process_hack()
 	return ..()
@@ -271,7 +271,7 @@
 	. = ..()
 	. += "A personal AI in holochassis mode. Its master ID string seems to be [master]."
 
-/mob/living/silicon/pai/Life()
+/mob/living/silicon/pai/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(stat == DEAD)
 		return
 	if(cable)

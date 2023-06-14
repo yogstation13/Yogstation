@@ -179,8 +179,6 @@
 		custom_materials = null //Null the list to prepare for applying the materials properly
 		set_custom_materials(temp_list)
 
-	ComponentInitialize()
-
 	return INITIALIZE_HINT_NORMAL
 
 /**
@@ -196,10 +194,6 @@
   * code has been run
   */
 /atom/proc/LateInitialize()
-	return
-
-/// Put your AddComponent() calls here
-/atom/proc/ComponentInitialize()
 	return
 
 /**
@@ -550,6 +544,8 @@
 	if(!LAZYLEN(.)) // lol ..length
 		return FALSE
 
+/atom/proc/update_icon()
+	return
 /**
   * An atom we are buckled or is contained within us has tried to move
   *

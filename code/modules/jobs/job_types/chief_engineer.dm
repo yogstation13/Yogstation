@@ -72,7 +72,7 @@
 	box = /obj/item/storage/box/engineer
 	chameleon_extras = /obj/item/stamp/ce
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/ce/rig
 	name = "Chief Engineer (Hardsuit)"
@@ -84,4 +84,4 @@
 	glasses = /obj/item/clothing/glasses/meson/sunglasses
 	gloves = /obj/item/clothing/gloves/color/yellow
 	head = null
-	internals_slot = SLOT_SUIT_STORE
+	internals_slot = ITEM_SLOT_SUITSTORE

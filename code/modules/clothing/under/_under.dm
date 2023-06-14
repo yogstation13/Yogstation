@@ -65,7 +65,7 @@
 /obj/item/clothing/under/emp_act()
 	. = ..()
 	if(has_sensor > NO_SENSORS)
-		sensor_mode = pick(SENSOR_OFF, SENSOR_OFF, SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS)
+		sensor_mode = min(pick(SENSOR_OFF, SENSOR_LIVING, SENSOR_VITALS, SENSOR_COORDS), max(sensor_mode - 1, SENSOR_OFF))//pick a random sensor level below the current one
 		if(ismob(loc))
 			var/mob/M = loc
 			to_chat(M,span_warning("The sensors on the [src] change rapidly!"))
@@ -78,7 +78,7 @@
 		if(!alt_covers_chest)
 			body_parts_covered |= CHEST
 
-	if(slot == SLOT_W_UNIFORM && freshly_laundered)
+	if(slot == ITEM_SLOT_ICLOTHING && freshly_laundered)
 		freshly_laundered = FALSE
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "fresh_laundry", /datum/mood_event/fresh_laundry)
 
@@ -101,7 +101,7 @@
 			adjusted = ALT_STYLE
 		H.update_inv_w_uniform()
 //Yogs End
-	if(attached_accessory && slot != SLOT_HANDS)
+	if(attached_accessory && slot != ITEM_SLOT_HANDS)
 		attached_accessory.on_clothing_equip(src, user)
 		if(attached_accessory.above_suit)
 			H.update_inv_wear_suit()

@@ -13,19 +13,21 @@
 	id = MARTIALART_GARDENWARFARE
 	block_chance = 75
 	help_verb =  /mob/living/carbon/human/proc/gardern_warfare_help
-	var/datum/action/vine_snatch/vine_snatch = new /datum/action/vine_snatch()
+	var/datum/action/vine_snatch/vine_snatch
 	var/current_combo
 
 /datum/martial_art/gardern_warfare/can_use(mob/living/carbon/human/H)
 	return ispodperson(H)
 
-/datum/martial_art/gardern_warfare/teach(mob/living/carbon/human/H,make_temporary=0)
+/datum/martial_art/gardern_warfare/teach(mob/living/carbon/human/H, make_temporary=0)
 	if(..())
+		vine_snatch = new(H)
 		vine_snatch.Grant(H)
 		H.dna.species.speedmod = 0
 
 /datum/martial_art/gardern_warfare/on_remove(mob/living/carbon/human/H)
 	vine_snatch.Remove(H)
+	QDEL_NULL(vine_snatch)
 	H.dna.species.speedmod = initial(H.dna.species.speedmod)
 
 /datum/martial_art/gardern_warfare/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
