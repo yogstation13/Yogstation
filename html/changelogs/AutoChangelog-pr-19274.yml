@@ -1,4 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "fixed compile error preventing the server from updating"
