@@ -117,7 +117,7 @@
 
 /turf/open/floor/holofloor/carpet/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(update_icon)), 1)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 1)
 
 /turf/open/floor/holofloor/carpet/update_icon()
 	if(!..())

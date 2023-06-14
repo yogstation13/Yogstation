@@ -179,3 +179,11 @@
 	sheet_type = /obj/item/stack/tile/bronze
 	sheet_amount = 2
 	girder_type = /obj/structure/girder/bronze
+
+/turf/closed/wall/explosive
+	desc = "A huge chunk of metal used to seperate rooms. This one smells of gunpowder."
+
+/turf/closed/wall/explosive/ex_act(severity)
+	var/obj/item/bombcore/large/bombcore = new(get_turf(src))
+	bombcore.detonate()
+	..()

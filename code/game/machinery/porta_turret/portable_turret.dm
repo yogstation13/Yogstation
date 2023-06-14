@@ -489,7 +489,7 @@
 	if(check_records)	//if the turret can check the records, check if they are set to *Arrest* on records
 		var/perpname = perp.get_face_name(perp.get_id_name())
 		var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.security)
-		if(!R || (R.fields["criminal"] == "*Arrest*"))
+		if(!R || (R.fields["criminal"] == WANTED_ARREST))
 			threatcount += 4
 
 	if(shoot_unloyal)
@@ -558,6 +558,7 @@
 	A.preparePixelProjectile(target, T)
 	A.firer = src
 	A.fired_from = src
+	A.ignored_factions = faction
 	A.fire()
 	return A
 
@@ -573,7 +574,7 @@
 
 /datum/action/turret_toggle
 	name = "Toggle Mode"
-	icon_icon = 'icons/mob/actions/actions_mecha.dmi'
+	button_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "mech_cycle_equip_off"
 
 /datum/action/turret_toggle/Trigger()
@@ -584,7 +585,7 @@
 
 /datum/action/turret_quit
 	name = "Release Control"
-	icon_icon = 'icons/mob/actions/actions_mecha.dmi'
+	button_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "mech_eject"
 
 /datum/action/turret_quit/Trigger()
@@ -652,7 +653,7 @@
 	faction = list(ROLE_SYNDICATE)
 	desc = "A ballistic machine gun auto-turret."
 
-/obj/machinery/porta_turret/syndicate/ComponentInitialize()
+/obj/machinery/porta_turret/syndicate/Initialize()
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
@@ -760,7 +761,7 @@
 	faction = list("neutral","silicon","turret")
 	mode = TURRET_LETHAL
 
-/obj/machinery/porta_turret/centcom_shuttle/ComponentInitialize()
+/obj/machinery/porta_turret/centcom_shuttle/Initialize()
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 

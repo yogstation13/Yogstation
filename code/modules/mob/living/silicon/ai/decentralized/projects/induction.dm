@@ -22,18 +22,15 @@
 
 /datum/ai_project/induction_cyborg/finish()
 	var/datum/action/innate/ai/ranged/charge_borg_or_apc/ability = add_ability(/datum/action/innate/ai/ranged/charge_borg_or_apc)
-	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect
 	if(ability)
-		effect = ability.linked_ability
-		effect.works_on_borgs = TRUE
-		effect.attached_action.button.name = "Charge cyborg"
-		effect.attached_action.button.desc = "Click a cyborg to charge it by 33%"
+		ability.works_on_borgs = TRUE
+		ability.name = "Charge cyborg"
+		ability.desc = "Click a cyborg to charge it by 33%"
 	else
 		ability = locate(/datum/action/innate/ai/ranged/charge_borg_or_apc) in ai.actions
-		effect = ability.linked_ability
-		effect.works_on_borgs = TRUE
-		effect.attached_action.button.name = "Charge cyborg/APC"
-		effect.attached_action.button.desc = "Click a cyborg or APC to charge it by 33%"
+		ability.works_on_borgs = TRUE
+		ability.name = "Charge cyborg/APC"
+		ability.desc = "Click a cyborg or APC to charge it by 33%"
 
 
 /datum/ai_project/induction_apc
@@ -51,18 +48,14 @@
 
 /datum/ai_project/induction_apc/finish()
 	var/datum/action/innate/ai/ranged/charge_borg_or_apc/ability = add_ability(/datum/action/innate/ai/ranged/charge_borg_or_apc)
-	var/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/effect
 	if(ability)
-		effect = ability.linked_ability
-		effect.works_on_apcs = TRUE
-		effect.attached_action.button.name = "Charge APC"
-		effect.attached_action.button.desc = "Click an APC to charge it by 33%"
+		ability.name = "Charge APC"
+		ability.desc = "Click an APC to charge it by 33%"
 	else
 		ability = locate(/datum/action/innate/ai/ranged/charge_borg_or_apc) in ai.actions
-		effect = ability.linked_ability
-		effect.works_on_apcs = TRUE
-		effect.attached_action.button.name = "Charge cyborg/APC"
-		effect.attached_action.button.desc = "Click a cyborg or APC to charge it by 33%"
+		ability.name = "Charge cyborg/APC"
+		ability.desc = "Click a cyborg or APC to charge it by 33%"
+	ability.works_on_apcs = TRUE
 
 
 /datum/action/innate/ai/ranged/charge_borg_or_apc
@@ -71,11 +64,34 @@
 	button_icon_state = "electrified"
 	uses = 1
 	delete_on_empty = FALSE
-	linked_ability_type = /obj/effect/proc_holder/ranged_ai/charge_borg_or_apc
+	var/works_on_borgs = FALSE
+	var/works_on_apcs = FALSE
+	enable_text = span_notice("You prepare bluespace induction coils. Click a borg or APC to charge its cell by 33%")
+	disable_text = span_notice("You power down your induction coils.")
+	
+/datum/action/innate/ai/ranged/charge_borg_or_apc/do_ability(mob/living/caller, params, atom/clicked_on)
+	if(!iscyborg(clicked_on) && !istype(clicked_on, /obj/machinery/power/apc))
+		to_chat(owner, span_warning("You can only charge cyborgs or APCs!"))
+		return FALSE
+	if(!works_on_borgs && iscyborg(clicked_on))
+		to_chat(owner, span_warning("You can only charge APCs!"))
+		return FALSE
+	if(!works_on_apcs && istype(clicked_on, /obj/machinery/power/apc))
+		to_chat(owner, span_warning("You can only charge cyborgs!"))
+		return FALSE
+
+	owner.playsound_local(owner, "sparks", 50, 0)
+
+	if(charge_borg_or_apc(clicked_on))
+		adjust_uses(-1)
+		do_sparks(3, FALSE,clicked_on)
+		to_chat(owner, span_notice("You charge [clicked_on]."))
+		clicked_on.audible_message(span_userdanger("You hear a soothing electrical buzzing sound coming from [clicked_on]!"))
+	return TRUE
 
 /datum/action/innate/ai/ranged/charge_borg_or_apc/proc/charge_borg_or_apc(atom/target)
 	if(target && !QDELETED(target))
-		if(istype(target, /mob/living/silicon/robot))
+		if(iscyborg(target))
 			var/mob/living/silicon/robot/R = target
 			log_game("[key_name(usr)] charged [R.name].")
 			if(R.cell)
@@ -98,37 +114,3 @@
 				return TRUE
 			else
 				to_chat(owner, span_warning("The APC has no powercell to charge!"))
-
-/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc
-	active = FALSE
-	var/works_on_borgs = FALSE
-	var/works_on_apcs = FALSE
-	enable_text = span_notice("You prepare bluespace induction coils. Click a borg or APC to charge its cell by 33%")
-	disable_text = span_notice("You power down your induction coils.")
-
-/obj/effect/proc_holder/ranged_ai/charge_borg_or_apc/InterceptClickOn(mob/living/caller, params, atom/target)
-	if(..())
-		return
-	if(ranged_ability_user.incapacitated())
-		remove_ranged_ability()
-		return
-	if(!istype(target, /mob/living/silicon/robot) && !istype(target, /obj/machinery/power/apc))
-		to_chat(ranged_ability_user, span_warning("You can only charge cyborgs or APCs!"))
-		return
-	if(!works_on_borgs && istype(target, /mob/living/silicon/robot))
-		to_chat(ranged_ability_user, span_warning("You can only charge APCs!"))
-		return
-	if(!works_on_apcs && istype(target, /obj/machinery/power/apc))
-		to_chat(ranged_ability_user, span_warning("You can only charge cyborgs!"))
-		return
-
-	ranged_ability_user.playsound_local(ranged_ability_user, "sparks", 50, 0)
-
-	var/datum/action/innate/ai/ranged/charge_borg_or_apc/action = attached_action
-	if(action.charge_borg_or_apc(target))
-		attached_action.adjust_uses(-1)
-		do_sparks(3, FALSE, target)
-		to_chat(caller, span_notice("You charge [target]."))
-		target.audible_message(span_userdanger("You hear a soothing electrical buzzing sound coming from [target]!"))
-	remove_ranged_ability()
-	return TRUE

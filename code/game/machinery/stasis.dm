@@ -36,6 +36,13 @@
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
 
+/obj/machinery/stasis/Initialize()
+	. = ..()
+	AddComponent(/datum/component/surgery_bed, \
+		success_chance = 1, \
+		op_computer_linkable = TRUE, \
+	)
+
 /obj/machinery/stasis/RefreshParts()
 	stasis_amount = initial(stasis_amount)
 	stasis_cooldown = initial(stasis_cooldown)
@@ -58,10 +65,6 @@
 	if(occupant)
 		thaw_them(occupant)
 		chill_out(occupant)
-	
-
-/obj/machinery/stasis/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 1, TRUE)
 
 /obj/machinery/stasis/examine(mob/user)
 	. = ..()
@@ -147,7 +150,7 @@
 	var/freq = rand(24750, 26550)
 	playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 2, frequency = freq)
 	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE, stasis_amount)
-	target.ExtinguishMob()
+	target.extinguish_mob()
 	use_power = ACTIVE_POWER_USE
 	if(obj_flags & EMAGGED)
 		to_chat(target, span_warning("Your limbs start to feel numb..."))

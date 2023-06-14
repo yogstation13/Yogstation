@@ -33,4 +33,4 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		L.adjust_fire_stacks(fire_stacks)
-		L.IgniteMob()
+		L.ignite_mob()

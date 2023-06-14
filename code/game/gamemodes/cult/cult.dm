@@ -12,12 +12,6 @@
 		return TRUE
 	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
 
-/datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
-	for(var/datum/objective/sacrifice/sac_objective in objectives)
-		if(mind == sac_objective.target)
-			return TRUE
-	return FALSE
-
 /proc/is_convertable_to_cult(mob/living/M,datum/team/cult/specific_cult)
 	if(!istype(M))
 		return FALSE
@@ -26,7 +20,8 @@
 			return FALSE
 		if(specific_cult && specific_cult.is_sacrifice_target(M.mind))
 			return FALSE
-		if(M.mind.enslaved_to && !iscultist(M.mind.enslaved_to))
+		var/mob/living/master = M.mind.enslaved_to?.resolve()
+		if(master && !iscultist(master))
 			return FALSE
 		if(M.mind.unconvertable)
 			return FALSE
@@ -106,13 +101,13 @@
 
 	main_cult.setup_objectives() //Wait until all cultists are assigned to make sure none will be chosen as sacrifice.
 
-	. = ..()
+	return ..()
 
 /datum/game_mode/cult/check_finished(force_ending)
 	if (..())
 		return TRUE
 
-	return 1 - main_cult.check_sacrifice_status()
+	return !main_cult.check_sacrifice_status() //we should remove this any time soon
 
 /datum/game_mode/proc/add_cultist(datum/mind/cult_mind, stun , equip = FALSE, datum/team/cult/cult_team = null)
 	if (!istype(cult_mind))
@@ -137,23 +132,9 @@
 			cult_mind.current.Unconscious(100)
 		return TRUE
 
-/datum/game_mode/proc/update_cult_icons_added(datum/mind/cult_mind)
-	var/datum/atom_hud/antag/culthud = GLOB.huds[ANTAG_HUD_CULT]
-	culthud.join_hud(cult_mind.current)
-	set_antag_hud(cult_mind.current, "cult")
-
-/datum/game_mode/proc/update_cult_icons_removed(datum/mind/cult_mind)
-	var/datum/atom_hud/antag/culthud = GLOB.huds[ANTAG_HUD_CULT]
-	culthud.leave_hud(cult_mind.current)
-	set_antag_hud(cult_mind.current, null)
-
-/datum/game_mode/cult/proc/check_cult_victory()
-	return main_cult.check_cult_victory()
-
-
 /datum/game_mode/cult/set_round_result()
 	..()
-	if(check_cult_victory())
+	if(main_cult.check_cult_victory())
 		SSticker.mode_result = "win - cult win"
 		SSticker.news_report = CULT_SUMMON
 	else
@@ -244,7 +225,7 @@
 			cultist.health *= 0.75
 		else
 			cultist.Stun(20)
-			cultist.confused += 15 //30 seconds of confusion
+			cultist.adjust_confusion(15 SECONDS)
 		to_chat(cultist, span_narsiesmall("Your mind is flooded with pain as the last bloodstone is destroyed!"))
 
 /datum/game_mode/proc/cult_loss_anchor()
@@ -263,9 +244,9 @@
 				cultist.maxHealth *= 0.5
 				cultist.health *= 0.5
 			else
-				cultist.Stun(40)
-				cultist.confused += 30 //one minute of confusion
-			to_chat(cultist, span_narsiesmall("You feel a bleakness as the destruction of the anchor cuts off your connection to Nar'sie!"))
+				cultist.Stun(4 SECONDS)
+				cultist.adjust_confusion(1 MINUTES)
+			to_chat(cultist, span_narsiesmall("You feel a bleakness as the destruction of the anchor cuts off your connection to Nar-Sie!"))
 
 /datum/game_mode/proc/disable_bloodstone_cooldown()
 	bloodstone_cooldown = FALSE

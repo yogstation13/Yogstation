@@ -24,19 +24,19 @@
 /datum/antagonist/ashwalker/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()
 	UnregisterSignal(old_body, COMSIG_MOB_EXAMINATE)
-	RegisterSignal(new_body, COMSIG_MOB_EXAMINATE, PROC_REF(on_examinate))
+	RegisterSignal(new_body, COMSIG_MOB_EXAMINATE, PROC_REF(on_examine))
 
 /datum/antagonist/ashwalker/on_gain()
 	. = ..()
 	var/obj/item/book/granter/crafting_recipe/ashwalker/crafting_book
 	for(var/datum/crafting_recipe/R in crafting_book.crafting_recipe_types)
 		owner.teach_crafting_recipe(R)
-	RegisterSignal(owner.current, COMSIG_MOB_EXAMINATE, PROC_REF(on_examinate))
+	RegisterSignal(owner.current, COMSIG_MOB_EXAMINATE, PROC_REF(on_examine))
 
 /datum/antagonist/ashwalker/on_removal()
 	. = ..()
 	UnregisterSignal(owner.current, COMSIG_MOB_EXAMINATE)
 
-/datum/antagonist/ashwalker/proc/on_examinate(datum/source, atom/A)
+/datum/antagonist/ashwalker/proc/on_examine(datum/source, atom/A)
 	if(istype(A, /obj/structure/headpike))
 		SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, "oogabooga", /datum/mood_event/sacrifice_good)

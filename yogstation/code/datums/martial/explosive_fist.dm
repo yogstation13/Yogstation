@@ -53,7 +53,7 @@
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	playsound(get_turf(D), get_sfx("explosion"), 50, TRUE, -1)
 	new /obj/effect/hotspot(get_turf(D)) //for the flashy
-	D.IgniteMob()
+	D.ignite_mob()
 	D.apply_damage(A.get_punchdamagehigh() + 3, BRUTE, selected_zone, brute_block) 	//10 brute
 	D.apply_damage(A.get_punchdamagehigh() + 3, BURN, selected_zone, burn_block) 	//10 burn (vs bomb armor)
 	D.visible_message(span_danger("[A] [A.dna.species.attack_verb]s [D]!"), \
@@ -175,7 +175,7 @@
 	D.visible_message(span_danger("[A] detonates [D]!"), \
 				span_userdanger("[A] detonates you!"))
 	explosion(get_turf(D), -1, 0, 2, flame_range = 3)
-	D.IgniteMob()
+	D.ignite_mob()
 	playsound(D, get_sfx("explosion"), 50, TRUE, -1)
 	
 	var/obj/item/bodypart/affecting = D.get_bodypart(BODY_ZONE_CHEST)
@@ -191,7 +191,7 @@
 /datum/martial_art/explosive_fist/proc/can_suck_life(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
-	if(A.get_item_by_slot(SLOT_HEAD))
+	if(A.get_item_by_slot(ITEM_SLOT_HEAD))
 		return FALSE
 	if(!A.pulling)
 		return FALSE
@@ -247,7 +247,7 @@
 /datum/martial_art/explosive_fist/proc/lifeforce_trade(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
-	if(A.get_item_by_slot(SLOT_HEAD))
+	if(A.get_item_by_slot(ITEM_SLOT_HEAD))
 		A.do_attack_animation(D, ATTACK_EFFECT_SMASH)			//BONK
 		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
 
@@ -280,8 +280,8 @@
 		streak = ""
 		A.adjust_fire_stacks(3)
 		D.adjust_fire_stacks(3)
-		A.IgniteMob()
-		D.IgniteMob()
+		A.ignite_mob()
+		D.ignite_mob()
 		succ_damage = initial(succ_damage)	//Reset our succ damage on start
 		proceed_lifeforce_trade(A, D)
 
@@ -354,7 +354,7 @@
 			if(target == A)
 				continue
 			target.adjustFireLoss(30)
-			target.IgniteMob() 	
+			target.ignite_mob() 	
 		for(var/turf/open/flashy in view_or_range(2, A, "range"))
 			new /obj/effect/hotspot(flashy) //for the flashy
 

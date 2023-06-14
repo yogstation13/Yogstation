@@ -10,7 +10,12 @@
 	glass_desc = "Are you sure this is tomato juice?"
 	shot_glass_icon_state = "shotglassred"
 
-/datum/reagent/blood/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+/datum/reagent/blood/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(L) //bloodsucker start
+	if(bloodsuckerdatum)
+		bloodsuckerdatum.bloodsucker_blood_volume = min(bloodsuckerdatum.bloodsucker_blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM(L))
+		return //bloodsucker end
+
 	if(data && data["viruses"])
 		for(var/thing in data["viruses"])
 			var/datum/disease/D = thing
@@ -18,7 +23,7 @@
 			if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 				continue
 
-			if((method == TOUCH || method == VAPOR))
+			if((method == TOUCH || method == VAPOR) && permeability)
 				if(D.spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS)
 					L.ContactContractDisease(D)
 			else //ingest, patch or inject
@@ -177,12 +182,12 @@
  *	Water reaction to a mob
  */
 
-/datum/reagent/water/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with water can help put them out!
+/datum/reagent/water/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)//Splashing people with water can help put them out!
 	if(!istype(M))
 		return
 	if(method == TOUCH)
-		M.adjust_fire_stacks(-(reac_volume / 10))
-		M.ExtinguishMob()
+		M.adjust_fire_stacks(-(reac_volume / 10) * M.get_permeability(null, TRUE))
+		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 	..()
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
@@ -220,17 +225,15 @@
 	if(!data)
 		data = list("misc" = 1)
 	data["misc"]++
-	M.jitteriness = min(M.jitteriness+4,10)
+	M.adjust_jitter_up_to(4 SECONDS, 20 SECONDS)
 	if(iscultist(M))
 		for(var/datum/action/innate/cult/blood_magic/BM in M.actions)
 			to_chat(M, span_cultlarge("Your blood rites falter as holy water scours your body!"))
 			for(var/datum/action/innate/cult/blood_spell/BS in BM.spells)
 				qdel(BS)
 	if(data["misc"] >= 25)		// 10 units, 45 seconds @ metabolism 0.4 units & tick rate 1.8 sec
-		if(!M.stuttering)
-			M.stuttering = 1
-		M.stuttering = min(M.stuttering+4, 10)
-		M.Dizzy(5)
+		M.adjust_stutter_up_to(4 SECONDS, 20 SECONDS)
+		M.set_dizzy_if_lower(10 SECONDS)
 		if(iscultist(M) && prob(20))
 			M.say(pick("Av'te Nar'sie","Pa'lid Mors","INO INO ORA ANA","SAT ANA!","Daim'niodeis Arc'iai Le'eones","R'ge Na'sie","Diabo us Vo'iscum","Eld' Mon Nobis"), forced = "holy water")
 			if(prob(10))
@@ -253,8 +256,8 @@
 				SSticker.mode.remove_cultist(M.mind, FALSE, TRUE)
 			else if(is_servant_of_ratvar(M))
 				remove_servant_of_ratvar(M)
-			M.jitteriness = 0
-			M.stuttering = 0
+			M.remove_status_effect(/datum/status_effect/jitter)
+			M.remove_status_effect(/datum/status_effect/speech/stutter)
 			holder.remove_reagent(type, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
 			return
 	if(ishuman(M) && is_vampire(M) && prob(80)) // Yogs Start
@@ -270,7 +273,7 @@
 				if(13 to INFINITY)
 					M.visible_message("<span class='danger'>[M] suddenly bursts into flames!<span>", span_userdanger("You suddenly ignite in a holy fire!"))
 					M.adjust_fire_stacks(3)
-					M.IgniteMob()            //Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
+					M.ignite_mob()            //Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
 					M.adjustFireLoss(3)        //Hence the other damages... ain't I a bastard? // Yogs End
 	if(ishuman(M) && is_sinfuldemon(M) && prob(80))
 		switch(data)
@@ -287,7 +290,7 @@
 			if(13 to INFINITY)
 				M.visible_message("<span class='danger'>[M] suddenly ignites in a brilliant flash of white!<span>", span_userdanger("You suddenly ignite in a holy fire!"))
 				M.adjust_fire_stacks(3)
-				M.IgniteMob()
+				M.ignite_mob()
 				M.adjustFireLoss(4)
 	holder.remove_reagent(type, 0.4)	//fixed consumption to prevent balancing going out of whack
 
@@ -305,15 +308,15 @@
 	description = "Something that shouldn't exist on this plane of existence."
 	taste_description = "suffering"
 
-/datum/reagent/fuel/unholywater/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(method == TOUCH || method == VAPOR)
-		M.reagents.add_reagent(type,reac_volume/4)
+/datum/reagent/fuel/unholywater/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
+	if((method == TOUCH || method == VAPOR) && permeability)
+		M.reagents.add_reagent(type, permeability * reac_volume / 4)
 		return
 	return ..()
 
 /datum/reagent/fuel/unholywater/on_mob_life(mob/living/carbon/M)
 	if(iscultist(M))
-		M.drowsyness = max(M.drowsyness-5, 0)
+		M.adjust_drowsiness(-5 SECONDS)
 		M.AdjustAllImmobility(-40, FALSE)
 		M.adjustStaminaLoss(-10, 0)
 		M.adjustToxLoss(-2, 0)
@@ -339,7 +342,7 @@
 
 /datum/reagent/hellwater/on_mob_life(mob/living/carbon/M)
 	M.fire_stacks = min(5,M.fire_stacks + 3)
-	M.IgniteMob()			//Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
+	M.ignite_mob()			//Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
 	M.adjustToxLoss(1, 0)
 	M.adjustFireLoss(1, 0)		//Hence the other damages... ain't I a bastard?
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 150)
@@ -353,7 +356,7 @@
 
 /datum/reagent/eldritch/on_mob_life(mob/living/carbon/M)
 	if(IS_HERETIC(M) || IS_HERETIC_MONSTER(M))
-		M.drowsyness = max(M.drowsyness-5, 0)
+		M.adjust_drowsiness(-5 SECONDS)
 		M.AdjustAllImmobility(-40, FALSE)
 		M.adjustStaminaLoss(-10, FALSE)
 		M.adjustToxLoss(-2, FALSE)
@@ -1069,7 +1072,7 @@
 /datum/reagent/bluespace/on_mob_life(mob/living/carbon/M)
 	if(current_cycle > 10 && prob(15))
 		to_chat(M, span_warning("You feel unstable..."))
-		M.Jitter(2)
+		M.adjust_jitter(2 SECONDS)
 		current_cycle = 1
 		addtimer(CALLBACK(M, /mob/living/proc/bluespace_shuffle), 30)
 	..()
@@ -1160,12 +1163,12 @@
 	M.adjustToxLoss(6.33)
 	..()
 
-/datum/reagent/space_cleaner/ez_clean/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/space_cleaner/ez_clean/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	..()
-	if((method == TOUCH || method == VAPOR) && !issilicon(M))
-		M.reagents.add_reagent(/datum/reagent/space_cleaner/ez_clean, reac_volume)
-		M.adjustBruteLoss(1 * reac_volume)
-		M.adjustFireLoss(1 * reac_volume)
+	if((method == TOUCH || method == VAPOR) && !issilicon(M) && permeability)
+		M.reagents.add_reagent(/datum/reagent/space_cleaner/ez_clean, reac_volume * permeability)
+		M.adjustBruteLoss(1 * reac_volume * permeability)
+		M.adjustFireLoss(1 * reac_volume * permeability)
 		M.emote("scream")
 
 /datum/reagent/cryptobiolin
@@ -1175,11 +1178,17 @@
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "sourness"
 
-/datum/reagent/cryptobiolin/on_mob_life(mob/living/carbon/M)
-	M.Dizzy(1)
-	if(!M.confused)
-		M.confused = 1
-	M.confused = max(M.confused, 20)
+/datum/reagent/cryptobiolin/on_mob_life(mob/living/carbon/affected_mob)
+	affected_mob.set_dizzy_if_lower(2 SECONDS)
+
+	// Cryptobiolin adjusts the mob's confusion down to 20 seconds if it's higher,
+	// or up to 1 second if it's lower, but will do nothing if it's in between
+	var/confusion_left = affected_mob.get_timed_status_effect_duration(/datum/status_effect/confusion)
+	if(confusion_left < 1 SECONDS)
+		affected_mob.set_confusion(1 SECONDS)
+
+	else if(confusion_left > 20 SECONDS)
+		affected_mob.set_confusion(20 SECONDS)
 	..()
 
 /datum/reagent/impedrezene
@@ -1188,14 +1197,14 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220A
 	taste_description = "numbness"
 
-/datum/reagent/impedrezene/on_mob_life(mob/living/carbon/M)
-	M.jitteriness = max(M.jitteriness-5,0)
+/datum/reagent/impedrezene/on_mob_life(mob/living/carbon/affected_mob)
+	affected_mob.adjust_jitter(-5 SECONDS)
 	if(prob(80))
-		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REM)
+		affected_mob.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REM)
 	if(prob(50))
-		M.drowsyness = max(M.drowsyness, 3)
+		affected_mob.adjust_drowsiness(6 SECONDS)
 	if(prob(10))
-		M.emote("drool")
+		affected_mob.emote("drool")
 	..()
 
 /datum/reagent/nanomachines
@@ -1205,8 +1214,8 @@
 	can_synth = FALSE
 	taste_description = "sludge"
 
-/datum/reagent/nanomachines/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
-	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
+/datum/reagent/nanomachines/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
+	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/transformation/robot(), FALSE, TRUE)
 
 /datum/reagent/xenomicrobes
@@ -1216,8 +1225,8 @@
 	can_synth = FALSE
 	taste_description = "sludge"
 
-/datum/reagent/xenomicrobes/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
-	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
+/datum/reagent/xenomicrobes/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
+	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/transformation/xeno(), FALSE, TRUE)
 
 /datum/reagent/fungalspores
@@ -1227,8 +1236,8 @@
 	can_synth = FALSE
 	taste_description = "slime"
 
-/datum/reagent/fungalspores/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
-	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
+/datum/reagent/fungalspores/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
+	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/tuberculosis(), FALSE, TRUE)
 
 /datum/reagent/snail
@@ -1238,8 +1247,8 @@
 	taste_description = "goo"
 	can_synth = FALSE //special orange man request
 
-/datum/reagent/snail/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
-	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
+/datum/reagent/snail/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
+	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/gastrolosis(), FALSE, TRUE)
 
 /datum/reagent/fluorosurfactant//foam precursor
@@ -1313,18 +1322,20 @@
 		var/temp = holder ? holder.chem_temp : T20C
 		T.atmos_spawn_air("n2o=[reac_volume/5];TEMP=[temp]")
 
-/datum/reagent/nitrous_oxide/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/nitrous_oxide/reaction_mob(mob/living/exposed_mob, method=TOUCH, reac_volume)
 	if(method == VAPOR)
-		M.drowsyness += max(round(reac_volume, 1), 2)
+		// apply 2 seconds of drowsiness per unit applied, with a min duration of 4 seconds
+		var/drowsiness_to_apply = max(round(reac_volume, 1) * 2 SECONDS, 4 SECONDS)
+		exposed_mob.adjust_drowsiness(drowsiness_to_apply)
 
 /datum/reagent/nitrous_oxide/on_mob_life(mob/living/carbon/M)
-	M.drowsyness += 2
+	M.adjust_drowsiness(4 SECONDS * REM)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.blood_volume = max(H.blood_volume - 5, 0)
 	if(prob(20))
 		M.losebreath += 2
-		M.confused = min(M.confused + 2, 5)
+		M.adjust_confusion_up_to(2 SECONDS, 5 SECONDS)
 	..()
 
 /datum/reagent/nitrium_low_metabolization
@@ -1356,7 +1367,7 @@
 	if(M.getStaminaLoss() > 0)
 		M.adjustStaminaLoss(-2 * REM, FALSE)
 		M.adjustToxLoss(1.5 *REM, FALSE)
-	M.Jitter(15)
+	M.adjust_jitter(15 SECONDS)
 	return ..()
 
 /datum/reagent/nitrium_high_metabolization
@@ -1428,17 +1439,31 @@
 
 /datum/reagent/healium/on_mob_metabolize(mob/living/L)
 	. = ..()
-	L.SetSleeping(1000, ignore_canstun = TRUE)
-	L.SetUnconscious(1000, ignore_canstun = TRUE)
+	L.SetSleeping(1000)
+	L.SetUnconscious(1000)
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=0.5, blacklisted_movetypes=(FLYING|FLOATING)) // slowdown for if you're awake
+	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, "healium")
 
 /datum/reagent/healium/on_mob_life(mob/living/carbon/M)
-	M.SetSleeping(1000, ignore_canstun = TRUE)
-	M.SetUnconscious(1000, ignore_canstun = TRUE) //in case you have sleep immunity :^)
+	M.SetSleeping(100)
+	M.SetUnconscious(100)
+	var/heal_factor = 1
+	if(M.stat == CONSCIOUS) // if you're awake it gives you side effects and heals a lot less (not enough to outheal nitrium)
+		heal_factor *= 0.1
+		M.adjust_disgust((40 - M.disgust) / 10) // makes you sick
+		M.adjust_jitter_up_to(2, 10)
+	else if(M.bodytemperature < T0C)
+		heal_factor *= (100 + max(T0C - M.bodytemperature, 200)) / 100 // if you're asleep, you get healed faster when you're cold (up to 3x at 73 kelvin)
+	M.adjustFireLoss(-7*heal_factor*REM)
+	M.adjustToxLoss(-5*heal_factor*REM)
+	M.adjustBruteLoss(-5*heal_factor*REM)
 	..()
 
 /datum/reagent/healium/on_mob_end_metabolize(mob/living/L)
-	L.SetSleeping(10, ignore_canstun = TRUE)
-	L.SetUnconscious(10, ignore_canstun = TRUE)
+	L.SetSleeping(1 SECONDS)
+	L.SetUnconscious(1 SECONDS)
+	L.remove_movespeed_modifier(type)
+	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, "healium")
 	return ..()
 
 /datum/reagent/halon
@@ -1717,9 +1742,9 @@
 	var/list/potential_colors = list("0ad","a0f","f73","d14","d14","0b5","0ad","f73","fc2","084","05e","d22","fa0") // fucking hair code
 	taste_description = "sourness"
 
-/datum/reagent/hair_dye/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/hair_dye/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(method == TOUCH || method == VAPOR)
-		if(M && ishuman(M))
+		if(M && ishuman(M) && permeability)
 			var/mob/living/carbon/human/H = M
 			H.hair_color = pick(potential_colors)
 			H.facial_hair_color = pick(potential_colors)
@@ -1732,9 +1757,9 @@
 	color = "#C8A5DC"
 	taste_description = "sourness"
 
-/datum/reagent/barbers_aid/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/barbers_aid/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(method == TOUCH || method == VAPOR)
-		if(M && ishuman(M))
+		if(M && ishuman(M) && permeability)
 			var/mob/living/carbon/human/H = M
 			var/datum/sprite_accessory/hair/picked_hair = pick(GLOB.hair_styles_list)
 			var/datum/sprite_accessory/facial_hair/picked_beard = pick(GLOB.facial_hair_styles_list)
@@ -1749,9 +1774,9 @@
 	color = "#C8A5DC"
 	taste_description = "sourness"
 
-/datum/reagent/concentrated_barbers_aid/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/concentrated_barbers_aid/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(method == TOUCH || method == VAPOR)
-		if(M && ishuman(M))
+		if(M && ishuman(M) && permeability)
 			var/mob/living/carbon/human/H = M
 			H.hair_style = "Very Long Hair"
 			H.facial_hair_style = "Beard (Very Long)"
@@ -2021,9 +2046,9 @@
 	if(L.mind && L.mind.has_antag_datum(/datum/antagonist/changeling)) //yogs
 		to_chat(L, span_boldnotice("Our blood is pure, we can regenerate chemicals again.")) //yogs
 
-/datum/reagent/bz_metabolites/on_mob_life(mob/living/L)
-	if(L.mind)
-		var/datum/antagonist/changeling/changeling = L.mind.has_antag_datum(/datum/antagonist/changeling)
+/datum/reagent/bz_metabolites/on_mob_life(mob/living/carbon/target)
+	if(target.mind)
+		var/datum/antagonist/changeling/changeling = target.mind.has_antag_datum(/datum/antagonist/changeling)
 		if(changeling)
 			changeling.chem_charges = max(changeling.chem_charges-6, 0)
 	return ..()
@@ -2039,13 +2064,11 @@
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "dizziness"
 
-/datum/reagent/peaceborg/confuse/on_mob_life(mob/living/carbon/M)
-	if(M.confused < 6)
-		M.confused = clamp(M.confused + 3, 0, 5)
-	if(M.dizziness < 6)
-		M.dizziness = clamp(M.dizziness + 3, 0, 5)
+/datum/reagent/peaceborg/confuse/on_mob_life(mob/living/carbon/affected_mob)
+	affected_mob.adjust_confusion_up_to(3 SECONDS * REM , 5 SECONDS)
+	affected_mob.adjust_dizzy_up_to(6 SECONDS * REM, 12 SECONDS)
 	if(prob(20))
-		to_chat(M, "You feel confused and disorientated.")
+		to_chat(affected_mob, "You feel confused and disorientated.")
 	..()
 
 /datum/reagent/peaceborg/tire
@@ -2070,8 +2093,8 @@
 	taste_description = "inner peace"
 	can_synth = FALSE
 
-/datum/reagent/tranquility/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
-	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*(1 - touch_protection))))
+/datum/reagent/tranquility/reaction_mob(mob/living/L, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
+	if(method==PATCH || method==INGEST || method==INJECT || (method == VAPOR && prob(min(reac_volume,100)*permeability)))
 		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
 
 
@@ -2188,8 +2211,8 @@
 	taste_description = "death"
 	can_synth = FALSE
 
-/datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, touch_protection = FALSE)
-	if(method == INGEST || method == TOUCH || method == INJECT)
+/datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, permeability = 1)
+	if((method == INGEST || method == TOUCH || method == INJECT) && prob(permeability*100)) //permeability is always 1 by default except with touch and vapor
 		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
 
 /datum/reagent/adrenaline

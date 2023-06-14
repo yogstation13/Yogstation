@@ -251,28 +251,32 @@
 
 	uniform = /obj/item/clothing/under/color/lightpurple
 	suit = /obj/item/clothing/suit/wizrobe
-	shoes = /obj/item/clothing/shoes/sandal/magic
+	back = /obj/item/storage/backpack
+	backpack_contents = list(
+		/obj/item/spellbook = 1,
+	)
+	box = /obj/item/storage/box/survival
 	ears = /obj/item/radio/headset
 	head = /obj/item/clothing/head/wizard
+	shoes = /obj/item/clothing/shoes/sandal/magic
 	r_pocket = /obj/item/teleportation_scroll
-	r_hand = /obj/item/spellbook
 	l_hand = /obj/item/staff
-	back = /obj/item/storage/backpack
-	backpack_contents = list(/obj/item/storage/box/survival=1)
 
-/datum/outfit/wizard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/wizard/post_equip(mob/living/carbon/human/wizard, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 
-	var/obj/item/spellbook/S = locate() in H.held_items
-	if(S)
-		S.owner = H
+	var/obj/item/spellbook/new_spellbook = locate() in wizard.back
+	if(new_spellbook)
+		new_spellbook.owner = wizard.mind
 
 /datum/outfit/wizard/apprentice
 	name = "Wizard Apprentice"
+
+	r_pocket = /obj/item/teleportation_scroll/apprentice
 	r_hand = null
 	l_hand = null
-	r_pocket = /obj/item/teleportation_scroll/apprentice
+	backpack_contents = list()
 
 /datum/outfit/wizard/red
 	name = "Red Wizard"

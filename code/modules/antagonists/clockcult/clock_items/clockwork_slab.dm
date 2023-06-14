@@ -16,7 +16,7 @@
 	var/no_cost = FALSE //If the slab is admin-only and needs no components and has no scripture locks
 	var/speed_multiplier = 1 //multiples how fast this slab recites scripture
 	var/selected_scripture = SCRIPTURE_DRIVER
-	var/obj/effect/proc_holder/slab/slab_ability //the slab's current bound ability, for certain scripture
+	var/datum/action/innate/slab/slab_ability //the slab's current bound ability, for certain scripture
 
 	var/recollecting = FALSE //if we're looking at fancy recollection
 	var/recollection_category = "Default"
@@ -93,14 +93,18 @@
 
 /obj/item/clockwork/slab/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	if(slab_ability && slab_ability.ranged_ability_user)
-		slab_ability.remove_ranged_ability()
+	if(isliving(loc))
+		slab_ability.unset_ranged_ability(loc)
 	slab_ability = null
 	return ..()
 
-/obj/item/clockwork/slab/dropped(mob/user)
+/obj/item/clockwork/slab/dropped(mob/user, slot)
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(check_on_mob), user), 1) //dropped is called before the item is out of the slot, so we need to check slightly later
+	addtimer(CALLBACK(src, PROC_REF(check_on_mob), user, slot), 0.1 SECONDS) //dropped is called before the item is out of the slot, so we need to check slightly later
+
+/obj/item/clockwork/slab/equipped(mob/user, slot)
+	. = ..()
+	update_quickbind(user)
 
 /obj/item/clockwork/slab/worn_overlays(isinhands = FALSE, icon_file)
 	. = list()
@@ -108,9 +112,13 @@
 		var/mutable_appearance/M = mutable_appearance(icon_file, "slab_[inhand_overlay]")
 		. += M
 
-/obj/item/clockwork/slab/proc/check_on_mob(mob/user)
-	if(user && !(src in user.held_items) && slab_ability && slab_ability.ranged_ability_user) //if we happen to check and we AREN'T in user's hands, remove whatever ability we have
-		slab_ability.remove_ranged_ability()
+/obj/item/clockwork/slab/proc/check_on_mob(mob/user, slot)
+	if(!user)
+		CRASH("No user on dropped slab.")
+	if(slab_ability?.owner) //if we happen to check and we AREN'T in user's hands, remove whatever ability we have
+		slab_ability.unset_ranged_ability(user)
+	if(!LAZYFIND(user.held_items, src))
+		update_quickbind(user, TRUE)
 
 //Power generation
 /obj/item/clockwork/slab/process()
@@ -149,8 +157,8 @@
 		return 0
 	if(!is_servant_of_ratvar(user))
 		to_chat(user, span_warning("The information on [src]'s display shifts rapidly. After a moment, your head begins to pound, and you tear your eyes away."))
-		user.confused += 5
-		user.dizziness += 5
+		user.adjust_confusion(5 SECONDS)
+		user.adjust_dizzy(5 SECONDS)
 		return 0
 	if(busy)
 		to_chat(user, span_warning("[src] refuses to work, displaying the message: \"[busy]!\""))
@@ -504,19 +512,31 @@
 	quickbound[index] = scripture
 	update_quickbind()
 
-/obj/item/clockwork/slab/proc/update_quickbind()
-	for(var/datum/action/item_action/clock/quickbind/Q in actions)
-		qdel(Q) //regenerate all our quickbound scriptures
-	if(LAZYLEN(quickbound))
-		for(var/i in 1 to quickbound.len)
-			if(!quickbound[i])
-				continue
-			var/datum/action/item_action/clock/quickbind/Q = new /datum/action/item_action/clock/quickbind(src)
-			Q.scripture_index = i
-			var/datum/clockwork_scripture/quickbind_slot = GLOB.all_scripture[quickbound[i]]
-			Q.name = "[quickbind_slot.name] ([Q.scripture_index])"
-			Q.desc = quickbind_slot.quickbind_desc
-			Q.button_icon_state = quickbind_slot.name
-			Q.UpdateButtonIcon()
-			if(isliving(loc))
-				Q.Grant(loc)
+/obj/item/clockwork/slab/proc/update_quickbind(mob/mob_override, removing_only = FALSE)
+	var/list/actions_to_elim = list()
+	if(!mob_override && !isliving(loc))
+		actions_to_elim = actions
+	else
+		var/mob/living/user = mob_override || loc
+		if(!is_servant_of_ratvar(user))
+			return
+		actions_to_elim = user.actions
+	for(var/datum/action/item_action/clock/quickbind/existing_binds in actions_to_elim)
+		existing_binds.Remove(existing_binds.owner) //regenerate all our quickbound scriptures
+	if(removing_only)
+		return
+	if(!LAZYLEN(quickbound))
+		return
+	for(var/i in 1 to quickbound.len)
+		if(!quickbound[i])
+			continue
+		var/datum/action/item_action/clock/quickbind/Q = new /datum/action/item_action/clock/quickbind(src)
+		Q.scripture_index = i
+		var/datum/clockwork_scripture/quickbind_slot = GLOB.all_scripture[quickbound[i]]
+		Q.name = "[quickbind_slot.name] ([Q.scripture_index])"
+		Q.desc = quickbind_slot.quickbind_desc
+		Q.button_icon_state = quickbind_slot.name
+		qdel(Q.GetComponent(/datum/component/action_item_overlay))
+		if(isliving(loc))
+			Q.Grant(loc)
+		Q.build_all_button_icons()

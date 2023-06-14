@@ -440,7 +440,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	Gets all contents of contents and returns them all in a list.
 */
 
-/atom/proc/GetAllContents(T, ignore_flag_1)
+/atom/proc/get_all_contents(T, ignore_flag_1)
 	var/list/processing_list = list(src)
 	if(T)
 		. = list()
@@ -461,9 +461,9 @@ Turf and target are separate in case you want to teleport some distance from a t
 				processing_list += A.contents
 		return processing_list
 
-/atom/proc/GetAllContentsIgnoring(list/ignore_typecache)
+/atom/proc/get_all_contentsIgnoring(list/ignore_typecache)
 	if(!length(ignore_typecache))
-		return GetAllContents()
+		return get_all_contents()
 	var/list/processing = list(src)
 	. = list()
 	var/i = 0
@@ -578,10 +578,6 @@ Turf and target are separate in case you want to teleport some distance from a t
 	var/dx = abs(B.x - A.x)
 	var/dy = abs(B.y - A.y)
 	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
-
-//chances are 1:value. anyprob(1) will always return true
-/proc/anyprob(value)
-	return (rand(1,value)==value)
 
 /proc/view_or_range(distance = world.view , center = usr , type)
 	switch(type)
@@ -1496,49 +1492,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		/mob/living/simple_animal/hostile/retaliate/goat/thrumbo
 		)
 	return pick(subtypesof(new /mob/living/simple_animal/hostile/retaliate/goat) - blocked)
-
-//For these two procs refs MUST be ref = TRUE format like typecaches!
-/proc/weakref_filter_list(list/things, list/refs)
-	if(!islist(things) || !islist(refs))
-		return
-	if(!refs.len)
-		return things
-	if(things.len > refs.len)
-		var/list/f = list()
-		for(var/i in refs)
-			var/datum/weakref/r = i
-			var/datum/d = r.resolve()
-			if(d)
-				f |= d
-		return things & f
-
-	else
-		. = list()
-		for(var/i in things)
-			if(!refs[WEAKREF(i)])
-				continue
-			. |= i
-
-/proc/weakref_filter_list_reverse(list/things, list/refs)
-	if(!islist(things) || !islist(refs))
-		return
-	if(!refs.len)
-		return things
-	if(things.len > refs.len)
-		var/list/f = list()
-		for(var/i in refs)
-			var/datum/weakref/r = i
-			var/datum/d = r.resolve()
-			if(d)
-				f |= d
-
-		return things - f
-	else
-		. = list()
-		for(var/i in things)
-			if(refs[WEAKREF(i)])
-				continue
-			. |= i
 
 /proc/special_list_filter(list/L, datum/callback/condition)
 	if(!islist(L) || !length(L) || !istype(condition))

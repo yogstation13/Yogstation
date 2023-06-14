@@ -33,7 +33,7 @@
 	wound_bonus = 0
 	speed = 0.6 // higher power = faster, that's how light works right
 
-/obj/projectile/beam/laser/hellfire/Initialize()
+/obj/item/projectile/beam/laser/hellfire/Initialize()
 	. = ..()
 	transform *= 2
 
@@ -49,7 +49,7 @@
 /obj/item/projectile/beam/laser/on_hit(atom/target, blocked = FALSE)
 	if((blocked != 100) && iscarbon(target))
 		var/mob/living/carbon/M = target
-		M.IgniteMob()
+		M.ignite_mob()
 	else if(isturf(target))
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
 	return ..()
@@ -234,3 +234,39 @@
 		var/mob/living/carbon/M = target
 		M.visible_message(span_danger("[M] explodes into a shower of gibs!"))
 		M.gib()
+
+/obj/item/projectile/beam/grimdark
+	pass_flags = NONE
+	light_color = LIGHT_COLOR_BLUE
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
+	name = "plasma blast"
+	icon_state = "blue_laser"
+	damage = 50
+	wound_bonus = 0
+	speed = 1.4 // plasma ball slow
+
+/obj/item/projectile/beam/grimdark/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if (!QDELETED(target) && (isturf(target) || istype(target, /obj/structure/)))
+		if(isobj(target))
+			SSexplosions.med_mov_atom += target
+		else
+			SSexplosions.medturf += target
+
+/obj/item/projectile/beam/grimdark/pistol
+	damage = 35
+
+/obj/item/projectile/beam/laser/lasgun
+	name = "Las bolt"
+	icon_state = "las_laser"
+	speed = 0.8
+
+/obj/item/projectile/beam/laser/lasgun/longlas
+	damage = 25
+
+/obj/item/projectile/beam/laser/lasgun/laspistol
+	damage = 15
+
+/obj/item/projectile/beam/laser/lasgun/hotshot
+	damage = 30
+	wound_bonus = -5

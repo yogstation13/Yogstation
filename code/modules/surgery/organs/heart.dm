@@ -88,7 +88,7 @@
 			H.stop_sound_channel(CHANNEL_HEARTBEAT)
 			beat = BEAT_NONE
 
-		if(H.jitteriness)
+		if(owner.has_status_effect(/datum/status_effect/jitter))
 			if(H.health > HEALTH_THRESHOLD_FULLCRIT && (!beat || beat == BEAT_SLOW))
 				H.playsound_local(get_turf(H),fastbeat,40,0, channel = CHANNEL_HEARTBEAT)
 				beat = BEAT_FAST
@@ -204,7 +204,7 @@
 	fakingit = FALSE
 	return ..()
 
-/obj/item/organ/heart/vampheart/proc/FakeStart()
+/obj/item/organ/heart/vampheart/proc/fake_start_heart()
 	fakingit = TRUE // We're pretending to beat, to fool people.
 
 /// Bloodsuckers don't have a heartbeat at all when stopped (default is "an unstable")

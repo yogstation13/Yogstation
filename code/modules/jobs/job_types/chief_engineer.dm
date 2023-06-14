@@ -15,7 +15,7 @@
 	selection_color = "#ffeeaa"
 	req_admin_notify = 1
 	minimal_player_age = 7
-	exp_requirements = 720
+	exp_requirements = 1500 //25 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_ENGINEERING
 	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer", "Chief Engineering Officer")
@@ -64,7 +64,7 @@
 	head = /obj/item/clothing/head/hardhat/white
 	gloves = /obj/item/clothing/gloves/color/black
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes eng budget
-	glasses = /obj/item/clothing/glasses/meson/sunglasses
+	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce
 
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
@@ -72,7 +72,7 @@
 	box = /obj/item/storage/box/engineer
 	chameleon_extras = /obj/item/stamp/ce
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/ce/rig
 	name = "Chief Engineer (Hardsuit)"
@@ -84,4 +84,4 @@
 	glasses = /obj/item/clothing/glasses/meson/sunglasses
 	gloves = /obj/item/clothing/gloves/color/yellow
 	head = null
-	internals_slot = SLOT_S_STORE
+	internals_slot = ITEM_SLOT_SUITSTORE

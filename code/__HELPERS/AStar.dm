@@ -223,7 +223,14 @@ Actual Adjacent procs :
 
 	return FALSE
 
-//yog proc
+//yog procs
 /turf/proc/reachableTurftestPlayer(caller, turf/T, ID, simulated_only)
 	if(T && !T.density && !LinkBlockedWithAccess(T, caller, ID) && !(simulated_only && SSpathfinder.space_type_cache[T.type]))
+		return TRUE
+
+/turf/proc/reachableTurftestdensity(caller, var/turf/T, ID, simulated_only) //used for the sake of pathfinding while excluding turfs with dense objects
+	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
+		for(var/obj/D in T)
+			if(D.density)
+				return FALSE
 		return TRUE

@@ -42,7 +42,7 @@
 	if(QDELETED(pad))
 		to_chat(user, span_warning("ERROR: Launchpad not responding. Check launchpad integrity."))
 		return
-	if(!pad.isAvailable())
+	if(!pad.IsAvailable(feedback = FALSE))
 		to_chat(user, span_warning("ERROR: Launchpad not operative. Make sure the launchpad is ready and powered."))
 		return
 	pad.doteleport(user, sending)

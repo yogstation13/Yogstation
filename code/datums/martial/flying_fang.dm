@@ -156,11 +156,11 @@
 
 /datum/action/innate/lizard_leap
 	name = "Leap"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "lizard_tackle"
 	background_icon_state = "bg_default"
 	desc = "Prepare to jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds."
-	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	var/datum/martial_art/flyingfang/linked_martial
 
 /datum/action/innate/lizard_leap/New()
@@ -172,9 +172,9 @@
 	return ..()
 
 /datum/action/innate/lizard_leap/process()
-	UpdateButtonIcon() //keep the button updated
+	build_all_button_icons() //keep the button updated
 
-/datum/action/innate/lizard_leap/IsAvailable()
+/datum/action/innate/lizard_leap/IsAvailable(feedback = FALSE)
 	. = ..()
 	if(linked_martial.leaping || !linked_martial.can_use(owner))
 		return FALSE
@@ -196,7 +196,7 @@
 	active = FALSE
 	background_icon_state = "bg_default"
 
-/datum/action/innate/lizard_leap/proc/InterceptClickOn(mob/living/carbon/human/A, params, atom/target)
+/datum/action/innate/lizard_leap/InterceptClickOn(mob/living/carbon/human/A, params, atom/target)
 	if(linked_martial.leaping)
 		return
 	linked_martial.leaping = TRUE
@@ -205,12 +205,12 @@
 	A.Immobilize(3 SECONDS, TRUE, TRUE) //prevents you from breaking out of your pounce
 	A.throw_at(target, get_dist(A,target)+1, 1, A, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), A))
 	Deactivate()
-	UpdateButtonIcon()
+	build_all_button_icons()
 
 /datum/action/innate/lizard_leap/proc/leap_end(mob/living/carbon/human/A)
 	A.SetImmobilized(0, TRUE, TRUE)
 	linked_martial.leaping = FALSE
-	UpdateButtonIcon()
+	build_all_button_icons()
 
 /datum/martial_art/flyingfang/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(!leaping)
@@ -240,7 +240,7 @@
 			playsound(A, 'sound/weapons/punch2.ogg', 50, 1) // ow oof ouch my head
 		if(leaping)
 			leaping = FALSE
-		linked_leap.UpdateButtonIcon()
+		linked_leap.build_all_button_icons()
 		linked_leap.Deactivate(TRUE)
 		return TRUE
 
@@ -274,7 +274,7 @@
 	H.physiology.crawl_speed -= 2 // "funny lizard skitter around on the floor" - mqiib
 	var/datum/species/S = H.dna?.species
 	if(S)
-		S.add_no_equip_slot(H, SLOT_WEAR_SUIT)
+		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
 
 /datum/martial_art/flyingfang/on_remove(mob/living/carbon/human/H)
 	..()
@@ -287,4 +287,4 @@
 	H.physiology.crawl_speed += 2
 	var/datum/species/S = H.dna?.species
 	if(S)
-		S.remove_no_equip_slot(H, SLOT_WEAR_SUIT)
+		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING)

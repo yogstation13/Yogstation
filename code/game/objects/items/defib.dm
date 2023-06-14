@@ -94,13 +94,13 @@
 /obj/item/defibrillator/attack_hand(mob/user)
 	if(loc == user)
 		if(slot_flags == ITEM_SLOT_BACK)
-			if(user.get_item_by_slot(SLOT_BACK) == src)
+			if(user.get_item_by_slot(ITEM_SLOT_BACK) == src)
 				ui_action_click()
 			else
 				to_chat(user, span_warning("Put the defibrillator on your back first!"))
 
 		else if(slot_flags == ITEM_SLOT_BELT)
-			if(user.get_item_by_slot(SLOT_BELT) == src)
+			if(user.get_item_by_slot(ITEM_SLOT_BELT) == src)
 				ui_action_click()
 			else
 				to_chat(user, span_warning("Strap the defibrillator's belt on first!"))
@@ -192,14 +192,14 @@
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/defibrillator/proc/make_paddles()
 	return new /obj/item/twohanded/shockpaddles(src)
 
 /obj/item/defibrillator/equipped(mob/user, slot)
 	..()
-	if((slot_flags == ITEM_SLOT_BACK && slot != SLOT_BACK) || (slot_flags == ITEM_SLOT_BELT && slot != SLOT_BELT))
+	if((slot_flags == ITEM_SLOT_BACK && slot != ITEM_SLOT_BACK) || (slot_flags == ITEM_SLOT_BELT && slot != ITEM_SLOT_BELT))
 		remove_paddles(user)
 		update_icon()
 
@@ -539,7 +539,7 @@
 			H.apply_damage(50, BURN, BODY_ZONE_CHEST)
 			log_combat(user, H, "overloaded the heart of", defib)
 			H.Paralyze(100)
-			H.Jitter(100)
+			H.adjust_jitter(100 SECONDS)
 			if(req_defib)
 				defib.deductcharge(revivecost)
 				cooldown = TRUE
@@ -633,7 +633,7 @@
 					H.set_heartattack(FALSE)
 					H.revive()
 					H.emote("gasp")
-					H.Jitter(100)
+					H.adjust_jitter(100 SECONDS)
 					SEND_SIGNAL(H, COMSIG_LIVING_MINOR_SHOCK)
 					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 					log_combat(user, H, "revived", defib)

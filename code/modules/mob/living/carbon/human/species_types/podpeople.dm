@@ -6,8 +6,7 @@ DISREGUARD THIS FILE IF YOU'RE INTENDING TO CHANGE ASPECTS OF PLAYER CONTROLLED 
 */
 /datum/species/pod
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
-	name = "Podperson"
-	plural_form = "Podpeople"
+	name = "Phytosian"
 	id = "pod"
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS,EYECOLOR)
@@ -53,7 +52,7 @@ DISREGUARD THIS FILE IF YOU'RE INTENDING TO CHANGE ASPECTS OF PLAYER CONTROLLED 
 		H.adjust_nutrition(light_amount * 10)
 		if(H.nutrition > NUTRITION_LEVEL_ALMOST_FULL)
 			H.set_nutrition(NUTRITION_LEVEL_ALMOST_FULL)
-		if(light_amount > 0.2) //if there's enough light, heal
+		if(light_amount > LIGHTING_TILE_IS_DARK) //if there's enough light, heal
 			H.heal_overall_damage(1,1, 0, BODYPART_ORGANIC)
 			H.adjustOxyLoss(-1)
 			if(H.radiation < 500)

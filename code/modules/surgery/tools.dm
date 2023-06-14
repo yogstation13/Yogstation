@@ -479,7 +479,7 @@
 	bolts = FALSE
 	var/obj/picked_up = /obj/item/surgical_mat
 
-/obj/structure/bed/surgical_mat/ComponentInitialize()
+/obj/structure/bed/surgical_mat/Initialize()
 	..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
 	SB.success_chance = 0.8
@@ -538,7 +538,7 @@
 	icon_state = "opmat_goli"
 	picked_up = /obj/item/surgical_mat/goliath
 
-/obj/structure/bed/surgical_mat/goliath/ComponentInitialize()
+/obj/structure/bed/surgical_mat/goliath/Initialize()
 	..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
 	SB.success_chance = 0.85

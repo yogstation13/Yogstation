@@ -328,6 +328,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	from the arm which momentarily keeps victims in place. Due to its unorthodox nature, the box includes 3 monkey cubes to familiarize the user with the arm functions. Users are \
 	warned that the arm renders them unable to wear gloves and sticks out of most outerwear."
 	item = /obj/item/storage/box/syndie_kit/buster
+	player_minimum = 25
 	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
@@ -411,7 +412,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/twohanded/dualsaber
 	player_minimum = 25
 	cost = 16
-	include_modes = list(/datum/game_mode/nuclear)
+	include_modes = list(/datum/game_mode/nuclear) // yogs: infiltration
 
 /datum/uplink_item/dangerous/doublesword/get_discount()
 	return pick(4;0.8,2;0.65,1;0.5)
@@ -776,13 +777,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
-/datum/uplink_item/ammo/pistol
+/datum/uplink_item/ammo/pistol/cs
 	name = "Pair of 10mm Caseless Magazines"
 	desc = "A box that contains two additional 10-round 10mm magazines; compatible with the Stechkin Pistol. \
 			These rounds will leave no casings behind when fired."
 	item = /obj/item/storage/box/syndie_kit/pistolcaselessammo
-	cost = 1
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistol/ap
 	name = "10mm Armor-Piercing Magazine"
@@ -1532,8 +1531,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/jammer
-	name = "Radio Jammer"
-	desc = "This device will disrupt any nearby outgoing radio communication when activated. Does not affect binary chat."
+	name = "Signal Jammer"
+	desc = "This device will disrupt any nearby outgoing radio communication when activated. Blocks suit sensors, but does not affect binary chat."
 	item = /obj/item/jammer
 	cost = 5
 	manufacturer = /datum/corporation/traitor/cybersun
@@ -1554,7 +1553,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/armorpolish
 	cost = 2
 
-
+/datum/uplink_item/stealthy_tools/mousecubes
+	name = "Box of Mouse Cubes"
+	desc = "A box with twenty four Waffle Co. brand mouse cubes. Deploy near wiring. \
+			Caution: Product may rehydrate when exposed to water."
+	item = /obj/item/storage/box/monkeycubes/syndicate/mice
+	cost = 1
+	manufacturer = /datum/corporation/traitor/waffleco
+  
+/datum/uplink_item/stealthy_tools/angelcoolboy
+	name = "Syndicate Angel Potion"
+	desc = "After many failed attempts, the syndicate has reverse engineered an angel potion smuggled off of the lava planet V-227. \
+			Preliminary testing could only sprout wings in Humans, Vuulen, Ex'hau, Preterni, IPCs, and Phytosians."
+	cost = 2
+	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 
 //Space Suits and Hardsuits
 /datum/uplink_item/suits
@@ -1786,6 +1798,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/medbeam/uber
 	cost = 25
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
+/datum/uplink_item/device_tools/mdrive
+	name = "Mirage Drive"
+	desc = "An experimental device created in an attempt to replicate the properties of bluespace. Utilizing coils with unique properties, the mirage drive is able to generate \
+	kinetic energy and use it in a way that moves the user to their destination at a speed comparable to teleportation. Additionally, if there are other beings near the landing\
+	 site, the mirage drive will draw on their energy to recharge itself, slowing them down in the process."
+	item = /obj/item/mdrive
+	cost = 7
+	manufacturer = /datum/corporation/traitor/waffleco
 
 /datum/uplink_item/device_tools/singularity_beacon
 	name = "Power Beacon"
@@ -2049,9 +2070,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted = TRUE
 
 /datum/uplink_item/implants/reviver
-	name = "Reviver Implant"
-	desc = "This implant will attempt to revive and heal you if you lose consciousness. Comes with an autosurgeon."
-	item = /obj/item/autosurgeon/reviver
+	name = "Syndicate reviver Implant"
+	desc = "This implant will attempt to revive and heal you if you lose consciousness. This experimental version is stronger than widely available versions. Comes with an autosurgeon."
+	item = /obj/item/autosurgeon/reviver/syndicate
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
 	surplus = 0
@@ -2233,20 +2254,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/book/granter/martial/flyingfang
 	restricted_species = list("lizard", "draconid")
 
-/datum/uplink_item/race_restricted/dragonjuice
-	name = "Refined Dragons Blood"
-	desc = "This bottle of blood, painstakingly extracted from the corpse of a slain ash drake and refined down to just its pure essence, should awaken the more draconic side of any ordinary, weak little lizard!"
-	cost = 7
-	item = /obj/item/dragons_blood/syndicate
-	restricted_species = list("lizard")
-
-/datum/uplink_item/race_restricted/angelcoolboy
-	name = "Angel Potion"
-	desc = "We mixed a bird and a human and we somehow made a potion that turns you into a holy creature."
-	cost = 5
-	item = /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
-	restricted_species = list("human", "lizard", "moth", "skeleton", "preternis", "ipc")
-
 /datum/uplink_item/race_restricted/hammerimplant
 	name = "Vxtvul Hammer Implant"
 	desc = "An implant which will fold a Vxtvul hammer into your chassis upon injection. \
@@ -2272,15 +2279,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	item = /obj/item/grenade/chem_grenade/radiation
 	restricted_species = list("plasmaman")
-
-/datum/uplink_item/race_restricted/mousecubes
-	name = "Box of Mouse Cubes"
-	desc = "A box with twenty four Waffle Co. brand mouse cubes. Deploy near wiring. \
-			Caution: Product may rehydrate when exposed to water."
-	item = /obj/item/storage/box/monkeycubes/syndicate/mice
-	cost = 1
-	manufacturer = /datum/corporation/traitor/waffleco
-	restricted_species = list("felinid")
 
 // Role-specific items
 /datum/uplink_item/role_restricted

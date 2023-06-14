@@ -15,7 +15,7 @@
 	selection_color = "#ffdddd"
 	req_admin_notify = 1
 	minimal_player_age = 14
-	exp_requirements = 720
+	exp_requirements = 1500 //25 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 	alt_titles = list("Security Commander", "Security Chief", "Chief Security Officer")
@@ -83,7 +83,7 @@
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun/hos, /obj/item/stamp/hos)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/hos/hardsuit
 	name = "Head of Security (Hardsuit)"

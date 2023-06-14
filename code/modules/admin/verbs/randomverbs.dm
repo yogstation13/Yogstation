@@ -396,7 +396,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		//check if they were a monkey
 		else if(findtext(G_found.real_name,"monkey"))
-			if(tgui_alert("This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
+			if(tgui_alert(usr, "This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
 				var/mob/living/carbon/monkey/new_monkey = new
 				SSjob.SendToLateJoin(new_monkey)
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
@@ -971,32 +971,45 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/adding_hud = !has_antag_hud()
+	if (combo_hud_enabled)
+		disable_combo_hud()
+	else
+		enable_combo_hud()
 
-	for(var/hudtype in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED)) // add data huds
-		var/datum/atom_hud/H = GLOB.huds[hudtype]
-		(adding_hud) ? H.add_hud_to(usr) : H.remove_hud_from(usr)
-	for(var/datum/atom_hud/antag/H in GLOB.huds) // add antag huds
-		(adding_hud) ? H.add_hud_to(usr) : H.remove_hud_from(usr)
+	to_chat(usr, "You toggled your admin combo HUD [combo_hud_enabled ? "ON" : "OFF"].", confidential = TRUE)
+	message_admins("[key_name_admin(usr)] toggled their admin combo HUD [combo_hud_enabled ? "ON" : "OFF"].")
+	log_admin("[key_name(usr)] toggled their admin combo HUD [combo_hud_enabled ? "ON" : "OFF"].")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Combo HUD", "[combo_hud_enabled ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	if(prefs.toggles & COMBOHUD_LIGHTING)
-		if(adding_hud)
-			mob.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		else
-			mob.lighting_alpha = initial(mob.lighting_alpha)
+/client/proc/enable_combo_hud()
+	if (combo_hud_enabled)
+		return
+
+	combo_hud_enabled = TRUE
+
+	for (var/hudtype in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED))
+		var/datum/atom_hud/atom_hud = GLOB.huds[hudtype]
+		atom_hud.show_to(mob)
+
+	for (var/datum/atom_hud/alternate_appearance/basic/antagonist_hud/antag_hud in GLOB.active_alternate_appearances)
+		antag_hud.show_to(mob)
 
 	mob.update_sight()
 
-	to_chat(usr, "You toggled your admin combo HUD [adding_hud ? "ON" : "OFF"].", confidential=TRUE)
-	message_admins("[key_name_admin(usr)] toggled their admin combo HUD [adding_hud ? "ON" : "OFF"].")
-	log_admin("[key_name(usr)] toggled their admin combo HUD [adding_hud ? "ON" : "OFF"].")
-	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Combo HUD", "[adding_hud ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/client/proc/disable_combo_hud()
+	if (!combo_hud_enabled)
+		return
 
+	combo_hud_enabled = FALSE
 
-/client/proc/has_antag_hud()
-	var/datum/atom_hud/A = GLOB.huds[ANTAG_HUD_TRAITOR]
-	return A.hudusers[mob]
+	for (var/hudtype in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED))
+		var/datum/atom_hud/atom_hud = GLOB.huds[hudtype]
+		atom_hud.hide_from(mob)
 
+	for (var/datum/atom_hud/alternate_appearance/basic/antagonist_hud/antag_hud in GLOB.active_alternate_appearances)
+		antag_hud.hide_from(mob)
+
+	mob.update_sight()
 
 /client/proc/run_weather()
 	set category = "Admin.Round Interaction"

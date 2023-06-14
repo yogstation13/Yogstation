@@ -34,8 +34,11 @@
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
 
-/obj/structure/table/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 0.8)
+/obj/structure/table/Initialize()
+	. = ..()
+	AddComponent(/datum/component/surgery_bed, \
+		success_chance = 0.8, \
+	)
 
 /** Performs a complex check for toe stubbing as people would scream "IMPROVE DONT REMOVE" if I had my way.
   * Uses an early probability based return for to save cycles which is perfectly valid since the highest probability is 20 anyway.
@@ -524,16 +527,20 @@
 	can_buckle = TRUE
 	buckle_requires_restraints = TRUE
 
-/obj/structure/table/optable/ComponentInitialize()
-	AddComponent(/datum/component/surgery_bed, 1, TRUE)
+/obj/structure/table/optable/Initialize()
+	. = ..()
+	AddComponent(/datum/component/surgery_bed, \
+		success_chance = 1, \
+		extra_surgeries = TRUE, \
+	)
 
 /obj/structure/table/optable/tablepush(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.forceMove(loc)
 	pushed_mob.set_resting(TRUE, TRUE)
 	visible_message(span_notice("[user] lays [pushed_mob] on [src]."))
 
-/obj/structure/table/optable/debug/ComponentInitialize()
-	..()
+/obj/structure/table/optable/debug/Initialize()
+	. = ..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
 	SB.extra_surgeries = subtypesof(/datum/surgery)
 

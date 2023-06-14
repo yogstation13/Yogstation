@@ -72,3 +72,8 @@
 #define CLOTHING_PRISTINE	0 // We have no damage on the clothing
 #define CLOTHING_DAMAGED	1 // There's some damage on the clothing but it still has at least one functioning bodypart and can be equipped
 #define CLOTHING_SHREDDED	2 // The clothing is useless and cannot be equipped unless repaired first
+
+/// Wrapper for adding clothing based traits
+#define ADD_CLOTHING_TRAIT(mob, trait) ADD_TRAIT(mob, trait, "[CLOTHING_TRAIT]_[REF(src)]")
+/// Wrapper for removing clothing based traits
+#define REMOVE_CLOTHING_TRAIT(mob, trait) REMOVE_TRAIT(mob, trait, "[CLOTHING_TRAIT]_[REF(src)]")

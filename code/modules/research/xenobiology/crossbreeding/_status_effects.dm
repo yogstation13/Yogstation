@@ -213,7 +213,7 @@
 /datum/status_effect/bonechill/tick()
 	if(prob(50))
 		owner.adjustFireLoss(1)
-		owner.Jitter(3)
+		owner.adjust_jitter(3 SECONDS)
 		owner.adjust_bodytemperature(-10)
 
 /datum/status_effect/bonechill/on_remove()
@@ -484,24 +484,33 @@ datum/status_effect/rebreathing/tick()
 /datum/status_effect/stabilized/purple
 	id = "stabilizedpurple"
 	colour = "purple"
+	/// Whether we healed from our last tick
+	var/healed_last_tick = FALSE
 
 /datum/status_effect/stabilized/purple/tick()
-	var/is_healing = FALSE
 	if(owner.getBruteLoss() > 0)
 		owner.adjustBruteLoss(-0.2)
-		is_healing = TRUE
+		healed_last_tick = TRUE
+
 	if(owner.getFireLoss() > 0)
 		owner.adjustFireLoss(-0.2)
-		is_healing = TRUE
+		healed_last_tick = TRUE
+
 	if(owner.getToxLoss() > 0)
 		owner.adjustToxLoss(-0.2, forced = TRUE) //Slimepeople should also get healed.
-		is_healing = TRUE
-	if(is_healing)
-		examine_text = span_warning("SUBJECTPRONOUN is regenerating slowly, purplish goo filling in small injuries!")
+		healed_last_tick = TRUE
+
+	// Technically, "healed this tick" by now.
+	if(healed_last_tick)
 		new /obj/effect/temp_visual/heal(get_turf(owner), "#FF0000")
-	else
-		examine_text = null
-	..()
+
+	return ..()
+
+/datum/status_effect/stabilized/purple/get_examine_text()
+	if(healed_last_tick)
+		return span_warning("[owner.p_they(TRUE)] [owner.p_are()] regenerating slowly, purplish goo filling in small injuries!")
+
+	return null
 
 /datum/status_effect/stabilized/blue
 	id = "stabilizedblue"
@@ -526,7 +535,7 @@ datum/status_effect/stabilized/blue/on_remove()
 	else
 		cooldown = max_cooldown
 		var/list/sheets = list()
-		for(var/obj/item/stack/sheet/S in owner.GetAllContents())
+		for(var/obj/item/stack/sheet/S in owner.get_all_contents())
 			if(S.amount < S.max_amount)
 				sheets += S
 
@@ -550,7 +559,7 @@ datum/status_effect/stabilized/blue/on_remove()
 		return ..()
 	cooldown = max_cooldown
 	var/list/batteries = list()
-	for(var/obj/item/stock_parts/cell/C in owner.GetAllContents())
+	for(var/obj/item/stock_parts/cell/C in owner.get_all_contents())
 		if(C.charge < C.maxcharge)
 			batteries += C
 	if(batteries.len)
@@ -680,7 +689,7 @@ datum/status_effect/stabilized/blue/on_remove()
 			owner.apply_status_effect(/datum/status_effect/bluespacestabilization)
 			to_chat(owner, span_warning("You feel sick after [linked_extract] dragged you through bluespace."))
 			owner.Stun(1 SECONDS)
-			owner.dizziness += 30
+			owner.adjust_dizzy(30 SECONDS)
 	healthcheck = owner.health
 	return ..()
 

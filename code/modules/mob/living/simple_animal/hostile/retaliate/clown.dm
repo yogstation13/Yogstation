@@ -48,7 +48,7 @@
 	..()
 	playsound(src.loc, 'sound/items/bikehorn.ogg', 50, 1)
 
-/mob/living/simple_animal/hostile/retaliate/clown/Life()
+/mob/living/simple_animal/hostile/retaliate/clown/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(banana_time && banana_time < world.time)
 		var/turf/T = get_turf(src)
@@ -74,7 +74,7 @@
 	emote_see = list("bubbles", "oozes")
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/particle_effect/fluid/foam)
 
-/mob/living/simple_animal/hostile/retaliate/clown/lube/Life()
+/mob/living/simple_animal/hostile/retaliate/clown/lube/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	var/turf/open/OT = get_turf(src)
 	if(isopenturf(OT))

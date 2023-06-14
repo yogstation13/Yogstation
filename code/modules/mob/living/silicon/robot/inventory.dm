@@ -144,7 +144,7 @@
 			if(disabled_modules & BORG_MODULE_ALL_DISABLED)
 				return FALSE
 
-			inv1.icon_state = "[initial(inv1.icon_state)] +b"
+			inv1?.icon_state = "[initial(inv1?.icon_state)] +b"
 			disabled_modules |= BORG_MODULE_ALL_DISABLED
 
 			if(!quiet)
@@ -156,7 +156,7 @@
 			if(disabled_modules & BORG_MODULE_TWO_DISABLED)
 				return FALSE
 
-			inv2.icon_state = "[initial(inv2.icon_state)] +b"
+			inv2?.icon_state = "[initial(inv2?.icon_state)] +b"
 			disabled_modules |= BORG_MODULE_TWO_DISABLED
 
 			if(!quiet)
@@ -168,7 +168,7 @@
 			if(disabled_modules & BORG_MODULE_THREE_DISABLED)
 				return FALSE
 
-			inv3.icon_state = "[initial(inv3.icon_state)] +b"
+			inv3?.icon_state = "[initial(inv3?.icon_state)] +b"
 			disabled_modules |= BORG_MODULE_THREE_DISABLED
 
 			if(!quiet)
