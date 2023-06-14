@@ -284,13 +284,13 @@
 					upgradablepowers += power
 				if(is_type_in_list(power, unupgradablepowers))
 					upgradablepowers -= power
-			var/choice = tgui_input_list(usr, "What Power do you wish to ascend? This resets the powers level.", "Darkness Manager", upgradablepowers)
+			var/datum/choice = tgui_input_list(usr, "What Power do you wish to ascend? This resets the powers level.", "Darkness Manager", upgradablepowers)
 			if(!choice)
 				return
 			if((locate(upgradablepowers[choice]) in bloodsuckerdatum.powers))
 				return
 			var/datum/action/cooldown/bloodsucker/granted = null
-			switch(choice)
+			switch(choice.type)
 				if(/datum/action/cooldown/bloodsucker/targeted/brawn)
 					granted = new /datum/action/cooldown/bloodsucker/targeted/brawn/shadow
 				if(/datum/action/cooldown/bloodsucker/targeted/haste)
@@ -305,12 +305,11 @@
 					granted = new /datum/action/cooldown/bloodsucker/targeted/lunge/shadow
 				if(/datum/action/cooldown/bloodsucker/cloak/)
 					granted = new /datum/action/cooldown/bloodsucker/cloak/shadow
-			bloodsuckerdatum.BuyPower(granted)
-			var/datum/action/cooldown/bloodsucker/now_level_it_up = LAZYFIND(bloodsuckerdatum.powers, granted)
-			now_level_it_up.level_current = rand(3, 4)
-			qdel(choice)
-			to_chat(user, span_boldnotice("You have ascended [choice]!"))
-			bloodsuckerdatum.clanpoints--
+			if(bloodsuckerdatum.BuyPower(granted))
+				granted.level_current = rand(3, 4)
+				qdel(choice)
+				to_chat(user, span_boldnotice("You have ascended [choice]!"))
+				bloodsuckerdatum.clanpoints--
 			return
 		if(bloodsuckerdatum.bloodsucker_level >= 4)
 			if(!awoken) //don't want this to affect power upgrading if you make another one
@@ -388,7 +387,7 @@
 	if(bloodsuckerdatum.my_clan?.control_type >= BLOODSUCKER_CONTROL_METAL)
 		if(metal)
 			. += span_boldnotice("It currently contains [metal] metal to use in sculpting.")
-	else 
+	else
 		return ..()
 
 /obj/structure/bloodsucker/moldingstone/bolt()
@@ -445,7 +444,7 @@
 		artist.balloon_alert(artist, "ruined!")
 		metal -= rand(5, 10)
 		update_icon()
-		
+
 		return
 	artist.balloon_alert(artist, "done, a masterpiece!")
 	new what_type(get_turf(src))

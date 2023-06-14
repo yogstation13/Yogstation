@@ -6,6 +6,7 @@
 		Thanks to this, they have also evolved a dark liquid in their veins, which makes them able to manipulate shadows. \n\
 		Their Favorite Vassal appears to have been imbued with abyssal essence and is able to blend in with the shadows."
 	clan_objective = /datum/objective/bloodsucker/hierarchy
+	control_type = BLOODSUCKER_CONTROL_SHADOWS
 	join_icon_state = "lasombra"
 	join_description = "Heal more on the dark, transform abilties into upgraded ones, become one with the darkness."
 

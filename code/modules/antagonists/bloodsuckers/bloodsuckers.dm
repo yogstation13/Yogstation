@@ -487,6 +487,8 @@
 
 /// Buying powers
 /datum/antagonist/bloodsucker/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
+	if(!power)
+		CRASH("Bloodsucker attempted to buy power that doesn't exist")
 	for(var/datum/action/cooldown/bloodsucker/current_powers as anything in powers)
 		if(current_powers.type == power.type)
 			return FALSE
