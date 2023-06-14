@@ -155,8 +155,8 @@
 		finish_action(controller, FALSE)
 		return FALSE
 
-	var/has_left_pocket = target.can_equip(held_item, SLOT_L_STORE)
-	var/has_right_pocket = target.can_equip(held_item, SLOT_R_STORE)
+	var/has_left_pocket = target.can_equip(held_item, ITEM_SLOT_LPOCKET)
+	var/has_right_pocket = target.can_equip(held_item, ITEM_SLOT_RPOCKET)
 	var/has_valid_hand
 
 	for(var/hand_index in target.get_empty_held_indexes())
@@ -172,7 +172,7 @@
 		return TRUE
 
 	if(!has_valid_hand || prob(50))
-		target.equip_to_slot_if_possible(held_item, (!has_left_pocket ? SLOT_R_STORE : (prob(50) ? SLOT_L_STORE : SLOT_R_STORE)))
+		target.equip_to_slot_if_possible(held_item, (!has_left_pocket ? ITEM_SLOT_RPOCKET : (prob(50) ? ITEM_SLOT_LPOCKET : ITEM_SLOT_RPOCKET)))
 	else
 		target.put_in_hands(held_item)
 	finish_action(controller, TRUE)

@@ -76,10 +76,10 @@ GLOBAL_DATUM(the_one_and_only_punpun, /mob/living/carbon/human/species/monkey/pu
 	if(ancestor_chain > 1)
 		generate_fake_scars(rand(ancestor_chain, ancestor_chain * 4))
 	if(relic_hat)
-		equip_to_slot_or_del(new relic_hat, SLOT_HEAD)
+		equip_to_slot_or_del(new relic_hat, ITEM_SLOT_HEAD)
 	if(relic_mask)
-		equip_to_slot_or_del(new relic_mask, SLOT_WEAR_MASK)
-	equip_to_slot_or_del(new /obj/item/clothing/under/waiter(src), SLOT_W_UNIFORM)
+		equip_to_slot_or_del(new relic_mask, ITEM_SLOT_MASK)
+	equip_to_slot_or_del(new /obj/item/clothing/under/waiter(src), ITEM_SLOT_ICLOTHING)
 
 /mob/living/carbon/human/species/monkey/punpun/Destroy()
 	if(GLOB.the_one_and_only_punpun == src)
