@@ -724,6 +724,9 @@
 	if(!istype(M))
 		return
 
+	if(try_extinguish(M))
+		return
+
 	if(src == M)
 		if(has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 			to_chat(src, span_notice("You attempt to remove the durathread strand from around your neck."))
@@ -775,7 +778,7 @@
 		var/status = ""
 		var/brutedamage = LB.brute_dam
 		var/burndamage = LB.burn_dam
-		if(hallucination)
+		if(has_status_effect(/datum/status_effect/hallucination))
 			if(prob(30))
 				brutedamage += rand(30,40)
 			if(prob(30))

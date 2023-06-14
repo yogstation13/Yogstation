@@ -23,7 +23,6 @@
 	health = 25
 	spacewalk = TRUE
 
-	harm_intent_damage = 8
 	obj_damage = 50
 	melee_damage_lower = 20
 	melee_damage_upper = 20
@@ -162,7 +161,7 @@
 	if(.)
 		regen_cooldown = world.time + REGENERATION_DELAY
 
-/mob/living/simple_animal/hostile/carp/megacarp/Life()
+/mob/living/simple_animal/hostile/carp/megacarp/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(regen_cooldown < world.time)
 		heal_overall_damage(4)

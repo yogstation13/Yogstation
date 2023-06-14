@@ -18,7 +18,7 @@
 /obj/item/clothing/gloves/fingerless/equipped(mob/user, slot)
 	..()
 	var/mob/living/carbon/human/boss = user
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		if(!worn) //Literally just in case there's some weirdness so you can't cheese this
 			boss.physiology.do_after_speed *= tacticalspeed //Does channels 10% faster
 			worn = TRUE
@@ -31,22 +31,13 @@
 		worn = FALSE
 
 /obj/item/clothing/gloves/fingerless/bigboss
-	var/carrytrait = TRAIT_QUICKER_CARRY
 	tacticalspeed = 0.66 //Does channels 34% faster
+	clothing_traits = list(TRAIT_QUICKER_CARRY)
 
 /obj/item/clothing/gloves/fingerless/bigboss/Touch(mob/living/target, proximity = TRUE)
 	var/mob/living/M = loc
 	M.changeNext_move(CLICK_CD_CLICK_ABILITY) //0.6 seconds instead of 0.8, but affects any intent instead of just harm
 	. = FALSE
-
-/obj/item/clothing/gloves/fingerless/bigboss/equipped(mob/user, slot)
-	..()
-	if(slot == SLOT_GLOVES)
-		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/fingerless/bigboss/dropped(mob/user)
-	..()
-	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/fingerless/weaver
 	name = "weaver chitin gloves"
@@ -60,13 +51,12 @@
 	desc = "These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin.  They're also quite warm."
 	icon_state = "leather"
 	item_state = "ggloves"
-	permeability_coefficient = 0.9
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 70, ACID = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 5, RAD = 0, FIRE = 70, ACID = 30)
 
 /obj/item/clothing/gloves/combat
 	name = "combat gloves"
@@ -74,14 +64,13 @@
 	icon_state = "black"
 	item_state = "blackgloves"
 	siemens_coefficient = 0
-	permeability_coefficient = 0.05
 	strip_delay = 80
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 50)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 80, ACID = 50)
 
 /obj/item/clothing/gloves/bracer
 	name = "bone bracers"
@@ -141,7 +130,7 @@
 	desc = "Wristbands fashioned after one of the hungriest slaughter demons. Wearing these invokes a hunger in the wearer that can only be sated by bloodshed."
 	icon_state = "cuff"
 	item_state = "cuff"
-	var/obj/effect/proc_holder/swipe/swipe_ability
+	var/datum/action/cooldown/swipe/swipe_ability
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
 
 /obj/item/clothing/gloves/bracer/cuffs/Initialize()
@@ -151,52 +140,45 @@
 /obj/item/clothing/gloves/bracer/cuffs/equipped(mob/living/user, slot)
 	. = ..()
 	if(ishuman(user) && slot == ITEM_SLOT_GLOVES)
-		user.AddAbility(swipe_ability)
+		swipe_ability = new(user)
+		swipe_ability.Grant(user)
 
 /obj/item/clothing/gloves/bracer/cuffs/dropped(mob/living/user)
 	. = ..()
-	user.RemoveAbility(swipe_ability)
+	swipe_ability?.Remove(user)
 
-obj/effect/proc_holder/swipe
+/datum/action/cooldown/swipe //you stupid
 	name = "Swipe"
 	desc = "Swipe at a target area, dealing damage to heal yourself. Creatures take 60 damage while people and cyborgs take 20 damage. Living creatures hit with this ability will heal the user for 13 brute/burn/poison while dead ones heal for 20 and get butchered, while killing a creature with a swipe will heal the user for 33. People and cyborgs hit will heal for 5."
-	action_background_icon_state = "bg_demon"
-	action_icon = 'icons/mob/actions/actions_items.dmi'
-	action_icon_state = "cuff"
+	background_icon_state = "bg_demon"
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "cuff"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/supplypod_target.dmi'
-	var/cooldown = 10 SECONDS
-	COOLDOWN_DECLARE(scan_cooldown)
+	cooldown_time = 10 SECONDS
 
-/obj/effect/proc_holder/swipe/on_lose(mob/living/user)
-	remove_ranged_ability()
-	
-/obj/effect/proc_holder/swipe/Click(location, control, params)
-	. = ..()
-	if(!isliving(usr))
-		return TRUE
-	var/mob/living/user = usr
-	fire(user)
+/datum/action/cooldown/swipe/Remove(mob/living/user)
+	unset_click_ability(user)
+	return ..()
 
-/obj/effect/proc_holder/swipe/fire(mob/living/carbon/user)
+/datum/action/cooldown/swipe/Trigger(mob/living/carbon/user)
+	if(!isliving(owner))
+		return FALSE
 	if(user.handcuffed) 
 		to_chat(user, span_danger("You can't attack while handcuffed!"))
-		return
-	if(active)
-		remove_ranged_ability(span_notice("You relax your arms."))
-	else
-		add_ranged_ability(user, span_notice("You ready your cuffs. <B>Left-click a creature or nearby location to swipe at it!</B>"), TRUE)
+		return FALSE
+	return ..()
 
-/obj/effect/proc_holder/swipe/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/swipe/InterceptClickOn(mob/living/caller, params, atom/target)
 	. = ..()
 	var/turf/open/T = get_turf(target)
 	var/mob/living/L = target
-	if(.)
+	if(!.)
 		return
-	if(ranged_ability_user.stat)
-		remove_ranged_ability()
+	if(owner.stat)
+		unset_click_ability(caller)
 		return
-	if(!COOLDOWN_FINISHED(src, scan_cooldown))
-		to_chat(ranged_ability_user, span_warning("Your cuffs aren't ready to do that yet. Give them some time to recharge!"))
+	if(!COOLDOWN_FINISHED(src, next_use_time))
+		to_chat(owner, span_warning("Your cuffs aren't ready to do that yet. Give them some time to recharge!"))
 		return
 	if(!istype(T))
 		return
@@ -206,7 +188,7 @@ obj/effect/proc_holder/swipe
 	new /obj/effect/temp_visual/bubblegum_hands/rightpaw(T)
 	new /obj/effect/temp_visual/bubblegum_hands/rightthumb(T)
 	to_chat(L, span_userdanger("Claws reach out from the floor and maul you!"))
-	to_chat(ranged_ability_user, "You summon claws at [L]'s location!")
+	to_chat(owner, "You summon claws at [L]'s location!")
 	L.visible_message(span_warning("[caller] rends [L]!"))
 	for(L in range(0,T))
 		playsound(T, 'sound/magic/demon_attack1.ogg', 80, 5, -1)
@@ -229,12 +211,11 @@ obj/effect/proc_holder/swipe
 			caller.adjustBruteLoss(-5)
 			caller.adjustFireLoss(-5)
 			caller.adjustToxLoss(-5)
-	COOLDOWN_START(src, scan_cooldown, cooldown)
-	addtimer(CALLBACK(src, PROC_REF(cooldown_over), ranged_ability_user), cooldown)
-	remove_ranged_ability()
+	addtimer(CALLBACK(src, PROC_REF(cooldown_over), owner), cooldown_time)
+	unset_click_ability(owner)
 	return TRUE
 
-/obj/effect/proc_holder/swipe/proc/cooldown_over()
+/datum/action/cooldown/swipe/proc/cooldown_over()
 	to_chat(usr, (span_notice("You're ready to swipe again!")))
 
 /obj/item/clothing/gloves/gauntlets
@@ -257,7 +238,7 @@ obj/effect/proc_holder/swipe
 
 /obj/item/clothing/gloves/gauntlets/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		tool_behaviour = TOOL_MINING
 		RegisterSignal(user, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(rocksmash))
 		RegisterSignal(user, COMSIG_MOVABLE_BUMP, PROC_REF(rocksmash))
@@ -278,3 +259,23 @@ obj/effect/proc_holder/swipe
 		return
 	A.attackby(src, user)
 	return COMPONENT_NO_ATTACK_OBJ
+
+/obj/item/clothing/gloves/atmos
+	name = "firefighter gloves"
+	desc = "Heavy duty gloves for firefighters. These are thick, non-flammable and let you carry people faster."
+	icon_state = "atmos"
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	resistance_flags = FIRE_PROOF
+	siemens_coefficient = 0.2
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 90, RAD = 0, FIRE = 100, ACID = 90)
+	clothing_flags = THICKMATERIAL
+	clothing_traits = list(TRAIT_QUICKEST_CARRY, TRAIT_RESISTHEATHANDS)
+
+/obj/item/clothing/gloves/atmos/ce
+	name = "advanced insulated gloves"
+	desc = "These gloves provide excellent thermal and electrical insulation."
+	icon_state = "ce_insuls"
+	siemens_coefficient = 0

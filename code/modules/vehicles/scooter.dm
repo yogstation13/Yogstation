@@ -100,7 +100,7 @@
 			var/atom/throw_target = get_edge_target_turf(H, pick(GLOB.cardinals))
 			unbuckle_mob(H)
 			H.throw_at(throw_target, 3, 2)
-			var/head_slot = H.get_item_by_slot(SLOT_HEAD)
+			var/head_slot = H.get_item_by_slot(ITEM_SLOT_HEAD)
 			if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 				H.updatehealth()
@@ -252,7 +252,6 @@
 	name = "Wheely-Heels"
 	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either."
 	icon = null
-	density = FALSE
 
 /obj/vehicle/ridden/scooter/wheelys/Initialize()
 	. = ..()
@@ -282,7 +281,7 @@
 		H.throw_at(throw_target, 4, 3)
 		H.Paralyze(30)
 		H.adjustStaminaLoss(10)
-		var/head_slot = H.get_item_by_slot(SLOT_HEAD)
+		var/head_slot = H.get_item_by_slot(ITEM_SLOT_HEAD)
 		if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
 			H.updatehealth()
@@ -349,7 +348,7 @@
 			var/atom/throw_target = get_edge_target_turf(H, pick(GLOB.cardinals))
 			unbuckle_mob(H)
 			H.throw_at(throw_target, 3, 2)
-			var/head_slot = H.get_item_by_slot(SLOT_HEAD)
+			var/head_slot = H.get_item_by_slot(ITEM_SLOT_HEAD)
 			if(!head_slot || !(istype(head_slot,/obj/item/clothing/head/helmet) || istype(head_slot,/obj/item/clothing/head/hardhat)))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 				H.updatehealth()

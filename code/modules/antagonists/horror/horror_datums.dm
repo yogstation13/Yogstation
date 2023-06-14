@@ -314,8 +314,8 @@
 /datum/action/innate/resist_control
 	name = "Resist control"
 	desc = "Try to take back control over your brain. A strong nerve impulse should do it."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_horror.dmi'
+	background_icon_state = "bg_heretic"
+	button_icon = 'icons/mob/actions/actions_horror.dmi'
 	button_icon_state = "resist_control"
 
 /datum/action/innate/resist_control/Activate()

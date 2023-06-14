@@ -38,7 +38,7 @@
 
 /obj/item/clothing/head/helmet/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_HEAD && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_HEAD && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] head!"), span_warning("The helmet flickers off your head, leaving only nausea!"))
@@ -104,7 +104,7 @@
 
 /obj/item/clothing/suit/armor/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_WEAR_SUIT && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_OCLOTHING && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] body!"), span_warning("The cuirass flickers off your body, leaving only nausea!"))
@@ -117,7 +117,7 @@
 			user.emote("scream")
 			user.apply_damage(15, BURN, BODY_ZONE_CHEST)
 			user.adjust_fire_stacks(2)
-			user.IgniteMob()
+			user.ignite_mob()
 		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dropItemToGround), src, TRUE), 1)
 
 /obj/item/clothing/gloves/clockwork
@@ -132,9 +132,8 @@
 	cold_protection = ARMS
 	heat_protection = ARMS
 	siemens_coefficient = 0
-	permeability_coefficient = 0.05
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list(MELEE = 80, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 80, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 60, RAD = 0, FIRE = 100, ACID = 100)
 
 /obj/item/clothing/gloves/clockwork/Initialize()
 	. = ..()
@@ -164,7 +163,7 @@
 
 /obj/item/clothing/gloves/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_GLOVES && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_GLOVES && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] arms!"), span_warning("The gauntlets flicker off your arms, leaving only nausea!"))
@@ -214,7 +213,7 @@
 
 /obj/item/clothing/shoes/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_SHOES && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_FEET && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] feet!"), span_warning("The treads flicker off your feet, leaving only nausea!"))

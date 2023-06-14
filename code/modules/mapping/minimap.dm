@@ -86,7 +86,7 @@
 								span_userdanger("You miss the map and accidentally light yourself on fire!"))
 			user.dropItemToGround(P)
 			user.adjust_fire_stacks(1)
-			user.IgniteMob()
+			user.ignite_mob()
 			return
 
 		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper

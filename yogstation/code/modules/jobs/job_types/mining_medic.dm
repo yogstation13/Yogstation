@@ -1,6 +1,6 @@
 /datum/job/miningmedic
 	title = "Mining Medic"
-	description = "Watch over the Shaft Miners and they all inevitably die in Lavaland."
+	description = "Watch over the Shaft Miners as they all inevitably die on Lavaland."
 	flag = MMEDIC
 	orbit_icon = "kit-medical"
 	department_head = list("Chief Medical Officer")
@@ -17,7 +17,7 @@
 
 	outfit = /datum/outfit/job/miningmedic
 
-	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Junior Mining Medic", "Planetside Health Officer", "Land Search & Rescue")
+	alt_titles = list("Mining Medical Support", "Lavaland Medical Care Unit", "Planetside Health Officer", "Land Search & Rescue", "Lavaland EMT")
 
 	minimal_character_age = 26 //Matches MD
 
@@ -67,4 +67,4 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival_mining
 	ipc_box = /obj/item/storage/box/ipc/miner
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET

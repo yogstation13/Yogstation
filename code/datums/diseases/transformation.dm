@@ -133,7 +133,7 @@
 		if(3)
 			if(prob(4))
 				to_chat(affected_mob, span_danger("You feel a stabbing pain in your head."))
-				affected_mob.confused += 10
+				affected_mob.adjust_confusion(1 SECONDS)
 		if(4)
 			if(prob(3))
 				affected_mob.say(pick("Eeek, ook ook!", "Eee-eeek!", "Eeee!", "Ungh, ungh."), forced = "jungle fever")

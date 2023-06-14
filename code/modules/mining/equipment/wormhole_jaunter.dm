@@ -47,6 +47,8 @@
 	var/obj/effect/portal/jaunt_tunnel/J = new (get_turf(src), src, 100, null, FALSE, get_turf(chosen_beacon))
 	if(adjacent)
 		try_move_adjacent(J)
+	else
+		J.teleport(user) // send the user through instantly if it appears directly on top of them
 	playsound(src,'sound/effects/sparks4.ogg',50,1)
 	qdel(src)
 
@@ -58,7 +60,7 @@
 	var/mob/M = loc
 	if(istype(M))
 		var/triggered = FALSE
-		if(M.get_item_by_slot(SLOT_BELT) == src)
+		if(M.get_item_by_slot(ITEM_SLOT_BELT) == src)
 			if(power == 1)
 				triggered = TRUE
 			else if(power == 2 && prob(50))

@@ -35,13 +35,13 @@
 	. = ..()
 	if(.)
 		var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED]
-		hud.add_hud_to(H)
+		hud.show_to(H)
 
 /obj/mecha/working/clarke/go_out()
 	if(isliving(occupant))
 		var/mob/living/L = occupant
 		var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED]
-		hud.remove_hud_from(L)
+		hud.hide_from(L)
 	return ..()
 
 /obj/mecha/working/clarke/mmi_moved_inside(obj/item/mmi/M, mob/user)
@@ -49,7 +49,7 @@
 	if(.)
 		var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED]
 		var/mob/living/brain/B = M.brainmob
-		hud.add_hud_to(B)
+		hud.show_to(B)
 
 //Ore Box Controls
 

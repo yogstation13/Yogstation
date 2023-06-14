@@ -1,12 +1,12 @@
-/mob/living/Initialize()
+/mob/living/Initialize(mapload)
 	. = ..()
+	register_init_signals()
 	if(unique_name)
-		name = "[name] ([rand(1, 1000)])"
-		real_name = name
+		set_name()
 	var/datum/atom_hud/data/human/medical/advanced/medhud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	medhud.add_to_hud(src)
+	medhud.add_atom_to_hud(src)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 	faction += "[REF(src)]"
 	GLOB.mob_living_list += src
 	initialize_footstep()
@@ -31,9 +31,6 @@
 			qdel(effect)
 		else
 			effect.be_replaced()
-
-	if(ranged_ability)
-		ranged_ability.remove_ranged_ability(src)
 
 	if(buckled)
 		buckled.unbuckle_mob(src,force=1)
@@ -264,7 +261,7 @@
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
 
 	pulling = AM
-	AM.pulledby = src
+	AM.set_pulledby(src)
 	if(!supress_message)
 		var/sound_to_play = 'sound/weapons/thudswoosh.ogg'
 		if(ishuman(src))
@@ -389,9 +386,17 @@
 			to_chat(src, span_notice("You have given up life and succumbed to death."))
 		death()
 
-/mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
-	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IS_IN_STASIS(src)))
+/mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, ignore_stasis = FALSE)
+	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
 		return TRUE
+
+	if(!ignore_restraints && restrained(ignore_grab))
+		return TRUE
+	if(!ignore_grab && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE)
+		return TRUE
+	if(!ignore_stasis && IS_IN_STASIS(src))
+		return TRUE
+	return FALSE
 
 /mob/living/canUseStorage()
 	if (get_num_arms() <= 0)
@@ -486,7 +491,7 @@
 	return ret
 
 // Living mobs use can_inject() to make sure that the mob is not syringe-proof in general.
-/mob/living/proc/can_inject()
+/mob/living/proc/can_inject(mob/user, error_msg, target_zone, penetrate_thick = 0)
 	return TRUE
 
 /mob/living/is_injectable(mob/user, allowmobs = TRUE)
@@ -494,6 +499,11 @@
 
 /mob/living/is_drawable(mob/user, allowmobs = TRUE)
 	return (allowmobs && reagents && can_inject(user))
+
+///Sets the current mob's health value. Do not call directly if you don't know what you are doing, use the damage procs, instead.
+/mob/living/proc/set_health(new_value)
+	. = health
+	health = new_value
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -552,7 +562,7 @@
 		remove_from_dead_mob_list()
 		add_to_alive_mob_list()
 		set_suicide(FALSE)
-		stat = UNCONSCIOUS //the mob starts unconscious,
+		set_stat(UNCONSCIOUS) //the mob starts unconscious,
 		blind_eyes(1)
 		losebreath = 0 //losebreath stacks were persisting beyond death, immediately killing again after revival until they ran out natureally from time
 		updatehealth() //then we check if the mob should wake up.
@@ -562,10 +572,12 @@
 		reload_fullscreen()
 		revive_guardian()
 		. = 1
-		if(mind)
-			for(var/S in mind.spell_list)
-				var/obj/effect/proc_holder/spell/spell = S
-				spell.updateButtonIcon()
+		if(IS_BLOODSUCKER(src))
+			var/datum/antagonist/bloodsucker/bloodsuckerdatum = src.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+			bloodsuckerdatum.heal_vampire_organs()
+
+	// The signal is called after everything else so components can properly check the updated values
+	SEND_SIGNAL(src, COMSIG_LIVING_REVIVE, full_heal, admin_revive)
 
 /mob/living/proc/remove_CC(should_update_mobility = TRUE)
 	SetStun(0, FALSE)
@@ -591,22 +603,14 @@
 	bodytemperature = BODYTEMP_NORMAL
 	set_blindness(0)
 	set_blurriness(0)
-	set_dizziness(0)
 
 	cure_nearsighted()
 	cure_blind()
 	cure_husk()
-	hallucination = 0
 	heal_overall_damage(INFINITY, INFINITY, INFINITY, null, TRUE) //heal brute and burn dmg on both organic and robotic limbs, and update health right away.
-	ExtinguishMob()
+	extinguish_mob()
 	losebreath = 0
 	fire_stacks = 0
-	confused = 0
-	dizziness = 0
-	drowsyness = 0
-	stuttering = 0
-	slurring = 0
-	jitteriness = 0
 	if(HAS_TRAIT_FROM(src, TRAIT_BADDNA, CHANGELING_DRAIN))
 		REMOVE_TRAIT(src, TRAIT_BADDNA, CHANGELING_DRAIN)
 	var/datum/component/mood/mood = GetComponent(/datum/component/mood)
@@ -616,6 +620,7 @@
 	stop_sound_channel(CHANNEL_HEARTBEAT)
 	if(admin_revive)
 		cure_fakedeath()
+	SEND_SIGNAL(src, COMSIG_LIVING_POST_FULLY_HEAL)
 
 //proc called by revive(), to check if we can actually ressuscitate the mob (we don't want to revive him and have him instantly die again)
 /mob/living/proc/can_be_revived()
@@ -744,7 +749,11 @@
 		..(pressure_difference, direction, pressure_resistance_prob_delta)
 
 /mob/living/can_resist()
-	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
+	if(next_move > world.time)
+		return FALSE
+	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
+		return FALSE
+	return TRUE
 
 /mob/living/verb/resist()
 	set name = "Resist"
@@ -913,16 +922,6 @@
 	else if(!src.mob_negates_gravity())
 		step_towards(src,S)
 
-/mob/living/proc/do_jitter_animation(jitteriness)
-	var/amplitude = min(4, (jitteriness/100) + 1)
-	var/pixel_x_diff = rand(-amplitude, amplitude)
-	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
-	var/final_pixel_x = get_standard_pixel_x_offset(lying)
-	var/final_pixel_y = get_standard_pixel_y_offset(lying)
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 0.2 SECONDS, loop = 6)
-	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 0.2 SECONDS)
-	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
-
 /mob/living/proc/get_temperature(datum/gas_mixture/environment)
 	var/loc_temp = environment ? environment.return_temperature() : T0C
 	if(isobj(loc))
@@ -968,8 +967,8 @@
 	return 1
 
 //used in datum/reagents/reaction() proc
-/mob/living/proc/get_permeability_protection(list/target_zones)
-	return 0
+/mob/living/proc/get_permeability(def_zone, linear = FALSE)
+	return 1
 
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
 	return
@@ -1070,7 +1069,7 @@
 	if(!magic && !holy && !tinfoil)
 		return
 	var/list/protection_sources = list()
-	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, tinfoil, chargecost, self, protection_sources) & COMPONENT_BLOCK_MAGIC)
+	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, tinfoil, chargecost, self, protection_sources) & COMPONENT_MAGIC_BLOCKED)
 		if(protection_sources.len)
 			return pick(protection_sources)
 		else
@@ -1139,7 +1138,7 @@
 	return BODYTEMP_NORMAL + get_body_temp_normal_change()
 
 //Mobs on Fire
-/mob/living/proc/IgniteMob()
+/mob/living/proc/ignite_mob()
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
 		src.visible_message(span_warning("[src] catches fire!"), \
@@ -1151,7 +1150,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/proc/ExtinguishMob()
+/mob/living/proc/extinguish_mob()
 	if(on_fire)
 		on_fire = 0
 		fire_stacks = 0
@@ -1168,7 +1167,7 @@
 	else
 		fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
-		ExtinguishMob()
+		extinguish_mob()
 
 //Share fire evenly between the two mobs
 //Called in MobBump() and Crossed()
@@ -1184,13 +1183,13 @@
 		else // If they were not
 			fire_stacks /= 2
 			L.adjust_fire_stacks(fire_stacks)
-			if(L.IgniteMob()) // Ignite them
+			if(L.ignite_mob()) // Ignite them
 				log_game("[key_name(src)] bumped into [key_name(L)] and set them on fire")
 
 	else if(L.on_fire) // If they were on fire and we were not
 		L.fire_stacks /= 2
 		adjust_fire_stacks(L.fire_stacks)
-		IgniteMob() // Ignite us
+		ignite_mob() // Ignite us
 
 //Mobs on Fire end
 
@@ -1252,7 +1251,7 @@
 	else
 		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
 
-
+	SEND_SIGNAL(src, COMSIG_LIVING_SET_BODY_POSITION, mobility_flags, .) //REMOVE THIS WHEN LAYING DOWN GETS PORTED
 
 	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms
 	if(canitem)
@@ -1281,24 +1280,6 @@
 /mob/living/proc/fall(forced)
 	if(!(mobility_flags & MOBILITY_USE))
 		drop_all_held_items()
-
-/mob/living/proc/AddAbility(obj/effect/proc_holder/A)
-	abilities.Add(A)
-	A.on_gain(src)
-	if(A.has_action)
-		A.action.Grant(src)
-
-/mob/living/proc/RemoveAbility(obj/effect/proc_holder/A)
-	abilities.Remove(A)
-	A.on_lose(src)
-	if(A.action)
-		A.action.Remove(src)
-
-/mob/living/proc/add_abilities_to_panel()
-	var/list/L = list()
-	for(var/obj/effect/proc_holder/A in abilities)
-		L[++L.len] = list("[A.panel]",A.get_panel_text(),A.name,"[REF(A)]")
-	return L
 
 /mob/living/lingcheck()
 	if(mind)
@@ -1361,6 +1342,10 @@
 	L.visible_message(span_warning("[L] scoops up [src]!"))
 	L.put_in_hands(holder)
 
+/mob/living/proc/set_name()
+	name = "[name] ([rand(1, 1000)])"
+	real_name = name
+
 /mob/living/proc/mob_try_pickup(mob/living/user)
 	if(!ishuman(user))
 		return
@@ -1394,11 +1379,6 @@
 		else
 			clear_fullscreen("remote_view", 0)
 		update_pipe_vision()
-
-/mob/living/update_mouse_pointer()
-	..()
-	if (client && ranged_ability && ranged_ability.ranged_mousepointer)
-		client.mouse_pointer_icon = ranged_ability.ranged_mousepointer
 
 /mob/living/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -1470,3 +1450,99 @@
 /// Only defined for carbons who can wear masks and helmets, we just assume other mobs have visible faces
 /mob/living/proc/is_face_visible()
 	return isturf(loc) // Yogs -- forbids making eye contact with things hidden within objects
+
+/mob/living/carbon/proc/set_handcuffed(new_value)
+	if(handcuffed == new_value)
+		return FALSE
+	. = handcuffed
+	handcuffed = new_value
+	if(.)
+		if(!handcuffed)
+			REMOVE_TRAIT(src, TRAIT_RESTRAINED, HANDCUFFED_TRAIT)
+	else if(handcuffed)
+		ADD_TRAIT(src, TRAIT_RESTRAINED, HANDCUFFED_TRAIT)
+
+/mob/living/set_pulledby(new_pulledby)
+	. = ..()
+	if(. == FALSE) //null is a valid value here, we only want to return if FALSE is explicitly passed.
+		return
+	if(pulledby)
+		if(!. && stat == SOFT_CRIT)
+			ADD_TRAIT(src, TRAIT_IMMOBILIZED, PULLED_WHILE_SOFTCRIT_TRAIT)
+	else if(. && stat == SOFT_CRIT)
+		REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, PULLED_WHILE_SOFTCRIT_TRAIT)
+
+/mob/living/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+
+	switch(.) //Previous stat.
+		if(CONSCIOUS)
+			if(stat >= UNCONSCIOUS)
+				ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT)
+			add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_INCAPACITATED, TRAIT_FLOORED), STAT_TRAIT)
+		if(SOFT_CRIT)
+			if(stat >= UNCONSCIOUS)
+				ADD_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT) //adding trait sources should come before removing to avoid unnecessary updates
+			if(pulledby)
+				REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, PULLED_WHILE_SOFTCRIT_TRAIT)
+		if(UNCONSCIOUS)
+//			if(stat != HARD_CRIT)
+			cure_blind(UNCONSCIOUS_TRAIT)
+//		if(HARD_CRIT)
+//			if(stat != UNCONSCIOUS)
+//				cure_blind(UNCONSCIOUS_TRAIT)
+		if(DEAD)
+			remove_from_dead_mob_list()
+			add_to_alive_mob_list()
+	switch(stat) //Current stat.
+		if(CONSCIOUS)
+			if(. >= UNCONSCIOUS)
+				REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT)
+			remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_INCAPACITATED, TRAIT_FLOORED, TRAIT_CRITICAL_CONDITION), STAT_TRAIT)
+		if(SOFT_CRIT)
+			if(pulledby)
+				ADD_TRAIT(src, TRAIT_IMMOBILIZED, PULLED_WHILE_SOFTCRIT_TRAIT) //adding trait sources should come before removing to avoid unnecessary updates
+			if(. >= UNCONSCIOUS)
+				REMOVE_TRAIT(src, TRAIT_IMMOBILIZED, TRAIT_KNOCKEDOUT)
+			ADD_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+		if(UNCONSCIOUS)
+//			if(. != HARD_CRIT)
+	//			become_blind(UNCONSCIOUS_TRAIT)
+			if(health <= crit_threshold && !HAS_TRAIT(src, TRAIT_NOSOFTCRIT))
+				ADD_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+			else
+				REMOVE_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+//		if(HARD_CRIT)
+//			if(. != UNCONSCIOUS)
+//				become_blind(UNCONSCIOUS_TRAIT)
+//			ADD_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+		if(DEAD)
+			REMOVE_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
+			remove_from_alive_mob_list()
+			add_to_dead_mob_list()
+
+/// Proc to append behavior to the condition of being handsblocked. Called when the condition starts.
+/mob/living/proc/on_handsblocked_start()
+	drop_all_held_items()
+	add_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED), TRAIT_HANDS_BLOCKED)
+
+
+/// Proc to append behavior to the condition of being handsblocked. Called when the condition ends.
+/mob/living/proc/on_handsblocked_end()
+	remove_traits(list(TRAIT_UI_BLOCKED, TRAIT_PULL_BLOCKED), TRAIT_HANDS_BLOCKED)
+
+/// Proc to append behavior to the condition of being floored. Called when the condition starts.
+/mob/living/proc/on_floored_start()
+//	if(body_position == STANDING_UP) //force them on the ground
+//		set_lying_angle(pick(90, 270))
+//		set_body_position(LYING_DOWN)
+	on_fall()
+	set_resting(TRUE)
+
+/// Proc to append behavior to the condition of being floored. Called when the condition ends.
+/mob/living/proc/on_floored_end()
+//	if(!resting)
+//		get_up()
+	set_resting(FALSE)

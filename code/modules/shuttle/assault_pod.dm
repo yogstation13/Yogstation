@@ -42,7 +42,7 @@
 	if(!src || QDELETED(src))
 		return
 
-	var/turf/T = safepick(get_area_turfs(picked_area))
+	var/turf/T = pick(get_area_turfs(picked_area))
 	if(!T)
 		return
 	var/obj/docking_port/stationary/landing_zone = new /obj/docking_port/stationary(T)

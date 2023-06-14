@@ -4,41 +4,68 @@
 // Return the item currently in the slot ID
 /mob/living/carbon/human/get_item_by_slot(slot_id)
 	switch(slot_id)
-		if(SLOT_BACK)
-			return back
-		if(SLOT_WEAR_MASK)
-			return wear_mask
-		if(SLOT_NECK)
-			return wear_neck
-		if(SLOT_HANDCUFFED)
-			return handcuffed
-		if(SLOT_LEGCUFFED)
-			return legcuffed
-		if(SLOT_BELT)
+		if(ITEM_SLOT_BELT)
 			return belt
-		if(SLOT_WEAR_ID)
+		if(ITEM_SLOT_ID)
 			return wear_id
-		if(SLOT_EARS)
+		if(ITEM_SLOT_EARS)
 			return ears
-		if(SLOT_GLASSES)
+		if(ITEM_SLOT_EYES)
 			return glasses
-		if(SLOT_GLOVES)
+		if(ITEM_SLOT_GLOVES)
 			return gloves
-		if(SLOT_HEAD)
-			return head
-		if(SLOT_SHOES)
+		if(ITEM_SLOT_FEET)
 			return shoes
-		if(SLOT_WEAR_SUIT)
+		if(ITEM_SLOT_OCLOTHING)
 			return wear_suit
-		if(SLOT_W_UNIFORM)
+		if(ITEM_SLOT_ICLOTHING)
 			return w_uniform
-		if(SLOT_L_STORE)
+		if(ITEM_SLOT_LPOCKET)
 			return l_store
-		if(SLOT_R_STORE)
+		if(ITEM_SLOT_RPOCKET)
 			return r_store
-		if(SLOT_S_STORE)
+		if(ITEM_SLOT_SUITSTORE)
 			return s_store
-	return null
+	return ..()
+
+/mob/living/carbon/human/get_slot_by_item(obj/item/looking_for)
+	if(looking_for == belt)
+		return ITEM_SLOT_BELT
+
+	if(looking_for == wear_id)
+		return ITEM_SLOT_ID
+
+	if(looking_for == ears)
+		return ITEM_SLOT_EARS
+
+	if(looking_for == glasses)
+		return ITEM_SLOT_EYES
+
+	if(looking_for == gloves)
+		return ITEM_SLOT_GLOVES
+
+	if(looking_for == head)
+		return ITEM_SLOT_HEAD
+
+	if(looking_for == shoes)
+		return ITEM_SLOT_FEET
+
+	if(looking_for == wear_suit)
+		return ITEM_SLOT_OCLOTHING
+
+	if(looking_for == w_uniform)
+		return ITEM_SLOT_ICLOTHING
+
+	if(looking_for == r_store)
+		return ITEM_SLOT_RPOCKET
+
+	if(looking_for == l_store)
+		return ITEM_SLOT_LPOCKET
+
+	if(looking_for == s_store)
+		return ITEM_SLOT_SUITSTORE
+
+	return ..()
 
 /mob/living/carbon/human/proc/get_all_slots()
 	. = get_head_slots() | get_body_slots()
@@ -85,17 +112,17 @@
 
 	var/not_handled = FALSE //Added in case we make this type path deeper one day
 	switch(slot)
-		if(SLOT_BELT)
+		if(ITEM_SLOT_BELT)
 			belt = I
 			update_inv_belt()
-		if(SLOT_WEAR_ID)
+		if(ITEM_SLOT_ID)
 			wear_id = I
 			sec_hud_set_ID()
 			update_inv_wear_id()
-		if(SLOT_EARS)
+		if(ITEM_SLOT_EARS)
 			ears = I
 			update_inv_ears()
-		if(SLOT_GLASSES)
+		if(ITEM_SLOT_EYES)
 			glasses = I
 			var/obj/item/clothing/glasses/G = I
 			if(G.glass_colour_type)
@@ -108,31 +135,31 @@
 			if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
 				update_sight()
 			update_inv_glasses()
-		if(SLOT_GLOVES)
+		if(ITEM_SLOT_GLOVES)
 			gloves = I
 			update_inv_gloves()
-		if(SLOT_SHOES)
+		if(ITEM_SLOT_FEET)
 			shoes = I
 			update_inv_shoes()
-		if(SLOT_WEAR_SUIT)
+		if(ITEM_SLOT_OCLOTHING)
 			wear_suit = I
 			if(I.flags_inv & HIDEJUMPSUIT)
 				update_inv_w_uniform()
 			if(wear_suit.breakouttime) //when equipping a straightjacket
 				stop_pulling() //can't pull if restrained
-				update_action_buttons_icon() //certain action buttons will no longer be usable.
+				update_mob_action_buttons() //certain action buttons will no longer be usable.
 			update_inv_wear_suit()
-		if(SLOT_W_UNIFORM)
+		if(ITEM_SLOT_ICLOTHING)
 			w_uniform = I
 			update_suit_sensors()
 			update_inv_w_uniform()
-		if(SLOT_L_STORE)
+		if(ITEM_SLOT_LPOCKET)
 			l_store = I
 			update_inv_pockets()
-		if(SLOT_R_STORE)
+		if(ITEM_SLOT_RPOCKET)
 			r_store = I
 			update_inv_pockets()
-		if(SLOT_S_STORE)
+		if(ITEM_SLOT_SUITSTORE)
 			s_store = I
 			update_inv_s_store()
 		else
@@ -156,7 +183,7 @@
 			dropItemToGround(s_store, TRUE) //It makes no sense for your suit storage to stay on you if you drop your suit.
 		if(wear_suit.breakouttime) //when unequipping a straightjacket
 			drop_all_held_items() //suit is restraining
-			update_action_buttons_icon() //certain action buttons may be usable again.
+			update_mob_action_buttons() //certain action buttons may be usable again.
 		wear_suit = null
 		if(!QDELETED(src)) //no need to update we're getting deleted anyway
 			if(I.flags_inv & HIDEJUMPSUIT)
@@ -168,13 +195,13 @@
 		if(!QDELETED(src))
 			update_inv_w_uniform()
 		if(invdrop)
-			if(r_store && !can_equip(r_store, SLOT_R_STORE, TRUE))
+			if(r_store && !can_equip(r_store, ITEM_SLOT_RPOCKET, TRUE))
 				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
-			if(l_store && !can_equip(l_store, SLOT_L_STORE, TRUE))
+			if(l_store && !can_equip(l_store, ITEM_SLOT_LPOCKET, TRUE))
 				dropItemToGround(l_store, TRUE)
-			if(wear_id && !can_equip(wear_id, SLOT_WEAR_ID, TRUE))
+			if(wear_id && !can_equip(wear_id, ITEM_SLOT_ID, TRUE))
 				dropItemToGround(wear_id)
-			if(belt && !can_equip(belt, SLOT_BELT, TRUE))
+			if(belt && !can_equip(belt, ITEM_SLOT_BELT, TRUE))
 				dropItemToGround(belt)
 	else if(I == gloves)
 		gloves = null
@@ -310,12 +337,12 @@
 	if(incapacitated())
 		return
 	var/obj/item/thing = get_active_held_item()
-	var/obj/item/equipped_back = get_item_by_slot(SLOT_BACK)
+	var/obj/item/equipped_back = get_item_by_slot(ITEM_SLOT_BACK)
 	if(!equipped_back) // We also let you equip a backpack like this
 		if(!thing)
 			to_chat(src, "<span class='warning'>You have no backpack to take something out of!</span>")
 			return
-		if(equip_to_slot_if_possible(thing, SLOT_BACK))
+		if(equip_to_slot_if_possible(thing, ITEM_SLOT_BACK))
 			update_inv_hands()
 		return
 	if(!SEND_SIGNAL(equipped_back, COMSIG_CONTAINS_STORAGE)) // not a storage item
@@ -341,12 +368,12 @@
 	if(incapacitated())
 		return
 	var/obj/item/thing = get_active_held_item()
-	var/obj/item/equipped_belt = get_item_by_slot(SLOT_BELT)
+	var/obj/item/equipped_belt = get_item_by_slot(ITEM_SLOT_BELT)
 	if(!equipped_belt) // We also let you equip a belt like this
 		if(!thing)
 			to_chat(src, "<span class='warning'>You have no belt to take something out of!</span>")
 			return
-		if(equip_to_slot_if_possible(thing, SLOT_BELT))
+		if(equip_to_slot_if_possible(thing, ITEM_SLOT_BELT))
 			update_inv_hands()
 		return
 	if(!SEND_SIGNAL(equipped_belt, COMSIG_CONTAINS_STORAGE)) // not a storage item
@@ -370,12 +397,12 @@
 
 /mob/living/carbon/human/proc/smart_equipsuit()
 	var/obj/item/thing = get_active_held_item()
-	var/obj/item/equipped_suit = get_item_by_slot(SLOT_S_STORE)
+	var/obj/item/equipped_suit = get_item_by_slot(ITEM_SLOT_SUITSTORE)
 	if(!equipped_suit) 
 		if(!thing)
 			to_chat(src, span_notice("You have no suit storage to take something out of."))
 			return
-		if(equip_to_slot_if_possible(thing, SLOT_S_STORE))
+		if(equip_to_slot_if_possible(thing, ITEM_SLOT_SUITSTORE))
 			update_inv_hands()
 		return
 	if(!SEND_SIGNAL(equipped_suit, COMSIG_CONTAINS_STORAGE)) // not a storage item

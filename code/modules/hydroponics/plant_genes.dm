@@ -233,7 +233,7 @@
 /datum/plant_gene/trait/cell_charge/on_consume(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/target)
 	if(!G.reagents.total_volume)
 		var/batteries_recharged = 0
-		for(var/obj/item/stock_parts/cell/C in target.GetAllContents())
+		for(var/obj/item/stock_parts/cell/C in target.get_all_contents())
 			var/newcharge = min(G.seed.potency*0.01*C.maxcharge, C.maxcharge)
 			if(C.charge < newcharge)
 				C.charge = newcharge
@@ -330,7 +330,7 @@
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
 			C.adjust_disgust(15)	//Two teleports is safe
-			C.confused += 7
+			C.adjust_confusion(7 SECONDS)
 
 /datum/plant_gene/trait/teleport/on_slip(obj/item/reagent_containers/food/snacks/grown/G, mob/living/carbon/C)
 	var/teleport_radius = max(round(G.seed.potency * rate), 1)	//max of 5
@@ -407,7 +407,7 @@
 			user.log_message("pricked [target == user ? "themselves" : target ] ([contained]).", INDIVIDUAL_ATTACK_LOG)
 			if(target != user && target.ckey && user.ckey) // injecting people with plants now creates admin logs (stolen from hypospray code)
 				log_attack("[user.name] ([user.ckey]) pricked [target.name] ([target.ckey]) with [G], which had [contained] (INTENT: [uppertext(user.a_intent)])")
-		var/injecting_amount = max(G.seed.potency * 0.2) / target.getarmor(def_zone, BIO) // Maximum of 20, reduced by bio protection
+		var/injecting_amount = G.seed.potency * 0.2 * clamp(1 - target.getarmor(def_zone, BIO)/100, 0, 1) // A number between 0 and 20, reduced by bio armor as a percent
 		if(injecting_amount < 1)
 			return
 		var/fraction = min(injecting_amount/G.reagents.total_volume, 1)

@@ -154,3 +154,6 @@
 #define SPLASHSCREEN_LAYER 23
 #define SPLASHSCREEN_PLANE 23
 #define SPLASHSCREEN_RENDER_TARGET "SPLASHSCREEN_PLANE"
+
+///1000 is an unimportant number, it's just to normalize copied layers
+#define RADIAL_CONTENT_LAYER 1000

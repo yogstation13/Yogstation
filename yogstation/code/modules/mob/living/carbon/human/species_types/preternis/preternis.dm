@@ -14,7 +14,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, ROBOTIC_LIMBS, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = list(MOB_ORGANIC, MOB_ROBOTIC, MOB_HUMANOID)
 	sexes = FALSE //they're basically ken dolls, come straight out of a printer
-	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
+	no_equip = list(ITEM_SLOT_FEET)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"
 	skinned_type = /obj/item/stack/sheet/plasteel{amount = 5} //coated in plasteel
@@ -116,7 +116,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	name = "Maglock"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "magboots0"
-	icon_icon = 'icons/obj/clothing/shoes.dmi'
+	button_icon = 'icons/obj/clothing/shoes.dmi'
 	background_icon_state = "bg_default"
 
 /datum/action/innate/maglock/Grant(mob/M)
@@ -136,7 +136,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		REMOVE_TRAIT(H, TRAIT_NOSLIPICE, "preternis_maglock")
 		button_icon_state = "magboots0"
-	UpdateButtonIcon()
+	build_all_button_icons()
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
 	if(!silent)
@@ -238,8 +238,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		//damage has a flat amount with an additional amount based on how wet they are
 		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
 		H.adjustFireLoss(5 - (H.fire_stacks / 2))
-		H.Jitter(100)
-		H.stuttering = 1
+		H.adjust_jitter(100 SECONDS)
+		H.set_stutter(1 SECONDS)
 		if(!soggy)//play once when it starts
 			H.emote("scream")
 			to_chat(H, span_userdanger("Your entire being screams in agony as your wires short from getting wet!"))
@@ -250,7 +250,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		to_chat(H, "You breathe a sigh of relief as you dry off.")
 		soggy = FALSE
 		H.clear_alert("preternis_wet")
-		H.jitteriness -= 100
+		H.adjust_jitter(-100 SECONDS)
 
 /datum/species/preternis/proc/handle_charge(mob/living/carbon/human/H)
 	var/chargemod = 1 //TRAIT_BOTTOMLESS_STOMACH isn't included because preternis charge doesn't work that way

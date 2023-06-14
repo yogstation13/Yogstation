@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(zombies)
 		if(!istype(antag))
 			continue
 		actual_roundstart_zombies++
-		antag.start_timer()
+//		antag.start_timer()
 
 	addtimer(CALLBACK(src, PROC_REF(call_shuttle)), 60 MINUTES) //Shuttle called after 1 hour if it hasn't been
 	. = ..()

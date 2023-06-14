@@ -30,7 +30,7 @@
 	if(!isturf(loc))
 		return FALSE
 	// Do we have a jetpack implant (and is it on)?
-	var/obj/item/organ/cyberimp/chest/thrusters/T = getorganslot(ORGAN_SLOT_THRUSTERS)
+	var/obj/item/organ/cyberimp/chest/thrusters/T = getorganslot(ORGAN_SLOT_TORSO_IMPLANT)
 	if(istype(T))
 		if(movement_dir && T.allow_thrust(0.01))
 			. = TRUE

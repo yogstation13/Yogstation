@@ -549,7 +549,7 @@ SUBSYSTEM_DEF(job)
 		if(S)
 			S.JoinPlayerHere(living_mob, FALSE)
 		if(!S && !spawning_handled) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
-			log_world("Couldn't find a round start spawn point for [rank]")
+			log_mapping("Job [job.title] ([job.type]) couldn't find a round start spawn point.")
 			SendToLateJoin(living_mob)
 
 	var/alt_title = null
@@ -595,7 +595,7 @@ SUBSYSTEM_DEF(job)
 	job.give_donor_stuff(living_mob, M) // yogs - Donor Features
 	job.give_cape(living_mob, M)
 	job.give_map_flare(living_mob, M)
-	var/obj/item/modular_computer/RPDA = locate(/obj/item/modular_computer/tablet) in living_mob.GetAllContents()
+	var/obj/item/modular_computer/RPDA = locate(/obj/item/modular_computer/tablet) in living_mob.get_all_contents()
 	if(istype(RPDA))
 		RPDA.device_theme = GLOB.pda_themes[M.client?.prefs.read_preference(/datum/preference/choiced/pda_theme)]
 		var/obj/item/computer_hardware/hard_drive/hard_drive = RPDA.all_components[MC_HDD]

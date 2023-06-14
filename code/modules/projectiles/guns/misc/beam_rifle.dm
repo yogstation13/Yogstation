@@ -27,6 +27,7 @@
 	weapon_weight = WEAPON_HEAVY
 	w_class = WEIGHT_CLASS_BULKY
 	ammo_type = list(/obj/item/ammo_casing/energy/beam_rifle/hitscan)
+	actions_types = list(/datum/action/item_action/zoom_lock_action)
 	cell_type = /obj/item/stock_parts/cell/beam_rifle
 	canMouseDown = TRUE
 	pin = null
@@ -73,7 +74,6 @@
 	var/static/image/charged_overlay = image(icon = 'icons/obj/guns/energy.dmi', icon_state = "esniper_charged")
 	var/static/image/drained_overlay = image(icon = 'icons/obj/guns/energy.dmi', icon_state = "esniper_empty")
 
-	var/datum/action/item_action/zoom_lock_action/zoom_lock_action
 	var/mob/listeningTo
 
 /obj/item/gun/energy/beam_rifle/debug
@@ -96,7 +96,7 @@
 	return ..()
 
 /obj/item/gun/energy/beam_rifle/ui_action_click(mob/user, actiontype)
-	if(istype(actiontype, zoom_lock_action))
+	if(istype(actiontype, /datum/action/item_action/zoom_lock_action))
 		zoom_lock++
 		if(zoom_lock > 3)
 			zoom_lock = 0
@@ -110,8 +110,9 @@
 			if(ZOOM_LOCK_OFF)
 				to_chat(user, span_boldnotice("You disable [src]'s zooming system."))
 		reset_zooming()
-	else
-		..()
+		return
+
+	return ..()
 
 /obj/item/gun/energy/beam_rifle/proc/set_autozoom_pixel_offsets_immediate(current_angle)
 	if(zoom_lock == ZOOM_LOCK_CENTER_VIEW || zoom_lock == ZOOM_LOCK_OFF)
@@ -170,7 +171,6 @@
 	. = ..()
 	fire_delay = delay
 	START_PROCESSING(SSfastprocess, src)
-	zoom_lock_action = new(src)
 
 /obj/item/gun/energy/beam_rifle/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
@@ -203,7 +203,7 @@
 	else
 		P.color = rgb(0, 255, 0)
 	var/turf/curloc = get_turf(src)
-	var/turf/targloc = get_turf(current_user.client.mouseObject)
+	var/turf/targloc = get_turf(current_user.client.mouse_object_ref?.resolve())
 	if(!istype(targloc))
 		if(!istype(curloc))
 			return
@@ -300,7 +300,9 @@
 	process_aim()
 	if(aiming_time_left <= aiming_time_fire_threshold && check_user())
 		sync_ammo()
-		afterattack(M.client.mouseObject, M, FALSE, M.client.mouseParams, passthrough = TRUE)
+		var/atom/target = M.client.mouse_object_ref?.resolve()
+		if(target)
+			afterattack(target, M, FALSE, M.client.mouseParams, passthrough = TRUE)
 	stop_aiming()
 	QDEL_LIST(current_tracers)
 	return ..()

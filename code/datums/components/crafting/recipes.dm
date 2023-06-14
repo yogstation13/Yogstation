@@ -147,7 +147,7 @@
 				/obj/item/stack/rods = 6)
 	time = 10 SECONDS
 	category = CAT_MISC
-	
+
 /datum/crafting_recipe/motorized_wheelchair
 	name = "Motorized Wheelchair"
 	result = /obj/vehicle/ridden/wheelchair/motorized
@@ -227,6 +227,12 @@
 	name = "Toy Sword"
 	reqs = list(/obj/item/light/bulb = 1, /obj/item/stack/cable_coil = 1, /obj/item/stack/sheet/plastic = 4)
 	result = /obj/item/toy/sword
+	category = CAT_MISC
+
+/datum/crafting_recipe/toysword
+	name = "Toy Sledgehammer"
+	reqs = list(/obj/item/light/bulb = 2, /obj/item/stack/cable_coil = 1, /obj/item/stack/sheet/plastic = 4)
+	result = /obj/item/twohanded/vxtvulhammer/toy/pirate // not authentic!!!!
 	category = CAT_MISC
 
 /datum/crafting_recipe/toybat
@@ -620,7 +626,7 @@
 	name = "Refill Atropine Autoinjector"
 	result = /obj/item/reagent_containers/autoinjector/medipen/atropine
 	time = 4 SECONDS
-	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine,
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine = 1,
 				/datum/reagent/medicine/atropine = 10)
 	category = CAT_MEDICAL
 
@@ -628,7 +634,7 @@
 	name = "Refill Maintenance Pump-Up"
 	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
 	time = 4 SECONDS
-	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup,
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup = 1,
 				/datum/reagent/drug/pumpup = 15)
 	category = CAT_MEDICAL
 

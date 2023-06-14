@@ -33,6 +33,9 @@
 /// Set to zero to disable soft lighting. Luminosity changes then work if it's lit at all.
 #define LIGHTING_SOFT_THRESHOLD 0
 
+/// The amount of lumcount on a tile for it to be considered dark (used to determine reading and nyctophobia)
+#define LIGHTING_TILE_IS_DARK 0.2
+
 /// If I were you I'd leave this alone.
 #define LIGHTING_BASE_MATRIX \
 	list                     \

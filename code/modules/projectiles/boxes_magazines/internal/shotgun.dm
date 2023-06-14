@@ -42,3 +42,9 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/breacher
 	max_ammo = 3
 	caliber = "breaching"
+
+/obj/item/ammo_box/magazine/internal/shot/lever
+	name = "lever-action rifle internal magazine"
+	ammo_type = /obj/item/ammo_casing/m308
+	max_ammo = 8
+	caliber = "m308"

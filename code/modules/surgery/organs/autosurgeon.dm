@@ -123,6 +123,9 @@
 /obj/item/autosurgeon/reviver
 	starting_organ = /obj/item/organ/cyberimp/chest/reviver
 
+/obj/item/autosurgeon/reviver/syndicate
+	starting_organ = /obj/item/organ/cyberimp/chest/reviver/syndicate
+
 /obj/item/autosurgeon/medibeam
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/medibeam
@@ -160,6 +163,10 @@
 		to_chat(user, span_warning("The autosurgeon rejects your body!"))
 		return
 	..()
+
+/obj/item/autosurgeon/arm/syndicate/stechkin_implant
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/stechkin_implant
 
 /obj/item/autosurgeon/nt_mantis
 	uses = 1
@@ -338,3 +345,4 @@
 /obj/item/multisurgeon/magboots //for ce
 	desc = "A single-use multisurgeon that contains magboot implants for each leg."
 	starting_organ = list(/obj/item/organ/cyberimp/leg/magboot, /obj/item/organ/cyberimp/leg/magboot/l)
+

@@ -99,9 +99,13 @@
 			if (prob(5))
 				var/mob/living/M = user
 				M.adjust_fire_stacks(1)
-				M.IgniteMob()
+				M.ignite_mob()
 				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
 			log_combat(user, target, "attempted to emag")
+			if(istype(target, /obj/machinery/computer/bounty)) //we can't have nice things
+				to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
+				emagging = FALSE
+				return
 			target.emag_act(user)
 		emagging = FALSE
 
@@ -602,7 +606,7 @@ update_label("John Doe", "Clowny")
 	if(isliving(loc))
 		var/mob/living/M = loc
 		M.adjust_fire_stacks(1)
-		M.IgniteMob()
+		M.ignite_mob()
 	if(istype(loc,/obj/structure/fireaxecabinet/bridge/spare)) //if somebody is being naughty and putting the temporary spare in the cabinet
 		var/obj/structure/fireaxecabinet/bridge/spare/holder = loc
 		forceMove(holder.loc)

@@ -143,7 +143,7 @@
 		else
 			parent.update = TRUE
 
-/obj/machinery/atmospherics/components/returnPipenets()
+/obj/machinery/atmospherics/components/return_pipenets()
 	. = list()
 	for(var/i in 1 to device_type)
 		. += returnPipenet(nodes[i])

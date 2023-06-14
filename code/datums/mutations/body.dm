@@ -13,14 +13,15 @@
 	if(prob(1 * GET_MUTATION_SYNCHRONIZER(src)) && owner.stat == CONSCIOUS)
 		owner.visible_message(span_danger("[owner] starts having a seizure!"), span_userdanger("You have a seizure!"))
 		owner.Unconscious(200 * GET_MUTATION_POWER(src))
-		owner.Jitter(1000 * GET_MUTATION_POWER(src))
+		owner.adjust_jitter(1000 * GET_MUTATION_POWER(src))
 		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "epilepsy", /datum/mood_event/epilepsy)
 		addtimer(CALLBACK(src, PROC_REF(jitter_less)), 90)
 
 /datum/mutation/human/epilepsy/proc/jitter_less()
-	if(owner)
-		owner.jitteriness = 10
+	if(QDELETED(owner))
+		return
 
+	owner.set_jitter(20 SECONDS)
 
 //Unstable DNA induces random mutations!
 /datum/mutation/human/bad_dna
@@ -77,7 +78,7 @@
 	if(prob(5) && owner.stat == CONSCIOUS)
 		owner.emote("scream")
 		if(prob(25))
-			owner.hallucination += 20
+			owner.adjust_hallucinations(20 SECONDS)
 
 //Dwarfism shrinks your body and lets you pass tables.
 /datum/mutation/human/dwarfism
@@ -205,6 +206,7 @@
 	glowth = new(owner)
 	modify()
 
+// Override modify here without a parent call, because we don't actually give an action.
 /datum/mutation/human/glow/modify()
 	if(!glowth)
 		return
@@ -321,7 +323,7 @@
 /datum/mutation/human/fire/on_life()
 	if(prob((1+(100-dna.stability)/10)) * GET_MUTATION_SYNCHRONIZER(src))
 		owner.adjust_fire_stacks(2 * GET_MUTATION_POWER(src))
-		owner.IgniteMob()
+		owner.ignite_mob()
 
 /datum/mutation/human/fire/on_acquiring(mob/living/carbon/human/owner)
 	if(..())

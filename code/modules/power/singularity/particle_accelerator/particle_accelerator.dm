@@ -46,6 +46,10 @@
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			. += "The panel is open."
 
+/obj/structure/particle_accelerator/Initialize()
+	. = ..()
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
+
 /obj/structure/particle_accelerator/Destroy()
 	construction_state = PA_CONSTRUCTION_UNSECURED
 	if(master)
@@ -53,11 +57,6 @@
 		master.assembled = 0
 		master = null
 	return ..()
-
-/obj/structure/particle_accelerator/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
-
 
 /obj/structure/particle_accelerator/attackby(obj/item/W, mob/user, params)
 	if(user.a_intent == INTENT_HARM)
@@ -70,7 +69,6 @@
 					user.visible_message("[user.name] secures the [name] to the floor.", \
 						"You secure the external bolts.")
 					construction_state = PA_CONSTRUCTION_UNWIRED
-				return
 
 		if(PA_CONSTRUCTION_UNWIRED)
 			if(W.tool_behaviour == TOOL_WRENCH)
@@ -79,7 +77,7 @@
 					user.visible_message("[user.name] detaches the [name] from the floor.", \
 						"You remove the external bolts.")
 					construction_state = PA_CONSTRUCTION_UNSECURED
-				return
+
 			else if(istype(W, /obj/item/stack/cable_coil))
 				if(!W.tool_start_check(user, amount = 1))
 					return
@@ -88,15 +86,14 @@
 					user.visible_message("[user.name] adds wires to the [name].", \
 						"You add some wires.")
 					construction_state = PA_CONSTRUCTION_PANEL_OPEN
-				return
 
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			if(W.tool_behaviour == TOOL_WIRECUTTER)
-				if(W.use_tool(src, user, 0.4 SECONDS, volume = 75))	
+				if(W.use_tool(src, user, 0.4 SECONDS, volume = 75))
 					user.visible_message("[user.name] removes some wires from the [name].", \
 						"You remove some wires.")
 					construction_state = PA_CONSTRUCTION_UNWIRED
-				return
+
 			else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 				user.visible_message("[user.name] closes the [name]'s access panel.", \
 					"You close the access panel.")
@@ -107,7 +104,7 @@
 				user.visible_message("[user.name] opens the [name]'s access panel.", \
 					"You open the access panel.")
 				construction_state = PA_CONSTRUCTION_PANEL_OPEN
-		
+
 	update_state()
 	update_icon()
 

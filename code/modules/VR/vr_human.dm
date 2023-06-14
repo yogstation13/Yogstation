@@ -21,7 +21,7 @@
 	revert_to_reality()
 	return ..()
 
-/mob/living/carbon/human/virtual_reality/Life()
+/mob/living/carbon/human/virtual_reality/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(real_mind)
 		var/mob/living/real_me = real_mind.current
@@ -74,7 +74,7 @@
 
 /datum/action/quit_vr
 	name = "Quit Virtual Reality"
-	icon_icon = 'icons/mob/actions/actions_vr.dmi'
+	button_icon = 'icons/mob/actions/actions_vr.dmi'
 	button_icon_state = "logout"
 
 /datum/action/quit_vr/Trigger()

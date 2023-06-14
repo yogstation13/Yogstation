@@ -32,14 +32,14 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 	if(!GLOB.exports_list.len)
 		setupExports()
 
-	var/list/contents = AM.GetAllContents()
+	var/list/contents = AM.get_all_contents()
 
 	var/datum/export_report/report = external_report
 	if(!report) //If we don't have any longer transaction going on
 		report = new
 
 	// We go backwards, so it'll be innermost objects sold first
-	for(var/i in reverseRange(contents))
+	for(var/i in reverse_range(contents))
 		var/atom/movable/thing = i
 		var/obj/item/thingy = thing
 		var/sold = FALSE

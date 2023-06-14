@@ -220,7 +220,7 @@
 	. = ..()
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		if(C.get_item_by_slot(SLOT_NECK) == src)
+		if(C.get_item_by_slot(ITEM_SLOT_NECK) == src)
 			to_chat(user, span_warning("You can't untie [src] while wearing it!"))
 			return
 		if(user.is_holding(src))
@@ -349,6 +349,27 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "falcon"
 	item_state = "falcon"
+
+/obj/item/clothing/neck/falcon/secconwhistle
+	name = "constable's whistle"
+	desc = "A small cylindrical whistle meant for blowing out crooks' eardrums."
+	icon_state = "secconwhistle"
+	item_state = "secconwhistle"
+	COOLDOWN_DECLARE(recharge_time)
+	var/recharge_rate = 5 SECONDS
+	actions_types = list(/datum/action/item_action/blow_whistle)
+
+/obj/item/clothing/neck/falcon/secconwhistle/ui_action_click(mob/user)
+	if(!COOLDOWN_FINISHED(src, recharge_time))
+		user.balloon_alert(user, "Catch your breath first!")
+		return
+	playsound(get_turf(src), 'sound/misc/policewhistle.ogg', 30, TRUE, -1)
+	user.visible_message(span_warning("[user] blows their whistle!"))
+	COOLDOWN_START(src, recharge_time, recharge_rate)
+
+/datum/action/item_action/blow_whistle
+	name = "Blow Your Whistle"
+
 // Stealth cloaks
 
 /obj/item/clothing/neck/cloak/ranger
@@ -365,9 +386,11 @@
 	/// How much the cloak charges per process
 	var/cloak_charge_rate = 35
 	/// How much the cloak decreases when moving
-	var/cloak_move_loss = 5
+	var/cloak_move_loss = 7
 	/// How much the cloak decreases on a successful dodge
 	var/cloak_dodge_loss = 30
+
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 75, ACID = 75)	//Resistant to the dangers of the natural world or something
 
 /obj/item/clothing/neck/cloak/ranger/Initialize()
 	. = ..()
@@ -382,10 +405,15 @@
 	update_signals()
 
 /obj/item/clothing/neck/cloak/ranger/proc/on_unequip(force, newloc, no_move, invdrop = TRUE, silent = FALSE)
+	current_user = null
 	update_signals()
 
+/obj/item/clothing/neck/cloak/ranger/Destroy()
+	set_cloak(0)
+	. = ..()
+	
 /obj/item/clothing/neck/cloak/ranger/proc/update_signals(user)
-	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(SLOT_NECK) == src)
+	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(ITEM_SLOT_NECK) == src)
 		return TRUE
 
 	set_cloak(0)
@@ -394,7 +422,7 @@
 		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_BULLET_ACT))
 
 	var/mob/new_user = loc
-	if(istype(new_user) && new_user.get_item_by_slot(SLOT_NECK) == src)
+	if(istype(new_user) && new_user.get_item_by_slot(ITEM_SLOT_NECK) == src)
 		current_user = new_user
 		RegisterSignal(current_user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 		RegisterSignal(current_user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_projectile_hit))
@@ -412,7 +440,7 @@
 	if(!update_signals())
 		return
 	var/mob/user = loc
-	if(!istype(user) || !user.get_item_by_slot(SLOT_NECK) == src)
+	if(!istype(user) || !user.get_item_by_slot(ITEM_SLOT_NECK) == src)
 		
 		return
 	set_cloak(cloak + (cloak_charge_rate * delta_time))
@@ -431,7 +459,7 @@
 		return BULLET_ACT_FORCE_PIERCE
 
 /obj/item/clothing/neck/cloak/ranger/proc/dodge(mob/living/carbon/human/user, atom/movable/hitby, attack_text)
-	if(!update_signals(user) || current_user.incapacitated(check_immobilized = TRUE) || !prob(cloak))
+	if(!update_signals(user) || current_user.incapacitated() || !prob(cloak))
 		return FALSE
 
 	set_cloak(cloak - cloak_dodge_loss)
@@ -445,6 +473,7 @@
 	desc = "A dark red cape that uses advanced chameleon technology to make the wearer nearly invisible and aid them in dodging projectiles. Unable to sustain its image under distress or EMP."
 	icon_state = "syndie_cloak"
 	max_cloak = 75 //Max 75% dodge is a little quirky
+	cloak_move_loss = 5
 	cloak_charge_rate = 20
 	cloak_dodge_loss = 40
 	var/cloak_emp_disable_duration = 10 SECONDS

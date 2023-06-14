@@ -89,6 +89,13 @@
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(death)), 100)
 
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/CanAllowThrough(atom/movable/mover, turf/target)
+	if(istype(mover, /mob/living/simple_animal/hostile/asteroid/hivelord))
+		var/mob/living/simple_animal/hostile/asteroid/hivelord/HL = mover
+		if(istype(src, HL.brood_type))
+			return TRUE
+	return ..()
+
 //Legion
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion
 	name = "legion"
@@ -206,7 +213,7 @@
 	icon_aggro = "snowlegion_head"
 	icon_dead = "snowlegion_head"
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life()
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(isturf(loc))
 		for(var/mob/living/carbon/human/H in view(src,1)) //Only for corpse right next to/on same tile
 			if(H.stat == UNCONSCIOUS || (can_infest_dead && H.stat == DEAD))
@@ -442,7 +449,7 @@
 	color = "#7422a3"
 	var/fauna_damage_bonus = 10
 
-/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/Life()
+/mob/living/simple_animal/hostile/asteroid/hivelordbrood/aide/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/aide/L
 	if(isturf(loc))
 		for(var/mob/living/M in view(src,1))

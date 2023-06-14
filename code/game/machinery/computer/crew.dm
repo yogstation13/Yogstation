@@ -133,6 +133,16 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/life_status
 
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
+		var/jammed = FALSE
+		var/turf/position = get_turf(H)
+		for(var/obj/item/jammer/jammer in GLOB.active_jammers)
+			var/turf/jammer_turf = get_turf(jammer)
+			if(position.z == jammer_turf.z && (get_dist(position, jammer_turf) <= jammer.range))
+				jammed = TRUE
+				break
+		if(jammed) // radio jammers prevent suit sensors 
+			continue
+
 		var/nanite_sensors = FALSE
 		if(H in SSnanites.nanite_monitored_mobs)
 			nanite_sensors = TRUE

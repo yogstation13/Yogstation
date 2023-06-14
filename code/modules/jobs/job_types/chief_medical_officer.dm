@@ -15,7 +15,7 @@
 	selection_color = "#c1e1ec"
 	req_admin_notify = 1
 	minimal_player_age = 7
-	exp_requirements = 720
+	exp_requirements = 1500 //25 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_MEDICAL
 	alt_titles = list("Medical Director", "Head of Medical")
@@ -72,7 +72,7 @@
 
 	chameleon_extras = list(/obj/item/gun/syringe, /obj/item/stamp/cmo)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/cmo/hardsuit
 	name = "Chief Medical Officer (Hardsuit)"
