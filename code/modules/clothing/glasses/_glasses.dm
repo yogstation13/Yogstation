@@ -107,7 +107,7 @@
 
 /obj/item/clothing/glasses/meson/sunglasses/ce/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if(slot == SLOT_GLASSES)
+	if(slot == ITEM_SLOT_EYES)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.show_to(user)
 
