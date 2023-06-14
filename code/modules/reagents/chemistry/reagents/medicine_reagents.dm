@@ -1431,9 +1431,7 @@
 		if(41 to 80)
 			M.adjustOxyLoss(0.1*REM, 0)
 			M.adjustStaminaLoss(0.1*REM, 0)
-			if(iscarbon(M))
-				var/mob/living/carbon/C = M
-				C.clear_stamina_regen()
+			M.clear_stamina_regen()
 			M.jitteriness = min(M.jitteriness+1, 20)
 			M.stuttering = min(M.stuttering+1, 20)
 			M.Dizzy(10)
@@ -1447,16 +1445,12 @@
 			to_chat(M, "You feel too exhausted to continue!") // at this point you will eventually die unless you get charcoal
 			M.adjustOxyLoss(0.1*REM, 0)
 			M.adjustStaminaLoss(0.1*REM, 0)
-			if(iscarbon(M))
-				var/mob/living/carbon/C = M
-				C.clear_stamina_regen()
+			M.clear_stamina_regen()
 		if(82 to INFINITY)
 			M.Sleeping(100, 0, TRUE)
 			M.adjustOxyLoss(1.5*REM, 0)
 			M.adjustStaminaLoss(1.5*REM, 0)
-			if(iscarbon(M))
-				var/mob/living/carbon/C = M
-				C.clear_stamina_regen()
+			M.clear_stamina_regen()
 	..()
 	return TRUE
 

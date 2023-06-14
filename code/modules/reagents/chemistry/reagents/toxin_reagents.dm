@@ -203,9 +203,7 @@
 			M.slurring += 3
 		if(5 to 8)
 			M.adjustStaminaLoss(40, 0)
-			if(iscarbon(M))
-				var/mob/living/carbon/victim = M
-				victim.clear_stamina_regen()
+			M.clear_stamina_regen()
 		if(9 to INFINITY)
 			fakedeath_active = TRUE
 			M.fakedeath(type)

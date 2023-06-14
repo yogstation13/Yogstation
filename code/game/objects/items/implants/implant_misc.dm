@@ -40,9 +40,7 @@
 	imp_in.SetParalyzed(0)
 	imp_in.SetImmobilized(0)
 	imp_in.adjustStaminaLoss(-75)
-	if(iscarbon(imp_in))
-		var/mob/living/carbon/c_user = imp_in
-		c_user.clear_stamina_regen() // We already cleared our stamina, don't continue healing
+	imp_in.clear_stamina_regen() // We already cleared our stamina, don't continue healing
 	imp_in.set_resting(FALSE)
 	imp_in.update_mobility()
 

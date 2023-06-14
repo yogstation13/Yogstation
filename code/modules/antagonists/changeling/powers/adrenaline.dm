@@ -21,7 +21,5 @@
 	user.reagents.add_reagent(/datum/reagent/medicine/changelingadrenaline, 10)
 	user.reagents.add_reagent(/datum/reagent/medicine/changelinghaste, 2) //For a really quick burst of speed
 	user.adjustStaminaLoss(-75)
-	if(iscarbon(user))
-		var/mob/living/carbon/c_user = user
-		c_user.clear_stamina_regen() // We already cleared our stamina, don't continue healing
+	user.clear_stamina_regen() // We already cleared our stamina, don't continue healing
 	return TRUE

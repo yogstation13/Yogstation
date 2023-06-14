@@ -1329,6 +1329,6 @@
  *
  * Make sure it's used AFTER stamina damage is applied.
  */
-/mob/living/carbon/proc/clear_stamina_regen()
+/mob/living/carbon/clear_stamina_regen()
 	for(var/obj/item/bodypart/B in bodyparts)
 		B.stamina_cache = list()
