@@ -54,6 +54,7 @@
 	item_state = "mesonhealth"
 	vision_flags = SEE_TURFS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	clothing_traits = list(TRAIT_MESONS)
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
 
 /obj/item/clothing/glasses/hud/health/sunglasses
