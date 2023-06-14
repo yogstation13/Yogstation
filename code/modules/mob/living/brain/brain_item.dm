@@ -21,6 +21,8 @@
 	var/decoy_override = FALSE	//if it's a fake brain with no brainmob assigned. Feedback messages will be faked as if it does have a brainmob. See changelings & dullahans.
 	//two variables necessary for calculating whether we get a brain trauma or not
 	var/damage_delta = 0
+	//increments
+	var/decay_progress = 0
 
 	var/list/datum/brain_trauma/traumas = list()
 
@@ -214,8 +216,10 @@
 		owner.death()
 		brain_death = TRUE
 
-/obj/item/organ/brain/process()	//needs to run in life AND death
+/obj/item/organ/brain/process(delta_time)	//needs to run in life AND death
 	..()
+	if(!((organ_flags & ORGAN_SYNTHETIC) || (owner && (owner.stat < DEAD || HAS_TRAIT(owner, TRAIT_PRESERVED_ORGANS)))))
+		decay_progress += delta_time
 	//if we're not more injured than before, return without gambling for a trauma
 	if(damage <= prev_damage)
 		prev_damage = damage
@@ -262,7 +266,11 @@
 	if(prob(25))
 		return
 
-	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50/severity)
+	var/obj/item/clothing/head/hat = owner.get_item_by_slot(ITEM_SLOT_HEAD)
+	if(hat && istype(hat, /obj/item/clothing/head/foilhat))
+		return
+
+	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (50/severity) * (maxHealth - damage) / maxHealth)
 	owner.adjust_drugginess(40/severity)
 	switch(severity)
 		if(1)

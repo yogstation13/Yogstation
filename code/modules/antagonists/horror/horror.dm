@@ -291,7 +291,7 @@
 			to_chat(M, "[link] [rendered]")
 	to_chat(src, span_changeling("<i>[B.real_name] says:</i> [input]"))
 
-/mob/living/simple_animal/horror/Life()
+/mob/living/simple_animal/horror/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(has_upgrade("regen"))
 		heal_overall_damage(5)

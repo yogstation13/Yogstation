@@ -19,6 +19,7 @@
 	cooldown_time = 12 SECONDS
 	target_range = 15
 	power_activates_immediately = TRUE
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/haste/shadow
 	/// Current hit, set while power is in use as we can't pass the list as an extra calling argument in registersignal.
 	var/list/hit = list()
 	/// If set, uses this speed in deciseconds instead of world.tick_lag
@@ -108,6 +109,7 @@
 	button_icon_state = "power_bomb"
 	additional_text = "Additionally disables lightframes in range and confuses nearby mortals."
 	purchase_flags = LASOMBRA_CAN_BUY
+	ascended_power = null
 
 /datum/action/cooldown/bloodsucker/targeted/haste/shadow/on_move()
 	. = ..()

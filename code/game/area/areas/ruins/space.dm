@@ -424,7 +424,7 @@
 //SYNDICATE LISTENING POST STATION
 
 /area/ruin/space/has_grav/listeningstation
-	name = "Listening Post"
+	name = "Unidentified Asteroid"
 	icon_state = "yellow"
 
 /area/ruin/space/has_grav/listeningstation/telecomms

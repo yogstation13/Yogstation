@@ -17,7 +17,7 @@
 	resistance_flags = NONE
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
-/obj/item/clothing/shoes/combat/combat_knife/ComponentInitialize()
+/obj/item/clothing/shoes/combat/combat_knife/Initialize()
 	. = ..()
 	new /obj/item/kitchen/knife/combat(src)
 
@@ -90,7 +90,7 @@
 
 /obj/item/clothing/shoes/clown_shoes/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_SHOES)
+	if(slot == ITEM_SLOT_FEET)
 		if(enabled_waddle)
 			waddle = user.AddComponent(/datum/component/waddling)
 		if(user.mind && user.mind.assigned_role == "Clown")
@@ -293,7 +293,7 @@
 /obj/item/clothing/shoes/wheelys/ui_action_click(mob/user, action)
 	if(!isliving(user))
 		return
-	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/wheelys))
+	if(!istype(user.get_item_by_slot(ITEM_SLOT_FEET), /obj/item/clothing/shoes/wheelys))
 		to_chat(user, span_warning("You must be wearing the wheely-heels to use them!"))
 		return
 	if(!(W.is_occupant(user)))
@@ -373,7 +373,7 @@
 
 /obj/item/clothing/shoes/cowboy/equipped(mob/living/carbon/user, slot)
 	. = ..()
-	if(slot == SLOT_SHOES)
+	if(slot == ITEM_SLOT_FEET)
 		for(var/mob/living/occupant in occupants)
 			occupant.forceMove(user.drop_location())
 			user.visible_message(span_warning("[user] recoils as something slithers out of [src]."), span_userdanger(" You feel a sudden stabbing pain in your [pick("foot", "toe", "ankle")]!"))
@@ -574,7 +574,7 @@
 /obj/item/clothing/shoes/airshoes/ui_action_click(mob/user, action)
 	if(!isliving(user))
 		return
-	if(!istype(user.get_item_by_slot(SLOT_SHOES), /obj/item/clothing/shoes/airshoes))
+	if(!istype(user.get_item_by_slot(ITEM_SLOT_FEET), /obj/item/clothing/shoes/airshoes))
 		to_chat(user, span_warning("You must be wearing the air shoes to use them!"))
 		return
 	if(istype(action, /datum/action/item_action/airshoes))
@@ -628,7 +628,7 @@
 
 /obj/item/clothing/shoes/drip/equipped(mob/user, slot,)
 	. = ..()
-	if(slot == SLOT_SHOES)
+	if(slot == ITEM_SLOT_FEET)
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "dripjordan", /datum/mood_event/dripjordan)
 		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "nojordans", /datum/mood_event/dripjordan)
 		if(user && ishuman(user) && !user.GetComponent(/datum/component/mood))
@@ -640,7 +640,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.get_item_by_slot(SLOT_SHOES) == src)
+	if(H.get_item_by_slot(ITEM_SLOT_FEET) == src)
 		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "dripjordan")
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "nojordans", /datum/mood_event/nojordans)
 

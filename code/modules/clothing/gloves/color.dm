@@ -69,7 +69,7 @@
 
 /obj/item/clothing/gloves/color/black/goliath/equipped(mob/user, slot)
 	..()
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		ADD_TRAIT(user, TRAIT_QUICK_CARRY, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/color/black/goliath/dropped(mob/user)
@@ -186,7 +186,7 @@
 
 /obj/item/clothing/gloves/color/latex/equipped(mob/user, slot)
 	..()
-	if(slot == SLOT_GLOVES)
+	if(slot == ITEM_SLOT_GLOVES)
 		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/color/latex/dropped(mob/user)

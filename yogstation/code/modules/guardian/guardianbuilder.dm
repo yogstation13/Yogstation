@@ -254,12 +254,9 @@
 
 /obj/item/guardiancreator/Initialize()
 	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
 	builder = new(mob_name, theme, failure_message, max_points, allowspecial, debug_mode)
 
-/obj/item/guardiancreator/ComponentInitialize()
-	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
-	
 /obj/item/guardiancreator/proc/refund_check()
 	return !builder.used
 

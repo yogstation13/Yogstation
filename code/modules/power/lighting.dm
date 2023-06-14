@@ -302,12 +302,11 @@
 	status = LIGHT_EMPTY
 	update(0)
 
-
-
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload)
 	. = ..()
 
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_light))
 	if(!mapload) //sync up nightshift lighting for player made lights
 		var/area/A = get_area(src)
 		var/obj/machinery/power/apc/temp_apc = A.get_apc()
@@ -365,6 +364,12 @@
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
 	return
+
+/obj/machinery/light/proc/clean_light(O,strength)
+	if(strength < CLEAN_TYPE_BLOOD)
+		return
+	bulb_colour = initial(bulb_colour)
+	update()
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE)
@@ -880,9 +885,6 @@
 /obj/item/light/Initialize()
 	. = ..()
 	update()
-
-/obj/item/light/ComponentInitialize()
-	. = ..()
 	AddComponent(/datum/component/caltrop, force)
 
 /obj/item/light/Crossed(atom/movable/AM)

@@ -491,7 +491,7 @@
 	return ret
 
 // Living mobs use can_inject() to make sure that the mob is not syringe-proof in general.
-/mob/living/proc/can_inject()
+/mob/living/proc/can_inject(mob/user, error_msg, target_zone, penetrate_thick = 0)
 	return TRUE
 
 /mob/living/is_injectable(mob/user, allowmobs = TRUE)
@@ -572,6 +572,12 @@
 		reload_fullscreen()
 		revive_guardian()
 		. = 1
+		var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
+		if(B)
+			if(B && B.decay_progress > 5 MINUTES && !admin_revive)
+				to_chat(src, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
+				log_combat(src, "was revived with memory loss")
+			B.decay_progress = 0
 		if(IS_BLOODSUCKER(src))
 			var/datum/antagonist/bloodsucker/bloodsuckerdatum = src.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 			bloodsuckerdatum.heal_vampire_organs()
@@ -967,7 +973,7 @@
 	return 1
 
 //used in datum/reagents/reaction() proc
-/mob/living/proc/get_permeability(list/target_zones)
+/mob/living/proc/get_permeability(def_zone, linear = FALSE)
 	return 1
 
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering

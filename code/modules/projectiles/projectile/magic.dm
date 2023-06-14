@@ -14,12 +14,12 @@
 	var/antimagic_charge_cost = 1
 
 /obj/item/projectile/magic/prehit(atom/target)
-	. = ..()
 	if(isliving(target))
 		var/mob/living/victim = target
 		if(victim.can_block_magic(antimagic_flags, antimagic_charge_cost))
 			visible_message(span_warning("[src] fizzles on contact with [victim]!"))
-			return BULLET_ACT_BLOCK
+			qdel(src)
+			return FALSE
 
 	if(istype(target, /obj/machinery/hydroponics)) // even plants can block antimagic
 		var/obj/machinery/hydroponics/plant_tray = target
@@ -27,7 +27,9 @@
 			return
 		if(LAZYFIND(plant_tray.myseed.reagents_add, /datum/reagent/water/holywater))
 			visible_message(span_warning("[src] fizzles on contact with [plant_tray]!"))
-			return BULLET_ACT_BLOCK
+			qdel(src)
+			return FALSE
+	return ..()
 
 /obj/item/projectile/magic/death
 	name = "bolt of death"

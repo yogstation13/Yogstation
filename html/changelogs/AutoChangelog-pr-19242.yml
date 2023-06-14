@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Added new makeshift desword that can be made by using two eswords together"
+  - rscdel: "Removed desword from the traitor uplink"
