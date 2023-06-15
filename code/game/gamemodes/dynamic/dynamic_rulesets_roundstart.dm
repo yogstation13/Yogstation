@@ -190,18 +190,20 @@
 	weight = 2
 	cost = 20
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
-	var/list/roundstart_wizards = list()
+	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_WIZARDDEN)
 	minimum_players = 34
 
+	var/list/roundstart_wizards = list()
+
 /datum/dynamic_ruleset/roundstart/wizard/acceptable(population=0, threat=0)
-	if(GLOB.wizardstart.len == 0)
+	if(!length(GLOB.wizardstart))
 		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		return FALSE
 	return ..()
 
 /datum/dynamic_ruleset/roundstart/wizard/pre_execute()
-	if(GLOB.wizardstart.len == 0)
+	if(!length(GLOB.wizardstart))
 		return FALSE
 
 	mode.antags_rolled += 1
@@ -949,7 +951,7 @@
 	minimum_players = 35
 
 /datum/dynamic_ruleset/roundstart/wizard/ragin/pre_execute()
-	if(GLOB.wizardstart.len == 0)
+	if(!length(GLOB.wizardstart))
 		return FALSE
 
 	for(var/i in antag_cap[indice_pop])

@@ -108,7 +108,8 @@
 	REMOVE_TRAIT(owner.current, TRAIT_SURGEON, ABDUCTOR_ANTAGONIST)
 	. = ..()
 
-/datum/antagonist/abductor/admin_add(datum/mind/new_owner,mob/admin)
+/datum/antagonist/abductor/admin_add(datum/mind/new_owner, mob/admin)
+	SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_ABDUCTOR_SHIPS)
 	var/list/current_teams = list()
 	for(var/datum/team/abductor_team/T in get_all_teams(/datum/team/abductor_team))
 		current_teams[T.name] = T

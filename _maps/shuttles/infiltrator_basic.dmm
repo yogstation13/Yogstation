@@ -1167,9 +1167,7 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/syndicate/hallway)
 "ct" = (
-/obj/machinery/telecomms/allinone{
-	intercept = 1
-	},
+/obj/machinery/telecomms/allinone/nuclear,
 /turf/open/floor/circuit/red,
 /area/shuttle/syndicate/armory)
 "cu" = (

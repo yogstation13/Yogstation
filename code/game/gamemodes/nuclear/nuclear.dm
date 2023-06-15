@@ -27,6 +27,7 @@
 	var/leader_antag_datum_type = /datum/antagonist/nukeop/leader
 
 /datum/game_mode/nuclear/pre_setup()
+	SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_NUKIEBASE)
 	var/n_agents = min(round(num_players() / 10), antag_candidates.len, agents_possible)
 	if(n_agents >= required_enemies)
 		for(var/i = 0, i < n_agents, ++i)
@@ -145,6 +146,7 @@
 	tc = 0
 
 /datum/outfit/syndicate/post_equip(mob/living/carbon/human/H)
+	SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_NUKIEBASE)
 	var/obj/item/radio/R = H.ears
 	R.set_frequency(FREQ_SYNDICATE)
 	R.freqlock = TRUE

@@ -56,6 +56,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	wiz_team.master_wizard = src
 
 /datum/antagonist/wizard/proc/send_to_lair()
+	SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_WIZARDDEN)
 	if(!owner || !owner.current)
 		return
 	if(!GLOB.wizardstart.len)

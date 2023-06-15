@@ -45,6 +45,9 @@ SUBSYSTEM_DEF(mapping)
 	var/datum/space_level/empty_space
 	var/num_of_res_levels = 1
 
+	/// list of lazy templates that have been loaded
+	var/list/loaded_lazy_templates
+
 //dlete dis once #39770 is resolved
 /datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
 	if(!config)
@@ -243,6 +246,8 @@ SUBSYSTEM_DEF(mapping)
 	clearing_reserved_turfs = SSmapping.clearing_reserved_turfs
 
 	z_list = SSmapping.z_list
+
+	loaded_lazy_templates = SSmapping.loaded_lazy_templates
 
 #define INIT_ANNOUNCE(X) to_chat(world, span_boldannounce("[X]")); log_world(X)
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
@@ -625,3 +630,28 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	for(var/turf/to_contain as anything in Z_TURFS(z_level))
 		var/area/our_area = to_contain.loc
 		our_area.contained_turfs += to_contain
+
+/datum/controller/subsystem/mapping/proc/lazy_load_template(template_key, force = FALSE)
+	RETURN_TYPE(/datum/turf_reservation)
+
+	UNTIL(initialized)
+	var/static/lazy_loading = FALSE
+	UNTIL(!lazy_loading)
+
+	lazy_loading = TRUE
+	. = _lazy_load_template(template_key, force)
+	lazy_loading = FALSE
+	return .
+
+/datum/controller/subsystem/mapping/proc/_lazy_load_template(template_key, force = FALSE)
+	PRIVATE_PROC(TRUE)
+
+	if(LAZYACCESS(loaded_lazy_templates, template_key)  && !force)
+		var/datum/lazy_template/template = GLOB.lazy_templates[template_key]
+		return template.reservations[1]
+	LAZYSET(loaded_lazy_templates, template_key, TRUE)
+
+	var/datum/lazy_template/target = GLOB.lazy_templates[template_key]
+	if(!target)
+		CRASH("Attempted to lazy load a template key that does not exist: '[template_key]'")
+	return target.lazy_load()

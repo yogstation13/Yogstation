@@ -21,12 +21,13 @@
 	title_icon = "wizard"
 
 /datum/game_mode/wizard/pre_setup()
+	SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_WIZARDDEN)
 	var/datum/mind/wizard = antag_pick(antag_candidates)
 	wizards += wizard
 	wizard.assigned_role = ROLE_WIZARD
 	wizard.special_role = ROLE_WIZARD
 	//log_game("[key_name(wizard)] has been selected as a Wizard") //TODO: Move these to base antag datum | yogs - redundant
-	if(GLOB.wizardstart.len == 0)
+	if(!length(GLOB.wizardstart))
 		setup_error = "No wizard starting location found"
 		return FALSE
 	for(var/datum/mind/wiz in wizards)

@@ -225,32 +225,37 @@
 	var/list/mobs = list()
 	var/blueprints = FALSE
 	var/clone_area = SSmapping.RequestBlockReservation(size_x * 2 + 1, size_y * 2 + 1)
-	for(var/turf/T in block(locate(target_turf.x - size_x, target_turf.y - size_y, target_turf.z), locate(target_turf.x + size_x, target_turf.y + size_y, target_turf.z)))
-		if((ai_user && GLOB.cameranet.checkTurfVis(T)) || (T in seen))
-			turfs += T
-			for(var/mob/M in T)
+	var/width = size_x * 2
+	var/height = size_y * 2
+	for(var/turf/placeholder as anything in CORNER_BLOCK_OFFSET(target_turf, width, height, -size_x, -size_y))
+		while(istype(placeholder, /turf/open/openspace)) //Multi-z photography
+			placeholder = SSmapping.get_turf_below(placeholder)
+			if(!placeholder)
+				break
+
+		if(placeholder && ((ai_user && GLOB.cameranet.checkTurfVis(placeholder)) || (placeholder in seen)))
+			turfs += placeholder
+			for(var/mob/M in placeholder)
 				mobs += M
-			if(locate(/obj/item/areaeditor/blueprints) in T)
+			if(locate(/obj/item/areaeditor/blueprints) in placeholder)
 				blueprints = TRUE
-	for(var/i in mobs)
-		var/mob/M = i
-		mobs_spotted += M
-		if(M.stat == DEAD)
-			dead_spotted += M
-		desc += M.get_photo_description(src)
+
+	for(var/mob/mob as anything in mobs)
+		mobs_spotted += mob
+		if(mob.stat == DEAD)
+			dead_spotted += mob
+		desc += mob.get_photo_description(src)
 
 	var/psize_x = (size_x * 2 + 1) * world.icon_size
 	var/psize_y = (size_y * 2 + 1) * world.icon_size
-	var/get_icon = camera_get_icon(turfs, target_turf, psize_x, psize_y, clone_area, size_x, size_y, (size_x * 2 + 1), (size_y * 2 + 1))
+	var/icon/get_icon = camera_get_icon(turfs, target_turf, psize_x, psize_y, clone_area, size_x, size_y, (size_x * 2 + 1), (size_y * 2 + 1))
 	qdel(clone_area)
-	var/icon/temp = icon('icons/effects/96x96.dmi',"")
-	temp.Blend("#000", ICON_OVERLAY)
-	temp.Scale(psize_x, psize_y)
-	temp.Blend(get_icon, ICON_OVERLAY)
+	get_icon.Blend("#000", ICON_UNDERLAY)
 
-	var/datum/picture/P = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, temp, null, psize_x, psize_y, blueprints)
-	after_picture(user, P, flag)
+	var/datum/picture/picture = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, get_icon, null, psize_x, psize_y, blueprints, can_see_ghosts = see_ghosts)
+	after_picture(user, picture)
 	blending = FALSE
+	return picture
 
 /obj/item/camera/proc/flash_end()
 	set_light_on(FALSE)

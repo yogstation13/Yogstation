@@ -42,7 +42,7 @@
 		.+=360
 
 //Returns location. Returns null if no location was found.
-/proc/get_teleport_loc(turf/location,mob/target,distance = 1, density = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
+/proc/get_teleport_loc(turf/location, mob/target, distance = 1, density_check = FALSE, closed_turf_check = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
 /*
 Location where the teleport begins, target that will teleport, distance to go, density checking 0/1(yes/no).
 Random error in tile placement x, error in tile placement y, and block offset.
@@ -100,45 +100,45 @@ Turf and target are separate in case you want to teleport some distance from a t
 			b2xerror+=errory
 			b2yerror+=errorx
 
-	var/turf/destination=locate(location.x+dirx,location.y+diry,location.z)
-
-	if(destination)//If there is a destination.
-		if(errorx||errory)//If errorx or y were specified.
-			var/destination_list[] = list()//To add turfs to list.
-			//destination_list = new()
-			/*This will draw a block around the target turf, given what the error is.
-			Specifying the values above will basically draw a different sort of block.
-			If the values are the same, it will be a square. If they are different, it will be a rectengle.
-			In either case, it will center based on offset. Offset is position from center.
-			Offset always calculates in relation to direction faced. In other words, depending on the direction of the teleport,
-			the offset should remain positioned in relation to destination.*/
-
-			var/turf/center = locate((destination.x+xoffset),(destination.y+yoffset),location.z)//So now, find the new center.
-
-			//Now to find a box from center location and make that our destination.
-			for(var/turf/T in block(locate(center.x+b1xerror,center.y+b1yerror,location.z), locate(center.x+b2xerror,center.y+b2yerror,location.z) ))
-				if(density&&T.density)
-					continue//If density was specified.
-				if(T.x>world.maxx || T.x<1)
-					continue//Don't want them to teleport off the map.
-				if(T.y>world.maxy || T.y<1)
-					continue
-				destination_list += T
-			if(destination_list.len)
-				destination = pick(destination_list)
-			else
-				return
-
-		else//Same deal here.
-			if(density&&destination.density)
-				return
-			if(destination.x>world.maxx || destination.x<1)
-				return
-			if(destination.y>world.maxy || destination.y<1)
-				return
-	else
+	var/turf/destination = locate(location.x+dirx,location.y+diry,location.z)
+	if(!destination)//If there isn't a destination.
 		return
+	if(!errorx && !errory)//If errorx or y were not specified.
+		if(density_check && destination.density)
+			return
+		if(closed_turf_check && isclosedturf(destination))
+			return//If closed was specified.
+		if(destination.x>world.maxx || destination.x<1)
+			return
+		if(destination.y>world.maxy || destination.y<1)
+			return
+	var/destination_list[] = list()//To add turfs to list.
+	//destination_list = new()
+	/*This will draw a block around the target turf, given what the error is.
+	Specifying the values above will basically draw a different sort of block.
+	If the values are the same, it will be a square. If they are different, it will be a rectengle.
+	In either case, it will center based on offset. Offset is position from center.
+	Offset always calculates in relation to direction faced. In other words, depending on the direction of the teleport,
+	the offset should remain positioned in relation to destination.*/
+	var/turf/center = locate((destination.x + xoffset), (destination.y + yoffset), location.z)//So now, find the new center.
 
+	//Now to find a box from center location and make that our destination.
+	for(var/turf/current_turf in block(locate(center.x + b1xerror, center.y + b1yerror, location.z), locate(center.x + b2xerror, center.y + b2yerror, location.z)))
+	var/width = b2xerror - b1xerror
+	var/height = b2yerror - b1yerror
+	for(var/turf/current_turf as anything in CORNER_BLOCK_OFFSET(center, width, height, b1xerror, b1yerror))
+		if(density_check && current_turf.density)
+			continue//If density was specified.
+		if(closed_turf_check && isclosedturf(current_turf))
+			continue//If closed was specified.
+		if(current_turf.x > world.maxx || current_turf.x < 1)
+			continue//Don't want them to teleport off the map.
+		if(current_turf.y > world.maxy || current_turf.y < 1)
+			continue
+		destination_list += current_turf
+	if(!destination_list.len)
+		return
+	destination = pick(destination_list)
 	return destination
 
 /proc/getline(atom/M,atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
@@ -1532,4 +1532,3 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
 
-#define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))

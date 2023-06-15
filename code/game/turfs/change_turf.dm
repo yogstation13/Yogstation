@@ -298,7 +298,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		for(var/obj/machinery/door/firedoor/FD in T)
 			FD.CalculateAffectingAreas()
 
-	queue_smooth_neighbors(src)
+	if(flags_1 & INITIALIZED_1) // only queue for smoothing if SSatom initialized us
+		queue_smooth_neighbors(src)
+		queue_smooth(src)
 
 	HandleTurfChange(src)
 

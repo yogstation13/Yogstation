@@ -17,6 +17,8 @@
 	allowAtomsOnSpace = TRUE
 
 /datum/mapGeneratorModule/reload_station_map/generate()
+	set waitfor = FALSE
+
 	if(!istype(mother, /datum/mapGenerator/repair/reload_station_map))
 		return
 
@@ -34,40 +36,26 @@
 
 	var/list/obj/machinery/atmospherics/atmos_machines = list()
 	var/list/obj/structure/cable/cables = list()
-	var/list/atom/movable/movables = list()
-	var/list/area/areas = list()
-
-	var/list/turfs = block(
-		locate(
-			bounds[MAP_MINX],
-			bounds[MAP_MINY],
-			SSmapping.station_start
-		),
-		locate(
-			bounds[MAP_MAXX],
-			bounds[MAP_MAXY],
-			z_offset - 1
-		)
-	)
-
-	for(var/turf/current_turf as anything in turfs)
-		var/area/current_turfs_area = current_turf.loc
-		areas |= current_turfs_area
-
-		for(var/movable_in_turf in current_turf)
-			movables += movable_in_turf
-			if(istype(movable_in_turf, /obj/structure/cable))
-				cables += movable_in_turf
-				continue
-			if(istype(movable_in_turf, /obj/machinery/atmospherics))
-				atmos_machines += movable_in_turf
-
-	SSatoms.InitializeAtoms(areas + turfs + movables)
-	SSmachines.setup_template_powernets(cables)
-	SSair.setup_template_machinery(atmos_machines)
+	var/list/atom/atoms = list()
 
 	require_area_resort()
 
+	var/list/generation_turfs = block(
+		locate(bounds[MAP_MINX], bounds[MAP_MINY], SSmapping.station_start),
+		locate(bounds[MAP_MAXX], bounds[MAP_MAXY], z_offset - 1))
+	for(var/turf/gen_turf as anything in generation_turfs)
+		atoms += gen_turf
+		for(var/atom in gen_turf)
+			atoms += atom
+			if(istype(atom, /obj/structure/cable))
+				cables += atom
+				continue
+			if(istype(atom, /obj/machinery/atmospherics))
+				atmos_machines += atom
+
+	SSatoms.InitializeAtoms(atoms)
+	SSmachines.setup_template_powernets(cables)
+	SSair.setup_template_machinery(atmos_machines)
 	GLOB.reloading_map = FALSE
 
 /datum/mapGenerator/repair

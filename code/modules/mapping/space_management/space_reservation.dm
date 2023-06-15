@@ -33,7 +33,7 @@
 		SEND_SIGNAL(reserved_turf, COMSIG_TURF_RESERVATION_RELEASED, src)
 
 	// Makes the linter happy, even tho we don't await this
-	INVOKE_ASYNC(SSmapping, /datum/controller/subsystem/mapping/proc/reserve_turfs, reserved_copy)
+	INVOKE_ASYNC(SSmapping, TYPE_PROC_REF(/datum/controller/subsystem/mapping, reserve_turfs), release_turfs)
 
 /// Attempts to calaculate and store a list of turfs around the reservation for cordoning. Returns whether a valid cordon was calculated
 /datum/turf_reservation/proc/calculate_cordon_turfs(turf/BL, turf/TR)

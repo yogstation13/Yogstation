@@ -133,12 +133,26 @@
 	if((T.y+height) - 1 > world.maxy)
 		return
 
+	// iterate over turfs in the border and clear them from active atmos processing
+	for(var/turf/border_turf as anything in CORNER_BLOCK_OFFSET(T, width + 2, height + 2, -1, -1))
+		SSair.remove_from_active(border_turf)
+		for(var/turf/sub_turf as anything in border_turf.atmos_adjacent_turfs)
+			sub_turf.atmos_adjacent_turfs?.Remove(border_turf)
+		border_turf.atmos_adjacent_turfs?.Cut()
+
 	// Accept cached maps, but don't save them automatically - we don't want
 	// ruins clogging up memory for the whole round.
 	var/datum/parsed_map/parsed = cached_map || new(file(mappath))
 	cached_map = keep_cached_map ? parsed : null
-	if(!parsed.load(T.x, T.y, T.z, cropMap=TRUE, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=TRUE))
+
+	var/list/turf_blacklist = list()
+	update_blacklist(T, turf_blacklist)
+
+	UNSETEMPTY(turf_blacklist)
+	parsed.turf_blacklist = turf_blacklist
+	if(!parsed.load(T.x, T.y, T.z, cropMap=TRUE, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS)))
 		return
+
 	var/list/bounds = parsed.bounds
 	if(!bounds)
 		return
@@ -148,7 +162,7 @@
 	//initialize things that are normally initialized after map load
 	initTemplateBounds(bounds)
 
-	log_game("[name] loaded at at [T.x],[T.y],[T.z]")
+	log_game("[name] loaded at [T.x],[T.y],[T.z]")
 	return bounds
 
 /datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE)
@@ -169,3 +183,6 @@
 		return FALSE
 	template.load_new_z(secret)
 	return TRUE
+
+/datum/map_template/proc/update_blacklist(turf/T, list/input_blacklist)
+	return

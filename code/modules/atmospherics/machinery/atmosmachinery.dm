@@ -38,6 +38,9 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	var/pipe_state //icon_state as a pipe item
 	var/on = FALSE
 
+	///If we should init and immediately start processing
+	var/init_processing = FALSE
+
 /obj/machinery/atmospherics/examine(mob/user)
 	. = ..()
 	if(is_type_in_list(src, GLOB.ventcrawl_machinery) && isliving(user))
@@ -51,12 +54,16 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	if(pipe_flags & PIPING_CARDINAL_AUTONORMALIZE)
 		normalize_cardinal_directions()
 	nodes = new(device_type)
+	init_processing = process
 	if (!armor)
 		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 100, ACID = 70)
 	..()
-	if(process)
-		SSair.atmos_machinery += src
 	SetInitDirections()
+
+/obj/machinery/atmospherics/Initialize(mapload)
+	. = ..()
+	if(init_processing)
+		SSair.atmos_machinery += src
 
 /obj/machinery/atmospherics/Destroy()
 	for(var/i in 1 to device_type)

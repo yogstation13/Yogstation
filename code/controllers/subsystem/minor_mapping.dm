@@ -52,7 +52,7 @@ SUBSYSTEM_DEF(minor_mapping)
 
 	var/list/all_turfs
 	for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION))
-		all_turfs += block(locate(1,1,z), locate(world.maxx,world.maxy,z))
+		all_turfs += Z_TURFS(z)
 	for(var/turf/open/floor/plating/T in all_turfs)
 		if(is_blocked_turf(T))
 			continue
@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(minor_mapping)
 	var/list/suitable = list()
 
 	for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION))
-		for(var/t in block(locate(1,1,z), locate(world.maxx,world.maxy,z)))
+		for(var/t in Z_TURFS(z))
 			if(isfloorturf(t) && !isplatingturf(t))
 				suitable += t
 

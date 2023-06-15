@@ -302,14 +302,18 @@
   * Also used in gamemode code for win conditions
   */
 /atom/proc/onSyndieBase()
-	var/turf/T = get_turf(src)
-	if(!T)
+	var/turf/current_turf = get_turf(src)
+	if(!current_turf)
 		return FALSE
 
-	if(!is_centcom_level(T.z))//if not, don't bother
+	if(!is_reserved_level(current_turf.z))//if not, don't bother
 		return FALSE
 
-	if(istype(T.loc, /area/shuttle/syndicate) || istype(T.loc, /area/syndicate_mothership) || istype(T.loc, /area/shuttle/assault_pod))
+	if(istype(current_turf.loc, /area/shuttle/syndicate))
+		return TRUE
+	if(istype(current_turf.loc, /area/syndicate_mothership))
+		return TRUE
+	if(istype(current_turf.loc, /area/shuttle/assault_pod))
 		return TRUE
 
 	return FALSE

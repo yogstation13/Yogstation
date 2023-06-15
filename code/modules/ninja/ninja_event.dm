@@ -27,6 +27,7 @@ Contents:
 	var/give_objectives = TRUE
 
 /datum/round_event/ghost_role/ninja/setup()
+	SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_NINJA_HOLDING_FACILITY)
 	helping_station = rand(0,1)
 
 /datum/round_event/ghost_role/ninja/kill()

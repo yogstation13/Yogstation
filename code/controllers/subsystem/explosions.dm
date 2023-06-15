@@ -403,53 +403,44 @@ SUBSYSTEM_DEF(explosions)
 
 /datum/controller/subsystem/explosions/proc/GatherSpiralTurfs(range, turf/epicenter)
 	var/list/outlist = list()
-	var/center = epicenter
-	var/dist = range
-	if(!dist)
-		outlist += center
-		return outlist
+	// Add in the center
+	outlist += epicenter
+	var/our_x = epicenter.x
+	var/our_y = epicenter.y
+	var/our_z = epicenter.z
+	var/max_x = world.maxx
+	var/max_y = world.maxy
+	for(var/i in 1 to range)
+		var/lowest_x = our_x - i
+		var/lowest_y = our_y - i
+		var/highest_x = our_x + i
+		var/highest_y = our_y + i
+		// top left to one before top right
+		if(highest_y <= max_y)
+			outlist += block(locate(max(lowest_x, 1), highest_y, our_z), locate(min(highest_x - 1, max_x), highest_y, our_z))
+			outlist += block(
+				locate(max(lowest_x, 1), highest_y, our_z),
+				locate(min(highest_x - 1, max_x), highest_y, our_z))
+		// top right to one before bottom right
+		if(highest_x <= max_x)
+			outlist += block(locate(highest_x, min(highest_y, max_y), our_z), locate(highest_x, max(lowest_y + 1, 1), our_z))
+			outlist += block(
+				locate(highest_x, min(highest_y, max_y), our_z),
+				locate(highest_x, max(lowest_y + 1, 1), our_z))
+		// bottom right to one before bottom left
+		if(lowest_y >= 1)
+			outlist += block(locate(min(highest_x, max_x), lowest_y, our_z), locate(max(lowest_x + 1, 1), lowest_y, our_z))
+			outlist += block(
+				locate(min(highest_x, max_x), lowest_y, our_z),
+				locate(max(lowest_x + 1, 1), lowest_y, our_z))
+		// bottom left to one before top left
+		if(lowest_x >= 1)
+			outlist += block(locate(lowest_x, max(lowest_y, 1), our_z), locate(lowest_x, min(highest_y - 1, max_y), our_z))
+			outlist += block(
+				locate(lowest_x, max(lowest_y, 1), our_z),
+				locate(lowest_x, min(highest_y - 1, max_y), our_z))
 
-	var/turf/t_center = get_turf(center)
-	if(!t_center)
-		return outlist
-
-	var/list/L = outlist
-	var/turf/T
-	var/y
-	var/x
-	var/c_dist = 1
-	L += t_center
-
-	while( c_dist <= dist )
-		y = t_center.y + c_dist
-		x = t_center.x - c_dist + 1
-		for(x in x to t_center.x+c_dist)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-
-		y = t_center.y + c_dist - 1
-		x = t_center.x + c_dist
-		for(y in t_center.y-c_dist to y)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-
-		y = t_center.y - c_dist
-		x = t_center.x + c_dist - 1
-		for(x in t_center.x-c_dist to x)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-
-		y = t_center.y - c_dist + 1
-		x = t_center.x - c_dist
-		for(y in y to t_center.y+c_dist)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-		c_dist++
-	. = L
+	return outlist
 
 /datum/controller/subsystem/explosions/proc/CaculateExplosionBlock(list/affected_turfs)
 	. = list()

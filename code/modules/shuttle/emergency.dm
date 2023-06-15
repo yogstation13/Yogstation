@@ -416,6 +416,8 @@
 			SSshuttle.checkHostileEnvironment()
 
 		if(SHUTTLE_ESCAPE)
+			// Begin loading this early, prevents a delay when the shuttle goes to land
+			INVOKE_ASYNC(SSmapping, TYPE_PROC_REF(/datum/controller/subsystem/mapping, lazy_load_template), LAZY_TEMPLATE_KEY_NUKIEBASE)
 			if(sound_played && time_left <= HYPERSPACE_END_TIME)
 				var/list/areas = list()
 				for(var/area/shuttle/escape/E in GLOB.areas)
@@ -446,6 +448,8 @@
 				// unless the shuttle is "hijacked"
 				var/destination_dock = "emergency_away"
 				if(is_hijacked())
+					// just double check
+					SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_NUKIEBASE)
 					destination_dock = "emergency_syndicate"
 					minor_announce("Corruption detected in \
 						shuttle navigation protocols. Please contact your \

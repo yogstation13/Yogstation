@@ -296,7 +296,7 @@
 /datum/dynamic_ruleset/midround/from_ghosts/wizard/ready(forced = FALSE)
 	if (required_candidates > (dead_players.len + list_observers.len))
 		return FALSE
-	if(GLOB.wizardstart.len == 0)
+	if(!length(GLOB.wizardstart))
 		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
 		return FALSE
@@ -322,10 +322,12 @@
 	weight = 2
 	cost = 25
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
-	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
-	var/datum/team/nuclear/nuke_team
+	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_NUKIEBASE)
 	flags = HIGH_IMPACT_RULESET
 	minimum_players = 32
+
+	var/list/operative_cap = list(2,2,3,3,4,5,5,5,5,5)
+	var/datum/team/nuclear/nuke_team
 
 /datum/dynamic_ruleset/midround/from_ghosts/nuclear/acceptable(population=0, threat=0)
 	if (locate(/datum/dynamic_ruleset/roundstart/nuclear) in mode.executed_rules)
@@ -676,8 +678,9 @@
 	cost = 10
 	requirements = list(101,101,101,80,60,50,30,20,10,10)
 	repeatable = TRUE
-	var/datum/team/abductor_team/new_team
+	ruleset_lazy_templates = list(LAZY_TEMPLATE_KEY_ABDUCTOR_SHIPS)
 	minimum_players = 25
+	var/datum/team/abductor_team/new_team
 
 /datum/dynamic_ruleset/midround/from_ghosts/abductors/ready(forced = FALSE)
 	if (required_candidates > (dead_players.len + list_observers.len))
