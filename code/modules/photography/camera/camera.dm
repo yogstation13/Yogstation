@@ -252,7 +252,7 @@
 	qdel(clone_area)
 	get_icon.Blend("#000", ICON_UNDERLAY)
 
-	var/datum/picture/picture = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, get_icon, null, psize_x, psize_y, blueprints, can_see_ghosts = see_ghosts)
+	var/datum/picture/picture = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, get_icon, null, psize_x, psize_y, blueprints)
 	after_picture(user, picture)
 	blending = FALSE
 	return picture
