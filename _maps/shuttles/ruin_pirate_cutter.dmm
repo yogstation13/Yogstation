@@ -930,14 +930,11 @@
 /obj/docking_port/mobile{
 	callTime = 150;
 	dir = 2;
-	dwidth = 14;
-	height = 13;
 	id = "caravanpirate";
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "Pirate Cutter";
 	port_direction = 8;
-	preferred_direction = 4;
-	width = 22
+	preferred_direction = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1

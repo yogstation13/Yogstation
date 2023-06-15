@@ -19,10 +19,7 @@
 	name = "Escape Pod Airlock"
 	},
 /obj/docking_port/mobile/pod{
-	dwidth = 1;
-	height = 4;
-	port_direction = 2;
-	width = 3
+	port_direction = 2
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1

@@ -513,16 +513,12 @@
 /area/shuttle/abandoned)
 "HP" = (
 /obj/docking_port/mobile{
-	dheight = 0;
 	dir = 2;
-	dwidth = 8;
-	height = 16;
 	id = "whiteship";
 	launch_status = 0;
 	name = "NT Recovery White-Ship";
 	port_direction = 8;
-	preferred_direction = 2;
-	width = 16
+	preferred_direction = 2
 	},
 /obj/machinery/door/airlock/external,
 /obj/machinery/atmospherics/pipe/layer_manifold,

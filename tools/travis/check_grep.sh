@@ -38,6 +38,11 @@ if grep -i 'centcomm' code/**/*.dm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
     st=1
 fi;
+if grep -P '^/obj/docking_port/mobile.*\{\n[^}]*(width|height|dwidth|dheight)[^}]*\}' _maps/**/*.dmm; then
+	echo
+	echo -e "${RED}ERROR: Custom mobile docking_port sizes detected. This is done automatically and should not be varedits.${NC}"
+	st=1
+fi;
 if grep -i 'centcomm' _maps/**/*.dmm; then
     echo "ERROR: Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1

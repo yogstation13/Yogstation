@@ -14,10 +14,7 @@
 "c" = (
 /obj/docking_port/mobile/arrivals{
 	dir = 2;
-	dwidth = 2;
-	height = 16;
-	name = "omega arrivals shuttle";
-	width = 5
+	name = "omega arrivals shuttle"
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/arrival)

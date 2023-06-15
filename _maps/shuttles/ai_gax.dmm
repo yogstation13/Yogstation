@@ -82,12 +82,9 @@
 	},
 /obj/docking_port/mobile{
 	dir = 2;
-	dwidth = 2;
-	height = 6;
 	id = "ai_ship";
 	name = "ai ship shuttle";
-	port_direction = 4;
-	width = 5
+	port_direction = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/ai)

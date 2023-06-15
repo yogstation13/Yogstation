@@ -1142,12 +1142,9 @@
 "kr" = (
 /obj/docking_port/stationary{
 	dir = 2;
-	dwidth = 6;
-	height = 7;
 	id = "caravansyndicate3_ambush";
 	name = "Trade Route";
-	roundstart_template = /datum/map_template/shuttle/ruin/syndicate_dropship;
-	width = 15
+	roundstart_template = /datum/map_template/shuttle/ruin/syndicate_dropship
 	},
 /turf/template_noop,
 /area/template_noop)

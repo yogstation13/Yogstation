@@ -256,14 +256,20 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define APPEARANCE_UI						(RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|PIXEL_SCALE)
 
 //Just space
-#define SPACE_ICON_STATE	"[((x + y) ^ ~(x * y) + z) % 25]"
+#define SPACE_ICON_STATE "[((x + y) ^ ~(x * y) + z) % 25]"
 
 // Maploader bounds indices
+/// The maploader index for the maps minimum x
 #define MAP_MINX 1
+/// The maploader index for the maps minimum y
 #define MAP_MINY 2
+/// The maploader index for the maps minimum z
 #define MAP_MINZ 3
+/// The maploader index for the maps maximum x
 #define MAP_MAXX 4
+/// The maploader index for the maps maximum y
 #define MAP_MAXY 5
+/// The maploader index for the maps maximum z
 #define MAP_MAXZ 6
 
 // Defib stats

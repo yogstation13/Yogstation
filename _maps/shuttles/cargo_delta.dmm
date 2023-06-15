@@ -96,9 +96,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/docking_port/mobile/supply{
-	dir = 4;
-	dwidth = 4;
-	width = 12
+	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4

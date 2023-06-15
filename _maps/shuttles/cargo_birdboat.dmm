@@ -119,10 +119,7 @@
 	name = "Supply Shuttle Airlock";
 	req_access_txt = "31"
 	},
-/obj/docking_port/mobile/supply{
-	dwidth = 3;
-	width = 10
-	},
+/obj/docking_port/mobile/supply,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},

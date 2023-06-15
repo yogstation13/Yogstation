@@ -61,12 +61,9 @@
 	},
 /obj/docking_port/mobile{
 	dir = 4;
-	dwidth = 2;
-	height = 5;
 	id = "laborcamp";
 	name = "labor camp shuttle";
-	port_direction = 4;
-	width = 9
+	port_direction = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/labor)

@@ -2341,11 +2341,8 @@
 /area/ruin/space/has_grav/listeningstation/quarters)
 "Kh" = (
 /obj/docking_port/stationary{
-	dwidth = 6;
-	height = 7;
 	id = "listeningpost";
-	name = "Listening Post Dock";
-	width = 15
+	name = "Listening Post Dock"
 	},
 /turf/template_noop,
 /area/template_noop)

@@ -49,14 +49,11 @@
 /obj/docking_port/mobile{
 	callTime = 50;
 	dir = 4;
-	dwidth = 4;
-	height = 5;
 	id = "caravansyndicate1";
 	ignitionTime = 25;
 	name = "Syndicate Fighter";
 	port_direction = 2;
-	preferred_direction = 4;
-	width = 9
+	preferred_direction = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4

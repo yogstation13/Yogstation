@@ -47,11 +47,7 @@
 	name = "Emergency Shuttle Airlock"
 	},
 /obj/docking_port/mobile/emergency{
-	dir = 2;
-	dwidth = 5;
-	height = 14;
-	name = "Meta emergency shuttle";
-	width = 25
+	name = "Meta emergency shuttle"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1

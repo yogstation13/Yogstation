@@ -39,7 +39,6 @@
 	req_access_txt = "150"
 	},
 /obj/docking_port/mobile/assault_pod{
-	dwidth = 3;
 	name = "steel rain";
 	port_direction = 4;
 	preferred_direction = 4

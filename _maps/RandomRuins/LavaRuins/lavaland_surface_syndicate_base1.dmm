@@ -5246,11 +5246,8 @@
 "ts" = (
 /obj/docking_port/stationary{
 	dir = 2;
-	dwidth = 6;
-	height = 6;
 	id = "syndicatelavalandbase_arivals";
-	name = "Syndicate Lavaland Base: Arivals Dock";
-	width = 13
+	name = "Syndicate Lavaland Base: Arivals Dock"
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)

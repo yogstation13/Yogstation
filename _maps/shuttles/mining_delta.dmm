@@ -287,12 +287,9 @@
 	},
 /obj/docking_port/mobile{
 	dir = 4;
-	dwidth = 3;
-	height = 5;
 	id = "mining";
 	name = "mining shuttle";
-	port_direction = 8;
-	width = 7
+	port_direction = 8
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
