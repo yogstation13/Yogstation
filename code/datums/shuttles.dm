@@ -67,10 +67,10 @@
 		if(isspaceturf(place)) // This assumes all shuttles are loaded in a single spot then moved to their real destination.
 			continue
 
-		if (place.count_baseturfs() < 2) // Some snowflake shuttle shit
+		if(length(place.baseturfs) < 2) // Some snowflake shuttle shit
 			continue
 
-		place.insert_baseturf(3, /turf/baseturf_skipover/shuttle)
+		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 
 		for(var/obj/docking_port/mobile/port in place)
 			port.calculate_docking_port_information(src)
