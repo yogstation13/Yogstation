@@ -65,7 +65,7 @@
 		"https://www.youtube.com/watch?v=4JkIs37a2JE",						// Jamiroquai - Virtual Insanity
 		"https://www.youtube.com/watch?v=z01VlftkqY8",						// PilotRedSun - The Grinch's Ultimatum
 		"https://www.youtube.com/watch?v=rcmQefeyPBs",						// Nightmargin - IT'S TIME TO FIGHT CRIME
-		https://www.youtube.com/watch?v=YFEPX4pJfL4,
+		"https://www.youtube.com/watch?v=YFEPX4pJfL4",
 		)						
 	selected_lobby_music = pick(songs)
 
