@@ -787,14 +787,14 @@
 
 /obj/item/clothing/head/hooded/cult_hoodie_toy/eldritch_toy
 	name = "fashionable hood"
-	desc = "A stylish and trendy hood perfectly pairing with the robes it comes with. Strange eyes line the inside"
+	desc = "A stylish hood perfectly pairing with the robes it comes with. Strange eyes line the inside."
 	icon_state = "eldritch"
 	item_state = "eldritch"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
 /obj/item/clothing/suit/hooded/cultrobes/eldritch_toy
 	name = "fashionable robe"
-	desc = "A stylish and trendy robe straight from this year's Nanotrasen fashion show. Though you can't rememeber seeing this entry on the catwalk."
+	desc = "A trendy robe straight from this year's Nanotrasen fashion show. You can't remember seeing this entry on the catwalk."
 	icon_state = "eldritch_armor"
 	item_state = "eldritch_armor"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
