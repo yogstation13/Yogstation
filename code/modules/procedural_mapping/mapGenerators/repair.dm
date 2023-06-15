@@ -49,7 +49,7 @@
 			atoms += movable_in_turf
 			if(istype(movable_in_turf, /obj/structure/cable))
 				cables += movable_in_turf
-			if(istype(atom, /obj/machinery/atmospherics))
+			if(istype(movable_in_turf, /obj/machinery/atmospherics))
 				atmos_machines += movable_in_turf
 
 	SSatoms.InitializeAtoms(atoms)
