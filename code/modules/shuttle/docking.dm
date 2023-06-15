@@ -103,7 +103,7 @@
 	return DOCKING_SUCCESS
 
 /obj/docking_port/mobile/proc/preflight_check(list/old_turfs, list/new_turfs, list/areas_to_move, rotation)
-	for(var/i in 1 to old_turfs.len)
+	for(var/i in 1 to length(old_turfs))
 		CHECK_TICK
 		var/turf/oldT = old_turfs[i]
 		var/turf/newT = new_turfs[i]
@@ -113,16 +113,16 @@
 			return DOCKING_NULL_SOURCE
 
 		var/area/old_area = oldT.loc
-		var/move_mode = old_area.beforeShuttleMove(shuttle_areas)											//areas
+		var/move_mode = old_area.beforeShuttleMove(shuttle_areas) //areas
 
 		for(var/atom/movable/moving_atom as anything in oldT.contents)
 			CHECK_TICK
 			if(moving_atom.loc != oldT) //fix for multi-tile objects
 				continue
-			move_mode = moving_atom.beforeShuttleMove(newT, rotation, move_mode, src)						//atoms
+			move_mode = moving_atom.beforeShuttleMove(newT, rotation, move_mode, src) //atoms
 
-		move_mode = oldT.fromShuttleMove(newT, move_mode)													//turfs
-		move_mode = newT.toShuttleMove(oldT, move_mode, src)												//turfs
+		move_mode = oldT.fromShuttleMove(newT, move_mode) //turfs
+		move_mode = newT.toShuttleMove(oldT, move_mode, src) //turfs
 
 		if(move_mode & MOVE_AREA)
 			areas_to_move[old_area] = TRUE

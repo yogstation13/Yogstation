@@ -37,6 +37,7 @@
 	var/list/obj/machinery/atmospherics/atmos_machines = list()
 	var/list/obj/structure/cable/cables = list()
 	var/list/atom/atoms = list()
+	var/list/area/areas = list()
 
 	require_area_resort()
 
@@ -44,18 +45,20 @@
 		locate(bounds[MAP_MINX], bounds[MAP_MINY], SSmapping.station_start),
 		locate(bounds[MAP_MAXX], bounds[MAP_MAXY], z_offset - 1))
 	for(var/turf/gen_turf as anything in generation_turfs)
-		atoms += gen_turf
-		for(var/atom in gen_turf)
-			atoms += atom
-			if(istype(atom, /obj/structure/cable))
-				cables += atom
-				continue
+		var/area/current_turfs_area = current_turf.loc
+		areas |= current_turfs_area
+
+		for(var/movable_in_turf in current_turf)
+			atoms += movable_in_turf
+			if(istype(movable_in_turf, /obj/structure/cable))
+				cables += movable_in_turf
 			if(istype(atom, /obj/machinery/atmospherics))
 				atmos_machines += atom
 
-	SSatoms.InitializeAtoms(atoms)
+	SSatoms.InitializeAtoms(areas + turfs + atoms)
 	SSmachines.setup_template_powernets(cables)
 	SSair.setup_template_machinery(atmos_machines)
+
 	GLOB.reloading_map = FALSE
 
 /datum/mapGenerator/repair
