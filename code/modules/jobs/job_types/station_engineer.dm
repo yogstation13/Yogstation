@@ -127,7 +127,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	head = null
 	internals_slot = ITEM_SLOT_SUITSTORE
 
-/obj/item/radio/headset/headset_eng/department/Initialize()
+/obj/item/radio/headset/headset_eng/department/Initialize(mapload)
 	. = ..()
 	wires = new/datum/wires/radio(src)
 	secure_radio_connections = new

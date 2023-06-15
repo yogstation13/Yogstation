@@ -51,7 +51,7 @@
 	var/obj/item/modular_computer/tablet/integrated/modularInterface
 	var/obj/item/pda/aiPDA
 
-/mob/living/silicon/Initialize()
+/mob/living/silicon/Initialize(mapload)
 	. = ..()
 	GLOB.silicon_mobs += src
 	faction += "silicon"

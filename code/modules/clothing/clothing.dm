@@ -55,7 +55,7 @@
 	/// How many zones (body parts, not precise) we have disabled so far, for naming purposes
 	var/zones_disabled
 
-/obj/item/clothing/Initialize()
+/obj/item/clothing/Initialize(mapload)
 	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
 		actions_types += /datum/action/item_action/toggle_voice_box
 	. = ..()

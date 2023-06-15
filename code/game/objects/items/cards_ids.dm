@@ -36,7 +36,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	var/detail_color = COLOR_ASSEMBLY_ORANGE
 
-/obj/item/card/data/Initialize()
+/obj/item/card/data/Initialize(mapload)
 	.=..()
 	update_icon()
 
@@ -405,7 +405,7 @@ update_label("John Doe", "Clowny")
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 
-/obj/item/card/id/syndicate/Initialize()
+/obj/item/card/id/syndicate/Initialize(mapload)
 	. = ..()
 	var/datum/action/item_action/chameleon/change/chameleon_action = new(src)
 	chameleon_action.syndicate = TRUE
@@ -584,7 +584,7 @@ update_label("John Doe", "Clowny")
 	originalassignment = "Captain"
 	registered_age = null
 
-/obj/item/card/id/captains_spare/Initialize()
+/obj/item/card/id/captains_spare/Initialize(mapload)
 	var/datum/job/captain/J = new/datum/job/captain
 	access = J.get_access()
 	. = ..()
@@ -594,7 +594,7 @@ update_label("John Doe", "Clowny")
 	desc = "A temporary ID for access to secure areas in the event of an emergency"
 	resistance_flags = FLAMMABLE
 
-/obj/item/card/id/captains_spare/temporary/Initialize()
+/obj/item/card/id/captains_spare/temporary/Initialize(mapload)
 	. = ..()
 	access -= ACCESS_CHANGE_IDS
 	access -= ACCESS_HEADS
@@ -684,7 +684,7 @@ update_label("John Doe", "Clowny")
 
 
 
-/obj/item/card/id/centcom/Initialize()
+/obj/item/card/id/centcom/Initialize(mapload)
 	access = get_all_centcom_access()
 	. = ..()
 
@@ -697,7 +697,7 @@ update_label("John Doe", "Clowny")
 	originalassignment = "Emergency Response Team Commander"
 	registered_age = null
 
-/obj/item/card/id/ert/debug/Initialize()
+/obj/item/card/id/ert/debug/Initialize(mapload)
 	. = ..()
 	access = get_debug_access()
 
@@ -713,11 +713,11 @@ update_label("John Doe", "Clowny")
 	assignment = "Occupying Officer"
 	originalassignment = "Occupying Officer"
 
-/obj/item/card/id/ert/occupying/Initialize()
+/obj/item/card/id/ert/occupying/Initialize(mapload)
     access = list(ACCESS_SECURITY,ACCESS_BRIG,ACCESS_WEAPONS,ACCESS_SEC_DOORS,ACCESS_MAINT_TUNNELS)+get_ert_access("sec")
     . = ..()
     
-/obj/item/card/id/ert/Initialize()
+/obj/item/card/id/ert/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -726,7 +726,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Security Response Officer"
 	originalassignment = "Security Response Officer"
 
-/obj/item/card/id/ert/Security/Initialize()
+/obj/item/card/id/ert/Security/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -735,7 +735,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Engineer Response Officer"
 	originalassignment = "Engineer Response Officer"
 
-/obj/item/card/id/ert/Engineer/Initialize()
+/obj/item/card/id/ert/Engineer/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("eng")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -744,7 +744,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Medical Response Officer"
 	originalassignment = "Medical Response Officer"
 
-/obj/item/card/id/ert/Medical/Initialize()
+/obj/item/card/id/ert/Medical/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("med")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -753,7 +753,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Religious Response Officer"
 	originalassignment = "Religious Response Officer"
 
-/obj/item/card/id/ert/chaplain/Initialize()
+/obj/item/card/id/ert/chaplain/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -762,7 +762,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Janitorial Response Officer"
 	originalassignment = "Janitorial Response Officer"
 
-/obj/item/card/id/ert/Janitor/Initialize()
+/obj/item/card/id/ert/Janitor/Initialize(mapload)
 	access = get_all_accesses()
 	. = ..()
 
@@ -771,7 +771,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Clown ERT"
 	originalassignment = "Clown ERT"
 
-/obj/item/card/id/ert/clown/Initialize()
+/obj/item/card/id/ert/clown/Initialize(mapload)
 	access = get_all_accesses()
 	. = ..()
 
@@ -880,7 +880,7 @@ update_label("John Doe", "Clowny")
 	var/department_name = ACCOUNT_CIV_NAME
 	registered_age = null
 
-/obj/item/card/id/departmental_budget/Initialize()
+/obj/item/card/id/departmental_budget/Initialize(mapload)
 	. = ..()
 	var/datum/bank_account/B = SSeconomy.get_dep_account(department_ID)
 	if(B)

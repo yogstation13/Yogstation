@@ -102,7 +102,7 @@
 	name = "station map"
 	desc = "A handy map showing the locations of all the departments on the station so you don't get lost"
 
-/obj/item/map/station/Initialize()
+/obj/item/map/station/Initialize(mapload)
 	..()
 	minimaps += SSmapping.station_minimaps
 	update_icon()

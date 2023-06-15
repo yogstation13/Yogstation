@@ -25,7 +25,7 @@
 	var/lasthealth
 	COOLDOWN_DECLARE(adrenal_cooldown)
 
-/obj/item/organ/heart/Initialize()
+/obj/item/organ/heart/Initialize(mapload)
 	. = ..()
 	icon_base = icon_state
 	update_icon()

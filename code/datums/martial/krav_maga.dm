@@ -70,7 +70,7 @@
 	legsweep.Remove(H)
 	lungpunch.Remove(H)
 
-/datum/martial_art/krav_maga/proc/check_streak(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/krav_maga/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	switch(streak)
 		if("neck_chop")
 			streak = ""
@@ -86,7 +86,7 @@
 			return 1
 	return 0
 
-/datum/martial_art/krav_maga/proc/leg_sweep(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/krav_maga/proc/leg_sweep(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(D.stat || D.IsParalyzed())
 		return 0
 	D.visible_message(span_warning("[A] leg sweeps [D]!"), \
@@ -97,7 +97,7 @@
 	log_combat(A, D, "leg sweeped")
 	return 1
 
-/datum/martial_art/krav_maga/proc/quick_choke(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)//is actually lung punch
+/datum/martial_art/krav_maga/proc/quick_choke(mob/living/carbon/human/A, mob/living/carbon/human/D)//is actually lung punch
 	D.visible_message(span_warning("[A] pounds [D] on the chest!"), \
 				  	span_userdanger("[A] slams your chest! You can't breathe!"))
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, 1, -1)
@@ -107,7 +107,7 @@
 	log_combat(A, D, "quickchoked")
 	return 1
 
-/datum/martial_art/krav_maga/proc/neck_chop(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/krav_maga/proc/neck_chop(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	D.visible_message(span_warning("[A] karate chops [D]'s neck!"), \
 				  	span_userdanger("[A] karate chops your neck, rendering you unable to speak!"))
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, 1, -1)
@@ -117,7 +117,7 @@
 	log_combat(A, D, "neck chopped")
 	return 1
 
-/datum/martial_art/krav_maga/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/krav_maga/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(check_streak(A,D))
 		return 1
 	log_combat(A, D, "punched")
@@ -138,7 +138,7 @@
 	log_combat(A, D, "[picked_hit_type] with [name]")
 	return 1
 
-/datum/martial_art/krav_maga/disarm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/krav_maga/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(check_streak(A,D))
 		return 1
 	var/obj/item/I = null

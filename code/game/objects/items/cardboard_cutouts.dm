@@ -10,7 +10,7 @@
 	var/pushed_over = FALSE // If the cutout is pushed over and has to be righted
 	var/deceptive = FALSE // If the cutout actually appears as what it portray and not a discolored version
 
-/obj/item/cardboard_cutout/Initialize()
+/obj/item/cardboard_cutout/Initialize(mapload)
 	. = ..()
 	possible_appearances = sortList(list(
 		"Assistant" = image(icon = src.icon, icon_state = "cutout_greytide"),

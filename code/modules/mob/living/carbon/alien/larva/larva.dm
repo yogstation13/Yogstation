@@ -19,7 +19,7 @@
 
 
 //This is fine right now, if we're adding organ specific damage this needs to be updated
-/mob/living/carbon/alien/larva/Initialize()
+/mob/living/carbon/alien/larva/Initialize(mapload)
 
 	var/datum/action/cooldown/alien/larva_evolve/evolution = new(src)
 	evolution.Grant(src)

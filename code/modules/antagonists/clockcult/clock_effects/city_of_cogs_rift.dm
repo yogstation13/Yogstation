@@ -16,7 +16,7 @@
 /obj/effect/clockwork/city_of_cogs_rift/singularity_pull()
 	return
 
-/obj/effect/clockwork/city_of_cogs_rift/Initialize()
+/obj/effect/clockwork/city_of_cogs_rift/Initialize(mapload)
 	. = ..()
 	visible_message(span_warning("The air above [loc] shimmers and pops as a [name] forms there!"))
 	for(var/mob/M in GLOB.player_list)

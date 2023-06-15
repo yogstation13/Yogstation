@@ -296,7 +296,7 @@
 				S.forceMove(T)
 				S.SpinAnimation(0.2 SECONDS, 1)
 
-/obj/item/melee/touch_attack/overcharged_emitter/Initialize()
+/obj/item/melee/touch_attack/overcharged_emitter/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	animate(src, alpha = 50, time = 5 SECONDS)

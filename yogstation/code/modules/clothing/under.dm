@@ -8,7 +8,7 @@
 	item_flags = DROPDEL
 	can_adjust = 0
 
-/obj/item/clothing/under/yogs/cluwne/Initialize()
+/obj/item/clothing/under/yogs/cluwne/Initialize(mapload)
 	.=..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 

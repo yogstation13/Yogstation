@@ -32,7 +32,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/list/mirage_whitelist = list()
 
-/obj/structure/closet/bluespace/internal/Initialize()
+/obj/structure/closet/bluespace/internal/Initialize(mapload)
 	if(SSbluespace_locker.internal_locker && SSbluespace_locker.internal_locker != src)
 		return INITIALIZE_HINT_QDEL
 	SSbluespace_locker.internal_locker = src
@@ -141,7 +141,7 @@
 		T.turf_whitelist = mirage_whitelist
 		T.update_mirage()
 
-/obj/structure/closet/bluespace/external/Initialize()
+/obj/structure/closet/bluespace/external/Initialize(mapload)
 	if(SSbluespace_locker.external_locker && SSbluespace_locker.external_locker != src)
 		return INITIALIZE_HINT_QDEL
 	SSbluespace_locker.external_locker = src

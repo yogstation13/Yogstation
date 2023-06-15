@@ -98,7 +98,7 @@
 	item_state = "cloak"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 100) //good if you haven nothing
 
-/obj/item/clothing/neck/yogs/sith_cloak/cloak/Initialize()
+/obj/item/clothing/neck/yogs/sith_cloak/cloak/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 	START_PROCESSING(SSobj, src)

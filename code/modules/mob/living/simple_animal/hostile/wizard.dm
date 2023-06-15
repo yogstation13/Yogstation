@@ -42,7 +42,7 @@
 
 	do_footstep = TRUE
 
-/mob/living/simple_animal/hostile/wizard/Initialize()
+/mob/living/simple_animal/hostile/wizard/Initialize(mapload)
 	. = ..()
 	var/obj/item/implant/exile/exiled = new /obj/item/implant/exile(src)
 	exiled.implant(src)
@@ -148,7 +148,7 @@
 	/obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door,
 	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage)
 
-/mob/living/simple_animal/hostile/academywizard/chaos/Initialize()
+/mob/living/simple_animal/hostile/academywizard/chaos/Initialize(mapload)
 	projectiletype = pick(allowed_projectile_types)
 	. = ..()
 

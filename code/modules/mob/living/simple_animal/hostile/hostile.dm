@@ -51,7 +51,7 @@
 	var/lose_patience_timer_id //id for a timer to call LoseTarget(), used to stop mobs fixating on a target they can't reach
 	var/lose_patience_timeout = 300 //30 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
 
-/mob/living/simple_animal/hostile/Initialize()
+/mob/living/simple_animal/hostile/Initialize(mapload)
 	. = ..()
 
 	if(!targets_from)
@@ -141,7 +141,7 @@
 		for (var/atom/movable/A in oview(vision_range, targets_from))
 			. += A
 
-/mob/living/simple_animal/hostile/proc/FindTarget(var/list/possible_targets, var/HasTargetsList = 0)//Step 2, filter down possible targets to things we actually care about
+/mob/living/simple_animal/hostile/proc/FindTarget(list/possible_targets, HasTargetsList = 0)//Step 2, filter down possible targets to things we actually care about
 	. = list()
 	if(!HasTargetsList)
 		possible_targets = ListTargets()
@@ -500,7 +500,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 
 
 ////// AI Status ///////
-/mob/living/simple_animal/hostile/proc/AICanContinue(var/list/possible_targets)
+/mob/living/simple_animal/hostile/proc/AICanContinue(list/possible_targets)
 	switch(AIStatus)
 		if(AI_ON)
 			. = 1
@@ -511,7 +511,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 			else
 				. = 0
 
-/mob/living/simple_animal/hostile/proc/AIShouldSleep(var/list/possible_targets)
+/mob/living/simple_animal/hostile/proc/AIShouldSleep(list/possible_targets)
 	return !FindTarget(possible_targets, 1)
 
 
@@ -562,7 +562,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 			FindTarget()
 		toggle_ai(AI_ON)
 
-/mob/living/simple_animal/hostile/proc/ListTargetsLazy(var/_Z)//Step 1, find out what we can see
+/mob/living/simple_animal/hostile/proc/ListTargetsLazy(_Z)//Step 1, find out what we can see
 	var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/mecha, /obj/structure/destructible/clockwork/ocular_warden, /obj/spacepod)) // yogs - add spacepod
 	. = list()
 	for (var/I in SSmobs.clients_by_zlevel[_Z])

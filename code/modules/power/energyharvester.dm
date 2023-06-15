@@ -38,7 +38,7 @@
 	///last amount of energy transmitted before being reset by budget cycle, so CE can check if his engine modifications are making more power
 	var/last_accumulated_power = 0
 
-obj/item/energy_harvester/Initialize()
+obj/item/energy_harvester/Initialize(mapload)
 	. = ..()
 	///links this to SSeconomy so it can be added to the budget cycle calculations
 	SSeconomy.moneysink = src

@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 				explosion(src,0,1,3,adminlog = notify_admins)
 		qdel(src)
 
-/obj/item/stack/ore/Initialize()
+/obj/item/stack/ore/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
@@ -378,7 +378,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	else
 		user.visible_message(span_suicide("\the [src] lands on [coinflip]! [user] keeps on living!"))
 
-/obj/item/coin/Initialize()
+/obj/item/coin/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
@@ -609,7 +609,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	w_class = WEIGHT_CLASS_NORMAL
 	var/list/obj/item/coin/coins //a stack of coins
 
-/obj/item/coinstack/Initialize()
+/obj/item/coinstack/Initialize(mapload)
 	. = ..()
 	coins = list()
 	update_icon()

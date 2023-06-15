@@ -250,7 +250,7 @@
 	item_state = "gold_item"
 	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 
-/obj/item/clothing/suit/yogs/golddetective/Initialize()
+/obj/item/clothing/suit/yogs/golddetective/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
 
@@ -279,7 +279,7 @@
 	item_state = "detective_item"
 	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 
-/obj/item/clothing/suit/yogs/detectivecoat/Initialize()
+/obj/item/clothing/suit/yogs/detectivecoat/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
 
@@ -309,7 +309,7 @@
 	item_state = "blue_item"
 	armor = list(MELEE = 25, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 45)
 
-/obj/item/clothing/suit/yogs/bluedetective/Initialize()
+/obj/item/clothing/suit/yogs/bluedetective/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
 

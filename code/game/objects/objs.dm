@@ -50,14 +50,14 @@
 				return FALSE
 	return ..()
 
-/obj/Initialize()
+/obj/Initialize(mapload)
 	. = ..()
 	if (islist(armor))
 		armor = getArmor(arglist(armor))
 	else if (!armor)
 		armor = getArmor()
 	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
+		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize(mapload)")
 
 	if(obj_integrity == null)
 		obj_integrity = max_integrity

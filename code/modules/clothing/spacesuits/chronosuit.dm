@@ -36,7 +36,7 @@
 	var/teleporting = 0
 	var/phase_timer_id
 
-/obj/item/clothing/suit/space/chronos/Initialize()
+/obj/item/clothing/suit/space/chronos/Initialize(mapload)
 	teleport_now.chronosuit = src
 	teleport_now.target = src
 	return ..()
@@ -271,7 +271,7 @@
 	if(target_ui)
 		QDEL_NULL(target_ui)
 
-/obj/effect/chronos_cam/relaymove(var/mob/user, direction)
+/obj/effect/chronos_cam/relaymove(mob/user, direction)
 	if(!holder)
 		qdel(src)
 		return

@@ -45,7 +45,7 @@
 	song_length = length
 	song_beat = beat
 
-/obj/machinery/jukebox/Initialize()
+/obj/machinery/jukebox/Initialize(mapload)
 	. = ..()
 	var/list/tracks = flist("[global.config.directory]/jukebox_music/sounds/")
 
@@ -196,7 +196,8 @@
 
 /obj/machinery/jukebox/disco/proc/dance_setup()
 	var/turf/cen = get_turf(src)
-	FOR_DVIEW(var/turf/t, 3, get_turf(src),INVISIBILITY_LIGHTING)
+	var/turf/t
+	FOR_DVIEW(t, 3, get_turf(src),INVISIBILITY_LIGHTING)
 		if(t.x == cen.x && t.y > cen.y)
 			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_RED)
 			continue
@@ -328,7 +329,7 @@
 
 #undef DISCO_INFENO_RANGE
 
-/obj/machinery/jukebox/disco/proc/dance(var/mob/living/M) //Show your moves
+/obj/machinery/jukebox/disco/proc/dance(mob/living/M) //Show your moves
 	set waitfor = FALSE
 	switch(rand(0,6))
 		if(0 to 1)
@@ -347,7 +348,7 @@
 	if(dir == WEST)
 		emote("flip")
 
-/obj/machinery/jukebox/disco/proc/dance3(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance3(mob/living/M)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 75)
 		if (!M)
@@ -394,7 +395,7 @@
 		sleep(0.1 SECONDS)
 	M.lying_fix()
 
-/obj/machinery/jukebox/disco/proc/dance4(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance4(mob/living/M)
 	animate(M, transform = matrix(180, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 60)

@@ -36,7 +36,7 @@
 	var/mattress_state = "stasis_on"
 	var/obj/effect/overlay/vis/mattress_on
 
-/obj/machinery/stasis/Initialize()
+/obj/machinery/stasis/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 1, \

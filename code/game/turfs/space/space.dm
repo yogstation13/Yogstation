@@ -27,7 +27,7 @@
 	//This is used to optimize the map loader
 	return
 
-/turf/open/space/Initialize()
+/turf/open/space/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)
 	icon_state = SPACE_ICON_STATE
 	air = space_gas

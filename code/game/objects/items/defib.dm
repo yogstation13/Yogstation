@@ -27,13 +27,13 @@
 /obj/item/defibrillator/get_cell()
 	return cell
 
-/obj/item/defibrillator/Initialize() //starts without a cell for rnd
+/obj/item/defibrillator/Initialize(mapload) //starts without a cell for rnd
 	. = ..()
 	paddles = make_paddles()
 	update_icon()
 	return
 
-/obj/item/defibrillator/loaded/Initialize() //starts with hicap
+/obj/item/defibrillator/loaded/Initialize(mapload) //starts with hicap
 	. = ..()
 	paddles = make_paddles()
 	cell = new(src)
@@ -259,7 +259,7 @@
 	if(slot == user.getBeltSlot())
 		return TRUE
 
-/obj/item/defibrillator/compact/loaded/Initialize()
+/obj/item/defibrillator/compact/loaded/Initialize(mapload)
 	. = ..()
 	paddles = make_paddles()
 	cell = new(src)
@@ -271,7 +271,7 @@
 	combat = TRUE
 	safety = FALSE
 
-/obj/item/defibrillator/compact/combat/loaded/Initialize()
+/obj/item/defibrillator/compact/combat/loaded/Initialize(mapload)
 	. = ..()
 	paddles = make_paddles()
 	cell = new /obj/item/stock_parts/cell/infinite(src)
@@ -342,7 +342,7 @@
 			visible_message(span_notice("[src] snap back into [defib]."))
 			snap_back()
 
-/obj/item/twohanded/shockpaddles/proc/recharge(var/time)
+/obj/item/twohanded/shockpaddles/proc/recharge(time)
 	if(req_defib || !time)
 		return
 	cooldown = TRUE

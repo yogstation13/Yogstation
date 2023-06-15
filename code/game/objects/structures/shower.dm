@@ -15,7 +15,7 @@
 	var/reagent_id = /datum/reagent/water
 	var/reaction_volume = 200
 
-/obj/machinery/shower/Initialize()
+/obj/machinery/shower/Initialize(mapload)
 	. = ..()
 	create_reagents(reaction_volume)
 	reagents.add_reagent(reagent_id, reaction_volume)

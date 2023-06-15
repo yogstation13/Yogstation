@@ -122,7 +122,7 @@
 	desc = "It's an extra-tall snap-back hat with a picture of a fish, and text that reads: \"Women fear me. Fish fear me. Men turn their eyes away from me as I walk. No beast dares make a sound in my presence. I am alone on this barren Earth.\" This one feels like it's radiating a powerful energy...and smells of salt water?"
 	dog_fashion = /datum/dog_fashion/head/fishfear/legendary
 
-/obj/item/clothing/head/soft/fishfear/legendary/Initialize()
+/obj/item/clothing/head/soft/fishfear/legendary/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,15)
 

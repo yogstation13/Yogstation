@@ -13,7 +13,7 @@
 	var/obj/item/holder = null
 	// You can use this var for item path, it would be converted into an item on New()
 
-/obj/item/organ/cyberimp/arm/Initialize()
+/obj/item/organ/cyberimp/arm/Initialize(mapload)
 	. = ..()
 	if(ispath(holder))
 		holder = new holder(src)
@@ -91,7 +91,7 @@
 /obj/item/organ/cyberimp/arm/proc/on_drop(datum/source, mob/user)
 	Retract()
 
-/obj/item/organ/cyberimp/arm/proc/Extend(var/obj/item/item)
+/obj/item/organ/cyberimp/arm/proc/Extend(obj/item/item)
 	if(!(item in src))
 		return
 
@@ -198,7 +198,7 @@
 /obj/item/organ/cyberimp/arm/toolset/l
 	zone = BODY_ZONE_L_ARM
 
-/obj/item/organ/cyberimp/arm/toolset/Initialize()
+/obj/item/organ/cyberimp/arm/toolset/Initialize(mapload)
 	. = ..()
 	linkedhandler = new
 	linkedhandler.linkedarm = src
@@ -232,7 +232,7 @@
 	owner.transferItemToLoc(linkedhandler, src, TRUE)
 	playsound(get_turf(owner), 'sound/mecha/mechmove03.ogg', 50, 1)
 
-/obj/item/organ/cyberimp/arm/toolset/Extend(var/obj/item/item)
+/obj/item/organ/cyberimp/arm/toolset/Extend(obj/item/item)
 	if(!(item in src))
 		return
 
@@ -372,7 +372,7 @@
 	desc = "An integrated projector mounted onto a user's arm that is able to be used as a powerful flash."
 	contents = newlist(/obj/item/assembly/flash/armimplant)
 
-/obj/item/organ/cyberimp/arm/flash/Initialize()
+/obj/item/organ/cyberimp/arm/flash/Initialize(mapload)
 	. = ..()
 	if(locate(/obj/item/assembly/flash/armimplant) in items_list)
 		var/obj/item/assembly/flash/armimplant/F = locate(/obj/item/assembly/flash/armimplant) in items_list
@@ -388,7 +388,7 @@
 	desc = "A powerful cybernetic implant that contains combat modules built into the user's arm."
 	contents = newlist(/obj/item/melee/transforming/energy/blade/hardlight, /obj/item/gun/medbeam, /obj/item/borg/stun, /obj/item/assembly/flash/armimplant)
 
-/obj/item/organ/cyberimp/arm/combat/Initialize()
+/obj/item/organ/cyberimp/arm/combat/Initialize(mapload)
 	. = ..()
 	if(locate(/obj/item/assembly/flash/armimplant) in items_list)
 		var/obj/item/assembly/flash/armimplant/F = locate(/obj/item/assembly/flash/armimplant) in items_list

@@ -138,7 +138,7 @@
 			R.shatter() // Shield :b:roke
 			qdel(R)
 
-/obj/item/gun/magic/hook/sickly_blade/Initialize()
+/obj/item/gun/magic/hook/sickly_blade/Initialize(mapload)
 	. = ..()
 	linked_action = new(src)
 
