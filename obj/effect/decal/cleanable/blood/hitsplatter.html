@@ -16,7 +16,7 @@
 <h1>blood splatter <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/decal/cleanable.html">effect/decal/cleanable</a>/<a href="obj/effect/decal/cleanable/blood/hitsplatter.html">blood/hitsplatter</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c5cf0e3a67150a96a5a3a58f43691e07dab90992/code/game/objects/effects/decals/cleanable/humans.dm#L224">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8fb37fb67c1f4f81295e5279a76ac246a0b33843/code/game/objects/effects/decals/cleanable/humans.dm#L224">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;cleanable&#x2F;humans.dm 224"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
@@ -31,48 +31,48 @@
             <aside>&ndash; /list</aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c5cf0e3a67150a96a5a3a58f43691e07dab90992/code/game/objects/effects/decals/cleanable/humans.dm#L232">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8fb37fb67c1f4f81295e5279a76ac246a0b33843/code/game/objects/effects/decals/cleanable/humans.dm#L232">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;cleanable&#x2F;humans.dm 232"/></a></h3>
         <p>The cached info about the blood</p><h3 id="var/hit_endpoint"><aside class="declaration">var </aside>hit_endpoint
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c5cf0e3a67150a96a5a3a58f43691e07dab90992/code/game/objects/effects/decals/cleanable/humans.dm#L238">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8fb37fb67c1f4f81295e5279a76ac246a0b33843/code/game/objects/effects/decals/cleanable/humans.dm#L238">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;cleanable&#x2F;humans.dm 238"/></a></h3>
         <p>Insurance so that we don't keep moving once we hit a stoppoint</p><h3 id="var/prev_loc"><aside class="declaration">var </aside>prev_loc
             <aside>&ndash; /<a href="turf.html">turf</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c5cf0e3a67150a96a5a3a58f43691e07dab90992/code/game/objects/effects/decals/cleanable/humans.dm#L230">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8fb37fb67c1f4f81295e5279a76ac246a0b33843/code/game/objects/effects/decals/cleanable/humans.dm#L230">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;cleanable&#x2F;humans.dm 230"/></a></h3>
         <p>The turf we just came from, so we can back up when we hit a wall</p><h3 id="var/skip"><aside class="declaration">var </aside>skip
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c5cf0e3a67150a96a5a3a58f43691e07dab90992/code/game/objects/effects/decals/cleanable/humans.dm#L234">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8fb37fb67c1f4f81295e5279a76ac246a0b33843/code/game/objects/effects/decals/cleanable/humans.dm#L234">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;cleanable&#x2F;humans.dm 234"/></a></h3>
         <p>Skip making the final blood splatter when we're done, like if we're not in a turf</p><h3 id="var/splatter_strength"><aside class="declaration">var </aside>splatter_strength
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c5cf0e3a67150a96a5a3a58f43691e07dab90992/code/game/objects/effects/decals/cleanable/humans.dm#L236">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8fb37fb67c1f4f81295e5279a76ac246a0b33843/code/game/objects/effects/decals/cleanable/humans.dm#L236">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;cleanable&#x2F;humans.dm 236"/></a></h3>
         <p>How many tiles/items/people we can paint red</p><h2 id="proc">Proc Details</h2><h3 id="proc/fly_towards"><aside class="declaration">proc </aside>fly_towards<aside>(/<a href="turf.html">turf</a>/target_turf, range) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c5cf0e3a67150a96a5a3a58f43691e07dab90992/code/game/objects/effects/decals/cleanable/humans.dm#L254">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8fb37fb67c1f4f81295e5279a76ac246a0b33843/code/game/objects/effects/decals/cleanable/humans.dm#L254">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;cleanable&#x2F;humans.dm 254"/></a></aside>
         </h3>
         <p>Set the splatter up to fly through the air until it rounds out of steam or hits something. Contains sleep() pending imminent moveloop rework, don't call without async'ing it</p><h3 id="proc/land_on_window"><aside class="declaration">proc </aside>land_on_window<aside>(/<a href="obj.html">obj</a>/<a href="obj/structure/window.html">structure/window</a>/the_window) 
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/c5cf0e3a67150a96a5a3a58f43691e07dab90992/code/game/objects/effects/decals/cleanable/humans.dm#L309">
+            <a href="https://github.com/yogstation13/Yogstation/blob/8fb37fb67c1f4f81295e5279a76ac246a0b33843/code/game/objects/effects/decals/cleanable/humans.dm#L309">
         <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;cleanable&#x2F;humans.dm 309"/></a></aside>
         </h3>
         <p>A special case for hitsplatters hitting windows, since those can actually be moved around, store it in the window and slap it in the vis_contents</p></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/c5cf0e3a67150a96a5a3a58f43691e07dab90992">c5cf0e3</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/8fb37fb67c1f4f81295e5279a76ac246a0b33843">8fb37fb</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
