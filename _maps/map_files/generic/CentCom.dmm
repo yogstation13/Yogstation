@@ -18819,7 +18819,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -19802,7 +19802,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -20438,7 +20438,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -22642,7 +22642,7 @@
 /area/holodeck/rec_center/chapelcourt)
 "aTW" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /obj/structure/fans/tiny,
@@ -25645,6 +25645,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
+"blc" = (
+/obj/machinery/vending/donksofttoyvendor,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom/testchamber)
+"btc" = (
+/obj/machinery/vending/wardrobe/bar_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom/testchamber)
 "bDC" = (
 /obj/machinery/cryopod{
 	dir = 4
@@ -25918,6 +25926,14 @@
 /turf/open/indestructible/wiki/info{
 	icon_state = "64"
 	},
+/area/centcom/testchamber)
+"kkd" = (
+/obj/machinery/vending/wardrobe/chef_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom/testchamber)
+"kkF" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "kkU" = (
 /turf/open/indestructible/wiki/info{
@@ -26459,7 +26475,7 @@
 /area/centcom/testchamber)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
-	armor = list("melee"=90,"bullet"=90,"laser"=90,"energy"=90,"bomb"=90,"bio"=100,"rad"=100,"fire"=100,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90);
 	name = "Test Chamber Blast Doors"
 	},
 /turf/open/floor/plasteel,
@@ -72485,8 +72501,8 @@ aQE
 aZZ
 aQQ
 aNt
-aaa
-aaa
+btc
+aNt
 aaa
 aaa
 aaa
@@ -72742,8 +72758,8 @@ aXI
 aQB
 aOu
 aNt
-aaa
-aaa
+kkd
+aNt
 aaa
 aaa
 aaa
@@ -72999,8 +73015,8 @@ aZg
 aQE
 aZZ
 aNt
-aaa
-aaa
+blc
+aNt
 aaa
 aaa
 aaa
@@ -73256,8 +73272,8 @@ aNt
 aNt
 aNt
 aNt
-aaa
-aaa
+kkF
+aNt
 aaa
 aaa
 aaa
@@ -73513,8 +73529,8 @@ aXI
 aCQ
 aNx
 aNt
-aaa
-aaa
+aNt
+aNt
 aaa
 aaa
 aaa
