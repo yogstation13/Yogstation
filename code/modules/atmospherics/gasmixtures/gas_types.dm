@@ -237,6 +237,6 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	alpha = alph
 	if(gay)
 		icon_state = "pridesma"
-		animate(src, color = rgb(255, 0, 0), time = 10, loop = -1)
-		animate(color = rgb(0, 255, 0), time = 10, loop = -1)
-		animate(color = rgb(0, 0, 255), time = 10, loop = -1)
+		animate(src, color = rgb(255, 0, 0), time = 5, loop = -1)
+		animate(color = rgb(0, 255, 0), time = 5, loop = -1)
+		animate(color = rgb(0, 0, 255), time = 5, loop = -1)
