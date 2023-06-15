@@ -8,7 +8,7 @@
 	var/zone = BODY_ZONE_CHEST
 	var/slot
 	// DO NOT add slots with matching names to different zones - it will break internal_organs_slot list!
-	var/organ_flags = 0
+	var/organ_flags = ORGAN_EDIBLE
 	var/maxHealth = STANDARD_ORGAN_THRESHOLD
 	///total damage this organ has sustained
 	var/damage = 0
@@ -32,6 +32,15 @@
 
 	///Do we effect the appearance of our mob. Used to save time in preference code
 	var/visual = TRUE
+
+	///When you take a bite you can't jam it in for surgery anymore
+	var/usable = TRUE
+	var/list/food_reagents = list(/datum/reagent/consumable/nutriment = 5)
+
+/obj/item/organ/Initialize()
+	. = ..()
+	if(organ_flags & ORGAN_EDIBLE)
+		AddComponent(/datum/component/edible, food_reagents, null, RAW | MEAT | GROSS, null, 10, null, null, null, CALLBACK(src, PROC_REF(OnEatFrom)))
 
 /obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE,special_zone = null)
 	if(!iscarbon(M) || owner == M)
@@ -156,24 +165,6 @@
 	else if(damage > high_threshold)
 		. += span_warning("[src] is starting to look discolored.")
 
-
-/obj/item/organ/proc/prepare_eat()
-	var/obj/item/reagent_containers/food/snacks/organ/S = new
-	S.name = name
-	S.desc = desc
-	S.icon = icon
-	S.icon_state = icon_state
-	S.w_class = w_class
-
-	return S
-
-/obj/item/reagent_containers/food/snacks/organ
-	name = "appendix"
-	icon_state = "appendix"
-	icon = 'icons/obj/surgery.dmi'
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
-	foodtype = RAW | MEAT | GROSS
-
 /obj/item/organ/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	return ..()
@@ -194,17 +185,8 @@
 		Remove(owner, special=TRUE)
 	return ..()
 
-/obj/item/organ/attack(mob/living/carbon/M, mob/user)
-	if(M == user && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(status == ORGAN_ORGANIC)
-			var/obj/item/reagent_containers/food/snacks/S = prepare_eat(H)
-			if(S)
-				qdel(src)
-				if(H.put_in_active_hand(S))
-					S.attack(H, H)
-	else
-		..()
+/obj/item/organ/proc/OnEatFrom(eater, feeder)
+	usable = FALSE // You can't use it after eating it
 
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.

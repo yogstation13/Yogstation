@@ -12,6 +12,9 @@
 	maxHealth = STANDARD_ORGAN_THRESHOLD
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY // smack in the middle of decay times
+
+	food_reagents = list(/datum/consumable/nutriment = 5, /datum/reagent/iron = 5)
+
 	var/operated = FALSE	//whether we can still have our damages fixed through surgery
 	var/alcohol_tolerance = ALCOHOL_RATE//affects how much damage the liver takes from alcohol
 	var/toxTolerance = LIVER_DEFAULT_TOX_TOLERANCE//maximum amount of toxins the liver can just shrug off
@@ -60,11 +63,6 @@
 #undef HAS_SILENT_TOXIN
 #undef HAS_NO_TOXIN
 #undef HAS_PAINFUL_TOXIN
-
-/obj/item/organ/liver/prepare_eat()
-	var/obj/S = ..()
-	S.reagents.add_reagent(/datum/reagent/iron, 5)
-	return S
 
 /obj/item/organ/liver/get_availability(datum/species/species)
 	return !(NOLIVER in species.species_traits)

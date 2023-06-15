@@ -6,6 +6,7 @@
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_TONGUE
 	attack_verb = list("licked", "slobbered", "slapped", "frenched", "tongued")
+	organ_flags = NONE
 	var/list/languages_possible
 	var/say_mod = null
 	var/taste_sensitivity = 15 // lower is more sensitive.

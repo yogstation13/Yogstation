@@ -564,6 +564,7 @@
 #include "code\datums\components\fantasy\affix.dm"
 #include "code\datums\components\fantasy\prefixes.dm"
 #include "code\datums\components\fantasy\suffixes.dm"
+#include "code\datums\components\food\edible.dm"
 #include "code\datums\components\plumbing\plumbing.dm"
 #include "code\datums\components\storage\storage.dm"
 #include "code\datums\components\storage\concrete\_concrete.dm"

@@ -38,12 +38,6 @@
 	if(inflamed)
 		M.ForceContractDisease(new /datum/disease/appendicitis(), FALSE, TRUE)
 
-/obj/item/organ/appendix/prepare_eat()
-	var/obj/S = ..()
-	if(inflamed)
-		S.reagents.add_reagent(/datum/reagent/toxin/bad_food, 5)
-	return S
-
 /obj/item/organ/appendix/get_availability(datum/species/species)
 	return !(TRAIT_NOHUNGER in species.inherent_traits)
 

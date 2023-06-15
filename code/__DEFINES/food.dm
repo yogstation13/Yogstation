@@ -44,3 +44,10 @@
 #define DRINK_VERYGOOD	3
 #define DRINK_FANTASTIC	4
 #define FOOD_AMAZING 5
+
+/// Food is "in a container", not in a code sense, but in a literal sense (canned foods)
+#define FOOD_IN_CONTAINER (1<<0)
+
+#define STOP_SERVING_BREAKFAST (15 MINUTES)
+
+#define IS_EDIBLE(O) (O.GetComponent(/datum/component/edible))

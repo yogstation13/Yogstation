@@ -124,9 +124,6 @@
 		go_inert()
 	return ..()
 
-/obj/item/organ/regenerative_core/prepare_eat()
-	return null
-
 /*************************Legion core********************/
 /obj/item/organ/regenerative_core/legion
 	desc = "A strange rock that crackles with power. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."

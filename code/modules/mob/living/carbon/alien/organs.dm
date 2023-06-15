@@ -1,12 +1,7 @@
 /obj/item/organ/alien
 	icon_state = "xgibmid2"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/toxin/acid = 10)
 	visual = FALSE
-
-/obj/item/organ/alien/prepare_eat()
-	var/obj/S = ..()
-	S.reagents.add_reagent(/datum/reagent/toxin/acid, 10)
-	return S
-
 
 /obj/item/organ/alien/plasmavessel
 	name = "plasma vessel"
@@ -14,6 +9,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	zone = BODY_ZONE_CHEST
 	slot = "plasmavessel"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/toxin/plasma = 10)
 
 	actions_types = list(
 		/datum/action/cooldown/alien/make_structure/plant_weeds,
@@ -28,11 +24,6 @@
 	var/heal_rate = 5
 	/// The rate this organ regenerates plasma at per second.
 	var/plasma_rate = 10
-
-/obj/item/organ/alien/plasmavessel/prepare_eat()
-	var/obj/S = ..()
-	S.reagents.add_reagent(/datum/reagent/toxin/plasma, stored_plasma/10)
-	return S
 
 /obj/item/organ/alien/plasmavessel/large
 	name = "large plasma vessel"

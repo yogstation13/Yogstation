@@ -70,7 +70,7 @@
 	time = 6.4 SECONDS
 	name = "manipulate organs"
 	repeatable = 1
-	implements = list(/obj/item/organ = 100, /obj/item/reagent_containers/food/snacks/organ = 0, /obj/item/organ_storage = 100)
+	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100)
 	preop_sound = 'sound/surgery/organ2.ogg'
 	success_sound = 'sound/surgery/organ1.ogg'
 	var/implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 55)
@@ -121,6 +121,10 @@
 		if(target_zone != I.zone || target.getorganslot(I.slot))
 			to_chat(user, span_notice("There is no room for [I] in [target]'s [parse_zone(target_zone)]!"))
 			return -1
+		var/obj/item/organ/meatslab = tool
+		if(!meatslab.usable)
+			to_chat(user, span_warning("[I] seems to have been chewed on, you can't use this!"))
+			return -1
 
 		display_results(user, target, span_notice("You begin to insert [tool] into [target]'s [parse_zone(target_zone)]..."),
 			"[user] begins to insert [tool] into [target]'s [parse_zone(target_zone)].",
@@ -151,10 +155,6 @@
 					"[user] begins to extract something from [target]'s [parse_zone(target_zone)].")
 			else
 				return -1
-
-	else if(istype(tool, /obj/item/reagent_containers/food/snacks/organ))
-		to_chat(user, span_warning("[tool] was bitten by someone! It's too damaged to use!"))
-		return -1
 
 /datum/surgery_step/manipulate_organs/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(current_type == "insert")

@@ -16,6 +16,8 @@
 	now_fixed = span_warning("Your lungs seem to once again be able to hold air.")
 	high_threshold_cleared = span_info("The constriction around your chest loosens as your breathing calms down.")
 
+	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/medicine/salbutamol = 5)
+
 	//Breath damage
 
 	var/safe_oxygen_min = 16 // Minimum safe partial pressure of O2, in kPa
@@ -475,11 +477,6 @@
 		safe_co2_min *= 2
 		organ_efficiency = 2 //HOLD YOUR BREATH FOR REALLY LONG
 		maxHealth *= 0.5 //This procedure is not legal but i will do it for you
-
-/obj/item/organ/lungs/prepare_eat()
-	var/obj/S = ..()
-	S.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 5)
-	return S
 
 /obj/item/organ/lungs/get_availability(datum/species/species)
 	return !(TRAIT_NOBREATH in species.inherent_traits)
