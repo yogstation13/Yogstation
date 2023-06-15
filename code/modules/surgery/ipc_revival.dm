@@ -64,7 +64,7 @@
 		span_warning("[user] successfully reactivates [target]!"),\
 		"[user] completes [target]'s reactivation.")
 	to_chat(target, span_danger("ERROR: Due to sudden system shutdown, this units Random Access Memory has been corrupted."))
-	to_chat(target, span_danger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
+	to_chat(target, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
 	log_combat(target, "was revived with memory loss")
 	return TRUE
 	
