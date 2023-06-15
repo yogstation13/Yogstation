@@ -34,20 +34,17 @@
 		bounds = parsed?.bounds
 		z_offset += bounds[MAP_MAXZ] - bounds[MAP_MINZ] + 1
 
-	var/list/obj/machinery/atmospherics/atmos_machines = list()
-	var/list/obj/structure/cable/cables = list()
-	var/list/atom/atoms = list()
-	var/list/area/areas = list()
-
 	require_area_resort()
 
 	var/list/generation_turfs = block(
 		locate(bounds[MAP_MINX], bounds[MAP_MINY], SSmapping.station_start),
 		locate(bounds[MAP_MAXX], bounds[MAP_MAXY], z_offset - 1))
-	for(var/turf/gen_turf as anything in generation_turfs)
-		var/area/current_turfs_area = current_turf.loc
-		areas |= current_turfs_area
+	
+	var/list/obj/machinery/atmospherics/atmos_machines = list()
+	var/list/obj/structure/cable/cables = list()
+	var/list/atom/atoms = list()
 
+	for(var/turf/gen_turf as anything in generation_turfs)
 		for(var/movable_in_turf in current_turf)
 			atoms += movable_in_turf
 			if(istype(movable_in_turf, /obj/structure/cable))
@@ -55,7 +52,7 @@
 			if(istype(atom, /obj/machinery/atmospherics))
 				atmos_machines += atom
 
-	SSatoms.InitializeAtoms(areas + turfs + atoms)
+	SSatoms.InitializeAtoms(atoms)
 	SSmachines.setup_template_powernets(cables)
 	SSair.setup_template_machinery(atmos_machines)
 
