@@ -45,12 +45,12 @@
 	var/list/atom/atoms = list()
 
 	for(var/turf/gen_turf as anything in generation_turfs)
-		for(var/movable_in_turf in current_turf)
+		for(var/movable_in_turf in gen_turf)
 			atoms += movable_in_turf
 			if(istype(movable_in_turf, /obj/structure/cable))
 				cables += movable_in_turf
 			if(istype(atom, /obj/machinery/atmospherics))
-				atmos_machines += atom
+				atmos_machines += movable_in_turf
 
 	SSatoms.InitializeAtoms(atoms)
 	SSmachines.setup_template_powernets(cables)
