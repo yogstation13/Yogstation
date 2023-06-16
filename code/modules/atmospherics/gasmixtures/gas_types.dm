@@ -10,10 +10,12 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 		gas_info[META_GAS_SPECIFIC_HEAT] = initial(gas.specific_heat)
 		gas_info[META_GAS_NAME] = initial(gas.name)
 		gas_info[META_GAS_MOLES_VISIBLE] = initial(gas.moles_visible)
+
 		if(initial(gas.moles_visible) != null)
 			gas_info[META_GAS_OVERLAY] = new /list(FACTOR_GAS_VISIBLE_MAX)
 			for(var/i in 1 to FACTOR_GAS_VISIBLE_MAX)
 				gas_info[META_GAS_OVERLAY][i] = new /obj/effect/overlay/gas(initial(gas.gas_overlay), i * 255 / FACTOR_GAS_VISIBLE_MAX)
+	
 		gas_info[META_GAS_FUSION_POWER] = initial(gas.fusion_power)
 		gas_info[META_GAS_DANGER] = initial(gas.dangerous)
 		gas_info[META_GAS_ID] = initial(gas.id)
