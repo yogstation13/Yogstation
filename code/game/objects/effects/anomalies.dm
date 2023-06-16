@@ -140,7 +140,7 @@
 /obj/effect/anomaly/flux
 	name = "flux wave anomaly"
 	icon_state = "electricity2"
-	density = TRUE
+	density = FALSE // so it doesn't awkwardly block movement if you're protected from it
 	var/canshock = 0
 	var/shockdamage = 20
 	var/explosive = TRUE
@@ -165,9 +165,6 @@
 	if(canshock && istype(M))
 		canshock = 0 //Just so you don't instakill yourself if you slam into the anomaly five times in a second.
 		if(iscarbon(M))
-			if(ishuman(M))
-				M.electrocute_act(shockdamage, "[name]", safety=1)
-				return
 			M.electrocute_act(shockdamage, "[name]")
 			return
 		else
