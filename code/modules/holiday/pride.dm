@@ -1,5 +1,5 @@
 /datum/holiday/pride
-	name = "Pride week"
+	name = "Pride Week"
 	begin_month = JUNE
 	begin_day = 15
 	end_day = 22 //pride week :(
