@@ -101,7 +101,7 @@ There are several things that need to be remembered:
 	remove_overlay(UNIFORM_LAYER)
 
 	if(client && hud_used)
-		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_W_UNIFORM]
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_ICLOTHING) + 1]
 		inv.update_appearance(updates = ALL)
 
 	if(istype(w_uniform, /obj/item/clothing/under))

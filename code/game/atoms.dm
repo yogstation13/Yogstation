@@ -549,8 +549,6 @@
 	if(!LAZYLEN(.)) // lol ..length
 		return FALSE
 
-/atom/proc/update_icon()
-	return
 /**
  * Updates the appearence of the icon
  *
