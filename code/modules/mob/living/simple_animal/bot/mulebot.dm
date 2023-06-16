@@ -52,7 +52,7 @@
 	///The amount of steps we should take until we rest for a time.
 	var/num_steps = 0
 	
-/mob/living/simple_animal/bot/mulebot/Initialize()
+/mob/living/simple_animal/bot/mulebot/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/mulebot(src)
 	var/datum/job/cargo_tech/J = new/datum/job/cargo_tech

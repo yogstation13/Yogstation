@@ -43,7 +43,7 @@
 	/// Calibration of the probe
 	var/calibration = 1
 
-/obj/machinery/computer/auxiliary_base/Initialize()
+/obj/machinery/computer/auxiliary_base/Initialize(mapload)
 	. = ..()
 	radio = new /obj/item/radio(src)
 	radio.frequency = radio_freq

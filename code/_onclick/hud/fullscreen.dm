@@ -180,7 +180,7 @@
 	color = "#000000"
 	show_when_dead = TRUE
 
-/atom/movable/screen/fullscreen/cinematic_backdrop/Initialize()
+/atom/movable/screen/fullscreen/cinematic_backdrop/Initialize(mapload)
 	. = ..()
 	layer = SPLASHSCREEN_LAYER - 1
 

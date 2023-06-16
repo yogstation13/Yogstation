@@ -38,7 +38,7 @@
 
 	))
 
-/obj/item/storage/belt/tool_switcher/Initialize()
+/obj/item/storage/belt/tool_switcher/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	var/static/list/can_hold = typecacheof(list(

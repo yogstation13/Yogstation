@@ -18,7 +18,7 @@
 	var/heat_stage = 0
 	var/heat_diffusion = 2
 
-/obj/item/minigunbackpack/Initialize()
+/obj/item/minigunbackpack/Initialize(mapload)
 	. = ..()
 	gun = new(src)
 	START_PROCESSING(SSobj, src)
@@ -33,7 +33,7 @@
 		heat_stage = 0
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/minigunbackpack/attack_hand(var/mob/living/carbon/user)
+/obj/item/minigunbackpack/attack_hand(mob/living/carbon/user)
 	if(loc == user)
 		if(!armed)
 			if(user.get_item_by_slot(ITEM_SLOT_BACK) == src)
@@ -87,7 +87,7 @@
 	else
 		icon_state = "holstered"
 
-/obj/item/minigunbackpack/proc/attach_gun(var/mob/user)
+/obj/item/minigunbackpack/proc/attach_gun(mob/user)
 	if(!gun)
 		gun = new(src)
 	gun.forceMove(src)
@@ -129,7 +129,7 @@
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
 	var/obj/item/minigunbackpack/ammo_pack
 
-/obj/item/gun/ballistic/minigunosprey/Initialize()
+/obj/item/gun/ballistic/minigunosprey/Initialize(mapload)
 	if(istype(loc, /obj/item/minigunbackpack)) //We should spawn inside an ammo pack so let's use that one.
 		ammo_pack = loc
 		START_PROCESSING(SSfastprocess, src)

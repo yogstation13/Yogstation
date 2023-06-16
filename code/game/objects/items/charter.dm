@@ -17,7 +17,7 @@
 	var/static/regex/standard_station_regex
 	var/datum/callback/rename_callback // Yogs -- We actually keep track of this in order to be able to manually call this callback if an admin choses to do so.
 
-/obj/item/station_charter/Initialize()
+/obj/item/station_charter/Initialize(mapload)
 	. = ..()
 	if(!standard_station_regex)
 		var/prefixes = jointext(GLOB.station_prefixes, "|")

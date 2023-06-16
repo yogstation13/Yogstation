@@ -9,7 +9,7 @@
 	resistance_flags = FLAMMABLE
 	var/title = "book"
 
-/obj/item/storage/book/Initialize()
+/obj/item/storage/book/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1
@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	slot_flags = ITEM_SLOT_BELT
 	var/success_heal_chance = 60
 
-/obj/item/storage/book/bible/Initialize()
+/obj/item/storage/book/bible/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, FALSE, TRUE)
 

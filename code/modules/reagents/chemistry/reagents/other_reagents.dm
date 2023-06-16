@@ -182,12 +182,12 @@
  *	Water reaction to a mob
  */
 
-/datum/reagent/water/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with water can help put them out!
+/datum/reagent/water/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)//Splashing people with water can help put them out!
 	if(!istype(M))
 		return
 	if(method == TOUCH)
-		M.adjust_fire_stacks(-(reac_volume / 10))
-		M.extinguish_mob()
+		M.adjust_fire_stacks(-(reac_volume / 10) * M.get_permeability(null, TRUE))
+		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 	..()
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)

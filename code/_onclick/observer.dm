@@ -22,7 +22,7 @@
 		forceMove(get_turf(A))
 		update_parallax_contents()
 
-/mob/dead/observer/ClickOn(var/atom/A, var/params)
+/mob/dead/observer/ClickOn(atom/A, params)
 	if(check_click_intercept(params,A))
 		return
 

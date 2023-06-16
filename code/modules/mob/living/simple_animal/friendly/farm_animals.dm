@@ -33,7 +33,7 @@
 
 	do_footstep = TRUE
 
-/mob/living/simple_animal/hostile/retaliate/goat/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/Initialize(mapload)
 	udder = new()
 	. = ..()
 
@@ -42,7 +42,7 @@
 	udder = null
 	return ..()
 
-/mob/living/simple_animal/hostile/retaliate/goat/Life()
+/mob/living/simple_animal/hostile/retaliate/goat/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(. && sentience_type != SENTIENCE_BOSS)
 		//chance to go crazy and start wacking stuff
@@ -143,7 +143,7 @@
 
 	do_footstep = TRUE
 
-/mob/living/simple_animal/cow/Initialize()
+/mob/living/simple_animal/cow/Initialize(mapload)
 	udder = new()
 	. = ..()
 
@@ -159,7 +159,7 @@
 	else
 		return ..()
 
-/mob/living/simple_animal/cow/Life()
+/mob/living/simple_animal/cow/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(stat == CONSCIOUS)
 		udder.generateMilk()
@@ -225,12 +225,12 @@
 
 	do_footstep = TRUE
 
-/mob/living/simple_animal/chick/Initialize()
+/mob/living/simple_animal/chick/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
 
-/mob/living/simple_animal/chick/Life()
+/mob/living/simple_animal/chick/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. =..()
 	if(!.)
 		return
@@ -240,7 +240,7 @@
 			new /mob/living/simple_animal/chicken(src.loc)
 			qdel(src)
 
-/mob/living/simple_animal/chick/holo/Life()
+/mob/living/simple_animal/chick/holo/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	amount_grown = 0
 
@@ -284,7 +284,7 @@
 
 	do_footstep = TRUE
 
-/mob/living/simple_animal/chicken/Initialize()
+/mob/living/simple_animal/chicken/Initialize(mapload)
 	. = ..()
 	if(!body_color)
 		body_color = pick(validColors)
@@ -311,7 +311,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/chicken/Life()
+/mob/living/simple_animal/chicken/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. =..()
 	if(!.)
 		return
@@ -368,7 +368,7 @@
 
 	do_footstep = TRUE
 
-/mob/living/simple_animal/sheep/Initialize()
+/mob/living/simple_animal/sheep/Initialize(mapload)
 	udder = new()
 	. = ..()
 
@@ -383,7 +383,7 @@
 	else
 		return ..()
 
-/mob/living/simple_animal/sheep/Life()
+/mob/living/simple_animal/sheep/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(stat == CONSCIOUS)
 		udder.generateMilk()
@@ -436,7 +436,7 @@
 	name = "goat udder"
 	milktype = /datum/reagent/consumable/milk/goat
 
-/obj/item/udder/Initialize()
+/obj/item/udder/Initialize(mapload)
 	create_reagents(50)
 	reagents.add_reagent(milktype, 20)
 	. = ..()

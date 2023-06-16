@@ -11,7 +11,7 @@
 	var/operating = FALSE //Is it on?
 	var/gibtime = 40 // Time from starting until done
 
-/obj/machinery/power/validhunter_engine/Initialize()
+/obj/machinery/power/validhunter_engine/Initialize(mapload)
 	connect_to_network()
 	return ..()
 

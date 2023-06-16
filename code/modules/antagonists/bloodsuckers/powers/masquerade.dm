@@ -59,49 +59,27 @@
 						theqdeld += shoesdrip
 				QDEL_LIST(theqdeld)
 	// Remove Bloodsucker traits
-	REMOVE_TRAIT(user, TRAIT_NOHARDCRIT, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_VIRUSIMMUNE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_RADIMMUNE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_TOXIMMUNE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_COLDBLOODED, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_RESISTCOLD, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_NOPULSE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_NOBREATH, BLOODSUCKER_TRAIT)
+	user.remove_traits(bloodsuckerdatum_power.bloodsucker_traits, BLOODSUCKER_TRAIT)
 	// Falsifies Health & Genetic Analyzers
 	ADD_TRAIT(user, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(user, TRAIT_GENELESS, BLOODSUCKER_TRAIT)
 	// Organs
 	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
 	eyes.flash_protect = initial(eyes.flash_protect)
-	var/obj/item/organ/heart/vampheart/vampheart = user.getorganslot(ORGAN_SLOT_HEART)
-	if(istype(vampheart))
-		vampheart.fake_start_heart()
+	var/obj/item/organ/heart/vampheart = user.getorganslot(ORGAN_SLOT_HEART)
+	vampheart.beating = TRUE
 	user.apply_status_effect(STATUS_EFFECT_MASQUERADE)
 
 /datum/action/cooldown/bloodsucker/masquerade/DeactivatePower()
 	. = ..() // activate = FALSE
 	var/mob/living/carbon/user = owner
 	user.remove_status_effect(STATUS_EFFECT_MASQUERADE)
-	ADD_TRAIT(user, TRAIT_NOHARDCRIT, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_VIRUSIMMUNE, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_RADIMMUNE, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_TOXIMMUNE, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_COLDBLOODED, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_RESISTCOLD, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_NOPULSE, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(user, TRAIT_NOBREATH, BLOODSUCKER_TRAIT)
+	user.add_traits(bloodsuckerdatum_power.bloodsucker_traits, BLOODSUCKER_TRAIT)
 	REMOVE_TRAIT(user, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT)
 	// Remove genes, then make unable to get new ones.
 	user.dna.remove_all_mutations()
-	ADD_TRAIT(user, TRAIT_GENELESS, BLOODSUCKER_TRAIT)
 	// Organs
-	var/obj/item/organ/heart/vampheart/vampheart = user.getorganslot(ORGAN_SLOT_HEART)
-	if(istype(vampheart))
-		vampheart.Stop()
+	var/obj/item/organ/heart/vampheart = user.getorganslot(ORGAN_SLOT_HEART)
+	vampheart.beating = FALSE
 	var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.flash_protect = max(initial(eyes.flash_protect) - 1, - 1)

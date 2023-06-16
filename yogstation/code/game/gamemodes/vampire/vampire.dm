@@ -8,12 +8,6 @@
 		. += "Total Blood: [vamp.total_blood]"
 		. += "Usable Blood: [vamp.usable_blood]"
 
-/mob/living/carbon/human/Life()
-	. = ..()
-	if(is_vampire(src))
-		var/datum/antagonist/vampire/vamp = mind.has_antag_datum(/datum/antagonist/vampire)
-		vamp.vampire_life()
-
 /datum/game_mode/vampire
 	name = "vampire"
 	config_tag = "vampire"

@@ -7,7 +7,7 @@
 	icon_state = "pressure_sensor"
 	alpha = 50
 
-/obj/structure/destructible/clockwork/trap/trigger/Initialize()
+/obj/structure/destructible/clockwork/trap/trigger/Initialize(mapload)
 	. = ..()
 	for(var/obj/structure/destructible/clockwork/trap/T in get_turf(src))
 		if(!istype(T, /obj/structure/destructible/clockwork/trap/trigger))

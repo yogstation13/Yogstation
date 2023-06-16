@@ -12,7 +12,7 @@
 	visor_vars_to_toggle = NONE //we don't actually toggle anything we just set it
 	tint = 3 //this'll get reset, but it won't handle vision updates properly otherwise
 
-/obj/item/clothing/glasses/wraith_spectacles/Initialize()
+/obj/item/clothing/glasses/wraith_spectacles/Initialize(mapload)
 	. = ..()
 	GLOB.all_clockwork_objects += src
 

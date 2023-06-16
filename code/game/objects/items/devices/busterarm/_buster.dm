@@ -38,7 +38,7 @@
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 
-/obj/item/buster/Initialize(mob/living/user)
+/obj/item/buster/Initialize(mapload, mob/living/user)
 	. = ..()
 	ADD_TRAIT(src, HAND_REPLACEMENT_TRAIT, NOBLUDGEON)
 

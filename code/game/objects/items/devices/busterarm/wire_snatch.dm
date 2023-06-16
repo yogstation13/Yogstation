@@ -78,7 +78,7 @@
 	force = 0
 	can_charge = FALSE
 
-/obj/item/gun/magic/wire/Initialize()
+/obj/item/gun/magic/wire/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, HAND_REPLACEMENT_TRAIT, NOBLUDGEON)
 	if(ismob(loc))

@@ -289,7 +289,7 @@
 	if(malf)
 		killer.add_malf_picker()
 
-/datum/antagonist/traitor/proc/equip(var/silent = FALSE)
+/datum/antagonist/traitor/proc/equip(silent = FALSE)
 	if(traitor_kind == TRAITOR_HUMAN)
 		uplink_holder = owner.equip_traitor(employer, silent, src) //yogs - uplink_holder =
 
