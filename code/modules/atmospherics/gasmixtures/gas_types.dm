@@ -9,8 +9,8 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 
 		gas_info[META_GAS_SPECIFIC_HEAT] = initial(gas.specific_heat)
 		gas_info[META_GAS_NAME] = initial(gas.name)
-		gas_info[META_GAS_MOLES_VISIBLE] = initial(gas.moles_visible)
 
+		gas_info[META_GAS_MOLES_VISIBLE] = initial(gas.moles_visible)
 		if(initial(gas.moles_visible) != null)
 			gas_info[META_GAS_OVERLAY] = new /list(FACTOR_GAS_VISIBLE_MAX)
 			for(var/i in 1 to FACTOR_GAS_VISIBLE_MAX)
@@ -45,7 +45,6 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	var/name = ""
 	/// icon_state in icons/effects/atmospherics.dmi
 	var/gas_overlay = ""
-	var/pride = FALSE
 	var/moles_visible = null
 	/// Currently used by canisters
 	var/dangerous = FALSE
