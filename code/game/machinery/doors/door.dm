@@ -293,7 +293,7 @@
 /obj/machinery/door/proc/unelectrify()
 	secondsElectrified = MACHINE_NOT_ELECTRIFIED
 
-/obj/machinery/door/update_icon_state(updates = ALL)
+/obj/machinery/door/update_icon_state()
 	icon_state = "[base_icon_state][density]"
 	return ..()
 

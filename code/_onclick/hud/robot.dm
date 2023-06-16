@@ -281,13 +281,11 @@
 	if(.)
 		return
 	robot?.toggle_headlamp()
-	update_appearance(updates = ALL)
+	update_appearance(UPDATE_ICON)
 
-/atom/movable/screen/robot/lamp/update_appearance(updates = ALL)
-	if(robot?.lamp_enabled)
-		icon_state = "lamp_on"
-	else
-		icon_state = "lamp_off"
+/atom/movable/screen/robot/lamp/update_icon_state()
+	icon_state = robot?.lamp_enabled ? "lamp_on" : "lamp_off"
+	return ..()
 
 /atom/movable/screen/robot/modPC
 	name = "Modular Interface"

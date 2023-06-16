@@ -27,11 +27,12 @@
 	update_appearance(updates = ALL)
 	return 1
 
-/atom/movable/screen/buildmode/mode/update_appearance(updates = ALL)
-	if(bd && bd.mode)
+/atom/movable/screen/buildmode/mode/update_icon_state()
+	if(bd?.mode)
 		icon_state = bd.mode.get_button_iconstate()
 	else
 		icon_state = initial(icon_state)
+	return ..()
 
 /atom/movable/screen/buildmode/help
 	icon_state = "buildhelp"
@@ -47,9 +48,9 @@
 	screen_loc = "NORTH,WEST+2"
 	name = "Change Dir"
 
-/atom/movable/screen/buildmode/bdir/update_appearance(updates = ALL)
+/atom/movable/screen/buildmode/bdir/update_icon_state()
 	dir = bd.build_dir
-	return
+	return ..()
 
 /atom/movable/screen/buildmode/bdir/Click()
 	bd.toggle_dirswitch()
