@@ -93,9 +93,9 @@
 	if(hardness <= 0)
 		gets_drilled(user,triggered_by_explosion)
 	else
-		update_icon()
+		update_appearance(updates = ALL)
 
-/turf/closed/mineral/proc/update_icon()
+/turf/closed/mineral/update_appearance(updates = ALL)
 	if(hardness != initial(hardness))
 		var/mutable_appearance/cracks = mutable_appearance('icons/turf/mining.dmi',"rock_cracks",ON_EDGED_TURF_LAYER)
 		var/matrix/M = new

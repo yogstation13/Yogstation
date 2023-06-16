@@ -3,6 +3,7 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
+	base_icon_state = "door"
 	opacity = 1
 	density = TRUE
 	move_resist = MOVE_FORCE_VERY_STRONG
@@ -292,11 +293,9 @@
 /obj/machinery/door/proc/unelectrify()
 	secondsElectrified = MACHINE_NOT_ELECTRIFIED
 
-/obj/machinery/door/update_icon()
-	if(density)
-		icon_state = "door1"
-	else
-		icon_state = "door0"
+/obj/machinery/door/update_icon_state(updates = ALL)
+	icon_state = "[base_icon_state][density]"
+	return ..()
 
 /obj/machinery/door/proc/do_animate(animation)
 	switch(animation)
@@ -327,7 +326,7 @@
 	density = FALSE
 	sleep(0.5 SECONDS)
 	layer = initial(layer)
-	update_icon()
+	update_appearance(updates = ALL)
 	set_opacity(0)
 	operating = FALSE
 	air_update_turf(1)
@@ -358,7 +357,7 @@
 	sleep(0.5 SECONDS)
 	density = TRUE
 	sleep(0.5 SECONDS)
-	update_icon()
+	update_appearance(updates = ALL)
 	if(visible && !glass)
 		set_opacity(1)
 	operating = FALSE

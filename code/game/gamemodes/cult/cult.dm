@@ -192,7 +192,7 @@
 			return //We're done here
 		else
 			B.current_fullness++
-		B.update_icon()
+		B.update_appearance(updates = ALL)
 	addtimer(CALLBACK(src, PROC_REF(increase_bloodstone_power)), 30 SECONDS)
 
 /datum/game_mode/proc/create_anchor_bloodstone()

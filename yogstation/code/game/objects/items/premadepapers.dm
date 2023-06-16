@@ -24,7 +24,7 @@
 	written += new/datum/langtext("<br><br><b>Reason: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br><b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 
 /**
@@ -57,7 +57,7 @@
 	written += new/datum/langtext("<br><hr><b>Administrator Notes: </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><hr><b>Stamp Below if Accepted:</b>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   *
@@ -106,7 +106,7 @@
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<b>Signed: </b>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   *
@@ -173,7 +173,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br>",/datum/language/common)
 	written += new/datum/langtext("<b>Reporting Officer's Signature</b>:",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   *
@@ -207,7 +207,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 
 /**
@@ -243,7 +243,7 @@
 	written += new/datum/langtext("<b>Signed, </b><u>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("</u><hr><b>Roboticist Notes:</b>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   *
@@ -274,7 +274,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   *
@@ -312,7 +312,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br>",/datum/language/common)
 	written += new/datum/langtext("<b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   *
@@ -340,7 +340,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br><br>",/datum/language/common)
 	written += new/datum/langtext("<b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 //RD upgrade form not included because from personal experience if you don't upgrade stuff you will be lynched
 
@@ -372,7 +372,7 @@
 	written += new/datum/langtext("<br><br><b>Signed, </b>",/datum/language/common)
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<br><br><br><b>Stamp Below if Approved</b>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   *
@@ -403,7 +403,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("</u><br><b>Stamp:</b>",/datum/language/common)
 	written += new/datum/langtext("",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   *
@@ -476,7 +476,7 @@
 	written += "<span class=\"paper_field\"></span>"
 	written += new/datum/langtext("<b>, hereby acknowledge that I have answered this test's questions to the best of my ability, and acknowledge that if I fail this test, a penalty to be determined may be applied to me.</b><hr>",/datum/language/common)
 	written += new/datum/langtext("<b>Test Administrator:</b> ",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   *
@@ -501,7 +501,7 @@
 	written += new/datum/langtext("<b>4. Who is the CEO of Nanotrasen? Answer below.</b> <u>Theo Deimi</u><br>",/datum/language/common)
 	written += new/datum/langtext("<b>5. From the following letters, Z V B D M K T P H S Y C, which 2, in order, come last in the alphabet?</b> <u>YZ</u><hr>",/datum/language/common)
 	written += new/datum/langtext("<center><b><font color=\"red\">TOP SECRET - Command Eyes Only</font></b></center>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 // How to perform autopsy
 
@@ -514,7 +514,7 @@
 	written += new/datum/langtext("Step 1: Apply drapes to the chest and select Autopsy.<br>",/datum/language/common)
 	written += new/datum/langtext("Step 2: Incise the chest with a scalpel.<br>",/datum/language/common)
 	written += new/datum/langtext("Step 3: While holding a forensic scanner in your off-hand, perform the autopsy using the scalpel again.<br>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 //academy ruin papers
 
@@ -551,7 +551,7 @@
 	written += new/datum/langtext("<b>To: Recruiter Billy the Lame</b><hr>",/datum/language/common)
 	written += new/datum/langtext("Bill, where the heck did you find this guy? Are you sure he's wizard material..? He st--te-s a-lot. He's a -tink-ng l-zard--<br>",/datum/language/common)
 	written += new/datum/langtext("<i><b>The rest of the paper is charred...</i></b>",/datum/language/common)
-	update_icon()
+	update_appearance(updates = ALL)
 
 
 
@@ -606,7 +606,7 @@
 	new /obj/item/paper/paperwork/incident_report(src)
 	new /obj/item/paper/paperwork/literacytest(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   * Initializes the Head of Security's clipboard.
@@ -633,7 +633,7 @@
 	for (var/i in 1 to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   * Initializes the Captain's clipboard.
@@ -658,7 +658,7 @@
 	new /obj/item/paper/paperwork/literacytest(src)
 	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   * Initializes the Head of Personnels clipboard.
@@ -685,7 +685,7 @@
 	new /obj/item/paper/paperwork/literacytest(src)
 	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   * Initializes the Warden's clipboard.
@@ -709,7 +709,7 @@
 	for (var/i in 1 to 10)
 		new /obj/item/paper/paperwork/sec_incident_report(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   * Initializes the Chief Engineer's clipboard.
@@ -732,7 +732,7 @@
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   * Initializes the Chief Medical Officer's clipboard.
@@ -755,7 +755,7 @@
 	new /obj/item/paper/paperwork/hopaccessrequestform(src)
 	new /obj/item/paper/paperwork/incident_report(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   * Initializes security officer clipboards.
@@ -771,7 +771,7 @@
 	for (var/i in 1 to 10)
 		new /obj/item/paper/paperwork/incident_report(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
   * Initializes the admin variant clipboard.
@@ -808,5 +808,5 @@
 	new /obj/item/paper/paperwork/literacytest(src)
 	new /obj/item/paper/paperwork/literacytest/answers(src)
 	toppaper = contents[contents.len]
-	update_icon()
+	update_appearance(updates = ALL)
 //turdis bad

@@ -18,9 +18,9 @@
 
 /obj/machinery/ticket_machine/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/machinery/ticket_machine/update_icon()
+/obj/machinery/ticket_machine/update_appearance(updates = ALL)
 	var/Temp = screenNum //This whole thing breaks down a 3 digit number into 3 seperate digits, aka "69" becomes "0","6" and "9"
 	var/Digit1 = round(Temp%10)//The remainder of any number/10 is always that number's rightmost digit
 	var/Digit2 = round(((Temp-Digit1)*0.1)%10) //Same idea, but divided by ten, to find the middle digit
@@ -50,7 +50,7 @@
 	if(currentNum < screenNum - 1)
 		screenNum -- //this should only happen if the queue is all caught up and more numbers get called than tickets exist
 		currentNum = screenNum - 1 //so the number wont go onto infinity. Numbers that haven't been taken yet won't show up on the screen yet either.
-	update_icon() //Update our icon here
+	update_appearance(updates = ALL) //Update our icon here
 	if(tickets.len<screenNum)
 		tickets.len = screenNum //this helps prevents runtimes that happen due to mapping stuff. Just an extra safety
 
@@ -66,7 +66,7 @@
 	s.set_up(12, 1, src)
 	s.start()
 	screenNum = rand(0,ticketNumMax)
-	update_icon()
+	update_appearance(updates = ALL)
 	obj_flags |= EMAGGED
 
 /obj/machinery/ticket_machine/attack_hand(mob/living/carbon/user)
@@ -82,7 +82,7 @@
 	theirticket.name = "Ticket #[currentNum]"
 	theirticket.source = src
 	theirticket.ticket_number = currentNum
-	theirticket.update_icon()
+	theirticket.update_appearance(updates = ALL)
 	user.put_in_hands(theirticket)
 	if(tickets.len<currentNum)
 		tickets.len = currentNum //this grows the size of the list as needed.
@@ -100,7 +100,7 @@
 
 	if(default_deconstruction_screwdriver(user, "ticketmachine_panel", "ticketmachine", O))
 		updateUsrDialog()
-		update_icon()
+		update_appearance(updates = ALL)
 		return TRUE
 
 	if(default_deconstruction_crowbar(O) || stat)
@@ -144,7 +144,7 @@
 	var/obj/machinery/ticket_machine/source
 	var/ticket_number
 
-/obj/item/ticket_machine_ticket/update_icon()
+/obj/item/ticket_machine_ticket/update_appearance(updates = ALL)
 	var/Temp = ticket_number //this stuff is a repeat from the other update_icon, but with new image files and the like
 	var/Digit1 = round(Temp%10)
 	var/Digit2 = round(((Temp-Digit1)*0.1)%10)
@@ -175,7 +175,7 @@
 
 /obj/item/ticket_machine_ticket/extinguish()
 	..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 //Remote that operates it
 /obj/item/ticket_machine_remote

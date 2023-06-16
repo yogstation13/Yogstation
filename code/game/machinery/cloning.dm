@@ -215,13 +215,13 @@ GLOBAL_VAR_INIT(clones, 0)
 			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
-			update_icon()
+			update_appearance(updates = ALL)
 			return NONE
 		if(clonemind.zombified) //Can't clone the damned x2
 			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
-			update_icon()
+			update_appearance(updates = ALL)
 			return NONE
 		current_insurance = insurance
 	attempting = TRUE //One at a time!!

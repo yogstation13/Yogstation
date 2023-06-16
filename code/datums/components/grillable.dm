@@ -46,7 +46,7 @@
 	AddGrilledItemOverlay(parent)
 
 	//var/atom/A = parent
-	//A.update_icon()
+	//A.update_appearance(updates = ALL)
 
 ///Ran when an object finished grilling
 /datum/component/grillable/proc/FinishGrilling(atom/grill_source)
@@ -82,7 +82,7 @@
 	O.cut_overlays()
 	//UnregisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS)
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
-	//A.update_icon()
+	//A.update_appearance(updates = ALL)
 
 /datum/component/grillable/proc/AddGrilledItemOverlay(obj/source)
 

@@ -190,7 +190,7 @@
 
 			if(active)
 				icon_state = "swordrainbow"
-				user.update_inv_hands()
+				user.update_held_items()
 		else
 			to_chat(user, span_warning("It's already fabulous!"))
 	else

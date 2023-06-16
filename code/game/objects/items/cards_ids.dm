@@ -37,16 +37,16 @@
 	var/detail_color = COLOR_ASSEMBLY_ORANGE
 
 /obj/item/card/data/Initialize()
-	.=..()
-	update_icon()
+	. = ..()
+	update_appearance(updates = ALL)
 
-/obj/item/card/data/update_icon()
-	cut_overlays()
+/obj/item/card/data/update_overlays()
+	. = ..()
 	if(detail_color == COLOR_FLOORTILE_GRAY)
 		return
 	var/mutable_appearance/detail_overlay = mutable_appearance('icons/obj/card.dmi', "[icon_state]-color")
 	detail_overlay.color = detail_color
-	add_overlay(detail_overlay)
+	. += detail_overlay
 
 /obj/item/card/data/full_color
 	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one has the entire card colored."
@@ -597,7 +597,11 @@ update_label("John Doe", "Clowny")
 	addtimer(CALLBACK(src, PROC_REF(wipe_id)), 50 SECONDS)
 
 /obj/item/card/id/captains_spare/temporary/proc/wipe_id()
-	visible_message(span_danger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"))
+	visible_message(
+		span_danger("The temporary spare begins to smolder!"), \
+		span_userdanger("The temporary spare begins to smolder!"), \
+		span_userdanger("You smell something burning really badly!")
+		)
 	sleep(10 SECONDS)
 	if(isliving(loc))
 		var/mob/living/M = loc
@@ -610,7 +614,7 @@ update_label("John Doe", "Clowny")
 		if(holder.obj_integrity > holder.integrity_failure) //we dont want to heal it by accident
 			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN) //we do a bit of trolling for being naughty
 		else
-			holder.update_icon() //update the icon anyway so it pops out
+			holder.update_appearance(updates = ALL) //update the icon anyway so it pops out
 		visible_message(span_danger("The heat of the temporary spare shatters the glass!"));
 	fire_act()
 	sleep(2 SECONDS)
@@ -618,7 +622,7 @@ update_label("John Doe", "Clowny")
 		var/obj/structure/fireaxecabinet/bridge/spare/holder = loc
 		forceMove(holder.loc)
 		holder.spareid = null
-		holder.update_icon()
+		holder.update_appearance(updates = ALL)
 	burn()
 
 //yogs: redd ports holopay but as paystands

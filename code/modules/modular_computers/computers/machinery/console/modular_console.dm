@@ -42,9 +42,9 @@
 		network_card.identification_string = "Unknown Console"
 	if(cpu)
 		cpu.screen_on = 1
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/machinery/modular_computer/console/update_icon()
+/obj/machinery/modular_computer/console/update_appearance(updates = ALL)
 	. = ..()
 
 	// this bit of code makes the computer hug the wall its next to

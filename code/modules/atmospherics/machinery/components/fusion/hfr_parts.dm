@@ -52,8 +52,7 @@
 	if(tool.use_tool(src, user, 10 SECONDS, volume=30, amount=5))
 		balloon_alert(user, "repaired")
 		cracked = FALSE
-		update_icon()
-		update_overlays()
+		update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/default_change_direction_wrench(mob/user, obj/item/I)
 	. = ..()
@@ -72,7 +71,7 @@
 			node.addMember(src)
 		SSair.add_to_rebuild_queue(src)
 
-/obj/machinery/atmospherics/components/unary/hypertorus/update_icon()
+/obj/machinery/atmospherics/components/unary/hypertorus/update_appearance(updates = ALL)
 	. = ..()
 	if(panel_open)
 		icon_state = icon_state_open
@@ -81,7 +80,7 @@
 	else
 		icon_state = icon_state_off
 
-/obj/machinery/atmospherics/components/unary/hypertorus/proc/update_overlays()
+/obj/machinery/atmospherics/components/unary/hypertorus/update_overlays()
 	if(!cracked)
 		return
 
@@ -153,7 +152,7 @@
 		return
 	return ..()
 
-/obj/machinery/hypertorus/update_icon()
+/obj/machinery/hypertorus/update_appearance(updates = ALL)
 	if(panel_open)
 		icon_state = icon_state_open
 	else if(active)

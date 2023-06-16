@@ -225,7 +225,7 @@
 		loadedWeightClass -= I.w_class
 	else if (A == tank)
 		tank = null
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/item/pneumatic_cannon/ghetto //Obtainable by improvised methods; more gas per use, less capacity
 	name = "improvised pneumatic cannon"
@@ -250,9 +250,9 @@
 			return
 		to_chat(user, span_notice("You hook \the [thetank] up to \the [src]."))
 		tank = thetank
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/pneumatic_cannon/update_icon()
+/obj/item/pneumatic_cannon/update_appearance(updates = ALL)
 	cut_overlays()
 	if(!tank)
 		return

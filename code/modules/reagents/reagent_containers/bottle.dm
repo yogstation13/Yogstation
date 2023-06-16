@@ -15,12 +15,12 @@
 	. = ..()
 	if(!icon_state)
 		icon_state = "bottle"
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/glass/bottle/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/reagent_containers/glass/bottle/update_icon()
+/obj/item/reagent_containers/glass/bottle/update_appearance(updates = ALL)
 	cut_overlays()
 	if(!filling_icon_state)
 		filling_icon_state = icon_state
@@ -467,7 +467,7 @@
 	disease_amount = 15
 	/// Name that used as the base for pen renaming, so subtypes can have different names without having to worry about messing with it
 	var/base_name = "vial"
-	var/base_icon_state = "vial"
+	base_icon_state = "vial"
 	/// List of icon_states that require the stripe overlay to look good. Not a very good way of doing it, but its the best I can come up with right now.
 	var/list/striped_vial_skins = list("vial_white", "vial_red", "vial_blue", "vial_green", "vial_orange", "vial_purple", "vial_black", "viallarge_white", "viallarge_red", "viallarge_blue", "viallarge_green", "viallarge_orange", "viallarge_purple", "viallarge_black")
 

@@ -162,7 +162,7 @@
 	if(user == resident)
 		if(welded)
 			welded = FALSE
-			update_icon()
+			update_appearance(updates = ALL)
 		locked = FALSE
 		return TRUE
 	playsound(get_turf(src), 'sound/machines/door_locked.ogg', 20, 1)

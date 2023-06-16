@@ -50,7 +50,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		desc = "A [initial(name)]. This one is lit."
 		attack_verb = list("burnt","singed")
 		START_PROCESSING(SSobj, src)
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/item/match/proc/matchburnout()
 	if(lit)
@@ -225,7 +225,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_wear_mask()
-		M.update_inv_hands()
+		M.update_held_items()
 
 /obj/item/clothing/mask/cigarette/extinguish()
 	if(!lit)
@@ -244,7 +244,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/mob/living/M = loc
 		to_chat(M, span_notice("Your [name] goes out."))
 		M.update_inv_wear_mask()
-		M.update_inv_hands()
+		M.update_held_items()
 
 /obj/item/clothing/mask/cigarette/proc/handle_reagents()
 	if(reagents.total_volume)
@@ -571,7 +571,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	if(!overlay_state)
 		overlay_state = pick(overlay_list)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/lighter/cyborg_unequip(mob/user)
 	if(!lit)
@@ -587,7 +587,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		user.visible_message(span_suicide("[user] begins whacking [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 		return BRUTELOSS
 
-/obj/item/lighter/update_icon()
+/obj/item/lighter/update_appearance(updates = ALL)
 	cut_overlays()
 	var/mutable_appearance/lighter_overlay = mutable_appearance(icon,"lighter_overlay_[overlay_state][lit ? "-on" : ""]")
 	icon_state = "[initial(icon_state)][lit ? "-on" : ""]"
@@ -614,7 +614,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		attack_verb = null //human_defense.dm takes care of it
 		STOP_PROCESSING(SSobj, src)
 	set_light_on(lit)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/lighter/extinguish()
 	set_lit(FALSE)
@@ -719,9 +719,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 	if(!lighter_color)
 		lighter_color = pick(color_list)
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/lighter/greyscale/update_icon()
+/obj/item/lighter/greyscale/update_appearance(updates = ALL)
 	cut_overlays()
 	var/mutable_appearance/lighter_overlay = mutable_appearance(icon,"lighter_overlay_[overlay_state][lit ? "-on" : ""]")
 	icon_state = "[initial(icon_state)][lit ? "-on" : ""]"

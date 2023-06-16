@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	slab.slab_ability = new ranged_type(slab)
 	slab.slab_ability.slab = slab
 	slab.slab_ability.set_ranged_ability(invoker, ranged_message)
-	invoker.update_inv_hands()
+	invoker.update_held_items()
 	var/end_time = world.time + timeout_time
 	var/successful = FALSE
 	if(timeout_time)
@@ -348,5 +348,5 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 		slab.item_state = initial(slab.lefthand_file)
 		slab.item_state = initial(slab.righthand_file)
 		slab.inhand_overlay = null
-		invoker?.update_inv_hands()
+		invoker?.update_held_items()
 	return successful //slab doesn't look like a word now.

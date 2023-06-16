@@ -35,9 +35,9 @@
 	. = ..()
 	decon = new(list(src), FALSE)
 	decon_emagged = new(list(src), FALSE)
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/machinery/decontamination_unit/update_icon()
+/obj/machinery/decontamination_unit/update_appearance(updates = ALL)
 	. = ..()
 	icon_state = uv? "tube_on" : (state_open? "tube_open" : "tube")
 
@@ -52,7 +52,7 @@
 		open_machine()
 		dump_mob()
 		playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/decontamination_unit/proc/dump_mob()
 	var/turf/T = get_turf(src)
@@ -97,7 +97,7 @@
 		uv_cycles--
 		uv = TRUE
 		locked = TRUE
-		update_icon()
+		update_appearance(updates = ALL)
 		if(uv_emagged)
 			radiation_pulse(src, 500, 5)
 			decon_emagged.start()
@@ -309,7 +309,7 @@
 				return FALSE
 
 		visible_message(span_notice("[user] inserts [I] into [src]."), span_notice("You load [I] into [src]."))
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 
 	if(!state_open && !uv)
@@ -441,7 +441,7 @@
 					dispense(O, usr)
 					desired--
 			return TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/decontamination_unit/proc/load(obj/item/O)
 	if(ismob(O.loc))
@@ -489,4 +489,4 @@
 	if(!user.canUseTopic(src, !issilicon(user)) || state_open)
 		return
 	locked = !locked
-	update_icon()
+	update_appearance(updates = ALL)

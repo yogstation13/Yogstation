@@ -3,28 +3,28 @@
 	desc = "A PDA painting machine. To use, simply insert your PDA and choose the desired preset paint scheme."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pdapainter"
+	base_icon_state = "pdapainter"
 	density = TRUE
 	max_integrity = 200
 	var/obj/item/pda/storedpda = null
 	var/list/colorlist = list()
 
 
-/obj/machinery/pdapainter/update_icon()
-	cut_overlays()
+/obj/machinery/pdapainter/update_icon_state()
+	if(stat & BROKEN)
+		icon_state = "[base_icon_state]-broken"
+		return ..()
+	icon_state = "[base_icon_state][powered() ? null : "-off"]"
+	return ..()
+
+/obj/machinery/pdapainter/update_overlays()
+	. = ..()
 
 	if(stat & BROKEN)
-		icon_state = "[initial(icon_state)]-broken"
 		return
 
 	if(storedpda)
-		add_overlay("[initial(icon_state)]-closed")
-
-	if(powered())
-		icon_state = initial(icon_state)
-	else
-		icon_state = "[initial(icon_state)]-off"
-
-	return
+		. += "[initial(icon_state)]-closed"
 
 /obj/machinery/pdapainter/Initialize()
 	. = ..()
@@ -61,7 +61,7 @@
 /obj/machinery/pdapainter/handle_atom_del(atom/A)
 	if(A == storedpda)
 		storedpda = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/pdapainter/attackby(obj/item/O, mob/user, params)
 	if(default_unfasten_wrench(user, O))
@@ -76,7 +76,7 @@
 			return
 		storedpda = O
 		O.add_fingerprint(user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(O.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
 		if(stat & BROKEN)
@@ -91,7 +91,7 @@
 				to_chat(user, span_notice("You repair [src]."))
 				stat &= ~BROKEN
 				obj_integrity = max_integrity
-				update_icon()
+				update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_notice("[src] does not need repairs."))
 	else
@@ -136,6 +136,6 @@
 	if(storedpda)
 		storedpda.forceMove(drop_location())
 		storedpda = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		to_chat(usr, span_warning("[src] is empty!"))

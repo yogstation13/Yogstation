@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		return INITIALIZE_HINT_QDEL
 	Reset()
 
-/obj/machinery/computer/arcade/update_icon()
+/obj/machinery/computer/arcade/update_appearance(updates = ALL)
 	if(dir == 2)
 		icon_screen = "invaders"
 	else
@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 			return
 		prizevend(user)
 		T.pay_tickets()
-		T.update_icon()
+		T.update_appearance(updates = ALL)
 		O = T
 		to_chat(user, span_notice("You turn in 2 tickets to the [src] and claim a prize!"))
 		return

@@ -45,7 +45,7 @@
 /obj/machinery/atmospherics/pipe/hide(i)
 	if(level == 1 && isturf(loc))
 		invisibility = i ? INVISIBILITY_MAXIMUM : 0
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/pipe/proc/releaseAirToTurf()
 	if(air_temporary)
@@ -98,7 +98,7 @@
 			qdel(meter)
 	. = ..()
 
-/obj/machinery/atmospherics/pipe/update_icon()
+/obj/machinery/atmospherics/pipe/update_appearance(updates = ALL)
 	. = ..()
 	update_alpha()
 
@@ -109,7 +109,7 @@
 	for(var/i in 1 to device_type)
 		if(nodes[i])
 			var/obj/machinery/atmospherics/N = nodes[i]
-			N.update_icon()
+			N.update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/pipe/return_pipenets()
 	. = list(parent)

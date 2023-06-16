@@ -64,28 +64,28 @@
 		if(!myspray)
 			put_in_cart(I, user)
 			myspray=I
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			to_chat(user, fail_msg)
 	else if(istype(I, /obj/item/paint/paint_remover))
 		if(!myremover)
 			put_in_cart(I, user)
 			myremover=I
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			to_chat(user, fail_msg)
 	else if(istype(I, /obj/item/melee/flyswatter))
 		if(!myswatter)
 			put_in_cart(I, user)
 			myswatter=I
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			to_chat(user, fail_msg)
 	else if(istype(I, /obj/item/flashlight))
 		if(!mylight)
 			put_in_cart(I, user)
 			mylight=I
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			to_chat(user, fail_msg)
 	else if(istype(I, /obj/item/lightreplacer))
@@ -104,7 +104,7 @@
 		if(signs < max_signs)
 			put_in_cart(I, user)
 			signs++
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			to_chat(user, span_warning("[src] can't hold any more signs!"))
 	else if(mybag)
@@ -208,7 +208,7 @@
 		else
 			return
 
-	update_icon()
+	update_appearance(updates = ALL)
 
   /*
    check_menu: Checks if we are allowed to interact with a radial menu
@@ -223,7 +223,7 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/janitorialcart/update_icon()
+/obj/structure/janitorialcart/update_appearance(updates = ALL)
 	cut_overlays()
 	if(mybag)
 		add_overlay("cart_garbage")

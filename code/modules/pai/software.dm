@@ -142,7 +142,7 @@
 	if(isnull(new_image))
 		return FALSE
 	card.emotion_icon = new_image
-	card.update_icon()
+	card.update_appearance(updates = ALL)
 	return TRUE
 
 /**

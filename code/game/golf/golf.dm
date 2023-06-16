@@ -39,7 +39,7 @@
 			golfball.loc = src
 			visible_message(span_notice("The golfball lands in [src]."))
 
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			visible_message(span_notice("The golfball bounces out of [src]!"))
 		return FALSE

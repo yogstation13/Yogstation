@@ -33,9 +33,9 @@
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
 	setDir(pick(GLOB.alldirs))
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/ammo_casing/update_icon()
+/obj/item/ammo_casing/update_appearance(updates = ALL)
 	..()
 	icon_state = "[initial(icon_state)][BB && !CHECK_BITFIELD(casing_flags, CASINGFLAG_NO_LIVE_SPRITE) ? "-live" : ""]"
 	desc = "[initial(desc)][!BB && !CHECK_BITFIELD(casing_flags, CASINGFLAG_NO_LIVE_SPRITE) ? " This one is spent." : ""]"
@@ -59,7 +59,7 @@
 				else
 					continue
 			if (boolets > 0)
-				box.update_icon()
+				box.update_appearance(updates = ALL)
 				to_chat(user, span_notice("You collect [boolets] shell\s. [box] now contains [box.stored_ammo.len] shell\s."))
 			else
 				to_chat(user, span_warning("You fail to collect anything!"))
@@ -72,7 +72,7 @@
 	. = ..()
 
 /obj/item/ammo_casing/proc/bounce_away(still_warm = FALSE, bounce_delay = 3)
-	update_icon()
+	update_appearance(updates = ALL)
 	SpinAnimation(10, 1)
 	var/matrix/M = matrix(transform)
 	M.Turn(rand(-170,170))

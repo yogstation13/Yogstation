@@ -75,10 +75,10 @@
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
 	written = list()
-	update_icon()
+	update_appearance(updates = ALL)
 
 
-/obj/item/paper/update_icon()
+/obj/item/paper/update_appearance(updates = ALL)
 
 	if(resistance_flags & ON_FIRE)
 		icon_state = "paper_onfire"
@@ -184,7 +184,7 @@
 	stamps = null
 	LAZYCLEARLIST(stamped)
 	cut_overlays()
-	update_icon()
+	update_appearance(updates = ALL)
 
 
 /obj/item/paper/proc/parsepencode(t, obj/item/pen/P, mob/user, iscrayon = 0)
@@ -278,7 +278,7 @@
 			else
 				written.Insert(text2num(id),templist) // text2num, otherwise it writes to the hashtable index instead of into the array
 			usr << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(usr,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
-			update_icon()
+			update_appearance(updates = ALL)
 
 
 /obj/item/paper/attackby(obj/item/P, mob/living/carbon/human/user, params)
@@ -352,7 +352,7 @@
 		src.loc = B
 		P.loc = B
 		B.amount = 2
-		B.update_icon()
+		B.update_appearance(updates = ALL)
 
 	add_fingerprint(user)
 
@@ -365,7 +365,7 @@
 
 /obj/item/paper/extinguish()
 	..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /*
  * Construction paper
@@ -390,8 +390,9 @@
 	icon_state = "scrap"
 	slot_flags = null
 
-/obj/item/paper/crumpled/update_icon()
-	return
+/obj/item/paper/crumpled/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/paper/crumpled/bloody
 	icon_state = "scrap_bloodied"

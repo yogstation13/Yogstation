@@ -47,7 +47,7 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 	return ..() + GLOB.bluespace_pipe_networks[bluespace_network_name] - src
 
 /obj/machinery/atmospherics/pipe/bluespace/hide()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/pipe/bluespace/update_icon(showpipe)
 	underlays.Cut()

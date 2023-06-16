@@ -56,7 +56,7 @@ FLOOR SAFES
 			space += I.w_class
 			I.forceMove(src)
 
-/obj/structure/safe/update_icon()
+/obj/structure/safe/update_appearance(updates = ALL)
 	if(open)
 		icon_state = "[initial(icon_state)]-open"
 	else
@@ -147,7 +147,7 @@ FLOOR SAFES
 				return
 			to_chat(user, span_notice("You [open ? "close" : "open"] [src].</span>"))
 			open = !open
-			update_icon()
+			update_appearance(updates = ALL)
 			return TRUE
 		if("turnright")
 			if(open)

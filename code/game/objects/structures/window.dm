@@ -329,12 +329,12 @@
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
-	update_icon()
+	update_appearance(updates = ALL)
 	if(smooth)
 		queue_smooth_neighbors(src)
 
 //merges adjacent full-tile windows into one
-/obj/structure/window/update_icon()
+/obj/structure/window/update_appearance(updates = ALL)
 	if(!QDELETED(src))
 		if(!fulltile)
 			return
@@ -810,7 +810,7 @@
 /obj/structure/window/reinforced/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
 		obj_integrity = max_integrity
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/structure/window/reinforced/clockwork/narsie_act()
 	take_damage(rand(25, 75), BRUTE)
@@ -876,7 +876,7 @@
 
 /obj/structure/window/paperframe/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/structure/window/paperframe/examine(mob/user)
 	. = ..()
@@ -902,19 +902,19 @@
 		playsound(src, hitsound, 50, 1)
 		if(!QDELETED(src))
 			user.visible_message(span_danger("[user] tears a hole in [src]."))
-			update_icon()
+			update_appearance(updates = ALL)
 
-/obj/structure/window/paperframe/update_icon()
-	if(obj_integrity < max_integrity)
-		cut_overlay(paper)
-		add_overlay(torn)
-		set_opacity(FALSE)
-	else
-		cut_overlay(torn)
-		add_overlay(paper)
-		set_opacity(TRUE)
+/obj/structure/window/paperframe/update_appearance(updates)
+	. = ..()
+	set_opacity(obj_integrity >= max_integrity)
+
+/obj/structure/window/paperframe/update_icon(updates=ALL)
+	. = ..()
 	queue_smooth(src)
 
+/obj/structure/window/paperframe/update_overlays()
+	. = ..()
+	. += (obj_integrity < max_integrity) ? torn : paper
 
 /obj/structure/window/paperframe/attackby(obj/item/W, mob/user)
 	if(W.is_hot())
@@ -929,10 +929,10 @@
 			qdel(W)
 			user.visible_message("[user] patches some of the holes in \the [src].")
 			if(obj_integrity == max_integrity)
-				update_icon()
+				update_appearance(updates = ALL)
 			return
 	..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 
 
@@ -953,9 +953,9 @@
 
 /obj/structure/cloth_curtain/proc/toggle()
 	open = !open
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/structure/cloth_curtain/update_icon()
+/obj/structure/cloth_curtain/update_appearance(updates = ALL)
 	if(!open)
 		icon_state = "curtain_closed"
 		layer = WALL_OBJ_LAYER

@@ -55,7 +55,7 @@
 			min_wchance = 0
 			min_wrate = 0
 
-/obj/machinery/plantgenes/update_icon()
+/obj/machinery/plantgenes/update_appearance(updates = ALL)
 	..()
 	cut_overlays()
 	if((stat & (BROKEN|NOPOWER)))
@@ -71,7 +71,7 @@
 
 /obj/machinery/plantgenes/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "dnamod", "dnamod", I))
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 	if(default_deconstruction_crowbar(I))
 		return
@@ -261,7 +261,7 @@
 			seed.verb_pickup()
 			seed = null
 			update_genes()
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			var/obj/item/I = usr.get_active_held_item()
 			if (istype(I, /obj/item/seeds))
@@ -269,7 +269,7 @@
 					return
 				insert_seed(I)
 				to_chat(usr, span_notice("You add [I] to the machine."))
-		update_icon()
+		update_appearance(updates = ALL)
 	else if(href_list["eject_disk"] && !operation)
 		var/obj/item/I = usr.get_active_held_item()
 		eject_disk()
@@ -278,7 +278,7 @@
 				return
 			disk = I
 			to_chat(usr, span_notice("You add [I] to the machine."))
-			update_icon()
+			update_appearance(updates = ALL)
 	else if(href_list["op"] == "insert" && disk && disk.gene && seed)
 		if(!operation) // Wait for confirmation
 			operation = "insert"
@@ -337,10 +337,10 @@
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
 						disk.update_name()
-						disk.update_icon()
+						disk.update_appearance(updates = ALL)
 						qdel(seed)
 						seed = null
-						update_icon()
+						update_appearance(updates = ALL)
 				if("replace")
 					if(disk && disk.gene && istype(disk.gene, G.type) && istype(G, /datum/plant_gene/core))
 						seed.genes -= G
@@ -372,7 +372,7 @@
 	S.forceMove(src)
 	seed = S
 	update_genes()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/plantgenes/proc/eject_disk()
 	if (disk && !operation)
@@ -383,7 +383,7 @@
 			disk.forceMove(drop_location())
 		disk = null
 		update_genes()
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/machinery/plantgenes/proc/update_genes()
 	core_genes = list()
@@ -436,16 +436,16 @@
 
 /obj/item/disk/plantgene/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 	src.pixel_x = rand(-5, 5)
 	src.pixel_y = rand(-5, 5)
 
-/obj/item/disk/plantgene/update_icon()
+/obj/item/disk/plantgene/update_appearance(updates = ALL)
 	cut_overlays()
 	if(gene)
 		add_overlay("datadisk_gene")
 
-/obj/item/disk/plantgene/proc/update_name()
+/obj/item/disk/plantgene/update_name()
 	if(gene)
 		name = "[gene.get_name()] (plant data disk)"
 	else

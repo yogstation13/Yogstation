@@ -23,21 +23,21 @@
 
 		if("unlock")
 			locked = FALSE
-			update_icon()
+			update_appearance(updates = ALL)
 
 		if("lock")
 			locked = TRUE
-			update_icon()
+			update_appearance(updates = ALL)
 
 		if("secure_open")
 			locked = FALSE
-			update_icon()
+			update_appearance(updates = ALL)
 
 			sleep(0.2 SECONDS)
 			open(1)
 
 			locked = TRUE
-			update_icon()
+			update_appearance(updates = ALL)
 
 		if("secure_close")
 			locked = FALSE
@@ -45,7 +45,7 @@
 
 			locked = TRUE
 			sleep(0.2 SECONDS)
-			update_icon()
+			update_appearance(updates = ALL)
 
 	send_status()
 
@@ -113,7 +113,7 @@
 	id_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_SENSOR
 	master_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_CONTROLLER
 
-/obj/machinery/airlock_sensor/update_icon()
+/obj/machinery/airlock_sensor/update_appearance(updates = ALL)
 	if(on)
 		if(alert)
 			icon_state = "airlock_sensor_alert"
@@ -148,7 +148,7 @@
 
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)

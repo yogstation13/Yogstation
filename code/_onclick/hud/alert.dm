@@ -529,10 +529,44 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 Recharging stations are available in robotics, the dormitory bathrooms, and the AI satellite."
 	icon_state = "emptycell"
 
+/atom/movable/screen/alert/emptycell/Initialize(mapload)
+	. = ..()
+	update_appearance(updates=UPDATE_DESC)
+
+/atom/movable/screen/alert/emptycell/update_desc()
+	. = ..()
+	desc = initial(desc)
+	if(length(GLOB.roundstart_station_borgcharger_areas))
+		desc += " Recharging stations are available in [english_list(GLOB.roundstart_station_borgcharger_areas)]."
+
 /atom/movable/screen/alert/lowcell
 	name = "Low Charge"
 	desc = "Unit's power cell is running low. Recharging stations are available in robotics, the dormitory bathrooms, and the AI satellite."
 	icon_state = "lowcell"
+
+/atom/movable/screen/alert/lowcell/Initialize(mapload)
+	. = ..()
+	update_appearance(updates=UPDATE_DESC)
+
+/atom/movable/screen/alert/lowcell/update_desc()
+	. = ..()
+	desc = initial(desc)
+	if(length(GLOB.roundstart_station_borgcharger_areas))
+		desc += " Recharging stations are available in [english_list(GLOB.roundstart_station_borgcharger_areas)]."
+
+//MECH
+
+/atom/movable/screen/alert/lowcell/mech/update_desc()
+	. = ..()
+	desc = initial(desc)
+	if(length(GLOB.roundstart_station_mechcharger_areas))
+		desc += " Power ports are available in [english_list(GLOB.roundstart_station_mechcharger_areas)]."
+
+/atom/movable/screen/alert/emptycell/mech/update_desc()
+	. = ..()
+	desc = initial(desc)
+	if(length(GLOB.roundstart_station_mechcharger_areas))
+		desc += " Power ports are available in [english_list(GLOB.roundstart_station_mechcharger_areas)]."
 
 //Ethereal
 

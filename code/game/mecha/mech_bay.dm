@@ -32,6 +32,11 @@
 	. = ..()
 	recharging_turf = get_step(loc, dir)
 
+	var/area_name = get_area_name(src, format_text = TRUE)
+	if(area_name in GLOB.roundstart_station_mechcharger_areas)
+		return
+	GLOB.roundstart_station_mechcharger_areas += area_name
+
 /obj/machinery/mech_bay_recharge_port/Destroy()
 	if (recharge_console && recharge_console.recharge_port == src)
 		recharge_console.recharge_port = null
@@ -58,17 +63,17 @@
 	if(!recharging_mech)
 		recharging_mech = locate(/obj/mecha) in recharging_turf
 		if(recharging_mech)
-			recharge_console.update_icon()
+			recharge_console.update_appearance(updates = ALL)
 	if(recharging_mech && recharging_mech.cell)
 		if(recharging_mech.cell.charge < recharging_mech.cell.maxcharge)
 			var/delta = min(max_charge, recharging_mech.cell.maxcharge - recharging_mech.cell.charge)
 			recharging_mech.give_power(delta)
 			use_power(delta*150)
 		else
-			recharge_console.update_icon()
+			recharge_console.update_appearance(updates = ALL)
 		if(recharging_mech.loc != recharging_turf)
 			recharging_mech = null
-			recharge_console.update_icon()
+			recharge_console.update_appearance(updates = ALL)
 
 
 /obj/machinery/mech_bay_recharge_port/attackby(obj/item/I, mob/user, params)
@@ -105,7 +110,7 @@
 		if("reconnect")
 			reconnect()
 			. = TRUE
-			update_icon()
+			update_appearance(updates = ALL)
 
 /obj/machinery/computer/mech_bay_power_console/ui_data(mob/user)
 	var/list/data = list()
@@ -138,7 +143,7 @@
 		else
 			recharge_port = null
 
-/obj/machinery/computer/mech_bay_power_console/update_icon()
+/obj/machinery/computer/mech_bay_power_console/update_appearance(updates = ALL)
 	..()
 	if(!recharge_port || !recharge_port.recharging_mech || !recharge_port.recharging_mech.cell || !(recharge_port.recharging_mech.cell.charge < recharge_port.recharging_mech.cell.maxcharge) || stat & (NOPOWER|BROKEN))
 		return

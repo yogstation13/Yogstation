@@ -21,28 +21,28 @@
 	. = ..()
 	if(list_reagents) //syringe starts in inject mode if its already got something inside
 		mode = SYRINGE_INJECT
-		update_icon()
+		update_appearance(updates = ALL)
 	RegisterSignals(src, list(COMSIG_ITEM_EMBEDDED, COMSIG_ITEM_EMBED_TICK), PROC_REF(embed_inject))
 
 /obj/item/reagent_containers/syringe/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/syringe/pickup(mob/user)
 	..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/syringe/dropped(mob/user)
 	..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/syringe/attack_self(mob/user)
 	mode = !mode
-	update_icon()
+	update_appearance(updates = ALL)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/reagent_containers/syringe/attack_hand()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/syringe/attack_paw(mob/user)
 	return attack_hand(user)
@@ -103,7 +103,7 @@
 				to_chat(user, span_notice("You fill [src] with [trans] units of the solution. It now contains [reagents.total_volume] units."))
 			if (reagents.total_volume >= reagents.maximum_volume)
 				mode=!mode
-				update_icon()
+				update_appearance(updates = ALL)
 
 		if(SYRINGE_INJECT)
 			// Always log attemped injections for admins
@@ -165,10 +165,10 @@
 			to_chat(user, span_notice("You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units."))
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
-				update_icon()
+				update_appearance(updates = ALL)
 
 
-/obj/item/reagent_containers/syringe/update_icon()
+/obj/item/reagent_containers/syringe/update_appearance(updates = ALL)
 	cut_overlays()
 	var/rounded_vol
 	if(reagents && reagents.total_volume)
@@ -189,7 +189,7 @@
 			if (SYRINGE_INJECT)
 				injoverlay = "inject"
 		add_overlay(injoverlay)
-		M.update_inv_hands()
+		M.update_held_items()
 	
 /obj/item/reagent_containers/syringe/proc/embed_inject(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	if(!reagents.total_volume)

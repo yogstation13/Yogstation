@@ -102,7 +102,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_W_UNIFORM]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	if(istype(w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = w_uniform
@@ -148,7 +148,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_WEAR_ID]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	var/mutable_appearance/id_overlay = overlays_standing[ID_LAYER]
 
@@ -173,7 +173,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used && hud_used.inv_slots[SLOT_GLOVES])
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_GLOVES]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	if(!gloves && blood_in_hands)
 		var/mutable_appearance/bloody_overlay = mutable_appearance('icons/effects/blood.dmi', "bloodyhands", -GLOVES_LAYER)
@@ -209,7 +209,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_GLASSES]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	if(glasses)
 		glasses.screen_loc = ui_glasses		//...draw the item in the inventory screen
@@ -237,7 +237,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_EARS]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	if(ears)
 		ears.screen_loc = ui_ears	//move the item to the appropriate screen loc
@@ -258,7 +258,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_NECK]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	if(wear_neck)
 		wear_neck.screen_loc = ui_neck
@@ -283,7 +283,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_SHOES]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	if(shoes)
 		var/target_overlay = shoes.icon_state
@@ -311,7 +311,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_SUIT_STORE]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	if(s_store)
 		s_store.screen_loc = ui_sstore1
@@ -350,7 +350,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_BELT]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	if(belt)
 		belt.screen_loc = ui_belt
@@ -373,7 +373,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_WEAR_SUIT]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	if(istype(wear_suit, /obj/item))
 		wear_suit.screen_loc = ui_oclothing
@@ -402,10 +402,10 @@ There are several things that need to be remembered:
 		var/atom/movable/screen/inventory/inv
 
 		inv = hud_used.inv_slots[SLOT_L_STORE]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 		inv = hud_used.inv_slots[SLOT_R_STORE]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 		if(l_store)
 			l_store.screen_loc = ui_storage1
@@ -428,7 +428,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_WEAR_MASK]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	if(wear_mask)
 		var/target_overlay = wear_mask.icon_state
@@ -455,7 +455,7 @@ There are several things that need to be remembered:
 
 	if(client && hud_used && hud_used.inv_slots[SLOT_BACK])
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_BACK]
-		inv.update_icon()
+		inv.update_appearance(updates = ALL)
 
 	if(back)
 		update_hud_back(back)

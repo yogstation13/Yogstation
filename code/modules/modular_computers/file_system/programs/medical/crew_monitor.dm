@@ -56,7 +56,7 @@
 		ui_header = "health_green.gif"
 
 	if(istype(computer))
-		computer.update_icon()
+		computer.update_appearance(updates = ALL)
 
 /datum/computer_file/program/crew_monitor/ui_data(mob/user)
 	var/list/data = get_header_data()

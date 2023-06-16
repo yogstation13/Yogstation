@@ -20,27 +20,55 @@
 	if(!istype(sign))
 		return
 
-	icon_state = sign.icon
+	if(sign.rename_area)
+		rename_area(src, sign.name)
 
-	if(sign.name)
-		name = "[initial(name)] ([sign.name])"
+	chosen_sign = sign
+	update_appearance()
+
+/obj/structure/sign/barsign/update_icon_state()
+	if(chosen_sign?.icon)
+		icon_state = chosen_sign.icon
+	else
+		icon_state = "empty"
+
+	return ..()
+
+/obj/structure/sign/barsign/update_desc()
+	. = ..()
+
+	if(chosen_sign && chosen_sign.desc)
+		desc = chosen_sign.desc
+
+/obj/structure/sign/barsign/update_name()
+	. = ..()
+	if(chosen_sign && chosen_sign.rename_area)
+		name = "[initial(name)] ([chosen_sign.name])"
 	else
 		name = "[initial(name)]"
 
-	if(sign.desc)
-		desc = sign.desc
+/*/obj/structure/sign/barsign/update_overlays()
+	. = ..()
 
-	if(sign.rename_area && sign.name)
-		rename_area(src, sign.name)
+	if(stat & (NOPOWER|BROKEN))
+		return
 
-	return sign
+	if(chosen_sign && chosen_sign.light_mask)
+		. += emissive_appearance(icon, "[chosen_sign.icon]-light-mask", src)*/
+
+/obj/structure/sign/barsign/update_appearance(updates=ALL)
+	. = ..()
+//	if(stat & (NOPOWER|BROKEN))
+//		set_light(0)
+//		return
+//	if(chosen_sign && chosen_sign.neon_color)
+//		set_light(MINIMUM_USEFUL_LIGHT_RANGE, 0.7, chosen_sign.neon_color)
 
 /obj/structure/sign/barsign/proc/set_sign_by_name(sign_name)
-	for(var/d in subtypesof(/datum/barsign))
-		var/datum/barsign/D = d
-		if(initial(D.name) == sign_name)
-			var/new_sign = new D
-			return set_sign(new_sign)
+	for(var/datum/barsign/sign as anything in subtypesof(/datum/barsign))
+		if(initial(sign.name) == sign_name)
+			var/new_sign = new sign
+			set_sign(new_sign)
 
 /obj/structure/sign/barsign/obj_break(damage_flag)
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))

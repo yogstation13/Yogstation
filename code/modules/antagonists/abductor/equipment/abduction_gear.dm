@@ -74,7 +74,7 @@
 		M.icon_state = disguise.icon_state
 		M.cut_overlays()
 		M.add_overlay(disguise.overlays)
-		M.update_inv_hands()
+		M.update_held_items()
 
 /obj/item/clothing/suit/armor/abductor/vest/proc/DeactivateStealth()
 	if(!stealth_active)
@@ -405,8 +405,9 @@
 <br>
 Congratulations! You are now trained for invasive xenobiology research!"}
 
-/obj/item/paper/guides/antag/abductor/update_icon()
-	return
+/obj/item/paper/guides/antag/abductor/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/paper/guides/antag/abductor/AltClick()
 	return //otherwise it would fold into a paperplane.
@@ -442,9 +443,9 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			txt = "probing"
 
 	to_chat(usr, span_notice("You switch the baton to [txt] mode."))
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/abductor/baton/update_icon()
+/obj/item/abductor/baton/update_appearance(updates = ALL)
 	switch(mode)
 		if(BATON_STUN)
 			icon_state = "wonderprodStun"

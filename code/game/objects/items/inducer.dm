@@ -22,8 +22,8 @@
 	var/totransfer = min(cell.charge,(powertransfer * coefficient))
 	var/transferred = target.give(totransfer)
 	cell.use(transferred)
-	cell.update_icon()
-	target.update_icon()
+	cell.update_appearance(updates = ALL)
+	target.update_appearance(updates = ALL)
 
 /obj/item/inducer/get_cell()
 	return cell
@@ -66,12 +66,12 @@
 		if(!opened)
 			to_chat(user, span_notice("You unscrew the battery compartment."))
 			opened = TRUE
-			update_icon()
+			update_appearance(updates = ALL)
 			return
 		else
 			to_chat(user, span_notice("You close the battery compartment."))
 			opened = FALSE
-			update_icon()
+			update_appearance(updates = ALL)
 			return
 	if(istype(W, /obj/item/stock_parts/cell))
 		if(opened)
@@ -80,7 +80,7 @@
 					return
 				to_chat(user, span_notice("You insert [W] into [src]."))
 				cell = W
-				update_icon()
+				update_appearance(updates = ALL)
 				return
 			else
 				to_chat(user, span_notice("[src] already has \a [cell] installed!"))
@@ -132,7 +132,7 @@
 					user.visible_message("Smoke rises off of [A]'s body!",span_notice("You smell something burning as [A] is charged by the [src]!"))
 					do_sparks(1, FALSE, A)
 					if(O)
-						O.update_icon()
+						O.update_appearance(updates = ALL)
 				else
 					break
 			if(done_any) // Only show a message if we succeeded at least once
@@ -154,7 +154,7 @@
 				induce(C, coefficient)
 				do_sparks(1, FALSE, A)
 				if(O)
-					O.update_icon()
+					O.update_appearance(updates = ALL)
 			else
 				break
 		if(done_any) // Only show a message if we succeeded at least once
@@ -179,10 +179,10 @@
 /obj/item/inducer/attack_self(mob/user)
 	if(opened && cell)
 		user.visible_message("[user] removes [cell] from [src]!",span_notice("You remove [cell]."))
-		cell.update_icon()
+		cell.update_appearance(updates = ALL)
 		user.put_in_hands(cell)
 		cell = null
-		update_icon()
+		update_appearance(updates = ALL)
 
 
 /obj/item/inducer/examine(mob/living/M)
@@ -194,7 +194,7 @@
 	if(opened)
 		. += span_notice("Its battery compartment is open.")
 
-/obj/item/inducer/update_icon()
+/obj/item/inducer/update_appearance(updates = ALL)
 	cut_overlays()
 	if(opened)
 		if(!cell)
@@ -212,4 +212,4 @@
 
 /obj/item/inducer/sci/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)

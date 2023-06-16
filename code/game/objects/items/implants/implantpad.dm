@@ -11,7 +11,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	var/obj/item/implantcase/case = null
 
-/obj/item/implantpad/update_icon()
+/obj/item/implantpad/update_appearance(updates = ALL)
 	icon_state = "implantpad-[!QDELETED(case)]"
 
 /obj/item/implantpad/examine(mob/user)
@@ -27,7 +27,7 @@
 /obj/item/implantpad/handle_atom_del(atom/A)
 	if(A == case)
 		case = null
-	update_icon()
+	update_appearance(updates = ALL)
 	updateSelfDialog()
 	. = ..()
 
@@ -46,7 +46,7 @@
 	case = null
 
 	updateSelfDialog()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/implantpad/attackby(obj/item/implantcase/C, mob/user, params)
 	if(istype(C, /obj/item/implantcase) && !case)
@@ -54,7 +54,7 @@
 			return
 		case = C
 		updateSelfDialog()
-		update_icon()
+		update_appearance(updates = ALL)
 	else
 		return ..()
 

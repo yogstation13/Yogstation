@@ -34,7 +34,7 @@
 	. = ..()
 	if(src.type == /turf/open/floor/holofloor/grass) //don't want grass subtypes getting the icon state,
 		icon_state = "grass[rand(1,4)]"
-		update_icon()
+		update_appearance(updates = ALL)
 
 /turf/open/floor/holofloor/beach
 	gender = PLURAL
@@ -117,9 +117,9 @@
 
 /turf/open/floor/holofloor/carpet/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(update_icon)), 1)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_appearance)), 1)
 
-/turf/open/floor/holofloor/carpet/update_icon()
+/turf/open/floor/holofloor/carpet/update_appearance(updates = ALL)
 	if(!..())
 		return 0
 	if(intact)

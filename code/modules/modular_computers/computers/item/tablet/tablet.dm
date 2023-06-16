@@ -56,11 +56,11 @@
 				return
 			to_chat(user, span_notice("You slide \the [C] into \the [src]."))
 			inserted_item = C
-			update_icon()
+			update_appearance(updates = ALL)
 	else
 		return ..()
 
-/obj/item/modular_computer/tablet/update_icon()
+/obj/item/modular_computer/tablet/update_appearance(updates = ALL)
 	..()
 	if (!isnull(variants))
 		if(!finish_color)

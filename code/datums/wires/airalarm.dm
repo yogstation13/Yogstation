@@ -30,7 +30,7 @@
 		if(WIRE_POWER) // Short out for a long time.
 			if(!A.shorted)
 				A.shorted = TRUE
-				A.update_icon()
+				A.update_appearance(updates = ALL)
 			addtimer(CALLBACK(A, TYPE_PROC_REF(/obj/machinery/airalarm, reset), wire), 1200)
 		if(WIRE_IDSCAN) // Toggle lock.
 			A.locked = !A.locked
@@ -49,7 +49,7 @@
 			var/area/AA = get_area(A)
 			if(AA.atmosalert(0, holder))
 				A.post_alert(0)
-			A.update_icon()
+			A.update_appearance(updates = ALL)
 
 /datum/wires/airalarm/on_cut(wire, mend)
 	var/obj/machinery/airalarm/A = holder
@@ -57,7 +57,7 @@
 		if(WIRE_POWER) // Short out forever.
 			A.shock(usr, 50)
 			A.shorted = !mend
-			A.update_icon()
+			A.update_appearance(updates = ALL)
 		if(WIRE_IDSCAN)
 			if(!mend)
 				A.locked = TRUE
@@ -71,4 +71,4 @@
 			var/area/AA = get_area(A)
 			if(AA.atmosalert(2, holder))
 				A.post_alert(2)
-			A.update_icon()
+			A.update_appearance(updates = ALL)

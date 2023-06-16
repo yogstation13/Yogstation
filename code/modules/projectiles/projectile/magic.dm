@@ -448,7 +448,7 @@
 		for(var/atom/movable/AM in contents)
 			C.insert(AM)
 		C.welded = weld
-		C.update_icon()
+		C.update_appearance(updates = ALL)
 	created = TRUE
 	return ..()
 
@@ -475,7 +475,7 @@
 	if(!welded)
 		return
 	icon_state = magic_icon
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/structure/closet/decay/after_weld(weld_state)
 	if(weld_state)
@@ -495,7 +495,7 @@
 
 /obj/structure/closet/decay/proc/unmagify()
 	icon_state = weakened_icon
-	update_icon()
+	update_appearance(updates = ALL)
 	addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
 	icon_welded = "welded"
 

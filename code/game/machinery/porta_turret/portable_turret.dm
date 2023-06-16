@@ -18,7 +18,7 @@
 	req_access = list(ACCESS_SEC_DOORS)
 	power_channel = AREA_USAGE_EQUIP	//drains power from the EQUIPMENT channel
 
-	var/base_icon_state = "standard"
+	base_icon_state = "standard"
 	var/scan_range = 7
 	var/atom/base = null //for turrets inside other objects
 
@@ -81,7 +81,7 @@
 	. = ..()
 	if(!base)
 		base = src
-	update_icon()
+	update_appearance(updates = ALL)
 	//Sets up a spark system
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
@@ -97,7 +97,7 @@
 	if(!has_cover)
 		INVOKE_ASYNC(src, PROC_REF(popUp))
 
-/obj/machinery/porta_turret/update_icon()
+/obj/machinery/porta_turret/update_appearance(updates = ALL)
 	cut_overlays()
 	if(!anchored)
 		icon_state = "turretCover"
@@ -143,7 +143,7 @@
 	if(gun_properties["reqpower"])
 		reqpower = gun_properties["reqpower"]
 
-	update_icon()
+	update_appearance(updates = ALL)
 	return gun_properties
 
 /obj/machinery/porta_turret/Destroy()
@@ -220,7 +220,7 @@
 /obj/machinery/porta_turret/power_change()
 	. = ..()
 	if(!anchored || (stat & BROKEN) || !powered())
-		update_icon()
+		update_appearance(updates = ALL)
 		remove_control()
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user, params)
@@ -250,7 +250,7 @@
 		if(!anchored && !isinspace())
 			setAnchored(TRUE)
 			invisibility = INVISIBILITY_MAXIMUM
-			update_icon()
+			update_appearance(updates = ALL)
 			to_chat(user, span_notice("You secure the exterior bolts on the turret."))
 			if(has_cover)
 				cover = new /obj/machinery/porta_turret_cover(loc) //create a new turret. While this is handled in process(), this is to workaround a bug where the turret becomes invisible for a split second
@@ -286,7 +286,7 @@
 	obj_flags |= EMAGGED
 	controllock = TRUE
 	on = FALSE //turns off the turret temporarily
-	update_icon()
+	update_appearance(updates = ALL)
 	sleep(6 SECONDS) //6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
 	on = TRUE //turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
 
@@ -461,7 +461,7 @@
 		cover.icon_state = "turretCover"
 	raised = 0
 	invisibility = 2
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/porta_turret/proc/assess_perp(mob/living/carbon/human/perp)
 	var/threatcount = 0	//the integer returned
@@ -541,7 +541,7 @@
 					T = closer
 					break
 
-	update_icon()
+	update_appearance(updates = ALL)
 	var/obj/item/projectile/A
 	//any emagged turrets drains 2x power and uses a different projectile?
 	if(mode == TURRET_STUN)
@@ -935,9 +935,9 @@
 /obj/machinery/turretid/proc/updateTurrets()
 	for (var/obj/machinery/porta_turret/aTurret in turrets)
 		aTurret.setState(enabled, lethal)
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/machinery/turretid/update_icon()
+/obj/machinery/turretid/update_appearance(updates = ALL)
 	..()
 	if(stat & NOPOWER)
 		icon_state = "control_off"

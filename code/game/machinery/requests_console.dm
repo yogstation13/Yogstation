@@ -29,6 +29,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	desc = "A console intended to send requests to different departments on the station."
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "req_comp0"
+	base_icon_state = "req_comp0"
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/messages = list() //List of all messages
 	var/departmentType = 0 //bitflag
@@ -69,28 +70,35 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	max_integrity = 300
 	armor = list(MELEE = 70, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 0, RAD = 0, FIRE = 90, ACID = 90)
 
-/obj/machinery/requests_console/update_icon()
+/obj/machinery/requests_console/update_appearance(updates = ALL)
+	. = ..()
 	if(stat & NOPOWER)
 		set_light(0)
-	else
-		set_light(1.4,0.7,"#34D352")//green light
+		return
+	set_light(1.5, 0.7, "#34D352")//green light
+
+/obj/machinery/requests_console/update_overlays()
+	. = ..()
+
 	if(open)
-		if(!hackState)
-			icon_state="req_comp_open"
-		else
-			icon_state="req_comp_rewired"
-	else if(stat & NOPOWER)
-		if(icon_state != "req_comp_off")
-			icon_state = "req_comp_off"
+		. += mutable_appearance(icon, "req_comp_open")
+
+	if(open || (stat & NOPOWER))
+		return
+
+	var/screen_state
+
+	if(emergency || (newmessagepriority == REQ_EXTREME_MESSAGE_PRIORITY))
+		screen_state = "[base_icon_state]3"
+	else if(newmessagepriority == REQ_HIGH_MESSAGE_PRIORITY)
+		screen_state = "[base_icon_state]2"
+	else if(newmessagepriority == REQ_NORMAL_MESSAGE_PRIORITY)
+		screen_state = "[base_icon_state]1"
 	else
-		if(emergency || (newmessagepriority == REQ_EXTREME_MESSAGE_PRIORITY))
-			icon_state = "req_comp3"
-		else if(newmessagepriority == REQ_HIGH_MESSAGE_PRIORITY)
-			icon_state = "req_comp2"
-		else if(newmessagepriority == REQ_NORMAL_MESSAGE_PRIORITY)
-			icon_state = "req_comp1"
-		else
-			icon_state = "req_comp0"
+		screen_state = "[base_icon_state]0"
+
+	. += mutable_appearance(icon, screen_state)
+//	. += emissive_appearance(icon, screen_state, src, alpha = src.alpha)
 
 /obj/machinery/requests_console/Initialize()
 	. = ..()
@@ -174,10 +182,10 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 				for (var/obj/machinery/requests_console/Console in GLOB.allConsoles)
 					if (Console.department == department)
 						Console.newmessagepriority = REQ_NO_NEW_MESSAGE
-						Console.update_icon()
+						Console.update_appearance(updates = ALL)
 
 				newmessagepriority = REQ_NO_NEW_MESSAGE
-				update_icon()
+				update_appearance(updates = ALL)
 				var/messageComposite = ""
 				for(var/msg in messages) // This puts more recent messages at the *top*, where they belong.
 					messageComposite = "<div class='block'>[msg]</div>" + messageComposite
@@ -288,7 +296,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			if(radio_freq)
 				Radio.set_frequency(radio_freq)
 				Radio.talk_into(src,"[emergency] emergency in [department]!!",radio_freq)
-				update_icon()
+				update_appearance(updates = ALL)
 				addtimer(CALLBACK(src, PROC_REF(clear_emergency)), 5 MINUTES)
 
 	if(href_list["send"] && message && to_department && priority)
@@ -351,7 +359,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 /obj/machinery/requests_console/proc/clear_emergency()
 	emergency = null
-	update_icon()
+	update_appearance(updates = ALL)
 
 //from message_server.dm: Console.createmessage(data["sender"], data["send_dpt"], data["message"], data["verified"], data["stamped"], data["priority"], data["notify_freq"])
 /obj/machinery/requests_console/proc/createmessage(source, source_department, message, msgVerified, msgStamped, priority, radio_freq)
@@ -374,14 +382,14 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		if(REQ_NORMAL_MESSAGE_PRIORITY)
 			if(newmessagepriority < REQ_NORMAL_MESSAGE_PRIORITY)
 				newmessagepriority = REQ_NORMAL_MESSAGE_PRIORITY
-				update_icon()
+				update_appearance(updates = ALL)
 
 		if(REQ_HIGH_MESSAGE_PRIORITY)
 			header = "[span_bad("High Priority")]<BR>[header]"
 			alert = "PRIORITY Alert from [source][authentic]"
 			if(newmessagepriority < REQ_HIGH_MESSAGE_PRIORITY)
 				newmessagepriority = REQ_HIGH_MESSAGE_PRIORITY
-				update_icon()
+				update_appearance(updates = ALL)
 
 		if(REQ_EXTREME_MESSAGE_PRIORITY)
 			header = "[span_bad("!!!Extreme Priority!!!")]<BR>[header]"
@@ -389,7 +397,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			silenced = FALSE
 			if(newmessagepriority < REQ_EXTREME_MESSAGE_PRIORITY)
 				newmessagepriority = REQ_EXTREME_MESSAGE_PRIORITY
-				update_icon()
+				update_appearance(updates = ALL)
 
 	messages += "[header][sending]"
 
@@ -409,7 +417,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		else
 			to_chat(user, span_notice("You open the maintenance panel."))
 			open = TRUE
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 	if(O.tool_behaviour == TOOL_SCREWDRIVER)
 		if(open)
@@ -418,7 +426,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 				to_chat(user, span_notice("You modify the wiring."))
 			else
 				to_chat(user, span_notice("You reset the wiring."))
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			to_chat(user, span_warning("You must open the maintenance panel first!"))
 		return

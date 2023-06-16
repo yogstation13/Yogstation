@@ -95,7 +95,7 @@
 			update_inv_legcuffed()
 		if(SLOT_HANDS)
 			put_in_hands(I)
-			update_inv_hands()
+			update_held_items()
 		if(SLOT_IN_BACKPACK)
 			if(!back || !SEND_SIGNAL(back, COMSIG_TRY_STORAGE_INSERT, I, src, TRUE))
 				not_handled = TRUE

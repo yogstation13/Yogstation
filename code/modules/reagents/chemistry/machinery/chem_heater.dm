@@ -21,16 +21,16 @@
 	. = ..()
 	if(A == beaker)
 		beaker = null
-		update_icon()
+		update_appearance(updates = ALL)
 
-/obj/machinery/chem_heater/update_icon()
+/obj/machinery/chem_heater/update_appearance(updates = ALL)
 	icon_state = "mixer[beaker ? 1 : 0][on ? "a" : "b"]"
 
 /obj/machinery/chem_heater/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	on = !on
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/chem_heater/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
@@ -47,7 +47,7 @@
 		beaker = new_beaker
 	else
 		beaker = null
-	update_icon()
+	update_appearance(updates = ALL)
 	return TRUE
 
 /obj/machinery/chem_heater/RefreshParts()
@@ -91,7 +91,7 @@
 		replace_beaker(user, B)
 		to_chat(user, span_notice("You add [B] to [src]."))
 		updateUsrDialog()
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 	return ..()
 
@@ -129,7 +129,7 @@
 		if("power")
 			on = !on
 			. = TRUE
-			update_icon()
+			update_appearance(updates = ALL)
 		if("temperature")
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])

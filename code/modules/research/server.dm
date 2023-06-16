@@ -27,7 +27,7 @@
 	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/rdserver(null)
 	B.apply_default_parts(src)
 	current_temp = get_env_temp()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/rnd/server/Destroy()
 	SSresearch.servers -= src
@@ -39,7 +39,7 @@
 		tot_rating += SP.rating
 	heat_gen /= max(1, tot_rating)
 
-/obj/machinery/rnd/server/update_icon()
+/obj/machinery/rnd/server/update_appearance(updates = ALL)
 	if(panel_open)
 		icon_state = "server_t"
 		return
@@ -53,7 +53,7 @@
 
 /obj/machinery/rnd/server/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/I)
 	.=..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/rnd/server/power_change()
 	. = ..()
@@ -65,7 +65,7 @@
 		working = FALSE
 	else
 		working = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/rnd/server/emp_act()
 	. = ..()

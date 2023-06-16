@@ -47,7 +47,7 @@
 		else
 			attached_gun.spread += accuracy
 			drop_user(current_user)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/attachment/scope/infrared/pickup_user(mob/user)
 	. = ..()

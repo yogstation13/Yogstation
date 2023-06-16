@@ -29,7 +29,7 @@
 	for(var/i = 1 to STR.max_items)
 		new spawn_type(src)
 
-/obj/item/storage/box/fancy/update_icon()
+/obj/item/storage/box/fancy/update_appearance(updates = ALL)
 	if(fancy_open)
 		icon_state = "[icon_type]box[contents.len]"
 	else
@@ -45,18 +45,18 @@
 
 /obj/item/storage/box/fancy/attack_self(mob/user)
 	fancy_open = !fancy_open
-	update_icon()
+	update_appearance(updates = ALL)
 	. = ..()
 
 /obj/item/storage/box/fancy/Exited()
 	. = ..()
 	fancy_open = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/storage/box/fancy/Entered()
 	. = ..()
 	fancy_open = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /*
  * Donut Box
@@ -130,7 +130,7 @@
 
 /obj/item/storage/box/fancy/candle_box/attack_self(mob_user)
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/storage/box/fancy/candle_box/ComponentInitialize()
 	. = ..()
@@ -176,7 +176,7 @@
 	else
 		to_chat(user, span_notice("There are no [icon_type]s left in the pack."))
 
-/obj/item/storage/box/fancy/cigarettes/update_icon()
+/obj/item/storage/box/fancy/cigarettes/update_appearance(updates = ALL)
 	if(fancy_open || !contents.len)
 		cut_overlays()
 		if(!contents.len)
@@ -304,7 +304,7 @@
 	STR.max_items = 10
 	STR.set_holdable(list(/obj/item/rollingpaper))
 
-/obj/item/storage/box/fancy/rollingpapers/update_icon()
+/obj/item/storage/box/fancy/rollingpapers/update_appearance(updates = ALL)
 	cut_overlays()
 	if(!contents.len)
 		add_overlay("[icon_state]_empty")
@@ -328,7 +328,7 @@
 	STR.max_items = 5
 	STR.set_holdable(list(/obj/item/clothing/mask/cigarette/cigar))
 
-/obj/item/storage/box/fancy/cigarettes/cigars/update_icon()
+/obj/item/storage/box/fancy/cigarettes/cigars/update_appearance(updates = ALL)
 	cut_overlays()
 	if(fancy_open)
 		icon_state = "[initial(icon_state)]_open"

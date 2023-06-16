@@ -20,10 +20,10 @@
 	STR.max_w_class = WEIGHT_CLASS_SMALL
 	STR.max_combined_w_class = WEIGHT_CLASS_SMALL * 24
 	STR.max_items = 24
-	RegisterSignal(STR, COMSIG_STORAGE_INSERTED, PROC_REF(update_icon))
-	RegisterSignal(STR, COMSIG_STORAGE_REMOVED, PROC_REF(update_icon))
+	RegisterSignal(STR, COMSIG_STORAGE_INSERTED, TYPE_PROC_REF(/atom/, update_appearance))
+	RegisterSignal(STR, COMSIG_STORAGE_REMOVED, TYPE_PROC_REF(/atom/, update_appearance))
 
-/obj/structure/toilet_bong/update_icon()
+/obj/structure/toilet_bong/update_appearance(updates = ALL)
 	. = ..()
 	cut_overlays()
 	if (LAZYLEN(contents))
@@ -47,7 +47,7 @@
 		smoke.set_up(smoke_spread, location = location, carry = boof.reagents, silent = TRUE)
 		smoke.start()
 		qdel(boof)
-		update_icon()
+		update_appearance(updates = ALL)
 
 // It's a bong powered by a **flamethrower**, it's definitely an open flame!!
 /obj/structure/toilet_bong/process()

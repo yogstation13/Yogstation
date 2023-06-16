@@ -55,13 +55,13 @@
 		var/mob/living/carbon/human/H = loc
 		if(H.wear_id == src)
 			H.sec_hud_set_ID()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/wallet/Entered(atom/movable/AM)
 	. = ..()
 	refreshID()
 
-/obj/item/storage/wallet/update_icon()
+/obj/item/storage/wallet/update_appearance(updates = ALL)
 	var/new_state = "wallet"
 	if(front_id)
 		new_state = "wallet_[front_id.icon_state]"
@@ -97,4 +97,4 @@
 
 /obj/item/storage/wallet/random/PopulateContents()
 	new /obj/item/holochip(src, rand(5,30))
-	update_icon()
+	update_appearance(updates = ALL)

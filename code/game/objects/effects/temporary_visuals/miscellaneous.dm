@@ -164,7 +164,7 @@
 
 /obj/effect/temp_visual/dir_setting/curse/hand/Initialize(mapload, set_dir, handedness)
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/effect/temp_visual/bsa_splash
 	name = "\improper Bluespace energy wave"
@@ -183,7 +183,7 @@
 		if(EAST)
 			icon_state = "beam_splash_e"
 
-/obj/item/projectile/curse_hand/update_icon()
+/obj/item/projectile/curse_hand/update_appearance(updates = ALL)
 	icon_state = "[icon_state][handedness]"
 
 /obj/effect/temp_visual/wizard
@@ -527,13 +527,13 @@
 	status = rcd_status
 	delay = rcd_delay
 	if (status == RCD_DECONSTRUCT)
-		addtimer(CALLBACK(src, PROC_REF(update_icon)), 11)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_appearance)), 11)
 		delay -= 11
 		icon_state = "rcd_end_reverse"
 	else
-		update_icon()
+		update_appearance(updates = ALL)
 
-/obj/effect/constructing_effect/update_icon()
+/obj/effect/constructing_effect/update_appearance(updates = ALL)
 	icon_state = "rcd"
 	if (delay < 10)
 		icon_state += "_shortest"

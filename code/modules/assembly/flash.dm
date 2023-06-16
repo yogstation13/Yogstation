@@ -54,9 +54,9 @@
 	if(flash)
 		add_overlay(flashing_overlay)
 		attached_overlays += flashing_overlay
-		addtimer(CALLBACK(src, PROC_REF(update_icon)), 5)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_appearance)), 5)
 	if(holder)
-		holder.update_icon()
+		holder.update_appearance(updates = ALL)
 
 /obj/item/assembly/flash/proc/clown_check(mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
@@ -67,7 +67,7 @@
 /obj/item/assembly/flash/proc/burn_out() //Made so you can override it if you want to have an invincible flash from R&D or something.
 	if(!burnt_out)
 		burnt_out = TRUE
-		update_icon()
+		update_appearance(updates = ALL)
 	if(ismob(loc))
 		var/mob/M = loc
 		M.visible_message(span_danger("[src] burns out!"),span_userdanger("[src] burns out!"))

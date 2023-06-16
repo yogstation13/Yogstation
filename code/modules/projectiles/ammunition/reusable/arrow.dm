@@ -76,7 +76,7 @@
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
 			C.throw_mode_off()
-		update_icon()
+		update_appearance(updates = ALL)
 	return ..()
 
 /obj/item/ammo_casing/reusable/arrow/wirecutter_act(mob/living/user, obj/item/I)
@@ -131,23 +131,23 @@
 	if(istype(new_explosive))
 		explosive = new_explosive
 		LAZYADD(attached_parts, new_explosive)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/ammo_casing/reusable/arrow/proc/add_bola(obj/item/restraints/legcuffs/bola/new_bola)
 	if(istype(new_bola))
 		bola = new_bola
 		LAZYADD(attached_parts, new_bola)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/ammo_casing/reusable/arrow/proc/add_syringe(obj/item/reagent_containers/syringe/new_syringe)
 	if(istype(new_syringe))
 		syringe = new_syringe
 		LAZYADD(attached_parts, new_syringe)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/ammo_casing/reusable/arrow/proc/add_flame()
 	flaming = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 	
 /obj/item/ammo_casing/reusable/arrow/proc/on_embed(target, mob/living/carbon/embedde)
 	if(syringe)
@@ -439,7 +439,7 @@
 		// Otherwise, move it to the arrow and make it the new shard
 		new_shard.forceMove(src)
 		shard = new_shard
-		update_icon()
+		update_appearance(updates = ALL)
 	..()
 
 /obj/item/ammo_casing/reusable/arrow/singulo/update_icon(force_update)

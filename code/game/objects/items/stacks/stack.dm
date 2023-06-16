@@ -64,7 +64,7 @@
 			if(S.merge_type == merge_type)
 				merge(S)
 	update_weight()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/stack/proc/update_weight()
 	if(amount <= (max_amount * (1/3)))
@@ -74,7 +74,7 @@
 	else
 		w_class = full_w_class
 
-/obj/item/stack/update_icon()
+/obj/item/stack/update_appearance(updates = ALL)
 	if(novariants)
 		return ..()
 	if(amount <= (max_amount * (1/3)))
@@ -312,7 +312,7 @@
 	amount -= used
 	if(check)
 		zero_amount()
-	update_icon()
+	update_appearance(updates = ALL)
 	update_weight()
 	return TRUE
 
@@ -343,7 +343,7 @@
 		source.add_charge(amount * cost)
 	else
 		src.amount += amount
-	update_icon()
+	update_appearance(updates = ALL)
 	update_weight()
 
 /obj/item/stack/proc/merge(obj/item/stack/S) //Merge src into S, as much as possible

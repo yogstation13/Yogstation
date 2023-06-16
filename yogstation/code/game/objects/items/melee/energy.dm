@@ -7,7 +7,7 @@
 
 		if(active)
 			icon_state = "sword[color]"
-			user.update_inv_hands()
+			user.update_held_items()
 	else
 		..()
 

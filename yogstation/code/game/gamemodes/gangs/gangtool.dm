@@ -21,7 +21,7 @@
 	var/list/tags = list()
 
 /obj/item/gangtool/Initialize()
-	update_icon()
+	update_appearance(updates = ALL)
 	if(buyable_items.len)
 		return ..()
 	for(var/i in subtypesof(/datum/gang_item))
@@ -138,7 +138,7 @@
 		recall(usr)
 	attack_self(usr)
 
-/obj/item/gangtool/update_icon()
+/obj/item/gangtool/update_appearance(updates = ALL)
 	overlays.Cut()
 	var/image/I = new(icon, "[icon_state]-overlay")
 	if(gang)
@@ -174,7 +174,7 @@
 	if(G)
 		gang = G.gang
 		gang.gangtools += src
-		update_icon()
+		update_appearance(updates = ALL)
 		if(!(user.mind in gang.leaders) && promotable)
 			G.promote()
 			free_pen = TRUE

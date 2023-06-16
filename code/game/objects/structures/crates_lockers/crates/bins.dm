@@ -10,9 +10,9 @@
 
 /obj/structure/closet/crate/bin/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/structure/closet/crate/bin/update_icon()
+/obj/structure/closet/crate/bin/update_appearance(updates = ALL)
 	..()
 	cut_overlays()
 	if(contents.len == 0)
@@ -28,7 +28,7 @@
 		to_chat(user, span_notice("You fill the bag."))
 		for(var/obj/item/O in src)
 			SEND_SIGNAL(T, COMSIG_TRY_STORAGE_INSERT, O, user, TRUE)
-		T.update_icon()
+		T.update_appearance(updates = ALL)
 		do_animate()
 	else if(istype(W, /obj/item/wrench))
 		anchored = !anchored
@@ -41,4 +41,4 @@
 	flick("animate_largebins", src)
 	spawn(13)
 		playsound(loc, close_sound, 15, 1, -3)
-		update_icon()
+		update_appearance(updates = ALL)

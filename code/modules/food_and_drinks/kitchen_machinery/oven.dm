@@ -42,7 +42,7 @@
 	QDEL_NULL(particles)
 	. = ..()
 
-/obj/machinery/oven/update_icon()
+/obj/machinery/oven/update_appearance(updates = ALL)
 	update_overlays()
 	if(panel_open) 
 		icon_state = "oven_o"
@@ -53,7 +53,7 @@
 		icon_state = "oven_off"
 	return ..()
 
-/obj/machinery/oven/proc/update_overlays()
+/obj/machinery/oven/update_overlays()
 	cut_overlays()
 	var/mutable_appearance/door_overlay
 	if(open)
@@ -87,7 +87,7 @@
 		if(prob(10))
 			visible_message(span_danger("You smell a burnt smell coming from [src]!"))
 	set_smoke_state(worst_cooked_food_state)
-	update_icon()
+	update_appearance(updates = ALL)
 
 
 /obj/machinery/oven/attackby(obj/item/I, mob/user, params)
@@ -110,7 +110,7 @@
 
 	RegisterSignal(used_tray, COMSIG_MOVABLE_MOVED, PROC_REF(ItemMoved))
 	update_baking_audio()
-	update_icon()
+	update_appearance(updates = ALL)
 
 ///Called when the tray is moved out of the oven in some way
 /obj/machinery/oven/proc/ItemMoved(obj/item/oven_tray, atom/OldLoc, Dir, Forced)
@@ -144,7 +144,7 @@
 		if(used_tray)
 			begin_processing()
 			used_tray.vis_flags |= VIS_HIDE
-	update_icon()
+	update_appearance(updates = ALL)
 	update_baking_audio()
 	return TRUE
 
@@ -178,7 +178,7 @@
 		to_chat(user,span_notice("The access panel won't budge with a tray inside!"))
 		return TRUE
 	panel_open = !panel_open
-	update_icon()
+	update_appearance(updates = ALL)
 	return TRUE
 	
 

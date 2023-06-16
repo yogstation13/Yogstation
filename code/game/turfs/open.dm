@@ -322,7 +322,7 @@
 /turf/open/floor/grass/fairy/Initialize()
 	. = ..()
 	icon_state = "fairygrass[rand(1,4)]"
-	update_icon()
+	update_appearance(updates = ALL)
 
 /turf/open/indestructible/boss //you put stone tiles on this and use it as a base
 	name = "necropolis floor"

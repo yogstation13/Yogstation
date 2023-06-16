@@ -15,7 +15,7 @@
 
 /obj/item/laserlevel/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/laserlevel/attack_self(mob/user)
 	lightlevel--;
@@ -26,10 +26,10 @@
 		set_light(l_range = lightlevel / 2, l_power = (lightlevel / 4), l_color = "#00ff00")
 	else
 		set_light(0)
-	update_icon()
+	update_appearance(updates = ALL)
 	update_overlay(user)
 
-/obj/item/laserlevel/update_icon()
+/obj/item/laserlevel/update_appearance(updates = ALL)
 	cut_overlays()
 	add_overlay("[initial(icon_state)][lightlevel]")
 	return

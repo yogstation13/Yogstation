@@ -234,7 +234,7 @@
 		return ..()
 	if(!ismob(A))
 		A.attack_hand(src)
-		update_inv_hands()
+		update_held_items()
 
 
 /*

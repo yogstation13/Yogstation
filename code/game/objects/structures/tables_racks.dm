@@ -73,7 +73,7 @@
 /obj/structure/table/proc/deconstruction_hints(mob/user)
 	return span_notice("The top is <b>screwed</b> on, but the main <b>bolts</b> are also visible.")
 
-/obj/structure/table/update_icon()
+/obj/structure/table/update_appearance(updates = ALL)
 	if(smooth)
 		queue_smooth(src)
 		queue_smooth_neighbors(src)

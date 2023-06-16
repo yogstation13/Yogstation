@@ -87,7 +87,7 @@
 	if(cell)
 		user.visible_message("[user] removes [cell] from [src]!",span_notice("You remove [cell]."))
 		user.put_in_hands(cell)
-		cell.update_icon()
+		cell.update_appearance(updates = ALL)
 		cell = null
 		add_fingerprint(user)
 
@@ -340,7 +340,7 @@
 	QDEL_NULL(cell)
 	return ..()
 
-/obj/machinery/light/update_icon()
+/obj/machinery/light/update_appearance(updates = ALL)
 	cut_overlays()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
@@ -408,7 +408,7 @@
 	else
 		use_power = IDLE_POWER_USE
 		set_light(0)
-	update_icon()
+	update_appearance(updates = ALL)
 
 	active_power_usage = (brightness * 10)
 	if(on != on_gs)
@@ -537,7 +537,7 @@
 		set_light(0)
 		forced_off = !forced_off
 		on = !on
-		update_icon()
+		update_appearance(updates = ALL)
 		update()
 	else
 		return ..()

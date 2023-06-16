@@ -82,7 +82,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 		GLOB.security_level = level
 		for(var/obj/machinery/firealarm/FA in GLOB.machines)
 			if(is_station_level(FA.z))
-				FA.update_icon()
+				FA.update_appearance(updates = ALL)
 
 		if(level >= SEC_LEVEL_RED)
 			for(var/obj/machinery/computer/shuttle/pod/pod in GLOB.machines)

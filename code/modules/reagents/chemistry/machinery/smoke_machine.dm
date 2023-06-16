@@ -36,7 +36,7 @@
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		reagents.maximum_volume += REAGENTS_BASE_VOLUME * B.rating
 
-/obj/machinery/smoke_machine/update_icon()
+/obj/machinery/smoke_machine/update_appearance(updates = ALL)
 	if((!is_operational()) || (!on) || (reagents.total_volume == 0))
 		if (panel_open)
 			icon_state = "smoke0-o"
@@ -70,12 +70,12 @@
 		return
 	if(reagents.total_volume == 0)
 		on = FALSE
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 	var/turf/location = get_turf(src)
 	var/smoke_test = locate(/obj/effect/particle_effect/fluid/smoke) in location
 	if(on && !smoke_test)
-		update_icon()
+		update_appearance(updates = ALL)
 		var/datum/effect_system/fluid_spread/smoke/chem/smoke_machine/smoke = new()
 		smoke.set_up(setting * 3, location = location, carry = reagents, efficiency = efficiency)
 		smoke.start()
@@ -131,7 +131,7 @@
 	switch(action)
 		if("purge")
 			reagents.clear_reagents()
-			update_icon()
+			update_appearance(updates = ALL)
 			. = TRUE
 		if("setting")
 			var/amount = text2num(params["amount"])
@@ -140,7 +140,7 @@
 				. = TRUE
 		if("power")
 			on = !on
-			update_icon()
+			update_appearance(updates = ALL)
 			if(on)
 				message_admins("[ADMIN_LOOKUPFLW(usr)] activated a smoke machine that contains [english_list(reagents.reagent_list)] at [ADMIN_VERBOSEJMP(src)].")
 				log_game("[key_name(usr)] activated a smoke machine that contains [english_list(reagents.reagent_list)] at [AREACOORD(src)].")

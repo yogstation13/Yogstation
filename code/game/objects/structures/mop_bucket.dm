@@ -19,27 +19,27 @@
 			if(!user.transferItemToLoc(M, src))
 				return
 			ourmop = M
-			update_icon()
+			update_appearance(updates = ALL)
 			to_chat(user, span_notice("You put [M] into [src]."))
 		else
 			reagents.trans_to(M, 5, transfered_by = user)
 			to_chat(user, span_notice("You wet [M] in [src]."))
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-			update_icon()
+			update_appearance(updates = ALL)
 	else
 		. = ..()
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/structure/mopbucket/attack_hand(mob/user)
 	if(ourmop)
 		user.put_in_hands(ourmop)
 		to_chat(user, span_notice("You take [ourmop] from [src]."))
 		ourmop = null
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 	return ..()
 
-/obj/structure/mopbucket/update_icon()
+/obj/structure/mopbucket/update_appearance(updates = ALL)
 	cut_overlays()
 	if(reagents.total_volume > 0)
 		add_overlay("mopbucket_water")

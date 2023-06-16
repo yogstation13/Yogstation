@@ -35,6 +35,7 @@
 		debris += new /obj/item/stack/rods(src, rods)
 	if(cable)
 		debris += new /obj/item/stack/cable_coil(src, cable)
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/door/window/ComponentInitialize()
 	. = ..()
@@ -48,12 +49,45 @@
 	electronics = null
 	return ..()
 
-/obj/machinery/door/window/update_icon()
-	if(density)
-		icon_state = base_state
-	else
-		icon_state = "[base_state]open"
+/obj/machinery/door/window/update_appearance(updates = ALL)
+	. = ..()
 	SSdemo.mark_dirty(src)
+
+/obj/machinery/door/window/update_icon_state()
+	. = ..()
+	icon_state = "[base_state][density ? null : "open"]"
+
+	if(hasPower() && unres_sides)
+		set_light(l_range = 2, l_power = 1)
+		return
+
+	set_light(l_range = 0)
+
+/obj/machinery/door/window/update_overlays()
+	. = ..()
+
+	if(!hasPower() || !unres_sides)
+		return
+
+	switch(dir)
+		if(NORTH,SOUTH)
+			if(unres_sides & NORTH)
+				var/image/side_overlay = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_n")
+				side_overlay.pixel_y = dir == NORTH ? 31 : 6
+				. += side_overlay
+			if(unres_sides & SOUTH)
+				var/image/side_overlay = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_s")
+				side_overlay.pixel_y = dir == NORTH ? -6 : -31
+				. += side_overlay
+		if(EAST,WEST)
+			if(unres_sides & EAST)
+				var/image/side_overlay = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_e")
+				side_overlay.pixel_x = dir == EAST ? 31 : 6
+				. += side_overlay
+			if(unres_sides & WEST)
+				var/image/side_overlay = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_w")
+				side_overlay.pixel_x = dir == EAST ? -6 : -31
+				. += side_overlay
 
 /obj/machinery/door/window/proc/open_and_close()
 	if(!open())
@@ -264,7 +298,7 @@
 						WA.state= "02"
 						WA.setDir(dir)
 						WA.ini_dir = dir
-						WA.update_icon()
+						WA.update_appearance(updates = ALL)
 						WA.created_name = name
 
 						if(obj_flags & EMAGGED)

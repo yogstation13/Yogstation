@@ -37,7 +37,7 @@
 	. = ..()
 	holdingitems = list()
 	QDEL_NULL(container)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/reagentgrinder/Destroy()
 	if(container)
@@ -89,7 +89,7 @@
 	. = ..()
 	if(A == container)
 		container = null
-		update_icon()
+		update_appearance(updates = ALL)
 	if(holdingitems[A])
 		holdingitems -= A
 
@@ -99,7 +99,7 @@
 		AM.forceMove(drop_location())
 	holdingitems = list()
 
-/obj/machinery/reagentgrinder/update_icon()
+/obj/machinery/reagentgrinder/update_appearance(updates = ALL)
 	if(!container)
 		icon_state = "juicer"
 		return
@@ -118,7 +118,7 @@
 		container = new_container
 	else
 		container = null
-	update_icon()
+	update_appearance(updates = ALL)
 	return TRUE
 
 /obj/machinery/reagentgrinder/attackby(obj/item/I, mob/user, params)
@@ -142,7 +142,7 @@
 			return
 		replace_container(user, B)
 		to_chat(user, span_notice("You add [B] to [src]."))
-		update_icon()
+		update_appearance(updates = ALL)
 		return TRUE //no afterattack
 
 	if(holdingitems.len >= limit)

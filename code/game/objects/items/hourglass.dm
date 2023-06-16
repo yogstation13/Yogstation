@@ -29,7 +29,7 @@
 		to_chat(user,span_notice("You stop the [src].")) //Sand magically flows back because that's more convinient to use.
 		stop()
 
-/obj/item/hourglass/update_icon()
+/obj/item/hourglass/update_appearance(updates = ALL)
 	if(timing_id)
 		icon_state = "hourglass_active"
 	else
@@ -54,7 +54,7 @@
 	countdown.stop()
 	finish_time = null
 	animate(src)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/hourglass/proc/finish()
 	visible_message(span_notice("[src] stops."))

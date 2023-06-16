@@ -107,7 +107,7 @@
 		if(inv.slot_id)
 			inv.hud = src
 			inv_slots[inv.slot_id] = inv
-			inv.update_icon()
+			inv.update_appearance(updates = ALL)
 
 /datum/hud/alien/persistent_inventory_update()
 	if(!mymob)

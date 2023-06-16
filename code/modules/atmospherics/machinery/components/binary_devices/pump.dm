@@ -30,7 +30,7 @@
 /obj/machinery/atmospherics/components/binary/pump/CtrlClick(mob/user)
 	if(can_interact(user))
 		on = !on
-		update_icon()
+		update_appearance(updates = ALL)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/pump/AltClick(mob/user)
@@ -40,7 +40,7 @@
 		investigate_log(msg, INVESTIGATE_ATMOS)
 		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
 		balloon_alert(user, "pressure output set to [target_pressure] kPa")
-		update_icon()
+		update_appearance(updates = ALL)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/pump/Destroy()
@@ -137,7 +137,7 @@
 				var/msg = "was set to [target_pressure] kPa by [key_name(usr)]"
 				investigate_log(msg, INVESTIGATE_ATMOS)
 				investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/components/binary/pump/atmosinit()
 	..()
@@ -168,7 +168,7 @@
 		return
 
 	broadcast_status()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/components/binary/pump/can_unwrench(mob/user)
 	. = ..()

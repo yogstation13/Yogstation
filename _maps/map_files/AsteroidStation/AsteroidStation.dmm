@@ -33915,7 +33915,7 @@
 "kns" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance/two,
-/obj/item/latexballon,
+/obj/item/latexballoon,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "knA" = (
@@ -59647,7 +59647,7 @@
 "sCb" = (
 /obj/structure/rack,
 /obj/item/storage/box/lights/mixed,
-/obj/item/latexballon,
+/obj/item/latexballoon,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port)
@@ -66362,7 +66362,7 @@
 /area/engine/engineering)
 "uMm" = (
 /obj/structure/rack,
-/obj/item/latexballon,
+/obj/item/latexballoon,
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)

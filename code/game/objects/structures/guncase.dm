@@ -19,10 +19,10 @@
 				I.forceMove(src)
 			if(contents.len >= capacity)
 				break
-	update_icon()
+	update_appearance(updates = ALL)
 	return ..()
 
-/obj/structure/guncase/update_icon()
+/obj/structure/guncase/update_appearance(updates = ALL)
 	cut_overlays()
 	if(case_type && LAZYLEN(contents))
 		var/mutable_appearance/gun_overlay = mutable_appearance(icon, case_type)
@@ -42,14 +42,14 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			to_chat(user, span_notice("You place [I] in [src]."))
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			to_chat(user, span_warning("[src] is full."))
 		return
 
 	else if(user.a_intent != INTENT_HARM)
 		open = !open
-		update_icon()
+		update_appearance(updates = ALL)
 	else
 		return ..()
 
@@ -63,7 +63,7 @@
 		ShowWindow(user)
 	else
 		open = !open
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/structure/guncase/proc/ShowWindow(mob/user)
 	var/dat = {"<div class='block'>
@@ -89,10 +89,10 @@
 		if(ishuman(usr))
 			if(!usr.put_in_hands(O))
 				O.forceMove(get_turf(src))
-			update_icon()
+			update_appearance(updates = ALL)
 
 /obj/structure/guncase/handle_atom_del(atom/A)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/structure/guncase/contents_explosion(severity, target)
 	for(var/thing in contents)

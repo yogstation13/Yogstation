@@ -32,7 +32,7 @@
 	popup.set_content(return_text())
 	popup.open()
 
-/obj/machinery/embedded_controller/update_icon()
+/obj/machinery/embedded_controller/update_appearance(updates = ALL)
 
 /obj/machinery/embedded_controller/proc/return_text()
 
@@ -58,7 +58,7 @@
 	if(program)
 		program.process(delta_time)
 
-	update_icon()
+	update_appearance(updates = ALL)
 	src.updateDialog()
 
 /obj/machinery/embedded_controller/radio

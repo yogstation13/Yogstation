@@ -13,14 +13,14 @@ GLOBAL_LIST_EMPTY(lockers)
 	var/welded = FALSE
 	var/locked = FALSE
 	var/large = TRUE
-	var/wall_mounted = 0 //never solid (You can always pass over it)
+	var/wall_mounted = FALSE //never solid (You can always pass over it)
 	max_integrity = 200
 	integrity_failure = 50
 	armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 70, ACID = 60)
 	var/breakout_time = 1200
 	var/message_cooldown
 	var/can_weld_shut = TRUE
-	var/open_flags = 0
+	var/open_flags = NONE
 	var/dense_when_open = FALSE //if it's dense when open or not
 	var/max_mob_size = MOB_SIZE_HUMAN //Biggest mob_size accepted by the container
 	var/mob_storage_capacity = 3 // how many human sized mob/living can fit together inside a closet.
@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	if(mapload && !opened)		// if closed, any item at the crate's loc is put in the contents
 		. = INITIALIZE_HINT_LATELOAD
 
-	update_icon()
+	update_appearance(updates = ALL)
 	PopulateContents()
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_MAGICALLY_UNLOCKED = PROC_REF(on_magic_unlock),
@@ -78,30 +78,45 @@ GLOBAL_LIST_EMPTY(lockers)
 	GLOB.lockers -= src
 	return ..()
 
-/obj/structure/closet/update_icon()
-	cut_overlays()
-	if(!opened)
-		layer = OBJ_LAYER
-		if(!is_animating_door)
-			if(icon_door)
-				add_overlay("[icon_door]_door")
-			else
-				add_overlay("[icon_state]_door")
-			if(welded)
-				add_overlay(icon_welded)
-			if(secure && !broken)
-				if(locked)
-					add_overlay("locked")
-				else
-					add_overlay("unlocked")
+/obj/structure/closet/update_appearance(updates=ALL)
+	. = ..()
+	if(opened || broken || !secure)
+		luminosity = 0
+		return
+	luminosity = 1
 
-	else
-		layer = BELOW_OBJ_LAYER
-		if(!is_animating_door)
-			if(icon_door_override)
-				add_overlay("[icon_door]_open")
-			else
-				add_overlay("[icon_state]_open")
+/obj/structure/closet/update_icon()
+	. = ..()
+	if(issupplypod(src))
+		return
+
+	layer = opened ? BELOW_OBJ_LAYER : OBJ_LAYER
+
+/obj/structure/closet/update_overlays()
+	. = ..()
+	closet_update_overlays(.)
+
+/obj/structure/closet/proc/closet_update_overlays(list/new_overlays)
+	. = new_overlays
+	if(!is_animating_door)
+		if(opened && !notreallyacloset)
+			var/mutable_appearance/door_overlay = mutable_appearance(icon, "[icon_state]_open", alpha = src.alpha)
+			. += door_overlay
+//			door_overlay.overlays += emissive_blocker(door_overlay.icon, door_overlay.icon_state, src, alpha = door_overlay.alpha) // If we don't do this the door doesn't block emissives and it looks weird.
+		else if(!notreallyacloset)
+			. += "[icon_door || icon_state]_door"
+
+	if(opened)
+		return
+
+	if(welded)
+		. += icon_welded
+
+	if(broken || !secure)
+		return
+	//Overlay is similar enough for both that we can use the same mask for both
+//	. += emissive_appearance(icon, "locked", src, alpha = src.alpha)
+	. += locked ? "locked" : "unlocked"
 
 /obj/structure/closet/proc/animate_door(var/closing = FALSE)
 	if(!door_anim_time)
@@ -131,7 +146,7 @@ GLOBAL_LIST_EMPTY(lockers)
 /obj/structure/closet/proc/end_door_animation()
 	is_animating_door = FALSE
 	vis_contents -= door_obj
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/structure/closet/proc/get_door_transform(angle)
 	var/matrix/M = matrix()
@@ -211,7 +226,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	climb_time *= 0.5 //it's faster to climb onto an open thing
 	dump_contents()
 	animate_door(FALSE)
-	update_icon()
+	update_appearance(updates = ALL)
 	update_airtightness()
 	return 1
 
@@ -265,7 +280,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	opened = FALSE
 	density = TRUE
 	animate_door(TRUE)
-	update_icon()
+	update_appearance(updates = ALL)
 	update_airtightness()
 	close_storage(user)
 	return TRUE
@@ -339,7 +354,7 @@ GLOBAL_LIST_EMPTY(lockers)
 			user.visible_message(span_notice("[user] [welded ? "welds shut" : "unwelded"] \the [src]."),
 							span_notice("You [welded ? "weld" : "unwelded"] \the [src] with \the [W]."),
 							span_italics("You hear welding."))
-			update_icon()
+			update_appearance(updates = ALL)
 	else if(W.tool_behaviour == TOOL_WRENCH && anchorable)
 		if(isinspace() && !anchored)
 			return
@@ -516,7 +531,7 @@ GLOBAL_LIST_EMPTY(lockers)
 			locked = !locked
 			user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."),
 							span_notice("You [locked ? null : "un"]lock [src]."))
-			update_icon()
+			update_appearance(updates = ALL)
 		else if(!silent)
 			to_chat(user, span_notice("Access Denied"))
 	else if(secure && broken)
@@ -530,7 +545,7 @@ GLOBAL_LIST_EMPTY(lockers)
 		playsound(src, "sparks", 50, 1)
 		broken = TRUE
 		locked = FALSE
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/structure/closet/get_remote_view_fullscreens(mob/user)
 	if(user.stat == DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
@@ -546,7 +561,7 @@ GLOBAL_LIST_EMPTY(lockers)
 	if(secure && !broken && !(. & EMP_PROTECT_SELF))
 		if(prob(50 / severity))
 			locked = !locked
-			update_icon()
+			update_appearance(updates = ALL)
 		if(prob(20 / severity) && !opened)
 			if(!locked)
 				open()

@@ -13,7 +13,7 @@
 	var/chargelevel = -1
 	var/charge_rate = 250
 
-/obj/machinery/cell_charger/update_icon()
+/obj/machinery/cell_charger/update_appearance(updates = ALL)
 	cut_overlays()
 	if(charging)
 		add_overlay(image(charging.icon, charging.icon_state))
@@ -61,7 +61,7 @@
 			charging = W
 			user.visible_message("[user] inserts a cell into [src].", span_notice("You insert a cell into [src]."))
 			chargelevel = -1
-			update_icon()
+			update_appearance(updates = ALL)
 	else
 		if(!charging && default_deconstruction_screwdriver(user, icon_state, icon_state, W))
 			return
@@ -81,10 +81,10 @@
 	return ..()
 
 /obj/machinery/cell_charger/proc/removecell()
-	charging.update_icon()
+	charging.update_appearance(updates = ALL)
 	charging = null
 	chargelevel = -1
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	. = ..()
@@ -141,4 +141,4 @@
 	use_power(charge_rate * delta_time)
 	charging.give(charge_rate * delta_time)	//this is 2558, efficient batteries exist
 
-	update_icon()
+	update_appearance(updates = ALL)

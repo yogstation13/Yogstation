@@ -39,7 +39,7 @@
 		return FALSE //Cooldown check
 	on = !on
 	refreshBeam()
-	update_icon()
+	update_appearance(updates = ALL)
 	return TRUE
 
 /obj/item/assembly/infra/toggle_secure()
@@ -50,22 +50,23 @@
 	else
 		QDEL_LIST(beams)
 		STOP_PROCESSING(SSobj, src)
-	update_icon()
+	update_appearance(updates = ALL)
 	return secured
 
-/obj/item/assembly/infra/update_icon()
-	cut_overlays()
-	attached_overlays = list()
-	if(on)
-		add_overlay("infrared_on")
-		attached_overlays += "infrared_on"
-		if(visible && secured)
-			add_overlay("infrared_visible")
-			attached_overlays += "infrared_visible"
+/obj/item/assembly/infra/update_appearance(updates = ALL)
+	. = ..()
+	holder?.update_appearance(updates)
 
-	if(holder)
-		holder.update_icon()
-	return
+/obj/item/assembly/infra/update_overlays()
+	. = ..()
+	attached_overlays = list()
+	if(!on)
+		return
+	. += "infrared_on"
+	attached_overlays += "infrared_on"
+	if(visible && secured)
+		. += "infrared_visible"
+		attached_overlays += "infrared_visible"
 
 /obj/item/assembly/infra/dropped()
 	. = ..()
@@ -207,7 +208,7 @@
 			visible = !visible
 			. = TRUE
 
-	update_icon()
+	update_appearance(updates = ALL)
 	refreshBeam()
 
 /***************************IBeam*********************************/

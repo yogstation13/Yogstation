@@ -15,7 +15,7 @@
 	connect_to_network()
 	return ..()
 
-/obj/machinery/power/validhunter_engine/update_icon()
+/obj/machinery/power/validhunter_engine/update_appearance(updates = ALL)
 	if(operating)
 		icon_state = "throw_me_in_the_trash_and_feed_my_remains_to_the_devil_operating"
 	else
@@ -74,7 +74,7 @@
 
 /obj/machinery/power/validhunter_engine/proc/process_mob(mob/living/L, mob/user)
 	operating = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 	
 	playsound(src.loc, 'sound/machines/terminal_on.ogg', 50, 1)
 	L.forceMove(src)
@@ -159,7 +159,7 @@
 
 	pixel_x = initial(pixel_x) //return to its spot after shaking
 	operating = FALSE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/power/validhunter_engine/proc/fake_gib(mob/living/L)
 	playsound(src.loc, 'sound/machines/terminal_off.ogg', 50, 1)
@@ -167,5 +167,5 @@
 	dropContents()
 
 	operating = FALSE
-	update_icon()
+	update_appearance(updates = ALL)
 	

@@ -17,7 +17,7 @@
 	/// Type of ammo. used to make sure the ammo type is compatable with the weapon itself
 	var/ammo_type
 
-/obj/item/mecha_ammo/proc/update_name()
+/obj/item/mecha_ammo/update_name()
 	if(!rounds)
 		name = "empty ammo box"
 		desc = "An exosuit ammuniton box that has since been emptied. Please recycle."

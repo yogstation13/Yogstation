@@ -84,6 +84,7 @@
 	anchored = TRUE
 	icon = 'icons/obj/misc.dmi'
 	icon_state = "uglymine"
+	base_icon_state = "uglymine"
 	alpha = 30
 	var/triggered = 0
 	var/smartmine = FALSE
@@ -93,6 +94,7 @@
 /obj/effect/mine/Initialize()
 	. = ..()
 	layer = ABOVE_MOB_LAYER
+//	update_appearance(UPDATE_ICON_STATE)
 
 /obj/effect/mine/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/multitool))
@@ -103,6 +105,13 @@
 			qdel(src)
 		return
 	return ..()
+
+/*/obj/effect/mine/update_icon_state()
+	. = ..()
+	if(armed)
+		icon_state = base_icon_state
+	else
+		icon_state = "[base_icon_state]-inactive"*/
 
 /obj/effect/mine/proc/mineEffect(mob/victim)
 	to_chat(victim, span_danger("*click*"))
@@ -150,6 +159,7 @@
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
+	base_icon_state = "rubberducky"
 	var/sound = 'sound/items/bikehorn.ogg'
 	range_heavy = 2
 	range_light = 3
@@ -260,6 +270,7 @@
 	desc = "pick me up"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity2"
+	base_icon_state = "electricity2"
 	density = FALSE
 	alpha = 255
 	var/duration = 0

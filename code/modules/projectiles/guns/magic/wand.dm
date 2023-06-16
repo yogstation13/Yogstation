@@ -21,7 +21,7 @@
 	. = ..()
 	. += "Has [charges] charge\s remaining."
 
-/obj/item/gun/magic/wand/update_icon()
+/obj/item/gun/magic/wand/update_appearance(updates = ALL)
 	icon_state = "[initial(icon_state)][charges ? "" : "-drained"]"
 
 /obj/item/gun/magic/wand/attack(atom/target, mob/living/user)
@@ -44,7 +44,7 @@
 		zap_self(user)
 	else
 		. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 
 /obj/item/gun/magic/wand/proc/zap_self(mob/living/user)

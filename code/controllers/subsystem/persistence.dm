@@ -138,7 +138,7 @@ SUBSYSTEM_DEF(persistence)
 		T.showpiece = new /obj/item/showpiece_dummy(T, path)
 		T.trophy_message = chosen_trophy["message"]
 		T.placer_key = chosen_trophy["placer_key"]
-		T.update_icon()
+		T.update_appearance(updates = ALL)
 
 /datum/controller/subsystem/persistence/proc/CollectData()
 	CollectChiselMessages()

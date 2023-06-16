@@ -30,9 +30,9 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	. = ..()
 	GLOB.announcement_systems += src
 	radio = new /obj/item/radio/headset/silicon/ai(src)
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/machinery/announcement_system/update_icon()
+/obj/machinery/announcement_system/update_appearance(updates = ALL)
 	cut_overlays()
 	if(is_operational())
 		var/mutable_appearance/on_app = mutable_appearance(icon, "AAS_on")
@@ -60,13 +60,13 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		P.play_tool_sound(src)
 		panel_open = !panel_open
 		to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of [src]."))
-		update_icon()
+		update_appearance(updates = ALL)
 	else if(default_deconstruction_crowbar(P))
 		return
 	else if(P.tool_behaviour == TOOL_MULTITOOL && panel_open && (stat & BROKEN))
 		to_chat(user, span_notice("You reset [src]'s firmware."))
 		stat &= ~BROKEN
-		update_icon()
+		update_appearance(updates = ALL)
 	else
 		return ..()
 
@@ -141,10 +141,10 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 				log_game("The head announcement was updated: [NewMessage] by:[key_name(usr)]")
 		if("NewheadToggle")
 			newheadToggle = !newheadToggle
-			update_icon()
+			update_appearance(updates = ALL)
 		if("ArrivalToggle")
 			arrivalToggle = !arrivalToggle
-			update_icon()
+			update_appearance(updates = ALL)
 	add_fingerprint(usr)
 
 /obj/machinery/announcement_system/attack_robot(mob/living/silicon/user)

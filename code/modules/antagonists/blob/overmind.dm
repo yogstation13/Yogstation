@@ -59,7 +59,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 	set_strain(BS)
 	color = blobstrain.complementary_color
 	if(blob_core)
-		blob_core.update_icon()
+		blob_core.update_appearance(updates = ALL)
 	SSshuttle.registerHostileEnvironment(src)
 	announcement_time = world.time + 6000
 	. = ..()
@@ -180,7 +180,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		var/obj/structure/blob/B = BL
 		if(B && B.overmind == src)
 			B.overmind = null
-			B.update_icon() //reset anything that was ours
+			B.update_appearance(updates = ALL) //reset anything that was ours
 	for(var/BLO in blob_mobs)
 		var/mob/living/simple_animal/hostile/blob/BM = BLO
 		if(BM)

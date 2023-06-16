@@ -99,7 +99,7 @@
 	idle_threads = list()
 	install_starting_components()
 	install_starting_files()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/modular_computer/Destroy()
 	kill_program(forced = TRUE)
@@ -262,7 +262,7 @@
 
 	. += get_modular_computer_parts_examine(user)
 
-/obj/item/modular_computer/update_icon()
+/obj/item/modular_computer/update_appearance(updates = ALL)
 	if(!physical)
 		return
 
@@ -293,11 +293,11 @@
 
 /obj/item/modular_computer/equipped()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/modular_computer/dropped()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 
 /obj/item/modular_computer/proc/update_label()
@@ -338,7 +338,7 @@
 		else
 			to_chat(user, span_notice("You press the power button and start up \the [src]."))
 		enabled = TRUE
-		update_icon()
+		update_appearance(updates = ALL)
 		play_computer_sound(startup_sound, get_clamped_volume(), FALSE)
 		ui_interact(user)
 	else // Unpowered
@@ -480,7 +480,7 @@
 	var/mob/user = usr
 	if(user && istype(user))
 		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
-	update_icon()
+	update_appearance(updates = ALL)
 
 // Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
 /obj/item/modular_computer/proc/get_ntnet_status(specific_action = 0)
@@ -504,7 +504,7 @@
 	if(loud)
 		physical.visible_message(span_notice("\The [src] shuts down."))
 	enabled = FALSE
-	update_icon()
+	update_appearance(updates = ALL)
 	play_computer_sound(shutdown_sound, get_clamped_volume(), FALSE)
 
 /**
@@ -517,7 +517,7 @@
 	if(!has_light)
 		return FALSE
 	set_light_on(!light_on)
-	update_icon()
+	update_appearance(updates = ALL)
 	return TRUE
 
 /**

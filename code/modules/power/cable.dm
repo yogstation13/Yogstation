@@ -90,7 +90,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	cable_color = param_color || cable_color || pick(cable_colors)
 	if(cable_colors[cable_color])
 		cable_color = cable_colors[cable_color]
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/structure/cable/Destroy()					// called when a cable is deleted
 	if(powernet)
@@ -117,9 +117,9 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	if(level == 1 && isturf(loc))
 		invisibility = i ? INVISIBILITY_MAXIMUM : 0
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/structure/cable/update_icon()
+/obj/structure/cable/update_appearance(updates = ALL)
 	icon_state = "[d1]-[d2]"
 	color = null
 	add_atom_colour(cable_color, FIXED_COLOUR_PRIORITY)
@@ -492,12 +492,12 @@ By design, d1 is the smallest direction and d2 is the highest
 
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/stack/cable_coil/proc/set_cable_color(new_color)
 	color = GLOB.cable_colors[new_color]
 	cable_color = new_color
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/stack/cable_coil/suicide_act(mob/user)
 	if(locate(/obj/structure/chair/stool) in get_turf(user))
@@ -537,7 +537,7 @@ By design, d1 is the smallest direction and d2 is the highest
 				if(use(CABLE_RESTRAINTS_COST))
 					var/obj/item/restraints/handcuffs/cable/restraints = new(null, cable_color)
 					user.put_in_hands(restraints)
-	update_icon()
+	update_appearance(updates = ALL)
 
 ///////////////////////////////////
 // General procedures
@@ -562,7 +562,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 	return ..()
 
-/obj/item/stack/cable_coil/update_icon()
+/obj/item/stack/cable_coil/update_appearance(updates = ALL)
 	if(novariants)
 		return
 	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"
@@ -576,7 +576,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	var/obj/item/stack/cable_coil/new_cable = ..()
 	if(istype(new_cable))
 		new_cable.cable_color = cable_color
-		new_cable.update_icon()
+		new_cable.update_appearance(updates = ALL)
 
 //add cables to the stack
 /obj/item/stack/cable_coil/proc/give(extra)
@@ -584,7 +584,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		amount = max_amount
 	else
 		amount += extra
-	update_icon()
+	update_appearance(updates = ALL)
 
 
 
@@ -633,7 +633,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	C.d1 = 0 //it's a O-X node cable
 	C.d2 = dirn
 	C.add_fingerprint(user)
-	C.update_icon()
+	C.update_appearance(updates = ALL)
 
 	//create a new powernet with the cable, if needed it will be merged later
 	var/datum/powernet/PN = new()
@@ -705,7 +705,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			NC.d1 = 0
 			NC.d2 = fdirn
 			NC.add_fingerprint(user)
-			NC.update_icon()
+			NC.update_appearance(updates = ALL)
 
 			//create a new powernet with the cable, if needed it will be merged later
 			var/datum/powernet/newPN = new(loc.z)
@@ -747,7 +747,7 @@ By design, d1 is the smallest direction and d2 is the highest
 				return
 
 
-		C.update_icon()
+		C.update_appearance(updates = ALL)
 
 		C.d1 = nd1
 		C.d2 = nd2
@@ -755,7 +755,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		//updates the stored cable coil
 
 		C.add_fingerprint(user)
-		C.update_icon()
+		C.update_appearance(updates = ALL)
 
 
 		C.mergeConnectedNetworks(C.d1) //merge the powernets...
@@ -786,7 +786,7 @@ By design, d1 is the smallest direction and d2 is the highest
 /obj/item/stack/cable_coil/cyborg/attack_self(mob/user)
 	var/picked = tgui_input_list(user, "Pick a cable color.","Cable Color", GLOB.cable_colors)
 	cable_color = picked
-	update_icon()
+	update_appearance(updates = ALL)
 
 //////////////////////////////
 // Misc.
@@ -848,7 +848,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		amount = rand(1,2)
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/stack/cable_coil/cut/red
 	cable_color = "red"

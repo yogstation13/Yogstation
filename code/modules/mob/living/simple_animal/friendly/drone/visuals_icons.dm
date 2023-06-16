@@ -18,7 +18,7 @@
 		drone_overlays[cache_index] = null
 
 
-/mob/living/simple_animal/drone/update_inv_hands()
+/mob/living/simple_animal/drone/update_held_items()
 	remove_overlay(DRONE_HANDS_LAYER)
 	var/list/hands_overlays = list()
 
@@ -85,7 +85,7 @@
 /mob/living/simple_animal/drone/regenerate_icons()
 	// Drones only have 4 slots, which in this specific instance
 	// is a small blessing.
-	update_inv_hands()
+	update_held_items()
 	update_inv_head()
 	update_inv_internal_storage()
 

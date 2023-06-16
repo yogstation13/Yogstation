@@ -41,7 +41,7 @@
 			if(user.getorganslot(bastard.slot)) //NEVERMIND WE ARE NOT BALLING
 				bastard.zone = original_zone //MISSION ABORT
 				bastard.SetSlotFromZone()
-			bastard.update_icon()
+			bastard.update_appearance(updates = ALL)
 	storedorgan.Insert(user)//insert stored organ into the user
 	user.visible_message(span_notice("[user] presses a button on [src], and you hear a short mechanical noise."), span_notice("You feel a sharp sting as [src] plunges into your body."))
 	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, 1)
@@ -145,7 +145,7 @@
 			implant.zone = BODY_ZONE_R_ARM
 			to_chat(user, span_notice("You change the autosurgeon to target the right arm."))
 		implant.SetSlotFromZone()
-		implant.update_icon() //If for whatever reason, the implant is removed from the autosurgeon after it's switched
+		implant.update_appearance(updates = ALL) //If for whatever reason, the implant is removed from the autosurgeon after it's switched
 
 /obj/item/autosurgeon/arm/syndicate/syndie_mantis
 	uses = 1
@@ -322,7 +322,7 @@
 				if(user.getorganslot(bastard.slot)) //NEVERMIND WE ARE NOT BALLING
 					bastard.zone = original_zone //MISSION ABORT
 					bastard.SetSlotFromZone()
-				bastard.update_icon()
+				bastard.update_appearance(updates = ALL)
 		toimplant.Insert(user)//insert stored organ into the user
 	user.visible_message(span_notice("[user] presses a button on [src], and you hear a short mechanical noise."), span_notice("You feel a sharp sting as [src] plunges into your body."))
 	playsound(get_turf(user), 'sound/weapons/circsawhit.ogg', 50, 1)

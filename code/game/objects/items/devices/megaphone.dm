@@ -24,7 +24,7 @@
 
 /obj/item/megaphone/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/megaphone/equipped(mob/M, slot)
 	. = ..()
@@ -42,11 +42,11 @@
 	if(last_used > world.time)
 		return FALSE
 	last_used = world.time + recharge_time
-	update_icon()
-	addtimer(CALLBACK(src, PROC_REF(update_icon)), recharge_time)
+	update_appearance(updates = ALL)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_appearance)), recharge_time)
 	return TRUE
 
-/obj/item/megaphone/update_icon()
+/obj/item/megaphone/update_appearance(updates = ALL)
 	. = ..()
 	cut_overlays()
 	var/mutable_appearance/base_overlay

@@ -62,7 +62,7 @@
 	if(!machinery_computer)
 		return
 	..()
-	machinery_computer.update_icon()
+	machinery_computer.update_appearance(updates = ALL)
 	return
 
 /obj/item/modular_computer/processor/attack_ghost(mob/user)

@@ -59,7 +59,7 @@
 		for(var/mob/living/obstacle in srcturf) //Stop people from using this as a shield
 			return
 	opening = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 	addtimer(CALLBACK(src, /obj/structure/falsewall/proc/toggle_open), 5)
 
 /obj/structure/falsewall/proc/toggle_open()
@@ -67,10 +67,10 @@
 		density = !density
 		set_opacity(density)
 		opening = FALSE
-		update_icon()
+		update_appearance(updates = ALL)
 		air_update_turf(TRUE)
 
-/obj/structure/falsewall/update_icon()//Calling icon_update will refresh the smoothwalls if it's closed, otherwise it will make sure the icon is correct if it's open
+/obj/structure/falsewall/update_appearance(updates = ALL)//Calling icon_update will refresh the smoothwalls if it's closed, otherwise it will make sure the icon is correct if it's open
 	if(opening)
 		if(density)
 			icon_state = "fwall_opening"

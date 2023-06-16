@@ -58,19 +58,19 @@
 	if(thing == pai) //double check /mob/living/silicon/pai/Destroy() if you change these.
 		pai = null
 		emotion_icon = initial(emotion_icon)
-		update_icon()
+		update_appearance(updates = ALL)
 	return ..()
 
 /obj/item/pai_card/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 	SSpai.pai_card_list += src
 
 /obj/item/pai_card/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is staring sadly at [src]! [user.p_they()] can't keep living without real human intimacy!"))
 	return OXYLOSS
 
-/obj/item/pai_card/proc/update_overlays()
+/obj/item/pai_card/update_overlays()
 	. = ..()
 	. += "pai-[emotion_icon]"
 	if(pai?.hacking_cable)
@@ -79,7 +79,7 @@
 /obj/item/pai_card/vv_edit_var(vname, vval)
 	. = ..()
 	if(vname == NAMEOF(src, emotion_icon))
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/item/pai_card/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -253,7 +253,7 @@
 		return FALSE
 	pai = downloaded
 	emotion_icon = "null"
-	update_icon()
+	update_appearance(updates = ALL)
 	playsound(src, 'sound/effects/pai_boot.ogg', 50, TRUE, -1)
 	audible_message("[src] plays a cheerful startup noise!")
 	return TRUE

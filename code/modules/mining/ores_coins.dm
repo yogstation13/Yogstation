@@ -22,7 +22,7 @@
 	var/list/stack_overlays
 	var/edible = FALSE //can a preternis eat it for some funny effect?
 
-/obj/item/stack/ore/update_icon()
+/obj/item/stack/ore/update_appearance(updates = ALL)
 	var/difference = min(ORESTACK_OVERLAYS_MAX, amount) - (LAZYLEN(stack_overlays)+1)
 	if(difference == 0)
 		return
@@ -612,7 +612,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coinstack/Initialize()
 	. = ..()
 	coins = list()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/coinstack/examine(mob/user)
 	. = ..()
@@ -626,7 +626,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if(antag > 1)
 		. += span_info("But they told me I could only have one at a time...")
 
-/obj/item/coinstack/update_icon()
+/obj/item/coinstack/update_appearance(updates = ALL)
 	cut_overlays()
 	for(var/i in 1 to length(coins))
 		var/obj/item/coin/C = coins[i]
@@ -655,7 +655,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	C.pixel_y = 0
 	src.add_fingerprint(user)
 	to_chat(user,span_notice("You add [C] to the stack of coins."))
-	update_icon()
+	update_appearance(updates = ALL)
 	return TRUE
 
 /obj/item/coinstack/proc/remove_from_stack(mob/living/user) //you can only remove the topmost coin from the stack
@@ -663,7 +663,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if(top_coin)
 		coins -= top_coin
 		user.put_in_active_hand(top_coin)
-	update_icon()
+	update_appearance(updates = ALL)
 	if(length(coins) <= 1) //one coin left, we're done here
 		var/obj/item/coin/lastCoin = coins[1]
 		coins -= coins[1]

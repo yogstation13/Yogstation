@@ -8,7 +8,7 @@
 
 /turf/open/space/transit/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 	RegisterSignal(src, COMSIG_TURF_RESERVATION_RELEASED, PROC_REF(launch_contents))
 
 /turf/open/space/transit/Destroy()
@@ -67,7 +67,7 @@
 /turf/open/space/transit/east
 	dir = EAST
 
-/turf/open/space/transit/proc/update_icon()
+/turf/open/space/transit/update_appearance(updates = ALL)
 	icon_state = "speedspace_ns_[get_transit_state(src)]"
 	transform = turn(matrix(), get_transit_angle(src))
 

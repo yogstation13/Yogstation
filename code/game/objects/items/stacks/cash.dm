@@ -16,9 +16,10 @@
 
 /obj/item/stack/spacecash/Initialize()
 	. = ..()
-	update_desc()
+	update_appearance(UPDATE_DESC)
 
-/obj/item/stack/spacecash/proc/update_desc()
+/obj/item/stack/spacecash/update_desc()
+	. = ..()
 	var/total_worth = get_item_credit_value()
 	desc = "It's worth [total_worth] credit[( total_worth > 1 ) ? "s" : ""]"
 
@@ -27,11 +28,11 @@
 
 /obj/item/stack/spacecash/merge(obj/item/stack/S)
 	. = ..()
-	update_desc()
+	update_appearance(UPDATE_DESC)
 
 /obj/item/stack/spacecash/use(used, transfer = FALSE)
 	. = ..()
-	update_desc()
+	update_appearance(UPDATE_DESC)
 
 /obj/item/stack/spacecash/c1
 	icon_state = "spacecash"

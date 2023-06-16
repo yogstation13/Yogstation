@@ -61,7 +61,7 @@
 		obj_break()
 		return
 	terminal.master = src
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/power/smes/RefreshParts()
 	var/IO = 0
@@ -81,7 +81,7 @@
 /obj/machinery/power/smes/attackby(obj/item/I, mob/user, params)
 	//opening using screwdriver
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-o", initial(icon_state), I))
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 
 	//changing direction using wrench
@@ -98,7 +98,7 @@
 			to_chat(user, span_alert("No power terminal found."))
 			return
 		stat &= ~BROKEN
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 
 	//building and linking a terminal
@@ -205,7 +205,7 @@
 		obj_break()
 
 
-/obj/machinery/power/smes/update_icon()
+/obj/machinery/power/smes/update_appearance(updates = ALL)
 	cut_overlays()
 	if(stat & BROKEN)
 		return
@@ -286,7 +286,7 @@
 
 	// only update icon if state changed
 	if(last_disp != chargedisplay() || last_chrg != inputting || last_onln != outputting)
-		update_icon()
+		update_appearance(updates = ALL)
 
 
 
@@ -316,7 +316,7 @@
 	output_used -= excess
 
 	if(clev != chargedisplay() ) //if needed updates the icons overlay
-		update_icon()
+		update_appearance(updates = ALL)
 	return
 
 
@@ -353,12 +353,12 @@
 		if("tryinput")
 			input_attempt = !input_attempt
 			log_smes(usr)
-			update_icon()
+			update_appearance(updates = ALL)
 			. = TRUE
 		if("tryoutput")
 			output_attempt = !output_attempt
 			log_smes(usr)
-			update_icon()
+			update_appearance(updates = ALL)
 			. = TRUE
 		if("input")
 			var/target = params["target"]
@@ -420,7 +420,7 @@
 	output_level = rand(0, output_level_max)
 	input_level = rand(0, input_level_max)
 	charge = max(charge - 1e6/severity, 0)
-	update_icon()
+	update_appearance(updates = ALL)
 	log_smes()
 
 /obj/machinery/power/smes/engineering
@@ -446,7 +446,7 @@
 		return
 	output_attempt = !output_attempt
 	log_smes(user)
-	update_icon()
+	update_appearance(updates = ALL)
 
 #undef SMES_OUTPUTTING
 #undef SMES_NOT_OUTPUTTING

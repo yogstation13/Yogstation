@@ -761,7 +761,7 @@
 	pixel_y = rand(-6,6)
 	pixel_x = rand(-6,6)
 	icon_state = "small_rune_[rand(12)]"
-	update_icon()
+	update_appearance(updates = ALL)
 
 // Shoots out in a wave-like, what rust heretics themselves get
 /datum/action/cooldown/spell/cone/staggered/entropic_plume

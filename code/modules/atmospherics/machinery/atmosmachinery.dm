@@ -117,13 +117,13 @@ GLOBAL_LIST_EMPTY(pipeimages)
 			if(can_be_node(target, i))
 				nodes[i] = target
 				break
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/proc/setPipingLayer(new_layer)
 	piping_layer = (pipe_flags & PIPING_DEFAULT_LAYER_ONLY) ? PIPING_LAYER_DEFAULT : new_layer
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/machinery/atmospherics/update_icon()
+/obj/machinery/atmospherics/update_appearance(updates = ALL)
 	layer = initial(layer) + piping_layer / 1000
 	return ..()
 
@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		var/obj/machinery/atmospherics/pipe/P = reference
 		P.destroy_network()
 	nodes[nodes.Find(reference)] = null
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pipe)) //lets you autodrop

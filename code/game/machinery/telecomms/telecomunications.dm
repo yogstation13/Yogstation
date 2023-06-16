@@ -120,7 +120,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 					T.links |= src
 
 
-/obj/machinery/telecomms/update_icon()
+/obj/machinery/telecomms/update_appearance(updates = ALL)
 	cut_overlays()
 	if(on)
 		var/mutable_appearance/on_overlay
@@ -177,7 +177,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	update_power()
 
 	// Update the icon
-	update_icon()
+	update_appearance(updates = ALL)
 	update_speed()
 
 

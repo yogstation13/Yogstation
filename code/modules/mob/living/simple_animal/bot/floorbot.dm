@@ -45,7 +45,7 @@
 /mob/living/simple_animal/bot/floorbot/Initialize(mapload, new_toolbox_color)
 	. = ..()
 	toolbox_color = new_toolbox_color
-	update_icon()
+	update_appearance(updates = ALL)
 	var/datum/job/engineer/J = new/datum/job/engineer
 	access_card.access += J.get_access()
 	prev_access = access_card.access
@@ -55,11 +55,11 @@
 
 /mob/living/simple_animal/bot/floorbot/turn_on()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /mob/living/simple_animal/bot/floorbot/turn_off()
 	..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /mob/living/simple_animal/bot/floorbot/bot_reset()
 	..()
@@ -67,7 +67,7 @@
 	oldloc = null
 	ignore_list = list()
 	anchored = FALSE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /mob/living/simple_animal/bot/floorbot/set_custom_texts()
 	text_hack = "You corrupt [name]'s construction protocols."
@@ -355,11 +355,11 @@
 				if(specialtiles == 0)
 					speak("Requesting refill of custom floortiles to continue replacing.")
 	mode = BOT_IDLE
-	update_icon()
+	update_appearance(updates = ALL)
 	anchored = FALSE
 	target = null
 
-/mob/living/simple_animal/bot/floorbot/update_icon()
+/mob/living/simple_animal/bot/floorbot/update_appearance(updates = ALL)
 	icon_state = "[toolbox_color]floorbot[on]"
 
 

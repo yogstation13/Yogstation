@@ -28,7 +28,7 @@
 
 /obj/structure/discoball/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/structure/discoball/attack_hand(mob/living/carbon/human/user)
 	. = ..()
@@ -51,7 +51,7 @@
 	TurnedOn = FALSE
 	set_light(0)
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
-	update_icon()
+	update_appearance(updates = ALL)
 	if(TimerID)
 		deltimer(TimerID)
 	over()
@@ -69,10 +69,10 @@
 	current_color = random_color()
 	set_light_color(current_color)
 	add_atom_colour("#[current_color]", FIXED_COLOUR_PRIORITY)
-	update_icon()
+	update_appearance(updates = ALL)
 	TimerID = addtimer(CALLBACK(src, PROC_REF(DiscoFever)), 5, TIMER_STOPPABLE)  //Call ourselves every 0.5 seconds to change colors
 
-/obj/structure/discoball/update_icon()
+/obj/structure/discoball/update_appearance(updates = ALL)
 	cut_overlays()
 	icon_state = "disco_[TurnedOn]"
 	var/mutable_appearance/base_overlay = mutable_appearance(icon, "ethdisco_base")

@@ -18,9 +18,9 @@
 
 /obj/item/book/granter/martial/plasma_fist/on_reading_finished(mob/living/carbon/user)
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/book/granter/martial/plasma_fist/update_icon()
+/obj/item/book/granter/martial/plasma_fist/update_appearance(updates = ALL)
 	. = ..()
 	if(uses <= 0)
 		name = "empty scroll"

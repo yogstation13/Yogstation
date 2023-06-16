@@ -70,7 +70,7 @@
 	scan_active_4 = FALSE
 	return
 
-/obj/machinery/medical_kiosk/update_icon()
+/obj/machinery/medical_kiosk/update_appearance(updates = ALL)
 	if(is_operational())
 		icon_state = "kiosk_off"
 	else

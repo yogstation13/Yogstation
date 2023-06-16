@@ -395,7 +395,7 @@
 	for(var/obj/machinery/atmospherics/components/unary/comp in location)
 		if(!comp.welded)
 			comp.welded = TRUE
-			comp.update_icon()
+			comp.update_appearance(updates = ALL)
 			comp.visible_message(span_danger("[comp] sealed shut!"))
 
 	for(var/mob/living/potential_tinder in location)

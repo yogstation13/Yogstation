@@ -183,7 +183,7 @@
 /datum/outfit/nuclear_operative_elite/post_equip(mob/living/carbon/human/H, visualsOnly)
 	var/obj/item/shield/energy/shield = locate() in H.held_items
 	shield.icon_state = "[shield.base_icon_state]1"
-	H.update_inv_hands()
+	H.update_held_items()
 
 /datum/antagonist/nukeop/leader
 	name = "Nuclear Operative Leader"

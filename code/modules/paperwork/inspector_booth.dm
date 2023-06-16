@@ -55,9 +55,9 @@
 
 /obj/machinery/inspector_booth/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/machinery/inspector_booth/update_icon()
+/obj/machinery/inspector_booth/update_appearance(updates = ALL)
 	if (stat & NOPOWER)
 		icon_state = "booth_off"
 	else if (panel_open || stat & MAINT)

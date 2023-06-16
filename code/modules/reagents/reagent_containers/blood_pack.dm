@@ -56,7 +56,7 @@
 	. = ..()
 	if(blood_type != null)
 		reagents.add_reagent(unique_blood ? unique_blood : /datum/reagent/blood, 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/blood/on_reagent_change(changetype)
 	if(reagents)
@@ -68,7 +68,7 @@
 		else
 			blood_type = null
 	update_pack_name()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/blood/proc/update_pack_name()
 	if(!labelled)
@@ -77,7 +77,7 @@
 		else
 			name = "blood pack"
 
-/obj/item/reagent_containers/blood/update_icon()
+/obj/item/reagent_containers/blood/update_appearance(updates = ALL)
 	cut_overlays()
 
 	var/v = min(round(reagents.total_volume / volume * 10), 10)

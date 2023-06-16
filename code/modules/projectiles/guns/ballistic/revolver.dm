@@ -181,8 +181,8 @@
 	..()
 	if(get_ammo(FALSE) > 0)
 		spin()
-	update_icon()
-	A.update_icon()
+	update_appearance(updates = ALL)
+	A.update_appearance(updates = ALL)
 	return
 
 /obj/item/gun/ballistic/revolver/russian/attack_self(mob/user)

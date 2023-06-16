@@ -71,12 +71,12 @@
 /obj/machinery/atmospherics/miner/proc/set_active(setting)
 	if(active != setting)
 		active = setting
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/miner/proc/set_broken(setting)
 	if(broken != setting)
 		broken = setting
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/miner/proc/update_power()
 	if(!active)
@@ -108,7 +108,7 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/atmospherics/miner/update_icon()
+/obj/machinery/atmospherics/miner/update_appearance(updates = ALL)
 	cut_overlays()
 	if(broken)
 		add_overlay("broken")

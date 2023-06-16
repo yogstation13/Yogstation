@@ -30,7 +30,7 @@
 /obj/machinery/fat_sucker/Initialize()
 	. = ..()
 	soundloop = new(list(src),  FALSE)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/fat_sucker/RefreshParts()
 	..()
@@ -59,7 +59,7 @@
 			return
 		to_chat(occupant, span_notice("You enter [src]"))
 		addtimer(CALLBACK(src, PROC_REF(start_extracting)), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/machinery/fat_sucker/open_machine(mob/user)
 	make_meat()
@@ -106,7 +106,7 @@
 	free_exit = !free_exit
 	to_chat(user, span_notice("Safety hatch [free_exit ? "unlocked" : "locked"]."))
 
-/obj/machinery/fat_sucker/update_icon()
+/obj/machinery/fat_sucker/update_appearance(updates = ALL)
 	overlays.Cut()
 	if(!state_open)
 		if(processing)
@@ -158,7 +158,7 @@
 		if(C.nutrition > start_at)
 			processing = TRUE
 			soundloop.start()
-			update_icon()
+			update_appearance(updates = ALL)
 			set_light(2, 1, "#ff0000")
 		else
 			say("Subject not fat enough.")
@@ -195,7 +195,7 @@
 		to_chat(user, span_warning("[src] must be closed to [panel_open ? "close" : "open"] its maintenance hatch!"))
 		return
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 	return FALSE
 

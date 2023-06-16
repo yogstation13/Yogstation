@@ -521,7 +521,7 @@
 		target_apc.cell?.charge = 0	//Sent to the shadow realm
 		target_apc.chargemode = 0 //Won't recharge either until an engineer hits the button
 		target_apc.charging = 0
-		target_apc.update_icon()
+		target_apc.update_appearance(updates = ALL)
 
 	return TRUE
 

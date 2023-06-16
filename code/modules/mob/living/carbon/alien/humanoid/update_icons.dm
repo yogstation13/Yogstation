@@ -44,7 +44,7 @@
 			alt_icon = old_icon
 		pixel_x = get_standard_pixel_x_offset(mobility_flags & MOBILITY_STAND)
 		pixel_y = get_standard_pixel_y_offset(mobility_flags & MOBILITY_STAND)
-	update_inv_hands()
+	update_held_items()
 	update_inv_handcuffed()
 
 /mob/living/carbon/alien/humanoid/regenerate_icons()
@@ -75,7 +75,7 @@
 		overlays_standing[HANDCUFF_LAYER] = cuffs
 
 //Royals have bigger sprites, so inhand things must be handled differently.
-/mob/living/carbon/alien/humanoid/royal/update_inv_hands()
+/mob/living/carbon/alien/humanoid/royal/update_held_items()
 	..()
 	remove_overlay(HANDS_LAYER)
 	var/list/hands = list()

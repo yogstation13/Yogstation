@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY_TYPED(has_antagonist_huds, /datum/atom_hud/alternate_appearanc
 
 /datum/atom_hud/alternate_appearance/basic/antagonist_hud/process(delta_time)
 	index += 1
-	update_icon()
+	update_appearance(updates = ALL)
 
 /datum/atom_hud/alternate_appearance/basic/antagonist_hud/proc/check_processing()
 	if (antag_hud_images.len > 1 && !(DF_ISPROCESSING in datum_flags))
@@ -77,7 +77,7 @@ GLOBAL_LIST_EMPTY_TYPED(has_antagonist_huds, /datum/atom_hud/alternate_appearanc
 
 	return final_antag_hud_images
 
-/datum/atom_hud/alternate_appearance/basic/antagonist_hud/proc/update_icon()
+/datum/atom_hud/alternate_appearance/basic/antagonist_hud/proc/update_appearance(updates = ALL)
 	if (antag_hud_images.len == 0)
 		image.icon = icon('icons/blanks/32x32.dmi', "nothing")
 	else
@@ -88,5 +88,5 @@ GLOBAL_LIST_EMPTY_TYPED(has_antagonist_huds, /datum/atom_hud/alternate_appearanc
 
 	antag_hud_images = get_antag_hud_images(source)
 	index = clamp(index, 1, antag_hud_images.len)
-	update_icon()
+	update_appearance(updates = ALL)
 	check_processing()

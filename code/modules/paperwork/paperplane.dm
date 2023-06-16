@@ -29,7 +29,7 @@
 		newPaper.forceMove(src)
 	else
 		internalPaper = new(src)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/paperplane/handle_atom_del(atom/A)
 	if(A == internalPaper)
@@ -52,7 +52,7 @@
 	sleep(1 SECONDS)
 	return (BRUTELOSS)
 
-/obj/item/paperplane/update_icon()
+/obj/item/paperplane/update_appearance(updates = ALL)
 	cut_overlays()
 	var/list/stamped = internalPaper.stamped
 	if(stamped)
@@ -75,7 +75,7 @@
 
 	else if(istype(P, /obj/item/stamp)) 	//we don't randomize stamps on a paperplane
 		internalPaper.attackby(P, user) //spoofed attack to update internal paper.
-		update_icon()
+		update_appearance(updates = ALL)
 
 	else if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))

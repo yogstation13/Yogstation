@@ -30,7 +30,49 @@
 
 	var/obj/effect/overlay/status_display_text/message1_overlay
 	var/obj/effect/overlay/status_display_text/message2_overlay
+/*
+/obj/machinery/status_display/update_appearance(updates=ALL)
+	. = ..()
+	if( \
+		(stat & (NOPOWER|BROKEN)) || \
+		(current_mode == SD_BLANK) || \
+		(current_mode != SD_PICTURE && message1 == "" && message2 == "") \
+	)
+		set_light(0)
+		return
+	set_light(1.5, 0.7, LIGHT_COLOR_BLUE) // blue light
 
+/obj/machinery/status_display/update_overlays()
+	. = ..()
+
+	if(stat & (NOPOWER|BROKEN))
+		remove_messages()
+		return
+
+	switch(current_mode)
+		if(SD_BLANK)
+			remove_messages()
+			// Turn off backlight.
+			return
+		if(SD_PICTURE)
+			remove_messages()
+			. += mutable_appearance(icon, current_picture)
+			if(current_picture == AI_DISPLAY_DONT_GLOW) // If the thing's off, don't display the emissive yeah?
+				return .
+		else
+			var/overlay = update_message(message1_overlay, LINE1_Y, message1)
+			if(overlay)
+				message1_overlay = overlay
+			overlay = update_message(message2_overlay, LINE2_Y, message2)
+			if(overlay)
+				message2_overlay = overlay
+
+			// Turn off backlight if message is blank
+			if(message1 == "" && message2 == "")
+				return
+
+	. += emissive_appearance(icon, "outline", src, alpha = src.alpha)
+*/
 /// Immediately blank the display.
 /obj/machinery/status_display/proc/remove_display()
 	cut_overlays()

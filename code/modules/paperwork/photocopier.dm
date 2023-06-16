@@ -341,7 +341,7 @@
 				c.written += L
 		c.name = copy.name
 		c.fields = copy.fields
-		c.update_icon()
+		c.update_appearance(updates = ALL)
 		c.stamps = copy.stamps
 		if(copy.stamped)
 			c.stamped = copy.stamped.Copy()
@@ -374,7 +374,7 @@
 		p.amount++
 	//p.amount--
 	p.loc = src.loc
-	p.update_icon()
+	p.update_appearance(updates = ALL)
 	p.icon_state = "paper_words"
 	p.name = bundle.name
 	p.pixel_y = rand(-8, 8)

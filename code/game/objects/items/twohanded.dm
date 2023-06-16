@@ -45,11 +45,11 @@
 		name = copytext(name, 1, sf)
 	else //something wrong
 		name = "[initial(name)]"
-	update_icon()
+	update_appearance(updates = ALL)
 	if(user.get_item_by_slot(SLOT_BACK) == src)
 		user.update_inv_back()
 	else
-		user.update_inv_hands()
+		user.update_held_items()
 	if(show_message)
 		if(iscyborg(user))
 			to_chat(user, span_notice("You free up your module."))
@@ -86,7 +86,7 @@
 	if(force_wielded)
 		force += force_wielded
 	name = "[name] (Wielded)"
-	update_icon()
+	update_appearance(updates = ALL)
 	if(iscyborg(user))
 		to_chat(user, span_notice("You dedicate your module to [src]."))
 	else
@@ -108,8 +108,9 @@
 		return
 	unwield(user)
 
-/obj/item/twohanded/update_icon()
-	return
+/obj/item/twohanded/Initialize(mapload) //lol
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/twohanded/attack_self(mob/user)
 	. = ..()
@@ -255,7 +256,7 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
 
-/obj/item/twohanded/fireaxe/update_icon()  //Currently only here to fuck with the on-mob icons.
+/obj/item/twohanded/fireaxe/update_appearance(updates = ALL)  //Currently only here to fuck with the on-mob icons.
 	icon_state = "fireaxe[wielded]"
 	return
 
@@ -290,7 +291,7 @@
 	desc = "A large, menacing axe made of an unknown substance that the most elder atmosians call Metallic Hydrogen. Truly an otherworldly weapon."
 	force_wielded = 18
 
-/obj/item/twohanded/fireaxe/metal_h2_axe/update_icon()  //Currently only here to fuck with the on-mob icons.
+/obj/item/twohanded/fireaxe/metal_h2_axe/update_appearance(updates = ALL)  //Currently only here to fuck with the on-mob icons.
 	icon_state = "metalh2_axe[wielded]"
 	return
 
@@ -349,7 +350,7 @@
 			var/obj/O = A
 			O.take_damage(force, BRUTE, MELEE, FALSE, null, armour_penetration)
 
-/obj/item/twohanded/fireaxe/energy/update_icon()
+/obj/item/twohanded/fireaxe/energy/update_appearance(updates = ALL)
 	icon_state = "energy-fireaxe[wielded]"
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
 
@@ -456,7 +457,7 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/twohanded/dualsaber/update_icon()
+/obj/item/twohanded/dualsaber/update_appearance(updates = ALL)
 	if(wielded)
 		icon_state = "dualsaber[saber_color][wielded]"
 	else
@@ -566,7 +567,7 @@
 			hacked = TRUE
 			to_chat(user, span_warning("2XRNBW_ENGAGE"))
 			saber_color = "rainbow"
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			to_chat(user, span_warning("It's starting to look like a triple rainbow - no, nevermind."))
 	else
@@ -615,7 +616,7 @@
 	. = ..()
 	AddComponent(/datum/component/jousting)
 
-/obj/item/twohanded/spear/update_icon()
+/obj/item/twohanded/spear/update_appearance(updates = ALL)
 	icon_state = "[icon_prefix][wielded]"
 
 /obj/item/twohanded/spear/deconstruct() //we drop our rod and maybe the glass shard used
@@ -637,7 +638,7 @@
 		righthand_file = 'yogstation/icons/mob/inhands/weapons/polearms_righthand.dmi' //yogs
 		mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi' //yogs
 		icon_prefix = "spearplasma"
-	update_icon()
+	update_appearance(updates = ALL)
 	qdel(tip)
 	var/obj/item/grenade/G = locate() in parts_list
 	if(G)
@@ -662,7 +663,7 @@
 	G.forceMove(src)
 	explosive = G
 	desc = "A makeshift spear with [G] attached to it"
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/twohanded/spear/explosive/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
@@ -677,7 +678,7 @@
 	. = ..()
 	. += span_notice("Alt-click to set your war cry.")
 
-/obj/item/twohanded/spear/explosive/update_icon()
+/obj/item/twohanded/spear/explosive/update_appearance(updates = ALL)
 	icon_state = "spearbomb[wielded]"
 
 /obj/item/twohanded/spear/explosive/AltClick(mob/user)
@@ -756,7 +757,7 @@
 		hitsound = "swing_hit"
 
 	if(src == user.get_active_held_item()) //update inhands
-		user.update_inv_hands()
+		user.update_held_items()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
@@ -861,7 +862,7 @@
 	throwforce = 100
 	force_wielded = 500000 // Kills you DEAD.
 
-/obj/item/twohanded/pitchfork/update_icon()
+/obj/item/twohanded/pitchfork/update_appearance(updates = ALL)
 	icon_state = "pitchfork[wielded]"
 
 /obj/item/twohanded/pitchfork/suicide_act(mob/user)
@@ -937,7 +938,7 @@
 				return 1
 	return 0
 
-/obj/item/twohanded/vibro_weapon/update_icon()
+/obj/item/twohanded/vibro_weapon/update_appearance(updates = ALL)
 	icon_state = "hfrequency[wielded]"
 
 /obj/item/twohanded/vibro_weapon/wizard
@@ -962,7 +963,7 @@
 	desc = "A large, vicious axe crafted out of several sharpened bone plates and crudely tied together. Made of monsters, by killing monsters, for killing monsters."
 	force_wielded = 18
 
-/obj/item/twohanded/fireaxe/boneaxe/update_icon()
+/obj/item/twohanded/fireaxe/boneaxe/update_appearance(updates = ALL)
 	icon_state = "bone_axe[wielded]"
 
 /*
@@ -990,7 +991,7 @@
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
 	sharpness = SHARP_EDGED
 
-/obj/item/twohanded/bonespear/update_icon()
+/obj/item/twohanded/bonespear/update_appearance(updates = ALL)
 	icon_state = "bone_spear[wielded]"
 
 /obj/item/twohanded/bonespear/chitinspear //like a mix of a bone spear and bone axe, but more like a bone spear. And better.
@@ -1003,7 +1004,7 @@
 	throwforce = 25
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "sliced", "ripped", "cut")
 
-/obj/item/twohanded/bonespear/chitinspear/update_icon()
+/obj/item/twohanded/bonespear/chitinspear/update_appearance(updates = ALL)
 	icon_state = "chitin_spear[wielded]"
 
 /obj/item/twohanded/binoculars
@@ -1070,7 +1071,7 @@
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
 	sharpness = SHARP_EDGED
 
-/obj/item/twohanded/bamboospear/update_icon()
+/obj/item/twohanded/bamboospear/update_appearance(updates = ALL)
 	icon_state = "bamboo_spear[wielded]"
 
 /*
@@ -1133,7 +1134,7 @@
 	QDEL_NULL(spark_system)
 	return ..()
 
-/obj/item/twohanded/vxtvulhammer/update_icon()
+/obj/item/twohanded/vxtvulhammer/update_appearance(updates = ALL)
 	icon_state = "vxtvul_hammer[wielded]-[supercharged]"
 
 /obj/item/twohanded/vxtvulhammer/examine(mob/living/carbon/user)
@@ -1173,7 +1174,7 @@
 		set_light_on(FALSE)
 		force = initial(force) + (wielded ? force_wielded : 0)
 		armour_penetration = initial(armour_penetration)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/twohanded/vxtvulhammer/proc/charge_hammer(mob/living/carbon/user)
 	if(!wielded)
@@ -1276,7 +1277,7 @@
 	desc = "A relic sledgehammer with charge packs wired to two blast pads on its head. This one has been defaced by Syndicate pirates. \
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 
-/obj/item/twohanded/vxtvulhammer/pirate/update_icon()
+/obj/item/twohanded/vxtvulhammer/pirate/update_appearance(updates = ALL)
 	icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
 
 // Baseball Bats
@@ -1381,7 +1382,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK
 
-/obj/item/twohanded/bigspoon/update_icon()
+/obj/item/twohanded/bigspoon/update_appearance(updates = ALL)
 	hitsound = wielded ? 'yogstation/sound/weapons/bat_hit.ogg' : 'sound/items/trayhit1.ogg' //big donk if wielded
 	item_state = "bigspoon[wielded]" //i don't know why it's item_state rather than icon_state like every other wielded weapon
 	return
@@ -1408,7 +1409,7 @@ Broom
 	attack_verb = list("swept", "brushed off", "bludgeoned", "whacked")
 	resistance_flags = FLAMMABLE
 
-/obj/item/twohanded/broom/update_icon()
+/obj/item/twohanded/broom/update_appearance(updates = ALL)
 	icon_state = "broom[wielded]"
 
 /obj/item/twohanded/broom/wield(mob/user)
@@ -1448,14 +1449,14 @@ Broom
 			break
 	if (i > 1)
 		if (target_bin)
-			target_bin.update_icon()
+			target_bin.update_appearance(updates = ALL)
 			to_chat(user, span_notice("You sweep the pile of garbage into [target_bin]."))
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 30, TRUE, -1)
 
 /obj/item/twohanded/broom/proc/janicart_insert(mob/user, obj/structure/janitorialcart/J) //bless you whoever fixes this copypasta
 	J.put_in_cart(src, user)
 	J.mybroom=src
-	J.update_icon()
+	J.update_appearance(updates = ALL)
 
 /obj/item/twohanded/broom/cyborg
 	name = "robotic push broom"

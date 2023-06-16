@@ -247,7 +247,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 			else
 				var/obj/item/organ/O = part
 				O.organ_flags |= ORGAN_FROZEN
-		j.update_icon()
+		j.update_appearance(updates = ALL)
 	qdel(src)
 
 /obj/effect/mapping_helpers/teleport_anchor

@@ -33,7 +33,7 @@
 	if(start_open && !screen_on)
 		toggle_open()
 
-/obj/item/modular_computer/laptop/update_icon()
+/obj/item/modular_computer/laptop/update_appearance(updates = ALL)
 	if(screen_on)
 		..()
 	else
@@ -106,7 +106,7 @@
 			icon_state = icon_state_unpowered
 
 	screen_on = !screen_on
-	update_icon()
+	update_appearance(updates = ALL)
 
 
 

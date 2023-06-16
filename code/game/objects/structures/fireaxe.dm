@@ -21,7 +21,7 @@
 /obj/structure/fireaxecabinet/Initialize()
 	. = ..()
 	fireaxe = new
-	update_icon()
+	update_appearance(updates = ALL)
 
 //yogs NOTICE - Destroy() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
 //changes made to the below function will have no effect
@@ -44,7 +44,7 @@
 			to_chat(user, span_notice("You begin repairing [src]."))
 			if(I.use_tool(src, user, 40, volume=50, amount=2))
 				obj_integrity = max_integrity
-				update_icon()
+				update_appearance(updates = ALL)
 				to_chat(user, span_notice("You repair [src]."))
 		else
 			to_chat(user, span_warning("[src] is already in good condition!"))
@@ -59,7 +59,7 @@
 		if(do_after(user, 2 SECONDS, src) && G.use(2))
 			broken = 0
 			obj_integrity = max_integrity
-			update_icon()
+			update_appearance(updates = ALL)
 	//yogs start - warn user if they use the wrong type of glass to repair
 	else if(istype(I, /obj/item/stack/sheet/glass) && broken)
 		to_chat(user, span_warning("You need reinforced glass sheets to fix [src]!"))
@@ -75,7 +75,7 @@
 				return
 			fireaxe = F
 			to_chat(user, span_caution("You place the [F.name] back in the [name]."))
-			update_icon()
+			update_appearance(updates = ALL)
 			return
 		else if(istype(I, /obj/item/card/id/captains_spare) && !spareid && !axe)
 			var/obj/item/card/id/captains_spare/S = I
@@ -83,7 +83,7 @@
 				return
 			spareid = S
 			to_chat(user, span_caution("You place the [S.name] back in the [name]."))
-			update_icon()
+			update_appearance(updates = ALL)
 			return
 		else if(istype(I, /obj/item/twohanded/fishingrod/collapsible/miningmedic) && !olreliable && !axe)
 			var/obj/item/twohanded/fishingrod/collapsible/miningmedic/R = I
@@ -94,7 +94,7 @@
 				return
 			olreliable = R
 			to_chat(user, span_caution("You place the [R.name] back in the [name]."))
-			update_icon()
+			update_appearance(updates = ALL)
 			return
 		else if(!broken)
 			//open the cabinet normally.
@@ -131,11 +131,11 @@
 		return
 	. = ..()
 	if(.)
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/structure/fireaxecabinet/obj_break(damage_flag)
 	if(!broken && !(flags_1 & NODECONSTRUCT_1))
-		update_icon()
+		update_appearance(updates = ALL)
 		broken = TRUE
 		playsound(src, 'sound/effects/glassbr3.ogg', 100, 1)
 		new /obj/item/shard(loc)
@@ -178,7 +178,7 @@
 			spareid = null
 			olreliable = null
 			src.add_fingerprint(user)
-			update_icon()
+			update_appearance(updates = ALL)
 			return
 	toggle_open()//yogs - consolidates opening code
 	return
@@ -194,7 +194,7 @@
 	toggle_open()//yogs - consolidates opening code
 	return
 
-/obj/structure/fireaxecabinet/update_icon()
+/obj/structure/fireaxecabinet/update_appearance(updates = ALL)
 	cut_overlays()
 	if(fireaxe)
 		add_overlay("axe")
@@ -231,7 +231,7 @@
 	if(do_after(user, 2 SECONDS, src))
 		to_chat(user, span_caution("You [locked ? "disable" : "re-enable"] the locking modules."))
 		locked = !locked
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/structure/fireaxecabinet/verb/toggle_open()
 	set name = "Open/Close"
@@ -247,7 +247,7 @@
 	else
 		playsound(loc, 'sound/machines/click.ogg', 15, 1, -3)//yogs - adds open/close sound
 		open = !open
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 
 /obj/structure/fireaxecabinet/proc/trigger_alarm()
@@ -270,7 +270,7 @@
 	. = ..()
 	fireaxe = null
 	spareid = new(src)
-	update_icon()
+	update_appearance(updates = ALL)
 	
 /obj/structure/fireaxecabinet/bridge/spare/reset_lock(mob/user)
 	//this happens when you hack the lock as a synthetic/AI, or with a multitool.
@@ -308,4 +308,4 @@
 	. = ..()
 	fireaxe = null
 	olreliable = new(src)
-	update_icon()
+	update_appearance(updates = ALL)

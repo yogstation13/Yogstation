@@ -179,7 +179,7 @@
 /obj/item/borg/charger/Initialize()
 	. = ..()
 
-/obj/item/borg/charger/update_icon()
+/obj/item/borg/charger/update_appearance(updates = ALL)
 	..()
 	icon_state = "charger_[mode]"
 
@@ -189,7 +189,7 @@
 	else
 		mode = "draw"
 	to_chat(user, span_notice("You toggle [src] to \"[mode]\" mode."))
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/borg/charger/afterattack(obj/item/target, mob/living/silicon/robot/user, proximity_flag)
 	. = ..()
@@ -252,7 +252,7 @@
 					break
 				if(!user.cell.give(draw))
 					break
-				target.update_icon()
+				target.update_appearance(updates = ALL)
 
 			to_chat(user, span_notice("You stop charging yourself."))
 
@@ -290,7 +290,7 @@
 				break
 			if(!cell.give(draw))
 				break
-			target.update_icon()
+			target.update_appearance(updates = ALL)
 
 		to_chat(user, span_notice("You stop charging [target]."))
 
@@ -607,10 +607,10 @@
 			to_chat(user, span_warning("[src]'s safety cutoff prevents you from activating it due to living beings being ontop of you!"))
 	else
 		deactivate_field()
-	update_icon()
+	update_appearance(updates = ALL)
 	to_chat(user, span_boldnotice("You [active? "activate":"deactivate"] [src]."))
 
-/obj/item/borg/projectile_dampen/update_icon()
+/obj/item/borg/projectile_dampen/update_appearance(updates = ALL)
 	icon_state = "[initial(icon_state)][active]"
 
 /obj/item/borg/projectile_dampen/proc/activate_field()

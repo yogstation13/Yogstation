@@ -42,7 +42,7 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/proc/get_all_connected_nodes()
 	return front_nodes + back_nodes + nodes
 
-/obj/machinery/atmospherics/pipe/layer_manifold/update_icon()	//HEAVILY WIP FOR UPDATE ICONS!!
+/obj/machinery/atmospherics/pipe/layer_manifold/update_appearance(updates = ALL)	//HEAVILY WIP FOR UPDATE ICONS!!
 	cut_overlays()
 	layer = initial(layer) + (PIPING_LAYER_MAX * PIPING_LAYER_LCHANGE)	//This is above everything else.
 
@@ -99,7 +99,7 @@
 			new_nodes += foundfront
 		if(foundback && !QDELETED(foundback))
 			new_nodes += foundback
-	update_icon()
+	update_appearance(updates = ALL)
 	return new_nodes
 
 /obj/machinery/atmospherics/pipe/layer_manifold/atmosinit()
@@ -128,7 +128,7 @@
 		if(reference in back_nodes)
 			var/i = back_nodes.Find(reference)
 			back_nodes[i] = null
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/pipe/layer_manifold/relaymove(mob/living/user, dir)
 	if(initialize_directions & dir)

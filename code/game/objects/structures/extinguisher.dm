@@ -44,7 +44,7 @@
 /obj/structure/extinguisher_cabinet/handle_atom_del(atom/A)
 	if(A == stored_extinguisher)
 		stored_extinguisher = null
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WRENCH && !stored_extinguisher)
@@ -64,7 +64,7 @@
 				return
 			stored_extinguisher = I
 			to_chat(user, span_notice("You place [I] in [src]."))
-			update_icon()
+			update_appearance(updates = ALL)
 			return TRUE
 		else
 			toggle_cabinet(user)
@@ -87,7 +87,7 @@
 		if(!opened)
 			opened = 1
 			playsound(loc, 'sound/machines/click.ogg', 15, 1, -3)
-		update_icon()
+		update_appearance(updates = ALL)
 	else
 		toggle_cabinet(user)
 
@@ -99,7 +99,7 @@
 		stored_extinguisher = null
 		opened = 1
 		playsound(loc, 'sound/machines/click.ogg', 15, 1, -3)
-		update_icon()
+		update_appearance(updates = ALL)
 	else
 		toggle_cabinet(user)
 
@@ -118,9 +118,9 @@
 	else
 		playsound(loc, 'sound/machines/click.ogg', 15, 1, -3)
 		opened = !opened
-		update_icon()
+		update_appearance(updates = ALL)
 
-/obj/structure/extinguisher_cabinet/update_icon()
+/obj/structure/extinguisher_cabinet/update_appearance(updates = ALL)
 	if(!opened)
 		icon_state = "extinguisher_closed"
 		return
@@ -139,7 +139,7 @@
 		if(stored_extinguisher)
 			stored_extinguisher.forceMove(loc)
 			stored_extinguisher = null
-		update_icon()
+		update_appearance(updates = ALL)
 
 
 /obj/structure/extinguisher_cabinet/deconstruct(disassembled = TRUE)

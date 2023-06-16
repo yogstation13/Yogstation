@@ -129,7 +129,7 @@
 
 	if(W == A)
 		W.attack_self(src)
-		update_inv_hands()
+		update_held_items()
 		return
 
 	//These are always reachable.

@@ -52,7 +52,7 @@
 	. = ..()
 	GC = new(src)
 	GC.scanning = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/clothing/suit/armor/nerd/Destroy()
 	QDEL_NULL(GC)

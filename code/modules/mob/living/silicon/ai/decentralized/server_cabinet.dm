@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	roundstart = mapload
 	installed_racks = list()
 	GLOB.server_cabinets += src
-	update_icon()
+	update_appearance(updates = ALL)
 	RefreshParts()
 
 /obj/machinery/ai/server_cabinet/Destroy()
@@ -79,7 +79,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		
 		valid_ticks++
 		if(!was_valid_holder)
-			update_icon()
+			update_appearance(updates = ALL)
 		was_valid_holder = TRUE
 
 		if(!hardware_synced)
@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			GLOB.ai_os.update_hardware()
 
 
-/obj/machinery/ai/server_cabinet/update_icon()
+/obj/machinery/ai/server_cabinet/update_appearance(updates = ALL)
 	cut_overlays()
 
 	if(installed_racks.len > 0) 
@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 		cached_power_usage += rack.get_power_usage()
 		GLOB.ai_os.update_hardware()
 		use_power = ACTIVE_POWER_USE
-		update_icon()
+		update_appearance(updates = ALL)
 		return FALSE
 	if(W.tool_behaviour == TOOL_CROWBAR)
 		if(installed_racks.len)
@@ -145,7 +145,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			GLOB.ai_os.update_hardware()
 			to_chat(user, span_notice("You remove all the racks from [src]"))
 			use_power = IDLE_POWER_USE
-			update_icon()
+			update_appearance(updates = ALL)
 			return FALSE
 		else
 			if(default_deconstruction_crowbar(W))

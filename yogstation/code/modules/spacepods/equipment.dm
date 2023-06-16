@@ -38,7 +38,7 @@
 /obj/item/spacepod_equipment/weaponry/on_install(obj/spacepod/SP)
 	. = ..()
 	SP.weapon = src
-	SP.update_icon()
+	SP.update_appearance(updates = ALL)
 
 /obj/item/spacepod_equipment/weaponry/on_uninstall()
 	. = ..()

@@ -18,9 +18,6 @@
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud = null // A reference to the owner HUD, if any.
 
-/atom/movable/screen/proc/update_icon()
-	return
-
 /atom/movable/screen/Destroy()
 	master = null
 	hud = null
@@ -172,7 +169,7 @@
 			return inv_item.Click(location, control, params)
 
 	if(usr.attack_ui(slot_id))
-		usr.update_inv_hands()
+		usr.update_held_items()
 	return 1
 
 /atom/movable/screen/inventory/MouseEntered()
@@ -184,7 +181,7 @@
 	cut_overlay(object_overlays)
 	object_overlays.Cut()
 
-/atom/movable/screen/inventory/update_icon()
+/atom/movable/screen/inventory/update_appearance(updates = ALL)
 	if(!icon_empty)
 		icon_empty = icon_state
 
@@ -219,7 +216,7 @@
 	var/static/mutable_appearance/blocked_overlay = mutable_appearance('icons/mob/screen_gen.dmi', "blocked")
 	var/held_index = 0
 
-/atom/movable/screen/inventory/hand/update_icon()
+/atom/movable/screen/inventory/hand/update_appearance(updates = ALL)
 	. = ..()
 
 	if(!handcuff_overlay)

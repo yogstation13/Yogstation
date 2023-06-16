@@ -304,7 +304,7 @@
 		if(inv.slot_id)
 			inv.hud = src
 			inv_slots[inv.slot_id] = inv
-			inv.update_icon()
+			inv.update_appearance(updates = ALL)
 
 	update_locked_slots()
 

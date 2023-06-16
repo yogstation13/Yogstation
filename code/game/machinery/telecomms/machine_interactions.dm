@@ -12,7 +12,7 @@
 
 /obj/machinery/telecomms/attackby(obj/item/P, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]_o", initial(icon_state), P))
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 	// Using a multitool lets you access the receiver's interface
 	else if(P.tool_behaviour == TOOL_MULTITOOL)
@@ -95,7 +95,7 @@
 		if("toggle")
 			toggled = !toggled
 			update_power()
-			update_icon()
+			update_appearance(updates = ALL)
 			log_game("[key_name(operator)] toggled [toggled ? "On" : "Off"] [src] at [AREACOORD(src)].")
 			. = TRUE
 		if("id")

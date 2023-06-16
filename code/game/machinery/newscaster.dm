@@ -150,7 +150,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	if(newMessage)
 		for(var/obj/machinery/newscaster/N in GLOB.allCasters)
 			N.newsAlert()
-			N.update_icon()
+			N.update_appearance(updates = ALL)
 
 /datum/newscaster/feed_network/proc/deleteWanted()
 	wanted_issue.active = 0
@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	wanted_issue.scannedUser = null
 	wanted_issue.img = null
 	for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.allCasters)
-		NEWSCASTER.update_icon()
+		NEWSCASTER.update_appearance(updates = ALL)
 
 /datum/newscaster/feed_network/proc/save_photo(icon/photo)
 	var/photo_file = copytext_char(md5("\icon[photo]"), 1, 6)
@@ -183,6 +183,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	desc = "A standard Nanotrasen-licensed newsfeed handler for use in commercial space stations. All the news you absolutely have no use for, in one place!"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "newscaster_normal"
+	base_icon_state = "newscaster_normal"
 	verb_say = "beeps"
 	verb_ask = "beeps"
 	verb_exclaim = "beeps"
@@ -218,7 +219,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 
 	GLOB.allCasters += src
 	unit_no = GLOB.allCasters.len
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/newscaster/Destroy()
 	GLOB.allCasters -= src
@@ -226,31 +227,43 @@ GLOBAL_LIST_EMPTY(allCasters)
 	picture = null
 	return ..()
 
-/obj/machinery/newscaster/update_icon()
-	cut_overlays()
+/obj/machinery/newscaster/update_appearance(updates=ALL)
+	. = ..()
 	if(stat & (NOPOWER|BROKEN))
-		icon_state = "newscaster_off"
-	else
-		if(GLOB.news_network.wanted_issue.active)
-			icon_state = "newscaster_wanted"
-		else
-			icon_state = "newscaster_normal"
-			if(alert)
-				add_overlay("newscaster_alert")
-	var/hp_percent = obj_integrity * 100 /max_integrity
+		set_light(0)
+		return
+	set_light(1.5, 0.7, "#34D352") // green light
+
+/obj/machinery/newscaster/update_overlays()
+	. = ..()
+
+
+	if(!(stat & (NOPOWER|BROKEN)))
+		var/state = "[base_icon_state]_[GLOB.news_network.wanted_issue.active ? "wanted" : "normal"]"
+		. += mutable_appearance(icon, state)
+//		. += emissive_appearance(icon, state, src, alpha = src.alpha)
+
+		if(GLOB.news_network.wanted_issue.active && alert)
+			. += mutable_appearance(icon, "[base_icon_state]_alert")
+//			. += emissive_appearance(icon, "[base_icon_state]_alert", src, alpha = src.alpha,)
+
+	var/hp_percent = obj_integrity * 100 / max_integrity
 	switch(hp_percent)
 		if(75 to 100)
 			return
 		if(50 to 75)
-			add_overlay("crack1")
+			. += "crack1"
+//			. += emissive_blocker(icon, "crack1", src, alpha = src.alpha)
 		if(25 to 50)
-			add_overlay("crack2")
+			. += "crack2"
+//			. += emissive_blocker(icon, "crack2", src, alpha = src.alpha)
 		else
-			add_overlay("crack3")
+			. += "crack3"
+//			. += emissive_blocker(icon, "crack3", src, alpha = src.alpha)
 
 /obj/machinery/newscaster/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/newscaster/ui_interact(mob/user)
 	. = ..()
@@ -732,7 +745,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 				to_chat(user, span_notice("You repair [src]."))
 				obj_integrity = max_integrity
 				stat &= ~BROKEN
-				update_icon()
+				update_appearance(updates = ALL)
 		else
 			to_chat(user, span_notice("[src] does not need repairs."))
 	else
@@ -827,13 +840,13 @@ GLOBAL_LIST_EMPTY(allCasters)
 
 /obj/machinery/newscaster/proc/remove_alert()
 	alert = FALSE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/newscaster/proc/newsAlert(channel)
 	if(channel)
 		say("Breaking news from [channel]!")
 		alert = TRUE
-		update_icon()
+		update_appearance(updates = ALL)
 		addtimer(CALLBACK(src, PROC_REF(remove_alert)),alert_delay,TIMER_UNIQUE|TIMER_OVERRIDE)
 		playsound(loc, 'sound/machines/twobeep_high.ogg', 75, 1)
 	else

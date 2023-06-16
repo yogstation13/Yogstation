@@ -317,7 +317,7 @@
 				to_chat(user, span_cult("Seems like you need a direct link to the abyss to awaken [src]. Maybe searching a spacial influence would yield something."))
 				return
 			icon_state = initial(icon_state) + (awoken ? "_idle" : "_awaken")
-			update_icon()
+			update_appearance(updates = ALL)
 			var/rankspent
 			switch(bloodsuckerdatum.clanprogress)
 				if(0)
@@ -399,7 +399,7 @@
 	. = ..()
 	anchored = FALSE
 
-/obj/structure/bloodsucker/moldingstone/update_icon()
+/obj/structure/bloodsucker/moldingstone/update_appearance(updates = ALL)
 	cut_overlays()
 	switch(metal)
 		if(1 to 5)
@@ -431,7 +431,7 @@
 		balloon_alert(user, "added [metal] metal")
 	if(istype(I, /obj/item/bloodsucker/chisel))
 		start_sculpiting(user)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/structure/bloodsucker/moldingstone/proc/start_sculpiting(mob/living/artist)
 	if(metal < 10)
@@ -444,7 +444,7 @@
 	if(!do_after(artist, 10 SECONDS, src))
 		artist.balloon_alert(artist, "ruined!")
 		metal -= rand(5, 10)
-		update_icon()
+		update_appearance(updates = ALL)
 		
 		return
 	artist.balloon_alert(artist, "done, a masterpiece!")
@@ -468,7 +468,7 @@
 		new /obj/item/stack/sheet/metal(get_turf(user), count)
 	else
 		to_chat(user, span_warning("There's no metal to retrieve in [src]."))
-	update_icon()
+	update_appearance(updates = ALL)
 #undef METALLIMIT
 
 /obj/structure/bloodsucker/bloodstatue
@@ -714,7 +714,7 @@
 
 	playsound(loc, 'sound/effects/pop_expl.ogg', 25, 1)
 	density = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 
 	// Set up Torture stuff now
 	convert_progress = 3
@@ -750,7 +750,7 @@
 	visible_message(span_danger("[buckled_mob][buckled_mob.stat == DEAD ? "'s corpse" : ""] slides off of the rack."))
 	density = FALSE
 	buckled_mob.Paralyze(2 SECONDS)
-	update_icon()
+	update_appearance(updates = ALL)
 	return TRUE
 
 /obj/structure/bloodsucker/vassalrack/attack_hand(mob/user, list/modifiers)
@@ -811,10 +811,10 @@
 				smallmeat++
 		meat_amount = bigmeat + intermeat + mediummeat + smallmeat
 		qdel(I)
-	update_icon()
+	update_appearance(updates = ALL)
 #undef MEATLIMIT
 
-/obj/structure/bloodsucker/vassalrack/update_icon()
+/obj/structure/bloodsucker/vassalrack/update_appearance(updates = ALL)
 	cut_overlays()
 	if(bigmeat)
 		add_overlay("bigmeat_[bigmeat]")
@@ -853,7 +853,7 @@
 	else
 		to_chat(user, span_warning("There's no meat to retrieve in [src]"))
 	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
-	update_icon()
+	update_appearance(updates = ALL)
 
 /**
  *	Step One: Tick Down Conversion from 3 to 0
@@ -1153,7 +1153,7 @@
 		if(bigmeat && meatlost == 4)
 			bigmeat--
 			meatlost -= 4
-	update_icon()
+	update_appearance(updates = ALL)
 	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1187,7 +1187,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/structure/bloodsucker/candelabrum/update_icon()
+/obj/structure/bloodsucker/candelabrum/update_appearance(updates = ALL)
 	icon_state = "candelabrum[lit ? "_lit" : ""]"
 	return ..()
 
@@ -1212,7 +1212,7 @@
 	else
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/structure/bloodsucker/candelabrum/process()
 	if(!lit)
@@ -1288,7 +1288,7 @@
 
 	if(!buckle_mob(target))
 		return
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/structure/bloodsucker/candelabrum/proc/remove_loyalties(mob/living/target, mob/living/user)
 	// Find Mindshield implant & destroy, takes a good while.
@@ -1300,7 +1300,7 @@
 /obj/structure/bloodsucker/candelabrum/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	. = ..()
 	src.visible_message(span_danger("[buckled_mob][buckled_mob.stat==DEAD?"'s corpse":""] slides off of the candelabrum."))
-	update_icon()
+	update_appearance(updates = ALL)
 
 /// Blood Throne - Allows Bloodsuckers to remotely speak with their Vassals. - Code (Mostly) stolen from comfy chairs (armrests) and chairs (layers)
 /* broken currently

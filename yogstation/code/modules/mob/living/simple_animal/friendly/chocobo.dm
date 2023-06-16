@@ -33,7 +33,7 @@
 	if(random_color)
 		var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 		add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
-		update_icon()
+		update_appearance(updates = ALL)
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8, MOB_LAYER), TEXT_SOUTH = list(0, 8, MOB_LAYER), TEXT_EAST = list(0, 8, MOB_LAYER), TEXT_WEST = list( 0, 8, MOB_LAYER)))
 	D.set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
@@ -44,7 +44,7 @@
 
 /mob/living/simple_animal/chocobo/death(gibbed)
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 	for(var/mob/living/N in buckled_mobs)
 		unbuckle_mob(N)
 	can_buckle = FALSE
@@ -53,9 +53,9 @@
 	. = ..()
 	if(.)
 		can_buckle = initial(can_buckle)
-	update_icon()
+	update_appearance(updates = ALL)
 
-/mob/living/simple_animal/chocobo/proc/update_icon()
+/mob/living/simple_animal/chocobo/update_appearance(updates = ALL)
 	if(!random_color) //icon override
 		return
 	cut_overlays()

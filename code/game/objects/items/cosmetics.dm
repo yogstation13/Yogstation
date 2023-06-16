@@ -8,6 +8,16 @@
 	var/colour = "red"
 	var/open = FALSE
 
+/obj/item/lipstick/Initialize(mapload)
+	. = ..()
+//	AddElement(/datum/element/update_icon_updates_onmob)
+	update_appearance(UPDATE_ICON)
+
+/obj/item/lipstick/vv_edit_var(vname, vval)
+	. = ..()
+	if(vname == NAMEOF(src, open))
+		update_appearance(UPDATE_ICON)
+
 /obj/item/lipstick/purple
 	name = "purple lipstick"
 	colour = "purple"
@@ -32,16 +42,22 @@
 	name = "[colour] lipstick"
 
 /obj/item/lipstick/attack_self(mob/user)
-	cut_overlays()
 	to_chat(user, span_notice("You twist \the [src] [open ? "closed" : "open"]."))
 	open = !open
-	if(open)
-		var/mutable_appearance/colored_overlay = mutable_appearance(icon, "lipstick_uncap_color")
-		colored_overlay.color = colour
-		icon_state = "lipstick_uncap"
-		add_overlay(colored_overlay)
-	else
-		icon_state = "lipstick"
+	update_appearance(UPDATE_ICON)
+
+/obj/item/lipstick/update_icon_state()
+	icon_state = "lipstick[open ? "_uncap" : null]"
+	item_state = "lipstick[open ? "open" : null]"
+	return ..()
+
+/obj/item/lipstick/update_overlays()
+	. = ..()
+	if(!open)
+		return
+	var/mutable_appearance/colored_overlay = mutable_appearance(icon, "lipstick_uncap_color")
+	colored_overlay.color = colour
+	. += colored_overlay
 
 /obj/item/lipstick/attack(mob/M, mob/user)
 	if(!open)

@@ -338,7 +338,7 @@
 		H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
 
 		PDA.update_label()
-		PDA.update_icon()
+		PDA.update_appearance(updates = ALL)
 		PDA.update_filters()
 		
 	else

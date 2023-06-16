@@ -17,7 +17,7 @@
 	return BRUTELOSS//the clipboard's clip is very strong. industrial duty. can kill a man easily.
 
 /obj/item/clipboard/Initialize()
-	update_icon()
+	update_appearance(updates = ALL)
 	. = ..()
 
 /obj/item/clipboard/Destroy()
@@ -25,7 +25,7 @@
 	QDEL_NULL(toppaper)	//let movable/Destroy handle the rest
 	return ..()
 
-/obj/item/clipboard/update_icon()
+/obj/item/clipboard/update_appearance(updates = ALL)
 	cut_overlays()
 	var/list/dat = list()
 	if(toppaper)
@@ -43,10 +43,10 @@
 			return
 		toppaper = W
 		to_chat(user, span_notice("You clip the paper onto \the [src]."))
-		update_icon()
+		update_appearance(updates = ALL)
 	else if(toppaper)
 		toppaper.attackby(user.get_active_held_item(), user)
-		update_icon()
+		update_appearance(updates = ALL)
 
 
 /obj/item/clipboard/attack_self(mob/user)
@@ -126,4 +126,4 @@
 
 		//Update everything
 		attack_self(usr)
-		update_icon()
+		update_appearance(updates = ALL)

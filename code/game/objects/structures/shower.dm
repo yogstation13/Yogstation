@@ -29,7 +29,7 @@
 
 /obj/machinery/shower/interact(mob/M)
 	on = !on
-	update_icon()
+	update_appearance(updates = ALL)
 	handle_mist()
 	add_fingerprint(M)
 	if(on)
@@ -69,7 +69,7 @@
 	. = ..()
 	. += span_notice("You can <b>alt-click</b> to change the temperature.")
 
-/obj/machinery/shower/update_icon()
+/obj/machinery/shower/update_appearance(updates = ALL)
 	. = ..()
 	cut_overlays()
 	if(on)

@@ -10,7 +10,7 @@
 	var/modified = FALSE
 	var/obj/item/pen/pen
 
-/obj/item/ammo_casing/reusable/foam_dart/update_icon()
+/obj/item/ammo_casing/reusable/foam_dart/update_appearance(updates = ALL)
 	..()
 	if (modified)
 		icon_state = "foamdart_empty"
@@ -26,7 +26,7 @@
 	if (A.tool_behaviour == TOOL_SCREWDRIVER && !modified)
 		modified = TRUE
 		to_chat(user, span_notice("You pop the safety cap off [src]."))
-		update_icon()
+		update_appearance(updates = ALL)
 	else if (istype(A, /obj/item/pen))
 		if(modified)
 			if(!pen)

@@ -45,7 +45,7 @@
 	set_volume(_acid_volume)
 	var/atom/parent_atom = parent
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(on_update_overlays))
-	parent_atom.update_icon()
+	parent_atom.update_appearance(updates = ALL)
 	sizzle = new(list(parent), TRUE)
 	START_PROCESSING(SSacid, src)
 /datum/component/acid/Destroy(force, silent)
@@ -57,7 +57,7 @@
 	UnregisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS)
 	if(parent && !QDELING(parent))
 		var/atom/parent_atom = parent
-		parent_atom.update_icon()
+		parent_atom.update_appearance(updates = ALL)
 	return ..()
 /datum/component/acid/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))

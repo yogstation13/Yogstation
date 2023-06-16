@@ -66,7 +66,7 @@
 
 	if(ismecha(O))
 		var/obj/mecha/R = O
-		R.update_icon()
+		R.update_appearance(updates = ALL)
 		to_chat(user, span_info("You strengthen [R], improving its resistance against melee, bullet and laser damage."))
 	else
 		to_chat(user, span_info("You strengthen [O], improving its resistance against melee attacks."))

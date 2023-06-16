@@ -28,9 +28,9 @@
 /obj/item/organ/heart/Initialize()
 	. = ..()
 	icon_base = icon_state
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/organ/heart/update_icon()
+/obj/item/organ/heart/update_appearance(updates = ALL)
 	if(beating)
 		icon_state = "[icon_base]-on"
 	else
@@ -55,12 +55,12 @@
 
 /obj/item/organ/heart/proc/Stop()
 	beating = 0
-	update_icon()
+	update_appearance(updates = ALL)
 	return TRUE
 
 /obj/item/organ/heart/proc/Restart()
 	beating = 1
-	update_icon()
+	update_appearance(updates = ALL)
 	return TRUE
 
 /obj/item/organ/heart/prepare_eat()

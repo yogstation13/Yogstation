@@ -48,10 +48,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 			linked_console.updateUsrDialog()
 
 /obj/machinery/rnd/destructive_analyzer/proc/finish_loading()
-	update_icon()
+	update_appearance(updates = ALL)
 	reset_busy()
 
-/obj/machinery/rnd/destructive_analyzer/update_icon()
+/obj/machinery/rnd/destructive_analyzer/update_appearance(updates = ALL)
 	if(loaded_item)
 		icon_state = "d_analyzer_l"
 	else
@@ -94,7 +94,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	else
 		qdel(thing)
 	if (!innermode)
-		update_icon()
+		update_appearance(updates = ALL)
 	return TRUE
 
 /obj/machinery/rnd/destructive_analyzer/proc/user_try_decon_id(id, mob/user)
@@ -150,5 +150,5 @@ Note: Must be placed within 3 tiles of the R&D Console
 		return FALSE
 	loaded_item.forceMove(get_turf(src))
 	loaded_item = null
-	update_icon()
+	update_appearance(updates = ALL)
 	return TRUE

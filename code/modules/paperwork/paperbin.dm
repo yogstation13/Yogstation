@@ -25,7 +25,7 @@
 	if(P && !bin_pen)
 		P.forceMove(src)
 		bin_pen = P
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/item/paper_bin/Destroy()
 	if(papers)
@@ -37,7 +37,7 @@
 /obj/item/paper_bin/fire_act(exposed_temperature, exposed_volume)
 	if(total_paper)
 		total_paper = 0
-		update_icon()
+		update_appearance(updates = ALL)
 	..()
 
 /obj/item/paper_bin/MouseDrop(atom/over_object)
@@ -73,14 +73,14 @@
 		user.put_in_hands(P)
 		to_chat(user, span_notice("You take [P] out of \the [src]."))
 		bin_pen = null
-		update_icon()
+		update_appearance(updates = ALL)
 	else if(total_paper >= 1)
 		response = alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", "Regular", "Carbon Copy", "Cancel")
 		if (response != "Regular" && response != "Carbon Copy")
 			add_fingerprint(user)
 			return
 		total_paper--
-		update_icon()
+		update_appearance(updates = ALL)
 		// If there's any custom paper on the stack, use that instead of creating a new paper.
 		var/obj/item/paper/P
 		if(papers.len > 0)
@@ -113,14 +113,14 @@
 		to_chat(user, span_notice("You put [P] in [src]."))
 		papers.Add(P)
 		total_paper++
-		update_icon()
+		update_appearance(updates = ALL)
 	else if(istype(I, /obj/item/pen) && !bin_pen)
 		var/obj/item/pen/P = I
 		if(!user.transferItemToLoc(P, src))
 			return
 		to_chat(user, span_notice("You put [P] in [src]."))
 		bin_pen = P
-		update_icon()
+		update_appearance(updates = ALL)
 	else
 		return ..()
 
@@ -131,7 +131,7 @@
 	else
 		. += "It doesn't contain anything."
 
-/obj/item/paper_bin/update_icon()
+/obj/item/paper_bin/update_appearance(updates = ALL)
 	if(total_paper < 1)
 		icon_state = "paper_bin0"
 	else

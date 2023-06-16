@@ -17,7 +17,7 @@
 	user.visible_message(span_suicide("[user] begins belting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
-/obj/item/storage/belt/update_icon()
+/obj/item/storage/belt/update_appearance(updates = ALL)
 	cut_overlays()
 	if(content_overlays)
 		for(var/obj/item/I in contents)
@@ -27,7 +27,7 @@
 
 /obj/item/storage/belt/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/storage/belt/utility
 	name = "toolbelt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
@@ -356,7 +356,7 @@
 	SSwardrobe.provide_type(/obj/item/assembly/flash/handheld, src)
 	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
 	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/storage/belt/security/chief
 	name = "\improper Head of Security's toolbelt"
@@ -378,7 +378,7 @@
 	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
 	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
 	SSwardrobe.provide_type(/obj/item/shield/riot/tele, src)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/storage/belt/security/webbing
 	name = "security webbing"
@@ -819,7 +819,7 @@
 	content_overlays = TRUE
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 
-/obj/item/storage/belt/quiver/update_icon()
+/obj/item/storage/belt/quiver/update_appearance(updates = ALL)
 	..()
 	if(content_overlays && ismob(loc))
 		var/mob/M = loc
@@ -912,7 +912,7 @@
 			if(bow.chambered == arrow)
 				bow.chambered = null
 			bow.update_slowdown()
-			bow.update_icon()
+			bow.update_appearance(updates = ALL)
 
 	if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, arrow, null, TRUE, TRUE))
 		return
@@ -1186,11 +1186,11 @@
 		var/obj/item/I = contents[1]
 		user.visible_message("[user] takes [I] out of [src].", span_notice("You take [I] out of [src]."))
 		user.put_in_hands(I)
-		update_icon()
+		update_appearance(updates = ALL)
 	else
 		to_chat(user, "[src] is empty.")
 
-/obj/item/storage/belt/sabre/update_icon()
+/obj/item/storage/belt/sabre/update_appearance(updates = ALL)
 	icon_state = "sheath"
 	item_state = "sheath"
 	if(contents.len)
@@ -1203,7 +1203,7 @@
 
 /obj/item/storage/belt/sabre/PopulateContents()
 	new /obj/item/melee/sabre(src)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/storage/belt/multi
 	name = "multi-belt"

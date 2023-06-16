@@ -37,7 +37,7 @@
 		L.ignite_mob()
 		arrow.flaming = FALSE
 
-	arrow.update_icon()
+	arrow.update_appearance(updates = ALL)
 
 /obj/item/projectile/bullet/reusable/arrow/handle_drop(atom/target)
 	if(dropped || !ammo_type)

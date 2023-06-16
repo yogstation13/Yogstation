@@ -43,18 +43,18 @@
 	else
 		target = null
 		STOP_PROCESSING(SSfastprocess, src)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/pinpointer/process()
 	if(!active)
 		return PROCESS_KILL
 	scan_for_target()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/pinpointer/proc/scan_for_target()
 	return
 
-/obj/item/pinpointer/update_icon()
+/obj/item/pinpointer/update_appearance(updates = ALL)
 	cut_overlays()
 	if(!active)
 		return

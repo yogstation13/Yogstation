@@ -5,9 +5,9 @@
 
 /obj/item/assembly/signaler/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/assembly/signaler/update_icon()
+/obj/item/assembly/signaler/update_appearance(updates = ALL)
 	if(label_color)
 		cut_overlays()
 		attached_overlays = list()

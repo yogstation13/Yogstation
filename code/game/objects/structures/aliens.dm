@@ -229,7 +229,7 @@
 
 /obj/structure/alien/egg/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 	if(status == GROWING || status == GROWN)
 		child = new(src)
 	if(status == GROWING)
@@ -238,7 +238,7 @@
 	if(status == BURST)
 		obj_integrity = integrity_failure
 
-/obj/structure/alien/egg/update_icon()
+/obj/structure/alien/egg/update_appearance(updates = ALL)
 	..()
 	switch(status)
 		if(GROWING)
@@ -279,7 +279,7 @@
 
 /obj/structure/alien/egg/proc/Grow()
 	status = GROWN
-	update_icon()
+	update_appearance(updates = ALL)
 	proximity_monitor.SetRange(1)
 
 //drops and kills the hugger if any is remaining
@@ -287,7 +287,7 @@
 	if(status == GROWN || status == GROWING)
 		proximity_monitor.SetRange(0)
 		status = BURST
-		update_icon()
+		update_appearance(updates = ALL)
 		flick("egg_opening", src)
 		addtimer(CALLBACK(src, PROC_REF(finish_bursting), kill), 15)
 

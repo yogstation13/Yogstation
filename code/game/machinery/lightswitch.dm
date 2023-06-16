@@ -3,6 +3,7 @@
 	name = "light switch"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light-p"
+	base_icon_state = "light-p"
 	desc = "Make dark."
 	power_channel = AREA_USAGE_LIGHT
 
@@ -25,15 +26,26 @@
 	if(!name)
 		name = "light switch ([area.name])"
 
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/machinery/light_switch/update_icon()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-	if(!(stat & NOPOWER))
-		if(area.lightswitch)
-			SSvis_overlays.add_vis_overlay(src, icon, "light1", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-		else
-			SSvis_overlays.add_vis_overlay(src, icon, "light0", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+/obj/machinery/light_switch/update_appearance(updates=ALL)
+	. = ..()
+	luminosity = (stat & NOPOWER) ? 0 : 1
+
+/obj/machinery/light_switch/update_icon_state()
+	set_light(area.lightswitch ? 0 : light_range)
+	icon_state = "[base_icon_state]"
+	if(stat & NOPOWER)
+		icon_state += "-nopower"
+		return ..()
+	icon_state += "[area.lightswitch ? "-on" : "-off"]"
+	return ..()
+
+/obj/machinery/light_switch/update_overlays()
+	. = ..()
+	if(stat & NOPOWER)
+		return ..()
+//	. += emissive_appearance(icon, "[base_icon_state]-emissive[area.lightswitch ? "-on" : "-off"]", src, alpha = src.alpha)
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
@@ -47,10 +59,10 @@
 	. = ..()
 
 	area.lightswitch = !area.lightswitch
-	area.update_icon()
+	area.update_appearance(updates = ALL)
 
 	for(var/obj/machinery/light_switch/L in area)
-		L.update_icon()
+		L.update_appearance(updates = ALL)
 
 	area.power_change()
 

@@ -281,9 +281,9 @@
 	if(.)
 		return
 	robot?.toggle_headlamp()
-	update_icon()
+	update_appearance(updates = ALL)
 
-/atom/movable/screen/robot/lamp/update_icon()
+/atom/movable/screen/robot/lamp/update_appearance(updates = ALL)
 	if(robot?.lamp_enabled)
 		icon_state = "lamp_on"
 	else

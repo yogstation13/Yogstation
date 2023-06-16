@@ -34,7 +34,7 @@
 
 /turf/open/floor/light/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 	if(!length(lighttile_designs))
 		populate_lighttile_designs()
 
@@ -43,7 +43,7 @@
 	light_range = 0
 	update_light()
 
-/turf/open/floor/light/update_icon()
+/turf/open/floor/light/update_appearance(updates = ALL)
 	..()
 	if(on)
 		switch(state)
@@ -79,7 +79,7 @@
 	if(!choice)
 		return FALSE
 	currentcolor = choice
-	update_icon()
+	update_appearance(updates = ALL)
 
 /turf/open/floor/light/attack_ai(mob/user)
 	if(!can_modify_colour)
@@ -88,7 +88,7 @@
 	if(!choice)
 		return FALSE
 	currentcolor = choice
-	update_icon()
+	update_appearance(updates = ALL)
 	return attack_hand(user)
 
 /turf/open/floor/light/attackby(obj/item/C, mob/user, params)
@@ -98,7 +98,7 @@
 		if(state && user.temporarilyRemoveItemFromInventory(C))
 			qdel(C)
 			state = 0 //fixing it by bashing it with a light bulb, fun eh?
-			update_icon()
+			update_appearance(updates = ALL)
 			to_chat(user, span_notice("You replace the light bulb."))
 		else
 			to_chat(user, span_notice("The light bulb seems fine, no need to replace it."))

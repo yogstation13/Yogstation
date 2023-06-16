@@ -31,9 +31,9 @@
 		turn_on(user)
 	else
 		turn_off(user)
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/clothing/head/hardhat/update_icon()
+/obj/item/clothing/head/hardhat/update_appearance(updates = ALL)
 	icon_state = "hardhat[on]_[hat_type]"
 	item_state = "hardhat[on]_[hat_type]"
 	if(ishuman(loc))
@@ -128,7 +128,7 @@
 
 /obj/item/clothing/head/hardhat/weldhat/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/clothing/head/hardhat/weldhat/attack_self(mob/living/user)
 	toggle_helmet_light(user)
@@ -147,7 +147,7 @@
 /obj/item/clothing/head/hardhat/weldhat/proc/toggle_welding_screen(mob/living/user)
 	if(weldingvisortoggle(user))
 		playsound(src, 'sound/mecha/mechmove03.ogg', 50, 1) //Visors don't just come from nothing
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/clothing/head/hardhat/weldhat/worn_overlays(isinhands)
 	. = ..()
@@ -156,7 +156,7 @@
 		if(!up)
 			. += mutable_appearance(mob_overlay_icon, "weldvisor")
 
-/obj/item/clothing/head/hardhat/weldhat/update_icon()
+/obj/item/clothing/head/hardhat/weldhat/update_appearance(updates = ALL)
 	cut_overlays()
 	if(!up)
 		add_overlay("weldvisor")

@@ -77,7 +77,7 @@
 	if(hud_on)
 		remove_hud(user)
 
-/obj/item/multitool/ai_detect/update_icon()
+/obj/item/multitool/ai_detect/update_appearance(updates = ALL)
 	icon_state = "[initial(icon_state)][detect_state]"
 
 /obj/item/multitool/ai_detect/process()
@@ -86,7 +86,7 @@
 		eye.setLoc(get_turf(src))
 	multitool_detect()
 	if(detect_state != old_detect_state)
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/item/multitool/ai_detect/proc/toggle_hud(mob/user)
 	hud_on = !hud_on

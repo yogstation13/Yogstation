@@ -28,7 +28,7 @@
 		game_active = FALSE
 		program_icon_state = "arcade_off"
 		if(istype(computer))
-			computer.update_icon()
+			computer.update_appearance(updates = ALL)
 		ticket_count += 1
 		sleep(1 SECONDS)
 		return
@@ -38,7 +38,7 @@
 		game_active = FALSE
 		program_icon_state = "arcade_off"
 		if(istype(computer))
-			computer.update_icon()
+			computer.update_appearance(updates = ALL)
 		sleep(1 SECONDS)
 		return
 	return
@@ -168,4 +168,4 @@
 			boss_id = rand(1,6)
 			pause_state = FALSE
 			if(istype(computer))
-				computer.update_icon()
+				computer.update_appearance(updates = ALL)

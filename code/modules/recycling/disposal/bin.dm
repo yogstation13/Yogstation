@@ -39,7 +39,7 @@
 
 	air_contents = new /datum/gas_mixture()
 	//gas.volume = 1.05 * CELLSTANDARD
-	update_icon()
+	update_appearance(updates = ALL)
 
 	return INITIALIZE_HINT_LATELOAD //we need turfs to have air
 
@@ -96,7 +96,7 @@
 		if((I.item_flags & ABSTRACT) || !user.temporarilyRemoveItemFromInventory(I))
 			return
 		place_item_in_disposal(I, user)
-		update_icon()
+		update_appearance(updates = ALL)
 		return 1 //no afterattack
 	else
 		return ..()
@@ -140,7 +140,7 @@
 			target.visible_message(span_danger("[user] has placed [target] in [src]."), span_userdanger("[user] has placed [target] in [src]."))
 			log_combat(user, target, "stuffed", addition="into [src]")
 			target.LAssailant = WEAKREF(user)
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/machinery/disposal/relaymove(mob/user)
 	attempt_escape(user)
@@ -157,14 +157,14 @@
 // leave the disposal
 /obj/machinery/disposal/proc/go_out(mob/user)
 	user.forceMove(loc)
-	update_icon()
+	update_appearance(updates = ALL)
 
 // monkeys and xenos can only pull the flush lever
 /obj/machinery/disposal/attack_paw(mob/user)
 	if(stat & BROKEN)
 		return
 	flush = !flush
-	update_icon()
+	update_appearance(updates = ALL)
 
 
 // eject the contents of the disposal unit
@@ -173,11 +173,12 @@
 	for(var/atom/movable/AM in src)
 		AM.forceMove(T)
 		AM.pipe_eject(0)
-	update_icon()
+	update_appearance(updates = ALL)
 
 // update the icon & overlays to reflect mode & status
-/obj/machinery/disposal/update_icon()
-	return
+/obj/machinery/disposal/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/machinery/disposal/proc/flush()
 	flushing = TRUE
@@ -233,7 +234,7 @@
 			src.transfer_fingerprints_to(stored)
 			stored.anchored = FALSE
 			stored.density = TRUE
-			stored.update_icon()
+			stored.update_appearance(updates = ALL)
 	for(var/atom/movable/AM in src) //out, out, darned crowbar!
 		AM.forceMove(T)
 	..()
@@ -273,8 +274,8 @@
 		to_chat(user, span_warning("You empty the bag."))
 		for(var/obj/item/O in T.contents)
 			STR.remove_from_storage(O,src)
-		T.update_icon()
-		update_icon()
+		T.update_appearance(updates = ALL)
+		update_appearance(updates = ALL)
 	else
 		return ..()
 
@@ -285,7 +286,7 @@
 	if(!user.canUseTopic(src, TRUE))
 		return
 	flush = !flush
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/disposal/bin/ui_state(mob/user)
 	return GLOB.notcontained_state
@@ -315,22 +316,22 @@
 	switch(action)
 		if("handle-0")
 			flush = FALSE
-			update_icon()
+			update_appearance(updates = ALL)
 			. = TRUE
 		if("handle-1")
 			if(!panel_open)
 				flush = TRUE
-				update_icon()
+				update_appearance(updates = ALL)
 			. = TRUE
 		if("pump-0")
 			if(pressure_charging)
 				pressure_charging = FALSE
-				update_icon()
+				update_appearance(updates = ALL)
 			. = TRUE
 		if("pump-1")
 			if(!pressure_charging)
 				pressure_charging = TRUE
-				update_icon()
+				update_appearance(updates = ALL)
 			. = TRUE
 		if("eject")
 			eject()
@@ -346,7 +347,7 @@
 				visible_message(span_notice("[AM] lands in [src] and triggers the flush system!."))
 			else
 				visible_message(span_notice("[AM] lands in [src]."))
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			visible_message(span_notice("[AM] bounces off of [src]'s rim!"))
 			return ..()
@@ -357,9 +358,9 @@
 	..()
 	full_pressure = FALSE
 	pressure_charging = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/machinery/disposal/bin/update_icon()
+/obj/machinery/disposal/bin/update_appearance(updates = ALL)
 	cut_overlays()
 	if(stat & BROKEN)
 		pressure_charging = FALSE
@@ -435,7 +436,7 @@
 	if(air_contents.return_pressure() >= SEND_PRESSURE)
 		full_pressure = TRUE
 		pressure_charging = FALSE
-		update_icon()
+		update_appearance(updates = ALL)
 	return
 
 /obj/machinery/disposal/bin/get_remote_view_fullscreens(mob/user)

@@ -10,9 +10,9 @@
 
 /obj/item/stack/arcadeticket/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/stack/arcadeticket/update_icon()
+/obj/item/stack/arcadeticket/update_appearance(updates = ALL)
 	var/amount = get_amount()
 	if((amount >= 12) && (amount > 0))
 		icon_state = "arcade-ticket_4"

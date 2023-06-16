@@ -138,7 +138,7 @@
 /obj/item/hot_potato/proc/activate(delay, mob/user)
 	if(active)
 		return
-	update_icon()
+	update_appearance(updates = ALL)
 	if(sticky)
 		ADD_TRAIT(src, TRAIT_NODROP, HOT_POTATO_TRAIT)
 	name = "primed [name]"
@@ -150,14 +150,14 @@
 	active = TRUE
 
 /obj/item/hot_potato/proc/deactivate()
-	update_icon()
+	update_appearance(updates = ALL)
 	name = initial(name)
 	REMOVE_TRAIT(src, TRAIT_NODROP, HOT_POTATO_TRAIT)
 	STOP_PROCESSING(SSfastprocess, src)
 	colorize(null)
 	active = FALSE
 
-/obj/item/hot_potato/update_icon()
+/obj/item/hot_potato/update_appearance(updates = ALL)
 	icon_state = "[initial(icon_state)]" + "[active ? "_active" : ""]"
 
 /obj/item/hot_potato/syndicate

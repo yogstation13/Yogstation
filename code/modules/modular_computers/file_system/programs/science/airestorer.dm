@@ -85,7 +85,7 @@
 	A.updatehealth()
 	if(A.health >= 0 && A.stat == DEAD)
 		A.revive()
-		cardhold.update_icon()
+		cardhold.update_appearance(updates = ALL)
 	// Finished restoring
 	if(A.health >= 100)
 		ai_slot.locked = FALSE

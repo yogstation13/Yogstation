@@ -25,7 +25,7 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		panel_open = TRUE
-		update_icon()
+		update_appearance(updates = ALL)
 
 
 	if(!built && !device && device_type)
@@ -42,7 +42,7 @@
 			board.accesses = req_one_access
 
 
-/obj/machinery/button/update_icon()
+/obj/machinery/button/update_appearance(updates = ALL)
 	cut_overlays()
 	if(panel_open)
 		icon_state = "button-open"
@@ -61,7 +61,7 @@
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(panel_open || allowed(user))
 			default_deconstruction_screwdriver(user, "button-open", "[skin]",W)
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			to_chat(user, span_danger("Maintenance Access Denied"))
 			flick("[skin]-denied", src)
@@ -118,7 +118,7 @@
 				to_chat(user, span_notice("You wipe the button's ID."))
 				id = null
 
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 
 	if(user.a_intent != INTENT_HARM && !(W.item_flags & NOBLUDGEON))
@@ -167,7 +167,7 @@
 				req_access = list()
 				req_one_access = list()
 				board = null
-			update_icon()
+			update_appearance(updates = ALL)
 			to_chat(user, span_notice("You remove electronics from the button frame."))
 
 		else
@@ -195,7 +195,7 @@
 	if(device)
 		device.pulsed()
 
-	addtimer(CALLBACK(src, PROC_REF(update_icon)), 15)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_appearance)), 15)
 
 /obj/machinery/button/door
 	name = "door button"

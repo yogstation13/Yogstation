@@ -53,7 +53,7 @@
 	C.icon_state = target.icon_state
 	C.cut_overlays()
 	C.add_overlay(target.get_overlays_copy(list(HANDS_LAYER)))
-	C.update_inv_hands()
+	C.update_held_items()
 	log_game("[C.name] has disguised as [target.name]!") 
 	is_disguised = TRUE
 	addtimer(CALLBACK(src, PROC_REF(undocloak), C), (40 SECONDS + (spell_level * 3))) //Sets it up so this is unchanged on default level, and goes up per level invested.

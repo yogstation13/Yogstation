@@ -22,7 +22,7 @@
 	sparks = new /datum/effect_system/spark_spread()
 	sparks.set_up(2,0)
 	sparks.attach(src)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/vr_sleeper/attackby(obj/item/I, mob/user, params)
 	if(!state_open && !occupant)
@@ -61,7 +61,7 @@
 	sparks.start()
 	addtimer(CALLBACK(src, PROC_REF(emagNotify)), 150)
 
-/obj/machinery/vr_sleeper/update_icon()
+/obj/machinery/vr_sleeper/update_appearance(updates = ALL)
 	icon_state = "[initial(icon_state)][state_open ? "-open" : ""]"
 
 /obj/machinery/vr_sleeper/open_machine()

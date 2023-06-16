@@ -33,13 +33,13 @@
 
 /obj/mecha/working/ripley/go_out()
 	..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/mecha/working/ripley/moved_inside(mob/living/carbon/human/H)
 	..()
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/mecha/working/ripley/update_icon()
+/obj/mecha/working/ripley/update_appearance(updates = ALL)
 	..()
 	var/datum/component/armor_plate/C = GetComponent(/datum/component/armor_plate)
 	if (C.amount)

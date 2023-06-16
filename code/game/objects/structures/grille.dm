@@ -34,20 +34,21 @@
 
 	if(broken)
 		holes = (holes | 16) //16 is the biggest hole
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 
 	holes = (holes | (1 << rand(0,3))) //add random holes between 1 and 8
 
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/structure/grille/update_icon()
+/obj/structure/grille/update_appearance(updates = ALL)
 	if(QDELETED(src))
 		return
 	for(var/i = 0; i < 5; i++)
 		var/mask = 1 << i
 		if(holes & mask)
 			filters += filter(type="alpha", icon = icon('icons/obj/smooth_structures/grille.dmi', "broken_[i]"), flags = MASK_INVERSE)
+	return ..()
 
 /obj/structure/grille/examine(mob/user)
 	. = ..()
@@ -303,7 +304,7 @@
 /obj/structure/grille/broken/Initialize()
 	. = ..()
 	holes = (holes | 16)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/structure/grille/ratvar
 	icon = 'icons/obj/structures.dmi'

@@ -14,6 +14,6 @@
 		card.forceMove(drop_location())
 		card.pai = null
 		card.emotion_icon = initial(card.emotion_icon)
-		card.update_icon()
+		card.update_appearance(updates = ALL)
 
 	qdel(src)

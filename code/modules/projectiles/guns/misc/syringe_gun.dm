@@ -17,7 +17,7 @@
 
 /obj/item/gun/syringe/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 	chambered = new /obj/item/ammo_casing/syringegun(src)
 
 /obj/item/gun/syringe/handle_atom_del(atom/A)
@@ -36,7 +36,7 @@
 /obj/item/gun/syringe/process_chamber()
 	if(chambered && !chambered.BB) //we just fired
 		recharge_newshot()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/gun/syringe/examine(mob/user)
 	. = ..()
@@ -66,14 +66,14 @@
 			to_chat(user, span_notice("You load [A] into \the [src]."))
 			syringes += A
 			recharge_newshot()
-			update_icon()
+			update_appearance(updates = ALL)
 			playsound(loc, load_sound, 40)
 			return TRUE
 		else
 			to_chat(user, span_warning("[src] cannot hold more syringes!"))
 	return FALSE
 
-/obj/item/gun/syringe/update_icon()
+/obj/item/gun/syringe/update_appearance(updates = ALL)
 	. = ..()
 	if(!has_syringe_overlay)
 		return
@@ -116,7 +116,7 @@
 			to_chat(user, span_notice("You load \the [D] into \the [src]."))
 			syringes += D
 			recharge_newshot()
-			update_icon()
+			update_appearance(updates = ALL)
 			playsound(loc, load_sound, 40)
 			return TRUE
 		else

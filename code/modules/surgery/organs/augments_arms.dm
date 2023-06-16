@@ -18,7 +18,7 @@
 	if(ispath(holder))
 		holder = new holder(src)
 
-	update_icon()
+	update_appearance(updates = ALL)
 	SetSlotFromZone()
 	items_list = contents.Copy()
 
@@ -31,7 +31,7 @@
 		else
 			CRASH("Invalid zone for [type]")
 
-/obj/item/organ/cyberimp/arm/update_icon()
+/obj/item/organ/cyberimp/arm/update_appearance(updates = ALL)
 	if(zone == BODY_ZONE_R_ARM)
 		transform = null
 	else // Mirroring the icon
@@ -52,7 +52,7 @@
 		zone = BODY_ZONE_R_ARM
 	SetSlotFromZone()
 	to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."))
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/organ/cyberimp/arm/Remove(mob/living/carbon/M, special = 0)
 	Retract()
@@ -323,7 +323,7 @@
 	tool_behaviour = active_tool.tool_behaviour
 	lefthand_file = active_tool.lefthand_file
 	righthand_file = active_tool.righthand_file
-	linkedarm.owner.update_inv_hands()
+	linkedarm.owner.update_held_items()
 	plane = 22
 
 /obj/item/toolset_handler/attack_self(mob/user)

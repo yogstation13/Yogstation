@@ -21,7 +21,7 @@
 		var/msg = "was turned [on ? "on" : "off"] by [key_name(usr)]"
 		investigate_log(msg, INVESTIGATE_ATMOS)
 		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
-		update_icon()
+		update_appearance(updates = ALL)
 	return ..()
 
 /obj/machinery/atmospherics/components/trinary/filter/AltClick(mob/user)
@@ -31,7 +31,7 @@
 		investigate_log(msg, INVESTIGATE_ATMOS)
 		investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 		balloon_alert(user, "volume output set to [transfer_rate] L/s")
-		update_icon()
+		update_appearance(updates = ALL)
 	return ..()
 
 /obj/machinery/atmospherics/components/trinary/filter/proc/set_frequency(new_frequency)
@@ -44,7 +44,7 @@
 	SSradio.remove_object(src,frequency)
 	return ..()
 
-/obj/machinery/atmospherics/components/trinary/filter/update_icon()
+/obj/machinery/atmospherics/components/trinary/filter/update_appearance(updates = ALL)
 	cut_overlays()
 	for(var/direction in GLOB.cardinals)
 		if(!(direction & initialize_directions))
@@ -194,7 +194,7 @@
 			investigate_log(msg, INVESTIGATE_ATMOS)
 			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/components/trinary/filter/can_unwrench(mob/user)
 	. = ..()

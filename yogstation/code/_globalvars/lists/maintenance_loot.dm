@@ -317,7 +317,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
 	/obj/item/instrument/violin = W_RARE,
 	/obj/item/kitchen/fork = W_UNCOMMON,
 	/obj/item/laser_pointer = W_UNCOMMON,
-	/obj/item/latexballon = W_UNCOMMON,
+	/obj/item/latexballoon = W_UNCOMMON,
 	/obj/item/lighter = W_RARE,
 	/obj/item/lighter/greyscale = W_UNCOMMON,
 	/obj/item/lipstick/random = W_UNCOMMON,

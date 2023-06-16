@@ -66,7 +66,7 @@
 			A.reagents.trans_to(src, 10, transfered_by = user)
 			to_chat(user, span_notice("You fill the balloon with the contents of [A]."))
 			desc = "A translucent balloon with some form of liquid sloshing around in it."
-			update_icon()
+			update_appearance(updates = ALL)
 
 /obj/item/toy/balloon/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/glass))
@@ -79,7 +79,7 @@
 				desc = "A translucent balloon with some form of liquid sloshing around in it."
 				to_chat(user, span_notice("You fill the balloon with the contents of [I]."))
 				I.reagents.trans_to(src, 10, transfered_by = user)
-				update_icon()
+				update_appearance(updates = ALL)
 	else if(I.is_sharp())
 		balloon_burst()
 	else
@@ -103,7 +103,7 @@
 		icon_state = "burst"
 		qdel(src)
 
-/obj/item/toy/balloon/update_icon()
+/obj/item/toy/balloon/update_appearance(updates = ALL)
 	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
@@ -206,7 +206,7 @@
 			to_chat(user, span_notice("You reload [7 - src.bullets] cap\s."))
 			A.amount_left -= 7 - src.bullets
 			src.bullets = 7
-		A.update_icon()
+		A.update_appearance(updates = ALL)
 		return 1
 	else
 		return ..()
@@ -238,7 +238,7 @@
 	materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	var/amount_left = 7
 
-/obj/item/toy/ammo/gun/update_icon()
+/obj/item/toy/ammo/gun/update_appearance(updates = ALL)
 	src.icon_state = text("357OLD-[]", src.amount_left)
 
 /obj/item/toy/ammo/gun/examine(mob/user)
@@ -300,7 +300,7 @@
 
 			if(active)
 				icon_state = "swordrainbow"
-				user.update_inv_hands()
+				user.update_held_items()
 		else
 			to_chat(user, span_warning("It's already fabulous!"))
 	else
@@ -405,9 +405,9 @@
 		name = "toy pirate sledgehammer"
 		desc += " This one looks different from the ones you see on commercials..."
 		icon_state = "vxtvul_hammer_pirate0-0"
-		update_icon()
+		update_appearance(updates = ALL)
 
-/obj/item/twohanded/vxtvulhammer/toy/update_icon()
+/obj/item/twohanded/vxtvulhammer/toy/update_appearance(updates = ALL)
 	if(!pirated)
 		icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
 	else
@@ -776,7 +776,7 @@
 		C.deckstyle = deckstyle
 		cards.Cut(1,2)
 		user.put_in_hands(C)
-		update_icon()
+		update_appearance(updates = ALL)
 		C.interact(user)
 	else //if more than one card is drawn
 		var/obj/item/toy/cards/cardhand/H = new/obj/item/toy/cards/cardhand(user.drop_location())
@@ -790,9 +790,9 @@
 		H.deckstyle=deckstyle
 		src.cards.Cut(1,drawnumber+1)
 		user.put_in_hands(H)
-		update_icon()
+		update_appearance(updates = ALL)
 		H.interact(user)
-		H.update_icon()
+		H.update_appearance(updates = ALL)
 
 /obj/item/toy/cards/deck/AltClick(mob/living/L)
 	if(!(L.mobility_flags & MOBILITY_PICKUP))
@@ -805,7 +805,7 @@
 		drawsize=clamp(drawsize,1,min(cards.len,10))
 		draw_card(L,drawsize)
 
-/obj/item/toy/cards/deck/update_icon()
+/obj/item/toy/cards/deck/update_appearance(updates = ALL)
 	if(cards.len > 26)
 		icon_state = "deck_[deckstyle]_full"
 	else if(cards.len > 10)
@@ -839,7 +839,7 @@
 			qdel(SC)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
-		update_icon()
+		update_appearance(updates = ALL)
 	else if(istype(I, /obj/item/toy/cards/cardhand))
 		var/obj/item/toy/cards/cardhand/CH = I
 		if(CH.parentdeck == src)
@@ -851,7 +851,7 @@
 			qdel(CH)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
-		update_icon()
+		update_appearance(updates = ALL)
 	else
 		return ..()
 
@@ -911,7 +911,7 @@
 	cardUser.visible_message(span_notice("[cardUser] draws a card from [cardUser.p_their()] hand."), span_notice("You take the [C.cardname] from your hand."))
 
 	interact(cardUser)
-	update_icon()
+	update_appearance(updates = ALL)
 	if(length(currenthand) == 1)
 		var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(loc)
 		N.parentdeck = parentdeck
@@ -928,7 +928,7 @@
 			user.visible_message("[user] adds a card to [user.p_their()] hand.", span_notice("You add the [C.cardname] to your hand."))
 			qdel(C)
 			interact(user)
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
 	else
@@ -943,7 +943,7 @@
 			user.visible_message("[user] adds the cards from [user.p_their()] hand to another, consolidating them.", span_notice("You add the cards from one hand to another."))
 			qdel(C)
 			interact(user)
-			update_icon()
+			update_appearance(updates = ALL)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
 	else
@@ -977,7 +977,7 @@
 	. = ..()
 	. += "<span class='notice'>This hand has [currenthand.len] cards in it.<span>"
 
-/obj/item/toy/cards/cardhand/update_icon()
+/obj/item/toy/cards/cardhand/update_appearance(updates = ALL)
 	if(src.currenthand.len > 4)
 		src.icon_state = "[deckstyle]_hand5"
 	else
@@ -1054,7 +1054,7 @@
 			user.visible_message("[user] adds a card to [user.p_their()] hand.", span_notice("You add the [cardname] to your hand."))
 			qdel(src)
 			H.interact(user)
-			H.update_icon()
+			H.update_appearance(updates = ALL)
 		else
 			to_chat(user, span_warning("You can't mix cards from other decks!"))
 	else
@@ -1141,7 +1141,7 @@
 		cards += "Wildcard"
 		cards += "Wild Draw Four"
 
-/obj/item/toy/cards/deck/uno/update_icon()
+/obj/item/toy/cards/deck/uno/update_appearance(updates = ALL)
 	if(cards.len > 54)
 		icon_state = "deck_[deckstyle]_full"
 	else if(cards.len > 25)
@@ -1679,9 +1679,9 @@ obj/item/toy/turn_tracker
 
 /obj/item/toy/eldritch_book/attack_self(mob/user)
 	book_open = !book_open
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/toy/eldritch_book/update_icon()
+/obj/item/toy/eldritch_book/update_appearance(updates = ALL)
 	icon_state = book_open ? "book_open" : "book"
 
 /*

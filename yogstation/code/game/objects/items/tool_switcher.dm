@@ -116,7 +116,7 @@
 	current_tool = T
 	if(istype(loc, /mob))
 		var/mob/M = loc
-		M.update_inv_hands()
+		M.update_held_items()
 
 /obj/item/storage/belt/tool_switcher/proc/switch_tool_index(I)
 	if(!current_program || I > current_program.tools_list.len || I < 1)

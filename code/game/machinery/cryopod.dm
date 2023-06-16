@@ -172,7 +172,7 @@ GLOBAL_VAR_INIT(cryopods_enabled, FALSE)
 	..()
 
 /obj/machinery/cryopod/LateInitialize()
-	update_icon()
+	update_appearance(updates = ALL)
 	find_control_computer()
 
 /obj/machinery/cryopod/proc/PowerOn()

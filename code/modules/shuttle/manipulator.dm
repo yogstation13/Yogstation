@@ -12,7 +12,7 @@
 
 	density = TRUE
 	
-/obj/machinery/shuttle_manipulator/update_icon()	
+/obj/machinery/shuttle_manipulator/update_appearance(updates = ALL)	
 	cut_overlays()	
 	var/mutable_appearance/hologram_projection = mutable_appearance(icon, "hologram_on")	
 	hologram_projection.pixel_y = 22	

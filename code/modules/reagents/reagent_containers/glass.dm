@@ -119,15 +119,15 @@
 
 /obj/item/reagent_containers/glass/beaker/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/glass/beaker/get_part_rating()
 	return reagents.maximum_volume
 
 /obj/item/reagent_containers/glass/beaker/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/reagent_containers/glass/beaker/update_icon()
+/obj/item/reagent_containers/glass/beaker/update_appearance(updates = ALL)
 	cut_overlays()
 
 	if(reagents.total_volume)
@@ -177,7 +177,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
 
-/obj/item/reagent_containers/glass/beaker/plastic/update_icon()
+/obj/item/reagent_containers/glass/beaker/plastic/update_appearance(updates = ALL)
 	icon_state = "beakerlarge" // hack to lets us reuse the large beaker reagent fill states
 	..()
 	icon_state = "beakerwhite"
@@ -422,9 +422,9 @@
 
 /obj/item/reagent_containers/glass/mixbowl/on_reagent_change(changetype)
 	..()
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/reagent_containers/glass/mixbowl/update_icon()
+/obj/item/reagent_containers/glass/mixbowl/update_appearance(updates = ALL)
 	cut_overlays()
 
 	if(reagents.total_volume)

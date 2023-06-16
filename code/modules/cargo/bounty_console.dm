@@ -23,7 +23,7 @@
 /obj/item/paper/bounty_printout/Initialize()
 	. = ..()
 	info = "<h2>Nanotrasen Cargo Bounties</h2></br>"
-	update_icon()
+	update_appearance(updates = ALL)
 	for(var/datum/bounty/B in GLOB.bounties_list)
 		if(B.claimed)
 			continue

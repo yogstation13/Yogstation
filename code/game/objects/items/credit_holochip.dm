@@ -12,7 +12,7 @@
 	. = ..()
 	if(amount)
 		credits = amount
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/holochip/examine(mob/user)
 	. = ..()
@@ -22,7 +22,7 @@
 /obj/item/holochip/get_item_credit_value()
 	return credits
 
-/obj/item/holochip/update_icon()
+/obj/item/holochip/update_appearance(updates = ALL)
 	name = "\improper [credits] credit holochip"
 	var/rounded_credits = credits
 	switch(credits)
@@ -65,7 +65,7 @@
 		credits -= amount
 		if(credits == 0)
 			qdel(src)
-		update_icon()
+		update_appearance(updates = ALL)
 		return amount
 	else if(pay_anyway)
 		qdel(src)
@@ -79,7 +79,7 @@
 		var/obj/item/holochip/H = I
 		credits += H.credits
 		to_chat(user, span_notice("You insert the credits into [src]."))
-		update_icon()
+		update_appearance(updates = ALL)
 		qdel(H)
 
 /obj/item/holochip/AltClick(mob/user)

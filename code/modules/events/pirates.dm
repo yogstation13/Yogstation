@@ -137,7 +137,7 @@
 	. = ..()
 	gps = new/obj/item/gps/internal/pirate(src)
 	gps.tracking = FALSE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/shuttle_scrambler/process()
 	if(active)
@@ -168,7 +168,7 @@
 		if(active || !user.canUseTopic(src, BE_CLOSE))
 			return
 		toggle_on(user)
-		update_icon()
+		update_appearance(updates = ALL)
 		send_notification()
 	else
 		dump_loot(user)
@@ -195,7 +195,7 @@
 	active = FALSE
 	STOP_PROCESSING(SSobj,src)
 
-/obj/machinery/shuttle_scrambler/update_icon()
+/obj/machinery/shuttle_scrambler/update_appearance(updates = ALL)
 	if(active)
 		icon_state = "dominator-blue"
 	else

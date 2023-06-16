@@ -65,11 +65,11 @@
 	if(A == beaker)
 		beaker = null
 		reagents.clear_reagents()
-		update_icon()
+		update_appearance(updates = ALL)
 	else if(A == bottle)
 		bottle = null
 
-/obj/machinery/chem_master/update_icon()
+/obj/machinery/chem_master/update_appearance(updates = ALL)
 	cut_overlays()
 	if (stat & BROKEN)
 		add_overlay("waitlight")
@@ -103,7 +103,7 @@
 		replace_beaker(user, B)
 		to_chat(user, span_notice("You add [B] to [src]."))
 		updateUsrDialog()
-		update_icon()
+		update_appearance(updates = ALL)
 	else if(!condi && istype(I, /obj/item/storage/pill_bottle))
 		if(bottle)
 			to_chat(user, span_warning("A pill bottle is already loaded into [src]!"))
@@ -131,7 +131,7 @@
 		beaker = new_beaker
 	else
 		beaker = null
-	update_icon()
+	update_appearance(updates = ALL)
 	return TRUE
 
 /obj/machinery/chem_master/on_deconstruction()

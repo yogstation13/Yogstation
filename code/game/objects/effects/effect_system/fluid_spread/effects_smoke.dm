@@ -306,7 +306,7 @@
 		for(var/obj/machinery/atmospherics/components/unary/comp in chilly)
 			if(!isnull(comp.welded) && !comp.welded) //must be an unwelded vent pump or vent scrubber.
 				comp.welded = TRUE
-				comp.update_icon()
+				comp.update_appearance(updates = ALL)
 				comp.visible_message(span_danger("[comp] is frozen shut!"))
 
 	// Extinguishes everything in the turf

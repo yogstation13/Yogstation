@@ -170,7 +170,7 @@
 			shoe_types |= S.type
 			if (!(entered_dirs & H.dir))
 				entered_dirs |= H.dir
-				update_icon()
+				update_appearance(updates = ALL)
 
 /obj/effect/decal/cleanable/blood/footprints/Uncrossed(atom/movable/O)
 	..()
@@ -182,10 +182,10 @@
 			shoe_types  |= S.type
 			if (!(exited_dirs & H.dir))
 				exited_dirs |= H.dir
-				update_icon()
+				update_appearance(updates = ALL)
 
 
-/obj/effect/decal/cleanable/blood/footprints/update_icon()
+/obj/effect/decal/cleanable/blood/footprints/update_appearance(updates = ALL)
 	cut_overlays()
 
 	for(var/Ddir in GLOB.cardinals)

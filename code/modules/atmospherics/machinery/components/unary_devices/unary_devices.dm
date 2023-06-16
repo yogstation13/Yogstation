@@ -18,10 +18,10 @@
 
 /obj/machinery/atmospherics/components/unary/on_construction()
 	..()
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/components/unary/hide(intact)
-	update_icon()
+	update_appearance(updates = ALL)
 	..(intact)
 
 /obj/machinery/atmospherics/components/unary/proc/assign_uid_vents()

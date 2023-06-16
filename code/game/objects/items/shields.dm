@@ -149,23 +149,24 @@
 	item_state = "flashshield"
 	var/obj/item/assembly/flash/handheld/embedded_flash
 
-/obj/item/shield/riot/flash/Initialize()
+/obj/item/shield/riot/flash/Initialize(mapload)
 	. = ..()
 	embedded_flash = new(src)
+	update_appearance(UPDATE_ICON)
 
 /obj/item/shield/riot/flash/attack(mob/living/M, mob/user)
 	. =  embedded_flash.attack(M, user)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/shield/riot/flash/attack_self(mob/living/carbon/user)
 	. = embedded_flash.attack_self(user)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/shield/riot/flash/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	. = ..()
 	if (. && !embedded_flash.burnt_out)
 		embedded_flash.activate()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 
 /obj/item/shield/riot/flash/attackby(obj/item/W, mob/user)
@@ -183,22 +184,23 @@
 				qdel(embedded_flash)
 				embedded_flash = flash
 				flash.forceMove(src)
-				update_icon()
+				update_appearance(updates = ALL)
 				return
 	..()
 
 /obj/item/shield/riot/flash/emp_act(severity)
 	. = ..()
 	embedded_flash.emp_act(severity)
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/shield/riot/flash/update_icon()
-	if(!embedded_flash || embedded_flash.burnt_out)
+/obj/item/shield/riot/flash/update_icon_state()
+	if(QDELETED(embedded_flash) || embedded_flash.burnt_out)
 		icon_state = "riot"
 		item_state = "riot"
 	else
 		icon_state = "flashshield"
 		item_state = "flashshield"
+	return ..()
 
 /obj/item/shield/riot/flash/examine(mob/user)
 	. = ..()
@@ -217,7 +219,7 @@
 	force = 3
 	throwforce = 3
 	throw_speed = 3
-	var/base_icon_state = "eshield" // [base_icon_state]1 for expanded, [base_icon_state]0 for contracted
+	base_icon_state = "eshield" // [base_icon_state]1 for expanded, [base_icon_state]0 for contracted
 	var/on_force = 10
 	var/on_throwforce = 8
 	var/on_throw_speed = 2

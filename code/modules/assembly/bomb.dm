@@ -19,7 +19,7 @@
 /obj/item/onetankbomb/examine(mob/user)
 	return bombtank.examine(user)
 
-/obj/item/onetankbomb/update_icon()
+/obj/item/onetankbomb/update_appearance(updates = ALL)
 	cut_overlays()
 	if(bombtank)
 		icon = bombtank.icon
@@ -132,7 +132,7 @@
 	master = bomb
 
 	forceMove(bomb)
-	bomb.update_icon()
+	bomb.update_appearance(updates = ALL)
 
 	user.put_in_hands(bomb)		//Equips the bomb if possible, or puts it on the floor.
 	to_chat(user, span_notice("You attach [assembly] to [src]."))

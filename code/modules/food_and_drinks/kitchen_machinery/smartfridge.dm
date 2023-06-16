@@ -146,10 +146,10 @@
 /obj/machinery/smartfridge/obj_break(damage_flag)
 	if(!(stat & BROKEN))
 		stat |= BROKEN
-		update_icon()
+		update_appearance(updates = ALL)
 	..(damage_flag)
 
-/obj/machinery/smartfridge/update_icon()
+/obj/machinery/smartfridge/update_appearance(updates = ALL)
 	var/startstate = initial(icon_state)
 	if(stat & BROKEN)
 		icon_state = "[startstate]-broken"
@@ -230,7 +230,7 @@
 		if(accept_check(O))
 			load(O)
 			user.visible_message("[user] has added \the [O] to \the [src].", span_notice("You add \the [O] to \the [src]."))
-			update_icon()
+			update_appearance(updates = ALL)
 			updateUsrDialog()
 			if(contents.len >= max_n_of_items)
 				indicate_full()
@@ -245,7 +245,7 @@
 				if(accept_check(G))
 					load(G)
 					loaded++
-			update_icon()
+			update_appearance(updates = ALL)
 			updateUsrDialog()
 
 			if(loaded)
@@ -272,7 +272,7 @@
 				load(organ)
 				OS.clear_organ()
 				user.visible_message("[user] has added \the [organ] to \the [src].", span_notice("You add \the [organ] to \the [src]."))
-				update_icon()
+				update_appearance(updates = ALL)
 				updateUsrDialog()
 				if(contents.len >= max_n_of_items)
 					indicate_full()
@@ -377,7 +377,7 @@
 					if(O.name == params["name"])
 						dispense(O, usr)
 						break
-				update_icon()
+				update_appearance(updates = ALL)
 				cut_overlay(full_indicator_state)
 				animate_dispenser()
 				return TRUE
@@ -390,7 +390,7 @@
 					dispense(O, usr)
 					desired--
 
-			update_icon()
+			update_appearance(updates = ALL)
 			cut_overlay(full_indicator_state)
 			animate_dispenser()
 			return TRUE
@@ -454,7 +454,7 @@
 /obj/machinery/smartfridge/drying_rack/ui_act(action, params)
 	. = ..()
 	if(.)
-		update_icon() // This is to handle a case where the last item is taken out manually instead of through drying pop-out
+		update_appearance(updates = ALL) // This is to handle a case where the last item is taken out manually instead of through drying pop-out
 		return
 	switch(action)
 		if("Dry")
@@ -474,9 +474,9 @@
 
 /obj/machinery/smartfridge/drying_rack/load() //For updating the filled overlay
 	..()
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/machinery/smartfridge/drying_rack/update_icon()
+/obj/machinery/smartfridge/drying_rack/update_appearance(updates = ALL)
 	..()
 	cut_overlays()
 	if(drying)
@@ -489,7 +489,7 @@
 	if(drying)
 		if(rack_dry())//no need to update unless something got dried
 			SStgui.update_uis(src)
-			update_icon()
+			update_appearance(updates = ALL)
 
 /obj/machinery/smartfridge/drying_rack/accept_check(obj/item/O)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/))
@@ -507,7 +507,7 @@
 	else
 		drying = TRUE
 		use_power = ACTIVE_POWER_USE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/smartfridge/drying_rack/proc/rack_dry()
 	for(var/obj/item/reagent_containers/food/snacks/S in src)

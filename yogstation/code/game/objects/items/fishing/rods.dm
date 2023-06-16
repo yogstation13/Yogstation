@@ -200,10 +200,10 @@
 	opened = !opened
 	w_class = opened ? WEIGHT_CLASS_BULKY : WEIGHT_CLASS_SMALL
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-	update_icon()
+	update_appearance(updates = ALL)
 	user.regenerate_icons()
 
-/obj/item/twohanded/fishingrod/collapsible/update_icon()
+/obj/item/twohanded/fishingrod/collapsible/update_appearance(updates = ALL)
 	item_state = opened ? "fishing_rod" : ""
 	icon_state = "[rod_icon_state][opened ? "" : "_c"]"
 

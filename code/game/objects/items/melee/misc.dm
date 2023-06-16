@@ -702,16 +702,16 @@
 			held_sausage = target
 		else
 			to_chat(user, span_warning("[target] doesn't seem to want to get on [src]!"))
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/item/melee/roastingstick/attack_hand(mob/user)
 	..()
 	if (held_sausage)
 		user.put_in_hands(held_sausage)
 		held_sausage = null
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/melee/roastingstick/update_icon()
+/obj/item/melee/roastingstick/update_appearance(updates = ALL)
 	. = ..()
 	cut_overlays()
 	if (held_sausage)
@@ -733,7 +733,7 @@
 /obj/item/melee/roastingstick/handle_atom_del(atom/target)
 	if (target == held_sausage)
 		held_sausage = null
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/item/melee/roastingstick/afterattack(atom/target, mob/user, proximity)
 	. = ..()
@@ -764,4 +764,4 @@
 	held_sausage.add_atom_colour(rgb(103,63,24), FIXED_COLOUR_PRIORITY)
 	held_sausage.name = "[target.name]-roasted [held_sausage.name]"
 	held_sausage.desc = "[held_sausage.desc] It has been cooked to perfection on \a [target]."
-	update_icon()
+	update_appearance(updates = ALL)

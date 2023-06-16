@@ -31,7 +31,7 @@
 	..()
 	if(A == beaker)
 		beaker = null
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/machinery/biogenerator/contents_explosion(severity, target)
 	..()
@@ -63,9 +63,9 @@
 		. += span_notice("The status display reads: Productivity at <b>[productivity*100]%</b>.<br>Matter consumption reduced by <b>[(efficiency*25)-25]</b>%.<br>Machine can hold up to <b>[max_items]</b> pieces of produce.")
 
 /obj/machinery/biogenerator/on_reagent_change(changetype)			//When the reagents change, change the icon as well.
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/machinery/biogenerator/update_icon()
+/obj/machinery/biogenerator/update_appearance(updates = ALL)
 	if(panel_open)
 		icon_state = "biogen-empty-o"
 	else if(!src.beaker)
@@ -88,7 +88,7 @@
 			var/obj/item/reagent_containers/glass/B = beaker
 			B.forceMove(drop_location())
 			beaker = null
-		update_icon()
+		update_appearance(updates = ALL)
 		return
 
 	if(default_deconstruction_crowbar(O))
@@ -104,7 +104,7 @@
 					return
 				beaker = O
 				to_chat(user, span_notice("You add the container to the machine."))
-				update_icon()
+				update_appearance(updates = ALL)
 		else
 			to_chat(user, span_warning("Close the maintenance panel first."))
 		return
@@ -184,12 +184,12 @@
 		qdel(I)
 	if(S)
 		processing = TRUE
-		update_icon()
+		update_appearance(updates = ALL)
 		playsound(loc, 'sound/machines/blender.ogg', 50, TRUE)
 		use_power(S * 30)
 		sleep(S + 15 / productivity)
 		processing = FALSE
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/machinery/biogenerator/proc/check_cost(list/materials, multiplier = 1, remove_points = TRUE)
 	if(materials.len != 1 || materials[1] != getmaterialref(/datum/material/biomass))
@@ -199,7 +199,7 @@
 	else
 		if(remove_points)
 			points -= materials[getmaterialref(/datum/material/biomass)]*multiplier/efficiency
-		update_icon()
+		update_appearance(updates = ALL)
 		return TRUE
 
 /obj/machinery/biogenerator/proc/check_container_volume(list/reagents, multiplier = 1)
@@ -240,7 +240,7 @@
 				beaker.reagents.add_reagent(R, D.make_reagents[R])
 			. = 1
 			--i
-	update_icon()
+	update_appearance(updates = ALL)
 	return .
 
 /obj/machinery/biogenerator/proc/detach(mob/living/user)
@@ -250,7 +250,7 @@
 		else
 			beaker.drop_location(get_turf(src))
 		beaker = null
-		update_icon()
+		update_appearance(updates = ALL)
 
 /obj/machinery/biogenerator/ui_status(mob/user)
 	if(stat & BROKEN || panel_open)

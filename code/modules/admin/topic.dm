@@ -1397,7 +1397,7 @@
 
 		var/obj/item/reagent_containers/food/snacks/cookie/cookie = new(H)
 		if(H.put_in_hands(cookie)) // They have hands and can use them to hold cookies
-			H.update_inv_hands()
+			H.update_held_items()
 			log_admin("[key_name(H)] got their cookie in-hand, spawned by [key_name(src.owner)].")
 			message_admins("[key_name(H)] got their cookie in-hand, spawned by [key_name(src.owner)].")
 		else // They do not have hands available, for some reason

@@ -122,7 +122,7 @@
 	switch(action)
 		if("toggle_lock")
 			chamber.locked = !chamber.locked
-			chamber.update_icon()
+			chamber.update_appearance(updates = ALL)
 			. = TRUE
 		if("eject")
 			eject(usr)

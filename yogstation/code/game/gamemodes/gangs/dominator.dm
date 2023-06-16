@@ -28,7 +28,7 @@
 	spark_system = new
 	spark_system.set_up(5, TRUE, src)
 	countdown = new(src)
-	update_icon()
+	update_appearance(updates = ALL)
 	.=..()
 
 /obj/machinery/dominator/Destroy()
@@ -54,7 +54,7 @@
 /obj/machinery/dominator/tesla_act()
 	qdel(src)
 
-/obj/machinery/dominator/update_icon()
+/obj/machinery/dominator/update_appearance(updates = ALL)
 	cut_overlays()
 	if(!(stat & BROKEN))
 		icon_state = "dominator-active"
@@ -137,7 +137,7 @@
 				spark_system.start()
 		else if(!(stat & BROKEN))
 			spark_system.start()
-			update_icon()
+			update_appearance(updates = ALL)
 
 
 /obj/machinery/dominator/obj_break(damage_flag)
@@ -196,7 +196,7 @@
 		SSshuttle.registerHostileEnvironment(src)
 		name = "[gang.name] Gang [name]"
 		operating = TRUE
-		update_icon()
+		update_appearance(updates = ALL)
 
 		countdown.color = gang.color
 		countdown.start()
@@ -244,7 +244,7 @@
 	set_light(0)
 	operating = FALSE
 	stat |= BROKEN
-	update_icon()
+	update_appearance(updates = ALL)
 	STOP_PROCESSING(SSmachines, src)
 	if(nukedisk)
 		nukedisk.forceMove(drop_location())

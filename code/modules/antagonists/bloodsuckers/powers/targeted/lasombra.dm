@@ -78,7 +78,7 @@
 	if(istype(O, /obj/item/pda))
 		var/obj/item/pda/PDA = O
 		PDA.set_light_on(FALSE)
-		PDA.update_icon()
+		PDA.update_appearance(updates = ALL)
 		O.visible_message(span_danger("The light in [PDA] shorts out!"))
 	else
 		O.visible_message(span_danger("[O] is disintegrated by [src]!"))

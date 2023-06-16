@@ -21,9 +21,9 @@
 
 /obj/item/book/granter/martial/carp/on_reading_finished(mob/living/carbon/user)
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 
-/obj/item/book/granter/martial/carp/update_icon(updates)
+/obj/item/book/granter/martial/carp/update_appearance(updates)
 	. = ..()
 	if(!uses)
 		name = "empty scroll"

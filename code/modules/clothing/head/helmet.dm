@@ -49,7 +49,7 @@
 	if(A == attached_light)
 		set_attached_light(null)
 		update_helmlight()
-		update_icon()
+		update_appearance(updates = ALL)
 		QDEL_NULL(alight)
 		qdel(A)
 	return ..()
@@ -371,7 +371,7 @@
 
 //LightToggle
 
-/obj/item/clothing/head/helmet/update_icon()
+/obj/item/clothing/head/helmet/update_appearance(updates = ALL)
 	var/state = "[initial(icon_state)]"
 	if(attached_light)
 		if(attached_light.on)
@@ -399,7 +399,7 @@
 				return
 			to_chat(user, span_notice("You click [S] into place on [src]."))
 			set_attached_light(S)
-			update_icon()
+			update_appearance(updates = ALL)
 			update_helmlight()
 			alight = new(src)
 			if(loc == user)
@@ -419,7 +419,7 @@
 		var/obj/item/flashlight/removed_light = set_attached_light(null)
 		update_helmlight()
 		removed_light.update_brightness(user)
-		update_icon()
+		update_appearance(updates = ALL)
 		user.update_inv_head()
 		QDEL_NULL(alight)
 		return TRUE
@@ -444,7 +444,7 @@
 
 /obj/item/clothing/head/helmet/proc/update_helmlight()
 	if(attached_light)
-		update_icon()
+		update_appearance(updates = ALL)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()

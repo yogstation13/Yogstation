@@ -32,13 +32,13 @@
 /obj/machinery/space_heater/Initialize()
 	. = ..()
 	cell = new(src)
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/space_heater/on_construction()
 	qdel(cell)
 	cell = null
 	panel_open = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 	return ..()
 
 /obj/machinery/space_heater/on_deconstruction()
@@ -57,7 +57,7 @@
 	if(in_range(user, src) || isobserver(user))
 		. += "<span class='notice'>The status display reads: Temperature range at <b>[settableTemperatureRange]°C</b>.<br>Heating power at <b>[heatingPower*0.001]kJ</b>.<br>Power consumption at <b>[(efficiency*-0.0025)+150]%</b>.<span>" //100%, 75%, 50%, 25%
 
-/obj/machinery/space_heater/update_icon()
+/obj/machinery/space_heater/update_appearance(updates = ALL)
 	icon_state = "sheater-[on ? "[mode]" : "off"]"
 
 	cut_overlays()
@@ -69,19 +69,19 @@
 		if (on) // If it's broken, turn it off too
 			on = FALSE
 		active_power_usage = 0
-		update_icon()
+		update_appearance(updates = ALL)
 		return PROCESS_KILL
 
 	if((stat & NOPOWER) && (!cell || cell.charge <= 0))
 		on = FALSE
-		update_icon()
+		update_appearance(updates = ALL)
 		return PROCESS_KILL
 
 	var/turf/L = loc
 	if(!istype(L))
 		if(mode != HEATER_MODE_STANDBY)
 			mode = HEATER_MODE_STANDBY
-			update_icon()
+			update_appearance(updates = ALL)
 		return
 
 	var/datum/gas_mixture/env = L.return_air()
@@ -94,7 +94,7 @@
 
 	if(mode != newMode)
 		mode = newMode
-		update_icon()
+		update_appearance(updates = ALL)
 
 	if(mode == HEATER_MODE_STANDBY)
 		return
@@ -119,7 +119,7 @@
 		if (!cell.use(requiredEnergy / efficiency))
 			//automatically turn off machine when cell depletes
 			on = FALSE
-			update_icon()
+			update_appearance(updates = ALL)
 			working = FALSE		
 	else
 		active_power_usage = requiredEnergy / efficiency
@@ -180,7 +180,7 @@
 	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		panel_open = !panel_open
 		user.visible_message("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src].", span_notice("You [panel_open ? "open" : "close"] the hatch on \the [src]."))
-		update_icon()
+		update_appearance(updates = ALL)
 	else if(default_deconstruction_crowbar(I))
 		return
 	else
@@ -262,7 +262,7 @@
 	on = !on
 	mode = HEATER_MODE_STANDBY
 	usr.visible_message("[usr] switches [on ? "on" : "off"] \the [src].", span_notice("You switch [on ? "on" : "off"] \the [src]."))
-	update_icon()
+	update_appearance(updates = ALL)
 	if (on)
 		START_PROCESSING(SSmachines, src)
 

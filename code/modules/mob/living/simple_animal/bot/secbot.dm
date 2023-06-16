@@ -71,7 +71,7 @@
 
 /mob/living/simple_animal/bot/secbot/Initialize()
 	. = ..()
-	update_icon()
+	update_appearance(updates = ALL)
 	var/datum/job/detective/J = new/datum/job/detective
 	access_card.access += J.get_access()
 	prev_access = access_card.access
@@ -83,7 +83,7 @@
 	if(prob(5))
 		russian = TRUE // imported from Russia
 
-/mob/living/simple_animal/bot/secbot/update_icon()
+/mob/living/simple_animal/bot/secbot/update_appearance(updates = ALL)
 	if(mode == BOT_HUNT)
 		icon_state = "[initial(icon_state)]-c"
 		return
@@ -209,7 +209,7 @@ Auto Patrol: []"},
 			oldtarget_name = user.name
 		audible_message(span_danger("[src] buzzes oddly!"))
 		declare_arrests = FALSE
-		update_icon()
+		update_appearance(updates = ALL)
 
 /mob/living/simple_animal/bot/secbot/bullet_act(obj/item/projectile/Proj)
 	if(istype(Proj , /obj/item/projectile/beam)||istype(Proj, /obj/item/projectile/bullet))
@@ -264,7 +264,7 @@ Auto Patrol: []"},
 	var/judgement_criteria = judgement_criteria()
 	playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE, -1)
 	icon_state = "secbot-c"
-	addtimer(CALLBACK(src, PROC_REF(update_icon)), 2)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_appearance)), 2)
 	var/threat = 5
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C

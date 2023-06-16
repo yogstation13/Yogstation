@@ -51,7 +51,7 @@
 				to_chat(usr, "Minor alarm for [zone] cleared.")
 				minor_alarms -= zone
 				. = TRUE
-	update_icon()
+	update_appearance(updates = ALL)
 
 /obj/machinery/computer/atmos_alert/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, receive_frequency)
@@ -74,10 +74,10 @@
 		priority_alarms += zone
 	else if (severity == "minor")
 		minor_alarms += zone
-	update_icon()
+	update_appearance(updates = ALL)
 	return
 
-/obj/machinery/computer/atmos_alert/update_icon()
+/obj/machinery/computer/atmos_alert/update_appearance(updates = ALL)
 	..()
 	if(stat & (NOPOWER|BROKEN))
 		return

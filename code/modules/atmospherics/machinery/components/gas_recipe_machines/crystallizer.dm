@@ -15,7 +15,7 @@
 	circuit = /obj/item/circuitboard/machine/crystallizer
 	pipe_flags = PIPING_ONE_PER_TURF| PIPING_DEFAULT_LAYER_ONLY
 
-	///Base icon state for the machine to be used in update_icon()
+	///Base icon state for the machine to be used in update_appearance(updates = ALL)
 	var/base_icon = "crystallizer"
 	///Internal Gas mix used for processing the gases that have been put in
 	var/datum/gas_mixture/internal
@@ -79,12 +79,14 @@
 	SSair.add_to_rebuild_queue(src)
 	return TRUE
 
-/obj/machinery/atmospherics/components/binary/crystallizer/proc/update_overlays()
+/obj/machinery/atmospherics/components/binary/crystallizer/update_overlays()
+	. = ..()
 	cut_overlays()
 	add_overlay(getpipeimage(icon, "pipe", dir, COLOR_LIME, piping_layer))
 	add_overlay(getpipeimage(icon, "pipe", turn(dir, 180), COLOR_RED, piping_layer))
 
-/obj/machinery/atmospherics/components/binary/crystallizer/proc/update_icon_state()
+/obj/machinery/atmospherics/components/binary/crystallizer/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "[base_icon]-open"
 	else if(on)
@@ -92,7 +94,7 @@
 	else
 		icon_state = "[base_icon]-off"
 
-/obj/machinery/atmospherics/components/binary/crystallizer/update_icon()
+/obj/machinery/atmospherics/components/binary/crystallizer/update_appearance(updates = ALL)
 	. = ..()
 	update_icon_state()
 	update_overlays()
@@ -102,7 +104,7 @@
 		return
 	on = !on
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
-	update_icon()
+	update_appearance(updates = ALL)
 
 ///Checks if the gases in the input are the ones needed by the recipe
 /obj/machinery/atmospherics/components/binary/crystallizer/proc/check_gas_requirements()
@@ -341,7 +343,7 @@
 			var/_gas_input = params["gas_input"]
 			gas_input = clamp(_gas_input, 0, max_gas_input)
 			investigate_log("was set to [gas_input] by [key_name(usr)]", INVESTIGATE_ATMOS)
-	update_icon()
+	update_appearance(updates = ALL)
 
 #undef MIN_PROGRESS_AMOUNT
 #undef MIN_DEVIATION_RATE

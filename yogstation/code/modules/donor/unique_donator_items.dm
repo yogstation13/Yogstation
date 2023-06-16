@@ -555,7 +555,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	unlock_path = /obj/item/instrument/saxophone
 /datum/donator_gear/latexballon
 	name = "latex glove"
-	unlock_path = /obj/item/latexballon
+	unlock_path = /obj/item/latexballoon
 /datum/donator_gear/zippo
 	name = "Zippo lighter"
 	unlock_path = /obj/item/lighter
