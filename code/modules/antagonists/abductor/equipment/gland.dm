@@ -17,7 +17,7 @@
 	var/mind_control_duration = 180 SECONDS
 	var/active_mind_control = FALSE
 
-/obj/item/organ/heart/gland/Initialize()
+/obj/item/organ/heart/gland/Initialize(mapload)
 	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	icon_state = pick(list("health", "spider", "slime", "emp", "species", "egg", "vent", "mindshock", "viral"))
@@ -452,7 +452,7 @@
 	mind_control_duration = 1200
 	var/list/possible_reagents = list()
 
-/obj/item/organ/heart/gland/chem/Initialize()
+/obj/item/organ/heart/gland/chem/Initialize(mapload)
 	. = ..()
 	for(var/R in subtypesof(/datum/reagent/drug) + subtypesof(/datum/reagent/medicine) + typesof(/datum/reagent/toxin))
 		possible_reagents += R

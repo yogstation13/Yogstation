@@ -351,7 +351,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	desc = "A conveyor control switch. It appears to only go in one direction. you can switch it to two way with a wrench, or detach it with a crowbar."
 	oneway = TRUE
 
-/obj/machinery/conveyor_switch/oneway/Initialize()
+/obj/machinery/conveyor_switch/oneway/Initialize(mapload)
 	. = ..()
 	if((dir == NORTH) || (dir == WEST))
 		invert_icon = TRUE
@@ -365,7 +365,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	materials = list(/datum/material/iron = 50)
 	var/id = "" //inherited by the switch
 
-/obj/item/conveyor_switch_construct/Initialize()
+/obj/item/conveyor_switch_construct/Initialize(mapload)
 	. = ..()
 	id = "[rand()]" //this couldn't possibly go wrong
 

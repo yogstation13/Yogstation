@@ -91,7 +91,7 @@
 	var/disarm_time = 12 SECONDS
 	var/disarm_product = /obj/item/deployablemine // ie what drops when the mine is disarmed
 
-/obj/effect/mine/Initialize()
+/obj/effect/mine/Initialize(mapload)
 	. = ..()
 	layer = ABOVE_MOB_LAYER
 //	update_appearance(UPDATE_ICON_STATE)
@@ -275,7 +275,7 @@
 	alpha = 255
 	var/duration = 0
 
-/obj/effect/mine/pickup/Initialize()
+/obj/effect/mine/pickup/Initialize(mapload)
 	. = ..()
 	animate(src, pixel_y = 4, time = 2 SECONDS, loop = -1)
 

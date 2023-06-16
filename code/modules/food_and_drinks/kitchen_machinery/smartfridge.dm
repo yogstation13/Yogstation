@@ -36,7 +36,7 @@
 	var/power_wire_cut = FALSE
 	var/list/slogan_list = list()
 
-/obj/machinery/smartfridge/Initialize()
+/obj/machinery/smartfridge/Initialize(mapload)
 	. = ..()
 	create_reagents(100, NO_REACT)
 
@@ -310,7 +310,7 @@
 			return TRUE
 
 ///Really simple proc, just moves the object "O" into the hands of mob "M" if able, done so I could modify the proc a little for the organ fridge
-/obj/machinery/smartfridge/proc/dispense(obj/item/O, var/mob/M)
+/obj/machinery/smartfridge/proc/dispense(obj/item/O, mob/M)
 	if(!M.put_in_hands(O))
 		O.forceMove(drop_location())
 		adjust_item_drop_location(O)
@@ -415,7 +415,7 @@
 	pitches = FALSE
 	var/drying = FALSE
 
-/obj/machinery/smartfridge/drying_rack/Initialize()
+/obj/machinery/smartfridge/drying_rack/Initialize(mapload)
 	. = ..()
 	if(component_parts && component_parts.len)
 		component_parts.Cut()
@@ -607,7 +607,7 @@
 		var/obj/item/organ/organ = O
 		organ.organ_flags |= ORGAN_FROZEN
 
-/obj/machinery/smartfridge/organ/dispense(obj/item/O, var/mob/M)
+/obj/machinery/smartfridge/organ/dispense(obj/item/O, mob/M)
 	var/obj/item/organ/organ = O
 	organ.organ_flags &= ~ORGAN_FROZEN
 	..()

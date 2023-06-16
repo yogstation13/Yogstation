@@ -633,7 +633,7 @@
 				var/check = reaction_check(A, R)
 				if(!check)
 					continue
-				var/permeability = 0
+				var/permeability = 1
 				if(method == TOUCH || method == VAPOR)
 					var/mob/living/L = A
 					permeability = L.get_permeability()
@@ -939,7 +939,7 @@
 	return english_list(out, "something indescribable")
 
 /// Applies heat to this holder
-/datum/reagents/proc/expose_temperature(var/temperature, var/coeff=0.02)
+/datum/reagents/proc/expose_temperature(temperature, coeff=0.02)
 	var/temp_delta = (temperature - chem_temp) * coeff
 	if(temp_delta > 0)
 		chem_temp = min(chem_temp + max(temp_delta, 1), temperature)

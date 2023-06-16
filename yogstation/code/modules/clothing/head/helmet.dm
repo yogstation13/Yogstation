@@ -1,7 +1,7 @@
 /obj/item/clothing/head/helmet
 	var/initial_state
 
-/obj/item/clothing/head/helmet/Initialize()
+/obj/item/clothing/head/helmet/Initialize(mapload)
 	. = ..()
 	initial_state = "[initial(icon_state)]"
 

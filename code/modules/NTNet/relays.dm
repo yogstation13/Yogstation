@@ -98,7 +98,7 @@
 			update_appearance(updates = ALL)
 			return TRUE
 
-/obj/machinery/ntnet_relay/Initialize()
+/obj/machinery/ntnet_relay/Initialize(mapload)
 	uid = gl_uid++
 	component_parts = list()
 

@@ -3,7 +3,7 @@
 // All signals send the source datum of the signal as the first argument
 
 // /atom signals
-///from base of atom/proc/Initialize(): sent any time a new atom is created in this atom
+///from base of atom/proc/Initialize(mapload): sent any time a new atom is created in this atom
 #define COMSIG_ATOM_INITIALIZED_ON "atom_initialized_on"
 //from SSatoms InitAtom - Only if the  atom was not deleted or failed initialization
 #define COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE "atom_init_success"

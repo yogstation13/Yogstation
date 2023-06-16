@@ -29,7 +29,7 @@
 /mob/living/simple_animal/hostile/rat/loan
 	faction = list("hostile")
 
-/mob/living/simple_animal/hostile/rat/Initialize()
+/mob/living/simple_animal/hostile/rat/Initialize(mapload)
 	. = ..()
 	language_holder += new /datum/language_holder/mouse(src)
 	AddComponent(/datum/component/squeak, list('sound/effects/mousesqueek.ogg'=1), 100)

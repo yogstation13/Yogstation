@@ -40,7 +40,7 @@
 	var/vacuum = null //yogs- yellow vacuum lights
 
 	var/requires_power = TRUE
-	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize().
+	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize(mapload).
 
 	var/outdoors = FALSE //For space, the asteroid, lavaland, etc. Used with blueprints to determine if we are adding a new area (vs editing a station room)
 
@@ -98,7 +98,7 @@
 
 	var/turf/teleport_anchors = list()	//ist of tiles we prefer to teleport to. this is for areas that are partially hazardous like for instance atmos_distro
 
-	///This datum, if set, allows terrain generation behavior to be ran on Initialize()
+	///This datum, if set, allows terrain generation behavior to be ran on Initialize(mapload)
 	var/datum/map_generator/map_generator
 /**
   * A list of teleport locations
@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * returns INITIALIZE_HINT_LATELOAD
   */
-/area/Initialize()
+/area/Initialize(mapload)
 	icon_state = ""
 	layer = AREA_LAYER
 	uid = ++global_uid

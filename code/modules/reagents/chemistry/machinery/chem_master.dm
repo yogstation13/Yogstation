@@ -22,7 +22,7 @@
 	var/useramount = 30 // Last used amount
 	var/list/pillStyles = null
 
-/obj/machinery/chem_master/Initialize()
+/obj/machinery/chem_master/Initialize(mapload)
 	create_reagents(100)
 
 	. = ..()

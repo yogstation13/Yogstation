@@ -298,7 +298,7 @@
 	if(sinched && inner_bag && inner_bag.killing)
 		add_overlay("kill_flash")
 
-/obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize()
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize(mapload)
 	. = ..()
 	update_airtightness()
 	START_PROCESSING(SSobj, src)

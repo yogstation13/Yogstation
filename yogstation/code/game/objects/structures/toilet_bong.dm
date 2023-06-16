@@ -7,12 +7,7 @@
 	anchored = TRUE
 	var/mutable_appearance/weed_overlay
 
-/obj/structure/toilet_bong/Initialize()
-	. = ..()
-	weed_overlay = mutable_appearance('yogstation/icons/obj/watercloset.dmi', "weed")
-	START_PROCESSING(SSobj, src)
-
-/obj/structure/toilet_bong/ComponentInitialize()
+/obj/structure/toilet_bong/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = AddComponent(/datum/component/storage/concrete)
 	STR.attack_hand_interact = FALSE
@@ -22,12 +17,13 @@
 	STR.max_items = 24
 	RegisterSignal(STR, COMSIG_STORAGE_INSERTED, TYPE_PROC_REF(/atom/, update_appearance))
 	RegisterSignal(STR, COMSIG_STORAGE_REMOVED, TYPE_PROC_REF(/atom/, update_appearance))
+	START_PROCESSING(SSobj, src)
 
-/obj/structure/toilet_bong/update_appearance(updates = ALL)
+/obj/structure/toilet_bong/update_overlays()
 	. = ..()
-	cut_overlays()
-	if (LAZYLEN(contents))
-		add_overlay(weed_overlay)
+	if(LAZYLEN(contents))
+		weed_overlay = mutable_appearance('yogstation/icons/obj/watercloset.dmi', "weed")
+		. += weed_overlay
 
 /obj/structure/toilet_bong/attack_hand(mob/user)
 	. = ..()

@@ -38,7 +38,7 @@
 	user.visible_message(span_suicide("[user] is stabbing [src] into [user.p_their()] [pick("temple", "heart")]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return(BRUTELOSS)
 
-/obj/item/screwdriver/Initialize()
+/obj/item/screwdriver/Initialize(mapload)
 	. = ..()
 	if(random_color) //random colors!
 		icon_state = "screwdriver"

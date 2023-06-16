@@ -21,7 +21,7 @@
 
 	req_one_access = list(ACCESS_ENGINE, ACCESS_ROBO_CONTROL)
 
-/obj/machinery/navbeacon/Initialize()
+/obj/machinery/navbeacon/Initialize(mapload)
 	. = ..()
 
 	set_codes()

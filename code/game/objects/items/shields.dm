@@ -226,7 +226,7 @@
 	var/active = 0
 	var/clumsy_check = TRUE
 
-/obj/item/shield/energy/Initialize()
+/obj/item/shield/energy/Initialize(mapload)
 	. = ..()
 	icon_state = "[base_icon_state]0"
 

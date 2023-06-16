@@ -18,7 +18,7 @@
 	var/recent_spin = 0
 	var/can_spin = TRUE
 
-/obj/item/gun/ballistic/revolver/Initialize()
+/obj/item/gun/ballistic/revolver/Initialize(mapload)
 	. = ..()
 	if(!can_spin)
 		verbs -= /obj/item/gun/ballistic/revolver/verb/spin

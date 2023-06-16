@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	if(inserted_item && (!isturf(loc)))
 		. += span_notice("Ctrl-click to remove [inserted_item].")
 
-/obj/item/pda/Initialize()
+/obj/item/pda/Initialize(mapload)
 	. = ..()
 
 	GLOB.PDAs += src

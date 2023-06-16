@@ -172,7 +172,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 	. += span_notice("Use a crowbar to remove all currently inserted racks.")
 
 
-/obj/machinery/ai/server_cabinet/prefilled/Initialize()
+/obj/machinery/ai/server_cabinet/prefilled/Initialize(mapload)
 	var/obj/item/server_rack/roundstart/rack = new(src)
 	total_cpu += rack.get_cpu()
 	total_ram += rack.get_ram()

@@ -135,25 +135,25 @@
 					crime_status = E.fields["criminal"]
 
 			switch(crime_status)
-				if("*Arrest*")
+				if(WANTED_ARREST)
 					record["recordColor"] = "#990000"
 					record["recordIcon"] = "fingerprint"
-				if("Search")
+				if(WANTED_SEARCH)
 					record["recordColor"] = "#5C4949"
 					record["recordIcon"] = "search"
-				if("Incarcerated")
+				if(WANTED_PRISONER)
 					record["recordColor"] = "#181818"
 					record["recordIcon"] = "dungeon"
-				if("Suspected")
+				if(WANTED_SUSPECT)
 					record["recordColor"] = "#CD6500"
 					record["recordIcon"] = "exclamation"
-				if("Paroled")
+				if(WANTED_PAROLE)
 					record["recordColor"] = "#046713"
 					record["recordIcon"] = "unlink"
-				if("Discharged")
+				if(WANTED_DISCHARGED)
 					record["recordColor"] = "#006699"
 					record["recordIcon"] = "dove"
-				if("None")
+				if(WANTED_NONE)
 					record["recordColor"] = "#740349"
 				if("")
 					crime_status = "No Record."
@@ -218,19 +218,19 @@
 			record["criminal_status"] = active_security_record.fields["criminal"]
 
 			switch(active_security_record.fields["criminal"])
-				if("*Arrest*")
+				if(WANTED_ARREST)
 					record["recordColor"] = "#990000"
-				if("Search")
+				if(WANTED_SEARCH)
 					record["recordColor"] = "#5C4949"
-				if("Incarcerated")
+				if(WANTED_PRISONER)
 					record["recordColor"] = "#181818"
-				if("Suspected")
+				if(WANTED_SUSPECT)
 					record["recordColor"] = "#CD6500"
-				if("Paroled")
+				if(WANTED_PAROLE)
 					record["recordColor"] = "#046713"
-				if("Discharged")
+				if(WANTED_DISCHARGED)
 					record["recordColor"] = "#006699"
-				if("None")
+				if(WANTED_NONE)
 					record["recordColor"] = "#740349"
 
 			record["citations"] = list()
@@ -487,7 +487,7 @@
 				R.fields["name"] = active_general_record.fields["name"]
 				R.fields["id"] = active_general_record.fields["id"]
 				R.name = text("Security Record #[]", R.fields["id"])
-				R.fields["criminal"] = "None"
+				R.fields["criminal"] = WANTED_NONE
 				R.fields["crimes"] = list()
 				R.fields["comments"] = list()
 				R.fields["notes"] = "No notes."
@@ -518,7 +518,7 @@
 			R.fields["name"] = active_general_record.fields["name"]
 			R.fields["id"] = active_general_record.fields["id"]
 			R.name = text("Security Record #[]", R.fields["id"])
-			R.fields["criminal"] = "None"
+			R.fields["criminal"] = WANTED_NONE
 			R.fields["crimes"] = list()
 			R.fields["comments"] = list()
 			R.fields["notes"] = "No notes."
@@ -755,19 +755,19 @@
 						var/old_field = active_security_record.fields["criminal"]
 						switch(crime)
 							if("None")
-								active_security_record.fields["criminal"] = "None"
+								active_security_record.fields["criminal"] = WANTED_NONE
 							if("Arrest")
-								active_security_record.fields["criminal"] = "*Arrest*"
+								active_security_record.fields["criminal"] = WANTED_ARREST
 							if("Search")
-								active_security_record.fields["criminal"] = "Search"
+								active_security_record.fields["criminal"] = WANTED_SEARCH
 							if("Incarcerated")
-								active_security_record.fields["criminal"] = "Incarcerated"
+								active_security_record.fields["criminal"] = WANTED_PRISONER
 							if("Suspected")
-								active_security_record.fields["criminal"] = "Suspected"
+								active_security_record.fields["criminal"] = WANTED_SUSPECT
 							if("Paroled")
-								active_security_record.fields["criminal"] = "Paroled"
+								active_security_record.fields["criminal"] = WANTED_PAROLE
 							if("Discharged")
-								active_security_record.fields["criminal"] = "Discharged"
+								active_security_record.fields["criminal"] = WANTED_DISCHARGED
 						investigate_log("[active_general_record.fields["name"]] has been set from [old_field] to [active_security_record.fields["criminal"]] by [key_name(usr)].", INVESTIGATE_RECORDS)
 						for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 							H.sec_hud_set_security_status()
@@ -886,7 +886,7 @@
 				if(3)
 					R.fields["age"] = rand(5, 85)
 				if(4)
-					R.fields["criminal"] = pick("None", "*Arrest*", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged")
+					R.fields["criminal"] = pick(WANTED_NONE, WANTED_ARREST, WANTED_SEARCH, WANTED_PRISONER, WANTED_SUSPECT, WANTED_PAROLE, WANTED_DISCHARGED)
 				if(5)
 					R.fields["p_stat"] = pick("*Unconscious*", "Active", "Physically Unfit")
 				if(6)

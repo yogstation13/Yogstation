@@ -30,7 +30,7 @@
 	thrusters_action.Remove(user)
 	zoom_action.Remove(user)
 
-/obj/mecha/combat/marauder/loaded/Initialize()
+/obj/mecha/combat/marauder/loaded/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse(src)
 	ME.attach(src)
@@ -57,7 +57,7 @@
 
 /obj/mecha/combat/marauder/seraph/unloaded
 
-/obj/mecha/combat/marauder/seraph/Initialize()
+/obj/mecha/combat/marauder/seraph/Initialize(mapload)
 	. = ..()
 	if(istype(src,/obj/mecha/combat/marauder/seraph/unloaded))
 		return
@@ -83,7 +83,7 @@
 	max_equip = 6
 	destruction_sleep_duration = 20
 
-/obj/mecha/combat/marauder/mauler/loaded/Initialize()
+/obj/mecha/combat/marauder/mauler/loaded/Initialize(mapload)
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg(src)
 	ME.attach(src)

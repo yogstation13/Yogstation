@@ -9,7 +9,6 @@
 	item_state = "jawsoflife"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/jaws_pry.ogg'
 	force = 15
 	toolspeed = 0.7
@@ -162,6 +161,7 @@
 	materials = list(MAT_METAL=400,MAT_SILVER=10,MAT_TITANIUM=80)
 	toolspeed = 0.3 // Starting minimum value. Pump it up by using it up to the max
 	tool_behaviour = TOOL_CROWBAR
+	w_class = WEIGHT_CLASS_SMALL
 	var/pump_charge = 0
 	var/pump_max = 100
 	var/pump_min = 0

@@ -32,7 +32,7 @@
 	icon_state = "mining_hammer[wielded]"
 	return
 
-/obj/item/twohanded/kinetic_crusher/Initialize()
+/obj/item/twohanded/kinetic_crusher/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 110) //technically it's huge and bulky, but this provides an incentive to use it
 

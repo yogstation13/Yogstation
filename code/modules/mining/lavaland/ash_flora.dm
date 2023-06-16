@@ -23,7 +23,7 @@
 	var/regrowth_time_low = 8 MINUTES
 	var/regrowth_time_high = 16 MINUTES
 
-/obj/structure/flora/ash/Initialize()
+/obj/structure/flora/ash/Initialize(mapload)
 	. = ..()
 	base_icon = "[icon_state][rand(1, 4)]"
 	icon_state = base_icon
@@ -160,7 +160,7 @@
 	seed = /obj/item/seeds/lavaland/polypore
 	distill_reagent = /datum/reagent/consumable/ethanol/polyporepop
 
-/obj/item/reagent_containers/food/snacks/grown/ash_flora/Initialize()
+/obj/item/reagent_containers/food/snacks/grown/ash_flora/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-4, 4)
 	pixel_y = rand(-4, 4)

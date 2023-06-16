@@ -19,7 +19,7 @@
 	var/list/radial_modes
 	var/current_color = "#48D1CC" //mediumturquoise
 
-/obj/item/holotool/Initialize()
+/obj/item/holotool/Initialize(mapload)
 	. = ..()
 	internal_multitool = new /obj/item/multitool(src)
 

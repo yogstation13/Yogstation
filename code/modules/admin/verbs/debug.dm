@@ -331,7 +331,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	else
 		alert("Invalid mob")
 
-/proc/make_types_fancy(var/list/types)
+/proc/make_types_fancy(list/types)
 	if (ispath(types))
 		types = list(types)
 	. = list()
@@ -459,7 +459,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 					id.forceMove(W)
 					W.update_appearance(updates = ALL)
 			else
-				H.equip_to_slot(id,SLOT_WEAR_ID)
+				H.equip_to_slot(id,ITEM_SLOT_ID)
 	else if(isanimal(M))
 		var/mob/living/simple_animal/SA = M
 		SA.access_card = new /obj/item/card/id/ert/debug
@@ -943,8 +943,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /client/proc/cmd_display_init_log()
 	set category = "Misc.Server Debug"
-	set name = "Display Initialize() Log"
-	set desc = "Displays a list of things that didn't handle Initialize() properly"
+	set name = "Display Initialize(mapload) Log"
+	set desc = "Displays a list of things that didn't handle Initialize(mapload) properly"
 
 	usr << browse("<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>" + replacetext(SSatoms.InitLog(), "\n", "<br>") + "</BODY></HTML>", "window=initlog")
 

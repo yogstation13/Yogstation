@@ -35,7 +35,7 @@
 	var/sound_scanner_nomatch = 'sound/items/scanner_nomatch.ogg'
 	var/sound_scanner_match = 'sound/items/scanner_match.ogg'
 
-/obj/item/detective_scanner/proc/feedback(sound_file , var/sound_only = FALSE)
+/obj/item/detective_scanner/proc/feedback(sound_file , sound_only = FALSE)
 	if(sound_only)
 		playsound(src, sound_file, 50, 0)
 		return
@@ -46,7 +46,7 @@
 		playsound(src, sound_file, 50, 0)
 	sleep(scan_speed) // this is here again for sound timing - Hopek
 
-/obj/item/detective_scanner/Initialize()
+/obj/item/detective_scanner/Initialize(mapload)
 	. = ..()
 	sound_on = (can_sound ? sound_on : FALSE)
 
@@ -308,7 +308,7 @@
 	scan_icon = FALSE // this scanner doesn't get a chance to play the animation because scans are instant so its best to leave this false to avoid unnecessary icon updates.
 	view_check = FALSE // admin scanner doesn't care if you can actually see something
 
-/obj/item/detective_scanner/admin/Initialize()
+/obj/item/detective_scanner/admin/Initialize(mapload)
 	. = ..()
 	if(prob(50)) // has a 50% chance to either have the regular or advanced sprite. Both with aqua coloring of course
 		icon_state = "forensic2"

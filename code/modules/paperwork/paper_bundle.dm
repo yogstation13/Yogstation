@@ -17,7 +17,7 @@
 	/// If this was sent via admin fax, allows anyone to see/interact with it
 	var/admin_faxed = FALSE
 
-/obj/item/paper_bundle/attackby(var/obj/item/W, var/mob/user)
+/obj/item/paper_bundle/attackby(obj/item/W, mob/user)
 	..()
 	var/obj/item/paper/P
 	if(istype(W, /obj/item/paper))

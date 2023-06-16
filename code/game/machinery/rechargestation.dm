@@ -14,7 +14,7 @@
 	var/recharge_speed
 	var/repairs
 
-/obj/machinery/recharge_station/Initialize()
+/obj/machinery/recharge_station/Initialize(mapload)
 	. = ..()
 	update_appearance()
 
@@ -111,7 +111,7 @@
 /obj/machinery/recharge_station/fullupgrade
 	flags_1 = NODECONSTRUCT_1
 
-/obj/machinery/recharge_station/fullupgrade/Initialize()
+/obj/machinery/recharge_station/fullupgrade/Initialize(mapload)
 	. = ..()
 	update_appearance(updates = ALL)
 	component_parts = list()

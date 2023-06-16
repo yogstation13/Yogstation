@@ -45,7 +45,7 @@
 	item_state = "balloon-empty"
 
 
-/obj/item/toy/balloon/Initialize()
+/obj/item/toy/balloon/Initialize(mapload)
 	. = ..()
 	create_reagents(10)
 
@@ -398,7 +398,7 @@
 	toy = TRUE
 	var/pirated = FALSE // knockoff brand!
 
-/obj/item/twohanded/vxtvulhammer/toy/Initialize()
+/obj/item/twohanded/vxtvulhammer/toy/Initialize(mapload)
 	. = ..()
 	if(pirated || prob(10)) // man i got scammed!
 		pirated = TRUE
@@ -454,7 +454,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/ash_type = /obj/effect/decal/cleanable/ash
 
-/obj/item/toy/snappop/proc/pop_burst(var/n=3, var/c=1)
+/obj/item/toy/snappop/proc/pop_burst(n=3, c=1)
 	var/datum/effect_system/spark_spread/s = new()
 	s.set_up(n, c, src)
 	s.start()
@@ -487,7 +487,7 @@
 /obj/effect/decal/cleanable/ash/snappop_phoenix
 	var/respawn_time = 300
 
-/obj/effect/decal/cleanable/ash/snappop_phoenix/Initialize()
+/obj/effect/decal/cleanable/ash/snappop_phoenix/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(respawn)), respawn_time)
 
@@ -722,7 +722,7 @@
 	var/obj/machinery/computer/holodeck/holo = null // Holodeck cards should not be infinite
 	var/list/cards = list()
 
-/obj/item/toy/cards/deck/Initialize()
+/obj/item/toy/cards/deck/Initialize(mapload)
 	. = ..()
 	populate_deck()
 
@@ -1413,7 +1413,7 @@ obj/item/toy/turn_tracker
 	var/toysay = "What the fuck did you do?"
 	var/toysound = 'sound/machines/click.ogg'
 
-/obj/item/toy/figure/Initialize()
+/obj/item/toy/figure/Initialize(mapload)
 	. = ..()
 	desc = "A \"Space Life\" brand [src]."
 
@@ -1633,7 +1633,7 @@ obj/item/toy/turn_tracker
 	icon_state = "ling"
 	toysay = ";g absorbing AI in traitor maint!"
 
-/obj/item/toy/figure/ling/Initialize()
+/obj/item/toy/figure/ling/Initialize(mapload)
 	. = ..()
 	if(prob(25))
 		icon_state = "ling[rand(1,3)]"

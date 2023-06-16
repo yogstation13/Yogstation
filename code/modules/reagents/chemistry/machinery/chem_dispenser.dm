@@ -90,7 +90,7 @@
 
 	var/list/saved_recipes = list()
 
-/obj/machinery/chem_dispenser/Initialize()
+/obj/machinery/chem_dispenser/Initialize(mapload)
 	. = ..()
 	dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
 	display_reagents = dispensable_reagents.Copy()
@@ -451,13 +451,13 @@
 			return FALSE
 	return TRUE
 
-/obj/machinery/chem_dispenser/proc/check_macro_part(var/part, var/res = macroresolution)
+/obj/machinery/chem_dispenser/proc/check_macro_part(part, res = macroresolution)
 	var/detail = splittext(part, "=")
 	if (text2num(detail[2]) < res)
 		return FALSE
 	return TRUE
 
-/obj/machinery/chem_dispenser/proc/process_recipe_list(var/recipe)
+/obj/machinery/chem_dispenser/proc/process_recipe_list(recipe)
 	var/list/key_list = list()
 	var/list/final_list = list()
 	var/list/first_process = splittext(recipe, ";")
@@ -471,7 +471,7 @@
 	if(istype(user) && user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		replace_beaker(user)
 
-/obj/machinery/chem_dispenser/drinks/Initialize()
+/obj/machinery/chem_dispenser/drinks/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE)
 
@@ -560,7 +560,7 @@
 	obj_flags = CAN_BE_HIT | EMAGGED
 	flags_1 = NODECONSTRUCT_1
 
-/obj/machinery/chem_dispenser/drinks/fullupgrade/Initialize()
+/obj/machinery/chem_dispenser/drinks/fullupgrade/Initialize(mapload)
 	. = ..()
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 	display_reagents |= emagged_reagents //adds emagged reagents
@@ -621,7 +621,7 @@
 	obj_flags = CAN_BE_HIT | EMAGGED
 	flags_1 = NODECONSTRUCT_1
 
-/obj/machinery/chem_dispenser/drinks/beer/fullupgrade/Initialize()
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade/Initialize(mapload)
 	. = ..()
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 	component_parts = list()
@@ -668,7 +668,7 @@
 	t3_upgrade_reagents = null
 	t4_upgrade_reagents = null
 
-/obj/machinery/chem_dispenser/mutagensaltpeter/Initialize()
+/obj/machinery/chem_dispenser/mutagensaltpeter/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
@@ -685,7 +685,7 @@
 	obj_flags = CAN_BE_HIT | EMAGGED
 	flags_1 = NODECONSTRUCT_1
 
-/obj/machinery/chem_dispenser/fullupgrade/Initialize()
+/obj/machinery/chem_dispenser/fullupgrade/Initialize(mapload)
 	. = ..()
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 	component_parts = list()
@@ -748,7 +748,7 @@
 		/datum/reagent/uranium
 	)
 
-/obj/machinery/chem_dispenser/abductor/Initialize()
+/obj/machinery/chem_dispenser/abductor/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)

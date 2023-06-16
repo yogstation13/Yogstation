@@ -90,7 +90,7 @@
 						"Command Blue" = "pen-fountain-cb"
 						)
 
-/obj/item/pen/fountain/captain/Initialize()
+/obj/item/pen/fountain/captain/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 200, 115) //the pen is mightier than the sword
 
@@ -171,7 +171,7 @@
 				
 
 
-/obj/item/pen/sleepy/Initialize()
+/obj/item/pen/sleepy/Initialize(mapload)
 	. = ..()
 	create_reagents(75)
 	reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 20)
@@ -187,7 +187,7 @@
 	sharpness = SHARP_EDGED
 	var/on = FALSE
 
-/obj/item/pen/edagger/Initialize()
+/obj/item/pen/edagger/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 100, 0, 'sound/weapons/blade1.ogg', TRUE)
 

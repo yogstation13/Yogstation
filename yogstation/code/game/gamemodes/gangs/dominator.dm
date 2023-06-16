@@ -22,7 +22,7 @@
 	var/obj/effect/countdown/dominator/countdown
 	var/obj/item/disk/nuclear/nukedisk
 
-/obj/machinery/dominator/Initialize()
+/obj/machinery/dominator/Initialize(mapload)
 	set_light(2)
 	GLOB.poi_list |= src
 	spark_system = new

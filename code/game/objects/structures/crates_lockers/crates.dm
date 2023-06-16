@@ -19,7 +19,7 @@
 	///The time it takes to pry this open with a crowbar.
 	var/pry_lid_timer = 25 SECONDS
 
-/obj/structure/closet/crate/Initialize()
+/obj/structure/closet/crate/Initialize(mapload)
 	. = ..()
 	if(icon_state == "[initial(icon_state)]open")
 		opened = TRUE
@@ -112,7 +112,7 @@
 	recursive_organ_check(src)
 	return ..()
 
-/obj/structure/closet/crate/freezer/Initialize()
+/obj/structure/closet/crate/freezer/Initialize(mapload)
 	recursive_organ_check(src)
 	return ..()
 
@@ -294,7 +294,7 @@
 	name = "goat crate"
 	desc = "Contains a completly random goat from Goat Tech Industries that may or may not break the laws of science!"
 
-/obj/structure/closet/crate/critter/exoticgoats/Initialize()
+/obj/structure/closet/crate/critter/exoticgoats/Initialize(mapload)
 	. = ..()
 	var/loot = rand(1,40) //40 different goats!
 	switch(loot)

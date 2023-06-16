@@ -286,14 +286,14 @@
 	wiringGuiUpdate(user)
 
 
-/obj/item/twohanded/rcl/pre_loaded/Initialize() //Comes preloaded with cable, for testing stuff
+/obj/item/twohanded/rcl/pre_loaded/Initialize(mapload) //Comes preloaded with cable, for testing stuff
 	. = ..()
 	loaded = new()
 	loaded.max_amount = max_amount
 	loaded.amount = max_amount
 	update_appearance(UPDATE_ICON_STATE)
 
-/obj/item/twohanded/rcl/Initialize()
+/obj/item/twohanded/rcl/Initialize(mapload)
 	. = ..()
 	update_appearance(UPDATE_ICON_STATE)
 

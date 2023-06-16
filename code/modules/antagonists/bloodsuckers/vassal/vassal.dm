@@ -329,7 +329,7 @@
 	mike_ehrmantraut.ex_vassals += src
 	COOLDOWN_START(src, blood_timer, BLOOD_TIMER_REQUIREMENT)
 
-	RegisterSignal(src, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(on_life))
+	RegisterSignal(src, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 
 /datum/antagonist/ex_vassal/proc/on_life(datum/source, delta_time, times_fired)
 	SIGNAL_HANDLER

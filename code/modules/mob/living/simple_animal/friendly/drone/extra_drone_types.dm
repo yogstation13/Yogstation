@@ -32,7 +32,7 @@
 	flavortext = null
 	pacifism = FALSE
 
-/mob/living/simple_animal/drone/syndrone/Initialize()
+/mob/living/simple_animal/drone/syndrone/Initialize(mapload)
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = internal_storage.GetComponent(/datum/component/uplink)
 	hidden_uplink.telecrystals = 10
@@ -46,7 +46,7 @@
 	default_hatmask = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
 	default_storage = /obj/item/uplink/nuclear
 
-/mob/living/simple_animal/drone/syndrone/badass/Initialize()
+/mob/living/simple_animal/drone/syndrone/badass/Initialize(mapload)
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = internal_storage.GetComponent(/datum/component/uplink)
 	hidden_uplink.telecrystals = 30
@@ -56,7 +56,7 @@
 /mob/living/simple_animal/drone/snowflake
 	default_hatmask = /obj/item/clothing/head/chameleon/drone
 
-/mob/living/simple_animal/drone/snowflake/Initialize()
+/mob/living/simple_animal/drone/snowflake/Initialize(mapload)
 	. = ..()
 	desc += " This drone appears to have a complex holoprojector built on its 'head'."
 
@@ -82,7 +82,7 @@
 	flavortext = null
 	pacifism = FALSE
 
-/mob/living/simple_animal/drone/polymorphed/Initialize()
+/mob/living/simple_animal/drone/polymorphed/Initialize(mapload)
 	. = ..()
 	liberate()
 	visualAppearence = pick(MAINTDRONE, REPAIRDRONE, SCOUTDRONE)
@@ -143,7 +143,7 @@
 /mob/living/simple_animal/drone/cogscarab/admin //an admin-only subtype of cogscarab with a no-cost fabricator and slab in its box
 	default_storage = /obj/item/storage/toolbox/brass/prefilled/ratvar/admin
 
-/mob/living/simple_animal/drone/cogscarab/Initialize()
+/mob/living/simple_animal/drone/cogscarab/Initialize(mapload)
 	. = ..()
 	set_light(2, 0.5)
 	qdel(access_card) //we don't have free access

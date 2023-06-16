@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	. += mutable_appearance(icon, screen_state)
 //	. += emissive_appearance(icon, screen_state, src, alpha = src.alpha)
 
-/obj/machinery/requests_console/Initialize()
+/obj/machinery/requests_console/Initialize(mapload)
 	. = ..()
 	name = "\improper [department] requests console"
 	GLOB.allConsoles += src

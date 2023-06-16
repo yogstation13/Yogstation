@@ -24,7 +24,7 @@
 	var/obj/item/pen_type = /obj/item/pen
 	var/obj/item/inserted_item
 
-/obj/item/modular_computer/tablet/Initialize()
+/obj/item/modular_computer/tablet/Initialize(mapload)
 	. = ..()
 	inserted_item = new pen_type(src)
 

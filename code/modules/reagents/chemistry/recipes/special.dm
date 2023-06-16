@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(food_reagents, build_reagents_to_food()) //reagentid = related 
 		return list()
 	. = ..()
 
-/obj/item/paper/secretrecipe/Initialize()
+/obj/item/paper/secretrecipe/Initialize(mapload)
 	. = ..()
 	if(SSpersistence.initialized)
 		UpdateInfo()

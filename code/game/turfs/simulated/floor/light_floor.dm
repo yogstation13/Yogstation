@@ -32,7 +32,7 @@
 		"z" = image(icon = src.icon, icon_state = "light_on-z")
 		)
 
-/turf/open/floor/light/Initialize()
+/turf/open/floor/light/Initialize(mapload)
 	. = ..()
 	update_appearance(updates = ALL)
 	if(!length(lighttile_designs))

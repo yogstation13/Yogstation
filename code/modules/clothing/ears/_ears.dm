@@ -17,10 +17,10 @@
 	resistance_flags = FLAMMABLE
 	custom_price = 40
 
-/obj/item/clothing/ears/earmuffs/ComponentInitialize()
+/obj/item/clothing/ears/earmuffs/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/earhealing)
-	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_EARS))
+	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/clothing/ears/headphones
 	name = "headphones"
@@ -33,7 +33,7 @@
 	var/headphones_on = FALSE
 	custom_price = 20
 
-/obj/item/clothing/ears/headphones/Initialize()
+/obj/item/clothing/ears/headphones/Initialize(mapload)
 	. = ..()
 	update_appearance(updates = ALL)
 

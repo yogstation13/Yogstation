@@ -101,7 +101,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 	name = "Transdimensional halo (Hisakaki)"
 	ckey = "Hisakaki"
 	unlock_path = /obj/item/clothing/head/halo
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/skrem
 	name = "Rainbow flower (Skrem7)"
@@ -164,278 +164,278 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/beanie
 	name = "Beanie"
 	unlock_path = /obj/item/clothing/head/yogs/beanie
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/bike
 	name = "Biker Helmet"
 	unlock_path = /obj/item/clothing/head/yogs/bike
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/clownhardsuithelm
 	name = "Clown Hardsuit Helmet"
 	unlock_path = /obj/item/clothing/head/yogs/hardsuit_helm_clown
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/cowboy
 	name = "Cowboy hat"
 	unlock_path = /obj/item/clothing/head/yogs/cowboy
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/crusader
 	name = "Crusader hat"
 	unlock_path = /obj/item/clothing/head/yogs/crusader
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/cowboy/sherrif
 	name = "Sheriff hat"
 	unlock_path = /obj/item/clothing/head/yogs/cowboy_sheriff
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/cowboy/dallas
 	name = "Dallas hat"
 	unlock_path = /obj/item/clothing/head/yogs/dallas
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/drinking_hat
 	name = "Drinking hat"
 	unlock_path = /obj/item/clothing/head/yogs/drinking_hat
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/microwave
 	name = "Microwave hat"
 	unlock_path = /obj/item/clothing/head/yogs/microwave
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 //This sprite still sucks 6 years on, but not as badly as the sith cloak. ~Kmc
 /datum/donator_gear/sith_hood
 	name = "Sith hood"
 	unlock_path = /obj/item/clothing/head/yogs/sith_hood
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/turban
 	name = "Turban"
 	unlock_path = /obj/item/clothing/head/yogs/turban
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/petehat
 	name = "Cuban Pete's Hat"
 	unlock_path = /obj/item/clothing/head/collectable/petehat
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/slime
 	name = "Slime Hat"
 	unlock_path = /obj/item/clothing/head/collectable/slime
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/xeno
 	name = "Xeno Hat"
 	unlock_path = /obj/item/clothing/head/collectable/xenom
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/chef
 	name = "Chef Hat"
 	unlock_path = /obj/item/clothing/head/collectable/chef
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/paper
 	name = "Paper Hat"
 	unlock_path = /obj/item/clothing/head/collectable/paper
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/tophat
 	name = "Top Hat"
 	unlock_path = /obj/item/clothing/head/collectable/tophat
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/captainhat
 	name = "Captain Hat (Collectable)"
 	unlock_path = /obj/item/clothing/head/collectable/captain
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/police
 	name = "Police Hat (Collectable)"
 	unlock_path = /obj/item/clothing/head/collectable/police
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/welding
 	name = "Welding Helmet (Collectable)"
 	unlock_path = /obj/item/clothing/head/collectable/welding
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/flatcap
 	name = "Flat Cap"
 	unlock_path = /obj/item/clothing/head/collectable/flatcap
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/pirate
 	name = "Pirate Hat"
 	unlock_path = /obj/item/clothing/head/collectable/pirate
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/kitty
 	name = "Kitty Ears"
 	unlock_path = /obj/item/clothing/head/collectable/kitty
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/rabbitears
 	name = "Rabbit Ears"
 	unlock_path = /obj/item/clothing/head/collectable/rabbitears
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/wizard
 	name = "Wizard Hat (Collectable)"
 	unlock_path = /obj/item/clothing/head/collectable/wizard
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/hardhat
 	name = "Hard Hat (Collectable)"
 	unlock_path = /obj/item/clothing/head/collectable/hardhat
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/HoS
 	name = "HoS Hat (Collectable)"
 	unlock_path = /obj/item/clothing/head/collectable/HoS
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/thunderdome
 	name = "Thunderdome Hat (Collectable)"
 	unlock_path = /obj/item/clothing/head/collectable/thunderdome
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/swat
 	name = "SWAT Hat (Collectable)"
 	unlock_path = /obj/item/clothing/head/collectable/swat
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/ushanka
 	name = "Ushanka"
 	unlock_path = /obj/item/clothing/head/ushanka
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/pumpkinhead
 	name = "Pumpkin Hat"
 	unlock_path = /obj/item/clothing/head/hardhat/pumpkinhead
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/powdered_wig
 	name = "Powdered Wig"
 	unlock_path = /obj/item/clothing/head/powdered_wig
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/that
 	name = "Top Hat"
 	unlock_path = /obj/item/clothing/head/that
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/redcoat
 	name = "Redcoat Hat"
 	unlock_path = /obj/item/clothing/head/redcoat
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/mailman
 	name = "Mailman Hat"
 	unlock_path = /obj/item/clothing/head/mailman
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/plaguedoctorhat
 	name = "Plague Doctor Hat"
 	unlock_path = /obj/item/clothing/head/plaguedoctorhat
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/hasturhood
 	name = "Hastur Hood"
 	unlock_path = /obj/item/clothing/head/hasturhood
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/nursehat
 	name = "Nurse Hat"
 	unlock_path = /obj/item/clothing/head/nursehat
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/cardborg
 	name = "Cardboard Helmet"
 	unlock_path = /obj/item/clothing/head/cardborg
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/justice
 	name = "Justice Helmet"
 	unlock_path = /obj/item/clothing/head/justice
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/bowler
 	name = "Bowler Hat"
 	unlock_path = /obj/item/clothing/head/bowler
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/witchwig
 	name = "Witch's Wig"
 	unlock_path = /obj/item/clothing/head/witchwig
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/chicken
 	name = "Chicken Hat"
 	unlock_path = /obj/item/clothing/head/witchwig
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/fedora
 	name = "Fedora"
 	unlock_path = /obj/item/clothing/head/fedora
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/sombrero
 	name = "Sombrero"
 	unlock_path = /obj/item/clothing/head/sombrero
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/sombrero/green
 	name = "Sombrero (Green)"
 	unlock_path = /obj/item/clothing/head/sombrero/green
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/conehat
 	name = "Cone Hat"
 	unlock_path = /obj/item/clothing/head/cone
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/beret
 	name = "Beret"
 	unlock_path = /obj/item/clothing/head/collectable/beret
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/crown
 	name = "Crown"
 	unlock_path = /obj/item/clothing/head/crown
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/wizard/red
 	name = "Wizard's Hat (Red, Collectable)"
 	unlock_path = /obj/item/clothing/head/wizard/fake/red
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/wizard/yellow
 	name = "Wizard's Hat (Yellow, Collectable)"
 	unlock_path = /obj/item/clothing/head/wizard/fake/yellow
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/wizard/black
 	name = "Wizard's Hat (Black, Collectable)"
 	unlock_path = /obj/item/clothing/head/wizard/fake/black
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/wizard/brown
 	name = "Wizard's Hat (Brown, Collectable)"
 	unlock_path = /obj/item/clothing/head/wizard/fake/brown
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/wizard/marisa
 	name = "Marisa Wizard Hat"
 	unlock_path = /obj/item/clothing/head/wizard/marisa/fake
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 /datum/donator_gear/skull
 	name = "Skull Helmet (Collectable)"
 	unlock_path = /obj/item/clothing/head/collectable/skull
-	slot = SLOT_HEAD
+	slot = ITEM_SLOT_HEAD
 
 //End of items
 

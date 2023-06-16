@@ -164,7 +164,7 @@
 	eject_brain()
 	return ..()
 
-/mob/living/simple_animal/spiderbot/Initialize()
+/mob/living/simple_animal/spiderbot/Initialize(mapload)
 	. = ..()
 	radio = new /obj/item/radio/borg(src)
 	camera = new /obj/machinery/camera(src)

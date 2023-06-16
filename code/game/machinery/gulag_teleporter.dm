@@ -32,7 +32,7 @@ The console is located at computer/gulag_teleporter.dm
 		/obj/item/clothing/mask/breath,
 		/obj/item/clothing/mask/gas))
 
-/obj/machinery/gulag_teleporter/Initialize()
+/obj/machinery/gulag_teleporter/Initialize(mapload)
 	. = ..()
 	locate_reclaimer()
 
@@ -156,7 +156,7 @@ The console is located at computer/gulag_teleporter.dm
 	if(id)
 		prisoner.equip_to_appropriate_slot(id)
 	if(R)
-		R.fields["criminal"] = "Incarcerated"
+		R.fields["criminal"] = WANTED_PRISONER
 
 /obj/item/circuitboard/machine/gulag_teleporter
 	name = "labor camp teleporter (Machine Board)"

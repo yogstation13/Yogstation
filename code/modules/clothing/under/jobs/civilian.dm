@@ -181,7 +181,7 @@
 	can_adjust = FALSE
 	mutantrace_variation = NO_MUTANTRACE_VARIATION
 
-/obj/item/clothing/under/rank/clown/Initialize()
+/obj/item/clothing/under/rank/clown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 

@@ -27,7 +27,7 @@
 	var/mob/living/carbon/human/altPatient   //If scanning someone else, this will be the target.
 	var/obj/item/card/id/C          //the account of the person using the console.
 
-/obj/machinery/medical_kiosk/Initialize() //loaded subtype for mapping use
+/obj/machinery/medical_kiosk/Initialize(mapload) //loaded subtype for mapping use
 	. = ..()
 	scanner_wand = new/obj/item/scanner_wand(src)
 

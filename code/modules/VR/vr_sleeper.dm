@@ -17,7 +17,7 @@
 	var/allow_creating_vr_humans = TRUE //So you can have vr_sleepers that always spawn you as a specific person or 1 life/chance vr games
 	var/only_current_user_can_interact = FALSE
 
-/obj/machinery/vr_sleeper/Initialize()
+/obj/machinery/vr_sleeper/Initialize(mapload)
 	. = ..()
 	sparks = new /datum/effect_system/spark_spread()
 	sparks.set_up(2,0)
@@ -161,7 +161,7 @@
 	for(var/obj/effect/landmark/vr_spawn/V in GLOB.landmarks_list)
 		GLOB.vr_spawnpoints[V.vr_category] = V
 
-/obj/machinery/vr_sleeper/proc/build_virtual_human(mob/living/carbon/human/H, location, var/datum/outfit/outfit, transfer = TRUE)
+/obj/machinery/vr_sleeper/proc/build_virtual_human(mob/living/carbon/human/H, location, datum/outfit/outfit, transfer = TRUE)
 	if(H)
 		cleanup_vr_human()
 		vr_human = new /mob/living/carbon/human/virtual_reality(location)
@@ -194,7 +194,7 @@
 	var/vr_category = "default" //So we can have specific sleepers, eg: "Basketball VR Sleeper", etc.
 	var/vr_outfit = /datum/outfit/vr
 
-/obj/effect/landmark/vr_spawn/Initialize()
+/obj/effect/landmark/vr_spawn/Initialize(mapload)
 	. = ..()
 	LAZYADD(GLOB.vr_spawnpoints[vr_category], src)
 
@@ -221,7 +221,7 @@
 	invisibility = INVISIBILITY_ABSTRACT
 	var/area/vr_area
 
-/obj/effect/vr_clean_master/Initialize()
+/obj/effect/vr_clean_master/Initialize(mapload)
 	. = ..()
 	vr_area = get_area(src)
 	addtimer(CALLBACK(src, PROC_REF(clean_up)), 3 MINUTES)

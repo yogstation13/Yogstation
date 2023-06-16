@@ -118,7 +118,7 @@ GLOBAL_LIST_EMPTY(lockers)
 //	. += emissive_appearance(icon, "locked", src, alpha = src.alpha)
 	. += locked ? "locked" : "unlocked"
 
-/obj/structure/closet/proc/animate_door(var/closing = FALSE)
+/obj/structure/closet/proc/animate_door(closing = FALSE)
 	if(!door_anim_time)
 		return
 	if(!door_obj) door_obj = new

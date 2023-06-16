@@ -17,7 +17,7 @@
 	var/blood_restoration_delay = 200
 	var/next_blood_restoration_tick = 0
 
-/obj/item/clothing/suit/draculacoat/Initialize()
+/obj/item/clothing/suit/draculacoat/Initialize(mapload)
 	if(!allowed)
 		allowed = GLOB.security_vest_allowed
 	START_PROCESSING(SSobj, src)

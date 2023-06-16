@@ -8,7 +8,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/used = FALSE //has this been used before? If not, give no hints about it's nature
 
-/obj/item/syndicateReverseCard/Initialize()
+/obj/item/syndicateReverseCard/Initialize(mapload)
 	..()
 	var/cardColor = pick ("Red", "Green", "Yellow", "Blue") //this randomizes which color reverse you get!
 	name = "[cardColor] Reverse"

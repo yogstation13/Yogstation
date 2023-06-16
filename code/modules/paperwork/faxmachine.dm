@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	var/department = "Unknown" // our department
 	var/destination = "Central Command" // the department we're sending to
 
-/obj/machinery/photocopier/faxmachine/Initialize()
+/obj/machinery/photocopier/faxmachine/Initialize(mapload)
 	. = ..()
 	GLOB.allfaxes += src
 	if( !((department in GLOB.alldepartments) || (department in GLOB.admin_departments)) )
@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 			return
 	return FALSE
 
-/obj/machinery/photocopier/faxmachine/proc/sendfax(var/destination)
+/obj/machinery/photocopier/faxmachine/proc/sendfax(destination)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	use_power(200)
@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	else
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 
-/obj/machinery/photocopier/faxmachine/proc/recievefax(var/obj/item/incoming)
+/obj/machinery/photocopier/faxmachine/proc/recievefax(obj/item/incoming)
 	if(stat & (BROKEN|NOPOWER))
 		return FALSE
 	
@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	use_power(active_power_usage)
 	return TRUE
 
-/obj/machinery/photocopier/faxmachine/proc/send_admin_fax(var/mob/sender, var/destination)
+/obj/machinery/photocopier/faxmachine/proc/send_admin_fax(mob/sender, destination)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	use_power(200)
@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	sleep(5 SECONDS)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
 
-/obj/machinery/photocopier/faxmachine/proc/send_adminmessage(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
+/obj/machinery/photocopier/faxmachine/proc/send_adminmessage(mob/sender, faxname, obj/item/sent, reply_type, font_colour="#006100")
 	var/msg = "<b><font color='[font_colour]'>[faxname]: </font>[key_name(sender, 1)] (<A HREF='?_src_=holder;[HrefToken(TRUE)];adminplayeropts=\ref[sender]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken(TRUE)];Vars=\ref[sender]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken(TRUE)];subtlemessage=\ref[sender]'>SM</A>) (<A HREF='?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=\ref[sender]'>JMP</A>) (<a href='?_src_=holder;[HrefToken(TRUE)];[reply_type]=\ref[sender];originfax=\ref[src]'>REPLY</a>)</b>: Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;[HrefToken(TRUE)];AdminFaxView=\ref[sent]'>view message</a>"
 	msg = span_admin("<span class=\"message\">[msg]</span>")
 	to_chat(GLOB.permissions.admins,

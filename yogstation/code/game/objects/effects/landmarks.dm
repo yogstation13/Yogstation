@@ -136,6 +136,9 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 /obj/effect/landmark/stationroom/box/execution
 	template_names = list("Transfer 1", "Transfer 2", "Transfer 3", "Transfer 4", "Transfer 5", "Transfer 6", "Transfer 7", "Transfer 8", "Transfer 9", "Transfer 10")
 
+/obj/effect/landmark/stationroom/box/chapel
+	template_names = list("Chapel 1", "Chapel 2")
+
 /obj/effect/landmark/stationroom/meta/engine
 	template_names = list("Meta Singulo And Tesla" = 50, "Meta SM" = 50, "Meta TEG" = 0)
 
@@ -215,7 +218,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "snukeop_spawn"
 
-/obj/effect/landmark/start/infiltrator/Initialize()
+/obj/effect/landmark/start/infiltrator/Initialize(mapload)
 	..()
 	GLOB.infiltrator_start += loc
 	return INITIALIZE_HINT_QDEL
@@ -225,7 +228,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "random_loot"
 
-/obj/effect/landmark/start/infiltrator_objective/Initialize()
+/obj/effect/landmark/start/infiltrator_objective/Initialize(mapload)
 	..()
 	GLOB.infiltrator_objective_items += loc
 	return INITIALIZE_HINT_QDEL 

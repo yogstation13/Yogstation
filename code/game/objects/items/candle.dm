@@ -19,7 +19,7 @@
 	var/start_lit = FALSE
 	var/candle_type = "red"
 
-/obj/item/candle/Initialize()
+/obj/item/candle/Initialize(mapload)
 	. = ..()
 	if(start_lit)
 		light()

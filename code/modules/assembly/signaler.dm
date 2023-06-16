@@ -29,7 +29,7 @@
 	user.set_suicide(TRUE)
 	user.suicide_log()
 
-/obj/item/assembly/signaler/Initialize()
+/obj/item/assembly/signaler/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
 

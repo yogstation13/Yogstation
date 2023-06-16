@@ -18,7 +18,7 @@
 	var/meat_counter = 6
 	var/datum/team/ashwalkers/ashies
 
-/obj/structure/lavaland/ash_walker/Initialize()
+/obj/structure/lavaland/ash_walker/Initialize(mapload)
 	.=..()
 	ashies = new /datum/team/ashwalkers()
 	var/datum/objective/protect_object/objective = new

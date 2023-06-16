@@ -22,13 +22,13 @@
 	user.say("AAAAAAAAAAAARGHHHHH", forced="megaphone suicide")//he must have died while coding this
 	return OXYLOSS
 
-/obj/item/megaphone/Initialize()
+/obj/item/megaphone/Initialize(mapload)
 	. = ..()
 	update_appearance(updates = ALL)
 
 /obj/item/megaphone/equipped(mob/M, slot)
 	. = ..()
-	if (slot == SLOT_HANDS)
+	if (slot == ITEM_SLOT_HANDS)
 		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)

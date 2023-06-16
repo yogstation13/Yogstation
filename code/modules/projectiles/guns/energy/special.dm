@@ -137,7 +137,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/weak)
 	toolspeed = 2
 
-/obj/item/gun/energy/plasmacutter/Initialize()
+/obj/item/gun/energy/plasmacutter/Initialize(mapload)
 	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	AddComponent(/datum/component/butchering, 25, 105, 0, 'sound/weapons/plasma_cutter.ogg')
@@ -443,7 +443,7 @@
 	cell_type = "/obj/item/stock_parts/cell/high"
 	COOLDOWN_DECLARE(overheat_alert)
 
-/obj/item/gun/energy/grimdark/Initialize()
+/obj/item/gun/energy/grimdark/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

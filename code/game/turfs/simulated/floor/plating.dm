@@ -33,7 +33,7 @@
 	else
 		. += span_notice("You might be able to build ontop of it with some <i>tiles</i>...")
 
-/turf/open/floor/plating/Initialize()
+/turf/open/floor/plating/Initialize(mapload)
 	if (!broken_states)
 		broken_states = list("platingdmg1", "platingdmg2", "platingdmg3")
 	if (!burnt_states)

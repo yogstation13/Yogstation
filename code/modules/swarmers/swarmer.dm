@@ -74,7 +74,7 @@
 	///Bitflags to store boolean conditions, such as whether the light is on or off.
 	var/swarmer_flags = NONE
 
-/mob/living/simple_animal/hostile/swarmer/Initialize()
+/mob/living/simple_animal/hostile/swarmer/Initialize(mapload)
 	. = ..()
 	remove_verb(src, /mob/living/verb/pulled)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)

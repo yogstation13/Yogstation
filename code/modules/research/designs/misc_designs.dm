@@ -73,6 +73,17 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/thermal_goggles
+	name = "Thermal Goggles"
+	desc = "These high-tech goggles are like the ones you see in magazines, except they actually work."
+	id = "ci-thermals"
+	build_type = PROTOLATHE
+	construction_time = 60
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plasma = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/clothing/glasses/thermal
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/security_hud_night
 	name = "Night Vision Security HUD"
 	desc = "A heads-up display which provides ID data and vision in complete darkness."

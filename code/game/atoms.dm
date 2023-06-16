@@ -184,8 +184,6 @@
 		custom_materials = null //Null the list to prepare for applying the materials properly
 		set_custom_materials(temp_list)
 
-	ComponentInitialize()
-
 	return INITIALIZE_HINT_NORMAL
 
 /**
@@ -201,10 +199,6 @@
   * code has been run
   */
 /atom/proc/LateInitialize()
-	return
-
-/// Put your AddComponent() calls here
-/atom/proc/ComponentInitialize()
 	return
 
 /**
@@ -555,6 +549,8 @@
 	if(!LAZYLEN(.)) // lol ..length
 		return FALSE
 
+/atom/proc/update_icon()
+	return
 /**
  * Updates the appearence of the icon
  *
@@ -1525,7 +1521,7 @@
 	return output
 
 ///Sets the custom materials for an item.
-/atom/proc/set_custom_materials(var/list/materials, multiplier = 1)
+/atom/proc/set_custom_materials(list/materials, multiplier = 1)
 	if(custom_materials) //Only runs if custom materials existed at first. Should usually be the case but check anyways
 		for(var/i in custom_materials)
 			var/datum/material/custom_material = i
