@@ -519,7 +519,7 @@
 				return BODY_ZONE_HEAD
 
 /atom/movable/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
-		if(user != hud?.mymob)
+	if(user != hud?.mymob)
 		return
 
 	if(choice != hud.mymob.zone_selected)
