@@ -4521,6 +4521,17 @@
 /area/ruin/powered/syndicate_lava_base/cargo)
 "AP" = (
 /obj/structure/closet/crate/secure/loot,
+/obj/item/clothing/suit/armor/vest/capcarapace/syndicate{
+	name = "old syndicate vest";
+	desc = "A sinister-looking gold-trimmed vest covered in dust."
+	},
+/obj/item/clothing/head/HoS/syndicate{
+	desc = "An old black cap that may have once been fit for a high-ranking Syndicate officer."
+	},
+/obj/item/clothing/gloves/color/captain/centcom/admiral{
+	name = "syndicate commander's gloves";
+	desc = "One-of-a-kind gold and black gloves used by some Syndicate officers."
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "AX" = (
