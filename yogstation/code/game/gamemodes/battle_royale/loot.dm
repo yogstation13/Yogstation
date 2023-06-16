@@ -248,7 +248,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = 0,
 		/obj/item/teleportation_scroll/apprentice = 0,
-		/obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted = 0,
 		/obj/item/slimecross/stabilized/red = 0,
 		/obj/item/slimecross/stabilized/sepia = 0,
 		/obj/item/battleroyale/martial/preternis = 0,
