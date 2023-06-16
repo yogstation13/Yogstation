@@ -9,12 +9,11 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 
 		gas_info[META_GAS_SPECIFIC_HEAT] = initial(gas.specific_heat)
 		gas_info[META_GAS_NAME] = initial(gas.name)
-		var/gay = ispath(gas_path, /datum/gas/plasma) && text2num(time2text(world.timeofday, "MM")) == 6 //pride month, but only plasma
 		gas_info[META_GAS_MOLES_VISIBLE] = initial(gas.moles_visible)
 		if(initial(gas.moles_visible) != null)
 			gas_info[META_GAS_OVERLAY] = new /list(FACTOR_GAS_VISIBLE_MAX)
 			for(var/i in 1 to FACTOR_GAS_VISIBLE_MAX)
-				gas_info[META_GAS_OVERLAY][i] = new /obj/effect/overlay/gas(initial(gas.gas_overlay), i * 255 / FACTOR_GAS_VISIBLE_MAX, gay)
+				gas_info[META_GAS_OVERLAY][i] = new /obj/effect/overlay/gas(initial(gas.gas_overlay), i * 255 / FACTOR_GAS_VISIBLE_MAX)
 		gas_info[META_GAS_FUSION_POWER] = initial(gas.fusion_power)
 		gas_info[META_GAS_DANGER] = initial(gas.dangerous)
 		gas_info[META_GAS_ID] = initial(gas.id)
@@ -231,12 +230,7 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	layer = FLY_LAYER
 	appearance_flags = TILE_BOUND
 
-/obj/effect/overlay/gas/New(state, alph, gay)
+/obj/effect/overlay/gas/New(state, alph)
 	. = ..()
 	icon_state = state
 	alpha = alph
-	if(gay)
-		icon_state = "pridesma"
-		animate(src, color = rgb(255, 0, 0), time = 5, loop = -1)
-		animate(color = rgb(0, 255, 0), time = 5, loop = -1)
-		animate(color = rgb(0, 0, 255), time = 5, loop = -1)
