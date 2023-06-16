@@ -2338,6 +2338,7 @@
 #include "code\modules\goals\station_goals\station_goal.dm"
 #include "code\modules\holiday\easter.dm"
 #include "code\modules\holiday\holidays.dm"
+#include "code\modules\holiday\pride.dm"
 #include "code\modules\holodeck\area_copy.dm"
 #include "code\modules\holodeck\computer.dm"
 #include "code\modules\holodeck\holo_effect.dm"
