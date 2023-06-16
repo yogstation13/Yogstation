@@ -381,6 +381,7 @@
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
 		return FALSE
+	var/stuntime = 4*siemens_coeff SECONDS // do this before species adjustments or balancing will be a pain
 	shock_damage *= siemens_coeff
 	if(dna && dna.species)
 		shock_damage *= dna.species.siemens_coeff
@@ -397,12 +398,13 @@
 		span_userdanger("You feel a powerful shock coursing through your body!"), \
 		span_italics("You hear a heavy electrical crack.") \
 		)
-	do_jitter_animation(300)
-	adjust_stutter(4 SECONDS)
-	adjust_jitter(20 SECONDS)
+	do_jitter_animation(stuntime * 6)
+	adjust_stutter(stuntime)
+	adjust_jitter(stuntime * 5)
 	var/should_stun = !tesla_shock || (tesla_shock && siemens_coeff > 0.5) && stun
-	Paralyze(4 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(secondary_shock), should_stun), 2 SECONDS)
+	Paralyze(stuntime)
+	if(stuntime > 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(secondary_shock), should_stun), stuntime - (2 SECONDS))
 	if(stat == DEAD && can_defib()) //yogs: ZZAPP
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(80))
 			set_heartattack(FALSE)
