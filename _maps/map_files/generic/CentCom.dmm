@@ -25645,10 +25645,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
-"bna" = (
-/obj/machinery/vending/toyliberationstation,
+"bie" = (
+/obj/machinery/vending/cigarette/syndicate,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
+"boE" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/grassybush,
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/floor/plasteel,
+/area/tdome/tdomeadmin)
 "bDC" = (
 /obj/machinery/cryopod{
 	dir = 4
@@ -25709,29 +25715,21 @@
 "cgW" = (
 /turf/open/indestructible/wiki/whitescreen,
 /area/centcom/testchamber)
+"cpw" = (
+/obj/machinery/vending/hydroseeds,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "crH" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info29"
 	},
 /area/centcom/testchamber)
-"cSW" = (
-/obj/machinery/vending/snack/teal,
+"cuY" = (
+/obj/machinery/vending/gifts,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"cWx" = (
-/obj/machinery/vending/wardrobe/bar_wardrobe,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"cXM" = (
-/obj/machinery/vending/cola,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "dbb" = (
 /turf/open/indestructible/wiki/greenscreen,
-/area/centcom/testchamber)
-"dcG" = (
-/obj/machinery/vending/cola/pwr_game,
-/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "dgz" = (
 /obj/effect/turf_decal/stripes/line,
@@ -25759,10 +25757,6 @@
 	icon_state = "info18"
 	},
 /area/centcom/testchamber)
-"dJX" = (
-/obj/machinery/vending/hydroseeds,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "dLa" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -25771,14 +25765,10 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ctf)
-"dSt" = (
-/obj/machinery/vending/assist,
+"dRc" = (
+/obj/machinery/vending/robotics,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"ebD" = (
-/obj/machinery/vending/cart,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "eiz" = (
 /obj/machinery/power/apc{
 	areastring = "/area/bluespace_locker";
@@ -25787,27 +25777,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bluespace_locker)
-"eji" = (
-/obj/machinery/vending/wardrobe/jani_wardrobe,
+"evC" = (
+/obj/machinery/vending/snack/orange,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"emY" = (
-/obj/machinery/vending/boozeomat/all_access,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "eDa" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title1"
 	},
 /area/centcom/testchamber)
-"eNO" = (
-/obj/machinery/vending/robotics,
+"fjV" = (
+/obj/machinery/vending/modularpc,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"eUq" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "fka" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info2"
@@ -25833,24 +25815,24 @@
 	icon_state = "title5"
 	},
 /area/centcom/testchamber)
+"fzd" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "fAk" = (
 /obj/structure/goalnet/goalpost/right{
 	dir = 1
 	},
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
-"fKT" = (
-/obj/machinery/vending/wardrobe/chap_wardrobe,
+"fNW" = (
+/obj/machinery/vending/wardrobe/engi_wardrobe,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"fRI" = (
-/obj/machinery/vending/wardrobe/viro_wardrobe,
+/area/centcom)
+"fVm" = (
+/obj/machinery/vending/cart,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"fWL" = (
-/obj/machinery/vending/hydroseeds/weak,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "gbG" = (
 /obj/structure/goalnet{
 	dir = 1
@@ -25861,10 +25843,6 @@
 /obj/item/twohanded/required/kirbyplants/photosynthetic,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"gvk" = (
-/obj/machinery/vending/magivend,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "gxx" = (
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
@@ -25900,40 +25878,40 @@
 /obj/item/reagent_containers/medspray/sterilizine,
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
-"gId" = (
-/obj/machinery/vending/sustenance,
+"gDX" = (
+/obj/machinery/vending/cola/shamblers/prison,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"gMI" = (
-/obj/machinery/vending/wardrobe/gene_wardrobe,
+/area/centcom)
+"gEX" = (
+/obj/machinery/vending/games,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "gQd" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info20"
 	},
 /area/centcom/testchamber)
-"gTX" = (
-/obj/machinery/vending/modularpc,
+"gXv" = (
+/obj/machinery/vending/cola/sodie,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
+"gYd" = (
+/obj/machinery/vending/medical/syndicate_access,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"hiU" = (
+/obj/machinery/vending/cigarette/beach,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "hpv" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info27"
 	},
 /area/centcom/testchamber)
-"hpJ" = (
-/obj/machinery/vending/medical,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "hww" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title7"
 	},
-/area/centcom/testchamber)
-"hzH" = (
-/obj/machinery/vending/autodrobe/all_access,
-/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "hHV" = (
 /obj/effect/turf_decal/tile/blue,
@@ -25946,27 +25924,27 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ctf)
+"hUF" = (
+/obj/machinery/vending/assist,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"icO" = (
+/obj/machinery/vending/wardrobe/cargo_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "ilg" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title11"
 	},
 /area/centcom/testchamber)
-"imf" = (
-/obj/machinery/vending/wardrobe,
+"iAN" = (
+/obj/machinery/vending/wardrobe/chap_wardrobe,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "iCm" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info19"
 	},
-/area/centcom/testchamber)
-"iHV" = (
-/obj/machinery/vending/boozeomat,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"iIX" = (
-/obj/machinery/vending/cigarette/syndicate,
-/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "iSo" = (
 /obj/effect/turf_decal/tile/blue,
@@ -25976,23 +25954,23 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ctf)
-"jbX" = (
-/obj/machinery/vending/cola/starkist,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"jcn" = (
+"jgs" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"jjU" = (
-/obj/machinery/vending/sovietsoda,
+/area/centcom)
+"jib" = (
+/obj/machinery/vending/wardrobe/robo_wardrobe,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "jqy" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info22"
 	},
 /area/centcom/testchamber)
+"jCr" = (
+/obj/machinery/vending/snack/teal,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "jJm" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
@@ -26022,6 +26000,10 @@
 	icon_state = "info26"
 	},
 /area/centcom/testchamber)
+"jQJ" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "kaB" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "64"
@@ -26032,6 +26014,10 @@
 	icon_state = "info3"
 	},
 /area/centcom/testchamber)
+"koQ" = (
+/obj/machinery/vending/wardrobe/sig_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "krq" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
@@ -26050,24 +26036,46 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"kAc" = (
-/obj/machinery/vending/medical/syndicate_access,
+"ktZ" = (
+/obj/machinery/vending/sustenance,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "kMR" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info28"
 	},
 /area/centcom/testchamber)
-"laA" = (
-/obj/machinery/vending/cigarette/beach,
+"kNP" = (
+/obj/machinery/vending/boozeomat/syndicate_access,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
+"ljl" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/floor/plasteel,
+/area/tdome/tdomeadmin)
 "lnJ" = (
 /turf/closed/indestructible/fakedoor{
 	name = "Shoe Storage"
 	},
 /area/yogs/infiltrator_base/jail)
+"lnY" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"lpe" = (
+/obj/machinery/vending/wallhypo,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"lDK" = (
+/obj/machinery/vending/wardrobe/science_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"lTy" = (
+/obj/machinery/vending/wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "lVQ" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info5"
@@ -26091,11 +26099,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
+"mmb" = (
+/obj/machinery/vending/cola/red,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "moB" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info12"
 	},
 /area/centcom/testchamber)
+"mxu" = (
+/obj/machinery/vending/toyliberationstation,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "mFt" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info17"
@@ -26116,10 +26132,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
-"mVx" = (
-/obj/machinery/vending/security,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "nbn" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info13"
@@ -26152,14 +26164,14 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"nlo" = (
-/obj/machinery/vending/fishing,
+"noT" = (
+/obj/machinery/vending/cola/shamblers,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"ntY" = (
-/obj/machinery/vending/wallhypo,
+/area/centcom)
+"npQ" = (
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "nuH" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -26178,10 +26190,10 @@
 	icon_state = "title8"
 	},
 /area/centcom/testchamber)
-"nKZ" = (
-/obj/machinery/vending/autodrobe,
+"nMD" = (
+/obj/machinery/vending/clothing,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "nNJ" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info8"
@@ -26206,10 +26218,10 @@
 	},
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
-"onD" = (
-/obj/machinery/vending/wardrobe/curator_wardrobe,
+"ogV" = (
+/obj/machinery/vending/medical,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "oxS" = (
 /obj/item/clothing/shoes/combat/coldres{
 	pixel_x = 6;
@@ -26247,15 +26259,26 @@
 /obj/machinery/papershredder,
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"oBf" = (
+/obj/machinery/vending/snack/blue,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "oCO" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info9"
 	},
 /area/centcom/testchamber)
-"oLA" = (
-/obj/machinery/vending/games,
+"oNr" = (
+/obj/machinery/door/airlock/centcom{
+	name = "Thunderdome Administration";
+	req_access_txt = "102"
+	},
+/turf/open/floor/plasteel,
+/area/tdome/tdomeadmin)
+"oUF" = (
+/obj/machinery/vending/liberationstation,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "oXi" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/light/small{
@@ -26268,10 +26291,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/yogs/infiltrator_base)
-"puz" = (
-/obj/machinery/vending/gifts,
+"pda" = (
+/obj/machinery/vending/sovietsoda,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
+"ppJ" = (
+/obj/machinery/vending/cola/starkist,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"pzR" = (
+/obj/machinery/vending/wallgene,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"pEX" = (
+/obj/machinery/vending/wardrobe/bar_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "pGS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -26284,14 +26319,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
-"pHG" = (
-/obj/machinery/vending/wardrobe/cargo_wardrobe,
+"pHd" = (
+/obj/machinery/vending/cola/black,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"pPU" = (
-/obj/machinery/vending/hydronutrients,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "pQy" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -26303,27 +26334,39 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/ctf)
-"qfK" = (
+"qaK" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"qdE" = (
 /obj/machinery/vending/engineering,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
+"qfg" = (
+/obj/machinery/vending/wardrobe/atmos_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "qhf" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info11"
 	},
 /area/centcom/testchamber)
-"qjz" = (
-/obj/machinery/vending/dinnerware,
+"qjp" = (
+/obj/machinery/vending/security,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"qkJ" = (
-/obj/machinery/vending/wardrobe/sig_wardrobe,
+/area/centcom)
+"qnZ" = (
+/obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"qPG" = (
-/obj/machinery/vending/wallmed,
+/area/centcom)
+"qzr" = (
+/obj/machinery/vending/cola,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
+"qNB" = (
+/obj/machinery/vending/plasmaresearch,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "ria" = (
 /obj/machinery/recharge_station/fullupgrade,
 /turf/open/floor/plasteel/dark,
@@ -26338,6 +26381,10 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"rsL" = (
+/obj/machinery/vending/boozeomat/all_access,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "ruy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -26350,26 +26397,26 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plasteel/dark,
 /area/yogs/infiltrator_base)
-"ryO" = (
-/obj/machinery/vending,
+"ryg" = (
+/obj/machinery/vending/cola/space_up,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"rzE" = (
-/obj/machinery/vending/snack,
+/area/centcom)
+"rzJ" = (
+/obj/machinery/vending/wardrobe/gene_wardrobe,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
+"rCl" = (
+/obj/machinery/vending/snack/green,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"rEC" = (
+/obj/machinery/vending/cola/blue,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "rEF" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info21"
 	},
-/area/centcom/testchamber)
-"rGE" = (
-/obj/machinery/vending/cola/shamblers,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"rHL" = (
-/obj/machinery/vending/cola/blue,
-/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "rIC" = (
 /obj/effect/turf_decal/tile/blue{
@@ -26385,90 +26432,69 @@
 /obj/effect/landmark/centcom,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
-"rOn" = (
-/obj/machinery/vending/snack/orange,
+"rMa" = (
+/obj/machinery/vending/wardrobe/law_wardrobe,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
+"rOa" = (
+/obj/machinery/vending/syndichem,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "rVP" = (
 /obj/item/soccerball,
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
-"rXE" = (
-/obj/machinery/vending/plasmaresearch,
+"sfr" = (
+/obj/machinery/vending,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"rXQ" = (
-/obj/machinery/vending/wardrobe/law_wardrobe,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"rYl" = (
-/obj/machinery/vending/donksofttoyvendor,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"rYI" = (
-/obj/machinery/vending/snack/blue,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "spc" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title9"
 	},
 /area/centcom/testchamber)
-"syr" = (
-/obj/machinery/vending/cola/sodie,
+"svy" = (
+/turf/closed/indestructible/riveted,
+/area/centcom)
+"szz" = (
+/obj/machinery/vending/autodrobe/capdrobe,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
+"sGj" = (
+/obj/machinery/vending/autodrobe/all_access,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"sGn" = (
+/obj/machinery/vending/wardrobe/chef_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "sSY" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info10"
 	},
 /area/centcom/testchamber)
-"sTn" = (
-/obj/machinery/vending/wardrobe/sec_wardrobe,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"tfn" = (
-/obj/machinery/vending/wardrobe/hydro_wardrobe,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "twc" = (
 /obj/structure/goalnet/goalpost/left,
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
+"tER" = (
+/obj/machinery/vending/hydroseeds/weak,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "tID" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info6"
 	},
-/area/centcom/testchamber)
-"tJn" = (
-/obj/machinery/vending/cola/red,
-/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "tVg" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "256"
 	},
 /area/centcom/testchamber)
-"tVh" = (
-/obj/machinery/vending/cola/black,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "uaZ" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title3"
 	},
-/area/centcom/testchamber)
-"ubw" = (
-/obj/machinery/vending/clothing,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"uiU" = (
-/obj/machinery/vending/boozeomat/syndicate_access,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"unW" = (
-/obj/machinery/vending/autodrobe/capdrobe,
-/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "uwR" = (
 /obj/structure/window/reinforced{
@@ -26483,10 +26509,6 @@
 	dir = 2
 	},
 /area/yogs/infiltrator_base)
-"uDm" = (
-/obj/machinery/vending/liberationstation,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "uDo" = (
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/o2{
@@ -26510,6 +26532,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/control)
+"uDM" = (
+/obj/machinery/vending/wardrobe/curator_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "uEX" = (
 /turf/open/indestructible/wiki/greenscreen/border,
 /area/centcom/testchamber)
@@ -26534,6 +26560,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
+"uPa" = (
+/turf/open/floor/plasteel,
+/area/centcom)
+"uVZ" = (
+/obj/machinery/vending/wardrobe/jani_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"uWn" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "uXx" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -26544,26 +26581,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
-"vaq" = (
-/obj/machinery/vending/wardrobe/chem_wardrobe,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "vci" = (
 /turf/open/indestructible/wiki/bluescreen,
 /area/centcom/testchamber)
-"vcl" = (
-/obj/machinery/vending/wardrobe/medi_wardrobe,
+"vdL" = (
+/obj/machinery/vending/donksofttoyvendor,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "vgL" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title10"
 	},
 /area/centcom/testchamber)
-"vjp" = (
-/obj/machinery/vending/cola/shamblers/prison,
+"vjr" = (
+/obj/machinery/vending/wardrobe/viro_wardrobe,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "vpx" = (
 /obj/structure/goalnet/goalpost/right,
 /turf/open/floor/holofloor/grass,
@@ -26581,14 +26614,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
-"vFY" = (
-/obj/machinery/vending/wardrobe/robo_wardrobe,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"vJp" = (
-/obj/machinery/vending/coffee,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "vMw" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info14"
@@ -26625,10 +26650,6 @@
 	icon_state = "info32"
 	},
 /area/centcom/testchamber)
-"wkn" = (
-/obj/machinery/vending/wardrobe/chef_wardrobe,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "wkC" = (
 /turf/open/indestructible/wiki/title{
 	icon_state = "title4"
@@ -26643,10 +26664,10 @@
 /obj/structure/goalnet,
 /turf/open/floor/holofloor/grass,
 /area/holodeck/rec_center/soccer)
-"wvi" = (
-/obj/machinery/vending/wardrobe/atmos_wardrobe,
+"wyd" = (
+/obj/machinery/vending/cola/pwr_game,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "wyM" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -26659,6 +26680,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
+"wBJ" = (
+/obj/machinery/vending/wardrobe/chem_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"wBO" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "wDa" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/holodeck_effect/mobspawner{
@@ -26673,14 +26702,6 @@
 	icon_state = "96"
 	},
 /area/centcom/testchamber)
-"wJH" = (
-/obj/machinery/vending/engivend,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"wLl" = (
-/obj/machinery/vending/cola/space_up,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "wPo" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -26693,14 +26714,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ctf)
-"wQE" = (
-/obj/machinery/vending/wardrobe/engi_wardrobe,
+"wYy" = (
+/obj/machinery/vending/wardrobe/medi_wardrobe,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"wWv" = (
-/obj/machinery/vending/snack/green,
+/area/centcom)
+"wZu" = (
+/obj/machinery/vending/magivend,
 /turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
+/area/centcom)
 "xgw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/defibrillator_mount/loaded{
@@ -26731,10 +26752,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/yogs/infiltrator_base)
-"xjj" = (
-/obj/machinery/vending/syndichem,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
 "xjU" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "32"
@@ -26744,14 +26761,6 @@
 /turf/open/indestructible/wiki/info{
 	icon_state = "info24"
 	},
-/area/centcom/testchamber)
-"xnm" = (
-/obj/machinery/vending/wallgene,
-/turf/open/floor/plasteel/bluespace,
-/area/centcom/testchamber)
-"xpx" = (
-/obj/machinery/vending/wardrobe/science_wardrobe,
-/turf/open/floor/plasteel/bluespace,
 /area/centcom/testchamber)
 "xuU" = (
 /obj/machinery/door/airlock/centcom{
@@ -26768,6 +26777,18 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"xDu" = (
+/obj/machinery/vending/wardrobe/sec_wardrobe,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"xEy" = (
+/obj/machinery/vending/fishing,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
+"xFq" = (
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 "xGe" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info31"
@@ -26822,6 +26843,10 @@
 	dir = 2
 	},
 /area/yogs/infiltrator_base)
+"ylb" = (
+/obj/machinery/vending/wallmed,
+/turf/open/floor/plasteel/bluespace,
+/area/centcom)
 
 (1,1,1) = {"
 azH
@@ -60662,14 +60687,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+svy
+svy
+svy
+svy
+svy
+svy
+svy
 aaa
 aaa
 aaa
@@ -60919,14 +60944,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+uPa
+mxu
+wZu
+oUF
+qdE
+uPa
+svy
 aaa
 aaa
 aaa
@@ -61173,20 +61198,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+svy
+svy
+svy
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+svy
+svy
+svy
+svy
 aaa
 aaa
 aaa
@@ -61430,20 +61455,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+sGn
+wBJ
+uDM
+fNW
+rzJ
+uPa
+uPa
+qnZ
+uVZ
+rMa
+wYy
+jib
+svy
 aaa
 aaa
 aaa
@@ -61687,20 +61712,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+jQJ
+vjr
+lpe
+pzR
+ylb
+uPa
+uPa
+lTy
+qfg
+pEX
+icO
+iAN
+svy
 aaa
 aaa
 aaa
@@ -61944,20 +61969,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+svy
 aaa
 aaa
 aaa
@@ -62201,20 +62226,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+svy
 aaa
 aaa
 aaa
@@ -62458,20 +62483,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+dRc
+qjp
+uWn
+oBf
+rCl
+uPa
+uPa
+evC
+jCr
+pda
+ktZ
+rOa
+svy
 aaa
 aaa
 aaa
@@ -62715,20 +62740,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+cuY
+xFq
+cpw
+tER
+koQ
+uPa
+uPa
+xDu
+ogV
+gYd
+fjV
+qNB
+svy
 aaa
 aaa
 aaa
@@ -62972,20 +62997,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+svy
 aaa
 aaa
 aaa
@@ -63229,20 +63254,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+svy
 aaa
 aaa
 aaa
@@ -63486,20 +63511,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+gDX
+gXv
+ryg
+ppJ
+wBO
+uPa
+uPa
+vdL
+lDK
+lnY
+xEy
+gEX
+svy
 aaa
 aaa
 aaa
@@ -63743,20 +63768,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+hiU
+bie
+nMD
+qaK
+qzr
+uPa
+uPa
+pHd
+rEC
+wyd
+mmb
+noT
+svy
 aaa
 aaa
 aaa
@@ -64000,20 +64025,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+svy
 aaa
 aaa
 aaa
@@ -64257,20 +64282,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+uPa
+svy
 aaa
 aaa
 aaa
@@ -64514,20 +64539,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+svy
+sfr
+hUF
+npQ
+sGj
+szz
+uPa
+uPa
+fzd
+rsL
+kNP
+fVm
+jgs
+svy
 aaa
 aaa
 aaa
@@ -64777,8 +64802,8 @@ aEp
 aEp
 aIv
 aIv
-aIv
-aIv
+oNr
+oNr
 aIv
 aIv
 aIv
@@ -65034,8 +65059,8 @@ aEH
 aEv
 aIw
 aIR
-aJd
-aJn
+ljl
+boE
 aIR
 aIw
 aIR
@@ -65291,8 +65316,8 @@ aEv
 aEp
 aIv
 aIv
-aIR
-aIR
+oNr
+oNr
 aIv
 aIv
 aIv
@@ -72781,14 +72806,14 @@ aQE
 aZZ
 aQQ
 aNt
-ryO
-iIX
-wLl
-fWL
-wWv
-imf
-eji
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73038,14 +73063,14 @@ aXI
 aQB
 aOu
 aNt
-dSt
-ubw
-jbX
-uDm
-rOn
-wvi
-rXQ
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73295,14 +73320,14 @@ aZg
 aQE
 aZZ
 aNt
-nKZ
-vJp
-qjz
-gvk
-cSW
-cWx
-vcl
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73552,14 +73577,14 @@ aNt
 aNt
 aNt
 aNt
-hzH
-cXM
-rYl
-hpJ
-jjU
-pHG
-vFY
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -73809,14 +73834,14 @@ aXI
 aCQ
 aNx
 aNt
-unW
-tVh
-qfK
-kAc
-gId
-fKT
-xpx
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -74066,14 +74091,14 @@ aXI
 aQB
 aNx
 aNt
-iHV
-rHL
-wJH
-gTX
-xjj
-wkn
-sTn
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -74323,14 +74348,14 @@ aXI
 aNx
 aQq
 aNt
-emY
-dcG
-nlo
-rXE
-eUq
-vaq
-qkJ
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -74580,14 +74605,14 @@ aNt
 aNt
 aNt
 aNt
-uiU
-tJn
-oLA
-eNO
-bna
-onD
-fRI
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -74837,14 +74862,14 @@ aZg
 aXI
 aXI
 aNt
-ebD
-rGE
-puz
-mVx
-ntY
-wQE
-aNt
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -75094,13 +75119,13 @@ aXI
 aMj
 aSo
 aNt
-jcn
-vjp
-pPU
-rzE
-xnm
-gMI
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -75351,13 +75376,13 @@ aSa
 aRA
 aNf
 aNt
-laA
-syr
-dJX
-rYI
-qPG
-tfn
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -75608,13 +75633,13 @@ aNt
 aNt
 aNt
 aNt
-aNt
-aNt
-aNt
-aNt
-aNt
-aNt
-aNt
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
