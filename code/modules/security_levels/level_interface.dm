@@ -22,7 +22,7 @@
 	default_access = list(ACCESS_ARMORY)
 	emergency_access = list(ACCESS_SECURITY)
 	radio = new(src)
-	radio.keyslot = new radio_key
+	radio.keyslot = new radio_key()
 	radio.subspace_transmission = TRUE
 	radio.listening = FALSE
 	radio.independent = TRUE
