@@ -787,7 +787,7 @@
 
 /obj/item/clothing/head/hooded/cult_hoodie_toy/eldritch_toy
 	name = "fashionable hood"
-	desc = "A stylish hood perfectly pairing with the robes it comes with. Strange eyes line the inside."
+	desc = "A stylish hood perfectly pairing the robe it came with. Strange eyes line the inside."
 	icon_state = "eldritch"
 	item_state = "eldritch"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
