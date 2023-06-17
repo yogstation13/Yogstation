@@ -286,7 +286,7 @@
 			var/obj/item/gun/spawned_gun = spawned_thing
 			qdel(spawned_gun.pin)
 			spawned_gun.pin = new /obj/item/firing_pin(spawned_gun)
-		else
+		else if(spawned_thing)
 			for(var/obj/item/gun/spawned_gun in spawned_thing.get_all_contents())
 				qdel(spawned_gun.pin)
 				spawned_gun.pin = new /obj/item/firing_pin(spawned_gun)
