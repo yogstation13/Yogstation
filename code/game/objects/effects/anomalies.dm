@@ -140,7 +140,7 @@
 /obj/effect/anomaly/flux
 	name = "flux wave anomaly"
 	icon_state = "electricity2"
-	density = FALSE // so it doesn't awkwardly block movement if you're protected from it
+	density = FALSE // so it doesn't awkwardly block movement when it doesn't stun you
 	var/canshock = 0
 	var/shockdamage = 20
 	var/explosive = TRUE
