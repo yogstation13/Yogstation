@@ -214,6 +214,7 @@
 	icon_state = "knife"
 	desc = "A cyborg-mounted plasteel knife. Extremely sharp and durable."
 	force = 20
+	throwforce = 20
 
 /obj/item/kitchen/knife/carrotshiv
 	name = "carrot shiv"
