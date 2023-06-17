@@ -9,6 +9,16 @@
 	var/printer_ready = 0 //cooldown var
 	var/static/datum/bank_account/cargocash
 
+/obj/machinery/computer/bounty/evil
+	name = "\improper Syndicate bounty console"
+	desc = "A modified version of a Nanotrasen bounty console. Very illegal."
+	light_color = "#ff0000" //EVIL AND FUCKED UP!!!
+	circuit = /obj/item/circuitboard/computer/evilbounty
+
+/obj/machinery/computer/bounty/evil/Initialize()
+	. = ..()
+	obj_flags |= EMAGGED
+
 /obj/machinery/computer/bounty/Initialize()
 	. = ..()
 	printer_ready = world.time + PRINTER_TIMEOUT
@@ -30,13 +40,6 @@
 		info += {"<h3>[B.name]</h3>
 		<ul><li>Reward: [B.reward_string()]</li>
 		<li>Completed: [B.completion_string()]</li></ul>"}
-
-/obj/machinery/computer/bounty/emag_act(mob/user)
-	if(obj_flags & EMAGGED)
-		return
-	to_chat(user, span_warning("You adjust the antenna on \The [src], tuning it to a syndicate frequency."))
-	obj_flags |= EMAGGED
-	do_sparks(8, FALSE, loc)
 
 /obj/machinery/computer/bounty/proc/get_list_to_use()
 	if(obj_flags & EMAGGED)

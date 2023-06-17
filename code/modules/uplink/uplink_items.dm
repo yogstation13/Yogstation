@@ -2588,6 +2588,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10
 	restricted_roles = list("Station Engineer","Atmospheric Technician","Network Admin","Chief Engineer")
 
+/datum/uplink_item/role_restricted/bounty
+	name = "Syndicate Bounty Console Board"
+	desc = "A subverted version of a Nanotrasen bounty console, capable of contacting Syndicate interdiction teams. Allows you to sell certain items for additional TC using the cargo shuttle. Some assembly required."
+	item = /obj/machinery/comuter/bounty/evil
+	cost = 8
+	player_minimum = 40 //there has to be some challenge to doing the bounties
+	restricted_roles = list("Quartermaster","Cargo Technician")
+
 // Pointless
 /datum/uplink_item/badass
 	category = "(Pointless) Badassery"

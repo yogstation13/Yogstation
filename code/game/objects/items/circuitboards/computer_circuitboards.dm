@@ -474,6 +474,10 @@
 	icon_state = "supply"
 	build_path = /obj/machinery/computer/bounty
 
+/obj/item/circuitboard/computer/evilbounty
+	name = "Syndicate Bounty Console (Computer Board)"
+	build_path = /obj/machinery/computer/bounty/evil
+
 /obj/item/circuitboard/computer/cargo
 	name = "Supply Console (Computer Board)"
 	icon_state = "supply"
