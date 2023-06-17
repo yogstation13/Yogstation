@@ -165,7 +165,14 @@
 	if(canshock && istype(M))
 		canshock = 0 //Just so you don't instakill yourself if you slam into the anomaly five times in a second.
 		if(iscarbon(M))
-			M.electrocute_act(shockdamage, "[name]")
+			var/siemens_coeff = 1
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(H.gloves)
+					siemens_coeff *= (H.gloves.siemens_coefficient + 1) / 2 // protective gloves reduce damage by half
+				if(H.wear_suit)
+					siemens_coeff *= (H.wear_suit.siemens_coefficient + 1) / 2 // protective suit reduces damage by half again, down to minimum of 25%
+			M.electrocute_act(shockdamage, "[name]", siemens_coeff, TRUE, stun = (siemens_coeff > 0.7)) // no hardstun if you're protected enough to reduce damage
 			return
 		else
 			M.adjustFireLoss(shockdamage)
