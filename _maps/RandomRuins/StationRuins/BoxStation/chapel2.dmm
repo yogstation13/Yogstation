@@ -11,6 +11,18 @@
 /obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/carpet/black,
 /area/chapel/main)
+"aH" = (
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/carpet/black,
+/area/chapel/main)
 "aW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -20,6 +32,13 @@
 "bt" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/flashlight/lantern,
+/turf/open/floor/carpet/black,
+/area/chapel/main)
+"by" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/black,
 /area/chapel/main)
 "bA" = (
@@ -50,17 +69,33 @@
 	},
 /turf/open/floor/carpet/red,
 /area/chapel/office)
-"dm" = (
+"dd" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Chapel"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
+	dir = 4
 	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/red,
-/area/chapel/office)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/template_noop)
 "ds" = (
 /obj/structure/railing{
 	dir = 8
@@ -129,31 +164,6 @@
 /turf/open/floor/plasteel/chapel{
 	dir = 1
 	},
-/area/chapel/main)
-"hC" = (
-/obj/structure/cable{
-	icon_state = "1-4";
-	tag = ""
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/carpet/black,
-/area/chapel/main)
-"hH" = (
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/turf_decal/siding/wideplating{
-	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/black,
 /area/chapel/main)
 "im" = (
 /obj/item/pen,
@@ -259,6 +269,32 @@
 /obj/structure/chair/wood/normal,
 /turf/open/floor/carpet/red,
 /area/chapel/main)
+"mM" = (
+/obj/machinery/door/airlock{
+	name = "Crematorium";
+	req_access_txt = "27"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
+"oG" = (
+/obj/structure/table/wood/fancy,
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/carpet/red,
+/area/chapel/main)
 "oK" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -278,20 +314,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/chapel/main)
-"qi" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/chapel{
-	dir = 1
-	},
 /area/chapel/main)
 "qy" = (
 /obj/effect/turf_decal/ramp_middle{
@@ -358,11 +380,11 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"vu" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+"vK" = (
+/obj/structure/table/wood/fancy,
+/obj/structure/railing{
+	dir = 10
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/red,
 /area/chapel/main)
 "wA" = (
@@ -447,33 +469,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/chapel/main)
-"zD" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Chapel"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/template_noop)
 "zX" = (
 /obj/effect/turf_decal/ramp_corner{
 	dir = 4
@@ -498,11 +493,10 @@
 	},
 /turf/open/floor/carpet/red,
 /area/chapel/office)
-"CG" = (
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plasteel/dark,
-/area/chapel/main)
-"CS" = (
+"Cw" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -510,13 +504,20 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/sorting/mail,
 /turf/open/floor/carpet/black,
+/area/chapel/office)
+"Cz" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/carpet/red,
 /area/chapel/main)
-"Da" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
-/area/template_noop)
+"CG" = (
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "Df" = (
 /obj/machinery/light{
 	dir = 4
@@ -567,45 +568,18 @@
 	},
 /turf/open/floor/plating,
 /area/chapel/office)
-"Eb" = (
-/obj/machinery/door/airlock{
-	name = "Crematorium";
-	req_access_txt = "27"
-	},
+"ED" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/dark,
-/area/chapel/office)
-"Es" = (
-/obj/structure/table/wood/fancy,
-/obj/structure/railing{
-	dir = 6
-	},
-/turf/open/floor/carpet/red,
-/area/chapel/main)
-"EH" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
+	dir = 9
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
 	},
-/turf/open/floor/plasteel/chapel{
-	dir = 4
-	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/carpet/black,
 /area/chapel/main)
 "EO" = (
 /obj/structure/railing/corner,
@@ -663,6 +637,28 @@
 "Gn" = (
 /obj/item/nullrod,
 /obj/structure/table/wood/fancy,
+/turf/open/floor/carpet/red,
+/area/chapel/office)
+"Gs" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/carpet/black,
+/area/chapel/main)
+"GD" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/red,
 /area/chapel/office)
 "He" = (
@@ -730,20 +726,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"Jq" = (
-/obj/structure/table/wood/fancy,
-/obj/structure/railing{
-	dir = 10
-	},
-/turf/open/floor/carpet/red,
-/area/chapel/main)
-"JG" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/black,
-/area/chapel/main)
 "Kc" = (
 /obj/item/toy/figure/chaplain,
 /obj/item/clothing/under/burial,
@@ -781,20 +763,14 @@
 /obj/effect/spawner/xmastree,
 /turf/open/floor/carpet/red,
 /area/chapel/main)
-"LA" = (
+"LJ" = (
+/obj/structure/railing,
+/obj/structure/table/wood/fancy,
 /obj/structure/cable{
-	icon_state = "4-8"
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/carpet/red,
 /area/chapel/main)
 "LV" = (
 /obj/item/paper_bin{
@@ -804,26 +780,6 @@
 /obj/item/storage/crayons,
 /obj/structure/table/wood/fancy,
 /turf/open/floor/carpet/red,
-/area/chapel/office)
-"Ms" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/red,
-/area/chapel/office)
-"Ne" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/turf/open/floor/carpet/black,
 /area/chapel/office)
 "Nh" = (
 /obj/machinery/airalarm{
@@ -836,20 +792,6 @@
 /obj/structure/altar_of_gods,
 /turf/open/floor/carpet/red,
 /area/chapel/main)
-"NH" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/disposalpipe/sorting/mail,
-/turf/open/floor/carpet/black,
-/area/chapel/office)
 "NN" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -927,19 +869,6 @@
 	dir = 4
 	},
 /area/chapel/main)
-"RQ" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/black,
-/area/chapel/main)
 "Sq" = (
 /obj/structure/closet/crate/coffin,
 /obj/machinery/door/window/eastleft{
@@ -987,15 +916,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
-"Tt" = (
-/obj/structure/railing,
-/obj/structure/table/wood/fancy,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/red,
-/area/chapel/main)
 "TA" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -1028,6 +948,41 @@
 /turf/open/floor/plasteel/chapel{
 	dir = 8
 	},
+/area/chapel/main)
+"Ve" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
+"VJ" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/chapel/office)
+"VX" = (
+/obj/structure/cable{
+	icon_state = "1-4";
+	tag = ""
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/carpet/black,
 /area/chapel/main)
 "Wl" = (
 /obj/structure/railing{
@@ -1079,6 +1034,34 @@
 	},
 /turf/open/floor/carpet/black,
 /area/chapel/office)
+"Yf" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/chapel/main)
+"Yp" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 1
+	},
+/area/chapel/main)
 "Yv" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -1110,6 +1093,19 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
+/area/chapel/office)
+"Zw" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/carpet/red,
 /area/chapel/office)
 "ZW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1311,7 +1307,7 @@ FD
 fD
 ds
 bA
-Jq
+vK
 UA
 Qb
 Rs
@@ -1347,7 +1343,7 @@ Te
 zg
 NN
 Kc
-Ne
+VJ
 zg
 rx
 Pv
@@ -1367,20 +1363,20 @@ zg
 to
 WA
 Zp
-Ms
-dm
-NH
-Eb
-CS
-RQ
-JG
-vu
-vu
-vu
-Tt
-hH
-JG
-hC
+Zw
+GD
+Cw
+mM
+Gs
+ED
+by
+Cz
+Cz
+Cz
+LJ
+aH
+by
+VX
 FD
 dR
 "}
@@ -1399,10 +1395,10 @@ FD
 EO
 KA
 Wl
-Es
+oG
 hp
 SV
-qi
+Yp
 SV
 dR
 "}
@@ -1424,7 +1420,7 @@ zf
 iZ
 EZ
 Qb
-EH
+Yf
 Qb
 dR
 "}
@@ -1446,7 +1442,7 @@ kU
 Df
 sy
 tP
-LA
+Ve
 Cq
 xL
 "}
@@ -1468,7 +1464,7 @@ wA
 wA
 wA
 Ra
-zD
+dd
 wA
 wA
 "}
@@ -1482,8 +1478,8 @@ wA
 wA
 wA
 wA
-Da
-Da
+wA
+wA
 wA
 wA
 kI
