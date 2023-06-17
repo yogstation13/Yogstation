@@ -131,16 +131,16 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/kitchen/knife/ritual/holy
-	name = "ruinous knife" 
+	name = "ruinous knife"
 	desc = "The runes inscribed on the knife radiate a strange power. It looks like it could have more runes inscribed upon it..."
 
 /obj/item/kitchen/knife/ritual/holy/strong
-	name = "great ruinous knife" 
+	name = "great ruinous knife"
 	desc = "A heavy knife inscribed with dozens of runes."
 	force = 15
 
 /obj/item/kitchen/knife/ritual/holy/strong/blood
-	name = "blood-soaked ruinous knife" 
+	name = "blood-soaked ruinous knife"
 	desc = "Runes stretch across the surface of the knife, seemingly endless."
 	wound_bonus = 20 //a bit better than a butcher cleaver, you've earned it for finding blood cult metal and doing the previous steps
 
@@ -184,8 +184,8 @@
 	icon_state = "buckknife"
 	desc = "A military combat utility survival knife."
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 65, "embedded_fall_chance" = 10, "embedded_ignore_throwspeed_threshold" = TRUE)
-	force = 20
-	throwforce = 20
+	force = 15
+	throwforce = 15
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "cut")
 	bayonet = TRUE
 	wound_bonus = 10
@@ -195,8 +195,6 @@
 	icon_state = "survivalknife"
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 35, "embedded_fall_chance" = 10)
 	desc = "A hunting grade survival knife."
-	force = 15
-	throwforce = 15
 	bayonet = TRUE
 
 /obj/item/kitchen/knife/combat/bone
@@ -207,8 +205,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	desc = "A sharpened bone. The bare minimum in survival."
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 35, "embedded_fall_chance" = 10)
-	force = 15
-	throwforce = 15
 	materials = list()
 	bayonet = TRUE
 
@@ -217,6 +213,7 @@
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "knife"
 	desc = "A cyborg-mounted plasteel knife. Extremely sharp and durable."
+	force = 20
 
 /obj/item/kitchen/knife/carrotshiv
 	name = "carrot shiv"
@@ -273,7 +270,7 @@
 /obj/item/kitchen/rollingpin/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins flattening [user.p_their()] head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
-	
+
 /obj/item/kitchen/knife/makeshift
 	name = "makeshift knife"
 	icon_state = "knife_makeshift"
