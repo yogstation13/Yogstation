@@ -33,7 +33,7 @@
 	var/next_dest
 	var/next_dest_loc
 
-/mob/living/simple_animal/bot/cleanbot/Initialize()
+/mob/living/simple_animal/bot/cleanbot/Initialize(mapload)
 	. = ..()
 	get_targets()
 	icon_state = "cleanbot[on]"
@@ -314,7 +314,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"})
     name = "Scrubs, MD"
     desc = "A little cleaning robot, he looks so excited! This one can be configured by medbay staff."
 
-/mob/living/simple_animal/bot/cleanbot/medical/Initialize()
+/mob/living/simple_animal/bot/cleanbot/medical/Initialize(mapload)
     . = ..()
     bot_core.req_one_access = list(ACCESS_JANITOR, ACCESS_ROBO_CONTROL, ACCESS_MEDICAL)
 
@@ -322,6 +322,6 @@ Maintenance panel panel is [open ? "opened" : "closed"]"})
     name = "Frank Cleansington III"
     desc = "A little cleaning robot, he looks so excited! You still have no idea why your dad named it this."
 
-/mob/living/simple_animal/bot/cleanbot/spacebar/Initialize()
+/mob/living/simple_animal/bot/cleanbot/spacebar/Initialize(mapload)
 	. = ..()
 	bot_core.req_one_access = list(ACCESS_BAR)

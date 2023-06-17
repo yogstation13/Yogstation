@@ -193,7 +193,7 @@ Actual Adjacent procs :
 			L.Add(T)
 	return L
 
-/turf/proc/reachableTurftest(caller, var/turf/T, ID, simulated_only)
+/turf/proc/reachableTurftest(caller, turf/T, ID, simulated_only)
 	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
 		return TRUE
 
@@ -228,7 +228,7 @@ Actual Adjacent procs :
 	if(T && !T.density && !LinkBlockedWithAccess(T, caller, ID) && !(simulated_only && SSpathfinder.space_type_cache[T.type]))
 		return TRUE
 
-/turf/proc/reachableTurftestdensity(caller, var/turf/T, ID, simulated_only) //used for the sake of pathfinding while excluding turfs with dense objects
+/turf/proc/reachableTurftestdensity(caller, turf/T, ID, simulated_only) //used for the sake of pathfinding while excluding turfs with dense objects
 	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
 		for(var/obj/D in T)
 			if(D.density)

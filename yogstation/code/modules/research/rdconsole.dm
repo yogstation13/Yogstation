@@ -1,4 +1,4 @@
-/obj/machinery/computer/rdconsole/Initialize()
+/obj/machinery/computer/rdconsole/Initialize(mapload)
 	.=..()
 	light_color = LIGHT_COLOR_PURPLE
 

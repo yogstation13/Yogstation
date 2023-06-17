@@ -16,7 +16,7 @@
 	var/obj/item/noz
 	var/volume = 500
 
-/obj/item/watertank/Initialize()
+/obj/item/watertank/Initialize(mapload)
 	. = ..()
 	create_reagents(volume, OPENCONTAINER)
 	noz = make_noz()
@@ -117,7 +117,7 @@
 
 	var/obj/item/watertank/tank
 
-/obj/item/reagent_containers/spray/mister/Initialize()
+/obj/item/reagent_containers/spray/mister/Initialize(mapload)
 	. = ..()
 	tank = loc
 	if(!istype(tank))
@@ -147,7 +147,7 @@
 	item_state = "waterbackpackjani"
 	custom_price = 100
 
-/obj/item/watertank/janitor/Initialize()
+/obj/item/watertank/janitor/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/space_cleaner, 500)
 
@@ -165,7 +165,7 @@
 /obj/item/watertank/janitor/make_noz()
 	return new /obj/item/reagent_containers/spray/mister/janitor(src)
 
-/obj/item/reagent_containers/spray/mister/janitor/attack_self(var/mob/user)
+/obj/item/reagent_containers/spray/mister/janitor/attack_self(mob/user)
 	amount_per_transfer_from_this = (amount_per_transfer_from_this == 10 ? 5 : 10)
 	to_chat(user, span_notice("You [amount_per_transfer_from_this == 10 ? "remove" : "fix"] the nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
 
@@ -183,7 +183,7 @@
 	volume = 300
 	slowdown = 0
 
-/obj/item/watertank/atmos/Initialize()
+/obj/item/watertank/atmos/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/water, volume)
 
@@ -218,7 +218,7 @@
 	var/launcher_cost = 50
 	COOLDOWN_DECLARE(resin_cooldown)
 
-/obj/item/extinguisher/mini/nozzle/Initialize()
+/obj/item/extinguisher/mini/nozzle/Initialize(mapload)
 	. = ..()
 	tank = loc
 	if (!istype(tank))
@@ -391,7 +391,7 @@
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		add_overlay(filling)
 
-/obj/item/reagent_containers/chemtank/worn_overlays(var/isinhands = FALSE) //apply chemcolor and level
+/obj/item/reagent_containers/chemtank/worn_overlays(isinhands = FALSE) //apply chemcolor and level
 	. = list()
 	//inhands + reagent_filling
 	if(!isinhands && reagents.total_volume)
@@ -450,7 +450,7 @@
 	volume = 2000
 	slowdown = 0
 
-/obj/item/watertank/op/Initialize()
+/obj/item/watertank/op/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/toxin/mutagen,350)
 	reagents.add_reagent(/datum/reagent/napalm,125)

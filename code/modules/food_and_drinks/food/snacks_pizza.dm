@@ -43,7 +43,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/margherita/raw/MakeBakeable()
 	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/pizza/margherita, rand(70 SECONDS, 80 SECONDS), TRUE, TRUE)
 
-/obj/item/reagent_containers/food/snacks/pizza/margherita/robo/Initialize()
+/obj/item/reagent_containers/food/snacks/pizza/margherita/robo/Initialize(mapload)
 	bonus_reagents += list(/datum/reagent/nanomachines = 70)
 	return ..()
 

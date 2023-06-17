@@ -5,7 +5,7 @@
 	icon_state = "human_basic"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 
-/mob/living/carbon/human/Initialize()
+/mob/living/carbon/human/Initialize(mapload)
 	add_verb(src, /mob/living/proc/mob_sleep)
 	add_verb(src, /mob/living/proc/lay_down)
 
@@ -421,7 +421,7 @@
 							R = find_record("name", perpname, GLOB.data_core.security)
 							if(R)
 								if(href_list["status"])
-									var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged", "Cancel")
+									var/setcriminal = tgui_input_list(usr, "Specify a new criminal status for this person.", "Security HUD", list(WANTED_NONE, WANTED_ARREST, WANTED_SEARCH, WANTED_PRISONER, WANTED_SUSPECT, WANTED_PAROLE, WANTED_DISCHARGED, "Cancel"))
 									if(setcriminal != "Cancel")
 										if(R)
 											if(H.canUseHUD())
@@ -572,13 +572,13 @@
 		var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.security)
 		if(R && R.fields["criminal"])
 			switch(R.fields["criminal"])
-				if("*Arrest*")
+				if(WANTED_ARREST)
 					threatcount += 5
-				if("Incarcerated")
+				if(WANTED_PRISONER)
 					threatcount += 2
-				if("Suspected")
+				if(WANTED_SUSPECT)
 					threatcount += 2
-				if("Paroled")
+				if(WANTED_PAROLE)
 					threatcount += 2
 
 	//Check for dresscode violations
@@ -985,7 +985,10 @@
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
 	var/carrydelay = 50 //if you have latex you are faster at grabbing
 	var/skills_space = "" // Changes depending on glove type
-	if(HAS_TRAIT(src, TRAIT_QUICKER_CARRY))
+	if(HAS_TRAIT(src, TRAIT_QUICKEST_CARRY))
+		carrydelay = 25
+		skills_space = "masterfully"
+	else if(HAS_TRAIT(src, TRAIT_QUICKER_CARRY))
 		carrydelay = 30
 		skills_space = "expertly"
 	else if(HAS_TRAIT(src, TRAIT_QUICK_CARRY))
@@ -1095,12 +1098,12 @@
 		return
 	hulk_health_check(oldhealth)
 
-/mob/living/carbon/human/adjust_nutrition(var/change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
+/mob/living/carbon/human/adjust_nutrition(change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/set_nutrition(var/change) //Seriously fuck you oldcoders.
+/mob/living/carbon/human/set_nutrition(change) //Seriously fuck you oldcoders.
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return FALSE
 	return ..()
@@ -1128,7 +1131,7 @@
 /mob/living/carbon/human/species
 	var/race = null
 
-/mob/living/carbon/human/species/Initialize()
+/mob/living/carbon/human/species/Initialize(mapload)
 	. = ..()
 	set_species(race)
 
@@ -1287,7 +1290,7 @@
 
 /mob/living/carbon/human/species/ipc/empty //used for "cloning" ipcs
 
-/mob/living/carbon/human/species/ipc/empty/Initialize()
+/mob/living/carbon/human/species/ipc/empty/Initialize(mapload)
 	. = ..()
 	deathsound = null //make it a silent death
 	death()

@@ -22,7 +22,7 @@
 	var/rend_desc = "You should run now."
 	var/spawn_fast = 0 //if 1, ignores checking for mobs on loc before spawning
 
-/obj/item/veilrender/Initialize()
+/obj/item/veilrender/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80, 100)
 
@@ -45,7 +45,7 @@
 	var/spawn_amt_left = 20
 	var/spawn_fast = 0
 
-/obj/effect/rend/New(loc, var/spawn_type, var/spawn_amt, var/desc, var/spawn_fast)
+/obj/effect/rend/New(loc, spawn_type, spawn_amt, desc, spawn_fast)
 	src.spawn_path = spawn_type
 	src.spawn_amt_left = spawn_amt
 	src.desc = desc
@@ -471,6 +471,6 @@
 	duration = 40
 	pixel_x = 500
 
-/obj/effect/temp_visual/tornado/Initialize()
+/obj/effect/temp_visual/tornado/Initialize(mapload)
 	. = ..()
 	animate(src, pixel_x = -500, time = 4 SECONDS)

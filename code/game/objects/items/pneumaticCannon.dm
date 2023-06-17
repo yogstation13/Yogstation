@@ -41,7 +41,7 @@
 		/obj/item/melee/supermatter_sword
 		)
 
-/obj/item/pneumatic_cannon/Initialize()
+/obj/item/pneumatic_cannon/Initialize(mapload)
 	. = ..()
 	if(selfcharge)
 		init_charge()
@@ -145,7 +145,7 @@
 		return
 	Fire(user, target)
 
-/obj/item/pneumatic_cannon/proc/Fire(mob/living/user, var/atom/target)
+/obj/item/pneumatic_cannon/proc/Fire(mob/living/user, atom/target)
 	if(!istype(user) && !target)
 		return
 	var/discharge = 0
@@ -284,7 +284,7 @@
 	clumsyCheck = FALSE
 	var/static/list/pie_typecache = typecacheof(/obj/item/reagent_containers/food/snacks/pie)
 
-/obj/item/pneumatic_cannon/pie/Initialize()
+/obj/item/pneumatic_cannon/pie/Initialize(mapload)
 	. = ..()
 	allowed_typecache = pie_typecache
 
@@ -324,7 +324,7 @@
 	spin_item = FALSE
 	var/static/list/magspear_typecache = typecacheof(/obj/item/throwing_star/magspear)
 
-/obj/item/pneumatic_cannon/speargun/Initialize()
+/obj/item/pneumatic_cannon/speargun/Initialize(mapload)
 	. = ..()
 	allowed_typecache = magspear_typecache
 
@@ -335,7 +335,7 @@
 	icon_state = "quiver"
 	item_state = "quiver"
 
-/obj/item/storage/magspear_quiver/Initialize()
+/obj/item/storage/magspear_quiver/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 20

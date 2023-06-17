@@ -40,7 +40,7 @@
 				break
 			
 
-/datum/computer_file/program/paperwork_printer/proc/print(var/obj/item/paper/paperwork/T)
+/datum/computer_file/program/paperwork_printer/proc/print(obj/item/paper/paperwork/T)
 	var/obj/item/computer_hardware/printer/printer
 	if(computer)
 		printer = computer.all_components[MC_PRINT]

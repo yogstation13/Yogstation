@@ -18,7 +18,7 @@
 	light_on = FALSE
 	var/on = FALSE
 
-/obj/item/flashlight/Initialize()
+/obj/item/flashlight/Initialize(mapload)
 	. = ..()
 	if(icon_state == "[initial(icon_state)]-on")
 		on = TRUE
@@ -285,7 +285,7 @@
 	light_color = LIGHT_COLOR_FLARE
 	grind_results = list(/datum/reagent/sulphur = 15)
 
-/obj/item/flashlight/flare/Initialize()
+/obj/item/flashlight/flare/Initialize(mapload)
 	. = ..()
 	fuel = rand(frng_min, frng_max)
 
@@ -502,7 +502,7 @@
 	grind_results = list(/datum/reagent/phenol = 15, /datum/reagent/hydrogen = 10, /datum/reagent/oxygen = 5) //Meth-in-a-stick
 	var/fuel = 0
 
-/obj/item/flashlight/glowstick/Initialize()
+/obj/item/flashlight/glowstick/Initialize(mapload)
 	fuel = rand(1600, 2000)
 	light_color = color
 
@@ -594,7 +594,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "random_glowstick"
 
-/obj/effect/spawner/lootdrop/glowstick/Initialize()
+/obj/effect/spawner/lootdrop/glowstick/Initialize(mapload)
 	loot = typesof(/obj/item/flashlight/glowstick)
 	. = ..()
 

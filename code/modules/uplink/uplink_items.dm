@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
-/proc/get_uplink_items(var/datum/game_mode/gamemode = null, allow_sales = TRUE, allow_restricted = TRUE, uplink_type = "Uplink")
+/proc/get_uplink_items(datum/game_mode/gamemode = null, allow_sales = TRUE, allow_restricted = TRUE, uplink_type = "Uplink")
 	var/list/filtered_uplink_items = list()
 	var/list/sale_items = list()
 
@@ -412,7 +412,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/twohanded/dualsaber
 	player_minimum = 25
 	cost = 16
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
+	include_modes = list(/datum/game_mode/nuclear) // yogs: infiltration
 
 /datum/uplink_item/dangerous/doublesword/get_discount()
 	return pick(4;0.8,2;0.65,1;0.5)
@@ -2070,9 +2070,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted = TRUE
 
 /datum/uplink_item/implants/reviver
-	name = "Reviver Implant"
-	desc = "This implant will attempt to revive and heal you if you lose consciousness. Comes with an autosurgeon."
-	item = /obj/item/autosurgeon/reviver
+	name = "Syndicate reviver Implant"
+	desc = "This implant will attempt to revive and heal you if you lose consciousness. This experimental version is stronger than widely available versions. Comes with an autosurgeon."
+	item = /obj/item/autosurgeon/reviver/syndicate
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
 	surplus = 0

@@ -83,7 +83,7 @@
 	pre_noise = FALSE
 	post_noise = TRUE
 
-/obj/item/toy/crayon/spraycan/gang/Initialize(loc, datum/team/gang/G)
+/obj/item/toy/crayon/spraycan/gang/Initialize(mapload, loc, datum/team/gang/G)
 	.=..()
 	if(G)
 		gang = G

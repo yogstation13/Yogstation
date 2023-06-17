@@ -33,7 +33,6 @@
 	density = FALSE
 	// No default products, all of this shit costs money
 	premium = list(	/obj/item/hypospray = 5,
-					/obj/item/hypospray_upgrade/quickload = 5,
 					/obj/item/reagent_containers/glass/bottle/vial/libital = 10,
 					/obj/item/reagent_containers/glass/bottle/vial/aiuri = 10,
 					/obj/item/reagent_containers/glass/bottle/vial/styptic = 10,

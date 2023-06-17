@@ -4,7 +4,7 @@
 	damage = 6
 	var/piercing = FALSE
 
-/obj/item/projectile/bullet/reusable/dart/Initialize()
+/obj/item/projectile/bullet/reusable/dart/Initialize(mapload)
 	. = ..()
 
 /obj/item/projectile/bullet/reusable/dart/proc/add_dart(obj/item/reagent_containers/new_dart, syrpierce)

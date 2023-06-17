@@ -46,7 +46,7 @@
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			. += "The panel is open."
 
-/obj/structure/particle_accelerator/Initialize()
+/obj/structure/particle_accelerator/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
 

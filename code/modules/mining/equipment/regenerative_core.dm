@@ -30,7 +30,7 @@
 	var/inert = 0
 	var/preserved = 0
 
-/obj/item/organ/regenerative_core/Initialize()
+/obj/item/organ/regenerative_core/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(inert_check)), 2400)
 
@@ -132,7 +132,7 @@
 	desc = "A strange rock that crackles with power. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."
 	icon_state = "legion_soul"
 
-/obj/item/organ/regenerative_core/legion/Initialize()
+/obj/item/organ/regenerative_core/legion/Initialize(mapload)
 	. = ..()
 	update_icon()
 

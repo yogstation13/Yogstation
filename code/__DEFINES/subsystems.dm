@@ -69,9 +69,9 @@
 
 ///New should not call Initialize
 #define INITIALIZATION_INSSATOMS 0
-///New should call Initialize(TRUE)
+///New should call Initialize(mapload, TRUE)
 #define INITIALIZATION_INNEW_MAPLOAD 2
-///New should call Initialize(FALSE)
+///New should call Initialize(mapload, FALSE)
 #define INITIALIZATION_INNEW_REGULAR 1
 
 //! ### Initialization hints

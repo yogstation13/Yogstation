@@ -53,7 +53,7 @@
 	var/vomitTimeBonus = 0
 	var/datum/action/cooldown/vomit/goosevomit
 
-/mob/living/simple_animal/hostile/retaliate/goose/vomit/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/Initialize(mapload)
 	. = ..()
 	goosevomit = new
 	goosevomit.Grant(src)
@@ -95,7 +95,7 @@
 		playsound(T, 'sound/effects/splat.ogg', 50, 1)
 		T.add_vomit_floor(src)
 
-/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/barf_food(var/atom/A, var/hard = FALSE)
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/barf_food(atom/A, hard = FALSE)
 	if(!istype(A, /obj/item/reagent_containers/food))
 		return
 	var/turf/currentTurf = get_turf(src)
