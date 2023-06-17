@@ -28,7 +28,7 @@
 	force_string = "robust... against germs"
 	var/uses = 100
 
-/obj/item/soap/Initialize()
+/obj/item/soap/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
 
@@ -170,7 +170,7 @@
 			T.update_icon()
 			qdel(src)
 
-/obj/item/bikehorn/Initialize()
+/obj/item/bikehorn/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
@@ -189,7 +189,7 @@
 	desc = "Damn son, where'd you find this?"
 	icon_state = "air_horn"
 
-/obj/item/bikehorn/airhorn/Initialize()
+/obj/item/bikehorn/airhorn/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/airhorn2.ogg'=1), 50)
 

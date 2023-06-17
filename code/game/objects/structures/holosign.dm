@@ -15,7 +15,7 @@
 		projector.signs += src
 	..()
 
-/obj/structure/holosign/Initialize()
+/obj/structure/holosign/Initialize(mapload)
 	. = ..()
 	alpha = 0
 	SSvis_overlays.add_vis_overlay(src, icon, icon_state, ABOVE_MOB_LAYER, plane, dir, add_appearance_flags = RESET_ALPHA) //you see mobs under it, but you hit them like they are above it
@@ -53,7 +53,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "holosign_banana"
 
-/obj/structure/holosign/holobanana/Initialize()
+/obj/structure/holosign/holobanana/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 120, GALOSHES_DONT_HELP)
 
@@ -115,7 +115,7 @@
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_LIGHT_INSULATION
 
-/obj/structure/holosign/barrier/atmos/Initialize()
+/obj/structure/holosign/barrier/atmos/Initialize(mapload)
 	. = ..()
 	air_update_turf(TRUE)
 
@@ -202,7 +202,7 @@
 		projector = null
 	return ..()
 
-/obj/structure/holobed/Initialize()
+/obj/structure/holobed/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 0.8, \

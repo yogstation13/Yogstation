@@ -34,7 +34,7 @@
 	//Whether the magazine should utilize a unique sprite or not if the magazine has multi-stage sprites
 	var/sprite_designation
 
-/obj/item/ammo_box/Initialize()
+/obj/item/ammo_box/Initialize(mapload)
 	. = ..()
 	calc_mats()
 	if(!start_empty)

@@ -12,7 +12,7 @@
 	visor_vars_to_toggle = NONE //we don't actually toggle anything we just set it
 	tint = 3 //this'll get reset, but it won't handle vision updates properly otherwise
 
-/obj/item/clothing/glasses/wraith_spectacles/Initialize()
+/obj/item/clothing/glasses/wraith_spectacles/Initialize(mapload)
 	. = ..()
 	GLOB.all_clockwork_objects += src
 
@@ -75,7 +75,7 @@
 
 /obj/item/clothing/glasses/wraith_spectacles/equipped(mob/living/user, slot)
 	..()
-	if(slot != SLOT_GLASSES || up)
+	if(slot != ITEM_SLOT_EYES || up)
 		return
 	if(HAS_TRAIT(user, TRAIT_BLIND))
 		to_chat(user, "[span_heavy_brass("\"You're blind, idiot. Stop embarrassing yourself.\"")]" )

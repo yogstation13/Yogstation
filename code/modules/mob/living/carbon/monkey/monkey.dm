@@ -158,9 +158,9 @@
 /mob/living/carbon/monkey/angry
 	aggressive = TRUE
 
-/mob/living/carbon/monkey/angry/Initialize()
+/mob/living/carbon/monkey/angry/Initialize(mapload)
 	. = ..()
 	if(prob(10))
 		var/obj/item/clothing/head/helmet/justice/escape/helmet = new(src)
-		equip_to_slot_or_del(helmet,SLOT_HEAD)
+		equip_to_slot_or_del(helmet,ITEM_SLOT_HEAD)
 		helmet.attack_self(src) // todo encapsulate toggle

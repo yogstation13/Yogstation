@@ -65,7 +65,7 @@
 	user.reagents.add_reagent(/datum/reagent/medicine/omnizine/godblood,10) //Hurts your brain and makes you go insane
 	user.reagents.add_reagent(/datum/reagent/toxin/mindbreaker,10) //However, it gives rather potent healing.
 	update_icon()
-	addtimer(CALLBACK(src, PROC_REF(update_icon)), time_between_uses)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), time_between_uses)
 
 
 /obj/structure/holyfountain/update_icon()

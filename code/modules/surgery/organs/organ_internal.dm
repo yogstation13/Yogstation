@@ -120,7 +120,7 @@
   * description: By checking our current damage against our previous damage, we can decide whether we've passed an organ threshold.
   *				 If we have, send the corresponding threshold message to the owner, if such a message exists.
   */
-/obj/item/organ/proc/check_damage_thresholds(var/M)
+/obj/item/organ/proc/check_damage_thresholds(M)
 	if(damage == prev_damage)
 		return
 	var/delta = damage - prev_damage
@@ -174,7 +174,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	foodtype = RAW | MEAT | GROSS
 
-/obj/item/organ/Initialize()
+/obj/item/organ/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	return ..()
 
@@ -214,13 +214,13 @@
 	return damage < low_threshold ? organ_efficiency : round(organ_efficiency * 1-(damage/maxHealth), 0.1)
 
 ///Adjusts an organ's damage by the amount "d", up to a maximum amount, which is by default max damage
-/obj/item/organ/proc/applyOrganDamage(var/d, var/maximum = maxHealth)	//use for damaging effects
+/obj/item/organ/proc/applyOrganDamage(d, maximum = maxHealth)	//use for damaging effects
 	if(maximum < d + damage)
 		d = max(0, maximum - damage)
 	damage = max(0, damage + d)
 
 ///SETS an organ's damage to the amount "d", and in doing so clears or sets the failing flag, good for when you have an effect that should fix an organ if broken
-/obj/item/organ/proc/setOrganDamage(var/d)	//use mostly for admin heals
+/obj/item/organ/proc/setOrganDamage(d)	//use mostly for admin heals
 	damage = clamp(d, 0 ,maxHealth)
 	if(d >= maxHealth)
 		organ_flags |= ORGAN_FAILING

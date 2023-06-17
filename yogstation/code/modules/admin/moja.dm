@@ -59,7 +59,7 @@
 	moja.ckey = (new_key ? new_key : ckey)
 	gib()
 
-/mob/living/carbon/human/moja/Initialize()
+/mob/living/carbon/human/moja/Initialize(mapload)
 	. = ..()
 	make_moja()
 

@@ -12,7 +12,7 @@
 	movedelay = 4
 	var/move_sound = 'sound/effects/roll.ogg'
 
-/obj/vehicle/ridden/wheelchair/Initialize()
+/obj/vehicle/ridden/wheelchair/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.vehicle_move_delay = 0

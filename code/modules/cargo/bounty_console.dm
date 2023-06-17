@@ -19,7 +19,7 @@
 	. = ..()
 	obj_flags |= EMAGGED
 
-/obj/machinery/computer/bounty/Initialize()
+/obj/machinery/computer/bounty/Initialize(mapload)
 	. = ..()
 	printer_ready = world.time + PRINTER_TIMEOUT
 	cargocash = SSeconomy.get_dep_account(ACCOUNT_CAR)
@@ -30,7 +30,7 @@
 /obj/item/paper/bounty_printout
 	name = "paper - Bounties"
 
-/obj/item/paper/bounty_printout/Initialize()
+/obj/item/paper/bounty_printout/Initialize(mapload)
 	. = ..()
 	info = "<h2>Nanotrasen Cargo Bounties</h2></br>"
 	update_icon()

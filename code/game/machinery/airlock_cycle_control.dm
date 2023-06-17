@@ -123,7 +123,7 @@
 	if(mapload && (. != INITIALIZE_HINT_QDEL))
 		return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/advanced_airlock_controller/LateInitialize(mapload)
+/obj/machinery/advanced_airlock_controller/LateInitialize()
 	. = ..()
 	if(scan_on_late_init)
 		scan(TRUE)
@@ -570,13 +570,13 @@
 					if(istype(vent, /obj/machinery/atmospherics/components/unary/vent_pump/siphon))
 						vents[vent] = AIRLOCK_CYCLEROLE_INT_DEPRESSURIZE | AIRLOCK_CYCLEROLE_EXT_DEPRESSURIZE
 					else
-						vents[vent] = AIRLOCK_CYCLEROLE_INT_PRESSURIZE
+						vents[vent] = AIRLOCK_CYCLEROLE_INT_PRESSURIZE | AIRLOCK_CYCLEROLE_EXT_PRESSURIZE
 		for(var/obj/machinery/atmospherics/components/binary/dp_vent_pump/vent in T)
 			if(!vent.aac || vent.aac == src)
 				vent.aac = src
 				vents[vent] = 0
 				if(assume_roles)
-					vents[vent] = AIRLOCK_CYCLEROLE_INT_DEPRESSURIZE | AIRLOCK_CYCLEROLE_EXT_DEPRESSURIZE | AIRLOCK_CYCLEROLE_INT_PRESSURIZE
+					vents[vent] = AIRLOCK_CYCLEROLE_INT_DEPRESSURIZE | AIRLOCK_CYCLEROLE_EXT_DEPRESSURIZE | AIRLOCK_CYCLEROLE_INT_PRESSURIZE | AIRLOCK_CYCLEROLE_EXT_PRESSURIZE
 	if(!airlocks.len)
 		config_error_str = "No airlocks"
 		return
@@ -809,7 +809,7 @@
 /obj/machinery/door/airlock
 	var/obj/machinery/advanced_airlock_controller/aac
 
-/obj/machinery/door/airlock/Initialize()
+/obj/machinery/door/airlock/Initialize(mapload)
 	. = ..()
 	update_aac_docked()
 /obj/machinery/door/airlock/Destroy()

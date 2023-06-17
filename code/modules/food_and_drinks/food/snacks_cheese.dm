@@ -258,7 +258,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("bitter salt" = 1)
 
-/obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan/Initialize()
+/obj/item/reagent_containers/food/snacks/cheesewheel/preparmesan/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(ageCheese)), 20 MINUTES)
 
