@@ -85,6 +85,7 @@
 
 /area/ruin/powered/syndicate_lava_base/engineering
 	name = "Syndicate Lavaland Engineering"
+	icon_state = "syndie-engi"
 
 /area/ruin/powered/syndicate_lava_base/medbay
 	name = "Syndicate Lavaland Medbay"
@@ -104,6 +105,7 @@
 
 /area/ruin/powered/syndicate_lava_base/chemistry
 	name = "Syndicate Lavaland Chemistry"
+	icon_state = "syndie-sci"
 
 /area/ruin/powered/syndicate_lava_base/virology
 	name = "Syndicate Lavaland Virology"
