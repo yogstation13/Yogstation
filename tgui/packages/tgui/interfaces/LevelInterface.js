@@ -81,31 +81,27 @@ export const LevelInterface = (props, context) => {
               Martial law is in effect.
             </Box>
             <br />
-            <Button
-              minWidth={13}
-              icon={alertLevel === 4 ? "eye-slash" : ""}
-              backgroundColor={"black"}
-              textColor={alertLevel === 4 ? "#56d5c9" : "#000000"}
-              content={alertLevel === 4 ? "Epsilon" : "██████"} />
-            <Box
-              inline
-              fontSize={1}
-              backgroundColor={alertLevel === 4 ? "transparent" : "#000000"}
-              textColor={alertLevel === 4 ? "#56d5c9" : "#000000"} >
-              {alertLevel === 4 ? (
-                <Box>
-                  Authorities are arriving to negotiate new contracts.
-                  <br />
-                  Compliance is mandatory. Glory to Nanotrasen.
+            {alertLevel === 4 && (
+              <Box>
+                <Button
+                  minWidth={13}
+                  icon="eye-slash"
+                  backgroundColor={"black"}
+                  textColor="#56d5c9"
+                  content="Epsilon" />
+                <Box
+                  inline
+                  fontSize={1}
+                  backgroundColor="transparent"
+                  textColor="#56d5c9" >
+                  <Box>
+                    Authorities are arriving to negotiate new contracts.
+                    <br />
+                    Compliance is mandatory. Glory to Nanotrasen.
+                  </Box>
                 </Box>
-              ) : (
-                <Box>
-                  THERE IS NOTHING FOR YOU HERE. TURN BACK.
-                  <br />
-                  THERE IS NOTHING FOR YOU HERE. TURN BACK.
-                </Box>
-              )}
-            </Box>
+              </Box>
+            )}
           </Box>
         )}
       </Window.Content>
