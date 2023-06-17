@@ -62,7 +62,7 @@ Behavior that's still missing from this component that original food items had t
 				owner.reagents.add_reagent(rid, amount)
 
 /datum/component/edible/proc/examine(datum/source, mob/user, list/examine_list)
-	if(!food_flags & FOOD_IN_CONTAINER)
+	if(!(food_flags & FOOD_IN_CONTAINER))
 		switch (bitecount)
 			if (0)
 				return
@@ -188,7 +188,7 @@ Behavior that's still missing from this component that original food items had t
 	if(!ishuman(M))
 		return FALSE
 	var/mob/living/carbon/human/H = M
-	if(HAS_TRAIT(H, TRAIT_AGEUSIA) && foodtypes & H.dna.species.toxic_food)
+	if(HAS_TRAIT(H, TRAIT_AGEUSIA) && (foodtypes & H.dna.species.toxic_food))
 		to_chat(H, span_warning("You don't feel so good..."))
 		H.adjust_disgust(25 + 30 * fraction)
 	else
