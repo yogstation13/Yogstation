@@ -15,14 +15,14 @@
 	light_color = "#ff0000" //EVIL AND FUCKED UP!!!
 	circuit = /obj/item/circuitboard/computer/evilbounty
 
-/obj/machinery/computer/bounty/evil/Initialize()
-	. = ..()
-	obj_flags |= EMAGGED
-
 /obj/machinery/computer/bounty/Initialize(mapload)
 	. = ..()
 	printer_ready = world.time + PRINTER_TIMEOUT
 	cargocash = SSeconomy.get_dep_account(ACCOUNT_CAR)
+
+/obj/machinery/computer/bounty/evil/Initialize(mapload)
+	. = ..()
+	obj_flags |= EMAGGED
 
 /obj/machinery/computer/bounty/proc/print_paper()
 	new /obj/item/paper/bounty_printout(loc)
