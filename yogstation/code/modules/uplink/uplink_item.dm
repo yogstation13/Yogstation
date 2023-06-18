@@ -65,7 +65,7 @@
 	item = /obj/item/bodypart/l_arm //doesn't actually spawn an arm, but it needs an object to show up in the menu :^)
 	cost = 5
 	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor/internal_affairs)
 	illegal_tech = FALSE // ARMS ARE NOT ILLEGAL
 
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
@@ -165,7 +165,7 @@
 	item = /obj/item/book/granter/martial/worldbreaker
 	manufacturer = /datum/corporation/traitor/vahlen
 	restricted_species = list("preternis")
-	
+
 /datum/uplink_item/race_restricted/explosive_fist_art
 	name = "Burned scroll"
 	desc = "An ancient scroll, containing a guide to an ancient plasmamen martial art."
