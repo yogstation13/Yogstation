@@ -29,18 +29,18 @@
 		to_chat(user, span_warning("You can't use the drive for another [COOLDOWN_TIMELEFT(src, last_dash)/10] seconds!"))
 		return
 	testpath = get_path_to(src, T, /turf/proc/Distance_cardinal, 0, 0, 0, /turf/proc/reachableTurftestdensity, id = access_card, simulated_only = FALSE, get_best_attempt = TRUE)
-	if(testpath.len == 0)
+	if(length(testpath) == 0)
 		to_chat(user, span_warning("There's no unobstructed path to the destination!"))
 		return
 	if(user.legcuffed && !(target in view(9, (user))))
 		to_chat(user, span_warning("Your movement is restricted to your line of sight until your legs are free!"))
 		return
 	moving |= user 
-	for(var/mob/living/L in range(2, testpath[testpath.len]))
+	for(var/mob/living/L in range(2, testpath[length(testpath)]))
 		if(L != user)
 			L.apply_status_effect(STATUS_EFFECT_CATCHUP)
 			slowing++
-	bonus_cd = COOLDOWN_PERSTEP*testpath.len
+	bonus_cd = COOLDOWN_PERSTEP*(length(testpath))
 	next_dash = next_dash + bonus_cd
 	if(next_dash >= COOLDOWN_STEPLIMIT)
 		next_dash = COOLDOWN_STEPLIMIT
@@ -66,15 +66,15 @@
 	playsound(user, 'sound/effects/stealthoff.ogg', 50, 1)
 	for(var/atom/movable/K in moving)
 		shake_camera(K, 1, 1)
-		K.forceMove(testpath[testpath.len-lagdist])
+		K.forceMove(testpath[length(testpath)-lagdist])
 		addtimer(CALLBACK(src, PROC_REF(nyoom), K, testpath, lagdist))
 		lagdist++	
-	for(var/i = 2 to moving.len)
+	for(var/i = 2 to length(moving))
 		var/atom/movable/ahead = moving[i-1]
 		ahead.start_pulling(moving[i])
-	for(var/mob/living/punchingbag in testpath[testpath.len])
+	for(var/mob/living/punchingbag in testpath[length(testpath)])
 		if(!(punchingbag in moving))
-			flurry(user, punchingbag, testpath.len)
+			flurry(user, punchingbag, length(testpath))
 	unload()
 
 
@@ -92,7 +92,7 @@
 /obj/item/mdrive/proc/nyoom(atom/movable/target, list/path, var/lagdist)
 	var/list/testpath = path
 	var/obj/effect/temp_visual/decoy/fading/onesecond/F = new(get_turf(target), target)
-	for(var/i in 1 to testpath.len)
+	for(var/i in 1 to length(testpath))
 		var/turf/next_step = testpath[i]
 		if(ISMULTIPLE(i, 2) && (next_step))
 			var/turf/proper_step = testpath[i-lagdist]
