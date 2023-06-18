@@ -1,10 +1,8 @@
 /datum/job/roboticist
 	title = "Roboticist"
 	description = "Build and repair the AI and cyborgs, create mechs."
-	flag = ROBOTICIST
 	orbit_icon = "battery-half"
 	department_head = list("Research Director")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
@@ -54,4 +52,4 @@
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET

@@ -4,7 +4,7 @@
 
 /obj/machinery/shower
 	name = "shower"
-	desc = "The HS-451. Installed in the 2550s by the Nanotrasen Hygiene Division."
+	desc = "The HS-451. Installed in 2517 by the Nanotrasen Hygiene Division, for your convenience."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE
@@ -15,7 +15,7 @@
 	var/reagent_id = /datum/reagent/water
 	var/reaction_volume = 200
 
-/obj/machinery/shower/Initialize()
+/obj/machinery/shower/Initialize(mapload)
 	. = ..()
 	create_reagents(reaction_volume)
 	reagents.add_reagent(reagent_id, reaction_volume)

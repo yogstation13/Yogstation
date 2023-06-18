@@ -843,7 +843,7 @@ new /datum/stack_recipe("paper frame separator", /obj/structure/window/paperfram
 	merge_type = /obj/item/stack/sheet/paperframes
 	grind_results = list(/datum/reagent/cellulose = 20)
 
-/obj/item/stack/sheet/paperframes/Initialize()
+/obj/item/stack/sheet/paperframes/Initialize(mapload)
 	recipes = GLOB.paperframe_recipes
 	. = ..()
 /obj/item/stack/sheet/paperframes/five

@@ -8,7 +8,7 @@
 	alert_admins = FALSE
 	var/hacked = FALSE
 
-/obj/item/grenade/plastic/miningcharge/Initialize()
+/obj/item/grenade/plastic/miningcharge/Initialize(mapload)
 	. = ..()
 	plastic_overlay = mutable_appearance(icon, "[icon_state]_active", ON_EDGED_TURF_LAYER)
 

@@ -45,7 +45,7 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 
-/obj/item/storage/spooky/Initialize()
+/obj/item/storage/spooky/Initialize(mapload)
 	. = ..()
 	for(var/distrobuteinbag in 0 to 5)
 		var/type = pick(/obj/item/reagent_containers/food/snacks/sugarcookie/spookyskull,

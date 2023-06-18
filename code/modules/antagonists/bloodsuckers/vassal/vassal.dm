@@ -329,7 +329,7 @@
 	mike_ehrmantraut.ex_vassals += src
 	COOLDOWN_START(src, blood_timer, BLOOD_TIMER_REQUIREMENT)
 
-	RegisterSignal(src, COMSIG_LIVING_BIOLOGICAL_LIFE, PROC_REF(on_life))
+	RegisterSignal(src, COMSIG_LIVING_LIFE, PROC_REF(on_life))
 
 /datum/antagonist/ex_vassal/proc/on_life(datum/source, delta_time, times_fired)
 	SIGNAL_HANDLER
@@ -392,7 +392,7 @@
 /datum/reagent/blood/bloodsucker
 	name = "Blood two" //real
 
-/datum/reagent/blood/bloodsucker/reaction_mob(mob/living/exposed_mob, methods, reac_volume, show_message, touch_protection)
+/datum/reagent/blood/bloodsucker/reaction_mob(mob/living/exposed_mob, methods, reac_volume, show_message, permeability)
 	var/datum/antagonist/ex_vassal/former_vassal = exposed_mob.mind.has_antag_datum(/datum/antagonist/ex_vassal)
 	if(former_vassal)
 		to_chat(exposed_mob, span_cult("You feel the blood restore you... You feel safe."))

@@ -28,7 +28,7 @@
 /obj/machinery/power/tesla_coil/power
 	circuit = /obj/item/circuitboard/machine/tesla_coil/power
 
-/obj/machinery/power/tesla_coil/Initialize()
+/obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/tesla_coil(src)
 	linked_techweb = SSresearch.science_tech
@@ -178,7 +178,7 @@
 
 	return ..()
 
-/obj/machinery/power/grounding_rod/tesla_act(var/power)
+/obj/machinery/power/grounding_rod/tesla_act(power)
 	if(anchored && !panel_open)
 		flick("grounding_rodhit", src)
 		tesla_buckle_check(power)

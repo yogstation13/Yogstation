@@ -171,7 +171,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	else
 		. += "[dead_message]"
 
-/obj/item/mmi/posibrain/Initialize()
+/obj/item/mmi/posibrain/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	brainmob = new(src)

@@ -187,7 +187,7 @@
 
 /mob/living/simple_animal/hostile/bloodsucker/werewolf/Life(delta_time = (SSmobs.wait/10), times_fired)
 	. = ..()
-	SEND_SIGNAL(src, COMSIG_LIVING_BIOLOGICAL_LIFE, delta_time, times_fired)
+	SEND_SIGNAL(src, COMSIG_LIVING_LIFE, delta_time, times_fired)
 	if(bloodsucker)
 		if(ishuman(bloodsucker))
 			var/mob/living/carbon/human/user = bloodsucker
@@ -217,22 +217,22 @@
 				additionalmessage = "You have mutated a collar made out of fur!"
 				user_species.armor += 10
 				mutation = /obj/item/clothing/neck/wolfcollar
-				slot = SLOT_NECK
+				slot = ITEM_SLOT_NECK
 			if(2)
 				additionalmessage = "You have mutated werewolf ears!"
 				mutation = /obj/item/radio/headset/wolfears
-				slot = SLOT_EARS
+				slot = ITEM_SLOT_EARS
 			if(3)
 				additionalmessage = "You have mutated werewolf claws!"
 				user.physiology.punchdamagehigh_bonus += 2.5
 				user.physiology.punchdamagelow_bonus += 2.5
 				user.physiology.punchstunthreshold_bonus += 2.5
 				mutation = /obj/item/clothing/gloves/wolfclaws
-				slot = SLOT_GLOVES
+				slot = ITEM_SLOT_GLOVES
 			if(4)
 				additionalmessage = "You have mutated werewolf legs!"
 				mutation = /obj/item/clothing/shoes/wolflegs
-				slot = SLOT_SHOES
+				slot = ITEM_SLOT_FEET
 				if(DIGITIGRADE in user.dna.species.species_traits)
 					mutation = /obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
 			if(5 to INFINITY)

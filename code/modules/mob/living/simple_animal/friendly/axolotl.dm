@@ -45,7 +45,7 @@
 		if(L.mob_size > MOB_SIZE_TINY)
 			playsound(src, stepped_sound, 100, 1)
 
-/mob/living/simple_animal/pet/axolotl/Life()
+/mob/living/simple_animal/pet/axolotl/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(!stat && !buckled && !client)
 		if(prob(1))

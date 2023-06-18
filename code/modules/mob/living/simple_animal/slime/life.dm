@@ -7,7 +7,7 @@
 	var/SStun = 0 // stun variable
 
 
-/mob/living/simple_animal/slime/Life()
+/mob/living/simple_animal/slime/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	set invisibility = 0
 	if (notransform)
 		return

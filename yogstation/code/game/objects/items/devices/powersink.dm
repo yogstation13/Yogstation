@@ -48,7 +48,7 @@ GLOBAL_VAR_INIT(powersink_transmitted, 0)
 	var/target_reached = FALSE
 	var/obj/item/radio/alert_radio
 
-/obj/item/powersink/infiltrator/Initialize()
+/obj/item/powersink/infiltrator/Initialize(mapload)
 	. = ..()
 	alert_radio = new(src)
 	alert_radio.make_syndie()

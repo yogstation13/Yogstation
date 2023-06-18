@@ -73,7 +73,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/text_admin
 	var/for_admins
 
-/datum/ticket_log/New(var/datum/admin_help/parent, var/ckey, var/text, var/for_admins = 0)
+/datum/ticket_log/New(datum/admin_help/parent, ckey, text, for_admins = 0)
 	src.gametime = gameTimestamp()
 	src.parent = parent
 
@@ -788,7 +788,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	else
 		view_tickets_main(TICKET_FLAG_LIST_ALL)
 
-/client/proc/view_tickets_main(var/flag)
+/client/proc/view_tickets_main(flag)
 	flag = text2num(flag)
 	if(!flag)
 		flag = TICKET_FLAG_LIST_ALL

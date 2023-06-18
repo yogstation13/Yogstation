@@ -74,9 +74,9 @@
 		SSshuttle.arrivals.QueueAnnounce(tzimisce, jobdatum.title)
 	tzimisce_mind.assigned_role = jobdatum.title //sets up the manifest properly
 	jobdatum.equip(tzimisce) 
-	var/obj/item/card/id/id = tzimisce.get_item_by_slot(SLOT_WEAR_ID)
+	var/obj/item/card/id/id = tzimisce.get_item_by_slot(ITEM_SLOT_ID)
 	if(!istype(id)) //pda on ID slot
-		var/obj/item/modular_computer/tablet/PDA = tzimisce.get_item_by_slot(SLOT_WEAR_ID)
+		var/obj/item/modular_computer/tablet/PDA = tzimisce.get_item_by_slot(ITEM_SLOT_ID)
 		var/obj/item/computer_hardware/card_slot/card_slot2 = PDA.all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = PDA.all_components[MC_CARD]
 		id = card_slot2?.stored_card || card_slot?.stored_card //check both slots, priority on 2nd

@@ -14,7 +14,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	var/inert = FALSE
 
-/obj/item/magmite_parts/Initialize()
+/obj/item/magmite_parts/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(go_inert)), 10 MINUTES)
 

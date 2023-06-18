@@ -14,6 +14,7 @@
 	bloodcost = 30
 	cooldown_time = 8 SECONDS
 	constant_bloodcost = 0.2
+	ascended_power = /datum/action/cooldown/bloodsucker/fortitude/shadow
 	var/was_running
 	var/fortitude_resist // So we can raise and lower your brute resist based on what your level_current WAS.
 
@@ -22,9 +23,7 @@
 	owner.balloon_alert(owner, "fortitude turned on.")
 	to_chat(owner, span_notice("Your flesh, skin, and muscles become as steel."))
 	// Traits & Effects
-	ADD_TRAIT(owner, TRAIT_PIERCEIMMUNE, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(owner, TRAIT_NODISMEMBER, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(owner, TRAIT_PUSHIMMUNE, BLOODSUCKER_TRAIT)
+	owner.add_traits(list(TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE), BLOODSUCKER_TRAIT)
 	if(level_current >= 2)
 		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT) // They'll get stun resistance + this, who cares.
 	var/mob/living/carbon/human/bloodsucker_user = owner
@@ -70,10 +69,7 @@
 		bloodsucker_user.physiology.brute_mod /= 0.4
 		bloodsucker_user.physiology.burn_mod /= 0.4
 	// Remove Traits & Effects
-	REMOVE_TRAIT(bloodsucker_user, TRAIT_PIERCEIMMUNE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(bloodsucker_user, TRAIT_NODISMEMBER, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(bloodsucker_user, TRAIT_PUSHIMMUNE, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(bloodsucker_user, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT)
+	owner.remove_traits(list(TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE), BLOODSUCKER_TRAIT)
 
 	if(was_running && bloodsucker_user.m_intent == MOVE_INTENT_WALK)
 		bloodsucker_user.toggle_move_intent()
@@ -97,6 +93,7 @@
 	additional_text = "Additionally gives you extra damage while fortitude'd and agro grab while in darkness."
 	purchase_flags = LASOMBRA_CAN_BUY
 	constant_bloodcost = 0.3
+	ascended_power = null
 
 /datum/action/cooldown/bloodsucker/fortitude/shadow/ActivatePower()
 	. = ..()
