@@ -463,6 +463,9 @@
 			itemUser.adjustCloneLoss(-0.5 * efficiency) //Becasue apparently clone damage is the bastion of all health
 		//Heal all those around you, unbiased
 		for(var/mob/living/L in view(7, owner))
+			if(ispath(rod_type, /obj/item/rod_of_asclepius/white)) //Used for adjusting the Holy Light Sect Favor from white rod healing.
+				var/total_healing = (min(L.getBruteLoss(), 3.5*efficiency) + min(L.getFireLoss(), 3.5*efficiency) + min(L.getOxyLoss(), 3.5*efficiency) + min(L.getToxLoss(), 3.5 * efficiency))
+				GLOB.religious_sect.adjust_favor(total_healing * 0.2)
 			if(L.health < L.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(L), "#375637")
 			if(iscarbon(L))

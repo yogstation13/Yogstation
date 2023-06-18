@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	var/pinklight = "heads"
 	var/errorlight = "broke"
 
-/obj/machinery/announcement_system/Initialize()
+/obj/machinery/announcement_system/Initialize(mapload)
 	. = ..()
 	GLOB.announcement_systems += src
 	radio = new /obj/item/radio/headset/silicon/ai(src)

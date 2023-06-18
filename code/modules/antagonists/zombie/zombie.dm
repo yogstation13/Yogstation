@@ -372,7 +372,7 @@
 
 	var/silent = TRUE //Do you have to be conscious to use this?
 
-/obj/effect/proc_holder/zombie/Initialize()
+/obj/effect/proc_holder/zombie/Initialize(mapload)
 	. = ..()
 	action = new(src)
 

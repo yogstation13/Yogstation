@@ -54,7 +54,7 @@
 	if(flash)
 		add_overlay(flashing_overlay)
 		attached_overlays += flashing_overlay
-		addtimer(CALLBACK(src, PROC_REF(update_icon)), 5)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 5)
 	if(holder)
 		holder.update_icon()
 
@@ -303,6 +303,9 @@
 /obj/item/assembly/flash/armimplant/rev
 	name = "syndicate flash"
 	desc = "A flash which, used with certain hypnotic and subliminal messaging techniques, can turn loyal crewmembers into vicious revolutionaries."
+	icon_state = "revflash"
+	item_state = "revflash"
+	flashing_overlay = "revflash-f"
 	can_convert = TRUE
 
 /obj/item/assembly/flash/hypnotic

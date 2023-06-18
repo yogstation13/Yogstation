@@ -75,7 +75,7 @@
 	playsound(fishing_component, 'sound/effects/splash.ogg', 50, FALSE, -5)
 	to_chat(fisher, span_italics("You cast out your fishing rod..."))
 
-/obj/item/twohanded/fishingrod/proc/reel_in(var/forced = FALSE)
+/obj/item/twohanded/fishingrod/proc/reel_in(forced = FALSE)
 	if(!forced && bite) // we got something!!!
 		playsound(fishing_component, 'sound/effects/water_emerge.ogg', 50, FALSE, -5)
 		var/power = 0
@@ -118,7 +118,7 @@
 	I.alpha = 0
 	animate(I, pixel_z = 32, alpha = 255, time = 2, easing = ELASTIC_EASING)
 
-/obj/item/twohanded/fishingrod/proc/spawn_reward(var/fishing_power = 0)
+/obj/item/twohanded/fishingrod/proc/spawn_reward(fishing_power = 0)
 	var/picked_reward = fishing_component.get_reward(fishing_power)
 	if(!picked_reward || picked_reward == FISHING_LOOT_NOTHING) //nothing or something messed up
 		fisher.visible_message(span_notice("[fisher] reels in ... nothing!"), span_notice("You reel in... nothing! Better luck next time!"))

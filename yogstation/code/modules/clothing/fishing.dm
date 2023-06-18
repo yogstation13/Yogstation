@@ -6,7 +6,7 @@
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/head/head.dmi'
 	icon = 'yogstation/icons/obj/clothing/hats.dmi'
 
-/obj/item/clothing/head/fishing/Initialize()
+/obj/item/clothing/head/fishing/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,5)
 
@@ -18,7 +18,7 @@
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/suit/suit.dmi'
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 
-/obj/item/clothing/suit/fishing/Initialize()
+/obj/item/clothing/suit/fishing/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,10)
 
@@ -30,7 +30,7 @@
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/hands/hands.dmi'
 	icon = 'yogstation/icons/obj/clothing/gloves.dmi'
 
-/obj/item/clothing/gloves/fishing/Initialize()
+/obj/item/clothing/gloves/fishing/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,5)
 
@@ -42,6 +42,6 @@
 	mob_overlay_icon = 'yogstation/icons/mob/clothing/feet/feet.dmi'
 	icon = 'yogstation/icons/obj/clothing/shoes.dmi'
 
-/obj/item/clothing/shoes/fishing/Initialize()
+/obj/item/clothing/shoes/fishing/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,5)

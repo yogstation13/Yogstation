@@ -21,7 +21,7 @@
 	color = "#736e35"
 	visor_flags_inv = HIDEFACE
 
-/obj/item/clothing/mask/breath/tactical/Initialize()
+/obj/item/clothing/mask/breath/tactical/Initialize(mapload)
 	. = ..()
 	adjustmask() // this mask starts lowered
 

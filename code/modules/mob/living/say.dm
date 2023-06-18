@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 	return new_msg
 
-/mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/say(message, bubble_type,list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	var/static/list/crit_allowed_modes = list(WHISPER_MODE = TRUE, MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
 	var/static/list/unconscious_allowed_modes = list(MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
 
@@ -374,7 +374,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 			imp.radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
-	var/list/storage_item = list(get_active_held_item(), get_item_by_slot(SLOT_BELT), get_item_by_slot(SLOT_R_STORE), get_item_by_slot(SLOT_L_STORE), get_item_by_slot(SLOT_SUIT_STORE))
+	var/list/storage_item = list(get_active_held_item(), get_item_by_slot(ITEM_SLOT_BELT), get_item_by_slot(ITEM_SLOT_RPOCKET), get_item_by_slot(ITEM_SLOT_LPOCKET), get_item_by_slot(ITEM_SLOT_SUITSTORE))
 	for(var/obj/item/radio/hand in storage_item)
 		if(message_mods[MODE_HEADSET])
 			hand.talk_into(src, message, , spans, language, message_mods)

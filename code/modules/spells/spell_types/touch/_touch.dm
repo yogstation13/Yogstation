@@ -64,6 +64,9 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	// Currently, hard checks for carbons.
+	// If someone wants to add support for simplemobs
+	// adminbussed to have hands, go for it
 	if(!iscarbon(owner))
 		return FALSE
 	var/mob/living/carbon/carbon_owner = owner
@@ -72,7 +75,7 @@
 	return TRUE
 
 /datum/action/cooldown/spell/touch/is_valid_target(atom/cast_on)
-	return iscarbon(cast_on)
+	return isliving(cast_on)
 
 /**
  * Creates a new hand_path hand and equips it to the caster.
@@ -93,10 +96,7 @@
 		return FALSE
 
 	attached_hand = new_hand
-	RegisterSignal(attached_hand, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_hand_hit))
-//	RegisterSignal(attached_hand, COMSIG_ITEM_AFTERATTACK_SECONDARY, PROC_REF(on_secondary_hand_hit))
-	RegisterSignal(attached_hand, COMSIG_PARENT_QDELETING, PROC_REF(on_hand_deleted))
-	RegisterSignal(attached_hand, COMSIG_ITEM_DROPPED, PROC_REF(on_hand_dropped))
+	register_hand_signals()
 	to_chat(cast_on, draw_message)
 	return TRUE
 
@@ -110,7 +110,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(!QDELETED(attached_hand))
-		UnregisterSignal(attached_hand, list(COMSIG_ITEM_AFTERATTACK, COMSIG_ITEM_AFTERATTACK_SECONDARY, COMSIG_PARENT_QDELETING, COMSIG_ITEM_DROPPED))
+		unregister_hand_signals()
 		hand_owner?.temporarilyRemoveItemFromInventory(attached_hand)
 		QDEL_NULL(attached_hand)
 
@@ -121,6 +121,31 @@
 	else
 		StartCooldown()
 		build_all_button_icons()
+
+/// Registers all signal procs for the hand.
+/datum/action/cooldown/spell/touch/proc/register_hand_signals()
+	SHOULD_CALL_PARENT(TRUE)
+
+	RegisterSignal(attached_hand, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_hand_hit))
+//	RegisterSignal(attached_hand, COMSIG_ITEM_AFTERATTACK_SECONDARY, PROC_REF(on_secondary_hand_hit))
+	RegisterSignal(attached_hand, COMSIG_ITEM_DROPPED, PROC_REF(on_hand_dropped))
+	RegisterSignal(attached_hand, COMSIG_PARENT_QDELETING, PROC_REF(on_hand_deleted))
+
+	// We can high five with our touch hand. It casts the spell on people. Radical
+//	attached_hand.AddElement(/datum/element/high_fiver)
+	RegisterSignal(attached_hand, COMSIG_ITEM_OFFER_TAKEN, PROC_REF(on_hand_taken))
+
+/// Unregisters all signal procs for the hand.
+/datum/action/cooldown/spell/touch/proc/unregister_hand_signals()
+	SHOULD_CALL_PARENT(TRUE)
+
+	UnregisterSignal(attached_hand, list(
+		COMSIG_ITEM_AFTERATTACK,
+//		COMSIG_ITEM_AFTERATTACK_SECONDARY,
+		COMSIG_ITEM_DROPPED,
+		COMSIG_PARENT_QDELETING,
+		COMSIG_ITEM_OFFER_TAKEN,
+	))
 
 // Touch spells don't go on cooldown OR give off an invocation until the hand is used itself.
 /datum/action/cooldown/spell/touch/before_cast(atom/cast_on)
@@ -141,6 +166,7 @@
  */
 /datum/action/cooldown/spell/touch/proc/on_hand_hit(datum/source, atom/victim, mob/caster, proximity_flag, click_parameters)
 	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE) // DEFINITELY don't put effects here, put them in cast_on_hand_hit
 
 	if(!proximity_flag)
 		return
@@ -298,7 +324,7 @@
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	icon_state = "latexballon"
 	item_state = null
-	item_flags = NEEDS_PERMIT | ABSTRACT
+	item_flags = NEEDS_PERMIT | ABSTRACT | HAND_ITEM
 	w_class = WEIGHT_CLASS_HUGE
 	force = 0
 	throwforce = 0
@@ -317,7 +343,7 @@
 	if(!iscarbon(user)) //Look ma, no hands
 		return TRUE
 	if(!(user.mobility_flags & MOBILITY_USE))
-		to_chat(user, span_warning("You can't reach out!"))
+		user.balloon_alert(user, "can't reach out!")
 		return TRUE
 	return ..()
 

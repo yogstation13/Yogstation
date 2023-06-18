@@ -41,7 +41,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	del_on_death = 1
 
-/mob/living/simple_animal/hostile/tree/Life()
+/mob/living/simple_animal/hostile/tree/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(isopenturf(loc))
 		var/turf/open/T = src.loc
