@@ -133,7 +133,7 @@
 			K.setDir(get_dir(K, target))
 			jumpangle = jumpangle + 150
 		target.apply_damage(hurtamount, BRUTE, armor, wound_bonus=CANT_WOUND)
-		addtimer(CALLBACK(src, PROC_REF(jab), target))
+		jab(target)
 		sleep(0.2 SECONDS)
 	rushdowncd = COOLDOWN_FLURRYATTACK
 	COOLDOWN_START(src, last_attack, rushdowncd)
