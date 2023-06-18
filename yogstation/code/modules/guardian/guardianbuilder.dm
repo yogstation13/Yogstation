@@ -176,8 +176,11 @@
 	if (!user || !iscarbon(user) || !user.mind)
 		return FALSE
 	if (user.mind.martial_art?.no_guns && saved_stats.ranged)
-		to_chat(user, span_danger("You cannot use a ranged holoparasite as you are unable to used ranged projectiles!"))
-		return FALSE
+		if (random)
+			saved_stats.ranged = FALSE // sorry dawg
+		else
+			to_chat(user, span_danger("You cannot use a ranged holoparasite as you are unable to used ranged projectiles!"))
+			return FALSE
 	used = TRUE
 	calc_points()
 	if (points < 0)
