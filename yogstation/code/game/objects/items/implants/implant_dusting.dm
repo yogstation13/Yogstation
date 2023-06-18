@@ -56,6 +56,9 @@
 /obj/item/iaa_reward
 	name = "syndicate button"
 	desc = "A syndicate 'dog tag' with an unreadable inscription. Seems like it would be a bad idea to let someone evil press this."
+	icon = 'icons/obj/assemblies.dmi'
+	icon_state = "bigred"
+	item_state = "electronic"
 	resistance_flags = INDESTRUCTIBLE // no cremation cheese!
 
 /obj/item/iaa_reward/attack_self(mob/user)
