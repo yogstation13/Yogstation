@@ -156,10 +156,10 @@
 		to_chat(user, span_notice("[src] is now set to [shot.select_name]."))
 	chambered = null
 	recharge_newshot(TRUE)
-	update_icon(TRUE)
+	update_appearance(UPDATE_ICON, TRUE)
 	return
 
-/obj/item/gun/energy/update_icon(force_update)
+/obj/item/gun/energy/update_appearance(updates = ALL, force_update)
 	if(QDELETED(src))
 		return
 	..()

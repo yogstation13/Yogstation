@@ -188,7 +188,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /*
  * This proc will update the icon of the ghost itself, with hair overlays, as well as the ghost image.
- * Please call update_icon(icon_state) from now on when you want to update the icon_state of the ghost,
+ * Please call update_appearance(UPDATE_ICON, icon_state) from now on when you want to update the icon_state of the ghost,
  * or you might end up with hair on a sprite that's not supposed to get it.
  * Hair will always update its dir, so if your sprite has no dirs the haircut will go all over the place.
  * |- Ricotez

@@ -15,6 +15,7 @@
 	desc = "Or the A.S.S. Bot for short."
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "atmosbot0"
+	base_icon_state = "atmosbot"
 	density = FALSE
 	anchored = FALSE
 	health = 25
@@ -122,10 +123,9 @@
 /mob/living/simple_animal/bot/atmosbot/proc/deploy_smartmetal()
 	if(emagged == 2)
 		explosion(src.loc,1,2,4,flame_range = 2)
-		qdel(src)
 	else
 		deployed_smartmetal = WEAKREF(new /obj/effect/particle_effect/fluid/foam/metal/smart(get_turf(src)))
-		qdel(src)
+	qdel(src)
 	return
 
 //Analyse the atmosphere to see if there is a potential breach nearby
@@ -194,10 +194,11 @@
 			return
 		breached_pressure = new_breach_pressure
 	update_controls()
-	update_appearance(updates = ALL)
+	update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/bot/atmosbot/update_appearance(updates = ALL)
-	icon_state = "atmosbot[on][on?"_[action]":""]"
+/mob/living/simple_animal/bot/atmosbot/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state][on][on ? "_[action]" : ""]"
 
 /mob/living/simple_animal/bot/atmosbot/UnarmedAttack(atom/A, proximity)
 	if(isturf(A) && A == get_turf(src))

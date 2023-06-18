@@ -22,7 +22,9 @@
 		default_unfasten_wrench(user, W, 0)
 	else
 		return ..()
-/obj/machinery/the_singularitygen/update_icon(power)
+
+/obj/machinery/the_singularitygen/update_appearance(updates = ALL, power)
+	. = ..()
 	if(power)
 		if(power>150)
 			animate(src, icon_state = "[initial(icon_state)]_3", 10)
@@ -43,4 +45,4 @@
 			qdel(src)
 		else
 			energy -= delta_time * 0.5
-			update_icon(energy)
+			update_appearance(UPDATE_ICON, energy)

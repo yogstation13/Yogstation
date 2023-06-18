@@ -175,7 +175,7 @@
 	to_chat(user,span_notice("You switch [src] setting to [setting] mode."))
 	update_appearance(updates = ALL)
 
-/obj/item/gun/energy/dueling/update_icon(force_update)
+/obj/item/gun/energy/dueling/update_appearance(updates = ALL, force_update)
 	. = ..()
 	if(setting_overlay)
 		cut_overlay(setting_overlay)

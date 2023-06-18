@@ -61,7 +61,7 @@
 	helmet_on = !helmet_on
 	icon_state = "[initial(icon_state)][helmet_on ? "-light":""]"
 	item_state = icon_state
-	update_icon(user)
+	update_appearance(UPDATE_ICON, user)
 	
 	set_light_on(helmet_on)
 
@@ -78,9 +78,10 @@
 		saved_style = "enviro[GLOB.plasmaman_helmet_list[style]]"
 		add_overlay(mutable_appearance('icons/obj/clothing/hats.dmi', saved_style))
 		helmet_mob_overlay = mutable_appearance('icons/mob/clothing/head/head.dmi', saved_style)
-		update_icon(user)
+		update_appearance(UPDATE_ICON, user)
 
-/obj/item/clothing/head/helmet/space/plasmaman/update_icon(mob/living/carbon/human/user)
+/obj/item/clothing/head/helmet/space/plasmaman/update_appearance(updates = ALL, mob/living/carbon/human/user)
+	. = ..()
 	if(!user)
 		return
 	user.cut_overlay(helmet_mob_overlay)
@@ -95,7 +96,7 @@
 	if(slot != ITEM_SLOT_HEAD)
 		user.cut_overlay(helmet_mob_overlay)
 		return
-	update_icon(user)
+	update_appearance(UPDATE_ICON, user)
 
 /obj/item/clothing/head/helmet/space/plasmaman/dropped(mob/living/user)
 	user.cut_overlay(helmet_mob_overlay)

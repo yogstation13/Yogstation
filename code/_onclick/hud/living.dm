@@ -4,7 +4,7 @@
 /datum/hud/living/New(mob/living/owner)
 	..()
 
-	pull_icon = new /atom/movable/screen/pull()
+	pull_icon = new /atom/movable/screen/pull(src)
 	pull_icon.icon = ui_style
 	pull_icon.update_appearance(updates = ALL)
 	pull_icon.screen_loc = ui_living_pull
@@ -12,6 +12,6 @@
 	static_inventory += pull_icon
 
 	//mob health doll! assumes whatever sprite the mob is
-	healthdoll = new /atom/movable/screen/healthdoll/living()
+	healthdoll = new /atom/movable/screen/healthdoll/living(src)
 	healthdoll.hud = src
 	infodisplay += healthdoll

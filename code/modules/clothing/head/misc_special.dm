@@ -134,7 +134,7 @@
 
 /obj/item/clothing/head/kitty/equipped(mob/living/carbon/human/user, slot)
 	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
-		update_icon(user)
+		update_appearance(UPDATE_ICON, user)
 		user.update_inv_head() //Color might have been changed by update_icon.
 		var/datum/language_holder/LH = user.get_language_holder()
 		if(!LH.has_language(/datum/language/felinid) || !LH.can_speak_language(/datum/language/felinid))
@@ -150,7 +150,8 @@
 		LH.remove_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
 	
 
-/obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
+/obj/item/clothing/head/kitty/update_appearance(updates = ALL, mob/living/carbon/human/user)
+	. = ..()
 	if(ishuman(user))
 		add_atom_colour("#[user.hair_color]", FIXED_COLOUR_PRIORITY)
 

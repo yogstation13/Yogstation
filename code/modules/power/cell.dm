@@ -77,7 +77,7 @@
 		. |= COMPONENT_ITEM_BURNT_OUT
 
 	charge = maxcharge
-	update_icon()
+	update_appearance()
 
 	// Guns need to process their chamber when we've been charged
 	if(isgun(loc))
@@ -86,7 +86,7 @@
 
 	// The thing we're in might have overlays or icon states for whether the cell is charged
 	if(!ismob(loc))
-		loc.update_icon()
+		loc.update_appearance()
 
 	return .
 

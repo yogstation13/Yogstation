@@ -27,7 +27,7 @@
 		max_time -= L.rating
 	interval = max(max_time,1)
 
-/obj/machinery/harvester/update_icon(warming_up)
+/obj/machinery/harvester/update_appearance(updates = ALL, warming_up)
 	if(warming_up)
 		icon_state = initial(icon_state)+"-charging"
 		return
@@ -87,7 +87,7 @@
 	harvesting = TRUE
 	visible_message(span_notice("The [name] begins warming up!"))
 	say("Initializing harvest protocol.")
-	update_icon(TRUE)
+	update_appearance(UPDATE_ICON, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(harvest)), interval)
 
 /obj/machinery/harvester/proc/harvest()

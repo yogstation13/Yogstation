@@ -594,7 +594,7 @@
 	else
 		return FALSE
 
-/obj/machinery/door/airlock/update_icon(state=0, override=0)
+/obj/machinery/door/airlock/update_appearance(updates, state=0, override=0)
 	cut_overlays()
 	if(operating && !override)
 		return
@@ -764,15 +764,15 @@
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
 		if("opening")
-			update_icon(AIRLOCK_OPENING)
+			update_appearance(UPDATE_ICON, AIRLOCK_OPENING)
 		if("closing")
-			update_icon(AIRLOCK_CLOSING)
+			update_appearance(UPDATE_ICON, AIRLOCK_CLOSING)
 		if("deny")
 			if(!stat)
-				update_icon(AIRLOCK_DENY)
+				update_appearance(UPDATE_ICON, AIRLOCK_DENY)
 				playsound(src,doorDeni,50,0,3)
 				sleep(0.6 SECONDS)
-				update_icon(AIRLOCK_CLOSED)
+				update_appearance(UPDATE_ICON, AIRLOCK_CLOSED)
 
 /obj/machinery/door/airlock/examine(mob/user)
 	. = ..()
@@ -1392,7 +1392,7 @@
 		if(welded)
 			welded = !welded
 	operating = TRUE
-	update_icon(AIRLOCK_OPENING, 1)
+	update_appearance(UPDATE_ICON, AIRLOCK_OPENING, 1)
 	sleep(0.1 SECONDS)
 	set_opacity(0)
 	update_freelook_sight()
@@ -1402,7 +1402,7 @@
 	air_update_turf(1)
 	sleep(0.1 SECONDS)
 	layer = OPEN_DOOR_LAYER
-	update_icon(AIRLOCK_OPEN, 1)
+	update_appearance(UPDATE_ICON, AIRLOCK_OPEN, 1)
 	operating = FALSE
 	if(delayed_close_requested)
 		delayed_close_requested = FALSE
@@ -1437,7 +1437,7 @@
 		SSexplosions.med_mov_atom += killthis
 
 	operating = TRUE
-	update_icon(AIRLOCK_CLOSING, 1)
+	update_appearance(UPDATE_ICON, AIRLOCK_CLOSING, 1)
 	layer = CLOSED_DOOR_LAYER
 	if(air_tight)
 		density = TRUE
@@ -1453,7 +1453,7 @@
 		set_opacity(1)
 	update_freelook_sight()
 	sleep(0.1 SECONDS)
-	update_icon(AIRLOCK_CLOSED, 1)
+	update_appearance(UPDATE_ICON, AIRLOCK_CLOSED, 1)
 	operating = FALSE
 	delayed_close_requested = FALSE
 	if(safe)
@@ -1503,13 +1503,13 @@
 /obj/machinery/door/airlock/emag_act(mob/user)
 	if(!operating && density && hasPower() && !(obj_flags & EMAGGED))
 		operating = TRUE
-		update_icon(AIRLOCK_EMAG, 1)
+		update_appearance(UPDATE_ICON, AIRLOCK_EMAG, 1)
 		sleep(0.6 SECONDS)
 		if(QDELETED(src))
 			return
 		operating = FALSE
 		if(!open())
-			update_icon(AIRLOCK_CLOSED, 1)
+			update_appearance(UPDATE_ICON, AIRLOCK_CLOSED, 1)
 		obj_flags |= EMAGGED
 		lights = FALSE
 		locked = TRUE
@@ -1814,7 +1814,7 @@
 
 /obj/machinery/door/airlock/proc/blow_charge()
 	panel_open = TRUE
-	update_icon(AIRLOCK_OPENING)
+	update_appearance(UPDATE_ICON, AIRLOCK_OPENING)
 	visible_message(span_warning("[src]'s panel is blown off in a spray of deadly shrapnel!"))
 	charge.forceMove(drop_location())
 	charge.ex_act(EXPLODE_DEVASTATE)

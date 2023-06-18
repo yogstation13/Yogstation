@@ -15,8 +15,15 @@
 	speech_span = SPAN_ROBOT
 	vis_flags = VIS_INHERIT_PLANE
 	appearance_flags = APPEARANCE_UI
-	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
-	var/datum/hud/hud = null // A reference to the owner HUD, if any.
+	/// A reference to the object in the slot. Grabs or items, generally.
+	var/obj/master = null
+	/// A reference to the owner HUD, if any.
+	var/datum/hud/hud = null
+
+/atom/movable/screen/New(datum/hud/new_hud)
+	. = ..()
+	if(istype(new_hud))
+		hud = new_hud
 
 /atom/movable/screen/Destroy()
 	master = null
@@ -444,6 +451,7 @@
 	return set_selected_zone(choice, usr)
 
 /atom/movable/screen/zone_sel/MouseEntered(location, control, params)
+	. = ..()
 	MouseMove(location, control, params)
 
 /atom/movable/screen/zone_sel/MouseMove(location, control, params)

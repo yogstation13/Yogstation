@@ -2,7 +2,7 @@
 	..()
 	var/atom/movable/screen/inventory/inv_box
 
-	inv_box = new /atom/movable/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory(src)
 	inv_box.name = "internal storage"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "suit_storage"
@@ -11,7 +11,7 @@
 	inv_box.slot_id = ITEM_SLOT_DEX_STORAGE
 	static_inventory += inv_box
 
-	inv_box = new /atom/movable/screen/inventory()
+	inv_box = new /atom/movable/screen/inventory(src)
 	inv_box.name = "head/mask"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "mask"

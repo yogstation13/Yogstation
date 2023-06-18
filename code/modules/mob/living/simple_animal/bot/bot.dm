@@ -130,7 +130,7 @@
 	on = TRUE
 	update_mobility()
 	set_light_on(on)
-	update_appearance(updates = ALL)
+	update_appearance(UPDATE_ICON)
 	diag_hud_set_botstat()
 	return TRUE
 
@@ -139,7 +139,7 @@
 	update_mobility()
 	set_light_on(on)
 	bot_reset() //Resets an AI's call, should it exist.
-	update_appearance(updates = ALL)
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/Initialize(mapload)
 	. = ..()
@@ -400,7 +400,7 @@
 	if(istype(dropped_item, /obj/item/stock_parts/cell))
 		var/obj/item/stock_parts/cell/dropped_cell = dropped_item
 		dropped_cell.charge = 0
-		dropped_cell.update_appearance(updates = ALL)
+		dropped_cell.update_appearance(UPDATE_ICON)
 
 	else if(istype(dropped_item, /obj/item/storage))
 		var/obj/item/storage/S = dropped_item
@@ -409,7 +409,7 @@
 	else if(istype(dropped_item, /obj/item/gun/energy))
 		var/obj/item/gun/energy/dropped_gun = dropped_item
 		dropped_gun.cell.charge = 0
-		dropped_gun.update_appearance(updates = ALL)
+		dropped_gun.update_appearance(UPDATE_ICON)
 
 //Generalized behavior code, override where needed!
 
@@ -855,8 +855,9 @@ Pass a positive integer as an argument to override a bot's default speed.
 				ejectpai(usr)
 	update_controls()
 
-/mob/living/simple_animal/bot/update_appearance(updates = ALL)
-	icon_state = "[initial(icon_state)][on]"
+/mob/living/simple_animal/bot/update_icon_state()
+	icon_state = "[isnull(base_icon_state) ? initial(icon_state) : base_icon_state][on]"
+	return ..()
 
 // Machinery to simplify topic and access calls
 /obj/machinery/bot_core

@@ -12,6 +12,7 @@
 	name = "\improper MULEbot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
+	base_icon_state = "mulebot"
 	density = TRUE
 	move_resist = MOVE_FORCE_STRONG
 	animate_movement = 1
@@ -121,21 +122,20 @@
 	if(!open)
 		locked = !locked
 		to_chat(user, span_notice("You [locked ? "lock" : "unlock"] [src]'s controls!"))
-	flick("mulebot-emagged", src)
+	flick("[base_icon_state]-emagged", src)
 	playsound(src, "sparks", 100, 0)
 
-/mob/living/simple_animal/bot/mulebot/update_appearance(updates = ALL)
-	if(open)
-		icon_state="mulebot-hatch"
-	else
-		icon_state = "mulebot[wires.is_cut(WIRE_AVOIDANCE)]"
-	cut_overlays()
-	if(load && !ismob(load))//buckling handles the mob offsets
-		load.pixel_y = initial(load.pixel_y) + 9
-		if(load.layer < layer)
-			load.layer = layer + 0.01
-		add_overlay(load)
-	return
+/mob/living/simple_animal/bot/mulebot/update_icon_state() //if you change the icon_state names, please make sure to update /datum/wires/mulebot/on_pulse() as well. <3
+	. = ..()
+	icon_state = "[base_icon_state][open ? "-hatch" : wires.is_cut(WIRE_AVOIDANCE)]"
+
+/mob/living/simple_animal/bot/mulebot/update_overlays()
+	. = ..()
+	if(!load || ismob(load)) //mob offsets and such are handled by the riding component / buckling
+		return
+	var/mutable_appearance/load_overlay = mutable_appearance(load.icon, load.icon_state, layer + 0.01)
+	load_overlay.pixel_y = initial(load.pixel_y) + 9
+	. += load_overlay
 
 /mob/living/simple_animal/bot/mulebot/ex_act(severity)
 	unload(0)
@@ -338,6 +338,7 @@
 		if(DELIGHT)
 			audible_message("[src] makes a delighted ping!", span_italics("You hear a ping."))
 			playsound(loc, 'sound/machines/ping.ogg', 50, 0)
+	flick("[base_icon_state]1", src)
 
 
 // mousedrop a crate to load the bot

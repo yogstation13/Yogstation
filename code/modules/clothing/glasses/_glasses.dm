@@ -338,11 +338,12 @@
 
 /obj/item/clothing/glasses/blindfold/white/equipped(mob/living/carbon/human/user, slot)
 	if(ishuman(user) && slot == ITEM_SLOT_EYES)
-		update_icon(user)
+		update_appearance(UPDATE_ICON, user)
 		user.update_inv_glasses() //Color might have been changed by update_icon.
 	..()
 
-/obj/item/clothing/glasses/blindfold/white/update_icon(mob/living/carbon/human/user)
+/obj/item/clothing/glasses/blindfold/white/update_appearance(updates = ALL, mob/living/carbon/human/user)
+	. = ..()
 	if(ishuman(user) && !colored_before)
 		add_atom_colour("#[user.eye_color]", FIXED_COLOUR_PRIORITY)
 		colored_before = TRUE

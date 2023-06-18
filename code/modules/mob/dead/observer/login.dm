@@ -16,5 +16,5 @@
 	if (isturf(T))
 		update_z(T.z)
 
-	update_icon(preferred_form)
+	update_appearance(UPDATE_ICON, preferred_form)
 	updateghostimages()

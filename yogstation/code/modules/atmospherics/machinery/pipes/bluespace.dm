@@ -49,7 +49,8 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 /obj/machinery/atmospherics/pipe/bluespace/hide()
 	update_appearance(updates = ALL)
 
-/obj/machinery/atmospherics/pipe/bluespace/update_icon(showpipe)
+/obj/machinery/atmospherics/pipe/bluespace/update_appearance(updates = ALL, showpipe)
+	. = ..()
 	underlays.Cut()
 
 	var/turf/T = loc

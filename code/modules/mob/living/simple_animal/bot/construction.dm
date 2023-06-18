@@ -214,17 +214,28 @@
 	. = ..()
 	update_appearance(updates = ALL)
 
-/obj/item/bot_assembly/floorbot/update_appearance(updates = ALL)
-	..()
+/obj/item/bot_assembly/floorbot/update_name()
+	. = ..()
 	switch(build_step)
-		if(ASSEMBLY_FIRST_STEP)
-			desc = initial(desc)
+		if(ASSEMBLY_SECOND_STEP)
+			name = "incomplete floorbot assembly"
+		else
 			name = initial(name)
-			icon_state = "[toolbox_color]toolbox_tiles"
 
+/obj/item/bot_assembly/floorbot/update_desc()
+	. = ..()
+	switch(build_step)
 		if(ASSEMBLY_SECOND_STEP)
 			desc = "It's a toolbox with tiles sticking out the top and a sensor attached."
-			name = "incomplete floorbot assembly"
+		else
+			desc = initial(desc)
+
+/obj/item/bot_assembly/floorbot/update_icon_state()
+	. = ..()
+	switch(build_step)
+		if(ASSEMBLY_FIRST_STEP)
+			icon_state = "[toolbox_color]toolbox_tiles"
+		if(ASSEMBLY_SECOND_STEP)
 			icon_state = "[toolbox_color]toolbox_tiles_sensor"
 
 /obj/item/bot_assembly/floorbot/attackby(obj/item/W, mob/user, params)

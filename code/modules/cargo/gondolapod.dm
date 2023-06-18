@@ -29,11 +29,9 @@
 	name = linked_pod.name
 	. = ..()
 
-/mob/living/simple_animal/pet/gondola/gondolapod/update_appearance(updates = ALL)
-	if(opened)
-		icon_state = "gondolapod_open"
-	else
-		icon_state = "gondolapod"
+/mob/living/simple_animal/pet/gondola/gondolapod/update_icon_state()
+	icon_state = "gondolapod[opened ? "_open" : ""]"
+	return ..()
 
 /mob/living/simple_animal/pet/gondola/gondolapod/verb/deliver()
 	set name = "Release Contents"

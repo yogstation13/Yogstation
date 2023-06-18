@@ -905,7 +905,7 @@
 	. = ..()
 	set_opacity(obj_integrity >= max_integrity)
 
-/obj/structure/window/paperframe/update_icon(updates=ALL)
+/obj/structure/window/paperframe/update_icon(updates = ALL)
 	. = ..()
 	queue_smooth(src)
 

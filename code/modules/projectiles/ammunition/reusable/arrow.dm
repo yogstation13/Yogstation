@@ -40,7 +40,7 @@
 	if(LAZYLEN(new_parts))
 		CheckParts(new_parts)
 
-/obj/item/ammo_casing/reusable/arrow/update_icon(force_update)
+/obj/item/ammo_casing/reusable/arrow/update_appearance(updates = ALL, force_update)
 	..()
 	cut_overlays()
 	if(istype(explosive))
@@ -442,7 +442,7 @@
 		update_appearance(updates = ALL)
 	..()
 
-/obj/item/ammo_casing/reusable/arrow/singulo/update_icon(force_update)
+/obj/item/ammo_casing/reusable/arrow/singulo/update_appearance(updates = ALL,force_update)
 	..()
 	if(istype(shard))
 		add_overlay(mutable_appearance(icon, "[icon_state]_[shard.icon_state]"), TRUE)

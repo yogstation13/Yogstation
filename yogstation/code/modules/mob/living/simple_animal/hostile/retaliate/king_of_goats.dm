@@ -251,11 +251,10 @@ Difficulty: Insanely Hard
 	player.music_path = /datum/music/sourced/battle/king_goat_2
 	player.do_range_check(0)
 	stun_chance = 10
-	update_appearance(updates = ALL)
+	update_appearance(UPDATE_ICON)
 	visible_message(span_cult("\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!"))
 
-
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/update_appearance(updates = ALL)
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/update_icon_state()
 	var/matrix/M = new
 	if(phase3)
 		icon_state = "king_goat3"
@@ -265,6 +264,7 @@ Difficulty: Insanely Hard
 		M.Scale(1.25)
 	transform = M
 	pixel_y = 10
+	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()

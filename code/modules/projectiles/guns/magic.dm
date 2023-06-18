@@ -49,7 +49,7 @@
 		. |= COMPONENT_ITEM_BURNT_OUT
 
 	charges = max_charges
-	update_icon()
+	update_appearance()
 	recharge_newshot()
 
 	return .

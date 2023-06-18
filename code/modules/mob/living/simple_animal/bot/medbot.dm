@@ -15,6 +15,7 @@
 	desc = "A little medical robot. He looks somewhat underwhelmed."
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "medibot0"
+	base_icon_state = "medibot"
 	density = FALSE
 	anchored = FALSE
 	health = 20
@@ -91,23 +92,23 @@
 	treatment_tox_avoid = null
 	treatment_tox = /datum/reagent/toxin/sodium_thiopental
 
-/mob/living/simple_animal/bot/medbot/update_appearance(updates = ALL)
-	cut_overlays()
-	if(skin)
-		add_overlay("medskin_[skin]")
+/mob/living/simple_animal/bot/medbot/update_icon_state()
+	. = ..()
 	if(!on)
-		icon_state = "medibot0"
+		icon_state = "[base_icon_state]0"
 		return
 	if(IsStun() || IsParalyzed())
-		icon_state = "medibota"
+		icon_state = "[base_icon_state]a"
 		return
 	if(mode == BOT_HEALING)
-		icon_state = "medibots[stationary_mode]"
+		icon_state = "[base_icon_state]s[stationary_mode]"
 		return
-	else if(stationary_mode) //Bot has yellow light to indicate stationary mode.
-		icon_state = "medibot2"
-	else
-		icon_state = "medibot1"
+	icon_state = "[base_icon_state][stationary_mode ? 2 : 1]" //Bot has yellow light to indicate stationary mode.
+
+/mob/living/simple_animal/bot/medbot/update_overlays()
+	. = ..()
+	if(skin)
+		. += "medskin_[skin]"
 
 /mob/living/simple_animal/bot/medbot/Initialize(mapload, new_skin)
 	. = ..()
