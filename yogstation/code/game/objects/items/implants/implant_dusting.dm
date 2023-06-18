@@ -39,7 +39,38 @@
 
 /obj/item/implant/dusting/on_mob_death(mob/living/L, gibbed)
 	activate("death")
-	
+
 /obj/item/implant/dusting/emp_act()
 	return
-	
+
+/obj/item/implant/dusting/iaa/removed(mob/living/source, silent, special)
+	activate("tampering")
+
+/obj/item/implant/dusting/iaa/activate(cause)
+	. = ..()
+	var/turf/my_turf = get_turf(src)
+	var/obj/item/iaa_reward/drop = new(my_turf)
+	if(imp_in)
+		drop.desc = "A syndicate 'dog tag' with an inscription that reads [imp_in.real_name]. Seems like it would be a bad idea to let someone evil press this."
+
+/obj/item/iaa_reward
+	name = "syndicate button"
+	desc = "A syndicate 'dog tag' with an unreadable inscription. Seems like it would be a bad idea to let someone evil press this."
+
+/obj/item/iaa_reward/attack_self(mob/user)
+	. = ..()
+	if(is_syndicate(user))
+		// Reward
+		to_chat(user, span_notice("\The [src] transforms into 3 telecrystals!"))
+		var/hand_index = user.get_held_index_of_item(src)
+		user.dropItemToGround(src, TRUE, TRUE)
+		var/obj/item/stack/telecrystal/three/reward = new
+		if(!user.put_in_hand(reward, hand_index))
+			reward.forceMove(get_turf(user))
+		// Spawn new IAA
+		if(istype(SSticker.mode, /datum/game_mode/traitor/internal_affairs))
+			var/datum/game_mode/traitor/internal_affairs/iaa_mode = SSticker.mode
+			iaa_mode.create_new_traitor()
+		qdel(src)
+	else
+		to_chat(user, span_notice("\The [src] doesn't seem to do anything."))

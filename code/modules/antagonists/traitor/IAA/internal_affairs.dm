@@ -34,7 +34,7 @@
 
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
-		var/obj/item/implant/dusting/E = new/obj/item/implant/dusting(H)
+		var/obj/item/implant/dusting/iaa/E = new(H)
 		E.implant(H)
 
 	company = pick(subtypesof(/datum/corporation/traitor))
