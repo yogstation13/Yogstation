@@ -64,6 +64,6 @@
 /obj/item/implanter/greytide
 	name = "implanter (greytide)"
 
-/obj/item/implanter/greytide/Initialize()
+/obj/item/implanter/greytide/Initialize(mapload)
 	. = ..()
 	imp = new /obj/item/implant/greytide(src)

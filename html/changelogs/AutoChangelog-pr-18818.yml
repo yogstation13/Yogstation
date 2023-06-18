@@ -1,6 +1,0 @@
-author: "azzzertyy"
-delete-after: true 
-changes: 
-  - rscadd: "Added push broom to the janitors vendor"
-  - rscadd: "Added janiborg pushbroom"
-  - imageadd: "Added sprites for broom, broom dual wield & janicart sprites for the broom"

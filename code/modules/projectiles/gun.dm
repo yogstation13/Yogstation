@@ -86,7 +86,7 @@
 
 	var/list/obj/effect/projectile/tracer/current_tracers
 
-/obj/item/gun/Initialize()
+/obj/item/gun/Initialize(mapload)
 	. = ..()
 	if(pin)
 		if(no_pin_required)

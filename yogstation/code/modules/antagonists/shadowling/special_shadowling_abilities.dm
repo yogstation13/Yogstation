@@ -96,8 +96,8 @@
 				antag_datum.show_to_ghosts = TRUE
 			H.LoadComponent(/datum/component/walk/shadow)
 
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(H), SLOT_WEAR_SUIT)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(H), ITEM_SLOT_OCLOTHING)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(H), ITEM_SLOT_HEAD)
 			H.set_species(/datum/species/shadow/ling) //can't be a shadowling without being a shadowling
 			H.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA), TRUE)
 			Remove(H)

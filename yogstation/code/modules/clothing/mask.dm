@@ -21,7 +21,7 @@
 	///if the mask should cluwne you when you put it on
 	var/auto_cluwne = TRUE
 
-/obj/item/clothing/mask/yogs/cluwne/Initialize()
+/obj/item/clothing/mask/yogs/cluwne/Initialize(mapload)
 	.=..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
@@ -56,7 +56,7 @@
 	. = ..()
 	if(!ishuman(user))
 		return
-	if(slot == SLOT_WEAR_MASK)
+	if(slot == ITEM_SLOT_MASK)
 		play_laugh()
 		if(auto_cluwne)
 			var/mob/living/carbon/human/H = user
@@ -79,7 +79,7 @@
 	/// If active, creates a floor cluwne with the user as a target
 	var/does_floor_cluwne = FALSE
 
-/obj/item/clothing/mask/yogs/cluwne/happy_cluwne/Initialize()
+/obj/item/clothing/mask/yogs/cluwne/happy_cluwne/Initialize(mapload)
 	.=..()
 	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 	if(prob(1)) //this function pre-determines the logic of the cluwne mask. applying and reapplying the mask does not alter or change anything
@@ -94,7 +94,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(slot == SLOT_WEAR_MASK)
+	if(slot == ITEM_SLOT_MASK)
 		if(does_cluwne)
 			log_admin("[key_name(H)] was made into a cluwne by [src]")
 			message_admins("[key_name(H)] got cluwned by [src]")

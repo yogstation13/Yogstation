@@ -138,7 +138,7 @@
 			R.shatter() // Shield :b:roke
 			qdel(R)
 
-/obj/item/gun/magic/hook/sickly_blade/Initialize()
+/obj/item/gun/magic/hook/sickly_blade/Initialize(mapload)
 	. = ..()
 	linked_action = new(src)
 
@@ -198,13 +198,16 @@
 
 /obj/item/clothing/neck/eldritch_amulet/equipped(mob/user, slot)
 	..()
-	if(ishuman(user) && user.mind && slot == SLOT_NECK && (IS_HERETIC(user) || IS_HERETIC_MONSTER(user)) )
-		ADD_TRAIT(user, trait, CLOTHING_TRAIT)
+	if(user.mind && (IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		attach_clothing_traits(trait)
+		user.update_sight()
+	else if(trait in clothing_traits)
+		detach_clothing_traits(trait)
 		user.update_sight()
 
 /obj/item/clothing/neck/eldritch_amulet/dropped(mob/user)
 	..()
-	REMOVE_TRAIT(user, trait, CLOTHING_TRAIT)
+	detach_clothing_traits(trait)
 	user.update_sight()
 
 /obj/item/clothing/neck/eldritch_amulet/piercing

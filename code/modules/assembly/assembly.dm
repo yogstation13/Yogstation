@@ -58,7 +58,7 @@
 	return TRUE
 
 
-//Called when another assembly acts on this one, var/radio will determine where it came from for wire calcs
+//Called when another assembly acts on this one, radio will determine where it came from for wire calcs
 /obj/item/assembly/proc/pulsed(radio = FALSE)
 	if(wire_type & WIRE_RECEIVE)
 		INVOKE_ASYNC(src, PROC_REF(activate))
@@ -67,7 +67,7 @@
 	return TRUE
 
 
-//Called when this device attempts to act on another device, var/radio determines if it was sent via radio or direct
+//Called when this device attempts to act on another device, radio determines if it was sent via radio or direct
 /obj/item/assembly/proc/pulse(radio = FALSE)
 	if(connected && wire_type)
 		connected.pulse_assembly(src)

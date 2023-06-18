@@ -13,6 +13,18 @@
 	invocation_type = INVOCATION_NONE
 	spell_requirements = NONE
 
+/datum/action/cooldown/spell/timestop/guardian/Grant(mob/grant_to)
+	. = ..()
+	var/mob/living/simple_animal/hostile/guardian/guardian = owner
+	if(guardian && istype(guardian) && guardian.summoner)
+		ADD_TRAIT(guardian.summoner, TRAIT_TIME_STOP_IMMUNE, REF(src))
+
+/datum/action/cooldown/spell/timestop/guardian/Remove(mob/remove_from)
+	var/mob/living/simple_animal/hostile/guardian/guardian = owner
+	if(guardian && istype(guardian) && guardian.summoner)
+		REMOVE_TRAIT(guardian.summoner, TRAIT_TIME_STOP_IMMUNE, REF(src))
+	return ..()
+
 /datum/action/cooldown/spell/timestop/guardian/beserk
 	timestop_effect = /obj/effect/timestop/berserk
 

@@ -102,6 +102,7 @@
 
 	school = SCHOOL_RESTORATION
 
+	check_flags = NONE
 	cooldown_time = 20 SECONDS
 	vamp_req = TRUE
 
@@ -326,10 +327,10 @@
 	button_icon_state = "coffin"
 	background_icon_state = "bg_vampire"
 	overlay_icon_state = "bg_vampire_border"
-	check_flags = NONE
 
 	school = SCHOOL_SANGUINE
 
+	check_flags = NONE
 	cooldown_time = 100 SECONDS
 	vamp_req = TRUE
 

@@ -165,15 +165,18 @@ round(cos_inv_third+sqrt3_sin, 0.001), round(cos_inv_third-sqrt3_sin, 0.001), ro
 //These next three rotate values about one axis only
 //x is the red axis, y is the green axis, z is the blue axis.
 /proc/color_matrix_rotate_x(angle)
-	var/sinval = round(sin(angle), 0.001); var/cosval = round(cos(angle), 0.001)
+	var/sinval = round(sin(angle), 0.001)
+	var/cosval = round(cos(angle), 0.001)
 	return list(1,0,0,0, 0,cosval,sinval,0, 0,-sinval,cosval,0, 0,0,0,1, 0,0,0,0)
 
 /proc/color_matrix_rotate_y(angle)
-	var/sinval = round(sin(angle), 0.001); var/cosval = round(cos(angle), 0.001)
+	var/sinval = round(sin(angle), 0.001)
+	var/cosval = round(cos(angle), 0.001)
 	return list(cosval,0,-sinval,0, 0,1,0,0, sinval,0,cosval,0, 0,0,0,1, 0,0,0,0)
 
 /proc/color_matrix_rotate_z(angle)
-	var/sinval = round(sin(angle), 0.001); var/cosval = round(cos(angle), 0.001)
+	var/sinval = round(sin(angle), 0.001)
+	var/cosval = round(cos(angle), 0.001)
 	return list(cosval,sinval,0,0, -sinval,cosval,0,0, 0,0,1,0, 0,0,0,1, 0,0,0,0)
 
 

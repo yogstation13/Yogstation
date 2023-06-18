@@ -70,7 +70,7 @@
 			if(initial(tempCheck.icon_state) != null) //check it's an actual usable item, in a hacky way
 				valid_items["[I]"] += rand(1,4)
 
-/obj/machinery/rnd/experimentor/Initialize()
+/obj/machinery/rnd/experimentor/Initialize(mapload)
 	. = ..()
 
 	trackedIan = locate(/mob/living/simple_animal/pet/dog/corgi/Ian) in GLOB.mob_living_list
@@ -606,7 +606,7 @@
 	var/cooldownMax = 60
 	var/cooldown
 
-/obj/item/relic/Initialize()
+/obj/item/relic/Initialize(mapload)
 	. = ..()
 	icon_state = pick("shock_kit","armor-igniter-analyzer","infra-igniter0","infra-igniter1","radio-multitool","prox-radio1","radio-radio","timer-multitool0","radio-igniter-tank","infra-igniter-tank0","infra-igniter-tank1","infrared-radio0","infrared-radio1","prox-igniter0","prox-igniter1","prox-igniter2","prox-multitool0","prox-multitool1","prox-multitool2","prox-radio0","prox-radio1","prox-radio2","prox-igniter-tank0","prox-igniter-tank1","prox-igniter-tank2","radio-igniter","timer-igniter0","timer-igniter1","timer-igniter2","timer-igniter-tank0","timer-igniter-tank1","timer-igniter-tank2","timer-multitool1","timer-multitool2","timer-radio0","timer-radio1","timer-radio2")
 	realName = "[pick("broken","twisted","spun","improved","silly","regular","badly made")] [pick("device","object","toy","illegal tech","weapon")]"

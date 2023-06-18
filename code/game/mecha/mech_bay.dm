@@ -28,7 +28,7 @@
 	var/on = FALSE
 	var/turf/recharging_turf = null
 
-/obj/machinery/mech_bay_recharge_port/Initialize()
+/obj/machinery/mech_bay_recharge_port/Initialize(mapload)
 	. = ..()
 	recharging_turf = get_step(loc, dir)
 
@@ -144,7 +144,7 @@
 		return
 	add_overlay("recharge_comp_on")
 
-/obj/machinery/computer/mech_bay_power_console/Initialize()
+/obj/machinery/computer/mech_bay_power_console/Initialize(mapload)
 	. = ..()
 	reconnect()
 
