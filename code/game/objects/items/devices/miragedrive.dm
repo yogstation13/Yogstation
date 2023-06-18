@@ -70,7 +70,8 @@
 		addtimer(CALLBACK(src, PROC_REF(nyoom), K, testpath, lagdist))
 		lagdist++	
 	for(var/i = 2 to moving.len)
-		moving[i-1].start_pulling(moving[i])
+		var/atom/movable/ahead = moving[i-1]
+		ahead.start_pulling(moving[i])
 	for(var/mob/living/punchingbag in testpath[testpath.len])
 		if(!(punchingbag in moving))
 			flurry(user, punchingbag, testpath.len)
