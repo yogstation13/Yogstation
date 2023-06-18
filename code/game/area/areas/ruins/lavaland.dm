@@ -79,17 +79,15 @@
 
 /area/ruin/powered/syndicate_lava_base
 	name = "Syndicate Lavaland"
-	icon_state = "syndie-generic"
+	icon_state = "syndie-control"
 	ambientsounds = HIGHSEC
 	hidden = FALSE
 
 /area/ruin/powered/syndicate_lava_base/engineering
 	name = "Syndicate Lavaland Engineering"
-	icon_state = "syndie-engi"
 
 /area/ruin/powered/syndicate_lava_base/medbay
 	name = "Syndicate Lavaland Medbay"
-	icon_state = "syndie-med"
 
 /area/ruin/powered/syndicate_lava_base/arrivals
 	name = "Syndicate Lavaland Arrivals"
@@ -105,27 +103,22 @@
 
 /area/ruin/powered/syndicate_lava_base/chemistry
 	name = "Syndicate Lavaland Chemistry"
-	icon_state = "syndie-sci"
 
 /area/ruin/powered/syndicate_lava_base/virology
 	name = "Syndicate Lavaland Virology"
-	icon_state = "syndie-med"
 
 /area/ruin/powered/syndicate_lava_base/testlab
 	name = "Syndicate Lavaland Experimentation Lab"
-	icon_state = "syndie-sci"
 
 /area/ruin/powered/syndicate_lava_base/dormitories
 	name = "Syndicate Lavaland Dormitories"
 
 /area/ruin/powered/syndicate_lava_base/telecomms
 	name = "Syndicate Lavaland Telecommunications"
-	icon_state = "syndie-control"
 
 /area/ruin/powered/syndicate_lava_base/vault
 	name = "Syndicate Lavaland Vault"
-	icon_state = "syndie-control"
-
+	
 /area/ruin/unpowered/dragonslair //yogs start
 	name = "Dragons Lair"
 	hidden = TRUE

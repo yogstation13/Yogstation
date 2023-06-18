@@ -4532,6 +4532,10 @@
 	name = "syndicate commander's gloves";
 	desc = "One-of-a-kind gold and black gloves used by some Syndicate officers."
 	},
+/obj/item/storage/box/fancy/donut_box{
+	name = "donuts of conflict resolution";
+	desc = "Mmm. Donuts that resolve conflicts between miners and the Syndicate."
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "AX" = (
