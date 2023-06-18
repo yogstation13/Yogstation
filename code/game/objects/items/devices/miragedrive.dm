@@ -17,7 +17,7 @@
 	COOLDOWN_DECLARE(last_dash)
 	COOLDOWN_DECLARE(last_attack)
 	var/list/hit_sounds = list('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg', 'sound/weapons/punch1.ogg', 'sound/weapons/punch2.ogg', 'sound/weapons/punch3.ogg', 'sound/weapons/punch4.ogg')
-
+	var/list/moving = list()
 
 /obj/item/mdrive/afterattack(atom/target, mob/living/carbon/user)
 	var/turf/T = get_turf(target)
@@ -25,9 +25,7 @@
 	var/list/testpath = list()
 	var/bonus_cd = 0
 	var/slowing = 0
-	var/atom/movable/luggage
 	var/lagdist = 0 //for the sake of not having dragged stuff's afterimage being put on the same tile as the user's
-	var/list/moving = list()
 	if(!COOLDOWN_FINISHED(src, last_dash))
 		to_chat(user, span_warning("You can't use the drive for another [COOLDOWN_TIMELEFT(src, last_dash)/10] seconds!"))
 		return
@@ -51,44 +49,35 @@
 		next_dash = next_dash/(2*slowing)
 	COOLDOWN_START(src, last_dash, next_dash)
 	addtimer(CALLBACK(src, PROC_REF(reload)), COOLDOWN_TIMELEFT(src, last_dash))
-	if(user.pulling)
-		luggage = user.pulling
-		moving |= luggage 
+	for(var/atom/movable/K in moving)
+		if(K.pulling)
+			conga(K)
 	for(var/turf/open/next_step in testpath)
 		var/datum/component/wet_floor/wetfloor = next_step.GetComponent(/datum/component/wet_floor)
 		if(wetfloor)
 			if(next_step.handle_slip(user))// one of your greatest enemies just freezes the floor and you go flying. you're a seasonal supervillain
 				for(var/atom/movable/K in moving)
 					K.forceMove(next_step)
+				unload()
 				return
 		for(var/mob/living/speedbump in next_step)
 			if(!(speedbump in moving))
 				whoosh(user, speedbump)
-	user.forceMove(testpath[testpath.len])
 	user.visible_message(span_warning("[user] appears at [target]!"))
 	playsound(user, 'sound/effects/stealthoff.ogg', 50, 1)
 	for(var/atom/movable/K in moving)
-		shake_camera(K, 1, 1) 
+		shake_camera(K, 1, 1)
+		K.forceMove(testpath[testpath.len-lagdist])
 		addtimer(CALLBACK(src, PROC_REF(nyoom), K, testpath, lagdist))
-		lagdist++
+		lagdist++	
+	for(var/i = 2 to moving.len)
+		moving[i-1].start_pulling(moving[i])
 	for(var/mob/living/punchingbag in testpath[testpath.len])
 		if(!(punchingbag in moving))
 			flurry(user, punchingbag, testpath.len)
-	if(luggage)
-		var/turf/behind = get_step(get_turf(user), turn(user.dir,180))
-		var/turf/same = get_turf(user)
-		var/occupied = FALSE
-		if(behind.density)
-			occupied = TRUE
-		for(var/obj/object in behind.contents)
-			if(object.density == TRUE)
-				occupied = TRUE
-				continue
-		if(occupied == TRUE)
-			luggage.forceMove(same)
-		else
-			luggage.forceMove(behind)
-		user.start_pulling(luggage)
+	unload()
+
+
 
 
 /obj/item/mdrive/examine(datum/source, mob/user, list/examine_list)
@@ -136,7 +125,7 @@
 		hurtamount = 10
 	mirage |= user
 	target.visible_message(span_warning("[user] sets upon [target] and delivers strikes from all sides!"))
-	to_chat(target, span_userdanger("[user] rains a barrage of blows on [target]!"))
+	to_chat(target, span_userdanger("[user] rains a barrage of blows on you!"))
 	for(var/b = 1 to 3) 
 		var/obj/effect/temp_visual/decoy/fading/onesecond/F = new(get_turf(user), user)
 		mirage |= F
@@ -159,3 +148,12 @@
 	for(var/i = 1 to 3)
 		playsound(target, pick(hit_sounds), 25, 1, -1)
 		sleep(0.1 SECONDS)
+
+/obj/item/mdrive/proc/conga(atom/movable/target)
+	moving |= target 
+	if(target.pulling)
+		conga(target.pulling)
+
+/obj/item/mdrive/proc/unload(atom/movable/target)
+	for(var/atom/movable/K in moving)
+		moving.Remove(K)
