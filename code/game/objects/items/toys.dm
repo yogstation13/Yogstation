@@ -1745,7 +1745,7 @@ obj/item/toy/turn_tracker
 
 /obj/item/ammo_casing/magic/sickly_blade_toy
 	projectile_type = /obj/item/projectile/sickly_blade_toy
-
+	harmful = FALSE
 /obj/item/projectile/sickly_blade_toy
 	name = "hook"
 	icon_state = "hook"
