@@ -1,10 +1,8 @@
 /datum/job/miningmedic
 	title = "Mining Medic"
 	description = "Watch over the Shaft Miners as they all inevitably die on Lavaland."
-	flag = MMEDIC
 	orbit_icon = "kit-medical"
 	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1

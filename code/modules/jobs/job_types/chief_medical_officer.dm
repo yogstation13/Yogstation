@@ -2,10 +2,8 @@
 	title = "Chief Medical Officer"
 	description = "Coordinate doctors and other medbay employees, ensure they \
 		know how to save lives, check for injuries on the crew monitor."
-	flag = CMO_JF
 	orbit_icon = "user-md"
 	department_head = list("Captain")
-	department_flag = MEDSCI
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	head_announce = list(RADIO_CHANNEL_MEDICAL)
 	faction = "Station"

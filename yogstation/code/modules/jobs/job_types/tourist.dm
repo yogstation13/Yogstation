@@ -1,9 +1,7 @@
 /datum/job/tourist
 	title = "Tourist"
 	description = "Enjoy the sights and scenery on board of the station."
-	flag = TOUR
 	orbit_icon = "camera-retro"
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = -1
 	spawn_positions = 0

@@ -2,10 +2,8 @@
 	title = "Shaft Miner"
 	description = "Travel to strange lands. Mine ores. \
 		Meet strange creatures. Kill them for their gold."
-	flag = MINER
 	orbit_icon = "digging"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
