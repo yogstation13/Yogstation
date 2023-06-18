@@ -71,8 +71,8 @@
 		// Spawn new IAA
 		if(istype(SSticker.mode, /datum/game_mode/traitor/internal_affairs))
 			var/datum/game_mode/traitor/internal_affairs/iaa_mode = SSticker.mode
-			iaa_mode.create_new_traitor()
-			to_chat(user, span_warning("You feel like someone is watching you... Keep on your guard."))
+			if(iaa_mode.create_new_traitor())
+				to_chat(user, span_warning("You feel like someone is watching you... Keep on your guard."))
 		qdel(src)
 	else
 		to_chat(user, span_notice("\The [src] doesn't seem to do anything."))
