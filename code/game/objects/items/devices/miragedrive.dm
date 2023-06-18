@@ -4,9 +4,8 @@
 
 /obj/item/mdrive
 	name = "mirage drive"
-	desc = "A peculiar device with coils pointing in opposing directions. Landing near other people will slow them down and recharge the drive faster. Dashing past people will \
-	 slightly disorient them and staying low to the ground while doing so will trip them. Directly traveling to someone will open a window for a concentrated assault with power\
-	  proportional to distance."
+	desc = "A peculiar device with an almost inaudible thrumming sound coming from the center. Landing near other people will slow them down and recharge the drive faster. Directly\
+	 traveling to someone will open a window for a concentrated assault with power proportional to distance."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "miragedrive"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
@@ -100,11 +99,6 @@
 			sleep(0.1 SECONDS)
 
 /obj/item/mdrive/proc/whoosh(mob/living/user, mob/living/target)
-	if(!(user.mobility_flags & MOBILITY_STAND))
-		target.Knockdown(2 SECONDS)
-		target.visible_message(span_warning("[user] barrels through [target]'s legs!"))
-		to_chat(target, span_userdanger("[user] takes your legs out from under you!"))
-	else
 		target.emote("spin")
 		to_chat(target, span_userdanger("[user] rushes by you!"))
 		target.adjust_dizzy(5 SECONDS)
