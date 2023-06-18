@@ -15,7 +15,7 @@
 	name = "refined dilithium crystal"
 	points = 0
 
-/obj/item/stack/ore/dilithium_crystal/Initialize()
+/obj/item/stack/ore/dilithium_crystal/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-5, 5) // Cloned over from bluespace crystals. I guess to make their spawning a bit more scattered?
 	pixel_y = rand(-5, 5)

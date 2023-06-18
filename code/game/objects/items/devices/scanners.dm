@@ -496,7 +496,7 @@ GENE SCANNER
 		return TRUE
 	return
 
-/obj/item/healthanalyzer/advanced/debug/Initialize()
+/obj/item/healthanalyzer/advanced/debug/Initialize(mapload)
 	. = ..()
 	advanced_surgeries = subtypesof(/datum/surgery)
 

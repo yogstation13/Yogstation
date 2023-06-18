@@ -102,6 +102,7 @@
 
 	school = SCHOOL_RESTORATION
 
+	check_flags = NONE
 	cooldown_time = 20 SECONDS
 	vamp_req = TRUE
 
@@ -329,6 +330,7 @@
 
 	school = SCHOOL_SANGUINE
 
+	check_flags = NONE
 	cooldown_time = 100 SECONDS
 	vamp_req = TRUE
 

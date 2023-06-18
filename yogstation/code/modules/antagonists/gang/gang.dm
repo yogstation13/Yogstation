@@ -1,11 +1,10 @@
 /datum/antagonist/gang
 	name = "Gangster"
 	roundend_category = "gangsters"
-	antag_hud_name = "hud_gangster"
+	antag_hud_name = "gangster"
 	can_coexist_with_others = FALSE
 	job_rank = ROLE_GANG
 	antagpanel_category = "Gang"
-	var/hud_type = "gangster"
 	var/message_name = "Gangster"
 	var/datum/team/gang/gang
 	preview_outfit = /datum/outfit/gangster
@@ -17,7 +16,34 @@
 			return FALSE
 
 /datum/antagonist/gang/apply_innate_effects(mob/living/mob_override)
-	add_team_hud(mob_override || owner.current, /datum/antagonist/gang)
+	add_team_hud(mob_override || owner.current)
+
+/datum/antagonist/gang/add_team_hud(mob/target)
+	QDEL_NULL(team_hud_ref)
+
+	team_hud_ref = WEAKREF(target.add_alt_appearance(
+		/datum/atom_hud/alternate_appearance/basic/has_antagonist,
+		"antag_team_hud_[REF(src)]",
+		hud_image_on(target),
+	))
+
+	var/datum/atom_hud/alternate_appearance/basic/has_antagonist/hud = team_hud_ref.resolve()
+
+	var/list/mob/living/mob_list = list()
+	for(var/datum/mind/collegues_minds as anything in gang.members)
+		mob_list += collegues_minds.current
+
+	for (var/datum/atom_hud/alternate_appearance/basic/has_antagonist/antag_hud as anything in GLOB.has_antagonist_huds)
+		if(!(antag_hud.target in mob_list))
+			continue
+		antag_hud.show_to(target)
+		hud.show_to(antag_hud.target)
+
+/datum/antagonist/gang/hud_image_on(mob/hud_loc)
+	var/image/hud = image(hud_icon, hud_loc, antag_hud_name)
+	hud.color = gang.color
+	hud.plane = ABOVE_HUD_PLANE //not quite but needed
+	return hud
 
 /datum/antagonist/gang/get_team()
 	return gang
@@ -150,7 +176,7 @@
 // Boss type. Those can use gang tools to buy items for their gang, in particular the Dominator, used to win the gamemode, along with more gang tools to promote fellow gangsters to boss status.
 /datum/antagonist/gang/boss
 	name = "Gang boss"
-	hud_type = "gang_boss"
+	antag_hud_name = "gang_boss"
 	message_name = "Leader"
 
 /datum/antagonist/gang/boss/on_gain()
@@ -173,10 +199,10 @@
 		return
 
 	var/list/slots = list (
-		"backpack" = SLOT_IN_BACKPACK,
-		"left pocket" = SLOT_L_STORE,
-		"right pocket" = SLOT_R_STORE,
-		"hands" = SLOT_HANDS
+		"backpack" = ITEM_SLOT_BACKPACK,
+		"left pocket" = ITEM_SLOT_LPOCKET,
+		"right pocket" = ITEM_SLOT_RPOCKET,
+		"hands" = ITEM_SLOT_HANDS
 	)
 
 	if(gangtool)

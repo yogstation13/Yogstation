@@ -38,7 +38,7 @@
 		owner.balloon_alert(owner, "too weak!")
 		to_chat(owner, span_warning("You can't use [src] until you level up."))
 		return FALSE
-	if(user.is_mouth_covered())
+	if(user.is_mouth_covered() && !isplasmaman(user))
 		owner.balloon_alert(owner, "mouth covered!")
 		return FALSE
 	//Find target, it will alert what the problem is, if any.

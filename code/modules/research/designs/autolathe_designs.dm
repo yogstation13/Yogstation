@@ -29,6 +29,15 @@
 	category = list("initial","Tools","Service")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/broom
+	name="Broom"
+	id="broom"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 2000)
+	build_path = /obj/item/twohanded/broom
+	category = list("initial","Tools","Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
 /datum/design/crowbar
 	name = "Pocket Crowbar"
 	id = "crowbar"
@@ -962,7 +971,7 @@
 	var/list/ammo_types = list(/datum/design/c10mm/disk, /datum/design/c10mm/cs/disk, /datum/design/c10mm/sp/disk, /datum/design/c10mm/ap, /datum/design/c10mm/hp, /datum/design/c10mm/inc, /datum/design/c10mm/emp,
 								/datum/design/box_a357/disk, /datum/design/box_a357/ironfeather/disk, /datum/design/box_a357/nutcracker, /datum/design/box_a357/metalshock, /datum/design/box_a357/heartpiercer, /datum/design/box_a357/wallstake)
 
-/obj/item/disk/design_disk/illegal_ammo/Initialize()
+/obj/item/disk/design_disk/illegal_ammo/Initialize(mapload)
 	. = ..()
 	max_blueprints = ammo_types.len
 	for(var/design in ammo_types)

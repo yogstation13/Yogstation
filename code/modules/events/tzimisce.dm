@@ -8,7 +8,7 @@
 /datum/round_event_control/tzimisce/bloodsucker
 	name = "Spawn Tzimisce - Bloodsucker"
 	max_occurrences = 1
-	weight = 2000
+//	weight = 2000
 	typepath = /datum/round_event/ghost_role/tzimisce/bloodsucker
 	min_players = 25
 	earliest_start = 30 MINUTES
@@ -63,7 +63,8 @@
 	bloodsuckerdatum.antag_hud_name = "tzimisce"
 	bloodsuckerdatum.add_team_hud(tzimisce)
 	bloodsuckerdatum.bloodsucker_level_unspent += round(world.time / (15 MINUTES), 1)
-	bloodsuckerdatum.assign_clan_and_bane(tzimisce = TRUE)
+	bloodsuckerdatum.my_clan = new /datum/bloodsucker_clan/tzimisce(bloodsuckerdatum)
+	bloodsuckerdatum.owner.announce_objectives()
 
 	spawned_mobs += tzimisce
 	message_admins("[ADMIN_LOOKUPFLW(tzimisce)] has been made into a tzimisce bloodsucker an event.")
@@ -73,9 +74,9 @@
 		SSshuttle.arrivals.QueueAnnounce(tzimisce, jobdatum.title)
 	tzimisce_mind.assigned_role = jobdatum.title //sets up the manifest properly
 	jobdatum.equip(tzimisce) 
-	var/obj/item/card/id/id = tzimisce.get_item_by_slot(SLOT_WEAR_ID)
+	var/obj/item/card/id/id = tzimisce.get_item_by_slot(ITEM_SLOT_ID)
 	if(!istype(id)) //pda on ID slot
-		var/obj/item/modular_computer/tablet/PDA = tzimisce.get_item_by_slot(SLOT_WEAR_ID)
+		var/obj/item/modular_computer/tablet/PDA = tzimisce.get_item_by_slot(ITEM_SLOT_ID)
 		var/obj/item/computer_hardware/card_slot/card_slot2 = PDA.all_components[MC_CARD2]
 		var/obj/item/computer_hardware/card_slot/card_slot = PDA.all_components[MC_CARD]
 		id = card_slot2?.stored_card || card_slot?.stored_card //check both slots, priority on 2nd

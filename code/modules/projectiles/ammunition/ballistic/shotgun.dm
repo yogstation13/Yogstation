@@ -157,7 +157,7 @@
 	var/reagent_amount = 30
 	var/no_react = FALSE
 
-/obj/item/ammo_casing/shotgun/dart/Initialize()
+/obj/item/ammo_casing/shotgun/dart/Initialize(mapload)
 	. = ..()
 	create_reagents(reagent_amount, OPENCONTAINER)
 	if(no_react)
@@ -169,7 +169,7 @@
 	icon_state = "bshell"
 	projectile_type = /obj/item/projectile/bullet/reusable/dart/hidden
 
-/obj/item/ammo_casing/shotgun/dart/hidden/Initialize()
+/obj/item/ammo_casing/shotgun/dart/hidden/Initialize(mapload)
 	. = ..()
 	DISABLE_BITFIELD(reagents.flags, TRANSPARENT) // cant examine reagents, stealthy
 
@@ -194,7 +194,7 @@
 /obj/item/ammo_casing/shotgun/dart/bioterror
 	desc = "A shotgun dart filled with deadly toxins."
 
-/obj/item/ammo_casing/shotgun/dart/bioterror/Initialize()
+/obj/item/ammo_casing/shotgun/dart/bioterror/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/consumable/ethanol/neurotoxin, 6)
 	reagents.add_reagent(/datum/reagent/toxin/spore, 6)

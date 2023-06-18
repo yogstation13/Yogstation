@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/proc/PickBorgSkin(var/forced = FALSE) //We'll do our own AI version inside its pre existent skin selector methinks
+/mob/living/silicon/robot/proc/PickBorgSkin(forced = FALSE) //We'll do our own AI version inside its pre existent skin selector methinks
 	icon = initial(icon) //Redundancy in case they repick a skin after modulechange
 	if(!GLOB.DonorBorgHolder)
 		message_admins("[client.ckey] just tried to change their borg skin, but there is no borg skin holder datum! (Has the game not started yet?)")

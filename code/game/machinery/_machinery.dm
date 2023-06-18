@@ -1,6 +1,6 @@
 /*
 Overview:
-   Used to create objects that need a per step proc call.  Default definition of 'Initialize()'
+   Used to create objects that need a per step proc call.  Default definition of 'Initialize(mapload)'
    stores a reference to src machine in global 'machines list'.  Default definition
    of 'Destroy' removes reference to src machine in global 'machines list'.
 
@@ -37,7 +37,7 @@ Class Variables:
          EMPED -- temporary broken by EMP pulse
 
 Class Procs:
-   Initialize()                     'game/machinery/machine.dm'
+   Initialize(mapload)                     'game/machinery/machine.dm'
 
    Destroy()                   'game/machinery/machine.dm'
 
@@ -131,7 +131,7 @@ Class Procs:
 	var/climb_stun = 20
 	var/mob/living/machineclimber
 
-/obj/machinery/Initialize()
+/obj/machinery/Initialize(mapload)
 	if(!armor)
 		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	. = ..()
@@ -377,6 +377,8 @@ Class Procs:
 /obj/machinery/_try_interact(mob/user)
 	if((interaction_flags_machine & INTERACT_MACHINE_WIRES_IF_OPEN) && panel_open && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
 		return TRUE
+	if((user.mind?.has_martialart(MARTIALART_BUSTERSTYLE)) && (user.a_intent == INTENT_GRAB)) //buster arm shit since it can throw vendors
+		return	
 	return ..()
 
 /obj/machinery/CheckParts(list/parts_list)
@@ -426,6 +428,7 @@ Class Procs:
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
 		update_icon()
 		return TRUE
+	return FALSE
 
 /obj/machinery/contents_explosion(severity, target)
 	if(occupant)

@@ -16,7 +16,7 @@
 	var/linked = FALSE
 	var/list/obj/item/ticket_machine_ticket/tickets = list()
 
-/obj/machinery/ticket_machine/Initialize()
+/obj/machinery/ticket_machine/Initialize(mapload)
 	. = ..()
 	update_icon()
 

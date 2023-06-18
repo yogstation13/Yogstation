@@ -9,11 +9,6 @@
 		return
 	. = ..()
 
-// Overwrites mob/living/life.dm instead of doing handle_changeling
-/mob/living/carbon/human/Life(delta_time = (SSmobs.wait/10), times_fired)
-	. = ..()
-	SEND_SIGNAL(src, COMSIG_LIVING_BIOLOGICAL_LIFE, delta_time, times_fired)
-
 // Used when analyzing a Bloodsucker, Masquerade will hide brain traumas
 /mob/living/carbon/get_traumas()
 	if(!mind)
@@ -33,7 +28,7 @@
 			. += "Current Frenzy Enter: [FRENZY_THRESHOLD_ENTER + bloodsuckerdatum.humanity_lost * 10]"
 			. += "Current Frenzy Leave: [FRENZY_THRESHOLD_EXIT + bloodsuckerdatum.humanity_lost * 10]"
 			. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
-			if(bloodsuckerdatum.current_task)
+			if(bloodsuckerdatum.has_task)
 				. += "Task Blood Drank: [bloodsuckerdatum.task_blood_drank]"
 
 // INTEGRATION: Adding Procs and Datums to existing "classes" //

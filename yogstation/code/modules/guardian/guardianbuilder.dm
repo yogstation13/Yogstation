@@ -252,14 +252,11 @@
 	var/allowspecial = FALSE
 	var/debug_mode = FALSE
 
-/obj/item/guardiancreator/Initialize()
-	. = ..()
-	builder = new(mob_name, theme, failure_message, max_points, allowspecial, debug_mode)
-
-/obj/item/guardiancreator/ComponentInitialize()
+/obj/item/guardiancreator/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
-	
+	builder = new(mob_name, theme, failure_message, max_points, allowspecial, debug_mode)
+
 /obj/item/guardiancreator/proc/refund_check()
 	return !builder.used
 

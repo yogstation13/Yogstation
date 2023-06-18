@@ -463,6 +463,9 @@
 			itemUser.adjustCloneLoss(-0.5 * efficiency) //Becasue apparently clone damage is the bastion of all health
 		//Heal all those around you, unbiased
 		for(var/mob/living/L in view(7, owner))
+			if(ispath(rod_type, /obj/item/rod_of_asclepius/white)) //Used for adjusting the Holy Light Sect Favor from white rod healing.
+				var/total_healing = (min(L.getBruteLoss(), 3.5*efficiency) + min(L.getFireLoss(), 3.5*efficiency) + min(L.getOxyLoss(), 3.5*efficiency) + min(L.getToxLoss(), 3.5 * efficiency))
+				GLOB.religious_sect.adjust_favor(total_healing * 0.2)
 			if(L.health < L.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(L), "#375637")
 			if(iscarbon(L))
@@ -613,12 +616,12 @@
 			walk_towards(s_such_strength, H)
 			animate(s_such_strength, alpha = 100, color = "#d40a0a", transform = matrix()*1.25, time = 0.25 SECONDS)
 			H.ignore_slowdown(type)
-			H.physiology.brute_mod *= 0.25
-			H.physiology.burn_mod *= 0.25
-			H.physiology.tox_mod *= 0.25
-			H.physiology.oxy_mod *= 0.25
-			H.physiology.clone_mod *= 0.25
-			H.physiology.stamina_mod *= 0.25
+			H.physiology.brute_mod *= 0.75
+			H.physiology.burn_mod *= 0.75
+			H.physiology.tox_mod *= 0.75
+			H.physiology.oxy_mod *= 0.75
+			H.physiology.clone_mod *= 0.75
+			H.physiology.stamina_mod *= 0.75
 		owner.log_message("gained buster damage reduction", LOG_ATTACK)
 
 /datum/status_effect/doubledown/on_remove()
@@ -626,10 +629,10 @@
 		qdel(s_such_strength)
 		var/mob/living/carbon/human/H = owner
 		H.unignore_slowdown(type)
-		H.physiology.brute_mod /= 0.25
-		H.physiology.burn_mod /= 0.25
-		H.physiology.tox_mod /= 0.25
-		H.physiology.oxy_mod /= 0.25
-		H.physiology.clone_mod /= 0.25
-		H.physiology.stamina_mod /= 0.25
+		H.physiology.brute_mod /= 0.75
+		H.physiology.burn_mod /= 0.75
+		H.physiology.tox_mod /= 0.75
+		H.physiology.oxy_mod /= 0.75
+		H.physiology.clone_mod /= 0.75
+		H.physiology.stamina_mod /= 0.75
 	owner.log_message("lost buster damage reduction", LOG_ATTACK)//yogs end

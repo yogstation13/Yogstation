@@ -54,7 +54,7 @@
 	if(flash)
 		add_overlay(flashing_overlay)
 		attached_overlays += flashing_overlay
-		addtimer(CALLBACK(src, PROC_REF(update_icon)), 5)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 5)
 	if(holder)
 		holder.update_icon()
 
@@ -289,6 +289,8 @@
 			to_chat(I.owner, span_warning("Your photon projector is running too hot to be used again so quickly!"))
 		return FALSE
 	overheat = TRUE
+	set_light_on(TRUE)
+	addtimer(CALLBACK(src, PROC_REF(flash_end)), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	addtimer(CALLBACK(src, PROC_REF(cooldown)), flashcd)
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
 	update_icon(1)
@@ -301,6 +303,9 @@
 /obj/item/assembly/flash/armimplant/rev
 	name = "syndicate flash"
 	desc = "A flash which, used with certain hypnotic and subliminal messaging techniques, can turn loyal crewmembers into vicious revolutionaries."
+	icon_state = "revflash"
+	item_state = "revflash"
+	flashing_overlay = "revflash-f"
 	can_convert = TRUE
 
 /obj/item/assembly/flash/hypnotic

@@ -179,7 +179,7 @@
 	sigil_name = "Sigil of Transmission"
 	affects_servants = TRUE
 
-/obj/effect/clockwork/sigil/transmission/Initialize()
+/obj/effect/clockwork/sigil/transmission/Initialize(mapload)
 	. = ..()
 	update_icon()
 

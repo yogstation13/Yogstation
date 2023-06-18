@@ -34,8 +34,6 @@
 	var/draw_slowdown = 0.75
 	var/draw_sound = 'sound/weapons/sound_weapons_bowdraw.ogg'
 	var/mutable_appearance/arrow_overlay
-	/// If the bow can be equipped when an arrow is loaded
-	var/equip_when_loaded = FALSE
 	/// If the last loaded arrow was a toy arrow or not, used to see if foam darts / arrows should do stamina damage
 	var/nerfed = FALSE
 
@@ -148,12 +146,6 @@
 		slowdown = draw_slowdown
 	else
 		slowdown = initial(slowdown)
-	if(equip_when_loaded)
-		return
-	if(get_ammo())
-		slot_flags = ITEM_SLOT_DENY_S_STORE // So you can't put a drawn bow in your suit storage slot
-	else
-		slot_flags = initial(slot_flags)
 
 /obj/item/gun/ballistic/bow/can_shoot()
 	return chambered
@@ -196,7 +188,6 @@
 	draw_slowdown = FALSE
 	drop_release_draw = FALSE
 	move_drawing = FALSE
-	equip_when_loaded = TRUE
 	
 /obj/item/gun/ballistic/bow/crossbow/ashen
 	name = "bone crossbow"
@@ -237,7 +228,7 @@
 
 	var/obj/item/assembly/assembly = /obj/item/assembly/voice_box/bow
 
-/obj/item/gun/ballistic/bow/toy/Initialize()
+/obj/item/gun/ballistic/bow/toy/Initialize(mapload)
 	. = ..()
 	if(ispath(assembly))
 		assembly = new assembly(src)
@@ -314,7 +305,7 @@
 	draw_slowdown = 0 //They're a wizard they need to zoom around
 	var/bladetype = /obj/item/break_blade
 
-/obj/item/gun/ballistic/bow/break_bow/Initialize()
+/obj/item/gun/ballistic/bow/break_bow/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10)
 
@@ -350,7 +341,7 @@
 	var/bowtype = /obj/item/gun/ballistic/bow/break_bow
 	var/returning = FALSE
 
-/obj/item/break_blade/Initialize()
+/obj/item/break_blade/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10)
 
@@ -361,7 +352,7 @@
 	else
 		to_chat(user, span_warning("You need two of [src] to combine them!"))
 
-/obj/item/break_blade/proc/form_bow(mob/living/user, var/obj/item/break_blade/other_blade)
+/obj/item/break_blade/proc/form_bow(mob/living/user, obj/item/break_blade/other_blade)
 	if(!istype(other_blade))
 		return
 	moveToNullspace()
@@ -394,9 +385,12 @@
 		returning = TRUE
 	var/obj/item/break_blade/secondblade = thrower.get_inactive_held_item()
 	if(istype(secondblade))
-		sleep(0.2 SECONDS)
-		thrower.dropItemToGround(secondblade, silent = TRUE)
-		secondblade.throw_at(target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart)
+		addtimer(CALLBACK(src, PROC_REF(finish_throw), secondblade, target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart), 0.2 SECONDS)
+
+/obj/item/break_blade/proc/finish_throw(obj/item/break_blade/secondblade, atom/target, range, speed, mob/thrower, \
+										spin, diagonals_first, datum/callback/callback, force, quickstart)
+	thrower.dropItemToGround(secondblade, silent = TRUE)
+	secondblade.throw_at(target, range, speed, thrower, spin, diagonals_first, callback, force, quickstart)
 
 /obj/item/break_blade/proc/return_to(mob/living/user)
 	if(!istype(user))
@@ -441,7 +435,7 @@
 	//var/stored_ammo ///what was stored in the magazine before being folded?
 	var/fold_sound = 'sound/weapons/batonextend.ogg'
 
-/obj/item/gun/ballistic/bow/energy/Initialize()
+/obj/item/gun/ballistic/bow/energy/Initialize(mapload)
 	if(folded)
 		toggle_folded(TRUE)
 	. = ..()

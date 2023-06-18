@@ -179,8 +179,6 @@
 		custom_materials = null //Null the list to prepare for applying the materials properly
 		set_custom_materials(temp_list)
 
-	ComponentInitialize()
-
 	return INITIALIZE_HINT_NORMAL
 
 /**
@@ -196,10 +194,6 @@
   * code has been run
   */
 /atom/proc/LateInitialize()
-	return
-
-/// Put your AddComponent() calls here
-/atom/proc/ComponentInitialize()
 	return
 
 /**
@@ -550,6 +544,8 @@
 	if(!LAZYLEN(.)) // lol ..length
 		return FALSE
 
+/atom/proc/update_icon()
+	return
 /**
   * An atom we are buckled or is contained within us has tried to move
   *
@@ -1390,7 +1386,6 @@
   * Override this if you want custom behaviour in whatever gets hit by the rust
   */
 /atom/proc/rust_heretic_act()
-	return
 
 /**
  * Used to set something as 'open' if it's being used as a supplypod
@@ -1428,7 +1423,7 @@
 	return output
 
 ///Sets the custom materials for an item.
-/atom/proc/set_custom_materials(var/list/materials, multiplier = 1)
+/atom/proc/set_custom_materials(list/materials, multiplier = 1)
 	if(custom_materials) //Only runs if custom materials existed at first. Should usually be the case but check anyways
 		for(var/i in custom_materials)
 			var/datum/material/custom_material = i

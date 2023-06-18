@@ -13,7 +13,7 @@
 	if(!istype(parent, /turf))
 		return COMPONENT_INCOMPATIBLE
 
-/datum/component/fishable/proc/get_reward(var/fishing_power = 0)
+/datum/component/fishable/proc/get_reward(fishing_power = 0)
 	var/chance = list(
 		FISHING_LOOT_NOTHING = min(max(0,100 - fishing_power),50),
 		FISHING_LOOT_JUNK = min(max(0,50 - fishing_power),25),

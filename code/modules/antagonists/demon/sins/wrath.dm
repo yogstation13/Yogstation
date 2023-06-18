@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/shapeshift/demon/wrath //emergency get out of jail card, but better.
 	name = "Wrath Demon Form"
-	shapeshift_type = /mob/living/simple_animal/lesserdemon/wrath
+	possible_shapes = list(/mob/living/simple_animal/lesserdemon/wrath)
 
 /mob/living/simple_animal/lesserdemon/wrath //slightly more damage.
 	name = "wrathful demon"
@@ -15,10 +15,11 @@
 /datum/action/cooldown/spell/pointed/ignite
 	name = "Ignite"
 	desc = "This ranged spell sets a person on fire."
-	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
-	base_icon_state = "sacredflame"
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	base_icon_state = "ignite"
 	active_msg = "You prepare to ignite a target..."
 	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
+	overlay_icon_state = "bg_demon_border"
 
 	school = SCHOOL_TRANSMUTATION
 	invocation = "BURN IN HELL!!"
@@ -37,8 +38,8 @@
 	if(!isliving(victim))
 		return FALSE
 	var/mob/living/target = victim
-	target.ignite_mob()
 	target.adjust_fire_stacks(WRATHFUL_FIRE_AMOUNT)
+	target.ignite_mob()
 
 	return TRUE
 

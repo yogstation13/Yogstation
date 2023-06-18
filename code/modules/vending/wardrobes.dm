@@ -50,7 +50,12 @@
 					/obj/item/clothing/under/rank/security/grey = 3,
 					/obj/item/clothing/under/yogs/shitcurity = 3,
 					/obj/item/clothing/under/pants/khaki = 3,
-					/obj/item/clothing/under/rank/security/blueshirt = 3)
+					/obj/item/clothing/under/rank/security/blueshirt = 3,
+					/obj/item/clothing/under/rank/security/secconuniform = 3,
+					/obj/item/clothing/head/helmet/secconhelm = 3,
+					/obj/item/clothing/suit/armor/secconcoat = 3,
+					/obj/item/clothing/head/beret/sec/secconhat = 3,
+					/obj/item/clothing/suit/armor/secconvest = 3)
 	premium = list(/obj/item/clothing/under/rank/security/navyblue = 3,
 					/obj/item/clothing/suit/armor/officerjacket = 3,
 					/obj/item/clothing/head/beret/sec/navyofficer = 3)
@@ -351,6 +356,7 @@
 					/obj/item/clothing/under/janimaid = 2,
 					/obj/item/clothing/gloves/color/black = 2,
 					/obj/item/clothing/head/soft/purple = 2,
+					/obj/item/twohanded/broom = 2,
 					/obj/item/paint/paint_remover = 2,
 					/obj/item/melee/flyswatter = 2,
 					/obj/item/flashlight = 2,

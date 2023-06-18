@@ -143,6 +143,8 @@
 
 #define STATUS_EFFECT_EXHUMED /datum/status_effect/exhumed //controls the rate of aides reviving
 
+#define STATUS_EFFECT_CATCHUP /datum/status_effect/catchup //momentarily slows the victim
+
 /////////////
 // NEUTRAL //
 /////////////

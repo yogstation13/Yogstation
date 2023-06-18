@@ -20,7 +20,7 @@
 	wuv_happy = "noots happily!"
 	wuv_angy = "hisses!" //I think birds tend to hiss when they're upset right
 
-/mob/living/simple_animal/pet/penguin/Initialize()
+/mob/living/simple_animal/pet/penguin/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/waddling)
 

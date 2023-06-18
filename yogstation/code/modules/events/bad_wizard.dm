@@ -50,7 +50,7 @@
 			SpellAdd(/datum/action/cooldown/spell/pointed/barnyardcurse, 2)
 
 		if(4) //5x summon guns - no
-			SpellAdd(/datum/action/cooldown/spell/conjure_item/infinite_guns, 5, "Greater Summon Guns")
+			SpellAdd(/datum/action/cooldown/spell/conjure_item/infinite_guns/gun, 5, "Greater Summon Guns")
 
 		if(5)
 			//1x space-time distortion, 2x knock, and 2x blink
@@ -60,7 +60,7 @@
 
 		if(6) //5x forcewall, and 5x repulse (AKA the safe space loadout)
 			SpellAdd(/datum/action/cooldown/spell/forcewall, 5)
-			SpellAdd(/datum/action/cooldown/spell/aoe/repulse, 5)
+			SpellAdd(/datum/action/cooldown/spell/aoe/repulse/wizard, 5)
 
 		if(7) //5x Cluwne Curse and 2x blink
 			SpellAdd(/datum/action/cooldown/spell/pointed/cluwnecurse, 5)
@@ -75,9 +75,9 @@
 			SpellAdd(/datum/action/cooldown/spell/shapeshift/mouse, 5)
 			SpellAdd(/datum/action/cooldown/spell/pointed/mind_transfer, 5)
 
-/datum/antagonist/wizard/meme/proc/SpellAdd(spellType, level = 1, custom_name) //0 is the first level (cause logic (arrays start at one))
+/datum/antagonist/wizard/meme/proc/SpellAdd(spellType, level = 1, custom_name = "") //0 is the first level (cause logic (arrays start at one))
 	var/datum/action/cooldown/spell/spell_to_add = new spellType(owner.current)
 	spell_to_add.Grant(owner.current)
 	spell_to_add.spell_level = level
-	spell_to_add.name = custom_name ? custom_name : "Instant [spell_to_add.name]"
+	spell_to_add.name = length(custom_name) ? custom_name : "Instant [spell_to_add.name]"
 	to_chat(owner, "[spell_to_add.name]")

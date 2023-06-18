@@ -3,11 +3,9 @@
 	description = "Be responsible for the station, manage your Heads of Staff, \
 		keep the crew alive, be prepared to do anything and everything or die \
 		horribly trying."
-	flag = CAPTAIN
 	orbit_icon = "crown"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("CentCom")
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -16,7 +14,7 @@
 	req_admin_notify = 1
 	space_law_notify = 1 //Yogs
 	minimal_player_age = 14
-	exp_requirements = 300
+	exp_requirements = 900 //15 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_COMMAND
 	alt_titles = list("Station Commander", "Facility Director", "Chief Executive Officer")

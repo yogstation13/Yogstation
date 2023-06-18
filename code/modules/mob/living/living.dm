@@ -491,7 +491,7 @@
 	return ret
 
 // Living mobs use can_inject() to make sure that the mob is not syringe-proof in general.
-/mob/living/proc/can_inject()
+/mob/living/proc/can_inject(mob/user, error_msg, target_zone, penetrate_thick = 0)
 	return TRUE
 
 /mob/living/is_injectable(mob/user, allowmobs = TRUE)
@@ -967,8 +967,8 @@
 	return 1
 
 //used in datum/reagents/reaction() proc
-/mob/living/proc/get_permeability_protection(list/target_zones)
-	return 0
+/mob/living/proc/get_permeability(def_zone, linear = FALSE)
+	return 1
 
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
 	return
@@ -1194,7 +1194,7 @@
 //Mobs on Fire end
 
 // used by secbot and monkeys Crossed
-/mob/living/proc/knockOver(var/mob/living/carbon/C)
+/mob/living/proc/knock_over(mob/living/carbon/C)
 	if(C.key) //save us from monkey hordes
 		C.visible_message("<span class='warning'>[pick( \
 						"[C] dives out of [src]'s way!", \
@@ -1251,7 +1251,7 @@
 	else
 		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
 
-
+	SEND_SIGNAL(src, COMSIG_LIVING_SET_BODY_POSITION, mobility_flags, .) //REMOVE THIS WHEN LAYING DOWN GETS PORTED
 
 	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms
 	if(canitem)
@@ -1538,7 +1538,7 @@
 //	if(body_position == STANDING_UP) //force them on the ground
 //		set_lying_angle(pick(90, 270))
 //		set_body_position(LYING_DOWN)
-//		on_fall()
+	on_fall()
 	set_resting(TRUE)
 
 /// Proc to append behavior to the condition of being floored. Called when the condition ends.
