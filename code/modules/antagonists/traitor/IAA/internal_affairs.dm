@@ -42,7 +42,11 @@
 	.=..()
 /datum/antagonist/traitor/internal_affairs/on_removal()
 	STOP_PROCESSING(SSprocessing,src)
+	for(var/obj/item/implant/dusting/iaa/iaa_implant in owner?.current?.implants)
+		iaa_implant.defused = TRUE
+		qdel(iaa_implant)
 	.=..()
+
 /datum/antagonist/traitor/internal_affairs/process()
 	iaa_process()
 

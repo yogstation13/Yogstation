@@ -43,8 +43,14 @@
 /obj/item/implant/dusting/emp_act()
 	return
 
+/obj/item/implant/dusting/iaa
+	var/defused = FALSE // For safe removal, admin-only
+
 /obj/item/implant/dusting/iaa/removed(mob/living/source, silent, special)
-	activate("tampering")
+	if(!defused)
+		activate("tampering")
+	else
+		. = ..()
 
 /obj/item/implant/dusting/iaa/activate(cause)
 	. = ..()
