@@ -177,7 +177,7 @@
 		for(var/mob/living/simple_animal/hostile/guardian/guardian in H.hasparasites())
 			guardian.stats.ranged = FALSE
 			guardian.ranged = FALSE
-			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font> loses their ranged attacks in accordance with your martial art!"))
+			to_chat(H, span_holoparasite("<font color=\"[guardian.namedatum.color]\"><b>[guardian.real_name]</b></font> loses their ranged attacks in accordance with your martial art!"))
 	return TRUE
 
 /**

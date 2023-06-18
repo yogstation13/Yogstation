@@ -172,7 +172,7 @@
 		points -= minor.cost
 	return points
 
-/datum/guardianbuilder/proc/spawn_guardian(mob/living/user)
+/datum/guardianbuilder/proc/spawn_guardian(mob/living/user, random = FALSE)
 	if (!user || !iscarbon(user) || !user.mind)
 		return FALSE
 	if (user.mind.martial_art?.no_guns && saved_stats.ranged)
@@ -287,7 +287,7 @@
 		builder.ui_interact(user)
 	else
 		builder.saved_stats = generate_stand()
-		builder.spawn_guardian(user)
+		builder.spawn_guardian(user, TRUE)
 
 /obj/item/guardiancreator/proc/generate_stand()
 	var/points = 15
