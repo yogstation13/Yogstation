@@ -447,10 +447,8 @@
 		add_overlay("datadisk_gene")
 
 /obj/item/disk/plantgene/update_name()
-	if(gene)
-		name = "[gene.get_name()] (plant data disk)"
-	else
-		name = "plant data disk"
+	. = ..()
+	name = gene ? "[gene.get_name()] (plant data disk)" : "plant data disk"
 
 /obj/item/disk/plantgene/attack_self(mob/user)
 	read_only = !read_only

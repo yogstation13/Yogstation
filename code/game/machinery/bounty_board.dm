@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(request_list)
 		icon_state = "request_kiosk_off"
 	else
 		icon_state = "request_kiosk"
-	return
+	return ..()
 
 /obj/machinery/bounty_board/attackby(obj/item/I, mob/living/user, params)
 	. = ..()

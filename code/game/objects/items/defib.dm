@@ -53,7 +53,7 @@
 /obj/item/defibrillator/update_appearance(updates = ALL)
 	. = ..()
 	update_power()
-	update_overlays()
+	update_appearance(UPDATE_OVERLAYS)
 	update_charge()
 
 /obj/item/defibrillator/proc/update_power()
@@ -66,15 +66,15 @@
 		powered = FALSE
 
 /obj/item/defibrillator/update_overlays()
-	cut_overlays()
+	. = ..()
 	if(!on)
-		add_overlay("[initial(icon_state)]-paddles")
+		. += "[initial(icon_state)]-paddles"
 	if(powered)
-		add_overlay("[initial(icon_state)]-powered")
+		. += "[initial(icon_state)]-powered"
 	if(!cell)
-		add_overlay("[initial(icon_state)]-nocell")
+		. += "[initial(icon_state)]-nocell"
 	if(!safety)
-		add_overlay("[initial(icon_state)]-emagged")
+		. += "[initial(icon_state)]-emagged"
 
 /obj/item/defibrillator/proc/update_charge()
 	if(powered) //so it doesn't show charge if it's unpowered

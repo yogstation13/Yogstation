@@ -384,6 +384,7 @@
 
 /obj/item/gun/energy/printer/Initialize(mapload)
 	AddElement(/datum/element/update_icon_blocker)
+	. = ..()
 
 /obj/item/gun/energy/printer/emp_act()
 	return

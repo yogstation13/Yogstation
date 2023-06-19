@@ -525,8 +525,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 
 /atom/movable/screen/alert/emptycell
 	name = "Out of Power"
-	desc = "Unit's power cell has no charge remaining. No modules available until power cell is recharged. \
-Recharging stations are available in robotics, the dormitory bathrooms, and the AI satellite."
+	desc = "Unit's power cell has no charge remaining. No modules available until power cell is recharged."
 	icon_state = "emptycell"
 
 /atom/movable/screen/alert/emptycell/Initialize(mapload)
@@ -541,7 +540,7 @@ Recharging stations are available in robotics, the dormitory bathrooms, and the 
 
 /atom/movable/screen/alert/lowcell
 	name = "Low Charge"
-	desc = "Unit's power cell is running low. Recharging stations are available in robotics, the dormitory bathrooms, and the AI satellite."
+	desc = "Unit's power cell is running low."
 	icon_state = "lowcell"
 
 /atom/movable/screen/alert/lowcell/Initialize(mapload)

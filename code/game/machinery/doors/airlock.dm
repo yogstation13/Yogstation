@@ -595,6 +595,7 @@
 		return FALSE
 
 /obj/machinery/door/airlock/update_appearance(updates, state=0, override=0)
+	. = ..()
 	cut_overlays()
 	if(operating && !override)
 		return
