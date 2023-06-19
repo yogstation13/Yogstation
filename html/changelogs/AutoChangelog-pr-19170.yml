@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Adrenaline no longer requires a heart to generate"
-  - tweak: "Adrenaline is now a status effect rather than chemical"

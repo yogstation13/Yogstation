@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "fixes quiet mode checks using client prefs where they're might not always be a client"
