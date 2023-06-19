@@ -191,7 +191,7 @@
 			if(4)
 				phrase = rand(12,18)	// user has broke the restrictor, it will now only play shitcurity phrases
 
-		if(!(obj_flags & EMAGGED))
+		if(obj_flags & EMAGGED)
 			phrase_text = "FUCK YOUR CUNT YOU SHIT EATING COCKSTORM AND EAT A DONG FUCKING ASS RAMMING SHIT FUCK EAT PENISES IN YOUR FUCK FACE AND SHIT OUT ABORTIONS OF FUCK AND POO AND SHIT IN YOUR ASS YOU COCK FUCK SHIT MONKEY FUCK ASS WANKER FROM THE DEPTHS OF SHIT."
 			phrase_sound = "emag"
 		else
@@ -253,7 +253,7 @@
 					phrase_sound = "dredd"
 
 		usr.audible_message("[usr]'s Compli-o-Nator: <font color='red' size='4'><b>[phrase_text]</b></font>")
-		playsound(src.loc, "sound/voice/complionator/[phrase_sound].ogg", 100, 0, 4)
+		playsound(loc, "sound/voice/complionator/[phrase_sound].ogg", 100, 0, 4)
 		cooldown = world.time
 		cooldown_special = world.time
 	
@@ -265,5 +265,5 @@
 	if (!can_use(usr))
 		return
 	to_chat(usr, span_notice("The security mask quickly relays a list of recognized keywords"))
-	to_chat(usr, span_notice("[sechailer_voicelines]"))
-
+	for(var/line in sechailer_voicelines)
+		to_chat(usr, span_notice("[line]"))
