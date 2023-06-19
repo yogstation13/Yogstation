@@ -3894,33 +3894,6 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/vacant_room)
-"aGG" = (
-/obj/structure/table/wood,
-/obj/machinery/keycard_auth{
-	pixel_y = 25
-	},
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Head of Security's Desk";
-	departmentType = 5;
-	name = "Head of Security RC";
-	pixel_x = 32;
-	pixel_y = 29
-	},
-/obj/machinery/button/door{
-	id = "hosspace";
-	name = "Space Shutters Control";
-	pixel_y = 36
-	},
-/obj/item/paper_bin{
-	pixel_y = 5
-	},
-/obj/item/pen/red{
-	pixel_x = 0;
-	pixel_y = 5
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "aGL" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -4148,6 +4121,17 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
+"aIq" = (
+/obj/structure/table/wood,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Head of Security";
+	name = "Head of Securities Fax Machine"
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "aIu" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -7429,6 +7413,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
+"bxK" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/circuit/green,
+/area/ai_monitored/turret_protected/aisat_interior)
 "bxL" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -8221,17 +8217,6 @@
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"bNg" = (
-/obj/structure/table/wood,
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/obj/machinery/photocopier/faxmachine{
-	department = "Head of Security";
-	name = "Head of Securities Fax Machine"
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "bNw" = (
 /obj/structure/sign/painting{
 	persistence_id = "public";
@@ -18382,23 +18367,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow,
 /area/space/nearstation)
-"fgz" = (
-/obj/structure/table/wood,
-/obj/item/folder/red{
-	pixel_x = 5;
-	pixel_y = 1
-	},
-/obj/item/stamp/hos{
-	pixel_x = 6;
-	pixel_y = 3
-	},
-/obj/item/flashlight/lamp/green{
-	on = 0;
-	pixel_x = -6;
-	pixel_y = 11
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "fgM" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -28711,16 +28679,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"iAR" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/status_display/ai_core,
-/turf/open/floor/circuit/green,
-/area/ai_monitored/turret_protected/ai_upload)
 "iAT" = (
 /obj/structure/easel,
 /obj/item/canvas/twentyfour_twentyfour{
@@ -31582,6 +31540,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"jvJ" = (
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/darkblue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/white,
+/obj/effect/turf_decal/tile/white{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/twohanded/required/kirbyplants/photosynthetic{
+	pixel_y = 10
+	},
+/turf/open/floor/black,
+/area/ai_monitored/turret_protected/aisat_interior)
 "jvN" = (
 /obj/machinery/door/airlock/external{
 	name = "External Access";
@@ -44445,6 +44420,16 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+"nKJ" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/status_display/ai_core,
+/turf/open/floor/circuit/green,
+/area/ai_monitored/turret_protected/ai_upload)
 "nKZ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -47811,11 +47796,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"oPK" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/deputy,
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "oPL" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -59951,6 +59931,25 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"sAE" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -7;
+	pixel_y = 13
+	},
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/folder/blue,
+/obj/item/stamp/law,
+/obj/item/pen/red,
+/obj/machinery/requests_console{
+	department = "Law Office";
+	name = "'Law Office RC";
+	pixel_x = 32;
+	pixel_y = -2
+	},
+/obj/item/taperecorder,
+/turf/open/floor/carpet,
+/area/lawoffice)
 "sAK" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -60404,6 +60403,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"sGY" = (
+/obj/structure/table/wood,
+/obj/item/folder/red{
+	pixel_x = 5;
+	pixel_y = 1
+	},
+/obj/item/stamp/hos{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/flashlight/lamp/green{
+	on = 0;
+	pixel_x = -6;
+	pixel_y = 11
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "sHo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -70872,23 +70888,6 @@
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/plasteel/white,
 /area/science/explab)
-"wkE" = (
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/darkblue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/white,
-/obj/effect/turf_decal/tile/white{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/twohanded/required/kirbyplants/photosynthetic{
-	pixel_y = 10
-	},
-/turf/open/floor/black,
-/area/ai_monitored/turret_protected/aisat_interior)
 "wkK" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -73116,6 +73115,33 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/plasteel,
 /area/security/main)
+"wVj" = (
+/obj/structure/table/wood,
+/obj/machinery/keycard_auth{
+	pixel_y = 25
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Head of Security's Desk";
+	departmentType = 5;
+	name = "Head of Security RC";
+	pixel_x = 32;
+	pixel_y = 29
+	},
+/obj/machinery/button/door{
+	id = "hosspace";
+	name = "Space Shutters Control";
+	pixel_y = 36
+	},
+/obj/item/paper_bin{
+	pixel_y = 5
+	},
+/obj/item/pen/red{
+	pixel_x = 0;
+	pixel_y = 5
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "wVu" = (
 /obj/machinery/conveyor_switch/oneway{
 	dir = 4;
@@ -74968,6 +74994,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/pumproom)
+"xBV" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/deputy,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "xCh" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -75796,18 +75827,6 @@
 	},
 /turf/open/floor/carpet,
 /area/library)
-"xQK" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/turf/open/floor/circuit/green,
-/area/ai_monitored/turret_protected/aisat_interior)
 "xQR" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 8
@@ -76271,26 +76290,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"xYV" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -7;
-	pixel_y = 13
-	},
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/folder/blue,
-/obj/item/stamp/law,
-/obj/item/pen/red,
-/obj/machinery/requests_console{
-	department = "Law Office";
-	name = "'Law Office RC";
-	pixel_x = 32;
-	pixel_y = -2
-	},
-/obj/item/taperecorder,
-/obj/item/cartridge/lawyer,
-/turf/open/floor/carpet,
-/area/lawoffice)
 "xZB" = (
 /obj/item/shard,
 /turf/open/floor/plating,
@@ -106857,7 +106856,7 @@ jDX
 jdw
 aUH
 jTI
-xYV
+sAE
 lXf
 cBB
 aKh
@@ -112493,8 +112492,8 @@ fii
 ulb
 plk
 aTD
-bNg
-fgz
+aIq
+sGY
 uHq
 xag
 sYb
@@ -112750,7 +112749,7 @@ yaX
 dXL
 cSE
 aTD
-aGG
+wVj
 aDf
 xUB
 aQI
@@ -113007,7 +113006,7 @@ aTD
 uOO
 aTD
 aTD
-oPK
+xBV
 vmX
 piV
 gMi
@@ -115661,7 +115660,7 @@ hyh
 ihL
 obR
 wSF
-iAR
+nKJ
 aGL
 aAA
 nYG
@@ -131899,7 +131898,7 @@ jqF
 bat
 nqc
 nQR
-wkE
+jvJ
 aSh
 lwx
 mbH
@@ -132411,7 +132410,7 @@ wWG
 aSh
 trU
 uOl
-xQK
+bxK
 ilt
 lKQ
 aSh
