@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "electrical protection reduces electrocution stun time"
+  - bugfix: "fixed electrocute_act() causing a stun regardless of whether stun is set to true or not"
