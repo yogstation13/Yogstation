@@ -1,0 +1,4 @@
+author: "LazennG"
+delete-after: true 
+changes: 
+  - bugfix: "fixed mop the floor not working sometimes"
