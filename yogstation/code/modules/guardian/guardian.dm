@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	to_chat(src, span_holoparasite("While personally invincible, you will die if [summoner.current.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.current.p_them()] as you feed upon [summoner.current.p_them()] to sustain yourself."))
 	setup_barriers()
 
-/mob/living/simple_animal/hostile/guardian/Life() //Dies if the summoner dies
+/mob/living/simple_animal/hostile/guardian/Life(seconds_per_tick = SSMOBS_DT, times_fired) //Dies if the summoner dies
 	. = ..()
 	update_health_hud() //we need to update all of our health displays to match our summoner and we can't practically give the summoner a hook to do it
 	med_hud_set_health()

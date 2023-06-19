@@ -29,7 +29,7 @@
 	icon = 'yogstation/icons/obj/objects.dmi'
 	icon_state = "immquack"
 
-/obj/effect/immovablerod/duck/Initialize()
+/obj/effect/immovablerod/duck/Initialize(mapload)
 	. = ..()
 	SpinAnimation(24,-1)
 

@@ -42,7 +42,7 @@
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/clothing/glasses/hud/health(src)
-	return
+	new /obj/item/gun/syringe(src)
 
 /obj/structure/closet/secure_closet/CMO
 	name = "\proper chief medical officer's locker"

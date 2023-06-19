@@ -12,7 +12,7 @@
 	item_state = "scaryclownuniform"
 	can_adjust = FALSE
 
-/obj/item/clothing/under/rank/yogs/scaryclown/Initialize()
+/obj/item/clothing/under/rank/yogs/scaryclown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 

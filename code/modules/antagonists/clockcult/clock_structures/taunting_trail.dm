@@ -14,7 +14,7 @@
 	debris = list()
 	var/timerid
 
-/obj/structure/destructible/clockwork/taunting_trail/Initialize()
+/obj/structure/destructible/clockwork/taunting_trail/Initialize(mapload)
 	. = ..()
 	timerid = QDEL_IN(src, 15)
 	var/obj/structure/destructible/clockwork/taunting_trail/Tt = locate(/obj/structure/destructible/clockwork/taunting_trail) in loc

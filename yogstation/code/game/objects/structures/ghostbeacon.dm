@@ -8,7 +8,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/list/mob/living/carbon/ghosts = list()
 
-/obj/structure/ghostbeacon/Initialize()
+/obj/structure/ghostbeacon/Initialize(mapload)
 	. = ..()
 	GLOB.poi_list |= src
 	START_PROCESSING(SSprocessing, src)

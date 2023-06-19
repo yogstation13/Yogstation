@@ -412,7 +412,7 @@ GLOBAL_LIST_EMPTY(vomit_spots)
 	icon = 'icons/effects/blood.dmi'
 	item_flags = ABSTRACT | DROPDEL
 
-/obj/item/vomitcrawl/Initialize()
+/obj/item/vomitcrawl/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 

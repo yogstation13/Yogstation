@@ -2,11 +2,9 @@
 	title = "Head of Security"
 	description = "Coordinate security personnel, ensure they are not corrupt, \
 		make sure every department is protected."
-	flag = HOS
 	orbit_icon = "user-shield"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("Captain")
-	department_flag = ENGSEC
 	head_announce = list(RADIO_CHANNEL_SECURITY)
 	faction = "Station"
 	total_positions = 1
@@ -83,7 +81,7 @@
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun/hos, /obj/item/stamp/hos)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/hos/hardsuit
 	name = "Head of Security (Hardsuit)"

@@ -586,7 +586,7 @@
 		S.punchdamagelow += 5
 		S.punchdamagehigh += 5
 		S.punchstunthreshold += 5
-		S.add_no_equip_slot(H, SLOT_WEAR_SUIT)
+		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
 	usr.click_intercept = src 
 	add_verb(H, recalibration)
 	plate_timer = addtimer(CALLBACK(src, PROC_REF(grow_plate), H), PLATE_INTERVAL, TIMER_LOOP|TIMER_UNIQUE|TIMER_STOPPABLE)//start regen
@@ -608,7 +608,7 @@
 		S.punchdamagelow -= 5
 		S.punchdamagehigh -= 5
 		S.punchstunthreshold -= 5
-		S.remove_no_equip_slot(H, SLOT_WEAR_SUIT)
+		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
 	usr.click_intercept = null 
 	remove_verb(H, recalibration)
 	deltimer(plate_timer)

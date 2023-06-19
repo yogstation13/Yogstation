@@ -24,7 +24,7 @@
 	/// The countdown ghosts see to when the plant will hatch
 	var/obj/effect/countdown/flower_bud/countdown
 
-/obj/structure/alien/resin/flower_bud_enemy/Initialize()
+/obj/structure/alien/resin/flower_bud_enemy/Initialize(mapload)
 	. = ..()
 	countdown = new(src)
 	var/list/anchors = list()
@@ -107,7 +107,7 @@
 	/// Whether or not this plant is ghost possessable
 	var/playable_plant = TRUE
 
-/mob/living/simple_animal/hostile/venus_human_trap/Life()
+/mob/living/simple_animal/hostile/venus_human_trap/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	pull_vines()
 	if(!kudzu_need())

@@ -1,4 +1,4 @@
-/mob/living/carbon/alien/Life()
+/mob/living/carbon/alien/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	findQueen()
 	return..()
 
