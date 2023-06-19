@@ -18294,28 +18294,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"iOB" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/machinery/computer/security/telescreen/interrogation{
-	dir = 4;
-	pixel_y = 30
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "iOZ" = (
 /obj/effect/turf_decal/trimline/brown/filled/line/lower{
 	dir = 5
@@ -25963,6 +25941,28 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/storage)
+"mLE" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/computer/security/telescreen/interrogation{
+	dir = 4;
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "mLP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -72457,7 +72457,7 @@ kGp
 nTH
 hOu
 kZP
-iOB
+mLE
 bHi
 qeR
 rBc
