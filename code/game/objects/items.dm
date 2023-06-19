@@ -813,8 +813,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/proc/on_mob_death(mob/living/L, gibbed)
 
-/obj/item/proc/on_mob_say(mob/living/L, message, message_range)
-
 /obj/item/proc/grind_requirements(obj/machinery/reagentgrinder/R) //Used to check for extra requirements for grinding an object
 	return TRUE
 
