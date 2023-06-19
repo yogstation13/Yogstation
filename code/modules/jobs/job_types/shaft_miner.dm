@@ -2,10 +2,8 @@
 	title = "Shaft Miner"
 	description = "Travel to strange lands. Mine ores. \
 		Meet strange creatures. Kill them for their gold."
-	flag = MINER
 	orbit_icon = "digging"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
@@ -75,7 +73,7 @@
 	mask = /obj/item/clothing/mask/gas/explorer
 	glasses = /obj/item/clothing/glasses/meson
 	suit_store = /obj/item/tank/internals/oxygen
-	internals_slot = SLOT_SUIT_STORE
+	internals_slot = ITEM_SLOT_SUITSTORE
 	backpack_contents = list(
 		/obj/item/storage/bag/ore=1,
 		/obj/item/kitchen/knife/combat/survival=1,

@@ -102,6 +102,7 @@
 
 	school = SCHOOL_RESTORATION
 
+	check_flags = NONE
 	cooldown_time = 20 SECONDS
 	vamp_req = TRUE
 
@@ -323,14 +324,13 @@
 	gain_desc = "You have gained the ability to revive after death... However you can still be cremated/gibbed, and you will disintergrate if you're in the chapel!"
 	desc = "Revives you, provided you are not in the chapel!"
 	button_icon = 'yogstation/icons/mob/vampire.dmi'
-	check_flags = NONE
 	button_icon_state = "coffin"
 	background_icon_state = "bg_vampire"
 	overlay_icon_state = "bg_vampire_border"
-	check_flags = NONE
 
 	school = SCHOOL_SANGUINE
 
+	check_flags = NONE
 	cooldown_time = 100 SECONDS
 	vamp_req = TRUE
 

@@ -5,7 +5,7 @@
 	health = 125
 	icon_state = "aliend"
 
-/mob/living/carbon/alien/humanoid/drone/Initialize()
+/mob/living/carbon/alien/humanoid/drone/Initialize(mapload)
 	var/datum/action/cooldown/alien/evolve_to_praetorian/evolution = new(src)
 	evolution.Grant(src)
 	return ..()

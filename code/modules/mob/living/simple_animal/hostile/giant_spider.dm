@@ -54,7 +54,7 @@
 
 	do_footstep = TRUE
 
-/mob/living/simple_animal/hostile/poison/giant_spider/Initialize()
+/mob/living/simple_animal/hostile/poison/giant_spider/Initialize(mapload)
 	. = ..()
 	var/datum/action/innate/spider/lay_web/webbing = new(src)
 	webbing.Grant(src)
@@ -110,7 +110,7 @@
 	var/static/list/consumed_mobs = list() //the tags of mobs that have been consumed by nurse spiders to lay eggs
 	gold_core_spawnable = NO_SPAWN
 
-/mob/living/simple_animal/hostile/poison/giant_spider/nurse/Initialize()
+/mob/living/simple_animal/hostile/poison/giant_spider/nurse/Initialize(mapload)
 	. = ..()
 	var/datum/atom_hud/datahud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	datahud.show_to(src)
@@ -138,7 +138,7 @@
 	health = 40
 	gold_core_spawnable = HOSTILE_SPAWN //yogs xenobio spiders best spiders
 
-/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife/Initialize()
+/mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife/Initialize(mapload)
 	. = ..()
 	var/datum/action/innate/spider/comm/letmetalkpls = new(src)
 	letmetalkpls.Grant(src)

@@ -377,7 +377,7 @@
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_ADMIN)
 	return preview_icon
 
-/datum/admins/proc/makeEmergencyresponseteam(var/datum/ert/ertemplate = null)
+/datum/admins/proc/makeEmergencyresponseteam(datum/ert/ertemplate = null)
 	if (ertemplate)
 		ertemplate = new ertemplate
 	else
@@ -493,7 +493,7 @@
 	return
 
 // Uplink-equipped Centcom Response Team
-/datum/admins/proc/makeUplinkEmergencyResponseTeam(var/datum/ert/ertemplate = null)
+/datum/admins/proc/makeUplinkEmergencyResponseTeam(datum/ert/ertemplate = null)
 	if (ertemplate)
 		ertemplate = new ertemplate
 	else
@@ -590,7 +590,7 @@
 					upl.nt_datum = /datum/component/uplink/nanotrasen/engineer
 				upl.finalize()
 				if(istype(upl))
-					ERTOperative.equip_to_slot_or_del(upl, SLOT_IN_BACKPACK)
+					ERTOperative.equip_to_slot_or_del(upl, ITEM_SLOT_BACKPACK)
 					ert_team.uplink_type = ertemplate.uplinktype // Type path
 
 				//Logging and cleanup

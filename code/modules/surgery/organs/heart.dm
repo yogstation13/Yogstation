@@ -21,7 +21,7 @@
 	var/failed = FALSE		//to prevent constantly running failing code
 	var/operated = FALSE	//whether the heart's been operated on to fix some of its damages
 
-/obj/item/organ/heart/Initialize()
+/obj/item/organ/heart/Initialize(mapload)
 	. = ..()
 	icon_base = icon_state
 	update_icon()

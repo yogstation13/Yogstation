@@ -442,7 +442,7 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 	desc = "literally just to spawn multiple items"
 	var/list/items = list()
 
-/obj/item/battleroyale/itemspawner/Initialize()
+/obj/item/battleroyale/itemspawner/Initialize(mapload)
 	. = ..()
 	for(var/obj/thing in items)
 		new thing(src.loc)

@@ -43,7 +43,7 @@
 	var/current_cooldown = 0
 	var/range = 7
 
-/obj/item/t_scanner/adv_mining_scanner/cyborg/Initialize()
+/obj/item/t_scanner/adv_mining_scanner/cyborg/Initialize(mapload)
 	. = ..()
 	toggle_on()
 
@@ -88,7 +88,7 @@
 	pixel_x = -224
 	pixel_y = -224
 
-/obj/effect/temp_visual/mining_overlay/Initialize()
+/obj/effect/temp_visual/mining_overlay/Initialize(mapload)
 	. = ..()
 	animate(src, alpha = 0, time = duration, easing = EASE_IN)
 

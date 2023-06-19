@@ -12,7 +12,7 @@
 	tech_fluff_string = span_holoparasite("Boot sequence complete. Crowd control modules activated. Holoparasite swarm online.")
 	carp_fluff_string = span_holoparasite("CARP CARP CARP! You caught one! OH GOD, EVERYTHING'S ON FIRE. Except you and the fish.")
 
-/mob/living/simple_animal/hostile/guardian/fire/Life()
+/mob/living/simple_animal/hostile/guardian/fire/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(summoner)
 		summoner.extinguish_mob()

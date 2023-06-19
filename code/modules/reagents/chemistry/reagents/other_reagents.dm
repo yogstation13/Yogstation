@@ -182,12 +182,12 @@
  *	Water reaction to a mob
  */
 
-/datum/reagent/water/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with water can help put them out!
+/datum/reagent/water/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)//Splashing people with water can help put them out!
 	if(!istype(M))
 		return
 	if(method == TOUCH)
-		M.adjust_fire_stacks(-(reac_volume / 10))
-		M.extinguish_mob()
+		M.adjust_fire_stacks(-(reac_volume / 10) * M.get_permeability(null, TRUE))
+		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 	..()
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
@@ -1439,17 +1439,31 @@
 
 /datum/reagent/healium/on_mob_metabolize(mob/living/L)
 	. = ..()
-	L.SetSleeping(1000, ignore_canstun = TRUE)
-	L.SetUnconscious(1000, ignore_canstun = TRUE)
+	L.SetSleeping(1000)
+	L.SetUnconscious(1000)
+	L.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=0.5, blacklisted_movetypes=(FLYING|FLOATING)) // slowdown for if you're awake
+	ADD_TRAIT(L, TRAIT_SURGERY_PREPARED, "healium")
 
 /datum/reagent/healium/on_mob_life(mob/living/carbon/M)
-	M.SetSleeping(1000, ignore_canstun = TRUE)
-	M.SetUnconscious(1000, ignore_canstun = TRUE) //in case you have sleep immunity :^)
+	M.SetSleeping(100)
+	M.SetUnconscious(100)
+	var/heal_factor = 1
+	if(M.stat == CONSCIOUS) // if you're awake it gives you side effects and heals a lot less (not enough to outheal nitrium)
+		heal_factor *= 0.1
+		M.adjust_disgust((40 - M.disgust) / 10) // makes you sick
+		M.adjust_jitter_up_to(2, 10)
+	else if(M.bodytemperature < T0C)
+		heal_factor *= (100 + max(T0C - M.bodytemperature, 200)) / 100 // if you're asleep, you get healed faster when you're cold (up to 3x at 73 kelvin)
+	M.adjustFireLoss(-7*heal_factor*REM)
+	M.adjustToxLoss(-5*heal_factor*REM)
+	M.adjustBruteLoss(-5*heal_factor*REM)
 	..()
 
 /datum/reagent/healium/on_mob_end_metabolize(mob/living/L)
-	L.SetSleeping(10, ignore_canstun = TRUE)
-	L.SetUnconscious(10, ignore_canstun = TRUE)
+	L.SetSleeping(1 SECONDS)
+	L.SetUnconscious(1 SECONDS)
+	L.remove_movespeed_modifier(type)
+	REMOVE_TRAIT(L, TRAIT_SURGERY_PREPARED, "healium")
 	return ..()
 
 /datum/reagent/halon
@@ -2180,12 +2194,16 @@
 
 	volume = min(volume, WOUND_DETERMINATION_MAX)
 
+	var/heal_amount = 0.25
+	if(ishumanbasic(M)) //indomitable human spirit
+		heal_amount *= 2
+
 	for(var/thing in M.all_wounds)
 		var/datum/wound/W = thing
 		var/obj/item/bodypart/wounded_part = W.limb
 		if(wounded_part)
-			wounded_part.heal_damage(0.25, 0.25)
-		M.adjustStaminaLoss(-0.25*REM) // the more wounds, the more stamina regen
+			wounded_part.heal_damage(heal_amount, heal_amount)
+		M.adjustStaminaLoss(-heal_amount*REM) // the more wounds, the more stamina regen
 	..()
 
 

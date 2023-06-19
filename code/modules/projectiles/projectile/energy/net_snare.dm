@@ -7,7 +7,7 @@
 	range = 10
 	var/obj/item/beacon/teletarget = null
 
-/obj/item/projectile/energy/net/Initialize()
+/obj/item/projectile/energy/net/Initialize(mapload)
 	. = ..()
 	SpinAnimation()
 

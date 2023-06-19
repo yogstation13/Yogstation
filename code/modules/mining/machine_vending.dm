@@ -96,7 +96,7 @@
 	cost = pcost
 	category = cat
 
-/obj/machinery/mineral/equipment_vendor/Initialize()
+/obj/machinery/mineral/equipment_vendor/Initialize(mapload)
 	. = ..()
 	build_inventory()
 
@@ -260,7 +260,7 @@
 	name = "golem ship equipment vendor"
 	circuit = /obj/item/circuitboard/machine/mining_equipment_vendor/golem
 
-/obj/machinery/mineral/equipment_vendor/golem/Initialize()
+/obj/machinery/mineral/equipment_vendor/golem/Initialize(mapload)
 	desc += "\nIt seems a few selections have been added."
 	prize_list += list(
 		new /datum/data/mining_equipment("Brute Pill Bottle",			/obj/item/storage/pill_bottle/libi,									600, VENDING_MEDS),

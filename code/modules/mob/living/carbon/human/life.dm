@@ -24,7 +24,7 @@
 	var/lasthealth
 	COOLDOWN_DECLARE(adrenaline_cooldown)
 
-/mob/living/carbon/human/Life(times_fired)
+/mob/living/carbon/human/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	set invisibility = 0
 	if (notransform)
 		return

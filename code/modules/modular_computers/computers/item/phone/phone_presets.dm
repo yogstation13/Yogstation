@@ -46,7 +46,7 @@
 	finish_color = "yellow"
 	pen_type = /obj/item/pen/fountain/captain
 
-/obj/item/modular_computer/tablet/phone/preset/advanced/command/cap/Initialize()
+/obj/item/modular_computer/tablet/phone/preset/advanced/command/cap/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(pda_no_detonate))
 

@@ -52,7 +52,7 @@
 	var/hud_on = FALSE
 	var/mob/camera/aiEye/remote/ai_detector/eye
 
-/obj/item/multitool/ai_detect/Initialize()
+/obj/item/multitool/ai_detect/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 	eye = new /mob/camera/aiEye/remote/ai_detector()

@@ -38,7 +38,7 @@
 	var/needs_update = LIGHTING_NO_UPDATE
 
 
-/datum/light_source/New(var/atom/owner, var/atom/top)
+/datum/light_source/New(atom/owner, atom/top)
 	source_atom = owner // Set our new owner.
 	LAZYADD(source_atom.light_sources, src)
 	top_atom = top
@@ -80,7 +80,7 @@
 
 
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
-/datum/light_source/proc/update(var/atom/new_top_atom)
+/datum/light_source/proc/update(atom/new_top_atom)
 	// This top atom is different.
 	if (new_top_atom && new_top_atom != top_atom)
 		if(top_atom != source_atom && top_atom.light_sources) // Remove ourselves from the light sources of that top atom.
@@ -137,7 +137,7 @@
 		REMOVE_CORNER(corner)
 		LAZYREMOVE(corner.affecting, src)
 
-/datum/light_source/proc/recalc_corner(var/datum/lighting_corner/corner)
+/datum/light_source/proc/recalc_corner(datum/lighting_corner/corner)
 	LAZYINITLIST(effect_str)
 	if (effect_str[corner]) // Already have one.
 		REMOVE_CORNER(corner)

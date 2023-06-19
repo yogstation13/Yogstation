@@ -756,7 +756,7 @@
 	icon_state = "small_rune_1"
 	layer = LOW_SIGIL_LAYER
 
-/obj/effect/glowing_rune/Initialize()
+/obj/effect/glowing_rune/Initialize(mapload)
 	. = ..()
 	pixel_y = rand(-6,6)
 	pixel_x = rand(-6,6)

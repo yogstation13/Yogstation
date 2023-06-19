@@ -70,7 +70,7 @@
 /mob/living/silicon/pai/stripPanelEquip(obj/item/what, mob/who, where) //prevents stripping
 	to_chat(src, span_warning("Your holochassis stutters and warps intensely as you attempt to interact with the object, forcing you to cease lest the field fail."))
 
-/mob/living/silicon/pai/ignite_mob(var/mob/living/silicon/pai/P)
+/mob/living/silicon/pai/ignite_mob(mob/living/silicon/pai/P)
 	return FALSE //No we're not flammable
 
 /mob/living/silicon/pai/proc/take_holo_damage(amount)

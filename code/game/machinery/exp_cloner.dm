@@ -88,7 +88,7 @@
 
 	light_color = LIGHT_COLOR_BLUE
 
-/obj/machinery/computer/prototype_cloning/Initialize()
+/obj/machinery/computer/prototype_cloning/Initialize(mapload)
 	. = ..()
 	updatemodules(TRUE)
 

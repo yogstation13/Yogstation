@@ -272,9 +272,11 @@
 
 /datum/outfit/wizard/apprentice
 	name = "Wizard Apprentice"
+
+	r_pocket = /obj/item/teleportation_scroll/apprentice
 	r_hand = null
 	l_hand = null
-	r_pocket = /obj/item/teleportation_scroll/apprentice
+	backpack_contents = list()
 
 /datum/outfit/wizard/red
 	name = "Red Wizard"

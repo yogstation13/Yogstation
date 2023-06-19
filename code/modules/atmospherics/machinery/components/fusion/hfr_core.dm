@@ -1,5 +1,5 @@
 /**
- * This section contain the hfr core with all the variables and the Initialize() and Destroy() procs
+ * This section contain the hfr core with all the variables and the Initialize(mapload) and Destroy() procs
  */
 /obj/machinery/atmospherics/components/unary/hypertorus/core
 	name = "HFR core"

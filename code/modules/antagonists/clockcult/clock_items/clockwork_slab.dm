@@ -83,7 +83,7 @@
 	if(!GLOB.ratvar_awakens)
 		SStgui.close_uis(src)
 
-/obj/item/clockwork/slab/Initialize()
+/obj/item/clockwork/slab/Initialize(mapload)
 	. = ..()
 	update_slab_info(src)
 	START_PROCESSING(SSobj, src)

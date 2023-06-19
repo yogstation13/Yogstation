@@ -111,6 +111,9 @@
 /obj/item/book/manual/wiki/supermatter,
 /obj/item/geiger_counter,
 /obj/item/geiger_counter,
+/obj/structure/sign/delamination_counter{
+	pixel_y = 32
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "aq" = (

@@ -19,7 +19,7 @@
 	tastes = list("fish" = 1)
 	foodtype = SEAFOOD | GROSS
 
-/obj/item/reagent_containers/food/snacks/carpmeat/Initialize()
+/obj/item/reagent_containers/food/snacks/carpmeat/Initialize(mapload)
 	. = ..()
 	eatverb = pick("bite","chew","gnaw","swallow","chomp")
 
