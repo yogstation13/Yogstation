@@ -17,7 +17,7 @@
 	var/agressive_sound = 'sound/items/bell_many.ogg'
 	var/obj/item/assembly/assembly
 
-/obj/item/deskbell/Initialize()
+/obj/item/deskbell/Initialize(mapload)
 	. = ..()
 	if(ispath(assembly))
 		assembly = new assembly(src)

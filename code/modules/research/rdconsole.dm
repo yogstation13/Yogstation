@@ -90,7 +90,7 @@ Nothing else in the console has ID requirements.
 				linked_imprinter = D
 				D.linked_console = src
 
-/obj/machinery/computer/rdconsole/Initialize()
+/obj/machinery/computer/rdconsole/Initialize(mapload)
 	. = ..()
 	stored_research = SSresearch.science_tech
 	stored_research.consoles_accessing[src] = TRUE
@@ -1158,7 +1158,7 @@ Nothing else in the console has ID requirements.
 	req_access = null
 	req_access_txt = "29"
 
-/obj/machinery/computer/rdconsole/robotics/Initialize()
+/obj/machinery/computer/rdconsole/robotics/Initialize(mapload)
 	. = ..()
 	if(circuit)
 		circuit.name = "R&D Console - Robotics (Computer Board)"
@@ -1181,7 +1181,7 @@ Nothing else in the console has ID requirements.
 	desc = "A console used to interface with R&D tools. This one seems to run on different research tech and does not have access requirement."
 	circuit = /obj/item/circuitboard/computer/rdconsole/ruin
 
-/obj/machinery/computer/rdconsole/nolock/ruin/Initialize()
+/obj/machinery/computer/rdconsole/nolock/ruin/Initialize(mapload)
     . = ..()
     if(stored_research)
         stored_research.consoles_accessing -= src

@@ -54,7 +54,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	fair_market_price = 5 // He nodded, because he knew I was right. Then he swiped his credit card to pay me for arresting him.
 	payment_department = ACCOUNT_MED
 
-/obj/machinery/clonepod/Initialize()
+/obj/machinery/clonepod/Initialize(mapload)
 	. = ..()
 
 	countdown = new(src)
@@ -112,7 +112,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/read_only = FALSE //Well,it's still a floppy disk
 
 //Disk stuff.
-/obj/item/disk/data/Initialize()
+/obj/item/disk/data/Initialize(mapload)
 	. = ..()
 	icon_state = "datadisk[rand(0,6)]"
 	add_overlay("datadisk_gene")

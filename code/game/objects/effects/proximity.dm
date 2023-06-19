@@ -44,7 +44,7 @@
 		SetRange(curr_range, TRUE)
 		if(curr_range)
 			testing("HasProx: [host] -> [host]")
-			hasprox_receiver.HasProximity(host)	//if we are processing, we're guaranteed to be a movable
+			hasprox_receiver?.HasProximity(host)	//if we are processing, we're guaranteed to be a movable
 
 /datum/proximity_monitor/proc/SetRange(range, force_rebuild = FALSE)
 	if(!force_rebuild && range == current_range)
@@ -113,4 +113,4 @@
 /obj/effect/abstract/proximity_checker/Crossed(atom/movable/AM)
 	set waitfor = FALSE
 	. = ..()
-	monitor.hasprox_receiver.HasProximity(AM)
+	monitor.hasprox_receiver?.HasProximity(AM)

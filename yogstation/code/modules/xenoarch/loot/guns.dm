@@ -6,7 +6,7 @@
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/xenoarch_righthand.dmi'
 	icon_state = "polarstar"
 	item_state = "polarstar"
-	slot_flags = SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 	fire_delay = 1
 	recoil = 1
 	cell_type = /obj/item/stock_parts/cell

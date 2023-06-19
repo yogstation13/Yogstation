@@ -7,8 +7,6 @@
 #define TORTURE_BLOOD_HALF_COST 8
 /// Cost to convert someone after successful torture, in blood
 #define TORTURE_CONVERSION_COST 50
-/// Deals with constant processes off of LifeTick()
-#define COMSIG_LIVING_BIOLOGICAL_LIFE "biological_life"
 /// Once blood is this low, will enter Frenzy
 #define FRENZY_THRESHOLD_ENTER 112
 /// Once blood is this high, will exit Frenzy
@@ -53,6 +51,8 @@
  */
 ///Spam prevention for healing messages.
 #define BLOODSUCKER_SPAM_HEALING (15 SECONDS)
+///Span prevention for Sol Masquerade messages.
+#define BLOODSUCKER_SPAM_MASQUERADE (60 SECONDS)
 ///Span prevention for Sol messages.
 #define BLOODSUCKER_SPAM_SOL (30 SECONDS)
 

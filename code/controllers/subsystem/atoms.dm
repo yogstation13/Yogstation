@@ -192,13 +192,13 @@ SUBSYSTEM_DEF(atoms)
 		. += "Path : [path] \n"
 		var/fails = BadInitializeCalls[path]
 		if(fails & BAD_INIT_DIDNT_INIT)
-			. += "- Didn't call atom/Initialize()\n"
+			. += "- Didn't call atom/Initialize(mapload)\n"
 		if(fails & BAD_INIT_NO_HINT)
 			. += "- Didn't return an Initialize hint\n"
 		if(fails & BAD_INIT_QDEL_BEFORE)
 			. += "- Qdel'd in New()\n"
 		if(fails & BAD_INIT_SLEPT)
-			. += "- Slept during Initialize()\n"
+			. += "- Slept during Initialize(mapload)\n"
 
 /// Prepares an atom to be deleted once the atoms SS is initialized.
 /datum/controller/subsystem/atoms/proc/prepare_deletion(atom/target)

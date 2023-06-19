@@ -26,7 +26,7 @@
 	var/list/spotlights = list()
 	var/list/sparkles = list()
 
-/obj/structure/discoball/Initialize()
+/obj/structure/discoball/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -98,7 +98,8 @@
 
 /obj/structure/discoball/proc/dance_setup()
 	var/turf/cen = get_turf(src)
-	FOR_DVIEW(var/turf/t, 3, get_turf(src),INVISIBILITY_LIGHTING)
+	var/turf/t
+	FOR_DVIEW(t, 3, get_turf(src),INVISIBILITY_LIGHTING)
 		if(t.x == cen.x && t.y > cen.y)
 			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_RED)
 			continue

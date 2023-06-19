@@ -44,7 +44,7 @@
 		return
 	..()
 
-/mob/living/simple_animal/hostile/glockroach/Crossed(var/atom/movable/AM)
+/mob/living/simple_animal/hostile/glockroach/Crossed(atom/movable/AM)
 	. = ..()
 	if(ismob(AM))
 		if(isliving(AM))

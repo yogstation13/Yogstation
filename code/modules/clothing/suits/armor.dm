@@ -12,7 +12,7 @@
 	armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 10, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 15)
 	cryo_preserve = TRUE
 
-/obj/item/clothing/suit/armor/Initialize()
+/obj/item/clothing/suit/armor/Initialize(mapload)
 	. = ..()
 	if(!allowed)
 		allowed = GLOB.security_vest_allowed
@@ -180,7 +180,7 @@
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	mutantrace_variation = MUTANTRACE_VARIATION
 
-/obj/item/clothing/suit/armor/pathfinder/Initialize()
+/obj/item/clothing/suit/armor/pathfinder/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/armor_plate, null, null, list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 5)) //maximum armor 60/15/15/15/65
 
@@ -220,7 +220,7 @@
 	resistance_flags = FLAMMABLE
 	dog_fashion = null
 
-/obj/item/clothing/suit/armor/vest/det_suit/Initialize()
+/obj/item/clothing/suit/armor/vest/det_suit/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
 

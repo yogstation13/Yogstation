@@ -10,7 +10,7 @@
 	. = ..()
 	. += "<span_clas='notice'>An expiry date is listed on it. It reads: [expiry_date]</span>"
 
-/obj/item/storage/box/mre/Initialize()
+/obj/item/storage/box/mre/Initialize(mapload)
 	. = ..()
 	expiry_date = rand(2300, 2700)
 

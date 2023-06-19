@@ -47,6 +47,6 @@
 	icon_state = "fire_crocs"
 	item_state = "fire_crocs"
 
-/obj/item/clothing/shoes/fire_crocs/Initialize()
+/obj/item/clothing/shoes/fire_crocs/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,5)

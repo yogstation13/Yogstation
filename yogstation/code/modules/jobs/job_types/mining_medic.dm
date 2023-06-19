@@ -1,10 +1,8 @@
 /datum/job/miningmedic
 	title = "Mining Medic"
 	description = "Watch over the Shaft Miners as they all inevitably die on Lavaland."
-	flag = MMEDIC
 	orbit_icon = "kit-medical"
 	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -67,4 +65,4 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival_mining
 	ipc_box = /obj/item/storage/box/ipc/miner
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET

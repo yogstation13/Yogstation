@@ -13,6 +13,7 @@
 	bloodcost = 5
 	constant_bloodcost = 0.2
 	cooldown_time = 5 SECONDS
+	ascended_power = /datum/action/cooldown/bloodsucker/cloak/shadow
 	var/was_running
 	var/runbound = TRUE
 
@@ -86,6 +87,7 @@
 	purchase_flags = LASOMBRA_CAN_BUY
 	constant_bloodcost = 0.3
 	runbound = FALSE
+	ascended_power = null
 
 /obj/item/clothing/neck/yogs/sith_cloak/cloak
 	name = "cloak of shadows"
@@ -96,7 +98,7 @@
 	item_state = "cloak"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, RAD = 0, FIRE = 10, ACID = 100) //good if you haven nothing
 
-/obj/item/clothing/neck/yogs/sith_cloak/cloak/Initialize()
+/obj/item/clothing/neck/yogs/sith_cloak/cloak/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 	START_PROCESSING(SSobj, src)
@@ -114,11 +116,11 @@
 	var/turf/T = get_turf(owner)
 	var/light_amount = T.get_lumcount()
 	if(light_amount <= LIGHTING_TILE_IS_DARK)
-		if(!owner.get_item_by_slot(SLOT_NECK))
-			owner.equip_to_slot_or_del( new /obj/item/clothing/neck/yogs/sith_cloak/cloak(null), SLOT_NECK)
+		if(!owner.get_item_by_slot(ITEM_SLOT_NECK))
+			owner.equip_to_slot_or_del( new /obj/item/clothing/neck/yogs/sith_cloak/cloak(null), ITEM_SLOT_NECK)
 
 /datum/action/cooldown/bloodsucker/cloak/shadow/DeactivatePower()
 	. = ..()
-	var/obj/item/I = owner.get_item_by_slot(SLOT_NECK)
+	var/obj/item/I = owner.get_item_by_slot(ITEM_SLOT_NECK)
 	if(istype(I, /obj/item/clothing/neck/yogs/sith_cloak/cloak))
 		qdel(I)

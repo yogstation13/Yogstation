@@ -213,7 +213,7 @@ effective or pretty fucking useless.
 	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/storage/belt/military/shadowcloak/ui_action_click(mob/user)
-	if(user.get_item_by_slot(SLOT_BELT) == src)
+	if(user.get_item_by_slot(ITEM_SLOT_BELT) == src)
 		if(!on)
 			Activate(usr)
 		else
@@ -221,7 +221,7 @@ effective or pretty fucking useless.
 	return
 
 /obj/item/storage/belt/military/shadowcloak/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_BELT)
+	if(slot == ITEM_SLOT_BELT)
 		return 1
 
 /obj/item/storage/belt/military/shadowcloak/proc/Activate(mob/living/carbon/human/user)
@@ -243,11 +243,11 @@ effective or pretty fucking useless.
 
 /obj/item/storage/belt/military/shadowcloak/dropped(mob/user)
 	..()
-	if(user && user.get_item_by_slot(SLOT_BELT) != src)
+	if(user && user.get_item_by_slot(ITEM_SLOT_BELT) != src)
 		Deactivate()
 
 /obj/item/storage/belt/military/shadowcloak/process(delta_time)
-	if(user.get_item_by_slot(SLOT_BELT) != src)
+	if(user.get_item_by_slot(ITEM_SLOT_BELT) != src)
 		Deactivate()
 		return
 	var/turf/T = get_turf(src)
@@ -261,8 +261,8 @@ effective or pretty fucking useless.
 
 
 /obj/item/jammer
-	name = "radio jammer"
-	desc = "Device used to disrupt nearby radio communication."
+	name = "signal jammer"
+	desc = "Device used to disrupt nearby radio communications and suit sensors."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "jammer"
 	var/active = FALSE

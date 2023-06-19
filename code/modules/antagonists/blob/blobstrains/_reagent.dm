@@ -6,7 +6,7 @@
 	reagent = new reagent()
 
 
-/datum/blobstrain/reagent/attack_living(var/mob/living/L)
+/datum/blobstrain/reagent/attack_living(mob/living/L)
 	reagent.reaction_mob(L, VAPOR, 25, 1, L.get_permeability(), overmind)
 	send_message(L)
 

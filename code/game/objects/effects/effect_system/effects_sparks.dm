@@ -26,7 +26,7 @@
 	light_color = LIGHT_COLOR_FIRE
 	light_flags = LIGHT_NO_LUMCOUNT
 
-/obj/effect/particle_effect/sparks/Initialize()
+/obj/effect/particle_effect/sparks/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 

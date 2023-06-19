@@ -20,7 +20,7 @@
 	name = "HOP line turnstile"
 	req_one_access = list(ACCESS_HEADS)
 	
-/obj/machinery/ministile/Initialize()
+/obj/machinery/ministile/Initialize(mapload)
 	. = ..()
 	icon_state = "ministile"
 
