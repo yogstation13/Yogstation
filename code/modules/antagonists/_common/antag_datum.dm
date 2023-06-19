@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/hud_icon = 'yogstation/icons/mob/antag_hud.dmi'
 	///Name of the antag hud we provide to this mob.
 	var/antag_hud_name
+	var/awake_stage = ANTAG_AWAKE //What stage we are of "waking up"
 
 	//Antag panel properties
 	var/show_in_antagpanel = TRUE	//This will hide adding this antag type in antag panel, use only for internal subtypes that shouldn't be added directly but still show if possessed by mind
