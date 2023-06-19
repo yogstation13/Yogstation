@@ -28,7 +28,7 @@
 	 )
 	var/originalname = "condiment" //Can't use initial(name) for this. This stores the name set by condimasters.
 
-/obj/item/reagent_containers/food/condiment/Initialize()
+/obj/item/reagent_containers/food/condiment/Initialize(mapload)
 	. = ..()
 	//possible_states = typelist("possible_states", possible_states) // yogs -- commented out
 	initialize_possible_states() // yogs

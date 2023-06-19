@@ -16,7 +16,7 @@
 	var/impressiveness = 15
 	CanAtmosPass = ATMOS_PASS_DENSITY
 
-/obj/structure/statue/Initialize()
+/obj/structure/statue/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/art, impressiveness)
 

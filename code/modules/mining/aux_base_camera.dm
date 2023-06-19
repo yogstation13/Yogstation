@@ -7,12 +7,12 @@
 	var/area/starting_area
 	invisibility = 0 //Not invisible
 
-/mob/camera/aiEye/remote/base_construction/Initialize()
+/mob/camera/aiEye/remote/base_construction/Initialize(mapload)
 	. = ..()
 	starting_area = get_area(loc)
-	icon_state = "construction_drone" // Overrides /mob/camera/aiEye/Initialize() in \modules\mob\living\silicon\ai\freelook\eye
+	icon_state = "construction_drone" // Overrides /mob/camera/aiEye/Initialize(mapload) in \modules\mob\living\silicon\ai\freelook\eye
 
-/mob/camera/aiEye/remote/base_construction/setLoc(var/t)
+/mob/camera/aiEye/remote/base_construction/setLoc(t)
 	var/area/curr_area = get_area(t)
 	if(curr_area == starting_area || istype(curr_area, /area/shuttle/auxiliary_base))
 		return ..()
@@ -51,7 +51,7 @@
 
 	light_color = LIGHT_COLOR_PINK
 
-/obj/machinery/computer/camera_advanced/base_construction/Initialize()
+/obj/machinery/computer/camera_advanced/base_construction/Initialize(mapload)
 	. = ..()
 	RCD = new(src)
 

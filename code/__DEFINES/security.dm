@@ -59,6 +59,7 @@
 #define WANTED_ARREST "Arrest"
 #define WANTED_DISCHARGED "Discharged"
 #define WANTED_NONE "None"
+#define WANTED_SEARCH "Search"
 #define WANTED_PAROLE "Parole"
 #define WANTED_PRISONER "Incarcerated"
 #define WANTED_SUSPECT "Suspected"
@@ -67,6 +68,7 @@
 #define WANTED_STATUSES(...) list(\
 	WANTED_NONE, \
 	WANTED_SUSPECT, \
+	WANTED_SEARCH, \
 	WANTED_ARREST, \
 	WANTED_PRISONER, \
 	WANTED_PAROLE, \

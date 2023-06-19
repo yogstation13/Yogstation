@@ -98,7 +98,7 @@
 	var/damage_coefficient = rand(devastation_damage_min_percentage, devastation_damage_max_percentage)
 	adjustBruteLoss(initial(maxHealth)*damage_coefficient)
 
-/mob/living/simple_animal/hostile/space_dragon/Life()
+/mob/living/simple_animal/hostile/space_dragon/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	tiredness = max(tiredness - (0.5), 0)
 	for(var/mob/living/consumed_mob in src)
@@ -270,7 +270,7 @@
   * Arguments:
   * * atom/at - The target
   */
-/mob/living/simple_animal/hostile/space_dragon/proc/fire_stream(var/atom/at = target)
+/mob/living/simple_animal/hostile/space_dragon/proc/fire_stream(atom/at = target)
 	playsound(get_turf(src),'sound/magic/fireball.ogg', 200, TRUE)
 	var/range = 20
 	var/list/turfs = list()

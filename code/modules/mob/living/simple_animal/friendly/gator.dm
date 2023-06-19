@@ -28,7 +28,7 @@
 	maxHealth = 125
 	speed = 8
 
-/mob/living/simple_animal/hostile/retaliate/gator/Life()
+/mob/living/simple_animal/hostile/retaliate/gator/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(. && sentience_type != SENTIENCE_BOSS)
 		//stolen from goats so alligators can eat you without intervention

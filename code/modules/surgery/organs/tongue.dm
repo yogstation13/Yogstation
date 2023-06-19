@@ -73,7 +73,7 @@
 /obj/item/organ/tongue/honked/boowomp
 	honkednoise = 'yogstation/sound/items/boowomp.ogg'
 
-/obj/item/organ/tongue/Initialize() // this only exists to make sure the spawned tongue has a horn inside of it visually
+/obj/item/organ/tongue/Initialize(mapload) // this only exists to make sure the spawned tongue has a horn inside of it visually
 	. = ..()
 	update_icon()
 
@@ -230,7 +230,7 @@
 	var/phomeme_type = "sans"
 	var/list/phomeme_types = list("sans", "papyrus")
 
-/obj/item/organ/tongue/bone/Initialize()
+/obj/item/organ/tongue/bone/Initialize(mapload)
 	. = ..()
 	phomeme_type = pick(phomeme_types)
 

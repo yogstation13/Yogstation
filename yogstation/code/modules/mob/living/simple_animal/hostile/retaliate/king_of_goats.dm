@@ -103,7 +103,7 @@ Difficulty: Insanely Hard
 	var/special_attacks = 0
 	stun_chance = 7
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -255,7 +255,7 @@ Difficulty: Insanely Hard
 	visible_message(span_cult("\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!"))
 
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/proc/update_icon()
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/update_icon()
 	var/matrix/M = new
 	if(phase3)
 		icon_state = "king_goat3"
@@ -266,7 +266,7 @@ Difficulty: Insanely Hard
 	transform = M
 	pixel_y = 10
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Life()
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(move_to_delay < 3)
 		move_to_delay += 0.1

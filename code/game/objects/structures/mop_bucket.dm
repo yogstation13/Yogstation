@@ -8,7 +8,7 @@
 	var/obj/item/mop/ourmop //if there's a mop in the bucket
 
 
-/obj/structure/mopbucket/Initialize()
+/obj/structure/mopbucket/Initialize(mapload)
 	. = ..()
 	create_reagents(100, OPENCONTAINER)
 

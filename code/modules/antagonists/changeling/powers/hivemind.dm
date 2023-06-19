@@ -5,7 +5,7 @@
 	helptext = "We will be able to talk with other changelings with :g. Exchanged DNA do not count towards absorb objectives."
 	needs_button = FALSE
 	dna_cost = 0
-	chemical_cost = -1
+	chemical_cost = 0
 
 /datum/action/changeling/hivemind_comms/on_purchase(mob/user, is_respec)
 	..()

@@ -34,12 +34,9 @@
 	icon_state = "circ-unassembled-1"
 
 /obj/machinery/atmospherics/components/binary/circulator/Initialize(mapload)
-	.=..()
+	. = ..()
 	component_parts = list(new /obj/item/circuitboard/machine/circulator)
 	update_icon()
-
-/obj/machinery/atmospherics/components/binary/circulator/ComponentInitialize()
-	. = ..()
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
 
 /obj/machinery/atmospherics/components/binary/circulator/Destroy()
