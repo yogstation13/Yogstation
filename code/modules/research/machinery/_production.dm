@@ -191,7 +191,7 @@
 	for(var/i in 1 to length(ui))
 		if(!findtextEx(ui[i], RDSCREEN_NOBREAK))
 			ui[i] += "<br>"
-	
+
 	. = ui.Join("")
 	return replacetextEx(., RDSCREEN_NOBREAK, "")
 
@@ -321,6 +321,11 @@
 	if (materials.on_hold())
 		say("Mineral access is on hold, please contact the quartermaster.")
 		return 0
+	if (!issiliconoradminghost(usr))
+		var/obj/item/card/id/idcard = usr.get_idcard()
+		if(!idcard || (!ACCESS_MINERAL_STOREROOM in idcard.GetAccess()))
+			balloon_alert(usr, "No access!")
+			return 0
 	var/count = mat_container.retrieve_sheets(text2num(eject_amt), eject_sheet, drop_location())
 	var/list/matlist = list()
 	matlist[eject_sheet] = MINERAL_MATERIAL_AMOUNT

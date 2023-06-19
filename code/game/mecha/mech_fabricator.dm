@@ -7,7 +7,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	active_power_usage = 5000
-	
+
 	req_access = list(ACCESS_ROBO_CONTROL)
 	///Whether the access is hacked or not
 	var/hacked = FALSE
@@ -83,7 +83,7 @@
 /obj/machinery/mecha_part_fabricator/Destroy()
 	QDEL_NULL(wires)
 	return ..()
-	
+
 /obj/machinery/mecha_part_fabricator/RefreshParts()
 	var/T = 0
 
@@ -211,7 +211,7 @@
 
 	var/list/category_override = null
 	var/list/sub_category = null
-	
+
 	if(categories)
 		// Handle some special cases to build up sub-categories for the fab interface.
 		// Start with checking if this design builds a cyborg module.
@@ -436,7 +436,7 @@
 		if(process_queue)
 			build_next_in_queue(FALSE)
 		return TRUE
-	
+
 
 /**
   * Dispenses a part to the tile infront of the Exosuit Fab.
@@ -610,7 +610,7 @@
 	data["isProcessingQueue"] = process_queue
 	data["authorization"] = authorization_override
 	data["user_clearance"] = head_or_silicon(user)
-	data["alert_level"] = GLOB.security_level 
+	data["alert_level"] = GLOB.security_level
 	data["combat_parts_allowed"] = combat_parts_allowed(user)
 	data["emagged"] = (obj_flags & EMAGGED)
 	data["silicon_user"] = issilicon(user)
@@ -729,6 +729,11 @@
 	if (rmat.on_hold())
 		say("Mineral access is on hold, please contact the quartermaster.")
 		return 0
+	if (!issiliconoradminghost(usr))
+		var/obj/item/card/id/idcard = usr.get_idcard()
+		if(!idcard || (!ACCESS_MINERAL_STOREROOM in idcard.GetAccess()))
+			balloon_alert(usr, "No access!")
+			return 0
 	var/count = mat_container.retrieve_sheets(text2num(eject_amt), eject_sheet, drop_location())
 	var/list/matlist = list()
 	matlist[eject_sheet] = text2num(eject_amt)
