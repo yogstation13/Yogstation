@@ -64,7 +64,7 @@ The holder (reagents datum) is the datum that holds a list of all reagents curre
 		clear_reagents()
 			This proc removes ALL reagents from the holder.
 
-		reaction(var/atom/A, var/methods=TOUCH, var/volume_modifier=0)
+		reaction(atom/A, methods=TOUCH, volume_modifier=0)
 			This proc calls the appropriate reaction procs of the reagents.
 			I.e. if A is an object, it will call the reagents reaction_obj
 			proc. The methods var is used for reaction on mobs. It simply tells
