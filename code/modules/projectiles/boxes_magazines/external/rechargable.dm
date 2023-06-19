@@ -10,7 +10,6 @@
 
 /obj/item/ammo_box/magazine/recharge/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
 	cut_overlays()
 	var/cur_ammo = ammo_count()
@@ -32,7 +31,6 @@
 	
 /obj/item/ammo_box/magazine/recharge/lasgun/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
 	if(ammo_count())
 		icon_state = "[initial(icon_state)]"
@@ -140,7 +138,6 @@
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	cut_overlays()
 	var/cur_ammo = ammo_count()
 	if(cur_ammo)

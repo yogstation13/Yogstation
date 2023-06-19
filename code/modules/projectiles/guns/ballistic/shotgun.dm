@@ -234,7 +234,6 @@
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if(slung)
 		icon_state = "ishotgunsling"
 	

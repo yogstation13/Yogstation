@@ -10,7 +10,6 @@
 
 /obj/item/ammo_box/magazine/wt550m9/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	switch(ammo_count())
 		if(17 to 21) //Considers the extra bullet in the chamber
 			icon_state = "46x30mmt[sprite_designation]-20"
@@ -105,7 +104,6 @@
 
 /obj/item/ammo_box/magazine/uzim9mm/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	icon_state = "uzi9mm-[round(ammo_count(),4)]"
 
 //NT Saber SMG
@@ -120,7 +118,6 @@
 
 /obj/item/ammo_box/magazine/smgm9mm/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	icon_state = "smg9mm[sprite_designation]-[ammo_count() ? "42" : "0"]"
 
 /obj/item/ammo_box/magazine/smgm9mm/ap
@@ -151,7 +148,6 @@
 
 /obj/item/ammo_box/magazine/smgm45/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	icon_state = "c20r45[sprite_designation]-[round(ammo_count(),2)]"
 
 /obj/item/ammo_box/magazine/smgm45/ap

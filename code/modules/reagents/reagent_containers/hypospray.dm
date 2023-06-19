@@ -309,7 +309,6 @@
 
 /obj/item/hypospray/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	cut_overlays()
 	if(ismob(loc))
 		var/mob/M = loc

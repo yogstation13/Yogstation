@@ -240,7 +240,6 @@
 
 /obj/structure/alien/egg/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	switch(status)
 		if(GROWING)
 			icon_state = "[base_icon]_growing"

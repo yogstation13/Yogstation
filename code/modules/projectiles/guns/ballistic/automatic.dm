@@ -29,7 +29,6 @@
 
 /obj/item/gun/ballistic/automatic/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if(!select)
 		add_overlay("[initial(icon_state)]_semi")
 	if(select == 1)
@@ -160,7 +159,6 @@
 
 /obj/item/gun/ballistic/automatic/m90/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	switch(select)
 		if(0)
 			add_overlay("[initial(icon_state)]_semi")

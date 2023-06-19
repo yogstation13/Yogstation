@@ -41,7 +41,6 @@
 
 /obj/mecha/working/ripley/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	var/datum/component/armor_plate/C = GetComponent(/datum/component/armor_plate)
 	if (C.amount)
 		cut_overlays()

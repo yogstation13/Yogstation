@@ -421,7 +421,6 @@
 
 /obj/item/gun/update_appearance(updates = ALL)
 	. = ..()
-	..()
 
 
 /obj/item/gun/proc/reset_semicd()

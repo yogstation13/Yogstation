@@ -14,7 +14,6 @@
 
 /obj/structure/closet/crate/bin/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	cut_overlays()
 	if(contents.len == 0)
 		add_overlay("largebing")

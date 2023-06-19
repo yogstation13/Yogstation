@@ -10,7 +10,6 @@
 
 /obj/item/ammo_box/magazine/m10mm/rifle/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if(ammo_count())
 		icon_state = "75-8"
 	else
@@ -28,7 +27,6 @@
 
 /obj/item/ammo_box/magazine/m556/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	icon_state = "5.56m[sprite_designation]-[round(ammo_count(),5)]"
 
 /obj/item/ammo_box/magazine/m556/ap
@@ -59,7 +57,6 @@
 
 /obj/item/ammo_box/magazine/r556/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if(ammo_count())
 		icon_state = "arg556[sprite_designation]"
 	else
@@ -101,7 +98,6 @@
 
 /obj/item/ammo_box/magazine/m308/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if(ammo_count())
 		icon_state = "m308[sprite_designation]"
 	else
@@ -136,7 +132,6 @@
 
 /obj/item/ammo_box/magazine/ks762/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if(ammo_count())
 		icon_state = "ks762[sprite_designation]"
 	else

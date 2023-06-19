@@ -50,7 +50,6 @@
 
 /obj/structure/closet/body_bag/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if (tagged)
 		add_overlay("bodybag_label")
 

@@ -181,7 +181,6 @@
 
 /obj/item/borg/charger/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	icon_state = "charger_[mode]"
 
 /obj/item/borg/charger/attack_self(mob/user)

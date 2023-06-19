@@ -79,7 +79,6 @@
 
 /obj/machinery/computer/aifixer/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	else

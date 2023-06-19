@@ -128,7 +128,6 @@
 
 /obj/item/clothing/head/helmet/space/hostile_environment/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	cut_overlays()
 	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hostile_env_glass")
 	glass_overlay.appearance_flags = RESET_COLOR

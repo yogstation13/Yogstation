@@ -45,7 +45,6 @@
 
 /turf/open/floor/light/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if(on)
 		switch(state)
 			if(0)

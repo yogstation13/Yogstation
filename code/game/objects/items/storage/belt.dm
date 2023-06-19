@@ -822,7 +822,6 @@
 
 /obj/item/storage/belt/quiver/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if(content_overlays && ismob(loc))
 		var/mob/M = loc
 		M.update_inv_belt()

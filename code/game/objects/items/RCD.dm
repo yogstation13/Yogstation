@@ -738,7 +738,6 @@ RLD
 
 /obj/item/construction/rcd/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if(has_ammobar)
 		var/ratio = CEILING((matter / max_matter) * ammo_sections, 1)
 		cut_overlays()	//To prevent infinite stacking of overlays

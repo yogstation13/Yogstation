@@ -476,7 +476,6 @@
 
 /obj/structure/firelock_frame/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	icon_state = "frame[constructionStep]"
 
 /obj/structure/firelock_frame/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)

@@ -940,7 +940,6 @@
 
 /obj/machinery/turretid/update_appearance(updates = ALL)
 	. = ..()
-	..()
 	if(stat & NOPOWER)
 		icon_state = "control_off"
 	else if (enabled)
