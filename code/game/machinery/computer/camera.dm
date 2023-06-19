@@ -261,6 +261,7 @@
 	light_power = 0
 
 /obj/machinery/computer/security/telescreen/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = initial(icon_state)
 	if(stat & BROKEN)
 		icon_state += "b"

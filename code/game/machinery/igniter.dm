@@ -70,6 +70,7 @@
 	icon_state = "igniter[on]"
 
 /obj/machinery/igniter/update_appearance(updates = ALL)
+	. = ..()
 	if(stat & NOPOWER)
 		icon_state = "igniter0"
 	else
@@ -102,6 +103,7 @@
 	return ..()
 
 /obj/machinery/sparker/update_appearance(updates = ALL)
+	. = ..()
 	if(disable)
 		icon_state = "[initial(icon_state)]-d"
 	else if(powered())

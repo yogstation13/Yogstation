@@ -105,6 +105,7 @@
 	SEND_SIGNAL(occupant, COMSIG_NANITE_DELETE)
 
 /obj/machinery/nanite_chamber/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if((stat & MAINT) || panel_open)

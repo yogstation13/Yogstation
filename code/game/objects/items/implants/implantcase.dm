@@ -15,6 +15,7 @@
 
 
 /obj/item/implantcase/update_appearance(updates = ALL)
+	. = ..()
 	if(imp)
 		icon_state = "implantcase-[imp.implant_color]"
 		reagents = imp.reagents

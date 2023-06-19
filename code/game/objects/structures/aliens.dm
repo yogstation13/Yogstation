@@ -239,6 +239,7 @@
 		obj_integrity = integrity_failure
 
 /obj/structure/alien/egg/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	switch(status)
 		if(GROWING)

@@ -109,6 +109,7 @@
 	return FALSE
 
 /obj/machinery/atmospherics/miner/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(broken)
 		add_overlay("broken")

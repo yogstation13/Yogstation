@@ -97,6 +97,7 @@
 		return PROCESS_KILL
 
 /obj/item/stock_parts/cell/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(grown_battery)
 		add_overlay(image('icons/obj/power.dmi',"grown_wires"))

@@ -97,6 +97,7 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 
 
 /obj/machinery/ai/server_cabinet/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if(installed_racks.len > 0) 

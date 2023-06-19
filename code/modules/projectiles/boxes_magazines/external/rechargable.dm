@@ -9,6 +9,7 @@
 	max_ammo = 20
 
 /obj/item/ammo_box/magazine/recharge/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
 	cut_overlays()
@@ -30,6 +31,7 @@
 	desc = "A rechargeable, detachable battery that serves as a magazine for las weaponry."
 	
 /obj/item/ammo_box/magazine/recharge/lasgun/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
 	if(ammo_count())
@@ -75,6 +77,7 @@
 	)
 
 /obj/item/gun/ballistic/automatic/pistol/ntusp/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = initial(icon_state)
 	if(istype(magazine, /obj/item/ammo_box/magazine/recharge/ntusp/laser))
 		// Tricks the parent proc into thinking we have a skin so it uses the laser-variant icon_state
@@ -136,6 +139,7 @@
 	max_ammo = 8
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	cut_overlays()
 	var/cur_ammo = ammo_count()

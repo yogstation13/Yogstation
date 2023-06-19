@@ -25,6 +25,7 @@
 	Being placed in a mech does not slave you to any laws.</b>"
 
 /obj/item/mmi/update_appearance(updates = ALL)
+	. = ..()
 	if(!brain)
 		icon_state = "mmi_off"
 		return

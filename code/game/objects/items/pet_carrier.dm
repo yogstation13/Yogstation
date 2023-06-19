@@ -142,6 +142,7 @@
 		remove_occupant(user)
 
 /obj/item/pet_carrier/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlay("unlocked")
 	cut_overlay("locked")
 	if(open)

@@ -76,6 +76,7 @@
 	return (cpu.emag_act(user))
 
 /obj/machinery/modular_computer/update_appearance(updates = ALL)
+	. = ..()
 	cpu.update_appearance(updates = ALL)
 
 /obj/machinery/modular_computer/AltClick(mob/user)

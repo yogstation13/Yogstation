@@ -43,6 +43,7 @@
 	. = ..()
 
 /obj/machinery/oven/update_appearance(updates = ALL)
+	. = ..()
 	update_overlays()
 	if(panel_open) 
 		icon_state = "oven_o"

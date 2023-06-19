@@ -224,6 +224,7 @@
 	return ..()
 
 /obj/item/hemostat/supermatter/update_appearance(updates = ALL)
+	. = ..()
 	if(sliver)
 		icon_state = "supermatter_tongs_loaded"
 	else

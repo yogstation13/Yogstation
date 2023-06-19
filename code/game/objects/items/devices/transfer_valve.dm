@@ -97,6 +97,7 @@
 	toggle = TRUE
 
 /obj/item/transfer_valve/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if(!tank_one && !tank_two && !attached_device)

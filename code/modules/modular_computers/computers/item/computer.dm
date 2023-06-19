@@ -263,6 +263,7 @@
 	. += get_modular_computer_parts_examine(user)
 
 /obj/item/modular_computer/update_appearance(updates = ALL)
+	. = ..()
 	if(!physical)
 		return
 

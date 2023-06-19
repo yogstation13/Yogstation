@@ -146,6 +146,7 @@
 		flick(working_state,src)
 
 /obj/machinery/chem_dispenser/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	icon_state = "[(nopower_state && !powered()) ? nopower_state : initial(icon_state)]"
 	if(has_panel_overlay && panel_open)

@@ -82,6 +82,7 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	return ..()
 
 /obj/machinery/doppler_array/update_appearance(updates = ALL)
+	. = ..()
 	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 	else if(powered())

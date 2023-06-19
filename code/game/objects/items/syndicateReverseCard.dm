@@ -15,6 +15,7 @@
 	icon_state = "sc_[cardColor] Reverse_uno"
 
 /obj/item/syndicateReverseCard/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if (used)
 		cut_overlays()

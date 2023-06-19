@@ -29,6 +29,7 @@
 
 
 /obj/item/folder/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(contents.len)
 		add_overlay("folder_paper")

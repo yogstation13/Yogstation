@@ -90,6 +90,7 @@
 			playsound(src, 'sound/machines/blastdoor.ogg', 30, 1)
 
 /obj/machinery/door/poddoor/update_appearance(updates = ALL)
+	. = ..()
 	if(density)
 		icon_state = "closed"
 	else

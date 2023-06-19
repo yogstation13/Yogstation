@@ -38,6 +38,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/clothing/ears/headphones/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)]_[headphones_on? "on" : "off"]"
 	item_state = "[initial(item_state)]_[headphones_on? "on" : "off"]"
 

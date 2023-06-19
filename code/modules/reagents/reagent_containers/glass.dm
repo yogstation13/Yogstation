@@ -128,6 +128,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/glass/beaker/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if(reagents.total_volume)
@@ -178,6 +179,7 @@
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
 
 /obj/item/reagent_containers/glass/beaker/plastic/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "beakerlarge" // hack to lets us reuse the large beaker reagent fill states
 	..()
 	icon_state = "beakerwhite"
@@ -425,6 +427,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/glass/mixbowl/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if(reagents.total_volume)

@@ -39,6 +39,7 @@
 	pixel_x = rand(-8, 8)
 
 /obj/structure/headpike/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	var/obj/item/bodypart/head/H = locate() in contents
 	var/mutable_appearance/MA = new()

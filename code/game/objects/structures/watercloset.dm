@@ -71,6 +71,7 @@
 
 
 /obj/structure/toilet/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "toilet[open][cistern]"
 
 
@@ -395,6 +396,7 @@
 	update_appearance(updates = ALL)
 
 /obj/structure/curtain/update_appearance(updates = ALL)
+	. = ..()
 	if(!open)
 		icon_state = "closed"
 		layer = WALL_OBJ_LAYER

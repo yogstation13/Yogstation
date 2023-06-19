@@ -267,6 +267,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/restraints/legcuffs/beartrap/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)][armed]"
 
 /obj/item/restraints/legcuffs/beartrap/suicide_act(mob/user)

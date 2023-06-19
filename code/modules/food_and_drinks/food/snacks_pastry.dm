@@ -654,6 +654,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/food/snacks/pancakes/update_appearance(updates = ALL)
+	. = ..()
 	if(contents.len)
 		name = "stack of pancakes"
 	else

@@ -684,6 +684,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	list_reagents = list(/datum/reagent/flightpotion = 5)
 
 /obj/item/reagent_containers/glass/bottle/potion/update_appearance(updates = ALL)
+	. = ..()
 	if(reagents.total_volume)
 		icon_state = initial(icon_state)
 		desc = initial(desc)
@@ -1505,6 +1506,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		blast_range -= round(health_percent * 10) //one additional range for each missing 10% of health
 
 /obj/item/hierophant_club/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "hierophant_club[timer <= world.time ? "_ready":""][(beacon && !QDELETED(beacon)) ? "":"_beacon"]"
 	item_state = icon_state
 	if(ismob(loc))

@@ -12,6 +12,7 @@
 	var/obj/item/implantcase/case = null
 
 /obj/item/implantpad/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "implantpad-[!QDELETED(case)]"
 
 /obj/item/implantpad/examine(mob/user)

@@ -6,6 +6,7 @@
 	var/max_butts = 10
 
 /obj/item/ashtray/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	overlays.Cut()
 	if(contents.len == max_butts)

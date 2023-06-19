@@ -737,6 +737,7 @@ RLD
 	qdel(src)
 
 /obj/item/construction/rcd/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if(has_ammobar)
 		var/ratio = CEILING((matter / max_matter) * ammo_sections, 1)
@@ -876,6 +877,7 @@ RLD
 		..()
 
 /obj/item/construction/rld/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "rld-[round(matter/35)]"
 	..()
 

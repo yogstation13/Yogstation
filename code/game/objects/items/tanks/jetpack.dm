@@ -61,6 +61,7 @@
 		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=jetspeed, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 
 /obj/item/tank/jetpack/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = initial(icon_state)
 	if(!classic && on) //does the jetpack have its own on sprite?
 		icon_state = "[initial(icon_state)]-on"

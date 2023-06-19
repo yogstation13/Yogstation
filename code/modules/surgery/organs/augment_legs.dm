@@ -60,6 +60,7 @@
 			CRASH("Invalid zone for [type]")
 
 /obj/item/organ/cyberimp/leg/update_appearance(updates = ALL)
+	. = ..()
 	if(zone == BODY_ZONE_R_LEG)
 		transform = null
 	else // Mirroring the icon

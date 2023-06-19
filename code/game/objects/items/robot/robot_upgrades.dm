@@ -455,6 +455,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/borg/upgrade/selfrepair/update_appearance(updates = ALL)
+	. = ..()
 	if(cyborg)
 		icon_state = "selfrepair_[on ? "on" : "off"]"
 		for(var/X in actions)

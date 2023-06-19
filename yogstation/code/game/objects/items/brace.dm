@@ -24,6 +24,7 @@
 	var/cover_open = FALSE
 
 /obj/structure/deployed_brace/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	cut_overlays()
 	if(cover_open)

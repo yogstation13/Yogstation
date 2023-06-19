@@ -40,6 +40,7 @@
 	heat_capacity = 5000 * ((B - 1) ** 2)
 
 /obj/machinery/atmospherics/components/unary/thermomachine/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if(panel_open)

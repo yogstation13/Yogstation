@@ -21,6 +21,7 @@
 	grill_loop = new(list(src), FALSE)
 
 /obj/machinery/grill/update_appearance(updates = ALL)
+	. = ..()
 	if(grilled_item)
 		icon_state = "grill"
 	else if(grill_fuel > 0)

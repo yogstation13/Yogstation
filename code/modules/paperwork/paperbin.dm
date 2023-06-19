@@ -132,6 +132,7 @@
 		. += "It doesn't contain anything."
 
 /obj/item/paper_bin/update_appearance(updates = ALL)
+	. = ..()
 	if(total_paper < 1)
 		icon_state = "paper_bin0"
 	else

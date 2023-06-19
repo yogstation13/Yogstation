@@ -26,6 +26,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/food/drinks/bottle/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if(reagents.total_volume)

@@ -253,6 +253,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/pneumatic_cannon/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!tank)
 		return

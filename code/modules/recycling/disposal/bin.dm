@@ -361,6 +361,7 @@
 	update_appearance(updates = ALL)
 
 /obj/machinery/disposal/bin/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(stat & BROKEN)
 		pressure_charging = FALSE

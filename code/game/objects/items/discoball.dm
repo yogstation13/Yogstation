@@ -73,6 +73,7 @@
 	TimerID = addtimer(CALLBACK(src, PROC_REF(DiscoFever)), 5, TIMER_STOPPABLE)  //Call ourselves every 0.5 seconds to change colors
 
 /obj/structure/discoball/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	icon_state = "disco_[TurnedOn]"
 	var/mutable_appearance/base_overlay = mutable_appearance(icon, "ethdisco_base")

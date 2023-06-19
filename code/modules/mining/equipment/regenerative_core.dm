@@ -137,6 +137,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/organ/regenerative_core/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = inert ? "legion_soul_inert" : "legion_soul"
 	cut_overlays()
 	if(!inert && !preserved)

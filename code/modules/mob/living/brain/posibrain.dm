@@ -205,6 +205,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 
 
 /obj/item/mmi/posibrain/update_appearance(updates = ALL)
+	. = ..()
 	if(searching)
 		icon_state = "[initial(icon_state)]-searching"
 		return

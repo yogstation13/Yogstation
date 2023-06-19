@@ -95,6 +95,7 @@
 		add_fingerprint(occupant)
 
 /obj/machinery/recharge_station/update_appearance(updates = ALL)
+	. = ..()
 	if(is_operational())
 		if(state_open)
 			icon_state = "borgcharger0"

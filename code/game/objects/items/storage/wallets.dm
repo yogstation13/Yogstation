@@ -62,6 +62,7 @@
 	refreshID()
 
 /obj/item/storage/wallet/update_appearance(updates = ALL)
+	. = ..()
 	var/new_state = "wallet"
 	if(front_id)
 		new_state = "wallet_[front_id.icon_state]"

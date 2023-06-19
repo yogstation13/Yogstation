@@ -40,6 +40,7 @@
 	return ..()
 
 /obj/structure/mopbucket/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(reagents.total_volume > 0)
 		add_overlay("mopbucket_water")

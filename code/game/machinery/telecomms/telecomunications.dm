@@ -121,6 +121,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 
 /obj/machinery/telecomms/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(on)
 		var/mutable_appearance/on_overlay

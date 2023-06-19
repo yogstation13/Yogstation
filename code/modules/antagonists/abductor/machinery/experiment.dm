@@ -184,6 +184,7 @@
 	return
 
 /obj/machinery/abductor/experiment/update_appearance(updates = ALL)
+	. = ..()
 	if(state_open)
 		icon_state = "experiment-open"
 	else

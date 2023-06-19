@@ -324,6 +324,7 @@
 	STR.set_holdable(list(/obj/item/gun/energy/dueling))
 
 /obj/item/storage/lockbox/dueling/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	if(locked)

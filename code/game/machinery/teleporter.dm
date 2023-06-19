@@ -88,6 +88,7 @@
 	return
 
 /obj/machinery/teleport/hub/update_appearance(updates = ALL)
+	. = ..()
 	if(panel_open)
 		icon_state = "tele-o"
 	else if(is_ready())
@@ -218,6 +219,7 @@
 		teleporter_hub.update_appearance(updates = ALL)
 
 /obj/machinery/teleport/station/update_appearance(updates = ALL)
+	. = ..()
 	if(panel_open)
 		icon_state = "controller-o"
 	else if(stat & (BROKEN|NOPOWER))

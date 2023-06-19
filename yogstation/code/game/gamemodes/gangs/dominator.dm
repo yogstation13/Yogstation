@@ -55,6 +55,7 @@
 	qdel(src)
 
 /obj/machinery/dominator/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!(stat & BROKEN))
 		icon_state = "dominator-active"

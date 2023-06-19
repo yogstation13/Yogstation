@@ -49,6 +49,7 @@
 		pixel_y = rand(0, 16)
 
 /obj/item/screwdriver/update_appearance(updates = ALL)
+	. = ..()
 	if(!random_color) //icon override
 		return
 	cut_overlays()

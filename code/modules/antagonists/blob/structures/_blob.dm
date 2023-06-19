@@ -82,7 +82,8 @@
 		var/atom/movable/mover = caller
 		. = . || (mover.pass_flags & PASSBLOB)
 
-/obj/structure/blob/update_appearance(updates = ALL) //Updates color based on overmind color if we have an overmind.
+/obj/structure/blob/update_appearance(updates = ALL)
+	. = ..() //Updates color based on overmind color if we have an overmind.
 	if(overmind)
 		add_atom_colour(overmind.blobstrain.color, FIXED_COLOUR_PRIORITY)
 	else
@@ -345,6 +346,7 @@
 	return "N/A"
 
 /obj/structure/blob/normal/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if(obj_integrity <= 15)
 		icon_state = "blob_damaged"

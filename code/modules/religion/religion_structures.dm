@@ -69,6 +69,7 @@
 
 
 /obj/structure/holyfountain/update_appearance(updates = ALL)
+	. = ..()
 	if(last_process + time_between_uses > world.time)
 		icon_state = "fountain"
 	else

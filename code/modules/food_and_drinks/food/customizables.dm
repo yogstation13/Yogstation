@@ -337,6 +337,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/glass/bowl/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(reagents && reagents.total_volume)
 		var/mutable_appearance/filling = mutable_appearance('icons/obj/food/soupsalad.dmi', "fullbowl")

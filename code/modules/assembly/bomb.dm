@@ -17,6 +17,7 @@
 	return bombtank.examine(user)
 
 /obj/item/onetankbomb/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(bombtank)
 		icon = bombtank.icon

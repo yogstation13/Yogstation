@@ -21,6 +21,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/glass/bottle/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!filling_icon_state)
 		filling_icon_state = icon_state

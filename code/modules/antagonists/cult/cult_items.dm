@@ -385,6 +385,7 @@
 	prefix = "darkened"
 
 /obj/item/sharpener/cult/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "cult_sharpener[used ? "_used" : ""]"
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield
@@ -691,6 +692,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	..()
 
 /obj/item/twohanded/cult_spear/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "bloodspear[wielded]"
 
 /obj/item/twohanded/cult_spear/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

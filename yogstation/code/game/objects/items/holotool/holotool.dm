@@ -102,6 +102,7 @@
 			qdel(M)
 
 /obj/item/holotool/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(current_tool)
 		var/mutable_appearance/holo_item = mutable_appearance(icon, current_tool.name)

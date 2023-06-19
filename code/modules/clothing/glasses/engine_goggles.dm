@@ -115,6 +115,7 @@
 			flick_overlay(pic, list(user.client), 8)
 
 /obj/item/clothing/glasses/meson/engine/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "trayson-[mode]"
 	update_mob()
 

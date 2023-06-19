@@ -196,6 +196,7 @@
 	STOP_PROCESSING(SSobj,src)
 
 /obj/machinery/shuttle_scrambler/update_appearance(updates = ALL)
+	. = ..()
 	if(active)
 		icon_state = "dominator-blue"
 	else

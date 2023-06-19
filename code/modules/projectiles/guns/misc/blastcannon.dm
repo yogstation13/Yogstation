@@ -45,6 +45,7 @@
 	return ..()
 
 /obj/item/gun/blastcannon/update_appearance(updates = ALL)
+	. = ..()
 	if(bomb)
 		icon_state = icon_state_loaded
 		name = "blast cannon"

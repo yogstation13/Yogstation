@@ -61,6 +61,7 @@
 	occupant.AddComponent(/datum/component/nanites, 75, cloud_id)
 
 /obj/machinery/public_nanite_chamber/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if((stat & MAINT) || panel_open)

@@ -139,6 +139,7 @@
 	attack_self(usr)
 
 /obj/item/gangtool/update_appearance(updates = ALL)
+	. = ..()
 	overlays.Cut()
 	var/image/I = new(icon, "[icon_state]-overlay")
 	if(gang)

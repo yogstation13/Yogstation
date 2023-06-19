@@ -78,6 +78,7 @@ GLOBAL_LIST_EMPTY_TYPED(has_antagonist_huds, /datum/atom_hud/alternate_appearanc
 	return final_antag_hud_images
 
 /datum/atom_hud/alternate_appearance/basic/antagonist_hud/proc/update_appearance(updates = ALL)
+	. = ..()
 	if (antag_hud_images.len == 0)
 		image.icon = icon('icons/blanks/32x32.dmi', "nothing")
 	else

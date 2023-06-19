@@ -206,6 +206,7 @@
 
 
 /obj/machinery/power/smes/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(stat & BROKEN)
 		return

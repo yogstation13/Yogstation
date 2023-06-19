@@ -33,6 +33,7 @@
 	popup.open()
 
 /obj/machinery/embedded_controller/update_appearance(updates = ALL)
+	. = ..()
 
 /obj/machinery/embedded_controller/proc/return_text()
 

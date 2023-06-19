@@ -103,6 +103,7 @@
 
 
 /obj/item/melee/baton/update_appearance(updates = ALL)
+	. = ..()
 	if(status)
 		icon_state = "[initial(icon_state)]_active"
 	else if(!cell)

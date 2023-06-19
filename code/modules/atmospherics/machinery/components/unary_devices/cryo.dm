@@ -103,6 +103,7 @@
 		beaker = null
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if(panel_open)

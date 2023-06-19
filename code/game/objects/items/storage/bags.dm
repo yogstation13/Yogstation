@@ -56,6 +56,7 @@
 	return (TOXLOSS)
 
 /obj/item/storage/bag/trash/update_appearance(updates = ALL)
+	. = ..()
 	//yogs start
 	if(icon_state == "[initial(icon_state)]_broken")
 		return
@@ -385,6 +386,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/storage/bag/tray/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	for(var/obj/item/I in contents)
 		add_overlay(new /mutable_appearance(I))

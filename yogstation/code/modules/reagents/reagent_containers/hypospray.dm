@@ -24,6 +24,7 @@
 	list_reagents = list(/datum/reagent/medicine/stimulants = 75)
 
 /obj/item/reagent_containers/autoinjector/medipen/stimpack/large/update_appearance(updates = ALL)
+	. = ..()
 	if(reagents.total_volume > 25)
 		icon_state = initial(icon_state)
 	else if(reagents.total_volume)
@@ -46,6 +47,7 @@
 	to_chat(M, span_notice("[enlightenment]"))
 
 /obj/item/reagent_containers/autoinjector/medipen/stimpack/large/redpill/update_appearance(updates = ALL)
+	. = ..()
 	if(reagents.total_volume > 25)
 		icon_state = initial(icon_state)
 	else if(reagents.total_volume)

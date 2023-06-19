@@ -76,6 +76,7 @@
 
 // update the icon_state
 /obj/machinery/navbeacon/update_appearance(updates = ALL)
+	. = ..()
 	var/state="navbeacon[open]"
 
 	if(invisibility)

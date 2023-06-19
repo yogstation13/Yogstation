@@ -33,6 +33,7 @@
 	return TRUE
 
 /obj/machinery/ntnet_relay/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(is_operational())
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")

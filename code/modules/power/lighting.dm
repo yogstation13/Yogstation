@@ -340,6 +340,7 @@
 	return ..()
 
 /obj/machinery/light/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)

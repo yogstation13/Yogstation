@@ -158,6 +158,7 @@
 	active = FALSE
 
 /obj/item/hot_potato/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)]" + "[active ? "_active" : ""]"
 
 /obj/item/hot_potato/syndicate

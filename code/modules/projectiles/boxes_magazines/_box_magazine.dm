@@ -170,6 +170,7 @@
 			update_appearance(updates = ALL)
 
 /obj/item/ammo_box/update_appearance(updates = ALL)
+	. = ..()
 	var/rounds_left = stored_ammo.len
 	switch(multiple_sprites)
 		if(AMMO_BOX_PER_BULLET)

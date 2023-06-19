@@ -420,6 +420,7 @@
 	return TRUE
 
 /obj/item/gun/update_appearance(updates = ALL)
+	. = ..()
 	..()
 
 

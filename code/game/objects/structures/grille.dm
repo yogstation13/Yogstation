@@ -42,6 +42,7 @@
 	update_appearance(updates = ALL)
 
 /obj/structure/grille/update_appearance(updates = ALL)
+	. = ..()
 	if(QDELETED(src))
 		return
 	for(var/i = 0; i < 5; i++)

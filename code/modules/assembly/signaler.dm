@@ -45,6 +45,7 @@
 	return TRUE
 
 /obj/item/assembly/signaler/update_appearance(updates = ALL)
+	. = ..()
 	if(holder)
 		holder.update_appearance(updates = ALL)
 	return

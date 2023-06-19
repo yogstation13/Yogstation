@@ -168,6 +168,7 @@
 	qdel(src)
 
 /obj/item/grenade/plastic/update_appearance(updates = ALL)
+	. = ..()
 	if(nadeassembly)
 		icon_state = "[item_state]1"
 	else

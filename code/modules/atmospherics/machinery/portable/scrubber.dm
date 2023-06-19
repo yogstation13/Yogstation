@@ -37,6 +37,7 @@
 	return ..()
 
 /obj/machinery/portable_atmospherics/scrubber/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "pscrubber:[on]"
 
 	cut_overlays()
@@ -150,6 +151,7 @@
 	movable = TRUE
 
 /obj/machinery/portable_atmospherics/scrubber/huge/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "scrubber:[on]"
 
 /obj/machinery/portable_atmospherics/scrubber/huge/process_atmos()

@@ -122,6 +122,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	update()
 
 /obj/machinery/conveyor/update_appearance(updates = ALL)
+	. = ..()
 	if(!operating)
 		icon_state = "conveyor[inverted ? "-0" : "0"]"
 	else
@@ -272,6 +273,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 // update the icon depending on the position
 
 /obj/machinery/conveyor_switch/update_appearance(updates = ALL)
+	. = ..()
 	if(position<0)
 		if(invert_icon)
 			icon_state = "switch-fwd"

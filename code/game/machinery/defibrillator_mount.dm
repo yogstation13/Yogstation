@@ -39,6 +39,7 @@
 		update_appearance(updates = ALL)
 
 /obj/machinery/defibrillator_mount/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(defib)
 		add_overlay("defib")

@@ -55,6 +55,7 @@
 	return ..()
 
 /obj/structure/stairs/update_appearance(updates = ALL)
+	. = ..()
 	if(isTerminator())
 		icon_state = "stairs_t"
 	else

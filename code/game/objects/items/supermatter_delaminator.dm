@@ -139,6 +139,7 @@
 		to_chat(user, span_warning("[user] seals the [src]."))
 
 /obj/item/antinoblium_container/update_appearance(updates = ALL)
+	. = ..()
 	if(sealed)
 		icon_state = "antinoblium_container_sealed"
 	else if (shard)
@@ -161,6 +162,7 @@
 	return ..()
 
 /obj/item/hemostat/antinoblium/update_appearance(updates = ALL)
+	. = ..()
 	if(shard)
 		icon_state = "antinoblium_tongs_loaded"
 	else

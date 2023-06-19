@@ -57,7 +57,8 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	var/mutable_appearance/sending = mutable_appearance(icon, "broadcaster_send", 1)
 	flick(sending, src)
 
-/obj/machinery/telecomms/broadcaster/update_appearance(updates = ALL) // Special fuckery
+/obj/machinery/telecomms/broadcaster/update_appearance(updates = ALL)
+	. = ..() // Special fuckery
 	cut_overlays()
 	if(on)
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, on_icon, 0)

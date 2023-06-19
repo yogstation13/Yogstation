@@ -230,6 +230,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/pen/edagger/update_appearance(updates = ALL)
+	. = ..()
 	if(on)
 		icon_state = "edagger"
 		item_state = "edagger"

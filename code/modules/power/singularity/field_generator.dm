@@ -45,6 +45,7 @@ field_generator power level display
 	var/clean_up = 0
 
 /obj/machinery/field/generator/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(warming_up)
 		add_overlay("+a[warming_up]")

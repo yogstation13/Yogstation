@@ -52,6 +52,7 @@
 	chest.cell = new /obj/item/stock_parts/cell/high/plus(chest)
 
 /obj/item/robot_suit/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(l_arm)
 		add_overlay("[l_arm.icon_state]+o")

@@ -26,6 +26,7 @@
 	update_appearance(updates = ALL)
 
 /obj/structure/tank_dispenser/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	switch(oxygentanks)
 		if(1 to 3)

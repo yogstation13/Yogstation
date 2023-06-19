@@ -160,7 +160,8 @@ All the important duct code:
 					adjacents += D
 	return adjacents
 
-/obj/machinery/duct/update_appearance(updates = ALL) //setting connects isnt a parameter because sometimes we make more than one change, overwrite it completely or just add it to the bitfield
+/obj/machinery/duct/update_appearance(updates = ALL)
+	. = ..() //setting connects isnt a parameter because sometimes we make more than one change, overwrite it completely or just add it to the bitfield
 	var/temp_icon = initial(icon_state)
 	for(var/D in GLOB.cardinals)
 		if(D & connects)
@@ -263,6 +264,7 @@ All the important duct code:
 
 
 /obj/machinery/duct/multilayered/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = initial(icon_state)
 	if((connects & NORTH) || (connects & SOUTH))
 		icon_state += "_vertical"

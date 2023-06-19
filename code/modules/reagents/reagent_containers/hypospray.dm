@@ -137,6 +137,7 @@
 			update_appearance(updates = ALL)
 
 /obj/item/reagent_containers/autoinjector/medipen/update_appearance(updates = ALL)
+	. = ..()
 	if(reagents.total_volume > 0)
 		icon_state = initial(icon_state)
 	else
@@ -307,6 +308,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/hypospray/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	cut_overlays()
 	if(ismob(loc))

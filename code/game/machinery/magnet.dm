@@ -50,6 +50,7 @@
 
 // update the icon_state
 /obj/machinery/magnetic_module/update_appearance(updates = ALL)
+	. = ..()
 	var/state="floor_magnet"
 	var/onstate=""
 	if(!on)

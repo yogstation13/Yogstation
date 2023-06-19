@@ -75,6 +75,7 @@
 		w_class = full_w_class
 
 /obj/item/stack/update_appearance(updates = ALL)
+	. = ..()
 	if(novariants)
 		return ..()
 	if(amount <= (max_amount * (1/3)))

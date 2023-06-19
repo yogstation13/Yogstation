@@ -45,6 +45,7 @@
 		return ..()
 
 /obj/item/wallframe/picture/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(displayed)
 		add_overlay(image(displayed))
@@ -149,6 +150,7 @@
 		framed.show(user)
 
 /obj/structure/sign/picture_frame/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(framed)
 		add_overlay(image(framed))

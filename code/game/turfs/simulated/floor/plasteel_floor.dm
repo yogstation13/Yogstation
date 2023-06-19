@@ -14,6 +14,7 @@
 	ChangeTurf(/turf/open/floor/plating/rust)
 
 /turf/open/floor/plasteel/update_appearance(updates = ALL)
+	. = ..()
 	if(!..())
 		return 0
 	if(!broken && !burnt)

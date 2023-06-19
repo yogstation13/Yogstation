@@ -189,6 +189,7 @@
 	
 
 /obj/item/gun/ballistic/update_appearance(updates = ALL)
+	. = ..()
 	if (QDELETED(src))
 		return
 	..()

@@ -180,6 +180,7 @@
 	. = ..()
 
 /obj/item/borg/charger/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	icon_state = "charger_[mode]"
 
@@ -611,6 +612,7 @@
 	to_chat(user, span_boldnotice("You [active? "activate":"deactivate"] [src]."))
 
 /obj/item/borg/projectile_dampen/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)][active]"
 
 /obj/item/borg/projectile_dampen/proc/activate_field()

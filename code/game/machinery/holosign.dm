@@ -17,6 +17,7 @@
 	update_appearance(updates = ALL)
 
 /obj/machinery/holosign/update_appearance(updates = ALL)
+	. = ..()
 	if(!lit)
 		icon_state = initial(icon_state)
 		set_light(0)

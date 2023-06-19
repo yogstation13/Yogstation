@@ -23,6 +23,7 @@
 	update_appearance(updates = ALL)
 
 /obj/machinery/anesthetic_machine/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(mask_out)
 		add_overlay("mask_off")

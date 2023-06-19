@@ -475,6 +475,7 @@
 			. += span_notice("There are no <i>firelock electronics</i> in the frame. The frame could be <b>cut</b> apart.")
 
 /obj/structure/firelock_frame/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	icon_state = "frame[constructionStep]"
 

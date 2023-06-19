@@ -23,6 +23,7 @@
 	return ..()
 
 /obj/structure/guncase/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(case_type && LAZYLEN(contents))
 		var/mutable_appearance/gun_overlay = mutable_appearance(icon, case_type)

@@ -53,6 +53,7 @@
 	return (BRUTELOSS)
 
 /obj/item/paperplane/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/list/stamped = internalPaper.stamped
 	if(stamped)

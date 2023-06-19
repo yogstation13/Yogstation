@@ -34,6 +34,7 @@
 		toggle_open()
 
 /obj/item/modular_computer/laptop/update_appearance(updates = ALL)
+	. = ..()
 	if(screen_on)
 		..()
 	else

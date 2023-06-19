@@ -26,6 +26,7 @@
 	return ..()
 
 /obj/item/clipboard/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/list/dat = list()
 	if(toppaper)

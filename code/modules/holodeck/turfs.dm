@@ -120,6 +120,7 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_appearance)), 1)
 
 /turf/open/floor/holofloor/carpet/update_appearance(updates = ALL)
+	. = ..()
 	if(!..())
 		return 0
 	if(intact)

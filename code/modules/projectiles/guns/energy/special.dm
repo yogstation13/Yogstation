@@ -35,6 +35,7 @@
 	ammo_x_offset = 1
 
 /obj/item/gun/energy/decloner/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	if(!QDELETED(cell) && (cell.charge > shot.e_cost))
@@ -304,6 +305,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/wormhole/upgraded, /obj/item/ammo_casing/energy/wormhole/orange/upgraded)
 
 /obj/item/gun/energy/wormhole_projector/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)][select]"
 	item_state = icon_state
 

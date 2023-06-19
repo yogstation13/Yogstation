@@ -369,6 +369,7 @@
 //LightToggle
 
 /obj/item/clothing/head/helmet/update_appearance(updates = ALL)
+	. = ..()
 	var/state = "[initial(icon_state)]"
 	if(attached_light)
 		if(attached_light.on)

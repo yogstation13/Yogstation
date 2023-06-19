@@ -570,6 +570,7 @@
 		do_experiment()
 
 /obj/machinery/rnd/experimentor/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "h_lathe"
 
 /obj/machinery/rnd/experimentor/proc/warn_admins(user, ReactionName)

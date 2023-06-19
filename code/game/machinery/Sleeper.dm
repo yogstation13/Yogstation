@@ -70,6 +70,7 @@
 	stasis = (I >= 4)
 
 /obj/machinery/sleeper/update_appearance(updates = ALL)
+	. = ..()
 	if(state_open)
 		icon_state = "[initial(icon_state)]-open"
 	else

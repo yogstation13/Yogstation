@@ -36,6 +36,7 @@
 	initialize_directions &= ~dir
 
 /obj/machinery/atmospherics/pipe/manifold/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!center)
 		center = mutable_appearance(icon, "manifold_center")

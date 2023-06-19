@@ -144,6 +144,7 @@
 			recharge_port = null
 
 /obj/machinery/computer/mech_bay_power_console/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if(!recharge_port || !recharge_port.recharging_mech || !recharge_port.recharging_mech.cell || !(recharge_port.recharging_mech.cell.charge < recharge_port.recharging_mech.cell.maxcharge) || stat & (NOPOWER|BROKEN))
 		return

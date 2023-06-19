@@ -153,6 +153,7 @@
 	return ..()
 
 /obj/machinery/hypertorus/update_appearance(updates = ALL)
+	. = ..()
 	if(panel_open)
 		icon_state = icon_state_open
 	else if(active)

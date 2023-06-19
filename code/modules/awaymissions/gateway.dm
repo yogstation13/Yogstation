@@ -54,6 +54,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 	return ready
 
 /obj/machinery/gateway/update_appearance(updates = ALL)
+	. = ..()
 	if(active)
 		icon_state = "on"
 		return
@@ -101,6 +102,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 	can_link = TRUE
 
 /obj/machinery/gateway/centerstation/update_appearance(updates = ALL)
+	. = ..()
 	if(active)
 		icon_state = "oncenter"
 		return
@@ -184,6 +186,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 
 
 /obj/machinery/gateway/centeraway/update_appearance(updates = ALL)
+	. = ..()
 	if(active)
 		icon_state = "oncenter"
 		return

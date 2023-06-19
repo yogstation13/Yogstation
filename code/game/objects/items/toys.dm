@@ -104,6 +104,7 @@
 		qdel(src)
 
 /obj/item/toy/balloon/update_appearance(updates = ALL)
+	. = ..()
 	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
@@ -239,6 +240,7 @@
 	var/amount_left = 7
 
 /obj/item/toy/ammo/gun/update_appearance(updates = ALL)
+	. = ..()
 	src.icon_state = text("357OLD-[]", src.amount_left)
 
 /obj/item/toy/ammo/gun/examine(mob/user)
@@ -408,6 +410,7 @@
 		update_appearance(updates = ALL)
 
 /obj/item/twohanded/vxtvulhammer/toy/update_appearance(updates = ALL)
+	. = ..()
 	if(!pirated)
 		icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
 	else
@@ -806,6 +809,7 @@
 		draw_card(L,drawsize)
 
 /obj/item/toy/cards/deck/update_appearance(updates = ALL)
+	. = ..()
 	if(cards.len > 26)
 		icon_state = "deck_[deckstyle]_full"
 	else if(cards.len > 10)
@@ -978,6 +982,7 @@
 	. += "<span class='notice'>This hand has [currenthand.len] cards in it.<span>"
 
 /obj/item/toy/cards/cardhand/update_appearance(updates = ALL)
+	. = ..()
 	if(src.currenthand.len > 4)
 		src.icon_state = "[deckstyle]_hand5"
 	else
@@ -1142,6 +1147,7 @@
 		cards += "Wild Draw Four"
 
 /obj/item/toy/cards/deck/uno/update_appearance(updates = ALL)
+	. = ..()
 	if(cards.len > 54)
 		icon_state = "deck_[deckstyle]_full"
 	else if(cards.len > 25)
@@ -1682,6 +1688,7 @@ obj/item/toy/turn_tracker
 	update_appearance(updates = ALL)
 
 /obj/item/toy/eldritch_book/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = book_open ? "book_open" : "book"
 
 /*

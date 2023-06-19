@@ -116,6 +116,7 @@
 	return
 
 /turf/open/floor/update_appearance(updates = ALL)
+	. = ..()
 	update_visuals()
 	return 1
 

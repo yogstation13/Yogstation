@@ -181,9 +181,9 @@
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	block_chance = 50
 
-/obj/item/twohanded/bostaff/update_appearance(updates = ALL)
+/obj/item/twohanded/bostaff/update_icon_state()
 	icon_state = "bostaff[wielded]"
-	return
+	return ..()
 
 /obj/item/twohanded/bostaff/attack(mob/target, mob/living/user)
 	add_fingerprint(user)

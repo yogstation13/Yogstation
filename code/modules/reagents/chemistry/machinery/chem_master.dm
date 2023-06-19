@@ -70,6 +70,7 @@
 		bottle = null
 
 /obj/machinery/chem_master/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if (stat & BROKEN)
 		add_overlay("waitlight")

@@ -56,6 +56,7 @@
 			min_wrate = 0
 
 /obj/machinery/plantgenes/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	cut_overlays()
 	if((stat & (BROKEN|NOPOWER)))
@@ -441,6 +442,7 @@
 	src.pixel_y = rand(-5, 5)
 
 /obj/item/disk/plantgene/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(gene)
 		add_overlay("datadisk_gene")

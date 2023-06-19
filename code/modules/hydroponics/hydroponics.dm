@@ -238,6 +238,7 @@
 	return
 
 /obj/machinery/hydroponics/update_appearance(updates = ALL)
+	. = ..()
 	//Refreshes the icon and sets the luminosity
 	cut_overlays()
 

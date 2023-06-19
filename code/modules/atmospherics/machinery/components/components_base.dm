@@ -25,6 +25,7 @@
 	return
 
 /obj/machinery/atmospherics/components/update_appearance(updates = ALL)
+	. = ..()
 	update_icon_nopipes()
 
 	underlays.Cut()

@@ -41,6 +41,7 @@
 
 // update iconstate and dpdir due to dir and type
 /obj/structure/disposalconstruct/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = initial(pipe_type.icon_state)
 	if(is_pipe())
 		icon_state = "con[icon_state]"

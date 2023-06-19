@@ -24,6 +24,7 @@
 		update_appearance(updates = ALL)
 
 /obj/machinery/chem_heater/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "mixer[beaker ? 1 : 0][on ? "a" : "b"]"
 
 /obj/machinery/chem_heater/CtrlClick(mob/user)

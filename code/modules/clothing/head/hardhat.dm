@@ -34,6 +34,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/clothing/head/hardhat/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "hardhat[on]_[hat_type]"
 	item_state = "hardhat[on]_[hat_type]"
 	if(ishuman(loc))
@@ -157,6 +158,7 @@
 			. += mutable_appearance(mob_overlay_icon, "weldvisor")
 
 /obj/item/clothing/head/hardhat/weldhat/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!up)
 		add_overlay("weldvisor")

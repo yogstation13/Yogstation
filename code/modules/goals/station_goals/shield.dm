@@ -119,6 +119,7 @@
 	update_appearance(updates = ALL)
 
 /obj/machinery/satellite/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = active ? "sat_active" : "sat_inactive"
 
 /obj/machinery/satellite/multitool_act(mob/living/user, obj/item/I)

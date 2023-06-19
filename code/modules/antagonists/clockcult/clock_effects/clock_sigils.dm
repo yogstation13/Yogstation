@@ -243,6 +243,7 @@
 	return TRUE
 
 /obj/effect/clockwork/sigil/transmission/update_appearance(updates = ALL)
+	. = ..()
 	var/power_charge = get_clockwork_power()
 	if(GLOB.ratvar_awakens)
 		alpha = 255

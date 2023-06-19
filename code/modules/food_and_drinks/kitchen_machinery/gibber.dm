@@ -39,6 +39,7 @@
 				. += "<span class='notice'>Gibber has been upgraded to process inorganic materials.<span>"
 
 /obj/machinery/gibber/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if (dirty)
 		add_overlay("grbloody")

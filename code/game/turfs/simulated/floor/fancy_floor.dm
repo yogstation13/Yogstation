@@ -296,6 +296,7 @@
 	update_appearance(updates = ALL)
 
 /turf/open/floor/carpet/update_appearance(updates = ALL)
+	. = ..()
 	if(!..())
 		return 0
 	if(!broken && !burnt)

@@ -55,6 +55,7 @@
 	return
 
 /obj/item/pinpointer/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!active)
 		return

@@ -11,6 +11,7 @@
 	sprite_designation = "b"
 
 /obj/item/ammo_box/magazine/m12g/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if(ammo_count())
 		icon_state = "m12g[sprite_designation]-8"

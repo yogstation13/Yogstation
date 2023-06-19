@@ -209,6 +209,7 @@
 		visible_message(span_notice("[src] rolls to a stop, landing on [result]. [comment]"))
 
 /obj/item/dice/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	add_overlay("[src.icon_state]-[src.result]")
 

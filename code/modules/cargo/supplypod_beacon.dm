@@ -32,6 +32,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/supplypod_beacon/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if (launched)
 		add_overlay("sp_green")

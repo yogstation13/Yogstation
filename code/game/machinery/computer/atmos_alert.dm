@@ -78,6 +78,7 @@
 	return
 
 /obj/machinery/computer/atmos_alert/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if(stat & (NOPOWER|BROKEN))
 		return

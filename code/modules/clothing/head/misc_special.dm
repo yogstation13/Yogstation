@@ -211,6 +211,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/clothing/head/wig/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	icon_state = ""
 	var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]

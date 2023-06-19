@@ -396,6 +396,7 @@
 	anchored = FALSE
 
 /obj/structure/bloodsucker/moldingstone/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	switch(metal)
 		if(1 to 5)
@@ -811,6 +812,7 @@
 #undef MEATLIMIT
 
 /obj/structure/bloodsucker/vassalrack/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(bigmeat)
 		add_overlay("bigmeat_[bigmeat]")
@@ -1184,6 +1186,7 @@
 	return ..()
 
 /obj/structure/bloodsucker/candelabrum/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "candelabrum[lit ? "_lit" : ""]"
 	return ..()
 

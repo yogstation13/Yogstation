@@ -56,6 +56,7 @@
 	up = down = null
 
 /obj/structure/ladder/update_appearance(updates = ALL)
+	. = ..()
 	if(up && down)
 		icon_state = "ladder11"
 

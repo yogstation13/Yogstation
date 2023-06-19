@@ -62,6 +62,7 @@
 	addtimer(CALLBACK(src, PROC_REF(emagNotify)), 150)
 
 /obj/machinery/vr_sleeper/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)][state_open ? "-open" : ""]"
 
 /obj/machinery/vr_sleeper/open_machine()

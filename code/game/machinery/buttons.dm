@@ -42,20 +42,26 @@
 			board.accesses = req_one_access
 
 
-/obj/machinery/button/update_appearance(updates = ALL)
-	cut_overlays()
+/obj/machinery/button/update_icon_state()
 	if(panel_open)
 		icon_state = "button-open"
-		if(device)
-			add_overlay("button-device")
-		if(board)
-			add_overlay("button-board")
+		return ..()
+	if(stat & (NOPOWER|BROKEN))
+		icon_state = "[skin]-p"
+		return ..()
+	icon_state = skin
+	return ..()
 
-	else
-		if(stat & (NOPOWER|BROKEN))
-			icon_state = "[skin]-p"
-		else
-			icon_state = skin
+/obj/machinery/button/update_overlays()
+	. = ..()
+//	if(light_mask && !(machine_stat & (NOPOWER|BROKEN)) && !panel_open)
+//		. += emissive_appearance(icon, light_mask, src, alpha = alpha)
+	if(!panel_open)
+		return
+	if(device)
+		. += "button-device"
+	if(board)
+		. += "button-board"
 
 /obj/machinery/button/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)

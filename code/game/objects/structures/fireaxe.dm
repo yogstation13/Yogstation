@@ -195,6 +195,7 @@
 	return
 
 /obj/structure/fireaxecabinet/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(fireaxe)
 		add_overlay("axe")

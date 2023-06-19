@@ -61,6 +61,7 @@
 	name = "colored cabinet"
 
 /obj/structure/filingcabinet/colored/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/mutable_appearance/cab = mutable_appearance(icon, "coloredcabinet_trim")
 	cab.color = colour

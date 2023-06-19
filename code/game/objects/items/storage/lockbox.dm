@@ -155,6 +155,7 @@
 		new /obj/item/clothing/accessory/medal/conduct(src)
 
 /obj/item/storage/lockbox/medal/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	if(locked)
@@ -243,6 +244,7 @@
 	icon_broken = "vialbox"
 
 /obj/item/storage/lockbox/vialbox/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	var/slot = 1

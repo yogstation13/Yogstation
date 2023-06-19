@@ -996,6 +996,7 @@
 	var/design = NODESIGN
 
 /obj/item/storage/box/papersack/update_appearance(updates = ALL)
+	. = ..()
 	if(contents.len == 0)
 		icon_state = "[item_state]"
 	else icon_state = "[item_state]_closed"

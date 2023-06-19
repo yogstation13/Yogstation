@@ -100,6 +100,7 @@
 		return TRUE
 
 /obj/machinery/implantchair/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = initial(icon_state)
 	if(state_open)
 		icon_state += "_open"

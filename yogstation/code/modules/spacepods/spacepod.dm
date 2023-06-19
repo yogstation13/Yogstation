@@ -397,6 +397,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	qdel(src)
 
 /obj/spacepod/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(construction_state != SPACEPOD_ARMOR_WELDED)
 		icon = 'goon/icons/obj/spacepods/construction_2x2.dmi'

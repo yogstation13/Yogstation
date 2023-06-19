@@ -28,6 +28,7 @@
 	return ..()
 
 /turf/open/floor/circuit/update_appearance(updates = ALL)
+	. = ..()
 	if(on)
 		if(LAZYLEN(SSmapping.nuke_threats))
 			icon_state = "rcircuitanim"

@@ -47,6 +47,7 @@
 		set_light(0)
 
 /obj/structure/life_candle/update_appearance(updates = ALL)
+	. = ..()
 	if(linked_minds.len)
 		icon_state = icon_state_active
 	else

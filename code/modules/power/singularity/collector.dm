@@ -302,6 +302,7 @@
 		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*(machine_tier+power_bonus)
 
 /obj/machinery/power/rad_collector/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(loaded_tank)
 		add_overlay("ptank")

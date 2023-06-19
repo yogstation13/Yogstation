@@ -55,6 +55,7 @@
 
 
 /obj/item/flamethrower/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(igniter)
 		add_overlay("+igniter[status]")

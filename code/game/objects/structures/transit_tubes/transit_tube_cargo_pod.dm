@@ -5,6 +5,7 @@
 	name = "transit tube cargo pod"
 
 /obj/structure/transit_tube_pod/cargo/update_appearance(updates = ALL)
+	. = ..()
 	if(contents.len)
 		icon_state = "pod_cargo_occupied"
 	else

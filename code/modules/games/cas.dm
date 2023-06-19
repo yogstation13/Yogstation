@@ -96,6 +96,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/toy/cards/deck/cas/update_appearance(updates = ALL)
+	. = ..()
 	if(cards.len < 26)
 		icon_state = "deck_[deckstyle]_low"
 
@@ -137,6 +138,7 @@
 	Flip()
 
 /obj/item/toy/cards/singlecard/cas/update_appearance(updates = ALL)
+	. = ..()
 	if(flipped)
 		icon_state = "[card_face]_flipped"
 	else

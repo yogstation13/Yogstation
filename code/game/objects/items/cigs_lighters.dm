@@ -588,6 +588,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return BRUTELOSS
 
 /obj/item/lighter/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/mutable_appearance/lighter_overlay = mutable_appearance(icon,"lighter_overlay_[overlay_state][lit ? "-on" : ""]")
 	icon_state = "[initial(icon_state)][lit ? "-on" : ""]"
@@ -722,6 +723,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	update_appearance(updates = ALL)
 
 /obj/item/lighter/greyscale/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/mutable_appearance/lighter_overlay = mutable_appearance(icon,"lighter_overlay_[overlay_state][lit ? "-on" : ""]")
 	icon_state = "[initial(icon_state)][lit ? "-on" : ""]"

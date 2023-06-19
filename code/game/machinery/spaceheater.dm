@@ -58,6 +58,7 @@
 		. += "<span class='notice'>The status display reads: Temperature range at <b>[settableTemperatureRange]°C</b>.<br>Heating power at <b>[heatingPower*0.001]kJ</b>.<br>Power consumption at <b>[(efficiency*-0.0025)+150]%</b>.<span>" //100%, 75%, 50%, 25%
 
 /obj/machinery/space_heater/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "sheater-[on ? "[mode]" : "off"]"
 
 	cut_overlays()

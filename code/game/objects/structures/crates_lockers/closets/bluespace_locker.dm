@@ -88,6 +88,7 @@
 		return ..()
 
 /obj/structure/closet/bluespace/internal/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/obj/structure/closet/other = get_other_locker()
 	if(!other)

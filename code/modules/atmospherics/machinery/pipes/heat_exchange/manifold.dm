@@ -27,6 +27,7 @@
 	initialize_directions &= ~dir
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	PIPING_LAYER_DOUBLE_SHIFT(center, piping_layer)

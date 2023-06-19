@@ -61,6 +61,7 @@
 		return ..()
 
 /obj/item/modular_computer/tablet/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if (!isnull(variants))
 		if(!finish_color)

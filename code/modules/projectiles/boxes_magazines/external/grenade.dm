@@ -6,6 +6,7 @@
 	max_ammo = 8
 
 /obj/item/ammo_box/magazine/m75/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if(ammo_count())
 		icon_state = "75-8"

@@ -184,6 +184,7 @@
 			icon_state = "beam_splash_e"
 
 /obj/item/projectile/curse_hand/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[icon_state][handedness]"
 
 /obj/effect/temp_visual/wizard
@@ -534,6 +535,7 @@
 		update_appearance(updates = ALL)
 
 /obj/effect/constructing_effect/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "rcd"
 	if (delay < 10)
 		icon_state += "_shortest"

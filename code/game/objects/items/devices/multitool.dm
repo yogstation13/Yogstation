@@ -78,6 +78,7 @@
 		remove_hud(user)
 
 /obj/item/multitool/ai_detect/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)][detect_state]"
 
 /obj/item/multitool/ai_detect/process()

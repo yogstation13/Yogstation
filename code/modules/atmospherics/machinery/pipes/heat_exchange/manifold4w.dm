@@ -25,6 +25,7 @@
 	initialize_directions = initial(initialize_directions)
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	PIPING_LAYER_DOUBLE_SHIFT(center, piping_layer)

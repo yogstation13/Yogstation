@@ -30,6 +30,7 @@
 	initialize_directions = initial(initialize_directions)
 
 /obj/machinery/atmospherics/pipe/manifold4w/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!center)
 		center = mutable_appearance(icon, "manifold_center")

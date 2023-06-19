@@ -107,6 +107,7 @@
 	to_chat(user, span_notice("Safety hatch [free_exit ? "unlocked" : "locked"]."))
 
 /obj/machinery/fat_sucker/update_appearance(updates = ALL)
+	. = ..()
 	overlays.Cut()
 	if(!state_open)
 		if(processing)

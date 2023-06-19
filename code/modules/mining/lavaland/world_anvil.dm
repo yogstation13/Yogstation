@@ -28,6 +28,7 @@
 	. = ..()
 
 /obj/structure/world_anvil/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = forge_charges > 0 ? "anvil_a" : "anvil"
 	if(forge_charges > 0)
 		set_light(4,1,LIGHT_COLOR_ORANGE)

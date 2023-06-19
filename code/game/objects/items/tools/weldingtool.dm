@@ -58,6 +58,7 @@
 
 
 /obj/item/weldingtool/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(change_icons)
 		var/ratio = get_fuel() / max_fuel

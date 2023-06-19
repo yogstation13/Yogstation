@@ -18,6 +18,7 @@
 	return BRUTELOSS
 
 /obj/item/storage/belt/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(content_overlays)
 		for(var/obj/item/I in contents)
@@ -820,6 +821,7 @@
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 
 /obj/item/storage/belt/quiver/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if(content_overlays && ismob(loc))
 		var/mob/M = loc
@@ -1191,6 +1193,7 @@
 		to_chat(user, "[src] is empty.")
 
 /obj/item/storage/belt/sabre/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "sheath"
 	item_state = "sheath"
 	if(contents.len)

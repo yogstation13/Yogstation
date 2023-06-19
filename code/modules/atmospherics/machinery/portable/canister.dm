@@ -307,6 +307,7 @@
 #define CANISTER_LIGHT_POWER 0.5
 
 /obj/machinery/portable_atmospherics/canister/update_appearance(updates = ALL)
+	. = ..()
 	if(stat & BROKEN)
 		cut_overlays()
 		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)

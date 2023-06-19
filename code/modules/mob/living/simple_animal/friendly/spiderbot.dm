@@ -132,6 +132,7 @@
 		death()
 
 /mob/living/simple_animal/spiderbot/update_appearance(updates = ALL)
+	. = ..()
 	if(mmi)
 		if(istype(mmi, /obj/item/mmi/posibrain))
 			icon_state = "spiderbot-chassis-posi"

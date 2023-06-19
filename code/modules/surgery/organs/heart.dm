@@ -31,6 +31,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/organ/heart/update_appearance(updates = ALL)
+	. = ..()
 	if(beating)
 		icon_state = "[icon_base]-on"
 	else

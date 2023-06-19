@@ -84,6 +84,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	Reset()
 
 /obj/machinery/computer/arcade/update_appearance(updates = ALL)
+	. = ..()
 	if(dir == 2)
 		icon_screen = "invaders"
 	else

@@ -43,6 +43,7 @@
 			do_animate("deny")
 
 /obj/machinery/door/password/update_appearance(updates = ALL)
+	. = ..()
 	if(density)
 		icon_state = "closed"
 	else

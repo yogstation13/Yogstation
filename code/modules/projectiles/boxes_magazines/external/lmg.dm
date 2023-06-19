@@ -33,5 +33,6 @@
 	sprite_designation = "I"
 
 /obj/item/ammo_box/magazine/mm712x82/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	icon_state = "a762[sprite_designation]-[round(ammo_count(),10)]"

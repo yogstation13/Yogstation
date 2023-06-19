@@ -631,6 +631,7 @@
 				), signal_source)
 
 /obj/machinery/airalarm/update_appearance(updates = ALL)
+	. = ..()
 	if(panel_open)
 		switch(buildstage)
 			if(2)

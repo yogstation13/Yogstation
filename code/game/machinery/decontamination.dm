@@ -37,9 +37,9 @@
 	decon_emagged = new(list(src), FALSE)
 	update_appearance(updates = ALL)
 
-/obj/machinery/decontamination_unit/update_appearance(updates = ALL)
-	. = ..()
+/obj/machinery/decontamination_unit/update_icon_state()
 	icon_state = uv? "tube_on" : (state_open? "tube_open" : "tube")
+	return ..()
 
 /obj/machinery/decontamination_unit/proc/store_items()
 	var/atom/pickup_zone = drop_location()

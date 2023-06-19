@@ -28,6 +28,7 @@
 		sort_scan = TRUE
 
 /obj/structure/disposalpipe/sorting/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	. = ..()
 	if(panel_open)

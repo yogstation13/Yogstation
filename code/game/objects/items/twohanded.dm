@@ -255,7 +255,8 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
 
-/obj/item/twohanded/fireaxe/update_appearance(updates = ALL)  //Currently only here to fuck with the on-mob icons.
+/obj/item/twohanded/fireaxe/update_appearance(updates = ALL)
+	. = ..()  //Currently only here to fuck with the on-mob icons.
 	icon_state = "fireaxe[wielded]"
 	return
 
@@ -290,7 +291,8 @@
 	desc = "A large, menacing axe made of an unknown substance that the most elder atmosians call Metallic Hydrogen. Truly an otherworldly weapon."
 	force_wielded = 18
 
-/obj/item/twohanded/fireaxe/metal_h2_axe/update_appearance(updates = ALL)  //Currently only here to fuck with the on-mob icons.
+/obj/item/twohanded/fireaxe/metal_h2_axe/update_appearance(updates = ALL)
+	. = ..()  //Currently only here to fuck with the on-mob icons.
 	icon_state = "metalh2_axe[wielded]"
 	return
 
@@ -350,6 +352,7 @@
 			O.take_damage(force, BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /obj/item/twohanded/fireaxe/energy/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "energy-fireaxe[wielded]"
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
 
@@ -457,6 +460,7 @@
 	. = ..()
 
 /obj/item/twohanded/dualsaber/update_appearance(updates = ALL)
+	. = ..()
 	if(wielded)
 		icon_state = "dualsaber[saber_color][wielded]"
 	else
@@ -626,6 +630,7 @@
 	AddComponent(/datum/component/jousting)
 
 /obj/item/twohanded/spear/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[icon_prefix][wielded]"
 
 /obj/item/twohanded/spear/deconstruct() //we drop our rod and maybe the glass shard used
@@ -688,6 +693,7 @@
 	. += span_notice("Alt-click to set your war cry.")
 
 /obj/item/twohanded/spear/explosive/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "spearbomb[wielded]"
 
 /obj/item/twohanded/spear/explosive/AltClick(mob/user)
@@ -872,6 +878,7 @@
 	force_wielded = 500000 // Kills you DEAD.
 
 /obj/item/twohanded/pitchfork/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "pitchfork[wielded]"
 
 /obj/item/twohanded/pitchfork/suicide_act(mob/user)
@@ -948,6 +955,7 @@
 	return 0
 
 /obj/item/twohanded/vibro_weapon/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "hfrequency[wielded]"
 
 /obj/item/twohanded/vibro_weapon/wizard
@@ -973,6 +981,7 @@
 	force_wielded = 18
 
 /obj/item/twohanded/fireaxe/boneaxe/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "bone_axe[wielded]"
 
 /*
@@ -1001,6 +1010,7 @@
 	sharpness = SHARP_EDGED
 
 /obj/item/twohanded/bonespear/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "bone_spear[wielded]"
 
 /obj/item/twohanded/bonespear/chitinspear //like a mix of a bone spear and bone axe, but more like a bone spear. And better.
@@ -1014,6 +1024,7 @@
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored", "sliced", "ripped", "cut")
 
 /obj/item/twohanded/bonespear/chitinspear/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "chitin_spear[wielded]"
 
 /obj/item/twohanded/binoculars
@@ -1081,6 +1092,7 @@
 	sharpness = SHARP_EDGED
 
 /obj/item/twohanded/bamboospear/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "bamboo_spear[wielded]"
 
 /*
@@ -1144,6 +1156,7 @@
 	return ..()
 
 /obj/item/twohanded/vxtvulhammer/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "vxtvul_hammer[wielded]-[supercharged]"
 
 /obj/item/twohanded/vxtvulhammer/examine(mob/living/carbon/user)
@@ -1287,6 +1300,7 @@
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 
 /obj/item/twohanded/vxtvulhammer/pirate/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
 
 // Baseball Bats
@@ -1392,6 +1406,7 @@
 	slot_flags = ITEM_SLOT_BACK
 
 /obj/item/twohanded/bigspoon/update_appearance(updates = ALL)
+	. = ..()
 	hitsound = wielded ? 'yogstation/sound/weapons/bat_hit.ogg' : 'sound/items/trayhit1.ogg' //big donk if wielded
 	item_state = "bigspoon[wielded]" //i don't know why it's item_state rather than icon_state like every other wielded weapon
 	return
@@ -1419,6 +1434,7 @@ Broom
 	resistance_flags = FLAMMABLE
 
 /obj/item/twohanded/broom/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "broom[wielded]"
 
 /obj/item/twohanded/broom/wield(mob/user)

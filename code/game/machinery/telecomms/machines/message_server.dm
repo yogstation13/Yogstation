@@ -158,6 +158,7 @@
 		relay_information(signal, /obj/machinery/telecomms/broadcaster)
 
 /obj/machinery/telecomms/message_server/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(calibrating && on)
 		var/mutable_appearance/calibrate = mutable_appearance(icon, "message_server_disabled")

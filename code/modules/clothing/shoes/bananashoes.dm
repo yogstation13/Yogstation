@@ -56,6 +56,7 @@
 		to_chat(user, span_warning("You need bananium to turn the prototype shoes on!"))
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/update_appearance(updates = ALL)
+	. = ..()
 	if(on)
 		icon_state = "clown_prototype_on"
 	else

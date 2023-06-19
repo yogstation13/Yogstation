@@ -37,6 +37,7 @@
 		reagents.maximum_volume += REAGENTS_BASE_VOLUME * B.rating
 
 /obj/machinery/smoke_machine/update_appearance(updates = ALL)
+	. = ..()
 	if((!is_operational()) || (!on) || (reagents.total_volume == 0))
 		if (panel_open)
 			icon_state = "smoke0-o"

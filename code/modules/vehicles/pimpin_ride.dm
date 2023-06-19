@@ -56,6 +56,7 @@
 		return ..()
 
 /obj/vehicle/ridden/janicart/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(mybag)
 		add_overlay("cart_garbage")

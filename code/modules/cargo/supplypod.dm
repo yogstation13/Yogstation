@@ -126,6 +126,7 @@
 	update_appearance(updates = ALL)
 
 /obj/structure/closet/supplypod/update_appearance(updates = ALL)
+	. = ..()
 	var/list/new_overlays = update_overlays()
 	if(managed_overlays)
 		cut_overlay(managed_overlays)

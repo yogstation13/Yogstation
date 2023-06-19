@@ -8,6 +8,7 @@
 
 
 /obj/item/paper/carbon/update_appearance(updates = ALL)
+	. = ..()
 	if(iscopy)
 		if(written.len)
 			icon_state = "cpaper_words"

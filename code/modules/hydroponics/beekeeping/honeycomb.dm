@@ -21,6 +21,7 @@
 
 
 /obj/item/reagent_containers/honeycomb/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/mutable_appearance/honey_overlay = mutable_appearance(icon, /datum/reagent/consumable/honey)
 	if(honey_color)

@@ -204,6 +204,7 @@
 	to_chat(user, span_warning("You short out the access controller."))
 
 /obj/machinery/shieldgen/update_appearance(updates = ALL)
+	. = ..()
 	if(active)
 		icon_state = (stat & BROKEN) ? "shieldonbr":"shieldon"
 	else

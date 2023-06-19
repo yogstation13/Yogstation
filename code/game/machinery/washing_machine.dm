@@ -259,6 +259,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		open_machine()
 
 /obj/machinery/washing_machine/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(busy)
 		icon_state = "wm_running_[bloody_mess]"

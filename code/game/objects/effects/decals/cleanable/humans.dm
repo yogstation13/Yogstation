@@ -186,6 +186,7 @@
 
 
 /obj/effect/decal/cleanable/blood/footprints/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	for(var/Ddir in GLOB.cardinals)

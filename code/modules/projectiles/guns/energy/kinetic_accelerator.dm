@@ -146,6 +146,7 @@
 	overheat = FALSE
 
 /obj/item/gun/energy/kinetic_accelerator/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if(!can_shoot())
 		add_overlay("[icon_state]_empty")

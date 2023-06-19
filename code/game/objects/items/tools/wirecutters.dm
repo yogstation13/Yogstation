@@ -43,6 +43,7 @@
 		update_appearance(updates = ALL)
 
 /obj/item/wirecutters/update_appearance(updates = ALL)
+	. = ..()
 	if(!random_color) //icon override
 		return
 	cut_overlays()

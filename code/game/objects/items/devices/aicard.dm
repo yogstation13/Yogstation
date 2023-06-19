@@ -41,6 +41,7 @@
 	update_appearance(updates = ALL) //Whatever happened, update the card's state (icon, name) to match.
 
 /obj/item/aicard/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(AI)
 		name = "[initial(name)] - [AI.name]"

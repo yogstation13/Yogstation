@@ -79,6 +79,7 @@
 			name = "blood pack"
 
 /obj/item/reagent_containers/blood/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	var/v = min(round(reagents.total_volume / volume * 10), 10)

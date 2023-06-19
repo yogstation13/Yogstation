@@ -256,6 +256,7 @@
 	program = new_prog
 
 /obj/machinery/embedded_controller/radio/airlock_controller/update_appearance(updates = ALL)
+	. = ..()
 	if(on && program)
 		if(program.memory["processing"])
 			icon_state = "airlock_control_process"

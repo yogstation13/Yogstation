@@ -215,6 +215,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		AI.eyeobj.forceMove(get_turf(src))
 
 /obj/machinery/ai/data_core/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	
 	if(!(stat & (BROKEN|EMPED)) && has_power())

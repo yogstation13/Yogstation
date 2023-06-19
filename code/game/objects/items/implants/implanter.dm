@@ -16,6 +16,7 @@
 
 
 /obj/item/implanter/update_appearance(updates = ALL)
+	. = ..()
 	if(imp)
 		icon_state = "implanter1"
 	else

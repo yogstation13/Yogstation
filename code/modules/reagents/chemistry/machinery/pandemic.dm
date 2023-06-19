@@ -126,6 +126,7 @@
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 
 /obj/machinery/computer/pandemic/update_appearance(updates = ALL)
+	. = ..()
 	if(stat & BROKEN)
 		icon_state = (beaker ? "mixer1_b" : "mixer0_b")
 		return

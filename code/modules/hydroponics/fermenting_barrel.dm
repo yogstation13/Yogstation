@@ -66,6 +66,7 @@
 	update_appearance(updates = ALL)
 
 /obj/structure/fermenting_barrel/update_appearance(updates = ALL)
+	. = ..()
 	if(open)
 		icon_state = "barrel_open"
 	else

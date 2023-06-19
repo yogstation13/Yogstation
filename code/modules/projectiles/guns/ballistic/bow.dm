@@ -134,6 +134,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/gun/ballistic/bow/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlay(arrow_overlay, TRUE)
 	icon_state = "[initial(icon_state)][chambered ? "_firing" : ""]"
 	if(get_ammo())
@@ -452,6 +453,7 @@
 		. += span_warning("It is currently recharging!")
 
 /obj/item/gun/ballistic/bow/energy/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlay(arrow_overlay, TRUE)
 
 	if(folded)

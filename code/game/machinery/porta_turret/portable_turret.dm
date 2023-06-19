@@ -98,6 +98,7 @@
 		INVOKE_ASYNC(src, PROC_REF(popUp))
 
 /obj/machinery/porta_turret/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!anchored)
 		icon_state = "turretCover"
@@ -938,6 +939,7 @@
 	update_appearance(updates = ALL)
 
 /obj/machinery/turretid/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if(stat & NOPOWER)
 		icon_state = "control_off"

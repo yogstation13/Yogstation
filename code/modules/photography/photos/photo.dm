@@ -33,6 +33,7 @@
 		desc = P.picture_desc
 
 /obj/item/photo/update_appearance(updates = ALL)
+	. = ..()
 	if(!istype(picture) || !picture.picture_image)
 		return
 	var/icon/I = picture.get_small_icon()

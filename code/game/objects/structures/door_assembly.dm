@@ -263,6 +263,7 @@
 	update_appearance(updates = ALL)
 
 /obj/structure/door_assembly/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!glass)
 		add_overlay(get_airlock_overlay("fill_construction", icon))

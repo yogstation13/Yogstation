@@ -120,6 +120,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	update_appearance(updates = ALL)
 
 /obj/structure/cable/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[d1]-[d2]"
 	color = null
 	add_atom_colour(cable_color, FIXED_COLOUR_PRIORITY)
@@ -563,6 +564,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	return ..()
 
 /obj/item/stack/cable_coil/update_appearance(updates = ALL)
+	. = ..()
 	if(novariants)
 		return
 	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"

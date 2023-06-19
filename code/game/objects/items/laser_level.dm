@@ -30,6 +30,7 @@
 	update_overlay(user)
 
 /obj/item/laserlevel/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	add_overlay("[initial(icon_state)][lightlevel]")
 	return

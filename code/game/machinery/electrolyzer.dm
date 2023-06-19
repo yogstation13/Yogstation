@@ -55,6 +55,7 @@
 		. += "There is no power cell installed."
 
 /obj/machinery/electrolyzer/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	icon_state = "electrolyzer-[on ? "[mode]" : "off"]"
 	if(panel_open)

@@ -32,23 +32,23 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	radio = new /obj/item/radio/headset/silicon/ai(src)
 	update_appearance(updates = ALL)
 
-/obj/machinery/announcement_system/update_appearance(updates = ALL)
-	cut_overlays()
+/obj/machinery/announcement_system/update_overlays()
+	. = ..()
 	if(is_operational())
 		var/mutable_appearance/on_app = mutable_appearance(icon, "AAS_on")
-		add_overlay(on_app)
+		. += on_app
 
 	if(arrivalToggle)
 		var/mutable_appearance/arriving = mutable_appearance(icon, greenlight)
-		add_overlay(arriving)
+		. += arriving
 
 	if(newheadToggle)
 		var/mutable_appearance/newhead = mutable_appearance(icon, pinklight)
-		add_overlay(newhead)
+		. += newhead
 
 	if(stat & BROKEN)
 		var/mutable_appearance/icecream = mutable_appearance(icon, errorlight)
-		add_overlay(icecream)
+		. += icecream
 
 /obj/machinery/announcement_system/Destroy()
 	QDEL_NULL(radio)

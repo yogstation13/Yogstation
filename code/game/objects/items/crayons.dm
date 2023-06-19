@@ -551,6 +551,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/storage/crayons/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	for(var/obj/item/toy/crayon/crayon in contents)
 		add_overlay(mutable_appearance('icons/obj/crayons.dmi', crayon.crayon_color))
@@ -703,6 +704,7 @@
 	. = ..()
 
 /obj/item/toy/crayon/spraycan/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = is_capped ? icon_capped : icon_uncapped
 	if(use_overlays)
 		cut_overlays()

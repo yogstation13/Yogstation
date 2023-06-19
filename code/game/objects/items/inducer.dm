@@ -195,6 +195,7 @@
 		. += span_notice("Its battery compartment is open.")
 
 /obj/item/inducer/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(opened)
 		if(!cell)

@@ -172,6 +172,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/organ/cyberimp/chest/thrusters/update_appearance(updates = ALL)
+	. = ..()
 	if(on)
 		icon_state = "imp_jetpack-on"
 	else
@@ -276,6 +277,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/organ/cyberimp/chest/spinalspeed/update_appearance(updates = ALL)
+	. = ..()
 	if(on)
 		icon_state = "imp_spinal-on"
 	else

@@ -224,6 +224,7 @@
 	return TRUE
 
 /obj/structure/janitorialcart/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(mybag)
 		add_overlay("cart_garbage")

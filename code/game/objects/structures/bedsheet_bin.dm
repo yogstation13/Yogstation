@@ -351,6 +351,7 @@ LINEN BINS
 
 
 /obj/structure/bedsheetbin/update_appearance(updates = ALL)
+	. = ..()
 	switch(amount)
 		if(0)
 			icon_state = "linenbin-empty"

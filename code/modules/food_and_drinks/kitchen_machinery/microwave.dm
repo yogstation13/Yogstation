@@ -88,6 +88,7 @@
 		span_notice("- Cook time reduced by <b>[(efficiency - 1) * 25]%</b>.")
 
 /obj/machinery/microwave/update_appearance(updates = ALL)
+	. = ..()
 	if(broken)
 		icon_state = "mwb"
 	else if(dirty_anim_playing)

@@ -77,6 +77,7 @@
 
 
 /obj/item/assembly/timer/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	attached_overlays = list()
 	if(timing)

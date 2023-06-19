@@ -36,6 +36,7 @@
 				return TRUE
 
 /obj/structure/closet/crate/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)][opened ? "open" : ""]"
 
 	cut_overlays()

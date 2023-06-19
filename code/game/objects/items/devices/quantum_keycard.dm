@@ -26,6 +26,7 @@
 		qpad = null
 
 /obj/item/quantum_keycard/update_appearance(updates = ALL)
+	. = ..()
 	if(qpad)
 		icon_state = "quantum_keycard_on"
 	else

@@ -30,6 +30,7 @@ obj/machinery/spaceship_navigation_beacon/emp_act()
 
 // update the icon_state
 /obj/machinery/spaceship_navigation_beacon/update_appearance(updates = ALL)
+	. = ..()
 	if(powered())
 		icon_state = "core"
 	else

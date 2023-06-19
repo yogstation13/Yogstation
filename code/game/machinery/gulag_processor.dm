@@ -95,6 +95,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 	return ..()
 
 /obj/machinery/gulag_processor/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = initial(icon_state) + (state_open ? "_open" : "")
 	//no power or maintenance
 	if(stat & (NOPOWER|BROKEN))

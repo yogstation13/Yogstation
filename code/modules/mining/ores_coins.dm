@@ -23,6 +23,7 @@
 	var/edible = FALSE //can a preternis eat it for some funny effect?
 
 /obj/item/stack/ore/update_appearance(updates = ALL)
+	. = ..()
 	var/difference = min(ORESTACK_OVERLAYS_MAX, amount) - (LAZYLEN(stack_overlays)+1)
 	if(difference == 0)
 		return
@@ -627,6 +628,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		. += span_info("But they told me I could only have one at a time...")
 
 /obj/item/coinstack/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	for(var/i in 1 to length(coins))
 		var/obj/item/coin/C = coins[i]

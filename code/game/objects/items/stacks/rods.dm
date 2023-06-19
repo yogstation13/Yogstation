@@ -45,6 +45,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	update_appearance(updates = ALL)
 
 /obj/item/stack/rods/update_appearance(updates = ALL)
+	. = ..()
 	var/amount = get_amount()
 	if((amount <= 5) && (amount > 0))
 		icon_state = "rods-[amount]"

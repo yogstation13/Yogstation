@@ -51,6 +51,7 @@
 		paddles.extinguish()
 
 /obj/item/defibrillator/update_appearance(updates = ALL)
+	. = ..()
 	update_power()
 	update_overlays()
 	update_charge()
@@ -363,6 +364,7 @@
 		update_appearance(updates = ALL)
 
 /obj/item/twohanded/shockpaddles/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "defibpaddles[wielded]"
 	item_state = "defibpaddles[wielded]"
 	if(cooldown)

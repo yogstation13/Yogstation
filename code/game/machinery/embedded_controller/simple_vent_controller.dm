@@ -55,6 +55,7 @@
 	program = new_prog
 
 /obj/machinery/embedded_controller/radio/simple_vent_controller/update_appearance(updates = ALL)
+	. = ..()
 	if(on && program)
 		icon_state = "airlock_control_standby"
 	else

@@ -14,6 +14,7 @@
 	. = ..()
 
 /obj/structure/closet/crate/secure/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if(broken)
 		add_overlay("securecrateemag")

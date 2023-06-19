@@ -150,6 +150,7 @@
 	..(damage_flag)
 
 /obj/machinery/smartfridge/update_appearance(updates = ALL)
+	. = ..()
 	var/startstate = initial(icon_state)
 	if(stat & BROKEN)
 		icon_state = "[startstate]-broken"
@@ -477,6 +478,7 @@
 	update_appearance(updates = ALL)
 
 /obj/machinery/smartfridge/drying_rack/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	cut_overlays()
 	if(drying)

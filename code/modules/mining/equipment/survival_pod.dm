@@ -139,6 +139,7 @@
 	icon_state = "sleeper"
 
 /obj/machinery/sleeper/survival_pod/update_appearance(updates = ALL)
+	. = ..()
 	if(state_open)
 		cut_overlays()
 	else

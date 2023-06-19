@@ -80,6 +80,7 @@
 	update_icon_nopipes()
 
 /obj/machinery/atmospherics/components/binary/circulator/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if(anchored)

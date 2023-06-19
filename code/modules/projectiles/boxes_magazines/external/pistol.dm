@@ -65,6 +65,7 @@
 	max_ammo = 8
 
 /obj/item/ammo_box/magazine/m45/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if (ammo_count() >= 8)
 		icon_state = "45-8"
@@ -82,6 +83,7 @@
 	max_ammo = 15
 
 /obj/item/ammo_box/magazine/pistolm9mm/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	icon_state = "9x19p-[ammo_count() ? "10" : "0"]"
 
@@ -113,6 +115,7 @@
 	max_ammo = 8
 
 /obj/item/ammo_box/magazine/v38/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if (ammo_count() >= 8)
 		icon_state = "v38[sprite_designation]-8"

@@ -200,6 +200,7 @@
 		begin_event()
 
 /obj/machinery/readybutton/update_appearance(updates = ALL)
+	. = ..()
 	if(ready)
 		icon_state = "auth_on"
 	else

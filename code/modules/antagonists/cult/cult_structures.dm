@@ -472,6 +472,7 @@
 				T.narsie_act(TRUE, TRUE)
 
 /obj/structure/destructible/cult/bloodstone/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "bloodstone-[current_fullness]"
 	cut_overlays()
 	var/image/I_base = image('icons/obj/cult_64x64.dmi',"bloodstone-base")

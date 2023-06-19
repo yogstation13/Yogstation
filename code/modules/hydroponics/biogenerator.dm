@@ -66,6 +66,7 @@
 	update_appearance(updates = ALL)
 
 /obj/machinery/biogenerator/update_appearance(updates = ALL)
+	. = ..()
 	if(panel_open)
 		icon_state = "biogen-empty-o"
 	else if(!src.beaker)

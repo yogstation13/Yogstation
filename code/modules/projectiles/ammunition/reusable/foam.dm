@@ -11,6 +11,7 @@
 	var/obj/item/pen/pen
 
 /obj/item/ammo_casing/reusable/foam_dart/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if (modified)
 		icon_state = "foamdart_empty"

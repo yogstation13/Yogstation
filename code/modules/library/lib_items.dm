@@ -140,6 +140,7 @@
 
 
 /obj/structure/bookcase/update_appearance(updates = ALL)
+	. = ..()
 	if(contents.len < 5)
 		icon_state = "book-[contents.len]"
 	else

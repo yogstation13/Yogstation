@@ -41,6 +41,7 @@
 	A.holder_movement()
 
 /obj/item/assembly_holder/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(a_left)
 		add_overlay("[a_left.icon_state]_left")

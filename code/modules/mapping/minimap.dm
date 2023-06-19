@@ -108,6 +108,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/map/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/datum/minimap/map = minimaps[1]
 	if(!map) return

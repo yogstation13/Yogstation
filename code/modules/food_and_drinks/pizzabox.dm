@@ -39,6 +39,7 @@
 	return ..()
 
 /obj/item/pizzabox/update_appearance(updates = ALL)
+	. = ..()
 	// Description
 	desc = initial(desc)
 	if(open)

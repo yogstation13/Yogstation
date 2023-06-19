@@ -357,6 +357,7 @@
 		update_appearance(updates = ALL)
 
 /obj/item/stack/medical/mesh/update_appearance(updates = ALL)
+	. = ..()
 	if(is_open)
 		return ..()
 	icon_state = "regen_mesh_closed"
@@ -412,6 +413,7 @@
 	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 
 /obj/item/stack/medical/mesh/advanced/update_appearance(updates = ALL)
+	. = ..()
 	if(is_open)
 		return ..()
 	icon_state = "aloe_mesh_closed"

@@ -28,6 +28,7 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/automatic/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	if(!select)
 		add_overlay("[initial(icon_state)]_semi")
@@ -158,6 +159,7 @@
 		..()
 
 /obj/item/gun/ballistic/automatic/m90/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	switch(select)
 		if(0)

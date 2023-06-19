@@ -198,6 +198,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	return FALSE
 
 /obj/item/pda/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/mutable_appearance/overlay = new()
 	overlay.pixel_x = overlays_x_offset

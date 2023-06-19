@@ -21,6 +21,7 @@
 	update_appearance(updates = ALL)
 
 /obj/machinery/ticket_machine/update_appearance(updates = ALL)
+	. = ..()
 	var/Temp = screenNum //This whole thing breaks down a 3 digit number into 3 seperate digits, aka "69" becomes "0","6" and "9"
 	var/Digit1 = round(Temp%10)//The remainder of any number/10 is always that number's rightmost digit
 	var/Digit2 = round(((Temp-Digit1)*0.1)%10) //Same idea, but divided by ten, to find the middle digit
@@ -145,6 +146,7 @@
 	var/ticket_number
 
 /obj/item/ticket_machine_ticket/update_appearance(updates = ALL)
+	. = ..()
 	var/Temp = ticket_number //this stuff is a repeat from the other update_icon, but with new image files and the like
 	var/Digit1 = round(Temp%10)
 	var/Digit2 = round(((Temp-Digit1)*0.1)%10)

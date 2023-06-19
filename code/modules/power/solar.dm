@@ -114,6 +114,7 @@
 	qdel(src)
 
 /obj/machinery/power/solar/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	cut_overlays()
 	var/matrix/turner = matrix()
@@ -373,6 +374,7 @@
 						T.set_control(src)
 
 /obj/machinery/power/solar_control/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(stat & NOPOWER)
 		add_overlay("[icon_keyboard]_off")

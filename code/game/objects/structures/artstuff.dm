@@ -133,6 +133,7 @@
 	try_rename(user)
 
 /obj/item/canvas/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!icon_generated)
 		if(used)

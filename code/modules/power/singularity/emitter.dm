@@ -121,6 +121,7 @@
 	return ..()
 
 /obj/machinery/power/emitter/update_appearance(updates = ALL)
+	. = ..()
 	if(active && powernet)
 		icon_state = avail(active_power_usage) ? icon_state_on : icon_state_underpowered
 	else

@@ -57,6 +57,7 @@ FLOOR SAFES
 			I.forceMove(src)
 
 /obj/structure/safe/update_appearance(updates = ALL)
+	. = ..()
 	if(open)
 		icon_state = "[initial(icon_state)]-open"
 	else

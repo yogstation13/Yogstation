@@ -96,6 +96,7 @@
 		update_appearance(updates = ALL)
 
 /turf/closed/mineral/update_appearance(updates = ALL)
+	. = ..()
 	if(hardness != initial(hardness))
 		var/mutable_appearance/cracks = mutable_appearance('icons/turf/mining.dmi',"rock_cracks",ON_EDGED_TURF_LAYER)
 		var/matrix/M = new

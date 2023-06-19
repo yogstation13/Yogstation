@@ -30,6 +30,7 @@
 	return ..()
 
 /obj/machinery/portable_atmospherics/pump/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "psiphon:[on]"
 
 	cut_overlays()

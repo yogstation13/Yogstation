@@ -124,6 +124,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 	update_appearance(updates = ALL)
 
 /obj/machinery/atmospherics/update_appearance(updates = ALL)
+	. = ..()
 	layer = initial(layer) + piping_layer / 1000
 	return ..()
 

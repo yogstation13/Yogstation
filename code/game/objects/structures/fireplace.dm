@@ -70,6 +70,7 @@
 		. = ..()
 
 /obj/structure/fireplace/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(lit)
 		switch(burn_time_remaining())

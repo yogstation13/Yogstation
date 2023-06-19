@@ -55,6 +55,7 @@
 		update_appearance(updates = ALL)
 
 /obj/machinery/computer/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 

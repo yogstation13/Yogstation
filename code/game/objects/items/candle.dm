@@ -101,6 +101,7 @@
 	candle_type = "resin"
 
 /obj/item/candle/resin/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "resincandle[(wax > 800) ? ((wax > 1500) ? 1 : 2) : 3][lit ? "_lit" : ""]"
 
 #undef CANDLE_LUMINOSITY

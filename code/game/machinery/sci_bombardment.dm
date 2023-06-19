@@ -60,6 +60,7 @@
 	return ..()
 
 /obj/machinery/sci_bombardment/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!powered(power_channel))
 		add_overlay("LAM_radar0")

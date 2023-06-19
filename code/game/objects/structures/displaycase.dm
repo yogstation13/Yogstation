@@ -86,6 +86,7 @@
 		playsound(src, 'sound/effects/alert.ogg', 50, TRUE)
 
 /obj/structure/displaycase/update_appearance(updates = ALL)
+	. = ..()
 	var/icon/I
 	if(open)
 		I = icon('icons/obj/stationobjs.dmi',"glassbox_open")

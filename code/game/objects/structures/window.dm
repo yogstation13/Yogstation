@@ -332,6 +332,7 @@
 
 //merges adjacent full-tile windows into one
 /obj/structure/window/update_appearance(updates = ALL)
+	. = ..()
 	if(!QDELETED(src))
 		if(!fulltile)
 			return
@@ -953,6 +954,7 @@
 	update_appearance(updates = ALL)
 
 /obj/structure/cloth_curtain/update_appearance(updates = ALL)
+	. = ..()
 	if(!open)
 		icon_state = "curtain_closed"
 		layer = WALL_OBJ_LAYER

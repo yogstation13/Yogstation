@@ -16,6 +16,7 @@
 	tac_reloads = FALSE
 
 obj/item/gun/ballistic/rifle/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
 

@@ -121,6 +121,7 @@
 		update_appearance(updates = ALL)
 
 /obj/structure/extinguisher_cabinet/update_appearance(updates = ALL)
+	. = ..()
 	if(!opened)
 		icon_state = "extinguisher_closed"
 		return

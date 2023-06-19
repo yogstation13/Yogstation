@@ -180,6 +180,7 @@
 		return NUKE_OFF_UNLOCKED
 
 /obj/machinery/nuclearbomb/update_appearance(updates = ALL)
+	. = ..()
 	if(deconstruction_state == NUKESTATE_INTACT)
 		switch(get_nuke_state())
 			if(NUKE_OFF_LOCKED, NUKE_OFF_UNLOCKED)

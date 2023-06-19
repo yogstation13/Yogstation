@@ -20,6 +20,7 @@
     return ..()
 
 /obj/machinery/aug_manipulator/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if(stat & BROKEN)

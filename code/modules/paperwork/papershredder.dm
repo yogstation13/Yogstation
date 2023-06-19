@@ -119,6 +119,7 @@
 	emptypaper()
 
 /obj/machinery/papershredder/update_appearance(updates = ALL)
+	. = ..()
 	if(paperamount == 0)
 		icon_state = "papershredder0"
 	if(paperamount == 1||paperamount == 2)

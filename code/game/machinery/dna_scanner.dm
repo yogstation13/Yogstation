@@ -36,6 +36,7 @@
 			. += "<span class='notice'>Scanner has been upgraded to support autoprocessing.<span>"
 
 /obj/machinery/dna_scannernew/update_appearance(updates = ALL)
+	. = ..()
 
 	//no power or maintenance
 	if(stat & (NOPOWER|BROKEN))

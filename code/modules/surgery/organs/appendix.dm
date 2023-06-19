@@ -11,6 +11,7 @@
 	var/inflamed
 
 /obj/item/organ/appendix/update_appearance(updates = ALL)
+	. = ..()
 	if(inflamed)
 		icon_state = "appendixinflamed"
 		name = "inflamed appendix"
@@ -65,6 +66,7 @@
 		M.emote("chuckle") //you really think that will stop me?
 
 /obj/item/organ/appendix/cybernetic/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "implant-filter"
 	name = "cybernetic appendix"
 

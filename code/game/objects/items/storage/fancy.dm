@@ -30,6 +30,7 @@
 		new spawn_type(src)
 
 /obj/item/storage/box/fancy/update_appearance(updates = ALL)
+	. = ..()
 	if(fancy_open)
 		icon_state = "[icon_type]box[contents.len]"
 	else
@@ -177,6 +178,7 @@
 		to_chat(user, span_notice("There are no [icon_type]s left in the pack."))
 
 /obj/item/storage/box/fancy/cigarettes/update_appearance(updates = ALL)
+	. = ..()
 	if(fancy_open || !contents.len)
 		cut_overlays()
 		if(!contents.len)
@@ -305,6 +307,7 @@
 	STR.set_holdable(list(/obj/item/rollingpaper))
 
 /obj/item/storage/box/fancy/rollingpapers/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(!contents.len)
 		add_overlay("[icon_state]_empty")
@@ -329,6 +332,7 @@
 	STR.set_holdable(list(/obj/item/clothing/mask/cigarette/cigar))
 
 /obj/item/storage/box/fancy/cigarettes/cigars/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	if(fancy_open)
 		icon_state = "[initial(icon_state)]_open"

@@ -206,6 +206,7 @@
 	unbundle()
 
 /obj/item/paper_bundle/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 	var/obj/item/paper/P = src[1]
 	icon_state = P.icon_state

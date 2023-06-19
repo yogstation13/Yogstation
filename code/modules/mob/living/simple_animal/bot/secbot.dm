@@ -84,6 +84,7 @@
 		russian = TRUE // imported from Russia
 
 /mob/living/simple_animal/bot/secbot/update_appearance(updates = ALL)
+	. = ..()
 	if(mode == BOT_HUNT)
 		icon_state = "[initial(icon_state)]-c"
 		return

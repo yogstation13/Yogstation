@@ -104,6 +104,7 @@
 
 
 /obj/item/taperecorder/update_appearance(updates = ALL)
+	. = ..()
 	if(!mytape)
 		icon_state = "taperecorder_empty"
 	else if(recording)

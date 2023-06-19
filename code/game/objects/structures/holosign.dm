@@ -216,6 +216,7 @@
 	playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
 
 /obj/structure/holobed/update_appearance(updates = ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)][stasis ? "" : "_off"]"
 
 /obj/structure/holobed/AltClick(mob/living/user)

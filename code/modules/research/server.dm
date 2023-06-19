@@ -40,6 +40,7 @@
 	heat_gen /= max(1, tot_rating)
 
 /obj/machinery/rnd/server/update_appearance(updates = ALL)
+	. = ..()
 	if(panel_open)
 		icon_state = "server_t"
 		return

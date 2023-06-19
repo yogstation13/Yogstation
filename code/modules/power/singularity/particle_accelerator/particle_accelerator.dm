@@ -122,6 +122,7 @@
 
 
 /obj/structure/particle_accelerator/update_appearance(updates = ALL)
+	. = ..()
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED,PA_CONSTRUCTION_UNWIRED)
 			icon_state="[reference]"

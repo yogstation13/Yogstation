@@ -36,6 +36,7 @@
 	update_appearance(updates = ALL)
 
 /obj/item/ammo_casing/update_appearance(updates = ALL)
+	. = ..()
 	..()
 	icon_state = "[initial(icon_state)][BB && !CHECK_BITFIELD(casing_flags, CASINGFLAG_NO_LIVE_SPRITE) ? "-live" : ""]"
 	desc = "[initial(desc)][!BB && !CHECK_BITFIELD(casing_flags, CASINGFLAG_NO_LIVE_SPRITE) ? " This one is spent." : ""]"

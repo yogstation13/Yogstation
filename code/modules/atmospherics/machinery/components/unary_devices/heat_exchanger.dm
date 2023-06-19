@@ -24,6 +24,7 @@
 	icon_state = "he_map-4"
 
 /obj/machinery/atmospherics/components/unary/heat_exchanger/update_appearance(updates = ALL)
+	. = ..()
 	if(nodes[1])
 		icon_state = "he1"
 		var/obj/machinery/atmospherics/node = nodes[1]

@@ -31,12 +31,12 @@ GLOBAL_LIST_EMPTY(request_list)
 	GLOB.allbountyboards -= src
 	. = ..()
 
-/obj/machinery/bounty_board/update_appearance(updates = ALL)
-	..()
+/obj/machinery/bounty_board/update_icon_state()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "request_kiosk_off"
 	else
 		icon_state = "request_kiosk"
+	return
 
 /obj/machinery/bounty_board/attackby(obj/item/I, mob/living/user, params)
 	. = ..()

@@ -145,6 +145,7 @@
 	return ..()
 
 /obj/machinery/suit_storage_unit/update_appearance(updates = ALL)
+	. = ..()
 	cut_overlays()
 
 	if(uv)

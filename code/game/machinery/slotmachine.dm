@@ -66,6 +66,7 @@
 	money += round(delta_time / 2) //SPESSH MAJICKS
 
 /obj/machinery/computer/slot_machine/update_appearance(updates = ALL)
+	. = ..()
 	if(stat & NOPOWER)
 		icon_state = "slots0"
 

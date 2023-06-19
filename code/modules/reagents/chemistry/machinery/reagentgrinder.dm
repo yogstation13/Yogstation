@@ -100,6 +100,7 @@
 	holdingitems = list()
 
 /obj/machinery/reagentgrinder/update_appearance(updates = ALL)
+	. = ..()
 	if(!container)
 		icon_state = "juicer"
 		return

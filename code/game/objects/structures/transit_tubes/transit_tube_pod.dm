@@ -20,6 +20,7 @@
 	return ..()
 
 /obj/structure/transit_tube_pod/update_appearance(updates = ALL)
+	. = ..()
 	if(contents.len)
 		icon_state = "pod_occupied"
 	else
