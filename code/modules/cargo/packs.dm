@@ -317,13 +317,6 @@
 					/obj/item/gun/energy/laser)
 	crate_name = "laser crate"
 
-/datum/supply_pack/security/combatknives_single
-	name = "Combat Knife Single-Pack"
-	desc = "Contains one sharpened combat knife. Guaranteed to fit snugly inside any Nanotrasen-standard boot. Requires Security access to open."
-	cost = 500
-	small_item = TRUE
-	contains = list(/obj/item/kitchen/knife/combat)
-
 /datum/supply_pack/security/secfiringpins
 	name = "Mindshield Firing Pins Crate"
 	desc = "Upgrade your arsenal with 10 mindshield firing pins. Requires Security access to open."
@@ -686,6 +679,13 @@
 					/obj/item/storage/box/rubbershot)
 	crate_name = "ammo crate"
 	crate_type = /obj/structure/closet/crate/secure/gear
+
+/datum/supply_pack/weaponry/combatknives_single
+	name = "Combat Knife Single-Pack"
+	desc = "Contains one sharpened combat knife. Guaranteed to fit snugly inside any Nanotrasen-standard boot. Requires Security access to open."
+	cost = 500
+	small_item = TRUE
+	contains = list(/obj/item/kitchen/knife/combat)
 
 /datum/supply_pack/weaponry/ballistic
 	name = "Combat Shotguns Crate"
