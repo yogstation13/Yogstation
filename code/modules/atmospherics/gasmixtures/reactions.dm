@@ -169,8 +169,8 @@ nobliumformation = 1001
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 			air.set_temperature((temperature*old_heat_capacity + energy_released)/new_heat_capacity)
 
-	//let the floor know a fire is happening
-	if(istype(location))
+	//let the floor know a fire is happening BUT ONLY IF IT'S ACTUALLY A FLOOR
+	if(istype(location) && isturf(holder))
 		temperature = air.return_temperature()
 		if(temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 			location.hotspot_expose(temperature, CELL_VOLUME)
