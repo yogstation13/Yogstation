@@ -92,7 +92,12 @@
 			// /obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
 			/obj/item/reagent_containers/syringe/stimulants,
 			/obj/item/storage/box/syndie_kit/imp_freedom,
-			/obj/item/storage/belt/chameleon/syndicate
+			/obj/item/storage/belt/chameleon/syndicate,
+			// From here is extra items
+			/obj/item/storage/belt/military/shadowcloak,
+			/obj/item/grenade/syndieminibomb/concussion/frag,
+			/obj/item/card/id/syndicate,
+			/obj/item/storage/pill_bottle/gummies/omnizine
 		)
 		var/obj/item/picked = pick(item_list)
 		var/obj/item/reward = new picked
