@@ -2125,18 +2125,6 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
-"agf" = (
-/obj/structure/table/wood,
-/obj/item/storage/secure/briefcase{
-	pixel_x = -2
-	},
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/cartridge/detective,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/hos)
 "agg" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -30863,38 +30851,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
-"bCt" = (
-/obj/structure/closet/secure_closet/quartermaster,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/item/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
-	},
-/obj/item/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
-	},
-/obj/item/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
-	},
-/obj/item/gps{
-	gpstag = "QM0"
-	},
-/obj/item/storage/box/fancy/cigarettes/cigars{
-	pixel_y = 4
-	},
-/obj/item/lighter,
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "bCy" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -61070,7 +61026,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 1;
-	sensors = list("co2_sensor"="Tank")
+	sensors = list("co2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -61128,7 +61084,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/air_tank{
-	sensors = list("air_sensor"="Tank")
+	sensors = list("air_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -62167,7 +62123,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 1;
-	sensors = list("tox_sensor"="Tank")
+	sensors = list("tox_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -65658,7 +65614,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 1;
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
@@ -68132,6 +68088,15 @@
 	dir = 1
 	},
 /area/security/prison)
+"pkH" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp{
+	pixel_x = -1;
+	pixel_y = 10
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/chief)
 "pkQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -70873,6 +70838,26 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"qVg" = (
+/obj/structure/closet/secure_closet/quartermaster,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/item/gps{
+	gpstag = "QM0"
+	},
+/obj/item/storage/box/fancy/cigarettes/cigars{
+	pixel_y = 4
+	},
+/obj/item/lighter,
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "qVi" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -74027,27 +74012,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/pumproom)
-"sYp" = (
-/obj/structure/table/reinforced,
-/obj/item/flashlight/lamp{
-	pixel_x = -1;
-	pixel_y = 10
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/item/cartridge/engineering{
-	pixel_x = 4;
-	pixel_y = 5
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/cartridge/engineering{
-	pixel_x = 3
-	},
-/obj/item/cartridge/atmos,
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/chief)
 "sYE" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -78246,24 +78210,6 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/heads/cmo)
-"vzN" = (
-/obj/machinery/newscaster{
-	pixel_y = -30
-	},
-/obj/structure/table,
-/obj/item/cartridge/signal/toxins,
-/obj/item/cartridge/signal/toxins{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/obj/item/cartridge/signal/toxins{
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/turf/open/floor/plasteel/cafeteria{
-	dir = 5
-	},
-/area/crew_quarters/heads/hor)
 "vzX" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -79080,7 +79026,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
-	sensors = list("n2_sensor"="Tank")
+	sensors = list("n2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -80035,7 +79981,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
-	sensors = list("o2_sensor"="Tank")
+	sensors = list("o2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -80589,6 +80535,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"xeA" = (
+/obj/structure/table/wood,
+/obj/item/storage/secure/briefcase{
+	pixel_x = -2
+	},
+/obj/item/book/manual/wiki/security_space_law,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/hos)
 "xfa" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
@@ -80772,7 +80729,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 1;
-	sensors = list("n2o_sensor"="Tank")
+	sensors = list("n2o_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -81867,6 +81824,15 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/bridge/showroom/corporate)
+"xUe" = (
+/obj/machinery/newscaster{
+	pixel_y = -30
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel/cafeteria{
+	dir = 5
+	},
+/area/crew_quarters/heads/hor)
 "xUj" = (
 /obj/item/storage/box/gloves{
 	pixel_x = 3;
@@ -102429,7 +102395,7 @@ azS
 aAt
 aAU
 dne
-bCt
+qVg
 aHW
 aQq
 aRK
@@ -112167,7 +112133,7 @@ aaa
 adZ
 adZ
 afi
-agf
+xeA
 agW
 ahC
 adZ
@@ -114310,7 +114276,7 @@ cuQ
 rTU
 cdD
 cdO
-vzN
+xUe
 crQ
 cyA
 cBs
@@ -121712,7 +121678,7 @@ aTE
 axY
 aWy
 aYp
-sYp
+pkH
 emB
 aNP
 beg
