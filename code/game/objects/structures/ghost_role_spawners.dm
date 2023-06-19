@@ -686,7 +686,7 @@
 	name = "syndicate engineer sleeper"
 	short_desc = "You're an engineer working for the Syndicate, assigned to repair a derelict research station."
 	flavour_text = "During your briefing, you're told that an old syndicate research post has gone missing without notice. No theories have been brought to its fate, and it's unlikely to know the cause of its destruction. Your job will be to restore this post to optimal levels."
-	important_info = "Do not leave the derelict under any circumstances."
+	important_info = "Do not abandon the derelict or mess with the main station under any circumstances."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	outfit = /datum/outfit/syndicate_derelict_engi
