@@ -214,18 +214,6 @@
 	. = ..()
 	return "[user] holds [src] against [A] until it ignites."
 
-/obj/item/flashlight/pen/paramedic/advanced/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
-	if(!proximity_flag)
-		if(holo_cooldown > world.time)
-			to_chat(user, span_warning("[src] is not ready yet!"))
-			return
-		var/T = get_turf(target)
-		if(locate(/mob/living) in T)
-			new /obj/effect/temp_visual/medical_holosign(T,user) //produce a holographic glow
-			holo_cooldown = world.time + 10 SECONDS
-			return
-
 /obj/effect/temp_visual/medical_holosign
 	name = "medical holosign"
 	desc = "A small holographic glow that indicates a medic is coming to treat a patient."
