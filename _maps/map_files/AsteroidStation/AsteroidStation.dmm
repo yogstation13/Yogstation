@@ -62302,6 +62302,17 @@
 	},
 /turf/open/floor/wood,
 /area/library)
+"tjX" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 8
+	},
+/obj/item/flashlight/lamp{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "tkm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -69875,14 +69886,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"vUd" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 8
-	},
-/obj/item/flashlight/lamp,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "vUk" = (
 /obj/structure/table,
 /obj/item/analyzer,
@@ -102561,7 +102564,7 @@ aNb
 ohM
 aXN
 kxp
-vUd
+tjX
 uus
 aXL
 hSP
