@@ -1,5 +1,0 @@
-author: " Airlines7"
-delete-after: true 
-changes: 
-  - bugfix: "Missing icons in vending machines are fixed"
-  - mapping: "CC now has a hall of vending machines"

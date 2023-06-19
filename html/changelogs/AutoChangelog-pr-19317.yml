@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "End-round donator items will now always spawn with electronic firing pins"
