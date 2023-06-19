@@ -27396,6 +27396,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"icH" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 8
+	},
+/obj/item/flashlight/lamp{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "ida" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -62306,17 +62317,6 @@
 	},
 /turf/open/floor/wood,
 /area/library)
-"tjX" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 8
-	},
-/obj/item/flashlight/lamp{
-	pixel_x = 2;
-	pixel_y = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "tkm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -68152,6 +68152,11 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"vpt" = (
+/obj/structure/table,
+/obj/item/toy/figure/rd,
+/turf/open/floor/carpet/purple,
+/area/crew_quarters/heads/hor)
 "vpN" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner{
 	dir = 8
@@ -74974,11 +74979,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage/backroom)
-"xBP" = (
-/obj/structure/table,
-/obj/item/toy/figure/rd,
-/turf/open/floor/carpet/purple,
-/area/crew_quarters/heads/hor)
 "xBR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 10
@@ -102558,7 +102558,7 @@ aNb
 ohM
 aXN
 kxp
-tjX
+icH
 uus
 aXL
 hSP
@@ -113043,7 +113043,7 @@ mAs
 hyX
 mGq
 mML
-xBP
+vpt
 tvU
 hyX
 eRp
