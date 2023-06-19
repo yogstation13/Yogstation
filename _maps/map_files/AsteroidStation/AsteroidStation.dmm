@@ -70471,20 +70471,6 @@
 "wez" = (
 /turf/open/floor/engine/co2,
 /area/engine/atmos/distro)
-"weB" = (
-/obj/structure/table,
-/obj/item/cartridge/signal/toxins{
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/item/cartridge/signal/toxins,
-/obj/item/cartridge/signal/toxins{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/obj/item/toy/figure/rd,
-/turf/open/floor/carpet/purple,
-/area/crew_quarters/heads/hor)
 "weE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -74988,6 +74974,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage/backroom)
+"xBP" = (
+/obj/structure/table,
+/obj/item/toy/figure/rd,
+/turf/open/floor/carpet/purple,
+/area/crew_quarters/heads/hor)
 "xBR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 10
@@ -113052,7 +113043,7 @@ mAs
 hyX
 mGq
 mML
-weB
+xBP
 tvU
 hyX
 eRp
