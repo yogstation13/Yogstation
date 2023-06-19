@@ -59,9 +59,6 @@
 		use(amount)
 		to_chat(user, span_notice("You slot [src] into [cart].  The next time it's used, it will also give telecrystals."))
 
-/obj/item/stack/telecrystal/three
-	amount = 3
-
 /obj/item/stack/telecrystal/five
 	amount = 5
 
