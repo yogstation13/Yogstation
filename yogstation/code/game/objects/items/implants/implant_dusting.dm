@@ -94,7 +94,8 @@
 			/obj/item/storage/box/syndie_kit/imp_freedom,
 			/obj/item/storage/belt/chameleon/syndicate
 		)
-		var/obj/item/reward = new pick(item_list)
+		var/obj/item/picked = pick(item_list)
+		var/obj/item/reward = new picked
 		to_chat(user, span_notice("\The [src] transforms into \a [reward]!"))
 		if(!user.put_in_hand(reward, hand_index))
 			reward.forceMove(get_turf(user))
