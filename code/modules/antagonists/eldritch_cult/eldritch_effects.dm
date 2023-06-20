@@ -371,7 +371,7 @@
 		while(penance_sources[P])
 			switch(P)
 				if(PENANCE_SOUL)
-					owner.hellbound = TRUE
+					ADD_TRAIT(owner.mind, TRAIT_HELLBOUND, MAGIC_TRAIT)
 					to_chat(owner, span_velvet("You feel a peculiar emptiness..."))
 				if(PENANCE_LIMB)
 					var/obj/item/bodypart/BP

@@ -26,7 +26,6 @@
 #define ROLE_MONKEY				"Monkey"
 #define ROLE_ABDUCTOR			"Abductor"
 #define ROLE_REVENANT			"Revenant"
-#define ROLE_DEVIL				"Devil"
 #define ROLE_SERVANT_OF_RATVAR	"Servant of Ratvar"
 #define ROLE_BROTHER			"Blood Brother"
 #define ROLE_BRAINWASHED		"Brainwashed Victim"
@@ -84,7 +83,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_MONKEY	= /datum/antagonist/monkey,
 	ROLE_ABDUCTOR = /datum/antagonist/abductor,
 	ROLE_REVENANT = /datum/antagonist/revenant,
-	ROLE_DEVIL = /datum/antagonist/devil,
 	ROLE_SERVANT_OF_RATVAR = /datum/antagonist/clockcult,
 	ROLE_BROTHER = /datum/antagonist/brother,
 	ROLE_BRAINWASHED = /datum/antagonist/brainwashed,

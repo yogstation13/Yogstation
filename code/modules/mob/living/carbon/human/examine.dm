@@ -147,8 +147,8 @@
 		appears_dead = 1
 		if(suiciding)
 			. += span_warning("[t_He] appear[p_s()] to have committed suicide... there is no hope of recovery.")
-		if(hellbound)
-			. += span_warning("[t_His] soul seems to have been ripped out of [t_his] body.  Revival is impossible.")
+		if(mind && HAS_TRAIT(mind, TRAIT_HELLBOUND))
+			. += span_warning("[t_His] soul seems to have been ripped out of [t_his] body. Revival is impossible.")
 		. += ""
 		if(getorgan(/obj/item/organ/brain) && !key && !get_ghost())
 			. += span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life and [t_his] soul has departed...")

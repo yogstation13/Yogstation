@@ -973,7 +973,7 @@
 		return 0
 
 /mob/living/carbon/proc/can_defib(careAboutGhost = TRUE) //yogs start
-	if(suiciding || hellbound || HAS_TRAIT(src, TRAIT_HUSK)) //can't revive
+	if(suiciding || (mind && HAS_TRAIT(mind, TRAIT_HELLBOUND)) || HAS_TRAIT(src, TRAIT_HUSK)) //can't revive
 		return FALSE
 	if((world.time - timeofdeath) > DEFIB_TIME_LIMIT) //too late
 		return FALSE

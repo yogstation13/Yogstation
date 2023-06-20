@@ -627,7 +627,7 @@
 	if(!istype(dna))
 		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
 		return FALSE
-	if(!body_only && (mob_occupant.suiciding || mob_occupant.hellbound))
+	if(!body_only && (mob_occupant.suiciding || (mob_occupant.mind && HAS_TRAIT(mob_occupant.mind, TRAIT_HELLBOUND))))
 		scantemp = "<font class='bad'>Subject's brain is not responding to scanning stimuli.</font>"
 		return FALSE
 	if(HAS_TRAIT(mob_occupant, TRAIT_BADDNA))

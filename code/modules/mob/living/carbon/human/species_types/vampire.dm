@@ -58,10 +58,9 @@
 		C.ignite_mob()
 
 /datum/species/vampire/check_species_weakness(obj/item/weapon, mob/living/attacker)
+	. = ..()
 	if(istype(weapon, /obj/item/nullrod/whip))
-		return TRUE //Whips deal 2x damage to vampires. Vampire killer.
-
-	return FALSE
+		return 2 //Whips deal 2x damage to vampires. Vampire killer.
 
 /datum/species/vampire/get_species_description()
 	return "A classy Vampire! They descend upon Space Station Thirteen Every year to spook the crew! \"Bleeg!!\""

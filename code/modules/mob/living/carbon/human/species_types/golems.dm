@@ -847,7 +847,7 @@
 /obj/structure/cloth_pile/proc/revive()
 	if(QDELETED(src) || QDELETED(cloth_golem)) //QDELETED also checks for null, so if no cloth golem is set this won't runtime
 		return
-	if(cloth_golem.suiciding || cloth_golem.hellbound)
+	if(cloth_golem.suiciding || (cloth_golem.mind && HAS_TRAIT(cloth_golem.mind, TRAIT_HELLBOUND)))
 		QDEL_NULL(cloth_golem)
 		return
 
@@ -1475,7 +1475,7 @@
 /obj/structure/wax_pile/proc/revive()
 	if(QDELETED(src) || QDELETED(wax_golem)) //QDELETED also checks for null, so if no wax golem is set this won't runtime
 		return
-	if(wax_golem.suiciding || wax_golem.hellbound)
+	if(wax_golem.suiciding || (wax_golem.mind && HAS_TRAIT(wax_golem.mind, TRAIT_HELLBOUND)))
 		QDEL_NULL(wax_golem)
 		return
 

@@ -914,7 +914,7 @@
 			return
 		disconnect_shell() //If the AI is controlling a borg, force the player back to core!
 		if(!mind)
-			to_chat(user, span_warning("No intelligence patterns detected.")    )
+			to_chat(user, span_warning("No intelligence patterns detected."))
 			return
 		ShutOffDoomsdayDevice()
 		builtInCamera.toggle_cam(user)
@@ -1083,7 +1083,7 @@
 		return
 
 	else if(mind)
-		soullink(/datum/soullink/sharedbody, src, target)
+		RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(disconnect_shell))
 		deployed_shell = target
 		target.deploy_init(src)
 		mind.transfer_to(target)
@@ -1121,6 +1121,7 @@
 	if(deployed_shell) //Forcibly call back AI in event of things such as damage, EMP or power loss.
 		to_chat(src, span_danger("Your remote connection has been reset!"))
 		deployed_shell.undeploy()
+		UnregisterSignal(deployed_shell, COMSIG_LIVING_DEATH)
 		deployed_shell = null
 	diag_hud_set_deployed()
 

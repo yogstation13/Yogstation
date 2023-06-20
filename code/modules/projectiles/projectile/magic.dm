@@ -60,7 +60,7 @@
 /obj/item/projectile/magic/resurrection/on_hit(mob/living/carbon/target)
 	. = ..()
 	if(isliving(target))
-		if(target.hellbound)
+		if(target.mind && HAS_TRAIT(target.mind, TRAIT_HELLBOUND))
 			return BULLET_ACT_BLOCK
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
