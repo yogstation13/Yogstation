@@ -8,7 +8,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_inv = HIDEEARS | HIDEHAIR | HIDEFACE
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
-	armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 10, BOMB = 60, BIO = 15, RAD = 0, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 50, BULLET = 40, LASER = 20, ENERGY = 10, BOMB = 60, BIO = 15, RAD = 0, FIRE = 100, ACID = 100)
 
 /obj/item/clothing/head/helmet/clockwork/Initialize(mapload)
 	. = ..()
@@ -26,12 +26,12 @@
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else if(GLOB.ratvar_approaches)
-		armor.setRating(melee = 50, bullet = 50, laser = 25, energy = 25, bomb = 70, bio = 90, rad = 0, fire = 100, acid = 100)
+		armor.setRating(melee = 60, bullet = 50, laser = 25, energy = 25, bomb = 70, bio = 90, rad = 0, fire = 100, acid = 100)
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else
-		armor.setRating(melee = 40, bullet = 40, laser = 20, energy = 10, bomb = 60, bio = 15, rad = 0, fire = 100, acid = 100)
+		armor.setRating(melee = 50, bullet = 40, laser = 20, energy = 10, bomb = 60, bio = 15, rad = 0, fire = 100, acid = 100)
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = initial(max_heat_protection_temperature)
 		min_cold_protection_temperature = initial(min_cold_protection_temperature)
@@ -133,7 +133,7 @@
 	heat_protection = ARMS
 	siemens_coefficient = 0
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list(MELEE = 40, BULLET = 40, LASER = 20, ENERGY = 10, BOMB = 60, BIO = 60, RAD = 0, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 50, BULLET = 40, LASER = 20, ENERGY = 10, BOMB = 60, BIO = 60, RAD = 0, FIRE = 100, ACID = 100)
 
 /obj/item/clothing/gloves/clockwork/Initialize(mapload)
 	. = ..()
@@ -151,12 +151,12 @@
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else if(GLOB.ratvar_approaches)
-		armor.setRating(melee = 50, bullet = 50, laser = 25, energy = 25, bomb = 60, bio = 90, rad = 0, fire = 100, acid = 100)
+		armor.setRating(melee = 60, bullet = 50, laser = 25, energy = 25, bomb = 60, bio = 90, rad = 0, fire = 100, acid = 100)
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else
-		armor.setRating(melee = 40, bullet = 40, laser = 20, energy = 10, bomb = 60, bio = 60, rad = 0, fire = 100, acid = 100)
+		armor.setRating(melee = 50, bullet = 40, laser = 20, energy = 10, bomb = 60, bio = 60, rad = 0, fire = 100, acid = 100)
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = initial(max_heat_protection_temperature)
 		min_cold_protection_temperature = initial(min_cold_protection_temperature)
