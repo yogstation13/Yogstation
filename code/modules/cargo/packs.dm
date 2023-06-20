@@ -682,7 +682,7 @@
 
 /datum/supply_pack/weaponry/combatknives_single
 	name = "Combat Knife Single-Pack"
-	desc = "Contains one sharpened combat knife. Guaranteed to fit snugly inside any Nanotrasen-standard boot. Requires Security access to open."
+	desc = "Contains one sharpened combat knife. Guaranteed to fit snugly inside any Nanotrasen-standard boot. Requires Armory access to open."
 	cost = 500
 	small_item = TRUE
 	contains = list(/obj/item/kitchen/knife/combat)
