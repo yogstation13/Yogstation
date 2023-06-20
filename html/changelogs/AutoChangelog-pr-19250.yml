@@ -1,5 +1,0 @@
-author: "wonderinghost"
-delete-after: true 
-changes: 
-  - rscadd: "adds a fax machine to law office"
-  - rscdel: "Removes the cartridge from law office meta"

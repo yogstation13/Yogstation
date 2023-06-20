@@ -189,7 +189,7 @@ SUBSYSTEM_DEF(Yogs)
   * Arguments:
   * * account - The account that you're getting the string from. IE ACCOUNT_CIV or ACCOUNT_ENG
   */
-/datum/controller/subsystem/Yogs/proc/getDepartmentFromAccount(var/account)
+/datum/controller/subsystem/Yogs/proc/getDepartmentFromAccount(account)
 	switch(account)
 		if(ACCOUNT_CIV)
 			return "Civilian"

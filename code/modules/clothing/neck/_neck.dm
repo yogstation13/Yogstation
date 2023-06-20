@@ -175,7 +175,7 @@
 	icon_state = "petcollar"
 	var/tagname = null
 
-/obj/item/clothing/neck/petcollar/Initialize()
+/obj/item/clothing/neck/petcollar/Initialize(mapload)
 	.= ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/collarbell1.ogg'=1,'sound/effects/collarbell2.ogg'=1), 50, 100, 2)
 
@@ -392,7 +392,7 @@
 
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 75, ACID = 75)	//Resistant to the dangers of the natural world or something
 
-/obj/item/clothing/neck/cloak/ranger/Initialize()
+/obj/item/clothing/neck/cloak/ranger/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_unequip))
 

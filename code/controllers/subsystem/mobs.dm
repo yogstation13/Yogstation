@@ -26,18 +26,19 @@ SUBSYSTEM_DEF(mobs)
 		dead_players_by_zlevel.len++
 		dead_players_by_zlevel[dead_players_by_zlevel.len] = list()
 
-/datum/controller/subsystem/mobs/fire(resumed = 0)
+/datum/controller/subsystem/mobs/fire(resumed = FALSE)
 	if (!resumed)
 		src.currentrun = GLOB.mob_living_list.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	var/times_fired = src.times_fired
+	var/seconds_per_tick = wait / (1 SECONDS) // TODO: Make this actually responsive to stuff like pausing and resuming
 	while(currentrun.len)
 		var/mob/living/L = currentrun[currentrun.len]
 		currentrun.len--
 		if(L)
-			L.Life(times_fired)
+			L.Life(seconds_per_tick, times_fired)
 		else
 			GLOB.mob_living_list.Remove(L)
 		if (MC_TICK_CHECK)

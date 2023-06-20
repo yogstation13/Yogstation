@@ -358,7 +358,7 @@
 	health_cost = source.health_cost
 	..()
 
-/obj/item/melee/blood_magic/Initialize()
+/obj/item/melee/blood_magic/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 

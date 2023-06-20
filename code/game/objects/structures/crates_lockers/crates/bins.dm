@@ -8,7 +8,7 @@
 	open_flags = ALLOW_OBJECTS | ALLOW_DENSE
 	delivery_icon = null
 
-/obj/structure/closet/crate/bin/Initialize()
+/obj/structure/closet/crate/bin/Initialize(mapload)
 	. = ..()
 	update_icon()
 

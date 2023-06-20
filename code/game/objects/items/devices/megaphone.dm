@@ -22,7 +22,7 @@
 	user.say("AAAAAAAAAAAARGHHHHH", forced="megaphone suicide")//he must have died while coding this
 	return OXYLOSS
 
-/obj/item/megaphone/Initialize()
+/obj/item/megaphone/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -43,7 +43,7 @@
 		return FALSE
 	last_used = world.time + recharge_time
 	update_icon()
-	addtimer(CALLBACK(src, PROC_REF(update_icon)), recharge_time)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), recharge_time)
 	return TRUE
 
 /obj/item/megaphone/update_icon()

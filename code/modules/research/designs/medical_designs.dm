@@ -416,17 +416,6 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/cyberimp_thermals
-	name = "Thermal Eyes"
-	desc = "These cybernetic eyes will give you Thermal vision. Vertical slit pupil included."
-	id = "ci-thermals"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 60
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plasma = 1000, /datum/material/diamond = 2000)
-	build_path = /obj/item/organ/eyes/robotic/thermals
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/cyberimp_antidrop
 	name = "Anti-Drop Implant"
 	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ears to toggle."

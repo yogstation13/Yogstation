@@ -17,7 +17,7 @@
 	var/cooldown = 0
 	var/cooldown_modifier = 20
 
-/obj/item/toy/plush/goatplushie/angry/Initialize()
+/obj/item/toy/plush/goatplushie/angry/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 

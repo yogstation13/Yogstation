@@ -274,7 +274,7 @@
 	///who has already used this influence
 	var/list/siphoners = list()
 
-/obj/effect/reality_smash/Initialize()
+/obj/effect/reality_smash/Initialize(mapload)
 	. = ..()
 	GLOB.reality_smash_track.smashes += src
 	img = image(icon, src, "reality_smash", OBJ_LAYER)

@@ -60,6 +60,8 @@
 
 #define STATUS_EFFECT_DETERMINED /datum/status_effect/determined //currently in a combat high from being seriously wounded
 
+#define STATUS_EFFECT_ADRENALINE /datum/status_effect/adrenaline //currently in fight or flight from being suddenly injured
+
 #define STATUS_EFFECT_FRENZY /datum/status_effect/frenzy //Makes you fast and stronger
 
 #define STATUS_EFFECT_DOUBLEDOWN /datum/status_effect/doubledown //Greatly reduced damage taken

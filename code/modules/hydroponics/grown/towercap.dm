@@ -162,7 +162,7 @@
 /obj/structure/bonfire/dense
 	density = TRUE
 
-/obj/structure/bonfire/prelit/Initialize()
+/obj/structure/bonfire/prelit/Initialize(mapload)
 	. = ..()
 	StartBurning()
 

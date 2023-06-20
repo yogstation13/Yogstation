@@ -117,7 +117,7 @@
 	item_state = "beaker"
 	materials = list(/datum/material/glass=500)
 
-/obj/item/reagent_containers/glass/beaker/Initialize()
+/obj/item/reagent_containers/glass/beaker/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -309,7 +309,7 @@
 	. = ..()
 	reagents.flags = initial(reagent_flags)
 
-/obj/item/reagent_containers/glass/bucket/equip_to_best_slot(var/mob/M)
+/obj/item/reagent_containers/glass/bucket/equip_to_best_slot(mob/M)
 	if(reagents.total_volume) //If there is water in a bucket, don't quick equip it to the head
 		var/index = slot_equipment_priority.Find(ITEM_SLOT_HEAD)
 		slot_equipment_priority.Remove(ITEM_SLOT_HEAD)

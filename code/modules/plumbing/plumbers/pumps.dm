@@ -16,7 +16,7 @@
 	var/volume = 200
 
 
-/obj/machinery/power/liquid_pump/Initialize()
+/obj/machinery/power/liquid_pump/Initialize(mapload)
 	create_reagents(volume)
 	AddComponent(/datum/component/plumbing/simple_supply)
 	return ..()

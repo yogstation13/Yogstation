@@ -1,4 +1,4 @@
-/mob/living/silicon/robot/Life()
+/mob/living/silicon/robot/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	set invisibility = 0
 	if (src.notransform)
 		return

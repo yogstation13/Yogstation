@@ -28,7 +28,7 @@
 	buckle_lying = 0
 	var/random_color = TRUE
 
-/mob/living/simple_animal/chocobo/Initialize()
+/mob/living/simple_animal/chocobo/Initialize(mapload)
 	. = ..()
 	if(random_color)
 		var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
@@ -55,7 +55,7 @@
 		can_buckle = initial(can_buckle)
 	update_icon()
 
-/mob/living/simple_animal/chocobo/proc/update_icon()
+/mob/living/simple_animal/chocobo/update_icon()
 	if(!random_color) //icon override
 		return
 	cut_overlays()

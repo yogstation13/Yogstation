@@ -21,7 +21,7 @@
 	var/grace = RAD_GEIGER_GRACE_PERIOD
 	var/datum/looping_sound/geiger/soundloop
 
-/obj/item/clothing/head/helmet/space/hardsuit/Initialize()
+/obj/item/clothing/head/helmet/space/hardsuit/Initialize(mapload)
 	. = ..()
 	soundloop = new(list(), FALSE, TRUE)
 	soundloop.volume = 5
@@ -65,7 +65,7 @@
 			return
 		soundloop.start(user)
 
-/obj/item/clothing/head/helmet/space/hardsuit/proc/display_visor_message(var/msg)
+/obj/item/clothing/head/helmet/space/hardsuit/proc/display_visor_message(msg)
 	var/mob/wearer = loc
 	if(msg && ishuman(wearer))
 		wearer.show_message("[icon2html(src, wearer)]<b>[span_robot("[msg]")]</b>", MSG_VISUAL)
@@ -110,7 +110,7 @@
 	var/obj/item/tank/jetpack/suit/jetpack = null
 	var/hardsuit_type
 
-/obj/item/clothing/suit/space/hardsuit/Initialize()
+/obj/item/clothing/suit/space/hardsuit/Initialize(mapload)
 	if(jetpack && ispath(jetpack))
 		jetpack = new jetpack(src)
 	. = ..()
@@ -270,7 +270,7 @@
 	light_range = 7
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator)
 
-/obj/item/clothing/head/helmet/space/hardsuit/mining/Initialize()
+/obj/item/clothing/head/helmet/space/hardsuit/mining/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/armor_plate)
 
@@ -286,7 +286,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/mining
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 
-/obj/item/clothing/suit/space/hardsuit/mining/Initialize()
+/obj/item/clothing/suit/space/hardsuit/mining/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/armor_plate)
 
@@ -308,7 +308,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/update_icon()
 	icon_state = "hardsuit[on]-[hardsuit_type]"
 
-/obj/item/clothing/head/helmet/space/hardsuit/syndi/Initialize()
+/obj/item/clothing/head/helmet/space/hardsuit/syndi/Initialize(mapload)
 	. = ..()
 	if(istype(loc, /obj/item/clothing/suit/space/hardsuit/syndi))
 		linkedsuit = loc
@@ -437,7 +437,7 @@
 	light_range = 0 //luminosity when on
 	actions_types = list()
 
-/obj/item/clothing/head/helmet/space/hardsuit/carp/Initialize()
+/obj/item/clothing/head/helmet/space/hardsuit/carp/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
 
@@ -509,7 +509,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/wizard
 	slowdown = 0
 
-/obj/item/clothing/suit/space/hardsuit/wizard/Initialize()
+/obj/item/clothing/suit/space/hardsuit/wizard/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, FALSE, FALSE, ITEM_SLOT_OCLOTHING, INFINITY, FALSE)
 
@@ -547,7 +547,7 @@
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SCAN_REAGENTS | HEADINTERNALS
 	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_research_scanner)
 
-/obj/item/clothing/head/helmet/space/hardsuit/rd/Initialize()
+/obj/item/clothing/head/helmet/space/hardsuit/rd/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, PROC_REF(sense_explosion))
 
@@ -604,7 +604,7 @@
 	armor = list(MELEE = 35, BULLET = 25, LASER = 30, ENERGY = 10, BOMB = 40, BIO = 100, RAD = 50, FIRE = 75, ACID = 75, WOUND = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security
 
-/obj/item/clothing/suit/space/hardsuit/security/Initialize()
+/obj/item/clothing/suit/space/hardsuit/security/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.security_hardsuit_allowed
 
@@ -651,7 +651,7 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //this needed to be added a long fucking time ago
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/swat
 
-/obj/item/clothing/suit/space/hardsuit/swat/Initialize()
+/obj/item/clothing/suit/space/hardsuit/swat/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.security_hardsuit_allowed
 
@@ -710,7 +710,7 @@
 	resistance_flags = FIRE_PROOF
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
-/obj/item/clothing/head/helmet/space/hardsuit/ert/Initialize()
+/obj/item/clothing/head/helmet/space/hardsuit/ert/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
 
@@ -799,7 +799,7 @@
 	actions_types = list()
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/suit/space/hardsuit/ert/paranormal/Initialize()
+/obj/item/clothing/suit/space/hardsuit/ert/paranormal/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE, ITEM_SLOT_OCLOTHING)
 
@@ -812,7 +812,7 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/suit/space/hardsuit/ert/paranormal/Initialize()
+/obj/item/clothing/suit/space/hardsuit/ert/paranormal/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE, ITEM_SLOT_OCLOTHING)
 
@@ -913,7 +913,7 @@
 	var/shield_state = "shield-old"
 	var/shield_on = "shield-old"
 
-/obj/item/clothing/suit/space/hardsuit/shielded/Initialize()
+/obj/item/clothing/suit/space/hardsuit/shielded/Initialize(mapload)
 	. = ..()
 	if(!allowed)
 		allowed = GLOB.advanced_hardsuit_allowed
@@ -1164,11 +1164,11 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF
 
-/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced/Initialize()
+/obj/item/clothing/suit/space/hardsuit/powerarmor_advanced/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/armor_plate,10,/obj/item/stack/sheet/animalhide/weaver_chitin, list(MELEE = 0.5, BULLET = 3, LASER = 0.5, ENERGY = 2.5, BOMB = 5, BIO = 10, RAD = 8, FIRE = 10, ACID = 9, WOUND = 0.1))
 
-/obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced/Initialize()
+/obj/item/clothing/head/helmet/space/hardsuit/powerarmor_advanced/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/armor_plate,10,/obj/item/stack/sheet/animalhide/weaver_chitin, list(MELEE = 0.5, BULLET = 3, LASER = 0.5, ENERGY = 2.5, BOMB = 5, BIO = 10, RAD = 8, FIRE = 10, ACID = 9, WOUND = 0.1))
 

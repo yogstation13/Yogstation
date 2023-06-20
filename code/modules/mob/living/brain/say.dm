@@ -1,4 +1,4 @@
-/mob/living/brain/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/brain/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(!istype(container, /obj/item/mmi) && !istype(loc, /obj/item/reagent_containers/food/snacks/egg))
 		return //No MMI, and no EGG RP, can't speak, bucko./N
 	else

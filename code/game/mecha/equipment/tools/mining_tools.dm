@@ -18,7 +18,7 @@
 	/// Affects if it can bust through reinforced walls (DRILL_HARDENED)
 	var/drill_level = DRILL_BASIC
 
-/obj/item/mecha_parts/mecha_equipment/drill/Initialize()
+/obj/item/mecha_parts/mecha_equipment/drill/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 50, 100)
 
@@ -153,7 +153,7 @@
 	equip_cooldown = 15
 	var/scanning_time = 0
 
-/obj/item/mecha_parts/mecha_equipment/mining_scanner/Initialize()
+/obj/item/mecha_parts/mecha_equipment/mining_scanner/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 

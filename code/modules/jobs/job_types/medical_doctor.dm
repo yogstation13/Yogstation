@@ -2,10 +2,8 @@
 	title = "Medical Doctor"
 	description = "Save lives, run around the station looking for victims, \
 		scan everyone in sight"
-	flag = DOCTOR
 	orbit_icon = "staff-snake"
 	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 3

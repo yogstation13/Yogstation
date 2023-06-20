@@ -18,10 +18,6 @@
 	/// Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
 	var/list/head_announce = null
 
-	// Used for something in preferences_savefile.dm
-	// NOTE: currently unused
-	var/department_flag = NONE
-
 	/// Bitfield of departments this job belongs to. These get setup when adding the job into the department, on job datum creation.
 	var/departments_bitflags = NONE
 
@@ -34,8 +30,6 @@
 	/// unless department_for_prefs is set.
 	/// TODO: Currently not used so will always be empty! Change this to department datums
 	var/list/departments_list = null
-
-	var/flag = NONE //Deprecated
 	
 	/// Automatic deadmin for a job. Usually head/security positions
 	var/auto_deadmin_role_flags = NONE
@@ -215,7 +209,7 @@
 	dna.species.before_equip_job(equipping, src, visual_only)
 	equipOutfit(equipping.outfit, visual_only)
 
-/datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+/datum/job/proc/announce_head(mob/living/carbon/human/H, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
 		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(_addtimer_here), CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))

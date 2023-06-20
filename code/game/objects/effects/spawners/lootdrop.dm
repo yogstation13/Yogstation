@@ -538,7 +538,7 @@
 /obj/effect/spawner/lootdrop/costume
 	name = "random costume spawner"
 
-/obj/effect/spawner/lootdrop/costume/Initialize()
+/obj/effect/spawner/lootdrop/costume/Initialize(mapload)
 	loot = list()
 	for(var/path in subtypesof(/obj/effect/spawner/bundle/costume))
 		loot[path] = TRUE

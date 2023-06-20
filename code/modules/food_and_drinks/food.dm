@@ -40,7 +40,7 @@
 		AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/badrecipe, rand(25 SECONDS, 40 SECONDS), FALSE)
 	return
 
-/obj/item/reagent_containers/food/proc/checkLiked(var/fraction, mob/M)
+/obj/item/reagent_containers/food/proc/checkLiked(fraction, mob/M)
 	if(last_check_time + 50 < world.time)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M

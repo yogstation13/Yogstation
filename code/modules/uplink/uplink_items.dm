@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
-/proc/get_uplink_items(var/datum/game_mode/gamemode = null, allow_sales = TRUE, allow_restricted = TRUE, uplink_type = "Uplink")
+/proc/get_uplink_items(datum/game_mode/gamemode = null, allow_sales = TRUE, allow_restricted = TRUE, uplink_type = "Uplink")
 	var/list/filtered_uplink_items = list()
 	var/list/sale_items = list()
 
@@ -248,13 +248,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	player_minimum = 40
 	starting_crate_value = 125
 
-/datum/uplink_item/bundles_TC/surplus/purchase(mob/user, datum/component/uplink/U)
+/datum/uplink_item/bundles_TC/surplus/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	. = ..()
+	var/obj/structure/closet/crate/spawned_crate = .
 	var/list/uplink_items = get_uplink_items(SSticker && SSticker.mode? SSticker.mode : null, FALSE)
-
 	var/crate_value = starting_crate_value
-	var/obj/structure/closet/crate/C = spawn_item(/obj/structure/closet/crate, user, U)
-	if(U.purchase_log)
-		U.purchase_log.LogPurchase(C, src, cost)
 	while(crate_value)
 		var/category = pick(uplink_items)
 		var/item = pick(uplink_items[category])
@@ -265,10 +263,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 		if(crate_value < I.cost)
 			continue
 		crate_value -= I.cost
-		var/obj/goods = new I.item(C)
+		var/obj/goods = new I.item(spawned_crate)
 		if(U.purchase_log)
 			U.purchase_log.LogPurchase(goods, I, 0)
-	return C
+	return spawned_crate
 
 /datum/uplink_item/bundles_TC/random
 	name = "Random Item"
@@ -412,7 +410,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/twohanded/dualsaber
 	player_minimum = 25
 	cost = 16
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
+	include_modes = list(/datum/game_mode/nuclear) // yogs: infiltration
 
 /datum/uplink_item/dangerous/doublesword/get_discount()
 	return pick(4;0.8,2;0.65,1;0.5)
@@ -1560,7 +1558,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/monkeycubes/syndicate/mice
 	cost = 1
 	manufacturer = /datum/corporation/traitor/waffleco
-  
+
 /datum/uplink_item/stealthy_tools/angelcoolboy
 	name = "Syndicate Angel Potion"
 	desc = "After many failed attempts, the syndicate has reverse engineered an angel potion smuggled off of the lava planet V-227. \

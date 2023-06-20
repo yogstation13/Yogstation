@@ -22,7 +22,7 @@
 	var/turf/designating_target_loc
 	var/jammed = FALSE
 
-/obj/machinery/computer/camera_advanced/shuttle_docker/Initialize()
+/obj/machinery/computer/camera_advanced/shuttle_docker/Initialize(mapload)
 	. = ..()
 	GLOB.navigation_computers += src
 	for(var/V in SSshuttle.stationary)

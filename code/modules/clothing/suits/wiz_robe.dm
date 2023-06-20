@@ -244,7 +244,7 @@
 	to_chat(user, span_notice("You charge \the [W]. It can now absorb [W.current_charges] hits."))
 	qdel(src)
 
-/obj/item/clothing/suit/wizrobe/armor/Initialize()
+/obj/item/clothing/suit/wizrobe/armor/Initialize(mapload)
 	. = ..()
 	if(!allowed)
 		allowed = GLOB.advanced_hardsuit_allowed

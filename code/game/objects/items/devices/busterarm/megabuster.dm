@@ -82,7 +82,7 @@
 	. = span_rose("With a single snap, [user] sets [A] alight with sparks from [user.p_their()] metal fingers.")
 
 /// Only lasts 5 seconds, fades out
-/obj/item/buster/megabuster/Initialize(mob/living/user)
+/obj/item/buster/megabuster/Initialize(mapload, mob/living/user)
 	. = ..()
 	animate(src, alpha = 50, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)

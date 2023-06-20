@@ -142,7 +142,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/printed = FALSE
 
-/obj/item/Initialize()
+/obj/item/Initialize(mapload)
 
 	materials =	typelist("materials", materials)
 
@@ -185,7 +185,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	else if (islist(embedding))
 		embedding = getEmbeddingBehavior(arglist(embedding))
 	else if (!istype(embedding, /datum/embedding_behavior))
-		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize()")
+		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize(mapload)")
 
 /obj/item/Destroy()
 	item_flags &= ~DROPDEL	//prevent reqdels
@@ -570,7 +570,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/ui_action_click(mob/user, actiontype)
 	attack_self(user)
 
-/obj/item/proc/IsReflect(var/def_zone) //This proc determines if and at what% an object will reflect energy projectiles if it's in l_hand,r_hand or wear_suit
+/obj/item/proc/IsReflect(def_zone) //This proc determines if and at what% an object will reflect energy projectiles if it's in l_hand,r_hand or wear_suit
 	return 0
 
 /obj/item/proc/eyestab(mob/living/carbon/M, mob/living/carbon/user)

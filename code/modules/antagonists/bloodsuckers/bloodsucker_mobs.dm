@@ -187,7 +187,7 @@
 
 /mob/living/simple_animal/hostile/bloodsucker/werewolf/Life(delta_time = (SSmobs.wait/10), times_fired)
 	. = ..()
-	SEND_SIGNAL(src, COMSIG_LIVING_BIOLOGICAL_LIFE, delta_time, times_fired)
+	SEND_SIGNAL(src, COMSIG_LIVING_LIFE, delta_time, times_fired)
 	if(bloodsucker)
 		if(ishuman(bloodsucker))
 			var/mob/living/carbon/human/user = bloodsucker
