@@ -1862,11 +1862,13 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "iH" = (
-/obj/machinery/airalarm/syndicate{
-	pixel_y = 24
-	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Syndicate Radio Intercom";
+	pixel_y = 24
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
@@ -1982,6 +1984,7 @@
 /obj/machinery/computer/message_monitor{
 	dir = 1
 	},
+/obj/item/paper/monitorkey,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "jb" = (
@@ -2864,17 +2867,19 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 8
 	},
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Syndicate Radio Intercom"
-	},
-/obj/item/paper/monitorkey,
 /obj/structure/table/reinforced,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/item/phone/real/syndicate_ruin{
+	pixel_x = -6
+	},
+/obj/item/paper{
+	info = "That phone is our only line to Syndicate Command! Do not lose it!";
+	pixel_x = 6
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
@@ -4934,6 +4939,9 @@
 "Ho" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
+	},
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)

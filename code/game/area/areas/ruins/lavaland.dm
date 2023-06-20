@@ -82,6 +82,7 @@
 	icon_state = "syndie-control"
 	ambientsounds = HIGHSEC
 	hidden = FALSE
+	requires_power = TRUE
 
 /area/ruin/powered/syndicate_lava_base/engineering
 	name = "Syndicate Lavaland Engineering"
