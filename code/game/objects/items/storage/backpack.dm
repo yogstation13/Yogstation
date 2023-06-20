@@ -723,7 +723,7 @@
 	new /obj/item/clothing/head/hardhat/white(src)
 	new /obj/item/clothing/head/hardhat/weldhat/white(src)
 	new /obj/item/clothing/head/welding(src)
-	new /obj/item/clothing/gloves/atmos/ce(src)
+	new /obj/item/clothing/gloves/color/yellow(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/under/yogs/ceturtleneck(src)

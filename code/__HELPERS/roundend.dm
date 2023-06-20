@@ -276,11 +276,20 @@
 
 		// Initialize the uplink item because we need spawn_item()
 		var/datum/uplink_item/uplink_datum = new uplink_path
-		if(uplink_datum.cost <= 0 || uplink_datum.cost > TELECRYSTALS_DEFAULT) // Safety
+		if(!uplink_datum.item || uplink_datum.cost <= 0 || uplink_datum.cost > TELECRYSTALS_DEFAULT) // Safety
 			qdel(uplink_datum)
 			continue
 		// The uplink item datum will handle the spawning. This is important for things like additional arm.
-		uplink_datum.spawn_item(uplink_datum.item, donor_mob, fake_uplink_component)
+		var/atom/spawned_thing = uplink_datum.spawn_item(uplink_datum.item, donor_mob, fake_uplink_component)
+		// Replace any firing pins with default pins, so that players can fire them
+		if(isgun(spawned_thing))
+			var/obj/item/gun/spawned_gun = spawned_thing
+			qdel(spawned_gun.pin)
+			spawned_gun.pin = new /obj/item/firing_pin(spawned_gun)
+		else if(spawned_thing)
+			for(var/obj/item/gun/spawned_gun in spawned_thing.get_all_contents())
+				qdel(spawned_gun.pin)
+				spawned_gun.pin = new /obj/item/firing_pin(spawned_gun)
 		// Clean up
 		QDEL_NULL(uplink_datum)
 	// Clean up the fake uplink we created earlier

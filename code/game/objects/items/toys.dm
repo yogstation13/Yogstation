@@ -24,6 +24,7 @@
  *		Toy Daggers
  *		Turn Tracker
  *		ceremonial Rod of Asclepius
+ *		cult sickles
  */
 
 
@@ -1713,3 +1714,77 @@ obj/item/toy/turn_tracker
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	icon_state = "asclepius_dormant"
+
+/*
+ * Cult sickles
+ */
+
+/obj/item/gun/magic/sickly_blade_toy
+	name = "plastic replica blade"
+	desc = "A sickly green crescent blade, decorated with a plastic eye. You feel like this was cheaply made. A Donk Co logo is on the hilt."
+	icon = 'icons/obj/eldritch.dmi'
+	icon_state = "eldritch_blade"
+	item_state = "eldritch_blade"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 0
+	throwforce = 0
+	throw_speed = 3
+	throw_range = 5
+	w_class = WEIGHT_CLASS_NORMAL
+	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
+	recharge_rate = 3 // seconds
+	ammo_type = /obj/item/ammo_casing/magic/sickly_blade_toy
+	fire_sound = 'sound/effects/snap.ogg'
+	item_flags = NEEDS_PERMIT // doesn't include NOBLUDGEON for obvious reasons
+
+/obj/item/gun/magic/sickly_blade_toy/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
+
+/obj/item/ammo_casing/magic/sickly_blade_toy
+	projectile_type = /obj/item/projectile/sickly_blade_toy
+	harmful = FALSE
+/obj/item/projectile/sickly_blade_toy
+	name = "hook"
+	icon_state = "hook"
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	pass_flags = PASSTABLE
+	damage = 0
+	knockdown = 0
+	immobilize = 0 // there's no escape
+	range = 5 // hey now cowboy
+	armour_penetration = 0 // no piercing shields
+	knockdown = 0
+	hitsound = 'sound/effects/gravhit.ogg'
+
+/obj/item/projectile/sickly_blade_toy/on_hit(atom/target, blocked)
+	. = ..()
+	if(ismovable(target) && blocked != 100)
+		var/atom/movable/A = target
+		A.visible_message(span_danger("[A] is snagged by [firer]'s hook!"))
+	return 
+
+/obj/item/gun/magic/sickly_blade_toy/attack(mob/living/M, mob/living/user)
+	if((IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user,span_danger("You feel a pulse of the old gods lash out at your mind, laughing how you're using a fake blade!")) //the outer gods need a lil chuckle every now and then
+	return ..()
+
+/obj/item/gun/magic/sickly_blade_toy/rust_toy
+	name = "rustic replica blade"
+	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten foam."
+	icon_state = "rust_blade"
+	item_state = "rust_blade"
+
+/obj/item/gun/magic/sickly_blade_toy/ash_toy
+	name = "metallic replica blade"
+	desc = "A hunk of molten soft injection plastic warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is."
+	icon_state = "ash_blade"
+	item_state = "ash_blade"
+
+/obj/item/gun/magic/sickly_blade_toy/flesh_toy
+	name = "flesh-like replica blade"
+	desc = "A blade of strange material born from a fleshwarped creature. Keenly aware, it seeks to spread the excruciating comedy it has endured from dread origins."
+	icon_state = "flesh_blade"
+	item_state = "flesh_blade"

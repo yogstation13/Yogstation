@@ -152,3 +152,10 @@
 /// Used in logging spells for roundend results
 #define LOG_SPELL_TYPE "type"
 #define LOG_SPELL_AMOUNT "amount"
+
+//antagonist awaken stages
+#define ANTAG_ASLEEP 0
+#define ANTAG_FIRST_WARNING 1
+#define ANTAG_SECOND_WARNING 2
+#define ANTAG_AWAKE 3
+
