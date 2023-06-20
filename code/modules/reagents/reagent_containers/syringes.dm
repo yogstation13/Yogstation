@@ -15,14 +15,14 @@
 	materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 	sharpness = SHARP_POINTY
-	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 0.25 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5, "embedded_bleed_rate" = 0)
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 1 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5, "embedded_bleed_rate" = 0)
 
 /obj/item/reagent_containers/syringe/Initialize(mapload)
 	. = ..()
 	if(list_reagents) //syringe starts in inject mode if its already got something inside
 		mode = SYRINGE_INJECT
 		update_icon()
-	RegisterSignals(src, list(COMSIG_ITEM_EMBEDDED, COMSIG_ITEM_EMBED_TICK), PROC_REF(embed_inject))
+	RegisterSignal(src, COMSIG_ITEM_EMBED_TICK, PROC_REF(embed_inject))
 
 /obj/item/reagent_containers/syringe/on_reagent_change(changetype)
 	update_icon()
@@ -190,11 +190,12 @@
 				injoverlay = "inject"
 		add_overlay(injoverlay)
 		M.update_inv_hands()
-	
+
 /obj/item/reagent_containers/syringe/proc/embed_inject(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)
 	if(!reagents.total_volume)
 		return
-	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+	// Half of transfer amount, or 2.5 units per tick for default syringes
+	var/fraction = min((0.5 * amount_per_transfer_from_this) / reagents.total_volume, 1)
 	reagents.reaction(embedde, INJECT, fraction)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
 
