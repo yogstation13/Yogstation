@@ -71,8 +71,6 @@
 	. = ..()
 	if(is_syndicate(user))
 		// Reward
-		var/hand_index = user.get_held_index_of_item(src)
-		user.dropItemToGround(src, TRUE, TRUE)
 		var/list/item_list = list( // Contract kit random items
 			/obj/item/storage/backpack/duffelbag/syndie/x4,
 			/obj/item/storage/box/syndie_kit/throwing_weapons,
@@ -99,8 +97,25 @@
 			/obj/item/card/id/syndicate,
 			/obj/item/storage/pill_bottle/gummies/omnizine
 		)
-		var/obj/item/picked = pick(item_list)
-		var/obj/item/reward = new picked
+		// Pick one item from three random
+		item_list = shuffle(item_list)
+		var/list/icons_available = list()
+		var/obj/item/first_choice = item_list[1]
+		var/obj/item/second_choice = item_list[2]
+		var/obj/item/third_choice = item_list[3]
+		icons_available += list(initial(first_choice.name) = image(icon = initial(first_choice.icon), icon_state = initial(first_choice.icon_state)))
+		icons_available += list(initial(second_choice.name) = image(icon = initial(second_choice.icon), icon_state = initial(second_choice.icon_state)))
+		icons_available += list(initial(third_choice.name) = image(icon = initial(third_choice.icon), icon_state = initial(third_choice.icon_state)))
+		var/selection = show_radial_menu(user, src, icons_available, radius = 38, require_near = TRUE)
+		if(!selection || selection == initial(first_choice.name))
+			selection = first_choice
+		else if(selection == initial(second_choice.name))
+			selection = second_choice
+		else if(selection == initial(third_choice.name))
+			selection = third_choice
+		var/hand_index = user.get_held_index_of_item(src)
+		user.dropItemToGround(src, TRUE, TRUE)
+		var/obj/item/reward = new selection
 		to_chat(user, span_notice("\The [src] transforms into \a [reward]!"))
 		if(!user.put_in_hand(reward, hand_index))
 			reward.forceMove(get_turf(user))
