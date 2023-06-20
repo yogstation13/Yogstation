@@ -1644,6 +1644,12 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 10
 	},
+/obj/machinery/button/door{
+	pixel_y = -24;
+	req_access_txt = "150";
+	name = "Vault Window Shutters";
+	id = "syndicate_lavaland_vault_windows"
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/vault)
 "ib" = (
@@ -1661,6 +1667,14 @@
 	name = "cayenne plushie";
 	desc = "An adorable stuffed toy that resembles Cayenne. Faintly smells of explosives.";
 	break_message = "%SRC vanishes in a small explosion."
+	},
+/obj/machinery/button/door{
+	id = "syndie_lavaland_vault";
+	name = "Vault Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_y = -24;
+	req_access_txt = "150";
+	specialfunctions = 4
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/vault)
@@ -1938,6 +1952,9 @@
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/firedoor/window{
 	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "syndicate_lavaland_vault_windows"
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/main)
@@ -5936,6 +5953,16 @@
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
+"Xw" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "syndicate_lavaland_vault_windows"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/vault)
 "XF" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7273,7 +7300,7 @@ hy
 ak
 ia
 ha
-ha
+Xw
 ha
 nG
 Sw
@@ -7383,7 +7410,7 @@ Ci
 hM
 ib
 ha
-ha
+Xw
 ha
 pm
 jo
