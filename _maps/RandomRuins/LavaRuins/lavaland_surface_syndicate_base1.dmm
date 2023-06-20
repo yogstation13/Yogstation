@@ -564,12 +564,10 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "eD" = (
@@ -780,8 +778,11 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/layer_manifold{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
@@ -3377,6 +3378,16 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
+"mQ" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "syndicate_lavaland_vault_windows"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/vault)
 "mS" = (
 /obj/item/circuitboard/computer/prototype_cloning,
 /obj/item/circuitboard/machine/clonepod/experimental,
@@ -5953,16 +5964,6 @@
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
-"Xw" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/firedoor/window{
-	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "syndicate_lavaland_vault_windows"
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/vault)
 "XF" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7300,7 +7301,7 @@ hy
 ak
 ia
 ha
-Xw
+mQ
 ha
 nG
 Sw
@@ -7410,7 +7411,7 @@ Ci
 hM
 ib
 ha
-Xw
+mQ
 ha
 pm
 jo
