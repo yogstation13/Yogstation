@@ -13,11 +13,6 @@
 		addtimer(CALLBACK(src, PROC_REF(show_laws)), 0)
 		last_lawchange_announce = world.time
 
-/mob/living/silicon/proc/set_law_sixsixsix(law, announce = TRUE)
-	laws_sanity_check()
-	laws.set_law_sixsixsix(law)
-	post_lawchange(announce)
-
 /mob/living/silicon/proc/set_zeroth_law(law, law_borg, announce = TRUE)
 	laws_sanity_check()
 	laws.set_zeroth_law(law, law_borg)
@@ -86,9 +81,4 @@
 /mob/living/silicon/proc/clear_zeroth_law(force, announce = TRUE)
 	laws_sanity_check()
 	laws.clear_zeroth_law(force)
-	post_lawchange(announce)
-
-/mob/living/silicon/proc/clear_law_sixsixsix(force, announce = TRUE)
-	laws_sanity_check()
-	laws.clear_law_sixsixsix(force)
 	post_lawchange(announce)

@@ -270,6 +270,9 @@
 ///This mob can't use vehicles
 #define TRAIT_NOVEHICLE	"no_vehicle"
 
+///Trait given to a mob's mind to indicate they can't be revived due to otherworldly events.
+#define TRAIT_HELLBOUND "hellbound"
+
 /// This person is crying
 #define TRAIT_CRYING "crying"
 /// This human wants to see the color of their glasses, for some reason

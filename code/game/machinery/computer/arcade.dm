@@ -1,7 +1,7 @@
 GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/storage/box/snappops = 2,
 		/obj/item/toy/talking/AI = 2,
-		/obj/item/toy/talking/codex_gigas = 2,
+		/obj/item/toy/codex_gigas = 2,
 		/obj/item/clothing/under/syndicate/tacticool = 2,
 		/obj/item/toy/sword = 2,
 		/obj/item/twohanded/vxtvulhammer/toy = 2,

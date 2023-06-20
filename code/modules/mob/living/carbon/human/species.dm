@@ -1305,7 +1305,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	return FALSE
 
 /datum/species/proc/check_species_weakness(obj/item, mob/living/attacker)
-	return 0 //This is not a boolean, it's the multiplier for the damage that the user takes from the item.It is added onto the check_weakness value of the mob, and then the force of the item is multiplied by this value
+	return 1 //This is not a boolean, it's the multiplier for the damage that the user takes from the item.
 
 	////////
 	//LIFE//
@@ -1792,7 +1792,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if((I.item_flags & SURGICAL_TOOL) && user.a_intent == INTENT_HELP && (H.mobility_flags & ~MOBILITY_STAND) && (LAZYLEN(H.surgeries) > 0))
 		Iwound_bonus = CANT_WOUND
 
-	var/weakness = H.check_weakness(I, user)
+	var/weakness = check_species_weakness(I, user)
 
 	H.send_item_attack_message(I, user, hit_area, affecting)
 

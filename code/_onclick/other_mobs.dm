@@ -203,13 +203,6 @@
 	attack_hand(user) //defaults to attack_hand. Override it when you don't want drones to do same stuff as humans.
 
 /*
-	True Devil
-*/
-
-/mob/living/carbon/true_devil/UnarmedAttack(atom/A, proximity)
-	A.attack_hand(src)
-
-/*
 	Brain
 */
 

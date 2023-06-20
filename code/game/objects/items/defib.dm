@@ -586,7 +586,7 @@
 
 				if (H.suiciding)
 					failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Recovery of patient impossible. Further attempts futile.")
-				else if (H.hellbound)
+				else if (H.mind && HAS_TRAIT(H.mind, TRAIT_HELLBOUND))
 					failed = span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Patient's soul unrecoverable.  Further attempts futile.")
 				else if(total_burn >= MAX_REVIVE_FIRE_DAMAGE || total_brute >= MAX_REVIVE_BRUTE_DAMAGE)
 					failed = span_boldnotice("[req_defib ? "[defib]" : "[src]"] buzzes: Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Surgical repair may allow for successful resuscitation.")

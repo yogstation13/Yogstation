@@ -427,7 +427,7 @@ GLOBAL_LIST_INIT(maintenance_loot_traditional,list(
 	/obj/item/twohanded/vxtvulhammer/toy = W_RARE,
 	/obj/item/toy/syndicateballoon = W_RARE,
 	/obj/item/toy/talking/AI = W_RARE,
-	/obj/item/toy/talking/codex_gigas = W_RARE,
+	/obj/item/toy/codex_gigas = W_RARE,
 	/obj/item/toy/talking/griffin = W_RARE,
 	/obj/item/toy/talking/owl = W_RARE,
 	/obj/item/toy/toy_dagger = W_RARE,
