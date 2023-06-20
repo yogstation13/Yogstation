@@ -1,9 +1,9 @@
 # This file contains filters required for replacements in supported speech systems.
 # Each line contains one pattern and one replacement. The patterns used are regular
-# expression patterns. 
+# expression patterns.
 #
 # Examples:
-# 
+#
 # fuck=duck
 #     This would replace all instances of "fuck" with duck. So "fucking" would become "ducking".
 #
@@ -12,13 +12,13 @@
 #
 # Activate the ([\S]+?)=use $1
 #    This would match a group, and use it in a pattern. So "Activate the probulator" would become "use probulator".
-# 
+#
 # \b[f]+[u]+\b=fun you
 #    This would make any word with combinations of "f" followed by "u" be replaced with fun you. So "ffffffffuuuuuuuuuuu" becomes "fun you".
 
 #hahas
 lmao=haha
-\blol\b=haha 
+\blol\b=haha
 kek=haha
 rofl=haha
 \blel\b=haha
@@ -45,3 +45,4 @@ wdym=what do you mean
 pls=please
 plz=please
 \btf\b=the fuck
+\bi\b=I
