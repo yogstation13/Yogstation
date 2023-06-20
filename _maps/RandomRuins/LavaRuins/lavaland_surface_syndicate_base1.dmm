@@ -4250,11 +4250,16 @@
 /obj/machinery/airalarm/syndicate{
 	pixel_y = 24
 	},
-/obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
-/obj/item/storage/box/fancy/donut_box,
+/obj/structure/closet/emcloset/anchored,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
 "vR" = (
@@ -5258,10 +5263,16 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "LZ" = (
-/obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
 	},
+/obj/structure/closet/emcloset/anchored,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
 "Mk" = (
