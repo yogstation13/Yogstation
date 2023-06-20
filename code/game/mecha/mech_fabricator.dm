@@ -732,7 +732,7 @@
 	if (!issiliconoradminghost(usr))
 		var/obj/item/card/id/idcard = usr.get_idcard()
 		if(!idcard || !(ACCESS_MINERAL_STOREROOM in idcard.GetAccess()))
-			balloon_alert(usr, "No access!")
+			balloon_alert(usr, "no access!")
 			return 0
 	var/count = mat_container.retrieve_sheets(text2num(eject_amt), eject_sheet, drop_location())
 	var/list/matlist = list()
