@@ -1,0 +1,4 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Aggressive grabs no longer disarm"
