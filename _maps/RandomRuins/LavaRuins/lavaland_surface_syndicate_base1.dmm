@@ -3599,6 +3599,7 @@
 	specialfunctions = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/table/reinforced,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
 "nH" = (
@@ -3950,6 +3951,10 @@
 /area/ruin/powered/syndicate_lava_base/vault)
 "pm" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/item/paper{
+	info = "In the event of emergency and loss of the main Red Phone, the vault has a concealed floor safe containing a spare red phone."
+	},
+/obj/structure/table/reinforced,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
 "pz" = (
@@ -4089,16 +4094,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
-"sI" = (
-/obj/effect/spawner/structure/window/plastitanium,
-/obj/machinery/door/firedoor/window{
-	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "syndicate_lavaland_vault_windows"
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/vault)
 "tp" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood{
@@ -4646,6 +4641,10 @@
 	dir = 2;
 	pixel_y = 24
 	},
+/obj/structure/safe/floor{
+	name = "emergency backup red phone safe"
+	},
+/obj/item/phone/real/syndicate_ruin,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/vault)
 "Cm" = (
@@ -5009,6 +5008,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
+"Iw" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/firedoor/window{
+	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by Cybersun engineers."
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "syndicate_lavaland_vault_windows"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/vault)
 "Iz" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
@@ -7304,7 +7313,7 @@ hy
 ak
 ia
 ha
-sI
+Iw
 ha
 nG
 Sw
@@ -7414,7 +7423,7 @@ Ci
 hM
 ib
 ha
-sI
+Iw
 ha
 pm
 jo
