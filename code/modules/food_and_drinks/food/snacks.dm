@@ -121,12 +121,13 @@ All foods are distributed among various categories. Use common sense.
 		if(!C.eat_text(fullness, eatverb, src, C, user))
 			return
 
-		var/ate_without_table = TRUE
-		for(var/obj/structure/table/table in range(1, src))
-			ate_without_table = FALSE
-			break
-		if(ate_without_table)
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "no_table", /datum/mood_event/ate_without_table)
+		if(!junkiness)
+			var/ate_without_table = TRUE
+			for(var/obj/structure/table/table in range(1, src))
+				ate_without_table = FALSE
+				break
+			if(ate_without_table)
+				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "no_table", /datum/mood_event/ate_without_table)
 
 		if(reagents)								//Handle ingestion of the reagent.
 			if(M.satiety > -200)
