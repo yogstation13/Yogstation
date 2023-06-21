@@ -7710,6 +7710,18 @@
 	dir = 1
 	},
 /area/crew_quarters/kitchen)
+"clE" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/obj/machinery/power/apc/auto_name{
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "clL" = (
 /obj/machinery/camera{
 	c_tag = "Bridge - Port Access";
@@ -21885,14 +21897,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
-"gmT" = (
-/obj/structure/cable/yellow,
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/power/apc/auto_name{
-	pixel_y = -23
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/secondary)
 "gmV" = (
 /obj/structure/closet/l3closet/security,
 /obj/effect/turf_decal/bot,
@@ -24851,6 +24855,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"haS" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/power/apc/auto_name{
+	pixel_y = -23
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
 "hbd" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -36196,6 +36208,19 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"kjd" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/auto_name{
+	dir = 1;
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "kjg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -37872,18 +37897,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"kJB" = (
-/obj/machinery/light/small,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Fore";
-	dir = 1;
-	network = list("minisat","ss13")
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/aisat)
 "kJF" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
@@ -40993,18 +41006,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"lHr" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 10
-	},
-/obj/machinery/power/apc/auto_name{
-	pixel_y = -23
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "lHz" = (
 /obj/structure/table,
 /obj/item/crowbar,
@@ -56814,19 +56815,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"qcW" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc/auto_name{
-	dir = 1;
-	pixel_y = 23
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos/distro)
 "qdm" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -69191,6 +69179,19 @@
 /obj/item/cigbutt,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"tDd" = (
+/obj/machinery/light/small,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Fore";
+	dir = 1;
+	network = list("minisat","ss13")
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/aisat)
 "tDj" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -105390,7 +105391,7 @@ aNz
 ipI
 iVp
 xHY
-lHr
+clE
 qPA
 nHe
 nHe
@@ -115950,7 +115951,7 @@ sdF
 phd
 qxL
 qsr
-gmT
+haS
 dbQ
 kih
 bFW
@@ -129265,7 +129266,7 @@ sSl
 nXs
 hIk
 cim
-qcW
+kjd
 lnY
 wxE
 cJK
@@ -141058,8 +141059,8 @@ ylX
 tZY
 ohE
 tNz
-kJB
-wMi
+tDd
+jBE
 ocL
 jYF
 kfW
