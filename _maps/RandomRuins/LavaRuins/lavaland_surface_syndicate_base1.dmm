@@ -750,10 +750,11 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "ff" = (
 /obj/effect/mob_spawn/human/lavaland_syndicate{
-	dir = 4
+	dir = 8
 	},
 /obj/machinery/light/small{
-	dir = 8
+	brightness = 3;
+	dir = 4
 	},
 /obj/item/bedsheet/syndie,
 /obj/structure/bed,
@@ -2546,12 +2547,11 @@
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
 "kl" = (
-/obj/effect/mob_spawn/human/lavaland_syndicate/comms{
-	dir = 8
+/obj/effect/mob_spawn/human/lavaland_syndicate{
+	dir = 4
 	},
 /obj/machinery/light/small{
-	brightness = 3;
-	dir = 4
+	dir = 8
 	},
 /obj/item/bedsheet/syndie,
 /obj/structure/bed,
@@ -2804,6 +2804,15 @@
 /obj/item/clothing/glasses/sunglasses/reagent,
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
+"kN" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/lavaland/surface/outdoors)
 "kO" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -3758,11 +3767,14 @@
 /turf/open/floor/grass,
 /area/ruin/powered/syndicate_lava_base/virology)
 "oh" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 8
+/obj/structure/railing{
+	dir = 4
 	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/lavaland/surface/outdoors)
 "oi" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/airalarm/syndicate{
@@ -4475,6 +4487,23 @@
 	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/powered/syndicate_lava_base/bar)
+"zH" = (
+/obj/item/clothing/suit/armor/vest/capcarapace/syndicate{
+	name = "old syndicate vest";
+	desc = "A sinister-looking gold-trimmed vest covered in dust."
+	},
+/obj/item/clothing/head/HoS/syndicate{
+	desc = "An old black cap that may have once been fit for a high-ranking Syndicate officer."
+	},
+/obj/item/clothing/gloves/color/captain/centcom/admiral{
+	name = "syndicate commander's gloves";
+	desc = "One-of-a-kind gold and black gloves used by some Syndicate officers."
+	},
+/obj/structure/closet/crate/secure/gear{
+	req_access_txt = "150"
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered/syndicate_lava_base/engineering)
 "zJ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -4552,19 +4581,14 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "AP" = (
-/obj/item/clothing/suit/armor/vest/capcarapace/syndicate{
-	name = "old syndicate vest";
-	desc = "A sinister-looking gold-trimmed vest covered in dust."
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 8
 	},
-/obj/item/clothing/head/HoS/syndicate{
-	desc = "An old black cap that may have once been fit for a high-ranking Syndicate officer."
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
 	},
-/obj/item/clothing/gloves/color/captain/centcom/admiral{
-	name = "syndicate commander's gloves";
-	desc = "One-of-a-kind gold and black gloves used by some Syndicate officers."
-	},
-/obj/structure/closet/crate/secure/gear{
-	req_access_txt = "150"
+/obj/structure/railing{
+	dir = 6
 	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/powered/syndicate_lava_base/engineering)
@@ -4880,6 +4904,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
+"FE" = (
+/obj/effect/mob_spawn/human/lavaland_syndicate/comms{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 4
+	},
+/obj/item/bedsheet/syndie,
+/obj/structure/bed,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/powered/syndicate_lava_base/dormitories)
 "FN" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/vault)
@@ -5346,17 +5382,14 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "Mm" = (
-/obj/effect/mob_spawn/human/lavaland_syndicate{
-	dir = 8
+/obj/structure/railing{
+	dir = 1
 	},
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 4
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/obj/item/bedsheet/syndie,
-/obj/structure/bed,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/turf/open/floor/plating/lavaland_baseturf,
+/area/lavaland/surface/outdoors)
 "Mn" = (
 /obj/machinery/door/airlock/research{
 	req_access_txt = "150";
@@ -5400,6 +5433,15 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
+"Nq" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/lavaland/surface/outdoors)
 "NL" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/firedoor/window{
@@ -6085,21 +6127,7 @@ aa
 aa
 aa
 aa
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+aa
 aa
 aa
 ab
@@ -6117,6 +6145,21 @@ ab
 ab
 ab
 ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
 aa
 aa
 aa
@@ -6138,6 +6181,9 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
 ab
 ab
 ab
@@ -6170,11 +6216,9 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
+aa
+aa
+aa
 aa
 aa
 aa
@@ -6190,7 +6234,9 @@ aa
 aa
 aa
 aa
-ab
+aa
+aa
+aa
 aa
 ab
 ab
@@ -6229,9 +6275,8 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
+aa
+aa
 aa
 aa
 aa
@@ -6243,6 +6288,11 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+ab
+aa
 ab
 ab
 ab
@@ -6283,11 +6333,7 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
+aa
 aa
 aa
 aa
@@ -6297,6 +6343,8 @@ aa
 (5,1,1) = {"
 aa
 aa
+aa
+aa
 ab
 ab
 ab
@@ -6342,8 +6390,7 @@ ab
 ab
 ab
 ab
-ab
-ab
+aa
 aa
 aa
 aa
@@ -6353,7 +6400,6 @@ aa
 aa
 aa
 aa
-aa
 ab
 ab
 ab
@@ -6373,10 +6419,12 @@ ab
 ab
 ab
 ab
-LH
-dS
-dS
-LH
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -6407,6 +6455,9 @@ aa
 (7,1,1) = {"
 aa
 aa
+aa
+aa
+aa
 ab
 ab
 ab
@@ -6426,12 +6477,10 @@ ab
 ab
 ab
 ab
-ab
-ab
+LH
 dS
-ab
-ab
 dS
+LH
 ab
 ab
 ab
@@ -6454,7 +6503,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 aa
 aa
 aa
@@ -6462,6 +6511,7 @@ aa
 (8,1,1) = {"
 aa
 aa
+aa
 ab
 ab
 ab
@@ -6478,19 +6528,19 @@ ab
 ab
 ab
 ab
-cU
-cU
-cU
-kQ
-kQ
-kQ
-lL
-lL
-eh
-eh
-eh
-ev
-ev
+ab
+ab
+ab
+ab
+ab
+dS
+ab
+ab
+dS
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -6515,6 +6565,63 @@ aa
 aa
 "}
 (9,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+cU
+cU
+cU
+kQ
+kQ
+kQ
+lL
+lL
+eh
+eh
+eh
+ev
+ev
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
 aa
 aa
 aa
@@ -6569,7 +6676,8 @@ ab
 aa
 aa
 "}
-(10,1,1) = {"
+(11,1,1) = {"
+aa
 aa
 ab
 ab
@@ -6624,7 +6732,8 @@ ab
 aa
 aa
 "}
-(11,1,1) = {"
+(12,1,1) = {"
+aa
 aa
 aa
 ab
@@ -6679,7 +6788,8 @@ ab
 ab
 aa
 "}
-(12,1,1) = {"
+(13,1,1) = {"
+aa
 aa
 ab
 ab
@@ -6734,7 +6844,8 @@ ab
 ab
 aa
 "}
-(13,1,1) = {"
+(14,1,1) = {"
+aa
 aa
 ab
 ab
@@ -6789,7 +6900,8 @@ ab
 ab
 aa
 "}
-(14,1,1) = {"
+(15,1,1) = {"
+aa
 aa
 ab
 ab
@@ -6842,9 +6954,10 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
-(15,1,1) = {"
+(16,1,1) = {"
+aa
 ab
 ab
 ab
@@ -6889,7 +7002,6 @@ mS
 yX
 Un
 mT
-dS
 ab
 ab
 ab
@@ -6897,10 +7009,12 @@ ab
 ab
 ab
 ab
-aa
+ab
+ab
 "}
-(16,1,1) = {"
+(17,1,1) = {"
 aa
+ab
 ab
 ab
 ab
@@ -6952,9 +7066,10 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
-(17,1,1) = {"
+(18,1,1) = {"
+aa
 ab
 ab
 ab
@@ -7007,9 +7122,10 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
-(18,1,1) = {"
+(19,1,1) = {"
+ab
 ab
 ab
 ab
@@ -7062,9 +7178,10 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
-(19,1,1) = {"
+(20,1,1) = {"
+ab
 ab
 ab
 ab
@@ -7117,10 +7234,11 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
-(20,1,1) = {"
-aa
+(21,1,1) = {"
+ab
+ab
 ab
 ab
 ab
@@ -7172,10 +7290,11 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
-(21,1,1) = {"
-aa
+(22,1,1) = {"
+ab
+ab
 ab
 ab
 ab
@@ -7227,10 +7346,11 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
-(22,1,1) = {"
-aa
+(23,1,1) = {"
+ab
+ab
 ab
 ab
 ab
@@ -7282,10 +7402,11 @@ ab
 ab
 ab
 ab
-aa
+ab
 "}
-(23,1,1) = {"
-aa
+(24,1,1) = {"
+ab
+ab
 ab
 ab
 ab
@@ -7317,11 +7438,11 @@ ha
 nG
 Sw
 hz
-ff
+kl
 nJ
 hz
 nJ
-ff
+kl
 hz
 lZ
 mx
@@ -7339,8 +7460,9 @@ ab
 ab
 ab
 "}
-(24,1,1) = {"
-aa
+(25,1,1) = {"
+ab
+ab
 ab
 ab
 ab
@@ -7394,8 +7516,9 @@ ab
 ab
 ab
 "}
-(25,1,1) = {"
-aa
+(26,1,1) = {"
+ab
+ab
 ab
 ab
 ab
@@ -7449,7 +7572,8 @@ ab
 ab
 ab
 "}
-(26,1,1) = {"
+(27,1,1) = {"
+ab
 ab
 ab
 ab
@@ -7504,7 +7628,8 @@ ab
 ab
 ab
 "}
-(27,1,1) = {"
+(28,1,1) = {"
+ab
 ab
 ab
 ab
@@ -7559,8 +7684,9 @@ ab
 ab
 ab
 "}
-(28,1,1) = {"
-aa
+(29,1,1) = {"
+ab
+ab
 ab
 ab
 ab
@@ -7614,8 +7740,9 @@ ab
 ab
 aa
 "}
-(29,1,1) = {"
-aa
+(30,1,1) = {"
+ab
+ab
 ab
 ab
 ab
@@ -7669,7 +7796,8 @@ ab
 ab
 aa
 "}
-(30,1,1) = {"
+(31,1,1) = {"
+ab
 ab
 ab
 ab
@@ -7702,11 +7830,11 @@ iX
 mg
 jq
 hz
-kl
+FE
 kg
 hz
 nJ
-Mm
+ff
 hz
 md
 mA
@@ -7724,7 +7852,8 @@ ab
 ab
 aa
 "}
-(31,1,1) = {"
+(32,1,1) = {"
+ab
 ab
 ab
 ab
@@ -7779,7 +7908,8 @@ ab
 aa
 aa
 "}
-(32,1,1) = {"
+(33,1,1) = {"
+ab
 ab
 ab
 ab
@@ -7834,7 +7964,8 @@ ab
 aa
 aa
 "}
-(33,1,1) = {"
+(34,1,1) = {"
+ab
 ab
 ab
 ab
@@ -7885,11 +8016,12 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 "}
-(34,1,1) = {"
+(35,1,1) = {"
+ab
 ab
 ab
 ab
@@ -7940,11 +8072,12 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 "}
-(35,1,1) = {"
+(36,1,1) = {"
+ab
 ab
 ab
 ab
@@ -7994,12 +8127,13 @@ ab
 ab
 ab
 ab
-aa
-aa
+ab
+ab
 aa
 aa
 "}
-(36,1,1) = {"
+(37,1,1) = {"
+ab
 ab
 ab
 ab
@@ -8048,13 +8182,14 @@ ab
 ab
 ab
 ab
-aa
-aa
-aa
+ab
+ab
+ab
 aa
 aa
 "}
-(37,1,1) = {"
+(38,1,1) = {"
+ab
 ab
 ab
 ab
@@ -8103,13 +8238,14 @@ ab
 ab
 ab
 ab
-aa
-aa
+ab
+ab
 aa
 aa
 aa
 "}
-(38,1,1) = {"
+(39,1,1) = {"
+ab
 ab
 ab
 ab
@@ -8158,13 +8294,14 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
 aa
 "}
-(39,1,1) = {"
+(40,1,1) = {"
+ab
 ab
 ab
 ab
@@ -8178,7 +8315,7 @@ fF
 fF
 fF
 fF
-mJ
+fF
 ju
 oE
 eg
@@ -8219,7 +8356,8 @@ aa
 aa
 aa
 "}
-(40,1,1) = {"
+(41,1,1) = {"
+ab
 ab
 ab
 ab
@@ -8232,8 +8370,8 @@ mJ
 fF
 Cv
 fF
-mJ
-mJ
+fF
+fF
 ju
 ea
 RV
@@ -8274,7 +8412,8 @@ aa
 aa
 aa
 "}
-(41,1,1) = {"
+(42,1,1) = {"
+aa
 ab
 ab
 ab
@@ -8288,7 +8427,7 @@ fF
 fF
 fF
 ab
-mJ
+fF
 ju
 ju
 ju
@@ -8329,7 +8468,8 @@ aa
 aa
 aa
 "}
-(42,1,1) = {"
+(43,1,1) = {"
+aa
 ab
 ab
 ab
@@ -8343,10 +8483,10 @@ fF
 fF
 ab
 ab
-ab
+Mm
 lO
 ju
-AP
+zH
 ju
 Pk
 is
@@ -8384,7 +8524,8 @@ aa
 aa
 aa
 "}
-(43,1,1) = {"
+(44,1,1) = {"
+aa
 aa
 ab
 ab
@@ -8398,8 +8539,8 @@ ab
 ab
 ab
 ab
-ab
-ab
+Nq
+kN
 oW
 ju
 ju
@@ -8439,9 +8580,10 @@ aa
 aa
 aa
 "}
-(44,1,1) = {"
+(45,1,1) = {"
 aa
 aa
+aa
 ab
 ab
 ab
@@ -8454,8 +8596,8 @@ ab
 ab
 ab
 ab
-ab
-ab
+Nq
+kN
 lO
 ju
 ju
@@ -8494,61 +8636,6 @@ aa
 aa
 aa
 "}
-(45,1,1) = {"
-aa
-aa
-aa
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-oh
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-aa
-aa
-aa
-aa
-aa
-aa
-"}
 (46,1,1) = {"
 aa
 aa
@@ -8566,6 +8653,15 @@ ab
 ab
 ab
 ab
+Nq
+oh
+oh
+oh
+oh
+oh
+oh
+oh
+AP
 ab
 ab
 ab
@@ -8589,14 +8685,6 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-aa
 aa
 aa
 aa
@@ -8610,9 +8698,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -8669,6 +8758,63 @@ aa
 aa
 aa
 aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(49,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 ab
 ab
@@ -8684,6 +8830,47 @@ ab
 ab
 ab
 ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(50,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 ab
@@ -8705,6 +8892,77 @@ ab
 ab
 ab
 ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(51,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
