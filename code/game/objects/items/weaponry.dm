@@ -832,6 +832,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	item_state = "nothing"
 	force = 0
 	throwforce = 0
+	w_class = WEIGHT_CLASS_HUGE
 	item_flags = DROPDEL | ABSTRACT
 
 /obj/item/twohanded/required/raisedhands/attack(mob/living/M, mob/living/user)

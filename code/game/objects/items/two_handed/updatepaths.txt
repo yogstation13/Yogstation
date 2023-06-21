@@ -1,0 +1,5 @@
+/obj/item/twohanded/bonespear : /obj/item/spear/bonespear
+/obj/item/twohanded/bonespear/chitinspear : /obj/item/spear/bonespear/chitinspear
+/obj/item/twohanded/bamboospear : /obj/item/spear/bamboospear
+/obj/item/twohanded/required/@SUBTYPES : /obj/item/@SUBTYPES
+/obj/item/twohanded/@SUBTYPES : /obj/item/@SUBTYPES

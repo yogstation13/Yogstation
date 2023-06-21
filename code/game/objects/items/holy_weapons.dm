@@ -389,48 +389,33 @@
 /obj/item/nullrod/tribal_knife/process()
 	slowdown = rand(-2, 2)
 
-/obj/item/nullrod/hammer //this doesn't actually get used, it's more of a visual to select the actual nullrod
+/obj/item/nullrod/hammer
 	name = "relic war hammer"
 	desc = "This war hammer cost the chaplain forty thousand space dollars."
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "hammer"
 	item_state = "hammer"
+	base_icon_state = "hammer"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("smashed", "bashed", "hammered", "crunched")
+	sharpness = SHARP_NONE
 	menutab = MENU_WEAPON
 	additional_desc = "Bonk the sinners."
 
-/obj/item/nullrod/hammer/equipped(mob/user, slot, initial) //can't do it on initialize because it initializes before getting put in hands
+/obj/item/nullrod/hammer/Initialize(mapload)
 	. = ..()
-	var/obj/item/twohanded/required/nullrod/hammah = new /obj/item/twohanded/required/nullrod(src)
-	user.drop_all_held_items()
-	user.put_in_active_hand(hammah)
-	qdel(src)//lemme just delete the nullrod you just selected
+	AddComponent(/datum/component/two_handed, \
+		require_twohands = TRUE, \
+	)
 
-/obj/item/twohanded/required/nullrod
-	name = "relic war hammer"
-	desc = "This war hammer cost the chaplain forty thousand space dollars."
-	icon = 'icons/obj/weapons/misc.dmi'
-	icon_state = "hammer"
-	item_state = "hammer"
-	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
-	slot_flags = ITEM_SLOT_BACK
-	w_class = WEIGHT_CLASS_HUGE
-	force = 18 //it's not quite a baseball bat
-	attack_verb = list("smashed", "bashed", "hammered", "crunched", "clobbered")
-	sharpness = SHARP_NONE
-
-/obj/item/twohanded/required/nullrod/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, null, null, FALSE) //trust me, this is better than re-coding two-handed weapons
-
-/obj/item/twohanded/required/nullrod/attack(mob/living/M, mob/living/user)//functions like a throw, but without the wallsplat
+/obj/item/nullrod/hammer/attack(mob/living/M, mob/living/user)//functions like a throw, but without the wallsplat
 	. = ..()
 	if(M == user)
+		return
+	if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		return
 	var/atom/throw_target = get_edge_target_turf(M, user.dir)
 	ADD_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
@@ -439,7 +424,7 @@
 		distance = 50 //hehe funny hallway launch
 	M.throw_at(throw_target, distance, 3, user, TRUE, TRUE, callback = CALLBACK(src, PROC_REF(afterimpact), M))
 
-/obj/item/twohanded/required/nullrod/proc/afterimpact(mob/living/M)
+/obj/item/nullrod/hammer/proc/afterimpact(mob/living/M)
 	REMOVE_TRAIT(M, TRAIT_IMPACTIMMUNE, "Nullrod Hammer")
 
 /obj/item/nullrod/dualsword
