@@ -224,7 +224,7 @@
 	// Technically subject to timing inconsistencies when the tick rate is changed, but unless the timing is changed dramatically
 	// the effect is within tolerance
 	process_count += 1
-	if(!((organ_flags & ORGAN_SYNTHETIC) || (owner && (owner.stat < DEAD || HAS_TRAIT(owner, TRAIT_PRESERVED_ORGANS) || !LIFETICK_SKIP(owner, process_count)))))
+	if(!((organ_flags & ORGAN_SYNTHETIC) || (owner && (owner.stat < DEAD || HAS_TRAIT(owner, TRAIT_PRESERVED_ORGANS) || !SHOULD_LIFETICK(owner, process_count)))))
 		decay_progress += (delta_time SECONDS) // delta_time is in seconds
 	//if we're not more injured than before, return without gambling for a trauma
 	if(damage <= prev_damage)
