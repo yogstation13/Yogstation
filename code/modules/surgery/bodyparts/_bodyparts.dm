@@ -327,7 +327,7 @@
 			owner.updatehealth()
 			if(stamina > DAMAGE_PRECISION)
 				owner.update_stamina()
-				stamina_cache += list("expiration" = world.time + STAMINA_REGEN_BLOCK_TIME, "amount" = stamina)
+				stamina_cache += list(list("expiration" = world.time + STAMINA_REGEN_BLOCK_TIME, "amount" = stamina))
 				owner.stam_regen_start_time = world.time + STAMINA_REGEN_BLOCK_TIME
 				. = TRUE
 	return update_bodypart_damage_state() || .
