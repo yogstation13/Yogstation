@@ -330,28 +330,6 @@
 			message_admins(span_adminnotice("[key_name_admin(mob_user)] used everyone is a traitor secret. Objective is [objective]"))
 			log_admin("[key_name(mob_user)] used everyone is a traitor secret. Objective is [objective]")
 
-		if("iaa_all")
-			if(!check_rights_for(rights, R_FUN))
-				return
-			if(!SSticker.HasRoundStarted())
-				tgui_alert(mob_user, "The game hasn't started yet!")
-				return
-			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("IAA All"))
-			for(var/mob/living/H in GLOB.player_list)
-				if(!(ishuman(H)))
-					continue
-				if(H.stat == DEAD || !H.client || !H.mind || ispAI(H))
-					continue
-				if(is_special_character(H))
-					continue
-				var/list/badjobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg", "Captain", "Head of Personnel", "Head of Security")
-				if(H.mind.assigned_role in badjobs)
-					continue
-				var/datum/antagonist/traitor/internal_affairs/T = new()
-				H.mind.add_antag_datum(T)
-			message_admins(span_adminnotice("[key_name_admin(mob_user)] used everyone is a iaa secret."))
-			log_admin("[key_name(mob_user)] used everyone is a iaa secret.")
-
 		if("changebombcap")
 			if(!check_rights_for(rights, R_FUN))
 				return

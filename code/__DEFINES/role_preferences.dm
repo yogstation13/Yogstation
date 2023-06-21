@@ -38,7 +38,6 @@
 #define ROLE_DRONE				"Drone"
 #define ROLE_DEATHSQUAD			"Deathsquad"
 #define ROLE_LAVALAND			"Lavaland"
-#define ROLE_INTERNAL_AFFAIRS	"Internal Affairs Agent"
 #define ROLE_FUGITIVE           "Fugitive"
 #define ROLE_SHADOWLING 		"Shadowling" // Yogs
 #define ROLE_VAMPIRE			"Vampire" // Yogs
@@ -87,7 +86,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_BROTHER = /datum/antagonist/brother,
 	ROLE_BRAINWASHED = /datum/antagonist/brainwashed,
 	ROLE_OBSESSED = /datum/antagonist/obsessed,
-	ROLE_INTERNAL_AFFAIRS = /datum/antagonist/traitor/internal_affairs,
 	ROLE_FUGITIVE = /datum/antagonist/fugitive,
 	ROLE_SHADOWLING = /datum/antagonist/shadowling, // Yogs
 	ROLE_VAMPIRE = /datum/antagonist/vampire, // Yogs

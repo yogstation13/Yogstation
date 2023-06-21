@@ -39,7 +39,7 @@
 	include_objectives = list(/datum/objective/hijack)
 
 /datum/uplink_item/stealthy_tools/mulligan
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/traitor/internal_affairs)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/device_tools/fakenucleardisk
 	surplus_nullcrates = 0
