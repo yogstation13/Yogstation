@@ -235,7 +235,7 @@
 /obj/item/clothing/neck/yogs/skin_twister/equipped(mob/user, slot)
 	. = ..()
 	active = FALSE
-	if(slot != SLOT_NECK)
+	if(slot != ITEM_SLOT_NECK)
 		return
 	active = TRUE
 	cached_faction_list = user.faction.Copy() // we dont keep the reference to it 
@@ -373,7 +373,7 @@
 	return ..()
 
 /obj/item/clothing/head/yogs/tar_king_crown/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_HEAD)
+	if(slot == ITEM_SLOT_HEAD)
 		return TRUE
 	return FALSE
 
@@ -651,3 +651,12 @@
 	icon_state = "sheet-ivory"
 	grind_results = list(/datum/reagent/potassium = 10) //ivory is a bone
 
+/obj/item/gem/tarstone
+	name = "primal tarstone"
+	desc = "An incredibly dense and tough chunk of ancient tar. Millions of microscopic runes subtly line the surface, and probably make this artifact worth thousands."
+	icon = 'yogstation/icons/obj/jungle.dmi'
+	icon_state = "targem"
+	point_value = 3000
+	light_range = 3
+	light_power = 4
+	light_color = "#2d066d"

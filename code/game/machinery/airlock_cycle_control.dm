@@ -413,7 +413,6 @@
 					vent.update_icon()
 			if(pressure > exterior_pressure - 0.5)
 				vents_valid = TRUE
-				message_admins("[pressure] > [exterior_pressure - 0.5]")
 			if(vents_valid || is_skipping)
 				for(var/airlock in airlocks)
 					if(airlocks[airlock])

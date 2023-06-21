@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/yog_jungle/alpha_meduracha
 	name ="Meduracha majora"
-	desc = "Collosal beast of tentacles, its deep eye look directly at you"
+	desc = "Collosal beast of tentacles, its deep eye looks directly at you."
 	icon_state = "alpha_meduracha"
 	icon_living = "alpha_meduracha"
 	icon_dead = "alpha_meduracha_dead"
@@ -12,7 +12,7 @@
 	speak_chance = 1
 	taunt_chance = 1
 	move_to_delay = 7
-	butcher_results = list(/obj/item/stack/sheet/meduracha = 5)
+	butcher_results = list(/obj/item/stack/sheet/meduracha = 5, /obj/item/gem/emerald = 2)
 	faction = list("mining")
 	response_help  = "gently pokes"
 	response_disarm = "gently pushes aside"
@@ -105,7 +105,7 @@
 	pixel_x = -16
 	pixel_y = -16
 	move_to_delay = 5
-	loot  = list(/obj/item/stack/sheet/slime = 10)
+	loot  = list(/obj/item/stack/sheet/slime = 10, /obj/item/gem/emerald = 2)
 	melee_damage_lower = 30
 	melee_damage_upper = 40
 	crusher_loot = /obj/item/crusher_trophy/jungleland/blob_brain
@@ -131,7 +131,7 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha_dryad
 	name ="Wrath of Gaia"
-	desc = "Collosal tree inhabited by all the furiours spirits of the jungle."
+	desc = "Collosal tree inhabited by all the furious spirits of the jungle."
 	icon = 'yogstation/icons/mob/jungle96x96.dmi'
 	icon_state = "wrath_of_gaia"
 	icon_living = "wrath_of_gaia"
@@ -144,7 +144,7 @@
 	maxHealth = 500
 	health = 500
 	crusher_loot = /obj/item/crusher_trophy/jungleland/dryad_branch
-	loot = list(/obj/item/organ/regenerative_core/dryad = 5)
+	loot = list(/obj/item/organ/regenerative_core/dryad = 5, /obj/item/gem/emerald = 2)
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	ranged = TRUE 
@@ -176,7 +176,7 @@
 	maxHealth = 500
 	health = 500
 	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
-	loot = list(/obj/item/organ/regenerative_core/dryad/corrupted = 5)
+	loot = list(/obj/item/organ/regenerative_core/dryad/corrupted = 5, /obj/item/gem/emerald = 2)
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	ranged = TRUE 
@@ -234,7 +234,7 @@
 	maxHealth = 350
 	health = 350
 	crusher_loot = /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch
-	loot = list(/obj/item/stinger = 1)
+	butcher_results = list(/obj/item/stinger = 1, /obj/item/stack/sheet/animalhide/weaver_chitin = 2, /obj/item/stack/sheet/sinew = 4, /obj/item/gem/ruby = 2)
 	melee_damage_lower = 15
 	melee_damage_upper = 25
 	pixel_x = -16
@@ -318,7 +318,7 @@
 
 /mob/living/simple_animal/hostile/yog_jungle/alpha_yellowjacket
 	name = "yellow jacket matriarch"
-	desc = "A large and aggressive creature with a massive stinger. It is very angry"
+	desc = "A large and aggressive creature with a massive stinger. It is very angry."
 	icon = 'yogstation/icons/mob/jungle64x64.dmi'
 	icon_state = "wasp"
 	icon_living = "wasp"
@@ -342,7 +342,7 @@
 	attack_sound = 'sound/voice/moth/scream_moth.ogg'
 	deathmessage = "rolls over, falling to the ground."
 	gold_core_spawnable = HOSTILE_SPAWN
-	butcher_results = list(/obj/item/stinger = 1)
+	butcher_results = list(/obj/item/stinger = 1, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/stack/sheet/sinew = 2, /obj/item/gem/topaz = 2)
 	loot = list()
 	crusher_loot = /obj/item/crusher_trophy/jungleland/wasp_head
 	pixel_x = -16 
