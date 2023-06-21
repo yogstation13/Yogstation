@@ -301,7 +301,7 @@
 
 /obj/item/reagent_containers/food/snacks/customizable/sushi
 	name = "sushi"
-	desc = "A roll of sushi"
+	desc = "A roll of sushi."
 	ingMax = 4
 	slices_num = 4
 	icon = 'icons/obj/food/food.dmi'
