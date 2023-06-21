@@ -18,7 +18,7 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/template_noop)
-"v" = (
+"w" = (
 /obj/item/stack/rods,
 /turf/baseturf_bottom,
 /area/template_noop)
@@ -26,13 +26,14 @@
 /obj/effect/spawner/lootdrop/maintenance/three,
 /turf/open/floor/plating,
 /area/template_noop)
+"y" = (
+/obj/item/clothing/mask/yogs/dallas,
+/turf/baseturf_bottom,
+/area/template_noop)
 "I" = (
 /turf/open/floor/mineral/gold{
 	initial_gas_mix = "TEMP=2.7"
 	},
-/area/template_noop)
-"J" = (
-/turf/baseturf_bottom,
 /area/template_noop)
 "M" = (
 /obj/effect/spawner/lootdrop/maintenance,
@@ -62,8 +63,7 @@
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating/airless,
 /area/template_noop)
-"W" = (
-/obj/item/clothing/mask/yogs/dallas,
+"V" = (
 /turf/baseturf_bottom,
 /area/template_noop)
 "Y" = (
@@ -100,72 +100,72 @@ a
 (3,1,1) = {"
 a
 n
-v
-J
-J
-J
-J
-J
+w
+V
+V
+V
+V
+V
 n
 a
 "}
 (4,1,1) = {"
 a
 n
-J
-v
-W
+V
+w
+y
 b
 t
-J
+V
 n
 a
 "}
 (5,1,1) = {"
 a
 n
-J
+V
 U
 R
 I
 b
-J
+V
 n
 a
 "}
 (6,1,1) = {"
 a
 n
-J
+V
 b
 I
 P
 b
-J
+V
 n
 a
 "}
 (7,1,1) = {"
 a
 n
-J
+V
 t
 b
 b
 t
-J
+V
 n
 a
 "}
 (8,1,1) = {"
 a
 n
-J
-J
-J
-J
-J
-J
+V
+V
+V
+V
+V
+V
 n
 a
 "}
