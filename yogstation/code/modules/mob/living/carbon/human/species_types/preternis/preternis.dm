@@ -280,7 +280,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/proc/attackslowdown(mob/living/carbon/C)//make weapon use slower
 	if(!ispreternis(C))
 		return	
-	C.next_move += 2 //adds 0.2 second delay to combat
+	C.next_move += 2 //adds 0.2 second delay to weapon combat
 
 /datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make their punches slower
 	. = ..()
