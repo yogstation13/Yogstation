@@ -224,3 +224,8 @@
 /datum/mood_event/type_bait
 	description = "<span class='warning'>I caught that fish mid-conversation... I can't believe I did that...</span>\n"
 	mood_change = -1
+
+/datum/mood_event/ate_without_table
+	description = "<span class='warning'>I had to eat a meal off the ground. Can't we get a table around here?</span>\n"
+	mood_change = -3
+	timeout = 1 MINUTES
