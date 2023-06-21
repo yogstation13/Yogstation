@@ -21885,6 +21885,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
+"gmT" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/power/apc/auto_name{
+	pixel_y = -23
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
 "gmV" = (
 /obj/structure/closet/l3closet/security,
 /obj/effect/turf_decal/bot,
@@ -36780,19 +36788,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"kth" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc/auto_name{
-	dir = 1;
-	pixel_y = 23
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos/distro)
 "ktj" = (
 /obj/structure/closet,
 /obj/item/storage/toolbox/emergency,
@@ -40998,6 +40993,18 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"lHr" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/obj/machinery/power/apc/auto_name{
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "lHz" = (
 /obj/structure/table,
 /obj/item/crowbar,
@@ -56212,16 +56219,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"pTk" = (
-/obj/structure/cable/yellow,
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/power/apc/highcap/five_k{
-	areastring = "/area/maintenance/aft/secondary";
-	name = "Aft Maintenance";
-	pixel_y = -23
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/secondary)
 "pTt" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -56817,6 +56814,19 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"qcW" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/auto_name{
+	dir = 1;
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "qdm" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -63626,18 +63636,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"sah" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 10
-	},
-/obj/machinery/power/apc/auto_name{
-	pixel_y = -23
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "sam" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/neutral{
@@ -105392,7 +105390,7 @@ aNz
 ipI
 iVp
 xHY
-sah
+lHr
 qPA
 nHe
 nHe
@@ -115952,7 +115950,7 @@ sdF
 phd
 qxL
 qsr
-pTk
+gmT
 dbQ
 kih
 bFW
@@ -129267,7 +129265,7 @@ sSl
 nXs
 hIk
 cim
-kth
+qcW
 lnY
 wxE
 cJK
