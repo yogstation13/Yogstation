@@ -189,7 +189,7 @@
 // Stasis helpers
 
 #define IS_IN_STASIS(mob) (mob.life_tickrate == 0)
-#define LIFETICK_SKIP(living, tick) (living.life_tickrate && (tick % living.life_tickrate) == 0)
+#define SHOULD_LIFETICK(living, tick) (living.life_tickrate && MODULUS(tick, living.life_tickrate) < 1)
 
 // Status effect application helpers.
 // These are macros for easier use of adjust_timed_status_effect and set_timed_status_effect.

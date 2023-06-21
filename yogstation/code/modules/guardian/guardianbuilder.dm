@@ -172,9 +172,15 @@
 		points -= minor.cost
 	return points
 
-/datum/guardianbuilder/proc/spawn_guardian(mob/living/user)
+/datum/guardianbuilder/proc/spawn_guardian(mob/living/user, random = FALSE)
 	if (!user || !iscarbon(user) || !user.mind)
 		return FALSE
+	if (user.mind.martial_art?.no_guns && saved_stats.ranged)
+		if (random)
+			saved_stats.ranged = FALSE // sorry dawg
+		else
+			to_chat(user, span_danger("You cannot use a ranged holoparasite as you are unable to used ranged projectiles!"))
+			return FALSE
 	used = TRUE
 	calc_points()
 	if (points < 0)
@@ -225,6 +231,9 @@
 				used = TRUE
 				G.Destroy()
 				return FALSE
+		if(saved_stats.ranged)
+			ADD_TRAIT(user, TRAIT_NOGUNS, G.type)
+			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font>'s ranged ability prevents you from using ranged weaponry of your own!"))
 		return TRUE
 	else
 		to_chat(user, "[failure_message]")
@@ -278,7 +287,7 @@
 		builder.ui_interact(user)
 	else
 		builder.saved_stats = generate_stand()
-		builder.spawn_guardian(user)
+		builder.spawn_guardian(user, TRUE)
 
 /obj/item/guardiancreator/proc/generate_stand()
 	var/points = 15
