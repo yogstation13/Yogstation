@@ -270,7 +270,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,
 		/obj/item/autosurgeon/syndicate/spinalspeed = -3, //Useful, but obvious, and gibs you if you aren't careful
-		/obj/item/spellbook = -3,
 		/obj/item/battleroyale/martial/phytosian = -3,
 		/obj/item/battleroyale/martial/plasmaman = -3,
 
