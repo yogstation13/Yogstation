@@ -346,32 +346,32 @@
 
 	if(!uplink_loc) // We've looked everywhere, let's just implant you
 		implant = TRUE
-	
+
+	var/datum/component/uplink/uplink_component
+
 	if(!implant)
 		. = uplink_loc
-		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key)
-		if(!U)
+		uplink_component = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key)
+		if(!uplink_component)
 			CRASH("Uplink creation failed.")
-		U.setup_unlock_code()
+		uplink_component.setup_unlock_code()
 		if(!silent)
 			if(uplink_loc == R)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [R.name]. Simply dial the frequency [format_frequency(U.unlock_code)] to unlock its hidden features.")
+				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [R.name]. Simply dial the frequency [format_frequency(uplink_component.unlock_code)] to unlock its hidden features.")
 			else if(uplink_loc == PDA)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [PDA.name]. Simply enter the code \"[U.unlock_code]\" into the ringtone select to unlock its hidden features.")
+				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [PDA.name]. Simply enter the code \"[uplink_component.unlock_code]\" into the ringtone select to unlock its hidden features.")
 			else if(uplink_loc == P)
-				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [P.name]. Simply twist the top of the pen [english_list(U.unlock_code)] from its starting position to unlock its hidden features.")
+				to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [P.name]. Simply twist the top of the pen [english_list(uplink_component.unlock_code)] from its starting position to unlock its hidden features.")
 		if(uplink_owner)
-			uplink_owner.antag_memory += U.unlock_note + "<br>"
+			uplink_owner.antag_memory += uplink_component.unlock_note + "<br>"
 		else
-			traitor_mob.mind.store_memory(U.unlock_note)
+			traitor_mob.mind.store_memory(uplink_component.unlock_note)
 	else
-		var/obj/item/implant/uplink/starting/I = new(traitor_mob)
-		I.implant(traitor_mob, null, silent = TRUE)
+		var/obj/item/implant/uplink/starting/I = new()
+		uplink_component = I.implant(traitor_mob, null, silent = TRUE)
 		if(!silent)
 			to_chat(traitor_mob, "<span class='boldnotice'>[employer] has cunningly implanted you with a Syndicate Uplink (although uplink implants cost valuable TC, so you will have slightly less). Simply trigger the uplink to access it.</span>")
-		return I
-
-
+	return uplink_component
 
 //Link a new mobs mind to the creator of said mob. They will join any team they are currently on, and will only switch teams when their creator does.
 

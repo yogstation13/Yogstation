@@ -12,6 +12,8 @@
 #define ROLE_CLOWNOP			"Clown Operative"
 #define ROLE_CHANGELING			"Changeling"
 #define ROLE_WIZARD				"Wizard"
+#define ROLE_INFERNAL_AFFAIRS "Infernal Affairs"
+#define ROLE_INFERNAL_AFFAIRS_DEVIL "Infernal Devil"
 #define ROLE_RAGINMAGES			"Ragin Mages"
 #define ROLE_BULLSHITMAGES		"Bullshit Mages"
 #define ROLE_MALF				"Malf AI"
@@ -70,6 +72,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_CLOWNOP = /datum/antagonist/nukeop/clownop,
 	ROLE_CHANGELING	= /datum/antagonist/changeling,
 	ROLE_WIZARD = /datum/antagonist/wizard,
+	ROLE_INFERNAL_AFFAIRS = /datum/antagonist/infernal_affairs,
 	ROLE_RAGINMAGES	= /datum/antagonist/wizard,
 	ROLE_BULLSHITMAGES = /datum/antagonist/wizard,
 	ROLE_MALF = /datum/antagonist/traitor/malf,

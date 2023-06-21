@@ -18,5 +18,5 @@
     if(canBuy)
         return ..()
 
-    to_chat(user, span_warning("The Syndicate only permits [U.name][U.name[LAZYLEN(U.name)] != "s" ? "s" : ""] to specific agents. \
-								Your mission does not require this equipment."))
+    to_chat(user, span_warning("The Syndicate only permits [U.name][U.name[LAZYLEN(U.name)] != "s" ? "s" : ""] \
+		to specific agents. Your mission does not require this equipment."))

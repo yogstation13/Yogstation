@@ -57,6 +57,9 @@
 /// because they have nothing else that supports an implant.
 #define UPLINK_IMPLANT_TELECRYSTAL_COST 4
 
+///Signal sent to a mob when they purchase an item from their uplink.
+#define COMSIG_ON_UPLINK_PURCHASE "comsig_on_uplink_purchase"
+
 //ERT Types
 #define ERT_BLUE "Blue"
 #define ERT_RED  "Red"

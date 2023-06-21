@@ -7,10 +7,15 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	var/starting_tc = 0
 
-/obj/item/implant/uplink/Initialize(mapload, _owner)
+/obj/item/implant/uplink/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/uplink, _owner, TRUE, FALSE, null, starting_tc)
 	RegisterSignal(src, COMSIG_COMPONENT_REMOVING, PROC_REF(_component_removal))
+
+/obj/item/implant/uplink/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
+	return AddComponent(/datum/component/uplink, target, TRUE, FALSE, null, starting_tc)
 
 /**
  * Proc called when component is removed; ie. uplink component

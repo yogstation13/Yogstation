@@ -132,6 +132,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			to_chat(H, "[A] materializes into your hands!")
 			return A
 	to_chat(user, "[A] materializes onto the floor.")
+	SEND_SIGNAL(U, COMSIG_ON_UPLINK_PURCHASE, A, user)
 	return A
 
 //Discounts (dynamically filled above)

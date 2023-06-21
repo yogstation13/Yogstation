@@ -1,2 +1,2 @@
 /datum/antagonist/traitor
-	var/obj/item/uplink_holder
+	var/datum/component/uplink/uplink_holder
