@@ -274,14 +274,6 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(target && target.current != original)
 		return TRUE
 
-/datum/objective/assassinate/internal
-	var/stolen = 0 		//Have we already eliminated this target?
-
-/datum/objective/assassinate/internal/update_explanation_text()
-	..()
-	if(target && !target.current)
-		explanation_text = "Assassinate [target.name], who was obliterated."
-
 /datum/objective/mutiny
 	name = "mutiny"
 	var/target_role_type=FALSE
@@ -1058,9 +1050,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	else
 		to_chat(admin, span_warning("No active AIs with minds!"))
 	update_explanation_text()
-
-/datum/objective/destroy/internal
-	var/stolen = FALSE 		//Have we already eliminated this target?
 
 /datum/objective/steal_n_of_type
 	name = "steal five of"

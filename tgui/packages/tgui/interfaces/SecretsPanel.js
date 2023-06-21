@@ -57,7 +57,6 @@ export const SecretsPanel = (props, context) => {
           <Button.Confirm color={'bad'} content={'Power all SMES'} onClick={() => act('quickpower')} disabled={!funRights} /><br />
           <Button color={'bad'} content={'Triple AI mode (needs to be used in the lobby)'} onClick={() => act('tripleAI')} disabled={!funRights} /><br />
           <Button color={'bad'} content={'Everyone is the traitor (Can specify objective)'} onClick={() => act('traitor_all')} disabled={!funRights} /><br />
-          <Button.Confirm color={'bad'} content={'Everyone is the IAA (except sec/cap/hop)'} onClick={() => act('iaa_all')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'There can only be one!'} onClick={() => act('onlyone')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'There can only be one! (40-second delay)'} onClick={() => act('delayed_onlyone')} disabled={!funRights} /><br />
           <Button.Confirm color={'bad'} content={'Make all players stupid'} onClick={() => act('retardify')} disabled={!funRights} /><br />
