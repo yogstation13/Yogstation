@@ -319,7 +319,8 @@ SUBSYSTEM_DEF(mapping)
 	// load mining
 	if(config.minetype == "lavaland")
 		LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND) //Yogs, yoglavaland
-	else if (!isnull(config.minetype)) //ICEMOON IS HANDLED PER MAP.
+	else if (config.minetype == "icemoon")
+	else if (!isnull(config.minetype)) 
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 #endif
 

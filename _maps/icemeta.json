@@ -9,6 +9,7 @@
 		"ferry": "ferry_fancy",
 		"emergency": "emergency_meta"
 	},
+	"minetype": "icemoon",
 	"traits": [
 		{
 			"Down": 1,
