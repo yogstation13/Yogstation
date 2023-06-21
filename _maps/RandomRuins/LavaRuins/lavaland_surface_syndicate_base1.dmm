@@ -749,10 +749,14 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "ff" = (
-/obj/effect/mob_spawn/human/lavaland_syndicate,
+/obj/effect/mob_spawn/human/lavaland_syndicate{
+	dir = 4
+	},
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/item/bedsheet/syndie,
+/obj/structure/bed,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "fg" = (
@@ -2542,11 +2546,15 @@
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
 "kl" = (
-/obj/effect/mob_spawn/human/lavaland_syndicate/comms,
+/obj/effect/mob_spawn/human/lavaland_syndicate/comms{
+	dir = 8
+	},
 /obj/machinery/light/small{
 	brightness = 3;
 	dir = 4
 	},
+/obj/item/bedsheet/syndie,
+/obj/structure/bed,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "kn" = (
@@ -4544,7 +4552,6 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "AP" = (
-/obj/structure/closet/crate/secure/loot,
 /obj/item/clothing/suit/armor/vest/capcarapace/syndicate{
 	name = "old syndicate vest";
 	desc = "A sinister-looking gold-trimmed vest covered in dust."
@@ -4556,9 +4563,8 @@
 	name = "syndicate commander's gloves";
 	desc = "One-of-a-kind gold and black gloves used by some Syndicate officers."
 	},
-/obj/item/storage/box/fancy/donut_box{
-	name = "donuts of conflict resolution";
-	desc = "Mmm. Donuts that resolve conflicts between miners and the Syndicate."
+/obj/structure/closet/crate/secure/gear{
+	req_access_txt = "150"
 	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/powered/syndicate_lava_base/engineering)
@@ -5341,12 +5347,14 @@
 /area/ruin/powered/syndicate_lava_base/cargo)
 "Mm" = (
 /obj/effect/mob_spawn/human/lavaland_syndicate{
-	dir = 1
+	dir = 8
 	},
 /obj/machinery/light/small{
 	brightness = 3;
 	dir = 4
 	},
+/obj/item/bedsheet/syndie,
+/obj/structure/bed,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "Mn" = (
@@ -5392,15 +5400,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
-"Nq" = (
-/obj/effect/mob_spawn/human/lavaland_syndicate{
-	dir = 1
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
 "NL" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/firedoor/window{
@@ -7322,7 +7321,7 @@ ff
 nJ
 hz
 nJ
-Nq
+ff
 hz
 lZ
 mx
