@@ -90,7 +90,7 @@
 		else
 			to_chat(user, span_warning("[C] doesn't have two hands..."))
 
-/obj/item/restraints/handcuffs/proc/apply_cuffs(mob/living/carbon/target, mob/user, var/dispense = 0)
+/obj/item/restraints/handcuffs/proc/apply_cuffs(mob/living/carbon/target, mob/user, dispense = 0)
 	if(target.handcuffed)
 		return
 
@@ -262,7 +262,7 @@
 	var/armed = 0
 	var/trap_damage = 20
 
-/obj/item/restraints/legcuffs/beartrap/Initialize()
+/obj/item/restraints/legcuffs/beartrap/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -335,7 +335,7 @@
 	flags_1 = NONE
 	break_strength = 2
 
-/obj/item/restraints/legcuffs/beartrap/energy/Initialize()
+/obj/item/restraints/legcuffs/beartrap/energy/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(dissipate)), 100)
 

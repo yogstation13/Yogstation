@@ -29,7 +29,7 @@
 	var/const/BOMB_TIMER_MIN = 1
 	var/const/BOMB_TIMER_MAX = 20
 
-/obj/item/pizzabox/Initialize()
+/obj/item/pizzabox/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -265,14 +265,14 @@
 	wires = null
 	update_icon()
 
-/obj/item/pizzabox/bomb/Initialize()
+/obj/item/pizzabox/bomb/Initialize(mapload)
 	. = ..()
 	var/randompizza = pick(subtypesof(/obj/item/reagent_containers/food/snacks/pizza))
 	pizza = new randompizza(src)
 	bomb = new(src)
 	wires = new /datum/wires/explosive/pizza(src)
 
-/obj/item/pizzabox/margherita/Initialize()
+/obj/item/pizzabox/margherita/Initialize(mapload)
 	. = ..()
 	AddPizza()
 	boxtag = "Margherita Deluxe"
@@ -283,37 +283,37 @@
 /obj/item/pizzabox/margherita/robo/AddPizza()
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/margherita/robo(src)
 
-/obj/item/pizzabox/vegetable/Initialize()
+/obj/item/pizzabox/vegetable/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/vegetable(src)
 	boxtag = "Gourmet Vegatable"
 
-/obj/item/pizzabox/mushroom/Initialize()
+/obj/item/pizzabox/mushroom/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/mushroom(src)
 	boxtag = "Mushroom Special"
 
-/obj/item/pizzabox/meat/Initialize()
+/obj/item/pizzabox/meat/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/meat(src)
 	boxtag = "Meatlover's Supreme"
 
-/obj/item/pizzabox/pineapple/Initialize()
+/obj/item/pizzabox/pineapple/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/pineapple(src)
 	boxtag = "Honolulu Chew"
 
-/obj/item/pizzabox/seafood/Initialize()
+/obj/item/pizzabox/seafood/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/seafood(src)
 	boxtag = "Ahi King"
 
-/obj/item/pizzabox/sassysage/Initialize()
+/obj/item/pizzabox/sassysage/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/sassysage(src)
 	boxtag = "Meatball Supreme"
 
-/obj/item/pizzabox/donkpocket/Initialize()
+/obj/item/pizzabox/donkpocket/Initialize(mapload)
 	. = ..()
 	pizza = new /obj/item/reagent_containers/food/snacks/pizza/donkpocket(src)
 	boxtag = "Donk Pocket Special"
@@ -334,7 +334,7 @@
 		/obj/item/reagent_containers/food/snacks/pizza/dank = 0.1) //pizzas here are weighted by chance to be someone's favorite
 	var/static/list/pizza_preferences
 
-/obj/item/pizzabox/infinite/Initialize()
+/obj/item/pizzabox/infinite/Initialize(mapload)
 	. = ..()
 	if(!pizza_preferences)
 		pizza_preferences = list()

@@ -12,7 +12,7 @@
 
 	layer = POINT_LAYER
 
-/obj/effect/baseturf_helper/Initialize()
+/obj/effect/baseturf_helper/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -92,7 +92,7 @@
 	icon_state = ""
 	var/late = FALSE
 
-/obj/effect/mapping_helpers/Initialize()
+/obj/effect/mapping_helpers/Initialize(mapload)
 	..()
 	return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
 
@@ -177,7 +177,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 /obj/effect/mapping_helpers/no_lava
 	icon_state = "no_lava"
 
-/obj/effect/mapping_helpers/no_lava/Initialize()
+/obj/effect/mapping_helpers/no_lava/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
 	T.flags_1 |= NO_LAVA_GEN_1
@@ -255,7 +255,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	late = FALSE
 	icon_state = "teleport_anchor"
 
-/obj/effect/mapping_helpers/teleport_anchor/Initialize() //add the tile it is on to areas prefered teleportaiton list
+/obj/effect/mapping_helpers/teleport_anchor/Initialize(mapload) //add the tile it is on to areas prefered teleportaiton list
 	. = ..()
 	var/area/a = get_area(loc)
 	a.teleport_anchors += loc
@@ -266,7 +266,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	/// List of traits to add to this.
 	var/list/traits_to_add = list()
 
-/obj/effect/mapping_helpers/ztrait_injector/Initialize()
+/obj/effect/mapping_helpers/ztrait_injector/Initialize(mapload)
 	. = ..()
 	var/datum/space_level/level = SSmapping.z_list[z]
 	if(!level || !length(traits_to_add))

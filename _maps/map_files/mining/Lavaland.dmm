@@ -1502,6 +1502,22 @@
 	},
 /turf/open/indestructible/boss,
 /area/lavaland/surface/outdoors)
+"mT" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/skeleton/templar{
+	faction = list("skeleton","mining");
+	loot = list(/obj/effect/decal/remains/human);
+	name = "Jim The Door Technician";
+	wander = 0;
+	weather_immunities = list("ash")
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "mV" = (
 /obj/structure/stone_tile/block{
 	dir = 4
@@ -35842,7 +35858,7 @@ ac
 ac
 af
 lg
-fT
+mT
 kj
 fT
 fT

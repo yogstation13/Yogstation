@@ -167,7 +167,7 @@
 		sleep(frames)
 		update_icon()
 
-/obj/item/gun/ballistic/Initialize()
+/obj/item/gun/ballistic/Initialize(mapload)
 	. = ..()
 	feedback_original_icon_base = icon_state
 	if (bolt_type == BOLT_TYPE_LOCKING)

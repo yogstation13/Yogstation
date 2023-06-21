@@ -9,7 +9,7 @@
 	resistance_flags = FLAMMABLE
 	var/title = "book"
 
-/obj/item/storage/book/Initialize()
+/obj/item/storage/book/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1
@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	slot_flags = ITEM_SLOT_BELT
 	var/success_heal_chance = 60
 
-/obj/item/storage/book/bible/Initialize()
+/obj/item/storage/book/bible/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, FALSE, TRUE)
 
@@ -80,7 +80,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 		if(icon_state == "honk1" || icon_state == "honk2")
 			var/mob/living/carbon/human/H = usr
 			H.dna.add_mutation(CLOWNMUT)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), SLOT_WEAR_MASK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), ITEM_SLOT_MASK)
 		if(icon_state == "insuls")
 			var/mob/living/carbon/human/H =usr
 			var/obj/item/clothing/gloves/color/fyellow/insuls = new

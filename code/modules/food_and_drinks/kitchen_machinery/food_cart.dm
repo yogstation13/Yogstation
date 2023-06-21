@@ -17,7 +17,7 @@
 	var/list/stored_food = list()
 	var/obj/item/reagent_containers/mixer
 
-/obj/machinery/food_cart/Initialize()
+/obj/machinery/food_cart/Initialize(mapload)
 	. = ..()
 	create_reagents(LIQUID_CAPACIY, OPENCONTAINER | NO_REACT)
 	mixer = new /obj/item/reagent_containers(src, MIXER_CAPACITY)

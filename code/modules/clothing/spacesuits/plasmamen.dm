@@ -92,7 +92,7 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/equipped(mob/living/user, slot)
 	. = ..()
-	if(slot != SLOT_HEAD)
+	if(slot != ITEM_SLOT_HEAD)
 		user.cut_overlay(helmet_mob_overlay)
 		return
 	update_icon(user)

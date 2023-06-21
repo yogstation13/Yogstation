@@ -1,6 +1,6 @@
 /*
 Overview:
-   Used to create objects that need a per step proc call.  Default definition of 'Initialize()'
+   Used to create objects that need a per step proc call.  Default definition of 'Initialize(mapload)'
    stores a reference to src machine in global 'machines list'.  Default definition
    of 'Destroy' removes reference to src machine in global 'machines list'.
 
@@ -37,7 +37,7 @@ Class Variables:
          EMPED -- temporary broken by EMP pulse
 
 Class Procs:
-   Initialize()                     'game/machinery/machine.dm'
+   Initialize(mapload)                     'game/machinery/machine.dm'
 
    Destroy()                   'game/machinery/machine.dm'
 
@@ -131,7 +131,7 @@ Class Procs:
 	var/climb_stun = 20
 	var/mob/living/machineclimber
 
-/obj/machinery/Initialize()
+/obj/machinery/Initialize(mapload)
 	if(!armor)
 		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
 	. = ..()

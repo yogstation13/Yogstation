@@ -101,7 +101,7 @@
 	wound_bonus = 5
 	bare_wound_bonus = 15
 
-/obj/item/kitchen/knife/Initialize()
+/obj/item/kitchen/knife/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 - force, 100, force - 10) //bonus chance increases depending on force
 
@@ -144,7 +144,7 @@
 	desc = "Runes stretch across the surface of the knife, seemingly endless."
 	wound_bonus = 20 //a bit better than a butcher cleaver, you've earned it for finding blood cult metal and doing the previous steps
 
-/obj/item/kitchen/knife/ritual/holy/Initialize()
+/obj/item/kitchen/knife/ritual/holy/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 70, 110) //the old gods demandeth more flesh output
 

@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define HOLOGRAM_1					(1<<10)
 /// TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
 #define TESLA_IGNORE_1				(1<<11)
-///Whether /atom/Initialize() has already run for the object
+///Whether /atom/Initialize(mapload) has already run for the object
 #define INITIALIZED_1				(1<<12)
 /// was this spawned by an admin? used for stat tracking stuff.
 #define ADMIN_SPAWNED_1			    (1<<13)

@@ -35,7 +35,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	var/obj/item/stock_parts/cell/integrated_battery
 
 
-/obj/machinery/ai/data_core/Initialize()
+/obj/machinery/ai/data_core/Initialize(mapload)
 	. = ..()
 	GLOB.data_cores += src
 	if(primary && !GLOB.primary_data_core)

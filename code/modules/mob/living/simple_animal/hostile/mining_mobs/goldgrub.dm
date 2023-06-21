@@ -34,7 +34,7 @@
 	var/will_burrow = TRUE
 	var/max_loot = 15 // The maximum amount of ore that can be stored in this thing's gut
 
-/mob/living/simple_animal/hostile/asteroid/goldgrub/Initialize()
+/mob/living/simple_animal/hostile/asteroid/goldgrub/Initialize(mapload)
 	. = ..()
 	var/i = rand(1,3)
 	while(i)

@@ -29,7 +29,11 @@
 		"cargo" = "cargo_box",
 		"ferry" = "ferry_fancy",
 		"whiteship" = "whiteship_1",
-		"emergency" = "emergency_box")
+		"emergency" = "emergency_box",
+	)
+	
+	/// List of unit tests that are skipped when running this map
+	var/list/skipped_tests
 
 /proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
 	var/datum/map_config/config = new
@@ -129,6 +133,16 @@
 		minetype = json["minetype"]
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
+
+#ifdef UNIT_TESTS
+	// Check for unit tests to skip, no reason to check these if we're not running tests
+	for(var/path_as_text in json["ignored_unit_tests"])
+		var/path_real = text2path(path_as_text)
+		if(!ispath(path_real, /datum/unit_test))
+			stack_trace("Invalid path in mapping config for ignored unit tests: \[[path_as_text]\]")
+			continue
+		LAZYADD(skipped_tests, path_real)
+#endif
 
 	defaulted = FALSE
 	return TRUE

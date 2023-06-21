@@ -175,7 +175,7 @@
 	wound_bonus = 2
 	bare_wound_bonus = 4
 
-/obj/item/scalpel/Initialize()
+/obj/item/scalpel/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
 
@@ -234,7 +234,7 @@
 	wound_bonus = 5
 	bare_wound_bonus = 3
 
-/obj/item/circular_saw/Initialize()
+/obj/item/circular_saw/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
@@ -479,7 +479,7 @@
 	bolts = FALSE
 	var/obj/picked_up = /obj/item/surgical_mat
 
-/obj/structure/bed/surgical_mat/Initialize()
+/obj/structure/bed/surgical_mat/Initialize(mapload)
 	..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
 	SB.success_chance = 0.8
@@ -538,7 +538,7 @@
 	icon_state = "opmat_goli"
 	picked_up = /obj/item/surgical_mat/goliath
 
-/obj/structure/bed/surgical_mat/goliath/Initialize()
+/obj/structure/bed/surgical_mat/goliath/Initialize(mapload)
 	..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
 	SB.success_chance = 0.85

@@ -226,6 +226,7 @@
 #define TRAIT_BOOZE_SLIDER      "booze-slider"
 #define TRAIT_QUICK_CARRY		"quick-carry"
 #define TRAIT_QUICKER_CARRY		"quicker-carry"
+#define TRAIT_QUICKEST_CARRY	"quickest-carry"
 #define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
 #define TRAIT_UNSTABLE			"unstable"
 #define TRAIT_OIL_FRIED			"oil_fried"
@@ -393,6 +394,8 @@
 #define PULLED_WHILE_SOFTCRIT_TRAIT "pulled-while-softcrit"
 /// Source trait for Bloodsuckers-related traits
 #define BLOODSUCKER_TRAIT "bloodsucker_trait"
+/// Source trait for Monster Hunter-related traits
+#define HUNTER_TRAIT "monsterhunter_trait"
 /// Source trait during a Frenzy
 #define FRENZY_TRAIT "frenzy_trait"
 /// Source trait while Feeding

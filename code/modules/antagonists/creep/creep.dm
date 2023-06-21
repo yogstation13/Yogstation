@@ -87,7 +87,7 @@
 			to_chat(owner, span_danger("Your need for mental fitness vanishes alongside the voices, mood has been disabled."))
 			C.RemoveComponent()
 
-/datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
+/datum/antagonist/obsessed/proc/forge_objectives(datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
 	var/datum/quirk/family_heirloom/family_heirloom
 

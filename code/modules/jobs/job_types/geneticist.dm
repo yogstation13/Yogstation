@@ -1,10 +1,8 @@
 /datum/job/geneticist
 	title = "Geneticist"
 	description = "Alter genomes, turn monkeys into humans (and vice-versa), and make DNA backups."
-	flag = GENETICIST
 	orbit_icon = "dna"
 	department_head = list("Chief Medical Officer", "Research Director")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2

@@ -9,7 +9,7 @@
 	var/fall_off_if_missing_arms = FALSE //heh...
 	var/message_cooldown = 0
 
-/obj/vehicle/ridden/Initialize()
+/obj/vehicle/ridden/Initialize(mapload)
 	. = ..()
 	LoadComponent(/datum/component/riding)
 

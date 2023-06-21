@@ -64,7 +64,7 @@
 /obj/item/tank/ui_action_click(mob/user)
 	toggle_internals(user)
 
-/obj/item/tank/Initialize()
+/obj/item/tank/Initialize(mapload)
 	. = ..()
 
 	air_contents = new(volume) //liters

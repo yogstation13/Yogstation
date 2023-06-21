@@ -17,7 +17,7 @@
 	var/extend_sound = 'sound/weapons/saberon.ogg'
 	var/retract_sound = 'sound/weapons/saberoff.ogg'
 
-/obj/item/melee/transforming/Initialize()
+/obj/item/melee/transforming/Initialize(mapload)
 	. = ..()
 	if(active)
 		if(attack_verb_on.len)

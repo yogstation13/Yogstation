@@ -40,6 +40,8 @@
 	var/constant_bloodcost = 0
 	///If the Power has any additional descriptions coming from either 3rd partys or the power itself
 	var/additional_text = ""
+	///Path to the ascended version of the power. For Lasombra bloodsucker powers
+	var/ascended_power = null
 
 // Modify description to add cost.
 /datum/action/cooldown/bloodsucker/New(Target)

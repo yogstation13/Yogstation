@@ -27,7 +27,7 @@
 	var/list/snares = list()
 	var/toggle = FALSE
 
-/mob/living/simple_animal/hostile/guardian/ranged/Initialize() //yogs start
+/mob/living/simple_animal/hostile/guardian/ranged/Initialize(mapload) //yogs start
 	. = ..()
 	LoadComponent(/datum/component/walk) //yogs end
 

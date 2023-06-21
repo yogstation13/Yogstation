@@ -51,7 +51,7 @@
  * optional inline_html string Custom HTML to inject.
  * optional fancy bool If TRUE, will hide the window titlebar.
  */
-/datum/tgui_window/proc/initialize(
+/datum/tgui_window/proc/Initialize(
 		fancy = FALSE,
 		assets = list(),
 		inline_html = "",
@@ -334,7 +334,7 @@
 			client << link(href_list["url"])
 		if("cacheReloaded")
 			// Reinitialize
-			initialize(
+			Initialize(
 				fancy = initial_fancy,
 				assets = initial_assets,
 				inline_html = initial_inline_html,
