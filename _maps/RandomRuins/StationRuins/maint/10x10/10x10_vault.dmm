@@ -10,10 +10,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/template_noop)
-"h" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
 "n" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -22,17 +18,21 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/template_noop)
+"v" = (
+/obj/item/stack/rods,
+/turf/baseturf_bottom,
+/area/template_noop)
 "x" = (
 /obj/effect/spawner/lootdrop/maintenance/three,
 /turf/open/floor/plating,
-/area/template_noop)
-"D" = (
-/turf/template_noop,
 /area/template_noop)
 "I" = (
 /turf/open/floor/mineral/gold{
 	initial_gas_mix = "TEMP=2.7"
 	},
+/area/template_noop)
+"J" = (
+/turf/baseturf_bottom,
 /area/template_noop)
 "M" = (
 /obj/effect/spawner/lootdrop/maintenance,
@@ -62,13 +62,9 @@
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating/airless,
 /area/template_noop)
-"V" = (
-/obj/item/stack/rods,
-/turf/template_noop,
-/area/template_noop)
 "W" = (
 /obj/item/clothing/mask/yogs/dallas,
-/turf/template_noop,
+/turf/baseturf_bottom,
 /area/template_noop)
 "Y" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -104,72 +100,72 @@ a
 (3,1,1) = {"
 a
 n
-V
-D
-D
-D
-h
-h
+v
+J
+J
+J
+J
+J
 n
 a
 "}
 (4,1,1) = {"
 a
 n
-D
-V
+J
+v
 W
 b
 t
-h
+J
 n
 a
 "}
 (5,1,1) = {"
 a
 n
-D
+J
 U
 R
 I
 b
-D
+J
 n
 a
 "}
 (6,1,1) = {"
 a
 n
-D
+J
 b
 I
 P
 b
-D
+J
 n
 a
 "}
 (7,1,1) = {"
 a
 n
-h
+J
 t
 b
 b
 t
-h
+J
 n
 a
 "}
 (8,1,1) = {"
 a
 n
-h
-h
-D
-D
-h
-h
+J
+J
+J
+J
+J
+J
 n
 a
 "}
