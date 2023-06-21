@@ -14,7 +14,7 @@
 	///list of miners & their mining points from gems to be given once all exports are processed, used by supply shuttles
 	var/list/gem_payout = list()
 
-/area/shuttle/Initialize()
+/area/shuttle/Initialize(mapload)
 	if(!canSmoothWithAreas)
 		canSmoothWithAreas = type
 	. = ..()

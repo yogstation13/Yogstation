@@ -21,7 +21,7 @@
 	var/obj/item/flashlight/seclite/attached_light
 	var/datum/action/item_action/toggle_helmet_flashlight/alight
 
-/obj/item/clothing/head/helmet/Initialize()
+/obj/item/clothing/head/helmet/Initialize(mapload)
 	. = ..()
 	if(attached_light)
 		alight = new(src)
@@ -94,7 +94,7 @@
 	name = "occupying force helmet"
 	desc = "Standard deployment gear. Protects the head from impacts and has a built in mounted light."
 
-/obj/item/clothing/head/helmet/sec/occupying/Initialize(mob/user)
+/obj/item/clothing/head/helmet/sec/occupying/Initialize(mapload, mob/user)
 	attached_light = new /obj/item/flashlight/seclite(null)
 	. = ..()
 
@@ -137,7 +137,7 @@
 	visor_flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	dog_fashion = null
 
-/obj/item/clothing/head/helmet/riot/raised/Initialize()
+/obj/item/clothing/head/helmet/riot/raised/Initialize(mapload)
 	. = ..()
 	up = !up
 	flags_1 ^= visor_flags
@@ -333,7 +333,7 @@
 	heat_protection = HEAD
 	armor = list(MELEE = 35, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 50, ACID = 50, WOUND = 5)
 
-/obj/item/clothing/head/helmet/kasa/Initialize()
+/obj/item/clothing/head/helmet/kasa/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/armor_plate, null, null, list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 5)) //maximum armor 65/15/15/15/65
 

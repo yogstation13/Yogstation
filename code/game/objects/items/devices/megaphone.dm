@@ -22,7 +22,7 @@
 	user.say("AAAAAAAAAAAARGHHHHH", forced="megaphone suicide")//he must have died while coding this
 	return OXYLOSS
 
-/obj/item/megaphone/Initialize()
+/obj/item/megaphone/Initialize(mapload)
 	. = ..()
 	update_icon()
 

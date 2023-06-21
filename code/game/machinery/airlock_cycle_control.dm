@@ -123,7 +123,7 @@
 	if(mapload && (. != INITIALIZE_HINT_QDEL))
 		return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/advanced_airlock_controller/LateInitialize(mapload)
+/obj/machinery/advanced_airlock_controller/LateInitialize()
 	. = ..()
 	if(scan_on_late_init)
 		scan(TRUE)
@@ -809,7 +809,7 @@
 /obj/machinery/door/airlock
 	var/obj/machinery/advanced_airlock_controller/aac
 
-/obj/machinery/door/airlock/Initialize()
+/obj/machinery/door/airlock/Initialize(mapload)
 	. = ..()
 	update_aac_docked()
 /obj/machinery/door/airlock/Destroy()

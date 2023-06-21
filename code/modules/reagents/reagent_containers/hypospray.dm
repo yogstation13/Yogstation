@@ -299,7 +299,7 @@
 	/// The sound that plays when you draw from someone with the hypospray
 	var/draw_sound = 'sound/items/autoinjector.ogg'
 
-/obj/item/hypospray/Initialize()
+/obj/item/hypospray/Initialize(mapload)
 	. = ..()
 	if(ispath(container))
 		container = new container
@@ -668,7 +668,7 @@
 	else
 		..()
 
-/obj/item/hypospray_upgrade/proc/install(var/obj/item/hypospray/hypo, mob/user)
+/obj/item/hypospray_upgrade/proc/install(obj/item/hypospray/hypo, mob/user)
 	to_chat(user, span_notice("The modkit you're trying to install is not meant to exist."))
 	return FALSE
 
@@ -676,7 +676,7 @@
 	name = "hypospray piercing upgrade"
 	desc = "An upgrade for hyposprays that installs a diamond tipped needle, allowing it to pierce thick clothing."
 
-/obj/item/hypospray_upgrade/piercing/install(var/obj/item/hypospray/hypo, mob/user)
+/obj/item/hypospray_upgrade/piercing/install(obj/item/hypospray/hypo, mob/user)
 	if(hypo.penetrates)
 		to_chat(user, span_notice("[hypo] already has a piercing mechanism!"))
 		return FALSE
@@ -688,7 +688,7 @@
 	name = "hypospray speed upgrade"
 	desc = "An upgrade for hyposprays that installs a springloaded mechanism, allowing it to inject with reduced delay."
 
-/obj/item/hypospray_upgrade/speed/install(var/obj/item/hypospray/hypo, mob/user)
+/obj/item/hypospray_upgrade/speed/install(obj/item/hypospray/hypo, mob/user)
 	if(hypo.speedup)
 		to_chat(user, span_notice("[hypo] already has a speed mechanism!"))
 		return FALSE

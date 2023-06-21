@@ -57,7 +57,7 @@
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	mutantrace_variation = MUTANTRACE_VARIATION
 
-/obj/item/clothing/suit/det_suit/Initialize()
+/obj/item/clothing/suit/det_suit/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.detective_vest_allowed
 
@@ -65,7 +65,7 @@
 	desc = "All the class of a trenchcoat without the security fibers."
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 
-/obj/item/clothing/suit/det_suit/civilian/Initialize()
+/obj/item/clothing/suit/det_suit/civilian/Initialize(mapload)
 	. = ..()
 	//Same permissions as the leather jacket/leather overcoat, because you know, trench coat
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/gun/ballistic/automatic/pistol, /obj/item/gun/ballistic/revolver, /obj/item/gun/ballistic/revolver/detective, /obj/item/radio)

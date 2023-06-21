@@ -25,7 +25,7 @@
 			return FALSE
 	return TRUE
 
-/obj/structure/c_transit_tube/Initialize()
+/obj/structure/c_transit_tube/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_FLIP | ROTATION_VERBS,null,null,CALLBACK(src, PROC_REF(after_rot)))
 

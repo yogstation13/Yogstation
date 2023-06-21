@@ -3,7 +3,7 @@
 	var/static/list/label_colors = list("red", "green", "blue", "cyan", "magenta", "yellow", "white")
 	var/label_color = "green"
 
-/obj/item/assembly/signaler/Initialize()
+/obj/item/assembly/signaler/Initialize(mapload)
 	. = ..()
 	update_icon()
 

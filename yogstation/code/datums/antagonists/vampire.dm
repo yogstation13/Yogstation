@@ -150,7 +150,7 @@
 		add_objective(escape_objective)
 		return
 
-/datum/antagonist/vampire/proc/add_objective(var/datum/objective/O)
+/datum/antagonist/vampire/proc/add_objective(datum/objective/O)
 	objectives += O
 	objectives_given += O
 
@@ -179,7 +179,7 @@
 		steal_objective.find_target()
 		add_objective(steal_objective)
 
-/datum/antagonist/vampire/proc/vamp_burn(var/severe_burn = FALSE)
+/datum/antagonist/vampire/proc/vamp_burn(severe_burn = FALSE)
 	var/mob/living/L = owner.current
 	if(!L)
 		return
@@ -352,7 +352,7 @@
 		remove_ability(power)
 	owner.current.alpha = 255
 
-/datum/antagonist/vampire/proc/check_vampire_upgrade(var/announce = TRUE)
+/datum/antagonist/vampire/proc/check_vampire_upgrade(announce = TRUE)
 	var/list/old_powers = powers.Copy()
 	for(var/ptype in upgrade_tiers)
 		var/level = upgrade_tiers[ptype]

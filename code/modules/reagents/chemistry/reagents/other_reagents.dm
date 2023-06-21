@@ -2194,12 +2194,16 @@
 
 	volume = min(volume, WOUND_DETERMINATION_MAX)
 
+	var/heal_amount = 0.25
+	if(ishumanbasic(M)) //indomitable human spirit
+		heal_amount *= 2
+
 	for(var/thing in M.all_wounds)
 		var/datum/wound/W = thing
 		var/obj/item/bodypart/wounded_part = W.limb
 		if(wounded_part)
-			wounded_part.heal_damage(0.25, 0.25)
-		M.adjustStaminaLoss(-0.25*REM) // the more wounds, the more stamina regen
+			wounded_part.heal_damage(heal_amount, heal_amount)
+		M.adjustStaminaLoss(-heal_amount*REM) // the more wounds, the more stamina regen
 	..()
 
 
@@ -2213,20 +2217,6 @@
 /datum/reagent/plaguebacteria/reaction_mob(mob/living/L, method = TOUCH, reac_volume, show_message = TRUE, permeability = 1)
 	if((method == INGEST || method == TOUCH || method == INJECT) && prob(permeability*100)) //permeability is always 1 by default except with touch and vapor
 		L.ForceContractDisease(new /datum/disease/plague(), FALSE, TRUE)
-
-/datum/reagent/adrenaline
-	name = "Adrenaline"
-	description = "Powerful chemical that termporarily makes the user immune to slowdowns"
-	color = "#d1cd9a"
-	can_synth = FALSE
-
-/datum/reagent/adrenaline/on_mob_add(mob/living/L)
-	. = ..()
-	ADD_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
-
-/datum/reagent/adrenaline/on_mob_delete(mob/living/L)
-	. = ..()
-	REMOVE_TRAIT(L, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
 
 /datum/reagent/liquidsoap
 	name = "Liquid soap"

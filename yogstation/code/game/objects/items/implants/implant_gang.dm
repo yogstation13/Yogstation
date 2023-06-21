@@ -3,7 +3,7 @@
 	desc = "Makes you a gangster."
 	var/datum/team/gang/gang
 
-/obj/item/implant/gang/Initialize(loc, setgang)
+/obj/item/implant/gang/Initialize(mapload, loc, setgang)
 	.=..()
 	gang = setgang
 
@@ -53,7 +53,7 @@
 /obj/item/implanter/gang
 	name = "implanter (gang)"
 
-/obj/item/implanter/gang/Initialize(loc, gang)
+/obj/item/implanter/gang/Initialize(mapload, loc, gang)
 	if(!gang)
 		return INITIALIZE_HINT_QDEL
 	imp = new /obj/item/implant/gang(src,gang)

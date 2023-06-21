@@ -23,7 +23,7 @@
 	max_integrity = 400 /// Made of damn good steel
 	damage_deflection = 21 /// Same as airlocks!
 
-/obj/machinery/turnstile/Initialize()
+/obj/machinery/turnstile/Initialize(mapload)
 	. = ..()
 	icon_state = "turnstile"
 

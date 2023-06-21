@@ -137,7 +137,7 @@
 	var/atmos_link_override
 	var/obj/item/stock_parts/manipulator/manipulator
 
-/obj/item/hand_tele/Initialize()
+/obj/item/hand_tele/Initialize(mapload)
 	. = ..()
 	active_portal_pairs = list()
 	manipulator = new /obj/item/stock_parts/manipulator(src)

@@ -15,7 +15,7 @@
 	user.visible_message(span_suicide("[user] is staring sadly at [src]! [user.p_they()] can't keep living without real human intimacy!"))
 	return OXYLOSS
 
-/obj/item/paicard/Initialize()
+/obj/item/paicard/Initialize(mapload)
 	SSpai.paicard_list += src
 	add_overlay("pai-off")
 	return ..()

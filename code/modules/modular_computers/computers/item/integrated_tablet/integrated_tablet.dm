@@ -109,7 +109,7 @@
 	device_theme = "syndicate"
 
 
-/obj/item/modular_computer/tablet/integrated/syndicate/Initialize()
+/obj/item/modular_computer/tablet/integrated/syndicate/Initialize(mapload)
 	. = ..()
 	if(istype(borgo, /mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = borgo

@@ -31,7 +31,7 @@
 	movement_type = FLYING
 	var/time_to_next_roar = 0
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize()
+/mob/living/simple_animal/hostile/darkspawn_progenitor/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_HOLY, "ohgodohfuck") //sorry no magic
 	alpha = 0
@@ -59,7 +59,7 @@
 	if(time_to_next_roar + 10 SECONDS <= world.time) //gives time to roar manually if you like want to do that
 		roar()
 
-/mob/living/simple_animal/hostile/darkspawn_progenitor/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/simple_animal/hostile/darkspawn_progenitor/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	..()
 	if(time_to_next_roar <= world.time)
 		roar()

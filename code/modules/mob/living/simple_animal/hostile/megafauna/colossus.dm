@@ -311,7 +311,7 @@ Difficulty: Very Hard
 		return FALSE
 	return TRUE
 
-/obj/machinery/smartfridge/black_box/Initialize()
+/obj/machinery/smartfridge/black_box/Initialize(mapload)
 	. = ..()
 	var/static/obj/machinery/smartfridge/black_box/current
 	if(current && current != src)
@@ -503,7 +503,7 @@ Difficulty: Very Hard
 	var/list/NewFlora = list()
 	var/florachance = 8
 
-/obj/machinery/anomalous_crystal/theme_warp/Initialize()
+/obj/machinery/anomalous_crystal/theme_warp/Initialize(mapload)
 	. = ..()
 	terrain_theme = pick("lavaland","winter","jungle","ayy lmao")
 	observer_desc = "This crystal changes the area around it to match the theme of \"[terrain_theme]\"."
@@ -567,7 +567,7 @@ Difficulty: Very Hard
 	cooldown_add = 50
 	var/obj/item/projectile/generated_projectile = /obj/item/projectile/beam/emitter
 
-/obj/machinery/anomalous_crystal/emitter/Initialize()
+/obj/machinery/anomalous_crystal/emitter/Initialize(mapload)
 	. = ..()
 	generated_projectile = pick(/obj/item/projectile/colossus)
 
@@ -686,7 +686,7 @@ Difficulty: Very Hard
 	AIStatus = AI_OFF
 	stop_automated_movement = TRUE
 
-/mob/living/simple_animal/hostile/lightgeist/healing/Initialize()
+/mob/living/simple_animal/hostile/lightgeist/healing/Initialize(mapload)
 	. = ..()
 	remove_verb(src, /mob/living/verb/pulled)
 	remove_verb(src, /mob/verb/me_verb)
@@ -724,7 +724,7 @@ Difficulty: Very Hard
 	heal_power = 3
 	heal_color = "#5bf563"
 
-/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/Initialize()
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/Initialize(mapload)
 	. = ..()
 	var/datum/action/cooldown/spell/conjure/plants/terrarium = new(src)
 	terrarium.Grant(src)
@@ -770,7 +770,7 @@ Difficulty: Very Hard
 	short_desc = "You are a photogeist, a peaceful creature summoned by a plant god"
 	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them and can seed flowers and bushes into the floor."
 
-/obj/effect/mob_spawn/photogeist/Initialize()
+/obj/effect/mob_spawn/photogeist/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	if(A)
@@ -779,7 +779,7 @@ Difficulty: Very Hard
 /mob/living/simple_animal/hostile/lightgeist/healing/slime
 	name = "crystalline lightgeist"
 
-/mob/living/simple_animal/hostile/lightgeist/healing/slime/Initialize()
+/mob/living/simple_animal/hostile/lightgeist/healing/slime/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_MUTE, INNATE_TRAIT)
 	ADD_TRAIT(src, TRAIT_EMOTEMUTE, INNATE_TRAIT)
@@ -857,7 +857,7 @@ Difficulty: Very Hard
 		escape.Grant(holder_animal)
 		remove_verb(holder_animal, /mob/living/verb/pulled)
 
-/obj/structure/closet/stasis/dump_contents(var/kill = 1)
+/obj/structure/closet/stasis/dump_contents(kill = 1)
 	STOP_PROCESSING(SSobj, src)
 	for(var/mob/living/L in src)
 		REMOVE_TRAIT(L, TRAIT_MUTE, STASIS_MUTE)

@@ -11,7 +11,7 @@
 	var/area/lair_area
 	var/mob/lair_owner
 
-/obj/item/restraints/legcuffs/beartrap/bloodsucker/Initialize()
+/obj/item/restraints/legcuffs/beartrap/bloodsucker/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -179,7 +179,7 @@
 	hitsound = 'sound/items/bikehorn.ogg'
 	sharpness = SHARP_POINTY //torture ducky
 
-/obj/item/stake/ducky/Initialize()
+/obj/item/stake/ducky/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
@@ -311,7 +311,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/in_use = FALSE
 
-/obj/item/book/kindred/Initialize()
+/obj/item/book/kindred/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 

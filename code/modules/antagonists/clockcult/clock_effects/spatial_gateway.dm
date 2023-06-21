@@ -15,7 +15,7 @@
 	var/obj/effect/clockwork/spatial_gateway/linked_gateway //The gateway linked to this one
 	var/timerid
 
-/obj/effect/clockwork/spatial_gateway/Initialize()
+/obj/effect/clockwork/spatial_gateway/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(check_setup)), 1)
 
