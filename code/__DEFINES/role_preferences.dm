@@ -6,60 +6,60 @@
 
 //These are synced with the Database, if you change the values of the defines
 //then you MUST update the database!
-#define ROLE_SYNDICATE			"Syndicate"
-#define ROLE_TRAITOR			"Traitor"
-#define ROLE_OPERATIVE			"Operative"
-#define ROLE_CLOWNOP			"Clown Operative"
-#define ROLE_CHANGELING			"Changeling"
-#define ROLE_WIZARD				"Wizard"
-#define ROLE_INFERNAL_AFFAIRS "Infernal Affairs"
+#define ROLE_SYNDICATE "Syndicate"
+#define ROLE_TRAITOR "Traitor"
+#define ROLE_OPERATIVE "Operative"
+#define ROLE_CLOWNOP "Clown Operative"
+#define ROLE_CHANGELING "Changeling"
+#define ROLE_WIZARD "Wizard"
+#define ROLE_INFERNAL_AFFAIRS "Infernal Affairs Agent"
 #define ROLE_INFERNAL_AFFAIRS_DEVIL "Infernal Devil"
-#define ROLE_RAGINMAGES			"Ragin Mages"
-#define ROLE_BULLSHITMAGES		"Bullshit Mages"
-#define ROLE_MALF				"Malf AI"
-#define ROLE_REV				"Revolutionary"
-#define ROLE_REV_HEAD			"Head Revolutionary"
-#define ROLE_ALIEN				"Xenomorph"
-#define ROLE_PAI				"pAI"
-#define ROLE_CULTIST			"Cultist"
-#define ROLE_HERETIC			"Heretic"
-#define ROLE_BLOB				"Blob"
-#define ROLE_NINJA				"Space Ninja"
-#define ROLE_MONKEY				"Monkey"
-#define ROLE_ABDUCTOR			"Abductor"
-#define ROLE_REVENANT			"Revenant"
-#define ROLE_SERVANT_OF_RATVAR	"Servant of Ratvar"
-#define ROLE_BROTHER			"Blood Brother"
-#define ROLE_BRAINWASHED		"Brainwashed Victim"
-#define ROLE_HIVE				"Hivemind Host"
-#define ROLE_OBSESSED			"Obsessed"
-#define ROLE_SENTIENCE			"Sentient Creature"
-#define ROLE_MOUSE				"Mouse"
-#define ROLE_MIND_TRANSFER		"Mind Transfer Potion"
-#define ROLE_POSIBRAIN			"Posibrain"
-#define ROLE_DRONE				"Drone"
-#define ROLE_DEATHSQUAD			"Deathsquad"
-#define ROLE_LAVALAND			"Lavaland"
-#define ROLE_FUGITIVE           "Fugitive"
-#define ROLE_SHADOWLING 		"Shadowling" // Yogs
-#define ROLE_VAMPIRE			"Vampire" // Yogs
-#define ROLE_GANG				"gangster" // Yogs
-#define ROLE_DARKSPAWN			"darkspawn" // Yogs
-#define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
-#define ROLE_HORROR				"Eldritch Horror" // Yogs
-#define ROLE_INFILTRATOR		"Infiltrator" // Yogs
-#define ROLE_ZOMBIE				"Zombie"
-#define ROLE_BLOODSUCKER		"Bloodsucker"
-#define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
-#define ROLE_BLOODSUCKERBREAKOUT	"Bloodsucker Breakout"
-#define ROLE_MONSTERHUNTER		"Monster Hunter"
-#define ROLE_SPACE_DRAGON		"Space Dragon"
-#define ROLE_GOLEM				"Golem"
-#define ROLE_SINFULDEMON		"Demon of Sin"
-#define ROLE_GHOSTBEACON		"Ghost Beacon"
-#define ROLE_NIGHTMARE			"Nightmare"
-#define ROLE_DISEASE			"Disease"
-#define ROLE_PIRATE				"Pirate"
+#define ROLE_RAGINMAGES "Ragin Mages"
+#define ROLE_BULLSHITMAGES "Bullshit Mages"
+#define ROLE_MALF "Malf AI"
+#define ROLE_REV "Revolutionary"
+#define ROLE_REV_HEAD "Head Revolutionary"
+#define ROLE_ALIEN "Xenomorph"
+#define ROLE_PAI "pAI"
+#define ROLE_CULTIST "Cultist"
+#define ROLE_HERETIC "Heretic"
+#define ROLE_BLOB "Blob"
+#define ROLE_NINJA "Space Ninja"
+#define ROLE_MONKEY "Monkey"
+#define ROLE_ABDUCTOR "Abductor"
+#define ROLE_REVENANT "Revenant"
+#define ROLE_SERVANT_OF_RATVAR "Servant of Ratvar"
+#define ROLE_BROTHER "Blood Brother"
+#define ROLE_BRAINWASHED "Brainwashed Victim"
+#define ROLE_HIVE "Hivemind Host"
+#define ROLE_OBSESSED "Obsessed"
+#define ROLE_SENTIENCE "Sentient Creature"
+#define ROLE_MOUSE "Mouse"
+#define ROLE_MIND_TRANSFER "Mind Transfer Potion"
+#define ROLE_POSIBRAIN "Posibrain"
+#define ROLE_DRONE "Drone"
+#define ROLE_DEATHSQUAD "Deathsquad"
+#define ROLE_LAVALAND "Lavaland"
+#define ROLE_FUGITIVE "Fugitive"
+#define ROLE_SHADOWLING "Shadowling" // Yogs
+#define ROLE_VAMPIRE "Vampire" // Yogs
+#define ROLE_GANG "gangster" // Yogs
+#define ROLE_DARKSPAWN "darkspawn" // Yogs
+#define ROLE_HOLOPARASITE "Holoparasite" // Yogs
+#define ROLE_HORROR "Eldritch Horror" // Yogs
+#define ROLE_INFILTRATOR "Infiltrator" // Yogs
+#define ROLE_ZOMBIE "Zombie"
+#define ROLE_BLOODSUCKER "Bloodsucker"
+#define ROLE_VAMPIRICACCIDENT "Vampiric Accident"
+#define ROLE_BLOODSUCKERBREAKOUT "Bloodsucker Breakout"
+#define ROLE_MONSTERHUNTER "Monster Hunter"
+#define ROLE_SPACE_DRAGON "Space Dragon"
+#define ROLE_GOLEM "Golem"
+#define ROLE_SINFULDEMON "Demon of Sin"
+#define ROLE_GHOSTBEACON "Ghost Beacon"
+#define ROLE_NIGHTMARE "Nightmare"
+#define ROLE_DISEASE "Disease"
+#define ROLE_PIRATE "Pirate"
 
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
@@ -70,11 +70,11 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_TRAITOR = /datum/antagonist/traitor,
 	ROLE_OPERATIVE = /datum/antagonist/nukeop,
 	ROLE_CLOWNOP = /datum/antagonist/nukeop/clownop,
-	ROLE_CHANGELING	= /datum/antagonist/changeling,
+	ROLE_CHANGELING = /datum/antagonist/changeling,
 	ROLE_WIZARD = /datum/antagonist/wizard,
 	ROLE_INFERNAL_AFFAIRS = /datum/antagonist/infernal_affairs,
 	ROLE_INFERNAL_AFFAIRS_DEVIL = /datum/antagonist/devil,
-	ROLE_RAGINMAGES	= /datum/antagonist/wizard,
+	ROLE_RAGINMAGES = /datum/antagonist/wizard,
 	ROLE_BULLSHITMAGES = /datum/antagonist/wizard,
 	ROLE_MALF = /datum/antagonist/traitor/malf,
 	ROLE_REV_HEAD = /datum/antagonist/rev/head,
@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_HERETIC = /datum/antagonist/heretic,
 	ROLE_BLOB = /datum/antagonist/blob,
 	ROLE_NINJA = /datum/antagonist/ninja,
-	ROLE_MONKEY	= /datum/antagonist/monkey,
+	ROLE_MONKEY = /datum/antagonist/monkey,
 	ROLE_ABDUCTOR = /datum/antagonist/abductor,
 	ROLE_REVENANT = /datum/antagonist/revenant,
 	ROLE_SERVANT_OF_RATVAR = /datum/antagonist/clockcult,
@@ -98,7 +98,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_HOLOPARASITE = /datum/antagonist/guardian, // Yogs
 	ROLE_HORROR = /datum/antagonist/horror, // Yogs
 	ROLE_INFILTRATOR = /datum/antagonist/infiltrator, // Yogs
-	ROLE_ZOMBIE	= /datum/antagonist/zombie,
+	ROLE_ZOMBIE = /datum/antagonist/zombie,
 	ROLE_BLOODSUCKER = /datum/antagonist/bloodsucker,
 	ROLE_MONSTERHUNTER = /datum/antagonist/monsterhunter,
 	ROLE_SPACE_DRAGON = /datum/antagonist/space_dragon,
@@ -112,6 +112,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
-#define BEOVERFLOW 	1
-#define BERANDOMJOB 	2
-#define RETURNTOLOBBY 	3
+#define BEOVERFLOW 1
+#define BERANDOMJOB 2
+#define RETURNTOLOBBY 3

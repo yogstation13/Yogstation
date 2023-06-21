@@ -1,5 +1,7 @@
 /datum/antagonist/devil
 	name = "Devil"
+	roundend_category = "infernal affairs agents"
+	job_rank = ROLE_INFERNAL_AFFAIRS_DEVIL
 	greentext_achieve = /datum/achievement/greentext/devil
 	///The amount of souls the devil has so far.
 	var/souls = 0
