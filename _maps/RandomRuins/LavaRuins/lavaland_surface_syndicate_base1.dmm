@@ -615,6 +615,19 @@
 /area/ruin/powered/syndicate_lava_base/medbay)
 "eH" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/disposaloutlet{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "eJ" = (
@@ -749,17 +762,22 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "ff" = (
-/obj/effect/mob_spawn/human/lavaland_syndicate{
-	dir = 8
+/obj/item/clothing/suit/armor/vest/capcarapace/syndicate{
+	name = "old syndicate vest";
+	desc = "A sinister-looking gold-trimmed vest covered in dust."
 	},
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 4
+/obj/item/clothing/head/HoS/syndicate{
+	desc = "An old black cap that may have once been fit for a high-ranking Syndicate officer."
 	},
-/obj/item/bedsheet/syndie,
-/obj/structure/bed,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/obj/item/clothing/gloves/color/captain/centcom/admiral{
+	name = "syndicate commander's gloves";
+	desc = "One-of-a-kind gold and black gloves used by some Syndicate officers."
+	},
+/obj/structure/closet/crate/secure/gear{
+	req_access_txt = "150"
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered/syndicate_lava_base/engineering)
 "fg" = (
 /obj/effect/turf_decal/siding/blue/end{
 	dir = 1
@@ -916,6 +934,7 @@
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "fF" = (
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "fO" = (
@@ -1024,20 +1043,12 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
 "gj" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/railing{
-	dir = 6
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/structure/disposaloutlet{
-	dir = 8
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/turf/open/floor/plating/lavaland_baseturf,
+/obj/structure/flora/ash/cacti,
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "gp" = (
 /obj/effect/turf_decal/siding/blue{
@@ -1523,6 +1534,18 @@
 /obj/machinery/vending/fishing,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
+"hL" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/plating/lavaland_baseturf,
+/area/ruin/powered/syndicate_lava_base/engineering)
 "hM" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -1638,10 +1661,14 @@
 /turf/open/floor/plating/dirt/station,
 /area/ruin/powered/syndicate_lava_base/virology)
 "hZ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/chair{
+/obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "ia" = (
@@ -2547,16 +2574,15 @@
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
 "kl" = (
-/obj/effect/mob_spawn/human/lavaland_syndicate{
-	dir = 4
+/obj/structure/railing{
+	dir = 1
 	},
-/obj/machinery/light/small{
-	dir = 8
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/obj/item/bedsheet/syndie,
-/obj/structure/bed,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/lavaland_baseturf,
+/area/lavaland/surface/outdoors)
 "kn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -2804,15 +2830,6 @@
 /obj/item/clothing/glasses/sunglasses/reagent,
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
-"kN" = (
-/obj/structure/railing/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/plating/lavaland_baseturf,
-/area/lavaland/surface/outdoors)
 "kO" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -2826,11 +2843,14 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "kS" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/structure/railing{
+	dir = 5
 	},
-/obj/structure/flora/ash/cacti,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "kU" = (
 /obj/effect/turf_decal/siding/wood{
@@ -3205,14 +3225,9 @@
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "mc" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/plating/lavaland_baseturf,
+/obj/structure/flora/ash/cacti,
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "md" = (
 /obj/structure/toilet{
@@ -3376,6 +3391,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "mJ" = (
@@ -3426,13 +3442,14 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/arrivals)
 "mZ" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/railing/corner{
-	dir = 1
+/obj/structure/railing{
+	dir = 10
 	},
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "nd" = (
@@ -3767,12 +3784,13 @@
 /turf/open/floor/grass,
 /area/ruin/powered/syndicate_lava_base/virology)
 "oh" = (
-/obj/structure/railing{
+/obj/structure/railing/corner{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/line{
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "oi" = (
@@ -3998,6 +4016,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/arrivals)
+"pT" = (
+/obj/structure/flora/rock{
+	layer = 3
+	},
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "qh" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -4083,11 +4108,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
 "rK" = (
-/obj/item/pickaxe/mini{
-	pixel_y = 3;
-	pixel_x = 19
-	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "rP" = (
 /obj/effect/turf_decal/siding/wood{
@@ -4201,8 +4224,15 @@
 	},
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "ui" = (
-/obj/structure/flora/ash/leaf_shroom,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "uT" = (
 /obj/machinery/door/window/northleft{
@@ -4318,13 +4348,13 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "vT" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/railing{
-	dir = 10
+	dir = 4
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "vZ" = (
@@ -4469,7 +4499,8 @@
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/arrivals)
 "zd" = (
-/obj/structure/flora/ash/seraka,
+/obj/structure/flora/ash/leaf_shroom,
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "zq" = (
@@ -4487,23 +4518,6 @@
 	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/powered/syndicate_lava_base/bar)
-"zH" = (
-/obj/item/clothing/suit/armor/vest/capcarapace/syndicate{
-	name = "old syndicate vest";
-	desc = "A sinister-looking gold-trimmed vest covered in dust."
-	},
-/obj/item/clothing/head/HoS/syndicate{
-	desc = "An old black cap that may have once been fit for a high-ranking Syndicate officer."
-	},
-/obj/item/clothing/gloves/color/captain/centcom/admiral{
-	name = "syndicate commander's gloves";
-	desc = "One-of-a-kind gold and black gloves used by some Syndicate officers."
-	},
-/obj/structure/closet/crate/secure/gear{
-	req_access_txt = "150"
-	},
-/turf/open/floor/plating/lavaland_baseturf,
-/area/ruin/powered/syndicate_lava_base/engineering)
 "zJ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -4581,17 +4595,17 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "AP" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+/obj/effect/mob_spawn/human/lavaland_syndicate{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 4
 	},
-/obj/structure/railing{
-	dir = 6
-	},
-/turf/open/floor/plating/lavaland_baseturf,
-/area/ruin/powered/syndicate_lava_base/engineering)
+/obj/item/bedsheet/syndie,
+/obj/structure/bed,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/powered/syndicate_lava_base/dormitories)
 "AX" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -4687,7 +4701,11 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
 "Cv" = (
-/obj/structure/flora/ash/cacti,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/floodlight,
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "CI" = (
@@ -4816,9 +4834,11 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
 "Fc" = (
-/obj/structure/flora/rock{
-	layer = 3
+/obj/item/pickaxe/mini{
+	pixel_y = 3;
+	pixel_x = 19
 	},
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Fd" = (
@@ -4904,18 +4924,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
-"FE" = (
-/obj/effect/mob_spawn/human/lavaland_syndicate/comms{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 4
-	},
-/obj/item/bedsheet/syndie,
-/obj/structure/bed,
-/turf/open/floor/plasteel/grimy,
-/area/ruin/powered/syndicate_lava_base/dormitories)
 "FN" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/vault)
@@ -5284,6 +5292,18 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
+"KQ" = (
+/obj/effect/mob_spawn/human/lavaland_syndicate/comms{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 4
+	},
+/obj/item/bedsheet/syndie,
+/obj/structure/bed,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/powered/syndicate_lava_base/dormitories)
 "KZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -5382,14 +5402,16 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "Mm" = (
-/obj/structure/railing{
-	dir = 1
+/obj/effect/mob_spawn/human/lavaland_syndicate{
+	dir = 4
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
+/obj/machinery/light/small{
+	dir = 8
 	},
-/turf/open/floor/plating/lavaland_baseturf,
-/area/lavaland/surface/outdoors)
+/obj/item/bedsheet/syndie,
+/obj/structure/bed,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/powered/syndicate_lava_base/dormitories)
 "Mn" = (
 /obj/machinery/door/airlock/research{
 	req_access_txt = "150";
@@ -5434,12 +5456,11 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
 "Nq" = (
-/obj/structure/railing{
-	dir = 5
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair{
+	dir = 8
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/lavaland_baseturf,
 /area/lavaland/surface/outdoors)
 "NL" = (
@@ -5861,7 +5882,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "Ub" = (
-/obj/structure/flora/ash/tall_shroom,
+/obj/structure/flora/ash/seraka,
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "Un" = (
@@ -6054,10 +6076,8 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/arrivals)
 "YK" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/floodlight,
+/obj/structure/flora/ash/tall_shroom,
+/obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "YL" = (
@@ -6710,15 +6730,15 @@ dM
 kp
 ks
 Tx
-gj
-mc
-mc
-mc
-mc
-mc
-mc
-mc
-vT
+eH
+hZ
+hZ
+hZ
+hZ
+hZ
+hZ
+hZ
+mZ
 dS
 dS
 ab
@@ -6766,16 +6786,16 @@ lQ
 hN
 Zi
 eh
-eH
+rK
 ms
-eH
-hZ
-eH
-eH
-eH
+rK
+Nq
+rK
+rK
+rK
 ms
+ui
 mZ
-vT
 dS
 dS
 ab
@@ -6830,9 +6850,9 @@ dG
 dG
 dG
 jy
-eH
+rK
+ui
 mZ
-vT
 dS
 dS
 ab
@@ -6888,8 +6908,8 @@ lT
 jy
 jy
 zx
+ui
 mZ
-vT
 dS
 ab
 ab
@@ -7438,11 +7458,11 @@ ha
 nG
 Sw
 hz
-kl
+Mm
 nJ
 hz
 nJ
-kl
+Mm
 hz
 lZ
 mx
@@ -7830,11 +7850,11 @@ iX
 mg
 jq
 hz
-FE
+KQ
 kg
 hz
 nJ
-ff
+AP
 hz
 md
 mA
@@ -7861,7 +7881,7 @@ ab
 ab
 mJ
 mJ
-zd
+Ub
 mI
 fF
 fF
@@ -7920,7 +7940,7 @@ mJ
 fF
 mI
 fF
-ui
+zd
 fF
 PL
 PL
@@ -8030,7 +8050,7 @@ mJ
 mJ
 fF
 fF
-kS
+gj
 fF
 fF
 fF
@@ -8084,8 +8104,8 @@ ab
 ab
 mJ
 mJ
-Ub
-rK
+YK
+Fc
 mI
 fF
 fF
@@ -8141,8 +8161,8 @@ ab
 mJ
 mJ
 mJ
-Fc
-YK
+pT
+Cv
 fF
 fF
 fF
@@ -8255,7 +8275,7 @@ mJ
 mJ
 mJ
 fF
-Cv
+mc
 fF
 fF
 fF
@@ -8368,7 +8388,7 @@ mJ
 mJ
 mJ
 fF
-Cv
+mc
 fF
 fF
 fF
@@ -8483,10 +8503,10 @@ fF
 fF
 ab
 ab
-Mm
+kl
 lO
 ju
-zH
+ff
 ju
 Pk
 is
@@ -8539,8 +8559,8 @@ ab
 ab
 ab
 ab
-Nq
-kN
+kS
+oh
 oW
 ju
 ju
@@ -8596,8 +8616,8 @@ ab
 ab
 ab
 ab
-Nq
-kN
+kS
+oh
 lO
 ju
 ju
@@ -8653,15 +8673,15 @@ ab
 ab
 ab
 ab
-Nq
-oh
-oh
-oh
-oh
-oh
-oh
-oh
-AP
+kS
+vT
+vT
+vT
+vT
+vT
+vT
+vT
+hL
 ab
 ab
 ab
