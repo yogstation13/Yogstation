@@ -53,6 +53,7 @@
 	if(QDELING(src))
 		//linter shits because of the way we init the maps and delete unused assets
 		//CRASH("We just tried to add an element to a qdeleted datum, something is fucked")
+		return
 	var/datum/element/ele = SSdcs.GetElement(arguments)
 	arguments[1] = src
 	if(ele.Attach(arglist(arguments)) == ELEMENT_INCOMPATIBLE)
