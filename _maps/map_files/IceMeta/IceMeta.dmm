@@ -14022,21 +14022,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"edo" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 1
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/engine/atmos_distro";
-	dir = 1;
-	name = "Atmospherics Distribution APC";
-	pixel_y = 23
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos/distro)
 "edz" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
@@ -21231,20 +21216,6 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall,
 /area/science/xenobiology)
-"ged" = (
-/obj/machinery/power/apc{
-	areastring = "/area/medical/patients_rooms/room_b";
-	name = "Patient Room B APC";
-	pixel_y = -23
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "gep" = (
 /turf/closed/wall,
 /area/storage/art)
@@ -36809,6 +36780,19 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"kth" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/auto_name{
+	dir = 1;
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "ktj" = (
 /obj/structure/closet,
 /obj/item/storage/toolbox/emergency,
@@ -63642,6 +63626,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"sah" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/obj/machinery/power/apc/auto_name{
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "sam" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/neutral{
@@ -105396,7 +105392,7 @@ aNz
 ipI
 iVp
 xHY
-ged
+sah
 qPA
 nHe
 nHe
@@ -129271,7 +129267,7 @@ sSl
 nXs
 hIk
 cim
-edo
+kth
 lnY
 wxE
 cJK
