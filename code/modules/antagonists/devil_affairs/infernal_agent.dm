@@ -7,7 +7,7 @@
 
 /datum/antagonist/infernal_affairs/on_gain(mob/living/mob_override)
 	. = ..()
-	uplink_holder = owner.equip_traitor(employer = "The Devl" uplink_owner = src)
+	uplink_holder = owner.equip_traitor(employer = "The Devil" uplink_owner = src)
 
 /datum/antagonist/infernal_affairs/on_removal()
 	. = ..()

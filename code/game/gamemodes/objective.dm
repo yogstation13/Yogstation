@@ -245,8 +245,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(target && target.current)
 		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
 	else
-		explanation_text = "Assassinate [target.name], who has been obliterated."
-
+		explanation_text = "Turn in the corpse of [target.name], who has been obliterated, to the Devil."
 
 /datum/objective/assassinate/once
 	name = "assassinate revival allowed"

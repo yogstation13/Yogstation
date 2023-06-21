@@ -73,6 +73,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_CHANGELING	= /datum/antagonist/changeling,
 	ROLE_WIZARD = /datum/antagonist/wizard,
 	ROLE_INFERNAL_AFFAIRS = /datum/antagonist/infernal_affairs,
+	ROLE_INFERNAL_AFFAIRS_DEVIL = /datum/antagonist/devil,
 	ROLE_RAGINMAGES	= /datum/antagonist/wizard,
 	ROLE_BULLSHITMAGES = /datum/antagonist/wizard,
 	ROLE_MALF = /datum/antagonist/traitor/malf,

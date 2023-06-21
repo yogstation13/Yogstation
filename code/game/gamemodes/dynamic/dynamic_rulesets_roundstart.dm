@@ -225,7 +225,7 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/roundstart/infernal_afafirs
+/datum/dynamic_ruleset/roundstart/infernal_affairs
 	name = "Devil Affairs"
 	antag_flag = ROLE_INFERNAL_AFFAIRS
 	antag_datum = /datum/antagonist/infernal_affairs
