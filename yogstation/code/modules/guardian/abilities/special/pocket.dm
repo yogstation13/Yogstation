@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 /obj/effect/landmark/pocket_dimension_corner
 	name = "pocket dimension corner (bottom left)"
 
-/obj/effect/landmark/pocket_dimension_corner/Initialize()
+/obj/effect/landmark/pocket_dimension_corner/Initialize(mapload)
 	. = ..()
 	var/datum/space_level/level = SSmapping.get_level(z)
 	if (!level)
@@ -294,7 +294,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	mouse_opacity = FALSE
 	var/next_animate = 0
 
-/obj/effect/manifestation/Initialize()
+/obj/effect/manifestation/Initialize(mapload)
 	. = ..()
 	var/X,Y,i,rsq
 	for (i=1, i<=7, ++i)
@@ -433,7 +433,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	flags_1 = NOJAUNT_1
 	var/next_animate = 0
 
-/turf/open/indestructible/pocketspace/Initialize()
+/turf/open/indestructible/pocketspace/Initialize(mapload)
 	. = ..()
 	var/X,Y,i,rsq
 	for (i=1, i<=7, ++i)

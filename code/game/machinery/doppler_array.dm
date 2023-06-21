@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	var/allow_all = FALSE //lets the doppler array process any kind of bomb, in case admins want to be funny
 	verb_say = "states coldly"
 
-/obj/machinery/doppler_array/Initialize()
+/obj/machinery/doppler_array/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, PROC_REF(sense_explosion))
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE, null, null, CALLBACK(src, PROC_REF(rot_message)))
@@ -136,6 +136,6 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		return
 
 
-/obj/machinery/doppler_array/research/science/Initialize()
+/obj/machinery/doppler_array/research/science/Initialize(mapload)
 	. = ..()
 	linked_techweb = SSresearch.science_tech

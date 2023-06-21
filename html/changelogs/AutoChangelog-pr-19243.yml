@@ -1,6 +1,0 @@
-author: " SapphicOverload, Fikou, MrMelbert"
-delete-after: true 
-changes: 
-  - rscadd: "adds firefighter gloves"
-  - tweak: "refactors clothing traits"
-  - imageadd: "adds firefighter glove sprites"

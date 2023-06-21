@@ -434,7 +434,7 @@
 /obj/item/clothing/under/kilt/highlander
 	desc = "You're the only one worthy of this kilt."
 
-/obj/item/clothing/under/kilt/highlander/Initialize()
+/obj/item/clothing/under/kilt/highlander/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, HIGHLANDER)
 
@@ -547,7 +547,7 @@
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
-/obj/item/clothing/under/maid/Initialize()
+/obj/item/clothing/under/maid/Initialize(mapload)
 	. = ..()
 	var/obj/item/clothing/accessory/maidapron/A = new (src)
 	attach_accessory(A)
@@ -790,7 +790,7 @@
 	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
 	can_adjust = FALSE
 
-/obj/item/clothing/under/mech_suit/Initialize()
+/obj/item/clothing/under/mech_suit/Initialize(mapload)
 	..()
 	AddComponent(/datum/component/mech_pilot, 0.9)
 

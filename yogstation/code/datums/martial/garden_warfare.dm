@@ -216,7 +216,7 @@
 	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 100, "embedded_fall_chance" = 0)
 	var/passive_damage = 0.5
 
-/obj/item/splinter/Initialize()
+/obj/item/splinter/Initialize(mapload)
 	..()
 	RegisterSignal(src, COMSIG_ITEM_EMBED_REMOVAL, PROC_REF(on_embed_removal))
 	RegisterSignal(src, COMSIG_ITEM_EMBED_TICK, PROC_REF(embed_tick))

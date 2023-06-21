@@ -9386,33 +9386,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"ezB" = (
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/table,
-/obj/item/folder/yellow{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/item/pen/red{
-	pixel_x = -6;
-	pixel_y = 6
-	},
-/obj/item/cartridge/quartermaster{
-	pixel_x = 8;
-	pixel_y = 7
-	},
-/obj/item/cartridge/quartermaster{
-	pixel_x = 8;
-	pixel_y = 4
-	},
-/obj/item/cartridge/quartermaster{
-	pixel_x = 8;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "ezF" = (
 /turf/closed/mineral/random/labormineral,
 /area/science/test_area)
@@ -17005,6 +16978,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"ihv" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/folder/yellow{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/pen/red{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "ihC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -25530,6 +25518,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"mxY" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	on = 0;
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/storage/box/deputy,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Head of Security's Desk";
+	departmentType = 5;
+	name = "Head of Security RC";
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/red,
+/area/crew_quarters/heads/hos)
 "mye" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
@@ -38961,27 +38966,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"tgi" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	on = 0;
-	pixel_x = -6;
-	pixel_y = 8
-	},
-/obj/item/storage/box/deputy,
-/obj/item/storage/box/seccarts{
-	pixel_x = 3;
-	pixel_y = 2
-	},
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Head of Security's Desk";
-	departmentType = 5;
-	name = "Head of Security RC";
-	pixel_x = -32
-	},
-/turf/open/floor/carpet/red,
-/area/crew_quarters/heads/hos)
 "tgC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -70123,7 +70107,7 @@ qjt
 wnQ
 iMQ
 kPU
-tgi
+mxY
 lHC
 sTH
 xGP
@@ -75815,7 +75799,7 @@ maX
 pQR
 ley
 aUj
-ezB
+ihv
 pcW
 pQR
 bDB

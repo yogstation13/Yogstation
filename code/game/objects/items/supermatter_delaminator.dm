@@ -11,7 +11,7 @@
 	<li>Nanotrasen safety controls will announce the destabilization of the crystal. Your identity will likely be compromised, but nothing can be done about the crystal.</li>\
 	</ul>"
 
-/obj/item/supermatter_delaminator/Initialize()
+/obj/item/supermatter_delaminator/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -70,7 +70,7 @@
 	var/obj/item/supermatter_delaminator/antinoblium_shard/shard
 	var/sealed = TRUE
 
-/obj/item/antinoblium_container/Initialize()
+/obj/item/antinoblium_container/Initialize(mapload)
 	. = ..()
 	shard = new /obj/item/supermatter_delaminator/antinoblium_shard
 

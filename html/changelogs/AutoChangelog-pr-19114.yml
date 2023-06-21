@@ -1,6 +1,0 @@
-author: "azzzertyy"
-delete-after: true 
-changes: 
-  - mapping: "Added Chapel Variation for box"
-  - mapping: "Added Chapel 2 for box"
-  - imageadd: "Added sprite for dark_stair middle"

@@ -17,7 +17,7 @@
 	///damage dealt per second
 	var/damage_caused = 0.5
 
-/obj/item/organ/zombie_infection/Initialize()
+/obj/item/organ/zombie_infection/Initialize(mapload)
 	. = ..()
 	if(iscarbon(loc))
 		Insert(loc)
@@ -27,7 +27,7 @@
 	GLOB.zombie_infection_list -= src
 	. = ..()
 
-/obj/item/organ/zombie_infection/Insert(var/mob/living/carbon/M, special = 0)
+/obj/item/organ/zombie_infection/Insert(mob/living/carbon/M, special = 0)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

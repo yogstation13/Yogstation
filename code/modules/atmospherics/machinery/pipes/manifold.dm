@@ -22,8 +22,8 @@
 
 	var/mutable_appearance/center
 
-/* We use New() instead of Initialize() because these values are used in update_icon()
- * in the mapping subsystem init before Initialize() is called in the atoms subsystem init.
+/* We use New() instead of Initialize(mapload) because these values are used in update_icon()
+ * in the mapping subsystem init before Initialize(mapload) is called in the atoms subsystem init.
  * This is true for the other manifolds (the 4 ways and the heat exchanges) too.
  */
 /obj/machinery/atmospherics/pipe/manifold/New()

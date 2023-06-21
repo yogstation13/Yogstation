@@ -13,7 +13,7 @@
 	var/icon_closed = "lockbox"
 	var/icon_broken = "lockbox+b"
 
-/obj/item/storage/lockbox/Initialize()
+/obj/item/storage/lockbox/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -121,7 +121,7 @@
 	icon_closed = "medalbox"
 	icon_broken = "medalbox+b"
 
-/obj/item/storage/lockbox/medal/Initialize()
+/obj/item/storage/lockbox/medal/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
@@ -268,11 +268,11 @@
 		add_overlay(led)
 	..()
 
-/obj/item/storage/lockbox/vialbox/Initialize()
+/obj/item/storage/lockbox/vialbox/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/storage/lockbox/vialbox/Initialize()
+/obj/item/storage/lockbox/vialbox/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL

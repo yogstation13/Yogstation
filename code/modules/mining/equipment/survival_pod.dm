@@ -321,7 +321,7 @@
 						/obj/item/nuke_core,
 						/obj/item/bikehorn)
 
-/obj/item/fakeartefact/Initialize()
+/obj/item/fakeartefact/Initialize(mapload)
 	. = ..()
 	var/obj/item/I = pick(possible)
 	name = initial(I.name)

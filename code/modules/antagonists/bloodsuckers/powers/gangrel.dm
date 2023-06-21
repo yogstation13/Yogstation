@@ -625,25 +625,25 @@
 	xenoshoe = YES_DIGIT
 	body_parts_covered = GROIN|LEGS|FEET
 
-/obj/item/clothing/neck/wolfcollar/Initialize()
+/obj/item/clothing/neck/wolfcollar/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 
-/obj/item/radio/headset/wolfears/Initialize()
+/obj/item/radio/headset/wolfears/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 	make_syndie()
 
-/obj/item/clothing/gloves/wolfclaws/Initialize()
+/obj/item/clothing/gloves/wolfclaws/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 
-/obj/item/clothing/shoes/wolflegs/Initialize()
+/obj/item/clothing/shoes/wolflegs/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 
-/obj/item/clothing/shoes/xeno_wraps/wolfdigilegs/Initialize()
+/obj/item/clothing/shoes/xeno_wraps/wolfdigilegs/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, BLOODSUCKER_TRAIT)
 

@@ -9,7 +9,7 @@
 	sheet_amount = 1
 	girder_type = /obj/structure/girder/cult
 
-/turf/closed/wall/mineral/cult/Initialize()
+/turf/closed/wall/mineral/cult/Initialize(mapload)
 	new /obj/effect/temp_visual/cult/turf(src)
 	. = ..()
 
@@ -59,7 +59,7 @@
 	var/heated
 	var/obj/effect/clockwork/overlay/wall/realappearance
 
-/turf/closed/wall/clockwork/Initialize()
+/turf/closed/wall/clockwork/Initialize(mapload)
 	. = ..()
 	new /obj/effect/temp_visual/ratvar/wall(src)
 	new /obj/effect/temp_visual/ratvar/beam(src)
@@ -90,7 +90,7 @@
 		animate(src, color = previouscolor, time = 0.8 SECONDS)
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
 
-/turf/closed/wall/clockwork/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd)
+/turf/closed/wall/clockwork/rcd_act(mob/user, obj/item/construction/rcd/the_rcd)
 	return FALSE
 
 /turf/closed/wall/clockwork/devastate_wall()

@@ -133,7 +133,7 @@
 	var/datum/action/cooldown/swipe/swipe_ability
 	alternate_worn_layer = ABOVE_BODY_FRONT_LAYER
 
-/obj/item/clothing/gloves/bracer/cuffs/Initialize()
+/obj/item/clothing/gloves/bracer/cuffs/Initialize(mapload)
 	. = ..()
 	swipe_ability = new(swipe_ability)
 

@@ -10,7 +10,7 @@
 	opacity = 0
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
-/obj/effect/clockwork/Initialize()
+/obj/effect/clockwork/Initialize(mapload)
 	. = ..()
 	GLOB.all_clockwork_objects += src
 

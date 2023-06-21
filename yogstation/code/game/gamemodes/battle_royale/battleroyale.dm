@@ -287,7 +287,7 @@ GLOBAL_VAR(stormdamage)
 		return
 	exit(user)
 
-/obj/structure/battle_bus/Initialize()
+/obj/structure/battle_bus/Initialize(mapload)
 	. = ..()
 	if(GLOB.thebattlebus)
 		qdel(src) //There can be ONLY ONE
@@ -304,7 +304,7 @@ GLOBAL_VAR(stormdamage)
 /obj/structure/battle_bus/relaymove(mob/living/user, direction)
 	exit(user)
 
-/obj/structure/battle_bus/proc/exit(var/mob/living/carbon/human/Ltaker)
+/obj/structure/battle_bus/proc/exit(mob/living/carbon/human/Ltaker)
 	Ltaker.forceMove(get_turf(src))
 	REMOVE_TRAIT(Ltaker, TRAIT_XRAY_VISION, "virginity")
 	Ltaker.update_sight()

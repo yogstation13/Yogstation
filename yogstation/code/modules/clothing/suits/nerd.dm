@@ -53,7 +53,7 @@
 	COOLDOWN_DECLARE(next_damage_notify)
 	COOLDOWN_DECLARE(next_morphine)
 
-/obj/item/clothing/suit/armor/nerd/Initialize()
+/obj/item/clothing/suit/armor/nerd/Initialize(mapload)
 	. = ..()
 	GC = new(src)
 	GC.scanning = TRUE
@@ -89,7 +89,7 @@
 	do_sparks(8, FALSE, get_turf(src))
 	return TRUE
 
-/obj/item/clothing/suit/armor/nerd/proc/add_queue(var/desired_file,var/desired_delay,var/purge_queue=FALSE)
+/obj/item/clothing/suit/armor/nerd/proc/add_queue(desired_file, desired_delay, purge_queue=FALSE)
 
 	var/was_empty_sound_queue = !length(sound_queue)
 

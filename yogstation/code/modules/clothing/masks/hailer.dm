@@ -11,7 +11,7 @@
 	var/dispatch_cooldown = 250
 	var/last_dispatch = 0
 
-/obj/item/clothing/mask/gas/sechailer/Initialize()
+/obj/item/clothing/mask/gas/sechailer/Initialize(mapload)
 	. = ..()
 	GLOB.sechailers += src
 	radio = new(src)

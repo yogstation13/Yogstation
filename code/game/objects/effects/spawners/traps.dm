@@ -14,7 +14,7 @@
 	icon = 'icons/obj/structures_spawners.dmi'
 	icon_state = "wire_splicing"
 
-/obj/effect/spawner/wire_splicing/Initialize()
+/obj/effect/spawner/wire_splicing/Initialize(mapload)
 	. = ..()
 	new/obj/structure/wire_splicing(get_turf(src))
 	return INITIALIZE_HINT_QDEL

@@ -28,7 +28,7 @@
 	buckle_lying = 0
 	var/random_color = TRUE
 
-/mob/living/simple_animal/chocobo/Initialize()
+/mob/living/simple_animal/chocobo/Initialize(mapload)
 	. = ..()
 	if(random_color)
 		var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))

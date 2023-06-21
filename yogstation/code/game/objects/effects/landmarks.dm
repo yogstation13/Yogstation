@@ -218,7 +218,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "snukeop_spawn"
 
-/obj/effect/landmark/start/infiltrator/Initialize()
+/obj/effect/landmark/start/infiltrator/Initialize(mapload)
 	..()
 	GLOB.infiltrator_start += loc
 	return INITIALIZE_HINT_QDEL
@@ -228,7 +228,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "random_loot"
 
-/obj/effect/landmark/start/infiltrator_objective/Initialize()
+/obj/effect/landmark/start/infiltrator_objective/Initialize(mapload)
 	..()
 	GLOB.infiltrator_objective_items += loc
 	return INITIALIZE_HINT_QDEL 

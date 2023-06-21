@@ -39,7 +39,7 @@
 	var/grinding = FALSE
 	var/datum/action/drake_ollie/dollie
 
-/mob/living/simple_animal/hostile/drakeling/Initialize()
+/mob/living/simple_animal/hostile/drakeling/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8, MOB_LAYER), TEXT_SOUTH = list(0, 8, MOB_LAYER), TEXT_EAST = list(0, 8, MOB_LAYER), TEXT_WEST = list( 0, 8, MOB_LAYER)))
@@ -175,7 +175,7 @@
 	return TRUE
 
 ///gets the list of turfs the fire breath attack hits
-/mob/living/simple_animal/hostile/drakeling/proc/line_target(var/range, var/atom/at)
+/mob/living/simple_animal/hostile/drakeling/proc/line_target(range, atom/at)
 	if(!at)
 		return
 	var/angle = ATAN2(at.x - src.x, at.y - src.y)
@@ -188,7 +188,7 @@
 	return (getline(src, T) - get_turf(src))
 
 ///actual bit that shoots fire for the fire breath attack
-/datum/action/cooldown/spell/pointed/drakeling/fire_breath/proc/drakeling_fire_line(var/source, var/list/turfs, var/damage, var/list/protected)
+/datum/action/cooldown/spell/pointed/drakeling/fire_breath/proc/drakeling_fire_line(source, list/turfs, damage, list/protected)
 	var/list/hit_list = list()
 	for(var/turf/T in turfs)
 		if(istype(T, /turf/closed))

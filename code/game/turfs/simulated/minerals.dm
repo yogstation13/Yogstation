@@ -23,7 +23,7 @@
 	var/defer_change = FALSE
 	var/hardness = 1 //how hard the material is, we'll have to have more powerful stuff if we want to blast harder materials.
 	
-/turf/closed/mineral/Initialize()
+/turf/closed/mineral/Initialize(mapload)
 	if (!canSmoothWith)
 		canSmoothWith = list(/turf/closed/mineral, /turf/closed/indestructible)
 	var/matrix/M = new
@@ -163,7 +163,7 @@
 	var/mineralChance = 13
 	var/display_icon_state = "rock"
 
-/turf/closed/mineral/random/Initialize()
+/turf/closed/mineral/random/Initialize(mapload)
 
 	mineralSpawnChanceList = typelist("mineralSpawnChanceList", mineralSpawnChanceList)
 
@@ -750,7 +750,7 @@
 	var/activated_name = null
 	var/mutable_appearance/activated_overlay
 
-/turf/closed/mineral/gibtonite/Initialize()
+/turf/closed/mineral/gibtonite/Initialize(mapload)
 	scan_state = pick("rock_Uranium", "rock_Gold", "rock_Diamond", "rock_Silver", "rock_Plasma", "rock_BScrystal", "rock_Titanium", "rock_Iron", "rock_Gibtonite") //YOGS - stealth gibtonite, hides it as another mineral
 	det_time = rand(8,10) //So you don't know exactly when the hot potato will explode
 	. = ..()

@@ -14,7 +14,7 @@
 	Asserts are to avoid the inevitable infinite loops
 */
 
-/area/holodeck/powered(var/chan)
+/area/holodeck/powered(chan)
 	if(!requires_power)
 		return 1
 	if(always_unpowered)
@@ -25,7 +25,7 @@
 	ASSERT(!istype(A, /area/holodeck))
 	return A.powered(chan)
 
-/area/holodeck/usage(var/chan)
+/area/holodeck/usage(chan)
 	if(!linked)
 		return 0
 	var/area/A = get_area(linked)
@@ -39,7 +39,7 @@
 	ASSERT(!istype(A, /area/holodeck))
 	return A.addStaticPower(value,powerchannel)
 
-/area/holodeck/use_power(var/amount, var/chan)
+/area/holodeck/use_power(amount, chan)
 	if(!linked)
 		return 0
 	var/area/A = get_area(linked)
