@@ -5,14 +5,14 @@
 "b" = (
 /turf/closed/wall/r_wall,
 /area/template_noop)
-"c" = (
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/template_noop)
 "g" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
+/area/template_noop)
+"h" = (
+/obj/structure/lattice,
+/turf/template_noop,
 /area/template_noop)
 "n" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -22,20 +22,12 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/template_noop)
-"v" = (
-/obj/item/clothing/mask/yogs/dallas,
-/turf/open/space/basic,
-/area/template_noop)
 "x" = (
 /obj/effect/spawner/lootdrop/maintenance/three,
 /turf/open/floor/plating,
 /area/template_noop)
-"E" = (
-/turf/open/space/basic,
-/area/template_noop)
-"H" = (
-/obj/item/stack/rods,
-/turf/open/space/basic,
+"D" = (
+/turf/template_noop,
 /area/template_noop)
 "I" = (
 /turf/open/floor/mineral/gold{
@@ -69,6 +61,14 @@
 "U" = (
 /obj/structure/girder/reinforced,
 /turf/open/floor/plating/airless,
+/area/template_noop)
+"V" = (
+/obj/item/stack/rods,
+/turf/template_noop,
+/area/template_noop)
+"W" = (
+/obj/item/clothing/mask/yogs/dallas,
+/turf/template_noop,
 /area/template_noop)
 "Y" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -104,72 +104,72 @@ a
 (3,1,1) = {"
 a
 n
-H
-E
-E
-E
-c
-c
+V
+D
+D
+D
+h
+h
 n
 a
 "}
 (4,1,1) = {"
 a
 n
-E
-H
-v
+D
+V
+W
 b
 t
-c
+h
 n
 a
 "}
 (5,1,1) = {"
 a
 n
-E
+D
 U
 R
 I
 b
-E
+D
 n
 a
 "}
 (6,1,1) = {"
 a
 n
-E
+D
 b
 I
 P
 b
-E
+D
 n
 a
 "}
 (7,1,1) = {"
 a
 n
-c
+h
 t
 b
 b
 t
-c
+h
 n
 a
 "}
 (8,1,1) = {"
 a
 n
-c
-c
-E
-E
-c
-c
+h
+h
+D
+D
+h
+h
 n
 a
 "}

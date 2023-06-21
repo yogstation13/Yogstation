@@ -14,9 +14,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/template_noop)
-"r" = (
-/turf/open/space/basic,
-/area/space)
 "w" = (
 /obj/structure/chair,
 /turf/open/floor/plating,
@@ -24,6 +21,9 @@
 "x" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
+/area/template_noop)
+"F" = (
+/turf/template_noop,
 /area/template_noop)
 "M" = (
 /turf/open/floor/plating{
@@ -44,7 +44,7 @@
 x
 f
 R
-r
+F
 "}
 (2,1,1) = {"
 e
@@ -68,5 +68,5 @@ R
 f
 T
 R
-r
+F
 "}

@@ -7710,6 +7710,18 @@
 	dir = 1
 	},
 /area/crew_quarters/kitchen)
+"clE" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 10
+	},
+/obj/machinery/power/apc/auto_name{
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "clL" = (
 /obj/machinery/camera{
 	c_tag = "Bridge - Port Access";
@@ -14022,21 +14034,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"edo" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 1
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/engine/atmos_distro";
-	dir = 1;
-	name = "Atmospherics Distribution APC";
-	pixel_y = 23
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos/distro)
 "edz" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
@@ -21231,20 +21228,6 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall,
 /area/science/xenobiology)
-"ged" = (
-/obj/machinery/power/apc{
-	areastring = "/area/medical/patients_rooms/room_b";
-	name = "Patient Room B APC";
-	pixel_y = -23
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "gep" = (
 /turf/closed/wall,
 /area/storage/art)
@@ -24872,6 +24855,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"haS" = (
+/obj/structure/cable/yellow,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/power/apc/auto_name{
+	pixel_y = -23
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/secondary)
 "hbd" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -36217,6 +36208,19 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"kjd" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/auto_name{
+	dir = 1;
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos/distro)
 "kjg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -37893,18 +37897,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"kJB" = (
-/obj/machinery/light/small,
-/obj/machinery/camera{
-	c_tag = "MiniSat Exterior - Fore";
-	dir = 1;
-	network = list("minisat","ss13")
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/aisat)
 "kJF" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
@@ -56228,16 +56220,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"pTk" = (
-/obj/structure/cable/yellow,
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/power/apc/highcap/five_k{
-	areastring = "/area/maintenance/aft/secondary";
-	name = "Aft Maintenance";
-	pixel_y = -23
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/secondary)
 "pTt" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -69197,6 +69179,19 @@
 /obj/item/cigbutt,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"tDd" = (
+/obj/machinery/light/small,
+/obj/machinery/camera{
+	c_tag = "MiniSat Exterior - Fore";
+	dir = 1;
+	network = list("minisat","ss13")
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/aisat)
 "tDj" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -105396,7 +105391,7 @@ aNz
 ipI
 iVp
 xHY
-ged
+clE
 qPA
 nHe
 nHe
@@ -115956,7 +115951,7 @@ sdF
 phd
 qxL
 qsr
-pTk
+haS
 dbQ
 kih
 bFW
@@ -129271,7 +129266,7 @@ sSl
 nXs
 hIk
 cim
-edo
+kjd
 lnY
 wxE
 cJK
@@ -141064,8 +141059,8 @@ ylX
 tZY
 ohE
 tNz
-kJB
-wMi
+tDd
+jBE
 ocL
 jYF
 kfW
