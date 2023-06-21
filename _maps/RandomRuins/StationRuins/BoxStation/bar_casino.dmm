@@ -857,6 +857,14 @@
 	icon_state = "showroomfloor"
 	},
 /area/crew_quarters/kitchen)
+"zt" = (
+/obj/machinery/smartfridge/drinks,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "barshutters";
+	name = "bar shutters"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "Ax" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/border_only,
@@ -880,14 +888,6 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"Dp" = (
-/obj/machinery/smartfridge/drinks,
-/obj/machinery/door/poddoor/preopen{
-	id = "barshutters";
-	name = "privacy shutters"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1327,7 +1327,7 @@ bq
 cm
 bh
 cm
-Dp
+zt
 ap
 db
 ac
