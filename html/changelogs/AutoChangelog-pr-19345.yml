@@ -1,8 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - rscdel: "removes long-range analyzers, gives their functionality to tricorders"
-  - tweak: "tricorders can scan gases at range like the long range analyzers could"
-  - tweak: "replaced all instances of long-range analyzers with tricorders"
-  - tweak: "tricorders are now unlocked at advanced engineering tech where the long-ranged analyzers were"
-  - tweak: "labcoats can hold tricorders"
