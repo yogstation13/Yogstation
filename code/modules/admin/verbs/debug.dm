@@ -136,7 +136,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 //adv proc call this, ya nerds
 /world/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
 	if(target == GLOBAL_PROC)
-		return call("/proc/[procname]")(arglist(arguments))
+		return call(procname)(arglist(arguments))
 	else if(target != world)
 		return call(target, procname)(arglist(arguments))
 	else
