@@ -278,7 +278,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.clear_alert("preternis_charge")
 
 /datum/species/preternis/proc/attackslowdown(atom/target, mob/user, proximity_flag, click_parameters)//make weapon use slower
-	if(!ispreternis(user) || !proximity_flag)
+	if(!ispreternis(user) || !proximity_flag || !ishuman(target))
 		return	
 	var/mob/living/carbon/human/H = user
 	var/obj/item/weapon = H.get_active_held_item()
