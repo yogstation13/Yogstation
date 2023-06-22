@@ -1024,7 +1024,7 @@
 	desc = "An advanced hardsuit with built in energy shielding."
 	icon_state = "sheildsuit1-sheildie"
 	item_state = "syndie_hardsuit"
-	hardsuit_type = "sheildie"
+	hardsuit_type = "syndi"
 	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 25, BOMB = 80, BIO = 100, RAD = 50, FIRE = 100, ACID = 100, WOUND = 30)
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/transforming/energy/sword/saber, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/syndi
@@ -1036,7 +1036,7 @@
 	desc = "An advanced hardsuit helmet with built in energy shielding."
 	icon_state = "sheildhelm1-sheildie"
 	item_state = "syndie_helm"
-	hardsuit_type = "sheildie"
+	hardsuit_type = "syndi"
 	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 25, BOMB = 80, BIO = 100, RAD = 50, FIRE = 100, ACID = 100, WOUND = 30)
 
 ///Deathsquad version
