@@ -11,10 +11,24 @@
 /datum/antagonist/infernal_affairs/on_gain(mob/living/mob_override)
 	. = ..()
 	uplink_holder = owner.equip_traitor(employer = "The Devil", uplink_owner = src)
+	RegisterSignal(SSinfernal_affairs, COMSIG_ON_UPLINK_PURCHASE, PROC_REF(on_uplink_purchase))
 
 /datum/antagonist/infernal_affairs/on_removal()
 	. = ..()
 	QDEL_NULL(uplink_holder)
+
+/**
+ * ## on_uplink_purchase
+ * 
+ * Called when an uplink item is purchased.
+ * We will keep track of their items to destroy them when the Agent dies.
+ */
+/datum/antagonist/infernal_affairs/proc/on_uplink_purchase(datum/component/uplink/source, atom/purchased_item, mob/living/purchaser)
+	SIGNAL_HANDLER
+	if(!SSinfernal_affairs.agent_datums_and_items[src][purchased_item])
+		SSinfernal_affairs.agent_datums_and_items[src][purchased_item] = 1
+	else
+		SSinfernal_affairs.agent_datums_and_items[src][purchased_item]++
 
 /datum/outfit/devil_affair_agent
 	name = "Devil Affairs Agent (Preview only)"
@@ -27,7 +41,6 @@
 /datum/outfit/devil_affair_agent/post_equip(mob/living/carbon/human/owner, visualsOnly)
 	var/obj/item/melee/transforming/energy/sword/sword = locate() in owner.held_items
 	sword.transform_weapon(owner, TRUE)
-//	owner.update_inv_hands()
 
 /obj/item/clothing/head/devil_horns
 	desc = "The one the only Devil."
