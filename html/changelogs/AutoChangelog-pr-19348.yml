@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "doubles metabolization rate of bathsalts and meth"
+  - tweak: "doubles addiction/overdose threshold of bathsalts and meth"
