@@ -1022,7 +1022,7 @@
 /obj/item/clothing/suit/space/hardsuit/shielded/syndi
 	name = "blood-red hardsuit"
 	desc = "An advanced hardsuit with built in energy shielding."
-	icon_state = "sheildsuit1-sheildie"
+	icon_state = "sheildsuit1-syndi"
 	item_state = "syndie_hardsuit"
 	hardsuit_type = "syndi"
 	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 25, BOMB = 80, BIO = 100, RAD = 50, FIRE = 100, ACID = 100, WOUND = 30)
@@ -1034,7 +1034,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/syndi
 	name = "blood-red hardsuit helmet"
 	desc = "An advanced hardsuit helmet with built in energy shielding."
-	icon_state = "sheildhelm1-sheildie"
+	icon_state = "sheildhelm1-syndi"
 	item_state = "syndie_helm"
 	hardsuit_type = "syndi"
 	armor = list(MELEE = 40, BULLET = 50, LASER = 30, ENERGY = 25, BOMB = 80, BIO = 100, RAD = 50, FIRE = 100, ACID = 100, WOUND = 30)
