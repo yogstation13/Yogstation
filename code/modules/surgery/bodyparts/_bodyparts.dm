@@ -213,7 +213,7 @@
 			for(var/dam_instance in stamina_cache)
 				if(world.time > dam_instance["expiration"])
 					heal_damage(0, 0, dam_instance["amount"] * STAMINA_REGENERATION_COEFFICIENT, null, FALSE)
-					stamina_cache -= dam_instance
+					stamina_cache -= list(dam_instance)
 					. |= BODYPART_LIFE_UPDATE_HEALTH
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
