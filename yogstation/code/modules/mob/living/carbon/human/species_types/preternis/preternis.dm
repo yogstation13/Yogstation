@@ -78,7 +78,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
 
-	RegisterSignal(C, COMSIG_MOB_ITEM_AFTERATTACK, PROC_REF(attackslowdown), C)
+	RegisterSignal(C, COMSIG_MOB_ITEM_AFTERATTACK, PROC_REF(attackslowdown))
 
 	if(ishuman(C))
 		maglock = new
@@ -277,10 +277,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	else
 		H.clear_alert("preternis_charge")
 
-/datum/species/preternis/proc/attackslowdown(mob/living/carbon/C)//make weapon use slower
-	if(!ispreternis(C))
+/datum/species/preternis/proc/attackslowdown(atom/target, mob/user, proximity_flag, click_parameters)//make weapon use slower
+	if(!ispreternis(user) || !proximity_flag)
 		return	
-	C.next_move += 2 //adds 0.2 second delay to weapon combat
+	var/mob/living/carbon/human/H = user
+	var/obj/item/weapon = H.get_active_held_item()
+	if(weapon && istype(weapon) && weapon.force)
+		H.next_move += 2 //adds 0.2 second delay to weapon combat
 
 /datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make their punches slower
 	. = ..()
