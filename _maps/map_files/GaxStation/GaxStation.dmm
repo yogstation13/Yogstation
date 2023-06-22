@@ -29325,6 +29325,24 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/eva)
+"oxg" = (
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/item/stamp/law,
+/obj/structure/table/wood,
+/obj/machinery/power/apc{
+	areastring = "/area/lawoffice";
+	dir = 8;
+	name = "Law Office APC";
+	pixel_x = -25
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/wood,
+/area/lawoffice)
 "oxM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -45723,25 +45741,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"wzN" = (
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = 2;
-	pixel_y = 5
-	},
-/obj/item/stamp/law,
-/obj/structure/table/wood,
-/obj/machinery/power/apc{
-	areastring = "/area/lawoffice";
-	dir = 8;
-	name = "Law Office APC";
-	pixel_x = -25
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/item/cartridge/lawyer,
-/turf/open/floor/wood,
-/area/lawoffice)
 "wAg" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/effect/turf_decal/bot,
@@ -69081,7 +69080,7 @@ nKS
 myf
 kaU
 ylA
-wzN
+oxg
 uMR
 yaF
 wHZ
