@@ -1379,6 +1379,19 @@
 "ou" = (
 /turf/open/floor/engine/o2,
 /area/ruin/space/has_grav/listeningstation/engineering)
+"pk" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/engineering)
 "pm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1405,23 +1418,6 @@
 "pZ" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/listeningstation/telecomms)
-"qd" = (
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/advanced_airlock_controller{
-	pixel_y = 24;
-	req_access = list(150)
-	},
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/engineering)
 "qk" = (
 /obj/machinery/computer/arcade/battle,
 /obj/effect/turf_decal/tile/red/half/contrasted{
@@ -2078,6 +2074,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/listeningstation/quarters)
+"Dj" = (
+/obj/machinery/advanced_airlock_controller{
+	pixel_y = 24;
+	req_access = list(150)
+	},
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/listeningstation/engineering)
 "Dk" = (
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/listeningstation/engineering)
@@ -4281,7 +4284,7 @@ bq
 aL
 bn
 bn
-sR
+Dj
 Mw
 NO
 NO
@@ -4320,7 +4323,7 @@ jK
 SH
 by
 aO
-qd
+pk
 RS
 bF
 km
