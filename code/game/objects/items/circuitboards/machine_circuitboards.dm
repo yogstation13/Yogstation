@@ -549,7 +549,7 @@
 			build_path = /obj/machinery/paystand/register
 			return
 	return ..()
-			
+
 
 /obj/item/circuitboard/machine/ticketmachine
 	name = "Ticket Machine (Machine Board)"
@@ -697,7 +697,7 @@
 		/obj/machinery/vending/wardrobe/chem_wardrobe = "ChemDrobe",
 		/obj/machinery/vending/wardrobe/gene_wardrobe = "GeneDrobe",
 		/obj/machinery/vending/wardrobe/viro_wardrobe = "ViroDrobe",
-		/obj/machinery/vending/wardrobe/sig_wardrobe = "SigDrobe",
+		/obj/machinery/vending/wardrobe/sig_wardrobe = "NetDrobe",
 		/obj/machinery/vending/clothing = "ClothesMate",
 		/obj/machinery/vending/medical = "NanoMed Plus",
 		/obj/machinery/vending/wallmed = "NanoMed",
@@ -1099,7 +1099,7 @@
 		/obj/item/stock_parts/capacitor = 2,
 		/obj/item/stack/sheet/glass = 2,
 		/obj/item/stack/cable_coil = 1)
-		
+
 /obj/item/circuitboard/machine/ai_core_display
 	name = "AI Core Display (Machine Board)"
 	icon_state = "science"

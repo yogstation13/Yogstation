@@ -447,7 +447,7 @@
 					/obj/item/clothing/head/beret/sec/secconhat,
 					/obj/item/clothing/suit/armor/secconvest)
 	crate_name = "constable supply crate"
-	
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Armory //////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -2875,7 +2875,7 @@
 
 /datum/supply_pack/costumes_toys/wardrobes/engineering
 	name = "Engineering Wardrobe Supply Crate"
-	desc = "This crate contains refills for the EngiDrobe, AtmosDrobe and SigDrobe."
+	desc = "This crate contains refills for the EngiDrobe, AtmosDrobe and NetDrobe."
 	cost = 1500
 	contains = list(/obj/item/vending_refill/wardrobe/engi_wardrobe,
 					/obj/item/vending_refill/wardrobe/atmos_wardrobe,
