@@ -10,8 +10,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	///icon state name for inhand overlays
 	var/item_state = null
-	///the base icon state used for anything that changes their icon state.
-	var/base_icon_state
 	///Icon file for left hand inhand overlays
 	var/lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	///Icon file for right inhand overlays
