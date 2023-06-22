@@ -1,0 +1,5 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - bugfix: "Acid should be able to be cleaned now"
+  - bugfix: "When a vending machine falls on someone and actually rolls the flatten effect it should work"
