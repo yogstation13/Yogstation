@@ -478,7 +478,7 @@
 	},
 /area/chapel/main)
 "Cq" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "Cv" = (

@@ -1289,7 +1289,7 @@
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "pX" = (
-/obj/item/twohanded/required/kirbyplants,
+/obj/item/kirbyplants,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "pY" = (
@@ -2750,7 +2750,7 @@
 "Pm" = (
 /obj/structure/rack,
 /obj/item/restraints/legcuffs/beartrap,
-/obj/item/twohanded/fireaxe,
+/obj/item/fireaxe,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "Pn" = (

@@ -664,59 +664,67 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		to_chat(user, span_warning("\The [src] can only transport items!"))
 
 
-/obj/item/twohanded/cult_spear
+/obj/item/cult_spear
 	name = "blood halberd"
 	desc = "A sickening spear composed entirely of crystallized blood."
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "bloodspear0"
+	base_icon_state = "bloodspear"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	slot_flags = 0
 	force = 12
-	force_wielded = 16
 	throwforce = 35
 	throw_speed = 2
 	armour_penetration = 20
 	weapon_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 1, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
-	wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5)
 	attack_verb = list("attacked", "impaled", "stabbed", "torn", "gored")
 	sharpness = SHARP_POINTY
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	var/datum/action/innate/cult/spear/spear_act
 
-/obj/item/twohanded/cult_spear/Initialize(mapload)
+/obj/item/cult_spear/Initialize(mapload)
 	. = ..()
+	AddComponent(/datum/component/two_handed, \
+		force_unwielded = 12, \
+		force_wielded = 16, \
+		icon_wielded = "[base_icon_state]1", \
+		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 2, DAMAGE_HIGH = 5), \
+	)
 	AddComponent(/datum/component/butchering, 100, 90)
 
-/obj/item/twohanded/cult_spear/Destroy()
+/obj/item/cult_spear/Destroy()
 	if(spear_act)
 		qdel(spear_act)
 	..()
 
-/obj/item/twohanded/cult_spear/update_icon()
-	icon_state = "bloodspear[wielded]"
+/obj/item/cult_spear/update_icon()
+	icon_state = "[base_icon_state]0"
 
-/obj/item/twohanded/cult_spear/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	var/turf/T = get_turf(hit_atom)
-	if(isliving(hit_atom))
-		var/mob/living/L = hit_atom
-		if(iscultist(L))
-			playsound(src, 'sound/weapons/throwtap.ogg', 50)
-			if(L.put_in_active_hand(src))
-				L.visible_message(span_warning("[L] catches [src] out of the air!"))
-			else
-				L.visible_message(span_warning("[src] bounces off of [L], as if repelled by an unseen force!"))
-		else if(!..())
-			if(!L.anti_magic_check())
-				if(is_servant_of_ratvar(L))
-					L.Paralyze(20)
-				else
-					L.Paralyze(10)
-			break_spear(T)
-	else
-		..()
+/obj/item/cult_spear/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(!isliving(hit_atom))
+		return ..()
 
-/obj/item/twohanded/cult_spear/proc/break_spear(turf/T)
+	var/mob/living/L = hit_atom
+	if(iscultist(L))
+		playsound(src, 'sound/weapons/throwtap.ogg', 50)
+		if(L.put_in_active_hand(src))
+			L.visible_message(span_warning("[L] catches [src] out of the air!"))
+		else
+			L.visible_message(span_warning("[src] bounces off of [L], as if repelled by an unseen force!"))
+		return
+
+	. = ..()
+	if(.)
+		return
+	if(!L.anti_magic_check())
+		if(is_servant_of_ratvar(L))
+			L.Paralyze(20)
+		else
+			L.Paralyze(10)
+	break_spear(get_turf(hit_atom))
+
+/obj/item/cult_spear/proc/break_spear(turf/T)
 	if(src)
 		if(!T)
 			T = get_turf(src)
@@ -735,7 +743,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 
 	button_icon_state = "bloodspear"
 	default_button_position = "6:157,4:-2"
-	var/obj/item/twohanded/cult_spear/spear
+	var/obj/item/cult_spear/spear
 	var/cooldown = 0
 
 /datum/action/innate/cult/spear/Grant(mob/user, obj/blood_spear)

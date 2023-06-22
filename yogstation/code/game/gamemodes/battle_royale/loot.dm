@@ -148,7 +148,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/melee/spear = 4,
 
 		/obj/item/pen/edagger = 3,
-		/obj/item/twohanded/bigspoon = 3,
+		/obj/item/bigspoon = 3,
 
 		/obj/item/kitchen/knife/combat = 2,
 		/obj/item/melee/spear/bonespear = 2,
@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/fireaxe/metal_h2_axe = 1,
 		/obj/item/nullrod/whip = 1,
 
-		/obj/item/twohanded/vxtvulhammer = 0,
+		/obj/item/melee/vxtvulhammer = 0,
 		/obj/item/gun/ballistic/shotgun/riot = 0,
 		/obj/item/gun/ballistic/shotgun/automatic/dual_tube = 0,
 		/obj/item/gun/ballistic/revolver/detective = 0,
@@ -196,7 +196,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/vibro_weapon = -3, //Strong melee weapon, but not enough to be -5
 
 		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = -4,
-		/obj/item/twohanded/dualsaber = -4,
+		/obj/item/melee/dualsaber = -4,
 		/obj/item/battleroyale/itemspawner/breakbow = -4, //Strong melee weapon, along with infinte arrows
 		/obj/item/gun/energy/beam_rifle = -4,
 

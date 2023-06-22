@@ -4,7 +4,7 @@
 /obj/item/melee/spear/bonespear/chitinspear : /obj/item/melee/spear/bonespear/chitinspear
 /obj/item/melee/spear/bamboospear : /obj/item/melee/spear/bamboospear
 /obj/item/twohanded/required/cult_bastard : /obj/item/melee/cult_bastard
-/obj/item/twohanded/required/chainsaw : /obj/item/melee/chainsaw
+/obj/item/melee/chainsaw : /obj/item/melee/chainsaw
 
 # now we'll do the generic paths, removing 'required' entirely.
 

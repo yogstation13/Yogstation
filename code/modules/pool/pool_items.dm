@@ -4,15 +4,17 @@
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	force = 5
 	damtype = STAMINA
-	wieldsound = 'sound/weapons/tap.ogg'
-	unwieldsound = 'sound/weapons/tap.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 
 /obj/item/pool/Initialize(mapload)
 	. = ..()
 	//Pick a random color
-	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
+	AddComponent(/datum/component/two_handed, \
+		wieldsound = 'sound/weapons/tap.ogg', \
+		unwieldsound = 'sound/weapons/tap.ogg', \
+		require_twohands = TRUE, \
+	)
 	color = pick(COLOR_YELLOW, COLOR_LIME, COLOR_RED, COLOR_BLUE_LIGHT, COLOR_CYAN, COLOR_MAGENTA)
 
 /obj/item/pool/rubber_ring
@@ -44,7 +46,7 @@
 
 /obj/item/pool/pool_noodle/attack(mob/target, mob/living/carbon/human/user)
 	. = ..()
-	if(wielded && prob(50))
+	if(HAS_TRAIT(src, TRAIT_WIELDED) && prob(50))
 		INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
 
 /obj/item/pool/pool_noodle/proc/jedi_spin(mob/living/user) //rip complex code, but this fucked up blocking

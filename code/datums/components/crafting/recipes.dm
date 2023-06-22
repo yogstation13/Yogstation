@@ -232,7 +232,7 @@
 /datum/crafting_recipe/toysword
 	name = "Toy Sledgehammer"
 	reqs = list(/obj/item/light/bulb = 2, /obj/item/stack/cable_coil = 1, /obj/item/stack/sheet/plastic = 4)
-	result = /obj/item/twohanded/vxtvulhammer/toy/pirate // not authentic!!!!
+	result = /obj/item/melee/vxtvulhammer/toy/pirate // not authentic!!!!
 	category = CAT_MISC
 
 /datum/crafting_recipe/toybat

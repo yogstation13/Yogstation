@@ -681,7 +681,7 @@
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
 "vt" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "vA" = (
@@ -959,7 +959,7 @@
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
 "JJ" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/grass,
 /area/crew_quarters/bar)
 "JV" = (

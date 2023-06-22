@@ -25,8 +25,7 @@
 	return ..()
 
 /obj/item/binoculars/proc/on_wield(atom/source, mob/user)
-	SIGNAL_HANDLER
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(unwield))
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_walk))
 	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate))
 	listeningTo = user
 	user.visible_message("[user] holds [src] up to [user.p_their()] eyes.","You hold [src] up to your eyes.")
@@ -35,9 +34,9 @@
 	user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, user.dir)
 
 /obj/item/binoculars/proc/on_unwield(atom/source, mob/user)
-	SIGNAL_HANDLER
-	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
 	listeningTo = null
 	item_state = "binoculars"
 	user.regenerate_icons()
@@ -48,3 +47,8 @@
 		var/mob/lad = thing
 		lad.regenerate_icons()
 		lad.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
+
+/obj/item/binoculars/proc/on_walk()
+	SIGNAL_HANDLER
+
+	attack_self(listeningTo) //Yes I have sinned, why do you ask?

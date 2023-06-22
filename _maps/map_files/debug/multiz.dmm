@@ -1209,7 +1209,7 @@
 "dO" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/item/twohanded/fireaxe,
+/obj/item/fireaxe,
 /obj/item/extinguisher,
 /turf/open/floor/plasteel,
 /area/storage/primary)

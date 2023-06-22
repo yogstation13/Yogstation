@@ -403,7 +403,7 @@
 /obj/item/organ/cyberimp/arm/syndie_hammer
 	name = "Vxtvul Hammer implant"
 	desc = "A folded Vxtvul Hammer designed to be incorporated into preterni chassis. Surgery can permit it to fit in other organic bodies."
-	contents = newlist(/obj/item/twohanded/vxtvulhammer)
+	contents = newlist(/obj/item/melee/vxtvulhammer)
 	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/arm/nt_mantis

@@ -563,7 +563,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "pw" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /obj/item/radio/intercom{
 	pixel_y = 28
 	},
@@ -768,7 +768,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "FY" = (
-/obj/item/twohanded/required/kirbyplants/random,
+/obj/item/kirbyplants/random,
 /turf/open/floor/eighties,
 /area/crew_quarters/bar)
 "Go" = (

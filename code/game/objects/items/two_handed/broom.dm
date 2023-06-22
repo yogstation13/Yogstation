@@ -30,12 +30,10 @@
 	icon_state = "[base_icon_state]0"
 
 /obj/item/broom/proc/on_wield(atom/source, mob/user)
-	SIGNAL_HANDLER
 	to_chat(user, span_notice("You brace the [src] against the ground in a firm sweeping stance."))
 	RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(sweep))
 
 /obj/item/broom/proc/on_unwield(atom/source, mob/user)
-	SIGNAL_HANDLER
 	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
 
 /obj/item/broom/afterattack(atom/A, mob/user, proximity)

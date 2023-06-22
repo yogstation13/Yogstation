@@ -76,7 +76,7 @@
 	var/mob/living/L = parent
 	var/floating = FALSE
 	var/obj/item/pool/helditem = L.get_active_held_item()
-	if(istype(helditem) && helditem.wielded)
+	if(istype(helditem) && HAS_TRAIT(helditem, TRAIT_WIELDED))
 		bob_tick ++
 		animate(L, time=0.95 SECONDS, pixel_y = (L.pixel_y == bob_height_max) ? bob_height_min : bob_height_max)
 		floating = TRUE
@@ -96,7 +96,7 @@
 
 /datum/component/swimming/proc/is_drowning(mob/living/victim)
 	var/obj/item/pool/helditem = victim.get_active_held_item()
-	if(istype(helditem) && helditem.wielded)
+	if(istype(helditem) && HAS_TRAIT(helditem, TRAIT_WIELDED))
 		return
 	if(iscarbon(victim))
 		var/mob/living/carbon/C = victim

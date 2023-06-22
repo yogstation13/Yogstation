@@ -309,29 +309,18 @@
 
 	var/mob/listeningTo
 
-/obj/item/shockpaddles/Initialize(mapload)
+/obj/item/shockpaddles/Initialize(mapload, obj/item/defibrillator/spawned_in)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = 8, \
 		force_wielded = 12, \
 		icon_wielded = "[base_icon_state]1", \
-		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
-		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
-	if(check_defib_exists(mainunit, src) && req_defib)
-		defib = mainunit
+	if(check_defib_exists(spawned_in, src) && spawned_in)
+		defib = spawned_in
 		forceMove(defib)
 		busy = FALSE
 		update_icon()
-
-
-/// triggered on wield of two handed item
-/obj/item/shockpaddles/proc/on_wield(obj/item/source, mob/user)
-	wielded = TRUE
-
-/// triggered on unwield of two handed item
-/obj/item/shockpaddles/proc/on_unwield(obj/item/source, mob/user)
-	wielded = FALSE
 
 /obj/item/shockpaddles/equipped(mob/user, slot)
 	. = ..()
@@ -409,14 +398,13 @@
 	forceMove(defib)
 	defib.update_icon()
 
-/obj/item/shockpaddles/proc/check_defib_exists(mainunit, mob/living/carbon/M, obj/O)
+/obj/item/shockpaddles/proc/check_defib_exists(obj/item/defibrillator/spawned_in, mob/living/carbon/M, obj/O)
 	if(!req_defib)
 		return TRUE //If it doesn't need a defib, just say it exists
-	if (!mainunit || !istype(mainunit, /obj/item/defibrillator))	//To avoid weird issues from admin spawns
+	if(!spawned_in || !istype(spawned_in)) //To avoid weird issues from admin spawns
 		qdel(O)
 		return FALSE
-	else
-		return TRUE
+	return TRUE
 
 /obj/item/shockpaddles/attack(mob/M, mob/user)
 
@@ -433,7 +421,7 @@
 			has_rod = TRUE
 			break
 
-	if(!(wielded || has_rod))
+	if(!(HAS_TRAIT(src, TRAIT_WIELDED) || has_rod))
 		if(iscyborg(user))
 			to_chat(user, span_warning("You must activate the paddles in your active module before you can use them on someone!"))
 		else
@@ -472,7 +460,7 @@
 		H.grab_ghost() // Shove them back in their body.
 	else if(H.can_defib(FALSE))
 		H.notify_ghost_cloning("Your heart is being defibrillated. Re-enter your corpse if you want to be revived!", source = src)
-	if(has_rod && !wielded)
+	if(has_rod && !HAS_TRAIT(src, TRAIT_WIELDED))
 		to_chat(user, span_notice("Your snake holds the other paddle in its mouth and places it on [H]'s chest."))
 	do_help(H, user)
 

@@ -1381,7 +1381,7 @@
 /obj/item/pickaxe/drill/jackhammer,
 /obj/item/pickaxe/drill/jackhammer,
 /obj/item/pickaxe/drill/jackhammer,
-/obj/item/twohanded/vxtvulhammer,
+/obj/item/melee/vxtvulhammer,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
 

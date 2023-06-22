@@ -12,7 +12,7 @@
 	var/open = FALSE
 	var/obj/item/fireaxe/fireaxe
 	var/obj/item/card/id/captains_spare/spareid
-	var/obj/item/twohanded/fishingrod/collapsible/miningmedic/olreliable //what the fuck?
+	var/obj/item/fishingrod/collapsible/miningmedic/olreliable //what the fuck?
 	var/alert = TRUE
 	var/axe = TRUE
 
@@ -68,7 +68,7 @@
 		//Fireaxe cabinet is open or broken, so we can access it's axe slot
 		if(istype(I, /obj/item/fireaxe) && !fireaxe && axe)
 			var/obj/item/fireaxe/F = I
-			if(F.wielded)
+			if(HAS_TRAIT(F, TRAIT_WIELDED))
 				to_chat(user, span_warning("Unwield the [F.name] first."))
 				return
 			if(!user.transferItemToLoc(F, src))
@@ -85,8 +85,8 @@
 			to_chat(user, span_caution("You place the [S.name] back in the [name]."))
 			update_icon()
 			return
-		else if(istype(I, /obj/item/twohanded/fishingrod/collapsible/miningmedic) && !olreliable && !axe)
-			var/obj/item/twohanded/fishingrod/collapsible/miningmedic/R = I
+		else if(istype(I, /obj/item/fishingrod/collapsible/miningmedic) && !olreliable && !axe)
+			var/obj/item/fishingrod/collapsible/miningmedic/R = I
 			if(R.opened)
 				to_chat(user, span_caution("[R.name] won't seem to fit!"))
 				return

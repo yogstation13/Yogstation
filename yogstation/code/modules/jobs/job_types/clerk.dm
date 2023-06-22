@@ -27,7 +27,7 @@
 		/obj/effect/spawner/lootdrop/plushies = 20,
 		/obj/item/toy/minimeteor = 15,
 		/obj/item/circuitboard/computer/slot_machine = 15,
-		/obj/item/twohanded/dualsaber/toy = 10,
+		/obj/item/melee/dualsaber/toy = 10,
 		/obj/item/toy/windupToolbox = 10,
 		/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate = 5,
 		/obj/item/storage/box/fancy/heart_box = 5,

@@ -299,7 +299,7 @@
 
 	victim.log_message("entered a blood frenzy", LOG_ATTACK)
 
-	if(iscarbon(owner))
+	if(iscarbon(victim))
 		chainsaw = new(victim.loc)
 		ADD_TRAIT(chainsaw, TRAIT_NODROP, CHAINSAW_FRENZY_TRAIT)
 		victim.drop_all_held_items()

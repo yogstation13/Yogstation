@@ -7,7 +7,6 @@
 	name = "vibro sword"
 	desc = "A potent weapon capable of cutting through nearly anything. Wielding it in two hands will allow you to deflect gunfire."
 	force = 20
-	force_wielded = 20
 	armour_penetration = 100
 	block_chance = 40
 	throwforce = 20
@@ -22,7 +21,7 @@
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = force, \
-		force_wielded = force_wielded, \
+		force_wielded = 20, \
 		icon_wielded = "[base_icon_state]1", \
 	)
 	AddComponent(/datum/component/butchering, 20, 105)
