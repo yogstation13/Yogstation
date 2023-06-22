@@ -55,6 +55,10 @@
 /obj/structure/closet/toolcloset,
 /obj/item/holosign_creator/atmos,
 /obj/item/clothing/glasses/hud/diagnostic,
+/obj/item/inducer,
+/obj/item/inducer,
+/obj/item/inducer,
+/obj/item/inducer,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "ak" = (
@@ -3359,12 +3363,13 @@
 /obj/item/circuitboard/machine/cell_charger,
 /obj/item/circuitboard/machine/smoke_machine,
 /obj/item/circuitboard/machine/stasis,
-/obj/item/storage/part_replacer/bluespace,
 /obj/item/stock_parts/cell/bluespace,
 /obj/item/stock_parts/cell/bluespace,
 /obj/item/stock_parts/cell/bluespace,
 /obj/item/stock_parts/cell/bluespace,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/circuitboard/machine/holopad,
+/obj/item/storage/part_replacer/bluespace/tier4,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "mf" = (
