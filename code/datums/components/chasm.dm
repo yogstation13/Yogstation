@@ -210,11 +210,11 @@
 	if(!istype(I,/obj/item/fishingrod))
 		return
 	var/obj/item/fishingrod/rod = I
-	if(!rod.wielded)
+	if(!HAS_TRAIT(rod, TRAIT_WIELDED))
 		to_chat(user, span_warning("You need to wield the rod in both hands before you can fish in the chasm!"))
 		return
 	if(do_after(user, 3 SECONDS, src.parent))
-		if(!rod.wielded)
+		if(!HAS_TRAIT(rod, TRAIT_WIELDED))
 			return
 
 		var/list/fishing_contents = list()

@@ -137,7 +137,6 @@
 		return
 	fisher.visible_message(span_notice("[fisher] reels in [reward_item]!"), span_notice("You reel in [reward_item]!"))
 	if(fisher.Adjacent(fishing_component.parent))
-		unwield(fisher,show_message = FALSE)
 		if(fisher.put_in_hands(reward_item))
 			return
 	reward_item.throw_at(get_step(fishing_component,get_dir(fishing_component,fisher)),2,3,fisher) //whip it at them!

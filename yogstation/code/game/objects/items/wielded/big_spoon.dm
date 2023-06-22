@@ -9,7 +9,6 @@
 	lefthand_file = 'yogstation/icons/mob/inhands/weapons/bigspoon_lefthand.dmi'
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/bigspoon_righthand.dmi'
 	force = 2 //It's a big unwieldy for one hand
-	force_wielded = 16 //cleaver is 15 and sharp, this at least gets to be on-par with a nullrod
 	sharpness = SHARP_NONE //issa spoon
 	armour_penetration = -50 //literally couldn't possibly be a worse weapon for hitting armour
 	throwforce = 1 //it's terribly weighted, what do you expect?

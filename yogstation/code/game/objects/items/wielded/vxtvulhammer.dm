@@ -11,7 +11,6 @@
 	desc = "A relic sledgehammer with charge packs wired to two blast pads on its head. \
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 	force = 4 //It's heavy as hell
-	force_wielded = 24
 	armour_penetration = 50 //Designed for shattering walls in a single blow, I don't think it cares much about armor
 	throwforce = 18
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
@@ -30,6 +29,7 @@
 	light_range = 2
 	light_power = 2
 
+	var/force_wielded = 24
 	var/datum/effect_system/spark_spread/spark_system //It's a surprise tool that'll help us later
 	var/charging = FALSE
 	var/supercharged = FALSE
@@ -42,8 +42,8 @@
 	spark_system.attach(src)
 	set_light_on(FALSE)
 	AddComponent(/datum/component/two_handed, \
-		force_unwielded = 24, \
-		force_wielded = 24, \
+		force_unwielded = force, \
+		force_wielded = force_wielded, \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
 
@@ -70,7 +70,7 @@
 		charging = FALSE
 
 /obj/item/melee/vxtvulhammer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK || !wielded) //Doesn't work against ranged or if it's not wielded
+	if(attack_type == PROJECTILE_ATTACK || !HAS_TRAIT(src, TRAIT_WIELDED)) //Doesn't work against ranged or if it's not wielded
 		final_block_chance = 0 //Please show me how you can block a bullet with an industrial hammer I would LOVE to see it
 	return ..()
 
@@ -89,16 +89,16 @@
 	if(supercharged)
 		set_light_on(TRUE) //Glows when charged
 		if(!toy)
-			force = initial(force) + (wielded ? force_wielded : 0) + 12 //12 additional damage for a total of 40 has to be a massively irritating check because of how force_wielded works
+			force = initial(force) + (HAS_TRAIT(src, TRAIT_WIELDED) ? force_wielded : 0) + 12 //12 additional damage for a total of 40 has to be a massively irritating check because of how force_wielded works
 			armour_penetration = 100
 	else
 		set_light_on(FALSE)
-		force = initial(force) + (wielded ? force_wielded : 0)
+		force = initial(force) + (HAS_TRAIT(src, TRAIT_WIELDED) ? force_wielded : 0)
 		armour_penetration = initial(armour_penetration)
 	update_icon()
 
 /obj/item/melee/vxtvulhammer/proc/charge_hammer(mob/living/carbon/user)
-	if(!wielded)
+	if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		to_chat(user, span_warning("The hammer must be wielded in two hands in order to charge it!"))
 		return
 	if(supercharged)

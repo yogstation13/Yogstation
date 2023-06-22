@@ -28,12 +28,16 @@
 /mob/living/carbon/initialize_footstep()
 	AddComponent(/datum/component/footstep, 1, 2)
 
-/mob/living/carbon/swap_hand(held_index)
+/mob/living/carbon/perform_hand_swap(held_index)
 	. = ..()
 	if(!.)
 		return
+
 	if(!held_index)
 		held_index = (active_hand_index % held_items.len)+1
+	
+	if(!isnum(held_index))
+		CRASH("You passed [held_index] into swap_hand instead of a number. WTF man")
 
 	var/oindex = active_hand_index
 	active_hand_index = held_index

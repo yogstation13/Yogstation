@@ -13,8 +13,6 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	wieldsound = 'sound/weapons/saberon.ogg'
-	unwieldsound = 'sound/weapons/saberoff.ogg'
 	hitsound = "swing_hit"
 	armour_penetration = 35
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -53,7 +51,7 @@
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = 3, \
 		force_wielded = force_wielded, \
-		icon_wielded = "[base_icon_state][sabre_color]1", \
+		icon_wielded = "[base_icon_state][saber_color]1", \
 		wieldsound = 'sound/weapons/saberon.ogg', \
 		unwieldsound = 'sound/weapons/saberoff.ogg', \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
@@ -96,10 +94,11 @@
 	if(user.has_dna())
 		if(user.dna.check_mutation(HULK) || user.dna.check_mutation(ACTIVE_HULK))
 			to_chat(user, span_warning("You grip the blade too hard and accidentally close it!"))
-			unwield()
-			return
+			if(HAS_TRAIT(src, TRAIT_WIELDED))
+				user.dropItemToGround(src, force=TRUE)
+				return
 	..()
-	if(HAS_TRAIT(user, TRAIT_CLUMSY) && (wielded) && prob(40))
+	if(HAS_TRAIT(user, TRAIT_CLUMSY) && (HAS_TRAIT(src, TRAIT_WIELDED)) && prob(40))
 		impale(user)
 		return
 	if(HAS_TRAIT(src, TRAIT_WIELDED) && prob(50))

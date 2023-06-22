@@ -972,7 +972,7 @@
 /mob/proc/IsAdvancedToolUser()
 	return FALSE
 
-/mob/proc/swap_hand()
+/mob/proc/swap_hand(held_index)
 	SHOULD_NOT_OVERRIDE(TRUE) // Override perform_hand_swap instead
 
 	var/obj/item/held_item = get_active_held_item()
@@ -985,6 +985,11 @@
 		SEND_SIGNAL(src, COMSIG_MOB_SWAP_HANDS)
 
 	return result
+
+/// Performs the actual ritual of swapping hands, such as setting the held index variables
+/mob/proc/perform_hand_swap(held_index)
+	PROTECTED_PROC(TRUE)
+	return TRUE
 
 /mob/proc/activate_hand(selhand)
 	return
