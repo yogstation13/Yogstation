@@ -110,6 +110,6 @@
 /datum/spellbook_entry/item/highfrequencyblade
 	name = "High Frequency Blade"
 	desc = "An incredibly swift enchanted blade resonating at a frequency high enough to be able to slice through anything."
-	item_path = /obj/item/twohanded/vibro_weapon/wizard
+	item_path = /obj/item/vibro_weapon/wizard
 	category = "Offensive"
 	cost = 3

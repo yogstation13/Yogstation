@@ -10,7 +10,7 @@
 	integrity_failure = 50
 	var/locked = TRUE
 	var/open = FALSE
-	var/obj/item/twohanded/fireaxe/fireaxe
+	var/obj/item/fireaxe/fireaxe
 	var/obj/item/card/id/captains_spare/spareid
 	var/obj/item/twohanded/fishingrod/collapsible/miningmedic/olreliable //what the fuck?
 	var/alert = TRUE
@@ -66,8 +66,8 @@
 	//yogs end
 	else if(open || broken)
 		//Fireaxe cabinet is open or broken, so we can access it's axe slot
-		if(istype(I, /obj/item/twohanded/fireaxe) && !fireaxe && axe)
-			var/obj/item/twohanded/fireaxe/F = I
+		if(istype(I, /obj/item/fireaxe) && !fireaxe && axe)
+			var/obj/item/fireaxe/F = I
 			if(F.wielded)
 				to_chat(user, span_warning("Unwield the [F.name] first."))
 				return

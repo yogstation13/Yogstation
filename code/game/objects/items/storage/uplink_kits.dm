@@ -29,7 +29,7 @@
 		if("recon") //28ish TC
 			new /obj/item/clothing/glasses/thermal/xray(src) //Would argue 6 TC. Thermals are 4 TC but work on organic targets in darkness
 			new /obj/item/storage/briefcase/launchpad(src) //6 TC
-			new	/obj/item/twohanded/binoculars(src) //1 TC, maybe. Very good but mining medic/detective get them for free
+			new	/obj/item/binoculars(src) //1 TC, maybe. Very good but mining medic/detective get them for free
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/storage/box/syndie_kit/space(src) //4 TC
 			new /obj/item/grenade/syndieminibomb/concussion/frag(src) //Minibomb with one less range on each part except for fire. 3-4 TC.

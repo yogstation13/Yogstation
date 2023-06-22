@@ -333,7 +333,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/wirerod/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/shard))
-		var/obj/item/twohanded/spear/S = new /obj/item/twohanded/spear
+		var/obj/item/melee/spear/S = new /obj/item/melee/spear
 
 		remove_item_from_storage(user)
 		if (!user.transferItemToLoc(I, S))
@@ -588,7 +588,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 
 /obj/item/mounted_chainsaw/Destroy()
 	var/obj/item/bodypart/part
-	new /obj/item/twohanded/required/chainsaw(get_turf(src))
+	new /obj/item/melee/chainsaw(get_turf(src))
 	if(iscarbon(loc))
 		var/mob/living/carbon/holder = loc
 		var/index = holder.get_held_index_of_item(src)
@@ -823,21 +823,3 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		to_chat(user, span_warning("[M] is too close to use [src] on."))
 		return
 	M.attack_hand(user)
-
-/obj/item/twohanded/required/raisedhands
-	name = "raised hands"
-	desc = "What are you, French?"
-	icon = 'icons/obj/toy.dmi'
-	icon_state = "latexballon"
-	item_state = "nothing"
-	force = 0
-	throwforce = 0
-	w_class = WEIGHT_CLASS_HUGE
-	item_flags = DROPDEL | ABSTRACT
-
-/obj/item/twohanded/required/raisedhands/attack(mob/living/M, mob/living/user)
-  return
-
-/obj/item/twohanded/required/raisedhands/dropped(mob/user)
-	user.visible_message(span_userdanger(("[user] lowers their hands!")))
-	..()

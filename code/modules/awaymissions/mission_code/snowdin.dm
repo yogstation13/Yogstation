@@ -518,7 +518,7 @@
 	name = "dungeon heavy"
 	loot = list(/obj/item/twohanded/singularityhammer = 25,
 				/obj/item/twohanded/mjollnir = 10,
-				/obj/item/twohanded/fireaxe = 25,
+				/obj/item/fireaxe = 25,
 				/obj/item/organ/brain/alien = 17,
 				/obj/item/twohanded/dualsaber = 15,
 				/obj/item/organ/heart/demon = 7,
@@ -541,7 +541,7 @@
 	loot = list(/obj/item/stack/sheet/mineral/snow{amount = 25} = 10,
 				/obj/item/toy/snowball = 15,
 				/obj/item/shovel = 10,
-				/obj/item/twohanded/spear = 8,
+				/obj/item/melee/spear = 8,
 				)
 
 //special items//--

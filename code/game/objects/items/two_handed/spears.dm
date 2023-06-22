@@ -1,5 +1,5 @@
 //spears
-/obj/item/spear
+/obj/item/melee/spear
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "spearglass0"
 	base_icon_state = "spearglass"
@@ -31,7 +31,7 @@
 	///Whether the spear can have an explosive attached to it.
 	var/can_be_explosive = TRUE
 
-/obj/item/spear/Initialize(mapload)
+/obj/item/melee/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = force, \
@@ -41,18 +41,18 @@
 	)
 	AddComponent(/datum/component/butchering, 100, 70) //decent in a pinch, but pretty bad.
 
-/obj/item/spear/suicide_act(mob/living/carbon/user)
+/obj/item/melee/spear/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
-/obj/item/spear/Initialize(mapload)
+/obj/item/melee/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/jousting)
 
-/obj/item/spear/update_icon()
+/obj/item/melee/spear/update_icon()
 	icon_state = "[base_icon_state]0"
 
-/obj/item/spear/deconstruct() //we drop our rod and maybe the glass shard used
+/obj/item/melee/spear/deconstruct() //we drop our rod and maybe the glass shard used
 	new /obj/item/stack/rods(get_turf(src))
 	if(!prob(20)) //20% chance to save our spearhead
 		break_message += " and its head smashes into pieces!"
@@ -62,7 +62,7 @@
 	break_message += "!"
 	..()
 
-/obj/item/spear/CheckParts(list/parts_list)
+/obj/item/melee/spear/CheckParts(list/parts_list)
 	var/obj/item/shard/tip = locate() in parts_list
 	if (istype(tip, /obj/item/shard/plasma))
 		force_wielded += 1
@@ -75,7 +75,7 @@
 	qdel(tip)
 	var/obj/item/grenade/G = locate() in parts_list
 	if(G && can_be_explosive)
-		var/obj/item/spear/explosive/lance = new /obj/item/spear/explosive(src.loc, G)
+		var/obj/item/melee/spear/explosive/lance = new /obj/item/melee/spear/explosive(src.loc, G)
 		lance.force_wielded = force_wielded
 		lance.force = force
 		lance.throwforce = throwforce
@@ -85,7 +85,7 @@
 	..()
 
 
-/obj/item/spear/explosive
+/obj/item/melee/spear/explosive
 	name = "explosive lance"
 	base_icon_state = "spearbomb"
 
@@ -94,7 +94,7 @@
 	///The war cry, editable by the player, that gets yelled when attacking.
 	var/war_cry = "AAAAARGH!!!"
 
-/obj/item/spear/explosive/Initialize(mapload, obj/item/grenade/default_grenade)
+/obj/item/melee/spear/explosive/Initialize(mapload, obj/item/grenade/default_grenade)
 	. = ..()
 	if(!default_grenade)
 		default_grenade = new /obj/item/grenade/iedcasing() //For admin-spawned explosive lances
@@ -103,7 +103,7 @@
 	desc = "A makeshift spear with [default_grenade] attached to it"
 	update_icon()
 
-/obj/item/spear/explosive/suicide_act(mob/living/carbon/user)
+/obj/item/melee/spear/explosive/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	user.say("[war_cry]", forced = "spear warcry")
 	explosive.forceMove(user)
@@ -112,11 +112,11 @@
 	qdel(src)
 	return BRUTELOSS
 
-/obj/item/spear/explosive/examine(mob/user)
+/obj/item/melee/spear/explosive/examine(mob/user)
 	. = ..()
 	. += span_notice("Alt-click to set your war cry.")
 
-/obj/item/spear/explosive/AltClick(mob/user)
+/obj/item/melee/spear/explosive/AltClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))
 		return
 	. = ..()
@@ -125,7 +125,7 @@
 		if(input)
 			war_cry = input
 
-/obj/item/spear/explosive/afterattack(atom/movable/AM, mob/user, proximity)
+/obj/item/melee/spear/explosive/afterattack(atom/movable/AM, mob/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
@@ -138,7 +138,7 @@
 /**
  * Grey Tide
  */
-/obj/item/twohanded/spear/grey_tide
+/obj/item/melee/spear/grey_tide
 	icon_state = "spearglass0"
 	name = "\improper Grey Tide"
 	desc = "Recovered from the aftermath of a revolt aboard Defense Outpost Theta Aegis, in which a seemingly endless tide of Assistants caused heavy casualities among Nanotrasen military forces."
@@ -150,7 +150,7 @@
 
 	force_wielded = 10
 
-/obj/item/spear/grey_tide/Initialize(mapload)
+/obj/item/melee/spear/grey_tide/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = force, \
@@ -159,7 +159,7 @@
 		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0, ENCUMBRANCE_TIME = 0, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
 	)
 
-/obj/item/twohanded/spear/grey_tide/afterattack(atom/movable/AM, mob/living/user, proximity)
+/obj/item/melee/spear/grey_tide/afterattack(atom/movable/AM, mob/living/user, proximity)
 	. = ..()
 	if(!proximity)
 		return
@@ -177,7 +177,7 @@
 /*
  * Bone Spear
  */
-/obj/item/spear/bonespear //Blatant imitation of spear, but made out of bone. Not valid for explosive modification.
+/obj/item/melee/spear/bonespear //Blatant imitation of spear, but made out of bone. Not valid for explosive modification.
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "bone_spear0"
 	base_icon_state = "bone_spear"
@@ -201,7 +201,7 @@
 	force_wielded = 9 //I have no idea how to balance
 	can_be_explosive = FALSE
 
-/obj/item/spear/bonespear/Initialize(mapload)
+/obj/item/melee/spear/bonespear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/two_handed, \
 		force_unwielded = force, \
@@ -210,7 +210,7 @@
 		wielded_stats = list(SWING_SPEED = 1, ENCUMBRANCE = 0.4, ENCUMBRANCE_TIME = 5, REACH = 2, DAMAGE_LOW = 0, DAMAGE_HIGH = 0), \
 	)
 
-/obj/item/spear/bonespear/chitinspear //like a mix of a bone spear and bone axe, but more like a bone spear. And better.
+/obj/item/melee/spear/bonespear/chitinspear //like a mix of a bone spear and bone axe, but more like a bone spear. And better.
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "chitin_spear0"
 	base_icon_state = "chitin_spear"
@@ -222,7 +222,7 @@
 
 	force_wielded = 10
 
-/obj/item/spear/bamboospear
+/obj/item/melee/spear/bamboospear
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "bamboo_spear0"
 	base_icon_state = "bamboo_spear"

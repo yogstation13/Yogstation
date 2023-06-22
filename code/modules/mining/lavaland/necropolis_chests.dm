@@ -1720,7 +1720,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	selfcharge = 1
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
-/obj/item/twohanded/bonespear/stalwartpike
+/obj/item/melee/spear/bonespear/stalwartpike
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "stalwart_spear0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
@@ -1743,7 +1743,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/fauna_damage_type = BRUTE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
-/obj/item/twohanded/bonespear/stalwartpike/update_icon()
+/obj/item/melee/spear/bonespear/stalwartpike/update_icon()
 	. = ..()
 	if(wielded)
 		icon_state = "stalwart_spear1"
@@ -1751,7 +1751,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		icon_state = "stalwart_spear0"
 	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
 
-/obj/item/twohanded/bonespear/stalwartpike/wield(mob/living/carbon/M)
+/obj/item/melee/spear/bonespear/stalwartpike/wield(mob/living/carbon/M)
 	. = ..()
 	if(wielded)
 		playsound(src, 'sound/magic/summonitems_generic.ogg', 50, 1)
@@ -1761,7 +1761,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		force = 8
 		fauna_damage_bonus = 52
 
-/obj/item/twohanded/bonespear/stalwartpike/unwield(mob/living/carbon/M)
+/obj/item/melee/spear/bonespear/stalwartpike/unwield(mob/living/carbon/M)
 	if(wielded)
 		playsound(src, 'sound/magic/teleport_diss.ogg', 50, 1)
 		sharpness = initial(sharpness)
@@ -1771,7 +1771,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		fauna_damage_bonus = initial(fauna_damage_bonus)
 	. = ..()
 
-/obj/item/twohanded/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
+/obj/item/melee/spear/bonespear/stalwartpike/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!proximity || !wielded)
 		return
@@ -1792,7 +1792,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/gun/energy/plasmacutter/adv/robocutter(src)
 			new /obj/item/gem/purple(src)
 		if(2)
-			new /obj/item/twohanded/bonespear/stalwartpike(src)
+			new /obj/item/melee/spear/bonespear/stalwartpike(src)
 			new /obj/item/ai_cpu/stalwart(src)
 
 //Just some minor stuff

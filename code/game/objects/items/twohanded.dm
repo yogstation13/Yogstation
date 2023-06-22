@@ -1,25 +1,3 @@
-/* Two-handed Weapons
- * Contains:
- * 		Twohanded
- *		Fireaxe
- *		Double-Bladed Energy Swords
- *		Spears
- *		CHAINSAWS
- *		Bone Axe and Spear
-  *		Vxtvul Hammer
- */
-
-/*##################################################################
-##################### TWO HANDED WEAPONS BE HERE~ -Agouri :3 ########
-####################################################################*/
-
-//Rewrote TwoHanded weapons stuff and put it all here. Just copypasta fireaxe to make new ones ~Carn
-//This rewrite means we don't have two variables for EVERY item which are used only by a few weapons.
-//It also tidies stuff up elsewhere.
-
-
-
-
 /*
  * Twohanded
  */
@@ -120,14 +98,12 @@
 
 /obj/item/twohanded/equip_to_best_slot(mob/M)
 	if(..())
-		if(istype(src, /obj/item/twohanded/required))
-			return // unwield forces twohanded-required items to be dropped.
 		unwield(M)
 		return
 
 /obj/item/twohanded/equipped(mob/user, slot)
 	..()
-	if(!user.is_holding(src) && wielded && !istype(src, /obj/item/twohanded/required))
+	if(!user.is_holding(src) && wielded)
 		unwield(user)
 
 ///////////OFFHAND///////////////
@@ -148,8 +124,6 @@
 	if(I && istype(I, /obj/item/twohanded))
 		var/obj/item/twohanded/thw = I
 		thw.unwield(user, show_message)
-		if(istype(thw, /obj/item/twohanded/required))
-			user.dropItemToGround(thw)
 	if(!QDELETED(src))
 		qdel(src)
 
@@ -170,61 +144,6 @@
 	if (QDELETED(src))
 		return
 	qdel(src)																//If it's another offhand, or literally anything else, qdel. If I knew how to add logging messages I'd put one here.
-
-///////////Two hand required objects///////////////
-//This is for objects that require two hands to even pick up
-/obj/item/twohanded/required
-	w_class = WEIGHT_CLASS_HUGE
-
-/obj/item/twohanded/required/attack_self()
-	return
-
-/obj/item/twohanded/required/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
-	if(wielded && !slot_flags)
-		if(!disable_warning)
-			to_chat(M, span_warning("[src] is too cumbersome to carry with anything but your hands!"))
-		return 0
-	return ..()
-
-/obj/item/twohanded/required/attack_hand(mob/user)//Can't even pick it up without both hands empty
-	var/obj/item/twohanded/required/H = user.get_inactive_held_item()
-	if(get_dist(src,user) > 1)
-		return
-	if(H != null)
-		to_chat(user, span_notice("[src] is too cumbersome to carry in one hand!"))
-		return
-	if(loc != user)
-		wield(user)
-	. = ..()
-
-/obj/item/twohanded/required/equipped(mob/user, slot)
-	..()
-	if(slot_flags & slot)
-		var/datum/O = user.is_holding_item_of_type(/obj/item/twohanded/offhand)
-		if(!O || QDELETED(O))
-			return
-		qdel(O)
-		return
-	if(slot == ITEM_SLOT_HANDS)
-		wield(user)
-	else
-		unwield(user)
-
-/obj/item/twohanded/required/dropped(mob/living/user, show_message = TRUE)
-	unwield(user, show_message)
-	..()
-
-/obj/item/twohanded/required/wield(mob/living/carbon/user)
-	..()
-	if(!wielded)
-		user.dropItemToGround(src)
-
-/obj/item/twohanded/required/unwield(mob/living/carbon/user, show_message = TRUE)
-	if(!wielded)
-		return
-	if(show_message)
-		to_chat(user, span_notice("You drop [src]."))
-	..(user, FALSE)
 
 /*
  * Double-Bladed Energy Swords - Cheridan
@@ -433,93 +352,6 @@
 		return ..()
 	return FALSE
 
-// CHAINSAW
-
-/datum/action/item_action/startchainsaw
-	name = "Pull The Starting Cord"
-
-/obj/item/twohanded/required/chainsaw
-	name = "chainsaw"
-	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "chainsaw_off"
-	var/icon_name = "chainsaw"
-	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
-	flags_1 = CONDUCT_1
-	force = 13
-	var/force_on = 24
-	w_class = WEIGHT_CLASS_HUGE
-	throwforce = 13
-	throw_speed = 2
-	throw_range = 4
-	materials = list(/datum/material/iron=13000)
-	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
-	hitsound = "swing_hit"
-	sharpness = SHARP_EDGED
-	actions_types = list(/datum/action/item_action/startchainsaw)
-	var/on = FALSE
-
-/obj/item/twohanded/required/chainsaw/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/butchering, 30, 100, 0, 'sound/weapons/chainsawhit.ogg', TRUE)
-
-/obj/item/twohanded/required/chainsaw/suicide_act(mob/living/carbon/user)
-	if(on)
-		user.visible_message(span_suicide("[user] begins to tear [user.p_their()] head off with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
-		playsound(src, 'sound/weapons/chainsawhit.ogg', 100, 1)
-		var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
-		if(myhead)
-			myhead.dismember()
-	else
-		user.visible_message(span_suicide("[user] smashes [src] into [user.p_their()] neck, destroying [user.p_their()] esophagus! It looks like [user.p_theyre()] trying to commit suicide!"))
-		playsound(src, 'sound/weapons/genhit1.ogg', 100, 1)
-	return(BRUTELOSS)
-
-/obj/item/twohanded/required/chainsaw/attack_self(mob/user)
-	on = !on
-	to_chat(user, "As you pull the starting cord dangling from [src], [on ? "it begins to whirr." : "the chain stops moving."]")
-	force = on ? force_on : initial(force)
-	throwforce = on ? force_on : initial(force)
-	icon_state = "[icon_name]_[on ? "on" : "off"]"
-	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
-	butchering.butchering_enabled = on
-
-	if(on)
-		hitsound = 'sound/weapons/chainsawhit.ogg'
-	else
-		hitsound = "swing_hit"
-
-	if(src == user.get_active_held_item()) //update inhands
-		user.update_inv_hands()
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.build_all_button_icons()
-
-/obj/item/twohanded/required/chainsaw/doomslayer
-	name = "THE GREAT COMMUNICATOR"
-	desc = span_warning("VRRRRRRR!!!")
-	armour_penetration = 100
-	force_on = 30
-
-/obj/item/twohanded/required/chainsaw/doomslayer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK)
-		owner.visible_message(span_danger("Ranged attacks just make [owner] angrier!"))
-		playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
-		return 1
-	return 0
-
-/obj/item/twohanded/required/chainsaw/demon
-	name = "demon chainsaw"
-	desc = "Show me your dreams."
-	icon_state = "demon_off"
-	force_on = 30
-	icon_name = "demon"
-
-/obj/item/twohanded/required/chainsaw/demon/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/lifesteal, 30)
-
 /obj/item/twohanded/pitchfork
 	icon = 'icons/obj/weapons/spears.dmi'
 	icon_state = "pitchfork0"
@@ -604,118 +436,6 @@
 		W.break_wall()
 		W.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 		return
-
-//HF blade
-
-/obj/item/twohanded/vibro_weapon
-	icon = 'icons/obj/weapons/swords.dmi'
-	icon_state = "hfrequency0"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	name = "vibro sword"
-	desc = "A potent weapon capable of cutting through nearly anything. Wielding it in two hands will allow you to deflect gunfire."
-	force = 20
-	force_wielded = 20
-	armour_penetration = 100
-	block_chance = 40
-	throwforce = 20
-	throw_speed = 4
-	sharpness = SHARP_EDGED
-	attack_verb = list("cut", "sliced", "diced")
-	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = ITEM_SLOT_BACK
-	hitsound = 'sound/weapons/bladeslice.ogg'
-
-/obj/item/twohanded/vibro_weapon/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/butchering, 20, 105)
-
-/obj/item/twohanded/vibro_weapon/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(wielded)
-		final_block_chance *= 2
-	if(wielded || attack_type != PROJECTILE_ATTACK)
-		if(prob(final_block_chance))
-			if(attack_type == PROJECTILE_ATTACK)
-				owner.visible_message(span_danger("[owner] deflects [attack_text] with [src]!"))
-				playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
-				return 1
-			else
-				owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
-				return 1
-	return 0
-
-/obj/item/twohanded/vibro_weapon/update_icon()
-	icon_state = "hfrequency[wielded]"
-
-/obj/item/twohanded/vibro_weapon/wizard
-	desc = "A blade that was mastercrafted by a legendary blacksmith. Its' enchantments let it slash through anything."
-	force = 8
-	throwforce = 20
-	wound_bonus = 20
-	bare_wound_bonus = 25
-
-/obj/item/twohanded/vibro_weapon/wizard/wizard/attack_self(mob/user, modifiers)
-	if(!iswizard(user))
-		balloon_alert(user, "you're too weak!")
-		return
-	return ..()
-
-/*
- * Bone Axe
- */
-/obj/item/twohanded/fireaxe/boneaxe  // Blatant imitation of the fireaxe, but made out of bone.
-	icon_state = "bone_axe0"
-	name = "bone axe"
-	desc = "A large, vicious axe crafted out of several sharpened bone plates and crudely tied together. Made of monsters, by killing monsters, for killing monsters."
-	force_wielded = 18
-
-/obj/item/twohanded/fireaxe/boneaxe/update_icon()
-	icon_state = "bone_axe[wielded]"
-
-/obj/item/twohanded/binoculars
-	name = "binoculars"
-	desc = "Used for long-distance surveillance."
-	icon = 'icons/obj/tools.dmi'
-	item_state = "binoculars"
-	icon_state = "binoculars"
-	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
-	slot_flags = ITEM_SLOT_BELT
-	w_class = WEIGHT_CLASS_SMALL
-	var/mob/listeningTo
-	var/zoom_out_amt = 6
-	var/zoom_amt = 10
-
-/obj/item/twohanded/binoculars/Destroy()
-	listeningTo = null
-	return ..()
-
-/obj/item/twohanded/binoculars/wield(mob/user)
-	. = ..()
-	if(!wielded)
-		return
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(unwield))
-	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate))
-	listeningTo = user
-	user.visible_message("[user] holds [src] up to [user.p_their()] eyes.","You hold [src] up to your eyes.")
-	item_state = "binoculars_wielded"
-	user.regenerate_icons()
-	user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, user.dir)
-
-/obj/item/twohanded/binoculars/unwield(mob/user)
-	. = ..()
-	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
-	listeningTo = null
-	item_state = "binoculars"
-	user.regenerate_icons()
-	user.client.view_size.zoomIn()
-
-/obj/item/twohanded/binoculars/proc/rotate(atom/thing, old_dir, new_dir)
-	if(ismob(thing))
-		var/mob/lad = thing
-		lad.regenerate_icons()
-		lad.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
 
 /*
  * Vxtvul Hammer
@@ -923,85 +643,6 @@
 /obj/item/twohanded/vxtvulhammer/pirate/update_icon()
 	icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
 
-// Baseball Bats
-/obj/item/twohanded/required/baseball_bat
-	name = "baseball bat"
-	desc = "A traditional tool for a game of Baseball. Modern wood isn't very strong, try not to crack the bat!"
-	icon = 'icons/obj/weapons/misc.dmi'
-	icon_state = "baseball_bat"
-	item_state = "baseball_bat"
-	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 16
-	wound_bonus = 5
-	armour_penetration = -30
-	bare_wound_bonus = 40
-	throwforce = 0
-	attack_verb = list("beat", "smacked")
-	sharpness = SHARP_NONE
-	w_class = WEIGHT_CLASS_HUGE
-	var/homerun_ready = 0
-	var/homerun_able = 0
-	var/flimsy = TRUE //spesswood? only used for knockback check now
-
-/obj/item/twohanded/required/baseball_bat/homerun
-	name = "home run bat"
-	desc = "This thing looks dangerous... Dangerously good at baseball, that is."
-	homerun_able = 1
-
-
-/obj/item/twohanded/required/baseball_bat/attack_self(mob/user)
-	if(!homerun_able)
-		..()
-		return
-	if(homerun_ready)
-		to_chat(user, span_notice("You're already ready to do a home run!"))
-		return
-	to_chat(user, span_warning("You begin gathering strength..."))
-	playsound(get_turf(src), 'sound/magic/lightning_chargeup.ogg', 65, 1)
-	if(do_after(user, 9 SECONDS, src))
-		to_chat(user, span_userdanger("You gather power! Time for a home run!"))
-		homerun_ready = 1
-	..()
-
-/obj/item/twohanded/required/baseball_bat/attack(mob/living/target, mob/living/user)
-	. = ..()
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(target == user)
-		return
-	if(homerun_ready)
-		user.visible_message(span_userdanger("It's a home run!"))
-		target.throw_at(throw_target, rand(8,10), 14, user)
-		SSexplosions.medturf += throw_target
-		playsound(get_turf(src), 'sound/weapons/homerun.ogg', 100, 1)
-		homerun_ready = 0
-		return
-	else if(!flimsy && !target.anchored)
-		var/whack_speed = (prob(50) ? 1 : 6)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user) // sorry friends, 7 speed batting caused wounds to absolutely delete whoever you knocked your target into (and said target)
-
-/obj/item/twohanded/required/baseball_bat/metal_bat
-	name = "titanium baseball bat"
-	desc = "This bat is made of titanium, it feels light yet strong."
-	icon_state = "baseball_bat_metal"
-	item_state = "baseball_bat_metal"
-	hitsound = 'yogstation/sound/weapons/bat_hit.ogg'
-	force = 18
-	throwforce = 0
-	flimsy = FALSE
-	wound_bonus = 15
-	armour_penetration = -25
-	bare_wound_bonus = 50
-	w_class = WEIGHT_CLASS_HUGE
-
-/obj/item/twohanded/required/baseball_bat/metal_bat/attack(mob/living/target, mob/living/user)
-	. = ..()
-	if(user.zone_selected == BODY_ZONE_HEAD && get_location_accessible(target, BODY_ZONE_HEAD))
-		if(prob(30))
-			target.Paralyze(40)
-		else
-			return TRUE
-
 /obj/item/twohanded/bigspoon
 	name = "comically large spoon"
 	desc = "For when you're only allowed one spoonful of something."
@@ -1028,82 +669,3 @@
 /obj/item/twohanded/bigspoon/update_icon()
 	hitsound = wielded ? 'yogstation/sound/weapons/bat_hit.ogg' : 'sound/items/trayhit1.ogg' //big donk if wielded
 	item_state = "bigspoon[wielded]" //i don't know why it's item_state rather than icon_state like every other wielded weapon
-	return
-
-
-/*
-Broom
-*/
-
-#define BROOM_PUSH_LIMIT 20
-/obj/item/twohanded/broom
-	name = "broom"
-	desc = "This is my BROOMSTICK! It can be used manually or braced with two hands to sweep items as you move."
-	icon = 'icons/obj/janitor.dmi'
-	icon_state = "broom0"
-	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
-	force = 8
-	throwforce = 10
-	throw_speed = 3
-	throw_range = 7
-	w_class = WEIGHT_CLASS_BULKY
-	force_wielded = 4
-	attack_verb = list("swept", "brushed off", "bludgeoned", "whacked")
-	resistance_flags = FLAMMABLE
-
-/obj/item/twohanded/broom/update_icon()
-	icon_state = "broom[wielded]"
-
-/obj/item/twohanded/broom/wield(mob/user)
-	. = ..()
-	if(!wielded)
-		return
-
-	to_chat(user, span_notice("You brace the [src] against the ground in a firm sweeping stance."))
-	RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(sweep))
-
-/obj/item/twohanded/broom/unwield(mob/user)
-	. = ..()
-	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
-
-/obj/item/twohanded/broom/afterattack(atom/A, mob/user, proximity)
-	. = ..()
-	if(!proximity)
-		return
-	sweep(user, A)
-
-/obj/item/twohanded/broom/proc/sweep(mob/user, atom/A)
-
-	var/turf/current_item_loc = isturf(A) ? A : get_turf(A)
-	if (!isturf(current_item_loc))
-		return
-	var/turf/new_item_loc = get_step(current_item_loc, user.dir)
-	var/obj/machinery/disposal/bin/target_bin = locate(/obj/machinery/disposal/bin) in new_item_loc.contents
-	var/i = 1
-	for (var/obj/item/garbage in current_item_loc.contents)
-		if (!garbage.anchored)
-			if (target_bin)
-				garbage.forceMove(target_bin)
-			else
-				garbage.Move(new_item_loc, user.dir)
-			i++
-		if (i > BROOM_PUSH_LIMIT)
-			break
-	if (i > 1)
-		if (target_bin)
-			target_bin.update_icon()
-			to_chat(user, span_notice("You sweep the pile of garbage into [target_bin]."))
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 30, TRUE, -1)
-
-/obj/item/twohanded/broom/proc/janicart_insert(mob/user, obj/structure/janitorialcart/J) //bless you whoever fixes this copypasta
-	J.put_in_cart(src, user)
-	J.mybroom=src
-	J.update_icon()
-
-/obj/item/twohanded/broom/cyborg
-	name = "robotic push broom"
-
-/obj/item/twohanded/broom/cyborg/janicart_insert(mob/user, obj/structure/janitorialcart/J)
-	to_chat(user, span_notice("You cannot place your [src] into the [J]"))
-	return FALSE

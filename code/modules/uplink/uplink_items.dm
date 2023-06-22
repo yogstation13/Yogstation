@@ -617,7 +617,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Energy Fire Axe"
 	desc = "A terrifying axe with a blade of pure energy, able to tear down structures with ease. \
 			Easier to store than a standard fire axe while inactive."
-	item = /obj/item/twohanded/fireaxe/energy
+	item = /obj/item/fireaxe/energy
 	cost = 10
 	include_modes = list(/datum/game_mode/nuclear)
 	surplus = 0
@@ -2581,7 +2581,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Energy Fire Axe"
 	desc = "A terrifying axe with a blade of pure energy, able to tear down structures with ease. \
 			Easier to store than a standard fire axe while inactive."
-	item = /obj/item/twohanded/fireaxe/energy
+	item = /obj/item/fireaxe/energy
 	cost = 10
 	restricted_roles = list("Station Engineer","Atmospheric Technician","Network Admin","Chief Engineer")
 

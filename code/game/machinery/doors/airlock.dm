@@ -1268,8 +1268,8 @@
 	else if(brace)
 		to_chat(user, span_warning("The airlock won't budge!"))
 	else if( !welded && !operating)
-		if(istype(I, /obj/item/twohanded/fireaxe)) //being fireaxe'd
-			var/obj/item/twohanded/fireaxe/F = I
+		if(istype(I, /obj/item/fireaxe)) //being fireaxe'd
+			var/obj/item/fireaxe/F = I
 			if(!F.wielded)
 				to_chat(user, span_warning("You need to be wielding the fire axe to do that!"))
 				return

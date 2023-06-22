@@ -1,7 +1,4 @@
-/*
- * Fireaxe
- */
-/obj/item/fireaxe  // DEM AXES MAN, marker -Agouri
+/obj/item/fireaxe
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "fireaxe0"
 	base_icon_state = "fireaxe"
@@ -71,9 +68,18 @@
 	force_wielded = 18
 
 /*
+ * Bone Axe
+ */
+/obj/item/fireaxe/boneaxe
+	icon_state = "bone_axe0"
+	base_icon_state = "bone_axe"
+	name = "bone axe"
+	desc = "A large, vicious axe crafted out of several sharpened bone plates and crudely tied together. Made of monsters, by killing monsters, for killing monsters."
+	force_wielded = 18
+
+/*
  * Energy Fire Axe
  */
-
 /obj/item/fireaxe/energy
 	name = "energy fire axe"
 	desc = "A massive, two handed, energy-based hardlight axe capable of cutting through solid metal. 'Glory to atmosia' is carved on the side of the handle."
