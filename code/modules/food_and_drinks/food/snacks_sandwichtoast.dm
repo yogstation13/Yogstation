@@ -26,7 +26,7 @@
 	icon_state = "toastedsandwich"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("toast" = 1, "cheese" = 1)
+	tastes = list("bread" = 1, "cheese" = 1)
 	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/jellysandwich
