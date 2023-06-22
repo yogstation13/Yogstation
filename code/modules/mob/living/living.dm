@@ -572,6 +572,14 @@
 		reload_fullscreen()
 		revive_guardian()
 		. = 1
+		var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
+		if(B)
+			if(B && B.decay_progress > 5 MINUTES && !admin_revive)
+				to_chat(src, span_danger("As life pours back through your body, you struggle to recall what last happened to you; every memory before your death is hazy. You feel like you've been dead for too long"))
+				to_chat(src, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
+				src.visible_message(span_danger("[src] stares ahead blankly, blinking a few times, as if they are trying to remember something."))
+				log_combat(src, "was revived with memory loss")
+			B.decay_progress = 0
 		if(IS_BLOODSUCKER(src))
 			var/datum/antagonist/bloodsucker/bloodsuckerdatum = src.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 			bloodsuckerdatum.heal_vampire_organs()
