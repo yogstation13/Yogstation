@@ -29700,11 +29700,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "hTY" = (
-/obj/structure/noticeboard{
-	dir = 1;
-	pixel_y = -27
-	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/machinery/light_switch{
+	pixel_y = -23
+	},
 /turf/open/floor/plasteel,
 /area/security/main)
 "hUh" = (
@@ -41469,11 +41468,11 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "mLd" = (
-/obj/structure/sign/plaques/golden{
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
+	},
+/obj/machinery/level_interface{
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -55105,6 +55104,10 @@
 /obj/machinery/light,
 /obj/machinery/papershredder,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/structure/noticeboard{
+	dir = 1;
+	pixel_y = -27
+	},
 /turf/open/floor/plasteel,
 /area/security/main)
 "ssx" = (
@@ -57324,13 +57327,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel,
 /area/security/courtroom)
-"tmO" = (
-/obj/machinery/light_switch{
-	pixel_y = -23
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/security/main)
 "tnB" = (
 /turf/closed/wall,
 /area/bridge)
@@ -67045,12 +67041,11 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
 "xpf" = (
-/obj/structure/sign/painting{
-	persistence_id = "public";
-	pixel_y = 32
-	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 5
+	},
+/obj/structure/sign/plaques/golden{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -101646,7 +101641,7 @@ lqG
 thk
 eut
 ahH
-tmO
+oif
 adR
 xpf
 qLJ
