@@ -5049,6 +5049,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
+"DA" = (
+/obj/structure/statue/resin/ashwalker{
+	name = "ancient statue";
+	desc = "An ancient statue, made of resin and covered in a thin coat of ash and debris. It'd probably fetch a good price with the right buyer."
+	},
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "DP" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -6469,6 +6477,13 @@
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
+"XA" = (
+/obj/effect/decal/remains/human{
+	name = "ancient remains";
+	desc = "Remains covered in ash. There's a visible bullet hole in the skull."
+	},
+/turf/closed/mineral/random/high_chance/volcanic,
+/area/lavaland/surface/outdoors)
 "XF" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -8452,7 +8467,7 @@ Ub
 Ub
 Ub
 Ub
-mJ
+XA
 mJ
 ju
 ey
@@ -8509,7 +8524,7 @@ Ub
 Ub
 mJ
 mJ
-mJ
+DA
 ju
 ez
 eY
@@ -8563,7 +8578,7 @@ Ub
 Ub
 Ub
 Ub
-mJ
+XA
 mJ
 mJ
 ju
@@ -8622,7 +8637,7 @@ Ub
 Ub
 mJ
 mJ
-mJ
+XA
 ju
 ly
 mq
