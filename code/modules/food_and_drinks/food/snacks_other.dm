@@ -170,7 +170,7 @@
 	desc = "It is only wafer thin."
 	icon_state = "mint"
 	bitesize = 1
-	list_reagents = list(/datum/reagent/toxin/minttoxin = 2)
+	list_reagents = list(/datum/reagent/consumable/mintextract = 2)
 	filling_color = "#800000"
 	foodtype = TOXIC | SUGAR
 

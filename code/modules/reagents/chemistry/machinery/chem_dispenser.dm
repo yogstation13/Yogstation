@@ -35,7 +35,7 @@
 	var/obj/item/reagent_containers/beaker = null
 	//This will display every reagent that it could POSSIBLY dispense if it was fully upgraded (barring emagged chemicals). Ones you can't use will show what tier you need.
 	//If you want to add more to the tiers, it has to be in dispensable_reagents AND the list of what you tier you want it in below.
-	var/list/display_reagents = list() 
+	var/list/display_reagents = list()
 
 	var/list/dispensable_reagents = list(
 		/datum/reagent/aluminium,
@@ -358,7 +358,7 @@
 			to_chat(user, span_notice("[I] is stuck to your hand!"))
 			return
 		if(istype(I, /obj/item/stock_parts/cell))
-			I.forceMove(src) // Force it out of our hands so we can put the old cell in it		
+			I.forceMove(src) // Force it out of our hands so we can put the old cell in it
 			if(!user.put_in_hands(cell))
 				cell.forceMove(get_turf(src))
 			component_parts -= cell // Remove the old cell so the new one spawns when deconstructed
@@ -530,7 +530,7 @@
 		/datum/reagent/consumable/limejuice,
 		/datum/reagent/consumable/lemonjuice,
 		/datum/reagent/consumable/menthol
-		
+
 	)
 	t2_upgrade_reagents = list(
 		/datum/reagent/consumable/berryjuice,
@@ -611,7 +611,7 @@
 		/datum/reagent/consumable/ethanol
 	)
 	emagged_reagents = list(
-		/datum/reagent/toxin/minttoxin,
+		/datum/reagent/consumable/mintextract,
 		/datum/reagent/consumable/ethanol/syndicatebomb,
 		/datum/reagent/consumable/ethanol/fernet
 	)

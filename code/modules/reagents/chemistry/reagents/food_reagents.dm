@@ -906,3 +906,13 @@
 	metabolization_rate = 1 * REAGENTS_METABOLISM
 	taste_description = "peppery sweetness"
 
+/datum/reagent/consumable/mintextract
+	name = "Mint Extract"
+	description = "Useful for dealing with undesirable customers."
+	color = "#CF3600" // rgb: 207, 54, 0
+	taste_description = "mint"
+
+/datum/reagent/consumable/mintextract/on_mob_life(mob/living/carbon/affected_mob, delta_time, times_fired)
+	if(HAS_TRAIT(affected_mob, TRAIT_FAT))
+		affected_mob.gib()
+	return ..()
