@@ -2,10 +2,20 @@
 	gender = PLURAL
 	layer = ABOVE_NORMAL_TURF_LAYER
 	var/list/random_icon_states = null
-	var/blood_state = "" //I'm sorry but cleanable/blood code is ass, and so is blood_DNA
-	var/bloodiness = 0 //0-100, amount of blood in this decal, used for making footprints and affecting the alpha of bloody footprints
-	var/mergeable_decal = TRUE //when two of these are on a same tile or do we need to merge them into just one?
+	///I'm sorry but cleanable/blood code is ass, and so is blood_DNA
+	var/blood_state = ""
+	///0-100, amount of blood in this decal, used for making footprints and affecting the alpha of bloody footprints
+	var/bloodiness = 0
+	///When two of these are on a same tile or do we need to merge them into just one?
+	var/mergeable_decal = TRUE
 
+	///The type of cleaning required to clean the decal. See __DEFINES/cleaning.dm for the options
+	var/clean_type = CLEAN_TYPE_LIGHT_DECAL
+	///The reagent this decal holds. Leave blank for none.
+	var/datum/reagent/decal_reagent
+	///The amount of reagent this decal holds, if decal_reagent is defined
+	var/reagent_amount = 0
+	
 /obj/effect/decal/cleanable/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
 	if (random_icon_states && (icon_state == initial(icon_state)) && length(random_icon_states) > 0)
@@ -119,6 +129,8 @@
 	return null
 
 /obj/effect/decal/cleanable/wash(clean_types)
-	..()
-	qdel(src)
-	return TRUE
+	. = ..()
+	if (. || (clean_types & clean_type))
+		qdel(src)
+		return TRUE
+	return .

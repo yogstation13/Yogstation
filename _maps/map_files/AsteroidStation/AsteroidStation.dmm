@@ -49467,6 +49467,15 @@
 /obj/structure/closet/wardrobe/black,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"psi" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/machinery/level_interface{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "psq" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -105933,7 +105942,7 @@ dQz
 mBD
 mBD
 aHC
-dyV
+psi
 gbu
 bdc
 xfO

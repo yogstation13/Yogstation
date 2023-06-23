@@ -6665,9 +6665,6 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "ass" = (
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_y = -32
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
@@ -59077,6 +59074,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
+"jHM" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/level_interface{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "jIE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -109319,7 +109325,7 @@ qjs
 arN
 ass
 adY
-alW
+jHM
 asx
 asj
 aiq
