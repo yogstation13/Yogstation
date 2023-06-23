@@ -870,7 +870,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return
 	delay *= toolspeed
 
-	if(((IS_ENGINEERING(user) || (robo_check && IS_JOB(user, "Roboticist"))) && (tool_behaviour in MECHANICAL_TOOLS)) || (IS_MEDICAL(user) && tool_behaviour in MEDICAL_TOOLS))
+	if(((IS_ENGINEERING(user) || (robo_check && IS_JOB(user, "Roboticist"))) && (tool_behaviour in MECHANICAL_TOOLS)) || (IS_MEDICAL(user) && (tool_behaviour in MEDICAL_TOOLS)))
 		delay *= 0.8 // engineers and doctors use their own tools faster
 
 	if(volume) // Play tool sound at the beginning of tool usage.
