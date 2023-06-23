@@ -56,7 +56,7 @@
 	if(!owner.current || silent)
 		return
 	owner.current.visible_message("[span_heavy_brass("[owner.current]'s eyes glow a blazing yellow!")]", null, null, 7, owner.current) //don't show the owner this message
-	to_chat(owner.current, "<span class='heavy_brass'> A sharp light flashes through your mind, and you finally gain understanding of the cause. Assist your new companions in their righteous efforts. Your goal is theirs, and theirs yours. You serve the Clockwork \
+	to_chat(owner.current, "<span class='heavy_brass'>A sharp light flashes through your mind, and you finally gain understanding of the cause. Assist your new companions in their righteous efforts. Your goal is theirs, and theirs yours. You serve the Clockwork \
 	Justiciar above all else. Perform his every whim without hesitation. Show the unenlightened Ratvars Light, as others have shown you, and defend the Ark until his arrival.</span>")
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/clockcultalr.ogg', 70, FALSE, pressure_affected = FALSE)
 
