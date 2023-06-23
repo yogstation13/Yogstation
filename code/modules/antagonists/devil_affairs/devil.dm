@@ -1,6 +1,7 @@
 /datum/antagonist/devil
 	name = "Devil"
 	roundend_category = "infernal affairs agents"
+	antagpanel_category = "Devil Affairs"
 	job_rank = ROLE_INFERNAL_AFFAIRS_DEVIL
 	greentext_achieve = /datum/achievement/greentext/devil
 
@@ -21,26 +22,12 @@
 /datum/antagonist/devil/on_gain()
 	. = ..()
 	SSinfernal_affairs.devils += src
-	RegisterSignal(SSinfernal_affairs, COMSIG_ON_SOUL_HARVESTED, PROC_REF(on_soul_harvest))
 
 /datum/antagonist/devil/on_removal()
-	UnregisterSignal(SSinfernal_affairs, COMSIG_ON_SOUL_HARVESTED)
 	SSinfernal_affairs.devils -= src
 	return ..()
 
-/datum/antagonist/devil/proc/on_soul_harvest(atom/source, datum/antagonist/infernal_affairs/harvested_agent)
-	SIGNAL_HANDLER
-	if(harvested_agent.owner.current.stat != DEAD)
-		return
-	ADD_TRAIT(harvested_agent.owner, TRAIT_HELLBOUND, DEVIL_TRAIT)
-	souls++
-	SSinfernal_affairs.update_objective_datums()
-
 /datum/action/cooldown/spell/pointed/summon_contract
-	background_icon_state = "bg_demon"
-	overlay_icon_state = "ab_goldborder"
-
-/datum/action/cooldown/spell/pointed/collect_soul
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "ab_goldborder"
 

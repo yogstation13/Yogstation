@@ -121,12 +121,25 @@
 
 /obj/item/paper/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click [src] to fold it into a paper plane.")
+	if(foldable)
+		. += span_notice("Alt-click [src] to fold it into a paper plane.")
 
 /obj/item/paper/AltClick(mob/living/carbon/user, obj/item/I)
+	if(!foldable)
+		return ..()
+	var/datum/antagonist/infernal_affairs/affair_agent = IS_INFERNAL_AGENT(user)
+	if(affair_agent)
+		var/plane_response = tgui_input_list(user, "Do you wish for a plane a calling card?", "Your Calling", list("Calling Card", "Airplane"))
+		if(plane_response == "Calling Card")
+			user.balloon_alert(user, "folded paper.")
+			user.temporarilyRemoveItemFromInventory(src)
+			var/obj/item/paper/calling_card/new_card = new(user, affair_agent)
+			user.put_in_hands(new_card, no_sound = TRUE)
+			qdel(src)
+			return
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
-	to_chat(user, span_notice("You fold [src] into the shape of a plane!"))
+	user.balloon_alert(user, "folded paper.")
 	user.temporarilyRemoveItemFromInventory(src)
 	var/obj/item/paperplane/plane_type = /obj/item/paperplane
 	//Origami Master

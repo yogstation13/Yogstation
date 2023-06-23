@@ -1,1 +1,0 @@
-#define COMSIG_ON_SOUL_HARVESTED "comsig_on_soul_harvested"

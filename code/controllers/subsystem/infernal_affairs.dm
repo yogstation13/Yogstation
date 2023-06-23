@@ -6,12 +6,12 @@
  */
 SUBSYSTEM_DEF(infernal_affairs)
 	name = "Devil Affairs"
-	flags = SS_NO_FIRE
+	flags = SS_NO_INIT|SS_NO_FIRE
 
 	///List of all devils in-game. There is supposed to have only one, so this is in-case admins do some wacky shit.
 	var/list/datum/antagonist/devil/devils = list()
 	///List of all Agents in the loop and the gear they have.
-	var/list/agent_datums_and_items = list()
+	var/list/datum/antagonist/infernal_affairs/agent_datums = list()
 
 /**
  * Enters a for() loop for all agents while assigning their target to be the first available agent.
@@ -22,26 +22,26 @@ SUBSYSTEM_DEF(infernal_affairs)
  * We skip over Hellbound people, and when there's only one left alive, we'll end the loop.
  */
 /datum/controller/subsystem/infernal_affairs/proc/update_objective_datums()
-	if(!agent_datums_and_items.len)
+	if(!agent_datums.len)
 		return
 	var/list_position = 1
-	for(var/datum/antagonist/infernal_affairs/agents as anything in agent_datums_and_items)
+	for(var/datum/antagonist/infernal_affairs/agents as anything in agent_datums)
 		if(!agents.active_objective)
 			agents.active_objective = new(src)
 		var/objective_set = FALSE
 		while(!objective_set)
 			list_position++
-			if(list_position > agent_datums_and_items.len)
+			if(list_position > agent_datums.len)
 				list_position = initial(list_position)
-			var/datum/antagonist/infernal_affairs/next_agent = agent_datums_and_items[list_position]
+			var/datum/antagonist/infernal_affairs/next_agent = agent_datums[list_position]
 			if(HAS_TRAIT(next_agent.owner, TRAIT_HELLBOUND))
 				continue
 			if(next_agent == agents)
 				end_loop(agents)
 				objective_set = TRUE
 				break
-			if(agents.active_objective.target != agent_datums_and_items[list_position])
-				agents.active_objective.target = agent_datums_and_items[list_position]
+			if(agents.active_objective.target != agent_datums[list_position])
+				agents.active_objective.target = agent_datums[list_position]
 				agents.active_objective.update_explanation_text()
 				agents.update_static_data(agents.owner.current)
 			objective_set = TRUE

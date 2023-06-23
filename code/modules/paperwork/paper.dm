@@ -8,6 +8,7 @@
 /datum/langtext // A datum to describe a piece of writing that stores a language value with it.
 	var/text = "" // The text that is written.
 	var/datum/language/lang // the language it's written in.
+
 /datum/langtext/New(t,datum/language/l)
 	text = t
 	lang = l
@@ -46,7 +47,8 @@
 	var/contact_poison // Reagent ID to transfer on contact
 	var/contact_poison_volume = 0
 	var/next_write_time = 0 // prevent crash exploit
-
+	///Whether the paper can be folded into a paper airplane.
+	var/foldable = TRUE
 
 /obj/item/paper/pickup(user)
 	if(contact_poison && ishuman(user))

@@ -27,6 +27,7 @@
 #define APPRENTICE_ROBELESS "robeless"
 #define APPRENTICE_HEALING "healing"
 
+#define IS_INFERNAL_AGENT(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/infernal_affairs))
 
 //Blob
 /// blob gets a free reroll every X time
