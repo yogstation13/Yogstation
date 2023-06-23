@@ -9,6 +9,7 @@
 	button_icon = 'icons/mob/actions/actions_arm.dmi'
 	button_icon_state = "lariat"
 	cooldown_time = 7 SECONDS
+	var/jumpdistance = 4
 
 /datum/action/cooldown/seismic/lariat/Trigger()
 	if(!..())
@@ -61,6 +62,7 @@
 	button_icon = 'icons/mob/actions/actions_arm.dmi'
 	button_icon_state = "mop"
 	cooldown_time = 7 SECONDS
+	var/jumpdistance = 4
 
 /datum/action/cooldown/seismic/mop/Trigger()
 	if(!..())
@@ -179,7 +181,6 @@
 			L.adjustBruteLoss(6)
 		if(issilicon(L))
 			L.adjustBruteLoss(8)
-		addtimer(CALLBACK(src, PROC_REF(fix_target_anim), L), 0.5 SECONDS)
 		
 /datum/action/cooldown/seismic/righthook
 	name = "Right Hook"
@@ -194,7 +195,7 @@
 		return FALSE
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	do_after(owner, 2 SECONDS, owner, TRUE, stayStill = FALSE)
-	owner.put_in_r_hand(new /obj/item/overcharged_emitter)
+	owner.put_in_r_hand(new /obj/item/melee/overcharged_emitter)
 	owner.visible_message(span_warning("[owner]'s right arm begins crackling loudly!"))
 	return TRUE
 
@@ -211,11 +212,11 @@
 		return FALSE
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	do_after(owner, 2 SECONDS, owner, TRUE, stayStill = FALSE)
-	owner.put_in_l_hand(new /obj/item/overcharged_emitter)
+	owner.put_in_l_hand(new /obj/item/melee/overcharged_emitter)
 	owner.visible_message(span_warning("[owner]'s left arm begins crackling loudly!"))
 	return TRUE
 
-/obj/item/melee/touch_attack/overcharged_emitter
+/obj/item/melee/overcharged_emitter
 	name = "supercharged emitter"
 	desc = "The result of all the prosthetic's power building up in its palm. It's fading fast."
 	icon = 'icons/obj/wizard.dmi'
@@ -226,7 +227,7 @@
 	w_class = 5
 	var/flightdist = 8
 
-/obj/item/melee/touch_attack/overcharged_emitter/afterattack(mob/living/L, mob/living/user, proximity)
+/obj/item/melee/overcharged_emitter/afterattack(mob/living/L, mob/living/user, proximity)
 	var/direction = user.dir
 	var/list/knockedback = list()
 	if(!proximity)
@@ -285,17 +286,12 @@
 				S.forceMove(T)
 				S.SpinAnimation(0.2 SECONDS, 1)
 
-/obj/item/melee/touch_attack/overcharged_emitter/Initialize(mapload)
+/obj/item/melee/overcharged_emitter/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	animate(src, alpha = 50, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
 
-/obj/item/melee/touch_attack/overcharged_emitter/Destroy()
-	var/datum/action/cooldown/spell/our_spell = spell_which_made_us?.resolve()
-	if(our_spell)
-		our_spell.build_all_button_icons()
-	return ..()
 
 //Seismic Arm
 /obj/item/bodypart/r_arm/robot/seismic
