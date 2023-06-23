@@ -3,7 +3,6 @@
 	stat_attack = UNCONSCIOUS
 	weather_immunities = WEATHER_ACID
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	robust_searching = TRUE
 	faction = list("mining", "skintwister_cloak")
 	see_in_dark = 3
 	vision_range = 4
@@ -115,8 +114,8 @@
 	health = 100
 	spacewalk = TRUE
 
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 7.5
+	melee_damage_upper = 10
 
 	rapid_melee = 3
 	
@@ -134,7 +133,7 @@
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/humie = target
-	var/chance = ((humie.wear_suit ? 100 - humie.wear_suit.armor.bio : 100)  +  (humie.head ? 100 - humie.head.armor.bio : 100) )/2
+	var/chance = humie.getarmor(null,BIO)
 	if(prob(max(10,chance * 0.66))) // higher chance than toxic water
 		humie.apply_status_effect(/datum/status_effect/toxic_buildup)
 
@@ -156,7 +155,7 @@
 		return
 	if(istype(loc,/turf/open/water) && sulking)
 		icon_state = "meduracha_sulking"
-		move_to_delay = 1
+		move_to_delay = 1.5
 		return
 	move_to_delay = 3
 	icon_state = "meduracha"
@@ -290,7 +289,7 @@
 	speak_emote = list("bops", "pops")
 	emote_hear = list("vibrates.","listens.","hears.")
 	emote_taunt = list("pops agressively")
-	move_to_delay = 5
+	move_to_delay = 6
 	speak_chance = 1
 	taunt_chance = 1
 	turns_per_move = 1
@@ -359,6 +358,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 40 
 	alpha_type = /mob/living/simple_animal/hostile/yog_jungle/alpha_mosquito
+	move_to_delay = 5
 	var/can_charge = TRUE
 	var/cooldown = 15 SECONDS
 	var/charge_ramp_up = 2 SECONDS

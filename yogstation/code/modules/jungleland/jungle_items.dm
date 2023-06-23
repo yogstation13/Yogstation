@@ -597,6 +597,9 @@
 	user.throw_alert("glory_of_victory",/atom/movable/screen/alert/status_effect/glory_of_victory,current_state)
 
 /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/proc/remove_bonuses(datum/source,mob/living/user,obj/item/twohanded/kinetic_crusher/hammer_synced)
+	if(!hammer_synced)
+		hammer_synced = loc
+		user = hammer_synced.loc
 	hammer_synced.detonation_damage -= damage_bonus
 	hammer_synced.charge_time -= cooldown_bonus
 	current_state = 0
@@ -607,7 +610,7 @@
 /obj/item/crusher_trophy/jungleland/corrupted_dryad_branch/process(delta_time)
 	if(timer > 0)
 		timer -= delta_time
-		if(timer == 0)
+		if(timer <= 0)
 			remove_bonuses()
 
 /obj/item/crusher_trophy/jungleland/mosquito_sack
