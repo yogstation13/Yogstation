@@ -29,7 +29,7 @@
 		return FALSE
 	var/datum/antagonist/infernal_affairs/agent_datum = target.mind.has_antag_datum(/datum/antagonist/infernal_affairs)
 	if(!agent_datum)
-		target.balloon_alert(user, "not an agent!")
+		target.balloon_alert(owner, "not an agent!")
 		return FALSE
 	var/obj/item/paper/calling_card/card = locate() in target.get_all_contents()
 	if(!card)
