@@ -112,7 +112,7 @@
 	var/previous_loc = user.loc
 
 	// If we have a tool, use it
-	if((tool && tool.use_tool(target, user, time * speed_mod)) || do_after(user, time * speed_mod, target))
+	if((tool && tool.use_tool(target, user, time * speed_mod, robo_check = TRUE)) || do_after(user, time * speed_mod, target))
 		var/prob_chance = 100
 
 		if(implement_type)	//this means it isn't a require hand or any item step.
