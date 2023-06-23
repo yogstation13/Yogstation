@@ -49,7 +49,7 @@
 	//grant the soul to ALL devils, though without admin intervention there should only be one.
 	for(var/datum/antagonist/devil/devil as anything in SSinfernal_affairs.devils)
 		if(devil.owner.current)
-			devils.update_souls_owned(1)
+			devil.update_souls_owned(1)
 
 	if(killer)
 		killer.uplink_holder.telecrystals += rand(3,5)

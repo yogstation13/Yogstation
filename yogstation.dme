@@ -1733,6 +1733,8 @@
 #include "code\modules\antagonists\devil_affairs\infernal_agent.dm"
 #include "code\modules\antagonists\devil_affairs\true_devil.dm"
 #include "code\modules\antagonists\devil_affairs\devil_powers\collect_soul.dm"
+#include "code\modules\antagonists\devil_affairs\devil_powers\dancefloor.dm"
+#include "code\modules\antagonists\devil_affairs\devil_powers\devil_form.dm"
 #include "code\modules\antagonists\disease\disease_abilities.dm"
 #include "code\modules\antagonists\disease\disease_datum.dm"
 #include "code\modules\antagonists\disease\disease_disease.dm"

@@ -90,35 +90,6 @@
 /**
  * Ascended Powers
  */
-/datum/action/cooldown/spell/summon_dancefloor
-	background_icon_state = "bg_demon"
-	overlay_icon_state = "ab_goldborder"
-
 /datum/action/cooldown/spell/pointed/projectile/fireball/hellish
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "ab_goldborder"
-
-/datum/action/cooldown/spell/shapeshift/devil
-	name = "Devil Form"
-	desc = "Take on the true shape of a devil."
-	invocation = "P'ease't d'y fo' ' w'lk!"
-	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
-	background_icon_state = "bg_demon"
-	overlay_icon_state = "ab_goldborder"
-
-	possible_shapes = list(/mob/living/simple_animal/hostile/devil)
-
-
-/**
- * 
- * FROM THE HACKMD (delete this before merging):
- * 
- * Summon Contract: This spawns a contract that will allow an individual to become a Devil Affair Agent, inserting them into the loop in exchange for an Uplink. This can be used on Security and Command personnel, but will not work on Lawyers, the Head of Personnel, and the Curator.
- * Collect Soul: A spell used on dead Devil Affair Agents, will take the soul out of their body, making them unrevivable. This will advance the Devil’s level, and allow the Agent who had them as a target to advance in their own assassination goals.
- * 1 soul - They will gain the ability to transfer over to a new body on death (More details in ‘Death’ section).
- * 2 soul - Gets their Golden Violin
- * 3 soul - Gets to spawn in their Pitchfork, a dual wielded weapon that sets players on fire and has a high block chance, but low damage. Meant primarily as a defensive tool.
- * 4 souls - Gets their Ethereal Jaunt //intentionally skips one
- * 8 souls - Ascends, granting them Devil form (Simple mob (or Basic mob if they are ported by then)) & Fireball
- */
