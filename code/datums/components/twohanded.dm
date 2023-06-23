@@ -214,7 +214,8 @@
 	wielded = TRUE
 	ADD_TRAIT(parent, TRAIT_WIELDED, REF(src))
 	RegisterSignal(user, COMSIG_MOB_SWAPPING_HANDS, PROC_REF(on_swapping_hands))
-	wield_callback?.Invoke(parent, user)
+	if(wield_callback)
+		wield_callback.Invoke(parent, user)
 
 	// update item stats and name
 	var/obj/item/parent_item = parent
