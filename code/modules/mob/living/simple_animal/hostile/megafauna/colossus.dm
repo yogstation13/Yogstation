@@ -739,8 +739,6 @@ Difficulty: Very Hard
 			L.heal_overall_damage(heal_power, heal_power)
 			new /obj/effect/temp_visual/heal(get_turf(target), heal_color)
 
-	. = ..()
-
 /datum/action/cooldown/spell/conjure/plants
 	name = "Seed Plants"
 	desc = "This spell seeds a random plant into the floor."
