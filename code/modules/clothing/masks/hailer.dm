@@ -1,4 +1,3 @@
-
 // **** Security gas mask ****
 
 /datum/action/item_action/halt
