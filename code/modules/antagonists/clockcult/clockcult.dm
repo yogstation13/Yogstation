@@ -226,7 +226,7 @@
 
 	if(check_clockwork_victory())
 		parts += "<span class='greentext big'>Ratvar's servants defended the Ark until its activation!</span>"
-		parts += "<b>The Servants of Ratvar find themselves once more on the station, filled with a new sense of pride and accomplishment. The vents beneath them hiss with steam as walls turn to brass, yet they do not feel content. Though Rat’var is free, they know that this is but the beginning of their duty. In the cold, dark expanse surrounding the new City of Cogs, there lay a billion stars. Each one with cities to turn, people to enlighten, and foes to strike down."
+		parts += "<b>The Servants of Ratvar find themselves once more on the station, filled with a sense of pride and accomplishment. The vents beneath them hiss with steam as walls turn to brass, yet they do not feel content. Though Rat’var is free, they know that this is but the beginning of their duty. In the cold, dark expanse surrounding the new City of Cogs, there lay a billion stars. Each one with cities to turn, people to enlighten, and foes to strike down."
 		for(var/mind in SSticker.mode.servants_of_ratvar)
 			var/datum/mind/M = mind
 			if(M.current?.client)
