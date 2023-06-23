@@ -326,6 +326,7 @@
 #define GENETIC_MUTATION "genetic"
 #define OBESITY "obesity"
 #define MAGIC_TRAIT "magic"
+#define DEVIL_TRAIT "devil"
 #define TRAUMA_TRAIT "trauma"
 #define DISEASE_TRAIT "disease"
 #define SPECIES_TRAIT "species"

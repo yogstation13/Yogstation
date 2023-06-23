@@ -67,9 +67,7 @@
 			qdel(A.malf_picker)
 	owner.remove_employee(company)
 	if(uplink_holder)
-		var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
-		if(uplink)//remove uplink so they can't keep using it if admin abuse happens
-			uplink.RemoveComponent()
+		uplink_holder.RemoveComponent()
 	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
@@ -295,7 +293,7 @@
 
 /datum/antagonist/traitor/proc/equip(silent = FALSE)
 	if(traitor_kind == TRAITOR_HUMAN)
-		uplink_holder = owner.equip_traitor(employer, silent, src) //yogs - uplink_holder =
+		uplink_holder = owner.equip_traitor(employer, silent, src) //yogs - keeps track of their uplink.
 
 /datum/antagonist/traitor/proc/assign_exchange_role()
 	//set faction

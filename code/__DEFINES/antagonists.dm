@@ -27,6 +27,7 @@
 #define APPRENTICE_ROBELESS "robeless"
 #define APPRENTICE_HEALING "healing"
 
+#define IS_INFERNAL_AGENT(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/infernal_affairs))
 
 //Blob
 /// blob gets a free reroll every X time
@@ -56,6 +57,9 @@
 /// TC to charge someone if they get a free implant through choice or
 /// because they have nothing else that supports an implant.
 #define UPLINK_IMPLANT_TELECRYSTAL_COST 4
+
+///Signal sent to a mob when they purchase an item from their uplink.
+#define COMSIG_ON_UPLINK_PURCHASE "comsig_on_uplink_purchase"
 
 //ERT Types
 #define ERT_BLUE "Blue"

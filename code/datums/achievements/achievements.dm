@@ -249,6 +249,12 @@
 	desc = "As a revenant, complete your objectives"
 	id = GREENTEXT + 17
 
+/datum/achievement/greentext/devil
+	name = "Eternal Infernal"
+	desc = "As a devil, ascend to your greatest power"
+	id = GREENTEXT + 17
+
+
 //end-greentext
 
 //start-redtext
