@@ -94,8 +94,6 @@
 	var/advance = FALSE
 
 	var/speed_mod = 1
-	if(user == target)
-		speed_mod *= 2 // harder to do on yourself
 
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = FALSE
