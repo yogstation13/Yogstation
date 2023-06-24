@@ -9,14 +9,13 @@
 
 /datum/preference/choiced/gender/create_informed_default_value(datum/preferences/preferences)
 
-	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
-	var/datum/species/S = new species_type
+	var/datum/species/species_type = preferences.read_preference(/datum/preference/choiced/species)
 	
-	if(!S.sexes || (AGENDER in S.species_traits))
+	if(!S.sexes || (AGENDER in initial(species_type.species_traits)))
 		return list(PLURAL)
-	else if(FGENDER in S.species_traits)
+	else if(FGENDER in initial(species_type.species_traits))
 		return list(FEMALE)
-	else if(MGENDER in S.species_traits)
+	else if(MGENDER in initial(species_type.species_traits))
 		return list(MALE)
 
 	return list(MALE, FEMALE, PLURAL)
