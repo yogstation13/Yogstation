@@ -511,7 +511,7 @@
 
 /datum/status_effect/regenerative_core/on_apply()
 	var/turf/T = get_turf(owner)
-	if(is_station_level(T.z))
+	if(is_station_level(T.z) && !is_mining_level(T.z))
 		ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, id)
 	else
 		ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
