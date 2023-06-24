@@ -19,7 +19,6 @@
 /obj/item/projectile/bullet/c38
 	name = ".38 special bullet"
 	damage = 21
-	armour_penetration = -30 //Armor hit by this is modified by x1.43. IF THIS IS EVER MADE POSITIVE, PLEASE REVISE FORMULA IN .38 TALON ON-HIT PROC
 	wound_bonus = -30
 	wound_falloff_tile = -2.5
 	bare_wound_bonus = 15
@@ -28,6 +27,7 @@
 	name = ".38 rubber bullet"
 	damage = 7
 	stamina = 30
+	armour_penetration = -30 //Armor hit by this is modified by x1.43.
 	sharpness = SHARP_NONE
 
 /obj/item/projectile/bullet/c38/ap
@@ -51,6 +51,7 @@
 	name = ".38 talon bullet"
 	damage = 12 //Tested on naked felinids, could never cause a wound type above open cut.
 	stamina = 18
+	armour_penetration = -30 //IF THIS IS EVER MADE POSITIVE, PLEASE REVISE FORMULA IN .38 TALON ON-HIT PROC
 	sharpness = SHARP_EDGED
 	var/bleed_threshold = 7 //How much damage the bullet must do to bleed
 
