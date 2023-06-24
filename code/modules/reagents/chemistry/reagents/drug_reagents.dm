@@ -583,3 +583,77 @@
 	if(prob(15))
 		M.adjustToxLoss(2, 0)
 	..()
+/datum/reagent/drug/blue_eye
+	name = "Blue-Eye"
+	description = "A stimulating drug often used by Space Wizards with mind altering effects when sprayed into the eye of a user"
+	reagent_state = GAS
+	color = "#5b5beb"
+	taste_description = "swirling blue chaos"
+	overdose_threshold = 40
+	addiction_threshold = 30
+	metabolization_rate = 1.3 * REAGENTS_METABOLISM
+	
+/datum/reagent/drug/blue_eye/on_mob_metabolize(mob/living/L)
+	..()
+	if(prob(2))
+		to_chat(L, span_warning("You start to see flickering blue light..."))
+
+/datum/reagent/drug/blue_eye/on_mob_life(mob/living/carbon/M)
+	M.set_blue_eye(17)
+	M.adjust_jitter(2 SECONDS)
+	M.adjustStaminaLoss(-2, 0)
+	if(isturf(M.loc) && !isspaceturf(M.loc) && prob(12))
+		if(M.mobility_flags & MOBILITY_MOVE)
+			step(M, pick(GLOB.cardinals))
+	if(prob(7))
+		M.emote(pick("twitch","drool","moan","giggle","spin"))
+	if(prob(10))
+		to_chat(M, span_notice("[pick("SCYAR NILA!!", "NEC CANTIO.", "EI NATH!!!", "AULIE OXIN FIERA.", "TARCOL MINTI ZHERI.", "STI KALY!")]"))
+	..()
+
+/datum/reagent/drug/blue_eye/overdose_process(mob/living/M)
+	if(isturf(M.loc) && !isspaceturf(M.loc) && prob(20))
+		if(M.mobility_flags & MOBILITY_MOVE)
+			step(M, pick(GLOB.cardinals))
+	if(prob(8))
+		M.visible_message(span_danger("[M]'s fingers curl into mystical shapes!"))
+		M.drop_all_held_items()
+	if(prob(6))
+		addtimer(CALLBACK(M, /mob/living/proc/bluespace_shuffle), 30)
+	M.adjustToxLoss(1, 0)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.4, 0.5))
+
+/datum/reagent/drug/blue_eye/addiction_act_stage1(mob/living/M)
+	M.adjust_jitter(5 SECONDS)
+	if(prob(20))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/blue_eye/addiction_act_stage2(mob/living/M)
+	M.adjust_jitter(10 SECONDS)
+	M.adjust_dizzy(10)
+	if(prob(30))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/blue_eye/addiction_act_stage3(mob/living/M)
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
+		for(var/i = 0, i < 4, i++)
+			step(M, pick(GLOB.cardinals))
+	M.adjust_jitter(15 SECONDS)
+	M.adjust_dizzy(15)
+	if(prob(40))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/blue_eye/addiction_act_stage4(mob/living/carbon/human/M)
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
+		for(var/i = 0, i < 8, i++)
+			step(M, pick(GLOB.cardinals))
+	M.adjust_jitter(20 SECONDS)
+	M.adjust_dizzy(20)
+	M.adjustToxLoss(5, 0)
+	if(prob(50))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+	. = 1
