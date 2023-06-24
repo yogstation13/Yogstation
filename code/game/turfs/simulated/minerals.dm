@@ -214,8 +214,8 @@
 	baseturfs = /turf/open/floor/plating/asteroid/snow/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	mineralSpawnChanceList = list(
-		/turf/closed/mineral/uranium/ice/icemoon = 35, /turf/closed/mineral/diamond/ice/icemoon = 30, /turf/closed/mineral/gold/ice/icemoon = 45, /turf/closed/mineral/titanium/ice/icemoon = 45,
-		/turf/closed/mineral/silver/ice/icemoon = 50, /turf/closed/mineral/plasma/ice/icemoon = 50, /turf/closed/mineral/bscrystal/ice/icemoon = 20)
+		/turf/closed/mineral/uranium/ice/icemoon = 35, /turf/closed/mineral/diamond/ice/icemoon = 25, /turf/closed/mineral/gold/ice/icemoon = 40, /turf/closed/mineral/titanium/ice/icemoon = 45,
+		/turf/closed/mineral/silver/ice/icemoon = 50, /turf/closed/mineral/plasma/ice/icemoon = 50, /turf/closed/mineral/bscrystal/ice/icemoon = 15, /turf/closed/mineral/dilithium/ice/icemoon = 15)
 
 
 /turf/closed/mineral/random/low_chance
@@ -290,9 +290,9 @@
 
 	mineralChance = 10
 	mineralSpawnChanceList = list(
-		/turf/closed/mineral/uranium/ice/icemoon = 5, /turf/closed/mineral/diamond/ice/icemoon = 1, /turf/closed/mineral/gold/ice/icemoon = 10, /turf/closed/mineral/titanium/ice/icemoon = 11,
-		/turf/closed/mineral/silver/ice/icemoon = 12, /turf/closed/mineral/plasma/ice/icemoon = 20, /turf/closed/mineral/iron/ice/icemoon = 40,
-		/turf/closed/mineral/gibtonite/ice/icemoon = 4, /turf/closed/mineral/bscrystal/ice/icemoon = 1)
+		/turf/closed/mineral/uranium/ice/icemoon = 5, /turf/closed/mineral/diamond/ice/icemoon = 1, /turf/closed/mineral/gold/ice/icemoon = 10, /turf/closed/mineral/titanium/ice/icemoon = 10,
+		/turf/closed/mineral/silver/ice/icemoon = 12, /turf/closed/mineral/plasma/ice/icemoon = 19, /turf/closed/mineral/iron/ice/icemoon = 40,
+		/turf/closed/mineral/gibtonite/ice/icemoon = 4, /turf/closed/mineral/bscrystal/ice/icemoon = 1, /turf/closed/mineral/dilithium/ice/icemoon = 2)
 
 /turf/closed/mineral/random/labormineral
 	mineralSpawnChanceList = list(
@@ -303,9 +303,9 @@
 
 /turf/closed/mineral/random/snow/underground
 	mineralSpawnChanceList = list(
-		/turf/closed/mineral/uranium/ice/icemoon = 5, /turf/closed/mineral/diamond/ice/icemoon = 1, /turf/closed/mineral/gold/ice/icemoon = 10, /turf/closed/mineral/titanium/ice/icemoon = 11,
-		/turf/closed/mineral/silver/ice/icemoon = 12, /turf/closed/mineral/plasma/ice/icemoon = 20, /turf/closed/mineral/iron/ice/icemoon = 40,
-		/turf/closed/mineral/gibtonite/ice/icemoon = 4, /turf/closed/mineral/bscrystal/ice/icemoon = 1)
+		/turf/closed/mineral/uranium/ice/icemoon = 5, /turf/closed/mineral/diamond/ice/icemoon = 1, /turf/closed/mineral/gold/ice/icemoon = 10, /turf/closed/mineral/titanium/ice/icemoon = 10,
+		/turf/closed/mineral/silver/ice/icemoon = 12, /turf/closed/mineral/plasma/ice/icemoon = 19, /turf/closed/mineral/iron/ice/icemoon = 40,
+		/turf/closed/mineral/gibtonite/ice/icemoon = 4, /turf/closed/mineral/bscrystal/ice/icemoon = 1, /turf/closed/mineral/dilithium/ice/icemoon = 2)
 
 /turf/closed/mineral/random/labormineral/volcanic
 	environment_type = "basalt"
