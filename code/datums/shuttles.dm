@@ -361,6 +361,14 @@
 	admin_notes = "Seriously big, even larger than the Delta shuttle."
 	credit_cost = 10000
 
+/datum/map_template/shuttle/emergency/octa
+	suffix = "octa"
+	name = "Octa Prototype Emergency Shuttle"
+	description = "Nanotrasen's experimental shuttle utilizing a unique shape to manipulate reality for a percieved larger shuttle, in a smaller package. \
+	While experimental, it offers great views of outside and decently stocked emergency and medical supplies."
+	admin_notes = "Doughnut yummy."
+	credit_cost = 9500 //experimental = expensive
+
 /datum/map_template/shuttle/emergency/supermatter
 	suffix = "supermatter"
 	name = "Hyperfractal Gigashuttle"
