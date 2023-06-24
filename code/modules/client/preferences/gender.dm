@@ -11,7 +11,7 @@
 
 	var/datum/species/species_type = preferences.read_preference(/datum/preference/choiced/species)
 	
-	if(!S.sexes || (AGENDER in initial(species_type.species_traits)))
+	if(!species_type.sexes || (AGENDER in initial(species_type.species_traits)))
 		return list(PLURAL)
 	else if(FGENDER in initial(species_type.species_traits))
 		return list(FEMALE)
