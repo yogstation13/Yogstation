@@ -67,6 +67,9 @@
 		QDEL_NULL(devil_powers[removed_power])
 
 /datum/action/cooldown/spell/pointed/summon_contract
+	name = "Summon devil contract"
+	desc = "Summon a contract that, when signed, will \
+		add someone to the Agent's death loop."
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "ab_goldborder"
 
@@ -74,22 +77,7 @@
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "ab_goldborder"
 
-/datum/action/cooldown/spell/conjure_item/summon_pitchfork
-	background_icon_state = "bg_demon"
-	overlay_icon_state = "ab_goldborder"
-
 /datum/action/cooldown/spell/jaunt/infernal_jaunt
 	name = "Infernal Jaunt"
-	background_icon_state = "bg_demon"
-	overlay_icon_state = "ab_goldborder"
-
-/datum/action/cooldown/spell/conjure_item/violin
-	background_icon_state = "bg_demon"
-	overlay_icon_state = "ab_goldborder"
-
-/**
- * Ascended Powers
- */
-/datum/action/cooldown/spell/pointed/projectile/fireball/hellish
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "ab_goldborder"

@@ -840,6 +840,13 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
 	resistance_flags = FIRE_PROOF
 
+/obj/item/twohanded/pitchfork/update_icon()
+	icon_state = "pitchfork[wielded]"
+
+/obj/item/twohanded/pitchfork/suicide_act(mob/user)
+	user.visible_message(span_suicide("[user] impales [user.p_them()]self in [user.p_their()] abdomen with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	return (BRUTELOSS)
+
 /obj/item/twohanded/pitchfork/trident
 	icon_state = "trident"
 	name = "trident"
@@ -848,6 +855,29 @@
 	force = 14
 	throwforce = 23
 	force_wielded = 6
+
+/obj/item/twohanded/pitchfork/demonic
+	name = "demonic pitchfork"
+	desc = "A red pitchfork, used to give people the firey pits of Hell treatment."
+	force = 2
+	block_chance = 50
+	force_wielded = 6
+	light_system = MOVABLE_LIGHT
+	light_range = 3
+	light_power = 6
+	light_color = LIGHT_COLOR_RED
+
+/obj/item/twohanded/pitchfork/demonic/IsReflect(def_zone)
+	return TRUE
+
+/obj/item/twohanded/pitchfork/demonic/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!wielded || !user)
+		return
+	if(!isliving(target))
+		return
+	var/mob/living/target_living = target
+	target_living.ignite_mob()
 
 //HF blade
 
