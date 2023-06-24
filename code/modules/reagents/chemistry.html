@@ -14,7 +14,7 @@
 </header>
 <main>
 <h1>code/modules/reagents/chemistry/readme.md 
-            <a href="https://github.com/yogstation13/Yogstation/blob/d6da6840117887998a2629d278a5ac3aad8e095d/code/modules/reagents/chemistry/readme.md">
+            <a href="https://github.com/yogstation13/Yogstation/blob/0a79db6f111b918977ef9868fbe910b301dbb9c0/code/modules/reagents/chemistry/readme.md">
         <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;readme.md"/></a></h1>
 
 <table class="summary" cellspacing="0">
@@ -79,10 +79,10 @@
 		clear_reagents()
 			This proc removes ALL reagents from the holder.
 
-		reaction(atom/A, method=TOUCH, volume_modifier=0)
+		reaction(atom/A, methods=TOUCH, volume_modifier=0)
 			This proc calls the appropriate reaction procs of the reagents.
 			I.e. if A is an object, it will call the reagents reaction_obj
-			proc. The method var is used for reaction on mobs. It simply tells
+			proc. The methods var is used for reaction on mobs. It simply tells
 			us if the mob TOUCHed the reagent, if it INGESTed the reagent, if the reagent
 			was VAPORIZEd on them, if the reagent was INJECTed,	or transfered via a PATCH to them.
 			Since the volume can be checked in a reagents proc, you might want to
@@ -129,10 +129,10 @@
 </code></pre>
 <h1 id="about-reagents">About Reagents:</h1>
 <p>Reagents are all the things you can mix and fille in bottles etc. This can be anything from rejuvs over water to ... iron. Each reagent also has a few procs - i'll explain those below.</p>
-<pre><code>		reaction_mob(mob/living/L, method=TOUCH)
+<pre><code>		reaction_mob(mob/living/L, methods=TOUCH)
 			This is called by the holder's reation proc.
 			This version is only called when the reagent
-			reacts with a mob. The method var can be either
+			reacts with a mob. The methods var can be either
 			TOUCH or INGEST. You'll want to put stuff like
 			acid-facemelting in here.
 
@@ -263,7 +263,7 @@
 </ul></td></tr></table></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/d6da6840117887998a2629d278a5ac3aad8e095d">d6da684</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/0a79db6f111b918977ef9868fbe910b301dbb9c0">0a79db6</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
