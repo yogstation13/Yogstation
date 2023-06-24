@@ -272,6 +272,14 @@
 /obj/item/storage/box/mixedcubes,
 /turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
+"kW" = (
+/obj/structure/table,
+/obj/item/clothing/glasses/welding,
+/obj/item/wrench,
+/obj/item/storage/belt/utility/full/engi,
+/obj/item/construction/rcd/loaded,
+/turf/open/floor/plating,
+/area/shuttle/abandoned)
 "lc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -976,13 +984,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/shuttle/abandoned)
-"IA" = (
-/obj/structure/table,
-/obj/item/clothing/glasses/welding,
-/obj/item/wrench,
-/obj/item/storage/belt/utility/full/engi,
-/turf/open/floor/plating,
 /area/shuttle/abandoned)
 "IZ" = (
 /obj/machinery/door/firedoor/border_only{
@@ -1713,7 +1714,7 @@ gE
 bk
 DV
 yT
-IA
+kW
 EI
 "}
 (9,1,1) = {"
