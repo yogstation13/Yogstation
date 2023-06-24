@@ -70,6 +70,14 @@
 	spawn_type = /obj/item/reagent_containers/food/snacks/donut
 	fancy_open = TRUE
 
+/obj/item/storage/box/fancy/donut_box/update_icon()
+	if(fancy_open && (length(contents) > 6))
+		icon_state = "[icon_type]box6"
+	else if(fancy_open)
+		icon_state = "[icon_type]box[contents.len]"
+	else
+		icon_state = "[icon_type]box"
+
 /obj/item/storage/box/fancy/donut_box/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
