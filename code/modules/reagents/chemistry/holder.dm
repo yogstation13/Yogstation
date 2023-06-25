@@ -193,7 +193,7 @@
   * * no_react - passed through to [/datum/reagents/proc/add_reagent]
   * * mob/transfered_by - used for logging
   * * remove_blacklisted - skips transferring of reagents with can_synth = FALSE
-  * * method - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]
+  * * methods - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]
   * * show_message - passed through to [/datum/reagents/proc/react_single]
   * * round_robin - if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors
   */
@@ -454,6 +454,9 @@
 				var/is_cold_recipe = C.is_cold_recipe
 				var/meets_temp_requirement = 0
 
+				if(has_reagent(/datum/reagent/hypernoblium) && C.noblium_suppression)
+					continue
+
 				for(var/B in cached_required_reagents)
 					if(!has_reagent(B, cached_required_reagents[B]))
 						break
@@ -612,11 +615,11 @@
   * * [/datum/reagent/proc/reaction_turf]
   * * [/datum/reagent/proc/reaction_obj]
   */
-/datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1)
+/datum/reagents/proc/reaction(atom/A, methods = TOUCH, volume_modifier = 1, show_message = 1)
 	var/react_type
 	if(isliving(A))
 		react_type = "LIVING"
-		if(method == INGEST)
+		if(methods & INGEST)
 			var/mob/living/L = A
 			L.taste(src)
 	else if(isturf(A))
@@ -634,10 +637,10 @@
 				if(!check)
 					continue
 				var/permeability = 1
-				if(method == TOUCH || method == VAPOR)
+				if(methods & (TOUCH|VAPOR))
 					var/mob/living/L = A
 					permeability = L.get_permeability()
-				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, permeability)
+				R.reaction_mob(A, methods, R.volume * volume_modifier, show_message, permeability)
 			if("TURF")
 				R.reaction_turf(A, R.volume * volume_modifier, show_message)
 			if("OBJ")

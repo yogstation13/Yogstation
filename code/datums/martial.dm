@@ -173,6 +173,11 @@
 	if(help_verb)
 		add_verb(H, help_verb)
 	H.mind.martial_art = src
+	if(no_guns)
+		for(var/mob/living/simple_animal/hostile/guardian/guardian in H.hasparasites())
+			guardian.stats.ranged = FALSE
+			guardian.ranged = FALSE
+			to_chat(H, span_holoparasite("<font color=\"[guardian.namedatum.color]\"><b>[guardian.real_name]</b></font> loses their ranged attacks in accordance with your martial art!"))
 	return TRUE
 
 /**

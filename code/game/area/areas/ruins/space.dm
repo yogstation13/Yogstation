@@ -35,19 +35,19 @@
 // Ruins of "onehalf" ship
 
 /area/ruin/space/has_grav/onehalf/hallway
-	name = "Hallway"
+	name = "Destroyed Ship Hallway"
 	icon_state = "hallC"
 
 /area/ruin/space/has_grav/onehalf/drone_bay
-	name = "Mining Drone Bay"
+	name = "Destroyed Ship Mining Drone Bay"
 	icon_state = "engine"
 
 /area/ruin/space/has_grav/onehalf/dorms_med
-	name = "Crew Quarters"
+	name = "Destroyed Ship Crew Quarters"
 	icon_state = "Sleep"
 
 /area/ruin/space/has_grav/onehalf/bridge
-	name = "Bridge"
+	name = "Destroyed Ship Bridge"
 	icon_state = "bridge"
 
 /area/ruin/space/has_grav/powered/spacebar //yogs start
@@ -355,7 +355,7 @@
 	icon_state = "engine"
 
 /area/ruin/space/derelict/se_solar
-	name = "South East Solars"
+	name = "Derelict South East Solars"
 	icon_state = "engine"
 
 /area/ruin/space/derelict/medical
@@ -417,7 +417,7 @@
 
 /area/ruin/space/has_grav/whiteship/box
 
-	name = "Abandoned Ship"
+	name = "Adrift Ship" //it might get confused with whiteship
 	icon_state = "red"
 
 
