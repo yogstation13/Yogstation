@@ -595,8 +595,10 @@
 	
 /datum/reagent/drug/blue_eye/on_mob_metabolize(mob/living/L)
 	..()
-	if(prob(2))
+	if(prob(50))
 		to_chat(L, span_warning("You start to see flickering blue light..."))
+	else
+		addtimer(CALLBACK(L, /mob/living/proc/bluespace_shuffle), 30)
 
 /datum/reagent/drug/blue_eye/on_mob_life(mob/living/carbon/M)
 	M.set_blue_eye(17)
@@ -612,6 +614,8 @@
 	..()
 
 /datum/reagent/drug/blue_eye/overdose_process(mob/living/M)
+	M.adjustToxLoss(1, 0)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.4, 0.5, 0.6))
 	if(isturf(M.loc) && !isspaceturf(M.loc) && prob(20))
 		if(M.mobility_flags & MOBILITY_MOVE)
 			step(M, pick(GLOB.cardinals))
@@ -620,8 +624,6 @@
 		M.drop_all_held_items()
 	if(prob(6))
 		addtimer(CALLBACK(M, /mob/living/proc/bluespace_shuffle), 30)
-	M.adjustToxLoss(1, 0)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.4, 0.5))
 
 /datum/reagent/drug/blue_eye/addiction_act_stage1(mob/living/M)
 	M.adjust_jitter(5 SECONDS)
@@ -640,8 +642,8 @@
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 4, i++)
 			step(M, pick(GLOB.cardinals))
-	M.adjust_jitter(15 SECONDS)
-	M.adjust_dizzy(15)
+	M.adjust_jitter(12 SECONDS)
+	M.adjust_dizzy(12)
 	if(prob(40))
 		M.emote(pick("twitch","drool","moan","giggle"))
 	..()
@@ -650,9 +652,9 @@
 	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
 		for(var/i = 0, i < 8, i++)
 			step(M, pick(GLOB.cardinals))
-	M.adjust_jitter(20 SECONDS)
-	M.adjust_dizzy(20)
-	M.adjustToxLoss(5, 0)
+	M.adjust_jitter(15 SECONDS)
+	M.adjust_dizzy(15)
+	M.adjustToxLoss(3, 0)
 	if(prob(50))
 		M.emote(pick("twitch","drool","moan","giggle"))
 	..()
