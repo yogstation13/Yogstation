@@ -3,6 +3,7 @@
 	desc = "Crystalized bz, oxygen and hypernoblium stored in a bottle to environmental proof your clothes."
 	icon_state = "hypernoblium_crystal"
 	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | UNACIDABLE
+	grind_results = list(/datum/reagent/hypernoblium = 20)
 	merge_type = /obj/item/stack/hypernoblium_crystal
 
 /obj/item/stack/hypernoblium_crystal/afterattack(obj/target_object, mob/user, proximity)
@@ -30,3 +31,11 @@
 	amount--
 	if(amount<1)
 		qdel(src)
+
+/obj/item/stack/antinoblium_crystal
+	name = "Antinoblium Crystal"
+	desc = "Crystalized antinoblium, nitrium, and zauker. An incredibly volatile material."
+	icon_state = "antinoblium_crystal"
+	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | UNACIDABLE
+	grind_results = list(/datum/reagent/antinoblium = 20)
+	merge_type = /obj/item/stack/antinoblium_crystal
