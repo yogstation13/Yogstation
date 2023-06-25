@@ -359,7 +359,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 /mob/living/simple_animal/hostile/guardian/Shoot(atom/targeted_atom)
 	if (QDELETED(targeted_atom) || targeted_atom == targets_from.loc || targeted_atom == targets_from)
 		return
-	if(!ranged_ammo_current)
+	if(ranged && (ranged_ammo_current < 5))
 		to_chat(src, span_holoparasite("You don't have any ammo ready!"))
 		return
 	var/turf/startloc = get_turf(targets_from)
@@ -379,7 +379,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	emerald_splash.original = targeted_atom
 	emerald_splash.preparePixelProjectile(targeted_atom, src)
 	emerald_splash.fire()
-	ranged_ammo_current -= 1
+	ranged_ammo_current -= 5
 	return emerald_splash
 
 /mob/living/simple_animal/hostile/guardian/RangedAttack(atom/A, params)

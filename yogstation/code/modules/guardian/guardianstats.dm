@@ -12,10 +12,10 @@
 	guardian.range = range * 2
 	if (ranged)
 		guardian.ranged = TRUE
-		guardian.ranged_cooldown_time = 20 / speed				//2, 1, 0.66, 0.5, 0.4 second cooldown time
-		guardian.ranged_ammo_max = potential + 1				//2, 3, 4, 5, 6 ammo max
-		guardian.ranged_ammo_regen = max(1, floor(speed / 1.5))	//1, 1, 2, 2, 3 regen speed
-		guardian.ranged_ammo_current = guardian.ranged_ammo_max	//start with full ammo
+		guardian.ranged_cooldown_time = 20 / speed	//2, 1, 0.66, 0.5, 0.4 second cooldown time
+		guardian.ranged_ammo_max = potential * 5 + 5	//10, 15, 20, 25, 30 ammo max
+		guardian.ranged_ammo_regen = round(speed*1.5)	//1, 3, 4, 6, 7 ammo regenerated every 2 seconds (shots cost 5 ammo)
+		guardian.ranged_ammo_current = guardian.ranged_ammo_max		//start with full ammo
 	else
 		guardian.melee_damage_lower = damage * 5	//5, 10, 15, 20, 25 damage
 		guardian.melee_damage_upper = damage * 5
