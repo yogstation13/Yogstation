@@ -2231,25 +2231,6 @@
 /obj/effect/landmark/stationroom/maint/threexthree,
 /turf/template_noop,
 /area/maintenance/port/fore)
-"anj" = (
-/obj/structure/lattice,
-/obj/machinery/door/airlock/engineering{
-	name = "Port Bow Solar Access";
-	req_access_txt = "10"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/solars/port/fore)
 "anp" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/stripes/line{
@@ -15846,6 +15827,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"cEv" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "cEB" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space/basic,
@@ -47089,6 +47075,24 @@
 /obj/item/camera_film,
 /turf/open/floor/wood,
 /area/library)
+"pgn" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Port Bow Solar Access";
+	req_access_txt = "10"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/solars/port/fore)
 "pgx" = (
 /obj/structure/table,
 /obj/item/hand_labeler,
@@ -55518,6 +55522,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"sDT" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "sEr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -85304,7 +85313,7 @@ aIn
 aJB
 aLl
 aNB
-amC
+sDT
 aSo
 nck
 alU
@@ -85559,7 +85568,7 @@ tNk
 bzr
 aIo
 qai
-anj
+pgn
 ykh
 ehN
 mIr
@@ -85817,7 +85826,7 @@ jsa
 aIG
 aJD
 oOf
-amC
+cEv
 aoj
 aSo
 nck
