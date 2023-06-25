@@ -2166,7 +2166,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/implants/emp_shield
 	name = "EMP Shield Implant"
-	desc = "Developed by Cybersun to assist with the SELF movement, this implant will protect you and your insides from electromagnetic interference. \
+	desc = "Developed by Cybersun to assist with the S.E.L.F. movement, this implant will protect you and your insides from electromagnetic interference. \
 			Due to technical limitations, it will overload and shut down for a short time if triggered too often."
 	manufacturer = /datum/corporation/traitor/cybersun
 	item = /obj/item/storage/box/syndie_kit/emp_shield
