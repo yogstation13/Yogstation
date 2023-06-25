@@ -49,8 +49,10 @@
 
 /obj/item/projectile/bullet/c38/talon
 	name = ".38 talon bullet"
-	damage = 12
-	wound_bonus = 5 // Will fuck someone up bad if they get shot ~4+ times
+	damage = 8 // 8+20 rolls 21-38 wound dmg vs no armor
+	wound_bonus = 20
+	bare_wound_bonus = 0
+	wound_falloff_tile = -1
 	sharpness = SHARP_EDGED
 
 /obj/item/projectile/bullet/c38/bluespace
