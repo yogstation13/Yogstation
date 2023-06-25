@@ -223,6 +223,10 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
+"bM" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/powered/syndicate_lava_base/vault)
 "bU" = (
 /obj/effect/turf_decal/siding/blue/corner{
 	dir = 1
@@ -515,7 +519,7 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "eb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "ed" = (
 /obj/structure/cable{
@@ -1292,7 +1296,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "gL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -1411,7 +1415,7 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "gZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "ha" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
@@ -1501,7 +1505,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "hr" = (
 /obj/structure/closet/secure_closet/freezer/fridge{
@@ -1614,7 +1618,7 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "hE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "hF" = (
 /obj/machinery/light{
@@ -1974,7 +1978,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "iB" = (
-/turf/closed/wall/mineral/plastitanium,
+/turf/closed/wall/r_wall/syndicate,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "iC" = (
 /obj/machinery/button/door{
@@ -3587,7 +3591,7 @@
 /area/ruin/powered/syndicate_lava_base/engineering)
 "nf" = (
 /obj/structure/sign/warning/fire,
-/turf/closed/wall/mineral/plastitanium,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "nl" = (
 /obj/effect/turf_decal/siding/wood,
@@ -3728,7 +3732,7 @@
 /area/ruin/powered/syndicate_lava_base/cargo)
 "nE" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "nF" = (
 /obj/effect/turf_decal/siding/wood{
@@ -3970,7 +3974,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
 	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "on" = (
 /obj/effect/spawner/structure/window/plastitanium,
@@ -5291,6 +5295,9 @@
 	},
 /turf/open/floor/circuit/red/anim,
 /area/ruin/powered/syndicate_lava_base/vault)
+"GA" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/powered/syndicate_lava_base/telecomms)
 "GH" = (
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/fullupgrade,
@@ -5442,6 +5449,9 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/vault)
+"II" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/powered/syndicate_lava_base/engineering)
 "IJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -5582,7 +5592,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "Kn" = (
 /obj/effect/turf_decal/siding/wood{
@@ -5786,7 +5796,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "MN" = (
 /obj/structure/cable{
@@ -8708,7 +8718,7 @@ gf
 jc
 mn
 jv
-mn
+GA
 ab
 ab
 ab
@@ -8747,10 +8757,10 @@ Ub
 Ub
 Ub
 Ub
-oW
-ju
-ju
-ju
+bM
+II
+II
+II
 fc
 fv
 gc
@@ -8764,7 +8774,7 @@ iJ
 qB
 kY
 yB
-mn
+GA
 ab
 ab
 ab
@@ -8803,7 +8813,7 @@ Ub
 Ub
 Ub
 Ub
-ju
+II
 oE
 eg
 fr
@@ -8818,9 +8828,9 @@ Mo
 mn
 ue
 iB
-mn
-mn
-mn
+GA
+GA
+GA
 ab
 ab
 ab
@@ -8859,7 +8869,7 @@ fF
 Ub
 Ub
 Ub
-ju
+II
 ea
 RV
 fr
@@ -8874,10 +8884,10 @@ gZ
 eb
 eb
 gI
-mn
-mn
-mn
-oW
+GA
+GA
+GA
+bM
 ab
 ab
 ab
@@ -8915,25 +8925,25 @@ Ub
 Ub
 ab
 Ub
-ju
-ju
-ju
-ju
+II
+II
+II
+II
 Yh
 Yh
-ju
+II
 Yh
 Yh
 Kb
 Hr
 kX
 gh
-ju
+II
 od
-ju
+II
 oz
-ju
-ju
+II
+II
 nf
 ab
 ab
@@ -8974,10 +8984,10 @@ Od
 lO
 ju
 mc
-ju
+II
 Pk
 is
-ju
+II
 iQ
 ky
 Kb
@@ -9030,10 +9040,10 @@ gj
 hb
 oW
 ju
-ju
+II
 Cb
 ne
-ju
+II
 fx
 PW
 Kb
@@ -9044,8 +9054,8 @@ nE
 jF
 nE
 oB
-ju
-ju
+II
+II
 nf
 ab
 ab
@@ -9086,21 +9096,21 @@ ab
 gj
 hb
 lO
-ju
-ju
-ju
-ju
-ju
-ju
+II
+II
+II
+II
+II
+II
 Kb
 hq
 hE
 hE
 hE
 ol
-ju
+II
 nH
-oW
+bM
 ab
 ab
 ab
