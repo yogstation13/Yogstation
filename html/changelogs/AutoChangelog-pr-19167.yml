@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - tweak: "Podpeople and Polysmorph have bones"
+  - tweak: "Ethereals don't have bones"
