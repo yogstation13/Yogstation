@@ -592,6 +592,7 @@
 	overdose_threshold = 40
 	addiction_threshold = 30
 	metabolization_rate = 1.3 * REAGENTS_METABOLISM
+	var/original_eye_color = "000" //so we can return it to normal eye on end metabolism
 	
 /datum/reagent/drug/blue_eye/on_mob_metabolize(mob/living/L)
 	..()
@@ -601,21 +602,39 @@
 		addtimer(CALLBACK(L, /mob/living/proc/bluespace_shuffle), 30)
 
 /datum/reagent/drug/blue_eye/on_mob_life(mob/living/carbon/M)
-	M.set_blue_eye(17)
-	M.adjust_jitter(2 SECONDS)
-	M.adjustStaminaLoss(-2, 0)
-	if(isturf(M.loc) && !isspaceturf(M.loc) && prob(12))
-		if(M.mobility_flags & MOBILITY_MOVE)
-			step(M, pick(GLOB.cardinals))
-	if(prob(7))
-		M.emote(pick("twitch","drool","moan","giggle","spin"))
-	if(prob(10))
-		to_chat(M, span_notice("[pick("SCYAR NILA!!", "NEC CANTIO.", "EI NATH!!!", "AULIE OXIN FIERA.", "TARCOL MINTI ZHERI.", "STI KALY!")]"))
+	if(!M?.mind?.has_antag_datum(/datum/antagonist/cult))
+		var/mob/living/carbon/human/H = M
+		original_eye_color = H.eye_color
+		H.eye_color = "5b5beb"
+		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+		H.update_body()
+	if(!is_wizard(M))
+		M.set_blue_eye(17)
+		M.adjust_jitter(2 SECONDS)
+		M.adjustStaminaLoss(-2, 0)
+		if(isturf(M.loc) && !isspaceturf(M.loc) && prob(12))
+			if(M.mobility_flags & MOBILITY_MOVE)
+				step(M, pick(GLOB.cardinals))
+		if(prob(7))
+			M.emote(pick("twitch","drool","moan","giggle","spin"))
+		if(prob(10))
+			to_chat(M, span_notice("[pick("SCYAR NILA!!", "NEC CANTIO.", "EI NATH!!!", "AULIE OXIN FIERA.", "TARCOL MINTI ZHERI.", "STI KALY!")]"))
+	else
+		M.set_blue_eye(30)
+		M.adjust_jitter(4 SECONDS)
+		M.adjustStaminaLoss(-3, 0)
+		M.AdjustUnconscious(-7, FALSE)
+		M.AdjustParalyzed(-7, FALSE)
+		if(prob(25))
+			to_chat(M, span_notice("[pick("SCYAR NILA!!", "NEC CANTIO.", "EI NATH!!!", "AULIE OXIN FIERA.", "TARCOL MINTI ZHERI.", "STI KALY!")]"))
 	..()
 
 /datum/reagent/drug/blue_eye/overdose_process(mob/living/M)
 	M.adjustToxLoss(1, 0)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.4, 0.5, 0.6))
+	if(!is_wizard(M))
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.4, 0.5, 0.6))
+	else
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.2, 0.3, 0.4))
 	if(isturf(M.loc) && !isspaceturf(M.loc) && prob(20))
 		if(M.mobility_flags & MOBILITY_MOVE)
 			step(M, pick(GLOB.cardinals))
@@ -624,6 +643,7 @@
 		M.drop_all_held_items()
 	if(prob(8))
 		addtimer(CALLBACK(M, /mob/living/proc/bluespace_shuffle), 30)
+	..()
 
 /datum/reagent/drug/blue_eye/addiction_act_stage1(mob/living/M)
 	M.adjust_jitter(5 SECONDS)
@@ -654,7 +674,8 @@
 			step(M, pick(GLOB.cardinals))
 	M.adjust_jitter(15 SECONDS)
 	M.adjust_dizzy(15)
-	M.adjustToxLoss(3, 0)
+	if(!is_wizard(M))
+		M.adjustToxLoss(3, 0)
 	if(prob(50))
 		M.emote(pick("twitch","drool","moan","giggle"))
 	..()
