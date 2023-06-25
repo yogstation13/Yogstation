@@ -1,5 +1,0 @@
-author: " the-orange-cow, Ktlwjec"
-delete-after: true 
-changes: 
-  - tweak: "Mint Toxin (a toxin) has been changed to Mint Extract (a food)."
-  - bugfix: "Mint Toxin gibs obese people again."
