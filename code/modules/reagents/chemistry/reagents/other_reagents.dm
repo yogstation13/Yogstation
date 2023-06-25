@@ -1082,6 +1082,14 @@
 /mob/living/proc/bluespace_shuffle()
 	do_teleport(src, get_turf(src), 5, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
+/datum/reagent/redspace
+	name = "Redspace Dust"
+	description = "A sinister looking dust composed of grinded Syndicate telecrystals, the red colouration a result of impurities within their manufacturing process."
+	reagent_state = SOLID
+	color = "#db0735"
+	taste_description = "bitter evil"
+	process_flags = ORGANIC | SYNTHETIC
+
 /datum/reagent/aluminium
 	name = "Aluminium"
 	description = "A silvery white and ductile member of the boron group of chemical elements."
