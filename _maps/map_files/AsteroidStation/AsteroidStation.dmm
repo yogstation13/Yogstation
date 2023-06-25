@@ -5738,6 +5738,10 @@
 /obj/effect/turf_decal/tile/white{
 	dir = 8
 	},
+/obj/structure/table,
+/obj/item/twohanded/required/kirbyplants/photosynthetic{
+	pixel_y = 10
+	},
 /turf/open/floor/black,
 /area/ai_monitored/turret_protected/aisat_interior)
 "aVi" = (
@@ -7175,7 +7179,7 @@
 "bpg" = (
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,
@@ -9306,6 +9310,25 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"cak" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -7;
+	pixel_y = 13
+	},
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/folder/blue,
+/obj/item/stamp/law,
+/obj/item/pen/red,
+/obj/machinery/requests_console{
+	department = "Law Office";
+	name = "'Law Office RC";
+	pixel_x = 32;
+	pixel_y = -2
+	},
+/obj/item/taperecorder,
+/turf/open/floor/carpet,
+/area/lawoffice)
 "caG" = (
 /obj/structure/sign/painting{
 	persistence_id = "public";
@@ -11087,12 +11110,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/satellite)
-"cFj" = (
-/obj/structure/table/wood,
-/obj/item/folder/red,
-/obj/item/stamp/hos,
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "cFv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -12456,18 +12473,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"dbS" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen/red,
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "dbU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -13546,6 +13551,17 @@
 /obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"dyd" = (
+/obj/structure/table/wood,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Head of Security";
+	name = "Head of Securities Fax Machine"
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "dyt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -15764,6 +15780,11 @@
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"elY" = (
+/obj/structure/table,
+/obj/item/toy/figure/rd,
+/turf/open/floor/carpet/purple,
+/area/crew_quarters/heads/hor)
 "emc" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 8
@@ -16136,7 +16157,7 @@
 /area/space/nearstation)
 "erV" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee"=90,"bullet"=70,"laser"=70,"energy"=50,"bomb"=100,"bio"=0,"rad"=0,"fire"=90,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
 	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
 	name = "Russian Defense Turret MK-II"
@@ -28261,7 +28282,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/nitrous_tank{
 	dir = 8;
-	sensors = list("n2o_sensor"="Tank")
+	sensors = list("n2o_sensor" = "Tank")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -30716,7 +30737,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/carbon_tank{
 	dir = 8;
-	sensors = list("co2_sensor"="Tank")
+	sensors = list("co2_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 9
@@ -33119,15 +33140,6 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"jXX" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/seccarts{
-	pixel_x = 3;
-	pixel_y = 2
-	},
-/obj/item/storage/box/deputy,
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "jYa" = (
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/central/secondary";
@@ -37932,6 +37944,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"lLP" = (
+/obj/structure/table/wood,
+/obj/item/folder/red{
+	pixel_x = 5;
+	pixel_y = 1
+	},
+/obj/item/stamp/hos{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/flashlight/lamp/green{
+	on = 0;
+	pixel_x = -6;
+	pixel_y = 11
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "lLR" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -42984,7 +43013,7 @@
 /area/medical/medbay/central)
 "noq" = (
 /obj/machinery/porta_turret/syndicate/energy/raven{
-	armor = list("melee"=90,"bullet"=70,"laser"=70,"energy"=50,"bomb"=100,"bio"=0,"rad"=0,"fire"=90,"acid"=90);
+	armor = list("melee" = 90, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90);
 	desc = "A Raven-Class laser turret repurposed by the Russians for the defense of their numerous Bunkers. This turret appears to have anti-explosive plating.";
 	faction = list("russian");
 	name = "Russian Defense Turret MK-II"
@@ -46325,10 +46354,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/structure/table/reinforced,
-/obj/item/twohanded/required/kirbyplants/photosynthetic{
-	pixel_y = 10
-	},
+/obj/machinery/status_display/ai_core,
 /turf/open/floor/circuit/green,
 /area/ai_monitored/turret_protected/ai_upload)
 "ouT" = (
@@ -49441,6 +49467,15 @@
 /obj/structure/closet/wardrobe/black,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"psi" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/machinery/level_interface{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "psq" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -50094,6 +50129,11 @@
 	icon_state = "cafeteria"
 	},
 /area/crew_quarters/kitchen)
+"pCR" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/deputy,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "pDe" = (
 /obj/structure/closet/l3closet/scientist,
 /turf/open/floor/plating,
@@ -53362,39 +53402,6 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
-"qCM" = (
-/obj/structure/table,
-/obj/item/cartridge/quartermaster{
-	pixel_x = 6;
-	pixel_y = 5
-	},
-/obj/item/cartridge/quartermaster{
-	pixel_x = -4;
-	pixel_y = 7
-	},
-/obj/item/cartridge/quartermaster,
-/obj/item/coin/silver{
-	pixel_x = -3
-	},
-/obj/item/coin/silver{
-	pixel_x = 3;
-	pixel_y = -3
-	},
-/obj/item/coin/gold{
-	pixel_x = 1;
-	pixel_y = 2
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/obj/item/clipboard,
-/obj/item/toy/figure/qm,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "qCT" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -56002,35 +56009,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/hfr)
-"rsR" = (
-/obj/structure/table/wood,
-/obj/machinery/keycard_auth{
-	pixel_y = 25
-	},
-/obj/item/flashlight/lamp/green{
-	on = 0;
-	pixel_x = -6;
-	pixel_y = 11
-	},
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Head of Security's Desk";
-	departmentType = 5;
-	name = "Head of Security RC";
-	pixel_x = 32;
-	pixel_y = 29
-	},
-/obj/machinery/button/door{
-	id = "hosspace";
-	name = "Space Shutters Control";
-	pixel_y = 36
-	},
-/obj/machinery/photocopier/faxmachine{
-	department = "Head of Security";
-	name = "Head of Securities Fax Machine"
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "rsS" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -56615,6 +56593,32 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
+"rCz" = (
+/obj/structure/table/wood,
+/obj/machinery/keycard_auth{
+	pixel_y = 25
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Head of Security's Desk";
+	departmentType = 5;
+	name = "Head of Security RC";
+	pixel_x = 32;
+	pixel_y = 29
+	},
+/obj/machinery/button/door{
+	id = "hosspace";
+	name = "Space Shutters Control";
+	pixel_y = 36
+	},
+/obj/item/paper_bin{
+	pixel_y = 5
+	},
+/obj/item/pen/red{
+	pixel_y = 5
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
 "rDe" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -60944,7 +60948,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/toxin_tank{
 	dir = 8;
-	sensors = list("tox_sensor"="Tank")
+	sensors = list("tox_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
@@ -61551,6 +61555,30 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"tdL" = (
+/obj/structure/table,
+/obj/item/coin/silver{
+	pixel_x = -3
+	},
+/obj/item/coin/silver{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/coin/gold{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/item/clipboard,
+/obj/item/toy/figure/qm,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
 "tdR" = (
 /obj/structure/grille,
 /obj/structure/cable{
@@ -62569,7 +62597,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/air_tank{
-	sensors = list("air_sensor"="Tank")
+	sensors = list("air_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -63074,7 +63102,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
-	sensors = list("o2_sensor"="Tank")
+	sensors = list("o2_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
@@ -68854,7 +68882,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmos_control/tank/nitrogen_tank{
-	sensors = list("n2_sensor"="Tank")
+	sensors = list("n2_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/distro)
@@ -70124,20 +70152,6 @@
 "wez" = (
 /turf/open/floor/engine/co2,
 /area/engine/atmos/distro)
-"weB" = (
-/obj/structure/table,
-/obj/item/cartridge/signal/toxins{
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/item/cartridge/signal/toxins,
-/obj/item/cartridge/signal/toxins{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/obj/item/toy/figure/rd,
-/turf/open/floor/carpet/purple,
-/area/crew_quarters/heads/hor)
 "weE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -71843,7 +71857,7 @@
 	},
 /obj/machinery/computer/atmos_control/tank/mix_tank{
 	dir = 4;
-	sensors = list("mix_sensor"="Tank")
+	sensors = list("mix_sensor" = "Tank")
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/pumproom)
@@ -73948,7 +73962,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/status_display/ai_core,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
@@ -75920,26 +75933,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"xYV" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -7;
-	pixel_y = 13
-	},
-/obj/item/book/manual/wiki/security_space_law,
-/obj/item/folder/blue,
-/obj/item/stamp/law,
-/obj/item/pen/red,
-/obj/machinery/requests_console{
-	department = "Law Office";
-	name = "'Law Office RC";
-	pixel_x = 32;
-	pixel_y = -2
-	},
-/obj/item/taperecorder,
-/obj/item/cartridge/lawyer,
-/turf/open/floor/carpet,
-/area/lawoffice)
 "xZB" = (
 /obj/item/shard,
 /turf/open/floor/plating,
@@ -95506,7 +95499,7 @@ wii
 rGK
 ata
 pln
-qCM
+tdL
 gAX
 agZ
 miN
@@ -105949,7 +105942,7 @@ dQz
 mBD
 mBD
 aHC
-dyV
+psi
 gbu
 bdc
 xfO
@@ -106480,7 +106473,7 @@ jDX
 jdw
 aUH
 jTI
-xYV
+cak
 lXf
 cBB
 aKh
@@ -112116,8 +112109,8 @@ fii
 ulb
 plk
 aTD
-dbS
-cFj
+dyd
+lLP
 uHq
 xag
 sYb
@@ -112373,7 +112366,7 @@ yaX
 dXL
 cSE
 aTD
-rsR
+rCz
 aDf
 xUB
 aQI
@@ -112630,7 +112623,7 @@ aTD
 uOO
 aTD
 aTD
-jXX
+pCR
 vmX
 piV
 gMi
@@ -112676,7 +112669,7 @@ mAs
 hyX
 mGq
 mML
-weB
+elY
 tvU
 hyX
 eRp

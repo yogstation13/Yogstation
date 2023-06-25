@@ -7,7 +7,7 @@
 /obj/item/balloon/proc/random_balloon_color()
 	return pick(COLOR_RED, COLOR_GREEN, COLOR_BLUE, COLOR_YELLOW, COLOR_CYAN, COLOR_PURPLE, COLOR_ORANGE)
 
-/obj/item/balloon/Initialize()
+/obj/item/balloon/Initialize(mapload)
 	. = ..()
 	color = random_balloon_color()
 

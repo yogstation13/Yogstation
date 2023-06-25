@@ -5,7 +5,7 @@
 	health = 300
 	icon_state = "alienp"
 
-/mob/living/carbon/alien/humanoid/royal/praetorian/Initialize()
+/mob/living/carbon/alien/humanoid/royal/praetorian/Initialize(mapload)
 	real_name = name
 
 	var/datum/action/cooldown/spell/aoe/repulse/xeno/tail_whip = new(src)

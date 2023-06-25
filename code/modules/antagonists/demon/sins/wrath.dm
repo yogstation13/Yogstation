@@ -15,8 +15,8 @@
 /datum/action/cooldown/spell/pointed/ignite
 	name = "Ignite"
 	desc = "This ranged spell sets a person on fire."
-	button_icon = 'icons/mob/actions/humble/actions_humble.dmi'
-	base_icon_state = "sacredflame"
+	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	base_icon_state = "ignite"
 	active_msg = "You prepare to ignite a target..."
 	ranged_mousepointer = 'icons/effects/mouse_pointers/throw_target.dmi'
 	overlay_icon_state = "bg_demon_border"

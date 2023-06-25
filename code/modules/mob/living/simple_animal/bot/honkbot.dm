@@ -37,7 +37,7 @@
 	var/weaponscheck = TRUE
 	var/bikehorn = /obj/item/bikehorn
 
-/mob/living/simple_animal/bot/honkbot/Initialize()
+/mob/living/simple_animal/bot/honkbot/Initialize(mapload)
 	. = ..()
 	update_icon()
 	auto_patrol = TRUE
@@ -50,7 +50,7 @@
 
 /mob/living/simple_animal/bot/honkbot/proc/sensor_blink()
 	icon_state = "honkbot-c"
-	addtimer(CALLBACK(src, PROC_REF(update_icon)), 5, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 5, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 //honkbots react with sounds.
 /mob/living/simple_animal/bot/honkbot/proc/react_ping()
@@ -176,7 +176,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 			playsound(src, "honkbot_e", 50, 0)
 			spam_flag = TRUE // prevent spam
 			icon_state = "honkbot-e"
-			addtimer(CALLBACK(src, PROC_REF(update_icon)), 30, TIMER_OVERRIDE|TIMER_UNIQUE)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 30, TIMER_OVERRIDE|TIMER_UNIQUE)
 		addtimer(CALLBACK(src, PROC_REF(spam_flag_false)), cooldowntimehorn)
 
 /mob/living/simple_animal/bot/honkbot/proc/honk_attack(mob/living/carbon/C) // horn attack
@@ -338,7 +338,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 	new /obj/effect/decal/cleanable/oil(loc)
 	..()
 
-/mob/living/simple_animal/bot/honkbot/attack_alien(var/mob/living/carbon/alien/user as mob)
+/mob/living/simple_animal/bot/honkbot/attack_alien(mob/living/carbon/alien/user as mob)
 	..()
 	if(!isalien(target))
 		target = user

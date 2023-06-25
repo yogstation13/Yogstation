@@ -258,7 +258,7 @@
 	foodtype = MEAT | RAW
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/reagent_containers/food/snacks/raw_sausage/Initialize()
+/obj/item/reagent_containers/food/snacks/raw_sausage/Initialize(mapload)
 	. = ..()
 	eatverb = pick("bite","chew","nibble","gobble","chomp")
 
@@ -277,7 +277,7 @@
 	var/roasted = FALSE
 	burns_on_grill = TRUE
 
-/obj/item/reagent_containers/food/snacks/sausage/Initialize()
+/obj/item/reagent_containers/food/snacks/sausage/Initialize(mapload)
 	. = ..()
 	eatverb = pick("bite","chew","nibble","gobble","chomp")
 
@@ -351,7 +351,7 @@
 	tastes = list("soy" = 1, "vegetables" = 1)
 	foodtype = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/stewedsoymeat/Initialize()
+/obj/item/reagent_containers/food/snacks/stewedsoymeat/Initialize(mapload)
 	. = ..()
 	eatverb = pick("slurp","sip","inhale","drink")
 
@@ -375,7 +375,7 @@
 	foodtype = MEAT
 	var/mob/living/nugget_man
 
-/obj/item/reagent_containers/food/snacks/nugget/Initialize()
+/obj/item/reagent_containers/food/snacks/nugget/Initialize(mapload)
 	. = ..()
 	var/shape = pick("lump", "star", "lizard", "corgi")
 	desc = "A 'chicken' nugget vaguely shaped like a [shape]."
@@ -405,7 +405,7 @@
   tastes = list("fish" = 1,"cruelty" = 2)
   foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize()
+/obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize(mapload)
   . = ..()
   eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
 
@@ -418,7 +418,7 @@
 	tastes = list("meat" = 5, "clowns" = 3, "sixteen teslas" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/meatclown/Initialize()
+/obj/item/reagent_containers/food/snacks/meatclown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 30)
 

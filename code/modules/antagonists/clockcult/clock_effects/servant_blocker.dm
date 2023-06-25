@@ -8,7 +8,7 @@
 	density = TRUE
 	CanAtmosPass = ATMOS_PASS_NO
 
-/obj/effect/clockwork/servant_blocker/Initialize()
+/obj/effect/clockwork/servant_blocker/Initialize(mapload)
 	. = ..()
 	air_update_turf(TRUE)
 

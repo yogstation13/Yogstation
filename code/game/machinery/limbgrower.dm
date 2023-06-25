@@ -33,7 +33,7 @@
 		/obj/item/stack/sheet/animalhide/human = 50
 		)
 	var/biomass_per_slab = 20
-/obj/machinery/limbgrower/Initialize()
+/obj/machinery/limbgrower/Initialize(mapload)
 	create_reagents(100, OPENCONTAINER)
 	stored_research = new /datum/techweb/specialized/autounlocking/limbgrower
 	. = ..()

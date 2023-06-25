@@ -14,7 +14,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, ROBOTIC_LIMBS, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = list(MOB_ORGANIC, MOB_ROBOTIC, MOB_HUMANOID)
 	sexes = FALSE //they're basically ken dolls, come straight out of a printer
-	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
+	no_equip = list(ITEM_SLOT_FEET)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"
 	skinned_type = /obj/item/stack/sheet/plasteel{amount = 5} //coated in plasteel
@@ -78,6 +78,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
 
+	RegisterSignal(C, COMSIG_MOB_ITEM_AFTERATTACK, PROC_REF(attackslowdown))
+
 	if(ishuman(C))
 		maglock = new
 		maglock.Grant(C)
@@ -95,8 +97,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 	UnregisterSignal(C, COMSIG_MOB_ALTCLICKON)
 		
+	UnregisterSignal(C, COMSIG_MOB_ITEM_AFTERATTACK)
+
 	var/datum/component/empprotection/empproof = C.GetExactComponent(/datum/component/empprotection)
-	empproof.RemoveComponent()//remove emp proof if they stop being a preternis
+	if(empproof)
+		empproof.RemoveComponent()//remove emp proof if they stop being a preternis
 
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
@@ -272,7 +277,15 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	else
 		H.clear_alert("preternis_charge")
 
-/datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
+/datum/species/preternis/proc/attackslowdown(atom/target, mob/user, proximity_flag, click_parameters)//make weapon use slower
+	if(!ispreternis(user) || !proximity_flag || !ishuman(target))
+		return	
+	var/mob/living/carbon/human/H = user
+	var/obj/item/weapon = H.get_active_held_item()
+	if(weapon && istype(weapon) && weapon.force)
+		H.next_move += 2 //adds 0.2 second delay to weapon combat
+
+/datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make their punches slower
 	. = ..()
 	if(!ispreternis(user) || attacker_style?.nonlethal || (user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)) || (user.mind.martial_art.type in subtypesof(/datum/martial_art)))
 		return	

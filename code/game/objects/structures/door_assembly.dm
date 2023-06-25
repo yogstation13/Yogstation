@@ -20,7 +20,7 @@
 	var/material_type = /obj/item/stack/sheet/metal
 	var/material_amt = 4
 
-/obj/structure/door_assembly/Initialize()
+/obj/structure/door_assembly/Initialize(mapload)
 	. = ..()
 	update_icon()
 	update_name()

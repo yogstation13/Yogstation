@@ -142,7 +142,7 @@
 	var/datum/duel/duel
 	var/mutable_appearance/setting_overlay
 
-/obj/item/gun/energy/dueling/Initialize()
+/obj/item/gun/energy/dueling/Initialize(mapload)
 	. = ..()
 	setting_overlay = mutable_appearance(icon,setting_iconstate())
 	add_overlay(setting_overlay)
@@ -316,7 +316,7 @@
 	icon_closed = "medalbox"
 	icon_broken = "medalbox+b"
 
-/obj/item/storage/lockbox/dueling/Initialize()
+/obj/item/storage/lockbox/dueling/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL

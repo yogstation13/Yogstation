@@ -86,7 +86,7 @@
 	if(IS_JOB(user, "Network Admin"))
 		. += span_notice("It appears to be rigged with explosives!")
 
-/obj/item/computer_hardware/hard_drive/portable/syndicate/trap/diagnostics(var/mob/user)
+/obj/item/computer_hardware/hard_drive/portable/syndicate/trap/diagnostics(mob/user)
 	..()
 	to_chat(user, "Payload Status: TRIGGERED!") // A little too late
 	trigger()

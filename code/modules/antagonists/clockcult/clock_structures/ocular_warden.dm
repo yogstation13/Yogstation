@@ -18,7 +18,7 @@
 	var/time_between_shots = 4 //yogs: slower attack speed
 	var/last_process = 0 //see above
 
-/obj/structure/destructible/clockwork/ocular_warden/Initialize()
+/obj/structure/destructible/clockwork/ocular_warden/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 

@@ -3,7 +3,7 @@
 	name = "peacekeeping force jumpsuit"
 	color = "#55ff9b"
 
-/obj/item/clothing/under/rank/security/grey/amber/occupying/Initialize(mob/user)
+/obj/item/clothing/under/rank/security/grey/amber/occupying/Initialize(mapload, mob/user)
 	. = ..()
 	if(prob(50)) // Adds variation to the uniform. 50% will be worn casually.
 		rolldown(TRUE)
@@ -26,7 +26,7 @@
 
 // Peacekeeping force vest loadouts
 // To note: each vest has 7 normal slots - Hopek
-/obj/item/storage/belt/military/occupying_officer/Initialize() // Occupying Officer
+/obj/item/storage/belt/military/occupying_officer/Initialize(mapload) // Occupying Officer
 	. = ..()
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
@@ -37,7 +37,7 @@
 	new /obj/item/jawsoflife/jimmy(src)
 
 
-/obj/item/storage/belt/military/occupying_commander/Initialize() // Occupying force Commander
+/obj/item/storage/belt/military/occupying_commander/Initialize(mapload) // Occupying force Commander
 	. = ..()
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
 	new /obj/item/ammo_box/magazine/wt550m9/wtr(src)
@@ -50,7 +50,7 @@
 /obj/item/storage/belt/military/occupying_heavy
 	color = "#55ff9b"
 
-/obj/item/storage/belt/military/occupying_heavy/Initialize() // Occupying Riot Officer
+/obj/item/storage/belt/military/occupying_heavy/Initialize(mapload) // Occupying Riot Officer
 	. = ..()
 	new /obj/item/restraints/legcuffs/bola/energy(src)
 	new /obj/item/restraints/legcuffs/bola/energy(src)

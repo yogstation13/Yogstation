@@ -66,6 +66,10 @@
 			A.malf_picker.remove_malf_verbs(A)
 			qdel(A.malf_picker)
 	owner.remove_employee(company)
+	if(uplink_holder)
+		var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
+		if(uplink)//remove uplink so they can't keep using it if admin abuse happens
+			uplink.RemoveComponent()
 	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
@@ -289,7 +293,7 @@
 	if(malf)
 		killer.add_malf_picker()
 
-/datum/antagonist/traitor/proc/equip(var/silent = FALSE)
+/datum/antagonist/traitor/proc/equip(silent = FALSE)
 	if(traitor_kind == TRAITOR_HUMAN)
 		uplink_holder = owner.equip_traitor(employer, silent, src) //yogs - uplink_holder =
 
@@ -321,9 +325,9 @@
 		folder = new/obj/item/folder/syndicate/blue(mob.loc)
 
 	var/list/slots = list (
-		"backpack" = SLOT_IN_BACKPACK,
-		"left pocket" = SLOT_L_STORE,
-		"right pocket" = SLOT_R_STORE
+		"backpack" = ITEM_SLOT_BACKPACK,
+		"left pocket" = ITEM_SLOT_LPOCKET,
+		"right pocket" = ITEM_SLOT_RPOCKET
 	)
 
 	var/where = "At your feet"

@@ -11,7 +11,7 @@
 	var/area/lair_area
 	var/mob/lair_owner
 
-/obj/item/restraints/legcuffs/beartrap/bloodsucker/Initialize()
+/obj/item/restraints/legcuffs/beartrap/bloodsucker/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -55,17 +55,6 @@
 		return
 	if(get_area(src) != lair_area)
 		close_trap()
-
-//////////////////////
-//      HEART       //
-//////////////////////
-
-/datum/antagonist/bloodsucker/proc/RemoveVampOrgans()
-	var/obj/item/organ/heart/newheart = owner.current.getorganslot(ORGAN_SLOT_HEART)
-	if(newheart)
-		qdel(newheart)
-	newheart = new()
-	newheart.Insert(owner.current)
 
 //////////////////////
 //      STAKES      //
@@ -190,7 +179,7 @@
 	hitsound = 'sound/items/bikehorn.ogg'
 	sharpness = SHARP_POINTY //torture ducky
 
-/obj/item/stake/ducky/Initialize()
+/obj/item/stake/ducky/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 
@@ -207,7 +196,7 @@
 	name = "chisel"
 	desc = "Despite not being the most precise or faster tool, it feels the best to work with nonetheless."
 	icon_state = "chisel"
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKET
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("chiseled", "stabbed", "poked")
 	sharpness = SHARP_POINTY
@@ -322,7 +311,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/in_use = FALSE
 
-/obj/item/book/kindred/Initialize()
+/obj/item/book/kindred/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 

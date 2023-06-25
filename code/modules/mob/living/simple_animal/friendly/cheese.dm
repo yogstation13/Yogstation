@@ -24,7 +24,7 @@
 	var/mob/living/stored_mob
 	var/temporary = FALSE //permanent until made temporary
 
-/mob/living/simple_animal/cheese/Life()
+/mob/living/simple_animal/cheese/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(stored_mob)
 		stored_mob.life_tickrate = 0

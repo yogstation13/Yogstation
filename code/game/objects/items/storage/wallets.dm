@@ -9,7 +9,7 @@
 	var/obj/item/card/id/front_id = null
 	var/list/combined_access
 
-/obj/item/storage/wallet/Initialize()
+/obj/item/storage/wallet/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 4

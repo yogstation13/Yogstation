@@ -20,7 +20,7 @@
 	var/static/list/buyable_items = list()
 	var/list/tags = list()
 
-/obj/item/gangtool/Initialize()
+/obj/item/gangtool/Initialize(mapload)
 	update_icon()
 	if(buyable_items.len)
 		return ..()

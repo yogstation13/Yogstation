@@ -213,7 +213,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("butter", "exotic butter")
 
-/obj/item/reagent_containers/food/snacks/butterdog/Initialize()
+/obj/item/reagent_containers/food/snacks/butterdog/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 80)
 

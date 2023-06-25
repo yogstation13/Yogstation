@@ -182,6 +182,15 @@ GLOBAL_LIST_INIT(gas_recipe_meta, gas_recipes_list())
 	requirements = list(/datum/gas/bz = 100, /datum/gas/hypernoblium = 100, /datum/gas/oxygen = 1000)
 	products = list(/obj/item/stack/hypernoblium_crystal = 1)
 
+/datum/gas_recipe/crystallizer/antinoblium_crystal
+	id = "anti_crystalium"
+	name = "Antinoblium Crystal"
+	min_temp = TCMB
+	max_temp = TCMB + 20
+	energy_release = 2800000
+	requirements = list(/datum/gas/antinoblium = 100, /datum/gas/nitrium = 100, /datum/gas/zauker = 100)
+	products = list(/obj/item/stack/antinoblium_crystal = 1)
+
 /datum/gas_recipe/crystallizer/crystallized_nitrium
 	id = "crystallized_nitrium"
 	name = "Nitrium crystal"

@@ -74,6 +74,9 @@ GLOBAL_PROTECT(adminlog)
 
 GLOBAL_LIST_EMPTY(active_turfs_startlist)
 
+GLOBAL_LIST_EMPTY(test_log)
+GLOBAL_PROTECT(test_log)
+
 /////Picture logging
 GLOBAL_VAR(picture_log_directory)
 GLOBAL_PROTECT(picture_log_directory)
