@@ -140,6 +140,9 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
 	},
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/chemistry)
 "aR" = (
@@ -326,6 +329,9 @@
 	},
 /obj/item/bedsheet/syndie,
 /obj/structure/bed,
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "di" = (
@@ -352,6 +358,10 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
+"dx" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/powered/syndicate_lava_base/vault)
 "dy" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -1398,6 +1408,9 @@
 	},
 /obj/item/defibrillator/compact/combat/loaded,
 /obj/item/clothing/neck/stethoscope,
+/obj/machinery/light_switch{
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "gY" = (
@@ -2828,6 +2841,7 @@
 	req_access = list(150)
 	},
 /obj/structure/cable,
+/obj/machinery/light_switch,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
 "ky" = (
@@ -2848,6 +2862,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
+	},
+/obj/machinery/light_switch{
+	pixel_y = -24
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
@@ -4481,6 +4498,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/light_switch{
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/syndicate_lava_base/bar)
 "uX" = (
@@ -4520,6 +4540,9 @@
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"vl" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/powered/syndicate_lava_base/telecomms)
 "vu" = (
 /obj/effect/turf_decal/siding/green/corner{
 	dir = 8
@@ -4686,6 +4709,9 @@
 /obj/item/pen,
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
+	},
+/obj/machinery/light_switch{
+	pixel_y = -24
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -4883,6 +4909,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
+/obj/machinery/light_switch{
+	pixel_y = -24
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/cargo)
 "AP" = (
@@ -4916,6 +4945,9 @@
 	},
 /obj/item/bedsheet/syndie,
 /obj/structure/bed,
+/obj/machinery/light_switch{
+	pixel_y = -24
+	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "Bv" = (
@@ -5021,6 +5053,13 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/main)
+"Cr" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/arrivals)
 "Cv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/no_lava,
@@ -5081,9 +5120,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
-"Dk" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
 "DA" = (
 /obj/structure/statue/resin/ashwalker{
 	name = "ancient statue";
@@ -5108,13 +5144,6 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
-"DQ" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "150"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/arrivals)
 "Ec" = (
 /obj/machinery/door/airlock/glass_large{
 	name = "Arrivals"
@@ -5162,10 +5191,38 @@
 /obj/item/pen,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/cargo)
-"EQ" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/powered/syndicate_lava_base/vault)
+"ES" = (
+/obj/effect/mob_spawn/human/lavaland_syndicate{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/bedsheet/syndie,
+/obj/structure/bed,
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/powered/syndicate_lava_base/dormitories)
+"ET" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/powered/syndicate_lava_base/main)
 "EY" = (
 /obj/machinery/button/door/incinerator_vent_syndicatelava_aux{
 	pixel_x = 6;
@@ -6261,6 +6318,9 @@
 	},
 /obj/item/bedsheet/syndie,
 /obj/structure/bed,
+/obj/machinery/light_switch{
+	pixel_y = -24
+	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/powered/syndicate_lava_base/dormitories)
 "TA" = (
@@ -6500,6 +6560,9 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 5
 	},
+/obj/machinery/light_switch{
+	pixel_y = 24
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
 "Xg" = (
@@ -6527,15 +6590,15 @@
 	},
 /turf/closed/mineral/random/high_chance/volcanic,
 /area/lavaland/surface/outdoors)
-"XE" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/telecomms)
 "XF" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
+"XS" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/powered/syndicate_lava_base/engineering)
 "Yb" = (
 /obj/effect/turf_decal/siding/green/corner,
 /turf/open/floor/mineral/plastitanium,
@@ -6595,6 +6658,16 @@
 /obj/effect/turf_decal/siding/green,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
+"Zn" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/syndicate_lava_base/arrivals)
 "Zr" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -7925,7 +7998,7 @@ lY
 jy
 jy
 hv
-nT
+Zn
 mT
 mT
 mT
@@ -7971,7 +8044,7 @@ ha
 nG
 RY
 hz
-Bd
+ES
 nJ
 hz
 nJ
@@ -7982,7 +8055,7 @@ mx
 hz
 jD
 nT
-DQ
+Cr
 cF
 gu
 ts
@@ -8181,7 +8254,7 @@ Pd
 hP
 Iz
 as
-jq
+ET
 jn
 iV
 ab
@@ -8754,7 +8827,7 @@ gf
 jc
 mn
 jv
-XE
+vl
 ab
 ab
 ab
@@ -8793,10 +8866,10 @@ Ub
 Ub
 Ub
 Ub
-EQ
-Dk
-Dk
-Dk
+dx
+XS
+XS
+XS
 fc
 fv
 gc
@@ -8810,7 +8883,7 @@ iJ
 qB
 kY
 yB
-XE
+vl
 ab
 ab
 ab
@@ -8849,7 +8922,7 @@ Ub
 Ub
 Ub
 Ub
-Dk
+XS
 oE
 eg
 fr
@@ -8864,9 +8937,9 @@ Mo
 mn
 ue
 iB
-XE
-XE
-XE
+vl
+vl
+vl
 ab
 ab
 ab
@@ -8905,7 +8978,7 @@ fF
 Ub
 Ub
 Ub
-Dk
+XS
 ea
 RV
 fr
@@ -8920,10 +8993,10 @@ gZ
 eb
 eb
 gI
-XE
-XE
-XE
-EQ
+vl
+vl
+vl
+dx
 ab
 ab
 ab
@@ -8961,25 +9034,25 @@ Ub
 Ub
 ab
 Ub
-Dk
-Dk
-Dk
-Dk
+XS
+XS
+XS
+XS
 Yh
 Yh
-Dk
+XS
 Yh
 Yh
 Kb
 Hr
 kX
 gh
-Dk
+XS
 od
-Dk
+XS
 oz
-Dk
-Dk
+XS
+XS
 nf
 ab
 ab
@@ -9020,10 +9093,10 @@ Od
 lO
 ju
 mc
-Dk
+XS
 Pk
 is
-Dk
+XS
 iQ
 ky
 Kb
@@ -9076,10 +9149,10 @@ gj
 hb
 oW
 ju
-Dk
+XS
 Cb
 ne
-Dk
+XS
 fx
 PW
 Kb
@@ -9090,8 +9163,8 @@ nE
 jF
 nE
 oB
-Dk
-Dk
+XS
+XS
 nf
 ab
 ab
@@ -9132,21 +9205,21 @@ ab
 gj
 hb
 lO
-Dk
-Dk
-Dk
-Dk
-Dk
-Dk
+XS
+XS
+XS
+XS
+XS
+XS
 Kb
 hq
 hE
 hE
 hE
 ol
-Dk
+XS
 nH
-EQ
+dx
 ab
 ab
 ab
