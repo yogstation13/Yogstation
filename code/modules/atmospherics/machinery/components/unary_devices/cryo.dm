@@ -36,6 +36,7 @@
 	var/breakout_time = 300
 	///Cryo will continue to treat people with 0 damage but existing wounds, but will sound off when damage healing is done in case doctors want to directly treat the wounds instead
 	var/treating_wounds = FALSE
+	var/can_heal_wounds = FALSE // just in case someone wants to add something that lets it heal wounds
 	fair_market_price = 10
 	payment_department = ACCOUNT_MED
 
@@ -210,7 +211,7 @@
 
 	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
 		if(C)
-			if(C.all_wounds)
+			if(C.all_wounds && can_heal_wounds)
 				if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
 					treating_wounds = TRUE
 					playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
