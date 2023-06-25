@@ -111,7 +111,7 @@
 				if(servers.len)
 					dat += "<br>Detected Telecommunication Servers:<ul>"
 					for(var/obj/machinery/telecomms/T in servers)
-						dat += "<li><a href='?src=\ref[src];viewserver=[T.id]'>\ref[T] [T.name]</a> ([T.id])</li>"
+						dat += "<li><a href='?src=\ref[src];viewserver=[T.id]'>[T.display_name.get_sanitised()] ([T.id])</a></li>"
 					dat += "</ul>"
 					dat += "<br><a href='?src=\ref[src];operation=release'>\[Flush Buffer\]</a>"
 
@@ -126,7 +126,7 @@
 					dat += "<br>[temp]<br>"
 					dat += "<center><a href='?src=\ref[src];operation=mainmenu'>\[Main Menu\]</a>     <a href='?src=\ref[src];operation=refresh'>\[Refresh\]</a></center>"
 					dat += "<br>Current Network: [network]"
-					dat += "<br>Selected Server: [SelectedServer.id]"
+					dat += "<br>Selected Server: [SelectedServer.display_name.get_sanitised()]"
 					dat += "<br><br>"
 					dat += "<br><a href='?src=\ref[src];operation=editcode'>\[Edit Code\]</a>"
 					dat += "<br>Signal Execution: "

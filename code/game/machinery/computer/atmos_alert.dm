@@ -37,19 +37,20 @@
 
 	return data
 
-/obj/machinery/computer/atmos_alert/ui_act(action, params)
+/obj/machinery/computer/atmos_alert/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
 		if("clear")
-			var/zone = params["zone"]
-			if(zone in priority_alarms)
-				to_chat(usr, "Priority alarm for [zone] cleared.")
-				priority_alarms -= zone
+			var/priority_zone = params.get_text_in_list("zone", priority_alarms)
+			if(priority_zone)
+				to_chat(usr, "Priority alarm for [priority_zone] cleared.")
+				priority_alarms -= priority_zone
 				. = TRUE
+			var/minor_zone = params.get_text_in_list("zone", minor_alarms)
 			if(zone in minor_alarms)
-				to_chat(usr, "Minor alarm for [zone] cleared.")
-				minor_alarms -= zone
+				to_chat(usr, "Minor alarm for [minor_zone] cleared.")
+				minor_alarms -= minor_zone
 				. = TRUE
 	update_icon()
 

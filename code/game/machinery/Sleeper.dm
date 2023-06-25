@@ -285,7 +285,7 @@
 				data["occupant"]["reagents"] += list(list("name" = R.name, "volume" = R.volume))
 	return data
 
-/obj/machinery/sleeper/ui_act(action, params)
+/obj/machinery/sleeper/ui_act(action, datum/params/params)
 	if(..())
 		return
 	var/mob/living/mob_occupant = occupant
@@ -298,7 +298,7 @@
 				open_machine()
 			. = TRUE
 		if("set")
-			var/treatment = params["treatment"]
+			var/treatment = params.get_text_in_list("treatment", available_treatments)
 			if(!is_operational() || !mob_occupant || isnull(treatment))
 				return
 			active_treatment = treatment

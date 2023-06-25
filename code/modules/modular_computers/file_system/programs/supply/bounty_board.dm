@@ -16,7 +16,7 @@
 	///Value of the currently bounty input
 	var/bounty_value = 1
 	///Text of the currently written bounty
-	var/bounty_text = ""
+	var/datum/unsafe_message/bounty_text = ""
 	///Has the app been added to the network yet?
 	var/networked = FALSE
 
@@ -34,7 +34,7 @@
 		if(!i)
 			continue
 		var/datum/station_request/request = i
-		formatted_requests += list(list("owner" = request.owner, "value" = request.value, "description" = request.description, "acc_number" = request.req_number))
+		formatted_requests += list(list("owner" = request.owner, "value" = request.value, "description" = request.description.get_unsafe_message(), "acc_number" = request.req_number))
 		if(request.applicants)
 			for(var/datum/bank_account/j in request.applicants)
 				formatted_applicants += list(list("name" = j.account_holder, "request_id" = request.owner_account.account_id, "requestee_id" = j.account_id))
@@ -46,20 +46,18 @@
 	data["bountyText"] = bounty_text
 	return data
 
-/datum/computer_file/program/bounty_board/ui_act(action, list/params)
+/datum/computer_file/program/bounty_board/ui_act(action, datum/params/params)
 	if(..())
 		return
-	var/current_ref_num = params["request"]
-	var/current_app_num = params["applicant"]
 	var/datum/bank_account/request_target
-	if(current_ref_num)
+	if(params.get_boolean("request"))
 		for(var/datum/station_request/i in GLOB.request_list)
-			if("[i.req_number]" == "[current_ref_num]")
+			if(params.is_param_equal_to("request", "[i.req_number]"))
 				active_request = i
 				break
 	if(active_request)
 		for(var/datum/bank_account/j in active_request.applicants)
-			if("[j.account_id]" == "[current_app_num]")
+			if(params.is_param_equal_to("applicant", "[j.account_id]"))
 				request_target = j
 				break
 	switch(action)
@@ -115,13 +113,11 @@
 			GLOB.request_list.Remove(active_request)
 			return TRUE
 		if("bountyVal")
-			computer.play_interact_sound()
-			bounty_value = text2num(params["bountyval"])
+			bounty_value = params.get_num("bountyval")
 			if(!bounty_value)
 				bounty_value = 1
 		if("bountyText")
-			computer.play_interact_sound()
-			bounty_text = (params["bountytext"])
+			bounty_text = params.get_unsanitised_message_container("bountytext")
 	. = TRUE
 
 /datum/computer_file/program/bounty_board/Destroy()

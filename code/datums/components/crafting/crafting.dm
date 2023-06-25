@@ -401,12 +401,12 @@
 	data["crafting_recipes"] = crafting_recipes
 	return data
 
-/datum/component/personal_crafting/ui_act(action, params)
+/datum/component/personal_crafting/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
 		if("make")
-			var/datum/crafting_recipe/TR = locate(params["recipe"]) in GLOB.crafting_recipes
+			var/datum/crafting_recipe/TR = params.locate_param("recipe", GLOB.crafting_recipes)
 			busy = TRUE
 			ui_interact(usr)
 			var/fail_msg = construct_item(usr, TR)
@@ -423,8 +423,18 @@
 			. = TRUE
 
 		if("set_category")
-			cur_category = params["category"]
-			cur_subcategory = params["subcategory"] || ""
+			var/new_category = params.get_text_in_list("category", categories)
+			if(!new_category)
+				return
+			
+			var/new_subcategory = CAT_NONE
+			if(islist(categories[new_category]))
+				new_subcategory = params.get_text_in_list("subcategory", categories)
+				if(!new_subcategory)
+					return
+
+			cur_category = new_category
+			cur_subcategory = new_subcategory
 			. = TRUE
 
 

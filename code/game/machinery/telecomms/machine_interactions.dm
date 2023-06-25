@@ -54,6 +54,7 @@
 
 	data["toggled"] = toggled
 	data["id"] = id
+	data["displayName"] = display_name.get_unsafe_message()
 	data["network"] = network
 	data["prefab"] = autolinkers.len ? TRUE : FALSE
 	data["emagged"] = (obj_flags & EMAGGED)
@@ -67,7 +68,7 @@
 			continue
 		var/list/entry = list()
 		entry["index"] = i
-		entry["name"] = machine.name
+		entry["name"] = machine.display_name.get_unsafe_message()
 		entry["id"] = machine.id
 		linked += list(entry)
 	data["linked"] = linked
@@ -98,15 +99,15 @@
 			update_icon()
 			log_game("[key_name(operator)] toggled [toggled ? "On" : "Off"] [src] at [AREACOORD(src)].")
 			. = TRUE
-		if("id")
-			if(params["value"])
-				if(length(params["value"]) > 32)
-					to_chat(operator, span_warning("Error: Machine ID too long!"))
+		if("setname")
+			if(params.get_boolean("value"))
+				if(params.get_encoded_text("value") > 32)
+					to_chat(operator, span_warning("Error: Machine hostname too long!"))
 					playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 					return
 				else
-					id = params["value"]
-					log_game("[key_name(operator)] has changed the ID for [src] at [AREACOORD(src)] to [id].")
+					display_name = params.get_unsanitised_message_container()
+					log_game("[key_name(operator)] has changed the hostname for [src] at [AREACOORD(src)] to [display_name.get_sanitised_text()].")
 					. = TRUE
 		if("network")
 			if(params["value"])

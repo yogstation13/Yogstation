@@ -114,7 +114,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	data["newheadToggle"] = newheadToggle
 	return data
 
-/obj/machinery/announcement_system/ui_act(action, param)
+/obj/machinery/announcement_system/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -126,14 +126,14 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		return
 	switch(action)
 		if("ArrivalText")
-			var/NewMessage = trim(html_encode(param["newText"]), MAX_MESSAGE_LEN)
+			var/NewMessage = trim(params.get_encoded_text("newText"), MAX_MESSAGE_LEN)
 			if(!usr.canUseTopic(src, !issilicon(usr)))
 				return
 			if(NewMessage && !isnotpretty(NewMessage))
 				arrival = NewMessage
 				log_game("The arrivals announcement was updated: [NewMessage] by:[key_name(usr)]")
 		if("NewheadText")
-			var/NewMessage = trim(html_encode(param["newText"]), MAX_MESSAGE_LEN)
+			var/NewMessage = trim(params.get_encoded_text("newText"), MAX_MESSAGE_LEN)
 			if(!usr.canUseTopic(src, !issilicon(usr)))
 				return
 			if(NewMessage && !isnotpretty(NewMessage))

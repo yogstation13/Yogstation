@@ -167,7 +167,7 @@
 /obj/machinery/telecomms/receiver/preset_left{
 	autolinkers = list("receiverF");
 	freq_listening = list(1558);
-	id = "Receiver F";
+	starting_name = "Receiver F";
 	name = "subspace receiver";
 	network = "fish";
 	tempfreq = 1558
@@ -763,7 +763,7 @@
 /obj/machinery/telecomms/server/presets/common{
 	autolinkers = list("fishing");
 	freq_listening = list(1558);
-	id = "Fishing Server";
+	starting_name = "Fishing Server";
 	network = "fish";
 	tempfreq = 1558
 	},
@@ -834,7 +834,7 @@
 /obj/machinery/telecomms/bus/preset_four{
 	autolinkers = list("processorF","fishing");
 	freq_listening = list(1558);
-	id = "BusF";
+	starting_name = "BusF";
 	network = "fish";
 	tempfreq = 1558
 	},
@@ -888,7 +888,7 @@
 	},
 /obj/machinery/telecomms/hub/preset{
 	autolinkers = list("hubF","fishing","receiverF","broadcasterF","autorelay");
-	id = "HubF";
+	starting_name = "HubF";
 	network = "fish";
 	tempfreq = 1558
 	},
@@ -923,7 +923,7 @@
 	},
 /obj/machinery/telecomms/broadcaster/preset_left{
 	autolinkers = list("broadcasterF");
-	id = "Broadcaster F";
+	starting_name = "Broadcaster F";
 	name = "subspace broadcaster";
 	network = "fish";
 	tempfreq = 1558

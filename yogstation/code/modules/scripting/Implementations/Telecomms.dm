@@ -382,7 +382,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 
 		connection.post_signal(S, signal)
 
-		message_admins("Telecomms server \"[S.id]\" sent a signal command, which was triggered by NTSL<B>: </B> [format_frequency(freq)]/[code]")
+		message_admins("Telecomms server \"[S.display_name.sanitised]\" sent a signal command, which was triggered by NTSL<B>: </B> [format_frequency(freq)]/[code]")
 
 /datum/n_function/default/broadcast
 	name = "broadcast"

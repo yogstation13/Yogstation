@@ -288,7 +288,7 @@
 
 	return data
 
-/obj/machinery/computer/secure_data/ui_act(action, list/params)
+/obj/machinery/computer/secure_data/ui_act(action, datum/params/params)
 	if(..())
 		return
 
@@ -344,7 +344,7 @@
 		if("browse_record")
 			if(!logged_in)
 				return
-			var/datum/data/record/R = locate(params["record"]) in GLOB.data_core.general
+			var/datum/data/record/R = params.locate_param("record", GLOB.data_core.general)
 			if(!R)
 				special_message = "Record Not Found!";
 			else
@@ -585,7 +585,7 @@
 			var/general_record = active_general_record
 			var/security_record = active_security_record
 
-			switch(params["field"])
+			switch(params.get_sanitised_text("field"))
 				if("name")
 					if(istype(general_record, /datum/data/record) || istype(security_record, /datum/data/record))
 						var/name = stripped_input(usr, "Please input name:", "Security Records", active_general_record.fields["name"], MAX_MESSAGE_LEN)
@@ -624,7 +624,7 @@
 
 				if("age")
 					if(istype(active_general_record, /datum/data/record))
-						var/age = text2num(params["field_value"])
+						var/age = params.get_num("field_value")
 						if(!valid_record_change(usr, "age", general_record))
 							return
 						active_general_record.fields["age"] = age
@@ -676,10 +676,10 @@
 
 				if("crime_delete")
 					if(istype(active_general_record, /datum/data/record))
-						if(params["id"])
+						if(params.get_num("id"))
 							if(!valid_record_change(usr, "delete", null, active_security_record))
 								return
-							GLOB.data_core.removeCrime(active_general_record.fields["id"], params["id"])
+							GLOB.data_core.removeCrime(active_general_record.fields["id"], params.get_num("id"))
 
 				if("crime_add")
 					if(istype(active_general_record, /datum/data/record))
@@ -693,10 +693,10 @@
 
 				if("comment_delete")
 					if(istype(active_general_record, /datum/data/record))
-						if(params["id"])
+						if(params.get_num("id"))
 							if(!valid_record_change(usr, "delete", null, active_security_record))
 								return
-							GLOB.data_core.removeComment(active_general_record.fields["id"], params["id"])
+							GLOB.data_core.removeComment(active_general_record.fields["id"], params.get_num("id"))
 
 				if("comment_add")
 					if(istype(active_general_record, /datum/data/record))
@@ -735,10 +735,10 @@
 						investigate_log("New Citation: <strong>[name]</strong> Fine: [fine] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
 				if("citation_delete")
 					if(istype(active_general_record, /datum/data/record))
-						if(params["id"])
+						if(params.get_num("id"))
 							if(!valid_record_change(usr, "delete", null, active_security_record))
 								return
-							GLOB.data_core.removeCitation(active_general_record.fields["id"], params["id"])
+							GLOB.data_core.removeCitation(active_general_record.fields["id"], params.get_num("id"))
 
 				if("edit_note")
 					if(istype(active_security_record, /datum/data/record))

@@ -78,7 +78,7 @@
 
 	return data
 
-/obj/machinery/computer/gulag_teleporter_computer/ui_act(action, list/params)
+/obj/machinery/computer/gulag_teleporter_computer/ui_act(action, datum/params/params)
 	if(..())
 		return
 	if(!allowed(usr))

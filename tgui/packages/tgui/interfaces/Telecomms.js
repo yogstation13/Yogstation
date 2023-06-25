@@ -15,6 +15,7 @@ export const Telecomms = (props, context) => {
     multitool,
     multibuff,
     toggled,
+    displayName,
     id,
     network,
     prefab,
@@ -29,7 +30,7 @@ export const Telecomms = (props, context) => {
   const frequencies = data.frequencies || [];
   return (
     <Window
-      title={id}
+      title={displayName}
       width={400}
       height={600}>
       <Window.Content scrollable>
@@ -49,12 +50,12 @@ export const Telecomms = (props, context) => {
                   onClick={() => act('toggle')} />
               } />
             <LabeledList.Item
-              label="Identification String"
+              label="Hostname"
               buttons={
                 <Input
                   width={13}
-                  value={id}
-                  onChange={(e, value) => act('id', { value })} />
+                  value={displayName}
+                  onChange={(e, value) => act('setname', { value })} />
               } />
             <LabeledList.Item
               label="Network"
@@ -64,6 +65,14 @@ export const Telecomms = (props, context) => {
                   value={network}
                   defaultValue={"tcommsat"}
                   onChange={(e, value) => act('network', { value })} />
+              } />
+            <LabeledList.Item
+              label="Hardware ID"
+              buttons={
+                <Input
+                  width={32}
+                  value={id}
+                  disabled />
               } />
             <LabeledList.Item
               label="Prefabrication"

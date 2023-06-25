@@ -132,7 +132,7 @@
 			))
 	return data
 
-/obj/machinery/computer/operating/ui_act(action, params)
+/obj/machinery/computer/operating/ui_act(action, datum/params/params)
 	if(..())
 		return
 	if(action == "sync") //TG has this as a switch with a single entry :)))))

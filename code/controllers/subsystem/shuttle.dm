@@ -258,7 +258,7 @@ SUBSYSTEM_DEF(shuttle)
 			to_chat(user, "The emergency shuttle has been disabled by CentCom.")
 			return
 
-	call_reason = trim(html_encode(call_reason))
+	call_reason = trim(call_reason)
 
 	if(length(call_reason) < CALL_SHUTTLE_REASON_LENGTH && seclevel2num(get_security_level()) > SEC_LEVEL_GREEN)
 		to_chat(user, "You must provide a reason.")
@@ -894,15 +894,14 @@ SUBSYSTEM_DEF(shuttle)
 
 	return data
 
-/datum/controller/subsystem/shuttle/ui_act(action, params)
+/datum/controller/subsystem/shuttle/ui_act(action, datum/params/params)
 	if(..())
 		return
 
 	var/mob/user = usr
 
 	// Preload some common parameters
-	var/shuttle_id = params["shuttle_id"]
-	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
+	var/datum/map_template/shuttle/S = params.get_from_lookup("shuttle_id", SSmapping.shuttle_templates[shuttle_id])
 
 	switch(action)
 		if("select_template")
@@ -911,10 +910,10 @@ SUBSYSTEM_DEF(shuttle)
 				selected = S
 				. = TRUE
 		if("jump_to")
-			if(params["type"] == "mobile")
+			if(params.is_param_equal_to("type", "mobile"))
 				for(var/i in mobile)
 					var/obj/docking_port/mobile/M = i
-					if(M.id == params["id"])
+					if(params.is_param_equal_to("id", M.id))
 						user.forceMove(get_turf(M))
 						. = TRUE
 						break
@@ -922,7 +921,7 @@ SUBSYSTEM_DEF(shuttle)
 		if("fly")
 			for(var/i in mobile)
 				var/obj/docking_port/mobile/M = i
-				if(M.id == params["id"])
+				if(params.is_param_equal_to("id", M.id))
 					. = TRUE
 					M.admin_fly_shuttle(user)
 					break
@@ -930,7 +929,7 @@ SUBSYSTEM_DEF(shuttle)
 		if("fast_travel")
 			for(var/i in mobile)
 				var/obj/docking_port/mobile/M = i
-				if(M.id == params["id"] && M.timer && M.timeLeft(1) >= 50)
+				if(params.is_param_equal_to("id", M.id) && M.timer && M.timeLeft(1) >= 50)
 					M.setTimer(50)
 					. = TRUE
 					message_admins("[key_name_admin(usr)] fast travelled [M]")

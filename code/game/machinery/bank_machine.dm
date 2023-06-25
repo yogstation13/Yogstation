@@ -80,7 +80,7 @@
 
 	return data
 
-/obj/machinery/computer/bank_machine/ui_act(action, params)
+/obj/machinery/computer/bank_machine/ui_act(action, datum/params/params)
 	if(..())
 		return
 

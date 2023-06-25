@@ -113,15 +113,14 @@
 		processing = FALSE
 	..()
 
-/obj/machinery/computer/security/ui_act(action, params)
+/obj/machinery/computer/security/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
 
 	if(action == "switch_camera")
-		var/c_tag = params["name"]
 		var/list/cameras = get_available_cameras()
-		var/obj/machinery/camera/C = cameras[c_tag]
+		var/obj/machinery/camera/C = params.get_from_lookup("name", cameras)
 		active_camera = C
 		playsound(src, get_sfx("terminal_type"), 25, FALSE)
 

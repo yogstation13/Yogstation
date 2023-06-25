@@ -383,7 +383,7 @@
 	if(incapacitated())
 		return
 
-	if(trim(reason))
+	if(sanitize(reason))
 		SSshuttle.requestEvac(src, reason)
 
 	// hack to display shuttle timer

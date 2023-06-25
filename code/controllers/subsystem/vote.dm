@@ -281,7 +281,7 @@ SUBSYSTEM_DEF(vote)
 
 	return data
 
-/datum/controller/subsystem/vote/ui_act(action, params)
+/datum/controller/subsystem/vote/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -319,7 +319,7 @@ SUBSYSTEM_DEF(vote)
 			if(usr.client.holder)
 				initiate_vote("custom",usr.key)
 		if("vote")
-			submit_vote(round(text2num(params["index"])))
+			submit_vote(params.get_int("index"))
 	return TRUE
 
 /datum/controller/subsystem/vote/proc/remove_action_buttons()

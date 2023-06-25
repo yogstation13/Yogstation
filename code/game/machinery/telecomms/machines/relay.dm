@@ -55,19 +55,19 @@
 		return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/telecomms/relay/preset/station
-	id = "Station Relay"
+	starting_name = "Station Relay"
 	autolinkers = list("s_relay")
 
 /obj/machinery/telecomms/relay/preset/telecomms
-	id = "Telecomms Relay"
+	starting_name = "Telecomms Relay"
 	autolinkers = list("relay")
 
 /obj/machinery/telecomms/relay/preset/mining
-	id = "Mining Relay"
+	starting_name = "Mining Relay"
 	autolinkers = list("m_relay")
 
 /obj/machinery/telecomms/relay/preset/ruskie
-	id = "Ruskie Relay"
+	starting_name = "Ruskie Relay"
 	hide = 1
 	toggled = FALSE
 	autolinkers = list("r_relay")
@@ -75,7 +75,7 @@
 /obj/machinery/telecomms/relay/preset/reebe
 	name = "hierophant relay"
 	desc = "An arcane telecommunications relay that ingeniously combines bluespace technology with the Hierophant network to send and receive messages to and from Reebe."
-	id = "Hierophant Relay"
+	starting_name = "Hierophant Relay"
 	icon = 'icons/obj/clockwork_objects.dmi'
 	hide = TRUE
 	autolinkers = list("h_relay")

@@ -90,7 +90,7 @@
 	to_chat(user, span_danger("You scramble the communication routing circuits!"))
 	playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 
-/obj/machinery/computer/communications/ui_act(action, list/params)
+/obj/machinery/computer/communications/ui_act(action, datum/params/params)
 	var/static/list/approved_states = list(STATE_BUYING_SHUTTLE, STATE_CHANGING_STATUS, STATE_MAIN, STATE_MESSAGES)
 	var/static/list/approved_status_pictures = list("biohazard", "blank", "default", "lockdown", "redalert", "shuttle")
 
@@ -112,11 +112,11 @@
 			if (!authenticated(usr))
 				return
 
-			var/answer_index = params["answer"]
-			var/message_index = params["message"]
+			var/answer_index = params.get_num("answer")
+			var/message_index = params.get_num("message")
 
 			// If either of these aren't numbers, then bad voodoo.
-			if(!isnum(answer_index) || !isnum(message_index))
+			if(!answer_index || !message_index)
 				message_admins("[ADMIN_LOOKUPFLW(usr)] provided an invalid index type when replying to a message on [src] [ADMIN_JMP(src)]. This should not happen. Please check with a maintainer and/or consult tgui logs.")
 				CRASH("Non-numeric index provided when answering comms console message.")
 
@@ -130,7 +130,7 @@
 		if ("callShuttle")
 			if (!authenticated(usr))
 				return
-			var/reason = trim(params["reason"], MAX_MESSAGE_LEN)
+			var/reason = trim(params.get_sanitised_text("reason"), MAX_MESSAGE_LEN)
 			if (length(reason) < CALL_SHUTTLE_REASON_LENGTH)
 				return
 			SSshuttle.requestEvac(usr, reason)
@@ -153,8 +153,9 @@
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
 
-			var/new_sec_level = seclevel2num(params["newSecurityLevel"])
-			if (new_sec_level != SEC_LEVEL_GREEN && new_sec_level != SEC_LEVEL_BLUE)
+			var/new_sec_color = params.get_text_in_list("newSecurityLevel", list("green", "blue"))
+			var/new_sec_level = seclevel2num(new_sec_color)
+			if (!new_sec_level)
 				return
 			if (GLOB.security_level == new_sec_level)
 				return
@@ -165,16 +166,16 @@
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 
 			// Only notify people if an actual change happened
-			log_game("[key_name(usr)] has changed the security level to [params["newSecurityLevel"]] with [src] at [AREACOORD(usr)].")
-			message_admins("[ADMIN_LOOKUPFLW(usr)] has changed the security level to [params["newSecurityLevel"]] with [src] at [AREACOORD(usr)].")
-			deadchat_broadcast(" has changed the security level to [params["newSecurityLevel"]] with [src] at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
+			log_game("[key_name(usr)] has changed the security level to [new_sec_color] with [src] at [AREACOORD(usr)].")
+			message_admins("[ADMIN_LOOKUPFLW(usr)] has changed the security level to [new_sec_color] with [src] at [AREACOORD(usr)].")
+			deadchat_broadcast(" has changed the security level to [new_sec_color] with [src] at [span_name("[get_area_name(usr, TRUE)]")].", span_name("[usr.real_name]"), usr)
 
 			alert_level_tick += 1
 			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("deleteMessage")
 			if (!authenticated(usr))
 				return
-			var/message_index = text2num(params["message"])
+			var/message_index = params.get_num("message")
 			if (!message_index)
 				return
 			LAZYREMOVE(messages, LAZYACCESS(messages, message_index))
@@ -193,7 +194,7 @@
 				return
 
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
-			var/message = trim(html_encode(params["message"]), MAX_MESSAGE_LEN)
+			var/message = trim(params.get_encoded_text("message"), MAX_MESSAGE_LEN)
 
 			var/emagged = obj_flags & EMAGGED
 			if (emagged)
@@ -214,7 +215,7 @@
 					to_chat(usr, span_alert("[can_buy_shuttles_or_fail_reason]"))
 				return
 			var/list/shuttles = flatten_list(SSmapping.shuttle_templates)
-			var/datum/map_template/shuttle/shuttle = locate(params["shuttle"]) in shuttles
+			var/datum/map_template/shuttle/shuttle = params.locate_param("shuttle", shuttles)
 			if (!istype(shuttle))
 				return
 			if (!shuttle.prerequisites_met())
@@ -247,7 +248,7 @@
 				return
 			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
 				return
-			var/reason = trim(html_encode(params["reason"]), MAX_MESSAGE_LEN)
+			var/reason = trim(params.get_encoded_text("reason"), MAX_MESSAGE_LEN)
 			nuke_request(reason, usr)
 			to_chat(usr, span_notice("Request sent."))
 			usr.log_message("has requested the nuclear codes from CentCom with reason \"[reason]\"", LOG_SAY)
@@ -270,15 +271,13 @@
 			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
 				return
 
-			var/message = trim(html_encode(params["message"]), MAX_MESSAGE_LEN)
+			var/message = trim(params.get_encoded_text("message"), MAX_MESSAGE_LEN)
 			if (!message)
 				return
 
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 
-			var/destination = params["destination"]
-
-			send2otherserver(station_name(), message, "Comms_Console", destination == "all" ? null : list(destination))
+			send2otherserver(station_name(), message, "Comms_Console")
 			minor_announce(message, title = "Outgoing message to allied station")
 			usr.log_talk(message, LOG_SAY, tag = "message to the other server")
 			message_admins("[ADMIN_LOOKUPFLW(usr)] has sent a message to the other server\[s].")
@@ -288,17 +287,18 @@
 		if ("setState")
 			if (!authenticated(usr))
 				return
-			if (!(params["state"] in approved_states))
+			var/new_state = params.get_text_in_list("state", approved_states)
+			if (!new_state)
 				return
 			if (state == STATE_BUYING_SHUTTLE && can_buy_shuttles(usr) != TRUE)
 				return
-			set_state(usr, params["state"])
+			set_state(usr, new_state)
 			playsound(src, "terminal_type", 50, FALSE)
 		if ("setStatusMessage")
 			if (!authenticated(usr))
 				return
-			var/line_one = reject_bad_text(params["lineOne"] || "", MAX_STATUS_LINE_LENGTH)
-			var/line_two = reject_bad_text(params["lineTwo"] || "", MAX_STATUS_LINE_LENGTH)
+			var/line_one = reject_bad_text(params.get_sanitised_text("lineOne") || "", MAX_STATUS_LINE_LENGTH)
+			var/line_two = reject_bad_text(params.get_sanitised_text("lineTwo") || "", MAX_STATUS_LINE_LENGTH)
 			post_status("alert", "blank")
 			post_status("message", line_one, line_two)
 			last_status_display = list(line_one, line_two)
@@ -306,8 +306,8 @@
 		if ("setStatusPicture")
 			if (!authenticated(usr))
 				return
-			var/picture = params["picture"]
-			if (!(picture in approved_status_pictures))
+			var/picture = params.get_text_in_list("picture", approved_status_pictures)
+			if (!picture)
 				return
 			post_status("alert", picture)
 			playsound(src, "terminal_type", 50, FALSE)

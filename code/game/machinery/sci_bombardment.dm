@@ -186,7 +186,7 @@
 	data["signals"] = signals
 	return data
 
-/obj/machinery/sci_bombardment/ui_act(action, params)
+/obj/machinery/sci_bombardment/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -239,20 +239,21 @@
 		if("target")//Acknowledges GPS signal selected by user and saves it as place to send TTV
 			if(locked || target_delay || !stopcount)
 				return
-			targetdest = params["targetdest"]
-			tcoords = params["tcoords"]
 			for(var/gps in GLOB.GPS_list)
 				var/obj/item/gps/T = gps
 				var/turf/pos = get_turf_global(T) // yogs - get_turf_global instead of get_turf
-				if(T.gpstag == targetdest && "[pos.x], [pos.y], [pos.z]" == tcoords)
+				if(params.is_param_equal_to("targetdest", T.gpstag) && params.is_param_equal_to("tcoords", "[pos.x], [pos.y], [pos.z]"))
+					targetdest = T.gpstag
+					tcoords = "[pos.x], [pos.y], [pos.z]"
 					dest = pos
 					break
 			if(!dest)
-				radio.talk_into(src, "ERROR: Telemetry mismatch. Isolation of [targetdest] required before trying again. Adjusting mainframe...",)
+				radio.talk_into(src, "ERROR: Telemetry mismatch. Isolation of [params.get_sanitised_text("targetdest")] required before trying again. Adjusting mainframe...",)
 				targetdest = initial(targetdest)
 				tcoords = initial(tcoords)
 				. = TRUE
-			radio.talk_into(src, "Target set to [targetdest] at coordinates [tcoords]. [tcoords ? "Adjusting mainframe..." : ""]",)
-			playsound(src, 'sound/effects/servostep.ogg', 100, 1)
-			reset_lam()
-			. = TRUE
+			else
+				radio.talk_into(src, "Target set to [targetdest] at coordinates [tcoords]. [tcoords ? "Adjusting mainframe..." : ""]",)
+				playsound(src, 'sound/effects/servostep.ogg', 100, 1)
+				reset_lam()
+				. = TRUE

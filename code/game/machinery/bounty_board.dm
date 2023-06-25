@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(request_list)
 	///Value of the currently bounty input
 	var/bounty_value = 1
 	///Text of the currently written bounty
-	var/bounty_text = ""
+	var/datum/unsafe_message/bounty_text
 
 /obj/machinery/bounty_board/Initialize(mapload, ndir, building)
 	. = ..()
@@ -75,7 +75,7 @@ GLOBAL_LIST_EMPTY(request_list)
 		if(!i)
 			continue
 		var/datum/station_request/request = i
-		formatted_requests += list(list("owner" = request.owner, "value" = request.value, "description" = request.description, "acc_number" = request.req_number))
+		formatted_requests += list(list("owner" = request.owner, "value" = request.value, "description" = request.description.get_unsafe_message(), "acc_number" = request.req_number))
 		if(request.applicants)
 			for(var/datum/bank_account/j in request.applicants)
 				formatted_applicants += list(list("name" = j.account_holder, "request_id" = request.owner_account.account_id, "requestee_id" = j.account_id))
@@ -87,23 +87,21 @@ GLOBAL_LIST_EMPTY(request_list)
 	data["requests"] = formatted_requests
 	data["applicants"] = formatted_applicants
 	data["bountyValue"] = bounty_value
-	data["bountyText"] = bounty_text
+	data["bountyText"] = bounty_text.get_unsafe_message()
 	return data
 
-/obj/machinery/bounty_board/ui_act(action, list/params)
+/obj/machinery/bounty_board/ui_act(action, datum/params/params)
 	if(..())
 		return
-	var/current_ref_num = params["request"]
-	var/current_app_num = params["applicant"]
 	var/datum/bank_account/request_target
-	if(current_ref_num)
+	if(params.get_boolean("request"))
 		for(var/datum/station_request/i in GLOB.request_list)
-			if("[i.req_number]" == "[current_ref_num]")
+			if(params.is_param_equal_to("request", "[i.req_number]"))
 				active_request = i
 				break
 	if(active_request)
 		for(var/datum/bank_account/j in active_request.applicants)
-			if("[j.account_id]" == "[current_app_num]")
+			if(params.is_param_equal_to("applicant", "[j.account_id]"))
 				request_target = j
 				break
 	switch(action)
@@ -153,11 +151,11 @@ GLOBAL_LIST_EMPTY(request_list)
 			GLOB.request_list.Remove(active_request)
 			return TRUE
 		if("bountyVal")
-			bounty_value = text2num(params["bountyval"])
+			bounty_value = params.get_num("bountyval")
 			if(!bounty_value)
 				bounty_value = 1
 		if("bountyText")
-			bounty_text = (params["bountytext"])
+			bounty_text = params.get_unsanitised_message_container("bountytext")
 	. = TRUE
 
 /obj/item/wallframe/bounty_board
@@ -177,7 +175,7 @@ GLOBAL_LIST_EMPTY(request_list)
 	///Value of the request.
 	var/value
 	///Text description of the request to be shown within the UI.
-	var/description
+	var/datum/unsafe_message/description
 	///Internal number of the request for organizing. Id card number.
 	var/req_number
 	///The account of the request owner.
@@ -185,7 +183,7 @@ GLOBAL_LIST_EMPTY(request_list)
 	///the account of the request fulfiller.
 	var/list/applicants = list()
 
-/datum/station_request/New(owner, value, description, req_number, owner_account)
+/datum/station_request/New(owner, value, datum/unsafe_message/description, req_number, owner_account)
 	. = ..()
 	src.owner = owner
 	src.value = value

@@ -308,7 +308,7 @@
 			window = window,
 			src_object = src_object)
 		process_status()
-		if(src_object.ui_act(act_type, payload, src, state))
+		if(src_object.ui_act(act_type, new /datum/params(payload), src, state))
 			SStgui.update_uis(src_object)
 		return FALSE
 	switch(type)

@@ -10,7 +10,7 @@
 	circuit = /obj/item/circuitboard/machine/launchpad
 	var/icon_teleport = "lpad-beam"
 	var/stationary = TRUE //to prevent briefcase pad deconstruction and such
-	var/display_name = "Launchpad"
+	var/datum/unsafe_message/display_name = new ("Launchpad")
 	var/teleport_speed = 35
 	var/range = 15
 	var/teleporting = FALSE //if it's in the process of teleporting
@@ -342,7 +342,7 @@
 	if(!pad || pad.closed)
 		return data
 
-	data["pad_name"] = pad.display_name
+	data["pad_name"] = pad.display_name.get_unsafe_message()
 	data["range"] = pad.range
 	data["x"] = pad.x_offset
 	data["y"] = pad.y_offset
@@ -357,18 +357,18 @@
 		return
 	pad.doteleport(user, sending)
 
-/obj/item/launchpad_remote/ui_act(action, params)
+/obj/item/launchpad_remote/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
 		if("set_pos")
-			var/new_x = text2num(params["x"])
-			var/new_y = text2num(params["y"])
+			var/new_x = params.get_num("x")
+			var/new_y = params.get_num("y")
 			pad.set_offset(new_x, new_y)
 			. = TRUE
 		if("move_pos")
-			var/plus_x = text2num(params["x"])
-			var/plus_y = text2num(params["y"])
+			var/plus_x = params.get_num("x")
+			var/plus_y = params.get_num("y")
 			pad.set_offset(
 				x = pad.x_offset + plus_x,
 				y = pad.y_offset + plus_y
@@ -376,7 +376,7 @@
 			. = TRUE
 		if("rename")
 			. = TRUE
-			var/new_name = params["name"]
+			var/datum/unsafe_message/new_name = params.get_unsanitised_message_container("name")
 			if(!new_name)
 				return
 			pad.display_name = new_name

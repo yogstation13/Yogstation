@@ -1,6 +1,7 @@
 #define HEATER_MODE_STANDBY	"standby"
 #define HEATER_MODE_HEAT	"heat"
 #define HEATER_MODE_COOL	"cool"
+#define HEATER_MODE_AUTO    "auto"
 
 /obj/machinery/space_heater
 	anchored = FALSE
@@ -17,7 +18,7 @@
 	var/obj/item/stock_parts/cell/cell
 	var/on = FALSE
 	var/mode = HEATER_MODE_STANDBY
-	var/setMode = "auto" // Anything other than "heat" or "cool" is considered auto.
+	var/setMode = HEATER_MODE_AUTO // Anything other than "heat" or "cool" is considered auto.
 	var/targetTemperature = T20C
 	var/heatingPower = 20000
 	var/efficiency = 20000
@@ -222,7 +223,7 @@
 		data["currentTemp"] = round(curTemp - T0C, 1)
 	return data
 
-/obj/machinery/space_heater/ui_act(action, params)
+/obj/machinery/space_heater/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -230,14 +231,14 @@
 			togglepower()
 			. = TRUE
 		if("mode")
-			setMode = params["mode"]
+			setMode = params.get_text_in_list("mode", list(HEATER_MODE_STANDBY, HEATER_MODE_HEAT, HEATER_MODE_COOL, HEATER_MODE_AUTO)) || HEATER_MODE_AUTO
 			. = TRUE
 		if("target")
 			if(!panel_open)
 				return
-			var/target = params["target"]
-			var/adjust = text2num(params["adjust"])
-			if(target == "input")
+			var/target
+			var/adjust = params.get_num("adjust")
+			if(params.is_param_equal_to("target", "input"))
 				target = input("New target temperature:", name, round(targetTemperature - T0C, 1)) as num|null
 				if(!isnull(target) && !..())
 					target += T0C
@@ -245,8 +246,8 @@
 			else if(adjust)
 				target = targetTemperature + adjust
 				. = TRUE
-			else if(text2num(target) != null)
-				target= text2num(target) + T0C
+			else if(params.get_num("target") != null)
+				target = params.get_num("target") + T0C
 				. = TRUE
 			if(.)
 				targetTemperature = clamp(round(target),
@@ -274,3 +275,4 @@
 #undef HEATER_MODE_STANDBY
 #undef HEATER_MODE_HEAT
 #undef HEATER_MODE_COOL
+#undef HEATER_MODE_AUTO

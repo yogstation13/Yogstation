@@ -424,7 +424,7 @@
 		data["occupied"] = FALSE
 	return data
 
-/obj/machinery/suit_storage_unit/ui_act(action, params)
+/obj/machinery/suit_storage_unit/ui_act(action, datum/params/params)
 	if(..() || uv)
 		return
 	switch(action)
@@ -465,8 +465,8 @@
 				return
 
 			var/static/list/valid_items = list("helmet", "suit", "mask", "storage")
-			var/item_name = params["item"]
-			if(item_name in valid_items)
+			var/item_name = params.get_text_in_list("item", valid_items)
+			if(item_name)
 				var/obj/item/I = vars[item_name]
 				vars[item_name] = null
 				if(I)

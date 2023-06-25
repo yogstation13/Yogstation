@@ -366,7 +366,7 @@
 		data["occupied"] = FALSE
 	return data
 
-/obj/machinery/decontamination_unit/ui_act(action, params)
+/obj/machinery/decontamination_unit/ui_act(action, datum/params/params)
 	if(..() || uv)
 		return
 
@@ -410,8 +410,8 @@
 		if("Release")
 			var/desired = 0
 
-			if (params["amount"])
-				desired = text2num(params["amount"])
+			if (params.get_boolean("amount"))
+				desired = params.get_num("amount")
 			else
 				desired = input("How many items?", "How many items would you like to take out?", 1) as null|num
 
@@ -426,7 +426,7 @@
 				for(var/obj/item/O in src)
 					var/check_name1 = replacetext(O.name,"\improper","")
 					var/check_name2 = replacetext(O.name,"\proper","")
-					if((check_name1 == params["name"]) || (check_name2 == params["name"]))
+					if(params.is_param_equal_to("name", check_name1) || params.is_param_equal_to("name", check_name2))
 						dispense(O, usr)
 						break
 				return TRUE
@@ -437,7 +437,7 @@
 					break
 				var/check_name1 = replacetext(O.name,"\improper","")
 				var/check_name2 = replacetext(O.name,"\proper","")
-				if((check_name1 == params["name"]) || (check_name2 == params["name"]))
+				if(params.is_param_equal_to("name", check_name1) || params.is_param_equal_to("name", check_name2))
 					dispense(O, usr)
 					desired--
 			return TRUE

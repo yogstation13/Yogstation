@@ -254,7 +254,7 @@
 
 	return data
 
-/obj/machinery/door_timer/ui_act(action, params)
+/obj/machinery/door_timer/ui_act(action, datum/params/params)
 	if(..())
 		return
 	. = TRUE
@@ -265,7 +265,7 @@
 
 	switch(action)
 		if("time")
-			var/value = text2num(params["adjust"])
+			var/value = params.get_num("adjust")
 			if(value)
 				. = set_timer(time_left()+value)
 		if("start")
@@ -280,9 +280,8 @@
 			for(var/obj/machinery/flasher/F in targets)
 				F.flash()
 		if("preset")
-			var/preset = params["preset"]
 			var/preset_time = time_left()
-			switch(preset)
+			switch(params.get_sanitised_text("preset"))
 				if("short")
 					preset_time = PRESET_SHORT
 				if("medium")
@@ -298,11 +297,11 @@
 				return FALSE
 			desired_name = prisoner_name
 		if("presetCrime")
-			var/value = text2num(params["preset"])
+			var/value = params.get_num("preset")
 			var/preset_crime = "N/A"
 			for(var/allcrimes in crimespetty + crimesminor + crimesmoderate + crimesmajor + crimessevere)
-				if(params["crime"] == allcrimes["name"])
-					preset_crime = params["crime"]
+				if(params.is_param_equal_to("crime", allcrimes["name"]))
+					preset_crime = allcrimes["name"]
 					break
 			desired_crime += preset_crime + ", "
 			if(value)

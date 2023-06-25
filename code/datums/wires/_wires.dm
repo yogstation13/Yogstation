@@ -269,10 +269,10 @@
 	data["proper_name"] = (proper_name != "Unknown") ? proper_name : null
 	return data
 
-/datum/wires/ui_act(action, params)
+/datum/wires/ui_act(action, datum/params/params)
 	if(..() || !interactable(usr))
 		return
-	var/target_wire = params["wire"]
+	var/target_wire = params.get_text_in_list("wire", colors)
 	var/mob/living/L = usr
 	var/obj/item/I
 	switch(action)

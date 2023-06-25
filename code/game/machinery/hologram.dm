@@ -252,7 +252,7 @@ obj/machinery/holopad/secure/Initialize(mapload)
 		data["holo_calls"] += list(call_data)
 	return data
 
-/obj/machinery/holopad/ui_act(action, list/params)
+/obj/machinery/holopad/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -284,7 +284,7 @@ obj/machinery/holopad/secure/Initialize(mapload)
 				if(QDELETED(usr) || !result || outgoing_call)
 					return
 				if(usr.loc == loc)
-					var/input = text2num(params["headcall"])
+					var/input = params.get_num("headcall")
 					var/headcall = input == 1 ? TRUE : FALSE
 					new /datum/holocall(usr, src, callnames[result], headcall)
 					calling = TRUE
@@ -292,12 +292,12 @@ obj/machinery/holopad/secure/Initialize(mapload)
 			else
 				to_chat(usr, span_warning("You must stand on the holopad to make a call!"))
 		if("connectcall")
-			var/datum/holocall/call_to_connect = locate(params["holopad"]) in holo_calls
+			var/datum/holocall/call_to_connect = params.locate_param("holopad", holo_calls)
 			if(!QDELETED(call_to_connect))
 				call_to_connect.Answer(src)
 				return TRUE
 		if("disconnectcall")
-			var/datum/holocall/call_to_disconnect = locate(params["holopad"]) in holo_calls
+			var/datum/holocall/call_to_disconnect = params.locate_param("holopad", holo_calls)
 			if(!QDELETED(call_to_disconnect))
 				call_to_disconnect.Disconnect(src)
 				return TRUE

@@ -44,7 +44,7 @@
 
 	return data
 
-/obj/machinery/computer/aifixer/ui_act(action, params)
+/obj/machinery/computer/aifixer/ui_act(action, datum/params/params)
 	if(..())
 		return
 	if(!occupier)

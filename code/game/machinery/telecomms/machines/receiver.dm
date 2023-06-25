@@ -44,7 +44,7 @@
 //--PRESET LEFT--//
 
 /obj/machinery/telecomms/receiver/preset_left
-	id = "Receiver A"
+	starting_name = "Receiver A"
 	network = "tcommsat"
 	autolinkers = list("receiverA") // link to relay
 	freq_listening = list(FREQ_SCIENCE, FREQ_MEDICAL, FREQ_SUPPLY, FREQ_SERVICE)
@@ -53,7 +53,7 @@
 //--PRESET RIGHT--//
 
 /obj/machinery/telecomms/receiver/preset_right
-	id = "Receiver B"
+	starting_name = "Receiver B"
 	network = "tcommsat"
 	autolinkers = list("receiverB") // link to relay
 	freq_listening = list(FREQ_COMMAND, FREQ_ENGINEERING, FREQ_SECURITY)

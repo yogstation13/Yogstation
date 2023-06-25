@@ -22,7 +22,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/netspeed = 2.5 // how much traffic to lose per second (50 gigabytes/second * netspeed)
 	var/net_efective = 100 //yogs percentage of netspeed aplied
 	var/list/autolinkers = list() // list of text/number values to link with
-	var/id = "NULL" // identification string
+	var/starting_name = "NULL" // Inital value set by the map, is wrapped into an unsafe_message in display_name
+	var/datum/unsafe_message/display_name // Wrapped display name
+	var/id // identification string
 	var/network = "NULL" // the network of the machinery
 
 	var/list/freq_listening = list() // list of frequencies to tune into: if none, will listen to all
@@ -92,6 +94,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms/Initialize(mapload)
 	. = ..()
+	display_name = new (starting_name)
+	id = md5(ref(src)) // Will be unique enough
 	GLOB.telecomms_list += src
 	if(mapload && autolinkers.len)
 		return INITIALIZE_HINT_LATELOAD

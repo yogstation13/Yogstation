@@ -191,7 +191,7 @@
 		data["powerLevel"] = round(cell.percent(), 1)
 	return data
 
-/obj/machinery/electrolyzer/ui_act(action, params)
+/obj/machinery/electrolyzer/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return

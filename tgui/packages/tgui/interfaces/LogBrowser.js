@@ -16,10 +16,10 @@ const generate_server_list = (servers, act) => {
   }
   const mapped_servers = servers.map(server => {
     return (<LabeledList.Item
-      key={server}
-      label={server}
+      key={server.id}
+      label={server.name}
       buttons={(
-        <Button onClick={() => act('ViewServer', { 'server_id': server })}>
+        <Button onClick={() => act('ViewServer', { 'server_id': server.id })}>
           Select Server
         </Button>
       )} />);
@@ -57,13 +57,13 @@ const generate_logs = (logs, act) => {
         mapped_logs.push(
           <Box backgroundColor="#333340" mb={2} pb={2} pl={1} pt={1} nowrap={false}>
             <Box>
-              <Button backgroundColor="bad" onClick={(e, value) => { act('DeleteLog', { "name": log["packet_id"] }); }}>Delete</Button> {log["packet_id"]} 
+              <Button backgroundColor="bad" onClick={(e, value) => { act('DeleteLog', { "name": log["packet_id"] }); }}>Delete</Button> {log["packet_id"]}
             </Box>
             <Divider />
             <b>Name: </b> {log["name"]}<br />
             <b>Job: </b> {log["job"]}<br />
             <b>Received Message: </b> {log["message"]}<br />
-                        
+
           </Box>
         );
         continue;
@@ -99,7 +99,7 @@ export const LogBrowser = (props, context) => {
   if (screen_state === 0) // MAIN MENU
   {
     return (
-      <Window 
+      <Window
         title="Telecommunications Monitoring Console"
         width={460}
         height={550}>
@@ -119,7 +119,7 @@ export const LogBrowser = (props, context) => {
   else if (screen_state === 1) // SERVER LOGS
   {
     return (
-      <Window 
+      <Window
         title="Telecommunications Monitoring Console"
         width={460}
         height={550}>
@@ -160,5 +160,5 @@ export const LogBrowser = (props, context) => {
       </Window>
     );
   }
-  
+
 };

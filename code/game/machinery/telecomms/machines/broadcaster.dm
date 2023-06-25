@@ -82,14 +82,14 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 //--PRESET LEFT--//
 
 /obj/machinery/telecomms/broadcaster/preset_left
-	id = "Broadcaster A"
+	starting_name = "Broadcaster A"
 	network = "tcommsat"
 	autolinkers = list("broadcasterA")
 
 //--PRESET RIGHT--//
 
 /obj/machinery/telecomms/broadcaster/preset_right
-	id = "Broadcaster B"
+	starting_name = "Broadcaster B"
 	network = "tcommsat"
 	autolinkers = list("broadcasterB")
 

@@ -34,7 +34,7 @@
 			if(machinelist.len)
 				dat += "<br>Detected Network Entities:<ul>"
 				for(var/obj/machinery/telecomms/T in machinelist)
-					dat += "<li><a href='?src=[REF(src)];viewmachine=[T.id]'>[REF(T)] [T.name]</a> ([T.id])</li>"
+					dat += "<li><a href='?src=[REF(src)];viewmachine=[T.id]'>[T.display_name.get_sanitised()] ([T.id])</a></li>"
 				dat += "</ul>"
 				dat += "<br><a href='?src=[REF(src)];operation=release'>\[Flush Buffer\]</a>"
 			else
@@ -47,11 +47,11 @@
 			dat += "<br>[temp]<br>"
 			dat += "<center><a href='?src=[REF(src)];operation=mainmenu'>\[Main Menu\]</a></center>"
 			dat += "<br>Current Network: [network]<br>"
-			dat += "Selected Network Entity: [SelectedMachine.name] ([SelectedMachine.id])<br>"
+			dat += "Selected Network Entity: [SelectedMachine.display_name.get_sanitised()] ([SelectedMachine.id])<br>"
 			dat += "Linked Entities: <ol>"
 			for(var/obj/machinery/telecomms/T in SelectedMachine.links)
 				if(!T.hide)
-					dat += "<li><a href='?src=[REF(src)];viewmachine=[T.id]'>[REF(T.id)] [T.name]</a> ([T.id])</li>"
+					dat += "<li><a href='?src=[REF(src)];viewmachine=[T.id]'>[T.display_name.get_sanitised()] ([T.id])</a></li>"
 			dat += "</ol>"
 
 	dat += "</BODY></HTML>"

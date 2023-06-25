@@ -79,13 +79,13 @@
 
 	return data
 
-/obj/machinery/gulag_item_reclaimer/ui_act(action, params)
+/obj/machinery/gulag_item_reclaimer/ui_act(action, datum/params/params)
 	if(..())
 		return
 
 	switch(action)
 		if("release_items")
-			var/mob/living/carbon/human/H = locate(params["mobref"]) in stored_items
+			var/mob/living/carbon/human/H = params.locate_param(params["mobref"], stored_items)
 			if(H != usr && !allowed(usr))
 				to_chat(usr, span_warning("Access denied."))
 				return

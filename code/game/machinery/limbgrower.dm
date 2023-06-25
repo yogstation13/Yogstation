@@ -172,7 +172,7 @@
 	if(user.a_intent == INTENT_HARM) //so we can hit the machine
 		return ..()
 
-/obj/machinery/limbgrower/ui_act(action, list/params)
+/obj/machinery/limbgrower/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -183,11 +183,11 @@
 	switch(action)
 
 		if("empty_reagent")
-			reagents.del_reagent(text2path(params["reagent_type"]))
+			reagents.del_reagent(params.get_subtype_path("reagent_type", /datum/reagent))
 			. = TRUE
 
 		if("make_limb")
-			being_built = stored_research.isDesignResearchedID(params["design_id"])
+			being_built = stored_research.isDesignResearchedID(params.get_text_in_list("design_id", stored_research.researched_designs))
 			if(!being_built)
 				CRASH("[src] was passed an invalid design id!")
 
@@ -209,7 +209,7 @@
 			use_power(power)
 			flick("limbgrower_fill",src)
 			icon_state = "limbgrower_idleon"
-			selected_category = params["active_tab"]
+			selected_category = params.get_text_in_list("active_tab", categories) || selected_category
 			addtimer(CALLBACK(src, PROC_REF(build_item), consumed_reagents_list), production_speed * production_coefficient)
 			. = TRUE
 

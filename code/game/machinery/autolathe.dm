@@ -121,29 +121,27 @@
 	data["designs"] = designs
 	return data
 	
-/obj/machinery/autolathe/ui_act(action, params)
+/obj/machinery/autolathe/ui_act(action, datum/params/params)
 	if(..())
 		return
 
 	switch(action)
 		if("make") // Lets try make the item supplied via the UI
-			request = stored_research.isDesignResearchedID(params["item_id"])
+			request = stored_research.isDesignResearchedID(params.get_text_in_list("item_id", stored_research.researched_designs))
 			if(!request)
 				return
-			var/multiplier = text2num(params["multiplier"])
-			multiplier = clamp(multiplier,1,50)
+			var/multiplier = params.get_num("multiplier", 1, 50)
 			if((autoqueue.len + 1) < queue_max_len)
 				add_to_queue(request, multiplier) // Add item to queue for processing
 			else
 				to_chat(usr, span_warning("The autolathe queue is full!"))
 		if("eject")
-			request = stored_research.isDesignResearchedID(params["item_id"])
+			request = stored_research.isDesignResearchedID(params.get_text_in_list("item_id", stored_research.researched_designs))
 			if(processing_queue)
 				to_chat(usr, span_warning("The autolathe queue is processing, please stop before ejecting material"))
 			if(!request)
 				return
-			var/multiplier = text2num(params["multiplier"])
-			multiplier = clamp(multiplier,1,50)
+			var/multiplier = params.get_num("multiplier", 1, 50)
 			make_item(request, multiplier)
 			processing_queue = FALSE
 
@@ -155,13 +153,13 @@
 			process_queue()
 
 		if("remove_from_queue")
-			var/index = text2num(params["index"])
+			var/index = params.get_num("index")
 			if(isnum(index) && ISINRANGE(index, 1, autoqueue.len))
 				remove_from_queue(index)
 
 		if("queue_move")  // Moves items up and down the list
-			var/index = text2num(params["index"])
-			var/new_index = index + text2num(params["queue_move"])
+			var/index = params.get_num("index")
+			var/new_index = index + params.get_num("queue_move")
 			if(isnum(index) && isnum(new_index))
 				if(ISINRANGE(new_index, 1, autoqueue.len))
 					autoqueue.Swap(index,new_index)
@@ -173,7 +171,7 @@
 			processing_line = null
 
 		if("printdir")
-			printdirection = text2num(params["direction"])
+			printdirection = params.get_num("direction")
 			if(printdirection > 8)  // Simple Sanity Check
 				printdirection = 0
 

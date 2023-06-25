@@ -33,7 +33,7 @@
 			SelectedServer = null
 			return TRUE
 		if("ViewServer")
-			var/id = params["server_id"]
+			var/id = params.get_encoded_text("server_id")
 			if(!id)
 				return
 			for(var/machine in cached_server_list)
@@ -93,10 +93,10 @@
 		var/list/servers = list()
 		for(var/machine in cached_server_list)
 			var/obj/machinery/telecomms/server/m = machine
-			servers.Add(m.id)
+			servers.Add(list(name = m.display_name.get_unsafe_message(), id = m.id))
 		data["servers"] = servers
 	if(screen_state == MONITOR_SERVERLOGS)
-		data["selected_name"] = SelectedServer.id
+		data["selected_name"] = SelectedServer.display_name.get_unsafe_message()
 		data["totaltraffic"] = SelectedServer.log_entries.len
 		data["define_max_storage"] = SERVER_LOG_STORAGE_MAX
 		data["logs"] = list()

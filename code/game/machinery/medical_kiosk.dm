@@ -327,7 +327,7 @@
 	data["active_status_4"] = scan_active_4	// Radio-Neuro Scan Check
 	return data
 
-/obj/machinery/medical_kiosk/ui_act(action,active)
+/obj/machinery/medical_kiosk/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)

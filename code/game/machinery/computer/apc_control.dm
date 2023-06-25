@@ -79,7 +79,7 @@
 			)
 	return data
 
-/obj/machinery/computer/apc_control/ui_act(action, params)
+/obj/machinery/computer/apc_control/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -145,21 +145,16 @@
 		if("check-apcs")
 			log_activity("Checked APCs")
 		if("toggle-minor")
-			var/ref = params["ref"]
-			var/type = params["type"]
-			var/value = params["value"]
-			var/obj/machinery/power/apc/target = locate(ref) in GLOB.apcs_list
+			var/obj/machinery/power/apc/target = params.locate_param("ref", GLOB.apcs_list)
 			if(!target)
 				return
-			value = target.setsubsystem(text2num(value))
-			switch(type) // Sanity check
-				if("equipment", "lighting", "environ")
-					target.vars[type] = value
-				else
-					message_admins("Warning: possible href exploit by [key_name(usr)] - attempted to set [html_encode(type)] on [target] to [html_encode(value)]")
-					log_game("Warning: possible href exploit by [key_name(usr)] - attempted to set [html_encode(type)] on [target] to [html_encode(value)]")
-					return
-			target.vars[type] = target.setsubsystem(text2num(value))
+			var/type = params.get_text_in_list(type, list("equipment", "lighting", "environ"))
+			if(!type) // Type param is truthy but not valid type
+				var/log_message = "Warning: possible href exploit by [key_name(usr)] - attempted to set [params.get_encoded_text("type")] on [target] to [params.get_encoded_text("value")]"
+				message_admins(log_message)
+				log_game(log_message)
+				return
+			target.vars[type] = target.setsubsystem(params.get_num("value"))
 			target.update_icon()
 			target.update()
 			var/setTo = ""
@@ -175,8 +170,7 @@
 			log_activity("Set APC [target.area.name] [type] to [setTo]")
 			log_game("[key_name(operator)] Set APC [target.area.name] [type] to [setTo]]")
 		if("breaker")
-			var/ref = params["ref"]
-			var/obj/machinery/power/apc/target = locate(ref) in GLOB.apcs_list
+			var/obj/machinery/power/apc/target = params.locate_param("ref", GLOB.apcs_list)
 			target.toggle_breaker()
 			var/setTo = target.operating ? "On" : "Off"
 			log_activity("Turned APC [target.area.name]'s breaker [setTo]")

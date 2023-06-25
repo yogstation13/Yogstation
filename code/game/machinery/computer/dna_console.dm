@@ -340,7 +340,7 @@
 
 	return data
 
-/obj/machinery/computer/scan_consolenew/ui_act(action, list/params)
+/obj/machinery/computer/scan_consolenew/ui_act(action, datum/params/params)
 	if(..())
 		return TRUE
 
@@ -411,7 +411,7 @@
 			if(!(scanner_occupant == connected_scanner.occupant))
 				return
 
-			check_discovery(params["alias"])
+			check_discovery(params.get_text_in_list("alias", GLOB.alias_mutations))
 			return
 
 		// Check all mutations of the occupant and check if any are discovered.
@@ -463,7 +463,7 @@
 				return
 
 			// Resolve mutation's BYOND path from the alias
-			var/alias = params["alias"]
+			var/alias = params.get_text_in_list("alias", GLOB.alias_mutations)
 			var/path = GET_MUTATION_TYPE_FROM_ALIAS(alias)
 
 			// Make sure the occupant still has this mutation
@@ -473,10 +473,10 @@
 			// Resolve BYOND path to genome sequence of scanner occupant
 			var/sequence = GET_GENE_STRING(path, scanner_occupant.dna)
 
-			var/newgene = params["gene"]
-			if(length(newgene) > 1) // Oh come on
+			var/newgene = params.get_text_in_list("gene", list("A", "T", "G", "C", "X", "J"))
+			if(!newgene) // Oh come on
 				return // fuck off
-			var/genepos = text2num(params["pos"])
+			var/genepos = params.get_num("pos")
 
 			// If the new gene is J, this means we're dealing with a JOKER
 			// GUARD CHECK - Is JOKER actually ready?
@@ -528,11 +528,9 @@
 			if(!(scanner_occupant == connected_scanner.occupant))
 				return
 
-			var/bref = params["mutref"]
-
 			// GUARD CHECK - Only search occupant for this specific ref, since your
 			//  can only apply chromosomes to mutations occupants.
-			var/datum/mutation/human/HM = get_mut_by_ref(bref, SEARCH_OCCUPANT)
+			var/datum/mutation/human/HM = get_mut_by_ref(params, SEARCH_OCCUPANT)
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
@@ -541,7 +539,7 @@
 			// Look through our stored chromos and compare names to find a
 			// stored chromo we can apply.
 			for(var/obj/item/chromosome/CM in stored_chromosomes)
-				if(CM.can_apply(HM) && (CM.name == params["chromo"]))
+				if(CM.can_apply(HM) && (params.is_param_equal_to("chromo", CM.name)))
 					stored_chromosomes -= CM
 					CM.apply(HM)
 
@@ -575,7 +573,7 @@
 
 			var/search_flags = 0
 
-			switch(params["source"])
+			switch(params.get_text_in_list("source"), list("occupant", "console", "disk"))
 				if("occupant")
 					// GUARD CHECK - Make sure we can modify the occupant before we
 					//  attempt to search them for any given mutation refs. This could
@@ -588,8 +586,7 @@
 				if("disk")
 					search_flags |= SEARCH_DISKETTE
 
-			var/bref = params["mutref"]
-			var/datum/mutation/human/HM = get_mut_by_ref(bref, search_flags)
+			var/datum/mutation/human/HM = get_mut_by_ref(params, search_flags)
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
@@ -599,7 +596,7 @@
 			var/obj/item/dnainjector/activator/I = new /obj/item/dnainjector/activator(loc)
 			I.add_mutations += new HM.type(copymut = HM)
 
-			var/is_activator = text2num(params["is_activator"])
+			var/is_activator = params.get_num("is_activator")
 
 			// Activators are also called "research" injectors and are used to create
 			//  chromosomes by recycling at the DNA Console
@@ -636,7 +633,7 @@
 		if("save_console")
 			var/search_flags = 0
 
-			switch(params["source"])
+			switch(params.get_text_in_list("source", list("occupant", "disk")))
 				if("occupant")
 					// GUARD CHECK - Make sure we can modify the occupant before we
 					//  attempt to search them for any given mutation refs. This could
@@ -647,9 +644,7 @@
 				if("disk")
 					search_flags |= SEARCH_DISKETTE
 
-
-			var/bref = params["mutref"]
-			var/datum/mutation/human/HM = get_mut_by_ref(bref, search_flags)
+			var/datum/mutation/human/HM = get_mut_by_ref(params, search_flags)
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
@@ -687,7 +682,7 @@
 
 			var/search_flags = 0
 
-			switch(params["source"])
+			switch(params.get_text_in_list("source", list("occupant", "console")))
 				if("occupant")
 					// GUARD CHECK - Make sure we can modify the occupant before we
 					//  attempt to search them for any given mutation refs. This could
@@ -698,8 +693,7 @@
 				if("console")
 					search_flags |= SEARCH_STORED
 
-			var/bref = params["mutref"]
-			var/datum/mutation/human/HM = get_mut_by_ref(bref, search_flags)
+			var/datum/mutation/human/HM = get_mut_by_ref(params, search_flags)
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
@@ -721,8 +715,7 @@
 			if(!can_modify_occupant())
 				return
 
-			var/bref = params["mutref"]
-			var/datum/mutation/human/HM = get_mut_by_ref(bref, SEARCH_OCCUPANT)
+			var/datum/mutation/human/HM = get_mut_by_ref(params, SEARCH_OCCUPANT)
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
@@ -740,8 +733,7 @@
 		// ---------------------------------------------------------------------- //
 		// params["mutref"] - ATOM Ref of specific mutation to delete
 		if("delete_console_mut")
-			var/bref = params["mutref"]
-			var/datum/mutation/human/HM = get_mut_by_ref(bref, SEARCH_STORED)
+			var/datum/mutation/human/HM = get_mut_by_ref(params, SEARCH_STORED)
 
 			if(HM)
 				stored_mutations.Remove(HM)
@@ -764,8 +756,7 @@
 				to_chat(usr,span_warning("Disk is set to read only mode."))
 				return
 
-			var/bref = params["mutref"]
-			var/datum/mutation/human/HM = get_mut_by_ref(bref, SEARCH_DISKETTE)
+			var/datum/mutation/human/HM = get_mut_by_ref(params, SEARCH_DISKETTE)
 
 			if(HM)
 				diskette.mutations.Remove(HM)
@@ -777,10 +768,8 @@
 		// ---------------------------------------------------------------------- //
 		// params["chromo"] - Text string of the chromosome name
 		if("eject_chromo")
-			var/chromname = params["chromo"]
-
 			for(var/obj/item/chromosome/CM in stored_chromosomes)
-				if(chromname == CM.name)
+				if(params.is_param_equal_to("chromo", CM.name))
 					CM.forceMove(drop_location())
 					adjust_item_drop_location(CM)
 					stored_chromosomes -= CM
@@ -801,16 +790,13 @@
 			if(!stored_research)
 				return
 
-			var/first_bref = params["firstref"]
-			var/second_bref = params["secondref"]
-
 			// GUARD CHECK - Find the source and destination mutations on the console
 			// and make sure they actually exist.
-			var/datum/mutation/human/source_mut = get_mut_by_ref(first_bref, SEARCH_STORED | SEARCH_DISKETTE)
+			var/datum/mutation/human/source_mut = get_mut_by_ref(params, SEARCH_STORED | SEARCH_DISKETTE, "firstref")
 			if(!source_mut)
 				return
 
-			var/datum/mutation/human/dest_mut = get_mut_by_ref(second_bref, SEARCH_STORED | SEARCH_DISKETTE)
+			var/datum/mutation/human/dest_mut = get_mut_by_ref(params, SEARCH_STORED | SEARCH_DISKETTE, "secondref")
 			if(!dest_mut)
 				return
 
@@ -863,16 +849,13 @@
 			if(!stored_research)
 				return
 
-			var/first_bref = params["firstref"]
-			var/second_bref = params["secondref"]
-
 			// GUARD CHECK - Find the source and destination mutations on the console
 			// and make sure they actually exist.
-			var/datum/mutation/human/source_mut = get_mut_by_ref(first_bref, SEARCH_STORED | SEARCH_DISKETTE)
+			var/datum/mutation/human/source_mut = get_mut_by_ref(params, SEARCH_STORED | SEARCH_DISKETTE, "firstref")
 			if(!source_mut)
 				return
 
-			var/datum/mutation/human/dest_mut = get_mut_by_ref(second_bref, SEARCH_STORED | SEARCH_DISKETTE)
+			var/datum/mutation/human/dest_mut = get_mut_by_ref(params, SEARCH_STORED | SEARCH_DISKETTE, "secondref")
 			if(!dest_mut)
 				return
 
@@ -902,7 +885,7 @@
 		// params["val"] - New strength value as text string, converted to number
 		//  later on in code
 		if("set_pulse_strength")
-			var/value = round(text2num(params["val"]))
+			var/value = params.get_int("val")
 			radstrength = WRAP(value, 1, RADIATION_STRENGTH_MAX+1)
 			return
 
@@ -911,7 +894,7 @@
 		// params["val"] - New strength value as text string, converted to number
 		//  later on in code
 		if("set_pulse_duration")
-			var/value = round(text2num(params["val"]))
+			var/value = params.get_int("val")
 			radduration = WRAP(value, 1, RADIATION_DURATION_MAX+1)
 			return
 
@@ -932,8 +915,7 @@
 				return
 
 			// Convert the index to a number and clamp within the array range
-			var/buffer_index = text2num(params["index"])
-			buffer_index = clamp(buffer_index, 1, NUMBER_OF_BUFFERS)
+			var/buffer_index = params.get_num("index", 1, NUMBER_OF_BUFFERS)
 
 			var/list/buffer_slot = genetic_makeup_buffer[buffer_index]
 
@@ -962,8 +944,7 @@
 
 			// Convert the index to a number and clamp within the array range, then
 			//  copy the data from the disk to that buffer
-			var/buffer_index = text2num(params["index"])
-			buffer_index = clamp(buffer_index, 1, NUMBER_OF_BUFFERS)
+			var/buffer_index = params.get_num("index", 1, NUMBER_OF_BUFFERS)
 			genetic_makeup_buffer[buffer_index] = diskette.genetic_makeup_buffer.Copy()
 			return
 
@@ -996,8 +977,7 @@
 
 			// Convert the index to a number and clamp within the array range, then
 			//  copy the data from the disk to that buffer
-			var/buffer_index = text2num(params["index"])
-			buffer_index = clamp(buffer_index, 1, NUMBER_OF_BUFFERS)
+			var/buffer_index = params.get_num("index", 1, NUMBER_OF_BUFFERS)
 
 			// Set the new information
 			genetic_makeup_buffer[buffer_index] = list(
@@ -1017,8 +997,7 @@
 		if("del_makeup_console")
 			// Convert the index to a number and clamp within the array range, then
 			//  copy the data from the disk to that buffer
-			var/buffer_index = text2num(params["index"])
-			buffer_index = clamp(buffer_index, 1, NUMBER_OF_BUFFERS)
+			var/buffer_index = params.get_num("index", 1, NUMBER_OF_BUFFERS)
 			var/list/buffer_slot = genetic_makeup_buffer[buffer_index]
 
 			// GUARD CHECK - This shouldn't be possible to execute this on a null
@@ -1054,8 +1033,7 @@
 		if("makeup_injector")
 			// Convert the index to a number and clamp within the array range, then
 			//  copy the data from the disk to that buffer
-			var/buffer_index = text2num(params["index"])
-			buffer_index = clamp(buffer_index, 1, NUMBER_OF_BUFFERS)
+			var/buffer_index = params.get_num("index", 1, NUMBER_OF_BUFFERS)
 			var/list/buffer_slot = genetic_makeup_buffer[buffer_index]
 
 			// GUARD CHECK - This shouldn't be possible to execute this on a null
@@ -1063,7 +1041,7 @@
 			if(!istype(buffer_slot))
 				return
 
-			var/type = params["type"]
+			var/type = params.get_text_in_list("type", list("ui", "ue", "mixed"))
 			var/obj/item/dnainjector/timed/I
 
 			switch(type)
@@ -1138,8 +1116,7 @@
 
 			// Convert the index to a number and clamp within the array range, then
 			//  copy the data from the disk to that buffer
-			var/buffer_index = text2num(params["index"])
-			buffer_index = clamp(buffer_index, 1, NUMBER_OF_BUFFERS)
+			var/buffer_index = params.get_num("index", 1, NUMBER_OF_BUFFERS)
 			var/list/buffer_slot = genetic_makeup_buffer[buffer_index]
 
 			// GUARD CHECK - This shouldn't be possible to execute this on a null
@@ -1147,7 +1124,7 @@
 			if(!istype(buffer_slot))
 				return
 
-			var/type = params["type"]
+			var/type = params.get_text_in_list("type", list("ui", "ue", "mixed"))
 
 			apply_genetic_makeup(type, buffer_slot)
 			return
@@ -1170,8 +1147,7 @@
 		if("makeup_delay")
 			// Convert the index to a number and clamp within the array range, then
 			//  copy the data from the disk to that buffer
-			var/buffer_index = text2num(params["index"])
-			buffer_index = clamp(buffer_index, 1, NUMBER_OF_BUFFERS)
+			var/buffer_index = params.get_num("index", 1, NUMBER_OF_BUFFERS)
 			var/list/buffer_slot = genetic_makeup_buffer[buffer_index]
 
 			// GUARD CHECK - This shouldn't be possible to execute this on a null
@@ -1179,7 +1155,7 @@
 			if(!istype(buffer_slot))
 				return
 
-			var/type = params["type"]
+			var/type = params.get_text_in_list("type", list("ui", "ue", "mixed"))
 
 			// Set the delayed action. The next time the scanner door is closed,
 			//  unless this is cancelled in the UI, the action will happen
@@ -1201,7 +1177,7 @@
 			//  later on in process()
 			var/len = length_char(scanner_occupant.dna.uni_identity)
 			rad_pulse_timer = world.time + (radduration*10)
-			rad_pulse_index = WRAP(text2num(params["index"]), 1, len+1)
+			rad_pulse_index = WRAP(params.get_num("index"), 1, len+1)
 			begin_processing()
 			return
 
@@ -1224,8 +1200,7 @@
 
 			// GUARD CHECK - Sanitise and trim the proposed name. This prevents HTML
 			//  injection and equivalent as tgui input is not stripped
-			var/inj_name = params["name"]
-			inj_name = trim(sanitize(inj_name))
+			var/inj_name = trim(params.get_sanitised_text("name"))
 
 			// GUARD CHECK - If the name is null or blank, or the name is already in
 			//  the list of advanced injectors, we want to reject it as we can't have
@@ -1240,13 +1215,13 @@
 		// ---------------------------------------------------------------------- //
 		// params["name"] - The name of the injector to delete
 		if("del_adv_inj")
-			var/inj_name = params["name"]
+			var/inj_name = params.get_text_in_list("name", injector_selection)
 
 			// GUARD CHECK - If the name is null or blank, reject.
 			// GUARD CHECK - If the name isn't in the list of advanced injectors, we
 			//  want to reject this as it shouldn't be possible ever do this.
 			//	Unexpected result
-			if(!inj_name || !(inj_name in injector_selection))
+			if(!inj_name)
 				return
 
 			injector_selection.Remove(inj_name)
@@ -1264,13 +1239,13 @@
 			if(world.time < injectorready)
 				return
 
-			var/inj_name = params["name"]
+			var/inj_name = params.get_text_in_list("name", injector_selection)
 
 			// GUARD CHECK - If the name is null or blank, reject.
 			// GUARD CHECK - If the name isn't in the list of advanced injectors, we
 			//  want to reject this as it shouldn't be possible ever do this.
 			//	Unexpected result
-			if(!inj_name || !(inj_name in injector_selection))
+			if(!inj_name)
 				return
 
 			var/list/injector = injector_selection[inj_name]
@@ -1308,11 +1283,11 @@
 			if(!can_modify_occupant())
 				return
 
-			var/adv_inj = params["advinj"]
+			var/adv_inj = params.get_text_in_list("advinj", injector_selection)
 
 			// GUARD CHECK - Make sure our advanced injector actually exists. This
 			//  should not be possible. Unexpected result
-			if(!(adv_inj in injector_selection))
+			if(!adv_inj)
 				return
 
 			// GUARD CHECK - Make sure we limit the number of mutations appropriately
@@ -1320,7 +1295,7 @@
 				to_chat(usr,span_warning("Advanced injector mutation storage is full."))
 				return
 
-			var/mut_source = params["source"]
+			var/mut_source = params.get_text_in_list("source", list("disk", "occupant", "console"))
 			var/search_flag = 0
 
 			switch(mut_source)
@@ -1334,10 +1309,9 @@
 			if(!search_flag)
 				return
 
-			var/bref = params["mutref"]
 			// We've already made sure we can modify the occupant, so this is safe to
 			//  call
-			var/datum/mutation/human/HM = get_mut_by_ref(bref, search_flag)
+			var/datum/mutation/human/HM = get_mut_by_ref(params, search_flag)
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
@@ -1369,9 +1343,8 @@
 		// ---------------------------------------------------------------------- //
 		// params["mutref"] - ATOM Ref of specific mutation to del from the injector
 		if("delete_injector_mut")
-			var/bref = params["mutref"]
 
-			var/datum/mutation/human/HM = get_mut_by_ref(bref, SEARCH_ADV_INJ)
+			var/datum/mutation/human/HM = get_mut_by_ref(params, SEARCH_ADV_INJ)
 
 			// GUARD CHECK - This should not be possible. Unexpected result
 			if(!HM)
@@ -1390,12 +1363,17 @@
 		// params["id"] - Key for the state to set
 		// params[...] - Every other element is used to set state variables
 		if("set_view")
-			for (var/key in params)
-				if(key == "src")
-					continue
-				tgui_view_state[key] = params[key]
+			set_view_if_valid(params, "consoleMode", list("storage", "sequencer", "enzymes"))
+			set_view_if_valid(params, "storageMode", list("console", "disk", "injector"))
+			set_view_if_valid(params, "storageConsSubMode", list("mutations", "chromosomes"))
+			set_view_if_valid(params, "storageDiskSubMode", list("mutations", "diskenzymes"))
 			return TRUE
 	return FALSE
+
+/obj/machinery/computer/scan_consolenew/proc/set_view_if_valid(datum/params/params, key, list/valid_values)
+	var/new_value = params.get_text_in_list(key, valid_values)
+	if(new_value)
+		tgui_view_state = new_value
 
 /**
   * Applies the enzyme buffer to the current scanner occupant
@@ -1862,38 +1840,39 @@
 	return FALSE
 
 /**
-  * Find a mutation from various storage locations via ATOM ref
+	* Find a mutation from various storage locations via ref from ui_act params
 	*
-	* Takes an ATOM Ref and searches the appropriate mutation buffers and storage
+	* Takes an ATOM Ref from params and searches the appropriate mutation buffers and storage
 	* vars to try and find the associated mutation.
 	*
 	* Arguments:
-  * * ref - ATOM ref of the mutation to locate
+	* * ref - ATOM ref of the mutation to locate
 	* * target_flags - Flags for storage mediums to search, see #defines
+	* * mutref - Parameter to check, default "mutref"
   */
-/obj/machinery/computer/scan_consolenew/proc/get_mut_by_ref(ref, target_flags)
+/obj/machinery/computer/scan_consolenew/proc/get_mut_by_ref(datum/params/params, target_flags, mutref = "mutref")
 	var/mutation
 
 	// Assume the occupant is valid and the check has been carried out before
 	// 	calling this proc with the relevant flags.
 	if(target_flags & SEARCH_OCCUPANT)
-		mutation = (locate(ref) in scanner_occupant.dna.mutations)
+		mutation = params.locate_param(mutref, scanner_occupant.dna.mutations)
 		if(mutation)
 			return mutation
 
 	if(target_flags & SEARCH_STORED)
-		mutation = (locate(ref) in stored_mutations)
+		mutation = params.locate_param(mutref, stored_mutations)
 		if(mutation)
 			return mutation
 
 	if(diskette && (target_flags & SEARCH_DISKETTE))
-		mutation = (locate(ref) in diskette.mutations)
+		mutation = parms.locate_param(mutref, diskette.mutations)
 		if(mutation)
 			return mutation
 
 	if(injector_selection && (target_flags & SEARCH_ADV_INJ))
 		for(var/I in injector_selection)
-			mutation = (locate(ref) in injector_selection["[I]"])
+			mutation = params.locate_param(mutref, injector_selection["[I]"])
 			if(mutation)
 				return mutation
 

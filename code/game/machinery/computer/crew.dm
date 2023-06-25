@@ -296,12 +296,13 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 /proc/sensor_compare(list/a,list/b)
 	return a["ijob"] - b["ijob"]
 
-/datum/crewmonitor/ui_act(action,params)
+/datum/crewmonitor/ui_act(action, datum/params/params)
 	var/mob/living/silicon/ai/AI = usr
 	if(!istype(AI))
 		return
 	switch (action)
 		if ("select_person")
-			AI.ai_camera_track(params["name"])
+			// ai_camera_track is already a verb taking user input, so we'll leave sanitization to it
+			AI.ai_camera_track(params.get_unsanitised_message_container("name").get_unsafe_message())
 
 #undef SENSORS_UPDATE_PERIOD

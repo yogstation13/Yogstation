@@ -311,7 +311,7 @@
 #undef MESSAGE_SERVER_FUNCTIONING_MESSAGE
 
 /obj/machinery/telecomms/message_server/preset
-	id = "Messaging Server"
+	starting_name = "Messaging Server"
 	network = "tcommsat"
 	autolinkers = list("messaging")
 	decryptkey = null //random

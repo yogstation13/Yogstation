@@ -125,7 +125,7 @@
 	data["volume"] = volume
 	return data
 
-/obj/machinery/jukebox/ui_act(action, list/params)
+/obj/machinery/jukebox/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -152,24 +152,24 @@
 			var/list/available = list()
 			for(var/datum/track/S in songs)
 				available[S.song_name] = S
-			var/selected = params["track"]
-			if(QDELETED(src) || !selected || !istype(available[selected], /datum/track))
+			var/selected = params.get_from_lookup("track", available)
+			if(QDELETED(src) || !selected || !istype(selected, /datum/track))
 				return
-			selection = available[selected]
+			selection = selected
 			return TRUE
 		if("set_volume")
 			var/new_volume = params["volume"]
-			if(new_volume  == "reset")
+			if(params.is_param_equal_to("volume", "reset"))
 				volume = initial(volume)
 				return TRUE
-			else if(new_volume == "min")
+			else if(params.is_param_equal_to("volume", "min"))
 				volume = 0
 				return TRUE
-			else if(new_volume == "max")
+			else if(params.is_param_equal_to("volume", "max"))
 				volume = 100
 				return TRUE
-			else if(text2num(new_volume) != null)
-				volume = text2num(new_volume)
+			else if(params.get_num("volume") != null)
+				volume = params.get_num("volume")
 				return TRUE
 
 /obj/machinery/jukebox/proc/activate_music()
