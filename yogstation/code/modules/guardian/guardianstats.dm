@@ -12,16 +12,19 @@
 	guardian.range = range * 2
 	if (ranged)
 		guardian.ranged = TRUE
-		guardian.ranged_cooldown_time = 20 / speed
+		guardian.ranged_cooldown_time = 20 / speed				//2, 1, 0.66, 0.5, 0.4 second cooldown time
+		guardian.ranged_ammo_max = potential + 1				//2, 3, 4, 5, 6 ammo max
+		guardian.ranged_ammo_regen = max(1, floor(speed / 1.5))	//1, 1, 2, 2, 3 regen speed
+		guardian.ranged_ammo_current = guardian.ranged_ammo_max	//start with full ammo
 	else
-		guardian.melee_damage_lower = damage * 5
+		guardian.melee_damage_lower = damage * 5	//5, 10, 15, 20, 25 damage
 		guardian.melee_damage_upper = damage * 5
-		guardian.obj_damage = damage * 16
-	var/armor = clamp((max(6 - defense, 1)/2.5)/2, 0.25, 1)
+		guardian.obj_damage = damage * 16			//16, 32, 48, 64, 80 damage
+	var/armor = clamp((max(6 - defense, 1)/2.5)/2, 0.25, 1)	//1, 0.8, 0.6, 0.4, 0.25 damage mod
 	guardian.damage_coeff = list(BRUTE = armor, BURN = armor, TOX = armor, CLONE = armor, STAMINA = 0, OXY = armor)
 	if (damage == 5)
 		guardian.environment_smash = ENVIRONMENT_SMASH_WALLS
-	guardian.atk_cooldown = (15 / speed) * 1.5
+	guardian.atk_cooldown = (15 / speed) * 1.5	//2.25, 1.13,  0.75, 0.56, 0.45 second cooldown time
 	if (ability)
 		ability.guardian = guardian
 		ability.Apply()

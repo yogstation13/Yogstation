@@ -67,6 +67,9 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	var/requiem = FALSE
 	// ability stuff below
 	var/transforming = FALSE
+	var/ranged_ammo_max = 0
+	var/ranged_ammo_regen = 0
+	var/ranged_ammo_current = 0
 
 /mob/living/simple_animal/hostile/guardian/Initialize(mapload, theme)
 	GLOB.parasites += src
@@ -210,6 +213,9 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 			visible_message(span_bolddanger("[src] dies along with its user!"))
 			death(TRUE)
 	snapback()
+	if(ranged && (ranged_ammo_current < ranged_ammo_max))
+		ranged_ammo_current = min(ranged_ammo_max, ranged_ammo_current + ranged_ammo_regen)
+
 
 /mob/living/simple_animal/hostile/guardian/proc/OnMoved()
 	snapback()
@@ -251,6 +257,8 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 		. += "Manifest/Recall Cooldown Remaining: [DisplayTimeText(cooldown - world.time)]"
 	if (stats.ability)
 		. += stats.ability.StatusTab()
+	if (ranged)
+		. += "Current Ammo: [ranged_ammo_current]"
 
 /mob/living/simple_animal/hostile/guardian/Move() //Returns to summoner if they move out of range
 	if (temp_anchored_to_owner)
@@ -351,6 +359,9 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 /mob/living/simple_animal/hostile/guardian/Shoot(atom/targeted_atom)
 	if (QDELETED(targeted_atom) || targeted_atom == targets_from.loc || targeted_atom == targets_from)
 		return
+	if(!ranged_ammo_current)
+		to_chat(src, span_holoparasite("You don't have any ammo ready!"))
+		return
 	var/turf/startloc = get_turf(targets_from)
 	var/obj/item/projectile/guardian/emerald_splash = new(startloc)
 	playsound(src, projectilesound, 100, 1)
@@ -368,6 +379,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	emerald_splash.original = targeted_atom
 	emerald_splash.preparePixelProjectile(targeted_atom, src)
 	emerald_splash.fire()
+	ranged_ammo_current -= 1
 	return emerald_splash
 
 /mob/living/simple_animal/hostile/guardian/RangedAttack(atom/A, params)
