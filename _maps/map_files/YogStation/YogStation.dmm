@@ -13736,7 +13736,7 @@
 /area/hallway/secondary/entry)
 "cfS" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Permanent Cell 6";
+	name = "Permanent Cell 6"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -18263,7 +18263,7 @@
 /area/engine/foyer)
 "dCK" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Prison Laundry";
+	name = "Prison Laundry"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -20313,7 +20313,7 @@
 /area/maintenance/disposal/incinerator)
 "ero" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Permanent Cell 1";
+	name = "Permanent Cell 1"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -22038,6 +22038,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"eVV" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison/hallway)
 "eWa" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Artist's Coven"
@@ -27464,6 +27483,12 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"gZq" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "gZx" = (
 /obj/machinery/light{
 	dir = 4
@@ -28239,22 +28264,6 @@
 /obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom,
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
-"hlX" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/security/prison/hallway)
 "hlY" = (
 /obj/structure/urinal{
 	pixel_y = 32
@@ -30804,7 +30813,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/grunge{
-	name = "Prison Workshop";
+	name = "Prison Workshop"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -38992,7 +39001,7 @@
 /area/science/misc_lab)
 "lxE" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Permanent Cell 4";
+	name = "Permanent Cell 4"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -42172,6 +42181,10 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
+"mIS" = (
+/obj/effect/landmark/start/yogs/brigphsyician,
+/turf/open/floor/plasteel/white,
+/area/security/brig)
 "mJk" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -54223,7 +54236,7 @@
 /area/storage/tech)
 "rsZ" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Prison Laundry";
+	name = "Prison Laundry"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -59479,7 +59492,7 @@
 /area/quartermaster/miningdock)
 "tyK" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Permanent Cell 2";
+	name = "Permanent Cell 2"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -61125,13 +61138,6 @@
 /obj/effect/landmark/start/shaft_miner,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
-"ueO" = (
-/obj/structure/chair/office/dark{
-	dir = 1
-	},
-/obj/effect/landmark/start/yogs/brigphsyician,
-/turf/open/floor/plasteel/white,
-/area/security/brig)
 "ufj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -62615,7 +62621,7 @@
 /area/storage/tech)
 "uKj" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Permanent Cell 3";
+	name = "Permanent Cell 3"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -68028,7 +68034,7 @@
 /area/engine/atmos/mix)
 "wOy" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Permanent Cell 5";
+	name = "Permanent Cell 5"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -71667,7 +71673,7 @@
 /area/medical/medbay/aft)
 "yjB" = (
 /obj/machinery/door/airlock/grunge{
-	name = "Prison Visitation";
+	name = "Prison Visitation"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -94462,7 +94468,7 @@ acd
 fEC
 dWv
 kEb
-hlX
+eVV
 bIU
 uBx
 aaa
@@ -99347,9 +99353,9 @@ fsi
 gyZ
 agj
 meV
+gZq
 nTz
-nTz
-ueO
+mIS
 cea
 nWg
 agj
