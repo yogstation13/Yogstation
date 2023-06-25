@@ -427,15 +427,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
-"dO" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "150"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/ruin/powered/syndicate_lava_base/arrivals)
 "dP" = (
 /turf/closed/wall/mineral/plastitanium/explosive,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -950,10 +941,11 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "fk" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 6
-	},
 /obj/machinery/light,
+/obj/effect/turf_decal/siding/red,
+/obj/effect/turf_decal/siding/red/corner{
+	dir = 4
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "fl" = (
@@ -2326,10 +2318,11 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "jv" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "150"
+/obj/effect/turf_decal/siding/red,
+/obj/effect/turf_decal/siding/red{
+	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "jw" = (
 /obj/effect/turf_decal/siding/green{
@@ -4006,7 +3999,9 @@
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/arrivals)
 "op" = (
@@ -4332,10 +4327,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
-"sj" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/powered/syndicate_lava_base/vault)
 "tp" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood{
@@ -4736,7 +4727,10 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/obj/effect/turf_decal/siding/red/end{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "yP" = (
 /obj/machinery/light{
@@ -5087,6 +5081,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/cargo)
+"Dk" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/powered/syndicate_lava_base/engineering)
 "DA" = (
 /obj/structure/statue/resin/ashwalker{
 	name = "ancient statue";
@@ -5111,6 +5108,13 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
+"DQ" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/arrivals)
 "Ec" = (
 /obj/machinery/door/airlock/glass_large{
 	name = "Arrivals"
@@ -5158,6 +5162,10 @@
 /obj/item/pen,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/cargo)
+"EQ" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/powered/syndicate_lava_base/vault)
 "EY" = (
 /obj/machinery/button/door/incinerator_vent_syndicatelava_aux{
 	pixel_x = 6;
@@ -5200,9 +5208,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/cargo)
-"Fq" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/telecomms)
 "Fv" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 4;
@@ -5636,9 +5641,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
-"Ko" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
 "Kp" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/chair/stool/bar,
@@ -6525,6 +6527,9 @@
 	},
 /turf/closed/mineral/random/high_chance/volcanic,
 /area/lavaland/surface/outdoors)
+"XE" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/powered/syndicate_lava_base/telecomms)
 "XF" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7584,7 +7589,7 @@ VM
 jy
 jy
 mT
-dO
+oo
 mT
 ab
 ab
@@ -7977,7 +7982,7 @@ mx
 hz
 jD
 nT
-oo
+DQ
 cF
 gu
 ts
@@ -8749,7 +8754,7 @@ gf
 jc
 mn
 jv
-Fq
+XE
 ab
 ab
 ab
@@ -8788,10 +8793,10 @@ Ub
 Ub
 Ub
 Ub
-sj
-Ko
-Ko
-Ko
+EQ
+Dk
+Dk
+Dk
 fc
 fv
 gc
@@ -8805,7 +8810,7 @@ iJ
 qB
 kY
 yB
-Fq
+XE
 ab
 ab
 ab
@@ -8844,7 +8849,7 @@ Ub
 Ub
 Ub
 Ub
-Ko
+Dk
 oE
 eg
 fr
@@ -8859,9 +8864,9 @@ Mo
 mn
 ue
 iB
-Fq
-Fq
-Fq
+XE
+XE
+XE
 ab
 ab
 ab
@@ -8900,7 +8905,7 @@ fF
 Ub
 Ub
 Ub
-Ko
+Dk
 ea
 RV
 fr
@@ -8915,10 +8920,10 @@ gZ
 eb
 eb
 gI
-Fq
-Fq
-Fq
-sj
+XE
+XE
+XE
+EQ
 ab
 ab
 ab
@@ -8956,25 +8961,25 @@ Ub
 Ub
 ab
 Ub
-Ko
-Ko
-Ko
-Ko
+Dk
+Dk
+Dk
+Dk
 Yh
 Yh
-Ko
+Dk
 Yh
 Yh
 Kb
 Hr
 kX
 gh
-Ko
+Dk
 od
-Ko
+Dk
 oz
-Ko
-Ko
+Dk
+Dk
 nf
 ab
 ab
@@ -9015,10 +9020,10 @@ Od
 lO
 ju
 mc
-Ko
+Dk
 Pk
 is
-Ko
+Dk
 iQ
 ky
 Kb
@@ -9071,10 +9076,10 @@ gj
 hb
 oW
 ju
-Ko
+Dk
 Cb
 ne
-Ko
+Dk
 fx
 PW
 Kb
@@ -9085,8 +9090,8 @@ nE
 jF
 nE
 oB
-Ko
-Ko
+Dk
+Dk
 nf
 ab
 ab
@@ -9127,21 +9132,21 @@ ab
 gj
 hb
 lO
-Ko
-Ko
-Ko
-Ko
-Ko
-Ko
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
 Kb
 hq
 hE
 hE
 hE
 ol
-Ko
+Dk
 nH
-sj
+EQ
 ab
 ab
 ab
