@@ -628,7 +628,7 @@
 	id_card = user.get_idcard(hand_first = TRUE)
 	return ACCESS_HEADS in id_card?.access
 
-/obj/machinery/mecha_part_fabricator/ui_act(action, list/params)
+/obj/machinery/mecha_part_fabricator/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -646,21 +646,20 @@
 			return
 		if("add_queue_set")
 			// Add all parts of a set to queue
-			var/part_list = params["part_list"]
+			var/part_list = params.get_sanitised_text("part_list")
 			add_part_set_to_queue(part_list, usr)
 			return
 		if("add_queue_part")
 			// Add a specific part to queue
-			var/T = params["id"]
 			for(var/v in stored_research.researched_designs)
 				var/datum/design/D = SSresearch.techweb_design_by_id(v)
-				if((D.build_type & MECHFAB) && (D.id == T))
+				if((D.build_type & MECHFAB) && params.is_param_equal_to("id", D.id))
 					add_to_queue(D, usr)
 					break
 			return
 		if("del_queue_part")
 			// Delete a specific from from the queue
-			var/index = text2num(params["index"])
+			var/index = params.get_num("index")
 			remove_from_queue(index)
 			return
 		if("clear_queue")
@@ -685,7 +684,7 @@
 			if(being_built || process_queue)
 				return
 
-			var/id = params["id"]
+			var/id = params.get_text_in_list("id", SSresearch.techweb_designs)
 			var/datum/design/D = SSresearch.techweb_design_by_id(id)
 
 			if(!(D.build_type & MECHFAB) || !(D.id == id))
@@ -698,17 +697,16 @@
 			return
 		if("move_queue_part")
 			// Moves a part up or down in the queue.
-			var/index = text2num(params["index"])
-			var/new_index = index + text2num(params["newindex"])
-			if(isnum(index) && isnum(new_index) && ISINTEGER(index) && ISINTEGER(new_index))
-				if(ISINRANGE(new_index,1,length(queue)))
-					queue.Swap(index,new_index)
+			var/queue_len = length(queue)
+			var/index = params.get_int("index", 1, queue_len)
+			var/new_index = index + prams.get_int("newindex", 1, queue_len)
+			if(index && new_index)
+				queue.Swap(index,new_index)
 			return
 		if("remove_mat")
 			// Remove a material from the fab
-			var/mat_ref = params["ref"]
-			var/amount = text2num(params["amount"])
-			var/datum/material/mat = locate(mat_ref)
+			var/amount = params.get_int("amount")
+			var/datum/material/mat = params.locate_param("ref", rmat.mat_container.materials)
 			eject_sheets(mat, amount)
 			return
 

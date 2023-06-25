@@ -216,15 +216,15 @@
 		data["answers"] += list(L)
 	return data
 
-/obj/item/toy/eightball/haunted/ui_act(action, params)
+/obj/item/toy/eightball/haunted/ui_act(action, datum/params/params)
 	if(..())
 		return
 	var/mob/user = usr
 
 	switch(action)
 		if("vote")
-			var/selected_answer = params["answer"]
-			if(!(selected_answer in haunted_answers))
+			var/selected_answer = params.get_text_in_list("answer")
+			if(!selected_answer)
 				return
 			if(user.ckey in voted)
 				return

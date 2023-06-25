@@ -46,14 +46,18 @@
 
 	return data
 
-/obj/machinery/computer/mecha/ui_act(action, params)
+/obj/machinery/computer/mecha/ui_act(action, datum/params/params)
 	if(..())
 		return
+	
+	var/list/trackerlist = list()
+	for(var/obj/mecha/MC in GLOB.mechas_list)
+		trackerlist += MC.trackers
+	var/obj/item/mecha_parts/mecha_tracking/MT = params.locate_param("tracker_ref", trackerlist)
 
 	switch(action)
 		if("send_message")
-			var/obj/item/mecha_parts/mecha_tracking/MT = locate(params["tracker_ref"])
-			if(!istype(MT))
+			if(!MT)
 				return
 			var/message = stripped_input(usr, "Input message", "Transmit message")
 			var/obj/mecha/M = MT.chassis
@@ -62,8 +66,7 @@
 				to_chat(usr, span_notice("Message sent."))
 				. = TRUE
 		if("shock")
-			var/obj/item/mecha_parts/mecha_tracking/MT = locate(params["tracker_ref"])
-			if(!istype(MT))
+			if(!MT)
 				return
 			var/obj/mecha/M = MT.chassis
 			if(M)

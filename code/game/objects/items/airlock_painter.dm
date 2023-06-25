@@ -164,6 +164,7 @@
 	var/stored_decal_total = "warningline"
 	var/color_list = list("","red","white")
 	var/dir_list = list(1,2,4,8)
+	var/list/allowed_decals
 	var/decal_list = list(list("Warning Line","warningline"),
 			list("Warning Line Corner","warninglinecorner"),
 			list("Warning Line U Corner","warn_end"),
@@ -278,6 +279,9 @@
 /obj/item/airlock_painter/decal/Initialize(mapload)
 	. = ..()
 	ink = new /obj/item/toner/large(src)
+	allowed_decals = list()
+	for(var/i in decal_list)
+		allowed_decals += i[2]
 
 /obj/item/airlock_painter/decal/proc/update_decal_path()
 	var/yellow_fix = "" //This will have to do until someone refactor's markings.dm
@@ -316,7 +320,7 @@
 		))
 	return data
 
-/obj/item/airlock_painter/decal/ui_act(action,list/params)
+/obj/item/airlock_painter/decal/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -324,13 +328,14 @@
 	switch(action)
 		//Lists of decals and designs
 		if("select decal")
-			var/selected_decal = params["decals"]
+			var/selected_decal = params.get_text_in_list("decals", allowed_decals)
 			stored_decal = selected_decal
 		if("select color")
-			var/selected_color = params["colors"]
+			var/selected_color = params.get_text_in_list("colors", color_list)
 			stored_color = selected_color
 		if("selected direction")
-			var/selected_direction = text2num(params["dirs"])
-			stored_dir = selected_direction
+			var/selected_direction = params.get_int("dirs")
+			if(selected_direction in dir_list)
+				stored_dir = selected_direction
 	update_decal_path()
 	. = TRUE

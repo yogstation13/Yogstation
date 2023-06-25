@@ -328,7 +328,7 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 
 	return data
 
-/obj/item/pipe_dispenser/ui_act(action, params)
+/obj/item/pipe_dispenser/ui_act(action, datum/params/params)
 	if(..())
 		return
 	if(!usr.canUseTopic(src, BE_CLOSE))
@@ -336,9 +336,9 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 	var/playeffect = TRUE
 	switch(action)
 		if("color")
-			paint_color = params["paint_color"]
+			paint_color = params.get_text_in_list("paint_color", GLOB.pipe_paint_colors)
 		if("category")
-			category = text2num(params["category"])
+			category = params.get_num("category")
 			switch(category)
 				if(DISPOSALS_CATEGORY)
 					recipe = first_disposal
@@ -351,23 +351,23 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 			p_dir = NORTH
 			playeffect = FALSE
 		if("piping_layer")
-			piping_layer = text2num(params["piping_layer"])
+			piping_layer = params.get_num("piping_layer")
 			playeffect = FALSE
 		if("ducting_layer")
-			ducting_layer = text2num(params["ducting_layer"])
+			ducting_layer = params.get_num("ducting_layer")
 			playeffect = FALSE
 		if("pipe_type")
 			var/static/list/recipes
 			if(!recipes)
 				recipes = GLOB.disposal_pipe_recipes + GLOB.atmos_pipe_recipes + GLOB.transit_tube_recipes + GLOB.fluid_duct_recipes
-			recipe = recipes[params["category"]][text2num(params["pipe_type"])]
+			recipe = recipes[params.get_text_in_list("category", recipes)][params.get_num("pipe_type")]
 			p_dir = NORTH
 		if("setdir")
-			p_dir = text2dir(params["dir"])
-			p_flipped = text2num(params["flipped"])
+			p_dir = params.get_num("dir")
+			p_flipped = params.get_num("flipped")
 			playeffect = FALSE
 		if("mode")
-			var/n = text2num(params["mode"])
+			var/n = params.get_num("mode")
 			if(mode & n)
 				mode &= ~n
 			else

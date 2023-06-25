@@ -139,7 +139,7 @@ effective or pretty fucking useless.
 	data["cooldown"] = DisplayTimeText(get_cooldown())
 	return data
 
-/obj/item/healthanalyzer/rad_laser/ui_act(action, params)
+/obj/item/healthanalyzer/rad_laser/ui_act(action, datum/params/params)
 	if(..())
 		return
 
@@ -154,49 +154,49 @@ effective or pretty fucking useless.
 			scanmode = !scanmode
 			. = TRUE
 		if("radintensity")
-			var/target = params["target"]
-			var/adjust = text2num(params["adjust"])
-			if(target == "input")
-				target = input("New output target (1-20):", name, intensity) as num|null
-				if(!isnull(target) && !..())
-					. = TRUE
-			else if(target == "min")
-				target = 1
-				. = TRUE
-			else if(target == "max")
-				target = 20
-				. = TRUE
-			else if(adjust)
-				target = intensity + adjust
-				. = TRUE
-			else if(text2num(target) != null)
-				target = text2num(target)
-				. = TRUE
-			if(.)
-				target = round(target)
-				intensity = clamp(target, 1, 20)
+			var/target
+			switch(params.get_sanitised_text("target"))
+				if("min")
+					target = 1
+				if("max")
+					target = 20
+				if("input")
+					var/input_val = input("New output target (1-20):", name, intensity) as num|null
+					if(!isnum(input_val))
+						return
+					target = clamp(round(input_val), 1, 20)
+				else
+					target = params.get_int("target", 1, 20)
+			if(!target)
+				var/adjust = params.get_int("adjust")
+				if(!adjust)
+					return
+				target = clamp(intensity + adjust, 1, 20)
+
+			intensity_target = target
+			. = TRUE
+
 		if("radwavelength")
-			var/target = params["target"]
-			var/adjust = text2num(params["adjust"])
-			if(target == "input")
-				target = input("New output target (0-120):", name, wavelength) as num|null
-				if(!isnull(target) && !..())
-					. = TRUE
-			else if(target == "min")
-				target = 0
-				. = TRUE
-			else if(target == "max")
-				target = 120
-				. = TRUE
-			else if(adjust)
-				target = wavelength + adjust
-				. = TRUE
-			else if(text2num(target) != null)
-				target = text2num(target)
-				. = TRUE
-			if(.)
-				target = round(target)
-				wavelength = clamp(target, 0, 120)
+			var/target
+			switch(params.get_sanitised_text("target"))
+				if("min")
+					target = 1
+				if("max")
+					target = 20
+				if("input")
+					var/input_val = input("New output target (1-20):", name, intensity) as num|null
+					if(!isnum(input_val))
+						return
+					target = clamp(round(input_val), 0, 120)
+				else
+					target = params.get_int("target", 0, 120)
+			if(!target)
+				var/adjust = params.get_int("adjust")
+				if(!adjust)
+					return
+				target = clamp(intensity + adjust, 0, 120)
+
+			wavelength = target
 
 /obj/item/storage/belt/military/shadowcloak
 	name = "cloaker belt"

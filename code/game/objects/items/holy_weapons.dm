@@ -107,19 +107,17 @@
 
 	return data
 
-/obj/item/nullrod/ui_act(action, params)
+/obj/item/nullrod/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
 	var/mob/user = usr
 	switch(action)
 		if("confirm")
-			var/rodPath = text2path(params["rodPath"])
-			if(!ispath(rodPath, /obj/item/nullrod))
-				return FALSE
+			var/rodPath = params.get_subtype_path("rodPath", /obj/item/nullrod)
 			var/obj/item/nullrod/holy_weapon = new rodPath
 			GLOB.holy_weapon_type = holy_weapon.type
-			SSblackbox.record_feedback("tally", "chaplain_weapon", 1, "[params["rodPath"]]")
+			SSblackbox.record_feedback("tally", "chaplain_weapon", 1, "[GLOB.holy_weapon_type]")
 			if(holy_weapon)
 				holy_weapon.reskinned = TRUE
 				qdel(src)

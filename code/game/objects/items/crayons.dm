@@ -231,7 +231,7 @@
 	.["can_change_colour"] = can_change_colour
 	.["current_colour"] = paint_color
 
-/obj/item/toy/crayon/ui_act(action, list/params)
+/obj/item/toy/crayon/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -240,7 +240,7 @@
 				is_capped = !is_capped
 				. = TRUE
 		if("select_stencil")
-			var/stencil = params["item"]
+			var/stencil = params.get_sanitised_text("item")
 			if(stencil in all_drawables + randoms)
 				drawtype = stencil
 				. = TRUE

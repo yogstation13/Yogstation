@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 
 
-/obj/item/gps/ui_act(action, params)
+/obj/item/gps/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
