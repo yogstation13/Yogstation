@@ -13737,7 +13737,6 @@
 "cfS" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Permanent Cell 6";
-	wiretypepath = /datum/wires/airlock/security
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -18265,7 +18264,6 @@
 "dCK" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Prison Laundry";
-	wiretypepath = /datum/wires/airlock/security
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -20316,7 +20314,6 @@
 "ero" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Permanent Cell 1";
-	wiretypepath = /datum/wires/airlock/security
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -30808,7 +30805,6 @@
 	},
 /obj/machinery/door/airlock/grunge{
 	name = "Prison Workshop";
-	wiretypepath = /datum/wires/airlock/security
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -38997,7 +38993,6 @@
 "lxE" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Permanent Cell 4";
-	wiretypepath = /datum/wires/airlock/security
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -54229,7 +54224,6 @@
 "rsZ" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Prison Laundry";
-	wiretypepath = /datum/wires/airlock/security
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -59486,7 +59480,6 @@
 "tyK" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Permanent Cell 2";
-	wiretypepath = /datum/wires/airlock/security
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -62623,7 +62616,6 @@
 "uKj" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Permanent Cell 3";
-	wiretypepath = /datum/wires/airlock/security
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -68037,7 +68029,6 @@
 "wOy" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Permanent Cell 5";
-	wiretypepath = /datum/wires/airlock/security
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -71677,7 +71668,6 @@
 "yjB" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Prison Visitation";
-	wiretypepath = /datum/wires/airlock/security
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
