@@ -223,10 +223,6 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/powered/syndicate_lava_base/bar)
-"bM" = (
-/obj/machinery/porta_turret/syndicate,
-/turf/closed/wall/r_wall/syndicate,
-/area/ruin/powered/syndicate_lava_base/vault)
 "bU" = (
 /obj/effect/turf_decal/siding/blue/corner{
 	dir = 1
@@ -426,14 +422,20 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
+"dO" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/powered/syndicate_lava_base/arrivals)
 "dP" = (
 /turf/closed/wall/mineral/plastitanium/explosive,
 /area/ruin/powered/syndicate_lava_base/cargo)
@@ -603,6 +605,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
 "eo" = (
@@ -692,6 +697,9 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi";
 	name = "Syndicate Research Experimentation Shutters"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/testlab)
@@ -1212,6 +1220,9 @@
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/arrivals)
 "gv" = (
@@ -1664,6 +1675,10 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-4";
+	tag = ""
+	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
 "hO" = (
@@ -2816,6 +2831,10 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/dropper,
 /obj/item/reagent_containers/syringe/antiviral,
+/obj/machinery/power/apc/auto_name/south{
+	req_access = list(150)
+	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
 "ky" = (
@@ -2962,15 +2981,12 @@
 /obj/effect/turf_decal/siding/green{
 	dir = 9
 	},
-/obj/machinery/power/apc/auto_name/west{
-	req_access = list(150)
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
+	},
+/obj/structure/sign/warning/deathsposal{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
@@ -3185,7 +3201,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable{
-	icon_state = "1-8"
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
@@ -3446,6 +3462,9 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "lavalandsyndi";
 	name = "Syndicate Research Experimentation Shutters"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/testlab)
@@ -3987,6 +4006,7 @@
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/arrivals)
 "op" = (
@@ -4006,6 +4026,9 @@
 	req_access_txt = "150"
 	},
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/arrivals)
 "ov" = (
@@ -4076,6 +4099,9 @@
 "oI" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/bar)
@@ -4306,6 +4332,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
+"sj" = (
+/obj/machinery/porta_turret/syndicate,
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/powered/syndicate_lava_base/vault)
 "tp" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood{
@@ -4343,6 +4373,9 @@
 	req_access_txt = "150"
 	},
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/bar)
 "tU" = (
@@ -4690,6 +4723,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "ys" = (
@@ -5166,6 +5200,9 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/cargo)
+"Fq" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/powered/syndicate_lava_base/telecomms)
 "Fv" = (
 /obj/machinery/airalarm/syndicate{
 	dir = 4;
@@ -5295,9 +5332,6 @@
 	},
 /turf/open/floor/circuit/red/anim,
 /area/ruin/powered/syndicate_lava_base/vault)
-"GA" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/telecomms)
 "GH" = (
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/fullupgrade,
@@ -5449,9 +5483,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/vault)
-"II" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/engineering)
 "IJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -5605,6 +5636,9 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
+"Ko" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/powered/syndicate_lava_base/engineering)
 "Kp" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/chair/stool/bar,
@@ -5842,9 +5876,6 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
-	},
-/obj/structure/sign/warning/deathsposal{
-	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
@@ -7553,7 +7584,7 @@ VM
 jy
 jy
 mT
-oo
+dO
 mT
 ab
 ab
@@ -8718,7 +8749,7 @@ gf
 jc
 mn
 jv
-GA
+Fq
 ab
 ab
 ab
@@ -8757,10 +8788,10 @@ Ub
 Ub
 Ub
 Ub
-bM
-II
-II
-II
+sj
+Ko
+Ko
+Ko
 fc
 fv
 gc
@@ -8774,7 +8805,7 @@ iJ
 qB
 kY
 yB
-GA
+Fq
 ab
 ab
 ab
@@ -8813,7 +8844,7 @@ Ub
 Ub
 Ub
 Ub
-II
+Ko
 oE
 eg
 fr
@@ -8828,9 +8859,9 @@ Mo
 mn
 ue
 iB
-GA
-GA
-GA
+Fq
+Fq
+Fq
 ab
 ab
 ab
@@ -8869,7 +8900,7 @@ fF
 Ub
 Ub
 Ub
-II
+Ko
 ea
 RV
 fr
@@ -8884,10 +8915,10 @@ gZ
 eb
 eb
 gI
-GA
-GA
-GA
-bM
+Fq
+Fq
+Fq
+sj
 ab
 ab
 ab
@@ -8925,25 +8956,25 @@ Ub
 Ub
 ab
 Ub
-II
-II
-II
-II
+Ko
+Ko
+Ko
+Ko
 Yh
 Yh
-II
+Ko
 Yh
 Yh
 Kb
 Hr
 kX
 gh
-II
+Ko
 od
-II
+Ko
 oz
-II
-II
+Ko
+Ko
 nf
 ab
 ab
@@ -8984,10 +9015,10 @@ Od
 lO
 ju
 mc
-II
+Ko
 Pk
 is
-II
+Ko
 iQ
 ky
 Kb
@@ -9040,10 +9071,10 @@ gj
 hb
 oW
 ju
-II
+Ko
 Cb
 ne
-II
+Ko
 fx
 PW
 Kb
@@ -9054,8 +9085,8 @@ nE
 jF
 nE
 oB
-II
-II
+Ko
+Ko
 nf
 ab
 ab
@@ -9096,21 +9127,21 @@ ab
 gj
 hb
 lO
-II
-II
-II
-II
-II
-II
+Ko
+Ko
+Ko
+Ko
+Ko
+Ko
 Kb
 hq
 hE
 hE
 hE
 ol
-II
+Ko
 nH
-bM
+sj
 ab
 ab
 ab
