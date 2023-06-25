@@ -117,7 +117,7 @@
 
 /obj/item/organ/cyberimp/chest/reviver/syndicate
 	name = "syndicate reviver implant"
-	desc = "This implant will attempt to revive and heal you if you lose consciousness. This experimental version is stronger than widely available versions. For the faint of heart!"
+	desc = "A more powerful and experimental version of the one utilized by Nanotrasen, this implant will attempt to revive and heal you if you are critically injured. For the faint of heart!"
 	implant_color = "#600000"
 	syndicate_implant = TRUE
 	heal_amount = 2
@@ -227,7 +227,7 @@
 
 /obj/item/organ/cyberimp/chest/spinalspeed
 	name = "neural overclocker implant"
-	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
+	desc = "Stimulates your central nervous system in order to enable you to perform muscle movements faster. Careful not to overuse it."
 	slot = ORGAN_SLOT_TORSO_IMPLANT
 	icon_state = "imp_spinal"
 	implant_overlay = null
