@@ -622,7 +622,7 @@
 	if(prob(8))
 		M.visible_message(span_danger("[M]'s fingers curl into mystical shapes!"))
 		M.drop_all_held_items()
-	if(prob(6))
+	if(prob(8))
 		addtimer(CALLBACK(M, /mob/living/proc/bluespace_shuffle), 30)
 
 /datum/reagent/drug/blue_eye/addiction_act_stage1(mob/living/M)
