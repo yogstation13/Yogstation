@@ -140,7 +140,7 @@
 	tastes = list("Spaghetti"= 3, "Carbs" = 2, "Bewilderment" = 1)
 
 /obj/item/reagent_containers/food/snacks/donut/spaghetti/jelly
-	name = "'Jelly' Spagh-o-nut"
+	name = "Jelly Spagh-o-nut"
 	desc = "A Spaghetti Donut stuffed with ketchup."
 	icon_state = "jdonut_spaghetti"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/ketchup = 2)
