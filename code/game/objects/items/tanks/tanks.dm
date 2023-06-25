@@ -357,7 +357,7 @@
 
 //Assembly / attached device memes
 
-/obj/item/tank/Crossed(atom/movable/AM as mob|obj) //for mousetraps
+/obj/item/tank/Crossed(atom/movable/AM) //for mousetraps
 	..()
 	if(tank_assembly)
 		tank_assembly.Crossed(AM)
