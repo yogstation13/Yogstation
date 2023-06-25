@@ -29870,7 +29870,7 @@
 	},
 /obj/machinery/computer/telecomms/server{
 	dir = 8;
-	network = "tcommsat"
+	starting_network = "tcommsat"
 	},
 /obj/structure/cable{
 	icon_state = "0-8"

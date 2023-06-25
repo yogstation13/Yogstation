@@ -10,7 +10,8 @@
 	var/list/cached_server_list = list() // The servers located by the computer
 	var/obj/machinery/telecomms/server/SelectedServer
 
-	var/network = "NULL"		// the network to probe
+	var/starting_network = "NULL"
+	var/datum/unsafe_message/network		// the network to probe
 
 	var/universal_translate = FALSE // set to TRUE if it can translate nonhuman speech
 
@@ -18,13 +19,16 @@
 	circuit = /obj/item/circuitboard/computer/comm_server
 	tgui_id = "LogBrowser"
 
+/obj/machinery/computer/telecomms/server/Initialize(mapload)
+	network = new (starting_network)
+
 /obj/machinery/computer/telecomms/server/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user,src,ui)
 	if(!ui)
 		ui = new(user,src,"LogBrowser")
 		ui.open()
 
-/obj/machinery/computer/telecomms/server/ui_act(action, list/params)
+/obj/machinery/computer/telecomms/server/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -48,26 +52,23 @@
 		if("DeleteLog")
 			if(!SelectedServer)
 				return
-			var/name = params["name"]
-			if(!name || !istext(name) || length(name) > 1024)
-				return
 			for(var/l in SelectedServer.log_entries)
 				var/datum/comm_log_entry/log = l
-				if(log.name == name)
+				if(params.is_param_equal_to("name", log.name))
 					SelectedServer.log_entries.Remove(log)
 					return TRUE
 			return
 		if("SetNetwork")
-			var/net = params["network"]
-			if(!net || !istext(net) || isnotpretty(net) || length(net) > 15)
+			var/datum/unsafe_message/net = params.get_unsanitised_message_container("network")
+			if(!net || !isnotpretty(net.get_encoded_text()) || length(net.get_encoded_text()) > 15)
 				return
-			network = params["network"]
+			network = net
 			return TRUE
 		if("Scan")
 			if(cached_server_list.len > 0)
 				cached_server_list = list()
 			for(var/obj/machinery/telecomms/server/T in range(TELECOMMS_SCAN_RANGE, src))
-				if(T.network == network)
+				if(T.network ~= network)
 					cached_server_list.Add(T)
 			return TRUE
 		if("Refresh")
@@ -88,7 +89,7 @@
 /obj/machinery/computer/telecomms/server/ui_data(mob/user)
 	var/list/data = list()
 	data["screen_state"] = screen_state
-	data["network"] = network
+	data["network"] = network.get_unsafe_message()
 	if(screen_state == MONITOR_MAINMENU)
 		var/list/servers = list()
 		for(var/machine in cached_server_list)

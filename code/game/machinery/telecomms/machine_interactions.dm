@@ -55,7 +55,7 @@
 	data["toggled"] = toggled
 	data["id"] = id
 	data["displayName"] = display_name.get_unsafe_message()
-	data["network"] = network
+	data["network"] = network.get_unsafe_message()
 	data["prefab"] = autolinkers.len ? TRUE : FALSE
 	data["emagged"] = (obj_flags & EMAGGED)
 
@@ -81,7 +81,7 @@
 
 	return data
 
-/obj/machinery/telecomms/ui_act(action, params)
+/obj/machinery/telecomms/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -110,21 +110,21 @@
 					log_game("[key_name(operator)] has changed the hostname for [src] at [AREACOORD(src)] to [display_name.get_sanitised_text()].")
 					. = TRUE
 		if("network")
-			if(params["value"])
-				if(length(params["value"]) > 15)
+			if(params.get_boolean("value"))
+				if(length(params.get_sanitised_text("value")) > 15)
 					to_chat(operator, span_warning("Error: Network name too long!"))
 					playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 					return
 				else
 					for(var/obj/machinery/telecomms/T in links)
 						T.links.Remove(src)
-					network = params["value"]
+					network = params.get_unsanitised_message_container("value")
 					links = list()
-					log_game("[key_name(operator)] has changed the network for [src] at [AREACOORD(src)] to [network].")
+					log_game("[key_name(operator)] has changed the network for [src] at [AREACOORD(src)] to [network.get_sanitised()].")
 					. = TRUE
 		if("tempfreq")
-			if(params["value"])
-				tempfreq = text2num(params["value"]) * 10
+			if(params.get_num("value"))
+				tempfreq = params.get_num("value") * 10
 		if("freq")
 			var/newfreq = tempfreq
 			if(newfreq == FREQ_SYNDICATE)
@@ -136,11 +136,11 @@
 					log_game("[key_name(operator)] added frequency [newfreq] for [src] at [AREACOORD(src)].")
 					. = TRUE
 		if("delete")
-			freq_listening.Remove(params["value"])
-			log_game("[key_name(operator)] added removed frequency [params["value"]] for [src] at [AREACOORD(src)].")
+			freq_listening.Remove(params.get_num("value"))
+			log_game("[key_name(operator)] added removed frequency [params.get_num("value")] for [src] at [AREACOORD(src)].")
 			. = TRUE
 		if("unlink")
-			var/obj/machinery/telecomms/T = links[text2num(params["value"])]
+			var/obj/machinery/telecomms/T = links[params.get_num("value")]
 			if(T)
 				// Remove link entries from both T and src.
 				if(T.links)
@@ -192,9 +192,9 @@
 	data["compress"] = process_mode
 	return data
 
-/obj/machinery/telecomms/proc/add_act(action, params)
+/obj/machinery/telecomms/proc/add_act(action, datum/params/params)
 
-/obj/machinery/telecomms/relay/add_act(action, params)
+/obj/machinery/telecomms/relay/add_act(action, datum/params/params)
 	switch(action)
 		if("broadcast")
 			broadcasting = !broadcasting
@@ -203,10 +203,10 @@
 			receiving = !receiving
 			. = TRUE
 
-/obj/machinery/telecomms/bus/add_act(action, params)
+/obj/machinery/telecomms/bus/add_act(action, datum/params/params)
 	switch(action)
 		if("change_freq")
-			var/newfreq = text2num(params["value"]) * 10
+			var/newfreq = params.get_num("value") * 10
 			if(newfreq)
 				if(newfreq < 10000)
 					change_frequency = newfreq
@@ -214,7 +214,7 @@
 				else
 					change_frequency = 0
 
-/obj/machinery/telecomms/processor/add_act(action, params)
+/obj/machinery/telecomms/processor/add_act(action, datum/params/params)
 	switch(action)
 		if("compression")
 			process_mode = !process_mode

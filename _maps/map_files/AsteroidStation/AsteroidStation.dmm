@@ -39081,7 +39081,7 @@
 /area/engine/atmos/distro)
 "mdk" = (
 /obj/machinery/computer/telecomms/server{
-	network = "tcommsat"
+	starting_network = "tcommsat"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4

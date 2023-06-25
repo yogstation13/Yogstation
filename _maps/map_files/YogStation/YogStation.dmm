@@ -28673,7 +28673,7 @@
 "hzx" = (
 /obj/machinery/computer/telecomms/server{
 	dir = 1;
-	network = "tcommsat"
+	starting_network = "tcommsat"
 	},
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 6
