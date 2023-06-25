@@ -454,6 +454,9 @@
 				var/is_cold_recipe = C.is_cold_recipe
 				var/meets_temp_requirement = 0
 
+				if(has_reagent(/datum/reagent/hypernoblium) && C.noblium_suppression)
+					continue
+
 				for(var/B in cached_required_reagents)
 					if(!has_reagent(B, cached_required_reagents[B]))
 						break
