@@ -1,0 +1,6 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - rscadd: "adds antinoblium crystals and reagent form"
+  - rscadd: "adds explosive reaction between liquid hypernoblium and antinoblium"
+  - tweak: "hypernoblium and antinoblium have effects when you breathe them"
