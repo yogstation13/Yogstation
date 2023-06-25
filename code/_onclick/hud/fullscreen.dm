@@ -222,7 +222,3 @@
 	plane = FULLSCREEN_PLANE
 	layer = CURSE_LAYER
 	
-/atom/movable/screen/fullscreen/red_eye
-	icon_state = "redeye"
-	plane = FULLSCREEN_PLANE
-	layer = CURSE_LAYER
