@@ -104,7 +104,7 @@ All foods are distributed among various categories. Use common sense.
 			if(junkiness && M.satiety < -150 && M.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(user, TRAIT_VORACIOUS))
 				to_chat(M, span_notice("You don't feel like eating any more junk food at the moment."))
 				return FALSE
-			
+
 			if(HAS_TRAIT(M, TRAIT_VORACIOUS))
 				M.changeNext_move(CLICK_CD_MELEE * 0.5) //nom nom nom
 		else
@@ -120,6 +120,14 @@ All foods are distributed among various categories. Use common sense.
 
 		if(!C.eat_text(fullness, eatverb, src, C, user))
 			return
+
+		if(!junkiness)
+			var/ate_without_table = TRUE
+			for(var/obj/structure/table/table in range(1, M))
+				ate_without_table = FALSE
+				break
+			if(ate_without_table)
+				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "no_table", /datum/mood_event/ate_without_table)
 
 		if(reagents)								//Handle ingestion of the reagent.
 			if(M.satiety > -200)

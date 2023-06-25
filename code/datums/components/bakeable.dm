@@ -79,10 +79,10 @@
 	used_tray.AddToPlate(baked_result)
 
 	if(positive_result)
-		used_oven.visible_message(span_warning("You smell something great coming from [used_oven]"))
+		used_oven.visible_message(span_warning("You smell something great coming from [used_oven]."))
 		playsound(parent, 'sound/machines/microwave/microwave-end.ogg', 50, 1)
 	else
-		used_oven.visible_message(span_warning("You smell a burnt smell coming from [used_oven]"))
+		used_oven.visible_message(span_warning("You smell a burnt smell coming from [used_oven]."))
 	SEND_SIGNAL(parent, COMSIG_BAKE_COMPLETED, baked_result)
 	qdel(parent)
 

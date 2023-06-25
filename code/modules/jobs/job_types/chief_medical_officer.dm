@@ -60,7 +60,7 @@
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo
 	l_hand = /obj/item/storage/firstaid/medical
-	suit_store = /obj/item/flashlight/pen/paramedic
+	suit_store = /obj/item/flashlight/pen/paramedic/advanced
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses/cmo
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes med budget
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile

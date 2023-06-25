@@ -373,7 +373,7 @@
 				new /obj/item/paper/ai_control_code(loc)
 				COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 				priority_announce("The AI Control Code been printed by [authorize_name]. All previous codes have been invalidated.", "Central Tech Support", RANDOM_REPORT_SOUND)
-				
+
 
 /obj/machinery/computer/communications/ui_data(mob/user)
 	var/list/data = list(
@@ -594,7 +594,6 @@
 	if(new_possible_answers)
 		possible_answers = new_possible_answers
 
-#undef IMPORTANT_ACTION_COOLDOWN
 #undef MAX_STATUS_LINE_LENGTH
 #undef STATE_BUYING_SHUTTLE
 #undef STATE_CHANGING_STATUS

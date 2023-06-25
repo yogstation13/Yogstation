@@ -304,7 +304,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if(prefs.yogtoggles & QUIET_ROUND)
 			prefs.yogtoggles &= ~QUIET_ROUND
 			prefs.save_preferences()
-		
+
 	. = ..()	//calls mob.Login()
 
 	if (byond_version >= 512)
@@ -1082,6 +1082,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
 	tgui_panel.Initialize()
+
+/client/verb/reload_statpanel()
+	set name = "Reload Statpanel"
+	set category = "OOC"
+
+	usr << browse(file('html/statbrowser.html'), "window=statbrowser")
 
 /client/verb/stop_client_sounds()
 	set name = "Stop Sounds"
