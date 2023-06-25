@@ -221,4 +221,3 @@
 	icon_state = "blue_eye"
 	plane = FULLSCREEN_PLANE
 	layer = CURSE_LAYER
-	
