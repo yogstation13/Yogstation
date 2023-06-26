@@ -147,7 +147,6 @@
 	switch(action)
 		if("research")
 			var/datum/antagonist/heretic/cultie = last_user.mind.has_antag_datum(/datum/antagonist/heretic)
-			var/ekname = params["name"]
 			for(var/X in cultie.get_researchable_knowledge())
 				var/datum/eldritch_knowledge/EK = X
 				if(!params.is_param_equal_to("name", initial(EK.name)))

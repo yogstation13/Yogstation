@@ -121,7 +121,7 @@
 			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - makes supermatter invest useful
 			. = TRUE
 		if("pressure")
-			var/pressure = params["pressure"]
+			var/pressure
 			if(params.is_param_equal_to("pressure", "max"))
 				pressure = MAX_OUTPUT_PRESSURE
 				. = TRUE

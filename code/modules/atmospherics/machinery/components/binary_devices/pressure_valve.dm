@@ -107,7 +107,7 @@
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("pressure")
-			var/pressure = params["pressure"]
+			var/pressure
 			if(params.is_param_equal_to("pressure", "max"))
 				pressure = ONE_ATMOSPHERE*100
 				. = TRUE

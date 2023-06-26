@@ -569,7 +569,7 @@
 				req_access = list()
 				. = TRUE
 		if("pressure")
-			var/pressure = params["pressure"]
+			var/pressure
 			if(pressure == "reset")
 				pressure = CAN_DEFAULT_RELEASE_PRESSURE
 				. = TRUE

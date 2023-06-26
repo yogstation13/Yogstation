@@ -129,7 +129,7 @@
 				direction = PUMP_OUT
 			. = TRUE
 		if("pressure")
-			var/pressure = params["pressure"]
+			var/pressure
 			if(pressure == "reset")
 				pressure = PUMP_DEFAULT_PRESSURE
 				. = TRUE
