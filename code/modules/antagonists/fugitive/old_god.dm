@@ -12,7 +12,7 @@
 	var/datum/action/cooldown/yalp_heal/heal
 	var/hunters_release_time // Yogs -- making Login() dialogue make more sense
 
-/mob/camera/yalp_elor/Initialize()
+/mob/camera/yalp_elor/Initialize(mapload)
 	. = ..()
 	transmit = new
 	transport = new
@@ -64,7 +64,7 @@
 	forceMove(T)
 	Moved(OldLoc, direct)
 
-/mob/camera/yalp_elor/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/camera/yalp_elor/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "You cannot send IC messages (muted).")
@@ -104,7 +104,7 @@
 /datum/action/innate/yalp_transmit
 	name = "Divine Oration"
 	desc = "Transmits a message to the target."
-	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	background_icon_state = "bg_spell"
 	button_icon_state = "god_transmit"
 
@@ -124,7 +124,7 @@
 		target = input("Who do you wish to transmit to?", "Targeting") as null|mob in possible_targets
 
 	var/input = stripped_input(owner, "What do you wish to tell [target]?", null, "")
-	if(QDELETED(src) || !input || !IsAvailable())
+	if(QDELETED(src) || !input || !IsAvailable(feedback = FALSE))
 		return FALSE
 	if(isnotpretty(input)) // Yogs -- Pretty filter
 		to_chat(owner,span_warning("That's not a very nice thing to tell [target.p_them()]."))
@@ -152,7 +152,7 @@
 /datum/action/innate/yalp_transport
 	name = "Guidance"
 	desc = "Transports you to a follower."
-	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	background_icon_state = "bg_spell"
 	button_icon_state = "god_transport"
 
@@ -185,7 +185,7 @@
 /datum/action/cooldown/yalp_heal
 	name = "Purification"
 	desc = "Heals all followers a bit."
-	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	button_icon = 'icons/mob/actions/actions_animal.dmi'
 	background_icon_state = "bg_spell"
 	button_icon_state = "god_heal"
 	cooldown_time = 600

@@ -1,5 +1,3 @@
-#define ADRENALINE_THRESHOLD 25
-
 /obj/item/organ/heart
 	name = "heart"
 	desc = "I feel bad for the heartless bastard who lost this."
@@ -22,10 +20,8 @@
 	var/beat = BEAT_NONE//is this mob having a heatbeat sound played? if so, which?
 	var/failed = FALSE		//to prevent constantly running failing code
 	var/operated = FALSE	//whether the heart's been operated on to fix some of its damages
-	var/lasthealth
-	COOLDOWN_DECLARE(adrenal_cooldown)
 
-/obj/item/organ/heart/Initialize()
+/obj/item/organ/heart/Initialize(mapload)
 	. = ..()
 	icon_base = icon_state
 	update_icon()
@@ -75,10 +71,6 @@
 		var/sound/slowbeat = sound('sound/health/slowbeat.ogg', repeat = TRUE)
 		var/sound/fastbeat = sound('sound/health/fastbeat.ogg', repeat = TRUE)
 		var/mob/living/carbon/H = owner
-		if(COOLDOWN_FINISHED(src, adrenal_cooldown) && ((H.health+ADRENALINE_THRESHOLD) < lasthealth))
-			H.reagents.add_reagent(/datum/reagent/adrenaline, 5)
-			COOLDOWN_START(src, adrenal_cooldown, 10 MINUTES)
-		lasthealth = H.health
 
 		if(H.health <= H.crit_threshold && beat != BEAT_SLOW)
 			beat = BEAT_SLOW
@@ -88,7 +80,7 @@
 			H.stop_sound_channel(CHANNEL_HEARTBEAT)
 			beat = BEAT_NONE
 
-		if(H.jitteriness)
+		if(owner.has_status_effect(/datum/status_effect/jitter))
 			if(H.health > HEALTH_THRESHOLD_FULLCRIT && (!beat || beat == BEAT_SLOW))
 				H.playsound_local(get_turf(H),fastbeat,40,0, channel = CHANNEL_HEARTBEAT)
 				beat = BEAT_FAST
@@ -204,7 +196,7 @@
 	fakingit = FALSE
 	return ..()
 
-/obj/item/organ/heart/vampheart/proc/FakeStart()
+/obj/item/organ/heart/vampheart/proc/fake_start_heart()
 	fakingit = TRUE // We're pretending to beat, to fool people.
 
 /// Bloodsuckers don't have a heartbeat at all when stopped (default is "an unstable")

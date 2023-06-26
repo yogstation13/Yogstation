@@ -2,8 +2,8 @@
 
 /datum/species/lizard
 	// Reptilian humanoids with scaled skin and tails.
-	name = "Lizardperson"
-	plural_form = "Lizardfolk"
+	name = "Vuulek"
+	plural_form = "Vuulen"
 	id = "lizard"
 	say_mod = "hisses"
 	default_color = "00FF00"
@@ -26,7 +26,7 @@
 	skinned_type = /obj/item/stack/sheet/animalhide/lizard
 	exotic_bloodtype = "L"
 	disliked_food = SUGAR | VEGETABLES
-	liked_food = MEAT | GRILLED | SEAFOOD | MICE
+	liked_food = MEAT | GRILLED | SEAFOOD | MICE | FRUIT
 	inert_mutation = FIREBREATH
 	deathsound = 'sound/voice/lizard/deathsound.ogg'
 	screamsound = 'yogstation/sound/voice/lizardperson/lizard_scream.ogg' //yogs - lizard scream
@@ -145,7 +145,7 @@
 		offered significantly less privilege than what would be expected.",
  
 		"Vuulek communities are organized in clans, though their impact on the culture of the individuals is limited. \
-		They tend to live like humans due to their colonization,  only occasionally practicing some of \
+		They tend to live like humans due to their colonization, only occasionally practicing some of \
 		their clan traditions. Despite efforts to integrate vuulen into the SIC through establishments such \
 		as habituation stations, a certain pridefulness nonetheless survived amongst vuulen, as they're often \
 		eager to prove their worth and qualities. In addition, strength and honor are still values commonly held \
@@ -182,8 +182,7 @@
 	limbs_id = "lizard"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE,HAS_FLESH,HAS_BONE,HAS_TAIL)
 	inherent_traits = list(TRAIT_NOGUNS) //yogs start - ashwalkers have special lungs and actually breathe
-	mutantlungs = /obj/item/organ/lungs/ashwalker
-	breathid = "n2" // yogs end
+	mutantlungs = /obj/item/organ/lungs/ashwalker // yogs end
 	species_language_holder = /datum/language_holder/lizard/ash //ashwalker dum
 
 // yogs start - Ashwalkers now have ash immunity
@@ -206,54 +205,54 @@
 	punchdamagehigh = 7
 	punchstunthreshold = 7
 	action_speed_coefficient = 0.9 //they're smart and efficient unlike other lizards
-	species_language_holder = /datum/language_holder/lizard/shaman //shaman "smart"
-	var/obj/effect/proc_holder/spell/targeted/touch/healtouch/goodtouch
+	species_language_holder = /datum/language_holder/lizard/shaman
+	var/datum/action/cooldown/spell/touch/heal/lizard_touch
 
 //gives the heal spell
 /datum/species/lizard/ashwalker/shaman/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()	
-	goodtouch = new /obj/effect/proc_holder/spell/targeted/touch/healtouch
-	C.AddSpell(goodtouch)
+	lizard_touch = new(C)
+	lizard_touch.Grant(C)
 
 //removes the heal spell
 /datum/species/lizard/ashwalker/shaman/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	if(goodtouch)
-		C.RemoveSpell(goodtouch)
+	QDEL_NULL(lizard_touch)
+
+///Adds up to a total of 40 assuming they're hurt by both brute and burn
+#define LIZARD_HEAL_AMOUNT 20
 
 //basic touch ability that heals brute and burn, only accessed by the ashwalker shaman
-/obj/effect/proc_holder/spell/targeted/touch/healtouch
-	name = "healing touch"
+/datum/action/cooldown/spell/touch/heal
+	name = "Healing Touch"
 	desc = "This spell charges your hand with the vile energy of the Necropolis, permitting you to undo some external injuries from a target."
+	panel = "Ashwalker"
+	button_icon_state = "spell_default"
 	hand_path = /obj/item/melee/touch_attack/healtouch
 
-	school = "evocation"
-	panel = "Ashwalker"
-	charge_max = 20 SECONDS
-	clothes_req = FALSE
-	antimagic_allowed = TRUE
+	school = SCHOOL_EVOCATION
+	invocation = "BE REPLENISHED!!"
+	invocation_type = INVOCATION_SHOUT
 
-	action_icon_state = "spell_default"
+	sound = 'sound/magic/staff_healing.ogg'
+	cooldown_time = 20 SECONDS
+	spell_requirements = NONE
+
+/datum/action/cooldown/spell/touch/heal/is_valid_target(atom/cast_on)
+	return isliving(cast_on)
+
+/datum/action/cooldown/spell/touch/heal/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/target, mob/living/carbon/caster)
+	new /obj/effect/temp_visual/heal(get_turf(target), "#899d39")
+	target.heal_overall_damage(LIZARD_HEAL_AMOUNT, LIZARD_HEAL_AMOUNT, 0, BODYPART_ANY, TRUE) //notice it doesn't heal toxins, still need to learn chems for that
+	return TRUE
+
+#undef LIZARD_HEAL_AMOUNT
 
 /obj/item/melee/touch_attack/healtouch
-	name = "\improper healing touch"
+	name = "\improper Healing Touch"
 	desc = "A blaze of life-granting energy from the hand. Heals minor to moderate injuries."
-	catchphrase = "BE REPLENISHED!!"
-	on_use_sound = 'sound/magic/staff_healing.ogg'
-	icon_state = "touchofdeath" //ironic huh
+	icon_state = "touchofdeath" //ironic huh //no
 	item_state = "touchofdeath"
-	var/healamount = 20 //total of 40 assuming they're hurt by both brute and burn
-
-/obj/item/melee/touch_attack/healtouch/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(!proximity || target == user || !ismob(target) || !iscarbon(user) || !(user.mobility_flags & MOBILITY_USE)) //no healing yourself
-		return
-	if(!user.can_speak_vocal())
-		to_chat(user, span_notice("You can't get the words out!"))
-		return
-	var/mob/living/M = target
-	new /obj/effect/temp_visual/heal(get_turf(M), "#899d39")
-	M.heal_overall_damage(healamount, healamount, 0, BODYPART_ANY, TRUE) //notice it doesn't heal toxins, still need to learn chems for that
-	return ..()
 /*
  Lizard subspecies: DRACONIDS
  These guys only come from the dragon's blood bottle from lavaland. They're basically just lizards with all-around marginally better stats and fire resistance.

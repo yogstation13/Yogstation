@@ -5,17 +5,17 @@
 /* Formatting for these files, from top to bottom:
 	* Action
 	* Trigger()
-	* IsAvailable()
+	* IsAvailable(feedback = FALSE)
 	* Items
 	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
 /// Base for all buster arm actions
 /datum/action/cooldown/buster
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	icon_icon = 'icons/mob/actions/actions_arm.dmi'
+	button_icon = 'icons/mob/actions/actions_arm.dmi'
 
-/datum/action/cooldown/buster/IsAvailable()
+/datum/action/cooldown/buster/IsAvailable(feedback = FALSE)
 	. = ..()
 	if(!isliving(owner))
 		return FALSE
@@ -38,7 +38,7 @@
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 
-/obj/item/buster/Initialize(mob/living/user)
+/obj/item/buster/Initialize(mapload, mob/living/user)
 	. = ..()
 	ADD_TRAIT(src, HAND_REPLACEMENT_TRAIT, NOBLUDGEON)
 

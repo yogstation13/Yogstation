@@ -193,7 +193,7 @@
 
 
 //Bit of a hack but this whole type is a hack
-/obj/machinery/power/solar/fake/Initialize(turf/loc, obj/item/solar_assembly/S)
+/obj/machinery/power/solar/fake/Initialize(mapload, turf/loc, obj/item/solar_assembly/S)
 	. = ..()
 	UnregisterSignal(SSsun, COMSIG_SUN_MOVED)
 
@@ -337,7 +337,7 @@
 	var/list/connected_panels = list()
 	var/mob/living/carbon/human/last_user // The last guy to open up the console
 
-/obj/machinery/power/solar_control/Initialize()
+/obj/machinery/power/solar_control/Initialize(mapload)
 	. = ..()
 	azimuth_rate = SSsun.base_rotation
 	RegisterSignal(SSsun, COMSIG_SUN_MOVED, PROC_REF(timed_track))
@@ -346,7 +346,7 @@
 		set_panels(azimuth_target)
 	if(powernet && force_auto)
 		search_for_connected() //are we actually connected to anything useful?
-		if(connected_tracker && !isemptylist(connected_panels))
+		if(connected_tracker && length(connected_panels))
 			track = SOLAR_TRACK_AUTO
 			connected_tracker.sun_update(SSsun, SSsun.azimuth)
 	update_icon()

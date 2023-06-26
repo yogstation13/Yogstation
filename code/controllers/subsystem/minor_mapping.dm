@@ -6,9 +6,13 @@ SUBSYSTEM_DEF(minor_mapping)
 	flags = SS_NO_FIRE
 
 /datum/controller/subsystem/minor_mapping/Initialize(timeofday)
-	trigger_migration(CONFIG_GET(number/mice_roundstart), FALSE) //we dont want roundstart special rats
+#ifdef UNIT_TESTS // This whole subsystem just introduces a lot of odd confounding variables into unit test situations, so let's just not bother with doing an initialize here.
+	return SS_INIT_NO_NEED
+#else
+	trigger_migration(CONFIG_GET(number/mice_roundstart))
 	place_satchels()
 	return SS_INIT_SUCCESS
+#endif // the mice are easily the bigger problem, but let's just avoid anything that could cause some bullshit.
 
 /datum/controller/subsystem/minor_mapping/proc/trigger_migration(num_mice = 10, special = TRUE)
 	var/list/exposed_wires = find_exposed_wires()

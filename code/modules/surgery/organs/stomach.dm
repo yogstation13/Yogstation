@@ -50,17 +50,17 @@
 		var/pukeprob = 5 + 0.05 * H.disgust
 		if(H.disgust >= DISGUST_LEVEL_GROSS)
 			if(prob(10))
-				H.stuttering += 1
-				H.confused += 2
+				H.adjust_stutter(1 SECONDS)
+				H.adjust_confusion(2 SECONDS)
 			if(prob(10) && !H.stat)
 				to_chat(H, span_warning("You feel kind of iffy..."))
-			H.jitteriness = max(H.jitteriness - 3, 0)
+			H.adjust_jitter(-6 SECONDS)
 		if(H.disgust >= DISGUST_LEVEL_VERYGROSS)
 			if(prob(pukeprob)) //iT hAndLeS mOrE ThaN PukInG
-				H.confused += 2.5
-				H.stuttering += 1
+				H.adjust_confusion(2.5 SECONDS)
+				H.adjust_stutter(1 SECONDS)
 				H.vomit(10, 0, 1, 0, 1, 0)
-			H.Dizzy(5)
+			H.adjust_dizzy(5 SECONDS)
 		if(H.disgust >= DISGUST_LEVEL_DISGUSTED)
 			if(prob(25))
 				H.blur_eyes(3) //We need to add more shit down here

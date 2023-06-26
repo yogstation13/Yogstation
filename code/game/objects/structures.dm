@@ -11,7 +11,7 @@
 	layer = BELOW_OBJ_LAYER
 
 
-/obj/structure/Initialize()
+/obj/structure/Initialize(mapload)
 	if (!armor)
 		armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	. = ..()
@@ -75,7 +75,7 @@
 	user.visible_message(span_warning("[user] starts climbing onto [src]."), \
 								span_notice("You start climbing onto [src]..."))
 	var/adjusted_climb_time = climb_time
-	if(user.restrained()) //climbing takes twice as long when restrained.
+	if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED)) //climbing takes twice as long without help from the hands.
 		adjusted_climb_time *= 2
 	if(isalien(user))
 		adjusted_climb_time *= 0.25 //aliens are terrifyingly fast

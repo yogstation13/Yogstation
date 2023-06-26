@@ -24,7 +24,7 @@
 	req_access = list(ACCESS_CE)
 	var/mob/living/operator
 
-/obj/machinery/particle_accelerator/control_box/Initialize()
+/obj/machinery/particle_accelerator/control_box/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/particle_accelerator/control_box(src)
 	connected_parts = list()

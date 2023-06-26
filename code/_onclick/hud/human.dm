@@ -42,11 +42,11 @@
 	icon_state = "Devil-6"
 	screen_loc = ui_devilsouldisplay
 
-/atom/movable/screen/devil/soul_counter/proc/update_counter(souls = 0)
+/atom/movable/screen/devil/soul_counter/proc/update_counter(souls)
 	invisibility = 0
-	maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#FF0000'>[souls]</font></div>"
+	maptext = ANTAG_MAPTEXT(souls, COLOR_RED)
 	switch(souls)
-		if(0,null)
+		if(0, null)
 			icon_state = "Devil-1"
 		if(1,2)
 			icon_state = "Devil-2"
@@ -62,12 +62,10 @@
 /atom/movable/screen/devil/soul_counter/proc/clear()
 	invisibility = INVISIBILITY_ABSTRACT
 
-/atom/movable/screen/ling
-	invisibility = INVISIBILITY_ABSTRACT
-
 /atom/movable/screen/ling/sting
 	name = "current sting"
 	screen_loc = ui_lingstingdisplay
+	invisibility = INVISIBILITY_ABSTRACT
 
 /atom/movable/screen/ling/sting/Click()
 	if(isobserver(usr))
@@ -79,31 +77,6 @@
 	name = "chemical storage"
 	icon_state = "power_display"
 	screen_loc = ui_lingchemdisplay
-
-/atom/movable/screen/bloodsucker
-	icon = 'icons/mob/actions/actions_bloodsucker.dmi'
-	invisibility = INVISIBILITY_ABSTRACT
-
-/atom/movable/screen/bloodsucker/proc/clear()
-	invisibility = INVISIBILITY_ABSTRACT
-
-/atom/movable/screen/bloodsucker/proc/update_counter()
-	invisibility = 0
-
-/atom/movable/screen/bloodsucker/blood_counter
-	name = "Blood Consumed"
-	icon_state = "blood_display"
-	screen_loc = ui_blood_display
-
-/atom/movable/screen/bloodsucker/rank_counter
-	name = "Bloodsucker Rank"
-	icon_state = "rank"
-	screen_loc = ui_vamprank_display
-
-/atom/movable/screen/bloodsucker/sunlight_counter
-	name = "Solar Flare Timer"
-	icon_state = "sunlight_night"
-	screen_loc = ui_sunlight_display
 
 /datum/hud/human/New(mob/living/carbon/human/owner)
 	..()
@@ -146,7 +119,7 @@
 	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "i_clothing"
 	inv_box.icon = ui_style
-	inv_box.slot_id = SLOT_W_UNIFORM
+	inv_box.slot_id = ITEM_SLOT_ICLOTHING
 	inv_box.icon_state = "uniform"
 	inv_box.screen_loc = ui_iclothing
 	toggleable_inventory += inv_box
@@ -154,7 +127,7 @@
 	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "o_clothing"
 	inv_box.icon = ui_style
-	inv_box.slot_id = SLOT_WEAR_SUIT
+	inv_box.slot_id = ITEM_SLOT_OCLOTHING
 	inv_box.icon_state = "suit"
 	inv_box.screen_loc = ui_oclothing
 	toggleable_inventory += inv_box
@@ -178,7 +151,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "id"
 	inv_box.screen_loc = ui_id
-	inv_box.slot_id = SLOT_WEAR_ID
+	inv_box.slot_id = ITEM_SLOT_ID
 	static_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -186,7 +159,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "mask"
 	inv_box.screen_loc = ui_mask
-	inv_box.slot_id = SLOT_WEAR_MASK
+	inv_box.slot_id = ITEM_SLOT_MASK
 	toggleable_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -194,7 +167,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "neck"
 	inv_box.screen_loc = ui_neck
-	inv_box.slot_id = SLOT_NECK
+	inv_box.slot_id = ITEM_SLOT_NECK
 	toggleable_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -202,7 +175,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "back"
 	inv_box.screen_loc = ui_back
-	inv_box.slot_id = SLOT_BACK
+	inv_box.slot_id = ITEM_SLOT_BACK
 	static_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -210,7 +183,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "pocket"
 	inv_box.screen_loc = ui_storage1
-	inv_box.slot_id = SLOT_L_STORE
+	inv_box.slot_id = ITEM_SLOT_LPOCKET
 	static_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -218,7 +191,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "pocket"
 	inv_box.screen_loc = ui_storage2
-	inv_box.slot_id = SLOT_R_STORE
+	inv_box.slot_id = ITEM_SLOT_RPOCKET
 	static_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -226,7 +199,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "suit_storage"
 	inv_box.screen_loc = ui_sstore1
-	inv_box.slot_id = SLOT_S_STORE
+	inv_box.slot_id = ITEM_SLOT_SUITSTORE
 	static_inventory += inv_box
 
 	using = new /atom/movable/screen/resist()
@@ -249,7 +222,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "gloves"
 	inv_box.screen_loc = ui_gloves
-	inv_box.slot_id = SLOT_GLOVES
+	inv_box.slot_id = ITEM_SLOT_GLOVES
 	toggleable_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -257,7 +230,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "glasses"
 	inv_box.screen_loc = ui_glasses
-	inv_box.slot_id = SLOT_GLASSES
+	inv_box.slot_id = ITEM_SLOT_EYES
 	toggleable_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -265,7 +238,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "ears"
 	inv_box.screen_loc = ui_ears
-	inv_box.slot_id = SLOT_EARS
+	inv_box.slot_id = ITEM_SLOT_EARS
 	toggleable_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -273,7 +246,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "head"
 	inv_box.screen_loc = ui_head
-	inv_box.slot_id = SLOT_HEAD
+	inv_box.slot_id = ITEM_SLOT_HEAD
 	toggleable_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -281,7 +254,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "shoes"
 	inv_box.screen_loc = ui_shoes
-	inv_box.slot_id = SLOT_SHOES
+	inv_box.slot_id = ITEM_SLOT_FEET
 	toggleable_inventory += inv_box
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -290,7 +263,7 @@
 	inv_box.icon_state = "belt"
 //	inv_box.icon_full = "template_small"
 	inv_box.screen_loc = ui_belt
-	inv_box.slot_id = SLOT_BELT
+	inv_box.slot_id = ITEM_SLOT_BELT
 	static_inventory += inv_box
 
 	throw_icon = new /atom/movable/screen/throw_catch()
@@ -302,9 +275,6 @@
 	rest_icon.icon = ui_style
 	rest_icon.screen_loc = ui_above_movement
 	static_inventory += rest_icon
-
-	internals = new /atom/movable/screen/internals()
-	infodisplay += internals
 
 	healths = new /atom/movable/screen/healths()
 	infodisplay += healths
@@ -322,22 +292,8 @@
 	pull_icon.screen_loc = ui_above_intent
 	static_inventory += pull_icon
 
-	lingchemdisplay = new /atom/movable/screen/ling/chems()
-	infodisplay += lingchemdisplay
-
-	lingstingdisplay = new /atom/movable/screen/ling/sting()
-	infodisplay += lingstingdisplay
-
 	devilsouldisplay = new /atom/movable/screen/devil/soul_counter
 	infodisplay += devilsouldisplay
-
-	//bloodsuckers
-	blood_display = new /atom/movable/screen/bloodsucker/blood_counter
-	infodisplay += blood_display
-	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter
-	infodisplay += vamprank_display
-	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter
-	infodisplay += sunlight_display
 
 	zone_select =  new /atom/movable/screen/zone_sel()
 	zone_select.icon = ui_style
@@ -347,7 +303,7 @@
 	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory))
 		if(inv.slot_id)
 			inv.hud = src
-			inv_slots[inv.slot_id] = inv
+			inv_slots[TOBITSHIFT(inv.slot_id) + 1] = inv
 			inv.update_icon()
 
 	update_locked_slots()

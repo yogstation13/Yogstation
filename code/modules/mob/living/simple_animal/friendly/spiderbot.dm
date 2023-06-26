@@ -30,7 +30,7 @@
 	var/obj/machinery/camera/camera = null
 	var/obj/item/mmi/mmi = null
 	var/req_access = ACCESS_ROBO_CONTROL //Access needed to pop out the brain.
-	var/emagged = 0
+	var/emagged = FALSE
 	var/obj/item/held_item = null //Storage for single item they can hold.
 
 /mob/living/simple_animal/spiderbot/attackby(obj/item/O, mob/user)
@@ -131,7 +131,7 @@
 	if(!QDELETED(src) && stat != DEAD)
 		death()
 
-/mob/living/simple_animal/spiderbot/proc/update_icon()
+/mob/living/simple_animal/spiderbot/update_icon()
 	if(mmi)
 		if(istype(mmi, /obj/item/mmi/posibrain))
 			icon_state = "spiderbot-chassis-posi"
@@ -164,7 +164,7 @@
 	eject_brain()
 	return ..()
 
-/mob/living/simple_animal/spiderbot/Initialize()
+/mob/living/simple_animal/spiderbot/Initialize(mapload)
 	. = ..()
 	radio = new /obj/item/radio/borg(src)
 	camera = new /obj/machinery/camera(src)

@@ -14,7 +14,7 @@
 	steel_sheet_cost = 3
 	interact_sounds = list('sound/machines/computers/pda_click.ogg')
 
-/obj/machinery/modular_computer/telescreen/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/modular_computer/telescreen/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.tool_behaviour == TOOL_CROWBAR)
 		if(cpu.all_components.len)
 			to_chat(user, span_warning("Remove all components from \the [src] before unsecuring it."))

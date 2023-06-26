@@ -28,7 +28,7 @@
 		egg_rper = new(src)
 		egg_rper.real_name = name
 		egg_rper.name = name
-		egg_rper.stat = CONSCIOUS
+		egg_rper.set_stat(CONSCIOUS)
 		user.mind.transfer_to(egg_rper)
 	return BRUTELOSS
 
@@ -39,7 +39,7 @@
 /obj/item/reagent_containers/food/snacks/egg/gland
 	desc = "An egg! It looks weird..."
 
-/obj/item/reagent_containers/food/snacks/egg/gland/Initialize()
+/obj/item/reagent_containers/food/snacks/egg/gland/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(get_random_reagent_id(), 15)
 

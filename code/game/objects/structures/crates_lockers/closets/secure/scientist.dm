@@ -22,4 +22,4 @@
 	new /obj/item/storage/photo_album/RD(src)
 	new /obj/item/clipboard/yog/paperwork/rd(src)
 	new /obj/item/storage/backpack/duffelbag/clothing/rd(src)
-	new /obj/item/analyzer/ranged(src)
+	new /obj/item/multitool/tricorder(src)

@@ -287,7 +287,7 @@
 	R = new
 	R.Grant(src)
 
-/mob/living/captive_brain/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
+/mob/living/captive_brain/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, span_danger("You cannot speak in IC (muted)."))
@@ -314,8 +314,8 @@
 /datum/action/innate/resist_control
 	name = "Resist control"
 	desc = "Try to take back control over your brain. A strong nerve impulse should do it."
-	background_icon_state = "bg_ecult"
-	icon_icon = 'icons/mob/actions/actions_horror.dmi'
+	background_icon_state = "bg_heretic"
+	button_icon = 'icons/mob/actions/actions_horror.dmi'
 	button_icon_state = "resist_control"
 
 /datum/action/innate/resist_control/Activate()

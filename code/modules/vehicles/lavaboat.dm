@@ -12,7 +12,7 @@
 	arms_required = 0
 	var/fb = 70
 
-/obj/vehicle/ridden/lavaboat/Initialize()
+/obj/vehicle/ridden/lavaboat/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.keytype = /obj/item/oar
@@ -66,7 +66,7 @@
 	icon_state = "dragon_boat"
 	fb = 85
 
-/obj/vehicle/ridden/lavaboat/dragon/Initialize()
+/obj/vehicle/ridden/lavaboat/dragon/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.vehicle_move_delay = 1

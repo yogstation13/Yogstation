@@ -136,12 +136,15 @@
 	/// Log of who is shocking this door
 	var/list/shocking_log
 
+	///Whether wires should all cut themselves when this door is broken.
+	var/cut_wires_on_break = TRUE
+
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
 
 	var/static/list/airlock_overlays = list()
 
-/obj/machinery/door/airlock/Initialize()
+/obj/machinery/door/airlock/Initialize(mapload)
 	. = ..()
 	bolt_log = list() //yogs
 	shocking_log = list() //yogs
@@ -164,13 +167,22 @@
 		damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_R
 	prepare_huds()
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_electrified()
 
 	rebuild_parts()
-	RegisterSignal(src, COMSIG_MACHINERY_BROKEN, PROC_REF(on_break))
+	AddComponent(/datum/component/ntnet_interface)
 
 	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/door/airlock/obj_break(damage_flag)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!panel_open)
+		panel_open = TRUE
+	if(cut_wires_on_break)
+		wires.cut_all()
 
 /obj/machinery/door/airlock/LateInitialize()
 	. = ..()
@@ -203,10 +215,6 @@
 			if(24 to 30)
 				panel_open = TRUE
 	update_icon()
-
-/obj/machinery/door/airlock/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/ntnet_interface)
 
 /obj/machinery/door/airlock/proc/rebuild_parts()
 	if(part_overlays)
@@ -440,7 +448,7 @@
 			D.removeMe(src)
 	qdel(note)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.remove_from_hud(src)
+		diag_hud.remove_atom_from_hud(src)
 	if(brace) //yogs
 		brace.remove() //yogs
 	return ..()
@@ -926,7 +934,7 @@
 		set_electrified(MACHINE_ELECTRIFIED_PERMANENT)
 	updateDialog()
 
-/obj/machinery/door/airlock/Topic(href, href_list, var/nowindow = 0)
+/obj/machinery/door/airlock/Topic(href, href_list, nowindow = 0)
 	// If you add an if(..()) check you must first remove the var/nowindow parameter.
 	// Otherwise it will runtime with this kind of error: null.Topic()
 	if(!nowindow)
@@ -1269,8 +1277,8 @@
 
 	if(istype(I, /obj/item/jawsoflife) || istype(I, /obj/item/mantis/blade))
 		if(isElectrified())
-			shock(user,100)//it's like sticking a fork in a power socket
-			return
+			if(shock(user,100))//it's like sticking a fork in a power socket
+				return
 
 		if(istype(I, /obj/item/mantis/blade))
 			var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
@@ -1293,7 +1301,7 @@
 			to_chat(user, span_warning("The airlock won't budge!"))
 			return
 
-		var/time_to_open = 7 SECONDS * I.toolspeed
+		var/time_to_open = 9 SECONDS
 
 		if(hasPower() && !prying_so_hard)
 			if (I.tool_behaviour == TOOL_CROWBAR) //we need another check, futureproofing for if/when bettertools actually completely replaces the old jaws
@@ -1313,10 +1321,10 @@
 
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 				prying_so_hard = TRUE
-				if(do_after(user, time_to_open, src))
-					open(2)
+				if(I.use_tool(src, user, time_to_open))
 					if(!istype(I,/obj/item/jawsoflife/jimmy)) //You get to be special
-						take_damage(max_integrity/8) //Forcing open a door messes it up a little
+						take_damage(max_integrity/8, sound_effect = FALSE) //Forcing open a door messes it up a little
+					open(2)
 					if(density && !open(2))
 						to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
 				prying_so_hard = FALSE
@@ -1550,12 +1558,6 @@
 		set_electrified(MACHINE_NOT_ELECTRIFIED)
 		open()
 		safe = TRUE
-
-
-/obj/machinery/door/airlock/proc/on_break()
-	if(!panel_open)
-		panel_open = TRUE
-	wires.cut_all()
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)
 	secondsElectrified = seconds
@@ -1821,7 +1823,7 @@
 	for(var/mob/living/carbon/human/H in orange(2,src))
 		H.Unconscious(160)
 		H.adjust_fire_stacks(20)
-		H.IgniteMob() //Guaranteed knockout and ignition for nearby people
+		H.ignite_mob() //Guaranteed knockout and ignition for nearby people
 		H.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
 
 

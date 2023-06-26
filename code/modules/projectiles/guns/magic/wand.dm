@@ -9,7 +9,7 @@
 	max_charges = 100 //100, 50, 50, 34 (max charge distribution by 25%ths)
 	var/variable_charges = TRUE
 
-/obj/item/gun/magic/wand/Initialize()
+/obj/item/gun/magic/wand/Initialize(mapload)
 	if(prob(75) && variable_charges) //25% chance of listed max charges, 50% chance of 1/2 max charges, 25% chance of 1/3 max charges
 		if(prob(33))
 			max_charges = CEILING(max_charges / 3, 1)
@@ -68,7 +68,7 @@
 /obj/item/gun/magic/wand/death/zap_self(mob/living/user)
 	..()
 	to_chat(user, "<span class='warning'>You irradiate yourself with pure energy! \
-	[pick("Do not pass go. Do not collect 200 zorkmids.","You feel more confident in your spell casting skills.","You Die...","Do you want your possessions identified?")]\
+	[pick("Do not pass go. Do not collect 200 zorkmids.","You feel more confident in your spell casting skills.","You die...","Do you want your possessions identified?")]\
 	</span>")
 	user.adjustOxyLoss(500)
 	charges--
@@ -94,6 +94,9 @@
 	max_charges = 10 //10, 5, 5, 4
 
 /obj/item/gun/magic/wand/resurrection/zap_self(mob/living/user)
+	to_chat(user, span_notice("You steady the wand, ready to fire it at yourself..."))
+	if(!do_after(user, 7 SECONDS, user))
+		return
 	..()
 	charges--
 	if(user.anti_magic_check())

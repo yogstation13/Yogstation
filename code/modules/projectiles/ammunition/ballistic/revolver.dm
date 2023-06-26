@@ -1,8 +1,8 @@
 // .357 (Syndie Revolver)
 
 /obj/item/ammo_casing/a357
-	name = ".357 bullet casing"
-	desc = "A .357 bullet casing."
+	name = ".357 magnum bullet casing"
+	desc = "A .357 magnum bullet casing."
 	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/a357
 
@@ -33,6 +33,15 @@
 	desc = "A .357 Wallstake bullet casing."
 	projectile_type = /obj/item/projectile/bullet/a357/wallstake
 
+// .44 (Mateba)
+
+/obj/item/ammo_casing/m44
+	name = ".44 magnum bullet casing"
+	desc = "A .44 magnum bullet casing."
+	icon_state = "44-casing"
+	caliber = "44"
+	projectile_type = /obj/item/projectile/bullet/m44
+
 // 7.62x38mmR (Nagant Revolver)
 
 /obj/item/ammo_casing/n762
@@ -44,8 +53,8 @@
 // .38 (Colt Detective Special + Vatra M38)
 
 /obj/item/ammo_casing/c38
-	name = ".38 bullet casing"
-	desc = "A .38 bullet casing."
+	name = ".38 special bullet casing"
+	desc = "A .38 special bullet casing."
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38
 

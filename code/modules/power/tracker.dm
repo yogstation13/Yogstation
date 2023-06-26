@@ -22,6 +22,7 @@
 	connect_to_network()
 	RegisterSignal(SSsun, COMSIG_SUN_MOVED, PROC_REF(sun_update))
 
+
 /obj/machinery/power/tracker/Destroy()
 	unset_control() //remove from control computer
 	return ..()

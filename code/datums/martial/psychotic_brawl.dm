@@ -44,10 +44,10 @@
 						log_combat(A, D, "grabbed", addition="aggressively")
 						D.visible_message(span_warning("[A] violently grabs [D]!"), \
 						  span_userdanger("[A] violently grabs you!"))
-						A.grab_state = GRAB_AGGRESSIVE //Instant aggressive grab
+						A.setGrabState(GRAB_AGGRESSIVE) //Instant aggressive grab
 					else
 						log_combat(A, D, "grabbed", addition="passively")
-						A.grab_state = GRAB_PASSIVE
+						A.setGrabState(GRAB_PASSIVE)
 		if(4)
 			A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 			atk_verb = "headbutts"

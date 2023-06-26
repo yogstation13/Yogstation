@@ -23,7 +23,7 @@
 	/// There is a risk of this and contained_turfs leaking, so a subsystem will run it down to 0 incrementally if it gets too large
 	var/list/turf/turfs_to_uncontain = list()
 
-	var/area_flags = 0
+	var/area_flags = NONE
 
 	var/map_name // Set in New(); preserves the name set by the map maker, even if renamed by the Blueprints.
 
@@ -40,7 +40,7 @@
 	var/vacuum = null //yogs- yellow vacuum lights
 
 	var/requires_power = TRUE
-	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize().
+	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize(mapload).
 
 	var/outdoors = FALSE //For space, the asteroid, lavaland, etc. Used with blueprints to determine if we are adding a new area (vs editing a station room)
 
@@ -98,7 +98,7 @@
 
 	var/turf/teleport_anchors = list()	//ist of tiles we prefer to teleport to. this is for areas that are partially hazardous like for instance atmos_distro
 
-	///This datum, if set, allows terrain generation behavior to be ran on Initialize()
+	///This datum, if set, allows terrain generation behavior to be ran on Initialize(mapload)
 	var/datum/map_generator/map_generator
 /**
   * A list of teleport locations
@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   *
   * returns INITIALIZE_HINT_LATELOAD
   */
-/area/Initialize()
+/area/Initialize(mapload)
 	icon_state = ""
 	layer = AREA_LAYER
 	uid = ++global_uid
@@ -524,7 +524,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   * Im not sure what the heck this does, somethign to do with weather being able to set icon
   * states on areas?? where the heck would that even display?
   */
-/area/proc/update_icon()
+/area/update_icon()
 	var/weather_icon
 	for(var/V in SSweather.processing)
 		var/datum/weather/W = V
@@ -673,7 +673,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		if(!L.client.played)
 			SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE))
 			L.client.played = TRUE
-			addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 600)
+			addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 1 MINUTES)
 
 /**
   * Called when an atom exits an area

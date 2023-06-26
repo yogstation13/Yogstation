@@ -1,10 +1,8 @@
 /datum/job/scientist
 	title = "Scientist"
 	description = "Do experiments, perform research, feed the slimes, make bombs."
-	flag = SCIENTIST
 	orbit_icon = "flask"
 	department_head = list("Research Director")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 3
@@ -17,8 +15,11 @@
 
 	added_access = list(ACCESS_ROBO_CONTROL, ACCESS_TECH_STORAGE, ACCESS_GENETICS)
 	base_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_MINERAL_STOREROOM)
+
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_SCI
+
+	liver_traits = list(TRAIT_BALLMER_SCIENTIST)
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 	minimal_character_age = 24 //Consider the level of knowledge that spans xenobio, nanites, and toxins

@@ -36,7 +36,7 @@
 	    "Centcom"  = /obj/machinery/door/airlock/centcom
 	)
 
-/obj/item/airlock_painter/Initialize()
+/obj/item/airlock_painter/Initialize(mapload)
 	. = ..()
 	ink = new /obj/item/toner(src)
 

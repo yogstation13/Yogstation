@@ -18,7 +18,7 @@
 	var/time_between_shots = 4 //yogs: slower attack speed
 	var/last_process = 0 //see above
 
-/obj/structure/destructible/clockwork/ocular_warden/Initialize()
+/obj/structure/destructible/clockwork/ocular_warden/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 
@@ -79,7 +79,7 @@
 						last_process = world.time
 						if(GLOB.ratvar_awakens && L)
 							L.adjust_fire_stacks(damage_per_tick)
-							L.IgniteMob()
+							L.ignite_mob()
 				else if(ismecha(target))
 					var/obj/mecha/M = target
 					Beam(M, icon_state = "warden_beam", time = 10)		//yogs: gives a beam
@@ -115,7 +115,7 @@
 		if(B)
 			if(!(B.resistance_flags & ON_FIRE))
 				to_chat(L, span_warning("Your [B.name] bursts into flames!"))
-			for(var/obj/item/storage/book/bible/BI in L.GetAllContents())
+			for(var/obj/item/storage/book/bible/BI in L.get_all_contents())
 				if(!(BI.resistance_flags & ON_FIRE))
 					BI.fire_act()
 			continue

@@ -21,6 +21,10 @@
 	var/decoy_override = FALSE	//if it's a fake brain with no brainmob assigned. Feedback messages will be faked as if it does have a brainmob. See changelings & dullahans.
 	//two variables necessary for calculating whether we get a brain trauma or not
 	var/damage_delta = 0
+	/// Times how long the brain has been decaying for, used for memory loss
+	var/decay_progress = 0
+	/// Times how many times process has been run, used for stasis calculations
+	var/process_count = 0
 
 	var/list/datum/brain_trauma/traumas = list()
 
@@ -55,7 +59,7 @@
 	//Update the body's icon so it doesnt appear debrained anymore
 	C.update_hair()
 
-/obj/item/organ/brain/Remove(mob/living/carbon/C, special = 0, no_id_transfer = FALSE)
+/obj/item/organ/brain/Remove(mob/living/carbon/C, special = FALSE, no_id_transfer = FALSE)
 	..()
 	if(!special)
 		if(C.has_horror_inside())
@@ -214,8 +218,14 @@
 		owner.death()
 		brain_death = TRUE
 
-/obj/item/organ/brain/process()	//needs to run in life AND death
+/obj/item/organ/brain/process(delta_time)	//needs to run in life AND death
 	..()
+	// Intentionally not using delta_time, stasis will skip every n ticks, not caring about how long they took
+	// Technically subject to timing inconsistencies when the tick rate is changed, but unless the timing is changed dramatically
+	// the effect is within tolerance
+	process_count += 1
+	if(!((organ_flags & ORGAN_SYNTHETIC) || (owner && (owner.stat < DEAD || HAS_TRAIT(owner, TRAIT_PRESERVED_ORGANS) || !SHOULD_LIFETICK(owner, process_count)))))
+		decay_progress += (delta_time SECONDS) // delta_time is in seconds
 	//if we're not more injured than before, return without gambling for a trauma
 	if(damage <= prev_damage)
 		prev_damage = damage
@@ -262,7 +272,11 @@
 	if(prob(25))
 		return
 
-	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 50/severity)
+	var/obj/item/clothing/head/hat = owner.get_item_by_slot(ITEM_SLOT_HEAD)
+	if(hat && istype(hat, /obj/item/clothing/head/foilhat))
+		return
+
+	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, (50/severity) * (maxHealth - damage) / maxHealth)
 	owner.adjust_drugginess(40/severity)
 	switch(severity)
 		if(1)

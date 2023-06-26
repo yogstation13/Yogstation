@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon_state = "datadisk1"
 	var/modkit_design = /datum/design/unique_modkit
 
-/obj/item/disk/design_disk/modkit_disc/Initialize()
+/obj/item/disk/design_disk/modkit_disc/Initialize(mapload)
 	. = ..()
 	blueprints[1] = new modkit_design
 
@@ -140,13 +140,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(itemUser, failText)
 		return
 	to_chat(itemUser, span_notice("The snake, satisfied with your oath, attaches itself and the rod to your forearm with an inseparable grip. Your thoughts seem to only revolve around the core idea of helping others, and harm is nothing more than a distant, wicked memory..."))
-	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency, type)
+	var/datum/status_effect/hippocratic_oath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency, type)
 	effect.hand = usedHand
 	activated()
 
 /obj/item/rod_of_asclepius/proc/activated()
 	item_flags = DROPDEL
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 	desc = "A short wooden rod with a mystical snake inseparably gripping itself and the rod to your forearm. It flows with a healing energy that disperses amongst yourself and those around you. The snake can learn surgeries from disks or operating consoles by hitting them with it."
 	icon_state = "asclepius_active"
 	activated = TRUE
@@ -182,7 +182,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/mob/living/carbon/human/active_owner
 
 /obj/item/clothing/neck/necklace/memento_mori/item_action_slot_check(slot)
-	return slot == SLOT_NECK
+	return slot == ITEM_SLOT_NECK
 
 /obj/item/clothing/neck/necklace/memento_mori/attack_hand(mob/user)
 	if(active_owner && user == active_owner)
@@ -277,7 +277,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		wisp.forceMove(src)
 		SSblackbox.record_feedback("tally", "wisp_lantern", 1, "Returned")
 
-/obj/item/wisp_lantern/Initialize()
+/obj/item/wisp_lantern/Initialize(mapload)
 	. = ..()
 	wisp = new(src)
 
@@ -381,7 +381,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon_state = "red_cube"
 	teleport_color = "#FD3F48"
 
-/obj/item/warp_cube/red/Initialize()
+/obj/item/warp_cube/red/Initialize(mapload)
 	. = ..()
 	if(!linked)
 		var/obj/item/warp_cube/blue = new(src.loc)
@@ -460,7 +460,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	actions_types = list(/datum/action/item_action/immortality)
 	var/cooldown = 0
 
-/obj/item/immortality_talisman/Initialize()
+/obj/item/immortality_talisman/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE)
 
@@ -544,7 +544,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "paradox bag"
 	desc = "Somehow, it's in two places at once."
 
-/obj/item/shared_storage/red/Initialize()
+/obj/item/shared_storage/red/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = AddComponent(/datum/component/storage/concrete)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -673,11 +673,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "potionflask"
 
-
 /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "potionflask"
-
+	icon_state = "syndi_potionflask"
+	desc = "An ornate red bottle, with an \"S\" embossed into the underside. Filled with an experimental flight potion. Mileage may vary."
+	
 /obj/item/reagent_containers/glass/bottle/potion/flight
 	name = "strange elixir"
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
@@ -685,9 +685,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/reagent_containers/glass/bottle/potion/update_icon()
 	if(reagents.total_volume)
-		icon_state = "potionflask"
+		icon_state = initial(icon_state)
+		desc = initial(desc)
 	else
-		icon_state = "potionflask_empty"
+		icon_state = "[initial(icon_state)]_empty"
+		desc = "An ornate red bottle, with an \"S\" embossed into the underside."
 
 /datum/reagent/flightpotion
 	name = "Flight Potion"
@@ -758,7 +760,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 #define COOLDOWN_SUMMON 1 MINUTES
 /obj/item/eflowers
 	name ="enchanted flowers"
-	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouqet to summon tamed creatures. Megafauna cannot be summoned.<b>Megafauna need to be exposed 35 times to become friendly.</b>"
+	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouquet to summon tamed creatures. Megafauna cannot be summoned. <b>Megafauna need to be exposed 35 times to become friendly.</b>"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "eflower"
 	var/next_summon = 0
@@ -774,7 +776,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(is_station_level(T.z) && !A.outdoors)
 		to_chat(user, span_warning("You feel like calling a bunch of animals indoors is a bad idea."))
 		return
-	user.visible_message(span_warning("[user] holds the bouqet out, summoning their allies!"))
+	user.visible_message(span_warning("[user] holds the bouquet out, summoning their allies!"))
 	for(var/mob/m in summons)
 		m.forceMove(T)
 	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
@@ -807,7 +809,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(!do_after(user, 1.5 SECONDS, M))
 		return
-	M.visible_message(span_notice("[M] seems happy with you after exposure to the bouqet!"))
+	M.visible_message(span_notice("[M] seems happy with you after exposure to the bouquet!"))
 	M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
 	M.drop_loot()
 	M.faction = user.faction
@@ -938,11 +940,14 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/melee/ghost_sword(src)
 		if(2)
 			new /obj/item/lava_staff(src)
-			new /obj/item/book/granter/spell/sacredflame(src)
+			new /obj/item/book/granter/action/spell/sacredflame(src)
 		if(3)
 			new /obj/item/dragon_egg(src)
 		if(4)
-			new /obj/item/dragons_blood(src)
+			if(prob(25))	//Still same chance but now you know if you're turning into a lizard (ew)
+				new /obj/item/dragons_blood/refined(src)
+			else
+				new /obj/item/dragons_blood(src)
 
 /obj/structure/closet/crate/necropolis/dragon/crusher
 	name = "firey dragon chest"
@@ -970,7 +975,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/summon_cooldown = 0
 	var/list/mob/dead/observer/spirits
 
-/obj/item/melee/ghost_sword/Initialize()
+/obj/item/melee/ghost_sword/Initialize(mapload)
 	. = ..()
 	spirits = list()
 	START_PROCESSING(SSobj, src)
@@ -1060,49 +1065,36 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 
 	var/mob/living/carbon/human/H = user
-	var/random = rand(1,4)
+	var/random = rand(1,3)
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
-			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.set_species(/datum/species/lizard/draconid)
-			H.eye_color = "fee5a3"
-			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-			H.updateappearance()
-		if(2)
 			to_chat(user, span_danger("Your flesh begins to melt! Miraculously, you seem fine otherwise."))
 			H.set_species(/datum/species/skeleton)
-		if(3)
+		if(2)
 			to_chat(user, span_danger("Power courses through you! You can now shift your form at will."))
-			if(user.mind)
-				var/obj/effect/proc_holder/spell/targeted/shapeshift/dragon/D = new
-				user.mind.AddSpell(D)
-		if(4)
+			var/datum/action/cooldown/spell/shapeshift/dragon/dragon_shapeshift = new(user.mind || user)
+			dragon_shapeshift.Grant(user)
+		if(3)
 			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
 			H.weather_immunities |= "lava"
 
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 
-/obj/item/dragons_blood/syndicate
+/obj/item/dragons_blood/refined
 	name = "bottle of refined dragons blood"
 	desc = "You're totally going to drink this, aren't you?"
 
-/obj/item/dragons_blood/syndicate/attack_self(mob/living/carbon/human/user)
+/obj/item/dragons_blood/refined/attack_self(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
 
 	var/mob/living/carbon/human/H = user
+	to_chat(user, span_danger("You feel warmth spread through you, paired with an odd desire to burn down a village. You're suddenly a very small, humanoid ash dragon!"))
+	H.set_species(/datum/species/lizard/draconid)
 
-	if(!islizard(H))	//Something about it being refined to only work on lizards or whatever
-		to_chat(user, span_danger("You're about to take a sip, but the acrid fumes from whatever's in this bottle make you reconsider."))
-		return
-	else
-		to_chat(user, span_danger("You feel the warmth spread through you, scales hardening and claws growing sharper. You feel... strong!"))
-		H.set_species(/datum/species/lizard/draconid)
-
-		playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
+	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 
 
@@ -1300,6 +1292,19 @@ GLOBAL_LIST_EMPTY(aide_list)
 #define COOLDOWN_HUMAN 100
 #define COOLDOWN_ANIMAL 60
 #define COOLDOWN_SPLASH 100
+
+/datum/action/item_action/visegrip
+	name = "Vise Grip"
+	desc = "Remotely detonate marked targets. People become rooted for 1 second. Animals become rooted for 6 seconds and take hefty damage."
+	button_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "leghold"
+
+/datum/action/item_action/reach
+	name = "Reach"
+	desc = "Mark those standing on blood for 10 seconds."
+	button_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "rshield"
+
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
 	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters \
@@ -1533,7 +1538,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 				playsound(T,'sound/magic/blind.ogg', 200, 1, -4)
 				new /obj/effect/temp_visual/hierophant/telegraph/teleport(T, user)
 				beacon = new/obj/effect/hierophant(T)
-				user.update_action_buttons_icon()
+				user.update_mob_action_buttons()
 				user.visible_message("[span_hierophant_warning("[user] places a strange machine beneath [user.p_their()] feet!")]", \
 				"[span_hierophant("You detach the hierophant beacon, allowing you to teleport yourself and any allies to it at any time!")]\n\
 				[span_notice("You can remove the beacon to place it again by striking it with the club.")]")
@@ -1553,7 +1558,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(user, span_warning("You don't have enough space to teleport from here!"))
 		return
 	teleporting = TRUE //start channel
-	user.update_action_buttons_icon()
+	user.update_mob_action_buttons()
 	user.visible_message("[span_hierophant_warning("[user] starts to glow faintly...")]")
 	timer = world.time + 5 SECONDS
 	INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
@@ -1566,7 +1571,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(is_blocked_turf(T, TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
-			user.update_action_buttons_icon()
+			user.update_mob_action_buttons()
 			timer = world.time
 			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			beacon.icon_state = "hierophant_tele_off"
@@ -1578,7 +1583,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(!do_after(user, 0.3 SECONDS, user) || !user || !beacon || QDELETED(beacon)) //no walking away shitlord
 			teleporting = FALSE
 			if(user)
-				user.update_action_buttons_icon()
+				user.update_mob_action_buttons()
 			timer = world.time
 			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			if(beacon)
@@ -1587,7 +1592,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(is_blocked_turf(T, TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
-			user.update_action_buttons_icon()
+			user.update_mob_action_buttons()
 			timer = world.time
 			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			beacon.icon_state = "hierophant_tele_off"
@@ -1615,7 +1620,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		beacon.icon_state = "hierophant_tele_off"
 	teleporting = FALSE
 	if(user)
-		user.update_action_buttons_icon()
+		user.update_mob_action_buttons()
 
 /obj/item/hierophant_club/proc/teleport_mob(turf/source, mob/M, turf/target, mob/user)
 	var/turf/turf_to_teleport_to = get_step(target, get_dir(source, M)) //get position relative to caster
@@ -1803,9 +1808,22 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/wisp_lantern(src)
 
 //Legion
-#define COOLDOWN_TAP 60
-#define COOLDOWN_BAND 200
-#define COOLDOWN_TELE 15
+#define COOLDOWN_TAP 6 SECONDS
+#define COOLDOWN_BAND 20 SECONDS
+#define COOLDOWN_TELE 1.5 SECONDS
+
+/datum/action/item_action/band
+	name = "Band"
+	desc = "Summon all your thralls to your location."
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
+
+/*/datum/action/item_action/gambit
+	name = "Gambit"
+	desc = "Throw out your cane. If the target is weak enough to finish off, teleport to them and do it, recovering your cane in the process."
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"*/
+
 /obj/item/cane/cursed
 	name = "cursed cane"
 	desc = "A pristine marble cane. Tapping the cane against the ground calls lesser minions to you while tapping it against a dead or dying victim will make them yours should you\

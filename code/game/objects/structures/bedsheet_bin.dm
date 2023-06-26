@@ -22,6 +22,7 @@ LINEN BINS
 	resistance_flags = FLAMMABLE
 	dying_key = DYE_REGISTRY_BEDSHEET
 	var/newbedpath = null
+	var/randomizable = TRUE //can appear via random bedsheets
 
 	dog_fashion = /datum/dog_fashion/head/ghost
 	var/list/dream_messages = list("white")
@@ -278,10 +279,18 @@ LINEN BINS
 	name = "random bedsheet"
 	desc = "If you're reading this description ingame, something has gone wrong! Honk!"
 
-/obj/item/bedsheet/random/Initialize()
+/obj/item/bedsheet/random/Initialize(mapload)
 	..()
-	var/type = pick(typesof(/obj/item/bedsheet) - /obj/item/bedsheet/random)
-	new type(loc)
+	var/list/sheets = list(typesof(/obj/item/bedsheet) - /obj/item/bedsheet/random)
+	sheets = shuffle(sheets)
+	var/obj/item/bedsheet/actualsheet
+	for(var/obj/item/bedsheet/sheet as anything in sheets)
+		if(initial(sheet.randomizable))
+			actualsheet = new sheet(loc)
+			break
+	
+	if(!actualsheet)
+		log_game("Random bedsheet failed to spawn")
 	return INITIALIZE_HINT_QDEL
 
 /obj/item/bedsheet/dorms
@@ -289,7 +298,7 @@ LINEN BINS
 	name = "random dorms bedsheet"
 	desc = "If you're reading this description ingame, something has gone wrong! Honk!"
 
-/obj/item/bedsheet/dorms/Initialize()
+/obj/item/bedsheet/dorms/Initialize(mapload)
 	..()
 	var/type = pickweight(list("Colors" = 80, "Special" = 20))
 	switch(type)

@@ -5,12 +5,6 @@
 #define SIN_ENVY "envy"
 #define SIN_PRIDE "pride"
 
-/mob/living/carbon/human/Life()
-	. = ..()
-	if(is_sinfuldemon(src))
-		var/datum/antagonist/sinfuldemon/demon = mind.has_antag_datum(/datum/antagonist/sinfuldemon)
-		demon.sinfuldemon_life()
-
 /datum/antagonist/sinfuldemon
 	name = "Sinful Demon"
 	roundend_category = "demons of sin"
@@ -22,14 +16,17 @@
 	///The list of choosable sins for demons. One will be assigned to a demon when spawned naturally.
 	var/static/list/demonsins = list(SIN_GLUTTONY, SIN_GREED, SIN_WRATH, SIN_ENVY, SIN_PRIDE)
 	var/static/list/demon_spells = typecacheof(list(
-		/obj/effect/proc_holder/spell/targeted/shapeshift/demon,
-		/obj/effect/proc_holder/spell/targeted/shapeshift/demon/gluttony,
-		/obj/effect/proc_holder/spell/targeted/shapeshift/demon/wrath,
-		/obj/effect/proc_holder/spell/targeted/forcewall/gluttony,
-		/obj/effect/proc_holder/spell/aoe_turf/conjure/summon_greedslots,
-		/obj/effect/proc_holder/spell/targeted/inflict_handler/ignite,
-		/obj/effect/proc_holder/spell/targeted/touch/envy,
-		/obj/effect/proc_holder/spell/aoe_turf/conjure/summon_mirror))
+		/datum/action/cooldown/spell/shapeshift/demon,
+		/datum/action/cooldown/spell/shapeshift/demon/gluttony,
+		/datum/action/cooldown/spell/shapeshift/demon/wrath,
+		/datum/action/cooldown/spell/forcewall/gluttony,
+		/datum/action/cooldown/spell/conjure/summon_greedslots,
+		/datum/action/cooldown/spell/pointed/ignite,
+		/datum/action/cooldown/spell/touch/envy,
+		/datum/action/cooldown/spell/conjure/summon_mirror,
+		/datum/action/cooldown/spell/touch/mend,
+		/datum/action/cooldown/spell/touch/torment,
+		))
 
 	var/static/list/sinfuldemon_traits = list(
 		TRAIT_GENELESS,
@@ -37,13 +34,6 @@
 		TRAIT_NOSOFTCRIT,
 		TRAIT_NOCRITDAMAGE,
 	)
-
-/datum/antagonist/sinfuldemon/proc/sinfuldemon_life()
-	var/mob/living/carbon/C = owner.current
-	if(!C)
-		return
-	if(istype(get_area(C), /area/chapel))
-		demon_burn()
 
 ///Handles burning and hurting sinful demons while they're in the chapel.
 /datum/antagonist/sinfuldemon/proc/demon_burn() //sinful demons are even more vulnerable to the chapel than vampires, but can turn into their true form to negate this.
@@ -65,7 +55,7 @@
 			else
 				L.visible_message(span_warning("[L] continues to burn!"), span_danger("You continue to burn!"))
 			L.adjust_fire_stacks(5)
-			L.IgniteMob()
+			L.ignite_mob()
 	return
 
 /datum/antagonist/sinfuldemon/New()
@@ -120,7 +110,7 @@
 	to_chat(owner.current, "[span_warning("Do your best to complete your objectives without unnessecary death, unless you are a wrathful demon.")]<br>")
 	owner.announce_objectives()
 	SEND_SOUND(owner.current, sound('sound/magic/ethereal_exit.ogg'))
-	.=..()
+	. = ..()
 
 /datum/antagonist/sinfuldemon/on_gain()
 	forge_objectives()
@@ -128,46 +118,86 @@
 	owner.current.faction += "hell"
 	for(var/all_traits in sinfuldemon_traits) ///adds demon traits
 		ADD_TRAIT(owner.current, all_traits, SINFULDEMON_TRAIT)
-	if(owner.assigned_role == "Clown" && ishuman(owner.current))
-		var/mob/living/carbon/human/S = owner.current
-		to_chat(S, span_notice("Your infernal nature has allowed you to overcome your clownishness."))
-		S.dna.remove_mutation(CLOWNMUT)
 	switch(demonsin) 
 		if(SIN_GLUTTONY)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/demon/gluttony)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/forcewall/gluttony)
+			var/datum/action/cooldown/spell/forcewall/gluttony/fat_wall = new(owner.current)
+			fat_wall.Grant(owner.current)
+			
+			var/datum/action/cooldown/spell/shapeshift/demon/gluttony/fat_demon = new(owner.current)
+			fat_demon.Grant(owner.current)
+
 			ADD_TRAIT(owner.current, TRAIT_AGEUSIA, SINFULDEMON_TRAIT) // nothing disgusts you
 			ADD_TRAIT(owner.current, TRAIT_EAT_MORE, SINFULDEMON_TRAIT) // 3x hunger rate
 			ADD_TRAIT(owner.current, TRAIT_BOTTOMLESS_STOMACH, SINFULDEMON_TRAIT) // nutrition is capped for infinite eating
 			ADD_TRAIT(owner.current, TRAIT_VORACIOUS, SINFULDEMON_TRAIT) // eat and drink faster & eat infinite snacks
+
 		if(SIN_GREED)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/demon)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/summon_greedslots)
+			var/datum/action/cooldown/spell/shapeshift/demon/demon_form = new(owner.current)
+			demon_form.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/conjure/summon_greedslots/gambling_addiction = new(owner.current)
+			gambling_addiction.Grant(owner.current)
+
 		if(SIN_WRATH)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/demon/wrath)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/inflict_handler/ignite)
+			var/datum/action/cooldown/spell/shapeshift/demon/wrath/wrath_demon = new(owner.current)
+			wrath_demon.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/pointed/ignite/not_fireball = new(owner.current)
+			not_fireball.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/touch/torment/pain_hand = new(owner.current)
+			pain_hand.Grant(owner.current)
+
 		if(SIN_ENVY)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/demon)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/envy)
+			var/datum/action/cooldown/spell/shapeshift/demon/demon_form = new(owner.current)
+			demon_form.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/touch/envy/agent_id = new(owner.current)
+			agent_id.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/touch/torment/pain_hand = new(owner.current)
+			pain_hand.Grant(owner.current)
+
 		if(SIN_PRIDE)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/demon)
-			owner.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/summon_mirror)
-	.=..()
+			var/datum/action/cooldown/spell/shapeshift/demon/demon_form = new(owner.current)
+			demon_form.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/conjure/summon_mirror/space_hole = new(owner.current)
+			space_hole.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/touch/mend/heal_hand = new(owner.current)
+			heal_hand.Grant(owner.current)
+
+	return ..()
 
 /datum/antagonist/sinfuldemon/on_removal()
 	owner.special_role = null
 	owner.current.faction -= "hell"
 	for(var/all_status_traits in owner.current.status_traits) //removes demon traits
 		REMOVE_TRAIT(owner.current, all_status_traits, SINFULDEMON_TRAIT)
-	remove_spells()
+	for(var/datum/action/cooldown/spell/spell in owner.current.actions)
+		if(spell.target == owner)
+			qdel(spell)
+			owner.current.actions -= spell
 	to_chat(owner.current, span_userdanger("Your infernal link has been severed! You are no longer a demon!"))
-	.=..()
+	return ..()
 
-/datum/antagonist/sinfuldemon/proc/remove_spells()
-	for(var/X in owner.spell_list)
-		var/obj/effect/proc_holder/spell/S = X
-		if(is_type_in_typecache(S, demon_spells))
-			owner.RemoveSpell(S)
+/datum/antagonist/sinfuldemon/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	handle_clown_mutation(current_mob, mob_override ? null : "Your infernal nature has allowed you to overcome your clownishness.")
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(sinfuldemon_life))
+
+/datum/antagonist/sinfuldemon/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	return ..()
+
+/datum/antagonist/sinfuldemon/proc/sinfuldemon_life(mob/living/source, seconds_per_tick, times_fired)
+	var/mob/living/carbon/carbon_source = source
+	if(!carbon_source)
+		return
+	if(istype(get_area(carbon_source), /area/chapel))
+		demon_burn()
 
 /datum/antagonist/sinfuldemon/roundend_report()
 	var/list/parts = list()

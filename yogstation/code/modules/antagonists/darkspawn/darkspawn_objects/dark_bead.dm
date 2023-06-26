@@ -15,7 +15,7 @@
 	var/datum/action/innate/darkspawn/devour_will/linked_ability //The ability that keeps data for us
 	var/full_restore = TRUE
 
-/obj/item/dark_bead/Initialize()
+/obj/item/dark_bead/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	animate(src, alpha = 50, time = 5 SECONDS)

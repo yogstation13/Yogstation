@@ -524,7 +524,7 @@
 		C.visible_message(span_warning("[C]'s skin bursts into flame!"), \
 						  span_userdanger("You feel an inner fire as your skin bursts into flames!"))
 		C.adjust_fire_stacks(5)
-		C.IgniteMob()
+		C.ignite_mob()
 	return
 
 

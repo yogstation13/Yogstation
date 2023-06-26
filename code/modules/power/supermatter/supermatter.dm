@@ -219,7 +219,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/heal_mod = 1
 
 
-/obj/machinery/power/supermatter_crystal/Initialize()
+/obj/machinery/power/supermatter_crystal/Initialize(mapload)
 	. = ..()
 	uid = gl_uid++
 	SSair.atmos_machinery += src
@@ -356,13 +356,17 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	explode()
 
 /obj/machinery/power/supermatter_crystal/proc/explode()
+	if (is_main_engine)
+		SSpersistence.rounds_since_engine_exploded = ROUNDCOUNT_ENGINE_JUST_EXPLODED
+		for (var/obj/structure/sign/delamination_counter/sign as anything in GLOB.map_delamination_counters)
+			sign.update_count(ROUNDCOUNT_ENGINE_JUST_EXPLODED)
 	for(var/mob in GLOB.alive_mob_list)
 		var/mob/living/M = mob
 		var/turf/T2 = get_turf_global(M)
 		if(istype(M) && T2 && T2.z == z)
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(M, src) + 1)) ) )
+				H.adjust_hallucinations(max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(M, src) + 1)) ) ) )
 			var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(M, src) + 1) )
 			M.rad_act(rads)
 
@@ -604,9 +608,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_RANGE(power))) // If they can see it without mesons on.  Bad on them.
 		if((!HAS_TRAIT(l, TRAIT_MESONS)) || corruptor_attached)
-			var/D = sqrt(1 / max(1, get_dist(l, src)))
-			l.hallucination += power * config_hallucination_power * D
-			l.hallucination = clamp(l.hallucination, 0, 200)
+			visible_hallucination_pulse(
+				center = src,
+				radius = HALLUCINATION_RANGE(power),
+				hallucination_duration = power * 0.1,
+				hallucination_max_duration = 400 SECONDS,
+			)
 
 	power -= ((power/500)**3) * powerloss_inhibitor
 

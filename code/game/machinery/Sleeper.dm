@@ -48,7 +48,7 @@
 	///what are we putting in the tgui
 	var/sedate_button_text = "Sedate"
 
-/obj/machinery/sleeper/Initialize()
+/obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
 	update_icon()
@@ -107,7 +107,7 @@
 		if(mob_occupant && mob_occupant.stat != DEAD)
 			to_chat(occupant, "[enter_message]")
 		if(mob_occupant && stasis)
-			mob_occupant.ExtinguishMob()
+			mob_occupant.extinguish_mob()
 		if(close_sound)
 			playsound(src, close_sound, 40)
 
@@ -320,7 +320,7 @@
 	icon_state = "sleeper_s"
 	controls_inside = TRUE
 
-/obj/machinery/sleeper/syndie/fullupgrade/Initialize()
+/obj/machinery/sleeper/syndie/fullupgrade/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)

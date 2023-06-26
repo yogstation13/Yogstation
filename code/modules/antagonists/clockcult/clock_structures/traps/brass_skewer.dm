@@ -13,7 +13,7 @@
 	var/wiggle_wiggle
 	var/mutable_appearance/impale_overlay //This is applied to any mob impaled so that they visibly have the skewer coming through their chest
 
-/obj/structure/destructible/clockwork/trap/brass_skewer/Initialize()
+/obj/structure/destructible/clockwork/trap/brass_skewer/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 

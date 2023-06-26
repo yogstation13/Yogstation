@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	var/message_cooldown
 	var/breakout_time = 600
 
-/obj/structure/bodycontainer/Initialize()
+/obj/structure/bodycontainer/Initialize(mapload)
 	. = ..()
 	GLOB.bodycontainers += src
 	recursive_organ_check(src)
@@ -157,7 +157,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	var/beep_cooldown = 50
 	var/next_beep = 0
 
-/obj/structure/bodycontainer/morgue/Initialize()
+/obj/structure/bodycontainer/morgue/Initialize(mapload)
 	. = ..()
 	connected = new/obj/structure/tray/m_tray(src)
 	connected.connected = src
@@ -227,7 +227,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	GLOB.crematoriums.Add(src)
 	..()
 
-/obj/structure/bodycontainer/crematorium/Initialize()
+/obj/structure/bodycontainer/crematorium/Initialize(mapload)
 	. = ..()
 	connected = new /obj/structure/tray/c_tray(src)
 	connected.connected = src
@@ -251,7 +251,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	if(locked)
 		return //don't let you cremate something twice or w/e
 	// Make sure we don't delete the actual morgue and its tray
-	var/list/conts = GetAllContents() - src - connected
+	var/list/conts = get_all_contents() - src - connected
 
 	if(!conts.len)
 		audible_message(span_italics("You hear a hollow crackle."))
@@ -274,13 +274,13 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		update_icon()
 
 /obj/structure/bodycontainer/crematorium/proc/finish_cremate(mob/user)
-	var/list/conts = GetAllContents() - src - connected
+	var/list/conts = get_all_contents() - src - connected
 	audible_message(span_italics("You hear a roar as the crematorium reaches its maximum temperature."))
 	for(var/mob/living/M in conts)
 		if(M.status_flags & GODMODE)
 			to_chat(M, span_userdanger("A strange force protects you!"))
 			M.adjust_fire_stacks(40)
-			M.IgniteMob()
+			M.ignite_mob()
 			continue
 		if(M.stat != DEAD)
 			M.emote("scream")
@@ -336,7 +336,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 
 /obj/structure/bodycontainer/crematorium/creamatorium/cremate(mob/user)
 	var/list/icecreams = new()
-	for(var/i_scream in GetAllContents(/mob/living))
+	for(var/i_scream in get_all_contents(/mob/living))
 		var/obj/item/reagent_containers/food/snacks/icecream/IC = new()
 		IC.set_cone_type("waffle")
 		IC.add_mob_flavor(i_scream)

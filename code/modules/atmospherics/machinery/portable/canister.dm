@@ -270,7 +270,7 @@
 	pump.stat = 0
 	SSair.add_to_rebuild_queue(pump)
 
-/obj/machinery/portable_atmospherics/canister/Initialize()
+/obj/machinery/portable_atmospherics/canister/Initialize(mapload)
 	. = ..()
 	update_icon()
 

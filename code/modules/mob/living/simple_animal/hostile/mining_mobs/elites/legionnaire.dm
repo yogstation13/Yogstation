@@ -109,7 +109,7 @@
 	visible_message(span_boldwarning("[src] prepares to charge!"))
 	addtimer(CALLBACK(src, PROC_REF(legionnaire_charge_2), dir_to_target, 0), 5)
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge_2(var/move_dir, var/times_ran)
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge_2(move_dir, times_ran)
 	if(times_ran >= 4)
 		return
 	var/turf/T = get_step(get_turf(src), move_dir)
@@ -275,7 +275,7 @@
 	if(isliving(mover))
 		var/mob/living/L = mover
 		L.adjust_fire_stacks(3)
-		L.IgniteMob()
+		L.ignite_mob()
 	. = ..()
 
 /obj/structure/legionnaire_bonfire/Destroy()
@@ -288,7 +288,7 @@
 	duration = 10
 	color = rgb(0,0,0)
 
-/obj/effect/temp_visual/dragon_swoop/legionnaire/Initialize()
+/obj/effect/temp_visual/dragon_swoop/legionnaire/Initialize(mapload)
 	. = ..()
 	transform *= 0.33
 
@@ -341,7 +341,7 @@
 	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
 		L.apply_damage(fauna_damage_bonus, BRUTE)
 
-/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/Initialize()
+/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(10,40, MOB_LAYER), TEXT_SOUTH = list(-10, 40, MOB_LAYER), TEXT_EAST = list(0, 40, MOB_LAYER), TEXT_WEST = list( 0, 40, MOB_LAYER)))
@@ -355,18 +355,18 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/proc/give_abilities(mob/living/elite, mob/living/M, force = FALSE)
 	toggle_ai(AI_OFF)
-	if(istype(click_intercept, /obj/effect/proc_holder/drakeling))
-		var/obj/effect/proc_holder/drakeling/D = click_intercept
-		D.remove_ranged_ability()
-	for(var/action in attack_action_types)
-		RemoveAbility(action)
-		M.AddAbility(action)
+	if(istype(click_intercept, /datum/action/cooldown/spell/pointed/drakeling))
+		var/datum/action/cooldown/spell/pointed/drakeling/D = click_intercept
+		D.unset_click_ability(D.owner)
+	for(var/datum/action/action in attack_action_types)
+		action.Remove(src)
+		action.Grant(M)
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/attendant/proc/remove_abilities(mob/living/elite, mob/living/M, force = FALSE)
 	toggle_ai(AI_ON)
-	if(istype(M.click_intercept, /obj/effect/proc_holder/drakeling))
-		var/obj/effect/proc_holder/drakeling/D = M.click_intercept
-		D.remove_ranged_ability()
-	for(var/action in attack_action_types)
-		M.RemoveAbility(action)
-		AddAbility(action)
+	if(istype(M.click_intercept, /datum/action/cooldown/spell/pointed/drakeling))
+		var/datum/action/cooldown/spell/pointed/drakeling/D = M.click_intercept
+		D.unset_click_ability(D.owner)
+	for(var/datum/action/action in attack_action_types)
+		action.Remove(M)
+		action.Grant(src)

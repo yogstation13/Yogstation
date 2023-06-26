@@ -11,11 +11,11 @@ mapGenerator:
 	Desc: a mapGenerator is a master datum that collects
 	and syncs all mapGeneratorModules in it's modules list
 
-	defineRegion(var/turf/Start, var/turf/End, var/replace = 0)
+	defineRegion(turf/Start, turf/End, replace = 0)
 		Example: defineRegion(locate(1,1,1),locate(5,5,5),0)
 		Desc: Sets the bounds of the mapGenerator's "map"
 
-	defineCircularRegion(var/turf/Start, var/turf/End, var/replace = 0)
+	defineCircularRegion(turf/Start, turf/End, replace = 0)
 		Example: defineCircularRegion(locate(1,1,1),locate(5,5,5),0)
 		Desc: Sets the mapGenerator's "map" as a circle, with center in the middle of Start and End's X,Y,Z coordinates
 
@@ -23,7 +23,7 @@ mapGenerator:
 		Example: undefineRegion()
 		Desc: Empties the map generator list
 
-	checkRegion(var/turf/Start, var/turf/End)
+	checkRegion(turf/Start, turf/End)
 		Example: checkRegion(locate(1,1,1), locate(5,5,5))
 		Desc: Checks if a rectangle between Start's coords and End's coords is valid
 		Existing Calls: mapGenerator/defineRegion(), mapGenerator/defineCircularRegion()
@@ -32,7 +32,7 @@ mapGenerator:
 		Example: generate()
 		Desc: Orders all mapGeneratorModules in the modules list to generate()
 
-	generateOneTurf(var/turf/T)
+	generateOneTurf(turf/T)
 		Example: generateOneTurf(locate(1,1,1))
 		Desc: Orders all mapGeneratorModules in the modules list to place(T) on this turf
 
@@ -51,7 +51,7 @@ mapGeneratorModule
 	Desc: a mapGeneratorModule has spawnableAtoms and spawnableTurfs lists
 	which it will generate on turfs in it's mother's map based on cluster variables
 
-	sync(var/datum/mapGenerator/mum)
+	sync(datum/mapGenerator/mum)
 		Example: sync(a_mapGenerator_as_a_variable)
 		Desc: Sets the Mother variable to the mum argument
 		Existing Calls: mapGenerator/syncModules()
@@ -61,12 +61,12 @@ mapGeneratorModule
 		Desc: Calls place(T) on all turfs in it's mother's map
 		Existing Calls: mapGenerator/generate()
 
-	place(var/turf/T)
+	place(turf/T)
 		Example: place(locate(1,1,1))
 		Desc: Run this mapGeneratorModule's effects on this turf (Spawning atoms, Changing turfs)
 		Existing Calls: mapGenerator/generate(), mapGenerator/generateOneTurf()
 
-	checkPlaceAtom(var/turf/T)
+	checkPlaceAtom(turf/T)
 		Example: checkPlace(locate(1,1,1))
 		Desc: Checks if the turf is valid for placing atoms
 		Existing Calls: place()

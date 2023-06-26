@@ -281,14 +281,14 @@
 	wiringGuiUpdate(user)
 
 
-/obj/item/twohanded/rcl/pre_loaded/Initialize() //Comes preloaded with cable, for testing stuff
+/obj/item/twohanded/rcl/pre_loaded/Initialize(mapload) //Comes preloaded with cable, for testing stuff
 	. = ..()
 	loaded = new()
 	loaded.max_amount = max_amount
 	loaded.amount = max_amount
 	update_icon()
 
-/obj/item/twohanded/rcl/Initialize()
+/obj/item/twohanded/rcl/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -327,3 +327,13 @@
 		else
 			icon_state = "rclg-1"
 			item_state = "rclg-1"
+
+/datum/action/item_action/rcl_col
+	name = "Change Cable Color"
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "rcl_rainbow"
+
+/datum/action/item_action/rcl_gui
+	name = "Toggle Fast Wiring Gui"
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "rcl_gui"

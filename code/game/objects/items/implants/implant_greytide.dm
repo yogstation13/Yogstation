@@ -1,7 +1,6 @@
 /obj/item/implant/greytide
 	name = "Greytide implant"
 	desc = "Turn a crewmate into greytider"
-	activated = FALSE
 
 /obj/item/implant/greytide/get_data()
 	var/dat = {"
@@ -51,7 +50,7 @@
 
 	return ..()
 
-/obj/item/implant/greytide/removed(mob/source)
+/obj/item/implant/greytide/removed(mob/living/source, silent = FALSE, special = 0)
 	. = ..()
 	if(!.)
 		return
@@ -65,6 +64,6 @@
 /obj/item/implanter/greytide
 	name = "implanter (greytide)"
 
-/obj/item/implanter/greytide/Initialize()
+/obj/item/implanter/greytide/Initialize(mapload)
 	. = ..()
 	imp = new /obj/item/implant/greytide(src)

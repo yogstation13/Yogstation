@@ -3,8 +3,8 @@
 	max_stages = 5
 	spread_text = "On contact"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
-	cure_text = "Chick Chicky Boom!"
-	cures = list("plasma")
+	cure_text = "Chick Chicky Boom! (plasma)"
+	cures = list(/datum/reagent/toxin/plasma)
 	agent = "Unknown"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 1
@@ -33,7 +33,7 @@
 			if(prob(20))
 				if (prob(50))
 					affected_mob.adjust_fire_stacks(2)
-					affected_mob.IgniteMob()
+					affected_mob.ignite_mob()
 				else
 					affected_mob.emote("gasp")
 					to_chat(affected_mob, span_danger("You feel a burning beat inside..."))

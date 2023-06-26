@@ -46,6 +46,8 @@
 /obj/item/stack/medical/proc/try_heal(mob/living/M, mob/user, silent = FALSE)
 	if(!M.can_inject(user, TRUE))
 		return
+	if(INTERACTING_WITH(user, M))
+		return
 	if(M == user)
 		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
@@ -348,7 +350,7 @@
 	var/is_open = TRUE ///This var determines if the sterile packaging of the mesh has been opened.
 	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 2)
 
-/obj/item/stack/medical/mesh/Initialize()
+/obj/item/stack/medical/mesh/Initialize(mapload)
 	. = ..()
 	if(amount == max_amount)	 //only seal full mesh packs
 		is_open = FALSE

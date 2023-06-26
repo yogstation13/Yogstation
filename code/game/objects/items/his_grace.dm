@@ -24,7 +24,7 @@
 	var/victims_needed = 25
 	var/ascend_bonus = 15
 
-/obj/item/his_grace/Initialize()
+/obj/item/his_grace/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	GLOB.poi_list += src
@@ -46,6 +46,18 @@
 		consume(M)
 	else
 		..()
+
+/obj/item/his_grace/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(!QDELETED(A) && (istype(A, /obj/machinery/door) || istype(A, /obj/structure/door_assembly)))
+		var/obj/O = A
+		// If the initial hit didn't count and we're pretending to have triple damage, make up for it
+		if(O.damage_deflection > force)
+			O.take_damage(force*3, BRUTE, MELEE, FALSE, null, armour_penetration)
+		else
+			O.take_damage(force*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /obj/item/his_grace/CtrlClick(mob/user) //you can't pull his grace
 	return

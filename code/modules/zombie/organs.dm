@@ -17,7 +17,7 @@
 	///damage dealt per second
 	var/damage_caused = 0.5
 
-/obj/item/organ/zombie_infection/Initialize()
+/obj/item/organ/zombie_infection/Initialize(mapload)
 	. = ..()
 	if(iscarbon(loc))
 		Insert(loc)
@@ -27,7 +27,7 @@
 	GLOB.zombie_infection_list -= src
 	. = ..()
 
-/obj/item/organ/zombie_infection/Insert(var/mob/living/carbon/M, special = 0)
+/obj/item/organ/zombie_infection/Insert(mob/living/carbon/M, special = 0)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -141,10 +141,10 @@
 			return
 		GM.add_zombie(owner.mind)
 
-	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
-	if(!Z.evolution.owner)
-		Z.evolution.Grant(owner)
+//	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
+//	if(!Z.evolution.owner)
+//		Z.evolution.Grant(owner)
 
 	if(owner.handcuffed)
-		var/obj/O = owner.get_item_by_slot(SLOT_HANDCUFFED)
+		var/obj/O = owner.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 		qdel(O)

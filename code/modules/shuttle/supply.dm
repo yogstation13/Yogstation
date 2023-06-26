@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/area/shuttle/shuttle_area = place
 		for(var/trf in shuttle_area)
 			var/turf/T = trf
-			for(var/a in T.GetAllContents())
+			for(var/a in T.get_all_contents())
 				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
 					return FALSE
 	return TRUE

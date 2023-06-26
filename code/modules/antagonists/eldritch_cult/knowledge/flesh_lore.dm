@@ -14,10 +14,15 @@
 	. = ..()
 	var/obj/realknife = new /obj/item/gun/magic/hook/sickly_blade/flesh
 	user.put_in_hands(realknife)
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 
-/datum/eldritch_knowledge/base_flesh/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!ishuman(target) || target == user)
+/datum/eldritch_knowledge/base_flesh/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/base_flesh/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+//	SIGNAL_HANDLER godammit
+
+	if(!ishuman(target) || target == source)
 		return
 	var/mob/living/carbon/human/human_target = target
 
@@ -27,25 +32,24 @@
 	human_target.grab_ghost()
 
 	if(!human_target.mind || !human_target.client)
-		to_chat(user, span_warning("There is no soul connected to this body..."))
+		to_chat(source, span_warning("There is no soul connected to this body..."))
 		return
 
 	if(HAS_TRAIT(human_target, TRAIT_HUSK))
-		to_chat(user, span_warning("The body is too damaged to be revived this way!"))
+		to_chat(source, span_warning("The body is too damaged to be revived this way!"))
 		return
 
 	if(HAS_TRAIT(human_target, TRAIT_MINDSHIELD))
-		to_chat(user, span_warning("Their will cannot be malformed to obey your own!"))
+		to_chat(source, span_warning("Their will cannot be malformed to obey your own!"))
 		return
 
 	if(LAZYLEN(spooky_scaries) >= ghoul_amt)
-		to_chat(user, span_warning("Your Oath cannot support more ghouls on this plane!"))
+		to_chat(source, span_warning("Your Oath cannot support more ghouls on this plane!"))
 		return
 
 	LAZYADD(spooky_scaries, human_target)
-	log_game("[key_name_admin(human_target)] has become a ghoul, their master is [user.real_name]")
+	log_game("[key_name_admin(human_target)] has become a ghoul, their master is [source.real_name]")
 	//we change it to true only after we know they passed all the checks
-	. = TRUE
 	RegisterSignal(human_target,COMSIG_GLOB_MOB_DEATH, PROC_REF(remove_ghoul))
 	human_target.revive(full_heal = TRUE, admin_revive = TRUE)
 	human_target.setMaxHealth(25)
@@ -53,9 +57,8 @@
 	human_target.become_husk()
 	human_target.faction |= "heretics"
 	var/datum/antagonist/heretic_monster/heretic_monster = human_target.mind.add_antag_datum(/datum/antagonist/heretic_monster)
-	var/datum/antagonist/heretic/master = user.mind.has_antag_datum(/datum/antagonist/heretic)
+	var/datum/antagonist/heretic/master = source.mind.has_antag_datum(/datum/antagonist/heretic)
 	heretic_monster.set_owner(master)
-	return
 
 /datum/eldritch_knowledge/base_flesh/proc/remove_ghoul(datum/source)
 	var/mob/living/carbon/human/humie = source
@@ -95,8 +98,16 @@
 	route = PATH_FLESH
 	tier = TIER_MARK
 
-/datum/eldritch_knowledge/flesh_mark/on_mansus_grasp(atom/target, mob/user, proximity_flag, click_parameters)
+/datum/eldritch_knowledge/flesh_mark/on_gain(mob/user)
 	. = ..()
+	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
+
+/datum/eldritch_knowledge/flesh_mark/on_lose(mob/user)
+	UnregisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK)
+
+/datum/eldritch_knowledge/flesh_mark/proc/on_mansus_grasp(mob/living/source, mob/living/target)
+	SIGNAL_HANDLER
+
 	if(isliving(target))
 		. = TRUE
 		var/mob/living/living_target = target
@@ -111,12 +122,12 @@
 	route = PATH_FLESH
 	tier = TIER_2
 
-/datum/eldritch_knowledge/blood_siphon
+/datum/eldritch_knowledge/spell/blood_siphon
 	name = "Blood Siphon"
 	gain_text = "The meat of another being is a delicacy that many enjoy. The Gravekeeper's hunger may be decadent, but you will come to know the strength it yields."
 	desc = "A touch spell that drains a target's health and restores yours."
 	cost = 1
-	spells_to_add = list(/obj/effect/proc_holder/spell/targeted/touch/blood_siphon)
+	spell_to_add = /datum/action/cooldown/spell/pointed/blood_siphon
 	tier = TIER_2
 
 /datum/eldritch_knowledge/flesh_blade_upgrade

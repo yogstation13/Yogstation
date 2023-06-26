@@ -66,7 +66,7 @@
 			return list("mode" = RCD_WINDOWGRILLE, "delay" = 20, "cost" = 8)
 	return FALSE
 
-/obj/structure/grille/rcd_act(mob/user, var/obj/item/construction/rcd/the_rcd, passed_mode)
+/obj/structure/grille/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_DECONSTRUCT)
 			to_chat(user, span_notice("You deconstruct the grille."))
@@ -300,7 +300,7 @@
 	grille_type = /obj/structure/grille
 	broken_type = null
 
-/obj/structure/grille/broken/Initialize()
+/obj/structure/grille/broken/Initialize(mapload)
 	. = ..()
 	holes = (holes | 16)
 	update_icon()
@@ -313,7 +313,7 @@
 	broken_type = /obj/structure/grille/ratvar/broken
 	smooth = SMOOTH_FALSE
 
-/obj/structure/grille/ratvar/Initialize()
+/obj/structure/grille/ratvar/Initialize(mapload)
 	. = ..()
 	if(broken)
 		new /obj/effect/temp_visual/ratvar/grille/broken(get_turf(src))

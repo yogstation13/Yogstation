@@ -26,7 +26,7 @@
 	else
 		icon_state = "gigadrill"
 
-/obj/vehicle/ridden/gigadrill/Initialize()
+/obj/vehicle/ridden/gigadrill/Initialize(mapload)
 	. = ..()
 	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
 	D.vehicle_move_delay = 1

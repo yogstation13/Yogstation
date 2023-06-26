@@ -26,7 +26,7 @@
 	/// If the arrow is on fire
 	var/flaming = FALSE
 
-/obj/item/ammo_casing/reusable/arrow/Initialize()
+/obj/item/ammo_casing/reusable/arrow/Initialize(mapload)
 	RegisterSignal(src, COMSIG_ITEM_EMBEDDED, PROC_REF(on_embed))
 	RegisterSignal(src, COMSIG_ITEM_EMBED_TICK, PROC_REF(embed_tick))
 	var/list/new_parts
@@ -277,7 +277,7 @@
 		if(istype(M) && M.anti_magic_check(chargecost = 0))
 			BB.homing_away = TRUE // And there it goes!
 
-/obj/item/ammo_casing/reusable/arrow/magic/on_land(var/obj/item/projectile/old_projectile)
+/obj/item/ammo_casing/reusable/arrow/magic/on_land(obj/item/projectile/old_projectile)
 	dulled = TRUE
 	force = 3
 	throwforce = 0
@@ -351,7 +351,7 @@
 /obj/item/ammo_casing/reusable/arrow/syringe
 	syringe = /obj/item/reagent_containers/syringe/lethal/choral
 
-/obj/item/ammo_casing/reusable/arrow/flaming/Initialize()
+/obj/item/ammo_casing/reusable/arrow/flaming/Initialize(mapload)
 	..()
 	add_flame()
 
@@ -419,7 +419,7 @@
 	/// The shard currently in the arrow
 	var/obj/item/singularity_shard/shard
 
-/obj/item/ammo_casing/reusable/arrow/singulo/Initialize()
+/obj/item/ammo_casing/reusable/arrow/singulo/Initialize(mapload)
 	..()
 	// If the shard is a path, make a new one of that type and put it in the shard slot
 	if(ispath(shard))
@@ -523,7 +523,7 @@
 	/// The sound that plays per embed tick
 	var/tick_sound = 'sound/effects/sparks4.ogg'
 
-/obj/item/ammo_casing/reusable/arrow/energy/Initialize()
+/obj/item/ammo_casing/reusable/arrow/energy/Initialize(mapload)
 	RegisterSignal(src, COMSIG_ITEM_EMBED_REMOVAL, PROC_REF(on_embed_removal))
 	..()
 
