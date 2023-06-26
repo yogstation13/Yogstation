@@ -96,13 +96,13 @@
 
 	return data
 
-/obj/machinery/computer/holodeck/ui_act(action, params)
+/obj/machinery/computer/holodeck/ui_act(action, datum/params/params)
 	if(..())
 		return
 	. = TRUE
 	switch(action)
 		if("load_program")
-			var/program_to_load = text2path(params["type"])
+			var/program_to_load = params.get_subtype_path("type", /area/holodeck/rec_center)
 			if(!ispath(program_to_load))
 				return FALSE
 			var/valid = FALSE

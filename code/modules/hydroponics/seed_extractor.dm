@@ -183,18 +183,18 @@
 	. = list()
 	.["seeds"] = V
 
-/obj/machinery/seed_extractor/ui_act(action, params)
+/obj/machinery/seed_extractor/ui_act(action, datum/params/params)
 	if(..())
 		return
 
 	switch(action)
 		if("select")
-			var/item = params["item"]
-			if(piles[item] && length(piles[item]) > 0)
-				var/datum/weakref/WO = piles[item][1]
+			var/list/item = params.get_from_lookup("item", piles)
+			if(item && length(item) > 0)
+				var/datum/weakref/WO = item[1]
 				var/obj/item/seeds/O = WO.resolve()
 				if(O)
-					piles[item] -= WO
+					item -= WO
 					O.forceMove(drop_location())
 					. = TRUE
 					//to_chat(usr, span_notice("[src] clanks to life briefly before vending [prize.equipment_name]!"))

@@ -312,7 +312,7 @@
 		data["categories"] += list(cat)
 	return data
 
-/obj/machinery/biogenerator/ui_act(action, list/params)
+/obj/machinery/biogenerator/ui_act(action, datum/params/params)
 	if(..())
 		return
 
@@ -324,12 +324,11 @@
 			detach(usr)
 			return TRUE
 		if("create")
-			var/amount = text2num(params["amount"])
-			amount = clamp(amount, 1, 10)
+			var/amount = params.get_num("amount", 1, 10)
 			if(!amount)
 				return
-			var/id = params["id"]
-			if(!stored_research.researched_designs.Find(id))
+			var/id = params.get_text_in_list("id", stored_research.researched_designs)
+			if(!id)
 				stack_trace("ID did not map to a researched datum [id]")
 				return
 			var/datum/design/D = SSresearch.techweb_design_by_id(id)
@@ -340,5 +339,5 @@
 				return
 			return TRUE
 		if("select")
-			selected_cat = params["category"]
+			selected_cat = params.get_text_in_list("category", categories)
 			return TRUE
