@@ -258,17 +258,19 @@
 		if(COOLDOWN_FINISHED(src, startsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_on.ogg', 60)
 			COOLDOWN_START(src, startsoundcooldown, 1 SECONDS)
-		owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
-		owner.next_move_modifier *= 0.7
-		owner?.dna?.species?.action_speed_coefficient *= 0.7
+		if(syndicate_implant)//the toy doesn't do anything aside from the trail and the sound
+			owner.add_movespeed_modifier("spinalimplant", priority=100, multiplicative_slowdown=-1)
+			owner.next_move_modifier *= 0.7
+			owner?.dna?.species?.action_speed_coefficient *= 0.7
 		RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(move_react))
 	else
 		if(COOLDOWN_FINISHED(src, endsoundcooldown))
 			playsound(owner, 'sound/effects/spinal_implant_off.ogg', 70)
 			COOLDOWN_START(src, endsoundcooldown, 1 SECONDS)
-		owner.next_move_modifier /= 0.7
-		owner?.dna?.species?.action_speed_coefficient /= 0.7
-		owner.remove_movespeed_modifier("spinalimplant")
+		if(syndicate_implant)
+			owner.next_move_modifier /= 0.7
+			owner?.dna?.species?.action_speed_coefficient /= 0.7
+			owner.remove_movespeed_modifier("spinalimplant")
 		UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	on = !on
 	if(!silent)
@@ -313,6 +315,9 @@
 	F.color = usedcolor	//gotta add the flair
 
 /obj/item/organ/cyberimp/chest/spinalspeed/on_life()
+	if(!syndicate_implant)//the toy doesn't have a drawback
+		return
+
 	if(on)
 		if(owner.stat == UNCONSCIOUS || owner.stat == DEAD)
 			toggle(silent = TRUE)
@@ -345,6 +350,11 @@
 
 /obj/item/organ/cyberimp/chest/spinalspeed/emp_act(severity)
 	. = ..()
+	if(!syndicate_implant)//the toy has a different emp act
+		owner.adjust_dizzy(10 SECONDS / severity)
+		to_chat(owner, span_warning("Your spinal implant makes you feel queasy!"))
+		return
+
 	switch(severity)//i don't want emps to just be damage again, that's boring
 		if(EMP_HEAVY)
 			owner.set_drugginess(40)
@@ -362,6 +372,11 @@
 			time_on += 5
 			owner.adjustFireLoss(5)
 			to_chat(owner, span_danger("Your spinal implant malfunctions and you suddenly feel... wrong."))
+
+/obj/item/organ/cyberimp/chest/spinalspeed/toy
+	name = "glowy after-image trail implant"
+	desc = "Donk Co's first forray into the world of entertainment implants. Projects a series of after-images as you move, perfect for starting a dance party all on your own."
+	syndicate_implant = FALSE
 
 /obj/item/organ/cyberimp/chest/cooling_intake
 	name = "cooling intake"
