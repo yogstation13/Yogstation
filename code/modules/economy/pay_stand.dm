@@ -159,7 +159,7 @@
 			linked_card.set_holopay_fee(params.get_num("amount"))
 			force_fee = linked_card.holopay_fee
 		if("logo")
-			linked_card.set_holopay_logo(params.get_text_in_list("logo", available_logos))
+			linked_card.set_holopay_logo(params.get_text_in_list("logo", linked_card.available_logos))
 			shop_logo = linked_card.holopay_logo
 		if("pay")
 			ui.close()

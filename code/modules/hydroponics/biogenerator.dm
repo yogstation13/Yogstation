@@ -339,5 +339,5 @@
 				return
 			return TRUE
 		if("select")
-			selected_cat = params.get_text_in_list("category", categories)
+			selected_cat = params.get_text_in_list("category", show_categories)
 			return TRUE

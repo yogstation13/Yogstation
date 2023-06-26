@@ -57,7 +57,7 @@
 
 /// Returns the string with < and > stripped
 /datum/params/proc/get_stripped_text(param)
-	return strip_html_simple(_unsafe_params(param))
+	return strip_html_simple(_unsafe_params[param])
 
 /// Returns the requested parameter as an unsanitised message holder which
 /// can be used to pass messages back into TGUI without encoding and then

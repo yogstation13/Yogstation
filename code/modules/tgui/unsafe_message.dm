@@ -24,7 +24,7 @@
 	if(istext(other))
 		return _unsafe_message == other
 	var/datum/unsafe_message/other_message = other
-	if(istype(other))
+	if(istype(other_message))
 		return _unsafe_message == other_message.get_unsafe_message()
 
 /// Get the unsanitised message so that it can be passed into TGUI, which performs
