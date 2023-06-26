@@ -45,3 +45,9 @@
 
 /area/ruin/syndicate_icemoon/medical
 	name = "Syndicate Research Outpost Medical Bay"
+
+/area/ruin/syndicate_icemoon/warehouse
+	name = "Syndicate Research Outpost Warehouse"
+
+/area/ruin/syndicate_icemoon/shed
+	name = "Syndicate Research Outpost Shed"

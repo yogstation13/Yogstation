@@ -559,8 +559,9 @@
 	mask = /obj/item/clothing/mask/chameleon/gps
 	head = /obj/item/clothing/head/HoS/beret/syndicate
 	back = /obj/item/storage/backpack/satchel/leather
-	suit_store = /obj/item/gun/ballistic/revolver/detective
-	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1, /obj/item/ammo_box/c38=2, /obj/item/melee/classic_baton/telescopic=1)
+	suit_store = /obj/item/gun/ballistic/revolver
+	belt = /obj/item/storage/belt/sabre
+	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1, /obj/item/ammo_box/a357=2, /obj/item/melee/classic_baton/telescopic=1)
 
 //Ancient cryogenic sleepers. Players become NT crewmen from a hundred year old space station, now on the verge of collapse.
 /obj/effect/mob_spawn/human/oldsec
