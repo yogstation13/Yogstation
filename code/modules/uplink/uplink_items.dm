@@ -2430,6 +2430,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/donkco
 	restricted_roles = list("Roboticist", "Research Director")
 
+/datum/uplink_item/role_restricted/nuclear_ejection
+	name = "Emergency Ejection System"
+	desc = "An exosuit modification designed to quickly eject the pilot after the exosuit suffers catastrophic damage. \
+			Cybersun Industries is not liable for any injuries suffered during the ejection sequence."
+	item = /obj/item/mecha_parts/mecha_equipment/emergency_eject
+	cost = 3
+	manufacturer = /datum/corporation/traitor/cybersun
+	restricted_roles = list("Roboticist", "Research Director")
+
 /datum/uplink_item/role_restricted/haunted_magic_eightball
 	name = "Haunted Magic Eightball"
 	desc = "Most magic eightballs are toys with dice inside. Although identical in appearance to the harmless toys, this occult device reaches into the spirit world to find its answers. \
