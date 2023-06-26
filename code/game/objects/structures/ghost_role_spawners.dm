@@ -530,6 +530,38 @@
 	mask = /obj/item/clothing/mask/cigarette/cigar/havana
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate
+	name = "Syndicate Outpost Agent"
+	short_desc = "You are an agent at the Syndicate icemoon outpost."
+	flavour_text = "You are meant to work within the outpost and may take any role within the base you see fit."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base
+	assignedrole = "Icemoon Syndicate"
+
+/datum/outfit/syndicate_empty/icemoon_base
+	uniform = /obj/item/clothing/under/syndicate/coldres
+	suit = /obj/item/clothing/suit/armor/vest
+	l_pocket = /obj/item/gun/ballistic/automatic/pistol
+	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
+	mask = /obj/item/clothing/mask/gas/syndicate
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/commander
+	name = "Syndicate Outpost Commander"
+	short_desc = "You are the commander of the Syndicate icemoon outpost."
+	flavour_text = "Direct the agents working under your command to operate the base, and keep it secure. If the situation gets dire, activate the emergency self-destruct located in the control room."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base/captain
+	id_access_list = list(150,151)
+
+/datum/outfit/syndicate_empty/icemoon_base/captain
+	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
+	l_pocket = /obj/item/melee/transforming/energy/sword/saber/red
+	mask = /obj/item/clothing/mask/chameleon/gps
+	head = /obj/item/clothing/head/HoS/beret/syndicate
+	back = /obj/item/storage/backpack/satchel/leather
+	suit_store = /obj/item/gun/ballistic/revolver/detective
+	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1, /obj/item/ammo_box/c38=2, /obj/item/melee/classic_baton/telescopic=1)
+
 //Ancient cryogenic sleepers. Players become NT crewmen from a hundred year old space station, now on the verge of collapse.
 /obj/effect/mob_spawn/human/oldsec
 	name = "old cryogenics pod"
