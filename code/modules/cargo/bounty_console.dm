@@ -64,12 +64,12 @@
 	data["emagged"] = (obj_flags & EMAGGED)
 	return data
 
-/obj/machinery/computer/bounty/ui_act(action,params)
+/obj/machinery/computer/bounty/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
 		if("ClaimBounty")
-			var/datum/bounty/cashmoney = locate(params["bounty"]) in get_list_to_use()
+			var/datum/bounty/cashmoney = params.locate_param("bounty", get_list_to_use())
 			if(cashmoney)
 				cashmoney.claim(usr)
 			return TRUE

@@ -548,7 +548,7 @@
 			)
 		)
 
-/obj/machinery/portable_atmospherics/canister/ui_act(action, params)
+/obj/machinery/portable_atmospherics/canister/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -570,21 +570,21 @@
 				. = TRUE
 		if("pressure")
 			var/pressure
-			if(pressure == "reset")
+			if(params.is_param_equal_to("pressure", "reset"))
 				pressure = CAN_DEFAULT_RELEASE_PRESSURE
 				. = TRUE
-			else if(pressure == "min")
+			else if(params.is_param_equal_to("pressure", "min"))
 				pressure = can_min_release_pressure
 				. = TRUE
-			else if(pressure == "max")
+			else if(params.is_param_equal_to("pressure", "max"))
 				pressure = can_max_release_pressure
 				. = TRUE
-			else if(pressure == "input")
+			else if(params.is_param_equal_to("pressure", "input"))
 				pressure = input("New release pressure ([can_min_release_pressure]-[can_max_release_pressure] kPa):", name, release_pressure) as num|null
 				if(!isnull(pressure) && !..())
 					. = TRUE
-			else if(text2num(pressure) != null)
-				pressure = text2num(pressure)
+			else if(params.get_num("pressure") != null)
+				pressure = params.get_num("pressure")
 				. = TRUE
 			if(.)
 				release_pressure = clamp(round(pressure), can_min_release_pressure, can_max_release_pressure)
@@ -618,8 +618,7 @@
 			release_log += logmsg
 			. = TRUE
 		if("timer")
-			var/change = params["change"]
-			switch(change)
+			switch(params.get_sanitised_text("change"))
 				if("reset")
 					timer_set = default_timer_set
 				if("decrease")

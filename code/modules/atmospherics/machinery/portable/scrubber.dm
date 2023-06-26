@@ -117,7 +117,7 @@
 		else if(on && holding)
 			investigate_log("[key_name(user)] started a transfer into [holding].<br>", INVESTIGATE_ATMOS)
 
-/obj/machinery/portable_atmospherics/scrubber/ui_act(action, params)
+/obj/machinery/portable_atmospherics/scrubber/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -129,7 +129,7 @@
 				replace_tank(usr, FALSE)
 				. = TRUE
 		if("toggle_filter")
-			scrubbing ^= gas_id2path(params["val"])
+			scrubbing ^= gas_id2path(params.get_sanitised_text("val"))
 			. = TRUE
 	update_icon()
 

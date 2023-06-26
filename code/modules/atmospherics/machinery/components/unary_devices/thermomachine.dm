@@ -155,7 +155,7 @@
 	data["pressure"] = air1.return_pressure()
 	return data
 
-/obj/machinery/atmospherics/components/unary/thermomachine/ui_act(action, params)
+/obj/machinery/atmospherics/components/unary/thermomachine/ui_act(action, datum/params/params)
 
 	if(..())
 		return
@@ -167,17 +167,16 @@
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("target")
-			var/target = params["target"]
-			var/adjust = text2num(params["adjust"])
-			if(target == "input")
+			var/target
+			if(params.is_param_equal_to("target", "input"))
 				target = input("Set new target ([min_temperature]-[max_temperature] K):", name, target_temperature) as num|null
 				if(!isnull(target))
 					. = TRUE
-			else if(adjust)
-				target = target_temperature + adjust
+			else if(params.get_num("adjust"))
+				target = target_temperature + params.get_num("adjust")
 				. = TRUE
-			else if(text2num(target) != null)
-				target = text2num(target)
+			else if(params.get_num("target") != null)
+				target = params.get_num("target")
 				. = TRUE
 			if(.)
 				target_temperature = clamp(target, min_temperature, max_temperature)

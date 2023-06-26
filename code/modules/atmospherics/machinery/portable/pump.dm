@@ -105,7 +105,7 @@
 		data["holding"] = null
 	return data
 
-/obj/machinery/portable_atmospherics/pump/ui_act(action, params)
+/obj/machinery/portable_atmospherics/pump/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -130,21 +130,21 @@
 			. = TRUE
 		if("pressure")
 			var/pressure
-			if(pressure == "reset")
+			if(params.is_param_equal_to("pressure", "reset"))
 				pressure = PUMP_DEFAULT_PRESSURE
 				. = TRUE
-			else if(pressure == "min")
+			else if(params.is_param_equal_to("pressure", "min"))
 				pressure = PUMP_MIN_PRESSURE
 				. = TRUE
-			else if(pressure == "max")
+			else if(params.is_param_equal_to("pressure", "max"))
 				pressure = PUMP_MAX_PRESSURE
 				. = TRUE
-			else if(pressure == "input")
+			else if(params.is_param_equal_to("pressure", "input"))
 				pressure = input("New release pressure ([PUMP_MIN_PRESSURE]-[PUMP_MAX_PRESSURE] kPa):", name, pump.target_pressure) as num|null
 				if(!isnull(pressure) && !..())
 					. = TRUE
-			else if(text2num(pressure) != null)
-				pressure = text2num(pressure)
+			else if(params.get_num("pressure") != null)
+				pressure = params.get_num("pressure")
 				. = TRUE
 			if(.)
 				pump.target_pressure = clamp(round(pressure), PUMP_MIN_PRESSURE, PUMP_MAX_PRESSURE)
