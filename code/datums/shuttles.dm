@@ -371,12 +371,20 @@
 
 /datum/map_template/shuttle/emergency/cargo
 	suffix = "cargo"
-	name = "O.C.K. emergency shuttle"
+	name = "O.C.K. Emergency Shuttle"
 	description = "The Overnight Cargo-transport K-Class is an OSHA compliant shuttle complete with rails and warning lines to protect her crew from the cargo they are transporting.\
 	Seats and a brig space have been retrofitted to help on its current mission of saving you from the station.\
 	The higher ups complain this shuttle is very \"\ meta\"\ and \"\ increases greytide levels\"\ whatever that means."
 	admin_notes = "Has a chance to have (traitor) maint loot, you can always delete it when its at CC"
 	credit_cost = 7000
+
+/datum/map_template/shuttle/emergency/mafia
+	suffix = "mafia"
+	name = "Droni Fedora"
+	description = "I'm gonna make you an offer you can't refuse, the drone mafia has offered their 'services' to shuttle the crew to the fishes. However, they might backstab you or join the crew instead. Its just bidness after all."
+	admin_notes = "has 5 syndidrones and a bardrone. The syndidrones should not immediately shoot up anyone according to their lawset."
+	emag_buy = TRUE
+	credit_cost = 115000//service fee
 
 /datum/map_template/shuttle/emergency/supermatter
 	suffix = "supermatter"
