@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(request_list)
 	if(..())
 		return
 	var/datum/bank_account/request_target
-	if(params.get_boolean("request"))
+	if(params.is_truthy("request"))
 		for(var/datum/station_request/i in GLOB.request_list)
 			if(params.is_param_equal_to("request", "[i.req_number]"))
 				active_request = i

@@ -180,7 +180,7 @@
 	data["soundVolume"] = temp_pod.soundVolume //Admin sound to play when the pod leaves
 	return data
 
-/datum/centcom_podlauncher/ui_act(action, params)
+/datum/centcom_podlauncher/ui_act(action, datum/params/params)
 	if(..())
 		return
 	var/mob/exploit_victim = holder.mob
@@ -199,11 +199,11 @@
 				SSblackbox.record_feedback("tally", "admin_verb", 1, "Toggle Build Mode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 			. = TRUE
 		if("loadDataFromPreset")
-			var/list/savedData = params["payload"]
+			var/datum/params/savedData = params.get_param_dict("payload")
 			loadData(savedData)
 			. = TRUE
 		if("switchBay")
-			bayNumber = params["bayNumber"]
+			bayNumber = params.get_text_in_list("bayNumber", GLOB.supplypod_loading_bays)
 			refreshBay()
 			. = TRUE
 		if("pickDropoffTurf") //Enters a mode that lets you pick the dropoff location for reverse pods
@@ -399,7 +399,7 @@
 				indicator.alpha = 0
 			. = TRUE
 		if("reverseOption")
-			var/reverseOption = params["reverseOption"]
+			var/reverseOption = params.get_text_in_list("reverseOption", list("Mobs", "Objects", "Anchored", "Underfloor", "Wallmounted", "Floors", "Walls", "Mecha"))
 			temp_pod.reverse_option_list[reverseOption] = !temp_pod.reverse_option_list[reverseOption]
 			. = TRUE
 		if("effectTarget") //Toggle: Launch at a specific mob (instead of at whatever turf you click on). Used for the supplypod smite
@@ -416,13 +416,13 @@
 
 		////////////////////////////TIMER DELAYS//////////////////
 		if("editTiming") //Change the different timers relating to the pod
-			var/delay = params["timer"]
-			var/value = params["value"]
-			var/reverse = params["reverse"]
+			var/delay = params.get_text_in_list("timer", list(POD_TRANSIT, POD_FALLING, POD_OPENING, POD_LEAVING))
+			var/value = params.get_num("value")
+			var/reverse = params.as_boolean("reverse")
 			if (reverse)
-				temp_pod.reverse_delays[delay] = value * 10
+				temp_pod.reverse_delays[delay] = value SECONDS
 			else
-				temp_pod.delays[delay] = value * 10
+				temp_pod.delays[delay] = value SECONDS
 			. = TRUE
 		if("resetTiming")
 			temp_pod.delays = list(POD_TRANSIT = 20, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
@@ -500,7 +500,7 @@
 		//Style is a value that is used to keep track of what the pod is supposed to look like. It can be used with the GLOB.podstyles list (in cargo.dm defines)
 		//as a way to get the proper icon state, name, and description of the pod.
 		if("tabSwitch")
-			tabIndex = params["tabIndex"]
+			tabIndex = params.get_num("tabIndex", 0, 2)
 			refreshView()
 			. = TRUE
 		if("refreshView")
@@ -511,7 +511,7 @@
 			renderLighting = !renderLighting
 			. = TRUE
 		if("setStyle")
-			var/chosenStyle = params["style"]
+			var/chosenStyle = params.get_num("style")
 			temp_pod.setStyle(chosenStyle+1)
 			. = TRUE
 		if("refresh") //Refresh the Pod bay. User should press this if they spawn something new in the centcom bay. Automatically called whenever the user launches a pod
@@ -802,44 +802,61 @@
 		for (var/mob/living/M in whoDyin)
 			admin_ticket_log(M, "[key_name_admin(usr)] [msg]")
 
-/datum/centcom_podlauncher/proc/loadData(list/dataToLoad)
-	bayNumber = dataToLoad["bayNumber"]
-	customDropoff = dataToLoad["customDropoff"]
-	renderLighting = dataToLoad["renderLighting"]
-	launchClone = dataToLoad["launchClone"] //Do we launch the actual items in the bay or just launch clones of them?
-	launchRandomItem = dataToLoad["launchRandomItem"] //Do we launch a single random item instead of everything on the turf?
-	launchChoice = dataToLoad["launchChoice"] //Launch turfs all at once (0), ordered (1), or randomly(1)
-	explosionChoice = dataToLoad["explosionChoice"] //An explosion that occurs when landing. Can be no explosion (0), custom explosion (1), or maxcap (2)
-	damageChoice = dataToLoad["damageChoice"] //Damage that occurs to any mob under the pod when it lands. Can be no damage (0), custom damage (1), or gib+5000dmg (2)
-	temp_pod.delays = dataToLoad["delays"]
-	temp_pod.reverse_delays = dataToLoad["rev_delays"]
-	temp_pod.custom_rev_delay = dataToLoad["custom_rev_delay"]
-	temp_pod.setStyle(dataToLoad["styleChoice"])  //Style is a variable that keeps track of what the pod is supposed to look like. It acts as an index to the GLOB.podstyles list in cargo.dm defines to get the proper icon/name/desc for the pod.
+/datum/centcom_podlauncher/proc/loadData(datum/params/dataToLoad)
+	bayNumber = dataToLoad.get_sanitised("bayNumber")
+	customDropoff = dataToLoad.as_boolean("customDropoff")
+	renderLighting = dataToLoad.as_boolean("renderLighting")
+	launchClone = dataToLoad.as_boolean("launchClone") //Do we launch the actual items in the bay or just launch clones of them?
+	launchRandomItem = dataToLoad.as_boolean("launchRandomItem") //Do we launch a single random item instead of everything on the turf?
+	launchChoice = dataToLoad.get_num("launchChoice", 0, 2) //Launch turfs all at once (0), ordered (1), or randomly(2)
+	explosionChoice = dataToLoad.get_num("explosionChoice", 0, 2) //An explosion that occurs when landing. Can be no explosion (0), custom explosion (1), or maxcap (2)
+	damageChoice = dataToLoad.get_num("damageChoice", 0, 2) //Damage that occurs to any mob under the pod when it lands. Can be no damage (0), custom damage (1), or gib+5000dmg (2)
+	var/datum/params/delay_params = dataToLoad.get_param_dict("delays")
+	temp_pod.delays[POD_TRANSIT] = delay_params.get_num(POD_TRANSIT)
+	temp_pod.delays[POD_FALLING] = delay_params.get_num(POD_FALLING)
+	temp_pod.delays[POD_OPENING] = delay_params.get_num(POD_OPENING)
+	temp_pod.delays[POD_LEAVING] = delay_params.get_num(POD_LEAVING)
+	var/datum/params/rev_delay_params = dataToLoad.get_param_dict()
+	temp_pod.reverse_delays[POD_TRANSIT] = rev_delay_params.get_num(POD_TRANSIT)
+	temp_pod.reverse_delays[POD_FALLING] = rev_delay_params.get_num(POD_FALLING)
+	temp_pod.reverse_delays[POD_OPENING] = rev_delay_params.get_num(POD_OPENING)
+	temp_pod.reverse_delays[POD_LEAVING] = rev_delay_params.get_num(POD_LEAVING)
+
+	temp_pod.custom_rev_delay = dataToLoad.as_boolean("custom_rev_delay")
+	temp_pod.setStyle(dataToLoad.get_text_in_list("styleChoice", GLOB.podstyles)  //Style is a variable that keeps track of what the pod is supposed to look like. It acts as an index to the GLOB.podstyles list in cargo.dm defines to get the proper icon/name/desc for the pod.
 	//temp_pod.effectShrapnel = dataToLoad["effectShrapnel"] //If true, creates a cloud of shrapnel of a decided type and magnitude on landing
 	//temp_pod.shrapnel_type = text2path(dataToLoad["shrapnelType"])
 	//temp_pod.shrapnel_magnitude = dataToLoad["shrapnelMagnitude"]
-	temp_pod.effectStun  = dataToLoad["effectStun"]//If true, stuns anyone under the pod when it launches until it lands, forcing them to get hit by the pod. Devilish!
-	temp_pod.effectLimb  = dataToLoad["effectLimb"]//If true, pops off a limb (if applicable) from anyone caught under the pod when it lands
-	temp_pod.effectOrgans = dataToLoad["effectOrgans"]//If true, yeets the organs out of any bodies caught under the pod when it lands
-	temp_pod.bluespace = dataToLoad["effectBluespace"] //If true, the pod deletes (in a shower of sparks) after landing
-	temp_pod.effectStealth = dataToLoad["effectStealth"]//If true, a target icon isn't displayed on the turf where the pod will land
-	temp_pod.effectQuiet = dataToLoad["effectQuiet"] //The female sniper. If true, the pod makes no noise (including related explosions, opening sounds, etc)
-	temp_pod.effectMissile = dataToLoad["effectMissile"] //If true, the pod deletes the second it lands. If you give it an explosion, it will act like a missile exploding as it hits the ground
-	temp_pod.effectCircle = dataToLoad["effectCircle"] //If true, allows the pod to come in at any angle. Bit of a weird feature but whatever its here
-	effectBurst = dataToLoad["effectBurst"] //IOf true, launches five pods at once (with a very small delay between for added coolness), in a 3x3 area centered around the area
-	temp_pod.reversing = dataToLoad["effectReverse"] //If true, the pod will not send any items. Instead, after opening, it will close again (picking up items/mobs) and fly back to centcom
-	temp_pod.reverse_option_list = dataToLoad["reverse_option_list"]
-	specificTarget = dataToLoad["effectTarget"] //Launches the pod at the turf of a specific mob target, rather than wherever the user clicked. Useful for smites
-	temp_pod.adminNamed = dataToLoad["effectName"] //Determines whether or not the pod has been named by an admin. If true, the pod's name will not get overridden when the style of the pod changes (changing the style of the pod normally also changes the name+desc)
-	temp_pod.name = dataToLoad["podName"]
-	temp_pod.desc = dataToLoad["podDesc"]
-	effectAnnounce = dataToLoad["effectAnnounce"]
-	numTurfs = dataToLoad["numObjects"] //Counts the number of turfs that contain a launchable object in the centcom supplypod bay
-	temp_pod.fallingSound = dataToLoad["fallingSound"]//Admin sound to play as the pod falls
-	temp_pod.landingSound = dataToLoad["landingSound"]//Admin sound to play when the pod lands
-	temp_pod.openingSound = dataToLoad["openingSound"]//Admin sound to play when the pod opens
-	temp_pod.leavingSound = dataToLoad["leavingSound"]//Admin sound to play when the pod leaves
-	temp_pod.soundVolume = dataToLoad["soundVolume"] //Admin sound to play when the pod leaves
+	temp_pod.effectStun  = dataToLoad.as_boolean("effectStun") //If true, stuns anyone under the pod when it launches until it lands, forcing them to get hit by the pod. Devilish!
+	temp_pod.effectLimb  = dataToLoad.as_boolean("effectLimb") //If true, pops off a limb (if applicable) from anyone caught under the pod when it lands
+	temp_pod.effectOrgans = dataToLoad.as_boolean("effectOrgans") //If true, yeets the organs out of any bodies caught under the pod when it lands
+	temp_pod.bluespace = dataToLoad.as_boolean("effectBluespace") //If true, the pod deletes (in a shower of sparks) after landing
+	temp_pod.effectStealth = dataToLoad.as_boolean("effectStealth") //If true, a target icon isn't displayed on the turf where the pod will land
+	temp_pod.effectQuiet = dataToLoad.as_boolean("effectQuiet") //The female sniper. If true, the pod makes no noise (including related explosions, opening sounds, etc)
+	temp_pod.effectMissile = dataToLoad.as_boolean("effectMissile") //If true, the pod deletes the second it lands. If you give it an explosion, it will act like a missile exploding as it hits the ground
+	temp_pod.effectCircle = dataToLoad.as_boolean("effectCircle") //If true, allows the pod to come in at any angle. Bit of a weird feature but whatever its here
+	effectBurst = dataToLoad.as_boolean("effectBurst") // If true, launches five pods at once (with a very small delay between for added coolness), in a 3x3 area centered around the area
+	temp_pod.reversing = dataToLoad.as_boolean("effectReverse") //If true, the pod will not send any items. Instead, after opening, it will close again (picking up items/mobs) and fly back to centcom
+	var/datum/params/reverse_option_params = dataToLoad.get_param_dict("reverse_option_list")
+	temp_pod.reverse_option_list = list(
+		"Mobs" = reverse_option_params.as_boolean("Mobs"), 
+		"Objects" = reverse_option_params.as_boolean("Objects"),
+		"Anchored" = reverse_option_params.as_boolean("Anchored"),
+		"Underfloor" = reverse_option_params.as_boolean("Underfloor"),
+		"Wallmounted" = reverse_option_params.as_boolean("Wallmounted"),
+		"Floors" = reverse_option_params.as_boolean("Floors"),
+		"Walls" = reverse_option_params.as_boolean("Walls"), 
+		"Mecha" = reverse_option_params.as_boolean("Mecha")
+	)
+	temp_pod.adminNamed = dataToLoad.as_boolean("effectName") //Determines whether or not the pod has been named by an admin. If true, the pod's name will not get overridden when the style of the pod changes (changing the style of the pod normally also changes the name+desc)
+	temp_pod.name = dataToLoad.get_sanitised_text("podName")
+	temp_pod.desc = dataToLoad.get_sanitised_text("podDesc")
+	effectAnnounce = dataToLoad.as_boolean("effectAnnounce")
+	temp_pod.fallingSound = dataToLoad.get_sanitised_text("fallingSound") //Admin sound to play as the pod falls
+	temp_pod.landingSound = dataToLoad.get_sanitised_text("landingSound") //Admin sound to play when the pod lands
+	temp_pod.openingSound = dataToLoad.get_sanitised_text("openingSound") //Admin sound to play when the pod opens
+	temp_pod.leavingSound = dataToLoad.get_sanitised_text("leavingSound") //Admin sound to play when the pod leaves
+	temp_pod.soundVolume = dataToLoad.get_num("soundVolume") //Admin sound to play when the pod leaves
 	picking_dropoff_turf = FALSE
 	launcherActivated = FALSE
 	updateCursor()

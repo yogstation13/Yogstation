@@ -378,7 +378,7 @@
 			connected_core.selected_fuel = null
 			var/fuel_mix = "nothing"
 			var/datum/hfr_fuel/fuel = null
-			if(params.get_boolean("mode"))
+			if(params.is_truthy("mode"))
 				fuel = params.get_from_lookup("mode", GLOB.hfr_fuels_list)
 			if(fuel)
 				connected_core.selected_fuel = fuel

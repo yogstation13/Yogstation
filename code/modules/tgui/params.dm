@@ -28,8 +28,12 @@
 
 /// Returns the requested parameter as either a true or false value depending
 /// on the truthyness of the parameter.
-/datum/params/proc/get_boolean(param)
+/datum/params/proc/is_truthy(param)
 	return !!_unsafe_params[param]
+
+/// Returns true if the parameter is "1" (TRUE, but as a string), false otherwise
+/datum/params/proc/as_boolean(param) // Not using get_boolean due to that name being the original of is_truthy
+	return _unsafe_params[param] == "1"
 
 // =============================
 // Text Handling

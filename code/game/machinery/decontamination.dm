@@ -410,7 +410,7 @@
 		if("Release")
 			var/desired = 0
 
-			if (params.get_boolean("amount"))
+			if (params.is_truthy("amount"))
 				desired = params.get_num("amount")
 			else
 				desired = input("How many items?", "How many items would you like to take out?", 1) as null|num

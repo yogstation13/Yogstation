@@ -100,7 +100,7 @@
 			log_game("[key_name(operator)] toggled [toggled ? "On" : "Off"] [src] at [AREACOORD(src)].")
 			. = TRUE
 		if("setname")
-			if(params.get_boolean("value"))
+			if(params.is_truthy("value"))
 				if(params.get_encoded_text("value") > 32)
 					to_chat(operator, span_warning("Error: Machine hostname too long!"))
 					playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
@@ -110,7 +110,7 @@
 					log_game("[key_name(operator)] has changed the hostname for [src] at [AREACOORD(src)] to [display_name.get_sanitised_text()].")
 					. = TRUE
 		if("network")
-			if(params.get_boolean("value"))
+			if(params.is_truthy("value"))
 				if(length(params.get_sanitised_text("value")) > 15)
 					to_chat(operator, span_warning("Error: Network name too long!"))
 					playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)

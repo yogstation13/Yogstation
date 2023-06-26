@@ -127,7 +127,7 @@
 		))
 	return data
 
-/obj/machinery/computer/cargo/ui_act(action, params, datum/tgui/ui)
+/obj/machinery/computer/cargo/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -163,8 +163,8 @@
 				say("The supply shuttle has been loaned to CentCom.")
 				. = TRUE
 		if("add")
-			var/id = text2path(params["id"])
-			var/self_paid = text2num(params["self_paid"])
+			var/id = params.get_subtype_path("id", /datum/supply_pack)
+			var/self_paid = params.as_boolean("self_paid")
 			var/datum/supply_pack/pack = SSshuttle.supply_packs[id]
 			if(!istype(pack))
 				return
@@ -211,7 +211,7 @@
 					say("Order processed. The price will be charged to [account.account_holder]'s bank account on delivery.")
 			. = TRUE
 		if("remove")
-			var/id = text2num(params["id"])
+			var/id = params.get_num("id")
 			for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
 				if(SO.id == id)
 					SSshuttle.shoppinglist -= SO
@@ -221,7 +221,7 @@
 			SSshuttle.shoppinglist.Cut()
 			. = TRUE
 		if("approve")
-			var/id = text2num(params["id"])
+			var/id = params.get_num("id")
 			for(var/datum/supply_order/SO in SSshuttle.requestlist)
 				if(SO.id == id)
 					SSshuttle.requestlist -= SO
@@ -229,7 +229,7 @@
 					. = TRUE
 					break
 		if("deny")
-			var/id = text2num(params["id"])
+			var/id = params.get_num("id")
 			for(var/datum/supply_order/SO in SSshuttle.requestlist)
 				if(SO.id == id)
 					SSshuttle.requestlist -= SO
