@@ -393,28 +393,31 @@
 		data["thresholds"] = thresholds
 	return data
 
-/obj/machinery/airalarm/ui_act(action, params)
+/obj/machinery/airalarm/ui_act(action, datum/params/params)
 	if(..() || buildstage != 2)
 		return
 	if((locked && !usr.has_unlimited_silicon_privilege) || (usr.has_unlimited_silicon_privilege && aidisabled))
 		return
-	var/device_id = params["id_tag"]
+	var/area/A = get_area(src)
+	var/device_id = params.get_text_in_list("id_tag", A.air_scrub_names) || params.get_text_in_list("id_tag", A.air_vent_names)
 	switch(action)
 		if("lock")
 			if(usr.has_unlimited_silicon_privilege && !wires.is_cut(WIRE_IDSCAN))
 				locked = !locked
 				. = TRUE
-		if("power", "toggle_filter", "widenet", "scrubbing")
-			send_signal(device_id, list("[action]" = params["val"]), usr)
+		if("toggle_filter")
+			send_signal(device_id, list("toggle_filter" = params.get_sanitised_text("val")))
+		if("power", "widenet", "scrubbing")
+			send_signal(device_id, list("[action]" = params.get_num("val")), usr)
 			. = TRUE
 		if("excheck")
-			send_signal(device_id, list("checks" = text2num(params["val"])^1), usr)
+			send_signal(device_id, list("checks" = params.get_num("val")^1), usr)
 			. = TRUE
 		if("incheck")
-			send_signal(device_id, list("checks" = text2num(params["val"])^2), usr)
+			send_signal(device_id, list("checks" = params.get_num("val")^2), usr)
 			. = TRUE
 		if("set_external_pressure", "set_internal_pressure")
-			var/target = params["value"]
+			var/target = params.get_num("value")
 			if(!isnull(target))
 				send_signal(device_id, list("[action]" = target), usr)
 				. = TRUE
@@ -425,11 +428,9 @@
 			send_signal(device_id, list("reset_internal_pressure"), usr)
 			. = TRUE
 		if("threshold")
-			var/env = params["env"]
-			if(text2path(env))
-				env = text2path(env)
+			var/env = params.get_subtype_path("env", /datum/gas) || params.get_sanitised_text("env")
 
-			var/name = params["var"]
+			var/name = params.get_text_in_list("var", list("min1", "min2", "max1", "max2"))
 			var/datum/tlv/tlv = TLV[env]
 			if(isnull(tlv))
 				return
@@ -443,7 +444,7 @@
 				investigate_log(" treshold value for [env]:[name] was set to [value] by [key_name(usr)]",INVESTIGATE_SUPERMATTER) // yogs - Makes supermatter invest useful
 				. = TRUE
 		if("mode")
-			mode = text2num(params["mode"])
+			mode = params.get_num("mode")
 			investigate_log("was turned to [get_mode_name(mode)] mode by [key_name(usr)]",INVESTIGATE_ATMOS)
 			investigate_log("was turned to [get_mode_name(mode)] mode by [key_name(usr)]",INVESTIGATE_SUPERMATTER) // yogs - Makes supermatter invest useful
 			apply_mode(usr)

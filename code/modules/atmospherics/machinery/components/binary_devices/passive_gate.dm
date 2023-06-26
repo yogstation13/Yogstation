@@ -121,7 +121,7 @@ Passive gate is similar to the regular pump except:
 	data["max_pressure"] = round(MAX_OUTPUT_PRESSURE)
 	return data
 
-/obj/machinery/atmospherics/components/binary/passive_gate/ui_act(action, params)
+/obj/machinery/atmospherics/components/binary/passive_gate/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -132,16 +132,16 @@ Passive gate is similar to the regular pump except:
 			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
 		if("pressure")
-			var/pressure = params["pressure"]
-			if(pressure == "max")
+			var/pressure
+			if(params.is_param_equal_to("pressure", "max"))
 				pressure = MAX_OUTPUT_PRESSURE
 				. = TRUE
-			else if(pressure == "input")
+			else if(params.is_param_equal_to("pressure", "input"))
 				pressure = input("New output pressure (0-[MAX_OUTPUT_PRESSURE] kPa):", name, target_pressure) as num|null
 				if(!isnull(pressure) || !..())
 					. = TRUE
-			else if(text2num(pressure) != null)
-				pressure = text2num(pressure)
+			else if(params.get_num("pressure"))
+				pressure = params.get_num("pressure")
 				. = TRUE
 			if(.)
 				target_pressure = clamp(pressure, 0, ONE_ATMOSPHERE*100)

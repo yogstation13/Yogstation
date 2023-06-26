@@ -98,7 +98,7 @@
 	data["max_pressure"] = round(ONE_ATMOSPHERE*100)
 	return data
 
-/obj/machinery/atmospherics/components/binary/pressure_valve/ui_act(action, params)
+/obj/machinery/atmospherics/components/binary/pressure_valve/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -108,11 +108,11 @@
 			. = TRUE
 		if("pressure")
 			var/pressure = params["pressure"]
-			if(pressure == "max")
+			if(params.is_param_equal_to("pressure", "max"))
 				pressure = ONE_ATMOSPHERE*100
 				. = TRUE
-			else if(text2num(pressure) != null)
-				pressure = text2num(pressure)
+			else if(params.get_num("pressure"))
+				pressure = params.get_num("pressure")
 				. = TRUE
 			if(.)
 				target_pressure = clamp(pressure, 0, ONE_ATMOSPHERE*100)

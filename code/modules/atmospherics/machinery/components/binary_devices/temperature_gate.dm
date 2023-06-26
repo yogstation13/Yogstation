@@ -90,7 +90,7 @@
 	data["max_temperature"] = round(max_temperature)
 	return data
 
-/obj/machinery/atmospherics/components/binary/temperature_gate/ui_act(action, params)
+/obj/machinery/atmospherics/components/binary/temperature_gate/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -99,12 +99,12 @@
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("temperature")
-			var/temperature = params["temperature"]
-			if(temperature == "max")
+			var/temperature
+			if(params.is_param_equal_to("temperature", "max"))
 				temperature = max_temperature
 				. = TRUE
-			else if(text2num(temperature) != null)
-				temperature = text2num(temperature)
+			else if(params.get_num("temperature"))
+				temperature = params.get_num("temperature")
 				. = TRUE
 			if(.)
 				target_temperature = clamp(minimum_temperature, temperature, max_temperature)
