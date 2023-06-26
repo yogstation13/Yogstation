@@ -1,0 +1,7 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "adds a whole bunch of new mechanics to ultra violence"
+  - tweak: "ultra violence now makes you die instantly in hard crit instead of being immune to it"
+  - tweak: "projectiles ricocheted off of coins are faster"
+  - bugfix: "makes coin ricochets able to actually hit their intended target when off-center"
