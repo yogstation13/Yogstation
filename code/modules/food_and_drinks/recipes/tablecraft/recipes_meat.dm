@@ -100,7 +100,7 @@
 	name = "Pig in a Blanket"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/bun = 1,
-		/obj/item/reagent_containers/food/snacks/butter = 1,
+		/obj/item/reagent_containers/food/snacks/butterslice = 1,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/pigblanket
@@ -142,7 +142,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/stewedsoymeat
 	subcategory = CAT_MEAT
-	
+
 /datum/crafting_recipe/food/meatclown
 	name = "Meat Clown"
 	reqs = list(
