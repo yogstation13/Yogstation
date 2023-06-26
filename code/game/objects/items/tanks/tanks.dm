@@ -22,11 +22,11 @@
 	/// The volume of this tank. Among other things gas tank explosions (including TTVs) scale off of this. Be sure to account for that if you change this or you will break ~~toxins~~ordinance.
 	var/volume = 70
 	/// Mob that is currently breathing from the tank.
-	var/mob/living/carbon/breathing_mob = null
+	var/mob/living/carbon/breathing_mob
 	/// Attached igniter assembly, used to ignite its contents
-	var/obj/item/assembly_holder/tank_assembly = null
+	var/obj/item/assembly_holder/tank_assembly
 	/// Whether or not it can explode when it receives a signal
-	var/status = FALSE
+	var/bomb_status = FALSE
 
 /obj/item/tank/dropped(mob/living/user, silent)
 	. = ..()
@@ -86,7 +86,7 @@
 		qdel(air_contents)
 
 	if(tank_assembly)
-		tank_assembly.forceMove(drop_location())
+		qdel(tank_assembly)
 		tank_assembly.master = null
 		tank_assembly = null
 
@@ -320,25 +320,26 @@
 		add_overlay("bomb_assembly")
 
 /obj/item/tank/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, span_notice("You disassemble the bomb!"))
+	user.balloon_alert(user, "disassembled")
+	I.play_tool_sound(src)
 	if(tank_assembly)
 		tank_assembly.forceMove(drop_location())
 		tank_assembly.master = null
 		tank_assembly = null
 	throw_speed = initial(throw_speed)
-	status = FALSE
+	bomb_status = FALSE
 	update_icon()
 	return TRUE
 
 /obj/item/tank/welder_act(mob/living/user, obj/item/I)
 	. = FALSE
-	if(status)
-		to_chat(user, span_notice("[src] already has a pressure hole!"))
+	if(bomb_status)
+		user.balloon_alert(user, "already welded!")
 		return
 	if(!I.tool_start_check(user, amount=0))
 		return
 	if(I.use_tool(src, user, 0, volume=40))
-		status = TRUE
+		bomb_status = TRUE
 		log_bomber(user, "welded a single tank bomb,", src, "| Temp: [air_contents.return_temperature()-T0C]")
 		to_chat(user, span_notice("A pressure hole has been bored to [src]'s valve. \The [src] can now be ignited."))
 		add_fingerprint(user)
@@ -350,7 +351,7 @@
 	sleep(1 SECONDS)
 	if(QDELETED(src))
 		return
-	if(status)
+	if(bomb_status)
 		ignite()	//if its not a dud, boom (or not boom if you made shitty mix) the ignite proc is below, in this file
 	else
 		release()
@@ -406,7 +407,7 @@
 	throw_speed = max(2, throw_speed) //Make it a bit harder to throw
 
 	update_icon()
-	to_chat(user, span_notice("You attach [assembly] to [src]."))
+	user.balloon_alert(user, "[assembly] attached")
 	return
 
 /obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
