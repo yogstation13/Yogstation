@@ -22,7 +22,7 @@
 /datum/permissions_panel/ui_state(mob/user)
 	return GLOB.permissions_state
 
-/datum/permissions_panel/ui_act(action, list/params)
+/datum/permissions_panel/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -30,7 +30,7 @@
 			GLOB.permissions.add_admin()
 			return TRUE
 		if("forceSwapAdmin")
-			var/ckey = params["ckey"]
+			var/ckey = params.get_ckey("ckey")
 			var/adminned_datum = GLOB.permissions.admin_datums[ckey]
 			var/deadminned_datum = GLOB.permissions.deadmins[ckey]
 			if(adminned_datum)
@@ -39,7 +39,7 @@
 				force_readmin(ckey, deadminned_datum)
 			return TRUE
 		if("resetMFA")
-			var/admin_ckey = params["ckey"]
+			var/admin_ckey = params.get_ckey("ckey")
 			if(tgui_alert(usr, "WARNING! This will reset the 2FA code and backup for [admin_ckey], possibly comprimising the security of the server. Are you sure you wish to continue?", "Confirmation", list("Cancel", "Continue")) != "Continue")
 				return
 			if(tgui_alert(usr, "If you have been requested to reset the MFA credentials for someone, please confirm that you have verified their identity. Resetting MFA for an unverified person can result in a breach of server security.", "Confirmation", list("I Understand", "Cancel")) != "I Understand")
@@ -49,13 +49,13 @@
 			mfa_reset(admin_ckey)
 			return TRUE
 		if("editRank")
-			GLOB.permissions.edit_rank(params["ckey"])
+			GLOB.permissions.edit_rank(params.get_ckey("ckey"))
 			return TRUE
 		if("editPerms")
-			GLOB.permissions.edit_perms(params["ckey"])
+			GLOB.permissions.edit_perms(params.get_ckey("ckey"))
 			return TRUE
 		if("removeAdmin")
-			GLOB.permissions.remove_admin(params["ckey"])	
+			GLOB.permissions.remove_admin(params.get_ckey("ckey"))
 			return TRUE
 	
 

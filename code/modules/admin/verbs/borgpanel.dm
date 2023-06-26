@@ -81,7 +81,7 @@
 		.["ais"] += list(list("name" = ai.name, "ref" = REF(ai), "connected" = (borg.connected_ai == ai)))
 
 
-/datum/borgpanel/ui_act(action, params)
+/datum/borgpanel/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch (action)
@@ -148,7 +148,7 @@
 			log_admin("[key_name(user)] renamed [key_name(borg)] to [new_name].")
 			borg.fully_replace_character_name(borg.real_name,new_name)
 		if ("toggle_upgrade")
-			var/upgradepath = text2path(params["upgrade"])
+			var/upgradepath = params.get_subtype_path("upgrade", /obj/item/borg/upgrade)
 			var/obj/item/borg/upgrade/installedupgrade = locate(upgradepath) in borg
 			if (installedupgrade)
 				installedupgrade.deactivate(borg, user)
@@ -163,7 +163,10 @@
 				message_admins("[key_name_admin(user)] added the [upgrade] borg upgrade to [ADMIN_LOOKUPFLW(borg)].")
 				log_admin("[key_name(user)] added the [upgrade] borg upgrade to [key_name(borg)].")
 		if ("toggle_radio")
-			var/channel = params["channel"]
+			// Allows using an href exploit to disable common, but at that point they can just VV
+			var/channel = params.get_text_in_list("channel", GLOB.radiochannels)
+			if(!channel)
+				return
 			if (channel in borg.radio.channels) // We're removing a channel
 				if (!borg.radio.keyslot) // There's no encryption key. This shouldn't happen but we can cope
 					borg.radio.channels -= channel
@@ -191,13 +194,13 @@
 				log_admin("[key_name(user)] added the [channel] radio channel to [key_name(borg)].")
 			borg.radio.recalculateChannels()
 		if ("setmodule")
-			var/newmodulepath = text2path(params["module"])
+			var/newmodulepath = params.get_subtype_path("module", /obj/item/robot_module)
 			if (ispath(newmodulepath))
 				borg.module.transform_to(newmodulepath)
 				message_admins("[key_name_admin(user)] changed the module of [ADMIN_LOOKUPFLW(borg)] to [newmodulepath].")
 				log_admin("[key_name(user)] changed the module of [key_name(borg)] to [newmodulepath].")
 		if ("slavetoai")
-			var/mob/living/silicon/ai/newai = locate(params["slavetoai"]) in GLOB.ai_list
+			var/mob/living/silicon/ai/newai = params.locate_param("slavetoai", GLOB.ai_list)
 			if (newai && newai != borg.connected_ai)
 				borg.notify_ai(DISCONNECT)
 				if(borg.shell)
@@ -206,7 +209,7 @@
 				borg.notify_ai(TRUE)
 				message_admins("[key_name_admin(user)] slaved [ADMIN_LOOKUPFLW(borg)] to the AI [ADMIN_LOOKUPFLW(newai)].")
 				log_admin("[key_name(user)] slaved [key_name(borg)] to the AI [key_name(newai)].")
-			else if (params["slavetoai"] == "null")
+			else if (params.is_param_equal_to("slavetoai", "null"))
 				borg.notify_ai(DISCONNECT)
 				if(borg.shell)
 					borg.undeploy()

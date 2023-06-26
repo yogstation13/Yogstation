@@ -81,9 +81,9 @@ GLOBAL_LIST_EMPTY(connection_logs)
 
 		.["users"] += list(ckey_data)
 
-/datum/disconnect_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/datum/disconnect_panel/ui_act(action, datum/params/params)
 	. = ..()
-	var/ckey = params["ckey"]
+	var/ckey = params.get_ckey("ckey")
 	switch(action)
 		if("follow")
 			var/mob/M = ckey2mob(ckey)

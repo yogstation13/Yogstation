@@ -102,20 +102,19 @@
 		data["vest_lock"] = HAS_TRAIT_FROM(vest, TRAIT_NODROP, ABDUCTOR_VEST_TRAIT)
 	return data
 
-/obj/machinery/abductor/console/ui_act(action, list/params)
+/obj/machinery/abductor/console/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
 
 	switch(action)
 		if("buy")
-			var/item_name = params["name"]
 			var/list/buyable_items = list()
 			for(var/category in possible_gear)
 				buyable_items += possible_gear[category]
 			for(var/key in buyable_items)
 				var/datum/abductor_gear/AG = buyable_items[key]
-				if(AG.name == item_name)
+				if(params.is_param_equal_to("name", AG.name))
 					Dispense(AG.build_path, AG.cost)
 					return TRUE
 		if("teleporter_send")
@@ -136,7 +135,7 @@
 			SelectDisguise()
 			return TRUE
 		if("select")
-			selected_cat = params["category"]
+			selected_cat = params.get_text_in_list("category", possible_gear)
 			return TRUE
 		if("compact_toggle")
 			compact_mode = !compact_mode

@@ -45,11 +45,11 @@
 		get_asset_datum(/datum/asset/simple/contracts),
 	)
 
-/obj/item/antag_spawner/contract/ui_act(action, list/params)
+/obj/item/antag_spawner/contract/ui_act(action, datum/params/params)
 	. = ..()
 	if(used || polling || !ishuman(usr))
 		return
-	INVOKE_ASYNC(src, PROC_REF(poll_for_student), usr, params["school"])
+	INVOKE_ASYNC(src, PROC_REF(poll_for_student), usr, params.get_text_in_list("school", list(APPRENTICE_BLUESPACE, APPRENTICE_DESTRUCTION, APPRENTICE_HEALING, APPRENTICE_ROBELESS)))
 	SStgui.close_uis(src)
 
 /obj/item/antag_spawner/contract/proc/poll_for_student(mob/living/carbon/human/teacher, apprentice_school)

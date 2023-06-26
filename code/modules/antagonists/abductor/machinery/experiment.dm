@@ -81,7 +81,7 @@
 		data["occupant_status"] = mob_occupant.stat
 	return data
 
-/obj/machinery/abductor/experiment/ui_act(action, list/params)
+/obj/machinery/abductor/experiment/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -100,7 +100,7 @@
 			var/mob/living/mob_occupant = occupant
 			if(mob_occupant.stat == DEAD)
 				return
-			flash = experiment(occupant, params["experiment_type"], usr)
+			flash = experiment(occupant, params.get_int("experiment_type"), usr)
 			return TRUE
 
 /**

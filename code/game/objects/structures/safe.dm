@@ -125,7 +125,7 @@ FLOOR SAFES
 
 	return data
 
-/obj/structure/safe/ui_act(action, params)
+/obj/structure/safe/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -155,7 +155,7 @@ FLOOR SAFES
 			if(broken)
 				to_chat(user, span_warning("The dial will not turn, as the mechanism is destroyed!</span>"))
 				return
-			var/ticks = text2num(params["num"])
+			var/ticks = params.get_int("num")
 			for(var/i = 1 to ticks)
 				dial = WRAP(dial - 1, 0, 100)
 
@@ -176,7 +176,7 @@ FLOOR SAFES
 			if(broken)
 				to_chat(user, span_warning("The dial will not turn, as the mechanism is destroyed!</span>"))
 				return
-			var/ticks = text2num(params["num"])
+			var/ticks = params.get_int("num")
 			for(var/i = 1 to ticks)
 				dial = WRAP(dial + 1, 0, 100)
 
@@ -194,7 +194,7 @@ FLOOR SAFES
 		if("retrieve")
 			if(!open)
 				return
-			var/index = text2num(params["index"])
+			var/index = params.get_int("index")
 			if(!index)
 				return
 			var/obj/item/I = contents[index]

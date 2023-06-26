@@ -193,27 +193,27 @@
 	if(istype(carbon_user) && carbon_user.internal == src)
 		.["connected"] = TRUE
 
-/obj/item/tank/ui_act(action, params)
+/obj/item/tank/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
 		if("pressure")
-			var/pressure = params["pressure"]
-			if(pressure == "reset")
+			var/pressure
+			if(params.is_param_equal_to("pressure", "reset"))
 				pressure = initial(distribute_pressure)
 				. = TRUE
-			else if(pressure == "min")
+			else if(params.is_param_equal_to("pressure", "min"))
 				pressure = TANK_MIN_RELEASE_PRESSURE
 				. = TRUE
-			else if(pressure == "max")
+			else if(params.is_param_equal_to("pressure", "max"))
 				pressure = TANK_MAX_RELEASE_PRESSURE
 				. = TRUE
-			else if(pressure == "input")
+			else if(params.is_param_equal_to("pressure", "input"))
 				pressure = input("New release pressure ([TANK_MIN_RELEASE_PRESSURE]-[TANK_MAX_RELEASE_PRESSURE] kPa):", name, distribute_pressure) as num|null
 				if(!isnull(pressure) && !..())
 					. = TRUE
-			else if(text2num(pressure) != null)
-				pressure = text2num(pressure)
+			else if(params.get_num("pressure"))
+				pressure = params.get_num("pressure")
 				. = TRUE
 			if(.)
 				distribute_pressure = clamp(round(pressure), TANK_MIN_RELEASE_PRESSURE, TANK_MAX_RELEASE_PRESSURE)

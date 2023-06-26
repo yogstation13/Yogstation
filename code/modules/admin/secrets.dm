@@ -45,7 +45,7 @@
 	data["lawchanges"] = length(GLOB.lawchanges)
 	return data
 
-/datum/tgui_secrets_panel/ui_act(action, params)
+/datum/tgui_secrets_panel/ui_act(action, datum/params/params)
 	if(..())
 		return
 	var/datum/round_event/E
