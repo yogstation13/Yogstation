@@ -35145,11 +35145,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"jWb" = (
-/obj/structure/lattice,
-/obj/structure/grille,
-/turf/open/space,
-/area/icemoon/surface/outdoors)
 "jWr" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Cargo Bay Bridge Access"
@@ -99225,7 +99220,7 @@ gGi
 wMi
 wMi
 wMi
-jWb
+ylX
 ylX
 ylX
 wMi
