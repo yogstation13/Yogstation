@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(guardian_bomb_life, list(
 		ability.bombs -= picked_bomb
 		UnregisterSignal(picked_bomb, list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND));
 		UnregisterSignal(picked_bomb, COMSIG_PARENT_EXAMINE);
-		log_bomber(guardian, "detonated a", picked_bomb)
+		log_bomber(user, "detonated a", picked_bomb)
 		explosion(picked_bomb, -1, 1, 1, 1)
 		to_chat(user, span_bolddanger("Bomb detonated."))
 
