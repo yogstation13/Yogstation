@@ -1082,6 +1082,7 @@
 /mob/living/proc/bluespace_shuffle()
 	do_teleport(src, get_turf(src), 5, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
+//Gateway to traitor chemistry, want a drug to be traitor only? use this
 /datum/reagent/redspace
 	name = "Redspace Dust"
 	description = "A sinister looking dust composed of grinded Syndicate telecrystals, the red colouration a result of impurities within their manufacturing process."

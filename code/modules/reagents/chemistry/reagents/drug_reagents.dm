@@ -537,6 +537,58 @@
 		M.adjust_dizzy(4)
 	..()
 
+/datum/reagent/drug/red_eye
+	name = "Red-Eye" //i love cowboy bebop
+	description = "An experimental drug developed by the Syndicate in attempt to recreate wizards"
+	reagent_state = GAS
+	color = "#fd1a5e"
+	addiction_threshold = 20
+	overdose_threshold = 40
+	metabolization_rate = 0.8 * REAGENTS_METABOLISM
+
+//Teleport like normal telecrystals
+/datum/reagent/drug/red_eye/proc/tele_teleport(mob/living/L)
+	var/turf/destination = get_teleport_loc(L.loc, L, rand(3,6))
+	if(!istype(destination))
+		return
+	new /obj/effect/particle_effect/sparks(L.loc)
+	playsound(L.loc, "sparks", 50, 1)
+	if(!do_teleport(L, destination, asoundin = 'sound/effects/phaseinred.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
+		return
+	L.throw_at(get_edge_target_turf(L, L.dir), 1, 3, spin = FALSE, diagonals_first = TRUE)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.adjust_disgust(15)
+
+/datum/reagent/drug/red_eye/on_mob_metabolize(mob/living/L)
+	..()
+	tele_teleport(L)
+
+/datum/reagent/drug/red_eye/on_mob_life(mob/living/carbon/M)
+	var/mob/living/carbon/human/H = M
+	H.eye_color = "fd1a5e"
+	H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+	H.update_body()
+
+	M.adjust_red_eye_up_to(2,20)
+	M.adjust_jitter(2 SECONDS)
+	M.adjustStaminaLoss(-2, 0)
+
+/datum/reagent/drug/red_eye/overdose_process(mob/living/M)
+	M.adjustToxLoss(4, 0)
+	if(isturf(M.loc) && !isspaceturf(M.loc) && prob(10))
+		if(M.mobility_flags & MOBILITY_MOVE)
+			step(M, pick(GLOB.cardinals))
+	if(prob(8))
+		M.visible_message(span_danger("[M]'s fingers curl into occult shapes!"))
+		M.drop_all_held_items()
+	if(prob(4))
+		tele_teleport(M)
+	if(prob(1))
+		tele_teleport(M)
+		tele_teleport(M)
+	..()
+
 /datum/reagent/drug/pumpup
 	name = "Pump-Up"
 	description = "Take on the world! A fast acting, hard hitting drug that pushes the limit on what you can handle."
