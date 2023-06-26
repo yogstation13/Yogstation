@@ -140,7 +140,7 @@
 
 	return data
 
-/obj/item/forbidden_book/ui_act(action, params)
+/obj/item/forbidden_book/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -150,7 +150,7 @@
 			var/ekname = params["name"]
 			for(var/X in cultie.get_researchable_knowledge())
 				var/datum/eldritch_knowledge/EK = X
-				if(initial(EK.name) != ekname)
+				if(!params.is_param_equal_to("name", initial(EK.name)))
 					continue
 				if(cultie.gain_knowledge(EK))
 					return TRUE

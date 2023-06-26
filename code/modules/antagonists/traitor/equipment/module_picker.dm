@@ -69,24 +69,23 @@
 
 	return data
 
-/datum/module_picker/ui_act(action, list/params)
+/datum/module_picker/ui_act(action, datum/params/params)
 	if(..())
 		return
 	if(!isAI(usr))
 		return
 	switch(action)
 		if("buy")
-			var/item_name = params["name"]
 			var/list/buyable_items = list()
 			for(var/category in possible_modules)
 				buyable_items += possible_modules[category]
 			for(var/key in buyable_items)
 				var/datum/AI_Module/AM = buyable_items[key]
-				if(AM.name == item_name)
+				if(params.is_param_equal_to("name", AM.name))
 					purchase_module(usr, AM)
 					return TRUE
 		if("select")
-			selected_cat = params["category"]
+			selected_cat = params.get_text_in_list("categories", possible_modules)
 			return TRUE
 		if("compact_toggle")
 			compact_mode = !compact_mode

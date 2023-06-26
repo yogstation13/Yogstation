@@ -87,11 +87,11 @@
 
 	return data
 
-/mob/living/simple_animal/horror/ui_act(action, params)
+/mob/living/simple_animal/horror/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
 		if("unlock")
-			add_ability(params["typepath"])
+			add_ability(params.get_subtype_path("typepath", /datum/action/innate/horror))
 		if("upgrade")
-			add_upgrade(params["id"])
+			add_upgrade(params.get_sanitised_text("id"))

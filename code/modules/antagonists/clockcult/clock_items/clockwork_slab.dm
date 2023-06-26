@@ -471,16 +471,16 @@
 		data["rec_binds"] = GLOB.ratvar_awakens ? "" : get_recollection_quickbinds()
 	return data
 
-/obj/item/clockwork/slab/ui_act(action, params)
+/obj/item/clockwork/slab/ui_act(action, datum/params/params)
 	switch(action)
 		if("toggle")
 			recollecting = !recollecting
 		if("recite")
-			INVOKE_ASYNC(src, PROC_REF(recite_scripture), text2path(params["category"]), usr, FALSE)
+			INVOKE_ASYNC(src, PROC_REF(recite_scripture), params.get_subtype_path("category", /datum/clockwork_scripture), usr, FALSE)
 		if("select")
-			selected_scripture = params["category"]
+			selected_scripture = params.get_text_in_list("category", list("Driver", "Script", "Application"))
 		if("bind")
-			var/datum/clockwork_scripture/path = text2path(params["category"]) //we need a path and not a string
+			var/datum/clockwork_scripture/path = params.get_subtype_path("category", /datum/clockwork_scripture) //we need a path and not a string
 			var/found_index = quickbound.Find(path)
 			if(found_index) //hey, we already HAVE this bound
 				if(LAZYLEN(quickbound) == found_index) //if it's the last scripture, remove it instead of leaving a null
@@ -497,7 +497,7 @@
 					if(S != path)
 						quickbind_to_slot(path, target_index)
 		if("rec_category")
-			recollection_category = params["category"]
+			recollection_category = params.get_sanitised_text("category")
 			ui_interact(usr)
 	return 1
 

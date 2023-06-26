@@ -311,7 +311,7 @@
 
 	return data
 
-/obj/machinery/nuclearbomb/ui_act(action, params)
+/obj/machinery/nuclearbomb/ui_act(action, datum/params/params)
 	if(..())
 		return
 	playsound(src, "terminal_type", 20, FALSE)
@@ -333,8 +333,7 @@
 			update_ui_mode()
 		if("keypad")
 			if(auth)
-				var/digit = params["digit"]
-				switch(digit)
+				switch(params.get_sanitised_text("digit"))
 					if("C")
 						if(auth && ui_mode == NUKEUI_AWAIT_ARM)
 							set_safety()

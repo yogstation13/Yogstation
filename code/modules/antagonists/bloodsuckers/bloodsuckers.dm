@@ -322,7 +322,7 @@
 		get_asset_datum(/datum/asset/simple/bloodsucker_icons),
 	)
 
-/datum/antagonist/bloodsucker/ui_act(action, params, datum/tgui/ui)
+/datum/antagonist/bloodsucker/ui_act(action, datum/params/params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return

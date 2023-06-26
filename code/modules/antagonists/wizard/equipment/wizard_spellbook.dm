@@ -174,7 +174,7 @@
 	data["entries"] = entry_data
 	return data
 
-/obj/item/spellbook/ui_act(action, params)
+/obj/item/spellbook/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -186,11 +186,11 @@
 	// Actions that are always available
 	switch(action)
 		if("purchase")
-			var/datum/spellbook_entry/entry = locate(params["spellref"]) in entries
+			var/datum/spellbook_entry/entry = params.locate_param("spellref", entries)
 			return purchase_entry(entry, wizard)
 
 		if("refund")
-			var/datum/spellbook_entry/entry = locate(params["spellref"]) in entries
+			var/datum/spellbook_entry/entry = params.locate_param("spellref", entries)
 			if(!istype(entry))
 				CRASH("[type] had an invalid ref to a spell passed in refund.")
 			if(!entry.can_refund(wizard, src))

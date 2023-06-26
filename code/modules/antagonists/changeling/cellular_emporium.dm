@@ -50,7 +50,7 @@
 
 	return data
 
-/datum/antag_menu/cellular_emporium/ui_act(action, params)
+/datum/antag_menu/cellular_emporium/ui_act(action, datum/params/params)
 	if(..())
 		return
 	var/datum/antagonist/changeling/changeling = antag_datum
@@ -62,7 +62,7 @@
 			else
 				to_chat(changeling.owner.current,span_danger("You lack the power to readapt your evolutions!"))
 		if("evolve")
-			var/sting_name = params["name"]
+			var/sting_name = params.get_sanitised_text("name")
 			changeling.purchase_power(sting_name)
 
 /datum/action/innate/cellular_emporium

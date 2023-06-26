@@ -70,7 +70,7 @@
 
 	return data
 
-/obj/item/assembly/signaler/ui_act(action, params)
+/obj/item/assembly/signaler/ui_act(action, datum/params/params)
 	if(..())
 		return
 
@@ -83,16 +83,15 @@
 			INVOKE_ASYNC(src, PROC_REF(signal))
 			. = TRUE
 		if("freq")
-			frequency = unformat_frequency(params["freq"])
+			frequency = unformat_frequency(params.get_num("freq"))
 			frequency = sanitize_frequency(frequency, TRUE)
 			set_frequency(frequency)
 			. = TRUE
 		if("code")
-			code = text2num(params["code"])
-			code = round(code)
+			code = params.get_int("code")
 			. = TRUE
 		if("reset")
-			if(params["reset"] == "freq")
+			if(params.is_param_equal_to("reset", "freq"))
 				frequency = initial(frequency)
 			else
 				code = initial(code)
