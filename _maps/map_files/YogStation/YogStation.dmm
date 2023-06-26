@@ -2948,16 +2948,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"avp" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/security/prison)
 "avr" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -11525,11 +11515,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"bIU" = (
-/obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/security/prison/hallway)
 "bJi" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -12818,6 +12803,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/service)
+"bUX" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/prison/hallway)
 "bVa" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -15491,6 +15481,16 @@
 	icon_state = "platingdmg3"
 	},
 /area/maintenance/starboard/fore)
+"cDl" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/prison)
 "cDq" = (
 /obj/machinery/camera{
 	c_tag = "Bridge East";
@@ -16672,6 +16672,13 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"cVS" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/prison)
 "cVZ" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -17127,6 +17134,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"dgr" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/prison)
 "dgz" = (
 /obj/structure/sign/warning/docking,
 /obj/structure/grille,
@@ -18817,6 +18834,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"dOC" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/prison)
 "dOI" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -20357,6 +20381,16 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"esp" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/prison)
 "esu" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -31526,16 +31560,6 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
-"ixI" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/security/prison)
 "ixV" = (
 /obj/structure/table/wood,
 /obj/machinery/photocopier/faxmachine{
@@ -32103,6 +32127,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"iJe" = (
+/obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/prison)
 "iJk" = (
 /obj/effect/spawner/lootdrop/minor/kittyears_or_rabbitears,
 /turf/open/floor/plating,
@@ -32705,13 +32734,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"iTO" = (
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/security/prison)
 "iTT" = (
 /obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
@@ -35360,6 +35382,13 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/security/prison)
+"kbU" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
 /area/security/prison)
 "kcr" = (
 /obj/machinery/status_display/ai{
@@ -38119,6 +38148,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
+"liQ" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/prison)
 "liR" = (
 /obj/machinery/camera{
 	c_tag = "Starboard Primary Hallway 3";
@@ -41925,11 +41964,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison/hallway)
-"mEd" = (
-/obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/security/prison)
 "mEe" = (
 /obj/machinery/firealarm{
 	pixel_y = 26
@@ -43594,6 +43628,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
+"nlE" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/prison)
 "nlS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -44308,16 +44352,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"nAX" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/security/prison)
 "nAZ" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner/lower{
 	dir = 1
@@ -51175,13 +51209,6 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/security/brig)
-"qiu" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/security/prison)
 "qjc" = (
 /obj/structure/disposalpipe/sorting/mail{
 	sortType = 10
@@ -52073,6 +52100,16 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"qCF" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/prison)
 "qCG" = (
 /obj/machinery/power/apc{
 	areastring = "/area/janitor";
@@ -57562,16 +57599,6 @@
 	},
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/secondarydatacore)
-"sMf" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/security/prison)
 "sMh" = (
 /obj/structure/filingcabinet,
 /obj/machinery/light_switch{
@@ -57656,16 +57683,6 @@
 	},
 /turf/open/floor/plating,
 /area/storage/tech)
-"sNU" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/security/prison)
 "sNZ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -63624,16 +63641,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"vcX" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/security/prison)
 "vdm" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -67098,6 +67105,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"wtR" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/security/prison)
 "wtY" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 10
@@ -67113,13 +67130,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"wuz" = (
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/security/prison)
 "wuL" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -70100,6 +70110,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"xGn" = (
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/space)
 "xGs" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -70421,16 +70435,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"xOm" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating,
-/area/security/prison)
 "xOv" = (
 /obj/machinery/light{
 	dir = 4
@@ -70445,11 +70449,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"xOw" = (
-/obj/structure/lattice,
-/obj/structure/grille,
-/turf/open/floor/plating/airless,
-/area/space)
 "xPa" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -92882,11 +92881,11 @@ aaa
 aaa
 aaa
 aiT
-wuz
-sNU
+cVS
+esp
 aiT
-ixI
-mEd
+wtR
+iJe
 aiT
 aiT
 aiT
@@ -93909,7 +93908,7 @@ aaa
 aaa
 aaa
 uBx
-sMf
+qCF
 dyx
 xAJ
 kol
@@ -94166,7 +94165,7 @@ aaa
 aaa
 uBx
 uBx
-qiu
+dOC
 eKF
 aat
 vUB
@@ -94421,8 +94420,8 @@ aaa
 aaa
 aaa
 aiT
-wuz
-sNU
+cVS
+esp
 aiT
 acd
 acd
@@ -94443,7 +94442,7 @@ fEC
 dWv
 kEb
 eVV
-bIU
+bUX
 uBx
 aaa
 gXs
@@ -94700,7 +94699,7 @@ isP
 tpW
 jeG
 sXy
-bIU
+bUX
 uBx
 aaa
 gXs
@@ -94930,9 +94929,9 @@ aaa
 aaa
 aaa
 aiT
-iTO
+kbU
 aiT
-iTO
+kbU
 aiT
 aiT
 luC
@@ -94957,7 +94956,7 @@ gbe
 tpW
 jeG
 sXy
-bIU
+bUX
 uBx
 aaa
 gXs
@@ -95186,7 +95185,7 @@ aaa
 aaa
 aaa
 uBx
-wuz
+cVS
 iVt
 cUn
 uPH
@@ -95217,7 +95216,7 @@ hKu
 rPO
 aaa
 aaa
-xOw
+gXs
 aaa
 aaa
 aaa
@@ -95474,7 +95473,7 @@ hKu
 rPO
 aaa
 aaa
-xOw
+xGn
 aaa
 aaa
 aaa
@@ -95700,7 +95699,7 @@ aaa
 aaa
 aaa
 uBx
-wuz
+cVS
 vyo
 oWZ
 uSj
@@ -95731,7 +95730,7 @@ grl
 rPO
 aaa
 aaa
-xOw
+xGn
 aaa
 aaa
 aaa
@@ -95985,7 +95984,7 @@ isP
 tpW
 jeG
 sXy
-bIU
+bUX
 uBx
 aaa
 aaf
@@ -96214,7 +96213,7 @@ aaa
 aaa
 aaa
 uBx
-wuz
+cVS
 scE
 xfH
 jFw
@@ -96242,7 +96241,7 @@ cjo
 lUu
 jeG
 sXy
-bIU
+bUX
 uBx
 aaa
 aaf
@@ -96499,7 +96498,7 @@ tYk
 mEa
 jeG
 sXy
-bIU
+bUX
 uBx
 aaa
 aaf
@@ -96729,7 +96728,7 @@ aaa
 aaa
 aaa
 uBx
-wuz
+cVS
 vvo
 foo
 bEy
@@ -97502,7 +97501,7 @@ aaa
 aaa
 aaa
 uBx
-iTO
+kbU
 pYC
 aBg
 jRq
@@ -97759,7 +97758,7 @@ aaa
 aaa
 aaa
 uBx
-avp
+nlE
 aat
 iMs
 kyl
@@ -98016,7 +98015,7 @@ aaa
 aaa
 aaa
 uBx
-avp
+nlE
 rXV
 iMs
 kyl
@@ -98273,7 +98272,7 @@ aaa
 aaa
 aaa
 uBx
-nAX
+dgr
 dyx
 jMm
 kDF
@@ -100594,12 +100593,12 @@ aiT
 aiT
 aiT
 aiT
-wuz
-vcX
+cVS
+cDl
 aiT
 aiT
-xOm
-mEd
+liQ
+iJe
 aiT
 vxt
 adl
