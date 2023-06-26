@@ -23,7 +23,7 @@
 		get_asset_datum(/datum/asset/json/keybindings)
 	)
 
-/datum/preference_middleware/keybindings/proc/reset_all_keybinds(list/params, mob/user)
+/datum/preference_middleware/keybindings/proc/reset_all_keybinds(datum/params/params, mob/user)
 	preferences.key_bindings = deepCopyList(GLOB.default_hotkeys)
 	preferences.key_bindings_by_key = preferences.get_key_bindings_by_key(preferences.key_bindings)
 
@@ -32,8 +32,8 @@
 
 	return TRUE
 
-/datum/preference_middleware/keybindings/proc/reset_keybinds_to_defaults(list/params, mob/user)
-	var/keybind_name = params["keybind_name"]
+/datum/preference_middleware/keybindings/proc/reset_keybinds_to_defaults(datum/params/params, mob/user)
+	var/keybind_name = params.get_text_in_list("keybind_name", GLOB.keybindings_by_name)
 	var/datum/keybinding/keybinding = GLOB.keybindings_by_name[keybind_name]
 
 	if (isnull(keybinding))
@@ -47,8 +47,8 @@
 
 	return TRUE
 
-/datum/preference_middleware/keybindings/proc/set_keybindings(list/params, mob/user)
-	var/keybind_name = params["keybind_name"]
+/datum/preference_middleware/keybindings/proc/set_keybindings(datum/params/params, mob/user)
+	var/keybind_name = params.get_text_in_list("keybind_name", GLOB.keybindings_by_name)
 
 	if (isnull(GLOB.keybindings_by_name[keybind_name]))
 		return FALSE

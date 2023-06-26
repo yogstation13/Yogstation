@@ -4,11 +4,11 @@
 		"set_alt_title" = PROC_REF(set_alt_title),
 	)
 
-/datum/preference_middleware/jobs/proc/set_job_preference(list/params, mob/user)
-	var/job_title = params["job"]
-	var/level = params["level"]
+/datum/preference_middleware/jobs/proc/set_job_preference(datum/params/params, mob/user)
+	var/job_title = params.get_sanitised_text["job"]
+	var/level = params.get_num("level", JP_LOW, JP_HIGH)
 
-	if (level != null && level != JP_LOW && level != JP_MEDIUM && level != JP_HIGH)
+	if (level == null)
 		return FALSE
 
 	var/datum/job/job = SSjob.GetJob(job_title)
@@ -26,15 +26,14 @@
 
 	return TRUE
 
-/datum/preference_middleware/jobs/proc/set_alt_title(list/params, mob/user)
-	var/job_title = params["job"]
-	var/alt_title = params["alt_title"]
+/datum/preference_middleware/jobs/proc/set_alt_title(datum/params/params, mob/user)
+	var/job_title = params.get_sanitised_text("job")
 
 	var/datum/job/job = SSjob.GetJob(job_title)
-
 	if (isnull(job))
 		return FALSE
 
+	var/alt_title = params.get_text_in_list("alt_title", job.alt_titles)
 	preferences.SetPlayerAltTitle(job, alt_title)
 
 	return TRUE

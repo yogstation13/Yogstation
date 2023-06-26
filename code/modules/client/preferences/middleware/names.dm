@@ -48,8 +48,8 @@
 
 	return "real_name"
 
-/datum/preference_middleware/names/proc/randomize_name(list/params, mob/user)
-	var/datum/preference/name/name_preference = GLOB.preference_entries_by_key[params["preference"]]
+/datum/preference_middleware/names/proc/randomize_name(datum/params/params, mob/user)
+	var/datum/preference/name/name_preference = params.get_from_lookup("preference", GLOB.preference_entries_by_key)
 	if (!istype(name_preference))
 		return FALSE
 

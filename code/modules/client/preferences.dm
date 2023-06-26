@@ -206,7 +206,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	return assets
 
-/datum/preferences/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/datum/preferences/ui_act(action, datum/params/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if (.)
 		return
@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			save_character()
 
 			// SAFETY: `load_character` performs sanitization the slot number
-			if (!load_character(params["slot"]))
+			if (!load_character(params.get_num("slot"))
 				tainted_character_profiles = TRUE
 				randomise_appearance_prefs()
 				save_character()
@@ -238,8 +238,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			return TRUE
 		if ("set_preference")
-			var/requested_preference_key = params["preference"]
-			var/value = params["value"]
+			var/requested_preference_key = params.get_text_in_list("preference", GLOB.preference_entries_by_key)
+			var/value = params.get_sanitised_text("value")
 
 			for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 				if (preference_middleware.pre_set_preference(usr, requested_preference_key, value))
@@ -258,7 +258,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			return TRUE
 		if ("set_color_preference")
-			var/requested_preference_key = params["preference"]
+			var/requested_preference_key = params.get_text_in_list("preference", GLOB.preference_entries_by_key)
 
 			var/datum/preference/requested_preference = GLOB.preference_entries_by_key[requested_preference_key]
 			if (isnull(requested_preference))

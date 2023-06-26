@@ -31,20 +31,19 @@
 		get_asset_datum(/datum/asset/spritesheet/antagonists),
 	)
 
-/datum/preference_middleware/antags/proc/set_antags(list/params, mob/user)
+/datum/preference_middleware/antags/proc/set_antags(datum/params/params, mob/user)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	var/sent_antags = params["antags"]
-	var/toggled = params["toggled"]
+	var/datum/params/sent_antags = params.get_param_dict("antags")
+	var/toggled = params.as_booleans("toggled")
 
 	var/antags = list()
 
 	var/serialized_antags = get_serialized_antags()
 
-	for (var/sent_antag in sent_antags)
-		var/special_role = serialized_antags[sent_antag]
-		if (!special_role)
-			continue
+	for(var/serialized_antag in serialized_antags)
+		if(sent_antags.is_truthy(serialized_antag))
+			antags += serialized_antags[serialized_antag]
 
 		antags += special_role
 

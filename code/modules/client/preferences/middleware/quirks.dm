@@ -58,8 +58,8 @@
 /datum/preference_middleware/quirks/on_new_character(mob/user)
 	tainted = TRUE
 
-/datum/preference_middleware/quirks/proc/give_quirk(list/params, mob/user)
-	var/quirk_name = params["quirk"]
+/datum/preference_middleware/quirks/proc/give_quirk(datum/params/params, mob/user)
+	var/quirk_name = params.get_text_in_list("quirk", SSquirks.quirks)
 
 	var/list/new_quirks = preferences.all_quirks | quirk_name
 	if (SSquirks.filter_invalid_quirks(new_quirks, user.client) != new_quirks)
@@ -73,8 +73,8 @@
 
 	return TRUE
 
-/datum/preference_middleware/quirks/proc/remove_quirk(list/params, mob/user)
-	var/quirk_name = params["quirk"]
+/datum/preference_middleware/quirks/proc/remove_quirk(datum/params/params, mob/user)
+	var/quirk_name = params.get_text_in_list("quirk", SSquirks.quirks)
 
 	var/list/new_quirks = preferences.all_quirks - quirk_name
 	if ( \

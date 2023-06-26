@@ -33,9 +33,8 @@
 
 	return TRUE
 
-/datum/preference_middleware/random/proc/set_random_preference(list/params, mob/user)
-	var/requested_preference_key = params["preference"]
-	var/value = params["value"]
+/datum/preference_middleware/random/proc/set_random_preference(datum/params/params, mob/user)
+	var/requested_preference_key = params.get_text_in_list("preference", GLOB.preference_entries_by_key)
 
 	var/datum/preference/requested_preference = GLOB.preference_entries_by_key[requested_preference_key]
 	if (isnull(requested_preference))
@@ -44,11 +43,11 @@
 	if (!requested_preference.is_randomizable())
 		return FALSE
 
-	if (value == RANDOM_ANTAG_ONLY)
+	if (params.is_param_equal_to("value", RANDOM_ANTAG_ONLY))
 		preferences.randomise[requested_preference_key] = RANDOM_ANTAG_ONLY
-	else if (value == RANDOM_ENABLED)
+	else if (params.is_param_equal_to("value", RANDOM_ENABLED))
 		preferences.randomise[requested_preference_key] = RANDOM_ENABLED
-	else if (value == RANDOM_DISABLED)
+	else if (params.is_param_equal_to("value", RANDOM_DISABLED))
 		preferences.randomise -= requested_preference_key
 	else
 		return FALSE

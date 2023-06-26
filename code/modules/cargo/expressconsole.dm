@@ -125,7 +125,7 @@
 		cooldown--
 	return data
 
-/obj/machinery/computer/cargo/express/ui_act(action, params, datum/tgui/ui)
+/obj/machinery/computer/cargo/express/ui_act(action, datum/params/params, datum/tgui/ui)
 	switch(action)
 		if("LZCargo")
 			usingBeacon = FALSE
@@ -147,7 +147,7 @@
 
 
 		if("add")//Generate Supply Order first
-			var/id = text2path(params["id"])
+			var/id = params.get_subtype_path("id", /datum/supply_pack)
 			var/datum/supply_pack/pack = SSshuttle.supply_packs[id]
 			if(!istype(pack))
 				return
