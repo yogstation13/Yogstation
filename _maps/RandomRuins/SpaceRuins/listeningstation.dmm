@@ -1379,19 +1379,6 @@
 "ou" = (
 /turf/open/floor/engine/o2,
 /area/ruin/space/has_grav/listeningstation/engineering)
-"pk" = (
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/engineering)
 "pm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1663,6 +1650,24 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/listeningstation)
+"uJ" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/sand/plating,
+/obj/machinery/advanced_airlock_controller{
+	dir = 0;
+	pixel_x = 24;
+	req_access = list(150)
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/engineering)
 "uP" = (
 /obj/structure/closet/emcloset/anchored,
 /obj/effect/turf_decal/tile/red/anticorner/contrasted{
@@ -2074,13 +2079,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/space/has_grav/listeningstation/quarters)
-"Dj" = (
-/obj/machinery/advanced_airlock_controller{
-	pixel_y = 24;
-	req_access = list(150)
-	},
-/turf/closed/wall/r_wall,
-/area/ruin/space/has_grav/listeningstation/engineering)
 "Dk" = (
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/listeningstation/engineering)
@@ -2437,6 +2435,9 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
+"LU" = (
+/turf/open/floor/plating/asteroid/airless,
+/area)
 "Mc" = (
 /obj/effect/turf_decal/stripes/asteroid/corner,
 /obj/effect/turf_decal/sand/plating,
@@ -2854,24 +2855,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/engineering)
-"RO" = (
-/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/advanced_airlock_controller{
-	pixel_y = 24;
-	req_access = list(150)
-	},
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/airlock)
 "RS" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -2948,6 +2931,25 @@
 /obj/effect/baseturf_helper/asteroid/airless,
 /turf/open/floor/plating/rust,
 /area/ruin/space/has_grav/listeningstation/engineering)
+"SI" = (
+/obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/advanced_airlock_controller{
+	dir = 0;
+	pixel_x = 24;
+	req_access = list(150)
+	},
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/airlock)
 "Tk" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -4065,7 +4067,7 @@ NO
 aa
 Kh
 VE
-RO
+SI
 kI
 VQ
 jo
@@ -4284,8 +4286,8 @@ bq
 aL
 bn
 bn
-Dj
-Mw
+sR
+LU
 NO
 NO
 NO
@@ -4323,7 +4325,7 @@ jK
 SH
 by
 aO
-pk
+uJ
 RS
 bF
 km
