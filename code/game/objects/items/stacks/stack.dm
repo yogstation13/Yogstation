@@ -183,7 +183,7 @@
 	data["recipes"] = recursively_build_recipes(recipes)
 	return data
 
-/obj/item/stack/ui_act(action, params)
+/obj/item/stack/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -193,11 +193,12 @@
 			if(get_amount() < 1 && !is_cyborg)
 				qdel(src)
 				return
-			var/datum/stack_recipe/R = locate(params["ref"])
+			var/datum/stack_recipe/R = params.locate_param("ref", world) // TODO: Find a way to make this not in world
+			                                                             // Leaving for now due ot the later checks
 			if(!is_valid_recipe(R, recipes)) //href exploit protection
 				return
-			var/multiplier = text2num(params["multiplier"])
-			if(!multiplier || (multiplier <= 0)) //href exploit protection
+			var/multiplier = params.get_int("multiplier", 1)
+			if(!multiplier) //href exploit protection
 				return
 			if(!building_checks(R, multiplier))
 				return

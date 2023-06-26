@@ -110,7 +110,7 @@
 	data["maxFrequency"] = MAX_FREE_FREQ
 	return data
 
-/obj/item/electropack/ui_act(action, params)
+/obj/item/electropack/ui_act(action, datum/params/params)
 	if(..())
 		return
 
@@ -124,21 +124,20 @@
 			icon_state = "electropack[on]"
 			. = TRUE
 		if("freq")
-			var/value = unformat_frequency(params["freq"])
+			var/value = unformat_frequency(params.get_sanitised_text("freq"))
 			if(value)
 				frequency = sanitize_frequency(value, TRUE)
 				set_frequency(frequency)
 				. = TRUE
 		if("code")
-			var/value = text2num(params["code"])
+			var/value = params.get_int("code", 1, 100)
 			if(value)
-				value = round(value)
-				code = clamp(value, 1, 100)
+				code = value
 				. = TRUE
 		if("reset")
-			if(params["reset"] == "freq")
+			if(params.is_param_equal_to("reset", "freq"))
 				frequency = initial(frequency)
 				. = TRUE
-			else if(params["reset"] == "code")
+			else if(params.is_param_equal_to("reset", "code"))
 				code = initial(code)
 				. = TRUE

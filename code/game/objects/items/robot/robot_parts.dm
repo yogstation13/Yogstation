@@ -424,7 +424,7 @@
 	data["lawsync"] = lawsync
 	return data
 
-/obj/item/robot_suit/ui_act(action, list/params)
+/obj/item/robot_suit/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -433,7 +433,7 @@
 
 	switch(action)
 		if("rename")
-			var/new_name = reject_bad_name(html_encode(params["new_name"]), TRUE)
+			var/new_name = reject_bad_name(params.get_encoded_text("new_name"), TRUE)
 			if(!new_name)
 				created_name = ""
 				return

@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	return data
 
-/obj/item/radio/ui_act(action, params, datum/tgui/ui)
+/obj/item/radio/ui_act(action, datum/params/params, datum/tgui/ui)
 	if(..())
 		return
 	switch(action)
@@ -178,7 +178,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			if(freqlock)
 				return
 			var/tune
-			var/adjust = text2num(params["adjust"])
+			var/adjust = params.get_num("adjust")
 			adjust -= frequency / 10
 
 			if(adjust)
@@ -196,8 +196,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			broadcasting = !broadcasting
 			. = TRUE
 		if("channel")
-			var/channel = params["channel"]
-			if(!(channel in channels))
+			var/channel = params.get_text_in_list("channel", channels)
+			if(!channel)
 				return
 			if(channels[channel] & FREQ_LISTENING)
 				channels[channel] &= ~FREQ_LISTENING
