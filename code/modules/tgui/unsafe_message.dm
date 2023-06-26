@@ -20,8 +20,12 @@
 		return FALSE
 	..()
 
-/datum/unsafe_message/proc/operator~=(datum/unsafe_message/other)
-	return _unsafe_message == other.get_unsafe_message()
+/datum/unsafe_message/proc/operator~=(other)
+	if(istext(other))
+		return _unsafe_message == other
+	var/datum/unsafe_message/other_message = other
+	if(istype(other))
+		return _unsafe_message == other_message.get_unsafe_message()
 
 /// Get the unsanitised message so that it can be passed into TGUI, which performs
 /// sanitisation on the TGUI side.

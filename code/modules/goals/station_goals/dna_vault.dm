@@ -216,12 +216,12 @@
 					data["choiceB"] = L[2]
 	return data
 
-/obj/machinery/dna_vault/ui_act(action, params)
+/obj/machinery/dna_vault/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
 		if("gene")
-			upgrade(usr,params["choice"])
+			upgrade(usr, params.get_text_in_list("choice", power_lottery[usr]))
 			. = TRUE
 
 /obj/machinery/dna_vault/proc/check_goal()

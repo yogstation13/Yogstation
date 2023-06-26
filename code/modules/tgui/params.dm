@@ -26,6 +26,10 @@
 /datum/params/proc/is_param_equal_to(param, value)
 	return _unsafe_params[param] == value
 
+/// Checks if a param is inside a list, or is a key of a dictionary
+/datum/params/proc/is_in_list(param, list/source)
+	return _unsafe_params[param] in source
+
 /// Returns the requested parameter as either a true or false value depending
 /// on the truthyness of the parameter.
 /datum/params/proc/is_truthy(param)
