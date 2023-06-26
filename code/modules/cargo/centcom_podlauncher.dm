@@ -803,7 +803,7 @@
 			admin_ticket_log(M, "[key_name_admin(usr)] [msg]")
 
 /datum/centcom_podlauncher/proc/loadData(datum/params/dataToLoad)
-	bayNumber = dataToLoad.get_sanitised("bayNumber")
+	bayNumber = dataToLoad.get_sanitised_text("bayNumber")
 	customDropoff = dataToLoad.as_boolean("customDropoff")
 	renderLighting = dataToLoad.as_boolean("renderLighting")
 	launchClone = dataToLoad.as_boolean("launchClone") //Do we launch the actual items in the bay or just launch clones of them?
@@ -823,7 +823,7 @@
 	temp_pod.reverse_delays[POD_LEAVING] = rev_delay_params.get_num(POD_LEAVING)
 
 	temp_pod.custom_rev_delay = dataToLoad.as_boolean("custom_rev_delay")
-	temp_pod.setStyle(dataToLoad.get_text_in_list("styleChoice", GLOB.podstyles)  //Style is a variable that keeps track of what the pod is supposed to look like. It acts as an index to the GLOB.podstyles list in cargo.dm defines to get the proper icon/name/desc for the pod.
+	temp_pod.setStyle(dataToLoad.get_text_in_list("styleChoice", GLOB.podstyles))  //Style is a variable that keeps track of what the pod is supposed to look like. It acts as an index to the GLOB.podstyles list in cargo.dm defines to get the proper icon/name/desc for the pod.
 	//temp_pod.effectShrapnel = dataToLoad["effectShrapnel"] //If true, creates a cloud of shrapnel of a decided type and magnitude on landing
 	//temp_pod.shrapnel_type = text2path(dataToLoad["shrapnelType"])
 	//temp_pod.shrapnel_magnitude = dataToLoad["shrapnelMagnitude"]

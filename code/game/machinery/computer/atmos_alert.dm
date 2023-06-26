@@ -48,7 +48,7 @@
 				priority_alarms -= priority_zone
 				. = TRUE
 			var/minor_zone = params.get_text_in_list("zone", minor_alarms)
-			if(zone in minor_alarms)
+			if(minor_zone)
 				to_chat(usr, "Minor alarm for [minor_zone] cleared.")
 				minor_alarms -= minor_zone
 				. = TRUE

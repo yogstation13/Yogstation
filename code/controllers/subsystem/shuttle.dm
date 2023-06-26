@@ -901,7 +901,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/mob/user = usr
 
 	// Preload some common parameters
-	var/datum/map_template/shuttle/S = params.get_from_lookup("shuttle_id", SSmapping.shuttle_templates[shuttle_id])
+	var/datum/map_template/shuttle/S = params.get_from_lookup("shuttle_id", SSmapping.shuttle_templates)
 
 	switch(action)
 		if("select_template")

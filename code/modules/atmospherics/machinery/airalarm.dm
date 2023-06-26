@@ -450,12 +450,10 @@
 			apply_mode(usr)
 			. = TRUE
 		if("alarm")
-			var/area/A = get_area(src)
 			if(A.atmosalert(2, src))
 				post_alert(2)
 			. = TRUE
 		if("reset")
-			var/area/A = get_area(src)
 			if(A.atmosalert(0, src))
 				post_alert(0)
 			. = TRUE

@@ -35,22 +35,22 @@
 
 /obj/machinery/telecomms/processor/preset_one
 	starting_name = "Processor 1"
-	network = "tcommsat"
+	starting_network = "tcommsat"
 	autolinkers = list("processor1") // processors are sort of isolated; they don't need backward links
 
 /obj/machinery/telecomms/processor/preset_two
 	starting_name = "Processor 2"
-	network = "tcommsat"
+	starting_network = "tcommsat"
 	autolinkers = list("processor2")
 
 /obj/machinery/telecomms/processor/preset_three
 	starting_name = "Processor 3"
-	network = "tcommsat"
+	starting_network = "tcommsat"
 	autolinkers = list("processor3")
 
 /obj/machinery/telecomms/processor/preset_four
 	starting_name = "Processor 4"
-	network = "tcommsat"
+	starting_network = "tcommsat"
 	autolinkers = list("processor4")
 
 /obj/machinery/telecomms/processor/preset_one/birdstation

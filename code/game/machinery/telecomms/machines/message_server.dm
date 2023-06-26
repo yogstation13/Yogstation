@@ -312,7 +312,7 @@
 
 /obj/machinery/telecomms/message_server/preset
 	starting_name = "Messaging Server"
-	network = "tcommsat"
+	starting_network = "tcommsat"
 	autolinkers = list("messaging")
 	decryptkey = null //random
 	calibrating = 0

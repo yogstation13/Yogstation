@@ -461,7 +461,7 @@
 	},
 /obj/machinery/light,
 /obj/machinery/telecomms/allinone{
-	network = "tcommsat"
+	starting_network = "tcommsat"
 	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)

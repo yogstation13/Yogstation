@@ -35,7 +35,7 @@
 	SHOULD_NOT_SLEEP(TRUE)
 
 	var/datum/params/sent_antags = params.get_param_dict("antags")
-	var/toggled = params.as_booleans("toggled")
+	var/toggled = params.as_boolean("toggled")
 
 	var/antags = list()
 
@@ -44,8 +44,6 @@
 	for(var/serialized_antag in serialized_antags)
 		if(sent_antags.is_truthy(serialized_antag))
 			antags += serialized_antags[serialized_antag]
-
-		antags += special_role
 
 	if (toggled)
 		preferences.be_special |= antags

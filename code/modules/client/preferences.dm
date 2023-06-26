@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			save_character()
 
 			// SAFETY: `load_character` performs sanitization the slot number
-			if (!load_character(params.get_num("slot"))
+			if (!load_character(params.get_num("slot")))
 				tainted_character_profiles = TRUE
 				randomise_appearance_prefs()
 				save_character()

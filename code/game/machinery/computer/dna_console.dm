@@ -573,7 +573,7 @@
 
 			var/search_flags = 0
 
-			switch(params.get_text_in_list("source"), list("occupant", "console", "disk"))
+			switch(params.get_text_in_list("source", list("occupant", "console", "disk")))
 				if("occupant")
 					// GUARD CHECK - Make sure we can modify the occupant before we
 					//  attempt to search them for any given mutation refs. This could
@@ -1866,7 +1866,7 @@
 			return mutation
 
 	if(diskette && (target_flags & SEARCH_DISKETTE))
-		mutation = parms.locate_param(mutref, diskette.mutations)
+		mutation = params.locate_param(mutref, diskette.mutations)
 		if(mutation)
 			return mutation
 

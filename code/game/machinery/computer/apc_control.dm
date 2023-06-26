@@ -148,7 +148,7 @@
 			var/obj/machinery/power/apc/target = params.locate_param("ref", GLOB.apcs_list)
 			if(!target)
 				return
-			var/type = params.get_text_in_list(type, list("equipment", "lighting", "environ"))
+			var/type = params.get_text_in_list("type", list("equipment", "lighting", "environ"))
 			if(!type) // Type param is truthy but not valid type
 				var/log_message = "Warning: possible href exploit by [key_name(usr)] - attempted to set [params.get_encoded_text("type")] on [target] to [params.get_encoded_text("value")]"
 				message_admins(log_message)

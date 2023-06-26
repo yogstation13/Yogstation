@@ -5,7 +5,7 @@
 	)
 
 /datum/preference_middleware/jobs/proc/set_job_preference(datum/params/params, mob/user)
-	var/job_title = params.get_sanitised_text["job"]
+	var/job_title = params.get_sanitised_text("job")
 	var/level = params.get_num("level", JP_LOW, JP_HIGH)
 
 	if (level == null)

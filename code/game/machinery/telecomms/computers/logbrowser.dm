@@ -60,7 +60,7 @@
 			return
 		if("SetNetwork")
 			var/datum/unsafe_message/net = params.get_unsanitised_message_container("network")
-			if(!net || !isnotpretty(net.get_encoded_text()) || length(net.get_encoded_text()) > 15)
+			if(!net || !isnotpretty(net.get_unsafe_message()) || length(net.get_unsafe_message()) > 15)
 				return
 			network = net
 			return TRUE

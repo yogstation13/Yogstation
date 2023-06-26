@@ -203,7 +203,7 @@
 		return
 	switch(action)
 		if("set_mode")
-			scangate_mode = params.get_text_in_list("new_mode", list(SCANGATE_NONE, SCANGATE_WANTED, SCANGATE_MINDSHIELD, SCANGATE_NANITES, SCANGATE_DISEASE, SCANGATE_SPECIES, SCANGATE_GUNS, SCANGATE_NUTRITION) || scangate_mode
+			scangate_mode = params.get_text_in_list("new_mode", list(SCANGATE_NONE, SCANGATE_WANTED, SCANGATE_MINDSHIELD, SCANGATE_NANITES, SCANGATE_DISEASE, SCANGATE_SPECIES, SCANGATE_GUNS, SCANGATE_NUTRITION)) || scangate_mode
 			. = TRUE
 		if("toggle_reverse")
 			reverse = !reverse
@@ -213,14 +213,14 @@
 				locked = !locked
 			. = TRUE
 		if("set_disease_threshold")
-			disease_threshold = params.get_text_in_list("new_threshold", list(DISEASE_BENEFICIAL, DISEASE_POSITIVE, DISEASE_NONTHREAT, DISEASE_MINOR, DISEASE_MEDIUM, DISEASE_HARMFUL, DISEASE_DANGEROUS, DISEASE_BIOHAZARD, DISEASE_PANDEMIC))
+			disease_threshold = params.get_text_in_list("new_threshold", list(DISEASE_SEVERITY_POSITIVE, DISEASE_SEVERITY_POSITIVE, DISEASE_SEVERITY_NONTHREAT, DISEASE_SEVERITY_MINOR, DISEASE_SEVERITY_MEDIUM, DISEASE_SEVERITY_HARMFUL, DISEASE_SEVERITY_DANGEROUS, DISEASE_SEVERITY_BIOHAZARD, DISEASE_SEVERITY_BIOHAZARD))
 			. = TRUE
 		if("set_nanite_cloud")
-			nanite_cloud = params.get_int(new_cloud, 1, 100)
+			nanite_cloud = params.get_int("new_cloud", 1, 100)
 			. = TRUE
 		//Some species are not scannable, like abductors (too unknown), androids (too artificial) or skeletons (too magic)
 		if("set_target_species")
-			detect_species = params.get_text_in_list("new_species", list(SCANGATE_FELINID, SCANGATE_FLY, SCANGATE_GOLEM, SCANGATE_HUMAN, SCANGATE_LIZARD, SCANGATE_MOTH, SCANGATE_OOZE, SCANGATE_PLASMAMAN, SCANGATE_POD, SCANGATE_ZOMBIE))
+			detect_species = params.get_text_in_list("new_species", list(SCANGATE_FELINID, SCANGATE_FLY, SCANGATE_GOLEM, SCANGATE_HUMAN, SCANGATE_LIZARD, SCANGATE_MOTH, SCANGATE_PLASMAMAN, SCANGATE_POD, SCANGATE_ZOMBIE))
 			. = TRUE
 		if("set_target_nutrition")
 			var/nutrition_list = list(

@@ -21,7 +21,7 @@
 	..()
 
 /datum/unsafe_message/proc/operator~=(datum/unsafe_message/other)
-	return _unsafe_message == ohter.get_unsafe_message()
+	return _unsafe_message == other.get_unsafe_message()
 
 /// Get the unsanitised message so that it can be passed into TGUI, which performs
 /// sanitisation on the TGUI side.

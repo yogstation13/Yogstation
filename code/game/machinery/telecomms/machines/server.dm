@@ -70,7 +70,7 @@
 
 // Preset Servers
 /obj/machinery/telecomms/server/presets
-	network = "tcommsat"
+	starting_network = "tcommsat"
 
 /obj/machinery/telecomms/server/presets/Initialize(mapload)
 	. = ..()

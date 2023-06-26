@@ -25,7 +25,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	var/starting_name = "NULL" // Inital value set by the map, is wrapped into an unsafe_message in display_name
 	var/datum/unsafe_message/display_name // Wrapped display name
 	var/id // identification string
-	var/network = "NULL" // the network of the machinery
+	var/starting_network = "NULL"
+	var/datum/unsafe_message/network // the network of the machinery
 
 	var/list/freq_listening = list() // list of frequencies to tune into: if none, will listen to all
 
@@ -95,6 +96,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 /obj/machinery/telecomms/Initialize(mapload)
 	. = ..()
 	display_name = new (starting_name)
+	network = new (starting_network)
 	id = md5(ref(src)) // Will be unique enough
 	GLOB.telecomms_list += src
 	if(mapload && autolinkers.len)

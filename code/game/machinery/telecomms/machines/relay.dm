@@ -47,7 +47,7 @@
 //Preset Relay
 
 /obj/machinery/telecomms/relay/preset
-	network = "tcommsat"
+	starting_network = "tcommsat"
 
 /obj/machinery/telecomms/relay/Initialize(mapload)
 	. = ..()

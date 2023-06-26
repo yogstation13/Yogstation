@@ -173,7 +173,7 @@ effective or pretty fucking useless.
 					return
 				target = clamp(intensity + adjust, 1, 20)
 
-			intensity_target = target
+			intensity = target
 			. = TRUE
 
 		if("radwavelength")

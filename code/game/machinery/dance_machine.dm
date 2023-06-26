@@ -158,7 +158,6 @@
 			selection = selected
 			return TRUE
 		if("set_volume")
-			var/new_volume
 			if(params.is_param_equal_to("volume", "reset"))
 				volume = initial(volume)
 				return TRUE

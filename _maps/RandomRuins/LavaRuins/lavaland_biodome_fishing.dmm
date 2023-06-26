@@ -169,7 +169,7 @@
 	freq_listening = list(1558);
 	starting_name = "Receiver F";
 	name = "subspace receiver";
-	network = "fish";
+	starting_network = "fish";
 	tempfreq = 1558
 	},
 /turf/open/floor/plasteel/dark/telecomms,
@@ -764,7 +764,7 @@
 	autolinkers = list("fishing");
 	freq_listening = list(1558);
 	starting_name = "Fishing Server";
-	network = "fish";
+	starting_network = "fish";
 	tempfreq = 1558
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -835,7 +835,7 @@
 	autolinkers = list("processorF","fishing");
 	freq_listening = list(1558);
 	starting_name = "BusF";
-	network = "fish";
+	starting_network = "fish";
 	tempfreq = 1558
 	},
 /turf/open/floor/plasteel/dark/telecomms,
@@ -889,7 +889,7 @@
 /obj/machinery/telecomms/hub/preset{
 	autolinkers = list("hubF","fishing","receiverF","broadcasterF","autorelay");
 	starting_name = "HubF";
-	network = "fish";
+	starting_network = "fish";
 	tempfreq = 1558
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -925,7 +925,7 @@
 	autolinkers = list("broadcasterF");
 	starting_name = "Broadcaster F";
 	name = "subspace broadcaster";
-	network = "fish";
+	starting_network = "fish";
 	tempfreq = 1558
 	},
 /obj/machinery/airalarm/tcomms{
@@ -1864,7 +1864,7 @@
 	dir = 1
 	},
 /obj/machinery/telecomms/processor/preset_one{
-	network = "fish";
+	starting_network = "fish";
 	tempfreq = 1558
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{

@@ -699,7 +699,7 @@
 			// Moves a part up or down in the queue.
 			var/queue_len = length(queue)
 			var/index = params.get_int("index", 1, queue_len)
-			var/new_index = index + prams.get_int("newindex", 1, queue_len)
+			var/new_index = index + params.get_int("newindex", 1, queue_len)
 			if(index && new_index)
 				queue.Swap(index,new_index)
 			return

@@ -107,7 +107,7 @@
 					return
 				else
 					display_name = params.get_unsanitised_message_container()
-					log_game("[key_name(operator)] has changed the hostname for [src] at [AREACOORD(src)] to [display_name.get_sanitised_text()].")
+					log_game("[key_name(operator)] has changed the hostname for [src] at [AREACOORD(src)] to [display_name.get_sanitised()].")
 					. = TRUE
 		if("network")
 			if(params.is_truthy("value"))
