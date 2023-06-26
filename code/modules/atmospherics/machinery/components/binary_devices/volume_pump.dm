@@ -131,7 +131,7 @@
 
 	set_frequency(frequency)
 
-/obj/machinery/atmospherics/components/binary/volume_pump/ui_act(action, params)
+/obj/machinery/atmospherics/components/binary/volume_pump/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -142,15 +142,15 @@
 			investigate_log(msg, INVESTIGATE_SUPERMATTER) // yogs - make supermatter invest useful
 			. = TRUE
 		if("rate")
-			var/rate = params["rate"]
-			if(rate == "max")
+			var/rate
+			if(params.is_param_equal_to("rate", "max"))
 				rate = MAX_TRANSFER_RATE
 				. = TRUE
-			else if(rate == "input")
+			else if(params.is_param_equal_to("rate", "input"))
 				rate = input("New transfer rate (0-[MAX_TRANSFER_RATE] L/s):", name, transfer_rate) as num|null
 				if(!isnull(rate) && !..())
 					. = TRUE
-			else if(text2num(rate) != null)
+			else if(params.get_num("rate") != null)
 				rate = text2num(rate)
 				. = TRUE
 			if(.)

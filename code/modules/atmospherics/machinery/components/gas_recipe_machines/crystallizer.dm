@@ -313,7 +313,7 @@
 	data["max_gas_input"] = max_gas_input
 	return data
 
-/obj/machinery/atmospherics/components/binary/crystallizer/ui_act(action, params)
+/obj/machinery/atmospherics/components/binary/crystallizer/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -325,7 +325,7 @@
 		if("recipe")
 			selected_recipe = null
 			var/recipe_name = "nothing"
-			var/datum/gas_recipe/recipe = GLOB.gas_recipe_meta[params["mode"]]
+			var/datum/gas_recipe/recipe = params.get_from_lookup("mode", GLOB.gas_recipe_meta)
 			if(internal.total_moles())
 				dump_gases()
 			quality_loss = 0
@@ -338,9 +338,10 @@
 			investigate_log("was set to recipe [recipe_name ? recipe_name : "null"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("gas_input")
-			var/_gas_input = params["gas_input"]
-			gas_input = clamp(_gas_input, 0, max_gas_input)
-			investigate_log("was set to [gas_input] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			var/_gas_input = params.get_num("gas_input", 0, max_gas_input)
+			if(_gas_input != null)
+				gas_input = _gas_input
+				investigate_log("was set to [gas_input] by [key_name(usr)]", INVESTIGATE_ATMOS)
 	update_icon()
 
 #undef MIN_PROGRESS_AMOUNT
