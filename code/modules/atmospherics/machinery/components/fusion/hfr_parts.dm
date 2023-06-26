@@ -320,7 +320,7 @@
 
 	return data
 
-/obj/machinery/hypertorus/interface/ui_act(action, params)
+/obj/machinery/hypertorus/interface/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -339,47 +339,47 @@
 			connected_core.start_moderator = !connected_core.start_moderator
 			. = TRUE
 		if("heating_conductor")
-			var/heating_conductor = text2num(params["heating_conductor"])
+			var/heating_conductor = params.get_num("heating_conductor", 50, 500)
 			if(heating_conductor != null)
-				connected_core.heating_conductor = clamp(heating_conductor, 50, 500)
+				connected_core.heating_conductor = heating_conductor
 				. = TRUE
 		if("magnetic_constrictor")
-			var/magnetic_constrictor = text2num(params["magnetic_constrictor"])
+			var/magnetic_constrictor = params.get_num("magnetic_constrictor", 50, 1000)
 			if(magnetic_constrictor != null)
-				connected_core.magnetic_constrictor = clamp(magnetic_constrictor, 50, 1000)
+				connected_core.magnetic_constrictor = magnetic_constrictor
 				. = TRUE
 		if("fuel_injection_rate")
-			var/fuel_injection_rate = text2num(params["fuel_injection_rate"])
+			var/fuel_injection_rate = params.get_num("fuel_injection_rate", 0.5, 150)
 			if(fuel_injection_rate != null)
-				connected_core.fuel_injection_rate = clamp(fuel_injection_rate, 0.5, 150)
+				connected_core.fuel_injection_rate = fuel_injection_rate
 				. = TRUE
 		if("moderator_injection_rate")
-			var/moderator_injection_rate = text2num(params["moderator_injection_rate"])
+			var/moderator_injection_rate = params.get_num("moderator_injection_rate", 0.5, 150)
 			if(moderator_injection_rate != null)
-				connected_core.moderator_injection_rate = clamp(moderator_injection_rate, 0.5, 150)
+				connected_core.moderator_injection_rate = moderator_injection_rate
 				. = TRUE
 		if("current_damper")
-			var/current_damper = text2num(params["current_damper"])
+			var/current_damper = params.get_num("current_damper", 0, 1000)
 			if(current_damper != null)
-				connected_core.current_damper = clamp(current_damper, 0, 1000)
+				connected_core.current_damper = current_damper
 				. = TRUE
 		if("waste_remove")
 			connected_core.waste_remove = !connected_core.waste_remove
 			. = TRUE
 		if("filter")
-			connected_core.moderator_scrubbing ^= gas_id2path(params["mode"])
+			connected_core.moderator_scrubbing ^= gas_id2path(params.get_sanitised_text("mode"))
 			. = TRUE
 		if("mod_filtering_rate")
-			var/mod_filtering_rate = text2num(params["mod_filtering_rate"])
+			var/mod_filtering_rate = params.get_num("mod_filtering_rate", 5, 200)
 			if(mod_filtering_rate != null)
-				connected_core.moderator_filtering_rate = clamp(mod_filtering_rate, 5, 200)
+				connected_core.moderator_filtering_rate = mod_filtering_rate
 				. = TRUE
 		if("fuel")
 			connected_core.selected_fuel = null
 			var/fuel_mix = "nothing"
 			var/datum/hfr_fuel/fuel = null
-			if(params["mode"] != "")
-				fuel = GLOB.hfr_fuels_list[params["mode"]]
+			if(params.get_boolean("mode"))
+				fuel = params.get_from_lookup("mode", GLOB.hfr_fuels_list)
 			if(fuel)
 				connected_core.selected_fuel = fuel
 				fuel_mix = fuel.name
@@ -392,9 +392,9 @@
 			investigate_log("was set to recipe [fuel_mix ? fuel_mix : "null"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("cooling_volume")
-			var/cooling_volume = text2num(params["cooling_volume"])
+			var/cooling_volume = params.get_num("cooling_volume", 50, 2000)
 			if(cooling_volume != null)
-				connected_core.airs[1].set_volume(clamp(cooling_volume, 50, 2000))
+				connected_core.airs[1].set_volume(cooling_volume)
 				. = TRUE
 
 /obj/machinery/hypertorus/corner

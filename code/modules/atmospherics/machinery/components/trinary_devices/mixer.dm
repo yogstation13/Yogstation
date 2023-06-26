@@ -140,7 +140,7 @@
 	data["node2_concentration"] = round(node2_concentration*100, 1)
 	return data
 
-/obj/machinery/atmospherics/components/trinary/mixer/ui_act(action, params)
+/obj/machinery/atmospherics/components/trinary/mixer/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
@@ -149,27 +149,27 @@
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("pressure")
-			var/pressure = params["pressure"]
-			if(pressure == "max")
+			var/pressure
+			if(params.is_param_equal_to("pressure", "max"))
 				pressure = MAX_OUTPUT_PRESSURE
 				. = TRUE
-			else if(pressure == "input")
+			else if(params.is_param_equal_to("pressure", "input"))
 				pressure = input("New output pressure (0-[MAX_OUTPUT_PRESSURE] kPa):", name, target_pressure) as num|null
 				if(!isnull(pressure) && !..())
 					. = TRUE
-			else if(text2num(pressure) != null)
-				pressure = text2num(pressure)
+			else if(params.get_num("pressure") != null)
+				pressure = params.get_num("pressure")
 				. = TRUE
 			if(.)
 				target_pressure = clamp(pressure, 0, MAX_OUTPUT_PRESSURE)
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
 		if("node1")
-			var/value = text2num(params["concentration"])
+			var/value = params.get_num("concentration")
 			adjust_node1_value(value)
 			investigate_log("was set to [node1_concentration] % on node 1 by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("node2")
-			var/value = text2num(params["concentration"])
+			var/value = params.get_num("concentration")
 			adjust_node1_value(100 - value)
 			investigate_log("was set to [node2_concentration] % on node 2 by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
