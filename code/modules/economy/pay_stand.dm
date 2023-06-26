@@ -147,7 +147,7 @@
 		.["user"]["name"] = account.account_holder
 		.["user"]["balance"] = account.account_balance
 
-/obj/machinery/paystand/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/paystand/ui_act(action, datum/params/params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return FALSE
@@ -156,22 +156,22 @@
 			ui.send_full_update()
 			return TRUE
 		if("fee")
-			linked_card.set_holopay_fee(params["amount"])
+			linked_card.set_holopay_fee(params.get_num("amount"))
 			force_fee = linked_card.holopay_fee
 		if("logo")
-			linked_card.set_holopay_logo(params["logo"])
+			linked_card.set_holopay_logo(params.get_text_in_list("logo", available_logos))
 			shop_logo = linked_card.holopay_logo
 		if("pay")
 			ui.close()
 			process_payment(usr)
 			return TRUE
 		if("rename")
-			linked_card.set_holopay_name(params["name"])
+			linked_card.set_holopay_name(params.get_stripped_text("name"))
 			name = linked_card.holopay_name
 		if("boltlock")
-			if(params["locked"] == "No")
+			if(params.is_param_equal_to("locked", "No"))
 				bolt_locked = FALSE
-			if(params["locked"] == "Yes")
+			if(params.is_param_equal_to("locked", "Yes"))
 				bolt_locked = TRUE
 	return FALSE
 

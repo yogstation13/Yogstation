@@ -333,7 +333,7 @@
 	data["status_report"] = status_report
 	return data
 
-/obj/machinery/computer/piratepad_control/ui_act(action, params)
+/obj/machinery/computer/piratepad_control/ui_act(action, datum/params/params)
 	if(..())
 		return
 	if(!pad)

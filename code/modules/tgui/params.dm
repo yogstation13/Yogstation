@@ -33,7 +33,7 @@
 
 /// Returns true if the parameter is "1" (TRUE, but as a string), false otherwise
 /datum/params/proc/as_boolean(param) // Not using get_boolean due to that name being the original of is_truthy
-	return _unsafe_params[param] == "1"
+	return text2num(_unsafe_params[param]) == 1
 
 // =============================
 // Text Handling
@@ -50,6 +50,10 @@
 /// Returns the requested parameter as a ckey
 /datum/params/proc/get_ckey(param)
 	return ckey(_unsafe_params[param])
+
+/// Returns the string with < and > stripped
+/datum/params/proc/get_stripped_text(param)
+	return strip_html_simple(_unsafe_params(param))
 
 /// Returns the requested parameter as an unsanitised message holder which
 /// can be used to pass messages back into TGUI without encoding and then

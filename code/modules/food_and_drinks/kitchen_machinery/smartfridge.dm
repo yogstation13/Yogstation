@@ -344,7 +344,7 @@
 /obj/machinery/smartfridge/handle_atom_del(atom/A) // Update the UIs in case something inside gets deleted
 	SStgui.update_uis(src)
 
-/obj/machinery/smartfridge/ui_act(action, params)
+/obj/machinery/smartfridge/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		return
@@ -360,8 +360,8 @@
 				audible_message(span_warning("\The [src] makes a loud clunk and the dispenser arm twitches slightly."), span_warning("The dispenser arm on the [src] twitches slightly."))
 				return
 
-			if (params["amount"])
-				desired = text2num(params["amount"])
+			if (params.get_num("amount"))
+				desired = params.get_num("amount")
 			else
 				desired = input("How many items?", "How many items would you like to take out?", 1) as null|num
 
@@ -374,7 +374,7 @@
 			//Retrieving a single item into your hand
 			if(desired == 1 && Adjacent(usr) && !issilicon(usr))
 				for(var/obj/item/O in src)
-					if(O.name == params["name"])
+					if(params.is_param_equal_to("name", O.name))
 						dispense(O, usr)
 						break
 				update_icon()
@@ -386,7 +386,7 @@
 			for(var/obj/item/O in src)
 				if(desired <= 0)
 					break
-				if(O.name == params["name"])
+				if(params.is_param_equal_to("name", O.name))
 					dispense(O, usr)
 					desired--
 
@@ -451,7 +451,7 @@
 	.["drying"] = drying
 
 
-/obj/machinery/smartfridge/drying_rack/ui_act(action, params)
+/obj/machinery/smartfridge/drying_rack/ui_act(action, datum/params/params)
 	. = ..()
 	if(.)
 		update_icon() // This is to handle a case where the last item is taken out manually instead of through drying pop-out

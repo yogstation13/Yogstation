@@ -242,7 +242,7 @@
 		data["target"] = get_target_name()
 	return data
 
-/obj/machinery/computer/bsa_control/ui_act(action, params)
+/obj/machinery/computer/bsa_control/ui_act(action, datum/params/params)
 	if(..())
 		return
 	switch(action)
