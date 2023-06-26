@@ -167,7 +167,7 @@ effective or pretty fucking useless.
 					target = clamp(round(input_val), 1, 20)
 				else
 					target = params.get_int("target", 1, 20)
-			if(!target)
+			if(target != null)
 				var/adjust = params.get_int("adjust")
 				if(!adjust)
 					return
@@ -192,7 +192,7 @@ effective or pretty fucking useless.
 					target = params.get_int("target", 0, 120)
 			if(!target)
 				var/adjust = params.get_int("adjust")
-				if(!adjust)
+				if(adjust == null)
 					return
 				target = clamp(intensity + adjust, 0, 120)
 

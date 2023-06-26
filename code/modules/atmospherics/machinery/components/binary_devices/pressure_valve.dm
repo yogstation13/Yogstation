@@ -111,7 +111,7 @@
 			if(params.is_param_equal_to("pressure", "max"))
 				pressure = ONE_ATMOSPHERE*100
 				. = TRUE
-			else if(params.get_num("pressure"))
+			else if(params.get_num("pressure") != null)
 				pressure = params.get_num("pressure")
 				. = TRUE
 			if(.)

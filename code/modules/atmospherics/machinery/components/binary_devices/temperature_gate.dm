@@ -103,7 +103,7 @@
 			if(params.is_param_equal_to("temperature", "max"))
 				temperature = max_temperature
 				. = TRUE
-			else if(params.get_num("temperature"))
+			else if(params.get_num("temperature") != null)
 				temperature = params.get_num("temperature")
 				. = TRUE
 			if(.)

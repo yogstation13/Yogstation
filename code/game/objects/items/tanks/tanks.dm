@@ -212,7 +212,7 @@
 				pressure = input("New release pressure ([TANK_MIN_RELEASE_PRESSURE]-[TANK_MAX_RELEASE_PRESSURE] kPa):", name, distribute_pressure) as num|null
 				if(!isnull(pressure) && !..())
 					. = TRUE
-			else if(params.get_num("pressure"))
+			else if(params.get_num("pressure") != null)
 				pressure = params.get_num("pressure")
 				. = TRUE
 			if(.)

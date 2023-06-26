@@ -129,7 +129,7 @@
 				pressure = input("New output pressure (0-[MAX_OUTPUT_PRESSURE] kPa):", name, target_pressure) as num|null
 				if(!isnull(pressure) && !..())
 					. = TRUE
-			else if(params.get_num("pressure"))
+			else if(params.get_num("pressure") != null)
 				pressure = params.get_num("pressure")
 				. = TRUE
 			if(.)
