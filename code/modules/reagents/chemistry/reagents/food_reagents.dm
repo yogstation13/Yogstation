@@ -804,25 +804,25 @@
 /datum/reagent/consumable/mesophilicculture
 	name = "mesophilic culture"
 	description = "A mixture of mesophilic bacteria used to make most cheese."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#F3CE3A" // rgb: 243, 206, 58
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/thermophilicculture
 	name = "thermophilic culture"
 	description = "A mixture of thermophilic bacteria used to make some cheese."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#FFE682" // rgb: 255, 230, 130
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/penicilliumcandidum
 	name = "penicillium candidum"
 	description = "A special bacterium used to make brie."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#E9ECD5" // rgb: 233, 236, 213
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/penicilliumroqueforti
 	name = "penicillium roqueforti"
 	description = "A special bacterium used to make blue cheese."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#829BB3" // rgb: 130, 155, 179
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/parmesan_delight
