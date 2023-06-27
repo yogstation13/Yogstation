@@ -70110,10 +70110,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
-"xGn" = (
-/obj/structure/grille,
-/turf/open/floor/plating/airless,
-/area/space)
 "xGs" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -92624,11 +92620,11 @@ aaa
 aaa
 aaa
 aaa
-uBx
-uBx
 aaa
-uBx
-uBx
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -93907,7 +93903,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 qCF
 dyx
 xAJ
@@ -94163,8 +94159,8 @@ aaa
 aaa
 aaa
 aaa
-uBx
-uBx
+aaa
+aaa
 dOC
 eKF
 aat
@@ -94443,7 +94439,7 @@ dWv
 kEb
 eVV
 bUX
-uBx
+aaa
 aaa
 gXs
 aaa
@@ -94672,9 +94668,9 @@ aaa
 aaa
 aaa
 aaa
-uBx
-uBx
-uBx
+aaa
+aaa
+aaa
 aaa
 aiT
 lMq
@@ -94700,7 +94696,7 @@ tpW
 jeG
 sXy
 bUX
-uBx
+aaa
 aaa
 gXs
 aaa
@@ -94957,7 +94953,7 @@ tpW
 jeG
 sXy
 bUX
-uBx
+aaa
 aaa
 gXs
 aaa
@@ -95184,7 +95180,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 cVS
 iVt
 cUn
@@ -95441,7 +95437,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 aiT
 jRN
 mnl
@@ -95473,7 +95469,7 @@ hKu
 rPO
 aaa
 aaa
-xGn
+aKN
 aaa
 aaa
 aaa
@@ -95698,7 +95694,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 cVS
 vyo
 oWZ
@@ -95730,7 +95726,7 @@ grl
 rPO
 aaa
 aaa
-xGn
+aKN
 aaa
 aaa
 aaa
@@ -95955,7 +95951,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 aiT
 gqA
 peN
@@ -95985,7 +95981,7 @@ tpW
 jeG
 sXy
 bUX
-uBx
+aaa
 aaa
 aaf
 aaa
@@ -96212,7 +96208,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 cVS
 scE
 xfH
@@ -96242,7 +96238,7 @@ lUu
 jeG
 sXy
 bUX
-uBx
+aaa
 aaa
 aaf
 aaa
@@ -96469,7 +96465,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 aiT
 aiT
 bYo
@@ -96499,7 +96495,7 @@ mEa
 jeG
 sXy
 bUX
-uBx
+aaa
 aaa
 aaf
 aaa
@@ -96727,7 +96723,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 cVS
 vvo
 foo
@@ -96984,7 +96980,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 aiT
 aiT
 aiT
@@ -97500,7 +97496,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 kbU
 pYC
 aBg
@@ -97757,7 +97753,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 nlE
 aat
 iMs
@@ -98014,7 +98010,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 nlE
 rXV
 iMs
@@ -98271,7 +98267,7 @@ aaa
 aaa
 aaa
 aaa
-uBx
+aaa
 dgr
 dyx
 jMm
