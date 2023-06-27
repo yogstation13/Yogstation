@@ -1091,6 +1091,7 @@
 	taste_description = "bitter evil"
 	process_flags = ORGANIC | SYNTHETIC
 	metabolization_rate = 5 * REAGENTS_METABOLISM
+	can_synth = FALSE
 
 //Teleport like normal telecrystals
 /datum/reagent/redspace/on_mob_metabolize(mob/living/L)

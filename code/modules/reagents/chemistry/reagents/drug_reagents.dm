@@ -546,7 +546,7 @@
 	addiction_threshold = 20
 	overdose_threshold = 40
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
-	var/withdrawn = FALSE
+	can_synth = FALSE
 
 //Teleport like normal telecrystals
 /datum/reagent/drug/red_eye/proc/tele_teleport(mob/living/L)
