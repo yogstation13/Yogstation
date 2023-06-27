@@ -2388,7 +2388,6 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/item/analyzer/ranged,
 /obj/structure/closet/crate/engineering,
 /obj/item/pipe_dispenser,
 /obj/item/stack/sheet/metal/fifty,
@@ -2402,6 +2401,7 @@
 	dir = 8
 	},
 /obj/item/holosign_creator/atmos,
+/obj/item/analyzer,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "jD" = (
@@ -4064,6 +4064,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/igniter/incinerator_syndicatelava,
+/obj/machinery/air_sensor/atmos{
+	id_tag = "syndielava_turbine"
+	},
 /turf/open/floor/engine/vacuum,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "oB" = (
@@ -5237,6 +5240,13 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/computer/atmos_control/tank/mix_tank{
+	sensors = list("syndielava_turbine" = "Turbine");
+	dir = 1;
+	name = "burn chamber control";
+	input_tag = "syndie_lavaland_inc_in""syndie_lavaland_inc_in""syndie_lavaland_inc_in";
+	output_tag = null
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
 "EZ" = (
