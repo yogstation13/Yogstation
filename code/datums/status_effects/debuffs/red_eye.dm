@@ -1,7 +1,7 @@
-/// Red eye effect, makes your screen a swirling blue
+/// Red eye effect, makes your screen a swirling red
 /datum/status_effect/red_eye
 	id = "red_eye"
-	alert_type = /atom/movable/screen/alert/status_effect/high
+	alert_type = /atom/movable/screen/alert/status_effect/red_eye
 	remove_on_fullheal = TRUE
 
 /datum/status_effect/red_eye/on_creation(mob/living/new_owner, duration = 10 SECONDS)
@@ -26,3 +26,9 @@
 	SIGNAL_HANDLER
 
 	qdel(src)
+
+/atom/movable/screen/alert/status_effect/red_eye
+	name = "Red-Eye"
+	desc = "DRAKHARFR PLEGH-WE GALBARTOK USINAR"
+	icon = 'yogstation/icons/mob/screen_alert.dmi'
+	icon_state = "red_eye" 
