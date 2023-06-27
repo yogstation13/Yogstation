@@ -7,15 +7,112 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/dorms)
+"aH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/crate/engineering,
+/obj/item/storage/part_replacer/bluespace/tier4{
+	pixel_y = -4
+	},
+/obj/item/storage/part_replacer/bluespace/tier4{
+	pixel_y = 4
+	},
+/obj/item/storage/part_replacer/bluespace/tier4{
+	pixel_y = -6
+	},
+/obj/item/storage/part_replacer/bluespace/tier4{
+	pixel_y = 6
+	},
+/obj/item/storage/part_replacer/bluespace/tier4,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/storage/box/stockparts/deluxe,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"bb" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/syndicate_icemoon/command)
+"bd" = (
+/obj/machinery/microwave,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"bl" = (
+/obj/machinery/atmospherics/pipe/simple/supplymain/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"bs" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on{
+	target_temperature = 73;
+	dir = 1;
+	piping_layer = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "bu" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"bW" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "cw" = (
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
+"cD" = (
+/obj/machinery/button/door{
+	id = "icemoon_syndicate_canteen_windows";
+	req_access_txt = "150";
+	name = "Canteen Shutters";
+	pixel_y = 24
+	},
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"cJ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 6
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/syndicate_icemoon/engine)
+"cT" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"cV" = (
+/obj/machinery/igniter{
+	id = "syndie_icemoon_teghot"
+	},
+/turf/open/floor/engine/vacuum,
+/area/ruin/syndicate_icemoon/engine)
+"cZ" = (
+/turf/open/floor/engine/o2,
+/area/ruin/syndicate_icemoon/engine)
 "dc" = (
 /obj/machinery/light{
 	dir = 1
@@ -24,6 +121,65 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/security)
+"dd" = (
+/obj/structure/closet/syndicate,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/under/syndicate/camo,
+/obj/item/clothing/under/syndicate/coldres,
+/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/clothing/head/HoS/syndicate{
+	desc = "A black cap fit for a Syndicate researcher."
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/syndicate_icemoon/dorms)
+"dh" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supplymain/visible{
+	dir = 5
+	},
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"dm" = (
+/obj/machinery/power/generator,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"dy" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"dB" = (
+/obj/machinery/power/apc/auto_name/west{
+	req_access = list(150)
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/warehouse)
 "dF" = (
 /obj/structure/railing{
 	dir = 8
@@ -32,6 +188,17 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/icemoon/surface/outdoors)
+"dV" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1
+	},
+/turf/open/floor/engine/plasma,
+/area/ruin/syndicate_icemoon/engine)
+"eC" = (
+/obj/machinery/atmospherics/miner/nitrogen,
+/obj/machinery/light/small,
+/turf/open/floor/engine/n2,
+/area/ruin/syndicate_icemoon/engine)
 "eJ" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/medical)
@@ -42,6 +209,32 @@
 /obj/structure/flora/rock/icy,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
+"eT" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supplymain/visible,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"eU" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "eZ" = (
 /obj/machinery/syndicatebomb/self_destruct,
 /turf/open/floor/mineral/plastitanium,
@@ -50,6 +243,39 @@
 /obj/structure/flora/grass/both,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
+"fh" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"fq" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 1
+	},
+/turf/open/floor/engine/plasma,
+/area/ruin/syndicate_icemoon/engine)
+"fu" = (
+/obj/machinery/atmospherics/components/binary/valve/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "fv" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -61,6 +287,32 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
+"fV" = (
+/obj/structure/sign/warning/securearea,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/syndicate_icemoon/engine)
+"gf" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supplymain/visible,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"gE" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/shed)
 "gF" = (
 /turf/open/floor/plasteel/dark{
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
@@ -69,17 +321,130 @@
 "gG" = (
 /turf/closed/wall/rust,
 /area/ruin/syndicate_icemoon/warehouse)
+"gH" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"gK" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"gS" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"gW" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
 "hf" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "syndie_icemoon_warehouse"
 	},
 /obj/structure/fans/tiny,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/warehouse)
+"hm" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/warehouse)
+"hv" = (
+/obj/machinery/power/apc/auto_name/south{
+	req_access = list(150)
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"hy" = (
+/obj/machinery/door/airlock/research{
+	name = "Chemistry";
+	req_access_txt = "150"
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/syndicate_icemoon/research)
+"hR" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"hS" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"if" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/rnd/destructive_analyzer,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"iy" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"iG" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/preopen{
+	id = "syndieicemoon_sci_shutters"
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/research)
 "iT" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/hallway)
+"iY" = (
+/obj/machinery/reagentgrinder{
+	pixel_y = 5
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/beaker/large,
+/turf/open/floor/plasteel/white,
+/area/ruin/syndicate_icemoon/research)
+"ja" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/canteen)
 "jd" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Captain's Quarters";
@@ -87,6 +452,14 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
+"ji" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "jr" = (
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
@@ -115,28 +488,201 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/hallway)
+"kg" = (
+/obj/machinery/atmospherics/components/trinary/mixer/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "kn" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/hallway)
+"kF" = (
+/obj/machinery/atmospherics/components/binary/valve,
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"kH" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4,
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "kP" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/syndicate_icemoon/engine)
+"kT" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/orange/visible/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/binary/valve,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"lg" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/engine)
+"lr" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
 /area/ruin/syndicate_icemoon/engine)
 "lz" = (
 /obj/item/bedsheet/syndie,
 /obj/structure/bed,
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
+"lS" = (
+/obj/machinery/atmospherics/miner/oxygen,
+/obj/machinery/light/small,
+/turf/open/floor/engine/o2,
+/area/ruin/syndicate_icemoon/engine)
+"lY" = (
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4;
+	level = 2
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/syndicate_icemoon/engine)
+"mc" = (
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	req_access = list(150)
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/canteen)
 "mi" = (
 /obj/machinery/autolathe,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
-"nj" = (
-/turf/template_noop,
+"mm" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
+"mu" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
 /area/ruin/syndicate_icemoon/engine)
+"mv" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"mY" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 8
+	},
+/turf/open/floor/engine/vacuum,
+/area/ruin/syndicate_icemoon/engine)
+"nj" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/orange/visible/layer2,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"np" = (
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = list(150)
+	},
+/obj/item/storage/box/ingredients/american,
+/obj/item/storage/box/ingredients/delights,
+/obj/item/storage/box/ingredients/carnivore,
+/obj/item/storage/box/ingredients/exotic,
+/obj/item/storage/box/ingredients/fiesta,
+/obj/item/storage/box/ingredients/fruity,
+/obj/item/storage/box/ingredients/grains,
+/obj/item/storage/box/ingredients/italian,
+/obj/item/storage/box/ingredients/sweets,
+/obj/item/storage/box/ingredients/vegetarian,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/canteen)
 "nH" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
+"nL" = (
+/obj/machinery/power/apc/auto_name/north{
+	req_access = list(150)
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/security)
+"nM" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/rnd/production/protolathe,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"nY" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
+"ob" = (
+/obj/machinery/power/smes/fullycharged,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "oD" = (
 /obj/machinery/door/airlock{
 	req_access_txt = "150";
@@ -144,14 +690,75 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
-"pO" = (
-/obj/machinery/computer/security/telescreen/toxins{
-	network = list("syndicateicemoon")list("syndicateicemoon")
+"oF" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/window/eastright{
+	req_access_txt = "150";
+	name = "Kitchen"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"oM" = (
+/obj/structure/chair/americandiner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"pf" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"pl" = (
+/obj/machinery/chem_master,
+/turf/open/floor/plasteel/white,
+/area/ruin/syndicate_icemoon/research)
+"pE" = (
+/obj/structure/chair/americandiner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"pJ" = (
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark{
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
+/area/ruin/syndicate_icemoon/engine)
+"pM" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"pO" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security/telescreen/toxins,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
 /area/ruin/syndicate_icemoon/research)
+"pZ" = (
+/obj/machinery/atmospherics/components/binary/valve/layer2,
+/obj/machinery/atmospherics/components/binary/valve/layer4,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "qc" = (
 /turf/template_noop,
 /area/ruin/syndicate_icemoon/medical)
@@ -161,26 +768,151 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/dorms)
+"qn" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150"
+	},
+/obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/engine)
+"qq" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Canteen"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"qB" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "qC" = (
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/hallway)
 "qK" = (
 /turf/open/lava/plasma/ice_moon,
 /area/icemoon/surface/outdoors)
+"qP" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/door/poddoor/preopen{
+	id = "icemoon_syndicate_canteen_windows"
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/canteen)
+"rd" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "rk" = (
 /obj/structure/flora/rock/pile/icy,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
+"rn" = (
+/obj/structure/closet/crate/engineering,
+/obj/item/storage/toolbox/syndicate{
+	pixel_y = -6
+	},
+/obj/item/storage/toolbox/syndicate{
+	pixel_y = 6
+	},
+/obj/item/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate{
+	pixel_y = -4
+	},
+/obj/item/storage/toolbox/syndicate{
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"rq" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/eastright{
+	req_access_txt = "150";
+	name = "RnD Desk"
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"rr" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supplymain/visible{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "rt" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"rI" = (
+/obj/structure/flora/grass/brown,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "rJ" = (
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"rM" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/canteen)
+"sf" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 6
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"sn" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "su" = (
 /obj/machinery/door/airlock/highsecurity{
 	req_access_txt = "150";
@@ -190,6 +922,15 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/command)
+"sw" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "sT" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security/telescreen/toxins{
@@ -199,8 +940,23 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/command)
+"td" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "tj" = (
 /turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/icemoon/surface/outdoors)
+"tz" = (
+/obj/structure/flora/grass/both,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
 "tC" = (
 /obj/structure/table/reinforced,
@@ -225,29 +981,112 @@
 	},
 /area/ruin/syndicate_icemoon/command)
 "us" = (
-/turf/template_noop,
+/turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/research)
 "uu" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Emergency Storage";
-	req_access_txt = "150"
+/obj/machinery/door/airlock{
+	name = "Bathroom"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
+"uD" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"uG" = (
+/obj/machinery/deepfryer,
+/obj/machinery/power/apc/auto_name/south{
+	req_access = list(150)
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
 "uY" = (
-/obj/machinery/portable_atmospherics/scrubber,
-/turf/open/floor/plating,
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
+"vj" = (
+/obj/machinery/atmospherics/pipe/simple/supplymain/visible{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"vG" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"vI" = (
+/obj/machinery/oven,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
 "vS" = (
 /turf/closed/wall/r_wall/rust,
 /area/icemoon/surface/outdoors)
+"vU" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"wj" = (
+/obj/structure/kitchenspike,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/canteen)
+"wk" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"wx" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "wz" = (
 /obj/machinery/door/airlock/hatch{
 	req_access_txt = "150"
 	},
 /obj/structure/fans/tiny,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/shed)
+"wF" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/computer/rdconsole/nolock/ruin{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
 "wH" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/dorms)
@@ -257,14 +1096,22 @@
 	name = "Warehouse Shutters";
 	pixel_y = -24
 	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/icemoon/surface/outdoors)
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/warehouse)
 "wV" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark{
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/command)
+"xf" = (
+/obj/machinery/atmospherics/miner/toxins,
+/obj/machinery/light/small,
+/turf/open/floor/engine/plasma,
+/area/ruin/syndicate_icemoon/engine)
 "xB" = (
 /obj/machinery/door/airlock/hatch{
 	req_access_txt = "150";
@@ -277,6 +1124,15 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/security)
+"xE" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "syndieicemoon_sci_shutters";
+	req_access_txt = "150";
+	name = "Window Shutters"
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/syndicate_icemoon/research)
 "xR" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -294,6 +1150,41 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/command)
+"yW" = (
+/obj/machinery/chem_dispenser/fullupgrade,
+/turf/open/floor/plasteel/white,
+/area/ruin/syndicate_icemoon/research)
+"yZ" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"zc" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"zg" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "zm" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark{
@@ -303,6 +1194,13 @@
 "zo" = (
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
+"zH" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/effect/turf_decal/trimline/red/filled/line,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "zW" = (
 /obj/machinery/door/airlock/vault{
 	req_access_txt = "151";
@@ -314,20 +1212,84 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/command)
+"Aa" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supplymain/visible,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"At" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/rtg/advanced,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "AC" = (
-/turf/template_noop,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
+"AK" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"AL" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"AZ" = (
+/obj/effect/turf_decal/tile/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/white,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
 "Ba" = (
 /obj/machinery/button/door{
 	id = "syndie_icemoon_warehouse";
 	name = "Warehouse Shutters";
 	pixel_y = 24
 	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"Bc" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/engine/vacuum,
+/area/ruin/syndicate_icemoon/engine)
+"Bd" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/syndicate_icemoon/dorms)
 "Bq" = (
 /turf/closed/wall,
 /area/ruin/syndicate_icemoon/warehouse)
+"Br" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/glasses/science,
+/obj/item/book/manual/wiki/chemistry,
+/obj/machinery/airalarm/syndicate{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/syndicate_icemoon/research)
 "BB" = (
 /obj/machinery/computer/security/telescreen/toxins{
 	network = list("syndicateicemoon")list("syndicateicemoon")
@@ -335,6 +1297,14 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
+"BO" = (
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/beaker/large,
+/turf/open/floor/plasteel/white,
+/area/ruin/syndicate_icemoon/research)
 "BP" = (
 /turf/open/floor/plating/snowed{
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
@@ -347,21 +1317,124 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/syndicate_icemoon/dorms)
+"CA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/box/beakers/bluespace,
+/obj/item/storage/box/beakers/bluespace,
+/obj/structure/closet/secure_closet/chemical{
+	req_access = null;
+	req_access_txt = "150"
+	},
+/obj/item/storage/box/syringes,
+/turf/open/floor/plasteel/white,
+/area/ruin/syndicate_icemoon/research)
+"CB" = (
+/obj/machinery/atmospherics/components/binary/valve/layer4,
+/obj/machinery/atmospherics/components/binary/valve/layer2,
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "CH" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/security)
+"CT" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Canteen"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"Db" = (
+/obj/machinery/power/apc/auto_name/west{
+	req_access = list(150)
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/shed)
+"Df" = (
+/obj/machinery/atmospherics/components/binary/circulator{
+	dir = 8
+	},
+/obj/effect/turf_decal/box,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"Di" = (
+/obj/machinery/power/apc/auto_name/south{
+	req_access = list(150)
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/command)
+"Dz" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/security)
+"DC" = (
+/obj/structure/grille,
+/obj/machinery/door/poddoor/preopen{
+	id = "icemoon_syndicate_canteen_windows"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/canteen)
 "DV" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/dorms)
+"El" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"Eo" = (
+/obj/machinery/atmospherics/components/binary/circulator/cold{
+	dir = 4
+	},
+/obj/effect/turf_decal/box,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "ED" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/security)
+"EG" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "syndieicemoon_sci_shutters";
+	req_access_txt = "150";
+	name = "Window Shutters"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
 "EH" = (
 /obj/structure/railing,
 /turf/open/floor/plating/snowed{
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/icemoon/surface/outdoors)
+"EV" = (
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
 "Fi" = (
 /obj/machinery/door/airlock/research{
 	name = "Research Wing";
@@ -371,6 +1444,29 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/research)
+"Fw" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "syndieicemoon_sci_shutters";
+	req_access_txt = "150";
+	name = "Window Shutters"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"FF" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
+"FK" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/engine)
 "FM" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/poddoor/preopen{
@@ -402,6 +1498,16 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/icemoon/surface/outdoors)
+"Gd" = (
+/obj/machinery/door/airlock/research{
+	name = "Research and Development";
+	req_access_txt = "150"
+	},
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
 "Gi" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Warehouse Office"
@@ -416,9 +1522,29 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/command)
+"GP" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/glasses/science,
+/obj/item/book/manual/wiki/chemistry,
+/turf/open/floor/plasteel/white,
+/area/ruin/syndicate_icemoon/research)
 "Hk" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/research)
+"Ho" = (
+/obj/machinery/atmospherics/pipe/simple/supplymain/visible,
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"Hp" = (
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate,
+/turf/open/floor/plasteel/grimy,
+/area/ruin/syndicate_icemoon/dorms)
 "HA" = (
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
@@ -435,18 +1561,56 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"HO" = (
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
 "Il" = (
 /turf/template_noop,
 /area/ruin/syndicate_icemoon/hallway)
 "IF" = (
-/obj/machinery/portable_atmospherics/pump,
-/turf/open/floor/plating,
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/machinery/door/window/eastright{
+	req_access_txt = "150"
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
 "IP" = (
 /turf/open/floor/plasteel/dark{
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/security)
+"IS" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 8
+	},
+/turf/open/floor/engine/vacuum,
+/area/ruin/syndicate_icemoon/engine)
+"Jc" = (
+/turf/open/floor/engine/n2,
+/area/ruin/syndicate_icemoon/engine)
+"Je" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/closet/syndicate,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/ammo_box/magazine/m10mm,
+/obj/item/clothing/suit/armor/vest,
+/obj/item/clothing/under/syndicate/camo,
+/obj/item/clothing/under/syndicate/coldres,
+/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/head/HoS/beret/syndicate,
+/obj/item/clothing/head/HoS/syndicate{
+	desc = "A black cap fit for a Syndicate researcher."
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/syndicate_icemoon/dorms)
 "Jf" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -468,11 +1632,45 @@
 "JL" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/shed)
+"JO" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/canteen)
+"JZ" = (
+/obj/structure/closet/secure_closet/freezer/meat{
+	req_access = list(150)
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/canteen)
 "Ke" = (
 /turf/open/floor/plasteel/dark{
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/dorms)
+"Ko" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/syndicate_icemoon/dorms)
+"Kr" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"Kv" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/syndicate_icemoon/engine)
 "Ky" = (
 /obj/structure/closet/secure_closet/brig{
 	req_access = list(150)
@@ -481,11 +1679,65 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/security)
+"KB" = (
+/turf/open/floor/engine/plasma,
+/area/ruin/syndicate_icemoon/engine)
 "KL" = (
 /turf/open/floor/plasteel/dark{
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/research)
+"KP" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/syndicate_icemoon/dorms)
+"KY" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"Ly" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"LC" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"LG" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 6
+	},
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "LM" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/external{
@@ -494,8 +1746,49 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/hallway)
+"LV" = (
+/obj/machinery/button/door{
+	id = "syndie_icemoon_vent";
+	req_access_txt = "150";
+	pixel_y = 24;
+	name = "Chamber Vent";
+	pixel_x = -5
+	},
+/obj/machinery/button/ignition{
+	id = "syndie_icemoon_teghot";
+	pixel_y = 24;
+	pixel_x = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"MB" = (
+/obj/machinery/door/airlock/engineering{
+	req_access_txt = "150";
+	name = "Engineering"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "Ng" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/external{
@@ -504,18 +1797,70 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/hallway)
+"Ny" = (
+/obj/effect/turf_decal/tile/white,
+/obj/effect/turf_decal/tile/white{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
 "NJ" = (
 /obj/structure/table/wood,
+/obj/machinery/airalarm/syndicate{
+	dir = 1;
+	pixel_y = -24
+	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
+"NL" = (
+/obj/machinery/atmospherics/pipe/simple/supplymain/visible{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"NW" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"Oe" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/effect/turf_decal/trimline/blue/filled/corner,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"Oj" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "Ok" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/syndicate_icemoon/canteen)
 "Or" = (
 /obj/machinery/autolathe/hacked,
-/turf/template_noop,
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
 /area/ruin/syndicate_icemoon/research)
 "Oy" = (
 /obj/structure/railing{
@@ -525,10 +1870,53 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/icemoon/surface/outdoors)
+"Pb" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4,
+/obj/machinery/atmospherics/components/binary/valve{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "Pf" = (
 /obj/machinery/door/airlock/engineering{
 	req_access_txt = "150";
 	name = "Engineering"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"Pq" = (
+/obj/machinery/power/apc/auto_name/east{
+	req_access = list(150)
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/binary/pump/on/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supplymain/visible,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"Pu" = (
+/obj/effect/spawner/structure/window/plastitanium,
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/engine)
+"PG" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark{
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
@@ -558,13 +1946,37 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/hallway)
+"Qj" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "Qr" = (
 /obj/effect/turf_decal/box,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
+"QF" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/rnd/production/circuit_imprinter,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"QN" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
 "QT" = (
-/obj/structure/closet/emcloset/anchored,
-/turf/open/floor/plating,
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
 "Rc" = (
 /obj/machinery/button/door{
@@ -577,6 +1989,29 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/security)
+"Rk" = (
+/obj/effect/turf_decal/tile/white,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"Rp" = (
+/obj/machinery/airalarm/syndicate{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/warehouse)
+"Rx" = (
+/obj/machinery/chem_heater,
+/turf/open/floor/plasteel/white,
+/area/ruin/syndicate_icemoon/research)
+"RJ" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 4
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/engine)
 "RN" = (
 /obj/machinery/camera/preset/toxins{
 	network = list("syndicateicemoon");
@@ -589,6 +2024,52 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
+"St" = (
+/obj/machinery/atmospherics/pipe/manifold/orange/visible,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"Sv" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"SB" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/cafeteria,
+/area/ruin/syndicate_icemoon/canteen)
+"SF" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/icemoon/surface/outdoors)
+"SK" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 1
+	},
+/turf/open/floor/engine/o2,
+/area/ruin/syndicate_icemoon/engine)
+"SS" = (
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "150";
+	name = "Cold Room"
+	},
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/weather/snow/corner,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/canteen)
 "SX" = (
 /obj/structure/closet/syndicate,
 /obj/item/clothing/under/syndicate/coldres,
@@ -596,12 +2077,28 @@
 /obj/item/clothing/under/syndicate/camo,
 /obj/item/clothing/suit/armor/vest/capcarapace/syndicate,
 /obj/item/clothing/head/HoS/beret/syndicate,
-/obj/item/clothing/head/HoS/syndicate,
+/obj/item/clothing/head/HoS/syndicate{
+	desc = "A black cap fit for a Syndicate researcher."
+	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
 "Tb" = (
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/warehouse)
+"Td" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "Tj" = (
 /obj/machinery/camera/preset/toxins{
 	network = list("syndicateicemoon");
@@ -610,6 +2107,26 @@
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors)
+"Ty" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"TB" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/canteen)
 "TQ" = (
 /obj/machinery/door/airlock{
 	req_access_txt = "150";
@@ -622,9 +2139,71 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/engine)
+"Uv" = (
+/obj/machinery/vending/syndichem{
+	products = list(/obj/item/stack/cable_coil/random=20,/obj/item/assembly/igniter=80,/obj/item/assembly/prox_sensor=20,/obj/item/assembly/signaler=20,/obj/item/assembly/timer=20,/obj/item/assembly/voice=20,/obj/item/assembly/health=20,/obj/item/assembly/infra=20,/obj/item/grenade/chem_grenade=20,/obj/item/grenade/chem_grenade/large=20,/obj/item/grenade/chem_grenade/pyro=20,/obj/item/grenade/chem_grenade/cryo=20,/obj/item/grenade/chem_grenade/adv_release=20,/obj/item/reagent_containers/food/drinks/bottle/holywater=1)
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/syndicate_icemoon/research)
+"Ux" = (
+/obj/machinery/computer/security/telescreen/toxins{
+	network = list("syndicateicemoon")list("syndicateicemoon");
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"UA" = (
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/filled/corner,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"UC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/crate/engineering,
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser{
+	pixel_y = -9
+	},
+/obj/item/pipe_dispenser{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "UE" = (
-/turf/open/floor/plating,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/ruin/syndicate_icemoon/dorms)
+"UR" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"UX" = (
+/obj/machinery/airalarm/syndicate{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
 "Vg" = (
 /obj/machinery/light{
 	dir = 4
@@ -633,6 +2212,20 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=180"
 	},
 /area/ruin/syndicate_icemoon/research)
+"VL" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible/layer2{
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "VN" = (
 /obj/structure/flora/grass/brown,
 /turf/open/floor/plating/asteroid/snow/icemoon,
@@ -640,14 +2233,112 @@
 "VO" = (
 /turf/open/floor/circuit/red/anim,
 /area/ruin/syndicate_icemoon/command)
+"Wk" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1
+	},
+/turf/open/floor/engine/n2,
+/area/ruin/syndicate_icemoon/engine)
+"Wl" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndie_icemoon_vent"
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/syndicate_icemoon/engine)
+"WM" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/engine)
+"WO" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
+	dir = 1
+	},
+/turf/open/floor/engine/o2,
+/area/ruin/syndicate_icemoon/engine)
 "Xk" = (
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/commander{
 	dir = 1
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
+"Xv" = (
+/obj/effect/turf_decal/tile/white{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/research)
+"Xx" = (
+/obj/machinery/power/smes/fullycharged,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 "XS" = (
 /turf/closed/wall/mineral/plastitanium,
+/area/ruin/syndicate_icemoon/research)
+"XU" = (
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate{
+	dir = 1
+	},
+/turf/open/floor/plasteel/grimy,
+/area/ruin/syndicate_icemoon/dorms)
+"XX" = (
+/obj/item/syndicate_basket{
+	pixel_y = -5
+	},
+/obj/item/syndicate_basket,
+/obj/structure/rack,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/ruin/syndicate_icemoon/canteen)
+"Yr" = (
+/obj/structure/closet/crate/engineering,
+/obj/item/stack/sheet/metal/fifty{
+	pixel_x = -1;
+	pixel_y = 1
+	},
+/obj/item/stack/sheet/metal/fifty{
+	pixel_x = -1;
+	pixel_y = 1
+	},
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 1;
+	pixel_y = -1
+	},
+/obj/item/stack/sheet/plastitaniumglass/fifty,
+/obj/item/stack/sheet/plastitaniumglass/fifty,
+/obj/item/stack/sheet/mineral/plastitanium/fifty,
+/obj/item/stack/sheet/mineral/plastitanium/fifty,
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
+"Yy" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/airalarm/syndicate{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
 /area/ruin/syndicate_icemoon/research)
 "Yz" = (
 /turf/template_noop,
@@ -658,6 +2349,13 @@
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/syndicate_icemoon/command)
+"YD" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/syndicate_icemoon/engine)
+"YH" = (
+/turf/open/floor/engine/vacuum,
+/area/ruin/syndicate_icemoon/engine)
 "YZ" = (
 /obj/machinery/door/airlock{
 	req_access_txt = "150";
@@ -676,6 +2374,21 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/command)
+"Zz" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 1
+	},
+/turf/open/floor/engine/n2,
+/area/ruin/syndicate_icemoon/engine)
+"ZJ" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	initial_gas_mix = "o2=14;n2=23;TEMP=180"
+	},
+/area/ruin/syndicate_icemoon/engine)
 
 (1,1,1) = {"
 Yz
@@ -1663,10 +3376,10 @@ eM
 eM
 eM
 eM
-tj
 eM
 eM
 eM
+RJ
 fg
 eM
 eM
@@ -1731,28 +3444,28 @@ eM
 eM
 VN
 eM
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
+Kv
+kP
+kP
+kP
+kP
+kP
+kP
+kP
+cJ
+YD
+kP
+kP
+kP
+kP
 Ok
 Ok
-AC
-AC
-AC
-AC
-AC
-AC
+qP
+qP
+qP
+Ok
+Ok
+DC
 Ok
 DV
 DV
@@ -1772,9 +3485,9 @@ qK
 qK
 eM
 JL
+gE
 jr
-jr
-jr
+Db
 JL
 eM
 eM
@@ -1804,39 +3517,39 @@ VN
 eM
 eM
 eM
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
+Kv
+kP
+aH
+Uo
+wk
+kH
+rd
+LC
+rd
+Pb
+wx
+Uo
+FK
+fq
+KB
 Ok
-AC
-AC
-AC
-AC
-AC
-AC
-AC
-AC
+iy
+EV
+EV
+bd
+Ok
+XX
+rM
+wj
+DV
+dd
+Ko
+DV
+DV
+DV
 DV
 cw
-cw
-DV
-DV
-DV
-DV
-cw
-cw
+dd
 DV
 eM
 eM
@@ -1877,43 +3590,43 @@ eM
 eM
 eM
 eP
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
+Kv
+kP
+Yr
+Uo
+Uo
+AK
+El
+Oe
+ZJ
+kF
+St
+PG
+kg
+FK
+dV
+xf
 Ok
-AC
-AC
-AC
-AC
-AC
-AC
-AC
-AC
+cD
+EV
+EV
+uG
+Ok
+np
+rM
+JZ
 DV
-cw
+Hp
 cw
 fA
 an
 Ke
 oD
 cw
-cw
+KP
 DV
 eM
-eM
+nH
 eM
 qK
 qK
@@ -1951,31 +3664,31 @@ eM
 eM
 nH
 eM
+kP
+UC
+Uo
+El
+bW
+kT
+pZ
+qB
+Eo
+mu
+CB
 nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
+vG
+kP
+kP
+kP
 Ok
-AC
-AC
-AC
-AC
-AC
-AC
-AC
-AC
+vI
+EV
+EV
+gK
+SS
+TB
+ja
+mc
 DV
 DV
 DV
@@ -2023,33 +3736,33 @@ eM
 eM
 eM
 eM
-eM
-eM
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
+fV
+kP
+kP
+rn
+Uo
+yZ
+Uo
+fu
+eU
+UA
+dm
+LG
+cT
+Kr
+td
+FK
+SK
+cZ
 Ok
 AC
 AC
-AC
-AC
-AC
-AC
-AC
-AC
+SB
+oF
+Ok
+Ok
+Ok
+Ok
 DV
 IF
 QT
@@ -2058,7 +3771,7 @@ Ke
 Ke
 TQ
 cw
-cw
+XU
 DV
 eM
 eM
@@ -2096,34 +3809,34 @@ eM
 eM
 VN
 eM
-eM
-eM
-eM
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
+QN
+qn
+lg
+WM
+sf
+pM
+pf
+gS
+hS
+gS
+zH
+Df
+zg
+NL
+gf
+Aa
+FK
+WO
+lS
 Ok
-AC
-AC
-AC
-AC
-AC
-AC
-AC
-AC
+EV
+EV
+EV
+hR
+pE
+pE
+pE
+EV
 DV
 uY
 UE
@@ -2132,7 +3845,7 @@ Ke
 Ke
 DV
 cw
-cw
+Je
 DV
 eM
 eM
@@ -2170,34 +3883,34 @@ eM
 eM
 eM
 eM
-eM
-eM
-eM
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
+FF
+fV
+kP
+kP
+LV
+KY
+mv
+ji
+gH
+dy
+UR
+zc
+dh
+bl
+Oj
+bs
+kP
+kP
+kP
 Ok
+EV
+EV
+EV
+hR
 AC
 AC
 AC
-AC
-AC
-AC
-AC
-AC
+EV
 DV
 DV
 DV
@@ -2244,43 +3957,43 @@ eM
 eM
 eM
 eM
-eM
+FF
 eM
 fg
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
+kP
+Pu
+Jl
+Pu
+kP
+VL
+fh
+sn
+Td
+Sv
+vj
+Ty
 Uo
-Uo
-Uo
-nj
-nj
-nj
-nj
+FK
+Zz
+Jc
 Ok
-AC
-AC
-AC
-AC
-AC
-AC
-AC
-AC
+HO
+EV
+AL
+NW
+oM
+oM
+oM
+EV
 DV
-cw
+Bd
 cw
 Cl
 Ke
 Ke
 YZ
 cw
-cw
+XU
 DV
 eM
 eM
@@ -2318,43 +4031,43 @@ eM
 eM
 eM
 nH
+FF
 eM
 eM
-eM
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-nj
-Uo
-Uo
-Uo
-nj
-nj
-nj
-nj
+Wl
+IS
+YH
+mY
+kP
+pJ
+Xx
+ob
+lr
+rr
+Ho
+eT
+Pq
+FK
+Wk
+eC
 Ok
-AC
-AC
-AC
-AC
-AC
-AC
-AC
-AC
+EV
+EV
+hR
+EV
+EV
+EV
+EV
+EV
 DV
-cw
+dd
 cw
 DV
 Ke
 qi
 DV
 cw
-cw
+Je
 DV
 VN
 eM
@@ -2392,34 +4105,34 @@ VN
 eM
 eM
 eM
+FF
 eM
 eM
-eM
-nj
-nj
-nj
-nj
+Wl
+YH
+cV
+YH
 kP
 kP
 kP
 kP
-kP
-Pf
+MB
 Jl
 Pf
+lY
 kP
 kP
 kP
 kP
 Ok
-AC
-AC
-AC
-AC
-AC
-AC
-AC
-AC
+JO
+JO
+CT
+JO
+JO
+qq
+JO
+JO
 DV
 DV
 DV
@@ -2466,13 +4179,13 @@ eM
 eM
 eM
 eM
-fg
+tz
 eM
 eM
-nj
-nj
-nj
-nj
+Wl
+YH
+Bc
+YH
 kP
 Il
 Il
@@ -2510,7 +4223,7 @@ iT
 dF
 dF
 dF
-eM
+tj
 eM
 tj
 eM
@@ -2540,9 +4253,9 @@ eM
 eM
 eM
 eM
-eM
-eM
-eM
+sw
+SF
+At
 Jg
 Jg
 Jg
@@ -2614,9 +4327,9 @@ eM
 eM
 VN
 eM
-VN
-eM
-eM
+rI
+SF
+At
 Jg
 lz
 YB
@@ -2658,7 +4371,7 @@ iT
 FV
 FV
 FV
-eM
+tj
 eM
 eM
 eM
@@ -2688,9 +4401,9 @@ eP
 eM
 eM
 eM
-eM
-eM
-eM
+Qj
+SF
+At
 Jg
 SX
 zo
@@ -2711,9 +4424,9 @@ eJ
 eJ
 eJ
 Hk
-Fi
 Zo
 Fi
+Zo
 Hk
 Hk
 Hk
@@ -2789,17 +4502,17 @@ KL
 KL
 KL
 KL
-Zo
-us
-us
-us
-us
-us
-us
-us
-us
-us
 Hk
+KL
+KL
+KL
+uD
+KL
+KL
+KL
+Hk
+nH
+eP
 eM
 eM
 eM
@@ -2858,22 +4571,22 @@ qc
 qc
 qc
 eJ
+UX
 KL
+gW
+gW
 KL
-KL
-KL
-KL
-Zo
-us
-us
-us
-us
-us
-us
-us
-us
-us
 Hk
+KL
+KL
+KL
+KL
+KL
+KL
+KL
+iG
+eM
+eM
 eM
 eM
 eM
@@ -2932,22 +4645,22 @@ qc
 qc
 qc
 eJ
-KL
+Ux
 KL
 pO
-KL
+Ly
 KL
 Fi
-us
-us
-us
-us
-us
-us
-us
-us
-us
-Hk
+KL
+KL
+KL
+KL
+KL
+KL
+KL
+iG
+VN
+eM
 eM
 VN
 eM
@@ -2989,7 +4702,7 @@ gF
 gF
 gF
 Gp
-gF
+Di
 Jg
 Il
 Il
@@ -3008,20 +4721,20 @@ qc
 eJ
 KL
 KL
-KL
-KL
-KL
-Zo
-us
-us
-us
-us
-us
-us
-us
-us
-us
+gW
+EG
+hv
 Hk
+Ny
+Ny
+Ny
+Xv
+Rk
+AZ
+Xv
+Hk
+eP
+eM
 eP
 eM
 eM
@@ -3085,18 +4798,18 @@ Vg
 KL
 KL
 KL
+Hk
+rq
 Zo
-us
-us
-us
-us
-us
-us
-us
-us
-us
+Gd
+Hk
+Hk
+hy
+Zo
 Hk
 eM
+eM
+VN
 eM
 eM
 qK
@@ -3160,16 +4873,16 @@ jL
 ED
 ED
 ED
-us
-us
-us
-us
-us
-us
-us
-us
-us
+vU
+vU
+vU
 Hk
+Rx
+us
+GP
+Hk
+eM
+nH
 eM
 eM
 eM
@@ -3234,15 +4947,15 @@ IP
 IP
 Ky
 ED
+vU
+vU
+Yy
+Hk
+yW
 us
-us
-us
-us
-us
-us
-us
-us
-us
+iY
+XS
+Hk
 Hk
 eM
 nH
@@ -3306,17 +5019,17 @@ IP
 IP
 IP
 IP
-IP
+Dz
 ED
+Fw
+vU
+QF
+Zo
+pl
 us
-us
-us
-us
-us
-us
-us
-us
-us
+xE
+BO
+Br
 Hk
 eM
 eM
@@ -3383,15 +5096,15 @@ IP
 IP
 ED
 Or
+vU
+wF
+Zo
 us
 us
 us
 us
 us
-us
-us
-us
-Hk
+iG
 eM
 qK
 qK
@@ -3434,7 +5147,7 @@ gF
 Jg
 HA
 bu
-HA
+bb
 Jg
 Il
 Il
@@ -3456,15 +5169,15 @@ IP
 IP
 Rc
 ED
-us
-us
-us
-us
-us
-us
-us
-us
-us
+if
+vU
+nM
+Hk
+Uv
+CA
+Rx
+yW
+pl
 Hk
 eM
 qK
@@ -3524,20 +5237,20 @@ eJ
 eJ
 eJ
 ED
-IP
+nL
 ED
 FM
 xB
 FM
 ED
 Hk
+iG
 Hk
 Hk
 Hk
-Hk
-Hk
-Hk
-Hk
+iG
+iG
+iG
 Hk
 XS
 eM
@@ -3676,7 +5389,7 @@ IP
 ED
 HF
 IP
-IP
+Dz
 ED
 eM
 eM
@@ -4331,9 +6044,9 @@ qK
 qK
 qK
 qK
-eM
-eM
-eM
+tj
+tj
+tj
 eM
 eM
 eM
@@ -4406,7 +6119,7 @@ qK
 eM
 eM
 eM
-eM
+tj
 eM
 eP
 eM
@@ -4419,7 +6132,7 @@ eM
 eM
 eM
 Bq
-Tb
+Rp
 Tb
 fv
 tC
@@ -4479,8 +6192,8 @@ eM
 eM
 eM
 rk
-eM
-eM
+tj
+tj
 VN
 eM
 eM
@@ -4553,7 +6266,7 @@ eM
 nH
 eM
 eM
-eM
+tj
 rk
 eM
 eM
@@ -4563,9 +6276,9 @@ eM
 nH
 eM
 eM
-eM
+mm
 Bq
-Tb
+dB
 FS
 Tb
 Tb
@@ -4627,19 +6340,19 @@ eM
 eM
 eM
 eM
+tj
+tj
+tj
+tj
+tj
 eM
 eM
 eM
 eM
 eM
-eM
-eM
-eM
-eM
-eM
-eM
+nY
 hf
-Tb
+hm
 Tb
 Tb
 Tb
@@ -4705,15 +6418,15 @@ fg
 eM
 eP
 eM
-eM
-eM
+tj
+tj
 VN
 eM
 eM
-eM
-eM
+tj
+nY
 hf
-Tb
+hm
 Tb
 Tb
 Tb
@@ -4780,14 +6493,14 @@ eM
 eM
 eM
 eM
-eM
-eM
-eM
-eM
-eP
-eM
+tj
+tj
+tj
+tj
+tj
+nY
 hf
-Tb
+hm
 Tb
 Tb
 Tb
@@ -4857,11 +6570,11 @@ eM
 eM
 fg
 eM
-rk
-eM
-eM
+tj
+tj
+nY
 hf
-Tb
+hm
 Tb
 Tb
 Tb
@@ -4932,10 +6645,10 @@ rk
 eM
 eM
 eM
-eM
-eM
+tj
+nY
 hf
-Tb
+hm
 Tb
 Tb
 Tb

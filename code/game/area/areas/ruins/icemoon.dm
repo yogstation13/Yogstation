@@ -26,7 +26,7 @@
 	name = "Syndicate Research Outpost Security"
 
 /area/ruin/syndicate_icemoon/research
-	name = "Syndicate Research Outpost RnD"
+	name = "Syndicate Research Outpost Research Wing"
 
 /area/ruin/syndicate_icemoon/hallway
 	name = "Syndicate Research Outpost Central Hallway"
