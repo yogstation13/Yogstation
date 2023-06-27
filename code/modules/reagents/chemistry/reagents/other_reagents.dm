@@ -1090,10 +1090,10 @@
 	color = "#db0735"
 	taste_description = "bitter evil"
 	process_flags = ORGANIC | SYNTHETIC
-	metabolization_rate = 0.1 * REAGENTS_METABOLISM
+	metabolization_rate = 5 * REAGENTS_METABOLISM
 
 //Teleport like normal telecrystals
-/datum/reagent/drug/redspace/on_mob_metabolize(mob/living/L)
+/datum/reagent/redspace/on_mob_metabolize(mob/living/L)
 	var/turf/destination = get_teleport_loc(L.loc, L, rand(3,6))
 	if(!istype(destination))
 		return
