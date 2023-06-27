@@ -23018,22 +23018,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"fnM" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/airlock/security/glass{
-	id_tag = "permaouter";
-	name = "Permabrig Transfer";
-	req_access_txt = "2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "fnX" = (
 /obj/machinery/vending/wardrobe/gene_wardrobe,
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
@@ -26395,6 +26379,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"gEL" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/button/door{
+	id = "permainterior";
+	name = "Permabrig Interior Doors Control";
+	normaldoorcontrol = 1;
+	pixel_x = -26;
+	pixel_y = 5;
+	req_access_txt = "63"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison/hallway)
 "gFf" = (
 /obj/machinery/computer/security/telescreen{
 	dir = 8;
@@ -27333,6 +27334,22 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"gVZ" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "permainterior";
+	name = "Permabrig Transfer";
+	req_access_txt = "2"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "gWj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	external_pressure_bound = 120;
@@ -31873,22 +31890,6 @@
 "iEt" = (
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"iEP" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/airlock/security/glass{
-	id_tag = "permaouter";
-	name = "Permabrig Transfer";
-	req_access_txt = "2"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "iEY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -43607,6 +43608,22 @@
 "nkL" = (
 /turf/open/floor/engine/n2o,
 /area/engine/atmos/distro)
+"nkS" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "permainterior";
+	name = "Permabrig Transfer";
+	req_access_txt = "2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "nkZ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -64629,15 +64646,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
-"vxF" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison/hallway)
 "vxS" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -92631,7 +92639,7 @@ aaa
 aaa
 aaa
 aaa
-uTh
+aaa
 rnS
 rnS
 rnS
@@ -96742,12 +96750,12 @@ uln
 rsZ
 obK
 gBi
-iEP
+gVZ
 pIo
 vPF
 oSq
 dcn
-vxF
+gEL
 ksz
 bGG
 vLD
@@ -96999,7 +97007,7 @@ ubP
 acd
 aat
 uEg
-fnM
+nkS
 xsD
 eMU
 tAU
