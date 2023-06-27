@@ -26379,23 +26379,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"gEL" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/button/door{
-	id = "permainterior";
-	name = "Permabrig Interior Doors Control";
-	normaldoorcontrol = 1;
-	pixel_x = -26;
-	pixel_y = 5;
-	req_access_txt = "63"
-	},
-/turf/open/floor/plasteel,
-/area/security/prison/hallway)
 "gFf" = (
 /obj/machinery/computer/security/telescreen{
 	dir = 8;
@@ -27334,22 +27317,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"gVZ" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/airlock/security/glass{
-	id_tag = "permainterior";
-	name = "Permabrig Transfer";
-	req_access_txt = "2"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "gWj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	external_pressure_bound = 120;
@@ -43608,22 +43575,6 @@
 "nkL" = (
 /turf/open/floor/engine/n2o,
 /area/engine/atmos/distro)
-"nkS" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/machinery/door/airlock/security/glass{
-	id_tag = "permainterior";
-	name = "Permabrig Transfer";
-	req_access_txt = "2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "nkZ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -52221,6 +52172,10 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"qEF" = (
+/obj/structure/mirror,
+/turf/closed/wall/r_wall,
+/area/security/prison)
 "qEG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -53494,6 +53449,23 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"rbF" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/button/door{
+	id = "permainterior";
+	name = "Permabrig Interior Doors Control";
+	normaldoorcontrol = 1;
+	pixel_x = -26;
+	pixel_y = 5;
+	req_access_txt = "63"
+	},
+/turf/open/floor/plasteel,
+/area/security/prison/hallway)
 "rbH" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 4
@@ -57331,6 +57303,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/supply)
+"sGo" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "permainterior";
+	name = "Permabrig Transfer";
+	req_access_txt = "2"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "sGs" = (
 /obj/structure/chair/stool,
 /obj/effect/landmark/start/clown,
@@ -64459,6 +64447,22 @@
 /obj/structure/sign/warning/fire,
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+"vvP" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "permainterior";
+	name = "Permabrig Transfer";
+	req_access_txt = "2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "vvS" = (
 /obj/machinery/status_display/ai{
 	pixel_y = -32
@@ -93398,7 +93402,7 @@ aaa
 aaa
 aaa
 aaa
-aiT
+qEF
 hqQ
 ngE
 gdf
@@ -96750,12 +96754,12 @@ uln
 rsZ
 obK
 gBi
-gVZ
+sGo
 pIo
 vPF
 oSq
 dcn
-gEL
+rbF
 ksz
 bGG
 vLD
@@ -97007,7 +97011,7 @@ ubP
 acd
 aat
 uEg
-nkS
+vvP
 xsD
 eMU
 tAU
