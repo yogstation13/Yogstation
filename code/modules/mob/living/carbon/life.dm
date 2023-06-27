@@ -8,7 +8,7 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
-	if(LIFETICK_SKIP(src, times_fired))
+	if(SHOULD_LIFETICK(src, times_fired))
 
 		if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
 			handle_organs()

@@ -106,7 +106,6 @@
 /obj/item/storage/belt/utility/chief/full/PopulateContents()
 	SSwardrobe.provide_type(/obj/item/handdrill, src)
 	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
-	SSwardrobe.provide_type(/obj/item/analyzer/ranged, src)
 	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much //It's been 5 years
 	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
@@ -122,7 +121,6 @@
 	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
 	to_preload += /obj/item/handdrill
 	to_preload += /obj/item/jawsoflife
-	to_preload += /obj/item/analyzer/ranged
 	to_preload += /obj/item/weldingtool/experimental
 	to_preload += /obj/item/multitool/tricorder
 	to_preload += /obj/item/stack/cable_coil
@@ -139,7 +137,6 @@
 	SSwardrobe.provide_type(/obj/item/shuttle_creator/admin, src)
 	SSwardrobe.provide_type(/obj/item/handdrill, src)
 	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
-	SSwardrobe.provide_type(/obj/item/analyzer/ranged, src)
 	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much
 	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	SSwardrobe.provide_type(/obj/item/storage/bag/construction/admin/full, src)
@@ -619,7 +616,6 @@
 	new /obj/item/shuttle_creator/admin(src)
 	new /obj/item/handdrill(src)
 	new /obj/item/jawsoflife(src)
-	new /obj/item/analyzer/ranged(src)
 	new /obj/item/weldingtool/experimental(src)
 	new /obj/item/multitool/tricorder(src)
 	new /obj/item/storage/bag/construction/admin/full(src)

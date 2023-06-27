@@ -117,6 +117,7 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		/obj/item/clothing/suit/space/hardsuit/swat = -2,
 		/obj/item/clothing/head/helmet/space/hostile_environment = -2,
 		/obj/item/clothing/suit/space/hostile_environment = -2,
+		/obj/item/clothing/neck/cloak/ranger/syndie = -2, //Useful, less so than the wizard variant, allows dodging
 		//Weight of -3 - strong suits with additional utility
 		/obj/item/clothing/suit/space/hardsuit/shielded = -3,
 		/obj/item/clothing/suit/space/hardsuit/shielded/syndi = -3,
@@ -128,6 +129,7 @@ GLOBAL_LIST_INIT(battleroyale_armour, list(
 		//Weight of -5 - ERT level shit
 		/obj/item/shield/energy/bananium = -5,
 		/obj/item/clothing/suit/space/hardsuit/ert/sec = -5,
+		/obj/item/clothing/neck/cloak/ranger = -5,
 		/obj/item/clothing/suit/space/hardsuit/ert/engi = -5,
 		/obj/item/clothing/suit/space/hardsuit/ert/med = -5,
 		/obj/item/clothing/suit/space/hardsuit/ert/jani = -5,
@@ -191,17 +193,18 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/automatic/c20r/unrestricted = -3,
 		/obj/item/gun/ballistic/automatic/mini_uzi = -3,
 		/obj/item/gun/ballistic/automatic/tommygun = -3,
+		/obj/item/twohanded/vibro_weapon = -3, //Strong melee weapon, but not enough to be -5
 
 		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = -4,
 		/obj/item/twohanded/dualsaber = -4,
+		/obj/item/battleroyale/itemspawner/breakbow = -4, //Strong melee weapon, along with infinte arrows
 		/obj/item/gun/energy/beam_rifle = -4,
-		/obj/item/gun/ballistic/automatic/sniper_rifle = -4,
 
 		/obj/item/melee/fryingpan/bananium = -5,
 		/obj/item/his_grace = -5,
-		/obj/item/twohanded/vibro_weapon = -5,
 		/obj/item/twohanded/required/chainsaw/doomslayer = -5,
 		/obj/item/gun/ballistic/bow/energy/ert = -5,
+		/obj/item/gun/ballistic/automatic/sniper_rifle = -5, //Sniper stuns
 		))
 
 GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max health doesn't scale, there's also less healing items than other items
@@ -211,29 +214,26 @@ GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max
 		/obj/item/stack/medical/suture = 5,
 		/obj/item/stack/medical/mesh = 5,
 		/obj/item/storage/firstaid/ancient = 4,
+		/obj/item/storage/pill_bottle/gummies/omnizine = 4, //While it does heal the 4 main damage types, these heal rather slowly
 		/obj/item/stack/medical/suture/medicated = 4,
 		/obj/item/stack/medical/mesh/advanced = 4,
 		/obj/item/stack/medical/aloe = 4,
 		/obj/item/stack/medical/poultice = 4,
-		/obj/item/gun/magic/rune/heal_rune = 4, //for team play
 		/obj/item/storage/firstaid = 3,
 		/obj/item/storage/firstaid/fire = 3,
+		/obj/item/organ/regenerative_core/legion = 3, //These expire after a bit, and take some time to use
 		/obj/item/storage/firstaid/brute = 3,
 		/obj/item/reagent_containers/autoinjector/medipen/stimpack = 3,
 		/obj/item/storage/firstaid/advanced = 2,
 		/obj/item/reagent_containers/autoinjector/medipen/survival = 2,
-		/obj/item/organ/regenerative_core/legion = 2,
+		/obj/item/organ/heart/cursed/wizard = 2, //Rarely used, albiet the healing is incredibly strong
 		/obj/item/reagent_containers/autoinjector/mixi = 2,
 		/obj/item/reagent_containers/autoinjector/derm = 2,
 		/obj/item/reagent_containers/autoinjector/medipen/stimpack/traitor = 1,
-		/obj/item/organ/heart/cursed/wizard = 1,
-		/obj/item/storage/pill_bottle/gummies/omnizine = 1,
 		/obj/item/slimecross/stabilized/purple = 1,
 		))
 
 GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's not an explicit weapon, clothing piece, or healing item really
-		/obj/item/book/granter/action/spell/knock = 5,
-
 		/obj/item/grenade/plastic/c4 = 4,
 		/obj/item/storage/toolbox/mechanical = 4,
 		/obj/item/gun/energy/wormhole_projector/upgraded = 3,
@@ -246,8 +246,8 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/nullrod/servoskull = 1,
 		/obj/item/nullrod/staff = 1,
 
-		/obj/item/storage/backpack/duffelbag/syndie/c4 = 0,
 		/obj/item/teleportation_scroll/apprentice = 0,
+		/obj/effect/spawner/lootdrop/ammobox = 0,
 		/obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted = 0,
 		/obj/item/slimecross/stabilized/red = 0,
 		/obj/item/slimecross/stabilized/sepia = 0,
@@ -268,15 +268,18 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/antag_spawner/nuke_ops/borg_tele/medical = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/assault = -3,
 		/obj/item/antag_spawner/nuke_ops/borg_tele/saboteur = -3,
+		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,
-		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3,//so they don't get fully rotated out when the 0 weight one does
+		/obj/item/autosurgeon/syndicate/spinalspeed = -3, //Useful, but obvious, and gibs you if you aren't careful
 		/obj/item/spellbook = -3,
 		/obj/item/battleroyale/martial/phytosian = -3,
 		/obj/item/battleroyale/martial/plasmaman = -3,
 
 		/obj/item/guardiancreator/tech/random = -4,
+		/obj/item/storage/belt/military/shadowcloak = -4, // Very strong for short bursts
+		/obj/item/implanter/empshield = -4, //EMP Shields are fairly useful, especially with the now wealth of xray / thermal eyes, among others
 		/obj/item/guardiancreator/carp/random = -4,
-		/obj/item/autosurgeon/syndicate/spinalspeed = -4,
+		/obj/item/bodypart/l_arm/robot/buster = -4, // Buster is strong, but most people aren't too good with it. Especially useful for closing the gap
 		/obj/item/storage/firstaid/tactical = -4, //has combat defib, one of the few stun weapons
 		/obj/item/battleroyale/martial/ipc = -4,
 		/obj/item/battleroyale/martial/lizard = -4,
@@ -285,9 +288,9 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
 		/obj/machinery/syndicatebomb = -5,
-		/obj/item/bodypart/l_arm/robot/buster = -5,
 		/obj/item/gun/ballistic/rocketlauncher/unrestricted = -5,
 		/obj/item/stand_arrow/safe = -5,
+		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
 		))
 
 /obj/structure/closet/crate/battleroyale
@@ -448,13 +451,16 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		new thing(src.loc)
 	qdel(src)
 
+/obj/item/battleroyale/itemspawner/breakbow
+	items = list(/obj/item/gun/ballistic/bow/break_bow, /obj/item/storage/belt/quiver/unlimited)
+
 /obj/item/battleroyale/itemspawner/construct
 	items = list(/obj/structure/constructshell,	/obj/item/soulstone/anybody)
 
 /obj/effect/spawner/lootdrop/knighthelmet
 	name = "Random knight helmet spawner"
 	loot = list( //to add different colours without adding weight
-		/obj/item/clothing/head/helmet/knight,
+	/obj/item/clothing/head/helmet/knight,
 		/obj/item/clothing/head/helmet/knight/blue,
 		/obj/item/clothing/head/helmet/knight/yellow,
 		/obj/item/clothing/head/helmet/knight/red,
@@ -480,4 +486,15 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/clothing/suit/space/syndicate/black/red,
 		/obj/item/clothing/suit/space/syndicate/contract,
 		/obj/item/clothing/suit/space/syndicate/black/engie,
+	)
+
+/obj/effect/spawner/lootdrop/ammobox
+	name = "Random ammo boxes"
+	loot = list( //woo i love ammo woooo
+		/obj/item/storage/box/lethalshot,
+		/obj/item/storage/box/rubbershot,
+		/obj/item/ammo_box/magazine/wt550m9,
+		/obj/item/ammo_box/magazine/m10mm/rifle,
+		/obj/item/ammo_box/magazine/v38,
+		/obj/item/ammo_box/a357,
 	)

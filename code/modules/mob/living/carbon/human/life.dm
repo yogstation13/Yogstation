@@ -33,7 +33,7 @@
 
 	if (QDELETED(src))
 		return 0
-	if(LIFETICK_SKIP(src, times_fired))
+	if(SHOULD_LIFETICK(src, times_fired))
 		if(.) //not dead
 
 			for(var/datum/mutation/human/HM in dna.mutations) // Handle active genes
