@@ -7,7 +7,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	max_amount = 50
 	item_flags = NOBLUDGEON
-	grind_results = list(/datum/reagent/redspace = 10)
+	grind_results = list(/datum/reagent/redspace = 20)
 
 /obj/item/stack/telecrystal/attack_self(mob/user)
 	if(!isliving(user))
