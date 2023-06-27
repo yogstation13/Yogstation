@@ -3,6 +3,7 @@
 	id = "red_eye"
 	alert_type = /atom/movable/screen/alert/status_effect/red_eye
 	remove_on_fullheal = TRUE
+	examine_text = "Their eyes are bright red and bulging out their skull!"
 
 /datum/status_effect/red_eye/on_creation(mob/living/new_owner, duration = 10 SECONDS)
 	src.duration = duration

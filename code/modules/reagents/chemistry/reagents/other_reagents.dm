@@ -1090,7 +1090,7 @@
 	color = "#db0735"
 	taste_description = "bitter evil"
 	process_flags = ORGANIC | SYNTHETIC
-	metabolization_rate = 5 * REAGENTS_METABOLISM
+	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	can_synth = FALSE
 
 //Teleport like normal telecrystals

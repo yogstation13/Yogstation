@@ -566,7 +566,7 @@
 	L.next_move_modifier *= 0.8
 	L.action_speed_modifier *= 0.5
 	tele_teleport(L)
-	..()
+	..()	
 
 /datum/reagent/drug/red_eye/on_mob_end_metabolize(mob/living/L)
 	L.next_move_modifier *= 1.25
@@ -579,7 +579,7 @@
 	H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 	H.update_body()
 
-	M.set_red_eye(15)
+	M.adjust_red_eye_up_to(15,40)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(0,1))
 	M.AdjustKnockdown(-15, FALSE)
 	M.adjustStaminaLoss(-4, 0)
