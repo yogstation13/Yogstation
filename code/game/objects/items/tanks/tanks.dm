@@ -168,6 +168,7 @@
 /obj/item/tank/attackby(obj/item/attacking_item, mob/user, params)
 	add_fingerprint(user)
 	if(istype(attacking_item, /obj/item/assembly_holder))
+		playsound(src, 'sound/items/tape_flip.ogg', 25, TRUE)
 		bomb_assemble(attacking_item, user)
 	else
 		. = ..()
@@ -320,16 +321,11 @@
 		add_overlay("bomb_assembly")
 
 /obj/item/tank/wrench_act(mob/living/user, obj/item/I)
-	user.balloon_alert(user, "disassembled")
-	I.play_tool_sound(src)
 	if(tank_assembly)
-		tank_assembly.forceMove(drop_location())
-		tank_assembly.master = null
-		tank_assembly = null
-	throw_speed = initial(throw_speed)
-	bomb_status = FALSE
-	update_icon()
-	return TRUE
+		I.play_tool_sound(src)
+		bomb_disassemble(user)
+		return TRUE
+	return ..()
 
 /obj/item/tank/welder_act(mob/living/user, obj/item/I)
 	. = FALSE
@@ -407,8 +403,19 @@
 	throw_speed = max(2, throw_speed) //Make it a bit harder to throw
 
 	update_icon()
-	user.balloon_alert(user, "[assembly] attached")
+	user.balloon_alert(user, "[assembly.name] attached")
 	return
+
+//Bomb disassembly
+/obj/item/tank/proc/bomb_disassemble(mob/living/user)
+	tank_assembly.forceMove(drop_location())
+	tank_assembly.master = null
+	tank_assembly = null
+
+	bomb_status = FALSE
+	throw_speed = initial(throw_speed)
+	user.balloon_alert(user, "disassembled")
+	update_icon()
 
 /obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
 	var/fuel_moles = air_contents.get_moles(/datum/gas/tritium) + air_contents.get_moles(/datum/gas/hydrogen) + air_contents.get_moles(/datum/gas/plasma) + air_contents.get_moles(/datum/gas/oxygen)/6
