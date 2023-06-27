@@ -69,10 +69,6 @@
 "hh" = (
 /turf/template_noop,
 /area/template_noop)
-"hy" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
 "hD" = (
 /obj/machinery/button/door{
 	id = "escape_cockpit_windows";
@@ -145,6 +141,14 @@
 /obj/item/storage/firstaid/advanced,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"lu" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "mh" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -168,10 +172,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"ne" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
 "nO" = (
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 8
@@ -188,6 +188,14 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/escape)
+"oI" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "pb" = (
 /obj/machinery/status_display/evac,
@@ -297,16 +305,14 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"yP" = (
-/obj/effect/spawner/structure/window/shuttle,
+"yb" = (
 /obj/machinery/light/floor,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"zJ" = (
+/obj/structure/closet/emcloset,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "zV" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -344,6 +350,11 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
+"CG" = (
+/obj/structure/closet/firecloset,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "En" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -377,16 +388,10 @@
 /obj/structure/table,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
-"Hc" = (
-/obj/effect/spawner/structure/window/shuttle,
+"GF" = (
+/obj/structure/closet/firecloset,
 /obj/machinery/light/floor,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "Hz" = (
 /obj/machinery/status_display/evac,
@@ -472,15 +477,6 @@
 "MM" = (
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"MY" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/light/floor,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "Nm" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -564,10 +560,6 @@
 /obj/machinery/sleeper,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"QK" = (
-/obj/structure/closet/firecloset,
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
 "Rc" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -632,6 +624,11 @@
 /obj/machinery/light,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"UZ" = (
+/obj/structure/closet/emcloset,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "Vi" = (
 /obj/effect/turf_decal/trimline/darkblue/filled/corner/lower,
 /obj/structure/chair/comfy/shuttle{
@@ -662,15 +659,6 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
-"Xf" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/light/floor,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "Xt" = (
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 4
@@ -682,6 +670,16 @@
 	dir = 10
 	},
 /turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
+"Yd" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "YT" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -852,12 +850,12 @@ YT
 nP
 Zw
 sY
-sY
+yb
 rg
 mT
 mT
 dX
-ne
+zJ
 sY
 uv
 sv
@@ -873,14 +871,14 @@ PY
 XQ
 TQ
 ea
-sY
+yb
 rg
-MY
+oI
 hh
 hh
-yP
+Yd
 dX
-Bv
+CG
 sY
 uv
 sY
@@ -896,12 +894,12 @@ xk
 nO
 MA
 zV
-MY
+oI
 hh
 hh
 hh
 hh
-yP
+Yd
 dX
 sY
 ea
@@ -962,12 +960,12 @@ Vi
 Xt
 kh
 bF
-Xf
+lu
 hh
 hh
 hh
 hh
-Hc
+rg
 LV
 sY
 ea
@@ -983,14 +981,14 @@ LT
 Qq
 En
 EW
-QK
+GF
 dH
-Xf
+lu
 hh
 hh
-Hc
+rg
 LV
-ne
+zJ
 sY
 uv
 sY
@@ -1006,12 +1004,12 @@ En
 MM
 MM
 MM
-hy
+UZ
 dH
 Rc
 Rc
 LV
-ne
+zJ
 sY
 uv
 PA
