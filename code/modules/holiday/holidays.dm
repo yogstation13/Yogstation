@@ -609,15 +609,12 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 
 /datum/holiday/xmas/getStationPrefix()
 	return pick(
-		"Bible",
 		"Birthday",
 		"Chimney",
 		"Claus",
-		"Crucifixion",
 		"Elf",
 		"Fir",
 		"Ho Ho Ho",
-		"Jesus",
 		"Jolly",
 		"Merry",
 		"Present",
