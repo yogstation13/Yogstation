@@ -565,8 +565,8 @@
 /datum/reagent/drug/red_eye/on_mob_metabolize(mob/living/L)
 	L.next_move_modifier *= 0.8
 	L.action_speed_modifier *= 0.5
-	..()
 	tele_teleport(L)
+	..()
 
 /datum/reagent/drug/red_eye/on_mob_end_metabolize(mob/living/L)
 	L.next_move_modifier *= 1.25
