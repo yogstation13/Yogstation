@@ -35,6 +35,9 @@
 	customfoodfilling = 1
 	foodtype = GRAIN
 
+/obj/item/reagent_containers/food/snacks/breadslice/plain/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/breadslice/toast, rand(20 SECONDS, 30 SECONDS), TRUE)
+
 /obj/item/reagent_containers/food/snacks/store/bread/meat
 	name = "meat bread"
 	desc = "The culinary base of every self-respecting eloquent gentleman."
