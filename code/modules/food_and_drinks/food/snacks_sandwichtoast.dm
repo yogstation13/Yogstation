@@ -26,7 +26,7 @@
 	icon_state = "toastedsandwich"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("toast" = 1, "cheese" = 1)
+	tastes = list("bread" = 1, "cheese" = 1)
 	foodtype = GRAIN | DAIRY
 
 /obj/item/reagent_containers/food/snacks/jellysandwich
@@ -98,3 +98,13 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("bread" = 2)
 	foodtype = GRAIN
+
+/obj/item/reagent_containers/food/snacks/breadslice/toast
+	name = "toast"
+	desc = "A piece of toast."
+	icon = 'icons/obj/food/burgerbread.dmi'
+	icon_state = "toast"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	tastes = list("toast" = 2)
+	foodtype = GRAIN | BREAKFAST
+	burns_on_grill = TRUE

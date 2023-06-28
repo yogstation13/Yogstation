@@ -67,9 +67,9 @@
 		if(prob(reac_volume))
 			W.ScrapeAway()
 
-/datum/reagent/clf3/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/clf3/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if(istype(M))
-		if(method != INGEST && method != INJECT)
+		if(!(methods & (INGEST|INJECT)))
 			M.adjust_fire_stacks(min(reac_volume/5, 10))
 			M.ignite_mob()
 			if(!locate(/obj/effect/hotspot) in M.loc)
@@ -139,7 +139,7 @@
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
 
-/datum/reagent/phlogiston/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/phlogiston/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	M.adjust_fire_stacks(1)
 	var/burndmg = max(0.3*M.fire_stacks, 0.3)
 	M.adjustFireLoss(burndmg, 0)
@@ -166,9 +166,9 @@
 	M.adjust_fire_stacks(1)
 	..()
 
-/datum/reagent/napalm/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/napalm/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if(istype(M))
-		if(method != INGEST && method != INJECT)
+		if(!(methods & (INGEST|INJECT)))
 			M.adjust_fire_stacks(min(reac_volume/4, 20))
 
 /datum/reagent/cryostylane
@@ -288,8 +288,8 @@
 /datum/reagent/firefighting_foam/reaction_obj(obj/O, reac_volume)
 	O.extinguish()
 
-/datum/reagent/firefighting_foam/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(method in list(VAPOR, TOUCH))
+/datum/reagent/firefighting_foam/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+	if(methods & (VAPOR|TOUCH))
 		M.adjust_fire_stacks(-reac_volume)
 		M.extinguish_mob()
 	..()

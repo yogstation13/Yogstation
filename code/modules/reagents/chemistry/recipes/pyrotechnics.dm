@@ -469,3 +469,11 @@
 	required_reagents = list(/datum/reagent/stabilizing_agent = 1,/datum/reagent/fluorosurfactant = 1,/datum/reagent/carbon = 1)
 	required_temp = 200
 	is_cold_recipe = TRUE
+
+/datum/chemical_reaction/reagent_explosion/noblium_annihilation
+	name = "Hypernoblium-Antinoblium Annihilation"
+	id = "noblium_annihilation"
+	required_reagents = list(/datum/reagent/hypernoblium = 1, /datum/reagent/antinoblium = 1)
+	strengthdiv = 1
+	noblium_suppression = FALSE
+	mob_react = FALSE // no

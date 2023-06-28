@@ -71,7 +71,8 @@
 	var/list/pipes_shown = list()
 	var/last_played_vent
 
-	var/smoke_delay = 0 //used to prevent spam with smoke reagent reaction on mob.
+	var/smoke_delay = FALSE //used to prevent spam with smoke reagent reaction on mob.
+	var/foam_delay = FALSE //used to prevent spam with foam reagent reaction on mob.
 
 	var/health_doll_icon //if this exists AND the normal sprite is bigger than 32x32, this is the replacement icon state (because health doll size limitations). the icon will always be screen_gen.dmi
 
