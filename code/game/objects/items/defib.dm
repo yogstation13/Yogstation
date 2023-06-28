@@ -363,8 +363,7 @@
 		busy = FALSE
 		update_appearance(updates = ALL)
 
-/obj/item/twohanded/shockpaddles/update_appearance(updates = ALL)
-	. = ..()
+/obj/item/twohanded/shockpaddles/update_icon_state()
 	icon_state = "defibpaddles[wielded]"
 	item_state = "defibpaddles[wielded]"
 	if(cooldown)
@@ -372,6 +371,7 @@
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
 		C.update_held_items()
+	return ..()
 
 /obj/item/twohanded/shockpaddles/suicide_act(mob/user)
 	if(req_defib && !defib.deductcharge(revivecost))

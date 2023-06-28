@@ -125,18 +125,11 @@
 	transform = matrix()
 	update_appearance(updates = ALL)
 
-/obj/structure/closet/supplypod/update_appearance(updates = ALL)
-	. = ..()
-	var/list/new_overlays = update_overlays()
-	if(managed_overlays)
-		cut_overlay(managed_overlays)
-		managed_overlays = null
-	if(length(new_overlays))
-		managed_overlays = new_overlays
-		add_overlay(new_overlays)
+/obj/structure/closet/supplypod/closet_update_overlays(list/new_overlays)
+	return
 
 /obj/structure/closet/supplypod/update_overlays()
-	. = list()
+	. = ..()
 	if(style == STYLE_INVISIBLE)
 		return
 

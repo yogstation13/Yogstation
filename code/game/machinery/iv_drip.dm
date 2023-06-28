@@ -235,9 +235,6 @@
 	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 
-/obj/machinery/iv_drip/saline/update_icon_state()
-    return
-
 /obj/machinery/iv_drip/saline/eject_beaker()
     return
 /obj/machinery/iv_drip/saline/toggle_mode()

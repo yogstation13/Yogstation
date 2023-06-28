@@ -42,9 +42,7 @@
 	QDEL_NULL(particles)
 	. = ..()
 
-/obj/machinery/oven/update_appearance(updates = ALL)
-	. = ..()
-	update_overlays()
+/obj/machinery/oven/update_icon_state()
 	if(panel_open) 
 		icon_state = "oven_o"
 		return ..()
@@ -55,14 +53,14 @@
 	return ..()
 
 /obj/machinery/oven/update_overlays()
-	cut_overlays()
+	. = ..()
 	var/mutable_appearance/door_overlay
 	if(open)
 		door_overlay = mutable_appearance(icon, "oven_lid_open")
 		door_overlay.pixel_y = OVEN_LID_Y_OFFSET
 	else
 		door_overlay = mutable_appearance(icon, "oven_lid_closed")
-	add_overlay(door_overlay);
+	. += door_overlay
 
 /obj/machinery/oven/process(delta_time)
 	..()
