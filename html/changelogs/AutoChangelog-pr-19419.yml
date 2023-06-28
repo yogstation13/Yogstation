@@ -1,0 +1,4 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - tweak: "gives access to external airlocks to atmos techs, it's base now isntead of skeleton crew"
