@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "obsession effects on speaking near your target no longer last several minutes when they are meant to last seveeal seconds"
