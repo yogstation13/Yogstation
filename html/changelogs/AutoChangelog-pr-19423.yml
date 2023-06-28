@@ -1,0 +1,4 @@
+author: " norsvenska"
+delete-after: true 
+changes: 
+  - rscadd: "Christmas now has special station name prefixes."
