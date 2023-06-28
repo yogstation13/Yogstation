@@ -16,7 +16,7 @@
 	name = "Eggs Benedict"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/friedegg = 1,
-		/obj/item/reagent_containers/food/snacks/meat/steak = 1,
+		/obj/item/reagent_containers/food/snacks/meat/bacon = 2,
 		/obj/item/reagent_containers/food/snacks/breadslice/plain = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/benedict
