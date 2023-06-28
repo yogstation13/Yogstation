@@ -62,18 +62,20 @@
 			data["unknown_languages"] += list(L)
 	return data
 
-/datum/language_menu/ui_act(action, params)
+/datum/language_menu/ui_act(action, datum/params/params)
 	if(..())
 		return
 	var/mob/user = usr
 	var/atom/movable/AM = language_holder.get_atom()
 
-	var/language_name = params["language_name"]
+	var/language_name
 	var/datum/language/language_datum
 	for(var/lang in GLOB.all_languages)
 		var/datum/language/language = lang
-		if(language_name == initial(language.name))
+		if(params.is_param_equal_to("language_name", initial(language.name)))
 			language_datum = language
+			language_name = initial(language.name)
+			
 	var/is_admin = check_rights_for(user.client, R_ADMIN)
 
 	switch(action)
