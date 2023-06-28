@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Robotic limbs now take longer to heal if you are healing yourself"
-  - tweak: "Roboticists are no longer nerfed if healing their own robotic limbs"
-  - tweak: "Medical personnel now use sutures/meshes/etc 20% faster"

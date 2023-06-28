@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Preterni have a 1.0 brutemod from 0.9 (they still have the flat DR)"
-  - tweak: "Preterni have a 1.2 stunmod from 1.1"
-  - tweak: "Preterni have a punchlow of 1 from 2 (less effective stun chance as a result)"
