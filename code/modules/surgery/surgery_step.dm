@@ -94,20 +94,16 @@
 	var/advance = FALSE
 
 	var/speed_mod = 1
+	if(user == target)
+		speed_mod *= 3 // harder to do on yourself
 
 	if(preop(user, target, target_zone, tool, surgery) == -1)
 		surgery.step_in_progress = FALSE
 		return FALSE
 	play_preop_sound(user, target, target_zone, tool, surgery)
 
-	if(tool)
-		speed_mod = tool.toolspeed
-
 	if(is_species(user, /datum/species/lizard/ashwalker/shaman))//shaman is slightly better at surgeries
 		speed_mod *= 0.9
-
-	if(IS_MEDICAL(user))
-		speed_mod *= 0.8
 
 	if(istype(user.get_item_by_slot(ITEM_SLOT_GLOVES), /obj/item/clothing/gloves/color/latex))
 		var/obj/item/clothing/gloves/color/latex/surgicalgloves = user.get_item_by_slot(ITEM_SLOT_GLOVES)
@@ -115,7 +111,8 @@
 
 	var/previous_loc = user.loc
 
-	if(do_after(user, time * speed_mod, target))
+	// If we have a tool, use it
+	if((tool && tool.use_tool(target, user, time * speed_mod, robo_check = TRUE)) || do_after(user, time * speed_mod, target))
 		var/prob_chance = 100
 
 		if(implement_type)	//this means it isn't a require hand or any item step.

@@ -61,6 +61,7 @@
 /datum/crafting_recipe/food/nugget
 	name = "Chicken Nugget"
 	reqs = list(
+		/datum/reagent/consumable/batter = 2,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/nugget
