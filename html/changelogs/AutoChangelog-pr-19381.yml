@@ -1,0 +1,7 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "self-surgery is slower"
+  - tweak: "engineers and roboticists can do mechanical surgery faster"
+  - tweak: "engineers no longer use medical tools faster"
+  - tweak: "medical staff can use medical tools faster"
