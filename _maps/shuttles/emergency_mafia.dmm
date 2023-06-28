@@ -1,4 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bz" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/pizza/sassysage,
+/obj/effect/fun_balloon/sentience/emergency_shuttle{
+	group_name = "bar staff on the Emergency Escape Bar"
+	},
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
 "ce" = (
 /obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/bottle/wine,
@@ -48,15 +56,6 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"gy" = (
-/obj/structure/table/wood/fancy,
-/obj/item/clothing/head/fedora/gtrim_fedora,
-/obj/effect/fun_balloon/sentience/emergency_shuttle{
-	effect_range = 6;
-	group_name = "The drone mafia"
-	},
-/turf/open/floor/carpet/red,
-/area/shuttle/escape)
 "ig" = (
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/structure/table/wood,
@@ -97,6 +96,18 @@
 /area/shuttle/escape)
 "qU" = (
 /turf/open/floor/wood/broken/two,
+/area/shuttle/escape)
+"sZ" = (
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = -6;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = 9;
+	pixel_y = 10
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
 /area/shuttle/escape)
 "tu" = (
 /obj/machinery/chem_dispenser/drinks/fullupgrade,
@@ -154,20 +165,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/exoticgreen,
 /area/shuttle/escape)
-"AV" = (
-/mob/living/simple_animal/drone/syndrone/badass{
-	default_hatmask = null;
-	default_storage = null;
-	flavortext = "\n<big><span class='warning'>DO NOT ENTER THE STATION OR CENTCOM UNTIL THE ROUND HAS ENDED</span></big>\n";
-	health = 120;
-	laws = "1. Be loyal to members of the organization.\n2. Be rational.\n3.Be a member of the team.\n4. Have class. Show hospitality to others unless they don't show class";
-	name = "Drone Mobster"
-	},
-/obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/turf/open/floor/carpet/red,
-/area/shuttle/escape)
 "BI" = (
 /obj/structure/table/wood/fancy,
 /obj/item/clothing/head/fedora/brown,
@@ -197,18 +194,6 @@
 	},
 /obj/item/reagent_containers/food/drinks/bottle/wine{
 	pixel_x = -7;
-	pixel_y = 10
-	},
-/obj/structure/table/wood,
-/turf/open/floor/carpet/exoticgreen,
-/area/shuttle/escape)
-"Jg" = (
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_x = -6;
-	pixel_y = 11
-	},
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_x = 9;
 	pixel_y = 10
 	},
 /obj/structure/table/wood,
@@ -262,16 +247,9 @@
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /turf/open/floor/carpet/red,
 /area/shuttle/escape)
-"NW" = (
-/obj/structure/chair/comfy/black,
-/mob/living/simple_animal/drone/syndrone/badass{
-	default_hatmask = null;
-	default_storage = null;
-	flavortext = "\n<big><span class='warning'>DO NOT ENTER THE STATION OR CENTCOM UNTIL THE ROUND HAS ENDED</span></big>\n";
-	health = 120;
-	laws = "1. Be loyal to members of the organization.\n2. Be rational.\n3.Be a member of the team.\n4. Have class. Show hospitality to others unless they don't show class";
-	name = "Dronefather"
-	},
+"Oc" = (
+/obj/structure/table/wood/fancy,
+/obj/item/clothing/head/fedora/gtrim_fedora,
 /turf/open/floor/carpet/red,
 /area/shuttle/escape)
 "Oi" = (
@@ -307,6 +285,11 @@
 /area/shuttle/escape)
 "Qr" = (
 /mob/living/simple_animal/hostile/alien/maid/barmaid,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"Rs" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/pizza/sassysage,
 /turf/open/floor/carpet/exoticgreen,
 /area/shuttle/escape)
 "Sa" = (
@@ -351,17 +334,9 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"XD" = (
+"Xb" = (
 /obj/structure/chair/comfy/black{
-	dir = 4
-	},
-/mob/living/simple_animal/drone/syndrone/badass{
-	default_hatmask = null;
-	default_storage = null;
-	flavortext = "\n<big><span class='warning'>DO NOT ENTER THE STATION OR CENTCOM UNTIL THE ROUND HAS ENDED</span></big>\n";
-	health = 120;
-	laws = "1. Be loyal to members of the organization.\n2. Be rational.\n3.Be a member of the team.\n4. Have class. Show hospitality to others unless they don't show class";
-	name = "Drone Mobster"
+	dir = 8
 	},
 /turf/open/floor/carpet/red,
 /area/shuttle/escape)
@@ -369,20 +344,6 @@
 /obj/item/flashlight/lamp/green,
 /obj/structure/table/wood,
 /turf/open/floor/carpet/exoticgreen,
-/area/shuttle/escape)
-"ZL" = (
-/obj/structure/chair/comfy/black{
-	dir = 8
-	},
-/mob/living/simple_animal/drone/syndrone/badass{
-	default_hatmask = null;
-	default_storage = null;
-	flavortext = "\n<big><span class='warning'>DO NOT ENTER THE STATION OR CENTCOM UNTIL THE ROUND HAS ENDED</span></big>\n";
-	health = 120;
-	laws = "1. Be loyal to members of the organization.\n2. Be rational.\n3.Be a member of the team.\n4. Have class. Show hospitality to others unless they don't show class";
-	name = "Drone Mobster"
-	},
-/turf/open/floor/carpet/red,
 /area/shuttle/escape)
 "ZY" = (
 /obj/machinery/computer/emergency_shuttle{
@@ -475,15 +436,15 @@ jZ
 "}
 (4,1,1) = {"
 yT
-Jg
+sZ
 Qr
 ig
 fV
 qR
 qR
-XD
+Vx
 qR
-AV
+Vx
 qR
 qR
 qR
@@ -504,7 +465,7 @@ TS
 yT
 fe
 DZ
-ud
+bz
 fV
 qR
 qR
@@ -531,10 +492,10 @@ vR
 yT
 JW
 wA
-ud
+Rs
 fV
-NW
-gy
+Vi
+Oc
 TP
 wd
 fk
@@ -558,7 +519,7 @@ jZ
 yT
 tu
 wA
-ud
+Rs
 fV
 qR
 DC
@@ -616,9 +577,9 @@ ud
 fV
 qR
 qR
-ZL
+Xb
 qR
-ZL
+Xb
 qR
 qR
 qR

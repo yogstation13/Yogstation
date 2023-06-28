@@ -380,11 +380,11 @@
 
 /datum/map_template/shuttle/emergency/mafia
 	suffix = "mafia"
-	name = "Droni Fedora"
-	description = "I'm gonna make you an offer you can't refuse, the drone mafia has offered their 'services' to shuttle the crew to the fishes. However, they might backstab you or join the crew instead. Its just bidness after all."
-	admin_notes = "has 5 syndidrones and a bardrone. The syndidrones should not immediately shoot up anyone according to their lawset."
+	name = "The family's shuttle"
+	description = "I'm gonna make you an offer you can't refuse, the mafia has offered their 'services' to shuttle the crew to the fishes. Canoli not incuded."
+	admin_notes = "has 5 mafia gangmembers that will absolutley fuck up anyone alone who enters their domain. Has a pair of sentient barstaff also."
 	emag_buy = TRUE
-	credit_cost = 115000//service fee
+	credit_cost = 100000//service fee
 
 /datum/map_template/shuttle/emergency/supermatter
 	suffix = "supermatter"
