@@ -969,10 +969,8 @@
 	update_appearance(updates = ALL)
 
 /obj/machinery/hydroponics/update_name()
-	if(myseed)
-		name = "[initial(name)] ([myseed.plantname])"
-	else
-		name = initial(name)
+	. = ..()
+	name = myseed ? "[initial(name)] ([myseed.plantname])" : initial(name)
 
 ///////////////////////////////////////////////////////////////////////////////
 /obj/machinery/hydroponics/soil //Not actually hydroponics at all! Honk!

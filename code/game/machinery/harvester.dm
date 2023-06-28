@@ -28,6 +28,7 @@
 	interval = max(max_time,1)
 
 /obj/machinery/harvester/update_appearance(updates = ALL, warming_up)
+	. = ..()
 	if(warming_up)
 		icon_state = initial(icon_state)+"-charging"
 		return
