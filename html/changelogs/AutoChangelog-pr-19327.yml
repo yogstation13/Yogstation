@@ -1,0 +1,7 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - rscadd: "Internal Affairs Agents now drop a special item on death. To get your kill reward as a syndicate, you must pick this item up and use it. Doing this spawns another Internal Affairs Agent."
+  - tweak: "Internal Affairs kill reward is now a random syndicate item instead of 5TC"
+  - tweak: "Internal Affairs dusting implant now activates automatically if tampered with"
+  - bugfix: "Internal Affairs dusting implant is now automatically removed (safely) when the antag status is removed"
