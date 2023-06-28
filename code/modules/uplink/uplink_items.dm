@@ -1802,7 +1802,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/mdrive
 	name = "Mirage Drive"
 	desc = "An experimental device created as a byproduct of research into faster than light travel. Utilizing magnetic coils, the mirage drive is able to generate \
-	kinetic energy and use it in a way that moves the user to their destination at a speed comparable to teleportation, so long as an unobstructed path between user and the target exists."
+	kinetic energy and use it in a way that moves the user to their destination at a speed comparable to teleportation, so long as an unobstructed path between the\
+	 user and the target exists."
 	item = /obj/item/mdrive
 	cost = 7
 	manufacturer = /datum/corporation/traitor/waffleco
