@@ -1,10 +1,8 @@
 /datum/job/miningmedic
 	title = "Mining Medic"
 	description = "Watch over the Shaft Miners as they all inevitably die on Lavaland."
-	flag = MMEDIC
 	orbit_icon = "kit-medical"
 	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -59,7 +57,7 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/emt/explorer
 	uniform = /obj/item/clothing/under/yogs/rank/miner/medic
 	l_hand = /obj/item/storage/firstaid/hypospray/qmc
-	gloves = /obj/item/clothing/gloves/color/latex/nitrile
+	gloves = /obj/item/clothing/gloves/color/latex/fireproof
 	l_pocket = /obj/item/wormhole_jaunter
 	head = /obj/item/clothing/head/soft/emt/mining
 	backpack = /obj/item/storage/backpack/medic

@@ -197,6 +197,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("seaweed" = 1)
 	foodtype = VEGETABLES
+	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/sushi
 
 /obj/item/reagent_containers/food/snacks/shrimpcocktail
 	name = "shrimp cocktail"

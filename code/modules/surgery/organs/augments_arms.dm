@@ -430,6 +430,6 @@
 
 /obj/item/organ/cyberimp/arm/stechkin_implant
 	name = "Stechkin implant"
-	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm to allow for easy concealment."
 	contents = newlist(/obj/item/gun/ballistic/automatic/pistol/implant)
 	syndicate_implant = TRUE

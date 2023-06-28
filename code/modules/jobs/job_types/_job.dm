@@ -18,10 +18,6 @@
 	/// Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
 	var/list/head_announce = null
 
-	// Used for something in preferences_savefile.dm
-	// NOTE: currently unused
-	var/department_flag = NONE
-
 	/// Bitfield of departments this job belongs to. These get setup when adding the job into the department, on job datum creation.
 	var/departments_bitflags = NONE
 
@@ -34,8 +30,6 @@
 	/// unless department_for_prefs is set.
 	/// TODO: Currently not used so will always be empty! Change this to department datums
 	var/list/departments_list = null
-
-	var/flag = NONE //Deprecated
 	
 	/// Automatic deadmin for a job. Usually head/security positions
 	var/auto_deadmin_role_flags = NONE

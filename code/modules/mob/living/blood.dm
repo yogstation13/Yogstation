@@ -350,6 +350,12 @@
 			B = new(T)
 			B.transfer_mob_blood_dna(src)
 		return
+	if(isethereal(src))
+		var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T.contents
+		if(!B)
+			B = new(T)
+			B.transfer_mob_blood_dna(src)
+		return
 	if(get_blood_id() != /datum/reagent/blood)
 		return
 	var/list/temp_blood_DNA

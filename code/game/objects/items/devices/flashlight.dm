@@ -201,6 +201,19 @@
 	/// How much sanitization to apply to the burn wound
 	var/uv_power = 1
 
+/obj/item/flashlight/pen/paramedic/advanced
+	name = "advanced penlight"
+	desc = "A stronger version of the UV penlight that paramedics and doctors recieve, it is capable of cauterizing bleeding as well as sterilizing burns."
+	icon_state = "penlight_cmo"
+	light_range = 4
+	uv_power = 2
+	toolspeed = 0.5
+	tool_behaviour = TOOL_CAUTERY
+
+/obj/item/flashlight/pen/paramedic/advanced/ignition_effect(atom/A, mob/user)
+	. = ..()
+	return "[user] holds [src] against [A] until it ignites."
+
 /obj/effect/temp_visual/medical_holosign
 	name = "medical holosign"
 	desc = "A small holographic glow that indicates a medic is coming to treat a patient."

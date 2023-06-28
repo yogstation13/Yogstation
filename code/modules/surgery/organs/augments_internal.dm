@@ -145,7 +145,7 @@
 
 /obj/item/organ/cyberimp/brain/anti_stun/syndicate
 	name = "syndicate CNS rebooter implant"
-	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
+	desc = "This implant will stimulate muscle movements to help you get back up on your feet faster after being stunned."
 	syndicate_implant = TRUE
 	stun_cap_amount = 3 SECONDS
 

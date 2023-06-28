@@ -192,9 +192,9 @@
 	description = "Neutralizes mannitol. Reduces stun times by about 300%, speeds the user up, and allows the user to quickly recover stamina while dealing a small amount of Brain damage. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
-	overdose_threshold = 20
-	addiction_threshold = 10
-	metabolization_rate = 0.75 * REAGENTS_METABOLISM
+	overdose_threshold = 40
+	addiction_threshold = 20 // make sure this is more than what you can fit in a syringe
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/drug/methamphetamine/on_mob_metabolize(mob/living/L)
 	..()
@@ -275,8 +275,9 @@
 	description = "Makes you impervious to stuns and grants a stamina regeneration buff, but you will be a nearly uncontrollable tramp-bearded raving lunatic."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
-	overdose_threshold = 20
-	addiction_threshold = 10
+	overdose_threshold = 40
+	addiction_threshold = 20 // make sure this is more than one you can fit in a syringe
+	metabolization_rate = REAGENTS_METABOLISM
 	taste_description = "salt" // because they're bathsalts?
 	var/datum/brain_trauma/special/psychotic_brawling/bath_salts/rage
 

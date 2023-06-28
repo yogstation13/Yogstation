@@ -206,9 +206,13 @@ Credit where due:
 	if(!M)
 		return 0
 	to_chat(M, "<span class='bold large_brass'>You are a servant of Ratvar, the Clockwork Justiciar!</span>")
+	to_chat(M, span_brass("He came to you in a dream, whispering softly in your ear, showing you visions of a majestic city, covered in brass. You were not the first to be reached out to by him, and you will not be the last."))
+	to_chat(M, span_brass("However, you are one of the few worthy enough to have found his home, hidden among the stars, and as such you shall be rewarded for your dedication. One last trial remains."))
+	to_chat(M, span_brass("Start the ark to weaken the veil and ensure the return of your lord; but beware, as there are those that seek to hinder you. They are unenlightened, show them Ratvars light to help them gain understanding and join your cause."))
 	to_chat(M, span_brass("You have approximately <b>[ark_time]</b> minutes until the Ark activates."))
 	to_chat(M, span_brass("Unlock <b>Script</b> scripture by converting a new servant."))
 	to_chat(M, span_brass("<b>Application</b> scripture will be unlocked halfway until the Ark's activation."))
+	to_chat(M, span_brass("Soon, Ratvar shall create a new City of Cogs, and forge a golden age for all sentient beings."))
 	M.playsound_local(get_turf(M), 'sound/ambience/antag/clockcultalr.ogg', 100, FALSE, pressure_affected = FALSE)
 	return 1
 

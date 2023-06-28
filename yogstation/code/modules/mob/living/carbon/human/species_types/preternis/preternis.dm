@@ -23,15 +23,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES
-	brutemod = 0.9 //Have you ever punched a metal plate?
 	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
 	tempmod = 0.1 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
-	stunmod = 1.1 //Big metal body has difficulty getting back up if it falls down
+	stunmod = 1.2 //Big metal body has difficulty getting back up if it falls down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	action_speed_coefficient = 0.9 //worker drone do the fast
-	punchdamagelow = 2 //if it hits you, it's always gonna hurt
 	punchdamagehigh = 8 //not built for large high speed acts like punches
 	punchstunthreshold = 7 //if they get a good punch off, you're still seeing lights
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
@@ -78,6 +76,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
 
+	RegisterSignal(C, COMSIG_MOB_ITEM_AFTERATTACK, PROC_REF(attackslowdown))
+
 	if(ishuman(C))
 		maglock = new
 		maglock.Grant(C)
@@ -95,8 +95,11 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 	UnregisterSignal(C, COMSIG_MOB_ALTCLICKON)
 		
+	UnregisterSignal(C, COMSIG_MOB_ITEM_AFTERATTACK)
+
 	var/datum/component/empprotection/empproof = C.GetExactComponent(/datum/component/empprotection)
-	empproof.RemoveComponent()//remove emp proof if they stop being a preternis
+	if(empproof)
+		empproof.RemoveComponent()//remove emp proof if they stop being a preternis
 
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
@@ -272,7 +275,15 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	else
 		H.clear_alert("preternis_charge")
 
-/datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
+/datum/species/preternis/proc/attackslowdown(atom/target, mob/user, proximity_flag, click_parameters)//make weapon use slower
+	if(!ispreternis(user) || !proximity_flag || !ishuman(target))
+		return	
+	var/mob/living/carbon/human/H = user
+	var/obj/item/weapon = H.get_active_held_item()
+	if(weapon && istype(weapon) && weapon.force)
+		H.next_move += 2 //adds 0.2 second delay to weapon combat
+
+/datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make their punches slower
 	. = ..()
 	if(!ispreternis(user) || attacker_style?.nonlethal || (user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)) || (user.mind.martial_art.type in subtypesof(/datum/martial_art)))
 		return	
