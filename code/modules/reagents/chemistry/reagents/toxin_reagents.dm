@@ -854,7 +854,7 @@
 		return
 	if(methods & INJECT)
 		if(!HAS_TRAIT(C, TRAIT_ACIDBLOOD))
-			C.adjustBruteLoss(1.5 * min(6*toxpwr, reac_volume * toxpwr))
+			C.adjustBruteLoss(1.5 * min(2*toxpwr, reac_volume * toxpwr))
 		return
 	C.acid_act(acidpwr, reac_volume)
 
