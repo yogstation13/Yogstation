@@ -4,6 +4,8 @@
 	icon = 'icons/mob/32x64.dmi'
 	icon_state = "true_devil"
 	gender = NEUTER
+	environment_smash = ENVIRONMENT_SMASH_STRUCTURES|ENVIRONMENT_SMASH_WALLS
+	friendly = "slowly drains the soul of"
 
 	del_on_death = TRUE
 	dextrous = TRUE

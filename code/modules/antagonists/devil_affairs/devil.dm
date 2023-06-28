@@ -43,9 +43,9 @@
 			clear_power(/datum/action/cooldown/spell/conjure_item/summon_pitchfork)
 		if(3)
 			obtain_power(/datum/action/cooldown/spell/conjure_item/summon_pitchfork)
-			clear_power(/datum/action/cooldown/spell/jaunt/infernal_jaunt)
+			clear_power(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/infernal_jaunt)
 		if(4)
-			obtain_power(/datum/action/cooldown/spell/jaunt/infernal_jaunt)
+			obtain_power(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/infernal_jaunt)
 		if(7)
 			clear_power(/datum/action/cooldown/spell/summon_dancefloor)
 			clear_power(/datum/action/cooldown/spell/pointed/projectile/fireball/hellish)
@@ -65,19 +65,3 @@
 /datum/antagonist/devil/proc/clear_power(datum/action/removed_power)
 	if(devil_powers[removed_power])
 		QDEL_NULL(devil_powers[removed_power])
-
-/datum/action/cooldown/spell/pointed/summon_contract
-	name = "Summon devil contract"
-	desc = "Summon a contract that, when signed, will \
-		add someone to the Agent's death loop."
-	background_icon_state = "bg_demon"
-	overlay_icon_state = "ab_goldborder"
-
-/datum/action/devil_transfer_body
-	background_icon_state = "bg_demon"
-	overlay_icon_state = "ab_goldborder"
-
-/datum/action/cooldown/spell/jaunt/infernal_jaunt
-	name = "Infernal Jaunt"
-	background_icon_state = "bg_demon"
-	overlay_icon_state = "ab_goldborder"
