@@ -61,7 +61,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/breadslice/xenomeat
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 10)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/consumable/nutriment/vitamin = 5)
-	tastes = list("bread" = 10, ACID = 10)
+	tastes = list("bread" = 10, "acid" = 10)
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/breadslice/xenomeat
@@ -214,7 +214,7 @@
 	filling_color = "#F1F49A"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("butter", "exotic butter")
+	tastes = list("bread" = 1, "exotic butter" = 1)
 
 /obj/item/reagent_containers/food/snacks/butterdog/Initialize(mapload)
 	. = ..()

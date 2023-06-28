@@ -466,7 +466,7 @@
 	icon = 'icons/obj/lollipop.dmi'
 	icon_state = "gumball"
 	list_reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/medicine/c2/libital = 2, /datum/reagent/medicine/c2/aiuri = 2)	//Kek
-	tastes = list("candy")
+	tastes = list("candy" = 1)
 	foodtype = JUNKFOOD
 
 /obj/item/reagent_containers/food/snacks/gumball/Initialize(mapload)
@@ -569,4 +569,3 @@
 	desc = "A can of peaches, perhaps stashed here long ago to hide them from the wizards."
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
-
