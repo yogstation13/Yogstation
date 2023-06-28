@@ -66,6 +66,12 @@
 		uniform = /obj/item/clothing/under/lawyer/purpsuit
 		suit = /obj/item/clothing/suit/toggle/lawyer/purple
 
+/datum/outfit/job/lawyer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	if(visualsOnly)
+		return
+	ADD_TRAIT(H, TRAIT_DEVIL_CONTRACT_IMMUNE, JOB_TRAIT)
+
 /datum/outfit/job/lawyer/get_types_to_preload()
 	. = ..()
 	. += /obj/item/clothing/under/lawyer/purpsuit

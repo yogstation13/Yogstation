@@ -80,3 +80,10 @@
 
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/hop)
+
+/datum/outfit/job/hop/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	if(visualsOnly)
+		return
+
+	ADD_TRAIT(H, TRAIT_DEVIL_CONTRACT_IMMUNE, JOB_TRAIT)

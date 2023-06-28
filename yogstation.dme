@@ -1734,7 +1734,6 @@
 #include "code\modules\antagonists\devil_affairs\true_devil.dm"
 #include "code\modules\antagonists\devil_affairs\devil_powers\collect_soul.dm"
 #include "code\modules\antagonists\devil_affairs\devil_powers\conjured_items.dm"
-#include "code\modules\antagonists\devil_affairs\devil_powers\contract.dm"
 #include "code\modules\antagonists\devil_affairs\devil_powers\dancefloor.dm"
 #include "code\modules\antagonists\devil_affairs\devil_powers\devil_form.dm"
 #include "code\modules\antagonists\devil_affairs\devil_powers\fireball.dm"

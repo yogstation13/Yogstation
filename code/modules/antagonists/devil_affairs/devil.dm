@@ -13,11 +13,11 @@
 /datum/antagonist/devil/on_gain()
 	. = ..()
 	SSinfernal_affairs.devils += src
-	obtain_power(/datum/action/cooldown/spell/pointed/summon_contract)
+	obtain_power(/datum/action/cooldown/spell/conjure_item/summon_contract)
 	obtain_power(/datum/action/cooldown/spell/pointed/collect_soul)
 
 /datum/antagonist/devil/on_removal()
-	clear_power(/datum/action/cooldown/spell/pointed/summon_contract)
+	clear_power(/datum/action/cooldown/spell/conjure_item/summon_contract)
 	clear_power(/datum/action/cooldown/spell/pointed/collect_soul)
 	SSinfernal_affairs.devils -= src
 	return ..()
@@ -34,9 +34,9 @@
 
 	switch(souls)
 		if(0)
-			clear_power(/datum/action/devil_transfer_body)
+			clear_power(/datum/action/cooldown/spell/devil_transfer_body)
 		if(1)
-			obtain_power(/datum/action/devil_transfer_body)
+			obtain_power(/datum/action/cooldown/spell/devil_transfer_body)
 			clear_power(/datum/action/cooldown/spell/conjure_item/violin)
 		if(2)
 			obtain_power(/datum/action/cooldown/spell/conjure_item/violin)

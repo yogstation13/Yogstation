@@ -877,6 +877,7 @@
 	if(!isliving(target))
 		return
 	var/mob/living/target_living = target
+	target_living.fire_stacks = 4
 	target_living.ignite_mob()
 
 //HF blade
