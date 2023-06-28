@@ -140,16 +140,18 @@
 /obj/effect/anomaly/flux
 	name = "flux wave anomaly"
 	icon_state = "electricity2"
-	density = TRUE
+	density = FALSE // so it doesn't awkwardly block movement when it doesn't stun you
 	var/canshock = 0
-	var/shockdamage = 20
+	var/shockdamage = 30
 	var/explosive = TRUE
 
-/obj/effect/anomaly/flux/anomalyEffect()
+/obj/effect/anomaly/flux/anomalyEffect(delta_time)
 	..()
 	canshock = 1
 	for(var/mob/living/M in range(0, src))
 		mobShock(M)
+	if(prob(delta_time * 2)) // shocks everyone nearby
+		tesla_zap(src, 5, shockdamage*500, TESLA_MOB_DAMAGE)
 
 /obj/effect/anomaly/flux/Crossed(atom/movable/AM)
 	. = ..()
@@ -165,10 +167,15 @@
 	if(canshock && istype(M))
 		canshock = 0 //Just so you don't instakill yourself if you slam into the anomaly five times in a second.
 		if(iscarbon(M))
+			var/siemens_coeff = 1
 			if(ishuman(M))
-				M.electrocute_act(shockdamage, "[name]", safety=1)
-				return
-			M.electrocute_act(shockdamage, "[name]")
+				var/mob/living/carbon/human/H = M
+				if(H.gloves)
+					siemens_coeff *= (H.gloves.siemens_coefficient + 1) / 2 // protective gloves reduce damage by half
+				if(H.wear_suit)
+					siemens_coeff *= (H.wear_suit.siemens_coefficient + 1) / 2 // protective suit reduces damage by another half, minimum of 33%
+			var/should_stun = !M.IsParalyzed() // stunlock is boring
+			M.electrocute_act(shockdamage, "[name]", max(siemens_coeff, 0.33), safety = TRUE, stun = should_stun) // 15 damage with insuls, 10 damage with insuls and hardsuit
 			return
 		else
 			M.adjustFireLoss(shockdamage)

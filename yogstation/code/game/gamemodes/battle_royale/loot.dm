@@ -248,7 +248,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 
 		/obj/item/teleportation_scroll/apprentice = 0,
 		/obj/effect/spawner/lootdrop/ammobox = 0,
-		/obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted = 0,
 		/obj/item/slimecross/stabilized/red = 0,
 		/obj/item/slimecross/stabilized/sepia = 0,
 		/obj/item/battleroyale/martial/preternis = 0,
@@ -271,7 +270,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/storage/backpack/duffelbag/syndie/c4 = -3, //C4 Is kind of useless when you have AA
 		/obj/item/battleroyale/itemspawner/construct = -3,
 		/obj/item/autosurgeon/syndicate/spinalspeed = -3, //Useful, but obvious, and gibs you if you aren't careful
-		/obj/item/spellbook = -3,
 		/obj/item/battleroyale/martial/phytosian = -3,
 		/obj/item/battleroyale/martial/plasmaman = -3,
 
@@ -280,7 +278,6 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/implanter/empshield = -4, //EMP Shields are fairly useful, especially with the now wealth of xray / thermal eyes, among others
 		/obj/item/guardiancreator/carp/random = -4,
 		/obj/item/bodypart/l_arm/robot/buster = -4, // Buster is strong, but most people aren't too good with it. Especially useful for closing the gap
-		/obj/item/storage/firstaid/tactical = -4, //has combat defib, one of the few stun weapons
 		/obj/item/battleroyale/martial/ipc = -4,
 		/obj/item/battleroyale/martial/lizard = -4,
 		/obj/item/book/granter/martial/carp = -4,
@@ -288,9 +285,11 @@ GLOBAL_LIST_INIT(battleroyale_utility, list(//bombs, explosives, anything that's
 		/obj/item/grenade/spawnergrenade/manhacks = -5,
 		/obj/item/slimecross/stabilized/bluespace = -5,
 		/obj/machinery/syndicatebomb = -5,
-		/obj/item/gun/ballistic/rocketlauncher/unrestricted = -5,
 		/obj/item/stand_arrow/safe = -5,
+		/obj/item/storage/firstaid/tactical = -5, //has combat defib, one of the few stun weapons
 		/obj/item/battleroyale/martial/worldbreaker = -5, // Shaking the ground of Moria
+
+		/obj/item/spellbook = -8,
 		))
 
 /obj/structure/closet/crate/battleroyale

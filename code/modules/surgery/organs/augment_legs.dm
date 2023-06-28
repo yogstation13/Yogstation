@@ -134,7 +134,7 @@
 //------------true noslip implant
 /obj/item/organ/cyberimp/leg/noslip
 	name = "advanced antislip implant"
-	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
+	desc = "An implant that uses advanced sensors to detect when you are slipping and utilize motors in order to prevent it."
 	syndicate_implant = TRUE
 	implant_type = "noslipall"
 

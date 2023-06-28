@@ -123,7 +123,7 @@ All foods are distributed among various categories. Use common sense.
 
 		if(!junkiness)
 			var/ate_without_table = TRUE
-			for(var/obj/structure/table/table in range(1, src))
+			for(var/obj/structure/table/table in range(1, M))
 				ate_without_table = FALSE
 				break
 			if(ate_without_table)

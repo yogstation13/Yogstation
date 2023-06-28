@@ -11,7 +11,7 @@
 /obj/item/stack/telecrystal/attack_self(mob/user)
 	if(!isliving(user))
 		return
-	
+
 	var/mob/living/L = user
 
 	var/turf/destination = get_teleport_loc(loc, L, rand(3,6)) // Gets 3-6 tiles in the user's direction
@@ -33,7 +33,7 @@
 		var/mob/living/carbon/C = L
 		// Half as debilitating than a bluespace crystal, as this is a precious resource you're using
 		C.adjust_disgust(15)
-	
+
 	use(1)
 
 /obj/item/stack/telecrystal/attack(mob/target, mob/user)
