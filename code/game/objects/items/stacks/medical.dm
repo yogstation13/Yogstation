@@ -177,7 +177,10 @@
 
 	playsound(src, 'sound/effects/rip2.ogg', 25)
 
-	if(!do_after(user, (user == M ? self_delay : other_delay), M))
+	/// Use other_delay if healing someone else (usually 1 second)
+	/// Use self_delay if healing yourself (usually 3 seconds)
+	/// Reduce delay by 20% if medical
+	if(!do_after(user, (user == M ? self_delay : other_delay) * (IS_MEDICAL(user) ? 0.8 : 1), M))
 		return
 
 	playsound(src, 'sound/effects/rip1.ogg', 25)
