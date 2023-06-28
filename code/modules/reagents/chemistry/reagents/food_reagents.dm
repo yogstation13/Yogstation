@@ -750,6 +750,16 @@
 		if(istype(stomach))
 			stomach.adjust_charge(reac_volume * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 
+/datum/reagent/consumable/liquidelectricity/reaction_turf(turf/T, reac_volume)//splash the electric "blood" all over the place
+	if(!istype(T))
+		return
+	if(reac_volume < 3)
+		return
+
+	var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T //find some blood here
+	if(!B)
+		B = new(T)
+
 /datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
 	if(prob(25) && !isethereal(M))
 		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
