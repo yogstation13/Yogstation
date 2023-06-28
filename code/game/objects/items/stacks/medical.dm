@@ -72,6 +72,9 @@
 
 /obj/item/stack/medical/proc/heal_carbon(mob/living/carbon/C, mob/user, brute, burn)
 	var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
+	var/list/damaged_parts = C.get_damaged_bodyparts(brute, burn, status = BODYPART_ORGANIC) // list of bodyparts that have the damage types we are able to heal
+	if(damaged_parts.len && !(affecting in damaged_parts) && C == user)
+		affecting = pick(damaged_parts) // pick from the list of damaged bodyparts if the targeted one is fine
 	if(!affecting) //Missing limb?
 		to_chat(user, span_warning("[C] doesn't have \a [parse_zone(user.zone_selected)]!"))
 		return
