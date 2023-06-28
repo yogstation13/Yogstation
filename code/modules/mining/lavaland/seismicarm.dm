@@ -3,6 +3,22 @@
 	transparent_when_unavailable = TRUE
 	button_icon = 'icons/mob/actions/actions_arm.dmi'
 
+/datum/action/cooldown/seismic/proc/sweep(mob/living/target)
+	if(target.mobility_flags & MOBILITY_STAND)
+		animate(target, transform = matrix(90, MATRIX_ROTATE), time = 0 SECONDS, loop = 0)
+
+//Check for if someone is allowed to be stood back up
+/datum/action/cooldown/seismic/proc/wakeup(mob/living/target)
+	if(target.mobility_flags & MOBILITY_STAND)
+		animate(target, transform = null, time = 0.4 SECONDS, loop = 0)
+
+/datum/action/cooldown/seismic/IsAvailable(feedback = FALSE)
+	. = ..()
+	if(!isliving(owner))
+		return FALSE
+	if(HAS_TRAIT(owner, TRAIT_PACIFISM))
+		return FALSE
+
 /datum/action/cooldown/seismic/lariat
 	name = "Lariat"
 	desc = "Dash forward, catching whatever animal you hit with your arm and knocking them over."
@@ -11,14 +27,12 @@
 	cooldown_time = 7 SECONDS
 	var/jumpdistance = 4
 
-/datum/action/cooldown/seismic/lariat/Trigger()
-	if(!..())
-		return FALSE
-	StartCooldown()
+/datum/action/cooldown/seismic/lariat/Activate()
 	var/turf/T = get_step(get_turf(owner), owner.dir)
 	var/turf/Z = get_turf(owner)
 	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, owner)
 	owner.visible_message(span_warning("[owner] sprints forward with [owner.p_their()] arm outstretched!"))
+	StartCooldown()
 	playsound(owner,'sound/effects/gravhit.ogg', 20, 1)
 	for(var/i = 0 to jumpdistance)
 		if(T.density)
@@ -64,15 +78,13 @@
 	cooldown_time = 7 SECONDS
 	var/jumpdistance = 4
 
-/datum/action/cooldown/seismic/mop/Trigger()
-	if(!..())
-		return FALSE
-	StartCooldown()
+/datum/action/cooldown/seismic/mop/Activate()
 	var/turf/T = get_step(get_turf(owner), owner.dir)
 	var/turf/Z = get_turf(owner)
 	var/obj/effect/temp_visual/decoy/fading/threesecond/F = new(Z, owner)
 	var/list/mopped = list()
 	owner.visible_message(span_warning("[owner] sprints forward with [owner.p_their()] hand outstretched!"))
+	StartCooldown()
 	playsound(owner,'sound/effects/gravhit.ogg', 20, 1)
 	for(var/i = 0 to jumpdistance)
 		if(T.density)
@@ -126,7 +138,6 @@
 	for(var/mob/living/C in mopped)
 		if(C.stat == CONSCIOUS && C.resting == FALSE)
 			animate(C, transform = null, time = 0.5 SECONDS, loop = 0)
-
 	return TRUE
 
 /datum/action/cooldown/seismic/suplex
@@ -136,13 +147,11 @@
 	button_icon_state = "suplex"
 	cooldown_time = 1 SECONDS
 
-/datum/action/cooldown/seismic/suplex/Trigger()
-	if(!..())
-		return FALSE
-	StartCooldown()
+/datum/action/cooldown/seismic/suplex/Activate()
 	var/turf/T = get_step(get_turf(owner), owner.dir)
 	var/turf/Z = get_turf(owner)
 	owner.visible_message(span_warning("[owner] outstretches [owner.p_their()] arm and goes for a grab!"))
+	StartCooldown()
 	for(var/mob/living/L in T.contents)
 		var/turf/Q = get_step(get_turf(owner), turn(owner.dir,180))
 		if(ismineralturf(Q))
@@ -184,32 +193,29 @@
 		
 /datum/action/cooldown/seismic/righthook
 	name = "Right Hook"
-	desc = "Put the arm through its paces, cranking the outputs located at the front and back of the hand to full capacity for a powerful blow. This attack can only be readied for five seconds and connecting with it will temporarily overwhelm the entire arm for fifteen."
+	desc = "Put the arm through its paces, cranking the outputs located at the front and back of the hand to full capacity for a powerful blow. This attack can only be readied \
+	 for five seconds."
 	button_icon = 'icons/mob/actions/actions_arm.dmi'
 	button_icon_state = "ponch"
 	cooldown_time = 3 SECONDS
 
-/datum/action/cooldown/seismic/righthook/Trigger()
-	. = ..()
-	if(!.)
-		return FALSE
+/datum/action/cooldown/seismic/righthook/Activate()
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	do_after(owner, 2 SECONDS, owner, TRUE, stayStill = FALSE)
 	owner.put_in_r_hand(new /obj/item/melee/overcharged_emitter)
 	owner.visible_message(span_warning("[owner]'s right arm begins crackling loudly!"))
+	StartCooldown()
 	return TRUE
 
 /datum/action/cooldown/seismic/lefthook
 	name = "Left Hook"
-	desc = "Put the arm through its paces, cranking the outputs located at the front and back of the hand to full capacity for a powerful blow. This attack can only be readied for five seconds and connecting with it will temporarily overwhelm the entire arm for fifteen."
+	desc = "Put the arm through its paces, cranking the outputs located at the front and back of the hand to full capacity for a powerful blow. This attack can only be readied \
+	 for five seconds."
 	button_icon = 'icons/mob/actions/actions_arm.dmi'
 	button_icon_state = "ponch"
 	cooldown_time = 3 SECONDS
 
-/datum/action/cooldown/seismic/righthook/Trigger()
-	. = ..()
-	if(!.)
-		return FALSE
+/datum/action/cooldown/seismic/righthook/Activate()
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
 	do_after(owner, 2 SECONDS, owner, TRUE, stayStill = FALSE)
 	owner.put_in_l_hand(new /obj/item/melee/overcharged_emitter)
@@ -325,4 +331,37 @@
 	mop.Remove(C)
 	suplex.Remove(C)
 	righthook.Remove(C)
+	return ..()
+
+/obj/item/bodypart/l_arm/robot/seismic
+	name = "seismic right arm"
+	desc = "A robotic arm adorned with subwoofers capable of emitting shockwaves to imitate strength."
+	icon = 'icons/mob/augmentation/augments_seismic.dmi'
+	icon_state = "seismic_r_arm"
+	max_damage = 60
+	var/datum/action/cooldown/seismic/lariat/lariat = new/datum/action/cooldown/seismic/lariat()
+	var/datum/action/cooldown/seismic/mop/mop = new/datum/action/cooldown/seismic/mop()
+	var/datum/action/cooldown/seismic/suplex/suplex = new/datum/action/cooldown/seismic/suplex()
+	var/datum/action/cooldown/seismic/lefthook/lefthook = new/datum/action/cooldown/seismic/lefthook()
+
+/obj/item/bodypart/l_arm/robot/seismic/attack(mob/living/L, proximity)
+	if(!ishuman(L))
+		return
+	playsound(L,'sound/effects/phasein.ogg', 20, 1)
+	to_chat(L, span_notice("You bump the prosthetic near your shoulder. In a flurry faster than your eyes can follow, it takes the place of your right arm!"))
+	replace_limb(L)
+
+/obj/item/bodypart/l_arm/robot/seismic/attach_limb(mob/living/carbon/C, special)
+	. = ..()
+	lariat.Grant(C)
+	mop.Grant(C)
+	suplex.Grant(C)
+	lefthook.Grant(C)
+
+/obj/item/bodypart/l_arm/robot/seismic/drop_limb(special)
+	var/mob/living/carbon/C = owner
+	lariat.Remove(C)
+	mop.Remove(C)
+	suplex.Remove(C)
+	lefthook.Remove(C)
 	return ..()
