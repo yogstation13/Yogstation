@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - rscadd: "adds mech ejection module"
+  - tweak: "nukie mechs explode when destroyed"

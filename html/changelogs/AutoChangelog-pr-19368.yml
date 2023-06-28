@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "healing items like sutures heal a random damaged body part instead if the selected one is fine"

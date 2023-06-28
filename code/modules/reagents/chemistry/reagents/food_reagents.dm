@@ -177,7 +177,7 @@
 	taste_mult = 1.5 // stop sugar drowning out other flavours
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	metabolization_rate = 2 * REAGENTS_METABOLISM
-	overdose_threshold = 200 // Hyperglycaemic shock
+	overdose_threshold = 100 // Hyperglycaemic shock
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
@@ -749,6 +749,16 @@
 		var/obj/item/organ/stomach/ethereal/stomach = C.getorganslot(ORGAN_SLOT_STOMACH)
 		if(istype(stomach))
 			stomach.adjust_charge(reac_volume * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
+
+/datum/reagent/consumable/liquidelectricity/reaction_turf(turf/T, reac_volume)//splash the electric "blood" all over the place
+	if(!istype(T))
+		return
+	if(reac_volume < 3)
+		return
+
+	var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T //find some blood here
+	if(!B)
+		B = new(T)
 
 /datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
 	if(prob(25) && !isethereal(M))

@@ -1,0 +1,5 @@
+author: " Ktlwjec"
+delete-after: true 
+changes: 
+  - bugfix: "Donut and candle boxes are not invisible."
+  - bugfix: "Boxes (such as cigarettes, candles, egg boxes) now spawn with the intended amount of items."

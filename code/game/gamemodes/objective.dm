@@ -583,8 +583,11 @@ GLOBAL_LIST_EMPTY(objectives)
 		explanation_text = "Free Objective."
 
 /datum/objective/escape/escape_with_identity/check_completion()
-	if(..())
+	. = ..()
+	if(completed)
 		return TRUE
+	if(!.)
+		return
 	if(!target || !target_real_name)
 		return TRUE
 	var/list/datum/mind/owners = get_owners()

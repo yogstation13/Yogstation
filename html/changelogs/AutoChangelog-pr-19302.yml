@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "flux anomalies do more damage but can be reduced with electrical protection"
+  - tweak: "flux anomalies can do tesla shocks now"

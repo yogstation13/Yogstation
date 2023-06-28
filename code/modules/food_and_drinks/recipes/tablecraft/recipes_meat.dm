@@ -61,6 +61,7 @@
 /datum/crafting_recipe/food/nugget
 	name = "Chicken Nugget"
 	reqs = list(
+		/datum/reagent/consumable/batter = 2,
 		/obj/item/reagent_containers/food/snacks/meat/cutlet = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/nugget
@@ -142,7 +143,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/stewedsoymeat
 	subcategory = CAT_MEAT
-	
+
 /datum/crafting_recipe/food/meatclown
 	name = "Meat Clown"
 	reqs = list(

@@ -2110,6 +2110,7 @@
 #include "code\modules\clothing\masks\gasmask.dm"
 #include "code\modules\clothing\masks\hailer.dm"
 #include "code\modules\clothing\masks\miscellaneous.dm"
+#include "code\modules\clothing\masks\swat.dm"
 #include "code\modules\clothing\neck\_neck.dm"
 #include "code\modules\clothing\neck\bodycamera.dm"
 #include "code\modules\clothing\neck\skillcapes\skillcape_datums.dm"
