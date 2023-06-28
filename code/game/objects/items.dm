@@ -868,11 +868,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return
 	delay *= toolspeed
 
-	if((IS_ENGINEERING(user) || (robo_check && IS_JOB(user, "Roboticist"))) && tool_behaviour != TOOL_MINING) //if the user is an engineer, they'll use the tool faster. Doesn't apply to mining tools.
-		delay *= 0.8
+	if(((IS_ENGINEERING(user) || (robo_check && IS_JOB(user, "Roboticist"))) && (tool_behaviour in MECHANICAL_TOOLS)) || (IS_MEDICAL(user) && (tool_behaviour in MEDICAL_TOOLS)))
+		delay *= 0.8 // engineers and doctors use their own tools faster
 
-	// Play tool sound at the beginning of tool usage.
-	play_tool_sound(target, volume)
+	if(volume) // Play tool sound at the beginning of tool usage.
+		play_tool_sound(target, volume)
 
 	if(delay)
 		// Create a callback with checks that would be called every tick by do_after.
