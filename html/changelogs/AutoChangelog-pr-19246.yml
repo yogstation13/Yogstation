@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "assembled single-tank bombs retain the functions and properties of the tank used to make it (until it explodes)"
+  - tweak: "hydrogen and tritium work in single-tank bombs"
