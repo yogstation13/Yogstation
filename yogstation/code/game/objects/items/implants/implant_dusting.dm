@@ -72,7 +72,7 @@
 	if(is_syndicate(user))
 		// Reward
 		var/list/item_list = list( // Contract kit random items
-			/obj/item/storage/backpack/duffelbag/syndie/x4,
+			/obj/item/grenade/plastic/x4,
 			/obj/item/restraints/legcuffs/bola/tactical,
 			/obj/item/gun/syringe/syndicate,
 			/obj/item/pen/edagger,
