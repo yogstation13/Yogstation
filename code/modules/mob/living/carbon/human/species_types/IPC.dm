@@ -34,10 +34,7 @@
 	clonemod = 0
 	staminamod = 0.8
 	siemens_coeff = 1.75
-	action_speed_coefficient = 0.8 // designed for labor, they should be good at it
-	punchdamagelow = 2 // much more consistent with their punches due to being a robot
-	punchdamagehigh = 8 // however their limbs aren't built to hit quite as hard
-	punchstunthreshold = 8 // you're still gonna feel it though
+	action_speed_coefficient = 0.9 // designed for labor, they should be good at it
 	reagent_tag = PROCESS_SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
