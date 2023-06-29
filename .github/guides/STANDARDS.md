@@ -84,7 +84,7 @@ Copying code from one place to another may be suitable for small, short-time pro
 
 Instead you can use object orientation, or simply placing repeated code in a function, to obey this specification easily.
 
-### Prefer `Initialize()` over `New()` for atoms
+### Prefer `Initialize(mapload)` over `New()` for atoms
 
 Our game controller is pretty good at handling long operations and lag, but it can't control what happens when the map is loaded, which calls `New` for all atoms on the map. If you're creating a new atom, use the `Initialize` proc to do what you would normally do in `New`. This cuts down on the number of proc calls needed when the world is loaded. See here for details on `Initialize`: https://github.com/yogstation13/Yogstation/blob/df044da8608d94cbe1fe242264f749a92ca8283b/code/game/atoms.dm#L111
 While we normally encourage (and in some cases, even require) bringing out of date code up to date when you make unrelated changes near the out of date code, that is not the case for `New` -> `Initialize` conversions. These systems are generally more dependent on parent and children procs so unrelated random conversions of existing things can cause bugs that take months to figure out.
@@ -243,7 +243,7 @@ First, read the comments in [this BYOND thread](http://www.byond.com/forum/?post
 
 There are two key points here:
 
-1) Defining a list in the variable's definition calls a hidden proc - init. If you have to define a list at startup, do so in New() (or preferably Initialize()) and avoid the overhead of a second call (Init() and then New())
+1) Defining a list in the variable's definition calls a hidden proc - init. If you have to define a list at startup, do so in New() (or preferably Initialize(mapload)) and avoid the overhead of a second call (Init() and then New())
 
 2) It also consumes more memory to the point where the list is actually required, even if the object in question may never use it!
 
@@ -270,7 +270,7 @@ Bad:
 
 Good:
 ```dm
-/obj/machine/update_overlays(var/blah)
+/obj/machine/update_overlays(blah)
 	var/static/on_overlay
 	var/static/off_overlay
 	var/static/broken_overlay
@@ -298,7 +298,7 @@ Associated lists that could instead be variables or statically defined number in
 
 Bad:
 ```dm
-/obj/machine/update_overlays(var/blah)
+/obj/machine/update_overlays(blah)
 	var/static/our_overlays
 	if (isnull(our_overlays))
 		our_overlays = list("on" = iconstate2appearance(overlay_icon, "on"), "off" = iconstate2appearance(overlay_icon, "off"), "broken" = iconstate2appearance(overlay_icon, "broken"))
@@ -314,7 +314,7 @@ Good:
 #define OUR_OFF_OVERLAY 2
 #define OUR_BROKEN_OVERLAY 3
 
-/obj/machine/update_overlays(var/blah)
+/obj/machine/update_overlays(blah)
 	var/static/our_overlays
 	if (isnull(our_overlays))
 		our_overlays = list(iconstate2appearance(overlay_icon, "on"), iconstate2appearance(overlay_icon, "off"), iconstate2appearance(overlay_icon, "broken"))
@@ -331,7 +331,7 @@ Storing these in a flat (non-associated) list saves on memory, and using defines
 
 Also good:
 ```dm
-/obj/machine/update_overlays(var/blah)
+/obj/machine/update_overlays(blah)
 	var/static/on_overlay
 	var/static/off_overlay
 	var/static/broken_overlay

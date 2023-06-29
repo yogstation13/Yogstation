@@ -28,6 +28,7 @@
 	target_range = 8
 	power_activates_immediately = FALSE
 	prefire_message = "Whom will you subvert to your will?"
+	ascended_power = /datum/action/cooldown/bloodsucker/targeted/mesmerize/shadow
 	var/mesmerizingtime = 5 SECONDS
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/CanUse(mob/living/carbon/user)
@@ -132,6 +133,7 @@
 	button_icon_state = "power_glare"
 	additional_text = "Additionally makes the stun downtime based on distance, being instant when adjacent."
 	purchase_flags = LASOMBRA_CAN_BUY
+	ascended_power = null
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize/shadow/FireTargetedPower(atom/target_atom)
 	var/mob/living/target = target_atom

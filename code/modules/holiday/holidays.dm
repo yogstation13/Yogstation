@@ -607,6 +607,23 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 		)
 	mail_holiday = TRUE
 
+/datum/holiday/xmas/getStationPrefix()
+	return pick(
+		"Birthday",
+		"Chimney",
+		"Claus",
+		"Elf",
+		"Fir",
+		"Ho Ho Ho",
+		"Jolly",
+		"Merry",
+		"Present",
+		"Sack",
+		"Santa",
+		"Sleigh",
+		"Yule",
+	)
+
 /datum/holiday/xmas/greet()
 	return "Have a merry Christmas!"
 

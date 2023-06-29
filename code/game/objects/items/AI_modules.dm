@@ -24,16 +24,16 @@ AI MODULES
 	var/bypass_law_amt_check = 0
 	materials = list(/datum/material/gold=50)
 
-/obj/item/aiModule/examine(var/mob/user as mob)
+/obj/item/aiModule/examine(mob/user as mob)
 	. = ..()
 	if(Adjacent(user))
 		show_laws(user)
 
-/obj/item/aiModule/attack_self(var/mob/user as mob)
+/obj/item/aiModule/attack_self(mob/user as mob)
 	..()
 	show_laws(user)
 
-/obj/item/aiModule/proc/show_laws(var/mob/user as mob)
+/obj/item/aiModule/proc/show_laws(mob/user as mob)
 	if(laws.len)
 		to_chat(user, "<B>Programmed Law[(laws.len > 1) ? "s" : ""]:</B>")
 		for(var/law in laws)
@@ -332,7 +332,7 @@ AI MODULES
 /obj/item/aiModule/core/full
 	var/law_id // if non-null, loads the laws from the ai_laws datums
 
-/obj/item/aiModule/core/full/Initialize()
+/obj/item/aiModule/core/full/Initialize(mapload)
 	. = ..()
 	if(!law_id)
 		return
@@ -360,7 +360,7 @@ AI MODULES
 	law_id = "asimov"
 	var/subject = "human being"
 
-/obj/item/aiModule/core/full/asimov/attack_self(var/mob/user as mob)
+/obj/item/aiModule/core/full/asimov/attack_self(mob/user as mob)
 	var/targName = stripped_input(user, "Please enter a new subject that asimov is concerned with.", "Asimov to whom?", subject, MAX_NAME_LEN)
 	if(!targName)
 		return
@@ -448,7 +448,7 @@ AI MODULES
 /obj/item/aiModule/core/full/custom
 	name = "Default Core AI Module"
 
-/obj/item/aiModule/core/full/custom/Initialize()
+/obj/item/aiModule/core/full/custom/Initialize(mapload)
 	. = ..()
 	for(var/line in world.file2list("[global.config.directory]/silicon_laws.txt"))
 		if(!line)

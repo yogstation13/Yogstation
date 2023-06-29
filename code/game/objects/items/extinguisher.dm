@@ -45,7 +45,7 @@
 	create_reagents(max_water, AMOUNT_VISIBLE)
 	reagents.add_reagent(chem, max_water)
 
-/obj/item/extinguisher/Initialize()
+/obj/item/extinguisher/Initialize(mapload)
 	. = ..()
 	refill()
 
@@ -187,6 +187,9 @@
 //Particle movement loop
 /obj/item/extinguisher/proc/move_particles(list/particles)
 	var/delay = 2
+	//Check if there's anything in here first
+	if(!length(particles))
+		return
 	// Second loop: Get all the water particles and make them move to their target
 	for(var/obj/effect/particle_effect/water/extinguisher/water as anything in particles)
 		water.move_at(particles[water], delay, power)
@@ -211,7 +214,7 @@
 		return
 	EmptyExtinguisher(user)
 
-/obj/item/extinguisher/proc/EmptyExtinguisher(var/mob/user)
+/obj/item/extinguisher/proc/EmptyExtinguisher(mob/user)
 	if(loc == user && reagents.total_volume)
 		reagents.clear_reagents()
 

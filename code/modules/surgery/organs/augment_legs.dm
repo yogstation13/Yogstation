@@ -9,7 +9,7 @@
 	var/implant_type = "leg implant"
 	COOLDOWN_DECLARE(emp_notice)
 
-/obj/item/organ/cyberimp/leg/Initialize()
+/obj/item/organ/cyberimp/leg/Initialize(mapload)
 	. = ..()
 	update_icon()
 	SetSlotFromZone()
@@ -134,7 +134,7 @@
 //------------true noslip implant
 /obj/item/organ/cyberimp/leg/noslip
 	name = "advanced antislip implant"
-	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
+	desc = "An implant that uses advanced sensors to detect when you are slipping and utilize motors in order to prevent it."
 	syndicate_implant = TRUE
 	implant_type = "noslipall"
 
@@ -159,7 +159,7 @@
 /obj/item/organ/cyberimp/leg/clownshoes/l
 	zone = BODY_ZONE_L_LEG
 
-/obj/item/organ/cyberimp/leg/clownshoes/Initialize()
+/obj/item/organ/cyberimp/leg/clownshoes/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg'=1,'sound/effects/clownstep2.ogg'=1), 50)
 

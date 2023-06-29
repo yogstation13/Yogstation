@@ -11,7 +11,7 @@
 	var/hattable = TRUE
 	dynamic_hair_suffix = "+generic"
 
-/obj/item/clothing/head/Initialize()
+/obj/item/clothing/head/Initialize(mapload)
 	. = ..()
 	if(ishuman(loc) && dynamic_hair_suffix)
 		var/mob/living/carbon/human/H = loc

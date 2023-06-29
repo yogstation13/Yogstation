@@ -6,7 +6,7 @@
 	adjacency code.
 */
 
-/mob/living/silicon/robot/ClickOn(var/atom/A, var/params)
+/mob/living/silicon/robot/ClickOn(atom/A, params)
 	if(HAS_TRAIT(src, TRAIT_NOINTERACT)) // INTERCEPTED
 		to_chat(src, span_danger("You can't interact with anything right now!"))
 		return

@@ -53,7 +53,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	var/cheesed = FALSE
 	var/cheese_time = 0
 
-/mob/living/simple_animal/mouse/Initialize()
+/mob/living/simple_animal/mouse/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/mousesqueek.ogg'=1), 100)
 	if(!body_color)

@@ -16,7 +16,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	///Icon file for right inhand overlays
 	var/righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 
-	///Icon file for mob worn overlays. 
+	///Icon file for mob worn overlays.
 	///no var for state because it should *always* be the same as icon_state
 	var/icon/mob_overlay_icon
 	//Forced mob worn layer instead of the standard preferred ssize.
@@ -35,7 +35,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	obj_flags = NONE
 	var/item_flags = NONE
-	
+
 	var/hitsound
 	var/usesound
 	///Used when yate into a mob
@@ -46,7 +46,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/pickup_sound
 	///Sound uses when dropping the item, or when its thrown.
 	var/drop_sound
-	
+
 	var/w_class = WEIGHT_CLASS_NORMAL
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	pass_flags = PASSTABLE
@@ -145,7 +145,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/printed = FALSE
 
-/obj/item/Initialize()
+/obj/item/Initialize(mapload)
 
 	materials =	typelist("materials", materials)
 
@@ -188,7 +188,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	else if (islist(embedding))
 		embedding = getEmbeddingBehavior(arglist(embedding))
 	else if (!istype(embedding, /datum/embedding_behavior))
-		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize()")
+		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize(mapload)")
 
 /obj/item/Destroy()
 	item_flags &= ~DROPDEL	//prevent reqdels
@@ -586,7 +586,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/ui_action_click(mob/user, actiontype)
 	attack_self(user)
 
-/obj/item/proc/IsReflect(var/def_zone) //This proc determines if and at what% an object will reflect energy projectiles if it's in l_hand,r_hand or wear_suit
+/obj/item/proc/IsReflect(def_zone) //This proc determines if and at what% an object will reflect energy projectiles if it's in l_hand,r_hand or wear_suit
 	return 0
 
 /obj/item/proc/eyestab(mob/living/carbon/M, mob/living/carbon/user)
@@ -829,8 +829,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/proc/on_mob_death(mob/living/L, gibbed)
 
-/obj/item/proc/on_mob_say(mob/living/L, message, message_range)
-
 /obj/item/proc/grind_requirements(obj/machinery/reagentgrinder/R) //Used to check for extra requirements for grinding an object
 	return TRUE
 
@@ -886,11 +884,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return
 	delay *= toolspeed
 
-	if((IS_ENGINEERING(user) || (robo_check && IS_JOB(user, "Roboticist"))) && tool_behaviour != TOOL_MINING) //if the user is an engineer, they'll use the tool faster. Doesn't apply to mining tools.
-		delay *= 0.8
+	if(((IS_ENGINEERING(user) || (robo_check && IS_JOB(user, "Roboticist"))) && (tool_behaviour in MECHANICAL_TOOLS)) || (IS_MEDICAL(user) && (tool_behaviour in MEDICAL_TOOLS)))
+		delay *= 0.8 // engineers and doctors use their own tools faster
 
-	// Play tool sound at the beginning of tool usage.
-	play_tool_sound(target, volume)
+	if(volume) // Play tool sound at the beginning of tool usage.
+		play_tool_sound(target, volume)
 
 	if(delay)
 		// Create a callback with checks that would be called every tick by do_after.
@@ -1097,9 +1095,16 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 //specifically for "suture" type robotic healing items
 //amount is either the fuel of a welding tool, or the number of wires consumed
 //volume is how loud the sound of the item is
+#define ROBO_LIMB_HEAL_SELF 6 SECONDS
+#define ROBO_LIMB_HEAL_OTHER 2 SECONDS
 /obj/item/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal = 0, burn_heal = 0, amount = 0, volume = 0)
-	if(I.use_tool(H, user, 2 SECONDS, amount, volume, null, H != user))
+	var/used_delay
+	if(H != user)
+		used_delay = ROBO_LIMB_HEAL_OTHER
+	else
+		used_delay = ROBO_LIMB_HEAL_SELF
+
+	if(I.use_tool(H, user, used_delay, amount, volume, null, TRUE))
 		if(item_heal_robotic(H, user, brute_heal, burn_heal))
 			return heal_robo_limb(I, H, user, brute_heal, burn_heal, amount, volume)
 		return TRUE
-	

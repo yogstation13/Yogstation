@@ -630,7 +630,7 @@
 	efficiency = 0.5
 	resistance_flags = FREEZE_PROOF
 
-/obj/item/rod_of_asclepius/white/Initialize()
+/obj/item/rod_of_asclepius/white/Initialize(mapload)
 	. = ..()
 	add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
 

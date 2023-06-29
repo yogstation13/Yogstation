@@ -60,6 +60,8 @@
 
 #define STATUS_EFFECT_DETERMINED /datum/status_effect/determined //currently in a combat high from being seriously wounded
 
+#define STATUS_EFFECT_ADRENALINE /datum/status_effect/adrenaline //currently in fight or flight from being suddenly injured
+
 #define STATUS_EFFECT_FRENZY /datum/status_effect/frenzy //Makes you fast and stronger
 
 #define STATUS_EFFECT_DOUBLEDOWN /datum/status_effect/doubledown //Greatly reduced damage taken
@@ -187,7 +189,7 @@
 // Stasis helpers
 
 #define IS_IN_STASIS(mob) (mob.life_tickrate == 0)
-#define LIFETICK_SKIP(living, tick) (living.life_tickrate && (tick % living.life_tickrate) == 0)
+#define SHOULD_LIFETICK(living, tick) (living.life_tickrate && MODULUS(tick, living.life_tickrate) < 1)
 
 // Status effect application helpers.
 // These are macros for easier use of adjust_timed_status_effect and set_timed_status_effect.

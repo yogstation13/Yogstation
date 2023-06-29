@@ -33,7 +33,7 @@
 	wound_bonus = 0
 	speed = 0.6 // higher power = faster, that's how light works right
 
-/obj/item/projectile/beam/laser/hellfire/Initialize()
+/obj/item/projectile/beam/laser/hellfire/Initialize(mapload)
 	. = ..()
 	transform *= 2
 

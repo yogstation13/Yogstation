@@ -24,7 +24,7 @@
 	icon_state = "pie"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
-	tastes = list("pie" = 1)
+	tastes = list("pie" = 1, "bananas" = 1)
 	foodtype = GRAIN | DAIRY | SUGAR
 	var/stunning = TRUE
 
@@ -118,7 +118,7 @@
 	tastes = list("pie" = 1, "mushroom" = 1)
 	foodtype = GRAIN | VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/pie/plump_pie/Initialize()
+/obj/item/reagent_containers/food/snacks/pie/plump_pie/Initialize(mapload)
 	. = ..()
 	var/fey = prob(10)
 	if(fey)
@@ -187,7 +187,7 @@
 	icon_state = "grapetart"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 4)
-	tastes = list("pie" = 1, "grape" = 1)
+	tastes = list("pie" = 1, "grapes" = 1)
 	foodtype = GRAIN | FRUIT | SUGAR
 
 /obj/item/reagent_containers/food/snacks/pie/blumpkinpie
@@ -265,7 +265,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/buttcinnpieslice
 	slices_num = 5
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/cinnamon = 1)
-	tastes = list("cinnamon" = 1, "determination" = 1)
+	tastes = list("pie" = 1, "cinnamon" = 1, "determination" = 1)
 
 /obj/item/reagent_containers/food/snacks/buttcinnpieslice
 	name = "butterscotch cinnamon pie slice"
@@ -274,4 +274,4 @@
 	icon_state = "buttcinnpieslice"
 	filling_color = "#D2691E"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/nutriment/vitamin = 3)
-	tastes = list("cinnamon" = 1, "determination" = 1)
+	tastes = list("pie" = 1, "cinnamon" = 1, "determination" = 1)

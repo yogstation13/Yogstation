@@ -121,7 +121,7 @@
 
 	var/splatter = FALSE // Make a cool splatter effect even if it doesn't do brute damage
 
-/obj/item/projectile/Initialize()
+/obj/item/projectile/Initialize(mapload)
 	. = ..()
 	permutated = list()
 	decayedRange = range

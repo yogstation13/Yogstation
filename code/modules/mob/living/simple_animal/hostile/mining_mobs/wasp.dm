@@ -54,7 +54,7 @@
 /mob/living/simple_animal/hostile/asteroid/wasp/Aggro()
 	vision_range = aggro_vision_range
 
-/mob/living/simple_animal/hostile/asteroid/wasp/proc/charge(var/atom/chargeat = target, var/delay = 5)
+/mob/living/simple_animal/hostile/asteroid/wasp/proc/charge(atom/chargeat = target, delay = 5)
 	if(!chargeat)
 		return
 	var/chargeturf = get_turf(chargeat)

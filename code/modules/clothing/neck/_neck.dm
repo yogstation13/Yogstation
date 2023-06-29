@@ -175,7 +175,7 @@
 	icon_state = "petcollar"
 	var/tagname = null
 
-/obj/item/clothing/neck/petcollar/Initialize()
+/obj/item/clothing/neck/petcollar/Initialize(mapload)
 	.= ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/collarbell1.ogg'=1,'sound/effects/collarbell2.ogg'=1), 50, 100, 2)
 
@@ -229,7 +229,7 @@
 			var/oldName = src.name
 			qdel(src)
 			user.put_in_hand(newBand, currentHandIndex)
-			user.visible_message("You untie [oldName] back into a [newBand.name]", "[user] unties [oldName] back into a [newBand.name]")
+			user.visible_message("[user] unties [oldName] back into a [newBand.name].", "You untie [oldName] back into a [newBand.name].")
 		else
 			to_chat(user, span_warning("You must be holding [src] in order to untie it!"))
 
@@ -392,7 +392,7 @@
 
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 75, ACID = 75)	//Resistant to the dangers of the natural world or something
 
-/obj/item/clothing/neck/cloak/ranger/Initialize()
+/obj/item/clothing/neck/cloak/ranger/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_ITEM_POST_UNEQUIP, PROC_REF(on_unequip))
 
@@ -411,7 +411,7 @@
 /obj/item/clothing/neck/cloak/ranger/Destroy()
 	set_cloak(0)
 	. = ..()
-	
+
 /obj/item/clothing/neck/cloak/ranger/proc/update_signals(user)
 	if((!user || (current_user == user)) && current_user == loc && istype(current_user) && current_user.get_item_by_slot(ITEM_SLOT_NECK) == src)
 		return TRUE
@@ -441,7 +441,7 @@
 		return
 	var/mob/user = loc
 	if(!istype(user) || !user.get_item_by_slot(ITEM_SLOT_NECK) == src)
-		
+
 		return
 	set_cloak(cloak + (cloak_charge_rate * delta_time))
 

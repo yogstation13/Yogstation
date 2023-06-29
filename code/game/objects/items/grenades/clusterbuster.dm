@@ -173,14 +173,14 @@
 /obj/item/grenade/clusterbuster/random
 	icon_state = "random_clusterbang"
 
-/obj/item/grenade/clusterbuster/random/Initialize()
+/obj/item/grenade/clusterbuster/random/Initialize(mapload)
 	..()
 	var/real_type = pick(subtypesof(/obj/item/grenade/clusterbuster))
 	new real_type(loc)
 	return INITIALIZE_HINT_QDEL
 
 // syndie subtype so syndies dont get something utterly useless
-/obj/item/grenade/clusterbuster/random/syndie/Initialize()
+/obj/item/grenade/clusterbuster/random/syndie/Initialize(mapload)
 	..()
 	var/real_type = pick(subtypesof(/obj/item/grenade/clusterbuster/syndie))
 	new real_type(loc)

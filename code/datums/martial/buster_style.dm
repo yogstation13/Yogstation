@@ -328,6 +328,7 @@
 				if(mophead != user) 
 					user.apply_status_effect(STATUS_EFFECT_DOUBLEDOWN)	
 					mopped |= mophead // Add them to the list of things we are mopping
+					mophead.Immobilize(0.1 SECONDS) //also to prevent clipping through the user
 					mophead.add_fingerprint(user, FALSE)
 					var/turf/Q = get_step(get_turf(user), user.dir) // get the turf behind the thing we're attacking
 					to_chat(mophead, span_userdanger("[user] grinds you against the ground!"))

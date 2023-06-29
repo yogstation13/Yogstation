@@ -4,7 +4,7 @@
 	opacity = 1
 	anchored = TRUE
 
-obj/effect/particle_effect/expl_particles/Initialize(mapload)
+/obj/effect/particle_effect/expl_particles/Initialize(mapload) //yogs start: reverts harddel stuff so it doesn't break horribly
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -37,7 +37,7 @@ obj/effect/particle_effect/expl_particles/Initialize(mapload)
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/explosion/Initialize()
+/obj/effect/explosion/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 10)
 

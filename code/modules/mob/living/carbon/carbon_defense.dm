@@ -382,6 +382,7 @@
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
 		return FALSE
+	var/stuntime = 8*siemens_coeff SECONDS // do this before species adjustments or balancing will be a pain
 	shock_damage *= siemens_coeff
 	if(dna && dna.species)
 		shock_damage *= dna.species.siemens_coeff
@@ -398,12 +399,14 @@
 		span_userdanger("You feel a powerful shock coursing through your body!"), \
 		span_italics("You hear a heavy electrical crack.") \
 		)
-	do_jitter_animation(300)
-	adjust_stutter(4 SECONDS)
-	adjust_jitter(20 SECONDS)
-	var/should_stun = !tesla_shock || (tesla_shock && siemens_coeff > 0.5) && stun
-	Paralyze(4 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(secondary_shock), should_stun), 2 SECONDS)
+	do_jitter_animation(stuntime * 3)
+	adjust_stutter(stuntime / 2)
+	adjust_jitter(stuntime * 2)
+	var/should_stun = !tesla_shock || (tesla_shock && siemens_coeff > 0.5)
+	if(stun && should_stun)
+		Paralyze(min(stuntime, 4 SECONDS))
+		if(stuntime > 2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(secondary_shock), should_stun, stuntime - (2 SECONDS)), 2 SECONDS)
 	if(stat == DEAD && can_defib()) //yogs: ZZAPP
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(80))
 			set_heartattack(FALSE)
@@ -419,13 +422,12 @@
 		return shock_damage
 
 ///Called slightly after electrocute act to apply a secondary stun.
-/mob/living/carbon/proc/secondary_shock(should_stun)
+/mob/living/carbon/proc/secondary_shock(should_stun, stuntime = 6 SECONDS)
 	if(should_stun)
-		Paralyze(6 SECONDS)
+		Paralyze(stuntime)
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if(on_fire)
-		to_chat(M, span_warning("You can't put [p_them()] out with just your bare hands!"))
+	if(try_extinguish(M))
 		return
 
 	if(!(mobility_flags & MOBILITY_STAND))
@@ -483,6 +485,16 @@
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
+/mob/living/carbon/proc/try_extinguish(mob/living/carbon/C)
+	if(!on_fire)
+		return FALSE
+	if(HAS_TRAIT(C, TRAIT_RESISTHEAT) || HAS_TRAIT(C, TRAIT_RESISTHEATHANDS) || HAS_TRAIT(C, TRAIT_NOFIRE))
+		extinguish_mob()
+		to_chat(C, span_notice("You extinguish [src]!"))
+		to_chat(src, span_userdanger("[C] extinguishes you!"))
+		return TRUE
+	to_chat(C, span_warning("You can't put [p_them()] out with just your bare hands!"))
+	return TRUE
 
 /mob/living/carbon/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0)
 	if(NOFLASH in dna?.species?.species_traits)

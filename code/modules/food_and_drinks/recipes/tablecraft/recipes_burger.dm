@@ -314,6 +314,15 @@
 	result = /obj/item/reagent_containers/food/snacks/hotdog
 	subcategory = CAT_BURGER
 
+/datum/crafting_recipe/food/butterdog
+	name = "Butterdog"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/bun = 1,
+		/obj/item/reagent_containers/food/snacks/butter = 3
+		)
+	result = /obj/item/reagent_containers/food/snacks/butterdog
+	subcategory = CAT_BURGER
+
 /datum/crafting_recipe/food/roburger
 	name = "Roburger"
 	reqs = list(
@@ -322,6 +331,6 @@
 		/obj/item/stack/cable_coil = 10,
 	)
 	result = /obj/item/reagent_containers/food/snacks/burger/roburger
-	subcategory = CAT_MISCFOOD
+	subcategory = CAT_BURGER
 	always_available = FALSE
 

@@ -1,10 +1,8 @@
 /datum/job/atmos
 	title = "Atmospheric Technician"
 	description = "Ensure the air is breathable on the station, fill oxygen tanks, fight fires, purify the air."
-	flag = ATMOSTECH
 	orbit_icon = "fire-extinguisher"
 	department_head = list("Chief Engineer")
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
@@ -16,8 +14,8 @@
 
 	outfit = /datum/outfit/job/atmos
 
-	added_access = list(ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_EXTERNAL_AIRLOCKS)
-	base_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_MINERAL_STOREROOM, ACCESS_ENGINE)
+	added_access = list(ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE)
+	base_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_MINERAL_STOREROOM, ACCESS_ENGINE, ACCESS_EXTERNAL_AIRLOCKS)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN

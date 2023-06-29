@@ -14,8 +14,9 @@
 	var/list/syringes = list()
 	var/max_syringes = 1
 	var/has_syringe_overlay = TRUE ///If it has an overlay for inserted syringes. If true, the overlay is determined by the number of syringes inserted into it.
+	var/allow_piercing = FALSE // whether it can hold piercing syringes
 
-/obj/item/gun/syringe/Initialize()
+/obj/item/gun/syringe/Initialize(mapload)
 	. = ..()
 	update_icon()
 	chambered = new /obj/item/ammo_casing/syringegun(src)
@@ -60,6 +61,10 @@
 
 /obj/item/gun/syringe/attackby(obj/item/A, mob/user, params, show_msg = TRUE)
 	if(istype(A, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/syringe = A
+		if(syringe.proj_piercing && !allow_piercing)
+			to_chat(user, span_warning("[syringe] won't fit into [src]!"))
+			return FALSE
 		if(syringes.len < max_syringes)
 			if(!user.transferItemToLoc(A, src))
 				return FALSE
@@ -85,6 +90,7 @@
 	desc = "A modification of the syringe gun design, using a rotating cylinder to store up to six syringes."
 	icon_state = "rapidsyringegun"
 	max_syringes = 6
+	allow_piercing = TRUE
 
 /obj/item/gun/syringe/syndicate
 	name = "dart pistol"
@@ -95,12 +101,14 @@
 	force = 2 //Also very weak because it's smaller
 	suppressed = TRUE //Softer fire sound
 	can_unsuppress = FALSE //Permanently silenced
+	allow_piercing = TRUE
 
 /obj/item/gun/syringe/dna
 	name = "modified syringe gun"
 	desc = "A syringe gun that has been modified to fit DNA injectors instead of normal syringes."
+	allow_piercing = TRUE
 
-/obj/item/gun/syringe/dna/Initialize()
+/obj/item/gun/syringe/dna/Initialize(mapload)
 	. = ..()
 	chambered = new /obj/item/ammo_casing/dnainjector(src)
 

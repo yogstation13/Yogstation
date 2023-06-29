@@ -28,7 +28,7 @@
 	faction = list("faithless")
 	speech_span = SPAN_REALLYBIG //screw it someone else can figure out how to put both SPAN_YELL and SPAN_REALLYBIG on a speech_span later
 
-/mob/living/simple_animal/ascendant_shadowling/Initialize()
+/mob/living/simple_animal/ascendant_shadowling/Initialize(mapload)
 	. = ..()
 	LoadComponent(/datum/component/walk)
 

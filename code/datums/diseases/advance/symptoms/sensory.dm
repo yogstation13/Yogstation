@@ -28,7 +28,7 @@
 	if(A.totalTransmittable() >= 8) //purge alcohol
 		purge_alcohol = TRUE
 
-/datum/symptom/mind_restoration/Activate(var/datum/disease/advance/A)
+/datum/symptom/mind_restoration/Activate(datum/disease/advance/A)
 	. = ..()
 	if(!.)
 		return

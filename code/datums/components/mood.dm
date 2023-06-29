@@ -68,7 +68,7 @@
 		if(7)
 			msg += "[span_nicegreen("I feel pretty good.")]\n"
 		if(8)
-			msg += "[span_nicegreen("II feel amazing!")]\n"
+			msg += "[span_nicegreen("I feel amazing!")]\n"
 		if(9)
 			msg += "[span_nicegreen("I love life!")]\n"
 
@@ -295,7 +295,7 @@
 	qdel(event)
 	update_mood()
 
-/datum/component/mood/proc/remove_temp_moods(var/admin) //Removes all temp moods
+/datum/component/mood/proc/remove_temp_moods(admin) //Removes all temp moods
 	for(var/i in mood_events)
 		var/datum/mood_event/moodlet = mood_events[i]
 		if(!moodlet || !moodlet.timeout)

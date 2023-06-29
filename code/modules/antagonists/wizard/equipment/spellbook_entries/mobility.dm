@@ -1,7 +1,8 @@
 // Wizard spells that aid mobiilty(or stealth?)
 /datum/spellbook_entry/mindswap
 	name = "Mindswap"
-	desc = "Allows you to switch bodies with a target next to you. You will both fall asleep when this happens, and it will be quite obvious that you are the target's body if someone watches you do it."
+	desc = "Allows you to switch bodies with a target next to you. \
+			You will both fall asleep when this happens, and it will be quite obvious that you are the target's body if someone watches you do it."
 	spell_type = /datum/action/cooldown/spell/pointed/mind_transfer
 	category = "Mobility"
 

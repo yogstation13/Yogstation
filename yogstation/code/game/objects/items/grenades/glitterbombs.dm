@@ -11,7 +11,7 @@ datum/effect_system/fluid_spread/smoke/chem/glitter
 	lifetime = 6 SECONDS
 	opacity = TRUE
 
-/obj/item/grenade/plastic/glitterbomb/Initialize()
+/obj/item/grenade/plastic/glitterbomb/Initialize(mapload)
 	. = ..()
 	create_reagents(20)
 	reagents.add_reagent(glitter_type, 20)

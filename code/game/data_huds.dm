@@ -263,6 +263,8 @@ Security HUDs! Basic mode shows only the job.
 			holder.icon_state = "hudincarcerated"
 		if(WANTED_SUSPECT)
 			holder.icon_state = "hudsuspected"
+		if(WANTED_SEARCH)
+			holder.icon_state = "hudsearch"
 		if(WANTED_PAROLE)
 			holder.icon_state = "hudparolled"
 		if(WANTED_DISCHARGED)

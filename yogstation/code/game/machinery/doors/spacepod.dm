@@ -8,7 +8,7 @@
 	var/id = 1.0
 	CanAtmosPass = ATMOS_PASS_NO
 
-/obj/structure/spacepoddoor/Initialize()
+/obj/structure/spacepoddoor/Initialize(mapload)
 	air_update_turf(1)
 	return ..()
 

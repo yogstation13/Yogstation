@@ -50,14 +50,14 @@
 				return FALSE
 	return ..()
 
-/obj/Initialize()
+/obj/Initialize(mapload)
 	. = ..()
 	if (islist(armor))
 		armor = getArmor(arglist(armor))
 	else if (!armor)
 		armor = getArmor()
 	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
+		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize(mapload)")
 
 	if(obj_integrity == null)
 		obj_integrity = max_integrity
@@ -176,9 +176,6 @@
 	ui_interact(user)
 
 /obj/proc/container_resist(mob/living/user)
-	return
-
-/obj/proc/update_icon()
 	return
 
 /mob/proc/unset_machine()

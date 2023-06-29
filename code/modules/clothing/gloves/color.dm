@@ -66,15 +66,7 @@
 	icon_state = "goligloves"
 	item_state = "goligloves"
 	can_be_cut = FALSE
-
-/obj/item/clothing/gloves/color/black/goliath/equipped(mob/user, slot)
-	..()
-	if(slot == ITEM_SLOT_GLOVES)
-		ADD_TRAIT(user, TRAIT_QUICK_CARRY, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/color/black/goliath/dropped(mob/user)
-	..()
-	REMOVE_TRAIT(user, TRAIT_QUICK_CARRY, CLOTHING_TRAIT)
+	clothing_traits = list(TRAIT_QUICKER_CARRY)
 
 /obj/item/clothing/gloves/color/orange
 	name = "orange gloves"
@@ -172,7 +164,7 @@
 	transfer_prints = TRUE
 	resistance_flags = NONE
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
-	var/carrytrait = TRAIT_QUICK_CARRY
+	clothing_traits = list(TRAIT_QUICK_CARRY)
 	var/surgeryspeed = 0.9	//how much these gloves speed up surgery
 
 /obj/item/clothing/gloves/color/latex/nitrile
@@ -181,17 +173,18 @@
 	icon_state = "nitrile"
 	item_state = "nitrilegloves"
 	transfer_prints = FALSE
-	carrytrait = TRAIT_QUICKER_CARRY
+	clothing_traits = list(TRAIT_QUICKER_CARRY)
 	surgeryspeed = 0.8
 
-/obj/item/clothing/gloves/color/latex/equipped(mob/user, slot)
-	..()
-	if(slot == ITEM_SLOT_GLOVES)
-		ADD_TRAIT(user, carrytrait, CLOTHING_TRAIT)
-
-/obj/item/clothing/gloves/color/latex/dropped(mob/user)
-	..()
-	REMOVE_TRAIT(user, carrytrait, CLOTHING_TRAIT)
+/obj/item/clothing/gloves/color/latex/fireproof
+	name = "fireproof surgical gloves"
+	desc = "Durable, thicker and head-resistant sterile gloves. Designed for medical first responders to fire emergencies. Transfers exhaustive paramedic knowledge into the user via nanochips."
+	icon_state = "mining_medic"
+	item_state = "mining_medic"
+	transfer_prints = FALSE
+	resistance_flags = FIRE_PROOF
+	clothing_traits = list(TRAIT_QUICKEST_CARRY, TRAIT_RESISTHEATHANDS)//quickest carry because lavaland
+	surgeryspeed = 0.95 //slower than even basic latex gloves to make up for the extinguish and faster carry
 
 /obj/item/clothing/gloves/color/white
 	name = "white gloves"

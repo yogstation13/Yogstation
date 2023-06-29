@@ -18,7 +18,7 @@
 	var/datum/callback/get_mover
 	var/datum/callback/check_on_move
 
-/obj/item/tank/jetpack/Initialize()
+/obj/item/tank/jetpack/Initialize(mapload)
 	. = ..()
 	get_mover = CALLBACK(src, PROC_REF(get_user))
 	check_on_move = CALLBACK(src, PROC_REF(allow_thrust), 0.01)
@@ -220,7 +220,7 @@
 	var/obj/item/tank/internals/tank = null
 	var/mob/living/carbon/human/cur_user
 
-/obj/item/tank/jetpack/suit/Initialize()
+/obj/item/tank/jetpack/suit/Initialize(mapload)
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
 	temp_air_contents = air_contents

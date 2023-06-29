@@ -6,7 +6,7 @@
 	///Boolean on whether this decal can be placed inside of groundless turfs/walls. If FALSE, will runtime and delete if it happens.
 	var/turf_loc_check = TRUE
 
-/obj/effect/decal/Initialize()
+/obj/effect/decal/Initialize(mapload)
 	. = ..()
 	if(turf_loc_check && NeverShouldHaveComeHere(loc))
 		stack_trace("[name] spawned in a bad turf ([loc]) at [AREACOORD(src)] in \the [get_area(src)]. \
@@ -43,7 +43,7 @@
 	icon_state = "warningline"
 	layer = TURF_DECAL_LAYER
 
-/obj/effect/turf_decal/Initialize()
+/obj/effect/turf_decal/Initialize(mapload)
 	. = ..()
 	var/turf/T = loc
 	if(!istype(T)) //you know this will happen somehow

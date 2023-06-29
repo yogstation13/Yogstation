@@ -213,7 +213,6 @@
 			else
 				visible_message(span_danger("[user] has grabbed [src] aggressively!"), \
 								span_userdanger("[user] has grabbed you aggressively!"))
-				drop_all_held_items()
 			stop_pulling()
 			log_combat(user, src, "grabbed", addition="aggressive grab[add_log]")
 		if(GRAB_NECK)

@@ -48,7 +48,7 @@
 	///Time before it deletes itself.
 	var/timeleft = 15 SECONDS
 
-/obj/effect/gluttony/timed/Initialize()
+/obj/effect/gluttony/timed/Initialize(mapload)
 	. = ..()
 	if(timeleft)
 		QDEL_IN(src, timeleft)

@@ -5,12 +5,6 @@
 #define SIN_ENVY "envy"
 #define SIN_PRIDE "pride"
 
-/mob/living/carbon/human/Life()
-	. = ..()
-	if(is_sinfuldemon(src))
-		var/datum/antagonist/sinfuldemon/demon = mind.has_antag_datum(/datum/antagonist/sinfuldemon)
-		demon.sinfuldemon_life()
-
 /datum/antagonist/sinfuldemon
 	name = "Sinful Demon"
 	roundend_category = "demons of sin"
@@ -32,6 +26,7 @@
 		/datum/action/cooldown/spell/conjure/summon_mirror,
 		/datum/action/cooldown/spell/touch/mend,
 		/datum/action/cooldown/spell/touch/torment,
+		/datum/action/cooldown/spell/conjure/cursed_item,
 		))
 
 	var/static/list/sinfuldemon_traits = list(
@@ -40,13 +35,6 @@
 		TRAIT_NOSOFTCRIT,
 		TRAIT_NOCRITDAMAGE,
 	)
-
-/datum/antagonist/sinfuldemon/proc/sinfuldemon_life()
-	var/mob/living/carbon/C = owner.current
-	if(!C)
-		return
-	if(istype(get_area(C), /area/chapel))
-		demon_burn()
 
 ///Handles burning and hurting sinful demons while they're in the chapel.
 /datum/antagonist/sinfuldemon/proc/demon_burn() //sinful demons are even more vulnerable to the chapel than vampires, but can turn into their true form to negate this.
@@ -131,7 +119,6 @@
 	owner.current.faction += "hell"
 	for(var/all_traits in sinfuldemon_traits) ///adds demon traits
 		ADD_TRAIT(owner.current, all_traits, SINFULDEMON_TRAIT)
-	handle_clown_mutation(owner.current, "Your infernal nature has allowed you to overcome your clownishness.")
 	switch(demonsin) 
 		if(SIN_GLUTTONY)
 			var/datum/action/cooldown/spell/forcewall/gluttony/fat_wall = new(owner.current)
@@ -145,12 +132,15 @@
 			ADD_TRAIT(owner.current, TRAIT_BOTTOMLESS_STOMACH, SINFULDEMON_TRAIT) // nutrition is capped for infinite eating
 			ADD_TRAIT(owner.current, TRAIT_VORACIOUS, SINFULDEMON_TRAIT) // eat and drink faster & eat infinite snacks
 
-		if(SIN_GREED)
+		if(SIN_GREED) 
 			var/datum/action/cooldown/spell/shapeshift/demon/demon_form = new(owner.current)
 			demon_form.Grant(owner.current)
 
 			var/datum/action/cooldown/spell/conjure/summon_greedslots/gambling_addiction = new(owner.current)
 			gambling_addiction.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/conjure/cursed_item/immortal_temptation = new(owner.current)
+			immortal_temptation.Grant(owner.current)
 
 		if(SIN_WRATH)
 			var/datum/action/cooldown/spell/shapeshift/demon/wrath/wrath_demon = new(owner.current)
@@ -195,6 +185,23 @@
 			owner.current.actions -= spell
 	to_chat(owner.current, span_userdanger("Your infernal link has been severed! You are no longer a demon!"))
 	return ..()
+
+/datum/antagonist/sinfuldemon/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	handle_clown_mutation(current_mob, mob_override ? null : "Your infernal nature has allowed you to overcome your clownishness.")
+	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(sinfuldemon_life))
+
+/datum/antagonist/sinfuldemon/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	UnregisterSignal(current_mob, COMSIG_LIVING_LIFE)
+	return ..()
+
+/datum/antagonist/sinfuldemon/proc/sinfuldemon_life(mob/living/source, seconds_per_tick, times_fired)
+	var/mob/living/carbon/carbon_source = source
+	if(!carbon_source)
+		return
+	if(istype(get_area(carbon_source), /area/chapel))
+		demon_burn()
 
 /datum/antagonist/sinfuldemon/roundend_report()
 	var/list/parts = list()

@@ -250,7 +250,7 @@
 	wound_bonus = -15
 	bare_wound_bonus = 20
 
-/obj/item/twohanded/fireaxe/Initialize()
+/obj/item/twohanded/fireaxe/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
 
@@ -435,7 +435,7 @@
 		user.visible_message(span_suicide("[user] begins beating [user.p_them()]self to death with \the [src]'s handle! It probably would've been cooler if [user.p_they()] turned it on first!"))
 	return BRUTELOSS
 
-/obj/item/twohanded/dualsaber/Initialize()
+/obj/item/twohanded/dualsaber/Initialize(mapload)
 	. = ..()
 	if(LAZYLEN(possible_colors))
 		saber_color = pick(possible_colors)
@@ -530,7 +530,7 @@
 
 /obj/item/twohanded/dualsaber/IsReflect()
 	if(wielded)
-		return 1
+		return TRUE
 
 /obj/item/twohanded/dualsaber/ignition_effect(atom/A, mob/user)
 	// same as /obj/item/melee/transforming/energy, mostly
@@ -571,6 +571,16 @@
 	else
 		return ..()
 
+/obj/item/twohanded/dualsaber/makeshift
+	name = "makeshift double-bladed energy sword"
+	desc = "Two energy swords taped crudely together. 'at last we finally get some revenge' is scribbled on the side with crayon."
+	force_wielded = 27 //total of 30 to be equal to an esword, it's literally just two duct taped together
+
+/obj/item/twohanded/dualsaber/makeshift/IsReflect()//only 50% chance to reflect, so it still has the cool effect, but not 100% chance
+	if(prob(50))
+		return ..()
+	return FALSE
+
 //spears
 /obj/item/twohanded/spear
 	icon = 'icons/obj/weapons/spears.dmi'
@@ -602,7 +612,7 @@
 	wound_bonus = -15
 	bare_wound_bonus = 15
 
-/obj/item/twohanded/spear/Initialize()
+/obj/item/twohanded/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 100, 70) //decent in a pinch, but pretty bad.
 
@@ -610,7 +620,7 @@
 	user.visible_message(span_suicide("[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
-/obj/item/twohanded/spear/Initialize()
+/obj/item/twohanded/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/jousting)
 
@@ -724,7 +734,7 @@
 	actions_types = list(/datum/action/item_action/startchainsaw)
 	var/on = FALSE
 
-/obj/item/twohanded/required/chainsaw/Initialize()
+/obj/item/twohanded/required/chainsaw/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 30, 100, 0, 'sound/weapons/chainsawhit.ogg', TRUE)
 
@@ -780,7 +790,7 @@
 	force_on = 30
 	icon_name = "demon"
 
-/obj/item/twohanded/required/chainsaw/demon/Initialize()
+/obj/item/twohanded/required/chainsaw/demon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/lifesteal, 30)
 
@@ -918,7 +928,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
-/obj/item/twohanded/vibro_weapon/Initialize()
+/obj/item/twohanded/vibro_weapon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 20, 105)
 
@@ -1116,7 +1126,7 @@
 	var/supercharged = FALSE
 	var/toy = FALSE
 
-/obj/item/twohanded/vxtvulhammer/Initialize() //For the sparks when you begin to charge it
+/obj/item/twohanded/vxtvulhammer/Initialize(mapload) //For the sparks when you begin to charge it
 	. = ..()
 	spark_system = new
 	spark_system.set_up(5, 0, src)
@@ -1217,7 +1227,7 @@
 		var/turf/target_turf = get_turf(target) //Does the nice effects first so whatever happens to what's about to get clapped doesn't affect it
 		var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
 		K.color = color
-		playsound(loc, 'sound/effects/powerhammerhit.ogg', 80, FALSE) //Mainly this sound
+		playsound(loc, 'sound/effects/powerhammerhit.ogg', 65, FALSE) //Mainly this sound
 		playsound(loc, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
 		supercharge() //At start so it doesn't give an unintentional message if you hit yourself
 

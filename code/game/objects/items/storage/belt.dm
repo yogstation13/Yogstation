@@ -25,7 +25,7 @@
 			add_overlay(M)
 	..()
 
-/obj/item/storage/belt/Initialize()
+/obj/item/storage/belt/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -39,7 +39,7 @@
 	drop_sound = 'sound/items/handling/toolbelt_drop.ogg'
 	pickup_sound =  'sound/items/handling/toolbelt_pickup.ogg'
 
-/obj/item/storage/belt/utility/Initialize()
+/obj/item/storage/belt/utility/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 11
@@ -88,7 +88,7 @@
 	icon_state = "makeshiftbelt"
 	item_state = "makeshiftutility"
 
-/obj/item/storage/belt/utility/makeshift/Initialize()
+/obj/item/storage/belt/utility/makeshift/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7 //It's a very crappy belt
@@ -106,7 +106,6 @@
 /obj/item/storage/belt/utility/chief/full/PopulateContents()
 	SSwardrobe.provide_type(/obj/item/handdrill, src)
 	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
-	SSwardrobe.provide_type(/obj/item/analyzer/ranged, src)
 	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much //It's been 5 years
 	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	SSwardrobe.provide_type(/obj/item/stack/cable_coil, src)
@@ -122,7 +121,6 @@
 	var/list/to_preload = list() //Yes this is a pain. Yes this is the point
 	to_preload += /obj/item/handdrill
 	to_preload += /obj/item/jawsoflife
-	to_preload += /obj/item/analyzer/ranged
 	to_preload += /obj/item/weldingtool/experimental
 	to_preload += /obj/item/multitool/tricorder
 	to_preload += /obj/item/stack/cable_coil
@@ -139,7 +137,6 @@
 	SSwardrobe.provide_type(/obj/item/shuttle_creator/admin, src)
 	SSwardrobe.provide_type(/obj/item/handdrill, src)
 	SSwardrobe.provide_type(/obj/item/jawsoflife, src)
-	SSwardrobe.provide_type(/obj/item/analyzer/ranged, src)
 	SSwardrobe.provide_type(/obj/item/weldingtool/experimental, src) //This can be changed if this is too much
 	SSwardrobe.provide_type(/obj/item/multitool/tricorder, src)	//yogs: changes the multitool to the tricorder and removes the analyzer
 	SSwardrobe.provide_type(/obj/item/storage/bag/construction/admin/full, src)
@@ -237,7 +234,7 @@
 	item_state = "medical"
 	content_overlays = TRUE
 
-/obj/item/storage/belt/medical/Initialize()
+/obj/item/storage/belt/medical/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_BULKY
@@ -315,7 +312,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	content_overlays = TRUE
 
-/obj/item/storage/belt/security/Initialize()
+/obj/item/storage/belt/security/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -364,7 +361,7 @@
 	icon_state = "securitybelt_hos"
 	item_state = "security_hos"
 
-/obj/item/storage/belt/security/chief/Initialize()
+/obj/item/storage/belt/security/chief/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -388,7 +385,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	custom_premium_price = 200
 
-/obj/item/storage/belt/security/webbing/Initialize()
+/obj/item/storage/belt/security/webbing/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -400,7 +397,7 @@
 	icon_state = "explorer1"
 	item_state = "explorer1"
 
-/obj/item/storage/belt/mining/Initialize()
+/obj/item/storage/belt/mining/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 8
@@ -472,7 +469,7 @@
 	icon_state = "ebelt"
 	item_state = "ebelt"
 
-/obj/item/storage/belt/mining/primitive/Initialize()
+/obj/item/storage/belt/mining/primitive/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -483,7 +480,7 @@
 	icon_state = "soulstonebelt"
 	item_state = "soulstonebelt"
 
-/obj/item/storage/belt/soulstone/Initialize()
+/obj/item/storage/belt/soulstone/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -506,7 +503,7 @@
 	item_state = "champion"
 	materials = list(/datum/material/gold=400)
 
-/obj/item/storage/belt/champion/Initialize()
+/obj/item/storage/belt/champion/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1
@@ -521,7 +518,7 @@
 	item_state = "militarywebbing"
 	resistance_flags = FIRE_PROOF
 
-/obj/item/storage/belt/military/Initialize()
+/obj/item/storage/belt/military/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
@@ -529,12 +526,12 @@
 /obj/item/storage/belt/military/snack
 	name = "tactical snack rig"
 
-/obj/item/storage/belt/military/snack/Initialize()
+/obj/item/storage/belt/military/snack/Initialize(mapload)
 	. = ..()
 	var/sponsor = pick("DonkCo", "Waffle Co.", "Roffle Co.", "Gorlax Marauders", "Tiger Cooperative")
 	desc = "A set of snack-tical webbing worn by athletes of the [sponsor] VR sports division."
 
-/obj/item/storage/belt/military/snack/Initialize()
+/obj/item/storage/belt/military/snack/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -606,7 +603,7 @@
 	item_state = "security"
 	content_overlays = TRUE // This won't end well
 
-/obj/item/storage/belt/admin/Initialize()
+/obj/item/storage/belt/admin/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1000
@@ -619,7 +616,6 @@
 	new /obj/item/shuttle_creator/admin(src)
 	new /obj/item/handdrill(src)
 	new /obj/item/jawsoflife(src)
-	new /obj/item/analyzer/ranged(src)
 	new /obj/item/weldingtool/experimental(src)
 	new /obj/item/multitool/tricorder(src)
 	new /obj/item/storage/bag/construction/admin/full(src)
@@ -657,7 +653,7 @@
 	icon_state = "grenadebeltnew"
 	item_state = "security"
 
-/obj/item/storage/belt/grenade/Initialize()
+/obj/item/storage/belt/grenade/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 30
@@ -697,7 +693,7 @@
 	icon_state = "soulstonebelt"
 	item_state = "soulstonebelt"
 
-/obj/item/storage/belt/wands/Initialize()
+/obj/item/storage/belt/wands/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -722,7 +718,7 @@
 	icon_state = "janibelt"
 	item_state = "janibelt"
 
-/obj/item/storage/belt/janitor/Initialize()
+/obj/item/storage/belt/janitor/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -755,7 +751,7 @@
 	icon_state = "bandolier"
 	item_state = "bandolier"
 
-/obj/item/storage/belt/bandolier/Initialize()
+/obj/item/storage/belt/bandolier/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 24
@@ -784,7 +780,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	alternate_worn_layer = UNDER_SUIT_LAYER
 
-/obj/item/storage/belt/holster/Initialize()
+/obj/item/storage/belt/holster/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
@@ -806,7 +802,7 @@
 	name = "syndicate shoulder holster"
 	desc = "A modified holster that can carry more than enough firepower."
 
-/obj/item/storage/belt/holster/syndicate/Initialize()
+/obj/item/storage/belt/holster/syndicate/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 4
@@ -831,7 +827,7 @@
 		override_state = "[icon_state]_empty"
 	return ..()
 
-/obj/item/storage/belt/quiver/Initialize()
+/obj/item/storage/belt/quiver/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 20
@@ -852,7 +848,7 @@
 	desc = "Gives +1 to holding arrows. Also contains unlimited arrows."
 	var/new_arrow_type = /obj/item/ammo_casing/reusable/arrow
 
-/obj/item/storage/belt/quiver/unlimited/Initialize()
+/obj/item/storage/belt/quiver/unlimited/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_STORAGE_REMOVED, PROC_REF(check_arrow_refresh))
 
@@ -878,7 +874,7 @@
 	/// If the return is blocked by anti-magic
 	var/anti_magic_check = TRUE
 
-/obj/item/storage/belt/quiver/returning/Initialize()
+/obj/item/storage/belt/quiver/returning/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_STORAGE_REMOVED, PROC_REF(mark_arrow_return))
 
@@ -941,7 +937,7 @@
 	content_overlays = FALSE // The arrows are stored in the quiver, so none of it hangs out
 	anti_magic_check = FALSE
 
-/obj/item/storage/belt/quiver/returning/holding/Initialize()
+/obj/item/storage/belt/quiver/returning/holding/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 50
@@ -953,7 +949,7 @@
 	icon_state = "quiver_anomaly_empty"
 	item_state = "quiver_anomaly_empty"
 
-/obj/item/storage/belt/quiver/anomaly/Initialize()
+/obj/item/storage/belt/quiver/anomaly/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 10	// Less space for arrows due to all the parts inside
@@ -989,7 +985,7 @@
 	icon_state = "quiver_anomaly"
 	item_state = "quiver_anomaly"
 
-/obj/item/storage/belt/quiver/anomaly/vacuum/Initialize()
+/obj/item/storage/belt/quiver/anomaly/vacuum/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -1024,7 +1020,7 @@
 	/// Time after igniting an arrow for it to allow you to light another
 	var/ignite_cooldown = 1 SECONDS
 
-/obj/item/storage/belt/quiver/anomaly/pyro/Initialize()
+/obj/item/storage/belt/quiver/anomaly/pyro/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_STORAGE_REMOVED, PROC_REF(ignite_arrow))
 
@@ -1061,7 +1057,7 @@
 	content_overlays = FALSE
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/storage/belt/quiver/admin/Initialize()
+/obj/item/storage/belt/quiver/admin/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 100
@@ -1102,7 +1098,7 @@
 	dying_key = DYE_REGISTRY_FANNYPACK
 	custom_price = 15
 
-/obj/item/storage/belt/fannypack/Initialize()
+/obj/item/storage/belt/fannypack/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
@@ -1164,7 +1160,7 @@
 	icon_state = "sheath"
 	item_state = "sheath"
 
-/obj/item/storage/belt/sabre/Initialize()
+/obj/item/storage/belt/sabre/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 1

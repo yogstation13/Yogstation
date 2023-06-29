@@ -350,7 +350,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	var/angle = 0
 	var/mob/living/simple_animal/hostile/construct/Cviewer = null
 
-/atom/movable/screen/alert/bloodsense/Initialize()
+/atom/movable/screen/alert/bloodsense/Initialize(mapload)
 	. = ..()
 	narnar = new('icons/mob/screen_alert.dmi', "mini_nar")
 	START_PROCESSING(SSprocessing, src)
@@ -515,6 +515,11 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	name = "Dashes"
 	desc = "This is how many dash charges you have."
 	icon_state = "ipcdash"
+
+/atom/movable/screen/alert/style
+	name = "Style"
+	desc = "This is how stylish you are."
+	icon_state = "style"
 
 //SILICONS
 

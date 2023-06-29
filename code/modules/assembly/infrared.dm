@@ -11,7 +11,7 @@
 	var/turf/listeningTo
 	var/hearing_range = 3
 
-/obj/item/assembly/infra/Initialize()
+/obj/item/assembly/infra/Initialize(mapload)
 	. = ..()
 	beams = list()
 	START_PROCESSING(SSobj, src)
@@ -82,7 +82,7 @@
 		return
 	if(holder)
 		if(holder.master) //incase the sensor is part of an assembly that's contained in another item, such as a single tank bomb
-			if(!istype(holder.master, /obj/item/onetankbomb) || !isturf(holder.master.loc))
+			if(!istype(holder.master, /obj/item/tank) || !isturf(holder.master.loc))
 				return
 		else if(!isturf(holder.loc)) //else just check where the holder is
 			return

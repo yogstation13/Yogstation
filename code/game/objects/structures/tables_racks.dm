@@ -34,7 +34,7 @@
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/table, /obj/structure/table/reinforced)
 
-/obj/structure/table/Initialize()
+/obj/structure/table/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 0.8, \
@@ -258,7 +258,7 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 100)
 	var/list/debris = list()
 
-/obj/structure/table/glass/Initialize()
+/obj/structure/table/glass/Initialize(mapload)
 	. = ..()
 	debris += new frame
 	debris += new /obj/item/shard
@@ -370,9 +370,9 @@
 		/obj/structure/table/wood/fancy/red,
 		/obj/structure/table/wood/fancy/royalblack,
 		/obj/structure/table/wood/fancy/royalblue)
-	var/smooth_icon = 'icons/obj/smooth_structures/fancy_table.dmi' // see Initialize()
+	var/smooth_icon = 'icons/obj/smooth_structures/fancy_table.dmi' // see Initialize(mapload)
 
-/obj/structure/table/wood/fancy/Initialize()
+/obj/structure/table/wood/fancy/Initialize(mapload)
 	. = ..()
 	// Needs to be set dynamically because table smooth sprites are 32x34,
 	// which the editor treats as a two-tile-tall object. The sprites are that
@@ -476,7 +476,7 @@
 	buildstackamount = 1
 	canSmoothWith = list(/obj/structure/table/reinforced/brass, /obj/structure/table/bronze)
 
-/obj/structure/table/reinforced/brass/Initialize()
+/obj/structure/table/reinforced/brass/Initialize(mapload)
 	. = ..()
 	change_construction_value(2)
 
@@ -526,11 +526,11 @@
 	can_buckle = TRUE
 	buckle_requires_restraints = TRUE
 
-/obj/structure/table/optable/Initialize()
+/obj/structure/table/optable/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/surgery_bed, \
 		success_chance = 1, \
-		extra_surgeries = TRUE, \
+		op_computer_linkable = TRUE, \
 	)
 
 /obj/structure/table/optable/tablepush(mob/living/user, mob/living/pushed_mob)
@@ -538,7 +538,7 @@
 	pushed_mob.set_resting(TRUE, TRUE)
 	visible_message(span_notice("[user] lays [pushed_mob] on [src]."))
 
-/obj/structure/table/optable/debug/Initialize()
+/obj/structure/table/optable/debug/Initialize(mapload)
 	. = ..()
 	var/datum/component/surgery_bed/SB = GetComponent(/datum/component/surgery_bed)
 	SB.extra_surgeries = subtypesof(/datum/surgery)
