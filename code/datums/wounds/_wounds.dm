@@ -79,8 +79,6 @@
 	var/datum/surgery/attached_surgery
 	/// if you're a lazy git and just throw them in cryo, the wound will go away after accumulating severity * 25 power
 	var/cryo_progress
-	/// wait, can cryo even heal it at all?
-	var/can_cryo_heal = FALSE
 
 	/// What kind of scars this wound will create description wise once healed
 	var/scar_keyword = "generic"
@@ -326,10 +324,11 @@
 
 /// Called from cryoxadone and pyroxadone when they're proc'ing. Wounds will slowly be fixed separately from other methods when these are in effect. crappy name but eh
 /datum/wound/proc/on_xadone(power)
-	if(can_cryo_heal)
-		cryo_progress += power
-		if(cryo_progress > 66 * severity)
-			qdel(src)
+	if(!(wound_flags & ACCEPTS_CRYO))
+		return
+	cryo_progress += power
+	if(cryo_progress > 66 * severity)
+		qdel(src)
 
 /// When synthflesh is applied to the victim, we call this. No sense in setting up an entire chem reaction system for wounds when we only care for a few chems. Probably will change in the future
 /datum/wound/proc/on_synthflesh(power)

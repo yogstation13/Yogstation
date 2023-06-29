@@ -211,8 +211,8 @@
 	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
 		var/has_cryo_wound = FALSE
 		if(C && C.all_wounds)
-			for(var/datum/wound/wound in C.all_wounds)
-				if(wound.can_cryo_heal)
+			for(var/datum/wound/wound as anything in C.all_wounds)
+				if(wound.wound_flags & ACCEPTS_CRYO)
 					if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
 						playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
 						var/msg = "Patient vitals fully recovered, continuing automated burn treatment."
