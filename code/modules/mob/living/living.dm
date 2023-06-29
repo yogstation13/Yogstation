@@ -575,7 +575,7 @@
 		reload_fullscreen()
 		revive_guardian()
 		. = 1
-		var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
+		var/obj/item/organ/brain/B = get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(B)
 			if(B && B.decay_progress > 5 MINUTES && !admin_revive)
 				to_chat(src, span_danger("As life pours back through your body, you struggle to recall what last happened to you; every memory before your death is hazy. You feel like you've been dead for too long"))

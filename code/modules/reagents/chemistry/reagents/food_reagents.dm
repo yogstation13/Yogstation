@@ -294,7 +294,7 @@
 	taste_description = "scorching agony"
 	metabolization_rate = 6 * REAGENTS_METABOLISM
 
-/datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	if(!ishuman(M))
 		return
 
