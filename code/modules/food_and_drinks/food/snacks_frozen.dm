@@ -5,13 +5,23 @@
 
 /obj/item/reagent_containers/food/snacks/icecreamsandwich
 	name = "icecream sandwich"
-	desc = "Portable Ice-cream in its own packaging."
+	desc = "Portable ice-cream in its own packaging."
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "icecreamsandwich"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/ice = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/ice = 2)
 	tastes = list("ice cream" = 1)
 	foodtype = GRAIN | DAIRY
+
+/obj/item/reagent_containers/food/snacks/strawberryicecreamsandwich
+	name = "strawberry icecream sandwich"
+	desc = "Portable ice-cream in its own packaging of the strawberry variety."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "strawberryicecreamsandwich"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/ice = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/ice = 2)
+	tastes = list("ice cream" = 1)
+	foodtype = FRUIT | DAIRY | SUGAR
 
 /obj/item/reagent_containers/food/snacks/spacefreezy
 	name = "space freezy"

@@ -4,13 +4,24 @@
 /////////////////
 
 /datum/crafting_recipe/food/icecreamsandwich
-	name = "Icecream sandwich"
+	name = "Ice cream sandwich"
 	reqs = list(
 		/datum/reagent/consumable/cream = 5,
 		/datum/reagent/consumable/ice = 5,
 		/obj/item/reagent_containers/food/snacks/icecream = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/icecreamsandwich
+	subcategory = CAT_ICE
+
+/datum/crafting_recipe/food/strawberryicecreamsandwich
+	name = "Strawberry ice cream sandwich"
+	reqs = list(
+		/datum/reagent/consumable/cream = 5,
+		/datum/reagent/consumable/ice = 5,
+		/obj/item/reagent_containers/food/snacks/icecream = 1,
+		/obj/item/reagent_containers/food/snacks/grown/berries = 2
+	)
+	result = /obj/item/reagent_containers/food/snacks/strawberryicecreamsandwich
 	subcategory = CAT_ICE
 
 /datum/crafting_recipe/food/spacefreezy
