@@ -255,7 +255,7 @@
 		else
 			SSexplosions.medturf += target
 
-/obj/item/projectile/energy/arrow/xray //Hardlight projectile. Weakened arrow capable of passing through material. Massive irradiation on hit.
+/obj/item/projectile/energy/arrow/xray //Hardlight projectile. Weakened arrow capable of passing through material. Reasonable irradiation on hit.
 	name = "X-ray bolt"
 	icon_state = "arrow_xray"
 	light_color = LIGHT_COLOR_GREEN
@@ -265,6 +265,13 @@
 	range = 20
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOOR
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/xray
+	var/wall_damage_falloff = 5
+
+/obj/item/projectile/energy/arrow/xray/Move(atom/newloc, dir)
+	. = ..()
+		damage -= wall_damage_falloff
+	if(damage <=0)
+		qdel(src)
 
 /obj/item/projectile/energy/arrow/shock //Hardlight projectile. Replicable tasers are fair and balanced.
 	name = "shock bolt"
