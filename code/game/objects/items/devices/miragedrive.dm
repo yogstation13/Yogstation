@@ -77,9 +77,6 @@
 			flurry(user, punchingbag, length(testpath))
 	unload()
 
-
-
-
 /obj/item/mdrive/examine(datum/source, mob/user, list/examine_list)
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, last_dash))
@@ -92,12 +89,14 @@
 /obj/item/mdrive/proc/nyoom(atom/movable/target, list/path, var/lagdist)
 	var/list/testpath = path
 	var/obj/effect/temp_visual/decoy/fading/onesecond/F = new(get_turf(target), target)
-	for(var/i in 1 to length(testpath))
-		var/turf/next_step = testpath[i]
-		if(ISMULTIPLE(i, 2) && (next_step))
-			var/turf/proper_step = testpath[i-lagdist]
-			F.forceMove(proper_step)
-			sleep(0.1 SECONDS)
+	hesfast(F, testpath, 2, lagdist)
+
+/obj/item/mdrive/proc/hesfast(atom/movable/target, list/path, var/progress, var/lagdist)
+	progress = progress+2
+	if(progress > path.len || !(path[progress-lagdist]))
+		return
+	target.forceMove(path[progress-lagdist])
+	addtimer(CALLBACK(src, PROC_REF(hesfast), target, path, progress, lagdist), 0.1 SECONDS)
 
 /obj/item/mdrive/proc/whoosh(mob/living/user, mob/living/target)
 		target.emote("spin")
@@ -105,10 +104,8 @@
 		target.adjust_dizzy(5 SECONDS)
 
 /obj/item/mdrive/proc/flurry(mob/living/user, mob/living/target, var/traveldist)
-	var/jumpangle = 0
 	var/list/mirage = list()
 	var/hurtamount = (traveldist)
-	var/armor = target.run_armor_check(MELEE, armour_penetration = 10)
 	var/rushdowncd = 0
 	if(!COOLDOWN_FINISHED(src, last_attack))
 		to_chat(user, span_warning("You can't do that yet!"))
@@ -124,25 +121,33 @@
 	for(var/b = 1 to 3) 
 		var/obj/effect/temp_visual/decoy/fading/onesecond/F = new(get_turf(user), user)
 		mirage |= F
-	for(var/i = 1 to 3) //starting the pummeling loop
-		for(var/atom/movable/K in mirage)
-			var/turf/open/Q = get_step(get_turf(target), turn(target.dir, jumpangle))
-			if(Q.reachableTurftestdensity(T = Q))
-				K.forceMove(Q)
-			else
-				K.forceMove(get_turf(target))
-			K.setDir(get_dir(K, target))
-			jumpangle = jumpangle + 150
-		target.apply_damage(hurtamount, BRUTE, armor, wound_bonus=CANT_WOUND)
-		jab(target)
-		sleep(0.2 SECONDS)
+	blenderinstall(mirage, target, hurtamount)
 	rushdowncd = COOLDOWN_FLURRYATTACK
 	COOLDOWN_START(src, last_attack, rushdowncd)
 
-/obj/item/mdrive/proc/jab(mob/living/target)
-	for(var/i = 1 to 3)
-		playsound(target, pick(hit_sounds), 25, 1, -1)
-		sleep(0.1 SECONDS)
+/obj/item/mdrive/proc/blenderinstall(list/mirage, mob/living/target, var/hurtamount, var/jumpangle, var/limit)
+	if(limit > 2)
+		return
+	for(var/atom/movable/K in mirage)
+		jumpangle = jumpangle + 150
+		var/turf/open/Q = get_step(get_turf(target), turn(target.dir, jumpangle))
+		if(Q.reachableTurftestdensity(T = Q))
+			K.forceMove(Q)
+		else
+			K.forceMove(get_turf(target))
+		K.setDir(get_dir(K, target))
+	var/armor = target.run_armor_check(MELEE, armour_penetration = 10)
+	target.apply_damage(hurtamount, BRUTE, armor, wound_bonus=CANT_WOUND)
+	jab(target)
+	limit++
+	addtimer(CALLBACK(src, PROC_REF(blenderinstall), mirage, target, hurtamount, jumpangle, limit), 0.2 SECONDS)
+
+/obj/item/mdrive/proc/jab(mob/living/target, var/limit)
+	if(limit > 3)
+		return
+	playsound(target, pick(hit_sounds), 25, 1, -1)
+	limit++
+	addtimer(CALLBACK(src, PROC_REF(jab), target, limit), 0.1 SECONDS)
 
 /obj/item/mdrive/proc/conga(atom/movable/target)
 	moving |= target 
