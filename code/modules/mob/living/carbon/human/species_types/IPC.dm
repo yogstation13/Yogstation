@@ -6,7 +6,7 @@
 	say_mod = "states" //inherited from a user's real species
 	sexes = FALSE
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,ROBOTIC_LIMBS,NOZOMBIE,MUTCOLORS,NOHUSK,AGENDER,NOBLOOD,NO_UNDERWEAR)
-	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_COLDBLOODED,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
+	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_LIMBATTACHMENT,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE,TRAIT_GENELESS,TRAIT_MEDICALIGNORE,TRAIT_NOCLONE,TRAIT_TOXIMMUNE,TRAIT_EASILY_WOUNDED,TRAIT_NODEFIB)
 	inherent_biotypes = list(MOB_ROBOTIC, MOB_HUMANOID)
 	mutantbrain = /obj/item/organ/brain/positron
 	mutantheart = /obj/item/organ/heart/cybernetic/ipc
@@ -24,14 +24,20 @@
 	exotic_blood = /datum/reagent/oil
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	payday_modifier = 0.5 //Mass producible labor + robot
-	burnmod = 1.5
-	heatmod = 1
+	payday_modifier = 0.3 //Mass producible labor + robot, lucky to be paid at all
+	burnmod = 1.35 // easily cut by laser cutters and welding tools to speed up manufacturing
+	tempmod = 1.5 // metal is more thermally conductive than flesh, heats up more when on fire
+	acidmod = 2 // go look up "acid etching"
 	brutemod = 1
+	oxymod = 0 // what the fuck?
 	toxmod = 0
 	clonemod = 0
 	staminamod = 0.8
 	siemens_coeff = 1.75
+	action_speed_coefficient = 0.8 // designed for labor, they should be good at it
+	punchdamagelow = 3 // much more consistent with their punches due to being a robot
+	punchdamagehigh = 7 // however their limbs aren't built to hit quite as hard
+	punchstunthreshold = 7 // you're still gonna feel it though
 	reagent_tag = PROCESS_SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
@@ -66,6 +72,8 @@
 		change_screen = new
 		change_screen.Grant(C)
 	for(var/obj/item/bodypart/O in C.bodyparts)
+		O.brute_reduction = 1 // made of metal, tiny amount of flat reduction (same as preternis)
+		O.burn_reduction = 2
 		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		var/chassis = C.dna.features["ipc_chassis"]
 		var/datum/sprite_accessory/ipc_chassis/chassis_of_choice = GLOB.ipc_chassis_list[chassis]
@@ -77,6 +85,10 @@
 
 /datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
+	for(var/obj/item/bodypart/O in C.bodyparts)
+		O.brute_reduction = initial(O.brute_reduction) // no you don't get to keep it
+		O.burn_reduction = initial(O.burn_reduction)
+		O.render_like_organic = initial(O.render_like_organic)
 	QDEL_NULL(C.particles)
 	if(change_screen)
 		change_screen.Remove(C)
