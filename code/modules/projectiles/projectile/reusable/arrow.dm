@@ -261,7 +261,7 @@
 	light_color = LIGHT_COLOR_GREEN
 	damage = 30
 	wound_bonus = -30
-	irradiate = 500
+	irradiate = 300
 	range = 20
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINES | PASSSTRUCTURE | PASSDOOR
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/xray
