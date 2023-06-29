@@ -269,6 +269,7 @@
 
 /obj/item/projectile/energy/arrow/xray/Move(atom/newloc, dir)
 	. = ..()
+	if(isclosedturf(get_turf(src)))
 		damage -= wall_damage_falloff
 	if(damage <=0)
 		qdel(src)
