@@ -734,7 +734,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	name = "slapper"
 	desc = "This is how real men fight."
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "latexballon"
+	icon_state = "latexballoon"
 	item_state = "nothing"
 	force = 0
 	throwforce = 0
@@ -828,7 +828,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	name = "raised hands"
 	desc = "What are you, French?"
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "latexballon"
+	icon_state = "latexballoon"
 	item_state = "nothing"
 	force = 0
 	throwforce = 0

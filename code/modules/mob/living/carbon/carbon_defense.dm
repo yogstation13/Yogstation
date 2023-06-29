@@ -623,7 +623,7 @@
 	name = "self-grasp"
 	desc = "Sometimes all you can do is slow the bleeding."
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "latexballon"
+	icon_state = "latexballoon"
 	item_state = "nothing"
 	force = 0
 	throwforce = 0

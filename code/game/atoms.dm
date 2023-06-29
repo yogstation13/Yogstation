@@ -371,8 +371,7 @@
 /atom/proc/return_air()
 	if(loc)
 		return loc.return_air()
-	else
-		return null
+	return null
 
 /atom/proc/return_analyzable_air()
 	return null

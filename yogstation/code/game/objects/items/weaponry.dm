@@ -2,7 +2,7 @@
 	name = "raised hand"
 	desc = "Slap my hand."
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "latexballon"
+	icon_state = "latexballoon"
 	item_state = "nothing"
 	hitsound = 'sound/weapons/punchmiss.ogg'
 	force = 0
@@ -29,7 +29,7 @@
 	name = "hand for holding"
 	desc = "You rapscallion, how scandalous!"
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "latexballon"
+	icon_state = "latexballoon"
 	item_state = "nothing"
 	hitsound = 'sound/weapons/punchmiss.ogg'
 	force = 0

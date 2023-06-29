@@ -26328,7 +26328,7 @@
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/item/storage/box/lights/mixed,
-/obj/item/latexballon,
+/obj/item/latexballoon,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "gCF" = (
@@ -61055,7 +61055,7 @@
 	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
-/obj/item/latexballon,
+/obj/item/latexballoon,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},

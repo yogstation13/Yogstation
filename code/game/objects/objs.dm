@@ -107,8 +107,7 @@
 /obj/return_air()
 	if(loc)
 		return loc.return_air()
-	else
-		return null
+	return null
 
 /obj/proc/handle_internal_lifeform(mob/lifeform_inside_me, breath_request)
 	//Return: (NONSTANDARD)

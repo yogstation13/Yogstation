@@ -553,7 +553,7 @@ Uncomment this and use atomproccall as necessary, then copypaste the output into
 /datum/donator_gear/saxophone
 	name = "saxophone"
 	unlock_path = /obj/item/instrument/saxophone
-/datum/donator_gear/latexballon
+/datum/donator_gear/latexballoon
 	name = "latex glove"
 	unlock_path = /obj/item/latexballoon
 /datum/donator_gear/zippo
