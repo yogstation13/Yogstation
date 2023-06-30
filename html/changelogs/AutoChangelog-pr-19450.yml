@@ -1,0 +1,7 @@
+author: " Ktlwjec"
+delete-after: true 
+changes: 
+  - rscadd: "Sliceable butter!"
+  - tweak: "Butter needs 20u milk to make, up from 15."
+  - tweak: "Butter Biscuit, Buttered Toast, Garlic Bread, Pig in a Blanket, Butter Noodles and Fettuccine Alfredo need slices of butter, rather than a whole butter stick."
+  - tweak: "Butterdog needs 1 stick of butter, down from 3."
