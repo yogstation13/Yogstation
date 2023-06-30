@@ -196,6 +196,7 @@
 /obj/machinery/embedded_controller/radio/airlock_controller
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
+	base_icon_state = "airlock_control"
 
 	name = "airlock console"
 	density = FALSE
@@ -255,15 +256,9 @@
 	new_prog.master = src
 	program = new_prog
 
-/obj/machinery/embedded_controller/radio/airlock_controller/update_appearance(updates = ALL)
-	. = ..()
-	if(on && program)
-		if(program.memory["processing"])
-			icon_state = "airlock_control_process"
-		else
-			icon_state = "airlock_control_standby"
-	else
-		icon_state = "airlock_control_off"
+/obj/machinery/embedded_controller/radio/airlock_controller/update_icon_state()
+	icon_state = "[base_icon_state]_[program?.memory["processing"] ? "process" : "standby"]"
+	return ..()
 
 
 /obj/machinery/embedded_controller/radio/airlock_controller/return_text()

@@ -54,7 +54,7 @@
 
 /obj/machinery/button/update_overlays()
 	. = ..()
-//	if(light_mask && !(machine_stat & (NOPOWER|BROKEN)) && !panel_open)
+//	if(light_mask && !(stat & (NOPOWER|BROKEN)) && !panel_open)
 //		. += emissive_appearance(icon, light_mask, src, alpha = alpha)
 	if(!panel_open)
 		return

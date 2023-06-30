@@ -262,7 +262,7 @@
 
 /atom/movable/screen/button_palette/Initialize(mapload)
 	. = ..()
-	update_appearance(updates = ALL)
+	update_appearance()
 
 /atom/movable/screen/button_palette/proc/set_hud(datum/hud/our_hud)
 	src.our_hud = our_hud
@@ -358,7 +358,7 @@ GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,
 
 	expanded = new_expanded
 	our_group.refresh_actions()
-	update_appearance(updates = ALL)
+	update_appearance()
 
 	if(!usr.client)
 		return

@@ -54,12 +54,14 @@
 	else
 		. += "There is no power cell installed."
 
-/obj/machinery/electrolyzer/update_appearance(updates = ALL)
-	. = ..()
-	cut_overlays()
+/obj/machinery/electrolyzer/update_icon_state()
 	icon_state = "electrolyzer-[on ? "[mode]" : "off"]"
+	return ..()
+
+/obj/machinery/electrolyzer/update_overlays()
+	. = ..()
 	if(panel_open)
-		add_overlay("electrolyzer-open")
+		. += "electrolyzer-open"
 
 /obj/machinery/electrolyzer/process(delta_time)
 	if((stat & (BROKEN|MAINT)) && on)

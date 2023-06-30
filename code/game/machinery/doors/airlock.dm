@@ -594,7 +594,7 @@
 	else
 		return FALSE
 
-/obj/machinery/door/airlock/update_appearance(updates, state=0, override=0)
+/obj/machinery/door/airlock/update_icon(updates=ALL, state=0, override=0)
 	. = ..()
 	cut_overlays()
 	if(operating && !override)
@@ -725,30 +725,13 @@
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_opening", FLOAT_LAYER, FLOAT_PLANE, dir)
 	check_unres()
 
-/// Overlay cache.  Why isn't this just in /obj/machinery/door/airlock?  Because its used just a
-/// tiny bit in door_assembly.dm  Refactored so you don't have to make a null copy of airlock
-/// to get to the damn thing
-/// Someone, for the love of god, profile this.  Is there a reason to cache mutable_appearance
-/// if so, why are we JUST doing the airlocks when we can put this in mutable_appearance.dm for
-/// everything
-/proc/get_airlock_overlay(icon_state, icon_file, atom/offset_spokesman, em_block)
-	var/static/list/airlock_overlays = list()
-
-	var/base_icon_key = "[icon_state][REF(icon_file)]"
-	if(!(. = airlock_overlays[base_icon_key]))
-		. = airlock_overlays[base_icon_key] = mutable_appearance(icon_file, icon_state)
-
-	if(isnull(em_block))
-		return
-
-//	var/turf/our_turf = get_turf(offset_spokesman)
-
-//	var/em_block_key = "[base_icon_key][em_block][GET_TURF_PLANE_OFFSET(our_turf)]"
-//	var/mutable_appearance/em_blocker = airlock_overlays[em_block_key]
-//	if(!em_blocker)
-//		em_blocker = airlock_overlays[em_block_key] = mutable_appearance(icon_file, icon_state, offset_spokesman = offset_spokesman, plane = EMISSIVE_PLANE, appearance_flags = EMISSIVE_APPEARANCE_FLAGS)
-//		em_blocker.color = em_block ? GLOB.em_block_color : GLOB.emissive_color
-
+/proc/get_airlock_overlay(icon_state, icon_file)
+	var/obj/machinery/door/airlock/A
+	pass(A)	//suppress unused warning
+	var/list/airlock_overlays = A.airlock_overlays
+	var/iconkey = "[icon_state][icon_file]"
+	if((!(. = airlock_overlays[iconkey])))
+		. = airlock_overlays[iconkey] = mutable_appearance(icon_file, icon_state)
 	return list(., /*em_blocker*/)
 
 /obj/machinery/door/airlock/proc/check_unres() //unrestricted sides. This overlay indicates which directions the player can access even without an ID
@@ -783,15 +766,15 @@
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
 		if("opening")
-			update_appearance(UPDATE_ICON, AIRLOCK_OPENING)
+			update_icon(ALL, AIRLOCK_OPENING)
 		if("closing")
-			update_appearance(UPDATE_ICON, AIRLOCK_CLOSING)
+			update_appearance(ALL, AIRLOCK_CLOSING)
 		if("deny")
 			if(!stat)
-				update_appearance(UPDATE_ICON, AIRLOCK_DENY)
+				update_icon(ALL, AIRLOCK_DENY)
 				playsound(src,doorDeni,50,0,3)
 				sleep(0.6 SECONDS)
-				update_appearance(UPDATE_ICON, AIRLOCK_CLOSED)
+				update_icon(ALL, AIRLOCK_CLOSED)
 
 /obj/machinery/door/airlock/examine(mob/user)
 	. = ..()
@@ -1411,7 +1394,7 @@
 		if(welded)
 			welded = !welded
 	operating = TRUE
-	update_appearance(UPDATE_ICON, AIRLOCK_OPENING, 1)
+	update_icon(ALL, AIRLOCK_OPENING, 1)
 	sleep(0.1 SECONDS)
 	set_opacity(0)
 	update_freelook_sight()
@@ -1421,7 +1404,7 @@
 	air_update_turf(1)
 	sleep(0.1 SECONDS)
 	layer = OPEN_DOOR_LAYER
-	update_appearance(UPDATE_ICON, AIRLOCK_OPEN, 1)
+	update_icon(ALL, AIRLOCK_OPEN, 1)
 	operating = FALSE
 	if(delayed_close_requested)
 		delayed_close_requested = FALSE
@@ -1456,7 +1439,7 @@
 		SSexplosions.med_mov_atom += killthis
 
 	operating = TRUE
-	update_appearance(UPDATE_ICON, AIRLOCK_CLOSING, 1)
+	update_icon(ALL, AIRLOCK_CLOSING, 1)
 	layer = CLOSED_DOOR_LAYER
 	if(air_tight)
 		density = TRUE
@@ -1472,7 +1455,7 @@
 		set_opacity(1)
 	update_freelook_sight()
 	sleep(0.1 SECONDS)
-	update_appearance(UPDATE_ICON, AIRLOCK_CLOSED, 1)
+	update_icon(ALL, AIRLOCK_CLOSED, 1)
 	operating = FALSE
 	delayed_close_requested = FALSE
 	if(safe)
@@ -1522,13 +1505,13 @@
 /obj/machinery/door/airlock/emag_act(mob/user)
 	if(!operating && density && hasPower() && !(obj_flags & EMAGGED))
 		operating = TRUE
-		update_appearance(UPDATE_ICON, AIRLOCK_EMAG, 1)
+		update_icon(ALL, AIRLOCK_EMAG, 1)
 		sleep(0.6 SECONDS)
 		if(QDELETED(src))
 			return
 		operating = FALSE
 		if(!open())
-			update_appearance(UPDATE_ICON, AIRLOCK_CLOSED, 1)
+			update_icon(ALL, AIRLOCK_CLOSED, 1)
 		obj_flags |= EMAGGED
 		lights = FALSE
 		locked = TRUE
@@ -1833,7 +1816,7 @@
 
 /obj/machinery/door/airlock/proc/blow_charge()
 	panel_open = TRUE
-	update_appearance(UPDATE_ICON, AIRLOCK_OPENING)
+	update_icon(ALL, AIRLOCK_OPENING)
 	visible_message(span_warning("[src]'s panel is blown off in a spray of deadly shrapnel!"))
 	charge.forceMove(drop_location())
 	charge.ex_act(EXPLODE_DEVASTATE)
