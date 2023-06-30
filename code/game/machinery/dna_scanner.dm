@@ -35,25 +35,24 @@
 		if(scan_level >= 3)
 			. += "<span class='notice'>Scanner has been upgraded to support autoprocessing.<span>"
 
-/obj/machinery/dna_scannernew/update_appearance(updates = ALL)
-	. = ..()
-
+/obj/machinery/dna_scannernew/update_icon_state()
 	//no power or maintenance
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = initial(icon_state)+ (state_open ? "_open" : "") + "_unpowered"
-		return
+		return ..()
 
 	if((stat & MAINT) || panel_open)
 		icon_state = initial(icon_state)+ (state_open ? "_open" : "") + "_maintenance"
-		return
+		return ..()
 
 	//running and someone in there
 	if(occupant)
 		icon_state = initial(icon_state)+ "_occupied"
-		return
+		return ..()
 
 	//running
 	icon_state = initial(icon_state)+ (state_open ? "_open" : "")
+	return ..()
 
 /obj/machinery/dna_scannernew/proc/toggle_open(mob/user)
 	if(panel_open)

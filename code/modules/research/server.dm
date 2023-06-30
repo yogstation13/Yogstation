@@ -53,7 +53,7 @@
 	icon_state = "RD-server-on"
 
 /obj/machinery/rnd/server/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/I)
-	.=..()
+	. = ..()
 	update_appearance(updates = ALL)
 
 /obj/machinery/rnd/server/power_change()
@@ -66,7 +66,7 @@
 		working = FALSE
 	else
 		working = TRUE
-	update_appearance(updates = ALL)
+	update_appearance(UPDATE_ICON_STATE)
 
 /obj/machinery/rnd/server/emp_act()
 	. = ..()

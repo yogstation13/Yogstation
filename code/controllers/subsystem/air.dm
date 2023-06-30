@@ -354,17 +354,16 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/proc/setup_allturfs()
 	var/list/active_turfs = src.active_turfs
-	var/times_fired = ++src.times_fired
+	times_fired++
 
 	// Clear active turfs - faster than removing every single turf in the world
 	// one-by-one, and Initalize_Atmos only ever adds `src` back in.
 	active_turfs.Cut()
 
-	for(var/thing in ALL_TURFS())
-		var/turf/T = thing
-		if (T.blocks_air)
+	for(var/turf/setup as anything in ALL_TURFS())
+		if (setup.blocks_air)
 			continue
-		T.Initalize_Atmos(times_fired)
+		setup.Initalize_Atmos(times_fired)
 		CHECK_TICK
 
 	if(active_turfs.len)

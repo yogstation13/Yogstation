@@ -112,7 +112,7 @@
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
-	update_appearance(updates = ALL)
+	update_appearance(UPDATE_ICON)
 	if(user)
 		user.visible_message(span_warning("Sparks fly out of [src]!"),
 							span_notice("You emag [src], disabling its thermal sensors."))

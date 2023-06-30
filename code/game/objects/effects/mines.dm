@@ -94,7 +94,7 @@
 /obj/effect/mine/Initialize(mapload)
 	. = ..()
 	layer = ABOVE_MOB_LAYER
-//	update_appearance(UPDATE_ICON_STATE)
+	update_appearance(UPDATE_ICON_STATE)
 
 /obj/effect/mine/attackby(obj/I, mob/user, params)
 	if(istype(I, /obj/item/multitool))
@@ -106,12 +106,12 @@
 		return
 	return ..()
 
-/*/obj/effect/mine/update_icon_state()
+/obj/effect/mine/update_icon_state()
 	. = ..()
-	if(armed)
+	if(triggered)
 		icon_state = base_icon_state
-	else
-		icon_state = "[base_icon_state]-inactive"*/
+//	else
+//		icon_state = "[base_icon_state]-inactive"
 
 /obj/effect/mine/proc/mineEffect(mob/victim)
 	to_chat(victim, span_danger("*click*"))
