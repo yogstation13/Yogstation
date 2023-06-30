@@ -153,7 +153,7 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/machinery/light/small,
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -166,14 +166,14 @@
 /obj/effect/turf_decal/trimline/green/warning/lower{
 	dir = 5
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "aay" = (
 /obj/effect/turf_decal/trimline/green/warning/lower{
 	dir = 10
 	},
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "aaz" = (
@@ -28960,7 +28960,7 @@
 "hAi" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/ppflowers,
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -44687,7 +44687,7 @@
 /area/crew_quarters/dorms)
 "nHr" = (
 /obj/structure/flora/ausbushes/leafybush,
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -57380,7 +57380,7 @@
 /area/engine/atmos/distro)
 "sGY" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -60643,7 +60643,7 @@
 	name = "Monkey Pen";
 	req_access_txt = "9"
 	},
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	dir = 1
 	},
 /turf/open/floor/grass,
