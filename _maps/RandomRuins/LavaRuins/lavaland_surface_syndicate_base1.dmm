@@ -5492,6 +5492,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/syndicate_lava_base/engineering)
+"Hw" = (
+/obj/effect/turf_decal/siding/red,
+/obj/machinery/vending/modularpc,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/powered/syndicate_lava_base/telecomms)
 "HM" = (
 /obj/machinery/light,
 /obj/structure/cable{
@@ -8602,7 +8607,7 @@ mn
 iG
 iZ
 ji
-jj
+Hw
 jE
 ab
 ab
