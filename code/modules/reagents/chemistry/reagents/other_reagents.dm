@@ -187,13 +187,9 @@
 		return
 	if(methods & TOUCH)
 		// some nice cold water to WAKE THE FUCK UP
-		// 20 units of water = 1 hug of antistun
-		M.AdjustStun(-reac_volume*0.3 SECONDS)
-		M.AdjustKnockdown(-reac_volume*0.3 SECONDS)
+		// 20 units of water = 1 hug of antisleep
 		M.AdjustUnconscious(-reac_volume*0.3 SECONDS)
 		M.AdjustSleeping(-reac_volume*0.5 SECONDS)
-		M.AdjustParalyzed(-reac_volume*0.3 SECONDS)
-		M.AdjustImmobilized(-reac_volume*0.3 SECONDS)
 
 		M.adjust_fire_stacks(-(reac_volume / 10) * M.get_permeability(null, TRUE))
 		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
