@@ -1,4 +1,4 @@
-#define MILK_TO_BUTTER_COEFF 15
+#define MILK_TO_BUTTER_COEFF 20
 #define LIQUID_TO_SOLID_COEFF 25
 
 /obj/machinery/reagentgrinder
