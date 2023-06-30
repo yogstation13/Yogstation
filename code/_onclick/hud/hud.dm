@@ -310,7 +310,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 		hand_box.held_index = i
 		hand_slots["[i]"] = hand_box
 		static_inventory += hand_box
-		hand_box.update_appearance(updates = ALL)
+		hand_box.update_appearance(UPDATE_ICON)
 
 	var/i = 1
 	for(var/atom/movable/screen/swap_hand/SH in static_inventory)
