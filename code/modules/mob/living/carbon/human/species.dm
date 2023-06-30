@@ -1105,6 +1105,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 //Now checks if the item is already equipped to that slot before instantly returning false because of it being there, so you can now check if an item is able to remain in a slot
 /datum/species/proc/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
+	if(!(I.slot_flags & slot) && !(slot & (ITEM_SLOT_POCKETS || ITEM_SLOT_SUITSTORE))) //pockets and suitstore get the free bypass to do their thing
+		return FALSE
+
 	if((slot in no_equip) || (slot in extra_no_equip))
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
@@ -1214,7 +1217,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
 				return FALSE
-			if(I.w_class <= WEIGHT_CLASS_SMALL || (I.slot_flags & ITEM_SLOT_POCKETS))
+			if(I.w_class <= WEIGHT_CLASS_SMALL)
 				return TRUE
 		if(ITEM_SLOT_RPOCKET)
 			if(HAS_TRAIT(I, TRAIT_NODROP))
@@ -1228,7 +1231,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!disable_warning)
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
 				return FALSE
-			if(I.w_class <= WEIGHT_CLASS_SMALL || (I.slot_flags & ITEM_SLOT_POCKETS))
+			if(I.w_class <= WEIGHT_CLASS_SMALL)
 				return TRUE
 			return FALSE
 		if(ITEM_SLOT_SUITSTORE)
@@ -1248,7 +1251,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!disable_warning)
 					to_chat(H, "The [I.name] is too big to attach.") //should be src?
 				return FALSE
-			if( istype(I, /obj/item/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
+			if(istype(I, /obj/item/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed))
 				return TRUE
 			return FALSE
 		if(ITEM_SLOT_HANDCUFFED)
