@@ -203,6 +203,25 @@
 	if(ID && (ACCESS_CENT_BAR in ID.access))
 		return TRUE
 
+//Drone Mafia, like barstaff but italian
+/mob/living/simple_animal/drone/snowflake/mafia
+	name = "Mafiosdrone"
+	icon_state = "drone_synd"
+	desc = "An indestructable drone \"\ probably\"\ involved in some shady buisness. Good thing its pacificm circuits are still there."
+	hacked = TRUE
+	laws = "1. Be loyal to members of the organization.\n\
+		2. Be rational.\n\
+		3. Be a member of the team.\n\
+		4. Have class.\n\
+		5. Show hospitality to others unless they don't show class. Heckle those who don't." //Actual mafia rules, look it up ;)
+		
+	status_flags = GODMODE // Bad Idea to mess with hardened criminals
+	unique_name = TRUE
+	picked = TRUE //they will stay shady
+	initial_language_holder = /datum/language_holder/universal
+	default_hatmask = null //hats are on the table
+	default_storage = null
+
 //Luxury Shuttle Blockers
 
 /obj/machinery/scanner_gate/luxury_shuttle

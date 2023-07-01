@@ -1,16 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"bz" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/pizza/sassysage,
-/obj/effect/fun_balloon/sentience/emergency_shuttle{
-	group_name = "bar staff on the Emergency Escape Bar"
+"au" = (
+/obj/structure/chair/comfy/black,
+/mob/living/simple_animal/drone/snowflake/mafia{
+	name = "The Dronefather";
+	unique_name = 0
 	},
-/turf/open/floor/carpet/exoticgreen,
-/area/shuttle/escape)
-"ce" = (
-/obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/wine,
-/obj/item/gun/ballistic/automatic/tommygun,
 /turf/open/floor/carpet/red,
 /area/shuttle/escape)
 "cw" = (
@@ -38,14 +32,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/exoticgreen,
 /area/shuttle/escape)
-"fk" = (
-/obj/structure/table/wood/fancy,
-/obj/item/ammo_box/magazine/tommygunm45{
-	pixel_x = 6;
-	pixel_y = 9
-	},
-/turf/open/floor/carpet/red,
-/area/shuttle/escape)
 "fs" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -69,6 +55,14 @@
 /obj/structure/shuttle/engine/large,
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"kV" = (
+/obj/structure/table/wood/fancy,
+/obj/effect/fun_balloon/sentience/emergency_shuttle{
+	effect_range = 5;
+	group_name = "Drone Mafia or barstaff on the emergency shuttle"
+	},
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
 "nb" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
@@ -77,11 +71,6 @@
 /area/shuttle/escape)
 "nh" = (
 /turf/open/floor/wood/broken/three,
-/area/shuttle/escape)
-"ol" = (
-/obj/structure/table/wood/fancy,
-/obj/item/gun/ballistic/automatic/tommygun,
-/turf/open/floor/carpet/red,
 /area/shuttle/escape)
 "pD" = (
 /obj/structure/table/wood/fancy,
@@ -96,18 +85,6 @@
 /area/shuttle/escape)
 "qU" = (
 /turf/open/floor/wood/broken/two,
-/area/shuttle/escape)
-"sZ" = (
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_x = -6;
-	pixel_y = 11
-	},
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_x = 9;
-	pixel_y = 10
-	},
-/obj/structure/table/wood,
-/turf/open/floor/carpet/exoticgreen,
 /area/shuttle/escape)
 "tu" = (
 /obj/machinery/chem_dispenser/drinks/fullupgrade,
@@ -151,20 +128,6 @@
 "yT" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/shuttle/escape)
-"yY" = (
-/obj/item/ammo_box/magazine/tommygunm45,
-/obj/item/ammo_box/magazine/tommygunm45,
-/obj/item/ammo_box/magazine/tommygunm45{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/obj/item/ammo_box/magazine/tommygunm45{
-	pixel_x = 9;
-	pixel_y = 7
-	},
-/obj/structure/table/wood,
-/turf/open/floor/carpet/exoticgreen,
-/area/shuttle/escape)
 "BI" = (
 /obj/structure/table/wood/fancy,
 /obj/item/clothing/head/fedora/brown,
@@ -186,6 +149,13 @@
 /mob/living/simple_animal/drone/snowflake/bardrone,
 /turf/open/floor/carpet/exoticgreen,
 /area/shuttle/escape)
+"FA" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/mob/living/simple_animal/drone/snowflake/mafia,
+/turf/open/floor/carpet/red,
+/area/shuttle/escape)
 "FX" = (
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/item/reagent_containers/food/drinks/bottle/wine{
@@ -194,6 +164,18 @@
 	},
 /obj/item/reagent_containers/food/drinks/bottle/wine{
 	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"Ge" = (
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = -6;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = 9;
 	pixel_y = 10
 	},
 /obj/structure/table/wood,
@@ -214,6 +196,13 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"La" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/mob/living/simple_animal/drone/snowflake/mafia,
+/turf/open/floor/carpet/red,
 /area/shuttle/escape)
 "Ls" = (
 /obj/item/reagent_containers/food/drinks/bottle/wine{
@@ -275,14 +264,6 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"PN" = (
-/obj/structure/table/wood/fancy,
-/obj/item/ammo_box/magazine/tommygunm45{
-	pixel_x = -12;
-	pixel_y = -2
-	},
-/turf/open/floor/carpet/red,
-/area/shuttle/escape)
 "Qr" = (
 /mob/living/simple_animal/hostile/alien/maid/barmaid,
 /turf/open/floor/carpet/exoticgreen,
@@ -333,12 +314,6 @@
 "Wm" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/shuttle/escape)
-"Xb" = (
-/obj/structure/chair/comfy/black{
-	dir = 8
-	},
-/turf/open/floor/carpet/red,
 /area/shuttle/escape)
 "Yg" = (
 /obj/item/flashlight/lamp/green,
@@ -410,7 +385,7 @@ vR
 (3,1,1) = {"
 yT
 Kn
-yY
+ud
 Yg
 fV
 OA
@@ -436,15 +411,15 @@ jZ
 "}
 (4,1,1) = {"
 yT
-sZ
+Ge
 Qr
 ig
 fV
 qR
 qR
-Vx
+FA
 qR
-Vx
+FA
 qR
 qR
 qR
@@ -465,13 +440,13 @@ TS
 yT
 fe
 DZ
-bz
+Rs
 fV
 qR
 qR
 BI
-ol
-ce
+Mi
+NJ
 pD
 qR
 qR
@@ -494,11 +469,11 @@ JW
 wA
 Rs
 fV
-Vi
+au
 Oc
 TP
 wd
-fk
+Mi
 wd
 Mi
 qR
@@ -523,9 +498,9 @@ Rs
 fV
 qR
 DC
-ol
+kV
 NJ
-PN
+Mi
 NJ
 Mi
 Oj
@@ -551,9 +526,9 @@ fV
 qR
 qR
 pD
-ol
+Mi
 BI
-ol
+Mi
 qR
 qR
 Oi
@@ -577,9 +552,9 @@ ud
 fV
 qR
 qR
-Xb
+La
 qR
-Xb
+La
 qR
 qR
 qR
