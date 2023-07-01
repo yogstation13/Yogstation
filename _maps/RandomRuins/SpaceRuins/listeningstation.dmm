@@ -1461,6 +1461,14 @@
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_alone,
 /area/ruin/space/has_grav/listeningstation/quarters)
+"rW" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/shutters{
+	id = "lpost_privacy_right"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "sb" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
@@ -1786,9 +1794,10 @@
 /obj/structure/bed/dogbed/cayenne{
 	name = "Cayenne II's bed"
 	},
-/mob/living/simple_animal/hostile/carp/cayenne{
-	desc = "A descendant of the legendary Cayenne, a failed Syndicate experiment in weaponized space carp technology, it now serves as a lovable mascot.";
-	name = "Cayenne II"
+/mob/living/simple_animal/hostile/carp{
+	faction = list("Syndicate");
+	name = "Cayenne II";
+	desc = "A descendant of the legendary Cayenne, a failed Syndicate experiment in weaponized space carp technology, it now serves as a lovable mascot."
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/listeningstation/quarters)
@@ -2102,6 +2111,17 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
+"En" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/shutters{
+	id = "lpost_privacy_right"
+	},
+/obj/structure/cable{
+	icon_state = "0-2";
+	pixel_y = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/quarters)
 "Es" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3276,7 +3296,7 @@
 "Yt" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/door/poddoor/shutters{
-	id = "lpost_privacy_left"
+	id = "lpost_privacy_right"
 	},
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -3899,7 +3919,7 @@ MU
 wW
 wW
 Wp
-az
+wW
 az
 NO
 "}
@@ -4059,7 +4079,7 @@ Iv
 Wp
 aY
 aY
-az
+wW
 az
 NO
 "}
@@ -4217,9 +4237,9 @@ il
 tG
 az
 az
-fi
+En
 Yt
-is
+rW
 az
 NO
 "}
