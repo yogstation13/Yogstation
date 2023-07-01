@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	if(inserted_item && (!isturf(loc)))
 		. += span_notice("Ctrl-click to remove [inserted_item].")
 
-/obj/item/pda/Initialize()
+/obj/item/pda/Initialize(mapload)
 	. = ..()
 
 	GLOB.PDAs += src
@@ -952,7 +952,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/pda/proc/remove_pen()
 

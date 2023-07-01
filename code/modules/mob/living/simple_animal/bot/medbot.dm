@@ -301,7 +301,10 @@
 		if(user.name == tipper_name)
 			messagevoice = list("I forgive you." = 'sound/voice/medbot/forgive.ogg')
 		else
-			messagevoice = list("Thank you!" = 'sound/voice/medbot/thank_you.ogg', "You are a good person." = 'sound/voice/medbot/youre_good.ogg')
+			if(prob(1)) // if you're reading this you are a good
+				messagevoice = list("You are a good." = 'sound/voice/medbot/you_are_a_good.ogg')
+			else
+				messagevoice = list("Thank you!" = 'sound/voice/medbot/thank_you.ogg', "You are a good person." = 'sound/voice/medbot/youre_good.ogg')
 	else
 		visible_message(span_notice("[src] manages to writhe wiggle enough to right itself."))
 		messagevoice = list("Fuck you." = 'sound/voice/medbot/fuck_you.ogg', "Your behavior has been reported, have a nice day." = 'sound/voice/medbot/reported.ogg')
@@ -510,7 +513,7 @@
 	if((!C.reagents.has_reagent(treatment_fire_avoid)) && ((C.getFireLoss()-robotic_burn) >= heal_threshold) && (!C.reagents.has_reagent(treatment_fire)))
 		return TRUE
 
-	if((!C.reagents.has_reagent(treatment_tox_avoid)) && (C.getToxLoss() >= heal_threshold) && (!C.reagents.has_reagent(treatment_tox)))
+	if((!C.reagents.has_reagent(treatment_tox_avoid)) && (C.getToxLoss() >= heal_threshold) && (!C.reagents.has_reagent(treatment_tox)) && !(TRAIT_TOXINLOVER in C?.dna?.species?.inherent_traits))
 		return TRUE
 
 	if(treat_virus && !C.reagents.has_reagent(treatment_virus_avoid) && !C.reagents.has_reagent(treatment_virus))
@@ -612,7 +615,7 @@
 			if(!C.reagents.has_reagent(treatment_fire) && !C.reagents.has_reagent(treatment_fire_avoid))
 				reagent_id = treatment_fire
 
-		if(!reagent_id && (C.getToxLoss() >= heal_threshold))
+		if(!reagent_id && (C.getToxLoss() >= heal_threshold) && !(TRAIT_TOXINLOVER in C?.dna?.species?.inherent_traits))
 			if(!C.reagents.has_reagent(treatment_tox) && !C.reagents.has_reagent(treatment_tox_avoid))
 				reagent_id = treatment_tox
 

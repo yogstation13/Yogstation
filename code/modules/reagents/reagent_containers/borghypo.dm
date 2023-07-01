@@ -34,7 +34,7 @@ Borg Hypospray
 	var/list/reagent_names = list()
 
 
-/obj/item/reagent_containers/borghypo/Initialize()
+/obj/item/reagent_containers/borghypo/Initialize(mapload)
 	. = ..()
 
 	for(var/R in reagent_ids)
@@ -45,6 +45,7 @@ Borg Hypospray
 
 /obj/item/reagent_containers/borghypo/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	QDEL_LIST(reagent_list)
 	return ..()
 
 

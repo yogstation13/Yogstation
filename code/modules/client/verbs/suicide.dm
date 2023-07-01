@@ -42,7 +42,7 @@
 		set_suicide(TRUE) //need to be called before calling suicide_act as fuck knows what suicide_act will do with your suicider
 		var/obj/item/held_item = get_active_held_item()
 		if(held_item)
-			var/damagetype = held_item.suicide_act(src)
+			var/damagetype = SEND_SIGNAL(src, COMSIG_HUMAN_SUICIDE_ACT) || held_item?.suicide_act(src)
 			if(damagetype)
 				if(damagetype & SHAME)
 					adjustStaminaLoss(200)
@@ -69,7 +69,7 @@
 					adjustFireLoss(200/damage_mod)
 
 				if(damagetype & TOXLOSS)
-					adjustToxLoss(200/damage_mod)
+					adjustToxLoss(200/damage_mod, TRUE, TRUE)//toxinlovers
 
 				if(damagetype & OXYLOSS)
 					adjustOxyLoss(200/damage_mod)

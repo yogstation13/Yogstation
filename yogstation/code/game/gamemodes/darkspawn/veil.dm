@@ -1,21 +1,20 @@
 /datum/antagonist/veil
 	name = "Darkspawn Veil"
 	job_rank = ROLE_DARKSPAWN
+	antag_hud_name = "veil"
 	roundend_category = "veils"
 	antagpanel_category = "Darkspawn"
 	antag_moodlet = /datum/mood_event/thrall
+	var/mutable_appearance/veil_sigils
 
 /datum/antagonist/veil/on_gain()
 	. = ..()
-	SSticker.mode.update_darkspawn_icons_added(owner)
 	SSticker.mode.veils += owner
 	owner.special_role = "veil"
-	owner.current?.maxHealth = min(owner.current.maxHealth, 35)
 	message_admins("[key_name_admin(owner.current)] was veiled by a darkspawn!")
 	log_game("[key_name(owner.current)] was veiled by a darkspawn!")
 
 /datum/antagonist/veil/on_removal()
-	SSticker.mode.update_darkspawn_icons_removed(owner)
 	SSticker.mode.veils -= owner
 	message_admins("[key_name_admin(owner.current)] was deveiled!")
 	log_game("[key_name(owner.current)] was deveiled!")
@@ -27,14 +26,26 @@
 	else
 		M.visible_message(span_big("[M] looks like their mind is their own again!"))
 		to_chat(M,span_userdanger("A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the darkspawn or your time under their command..."))
-		to_chat(owner, span_notice("As your mind is released from their grasp, you feel much stronger, though you will never again be whole."))
-	M.maxHealth = max(M.maxHealth, 70)
+		to_chat(owner, span_notice("As your mind is released from their grasp, you feel your strength returning."))
 	M.update_sight()
 	return ..()
 
+/datum/antagonist/veil/apply_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.maxHealth -= 40
+	veil_sigils = mutable_appearance('yogstation/icons/mob/actions/actions_darkspawn.dmi', "veil_sigils", -UNDER_SUIT_LAYER) //show them sigils
+	current_mob.add_overlay(veil_sigils)
+	add_team_hud(current_mob, /datum/antagonist/darkspawn)
+
+/datum/antagonist/veil/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.maxHealth += 40
+	current_mob.cut_overlay(veil_sigils)
+	QDEL_NULL(veil_sigils)
+
 /datum/antagonist/veil/greet()
 	to_chat(owner, "<span class='velvet big'><b>ukq wna ieja jks</b></span>" )
-	if(ispreternis(owner))
+	if(ispreternis(owner.current))
 		to_chat(owner, "<b>Your mind goes numb. Your thoughts go blank. You feel utterly empty. \n\
 		A consciousness brushes against your own. You dream.\n\
 		Of a vast, glittering empire stretching from star to star. \n\
@@ -54,7 +65,7 @@
 	to_chat(owner, "<i>Ask for help from your masters or fellows if you're new to this role.</i>")
 	to_chat(owner, span_danger("Your drained will has left you feeble and weak! You will go down with many fewer hits!"))
 	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
-	flash_color(owner, flash_color = "#21007F", flash_time = 100)
+	flash_color(owner, flash_color = "#21007F", flash_time = 10 SECONDS)
 
 /datum/antagonist/veil/roundend_report()
 	return "[printplayer(owner)]"

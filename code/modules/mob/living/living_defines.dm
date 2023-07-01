@@ -32,10 +32,6 @@
 	var/lying = 0			//number of degrees. DO NOT USE THIS IN CHECKS. CHECK FOR MOBILITY FLAGS INSTEAD!!
 	var/lying_prev = 0		//last value of lying on update_mobility
 
-	var/confused = 0	//Makes the mob move in random directions.
-
-	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
-
 	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 	var/timeofdeath = 0
 
@@ -75,7 +71,8 @@
 	var/list/pipes_shown = list()
 	var/last_played_vent
 
-	var/smoke_delay = 0 //used to prevent spam with smoke reagent reaction on mob.
+	var/smoke_delay = FALSE //used to prevent spam with smoke reagent reaction on mob.
+	var/foam_delay = FALSE //used to prevent spam with foam reagent reaction on mob.
 
 	var/health_doll_icon //if this exists AND the normal sprite is bigger than 32x32, this is the replacement icon state (because health doll size limitations). the icon will always be screen_gen.dmi
 
@@ -95,12 +92,10 @@
 	var/stun_absorption = null //converted to a list of stun absorption sources this mob has when one is added
 
 	var/blood_volume = 0 //how much blood the mob has
-	var/obj/effect/proc_holder/ranged_ability //Any ranged ability the mob has, as a click override
 
 	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
 	var/list/status_effects //a list of all status effects the mob has
-	var/druggy = 0
 
 	/// List of changes to body temperature, used by desease symtoms like fever
 	var/list/body_temp_changes = list()
@@ -113,17 +108,12 @@
 	var/worn_layer //use to set if you want your inhand mob sprite to be hidden or not
 
 	//Speech
-	var/stuttering = 0
-	var/slurring = 0
 	var/cultslurring = 0
-	var/derpspeech = 0
 	var/lizardspeech = 0
 
 	var/list/implants = null
 
 	var/last_words	//used for database logging
-
-	var/list/obj/effect/proc_holder/abilities = list()
 
 	var/can_be_held = FALSE	//whether this can be picked up and held.
 	var/worn_slot_flags = NONE //if it can be held, can it be equipped to any slots?

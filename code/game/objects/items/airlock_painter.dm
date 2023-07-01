@@ -46,7 +46,7 @@
 		"Alien" = /obj/machinery/door/airlock/abductor
 	)
 
-/obj/item/airlock_painter/Initialize()
+/obj/item/airlock_painter/Initialize(mapload)
 	. = ..()
 	ink = new initial_ink_type(src)
 

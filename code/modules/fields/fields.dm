@@ -285,7 +285,7 @@
 	var/datum/proximity_monitor/advanced/current = null
 	var/mob/listeningTo
 
-/obj/item/multitool/field_debug/Initialize()
+/obj/item/multitool/field_debug/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -306,7 +306,7 @@
 	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 	listeningTo = null
 	if(!istype(current) && operating)
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/on_mob_move)
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_mob_move))
 		listeningTo = user
 		setup_debug_field()
 	else if(!operating)

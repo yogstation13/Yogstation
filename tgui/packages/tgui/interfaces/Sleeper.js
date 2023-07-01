@@ -12,6 +12,7 @@ export const Sleeper = (props, context) => {
     occupied,
     active_treatment,
     can_sedate,
+    sedate_text,
   } = data;
 
   const treatments = data.treatments || [];
@@ -56,8 +57,8 @@ export const Sleeper = (props, context) => {
                 minValue={occupant.minHealth}
                 maxValue={occupant.maxHealth}
                 ranges={{
-                  good: [50, Infinity],
-                  average: [0, 50],
+                  good: [occupant.maxHealth / 2, Infinity],
+                  average: [0, occupant.maxHealth / 2],
                   bad: [-Infinity, 0],
                 }} />
               <Box mt={1} />
@@ -94,7 +95,7 @@ export const Sleeper = (props, context) => {
             buttons={(
               <Button
                 icon={'flask'}
-                content={'Sedate'}
+                content={sedate_text}
                 disabled={!can_sedate}
                 onClick={() => act('sedate')} />
             )} >

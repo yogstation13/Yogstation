@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 		var/mob/living/carbon/human/H = M
 		GLOB.vr_runner_players += H
 		if(!game_starting)
-			INVOKE_ASYNC(src, .proc/game_start_countdown)
+			INVOKE_ASYNC(src, PROC_REF(game_start_countdown))
 
 /obj/effect/portal/permanent/one_way/recall/pit_faller/recall_effect(mob/user)
 	if(ishuman(user))
@@ -60,9 +60,9 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 		for(var/mob/living/carbon/human/H in GLOB.vr_runner_players)
 			to_chat(H, span_notice("Game Started!"))
 			var/turf/open/indestructible/runner/R = get_turf(H)
-			INVOKE_ASYNC(R, /turf/open/indestructible/runner.proc/turf_fall)
+			INVOKE_ASYNC(R, TYPE_PROC_REF(/turf/open/indestructible/runner, turf_fall))
 		color = COLOR_RED
-		INVOKE_ASYNC(src, .proc/random_falling_tiles)
+		INVOKE_ASYNC(src, PROC_REF(random_falling_tiles))
 	game_starting = FALSE
 	game_start_time = world.time
 
@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 		return FALSE
 	for(var/turf/open/indestructible/runner/R in GLOB.vr_runner_tiles)
 		if(R.color != COLOR_ALMOST_BLACK && prob(1))
-			INVOKE_ASYNC(R, /turf/open/indestructible/runner.proc/turf_fall)
+			INVOKE_ASYNC(R, TYPE_PROC_REF(/turf/open/indestructible/runner, turf_fall))
 	sleep(fall_wait)
 	random_falling_tiles()
 
@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 	var/not_reset = FALSE // check so turfs dont fall after being reset
 	var/falling_time = 1.5 SECONDS // time it takes for the turf to fall
 
-/turf/open/indestructible/runner/Initialize()
+/turf/open/indestructible/runner/Initialize(mapload)
 	. = ..()
 	GLOB.vr_runner_tiles += src
 
@@ -103,12 +103,12 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 			if(locate(A) in GLOB.vr_runner_players)
 				if(!A.throwing)
 					var/mob/living/carbon/human/H = A
-					var/obj/effect/proc_holder/spell/portal_recall/findspell = locate(/obj/effect/proc_holder/spell/portal_recall) in H.mind.spell_list
-					findspell.Click(H)
+					var/datum/action/cooldown/spell/portal_recall/findspell = locate(/datum/action/cooldown/spell/portal_recall) in H.actions
+					findspell.Trigger()
 			else
 				qdel(A)
 		else if(!not_reset) // make sure it's not already currently falling
-			INVOKE_ASYNC(src, .proc/turf_fall)
+			INVOKE_ASYNC(src, PROC_REF(turf_fall))
 
 /turf/open/indestructible/runner/proc/turf_fall()
 	color = COLOR_RED
@@ -119,9 +119,9 @@ GLOBAL_LIST_EMPTY(vr_runner_tiles)
 	not_reset = FALSE
 	color = COLOR_ALMOST_BLACK
 	for(var/mob/living/carbon/human/H in contents)
-		var/obj/effect/proc_holder/spell/portal_recall/findspell = locate(/obj/effect/proc_holder/spell/portal_recall) in H.mind.spell_list
+		var/datum/action/cooldown/spell/portal_recall/findspell = locate(/datum/action/cooldown/spell/portal_recall) in H.actions
 		if(H)
-			findspell.Click(H)
+			findspell.Trigger()
 
 /turf/open/indestructible/runner/proc/reset_fall()
 	not_reset = FALSE

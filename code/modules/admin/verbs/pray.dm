@@ -31,7 +31,7 @@
 		cross.icon_state = "tome"
 		font_color = "red"
 		prayer_type = "CULTIST PRAYER"
-		deity = "Nar-Sie"
+		deity = "Nar'sie"
 	else if(isliving(usr))
 		var/mob/living/L = usr
 		if(HAS_TRAIT(L, TRAIT_SPIRITUAL))
@@ -65,6 +65,15 @@
 /proc/message_syndicate(text, mob/sender)
 	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = span_adminnotice("<b><font color=crimson>SYNDICATE:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_SYNDICATE_REPLY(sender)]:</b> [msg]")
+	to_chat(GLOB.permissions.admins, msg, confidential = TRUE)
+	for(var/obj/machinery/computer/communications/console in GLOB.machines)
+		console.override_cooldown()
+
+/// Used by the red phone to message the Syndicate
+/// Specifies CENTCOM/SYNDICATE: to indicate both receive the message
+/proc/message_redphone_syndicate(text, mob/sender)
+	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
+	msg = span_adminnotice("<b><font color=orange>CENTCOM</font>/<font color=crimson>SYNDICATE:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_SYNDICATE_REPLY(sender)]:</b> [msg]")
 	to_chat(GLOB.permissions.admins, msg, confidential = TRUE)
 	for(var/obj/machinery/computer/communications/console in GLOB.machines)
 		console.override_cooldown()

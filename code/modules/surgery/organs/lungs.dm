@@ -29,9 +29,11 @@
 	var/SA_para_min = 1 //Sleeping agent
 	var/SA_sleep_min = 5 //Sleeping agent
 	var/BZ_trip_balls_min = 1 //BZ gas
-	var/gas_stimulation_min = 0.002 //Nitryl and Stimulum
+	var/gas_stimulation_min = 0.002 // Nitrium, Freon and Hyper-noblium
 	///list of gasses that can be used in place of oxygen and the amount they are multiplied by, i.e. 1 pp pluox = 8 pp oxygen
 	var/list/oxygen_substitutes = list(/datum/gas/pluoxium = 8)
+	//Whether helium speech effects are currently active
+	var/helium_speech = FALSE
 
 	var/oxy_breath_dam_min = MIN_TOXIC_GAS_DAMAGE
 	var/oxy_breath_dam_max = MAX_TOXIC_GAS_DAMAGE
@@ -255,13 +257,13 @@
 
 		var/bz_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/bz))
 		if(bz_pp > BZ_trip_balls_min)
-			H.hallucination += 10
+			H.adjust_hallucinations(10 SECONDS)
 			H.reagents.add_reagent(/datum/reagent/bz_metabolites,5)
 			if(prob(33))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 
 		else if(bz_pp > 0.01)
-			H.hallucination += 5
+			H.adjust_hallucinations(5 SECONDS)
 			H.reagents.add_reagent(/datum/reagent/bz_metabolites,1)
 
 
@@ -272,25 +274,24 @@
 		else
 			H.radiation += trit_pp/10
 
-	// Nitryl
-		var/nitryl_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/nitryl))
-		if (prob(nitryl_pp))
-			to_chat(H, span_alert("Your mouth feels like it's burning!"))
-		if (nitryl_pp >40)
-			H.emote("gasp")
-			H.adjustFireLoss(10)
-			if (prob(nitryl_pp/2))
-				to_chat(H, span_alert("Your throat closes up!"))
-				H.silent = max(H.silent, 3)
-		else
-			H.adjustFireLoss(nitryl_pp/4)
-		gas_breathed = breath.get_moles(/datum/gas/nitryl)
+	// Nitrium
+		var/nitrium_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/nitrium))
+		// Random chance to inflict side effects, increases with pressure.
+		if (nitrium_pp > 15 && prob(nitrium_pp))
+			H.adjustOrganLoss(ORGAN_SLOT_LUNGS, nitrium_pp * 0.1)
+			to_chat(H, span_alert("You feel a burning sensation in your chest"))
+		
+		gas_breathed = breath.get_moles(/datum/gas/nitrium)
+		// Metabolize to reagents.
 		if (gas_breathed > gas_stimulation_min)
-			H.reagents.add_reagent(/datum/reagent/nitryl,1*eff)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/nitrium_low_metabolization)
+			H.reagents.add_reagent(/datum/reagent/nitrium_low_metabolization, max(0, 2 - existing))
+		if (gas_breathed > gas_stimulation_min * 2.5)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/nitrium_high_metabolization)
+			H.reagents.add_reagent(/datum/reagent/nitrium_high_metabolization, max(0, 1 - existing))
+		breath.adjust_moles(/datum/gas/nitrium, -gas_breathed)
 
-		breath.adjust_moles(/datum/gas/nitryl, -gas_breathed)
-
-// Freon
+	// Freon
 		var/freon_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/freon))
 		if (prob(freon_pp))
 			to_chat(H, span_alert("Your mouth feels like it's burning!"))
@@ -309,16 +310,17 @@
 		breath.adjust_moles(/datum/gas/freon, -gas_breathed)
 
 	// Healium
-		REMOVE_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
 		var/healium_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/healium))
 		if(healium_pp > SA_sleep_min)
 			var/existing = H.reagents.get_reagent_amount(/datum/reagent/healium)
-			ADD_TRAIT(H, TRAIT_SURGERY_PREPARED, "healium")
 			H.reagents.add_reagent(/datum/reagent/healium,max(0, 1*eff - existing))
-			H.adjustFireLoss(-7)
-			H.adjustToxLoss(-5)
-			H.adjustBruteLoss(-5)
 		gas_breathed = breath.get_moles(/datum/gas/healium)
+		if(gas_breathed > gas_stimulation_min && !helium_speech)
+			helium_speech = TRUE
+			RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_helium_speech))
+		else if (gas_breathed <= gas_stimulation_min && helium_speech)
+			helium_speech = FALSE
+			UnregisterSignal(owner, COMSIG_MOB_SAY)
 		breath.adjust_moles(/datum/gas/healium, -gas_breathed)
 
 	// Pluonium
@@ -346,17 +348,24 @@
 	// Hexane
 		gas_breathed = breath.get_moles(/datum/gas/hexane)
 		if(gas_breathed > gas_stimulation_min)
-			H.hallucination += 50
+			H.adjust_hallucinations(50 SECONDS)
 			H.reagents.add_reagent(/datum/reagent/hexane,5)
 			if(prob(33))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 
-	// Stimulum
-		gas_breathed = breath.get_moles(/datum/gas/stimulum)
-		if (gas_breathed > gas_stimulation_min)
-			var/existing = H.reagents.get_reagent_amount(/datum/reagent/stimulum)
-			H.reagents.add_reagent(/datum/reagent/stimulum,max(0, 1*eff - existing))
-		breath.adjust_moles(/datum/gas/stimulum, -gas_breathed)
+	// Hyper-noblium
+		gas_breathed = breath.get_moles(/datum/gas/hypernoblium)
+		if(gas_breathed > gas_stimulation_min)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/hypernoblium)
+			H.reagents.add_reagent(/datum/reagent/hypernoblium, max(0, eff - existing))
+		breath.adjust_moles(/datum/gas/hypernoblium, -gas_breathed)
+	
+	// Anti-noblium
+		gas_breathed = breath.get_moles(/datum/gas/antinoblium)
+		if(gas_breathed > gas_stimulation_min)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/antinoblium)
+			H.reagents.add_reagent(/datum/reagent/antinoblium, max(0, eff - existing))
+		breath.adjust_moles(/datum/gas/antinoblium, -gas_breathed)
 
 	// Miasma
 		if (breath.get_moles(/datum/gas/miasma))
@@ -454,6 +463,10 @@
 		if(breath_temperature > heat_level_1_threshold)
 			if(prob(20))
 				to_chat(H, span_warning("You feel [hot_message] in your [name]!"))
+
+/obj/item/organ/lungs/proc/handle_helium_speech(owner, list/speech_args)
+	SIGNAL_HANDLER
+	speech_args[SPEECH_SPANS] |= SPAN_HELIUM
 
 /obj/item/organ/lungs/on_life()
 	..()
@@ -588,7 +601,8 @@
 	desc = "A cybernetic version of the lungs found in traditional humanoid entities. Slightly more effecient than organic lungs."
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_SYNTHETIC
-	maxHealth = 1.1 * STANDARD_ORGAN_THRESHOLD
+	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 1.5
 	safe_oxygen_min = 13
 
 /obj/item/organ/lungs/cybernetic/emp_act()
@@ -601,8 +615,8 @@
 	name = "upgraded cybernetic lungs"
 	desc = "A more advanced version of the stock cybernetic lungs, more efficient at, well, breathing. Features higher temperature tolerances and the ability to filter out most potentially harmful gases."
 	icon_state = "lungs-c-u"
-	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
-	organ_efficiency = 1.5
+	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD
+	organ_efficiency = 2
 	safe_oxygen_min = 10
 	safe_co2_max = 20
 	safe_toxins_max = 20 //Higher resistance to most harmful gasses

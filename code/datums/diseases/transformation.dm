@@ -73,7 +73,7 @@
 		new_mob.real_name = new_mob.name
 		qdel(affected_mob)
 
-/datum/disease/transformation/proc/replace_banned_player(var/mob/living/new_mob) // This can run well after the mob has been transferred, so need a handle on the new mob to kill it if needed.
+/datum/disease/transformation/proc/replace_banned_player(mob/living/new_mob) // This can run well after the mob has been transferred, so need a handle on the new mob to kill it if needed.
 	set waitfor = FALSE
 
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [affected_mob.name]?", bantype, null, bantype, 50, affected_mob)
@@ -133,7 +133,7 @@
 		if(3)
 			if(prob(4))
 				to_chat(affected_mob, span_danger("You feel a stabbing pain in your head."))
-				affected_mob.confused += 10
+				affected_mob.adjust_confusion(1 SECONDS)
 		if(4)
 			if(prob(3))
 				affected_mob.say(pick("Eeek, ook ook!", "Eee-eeek!", "Eeee!", "Ungh, ungh."), forced = "jungle fever")
@@ -147,7 +147,7 @@
 	disease_flags = CAN_CARRY //no vaccines! no cure!
 	cure_text = "Clown's Tears."
 	cures = list(/datum/reagent/consumable/clownstears)
-	
+
 /datum/disease/transformation/jungle_fever/monkeymode/after_add()
 	if(affected_mob && !is_monkey_leader(affected_mob.mind))
 		visibility_flags = NONE
@@ -219,7 +219,7 @@
 /datum/disease/transformation/slime
 	name = "Advanced Mutation Transformation"
 	cure_text = "frost oil"
-	cures = list(/datum/reagent/consumable/frostoil)
+	cures = list(/datum/reagent/consumable/ice)
 	cure_chance = 80
 	agent = "Advanced Mutation Toxin"
 	desc = "This highly concentrated extract converts anything into more of itself."
@@ -286,7 +286,7 @@
 	stage5	= list(span_danger("You have become a morph."))
 	new_form = /mob/living/simple_animal/hostile/morph
 	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
-	
+
 /datum/disease/transformation/ghost
 	name = "Spectral Curse"
 	cure_text = "Holy Water"

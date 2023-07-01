@@ -12,7 +12,7 @@
 /atom/proc/balloon_alert(mob/viewer, text)
 	SHOULD_NOT_SLEEP(TRUE)
 
-	INVOKE_ASYNC(src, .proc/balloon_alert_perform, viewer, text)
+	INVOKE_ASYNC(src, PROC_REF(balloon_alert_perform), viewer, text)
 
 /// Creates a balloon alert, or sends a chat message dependant on client preferences. 
 /// Args: viewer -  mob that gets message/alert, alert - balloon alert text, message - text message that the mob gets if the preference is toggled, equals to alert message if not passed in the proc
@@ -20,9 +20,9 @@
 	SHOULD_NOT_SLEEP(TRUE)
 	
 	if(viewer.client.prefs.read_preference(/datum/preference/toggle/disable_balloon_alerts))
-		INVOKE_ASYNC(.proc/to_chat, viewer, message)
+		INVOKE_ASYNC(PROC_REF(to_chat), viewer, message)
 	else
-		INVOKE_ASYNC(src, .proc/balloon_alert_perform, viewer, message ? message : alert)
+		INVOKE_ASYNC(src, PROC_REF(balloon_alert_perform), viewer, message ? message : alert)
 
 /// Create balloon alerts (text that floats up) to everything within range.
 /// Will only display to people who can see.
@@ -89,7 +89,7 @@
 		easing = CUBIC_EASING | EASE_IN,
 	)
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/remove_image_from_client, balloon_alert, viewer_client), BALLOON_TEXT_TOTAL_LIFETIME(duration_mult))
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(remove_image_from_client), balloon_alert, viewer_client), BALLOON_TEXT_TOTAL_LIFETIME(duration_mult))
 
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN
 #undef BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT

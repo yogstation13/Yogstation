@@ -64,6 +64,9 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
 /area/shuttle/caravan/syndicate1)
 "h" = (
@@ -82,11 +85,11 @@
 	req_access = null;
 	req_access_txt = "150"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
 /mob/living/simple_animal/hostile/syndicate/ranged/smg/pilot{
 	environment_smash = 0
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/caravan/syndicate1)

@@ -38,7 +38,7 @@
 				user.put_in_hands(PA)
 
 /obj/item/chrono_eraser/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_BACK)
+	if(slot == ITEM_SLOT_BACK)
 		return 1
 
 /obj/item/gun/energy/chrono_gun
@@ -56,7 +56,7 @@
 	var/obj/structure/chrono_field/field = null
 	var/turf/startpos = null
 
-/obj/item/gun/energy/chrono_gun/Initialize()
+/obj/item/gun/energy/chrono_gun/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHRONO_GUN_TRAIT)
 	if(istype(loc, /obj/item/chrono_eraser))
@@ -127,11 +127,15 @@
 	nodamage = TRUE
 	var/obj/item/gun/energy/chrono_gun/gun = null
 
-/obj/item/projectile/energy/chrono_beam/Initialize()
+/obj/item/projectile/energy/chrono_beam/Initialize(mapload)
 	. = ..()
 	var/obj/item/ammo_casing/energy/chrono_beam/C = loc
 	if(istype(C))
 		gun = C.gun
+
+/obj/item/projectile/energy/chrono_beam/Destroy()
+	gun = null
+	return ..()
 
 /obj/item/projectile/energy/chrono_beam/on_hit(atom/target)
 	if(target && gun && isliving(target))
@@ -146,12 +150,14 @@
 	e_cost = 0
 	var/obj/item/gun/energy/chrono_gun/gun
 
-/obj/item/ammo_casing/energy/chrono_beam/Initialize()
+/obj/item/ammo_casing/energy/chrono_beam/Initialize(mapload)
 	if(istype(loc))
 		gun = loc
 	. = ..()
 
-
+/obj/item/ammo_casing/energy/chrono_beam/Destroy()
+	gun = null
+	return ..()
 
 
 

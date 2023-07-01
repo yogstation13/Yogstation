@@ -1,17 +1,17 @@
 /obj/item/implant/mindslave
 	name = "mindslave implant"
 	desc = "Turn a crewmate into your eternal slave"
-	activated = FALSE
 
 /obj/item/implant/mindslave/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Syndicate Loyalty Implant<BR>
-<b>Life:</b> Single use<BR>
-<b>Important Notes:</b> <font color='red'>Illegal</font><BR>
-<HR>
-<b>Implant Details:</b> <BR>
-<b>Function:</b> Makes the injected a slave to the owner of the implant.<HR>"}
+		<b>Implant Specifications:</b><BR>
+		<b>Name:</b> Syndicate Loyalty Implant<BR>
+		<b>Life:</b> Single use<BR>
+		<b>Important Notes:</b> <font color='red'>Illegal</font><BR>
+		<HR>
+		<b>Implant Details:</b> <BR>
+		<b>Function:</b> Makes the injected a slave to the owner of the implant.<HR>
+	"}
 	return dat
 
 /obj/item/implant/mindslave/implant(mob/source, mob/user)
@@ -36,7 +36,7 @@
 		to_chat(holder, span_warning("[target] seems to resist the implant!"))
 		return FALSE
 
-	to_chat(target, span_hypnophrase("<FONT size = 3>You feel a strange urge to serve [holder.real_name]. A simple thought about disobeying his/her commands makes your head feel like it is going to explode. You feel like you dont want to know what will happen if you actually disobey your new master.</FONT>"))
+	to_chat(target, span_hypnophrase("<FONT size = 3>You feel a strange urge to serve [holder.real_name]. A simple thought about disobeying [holder.p_their()] commands makes your head feel like it is going to explode. You feel like you dont want to know what will happen if you actually disobey your new master.</FONT>"))
 
 	var/datum/antagonist/mindslave/MS = new
 	target.mind.add_antag_datum(MS)
@@ -49,7 +49,7 @@
 
 	return ..()
 
-/obj/item/implant/mindslave/removed(mob/source)
+/obj/item/implant/mindslave/removed(mob/living/source, silent = 0, special = 0)
 	if(!..())
 		return
 	if(source.mind && source.mind.has_antag_datum(/datum/antagonist/mindslave))

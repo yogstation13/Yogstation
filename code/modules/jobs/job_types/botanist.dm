@@ -1,10 +1,8 @@
 /datum/job/hydro
 	title = "Botanist"
 	description = "Grow plants for the cook, for medicine, and for recreation."
-	flag = BOTANIST
 	orbit_icon = "seedling"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
@@ -35,17 +33,7 @@
 		/obj/item/reagent_containers/food/snacks/monkeycube/bee = 2
 	)
 
-	changed_maps = list("OmegaStation", "EclipseStation")
-
 	smells_like = "fertilizer"
-
-/datum/job/hydro/proc/OmegaStationChanges()
-	added_access = list()
-	base_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
-
-/datum/job/hydro/proc/EclipseStationChanges()
-	total_positions = 4
-	spawn_positions = 3
 
 /datum/outfit/job/botanist
 	name = "Botanist"

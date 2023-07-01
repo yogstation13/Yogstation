@@ -15,7 +15,7 @@
 	var/datum/action/innate/darkspawn/devour_will/linked_ability //The ability that keeps data for us
 	var/full_restore = TRUE
 
-/obj/item/dark_bead/Initialize()
+/obj/item/dark_bead/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	animate(src, alpha = 50, time = 5 SECONDS)
@@ -109,6 +109,6 @@
 	L.Unconscious(15)
 	L.apply_effect(EFFECT_STUTTER, 20)
 	L.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
-	addtimer(CALLBACK(linked_ability, /datum/action/innate/darkspawn/devour_will/.proc/make_eligible, L), 600)
+	addtimer(CALLBACK(linked_ability, TYPE_PROC_REF(/datum/action/innate/darkspawn/devour_will, make_eligible), L), 600)
 	qdel(src, force = TRUE)
 	return TRUE

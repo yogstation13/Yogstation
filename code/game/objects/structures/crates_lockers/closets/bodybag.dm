@@ -12,6 +12,7 @@
 	material_drop = /obj/item/stack/sheet/cloth
 	delivery_icon = null //unwrappable
 	anchorable = FALSE
+	open_flags = HORIZONTAL_HOLD //intended for bodies, so people lying down
 	notreallyacloset = TRUE
 	door_anim_time = 0 // no animation
 	var/foldedbag_path = /obj/item/bodybag
@@ -291,10 +292,39 @@
 	breakout_time = 8 MINUTES
 	sinch_time = 4 SECONDS
 
-/obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize()
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_icon()
+	. = ..()
+	var/obj/item/bodybag/environmental/prisoner/syndicate/inner_bag = foldedbag_instance
+	if(sinched && inner_bag && inner_bag.killing)
+		add_overlay("kill_flash")
+
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize(mapload)
 	. = ..()
 	update_airtightness()
+	START_PROCESSING(SSobj, src)
 
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/togglelock(mob/living/user, silent)
+	var/obj/item/bodybag/environmental/prisoner/syndicate/inner_bag = foldedbag_instance
+	if(sinched && inner_bag && inner_bag.killing) // let him cook
+		user.visible_message(span_notice("You begin prying back the buckles on [src]."))
+		if(!(do_after(user, (sinch_time), src)))
+			return
+	. = ..()
+
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/process(delta_time)
+	var/obj/item/bodybag/environmental/prisoner/syndicate/inner_bag = foldedbag_instance
+	if(!inner_bag || !inner_bag.killing || !sinched)
+		return
+	for(var/mob/living/target in contents)
+		if(!target.reagents)
+			continue
+		if(target.stat == DEAD)
+			target.adjustFireLoss(10 * delta_time) // Husks after a few seconds
+			continue
+		target.reagents.add_reagent(/datum/reagent/clf3, 3 * delta_time)
+		target.reagents.add_reagent(/datum/reagent/phlogiston, 3 * delta_time)
+		target.reagents.add_reagent(/datum/reagent/teslium, 3 * delta_time)
+		target.reagents.add_reagent(/datum/reagent/toxin/acid/fluacid, 3 * delta_time)
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_airtightness()
 	if(sinched)
@@ -310,9 +340,9 @@
 	air_contents.set_moles(/datum/gas/nitrous_oxide, (ONE_ATMOSPHERE*50)/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/Destroy()
+	STOP_PROCESSING(SSobj, src)
 	if(air_contents)
 		QDEL_NULL(air_contents)
-
 	return ..()
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/return_air()

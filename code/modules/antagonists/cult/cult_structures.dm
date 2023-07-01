@@ -85,7 +85,7 @@
 
 /obj/structure/destructible/cult/talisman
 	name = "altar"
-	desc = "A bloodstained altar dedicated to Nar-Sie."
+	desc = "A bloodstained altar dedicated to Nar'sie."
 	icon_state = "talismanaltar"
 	break_message = span_warning("The altar shatters, leaving only the wailing of the damned!")
 
@@ -119,7 +119,7 @@
 
 /obj/structure/destructible/cult/forge
 	name = "daemon forge"
-	desc = "A forge used in crafting the unholy weapons used by the armies of Nar-Sie."
+	desc = "A forge used in crafting the unholy weapons used by the armies of Nar'sie."
 	icon_state = "forge"
 	light_range = 2
 	light_color = LIGHT_COLOR_LAVA
@@ -161,7 +161,7 @@
 
 /obj/structure/destructible/cult/pylon
 	name = "pylon"
-	desc = "A floating crystal that slowly heals those faithful to Nar'Sie."
+	desc = "A floating crystal that slowly heals those faithful to Nar'sie."
 	icon_state = "pylon"
 	light_range = 1.5
 	light_color = LIGHT_COLOR_RED
@@ -223,9 +223,9 @@
 		var/turf/T = safepick(validturfs)
 		if(T)
 			if(istype(T, /turf/open/floor/plating))
-				T.PlaceOnTop(/turf/open/floor/engine/cult, flags = CHANGETURF_INHERIT_AIR)
+				T.PlaceOnTop(/turf/open/floor/engine/cult, flags = CHANGETURF_IGNORE_AIR)
 			else
-				T.ChangeTurf(/turf/open/floor/engine/cult, flags = CHANGETURF_INHERIT_AIR)
+				T.ChangeTurf(/turf/open/floor/engine/cult, flags = CHANGETURF_IGNORE_AIR)
 		else
 			var/turf/open/floor/engine/cult/F = safepick(cultturfs)
 			if(F)
@@ -290,7 +290,7 @@
 	icon_state = "pillaralt-enter"
 	alt = 1
 
-/obj/structure/destructible/cult/pillar/Initialize()
+/obj/structure/destructible/cult/pillar/Initialize(mapload)
 	..()
 	var/turf/T = loc
 	if (!T)
@@ -322,7 +322,7 @@
 /obj/structure/destructible/cult/pillar/conceal()
 	return
 
-/obj/structure/destructible/cult/pillar/ex_act(var/severity)
+/obj/structure/destructible/cult/pillar/ex_act(severity)
 	switch(severity)
 		if (EXPLODE_DEVASTATE)
 			take_damage(200)
@@ -344,10 +344,10 @@
 	layer = MASSIVE_OBJ_LAYER
 	light_color = "#FF0000"
 	var/current_fullness = 0
-	var/anchor = FALSE //are we the bloodstone used to summon nar-sie? used in the final part of the summoning
+	var/anchor = FALSE //are we the bloodstone used to summon Nar'sie? used in the final part of the summoning
 	is_endgame = TRUE
 
-/obj/structure/destructible/cult/bloodstone/Initialize()
+/obj/structure/destructible/cult/bloodstone/Initialize(mapload)
 	..()
 	if (!src.loc)
 		message_admins("Blood Cult: A blood stone was somehow spawned in nullspace. It has been destroyed.")
@@ -410,7 +410,7 @@
 	..()
 	update_icon()
 
-/obj/structure/destructible/cult/bloodstone/ex_act(var/severity)
+/obj/structure/destructible/cult/bloodstone/ex_act(severity)
 	switch(severity)
 		if (EXPLODE_DEVASTATE)
 			take_damage(200)
@@ -453,7 +453,7 @@
 	for(var/turf/T in range(5,src))
 		var/dist = get_dist(src, T)
 		if (dist <= 2)
-			T.ChangeTurf(/turf/open/floor/engine/cult)
+			T.ChangeTurf(/turf/open/floor/engine/cult, flags = CHANGETURF_IGNORE_AIR)
 			for (var/obj/structure/S in T)
 				if(!istype(S,/obj/structure/destructible/cult))
 					S.ex_act(EXPLODE_DEVASTATE)
@@ -461,7 +461,7 @@
 				qdel(M)
 		else if (dist <= 4)
 			if (istype(T,/turf/open/space))
-				T.ChangeTurf(/turf/open/floor/engine/cult)
+				T.ChangeTurf(/turf/open/floor/engine/cult, flags = CHANGETURF_IGNORE_AIR)
 			else
 				T.narsie_act(TRUE, TRUE)
 		else if (dist <= 5)

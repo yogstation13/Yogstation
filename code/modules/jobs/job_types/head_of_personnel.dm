@@ -2,11 +2,9 @@
 	title = "Head of Personnel"
 	description = "Alter access on ID cards, manage civil and supply departments, \
 		protect Ian, run the station when the captain dies."
-	flag = HOP
 	orbit_icon = "dog"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
-	department_flag = CIVILIAN
 	head_announce = list(RADIO_CHANNEL_SUPPLY, RADIO_CHANNEL_SERVICE)
 	faction = "Station"
 	total_positions = 1
@@ -15,7 +13,7 @@
 	selection_color = "#ddddff"
 	req_admin_notify = 1
 	minimal_player_age = 10
-	exp_requirements = 720
+	exp_requirements = 720 //fairly low skill job
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SUPPLY
 	alt_titles = list("Chief of Staff", "Head of Internal Affairs", "First Officer")
@@ -41,18 +39,19 @@
 		/datum/job_department/command,
 	)
 
-	changed_maps = list("OmegaStation")
-
 	mail_goodies = list(
+		/obj/item/toner = 15,
+		/obj/item/pen/fourcolor = 10,
+		/obj/item/pen/fountain = 10,
 		/obj/item/card/id/silver = 10,
-		/obj/item/stack/sheet/bone = 5
+		/obj/item/stack/sheet/bone = 5,
+		/obj/item/stamp = 5,
+		/obj/item/stamp/denied = 5,
+		/obj/item/stamp/syndi = 3,
+		/obj/item/stamp/cent = 1 //the holy grail of stamps
 	)
 
 	smells_like = "bureaucracy"
-
-/datum/job/hop/proc/OmegaStationChanges()
-	added_access = get_all_accesses()
-	base_access = get_all_accesses()
 
 //only pet worth reviving
 /datum/job/hop/get_mail_goodies(mob/recipient)
@@ -69,6 +68,7 @@
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
 
+	glasses = /obj/item/clothing/glasses/hud/personnel
 	ears = /obj/item/radio/headset/heads/hop
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
 	uniform_skirt = /obj/item/clothing/under/rank/head_of_personnel/skirt

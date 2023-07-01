@@ -153,12 +153,12 @@
 
 /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
 	name = "synthmeat"
-	icon_state = "meat_old"
+	icon_state = "labmeatraw"
 	desc = "A synthetic slab of meat."
 	foodtype = RAW | MEAT //hurr durr chemicals were harmed in the production of this meat thus its non-vegan.
 
 /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat/MakeGrillable()
-	AddComponent(/datum/component/grillable,/obj/item/reagent_containers/food/snacks/meat/steak/synth, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/synth, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/meat/slab/meatproduct
 	name = "meat product"
@@ -460,7 +460,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet
 	name = "synthsteak"
 	desc = "A synthetic meat steak. It doesn't look quite right, now does it?"
-	icon_state = "meatsteak_old"
+	icon_state = "labmeatcooked"
 	tastes = list("meat" = 4, "cryoxandone" = 1)
 
 //////////////////////////////// MEAT CUTLETS ///////////////////////////////////////////////////////

@@ -42,3 +42,4 @@ _maps/RandomRuins/LavaRuins/lavaland_surface_prisoner_crash.dmm
 #_maps/RandomRuins/LavaRuins/lavaland_surface_swarmer_crash.dmm
 #_maps/RandomRuins/LavaRuins/lavaland_surface_library.dmm
 #_maps/RandomRuins/LavaRuins/lavaland_surface_doorstuck.dmm
+#_maps/RandomRuins/LavaRuins/lavaland_surface_maze.dmm

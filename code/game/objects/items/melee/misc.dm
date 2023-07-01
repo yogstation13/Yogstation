@@ -37,7 +37,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharpness = SHARP_EDGED
 
-/obj/item/melee/synthetic_arm_blade/Initialize()
+/obj/item/melee/synthetic_arm_blade/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 80) //very imprecise
 
@@ -80,7 +80,7 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	materials = list(/datum/material/iron = 1000)
 
-/obj/item/melee/sabre/Initialize()
+/obj/item/melee/sabre/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 30, 95, 5) //fast and effective, but as a sword, it might damage the results.
 
@@ -126,8 +126,8 @@
 		var/speedbase = abs((4 SECONDS) / limbs_to_dismember.len)
 		for(bodypart in limbs_to_dismember)
 			i++
-			addtimer(CALLBACK(src, .proc/suicide_dismember, user, bodypart), speedbase * i)
-	addtimer(CALLBACK(src, .proc/manual_suicide, user), (5 SECONDS) * i)
+			addtimer(CALLBACK(src, PROC_REF(suicide_dismember), user, bodypart), speedbase * i)
+	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), (5 SECONDS) * i)
 	return MANUAL_SUICIDE
 
 /obj/item/melee/sabre/proc/suicide_dismember(mob/living/user, obj/item/bodypart/affecting)
@@ -454,8 +454,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NONE
 	force = 5
-
-	cooldown = 25
+	cooldown = 2.5 SECONDS
 	stamina_damage = 85
 	affect_silicon = TRUE
 	on_sound = 'sound/weapons/contractorbatonextend.ogg'
@@ -498,15 +497,37 @@
 	if(!iscarbon(user))
 		target.LAssailant = null
 	else
-		target.LAssailant = user
+		target.LAssailant = WEAKREF(user)
 	cooldown_check = world.time + cooldown
 
 /obj/item/melee/classic_baton/telescopic/contractor_baton/get_wait_description()
 	return span_danger("The baton is still charging!")
 
 /obj/item/melee/classic_baton/telescopic/contractor_baton/additional_effects_carbon(mob/living/target, mob/living/user)
-	target.Jitter(20)
-	target.stuttering += 20
+	target.set_jitter_if_lower(40 SECONDS)
+	target.set_stutter_if_lower(40 SECONDS)
+
+/obj/item/melee/classic_baton/secconbaton
+	name = "billy club"
+	desc = "A dark wooden club with the Space Queen's crest burned onto its bottom. Its wrist strap will help keep it in your hands and out of crooks'."
+	icon_state = "secconbaton"
+	item_state = "secconbaton"
+	force = 10
+	stamina_damage = 15
+	var/tighten = FALSE
+	actions_types = list(/datum/action/item_action/wrist_strap)
+
+/obj/item/melee/classic_baton/secconbaton/ui_action_click(mob/user)
+	tighten = !tighten
+	if(tighten)
+		user.balloon_alert(user, "Wrist strap tightened.")
+		ADD_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
+	else
+		REMOVE_TRAIT(src, TRAIT_NODROP, WRIST_STRAP_TRAIT)
+		user.balloon_alert(user, "Wrist strap loosened.")
+
+/datum/action/item_action/wrist_strap
+	name = "Adjust Wrist Strap"
 
 /obj/item/melee/supermatter_sword
 	name = "supermatter sword"
@@ -524,7 +545,7 @@
 	var/balanced = 1
 	force_string = "INFINITE"
 
-/obj/item/melee/supermatter_sword/Initialize()
+/obj/item/melee/supermatter_sword/Initialize(mapload)
 	. = ..()
 	shard = new /obj/machinery/power/supermatter_crystal(src)
 	qdel(shard.countdown)
@@ -624,7 +645,7 @@
 	. = ..()
 	if(proximity_flag)
 		var/turf/T = get_turf(target)
-		var/obj/singularity/S = new(T)
+		var/obj/singularity/gravitational/S = new(T)
 		S.consume(target)
 	else
 		return FALSE
@@ -632,7 +653,7 @@
 /obj/item/melee/singularity_sword/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	var/turf/T = get_turf(hit_atom)
-	var/obj/singularity/S = new(T)
+	var/obj/singularity/gravitational/S = new(T)
 	S.consume(hit_atom)
 
 /// Simple whip that does additional damage(8 brute to be exact) to simple animals
@@ -672,7 +693,7 @@
 	var/on = FALSE
 	var/datum/beam/beam
 
-/obj/item/melee/roastingstick/Initialize()
+/obj/item/melee/roastingstick/Initialize(mapload)
 	. = ..()
 	if (!ovens)
 		ovens = typecacheof(list(/obj/singularity, /obj/machinery/power/supermatter_crystal, /obj/structure/bonfire, /obj/structure/destructible/clockwork/massive/ratvar, /obj/structure/destructible/clockwork/massive/celestial_gateway))

@@ -1,10 +1,8 @@
 /datum/job/clown
 	title = "Clown"
 	description = "Entertain the crew, make bad jokes, go on a holy quest to find bananium, HONK!"
-	flag = CLOWN
 	orbit_icon = "face-grin-tears"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -30,8 +28,8 @@
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/grown/banana = 100,
 		/obj/item/reagent_containers/food/snacks/pie/cream = 50,
-		/obj/item/clothing/shoes/clown_shoes/combat = 10,
-		/obj/item/reagent_containers/spray/waterflower/lube = 20 // lube
+		/obj/item/reagent_containers/spray/waterflower/lube = 20, // lube
+		/obj/item/clothing/shoes/clown_shoes/combat = 10
 		///obj/item/reagent_containers/spray/waterflower/superlube = 1 // Superlube, good lord.
 	)
 

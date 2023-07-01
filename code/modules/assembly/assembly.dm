@@ -1,10 +1,3 @@
-#define WIRE_RECEIVE		(1<<0)
-#define WIRE_PULSE			(1<<1)
-#define WIRE_PULSE_SPECIAL	(1<<2)
-#define WIRE_RADIO_RECEIVE	(1<<3)
-#define WIRE_RADIO_PULSE	(1<<4)
-#define ASSEMBLY_BEEP_VOLUME 5
-
 /obj/item/assembly
 	name = "assembly"
 	desc = "A small electronic device that should never exist."
@@ -27,6 +20,10 @@
 	var/datum/wires/connected = null
 
 	var/next_activate = 0 //When we're next allowed to activate - for spam control
+
+/obj/item/assembly/Destroy()
+	holder = null
+	return ..()
 
 /obj/item/assembly/get_part_rating()
 	return 1
@@ -54,16 +51,16 @@
 	return TRUE
 
 
-//Called when another assembly acts on this one, var/radio will determine where it came from for wire calcs
+//Called when another assembly acts on this one, radio will determine where it came from for wire calcs
 /obj/item/assembly/proc/pulsed(radio = FALSE)
 	if(wire_type & WIRE_RECEIVE)
-		INVOKE_ASYNC(src, .proc/activate)
+		INVOKE_ASYNC(src, PROC_REF(activate))
 	if(radio && (wire_type & WIRE_RADIO_RECEIVE))
-		INVOKE_ASYNC(src, .proc/activate)
+		INVOKE_ASYNC(src, PROC_REF(activate))
 	return TRUE
 
 
-//Called when this device attempts to act on another device, var/radio determines if it was sent via radio or direct
+//Called when this device attempts to act on another device, radio determines if it was sent via radio or direct
 /obj/item/assembly/proc/pulse(radio = FALSE)
 	if(connected && wire_type)
 		connected.pulse_assembly(src)

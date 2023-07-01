@@ -152,30 +152,31 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		return
 
 	var/datum/language/oldlang = signal.language
+	var/oldlangbits
 	if(oldlang == /datum/language/common)
-		oldlang = HUMAN
+		oldlangbits = HUMAN
 	else if(oldlang == /datum/language/monkey)
-		oldlang = MONKEY
+		oldlangbits = MONKEY
 	else if(oldlang == /datum/language/machine)
-		oldlang = ROBOT
+		oldlangbits = ROBOT
 	else if(oldlang == /datum/language/polysmorph)
-		oldlang = POLYSMORPH
+		oldlangbits = POLYSMORPH
 	else if(oldlang == /datum/language/draconic)
-		oldlang = DRACONIC
+		oldlangbits = DRACONIC
 	else if(oldlang == /datum/language/beachbum)
-		oldlang = BEACHTONGUE
+		oldlangbits = BEACHTONGUE
 	else if(oldlang == /datum/language/sylvan)
-		oldlang = SYLVAN
+		oldlangbits = SYLVAN
 	else if(oldlang == /datum/language/etherean)
-		oldlang = ETHEREAN
+		oldlangbits = ETHEREAN
 	else if(oldlang == /datum/language/bonespeak)
-		oldlang = BONE
+		oldlangbits = BONE
 	else if(oldlang == /datum/language/mothian)
-		oldlang = MOTH
+		oldlangbits = MOTH
 	else if(oldlang == /datum/language/felinid) 
-		oldlang  = CAT
+		oldlangbits  = CAT
 	else if(oldlang == /datum/language/english) 
-		oldlang  = ENGLISH
+		oldlangbits  = ENGLISH
 	// Signal data
 
 	var/datum/n_struct/signal/script_signal = new(list(
@@ -187,7 +188,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 		"job" = signal.data["job"],
 		"pass" = !(signal.data["reject"]),
 		"filters" = signal.data["spans"],
-		"language" = oldlang,
+		"language" = oldlangbits,
 		"say" = signal.virt.verb_say,
 		"ask" = signal.virt.verb_ask,
 		"yell" = signal.virt.verb_yell,
@@ -229,7 +230,7 @@ GLOBAL_LIST_INIT(allowed_translations,list(/datum/language/common,/datum/languag
 	signal.virt.verb_exclaim	= script_signal.get_clean_property("exclaim")
 	var/newlang = LangBit2Datum(script_signal.get_clean_property("language"))
 	if(newlang != oldlang)// makes sure that we only clean out unallowed languages when a translation is taking place otherwise we run an unnecessary proc to filter newlang on foreign untranslated languages.
-		if(!LAZYFIND(GLOB.allowed_translations, oldlang)) // cleans out any unallowed translations by making sure the new language is on the allowed translation list. Tcomms powergaming is dead! - Hopek
+		if(!(LAZYFIND(GLOB.allowed_translations, oldlang))) // cleans out any unallowed translations by making sure the new language is on the allowed translation list. Tcomms powergaming is dead! - Hopek
 			newlang = oldlang
 	signal.language = newlang || oldlang
 	signal.data["language"] = newlang || oldlang

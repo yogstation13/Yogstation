@@ -4,6 +4,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/talking/codex_gigas = 2,
 		/obj/item/clothing/under/syndicate/tacticool = 2,
 		/obj/item/toy/sword = 2,
+		/obj/item/twohanded/vxtvulhammer/toy = 2,
 		/obj/item/toy/gun = 2,
 		/obj/item/gun/ballistic/shotgun/toy/crossbow = 2,
 		/obj/item/storage/box/fakesyndiesuit = 2,
@@ -65,7 +66,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 /obj/machinery/computer/arcade/proc/Reset()
 	return
 
-/obj/machinery/computer/arcade/Initialize()
+/obj/machinery/computer/arcade/Initialize(mapload)
 	. = ..()
 	// If it's a generic arcade machine, pick a random arcade
 	// circuit board for it and make the new machine
@@ -78,7 +79,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		var/obj/item/circuitboard/CB = new thegame()
 		var/atom/newgame = new CB.build_path(loc, CB)
 		newgame.dir = dir
-		
+
 		return INITIALIZE_HINT_QDEL
 	Reset()
 
@@ -475,7 +476,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				if(obj_flags & EMAGGED)
 					var/mob/living/M = user
 					M.adjust_fire_stacks(5)
-					M.IgniteMob() //flew into a star, so you're on fire
+					M.ignite_mob() //flew into a star, so you're on fire
 					to_chat(user, span_userdanger("You feel an immense wave of heat emanate from the arcade machine. Your skin bursts into flames."))
 
 		if(obj_flags & EMAGGED)
@@ -548,7 +549,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 					if(ORION_TRAIL_RAIDERS)
 						if(prob(50))
 							to_chat(usr, span_userdanger("You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?"))
-							M.hallucination += 30
+							M.adjust_hallucinations(30 SECONDS)
 						else
 							to_chat(usr, span_userdanger("Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there..."))
 							M.take_bodypart_damage(30)
@@ -1038,7 +1039,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 
 //Add Random/Specific crewmember
-/obj/machinery/computer/arcade/orion_trail/proc/add_crewmember(var/specific = "")
+/obj/machinery/computer/arcade/orion_trail/proc/add_crewmember(specific = "")
 	var/newcrew = ""
 	if(specific)
 		newcrew = specific
@@ -1054,7 +1055,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 
 //Remove Random/Specific crewmember
-/obj/machinery/computer/arcade/orion_trail/proc/remove_crewmember(var/specific = "", var/dont_remove = "")
+/obj/machinery/computer/arcade/orion_trail/proc/remove_crewmember(specific = "", dont_remove = "")
 	var/list/safe2remove = settlers
 	var/removed = ""
 	if(dont_remove)

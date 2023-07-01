@@ -32,7 +32,7 @@
 	///Stores the total amount of moles needed for the current recipe
 	var/total_recipe_moles = 0
 
-/obj/machinery/atmospherics/components/binary/crystallizer/Initialize()
+/obj/machinery/atmospherics/components/binary/crystallizer/Initialize(mapload)
 	. = ..()
 	internal = new
 
@@ -122,12 +122,6 @@
 /obj/machinery/atmospherics/components/binary/crystallizer/proc/inject_gases()
 	var/datum/gas_mixture/contents = airs[2]
 	for(var/gas_type in selected_recipe.requirements)
-		if (!contents.get_moles(gas_type))
-			continue
-
-		if (internal.get_moles(gas_type) >= selected_recipe.requirements[gas_type] * 2)
-			continue
-
 		var/datum/gas_mixture/filtered = new
 		filtered.set_temperature(contents.return_temperature())
 		var/filtered_amount = min(gas_input, contents.get_moles(gas_type))

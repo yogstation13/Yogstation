@@ -8,7 +8,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/list/mob/living/carbon/ghosts = list()
 
-/obj/structure/ghostbeacon/Initialize()
+/obj/structure/ghostbeacon/Initialize(mapload)
 	. = ..()
 	GLOB.poi_list |= src
 	START_PROCESSING(SSprocessing, src)
@@ -51,8 +51,7 @@
 		outfit = /datum/outfit/ghost/plasmaman
 	H.equipOutfit(outfit)
 	if(isplasmaman(H))
-		H.internal = H.get_item_for_held_index(2)
-		H.update_internals_hud_icon(1)
+		H.open_internals(H.get_item_for_held_index(2))
 	H.regenerate_icons()
 	ghosts |= H
 	H.visible_message(span_notice("[H] decends into this plane"), span_notice("You decend into the living plane."))

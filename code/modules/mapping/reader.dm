@@ -280,12 +280,15 @@
 			SSmapping.build_area_turfs(z_index)
 
 	if(!no_changeturf)
-		for(var/turf/T as anything in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]), locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
+		var/list/turfs = block(
+			locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
+			locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ]))
+		for(var/turf/T as anything in turfs)
 			//we do this after we load everything in. if we don't, we'll have weird atmos bugs regarding atmos adjacent turfs
 			T.AfterChange(CHANGETURF_IGNORE_AIR)
 
-	//if(expanded_x || expanded_y)
-	//	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPANDED_WORLD_BOUNDS, expanded_x, expanded_y)
+	if(expanded_x || expanded_y)
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPANDED_WORLD_BOUNDS, expanded_x, expanded_y)
 
 	#ifdef TESTING
 	if(turfsSkipped)
@@ -328,8 +331,10 @@
 	var/y_skip_above = min(world.maxy - y_relative_to_absolute, y_upper, relative_y)
 	// How many lines to skip because they'd be above the y cuttoff line
 	var/y_starting_skip = relative_y - y_skip_above
-	highest_y += y_starting_skip
-
+	if (y_skip_above == y_upper)
+		highest_y = y_upper
+	else
+		highest_y += y_starting_skip
 
 	// Y is the LOWEST it will ever be here, so we can easily set a threshold for how low to go
 	var/line_count = length(first_column.gridLines)
@@ -466,7 +471,10 @@
 		var/y_skip_above = min(world.maxy - y_relative_to_absolute, y_upper, relative_y)
 		// How many lines to skip because they'd be above the y cuttoff line
 		var/y_starting_skip = relative_y - y_skip_above
-		ycrd += y_starting_skip
+		if (y_skip_above == y_upper)
+			ycrd = y_upper
+		else
+			ycrd += y_starting_skip
 
 		// Y is the LOWEST it will ever be here, so we can easily set a threshold for how low to go
 		var/line_count = length(gset.gridLines)
@@ -781,11 +789,11 @@ GLOBAL_LIST_EMPTY(map_model_default)
 	//The next part of the code assumes there's ALWAYS an /area AND a /turf on a given tile
 	//first instance the /area and remove it from the members list
 	index = members.len
+	var/area/old_area
 	if(members[index] != /area/template_noop)
-		var/area/area_instance
 		if(members_attributes[index] != default_list)
 			world.preloader_setup(members_attributes[index], members[index])//preloader for assigning  set variables on atom creation
-		area_instance = loaded_areas[members[index]]
+		var/area/area_instance = loaded_areas[members[index]]
 		if(!area_instance)
 			var/area_type = members[index]
 			// If this parsed map doesn't have that area already, we check the global cache
@@ -798,7 +806,7 @@ GLOBAL_LIST_EMPTY(map_model_default)
 			loaded_areas[area_type] = area_instance
 
 		if(!new_z)
-			var/area/old_area = crds.loc
+			old_area = crds.loc
 			old_area.turfs_to_uncontain += crds
 			area_instance.contained_turfs.Add(crds)
 		area_instance.contents.Add(crds)
@@ -826,6 +834,9 @@ GLOBAL_LIST_EMPTY(map_model_default)
 
 		if(GLOB.use_preloader && instance)//second preloader pass, for those atoms that don't ..() in New()
 			world.preloader_load(instance)
+	// If this isn't template work, we didn't change our turf and we changed area, then we've gotta handle area lighting transfer
+	else if(!no_changeturf && old_area)
+		crds.change_area(old_area, crds.loc)
 	MAPLOADING_CHECK_TICK
 
 	//finally instance all remainings objects/mobs

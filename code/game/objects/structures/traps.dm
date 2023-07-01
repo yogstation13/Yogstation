@@ -137,6 +137,6 @@
 	density = TRUE
 	time_between_triggers = 2 MINUTES //Exists for 2 minutes
 
-/obj/structure/trap/ward/Initialize()
+/obj/structure/trap/ward/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, time_between_triggers)

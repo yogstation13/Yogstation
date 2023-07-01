@@ -709,6 +709,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 1
 	},
+/obj/structure/sign/delamination_counter{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "te" = (

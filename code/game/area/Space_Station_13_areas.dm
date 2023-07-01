@@ -45,8 +45,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/testroom
 	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
 	name = "Test Room"
-	icon_state = "storage"
+	icon_state = "test_room"
 
 //EXTRA
 
@@ -234,7 +235,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/maintenance/disposal/incinerator
 	name = "Incinerator"
-	icon_state = "disposal"
+	icon_state = "incinerator"
 
 
 //Hallway
@@ -372,22 +373,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Cryopod Room"
 	safe = TRUE
 	icon_state = "cryopod"
-
-//Minsky Specific Areas
-
-/area/crew_quarters/dorms/a
-	name = "Dormitories"
-	icon_state = "Sleep"
-	safe = TRUE
-	minimap_color = "#b0e1ff"
-
-/area/crew_quarters/dorms/b
-	name = "Dormitories"
-	icon_state = "Sleep"
-	safe = TRUE
-	minimap_color = "#b0e1ff"
-
-//End Minsky Specific Areas
 
 /area/crew_quarters/toilet
 	name = "Dormitory Toilets"
@@ -550,24 +535,37 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	flags_1 = NONE
 	minimap_color = "#85ff02"
 
-/area/engine/atmos_distro //yogstation specific
+/area/engine/atmos/distro
 	name = "Atmospherics Distribution"
-	icon_state = "atmos"
-	flags_1 = NONE
-	minimap_color = "#85ff02"
+	icon_state = "atmos_distro"
 
-/area/engine/atmospherics_engine
-	name = "Atmospherics Engine"
-	icon_state = "atmos_engine"
-	minimap_color = "#85ff02"
+/area/engine/atmos/project
+	name = "\improper Atmospherics Project Room"
+	icon_state = "atmos_project"
 
-/area/engine/engine_room //donut station specific
-	name = "Engine Room"
+/area/engine/atmos/engine
+	name = "\improper Atmospherics Engine"
 	icon_state = "atmos_engine"
 
-/area/engine/engine_room/external
-	name = "Supermatter External Access"
-	icon_state = "engine_foyer"
+/area/engine/atmos/pumproom
+	name = "\improper Atmospherics Pumping Room"
+	icon_state = "atmos_pump_room"
+
+/area/engine/atmos/mix
+	name = "\improper Atmospherics Mixing Room"
+	icon_state = "atmos_mix"
+
+/area/engine/atmos/storage
+	name = "\improper Atmospherics Storage Room"
+	icon_state = "atmos_storage"
+
+/area/engine/atmos/foyer
+	name = "\improper Atmospherics Foyer"
+	icon_state = "atmos_foyer"
+
+/area/engine/atmos/hfr
+	name = "\improper Atmospherics HFR Room"
+	icon_state = "atmos_hfr"
 
 /area/engine/supermatter
 	name = "Supermatter Engine"
@@ -691,47 +689,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambientsounds = ENGINEERING
 	minimap_color = "#6b6b6b"
 	airlock_wires = /datum/wires/airlock/command
-
-//Minsky Specific Teleporters
-
-/area/teleporter/hub
-	clockwork_warp_allowed = FALSE
-	clockwork_warp_fail = "For safety reasons, warping here is disallowed; The quantum flux generated here could throw off your warp's destination and possibly throw you into deep space."
-	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg', 'sound/ambience/ambitech.ogg',\
-											'sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg', 'sound/ambience/ambimystery.ogg')
-
-/area/teleporter/hub/bridge
-	name = "Bridge Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/engineering
-	name = "Engineering Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/medical
-	name = "Medical Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/science
-	name = "R&D Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/security
-	name = "Security Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-/area/teleporter/hub/evac
-	name = "Evac Quantum Hub"
-	icon_state = "teleporter"
-	minimap_color = "#6b6b6b"
-
-
-//End Minsky specific teleporters
 
 /area/gateway
 	name = "Gateway"

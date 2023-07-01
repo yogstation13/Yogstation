@@ -189,7 +189,7 @@ SUBSYSTEM_DEF(Yogs)
   * Arguments:
   * * account - The account that you're getting the string from. IE ACCOUNT_CIV or ACCOUNT_ENG
   */
-/datum/controller/subsystem/Yogs/proc/getDepartmentFromAccount(var/account)
+/datum/controller/subsystem/Yogs/proc/getDepartmentFromAccount(account)
 	switch(account)
 		if(ACCOUNT_CIV)
 			return "Civilian"
@@ -206,4 +206,4 @@ SUBSYSTEM_DEF(Yogs)
 		if(ACCOUNT_SEC)
 			return "Security"
 		else
-			return "N/A report this to coders, see .proc/getDepartmentFromAccount"
+			return "N/A report this to coders, see PROC_REF(getDepartmentFromAccount)"

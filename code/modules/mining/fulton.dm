@@ -114,7 +114,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			if(ishuman(A))
 				var/mob/living/carbon/human/L = A
 				L.SetUnconscious(0)
-				L.drowsyness = 0
+				L.remove_status_effect(/datum/status_effect/drowsiness)
 				L.SetSleeping(0)
 			sleep(3 SECONDS)
 			var/list/flooring_near_beacon = list()
@@ -167,7 +167,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	density = FALSE
 	var/beacon_network = "station"
 
-/obj/structure/extraction_point/Initialize()
+/obj/structure/extraction_point/Initialize(mapload)
 	. = ..()
 	name += " ([rand(100,999)]) ([get_area_name(src, TRUE)])"
 	GLOB.total_extraction_beacons += src
@@ -186,7 +186,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 		var/mob/living/L = A
 		if(L.stat != DEAD)
 			return 1
-	for(var/thing in A.GetAllContents())
+	for(var/thing in A.get_all_contents())
 		if(isliving(A))
 			var/mob/living/L = A
 			if(L.stat != DEAD)

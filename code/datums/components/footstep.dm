@@ -8,7 +8,7 @@
 		return COMPONENT_INCOMPATIBLE
 	volume = volume_
 	e_range = e_range_
-	RegisterSignals(parent, list(COMSIG_MOVABLE_MOVED), .proc/play_footstep)
+	RegisterSignals(parent, list(COMSIG_MOVABLE_MOVED), PROC_REF(play_footstep))
 
 /datum/component/footstep/proc/play_footstep()
 	var/turf/open/T = get_turf(parent)
@@ -88,6 +88,9 @@
 			var/mob/living/carbon/human/H = LM
 			var/feetCover = (H.wear_suit && (H.wear_suit.body_parts_covered & FEET)) || (H.w_uniform && (H.w_uniform.body_parts_covered & FEET))
 			
+			if(H.dna.species.special_walk_sounds)
+				playsound(T, pick(H.dna.species.special_walk_sounds), 30, TRUE)
+
 			if((H.shoes && !istype(H.shoes, /obj/item/clothing/shoes/xeno_wraps)) || feetCover)
 				playsound(T, pick(GLOB.footstep[T.footstep][1]),
 					GLOB.footstep[T.footstep][2] * v,
@@ -96,7 +99,7 @@
 			
 			else
 				if(H.dna.species.special_step_sounds)
-					playsound(T, pick(H.dna.species.special_step_sounds), 50, TRUE)
+					playsound(T, pick(H.dna.species.special_step_sounds), H.dna.species.special_step_volume, TRUE)
 				else
 					playsound(T, pick(GLOB.barefootstep[T.barefootstep][1]),
 						GLOB.barefootstep[T.barefootstep][2] * v,

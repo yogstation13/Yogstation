@@ -11,7 +11,7 @@
 	light_on = FALSE
 	var/saber_color = null
 
-/obj/item/melee/transforming/energy/Initialize()
+/obj/item/melee/transforming/energy/Initialize(mapload)
 	. = ..()
 	if(active)
 		START_PROCESSING(SSobj, src)
@@ -89,7 +89,7 @@
 
 /obj/item/melee/transforming/energy/sword
 	name = "energy sword"
-	desc = "May the force be within you."
+	desc = "A powerful energy-based hardlight sword that is easily stored when not in use. 'May the force be within you' is carved on the side of the handle."
 	icon_state = "sword0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -105,6 +105,19 @@
 	block_chance = 50
 	saber_color = "green"
 
+/obj/item/melee/transforming/energy/sword/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/melee/transforming/energy/sword))
+		if(HAS_TRAIT(I, TRAIT_NODROP) || HAS_TRAIT(src, TRAIT_NODROP))
+			to_chat(user, span_warning("\the [HAS_TRAIT(src, TRAIT_NODROP) ? src : I] is stuck to your hand, you can't attach it to \the [HAS_TRAIT(src, TRAIT_NODROP) ? I : src]!"))
+			return
+		else
+			var/obj/item/twohanded/dualsaber/makeshift/newSaber = new /obj/item/twohanded/dualsaber/makeshift(user.loc)
+			to_chat(user, span_notice("You crudely attach both [src]s together in order to make a [newSaber]."))
+			qdel(I)
+			qdel(src)
+			return
+	return ..()
+
 /obj/item/melee/transforming/energy/sword/transform_weapon(mob/living/user, supress_message_text)
 	. = ..()
 	if(. && active && saber_color)
@@ -119,7 +132,7 @@
 	saber_color = "red"
 	var/hitcost = 50
 
-/obj/item/melee/transforming/energy/sword/cyborg/attack(mob/M, var/mob/living/silicon/robot/R)
+/obj/item/melee/transforming/energy/sword/cyborg/attack(mob/M, mob/living/silicon/robot/R)
 	if(R.cell)
 		var/obj/item/stock_parts/cell/C = R.cell
 		if(active && !(C.use(hitcost)))
@@ -223,11 +236,15 @@
 	sharpness = SHARP_EDGED
 
 //Most of the other special functions are handled in their own files. aka special snowflake code so kewl
-/obj/item/melee/transforming/energy/blade/Initialize()
+/obj/item/melee/transforming/energy/blade/Initialize(mapload)
 	. = ..()
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+
+/obj/item/melee/transforming/energy/blade/Destroy()
+	QDEL_NULL(spark_system)
+	return ..()
 
 /obj/item/melee/transforming/energy/blade/transform_weapon(mob/living/user, supress_message_text)
 	return

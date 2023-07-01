@@ -7,8 +7,9 @@
 	var/move_dir //The direction of movement
 	var/list/__dirs //The directions to the side of the wave, stored for easy looping
 	var/can_contaminate
+	var/collectable_radiation = FALSE //If this radiation is collectable by a rad collector, passed from creating radiation pulse
 
-/datum/radiation_wave/New(atom/_source, dir, _intensity=0, _range_modifier=RAD_DISTANCE_COEFFICIENT, _can_contaminate=TRUE)
+/datum/radiation_wave/New(atom/_source, dir, _intensity=0, _range_modifier=RAD_DISTANCE_COEFFICIENT, _can_contaminate=TRUE, _collectable_radiation=FALSE)
 
 	source = "[_source] \[[REF(_source)]\]"
 
@@ -22,6 +23,7 @@
 	intensity = _intensity
 	range_modifier = _range_modifier
 	can_contaminate = _can_contaminate
+	collectable_radiation = _collectable_radiation
 
 	START_PROCESSING(SSradiation, src)
 
@@ -99,7 +101,7 @@
 		var/atom/thing = atoms[k]
 		if(!thing)
 			continue
-		thing.rad_act(strength)
+		thing.rad_act(strength, collectable_radiation)
 
 		// This list should only be for types which don't get contaminated but you want to look in their contents
 		// If you don't want to look in their contents and you don't want to rad_act them:

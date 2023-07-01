@@ -13,6 +13,11 @@
 
 /obj/item/organ/heart/nanite/on_life()
 	. = ..()
+	if(owner)//makes nanites tick on every life tick, only about 33% speed increase
+		var/datum/component/nan = owner.GetExactComponent(/datum/component/nanites)
+		if(nan)
+			nan.process()
+
 	if(SEND_SIGNAL(owner, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(owner, COMSIG_NANITE_ADJUST_VOLUME, nanite_boost)
 	else

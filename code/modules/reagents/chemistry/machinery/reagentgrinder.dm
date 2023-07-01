@@ -28,12 +28,12 @@
 /obj/machinery/reagentgrinder/kitchen //starts with a mixing bowl inside instead
 	container = /obj/item/reagent_containers/glass/mixbowl
 
-/obj/machinery/reagentgrinder/Initialize()
+/obj/machinery/reagentgrinder/Initialize(mapload)
 	. = ..()
 	holdingitems = list()
 	container = new container(src)
 
-/obj/machinery/reagentgrinder/constructed/Initialize()
+/obj/machinery/reagentgrinder/constructed/Initialize(mapload)
 	. = ..()
 	holdingitems = list()
 	QDEL_NULL(container)
@@ -242,7 +242,7 @@
 	var/offset = prob(50) ? -2 : 2
 	var/old_pixel_x = pixel_x
 	animate(src, pixel_x = pixel_x + offset, time = 0.02 SECONDS, loop = -1) //start shaking
-	addtimer(CALLBACK(src, .proc/stop_shaking, old_pixel_x), duration)
+	addtimer(CALLBACK(src, PROC_REF(stop_shaking), old_pixel_x), duration)
 
 /obj/machinery/reagentgrinder/proc/stop_shaking(old_px)
 	cut_overlays()
@@ -257,7 +257,7 @@
 			playsound(src, 'sound/machines/blender.ogg', 50, 1)
 		else
 			playsound(src, 'sound/machines/juicer.ogg', 20, 1)
-	addtimer(CALLBACK(src, .proc/stop_operating), time / speed)
+	addtimer(CALLBACK(src, PROC_REF(stop_operating)), time / speed)
 
 /obj/machinery/reagentgrinder/proc/stop_operating()
 	operating = FALSE

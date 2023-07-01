@@ -32,7 +32,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/list/mirage_whitelist = list()
 
-/obj/structure/closet/bluespace/internal/Initialize()
+/obj/structure/closet/bluespace/internal/Initialize(mapload)
 	if(SSbluespace_locker.internal_locker && SSbluespace_locker.internal_locker != src)
 		return INITIALIZE_HINT_QDEL
 	SSbluespace_locker.internal_locker = src
@@ -141,7 +141,7 @@
 		T.turf_whitelist = mirage_whitelist
 		T.update_mirage()
 
-/obj/structure/closet/bluespace/external/Initialize()
+/obj/structure/closet/bluespace/external/Initialize(mapload)
 	if(SSbluespace_locker.external_locker && SSbluespace_locker.external_locker != src)
 		return INITIALIZE_HINT_QDEL
 	SSbluespace_locker.external_locker = src
@@ -266,7 +266,7 @@
 				F.pixel_y -= py
 			add_overlay(fullbrights)
 			if(add_reset_timer)
-				reset_timer_id = addtimer(CALLBACK(src, /turf/open/space/bluespace_locker_mirage.proc/reset_to_self), world.tick_lag * 4, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE | TIMER_STOPPABLE)
+				reset_timer_id = addtimer(CALLBACK(src, TYPE_PROC_REF(/turf/open/space/bluespace_locker_mirage, reset_to_self)), world.tick_lag * 4, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE | TIMER_STOPPABLE)
 			else if(reset_timer_id)
 				deltimer(reset_timer_id)
 			pixel_x = px + dx*32

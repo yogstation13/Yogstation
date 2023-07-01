@@ -2,11 +2,9 @@
 	title = "Detective"
 	description = "Investigate crimes, gather evidence, perform interrogations, \
 		look badass, smoke cigarettes."
-	flag = DETECTIVE
 	orbit_icon = "user-secret"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -35,27 +33,14 @@
 
 	mail_goodies = list(
 		///obj/item/storage/fancy/cigarettes = 25,
-		/obj/item/ammo_box/c38 = 25,
+		/obj/item/ammo_box/c38/rubber = 25,
+		/obj/item/ammo_box/c38 = 5,
 		///obj/item/ammo_box/c38/dumdum = 5,
-		/obj/item/ammo_box/c38/hotshot = 5,
-		/obj/item/ammo_box/c38/iceblox = 5,
 		///obj/item/ammo_box/c38/match = 5,
-		/obj/item/ammo_box/tra32 = 5,
 		///obj/item/storage/belt/holster/detective/full = 1
 	)
 
-	changed_maps = list("EclipseStation", "OmegaStation")
-
 	smells_like = "whisky-soaked despair"
-
-/datum/job/detective/proc/EclipseStationChanges()
-	total_positions = 2
-	spawn_positions = 2
-
-/datum/job/detective/proc/OmegaStationChanges()
-	added_access = list()
-	base_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS)
-	supervisors = "the captain"
 
 /datum/outfit/job/detective
 	name = "Detective"

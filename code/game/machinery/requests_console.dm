@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		else
 			icon_state = "req_comp0"
 
-/obj/machinery/requests_console/Initialize()
+/obj/machinery/requests_console/Initialize(mapload)
 	. = ..()
 	name = "\improper [department] requests console"
 	GLOB.allConsoles += src
@@ -289,7 +289,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 				Radio.set_frequency(radio_freq)
 				Radio.talk_into(src,"[emergency] emergency in [department]!!",radio_freq)
 				update_icon()
-				addtimer(CALLBACK(src, .proc/clear_emergency), 5 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(clear_emergency)), 5 MINUTES)
 
 	if(href_list["send"] && message && to_department && priority)
 

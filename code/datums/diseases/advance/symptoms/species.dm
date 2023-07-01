@@ -24,6 +24,7 @@
 	transmittable = 3
 	level = 5
 	severity = 0
+	process_flags = ORGANIC | SYNTHETIC //i don't think this needs to be here, but just in case
 
 /datum/symptom/inorganic_adaptation/Start(datum/disease/advance/A)
 	. = ..()

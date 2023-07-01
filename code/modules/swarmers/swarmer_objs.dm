@@ -74,7 +74,7 @@
 		return FALSE
 	var/mob/living/simple_animal/hostile/swarmer/newswarmer = new /mob/living/simple_animal/hostile/swarmer(src)
 	newswarmer.key = user.key
-	addtimer(CALLBACK(src, .proc/release_swarmer, newswarmer), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(release_swarmer), newswarmer), 30 SECONDS)
 	to_chat(newswarmer, "<b>SWARMER CONSTRUCTION INITIALIZED.  TIME TO COMPLETION: 30 SECONDS</b>")
 	processing_swarmer = TRUE
 	return TRUE
@@ -142,7 +142,7 @@
 	icon_state = "disintegrate"
 	duration = 10
 
-/obj/effect/temp_visual/swarmer/disintegration/Initialize()
+/obj/effect/temp_visual/swarmer/disintegration/Initialize(mapload)
 	. = ..()
 	playsound(loc, "sparks", 100, TRUE)
 

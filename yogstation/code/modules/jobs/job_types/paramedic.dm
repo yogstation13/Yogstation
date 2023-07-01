@@ -1,10 +1,8 @@
 /datum/job/paramedic
 	title = "Paramedic"
 	description = "Constantly reminder the crew about their suit sensor. Come to their aid when they die."
-	flag = PARAMEDIC
 	orbit_icon = "truck-medical"
 	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
@@ -25,8 +23,6 @@
 		/datum/job_department/medical,
 	)
 
-	changed_maps = list("OmegaStation", "EclipseStation")
-
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen = 10,//these are already super plentiful
 		/obj/item/reagent_containers/autoinjector/medipen/atropine = 15,
@@ -36,15 +32,6 @@
 	)
 
 	smells_like = "pre-packaged oxygen"
-
-/datum/job/paramedic/proc/OmegaStationChanges()
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the captain and the head of personnel"
-
-/datum/job/paramedic/proc/EclipseStationChanges()
-	total_positions = 4
-	spawn_positions = 2
 
 /datum/outfit/job/paramedic
 	name = "Paramedic"

@@ -509,3 +509,11 @@
 	suffix = "lavaland_surface_forgottenkitchen.dmm"
 	allow_duplicates = FALSE
 	cost = 6
+
+/datum/map_template/ruin/lavaland/forgottenkitchen
+	name = "Lavaland Corn Maze"
+	id = "cornmaze"
+	description = "A maze filled with chasms. Don't slip!"
+	suffix = "lavaland_surface_maze.dmm"
+	allow_duplicates = FALSE
+	cost = 6

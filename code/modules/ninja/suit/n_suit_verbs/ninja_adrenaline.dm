@@ -10,7 +10,7 @@
 		H.SetImmobilized(0)
 		H.SetParalyzed(0)
 		H.adjustStaminaLoss(-75)
-		H.stuttering = 0
+		H.remove_status_effect(/datum/status_effect/speech/stutter)
 		H.lying = 0
 		H.update_mobility()
 		H.reagents.add_reagent(/datum/reagent/medicine/stimulants, 5)
@@ -18,7 +18,7 @@
 		a_boost--
 		to_chat(H, span_notice("There are <B>[a_boost]</B> adrenaline boosts remaining."))
 		s_coold = 6
-		addtimer(CALLBACK(src, .proc/ninjaboost_after), 70)
+		addtimer(CALLBACK(src, PROC_REF(ninjaboost_after)), 70)
 
 /obj/item/clothing/suit/space/space_ninja/proc/ninjaboost_after()
 	var/mob/living/carbon/human/H = affecting

@@ -1,223 +1,235 @@
 /obj/machinery/paystand
 	name = "unregistered pay stand"
-	desc = "See title."
+	desc = "an unregistered pay stand"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "card_scanner"
-	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/circuitboard/machine/paystand
-	var/locked = FALSE
-	var/obj/item/card/id/my_card
-	var/obj/item/assembly/signaler/signaler //attached signaler, let people attach signalers that get activated if the user's transaction limit is achieved.
-	var/signaler_threshold = 0 //signaler threshold amount
-	var/amount_deposited = 0 //keep track of the amount deposited over time so you can pay multiple times to reach the signaler threshold
-	var/invoice = "" //keep track of items in the paystand
-	var/paynum = 0 //keep track of receipt number
-	var/price = 0 //keep track of invoice price
+	density = TRUE
+	anchored = TRUE
+	/// ID linked to the holopay
+	var/obj/item/card/id/linked_card = null
+	var/shop_logo = "donate"
+	/// Replaces the "pay whatever" functionality with a set amount when non-zero.
+	var/force_fee = 0
+	var/bolt_locked = FALSE
 
-/obj/machinery/paystand/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/card/id))
-		if(!my_card)
-			var/obj/item/card/id/assistant_mains_need_to_die = W
-			if(assistant_mains_need_to_die.registered_account)
-				var/msg = stripped_input(user, "Name of pay stand:", "Paystand Naming", "[user]'s Awesome Paystand")
-				if(!msg)
-					return
-				name = msg
-				message_admins("The paystand at X:[src.x] Y:[src.y] Z:[src.z][ADMIN_COORDJMP(src)] was named [msg] by [ADMIN_LOOKUPFLW(user)]")
-				desc = "Owned by [assistant_mains_need_to_die.registered_account.account_holder], pays directly into [user.p_their()] account."
-				my_card = assistant_mains_need_to_die
-				to_chat(user, "You link the stand to your account.")
-				return
-		if(W == my_card)
-			var/whichact = input(user, "Choose an action", src.name) as null|anything in list("Toggle Bolts","Add item to invoice","Clear invoice","View invoice","View stats","Cancel")
-			switch(whichact)
-				if("Toggle Bolts")
-					locked = !locked
-					to_chat(user, span_notice("You [src.locked ? "lock" : "unlock"] the bolts on the paystand."))
-					return
-				if("Add item to invoice")
-					var/addAnotherItem = TRUE
-					var/askAdd = ""
-					while(addAnotherItem)
-						var/msg = stripped_input(user, "Item?","Paystand - Add Item","Banana")
-						var/cost = FLOOR(input(user, "[msg] cost?", "Paystand - Add Item", 5) as num, 1)
-						if (cost < 1)
-							if (cost < 0)
-								to_chat(user, span_notice("Invalid cost! Item discarded."))
-								addAnotherItem = FALSE
-							invoice = invoice + "<br>[msg]\tFREE!"
-							to_chat(user,span_notice("Added [msg] for free to the invoice! Invoice Total: [price] credits!"))
-							playsound(src, 'sound/machines/beep.ogg', 100)
-							visible_message("[icon2html(src,world)][src] displays, " + span_notice("\"[msg] - <i>FREE</i>\""))
-							askAdd = input(user, "Add another item?", src.name) as null|anything in list("Yes","No")
-							if(!askAdd || askAdd == "No")
-								addAnotherItem = FALSE
-						else
-							price = price + cost
-							invoice = invoice + "<br>[msg]\t[cost] credits"
-							to_chat(user,span_notice("Added [msg] for [cost] credits to the invoice! Invoice Total: [price] credits!"))
-							playsound(src, 'sound/machines/beep.ogg', 100)
-							visible_message("[icon2html(src,world)][src] displays, " + span_notice("\"[msg] - <i>[cost] credits</i>\""))
-							askAdd = input(user, "Add another item?", src.name) as null|anything in list("Yes","No")
-							if(!askAdd || askAdd == "No")
-								addAnotherItem = FALSE
-					return //this return shouldn't be needed, but as a failsafe
-				if("Clear invoice")
-					invoice = ""
-					price = 0
-					to_chat(user,span_warning("Invoice cleared!"))
-					playsound(src, 'sound/machines/buzz-sigh.ogg', 100)
-					visible_message("[icon2html(src,world)][src] displays, " + span_warning("Invoice cleared."))
-					return
-				if("View invoice")
-					to_chat(user,span_notice("Current invoice:[invoice]<br>Total Cost: [price] credits."))
-					return
-				if("View stats")
-					to_chat(user,span_notice("Transactions Processed: [paynum]<br>Total earned: [amount_deposited]"))
-					return
-				if("Cancel")
-					return
-		var/obj/item/card/id/vbucks = W
-		if(vbucks.registered_account)
-			if(!my_card)
-				to_chat(user, span_warning("ERROR: No bank account assigned to pay stand."))
-				return
-			if(invoice == "")
-				var/momsdebitcard = input(user, "How much would you like to deposit?", "Money Deposit") as null|num
-				if(momsdebitcard < 1)
-					to_chat(user, span_warning("ERROR: Invalid amount designated."))
-					return
-				if(vbucks.registered_account.adjust_money(-momsdebitcard))
-					purchase(vbucks.registered_account.account_holder, momsdebitcard)
-					playsound(src, "sound/items/scanner_match.ogg", 100)
-					to_chat(user, "Thanks for purchasing! The vendor has been informed.")
-					return
-				else
-					to_chat(user, span_warning("ERROR: Account has insufficient funds to make transaction."))
-					return
-			else
-				var/continue_transaction = input(user, "The paystand displays [price] credits as the total owed. Continue transaction?", "Transaction") as null|anything in list("Pay","Cancel")
-				if(!continue_transaction || continue_transaction == "Cancel")
-					to_chat(user,span_notice("You decide not to pay [my_card.registered_account.account_holder] the displayed amount."))
-					return
-				else
-					if(vbucks.registered_account.adjust_money(-price))
-						purchase(vbucks.registered_account.account_holder, price)
-						to_chat(user, "Thanks for your purchase of [price] credits. The vendor has been notified. Please take your receipt.")
-						handle_receipt(TRUE)
-						invoice = ""
-						price = 0
-						return
-					else
-						to_chat(user, span_warning("ERROR: Account has insufficient funds to make transaction."))
-						return
+/obj/machinery/paystand/examine(mob/user)
+	. = ..()
+	if(force_fee)
+		. += span_boldnotice("This paystand forces a payment of <b>[force_fee]</b> credit\s per swipe instead of a variable amount.")
 
-		else
-			to_chat(user, span_warning("ERROR: No bank account assigned to identification card."))
-			return
-	if(istype(W, /obj/item/holochip))
-		var/obj/item/holochip/H = W
-		if(invoice == "")
-			var/cashmoney = input(user, "How much would you like to deposit?", "Money Deposit") as null|num
-			if(H.spend(cashmoney, FALSE))
-				purchase(user, cashmoney)
-				to_chat(user, "Thanks for purchasing! The vendor has been informed.")
-				return
-			else
-				to_chat(user, span_warning("ERROR: Insufficient funds to make transaction."))
-				return
-		else
-			var/continue_transaction = input(user, "The paystand displays [price] credits as the total owed. Continue transaction?", "Transaction") as null|anything in list("Pay","Cancel")
-			if(!continue_transaction || continue_transaction == "Cancel")
-				to_chat(user,span_notice("You decide not to pay [my_card.registered_account.account_holder] the displayed amount."))
-				return
-			if(H.spend(price, FALSE))
-				purchase(user, price)
-				to_chat(user, "Thanks for your purchase of [price] credits. The vendor has been notified. Please take your receipt.")
-				handle_receipt(FALSE)
-				invoice = ""
-				price = 0
-				return
-			else
-				to_chat(user, span_warning("ERROR: Insufficient funds to make transaction."))
-				return
-	if(istype(W, /obj/item/stack/spacecash))
-		to_chat(user, "What is this, the 2000s? We only take card here.")
+/obj/machinery/paystand/attack_hand(mob/living/user, list/modifiers)
+	. = ..()
+	if(.)
 		return
-	if(istype(W, /obj/item/coin))
-		to_chat(user, "What is this, the 1800s? We only take card here.")
-		return
-	if(istype(W, /obj/item/assembly/signaler))
-		var/obj/item/assembly/signaler/S = W
-		if(S.secured)
-			to_chat(user, span_warning("The signaler needs to be in attachable mode to add it to the paystand!"))
-			return
-		if(!my_card)
-			to_chat(user, span_warning("ERROR: No identification card has been assigned to this paystand yet!"))
-			return
-		if(!signaler)
-			var/cash_limit = input(user, "Enter the minimum amount of cash needed to deposit before the signaler is activated.", "Signaler Activation Threshold") as null|num
-			if(cash_limit < 1)
-				to_chat(user, span_warning("ERROR: Invalid amount designated."))
-				return
-			if(cash_limit)
-				S.forceMove(src)
-				signaler = S
-				signaler_threshold = cash_limit
-				to_chat(user, "You attach the signaler to the paystand.")
-				desc += " A signaler appears to be attached to the scanner."
-		else
-			to_chat(user, span_warning("A signaler is already attached to this unit!"))
+	if(!user.a_intent == INTENT_HARM && user.stat == CONSCIOUS)
+		ui_interact(user)
+		return .
+	return
 
-	if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
-		return
+/obj/machinery/paystand/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+	switch(damage_type)
+		if(BRUTE)
+			playsound(loc, 'sound/weapons/egloves.ogg', 80, TRUE)
+		if(BURN)
+			playsound(loc, 'sound/weapons/egloves.ogg', 80, TRUE)
 
-	else if(default_pry_open(W))
-		return
+/obj/machinery/paystand/Destroy()
+	linked_card?.my_store = null
+	linked_card = null
+	return ..()
 
-	else if(default_unfasten_wrench(user, W))
-		return
-
-	else if(default_deconstruction_crowbar(W))
-		return
-	else
+/obj/machinery/paystand/attackby(obj/item/held_item, mob/item_holder, params)
+	var/mob/living/user = item_holder
+	if(!isliving(user))
 		return ..()
-
-/obj/machinery/paystand/proc/handle_receipt(card_pay)
-	playsound(src, "sound/items/scanner_match.ogg", 100)
-	paynum += 1
-	var/obj/item/paper/P = new /obj/item/paper(src)
-	var/obj/item/paper/M = new /obj/item/paper(src)
-	P.written += new/datum/langtext("<center><h3>Receipt from [src.name]</h3></center><hr><b>Vendor: [my_card.registered_account.account_holder]<br>Receipt #[paynum]<br>",/datum/language/common)
-	if(card_pay)
-		P.written += new/datum/langtext("Payment Method: CARD<hr></b>",/datum/language/common)
-	else
-		P.written += new/datum/langtext("Payment Method: HOLOCHIP<hr></b>",/datum/language/common)
-	P.written += new/datum/langtext("<b>Items Purchased:</b>[invoice]<hr><b>Total: [price] credits.</b><br>Thanks for your patronage!<br>Customer Copy",/datum/language/common)
-	P.name = "Receipt #[paynum] from [src.name] - Customer Copy"
-	P.desc = "A receipt generated by a paystand. This one lists a total of [price] credits."
-	M.written += new/datum/langtext("<center><h3>Receipt from [src.name]</h3></center><hr><b>Vendor: [my_card.registered_account.account_holder]<br>Receipt #[paynum]<hr></b>",/datum/language/common)
-	M.written += new/datum/langtext("<b>Items Purchased:</b>[invoice]<hr><b>Total: [price] credits.</b><br>Thanks for your patronage!<br>Merchant Copy",/datum/language/common)
-	M.name = "Receipt #[paynum] from [src.name] - Merchant Copy"
-	M.desc = "A receipt generated by a paystand. This one lists a total of [price] credits."
-	P.update_icon()
-	M.update_icon()
-	P.forceMove(src.loc)
-	M.forceMove(src.loc)
-
-/obj/machinery/paystand/proc/purchase(buyer, price)
-	if(!my_card)
+	/// Users can pay with an ID to skip the UI
+	if(isidcard(held_item))
+		if(linked_card == null)
+			if(istype(held_item, /obj/item/card/id))
+				var/obj/item/card/id/card = held_item
+				desc = "Pays directly into [card.registered_account.account_holder]'s bank account."
+				force_fee = card.holopay_fee
+				name = card.holopay_name
+				shop_logo = card.holopay_logo
+				to_chat(user,span_info("Registered this paystand to you!"))
+				linked_card = card
+				log_admin("User [ADMIN_LOOKUPFLW(user)] registered a paystand [ADMIN_JMP(src)]")
+				return
+		if(force_fee && tgui_alert(item_holder, "This paystand has a [force_fee] cr fee. Confirm?", "Holopay Fee", list("Pay", "Cancel")) != "Pay")
+			return TRUE
+		process_payment(user)
+		return TRUE
+	/// Users can also pay by holochip
+	if(istype(held_item, /obj/item/holochip))
+		/// Account checks
+		var/obj/item/holochip/chip = held_item
+		if(!chip.credits)
+			balloon_alert(user, "holochip is empty")
+			to_chat(user, span_warning("There doesn't seem to be any credits here."))
+			return FALSE
+		/// Charges force fee or uses pay what you want
+		var/input_number = input(user, "How much? (Max: [chip.credits])", "Patronage", force_fee) as null|num
+		var/cash_deposit = force_fee || clamp(round(input_number), 0, chip.credits) //no tgui_input_number :(
+		/// Exit sanity checks
+		if(!cash_deposit)
+			return TRUE
+		if(QDELETED(held_item) || QDELETED(user) || QDELETED(src))
+			return FALSE
+		if(!chip.spend(cash_deposit, FALSE))
+			balloon_alert(user, "insufficient credits")
+			to_chat(user, span_warning("You don't have enough credits to pay with this chip."))
+			return FALSE
+		/// Success: Alert buyer
+		alert_buyer(user, cash_deposit)
+		return TRUE
+	/// Throws errors if they try to use space cash
+	if(istype(held_item, /obj/item/stack/spacecash))
+		to_chat(user, "What is this, the 2000s? We only take card here.")
+		return TRUE
+	if(istype(held_item, /obj/item/coin))
+		to_chat(user, "What is this, the 1800s? We only take card here.")
+		return TRUE
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, held_item))
 		return
-	my_card.registered_account.adjust_money(price)
-	my_card.registered_account.bank_card_talk("Purchase made at your vendor by [buyer] for [price] credits.")
-	amount_deposited = amount_deposited + price
-	if(signaler && amount_deposited >= signaler_threshold)
-		signaler.activate()
-		amount_deposited = 0
+
+	if(default_pry_open(held_item))
+		return
+
+	if(default_unfasten_wrench(user, held_item))
+		return
+
+	if(default_deconstruction_crowbar(held_item))
+		return
+	return ..()
+
+/obj/machinery/paystand/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
+	if(.)
+		return FALSE
+	var/mob/living/interactor = user
+	if(isliving(interactor) && !interactor.a_intent == INTENT_HELP)
+		return FALSE
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "HoloPay")
+		ui.open()
+
+/obj/machinery/paystand/ui_status(mob/user)
+	. = ..()
+	if(!in_range(user, src) && !isobserver(user))
+		return UI_CLOSE
+
+/obj/machinery/paystand/ui_static_data(mob/user)
+	. = list()
+	.["available_logos"] = linked_card?.available_logos
+	.["description"] = desc
+	.["max_fee"] = linked_card?.holopay_max_fee
+	.["owner"] = linked_card?.registered_account?.account_holder || null
+	.["shop_logo"] = shop_logo
+	if(bolt_locked)
+		.["locked"] = "Yes"
+	if(!bolt_locked)
+		.["locked"] = "No"
+
+/obj/machinery/paystand/ui_data(mob/user)
+	. = list()
+	.["force_fee"] = force_fee
+	.["name"] = name
+	if(!isliving(user))
+		return .
+	var/mob/living/card_holder = user
+	var/obj/item/card/id/id_card = card_holder.get_idcard(TRUE)
+	var/datum/bank_account/account = id_card?.registered_account || null
+	if(account)
+		.["user"] = list()
+		.["user"]["name"] = account.account_holder
+		.["user"]["balance"] = account.account_balance
+
+/obj/machinery/paystand/ui_act(action, list/params, datum/tgui/ui)
+	. = ..()
+	if(.)
+		return FALSE
+	switch(action)
+		if("done")
+			ui.send_full_update()
+			return TRUE
+		if("fee")
+			linked_card.set_holopay_fee(params["amount"])
+			force_fee = linked_card.holopay_fee
+		if("logo")
+			linked_card.set_holopay_logo(params["logo"])
+			shop_logo = linked_card.holopay_logo
+		if("pay")
+			ui.close()
+			process_payment(usr)
+			return TRUE
+		if("rename")
+			linked_card.set_holopay_name(params["name"])
+			name = linked_card.holopay_name
+		if("boltlock")
+			if(params["locked"] == "No")
+				bolt_locked = FALSE
+			if(params["locked"] == "Yes")
+				bolt_locked = TRUE
+	return FALSE
+
+/**
+ * Initiates a transaction between accounts.
+ *
+ * Parameters:
+ * * mob/living/user - The user who initiated the transaction.
+ * Returns:
+ * * TRUE - transaction was successful
+ */
+/obj/machinery/paystand/proc/process_payment(mob/living/user)
+	/// Account checks
+	var/obj/item/card/id/id_card
+	id_card = user.get_idcard(TRUE)
+	if(!id_card || !id_card.registered_account || !id_card.registered_account.account_job)
+		balloon_alert(user, "invalid account")
+		to_chat(user, span_warning("You don't have a valid account."))
+		return FALSE
+	var/datum/bank_account/payee = id_card.registered_account
+	if(payee == linked_card?.registered_account)
+		balloon_alert(user, "invalid transaction")
+		to_chat(user, span_warning("You can't pay yourself."))
+		return FALSE
+	/// If the user has enough money, ask them the amount or charge the force fee
+	var/input_number = input(user, "How much? (Max: [payee.account_balance])", "Patronage", force_fee) as null|num
+	var/amount = force_fee || clamp(round(input_number), 0, payee.account_balance) //no tgui_input_number :(
+	/// Exit checks in case the user cancelled or entered an invalid amount
+	if(!amount || QDELETED(user) || QDELETED(src))
+		return FALSE
+	if(!payee.adjust_money(-amount, "Holopay: [capitalize(name)]"))
+		balloon_alert(user, "insufficient credits")
+		to_chat(user, span_warning("You don't have the money to pay for this."))
+		return FALSE
+	/// Success: Alert the buyer
+	alert_buyer(user, amount)
+	return TRUE
+
+/**
+ * Alerts the owner of the transaction.
+ *
+ * Parameters:
+ * * payee - The user who initiated the transaction.
+ * * amount - The amount of money that was paid.
+ * Returns:
+ * * TRUE - alert was successful.
+ */
+/obj/machinery/paystand/proc/alert_buyer(payee, amount)
+	/// Pay the owner
+	linked_card.registered_account.adjust_money(amount, "Holopay: [name]")
+	/// Make alerts
+	linked_card.registered_account.bank_card_talk("[payee] has deposited [amount] cr at your holographic pay stand.")
+	say("Thank you for your patronage, [payee]!")
+	playsound(src, 'sound/effects/cashregister.ogg', 20, TRUE)
+	SSblackbox.record_feedback("amount", "credits_transferred", amount)
+	return TRUE
 
 /obj/machinery/paystand/default_unfasten_wrench(mob/user, obj/item/I, time = 20)
-	if(locked)
-		to_chat(user, span_warning("The anchored bolts on this paystand are currently locked!"))
+	if(bolt_locked)
 		return
 	. = ..()

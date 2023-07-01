@@ -172,9 +172,15 @@
 		points -= minor.cost
 	return points
 
-/datum/guardianbuilder/proc/spawn_guardian(mob/living/user)
+/datum/guardianbuilder/proc/spawn_guardian(mob/living/user, random = FALSE)
 	if (!user || !iscarbon(user) || !user.mind)
 		return FALSE
+	if (user.mind.martial_art?.no_guns && saved_stats.ranged)
+		if (random)
+			saved_stats.ranged = FALSE // sorry dawg
+		else
+			to_chat(user, span_danger("You cannot use a ranged holoparasite as you are unable to used ranged projectiles!"))
+			return FALSE
 	used = TRUE
 	calc_points()
 	if (points < 0)
@@ -182,7 +188,7 @@
 		used = FALSE
 		return FALSE
 	//alerts user in case they didn't know
-	var/list/all_items = user.GetAllContents()
+	var/list/all_items = user.get_all_contents()
 	for (var/obj/I in all_items) //Check for mori
 		if (istype(I, /obj/item/clothing/neck/necklace/memento_mori))
 			to_chat(user, span_danger("The [I] revolts at the sight of the [src]!"))
@@ -200,7 +206,7 @@
 		G.summoner = user.mind
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(user)
-		G.RegisterSignal(user, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
+		G.RegisterSignal(user, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/living/simple_animal/hostile/guardian, OnMoved))
 		var/datum/antagonist/guardian/S = new
 		S.stats = saved_stats
 		S.summoner = user.mind
@@ -225,6 +231,9 @@
 				used = TRUE
 				G.Destroy()
 				return FALSE
+		if(saved_stats.ranged)
+			ADD_TRAIT(user, TRAIT_NOGUNS, G.type)
+			to_chat(user, span_holoparasite("<font color=\"[G.namedatum.color]\"><b>[G.real_name]</b></font>'s ranged ability prevents you from using ranged weaponry of your own!"))
 		return TRUE
 	else
 		to_chat(user, "[failure_message]")
@@ -252,14 +261,11 @@
 	var/allowspecial = FALSE
 	var/debug_mode = FALSE
 
-/obj/item/guardiancreator/Initialize()
+/obj/item/guardiancreator/Initialize(mapload)
 	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_REFUND, PROC_REF(refund_check))
 	builder = new(mob_name, theme, failure_message, max_points, allowspecial, debug_mode)
 
-/obj/item/guardiancreator/ComponentInitialize()
-	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_REFUND, .proc/refund_check)
-	
 /obj/item/guardiancreator/proc/refund_check()
 	return !builder.used
 
@@ -281,7 +287,7 @@
 		builder.ui_interact(user)
 	else
 		builder.saved_stats = generate_stand()
-		builder.spawn_guardian(user)
+		builder.spawn_guardian(user, TRUE)
 
 /obj/item/guardiancreator/proc/generate_stand()
 	var/points = 15

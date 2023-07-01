@@ -43,7 +43,7 @@
 
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-		
+
 	if(CONFIG_GET(flag/protect_AI_from_traitor))
 		restricted_jobs += "AI"
 
@@ -76,8 +76,8 @@
 
 /datum/game_mode/traitor/post_setup()
 	for(var/datum/mind/traitor in pre_traitors)
-		addtimer(CALLBACK(src, /datum/game_mode/traitor.proc/add_traitor_delayed, traitor), rand(3 MINUTES, (5 MINUTES + 10 SECONDS)))
-		
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_mode/traitor, add_traitor_delayed), traitor, null), rand(1 MINUTES, (3 MINUTES + 10 SECONDS)))
+
 	if(!exchange_blue)
 		exchange_blue = -1 //Block latejoiners from getting exchange objectives
 	..()
@@ -103,12 +103,26 @@
 					if(!(character.job in restricted_jobs))
 						add_latejoin_traitor(character.mind)
 
-/datum/game_mode/traitor/proc/add_traitor_delayed(datum/mind/traitor)
+/datum/game_mode/traitor/proc/add_traitor_delayed(datum/mind/traitor, datum/antagonist/cached_antag = null)
 	if(!traitor || !traitor.current || !traitor.current.client || (traitor.current.stat != CONSCIOUS) || istype(traitor.current.loc, /obj/machinery/cryopod))
 		create_new_traitor()
 		return
-	var/datum/antagonist/traitor/new_antag = new antag_datum()
-	traitor.add_antag_datum(new_antag)
+	if(!cached_antag)
+		cached_antag = new antag_datum()
+		cached_antag.awake_stage = ANTAG_ASLEEP
+	cached_antag.awake_stage++
+	switch(cached_antag.awake_stage)
+		if(ANTAG_FIRST_WARNING)
+			traitor.current.playsound_local(get_turf(traitor.current), 'sound/ambience/antag/telegraph1.ogg', 100, FALSE, pressure_affected = FALSE)
+			to_chat(traitor.current, span_danger("You don't feel good.."))
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_mode/traitor, add_traitor_delayed), traitor, cached_antag), 1 MINUTES)
+		if(ANTAG_SECOND_WARNING)
+			traitor.current.playsound_local(get_turf(traitor.current), 'sound/ambience/antag/telegraph2.ogg', 100, FALSE, pressure_affected = FALSE)
+			to_chat(traitor.current, span_danger("Remembering a tune, you slowly find the melody. Coded phrases and dark rooms flutter behind your eyelids. What could it mean? You should probably keep this to yourself."))
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_mode/traitor, add_traitor_delayed), traitor, cached_antag), 1 MINUTES)
+		if(ANTAG_AWAKE)
+			traitor.current.playsound_local(get_turf(traitor.current), 'sound/ambience/antag/tatoralert_buildup.ogg', 100, FALSE, pressure_affected = FALSE)
+			addtimer(CALLBACK(traitor, TYPE_PROC_REF(/datum/mind, add_antag_datum), cached_antag), 2 SECONDS)
 
 /datum/game_mode/traitor/proc/create_new_traitor()
 	var/list/potential_candidates = list()
@@ -119,9 +133,9 @@
 			continue
 		if(!applicant.stat != CONSCIOUS)
 			continue
-		if(applicant.mind.assigned_role in protected_jobs) 
+		if(applicant.mind.assigned_role in protected_jobs)
 			continue
-		if(applicant.mind.assigned_role in restricted_jobs) 
+		if(applicant.mind.assigned_role in restricted_jobs)
 			continue
 		if(!(applicant.mind.assigned_role in GLOB.command_positions + GLOB.engineering_positions + GLOB.medical_positions + GLOB.science_positions + GLOB.supply_positions + GLOB.civilian_positions + GLOB.security_positions + list("AI", "Cyborg")))
 			continue
@@ -138,13 +152,14 @@
 		potential_candidates += applicant
 	if(!potential_candidates.len)
 		message_admins("Failed to find new antag after original one left! Check the antag balance please.")
-		return
+		return FALSE
 	var/mob/living/carbon/human/picked = pick(potential_candidates)
 	if(!picked || !picked.client)
-		return
+		return FALSE
 	var/datum/antagonist/traitor/new_antag = new antag_datum()
 	picked.mind.add_antag_datum(new_antag)
 	picked.mind.special_role = traitor_name
+	return TRUE
 
 /datum/game_mode/traitor/proc/add_latejoin_traitor(datum/mind/character)
 	var/datum/antagonist/traitor/new_antag = new antag_datum()

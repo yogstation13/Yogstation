@@ -1392,8 +1392,8 @@
 /turf/open/floor/plasteel,
 /area/awaymission/spacebattle/cruiser)
 "ft" = (
-/obj/item/ammo_casing/a357,
-/obj/item/ammo_casing/a357,
+/obj/item/ammo_casing/m44,
+/obj/item/ammo_casing/m44,
 /obj/item/gun/ballistic/revolver/mateba,
 /obj/effect/mob_spawn/human/commander{
 	mob_name = "Aaron Bowden";

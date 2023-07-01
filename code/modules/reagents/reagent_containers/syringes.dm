@@ -15,13 +15,14 @@
 	materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 	sharpness = SHARP_POINTY
-	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 0.25 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5)
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 1 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5, "embedded_bleed_rate" = 0)
 
-/obj/item/reagent_containers/syringe/Initialize()
+/obj/item/reagent_containers/syringe/Initialize(mapload)
 	. = ..()
 	if(list_reagents) //syringe starts in inject mode if its already got something inside
 		mode = SYRINGE_INJECT
 		update_icon()
+	RegisterSignal(src, COMSIG_ITEM_EMBED_TICK, PROC_REF(embed_inject))
 
 /obj/item/reagent_containers/syringe/on_reagent_change(changetype)
 	update_icon()
@@ -49,7 +50,7 @@
 /obj/item/reagent_containers/syringe/attackby(obj/item/I, mob/user, params)
 	return
 
-/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user , proximity)
+/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(busy)
 		return
@@ -58,16 +59,9 @@
 	if(!target.reagents)
 		return
 
-	var/mob/living/L
-	if(isliving(target))
-		L = target
-		if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
-			return
-
 	// chance of monkey retaliation
 	if(ismonkey(target) && prob(MONKEY_SYRINGE_RETALIATION_PROB))
-		var/mob/living/carbon/monkey/M
-		M = target
+		var/mob/living/carbon/monkey/M = target
 		M.retaliate(user)
 
 	switch(mode)
@@ -77,7 +71,8 @@
 				to_chat(user, span_notice("The syringe is full."))
 				return
 
-			if(L) //living mob
+			if(isliving(target)) //living mob
+				var/mob/living/L = target
 				var/drawn_amount = reagents.maximum_volume - reagents.total_volume
 				if(target != user)
 					target.visible_message(span_danger("[user] is trying to take a blood sample from [target]!"), \
@@ -119,7 +114,7 @@
 				to_chat(user, span_notice("[src] is empty."))
 				return
 
-			if(!L && !target.is_injectable(user)) //only checks on non-living mobs, due to how can_inject() handles
+			if(!isliving(target) && !target.is_injectable(user)) //only checks on non-living mobs, due to how can_inject() handles
 				to_chat(user, span_warning("You cannot directly fill [target]!"))
 				return
 
@@ -127,7 +122,9 @@
 				to_chat(user, span_notice("[target] is full."))
 				return
 
-			if(L) //living mob
+			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+			if(isliving(target)) //living mob
+				var/mob/living/L = target
 				if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
 					return
 				if(L != user)
@@ -163,8 +160,7 @@
 					log_combat(user, L, "injected", src, addition="which had [contained]")
 				else
 					L.log_message("injected themselves ([contained]) with [src.name]", LOG_ATTACK, color="orange")
-			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
-			reagents.reaction(L, INJECT, fraction)
+				reagents.reaction(L, INJECT, fraction)
 			reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 			to_chat(user, span_notice("You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units."))
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
@@ -194,15 +190,12 @@
 				injoverlay = "inject"
 		add_overlay(injoverlay)
 		M.update_inv_hands()
-	
-/obj/item/reagent_containers/syringe/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
-	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
-	reagents.reaction(embedde, INJECT, fraction)
-	reagents.trans_to(embedde, amount_per_transfer_from_this)
-	return TRUE
-	
-/obj/item/reagent_containers/syringe/embed_tick(embedde, part)
-	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+
+/obj/item/reagent_containers/syringe/proc/embed_inject(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	if(!reagents.total_volume)
+		return
+	// Half of transfer amount, or 2.5 units per tick for default syringes
+	var/fraction = min((0.5 * amount_per_transfer_from_this) / reagents.total_volume, 1)
 	reagents.reaction(embedde, INJECT, fraction)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
 
@@ -281,6 +274,67 @@
 	volume = 1
 	list_reagents = list(/datum/reagent/ghosttoxin = 1)
 
+/obj/item/reagent_containers/syringe/big
+	name = "large syringe"
+	desc = "A large syringe that can hold 30 units of chemicals"
+	amount_per_transfer_from_this = 10
+	volume = 30
+
+/obj/item/reagent_containers/syringe/big/polonium
+	name = "syringe (polonium)"
+	desc = "Contains 30 units of polonium. Will irradiate victims, metabolized very slowly."
+	list_reagents = list(/datum/reagent/toxin/polonium = 30)
+
+/obj/item/reagent_containers/syringe/big/venom
+	name = "syringe (venom)"
+	desc = "Contains 30 units of venom. Deadliness increase with the dosage, can decay into histamine."
+	list_reagents = list(/datum/reagent/toxin/venom = 30)
+
+/obj/item/reagent_containers/syringe/big/spewium
+	name = "syringe (spewium)"
+	desc = "Contains 30 units of spewium. Cause victims to vomit, more than 29 units cause to victims puking out their own organs."
+	list_reagents = list(/datum/reagent/toxin/spewium = 30)
+
+/obj/item/reagent_containers/syringe/big/histamine
+	name = "syringe (histamine)"
+	desc = "Contains 30 units of histamine. Provoke itching, sneezing, coughing and blurry vision, more than 30 units cause victims to take large amounts of brute, toxin and oxygen damage."
+	list_reagents = list(/datum/reagent/toxin/histamine = 30)
+
+/obj/item/reagent_containers/syringe/big/initropidril
+	name = "syringe (initropidril)"
+	desc = "Contains 30 units of initropidril. A paralytic agent that will cause failures of respiratory systems and cardiac arrest."
+	list_reagents = list(/datum/reagent/toxin/initropidril = 30)
+
+/obj/item/reagent_containers/syringe/big/pancuronium
+	name = "syringe (pancuronium)"
+	desc = "Contains 30 units of pancuronium. Stun and suffocate victims."
+	list_reagents = list(/datum/reagent/toxin/pancuronium = 30)
+
+/obj/item/reagent_containers/syringe/big/sodium_thiopental
+	name = "syringe (sodium thiopental)"
+	desc = "Contains 30 units of sodium thiopental. Will tire victims and knock them out non lethally."
+	list_reagents = list(/datum/reagent/toxin/sodium_thiopental = 30)
+
+/obj/item/reagent_containers/syringe/big/curare
+	name = "syringe (curare)"
+	desc = "Contains 30 units of curare. Will paralyze victims and inflict toxin and suffocation, metabolized very slowly."
+	list_reagents = list(/datum/reagent/toxin/curare = 30)
+
+/obj/item/reagent_containers/syringe/big/amanitin
+	name = "syringe (amanitin)"
+	desc = "Contains 30 units of amanitin. Once fully metabolized inflict toxin damage proportional to the time it was in system of the victims."
+	list_reagents = list(/datum/reagent/toxin/amanitin = 30)
+
+/obj/item/reagent_containers/syringe/big/coniine
+	name = "syringe (coniine)"
+	desc = "Contains 30 units of coniine. Will cause toxin and loss of breath, metabolized incredibly slowly."
+	list_reagents = list(/datum/reagent/toxin/coniine = 30)
+
+/obj/item/reagent_containers/syringe/big/relaxant
+	name = "syringe (muscle relaxant)"
+	desc = "Contains 30 units of muscle relaxant. Slow the movements and actions of the victims noticeably."
+	list_reagents = list(/datum/reagent/toxin/relaxant = 30)
+
 /obj/item/reagent_containers/syringe/bluespace
 	name = "bluespace syringe"
 	desc = "An advanced syringe that can hold 60 units of chemicals."
@@ -291,6 +345,7 @@
 	name = "piercing syringe"
 	desc = "A diamond-tipped syringe that can safely inject its contents into those wearing bulky clothing. It can hold up to 15 units."
 	proj_piercing = 1
+
 /obj/item/reagent_containers/syringe/crude
 	name = "crude syringe"
 	desc = "A crudely made syringe. The flimsy wooden construction makes it hold up minimal amounts of reagents."
@@ -304,11 +359,14 @@
 /obj/item/reagent_containers/syringe/dart
 	name = "reagent dart"
 	amount_per_transfer_from_this = 10
-	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 0.25 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 0, "embedded_bleed_rate" = 0)
 
 /obj/item/reagent_containers/syringe/dart/temp
 	item_flags = DROPDEL
 
-/obj/item/reagent_containers/syringe/dart/temp/on_embed_removal(mob/living/carbon/human/embedde)
-	qdel(src)
-	
+/obj/item/reagent_containers/syringe/dart/temp/Initialize(mapload)
+	..()
+	RegisterSignal(src, COMSIG_ITEM_EMBED_REMOVAL, PROC_REF(on_embed_removal))
+
+/obj/item/reagent_containers/syringe/dart/temp/proc/on_embed_removal(mob/living/carbon/human/embedde)
+	return COMSIG_ITEM_QDEL_EMBED_REMOVAL

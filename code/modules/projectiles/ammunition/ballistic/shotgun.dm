@@ -33,7 +33,7 @@
 	icon_state = "ishell2"
 	projectile_type = /obj/item/projectile/bullet/incendiary/shotgun/dragonsbreath
 	pellets = 5
-	variance = 35
+	variance = 30
 
 /obj/item/ammo_casing/shotgun/stunslug
 	name = "taser slug"
@@ -68,7 +68,7 @@
 	icon_state = "gshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	pellets = 6
-	variance = 25
+	variance = 20
 
 /obj/item/ammo_casing/shotgun/buckshot/syndie
 	name = "syndicate buckshot shell"
@@ -82,7 +82,7 @@
 	icon_state = "flshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_flechette
 	pellets = 6
-	variance = 15
+	variance = 10
 
 /obj/item/ammo_casing/shotgun/clownshot
 	name = "buckshot shell..?"
@@ -90,7 +90,7 @@
 	icon_state = "gshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_clownshot
 	pellets = 20
-	variance = 40
+	variance = 35
 
 /obj/item/ammo_casing/shotgun/rubbershot
 	name = "rubber shot"
@@ -98,7 +98,7 @@
 	icon_state = "bshell"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	pellets = 6
-	variance = 25
+	variance = 20
 	materials = list(/datum/material/iron=4000)
 
 /obj/item/ammo_casing/shotgun/improvised
@@ -108,7 +108,7 @@
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_improvised
 	materials = list(/datum/material/iron=250)
 	pellets = 10
-	variance = 25
+	variance = 20
 
 /obj/item/ammo_casing/shotgun/ion
 	name = "ion shell"
@@ -117,7 +117,7 @@
 	icon_state = "ionshell"
 	projectile_type = /obj/item/projectile/ion/weak
 	pellets = 4
-	variance = 35
+	variance = 30
 
 /obj/item/ammo_casing/shotgun/laserbuckshot
 	name = "laser buckshot"
@@ -125,7 +125,7 @@
 	icon_state = "lshell"
 	projectile_type = /obj/item/projectile/beam/laser/buckshot
 	pellets = 5
-	variance = 35
+	variance = 30
 
 /obj/item/ammo_casing/shotgun/uraniumpenetrator
 	name = "depleted uranium slug"
@@ -141,7 +141,7 @@
 	icon_state = "fshell" 
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_cryoshot
 	pellets = 4
-	variance = 35
+	variance = 30
 
 /obj/item/ammo_casing/shotgun/techshell
 	name = "unloaded technological shell"
@@ -157,11 +157,21 @@
 	var/reagent_amount = 30
 	var/no_react = FALSE
 
-/obj/item/ammo_casing/shotgun/dart/Initialize()
+/obj/item/ammo_casing/shotgun/dart/Initialize(mapload)
 	. = ..()
 	create_reagents(reagent_amount, OPENCONTAINER)
 	if(no_react)
 		ENABLE_BITFIELD(reagents.flags, NO_REACT)
+
+/obj/item/ammo_casing/shotgun/dart/hidden
+	name = "beanbag slug"
+	desc = "A weak beanbag slug for riot control."
+	icon_state = "bshell"
+	projectile_type = /obj/item/projectile/bullet/reusable/dart/hidden
+
+/obj/item/ammo_casing/shotgun/dart/hidden/Initialize(mapload)
+	. = ..()
+	DISABLE_BITFIELD(reagents.flags, TRANSPARENT) // cant examine reagents, stealthy
 
 /obj/item/ammo_casing/shotgun/dart/ready_proj(atom/target, mob/living/user, quiet, zone_override = "")
 	if(!BB)
@@ -184,7 +194,7 @@
 /obj/item/ammo_casing/shotgun/dart/bioterror
 	desc = "A shotgun dart filled with deadly toxins."
 
-/obj/item/ammo_casing/shotgun/dart/bioterror/Initialize()
+/obj/item/ammo_casing/shotgun/dart/bioterror/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/consumable/ethanol/neurotoxin, 6)
 	reagents.add_reagent(/datum/reagent/toxin/spore, 6)
@@ -206,5 +216,26 @@
 	desc = "An advanced shotgun shell that uses stored electrical energy to discharge a massive shock on impact, arcing to nearby targets."
 	icon_state = "Thshell"
 	pellets = 3
-	variance = 30
+	variance = 25
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun_thundershot
+
+/obj/item/ammo_casing/shotgun/hardlight
+	name = "hardlight shell"
+	desc = "An advanced shotgun shell that fires a hardlight beam and scatters it."
+	icon_state = "hshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/hardlight
+	harmful = FALSE
+	pellets = 6
+	variance = 20
+
+/obj/item/ammo_casing/shotgun/hardlight/emp_act(severity)
+	if (. & EMP_PROTECT_SELF)
+		return
+	variance = 60 // yikes
+	if(severity == EMP_HEAVY)
+		pellets = 3 // also yikes
+	addtimer(CALLBACK(src, PROC_REF(remove_emp)), 10 SECONDS / severity, TIMER_OVERRIDE|TIMER_UNIQUE)
+
+/obj/item/ammo_casing/shotgun/hardlight/proc/remove_emp()
+	variance = initial(variance)
+	pellets = initial(pellets)

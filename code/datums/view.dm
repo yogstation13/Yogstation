@@ -16,11 +16,13 @@
 	default = string
 	apply()
 
-/datum/viewData/proc/safeApplyFormat()
+/datum/viewData/proc/afterViewChange()
 	if(isZooming())
 		assertFormat()
-		return
-	resetFormat()
+	else
+		resetFormat()
+	if(chief?.mob)
+		SEND_SIGNAL(chief.mob, COMSIG_VIEWDATA_UPDATE, getView())
 
 /datum/viewData/proc/assertFormat()//T-Pose
 	winset(chief, "mapwindow.map", "zoom=0")
@@ -79,7 +81,7 @@
 
 /datum/viewData/proc/apply()
 	chief.change_view(getView())
-	safeApplyFormat()
+	afterViewChange()
 
 /datum/viewData/proc/supress()
 	is_suppressed = TRUE

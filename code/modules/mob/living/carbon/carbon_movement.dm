@@ -6,7 +6,7 @@
 		var/leg_amount = get_num_legs()
 		. += max(6 - 3*leg_amount, 0) //the fewer the legs, the slower the mob
 		if(!leg_amount)
-			. += max((6 - 3*get_num_arms()), 0) //crawling is harder with fewer arms
+			. += max((12 - 6*get_num_arms()), 0) //crawling is harder with fewer arms
 		if(legcuffed)
 			. += legcuffed.slowdown
 
@@ -30,7 +30,7 @@
 	if(!isturf(loc))
 		return FALSE
 	// Do we have a jetpack implant (and is it on)?
-	var/obj/item/organ/cyberimp/chest/thrusters/T = getorganslot(ORGAN_SLOT_THRUSTERS)
+	var/obj/item/organ/cyberimp/chest/thrusters/T = getorganslot(ORGAN_SLOT_TORSO_IMPLANT)
 	if(istype(T))
 		if(movement_dir && T.allow_thrust(0.01))
 			. = TRUE

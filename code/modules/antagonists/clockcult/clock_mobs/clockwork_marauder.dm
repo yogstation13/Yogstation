@@ -34,7 +34,7 @@
 	if(!shield_health)
 		return span_warning("Its shield has been destroyed!")
 
-/mob/living/simple_animal/hostile/clockwork/marauder/Life()
+/mob/living/simple_animal/hostile/clockwork/marauder/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(!GLOB.ratvar_awakens && health / maxHealth <= MARAUDER_SLOWDOWN_PERCENTAGE)
 		speed = initial(speed) + 1 //Yes, this slows them down

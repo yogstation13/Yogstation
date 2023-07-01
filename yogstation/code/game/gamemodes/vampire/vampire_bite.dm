@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/handle_vamp_biting(var/mob/living/carbon/human/M)
+/mob/living/carbon/human/proc/handle_vamp_biting(mob/living/carbon/human/M)
 	if(!is_vampire(M) || M == src || M.zone_selected != "head")
 		return FALSE
 	var/datum/antagonist/vampire/V = M.mind.has_antag_datum(/datum/antagonist/vampire)

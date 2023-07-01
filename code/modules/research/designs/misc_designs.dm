@@ -73,6 +73,17 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/datum/design/thermal_goggles
+	name = "Thermal Goggles"
+	desc = "These high-tech goggles are like the ones you see in magazines, except they actually work."
+	id = "thermal_goggles"
+	build_type = PROTOLATHE
+	construction_time = 60
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plasma = 1000, /datum/material/diamond = 2000)
+	build_path = /obj/item/clothing/glasses/thermal
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /datum/design/security_hud_night
 	name = "Night Vision Security HUD"
 	desc = "A heads-up display which provides ID data and vision in complete darkness."
@@ -506,6 +517,16 @@
 	build_path = /obj/item/reactive_armor_shell
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/anomaly_quiver
+	name = "Anomaly Quiver"
+	desc = "An empty, experimental quiver with not much space inside. A bluespace, pyroclastic, or gravitational anomaly can be inserted for varying effects."
+	id = "anomaly_quiver"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 7500, /datum/material/diamond = 3750, /datum/material/uranium = 6000, /datum/material/silver = 3500, /datum/material/gold = 3750)
+	build_path = /obj/item/storage/belt/quiver/anomaly
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/platingmki
 	name = "MK.I bluespace plating"

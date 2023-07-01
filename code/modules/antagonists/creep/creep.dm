@@ -4,6 +4,7 @@
 	antagpanel_category = "Other"
 	preview_outfit = /datum/outfit/obsessed
 	job_rank = ROLE_OBSESSED
+	antag_hud_name = "obsessed"
 	show_name_in_check_antagonists = TRUE
 	roundend_category = "obsessed"
 	silent = TRUE //not actually silent, because greet will be called by the trauma anyway.
@@ -34,7 +35,7 @@
 	var/icon/final_icon = finish_preview_icon(obsessed_icon)
 
 	final_icon.Blend(
-	icon('icons/ui_icons/antags/obsessed.dmi', "obsession"),
+	icon('icons/UI_Icons/antags/obsessed.dmi', "obsession"),
 		ICON_OVERLAY,
 		ANTAGONIST_PREVIEW_ICON_SIZE - 30,
 		20,
@@ -72,14 +73,13 @@
 
 /datum/antagonist/obsessed/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
-	update_obsession_icons_added(M)
-	if(owner.current && ishuman(owner.current) && !owner.current.GetComponent(/datum/component/mood))
+	if(M && ishuman(M) && !M.GetComponent(/datum/component/mood))
 		to_chat(owner, span_danger("You feel more aware of your condition, mood has been enabled!"))
-		owner.current.AddComponent(/datum/component/mood) //you fool you absolute buffoon to think you could escape
+		M.AddComponent(/datum/component/mood) //you fool you absolute buffoon to think you could escape
 
 /datum/antagonist/obsessed/remove_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/M = mob_override || owner.current
-	update_obsession_icons_removed(M)
 	var/mob/living/carbon/human/H = M
 	if(H && !H.mood_enabled)
 		var/datum/component/C = M.GetComponent(/datum/component/mood)
@@ -87,7 +87,7 @@
 			to_chat(owner, span_danger("Your need for mental fitness vanishes alongside the voices, mood has been disabled."))
 			C.RemoveComponent()
 
-/datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
+/datum/antagonist/obsessed/proc/forge_objectives(datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
 	var/datum/quirk/family_heirloom/family_heirloom
 
@@ -310,7 +310,7 @@
 	for(var/datum/mind/M in owners)
 		if(!isliving(M.current))
 			continue
-		var/list/all_items = M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
+		var/list/all_items = M.current.get_all_contents()	//this should get things in cheesewheels, books, etc.
 		for(var/obj/I in all_items) //Check for wanted items
 			if(istype(I, /obj/item/photo))
 				var/obj/item/photo/P = I
@@ -328,13 +328,3 @@
 		explanation_text = "Steal [target.name]'s family heirloom, [steal_target] they cherish."
 	else
 		explanation_text = "Free Objective"
-
-/datum/antagonist/obsessed/proc/update_obsession_icons_added(var/mob/living/carbon/human/obsessed)
-	var/datum/atom_hud/antag/creephud = GLOB.huds[ANTAG_HUD_OBSESSED]
-	creephud.join_hud(obsessed)
-	set_antag_hud(obsessed, "obsessed")
-
-/datum/antagonist/obsessed/proc/update_obsession_icons_removed(var/mob/living/carbon/human/obsessed)
-	var/datum/atom_hud/antag/creephud = GLOB.huds[ANTAG_HUD_OBSESSED]
-	creephud.leave_hud(obsessed)
-	set_antag_hud(obsessed, null)

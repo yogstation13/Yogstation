@@ -30,40 +30,40 @@
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.melee += 30
-		H.physiology.armor.bullet += 25
+		H.physiology.armor.melee += 20
+		H.physiology.armor.bullet += 15
 
 /datum/nanite_program/hardening/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.melee -= 30
-		H.physiology.armor.bullet -= 25
+		H.physiology.armor.melee -= 20
+		H.physiology.armor.bullet -= 15
 
 /datum/nanite_program/refractive
 	name = "Dermal Refractive Surface"
 	desc = "The nanites form a membrane above the host's skin, reducing the effect of laser and energy impacts."
-	use_rate = 0.50
+	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/skin_decay)
 
 /datum/nanite_program/refractive/enable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.laser += 30
-		H.physiology.armor.energy += 15
+		H.physiology.armor.laser += 20
+		H.physiology.armor.energy += 10
 
 /datum/nanite_program/refractive/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.laser -= 30
-		H.physiology.armor.energy -= 15
+		H.physiology.armor.laser -= 20
+		H.physiology.armor.energy -= 10
 
 /datum/nanite_program/coagulating
 	name = "Vein Repressurization"
 	desc = "The nanites re-route circulating blood away from open wounds, dramatically reducing bleeding rate."
-	use_rate = 0.20
+	use_rate = 0.2
 	rogue_types = list(/datum/nanite_program/suffocating)
 
 /datum/nanite_program/coagulating/enable_passive_effect()

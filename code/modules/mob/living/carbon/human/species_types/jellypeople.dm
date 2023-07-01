@@ -5,27 +5,30 @@
 	id = "jelly"
 	default_color = "00FF90"
 	say_mod = "chirps"
-	species_traits = list(MUTCOLORS,EYECOLOR,NOBLOOD)
+	species_traits = list(MUTCOLORS, EYECOLOR, NOBLOOD, HAIR)
 	inherent_traits = list(TRAIT_TOXINLOVER)
-	mutantlungs = /obj/item/organ/lungs/slime
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime
 	exotic_blood = /datum/reagent/toxin/slimejelly
+	mutanttongue = /obj/item/organ/tongue/slime
+	mutantlungs = /obj/item/organ/lungs/slime
 	damage_overlay_type = ""
 	var/datum/action/innate/regenerate_limbs/regenerate_limbs
 	liked_food = MEAT
-	coldmod = 6   // = 3x cold damage
-	heatmod = 0.5 // = 1/4x heat damage
+	coldmod = 6
+	heatmod = 0.5
 	burnmod = 0.5 // = 1/2x generic burn damage
+	payday_modifier = 0.6 //literally a pile of toxic ooze walking around, definitely a health hazard
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/jelly
 	swimming_component = /datum/component/swimming/dissolve
+	hair_color = "mutcolor"
+	hair_alpha = 140
 
 /datum/species/jelly/on_species_loss(mob/living/carbon/C)
 	if(regenerate_limbs)
 		regenerate_limbs.Remove(C)
 	C.faction -= "slime"
 	..()
-	C.faction -= "slime"
 
 /datum/species/jelly/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
@@ -52,7 +55,7 @@
 	if(H.blood_volume < BLOOD_VOLUME_BAD(H))
 		Cannibalize_Body(H)
 	if(regenerate_limbs)
-		regenerate_limbs.UpdateButtonIcon()
+		regenerate_limbs.build_all_button_icons()
 
 /datum/species/jelly/proc/Cannibalize_Body(mob/living/carbon/human/H)
 	var/list/limbs_to_consume = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG) - H.get_missing_limbs()
@@ -68,8 +71,38 @@
 	qdel(consumed_limb)
 	H.blood_volume += 20
 
+/datum/species/jelly/random_name(gender,unique,lastname)//they have no lore, just use human names for now i guess
+	if(unique)
+		return random_unique_name()
+	return random_unique_name()
+
+/datum/species/jelly/get_species_description()
+	return ""//"TODO: RIP in peace Skrem"
+
+/datum/species/jelly/get_species_lore()
+	return list(
+		""//"TODO: RIP in peace Skrem"
+	)
+
+/datum/species/jelly/create_pref_unique_perks()
+	var/list/to_add = list()
+
+	to_add += list(list(
+		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+		SPECIES_PERK_ICON = "splotch",
+		SPECIES_PERK_NAME = "Unstable Form",
+		SPECIES_PERK_DESC = "[plural_form] are made entirely of jelly, losing enough will result in them cannibalizing their own limbs to survive.",
+	),
+	list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = "hand-sparkles",
+		SPECIES_PERK_NAME = "Regenerate Limbs",
+		SPECIES_PERK_DESC = "Being made entirely of jelly means [plural_form] can reform lost limbs from nothing assuming they have enough extra to spare.",
+	))
+
+	return to_add
+
 // Slimes have both NOBLOOD and an exotic bloodtype set, so they need to be handled uniquely here.
-// They may not be roundstart but in the unlikely event they become one might as well not leave a glaring issue open.
 /datum/species/jelly/create_pref_blood_perks()
 	var/list/to_add = list()
 
@@ -77,8 +110,8 @@
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "tint",
 		SPECIES_PERK_NAME = "Jelly Blood",
-		SPECIES_PERK_DESC = "[plural_form] don't have blood, but instead have toxic [initial(exotic_blood.name)]! This means they will heal from toxin damage. \
-			Jelly is extremely important, as losing it will cause you to lose limbs. Having low jelly will make medical treatment very difficult.",
+		SPECIES_PERK_DESC = "[plural_form] don't have blood, but instead have toxic [initial(exotic_blood.name)]! This means they will heal from toxin damage but get hurt by toxin healing. \
+			Jelly is extremely important, and having low jelly will make medical treatment very difficult.",
 	))
 
 	return to_add
@@ -87,10 +120,11 @@
 	name = "Regenerate Limbs"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimeheal"
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
 
-/datum/action/innate/regenerate_limbs/IsAvailable()
+/datum/action/innate/regenerate_limbs/IsAvailable(feedback = FALSE)
 	if(..())
 		var/mob/living/carbon/human/H = owner
 		var/list/limbs_to_heal = H.get_missing_limbs()
@@ -183,10 +217,11 @@
 	name = "Split Body"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimesplit"
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
 
-/datum/action/innate/split_body/IsAvailable()
+/datum/action/innate/split_body/IsAvailable(feedback = FALSE)
 	if(..())
 		var/mob/living/carbon/human/H = owner
 		if(H.blood_volume >= BLOOD_VOLUME_SLIME_SPLIT)
@@ -251,8 +286,9 @@
 	name = "Swap Body"
 	check_flags = NONE
 	button_icon_state = "slimeswap"
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
 
 /datum/action/innate/swap_body/Activate()
 	if(!isslimeperson(owner))
@@ -438,9 +474,9 @@
 
 /datum/species/jelly/luminescent/proc/update_slime_actions()
 	integrate_extract.update_name()
-	integrate_extract.UpdateButtonIcon()
-	extract_minor.UpdateButtonIcon()
-	extract_major.UpdateButtonIcon()
+	integrate_extract.build_all_button_icons()
+	extract_minor.build_all_button_icons()
+	extract_major.build_all_button_icons()
 
 /datum/species/jelly/luminescent/proc/update_glow(mob/living/carbon/C, intensity)
 	if(intensity)
@@ -456,7 +492,7 @@
 	light_system = MOVABLE_LIGHT
 	light_power = 2.5
 
-/obj/effect/dummy/luminescent_glow/Initialize()
+/obj/effect/dummy/luminescent_glow/Initialize(mapload)
 	. = ..()
 	if(!isliving(loc))
 		return INITIALIZE_HINT_QDEL
@@ -466,8 +502,9 @@
 	desc = "Eat a slime extract to use its properties."
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimeconsume"
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
 	var/datum/species/jelly/luminescent/species
 
 /datum/action/innate/integrate_extract/New(_species)
@@ -482,17 +519,25 @@
 		name = "Eject Extract"
 		desc = "Eject your current slime extract."
 
-/datum/action/innate/integrate_extract/UpdateButtonIcon(status_only, force)
-	if(!species || !species.current_extract)
+/datum/action/innate/integrate_extract/update_button_name(atom/movable/screen/movable/action_button/button, force = FALSE)
+	var/datum/species/jelly/luminescent/species = target
+	if(!istype(species) || !species.current_extract)
+		name = "Integrate Extract"
+		desc = "Eat a slime extract to use its properties."
+	else
+		name = "Eject Extract"
+		desc = "Eject your current slime extract."
+
+	return ..()
+
+/datum/action/innate/integrate_extract/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force)
+	var/datum/species/jelly/luminescent/species = target
+	if(!istype(species) || !species.current_extract)
 		button_icon_state = "slimeconsume"
 	else
 		button_icon_state = "slimeeject"
-	..()
 
-/datum/action/innate/integrate_extract/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
-	..(current_button, TRUE)
-	if(species && species.current_extract)
-		current_button.add_overlay(mutable_appearance(species.current_extract.icon, species.current_extract.icon_state))
+	return ..()
 
 /datum/action/innate/integrate_extract/Activate()
 	var/mob/living/carbon/human/H = owner
@@ -528,8 +573,9 @@
 	desc = "Pulse the slime extract with energized jelly to activate it."
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimeuse1"
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
 	var/activation_type = SLIME_ACTIVATE_MINOR
 	var/datum/species/jelly/luminescent/species
 
@@ -537,13 +583,13 @@
 	..()
 	species = _species
 
-/datum/action/innate/use_extract/IsAvailable()
+/datum/action/innate/use_extract/IsAvailable(feedback = FALSE)
 	if(..())
 		if(species && species.current_extract && (world.time > species.extract_cooldown))
 			return TRUE
 		return FALSE
 
-/datum/action/innate/use_extract/ApplyIcon(atom/movable/screen/movable/action_button/current_button, force)
+/datum/action/innate/use_extract/apply_button_icon(atom/movable/screen/movable/action_button/current_button, force)
 	..(current_button, TRUE)
 	if(species && species.current_extract)
 		current_button.add_overlay(mutable_appearance(species.current_extract.icon, species.current_extract.icon_state))
@@ -633,7 +679,7 @@
 	name = "Slimelink"
 	desc = "Send a psychic message to everyone connected to your slime link."
 	button_icon_state = "link_speech"
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
 	var/datum/species/jelly/stargazer/species
 
@@ -648,7 +694,7 @@
 		Remove(H)
 		return
 
-	var/message = sanitize(to_utf8(input("Message:", "Slime Telepathy") as text|null))
+	var/message = sanitize(input("Message:", "Slime Telepathy") as text|null)
 
 	if(!species || !(H in species.linked_mobs))
 		to_chat(H, span_warning("The link seems to have been severed..."))
@@ -678,8 +724,9 @@
 	name = "Send Thought"
 	desc = "Send a private psychic message to someone you can see."
 	button_icon_state = "send_mind"
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
 
 /datum/action/innate/project_thought/Activate()
 	var/mob/living/carbon/human/H = owner
@@ -698,7 +745,7 @@
 	if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
 		to_chat(H, span_notice("As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled."))
 		return
-	var/msg = sanitize(to_utf8(input("Message:", "Telepathy") as text|null))
+	var/msg = sanitize(input("Message:", "Telepathy") as text|null)
 	if(msg)
 		if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
 			to_chat(H, span_notice("As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled."))
@@ -717,8 +764,9 @@
 	name = "Link Minds"
 	desc = "Link someone's mind to your Slime Link, allowing them to communicate telepathically with other linked minds."
 	button_icon_state = "mindlink"
-	icon_icon = 'icons/mob/actions/actions_slime.dmi'
+	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
 	var/datum/species/jelly/stargazer/species
 
 /datum/action/innate/link_minds/New(_species)

@@ -67,6 +67,7 @@
 		"ghost_yellow" = "Yellow",
 		"ghostian2" = "Ian",
 		"ghostking" = "King",
+		"ghostmoth" = "Moff",
 		"skeleghost" = "Skeleton",
 	)
 

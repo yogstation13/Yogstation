@@ -6,7 +6,7 @@
 	righthand_file = 'yogstation/icons/mob/inhands/weapons/xenoarch_righthand.dmi'
 	icon_state = "polarstar"
 	item_state = "polarstar"
-	slot_flags = SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 	fire_delay = 1
 	recoil = 1
 	cell_type = /obj/item/stock_parts/cell
@@ -42,8 +42,8 @@
 
 	if(chargesound != oldsound)
 		playsound(src, chargesound, 100)
-		sleep(0.1 SECONDS)
-		playsound(src, chargesound, 75)
+
+		addtimer(CALLBACK(src, PROC_REF(playsound), src, chargesound, 75), 0.1 SECONDS)
 	return
 
 /obj/item/gun/energy/polarstar/spur

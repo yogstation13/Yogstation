@@ -79,13 +79,13 @@
 	maptext_width = 32
 	maptext_y = -1
 
-/obj/machinery/door_timer/Initialize()
+/obj/machinery/door_timer/Initialize(mapload)
 	. = ..()
 
 	Radio = new/obj/item/radio(src)
 	Radio.listening = 0
 
-/obj/machinery/door_timer/Initialize()
+/obj/machinery/door_timer/Initialize(mapload)
 	. = ..()
 	if(id != null)
 		for(var/obj/machinery/door/window/brigdoor/M in urange(20, src))
@@ -136,7 +136,7 @@
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
 		if(door.density)
 			continue
-		INVOKE_ASYNC(door, /obj/machinery/door/window/brigdoor.proc/close)
+		INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/window/brigdoor, close))
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
 		if(C.broken)
@@ -149,7 +149,7 @@
 	if(desired_crime)
 		var/datum/data/record/R = find_record("name", desired_name, GLOB.data_core.security)
 		if(R)
-			R.fields["criminal"] = "Incarcerated"
+			R.fields["criminal"] = WANTED_PRISONER
 			var/crime = GLOB.data_core.createCrimeEntry(desired_crime, null, user.real_name, station_time_timestamp())
 			GLOB.data_core.addCrime(R.fields["id"], crime)
 			investigate_log("New Crime: <strong>[desired_crime]</strong> | Added to [R.fields["name"]] by [key_name(user)]", INVESTIGATE_RECORDS)
@@ -175,14 +175,14 @@
 	update_icon()
 	var/datum/data/record/R = find_record("name", desired_name, GLOB.data_core.security)
 	if(R)
-		R.fields["criminal"] = "Discharged"
+		R.fields["criminal"] = WANTED_DISCHARGED
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 		H.sec_hud_set_security_status()
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
 		if(!door.density)
 			continue
-		INVOKE_ASYNC(door, /obj/machinery/door/window/brigdoor.proc/open)
+		INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/window/brigdoor, open))
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
 		if(C.broken)

@@ -28,7 +28,7 @@
 /obj/machinery/power/tesla_coil/power
 	circuit = /obj/item/circuitboard/machine/tesla_coil/power
 
-/obj/machinery/power/tesla_coil/Initialize()
+/obj/machinery/power/tesla_coil/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/tesla_coil(src)
 	linked_techweb = SSresearch.science_tech
@@ -88,7 +88,7 @@
 			linked_account.adjust_money(money_per_zap)
 		if(istype(linked_techweb))
 			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
-		addtimer(CALLBACK(src, .proc/reset_shocked), zap_cooldown)
+		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), zap_cooldown)
 		tesla_buckle_check(power)
 	else
 		..()
@@ -124,7 +124,7 @@
 			linked_account.adjust_money(money_per_zap)
 		if(istype(linked_techweb))
 			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
-		addtimer(CALLBACK(src, .proc/reset_shocked), zap_cooldown)
+		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), zap_cooldown)
 		tesla_buckle_check(power)
 	else
 		..()
@@ -178,7 +178,7 @@
 
 	return ..()
 
-/obj/machinery/power/grounding_rod/tesla_act(var/power)
+/obj/machinery/power/grounding_rod/tesla_act(power)
 	if(anchored && !panel_open)
 		flick("grounding_rodhit", src)
 		tesla_buckle_check(power)

@@ -435,7 +435,7 @@
 
 /obj/item/borg/upgrade/selfrepair/dropped()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/check_dropped), 1)
+	addtimer(CALLBACK(src, PROC_REF(check_dropped)), 1)
 
 /obj/item/borg/upgrade/selfrepair/proc/check_dropped()
 	if(loc != cyborg)
@@ -459,7 +459,7 @@
 		icon_state = "selfrepair_[on ? "on" : "off"]"
 		for(var/X in actions)
 			var/datum/action/A = X
-			A.UpdateButtonIcon()
+			A.build_all_button_icons()
 	else
 		icon_state = "cyborg_upgrade5"
 
@@ -776,8 +776,8 @@
 		R.SetLockdown(1)
 		R.anchored = TRUE
 		R.expansion_count++
-		var/datum/effect_system/smoke_spread/smoke = new
-		smoke.set_up(1, R.loc)
+		var/datum/effect_system/fluid_spread/smoke/smoke = new
+		smoke.set_up(1, location = R.loc)
 		smoke.start()
 		sleep(0.2 SECONDS)
 		for(var/i in 1 to 4)
@@ -885,3 +885,29 @@
 		to_chat(user, span_warning("Nanotrasen has disallowed this unit from becoming this type of module."))
 		return FALSE
 	return ..()
+
+/obj/item/borg/upgrade/broomer
+	name = "experimental push broom"
+	desc = "An experimental push broom used for efficiently pushing refuse."
+	icon_state = "cyborg_upgrade3"
+	require_module = 1
+	module_type = /obj/item/robot_module/janitor
+	module_flags = BORG_MODULE_JANITOR
+
+/obj/item/borg/upgrade/broomer/action(mob/living/silicon/robot/R, user = usr)
+	if (!..())
+		return
+	var/obj/item/twohanded/broom/cyborg/BR = locate() in R.module.modules
+	if (BR)
+		to_chat(user, span_warning("This janiborg is already equipped with an experimental broom!"))
+		return FALSE
+	BR = new(R.module)
+	R.module.basic_modules += BR
+	R.module.add_module(BR, FALSE, TRUE)
+
+/obj/item/borg/upgrade/broomer/deactivate(mob/living/silicon/robot/R, user = usr)
+	if (!..())
+		return
+	var/obj/item/twohanded/broom/cyborg/BR = locate() in R.module.modules
+	if (BR)
+		R.module.remove_module(BR, TRUE)

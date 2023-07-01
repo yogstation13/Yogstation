@@ -146,6 +146,24 @@
 ///from base of obj/item/hit_reaction(): (list/args)
 #define COMSIG_ITEM_HIT_REACT "item_hit_react"
 	#define COMPONENT_HIT_REACTION_BLOCK (1<<0)
+
+/// Called before an item is embedded (mob/living/carbon/target = carbon that it is getting embedded into)
+#define COMSIG_ITEM_EMBEDDED "mob_carbon_embedded" 
+	// Prevents the embed
+	#define COMSIG_ITEM_BLOCK_EMBED (1 << 0)
+
+/// Called before an item is removed from being embedded (mob/living/carbon/embedded = carbon that is currently embedded)
+#define COMSIG_ITEM_EMBED_REMOVAL "mob_carbon_embed_removal" 
+	// Prevents the removal of the embed
+	#define COMSIG_ITEM_BLOCK_EMBED_REMOVAL (1 << 0)
+	// Qdels the object when it is removed instead of droping it
+	#define COMSIG_ITEM_QDEL_EMBED_REMOVAL (1 << 1)
+
+/// Called every life tick for the embedded mob when the item is embedded (mob/living/carbon/embedded = carbon that is currently embedded)
+#define COMSIG_ITEM_EMBED_TICK "mob_carbon_embed_tick" 
+	// Prevents the rest of the tick logic for the item from proccessing
+	#define COMSIG_ITEM_BLOCK_EMBED_TICK (1 << 0)
+
 ///from base of item/sharpener/attackby(): (amount, max)
 #define COMSIG_ITEM_SHARPEN_ACT "sharpen_act"
 	#define COMPONENT_BLOCK_SHARPEN_APPLIED (1<<0)
@@ -202,7 +220,7 @@
 #define COMSIG_CLOSET_DELIVERED "crate_delivered"
 
 ///Eigenstasium
-///From base of [/datum/controller/subsystem/eigenstates/proc/use_eigenlinked_atom]: (var/target)
+///From base of [/datum/controller/subsystem/eigenstates/proc/use_eigenlinked_atom]: (target)
 #define COMSIG_EIGENSTATE_ACTIVATE "eigenstate_activate"
 
 // /obj signals for economy
@@ -335,23 +353,23 @@
 ///called in /obj/item/gun/process_fire (user, target, params, zone_override)
 #define COMSIG_GRENADE_ARMED "grenade_armed"
 
-// /obj/projectile signals (sent to the firer)
+// /obj/item/projectile signals (sent to the firer)
 
-///from base of /obj/projectile/proc/on_hit(), like COMSIG_PROJECTILE_ON_HIT but on the projectile itself and with the hit limb (if any): (atom/movable/firer, atom/target, Angle, hit_limb)
+///from base of /obj/item/projectile/proc/on_hit(), like COMSIG_PROJECTILE_ON_HIT but on the projectile itself and with the hit limb (if any): (atom/movable/firer, atom/target, Angle, hit_limb)
 #define COMSIG_PROJECTILE_SELF_ON_HIT "projectile_self_on_hit"
-///from base of /obj/projectile/proc/on_hit(): (atom/movable/firer, atom/target, Angle)
+///from base of /obj/item/projectile/proc/on_hit(): (atom/movable/firer, atom/target, Angle)
 #define COMSIG_PROJECTILE_ON_HIT "projectile_on_hit"
-///from base of /obj/projectile/proc/fire(): (obj/projectile, atom/original_target)
+///from base of /obj/item/projectile/proc/fire(): (obj/item/projectile, atom/original_target)
 #define COMSIG_PROJECTILE_BEFORE_FIRE "projectile_before_fire"
-///from base of /obj/projectile/proc/fire(): (obj/projectile, atom/firer, atom/original_target)
+///from base of /obj/item/projectile/proc/fire(): (obj/item/projectile, atom/firer, atom/original_target)
 #define COMSIG_PROJECTILE_FIRER_BEFORE_FIRE "projectile_firer_before_fire"
-///from the base of /obj/projectile/proc/fire(): ()
+///from the base of /obj/item/projectile/proc/fire(): ()
 #define COMSIG_PROJECTILE_FIRE "projectile_fire"
 ///sent to targets during the process_hit proc of projectiles
 #define COMSIG_PROJECTILE_PREHIT "com_proj_prehit"
-///from the base of /obj/projectile/Range(): ()
+///from the base of /obj/item/projectile/Range(): ()
 #define COMSIG_PROJECTILE_RANGE "projectile_range"
-///from the base of /obj/projectile/on_range(): ()
+///from the base of /obj/item/projectile/on_range(): ()
 #define COMSIG_PROJECTILE_RANGE_OUT "projectile_range_out"
 ///from [/obj/item/proc/tryEmbed] sent when trying to force an embed (mainly for projectiles and eating glass)
 #define COMSIG_EMBED_TRY_FORCE "item_try_embed"
@@ -371,7 +389,7 @@
 ///from /datum/action/vehicle/sealed/headlights/vim/Trigger(): (headlights_on)
 #define COMSIG_VIM_HEADLIGHTS_TOGGLED "vim_headlights_toggled"
 
-// /obj/vehicle/sealed/mecha signals
+// /obj/mecha signals
 
 /// sent if you attach equipment to mecha
 #define COMSIG_MECHA_EQUIPMENT_ATTACHED "mecha_equipment_attached"

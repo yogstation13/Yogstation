@@ -24,7 +24,7 @@
 	else if(hasprox_receiver == host) //Default case
 		hasprox_receiver = H
 	host = H
-	RegisterSignal(host, COMSIG_MOVABLE_MOVED, .proc/HandleMove)
+	RegisterSignal(host, COMSIG_MOVABLE_MOVED, PROC_REF(HandleMove))
 	last_host_loc = host.loc
 	SetRange(current_range,TRUE)
 
@@ -44,7 +44,7 @@
 		SetRange(curr_range, TRUE)
 		if(curr_range)
 			testing("HasProx: [host] -> [host]")
-			hasprox_receiver.HasProximity(host)	//if we are processing, we're guaranteed to be a movable
+			hasprox_receiver?.HasProximity(host)	//if we are processing, we're guaranteed to be a movable
 
 /datum/proximity_monitor/proc/SetRange(range, force_rebuild = FALSE)
 	if(!force_rebuild && range == current_range)
@@ -113,4 +113,4 @@
 /obj/effect/abstract/proximity_checker/Crossed(atom/movable/AM)
 	set waitfor = FALSE
 	. = ..()
-	monitor.hasprox_receiver.HasProximity(AM)
+	monitor.hasprox_receiver?.HasProximity(AM)

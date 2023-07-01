@@ -68,7 +68,7 @@
 	tastes = list("popcorn" = 3, "butter" = 1)
 	foodtype = JUNKFOOD
 
-/obj/item/reagent_containers/food/snacks/popcorn/Initialize()
+/obj/item/reagent_containers/food/snacks/popcorn/Initialize(mapload)
 	. = ..()
 	eatverb = pick("bite","nibble","gnaw","gobble","chomp")
 
@@ -137,9 +137,9 @@
 	filling_color = "#8B4513"
 	foodtype = GROSS
 
-/obj/item/reagent_containers/food/snacks/badrecipe/Initialize()
+/obj/item/reagent_containers/food/snacks/badrecipe/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_GRILLED, .proc/OnGrill)
+	RegisterSignal(src, COMSIG_ITEM_GRILLED, PROC_REF(OnGrill))
 
 ///Prevents grilling burnt shit from well, burning.
 /obj/item/reagent_containers/food/snacks/badrecipe/proc/OnGrill()
@@ -170,7 +170,7 @@
 	desc = "It is only wafer thin."
 	icon_state = "mint"
 	bitesize = 1
-	list_reagents = list(/datum/reagent/toxin/minttoxin = 2)
+	list_reagents = list(/datum/reagent/consumable/mintextract = 2)
 	filling_color = "#800000"
 	foodtype = TOXIC | SUGAR
 
@@ -429,7 +429,7 @@
 	tastes = list("candy" = 1)
 	foodtype = JUNKFOOD | SUGAR
 
-/obj/item/reagent_containers/food/snacks/lollipop/Initialize()
+/obj/item/reagent_containers/food/snacks/lollipop/Initialize(mapload)
 	. = ..()
 	head = mutable_appearance('icons/obj/lollipop.dmi', "lollipop_head")
 	change_head_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
@@ -448,9 +448,9 @@
 /obj/item/reagent_containers/food/snacks/lollipop/cyborg
 	var/spamchecking = TRUE
 
-/obj/item/reagent_containers/food/snacks/lollipop/cyborg/Initialize()
+/obj/item/reagent_containers/food/snacks/lollipop/cyborg/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/spamcheck), 1200)
+	addtimer(CALLBACK(src, PROC_REF(spamcheck)), 1200)
 
 /obj/item/reagent_containers/food/snacks/lollipop/cyborg/equipped(mob/living/user, slot)
 	. = ..(user, slot)
@@ -466,19 +466,19 @@
 	icon = 'icons/obj/lollipop.dmi'
 	icon_state = "gumball"
 	list_reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/medicine/c2/libital = 2, /datum/reagent/medicine/c2/aiuri = 2)	//Kek
-	tastes = list("candy")
+	tastes = list("candy" = 1)
 	foodtype = JUNKFOOD
 
-/obj/item/reagent_containers/food/snacks/gumball/Initialize()
+/obj/item/reagent_containers/food/snacks/gumball/Initialize(mapload)
 	. = ..()
 	color = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
 
 /obj/item/reagent_containers/food/snacks/gumball/cyborg
 	var/spamchecking = TRUE
 
-/obj/item/reagent_containers/food/snacks/gumball/cyborg/Initialize()
+/obj/item/reagent_containers/food/snacks/gumball/cyborg/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/spamcheck), 1200)
+	addtimer(CALLBACK(src, PROC_REF(spamcheck)), 1200)
 
 /obj/item/reagent_containers/food/snacks/gumball/cyborg/equipped(mob/living/user, slot)
 	. = ..(user, slot)
@@ -569,4 +569,3 @@
 	desc = "A can of peaches, perhaps stashed here long ago to hide them from the wizards."
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
-
