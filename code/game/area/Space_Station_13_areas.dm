@@ -28,7 +28,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	power_environ = FALSE
 	valid_territory = FALSE
 	outdoors = TRUE
-	ambientsounds = SPACE
 	blob_allowed = FALSE //Eating up space doesn't count for victory as a blob.
 
 /area/space/nearstation
