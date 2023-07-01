@@ -1541,6 +1541,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/item/computer_hardware/hard_drive/portable/super,
 /obj/item/reagent_containers/glass/bottle/mannitol,
+/obj/item/clothing/head/helmet,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/warehouse)
 "sR" = (
