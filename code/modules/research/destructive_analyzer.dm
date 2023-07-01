@@ -17,7 +17,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	var/list/researched_items
 	var/can_research_items = FALSE
 
-/obj/machinery/rnd/destructive_analyzer/Initialize()
+/obj/machinery/rnd/destructive_analyzer/Initialize(mapload)
 	. = ..()
 	researched_items = list()
 

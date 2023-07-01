@@ -89,7 +89,7 @@
 		item.forceMove(get_turf(src)) // Eject anything we may be holding
 		adjust_item_drop_location(item)
 
-/obj/machinery/exp_part_fabricator/Initialize()
+/obj/machinery/exp_part_fabricator/Initialize(mapload)
 	. = ..()
 	create_reagents(0, OPENCONTAINER)
 	RefreshParts()
