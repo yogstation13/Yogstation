@@ -292,7 +292,7 @@
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/decal_painter
+/datum/design/tile_painter
 	name = "Tile Painter"
 	id = "tile_painter"
 	build_type = AUTOLATHE | PROTOLATHE
