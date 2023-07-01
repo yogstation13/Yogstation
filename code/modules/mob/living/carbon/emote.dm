@@ -135,6 +135,6 @@
 	. = ..()
 	if(. && isliving(user))
 		var/mob/living/carbon/L = user
-		L.vomit(0, FALSE, FALSE, 1, FALSE, VOMIT_TOXIC, TRUE, FALSE, 0)
+		L.vomit(lost_nutrition = 0, stun = FALSE, message = FALSE, purge_ratio = 0)
 		L.Stun(25)
 
