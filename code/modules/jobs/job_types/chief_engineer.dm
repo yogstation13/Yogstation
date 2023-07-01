@@ -2,11 +2,9 @@
 	title = "Chief Engineer"
 	description = "Coordinate engineering, ensure equipment doesn't get stolen, \
 		make sure the Supermatter doesn't blow up, maintain telecommunications."
-	flag = CHIEF
 	orbit_icon = "user-astronaut"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	department_head = list("Captain")
-	department_flag = ENGSEC
 	head_announce = list("Engineering")
 	faction = "Station"
 	total_positions = 1
@@ -62,7 +60,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	digitigrade_shoes = /obj/item/clothing/shoes/xeno_wraps/command
 	head = /obj/item/clothing/head/hardhat/white
-	gloves = /obj/item/clothing/gloves/color/black
+	gloves = /obj/item/clothing/gloves/atmos/ce
 	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1) //yogs - removes eng budget
 	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce
 

@@ -572,6 +572,14 @@
 		reload_fullscreen()
 		revive_guardian()
 		. = 1
+		var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
+		if(B)
+			if(B && B.decay_progress > 5 MINUTES && !admin_revive)
+				to_chat(src, span_danger("As life pours back through your body, you struggle to recall what last happened to you; every memory before your death is hazy. You feel like you've been dead for too long"))
+				to_chat(src, span_userdanger("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>."))
+				src.visible_message(span_danger("[src] stares ahead blankly, blinking a few times, as if they are trying to remember something."))
+				log_combat(src, "was revived with memory loss")
+			B.decay_progress = 0
 		if(IS_BLOODSUCKER(src))
 			var/datum/antagonist/bloodsucker/bloodsuckerdatum = src.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 			bloodsuckerdatum.heal_vampire_organs()
@@ -684,7 +692,9 @@
 	if((newdir in GLOB.cardinals) && (prob(50)))
 		newdir = turn(get_dir(target_turf, start), 180)
 	if(!blood_exists)
-		new /obj/effect/decal/cleanable/trail_holder(start, get_static_viruses())
+		var/obj/effect/decal/cleanable/trail_holder/TH = new(start, get_static_viruses())
+		if(isethereal(src))//ethereal blood glows
+			TH.Etherealify()
 
 	for(var/obj/effect/decal/cleanable/trail_holder/TH in start)
 		if((!(newdir in TH.existing_dirs) || trail_type == "trails_1" || trail_type == "trails_2") && TH.existing_dirs.len <= 16) //maximum amount of overlays is 16 (all light & heavy directions filled)
@@ -713,10 +723,14 @@
 	if(getBruteLoss() < 300)
 		if(ispolysmorph(src))
 			return pick("xltrails_1", "xltrails_2")
+		if(isethereal(src))
+			return pick("wltrails_1", "wltrails_2")
 		return pick("ltrails_1", "ltrails_2")
 	else
 		if(ispolysmorph(src))
 			return pick("xttrails_1", "xttrails_2")
+		if(isethereal(src))
+			return pick("wttrails_1", "wttrails_2")
 		return pick("trails_1", "trails_2")
 
 /mob/living/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)

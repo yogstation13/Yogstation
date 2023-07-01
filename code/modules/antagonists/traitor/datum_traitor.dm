@@ -66,6 +66,10 @@
 			A.malf_picker.remove_malf_verbs(A)
 			qdel(A.malf_picker)
 	owner.remove_employee(company)
+	if(uplink_holder)
+		var/datum/component/uplink/uplink = uplink_holder.GetComponent(/datum/component/uplink)
+		if(uplink)//remove uplink so they can't keep using it if admin abuse happens
+			uplink.RemoveComponent()
 	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)

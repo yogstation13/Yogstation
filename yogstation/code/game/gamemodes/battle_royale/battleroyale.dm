@@ -179,7 +179,7 @@ GLOBAL_VAR(stormdamage)
 /datum/game_mode/fortnite/proc/delete_armoury()
 	var/area/ai_monitored/security/armory/A = locate(/area/ai_monitored/security/armory) in GLOB.areas
 	for(var/obj/item/thing in A)
-		if(thing.anchored || !thing.force)//only target something that is possibly a weapon
+		if(thing.anchored)//only target something that is possibly a weapon
 			continue
 		qdel(thing)
 

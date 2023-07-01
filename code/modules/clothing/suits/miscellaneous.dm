@@ -658,7 +658,7 @@
 	name = "science winter coat"
 	icon_state = "coatscience"
 	item_state = "coatscience"
-	allowed = list(/obj/item/analyzer, /obj/item/stack/medical, /obj/item/dnainjector, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/autoinjector, /obj/item/healthanalyzer, /obj/item/flashlight/pen, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/pill, /obj/item/storage/pill_bottle, /obj/item/paper, /obj/item/melee/classic_baton/telescopic, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
+	allowed = list(/obj/item/analyzer, /obj/item/multitool/tricorder, /obj/item/stack/medical, /obj/item/dnainjector, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/autoinjector, /obj/item/healthanalyzer, /obj/item/flashlight/pen, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/pill, /obj/item/storage/pill_bottle, /obj/item/paper, /obj/item/melee/classic_baton/telescopic, /obj/item/toy, /obj/item/storage/box/fancy/cigarettes, /obj/item/lighter, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 10, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/science
 
@@ -784,3 +784,19 @@
 	name = "hide mantle"
 	desc = "The tanned hide of some brown furred creature."
 	icon_state = "mantle_liz"
+
+/obj/item/clothing/head/hooded/cult_hoodie_toy/eldritch_toy
+	name = "fashionable hood"
+	desc = "A stylish hood perfectly pairing the robe it came with. Strange eyes line the inside."
+	icon_state = "eldritch"
+	item_state = "eldritch"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+
+/obj/item/clothing/suit/hooded/cultrobes/eldritch_toy
+	name = "fashionable robe"
+	desc = "A trendy robe straight from this year's Nanotrasen fashion show. You can't remember seeing this entry on the catwalk."
+	icon_state = "eldritch_armor"
+	item_state = "eldritch_armor"
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+	allowed = list(/obj/item/gun/magic/hook/sickly_blade, /obj/item/forbidden_book, /obj/item/toy/eldritch_book) //gonna make it work with this the real stuff as a "fashion statement"
+	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie_toy/eldritch_toy

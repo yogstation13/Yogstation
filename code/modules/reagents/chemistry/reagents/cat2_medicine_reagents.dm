@@ -58,8 +58,8 @@
 	..()
 	. = TRUE
 
-/datum/reagent/medicine/c2/probital/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
-	if(method != INGEST || !iscarbon(L))
+/datum/reagent/medicine/c2/probital/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
+	if(!(methods & INGEST) || !iscarbon(L))
 		return
 
 	L.reagents.remove_reagent(/datum/reagent/medicine/c2/probital, reac_volume * 0.05)
@@ -220,8 +220,8 @@
 	overdose_threshold = 6
 	var/conversion_amount
 
-/datum/reagent/medicine/c2/thializid/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
-	if(method != INJECT || !iscarbon(L))
+/datum/reagent/medicine/c2/thializid/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
+	if(!(methods & INJECT) || !iscarbon(L))
 		return
 	var/mob/living/carbon/C = L
 	if(reac_volume >= 0.6) //prevents cheesing with ultralow doses.

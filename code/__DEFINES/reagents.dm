@@ -16,11 +16,11 @@
 #define OPENCONTAINER 	(REFILLABLE | DRAINABLE | TRANSPARENT)
 
 
-#define TOUCH			1	// splashing, foam
-#define INGEST			2	// ingestion
-#define VAPOR			3	// spray, blob attack
-#define PATCH			4	// patches
-#define INJECT			5	// injection
+#define TOUCH			(1<<0)	// splashing, foam
+#define INGEST			(1<<1)	// ingestion
+#define VAPOR			(1<<2)	// spray, blob attack
+#define PATCH			(1<<3)	// patches
+#define INJECT			(1<<4)	// injection
 
 
 //defines passed through to the on_reagent_change proc
