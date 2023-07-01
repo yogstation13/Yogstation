@@ -23,22 +23,6 @@
 	icon_state = "platingdmg3"
 	},
 /area/shuttle/escape)
-"ba" = (
-/obj/machinery/button/door{
-	id = "escape_cockpit_windows";
-	name = "Cockpit Window Blast Doors";
-	pixel_x = -7;
-	req_access_txt = "19"
-	},
-/obj/machinery/button/door{
-	id = "escape_cockpit_blast";
-	name = "Cargo Airlock Blast Doors";
-	pixel_x = 5;
-	pixel_y = 0;
-	req_access_txt = "19"
-	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/shuttle/escape)
 "cc" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate/internals,
@@ -67,6 +51,22 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
+/area/shuttle/escape)
+"eJ" = (
+/obj/machinery/button/door{
+	id = "escape_cockpit_windows";
+	name = "Cockpit Window Blast Doors";
+	pixel_x = -7;
+	req_access_txt = "19"
+	},
+/obj/machinery/button/door{
+	id = "ock_cargo_door";
+	name = "Cargo Airlock Blast Doors";
+	pixel_x = 5;
+	pixel_y = 0;
+	req_access_txt = "19"
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/escape)
 "eK" = (
 /obj/effect/turf_decal/bot,
@@ -1197,7 +1197,7 @@ AW
 "}
 (12,1,1) = {"
 uD
-ba
+eJ
 Lo
 kj
 Ih
