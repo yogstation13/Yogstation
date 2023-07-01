@@ -158,6 +158,11 @@
 	message = "frowns."
 	stat_allowed = SOFT_CRIT
 
+/datum/emote/living/tilt
+	key = "tilt"
+	key_third_person = "tilts"
+	message = "tilts their head to the side."
+
 /datum/emote/living/gag
 	key = "gag"
 	key_third_person = "gags"
@@ -200,6 +205,13 @@
 	key = "grimace"
 	key_third_person = "grimaces"
 	message = "grimaces."
+
+/datum/emote/living/growl
+	key = "growl"
+	key_third_person = "growls"
+	message = "growls."
+	message_mime = "looks angry!"
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/handsup
 	key = "handsup"

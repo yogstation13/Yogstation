@@ -126,3 +126,15 @@
 
 /datum/emote/living/snap/get_sound(mob/living/user)
 	return pick('sound/misc/fingersnap1.ogg', 'sound/misc/fingersnap2.ogg')
+
+/datum/emote/living/carbon/vomit
+	key = "vomit"
+	key_third_person = "vomits"
+	message = "throws up."
+/datum/emote/living/carbon/vomit/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && isliving(user))
+		var/mob/living/carbon/L = user
+		L.vomit(0, FALSE, FALSE, 1, FALSE, VOMIT_TOXIC, TRUE, FALSE, 0)
+		L.Stun(25)
+
