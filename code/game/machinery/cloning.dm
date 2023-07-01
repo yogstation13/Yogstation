@@ -30,7 +30,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/maxbiomass = 100
 	///List of special meat that gives extra/less biomass
 	var/list/accepted_biomass = list(
-		/obj/item/reagent_containers/food/snacks/meat/slab/monkey = 25, 
+		/obj/item/reagent_containers/food/snacks/meat/slab/monkey = 25,
 		/obj/item/reagent_containers/food/snacks/meat/slab/synthmeat = 34,
 		/obj/item/reagent_containers/food/snacks/meat/slab/human = 50,
 		/obj/item/stack/sheet/animalhide/human = 50
@@ -491,12 +491,12 @@ GLOBAL_VAR_INIT(clones, 0)
 		if(efficiency < 9) // T4 and below
 			to_chat(occupant, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
 			log_combat(occupant, "was cloned with memory loss")
-    else if(efficiency == 9) // One T5 scanner
+		else if(efficiency == 9) // One T5 scanner
 			to_chat(occupant, span_notice("Miraculously, you remember <i>how</i> you died. You don't remember anything about anyone involved, though!"))
 			log_combat(occupant, "was cloned with memory loss except for the method and location")
-    else if(efficiency >= 10) // Two T5 scanners
+		else if(efficiency >= 10) // Two T5 scanners
 			to_chat(occupant, span_notice("Miraculously, you remember everything about your previous death!"))
-      log_combat(occupant, "was cloned with no memory loss")
+			log_combat(occupant, "was cloned with no memory loss")
 		mob_occupant.flash_act()
 		GLOB.clones++
 
