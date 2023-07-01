@@ -312,14 +312,14 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "tonercartridge"
 	grind_results = list(/datum/reagent/iodine = 40, /datum/reagent/iron = 10)
-	var/charges = 25
-	var/max_charges = 25
+	var/charges = 50
+	var/max_charges = 50
 
 /obj/item/toner/large
 	name = "large toner cartridge"
 	grind_results = list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
-	charges = 75
-	max_charges = 75
+	charges = 100
+	max_charges = 100
 	
 /obj/machinery/photocopier/proc/copy(obj/item/paper/copy)
 	var/obj/item/paper/c = new /obj/item/paper (loc)
