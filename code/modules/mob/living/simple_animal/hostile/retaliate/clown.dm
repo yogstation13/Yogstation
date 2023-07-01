@@ -48,7 +48,7 @@
 	..()
 	playsound(src.loc, 'sound/items/bikehorn.ogg', 50, 1)
 
-/mob/living/simple_animal/hostile/retaliate/clown/Life()
+/mob/living/simple_animal/hostile/retaliate/clown/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(banana_time && banana_time < world.time)
 		var/turf/T = get_turf(src)
@@ -74,7 +74,7 @@
 	emote_see = list("bubbles", "oozes")
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/particle_effect/fluid/foam)
 
-/mob/living/simple_animal/hostile/retaliate/clown/lube/Life()
+/mob/living/simple_animal/hostile/retaliate/clown/lube/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	var/turf/open/OT = get_turf(src)
 	if(isopenturf(OT))
@@ -320,12 +320,13 @@
 	icon_living = "blob"
 	speak = list("hey, buddy", "HONK!!!", "H-h-h-H-HOOOOONK!!!!", "HONKHONKHONK!!!", "HEY, BUCKO, GET BACK HERE!!!", "HOOOOOOOONK!!!")
 	emote_see = list("jiggles", "wobbles")
-	health = 130
+	maxHealth = 200
+	health = 200
 	mob_size = MOB_SIZE_LARGE
-	speed = 20
+	speed = 10
 	attacktext = "bounces off of"
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/fluid/foam, /obj/item/soap, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless, /obj/effect/gibspawner/human)
-	attack_reagent = /datum/reagent/toxin/mindbreaker
+	attack_reagent = /datum/reagent/consumable/laughter
 
 /mob/living/simple_animal/hostile/retaliate/clown/mutant/thicc
 	name = "Thicc Clown"

@@ -3,8 +3,22 @@ What are the archived variables for?
 	Calculations are done using the archived variables with the results merged into the regular variables.
 	This prevents race conditions that arise based on the order of tile processing.
 */
-#define MINIMUM_HEAT_CAPACITY	0.0003
-#define MINIMUM_MOLE_COUNT		0.01
+
+/**
+ *I feel the need to document what happens here. Basically this is used
+ *catch rounding errors, and make gas go away in small portions.
+ *People have raised it to higher levels in the past, do not do this. Consider this number a soft limit
+ *If you're making gasmixtures that have unexpected behavior related to this value, you're doing something wrong.
+ *
+ *On an unrelated note this may cause a bug that creates negative gas, related to round(). When it has a second arg it will round up.
+ *So for instance round(0.5, 1) == 1. I've hardcoded a fix for this into share, by forcing the garbage collect.
+ *Any other attempts to fix it just killed atmos. I leave this to a greater man then I
+ */
+/// The minimum heat capacity of a gas
+#define MINIMUM_HEAT_CAPACITY 0.0003
+/// Minimum mole count of a gas
+#define MINIMUM_MOLE_COUNT 0.01
+
 #define QUANTIZE(variable)		(round(variable,0.0000001))/*I feel the need to document what happens here. Basically this is used to catch most rounding errors, however it's previous value made it so that
 															once gases got hot enough, most procedures wouldnt occur due to the fact that the mole counts would get rounded away. Thus, we lowered it a few orders of magnititude */
 GLOBAL_LIST_INIT(meta_gas_info, meta_gas_list()) //see ATMOSPHERICS/gas_types.dm

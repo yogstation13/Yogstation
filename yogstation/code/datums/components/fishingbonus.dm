@@ -6,11 +6,11 @@
 /datum/component/fishingbonus/Initialize(fishing_bonus = 0)
 	src.fishing_bonus = fishing_bonus
 	if(isclothing(parent))
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/OnEquip)
-		RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/OnUnequip)
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(OnEquip))
+		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(OnUnequip))
 	else if(ismovable(parent))
-		RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, .proc/OnBuckle)
-		RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/OnUnbuckle)
+		RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, PROC_REF(OnBuckle))
+		RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(OnUnbuckle))
 	else
 		return COMPONENT_INCOMPATIBLE
 
@@ -18,7 +18,7 @@
 	var/obj/item/parent_item = parent
 	if(!parent_item)
 		return
-	if(parent_item.slot_flags == slotdefine2slotbit(slot))
+	if(parent_item.slot_flags == slot)
 		equipper.fishing_power += fishing_bonus
 		user = equipper
 

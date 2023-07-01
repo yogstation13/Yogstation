@@ -14,31 +14,30 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	species_traits = list(DYNCOLORS, EYECOLOR, HAIR, LIPS, AGENDER, NOHUSK, ROBOTIC_LIMBS, DIGITIGRADE)//they're fleshy metal machines, they are efficient, and the outside is metal, no getting husked
 	inherent_biotypes = list(MOB_ORGANIC, MOB_ROBOTIC, MOB_HUMANOID)
 	sexes = FALSE //they're basically ken dolls, come straight out of a printer
-	no_equip = list(SLOT_SHOES)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
+	no_equip = list(ITEM_SLOT_FEET)//this is just easier than using the digitigrade trait for now, making them digitigrade is part of the sprite rework pr
 	say_mod = "intones"
 	attack_verb = "assault"
 	skinned_type = /obj/item/stack/sheet/plasteel{amount = 5} //coated in plasteel
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/synthmeat
-	exotic_blood = /datum/reagent/stable_plasma //helps with heat regulation
+	exotic_bloodtype = "U" //synthetic blood that works for literally everyone
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES
-	brutemod = 0.9 //Have you ever punched a metal plate?
 	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
 	tempmod = 0.1 //The high heat capacity of the plasteel makes it take far longer to heat up or cool down
-	stunmod = 1.1 //Big metal body has difficulty getting back up if it falls down
+	stunmod = 1.2 //Big metal body has difficulty getting back up if it falls down
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	action_speed_coefficient = 0.9 //worker drone do the fast
-	punchdamagelow = 2 //if it hits you, it's always gonna hurt
 	punchdamagehigh = 8 //not built for large high speed acts like punches
 	punchstunthreshold = 7 //if they get a good punch off, you're still seeing lights
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
-	payday_modifier = 0.8 //Highly efficient workers, more than worth their price, NT still racist though
+	payday_modifier = 0.6 //Highly efficient workers, but significant political tension between SIC and Remnants = next to no protection or people willing to fight the obvious wage cut
 	//mutant_bodyparts = list("head", "body_markings")
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
+	mutantstomach = /obj/item/organ/stomach/preternis
 	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
 	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
@@ -46,8 +45,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	//deathsound = //change this when sprite gets reworked
 	yogs_draw_robot_hair = TRUE //remove their hair when they get the new sprite
 	screamsound = 'goon/sound/robot_scream.ogg' //change this when sprite gets reworked
-	wings_icon = "Robotic" //maybe change this eventually
-	species_language_holder = /datum/language_holder/preternis	
+	wings_icon = "Robotic"
+	species_language_holder = /datum/language_holder/machine
 	//new variables
 	var/datum/action/innate/maglock/maglock
 	var/lockdown = FALSE
@@ -75,6 +74,10 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		if(istype(BP,/obj/item/bodypart/l_leg) || istype(BP,/obj/item/bodypart/r_leg))//my dudes skip leg day
 			BP.max_damage = 30
 
+	RegisterSignal(C, COMSIG_MOB_ALTCLICKON, PROC_REF(drain_power_from))
+
+	RegisterSignal(C, COMSIG_MOB_ITEM_AFTERATTACK, PROC_REF(attackslowdown))
+
 	if(ishuman(C))
 		maglock = new
 		maglock.Grant(C)
@@ -89,9 +92,14 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		BP.change_bodypart_status(ORGAN_ORGANIC,FALSE,TRUE)
 		BP.burn_reduction = initial(BP.burn_reduction)
 		BP.brute_reduction = initial(BP.brute_reduction)
+
+	UnregisterSignal(C, COMSIG_MOB_ALTCLICKON)
 		
+	UnregisterSignal(C, COMSIG_MOB_ITEM_AFTERATTACK)
+
 	var/datum/component/empprotection/empproof = C.GetExactComponent(/datum/component/empprotection)
-	empproof.RemoveComponent()//remove emp proof if they stop being a preternis
+	if(empproof)
+		empproof.RemoveComponent()//remove emp proof if they stop being a preternis
 
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")
@@ -111,7 +119,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	name = "Maglock"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "magboots0"
-	icon_icon = 'icons/obj/clothing/shoes.dmi'
+	button_icon = 'icons/obj/clothing/shoes.dmi'
 	background_icon_state = "bg_default"
 
 /datum/action/innate/maglock/Grant(mob/M)
@@ -131,7 +139,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		REMOVE_TRAIT(H, TRAIT_NOSLIPWATER, "preternis_maglock")
 		REMOVE_TRAIT(H, TRAIT_NOSLIPICE, "preternis_maglock")
 		button_icon_state = "magboots0"
-	UpdateButtonIcon()
+	build_all_button_icons()
 	lockdown = !lockdown
 	owner_species.lockdown = !owner_species.lockdown
 	if(!silent)
@@ -233,8 +241,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		//damage has a flat amount with an additional amount based on how wet they are
 		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
 		H.adjustFireLoss(5 - (H.fire_stacks / 2))
-		H.Jitter(100)
-		H.stuttering = 1
+		H.adjust_jitter(100 SECONDS)
+		H.set_stutter(1 SECONDS)
 		if(!soggy)//play once when it starts
 			H.emote("scream")
 			to_chat(H, span_userdanger("Your entire being screams in agony as your wires short from getting wet!"))
@@ -245,7 +253,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		to_chat(H, "You breathe a sigh of relief as you dry off.")
 		soggy = FALSE
 		H.clear_alert("preternis_wet")
-		H.jitteriness -= 100
+		H.adjust_jitter(-100 SECONDS)
 
 /datum/species/preternis/proc/handle_charge(mob/living/carbon/human/H)
 	var/chargemod = 1 //TRAIT_BOTTOMLESS_STOMACH isn't included because preternis charge doesn't work that way
@@ -267,10 +275,19 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	else
 		H.clear_alert("preternis_charge")
 
-/datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make them attack slower
+/datum/species/preternis/proc/attackslowdown(atom/target, mob/user, proximity_flag, click_parameters)//make weapon use slower
+	if(!ispreternis(user) || !proximity_flag || !ishuman(target))
+		return	
+	var/mob/living/carbon/human/H = user
+	var/obj/item/weapon = H.get_active_held_item()
+	if(weapon && istype(weapon) && weapon.force)
+		H.next_move += 2 //adds 0.2 second delay to weapon combat
+
+/datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make their punches slower
 	. = ..()
-	if(ispreternis(user) && !attacker_style?.nonlethal && !user.mind.has_martialart() && !(user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)))
-		user.next_move += 3 //adds 0.3 second delay to combat
+	if(!ispreternis(user) || attacker_style?.nonlethal || (user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)) || (user.mind.martial_art.type in subtypesof(/datum/martial_art)))
+		return	
+	user.next_move += 2 //adds 0.2 second delay to combat
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
@@ -343,7 +360,38 @@ adjust_charge - take a positive or negative value to adjust the charge level
 /datum/species/preternis/create_pref_unique_perks()
 	var/list/to_add = list()
 
-	// TODO
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "cookie-bite",
+			SPECIES_PERK_NAME = "Stone eater",
+			SPECIES_PERK_DESC = "Preterni can eat ores to replenish their metal skin. All ores are not created equal.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "thunderstorm", //if we update font awesome, please swap to bolt-slash
+			SPECIES_PERK_NAME = "Faraday \"Skin\"",
+			SPECIES_PERK_DESC = "Being incased in plasteel rather than standard metal allows Preterni to be completely unaffected by EMPs.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "charging-station", //would prefer battery-bolt, but it doesn't show up
+			SPECIES_PERK_NAME = "Plug-n-Play",
+			SPECIES_PERK_DESC = "Preterni run off electricity rather than food.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "flask",
+			SPECIES_PERK_NAME = "Chemical Purge",
+			SPECIES_PERK_DESC = "Preterni will purge any foreign chemicals after a short time of them being in the blood stream.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "droplet-slash",
+			SPECIES_PERK_NAME = "Keep Dry",
+			SPECIES_PERK_DESC = "Preterni have exposed circuitry under cracks in their body, if water gets in they will short, causing weakness in the limbs and burns.",
+		),
+	)
 
 	return to_add
 

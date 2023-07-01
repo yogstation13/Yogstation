@@ -63,7 +63,7 @@
 /datum/species/zombie/infectious/spec_stun(mob/living/carbon/human/H,amount)
 	. = min(20, amount)
 
-/datum/species/zombie/infectious/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
+/datum/species/zombie/infectious/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
 	. = ..()
 	if(.)
 		regen_cooldown = world.time + REGENERATION_DELAY
@@ -130,7 +130,7 @@
 	mutanthands = /obj/item/zombie_hand/gamemode
 	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTDAMAGESLOWDOWN, TRAIT_STABLELIVER, TRAIT_STABLEHEART,
 	TRAIT_RADIMMUNE, TRAIT_LIMBATTACHMENT, TRAIT_NOBREATH, TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_NOHUNGER, TRAIT_RESISTHEAT, TRAIT_SHOCKIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_STUNIMMUNE, TRAIT_BADDNA, TRAIT_EASILY_WOUNDED, TRAIT_EASYDISMEMBER)
-	no_equip = list(SLOT_WEAR_MASK, SLOT_GLASSES, SLOT_HEAD)
+	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_EYES, ITEM_SLOT_HEAD)
 
 /datum/species/zombie/infectious/gamemode/runner
 	mutanthands = /obj/item/zombie_hand/gamemode/runner
@@ -153,7 +153,7 @@
 /datum/species/zombie/infectious/gamemode/spec_stun(mob/living/carbon/human/H,amount)
 	. = 0
 
-/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE)
+/datum/species/zombie/infectious/gamemode/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = FALSE, attack_direction = null)
 	if(damagetype == STAMINA)
 		return
 	. = ..()

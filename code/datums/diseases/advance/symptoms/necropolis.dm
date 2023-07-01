@@ -21,6 +21,7 @@
 	var/list/cached_tentacle_turfs
 	var/turf/last_location
 	var/tentacle_recheck_cooldown = 100
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/symptom/necroseed/Start(datum/disease/advance/A)
 	. = ..()

@@ -44,7 +44,17 @@ GLOBAL_LIST_EMPTY(caps_list)
 GLOBAL_LIST_EMPTY(ipc_screens_list)
 GLOBAL_LIST_EMPTY(ipc_antennas_list)
 GLOBAL_LIST_EMPTY(ipc_chassis_list)
-GLOBAL_LIST_INIT(plasmaman_helmet_list, list("None" = "", "Slit" = "S", "Nyan" = "N", "Gassy" = "G", "Bane" = "B", "Halo" = "H", "Wizard" = "W"))
+GLOBAL_LIST_INIT(plasmaman_helmet_list, list(
+	"None" = "",
+	"Slit" = "slit",
+	"Nyan" = "nyan",
+	"Gassy" = "gassy",
+	"Bane V1" = "banev1",
+	"Bane V2" = "banev2",
+	"Halo" = "halo",
+	"Wizard" = "wizard",
+	"Plate" = "plate",
+	"Low" = "low")) //for icon making -> use "enviro" before this
 
 GLOBAL_LIST_EMPTY(ethereal_mark_list) //ethereal face marks
 GLOBAL_LIST_INIT(color_list_ethereal,\
@@ -213,6 +223,16 @@ GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Disposals",
 	"Bar", "Kitchen", "Hydroponics", "Janitor Closet","Genetics",
 	"Testing Range", "Toxins", "Dormitories", "Virology",
 	"Xenobiology", "Law Office","Detective's Office"))
+
+GLOBAL_LIST_INIT(TAGGERLOCATIONS_DEPARTMENTAL, list(
+	"Security" = list("Security", "Detective's Office", "HoS Office"),
+	"Medical" = list("Medbay", "Chemistry", "Genetics", "Virology", "CMO Office"),
+	"Science" = list("Research", "Robotics", "Xenobiology", "Toxins", "Testing Range", "RD Office"),
+	"Engineering" = list("Engineering", "Atmospherics", "CE Office"),
+	"Civilian" = list("Disposals", "Cargo Bay", "QM Office"),
+	"Service" = list("Bar", "Kitchen", "Hydroponics", "HoP Office"),
+	"Miscellaneous" = list("Dormitories", "Theatre", "Chapel", "Law Office", "Library")
+))
 
 GLOBAL_LIST_INIT(station_prefixes, world.file2list("strings/station_prefixes.txt") + "")
 

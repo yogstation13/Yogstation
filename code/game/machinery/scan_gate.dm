@@ -39,7 +39,7 @@
 	var/detect_nutrition = NUTRITION_LEVEL_FAT
 	var/blocking = FALSE // Blocks people who trigger the alarm
 
-/obj/machinery/scanner_gate/Initialize()
+/obj/machinery/scanner_gate/Initialize(mapload)
 	. = ..()
 	set_scanline("passive")
 
@@ -82,7 +82,7 @@
 	deltimer(scanline_timer)
 	add_overlay(scan_type)
 	if(duration)
-		scanline_timer = addtimer(CALLBACK(src, .proc/set_scanline, "passive"), duration, TIMER_STOPPABLE)
+		scanline_timer = addtimer(CALLBACK(src, PROC_REF(set_scanline), "passive"), duration, TIMER_STOPPABLE)
 
 /obj/machinery/scanner_gate/attackby(obj/item/W, mob/user, params)
 	var/obj/item/card/id/card = W.GetID()
@@ -120,7 +120,7 @@
 				var/mob/living/carbon/human/H = M
 				var/perpname = H.get_face_name(H.get_id_name())
 				var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.security)
-				if(!R || (R.fields["criminal"] == "*Arrest*"))
+				if(!R || (R.fields["criminal"] == WANTED_ARREST))
 					beep = TRUE
 		if(SCANGATE_MINDSHIELD)
 			if(HAS_TRAIT(M, TRAIT_MINDSHIELD))

@@ -21,7 +21,7 @@
 	///How many shit fits on the griddle?
 	var/max_items = 8
 
-/obj/machinery/griddle/Initialize()
+/obj/machinery/griddle/Initialize(mapload)
 	. = ..()
 	end_processing() //doesn't start on
 	grill_loop = new(list(src), FALSE)
@@ -70,8 +70,8 @@
 	vis_contents += item_to_grill
 	griddled_objects += item_to_grill
 	//item_to_grill.flags_1 |= IS_ONTOP_1
-	RegisterSignal(item_to_grill, COMSIG_MOVABLE_MOVED, .proc/ItemMoved,TRUE)
-	RegisterSignal(item_to_grill, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
+	RegisterSignal(item_to_grill, COMSIG_MOVABLE_MOVED, PROC_REF(ItemMoved),TRUE)
+	RegisterSignal(item_to_grill, COMSIG_GRILL_COMPLETED, PROC_REF(GrillCompleted))
 	update_grill_audio()
 
 /obj/machinery/griddle/proc/ItemMoved(obj/item/I, atom/OldLoc, Dir, Forced)

@@ -4,8 +4,8 @@
 
 #define NUM_E 2.71828183
 
-#define PI						3.1416
-#define INFINITY				1e31	//closer then enough
+#define PI 3.1416
+#define INFINITY 1e31	//closer then enough
 
 #define SHORT_REAL_LIMIT 16777216
 
@@ -113,6 +113,10 @@
 
 #define TORADIANS(degrees) ((degrees) * 0.0174532925)
 
+/// Gets shift x that would be required the bitflag (1<<x)
+/// We need the round because log has floating-point inaccuracy, and if we undershoot at all on list indexing we'll get the wrong index.
+#define TOBITSHIFT(bit) ( round(log(2, bit), 1) )
+
 // Will filter out extra rotations and negative rotations
 // E.g: 540 becomes 180. -180 becomes 180.
 #define SIMPLIFY_DEGREES(degrees) (MODULUS((degrees), 360))
@@ -165,7 +169,7 @@
 	return (mean + stddev * R1)
 #undef ACCURACY
 
-/proc/get_turf_in_angle(angle, turf/starting, increments)
+/proc/get_turf_in_angle(angle, turf/starting, increments = 1)
 	var/pixel_x = 0
 	var/pixel_y = 0
 	for(var/i in 1 to increments)

@@ -674,3 +674,7 @@
 /datum/techweb_node/zhpipc
 	ui_x = -224
 	ui_y = 288
+
+/datum/techweb_node/experimental_ammo
+	ui_x = -700
+	ui_y = -750

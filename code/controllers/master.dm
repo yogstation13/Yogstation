@@ -88,11 +88,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	// Highlander-style: there can only be one! Kill off the old and replace it with the new.
 
 	if(!random_seed)
-		#ifdef UNIT_TESTS
+#ifdef UNIT_TESTS
 		random_seed = 29051994
-		#else
+#else
 		random_seed = rand(1, 1e9)
-		#endif
+#endif
 		rand_seed(random_seed)
 
 	var/list/_subsystems = list()
@@ -207,7 +207,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		Initialize(20, TRUE)
 
 // Please don't stuff random bullshit here,
-// Make a subsystem, give it the SS_NO_FIRE flag, and do your work in it's Initialize()
+// Make a subsystem, give it the SS_NO_FIRE flag, and do your work in it's Initialize(mapload)
 /datum/controller/master/Initialize(delay, init_sss, tgs_prime)
 	set waitfor = 0
 
@@ -273,6 +273,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 								"changelog_hash" = GLOB.changelog_hash)
 	webhook_send_roundstatus("lobby", webhookData) //yogs end -webhook support
 
+	if(world.system_type == MS_WINDOWS && CONFIG_GET(flag/toast_notification_on_init) && !length(GLOB.clients))
+		world.shelleo("start /min powershell -ExecutionPolicy Bypass -File tools/initToast/initToast.ps1 -name \"[world.name]\" -icon %CD%\\icons\\UI_Icons\\common\\ss13_16.png -port [world.port]")
 
 	// Set world options.
 	world.change_fps(CONFIG_GET(number/fps))
@@ -322,9 +324,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(result && !(result in valid_results))
 		warning("[subsystem.name] subsystem initialized, returning invalid result [result]. This is a bug.")
 
-	// just returned ..() or didn't implement Initialize() at all
+	// just returned ..() or didn't implement Initialize(mapload) at all
 	if(result == SS_INIT_NONE)
-		warning("[subsystem.name] subsystem does not implement Initialize() or it returns ..(). If the former is true, the SS_NO_INIT flag should be set for this subsystem.")
+		warning("[subsystem.name] subsystem does not implement Initialize(mapload) or it returns ..(). If the former is true, the SS_NO_INIT flag should be set for this subsystem.")
 
 	if(result != SS_INIT_FAILURE)
 		// Some form of success, implicit failure, or the SS in unused.

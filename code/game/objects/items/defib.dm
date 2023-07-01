@@ -27,13 +27,13 @@
 /obj/item/defibrillator/get_cell()
 	return cell
 
-/obj/item/defibrillator/Initialize() //starts without a cell for rnd
+/obj/item/defibrillator/Initialize(mapload) //starts without a cell for rnd
 	. = ..()
 	paddles = make_paddles()
 	update_icon()
 	return
 
-/obj/item/defibrillator/loaded/Initialize() //starts with hicap
+/obj/item/defibrillator/loaded/Initialize(mapload) //starts with hicap
 	. = ..()
 	paddles = make_paddles()
 	cell = new(src)
@@ -94,13 +94,13 @@
 /obj/item/defibrillator/attack_hand(mob/user)
 	if(loc == user)
 		if(slot_flags == ITEM_SLOT_BACK)
-			if(user.get_item_by_slot(SLOT_BACK) == src)
+			if(user.get_item_by_slot(ITEM_SLOT_BACK) == src)
 				ui_action_click()
 			else
 				to_chat(user, span_warning("Put the defibrillator on your back first!"))
 
 		else if(slot_flags == ITEM_SLOT_BELT)
-			if(user.get_item_by_slot(SLOT_BELT) == src)
+			if(user.get_item_by_slot(ITEM_SLOT_BELT) == src)
 				ui_action_click()
 			else
 				to_chat(user, span_warning("Strap the defibrillator's belt on first!"))
@@ -192,14 +192,14 @@
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/defibrillator/proc/make_paddles()
 	return new /obj/item/twohanded/shockpaddles(src)
 
 /obj/item/defibrillator/equipped(mob/user, slot)
 	..()
-	if((slot_flags == ITEM_SLOT_BACK && slot != SLOT_BACK) || (slot_flags == ITEM_SLOT_BELT && slot != SLOT_BELT))
+	if((slot_flags == ITEM_SLOT_BACK && slot != ITEM_SLOT_BACK) || (slot_flags == ITEM_SLOT_BELT && slot != ITEM_SLOT_BELT))
 		remove_paddles(user)
 		update_icon()
 
@@ -259,7 +259,7 @@
 	if(slot == user.getBeltSlot())
 		return TRUE
 
-/obj/item/defibrillator/compact/loaded/Initialize()
+/obj/item/defibrillator/compact/loaded/Initialize(mapload)
 	. = ..()
 	paddles = make_paddles()
 	cell = new(src)
@@ -271,7 +271,7 @@
 	combat = TRUE
 	safety = FALSE
 
-/obj/item/defibrillator/compact/combat/loaded/Initialize()
+/obj/item/defibrillator/compact/combat/loaded/Initialize(mapload)
 	. = ..()
 	paddles = make_paddles()
 	cell = new /obj/item/stock_parts/cell/infinite(src)
@@ -317,7 +317,7 @@
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/check_range)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_range))
 	listeningTo = user
 
 /obj/item/twohanded/shockpaddles/Moved()
@@ -342,7 +342,7 @@
 			visible_message(span_notice("[src] snap back into [defib]."))
 			snap_back()
 
-/obj/item/twohanded/shockpaddles/proc/recharge(var/time)
+/obj/item/twohanded/shockpaddles/proc/recharge(time)
 	if(req_defib || !time)
 		return
 	cooldown = TRUE
@@ -416,7 +416,14 @@
 		user.visible_message(span_notice("[defib] beeps: Unit is unpowered."))
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
-	if(!wielded)
+	
+	var/has_rod = FALSE
+	for(var/obj/item/rod_of_asclepius/rod in user.held_items)
+		if(istype(rod) && rod.activated)
+			has_rod = TRUE
+			break
+
+	if(!(wielded || has_rod))
 		if(iscyborg(user))
 			to_chat(user, span_warning("You must activate the paddles in your active module before you can use them on someone!"))
 		else
@@ -455,6 +462,8 @@
 		H.grab_ghost() // Shove them back in their body.
 	else if(H.can_defib(FALSE))
 		H.notify_ghost_cloning("Your heart is being defibrillated. Re-enter your corpse if you want to be revived!", source = src)
+	if(has_rod && !wielded)
+		to_chat(user, span_notice("Your snake holds the other paddle in its mouth and places it on [H]'s chest."))
 	do_help(H, user)
 
 /obj/item/twohanded/shockpaddles/proc/shock_touching(dmg, mob/H)
@@ -530,7 +539,7 @@
 			H.apply_damage(50, BURN, BODY_ZONE_CHEST)
 			log_combat(user, H, "overloaded the heart of", defib)
 			H.Paralyze(100)
-			H.Jitter(100)
+			H.adjust_jitter(100 SECONDS)
 			if(req_defib)
 				defib.deductcharge(revivecost)
 				cooldown = TRUE
@@ -624,7 +633,7 @@
 					H.set_heartattack(FALSE)
 					H.revive()
 					H.emote("gasp")
-					H.Jitter(100)
+					H.adjust_jitter(100 SECONDS)
 					SEND_SIGNAL(H, COMSIG_LIVING_MINOR_SHOCK)
 					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 					log_combat(user, H, "revived", defib)

@@ -26,8 +26,8 @@
 		))
 
 /datum/component/chasm/Initialize(turf/target)
-	RegisterSignals(parent, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/Entered)
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY,.proc/fish)
+	RegisterSignals(parent, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), PROC_REF(Entered))
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(fish))
 	target_turf = target
 	START_PROCESSING(SSobj, src) // process on create, in case stuff is still there
 
@@ -60,7 +60,7 @@
 	for (var/thing in to_check)
 		if (droppable(thing))
 			. = 1
-			INVOKE_ASYNC(src, .proc/drop, thing)
+			INVOKE_ASYNC(src, PROC_REF(drop), thing)
 
 /datum/component/chasm/proc/droppable(atom/movable/AM)
 	// avoid an infinite loop, but allow falling a large distance
@@ -81,7 +81,7 @@
 			return FALSE
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
-			for(var/obj/item/wormhole_jaunter/J in H.GetAllContents())
+			for(var/obj/item/wormhole_jaunter/J in H.get_all_contents())
 				//To freak out any bystanders
 				H.visible_message(span_boldwarning("[H] falls into [parent]!"))
 				J.chasm_react(H)
@@ -135,7 +135,7 @@
 
 	if (!storage)
 		storage = new(get_turf(parent))
-		RegisterSignal(storage, COMSIG_ATOM_EXITED, .proc/left_chasm)
+		RegisterSignal(storage, COMSIG_ATOM_EXITED, PROC_REF(left_chasm))
 
 	if (storage.contains(dropped_thing))
 		return
@@ -146,7 +146,7 @@
 
 	if (dropped_thing.forceMove(storage))
 		if (isliving(dropped_thing))
-			RegisterSignal(dropped_thing, COMSIG_LIVING_REVIVE, .proc/on_revive)
+			RegisterSignal(dropped_thing, COMSIG_LIVING_REVIVE, PROC_REF(on_revive))
 	else
 		parent.visible_message(span_boldwarning("[parent] spits out [dropped_thing]!"))
 		dropped_thing.throw_at(get_edge_target_turf(parent, pick(GLOB.alldirs)), rand(1, 10), rand(1, 10))
@@ -216,8 +216,12 @@
 	if(do_after(user, 3 SECONDS, src.parent))
 		if(!rod.wielded)
 			return
-		var/atom/parent = src.parent
-		var/list/fishing_contents = parent.GetAllContents()
+
+		var/list/fishing_contents = list()
+		for(var/turf/T in range(3, src.parent))
+			if(ischasm(T))
+				fishing_contents += T.get_all_contents()
+
 		if(!length(fishing_contents))
 			to_chat(user, span_warning("There's nothing here!"))
 			return
@@ -226,6 +230,7 @@
 			M.forceMove(get_turf(user))
 			UnregisterSignal(M, COMSIG_LIVING_REVIVE)
 			found = TRUE
+			break //only one mob rather than all
 		if(found)
 			to_chat(user, span_warning("You reel in something!"))
 		else

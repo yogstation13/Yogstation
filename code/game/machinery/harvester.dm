@@ -15,7 +15,7 @@
 	var/allow_clothing = FALSE
 	var/allow_living = FALSE
 
-/obj/machinery/harvester/Initialize()
+/obj/machinery/harvester/Initialize(mapload)
 	. = ..()
 	if(prob(1))
 		name = "auto-autopsy"
@@ -88,7 +88,7 @@
 	visible_message(span_notice("The [name] begins warming up!"))
 	say("Initializing harvest protocol.")
 	update_icon(TRUE)
-	addtimer(CALLBACK(src, .proc/harvest), interval)
+	addtimer(CALLBACK(src, PROC_REF(harvest)), interval)
 
 /obj/machinery/harvester/proc/harvest()
 	update_icon()
@@ -112,7 +112,7 @@
 		operation_order.Remove(BP)
 		break
 	use_power(5000)
-	addtimer(CALLBACK(src, .proc/harvest), interval)
+	addtimer(CALLBACK(src, PROC_REF(harvest)), interval)
 
 /obj/machinery/harvester/proc/end_harvesting()
 	harvesting = FALSE

@@ -60,7 +60,7 @@
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/clothing/glasses/blindfold/white/B = new(get_turf(H))
-	if(!H.equip_to_slot_if_possible(B, SLOT_GLASSES, bypass_equip_delay_self = TRUE)) //if you can't put it on the user's eyes, put it in their hands, otherwise put it on their eyes
+	if(!H.equip_to_slot_if_possible(B, ITEM_SLOT_EYES, bypass_equip_delay_self = TRUE)) //if you can't put it on the user's eyes, put it in their hands, otherwise put it on their eyes
 		H.put_in_hands(B)
 	H.regenerate_icons()
 
@@ -81,9 +81,9 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/mannitolpills = new /obj/item/storage/pill_bottle/mannitol/braintumor(get_turf(quirk_holder))
 	var/list/slots = list(
-		"in your left pocket" = SLOT_L_STORE,
-		"in your right pocket" = SLOT_R_STORE,
-		"in your backpack" = SLOT_IN_BACKPACK
+		"in your left pocket" = ITEM_SLOT_LPOCKET,
+		"in your right pocket" = ITEM_SLOT_RPOCKET,
+		"in your backpack" = ITEM_SLOT_BACKPACK
 	)
 	where = H.equip_in_one_of_slots(mannitolpills, slots, FALSE) || "at your feet"
 
@@ -179,7 +179,7 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/clothing/glasses/regular/glasses = new(get_turf(H))
 	H.put_in_hands(glasses)
-	H.equip_to_slot(glasses, SLOT_GLASSES)
+	H.equip_to_slot(glasses, ITEM_SLOT_EYES)
 	H.regenerate_icons() //this is to remove the inhand icon, which persists even if it's not in their hands
 
 /datum/quirk/nyctophobia
@@ -259,7 +259,7 @@
 	value = -2
 	mob_trait = TRAIT_POOR_AIM
 	medical_record_text = "Patient possesses a strong tremor in both hands."
-	
+
 /datum/quirk/poor_aim/add()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.dna.species.aiminginaccuracy += 25
@@ -360,9 +360,9 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/sanitypills = new /obj/item/storage/pill_bottle/gummies/mindbreaker(get_turf(quirk_holder))
 	var/list/slots = list(
-		"in your left pocket" = SLOT_L_STORE,
-		"in your right pocket" = SLOT_R_STORE,
-		"in your backpack" = SLOT_IN_BACKPACK
+		"in your left pocket" = ITEM_SLOT_LPOCKET,
+		"in your right pocket" = ITEM_SLOT_RPOCKET,
+		"in your backpack" = ITEM_SLOT_BACKPACK
 	)
 	where = H.equip_in_one_of_slots(sanitypills, slots, FALSE) || "at your feet"
 
@@ -385,9 +385,9 @@
 	mob_trait = TRAIT_ANXIOUS
 
 /datum/quirk/social_anxiety/add()
-	RegisterSignal(quirk_holder, COMSIG_MOB_EYECONTACT, .proc/eye_contact)
-	RegisterSignal(quirk_holder, COMSIG_MOB_EXAMINATE, .proc/looks_at_floor)
-	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(quirk_holder, COMSIG_MOB_EYECONTACT, PROC_REF(eye_contact))
+	RegisterSignal(quirk_holder, COMSIG_MOB_EXAMINATE, PROC_REF(looks_at_floor))
+	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/quirk/social_anxiety/remove()
 	UnregisterSignal(quirk_holder, list(COMSIG_MOB_EYECONTACT, COMSIG_MOB_EXAMINATE, COMSIG_MOB_SAY))
@@ -420,7 +420,7 @@
 					break
 			if(prob(max(5,(nearby_people*12.5*moodmod)))) //Minimum 1/20 chance of stutter
 				// Add a short stutter, THEN treat our word
-				quirker.stuttering += max(3, quirker.stuttering)
+				quirker.adjust_stutter(0.5 SECONDS)
 				new_message += quirker.treat_message(word)
 
 			else
@@ -449,7 +449,7 @@
 	if(prob(85) || (istype(mind_check) && mind_check.mind))
 		return
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, quirk_holder, span_smallnotice("You make eye contact with [A].")), 3)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), quirk_holder, span_smallnotice("You make eye contact with [A].")), 3)
 
 /datum/quirk/social_anxiety/proc/eye_contact(datum/source, mob/living/other_mob, triggering_examiner)
 	var/mob/living/carbon/human/quirker = quirk_holder
@@ -463,17 +463,17 @@
 
 	switch(rand(1,3))
 		if(1)
-			quirker.Jitter(5)
+			quirker.adjust_jitter(5 SECONDS)
 			msg += "causing you to start fidgeting!"
 		if(2)
-			quirker.stuttering = max(3, quirker.stuttering)
+			quirker.adjust_stutter(3 SECONDS)
 			msg += "causing you to start stuttering!"
 		if(3)
 			quirker.Stun(2 SECONDS)
 			msg += "causing you to freeze up!"
 
 	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "anxiety_eyecontact", /datum/mood_event/anxiety_eyecontact)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, quirk_holder, span_userdanger("[msg]")), 3) // so the examine signal has time to fire and this will print after
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(to_chat), quirk_holder, span_userdanger("[msg]")), 3) // so the examine signal has time to fire and this will print after
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/mood_event/anxiety_eyecontact
@@ -524,9 +524,9 @@
 	if (accessory_type)
 		accessory_instance = new accessory_type(current_turf)
 	var/list/slots = list(
-		"in your left pocket" = SLOT_L_STORE,
-		"in your right pocket" = SLOT_R_STORE,
-		"in your backpack" = SLOT_IN_BACKPACK
+		"in your left pocket" = ITEM_SLOT_LPOCKET,
+		"in your right pocket" = ITEM_SLOT_RPOCKET,
+		"in your backpack" = ITEM_SLOT_BACKPACK
 	)
 	where_drug = H.equip_in_one_of_slots(drug_instance, slots, FALSE) || "at your feet"
 	if (accessory_instance)
@@ -607,7 +607,7 @@
 /datum/quirk/junkie/smoker/on_process()
 	. = ..()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/I = H.get_item_by_slot(SLOT_WEAR_MASK)
+	var/obj/item/I = H.get_item_by_slot(ITEM_SLOT_MASK)
 	if (istype(I, /obj/item/clothing/mask/cigarette))
 		var/obj/item/storage/box/fancy/cigarettes/C = drug_instance
 		if(istype(I, C.spawn_type))
@@ -747,12 +747,12 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	H.gain_trauma(T, TRAUMA_RESILIENCE_ABSOLUTE)
 
-/datum/quirk/hemophilia //basically permanent heparin
+/datum/quirk/hemophilia //basically permanent weak heparin
 	name = "Hemophiliac"
 	desc = "You can't naturally clot bleeding wounds and bleed much more from them than most people, making even small cuts possibly life threatening."
 	icon = "droplet"
-	value = -6
-	mob_trait = TRAIT_BLOODY_MESS
+	value = -4
+	mob_trait = TRAIT_BLOODY_MESS_LITE
 	gain_text = span_danger("You feel like your blood is thin.")
 	lose_text = span_notice("You feel like your blood is of normal thickness once more.")
 	medical_record_text = "Patient appears unable to naturally form blood clots."
@@ -761,11 +761,10 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/has_flesh = (HAS_FLESH in species.species_traits)
-	var/no_blood = (NOBLOOD in species.species_traits)
+	var/disallowed_trait = (NOBLOOD in species.species_traits)
 	qdel(species)
 
-	if(has_flesh || no_blood)
+	if(disallowed_trait)
 		return "You can't bleed."
 	return ..()
 
@@ -773,7 +772,7 @@
 	name = "Brain Damage"
 	desc = "The shuttle ride was a bit bumpy to the station."
 	icon = "brain"
-	value = -7
+	value = -6
 	gain_text = span_danger("Your head hurts.")
 	lose_text = span_notice("Your head feels good again.")
 	medical_record_text = "Patient appears to have brain damage."
@@ -782,7 +781,7 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/datum/brain_trauma/badtimes = list(BRAIN_TRAUMA_MILD, BRAIN_TRAUMA_SEVERE)
 	var/amount = 0 // Pray you dont get fucked
-	amount = rand(1, 4)
+	amount = rand(1, 3)
 
 	for(var/i = 0 to amount)
 		H.gain_trauma_type(pick(badtimes), TRAUMA_RESILIENCE_ABSOLUTE) // Mr bones wild rides takes no breaks
@@ -813,7 +812,7 @@
 	value = -1
 	mob_trait = TRAIT_BADMAIL
 
-/datum/quirk/telomeres_short 
+/datum/quirk/telomeres_short
 	name = "Short Telomeres"
 	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for Nanotrasen."
 	icon = "magnifying-glass-minus"

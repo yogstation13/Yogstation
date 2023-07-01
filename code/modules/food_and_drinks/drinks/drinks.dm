@@ -81,7 +81,7 @@
 		if(iscyborg(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
 			var/mob/living/silicon/robot/bro = user
 			bro.cell.use(30)
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/add_reagent, refill, trans), 600)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, add_reagent), refill, trans), 600)
 
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if (!is_refillable())
@@ -484,7 +484,7 @@
 	list_reagents = list(/datum/reagent/consumable/rootbeer = 30)
 	foodtype = SUGAR
 
-/obj/item/reagent_containers/food/drinks/soda_cans/rootbeer/Initialize()
+/obj/item/reagent_containers/food/drinks/soda_cans/rootbeer/Initialize(mapload)
 	icon_state = pick("Rootbeer_Mug","Rootbeer_AW","Rootbeer_Barq")
 	. = ..()
 
@@ -510,7 +510,7 @@
 	list_reagents = list(/datum/reagent/consumable/lemon_lime = 30)
 	foodtype = FRUIT
 
-/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime/Initialize()
+/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime/Initialize(mapload)
 	. = ..()
 	name = "lemon-lime soda"
 
@@ -609,7 +609,7 @@
 	var/static/list/descs = list("The entire label seems to just be a legal disclaimer.","The label reads off over 200 possible flavors."\
 	, "The date on the cap reads off that the bottle expired a decade ago...")
 
-/obj/item/reagent_containers/food/drinks/soda_cans/mystery/Initialize()
+/obj/item/reagent_containers/food/drinks/soda_cans/mystery/Initialize(mapload)
 	list_reagents = list(get_random_reagent_id() = 30)
 	. = ..()
 	if(prob(20))
@@ -632,7 +632,7 @@
 	var/random_sprite = TRUE
 
 
-/obj/item/reagent_containers/food/drinks/colocup/Initialize()
+/obj/item/reagent_containers/food/drinks/colocup/Initialize(mapload)
 	.=..()
 	pixel_x = rand(-4,4)
 	pixel_y = rand(-4,4)

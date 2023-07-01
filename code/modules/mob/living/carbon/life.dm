@@ -8,7 +8,7 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
-	if(LIFETICK_SKIP(src, times_fired))
+	if(SHOULD_LIFETICK(src, times_fired))
 
 		if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
 			handle_organs()
@@ -47,9 +47,6 @@
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
 		LoadComponent(/datum/component/rot/corpse)
-
-	//Updates the number of stored chemicals for powers
-	handle_changeling()
 
 	if(stat != DEAD)
 		return 1
@@ -101,7 +98,7 @@
 	if(losebreath >= 1) //You've missed a breath, take oxy damage
 		losebreath--
 		if(prob(10))
-			INVOKE_ASYNC(src, .proc/emote, "gasp")
+			INVOKE_ASYNC(src, PROC_REF(emote), "gasp")
 		if(istype(loc, /obj/))
 			var/obj/loc_as_obj = loc
 			loc_as_obj.handle_internal_lifeform(src,0)
@@ -175,7 +172,7 @@
 	//OXYGEN
 	if(O2_partialpressure < safe_oxy_min) //Not enough oxygen
 		if(prob(20))
-			INVOKE_ASYNC(src, .proc/emote, "gasp")
+			INVOKE_ASYNC(src, PROC_REF(emote), "gasp")
 		if(O2_partialpressure > 0)
 			var/ratio = 1 - O2_partialpressure/safe_oxy_min
 			adjustOxyLoss(min(5*ratio, 3))
@@ -243,29 +240,24 @@
 			if(SA_partialpressure > NITROGEN_NARCOSIS_PRESSURE_HIGH) // Hallucinations
 				if(prob(15))
 					to_chat(src, span_userdanger("You can't think straight!"))
-					confused = min(SA_partialpressure/10, confused + 12)
-				hallucination += 5
+					adjust_confusion_up_to(SA_partialpressure/10, 12 SECONDS)
+				adjust_hallucinations(5 SECONDS)
 	//yogs end
 	//BZ (Facepunch port of their Agent B)
 	if(breath.get_moles(/datum/gas/bz))
 		var/bz_partialpressure = (breath.get_moles(/datum/gas/bz)/breath.total_moles())*breath_pressure
 		/* Yogs comment-out: Smoothed BZ hallucination levels
 		if(bz_partialpressure > 1)
-			hallucination += 10
+			adjust_hallucinations(10 SECONDS)
 		else if(bz_partialpressure > 0.01)
-			hallucination += 5
+			adjust_hallucinations(5 SECONDS)
 		*/
-		hallucination += round(BZ_MAX_HALLUCINATION * (1 - NUM_E ** (-BZ_LAMBDA * bz_partialpressure))) // Yogs -- Better BZ hallucination values. Keep in mind that hallucination has to be an integer value, due to how it's handled in handle_hallucination()
+		adjust_hallucinations(round(BZ_MAX_HALLUCINATION * (1 - NUM_E ** (-BZ_LAMBDA * bz_partialpressure)))) // Yogs -- Better BZ hallucination values. Keep in mind that hallucination has to be an integer value, due to how it's handled in handle_hallucination()
 
 	//TRITIUM
 	if(breath.get_moles(/datum/gas/tritium))
 		var/tritium_partialpressure = (breath.get_moles(/datum/gas/tritium)/breath.total_moles())*breath_pressure
 		radiation += tritium_partialpressure/10
-
-	//NITRYL
-	if(breath.get_moles(/datum/gas/nitryl))
-		var/nitryl_partialpressure = (breath.get_moles(/datum/gas/nitryl)/breath.total_moles())*breath_pressure
-		adjustFireLoss(nitryl_partialpressure/4)
 
 	//FREON
 	if(breath.get_moles(/datum/gas/freon))
@@ -280,8 +272,6 @@
 			var/datum/disease/advance/miasma_disease = new /datum/disease/advance/random(2,3)
 			miasma_disease.name = "Unknown"
 			ForceContractDisease(miasma_disease, TRUE, TRUE)
-
-
 
 		//Miasma side effects
 		switch(miasma_partialpressure)
@@ -321,17 +311,24 @@
 
 	return 1
 
-//Fourth and final link in a breath chain
+/// Fourth and final link in a breath chain
 /mob/living/carbon/proc/handle_breath_temperature(datum/gas_mixture/breath)
 	return
 
 /mob/living/carbon/proc/get_breath_from_internal(volume_needed)
-	if(internal)
-		if(update_internals()) // returns TRUE if able to use internals, turns off internals and returns
-			update_internals_hud_icon(1)
-			. = internal.remove_air_volume(volume_needed)
-			if(!.)
-				return FALSE //to differentiate between no internals and active, but empty internals
+	if(invalid_internals())
+		// Unexpectely lost breathing apparatus and ability to breathe from the internal air tank.
+		cutoff_internals()
+		return
+	if (external)
+		. = external.remove_air_volume(volume_needed)
+	else if (internal)
+		. = internal.remove_air_volume(volume_needed)
+	else
+		// Return without taking a breath if there is no air tank.
+		return
+	// To differentiate between no internals and active, but empty internals.
+	return . || FALSE
 
 /mob/living/carbon/proc/handle_blood()
 	return
@@ -340,7 +337,7 @@
 	var/stam_regen = FALSE
 	if(stam_regen_start_time <= world.time && (has_dna() && !dna.check_mutation(ACTIVE_HULK)))
 		stam_regen = TRUE
-		if(stam_paralyzed)
+		if(HAS_TRAIT_FROM(src, TRAIT_INCAPACITATED, STAMINA))
 			. |= BODYPART_LIFE_UPDATE_HEALTH //make sure we remove the stamcrit
 	for(var/I in bodyparts)
 		var/obj/item/bodypart/BP = I
@@ -366,18 +363,6 @@
 		var/datum/wound/W = thing
 		if(W.processes) // meh
 			W.handle_process()
-
-//todo generalize this and move hud out
-/mob/living/carbon/proc/handle_changeling()
-	if(mind && hud_used && hud_used.lingchemdisplay)
-		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
-		if(changeling)
-			changeling.regenerate()
-			hud_used.lingchemdisplay.invisibility = 0
-			hud_used.lingchemdisplay.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(changeling.chem_charges)]</font></div>"
-		else
-			hud_used.lingchemdisplay.invisibility = INVISIBILITY_ABSTRACT
-
 
 /mob/living/carbon/handle_mutations_and_radiation()
 	if(dna && dna.temporary_mutations.len)
@@ -448,153 +433,11 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 /mob/living/carbon/handle_status_effects()
 	..()
 
-	var/restingpwr = 1 + 4 * resting
-
-	//Dizziness
-	if(dizziness)
-		var/client/C = client
-		var/pixel_x_diff = 0
-		var/pixel_y_diff = 0
-		var/temp
-		var/saved_dizz = dizziness
-		if(C)
-			var/oldsrc = src
-			var/amplitude = dizziness*(sin(dizziness * world.time) + 1) // This shit is annoying at high strength
-			src = null
-			spawn(0)
-				if(C)
-					temp = amplitude * sin(saved_dizz * world.time)
-					pixel_x_diff += temp
-					C.pixel_x += temp
-					temp = amplitude * cos(saved_dizz * world.time)
-					pixel_y_diff += temp
-					C.pixel_y += temp
-					sleep(0.3 SECONDS)
-					if(C)
-						temp = amplitude * sin(saved_dizz * world.time)
-						pixel_x_diff += temp
-						C.pixel_x += temp
-						temp = amplitude * cos(saved_dizz * world.time)
-						pixel_y_diff += temp
-						C.pixel_y += temp
-					sleep(0.3 SECONDS)
-					if(C)
-						C.pixel_x -= pixel_x_diff
-						C.pixel_y -= pixel_y_diff
-			src = oldsrc
-		dizziness = max(dizziness - restingpwr, 0)
-
-	if(drowsyness)
-		drowsyness = max(drowsyness - restingpwr, 0)
-		blur_eyes(2)
-		if(prob(5))
-			AdjustSleeping(20)
-			Unconscious(100)
-
-	//Jitteriness
-	if(jitteriness)
-		do_jitter_animation(jitteriness)
-		jitteriness = max(jitteriness - restingpwr, 0)
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "jittery", /datum/mood_event/jittery)
-	else
-		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "jittery")
-
-	if(stuttering)
-		stuttering = max(stuttering-1, 0)
-
-	if(slurring)
-		slurring = max(slurring-1,0)
-
 	if(cultslurring)
 		cultslurring = max(cultslurring-1, 0)
 
 	if(silent)
 		silent = max(silent-1, 0)
-
-	if(druggy)
-		adjust_drugginess(-1)
-
-	if(hallucination)
-		handle_hallucinations()
-
-	REMOVE_TRAIT(src, TRAIT_SURGERY_PREPARED, "drunk")
-	if(drunkenness)
-		drunkenness = max(drunkenness - (drunkenness * 0.04) - 0.01, 0)
-		if(drunkenness >= 6)
-			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "drunk", /datum/mood_event/drunk)
-			if(prob(25))
-				slurring += 2
-			jitteriness = max(jitteriness - 3, 0)
-			throw_alert("drunk", /atom/movable/screen/alert/drunk)
-			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING))
-				adjustBruteLoss(-0.12, FALSE)
-				adjustFireLoss(-0.06, FALSE)
-		else
-			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "drunk")
-			clear_alert("drunk")
-
-		if(drunkenness >= 11 && slurring < 5)
-			slurring += 1.2
-
-		if(mind && (mind.assigned_role == "Scientist" || mind.assigned_role == "Research Director"))
-			if(SSresearch.science_tech)
-				if(drunkenness >= 12.9 && drunkenness <= 13.8)
-					drunkenness = round(drunkenness, 0.01)
-					var/ballmer_percent = 0
-					if(drunkenness == 13.35) // why run math if I dont have to
-						ballmer_percent = 1
-					else
-						ballmer_percent = (-abs(drunkenness - 13.35) / 0.9) + 1
-					if(prob(5))
-						say(pick(GLOB.ballmer_good_msg), forced = "ballmer")
-					SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = BALLMER_POINTS * ballmer_percent))
-				if(drunkenness > 26) // by this point you're into windows ME territory
-					if(prob(5))
-						SSresearch.science_tech.remove_point_list(list(TECHWEB_POINT_TYPE_GENERIC = BALLMER_POINTS))
-						say(pick(GLOB.ballmer_windows_me_msg), forced = "ballmer")
-
-		if(drunkenness >= 41)
-			if(prob(25))
-				confused += 2
-			Dizzy(10)
-			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING)) // effects stack with lower tiers
-				adjustBruteLoss(-0.3, FALSE)
-				adjustFireLoss(-0.15, FALSE)
-			ADD_TRAIT(src, TRAIT_SURGERY_PREPARED, "drunk")
-
-		if(drunkenness >= 51)
-			if(prob(3))
-				confused += 15
-				vomit() // vomiting clears toxloss, consider this a blessing
-			Dizzy(25)
-
-		if(drunkenness >= 61)
-			if(prob(50))
-				blur_eyes(5)
-			if(HAS_TRAIT(src, TRAIT_DRUNK_HEALING))
-				adjustBruteLoss(-0.4, FALSE)
-				adjustFireLoss(-0.2, FALSE)
-
-		if(drunkenness >= 71)
-			blur_eyes(5)
-
-		if(drunkenness >= 81)
-			adjustToxLoss(1)
-			if(prob(5) && !stat)
-				to_chat(src, span_warning("Maybe you should lie down for a bit..."))
-
-		if(drunkenness >= 91)
-			adjustToxLoss(1)
-			adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4)
-			if(prob(20) && !stat)
-				if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
-					to_chat(src, span_warning("You're so tired... but you can't miss that shuttle..."))
-				else
-					to_chat(src, span_warning("Just a quick nap..."))
-					Sleeping(900)
-
-		if(drunkenness >= 101)
-			adjustToxLoss(2) //Let's be honest you shouldn't be alive by now
 
 //used in human and monkey handle_environment()
 /mob/living/carbon/proc/natural_bodytemperature_stabilization()
@@ -659,7 +502,11 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
 		for(var/obj/item/I in BP.embedded_objects)
-			I.embed_tick(src, BP)
+			// If its not embedded, don't bother proccessing it
+			if(!get_embedded_part(I))
+				continue
+			if(CHECK_BITFIELD(SEND_SIGNAL(I, COMSIG_ITEM_EMBED_TICK, src, BP), COMSIG_ITEM_BLOCK_EMBED_TICK))
+				continue
 			var/pain_chance_current = I.embedding.embedded_pain_chance
 			if(!(mobility_flags & MOBILITY_STAND))
 				pain_chance_current *= 0.2
@@ -675,9 +522,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 				BP.receive_damage(I.w_class*I.embedding.embedded_fall_pain_multiplier, wound_bonus = CANT_WOUND) // can wound
 				remove_embedded_object(I, drop_location(), FALSE)
 				visible_message(span_danger("[I] falls out of [name]'s [BP.name]!"), span_userdanger("[I] falls out of your [BP.name]!"))
-				if(!has_embedded_objects())
-					clear_alert("embeddedobject")
-					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
 /////////////////////////////////////
 //MONKEYS WITH TOO MUCH CHOLOESTROL//

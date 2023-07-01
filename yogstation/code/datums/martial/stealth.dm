@@ -120,7 +120,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/martial/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(!dying)
-		addtimer(CALLBACK(src, .proc/process_burst), 1 SECONDS)  ///I, kinda, don't very understand what gun code does, but it seems to be OK.
+		addtimer(CALLBACK(src, PROC_REF(process_burst)), 1 SECONDS)  ///I, kinda, don't very understand what gun code does, but it seems to be OK.
 		dying = TRUE
 	. = ..()
 

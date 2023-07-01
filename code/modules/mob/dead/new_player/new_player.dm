@@ -19,7 +19,7 @@
 	/// Used to track if the player's jobs menu sent a message saying it successfully mounted.
 	var/jobs_menu_mounted = FALSE
 
-/mob/dead/new_player/Initialize()
+/mob/dead/new_player/Initialize(mapload)
 	if(client && SSticker.state == GAME_STATE_STARTUP)
 		var/atom/movable/screen/splash/S = new(client, TRUE, TRUE)
 		S.Fade(TRUE)
@@ -28,8 +28,6 @@
 		forceMove(pick(GLOB.newplayer_start))
 	else
 		forceMove(locate(1,1,1))
-
-	ComponentInitialize()
 
 	add_verb(usr, /datum/latejoin_menu/verb/open_fallback_ui)
 
@@ -403,7 +401,6 @@
 			SSshuttle.arrivals.QueueAnnounce(humanc, rank)
 		else
 			AnnounceArrival(humanc, rank)
-		AddEmploymentContract(humanc)
 		if(GLOB.highlander)
 			to_chat(humanc, span_userdanger("<i>THERE CAN BE ONLY ONE!!!</i>"))
 			humanc.make_scottish()
@@ -431,14 +428,6 @@
 		SSquirks.AssignQuirks(humanc, humanc.client, TRUE)
 
 	log_manifest(character.mind.key,character.mind,character,latejoin = TRUE)
-
-/mob/dead/new_player/proc/AddEmploymentContract(mob/living/carbon/human/employee)
-	//TODO:  figure out a way to exclude wizards/nukeops/demons from this.
-	for(var/C in GLOB.employmentCabinets)
-		var/obj/structure/filingcabinet/employment/employmentCabinet = C
-		if(!employmentCabinet.virgin)
-			employmentCabinet.addFile(employee)
-
 
 /mob/dead/new_player/proc/create_character(transfer_after)
 	spawning = TRUE

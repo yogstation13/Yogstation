@@ -15,10 +15,9 @@
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
 	mutantliver = /obj/item/organ/liver/plasmaman
 	mutantstomach = /obj/item/organ/stomach/plasmaman
-	burnmod = 1.5 //Lives in suits and burns easy. Lasers are bad for this
-	heatmod = 1.5 //Same goes for hot hot hot
-	brutemod = 1.2 //Rattle me bones, but less because plasma bones are very hard
-	siemens_coeff = 1.5 //Sparks are bad for the combustable race, mkay?
+	brutemod = 1.3 //Rattle me bones, but less because plasma bones are very hard
+	burnmod = 0.9 //Plasma is a surprisingly good insulator if not around oxygen
+	heatmod = 1.5 //Don't let the plasma actually heat up though
 	punchdamagehigh = 7 //Bone punches are weak and usually inside soft suit gloves
 	punchstunthreshold = 7 //Stuns on max hit as usual, somewhat higher stun chance because math
 	payday_modifier = 1 //Former humans, employment restrictions arise from psychological and practical concerns; they won't be able to be some head positions, but they get human pay and NT can't weasel out of it
@@ -37,6 +36,9 @@
 /datum/species/plasmaman/spec_life(mob/living/carbon/human/H)
 	var/datum/gas_mixture/environment = H.loc.return_air()
 	var/atmos_sealed = FALSE
+	if(HAS_TRAIT(H, TRAIT_NOFIRE))
+		atmos_sealed = TRUE
+		H.extinguish_mob()
 	if (H.wear_suit && H.head && istype(H.wear_suit, /obj/item/clothing) && istype(H.head, /obj/item/clothing))
 		var/obj/item/clothing/CS = H.wear_suit
 		var/obj/item/clothing/CH = H.head
@@ -49,7 +51,7 @@
 					H.adjust_fire_stacks(0.5)
 					if(!H.on_fire && H.fire_stacks > 0)
 						H.visible_message(span_danger("[H]'s body reacts with the atmosphere and bursts into flames!"),span_userdanger("Your body reacts with the atmosphere and bursts into flame!"))
-					H.IgniteMob()
+					H.ignite_mob()
 					internal_fire = TRUE
 	else
 		if(H.fire_stacks)
@@ -172,9 +174,14 @@
 		if("Research Director")
 			O = new /datum/outfit/job/plasmaman/rd
 
+		if("Chief Medical Officer")
+			O = new /datum/outfit/job/plasmaman/cmo
+
+		if("Head of Personnel")
+			O = new /datum/outfit/job/plasmaman/hop
+
 	H.equipOutfit(O, visualsOnly)
-	H.internal = H.get_item_for_held_index(2)
-	H.update_internals_hud_icon(1)
+	H.open_internals(H.get_item_for_held_index(2))
 
 	var/obj/item/clothing/head/helmet/space/plasmaman/plasmeme_helmet = H.head
 	plasmeme_helmet.set_design(H)

@@ -60,7 +60,11 @@
 		"https://www.youtube.com/watch?v=2O4C8J4bcXw",						// Blinch - Loop Hero OST - Loop Blues
 		"https://www.youtube.com/watch?v=4q-La8uR0HU",						// Blinch - Loop Hero OST - Dark Matter Moon
 		"https://www.youtube.com/watch?v=pP6nEgo9UTs",						// Banda Municipal de Manizales - El Pilon
-		"https://www.youtube.com/watch?v=V52QTyn6e-A"						// Alistair Lindsay - RimWorld OST - Waiting For The Sun
+		"https://www.youtube.com/watch?v=V52QTyn6e-A",						// Alistair Lindsay - RimWorld OST - Waiting For The Sun
+		"https://www.youtube.com/watch?v=0-CLAPJ1PLs",						// Pizza Tower OST - Tunnely Shimbers
+		"https://www.youtube.com/watch?v=4JkIs37a2JE",						// Jamiroquai - Virtual Insanity
+		"https://www.youtube.com/watch?v=z01VlftkqY8",						// PilotRedSun - The Grinch's Ultimatum
+		"https://www.youtube.com/watch?v=rcmQefeyPBs"						// Nightmargin - IT'S TIME TO FIGHT CRIME
 		)						
 	selected_lobby_music = pick(songs)
 

@@ -101,7 +101,7 @@
 /obj/machinery/atmospherics/components/replacePipenet(datum/pipeline/Old, datum/pipeline/New)
 	parents[parents.Find(Old)] = New
 
-/obj/machinery/atmospherics/components/unsafe_pressure_release(var/mob/user, var/pressures)
+/obj/machinery/atmospherics/components/unsafe_pressure_release(mob/user, pressures)
 	..()
 
 	var/turf/T = get_turf(src)
@@ -126,7 +126,7 @@
 		T.assume_air(to_release)
 		air_update_turf(1)
 
-/obj/machinery/atmospherics/components/proc/safe_input(var/title, var/text, var/default_set)
+/obj/machinery/atmospherics/components/proc/safe_input(title, text, default_set)
 	var/new_value = input(usr,text,title,default_set) as num
 	if(usr.canUseTopic(src))
 		return new_value
@@ -141,9 +141,9 @@
 			WARNING("Component is missing a pipenet! Rebuilding...")
 			SSair.add_to_rebuild_queue(src)
 		else
-			parent.update = 1
+			parent.update = TRUE
 
-/obj/machinery/atmospherics/components/returnPipenets()
+/obj/machinery/atmospherics/components/return_pipenets()
 	. = list()
 	for(var/i in 1 to device_type)
 		. += returnPipenet(nodes[i])

@@ -18,6 +18,7 @@
 #define INVESTIGATE_CIRCUIT			"circuit"
 #define INVESTIGATE_PRESENTS		"presents"
 #define INVESTIGATE_VIROLOGY		"viro" // yogs - Adds Investigate Virology
+#define INVESTIGATE_HYPERTORUS		"hypertorus"
 
 // Logging types for log_message()
 #define LOG_ATTACK			(1 << 0)

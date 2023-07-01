@@ -17,18 +17,18 @@
 	if(!istype(H.wear_mask, /obj/item/clothing/mask/yogs/cluwne))
 		if(!H.temporarilyRemoveItemFromInventory(H.wear_mask))
 			qdel(H.wear_mask)
-		H.equip_to_slot_or_del(new /obj/item/clothing/mask/yogs/cluwne(H), SLOT_WEAR_MASK)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/yogs/cluwne(H), ITEM_SLOT_MASK)
 	if(!istype(H.w_uniform, /obj/item/clothing/under/yogs/cluwne))
 		if(!H.temporarilyRemoveItemFromInventory(H.w_uniform))
 			qdel(H.w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/yogs/cluwne(H), SLOT_W_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/yogs/cluwne(H), ITEM_SLOT_ICLOTHING)
 	if(!istype(H.shoes, /obj/item/clothing/shoes/yogs/cluwne))
 		if(!H.temporarilyRemoveItemFromInventory(H.shoes))
 			qdel(H.shoes)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/yogs/cluwne(H), SLOT_SHOES)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/yogs/cluwne(H), ITEM_SLOT_FEET)
 
-	owner.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(owner), SLOT_GLOVES) // this is purely for cosmetic purposes incase they aren't wearing anything in that slot
-	owner.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(owner), SLOT_BACK) // ditto
+	owner.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(owner), ITEM_SLOT_GLOVES) // this is purely for cosmetic purposes incase they aren't wearing anything in that slot
+	owner.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(owner), ITEM_SLOT_BACK) // ditto
 
 /datum/mutation/human/cluwne/on_life(mob/living/carbon/human/owner)
 	if((prob(15) && owner.IsUnconscious()))
@@ -41,11 +41,11 @@
 			if(6)
 				owner.Stun(1)
 				owner.Knockdown(20)
-				owner.Jitter(500)
+				owner.adjust_jitter(500 SECONDS)
 
 /datum/mutation/human/cluwne/on_losing(mob/living/carbon/human/owner)
 	owner.adjust_fire_stacks(1)
-	owner.IgniteMob()
+	owner.ignite_mob()
 	owner.dna.add_mutation(CLUWNEMUT)
 
 /mob/living/carbon/human/proc/cluwneify()

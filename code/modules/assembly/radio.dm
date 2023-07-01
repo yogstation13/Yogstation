@@ -17,7 +17,7 @@
 	// If the encryption key can be removed
 	var/key_locked = FALSE
 
-/obj/item/assembly/radio/Initialize()
+/obj/item/assembly/radio/Initialize(mapload)
 	. = ..()
 	radio = new(src)
 	if(radio_key)

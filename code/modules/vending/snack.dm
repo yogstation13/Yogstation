@@ -41,19 +41,12 @@
 		S.forceMove(get_turf(src))
 	return ..()
 
-/obj/machinery/vending/snack/proc/food_load(obj/item/reagent_containers/food/snacks/S)
-	if(vending_machine_input[S.name])
-		vending_machine_input[S.name]++
-	else
-		vending_machine_input[S.name] = 1
-	sortList(vending_machine_input)
-
 /obj/machinery/vending/snack/random
 	name = "\improper Random Snackies"
 	icon_state = "random_snack"
 	desc = "Uh oh!"
 
-/obj/machinery/vending/snack/random/Initialize()
+/obj/machinery/vending/snack/random/Initialize(mapload)
 	..()
 	var/T = pick(subtypesof(/obj/machinery/vending/snack) - /obj/machinery/vending/snack/random)
 	new T(loc)

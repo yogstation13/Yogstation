@@ -28,13 +28,13 @@
 /obj/item/laser_pointer/purple
 	pointer_icon_state = "purple_laser"
 
-/obj/item/laser_pointer/Initialize()
+/obj/item/laser_pointer/Initialize(mapload)
 	. = ..()
 	diode = new(src)
 	if(!pointer_icon_state)
 		pointer_icon_state = pick("red_laser","green_laser","blue_laser","purple_laser")
 
-/obj/item/laser_pointer/upgraded/Initialize()
+/obj/item/laser_pointer/upgraded/Initialize(mapload)
 	. = ..()
 	diode = new /obj/item/stock_parts/micro_laser/ultra
 
@@ -126,8 +126,8 @@
 			R.uneq_all()
 			R.stop_pulling()
 			R.break_all_cyborg_slots(TRUE)
-			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/clear_fullscreen, "laserpointer"), 7 SECONDS)
-			addtimer(CALLBACK(R, /mob/living/silicon/robot/.proc/repair_all_cyborg_slots), 7 SECONDS)
+			addtimer(CALLBACK(R, TYPE_PROC_REF(/mob/living/silicon/robot, clear_fullscreen), "laserpointer"), 7 SECONDS)
+			addtimer(CALLBACK(R, TYPE_PROC_REF(/mob/living/silicon/robot, repair_all_cyborg_slots)), 7 SECONDS)
 			to_chat(R, span_danger("Your sensors were overloaded by a laser!"))
 			outmsg = span_notice("You overload [R] by shining [src] at [R.p_their()] sensors.")
 		else

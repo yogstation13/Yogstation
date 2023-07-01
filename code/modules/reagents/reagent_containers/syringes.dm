@@ -15,13 +15,14 @@
 	materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
 	sharpness = SHARP_POINTY
-	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 0.25 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5)
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 1 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 5, "embedded_bleed_rate" = 0)
 
-/obj/item/reagent_containers/syringe/Initialize()
+/obj/item/reagent_containers/syringe/Initialize(mapload)
 	. = ..()
 	if(list_reagents) //syringe starts in inject mode if its already got something inside
 		mode = SYRINGE_INJECT
 		update_icon()
+	RegisterSignal(src, COMSIG_ITEM_EMBED_TICK, PROC_REF(embed_inject))
 
 /obj/item/reagent_containers/syringe/on_reagent_change(changetype)
 	update_icon()
@@ -49,7 +50,7 @@
 /obj/item/reagent_containers/syringe/attackby(obj/item/I, mob/user, params)
 	return
 
-/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user , proximity)
+/obj/item/reagent_containers/syringe/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(busy)
 		return
@@ -58,16 +59,9 @@
 	if(!target.reagents)
 		return
 
-	var/mob/living/L
-	if(isliving(target))
-		L = target
-		if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
-			return
-
 	// chance of monkey retaliation
 	if(ismonkey(target) && prob(MONKEY_SYRINGE_RETALIATION_PROB))
-		var/mob/living/carbon/monkey/M
-		M = target
+		var/mob/living/carbon/monkey/M = target
 		M.retaliate(user)
 
 	switch(mode)
@@ -77,7 +71,8 @@
 				to_chat(user, span_notice("The syringe is full."))
 				return
 
-			if(L) //living mob
+			if(isliving(target)) //living mob
+				var/mob/living/L = target
 				var/drawn_amount = reagents.maximum_volume - reagents.total_volume
 				if(target != user)
 					target.visible_message(span_danger("[user] is trying to take a blood sample from [target]!"), \
@@ -119,7 +114,7 @@
 				to_chat(user, span_notice("[src] is empty."))
 				return
 
-			if(!L && !target.is_injectable(user)) //only checks on non-living mobs, due to how can_inject() handles
+			if(!isliving(target) && !target.is_injectable(user)) //only checks on non-living mobs, due to how can_inject() handles
 				to_chat(user, span_warning("You cannot directly fill [target]!"))
 				return
 
@@ -127,7 +122,9 @@
 				to_chat(user, span_notice("[target] is full."))
 				return
 
-			if(L) //living mob
+			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+			if(isliving(target)) //living mob
+				var/mob/living/L = target
 				if(!L.can_inject(null, TRUE, BODY_ZONE_CHEST, proj_piercing))
 					return
 				if(L != user)
@@ -163,8 +160,7 @@
 					log_combat(user, L, "injected", src, addition="which had [contained]")
 				else
 					L.log_message("injected themselves ([contained]) with [src.name]", LOG_ATTACK, color="orange")
-			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
-			reagents.reaction(L, INJECT, fraction)
+				reagents.reaction(L, INJECT, fraction)
 			reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 			to_chat(user, span_notice("You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units."))
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
@@ -194,15 +190,12 @@
 				injoverlay = "inject"
 		add_overlay(injoverlay)
 		M.update_inv_hands()
-	
-/obj/item/reagent_containers/syringe/on_embed(mob/living/carbon/human/embedde, obj/item/bodypart/part)
-	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
-	reagents.reaction(embedde, INJECT, fraction)
-	reagents.trans_to(embedde, amount_per_transfer_from_this)
-	return TRUE
-	
-/obj/item/reagent_containers/syringe/embed_tick(embedde, part)
-	var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
+
+/obj/item/reagent_containers/syringe/proc/embed_inject(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)
+	if(!reagents.total_volume)
+		return
+	// Half of transfer amount, or 2.5 units per tick for default syringes
+	var/fraction = min((0.5 * amount_per_transfer_from_this) / reagents.total_volume, 1)
 	reagents.reaction(embedde, INJECT, fraction)
 	reagents.trans_to(embedde, amount_per_transfer_from_this)
 
@@ -366,10 +359,14 @@
 /obj/item/reagent_containers/syringe/dart
 	name = "reagent dart"
 	amount_per_transfer_from_this = 10
-	embedding = list("embed_chance" = 15, "embedded_fall_chance" = 0)
+	embedding = list("embedded_pain_chance" = 0, "embedded_pain_multiplier" = 0, "embedded_unsafe_removal_time" = 0.25 SECONDS, "embedded_unsafe_removal_pain_multiplier" = 0, "embed_chance" = 15, "embedded_fall_chance" = 0, "embedded_bleed_rate" = 0)
 
 /obj/item/reagent_containers/syringe/dart/temp
 	item_flags = DROPDEL
 
-/obj/item/reagent_containers/syringe/dart/temp/on_embed_removal(mob/living/carbon/human/embedde)
-	qdel(src)
+/obj/item/reagent_containers/syringe/dart/temp/Initialize(mapload)
+	..()
+	RegisterSignal(src, COMSIG_ITEM_EMBED_REMOVAL, PROC_REF(on_embed_removal))
+
+/obj/item/reagent_containers/syringe/dart/temp/proc/on_embed_removal(mob/living/carbon/human/embedde)
+	return COMSIG_ITEM_QDEL_EMBED_REMOVAL

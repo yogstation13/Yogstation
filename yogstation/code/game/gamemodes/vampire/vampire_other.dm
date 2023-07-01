@@ -17,7 +17,7 @@
 	var/blood_restoration_delay = 200
 	var/next_blood_restoration_tick = 0
 
-/obj/item/clothing/suit/draculacoat/Initialize()
+/obj/item/clothing/suit/draculacoat/Initialize(mapload)
 	if(!allowed)
 		allowed = GLOB.security_vest_allowed
 	START_PROCESSING(SSobj, src)
@@ -48,5 +48,5 @@
 	if(!(user.mind && user.mind.holy_role) && is_vampire(user))
 		to_chat(user, span_danger("[deity_name] channels through \the [src] and sets you ablaze for your blasphemy!"))
 		user.adjust_fire_stacks(5)
-		user.IgniteMob()
+		user.ignite_mob()
 		user.emote("scream", 1)

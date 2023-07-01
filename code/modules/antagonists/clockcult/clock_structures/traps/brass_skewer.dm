@@ -13,7 +13,7 @@
 	var/wiggle_wiggle
 	var/mutable_appearance/impale_overlay //This is applied to any mob impaled so that they visibly have the skewer coming through their chest
 
-/obj/structure/destructible/clockwork/trap/brass_skewer/Initialize()
+/obj/structure/destructible/clockwork/trap/brass_skewer/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSfastprocess, src)
 
@@ -57,7 +57,7 @@
 				span_userdanger("A massive brass spike rips through your chassis and bursts into shrapnel in your casing!"))
 				squirrel.adjustBruteLoss(50)
 				squirrel.Stun(20)
-				addtimer(CALLBACK(src, .proc/take_damage, max_integrity), 1)
+				addtimer(CALLBACK(src, PROC_REF(take_damage), max_integrity), 1)
 		else
 			squirrel.visible_message(span_boldwarning("A massive brass spike erupts from the ground, impaling [squirrel]!"), \
 			span_userdanger("A massive brass spike rams through your chest, hoisting you into the air!"))

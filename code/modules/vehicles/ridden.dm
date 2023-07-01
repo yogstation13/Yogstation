@@ -9,7 +9,7 @@
 	var/fall_off_if_missing_arms = FALSE //heh...
 	var/message_cooldown = 0
 
-/obj/vehicle/ridden/Initialize()
+/obj/vehicle/ridden/Initialize(mapload)
 	. = ..()
 	LoadComponent(/datum/component/riding)
 
@@ -95,6 +95,9 @@
 	. = ..(M, user, FALSE)
 
 /obj/vehicle/ridden/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
+	if(HAS_TRAIT(M, TRAIT_NOVEHICLE))
+		to_chat(M, "You are incapable of riding this.")
+		return FALSE
 	if(!force && occupant_amount() >= max_occupants)
 		return FALSE
 	return ..()

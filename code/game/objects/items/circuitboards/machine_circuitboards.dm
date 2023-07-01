@@ -176,7 +176,7 @@
 #define PATH_POWERCOIL /obj/machinery/power/tesla_coil/power
 #define PATH_RPCOIL /obj/machinery/power/tesla_coil/research
 
-/obj/item/circuitboard/machine/tesla_coil/Initialize()
+/obj/item/circuitboard/machine/tesla_coil/Initialize(mapload)
 	. = ..()
 	if(build_path)
 		build_path = PATH_POWERCOIL
@@ -375,7 +375,7 @@
 #define PATH_FREEZER /obj/machinery/atmospherics/components/unary/thermomachine/freezer
 #define PATH_HEATER  /obj/machinery/atmospherics/components/unary/thermomachine/heater
 
-/obj/item/circuitboard/machine/thermomachine/Initialize()
+/obj/item/circuitboard/machine/thermomachine/Initialize(mapload)
 	. = ..()
 	if(!build_path)
 		if(prob(50))
@@ -434,6 +434,52 @@
 #undef PATH_FREEZER
 #undef PATH_HEATER
 
+/obj/item/circuitboard/machine/HFR_fuel_input
+	name = "HFR Fuel Input (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/fuel_input
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_waste_output
+	name = "HFR Waste Output (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/waste_output
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_moderator_input
+	name = "HFR Moderator Input (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/moderator_input
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_core
+	name = "HFR core (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/atmospherics/components/unary/hypertorus/core
+	req_components = list(
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/stack/sheet/glass = 10,
+		/obj/item/stack/sheet/plasteel = 10)
+
+/obj/item/circuitboard/machine/HFR_corner
+	name = "HFR Corner (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/hypertorus/corner
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/HFR_interface
+	name = "HFR Interface (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/hypertorus/interface
+	req_components = list(
+		/obj/item/stack/cable_coil = 10,
+		/obj/item/stack/sheet/glass = 10,
+		/obj/item/stack/sheet/plasteel = 5)
+
 //Generic
 
 /obj/item/circuitboard/machine/circuit_imprinter
@@ -489,7 +535,21 @@
 	name = "Pay Stand (Machine Board)"
 	icon_state = "generic"
 	build_path = /obj/machinery/paystand
+	var/cash_register = FALSE
 	req_components = list()
+
+/obj/item/circuitboard/machine/paystand/attackby(obj/item/held_item, mob/user, params)
+	if(held_item.tool_behaviour)
+		if(held_item.tool_behaviour == TOOL_SCREWDRIVER && user.a_intent == INTENT_HELP)
+			if(cash_register)
+				to_chat(user,span_info("You change the holo-emitter selector to it's default setting."))
+				build_path = /obj/machinery/paystand
+				return
+			to_chat(user,span_info("You change the holo-emitter selector to 'cash register.'"))
+			build_path = /obj/machinery/paystand/register
+			return
+	return ..()
+
 
 /obj/item/circuitboard/machine/ticketmachine
 	name = "Ticket Machine (Machine Board)"
@@ -499,6 +559,20 @@
 	req_components = list(
 		/obj/item/hand_labeler = 1,
 		/obj/item/stack/sheet/glass = 1)
+
+/obj/item/circuitboard/machine/inspector_booth
+	name = "Inspector Booth (Machine Board)"
+	icon_state = "generic"
+	build_path = /obj/machinery/inspector_booth
+	req_components = list(
+		// Make sure stamp is second because otherwise the machine frame will treat the denied stamp as granted
+		/obj/item/stamp/denied = 1,
+		/obj/item/stamp = 1,
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/scanning_module = 1,
+		/obj/item/stack/sheet/glass = 1
+	)
 
 /obj/item/circuitboard/machine/protolathe
 	name = "Protolathe (Machine Board)"
@@ -623,7 +697,7 @@
 		/obj/machinery/vending/wardrobe/chem_wardrobe = "ChemDrobe",
 		/obj/machinery/vending/wardrobe/gene_wardrobe = "GeneDrobe",
 		/obj/machinery/vending/wardrobe/viro_wardrobe = "ViroDrobe",
-		/obj/machinery/vending/wardrobe/sig_wardrobe = "SigDrobe",
+		/obj/machinery/vending/wardrobe/sig_wardrobe = "NetDrobe",
 		/obj/machinery/vending/clothing = "ClothesMate",
 		/obj/machinery/vending/medical = "NanoMed Plus",
 		/obj/machinery/vending/wallmed = "NanoMed",

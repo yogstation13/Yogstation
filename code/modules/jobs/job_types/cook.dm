@@ -1,10 +1,8 @@
 /datum/job/cook
 	title = "Cook"
 	description = "Serve food, cook meat, keep the crew fed."
-	flag = COOK
 	orbit_icon = "utensils"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 1
@@ -35,8 +33,9 @@
 		/obj/item/reagent_containers/food/condiment/rice = 20,
 		/obj/item/reagent_containers/food/condiment/enzyme = 15,
 		/obj/item/reagent_containers/food/condiment/soymilk = 15,
-		/obj/item/kitchen/knife = 4,
-		/obj/item/kitchen/knife/butcher = 2
+		/obj/item/kitchen/knife/butcher = 2,
+		/obj/item/taster = 2,
+		/obj/item/sharpener = 1
 	)
 
 	smells_like = "delicious food"
@@ -72,7 +71,7 @@
 	var/list/possible_boxes = subtypesof(/obj/item/storage/box/ingredients)
 	var/chosen_box = pick(possible_boxes)
 	var/obj/item/storage/box/I = new chosen_box(src)
-	H.equip_to_slot_or_del(I,SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(I,ITEM_SLOT_BACKPACK)
 	var/datum/martial_art/cqc/under_siege/justacook = new
 	justacook.teach(H)
 

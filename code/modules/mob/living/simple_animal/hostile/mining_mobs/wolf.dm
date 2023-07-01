@@ -48,7 +48,7 @@
 	else
 		retreat_distance = initial(retreat_distance)
 
-/mob/living/simple_animal/hostile/asteroid/wolf/Life()
+/mob/living/simple_animal/hostile/asteroid/wolf/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
 	if(target == null)
 		adjustHealth(-maxHealth*0.025)

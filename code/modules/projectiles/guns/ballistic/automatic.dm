@@ -59,7 +59,7 @@
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/gun/ballistic/automatic/c20r
 	name = "\improper C-20r SMG"
@@ -80,7 +80,7 @@
 /obj/item/gun/ballistic/automatic/c20r/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/automatic/c20r/Initialize()
+/obj/item/gun/ballistic/automatic/c20r/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -94,7 +94,7 @@
 	burst_size = 2
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_MEDIUM
-	can_suppress = FALSE
+	can_suppress = TRUE // its been 6 years, get with the times old man!
 	can_bayonet = TRUE
 	knife_x_offset = 25
 	knife_y_offset = 12
@@ -103,7 +103,7 @@
 	empty_indicator = TRUE
 
 /obj/item/gun/ballistic/automatic/wt550/armory
-	mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
+	starting_mag_type = /obj/item/ammo_box/magazine/wt550m9/wtr
 
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
@@ -130,7 +130,7 @@
 	mag_display = TRUE
 	empty_indicator = TRUE
 
-/obj/item/gun/ballistic/automatic/m90/Initialize()
+/obj/item/gun/ballistic/automatic/m90/Initialize(mapload)
 	. = ..()
 	underbarrel = new /obj/item/gun/ballistic/revolver/grenadelauncher(src)
 	update_icon()
@@ -138,7 +138,7 @@
 /obj/item/gun/ballistic/automatic/m90/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/automatic/m90/unrestricted/Initialize()
+/obj/item/gun/ballistic/automatic/m90/unrestricted/Initialize(mapload)
 	. = ..()
 	underbarrel = new /obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted(src)
 	update_icon()
@@ -223,7 +223,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw
 	name = "\improper L6 SAW"
-	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2531' engraved on the receiver below the designation."
+	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2503' engraved on the receiver below the designation."
 	icon_state = "l6"
 	item_state = "l6closedmag"
 	w_class = WEIGHT_CLASS_HUGE
@@ -383,7 +383,7 @@
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
 	name = "\improper syndicate sniper rifle"
-	desc = "An illegally modified .50 cal sniper rifle with suppression compatibility. Quickscoping still doesn't work."
+	desc = "An illegally modified .50 BMG sniper rifle with suppression compatibility. Quickscoping still doesn't work."
 	can_suppress = TRUE
 	can_unsuppress = TRUE
 	pin = /obj/item/firing_pin/implant/pindicate
@@ -395,19 +395,20 @@
 
 /obj/item/gun/ballistic/automatic/surplus
 	name = "\improper surplus carbine"
-	desc = "One of several antique carbines that still sees use as a cheap deterrent. Uses 10mm ammo and its bulky frame prevents one-hand firing."
+	desc = "One of several antique carbines that still sees use as a cheap deterrent. Uses .45 ammo, and its bulky frame prevents one-hand firing."
 	icon_state = "surplus"
 	item_state = "moistnugget"
 	weapon_weight = WEAPON_HEAVY
 	mag_type = /obj/item/ammo_box/magazine/m10mm/rifle
-	fire_delay = 12
+	fire_delay = 10
 	burst_size = 1
 	can_unsuppress = TRUE
 	can_suppress = TRUE
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list()
 	mag_display = TRUE
+	can_bayonet = TRUE
 
 // Laser rifle (rechargeable magazine) //
 
@@ -423,3 +424,51 @@
 	actions_types = list()
 	fire_sound = 'sound/weapons/laser.ogg'
 	casing_ejector = FALSE
+
+// 40k Laser Weaponry
+
+/obj/item/gun/ballistic/automatic/laser/lasgun
+	name ="Imperial Lasgun"
+	desc = "A relic of a weapon. Despite being immensely powerful, it has acquired a reputation of being essentially a flashlight."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "lasgun"
+	item_state = "lasgun"
+	mag_display = TRUE
+	empty_indicator = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun
+
+/obj/item/gun/ballistic/automatic/laser/longlas
+	name ="Imperial Longlas"
+	desc = "A sniper variant of the lasgun. Despite being immensely powerful, it has acquired  a reputation of being essentially a flashlight."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "longlas"
+	item_state = "longlas"
+	mag_display = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/sniper
+	zoomable = TRUE
+	zoom_amt = 8
+
+/obj/item/gun/ballistic/automatic/laser/laspistol
+	name ="Imperial Laspistol"
+	desc = "A smaller, pistol sized version of the lasgun. Despite being immensely powerful, it has acquired a reputation of being essentially a flashlight."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "laspistol"
+	item_state = "laspistol"
+	mag_display = TRUE
+	empty_indicator = TRUE
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/pistol
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/gun/ballistic/automatic/laser/hotshot
+	name ="Imperial Hotshot Lasgun"
+	desc = "An amped-up version of the lasgun. One of the few models to not be regarded as completely useless by its users."
+	icon = 'icons/obj/guns/grimdark.dmi'
+	icon_state = "hotshot"
+	mag_display = TRUE
+	empty_indicator = TRUE
+	item_state = "hotshot"
+	fire_sound = 'sound/weapons/lasgun.ogg'
+	mag_type = /obj/item/ammo_box/magazine/recharge/lasgun/hotshot

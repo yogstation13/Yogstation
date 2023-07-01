@@ -47,7 +47,7 @@
 	user.visible_message(span_suicide("[user] is putting the [name] in [user.p_their()] mouth! But forgot to turn the [name] on."))
 	return SHAME
 
-/obj/item/melee/baton/Initialize()
+/obj/item/melee/baton/Initialize(mapload)
 	. = ..()
 	status = FALSE
 	if(preload_cell_type)
@@ -55,7 +55,7 @@
 			log_mapping("[src] at [AREACOORD(src)] had an invalid preload_cell_type: [preload_cell_type].")
 		else
 			cell = new preload_cell_type(src)
-	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, .proc/throwbaton)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_DROPTHROW, PROC_REF(throwbaton))
 	update_icon()
 
 /obj/item/melee/baton/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -246,15 +246,15 @@
 			to_chat(L, span_warning("You muscles seize, making you collapse!"))
 		else
 			L.Paralyze(stunforce)
-		L.Jitter(20)
-		L.confused = max(8, L.confused)
+		L.adjust_jitter(20 SECONDS)
+		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage > 70)
-		L.Jitter(10)
-		L.confused = max(8, L.confused)
+		L.adjust_jitter(10 SECONDS)
+		L.adjust_confusion(8 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage >= 20)
-		L.Jitter(5)
+		L.adjust_jitter(5 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)
 
 	if(user)
@@ -305,7 +305,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	var/obj/item/assembly/igniter/sparkler = 0
 
-/obj/item/melee/baton/cattleprod/Initialize()
+/obj/item/melee/baton/cattleprod/Initialize(mapload)
 	. = ..()
 	sparkler = new (src)
 

@@ -4,7 +4,7 @@
 	opacity = 1
 	anchored = TRUE
 
-/obj/effect/particle_effect/expl_particles/Initialize() //yogs start: reverts harddel stuff so it doesn't break horribly
+/obj/effect/particle_effect/expl_particles/Initialize(mapload) //yogs start: reverts harddel stuff so it doesn't break horribly
 	. = ..()
 	QDEL_IN(src, 15) //end of part 1
 
@@ -17,7 +17,7 @@
 		var/direct = pick(GLOB.alldirs)
 		var/steps_amt = pick(1;25,2;50,3,4;200)
 		for(var/j in 1 to steps_amt)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/_step, expl, direct), j) //yogs end
+			addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(_step), expl, direct), j) //yogs end
 
 /obj/effect/explosion
 	name = "fire"
@@ -29,7 +29,7 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/explosion/Initialize()
+/obj/effect/explosion/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 10)
 
@@ -56,4 +56,4 @@
 
 /datum/effect_system/explosion/smoke/start()
 	..()
-	addtimer(CALLBACK(src, .proc/create_smoke), 5)
+	addtimer(CALLBACK(src, PROC_REF(create_smoke)), 5)

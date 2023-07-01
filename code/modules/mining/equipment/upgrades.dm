@@ -14,9 +14,9 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	var/inert = FALSE
 
-/obj/item/magmite_parts/Initialize()
+/obj/item/magmite_parts/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/go_inert), 10 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(go_inert)), 10 MINUTES)
 
 /obj/item/magmite_parts/proc/go_inert()
 	if(inert)
@@ -34,7 +34,7 @@
 	name = initial(name)
 	icon_state = initial(icon_state)
 	desc = initial(desc)
-	addtimer(CALLBACK(src, .proc/go_inert), 10 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(go_inert)), 10 MINUTES)
 
 /obj/item/magmite_parts/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(inert)

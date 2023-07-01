@@ -31,7 +31,7 @@
 	var/normal_desc
 	//--end of love :'(--
 
-/obj/item/toy/plush/Initialize()
+/obj/item/toy/plush/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, squeak_override)
 
@@ -464,8 +464,8 @@
 		P.clashing = FALSE
 
 /obj/item/toy/plush/narplush
-	name = "\improper Nar'Sie plushie"
-	desc = "A small stuffed doll of the elder goddess Nar'Sie. Who thought this was a good children's toy?"
+	name = "\improper Nar'sie plushie"
+	desc = "A small stuffed doll of the elder goddess Nar'sie. Who thought this was a good children's toy?"
 	icon_state = "narplush"
 	var/clashing
 	gender = FEMALE	//it's canon if the toy is
@@ -516,7 +516,7 @@
 	icon_state = "plushie_awake"
 	item_state = "plushie_awake"
 
-/obj/item/toy/plush/awakenedplushie/ComponentInitialize()
+/obj/item/toy/plush/awakenedplushie/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/edit_complainer)
 

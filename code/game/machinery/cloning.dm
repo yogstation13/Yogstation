@@ -54,7 +54,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	fair_market_price = 5 // He nodded, because he knew I was right. Then he swiped his credit card to pay me for arresting him.
 	payment_department = ACCOUNT_MED
 
-/obj/machinery/clonepod/Initialize()
+/obj/machinery/clonepod/Initialize(mapload)
 	. = ..()
 
 	countdown = new(src)
@@ -114,7 +114,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/read_only = FALSE //Well,it's still a floppy disk
 
 //Disk stuff.
-/obj/item/disk/data/Initialize()
+/obj/item/disk/data/Initialize(mapload)
 	. = ..()
 	icon_state = "datadisk[rand(0,6)]"
 	add_overlay("datadisk_gene")
@@ -214,13 +214,13 @@ GLOBAL_VAR_INIT(clones, 0)
 			if(G.suiciding) // The ghost came from a body that is suiciding.
 				return NONE
 		if(clonemind.damnation_type) //Can't clone the damned.
-			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
 			update_icon()
 			return NONE
 		if(clonemind.zombified) //Can't clone the damned x2
-			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			icon_state = "pod_g"
 			update_icon()
@@ -490,10 +490,13 @@ GLOBAL_VAR_INIT(clones, 0)
 		to_chat(occupant, span_notice("<b>There is a bright flash!</b><br><i>You feel like a new being.</i>"))
 		if(efficiency < 9) // T4 and below
 			to_chat(occupant, span_notice("You do not remember your death, how you died, or who killed you. <a href='https://forums.yogstation.net/help/rules/#rule-1_6'>See rule 1.6</a>.")) //yogs
-		else if(efficiency == 9) // One T5 scanner
+			log_combat(occupant, "was cloned with memory loss")
+    else if(efficiency == 9) // One T5 scanner
 			to_chat(occupant, span_notice("Miraculously, you remember <i>how</i> you died. You don't remember anything about anyone involved, though!"))
-		else if(efficiency >= 10) // Two T5 scanners
+			log_combat(occupant, "was cloned with memory loss except for the method and location")
+    else if(efficiency >= 10) // Two T5 scanners
 			to_chat(occupant, span_notice("Miraculously, you remember everything about your previous death!"))
+      log_combat(occupant, "was cloned with no memory loss")
 		mob_occupant.flash_act()
 		GLOB.clones++
 

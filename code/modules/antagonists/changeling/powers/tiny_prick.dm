@@ -21,17 +21,17 @@
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	changeling.chosen_sting = src
 
-	user.hud_used.lingstingdisplay.icon = 'icons/obj/changeling.dmi'
-	user.hud_used.lingstingdisplay.icon_state = sting_icon
-	user.hud_used.lingstingdisplay.invisibility = 0
+	changeling.lingstingdisplay.icon = 'icons/obj/changeling.dmi'
+	changeling.lingstingdisplay.icon_state = sting_icon
+	changeling.lingstingdisplay.invisibility = 0
 
 /datum/action/changeling/sting/proc/unset_sting(mob/user)
 	to_chat(user, span_warning("We retract our sting, we can't sting anyone for now."))
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	changeling.chosen_sting = null
 
-	user.hud_used.lingstingdisplay.icon_state = null
-	user.hud_used.lingstingdisplay.invisibility = INVISIBILITY_ABSTRACT
+	changeling.lingstingdisplay.icon_state = null
+	changeling.lingstingdisplay.invisibility = INVISIBILITY_ABSTRACT
 
 /mob/living/carbon/proc/unset_sting()
 	if(mind)
@@ -113,7 +113,7 @@
 			var/mob/living/carbon/human/OldDNA = new /mob/living/carbon/human()
 			OldDNA.real_name = C.real_name
 			C.dna.transfer_identity(OldDNA)
-			addtimer(CALLBACK(src, .proc/revert, C, OldDNA), 10 MINUTES, TIMER_UNIQUE)
+			addtimer(CALLBACK(src, PROC_REF(revert), C, OldDNA), 10 MINUTES, TIMER_UNIQUE)
 			ADD_TRAIT(C, CHANGESTING_TRAIT, "recentsting")
 		else
 			to_chat(user, span_notice("We notice that [target.name]'s DNA is already in turmoil from the previous sting."))
@@ -172,7 +172,7 @@
 	target.visible_message(span_warning("A grotesque blade forms around [target.name]\'s arm!"), span_userdanger("Your arm twists and mutates, transforming into a horrific monstrosity!"), span_italics("You hear organic matter ripping and tearing!"))
 	playsound(target, 'sound/effects/blobattack.ogg', 30, 1)
 
-	addtimer(CALLBACK(src, .proc/remove_fake, target, blade), 600)
+	addtimer(CALLBACK(src, PROC_REF(remove_fake), target, blade), 600)
 	return TRUE
 
 /datum/action/changeling/sting/false_armblade/proc/remove_fake(mob/target, obj/item/melee/arm_blade/false/blade)

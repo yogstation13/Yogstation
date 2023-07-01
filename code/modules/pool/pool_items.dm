@@ -10,7 +10,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 
-/obj/item/twohanded/required/pool/Initialize()
+/obj/item/twohanded/required/pool/Initialize(mapload)
 	. = ..()
 	//Pick a random color
 	color = pick(COLOR_YELLOW, COLOR_LIME, COLOR_RED, COLOR_BLUE_LIGHT, COLOR_CYAN, COLOR_MAGENTA)
@@ -45,7 +45,7 @@
 /obj/item/twohanded/required/pool/pool_noodle/attack(mob/target, mob/living/carbon/human/user)
 	. = ..()
 	if(wielded && prob(50))
-		INVOKE_ASYNC(src, .proc/jedi_spin, user)
+		INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
 
 /obj/item/twohanded/required/pool/pool_noodle/proc/jedi_spin(mob/living/user) //rip complex code, but this fucked up blocking
 	user.emote("flip")

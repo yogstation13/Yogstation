@@ -18,10 +18,6 @@
 	/// Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
 	var/list/head_announce = null
 
-	// Used for something in preferences_savefile.dm
-	// NOTE: currently unused
-	var/department_flag = NONE
-
 	/// Bitfield of departments this job belongs to. These get setup when adding the job into the department, on job datum creation.
 	var/departments_bitflags = NONE
 
@@ -34,8 +30,6 @@
 	/// unless department_for_prefs is set.
 	/// TODO: Currently not used so will always be empty! Change this to department datums
 	var/list/departments_list = null
-
-	var/flag = NONE //Deprecated
 	
 	/// Automatic deadmin for a job. Usually head/security positions
 	var/auto_deadmin_role_flags = NONE
@@ -75,8 +69,12 @@
 	var/paycheck = PAYCHECK_MINIMAL
 	/// Where to pull money to pay people
 	var/paycheck_department = ACCOUNT_CIV
-	/// Traits assigned from jobs
+	/// Traits added to the mind of the mob assigned this job
 	var/list/mind_traits
+
+	///Lazylist of traits added to the liver of the mob assigned this job (used for the classic "cops heal from donuts" reaction, among others)
+	var/list/liver_traits = null
+
 	/// Display order of the job
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
@@ -136,13 +134,17 @@
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
-/datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
-	//do actions on H but send messages to M as the key may not have been transferred_yet
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, H, M, latejoin)
-	if(mind_traits)
-		for(var/t in mind_traits)
-			ADD_TRAIT(H.mind, t, JOB_TRAIT)
-	H.mind.add_employee(/datum/corporation/nanotrasen)
+/datum/job/proc/after_spawn(mob/living/spawned, mob/M, latejoin = FALSE)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, spawned, M, latejoin)
+	for(var/trait in mind_traits)
+		ADD_TRAIT(spawned.mind, trait, JOB_TRAIT)
+
+	var/obj/item/organ/liver/liver = spawned.getorganslot(ORGAN_SLOT_LIVER)
+	if(liver)
+		for(var/trait in liver_traits)
+			ADD_TRAIT(liver, trait, JOB_TRAIT)
+	spawned.mind.add_employee(/datum/corporation/nanotrasen)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
@@ -207,10 +209,10 @@
 	dna.species.before_equip_job(equipping, src, visual_only)
 	equipOutfit(equipping.outfit, visual_only)
 
-/datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+/datum/job/proc/announce_head(mob/living/carbon/human/H, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/_addtimer_here, CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(_addtimer_here), CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
@@ -263,7 +265,7 @@
 	var/uniform_skirt = null
 
 	/// Which slot the PDA defaults to
-	var/pda_slot = SLOT_BELT
+	var/pda_slot = ITEM_SLOT_BELT
 
 	/// What shoes digitgrade crew should wear
 	var/digitigrade_shoes
@@ -327,17 +329,17 @@
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
 		PDA.InsertID(C)
-		H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
+		H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
 
 		PDA.update_label()
 		PDA.update_icon()
 		PDA.update_filters()
 		
 	else
-		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+		H.equip_to_slot_if_possible(C, ITEM_SLOT_ID)
 
 	if(H.stat != DEAD)//if a job has a gps and it isn't a decorative corpse, rename the GPS to the owner's name
-		for(var/obj/item/gps/G in H.GetAllContents())
+		for(var/obj/item/gps/G in H.get_all_contents())
 			G.gpstag = H.real_name
 			G.name = "global positioning system ([G.gpstag])"
 			continue

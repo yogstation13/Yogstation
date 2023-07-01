@@ -59,7 +59,7 @@
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/start_cooldown()
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	addtimer(CALLBACK(src, .proc/set_ready_state, 1), chassis.melee_cooldown * attack_speed_modifier * check_eva())	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
+	addtimer(CALLBACK(src, PROC_REF(set_ready_state), 1), chassis.melee_cooldown * attack_speed_modifier * check_eva())	//Guns only shoot so fast, but weapons can be used as fast as the chassis can swing it!
 
 //Melee weapon attacks are a little different in that they'll override the standard melee attack
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/action(atom/target, params)
@@ -75,7 +75,7 @@
 	if(target == targloc && !(chassis.occupant.a_intent == INTENT_HELP) && cleave)	//If we are targetting a location, not an object or mob, and we're not in a passive stance
 		cleave_attack()
 	else if(precise_attacks && (get_dist(src,target) <= (1 + extended_range)) && can_stab_at(chassis, target) && !istype(target, /obj/item) && !istype(target, /obj/effect))	//If we are targetting something stabbable and they're within reach
-		if(targloc == curloc && !can_stab_turfs)
+		if(istype(target, /turf/open) && !can_stab_turfs)
 			return 0	//Don't stab turf if we can't
 		else
 			precise_attack(target)
@@ -319,15 +319,15 @@
 				to_chat(H, span_warning("You muscles seize, making you collapse!"))
 			else
 				H.Paralyze(stunforce)
-			H.Jitter(20)
-			H.confused = max(8, H.confused)
+			H.adjust_jitter(20 SECONDS)
+			H.adjust_confusion(8 SECONDS)
 			H.apply_effect(EFFECT_STUTTER, stunforce)
 		else if(current_stamina_damage > 70)
-			H.Jitter(10)
-			H.confused = max(8, H.confused)
+			H.adjust_jitter(10 SECONDS)
+			H.adjust_confusion(8 SECONDS)
 			H.apply_effect(EFFECT_STUTTER, stunforce)
 		else if(current_stamina_damage >= 20)
-			H.Jitter(5)
+			H.adjust_jitter(5 SECONDS)
 			H.apply_effect(EFFECT_STUTTER, stunforce)
 		
 	if(isliving(target))
@@ -359,7 +359,7 @@
 		else
 			L.apply_damage(burn_damage, BURN)
 		L.adjust_fire_stacks(2)
-		L.IgniteMob()
+		L.ignite_mob()
 		playsound(L, 'sound/items/welder.ogg', 50, 1)
 
 /obj/item/mecha_parts/mecha_equipment/melee_weapon/sword/maul
@@ -407,7 +407,7 @@
 	if(get_dist(chassis, target) > 1)	//First we hop forward
 		do_lunge_at(target)
 	if(get_dist(get_turf(src.chassis), get_turf(target)) > 1)	//If we weren't able to get within range we don't attack
-		addtimer(CALLBACK(src, .proc/set_ready_state, 1, chassis.melee_cooldown * check_eva() * 0.5) )	//half cooldown on a failed lunge attack
+		addtimer(CALLBACK(src, PROC_REF(set_ready_state), 1, chassis.melee_cooldown * check_eva() * 0.5) )	//half cooldown on a failed lunge attack
 		return
 	for(var/i in 1 to stab_number)
 		special_hit(target)

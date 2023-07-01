@@ -10,7 +10,7 @@
 	lucidity_price = 2
 	var/datum/status_effect/tagalong/tagalong
 
-/datum/action/innate/darkspawn/tagalong/IsAvailable()
+/datum/action/innate/darkspawn/tagalong/IsAvailable(feedback = FALSE)
 	if(istype(owner, /mob/living/simple_animal/hostile/crawling_shadows))
 		return
 	return ..()

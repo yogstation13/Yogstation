@@ -9,7 +9,7 @@
 	tastes = list("leaves" = 1)
 	foodtype = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/salad/Initialize()
+/obj/item/reagent_containers/food/snacks/salad/Initialize(mapload)
 	. = ..()
 	eatverb = pick("devour","nibble","gnaw","gobble","chomp") //who the fuck gnaws and devours on a salad
 
@@ -172,7 +172,7 @@
 	foodtype = GRAIN | SEAFOOD
 
 
-/obj/item/reagent_containers/food/snacks/salad/friedrice/shrimp/Initialize()
+/obj/item/reagent_containers/food/snacks/salad/friedrice/shrimp/Initialize(mapload)
 	. = ..()
 	if(prob(10))
 		name = "rice fried shrimp"

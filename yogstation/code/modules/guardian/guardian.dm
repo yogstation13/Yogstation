@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	to_chat(src, span_holoparasite("While personally invincible, you will die if [summoner.current.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.current.p_them()] as you feed upon [summoner.current.p_them()] to sustain yourself."))
 	setup_barriers()
 
-/mob/living/simple_animal/hostile/guardian/Life() //Dies if the summoner dies
+/mob/living/simple_animal/hostile/guardian/Life(seconds_per_tick = SSMOBS_DT, times_fired) //Dies if the summoner dies
 	. = ..()
 	update_health_hud() //we need to update all of our health displays to match our summoner and we can't practically give the summoner a hook to do it
 	med_hud_set_health()
@@ -737,7 +737,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 		add_verb(src, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
 		for (var/mob/living/simple_animal/hostile/guardian/jojo in guardians)
 			jojo.forceMove(src)
-			jojo.RegisterSignal(src, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
+			jojo.RegisterSignal(src, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/living/simple_animal/hostile/guardian, OnMoved))
 			jojo.revive()
 			var/mob/gost = jojo.grab_ghost(TRUE)
 			if (gost)
@@ -776,7 +776,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 		add_verb(current, list(/mob/living/proc/guardian_comm, /mob/living/proc/guardian_recall, /mob/living/proc/guardian_reset, /mob/living/proc/finduser))
 		for (var/mob/living/simple_animal/hostile/guardian/jojo in guardians)
 			jojo.forceMove(current)
-			jojo.RegisterSignal(current, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
+			jojo.RegisterSignal(current, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/living/simple_animal/hostile/guardian, OnMoved))
 			if (jojo.stat == DEAD)
 				jojo.revive()
 				if (!jojo.ckey)

@@ -35,7 +35,7 @@
 	var/obj/item/reagent_containers/beaker = null
 	//This will display every reagent that it could POSSIBLY dispense if it was fully upgraded (barring emagged chemicals). Ones you can't use will show what tier you need.
 	//If you want to add more to the tiers, it has to be in dispensable_reagents AND the list of what you tier you want it in below.
-	var/list/display_reagents = list() 
+	var/list/display_reagents = list()
 
 	var/list/dispensable_reagents = list(
 		/datum/reagent/aluminium,
@@ -90,7 +90,7 @@
 
 	var/list/saved_recipes = list()
 
-/obj/machinery/chem_dispenser/Initialize()
+/obj/machinery/chem_dispenser/Initialize(mapload)
 	. = ..()
 	dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
 	display_reagents = dispensable_reagents.Copy()
@@ -358,7 +358,7 @@
 			to_chat(user, span_notice("[I] is stuck to your hand!"))
 			return
 		if(istype(I, /obj/item/stock_parts/cell))
-			I.forceMove(src) // Force it out of our hands so we can put the old cell in it		
+			I.forceMove(src) // Force it out of our hands so we can put the old cell in it
 			if(!user.put_in_hands(cell))
 				cell.forceMove(get_turf(src))
 			component_parts -= cell // Remove the old cell so the new one spawns when deconstructed
@@ -453,13 +453,13 @@
 			return FALSE
 	return TRUE
 
-/obj/machinery/chem_dispenser/proc/check_macro_part(var/part, var/res = macroresolution)
+/obj/machinery/chem_dispenser/proc/check_macro_part(part, res = macroresolution)
 	var/detail = splittext(part, "=")
 	if (text2num(detail[2]) < res)
 		return FALSE
 	return TRUE
 
-/obj/machinery/chem_dispenser/proc/process_recipe_list(var/recipe)
+/obj/machinery/chem_dispenser/proc/process_recipe_list(recipe)
 	var/list/key_list = list()
 	var/list/final_list = list()
 	var/list/first_process = splittext(recipe, ";")
@@ -473,7 +473,7 @@
 	if(istype(user) && user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		replace_beaker(user)
 
-/obj/machinery/chem_dispenser/drinks/Initialize()
+/obj/machinery/chem_dispenser/drinks/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE)
 
@@ -522,30 +522,37 @@
 		/datum/reagent/consumable/icetea,
 		/datum/reagent/consumable/space_cola,
 		/datum/reagent/consumable/rootbeer,
-		/datum/reagent/consumable/spacemountainwind,
-		/datum/reagent/consumable/dr_gibb,
-		/datum/reagent/consumable/space_up,
 		/datum/reagent/consumable/tonic,
 		/datum/reagent/consumable/sodawater,
 		/datum/reagent/consumable/lemon_lime,
-		/datum/reagent/consumable/pwr_game,
 		/datum/reagent/consumable/shamblers,
 		/datum/reagent/consumable/sugar,
-		/datum/reagent/consumable/pineapplejuice,
 		/datum/reagent/consumable/orangejuice,
 		/datum/reagent/consumable/grenadine,
 		/datum/reagent/consumable/limejuice,
-		/datum/reagent/consumable/tomatojuice,
 		/datum/reagent/consumable/lemonjuice,
-		/datum/reagent/consumable/menthol,
-		/datum/reagent/consumable/berryjuice
+		/datum/reagent/consumable/menthol
+
 	)
-	t2_upgrade_reagents = null
-	t3_upgrade_reagents = null
-	t4_upgrade_reagents = null
+	t2_upgrade_reagents = list(
+		/datum/reagent/consumable/berryjuice,
+		/datum/reagent/consumable/pineapplejuice,
+		/datum/reagent/consumable/tomatojuice
+	)
+	t3_upgrade_reagents = list(
+		/datum/reagent/consumable/sol_dry,
+		/datum/reagent/consumable/spacemountainwind,
+		/datum/reagent/consumable/dr_gibb,
+		/datum/reagent/consumable/space_up,
+		/datum/reagent/consumable/pwr_game
+	)
+	t4_upgrade_reagents = list(
+		/datum/reagent/consumable/peachjuice
+	)
 	emagged_reagents = list(
 		/datum/reagent/consumable/ethanol/thirteenloko,
-		/datum/reagent/consumable/ethanol/whiskey_cola,
+		/datum/reagent/consumable/laughter,
+		/datum/reagent/consumable/nothing,
 		/datum/reagent/toxin/mindbreaker,
 		/datum/reagent/toxin/staminatoxin
 	)
@@ -555,7 +562,7 @@
 	obj_flags = CAN_BE_HIT | EMAGGED
 	flags_1 = NODECONSTRUCT_1
 
-/obj/machinery/chem_dispenser/drinks/fullupgrade/Initialize()
+/obj/machinery/chem_dispenser/drinks/fullupgrade/Initialize(mapload)
 	. = ..()
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 	display_reagents |= emagged_reagents //adds emagged reagents
@@ -598,13 +605,16 @@
 		/datum/reagent/consumable/ethanol/amaretto
 	)
 	t2_upgrade_reagents = null
-	t3_upgrade_reagents = null
-	t4_upgrade_reagents = null
-	emagged_reagents = list(
-		/datum/reagent/consumable/ethanol,
+	t3_upgrade_reagents = list(
+		/datum/reagent/consumable/ethanol/champagne
+	)
+	t4_upgrade_reagents = list(
 		/datum/reagent/iron,
-		/datum/reagent/toxin/minttoxin,
-		/datum/reagent/consumable/ethanol/atomicbomb,
+		/datum/reagent/consumable/ethanol
+	)
+	emagged_reagents = list(
+		/datum/reagent/consumable/mintextract,
+		/datum/reagent/consumable/ethanol/syndicatebomb,
 		/datum/reagent/consumable/ethanol/fernet
 	)
 
@@ -613,7 +623,7 @@
 	obj_flags = CAN_BE_HIT | EMAGGED
 	flags_1 = NODECONSTRUCT_1
 
-/obj/machinery/chem_dispenser/drinks/beer/fullupgrade/Initialize()
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade/Initialize(mapload)
 	. = ..()
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 	component_parts = list()
@@ -660,7 +670,7 @@
 	t3_upgrade_reagents = null
 	t4_upgrade_reagents = null
 
-/obj/machinery/chem_dispenser/mutagensaltpeter/Initialize()
+/obj/machinery/chem_dispenser/mutagensaltpeter/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
@@ -677,7 +687,7 @@
 	obj_flags = CAN_BE_HIT | EMAGGED
 	flags_1 = NODECONSTRUCT_1
 
-/obj/machinery/chem_dispenser/fullupgrade/Initialize()
+/obj/machinery/chem_dispenser/fullupgrade/Initialize(mapload)
 	. = ..()
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
 	component_parts = list()
@@ -740,7 +750,7 @@
 		/datum/reagent/uranium
 	)
 
-/obj/machinery/chem_dispenser/abductor/Initialize()
+/obj/machinery/chem_dispenser/abductor/Initialize(mapload)
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)

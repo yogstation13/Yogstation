@@ -6,11 +6,11 @@
 	icon_state = "clockwork_helmet"
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACE
+	flags_inv = HIDEEARS | HIDEHAIR | HIDEFACE
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
-	armor = list(MELEE = 50, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 50, BULLET = 40, LASER = 20, ENERGY = 10, BOMB = 60, BIO = 15, RAD = 0, FIRE = 100, ACID = 100)
 
-/obj/item/clothing/head/helmet/clockwork/Initialize()
+/obj/item/clothing/head/helmet/clockwork/Initialize(mapload)
 	. = ..()
 	ratvar_act()
 	GLOB.all_clockwork_objects += src
@@ -21,24 +21,24 @@
 
 /obj/item/clothing/head/helmet/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		armor = getArmor(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100)
+		armor.setRating(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100)
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else if(GLOB.ratvar_approaches)
-		armor = getArmor(melee = 70, bullet = 80, laser = 0, energy = 25, bomb = 70, bio = 0, rad = 0, fire = 100, acid = 100)
+		armor.setRating(melee = 60, bullet = 50, laser = 25, energy = 25, bomb = 70, bio = 90, rad = 0, fire = 100, acid = 100)
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else
-		armor = getArmor(melee = 60, bullet = 70, laser = 0, energy = 0, bomb = 60, bio = 0, rad = 0, fire = 100, acid = 100)
+		armor.setRating(melee = 50, bullet = 40, laser = 20, energy = 10, bomb = 60, bio = 15, rad = 0, fire = 100, acid = 100)
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = initial(max_heat_protection_temperature)
 		min_cold_protection_temperature = initial(min_cold_protection_temperature)
 
 /obj/item/clothing/head/helmet/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_HEAD && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_HEAD && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] head!"), span_warning("The helmet flickers off your head, leaving only nausea!"))
@@ -51,7 +51,7 @@
 			user.emote("scream")
 			user.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
 			user.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30)
-		addtimer(CALLBACK(user, /mob/living.proc/dropItemToGround, src, TRUE), 1) //equipped happens before putting stuff on(but not before picking items up), 1). thus, we need to wait for it to be on before forcing it off.
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dropItemToGround), src, TRUE), 1) //equipped happens before putting stuff on(but not before picking items up), 1). thus, we need to wait for it to be on before forcing it off.
 
 /obj/item/clothing/head/helmet/clockwork/mob_can_equip(mob/M, mob/equipper, slot, disable_warning = 0)
 	if(equipper && !is_servant_of_ratvar(equipper))
@@ -68,10 +68,10 @@
 	cold_protection = CHEST|GROIN|LEGS
 	heat_protection = CHEST|GROIN|LEGS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list(MELEE = 60, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 50, BULLET = 40, LASER = 20, ENERGY = 10, BOMB = 60, BIO = 15, RAD = 0, FIRE = 100, ACID = 100)
 	allowed = list(/obj/item/clockwork, /obj/item/clothing/glasses/wraith_spectacles, /obj/item/clothing/glasses/judicial_visor, /obj/item/mmi/posibrain/soul_vessel)
 
-/obj/item/clothing/suit/armor/clockwork/Initialize()
+/obj/item/clothing/suit/armor/clockwork/Initialize(mapload)
 	. = ..()
 	ratvar_act()
 	GLOB.all_clockwork_objects += src
@@ -82,17 +82,17 @@
 
 /obj/item/clothing/suit/armor/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		armor = getArmor(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100)
+		armor.setRating(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100)
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else if(GLOB.ratvar_approaches)
-		armor = getArmor(melee = 70, bullet = 80, laser = 0, energy = 25, bomb = 70, bio = 0, rad = 0, fire = 100, acid = 100)
+		armor.setRating(melee = 60, bullet = 50, laser = 25, energy = 25, bomb = 70, bio = 90, rad = 0, fire = 100, acid = 100)
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else
-		armor = getArmor(melee = 60, bullet = 70, laser = 0, energy = 0, bomb = 60, bio = 0, rad = 0, fire = 100, acid = 100)
+		armor.setRating(melee = 50, bullet = 40, laser = 20, energy = 10, bomb = 60, bio = 15, rad = 0, fire = 100, acid = 100)
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = initial(max_heat_protection_temperature)
 		min_cold_protection_temperature = initial(min_cold_protection_temperature)
@@ -104,7 +104,7 @@
 
 /obj/item/clothing/suit/armor/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_WEAR_SUIT && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_OCLOTHING && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] body!"), span_warning("The cuirass flickers off your body, leaving only nausea!"))
@@ -117,8 +117,8 @@
 			user.emote("scream")
 			user.apply_damage(15, BURN, BODY_ZONE_CHEST)
 			user.adjust_fire_stacks(2)
-			user.IgniteMob()
-		addtimer(CALLBACK(user, /mob/living.proc/dropItemToGround, src, TRUE), 1)
+			user.ignite_mob()
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dropItemToGround), src, TRUE), 1)
 
 /obj/item/clothing/gloves/clockwork
 	name = "clockwork gauntlets"
@@ -132,11 +132,10 @@
 	cold_protection = ARMS
 	heat_protection = ARMS
 	siemens_coefficient = 0
-	permeability_coefficient = 0.05
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list(MELEE = 80, BULLET = 60, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 50, BULLET = 40, LASER = 20, ENERGY = 10, BOMB = 60, BIO = 60, RAD = 0, FIRE = 100, ACID = 100)
 
-/obj/item/clothing/gloves/clockwork/Initialize()
+/obj/item/clothing/gloves/clockwork/Initialize(mapload)
 	. = ..()
 	ratvar_act()
 	GLOB.all_clockwork_objects += src
@@ -147,12 +146,17 @@
 
 /obj/item/clothing/gloves/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		armor = getArmor(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100)
+		armor.setRating(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100)
+		clothing_flags |= STOPSPRESSUREDAMAGE
+		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
+	else if(GLOB.ratvar_approaches)
+		armor.setRating(melee = 60, bullet = 50, laser = 25, energy = 25, bomb = 60, bio = 90, rad = 0, fire = 100, acid = 100)
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	else
-		armor = getArmor(melee = 80, bullet = 70, laser = 0, energy = 0, bomb = 60, bio = 0, rad = 0, fire = 100, acid = 100)
+		armor.setRating(melee = 50, bullet = 40, laser = 20, energy = 10, bomb = 60, bio = 60, rad = 0, fire = 100, acid = 100)
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = initial(max_heat_protection_temperature)
 		min_cold_protection_temperature = initial(min_cold_protection_temperature)
@@ -164,7 +168,7 @@
 
 /obj/item/clothing/gloves/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_GLOVES && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_GLOVES && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] arms!"), span_warning("The gauntlets flicker off your arms, leaving only nausea!"))
@@ -177,7 +181,7 @@
 			user.emote("scream")
 			user.apply_damage(7, BRUTE, BODY_ZONE_L_ARM)
 			user.apply_damage(7, BRUTE, BODY_ZONE_R_ARM)
-		addtimer(CALLBACK(user, /mob/living.proc/dropItemToGround, src, TRUE), 1)
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dropItemToGround), src, TRUE), 1)
 
 /obj/item/clothing/shoes/clockwork
 	name = "clockwork treads"
@@ -189,7 +193,7 @@
 	equip_delay_other = 30
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
-/obj/item/clothing/shoes/clockwork/Initialize()
+/obj/item/clothing/shoes/clockwork/Initialize(mapload)
 	. = ..()
 	ratvar_act()
 	GLOB.all_clockwork_objects += src
@@ -214,7 +218,7 @@
 
 /obj/item/clothing/shoes/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == SLOT_SHOES && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_FEET && !is_servant_of_ratvar(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] feet!"), span_warning("The treads flicker off your feet, leaving only nausea!"))
@@ -227,4 +231,4 @@
 			user.emote("scream")
 			user.apply_damage(7, BURN, BODY_ZONE_L_LEG)
 			user.apply_damage(7, BURN, BODY_ZONE_R_LEG)
-		addtimer(CALLBACK(user, /mob/living.proc/dropItemToGround, src, TRUE), 1)
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dropItemToGround), src, TRUE), 1)

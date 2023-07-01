@@ -177,7 +177,7 @@
 			return
 		var/chance = 0
 		switch(mood.shown_mood)
-			if(0 to MOOD_LEVEL_SAD4)
+			if(-INFINITY to MOOD_LEVEL_SAD4)
 				chance = -0.1
 			if(MOOD_LEVEL_SAD4 to MOOD_LEVEL_SAD3)
 				chance = -0.01

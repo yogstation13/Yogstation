@@ -62,7 +62,7 @@
 		new /datum/data/mining_equipment("GAR Meson Scanners",			/obj/item/clothing/glasses/meson/gar,								500, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Meson Health Scanner HUD",	/obj/item/clothing/glasses/hud/health/meson,						1000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										2500, VENDING_EQUIPMENT),
-		new /datum/data/mining_equipment("Jump Boots Implants",			/obj/item/multisurgeon/jumpboots,									10000, VENDING_EQUIPMENT),
+		new /datum/data/mining_equipment("Jump Boots Implants",			/obj/item/storage/box/jumpbootimplant,								5000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Mining Hardsuit",				/obj/item/clothing/suit/space/hardsuit/mining,						2000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Jetpack Upgrade",				/obj/item/tank/jetpack/suit,										2000, VENDING_EQUIPMENT),
 		new /datum/data/mining_equipment("Environment Proof Bodybag", 	/obj/item/bodybag/environmental, 									1000, VENDING_EQUIPMENT),
@@ -96,7 +96,7 @@
 	cost = pcost
 	category = cat
 
-/obj/machinery/mineral/equipment_vendor/Initialize()
+/obj/machinery/mineral/equipment_vendor/Initialize(mapload)
 	. = ..()
 	build_inventory()
 
@@ -202,7 +202,7 @@
 	)
 
 	items = sortList(items)
-	var/selection = show_radial_menu(redeemer, src, items, custom_check = CALLBACK(src, .proc/check_menu, voucher, redeemer), radius = 38, require_near = TRUE, tooltips = TRUE)
+	var/selection = show_radial_menu(redeemer, src, items, custom_check = CALLBACK(src, PROC_REF(check_menu), voucher, redeemer), radius = 38, require_near = TRUE, tooltips = TRUE)
 	if(!selection)
 		return
 
@@ -260,7 +260,7 @@
 	name = "golem ship equipment vendor"
 	circuit = /obj/item/circuitboard/machine/mining_equipment_vendor/golem
 
-/obj/machinery/mineral/equipment_vendor/golem/Initialize()
+/obj/machinery/mineral/equipment_vendor/golem/Initialize(mapload)
 	desc += "\nIt seems a few selections have been added."
 	prize_list += list(
 		new /datum/data/mining_equipment("Brute Pill Bottle",			/obj/item/storage/pill_bottle/libi,									600, VENDING_MEDS),
@@ -350,7 +350,7 @@
 		)
 
 	items = sortList(items)
-	var/selection = show_radial_menu(redeemer, src, items, custom_check = CALLBACK(src, .proc/check_menu, voucher, redeemer), radius = 38, require_near = TRUE, tooltips = TRUE)
+	var/selection = show_radial_menu(redeemer, src, items, custom_check = CALLBACK(src, PROC_REF(check_menu), voucher, redeemer), radius = 38, require_near = TRUE, tooltips = TRUE)
 	if(!selection)
 		return
 
@@ -458,6 +458,16 @@
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/card/mining_access_card(src)
 	new /obj/item/clothing/neck/bodycam/miner(src)
+
+//jumpboot implant box
+/obj/item/storage/box/jumpbootimplant
+	name = "box of jumpboot implants"
+	desc = "A box holding a set of jumpboot implants. They will require surgical implantation to function."
+	illustration = "implant"
+
+/obj/item/storage/box/jumpbootimplant/PopulateContents()
+	new /obj/item/organ/cyberimp/leg/jumpboots(src)
+	new /obj/item/organ/cyberimp/leg/jumpboots/l(src)
 
 #undef VENDING_WEAPON
 #undef VENDING_UPGRADE

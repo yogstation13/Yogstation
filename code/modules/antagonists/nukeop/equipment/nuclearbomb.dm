@@ -33,7 +33,7 @@
 	var/obj/effect/countdown/nuclearbomb/countdown
 
 
-/obj/machinery/nuclearbomb/Initialize()
+/obj/machinery/nuclearbomb/Initialize(mapload)
 	. = ..()
 	countdown = new(src)
 	GLOB.nuke_list += src
@@ -460,7 +460,7 @@
 	sound_to_playing_players('sound/machines/alarm.ogg')
 	if(SSticker && SSticker.mode)
 		SSticker.roundend_check_paused = TRUE
-	addtimer(CALLBACK(src, .proc/actually_explode), 100)
+	addtimer(CALLBACK(src, PROC_REF(actually_explode)), 100)
 
 /obj/machinery/nuclearbomb/proc/actually_explode()
 	if(!core)
@@ -501,9 +501,9 @@
 	if(istype(A, /area/fabric_of_reality))
 		var/area/fabric_of_reality/fabric = A
 		var/turf/T = fabric.origin
-		INVOKE_ASYNC(GLOBAL_PROC,.proc/KillEveryoneOnZLevel, T.z)
+		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(KillEveryoneOnZLevel), T.z)
 	else
-		INVOKE_ASYNC(GLOBAL_PROC,.proc/KillEveryoneOnZLevel, z)
+		INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(KillEveryoneOnZLevel), z)
 
 /obj/machinery/nuclearbomb/proc/get_cinematic_type(off_station)
 	if(off_station < 2)
@@ -517,7 +517,7 @@
 	proper_bomb = FALSE
 	var/obj/structure/reagent_dispensers/beerkeg/keg
 
-/obj/machinery/nuclearbomb/beer/Initialize()
+/obj/machinery/nuclearbomb/beer/Initialize(mapload)
 	. = ..()
 	keg = new(src)
 	QDEL_NULL(core)
@@ -549,10 +549,10 @@
 		var/datum/round_event_control/E = locate(/datum/round_event_control/scrubber_overflow/beer) in SSevents.control
 		if(E)
 			E.runEvent()
-		addtimer(CALLBACK(src, .proc/really_actually_explode), 110)
+		addtimer(CALLBACK(src, PROC_REF(really_actually_explode)), 110)
 	else
 		visible_message(span_notice("[src] fizzes ominously."))
-		addtimer(CALLBACK(src, .proc/fizzbuzz), 110)
+		addtimer(CALLBACK(src, PROC_REF(fizzbuzz)), 110)
 
 /obj/machinery/nuclearbomb/beer/proc/disarm()
 	detonation_timer = null
@@ -637,15 +637,12 @@ This is here to make the tiles around the station mininuke change when it's arme
 	var/turf/lastlocation
 	var/last_disk_move
 
-/obj/item/disk/nuclear/Initialize()
+/obj/item/disk/nuclear/Initialize(mapload)
 	. = ..()
 	if(!fake)
 		GLOB.poi_list |= src
 		last_disk_move = world.time
 		START_PROCESSING(SSobj, src)
-
-/obj/item/disk/nuclear/ComponentInitialize()
-	. = ..()
 	AddComponent(/datum/component/stationloving, !fake)
 
 /obj/item/disk/nuclear/process()
@@ -705,7 +702,7 @@ This is here to make the tiles around the station mininuke change when it's arme
 	playsound(src, 'sound/machines/alarm.ogg', 50, -1, 1)
 	for(var/i in 1 to 100)
 		addtimer(CALLBACK(user, /atom/proc/add_atom_colour, (i % 2)? "#00FF00" : "#FF0000", ADMIN_COLOUR_PRIORITY), i)
-	addtimer(CALLBACK(src, .proc/manual_suicide, user), 101)
+	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), 101)
 	return MANUAL_SUICIDE
 
 /obj/item/disk/nuclear/proc/manual_suicide(mob/living/user)

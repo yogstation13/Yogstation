@@ -1,7 +1,7 @@
 /* Formatting for these files, from top to bottom:
 	* Action
 	* Trigger()
-	* IsAvailable()
+	* IsAvailable(feedback = FALSE)
 	* Items
 	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
@@ -17,40 +17,35 @@
 	max_damage = 50
 	aux_layer = 12
 	var/obj/item/bodypart/r_arm/robot/buster/opphand
-	var/datum/action/cooldown/buster/wire_snatch/l/wire_action =new/datum/action/cooldown/buster/wire_snatch/l()
-	var/datum/action/cooldown/buster/grap/l/grapple_action = new/datum/action/cooldown/buster/grap/l()
-	var/datum/action/cooldown/buster/mop/l/mop_action = new/datum/action/cooldown/buster/mop/l()
-	var/datum/action/cooldown/buster/slam/l/slam_action = new/datum/action/cooldown/buster/slam/l()
 	var/datum/action/cooldown/buster/megabuster/l/megabuster_action = new/datum/action/cooldown/buster/megabuster/l()
+	var/datum/martial_art/buster_style/buster_style = new
 
 /// Set up our actions, disable gloves
 /obj/item/bodypart/l_arm/robot/buster/attach_limb(mob/living/carbon/N, special)
 	. = ..()
-	var/datum/species/S = N.dna?.species
-	S.add_no_equip_slot(N, SLOT_GLOVES)
-	wire_action.Grant(N)
-	grapple_action.Grant(N)
-	mop_action.Grant(N)
-	slam_action.Grant(N)
 	megabuster_action.Grant(N)
+	buster_style.teach(N)
+	to_chat(owner, "[span_boldannounce("You've gained the ability to use Buster Style!")]")
 
 /// Remove our actions, re-enable gloves
 /obj/item/bodypart/l_arm/robot/buster/drop_limb(special)
 	var/mob/living/carbon/N = owner
-	var/datum/species/S = N.dna?.species
-	S.remove_no_equip_slot(N, SLOT_GLOVES)
-	wire_action.Remove(N)
-	grapple_action.Remove(N)
-	mop_action.Remove(N)
-	slam_action.Remove(N)
+	var/obj/item/bodypart/r_arm = N.get_bodypart(BODY_ZONE_R_ARM)
 	megabuster_action.Remove(N)
+	if(!istype(r_arm, /obj/item/bodypart/r_arm/robot/buster))
+		buster_style.remove(N)
+		N.click_intercept = null
+		to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
 	..()
 
 /// Attacking a human mob with the arm causes it to instantly replace their arm
 /obj/item/bodypart/l_arm/robot/buster/attack(mob/living/L, proximity)
-	if(!proximity)
+	if(get_turf(L) != get_turf(src)) //putting the arm on someone else makes the moveset just not work for some reason so please dont
 		return
 	if(!ishuman(L))
+		return
+	if(L.mind.martial_art.type in subtypesof(/datum/martial_art) && !(istype(L.mind.martial_art, /datum/martial_art/cqc/under_siege))) //prevents people from learning several martial arts or swapping between them
+		to_chat(L, span_warning("You are already dedicated to using [L.mind.martial_art.name]!"))
 		return
 	playsound(L,'sound/effects/phasein.ogg', 20, 1)
 	to_chat(L, span_notice("You bump the prosthetic near your shoulder. In a flurry faster than your eyes can follow, it takes the place of your left arm!"))
@@ -74,40 +69,35 @@
 	max_damage = 50
 	aux_layer = 12
 	var/obj/item/bodypart/l_arm/robot/buster/opphand
-	var/datum/action/cooldown/buster/wire_snatch/r/wire_action = new/datum/action/cooldown/buster/wire_snatch/r()
-	var/datum/action/cooldown/buster/grap/r/grapple_action = new/datum/action/cooldown/buster/grap/r()
-	var/datum/action/cooldown/buster/mop/r/mop_action = new/datum/action/cooldown/buster/mop/r()
-	var/datum/action/cooldown/buster/slam/r/slam_action = new/datum/action/cooldown/buster/slam/r()
 	var/datum/action/cooldown/buster/megabuster/r/megabuster_action = new/datum/action/cooldown/buster/megabuster/r()
+	var/datum/martial_art/buster_style/buster_style = new
 
 /// Set up our actions, disable gloves
 /obj/item/bodypart/r_arm/robot/buster/attach_limb(mob/living/carbon/N, special)
 	. = ..()
-	var/datum/species/S = N.dna?.species
-	S.add_no_equip_slot(N, SLOT_GLOVES)
-	wire_action.Grant(N)
-	grapple_action.Grant(N)
-	mop_action.Grant(N)
-	slam_action.Grant(N)
 	megabuster_action.Grant(N)
+	buster_style.teach(N)
+	to_chat(owner, span_boldannounce("You've gained the ability to use Buster Style!"))
 
 /// Remove our actions, re-enable gloves
 /obj/item/bodypart/r_arm/robot/buster/drop_limb(special)
 	var/mob/living/carbon/N = owner
-	var/datum/species/S = N.dna?.species
-	S.remove_no_equip_slot(N, SLOT_GLOVES)
-	wire_action.Remove(N)
-	grapple_action.Remove(N)
-	mop_action.Remove(N)
-	slam_action.Remove(N)
+	var/obj/item/bodypart/l_arm = N.get_bodypart(BODY_ZONE_L_ARM)
 	megabuster_action.Remove(N)
+	if(!istype(l_arm, /obj/item/bodypart/l_arm/robot/buster))
+		buster_style.remove(N)
+		N.click_intercept = null
+		to_chat(owner, "[span_boldannounce("You've lost the ability to use Buster Style...")]")
 	..()
 
 /// Attacking a human mob with the arm causes it to instantly replace their arm
 /obj/item/bodypart/r_arm/robot/buster/attack(mob/living/L, proximity)
-	if(!proximity)
+	if(get_turf(L) != get_turf(src))
 		return
 	if(!ishuman(L))
+		return
+	if(L.mind.martial_art.type in subtypesof(/datum/martial_art) && !(istype(L.mind.martial_art, /datum/martial_art/cqc/under_siege))) //prevents people from learning several martial arts or swapping between them
+		to_chat(L, span_warning("You are already dedicated to using [L.mind.martial_art.name]!"))
 		return
 	playsound(L,'sound/effects/phasein.ogg', 20, 1)
 	to_chat(L, span_notice("You bump the prosthetic near your shoulder. In a flurry faster than your eyes can follow, it takes the place of your right arm!"))

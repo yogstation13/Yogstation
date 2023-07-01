@@ -8,9 +8,9 @@
 	var/giftwrapped = FALSE
 	var/sortTag = 0
 
-/obj/structure/bigDelivery/Initialize()
+/obj/structure/bigDelivery/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, .proc/disposal_handling)
+	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposal_handling))
 
 /obj/structure/bigDelivery/interact(mob/user)
 	playsound(src.loc, 'sound/items/poster_ripped.ogg', 50, 1)
@@ -96,9 +96,9 @@
 	var/giftwrapped = 0
 	var/sortTag = 0
 
-/obj/item/smallDelivery/Initialize()
+/obj/item/smallDelivery/Initialize(mapload)
 	. = ..()
-	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, .proc/disposal_handling)
+	RegisterSignal(src, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposal_handling))
 
 /obj/item/smallDelivery/proc/disposal_handling(disposal_source, obj/structure/disposalholder/disposal_holder, obj/machinery/disposal/disposal_machine, hasmob)
 	if(!hasmob)
@@ -199,7 +199,7 @@
 /obj/item/destTagger/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user,src,ui)
 	if(!ui)
-		ui = new(user,src,"DestinationTagger")
+		ui = new(user, src, "DestinationTagger")
 		ui.open()
 
 /obj/item/destTagger/ui_act(action,list/params)
@@ -213,7 +213,7 @@
 
 /obj/item/destTagger/ui_data(mob/user)
 	var/list/data = list()
-	data["destinations"] = GLOB.TAGGERLOCATIONS
-	data["currentTag"] = currTag
+	data["destinations"] = GLOB.TAGGERLOCATIONS_DEPARTMENTAL
+	data["currentTag"] = currTag ? GLOB.TAGGERLOCATIONS[currTag] : "None"
 
 	return data

@@ -1,10 +1,8 @@
 /datum/job/geneticist
 	title = "Geneticist"
 	description = "Alter genomes, turn monkeys into humans (and vice-versa), and make DNA backups."
-	flag = GENETICIST
 	orbit_icon = "dna"
 	department_head = list("Chief Medical Officer", "Research Director")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
@@ -29,7 +27,10 @@
 	)
 
 	mail_goodies = list(
-		/obj/item/storage/box/monkeycubes = 10
+		/obj/item/storage/box/monkeycubes = 10,
+		/obj/item/reagent_containers/pill/mutadone = 10,
+		/obj/item/reagent_containers/glass/bottle/mutagen = 5,
+		/obj/item/dnainjector/elvismut = 1
 	)
 
 	smells_like = "monkey hair"

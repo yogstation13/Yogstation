@@ -34,31 +34,11 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = -31
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "ak" = (
@@ -79,16 +59,6 @@
 /obj/machinery/airalarm{
 	dir = 2;
 	pixel_y = 24
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
@@ -123,35 +93,15 @@
 	},
 /area/crew_quarters/kitchen)
 "ap" = (
+/obj/machinery/computer/slot_machine,
 /obj/machinery/camera{
 	c_tag = "Theatre Stage";
 	dir = 2
-	},
-/obj/machinery/computer/slot_machine,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aq" = (
 /obj/machinery/computer/slot_machine,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "as" = (
@@ -159,20 +109,10 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/crew_quarters/bar)
 "at" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
+/obj/item/twohanded/required/kirbyplants/photosynthetic,
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
-/obj/item/twohanded/required/kirbyplants/photosynthetic,
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "au" = (
@@ -205,16 +145,6 @@
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
 	},
 /obj/machinery/firealarm{
 	dir = 2;
@@ -272,16 +202,6 @@
 	dir = 4;
 	icon_state = "scrub_map_on-3"
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aH" = (
@@ -290,16 +210,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
@@ -320,16 +230,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8;
 	icon_state = "vent_map_on-1"
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
@@ -366,16 +266,6 @@
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "aO" = (
@@ -384,17 +274,6 @@
 	icon_state = "computer"
 	},
 /obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
@@ -470,16 +349,6 @@
 /obj/machinery/computer{
 	dir = 8;
 	icon_state = "computer"
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
@@ -590,16 +459,6 @@
 /area/crew_quarters/kitchen)
 "bp" = (
 /obj/machinery/computer,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bq" = (
@@ -619,16 +478,6 @@
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bv" = (
@@ -643,30 +492,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bA" = (
 /obj/machinery/vending/boozeomat,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bB" = (
@@ -849,29 +678,15 @@
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "bZ" = (
+/obj/structure/table,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 8
+	},
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
 	pixel_x = 30;
 	receive_ore_updates = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Bar";
-	dir = 8
-	},
-/obj/structure/table,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
@@ -922,16 +737,6 @@
 	req_access_txt = "25";
 	req_one_access_txt = null
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cq" = (
@@ -954,23 +759,6 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
-"ct" = (
-/obj/effect/landmark/event_spawn,
-/obj/structure/chair/comfy/shuttle{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/white,
-/area/crew_quarters/bar)
 "cu" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -1117,16 +905,6 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
 "cG" = (
@@ -1147,16 +925,6 @@
 "cI" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
@@ -1273,6 +1041,12 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
+"sg" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/crew_quarters/bar)
 "sm" = (
 /obj/machinery/griddle,
 /turf/open/floor/mineral/titanium,
@@ -1290,6 +1064,9 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/crew_quarters/kitchen)
+"yI" = (
+/turf/open/floor/mineral/titanium/white,
+/area/crew_quarters/bar)
 "zM" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/snacks/spacetwinkie,
@@ -1308,16 +1085,6 @@
 /area/crew_quarters/kitchen)
 "Cd" = (
 /obj/machinery/computer,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /obj/machinery/button/door{
 	id = "barshutters";
 	name = "Bar Shutters Control";
@@ -1358,16 +1125,6 @@
 /area/crew_quarters/bar)
 "GB" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
 	name = "bar shutters"
@@ -1428,17 +1185,9 @@
 /area/crew_quarters/kitchen)
 "Nh" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/item/book/manual/wiki/barman_recipes,
 /obj/item/reagent_containers/glass/rag,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "barshutters";
@@ -1482,16 +1231,6 @@
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "Sd" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
 /obj/item/twohanded/required/kirbyplants/photosynthetic,
 /turf/open/floor/mineral/titanium/white,
 /area/crew_quarters/bar)
@@ -1643,23 +1382,23 @@ aI
 aI
 aI
 aI
-aM
+yI
 qW
 "}
 (9,1,1) = {"
 ag
 at
-aM
-aM
-aM
-aM
-aM
-aM
+yI
+yI
+yI
+yI
+yI
+yI
 bW
-aM
-aM
-aM
-aM
+yI
+yI
+yI
+yI
 cL
 "}
 (10,1,1) = {"
@@ -1667,15 +1406,15 @@ Eh
 aw
 aN
 aN
-aM
-aM
-aM
+yI
+yI
+yI
 aN
 aN
 aN
 aN
-aM
-aM
+yI
+yI
 df
 "}
 (11,1,1) = {"
@@ -1690,7 +1429,7 @@ GB
 GB
 GB
 GB
-aL
+sg
 cD
 ag
 "}
@@ -1701,12 +1440,12 @@ ag
 ag
 Rz
 bp
-aL
-aM
-aM
-aM
+yI
+yI
+yI
+yI
 GB
-aL
+sg
 cE
 ag
 "}
@@ -1717,13 +1456,13 @@ aP
 aZ
 ag
 Cd
-aL
-aM
+yI
+yI
 bX
 aM
 Nh
-ct
-aM
+sg
+yI
 ag
 "}
 (14,1,1) = {"
@@ -1732,13 +1471,13 @@ ae
 aR
 bb
 bl
-aM
+yI
 bz
 bO
-aM
-aM
+yI
+yI
 co
-aM
+yI
 cF
 ag
 "}
@@ -1750,11 +1489,11 @@ be
 ag
 bu
 bA
-aM
+yI
 bZ
-aM
+yI
 FT
-aM
+yI
 cI
 ag
 "}

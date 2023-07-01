@@ -198,14 +198,12 @@ effective or pretty fucking useless.
 				target = round(target)
 				wavelength = clamp(target, 0, 120)
 
-/obj/item/shadowcloak
+/obj/item/storage/belt/military/shadowcloak
 	name = "cloaker belt"
-	desc = "Makes you invisible for short periods of time. Recharges in darkness, but must be turned on to recharge."
+	desc = "A tactical belt that can make you invisible for short periods of time. Recharges in darkness, but must be turned on to recharge."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
-	slot_flags = ITEM_SLOT_BELT
-	attack_verb = list("whipped", "lashed", "disciplined")
 
 	var/mob/living/carbon/human/user = null
 	var/charge = 300
@@ -214,19 +212,19 @@ effective or pretty fucking useless.
 	var/old_alpha = 0
 	actions_types = list(/datum/action/item_action/toggle)
 
-/obj/item/shadowcloak/ui_action_click(mob/user)
-	if(user.get_item_by_slot(SLOT_BELT) == src)
+/obj/item/storage/belt/military/shadowcloak/ui_action_click(mob/user)
+	if(user.get_item_by_slot(ITEM_SLOT_BELT) == src)
 		if(!on)
 			Activate(usr)
 		else
 			Deactivate()
 	return
 
-/obj/item/shadowcloak/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_BELT)
+/obj/item/storage/belt/military/shadowcloak/item_action_slot_check(slot, mob/user)
+	if(slot == ITEM_SLOT_BELT)
 		return 1
 
-/obj/item/shadowcloak/proc/Activate(mob/living/carbon/human/user)
+/obj/item/storage/belt/military/shadowcloak/proc/Activate(mob/living/carbon/human/user)
 	if(!user)
 		return
 	to_chat(user, span_notice("You activate [src]."))
@@ -235,7 +233,7 @@ effective or pretty fucking useless.
 	old_alpha = user.alpha
 	on = TRUE
 
-/obj/item/shadowcloak/proc/Deactivate()
+/obj/item/storage/belt/military/shadowcloak/proc/Deactivate()
 	to_chat(user, span_notice("You deactivate [src]."))
 	STOP_PROCESSING(SSobj, src)
 	if(user)
@@ -243,13 +241,13 @@ effective or pretty fucking useless.
 	on = FALSE
 	user = null
 
-/obj/item/shadowcloak/dropped(mob/user)
+/obj/item/storage/belt/military/shadowcloak/dropped(mob/user)
 	..()
-	if(user && user.get_item_by_slot(SLOT_BELT) != src)
+	if(user && user.get_item_by_slot(ITEM_SLOT_BELT) != src)
 		Deactivate()
 
-/obj/item/shadowcloak/process(delta_time)
-	if(user.get_item_by_slot(SLOT_BELT) != src)
+/obj/item/storage/belt/military/shadowcloak/process(delta_time)
+	if(user.get_item_by_slot(ITEM_SLOT_BELT) != src)
 		Deactivate()
 		return
 	var/turf/T = get_turf(src)
@@ -263,8 +261,8 @@ effective or pretty fucking useless.
 
 
 /obj/item/jammer
-	name = "radio jammer"
-	desc = "Device used to disrupt nearby radio communication."
+	name = "signal jammer"
+	desc = "Device used to disrupt nearby radio communications and suit sensors."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "jammer"
 	var/active = FALSE

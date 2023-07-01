@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	41
+#define SAVEFILE_VERSION_MAX	42
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -58,6 +58,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if (current_version < 40)
 		migrate_preferences_to_tgui_prefs_menu()
 
+	if (current_version < 41)
+		key_bindings["action_1"] = GLOB.default_hotkeys["action_1"]
+		key_bindings["action_2"] = GLOB.default_hotkeys["action_2"]
+		key_bindings["action_3"] = GLOB.default_hotkeys["action_3"]
+		key_bindings["action_4"] = GLOB.default_hotkeys["action_4"]
+
+
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
 	if(current_version < 31) //Someone doesn't know how to code and make jukebox and autodeadmin the same thing
@@ -107,7 +114,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			notadded += kb
 	save_preferences() //Save the players pref so that new keys that were set to Unbound as default are permanently stored
 	if(length(notadded))
-		addtimer(CALLBACK(src, .proc/announce_conflict, notadded), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(announce_conflict), notadded), 5 SECONDS)
 
 /datum/preferences/proc/announce_conflict(list/notadded)
 	to_chat(parent, "<span class='warningplain'><b><u>Keybinding Conflict</u></b></span>\n\
@@ -275,7 +282,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(job_preferences[j] != JP_LOW && job_preferences[j] != JP_MEDIUM && job_preferences[j] != JP_HIGH)
 			job_preferences -= j
 
-	//all_quirks = SSquirks.filter_invalid_quirks(all_quirks, parent)
+	all_quirks = SSquirks.filter_invalid_quirks(all_quirks, src)
 	validate_quirks()
 
 	return TRUE

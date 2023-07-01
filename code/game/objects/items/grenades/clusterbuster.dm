@@ -57,7 +57,7 @@
 	var/steps = rand(1,4)
 	for(var/i in 1 to steps)
 		step_away(src,loc)
-	addtimer(CALLBACK(src, .proc/prime), rand(15,60))
+	addtimer(CALLBACK(src, PROC_REF(prime)), rand(15,60))
 
 /obj/item/grenade/clusterbuster/segment/prime()
 	new payload_spawner(drop_location(), payload, rand(min_spawned,max_spawned))
@@ -173,14 +173,14 @@
 /obj/item/grenade/clusterbuster/random
 	icon_state = "random_clusterbang"
 
-/obj/item/grenade/clusterbuster/random/Initialize()
+/obj/item/grenade/clusterbuster/random/Initialize(mapload)
 	..()
 	var/real_type = pick(subtypesof(/obj/item/grenade/clusterbuster))
 	new real_type(loc)
 	return INITIALIZE_HINT_QDEL
 
 // syndie subtype so syndies dont get something utterly useless
-/obj/item/grenade/clusterbuster/random/syndie/Initialize()
+/obj/item/grenade/clusterbuster/random/syndie/Initialize(mapload)
 	..()
 	var/real_type = pick(subtypesof(/obj/item/grenade/clusterbuster/syndie))
 	new real_type(loc)

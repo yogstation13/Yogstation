@@ -35,7 +35,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	var/obj/item/stock_parts/cell/integrated_battery
 
 
-/obj/machinery/ai/data_core/Initialize()
+/obj/machinery/ai/data_core/Initialize(mapload)
 	. = ..()
 	GLOB.data_cores += src
 	if(primary && !GLOB.primary_data_core)
@@ -227,7 +227,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core/proc/partytime()
 	var/current_color = random_color()
 	set_light(7, 3, current_color)
-	TimerID = addtimer(CALLBACK(src, .proc/partytime), 0.5 SECONDS, TIMER_STOPPABLE)
+	TimerID = addtimer(CALLBACK(src, PROC_REF(partytime)), 0.5 SECONDS, TIMER_STOPPABLE)
 
 /obj/machinery/ai/data_core/proc/stoptheparty()
 	set_light(0)

@@ -1,9 +1,7 @@
 /datum/job/tourist
 	title = "Tourist"
 	description = "Enjoy the sights and scenery on board of the station."
-	flag = TOUR
 	orbit_icon = "camera-retro"
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = -1
 	spawn_positions = 0
@@ -17,6 +15,14 @@
 	paycheck_department = ACCOUNT_CIV
 	display_order = JOB_DISPLAY_ORDER_TOURIST
 	minimal_character_age = 18 //Gotta go explore the galaxy and see the stuff
+
+	mail_goodies = list(
+		/obj/effect/spawner/lootdrop/plushies = 15,
+		/obj/item/fakeartefact = 5,
+		/obj/item/twohanded/binoculars = 5,
+		/obj/item/storage/photo_album = 4,
+		/obj/item/clothing/glasses/sunglasses = 1
+  )
 
 	departments_list = list(
 		/datum/job_department/service,

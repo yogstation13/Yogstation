@@ -1,10 +1,8 @@
 /datum/job/cyborg
 	title = "Cyborg"
 	description = "Assist the crew, follow your laws, obey your AI."
-	flag = CYBORG
 	orbit_icon = "robot"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 2
@@ -29,6 +27,7 @@
 	return H.Robotize(FALSE, latejoin)
 
 /datum/job/cyborg/after_spawn(mob/living/silicon/robot/R, mob/M)
+	. = ..()
 	R.updatename(M.client)
 	R.gender = NEUTER
 

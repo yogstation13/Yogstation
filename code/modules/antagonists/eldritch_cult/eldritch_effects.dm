@@ -9,7 +9,7 @@
 
 
 /obj/effect/eldritch
-	name = "Generic rune"
+	name = "generic rune"
 	desc = "Weird combination of shapes and symbols etched into the floor itself. The indentation is filled with thick black tar-like fluid."
 	anchored = TRUE
 	icon_state = ""
@@ -33,7 +33,7 @@
 	if(!IS_HERETIC(user))
 		return
 	if(!is_in_use)
-		INVOKE_ASYNC(src, .proc/activate , user)
+		INVOKE_ASYNC(src, PROC_REF(activate) , user)
 
 /obj/effect/eldritch/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
@@ -108,10 +108,10 @@
 
 		return
 	is_in_use = FALSE
-	to_chat(user,span_warning("Your ritual failed! You used either wrong components or are missing something important!"))
+	to_chat(user,span_warning("Your ritual failed! You used the wrong components or are missing something important!"))
 
 /obj/effect/eldritch/big
-	name = "Transmutation rune"
+	name = "transmutation rune"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "eldritch_rune1"
 	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
@@ -181,7 +181,7 @@
   * Use this whenever you want to add someone to the list
   */
 /datum/reality_smash_tracker/proc/AddMind(datum/mind/ecultist)
-	RegisterSignal(ecultist.current, COMSIG_MOB_LOGIN, .proc/ReworkNetwork)
+	RegisterSignal(ecultist.current, COMSIG_MOB_LOGIN, PROC_REF(ReworkNetwork))
 	targets |= ecultist
 	Generate()
 	for(var/obj/effect/reality_smash/R in smashes)
@@ -213,7 +213,7 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	if(IS_HERETIC(human_user))
 		to_chat(human_user, span_boldwarning("You know better than to tempt forces out of your control!"))
-	if(IS_BLOODSUCKER(human_user) || bloodsuckerdatum.my_clan == CLAN_LASOMBRA)
+	if(IS_BLOODSUCKER(human_user) || bloodsuckerdatum.my_clan?.get_clan() == CLAN_LASOMBRA)
 		to_chat(human_user, span_boldwarning("This shard has already been harvested!"))
 	else
 		var/obj/item/bodypart/arm = human_user.get_active_hand()
@@ -222,7 +222,7 @@
 			arm.dismember()
 			qdel(arm)
 		else
-			to_chat(human_user,span_danger("You pull your hand away from the hole as the eldritch energy flails trying to catch onto the existance itself!"))
+			to_chat(human_user,span_danger("You pull your hand away from the hole as the eldritch energy flails while trying to catch onto the existence itself!"))
 
 /obj/effect/broken_illusion/attack_tk(mob/user)
 	if(!ishuman(user))
@@ -274,7 +274,7 @@
 	///who has already used this influence
 	var/list/siphoners = list()
 
-/obj/effect/reality_smash/Initialize()
+/obj/effect/reality_smash/Initialize(mapload)
 	. = ..()
 	GLOB.reality_smash_track.smashes += src
 	img = image(icon, src, "reality_smash", OBJ_LAYER)

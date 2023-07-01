@@ -12,13 +12,13 @@
 	var/open = FALSE
 	var/obj/item/twohanded/fireaxe/fireaxe
 	var/obj/item/card/id/captains_spare/spareid
-	var/obj/item/twohanded/fishingrod/collapsable/miningmedic/olreliable //what the fuck?
+	var/obj/item/twohanded/fishingrod/collapsible/miningmedic/olreliable //what the fuck?
 	var/alert = TRUE
 	var/axe = TRUE
 
-//yogs NOTICE - Initialize() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
+//yogs NOTICE - Initialize(mapload) function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
 //changes made to the below function will have no effect
-/obj/structure/fireaxecabinet/Initialize()
+/obj/structure/fireaxecabinet/Initialize(mapload)
 	. = ..()
 	fireaxe = new
 	update_icon()
@@ -85,8 +85,8 @@
 			to_chat(user, span_caution("You place the [S.name] back in the [name]."))
 			update_icon()
 			return
-		else if(istype(I, /obj/item/twohanded/fishingrod/collapsable/miningmedic) && !olreliable && !axe)
-			var/obj/item/twohanded/fishingrod/collapsable/miningmedic/R = I
+		else if(istype(I, /obj/item/twohanded/fishingrod/collapsible/miningmedic) && !olreliable && !axe)
+			var/obj/item/twohanded/fishingrod/collapsible/miningmedic/R = I
 			if(R.opened)
 				to_chat(user, span_caution("[R.name] won't seem to fit!"))
 				return
@@ -266,7 +266,7 @@
 	armor = list(MELEE = 30, BULLET = 20, LASER = 0, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50)
 	axe = FALSE
 
-/obj/structure/fireaxecabinet/bridge/spare/Initialize()
+/obj/structure/fireaxecabinet/bridge/spare/Initialize(mapload)
 	. = ..()
 	fireaxe = null
 	spareid = new(src)
@@ -304,7 +304,7 @@
 	alert = FALSE
 	req_access = list(ACCESS_MEDICAL, ACCESS_MINING)
 
-/obj/structure/fireaxecabinet/fishingrod/Initialize()
+/obj/structure/fireaxecabinet/fishingrod/Initialize(mapload)
 	. = ..()
 	fireaxe = null
 	olreliable = new(src)

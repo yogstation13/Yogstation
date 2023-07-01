@@ -293,13 +293,18 @@
 	if(prob(10))
 		var/list/mob/living/target_hosts = list()
 		for(var/mob/living/L in oview(5, host_mob))
-			if(!(MOB_ORGANIC in L.mob_biotypes) && !(MOB_UNDEAD in L.mob_biotypes) && !isipc(L))
-				continue
+			if(iscarbon(L))
+				var/mob/living/carbon/carbon_occupant = L
+				if(NONANITES in carbon_occupant.dna.species.species_traits)
+					continue
+			else
+				if(issilicon(L))
+					continue
 			target_hosts += L
 		if(!target_hosts.len)
 			return
 		var/mob/living/infectee = pick(target_hosts)
-		if(prob(100 - (infectee.get_permeability_protection() * 100)))
+		if(prob(infectee.get_permeability() * 100))
 			//this will potentially take over existing nanites!
 			infectee.AddComponent(/datum/component/nanites, 10)
 			SEND_SIGNAL(infectee, COMSIG_NANITE_SYNC, nanites)
@@ -397,8 +402,8 @@
 
 /datum/action/innate/nanite_button
 	name = "Button"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+	button_icon = 'icons/mob/actions/actions_items.dmi'
+	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 	button_icon_state = "power_green"
 	var/datum/nanite_program/dermal_button/program
 

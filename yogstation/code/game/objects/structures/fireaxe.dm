@@ -3,9 +3,10 @@
 	var/datum/effect_system/spark_spread/spark_system	//the spark system, used for generating... sparks?
 
 /obj/structure/fireaxecabinet/bridge
-	req_access = list(ACCESS_CAPTAIN)
+	//bridge fireaxe has different access
+	req_one_access = list(ACCESS_CAPTAIN, ACCESS_CE)
 
-/obj/structure/fireaxecabinet/Initialize()//<-- mirrored/overwritten proc
+/obj/structure/fireaxecabinet/Initialize(mapload)//<-- mirrored/overwritten proc
 	. = ..()
 	fireaxe = new
 	update_icon()

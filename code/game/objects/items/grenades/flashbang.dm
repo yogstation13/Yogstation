@@ -34,8 +34,8 @@
 			C.uneq_all()
 			C.stop_pulling()
 			C.break_all_cyborg_slots(TRUE)
-			addtimer(CALLBACK(C, /mob/living/silicon/robot/.proc/clear_fullscreen, "reducedbang"), 3 SECONDS)
-			addtimer(CALLBACK(C, /mob/living/silicon/robot/.proc/repair_all_cyborg_slots), 3 SECONDS)
+			addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living/silicon/robot, clear_fullscreen), "reducedbang"), 3 SECONDS)
+			addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living/silicon/robot, repair_all_cyborg_slots)), 3 SECONDS)
 			return
 
 	var/flashed = M.flash_act(affect_silicon = 1)

@@ -214,8 +214,8 @@
 	id = "listeningstation"
 	suffix = "listeningstation.dmm"
 	name = "Syndicate Listening Station"
-	description = "Listening stations form the backbone of the syndicate's information-gathering operations. \
-	Assignment to these stations is dreaded by most agents, as it entails long and lonely shifts listening to nearby stations chatter incessantly about the most meaningless things."
+	description = "Listening stations form the backbone of the Syndicate's information-gathering operations. \
+	Assignment to these stations used to be one of the Syndicate's loneliest postings, but recent protests by workers have resulted in two-person outposts. They still, however, often get bored to death listening to nearby stations talking about the most useless things you could dream of."
 
 /datum/map_template/ruin/space/oldAIsat
 	id = "oldAIsat"

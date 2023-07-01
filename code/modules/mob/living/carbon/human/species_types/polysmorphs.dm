@@ -2,7 +2,7 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = "polysmorph"
-	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_TAIL)
+	species_traits = list(NOEYESPRITES, FGENDER, MUTCOLORS, NOCOLORCHANGE, DIGITIGRADE, HAS_FLESH, HAS_BONE ,HAS_TAIL)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	exotic_blood = /datum/reagent/toxin/acid //Hell yeah sulphuric acid blood
@@ -20,7 +20,7 @@
 	speedmod = -0.1 //apex predator humanoid hybrid
 	punchdamagehigh = 11 //slightly better high end of damage
 	punchstunthreshold = 11 //technically slightly worse stunchance
-	payday_modifier = 0.6 //Negatively viewed by NT
+	payday_modifier = 0.3 //Some are quite literally slaves + they HAVE to work for NT
 	damage_overlay_type = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'
 	screamsound = 'sound/voice/hiss5.ogg'

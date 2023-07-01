@@ -2,10 +2,8 @@
 	title = "Chemist"
 	description = "Supply the doctors with chemicals, make medicine, as well as \
 		less likable substances in the comfort of a fully reinforced room."
-	flag = CHEMIST
 	orbit_icon = "prescription-bottle"
 	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
@@ -33,8 +31,9 @@
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/glass/bottle/flash_powder = 15,
-		///obj/item/reagent_containers/glass/bottle/exotic_stabilizer = 5,
-		///obj/item/reagent_containers/glass/bottle/leadacetate = 5,
+		/obj/item/reagent_containers/glass/beaker/meta = 15,
+		/obj/item/reagent_containers/glass/beaker/large/lemoline = 10,
+		/obj/item/storage/pill_bottle/gummies/floorbear = 1,
 		/obj/item/paper/secretrecipe = 1
 	)
 

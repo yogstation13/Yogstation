@@ -10,6 +10,7 @@
 	help_verb = /mob/living/carbon/human/proc/flyingfang_help
 	///used to keep track of the pounce ability
 	var/leaping = FALSE
+	COOLDOWN_DECLARE(next_leap)
 	var/datum/action/innate/lizard_leap/linked_leap
 
 /datum/martial_art/flyingfang/can_use(mob/living/carbon/human/H)
@@ -46,7 +47,7 @@
 	D.visible_message(span_danger("[A] slams into [D], knocking them off balance!"), \
 					  span_userdanger("[A] slams into you, knocking you off  balance!"))
 	D.add_movespeed_modifier("tail slap", update=TRUE, priority=101, multiplicative_slowdown=0.9)
-	addtimer(CALLBACK(D, /mob.proc/remove_movespeed_modifier, "tail slap"), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(D, TYPE_PROC_REF(/mob, remove_movespeed_modifier), "tail slap"), 5 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	log_combat(A, D, "slammed (Flying Fang)")
 
 ///last hit of the tail slap combo, causes a short stun or throws whatever blocks the attack
@@ -125,7 +126,7 @@
 	D.blur_eyes(4)
 	if(!istype(D.head, /obj/item/clothing/head/helmet))
 		D.dna.species.aiminginaccuracy += 25
-		addtimer(CALLBACK(src, .proc/remove_bonk, D), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(remove_bonk), D), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	D.visible_message(span_danger("[A] headbutts [D]!"), \
 					  span_userdanger("[A] headbutts you!"))
 	log_combat(A, D, "headbutted (Flying Fang)")
@@ -155,11 +156,11 @@
 
 /datum/action/innate/lizard_leap
 	name = "Leap"
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "lizard_tackle"
 	background_icon_state = "bg_default"
 	desc = "Prepare to jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds."
-	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
 	var/datum/martial_art/flyingfang/linked_martial
 
 /datum/action/innate/lizard_leap/New()
@@ -171,14 +172,17 @@
 	return ..()
 
 /datum/action/innate/lizard_leap/process()
-	UpdateButtonIcon() //keep the button updated
+	build_all_button_icons() //keep the button updated
 
-/datum/action/innate/lizard_leap/IsAvailable()
+/datum/action/innate/lizard_leap/IsAvailable(feedback = FALSE)
 	. = ..()
 	if(linked_martial.leaping || !linked_martial.can_use(owner))
 		return FALSE
 
 /datum/action/innate/lizard_leap/Activate(silent)
+	if(!COOLDOWN_FINISHED(linked_martial, next_leap))
+		to_chat(owner, span_warning("You aren\'t ready to pounce again yet!"))
+		return FALSE
 	if(!silent)
 		owner.visible_message(span_danger("[owner] prepares to pounce!"), "<b><i>You will now pounce as your next attack.</i></b>")
 	owner.click_intercept = src
@@ -192,20 +196,21 @@
 	active = FALSE
 	background_icon_state = "bg_default"
 
-/datum/action/innate/lizard_leap/proc/InterceptClickOn(mob/living/carbon/human/A, params, atom/target)
+/datum/action/innate/lizard_leap/InterceptClickOn(mob/living/carbon/human/A, params, atom/target)
 	if(linked_martial.leaping)
 		return
 	linked_martial.leaping = TRUE
+	COOLDOWN_START(linked_martial, next_leap, 5 SECONDS)
 	A.Knockdown(5 SECONDS)
-	A.Immobilize(30 SECONDS) //prevents you from breaking out of your pounce
-	A.throw_at(target, get_dist(A,target)+1, 1, A, FALSE, TRUE, callback = CALLBACK(src, .proc/leap_end, A))
+	A.Immobilize(3 SECONDS, TRUE, TRUE) //prevents you from breaking out of your pounce
+	A.throw_at(target, get_dist(A,target)+1, 1, A, FALSE, TRUE, callback = CALLBACK(src, PROC_REF(leap_end), A))
 	Deactivate()
-	UpdateButtonIcon()
+	build_all_button_icons()
 
 /datum/action/innate/lizard_leap/proc/leap_end(mob/living/carbon/human/A)
-	A.SetImmobilized(1 SECONDS)
+	A.SetImmobilized(0, TRUE, TRUE)
 	linked_martial.leaping = FALSE
-	UpdateButtonIcon()
+	build_all_button_icons()
 
 /datum/martial_art/flyingfang/handle_throw(atom/hit_atom, mob/living/carbon/human/A)
 	if(!leaping)
@@ -224,14 +229,18 @@
 			L.Immobilize(6 SECONDS)
 			A.SetKnockdown(0)
 			A.SetImmobilized(10 SECONDS) //due to our stun resistance this is actually about 6.6 seconds
+			if(linked_leap && !blocked)
+				COOLDOWN_RESET(src, next_leap) // landing the leap resets the cooldown
 			sleep(0.2 SECONDS)//Runtime prevention (infinite bump() calls on hulks)
 			step_towards(src,L)
 		else if(hit_atom.density && !hit_atom.CanPass(A))
 			A.visible_message("<span class ='danger'>[A] smashes into [hit_atom]!</span>", "<span class ='danger'>You smash into [hit_atom]!</span>")
-			A.Paralyze(6 SECONDS, 1)
+			A.Immobilize(1.5 SECONDS)
+			A.Knockdown(6 SECONDS)
+			playsound(A, 'sound/weapons/punch2.ogg', 50, 1) // ow oof ouch my head
 		if(leaping)
 			leaping = FALSE
-		linked_leap.UpdateButtonIcon()
+		linked_leap.build_all_button_icons()
 		linked_leap.Deactivate(TRUE)
 		return TRUE
 
@@ -262,9 +271,10 @@
 	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
 	H.physiology.stamina_mod *= 0.66
 	H.physiology.stun_mod *= 0.66
+	H.physiology.crawl_speed -= 2 // "funny lizard skitter around on the floor" - mqiib
 	var/datum/species/S = H.dna?.species
 	if(S)
-		S.add_no_equip_slot(H, SLOT_WEAR_SUIT)
+		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
 
 /datum/martial_art/flyingfang/on_remove(mob/living/carbon/human/H)
 	..()
@@ -274,6 +284,7 @@
 	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, "martial")
 	H.physiology.stamina_mod /= 0.66
 	H.physiology.stun_mod /= 0.66
+	H.physiology.crawl_speed += 2
 	var/datum/species/S = H.dna?.species
 	if(S)
-		S.remove_no_equip_slot(H, SLOT_WEAR_SUIT)
+		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING)

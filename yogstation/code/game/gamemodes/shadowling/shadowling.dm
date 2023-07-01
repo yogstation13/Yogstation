@@ -144,7 +144,7 @@ Made by Xhuis
 	say_mod = "chitters"
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE)
-	no_equip = list(SLOT_WEAR_MASK, SLOT_GLASSES, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE)
+	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_EYES, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
 	nojumpsuit = TRUE
 	mutanteyes = /obj/item/organ/eyes/night_vision/alien/sling
 	burnmod = 1.5 //1.5x burn damage, 2x is excessive
@@ -160,7 +160,7 @@ Made by Xhuis
 	C.draw_yogs_parts(TRUE)
 	eyes_overlay = mutable_appearance('yogstation/icons/mob/sling.dmi', "eyes", 25)
 	C.add_overlay(eyes_overlay)
-	RegisterSignal(C, COMSIG_MOVABLE_MOVED, .proc/apply_darkness_speed)
+	RegisterSignal(C, COMSIG_MOVABLE_MOVED, PROC_REF(apply_darkness_speed))
 	. = ..()
 
 /datum/species/shadow/ling/on_species_loss(mob/living/carbon/human/C)
@@ -237,16 +237,6 @@ Made by Xhuis
 			H.adjustToxLoss(-5)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, -25)
 			H.adjustCloneLoss(-5)
-
-/datum/game_mode/proc/update_shadow_icons_added(datum/mind/shadow_mind)
-	var/datum/atom_hud/antag/shadow_hud = GLOB.huds[ANTAG_HUD_SHADOW]
-	shadow_hud.join_hud(shadow_mind.current)
-	set_antag_hud(shadow_mind.current, ((is_shadow(shadow_mind.current)) ? "shadowling" : "thrall"))
-
-/datum/game_mode/proc/update_shadow_icons_removed(datum/mind/shadow_mind)
-	var/datum/atom_hud/antag/shadow_hud = GLOB.huds[ANTAG_HUD_SHADOW]
-	shadow_hud.leave_hud(shadow_mind.current)
-	set_antag_hud(shadow_mind.current, null)
 
 /mob/living/proc/add_thrall()
 	if(!istype(mind))

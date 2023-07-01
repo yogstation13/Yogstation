@@ -40,11 +40,11 @@
 							Though you are not obligated to help, perhaps by aiding a higher ranking devil, you might just get a promotion.  However, you are incapable	\
 							of intentionally harming a fellow devil.</B>"
 
-/mob/living/simple_animal/imp/Initialize()
+/mob/living/simple_animal/imp/Initialize(mapload)
 	..()
 	boost = world.time + 30
 
-/mob/living/simple_animal/imp/Life()
+/mob/living/simple_animal/imp/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(boost<world.time)
 		speed = 1
@@ -62,6 +62,7 @@
 /datum/antagonist/imp
 	name = "Imp"
 	antagpanel_category = "Devil"
+	ui_name = "AntagInfoDemon"
 	show_in_roundend = FALSE
 
 /datum/antagonist/imp/on_gain()

@@ -2,11 +2,9 @@
 	title = "Head of Security"
 	description = "Coordinate security personnel, ensure they are not corrupt, \
 		make sure every department is protected."
-	flag = HOS
 	orbit_icon = "user-shield"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY|DEADMIN_POSITION_CRITICAL
 	department_head = list("Captain")
-	department_flag = ENGSEC
 	head_announce = list(RADIO_CHANNEL_SECURITY)
 	faction = "Station"
 	total_positions = 1
@@ -15,10 +13,10 @@
 	selection_color = "#ffdddd"
 	req_admin_notify = 1
 	minimal_player_age = 14
-	exp_requirements = 720
+	exp_requirements = 1500 //25 hours
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
-	alt_titles = list("Security Commander", "Security Chief")
+	alt_titles = list("Security Commander", "Security Chief", "Chief Security Officer")
 
 	outfit = /datum/outfit/job/hos
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
@@ -40,6 +38,15 @@
 	)
 
 	changed_maps = list("YogsPubby")
+
+	mail_goodies = list(
+		/obj/item/stack/sheet/plastic/five = 20, //need that plastic chair
+		/obj/item/clothing/head/hatsky = 10,
+		/obj/item/disk/nuclear/fake = 5,
+		/obj/item/melee/chainofcommand/tailwhip = 3,
+		/obj/item/melee/chainofcommand/tailwhip/kitty = 2,
+		/obj/item/kitchen/knife/combat = 2
+	)
 
 	smells_like = "deadly authority"
 
@@ -74,7 +81,7 @@
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun/hos, /obj/item/stamp/hos)
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/hos/hardsuit
 	name = "Head of Security (Hardsuit)"

@@ -1,26 +1,20 @@
 /* Formatting for these files, from top to bottom:
 	* Action
 	* Trigger()
-	* IsAvailable()
+	* IsAvailable(feedback = FALSE)
 	* Items
 	In regards to actions or items with left and right subtypes, list the base, then left, then right.
 */
 ////////////////// Action //////////////////
 /datum/action/cooldown/buster/megabuster
 	name = "Mega Buster"
-	// Literal essay. It just punches shit really hard.
-	desc = "Put the buster arm through its paces to gain extreme power for five seconds. Connecting the blow will \
-			devastate the target and send them flying. Flying targets will have a snowball effect on hitting other \
-			unanchored people or objects collided with. Punching a mangled limb will instead send it flying and \
-			momentarily stun its owner. Once the five seconds are up or a strong wall or person or exosuit is hit, \
-			the arm won't be able to do that again for 20 seconds."
+	desc = "Put the buster arm through its paces to gain extreme power for five seconds. Connecting the blow will devastate the target and send them flying, taking others with \
+	them and sending them through walls."
 	button_icon_state = "ponch"
 	cooldown_time = 20 SECONDS
 
 /// Left buster-arm means megabuster goes in left hand
-/datum/action/cooldown/buster/megabuster/l/Trigger()
-	if(!..())
-		return FALSE
+/datum/action/cooldown/buster/megabuster/l/Activate()
 	var/obj/item/buster/megabuster/B = new()
 	owner.visible_message(span_userdanger("[owner]'s left arm begins crackling loudly!"))
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
@@ -34,9 +28,7 @@
 			StartCooldown()
 
 /// Right buster-arm means megabuster goes in right hand
-/datum/action/cooldown/buster/megabuster/r/Trigger()
-	if(!..())
-		return FALSE
+/datum/action/cooldown/buster/megabuster/r/Activate()
 	var/obj/item/buster/megabuster/B = new()
 	owner.visible_message(span_userdanger("[owner]'s right arm begins crackling loudly!"))
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
@@ -49,26 +41,26 @@
 				owner.swap_hand(0)
 			StartCooldown()
 
-/datum/action/cooldown/buster/megabuster/l/IsAvailable()
-	. = ..()
+/datum/action/cooldown/buster/megabuster/l/IsAvailable(feedback = FALSE)
 	var/mob/living/O = owner
 	var/obj/item/bodypart/l_arm/L = O.get_bodypart(BODY_ZONE_L_ARM)
 	if(L?.bodypart_disabled)
 		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
+	return ..()
 
-/datum/action/cooldown/buster/megabuster/r/IsAvailable()
-	. = ..()
+/datum/action/cooldown/buster/megabuster/r/IsAvailable(feedback = FALSE)
 	var/mob/living/O = owner
 	var/obj/item/bodypart/r_arm/R = O.get_bodypart(BODY_ZONE_R_ARM)
 	if(R?.bodypart_disabled)
 		to_chat(owner, span_warning("The arm isn't in a functional state right now!"))
 		return FALSE
+	return ..()
 
 ////////////////// Megabuster Item //////////////////
 /obj/item/buster/megabuster
-	name = "supercharged emitter"
-	desc = "The result of all the prosthetic's power building up in its palm. It's fading fast."
+	name = "supercharged fist"
+	desc = "The result of all the prosthetic's power building up. It's fading fast."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "fist"
 	item_state = "disintegrate"
@@ -90,7 +82,7 @@
 	. = span_rose("With a single snap, [user] sets [A] alight with sparks from [user.p_their()] metal fingers.")
 
 /// Only lasts 5 seconds, fades out
-/obj/item/buster/megabuster/Initialize(mob/living/user)
+/obj/item/buster/megabuster/Initialize(mapload, mob/living/user)
 	. = ..()
 	animate(src, alpha = 50, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
@@ -115,7 +107,7 @@
 	if(target == user)
 		return
 
-	// Punch items, if you wanted to do that for some reason. Can't destroy brains though.
+	// Punch items. Can't destroy brains though.
 	if(isitem(target))
 		var/obj/I = target
 		if(!isturf(I.loc))
@@ -163,11 +155,16 @@
 			return
 	
 	if(isliving(L)) // Punching a mob
+		if(prob(5))
+			if(prob(50))
+				user.say("FUCK YOU!!")
+			else
+				user.say("JACKPOT!!")
 		var/obj/item/bodypart/limb_to_hit = L.get_bodypart(user.zone_selected)
 		var/armor = L.run_armor_check(limb_to_hit, MELEE, armour_penetration = 35)
 		qdel(src, force = TRUE) // Punching mobs instantly starts the cooldown
-		shake_camera(L, 4, 3) // Shake their camera
-		L.apply_damage(punchdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND) // Apply damage to mob
+		shake_camera(L, 4, 3) 
+		L.apply_damage(punchdam, BRUTE, limb_to_hit, armor, wound_bonus=CANT_WOUND) 
 		if(!limb_to_hit)
 			limb_to_hit = L.get_bodypart(BODY_ZONE_CHEST)
 		if(iscarbon(L))
@@ -189,7 +186,6 @@
 		else
 			user.visible_message(span_warning("[user] smashes [user.p_their()] fist upwards into [L]'s jaw, sending [L.p_them()] flying!"))//slicer's request
 		knockedback |= L
-	// Shake cameras Woosh
 	for(var/mob/M in view(7, user))
 		shake_camera(M, 2, 3)
 	var/turf/P = get_turf(user)
@@ -205,6 +201,8 @@
 				J.take_damage(objcolldam)
 			for(var/mob/living/S in knockedback) // For every mob that is flying, damage them again
 				hit(user, S, colldam)
+				S.Knockdown(1.5 SECONDS)
+				S.Immobilize(1.5 SECONDS)
 				if(isanimal(S) && S.stat == DEAD)
 					S.gib()
 			if(!istype(W, /turf/closed/wall/r_wall)) // Destroy the wall if it's not a reinforced wall
@@ -240,7 +238,7 @@
 				K.SpinAnimation(0.2 SECONDS, 1)
 				sleep(0.001 SECONDS)
 				K.forceMove(T)
-				if(istype(T, /turf/open/space)) // If we hit space, YEET
+				if(istype(T, /turf/open/space)) // If we hit space, keep flying
 					var/atom/throw_target = get_edge_target_turf(K, direction)
 					K.throw_at(throw_target, 6, 4, user, 3)
 					return

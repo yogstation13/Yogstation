@@ -59,7 +59,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	next_ask = world.time + askDelay
 	searching = TRUE
 	update_icon()
-	addtimer(CALLBACK(src, .proc/check_success), askDelay)
+	addtimer(CALLBACK(src, PROC_REF(check_success)), askDelay)
 
 /obj/item/mmi/posibrain/proc/check_success()
 	searching = FALSE
@@ -97,6 +97,11 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	if(user.suiciding) //if they suicided, they're out forever.
 		to_chat(user, span_warning("[src] fizzles slightly. Sadly it doesn't take those who suicided!"))
 		return
+	var/playtime = SSjob.GetJob("Cyborg").required_playtime_remaining(user.client)
+	if(playtime)
+		to_chat(user, span_warning("Positronic brains are beyond your knowledge to control."))
+		to_chat(user, span_warning("In order to play as a positron brain, you require [playtime] more minutes of experience on-board the station."))
+		return
 	var/posi_ask = tgui_alert(usr,"Become a [name]? (Warning, You can no longer be revived, and all past lives will be forgotten!)","Are you positive?",list("Yes","No"))
 	if(posi_ask == "No" || QDELETED(src))
 		return
@@ -113,7 +118,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 			brainmob.stored_dna = new /datum/dna/stored(brainmob)
 		C.dna.copy_dna(brainmob.stored_dna)
 	brainmob.timeofhostdeath = C.timeofdeath
-	brainmob.stat = CONSCIOUS
+	brainmob.set_stat(CONSCIOUS)
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = new_role
 	if(C.mind)
@@ -137,7 +142,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	name = "[initial(name)] ([brainmob.name])"
 	to_chat(brainmob, welcome_message)
 	brainmob.mind.assigned_role = new_role
-	brainmob.stat = CONSCIOUS
+	brainmob.set_stat(CONSCIOUS)
 	brainmob.remove_from_dead_mob_list()
 	brainmob.add_to_alive_mob_list()
 	ADD_TRAIT(brainmob, TRAIT_PACIFISM, POSIBRAIN_TRAIT)
@@ -166,7 +171,7 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 	else
 		. += "[dead_message]"
 
-/obj/item/mmi/posibrain/Initialize()
+/obj/item/mmi/posibrain/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	brainmob = new(src)

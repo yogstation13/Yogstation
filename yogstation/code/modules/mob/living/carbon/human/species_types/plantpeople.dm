@@ -5,7 +5,7 @@
 	name = "Phytosian"
 	id = "pod" // We keep this at pod for compatibility reasons
 	default_color = "59CE00"
-	species_traits = list(MUTCOLORS,EYECOLOR,HAS_FLESH)
+	species_traits = list(MUTCOLORS, EYECOLOR, HAS_FLESH, HAS_BONE)
 	mutant_bodyparts = list("pod_hair", "pod_flower")
 	default_features = list("mcolor" = "0F0", "pod_hair" = "Cabbage", "pod_flower" = "Cabbage")
 	rare_say_mod = list("rustles" = 10)
@@ -19,7 +19,7 @@
 	speedmod = 0.33
 	siemens_coeff = 0.75 //I wouldn't make semiconductors out of plant material
 	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
-	punchstunthreshold = 9 
+	punchstunthreshold = 9
 	payday_modifier = 0.7 //Neutrally viewed by NT
 	mutantlungs = /obj/item/organ/lungs/plant //let them breathe CO2
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
@@ -28,6 +28,8 @@
 	liked_food = SUGAR
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/pod
+	wings_icon = "Plant"
+	wings_detail = "Plantdetails"
 
 	var/no_light_heal = FALSE
 	var/light_heal_multiplier = 1
@@ -39,11 +41,11 @@
 	smells_like = "bloody grass"
 
 /datum/species/pod/before_equip_job(datum/job/J, mob/living/carbon/human/H)
-	to_chat(H, span_info("<b>You are a Phytosian.</b> Born from an engimatic plant called a 'Replica Pod'."))
-	to_chat(H, span_info("Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive, and affords you regeneration unmatched by any other race."))
-	to_chat(H, span_info("Darkness is your greatest foe. Even the cold expanses of space are lit by neighbouring stars, but the darkest recesses of the station's interior may prove to be your greatest foe."))
-	to_chat(H, span_info("Heat and cold will damage your epidermis far faster than your natural regeneration can match."))
-	to_chat(H, span_info("For more information on your race, see https://wiki.yogstation.net/wiki/Phytosian"))
+	to_chat(H, span_info("<b>You are a Phytosian.</b> You are born from the enigmatic plant lazarupela vitalis, better known as replica pods."))
+	to_chat(H, span_info("Symbiotic plant-cells suffuse your skin and provide a protective layer that keeps you alive while affording you regeneration unmatched by any other species."))
+	to_chat(H, span_info("Darkness is your greatest foe. While the cold expanse of space is lit by neighboring stars, shadowy recesses within the station's corridors will spell your demise."))
+	to_chat(H, span_info("Heat and cold will damage your epidermis far faster than your natural regeneration can match; take care to avoid environmental hazards."))
+	to_chat(H, span_info("For more information on your species, see https://wiki.yogstation.net/wiki/Phytosian"))
 
 /datum/species/pod/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -97,14 +99,14 @@
 			if (0.31 to 0.5)
 				//medium, average, doing nothing for now
 				light_level = 3
-				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)	
-					//just enough to function			
+				if(H.nutrition <= NUTRITION_LEVEL_HUNGRY)
+					//just enough to function
 					H.nutrition += light_amount * 2
 			if (0.51 to 0.75)
 				//high light, regen here
 				light_level = 4
 				if(H.nutrition < NUTRITION_LEVEL_FED)
-					H.nutrition += light_amount * 1.75				
+					H.nutrition += light_amount * 1.75
 				if ((H.stat != UNCONSCIOUS) && (H.stat != DEAD) && !no_light_heal)
 					H.adjustOxyLoss(-0.5 * light_heal_multiplier, 1)
 					H.heal_overall_damage(1 * light_heal_multiplier, 1 * light_heal_multiplier)
@@ -241,22 +243,23 @@
 		dark_damage_multiplier = 3
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * REAGENTS_METABOLISM)
 		//removal is handled in /datum/reagent/sugar/on_mob_delete() //so that was a lie
-		
+
 		//if there's none left after the removal, the light multiplier needs to go back to the default
-		if(!H.reagents.has_reagent(/datum/reagent/consumable/sugar)) 
+		if(!H.reagents.has_reagent(/datum/reagent/consumable/sugar))
 			light_heal_multiplier = initial(light_heal_multiplier)
 			dark_damage_multiplier = initial(dark_damage_multiplier)
 		return 1
 
 	if(istype(chem, /datum/reagent/consumable/ethanol)) //istype so all alcohols work
 		var/datum/reagent/consumable/ethanol/ethanol = chem
-		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REAGENTS_EFFECT_MULTIPLIER)
-		H.adjustToxLoss(0.4*REAGENTS_EFFECT_MULTIPLIER)
-		H.confused = max(H.confused, 1)
-		if(ethanol.boozepwr > 80 && chem.volume > 30)
-			if(chem.current_cycle > 50)
-				H.IsSleeping(3)
-			H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
+		if(ethanol.boozepwr > 0)
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2*REAGENTS_EFFECT_MULTIPLIER)
+			H.adjustToxLoss(0.4*REAGENTS_EFFECT_MULTIPLIER)
+			H.set_confusion_if_lower(1 SECONDS)
+			if(ethanol.boozepwr > 80 && chem.volume > 30)
+				if(chem.current_cycle > 50)
+					H.IsSleeping(3)
+				H.adjustToxLoss(4*REAGENTS_EFFECT_MULTIPLIER)
 		return 0 // still get all the normal effects.
 
 /datum/species/pod/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
@@ -308,7 +311,7 @@
 		a government tasked with preventing such an event from happening again through strict authoritarian policies. \
 		They quickly butchered almost all remaining non-phytosians lifeforms on Muldova in order to to assimilate them, \
 		enclosing the rest to ensure a steady supply of population.",
- 
+
 		"In the year 2511, drones of Sano-Waltfield Industries landing on Muldova alerted phytosians of the existence \
 		of other life elsewhere. They immediately desired to correct this situation, and shot the drones down. \
 		Noticing the incident, SIC investigators went to scan the planet, expecting illegal human colonists. Instead, \

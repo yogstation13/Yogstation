@@ -33,39 +33,47 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(8)
 			new /obj/item/ship_in_a_bottle(src)
 		if(9)
-			new /obj/item/clothing/glasses/telepathy(src)
+			new /obj/item/clothing/gloves/gauntlets(src)
 		if(10)
 			new /obj/item/jacobs_ladder(src)
-		if(11)
-			new /obj/item/nullrod/scythe/talking(src)
+		if(11)//select and spawn a random nullrod that a chaplain could choose from
+			var/found = FALSE
+			while(!found)
+				var/path = pick(subtypesof(/obj/item/nullrod))
+				var/obj/item/nullrod/rod = new path(src)
+				if(rod.chaplain_spawnable)
+					found = TRUE
+				else
+					qdel(rod)
 		if(12)
-			new /obj/item/nullrod/armblade(src)
-		if(13)
 			new /obj/item/warp_cube/red(src)
-		if(14)
+		if(13)
 			new /obj/item/organ/heart/gland/heals(src)
-		if(15)
+		if(14)
 			new /obj/item/eflowers(src)
-		if(16)
+		if(15)
 			new /obj/item/voodoo(src)
-		if(17)
+		if(16)
 			new /obj/item/clothing/suit/space/hardsuit/powerarmor_advanced(src)
-		if(18)
+		if(17)
 			new /obj/item/book_of_babel(src)
-		if(19)
+		if(18)
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
-		if(20)
+		if(19)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
-		if(21)
+		if(20)
 			new /obj/item/rune_scimmy(src)
-		if(22)
+		if(21)
 			new /obj/item/dnainjector/dwarf(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
 			new /obj/item/grenade/plastic/miningcharge/mega(src)
-		if(23)
+		if(22)
 			new /obj/item/clothing/gloves/gauntlets(src)
+		if(23)
+			new /obj/item/gun/ballistic/bow/ashen(src)
+			new /obj/item/storage/belt/quiver/returning/bone(src)
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
@@ -74,7 +82,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon_state = "datadisk1"
 	var/modkit_design = /datum/design/unique_modkit
 
-/obj/item/disk/design_disk/modkit_disc/Initialize()
+/obj/item/disk/design_disk/modkit_disc/Initialize(mapload)
 	. = ..()
 	blueprints[1] = new modkit_design
 
@@ -132,13 +140,13 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(itemUser, failText)
 		return
 	to_chat(itemUser, span_notice("The snake, satisfied with your oath, attaches itself and the rod to your forearm with an inseparable grip. Your thoughts seem to only revolve around the core idea of helping others, and harm is nothing more than a distant, wicked memory..."))
-	var/datum/status_effect/hippocraticOath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency, type)
+	var/datum/status_effect/hippocratic_oath/effect = itemUser.apply_status_effect(STATUS_EFFECT_HIPPOCRATIC_OATH, efficiency, type)
 	effect.hand = usedHand
 	activated()
 
 /obj/item/rod_of_asclepius/proc/activated()
 	item_flags = DROPDEL
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 	desc = "A short wooden rod with a mystical snake inseparably gripping itself and the rod to your forearm. It flows with a healing energy that disperses amongst yourself and those around you. The snake can learn surgeries from disks or operating consoles by hitting them with it."
 	icon_state = "asclepius_active"
 	activated = TRUE
@@ -174,7 +182,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/mob/living/carbon/human/active_owner
 
 /obj/item/clothing/neck/necklace/memento_mori/item_action_slot_check(slot)
-	return slot == SLOT_NECK
+	return slot == ITEM_SLOT_NECK
 
 /obj/item/clothing/neck/necklace/memento_mori/attack_hand(mob/user)
 	if(active_owner && user == active_owner)
@@ -210,7 +218,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "memento_mori")
 		icon_state = "memento_mori_active"
 		active_owner = user
-		RegisterSignal(src, COMSIG_ITEM_PRESTRIP, .proc/moriwarn)
+		RegisterSignal(src, COMSIG_ITEM_PRESTRIP, PROC_REF(moriwarn))
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/moriwarn()
 	active_owner.visible_message(span_userdanger("The [src] writhes and shudders as it starts to tear away [active_owner]'s lifeforce!"))
@@ -269,7 +277,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		wisp.forceMove(src)
 		SSblackbox.record_feedback("tally", "wisp_lantern", 1, "Returned")
 
-/obj/item/wisp_lantern/Initialize()
+/obj/item/wisp_lantern/Initialize(mapload)
 	. = ..()
 	wisp = new(src)
 
@@ -296,7 +304,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/effect/wisp/orbit(atom/thing, radius, clockwise, rotation_speed, rotation_segments, pre_rotation, lockinorbit)
 	. = ..()
 	if(ismob(thing))
-		RegisterSignal(thing, COMSIG_MOB_UPDATE_SIGHT, .proc/update_user_sight)
+		RegisterSignal(thing, COMSIG_MOB_UPDATE_SIGHT, PROC_REF(update_user_sight))
 		var/mob/being = thing
 		being.update_sight()
 		to_chat(thing, span_notice("The wisp enhances your vision."))
@@ -311,25 +319,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 	user.sight |= sight_flags
 	if(!isnull(lighting_alpha))
 		user.lighting_alpha = min(user.lighting_alpha, lighting_alpha)
-
-/obj/item/clothing/glasses/telepathy
-	name = "blindfold of telepathy"
-	desc = "Covers the eyes, preventing natural sight. In return for committing oneself forever to the senses of the mind, the senses of the body are allowed to rest."
-	icon_state = "blindfoldwhite"
-	item_state = "blindfoldwhite"
-	flash_protect = 10 //they're blind, yo
-	tint = 2
-	darkness_view = 0
-	var/sight_flags = SEE_MOBS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-
-/obj/item/clothing/glasses/telepathy/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(slot == SLOT_GLASSES)
-		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-		user.sight |= sight_flags
-		item_flags = DROPDEL
 
 //Red/Blue Cubes
 /obj/item/warp_cube
@@ -392,7 +381,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon_state = "red_cube"
 	teleport_color = "#FD3F48"
 
-/obj/item/warp_cube/red/Initialize()
+/obj/item/warp_cube/red/Initialize(mapload)
 	. = ..()
 	if(!linked)
 		var/obj/item/warp_cube/blue = new(src.loc)
@@ -471,7 +460,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	actions_types = list(/datum/action/item_action/immortality)
 	var/cooldown = 0
 
-/obj/item/immortality_talisman/Initialize()
+/obj/item/immortality_talisman/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE)
 
@@ -555,7 +544,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "paradox bag"
 	desc = "Somehow, it's in two places at once."
 
-/obj/item/shared_storage/red/Initialize()
+/obj/item/shared_storage/red/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = AddComponent(/datum/component/storage/concrete)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -620,7 +609,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		var/mob/living/L = target
 		if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid)) //no loot allowed from the little skulls
 			if(!istype(L, /mob/living/simple_animal/hostile/asteroid/hivelordbrood))
-				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH,.proc/roll_loot, TRUE)
+				RegisterSignal(target,COMSIG_GLOB_MOB_DEATH, PROC_REF(roll_loot), TRUE)
 			//after quite a bit of grinding, you'll be doing a total of 120 damage to fauna per hit. A lot, but i feel like the grind justifies the payoff. also this doesn't effect crew. so. go nuts.
 			L.apply_damage(mobs_grinded*5,BRUTE)
 
@@ -653,7 +642,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(51 to 60)//10% for bow and bronze tipped arrows, bronze are supposed to be the worst in runescape but they kinda slap in here, hopefully limited by the 5 arrows
 			new /obj/item/gun/ballistic/bow(spot)
 			for(var/i in 1 to 5)
-				new /obj/item/ammo_casing/caseless/arrow/bronze(spot)
+				new /obj/item/ammo_casing/reusable/arrow/bronze(spot)
 		if(61 to 70)//10% chance at a seed drop, runescape drops seeds somewhat frequently for players to plant and harvest later
 			switch(rand(1,5))
 				if(1)
@@ -684,11 +673,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "potionflask"
 
-
 /obj/item/reagent_containers/glass/bottle/potion/flight/syndicate
 	icon = 'icons/obj/lavaland/artefacts.dmi'
-	icon_state = "potionflask"
-
+	icon_state = "syndi_potionflask"
+	desc = "An ornate red bottle, with an \"S\" embossed into the underside. Filled with an experimental flight potion. Mileage may vary."
+	
 /obj/item/reagent_containers/glass/bottle/potion/flight
 	name = "strange elixir"
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
@@ -696,9 +685,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/reagent_containers/glass/bottle/potion/update_icon()
 	if(reagents.total_volume)
-		icon_state = "potionflask"
+		icon_state = initial(icon_state)
+		desc = initial(desc)
 	else
-		icon_state = "potionflask_empty"
+		icon_state = "[initial(icon_state)]_empty"
+		desc = "An ornate red bottle, with an \"S\" embossed into the underside."
 
 /datum/reagent/flightpotion
 	name = "Flight Potion"
@@ -707,18 +698,21 @@ GLOBAL_LIST_EMPTY(aide_list)
 	process_flags = ORGANIC | SYNTHETIC
 	color = "#FFEBEB"
 
-/datum/reagent/flightpotion/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
+/datum/reagent/flightpotion/reaction_mob(mob/living/M, methods = TOUCH, reac_volume, show_message = 1)
 	if(iscarbon(M) && M.stat != DEAD)
 		var/mob/living/carbon/C = M
-		var/holycheck = ishumanbasic(C)
-		if(!(holycheck || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || (reac_volume < 5))) //humans (which are holy?), lizards, skeletons, and preterni(ises?) can get wings
-			if(method == INGEST && show_message)
+		var/valid_species = (ishumanbasic(C) || islizard(C) || ismoth(C) || isskeleton(C) || ispreternis(C) || isipc(C) || ispodperson(C))
+		if(valid_species && (reac_volume < 5))	 //humans, lizards, skeletons, and preterni can get wings
+			to_chat(C, span_notice("<i>You feel something stir in you, but it quickly fades away.</i>"))
+			return ..()
+		if(!valid_species)
+			if((methods & INGEST) && show_message)
 				to_chat(C, span_notice("<i>You feel nothing but a terrible aftertaste.</i>"))
 			return ..()
 
 		to_chat(C, span_userdanger("A terrible pain travels down your back as wings burst out!"))
 		C.dna.species.GiveSpeciesFlight(C)
-		if(holycheck)
+		if(ishumanbasic(C))
 			to_chat(C, span_notice("You feel blessed!"))
 			ADD_TRAIT(C, TRAIT_HOLY, SPECIES_TRAIT)
 		if(islizard(C))
@@ -766,7 +760,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 #define COOLDOWN_SUMMON 1 MINUTES
 /obj/item/eflowers
 	name ="enchanted flowers"
-	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouqet to summon tamed creatures. Megafauna cannot be summoned.<b>Megafauna need to be exposed 35 times to become friendly.</b>"
+	desc ="A charming bunch of flowers, most animals seem to find the bearer amicable after momentary contact with it. Squeeze the bouquet to summon tamed creatures. Megafauna cannot be summoned. <b>Megafauna need to be exposed 35 times to become friendly.</b>"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "eflower"
 	var/next_summon = 0
@@ -782,7 +776,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(is_station_level(T.z) && !A.outdoors)
 		to_chat(user, span_warning("You feel like calling a bunch of animals indoors is a bad idea."))
 		return
-	user.visible_message(span_warning("[user] holds the bouqet out, summoning their allies!"))
+	user.visible_message(span_warning("[user] holds the bouquet out, summoning their allies!"))
 	for(var/mob/m in summons)
 		m.forceMove(T)
 	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
@@ -815,7 +809,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 	if(!do_after(user, 1.5 SECONDS, M))
 		return
-	M.visible_message(span_notice("[M] seems happy with you after exposure to the bouqet!"))
+	M.visible_message(span_notice("[M] seems happy with you after exposure to the bouquet!"))
 	M.add_atom_colour("#11c42f", FIXED_COLOUR_PRIORITY)
 	M.drop_loot()
 	M.faction = user.faction
@@ -946,11 +940,14 @@ GLOBAL_LIST_EMPTY(aide_list)
 			new /obj/item/melee/ghost_sword(src)
 		if(2)
 			new /obj/item/lava_staff(src)
-			new /obj/item/book/granter/spell/sacredflame(src)
+			new /obj/item/book/granter/action/spell/sacredflame(src)
 		if(3)
 			new /obj/item/dragon_egg(src)
 		if(4)
-			new /obj/item/dragons_blood(src)
+			if(prob(25))	//Still same chance but now you know if you're turning into a lizard (ew)
+				new /obj/item/dragons_blood/refined(src)
+			else
+				new /obj/item/dragons_blood(src)
 
 /obj/structure/closet/crate/necropolis/dragon/crusher
 	name = "firey dragon chest"
@@ -978,7 +975,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/summon_cooldown = 0
 	var/list/mob/dead/observer/spirits
 
-/obj/item/melee/ghost_sword/Initialize()
+/obj/item/melee/ghost_sword/Initialize(mapload)
 	. = ..()
 	spirits = list()
 	START_PROCESSING(SSobj, src)
@@ -1068,49 +1065,36 @@ GLOBAL_LIST_EMPTY(aide_list)
 		return
 
 	var/mob/living/carbon/human/H = user
-	var/random = rand(1,4)
+	var/random = rand(1,3)
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You feel a little tougher, and fire now seems oddly comforting."))
-			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "snout" = "Sharp", "horns" = "Drake", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
-			H.set_species(/datum/species/lizard/draconid)
-			H.eye_color = "fee5a3"
-			H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-			H.updateappearance()
-		if(2)
 			to_chat(user, span_danger("Your flesh begins to melt! Miraculously, you seem fine otherwise."))
 			H.set_species(/datum/species/skeleton)
-		if(3)
+		if(2)
 			to_chat(user, span_danger("Power courses through you! You can now shift your form at will."))
-			if(user.mind)
-				var/obj/effect/proc_holder/spell/targeted/shapeshift/dragon/D = new
-				user.mind.AddSpell(D)
-		if(4)
+			var/datum/action/cooldown/spell/shapeshift/dragon/dragon_shapeshift = new(user.mind || user)
+			dragon_shapeshift.Grant(user)
+		if(3)
 			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
 			H.weather_immunities |= "lava"
 
 	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 
-/obj/item/dragons_blood/syndicate
+/obj/item/dragons_blood/refined
 	name = "bottle of refined dragons blood"
 	desc = "You're totally going to drink this, aren't you?"
 
-/obj/item/dragons_blood/syndicate/attack_self(mob/living/carbon/human/user)
+/obj/item/dragons_blood/refined/attack_self(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
 
 	var/mob/living/carbon/human/H = user
+	to_chat(user, span_danger("You feel warmth spread through you, paired with an odd desire to burn down a village. You're suddenly a very small, humanoid ash dragon!"))
+	H.set_species(/datum/species/lizard/draconid)
 
-	if(!islizard(H))	//Something about it being refined to only work on lizards or whatever
-		to_chat(user, span_danger("You're about to take a sip, but the acrid fumes from whatever's in this bottle make you reconsider."))
-		return
-	else
-		to_chat(user, span_danger("You feel the warmth spread through you, scales hardening and claws growing sharper. You feel... strong!"))
-		H.set_species(/datum/species/lizard/draconid)
-
-		playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
+	playsound(user.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	qdel(src)
 
 
@@ -1214,7 +1198,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	color = "#990000"
 	extinguish()
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
-	addtimer(CALLBACK(src, .proc/hatch), 20 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(hatch)), 20 SECONDS)
 
 /obj/item/dragon_egg/proc/hatch()
 	visible_message(span_boldwarning("[src] suddenly cracks apart, revealing a tiny ash drake!"))
@@ -1253,7 +1237,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/item/mayhem/attack_self(mob/user)
 	for(var/mob/living/carbon/human/H in range(7,user))
 		var/obj/effect/mine/pickup/bloodbath/B = new(H)
-		INVOKE_ASYNC(B, /obj/effect/mine/pickup/bloodbath/.proc/mineEffect, H)
+		INVOKE_ASYNC(B, TYPE_PROC_REF(/obj/effect/mine/pickup/bloodbath, mineEffect), H)
 	to_chat(user, span_notice("You shatter the bottle!"))
 	playsound(user.loc, 'sound/effects/glassbr1.ogg', 100, 1)
 	message_admins(span_adminnotice("[ADMIN_LOOKUPFLW(user)] has activated a bottle of mayhem!"))
@@ -1308,6 +1292,19 @@ GLOBAL_LIST_EMPTY(aide_list)
 #define COOLDOWN_HUMAN 100
 #define COOLDOWN_ANIMAL 60
 #define COOLDOWN_SPLASH 100
+
+/datum/action/item_action/visegrip
+	name = "Vise Grip"
+	desc = "Remotely detonate marked targets. People become rooted for 1 second. Animals become rooted for 6 seconds and take hefty damage."
+	button_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "leghold"
+
+/datum/action/item_action/reach
+	name = "Reach"
+	desc = "Mark those standing on blood for 10 seconds."
+	button_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "rshield"
+
 /obj/item/melee/knuckles
 	name = "bloody knuckles"
 	desc = "Knuckles born of a desire for violence. Made to ensure their victims stay in the fight until there's a winner. Activating these knuckles covers several meters \
@@ -1472,11 +1469,11 @@ GLOBAL_LIST_EMPTY(aide_list)
 	calculate_anger_mod(user)
 	timer = world.time + CLICK_CD_MELEE //by default, melee attacks only cause melee blasts, and have an accordingly short cooldown
 	if(proximity_flag)
-		INVOKE_ASYNC(src, .proc/aoe_burst, T, user)
+		INVOKE_ASYNC(src, PROC_REF(aoe_burst), T, user)
 		log_combat(user, target, "fired 3x3 blast at", src)
 	else
 		if(ismineralturf(target) && get_dist(user, target) < 6) //target is minerals, we can hit it(even if we can't see it)
-			INVOKE_ASYNC(src, .proc/cardinal_blasts, T, user)
+			INVOKE_ASYNC(src, PROC_REF(cardinal_blasts), T, user)
 			timer = world.time + cooldown_time
 		else if(target in view(5, get_turf(user))) //if the target is in view, hit it
 			timer = world.time + cooldown_time
@@ -1487,12 +1484,12 @@ GLOBAL_LIST_EMPTY(aide_list)
 				C.monster_damage_boost = FALSE
 				log_combat(user, target, "fired a chaser at", src)
 			else
-				INVOKE_ASYNC(src, .proc/cardinal_blasts, T, user) //otherwise, just do cardinal blast
+				INVOKE_ASYNC(src, PROC_REF(cardinal_blasts), T, user) //otherwise, just do cardinal blast
 				log_combat(user, target, "fired cardinal blast at", src)
 		else
 			to_chat(user, span_warning("That target is out of range!") )
 			timer = world.time
-	INVOKE_ASYNC(src, .proc/prepare_icon_update)
+	INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 
 /obj/item/hierophant_club/proc/calculate_anger_mod(mob/user) //we get stronger as the user loses health
 	chaser_cooldown = initial(chaser_cooldown)
@@ -1535,19 +1532,19 @@ GLOBAL_LIST_EMPTY(aide_list)
 			user.visible_message("[span_hierophant_warning("[user] starts fiddling with [src]'s pommel...")]", \
 			span_notice("You start detaching the hierophant beacon..."))
 			timer = world.time + 5.1 SECONDS
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			if(do_after(user, 5 SECONDS, user) && !beacon)
 				var/turf/T = get_turf(user)
 				playsound(T,'sound/magic/blind.ogg', 200, 1, -4)
 				new /obj/effect/temp_visual/hierophant/telegraph/teleport(T, user)
 				beacon = new/obj/effect/hierophant(T)
-				user.update_action_buttons_icon()
+				user.update_mob_action_buttons()
 				user.visible_message("[span_hierophant_warning("[user] places a strange machine beneath [user.p_their()] feet!")]", \
 				"[span_hierophant("You detach the hierophant beacon, allowing you to teleport yourself and any allies to it at any time!")]\n\
 				[span_notice("You can remove the beacon to place it again by striking it with the club.")]")
 			else
 				timer = world.time
-				INVOKE_ASYNC(src, .proc/prepare_icon_update)
+				INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 		else
 			to_chat(user, span_warning("You need to be on solid ground to detach the beacon!"))
 		return
@@ -1561,10 +1558,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 		to_chat(user, span_warning("You don't have enough space to teleport from here!"))
 		return
 	teleporting = TRUE //start channel
-	user.update_action_buttons_icon()
+	user.update_mob_action_buttons()
 	user.visible_message("[span_hierophant_warning("[user] starts to glow faintly...")]")
 	timer = world.time + 5 SECONDS
-	INVOKE_ASYNC(src, .proc/prepare_icon_update)
+	INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 	beacon.icon_state = "hierophant_tele_on"
 	var/obj/effect/temp_visual/hierophant/telegraph/edge/TE1 = new /obj/effect/temp_visual/hierophant/telegraph/edge(user.loc)
 	var/obj/effect/temp_visual/hierophant/telegraph/edge/TE2 = new /obj/effect/temp_visual/hierophant/telegraph/edge(beacon.loc)
@@ -1574,9 +1571,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(is_blocked_turf(T, TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
-			user.update_action_buttons_icon()
+			user.update_mob_action_buttons()
 			timer = world.time
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			beacon.icon_state = "hierophant_tele_off"
 			return
 		new /obj/effect/temp_visual/hierophant/telegraph(T, user)
@@ -1586,18 +1583,18 @@ GLOBAL_LIST_EMPTY(aide_list)
 		if(!do_after(user, 0.3 SECONDS, user) || !user || !beacon || QDELETED(beacon)) //no walking away shitlord
 			teleporting = FALSE
 			if(user)
-				user.update_action_buttons_icon()
+				user.update_mob_action_buttons()
 			timer = world.time
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			if(beacon)
 				beacon.icon_state = "hierophant_tele_off"
 			return
 		if(is_blocked_turf(T, TRUE))
 			teleporting = FALSE
 			to_chat(user, span_warning("The beacon is blocked by something, preventing teleportation!"))
-			user.update_action_buttons_icon()
+			user.update_mob_action_buttons()
 			timer = world.time
-			INVOKE_ASYNC(src, .proc/prepare_icon_update)
+			INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 			beacon.icon_state = "hierophant_tele_off"
 			return
 		user.log_message("teleported self from [AREACOORD(source)] to [beacon]", LOG_GAME)
@@ -1610,7 +1607,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			var/obj/effect/temp_visual/hierophant/blast/B = new /obj/effect/temp_visual/hierophant/blast(t, user, TRUE) //but absolutely will hurt enemies
 			B.damage = 30
 		for(var/mob/living/L in range(1, source))
-			INVOKE_ASYNC(src, .proc/teleport_mob, source, L, T, user) //regardless, take all mobs near us along
+			INVOKE_ASYNC(src, PROC_REF(teleport_mob), source, L, T, user) //regardless, take all mobs near us along
 		sleep(0.6 SECONDS) //at this point the blasts detonate
 		if(beacon)
 			beacon.icon_state = "hierophant_tele_off"
@@ -1618,12 +1615,12 @@ GLOBAL_LIST_EMPTY(aide_list)
 		qdel(TE1)
 		qdel(TE2)
 		timer = world.time
-		INVOKE_ASYNC(src, .proc/prepare_icon_update)
+		INVOKE_ASYNC(src, PROC_REF(prepare_icon_update))
 	if(beacon)
 		beacon.icon_state = "hierophant_tele_off"
 	teleporting = FALSE
 	if(user)
-		user.update_action_buttons_icon()
+		user.update_mob_action_buttons()
 
 /obj/item/hierophant_club/proc/teleport_mob(turf/source, mob/M, turf/target, mob/user)
 	var/turf/turf_to_teleport_to = get_step(target, get_dir(source, M)) //get position relative to caster
@@ -1659,7 +1656,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	B.damage = HIEROPHANT_CLUB_CARDINAL_DAMAGE
 	B.monster_damage_boost = FALSE
 	for(var/d in GLOB.cardinals)
-		INVOKE_ASYNC(src, .proc/blast_wall, T, d, user)
+		INVOKE_ASYNC(src, PROC_REF(blast_wall), T, d, user)
 
 /obj/item/hierophant_club/proc/blast_wall(turf/T, dir, mob/living/user) //make a wall of blasts blast_range tiles long
 	if(!T)
@@ -1803,19 +1800,30 @@ GLOBAL_LIST_EMPTY(aide_list)
 	name = "puzzling chest"
 
 /obj/structure/closet/crate/necropolis/puzzle/PopulateContents()
-	var/loot = rand(1,3)
+	var/loot = rand(1,2)
 	switch(loot)
 		if(1)
 			new /obj/item/bodypart/r_arm/robot/seismic(src)
 		if(2)
 			new /obj/item/wisp_lantern(src)
-		if(3)
-			new /obj/item/prisoncube(src)
 
 //Legion
-#define COOLDOWN_TAP 60
-#define COOLDOWN_BAND 200
-#define COOLDOWN_TELE 15
+#define COOLDOWN_TAP 6 SECONDS
+#define COOLDOWN_BAND 20 SECONDS
+#define COOLDOWN_TELE 1.5 SECONDS
+
+/datum/action/item_action/band
+	name = "Band"
+	desc = "Summon all your thralls to your location."
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"
+
+/*/datum/action/item_action/gambit
+	name = "Gambit"
+	desc = "Throw out your cane. If the target is weak enough to finish off, teleport to them and do it, recovering your cane in the process."
+	button_icon = 'icons/mob/actions/actions_cult.dmi'
+	button_icon_state = "horde"*/
+
 /obj/item/cane/cursed
 	name = "cursed cane"
 	desc = "A pristine marble cane. Tapping the cane against the ground calls lesser minions to you while tapping it against a dead or dying victim will make them yours should you\

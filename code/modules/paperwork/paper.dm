@@ -70,7 +70,7 @@
 			affecting?.receive_damage(1)
 
 
-/obj/item/paper/Initialize()
+/obj/item/paper/Initialize(mapload)
 	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
@@ -138,7 +138,7 @@
 		if(!spam_flag)
 			spam_flag = TRUE
 			playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)
-			addtimer(CALLBACK(src, .proc/reset_spamflag), 20)
+			addtimer(CALLBACK(src, PROC_REF(reset_spamflag)), 20)
 
 
 /obj/item/paper/attack_ai(mob/living/silicon/ai/user)
@@ -322,7 +322,7 @@
 								span_userdanger("You miss the paper and accidentally light yourself on fire!"))
 			user.dropItemToGround(P)
 			user.adjust_fire_stacks(1)
-			user.IgniteMob()
+			user.ignite_mob()
 			return
 
 		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper
@@ -373,7 +373,7 @@
 
 /obj/item/paper/construction
 
-/obj/item/paper/construction/Initialize()
+/obj/item/paper/construction/Initialize(mapload)
 	. = ..()
 	color = pick("FF0000", "#33cc33", "#ffb366", "#551A8B", "#ff80d5", "#4d94ff")
 
@@ -381,7 +381,7 @@
  * Natural paper
  */
 
-/obj/item/paper/natural/Initialize()
+/obj/item/paper/natural/Initialize(mapload)
 	. = ..()
 	color = "#FFF5ED"
 

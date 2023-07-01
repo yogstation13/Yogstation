@@ -124,7 +124,7 @@
 			return 1
 	return 0
 
-/mob/living/carbon/human/proc/check_shields(atom/AM, var/damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0)
+/mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0)
 	var/block_chance_modifier = round(damage / -3)
 
 	for(var/obj/item/I in held_items)
@@ -354,7 +354,8 @@
 		if(!affecting)
 			affecting = get_bodypart(BODY_ZONE_CHEST)
 		var/armor = run_armor_check(affecting, MELEE, armour_penetration = M.armour_penetration)
-		apply_damage(damage, M.melee_damage_type, affecting, armor, wound_bonus = M.wound_bonus, bare_wound_bonus = M.bare_wound_bonus, sharpness = M.sharpness)
+		var/attack_direction = get_dir(M, src)
+		apply_damage(damage, M.melee_damage_type, affecting, armor, wound_bonus = M.wound_bonus, bare_wound_bonus = M.bare_wound_bonus, sharpness = M.sharpness, attack_direction = attack_direction)
 
 
 /mob/living/carbon/human/attack_slime(mob/living/simple_animal/slime/M)
@@ -396,10 +397,12 @@
 						var/throwtarget = get_edge_target_turf(M, get_dir(M, get_step_away(src, M)))
 						src.throw_at(throwtarget, 5, 2, src)//one tile further than mushroom punch/psycho brawling
 					update |= temp.receive_damage(dmg, 0)
-					playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
+					if(M.meleesound)
+						playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 				if(BURN)
 					update |= temp.receive_damage(0, dmg)
-					playsound(src, 'sound/items/welder.ogg', 50, 1)
+					if(M.meleesound)
+						playsound(src, 'sound/items/welder.ogg', 50, 1)
 				if(TOX)
 					M.mech_toxin_damage(src)
 				else
@@ -545,21 +548,24 @@
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
-	var/informed = FALSE
-	for(var/obj/item/bodypart/L in src.bodyparts)
-		if(L.status == BODYPART_ROBOTIC)
-			if(!informed)
-				to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
-				informed = TRUE
-			switch(severity)
-				if(1)
-					L.receive_damage(0,10,200)
-				if(2)
-					L.receive_damage(0,5,100)
-
-			if((TRAIT_EASYDISMEMBER in L.owner.dna.species.species_traits) && L.body_zone != "chest")
-				if(prob(5))
-					L.dismember(BRUTE)
+	var/list/affected_parts = list()
+	for(var/obj/item/bodypart/BP in bodyparts)
+		if(istype(BP) && BP.status == BODYPART_ROBOTIC)
+			if(prob(5) && severity == EMP_HEAVY && (TRAIT_EASYDISMEMBER in dna?.species.inherent_traits) && BP.body_zone != BODY_ZONE_CHEST)
+				BP.dismember()
+			else
+				affected_parts += BP
+	if(affected_parts.len)
+		adjustFireLoss(min(5 * affected_parts.len / severity, 20 / severity), FALSE, FALSE, BODYPART_ROBOTIC)
+		var/obj/item/bodypart/chest/C = get_bodypart(BODY_ZONE_CHEST)
+		var/obj/item/bodypart/head/H = get_bodypart(BODY_ZONE_HEAD)
+		if(((C && C.status == BODYPART_ROBOTIC) || (H && H.status == BODYPART_ROBOTIC)) && severity == EMP_HEAVY) // if your head and/or chest are robotic (aka you're a robotic race or augmented) you get cooler flavor text and rapid-onset paralysis
+			to_chat(src, span_userdanger("A surge of searing pain erupts throughout your very being! As the pain subsides, a terrible sensation of emptiness is left in its wake."))
+			Paralyze(5 SECONDS) //heavy EMPs will fully stun you
+			emote("scream")
+		else
+			adjustStaminaLoss(min(15 * affected_parts.len / severity, 60 / severity), FALSE, FALSE, BODYPART_ROBOTIC)
+			to_chat(src, span_userdanger("You feel a sharp pain as your robotic limbs overload."))
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots() //and make sure it's check_obscured_slots(TRUE) to stop aciding through visors etc
 	var/list/damaged = list()
@@ -718,6 +724,9 @@
 	if(!istype(M))
 		return
 
+	if(try_extinguish(M))
+		return
+
 	if(src == M)
 		if(has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
 			to_chat(src, span_notice("You attempt to remove the durathread strand from around your neck."))
@@ -725,10 +734,15 @@
 				to_chat(src, span_notice("You succesfuly remove the durathread strand."))
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return
-		else if(istype(src.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard) && creamed)
-			visible_message(span_notice("[src] eats the pie off [p_their()] face with [p_their()] forked tongue."), 
-							"<span class='notice'>You eat the pie off your face with your forked tongue.")
-			reagents.add_reagent(/datum/reagent/consumable/banana, 1)
+		else if(creamed)
+			if(istype(getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard))
+				visible_message(span_notice("[src] eats the pie off [p_their()] face with [p_their()] forked tongue."), 
+								span_notice("You eat the pie off your face with your forked tongue."))
+				reagents.add_reagent(/datum/reagent/consumable/banana, 1)
+
+			else if(M.get_num_arms()) //make sure you have arms with which to wipe
+				visible_message(span_notice("[src] wipes the pie off [p_their()] face with [p_their()] hand."), 
+								span_notice("You wipe the pie off your face with your hand."))
 			wash_cream()
 			return
 		check_self_for_injuries()
@@ -764,7 +778,7 @@
 		var/status = ""
 		var/brutedamage = LB.brute_dam
 		var/burndamage = LB.burn_dam
-		if(hallucination)
+		if(has_status_effect(/datum/status_effect/hallucination))
 			if(prob(30))
 				brutedamage += rand(30,40)
 			if(prob(30))

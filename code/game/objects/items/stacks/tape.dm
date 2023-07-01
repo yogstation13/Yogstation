@@ -19,7 +19,7 @@
 	. = ..()
 	if(user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		var/obj/item/clothing/mask/muzzle/tape/tape_muzzle = new()
-		if(!tape_muzzle.mob_can_equip(M, null, SLOT_WEAR_MASK, TRUE, TRUE))
+		if(!tape_muzzle.mob_can_equip(M, null, ITEM_SLOT_MASK, TRUE, TRUE))
 			to_chat(user, span_warning("You can't tape [M]'s mouth shut!"))
 			return
 		playsound(user, 'sound/effects/tape.ogg', 25)
@@ -27,7 +27,7 @@
 		if(!do_after(user, 2 SECONDS, M))
 			qdel(tape_muzzle)
 			return
-		if(!M.equip_to_slot_or_del(tape_muzzle, SLOT_WEAR_MASK, user))
+		if(!M.equip_to_slot_or_del(tape_muzzle, ITEM_SLOT_MASK, user))
 			to_chat(user, span_warning("You fail tape [M]'s mouth shut!"))
 			qdel(tape_muzzle)
 			return
@@ -45,14 +45,14 @@
 	if(I.w_class > maximum_weight_class)
 		to_chat(user, span_warning("[I] is too big!"))
 		return
-	var/list/item_contents = I.GetAllContents()
+	var/list/item_contents = I.get_all_contents()
 	for(var/obj/item/C in item_contents)
 		if(is_type_in_typecache(C,tape_blacklist))
 			to_chat(user, span_warning("The [src] doesn't seem to stick to [I]!"))
 			return
 	to_chat(user, span_info("You wrap [I] with [src]."))
 	use(1)
-	I.embedding = I.embedding.setRating(100, fall_chance, 0, 0, 0, 0, removal_pain, removal_time, TRUE)
+	I.embedding = I.embedding.setRating(100, fall_chance, 0, 0, 0, 0, removal_pain, removal_time, TRUE, 0)
 	I.taped = TRUE
 
 /obj/item/stack/tape/guerrilla
