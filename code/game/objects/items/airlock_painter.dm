@@ -65,7 +65,7 @@
 		if(PAINTER_MOST to INFINITY)
 			icon_state = base
 		else
-			icon_state = "[base]_crit"
+			icon_state = "[base]_empty"
 
 /obj/item/airlock_painter/proc/get_mode()
 	return painter_mode
