@@ -7,8 +7,8 @@
 	name = "airlock painter"
 	desc = "An advanced autopainter preprogrammed with several paintjobs for airlocks. Use it on an airlock during or after construction to change the paintjob."
 	icon = 'icons/obj/objects.dmi'
-	icon_state = "airlock_sprayer"
-	item_state = "airlock_sprayer"
+	icon_state = "paint_sprayer"
+	item_state = "paint_sprayer"
 	
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -208,6 +208,10 @@
 	var/supports_custom_color = FALSE
 	/// Current custom color
 	var/stored_custom_color
+	/// Is this painter a tile painter?
+	var/tile_painter = FALSE
+	/// Default alpha for /obj/effect/turf_decal
+	var/default_alpha = 255
 	/// List of color options as list(user-friendly label, color value to return)
 	var/color_list = list(
 		list("Yellow", "yellow"),
@@ -229,11 +233,11 @@
 			list("Caution Label","caution"),
 			list("Directional Arrows","arrows"),
 			list("Stand Clear Label","stand_clear"),
-			list("Box","box"),
 			list("Box Corner","box_corners"),
+			list("Loading Arrow","loadingarea"),
 			list("Delivery Marker","delivery"),
 			list("Warning Box","warn_full"),
-			list("Loading Arrow","loadingarea"),
+			list("Box","box"),
 			list("Bot","bot"),
 			list("Bot Right","bot_right"),
 			list("Bot Left","bot_left"),
@@ -379,6 +383,7 @@
 	.["current_color"] = stored_color
 	.["current_dir"] = stored_dir
 	.["current_custom_color"] = stored_custom_color
+	.["tile_painter"] = tile_painter
 
 /obj/item/airlock_painter/decal/ui_act(action, list/params)
 	. = ..()
@@ -397,9 +402,12 @@
 			stored_color = selected_color
 		if("pick custom color")
 			if(supports_custom_color)
-				pick_painting_tool_color(usr, stored_custom_color)
+				stored_color = input(usr,"","Choose Color",stored_color) as color|null
+				stored_custom_color = stored_color
 	update_decal_path()
 	. = TRUE
+
+
 
 /obj/item/airlock_painter/decal/tile
 	name = "tile sprayer"
@@ -407,10 +415,11 @@
 //	desc_controls = "Alt-Click to remove the ink cartridge."
 	icon_state = "tile_sprayer"
 	stored_dir = 2
-	stored_color = "#D4D4D432"
+	stored_color = "#D4D4D4"
 	stored_decal = "tile_corner"
 	spritesheet_type = /datum/asset/spritesheet/decals/tiles
 	supports_custom_color = TRUE
+	tile_painter = TRUE
 	// Colors can have a an alpha component as RGBA, or just be RGB and use default alpha
 	color_list = list(
 		list("Neutral", "#D4D4D4"),
@@ -428,12 +437,12 @@
 		list("Half", "tile_half_contrasted"),
 		list("Opposing Corners", "tile_opposing_corners"),
 		list("3 Corners", "tile_anticorner_contrasted"),
-		list("4 Corners", "tile_fourcorners"),
 		list("Trimline Corner", "trimline_corner_fill"),
 		list("Trimline Fill", "trimline_fill"),
 		list("Trimline Fill L", "trimline_fill__8"), // This is a hack that lives in the spritesheet builder and paint_floor
 		list("Trimline End", "trimline_end_fill"),
 		list("Trimline Box", "trimline_box_fill"),
+		list("4 Corners", "tile_fourcorners"),
 		list("Animated Red Circuit","rcircuitanim"),
 		list("Animated Green Circuit","gcircuitanim"),
 		list("Blue Circuit","bcircuit"),
@@ -556,8 +565,6 @@
 	/// Regex to split alpha out.
 	var/static/regex/rgba_regex = new(@"(#[0-9a-fA-F]{6})([0-9a-fA-F]{2})")
 
-	/// Default alpha for /obj/effect/turf_decal/tile
-	var/default_alpha = 110
 
 /obj/item/airlock_painter/decal/tile/paint_floor(turf/open/floor/target)
 	// Account for 8-sided decals.
@@ -574,4 +581,4 @@
 		decal_color = rgba_regex.group[1]
 		decal_alpha = text2num(rgba_regex.group[2], 16)
 
-	target.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', source_decal, stored_dir, FALSE, decal_color, null, null, decal_alpha)
+	target.AddComponent(/datum/component/decal, 'icons/turf/decals.dmi', source_decal, source_dir, FALSE, decal_color, null, null, decal_alpha)

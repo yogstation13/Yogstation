@@ -48,7 +48,7 @@ export const DecalPainter = (props, context) => {
   const supports_custom_color = !!data.supports_custom_color;
 
   // Handle custom color icon correctly
-  const preview_color = custom_color_selected ? 'custom' : data.current_color;
+  const preview_color = custom_color_selected ? data.current_custom_color : data.current_color;
 
   return (
     <Window width={550} height={400}>
@@ -78,7 +78,7 @@ export const DecalPainter = (props, context) => {
           )}
         </Section>
         <Section title="Decal Style">
-          <Flex direction="row" wrap="nowrap" align="fill" justify="fill">
+          <Section direction="row" wrap="nowrap" align="fill" justify="fill">
             {data.decal_list.map((decal) => {
               const nondirectional = data.nondirectional_decals.includes(
                 decal.decal
@@ -96,7 +96,7 @@ export const DecalPainter = (props, context) => {
                 />
               ) : (
                 // 4 buttons for directional
-                <Flex
+                <Section
                   key={decal.decal}
                   direction="column"
                   wrap="nowrap"
@@ -118,10 +118,10 @@ export const DecalPainter = (props, context) => {
                       />
                     );
                   })}
-                </Flex>
+                </Section>
               );
             })}
-          </Flex>
+          </Section>
         </Section>
       </Window.Content>
     </Window>
