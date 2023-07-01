@@ -539,6 +539,7 @@
 	assignedrole = "Icemoon Syndicate"
 
 /datum/outfit/syndicate_empty/icemoon_base
+	name = "Syndicate Icemoon Outpost Agent"
 	uniform = /obj/item/clothing/under/syndicate/coldres
 	suit = /obj/item/clothing/suit/armor/vest
 	l_pocket = /obj/item/gun/ballistic/automatic/pistol
@@ -554,6 +555,7 @@
 	id_access_list = list(150,151)
 
 /datum/outfit/syndicate_empty/icemoon_base/captain
+	name = "Syndicate Icemoon Outpost Commander"
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber/red
 	mask = /obj/item/clothing/mask/chameleon/gps
