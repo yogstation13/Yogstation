@@ -1,0 +1,7 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "Disables Psych again for the NVS Gax"
+  - mapping: "Adds a few misc. items to Security on the NVS Gax"
+  - mapping: "Adds camera and recorder to Detective's Office on the NVS Gax"
+  - mapping: "Adds interrogation monitor to NVS Gax"
