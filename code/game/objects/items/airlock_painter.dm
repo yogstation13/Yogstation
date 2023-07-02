@@ -223,7 +223,11 @@
 		list("North", NORTH),
 		list("South", SOUTH),
 		list("East", EAST),
-		list("West", WEST)
+		list("West", WEST),
+		list("NorthEast", NORTHEAST),
+		list("NorthWest", NORTHWEST),
+		list("SouthEast", SOUTHEAST),
+		list("SouthWest", SOUTHWEST)
 	)
 	/// List of decal options as list(user-friendly label, icon state base value to return)
 	var/decal_list = list(list("Warning Line","warningline"),
