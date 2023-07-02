@@ -455,6 +455,8 @@ LAW_WEIGHT robocop,0
 ION_LAW_WEIGHT robocop,2
 LAW_WEIGHT ceo,4
 ION_LAW_WEIGHT ceo,1
+LAW_WEIGHT educator,2
+ION_LAW_WEIGHT educator,2
 
 ## Quirky laws. Shouldn't cause too much harm
 LAW_WEIGHT hippocratic,0
