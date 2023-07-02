@@ -1,0 +1,4 @@
+author: "Marmio64"
+delete-after: true 
+changes: 
+  - tweak: "photogeists can now heal non plantlike creatures, though at a far reduced rate."
