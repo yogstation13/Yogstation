@@ -1,0 +1,6 @@
+author: "Addust"
+delete-after: true 
+changes: 
+  - bugfix: "listening post cayenne is now violent as god intended"
+  - bugfix: "listening post window shutters now less janky"
+  - rscadd: "listening post can now get everything needed to make an electric chair without admin intervention or space exploration intervention"
