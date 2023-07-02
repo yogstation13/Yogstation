@@ -671,7 +671,6 @@
 /area/ruin/space/has_grav/listeningstation)
 "ev" = (
 /obj/structure/table/reinforced,
-/obj/item/stamp/syndiround,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -1634,6 +1633,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/listeningstation/quarters)
+"uf" = (
+/obj/effect/turf_decal/tile/red/half/contrasted,
+/obj/structure/table/reinforced,
+/obj/item/stamp/syndiround,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/listeningstation/hallway)
 "um" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "150"
@@ -2521,6 +2526,8 @@
 "Nn" = (
 /obj/effect/turf_decal/tile/red/half/contrasted,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/phone/real/syndicate_ruin,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
 "No" = (
@@ -4083,7 +4090,7 @@ WK
 se
 WK
 Es
-qU
+uf
 UC
 dc
 XB
