@@ -259,7 +259,7 @@
 	value = -2
 	mob_trait = TRAIT_POOR_AIM
 	medical_record_text = "Patient possesses a strong tremor in both hands."
-	
+
 /datum/quirk/poor_aim/add()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.dna.species.aiminginaccuracy += 25
@@ -761,11 +761,10 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/has_flesh = (HAS_FLESH in species.species_traits)
-	var/no_blood = (NOBLOOD in species.species_traits)
+	var/disallowed_trait = (NOBLOOD in species.species_traits)
 	qdel(species)
 
-	if(has_flesh || no_blood)
+	if(disallowed_trait)
 		return "You can't bleed."
 	return ..()
 
@@ -813,7 +812,7 @@
 	value = -1
 	mob_trait = TRAIT_BADMAIL
 
-/datum/quirk/telomeres_short 
+/datum/quirk/telomeres_short
 	name = "Short Telomeres"
 	desc = "Due to hundreds of cloning cycles, your DNA's telomeres are dangerously shortened. Your DNA can't support cloning without expensive DNA restructuring, and what's worse- you work for Nanotrasen."
 	icon = "magnifying-glass-minus"

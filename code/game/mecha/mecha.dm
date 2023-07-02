@@ -135,6 +135,7 @@
 	var/canstrafe = TRUE
 	var/nextsmash = 0
 	var/smashcooldown = 3	//deciseconds
+	var/ejection_distance = 0 //violently ejects the pilot when destroyed
 
 	var/occupant_sight_flags = 0 //sight flags to give to the occupant (e.g. mech mining scanner gives meson-like vision)
 	var/mouse_pointer
@@ -178,8 +179,9 @@
 	return cell
 
 /obj/mecha/Destroy()
-	if(occupant)
-		occupant.SetSleeping(destruction_sleep_duration)
+	var/mob/living/carbon/C = occupant
+	if(C && !ejection_distance)
+		C.SetSleeping(destruction_sleep_duration)
 	go_out()
 	var/mob/living/silicon/ai/AI
 	for(var/mob/M in src) //Let's just be ultra sure
@@ -188,6 +190,9 @@
 			AI = M //AIs are loaded into the mech computer itself. When the mech dies, so does the AI. They can be recovered with an AI card from the wreck.
 		else
 			M.forceMove(loc)
+	if(C && ejection_distance)
+		var/turf/target = get_edge_target_turf(C, dir)
+		C.throw_at(target, 10, 1)
 	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 		E.detach(loc)
 		qdel(E)

@@ -177,7 +177,7 @@
 	taste_mult = 1.5 // stop sugar drowning out other flavours
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	metabolization_rate = 2 * REAGENTS_METABOLISM
-	overdose_threshold = 200 // Hyperglycaemic shock
+	overdose_threshold = 100 // Hyperglycaemic shock
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
@@ -750,6 +750,16 @@
 		if(istype(stomach))
 			stomach.adjust_charge(reac_volume * REM * ETHEREAL_CHARGE_SCALING_MULTIPLIER)
 
+/datum/reagent/consumable/liquidelectricity/reaction_turf(turf/T, reac_volume)//splash the electric "blood" all over the place
+	if(!istype(T))
+		return
+	if(reac_volume < 3)
+		return
+
+	var/obj/effect/decal/cleanable/whiteblood/ethereal/B = locate() in T //find some blood here
+	if(!B)
+		B = new(T)
+
 /datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
 	if(prob(25) && !isethereal(M))
 		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
@@ -804,25 +814,25 @@
 /datum/reagent/consumable/mesophilicculture
 	name = "mesophilic culture"
 	description = "A mixture of mesophilic bacteria used to make most cheese."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#F3CE3A" // rgb: 243, 206, 58
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/thermophilicculture
 	name = "thermophilic culture"
 	description = "A mixture of thermophilic bacteria used to make some cheese."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#FFE682" // rgb: 255, 230, 130
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/penicilliumcandidum
 	name = "penicillium candidum"
 	description = "A special bacterium used to make brie."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#E9ECD5" // rgb: 233, 236, 213
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/penicilliumroqueforti
 	name = "penicillium roqueforti"
 	description = "A special bacterium used to make blue cheese."
-	color = "#365E30" // rgb: 54, 94, 48
+	color = "#829BB3" // rgb: 130, 155, 179
 	taste_description = "bitterness"
 
 /datum/reagent/consumable/parmesan_delight

@@ -466,7 +466,7 @@
 	icon = 'icons/obj/lollipop.dmi'
 	icon_state = "gumball"
 	list_reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/medicine/c2/libital = 2, /datum/reagent/medicine/c2/aiuri = 2)	//Kek
-	tastes = list("candy")
+	tastes = list("candy" = 1)
 	foodtype = JUNKFOOD
 
 /obj/item/reagent_containers/food/snacks/gumball/Initialize(mapload)
@@ -523,6 +523,17 @@
 	filling_color = "#FFD700"
 	tastes = list("butter" = 1)
 	foodtype = DAIRY
+	slice_path = /obj/item/reagent_containers/food/snacks/butterslice
+	slices_num = 4
+
+/obj/item/reagent_containers/food/snacks/butterslice
+	name = "slice of butter"
+	desc = "A slice of delicious, golden, fatty goodness."
+	icon_state = "butter_slice"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	filling_color = "#FFD700"
+	tastes = list("butter" = 1)
+	foodtype = DAIRY
 
 /obj/item/reagent_containers/food/snacks/onionrings
 	name = "onion rings"
@@ -569,4 +580,3 @@
 	desc = "A can of peaches, perhaps stashed here long ago to hide them from the wizards."
 	icon_state = "peachcanmaint"
 	tastes = list("peaches" = 1, "tin" = 7)
-

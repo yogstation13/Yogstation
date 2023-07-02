@@ -278,3 +278,20 @@
 	filling_color = "#FFD700"
 	tastes = list("cake" = 5, "sweetness" = 1, "pumpkin" = 1)
 	foodtype = GRAIN | DAIRY | VEGETABLES | SUGAR
+
+/obj/item/reagent_containers/food/snacks/store/cake/wedding
+	name = "wedding cake"
+	desc = "An expensive, multi-tiered cake."
+	icon_state = "weddingcake"
+	slices_num = 10
+	slice_path = /obj/item/reagent_containers/food/snacks/cakeslice/wedding
+	list_reagents = list(/datum/reagent/consumable/nutriment = 40, /datum/reagent/consumable/nutriment/vitamin = 10, /datum/reagent/consumable/sugar = 30)
+	tastes = list("cake" = 5, "sweetness" = 2, "frosting" = 1)
+	foodtype = GRAIN | DAIRY | SUGAR
+
+/obj/item/reagent_containers/food/snacks/cakeslice/wedding
+	name = "wedding cake slice"
+	desc = "Traditionally, those getting married feed each other a slice of cake."
+	icon_state = "weddingcake_slice"
+	tastes = list("cake" = 3, "frosting" = 1)
+	foodtype = GRAIN | DAIRY | SUGAR

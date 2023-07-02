@@ -36,7 +36,7 @@
 	var/currentplate = 0 //how much damage the current plate has taken
 
 /datum/martial_art/worldbreaker/can_use(mob/living/carbon/human/H)
-	if(H.stat == DEAD || H.IsUnconscious() || H.IsFrozen() || HAS_TRAIT(H, TRAIT_PACIFISM))
+	if(H.stat || H.IsFrozen() || HAS_TRAIT(H, TRAIT_PACIFISM))
 		return FALSE
 	return ispreternis(H)
 
@@ -48,7 +48,7 @@
 
 /datum/martial_art/worldbreaker/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/target)
 	var/list/modifiers = params2list(params)
-	if(!(can_use(H)) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
+	if(!can_use(H) || (modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"]))
 		return
 
 	if(H.a_intent == INTENT_DISARM)
@@ -65,6 +65,7 @@
 
 	if(!H.Adjacent(target) || H==target)
 		return
+
 	if(H.a_intent == INTENT_HARM && isliving(target))
 		pummel(H,target)
 	if(H.a_intent == INTENT_GRAB)
