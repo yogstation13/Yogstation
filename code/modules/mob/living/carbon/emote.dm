@@ -126,3 +126,8 @@
 
 /datum/emote/living/snap/get_sound(mob/living/user)
 	return pick('sound/misc/fingersnap1.ogg', 'sound/misc/fingersnap2.ogg')
+
+/datum/emote/living/mond
+	key = "mond"
+	key_third_person = "monds"
+	message = "monds"
