@@ -48,7 +48,7 @@ export const DecalPainter = (props, context) => {
   const supports_custom_color = !!data.supports_custom_color;
 
   // Handle custom color icon correctly
-  const preview_color = custom_color_selected ? data.current_custom_color : data.current_color;
+  const preview_color = custom_color_selected ? 'custom' : data.current_color;
 
   return (
     <Window width={550} height={400}>

@@ -481,7 +481,7 @@
 	/// The floor icon state used for blend_preview_floor()
 	var/preview_floor_state = "floor"
 	/// The associated decal painter type to grab decals, colors, etc from.
-	var/obj/item/airlock_painter/decal/painter_type = /obj/item/airlock_painter/decal
+	var/painter_type = /obj/item/airlock_painter/decal
 
 /**
  * Underlay an example floor for preview purposes, and return the new icon.
@@ -545,7 +545,6 @@
 	var/icon/colored_icon = icon('icons/turf/decals.dmi', source_decal, dir=source_dir)
 	colored_icon.ChangeOpacity(render_alpha * 0.008)
 	if(color == "custom")
-		// Do a fun rainbow pattern to stand out while still being static.
 		colored_icon.Blend(icon('icons/effects/random_spawners.dmi', "rainbow"), ICON_MULTIPLY)
 	else
 		colored_icon.Blend(render_color, ICON_MULTIPLY)
