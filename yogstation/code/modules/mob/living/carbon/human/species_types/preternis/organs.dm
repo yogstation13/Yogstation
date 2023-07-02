@@ -6,6 +6,7 @@
 	//preternis eyes need to be powered by a preternis to function, in a non preternis they slowly power down to blindness
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = ORGANIC | SYNTHETIC
 
 	low_threshold_passed = span_info("Your Preternis eyes switch to battery saver mode.")
 	high_threshold_passed = span_info("Your Preternis eyes only show a sliver of battery life left!")
@@ -106,6 +107,7 @@
 	icon_state = "stomach-c"
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = ORGANIC | SYNTHETIC // let IPCs eat rocks too!
 
 /obj/item/organ/stomach/preternis/on_life()
 	. = ..()

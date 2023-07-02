@@ -18,7 +18,7 @@
 	limbs_id = "synth"
 	toxmod = 0
 	clonemod = 0
-	reagent_tag = PROCESS_SYNTHETIC
+	process_flags = SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'

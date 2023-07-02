@@ -389,7 +389,7 @@
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	color = "#009CA8" // rgb: 0, 156, 168
 	taste_description = "cherry" // by popular demand
-	process_flags = PROCESS_ORGANIC | PROCESS_SYNTHETIC
+	process_flags = ORGANIC | SYNTHETIC
 	metabolization_rate = 2 * REAGENTS_METABOLISM // Double speed
 
 

@@ -254,6 +254,7 @@
 	name = "robotic voicebox"
 	desc = "A voice synthesizer that can interface with organic lifeforms."
 	status = ORGAN_ROBOTIC
+	process_flags = ORGANIC | SYNTHETIC
 	organ_flags = ORGAN_SYNTHETIC
 	icon_state = "tonguerobot"
 	say_mod = "states"

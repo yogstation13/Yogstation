@@ -267,6 +267,7 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain-ipc"
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = SYNTHETIC
 
 /obj/item/organ/brain/positron/emp_act(severity)
 	if(prob(25))

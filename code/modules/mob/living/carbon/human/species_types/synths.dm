@@ -9,7 +9,7 @@
 	meat = null
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
-	reagent_tag = PROCESS_SYNTHETIC //can now process chems that a robot would be able to process, because they're robots
+	process_flags = SYNTHETIC //can now process chems that a robot would be able to process, because they're robots
 	var/disguise_fail_health = 75 //When their health gets to this level their synthflesh partially falls off
 	var/datum/species/fake_species //a species to do most of our work for us, unless we're damaged
 	var/list/initial_species_traits //for getting these values back for assume_disguise()
