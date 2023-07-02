@@ -1,6 +1,6 @@
 /obj/machinery/launchpad
-	name = "bluespace launchpad"
-	desc = "A bluespace pad able to thrust matter through bluespace, teleporting it to or from nearby locations."
+	name = "telecrystal launchpad"
+	desc = "A telecrystal launchpad able to thrust matter through bluespace, teleporting it to or from nearby locations."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "lpad-idle"
 	use_power = TRUE
