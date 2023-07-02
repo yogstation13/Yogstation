@@ -12,8 +12,8 @@
 	mutanteyes = /obj/item/organ/eyes/robotic
 	mutanttongue = /obj/item/organ/tongue/robot
 	mutantliver = /obj/item/organ/liver/cybernetic/upgraded/ipc
-	mutantstomach = /obj/item/organ/stomach/cybernetic	//Is there even anything an android would use a stomach for?
-	mutantears = /obj/item/organ/ears/cybernetic
+	mutantstomach = /obj/item/organ/stomach/cell	//Is there even anything an android would use a stomach for?
+	mutantears = /obj/item/organ/ears/robot
 	species_language_holder = /datum/language_holder/synthetic
 	limbs_id = "synth"
 	toxmod = 0
