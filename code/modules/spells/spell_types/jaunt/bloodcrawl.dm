@@ -15,7 +15,7 @@
 	spell_requirements = NONE
 
 	/// The time it takes to enter blood
-	var/enter_blood_time = 0 SECONDS
+	var/enter_blood_time = 1 SECONDS
 	/// The time it takes to exit blood
 	var/exit_blood_time = 2 SECONDS
 	/// The radius around us that we look for blood in

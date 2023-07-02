@@ -10,7 +10,7 @@
 
 /obj/effect/dummy/crawling/relaymove(mob/user, direction)
 	forceMove(get_step(src,direction))
-	
+
 /obj/effect/dummy/crawling/ex_act()
 	return
 /obj/effect/dummy/crawling/bullet_act()
@@ -53,6 +53,8 @@
 		start_crawling(target, M)
 
 /datum/component/crawl/proc/can_start_crawling(atom/target, mob/living/user)
+	if(!do_after(user, 1 SECONDS, target))
+		return FALSE
 	if(!user.Adjacent(target))
 		return FALSE
 	return !user.notransform
