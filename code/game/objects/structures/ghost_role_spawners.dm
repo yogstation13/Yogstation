@@ -539,12 +539,50 @@
 	assignedrole = "Icemoon Syndicate"
 
 /datum/outfit/syndicate_empty/icemoon_base
-	name = "Syndicate Icemoon Outpost Agent"
+	name = "Generic Syndicate Icemoon Outpost Agent"
 	uniform = /obj/item/clothing/under/syndicate/coldres
 	suit = /obj/item/clothing/suit/armor/vest
 	l_pocket = /obj/item/gun/ballistic/automatic/pistol
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
 	mask = /obj/item/clothing/mask/gas/syndicate
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/security
+	name = "Syndicate Outpost Security Officer"
+	short_desc = "You are a security officer at the Syndicate icemoon outpost."
+	flavour_text = "Protect the outpost at all costs and prevent its destruction by any means necessary."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base/security
+
+/datum/outfit/syndicate_empty/icemoon_base/security
+	name = "Syndicate Icemoon Outpost Security Guard"
+	r_hand = /obj/item/gun/ballistic/automatic/c20r/ultrasecure //get fucked in every single comprehensible way.
+	head = /obj/item/clothing/head/helmet/swat
+	mask = /objk/item/clothing/mask/gas
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/sci
+	name = "Syndicate Outpost Researcher"
+	short_desc = "You are a researcher at the Syndicate icemoon outpost."
+	flavour_text = "Perform research for the sake of the Syndicate and advance technology."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base/scientist
+
+/datum/outfit/syndicate_empty/icemoon_base/scientist
+	name = "Syndicate Icemoon Outpost Scientist"
+	r_hand = /obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure //get fucked in every single comprehensible way.
+	suit = /obj/item/clothing/suit/toggle/labcoat
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/engineer
+	name = "Syndicate Outpost Engineer"
+	short_desc = "You are an engineer at the Syndicate icemoon outpost."
+	flavour_text = "Maintain and upgrade the base's systems and equipment."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base/engineer
+
+/datum/outfit/syndicate_empty/icemoon_base/engineer
+	name = "Syndicate Icemoon Outpost Engineer"
+	belt = /obj/item/storage/belt/utility/chief/full
+	suit = /obj/item/clothing/suit/hazardvest
+	head = /obj/item/clothing/head/hardhat/weldhat
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/commander
 	name = "Syndicate Outpost Commander"
