@@ -18,6 +18,7 @@
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
 	status_flags = CANPUSH
+	move_resist = MOVE_FORCE_STRONG
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	var/feast_sound = 'sound/magic/demon_consume.ogg'
 	deathsound = 'sound/magic/demon_dies.ogg'
