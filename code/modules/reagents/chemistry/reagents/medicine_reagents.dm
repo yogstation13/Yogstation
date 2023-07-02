@@ -449,9 +449,10 @@
 	process_flags = SYNTHETIC
 
 /datum/reagent/medicine/system_cleaner/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
-	for(var/thing in L.diseases)//lets it cure viruses from IPC
-		var/datum/disease/D = thing
-		D.cure()
+	if(!(L.get_process_flags() & ORGANIC))
+		for(var/thing in L.diseases) // can clean viruses from fully synthetic hosts
+			var/datum/disease/D = thing
+			D.cure()
 
 /datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/M)
 	M.adjustToxLoss(-2*REM, 0)
@@ -469,6 +470,9 @@
 	process_flags = SYNTHETIC
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/M)
+	var/obj/item/organ/O = M.getorganslot(ORGAN_SLOT_BRAIN)
+	if(!(O.organ_flags & ORGAN_SYNTHETIC)) // don't heal organic brains in partially synthetic mobs
+		return ..()
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3*REM)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
