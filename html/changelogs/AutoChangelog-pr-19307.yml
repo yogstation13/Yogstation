@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Moved Stormtrooper, TRAC, Vatra, DRAGnet crates to Security category"
-  - tweak: "Vatra crate is now loaded with rubber bullets"

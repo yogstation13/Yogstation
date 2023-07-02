@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Players will no longer by IC muted by casting spells"

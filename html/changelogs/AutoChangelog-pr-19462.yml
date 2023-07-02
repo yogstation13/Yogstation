@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - bugfix: "welding yourself requires the correct amount of flash protection"
-  - tweak: "robotic healing is faster but heals less each time"
