@@ -25,8 +25,10 @@
 	damage_overlay_type = "synth"
 	limbs_id = "synth"
 	payday_modifier = 0.3 //Mass producible labor + robot, lucky to be paid at all
-	burnmod = 1.35 // easily cut by laser cutters and welding tools to speed up manufacturing
-	tempmod = 1.5 // metal is more thermally conductive than flesh, heats up more when on fire
+	pressuremod = 0.5 // from the moment i understood the weakness of my flesh it disgusted me
+	heatmod = 0.5 // and i yearned for the certainty of steel
+	burnmod = 1.25 // easily cut by laser cutters and welding tools to speed up manufacturing
+	tempmod = 2 // metal is more thermally conductive than flesh, heats up more when on fire
 	acidmod = 2 // go look up "acid etching"
 	brutemod = 1
 	oxymod = 0 // what the fuck?
@@ -69,8 +71,6 @@
 		change_screen = new
 		change_screen.Grant(C)
 	for(var/obj/item/bodypart/O in C.bodyparts)
-		O.brute_reduction = 1 // made of metal, tiny amount of flat reduction (same as preternis)
-		O.burn_reduction = 2
 		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 		var/chassis = C.dna.features["ipc_chassis"]
 		var/datum/sprite_accessory/ipc_chassis/chassis_of_choice = GLOB.ipc_chassis_list[chassis]
@@ -82,10 +82,6 @@
 
 /datum/species/ipc/on_species_loss(mob/living/carbon/C)
 	. = ..()
-	for(var/obj/item/bodypart/O in C.bodyparts)
-		O.brute_reduction = initial(O.brute_reduction) // no you don't get to keep it
-		O.burn_reduction = initial(O.burn_reduction)
-		O.render_like_organic = initial(O.render_like_organic)
 	QDEL_NULL(C.particles)
 	if(change_screen)
 		change_screen.Remove(C)
