@@ -9942,18 +9942,6 @@
 "bwe" = (
 /turf/closed/wall,
 /area/security/checkpoint/supply)
-"bwo" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "bwq" = (
 /obj/machinery/shieldwallgen,
 /obj/effect/turf_decal/bot,
@@ -12927,29 +12915,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
-/area/medical/virology)
-"bXt" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
-	id = "viropen";
-	name = "Monkey Pen Shutters"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating,
 /area/medical/virology)
 "bXx" = (
 /obj/machinery/door/firedoor/border_only{
@@ -17711,6 +17676,26 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+"dsj" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "viropen";
+	name = "Monkey Pen Shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/medical/virology)
 "dss" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -22718,18 +22703,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"fju" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "fjz" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
@@ -27350,6 +27323,13 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
+"gWN" = (
+/obj/structure/closet/secure_closet/psych,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "gXs" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -33342,9 +33322,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos/distro)
-"jhe" = (
-/turf/closed/wall/r_wall,
-/area/medical/storage)
 "jhp" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -48632,6 +48609,18 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/ai_monitored/turret_protected/ai)
+"pkD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "pkF" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -52526,6 +52515,18 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"qIv" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "qIz" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel/white,
@@ -69263,13 +69264,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
-"xou" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/structure/closet/secure_closet/psych,
-/turf/open/floor/wood,
-/area/medical/psych)
 "xoz" = (
 /obj/machinery/space_heater,
 /obj/effect/turf_decal/stripes/corner{
@@ -109175,7 +109169,7 @@ jdO
 qHL
 jdO
 jdO
-jhe
+jdO
 bHk
 cmL
 cmL
@@ -109432,7 +109426,7 @@ mFt
 iTq
 eVb
 nSJ
-jhe
+jdO
 xkZ
 aSI
 bAw
@@ -109689,7 +109683,7 @@ euX
 vbv
 pUL
 pKl
-jhe
+jdO
 oGk
 ghg
 wea
@@ -109946,11 +109940,11 @@ ugf
 nBj
 ngi
 iyt
-jhe
-jxu
-jxu
-jxu
-jxu
+jdO
+aDR
+aDR
+aDR
+aDR
 eoJ
 avy
 avy
@@ -110207,7 +110201,7 @@ jdO
 cQo
 hpd
 gRT
-jxu
+aDR
 bSN
 pYm
 pYm
@@ -110461,10 +110455,10 @@ jdO
 jdO
 jdO
 jdO
-xou
+gWN
 fyq
 tly
-jxu
+aDR
 xpC
 hEv
 bAw
@@ -110719,7 +110713,7 @@ lMs
 cFP
 wfd
 qns
-bwo
+qIv
 vtO
 jxu
 bNd
@@ -110976,7 +110970,7 @@ jyi
 bDB
 gjv
 btY
-fju
+pkD
 pxM
 jxu
 qYx
@@ -111491,9 +111485,9 @@ wwp
 xnn
 aDR
 aDR
-aDR
 jxu
-bXt
+jxu
+dsj
 xWw
 bNd
 vzb
@@ -111748,7 +111742,7 @@ mOU
 hxw
 hxw
 kua
-xGG
+bNd
 eHY
 tpA
 nUI
