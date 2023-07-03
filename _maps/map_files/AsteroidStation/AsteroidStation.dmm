@@ -15975,6 +15975,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"eqa" = (
+/obj/effect/turf_decal/trimline/yellow/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "eqh" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -17449,6 +17455,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"ePf" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "ePs" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
@@ -29211,6 +29229,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"iLQ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/turf_decal/trimline/yellow/filled/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "iMf" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -33885,16 +33910,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"knp" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/effect/turf_decal/trimline/yellow/filled/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "kns" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance/two,
@@ -69894,15 +69909,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
-"wbA" = (
-/obj/effect/turf_decal/trimline/yellow/filled/warning{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "wbF" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 4
@@ -71175,21 +71181,6 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/maintenance/central)
-"wyB" = (
-/obj/machinery/status_display/evac{
-	pixel_y = 32
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "wyL" = (
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
@@ -96012,7 +96003,7 @@ fFP
 fFP
 fFP
 fFP
-knp
+iLQ
 ajn
 qbl
 aTp
@@ -96269,7 +96260,7 @@ xSo
 tJy
 ibk
 end
-wbA
+eqa
 sZm
 jsQ
 aPk
@@ -96526,7 +96517,7 @@ fFP
 fFP
 fFP
 fFP
-wyB
+ePf
 sZm
 aZG
 aPk
