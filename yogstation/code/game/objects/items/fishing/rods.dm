@@ -46,8 +46,8 @@
 	if(bite)
 		to_chat(fisher, span_warning("Whatever was on the line drifts back into the deep..."))
 		bite = FALSE
-		fishing_turf.cut_overlay(bobber_down)
-		fishing_turf.add_overlay(bobber)
+		fishing_component.parent.cut_overlay(bobber_down)
+		fishing_component.parent.add_overlay(bobber)
 		return
 
 	var/power = 0
@@ -57,8 +57,8 @@
 	if(prob(fishing_power + power))
 		to_chat(fisher, span_boldnotice("Something bites! Reel it in!"))
 		bite = TRUE
-		fishing_turf.cut_overlay(bobber)
-		fishing_turf.add_overlay(bobber_down)
+		fishing_component.parent.cut_overlay(bobber)
+		fishing_component.parent.add_overlay(bobber_down)
 		do_fishing_alert(fisher)
 
 /obj/item/twohanded/fishingrod/Destroy()
