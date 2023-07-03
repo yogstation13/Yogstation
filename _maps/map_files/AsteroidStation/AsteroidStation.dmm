@@ -10551,14 +10551,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
-"cCl" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/structure/closet/secure_closet/psych,
-/turf/open/floor/wood,
-/area/medical/psych)
 "cCz" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -27205,6 +27197,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"icH" = (
+/obj/structure/window{
+	dir = 4
+	},
+/obj/machinery/door/window{
+	base_state = "right";
+	icon_state = "right";
+	name = "Filing Room";
+	req_access_txt = "77"
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "ida" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -34749,29 +34753,6 @@
 /obj/effect/turf_decal/trimline/red/filled/warning,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary)
-"kAU" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/structure/table/wood,
-/obj/item/lighter{
-	pixel_x = -6;
-	pixel_y = -3
-	},
-/obj/item/flashlight/lamp/green{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/taperecorder{
-	pixel_x = 4;
-	pixel_y = -5
-	},
-/obj/item/laser_pointer{
-	pixel_x = -4;
-	pixel_y = -10
-	},
-/turf/open/floor/carpet,
-/area/medical/psych)
 "kBc" = (
 /obj/effect/turf_decal/trimline/green/filled/warning{
 	dir = 8
@@ -35122,6 +35103,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"kHe" = (
+/obj/structure/filingcabinet,
+/obj/structure/window{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/medical/psych)
 "kHg" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -39270,6 +39258,14 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"meI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/closet/secure_closet/psych,
+/obj/structure/window{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "meM" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
@@ -40971,6 +40967,29 @@
 /obj/structure/table/wood,
 /turf/open/floor/plating/beach/sand,
 /area/crew_quarters/bar)
+"mIZ" = (
+/obj/structure/table/wood,
+/obj/item/lighter{
+	pixel_x = -6;
+	pixel_y = -3
+	},
+/obj/item/flashlight/lamp/green{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/taperecorder{
+	pixel_x = 4;
+	pixel_y = -5
+	},
+/obj/item/laser_pointer{
+	pixel_x = -4;
+	pixel_y = -10
+	},
+/obj/structure/window{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/medical/psych)
 "mJf" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -53433,13 +53452,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
-"qDC" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/structure/filingcabinet,
-/turf/open/floor/carpet,
-/area/medical/psych)
 "qDJ" = (
 /obj/effect/turf_decal/tile/darkgreen{
 	dir = 1
@@ -57830,16 +57842,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/corner,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"rXe" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/machinery/door/window/brigdoor/southright{
-	name = "Filing Room";
-	req_access_txt = "77"
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "rXg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -109832,9 +109834,9 @@ avU
 kLj
 aVN
 cmB
-qDC
-kAU
-cCl
+kHe
+mIZ
+meI
 aVN
 mNt
 oQP
@@ -110088,7 +110090,7 @@ hts
 drH
 irp
 aVN
-rXe
+icH
 xIb
 yew
 olg
