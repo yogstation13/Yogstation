@@ -5028,24 +5028,6 @@
 "aRI" = (
 /turf/closed/wall,
 /area/hallway/secondary/service)
-"aRL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/warning{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/surgery)
 "aSb" = (
 /obj/machinery/gravity_generator/main/station,
 /obj/effect/turf_decal/bot_white,
@@ -6783,12 +6765,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
-"bmR" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/medical/surgery)
 "bnb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -8589,6 +8565,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"bTg" = (
+/obj/structure/window{
+	dir = 4
+	},
+/obj/machinery/door/window{
+	base_state = "right";
+	icon_state = "right";
+	name = "Filing Room";
+	req_access_txt = "77"
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "bTo" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/structure/lattice/catwalk,
@@ -11987,18 +11975,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"cZM" = (
-/obj/effect/turf_decal/trimline/blue/filled/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/medical/surgery)
 "cZS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -22402,29 +22378,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/hfr)
-"gAv" = (
-/obj/structure/table/wood,
-/obj/item/lighter{
-	pixel_x = -6;
-	pixel_y = -3
-	},
-/obj/item/flashlight/lamp/green{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/taperecorder{
-	pixel_x = 4;
-	pixel_y = -5
-	},
-/obj/item/laser_pointer{
-	pixel_x = -4;
-	pixel_y = -10
-	},
-/obj/structure/window{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/medical/psych)
 "gAA" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -24903,6 +24856,29 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/hfr)
+"hqh" = (
+/obj/structure/table/wood,
+/obj/item/lighter{
+	pixel_x = -6;
+	pixel_y = -3
+	},
+/obj/item/flashlight/lamp/green{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/taperecorder{
+	pixel_x = 4;
+	pixel_y = -5
+	},
+/obj/item/laser_pointer{
+	pixel_x = -4;
+	pixel_y = -10
+	},
+/obj/structure/window{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/medical/psych)
 "hqn" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/randomdrink,
@@ -35403,18 +35379,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"kLE" = (
-/obj/structure/window{
-	dir = 4
-	},
-/obj/machinery/door/window{
-	base_state = "right";
-	icon_state = "right";
-	name = "Filing Room";
-	req_access_txt = "77"
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "kLI" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -47029,6 +46993,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"oEL" = (
+/obj/structure/filingcabinet,
+/obj/structure/window{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/medical/psych)
 "oEN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -47623,6 +47594,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/sleeper)
+"oOt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/closet/secure_closet/psych,
+/obj/structure/window{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "oOA" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -57004,12 +56983,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
-"rKi" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/medical/surgery)
 "rKz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -64248,6 +64221,24 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/starboard)
+"uhh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/surgery)
 "uhi" = (
 /obj/machinery/light{
 	dir = 8
@@ -66895,13 +66886,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/hfr)
-"vbV" = (
-/obj/structure/filingcabinet,
-/obj/structure/window{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/medical/psych)
 "vbY" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -72323,14 +72307,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"wTU" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/closet/secure_closet/psych,
-/obj/structure/window{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "wTV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -107254,7 +107230,7 @@ bVK
 aGU
 dvQ
 ncJ
-aRL
+uhh
 dho
 mnq
 aGU
@@ -107512,9 +107488,9 @@ aGU
 aGU
 aGU
 bOi
-cZM
-bmR
-rKi
+aGU
+aGU
+aGU
 sZv
 lMI
 aPk
@@ -109831,9 +109807,9 @@ avU
 kLj
 aVN
 cmB
-vbV
-gAv
-wTU
+oEL
+hqh
+oOt
 aVN
 mNt
 oQP
@@ -110087,7 +110063,7 @@ hts
 drH
 irp
 aVN
-kLE
+bTg
 xIb
 yew
 olg
