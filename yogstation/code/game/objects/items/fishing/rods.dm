@@ -48,7 +48,7 @@
 		bite = FALSE
 		var/turf/fishing_turf = fishing_component?.parent
 		fishing_turf?.cut_overlay(bobber_down)
-		fishing_turf?.parent.add_overlay(bobber)
+		fishing_turf?.add_overlay(bobber)
 		return
 
 	var/power = 0
