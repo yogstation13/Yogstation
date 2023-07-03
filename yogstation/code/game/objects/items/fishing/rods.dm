@@ -119,11 +119,9 @@
 	animate(I, pixel_z = 32, alpha = 255, time = 2, easing = ELASTIC_EASING)
 
 /obj/item/twohanded/fishingrod/proc/spawn_reward(fishing_power = 0)
-	if(prob(14.29)) //14.29% to always fail, sorry!
-		fisher.visible_message(span_notice("[fisher] tugs on the rod and the line snaps!"), span_notice("Your line snaps! Whatever was on it sinks back into the deep."))
-		return
 	var/picked_reward = fishing_component.get_reward(fishing_power)
-	if(!picked_reward) //nothing or something messed up
+	if(prob(14.29) || !picked_reward || picked_reward == FISHING_LOOT_NOTHING) //14.29% to always fail, sorry, also handles failures.
+		fisher.visible_message(span_notice("[fisher] tugs on the rod and the line snaps!"), span_notice("Your line snaps! Whatever was on it sinks back into the deep."))
 		return
 	var/obj/reward_item = new picked_reward(fishing_component.parent)
 	reward_item.alpha = 0
