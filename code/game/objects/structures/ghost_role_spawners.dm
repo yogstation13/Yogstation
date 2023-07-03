@@ -530,7 +530,8 @@
 	mask = /obj/item/clothing/mask/cigarette/cigar/havana
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 
-/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate
+//Icemoon Syndicate. Players become research agents working under a Syndicate research station.
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate //generic version
 	name = "Syndicate Outpost Agent"
 	short_desc = "You are an agent at the Syndicate icemoon outpost."
 	flavour_text = "You are meant to work within the outpost and may take any role within the base you see fit."
@@ -558,6 +559,8 @@
 	r_hand = /obj/item/gun/ballistic/automatic/c20r/ultrasecure //get fucked in every single comprehensible way.
 	head = /obj/item/clothing/head/helmet/swat
 	mask = /objk/item/clothing/mask/gas
+	belt = /obj/item/storage/belt/security/full
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses //identify the job of whoever the fuck is breaking in at a glance
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/sci
 	name = "Syndicate Outpost Researcher"
@@ -569,7 +572,9 @@
 /datum/outfit/syndicate_empty/icemoon_base/scientist
 	name = "Syndicate Icemoon Outpost Scientist"
 	r_hand = /obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure //get fucked in every single comprehensible way.
-	suit = /obj/item/clothing/suit/toggle/labcoat
+	suit = /obj/item/clothing/suit/toggle/labcoat/scientist
+	accessory = /obj/item/clothing/accessory/armband/science
+	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd //it's a syndicate nerd
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/engineer
 	name = "Syndicate Outpost Engineer"
@@ -580,9 +585,25 @@
 
 /datum/outfit/syndicate_empty/icemoon_base/engineer
 	name = "Syndicate Icemoon Outpost Engineer"
-	belt = /obj/item/storage/belt/utility/chief/full
+	belt = /obj/item/storage/belt/utility/chief/full //mainly based off the fact that the syndie station ruin that's TM'd at the time of the ruin gives its engis this
 	suit = /obj/item/clothing/suit/hazardvest
-	head = /obj/item/clothing/head/hardhat/weldhat
+	head = /obj/item/clothing/head/hardhat
+	accessory = /obj/item/clothing/accessory/armband/engine
+	glasses = /obj/item/clothing/glasses/meson/sunglasses/ce
+
+/obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/medic
+	name = "Syndicate Outpost Doctor"
+	short_desc = "You are a medical officer at the Syndicate icemoon outpost."
+	flavour_text = "Provide medical aid to the crew of the outpost and keep them all alive."
+	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	outfit = /datum/outfit/syndicate_empty/icemoon_base/medic
+
+/datum/outfit/syndicate_empty/icemoon_base/medic
+	name = "Syndicate Icemoon Outpost Medical Officer"
+	r_hand = /obj/item/storage/firstaid/hypospray/deluxe/cmo //rapid un-hurt
+	suit = /obj/item/clothing/suit/toggle/labcoat/md //I AM A SURGEON!!
+	glasses = /obj/item/clothing/glasses/hud/health/sunglasses/cmo //rapid hurt and chemical identification
+	accessory = /obj/item/clothing/accessory/armband/medblue
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/commander
 	name = "Syndicate Outpost Commander"
@@ -594,13 +615,15 @@
 
 /datum/outfit/syndicate_empty/icemoon_base/captain
 	name = "Syndicate Icemoon Outpost Commander"
+	glasses = /obj/item/clothing/sunglasses/big //big man get big sunglasses
+	accessory = /obj/item/clothing/accessory/medal/gold //because the captain one is NT brand
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber/red
-	mask = /obj/item/clothing/mask/chameleon/gps
+	mask = /obj/item/clothing/mask/chameleon/gps //best one to give a GPS is this guy because he has a fast-firing 2-shot kill to defend his home with
 	head = /obj/item/clothing/head/HoS/beret/syndicate
-	back = /obj/item/storage/backpack/satchel/leather
+	back = /obj/item/storage/backpack/satchel/leather //LUXURY AT ITS FINEST
 	suit_store = /obj/item/gun/ballistic/revolver
-	belt = /obj/item/storage/belt/sabre
+	belt = /obj/item/storage/belt/sabre //ceremonial shamnk
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/syndicate=1, /obj/item/ammo_box/a357=2, /obj/item/melee/classic_baton/telescopic=1)
 
 //Ancient cryogenic sleepers. Players become NT crewmen from a hundred year old space station, now on the verge of collapse.

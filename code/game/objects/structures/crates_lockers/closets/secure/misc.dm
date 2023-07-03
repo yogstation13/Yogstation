@@ -65,3 +65,12 @@
 	new /obj/item/storage/box/smart_metal_foam(src)
 	for(var/i in 1 to 3)
 		new /obj/item/rcd_ammo(src)
+
+/obj/structure/closet/secure_closet/syndicate //for syndicate ruins where the crew's shit needs to at least take 5 seconds to steal
+	name = "armory closet"
+	desc = "A secure armory closet."
+	access = ACCESS_SYNDICATE
+	icon_state = "syndicate"
+
+/obj/structure/closet/secure_closet/syndicate/captain //when i eventually redesign the nukeops base the commander's beret goes here
+	access = ACCESS_SYNDICATE_LEADER
