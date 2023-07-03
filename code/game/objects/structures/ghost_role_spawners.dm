@@ -558,7 +558,7 @@
 	name = "Syndicate Icemoon Outpost Security Guard"
 	r_hand = /obj/item/gun/ballistic/automatic/c20r/ultrasecure //get fucked in every single comprehensible way.
 	head = /obj/item/clothing/head/helmet/swat
-	mask = /objk/item/clothing/mask/gas
+	mask = /obj/item/clothing/mask/gas
 	belt = /obj/item/storage/belt/security/full
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses //identify the job of whoever the fuck is breaking in at a glance
 
@@ -572,7 +572,7 @@
 /datum/outfit/syndicate_empty/icemoon_base/scientist
 	name = "Syndicate Icemoon Outpost Scientist"
 	r_hand = /obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure //get fucked in every single comprehensible way.
-	suit = /obj/item/clothing/suit/toggle/labcoat/scientist
+	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	accessory = /obj/item/clothing/accessory/armband/science
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd //it's a syndicate nerd
 
@@ -615,7 +615,7 @@
 
 /datum/outfit/syndicate_empty/icemoon_base/captain
 	name = "Syndicate Icemoon Outpost Commander"
-	glasses = /obj/item/clothing/sunglasses/big //big man get big sunglasses
+	glasses = /obj/item/clothing/glasses/sunglasses/big //big man get big sunglasses
 	accessory = /obj/item/clothing/accessory/medal/gold //because the captain one is NT brand
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber/red

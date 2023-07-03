@@ -69,8 +69,8 @@
 /obj/structure/closet/secure_closet/syndicate //for syndicate ruins where the crew's shit needs to at least take 5 seconds to steal
 	name = "armory closet"
 	desc = "A secure armory closet."
-	access = ACCESS_SYNDICATE
+	req_access = ACCESS_SYNDICATE
 	icon_state = "syndicate"
 
 /obj/structure/closet/secure_closet/syndicate/captain //when i eventually redesign the nukeops base the commander's beret goes here
-	access = ACCESS_SYNDICATE_LEADER
+	req_access = ACCESS_SYNDICATE_LEADER
