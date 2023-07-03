@@ -74,14 +74,15 @@
 
 /obj/item/card/emag/Initialize(mapload)
 	. = ..()
-	START_PROCESSING(SSobj, src)
+	if(recharge_rate != 0)
+		START_PROCESSING(SSobj, src)
 
 /obj/item/card/emag/Destroy()
-	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/card/emag/process(delta_time)
-	charges = min(charges + (recharge_rate * delta_time), max_charges)
+	charges = clamp(charges + (recharge_rate * delta_time), 0, max_charges)
 
 /obj/item/card/emag/attackby(obj/item/W, mob/user, params)
 	. = ..()
