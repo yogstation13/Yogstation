@@ -118,7 +118,7 @@
 	color = rgb(40, 130, 255)
 	max_charges = 10
 	charges = 10
-	charge_rate = 2 // UNLIMITED POWER
+	recharge_rate = 2 // UNLIMITED POWER
 	prox_check = FALSE
 
 /obj/item/card/emag/improvised
