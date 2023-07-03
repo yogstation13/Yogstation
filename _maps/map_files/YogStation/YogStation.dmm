@@ -15578,31 +15578,6 @@
 	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
-"cGg" = (
-/obj/machinery/conveyor_switch/oneway{
-	id = "packageSort2"
-	},
-/obj/machinery/camera{
-	c_tag = "Cargo Delivery Office";
-	dir = 4
-	},
-/obj/machinery/requests_console{
-	department = "Cargo Bay";
-	departmentType = 2;
-	pixel_x = -30
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/brown/warning/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/sorting)
 "cGw" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/supply/visible,
@@ -22730,6 +22705,19 @@
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"fki" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "disposalshutter"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "disposalshutters"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/sorting)
 "fkk" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -29156,17 +29144,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
-"hGf" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "packageSort2"
-	},
-/obj/structure/plasticflaps,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/quartermaster/sorting)
 "hGy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -31114,25 +31091,6 @@
 /obj/item/reagent_containers/pill/patch/silver_sulf,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
-"iqB" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/brown/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/quartermaster/sorting)
 "iqG" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -34819,17 +34777,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"jOw" = (
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/sorting)
 "jOz" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -37736,6 +37683,19 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"laX" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "disposalshutters";
+	name = "disposals shutter control";
+	pixel_x = -24;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
 "lbD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -44507,22 +44467,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"nES" = (
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2.9
-	},
-/obj/structure/table/reinforced,
-/obj/item/destTagger,
-/obj/item/destTagger,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/brown/warning/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/sorting)
 "nFd" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
@@ -45957,22 +45901,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"omc" = (
-/obj/structure/table/reinforced,
-/obj/item/hand_labeler{
-	pixel_y = 8
-	},
-/obj/item/hand_labeler{
-	pixel_y = 8
-	},
-/obj/item/storage/box,
-/obj/item/storage/box,
-/obj/item/storage/box,
-/obj/effect/turf_decal/trimline/brown/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/sorting)
 "omk" = (
 /turf/template_noop,
 /area/maintenance/fore)
@@ -53616,6 +53544,23 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/security/prison/hallway)
+"rfm" = (
+/obj/structure/table/reinforced,
+/obj/item/hand_labeler{
+	pixel_y = 8
+	},
+/obj/item/hand_labeler{
+	pixel_y = 8
+	},
+/obj/item/storage/box,
+/obj/item/storage/box,
+/obj/item/storage/box,
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 4
+	},
+/obj/item/destTagger,
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
 "rfp" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/machinery/light,
@@ -58538,6 +58483,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
+"tcM" = (
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/structure/table/reinforced,
+/obj/item/destTagger,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/brown/warning/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
 "tdw" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
@@ -65456,6 +65416,28 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/science/nanite)
+"vNB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/brown/filled/line/lower,
+/obj/machinery/airalarm{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
 "vNR" = (
 /obj/effect/landmark/blobstart,
 /obj/structure/disposalpipe/sorting/mail/flip{
@@ -66604,6 +66586,31 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"wka" = (
+/obj/machinery/conveyor_switch/oneway{
+	id = "packageSort2"
+	},
+/obj/machinery/camera{
+	c_tag = "Cargo Delivery Office";
+	dir = 4
+	},
+/obj/machinery/requests_console{
+	department = "Cargo Bay";
+	departmentType = 2;
+	pixel_x = -32
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/trimline/brown/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/brown/warning/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
 "wkd" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 8
@@ -95241,7 +95248,7 @@ kNQ
 fUQ
 bgv
 fUQ
-iqB
+vNB
 bjl
 gwQ
 phL
@@ -95495,9 +95502,9 @@ aBa
 gXs
 mof
 kOO
-cGg
+wka
 nmL
-jOw
+laX
 sjh
 bjl
 kHL
@@ -96265,8 +96272,8 @@ aBa
 aBa
 aaa
 mof
-hGf
-nES
+fki
+tcM
 bhZ
 mJV
 fIc
@@ -96524,7 +96531,7 @@ aaa
 mof
 weD
 kjt
-omc
+rfm
 exB
 iHV
 fUQ
