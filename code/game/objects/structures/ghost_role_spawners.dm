@@ -558,8 +558,8 @@
 	name = "Syndicate Icemoon Outpost Security Guard"
 	r_hand = /obj/item/gun/ballistic/automatic/c20r/ultrasecure //get fucked in every single comprehensible way.
 	head = /obj/item/clothing/head/helmet/swat
-	mask = /obj/item/clothing/mask/gas
-	belt = /obj/item/storage/belt/security/full
+	mask = /obj/item/clothing/mask/gas //i want them to look like the generic operative NPC
+	belt = /obj/item/storage/belt/security/full //take like one guy alive
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses //identify the job of whoever the fuck is breaking in at a glance
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/sci
