@@ -55,7 +55,7 @@
 			for(var/V in GLOB.player_list)
 				var/mob/M = V
 				var/turf/T = get_turf(M)
-				if((T && T.z == z) || is_servant_of_ratvar(M) || isobserver(M))
+				if((T && T.z == z) || IS_SERVANT_OF_RATVAR(M) || isobserver(M))
 					M.playsound_local(M, 'sound/machines/clockcult/ark_scream.ogg', 100, FALSE, pressure_affected = FALSE)
 			hierophant_message("<span class='big boldwarning'>The Ark is taking damage!</span>")
 	last_scream = world.time + ARK_SCREAM_COOLDOWN
@@ -82,11 +82,14 @@
 	hierophant_message("<span class='bold large_brass'>The Ark is activating! You will be transported there soon!</span>")
 	for(var/mob/M in GLOB.player_list)
 		var/turf/T = get_turf(M)
-		if(is_servant_of_ratvar(M) || isobserver(M) || (T && T.z == z))
+		if(IS_SERVANT_OF_RATVAR(M) || isobserver(M) || (T && T.z == z))
 			M.playsound_local(M, 'sound/magic/clockwork/ark_activation_sequence.ogg', 30, FALSE, pressure_affected = FALSE)
 	addtimer(CALLBACK(src, PROC_REF(let_slip_the_dogs)), 300)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/let_slip_the_dogs()
+	var/datum/team/clockcult/clock_team = locate() in GLOB.antagonist_teams
+	if(!clock_team)
+		CRASH("let_slip_the_dogs called on [src] without a clock cult team existing.")
 	spawn_animation()
 	first_sound_played = TRUE
 	active = TRUE
@@ -95,8 +98,7 @@
 	not a drill.[grace_period ? " Estimated time of appearance: [grace_period] seconds. Use this time to prepare for an attack on [station_name()]." : ""]", \
 	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg')
 	set_security_level(SEC_LEVEL_GAMMA)
-	for(var/V in SSticker.mode.servants_of_ratvar)
-		var/datum/mind/M = V
+	for(var/datum/mind/M as anything in clock_team.members)
 		if(!M || !M.current)
 			continue
 		if(ishuman(M.current))
@@ -135,8 +137,10 @@
 	addtimer(CALLBACK(src, PROC_REF(mass_recall)), 100)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/mass_recall()
-	for(var/V in SSticker.mode.servants_of_ratvar)
-		var/datum/mind/M = V
+	var/datum/team/clockcult/clock_team = locate() in GLOB.antagonist_teams
+	if(!clock_team)
+		CRASH("let_slip_the_dogs called on [src] without a clock cult team existing.")
+	for(var/datum/mind/M as anything in clock_team.members)
 		if(!M || !M.current)
 			continue
 		if(isliving(M.current) && M.current.stat != DEAD)
@@ -193,7 +197,7 @@
 			sound_to_playing_players(volume = 50, channel = CHANNEL_JUSTICAR_ARK, S = sound('sound/effects/clockcult_gateway_disrupted.ogg'))
 			for(var/mob/M in GLOB.player_list)
 				var/turf/T = get_turf(M)
-				if((T && T.z == z) || is_servant_of_ratvar(M))
+				if((T && T.z == z) || IS_SERVANT_OF_RATVAR(M))
 					M.playsound_local(M, 'sound/machines/clockcult/ark_deathrattle.ogg', 100, FALSE, pressure_affected = FALSE)
 			make_glow()
 			glow.icon_state = "clockwork_gateway_disrupted"
@@ -237,7 +241,7 @@
 	icon_state = "spatial_gateway" //cheat wildly by pretending to have an icon
 	..()
 	icon_state = initial(icon_state)
-	if(is_servant_of_ratvar(user) || isobserver(user))
+	if(IS_SERVANT_OF_RATVAR(user) || isobserver(user))
 		if(!active)
 			to_chat(user, span_big("<b>Time until the Ark's activation:</b> [DisplayTimeText(get_arrival_time())]"))
 		else
@@ -300,7 +304,7 @@
 	for(var/V in GLOB.player_list)
 		var/mob/M = V
 		var/turf/T = get_turf(M)
-		if(is_servant_of_ratvar(M) && (!T || T.z != z))
+		if(IS_SERVANT_OF_RATVAR(M) && (!T || T.z != z))
 			M.forceMove(get_step(src, SOUTH))
 			M.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash)
 			M.clear_fullscreen("flash", 5)

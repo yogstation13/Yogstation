@@ -11,11 +11,11 @@
 
 /obj/item/clockwork/component/examine(mob/user)
 	. = ..()
-	if(is_servant_of_ratvar(user) || isobserver(user))
+	if(IS_SERVANT_OF_RATVAR(user) || isobserver(user))
 		. += "<span class='[get_component_span(component_id)]'>You can activate this in your hand to break it down for power.</span>"
 
 /obj/item/clockwork/component/attack_self(mob/living/user)
-	if(is_servant_of_ratvar(user))
+	if(IS_SERVANT_OF_RATVAR(user))
 		user.visible_message(span_notice("[user] crushes [src] in [user.p_their()] hand!"), \
 		span_alloy("You crush [src], capturing its escaping energy for use as power."))
 		playsound(user, 'sound/effects/pop_expl.ogg', 50, TRUE)
@@ -24,14 +24,14 @@
 
 /obj/item/clockwork/component/pickup(mob/living/user)
 	..()
-	if(iscultist(user) || (user.mind && user.mind.holy_role))
+	if(IS_CULTIST(user) || (user.mind && user.mind.holy_role))
 		to_chat(user, "<span class='[message_span]'>[cultist_message]</span>")
 		if(user.mind && user.mind.holy_role)
 			to_chat(user, span_boldannounce("The power of your faith melts away [src]!"))
 			var/obj/item/stack/ore/slag/wrath = new /obj/item/stack/ore/slag
 			qdel(src)
 			user.put_in_active_hand(wrath)
-	if(is_servant_of_ratvar(user) && prob(20))
+	if(IS_SERVANT_OF_RATVAR(user) && prob(20))
 		var/pickedmessage = pick(servant_of_ratvar_messages)
 		to_chat(user, "<span class='[message_span]'>[servant_of_ratvar_messages[pickedmessage] ? "[text2ratvar(pickedmessage)]" : pickedmessage]</span>")
 
@@ -182,7 +182,7 @@
 
 /obj/item/clockwork/alloy_shards/examine(mob/user)
 	. = ..()
-	if(is_servant_of_ratvar(user) || isobserver(user))
+	if(IS_SERVANT_OF_RATVAR(user) || isobserver(user))
 		. += span_brass("Can be consumed by a replica fabricator as a source of power.")
 
 /obj/item/clockwork/alloy_shards/proc/replace_name_desc()

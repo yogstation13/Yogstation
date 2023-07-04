@@ -265,16 +265,16 @@
 				to_chat(user, span_warning("Sticking an empty [M.name] into the frame would sort of defeat the purpose!"))
 				return
 
-			var/mob/living/brain/BM = M.brainmob
-			if(!BM.key || !BM.mind)
+			var/mob/living/brain/brainmob = M.brainmob
+			if(!brainmob.key || !brainmob.mind)
 				to_chat(user, span_warning("The MMI indicates that their mind is completely unresponsive; there's no point!"))
 				return
 
-			if(!BM.client) //braindead
+			if(!brainmob.client) //braindead
 				to_chat(user, span_warning("The MMI indicates that their mind is currently inactive; it might change!"))
 				return
 
-			if(BM.stat == DEAD || BM.suiciding || (M.brain && (M.brain.brain_death || M.brain.suicided)))
+			if(brainmob.stat == DEAD || brainmob.suiciding || (M.brain && (M.brain.brain_death || M.brain.suicided)))
 				to_chat(user, span_warning("Sticking a dead brain into the frame would sort of defeat the purpose!"))
 				return
 
@@ -282,7 +282,7 @@
 				to_chat(user, span_warning("The MMI indicates that the brain is damaged!"))
 				return
 
-			if(is_banned_from(BM.ckey, "Cyborg") || QDELETED(src) || QDELETED(BM) || QDELETED(user) || QDELETED(M) || !Adjacent(user))
+			if(is_banned_from(brainmob.ckey, "Cyborg") || QDELETED(src) || QDELETED(brainmob) || QDELETED(user) || QDELETED(M) || !Adjacent(user))
 				if(!QDELETED(M))
 					to_chat(user, span_warning("This [M.name] does not seem to fit!"))
 				return
@@ -319,9 +319,7 @@
 					O.make_laws()
 					to_chat(user,span_warning("Any laws uploaded to this MMI have not been transferred!"))
 
-			SSticker.mode.remove_antag_for_borging(BM.mind)
-			if(!istype(M.laws, /datum/ai_laws/ratvar))
-				remove_servant_of_ratvar(BM, TRUE)
+			brainmob.mind?.remove_antags_for_borging()
 
 			O.job = "Cyborg"
 
@@ -335,9 +333,9 @@
 
 			REMOVE_TRAIT(O, TRAIT_PACIFISM, POSIBRAIN_TRAIT) // remove the posibrain's pacifism
 
-			O.updatename(BM.client)
+			O.updatename(brainmob.client)
 
-			BM.mind.transfer_to(O)
+			brainmob.mind.transfer_to(O)
 
 			if(O.mind && O.mind.special_role)
 				O.mind.store_memory("As a cyborg, you must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead.")

@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(scripture_states,scripture_states_init_value()) //list of clock
 	if(G && !G.active && combat_construct && is_reebe(invoker.z) && !confirmed) //Putting marauders on the base during the prep phase is a bad idea mmkay
 		if(alert(invoker, "This is a combat construct, and you cannot easily get it to the station. Are you sure you want to make one here?", "Construct Alert", "Yes", "Cancel") == "Cancel")
 			return
-		if(!is_servant_of_ratvar(invoker) || !invoker.canUseTopic(slab))
+		if(!IS_SERVANT_OF_RATVAR(invoker) || !invoker.canUseTopic(slab))
 			return
 		confirmed = TRUE
 	return TRUE

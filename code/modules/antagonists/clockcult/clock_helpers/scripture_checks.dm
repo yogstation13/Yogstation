@@ -18,7 +18,7 @@
 		if(.[i] != previous_states[i])
 			update_slab_info()
 			for(var/mob/M in GLOB.player_list)
-				if(is_servant_of_ratvar(M) || isobserver(M))
+				if(IS_SERVANT_OF_RATVAR(M) || isobserver(M))
 					M.playsound_local(M, 'sound/magic/clockwork/scripture_tier_up.ogg', 50, FALSE, pressure_affected = FALSE)
 
 /proc/update_slab_info(obj/item/clockwork/slab/set_slab)
@@ -50,4 +50,4 @@
 	GLOB.clockwork_construction_value = max(0, GLOB.clockwork_construction_value + amount)
 
 /proc/can_recite_scripture(mob/living/L, can_potentially)
-	return (is_servant_of_ratvar(L) && (can_potentially || (L.stat == CONSCIOUS && (L.can_speak_vocal() || L?.mind?.miming))) && (GLOB.ratvar_awakens || (ishuman(L) || issilicon(L))))
+	return (IS_SERVANT_OF_RATVAR(L) && (can_potentially || (L.stat == CONSCIOUS && (L.can_speak_vocal() || L?.mind?.miming))) && (GLOB.ratvar_awakens || (ishuman(L) || issilicon(L))))

@@ -1577,7 +1577,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/narsour/on_mob_life(mob/living/carbon/drinker)
 	drinker.adjust_timed_status_effect(6 SECONDS * REM, /datum/status_effect/speech/slurring/cult, max_duration = 6 SECONDS)
 	drinker.adjust_stutter_up_to(6 SECONDS * REM, 6 SECONDS)
-	if(iscultist(drinker))
+	if(IS_CULTIST(drinker))
 		drinker.heal_overall_damage(0.5, 0.5)
 	..()
 
@@ -2459,7 +2459,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/ratvarnac/on_mob_life(mob/living/carbon/M)
 	M.emote("spin")
-	if(is_servant_of_ratvar(M))
+	if(IS_SERVANT_OF_RATVAR(M))
 		M.heal_overall_damage(0.5, 0.5)
 	return ..()
 

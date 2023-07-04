@@ -2,14 +2,14 @@
 /proc/hierophant_message(message, servantsonly, atom/target)
 	if(!message)
 		return FALSE
-	for(var/M in GLOB.mob_list)
+	for(var/mob/M as anything in GLOB.mob_list)
 		if(!servantsonly && isobserver(M))
 			if(target)
 				var/link = FOLLOW_LINK(M, target)
 				to_chat(M, "[link] [message]")
 			else
 				to_chat(M, message)
-		else if(is_servant_of_ratvar(M))
+		else if(IS_SERVANT_OF_RATVAR(M))
 			to_chat(M, message)
 	return TRUE
 
@@ -36,7 +36,7 @@
 	var/span_for_message = "brass"
 
 /datum/action/innate/hierophant/IsAvailable(feedback = FALSE)
-	if(!is_servant_of_ratvar(owner))
+	if(!IS_SERVANT_OF_RATVAR(owner))
 		return FALSE
 	return ..()
 

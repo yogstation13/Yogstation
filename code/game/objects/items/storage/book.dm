@@ -192,26 +192,28 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 			B.name = name
 			B.icon_state = icon_state
 			B.item_state = item_state
-	if(istype(A, /obj/item/twohanded/required/cult_bastard) && !iscultist(user))
+	if(istype(A, /obj/item/twohanded/required/cult_bastard) && !IS_CULTIST(user))
 		var/obj/item/twohanded/required/cult_bastard/sword = A
 		to_chat(user, span_notice("You begin to exorcise [sword]."))
 		playsound(src,'sound/hallucinations/veryfar_noise.ogg',40,1)
 		if(do_after(user, 4 SECONDS, sword))
 			playsound(src,'sound/effects/pray_chaplain.ogg',60,1)
-			for(var/obj/item/soulstone/SS in sword.contents)
-				SS.usability = TRUE
-				for(var/mob/living/simple_animal/shade/EX in SS)
-					SSticker.mode.remove_cultist(EX.mind, 1, 0)
-
-					EX.icon_state = "shade_holy"
-					EX.name = "Purified [EX.name]"
-				SS.release_shades(user)
-				qdel(SS)
+			for(var/obj/item/soulstone/stone in sword.contents)
+				stone.usability = TRUE
+				for(var/mob/living/simple_animal/shade/shade in stone)
+					var/datum/antagonist/cult/cultist = shade.mind.has_antag_datum(/datum/antagonist/cult)
+					if(cultist)
+						cultist.silent = TRUE
+						cultist.on_removal()
+					shade.icon_state = "shade_holy"
+					shade.name = "Purified [shade.name]"
+				stone.release_shades(user)
+				qdel(stone)
 			new /obj/item/nullrod/claymore(get_turf(sword))
 			user.visible_message(span_notice("[user] has purified [sword]!"))
 			qdel(sword)
 
-	else if(istype(A, /obj/item/soulstone) && !iscultist(user))
+	else if(istype(A, /obj/item/soulstone) && !IS_CULTIST(user))
 		var/obj/item/soulstone/SS = A
 		if(SS.purified)
 			return
@@ -226,7 +228,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 				if(M.mind)
 					SS.icon_state = "purified_soulstone2"
 			for(var/mob/living/simple_animal/shade/EX in SS)
-				SSticker.mode.remove_cultist(EX.mind, 1, 0)
+				EX.mind.remove_antag_datum(/datum/antagonist/cult)
 				EX.icon_state = "ghost1"
 				EX.name = "Purified [initial(EX.name)]"
 			user.visible_message(span_notice("[user] has purified [SS]!"))

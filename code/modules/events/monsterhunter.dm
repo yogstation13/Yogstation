@@ -45,7 +45,7 @@
 			continue
 		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.security_positions))
 			continue
-		if(IS_BLOODSUCKER(all_players) || IS_VASSAL(all_players) || IS_HERETIC(all_players) || iscultist(all_players) || iswizard(all_players) || is_servant_of_ratvar(all_players) || all_players.mind.has_antag_datum(/datum/antagonist/changeling))
+		if(IS_BLOODSUCKER(all_players) || IS_VASSAL(all_players) || IS_HERETIC(all_players) || IS_CULTIST(all_players) || iswizard(all_players) || IS_SERVANT_OF_RATVAR(all_players) || all_players.mind.has_antag_datum(/datum/antagonist/changeling))
 			continue
 		if(!all_players.getorgan(/obj/item/organ/brain))
 			continue
@@ -70,7 +70,7 @@
 
 /datum/round_event/monster_hunters/start()
 	for(var/mob/living/carbon/human/all_players in GLOB.player_list)
-		if(iscultist(all_players) || IS_HERETIC(all_players) || iswizard(all_players) || is_servant_of_ratvar(all_players) || all_players.mind.has_antag_datum(/datum/antagonist/changeling))
+		if(IS_CULTIST(all_players) || IS_HERETIC(all_players) || iswizard(all_players) || IS_SERVANT_OF_RATVAR(all_players) || all_players.mind.has_antag_datum(/datum/antagonist/changeling))
 			message_admins("MONSTERHUNTER NOTICE: Monster Hunters found a valid Monster.")
 			cancel_me = FALSE
 			break
@@ -90,7 +90,7 @@
 		if(!SSjob.GetJob(all_players.mind.assigned_role) || (all_players.mind.assigned_role in GLOB.security_positions))
 			continue
 		/// Bobux no IS_CHANGELING
-		if(IS_HERETIC(all_players) || iscultist(all_players) || iswizard(all_players) || is_servant_of_ratvar(all_players) || all_players.mind.has_antag_datum(/datum/antagonist/changeling))
+		if(IS_HERETIC(all_players) || IS_CULTIST(all_players) || iswizard(all_players) || IS_SERVANT_OF_RATVAR(all_players) || all_players.mind.has_antag_datum(/datum/antagonist/changeling))
 			continue
 		if(!all_players.getorgan(/obj/item/organ/brain))
 			continue

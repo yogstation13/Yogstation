@@ -42,7 +42,7 @@
 		if(!all_carbons.mind)
 			continue
 		var/datum/mind/carbon_minds = all_carbons.mind
-		if(IS_HERETIC(all_carbons) || IS_BLOODSUCKER(all_carbons) || iscultist(all_carbons) || is_servant_of_ratvar(all_carbons) || is_wizard(all_carbons))
+		if(IS_HERETIC(all_carbons) || IS_BLOODSUCKER(all_carbons) || IS_CULTIST(all_carbons) || IS_SERVANT_OF_RATVAR(all_carbons) || is_wizard(all_carbons))
 			monsters += carbon_minds
 		if(carbon_minds.has_antag_datum(/datum/antagonist/changeling))
 			monsters += carbon_minds

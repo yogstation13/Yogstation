@@ -13,7 +13,7 @@
 	var/obj/item/clockwork/weapon/weapon
 
 /datum/action/innate/call_weapon/IsAvailable(feedback = FALSE)
-	if(!is_servant_of_ratvar(owner))
+	if(!IS_SERVANT_OF_RATVAR(owner))
 		qdel(src)
 		return
 	if(cooldown > world.time)

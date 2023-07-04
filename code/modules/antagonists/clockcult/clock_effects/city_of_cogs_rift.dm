@@ -49,23 +49,24 @@
 				span_notice("You begin climbing through [src]..."))
 				if(!do_after(L, 3 SECONDS, L))
 					return
-		if(!istype(AM, /obj/effect/))
+		if(!istype(AM, /obj/effect))
 			beckon(AM)
 
 /obj/effect/clockwork/city_of_cogs_rift/proc/beckon(atom/movable/AM)
 	var/turf/T = get_turf(pick(GLOB.city_of_cogs_spawns))
-	if(ismob(AM) && is_servant_of_ratvar(AM))
+	var/mob/beckon_mob = AM
+	if(istype(beckon_mob) && IS_SERVANT_OF_RATVAR(beckon_mob))
 		T = GLOB.ark_of_the_clockwork_justiciar ? get_step(GLOB.ark_of_the_clockwork_justiciar, SOUTH) : get_turf(pick(GLOB.servant_spawns))
 	else // Handle mechas and such
 		var/list/target_contents = AM.get_all_contents() + AM
 		for(var/mob/living/L in target_contents)
-			if(is_servant_of_ratvar(L) && L.stat != DEAD) // Having a living cultist in your inventory sends you to the cultist spawn
+			if(IS_SERVANT_OF_RATVAR(L) && L.stat != DEAD) // Having a living cultist in your inventory sends you to the cultist spawn
 				T = GLOB.ark_of_the_clockwork_justiciar ? get_step(GLOB.ark_of_the_clockwork_justiciar, SOUTH) : get_turf(pick(GLOB.servant_spawns))
 				break
 	AM.visible_message(span_danger("[AM] passes through [src]!"), null, null, null, AM)
 	AM.forceMove(T)
 	AM.visible_message(span_danger("[AM] materializes from the air!"), \
-	span_boldannounce("You pass through [src] and appear [is_servant_of_ratvar(AM) ? "back at the City of Cogs" : "somewhere unfamiliar. Looks like it was a one-way trip.."]."))
+	span_boldannounce("You pass through [src] and appear [IS_SERVANT_OF_RATVAR(beckon_mob) ? "back at the City of Cogs" : "somewhere unfamiliar. Looks like it was a one-way trip.."]."))
 	do_sparks(5, TRUE, src)
 	do_sparks(5, TRUE, AM)
 	if(isliving(AM))

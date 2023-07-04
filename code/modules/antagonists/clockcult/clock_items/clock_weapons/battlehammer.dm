@@ -10,14 +10,14 @@
 
 /obj/item/clockwork/weapon/brass_battlehammer/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()
-	if(!is_servant_of_ratvar(target))
+	if(!IS_SERVANT_OF_RATVAR(target))
 		var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
 		target.throw_at(throw_target, 1, 4)
 
 /obj/item/clockwork/weapon/brass_battlehammer/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
-		if(is_servant_of_ratvar(L))
+		if(IS_SERVANT_OF_RATVAR(L))
 			if(L.put_in_active_hand(src))
 				L.visible_message(span_warning("[L] catches [src] out of the air!"))
 			else

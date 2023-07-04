@@ -54,7 +54,7 @@
 
 /obj/effect/clockwork/spatial_gateway/examine(mob/user)
 	. = ..()
-	if(is_servant_of_ratvar(user) || isobserver(user))
+	if(IS_SERVANT_OF_RATVAR(user) || isobserver(user))
 		. += span_brass("It has [uses] use\s remaining.")
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
@@ -179,7 +179,7 @@
 			possible_targets[avoid_assoc_duplicate_keys("[locname] [O.name]", teleportnames)] = O
 
 	for(var/mob/living/L in GLOB.alive_mob_list)
-		if(!L.stat && is_servant_of_ratvar(L) && !L.Adjacent(invoker) && !is_away_level(L.z)) //People right next to the invoker can't be portaled to, for obvious reasons
+		if(!L.stat && IS_SERVANT_OF_RATVAR(L) && !L.Adjacent(invoker) && !is_away_level(L.z)) //People right next to the invoker can't be portaled to, for obvious reasons
 			possible_targets[avoid_assoc_duplicate_keys("[L.name] ([L.real_name])", teleportnames)] = L
 
 	if(!possible_targets.len)
@@ -187,14 +187,14 @@
 		return FALSE
 	var/input_target_key = input(invoker, "Choose a target to form a rift to.", "Spatial Gateway") as null|anything in possible_targets
 	var/atom/movable/target = possible_targets[input_target_key]
-	if(!src || !input_target_key || !invoker || !invoker.canUseTopic(src, !issilicon(invoker)) || !is_servant_of_ratvar(invoker) || (isitem(src) && invoker.get_active_held_item() != src) || !invoker.can_speak_vocal())
+	if(!src || !input_target_key || !invoker || !invoker.canUseTopic(src, !issilicon(invoker)) || !IS_SERVANT_OF_RATVAR(invoker) || (isitem(src) && invoker.get_active_held_item() != src) || !invoker.can_speak_vocal())
 		return FALSE //if any of the involved things no longer exist, the invoker is stunned, too far away to use the object, or does not serve ratvar, or if the object is an item and not in the mob's active hand, fail
 	if(!target) //if we have no target, but did have a key, let them retry
 		to_chat(invoker, span_warning("That target no longer exists!"))
 		return procure_gateway(invoker, time_duration, gateway_uses, two_way)
 	if(isliving(target))
 		var/mob/living/L = target
-		if(!is_servant_of_ratvar(L))
+		if(!IS_SERVANT_OF_RATVAR(L))
 			to_chat(invoker, span_warning("That target is no longer a Servant!"))
 			return procure_gateway(invoker, time_duration, gateway_uses, two_way)
 		if(L.stat != CONSCIOUS)

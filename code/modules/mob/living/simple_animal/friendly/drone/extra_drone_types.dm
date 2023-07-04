@@ -152,7 +152,7 @@
 
 //Cogscarabs being able to be picked up during war
 /mob/living/simple_animal/drone/cogscarab/attack_hand(mob/user)
-	if(!is_servant_of_ratvar(user))
+	if(!IS_SERVANT_OF_RATVAR(user))
 		to_chat(user, span_warning("[src] wriggles out of your hands! You can't pick it up!"))
 		return
 	if(!GLOB.ratvar_approaches) 
@@ -182,7 +182,7 @@
 		..()
 
 /mob/living/simple_animal/drone/cogscarab/try_reactivate(mob/living/user)
-	if(!is_servant_of_ratvar(user))
+	if(!IS_SERVANT_OF_RATVAR(user))
 		to_chat(user, span_warning("You fiddle around with [src] to no avail."))
 	else
 		..()

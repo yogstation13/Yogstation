@@ -378,18 +378,18 @@
 
 /datum/status_effect/belligerent/proc/do_movement_toggle(force_damage)
 	var/number_legs = owner.get_num_legs(FALSE)
-	if(iscarbon(owner) && !is_servant_of_ratvar(owner) && !owner.anti_magic_check(chargecost = 0) && number_legs)
+	if(iscarbon(owner) && !IS_SERVANT_OF_RATVAR(owner) && !owner.anti_magic_check(chargecost = 0) && number_legs)
 		if(force_damage || owner.m_intent != MOVE_INTENT_WALK)
 			if(GLOB.ratvar_awakens)
 				owner.Paralyze(20)
-			if(iscultist(owner))
+			if(IS_CULTIST(owner))
 				owner.apply_damage(cultist_damage_on_toggle * 0.5, BURN, BODY_ZONE_L_LEG)
 				owner.apply_damage(cultist_damage_on_toggle * 0.5, BURN, BODY_ZONE_R_LEG)
 			else
 				owner.apply_damage(leg_damage_on_toggle * 0.5, BURN, BODY_ZONE_L_LEG)
 				owner.apply_damage(leg_damage_on_toggle * 0.5, BURN, BODY_ZONE_R_LEG)
 		if(owner.m_intent != MOVE_INTENT_WALK)
-			if(!iscultist(owner))
+			if(!IS_CULTIST(owner))
 				to_chat(owner, span_warning("Your leg[number_legs > 1 ? "s shiver":" shivers"] with pain!"))
 			else //Cultists take extra burn damage
 				to_chat(owner, span_warning("Your leg[number_legs > 1 ? "s burn":" burns"] with pain!"))
@@ -429,7 +429,7 @@
 	return ..()
 
 /datum/status_effect/maniamotor/tick()
-	var/is_servant = is_servant_of_ratvar(owner)
+	var/is_servant = IS_SERVANT_OF_RATVAR(owner)
 	var/span_part = severity > 50 ? "" : "_small" //let's save like one check
 	if(QDELETED(motor))
 		if(!is_servant)

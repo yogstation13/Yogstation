@@ -45,7 +45,7 @@
 
 /obj/item/clockwork/replica_fabricator/examine(mob/living/user)
 	. = ..()
-	if(is_servant_of_ratvar(user) || isobserver(user))
+	if(IS_SERVANT_OF_RATVAR(user) || isobserver(user))
 		. += {"[span_brass("Can be used to replace walls, floors, tables, windows, windoors, and airlocks with Clockwork variants.")]\n
 			[span_brass("Can construct Clockwork Walls on Clockwork Floors and deconstruct Clockwork Walls to Clockwork Floors.")]"}
 		if(uses_power)
@@ -56,7 +56,7 @@
 			<span class='alloy'>It has access to <b>[DisplayEnergy(get_clockwork_power())]</b> of power.</span>"}
 
 /obj/item/clockwork/replica_fabricator/attack_self(mob/living/user)
-	if(is_servant_of_ratvar(user))
+	if(IS_SERVANT_OF_RATVAR(user))
 		if(uses_power)
 			if(!get_clockwork_power(POWER_WALL_TOTAL))
 				to_chat(user, span_warning("[src] requires <b>[DisplayEnergy(POWER_WALL_TOTAL)]</b> of power to produce brass sheets!"))
@@ -67,7 +67,7 @@
 		to_chat(user, span_brass("You use [get_clockwork_power() ? "some":"all"] of [src]'s power to produce <b>5</b> brass sheets. It now has access to <b>[DisplayEnergy(get_clockwork_power())]</b> of power."))
 
 /obj/item/clockwork/replica_fabricator/pre_attack(atom/target, mob/living/user, params)
-	if(!target || !user || !is_servant_of_ratvar(user) || istype(target, /obj/item/storage))
+	if(!target || !user || !IS_SERVANT_OF_RATVAR(user) || istype(target, /obj/item/storage))
 		return TRUE
 	return fabricate(target, user)
 
@@ -187,7 +187,7 @@
 		return FALSE
 	if(isliving(target)) //standard checks for if we can affect the target
 		var/mob/living/L = target
-		if(!is_servant_of_ratvar(L))
+		if(!IS_SERVANT_OF_RATVAR(L))
 			if(!silent)
 				to_chat(user, span_warning("[L] does not serve Ratvar!"))
 			return FALSE

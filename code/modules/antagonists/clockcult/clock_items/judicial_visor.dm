@@ -38,11 +38,11 @@
 		if(blaster.owner)
 			blaster.unset_click_ability(blaster.owner)
 		return 0
-	if(is_servant_of_ratvar(user))
+	if(IS_SERVANT_OF_RATVAR(user))
 		update_status(TRUE)
 	else
 		update_status(FALSE)
-	if(iscultist(user)) //Cultists spontaneously combust
+	if(IS_CULTIST(user)) //Cultists spontaneously combust
 		to_chat(user, "[span_heavy_brass("\"Consider yourself judged, whelp.\"")]")
 		to_chat(user, span_userdanger("You suddenly catch fire!"))
 		user.adjust_fire_stacks(5)
@@ -60,7 +60,7 @@
 			blaster.unset_click_ability(user)
 
 /obj/item/clothing/glasses/judicial_visor/attack_self(mob/user)
-	if(is_servant_of_ratvar(user) && src == user.get_item_by_slot(ITEM_SLOT_EYES))
+	if(IS_SERVANT_OF_RATVAR(user) && src == user.get_item_by_slot(ITEM_SLOT_EYES))
 		blaster.Trigger()
 
 /obj/item/clothing/glasses/judicial_visor/proc/update_status(change_to)
@@ -74,7 +74,7 @@
 	icon_state = "judicial_visor_[active]"
 	L.update_mob_action_buttons()
 	L.update_inv_glasses()
-	if(!is_servant_of_ratvar(L) || L.stat)
+	if(!IS_SERVANT_OF_RATVAR(L) || L.stat)
 		return 0
 	switch(active)
 		if(TRUE)
@@ -113,7 +113,7 @@
 	visor = Target
 
 /datum/action/cooldown/judicial_visor/IsAvailable(feedback = FALSE)
-	if(!is_servant_of_ratvar(owner))
+	if(!IS_SERVANT_OF_RATVAR(owner))
 		return FALSE
 	if(visor.recharging)
 		return FALSE
@@ -189,7 +189,7 @@
 	playsound(src, 'sound/effects/explosion_distant.ogg', 100, 1, 1, 1)
 	set_light(0)
 	for(var/mob/living/L in range(1, src))
-		if(is_servant_of_ratvar(L))
+		if(IS_SERVANT_OF_RATVAR(L))
 			continue
 		var/atom/I = L.anti_magic_check()
 		if(I)
@@ -198,7 +198,7 @@
 				span_userdanger("Your [I.name] shields you from [src]!"))
 			continue
 		L.Paralyze(15) //knocks down briefly when exploding
-		if(!iscultist(L))
+		if(!IS_CULTIST(L))
 			L.visible_message(span_warning("[L] is struck by a judicial explosion!"), \
 			span_userdanger("[!issilicon(L) ? "An unseen force slams you into the ground!" : "ERROR: Motor servos disabled by external source!"]"))
 		else

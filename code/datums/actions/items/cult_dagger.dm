@@ -10,7 +10,7 @@
 	default_button_position = "6:157,4:-2"
 
 /datum/action/item_action/cult_dagger/Grant(mob/M)
-	if(iscultist(M))
+	if(IS_CULTIST(M))
 		return ..()
 	Remove(owner)
 

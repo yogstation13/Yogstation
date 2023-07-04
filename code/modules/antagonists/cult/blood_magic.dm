@@ -12,7 +12,7 @@
 	..()
 
 /datum/action/innate/cult/blood_magic/IsAvailable(feedback = FALSE)
-	if(!iscultist(owner))
+	if(!IS_CULTIST(owner))
 		return FALSE
 	return ..()
 
@@ -118,7 +118,7 @@
 	..()
 
 /datum/action/innate/cult/blood_spell/IsAvailable(feedback = FALSE)
-	if(!iscultist(owner) || owner.incapacitated()  || !charges)
+	if(!IS_CULTIST(owner) || owner.incapacitated()  || !charges)
 		return FALSE
 	return ..()
 
@@ -250,7 +250,7 @@
 		return FALSE
 
 	var/mob/living/carbon/human/human_clicked = clicked_on
-	if(iscultist(human_clicked))
+	if(IS_CULTIST(human_clicked))
 		return FALSE
 
 	return ..()
@@ -380,7 +380,7 @@
 	afterattack(user, user, TRUE)
 
 /obj/item/melee/blood_magic/attack(mob/living/M, mob/living/carbon/user)
-	if(!iscarbon(user) || !iscultist(user))
+	if(!iscarbon(user) || !IS_CULTIST(user))
 		uses = 0
 		qdel(src)
 		return
@@ -415,11 +415,11 @@
 	if(!isliving(target) || !proximity)
 		return
 	var/mob/living/L = target
-	if(iscultist(target))
+	if(IS_CULTIST(L))
 		return
 	var/datum/antagonist/cult/cultist = user.mind.has_antag_datum(/datum/antagonist/cult)
 	var/datum/team/cult/cult = cultist.get_team()
-	if(iscultist(user))
+	if(IS_CULTIST(user))
 		user.visible_message(span_warning("[user] holds up [user.p_their()] hand, which explodes in a flash of red light!"), \
 							span_cultitalic("You attempt to stun [L] with the spell!"))
 
@@ -453,7 +453,7 @@
 					var/mob/living/carbon/C = L
 					C.cultslurring += 10
 					C.adjust_jitter(15 SECONDS)
-				if(is_servant_of_ratvar(L))
+				if(IS_SERVANT_OF_RATVAR(L))
 					L.adjustBruteLoss(30)
 			else if(cult.cult_risen)
 				to_chat(user, span_cultitalic("In a dull flash of red, [L] falls to the ground!"))
@@ -468,7 +468,7 @@
 					C.adjust_stutter(7 SECONDS)
 					C.cultslurring += 7
 					C.adjust_jitter(7 SECONDS)
-				if(is_servant_of_ratvar(L))
+				if(IS_SERVANT_OF_RATVAR(L))
 					L.adjustBruteLoss(20)
 			else
 				to_chat(user, span_cultitalic("In a brilliant flash of red, [L] falls to the ground!"))
@@ -483,7 +483,7 @@
 					C.adjust_stutter(15 SECONDS)
 					C.cultslurring += 15
 					C.adjust_jitter(15 SECONDS)
-				if(is_servant_of_ratvar(L))
+				if(IS_SERVANT_OF_RATVAR(L))
 					L.adjustBruteLoss(15)
 		else
 			target.visible_message("<span class='warning'>[target] winces slightly as a red flash eminates from [user]'s hand</span>", \
@@ -499,10 +499,11 @@
 	invocation = "Sas'so c'arta forbici!"
 
 /obj/item/melee/blood_magic/teleport/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(!iscultist(target) || !proximity)
+	var/mob/mob_target = target
+	if(istype(mob_target) && !IS_CULTIST(mob_target) || !proximity)
 		to_chat(user, span_warning("You can only teleport adjacent cultists with this spell!"))
 		return
-	if(iscultist(user))
+	if(IS_CULTIST(user))
 		var/list/potential_runes = list()
 		var/list/teleportnames = list()
 		for(var/R in GLOB.teleport_runes)
@@ -545,7 +546,7 @@
 	color = "#000000" // black
 
 /obj/item/melee/blood_magic/shackles/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(iscultist(user) && iscarbon(target) && proximity)
+	if(IS_CULTIST(user) && iscarbon(target) && proximity)
 		var/mob/living/carbon/C = target
 		if(C.get_num_arms(FALSE) >= 2 || C.get_arm_ignore())
 			CuffAttack(C, user)
@@ -602,7 +603,7 @@
 	Airlocks into brittle runed airlocks after a delay (harm intent)"}
 
 /obj/item/melee/blood_magic/construction/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(proximity_flag && iscultist(user))
+	if(proximity_flag && IS_CULTIST(user))
 		var/turf/T = get_turf(target)
 		if(istype(target, /obj/item/stack/sheet/metal))
 			var/obj/item/stack/sheet/candidate = target
@@ -675,7 +676,7 @@
 			if(NOBLOOD in H.dna.species.species_traits)
 				to_chat(user,span_warning("Blood rites do not work on species with no blood!"))
 				return
-			if(iscultist(H))
+			if(IS_CULTIST(H))
 				if(H.stat == DEAD)
 					to_chat(user,span_warning("Only a revive rune can bring back the dead!"))
 					return
@@ -777,7 +778,7 @@
 			uses += max(1, round(temp))
 
 /obj/item/melee/blood_magic/manipulator/attack_self(mob/living/user)
-	if(iscultist(user))
+	if(IS_CULTIST(user))
 		var/list/options = list("Blood Spear (150)", "Blood Bolt Barrage (300)", "Blood Beam (500)")
 		var/choice = input(user, "Choose a greater blood rite...", "Greater Blood Rites") as null|anything in options
 		if(!choice)

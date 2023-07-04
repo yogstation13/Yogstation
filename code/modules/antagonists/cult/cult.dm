@@ -70,14 +70,12 @@
 		original_eye_color = H.eye_color
 	if(give_equipment)
 		equip_cultist(TRUE)
-	SSticker.mode.cult += owner // Only add after they've been given objectives
 	current.log_message("has been converted to the cult of Nar'sie!", LOG_ATTACK, color="#960000")
 
 	if(cult_team.blood_target && cult_team.blood_target_image && current.client)
 		current.client.images += cult_team.blood_target_image
 
 /datum/antagonist/cult/on_removal()
-	SSticker.mode.cult -= owner
 	if(!silent)
 		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just reverted to [owner.current.p_their()] old faith!")]", null, null, null, owner.current)
 		to_chat(owner.current, span_userdanger("An unfamiliar white light flashes through your mind, cleansing the taint of the Geometer and all your memories as her servant."))
@@ -214,9 +212,8 @@
 	log_admin("[key_name(admin)] has cult'ed [key_name(new_owner)].")
 
 /datum/antagonist/cult/admin_remove(mob/user)
-	message_admins("[key_name_admin(user)] has decult'ed [key_name_admin(owner)].")
-	log_admin("[key_name(user)] has decult'ed [key_name(owner)].")
-	SSticker.mode.remove_cultist(owner,silent=TRUE) //disgusting
+	silent = TRUE
+	return ..()
 
 /datum/antagonist/cult/get_admin_commands()
 	. = ..()

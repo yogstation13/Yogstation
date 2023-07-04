@@ -391,7 +391,7 @@
 /turf/open/indestructible/clock_spawn_room/proc/port_servants()
 	. = FALSE
 	for(var/mob/living/L in src)
-		if(is_servant_of_ratvar(L) && L.stat != DEAD)
+		if(IS_SERVANT_OF_RATVAR(L) && L.stat != DEAD)
 			. = TRUE
 			L.forceMove(get_turf(pick(GLOB.servant_spawns)))
 			visible_message(span_warning("[L] vanishes in a flash of red!"))

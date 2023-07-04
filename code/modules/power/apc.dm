@@ -287,7 +287,7 @@
 		else
 			. += "The cover is closed."
 
-	if(integration_cog && is_servant_of_ratvar(user))
+	if(integration_cog && IS_SERVANT_OF_RATVAR(user))
 		. += span_brass("There is an integration cog installed!")
 
 	. += span_notice("Alt-Click the APC to [ locked ? "unlock" : "lock"] the interface.")
@@ -734,7 +734,7 @@
 			if (opened==APC_COVER_REMOVED)
 				opened = APC_COVER_OPENED
 			update_icon()
-	else if(istype(W, /obj/item/clockwork/integration_cog) && is_servant_of_ratvar(user))
+	else if(istype(W, /obj/item/clockwork/integration_cog) && IS_SERVANT_OF_RATVAR(user))
 		if(integration_cog)
 			to_chat(user, span_warning("This APC already has a cog."))
 			return
@@ -915,7 +915,7 @@
 
 /obj/machinery/power/apc/ui_data(mob/user)
 	var/list/data = list(
-		"locked" = locked && !(integration_cog && is_servant_of_ratvar(user)),
+		"locked" = locked && !(integration_cog && IS_SERVANT_OF_RATVAR(user)),
 		"failTime" = failure_timer,
 		"isOperating" = operating,
 		"externalPower" = main_status,
@@ -1031,7 +1031,7 @@
 		. = UI_INTERACTIVE
 
 /obj/machinery/power/apc/ui_act(action, params)
-	if(..() || !can_use(usr, 1) || (locked && !usr.has_unlimited_silicon_privilege && !failure_timer && action != "toggle_nightshift" && !(integration_cog && (is_servant_of_ratvar(usr)))))
+	if(..() || !can_use(usr, 1) || (locked && !usr.has_unlimited_silicon_privilege && !failure_timer && action != "toggle_nightshift" && !(integration_cog && (IS_SERVANT_OF_RATVAR(usr)))))
 		return
 	switch(action)
 		if("lock")

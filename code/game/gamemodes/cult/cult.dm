@@ -1,13 +1,5 @@
 #define CULT_SCALING_COEFFICIENT 8.3 //Roughly one new cultist at roundstart per this many players
 
-/datum/game_mode
-	var/list/datum/mind/cult = list()
-
-/proc/iscultist(mob/living/M)
-	if(istype(M, /mob/living/carbon/human/dummy))
-		return TRUE
-	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
-
 /proc/is_convertable_to_cult(mob/living/M, datum/team/cult/specific_cult, ignore_implant = FALSE)
 	if(!istype(M))
 		return FALSE
@@ -18,7 +10,7 @@
 	if(specific_cult && specific_cult.is_sacrifice_target(M.mind))
 		return FALSE
 	var/mob/living/master = M.mind.enslaved_to?.resolve()
-	if(master && !iscultist(master))
+	if(master && !IS_CULTIST(master))
 		return FALSE
 	if(M.mind.unconvertable)
 		return FALSE
@@ -26,7 +18,7 @@
 		return FALSE
 	if(!ignore_implant && HAS_TRAIT(M, TRAIT_MINDSHIELD))
 		return FALSE
-	if(issilicon(M) || isbot(M) || isdrone(M) || ismouse(M) || is_servant_of_ratvar(M))
+	if(issilicon(M) || isbot(M) || isdrone(M) || ismouse(M) || IS_SERVANT_OF_RATVAR(M))
 		return FALSE //can't convert machines, braindead, mice, or ratvar's dogs
 	return TRUE
 
@@ -118,17 +110,6 @@
 			cult_mind.current.Unconscious(100)
 		return TRUE
 
-/datum/game_mode/proc/remove_cultist(datum/mind/cult_mind, silent, stun)
-	if(cult_mind.current)
-		var/datum/antagonist/cult/cult_datum = cult_mind.has_antag_datum(/datum/antagonist/cult)
-		if(!cult_datum)
-			return FALSE
-		cult_datum.silent = silent
-		cult_datum.on_removal()
-		if(stun)
-			cult_mind.current.Unconscious(100)
-		return TRUE
-
 /datum/game_mode/cult/set_round_result()
 	..()
 	if(main_cult.check_cult_victory())
@@ -140,7 +121,7 @@
 
 /datum/game_mode/cult/proc/check_survive()
 	var/acolytes_survived = 0
-	for(var/datum/mind/cult_mind in cult)
+	for(var/datum/mind/cult_mind as anything in main_cult.members)
 		if (cult_mind.current && cult_mind.current.stat != DEAD)
 			if(cult_mind.current.onCentCom() || cult_mind.current.onSyndieBase())
 				acolytes_survived++
@@ -221,7 +202,7 @@
 		CRASH("cult_loss_bloodstones was called, but there's no cult team??")
 	cult_team.bloodstone_cooldown = TRUE
 	addtimer(CALLBACK(src, PROC_REF(disable_bloodstone_cooldown)), 5 MINUTES) //5 minutes
-	for(var/datum/mind/M in cult)
+	for(var/datum/mind/M as anything in cult_team.members)
 		var/mob/living/cultist = M.current
 		if(!cultist)
 			continue
@@ -244,7 +225,7 @@
 	addtimer(CALLBACK(src, PROC_REF(disable_bloodstone_cooldown)), 7 MINUTES) //7 minutes
 	for(var/obj/structure/destructible/cult/bloodstone/B as anything in cult_team.bloodstone_list)
 		qdel(B)
-		for(var/datum/mind/M in cult)
+		for(var/datum/mind/M as anything in cult_team.members)
 			var/mob/living/cultist = M.current
 			if(!cultist)
 				continue
@@ -263,7 +244,7 @@
 	if(!cult_team)
 		CRASH("disable_bloodstone_cooldown was called, but there's no cult team??")
 	cult_team.bloodstone_cooldown = FALSE
-	for(var/datum/mind/M in cult)
+	for(var/datum/mind/M as anything in cult_team.members)
 		var/mob/living/L = M.current
 		if(L)
 			to_chat(M, span_narsiesmall("The veil has weakened enough for another attempt, prepare the summoning!"))
@@ -278,7 +259,7 @@
 
 	round_credits += "<center><h1>The Cult of Nar'sie:</h1>"
 	len_before_addition = round_credits.len
-	for(var/datum/mind/cultist in cult)
+	for(var/datum/mind/cultist as anything in main_cult.members)
 		round_credits += "<center><h2>[cultist.name] as a cult fanatic</h2>"
 
 	var/datum/objective/eldergod/summon_objective = locate() in main_cult.objectives

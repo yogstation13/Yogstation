@@ -71,7 +71,7 @@
 		if(target.mind.has_antag_datum(/datum/antagonist/veil))
 			target.mind.remove_antag_datum(/datum/antagonist/veil)
 		if(!silent)
-			if(target.mind in SSticker.mode.cult)
+			if(IS_CULTIST(target))
 				to_chat(target, span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
 			else
 				to_chat(target, span_notice("You feel a sense of peace and security. You are now protected from brainwashing."))

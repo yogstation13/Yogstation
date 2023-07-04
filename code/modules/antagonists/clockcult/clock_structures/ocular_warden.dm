@@ -74,7 +74,7 @@
 							L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot1.ogg',75 * get_efficiency_mod(),1)
 						else
 							L.playsound_local(null,'sound/machines/clockcult/ocularwarden-dot2.ogg',75 * get_efficiency_mod(),1)
-						L.adjustFireLoss((!iscultist(L) ? damage_per_tick : damage_per_tick * 2) * get_efficiency_mod()) //Nar-Sian cultists take additional damage
+						L.adjustFireLoss((!IS_CULTIST(L) ? damage_per_tick : damage_per_tick * 2) * get_efficiency_mod()) //Nar-Sian cultists take additional damage
 						Beam(L, icon_state = "warden_beam", time = 10)		//yogs: gives a beam
 						last_process = world.time
 						if(GLOB.ratvar_awakens && L)
@@ -109,7 +109,7 @@
 /obj/structure/destructible/clockwork/ocular_warden/proc/acquire_nearby_targets()
 	. = list()
 	for(var/mob/living/L in viewers(sight_range, src)) //Doesn't attack the blind
-		if(is_servant_of_ratvar(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE))
+		if(IS_SERVANT_OF_RATVAR(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.anti_magic_check(TRUE, TRUE))
 			continue
 		var/obj/item/storage/book/bible/B = L.bible_check()
 		if(B)
@@ -143,7 +143,7 @@
 	var/list/viewcache = list()
 	for(var/N in GLOB.mechas_list)
 		var/obj/mecha/M = N
-		if(get_dist(M, src) <= sight_range && M.occupant && !is_servant_of_ratvar(M.occupant))
+		if(get_dist(M, src) <= sight_range && M.occupant && !IS_SERVANT_OF_RATVAR(M.occupant))
 			if(!length(viewcache))
 				for (var/obj/Z in view(sight_range, src))
 					viewcache += Z

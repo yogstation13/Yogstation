@@ -41,14 +41,14 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 		W.forceMove(src)
 		intellicard = W
 		return FALSE
+
 	if(istype(W, /obj/item/mmi))
 		var/obj/item/mmi/brain = W
 		if(!brain.brainmob)
 			to_chat(user, span_warning("[W] is not active!"))
 			return ..()
-		SSticker.mode.remove_antag_for_borging(brain.brainmob.mind)
-		if(!istype(brain.laws, /datum/ai_laws/ratvar))
-			remove_servant_of_ratvar(brain.brainmob, TRUE)
+		var/mob/living/brain/the_brainmob = brain.brainmob
+		the_brainmob.mind.remove_antags_for_borging()
 		var/mob/living/silicon/ai/A = null
 
 		var/datum/ai_laws/laws = new
@@ -67,6 +67,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 		qdel(W)
 		to_chat(user, span_notice("AI succesfully uploaded."))
 		return FALSE
+
 	if(istype(W, /obj/item/surveillance_upgrade))
 		if(!authenticated)
 			to_chat(user, span_warning("You need to be logged in to do this!"))
@@ -205,7 +206,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 
 	data["is_infiltrator"] = is_infiltrator(user)
 
-	data["is_servant_of_ratvar"] = is_servant_of_ratvar(user)
+	data["IS_SERVANT_OF_RATVAR"] = IS_SERVANT_OF_RATVAR(user)
 
 	return data
 
@@ -437,7 +438,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 				to_chat(user, span_notice("You fail to remove the device."))
 		if("start_cog")
 			var/mob/user = usr
-			if(!is_servant_of_ratvar(usr))
+			if(!IS_SERVANT_OF_RATVAR(usr))
 				return
 			if(!is_station_level(z))
 				to_chat(user, span_brass("It's beyond our reach."))
@@ -450,7 +451,7 @@ GLOBAL_VAR_INIT(ai_control_code, random_nukecode(6))
 			if(!target || !isAI(target))
 				return
 			var/mob/living/silicon/ai/A = target
-			if(A.mind && is_servant_of_ratvar(A))
+			if(A.mind && IS_SERVANT_OF_RATVAR(A))
 				to_chat(user, span_brass("[A] has already seen the light of the Justicar!"))
 				return
 			if(A.stat == DEAD)

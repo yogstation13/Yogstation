@@ -37,7 +37,7 @@
 				return
 			if(blind_cultist(H))
 				return
-			if(is_servant_of_ratvar(H))
+			if(IS_SERVANT_OF_RATVAR(H))
 				to_chat(H, "[span_heavy_brass("You push the spectacles down, and all is revealed to you.[GLOB.ratvar_awakens ? "" : " Your eyes begin to itch - you cannot do this for long."]")]")
 				var/datum/status_effect/wraith_spectacles/WS = H.has_status_effect(STATUS_EFFECT_WRAITHSPECS)
 				if(WS)
@@ -48,7 +48,7 @@
 
 /obj/item/clothing/glasses/wraith_spectacles/proc/blind_cultist(mob/living/victim)
 	var/obj/item/organ/eyes/eyes = victim.getorganslot(ORGAN_SLOT_EYES)
-	if(iscultist(victim))
+	if(IS_CULTIST(victim))
 		to_chat(victim, "[span_heavy_brass("\"It looks like Nar'sie's dogs really don't value their eyes.\"")]")
 		to_chat(victim, span_userdanger("Your eyes explode with horrific pain!"))
 		victim.emote("scream")
@@ -63,7 +63,8 @@
 	vision_flags = NONE
 	darkness_view = 2
 	if(!up)
-		if(is_servant_of_ratvar(loc))
+		var/mob/wearer = loc
+		if(istype(wearer) && IS_SERVANT_OF_RATVAR(wearer))
 			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 			vision_flags = SEE_MOBS | SEE_TURFS | SEE_OBJS
 			darkness_view = 3
@@ -83,7 +84,7 @@
 	if(blind_cultist(user)) //Cultists instantly go blind
 		return
 	set_vision_vars(TRUE)
-	if(is_servant_of_ratvar(user))
+	if(IS_SERVANT_OF_RATVAR(user))
 		to_chat(user, "[span_heavy_brass("As you put on the spectacles, all is revealed to you.[GLOB.ratvar_awakens || GLOB.ratvar_approaches ? "" : " Your eyes begin to itch - you cannot do this for long."]")]")
 		var/datum/status_effect/wraith_spectacles/WS = user.has_status_effect(STATUS_EFFECT_WRAITHSPECS)
 		if(WS)

@@ -628,7 +628,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 	qdel(src)
 
 /obj/item/stack/sheet/runed_metal/attack_self(mob/living/user)
-	if(!iscultist(user))
+	if(!IS_CULTIST(user))
 		to_chat(user, span_warning("Only one with forbidden knowledge could hope to work this metal..."))
 		return
 	var/turf/T = get_turf(user) //we may have moved. adjust as needed...
@@ -696,7 +696,7 @@ GLOBAL_LIST_INIT(brass_recipes, list ( \
 	qdel(src)
 
 /obj/item/stack/tile/brass/attack_self(mob/living/user)
-	if(!is_servant_of_ratvar(user))
+	if(!IS_SERVANT_OF_RATVAR(user))
 		to_chat(user, span_danger("[src] seems far too fragile and rigid to build with.")) //haha that's because it's actually replicant alloy you DUMMY
 		return
 	..()
@@ -745,7 +745,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	tableVariant = /obj/structure/table/bronze
 
 /obj/item/stack/tile/bronze/attack_self(mob/living/user)
-	if(is_servant_of_ratvar(user)) //still lets them build with it, just gives a message
+	if(IS_SERVANT_OF_RATVAR(user)) //still lets them build with it, just gives a message
 		to_chat(user, span_danger("Wha... what is this cheap imitation crap? This isn't brass at all!"))
 	..()
 

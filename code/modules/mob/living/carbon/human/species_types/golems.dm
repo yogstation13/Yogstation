@@ -727,7 +727,7 @@
 	RegisterSignal(H, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/species/golem/clockwork/on_species_loss(mob/living/carbon/human/H)
-	if(!is_servant_of_ratvar(H))
+	if(!IS_SERVANT_OF_RATVAR(H))
 		H.faction -= "ratvar"
 	UnregisterSignal(H, COMSIG_MOB_SAY)
 	. = ..()

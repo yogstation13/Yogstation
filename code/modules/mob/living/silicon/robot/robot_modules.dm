@@ -176,7 +176,7 @@
 	if(R.emagged)
 		for(var/obj/item/I in emag_modules)
 			add_module(I, FALSE, FALSE)
-	if(is_servant_of_ratvar(R))
+	if(IS_SERVANT_OF_RATVAR(R))
 		for(var/obj/item/I in ratvar_modules)
 			add_module(I, FALSE, FALSE)
 	for(var/obj/item/I in added_modules)

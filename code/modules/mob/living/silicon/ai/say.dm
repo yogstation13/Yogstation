@@ -197,7 +197,7 @@ GLOBAL_VAR_INIT(announcing_vox, 0)
 #endif
 
 /mob/living/silicon/ai/could_speak_language(datum/language/dt)
-	if(is_servant_of_ratvar(src))
+	if(IS_SERVANT_OF_RATVAR(src))
 		// Ratvarian AIs can only speak Ratvarian
 		. = ispath(dt, /datum/language/ratvar)
 	else

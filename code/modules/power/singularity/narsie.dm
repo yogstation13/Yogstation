@@ -59,12 +59,12 @@
 		var/datum/objective/eldergod/summon_objective = locate() in T.objectives
 		if(summon_objective)
 			summon_objective.summoned = TRUE
-	for(var/datum/mind/cult_mind in SSticker.mode.cult)
+	for(var/datum/mind/cult_mind as anything in get_antag_minds(/datum/antagonist/cult))
 		if(isliving(cult_mind.current))
 			var/mob/living/L = cult_mind.current
 			L.narsie_act()
 	for(var/mob/living/player in GLOB.player_list)
-		if(player.stat != DEAD && player.loc && is_station_level(player.loc.z) && !iscultist(player) && !isanimal(player))
+		if(player.stat != DEAD && player.loc && is_station_level(player.loc.z) && !IS_CULTIST(player) && !isanimal(player))
 			souls_needed[player] = TRUE
 
 	//nar nar attracts the singularity for more epic gamer engineer moments
@@ -172,7 +172,7 @@
 /obj/singularity/narsie/mezzer()
 	for(var/mob/living/carbon/M in viewers(consume_range, src))
 		if(M.stat == CONSCIOUS)
-			if(!iscultist(M))
+			if(!IS_CULTIST(M))
 				to_chat(M, span_cultsmall("You feel conscious thought crumble away in an instant as you gaze upon [src.name]..."))
 				M.apply_effect(6 SECONDS, EFFECT_STUN)
 
@@ -200,7 +200,7 @@
 		if(!pos || (pos.z != z))
 			continue
 
-		if(iscultist(food))
+		if(IS_CULTIST(food))
 			cultists += food
 		else
 			noncultists += food

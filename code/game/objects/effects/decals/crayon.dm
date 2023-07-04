@@ -16,7 +16,7 @@
 		return
 	if(name != "rune")
 		return
-	if(!iscultist(user))
+	if(!IS_CULTIST(user))
 		to_chat(user, span_warning("You aren't able to understand the words of [src]."))
 		return
 	to_chat(user, span_danger("This is a crude mockery of the divine art you spill with blood."))

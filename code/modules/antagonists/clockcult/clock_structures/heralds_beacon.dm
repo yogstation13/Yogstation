@@ -14,33 +14,35 @@
 	var/list/voters  //People who have voted to activate the beacon
 	var/votes_needed = 0 //How many votes are needed to activate the beacon
 	var/available = FALSE //If the beacon can be used
+	///The assigned clock team we're tracking for how many votes are needed.
+	var/datum/team/clockcult/clock_team
 
 /obj/structure/destructible/clockwork/heralds_beacon/Initialize(mapload)
 	. = ..()
 	voters = list()
-	START_PROCESSING(SSprocessing, src)
+	var/datum/team/clockcult/new_team = locate() in GLOB.antagonist_teams
+	if(new_team)
+		START_PROCESSING(SSprocessing, src)
+		clock_team = new_team
 
 /obj/structure/destructible/clockwork/heralds_beacon/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	. = ..()
 
 /obj/structure/destructible/clockwork/heralds_beacon/process()
-	if(!available)
-		if(istype(SSticker.mode, /datum/game_mode/clockwork_cult))
-			available = TRUE
-		else
-			return
-	if(!SSticker.mode.servants_of_ratvar.len)
+	if(!clock_team)
+		STOP_PROCESSING(SSprocessing, src)
+		return
+	var/servants = clock_team.members.len
+	if(!servants)
 		return
 	if(!votes_needed)
-		var/servants = SSticker.mode.servants_of_ratvar.len
-		if(servants)
-			votes_needed = round(servants * 0.66)
+		votes_needed = round(servants * 0.66)
 	time_remaining--
 	if(!time_remaining)
 		hierophant_message("<span class='bold sevtug_small'>[src] has lost its power, and can no longer be activated.</span>")
 		for(var/mob/M in GLOB.player_list)
-			if(isobserver(M) || is_servant_of_ratvar(M))
+			if(isobserver(M) || IS_SERVANT_OF_RATVAR(M))
 				M.playsound_local(M, 'sound/magic/blind.ogg', 50, FALSE)
 		available = FALSE
 		icon_state = "interdiction_lens_unwrenched"
@@ -48,7 +50,7 @@
 
 /obj/structure/destructible/clockwork/heralds_beacon/examine(mob/user)
 	. = ..()
-	if(isobserver(user) || is_servant_of_ratvar(user))
+	if(isobserver(user) || IS_SERVANT_OF_RATVAR(user))
 		if(!available)
 			if(!GLOB.ratvar_approaches)
 				. += "<span class='bold alloy'>It can no longer be activated.</span>"
@@ -62,7 +64,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!is_servant_of_ratvar(user))
+	if(!IS_SERVANT_OF_RATVAR(user))
 		to_chat(user, span_notice("You can tell how powerful [src] is; you know better than to touch it."))
 		return
 	if(!available)
@@ -75,7 +77,7 @@
 	var/voting = !(user.key in voters)
 	if(alert(user, "[voting ? "Cast a" : "Undo your"] vote to activate the beacon?", "Herald's Beacon", "Change Vote", "Cancel") == "Cancel")
 		return
-	if(!user.canUseTopic(src) || !is_servant_of_ratvar(user) || !available)
+	if(!user.canUseTopic(src) || !IS_SERVANT_OF_RATVAR(user) || !available)
 		return
 	if(voting)
 		if(user.key in voters)
@@ -89,7 +91,7 @@
 	message_admins("[ADMIN_LOOKUPFLW(user)] has [voting ? "voted" : "undone their vote"] to activate [src]! [ADMIN_JMP(user)]")
 	hierophant_message(span_brass("<b>[user.real_name]</b> has [voting ? "voted" : "undone their vote"] to activate [src]! The beacon needs [votes_left] more votes to activate."))
 	for(var/mob/M in GLOB.player_list)
-		if(isobserver(M) || is_servant_of_ratvar(M))
+		if(isobserver(M) || IS_SERVANT_OF_RATVAR(M))
 			M.playsound_local(M, 'sound/magic/clockwork/fellowship_armory.ogg', 50, FALSE)
 	if(!votes_left)
 		herald_the_justiciar()
@@ -109,7 +111,7 @@
 		C.update_values()
 		to_chat(C, C.empower_string)
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-		if(is_servant_of_ratvar(H))
+		if(IS_SERVANT_OF_RATVAR(H))
 			to_chat(H, "<span class='bold alloy'>The beacon's power warps your body into a clockwork form! You are now immune to many hazards, and your body is more robust against damage!</span>")
 			H.set_species(/datum/species/golem/clockwork/no_scrap)
 	var/obj/structure/destructible/clockwork/massive/celestial_gateway/G = GLOB.ark_of_the_clockwork_justiciar

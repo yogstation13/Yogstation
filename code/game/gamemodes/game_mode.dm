@@ -613,13 +613,6 @@
 
 	return max(0, enemy_minimum_age - C.player_age)
 
-/// Used to remove antag status on borging for some gamemodes
-/datum/game_mode/proc/remove_antag_for_borging(datum/mind/newborgie)
-	SSticker.mode.remove_cultist(newborgie, 0, 0)
-	var/datum/antagonist/rev/rev = newborgie.has_antag_datum(/datum/antagonist/rev)
-	if(rev)
-		rev.remove_revolutionary(TRUE)
-
 /datum/game_mode/proc/generate_station_goals()
 	for(var/T in subtypesof(/datum/station_goal))
 		var/datum/station_goal/G = T

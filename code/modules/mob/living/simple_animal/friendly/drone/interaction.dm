@@ -152,8 +152,10 @@
 		mind.special_role = null
 		ventcrawler = initial(ventcrawler)
 		speed = initial(speed)
-		if(is_servant_of_ratvar(src))
-			remove_servant_of_ratvar(src, TRUE)
+		var/datum/antagonist/clockcult/clockie_datum = IS_SERVANT_OF_RATVAR(src)
+		if(clockie_datum)
+			clockie_datum.silent = TRUE
+			clockie_datum.on_removal()
 		message_admins("[ADMIN_LOOKUPFLW(src)], a hacked drone, was restored to factory defaults!")
 	update_drone_icon()
 

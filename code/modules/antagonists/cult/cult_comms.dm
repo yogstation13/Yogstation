@@ -10,7 +10,7 @@
 	ranged_mousepointer = 'icons/effects/mouse_pointers/cult_target.dmi'
 
 /datum/action/innate/cult/IsAvailable(feedback = FALSE)
-	if(!iscultist(owner))
+	if(!IS_CULTIST(owner))
 		return FALSE
 	return ..()
 
@@ -42,7 +42,7 @@
 	my_message = "<span class='[span]'><b>[title] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
-		if(iscultist(M))
+		if(IS_CULTIST(M))
 			to_chat(M, my_message)
 		else if(M in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(M, user)
@@ -55,7 +55,7 @@
 	desc = "Conveys a message from the spirit realm that all cultists can hear."
 
 /datum/action/innate/cult/comm/spirit/IsAvailable(feedback = FALSE)
-	if(iscultist(owner.mind.current))
+	if(IS_CULTIST(owner.mind.current))
 		return TRUE
 
 /datum/action/innate/cult/comm/spirit/cultist_commune(mob/living/user, message)
@@ -65,7 +65,7 @@
 	my_message = span_cultboldtalic("The [user.name]: [message]")
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
-		if(iscultist(M))
+		if(IS_CULTIST(M))
 			to_chat(M, my_message)
 		else if(M in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(M, user)
@@ -133,7 +133,8 @@
 	var/datum/antagonist/cult/C = Nominee.mind.has_antag_datum(/datum/antagonist/cult)
 	var/list/saved_spells = C.magic.spells //save our spells...
 	C.magic.spells = list() //...then make sure they don't get deleted
-	SSticker.mode.remove_cultist(Nominee.mind, TRUE)
+	C.silent = TRUE
+	C.on_removal()
 	var/datum/antagonist/cult/new_antag = Nominee.mind.add_antag_datum(/datum/antagonist/cult/master)
 	new_antag.magic.spells = saved_spells
 	for(var/datum/mind/B in team.members)
@@ -415,7 +416,7 @@
 
 	if(isliving(clicked_on))
 		var/mob/living/living_clicked = clicked_on
-		if(!iscultist(living_clicked))
+		if(!IS_CULTIST(living_clicked))
 			return FALSE
 		SEND_SOUND(caller, sound('sound/weapons/thudswoosh.ogg'))
 		to_chat(caller, span_cultbold("You reach through the veil with your mind's eye and seize [clicked_on]! <b>Click anywhere nearby to teleport [clicked_on.p_them()]!</b>"))

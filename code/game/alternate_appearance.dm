@@ -135,14 +135,14 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 /datum/atom_hud/alternate_appearance/basic/noncult
 
 /datum/atom_hud/alternate_appearance/basic/noncult/mobShouldSee(mob/M)
-	if(!iscultist(M))
+	if(!IS_CULTIST(M))
 		return TRUE
 	return FALSE
 
 /datum/atom_hud/alternate_appearance/basic/cult
 
 /datum/atom_hud/alternate_appearance/basic/cult/mobShouldSee(mob/M)
-	if(iscultist(M))
+	if(IS_CULTIST(M))
 		return TRUE
 	return FALSE
 

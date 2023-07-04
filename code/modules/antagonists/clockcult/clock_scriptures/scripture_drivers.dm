@@ -138,7 +138,7 @@
 /datum/clockwork_scripture/vanguard/scripture_effects()
 	if(GLOB.ratvar_awakens)
 		for(var/mob/living/L in view(7, get_turf(invoker)))
-			if(L.stat != DEAD && is_servant_of_ratvar(L))
+			if(L.stat != DEAD && IS_SERVANT_OF_RATVAR(L))
 				L.apply_status_effect(STATUS_EFFECT_VANGUARD)
 			CHECK_TICK
 	else

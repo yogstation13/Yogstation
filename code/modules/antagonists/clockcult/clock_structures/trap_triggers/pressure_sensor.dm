@@ -17,8 +17,9 @@
 
 /obj/structure/destructible/clockwork/trap/trigger/pressure_sensor/Crossed(atom/movable/AM)
 	. = ..()
-	if(isliving(AM) && !is_servant_of_ratvar(AM))
-		var/mob/living/L = AM
+	var/mob/mob_am = AM
+	if(isliving(mob_am) && !IS_SERVANT_OF_RATVAR(mob_am))
+		var/mob/living/L = mob_am
 		if(L.stat || L.m_intent == MOVE_INTENT_WALK || !(L.mobility_flags & MOBILITY_STAND))
 			return
 		audible_message("<i>*click*</i>")

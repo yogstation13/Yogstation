@@ -22,7 +22,7 @@
 
 /obj/structure/destructible/clockwork/powered/clockwork_obelisk/examine(mob/user)
 	. = ..()
-	if(is_servant_of_ratvar(user) || isobserver(user))
+	if(IS_SERVANT_OF_RATVAR(user) || isobserver(user))
 		. += span_nzcrentr_small("It requires <b>[DisplayEnergy(hierophant_cost)]</b> to broadcast over the Hierophant Network, and <b>[DisplayEnergy(gateway_cost)]</b> to open a Spatial Gateway.")
 
 /obj/structure/destructible/clockwork/powered/clockwork_obelisk/can_be_unfasten_wrench(mob/user, silent)
@@ -45,7 +45,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!is_servant_of_ratvar(user) || !can_access_clockwork_power(src, hierophant_cost) || !anchored)
+	if(!IS_SERVANT_OF_RATVAR(user) || !can_access_clockwork_power(src, hierophant_cost) || !anchored)
 		to_chat(user, span_warning("You place your hand on [src], but it doesn't react."))
 		return
 	var/choice = alert(user,"You place your hand on [src]...",,"Hierophant Broadcast","Spatial Gateway","Cancel")
@@ -58,7 +58,7 @@
 				to_chat(user, span_warning("You cannot speak through [src]!"))
 				return
 			var/input = stripped_input(usr, "Please choose a message to send over the Hierophant Network.", "Hierophant Broadcast", "")
-			if(!is_servant_of_ratvar(user) || !input || !user.canUseTopic(src, !issilicon(user)))
+			if(!IS_SERVANT_OF_RATVAR(user) || !input || !user.canUseTopic(src, !issilicon(user)))
 				return
 			if(!anchored)
 				to_chat(user, span_warning("[src] is no longer secured!"))

@@ -107,6 +107,11 @@
 #define IS_HERETIC_MONSTER(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic_monster))
 #define IS_EXCLUSIVE_KNOWLEDGE(knowledge) (knowledge.tier % 2)
 
+/// Checks if the given mob is a blood cultist
+#define IS_CULTIST(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/cult))
+/// Checks if the given mob is a clock cultist
+#define IS_SERVANT_OF_RATVAR(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/clockcult))
+
 #define PATH_SIDE "Side"
 
 #define PATH_ASH "Ash"

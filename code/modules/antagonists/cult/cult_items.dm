@@ -54,7 +54,7 @@
 	AddComponent(/datum/component/butchering, 40, 100)
 
 /obj/item/melee/cultblade/attack(mob/living/target, mob/living/carbon/human/user)
-	if(!iscultist(user))
+	if(!IS_CULTIST(user))
 		user.Paralyze(100)
 		user.dropItemToGround(src, TRUE)
 		user.visible_message(span_warning("A powerful force shoves [user] away from [target]!"), \
@@ -79,8 +79,8 @@
 
 /obj/item/melee/cultblade/pickup(mob/living/user)
 	..()
-	if(!iscultist(user))
-		if(!is_servant_of_ratvar(user))
+	if(!IS_CULTIST(user))
+		if(!IS_SERVANT_OF_RATVAR(user))
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 		else
 			to_chat(user, span_cultlarge("\"One of Ratvar's toys is trying to play with things [user.p_they()] shouldn't. Cute.\""))
@@ -145,8 +145,8 @@
 
 /obj/item/twohanded/required/cult_bastard/pickup(mob/living/user)
 	. = ..()
-	if(!iscultist(user))
-		if(!is_servant_of_ratvar(user))
+	if(!IS_CULTIST(user))
+		if(!IS_SERVANT_OF_RATVAR(user))
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 			force = 5
 			return
@@ -219,7 +219,7 @@
 	phaseout = /obj/effect/temp_visual/dir_setting/cult/phase/out
 
 /datum/action/innate/dash/cult/IsAvailable(feedback = FALSE)
-	if(iscultist(holder) && current_charges)
+	if(IS_CULTIST(holder) && current_charges)
 		return TRUE
 	else
 		return FALSE
@@ -241,7 +241,7 @@
 	holder = user
 
 /datum/action/innate/cult/spin2win/IsAvailable(feedback = FALSE)
-	if(iscultist(holder) && cooldown <= world.time)
+	if(IS_CULTIST(holder) && cooldown <= world.time)
 		return TRUE
 	else
 		return FALSE
@@ -271,16 +271,27 @@
 	breakouttime = 60
 	immobilize = 20
 
-/obj/item/restraints/legcuffs/bola/cult/pickup(mob/living/user)
+#define CULT_BOLA_PICKUP_STUN (6 SECONDS)
+/obj/item/restraints/legcuffs/bola/cult/attack_hand(mob/living/carbon/user, list/modifiers)
 	. = ..()
-	if(!iscultist(user))
+
+	if(IS_CULTIST(user) || !iscarbon(user))
+		return
+	var/mob/living/carbon/carbon_user = user
+	if(user.get_num_legs(FALSE) < 2 || carbon_user.legcuffed) //if they can't be ensnared, stun for the same time as it takes to breakout of bola
+		to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
+		user.dropItemToGround(src, TRUE)
+		user.Paralyze(CULT_BOLA_PICKUP_STUN)
+	else
 		to_chat(user, span_warning("The bola seems to take on a life of its own!"))
 		throw_impact(user)
+#undef CULT_BOLA_PICKUP_STUN
 
 /obj/item/restraints/legcuffs/bola/cult/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(iscultist(hit_atom))
+	var/mob/hit_mob = hit_atom
+	if (istype(hit_mob) && IS_CULTIST(hit_mob))
 		return
-	. = ..()
+	return ..()
 
 
 /obj/item/clothing/head/culthood
@@ -409,8 +420,8 @@
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/equipped(mob/living/user, slot)
 	..()
-	if(!iscultist(user))
-		if(!is_servant_of_ratvar(user))
+	if(!IS_CULTIST(user))
+		if(!IS_SERVANT_OF_RATVAR(user))
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 			to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
 			user.dropItemToGround(src, TRUE)
@@ -461,8 +472,8 @@
 
 /obj/item/clothing/suit/hooded/cultrobes/berserker/equipped(mob/living/user, slot)
 	..()
-	if(!iscultist(user))
-		if(!is_servant_of_ratvar(user))
+	if(!IS_CULTIST(user))
+		if(!IS_SERVANT_OF_RATVAR(user))
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 			to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
 			user.dropItemToGround(src, TRUE)
@@ -484,7 +495,7 @@
 
 /obj/item/clothing/glasses/hud/health/night/cultblind/equipped(mob/living/user, slot)
 	..()
-	if(!iscultist(user))
+	if(!IS_CULTIST(user))
 		to_chat(user, span_cultlarge("\"You want to be blind, do you?\""))
 		user.dropItemToGround(src, TRUE)
 		user.adjust_dizzy(30)
@@ -508,7 +519,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	icon_state ="shuttlecurse"
 
 /obj/item/shuttle_curse/attack_self(mob/living/user)
-	if(!iscultist(user))
+	if(!IS_CULTIST(user))
 		user.dropItemToGround(src, TRUE)
 		user.Paralyze(100)
 		to_chat(user, span_warning("A powerful force shoves you away from [src]!"))
@@ -577,7 +588,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	if(!uses || !iscarbon(user))
 		to_chat(user, span_warning("\The [src] is dull and unmoving in your hands."))
 		return
-	if(!iscultist(user))
+	if(!IS_CULTIST(user))
 		user.dropItemToGround(src, TRUE)
 		step(src, pick(GLOB.alldirs))
 		to_chat(user, span_warning("\The [src] flickers out of your hands, your connection to this dimension is too strong!"))
@@ -621,45 +632,42 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/flashlight/flare/culttorch/afterattack(atom/movable/A, mob/user, proximity)
 	if(!proximity)
 		return
-	if(!iscultist(user))
+	if(!IS_CULTIST(user))
 		to_chat(user, "That doesn't seem to do anything useful.")
 		return
 
-	if(istype(A, /obj/item))
-
-		var/list/cultists = list()
-		for(var/datum/mind/M in SSticker.mode.cult)
-			if(M.current && M.current.stat != DEAD)
-				cultists |= M.current
-		var/mob/living/cultist_to_receive = input(user, "Who do you wish to call to [src]?", "Followers of the Geometer") as null|anything in (cultists - user)
-		if(!Adjacent(user) || !src || QDELETED(src) || user.incapacitated())
-			return
-		if(!cultist_to_receive)
-			to_chat(user, "<span class='cult italic'>You require a destination!</span>")
-			log_game("Void torch failed - no target")
-			return
-		if(cultist_to_receive.stat == DEAD)
-			to_chat(user, "<span class='cult italic'>[cultist_to_receive] has died!</span>")
-			log_game("Void torch failed  - target died")
-			return
-		if(!iscultist(cultist_to_receive))
-			to_chat(user, "<span class='cult italic'>[cultist_to_receive] is not a follower of the Geometer!</span>")
-			log_game("Void torch failed - target was deconverted")
-			return
-		if(A in user.get_all_contents())
-			to_chat(user, "<span class='cult italic'>[A] must be on a surface in order to teleport it!</span>")
-			return
-		to_chat(user, "<span class='cult italic'>You ignite [A] with \the [src], turning it to ash, but through the torch's flames you see that [A] has reached [cultist_to_receive]!</span>")
-		cultist_to_receive.put_in_hands(A)
-		charges--
-		to_chat(user, "\The [src] now has [charges] charge\s.")
-		if(charges == 0)
-			qdel(src)
-
-	else
-		..()
+	if(!isitem(A))
 		to_chat(user, span_warning("\The [src] can only transport items!"))
+		return ..()
 
+	var/list/cultists = list()
+	for(var/datum/mind/M as anything in get_antag_minds(/datum/antagonist/cult))
+		if(M.current && M.current.stat != DEAD)
+			cultists |= M.current
+	var/mob/living/cultist_to_receive = tgui_input_list(user, "Who do you wish to call to [src]?", "Followers of the Geometer", (cultists - user))
+	if(!Adjacent(user) || !src || QDELETED(src) || user.incapacitated())
+		return
+	if(!cultist_to_receive)
+		to_chat(user, "<span class='cult italic'>You require a destination!</span>")
+		log_game("Void torch failed - no target")
+		return
+	if(cultist_to_receive.stat == DEAD)
+		to_chat(user, "<span class='cult italic'>[cultist_to_receive] has died!</span>")
+		log_game("Void torch failed  - target died")
+		return
+	if(!IS_CULTIST(cultist_to_receive))
+		to_chat(user, "<span class='cult italic'>[cultist_to_receive] is not a follower of the Geometer!</span>")
+		log_game("Void torch failed - target was deconverted")
+		return
+	if(A in user.get_all_contents())
+		to_chat(user, "<span class='cult italic'>[A] must be on a surface in order to teleport it!</span>")
+		return
+	to_chat(user, "<span class='cult italic'>You ignite [A] with \the [src], turning it to ash, but through the torch's flames you see that [A] has reached [cultist_to_receive]!</span>")
+	cultist_to_receive.put_in_hands(A)
+	charges--
+	to_chat(user, "\The [src] now has [charges] charge\s.")
+	if(charges == 0)
+		qdel(src)
 
 /obj/item/twohanded/cult_spear
 	name = "blood halberd"
@@ -697,7 +705,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	var/turf/T = get_turf(hit_atom)
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
-		if(iscultist(L))
+		if(IS_CULTIST(L))
 			playsound(src, 'sound/weapons/throwtap.ogg', 50)
 			if(L.put_in_active_hand(src))
 				L.visible_message(span_warning("[L] catches [src] out of the air!"))
@@ -705,7 +713,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				L.visible_message(span_warning("[src] bounces off of [L], as if repelled by an unseen force!"))
 		else if(!..())
 			if(!L.anti_magic_check())
-				if(is_servant_of_ratvar(L))
+				if(IS_SERVANT_OF_RATVAR(L))
 					L.Paralyze(20)
 				else
 					L.Paralyze(10)
@@ -783,7 +791,8 @@ GLOBAL_VAR_INIT(curselimit, 0)
 /obj/item/projectile/magic/arcane_barrage/blood/Bump(atom/target)
 	var/turf/T = get_turf(target)
 	playsound(T, 'sound/effects/splat.ogg', 50, TRUE)
-	if(iscultist(target))
+	var/mob/mob_target = target
+	if(ismob(mob_target) && IS_CULTIST(mob_target))
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(H.stat != DEAD)
@@ -886,7 +895,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				break
 			T.narsie_act(TRUE, TRUE)
 			for(var/mob/living/target in T.contents)
-				if(iscultist(target))
+				if(IS_CULTIST(target))
 					new /obj/effect/temp_visual/cult/sparks(T)
 					if(ishuman(target))
 						var/mob/living/carbon/human/H = target
@@ -928,7 +937,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	var/illusions = 5
 
 /obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(iscultist(owner))
+	if(IS_CULTIST(owner))
 		if(istype(hitby, /obj/item/projectile))
 			var/obj/item/projectile/P = hitby
 			if(P.damage_type == BRUTE || P.damage_type == BURN)
@@ -989,7 +998,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	var/datum/thrownthing/D = throwingdatum
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
-		if(iscultist(L))
+		if(IS_CULTIST(L))
 			playsound(src, 'sound/weapons/throwtap.ogg', 50)
 			if(L.put_in_active_hand(src))
 				L.visible_message(span_warning("[L] catches [src] out of the air!"))
@@ -1000,13 +1009,13 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				if(L.buckled)
 					L.buckled.unbuckle_mob(L)
 
-				if(is_servant_of_ratvar(L))
+				if(IS_SERVANT_OF_RATVAR(L))
 					L.Knockdown(60)
 				else
 					L.Knockdown(30)
 				if(D?.thrower)
 					for(var/mob/living/Next in orange(2, T))
-						if(!Next.density || iscultist(Next))
+						if(!Next.density || IS_CULTIST(Next))
 							continue
 						throw_at(Next, 3, 1, D.thrower)
 						return

@@ -44,11 +44,6 @@ Credit where due:
 // PROCS //
 ///////////
 
-/proc/is_servant_of_ratvar(mob/M)
-	if(!istype(M))
-		return FALSE
-	return M?.mind?.has_antag_datum(/datum/antagonist/clockcult)
-
 /proc/is_eligible_servant(mob/M)
 	if(!istype(M))
 		return FALSE
@@ -56,13 +51,13 @@ Credit where due:
 		if(ishuman(M) && (M.mind.assigned_role in list("Captain", "Chaplain")))
 			return FALSE
 		var/mob/living/master = M.mind.enslaved_to?.resolve()
-		if(master && !iscultist(master))
+		if(master && !IS_CULTIST(master))
 			return FALSE
 		if(M.mind.unconvertable)
 			return FALSE
 	else
 		return FALSE
-	if(iscultist(M) || isconstruct(M) || ispAI(M))
+	if(IS_CULTIST(M) || isconstruct(M) || ispAI(M))
 		return FALSE
 	if(isliving(M))
 		var/mob/living/L = M
@@ -112,27 +107,9 @@ Credit where due:
 			L.playsound_local(get_turf(L), 'sound/ambience/antag/clockcultalr.ogg', 40, TRUE, frequency = 100000, pressure_affected = FALSE)
 			flash_color(L, flash_color = list("#BE8700", "#BE8700", "#BE8700", rgb(0,0,0)), flash_time = 5)
 
-
-
-
-/proc/remove_servant_of_ratvar(mob/L, silent = FALSE)
-	if(!L || !L.mind)
-		return
-	var/datum/antagonist/clockcult/clock_datum = L.mind.has_antag_datum(/datum/antagonist/clockcult)
-	if(!clock_datum)
-		return FALSE
-	clock_datum.silent = silent
-	clock_datum.on_removal()
-	return TRUE
-
 ///////////////
 // GAME MODE //
 ///////////////
-
-/datum/game_mode
-	var/list/servants_of_ratvar = list() //The Enlightened servants of Ratvar
-	var/clockwork_explanation = "Defend the Ark of the Clockwork Justiciar and free Ratvar." //The description of the current objective
-
 /datum/game_mode/clockwork_cult
 	name = "clockwork cult"
 	config_tag = "clockwork_cult"
@@ -360,7 +337,7 @@ Credit where due:
 
 /obj/item/paper/servant_primer/examine(mob/user)
 	. = ..()
-	if(!is_servant_of_ratvar(user) && !isobserver(user))
+	if(!IS_SERVANT_OF_RATVAR(user) && !isobserver(user))
 		. += span_danger("You can't understand any of the words on [src].")
 
 /obj/item/paper/servant_primer/infirmarypaper
@@ -385,7 +362,7 @@ Credit where due:
 
 	round_credits += "<center><h1>The Servants of Ratvar:</h1>"
 	len_before_addition = round_credits.len
-	for(var/datum/mind/servant in servants_of_ratvar)
+	for(var/datum/mind/servant in main_clockcult.members)
 		round_credits += "<center><h2>[servant.name] as a faithful servant of Ratvar</h2>"
 	if(GLOB.ratvar_awakens)
 		round_credits += "<center><h2>Ratvar as himself, returned at last</h2>"

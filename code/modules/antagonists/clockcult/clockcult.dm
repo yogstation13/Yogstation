@@ -62,13 +62,12 @@
 
 /datum/antagonist/clockcult/on_gain()
 	var/mob/living/current = owner.current
-	SSticker.mode.servants_of_ratvar += owner
 	owner.special_role = ROLE_SERVANT_OF_RATVAR
 	owner.current.log_message("has been converted to the cult of Ratvar!", LOG_ATTACK, color="#BE8700")
 	if(issilicon(current))
 		if(iscyborg(current) && !silent)
 			var/mob/living/silicon/robot/R = current
-			if(R.connected_ai && !is_servant_of_ratvar(R.connected_ai))
+			if(R.connected_ai && !IS_SERVANT_OF_RATVAR(R.connected_ai))
 				to_chat(R, "<span class='boldwarning'>You have been desynced from your master AI.<br>\
 				In addition, your onboard camera is no longer active and you have gained additional equipment, including a limited clockwork slab.</span>")
 			else
@@ -167,7 +166,6 @@
 	temp_owner.regenerate_icons()
 
 /datum/antagonist/clockcult/on_removal()
-	SSticker.mode.servants_of_ratvar -= owner
 	for(var/datum/action/item_action/clock/quickbind/existing_binds in owner.current.actions)
 		existing_binds.Remove(owner.current) //regenerate all our quickbound scriptures
 	if(!silent)
@@ -186,9 +184,8 @@
 	log_admin("[key_name(admin)] has made [key_name(new_owner)] into a servant of Ratvar.")
 
 /datum/antagonist/clockcult/admin_remove(mob/user)
-	remove_servant_of_ratvar(owner.current, TRUE)
-	message_admins("[key_name_admin(user)] has removed clockwork servant status from [key_name_admin(owner)].")
-	log_admin("[key_name(user)] has removed clockwork servant status from [key_name(owner)].")
+	silent = TRUE
+	return ..()
 
 /datum/antagonist/clockcult/get_admin_commands()
 	. = ..()
@@ -227,12 +224,11 @@
 	if(check_clockwork_victory())
 		parts += "<span class='greentext big'>Ratvar's servants defended the Ark until its activation!</span>"
 		parts += "<span class='heavy_brass'>The Servants of Ratvar find themselves once more on the station, filled with a sense of pride and accomplishment. The vents beneath them hiss with steam as walls turn to brass, yet they do not feel content. Though Rat’var is free, they know that this is but the beginning of their duty. In the cold, dark expanse surrounding the new City of Cogs, there lay a billion stars, each waiting to be a part of Ratvars empire; their battle had just begun.</span>"
-		for(var/mind in SSticker.mode.servants_of_ratvar)
-			var/datum/mind/M = mind
+		for(var/datum/mind/M as anything in members)
 			if(M.current?.client)
-				SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar,M.current.client)
+				SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar, M.current.client)
 		if(eminence?.current?.client)
-			SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar/eminence,eminence.current.client)
+			SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar/eminence, eminence.current.client)
 	else
 		parts += "<span class='redtext big'>The Ark was destroyed! Ratvar will rust away for all eternity!</span>"
 	parts += " "

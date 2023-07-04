@@ -394,7 +394,7 @@
 	if(status_flags & GODMODE || QDELETED(src))
 		return
 
-	if(is_servant_of_ratvar(src) && !stat)
+	if(IS_SERVANT_OF_RATVAR(src) && !stat)
 		to_chat(src, span_userdanger("You resist Nar'sie's influence... but not all of it. <i>Run!</i>"))
 		adjustBruteLoss(35)
 		if(src && reagents)
@@ -426,7 +426,7 @@
 /mob/living/ratvar_act()
 	if(status_flags & GODMODE)
 		return
-	if(stat != DEAD && !is_servant_of_ratvar(src))
+	if(stat != DEAD && !IS_SERVANT_OF_RATVAR(src))
 		to_chat(src, span_userdanger("A blinding light boils you alive! <i>Run!</i>"))
 		adjust_fire_stacks(20)
 		ignite_mob()

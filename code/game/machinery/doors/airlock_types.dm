@@ -469,7 +469,7 @@
 	new openingoverlaytype(loc)
 
 /obj/machinery/door/airlock/cult/canAIControl(mob/user)
-	return (iscultist(user) && !isAllPowerCut())
+	return (IS_CULTIST(user) && !isAllPowerCut())
 
 /obj/machinery/door/airlock/cult/isElectrified()
 	return FALSE
@@ -480,7 +480,7 @@
 /obj/machinery/door/airlock/cult/allowed(mob/living/L)
 	if(!density)
 		return 1
-	if(friendly || iscultist(L) || istype(L, /mob/living/simple_animal/shade) || isconstruct(L))
+	if(friendly || IS_CULTIST(L) || istype(L, /mob/living/simple_animal/shade) || isconstruct(L))
 		if(!stealthy)
 			new openingoverlaytype(loc)
 		return 1
@@ -591,7 +591,7 @@
 		open()
 
 /obj/machinery/door/airlock/clockwork/canAIControl(mob/user)
-	return (is_servant_of_ratvar(user) && !isAllPowerCut())
+	return (IS_SERVANT_OF_RATVAR(user) && !isAllPowerCut())
 
 /obj/machinery/door/airlock/clockwork/ratvar_act()
 	return 0
@@ -609,7 +609,7 @@
 		return ..()
 
 /obj/machinery/door/airlock/clockwork/allowed(mob/M)
-	if(is_servant_of_ratvar(M))
+	if(IS_SERVANT_OF_RATVAR(M))
 		return 1
 	return 0
 

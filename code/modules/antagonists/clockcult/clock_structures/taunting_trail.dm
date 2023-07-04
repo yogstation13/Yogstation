@@ -53,7 +53,7 @@
 	return ..()
 
 /obj/structure/destructible/clockwork/taunting_trail/proc/affect_mob(mob/living/L)
-	if(istype(L) && !is_servant_of_ratvar(L))
+	if(istype(L) && !IS_SERVANT_OF_RATVAR(L))
 		if(!L.anti_magic_check(chargecost = 0))
 			L.adjust_confusion_up_to(15 SECONDS, 50 SECONDS)
 			L.adjust_dizzy_up_to(15 SECONDS, 50 SECONDS)

@@ -16,7 +16,7 @@
 
 /obj/effect/clockwork/sigil/attackby(obj/item/I, mob/living/user, params)
 	if(I.force)
-		if(is_servant_of_ratvar(user) && user.a_intent != INTENT_HARM)
+		if(IS_SERVANT_OF_RATVAR(user) && user.a_intent != INTENT_HARM)
 			return ..()
 		user.visible_message(span_warning("[user] scatters [src] with [I]!"), span_danger("You scatter [src] with [I]!"))
 		qdel(src)
@@ -29,7 +29,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/effect/clockwork/sigil/attack_hand(mob/user)
 	if(iscarbon(user) && !user.stat)
-		if(is_servant_of_ratvar(user) && user.a_intent != INTENT_HARM)
+		if(IS_SERVANT_OF_RATVAR(user) && user.a_intent != INTENT_HARM)
 			return ..()
 		user.visible_message(span_warning("[user] stamps out [src]!"), span_danger("You stomp on [src], scattering it into thousands of particles."))
 		qdel(src)
@@ -45,7 +45,7 @@
 	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.stat <= stat_affected)
-			if((!is_servant_of_ratvar(L) || (affects_servants && is_servant_of_ratvar(L))) && (L.mind || L.has_status_effect(STATUS_EFFECT_SIGILMARK)) && !isdrone(L))
+			if((!IS_SERVANT_OF_RATVAR(L) || (affects_servants && IS_SERVANT_OF_RATVAR(L))) && (L.mind || L.has_status_effect(STATUS_EFFECT_SIGILMARK)) && !isdrone(L))
 				var/atom/I = L.anti_magic_check(check_antimagic, check_holy)
 				if(I)
 					if(isitem(I))
@@ -75,9 +75,9 @@
 /obj/effect/clockwork/sigil/transgression/sigil_effects(mob/living/L)
 	var/target_flashed = L.flash_act()
 	for(var/mob/living/M in viewers(5, src))
-		if(!is_servant_of_ratvar(M) && M != L)
+		if(!IS_SERVANT_OF_RATVAR(M) && M != L)
 			M.flash_act()
-	if(iscultist(L))
+	if(IS_CULTIST(L))
 		to_chat(L, "[span_heavy_brass("\"Watch your step, wretch.\"")]")
 		L.adjustBruteLoss(10)
 		L.Paralyze(80, FALSE)
@@ -115,7 +115,7 @@
 	if(locate(/obj/effect/clockwork/sigil/transgression) in T)
 		has_sigil = TRUE
 	for(var/mob/living/M in range(3, src))
-		if(is_servant_of_ratvar(M) && !M.stat)
+		if(IS_SERVANT_OF_RATVAR(M) && !M.stat)
 			has_servant = TRUE
 	if(!has_sigil && !has_servant)
 		visible_message(span_danger("[src] strains into a gentle violet color, but quietly fades..."))
@@ -151,12 +151,12 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.silent += 5
-	var/message = "[sigil_name] in [get_area(src)] [span_sevtug("[is_servant_of_ratvar(L) ? "successfully converted" : "failed to convert"]")]"
-	for(var/M in GLOB.mob_list)
+	var/message = "[sigil_name] in [get_area(src)] [span_sevtug("[IS_SERVANT_OF_RATVAR(L) ? "successfully converted" : "failed to convert"]")]"
+	for(var/mob/M as anything in GLOB.mob_list)
 		if(isobserver(M))
 			var/link = FOLLOW_LINK(M, L)
 			to_chat(M,  "[link] [span_heavy_brass("[message] [L.real_name]!")]")
-		else if(is_servant_of_ratvar(M))
+		else if(IS_SERVANT_OF_RATVAR(M))
 			if(M == L)
 				to_chat(M, "[span_heavy_brass("[message] you!")]")
 			else
@@ -192,7 +192,7 @@
 
 /obj/effect/clockwork/sigil/transmission/examine(mob/user)
 	. = ..()
-	if(is_servant_of_ratvar(user) || isobserver(user))
+	if(IS_SERVANT_OF_RATVAR(user) || isobserver(user))
 		var/structure_number = 0
 		for(var/obj/structure/destructible/clockwork/powered/P in range(SIGIL_ACCESS_RANGE, src))
 			structure_number++
@@ -202,7 +202,7 @@
 			. += span_brass("You can recharge from the [sigil_name] by crossing it.")
 
 /obj/effect/clockwork/sigil/transmission/sigil_effects(mob/living/L)
-	if(is_servant_of_ratvar(L))
+	if(IS_SERVANT_OF_RATVAR(L))
 		if(iscyborg(L))
 			charge_cyborg(L)
 	else if(get_clockwork_power())
@@ -275,7 +275,7 @@
 
 /obj/effect/clockwork/sigil/vitality/examine(mob/user)
 	. = ..()
-	if(is_servant_of_ratvar(user) || isobserver(user))
+	if(IS_SERVANT_OF_RATVAR(user) || isobserver(user))
 		. += "<span class='[GLOB.clockwork_vitality ? "inathneq_small":"alloy"]'>It has access to <b>[GLOB.ratvar_awakens ? "INFINITE":GLOB.clockwork_vitality]</b> units of vitality.</span>"
 		if(GLOB.ratvar_awakens)
 			. += "[span_inathneq_small("It can revive Servants at no cost!")]"
@@ -283,19 +283,19 @@
 			. += span_inathneq_small("It can revive Servants at a cost of <b>[revive_cost]</b> vitality.")
 
 /obj/effect/clockwork/sigil/vitality/sigil_effects(mob/living/L)
-	if((is_servant_of_ratvar(L) && L.suiciding) || sigil_active)
+	if((IS_SERVANT_OF_RATVAR(L) && L.suiciding) || sigil_active)
 		return
 	animate(src, alpha = 255, time = 1 SECONDS, flags = ANIMATION_END_NOW) //we may have a previous animation going. finish it first, then do this one without delay.
 	sleep(1 SECONDS)
 //as long as they're still on the sigil and are either not a servant or they're a servant AND it has remaining vitality
 	var/consumed_vitality
-	while(L && (!is_servant_of_ratvar(L) || (is_servant_of_ratvar(L) && (GLOB.ratvar_awakens || GLOB.clockwork_vitality))) && get_turf(L) == get_turf(src) && !L.buckled)
+	while(L && (!IS_SERVANT_OF_RATVAR(L) || (IS_SERVANT_OF_RATVAR(L) && (GLOB.ratvar_awakens || GLOB.clockwork_vitality))) && get_turf(L) == get_turf(src) && !L.buckled)
 		sigil_active = TRUE
 		if(animation_number >= 4)
 			new /obj/effect/temp_visual/ratvar/sigil/vitality(get_turf(src))
 			animation_number = 0
 		animation_number++
-		if(!is_servant_of_ratvar(L))
+		if(!IS_SERVANT_OF_RATVAR(L))
 			var/vitality_drained = 0
 			if(L.stat == DEAD && !consumed_vitality)
 				consumed_vitality = TRUE //Prevent the target from being consumed multiple times

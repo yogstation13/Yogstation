@@ -34,7 +34,7 @@
 	for(var/I in GLOB.player_list)
 		var/mob/M = I
 		if(M.stat != DEAD)
-			if(iscultist(M))
+			if(IS_CULTIST(M))
 				++cultplayers
 			else
 				++alive

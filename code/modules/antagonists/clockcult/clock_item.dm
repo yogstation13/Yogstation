@@ -18,7 +18,7 @@
 	return ..()
 
 /obj/item/clockwork/examine(mob/user)
-	if((is_servant_of_ratvar(user) || isobserver(user)) && clockwork_desc)
+	if((IS_SERVANT_OF_RATVAR(user) || isobserver(user)) && clockwork_desc)
 		desc = clockwork_desc
 	. = ..()
 	desc = initial(desc)

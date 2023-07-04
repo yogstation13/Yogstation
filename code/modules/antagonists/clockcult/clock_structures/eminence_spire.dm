@@ -15,7 +15,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!is_servant_of_ratvar(user))
+	if(!IS_SERVANT_OF_RATVAR(user))
 		to_chat(user, span_notice("You can tell how powerful [src] is; you know better than to touch it."))
 		return
 	if(kingmaking)
@@ -39,7 +39,7 @@
 		nomination(user)
 
 /obj/structure/destructible/clockwork/eminence_spire/attack_drone(mob/living/simple_animal/drone/user)
-	if(!is_servant_of_ratvar(user))
+	if(!IS_SERVANT_OF_RATVAR(user))
 		..()
 	else
 		to_chat(user, span_warning("You feel the omniscient gaze turn into a puzzled frown. Perhaps you should just stick to building."))
@@ -71,7 +71,7 @@
 
 /obj/structure/destructible/clockwork/eminence_spire/proc/nomination(mob/living/nominee) //A user is nominating themselves or ghosts to become Eminence
 	var/nomination_choice = alert(nominee, "Who would you like to nominate?", "Eminence Nomination", "Nominate Yourself", "Nominate Ghosts", "Cancel")
-	if(!is_servant_of_ratvar(nominee) || !nominee.canUseTopic(src) || eminence_nominee)
+	if(!IS_SERVANT_OF_RATVAR(nominee) || !nominee.canUseTopic(src) || eminence_nominee)
 		return
 	switch(nomination_choice)
 		if("Cancel")
@@ -87,7 +87,7 @@
 	selection_timer = addtimer(CALLBACK(src, PROC_REF(kingmaker)), 300, TIMER_STOPPABLE)
 
 /obj/structure/destructible/clockwork/eminence_spire/proc/objection(mob/living/wright)
-	if(alert(wright, "Object to the selection of [eminence_nominee] as Eminence?", "Objection!", "Object", "Cancel") == "Cancel" || !is_servant_of_ratvar(wright) || !wright.canUseTopic(src) || !eminence_nominee)
+	if(alert(wright, "Object to the selection of [eminence_nominee] as Eminence?", "Objection!", "Object", "Cancel") == "Cancel" || !IS_SERVANT_OF_RATVAR(wright) || !wright.canUseTopic(src) || !eminence_nominee)
 		return
 	hierophant_message(span_brass("<b>[wright] objects to the nomination of [eminence_nominee]!</b> The eminence spire has been reset."))
 	for(var/mob/M in servants_and_ghosts())
@@ -96,7 +96,7 @@
 	deltimer(selection_timer)
 
 /obj/structure/destructible/clockwork/eminence_spire/proc/cancelation(mob/living/cold_feet)
-	if(alert(cold_feet, "Cancel your nomination?", "Cancel Nomination", "Withdraw Nomination", "Cancel") == "Cancel" || !is_servant_of_ratvar(cold_feet) || !cold_feet.canUseTopic(src) || !eminence_nominee)
+	if(alert(cold_feet, "Cancel your nomination?", "Cancel Nomination", "Withdraw Nomination", "Cancel") == "Cancel" || !IS_SERVANT_OF_RATVAR(cold_feet) || !cold_feet.canUseTopic(src) || !eminence_nominee)
 		return
 	hierophant_message(span_brass("<b>[eminence_nominee] has withdrawn their nomination!</b> The eminence spire has been reset."))
 	for(var/mob/M in servants_and_ghosts())

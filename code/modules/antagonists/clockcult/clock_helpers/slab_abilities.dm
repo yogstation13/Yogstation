@@ -41,7 +41,7 @@
 
 	if(iscarbon(clicked_on) && clicked_on.Adjacent(caller))
 		var/mob/living/carbon/L = clicked_on
-		if(is_servant_of_ratvar(L))
+		if(IS_SERVANT_OF_RATVAR(L))
 			to_chat(caller, span_neovgre("\"[L.p_theyre(TRUE)] a servant.\""))
 			return FALSE
 		else if(L.stat)
@@ -96,7 +96,7 @@
 
 	if(isliving(clicked_on) && (clicked_on in view(7, get_turf(caller))))
 		var/mob/living/L = clicked_on
-		if(!is_servant_of_ratvar(L))
+		if(!IS_SERVANT_OF_RATVAR(L))
 			to_chat(caller, span_inathneq("\"[L] does not yet serve Ratvar.\""))
 			return TRUE
 		if(L.stat == DEAD)
@@ -181,7 +181,7 @@
 /obj/item/projectile/kindle/on_hit(atom/clicked_on, blocked = FALSE)
 	if(isliving(clicked_on))
 		var/mob/living/L = clicked_on
-		if(is_servant_of_ratvar(L) || L.stat || L.has_status_effect(STATUS_EFFECT_KINDLE))
+		if(IS_SERVANT_OF_RATVAR(L) || L.stat || L.has_status_effect(STATUS_EFFECT_KINDLE))
 			return BULLET_ACT_HIT
 		var/atom/O = L.anti_magic_check()
 		playsound(L, 'sound/magic/fireball.ogg', 50, TRUE, frequency = 1.25)
@@ -198,7 +198,7 @@
 			L.Paralyze(1.5 SECONDS)
 			L.apply_status_effect(STATUS_EFFECT_KINDLE)
 			L.flash_act(1, 1)
-			if(iscultist(L))
+			if(IS_CULTIST(L))
 				L.adjustFireLoss(15)
 
 	return ..()
@@ -215,7 +215,7 @@
 
 	if(isliving(clicked_on) && (clicked_on in view(7, get_turf(caller))))
 		var/mob/living/L = clicked_on
-		if(!is_servant_of_ratvar(L))
+		if(!IS_SERVANT_OF_RATVAR(L))
 			to_chat(caller, span_inathneq("\"[L] does not yet serve Ratvar.\""))
 			return FALSE
 		if(L.stat == DEAD)
@@ -229,7 +229,7 @@
 
 		if(L == caller)
 			for(var/mob/living/LT in spiral_range(7, T))
-				if(LT.stat == DEAD || !is_servant_of_ratvar(LT) || LT == caller || !(LT in view(7, get_turf(caller))) || \
+				if(LT.stat == DEAD || !IS_SERVANT_OF_RATVAR(LT) || LT == caller || !(LT in view(7, get_turf(caller))) || \
 				(islist(LT.stun_absorption) && LT.stun_absorption["vanguard"] && LT.stun_absorption["vanguard"]["end_time"] > world.time))
 					continue
 				L = LT

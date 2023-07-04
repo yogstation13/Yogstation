@@ -38,7 +38,7 @@
 	return ..()
 
 /obj/item/mmi/posibrain/soul_vessel/examine(mob/user)
-	if((is_servant_of_ratvar(user) || isobserver(user)) && clockwork_desc)
+	if((IS_SERVANT_OF_RATVAR(user) || isobserver(user)) && clockwork_desc)
 		desc = clockwork_desc
 	. = ..()
 	desc = initial(desc)
@@ -49,13 +49,13 @@
 		add_servant_of_ratvar(brainmob, TRUE)
 
 /obj/item/mmi/posibrain/soul_vessel/attack_self(mob/living/user)
-	if(!is_servant_of_ratvar(user))
+	if(!IS_SERVANT_OF_RATVAR(user))
 		to_chat(user, span_warning("You fiddle around with [src], to no avail."))
 		return FALSE
 	..()
 
 /obj/item/mmi/posibrain/soul_vessel/attack(mob/living/target, mob/living/carbon/human/user)
-	if(!is_servant_of_ratvar(user) || !ishuman(target))
+	if(!IS_SERVANT_OF_RATVAR(user) || !ishuman(target))
 		..()
 		return
 	if(QDELETED(brainmob))
@@ -63,7 +63,7 @@
 	if(brainmob.key)
 		to_chat(user, span_nezbere("\"This vessel is filled, friend. Provide it with a body.\""))
 		return
-	if(is_servant_of_ratvar(target))
+	if(IS_SERVANT_OF_RATVAR(target))
 		to_chat(user, span_nezbere("\"It would be more wise to revive your allies, friend.\""))
 		return
 	if(target.suiciding)

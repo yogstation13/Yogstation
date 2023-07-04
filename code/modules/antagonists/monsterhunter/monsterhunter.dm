@@ -134,7 +134,7 @@
 		var/datum/mind/brain = monster.owner
 		if(brain == owner || !brain)
 			continue
-		if(IS_HERETIC(brain.current) || IS_BLOODSUCKER(brain.current) || iscultist(brain.current) || is_servant_of_ratvar(brain.current) || is_wizard(brain.current))
+		if(IS_HERETIC(brain.current) || IS_BLOODSUCKER(brain.current) || IS_CULTIST(brain.current) || IS_SERVANT_OF_RATVAR(brain.current) || is_wizard(brain.current))
 			monsters += brain
 		if(brain.has_antag_datum(/datum/antagonist/changeling))
 			monsters += brain

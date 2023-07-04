@@ -93,8 +93,10 @@
 
 /datum/clockwork_scripture/create_object/construct/clockwork_marauder/update_construct_limit()
 	var/human_servants = 0
-	for(var/V in SSticker.mode.servants_of_ratvar)
-		var/datum/mind/M = V
+	var/datum/team/clockcult/clock_team = locate() in GLOB.antagonist_teams
+	if(!clock_team)
+		CRASH("update_construct_limit called on [src] without a clock cult team existing.")
+	for(var/datum/mind/M as anything in clock_team.members)
 		var/mob/living/L = M.current
 		if(ishuman(L) && L.stat != DEAD)
 			human_servants++

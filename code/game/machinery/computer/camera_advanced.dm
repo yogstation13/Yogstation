@@ -310,7 +310,7 @@
 	actions += warp_action
 
 /obj/machinery/computer/camera_advanced/ratvar/can_use(mob/living/user)
-	if(!is_servant_of_ratvar(user))
+	if(!IS_SERVANT_OF_RATVAR(user))
 		to_chat(user, span_warning("[src]'s keys are in a language foreign to you, and you don't understand anything on its screen."))
 		return
 	if(clockwork_ark_active())

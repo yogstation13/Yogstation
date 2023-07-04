@@ -1383,8 +1383,8 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 //Returns a list of all servants of Ratvar and observers.
 /proc/servants_and_ghosts()
 	. = list()
-	for(var/V in GLOB.player_list)
-		if(is_servant_of_ratvar(V) || isobserver(V))
+	for(var/mob/V as anything in GLOB.player_list)
+		if(IS_SERVANT_OF_RATVAR(V) || isobserver(V))
 			. += V
 
 #define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##target, ##var_name, ##var_value)

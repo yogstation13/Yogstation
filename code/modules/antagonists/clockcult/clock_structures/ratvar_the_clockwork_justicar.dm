@@ -72,7 +72,7 @@
 	var/dir_to_step_in = pick(GLOB.cardinals)
 	var/list/meals = list()
 	for(var/mob/living/L in GLOB.alive_mob_list) //we want to know who's alive so we don't lose and retarget a single person
-		if(L.z == z && !is_servant_of_ratvar(L) && L.mind)
+		if(L.z == z && !IS_SERVANT_OF_RATVAR(L) && L.mind)
 			meals += L
 	if(GLOB.cult_narsie && GLOB.cult_narsie.z == z)
 		meals = list(GLOB.cult_narsie) //if you're in the way, handy for him, but ratvar only cares about Nar'sie!
@@ -89,7 +89,8 @@
 			L.playsound_local(prey, 'sound/effects/ratvar_reveal.ogg', 100, FALSE, pressure_affected = FALSE)
 	else
 		if((!istype(prey, /obj/singularity/narsie) && prob(10) && LAZYLEN(meals) > 1) || prey.z != z || !(prey in meals))
-			if(is_servant_of_ratvar(prey))
+			var/mob/mob_prey = prey
+			if(istype(mob_prey) && IS_SERVANT_OF_RATVAR(mob_prey))
 				to_chat(prey, "<span class='heavy_brass'><font size=5>\"Serve me well.\"</font></span>\n\
 				[span_big_brass("You feel great joy as your god turns His eye to another heretic...")]")
 			else
@@ -121,8 +122,8 @@
 			if(!isnewplayer(M))
 				flash_color(M, flash_color="#966400", flash_time=1)
 				shake_camera(M, 4, 3)
-		var/ratvar_chance = min(LAZYLEN(SSticker.mode.servants_of_ratvar), 50)
-		var/narsie_chance = min(LAZYLEN(SSticker.mode.cult), 50)
+		var/ratvar_chance = min(get_antag_minds(/datum/antagonist/clockcult), 50)
+		var/narsie_chance = min(get_antag_minds(/datum/antagonist/cult), 50)
 		ratvar_chance = rand(base_victory_chance, ratvar_chance)
 		narsie_chance = rand(base_victory_chance, narsie_chance)
 		if(ratvar_chance > narsie_chance)
