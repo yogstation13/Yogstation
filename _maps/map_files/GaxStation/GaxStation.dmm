@@ -11365,7 +11365,7 @@
 "fwr" = (
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
 	name = "liquid pepper spray"
 	},
 /turf/open/floor/plasteel/dark,

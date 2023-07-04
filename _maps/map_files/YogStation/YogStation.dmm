@@ -4423,7 +4423,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	icon_state = "cognacglass";
-	list_reagents = list(/datum/reagent/consumable/ethanol/cognac=20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 20);
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -45920,7 +45920,7 @@
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/smoke_machine,
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine{
-	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin=100);
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 100);
 	name = "liquid pepper spray"
 	},
 /obj/machinery/door/firedoor/border_only{
