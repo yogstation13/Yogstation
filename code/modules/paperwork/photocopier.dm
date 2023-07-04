@@ -320,6 +320,10 @@
 	grind_results = list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
 	charges = 100
 	max_charges = 100
+
+/obj/item/toner/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>The ink level gauge on the side reads [round(charges / max_charges * 100)]%</span>"
 	
 /obj/machinery/photocopier/proc/copy(obj/item/paper/copy)
 	var/obj/item/paper/c = new /obj/item/paper (loc)
