@@ -137,11 +137,14 @@
 			SSticker.mode.check_win()
 		check_counter = 0
 		if(!loud && go_fucking_loud_time && world.time >= go_fucking_loud_time)
-			loud = TRUE //OH FUCK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			priority_announce("Through intercepted transmissions, we have detected a group of anti-corporate activists on [station_name()]. Comply with Command and Security personnel, and report all anti-corporate or revolutionary activities.", null, null, null, "Central Command Intelligence Division")
-			message_admins("The revolution has been detected and announced.")
-			log_game("The revolution has been detected and announced.")
+			go_loud()
 	return FALSE
+
+/datum/game_mode/revolution/proc/go_loud()
+	loud = TRUE //OH FUCK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	priority_announce("Through intercepted transmissions, we have detected a group of anti-corporate activists on [station_name()]. Comply with Command and Security personnel, and report all anti-corporate or revolutionary activities.", null, null, null, "Central Command Intelligence Division")
+	message_admins("The revolution has been detected and announced.")
+	log_game("The revolution has been detected and announced.")
 
 //////////////////////////////////////
 //Checks if the revs have won or not//
@@ -159,6 +162,8 @@
 			log_game("Revs victory timer started")
 
 	else if(check_heads_victory())
+		if(!loud)
+			go_loud()
 		if(victory_timer_ended)
 			finished = 2
 		if(!victory_timer)
