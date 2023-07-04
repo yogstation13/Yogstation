@@ -1,0 +1,5 @@
+author: "azzzertyy"
+delete-after: true 
+changes: 
+  - rscadd: "Added new drug, blue-eye"
+  - imageadd: "Added fullscreen overlay for blue-eye"

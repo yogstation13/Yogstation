@@ -7,6 +7,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	max_amount = 50
 	item_flags = NOBLUDGEON
+	grind_results = list(/datum/reagent/redspace = 20)
 
 /obj/item/stack/telecrystal/attack_self(mob/user)
 	if(!isliving(user))
@@ -23,7 +24,7 @@
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)
 
-	if(!do_teleport(L, destination, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
+	if(!do_teleport(L, destination, asoundin = 'sound/effects/phaseinred.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
 		L.visible_message(span_warning("[src] refuses to be crushed by [L]! There must be something interfering!"), span_danger("[src] suddenly hardens in your hand! There must be something interfering!"))
 		return
 
