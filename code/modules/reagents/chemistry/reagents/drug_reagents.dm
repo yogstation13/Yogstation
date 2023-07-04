@@ -537,6 +537,120 @@
 		M.adjust_dizzy(4)
 	..()
 
+//traitor only drug made with telecrystals
+/datum/reagent/drug/red_eye
+	name = "Red-Eye" //i love cowboy bebop
+	description = "An experimental drug developed by the Syndicate in attempt to recreate wizards"
+	reagent_state = GAS
+	color = "#fd1a5e"
+	addiction_threshold = 20
+	overdose_threshold = 40
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
+	can_synth = FALSE
+
+//Teleport like normal telecrystals
+/datum/reagent/drug/red_eye/proc/tele_teleport(mob/living/L)
+	var/turf/destination = get_teleport_loc(L.loc, L, rand(3,6))
+	if(!istype(destination))
+		return
+	new /obj/effect/particle_effect/sparks(L.loc)
+	playsound(L.loc, "sparks", 50, 1)
+	if(!do_teleport(L, destination, asoundin = 'sound/effects/phaseinred.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
+		return
+	L.throw_at(get_edge_target_turf(L, L.dir), 1, 3, spin = FALSE, diagonals_first = TRUE)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.adjust_disgust(15)
+
+/datum/reagent/drug/red_eye/on_mob_metabolize(mob/living/L)
+	L.next_move_modifier *= 0.8
+	L.action_speed_modifier *= 0.5
+	tele_teleport(L)
+	..()	
+
+/datum/reagent/drug/red_eye/on_mob_end_metabolize(mob/living/L)
+	L.next_move_modifier *= 1.25
+	L.action_speed_modifier *= 2
+	..()
+
+/datum/reagent/drug/red_eye/on_mob_life(mob/living/carbon/M)
+	var/mob/living/carbon/human/H = M
+	H.eye_color = "fd1a5e"
+	H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+	H.update_body()
+
+	M.adjust_red_eye_up_to(15,40)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(0,1))
+	M.AdjustKnockdown(-15, FALSE)
+	M.adjustStaminaLoss(-4, 0)
+	M.AdjustUnconscious(-5, FALSE)
+	M.AdjustParalyzed(-20, FALSE)
+	M.adjust_jitter(2 SECONDS)
+	if(prob(10))
+		to_chat(M, span_notice("[pick("TOK-LYR RQA-NAP", "BAPR NTNVA", "ZL-YVTUG FUVARF", "MAH'WEYH PLEGGH AT E'NTRATH", "TARCOL MINTI ZHERI.", "G'OLT-ULOFT")]"))
+	if(prob(5))
+		M.visible_message(span_danger("[M]'s eyes start bulging out of [M.p_their()] skull!"))
+	if(prob(5))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	if(prob(1))
+		tele_teleport(M)
+	..()
+
+/datum/reagent/drug/red_eye/overdose_process(mob/living/M)
+	M.adjustToxLoss(2, 0)
+	if(isturf(M.loc) && !isspaceturf(M.loc) && prob(10))
+		if(M.mobility_flags & MOBILITY_MOVE)
+			step(M, pick(GLOB.cardinals))
+	if(prob(8))
+		M.visible_message(span_danger("[M]'s fingers curl into occult shapes!"))
+		M.drop_all_held_items()
+	if(prob(4))
+		M.adjustToxLoss(1, 0)
+		tele_teleport(M)
+	if(prob(1))
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1,4))
+		M.adjustToxLoss(4, 0)
+		tele_teleport(M)
+		tele_teleport(M)
+	..()
+/datum/reagent/drug/red_eye/addiction_act_stage1(mob/living/M)
+	M.adjust_jitter(5 SECONDS)
+	if(prob(20))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/red_eye/addiction_act_stage2(mob/living/M)
+	M.adjust_jitter(10 SECONDS)
+	M.adjust_dizzy(10)
+	if(prob(30))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/red_eye/addiction_act_stage3(mob/living/M)
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
+		for(var/i = 0, i < 4, i++)
+			step(M, pick(GLOB.cardinals))
+	M.adjust_jitter(12 SECONDS)
+	M.adjust_dizzy(12)
+	if(prob(40))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+
+/datum/reagent/drug/red_eye/addiction_act_stage4(mob/living/carbon/human/M)
+	if((M.mobility_flags & MOBILITY_MOVE) && !ismovable(M.loc))
+		for(var/i = 0, i < 8, i++)
+			step(M, pick(GLOB.cardinals))
+	M.adjust_jitter(15 SECONDS)
+	M.adjust_dizzy(15)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1,4))
+	M.adjustToxLoss(2, 0)
+	if(prob(50))
+		M.emote(pick("twitch","drool","moan","giggle"))
+	..()
+	if(prob(10))
+		M.visible_message(span_danger("[M]'s fingers curl into occult shapes!"))
+		M.drop_all_held_items()
+	. = 1
 /datum/reagent/drug/pumpup
 	name = "Pump-Up"
 	description = "Take on the world! A fast acting, hard hitting drug that pushes the limit on what you can handle."

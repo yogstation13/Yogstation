@@ -63,6 +63,12 @@
 	required_reagents = list(/datum/reagent/nitrous_oxide = 2, /datum/reagent/medicine/epinephrine = 1, /datum/reagent/consumable/ethanol = 1)
 	required_catalysts = list(/datum/reagent/toxin/plasma = 5)
 
+/datum/chemical_reaction/red_eye
+	name = "Red-Eye"
+	id = /datum/reagent/drug/red_eye
+	results = list(/datum/reagent/drug/red_eye = 4) //1tc = 40u of red_eye
+	required_reagents = list(/datum/reagent/medicine/diphenhydramine = 1, /datum/reagent/redspace = 2, /datum/reagent/iodine = 1, /datum/reagent/hydrogen = 1, /datum/reagent/consumable/sugar = 1) 
+	
 /datum/chemical_reaction/pumpup
 	name = "Pump-Up"
 	id = /datum/reagent/drug/pumpup
