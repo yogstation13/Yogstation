@@ -34,7 +34,7 @@
 	. = ..()
 	var/mob/living/M = mob_override || owner.current
 	M.grant_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
-	M.throw_alert("revolution", /atom/moveable/screen/alert/revolution)
+	M.throw_alert("revolution", /atom/movable/screen/alert/revolution)
 	add_team_hud(M, /datum/antagonist/rev)
 
 /datum/antagonist/rev/remove_innate_effects(mob/living/mob_override)
