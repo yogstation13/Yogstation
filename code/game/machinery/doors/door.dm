@@ -56,6 +56,8 @@
 	var/poddoor = FALSE
 	/// Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
 	var/unres_sides = 0
+	// door open speed.
+	var/open_speed = 0.5 SECONDS
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
@@ -324,9 +326,9 @@
 	operating = TRUE
 	do_animate("opening")
 	set_opacity(0)
-	sleep(0.5 SECONDS)
+	sleep(open_speed)
 	density = FALSE
-	sleep(0.5 SECONDS)
+	sleep(open_speed)
 	layer = initial(layer)
 	update_icon()
 	set_opacity(0)
@@ -356,9 +358,9 @@
 	layer = closingLayer
 	if(air_tight)
 		density = TRUE
-	sleep(0.5 SECONDS)
+	sleep(open_speed)
 	density = TRUE
-	sleep(0.5 SECONDS)
+	sleep(open_speed)
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)
