@@ -1,0 +1,5 @@
+author: "jachlompsky"
+delete-after: true 
+changes: 
+  - bugfix: "fixed chameleon envirohelm being unable to change appearance"
+  - tweak: "plasmamen get chameleon envirosuits in the contract kit"

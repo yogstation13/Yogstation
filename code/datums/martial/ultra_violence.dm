@@ -4,6 +4,10 @@
 #define BLOOD_BURST "HH"
 #define MAX_DASH_DIST 4
 #define DASH_SPEED 2
+#define STYLE_REVOLVER "revolver"
+#define STYLE_SHOTGUN "shotgun"
+#define STYLE_PUNCH "punch"
+#define STYLE_TYPES list(STYLE_REVOLVER, STYLE_SHOTGUN, STYLE_PUNCH)
 
 /datum/martial_art/ultra_violence
 	name = "Ultra Violence"
@@ -12,11 +16,17 @@
 	deflection_chance = 0
 	reroute_deflection = TRUE
 	help_verb = /mob/living/carbon/human/proc/ultra_violence_help
+	gun_exceptions = list(/obj/item/gun/ballistic/revolver/ipcmartial)
+	no_gun_message = "This gun is not compliant with Ultra Violence standards."
 	///used to keep track of the dash stuff
 	var/recalibration = /mob/living/carbon/human/proc/violence_recalibration
 	var/dashing = FALSE
 	var/dashes = 3
 	var/dash_timer = null
+	var/style = 1
+	var/list/freshness = list(STYLE_REVOLVER = 1.5, STYLE_SHOTGUN = 1.5, STYLE_PUNCH = 1.5)
+	var/hard_damage = 0 // temporary reduction to max health when you take damage
+	COOLDOWN_DECLARE(next_parry) // so you can't just spam it
 
 /datum/martial_art/ultra_violence/can_use(mob/living/carbon/human/H)
 	return isipc(H)
@@ -28,7 +38,6 @@
 	if(findtext(streak, POCKET_PISTOL))
 		streak = ""
 		pocket_pistol(A,D)
-		speed_boost(A, -0.2, "pocketpistol")
 		return TRUE
 
 	if(A == D) //you can pull your gun out by "grabbing" yourself
@@ -37,13 +46,11 @@
 	if(findtext(streak, BLOOD_BURST))
 		streak = ""
 		blood_burst(A,D)
-		speed_boost(A, -0.5, "bloodburst")
 		return TRUE
 
 	if(findtext(streak, GUN_HAND))
 		streak = ""
 		gun_hand(A, D)
-		speed_boost(A, -0.5, "gunhand")
 		return TRUE
 
 /datum/martial_art/ultra_violence/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -59,14 +66,21 @@
 /datum/martial_art/ultra_violence/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
 	check_streak(A,D)
+	handle_style(A, 0.1, STYLE_PUNCH)
 	return FALSE
 
-/datum/martial_art/ultra_violence/proc/speed_boost(mob/living/carbon/human/A, strength, tag)
-	A.add_movespeed_modifier(tag, update=TRUE, priority=101, multiplicative_slowdown = strength, blacklisted_movetypes=(FLOATING))
-	addtimer(CALLBACK(src, PROC_REF(remove_boost), A, tag), 6 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
-
-/datum/martial_art/ultra_violence/proc/remove_boost(mob/living/carbon/human/A, tag)
-	A.remove_movespeed_modifier(tag)
+/datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A) //moved this here because it's not just for dashing anymore
+	if(!(H.a_intent in list(INTENT_DISARM, INTENT_GRAB)) || H.stat == DEAD || H.IsUnconscious() || H.IsFrozen() || get_turf(H) == get_turf(A))
+		return FALSE
+	H.face_atom(A)
+	if(H.a_intent == INTENT_DISARM)
+		dash(H, A)
+		return TRUE
+	else if(H.a_intent == INTENT_GRAB && !H.get_active_held_item() && !((ishuman(A) || isitem(A)) && H.Adjacent(A)) && COOLDOWN_FINISHED(src, next_parry))
+		parry(H, A)
+		return TRUE
+	else
+		return FALSE
 
 /*---------------------------------------------------------------
 
@@ -85,13 +99,17 @@
 	if(D.health <= HEALTH_THRESHOLD_FULLCRIT)
 		D.bleed(130)
 		D.death()
-		//bonus healing to incentivise execution
-		var/heal_amt = 40 //heals brute first, then burn with any excess
-		var/brute_before = A.getBruteLoss()
-		A.adjustBruteLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
-		heal_amt -= max(brute_before - A.getBruteLoss(), 0)
-		A.adjustFireLoss(-heal_amt, FALSE, FALSE, BODYPART_ANY)
+		A.balloon_alert(A, "+SPLATTERED")
+		handle_style(A, 1) // gain an additional style level on execution
+		blood_heal(A, 40) //bonus healing to incentivise execution
 		new /obj/effect/gibspawner/generic(D.loc)
+	handle_style(A, 0.4, STYLE_PUNCH)
+
+/datum/martial_art/ultra_violence/proc/blood_heal(mob/living/carbon/human/H, amount)
+	var/heal_amt = clamp(amount, 0, H.getBruteLoss() + H.getFireLoss() - hard_damage) //now introducing hard damage, a reason to actually dodge and parry things
+	H.heal_ordered_damage(heal_amt / 2, list(BRUTE, BURN), BODYPART_ANY) // splits the damage between brute and burn as evenly as possible
+	H.heal_ordered_damage(heal_amt / 2, list(BURN, BRUTE), BODYPART_ANY)
+	H.adjust_nutrition(amount / 2) // BLOOD IS FUEL
 
 /*---------------------------------------------------------------
 
@@ -141,6 +159,22 @@
 
 /obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
 	. = ..()
+	if(!isliving(target)) // don't gain style from hitting an object
+		return .
+	var/mob/living/L = target
+	if(L.stat == DEAD)
+		return . // no using dead bodies to gain style, that's boring and uncool KILL SOME REAL THINGS
+	if(ishuman(firer))
+		var/mob/living/carbon/human/H = firer
+		if(H.mind?.has_martialart(MARTIALART_ULTRAVIOLENCE))
+			var/datum/martial_art/ultra_violence/UV = H.mind.martial_art
+			if(ricochets) // the most powerful weapon: coins
+				UV.handle_style(H, 1)
+				H.balloon_alert(H, "+RICOSHOT")
+			UV.handle_style(H, 0.2 * damage / initial(damage), STYLE_REVOLVER)
+
+/obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
+	. = ..()
 	if(ishuman(target) && !blocked)
 		var/mob/living/carbon/human/H = target
 		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
@@ -184,6 +218,7 @@
 		ammo.moveToNullspace()//get rid of the spent casing
 		QDEL_NULL(ammo)
 
+	handle_style(A, 0.5, STYLE_SHOTGUN)
 	playsound(A, "sound/weapons/shotgunshot.ogg", 90, FALSE)
 	to_chat(A, span_notice("You shoot [D] with your gun hand."))
 	D.add_splatter_floor(D.loc, TRUE)
@@ -206,11 +241,6 @@
 	if(dashes == 3)
 		deltimer(dash_timer)//stop regen when full
 	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
-
-/datum/martial_art/ultra_violence/proc/InterceptClickOn(mob/living/carbon/human/H, params, atom/A)
-	if(H.a_intent != INTENT_DISARM || H.stat == DEAD || H.IsUnconscious() || H.IsFrozen())
-		return
-	dash(H, A)
 
 /datum/martial_art/ultra_violence/proc/dash(mob/living/carbon/human/H, atom/A)
 	if(dashing)
@@ -246,6 +276,87 @@
 ---------------------------------------------------------------*/
 /*---------------------------------------------------------------
 
+	start of parry section
+
+---------------------------------------------------------------*/
+
+// really hard to pull off but it's cool as hell when you do
+/datum/martial_art/ultra_violence/proc/parry(mob/living/carbon/human/H, atom/A)
+	if(!COOLDOWN_FINISHED(src, next_parry))
+		return
+	COOLDOWN_START(src, next_parry, CLICK_CD_MELEE * H.next_move_modifier)
+	var/parry_angle = round(get_angle(H, A), 45)
+	var/turf/starting_turf = get_turf(H)
+	var/turf/parried_tiles = list(starting_turf, get_turf_in_angle(parry_angle, starting_turf), get_turf_in_angle(parry_angle + 45, starting_turf), get_turf_in_angle(parry_angle - 45, starting_turf))
+	var/successful_parry = FALSE
+	for(var/turf/parried_tile in parried_tiles)
+		if(!istype(parried_tile))
+			continue
+		for(var/thing in parried_tile.contents)
+			if(isprojectile(thing))
+				var/obj/item/projectile/P = thing
+				P.firer = H
+				P.damage *= 1.5
+				P.speed *= 0.5
+				P.permutated = list()
+				P.fire(get_angle(H, A)) // parry the projectile towards wherever you clicked
+				successful_parry = TRUE
+	if(successful_parry)
+		H.visible_message(span_danger("[H] parries the projectile!"))
+		H.balloon_alert(H, "+PARRY")
+		handle_style(H, 0.5)
+		playsound(H, 'sound/weapons/ricochet.ogg', 75, 1)
+	else
+		playsound(H, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+
+/*---------------------------------------------------------------
+
+	end of parry section
+
+---------------------------------------------------------------*/
+/*---------------------------------------------------------------
+
+	SSSTYLE
+
+---------------------------------------------------------------*/
+/datum/martial_art/ultra_violence/proc/handle_style(mob/living/carbon/human/H, amount = 0, style_type = "")
+	var/old_style = style
+
+	//adjust the style gain based on weapon freshness
+	if(amount)
+		if(style_type in STYLE_TYPES)
+			amount *= freshness[style_type]
+		style = clamp(style + amount, 1, 8.99)
+	else
+		style = clamp(style - (0.01*round(style**1.5)), 1, 8.99) // style decays faster the more you have
+
+	//now update the HUD and made adjustments based on style level
+	if(round(style) != round(old_style))
+		if(style <= 1)
+			H.clear_alert("style_level")
+		else
+			H.throw_alert("style_level", /atom/movable/screen/alert/style, round(style))
+		H.next_move_modifier /= (24 - round(old_style)) / 24
+		H.next_move_modifier *= (24 - round(style)) / 24
+		if(style >= 2)
+			H.add_movespeed_modifier("style_speed", update=TRUE, priority=101, multiplicative_slowdown = style / -10, blacklisted_movetypes=(FLOATING))
+		else
+			H.remove_movespeed_modifier("style_speed")
+
+	//reduce freshness of the weapon used and increase freshness of the other weapons
+	for(var/fresh_type in STYLE_TYPES)
+		if(fresh_type == style_type)
+			freshness[fresh_type] = clamp(freshness[fresh_type] - (amount / 2), 0, 1.5)
+		else
+			freshness[fresh_type] = clamp(freshness[fresh_type] + max(0.02, (amount / 2) * style), 0, 1.5)
+
+/*---------------------------------------------------------------
+
+	end of style section
+
+---------------------------------------------------------------*/
+/*---------------------------------------------------------------
+
 	training related section
 
 ---------------------------------------------------------------*/
@@ -260,14 +371,14 @@
 	to_chat(usr, span_notice("You will deflect emps while throwmode is enabled, releases the energy into anyone nearby."))
 	to_chat(usr, span_notice("After deflecting, or getting hit by an emp you will be immune to more for 5 seconds."))
 	to_chat(usr, span_warning("Your disarm has been replaced with a charged-based dash system."))
-	to_chat(usr, span_warning("You cannot grab either, JUST KILL THEM!")) //seriously, no pushing or clinching, that's boring, just kill
-	to_chat(usr, span_notice("<b>Getting covered in blood will heal you.</b>"))
+	to_chat(usr, span_warning("Your grab has been replaced with the ability to parry projectiles in the direction of your click.")) //seriously, no pushing or clinching, that's boring, just kill
+	to_chat(usr, span_notice("<b>Getting covered in blood will heal you, but taking too much damage will build up \"hard damage\" which cannot be healed and decays over time.</b>"))
 	
 	to_chat(usr, "[span_notice("Disarm Intent")]: Dash in a direction granting brief invulnerability.")
 	to_chat(usr, "[span_notice("Pocket Revolver")]: Grab Grab. Puts a loaded revolver in your hand for three shots. Target must be living, but can be yourself.")
 	to_chat(usr, "[span_notice("Gun Hand")]: Harm Grab. Shoots the target with the shotgun in your hand.")
-	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere.")
-	to_chat(usr, span_notice("Completing any combo will give a speed buff with the strength of the Pocket Revolver speed boost being weaker."))
+	to_chat(usr, "[span_notice("Blood Burst")]: Harm Harm. Explodes blood from the target, covering you in blood and healing for a bit. Executes people in hardcrit exploding more blood everywhere and giving a style bonus.")
+	to_chat(usr, span_notice("Avoiding damage and using a variety of techniques will increase your style, which gives a speed boost and makes hard damage decay faster.")) // if you want to go fast you need to earn it
 	to_chat(usr, span_notice("Should your dash cease functioning, use the 'Reinitialize Module' function."))
 
 /mob/living/carbon/human/proc/violence_recalibration()
@@ -288,12 +399,12 @@
 	H.dna.species.punchstunthreshold += 50 //disables punch stuns
 	H.dna.species.staminamod = 0 //my god, why must you make me add all these additional things, stop trying to disable them, just kill them
 	ADD_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
-	ADD_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)//instead of giving them more health, just remove crit entirely, fits better thematically too
 	ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_NO_STUN_WEAPONS, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_NODISMEMBER, IPCMARTIAL)
 	ADD_TRAIT(H, TRAIT_STUNIMMUNE, IPCMARTIAL)///mainly so emps don't end you instantly, they still do damage though
+	ADD_TRAIT(H, TRAIT_SLEEPIMMUNE, IPCMARTIAL) // what the fuck are you sleeping for? KEEP EM COMING!!
 	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
 	add_verb(H, recalibration)
 	usr.click_intercept = src //probably breaks something, don't know what though
@@ -307,12 +418,12 @@
 	H.dna.species.punchstunthreshold -= 50
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
 	REMOVE_TRAIT(H, TRAIT_NOSOFTCRIT, IPCMARTIAL)
-	REMOVE_TRAIT(H, TRAIT_NOHARDCRIT, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_NOLIMBDISABLE, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_NO_STUN_WEAPONS, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_NODISMEMBER, IPCMARTIAL)
 	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, IPCMARTIAL)
+	REMOVE_TRAIT(H, TRAIT_SLEEPIMMUNE, IPCMARTIAL)
 	deltimer(dash_timer)
 	H.clear_alert("dash_charge")
 	remove_verb(H, recalibration)
@@ -325,3 +436,7 @@
 #undef MAX_DASH_DIST
 #undef DASH_SPEED
 #undef IPCMARTIAL
+#undef STYLE_REVOLVER
+#undef STYLE_SHOTGUN
+#undef STYLE_PUNCH
+#undef STYLE_TYPES

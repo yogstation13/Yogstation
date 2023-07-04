@@ -481,6 +481,7 @@ GLOBAL_LIST_INIT(maintenance_loot_makeshift,list(
 	/obj/item/reagent_containers/autoinjector/medipen/pumpup = W_ESSENTIAL,
 	/obj/item/organ/heart/ghetto = W_RARE,
 	/obj/item/organ/lungs/ghetto = W_RARE,
+	/obj/item/organ/cyberimp/chest/spinalspeed/toy = W_RARE,
 	/obj/item/reagent_containers/food/drinks/bottle/hooch = W_ESSENTIAL,
 	/obj/item/reagent_containers/food/drinks/bottle/kong = W_RARE,
 	/obj/item/reagent_containers/food/drinks/bottle/lizardwine = W_RARE,

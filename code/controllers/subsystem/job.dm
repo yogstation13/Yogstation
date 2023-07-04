@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(job)
 
 		name_occupations_all[job.title] = job
 
-		if(SEND_SIGNAL(job, SSmapping.config.map_name))	//Even though we initialize before mapping, this is fine because the config is loaded at new
+		if(SEND_SIGNAL(job, SSmapping.config.internal_name != "" ? SSmapping.config.internal_name : SSmapping.config.map_name))	//Even though we initialize before mapping, this is fine because the config is loaded at new
 			testing("Removed [job.type] due to map config")
 			continue
 

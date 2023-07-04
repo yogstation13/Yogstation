@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - tweak: "Blowgun now shoots instantly, but only has a range of 2."
+  - tweak: "Blowgun causes 25 oxygen and 25 stamina damage per usage to user instead of 20."

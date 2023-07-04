@@ -15,10 +15,9 @@
 	mutanttongue = /obj/item/organ/tongue/bone/plasmaman
 	mutantliver = /obj/item/organ/liver/plasmaman
 	mutantstomach = /obj/item/organ/stomach/plasmaman
-	burnmod = 1.5 //Lives in suits and burns easy. Lasers are bad for this
-	heatmod = 1.5 //Same goes for hot hot hot
-	brutemod = 1.2 //Rattle me bones, but less because plasma bones are very hard
-	siemens_coeff = 1.5 //Sparks are bad for the combustable race, mkay?
+	brutemod = 1.3 //Rattle me bones, but less because plasma bones are very hard
+	burnmod = 0.9 //Plasma is a surprisingly good insulator if not around oxygen
+	heatmod = 1.5 //Don't let the plasma actually heat up though
 	punchdamagehigh = 7 //Bone punches are weak and usually inside soft suit gloves
 	punchstunthreshold = 7 //Stuns on max hit as usual, somewhat higher stun chance because math
 	payday_modifier = 1 //Former humans, employment restrictions arise from psychological and practical concerns; they won't be able to be some head positions, but they get human pay and NT can't weasel out of it

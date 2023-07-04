@@ -221,3 +221,8 @@
 	icon_state = "uberoverlay"
 	plane = FULLSCREEN_PLANE
 	layer = CURSE_LAYER
+
+/atom/movable/screen/fullscreen/blue_eye
+	icon_state = "blue_eye"
+	plane = FULLSCREEN_PLANE
+	layer = CURSE_LAYER
