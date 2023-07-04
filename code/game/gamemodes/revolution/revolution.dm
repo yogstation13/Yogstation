@@ -8,6 +8,8 @@
 
 //Timer after all heads/headrevs die, before we check again and end the round
 #define REV_VICTORY_TIMER (2.5 MINUTES)
+//If revs haven't "won" by this time (from the start of the round) then there will be an announcement, basically forcing them to go loud.
+#define REV_LOUD_TIMER (1 HOURS)
 
 /datum/game_mode/revolution
 	name = "revolution"
@@ -37,6 +39,9 @@
 	var/victory_timer
 
 	var/victory_timer_ended = FALSE
+
+	var/go_fucking_loud_time = 0
+	var/loud = FALSE //HAVE WE BEEN ANNOUNCED?!?!?!?!
 
 ///////////////////////////////////////////////////////////////////////////////
 //Gets the round setup, cancelling if there's not enough players at the start//
@@ -119,6 +124,9 @@
 	revolution.update_heads()
 
 	SSshuttle.registerHostileEnvironment(src)
+
+	go_fucking_loud_time = world.time + REV_LOUD_TIMER
+
 	..()
 
 
@@ -128,6 +136,11 @@
 		if(!finished)
 			SSticker.mode.check_win()
 		check_counter = 0
+		if(!loud && go_fucking_loud_time && world.time >= go_fucking_loud_time)
+			loud = TRUE //OH FUCK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			priority_announce("Through intercepted transmissions, we have detected a group of anti-corporate activists on [station_name()]. Comply with Command and Security personnel, and report all anti-corporate or revolutionary activities.", null, null, null, "Central Command Intelligence Division")
+			message_admins("The revolution has been detected and announced.")
+			log_game("The revolution has been detected and announced.")
 	return FALSE
 
 //////////////////////////////////////

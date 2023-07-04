@@ -34,11 +34,13 @@
 	. = ..()
 	var/mob/living/M = mob_override || owner.current
 	M.grant_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
+	M.throw_alert("revolution", /atom/moveable/screen/alert/revolution)
 	add_team_hud(M, /datum/antagonist/rev)
 
 /datum/antagonist/rev/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
 	M.remove_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
+	M.clear_alert("revolution")
 	return ..()
 
 /datum/antagonist/rev/proc/equip_rev()
