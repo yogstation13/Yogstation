@@ -1,6 +1,6 @@
 /obj/item/gun/energy/ionrifle
 	name = "ion rifle"
-	desc = "Invented in 2506 to quell attacks from SELF aligned IPCs, the Ion Rifle is a man-portable anti-armor weapon designed to disable mechanical threats at range."
+	desc = "Invented in 2506 to quell attacks from SELF aligned IPCs, the Ion Rifle is a man-portable anti-armor weapon designed to disable mechanical threats at range while reducing station damage."
 	icon_state = "ionrifle"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	can_flashlight = TRUE
