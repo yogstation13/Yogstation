@@ -1447,21 +1447,6 @@
 		</font>
 	"}
 
-/mob/living/proc/is_convert_antag()
-    var/static/list/bad_antags = list(
-        /datum/antagonist/clockcult,
-        /datum/antagonist/cult,
-        /datum/antagonist/darkspawn,
-        /datum/antagonist/rev,
-        /datum/antagonist/shadowling,
-        /datum/antagonist/veil,
-		/datum/antagonist/zombie,
-    )
-    for(var/antagcheck in bad_antags)
-        if(mind?.has_antag_datum(antagcheck))
-            return TRUE
-    return FALSE
-
 /// Only defined for carbons who can wear masks and helmets, we just assume other mobs have visible faces
 /mob/living/proc/is_face_visible()
 	return isturf(loc) // Yogs -- forbids making eye contact with things hidden within objects

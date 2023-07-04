@@ -321,7 +321,24 @@
 			to_chat(traitor_mob, "<span class='boldnotice'>[employer] has cunningly implanted you with a Syndicate Uplink (although uplink implants cost valuable TC, so you will have slightly less). Simply trigger the uplink to access it.</span>")
 		return I
 
-
+///Checks if a mind is an antag with the ability to convert others, so they can't be converted to eachother.
+///Also returns true if they are entirely unconvertable.
+/datum/mind/proc/is_convert_antag()
+	if(unconvertable)
+		return TRUE
+	var/static/list/bad_antags = list(
+		/datum/antagonist/clockcult,
+		/datum/antagonist/cult,
+		/datum/antagonist/darkspawn,
+		/datum/antagonist/rev,
+		/datum/antagonist/shadowling,
+		/datum/antagonist/veil,
+		/datum/antagonist/zombie,
+	)
+	for(var/antagcheck in bad_antags)
+		if(has_antag_datum(antagcheck))
+			return TRUE
+	return FALSE
 
 //Link a new mobs mind to the creator of said mob. They will join any team they are currently on, and will only switch teams when their creator does.
 

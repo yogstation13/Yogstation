@@ -10,10 +10,9 @@
 	preview_outfit = /datum/outfit/gangster
 
 /datum/antagonist/gang/can_be_owned(datum/mind/new_owner)
-	. = ..()
-	if(.)
-		if(new_owner.unconvertable)
-			return FALSE
+	if(new_owner.unconvertable)
+		return FALSE
+	return ..()
 
 /datum/antagonist/gang/apply_innate_effects(mob/living/mob_override)
 	add_team_hud(mob_override || owner.current)

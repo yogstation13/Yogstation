@@ -12,10 +12,6 @@
 	var/mob/living/master = M.mind.enslaved_to?.resolve()
 	if(master && !IS_CULTIST(master))
 		return FALSE
-	if(M.mind.unconvertable)
-		return FALSE
-	if(M.is_convert_antag())
-		return FALSE
 	if(!ignore_implant && HAS_TRAIT(M, TRAIT_MINDSHIELD))
 		return FALSE
 	if(issilicon(M) || isbot(M) || isdrone(M) || ismouse(M) || IS_SERVANT_OF_RATVAR(M))

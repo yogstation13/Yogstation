@@ -49,10 +49,11 @@
 	return ..()
 
 /datum/antagonist/cult/can_be_owned(datum/mind/new_owner)
-	. = ..()
-	if(!.)
+	if(new_owner.is_convert_antag())
 		return FALSE
-	return is_convertable_to_cult(new_owner.current, cult_team, ignore_implant)
+	if(!is_convertable_to_cult(new_owner.current, cult_team, ignore_implant))
+		return FALSE
+	return ..()
 
 /datum/antagonist/cult/greet()
 	to_chat(owner.current, "<B><font size=3 color=red>You are a member of the cult!</font><B>")

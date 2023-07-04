@@ -38,19 +38,9 @@
 	clock_team = new_team
 
 /datum/antagonist/clockcult/can_be_owned(datum/mind/new_owner)
-	. = ..()
-	if(.)
-		. = is_eligible_servant(new_owner.current)
-		var/list/no_team_antag = list(
-			/datum/antagonist/rev,
-			/datum/antagonist/darkspawn,
-			/datum/antagonist/shadowling,
-			/datum/antagonist/cult,
-			/datum/antagonist/zombie
-			)
-		for(var/datum/antagonist/NTA in new_owner.antag_datums)
-			if(NTA.type in no_team_antag)
-				return FALSE
+	if(new_owner.is_convert_antag())
+		return FALSE
+	return ..()
 
 /datum/antagonist/clockcult/greet()
 	if(!owner.current || silent)

@@ -11,24 +11,13 @@
 	var/datum/team/revolution/rev_team
 
 /datum/antagonist/rev/can_be_owned(datum/mind/new_owner)
-	. = ..()
-	if(.)
-		if(new_owner.assigned_role in GLOB.command_positions)
-			return FALSE
-		if(new_owner.unconvertable)
-			return FALSE
-		if(new_owner.current && HAS_TRAIT(new_owner.current, TRAIT_MINDSHIELD))
-			return FALSE
-		var/list/no_team_antag = list(
-			/datum/antagonist/clockcult,
-			/datum/antagonist/darkspawn,
-			/datum/antagonist/shadowling,
-			/datum/antagonist/cult,
-			/datum/antagonist/zombie
-			)
-		for(var/datum/antagonist/NTA in new_owner.antag_datums)
-			if(NTA.type in no_team_antag)
-				return FALSE
+	if(new_owner.assigned_role in GLOB.command_positions)
+		return FALSE
+	if(new_owner.current && HAS_TRAIT(new_owner.current, TRAIT_MINDSHIELD))
+		return FALSE
+	if(new_owner.is_convert_antag())
+		return FALSE
+	return ..()
 
 /datum/antagonist/rev/apply_innate_effects(mob/living/mob_override)
 	. = ..()
