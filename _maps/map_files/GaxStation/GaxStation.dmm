@@ -1399,6 +1399,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"aKJ" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/requests_console{
+	department = "Security";
+	departmentType = 5;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "aKK" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Prison Wing";
@@ -12234,6 +12252,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"fOC" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/machinery/camera{
+	c_tag = "Security Office";
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -28
+	},
+/obj/item/restraints/handcuffs{
+	pixel_x = -1;
+	pixel_y = 9
+	},
+/obj/item/assembly/timer{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/item/storage/box/fancy/donut_box{
+	pixel_x = -5;
+	pixel_y = -6
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "fOF" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -12421,19 +12466,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"fUA" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "fUH" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -12533,10 +12565,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
-"fXB" = (
-/obj/structure/closet/secure_closet/detective,
-/turf/open/floor/wood,
-/area/security/detectives_office)
 "fXM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -18449,17 +18477,6 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"iSN" = (
-/obj/structure/table,
-/obj/machinery/recharger,
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_x = 30
-	},
-/obj/item/screwdriver{
-	pixel_y = -5
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/main)
 "iTl" = (
 /obj/effect/turf_decal/trimline/white/filled/line/lower{
 	dir = 1
@@ -21533,29 +21550,6 @@
 /obj/effect/turf_decal/trimline/brown/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"kDf" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 4
-	},
-/obj/machinery/requests_console{
-	department = "Security";
-	departmentType = 5;
-	pixel_x = 32
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "kEd" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -24615,22 +24609,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
-"mec" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/machinery/camera{
-	c_tag = "Security Office";
-	dir = 4
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = -28
-	},
-/obj/item/storage/box/fancy/donut_box,
-/turf/open/floor/plasteel,
-/area/security/main)
 "mei" = (
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 1
@@ -25365,6 +25343,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/security/warden)
+"mtf" = (
+/obj/structure/table,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/item/radio/off,
+/obj/item/screwdriver{
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "mtp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -25964,6 +25954,28 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos/storage)
+"mLE" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/computer/security/telescreen/interrogation{
+	dir = 4;
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "mLP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -36266,6 +36278,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"rQp" = (
+/obj/structure/table,
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = 30
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/obj/item/stack/packageWrap,
+/obj/item/pen,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "rQq" = (
 /obj/machinery/door/airlock/command{
 	name = "Captain's Quarters";
@@ -40087,6 +40116,12 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/chapel/main)
+"tKY" = (
+/obj/structure/closet/secure_closet/detective,
+/obj/item/camera/detective,
+/obj/item/taperecorder,
+/turf/open/floor/wood,
+/area/security/detectives_office)
 "tLb" = (
 /obj/machinery/atmospherics/pipe/manifold/green/visible,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -48912,15 +48947,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
-"xYS" = (
-/obj/structure/table,
-/obj/machinery/recharger,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -28
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/main)
 "xZd" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/rack,
@@ -68823,7 +68849,7 @@ etW
 iSi
 exW
 sTC
-mec
+fOC
 cvF
 etW
 eZT
@@ -69845,8 +69871,8 @@ etW
 sfE
 wOB
 nPx
-iSN
-xYS
+rQp
+mtf
 etW
 vry
 vry
@@ -72424,7 +72450,7 @@ kGp
 nTH
 hOu
 kZP
-kDf
+mLE
 bHi
 qeR
 rBc
@@ -72683,7 +72709,7 @@ yjy
 bCH
 yjy
 yjy
-fUA
+aKJ
 aBu
 bDi
 ycy
@@ -76020,7 +76046,7 @@ qHI
 acG
 hsa
 tih
-fXB
+tKY
 byi
 nsu
 rVa
