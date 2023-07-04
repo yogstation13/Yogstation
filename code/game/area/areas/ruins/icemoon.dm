@@ -51,3 +51,6 @@
 
 /area/ruin/syndicate_icemoon/shed
 	name = "Syndicate Research Outpost Shed"
+
+/area/ruin/syndicate_icemoon/xenobio
+	name = "Syndicate Research Outpost Xenobiology"
