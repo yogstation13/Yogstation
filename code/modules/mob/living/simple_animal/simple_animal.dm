@@ -289,9 +289,9 @@
 		new /obj/effect/temp_visual/gib_animation/animal(loc, icon_gib)
 
 /mob/living/simple_animal/say_mod(input, list/message_mods = list())
-	if(speak_emote && speak_emote.len)
+	if(length(speak_emote))
 		verb_say = pick(speak_emote)
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/emote(act, m_type=1, message = null, intentional = FALSE, is_keybind = FALSE)
 	if(stat)
