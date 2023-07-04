@@ -1,6 +1,0 @@
-author: "azzzertyy"
-delete-after: true 
-changes: 
-  - rscadd: "Added Redspace Dust chemistry & Red-Eye"
-  - soundadd: "New telecrystal crush sound"
-  - imageadd: "Status effect images for red-eye"
