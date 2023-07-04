@@ -28,6 +28,7 @@
 		check_alert()
 	if (start_power)
 		remove_waste(delta_time)
+		remove_fuel(delta_time)
 	update_pipenets()
 
 	check_deconstructable()
@@ -50,6 +51,7 @@
 		magnetic_constrictor = 100
 		current_damper = 0
 		waste_remove = FALSE
+		fuel_remove = FALSE
 		iron_content += 0.02 * power_level * delta_time
 
 	update_temperature_status(delta_time)
@@ -481,6 +483,15 @@
 		if(alive_mob.z != z || get_dist(alive_mob, src) > grav_range || alive_mob.mob_negates_gravity())
 			continue
 		step_towards(alive_mob, loc)
+
+/obj/machinery/atmospherics/components/unary/hypertorus/core/proc/remove_fuel(delta_time)
+	if(!fuel_remove)
+		return
+
+	for(var/gas in internal_fusion.get_gases())
+		var/gas_removed = min(internal_fusion.get_moles(gas), fuel_filtering_rate/2 * delta_time)
+		internal_fusion.adjust_moles(gas, -gas_removed)
+		linked_output.airs[1].adjust_moles(gas, gas_removed)
 
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/remove_waste(delta_time)
 	//Gases can be removed from the moderator internal by using the interface.

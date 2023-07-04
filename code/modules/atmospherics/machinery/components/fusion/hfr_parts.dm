@@ -310,6 +310,7 @@
 	data["temperature_period"] = connected_core.temperature_period
 
 	data["waste_remove"] = connected_core.waste_remove
+	data["fuel_remove"] = connected_core.fuel_remove
 	data["filter_types"] = list()
 	for(var/path in GLOB.meta_gas_info)
 		var/list/gas = GLOB.meta_gas_info[path]
@@ -317,6 +318,7 @@
 
 	data["cooling_volume"] = connected_core.airs[1].return_volume()
 	data["mod_filtering_rate"] = connected_core.moderator_filtering_rate
+	data["fl_filtering_rate"] = connected_core.fuel_filtering_rate
 
 	return data
 
@@ -366,6 +368,9 @@
 		if("waste_remove")
 			connected_core.waste_remove = !connected_core.waste_remove
 			. = TRUE
+		if("fuel_remove")
+			connected_core.fuel_remove = !connected_core.fuel_remove
+			. = TRUE
 		if("filter")
 			connected_core.moderator_scrubbing ^= gas_id2path(params["mode"])
 			. = TRUE
@@ -373,6 +378,11 @@
 			var/mod_filtering_rate = text2num(params["mod_filtering_rate"])
 			if(mod_filtering_rate != null)
 				connected_core.moderator_filtering_rate = clamp(mod_filtering_rate, 5, 200)
+				. = TRUE
+		if("fl_filtering_rate")
+			var/fl_filtering_rate = text2num(params["fl_filtering_rate"])
+			if(fl_filtering_rate != null)
+				connected_core.fuel_filtering_rate = clamp(fl_filtering_rate, 5, 200)
 				. = TRUE
 		if("fuel")
 			connected_core.selected_fuel = null
