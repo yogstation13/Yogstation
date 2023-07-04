@@ -251,6 +251,11 @@
 #define set_drugginess(duration) set_timed_status_effect(duration, /datum/status_effect/drugginess)
 #define set_drugginess_if_lower(duration) set_timed_status_effect(duration, /datum/status_effect/drugginess, TRUE)
 
+#define adjust_blue_eye(duration) adjust_timed_status_effect(duration, /datum/status_effect/blue_eye)
+#define adjust_blue_eye_up_to(duration, up_to) adjust_timed_status_effect(duration, /datum/status_effect/blue_eye, up_to)
+#define set_blue_eye(duration) set_timed_status_effect(duration, /datum/status_effect/blue_eye)
+#define set_blue_eye_if_lower(duration) set_timed_status_effect(duration, /datum/status_effect/blue_eye, TRUE)
+
 #define adjust_silence(duration) adjust_timed_status_effect(duration, /datum/status_effect/silenced)
 #define adjust_silence_up_to(duration, up_to) adjust_timed_status_effect(duration, /datum/status_effect/silenced, up_to)
 #define set_silence(duration) set_timed_status_effect(duration, /datum/status_effect/silenced)

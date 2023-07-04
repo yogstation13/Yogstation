@@ -68,3 +68,9 @@
 	id = /datum/reagent/drug/pumpup
 	results = list(/datum/reagent/drug/pumpup = 5)
 	required_reagents = list(/datum/reagent/medicine/epinephrine = 2, /datum/reagent/consumable/coffee = 5)
+
+/datum/chemical_reaction/blue_eye
+	name = "Blue-Eye"
+	id = /datum/reagent/drug/blue_eye
+	results = list(/datum/reagent/drug/blue_eye = 5)
+	required_reagents = list(/datum/reagent/medicine/diphenhydramine = 1, /datum/reagent/bluespace = 2, /datum/reagent/iodine = 1, /datum/reagent/hydrogen = 1, /datum/reagent/consumable/sugar = 1)
