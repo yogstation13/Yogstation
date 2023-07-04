@@ -343,17 +343,27 @@
 	break_message = span_warning("The bloodstone resonates violently before crumbling to the floor!")
 	layer = MASSIVE_OBJ_LAYER
 	light_color = "#FF0000"
-	var/current_fullness = 0
-	var/anchor = FALSE //are we the bloodstone used to summon Nar'sie? used in the final part of the summoning
 	is_endgame = TRUE
+	var/datum/team/cult/assigned_cult_team
+	///The time delay between anchor's kills.
+	var/anchor_time2kill = 5 MINUTES
+	var/current_fullness = 0
+	///Are we the bloodstone used to summon Nar'sie? used in the final part of the summoning
+	var/anchor = FALSE
 
 /obj/structure/destructible/cult/bloodstone/Initialize(mapload)
-	..()
-	if (!src.loc)
+	. = ..()
+	if(!loc)
 		message_admins("Blood Cult: A blood stone was somehow spawned in nullspace. It has been destroyed.")
 		qdel(src)
+
+	var/datum/team/cult/cult_team = locate() in GLOB.antagonist_teams
+	if(!cult_team)
+		CRASH("cult_loss_anchor was called, but there's no cult team??")
+	assigned_cult_team = cult_team
+
 	SSshuttle.registerHostileEnvironment(src)
-	SSticker.mode.bloodstone_list.Add(src)
+	assigned_cult_team.bloodstone_list.Add(src)
 	for (var/obj/O in loc)
 		if (O != src)
 			O.ex_act(2)
@@ -422,20 +432,20 @@
 /obj/structure/destructible/cult/bloodstone/Destroy()
 	for(var/mob/M in range(7, loc))
 		M.playsound_local(M, 'sound/creatures/legion_death.ogg', 75, FALSE) //make it suitably loud
-	SSticker.mode.bloodstone_list.Remove(src)
+	assigned_cult_team.bloodstone_list.Remove(src)
 	SSshuttle.clearHostileEnvironment(src)
 	for(var/datum/mind/B in SSticker.mode.cult)
 		if(B.current)
 			SEND_SOUND(B.current, 'sound/magic/demon_dies.ogg')
-			if(SSticker.mode.bloodstone_list.len)
-				to_chat(B.current, span_cultlarge("The Bloodstone in [get_area(src)] has been destroyed! There are [SSticker.mode.bloodstone_list.len] Bloodstones remaining!."))
+			if(assigned_cult_team.bloodstone_list.len)
+				to_chat(B.current, span_cultlarge("The Bloodstone in [get_area(src)] has been destroyed! There are [assigned_cult_team.bloodstone_list.len] Bloodstones remaining!."))
 	new /obj/effect/decal/cleanable/ash(loc)
 	new /obj/item/ectoplasm(loc)
 	new /obj/structure/destructible/dead_bloodstone(loc)
 
-	if(!(locate(/obj/singularity/narsie) in GLOB.poi_list) && (!SSticker.mode.bloodstone_cooldown && SSticker.mode.bloodstone_list.len <= 0 || anchor))
+	if(!(locate(/obj/singularity/narsie) in GLOB.poi_list) && (!assigned_cult_team.bloodstone_cooldown && assigned_cult_team.bloodstone_list.len <= 0 || anchor))
 		if(anchor)
-			SSticker.mode.anchor_bloodstone = null
+			assigned_cult_team.anchor_bloodstone = null
 			SSticker.mode.cult_loss_anchor()
 		else
 			SSticker.mode.cult_loss_bloodstones()

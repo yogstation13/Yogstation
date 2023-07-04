@@ -2,35 +2,32 @@
 
 /datum/game_mode
 	var/list/datum/mind/cult = list()
-	var/list/bloodstone_list = list()
-	var/anchor_bloodstone
-	var/anchor_time2kill = 5 MINUTES
-	var/bloodstone_cooldown = FALSE
 
 /proc/iscultist(mob/living/M)
 	if(istype(M, /mob/living/carbon/human/dummy))
 		return TRUE
 	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
 
-/proc/is_convertable_to_cult(mob/living/M,datum/team/cult/specific_cult)
+/proc/is_convertable_to_cult(mob/living/M, datum/team/cult/specific_cult, ignore_implant = FALSE)
 	if(!istype(M))
 		return FALSE
-	if(M.mind)
-		if(ishuman(M) && (M.mind.holy_role))
-			return FALSE
-		if(specific_cult && specific_cult.is_sacrifice_target(M.mind))
-			return FALSE
-		var/mob/living/master = M.mind.enslaved_to?.resolve()
-		if(master && !iscultist(master))
-			return FALSE
-		if(M.mind.unconvertable)
-			return FALSE
-		if(M.is_convert_antag())
-			return FALSE
-	else
+	if(!M.mind || !M.client)
 		return FALSE
-	if(HAS_TRAIT(M, TRAIT_MINDSHIELD) || issilicon(M) || isbot(M) || isdrone(M) || ismouse(M) || is_servant_of_ratvar(M) || !M.client)
-		return FALSE //can't convert machines, shielded, braindead, mice, or ratvar's dogs
+	if(M.mind.holy_role)
+		return FALSE
+	if(specific_cult && specific_cult.is_sacrifice_target(M.mind))
+		return FALSE
+	var/mob/living/master = M.mind.enslaved_to?.resolve()
+	if(master && !iscultist(master))
+		return FALSE
+	if(M.mind.unconvertable)
+		return FALSE
+	if(M.is_convert_antag())
+		return FALSE
+	if(!ignore_implant && HAS_TRAIT(M, TRAIT_MINDSHIELD))
+		return FALSE
+	if(issilicon(M) || isbot(M) || isdrone(M) || ismouse(M) || is_servant_of_ratvar(M))
+		return FALSE //can't convert machines, braindead, mice, or ratvar's dogs
 	return TRUE
 
 /datum/game_mode/cult
@@ -178,9 +175,12 @@
 	set_security_level(SEC_LEVEL_GAMMA)
 
 /datum/game_mode/proc/increase_bloodstone_power()
-	if(!bloodstone_list.len) //check if we somehow ran out of bloodstones
+	var/datum/team/cult/cult_team = locate() in GLOB.antagonist_teams
+	if(!cult_team)
+		CRASH("increase_bloodstone_power was called, but there's no cult team??")
+	if(!cult_team.bloodstone_list.len) //check if we somehow ran out of bloodstones
 		return
-	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
+	for(var/obj/structure/destructible/cult/bloodstone/B as anything in cult_team.bloodstone_list)
 		if(B.current_fullness == 9)
 			create_anchor_bloodstone()
 			return //We're done here
@@ -189,30 +189,37 @@
 		B.update_icon()
 	addtimer(CALLBACK(src, PROC_REF(increase_bloodstone_power)), 30 SECONDS)
 
+
 /datum/game_mode/proc/create_anchor_bloodstone()
-	if(SSticker.mode.anchor_bloodstone)
+	var/datum/team/cult/cult_team = locate() in GLOB.antagonist_teams
+	if(!cult_team)
+		CRASH("create_anchor_bloodstone was called, but there's no cult team??")
+	if(cult_team.anchor_bloodstone)
 		return
-	var/obj/structure/destructible/cult/bloodstone/anchor_target = bloodstone_list[1] //which bloodstone is the current cantidate for anchorship
+	var/obj/structure/destructible/cult/bloodstone/anchor_target = cult_team.bloodstone_list[1] //which bloodstone is the current cantidate for anchorship
 	var/anchor_power = 0 //anchor will be faster if there are more stones
-	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
+	for(var/obj/structure/destructible/cult/bloodstone/B as anything in cult_team.bloodstone_list)
 		anchor_power++
 		if(B.obj_integrity > anchor_target.obj_integrity)
 			anchor_target = B
-	SSticker.mode.anchor_bloodstone = anchor_target
+	cult_team.anchor_bloodstone = anchor_target
 	anchor_target.name = "anchor bloodstone"
 	anchor_target.desc = "It pulses rhythmically with migraine-inducing light. Something is being reflected on every surface, something that isn't quite there..."
 	anchor_target.anchor = TRUE
 	anchor_target.max_integrity = 1200
 	anchor_target.obj_integrity = 1200
-	anchor_time2kill -= anchor_power * 1 MINUTES //one minute of bloodfuckery shaved off per surviving bloodstone.
+	anchor_target.anchor_time2kill -= anchor_power * 1 MINUTES //one minute of bloodfuckery shaved off per surviving bloodstone.
 	anchor_target.set_animate()
 	var/area/A = get_area(anchor_target)
-	addtimer(CALLBACK(anchor_target, TYPE_PROC_REF(/obj/structure/destructible/cult/bloodstone, summon)), anchor_time2kill)
+	addtimer(CALLBACK(anchor_target, TYPE_PROC_REF(/obj/structure/destructible/cult/bloodstone, summon)), anchor_target.anchor_time2kill)
 	priority_announce("The anomaly has weakened the veil to a hazardous level in [A.map_name]! Destroy whatever is causing it before something gets through!","Central Command Higher Dimensional Affairs")
 
 /datum/game_mode/proc/cult_loss_bloodstones()
 	priority_announce("The veil anomaly appears to have been destroyed, shuttle locks have been lifted.","Central Command Higher Dimensional Affairs")
-	bloodstone_cooldown = TRUE
+	var/datum/team/cult/cult_team = locate() in GLOB.antagonist_teams
+	if(!cult_team)
+		CRASH("cult_loss_bloodstones was called, but there's no cult team??")
+	cult_team.bloodstone_cooldown = TRUE
 	addtimer(CALLBACK(src, PROC_REF(disable_bloodstone_cooldown)), 5 MINUTES) //5 minutes
 	for(var/datum/mind/M in cult)
 		var/mob/living/cultist = M.current
@@ -230,9 +237,12 @@
 
 /datum/game_mode/proc/cult_loss_anchor()
 	priority_announce("Whatever you did worked. Veil density has returned to a safe level. Shuttle locks lifted.","Central Command Higher Dimensional Affairs")
-	bloodstone_cooldown = TRUE
+	var/datum/team/cult/cult_team = locate() in GLOB.antagonist_teams
+	if(!cult_team)
+		CRASH("cult_loss_anchor was called, but there's no cult team??")
+	cult_team.bloodstone_cooldown = TRUE
 	addtimer(CALLBACK(src, PROC_REF(disable_bloodstone_cooldown)), 7 MINUTES) //7 minutes
-	for(var/obj/structure/destructible/cult/bloodstone/B in bloodstone_list)
+	for(var/obj/structure/destructible/cult/bloodstone/B as anything in cult_team.bloodstone_list)
 		qdel(B)
 		for(var/datum/mind/M in cult)
 			var/mob/living/cultist = M.current
@@ -249,7 +259,10 @@
 			to_chat(cultist, span_narsiesmall("You feel a bleakness as the destruction of the anchor cuts off your connection to Nar-Sie!"))
 
 /datum/game_mode/proc/disable_bloodstone_cooldown()
-	bloodstone_cooldown = FALSE
+	var/datum/team/cult/cult_team = locate() in GLOB.antagonist_teams
+	if(!cult_team)
+		CRASH("disable_bloodstone_cooldown was called, but there's no cult team??")
+	cult_team.bloodstone_cooldown = FALSE
 	for(var/datum/mind/M in cult)
 		var/mob/living/L = M.current
 		if(L)

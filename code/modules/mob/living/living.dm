@@ -1448,13 +1448,14 @@
 	"}
 
 /mob/living/proc/is_convert_antag()
-    var/list/bad_antags = list(
+    var/static/list/bad_antags = list(
         /datum/antagonist/clockcult,
         /datum/antagonist/cult,
         /datum/antagonist/darkspawn,
         /datum/antagonist/rev,
         /datum/antagonist/shadowling,
-        /datum/antagonist/veil
+        /datum/antagonist/veil,
+		/datum/antagonist/zombie,
     )
     for(var/antagcheck in bad_antags)
         if(mind?.has_antag_datum(antagcheck))

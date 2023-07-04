@@ -548,11 +548,11 @@ structure_check() searches for nearby cultist structures required for the invoca
 			to_chat(M, span_warning("Nar'sie is already on this plane!"))
 		log_game("Nar'sie rune failed - already summoned")
 		return
-	if(SSticker.mode.bloodstone_cooldown)
+	if(user_antag.cult_team.bloodstone_cooldown)
 		for(var/M in invokers)
 			to_chat(M, span_warning("The summoning was recently disrupted! you will need to wait before the cult can manage another attempt!"))
 		return
-	if(SSticker.mode.bloodstone_list.len)
+	if(user_antag.cult_team.bloodstone_list.len)
 		for(var/M in invokers)
 			to_chat(M, span_warning("The Red Harvest is already in progress! Protect the bloodstones!"))
 		log_game("Nar'sie rune failed - bloodstones present")
