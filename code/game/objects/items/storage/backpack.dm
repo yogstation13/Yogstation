@@ -95,7 +95,7 @@
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 
 /obj/item/storage/backpack/santabag
-	name = "Santa's Gift Bag"
+	name = "Santa's gift bag"
 	desc = "Space Santa uses this to deliver presents to all the nice children in space! Wow, it's pretty big!"
 	icon_state = "giftbag0"
 	item_state = "giftbag"

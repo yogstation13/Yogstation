@@ -12110,8 +12110,8 @@
 /area/security/prison)
 "fLC" = (
 /obj/structure/bed/pod{
-	desc = "The latest in lying down technology";
-	name = "Advanced medical bed"
+	desc = "The latest in lying down technology.";
+	name = "advanced medical bed"
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4

@@ -33,7 +33,7 @@
 		qdel(src)
 
 /obj/item/stack/antinoblium_crystal
-	name = "Antinoblium Crystal"
+	name = "antinoblium crystal"
 	desc = "Crystalized antinoblium, nitrium, and zauker. An incredibly volatile material."
 	icon_state = "antinoblium_crystal"
 	resistance_flags = FIRE_PROOF | ACID_PROOF | FREEZE_PROOF | UNACIDABLE

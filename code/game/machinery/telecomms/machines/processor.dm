@@ -54,4 +54,4 @@
 	autolinkers = list("processor4")
 
 /obj/machinery/telecomms/processor/preset_one/birdstation
-	name = "Processor"
+	name = "processor"

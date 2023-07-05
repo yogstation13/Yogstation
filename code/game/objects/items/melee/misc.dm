@@ -143,7 +143,7 @@
 	REMOVE_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 
 /obj/item/melee/beesword
-	name = "The Stinger"
+	name = "the stinger"
 	desc = "Taken from a giant bee and folded over one thousand times in pure honey. Can sting through anything."
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "beesword"

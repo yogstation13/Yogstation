@@ -94,4 +94,4 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	autolinkers = list("broadcasterB")
 
 /obj/machinery/telecomms/broadcaster/preset_left/birdstation
-	name = "Broadcaster"
+	name = "broadcaster"

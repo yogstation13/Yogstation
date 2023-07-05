@@ -31,7 +31,7 @@
 		return
 
 /obj/item/storage/box/holy
-	name = "Templar Kit"
+	name = "templar kit"
 
 /obj/item/storage/box/holy/PopulateContents()
 	new /obj/item/clothing/head/helmet/chaplain(src)
@@ -60,7 +60,7 @@
 	dog_fashion = null
 
 /obj/item/storage/box/holy/student
-	name = "Profane Scholar Kit"
+	name = "profane scholar kit"
 
 /obj/item/storage/box/holy/student/PopulateContents()
 	new /obj/item/clothing/suit/armor/riot/chaplain/studentuni(src)
@@ -89,7 +89,7 @@
 	dynamic_hair_suffix = ""
 
 /obj/item/storage/box/holy/sentinel
-	name = "Stone Sentinel Kit"
+	name = "stone sentinel kit"
 
 /obj/item/storage/box/holy/sentinel/PopulateContents()
 	new /obj/item/clothing/suit/armor/riot/chaplain/ancient(src)
@@ -112,7 +112,7 @@
 	slowdown = 0.1 //Pretty sure riot is just strictly better because lmao
 
 /obj/item/storage/box/holy/witchhunter
-	name = "Witchhunter Kit"
+	name = "witchhunter kit"
 
 /obj/item/storage/box/holy/witchhunter/PopulateContents()
 	new /obj/item/clothing/suit/armor/riot/chaplain/witchhunter(src)
@@ -139,7 +139,7 @@
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/storage/box/holy/follower
-	name = "Followers of the Chaplain Kit"
+	name = "followers of the chaplain kit"
 
 /obj/item/storage/box/holy/follower/PopulateContents()
 	new /obj/item/clothing/suit/hooded/chaplain_hoodie/leader(src)
@@ -181,7 +181,7 @@
 	armor = list(MELEE = 15, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 25)
 
 /obj/item/storage/box/holy/darktemplar
-	name = "Founder Kit of the Black Templars"
+	name = "founder kit of the Black Templars"
 
 /obj/item/storage/box/holy/darktemplar/PopulateContents()
 	new /obj/item/clothing/suit/space/hardsuit/darktemplar(src)
@@ -190,7 +190,7 @@
 	new /obj/item/clothing/suit/space/hardsuit/darktemplar/chap(src)
 
 /obj/item/clothing/suit/space/hardsuit/darktemplar
-	name = "Black Templar armor"
+	name = "black templar armor"
 	desc = "Apprentice-rated power armor developed by the Black Templars, a Confederate militant group that cuts out corruption and treachery without mercy."
 	icon_state = "darktemplar-follower0"
 	item_state = "darktemplar-follower0"
@@ -205,7 +205,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplar
 
 /obj/item/clothing/suit/space/hardsuit/darktemplar/chap
-	name = "Black Templar chaplain battle armor"
+	name = "black Ttmplar chaplain battle armor"
 	desc = "A suit of power armor worn by the zealous Black Templars. A fear-inspiring sight for heretics and dissenters."
 	icon_state = "darktemplar-chaplain0"
 	item_state = "darktemplar-chaplain0"
@@ -213,7 +213,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplar
 
 /obj/item/clothing/head/helmet/space/hardsuit/darktemplar
-	name = "Black Templar helmet"
+	name = "black templar helmet"
 	desc = "A custom-made Black Templar helmet. The words 'Contempt is Armour' and 'Purge Heresy' are written on the side."
 	icon_state = "darktemplar-follower1"
 	item_state = "darktemplar-follower1"
@@ -228,7 +228,7 @@
 	actions_types = list()
 
 /obj/item/clothing/head/helmet/space/hardsuit/darktemplar/chap
-	name = "Black Templar chaplain battle helmet"
+	name = "black templar chaplain battle helmet"
 	desc = "A custom-made Black Templar chaplain battle helmet. The words 'Excise Corruption' and 'The Razebringer Protects' are written on the side."
 	icon_state = "darktemplar-chaplain1"
 	item_state = "darktemplar-chaplain1"

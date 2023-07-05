@@ -118,19 +118,19 @@
 	icon_state = "flashbang_active"
 
 /obj/item/grenade/clusterbuster/syndie/emp
-	name = "Electromagnetic Storm"
+	name = "electromagnetic storm"
 	payload = /obj/item/grenade/empgrenade
 
 /obj/item/grenade/clusterbuster/smoke
-	name = "Ninja Vanish"
+	name = "ninja vanish"
 	payload = /obj/item/grenade/smokebomb
 
 /obj/item/grenade/clusterbuster/metalfoam
-	name = "Instant Concrete"
+	name = "instant concrete"
 	payload = /obj/item/grenade/chem_grenade/metalfoam
 
 /obj/item/grenade/clusterbuster/syndie/inferno
-	name = "Inferno"
+	name = "inferno"
 	payload = /obj/item/grenade/chem_grenade/incendiary
 
 /obj/item/grenade/clusterbuster/antiweed
@@ -142,11 +142,11 @@
 	payload = /obj/item/grenade/chem_grenade/cleaner
 
 /obj/item/grenade/clusterbuster/teargas
-	name = "Oignon Grenade"
+	name = "oignon grenade"
 	payload = /obj/item/grenade/chem_grenade/teargas
 
 /obj/item/grenade/clusterbuster/syndie/facid
-	name = "Aciding Rain"
+	name = "aciding rain"
 	payload = /obj/item/grenade/chem_grenade/facid
 
 /obj/item/grenade/clusterbuster/syndie/syndieminibomb
@@ -158,7 +158,7 @@
 	payload = /obj/item/grenade/spawnergrenade/manhacks
 
 /obj/item/grenade/clusterbuster/syndie/spawner_spesscarp
-	name = "Invasion of the Space Carps"
+	name = "invasion of the space carps"
 	payload = /obj/item/grenade/spawnergrenade/spesscarp
 
 /obj/item/grenade/clusterbuster/soap
@@ -188,7 +188,7 @@
 
 //rainbow slime effect
 /obj/item/grenade/clusterbuster/slime
-	name = "Blorble Blorble"
+	name = "blorble blorble"
 	icon_state = "slimebang"
 	base_state = "slimebang"
 	payload_spawner = /obj/effect/payload_spawner/random_slime

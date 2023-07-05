@@ -57743,8 +57743,8 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "rWu" = (
 /obj/structure/bed/pod{
-	desc = "The latest in lying down technology";
-	name = "Advanced medical bed"
+	desc = "The latest in lying down technology.";
+	name = "advanced medical bed"
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/sleeper)

@@ -1,5 +1,5 @@
 /obj/item/implant/greytide
-	name = "Greytide implant"
+	name = "greytide implant"
 	desc = "Turn a crewmate into greytider"
 
 /obj/item/implant/greytide/get_data()

@@ -1,5 +1,5 @@
 /obj/structure/mjollnir
-	name = "Mjolnir"
+	name = "mjolnir"
 	desc = "This once powerful hammer feels cold to the touch, but a thrum of magic inside tells you its only a matter of time until someone awakens it again."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "mjollnir-inert"

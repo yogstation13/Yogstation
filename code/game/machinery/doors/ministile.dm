@@ -17,7 +17,7 @@
 	climbable = TRUE
 
 /obj/machinery/ministile/hop
-	name = "HOP line turnstile"
+	name = "hop line turnstile"
 	req_one_access = list(ACCESS_HEADS)
 	
 /obj/machinery/ministile/Initialize(mapload)

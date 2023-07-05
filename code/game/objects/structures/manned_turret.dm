@@ -165,7 +165,7 @@
 	P.fire()
 
 /obj/machinery/manned_turret/ultimate  // Admin-only proof of concept for autoclicker automatics
-	name = "Infinity Gun"
+	name = "infinity gun"
 	view_range = 12
 	projectile_type = /obj/item/projectile/bullet/manned_turret
 

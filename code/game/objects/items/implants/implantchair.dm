@@ -156,7 +156,7 @@
 			implant(user,null)
 
 /obj/machinery/implantchair/genepurge
-	name = "Genetic purifier"
+	name = "genetic purifier"
 	desc = "Used to purge a human genome of foreign influences."
 	special = TRUE
 	special_name = "Purge genome"

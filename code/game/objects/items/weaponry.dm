@@ -221,7 +221,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	playsound(user, 'sound/items/screwdriver2.ogg', 50, 1)
 
 /obj/item/claymore/bone
-	name = "Bone Sword"
+	name = "bone sword"
 	desc = "Jagged pieces of bone are tied to what looks like a goliath's femur."
 	icon = 'icons/obj/weapons/swords.dmi'
 	icon_state = "bone_sword"

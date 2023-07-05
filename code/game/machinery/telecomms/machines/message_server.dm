@@ -9,7 +9,7 @@
 /obj/machinery/blackbox_recorder
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "blackbox"
-	name = "Blackbox Recorder"
+	name = "blackbox recorder"
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
@@ -75,7 +75,7 @@
 // The message server itself.
 /obj/machinery/telecomms/message_server
 	icon_state = "message_server"
-	name = "Messaging Server"
+	name = "messaging server"
 	desc = "A machine that processes and routes PDA and request console messages."
 	density = TRUE
 	use_power = IDLE_POWER_USE

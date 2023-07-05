@@ -64936,8 +64936,8 @@
 /area/hallway/primary/central)
 "vDT" = (
 /obj/structure/bed/pod{
-	desc = "The latest in lying down technology";
-	name = "Advanced medical bed"
+	desc = "The latest in lying down technology.";
+	name = "advanced medical bed"
 	},
 /obj/machinery/light_switch{
 	pixel_x = 23;
