@@ -19,7 +19,7 @@
 	return ..()
 
 /datum/element/content_barfer/proc/barf_contents(mob/living/target)
-	SIGNAL_HANDLER
+//	SIGNAL_HANDLER
 
 	for(var/atom/movable/barfed_out in target)
 		barfed_out.forceMove(target.loc)
