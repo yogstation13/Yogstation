@@ -677,8 +677,9 @@ nobliumformation = 1001
 
 /datum/gas_reaction/metalhydrogen/init_reqs()
 	min_requirements = list(
-		/datum/gas/hydrogen = 100,
-		/datum/gas/bz		= 5,
+		//same requirement as crystallizer metal h2 recipe
+		/datum/gas/hydrogen = 300,
+		/datum/gas/bz		= 50,
 		"TEMP" = METAL_HYDROGEN_MINIMUM_HEAT
 		)
 
