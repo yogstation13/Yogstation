@@ -38,11 +38,10 @@
 		return FALSE
 	return isliving(target_atom)
 
-/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/CheckCanTarget(atom/target_atom)
+/datum/action/cooldown/bloodsucker/targeted/hecata/necromancy/CheckCanTarget(mob/living/carbon/target_atom)
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/current_target = target_atom // We already know it's carbon due to CheckValidTarget()
 	// No mind
 	if(!current_target.mind)
 		to_chat(owner, span_warning("[current_target] is mindless."))
@@ -53,7 +52,7 @@
 		return FALSE
 	// Alive
 	if(current_target.stat != DEAD)
-		to_chat(owner, "[current_target] is still alive.")
+		to_chat(owner, span_notice("[current_target] is still alive."))
 		return FALSE
 	return TRUE
 
@@ -68,13 +67,13 @@
 			return FALSE
 		if(IS_VASSAL(target))
 			power_activated_sucessfully()
-			to_chat(user, span_warning("We revive [target]!"))
+			owner.balloon_alert(owner, "we revive [target]!")
 			zombify(target)
 			bloodsuckerdatum.clanprogress++ //counts a succesful necromancy towards your objective progress
 			DeactivatePower()
 			return
 		if(IS_MONSTERHUNTER(target))
-			to_chat(target, span_notice("Their body refuses to react..."))
+			owner.balloon_alert(owner, "their body refuses to react...")
 			DeactivatePower()
 			return
 		zombify(target)
@@ -84,18 +83,19 @@
 		bloodsuckerdatum.clanprogress++ //counts a succesful necromancy towards your objective progress
 		to_chat(user, span_warning("We revive [target]!"))
 		var/living_time
-		if(level_current == 0)
-			living_time = 2 MINUTES
-		if(level_current == 1)
-			living_time = 5 MINUTES
-		else if(level_current == 2)
-			living_time = 8 MINUTES
-		else if(level_current == 3)
-			living_time = 11 MINUTES
-		else if(level_current == 4)
-			living_time = 14 MINUTES 
-		else if(level_current >= 5)
-			living_time = 17 MINUTES //in general, they don't last long, make the most of them.
+		switch(level_current)
+			if(0)
+				living_time = 2 MINUTES
+			if(1)
+				living_time = 5 MINUTES
+			if(2)
+				living_time = 8 MINUTES
+			if(3)
+				living_time = 11 MINUTES
+			if(4)
+				living_time = 14 MINUTES 
+			if(5 to 99)
+				living_time = 17 MINUTES //in general, they don't last long, make the most of them.
 		addtimer(CALLBACK(src, PROC_REF(end_necromance), target), living_time)
 	else //extra check, but this shouldn't happen
 		owner.balloon_alert(owner, "out of range/not dead.")
@@ -128,7 +128,7 @@
 ///to do this, you can make someone your favorite vassal, or you can kill them and then revive them with necromancy.
 /datum/action/cooldown/bloodsucker/hecata/spiritcall
 	name = "Spirit Call"
-	desc = "Summon two angry wraiths which will attack anyone whose flesh is still alive. Summon amount increases as this ability levels up."
+	desc = "Summon angry wraiths which will attack anyone whose flesh is still alive. Summon amount increases as this ability levels up."
 	button_icon_state = "power_spiritcall"
 	power_explanation = "Spirit Call:\n\
 		Summon angry wraiths which enact vengeance from beyond the grave on those still connected to this world.\n\
@@ -140,17 +140,22 @@
 	power_flags = BP_AM_STATIC_COOLDOWN
 	bloodcost = 15
 	cooldown_time = 60 SECONDS
-	var/num_spirits = 2
+	var/num_spirits = 1
 
 /datum/action/cooldown/bloodsucker/hecata/spiritcall/vassal //this variant has to exist, as hecata favorite vassals are technically in 'torpor'
 	check_flags = BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	
 /datum/action/cooldown/bloodsucker/hecata/spiritcall/ActivatePower(mob/user = usr)
 	. = ..()
-	if(level_current == 2)
-		num_spirits = 3
-	else if(level_current >= 3)
-		num_spirits = 4
+	switch(level_current)
+		if(0)
+			num_spirits = 1
+		if(1)
+			num_spirits = 2
+		if(2)
+			num_spirits = 3
+		if(3 to 99)
+			num_spirits = 4
 	var/list/turf/locs = list()
 	for(var/direction in GLOB.alldirs) //looking for spirit spawns
 		if(locs.len == num_spirits) //we found the number of spots needed and thats all we need
@@ -171,7 +176,7 @@
 
 /datum/action/cooldown/bloodsucker/hecata/spiritcall/proc/cast_effect() //same as veil of many faces, makes smoke and stuff when casted
 	// Effect
-	playsound(get_turf(owner), 'sound/magic/smoke.ogg', 20, 1)
+	playsound(get_turf(owner), 'sound/magic/smoke.ogg', 20, TRUE)
 	var/datum/effect_system/steam_spread/puff = new /datum/effect_system/steam_spread/bloodsucker()
 	puff.effect_type = /obj/effect/particle_effect/fluid/smoke/vampsmoke
 	puff.set_up(3, 0, get_turf(owner))
