@@ -677,8 +677,8 @@ nobliumformation = 1001
 
 /datum/gas_reaction/metalhydrogen/init_reqs()
 	min_requirements = list(
-		/datum/gas/hydrogen = 1000,
-		/datum/gas/bz		= 50,
+		/datum/gas/hydrogen = 100,
+		/datum/gas/bz		= 5,
 		"TEMP" = METAL_HYDROGEN_MINIMUM_HEAT
 		)
 
@@ -688,18 +688,18 @@ nobliumformation = 1001
 	if(!isturf(holder))
 		return NO_REACTION
 	var/turf/open/location = holder
-	///More heat means higher chance to react but less efficiency, i.e. higher speed lower yield
-	var/increase_factor = min(log(10 , (temperature / METAL_HYDROGEN_MINIMUM_HEAT)), 5)	//e7-e12 range
+	///the more heat you use the higher is this factor
+	var/increase_factor = min((temperature / METAL_HYDROGEN_MINIMUM_HEAT), 5)
 	///the more moles you use and the higher the heat, the higher is the efficiency
-	var/heat_efficency = air.get_moles(/datum/gas/hydrogen)* 0.01 * increase_factor	//This variable name is dumb but I can't be assed to change it
+	var/heat_efficency = air.get_moles(/datum/gas/hydrogen)* 0.01 * increase_factor
 	var/pressure = air.return_pressure()
 	var/energy_used = heat_efficency * METAL_HYDROGEN_FORMATION_ENERGY
 
 	if(pressure >= METAL_HYDROGEN_MINIMUM_PRESSURE && temperature >= METAL_HYDROGEN_MINIMUM_HEAT)
-		air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.05))	//0.0005-0.0025 x mols of present hydrogen as BZ consumed, something about it decomposing
+		air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.01))
 		if (prob(20 * increase_factor))
-			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 14))	//14-70% of present hydrogen consumed.
-			if (prob(25 / increase_factor))
+			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 3.5))
+			if (prob(100 / increase_factor))
 				new /obj/item/stack/sheet/mineral/metal_hydrogen(location)
 				SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((heat_efficency * increase_factor * 0.5), METAL_HYDROGEN_RESEARCH_MAX_AMOUNT))
 
