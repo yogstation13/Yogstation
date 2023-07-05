@@ -3129,7 +3129,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/powered/syndicate_lava_base/bar)
 "lx" = (
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	faction = list("neutral","Syndicate")
 	},
 /turf/open/floor/grass,
@@ -3643,7 +3643,7 @@
 "nn" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/item/storage/box/monkeycubes,
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	faction = list("neutral","Syndicate")
 	},
 /turf/open/floor/grass,
@@ -5137,7 +5137,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	faction = list("neutral","Syndicate");
 	name = "Monsieur Stirstir";
 	unique_name = 0
@@ -5935,7 +5935,7 @@
 /area/lavaland/surface/outdoors)
 "Oh" = (
 /obj/structure/window/reinforced/spawner,
-/mob/living/carbon/monkey{
+/mob/living/carbon/human/species/monkey{
 	faction = list("neutral","Syndicate")
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{

@@ -42888,7 +42888,7 @@
 /turf/open/floor/plasteel,
 /area/security/courtroom)
 "nlu" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 5
 	},
@@ -57488,7 +57488,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "rSb" = (
-/mob/living/carbon/monkey,
+/mob/living/carbon/human/species/monkey,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
