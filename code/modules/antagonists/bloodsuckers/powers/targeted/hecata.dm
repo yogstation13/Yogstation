@@ -140,6 +140,7 @@
 	power_flags = BP_AM_STATIC_COOLDOWN
 	bloodcost = 15
 	cooldown_time = 60 SECONDS
+	///How many spirits should be summoned when cast
 	var/num_spirits = 1
 
 /datum/action/cooldown/bloodsucker/hecata/spiritcall/vassal //this variant has to exist, as hecata favorite vassals are technically in 'torpor'
