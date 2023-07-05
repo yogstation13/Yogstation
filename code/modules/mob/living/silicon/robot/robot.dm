@@ -987,8 +987,9 @@
 	. = ..()
 	if(istype(mmi, /obj/item/mmi/posibrain))
 		. += 0.5
-	if(mainframe)
+	else if(mainframe)
 		. += 0.25
+
 	var/hd = maxHealth - health
 	if(hd > 50)
 		if(has_gravity())
