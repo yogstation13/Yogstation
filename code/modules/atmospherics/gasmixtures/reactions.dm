@@ -677,9 +677,8 @@ nobliumformation = 1001
 
 /datum/gas_reaction/metalhydrogen/init_reqs()
 	min_requirements = list(
-		//same requirement as crystallizer metal h2 recipe
-		/datum/gas/hydrogen = 300,
-		/datum/gas/bz		= 50,
+		/datum/gas/hydrogen = 400,
+		/datum/gas/bz		= 40,
 		"TEMP" = METAL_HYDROGEN_MINIMUM_HEAT
 		)
 
@@ -700,9 +699,8 @@ nobliumformation = 1001
 		air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.05))
 		if (prob(20 * increase_factor))
 			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 4.5))
-			if (prob(100 / increase_factor))
-				new /obj/item/stack/sheet/mineral/metal_hydrogen(location)
-				SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((heat_efficency * increase_factor * 0.5), METAL_HYDROGEN_RESEARCH_MAX_AMOUNT))
+			new /obj/item/stack/sheet/mineral/metal_hydrogen(location)
+			SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((heat_efficency * increase_factor * 0.5), METAL_HYDROGEN_RESEARCH_MAX_AMOUNT))
 
 	if(energy_used > 0)
 		var/new_heat_capacity = air.heat_capacity()
