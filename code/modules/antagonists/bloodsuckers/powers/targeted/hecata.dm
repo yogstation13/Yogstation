@@ -43,16 +43,16 @@
 	if(!.)
 		return FALSE
 	// No mind
-	if(!current_target.mind)
-		to_chat(owner, span_warning("[current_target] is mindless."))
+	if(!target_atom.mind)
+		to_chat(owner, span_warning("[target_atom] is mindless."))
 		return FALSE
 	// Bloodsucker
-	if(IS_BLOODSUCKER(current_target))
+	if(IS_BLOODSUCKER(target_atom))
 		to_chat(owner, span_notice("Bloodsuckers are immune to [src]."))
 		return FALSE
 	// Alive
-	if(current_target.stat != DEAD)
-		to_chat(owner, span_notice("[current_target] is still alive."))
+	if(target_atom.stat != DEAD)
+		to_chat(owner, span_notice("[target_atom] is still alive."))
 		return FALSE
 	return TRUE
 
