@@ -54,6 +54,7 @@
 		"water vapor" = /obj/machinery/portable_atmospherics/canister/water_vapor,
 		"tritium" = /obj/machinery/portable_atmospherics/canister/tritium,
 		"hyper-noblium" = /obj/machinery/portable_atmospherics/canister/nob,
+		"anti-noblium" = /obj/machinery/portable_atmospherics/canister/antinoblium,
 		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
 		"caution" = /obj/machinery/portable_atmospherics/canister,
 		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma,
@@ -220,7 +221,7 @@
 /obj/machinery/portable_atmospherics/canister/antinoblium
 	name = "Antinoblium canister"
 	desc = "Antinoblium, we still don't know what it does, but it sells for a lot"
-	icon_state = "halon"
+	icon_state = "antino"
 	gas_type = /datum/gas/antinoblium
 	filled = 1
 
