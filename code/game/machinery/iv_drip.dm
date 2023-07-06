@@ -69,7 +69,7 @@
 
 /obj/machinery/iv_drip/MouseDrop(mob/living/target)
 	. = ..()
-	if(!ishuman(usr) || !usr.canUseTopic(src, BE_CLOSE) || !isliving(target))
+	if( ( !ishuman(usr) && !iscyborg(usr) ) || !usr.canUseTopic(src, BE_CLOSE) || !isliving(target))
 		return
 
 	if(attached)
@@ -162,10 +162,10 @@
 	. = ..()
 	if(.)
 		return
-	if(!ishuman(user))
+	if(!ishuman(user) && !iscyborg(user))
 		return
 	if(attached)
-		visible_message("[attached] is detached from [src]")
+		visible_message("[attached] is detached from [src].")
 		attached = null
 		update_icon()
 		return
@@ -173,6 +173,10 @@
 		eject_beaker(user)
 	else
 		toggle_mode()
+
+/obj/machinery/iv_drip/attack_robot(mob/user)
+	if(Adjacent(user))
+		attack_hand(user)
 
 /obj/machinery/iv_drip/verb/eject_beaker()
 	set category = "Object"
@@ -183,12 +187,17 @@
 		to_chat(usr, span_warning("You can't do that!"))
 		return
 
-	if(usr.incapacitated())
+	if(usr.incapacitated() || !beaker)
 		return
-	if(beaker)
-		beaker.forceMove(drop_location())
-		beaker = null
-		update_icon()
+
+	beaker.forceMove(drop_location())
+	beaker = null
+
+	if(attached)
+		visible_message("[attached] is detached from [src].")
+		attached = null
+
+	update_icon()
 
 /obj/machinery/iv_drip/verb/toggle_mode()
 	set category = "Object"
