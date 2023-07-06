@@ -696,7 +696,7 @@ nobliumformation = 1001
 	var/energy_used = heat_efficency * METAL_HYDROGEN_FORMATION_ENERGY
 
 	if(pressure >= METAL_HYDROGEN_MINIMUM_PRESSURE && temperature >= METAL_HYDROGEN_MINIMUM_HEAT)
-		air.adjust_moles(/datum/gas/bz, -(heat_efficency)) //About half the amount of BZ requirement consumed
+		air.adjust_moles(/datum/gas/bz, -(heat_efficency)) //About 70% the amount of BZ requirement consumed
 		if (prob(20 * increase_factor))
 			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 10)) //Still consume about 70% of the hydrogen present
 			new /obj/item/stack/sheet/mineral/metal_hydrogen(location)
