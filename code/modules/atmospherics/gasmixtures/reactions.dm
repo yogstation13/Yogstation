@@ -698,7 +698,7 @@ nobliumformation = 1001
 	if(pressure >= METAL_HYDROGEN_MINIMUM_PRESSURE && temperature >= METAL_HYDROGEN_MINIMUM_HEAT)
 		air.adjust_moles(/datum/gas/bz, -(heat_efficency * 0.05))
 		if (prob(20 * increase_factor))
-			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 4.5))
+			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 10)) //Still consume about 70% of the hydrogen present
 			new /obj/item/stack/sheet/mineral/metal_hydrogen(location)
 			SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((heat_efficency * increase_factor * 0.5), METAL_HYDROGEN_RESEARCH_MAX_AMOUNT))
 
