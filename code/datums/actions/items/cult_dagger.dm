@@ -10,7 +10,7 @@
 	default_button_position = "6:157,4:-2"
 
 /datum/action/item_action/cult_dagger/Grant(mob/grant_to)
-	if(!iscultist(M))
+	if(!iscultist(grant_to))
 		return
 
 	return ..()
