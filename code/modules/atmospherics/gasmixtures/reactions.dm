@@ -382,7 +382,6 @@ nobliumformation = 1001
 		/datum/gas/nitrogen = 50,
 		/datum/gas/plasma = 20,
 		/datum/gas/bz = 20,
-		/datum/gas/nitrous_oxide = 5,
 		"TEMP" = NITRIUM_FORMATION_MIN_TEMP,
 	)
 
