@@ -70,7 +70,6 @@
 	owner.announce_objectives()
 
 /datum/antagonist/cult/on_gain()
-//	add_objectives() figure it out sometime later (remove cult the gamemode in favor of dynamic ruleset)
 	. = ..()
 	add_objectives()
 	var/mob/living/current = owner.current
