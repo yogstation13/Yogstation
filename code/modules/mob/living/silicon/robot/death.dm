@@ -27,6 +27,7 @@
 		logevent("FATAL -- SYSTEM HALT")
 		modularInterface.shutdown_computer()
 		internal = new /obj/item/gps/internal/cyborg(src)
+		internal.gpstag += " ([real_name])"
 
 	. = ..()
 
