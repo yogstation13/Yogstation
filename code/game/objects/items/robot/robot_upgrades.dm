@@ -68,6 +68,10 @@
 		R.mind.grab_ghost()
 		playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 
+	var/obj/item/gps/internal/G = R.internal
+	if(G)
+		QDEL_NULL(G)
+
 	R.revive()
 	R.logevent("WARN -- System recovered from unexpected shutdown.")
 	R.logevent("System brought online.")

@@ -13,6 +13,9 @@
 /mob/living/silicon/robot/dust_animation()
 	new /obj/effect/temp_visual/dust_animation(loc, "dust-r")
 
+/obj/item/gps/internal/cyborg
+	gpstag = "Cyborg Distress Signal"
+
 /mob/living/silicon/robot/death(gibbed)
 	if(stat == DEAD)
 		return
@@ -23,6 +26,7 @@
 	if(!gibbed)
 		logevent("FATAL -- SYSTEM HALT")
 		modularInterface.shutdown_computer()
+		internal = new /obj/item/gps/internal/cyborg(src)
 
 	. = ..()
 

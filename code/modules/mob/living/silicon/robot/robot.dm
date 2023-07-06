@@ -112,6 +112,9 @@
 	buckle_lying = FALSE
 	var/static/list/can_ride_typecache = typecacheof(/mob/living/carbon/human)
 
+	var/obj/item/gps/internal // GPS location for when they die
+
+
 /mob/living/silicon/robot/get_cell()
 	return cell
 
@@ -1074,6 +1077,9 @@
 		toggle_headlamp(TRUE)
 		if(admin_revive)
 			locked = TRUE
+		if(internal)
+			QDEL_NULL(internal)
+
 		notify_ai(NEW_BORG)
 		. = 1
 
