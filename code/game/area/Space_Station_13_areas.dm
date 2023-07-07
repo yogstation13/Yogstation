@@ -804,6 +804,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "virology"
 	flags_1 = NONE
 	minimap_color = "#01f5b3"
+	ambience_index = AMBIENCE_VIROLOGY
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/medical/morgue
 	name = "Morgue"
@@ -1016,7 +1018,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	flags_1 = NONE
 	minimap_color = "#cc00ff"
 	airlock_wires = /datum/wires/airlock/service
-	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/janitor/a //yogs start added two new areas
 	name = "Custodial Closet A"
