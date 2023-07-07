@@ -221,4 +221,4 @@
 		
 /obj/item/laser_pointer/proc/RefreshParts()
 	///The rate at which the laser regenerates charge. Clamped between 30 seconds and basically instantly just in case of weirdness. Knock off 5 seconds per diode rating
-	recharge_rate =  clamp((30 SECONDS - (5 SECONDS * diode.rating)), 1, 30 SECONDS)
+	recharge_rate = clamp((30 SECONDS - (5 SECONDS * diode.rating)), 1, 30 SECONDS)
