@@ -26,6 +26,10 @@
 
 	. = ..()
 
+	var/obj/item/weapon/gripper/G = locate(/obj/item/weapon/gripper) in module
+	if(G)
+		G.attack_self() // drops item from the gripper
+
 	locked = FALSE //unlock cover
 
 	if(!QDELETED(builtInCamera) && builtInCamera.status)
