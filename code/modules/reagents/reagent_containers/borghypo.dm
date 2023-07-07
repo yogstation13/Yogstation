@@ -115,12 +115,12 @@ Borg Hypospray
 		if(user.a_intent == INTENT_HELP) // Prevents mediborgs from OD'ing people unless on harm intent
 			for(var/datum/reagent/RG in R.reagent_list)
 				if(M.reagents.has_reagent(RG.type) && !RG.overdose_threshold == 0)
-					var/datum/reagent/O = M.reagents.get_reagent(RG.type)
-					if( O.overdosed == 1 )
-						to_chat(user, "<span class='warning'>Injecting [M] with more [RG] would further their overdose.</span>")
+					var/datum/reagent/MRG = M.reagents.get_reagent(RG.type)
+					if( MRG.overdosed == 1 )
+						to_chat(user, span_warning("Injecting [M] with more [RG] would further their overdose.") )
 						return
 					if(((M.reagents.get_reagent_amount(RG.type)) + amount_per_transfer_from_this > RG.overdose_threshold))
-						to_chat(user, "<span class='warning'>Injecting [M] with more [RG] would overdose them.</span>")
+						to_chat(user, span_warning("Injecting [M] with more [RG] would overdose them.") )
 						return
 		to_chat(M, span_warning("You feel a tiny prick!"))
 		to_chat(user, span_notice("You inject [M] with the injector."))
