@@ -131,7 +131,7 @@
 			continue
 		if(!applicant.mind)
 			continue
-		if(applicant.stat > CONSCIOUS)
+		if(applicant.stat != CONSCIOUS)
 			continue
 		if(applicant.mind.assigned_role in protected_jobs)
 			continue
