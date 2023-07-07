@@ -424,6 +424,18 @@
 
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
 
+/obj/item/reagent_containers/food/snacks/cookie/bacon
+	name = "strip of bacon"
+	desc = "BACON!!!"
+	icon_state = "bacon_strip"
+	foodtype = MEAT
+
+/obj/item/reagent_containers/food/snacks/cookie/cloth
+	name = "odd cookie"
+	desc = "A cookie that appears to be made out of... some form of cloth?"
+	icon_state = "cookie_cloth"
+	foodtype = CLOTH
+
 /obj/item/reagent_containers/food/snacks/cookie/sleepy
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin/chloralhydrate = 10)
 

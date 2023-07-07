@@ -911,3 +911,33 @@
 	var/obj/item/twohanded/broom/cyborg/BR = locate() in R.module.modules
 	if (BR)
 		R.module.remove_module(BR, TRUE)
+
+/obj/item/borg/upgrade/snack_dispenser
+	name = "Cyborg Upgrade (Snack Dispenser)"
+	desc = "Gives any borg the ability to dispense speciality snacks."
+	/// For storing modules that we remove, since the upgraded snack dispensor automatically removes inferior versions
+	var/list/removed_modules = list()
+
+/obj/item/borg/upgrade/snack_dispenser/action(mob/living/silicon/robot/R, user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/borg_snack_dispenser/snack_dispenser = new(R.module)
+	R.module.basic_modules += snack_dispenser
+	R.module.add_module(snack_dispenser, FALSE, TRUE)
+	for(var/obj/item/rsf/cookiesynth/cookiesynth in R.module)
+		removed_modules += cookiesynth
+		R.module.remove_module(cookiesynth)
+	for(var/obj/item/borg/lollipop/lollipop in R.module)
+		removed_modules += lollipop
+		R.module.remove_module(lollipop)
+
+/obj/item/borg/upgrade/snack_dispenser/deactivate(mob/living/silicon/robot/R, user)
+	. = ..()
+	if(!.)
+		return
+	for(var/obj/item/borg_snack_dispenser/dispenser in R.module)
+		R.module.remove_module(dispenser, TRUE)
+	for(var/obj/item as anything in removed_modules)
+		R.module.basic_modules += item
+		R.module.add_module(item, FALSE, TRUE)
