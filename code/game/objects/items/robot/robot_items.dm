@@ -573,10 +573,13 @@
 	var/borg_charge_cutoff = 200
 	/// The amount of charge used per print of a snack
 	var/borg_charge_usage = 50
+	var/cooldown = 25 // how long until they can use it again
+	var/nextuse // if this + cooldown is less than world.time, then they can use it again
 
 /obj/item/borg_snack_dispenser/Initialize(mapload)
 	. = ..()
 	selected_snack = selected_snack ||  LAZYACCESS(valid_snacks, 1)
+	nextuse = world.time
 
 /obj/item/borg_snack_dispenser/examine(mob/user)
 	. = ..()
@@ -601,6 +604,9 @@
 	to_chat(user, span_notice("[src] is now dispensing [snack_name]."))
 
 /obj/item/borg_snack_dispenser/attack(mob/living/patron, mob/living/silicon/robot/user, params)
+	if( nextuse + cooldown > world.time )
+		to_chat(user, span_warning("The snack dispenser is recharging!"))
+		return
 	var/empty_hand = LAZYACCESS(patron.get_empty_held_indexes(), 1)
 	if(!empty_hand)
 		to_chat(user, span_warning("[patron] has no free hands!"))
@@ -622,6 +628,7 @@
 	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 	to_chat(patron, span_notice("[user] dispenses [snack] into your empty hand and you reflexively grasp it."))
 	to_chat(user, span_notice("You dispense [snack] into the hand of [user]."))
+	nextuse = world.time
 
 /obj/item/borg_snack_dispenser/AltClick(mob/user)
 	launch_mode = !launch_mode
@@ -630,6 +637,9 @@
 /obj/item/borg_snack_dispenser/afterattack(atom/target, mob/living/silicon/robot/user, proximity_flag, click_parameters)
 	if(Adjacent(target) || !launch_mode)
 		return ..()
+	if( nextuse + cooldown > world.time )
+		to_chat(user, span_warning("The snack dispenser is recharging!"))
+		return
 	if(!selected_snack)
 		to_chat(user, span_warning("No snack selected."))
 		return
@@ -645,6 +655,7 @@
 	snack.throw_at(target, 7, 2, user, TRUE, FALSE)
 	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 	user.visible_message(span_notice("[src] launches [snack] at [target]!"))
+	nextuse = world.time
 
 #define PKBORG_DAMPEN_CYCLE_DELAY 20
 
