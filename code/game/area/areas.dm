@@ -182,7 +182,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 
 
 	if(!ambientsounds && ambience_index)
-		ambientsounds = GLOB.ambient_assoc[ambience_index]
+		ambientsounds = GLOB.ambience_assoc[ambience_index]
 
 	if(!ambientmusic && ambient_music_index)
 		ambientmusic = GLOB.ambient_music_assoc[ambient_music_index]

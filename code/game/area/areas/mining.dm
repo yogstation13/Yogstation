@@ -16,7 +16,7 @@
 	power_light = FALSE
 	outdoors = TRUE
 	flags_1 = NONE
-	ambientsounds = MINING
+	ambience_index = AMBIENCE_MINING
 	area_flags = NONE
 
 /area/mine/unexplored
@@ -30,7 +30,7 @@
 	power_light = FALSE
 	outdoors = TRUE
 	flags_1 = NONE
-	ambientsounds = MINING
+	ambience_index = AMBIENCE_MINING
 	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
 	map_generator = /datum/map_generator/cave_generator
 
@@ -91,7 +91,7 @@
 /area/mine/laborcamp/security
 	name = "Labor Camp Security"
 	icon_state = "security"
-	ambientsounds = HIGHSEC
+	ambience_index = AMBIENCE_DANGER
 
 
 
@@ -113,7 +113,7 @@
 	power_equip = FALSE
 	power_light = FALSE
 	requires_power = TRUE
-	ambientsounds = MINING
+	ambience_index = AMBIENCE_MINING
 
 /area/lavaland/underground
 	name = "Lavaland Caves"
@@ -124,7 +124,7 @@
 	power_environ = FALSE
 	power_equip = FALSE
 	power_light = FALSE
-	ambientsounds = MINING
+	ambience_index = AMBIENCE_MINING
 
 
 /area/lavaland/surface/outdoors
@@ -163,7 +163,7 @@
 	power_equip = FALSE
 	power_light = FALSE
 	requires_power = TRUE
-	ambientsounds = MINING
+	ambience_index = AMBIENCE_MINING
 
 /area/icemoon/surface/outdoors
 	name = "Icemoon Wastes"
@@ -190,7 +190,7 @@
 	power_environ = FALSE
 	power_equip = FALSE
 	power_light = FALSE
-	ambientsounds = MINING
+	ambience_index = AMBIENCE_MINING
 
 /area/icemoon/underground/unexplored // mobs and megafauna and ruins spawn here
 	name = "Icemoon Caves"

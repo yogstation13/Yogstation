@@ -69,7 +69,7 @@
 /area/ruin/powered/syndicate_lava_base
 	name = "Secret Base"
 	icon_state = "dk_yellow"
-	ambientsounds = HIGHSEC
+	ambience_index = AMBIENCE_DANGER
 
 /area/ruin/powered/kinggoat_arena //yogs start
 	name = "King Goat Arena"
