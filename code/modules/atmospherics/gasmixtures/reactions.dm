@@ -677,8 +677,8 @@ nobliumformation = 1001
 
 /datum/gas_reaction/metalhydrogen/init_reqs()
 	min_requirements = list(
-		/datum/gas/hydrogen = 400,
-		/datum/gas/bz		= 40,
+		/datum/gas/hydrogen = 300,
+		/datum/gas/bz		= 50,
 		"TEMP" = METAL_HYDROGEN_MINIMUM_HEAT
 		)
 
@@ -689,7 +689,7 @@ nobliumformation = 1001
 		return NO_REACTION
 	var/turf/open/location = holder
 	///the more heat you use the higher is this factor
-	var/increase_factor = min((temperature / METAL_HYDROGEN_MINIMUM_HEAT), 5)
+	var/increase_factor = min(log(10 , (temperature / METAL_HYDROGEN_MINIMUM_HEAT)), 5) //e7-e12 range
 	///the more moles you use and the higher the heat, the higher is the efficiency
 	var/heat_efficency = air.get_moles(/datum/gas/hydrogen)* 0.01 * increase_factor
 	var/pressure = air.return_pressure()
@@ -697,7 +697,7 @@ nobliumformation = 1001
 
 	if(pressure >= METAL_HYDROGEN_MINIMUM_PRESSURE && temperature >= METAL_HYDROGEN_MINIMUM_HEAT)
 		air.adjust_moles(/datum/gas/bz, -(heat_efficency)) //About 70% the amount of BZ requirement consumed
-		if (prob(20 * increase_factor))
+		if (prob(25 * increase_factor))
 			air.adjust_moles(/datum/gas/hydrogen, -(heat_efficency * 10)) //Still consume about 70% of the hydrogen present
 			new /obj/item/stack/sheet/mineral/metal_hydrogen(location)
 			SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, min((heat_efficency * increase_factor * 0.5), METAL_HYDROGEN_RESEARCH_MAX_AMOUNT))
