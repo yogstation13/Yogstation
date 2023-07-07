@@ -641,7 +641,7 @@
 	if(!user.cell.use(borg_charge_usage))
 		to_chat(user, span_danger("Failure printing snack: power failure!"))
 		return
-
+	var/atom/movable/snack = new selected_snack(get_turf(src))
 	snack.throw_at(target, 7, 2, user, TRUE, FALSE)
 	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 	user.visible_message(span_notice("[src] launches [snack] at [target]!"))
