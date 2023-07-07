@@ -824,5 +824,5 @@
 			wrapped = I
 			return
 		else
-			to_chat(user, "<span class='danger'>Your gripper cannot hold \the [target].</span>")
+			to_chat(user, span_danger( "Your gripper cannot hold \the [target].") )
 
