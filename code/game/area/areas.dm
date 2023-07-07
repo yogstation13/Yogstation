@@ -83,17 +83,20 @@
 	var/ambience_index = AMBIENCE_GENERIC
 	var/list/ambientsounds
 
-	var/ambient_buzz = 'sound/ambience/shipambience.ogg' // Ambient buzz of the station, plays repeatedly, also IC
+	///Ambient buzz of the station, plays repeatedly, also IC
+	var/ambient_buzz = 'sound/ambience/shipambience.ogg'
+	///The volume of the ambient buzz
+	var/ambient_buzz_vol = 30
+	///Used to decide what the minimum time between ambience is
+	var/min_ambience_cooldown = 30 SECONDS
+	///Used to decide what the maximum time between ambience is
+	var/max_ambience_cooldown = 60 SECONDS
+	///Used to decide what kind of reverb the area makes sound have
+	var/sound_environment = SOUND_ENVIRONMENT_NONE
 
 	var/ambient_music_index
 	var/list/ambientmusic
 
-	///Used to decide what the minimum time between ambience is
-	var/min_ambience_cooldown = 30 SECONDS
-	///Used to decide what the maximum time between ambience is
-	var/max_ambience_cooldown = 90 SECONDS
-	///Used to decide what kind of reverb the area makes sound have
-	var/sound_environment = SOUND_ENVIRONMENT_NONE
 
 	flags_1 = CAN_BE_DIRTY_1
 

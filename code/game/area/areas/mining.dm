@@ -4,6 +4,8 @@
 	icon_state = "mining"
 	has_gravity = STANDARD_GRAVITY
 	area_flags = FLORA_ALLOWED
+	ambient_buzz = 'sound/ambience/magma.ogg'
+	ambient_buzz_vol = 10
 
 /area/mine/explored
 	name = "Mine"
@@ -18,6 +20,8 @@
 	flags_1 = NONE
 	ambience_index = AMBIENCE_MINING
 	area_flags = NONE
+	ambient_buzz = 'sound/ambience/magma.ogg'
+	ambient_buzz_vol = 20
 
 /area/mine/unexplored
 	name = "Mine"

@@ -70,6 +70,8 @@
 	name = "Secret Base"
 	icon_state = "dk_yellow"
 	ambience_index = AMBIENCE_DANGER
+	ambient_buzz = 'sound/ambience/magma.ogg'
+	ambient_buzz_vol = 10
 
 /area/ruin/powered/kinggoat_arena //yogs start
 	name = "King Goat Arena"
@@ -132,3 +134,4 @@
 //ash walker nest
 /area/ruin/unpowered/ash_walkers
 	icon_state = "red"
+	ambient_buzz = 'sound/ambience/magma.ogg'
