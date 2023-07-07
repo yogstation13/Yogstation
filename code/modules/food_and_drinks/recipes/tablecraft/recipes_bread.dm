@@ -28,7 +28,7 @@
 	name = "Butter Biscuit"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/bun = 1,
-		/obj/item/reagent_containers/food/snacks/butter = 1
+		/obj/item/reagent_containers/food/snacks/butterslice = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/butterbiscuit
 	subcategory = CAT_BREAD
@@ -37,7 +37,7 @@
 	name = "Buttered Toast"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/breadslice/toast = 1,
-		/obj/item/reagent_containers/food/snacks/butter = 1
+		/obj/item/reagent_containers/food/snacks/butterslice = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/butteredtoast
 	subcategory = CAT_BREAD
@@ -69,7 +69,7 @@
 	time = 4 SECONDS
 	reqs = list(/obj/item/reagent_containers/food/snacks/grown/garlic = 1,
 				/obj/item/reagent_containers/food/snacks/breadslice/toast = 1,
-				/obj/item/reagent_containers/food/snacks/butter = 1
+				/obj/item/reagent_containers/food/snacks/butterslice = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/garlicbread
 	subcategory = CAT_BREAD

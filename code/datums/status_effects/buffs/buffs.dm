@@ -515,8 +515,8 @@
 		ADD_TRAIT(owner, TRAIT_REDUCED_DAMAGE_SLOWDOWN, id)
 	else
 		ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
-	owner.adjustBruteLoss(-25)
-	owner.adjustFireLoss(-25)
+	owner.adjustBruteLoss(-25, TRUE, FALSE, BODYPART_ANY)
+	owner.adjustFireLoss(-25, TRUE, FALSE, BODYPART_ANY)
 	owner.remove_CC()
 	owner.bodytemperature = BODYTEMP_NORMAL
 	return TRUE

@@ -186,6 +186,11 @@
 	if(!istype(M))
 		return
 	if(methods & TOUCH)
+		// some nice cold water to WAKE THE FUCK UP
+		// 20 units of water = 1 hug of antisleep
+		M.AdjustUnconscious(-reac_volume*0.3 SECONDS)
+		M.AdjustSleeping(-reac_volume*0.5 SECONDS)
+
 		M.adjust_fire_stacks(-(reac_volume / 10) * M.get_permeability(null, TRUE))
 		M.extinguish_mob() // permeability affects the negative fire stacks but not the extinguishing
 	..()
@@ -635,7 +640,7 @@
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/ethereal
 	mutationtext = span_danger("The pain subsides. You feel... ecstatic.")
-	
+
 /datum/reagent/mutationtoxin/preternis
 	name = "Preternis Mutation Toxin"
 	description = "A metallic precursor toxin."
@@ -1081,6 +1086,31 @@
 
 /mob/living/proc/bluespace_shuffle()
 	do_teleport(src, get_turf(src), 5, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
+
+//Gateway to traitor chemistry, want a drug to be traitor only? use this
+/datum/reagent/redspace
+	name = "Redspace Dust"
+	description = "A sinister looking dust composed of grinded Syndicate telecrystals, the red colouration a result of impurities within their manufacturing process."
+	reagent_state = SOLID
+	color = "#db0735"
+	taste_description = "bitter evil"
+	process_flags = ORGANIC | SYNTHETIC
+	metabolization_rate = 0.2 * REAGENTS_METABOLISM
+	can_synth = FALSE
+
+//Teleport like normal telecrystals
+/datum/reagent/redspace/on_mob_metabolize(mob/living/L)
+	var/turf/destination = get_teleport_loc(L.loc, L, rand(3,6))
+	if(!istype(destination))
+		return
+	new /obj/effect/particle_effect/sparks(L.loc)
+	playsound(L.loc, "sparks", 50, 1)
+	if(!do_teleport(L, destination, asoundin = 'sound/effects/phaseinred.ogg', channel = TELEPORT_CHANNEL_BLUESPACE))
+		return
+	L.throw_at(get_edge_target_turf(L, L.dir), 1, 3, spin = FALSE, diagonals_first = TRUE)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.adjust_disgust(15)
 
 /datum/reagent/aluminium
 	name = "Aluminium"

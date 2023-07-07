@@ -318,7 +318,7 @@
 	name = "Butterdog"
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/bun = 1,
-		/obj/item/reagent_containers/food/snacks/butter = 3
+		/obj/item/reagent_containers/food/snacks/butter = 1
 		)
 	result = /obj/item/reagent_containers/food/snacks/butterdog
 	subcategory = CAT_BURGER
