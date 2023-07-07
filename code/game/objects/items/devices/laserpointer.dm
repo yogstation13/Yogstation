@@ -14,7 +14,6 @@
 	var/charges = 5
 	var/max_charges = 5
 	var/effectchance = 33
-	//var/recharging = 0
 	var/recharge_locked = FALSE
 	///The diode is what determines the effectiveness and recharge rate of the laser pointer. Higher tier part means stronger pointer
 	var/obj/item/stock_parts/micro_laser/diode 
@@ -192,9 +191,11 @@
 	else
 		to_chat(user, span_info("You point [src] at [target]."))
 	
+	//start the recharge cooldown after using the first of your charges
 	if(charges == max_charges)
 		COOLDOWN_START(src, recharging, recharge_rate)
 	charges -= 1
+	
 	if(charges <= max_charges)
 		START_PROCESSING(SSobj, src)
 		if(charges <= 0)
@@ -205,16 +206,22 @@
 	icon_state = "pointer"
 
 /obj/item/laser_pointer/process(delta_time)
+	//it probably shouldn't be charging if the laser pointer is missing pieces 
 	if(!diode)
 		return PROCESS_KILL
+	//if the current recharge isn't done stop here
 	if(!COOLDOWN_FINISHED(src, recharging))
 		return
+	//recharge period has finished here's your charge
 	charges += 1
+	//just to make sure the rating hasn't somehow changed like from var edit fuckery to adjust the cooldown time
 	RefreshParts()
 	COOLDOWN_START(src, recharging, recharge_rate)
 	if(charges >= max_charges)
 		charges = max_charges
+		//I'M FULLY CHARGED so we don't need to keep running this process
 		return PROCESS_KILL
 		
 /obj/item/laser_pointer/proc/RefreshParts()
-	recharge_rate = 30 SECONDS - (5 SECONDS * diode.rating)
+	///The rate at which the laser regenerates charge. Clamped between 30 seconds and basically instantly just in case of weirdness. Knock off 5 seconds per diode rating
+	recharge_rate =  clamp((30 SECONDS - (5 SECONDS * diode.rating)), 1, 30 SECONDS)
