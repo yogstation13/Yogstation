@@ -77,8 +77,7 @@
 			DeactivatePower()
 			return
 		zombify(target)
-		if(bloodsuckerdatum.make_vassal(target))
-			SEND_SIGNAL(src, BLOODSUCKER_MADE_VASSAL, user, target)
+		bloodsuckerdatum.make_vassal(target)
 		power_activated_sucessfully()
 		bloodsuckerdatum.clanprogress++ //counts a succesful necromancy towards your objective progress
 		to_chat(user, span_warning("We revive [target]!"))
@@ -146,7 +145,7 @@
 /datum/action/cooldown/bloodsucker/hecata/spiritcall/vassal //this variant has to exist, as hecata favorite vassals are technically in 'torpor'
 	check_flags = BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	
-/datum/action/cooldown/bloodsucker/hecata/spiritcall/ActivatePower(mob/user = usr)
+/datum/action/cooldown/bloodsucker/hecata/spiritcall/ActivatePower(mob/user = owner)
 	. = ..()
 	switch(level_current)
 		if(0)
@@ -161,17 +160,17 @@
 	for(var/direction in GLOB.alldirs) //looking for spirit spawns
 		if(locs.len == num_spirits) //we found the number of spots needed and thats all we need
 			break
-		var/turf/T = get_step(usr, direction) //getting a loc in that direction
+		var/turf/T = get_step(owner, direction) //getting a loc in that direction
 		if(AStar(user, T, /turf/proc/Distance, 1, simulated_only = 0)) // if a path exists, so no dense objects in the way its valid salid
 			locs += T
 	// pad with player location
 	for(var/i = locs.len + 1 to num_spirits)
 		locs += user.loc
-	summonWraiths(locs, user = owner)
+	summon_Wraiths(locs, user = owner)
 	cast_effect() // POOF
 	DeactivatePower()
 	
-/datum/action/cooldown/bloodsucker/hecata/spiritcall/proc/summonWraiths(list/targets, mob/living/user)
+/datum/action/cooldown/bloodsucker/hecata/spiritcall/proc/summon_Wraiths(list/targets, mob/living/user)
 	for(var/T in targets)
 		new /mob/living/simple_animal/hostile/bloodsucker/wraith(T)
 
@@ -201,7 +200,7 @@
 
 /datum/action/cooldown/bloodsucker/hecata/communion/ActivatePower()
 	. = ..()
-	var/input = stripped_input(usr, "Choose a message to tell your vassals.", "Voice of Blood", "")
+	var/input = sanitize(tgui_input_text(usr, "Enter a message to tell your vassals.", "Voice of Blood"))
 	if(!input || !IsAvailable())
 		return FALSE
 	deathly_commune(usr, input)
