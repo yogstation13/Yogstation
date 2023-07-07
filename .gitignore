@@ -218,3 +218,5 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 
 #KDIFF3 files
 *.orig
+/.vs
+/tools/LinuxOneShot/SetupProgram/obj

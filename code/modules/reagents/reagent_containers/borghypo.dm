@@ -112,9 +112,13 @@ Borg Hypospray
 	if(!istype(M))
 		return
 	if(R.total_volume && M.can_inject(user, 1, user.zone_selected,bypass_protection))
-		if(user.a_intent == INTENT_HELP) //Prevents mediborgs from OD'ing people unless on harm intent
+		if(user.a_intent == INTENT_HELP) // Prevents mediborgs from OD'ing people unless on harm intent
 			for(var/datum/reagent/RG in R.reagent_list)
 				if(M.reagents.has_reagent(RG.type) && !RG.overdose_threshold == 0)
+					var/datum/reagent/O = M.reagents.get_reagent(RG.type)
+					if( O.overdosed == 1 )
+						to_chat(user, "<span class='warning'>Injecting [M] with more [RG] would further their overdose.</span>")
+						return
 					if(((M.reagents.get_reagent_amount(RG.type)) + amount_per_transfer_from_this > RG.overdose_threshold))
 						to_chat(user, "<span class='warning'>Injecting [M] with more [RG] would overdose them.</span>")
 						return
