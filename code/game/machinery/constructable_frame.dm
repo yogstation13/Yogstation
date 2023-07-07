@@ -280,7 +280,7 @@
 	..()
 
 /obj/structure/frame/machine/MouseDrop_T(atom/dropping, mob/user)
-	if(istype(dropping, /obj/item/circuitboard) || istype(dropping, /obj/item/stock_parts))
+	if( ( istype(dropping, /obj/item/circuitboard)&& !issilicon(user) ) || istype(dropping, /obj/item/stock_parts))
 		attackby(dropping, user)
 	else
 		..()
