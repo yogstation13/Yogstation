@@ -117,7 +117,7 @@ Borg Hypospray
 				if(M.reagents.has_reagent(RG.type) && !RG.overdose_threshold == 0)
 					var/datum/reagent/MRG = M.reagents.get_reagent(RG.type)
 					if( MRG.overdosed == 1 )
-						to_chat(user, span_warning("Injecting [M] with more [RG] would further their overdose.") )
+						to_chat(user, span_warning("Injecting [M] with more [RG] would further their overdose."))
 						return
 					if(((M.reagents.get_reagent_amount(RG.type)) + amount_per_transfer_from_this > RG.overdose_threshold))
 						to_chat(user, span_warning("Injecting [M] with more [RG] would overdose them.") )
