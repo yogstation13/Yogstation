@@ -198,9 +198,6 @@
 	
 	if(charges <= max_charges)
 		START_PROCESSING(SSobj, src)
-		if(charges <= 0)
-			to_chat(user, span_warning("[src]'s battery is drained, it needs time to recharge!"))
-			//recharge_locked = TRUE
 
 	flick_overlay_view(I, targloc, 10)
 	icon_state = "pointer"
