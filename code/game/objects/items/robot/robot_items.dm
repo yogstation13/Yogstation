@@ -573,7 +573,7 @@
 	var/borg_charge_cutoff = 200
 	/// The amount of charge used per print of a snack
 	var/borg_charge_usage = 50
-	var/cooldown = 25 // how long until they can use it again
+	var/cooldown = 3 // how long until they can use it again. 3 is just about how fast mediborg can use their unupgraded lollipop gun
 	var/nextuse // if this + cooldown is less than world.time, then they can use it again
 
 /obj/item/borg_snack_dispenser/Initialize(mapload)
