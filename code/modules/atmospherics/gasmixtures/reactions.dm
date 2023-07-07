@@ -677,7 +677,7 @@ nobliumformation = 1001
 
 /datum/gas_reaction/metalhydrogen/init_reqs()
 	min_requirements = list(
-		/datum/gas/hydrogen = 300,
+		/datum/gas/hydrogen = 300, //same crystallizer recipe
 		/datum/gas/bz		= 50,
 		"TEMP" = METAL_HYDROGEN_MINIMUM_HEAT
 		)
@@ -691,7 +691,7 @@ nobliumformation = 1001
 	///the more heat you use the higher is this factor
 	var/increase_factor = min(log(10 , (temperature / METAL_HYDROGEN_MINIMUM_HEAT)), 5) //e7-e12 range
 	///the more moles you use and the higher the heat, the higher is the efficiency
-	var/heat_efficency = air.get_moles(/datum/gas/hydrogen)* 0.01 * increase_factor
+	var/heat_efficency = air.get_moles(/datum/gas/hydrogen)* 0.01 * increase_factor //This variable name is dumb but I can't be assed to change it
 	var/pressure = air.return_pressure()
 	var/energy_used = heat_efficency * METAL_HYDROGEN_FORMATION_ENERGY
 
