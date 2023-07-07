@@ -914,14 +914,19 @@
 
 /obj/item/borg/upgrade/snack_dispenser
 	name = "Cyborg Upgrade (Snack Dispenser)"
-	desc = "Gives any borg the ability to dispense speciality snacks."
+	desc = "Gives the ability to dispense speciality snacks to medical, peacekeeper, and service cyborgs."
 	/// For storing modules that we remove, since the upgraded snack dispensor automatically removes inferior versions
 	var/list/removed_modules = list()
 
 /obj/item/borg/upgrade/snack_dispenser/action(mob/living/silicon/robot/R, user)
-	. = ..()
-	if(!.)
-		return
+	if(R.stat == DEAD)
+		to_chat(user, span_notice("[src] will not function on a deceased cyborg."))
+		return FALSE
+	// module_type doesn't support more than 1 module. Thus, this:
+	if( !istype(R.module, /obj/item/robot_module/medical) && !istype(R.module, /obj/item/robot_module/peacekeeper) && !istype(R.module, /obj/item/robot_module/butler))
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(user, "There's no mounting point for the module!")
+		return FALSE
 	var/obj/item/borg_snack_dispenser/snack_dispenser = new(R.module)
 	R.module.basic_modules += snack_dispenser
 	R.module.add_module(snack_dispenser, FALSE, TRUE)
@@ -931,6 +936,7 @@
 	for(var/obj/item/borg/lollipop/lollipop in R.module)
 		removed_modules += lollipop
 		R.module.remove_module(lollipop)
+	return TRUE
 
 /obj/item/borg/upgrade/snack_dispenser/deactivate(mob/living/silicon/robot/R, user)
 	. = ..()

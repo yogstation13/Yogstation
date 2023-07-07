@@ -947,8 +947,8 @@
 	id = "borg_upgrade_snacks"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/snack_dispenser
-	materials = list(/datum/material/iron = 700, /datum/material/glass = 500)
-	construction_time = 1 SECONDS
+	materials = list(/datum/material/iron = 2000, /datum/material/glass = 2000)
+	construction_time = 40
 	category = list("Cyborg Upgrade Modules")
 
 /datum/design/boris_ai_controller
