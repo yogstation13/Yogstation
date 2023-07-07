@@ -688,12 +688,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	SEND_SIGNAL(M, COMSIG_EXIT_AREA, src) //The atom that exits the area
 
 /**
-  * Reset the played var to false on the client
-  */
-/client/proc/ResetAmbiencePlayed()
-	played = FALSE
-
-/**
   * Returns true if this atom has gravity for the passed in turf
   *
   * Sends signals COMSIG_ATOM_HAS_GRAVITY and COMSIG_TURF_HAS_GRAVITY, both can force gravity with

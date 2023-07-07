@@ -49,12 +49,8 @@
 		///////////////
 		//SOUND STUFF//
 		///////////////
-	///Currently playing ambience sound
-	var/ambience_playing = null
-	///Whether an ambience sound has been played and one shouldn't be played again, unset by a callback
-	var/played = FALSE
-	//IF SOMEONE SEES THIS COMMENT THEY MUST YELL AT AZZZERTYY
-	var/buzz_playing
+		
+	var/buzz_playing = null
 
 		////////////
 		//SECURITY//
