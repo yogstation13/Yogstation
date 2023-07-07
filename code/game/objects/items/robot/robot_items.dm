@@ -555,7 +555,7 @@
 
 /obj/item/borg_snack_dispenser
 	name = "\improper Automated Borg Snack Dispenser"
-	desc = "Has the ability to automatically print many differnt forms of snacks. Now Lizard approved!"
+	desc = "Has the ability to automatically print many different forms of snacks. Now Lizard approved!"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rsf"
 	/// Contains the PATH of the selected snack
