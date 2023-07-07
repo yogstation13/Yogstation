@@ -567,8 +567,7 @@
 		/obj/item/reagent_containers/food/snacks/cookie/bacon,
 		/obj/item/reagent_containers/food/snacks/cookie/cloth,
 		/obj/item/reagent_containers/food/snacks/cookie,
-		/obj/item/reagent_containers/food/snacks/lollipop,
-		/obj/item/reagent_containers/food/snacks/icecream
+		/obj/item/reagent_containers/food/snacks/lollipop
 	)
 	/// Minimum amount of charge a borg can have before snack printing is disallowed
 	var/borg_charge_cutoff = 200
@@ -597,11 +596,6 @@
 		if(!selected)
 			return
 		selected_snack = choices[selected]
-		if( istype( selected_snack, /obj/item/reagent_containers/food/snacks/icecream ) ) // got to keep the vanilla from the mediborg's stuff
-			var/obj/item/reagent_containers/food/snacks/icecream/I = selected_snack
-			I.add_ice_cream("vanilla")
-			I.desc = "Eat the ice cream."
-			selected_snack = I //this works
 
 	var/snack_name = initial(selected_snack.name)
 	to_chat(user, span_notice("[src] is now dispensing [snack_name]."))
@@ -647,7 +641,7 @@
 	if(!user.cell.use(borg_charge_usage))
 		to_chat(user, span_danger("Failure printing snack: power failure!"))
 		return
-	var/atom/movable/snack = new selected_snack(get_turf(src))
+
 	snack.throw_at(target, 7, 2, user, TRUE, FALSE)
 	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 	user.visible_message(span_notice("[src] launches [snack] at [target]!"))
