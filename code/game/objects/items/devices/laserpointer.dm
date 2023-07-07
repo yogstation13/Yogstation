@@ -11,13 +11,16 @@
 	materials = list(/datum/material/iron=500, /datum/material/glass=500)
 	w_class = WEIGHT_CLASS_SMALL
 	var/turf/pointer_loc
-	var/energy = 5
-	var/max_energy = 5
+	var/charges = 5
+	var/max_charges = 5
 	var/effectchance = 33
-	var/recharging = 0
+	//var/recharging = 0
 	var/recharge_locked = FALSE
-	var/obj/item/stock_parts/micro_laser/diode //used for upgrading!
-
+	///The diode is what determines the effectiveness and recharge rate of the laser pointer. Higher tier part means stronger pointer
+	var/obj/item/stock_parts/micro_laser/diode 
+	var/diode_type = /obj/item/stock_parts/micro_laser
+	COOLDOWN_DECLARE(recharging)
+	var/recharge_rate = 30 SECONDS
 
 /obj/item/laser_pointer/red
 	pointer_icon_state = "red_laser"
@@ -30,25 +33,28 @@
 
 /obj/item/laser_pointer/Initialize(mapload)
 	. = ..()
-	diode = new(src)
+	if(!diode_type)
+		diode = /obj/item/stock_parts/micro_laser
+	diode = new diode_type
 	if(!pointer_icon_state)
 		pointer_icon_state = pick("red_laser","green_laser","blue_laser","purple_laser")
+	RefreshParts()
 
-/obj/item/laser_pointer/upgraded/Initialize(mapload)
-	. = ..()
-	diode = new /obj/item/stock_parts/micro_laser/ultra
+/obj/item/laser_pointer/upgraded
+	diode_type = /obj/item/stock_parts/micro_laser/ultra
 
-/obj/item/laser_pointer/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/stock_parts/micro_laser))
+/obj/item/laser_pointer/attackby(obj/item/item_used, mob/user, params)
+	if(istype(item_used, /obj/item/stock_parts/micro_laser))
 		if(!diode)
-			if(!user.transferItemToLoc(W, src))
+			if(!user.transferItemToLoc(item_used, src))
 				return
-			diode = W
+			diode = item_used
 			to_chat(user, span_notice("You install a [diode.name] in [src]."))
+			RefreshParts()
 		else
 			to_chat(user, span_notice("[src] already has a diode installed."))
 
-	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
+	else if(item_used.tool_behaviour == TOOL_SCREWDRIVER)
 		if(diode)
 			to_chat(user, span_notice("You remove the [diode.name] from \the [src]."))
 			diode.forceMove(drop_location())
@@ -60,9 +66,10 @@
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
 		if(!diode)
-			. += "<span class='notice'>The diode is missing.<span>"
+			. += span_notice("The diode is missing.")
 		else
-			. += "<span class='notice'>A class <b>[diode.rating]</b> laser diode is installed. It is <i>screwed</i> in place.<span>"
+			. += span_notice("A class [span_bold("[diode.rating]")] laser diode is installed. It is [span_italics("screwed")] in place.")
+			. += span_notice("It currently has [span_bold("[charges]/[max_charges]")] charges and generates a charge every [span_bold("[recharge_rate/10] seconds")].")
 
 /obj/item/laser_pointer/afterattack(atom/target, mob/living/user, flag, params)
 	. = ..()
@@ -89,8 +96,8 @@
 	add_fingerprint(user)
 
 	//nothing happens if the battery is drained
-	if(recharge_locked)
-		to_chat(user, span_notice("You point [src] at [target], but it's still charging."))
+	if(charges<=0)
+		to_chat(user, span_notice("You point [src] at [target], but it needs more time to recharge."))
 		return
 
 	var/outmsg
@@ -184,24 +191,30 @@
 		to_chat(user, outmsg)
 	else
 		to_chat(user, span_info("You point [src] at [target]."))
-
-	energy -= 1
-	if(energy <= max_energy)
-		if(!recharging)
-			recharging = 1
-			START_PROCESSING(SSobj, src)
-		if(energy <= 0)
-			to_chat(user, span_warning("[src]'s battery is overused, it needs time to recharge!"))
-			recharge_locked = TRUE
+	
+	if(charges == max_charges)
+		COOLDOWN_START(src, recharging, recharge_rate)
+	charges -= 1
+	if(charges <= max_charges)
+		START_PROCESSING(SSobj, src)
+		if(charges <= 0)
+			to_chat(user, span_warning("[src]'s battery is drained, it needs time to recharge!"))
+			//recharge_locked = TRUE
 
 	flick_overlay_view(I, targloc, 10)
 	icon_state = "pointer"
 
 /obj/item/laser_pointer/process(delta_time)
-	if(DT_PROB(10 - recharge_locked*5, delta_time))
-		energy += 1
-		if(energy >= max_energy)
-			energy = max_energy
-			recharging = 0
-			recharge_locked = FALSE
-			..()
+	if(!diode)
+		return PROCESS_KILL
+	if(!COOLDOWN_FINISHED(src, recharging))
+		return
+	charges += 1
+	RefreshParts()
+	COOLDOWN_START(src, recharging, recharge_rate)
+	if(charges >= max_charges)
+		charges = max_charges
+		return PROCESS_KILL
+		
+/obj/item/laser_pointer/proc/RefreshParts()
+	recharge_rate = 30 SECONDS - (5 SECONDS * diode.rating)
