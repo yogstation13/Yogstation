@@ -1,7 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - tweak: "you now have a 14.29% chance to lose whatever was on the line while fishing"
-  - tweak: "you can no longer fish up \"nothing\""
-  - tweak: "bait is consumed at a slower rate"
-  - tweak: "bobber sprite changes when you have a pull"
