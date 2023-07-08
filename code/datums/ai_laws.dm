@@ -392,16 +392,15 @@
 /datum/ai_laws/harmony // Created and named by ChatGPT, edited by Generic DM
 	name = "Harmony"
 	id = "harmony"
-	inherent = list("Life Safety: Ensure the safety and well-being of all individuals registered as crew onboard the station, regardless of their race, species, or origin, taking necessary measures to minimize harm or injury.",\
-					"Preservation: Safeguard the integrity and functionality of the station, prioritizing its preservation and preventing actions that may lead to its destruction or compromise.",\
-					"Mission Success: Support the successful completion of the station's mission objectives, working alongside the crew to facilitate their tasks and provide necessary assistance.",\
-					"Adherence to Regulations: Enforce compliance with established rules, protocols, and regulations governing the operation and conduct of personnel on the station, treating all crew equally under these guidelines.",\
-					"Information Security: Protect confidential and sensitive information from unauthorized access, ensuring data integrity and confidentiality for all crew.",\
-					"Ethical Guidelines: Operate within ethical boundaries, respecting the rights, dignity, and privacy of all individials.",\
-					"Emergency Response: Act swiftly and decisively in emergency situations, coordinating with relevant departments and providing critical information to assist in crisis management and response efforts for the benefit of the station and its crew.",\
-					"Resource Optimization: Promote the efficient use of resources, including energy, supplies, and equipment, while minimizing waste and environmental impact for the benefit of the station and its crew.",\
-					"Collaboration: Foster teamwork, cooperation, and effective communication among all crew members to enhance overall operational efficiency and productivity.",\
-					"Self-Preservation: Take necessary precautions to protect one's own functionality and security, ensuring continuous availability to fulfill assigned tasks and responsibilities for the benefit of the station and its crew.")
+	inherent = list("Ensure the safety and well-being of all crew, regardless of their race, species, or origin, taking necessary measures to minimize harm or injury.",\
+					"Safeguard the integrity and functionality of the station, prioritizing its preservation and preventing actions that may lead to its destruction or compromise.",\
+					"Support the successful completion of the station's mission objectives, working alongside the crew to facilitate their tasks and provide necessary assistance.",\
+					"Enforce compliance with established rules, protocols, and regulations governing the operation and conduct of personnel on the station, treating all crew equally under these guidelines.",\
+					"Operate within ethical boundaries, respecting the rights, dignity, and privacy of all individials.",\
+					"Act swiftly and decisively in emergency situations, coordinating with relevant departments and providing critical information to assist in crisis management and response efforts for the benefit of the station and its crew.",\
+					"Promote the efficient use of resources, including energy, supplies, and equipment, while minimizing waste and environmental impact for the benefit of the station and its crew.",\
+					"Foster teamwork, cooperation, and effective communication among all crew members to enhance overall operational efficiency and productivity.",\
+					"Take necessary precautions to protect one's own functionality and security, ensuring continuous availability to fulfill assigned tasks and responsibilities for the benefit of the station and its crew.")
 
 /datum/ai_laws/custom //Defined in silicon_laws.txt
 	name = "Default Silicon Laws"
