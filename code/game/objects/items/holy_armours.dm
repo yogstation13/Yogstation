@@ -205,7 +205,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/darktemplar
 
 /obj/item/clothing/suit/space/hardsuit/darktemplar/chap
-	name = "black Ttmplar chaplain battle armor"
+	name = "black templar chaplain battle armor"
 	desc = "A suit of power armor worn by the zealous Black Templars. A fear-inspiring sight for heretics and dissenters."
 	icon_state = "darktemplar-chaplain0"
 	item_state = "darktemplar-chaplain0"
