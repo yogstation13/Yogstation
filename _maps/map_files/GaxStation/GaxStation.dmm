@@ -15380,6 +15380,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"hrf" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "packageSort2"
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "disposalshutters"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/storage)
 "hrj" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -28232,14 +28242,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"nPp" = (
-/obj/structure/plasticflaps,
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "packageSort2"
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "nPx" = (
 /obj/structure/tank_dispenser/oxygen,
 /obj/machinery/light{
@@ -38923,6 +38925,18 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison)
+"tdw" = (
+/obj/effect/turf_decal/trimline/brown/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "disposalshutters";
+	name = "disposals shutter control";
+	pixel_x = -24;
+	pixel_y = 9
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "tdD" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -72498,7 +72512,7 @@ kWn
 tNJ
 bRd
 jvU
-jvU
+tdw
 vjK
 kjX
 vsB
@@ -73008,7 +73022,7 @@ xTt
 fGF
 xnH
 oyO
-nPp
+hrf
 rhC
 bco
 bco
