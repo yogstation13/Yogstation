@@ -72,11 +72,6 @@
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
 		to_chat(user, span_notice("You should unfold [src] before changing it."))
 		return
-
-	else if(istype(P, /obj/item/stamp)) 	//we don't randomize stamps on a paperplane
-		internalPaper.attackby(P, user) //spoofed attack to update internal paper.
-		update_icon()
-
 	else if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
 			user.visible_message(span_warning("[user] accidentally ignites [user.p_them()]self!"), \
