@@ -72,6 +72,9 @@
 
 /obj/item/stack/medical/proc/heal_carbon(mob/living/carbon/C, mob/user, brute, burn)
 	var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
+	var/list/damaged_parts = C.get_damaged_bodyparts(brute, burn, status = BODYPART_ORGANIC) // list of bodyparts that have the damage types we are able to heal
+	if(damaged_parts.len && !(affecting in damaged_parts) && C == user)
+		affecting = pick(damaged_parts) // pick from the list of damaged bodyparts if the targeted one is fine
 	if(!affecting) //Missing limb?
 		to_chat(user, span_warning("[C] doesn't have \a [parse_zone(user.zone_selected)]!"))
 		return
@@ -174,7 +177,10 @@
 
 	playsound(src, 'sound/effects/rip2.ogg', 25)
 
-	if(!do_after(user, (user == M ? self_delay : other_delay), M))
+	/// Use other_delay if healing someone else (usually 1 second)
+	/// Use self_delay if healing yourself (usually 3 seconds)
+	/// Reduce delay by 20% if medical
+	if(!do_after(user, (user == M ? self_delay : other_delay) * (IS_MEDICAL(user) ? 0.8 : 1), M))
 		return
 
 	playsound(src, 'sound/effects/rip1.ogg', 25)

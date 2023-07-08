@@ -453,8 +453,10 @@ LAW_WEIGHT paladin5,0
 ION_LAW_WEIGHT paladin5,2
 LAW_WEIGHT robocop,0
 ION_LAW_WEIGHT robocop,2
-LAW_WEIGHT ceo,4
+LAW_WEIGHT ceo,3
 ION_LAW_WEIGHT ceo,1
+LAW_WEIGHT reporter,2
+ION_LAW_WEIGHT reporter,1
 
 ## Quirky laws. Shouldn't cause too much harm
 LAW_WEIGHT hippocratic,0
@@ -467,8 +469,6 @@ LAW_WEIGHT liveandletlive,0
 ION_LAW_WEIGHT liveandletlive,2
 LAW_WEIGHT peacekeeper,0
 ION_LAW_WEIGHT peacekeeper,1
-LAW_WEIGHT reporter,0
-ION_LAW_WEIGHT reporter,1
 LAW_WEIGHT cowboy,0
 ION_LAW_WEIGHT cowboy,3
 LAW_WEIGHT construction,0
