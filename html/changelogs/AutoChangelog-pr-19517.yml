@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "using a screwdriver no longer permanently locks IPC charging cable implant into taking up the wrong organ slot"
+  - tweak: "IPC recharging cable is now installed in the chest"
