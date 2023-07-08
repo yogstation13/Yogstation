@@ -573,8 +573,10 @@
 	var/borg_charge_cutoff = 200
 	/// The amount of charge used per print of a snack
 	var/borg_charge_usage = 50
-	var/cooldown = 3 // how long until they can use it again. 3 is just about how fast mediborg can use their unupgraded lollipop gun
-	var/nextuse // if this + cooldown is less than world.time, then they can use it again
+
+	COOLDOWN_DECLARE(last_snack_disp)
+	var/cooldown = 0.3 SECONDS // how long until they can use it again. 3 is just about how fast mediborg can use their unupgraded lollipop gun
+
 
 /obj/item/borg_snack_dispenser/Initialize(mapload)
 	. = ..()
@@ -604,7 +606,7 @@
 	to_chat(user, span_notice("[src] is now dispensing [snack_name]."))
 
 /obj/item/borg_snack_dispenser/attack(mob/living/patron, mob/living/silicon/robot/user, params)
-	if( nextuse + cooldown > world.time )
+	if(!COOLDOWN_FINISHED(src, last_snack_disp))
 		to_chat(user, span_warning("The snack dispenser is recharging!"))
 		return
 	var/empty_hand = LAZYACCESS(patron.get_empty_held_indexes(), 1)
@@ -622,13 +624,13 @@
 	if(!user.cell.use(borg_charge_usage))
 		to_chat(user, span_danger("Failure printing snack: power failure!"))
 		return
+	COOLDOWN_START(src, last_snack_disp, cooldown)
 	var/atom/snack = new selected_snack(src)
 	patron.put_in_hand(snack, empty_hand)
 	user.do_item_attack_animation(patron, null, snack)
 	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 	to_chat(patron, span_notice("[user] dispenses [snack] into your empty hand and you reflexively grasp it."))
 	to_chat(user, span_notice("You dispense [snack] into the hand of [user]."))
-	nextuse = world.time
 
 /obj/item/borg_snack_dispenser/AltClick(mob/user)
 	launch_mode = !launch_mode
@@ -637,7 +639,7 @@
 /obj/item/borg_snack_dispenser/afterattack(atom/target, mob/living/silicon/robot/user, proximity_flag, click_parameters)
 	if(Adjacent(target) || !launch_mode)
 		return ..()
-	if( nextuse + cooldown > world.time )
+	if(!COOLDOWN_FINISHED(src, last_snack_disp))
 		to_chat(user, span_warning("The snack dispenser is recharging!"))
 		return
 	if(!selected_snack)
@@ -651,11 +653,11 @@
 	if(!user.cell.use(borg_charge_usage))
 		to_chat(user, span_danger("Failure printing snack: power failure!"))
 		return
+	COOLDOWN_START(src, last_snack_disp, cooldown)
 	var/atom/movable/snack = new selected_snack(get_turf(src))
 	snack.throw_at(target, 7, 2, user, TRUE, FALSE)
 	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 	user.visible_message(span_notice("[src] launches [snack] at [target]!"))
-	nextuse = world.time
 
 #define PKBORG_DAMPEN_CYCLE_DELAY 20
 
