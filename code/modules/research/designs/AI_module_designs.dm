@@ -273,7 +273,7 @@
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/board/harmony_module
+/datum/design/board/wafflehouse_module
 	name = "Core Module Design (Waffle House Host)"
 	desc = "Allows for the construction of a Waffle House Host AI Core Module."
 	id = "wafflehouse_module"
