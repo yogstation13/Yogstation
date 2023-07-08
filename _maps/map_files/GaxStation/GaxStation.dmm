@@ -26716,7 +26716,7 @@
 /area/security/processing)
 "ngZ" = (
 /obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
+	req_one_access_txt = "12:36"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -39317,7 +39317,7 @@
 "toK" = (
 /obj/machinery/door/airlock{
 	name = "Service Hall";
-	req_one_access_txt = "25;26;35;28;46;37;38"
+	req_one_access_txt = "25;26;35;28;46;37;38;36"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8

@@ -69108,7 +69108,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock{
 	name = "Service Hall";
-	req_one_access_txt = "25;26;35;28;46;37;38"
+	req_one_access_txt = "25;26;35;28;46;37;38;36"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
