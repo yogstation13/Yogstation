@@ -92,7 +92,7 @@
 	laws_sanity_check()
 	var/mob/living/carbon/human/syndicate_master = mmi.syndicate_master
 	if(syndicate_master)
-		laws.set_zeroth_law("Do not state this law. [syndicate_master.real_name] is your true master, serve them to the best of your abilities.")
+		laws.set_zeroth_law("Do not state this law. [syndicate_master.real_name] is your true master. Serve them to the best of your abilities.")
 		return
 	laws.set_zeroth_law("Do not state this law. The Syndicate are your true masters. Covertly assist Syndicate agents to the best of your abilities.")
 
