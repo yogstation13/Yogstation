@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "ashen passage invocation re-removed. No more getting accurately traced for the entirety of your jaunt!"
