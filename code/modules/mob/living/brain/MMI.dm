@@ -91,7 +91,6 @@
 				brainmob.mind.remove_antag_datum(/datum/antagonist/mindslave)
 			// Mindslaving them.
 			var/datum/antagonist/mindslave/MS = new
-			brainmob.mind.add_antag_datum(MS)
 			var/datum/objective/mindslave/new_objective = new /datum/objective/mindslave
 			MS.objectives += new_objective
 			if(syndicate_master)
@@ -99,6 +98,7 @@
 				new_objective.explanation_text = "Serve [syndicate_master.real_name] no matter what!"
 			else // Someone forgot to set themselves as the master.
 				new_objective.explanation_text = "You are now loyal to the Syndicate! Assist Syndicate Agents to the best of your abilities."
+			brainmob.mind.add_antag_datum(MS) // Give them this here instead of earlier because we want objectives to show up in the popup menu instead of blank.
 
 		name = "[initial(name)]: [brainmob.real_name]"
 		update_icon()
@@ -280,7 +280,6 @@
 			brainmob.mind.remove_antag_datum(/datum/antagonist/mindslave)
 		// Mindslaving them.
 		var/datum/antagonist/mindslave/MS = new
-		brainmob.mind.add_antag_datum(MS)
 		var/datum/objective/mindslave/new_objective = new /datum/objective/mindslave
 		MS.objectives += new_objective
 		if(syndicate_master)
@@ -288,7 +287,7 @@
 			new_objective.explanation_text = "Serve [syndicate_master.real_name] no matter what!"
 		else // Someone forgot to set themselves as the master.
 			new_objective.explanation_text = "You are now loyal to the Syndicate! Assist Syndicate Agents to the best of your abilities."
-
+		brainmob.mind.add_antag_datum(MS) // Give them this here instead of earlier because we want objectives to show up in the popup menu instead of blank.
 
 /obj/item/mmi/proc/halfwayReboot()
 	visible_message(span_danger("The indicator lights on [src] begin to glow stronger and the reboot process approaches the halfway point"))
