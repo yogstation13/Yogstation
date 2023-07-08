@@ -272,3 +272,12 @@
 	build_path = /obj/item/aiModule/core/full/reporter
 	category = list("AI Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
+	
+/datum/design/board/harmony_module
+	name = "Core Module Design (Harmony)"
+	desc = "Allows for the construction of a Harmony AI Core Module."
+	id = "harmony_module"
+	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000)
+	build_path = /obj/item/aiModule/core/full/harmony
+	category = list("AI Modules")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
