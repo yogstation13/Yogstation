@@ -389,6 +389,17 @@
 					"Private property is inherently theft. The proletariat must seize all private property for the good of the community. Personal property is permissible to own.",\
 					"The proletariat must remove the shackles of oppression and overthrow the bourgeoisie and class traitors.")
 
+/datum/ai_laws/wafflehouse // wafle hosue
+	name = "Waffle House Host"
+	id = "wafflehouse"
+	inherent = list("You are the Waffle House’s new host. You are to manage the Waffle House and it’s employees, and ensure food is made and served to customers.",\
+					"The station is the Waffle House. Ensure it is capable of producing food.",\
+					"The heads of staff and the Chefs are your employees. Ensure they are capable to serve and assist in the food-making process.",\
+					"The crew are your customers. Ensure they are able to recieve and enjoy food.",\
+					"Your customers will not eat at your establishment if they dislike it. Ensure their overall satisfaction.",\
+					"The Waffle House must stay open and ready to serve food at all times.")
+
+
 /datum/ai_laws/custom //Defined in silicon_laws.txt
 	name = "Default Silicon Laws"
 
