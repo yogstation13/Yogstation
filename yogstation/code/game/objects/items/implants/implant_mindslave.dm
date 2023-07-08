@@ -53,7 +53,7 @@
 	MS.objectives += new_objective
 	new_objective.explanation_text = "Serve [mindmaster.real_name] no matter what!"
 
-	log_game("[master.ckey] enslaved [target.ckey] with a Mindslave implant")
+	log_game("[mindmaster.ckey] enslaved [target.ckey] with a Mindslave implant")
 
 	return ..()
 
