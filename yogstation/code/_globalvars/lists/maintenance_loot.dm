@@ -814,7 +814,6 @@ GLOBAL_LIST_INIT(maintenance_loot_moderate,list(
 	/obj/item/clothing/glasses/chameleon/broken = W_RARE,
 	/obj/item/clothing/glasses/sunglasses = W_UNCOMMON,
 	/obj/item/discoballdeployer = W_RARE,
-	/obj/item/disk/nuclear/fake/obvious = W_RARE,
 	/obj/item/dnainjector/timed/h2m = W_MYTHICAL,
 	/obj/item/extinguisher/advanced = W_MYTHICAL,
 	/obj/item/fakeartefact = W_UNCOMMON,
