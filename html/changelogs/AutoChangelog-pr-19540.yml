@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Cyborg's hugging module no longer lies to you as it now adjusts status effects similar to a carbon hug."
