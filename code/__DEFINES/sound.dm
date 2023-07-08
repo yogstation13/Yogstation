@@ -48,12 +48,12 @@
 #define AMBIENCE_ENGI "engi"
 #define AMBIENCE_MINING "mining"
 #define AMBIENCE_MEDICAL "med"
-#define AMBIENCE_VIROLOGY "viro"
 #define AMBIENCE_SPOOKY "spooky"
 #define AMBIENCE_SPACE "space"
 #define AMBIENCE_MAINT "maint"
 #define AMBIENCE_AWAY "away"
 #define AMBIENCE_REEBE "reebe"
+#define AMBIENCE_AI "ai"
 #define AMBIENCE_CREEPY "creepy" //not to be confused with spooky
 
 //default byond sound environments

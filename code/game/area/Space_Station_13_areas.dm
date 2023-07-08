@@ -607,6 +607,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/engine/foyer
 	name = "Engineering Foyer"
 	icon_state = "engine_foyer"
+	sound_environment = SOUND_AREA_STANDARD_STATION
 
 /area/engine/break_room
 	name = "Engineering Break Room"
@@ -804,7 +805,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "virology"
 	flags_1 = NONE
 	minimap_color = "#01f5b3"
-	ambience_index = AMBIENCE_VIROLOGY
+	ambience_index = AMBIENCE_MEDICAL
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/medical/morgue
@@ -1018,6 +1019,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	flags_1 = NONE
 	minimap_color = "#cc00ff"
 	airlock_wires = /datum/wires/airlock/service
+	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/janitor/a //yogs start added two new areas
 	name = "Custodial Closet A"
@@ -1255,7 +1257,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	//Turret_protected
 
 /area/ai_monitored/turret_protected
-	ambientsounds = list('sound/ambience/ambimalf.ogg', 'sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg', 'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg', 'sound/ambience/ambimalf2.ogg')
+	ambience_index = AMBIENCE_AI
 	minimap_color = "#00fff6"
 	airlock_wires = /datum/wires/airlock/ai
 

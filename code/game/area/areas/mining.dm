@@ -5,6 +5,7 @@
 	has_gravity = STANDARD_GRAVITY
 	area_flags = FLORA_ALLOWED
 	ambient_buzz = 'sound/ambience/magma.ogg'
+	
 	ambient_buzz_vol = 10
 
 /area/mine/explored
@@ -36,6 +37,7 @@
 	flags_1 = NONE
 	ambience_index = AMBIENCE_MINING
 	area_flags = CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
+	ambient_buzz = 'sound/ambience/magma.ogg'
 	map_generator = /datum/map_generator/cave_generator
 
 /area/mine/lobby
@@ -107,6 +109,7 @@
 	has_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
 	area_flags = FLORA_ALLOWED
+	ambient_buzz = 'sound/ambience/magma.ogg'
 
 /area/lavaland/surface
 	name = "Lavaland"
@@ -118,6 +121,7 @@
 	power_light = FALSE
 	requires_power = TRUE
 	ambience_index = AMBIENCE_MINING
+	ambient_buzz = 'sound/ambience/magma.ogg'
 
 /area/lavaland/underground
 	name = "Lavaland Caves"
@@ -129,6 +133,7 @@
 	power_equip = FALSE
 	power_light = FALSE
 	ambience_index = AMBIENCE_MINING
+	ambient_buzz = 'sound/ambience/magma.ogg'
 
 
 /area/lavaland/surface/outdoors
