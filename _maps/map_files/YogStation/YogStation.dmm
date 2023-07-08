@@ -39298,6 +39298,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"lHi" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
+	dir = 4
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "lHv" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/janitorialcart,
@@ -42508,16 +42516,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
-"mRd" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/obj/effect/turf_decal/stripes{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/plasteel,
-/area/construction/mining/aux_base)
 "mRn" = (
 /obj/effect/spawner/lootdrop/coin,
 /turf/open/floor/plating,
@@ -48329,6 +48327,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"pia" = (
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "pif" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -68369,17 +68376,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"wWf" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "wWl" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -68686,13 +68682,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
-"xch" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/effect/turf_decal/trimline/engiyellow/filled/corner/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/construction/mining/aux_base)
 "xcO" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/carpet,
@@ -71138,6 +71127,20 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
+"ycl" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "ycm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -84676,8 +84679,8 @@ vdv
 wsB
 wEF
 uQE
-xch
-mRd
+lHi
+pia
 qHB
 inQ
 beP
@@ -85191,7 +85194,7 @@ ang
 alU
 vWf
 xJQ
-wWf
+ycl
 fOy
 qbH
 kBR
