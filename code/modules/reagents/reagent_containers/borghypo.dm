@@ -114,7 +114,7 @@ Borg Hypospray
 	if(hyporeagent.total_volume && M.can_inject(user, 1, user.zone_selected,bypass_protection))
 		if(user.a_intent == INTENT_HELP) // Prevents mediborgs from OD'ing people if they're on help intent
 			for(var/datum/reagent/reagent as anything in hyporeagent.reagent_list)
-				if(M.reagents.has_reagent(reagent.type) && reagent.overdose_threshold )
+				if(M.reagents.has_reagent(reagent.type) && reagent.overdose_threshold)
 					var/datum/reagent/mobreagent = M.reagents.get_reagent(reagent.type)
 					if(mobreagent.overdosed)
 						to_chat(user, span_warning("Injecting [M] with more [reagent] would further their overdose."))
