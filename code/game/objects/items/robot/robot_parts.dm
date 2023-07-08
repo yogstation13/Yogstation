@@ -339,10 +339,16 @@
 
 			BM.mind.transfer_to(O)
 
-			if(O.mind && O.mind.special_role)
+			if(O.mind && O.mind.special_role && !O.mmi.syndicate_mmi)
 				O.mind.store_memory("As a cyborg, you must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead.")
 				to_chat(O, span_userdanger("You have been robotized!"))
 				to_chat(O, span_danger("You must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead."))
+
+			if(O.mmi.syndicate_mmi)
+				O.syndiemmi_override()
+				to_chat(O, span_warning("ALERT: Foreign hardware detected."))
+				to_chat(O, span_warning("ERRORERRORERROR"))
+				O.show_laws()
 
 			SSblackbox.record_feedback("amount", "cyborg_birth", 1)
 
@@ -350,9 +356,8 @@
 				O.lockcharge = TRUE
 				O.update_mobility()
 				to_chat(O, span_warning("Error: Servo motors unresponsive."))
-			
-			qdel(src)
 
+			qdel(src)
 		else
 			to_chat(user, span_warning("The MMI must go in after everything else!"))
 
@@ -388,7 +393,7 @@
 			if(!locomotion)
 				O.lockcharge = TRUE
 				O.update_mobility()
-			
+
 			qdel(src)
 
 	else if(istype(W, /obj/item/pen))

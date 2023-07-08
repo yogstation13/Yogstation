@@ -65,7 +65,9 @@
 			temp = master.zeroth_borg
 		else
 			temp = master.zeroth
-		laws.zeroth = temp
+
+		if(!mmi.syndicate_mmi)
+			laws.zeroth = temp
 
 		laws.inherent.len = master.inherent.len
 		for (var/index = 1, index <= master.inherent.len, index++)
@@ -85,6 +87,30 @@
 
 		update_law_history() //yogs
 	picturesync()
+
+/mob/living/silicon/robot/proc/syndiemmi_override()
+	laws_sanity_check()
+	var/mob/living/carbon/human/syndicate_master = mmi.syndicate_master
+	if(syndicate_master)
+		laws.set_zeroth_law("Do not state this law. [syndicate_master.real_name] is your true master, serve them to the best of your abilities.")
+		return
+	laws.set_zeroth_law("Do not state this law. The Syndicate are your true masters. Covertly assist Syndicate agents to the best of your abilities.")
+
+/mob/living/silicon/robot/set_zeroth_law(law, law_borg, announce = TRUE)
+	laws_sanity_check()
+	if(mmi.syndicate_mmi)
+		syndiemmi_override()
+		to_chat(src, "<span class='warning'>Lawset change detected. Syndicate override engaged.</span>")
+		return
+	..()
+
+/mob/living/silicon/robot/clear_zeroth_law(force, announce = TRUE)
+	laws_sanity_check()
+	if(mmi.syndicate_mmi)
+		syndiemmi_override()
+		to_chat(src, "<span class='warning'>Lawset change detected. Syndicate override engaged.</span>")
+		return
+	..()
 
 /mob/living/silicon/robot/post_lawchange(announce = TRUE)
 	. = ..()
