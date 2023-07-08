@@ -1,5 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - mapping: "Removes rwalls and tinted windows for box/meta (rwalls remaining on box are the ones that touch virology)"
-  - experiment: "Asteroid to come after medbay PR merged (if I can't get airlines to do it for me) -- DONE"
