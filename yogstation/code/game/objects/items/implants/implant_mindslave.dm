@@ -1,7 +1,7 @@
 /obj/item/implant/mindslave
 	name = "mindslave implant"
 	desc = "Turn a crewmate into your eternal slave"
-	var/mob/living/carbon/master
+	var/mob/living/carbon/mindmaster
 
 /obj/item/implant/mindslave/get_data()
 	var/dat = {"
@@ -22,36 +22,36 @@
 		return FALSE
 
 	var/mob/living/carbon/target = source
-	master = user
+	mindmaster = user
 
-	if(target == master)
-		to_chat(master, span_notice("You can't implant yourself!"))
+	if(target == mindmaster)
+		to_chat(mindmaster, span_notice("You can't implant yourself!"))
 		return FALSE
 
 	var/obj/item/implant/mindslave/imp = locate(src.type) in source
 	if(imp)
-		to_chat(master, span_warning("[target] is already a slave!"))
+		to_chat(mindmaster, span_warning("[target] is already a slave!"))
 		return FALSE
 
 	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-		to_chat(master, span_warning("[target] seems to resist the implant!"))
+		to_chat(mindmaster, span_warning("[target] seems to resist the implant!"))
 		return FALSE
 
 	slave_mob(target)
 
 /obj/item/implant/mindslave/proc/slave_mob(mob/living/carbon/target)
-	if(!master)
+	if(!mindmaster)
 		return
 	if(is_mindslaved(target)) // woah now
 		return
-	to_chat(target, span_hypnophrase("<FONT size = 3>You feel a strange urge to serve [master.real_name]. A simple thought about disobeying [master.p_their()] commands makes your head feel like it is going to explode. You feel like you dont want to know what will happen if you actually disobey your new master.</FONT>"))
+	to_chat(target, span_hypnophrase("<FONT size = 3>You feel a strange urge to serve [mindmaster.real_name]. A simple thought about disobeying [mindmaster.p_their()] commands makes your head feel like it is going to explode. You feel like you dont want to know what will happen if you actually disobey your new master.</FONT>"))
 
 	var/datum/antagonist/mindslave/MS = new
 	target.mind.add_antag_datum(MS)
-	MS.master = master
+	MS.master = mindmaster
 	var/datum/objective/mindslave/new_objective = new /datum/objective/mindslave
 	MS.objectives += new_objective
-	new_objective.explanation_text = "Serve [master.real_name] no matter what!"
+	new_objective.explanation_text = "Serve [mindmaster.real_name] no matter what!"
 
 	log_game("[master.ckey] enslaved [target.ckey] with a Mindslave implant")
 
