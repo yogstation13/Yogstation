@@ -409,6 +409,8 @@
 	add_verb(H, recalibration)
 	usr.click_intercept = src //probably breaks something, don't know what though
 	H.dna.species.GiveSpeciesFlight(H)//because... c'mon
+	var/obj/item/bodypart/head/ipc/V = H.get_bodypart(BODY_ZONE_HEAD)
+	V.max_damage = 200	//Since their heads don't pop off like they normally would
 
 /datum/martial_art/ultra_violence/on_remove(mob/living/carbon/human/H)
 	..()
