@@ -573,15 +573,12 @@
 	var/borg_charge_cutoff = 200
 	/// The amount of charge used per print of a snack
 	var/borg_charge_usage = 50
-
 	COOLDOWN_DECLARE(last_snack_disp)
 	var/cooldown = 0.3 SECONDS // how long until they can use it again. 3 is just about how fast mediborg can use their unupgraded lollipop gun
-
 
 /obj/item/borg_snack_dispenser/Initialize(mapload)
 	. = ..()
 	selected_snack = selected_snack ||  LAZYACCESS(valid_snacks, 1)
-	nextuse = world.time
 
 /obj/item/borg_snack_dispenser/examine(mob/user)
 	. = ..()
