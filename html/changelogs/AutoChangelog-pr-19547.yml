@@ -1,0 +1,4 @@
+author: " Ktlwjec"
+delete-after: true 
+changes: 
+  - tweak: "Stunbaton and detective baton show correctly when equipped on belt slot."
