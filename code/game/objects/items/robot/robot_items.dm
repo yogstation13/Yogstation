@@ -558,9 +558,9 @@
 	desc = "Has the ability to automatically print many different forms of snacks. Now Vuulek approved!"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rsf"
-	/// Contains the PATH of the selected snack
+	// Contains the PATH of the selected snack
 	var/atom/selected_snack
-	/// Whether snacks are launched when targeted at a distance
+	// Whether snacks are launched when targeted at a distance
 	var/launch_mode = FALSE
 	/// A list of all valid snacks
 	var/list/valid_snacks = list(
@@ -569,12 +569,16 @@
 		/obj/item/reagent_containers/food/snacks/cookie,
 		/obj/item/reagent_containers/food/snacks/lollipop
 	)
-	/// Minimum amount of charge a borg can have before snack printing is disallowed
+	// A list of surfaces that we are allowed to place things on.
+	var/list/allowed_surfaces = list(/obj/structure/table, /turf/open/floor)
+	// Minimum amount of charge a borg can have before snack printing is disallowed
 	var/borg_charge_cutoff = 200
-	/// The amount of charge used per print of a snack
+	// The amount of charge used per print of a snack
 	var/borg_charge_usage = 50
+	// How long until they can use it again? 0.3 is just about how fast mediborg can use their default lollipop launcher.
+	var/cooldown = 0.3 SECONDS
 	COOLDOWN_DECLARE(last_snack_disp)
-	var/cooldown = 0.3 SECONDS // how long until they can use it again. 3 is just about how fast mediborg can use their unupgraded lollipop gun
+
 
 /obj/item/borg_snack_dispenser/Initialize(mapload)
 	. = ..()
@@ -606,12 +610,14 @@
 	if(!COOLDOWN_FINISHED(src, last_snack_disp))
 		to_chat(user, span_warning("The snack dispenser is recharging!"))
 		return
+	if(!selected_snack)
+		to_chat(user, span_warning("No snack selected."))
+		return
 	var/empty_hand = LAZYACCESS(patron.get_empty_held_indexes(), 1)
 	if(!empty_hand)
 		to_chat(user, span_warning("[patron] has no free hands!"))
 		return
-	if(!selected_snack)
-		to_chat(user, span_warning("No snack selected."))
+	if(issilicon(patron))
 		return
 	if(!istype(user))
 		CRASH("[src] being used by non borg [user]")
@@ -626,35 +632,48 @@
 	patron.put_in_hand(snack, empty_hand)
 	user.do_item_attack_animation(patron, null, snack)
 	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
-	to_chat(patron, span_notice("[user] dispenses [snack] into your empty hand and you reflexively grasp it."))
-	to_chat(user, span_notice("You dispense [snack] into the hand of [user]."))
+	to_chat(patron, span_notice("[user] dispenses a [snack.name] into your empty hand and you reflexively grasp it."))
+	to_chat(user, span_notice("You dispense a [snack.name] into the hand of [patron]."))
 
 /obj/item/borg_snack_dispenser/AltClick(mob/user)
 	launch_mode = !launch_mode
 	to_chat(user, span_notice("[src] is [(launch_mode ? "now" : "no longer")] launching snacks at a distance."))
 
 /obj/item/borg_snack_dispenser/afterattack(atom/target, mob/living/silicon/robot/user, proximity_flag, click_parameters)
-	if(Adjacent(target) || !launch_mode)
-		return ..()
 	if(!COOLDOWN_FINISHED(src, last_snack_disp))
 		to_chat(user, span_warning("The snack dispenser is recharging!"))
 		return
 	if(!selected_snack)
 		to_chat(user, span_warning("No snack selected."))
 		return
-	if(!istype(user))
-		CRASH("[src] being used by non borg [user]")
 	if(user.cell.charge < borg_charge_cutoff)
 		to_chat(user, span_danger("Automated Safety Measures restrict the operation of [src] while under [borg_charge_cutoff]!"))
 		return
 	if(!user.cell.use(borg_charge_usage))
 		to_chat(user, span_danger("Failure printing snack: power failure!"))
 		return
-	COOLDOWN_START(src, last_snack_disp, cooldown)
-	var/atom/movable/snack = new selected_snack(get_turf(src))
-	snack.throw_at(target, 7, 2, user, TRUE, FALSE)
-	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
-	user.visible_message(span_notice("[src] launches [snack] at [target]!"))
+	if(!istype(user))
+		CRASH("[src] being used by non borg [user]")
+	if(launch_mode)
+		COOLDOWN_START(src, last_snack_disp, cooldown)
+		var/atom/movable/snack = new selected_snack(get_turf(src))
+		snack.throw_at(target, 7, 2, user, TRUE, FALSE)
+		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
+		user.visible_message(span_notice("[src] launches a [snack.name] at [target]!"))
+		return
+	if(user.Adjacent(target) && is_allowed(target, user))
+		COOLDOWN_START(src, last_snack_disp, cooldown)
+		var/atom/movable/snack = new selected_snack(get_turf(target))
+		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
+		user.visible_message(span_notice("[user] dispenses a [snack.name]."))
+		return
+
+// copied from rsf/proc/is_allowed
+/obj/item/borg_snack_dispenser/proc/is_allowed(atom/to_check, mob/user)
+	for(var/sort in allowed_surfaces)
+		if(istype(to_check, sort))
+			return TRUE
+	return FALSE
 
 #define PKBORG_DAMPEN_CYCLE_DELAY 20
 
