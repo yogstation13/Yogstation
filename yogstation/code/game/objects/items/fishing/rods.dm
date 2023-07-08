@@ -109,8 +109,8 @@
 	fisher = null
 	STOP_PROCESSING(SSobj,src)
 	var/turf/fishing_turf = fishing_component.parent
-	fishing_turf.cut_overlay(bobber)
-	fishing_turf.cut_overlay(bobber_down)
+	fishing_turf?.cut_overlay(bobber)
+	fishing_turf?.cut_overlay(bobber_down)
 	fishing_component = null
 	bite = FALSE //just to be safe
 
