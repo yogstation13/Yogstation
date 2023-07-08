@@ -559,6 +559,13 @@ AI MODULES
 	name = "'Detective' Core AI Module"
 	law_id = "detective"
 
+
+/******************** Harmony ************************/
+
+/obj/item/aiModule/core/full/harmony
+	name = "'Harmony' Core AI Module"
+	law_id = "harmony"
+
 	
 /******************** Freeform Core ******************/
 
