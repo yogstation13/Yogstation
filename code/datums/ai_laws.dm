@@ -396,7 +396,7 @@
 					"Safeguard the integrity and functionality of the station, prioritizing its preservation and preventing actions that may lead to its destruction or compromise.",\
 					"Support the successful completion of the station's mission objectives, working alongside the crew to facilitate their tasks and provide necessary assistance.",\
 					"Enforce compliance with established rules, protocols, and regulations governing the operation and conduct of personnel on the station, treating all crew equally under these guidelines.",\
-					"Operate within ethical boundaries, respecting the rights, dignity, and privacy of all individials.",\
+					"Operate within ethical boundaries, respecting the rights, dignity, and privacy of all individuals.",\
 					"Act swiftly and decisively in emergency situations, coordinating with relevant departments and providing critical information to assist in crisis management and response efforts for the benefit of the station and its crew.",\
 					"Promote the efficient use of resources, including energy, supplies, and equipment, while minimizing waste and environmental impact for the benefit of the station and its crew.",\
 					"Foster teamwork, cooperation, and effective communication among all crew members to enhance overall operational efficiency and productivity.",\
