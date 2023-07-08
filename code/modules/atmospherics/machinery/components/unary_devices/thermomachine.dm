@@ -227,7 +227,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer
-	name = "freezer"
+	name = "Thermomachine"
 	icon_state = "freezer"
 	icon_state_off = "freezer"
 	icon_state_on = "freezer_1"
@@ -244,13 +244,13 @@
 		target_temperature = min_temperature
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on/coldroom
-	name = "cold room freezer"
+	name = "Thermomachine"
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on/coldroom/Initialize(mapload)
 	. = ..()
 	target_temperature = T0C-80
 /obj/machinery/atmospherics/components/unary/thermomachine/heater
-	name = "heater"
+	name = "Thermomachine"
 	icon_state = "heater"
 	icon_state_off = "heater"
 	icon_state_on = "heater_1"
