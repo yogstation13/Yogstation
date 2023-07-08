@@ -38,6 +38,7 @@
 		return FALSE
 
 	slave_mob(target)
+	return ..()
 
 /obj/item/implant/mindslave/proc/slave_mob(mob/living/carbon/target)
 	if(!mindmaster)
@@ -54,8 +55,6 @@
 	new_objective.explanation_text = "Serve [mindmaster.real_name] no matter what!"
 
 	log_game("[mindmaster.ckey] enslaved [target.ckey] with a Mindslave implant")
-
-	return ..()
 
 /obj/item/implant/mindslave/removed(mob/living/source, silent = 0, special = 0)
 	if(!..())
