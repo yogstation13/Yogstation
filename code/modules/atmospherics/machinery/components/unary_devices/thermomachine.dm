@@ -89,11 +89,11 @@
 	if(cooling)
 		target_temperature = min_temperature
 		investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
-		to_chat(user, "<span class='notice'>You minimize the target temperature on [src] to [target_temperature] K.</span>")
+		balloon_alert(user, "You minimize the target temperature on [src] to [target_temperature] K.")
 	else
 		target_temperature = max_temperature
 		investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
-		to_chat(user, "<span class='notice'>You maximize the target temperature on [src] to [target_temperature] K.</span>")
+		balloon_alert(user, "You maximize the target temperature on [src] to [target_temperature] K.d")
 
 /obj/machinery/atmospherics/components/unary/thermomachine/update_icon_nopipes()
 	cut_overlays()
@@ -112,13 +112,6 @@
 		on = !on
 		investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 		update_icon()
-	return ..()
-
-/obj/machinery/atmospherics/components/unary/thermomachine/AltClick(mob/living/user)
-	if(can_interact(user))
-		target_temperature = T20C
-		investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
-		balloon_alert(user, "temperature reset to [target_temperature] K")
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/process_atmos()
