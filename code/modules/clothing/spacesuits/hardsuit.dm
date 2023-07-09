@@ -68,7 +68,7 @@
 	add_overlay(hat)
 	hat.forceMove(src)
 
-	hat_overlay = mutable_appearance(hat.mob_overlay_icon, "[hat.icon_state]")
+	hat_overlay = mutable_appearance(hat.mob_overlay_icon, hat.icon_state)
 	hat_overlay.alpha = hat.alpha
 	hat_overlay.color = hat.color
 	if(ishuman(loc))
