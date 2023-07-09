@@ -770,22 +770,22 @@
 	// Whitelist of items that can be held.
 	var/list/can_hold = list(
 		/obj/item/circuitboard,
-		/obj/item/light,
+		///obj/item/light, // Likely too controversial to add.
 		/obj/item/electronics,
-		/obj/item/tank,
-		/obj/item/conveyor_switch_construct,
-		/obj/item/stack/conveyor,
+		///obj/item/tank, // Likely too controversial to add.
+		///obj/item/conveyor_switch_construct, // Likely too controversial to add.
+		///obj/item/stack/conveyor, // Likely too controversial to add.
 		/obj/item/wallframe,
-		/obj/item/vending_refill,
-		/obj/item/stack/sheet,
-		/obj/item/stack/tile,
-		/obj/item/stack/rods,
+		///obj/item/vending_refill, // Likely too controversial to add.
+		///obj/item/stack/sheet, // Likely too controversial to add.
+		///obj/item/stack/tile, // Likely too controversial to add.
+		///obj/item/stack/rods, // Likely too controversial to add.
 		/obj/item/stock_parts
 		)
 	//Basically a blacklist for any (sub)types above we do not want.
 	var/list/cannot_hold = list(
-		/obj/item/stack/sheet/mineral/plasma,
-		/obj/item/stack/sheet/plasteel
+		///obj/item/stack/sheet/mineral/plasma, // No need if sheet is not whitelisted.
+		///obj/item/stack/sheet/plasteel // Above.
 		)
 	// Item currently being held.
 	var/obj/item/wrapped = null
