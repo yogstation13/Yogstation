@@ -763,7 +763,7 @@
 
 /obj/item/gripper
 	name = "circuit gripper"
-	desc = "A simple grasping tool for interacting with various engineering related items, such as circuits, gas tanks and conveyer belts."
+	desc = "A simple grasping tool for interacting with a limited amount of engineering related items."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
 	item_flags = NOBLUDGEON
