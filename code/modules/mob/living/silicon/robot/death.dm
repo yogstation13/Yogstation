@@ -26,8 +26,6 @@
 
 	. = ..()
 
-	remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_INCAPACITATED, TRAIT_FLOORED, TRAIT_CRITICAL_CONDITION), STAT_TRAIT) // to remove unwanted traits from living/set_stat
-
 	locked = FALSE //unlock cover
 
 	if(!QDELETED(builtInCamera) && builtInCamera.status)
