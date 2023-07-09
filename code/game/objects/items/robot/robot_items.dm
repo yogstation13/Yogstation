@@ -762,7 +762,7 @@
 ***********************************************************************/
 
 /obj/item/gripper
-	name = "circuit gripper"
+	name = "engineering gripper"
 	desc = "A simple grasping tool for interacting with a limited amount of engineering related items."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
