@@ -129,5 +129,5 @@
 	if(issilicon(user))
 		var/mob/living/silicon/robot/robotuser = user
 		var/obj/item/gripper/gripper = robotuser.get_active_held_item(TRUE)
-		if(!istype(gripper) || (istype(gripper) && !Adjacent(src))) // must have the gripper and be near
+		if(!istype(gripper) || (istype(gripper) && Adjacent(src))) // basically you have to be holding it
 			. = min(., UI_UPDATE)
