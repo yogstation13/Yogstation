@@ -123,3 +123,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(/datum/material/iron=50, /datum/material/glass=50)
 	grind_results = list(/datum/reagent/iron = 10, /datum/reagent/silicon = 10)
+
+/obj/item/electronics/ui_status(mob/user)
+	. = ..()
+	if( issilicon(user) && !Adjacent(src)) // since grippers are now a thing now, do not want silicon to somehow interact with ui if not up close
+		. = min(., UI_UPDATE)
