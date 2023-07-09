@@ -168,6 +168,7 @@ obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
 	load_sound = "sound/weapons/sniper_mag_insert.ogg"
 	rack_sound = "sound/weapons/sniper_rack.ogg"
 	recoil = 2
+	rack_delay = 1 SECONDS
 	weapon_weight = WEAPON_HEAVY
 	internal_magazine = FALSE
 	mag_type = /obj/item/ammo_box/magazine/sniper_rounds
