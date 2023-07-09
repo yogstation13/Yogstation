@@ -561,7 +561,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
 			return
 
-	if(iscyborg(usr))
+	if(issilicon(usr))
 		var/obj/item/gripper/gripper = usr.get_active_held_item(TRUE)
 		if(istype(gripper))
 			gripper.pre_attack(src, usr, get_dist(src, usr))

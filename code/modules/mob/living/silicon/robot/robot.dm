@@ -716,7 +716,7 @@
 
 	if(incapacitated())
 		return
-	var/obj/item/W = get_active_held_item()
+	var/obj/item/W = get_active_held_item(TRUE)
 	if(W)
 		W.attack_self(src)
 

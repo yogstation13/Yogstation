@@ -763,7 +763,7 @@
 
 /obj/item/gripper
 	name = "circuit gripper"
-	desc = "A simple grasping tool for inserting circuit boards into machinery."
+	desc = "A simple grasping tool for interacting with various engineering related items, such as circuits, gas tanks and conveyer belts."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
 	item_flags = NOBLUDGEON
@@ -782,13 +782,14 @@
 		/obj/item/stack/rods,
 		/obj/item/stock_parts
 		)
-	//Basically a blacklist for any subtypes above we do not want.
+	//Basically a blacklist for any (sub)types above we do not want.
 	var/list/cannot_hold = list(
 		/obj/item/stack/sheet/mineral/plasma,
 		/obj/item/stack/sheet/plasteel
 		)
 	// Item currently being held.
 	var/obj/item/wrapped = null
+	var/mutable_appearance/appearance_wrapped = null
 
 // Used to drop whatever's in the gripper.
 /obj/item/gripper/proc/drop_held(silent = FALSE)
@@ -856,7 +857,7 @@
 		else
 			to_chat(user, "<span class='danger'>Your gripper cannot hold \the [target].</span>")
 
-// Rare cases - meant to be handled by code\modules\mob\living\silicon\robot\robot.dm:584 and the weirdness of get_active_held_item() of borgs.
+// Rare cases - meant to be handled by code\modules\mob\living\silicon\robot\robot.dm:712 and the weirdness of get_active_held_item() of borgs.
 /obj/item/gripper/attack_self(mob/user)
 	if(wrapped)
 		wrapped.attack_self(user)
@@ -884,13 +885,15 @@
 		return
 	. = ..()
 
-// Resets vis_contents and if holding something, add it to vis_contents.
+// Resets overlays and adds a overlay if there is a held item.
 /obj/item/gripper/update_icon(updates)
-	. = ..()
-	vis_contents = list()
+	cut_overlays()
 	if(wrapped)
-		update_icon(wrapped, TRUE)
-		vis_contents += wrapped
+		var/mutable_appearance/wrapped_appearance = mutable_appearance(wrapped.icon, wrapped.icon_state)
+		wrapped_appearance.transform = matrix(0.5,0,0,0,0.5,0) // Scale down to 0.5
+		wrapped_appearance.pixel_x = 8
+		wrapped_appearance.pixel_y = -8
+		add_overlay(wrapped_appearance)
 
 // Make it clear what we can do with it.
 /obj/item/gripper/examine(mob/user)

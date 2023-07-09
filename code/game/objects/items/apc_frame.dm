@@ -126,5 +126,8 @@
 
 /obj/item/electronics/ui_status(mob/user)
 	. = ..()
-	if( issilicon(user) && !Adjacent(src)) // since grippers are now a thing now, do not want silicon to somehow interact with ui if not up close
-		. = min(., UI_UPDATE)
+	if(issilicon(user))
+		var/mob/living/silicon/robot/robotuser = user
+		var/obj/item/gripper/gripper = robotuser.get_active_held_item(TRUE)
+		if(!istype(gripper) || (istype(gripper) && !Adjacent(src))) // must have the gripper and be near
+			. = min(., UI_UPDATE)
