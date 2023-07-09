@@ -1,84 +1,73 @@
 /*Hand of God
 its the silly little gamemode where two cults are vying to summon their respective gods ratvar or nar'sie
-pulls stuff from clock_cult and eldritch_cult mostly items*/
+pulls stuff from clock_cult and eldritch_cult mostly items
+the silliest part is BOTH gods can be summoned at once*/
+
+/datum/game_mode
+	var/list/hand_of_ratvar = list() //The Enlightened servants of Ratvar
+	var/list/hand_of_narsie = list() //The devoted cult of Nar'sie
 
 /datum/game_mode/hand_of_god
 	name = "Hand Of God"
 	config_tag = "hand_of_god"
-	antag_flag = ROLE_HOG_CULTIST
+	antag_flag = ROLE_HOG_CULT
 	restricted_jobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg","Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer", "Brig Physician", "Chaplain") 
 	required_players = 43
-	required_enemies = 1
-	recommended_enemies = 2
+	required_enemies = 6
+	recommended_enemies = 6
 	enemy_minimum_age = 14
+	var/servants_to_blood = list() //the blood cult we'll convert
+	var/servants_to_cog = list() //the clockies we'll convert
+	var/roundstart_player_count
 	title_icon = "hand_of_god"
-
 	announce_span = "danger"
 	announce_text = "A violent war between cults has errupted on the station!\n\
 	<span class='danger'>Cults</span>: Free your god into the mortal realm.\n\
 	<span class='notice'>Crew</span>: Prevent the cults from summonning their god."
 
+	var/datum/team/clockcult/hog_clockcult
+	var/datum/team/cult/hog_cult
 
-//Blood cult
-
-var/finished = 0
-
-	var/acolytes_needed = 10 //for the survive objective
-	var/acolytes_survived = 0
-
-	var/list/cultists_to_cult = list() //the cultists we'll convert
-
-	var/datum/team/cult/main_cult
-
-
-//Presetup - copies the basics from respective gamemodes, modified to balance the cults
-
+//Presetup
 /datum/game_mode/hand_of_god/pre_setup()
-
 //bloodcult
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-	//cult scaling goes here
-	recommended_enemies = 1 + round(num_players()/CULT_SCALING_COEFFICIENT)
-	var/remaining = (num_players() % CULT_SCALING_COEFFICIENT) * 10 //Basically the % of how close the population is toward adding another cultis
-	if(prob(remaining))
-		recommended_enemies++
-	for(var/cultists_number = 1 to recommended_enemies)
-		if(!antag_candidates.len)
-			break
+	var/starter_hog_blood = 3 //Guaranteed 3 yummy souls
+	var/number_players = num_players()
+	roundstart_player_count = number_players
+	starter_hog_blood = min(starter_hog_blood, 3) //max 3 
+	while(starter_hog_blood)
 		var/datum/mind/cultist = antag_pick(antag_candidates)
+		servants_to_blood += cultist
 		antag_candidates -= cultist
-		cultists_to_cult += cultist
-		cultist.special_role = ROLE_CULTIST
-		cultist.restricted_roles = restricted_jobs
-		hand_of_god.role = ROLE_HOG_CULTIST
-		//log_game("[key_name(cultist)] has been selected as a cultist") | yogs - redundant
+		cultist.special_role = ROLE_HOG_CULT
+		starter_hog_blood--
+	return 1
 
 //clockcult
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-	var/starter_servants = 3 //Guaranteed three servants
+	var/starter_hog_cog = 3 //Guaranteed 3 tasty bodies
 	var/number_players = num_players()
 	roundstart_player_count = number_players
-	starter_servants = min(starter_servants, 3) //max 3 servants
-	while(starter_servants)
+	starter_hog_cog = min(starter_hog_cog, 3) //max 3 
+	while(starter_hog_cog)
 		var/datum/mind/servant = antag_pick(antag_candidates)
-		servants_to_serve += servant
+		servants_to_cog += servant
 		antag_candidates -= servant
-		servant.assigned_role = ROLE_SERVANT_OF_RATVAR
-		servant.special_role = ROLE_SERVANT_OF_RATVAR
-		hand_of_god.role = ROLE_HOG_CULTIST
-		starter_servants--
+		servant.special_role = ROLE_HOG_CULT
+		starter_hog_cog--
 	return 1
-
-	if(cultists_to_cult.len>=required_enemies)
+	//is check cults
+	if(servants_to_blood.len + servants_to_cog.len>=required_enemies )
 		return TRUE
 	else
-		setup_error = "Not enough cultist candidates"
+		setup_error = "Not enough hands for the gods"
 		return FALSE
 
 //postsetup - copies the basics from respective gamemodes, modified to balance the cults
@@ -86,24 +75,31 @@ var/finished = 0
 //bloodcult
 
 /datum/game_mode/hand_of_god/post_setup()
-	main_cult = new
+	hand_of_narsie = new
+	hand_of_ratvar = new
 
-	for(var/datum/mind/cult_mind in cultists_to_cult)
-		add_cultist(cult_mind, 0, equip=TRUE, cult_team = main_cult)
-
+	for(var/datum/mind/cult_mind in servants_to_blood)
+		add_cultist(cult_mind, 0, equip=TRUE, cult_team = hog_cult)
 	main_cult.setup_objectives() //Wait until all cultists are assigned to make sure none will be chosen as sacrifice.
-
 	return ..()
+
+/datum/game_mode/hand_of_god/check_finished(force_ending)
+	if (..())
+		return TRUE
+	return !hog_cult.check_sacrifice_status()
 
 //clockcult
 
 	for(var/datum/mind/servant)
-		greet_servant(L)
-		equip_servant(L)
+		var/datum/mind/servant = S
+		log_game("[key_name(servant)] has been selected as a hand of god clock cultist")
+		var/mob/living/L = servant.current
+		greet_cogger(L)
+		equip_cogger(L)
 		add_servant_of_ratvar(L, TRUE)
 		GLOB.data_core.manifest_inject(L)
 
-/datum/game_mode/hand_of_god/proc/greet_servant(mob/M) //Description of their role
+/datum/game_mode/hand_of_god/proc/greet_cogger(mob/M) //Description of their role
 	if(!M)
 		return 0
 	to_chat(M, "<span class='bold large_brass'>You are a servant of Ratvar, the Clockwork Justiciar!</span>")
@@ -114,7 +110,7 @@ var/finished = 0
 	M.playsound_local(get_turf(M), 'sound/ambience/antag/clockcultalr.ogg', 100, FALSE, pressure_affected = FALSE)
 	return 1
 
-/datum/game_mode/proc/equip_servant(mob/living/M) //Grants a clockwork slab to the mob, with one of each component
+/datum/game_mode/proc/equip_cogger(mob/living/M) //Grants a clockwork slab to the mob, with one of each component
 	if(!M || !ishuman(M))
 		return FALSE
 	var/mob/living/carbon/human/L = M
@@ -141,6 +137,7 @@ var/finished = 0
 	working for this entity. If they should turn out to be a credible threat, the task falls on you and your crew to dispatch it in a timely manner. "
 
 
+//Coggers point defense mode
 
 
 
@@ -149,7 +146,7 @@ var/finished = 0
 
 
 
-/datum/game_mode/clockwork_cult/generate_credit_text()
+/datum/game_mode/hand_of_god/generate_credit_text()
 	var/list/round_credits = list()
 	var/len_before_addition
 
@@ -162,6 +159,18 @@ var/finished = 0
 	if(len_before_addition == round_credits.len)
 		round_credits += list("<center><h2>The servants were cast astray in the void!</h2>", "<center><h2>None shall remember their names!</h2>")
 	round_credits += "<br>"
+
+	round_credits += "<center><h1>The Cult of Nar'sie:</h1>"
+	len_before_addition = round_credits.len
+	for(var/datum/mind/cultist in cult)
+		round_credits += "<center><h2>[cultist.name] as a cult fanatic</h2>"
+	var/datum/objective/eldergod/summon_objective = locate() in main_cult.objectives
+	if(summon_objective && summon_objective.summoned)
+		round_credits += "<center><h2>Nar'sie as herself, in all her glory</h2>"
+	if(len_before_addition == round_credits.len)
+		round_credits += list("<center><h2>The cultists have learned the danger of eldritch magic!</h2>", "<center><h2>They all disappeared!</h2>")
+		round_credits += "<br>"
+
 
 	round_credits += ..()
 	return round_credits
