@@ -240,3 +240,27 @@
 	if(ispAI(user))
 		return TRUE
 	. = ..()
+
+/// Button signaler
+/// Activated by attack_self instead of UI
+/// UI is instead opened by multitool
+/obj/item/assembly/signaler/button
+	name = "remote signaling button"
+	desc = "A modern design of the remote signaling device, for when you need to signal NOW. Can't be attached to wires."
+	attachable = FALSE
+
+/obj/item/assembly/signaler/button/attack_self(mob/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
+		to_chat(user, span_notice("You can't use things!"))
+		return
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
+		return
+	if(!user)
+		return FALSE
+	activate()
+	return TRUE
+
+/obj/item/assembly/signaler/button/multitool_act(mob/living/user, obj/item/I)
+	. = ..()
+	user.set_machine(src)
+	interact(user)
