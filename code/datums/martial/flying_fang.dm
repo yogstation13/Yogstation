@@ -92,7 +92,7 @@
 	if(!can_use(A))
 		return
 	if(A.is_mouth_covered())
-		to_chat(user, span_warning("Your mouth is obstructed!"))
+		to_chat(A, span_warning("Your mouth is obstructed!"))
 		return
 	if((D.mobility_flags & MOBILITY_STAND))
 		return harm_act(A,D)
