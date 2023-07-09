@@ -164,7 +164,6 @@
 		return
 	if(!ishuman(user) && !iscyborg(user))
 		return
-	visible_message("testing!!!!")
 	if(attached)
 		visible_message("[attached] is detached from [src].")
 		attached = null
