@@ -69,7 +69,7 @@
 
 /obj/machinery/iv_drip/MouseDrop(mob/living/target)
 	. = ..()
-	if( ( !ishuman(usr) && !iscyborg(usr) ) || !usr.canUseTopic(src, BE_CLOSE) || !isliving(target))
+	if( !usr.canUseTopic(src, BE_CLOSE) || !isliving(target))
 		return
 
 	if(attached)
@@ -164,6 +164,7 @@
 		return
 	if(!ishuman(user) && !iscyborg(user))
 		return
+	visible_message("testing!!!!")
 	if(attached)
 		visible_message("[attached] is detached from [src].")
 		attached = null
