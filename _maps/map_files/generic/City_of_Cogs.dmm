@@ -102,14 +102,6 @@
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"aG" = (
-/obj/effect/clockwork/servant_blocker,
-/obj/structure/lattice/catwalk/clockwork,
-/obj/effect/clockwork/servant_blocker{
-	dir = 1
-	},
-/turf/open/indestructible/reebe_void,
-/area/reebe/city_of_cogs)
 "aH" = (
 /obj/effect/landmark/servant_of_ratvar,
 /turf/open/floor/clockwork/reebe,
@@ -170,16 +162,31 @@
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
+"ef" = (
+/obj/structure/lattice/catwalk/clockwork,
+/obj/effect/clockwork/servant_blocker{
+	dir = 1
+	},
+/turf/open/indestructible/reebe_void,
+/area/reebe/city_of_cogs)
 "er" = (
 /obj/effect/landmark/servant_of_ratvar/scarab,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
 "fi" = (
 /obj/machinery/stasis{
-	dir = 4;
-	color = "#FF8000"
+	color = "#FF8000";
+	dir = 4
 	},
 /turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
+"hA" = (
+/obj/structure/window/reinforced/clockwork/fulltile,
+/obj/structure/grille/ratvar,
+/obj/effect/clockwork/servant_blocker{
+	dir = 1
+	},
+/turf/open/indestructible/clock_spawn_room,
 /area/reebe/city_of_cogs)
 "mj" = (
 /obj/structure/table/reinforced/brass,
@@ -3468,17 +3475,17 @@ ab
 ab
 ab
 ab
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
 ab
 ab
 ab
@@ -3558,8 +3565,8 @@ ab
 ab
 ab
 ab
-aa
-aa
+hA
+hA
 az
 mj
 ai
@@ -3569,8 +3576,8 @@ aj
 ai
 at
 aF
-aa
-aa
+hA
+hA
 ab
 ab
 ab
@@ -3649,7 +3656,7 @@ ab
 ab
 ab
 ab
-aa
+hA
 au
 aj
 aj
@@ -3661,7 +3668,7 @@ aE
 aj
 at
 aF
-aa
+hA
 ab
 ab
 ab
@@ -3738,9 +3745,9 @@ ab
 ab
 ab
 ab
-aa
-aa
-aa
+hA
+hA
+hA
 av
 aj
 aj
@@ -3752,9 +3759,9 @@ ai
 aj
 aj
 aj
-aa
-aa
-aa
+hA
+hA
+hA
 ab
 ab
 ab
@@ -3828,8 +3835,8 @@ ab
 ab
 ab
 ab
-aa
-aa
+hA
+hA
 au
 ax
 aH
@@ -3845,8 +3852,8 @@ aj
 aH
 aj
 ay
-aa
-aa
+hA
+hA
 ab
 ab
 ab
@@ -3919,7 +3926,7 @@ ab
 ab
 ab
 ab
-aa
+hA
 bj
 aj
 aj
@@ -3937,7 +3944,7 @@ aj
 aj
 av
 ay
-aa
+hA
 ab
 ab
 ab
@@ -4010,7 +4017,7 @@ ab
 ab
 ab
 ab
-aa
+hA
 wm
 aj
 aj
@@ -4028,7 +4035,7 @@ ax
 aj
 aj
 av
-aa
+hA
 ab
 ab
 ab
@@ -4087,21 +4094,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
 ai
 ag
 ai
@@ -4119,21 +4126,21 @@ ah
 ai
 aE
 ai
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
+hA
 aa
 aa
 aa
@@ -4178,7 +4185,7 @@ ah
 ac
 ac
 ac
-aG
+ef
 aj
 aj
 aj
@@ -4224,7 +4231,7 @@ aj
 aj
 aj
 aj
-aG
+ef
 ac
 ac
 ac
@@ -4269,7 +4276,7 @@ aP
 ac
 ac
 ac
-aG
+ef
 aj
 aO
 aj
@@ -4315,7 +4322,7 @@ aj
 aO
 aj
 aj
-aG
+ef
 ac
 ac
 ac
@@ -4360,7 +4367,7 @@ ah
 ac
 ac
 ac
-aG
+ef
 aj
 aj
 aj
@@ -4406,7 +4413,7 @@ aj
 aj
 aj
 aj
-aG
+ef
 ac
 ac
 ac
@@ -4451,7 +4458,7 @@ ah
 ac
 ac
 ac
-aG
+ef
 aj
 aj
 aj
@@ -4497,7 +4504,7 @@ aj
 aj
 aO
 aj
-aG
+ef
 ac
 ac
 ac
@@ -4542,7 +4549,7 @@ ah
 ac
 ac
 ac
-aG
+ef
 aj
 aO
 aj
@@ -4588,7 +4595,7 @@ aO
 aj
 aj
 aj
-aG
+ef
 ac
 ac
 ac
@@ -4633,7 +4640,7 @@ ah
 ac
 ac
 ac
-aG
+ef
 aj
 aj
 aj
@@ -4679,7 +4686,7 @@ aj
 aj
 aj
 aj
-aG
+ef
 ac
 ac
 ac
@@ -4724,8 +4731,8 @@ ah
 ac
 ac
 ac
-aG
-aG
+ef
+ef
 aj
 aj
 aj
@@ -4769,8 +4776,8 @@ aj
 aj
 aj
 aj
-aG
-aG
+ef
+ef
 ac
 ac
 ac
@@ -4816,7 +4823,7 @@ ah
 ac
 ac
 ac
-aG
+ef
 aj
 aO
 aj
@@ -4860,7 +4867,7 @@ aO
 aj
 aO
 aj
-aG
+ef
 ac
 ac
 ac
@@ -4907,7 +4914,7 @@ ah
 ac
 ac
 ac
-aG
+ef
 aj
 aj
 aj
@@ -4951,7 +4958,7 @@ aj
 aj
 aj
 aj
-aG
+ef
 ac
 ac
 ac
@@ -4998,8 +5005,8 @@ ah
 ac
 ac
 ac
-aG
-aG
+ef
+ef
 aj
 aj
 aO
@@ -5041,8 +5048,8 @@ aj
 aj
 aj
 aj
-aG
-aG
+ef
+ef
 ac
 ac
 ac
@@ -5090,7 +5097,7 @@ ah
 ac
 ac
 ac
-aG
+ef
 aj
 aj
 aj
@@ -5132,7 +5139,7 @@ aj
 aj
 aO
 aj
-aG
+ef
 ac
 ac
 ac
@@ -5181,8 +5188,8 @@ ah
 ac
 ac
 ac
-aG
-aG
+ef
+ef
 aj
 aj
 aj
@@ -5222,8 +5229,8 @@ aj
 aj
 aj
 aj
-aG
-aG
+ef
+ef
 ac
 ac
 ac
@@ -5273,7 +5280,7 @@ ah
 ac
 ac
 ac
-aG
+ef
 aj
 aj
 aO
@@ -5313,7 +5320,7 @@ aj
 aj
 aj
 aj
-aG
+ef
 ac
 ac
 ac
@@ -5364,8 +5371,8 @@ ah
 ac
 ac
 ac
-aG
-aG
+ef
+ef
 aj
 aj
 aj
@@ -5403,8 +5410,8 @@ aj
 aO
 aj
 aj
-aG
-aG
+ef
+ef
 ac
 ac
 ac
@@ -5456,8 +5463,8 @@ ah
 ac
 ac
 ac
-aG
-aG
+ef
+ef
 aj
 aj
 aO
@@ -5493,8 +5500,8 @@ aj
 aj
 aj
 aj
-aG
-aG
+ef
+ef
 ac
 ac
 ac
@@ -5548,8 +5555,8 @@ ah
 ac
 ac
 ac
-aG
-aG
+ef
+ef
 aj
 aj
 aj
@@ -5583,8 +5590,8 @@ aj
 aO
 aj
 aj
-aG
-aG
+ef
+ef
 ac
 ac
 ac
@@ -5640,8 +5647,8 @@ ac
 ac
 ac
 ac
-aG
-aG
+ef
+ef
 aj
 aj
 aj
@@ -5673,8 +5680,8 @@ aO
 aj
 aj
 aj
-aG
-aG
+ef
+ef
 ac
 ac
 ac
@@ -5732,8 +5739,8 @@ ac
 ac
 ac
 ac
-aG
-aG
+ef
+ef
 aj
 aj
 aO
@@ -5763,8 +5770,8 @@ aj
 aj
 aj
 aj
-aG
-aG
+ef
+ef
 ac
 ac
 ac
@@ -5824,8 +5831,8 @@ ac
 ac
 ac
 ac
-aG
-aG
+ef
+ef
 aj
 aj
 aj
@@ -5853,8 +5860,8 @@ aO
 aj
 aj
 aj
-aG
-aG
+ef
+ef
 ac
 ac
 ac
@@ -5916,8 +5923,8 @@ ac
 ac
 ac
 ac
-aG
-aG
+ef
+ef
 aj
 aj
 aj
@@ -5943,8 +5950,8 @@ aj
 aj
 aj
 aj
-aG
-aG
+ef
+ef
 ac
 ac
 ac
@@ -6008,8 +6015,8 @@ ac
 ac
 ac
 ac
-aG
-aG
+ef
+ef
 aj
 aj
 aj
@@ -6033,8 +6040,8 @@ aj
 aj
 aj
 aj
-aG
-aG
+ef
+ef
 ac
 ac
 ac
@@ -6100,9 +6107,9 @@ ac
 ac
 ac
 ac
-aG
-aG
-aG
+ef
+ef
+ef
 aj
 aj
 aj
@@ -6122,9 +6129,9 @@ aj
 aj
 aj
 aj
-aG
-aG
-aG
+ef
+ef
+ef
 ac
 ac
 ac
@@ -6193,9 +6200,9 @@ ac
 ac
 ac
 ac
-aG
-aG
-aG
+ef
+ef
+ef
 aj
 aj
 aj
@@ -6211,9 +6218,9 @@ aj
 aj
 aj
 aj
-aG
-aG
-aG
+ef
+ef
+ef
 ac
 ac
 ac
@@ -6286,10 +6293,10 @@ ac
 ac
 ac
 ac
-aG
-aG
-aG
-aG
+ef
+ef
+ef
+ef
 aj
 aj
 aj
@@ -6299,10 +6306,10 @@ aj
 aj
 aj
 aj
-aG
-aG
-aG
-aG
+ef
+ef
+ef
+ef
 ac
 ac
 ac
@@ -6380,17 +6387,17 @@ ac
 ac
 ac
 ac
-aG
-aG
-aG
-aG
-aG
-aG
-aG
-aG
-aG
-aG
-aG
+ef
+ef
+ef
+ef
+ef
+ef
+ef
+ef
+ef
+ef
+ef
 ac
 ac
 ac
