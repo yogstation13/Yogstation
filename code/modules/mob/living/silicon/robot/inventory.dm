@@ -3,8 +3,21 @@
 
 /**
   * Returns the thing in our active hand (whatever is in our active module-slot, in this case)
+  *
+  * Arguments
+  * * get_gripper - If the active module is a gripper, should we return the gripper or the contained item? (if the gripper contains nothing, returns the gripper anyways)
   */
-/mob/living/silicon/robot/get_active_held_item()
+/mob/living/silicon/robot/get_active_held_item(get_gripper = FALSE)
+	var/item = module_active
+	// snowflake handler for the gripper
+	if(istype(item, /obj/item/gripper) && !get_gripper)
+		var/obj/item/gripper/G = item
+		if(G.wrapped)
+			if(G.wrapped.loc != G)
+				G.wrapped = null
+				return module_active
+			item = G.wrapped
+			return item
 	return module_active
 
 /**
@@ -248,11 +261,16 @@
 					observers = null
 					break
 
+
 /**
-  * * Unequips the active held item, if there is one.
+  * Unequips the active held item, if there is one.
+  * Will always consider dropping gripper contents first.
   */
 /mob/living/silicon/robot/proc/uneq_active()
 	if(module_active)
+		var/obj/item/gripper/gripper = get_active_held_item(TRUE)
+		if(istype(gripper) && gripper.drop_held())
+			return
 		unequip_module_from_slot(module_active, get_selected_module())
 
 /**

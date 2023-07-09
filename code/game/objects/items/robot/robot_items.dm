@@ -761,30 +761,56 @@
 						Grippers
 ***********************************************************************/
 
-/obj/item/weapon/gripper
+/obj/item/gripper
 	name = "circuit gripper"
 	desc = "A simple grasping tool for inserting circuit boards into machinery."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
-
 	item_flags = NOBLUDGEON
-
-	//Has a list of items that it can hold.
+	// Whitelist of items that can be held.
 	var/list/can_hold = list(
-		/obj/item/circuitboard
+		/obj/item/circuitboard,
+		/obj/item/light,
+		/obj/item/electronics,
+		/obj/item/tank,
+		/obj/item/conveyor_switch_construct,
+		/obj/item/stack/conveyor,
+		/obj/item/wallframe,
+		/obj/item/vending_refill,
+		/obj/item/stack/sheet,
+		/obj/item/stack/tile,
+		/obj/item/stack/rods,
+		/obj/item/stock_parts
 		)
+	//Basically a blacklist for any subtypes above we do not want.
+	var/list/cannot_hold = list(
+		/obj/item/stack/sheet/mineral/plasma,
+		/obj/item/stack/sheet/plasteel
+		)
+	// Item currently being held.
+	var/obj/item/wrapped = null
 
-	var/obj/item/wrapped = null // Item currently being held.
-
-/obj/item/weapon/gripper/attack_self()
+// Used to drop whatever's in the gripper.
+/obj/item/gripper/proc/drop_held(silent = FALSE)
 	if(wrapped)
 		wrapped.forceMove(get_turf(wrapped))
+		if(!silent)
+			to_chat(usr, "<span class='notice'>You drop the [wrapped].</span>")
 		wrapped = null
-	return ..()
+		update_icon()
+		return TRUE
+	return FALSE
 
-/obj/item/weapon/gripper/afterattack(var/atom/target, var/mob/living/user, proximity, params)
+/obj/item/gripper/proc/takeitem(obj/item/item, silent = FALSE)
+	if(!silent)
+		to_chat(usr, "<span class='notice'>You collect \the [item].</span>")
+	item.loc = src
+	wrapped = item
+	update_icon()
 
-	if(!proximity)
+/obj/item/gripper/pre_attack(atom/target, mob/living/silicon/robot/user, params)
+	var/proximity = get_dist(user, target)
+	if(proximity > 1)
 		return
 
 	if(!wrapped)
@@ -793,36 +819,88 @@
 			break
 
 	if(wrapped) //Already have an item.
+		var/obj/item/item = wrapped
+		drop_held(TRUE)
 		//Temporary put wrapped into user so target's attackby() checks pass.
-		wrapped.loc = user
+		item.loc = user
 
 		//Pass the attack on to the target. This might delete/relocate wrapped.
-		var/resolved = target.attackby(wrapped,user)
-		if(!resolved && wrapped && target)
-			wrapped.afterattack(target,user,1)
+		var/resolved = target.attackby(item, user, params)
+		if(!resolved && item && target)
+			item.afterattack(target, user, proximity, params)
 		//If wrapped was neither deleted nor put into target, put it back into the gripper.
-		if(wrapped && user && (wrapped.loc == user))
-			wrapped.loc = src
-		else
-			wrapped = null
+		if(item && user && (item.loc == user))
+			takeitem(item, TRUE)
 			return
+		else
+			item = null
+		return
 
-	else if(istype(target,/obj/item))
-
+	else if(isitem(target))
 		var/obj/item/I = target
-
 		var/grab = 0
+
 		for(var/typepath in can_hold)
 			if(istype(I,typepath))
 				grab = 1
-				break
+				for(var/badpath in cannot_hold)
+					if(istype(I,badpath))
+						if(!user.emagged)
+							grab = 0
+							continue
 
 		//We can grab the item, finally.
 		if(grab)
-			to_chat(user, "You collect \the [I].")
-			I.loc = src
-			wrapped = I
+			takeitem(I)
 			return
 		else
-			to_chat(user, span_danger( "Your gripper cannot hold \the [target].") )
+			to_chat(user, "<span class='danger'>Your gripper cannot hold \the [target].</span>")
 
+// Rare cases - meant to be handled by code\modules\mob\living\silicon\robot\robot.dm:584 and the weirdness of get_active_held_item() of borgs.
+/obj/item/gripper/attack_self(mob/user)
+	if(wrapped)
+		wrapped.attack_self(user)
+		return
+	. = ..()
+
+// Splitable items
+/obj/item/gripper/AltClick(mob/user)
+	if(wrapped)
+		wrapped.AltClick(user)
+		return
+	. = ..()
+
+// Even rarer cases
+/obj/item/gripper/CtrlClick(mob/user)
+	if(wrapped)
+		wrapped.CtrlClick(user)
+		return
+	. = ..()
+
+// At this point you're just kidding me, but have this one as well.
+/obj/item/gripper/CtrlShiftClick(mob/user)
+	if(wrapped)
+		wrapped.CtrlShiftClick(user)
+		return
+	. = ..()
+
+// Resets vis_contents and if holding something, add it to vis_contents.
+/obj/item/gripper/update_icon(updates)
+	. = ..()
+	vis_contents = list()
+	if(wrapped)
+		update_icon(wrapped, TRUE)
+		vis_contents += wrapped
+
+// Make it clear what we can do with it.
+/obj/item/gripper/examine(mob/user)
+	. = ..()
+	if(wrapped)
+		. += span_notice("It is holding [icon2html(wrapped, user)] [wrapped]." )
+		. += span_notice("Attempting to drop the gripper will only drop [wrapped].")
+
+// Drop the item if the gripper is unequipped. Keep it in a module slot if you want to keep the held item.
+/obj/item/gripper/cyborg_unequip(mob/user)
+	. = ..()
+	if(wrapped)
+		drop_held()
