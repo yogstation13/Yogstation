@@ -1,21 +1,29 @@
 //variables for fun balance tweaks
+#define WARNING_RANGE 10 //extra range to certain sound effects
+#define STAGGER_DURATION 3 SECONDS
+#define BALLOON_COOLDOWN 1 SECONDS  //limit the balloon alert spam of rapid click
+#define HEAVY_DAMAGE 1.5 //damage multiplier if heavy
+
+#define MAX_PLATES 10 //maximum number of plates that factor into armour (speed decrease scales infinitely)
+#define PLATE_CAP 15 //hard cap of plates to prevent station wide fuckery with worldstomp
+#define PLATE_INTERVAL 15 SECONDS //how often a plate grows
+#define PLATE_REDUCTION 10 //how much DR per plate
+#define PLATE_BREAK 30 //How much damage it takes to break a plate
+
 #define COOLDOWN_STOMP 30 SECONDS
 #define STOMP_WINDUP 2 SECONDS //this gets doubled if heavy
 #define STOMP_RADIUS 6 //the base radius for the charged stomp, only does damage in an area half this size
+#define STOMP_DAMAGE 10 //
+
 #define COOLDOWN_LEAP 2 SECONDS
 #define PLATE_LEAP 0.4 SECONDS //number of seconds added to cooldown per plate
 #define LEAP_RADIUS 1
+#define LEAP_DAMAGE 10 //how much damage the leap does
+
 #define COOLDOWN_PUMMEL 1.2 SECONDS //basically melee
-#define STAGGER_DURATION 3 SECONDS
-#define WARNING_RANGE 10 //extra range to certain sound effects
-#define PLATE_INTERVAL 15 SECONDS //how often a plate grows
-#define PLATE_REDUCTION 10 //how much DR per plate
-#define MAX_PLATES 8 //maximum number of plates that factor into damage reduction (speed decrease scales infinitely)
-#define PLATE_CAP 15 //hard cap of plates to prevent station wide fuckery
-#define PLATE_BREAK 15 //How much damage it takes to break a plate
-#define BALLOON_COOLDOWN 1 SECONDS  //limit the balloon alert spam of rapid click
-#define THROW_TOSSDMG 10 //the damage dealt by the initial throw
-#define THROW_SLAMDMG 5 //the damage dealt per object impacted during a throw
+#define PUMMEL_DAMAGE 10 //how much damage pummel does
+
+#define THROW_DAMAGE 4 //the damage dealt by throw attack
 #define THROW_OBJDMG 500 //Total amount of structure damage that can be done
 
 /datum/martial_art/worldbreaker
@@ -100,8 +108,8 @@
 /datum/martial_art/worldbreaker/proc/hurt(mob/living/user, mob/living/target, damage)//proc the moves will use for damage dealing
 	stagger(target)
 	var/obj/item/bodypart/limb_to_hit = target.get_bodypart(user.zone_selected)
-	var/meleearmor = target.run_armor_check(limb_to_hit, MELEE, armour_penetration = 25)
-	var/bombarmor = target.run_armor_check(limb_to_hit, BOMB, armour_penetration = 40)//more ap for bomb armour since a number of armours hit 100%
+	var/meleearmor = target.run_armor_check(limb_to_hit, MELEE)
+	var/bombarmor = target.run_armor_check(limb_to_hit, BOMB)
 	var/truearmor = (meleearmor + bombarmor) / 2 //take an average of melee and bomb armour
 	target.apply_damage(damage, BRUTE, blocked = truearmor)
 /*---------------------------------------------------------------
@@ -207,7 +215,7 @@
 
 /obj/item/worldplate/equipped(mob/user, slot, initial)//difficult for regular people to throw
 	. = ..()
-	var/worldbreaker = (user.mind?.martial_art && istype(user.mind.martial_art, /datum/martial_art/worldbreaker))
+	var/worldbreaker = (user.mind?.has_martialart(MARTIALART_WORLDBREAKER))
 	throw_speed = worldbreaker ? 3 : 1
 	throw_range = worldbreaker ? 8 : 3
 
@@ -264,8 +272,11 @@
 	for(var/mob/living/L in range(range,user))
 		if(L == user)
 			continue
-		var/damage = heavy ? 25 : 15 //chunky boy does more damage
 
+		var/damage = LEAP_DAMAGE //chunky boy does more damage
+
+		if(heavy)
+			damage *= HEAVY_DAMAGE
 		if(L.loc == user.loc)
 			to_chat(L, span_userdanger("[user] lands directly ontop of you, crushing you beneath their immense weight!"))
 			damage *= 2//for the love of god, don't get landed on
@@ -341,7 +352,7 @@
 		var/mob/living/carbon/tossedliving = thrown[1]
 		if(!tossedliving.buckled)
 			return
-		hurt(user, tossedliving, THROW_TOSSDMG) // Apply damage
+		hurt(user, tossedliving, THROW_DAMAGE) // Apply damage
 		for(var/obj/structure/bed/grip/holder in view(1, user))
 			holder.Destroy()
 	user.visible_message(span_warning("[user] throws [tossed]!"))
@@ -362,7 +373,7 @@
 	var/turf/T = get_step(get_turf(tossed), dir_to_target)
 	if(T.density) // crash into a wall and damage everything flying towards it before stopping 
 		for(var/mob/living/victim in thrown)
-			hurt(user, victim, THROW_SLAMDMG) 
+			hurt(user, victim, THROW_DAMAGE) 
 			victim.Knockdown(1 SECONDS)
 			victim.Immobilize(0.5 SECONDS)
 			if(isanimal(victim) && victim.stat == DEAD)
@@ -374,7 +385,7 @@
 	for(var/obj/thing in T.contents) // crash into something solid and damage it along with thrown objects that hit it
 		if(thing.density) // If the thing is solid and anchored like a window or grille or table it hurts people thrown that crash into it too
 			for(var/mob/living/victim in thrown) 
-				hurt(user, victim, THROW_SLAMDMG) 
+				hurt(user, victim, THROW_DAMAGE) 
 				victim.Knockdown(1 SECONDS)
 				victim.Immobilize(0.5 SECONDS)
 				if(isanimal(victim) && victim.stat == DEAD)
@@ -394,10 +405,10 @@
 				return
 	for(var/mob/living/hit in T.contents) // if the thrown mass hits a person then they get tossed and hurt too along with people in the thrown mass
 		if(user != hit)
-			hurt(user, hit, THROW_SLAMDMG) 
+			hurt(user, hit, THROW_DAMAGE) 
 			hit.Knockdown(1 SECONDS) 
 			for(var/mob/living/victim in thrown)
-				hurt(user, victim, THROW_SLAMDMG) 
+				hurt(user, victim, THROW_DAMAGE) 
 				victim.Knockdown(1 SECONDS) 
 			thrown |= hit
 	if(T) // if the next tile wont stop the thrown mass from continuing
@@ -429,9 +440,14 @@
 	for(var/mob/living/L in range(1, target))
 		if(L == user)
 			continue
-		var/damage = heavy ? 6 : 4
-		if(L == target)
-			damage *= 3 //the target takes more stamina and brute damage
+
+		var/damage = PUMMEL_DAMAGE
+
+		if(heavy)
+			damage *= HEAVY_DAMAGE
+
+		if(L != target)
+			damage /= 3 //non targets take less damage
 
 		if(L.anchored)
 			L.anchored = FALSE
@@ -493,13 +509,17 @@
 		var/damage = 0
 		var/throwdistance = 1
 		if(L in range(actual_range/2, owner))//more damage and CC if closer
-			damage = heavy ? 20 : 10
+			damage = STOMP_DAMAGE
 			throwdistance = 2
 			L.Knockdown(30)
 		if(L.loc == owner.loc)//if they are standing directly ontop of you, you're probably fucked
 			to_chat(L, span_userdanger("[owner] slams you into the ground with so much force that you're certain your ribs have been collapsed!"))
-			damage *= 4
+			damage *= 2
+			if(heavy)
+				damage *= HEAVY_DAMAGE
 			L.Stun(5 SECONDS)
+		if(heavy)
+			damage *= HEAVY_DAMAGE
 		linked_martial.hurt(owner, L, damage)
 		linked_martial.push_away(owner, L, throwdistance)
 		if(L.loc == owner.loc && isanimal(L) && L.stat == DEAD)//gib any animals you are standing on
@@ -584,9 +604,6 @@
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//burn bright my friend
 		S.power_drain *= 5
-		S.punchdamagelow += 5
-		S.punchdamagehigh += 5
-		S.punchstunthreshold += 5
 		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
 	usr.click_intercept = src 
 	add_verb(H, recalibration)
@@ -606,9 +623,6 @@
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//but not that bright
 		S.power_drain /= 5
-		S.punchdamagelow -= 5
-		S.punchdamagehigh -= 5
-		S.punchstunthreshold -= 5
 		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
 	usr.click_intercept = null 
 	remove_verb(H, recalibration)
@@ -638,6 +652,7 @@
 #undef MAX_PLATES
 #undef PLATE_CAP
 #undef BALLOON_COOLDOWN
-#undef THROW_TOSSDMG
-#undef THROW_SLAMDMG
+#undef THROW_DAMAGE
 #undef THROW_OBJDMG
+#undef LEAP_DAMAGE
+#undef HEAVY_DAMAGE
