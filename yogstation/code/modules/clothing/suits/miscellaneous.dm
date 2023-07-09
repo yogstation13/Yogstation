@@ -3,7 +3,7 @@
 	icon = 'yogstation/icons/obj/clothing/suits.dmi'
 	name = "network admin's winter coat"
 	icon_state = "coatsignaltech"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/analyzer, /obj/item/multitool, /obj/item/assembly/signaler, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/radio, /obj/item/analyzer, /obj/item/multitool, /obj/item/assembly/signaler, /obj/item/assembly/signaler/button, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant)
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
 
 /obj/item/clothing/head/hooded/winterhood/engineering/tcomms
@@ -371,7 +371,7 @@
 	icon_state = "northern"
 	item_state = "northern"
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/northern
-	
+
 /obj/item/clothing/head/hooded/winterhood/northern
 	name = "northern hat"
 	desc = "only this, and nothing more."

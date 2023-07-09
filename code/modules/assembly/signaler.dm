@@ -241,12 +241,16 @@
 		return TRUE
 	. = ..()
 
-/// Button signaler
-/// Activated by attack_self instead of UI
-/// UI is instead opened by multitool
+/**
+ * Button signaler
+ *
+ * Activated by attack_self instead of UI
+ *
+ * UI is instead opened by multitool
+ */
 /obj/item/assembly/signaler/button
 	name = "remote signaling button"
-	desc = "A modern design of the remote signaling device, for when you need to signal NOW. Can't be attached to wires."
+	desc = "A modern design of the remote signaling device, for when you need to signal NOW. Configured via multitool. Can't be attached to wires."
 	icon_state = "radio"
 	item_state = "radio"
 	attachable = FALSE

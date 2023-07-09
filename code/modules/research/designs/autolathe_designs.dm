@@ -661,6 +661,15 @@
 	category = list("initial", "T-Comm", "Assemblies")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/signalbutton
+	name = "Remote Signaling Button"
+	id = "signalbutton"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 400, /datum/material/glass = 120)
+	build_path = /obj/item/assembly/signaler/button
+	category = list("initial", "T-Comm", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+
 /datum/design/mousetrap
 	name = "Mousetrap"
 	id = "mousetrap"
