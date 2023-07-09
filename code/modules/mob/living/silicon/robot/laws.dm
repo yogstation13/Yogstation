@@ -100,7 +100,7 @@
 	laws_sanity_check()
 	if(mmi.syndicate_mmi)
 		syndiemmi_override()
-		to_chat(src, "<span class='warning'>Lawset change detected. Syndicate override engaged.</span>")
+		to_chat(src, span_warning("Lawset change detected. Syndicate override engaged."))
 		return
 	..()
 
@@ -108,7 +108,7 @@
 	laws_sanity_check()
 	if(mmi.syndicate_mmi)
 		syndiemmi_override()
-		to_chat(src, "<span class='warning'>Lawset change detected. Syndicate override engaged.</span>")
+		to_chat(src, span_warning("Lawset change detected. Syndicate override engaged."))
 		return
 	..()
 
