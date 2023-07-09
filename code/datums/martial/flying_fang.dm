@@ -91,7 +91,8 @@
 /datum/martial_art/flyingfang/proc/Chomp(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
-	if(!canconsume(M, user)) //conveniently handles fail message
+	if(is_mouth_covered(M, user))
+		to_chat(user, span_warning("Your mouth is obstructed!"))
 		return
 	if((D.mobility_flags & MOBILITY_STAND))
 		return harm_act(A,D)
