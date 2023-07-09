@@ -1,7 +1,7 @@
 /**
  * Content Barfer; which expels the contents of a mob when it dies, or is transformed
  *
- * Used for morphs and bileworms!
+ * Used for morphs!
  */
 /datum/element/content_barfer
 	argument_hash_start_idx = 2
