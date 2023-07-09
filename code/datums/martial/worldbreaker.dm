@@ -8,7 +8,7 @@
 #define PLATE_CAP 15 //hard cap of plates to prevent station wide fuckery with worldstomp
 #define PLATE_INTERVAL 15 SECONDS //how often a plate grows
 #define PLATE_REDUCTION 10 //how much armour per plate
-#define PLATE_BREAK 25 //How much damage it takes to break a plate
+#define PLATE_BREAK 15 //How much damage it takes to break a plate
 
 #define COOLDOWN_STOMP 30 SECONDS
 #define STOMP_WINDUP 2 SECONDS //this gets doubled if heavy
