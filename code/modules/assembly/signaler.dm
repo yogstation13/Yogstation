@@ -250,11 +250,10 @@
  */
 /obj/item/assembly/signaler/button
 	name = "remote signaling button"
-	desc = "A modern design of the remote signaling device, for when you need to signal NOW. Configured via multitool. Can't be attached to wires."
+	desc = "A modern design of the remote signaling device, for when you need to signal NOW. Configured via multitool. Cannot receive signals."
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "radio"
 	item_state = "radio"
-	attachable = FALSE
 
 /obj/item/assembly/signaler/button/attack_self(mob/user)
 	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
@@ -265,9 +264,13 @@
 	if(!user)
 		return FALSE
 	activate()
+	pulse()
 	return TRUE
 
 /obj/item/assembly/signaler/button/multitool_act(mob/living/user, obj/item/I)
 	. = ..()
 	user.set_machine(src)
 	interact(user)
+
+/obj/item/assembly/signaler/button/receive_signal(datum/signal/signal)
+	return
