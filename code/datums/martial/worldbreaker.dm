@@ -7,7 +7,7 @@
 #define MAX_PLATES 10 //maximum number of plates that factor into armour (speed decrease scales infinitely)
 #define PLATE_CAP 15 //hard cap of plates to prevent station wide fuckery with worldstomp
 #define PLATE_INTERVAL 15 SECONDS //how often a plate grows
-#define PLATE_REDUCTION 10 //how much DR per plate
+#define PLATE_REDUCTION 10 //how much armour per plate
 #define PLATE_BREAK 25 //How much damage it takes to break a plate
 
 #define COOLDOWN_STOMP 30 SECONDS
