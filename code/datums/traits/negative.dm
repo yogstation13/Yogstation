@@ -626,28 +626,6 @@
 	lose_text = span_notice("Your mind finally feels calm.")
 	medical_record_text = "Patient's mind is in a vulnerable state, and cannot recover from traumatic events."
 
-/datum/quirk/sheltered
-	name = "Sheltered"
-	desc = "You never learned to speak galactic common."
-	icon = "comment-dots"
-	value = -2
-	mob_trait = TRAIT_SHELTERED
-	gain_text = span_danger("You do not speak galactic common.")
-	lose_text = span_notice("You start to put together how to speak galactic common.")
-	medical_record_text = "Patient looks perplexed when questioned in galactic common."
-
-/datum/quirk/sheltered/on_clone(data)
-	var/mob/living/carbon/human/H = quirk_holder
-	H.remove_language(/datum/language/common, FALSE, TRUE)
-	if(!H.get_selected_language())
-		H.grant_language(/datum/language/japanese)
-
-/datum/quirk/sheltered/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.remove_language(/datum/language/common, FALSE, TRUE)
-	if(!H.get_selected_language())
-		H.grant_language(/datum/language/japanese)
-
 /datum/quirk/allergic
 	name = "Allergic Reaction"
 	desc = "You have had an allergic reaction to medicine in the past. Better stay away from it!"
