@@ -468,11 +468,9 @@
 					continue
 				var/total_healing = (min(L.getBruteLoss(), 3.5*efficiency) + min(L.getFireLoss(), 3.5*efficiency) + min(L.getOxyLoss(), 3.5*efficiency) + min(L.getToxLoss(), 3.5 * efficiency))
 				GLOB.religious_sect.adjust_favor(total_healing * 0.2)
-			if(ispath(rod_type, /obj/item/rod_of_asclepius/white) && L.stat == DEAD)
-				continue
 			if(L.health < L.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(L), "#375637")
-			if(iscarbon(L))	
+			if(iscarbon(L))
 				L.adjustBruteLoss(-3.5 * efficiency)
 				L.adjustFireLoss(-3.5 * efficiency)
 				L.adjustToxLoss(-3.5 * efficiency, forced = TRUE) //Because Slime People are people too
