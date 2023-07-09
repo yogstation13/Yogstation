@@ -796,7 +796,7 @@
 	if(wrapped)
 		wrapped.forceMove(get_turf(wrapped))
 		if(!silent)
-			to_chat(usr, "<span class='notice'>You drop the [wrapped].</span>")
+			to_chat(usr, span_notice("You drop the [wrapped]."))
 		wrapped = null
 		update_icon()
 		return TRUE
@@ -804,7 +804,7 @@
 
 /obj/item/gripper/proc/takeitem(obj/item/item, silent = FALSE)
 	if(!silent)
-		to_chat(usr, "<span class='notice'>You collect \the [item].</span>")
+		to_chat(usr, span_notice("You collect \the [item]."))
 	item.loc = src
 	wrapped = item
 	update_icon()
@@ -855,7 +855,7 @@
 			takeitem(I)
 			return
 		else
-			to_chat(user, "<span class='danger'>Your gripper cannot hold \the [target].</span>")
+			to_chat(user, span_danger("Your gripper cannot hold \the [target]."))
 
 // Rare cases - meant to be handled by code\modules\mob\living\silicon\robot\robot.dm:712 and the weirdness of get_active_held_item() of borgs.
 /obj/item/gripper/attack_self(mob/user)
