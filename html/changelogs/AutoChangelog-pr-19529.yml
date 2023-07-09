@@ -1,0 +1,4 @@
+author: " Ktlwjec"
+delete-after: true 
+changes: 
+  - imageadd: "Flashes now show if they are burnt out when being held."
