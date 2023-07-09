@@ -201,7 +201,7 @@
 	desc = "It's sharp!"
 	throwforce = 3
 	sharpness = SHARP_EDGED
-	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 100, "embedded_fall_chance" = 0)
+	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 100, "embedded_fall_chance" = 0, "embedded_unsafe_removal_pain_multiplier" = 12)
 
 /datum/martial_art/gardern_warfare/handle_counter(mob/living/carbon/human/user, mob/living/carbon/human/attacker)
 	if(!can_use(user))
