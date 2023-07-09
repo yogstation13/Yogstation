@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - tweak: "Cyborg hyposprays stop the user from injecting chemicals if it would cause a overdose or would further it while on help intent."
