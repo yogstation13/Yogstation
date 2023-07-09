@@ -131,6 +131,8 @@
 			continue
 		if(!applicant.mind)
 			continue
+		if(is_syndicate(applicant))
+			continue
 		if(applicant.stat != CONSCIOUS)
 			continue
 		if(applicant.mind.assigned_role in protected_jobs)
