@@ -1,0 +1,8 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - bugfix: "Cult works now... for real."
+  - bugfix: "Cult's antag info button now starts with the objectives, rather than having to close and reopen it to see them."
+  - bugfix: "Admins can now see Cult objectives in their TP"
+  - bugfix: "IPCs can no longer roll cult target"
+  - bugfix: "Cult's objective text no longer has a random &lt;b"
