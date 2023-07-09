@@ -59,6 +59,8 @@
 		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_status()
 	diag_hud_set_health()
+	ADD_TRAIT(src, TRAIT_FORCED_STANDING, "cyborg") // not CYBORG_ITEM_TRAIT because not an item
+
 
 /mob/living/silicon/med_hud_set_health()
 	return //we use a different hud
@@ -506,26 +508,3 @@
 			else
 				jobname = "Silicon"
 			msgr.username = "[newname] ([jobname])"
-
-/mob/living/silicon/robot/set_stat(new_stat)
-	//Don't  want to call parent (mob/living/set_stat) since it adds unwanted traits.
-	//Copied from mob/proc/set_stat:
-	if(new_stat == stat)
-		return
-	. = stat
-	stat = new_stat
-	SEND_SIGNAL(src, COMSIG_MOB_STATCHANGE, new_stat, .)
-
-	//Altered mob/living/set_stat for Cyborgs
-	switch(.) //Previous stat.
-		if(CONSCIOUS || SOFT_CRIT || UNCONSCIOUS)
-			remove_traits(src, list(TRAIT_IMMOBILIZED, TRAIT_INCAPACITATED, TRAIT_HANDS_BLOCKED), STAT_TRAIT)
-		if(DEAD)
-			remove_from_dead_mob_list()
-			add_to_alive_mob_list()
-	switch(stat) //Current stat.
-		if(CONSCIOUS || SOFT_CRIT || UNCONSCIOUS)
-			add_traits(src, list(TRAIT_IMMOBILIZED, TRAIT_INCAPACITATED, TRAIT_HANDS_BLOCKED), STAT_TRAIT)
-		if(DEAD)
-			remove_from_alive_mob_list()
-			add_to_dead_mob_list()
