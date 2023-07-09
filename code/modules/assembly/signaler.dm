@@ -247,6 +247,7 @@
 /obj/item/assembly/signaler/button
 	name = "remote signaling button"
 	desc = "A modern design of the remote signaling device, for when you need to signal NOW. Can't be attached to wires."
+	icon_state = "radio"
 	attachable = FALSE
 
 /obj/item/assembly/signaler/button/attack_self(mob/user)
