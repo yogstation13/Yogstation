@@ -112,7 +112,8 @@
 	buckle_lying = FALSE
 	var/static/list/can_ride_typecache = typecacheof(/mob/living/carbon/human)
 
-	var/obj/item/gps/internal // GPS location for when they die
+	///Contains GPS location. Does not exist until the Cyborg is dead.
+	var/obj/item/gps/internal
 
 
 /mob/living/silicon/robot/get_cell()
