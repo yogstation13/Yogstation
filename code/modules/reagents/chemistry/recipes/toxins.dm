@@ -135,7 +135,7 @@
 	mix_message = span_danger("The mixture suddenly flashes a brilliant red, leaving behind a sickening mass of foul green and orange chunks.")
 	required_temp = 380
 
-	/datum/chemical_reaction/initropidril
+/datum/chemical_reaction/initropidril
 	name = "Initropidril"
 	id = /datum/reagent/toxin/initropidril
 	results = list(/datum/reagent/toxin/initropidril = 3)
