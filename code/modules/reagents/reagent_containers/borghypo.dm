@@ -234,7 +234,7 @@
 			var/mob/living/silicon/robot/cyborg = src.loc
 			balloon_alert(cyborg, "dispensing [selected_reagent.name]")
 			break
- 
+
 /obj/item/reagent_containers/borghypo/examine(mob/user)
 	. = ..()
 	. += "Currently loaded: [selected_reagent]. [selected_reagent.description]"
