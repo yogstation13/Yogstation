@@ -35393,14 +35393,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"kby" = (
-/obj/machinery/door/airlock/security/glass{
-	id_tag = "permainterior";
-	name = "Permabrig";
-	req_access_txt = "2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/prison)
 "kbJ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -70955,6 +70947,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"xRS" = (
+/obj/machinery/door/airlock/security/glass{
+	id_tag = "permainterior";
+	name = "Permabrig";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel/dark,
+/area/security/prison)
 "xSl" = (
 /obj/machinery/door/airlock/research{
 	name = "Mech Bay";
@@ -100203,7 +100207,7 @@ aat
 uyC
 aat
 gQh
-kby
+xRS
 okN
 cHS
 fVu
