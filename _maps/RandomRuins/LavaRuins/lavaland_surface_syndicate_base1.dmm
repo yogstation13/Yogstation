@@ -132,9 +132,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/syndicate_lava_base/testlab)
-"aL" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/testlab)
 "aM" = (
 /obj/machinery/vending/syndichem,
 /obj/effect/turf_decal/siding/purple{
@@ -660,9 +657,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/powered/syndicate_lava_base/virology)
-"ex" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/engineering)
 "ey" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -744,9 +738,6 @@
 	},
 /obj/machinery/computer/operating,
 /turf/open/floor/plasteel/white,
-/area/ruin/powered/syndicate_lava_base/medbay)
-"eK" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
 /area/ruin/powered/syndicate_lava_base/medbay)
 "eN" = (
 /obj/structure/flora/tree/jungle/small,
@@ -1683,9 +1674,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
-"hO" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/dormitories)
 "hP" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -7636,7 +7624,7 @@ eC
 yl
 gw
 gX
-eK
+kQ
 hX
 Jv
 eh
@@ -8185,7 +8173,7 @@ MN
 RC
 eT
 zq
-aL
+ae
 as
 Om
 dU
@@ -8375,7 +8363,7 @@ jq
 hz
 gE
 lR
-hO
+hz
 JV
 hg
 hz
@@ -8474,7 +8462,7 @@ as
 ju
 ju
 ju
-ex
+ju
 ju
 ju
 ju
