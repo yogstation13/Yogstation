@@ -10,7 +10,7 @@
 	wound_type = WOUND_BURN
 	processes = TRUE
 	sound_effect = 'sound/effects/wounds/sizzle1.ogg'
-	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE)
+	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE | ACCEPTS_CRYO)
 
 	treatable_by = list(/obj/item/stack/medical/ointment, /obj/item/stack/medical/mesh) // sterilizer and alcohol will require reagent treatments, coming soon
 

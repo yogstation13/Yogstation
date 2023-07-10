@@ -166,7 +166,6 @@
 	if(!stored_reagents.has_reagent(selected_reagent.type, amount_per_transfer_from_this))
 		to_chat(user, span_notice("Your hypospray is empty of [selected_reagent.name]!"))
 		return
-
 	if(injectee.can_inject(user, 1, user.zone_selected,bypass_protection))
 		// Prevents overdosing if they are on help intent.
 		if(user.a_intent == INTENT_HELP)
