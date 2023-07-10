@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "HFR fuel consumption and gas production scales with power level"
