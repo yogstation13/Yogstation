@@ -1,0 +1,265 @@
+
+/*
+//////////////////////////
+//CLOCKCULT ANTAG CONFIG//
+//////////////////////////
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/silent
+	silent = TRUE
+	show_in_antagpanel = FALSE //internal
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/Destroy()
+	qdel(hierophant_network)
+	return ..()
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/get_team()
+	return clock_team
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/create_team(datum/team/hand_of_god/hand_of_ratvar/new_team)
+	if(!new_team && make_team)
+		//TODO blah blah same as the others, allow multiple
+		for(var/datum/antagonist/hand_of_god/hand_of_ratvar/H in GLOB.antagonists)
+			if(!H.owner)
+				continue
+			if(H.clock_team)
+				clock_team = H.clock_team
+				return
+		clock_team = new /datum/team/clockcult
+		return
+	if(make_team && !istype(new_team))
+		stack_trace("Wrong team type passed to [type] initialization.")
+	clock_team = new_team
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/can_be_owned(datum/mind/new_owner)
+	. = ..()
+	if(.)
+		. = is_eligible_servant(new_owner.current)
+		var/list/no_team_antag = list(
+			/datum/antagonist/rev,
+			/datum/antagonist/darkspawn,
+			/datum/antagonist/shadowling,
+			/datum/antagonist/cult,
+			/datum/antagonist/zombie
+			)
+		for(var/datum/antagonist/NTA in new_owner.antag_datums)
+			if(NTA.type in no_team_antag)
+				return FALSE
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/greet()
+	if(!owner.current || silent)
+		return
+	owner.current.visible_message("[span_heavy_brass("[owner.current]'s eyes glow a blazing yellow!")]", null, null, 7, owner.current) //don't show the owner this message
+	to_chat(owner.current, "<span class='heavy_brass'>A sharp light flashes through your mind, and you finally gain understanding of the cause. Assist your new companions in their righteous efforts. Your goal is theirs, and theirs yours. You serve the Clockwork \
+	Justiciar above all else. Perform his every whim without hesitation. Show the unenlightened Ratvars Light, as others have shown you, and defend the Ark until his arrival.</span>")
+	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/clockcultalr.ogg', 70, FALSE, pressure_affected = FALSE)
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/on_gain()
+	var/mob/living/current = owner.current
+	SSticker.mode.servants_of_ratvar += owner
+	owner.special_role = ROLE_SERVANT_OF_RATVAR
+	owner.current.log_message("has been converted to the cult of Ratvar!", LOG_ATTACK, color="#BE8700")
+	if(issilicon(current))
+		if(iscyborg(current) && !silent)
+			var/mob/living/silicon/robot/R = current
+			if(R.connected_ai && !is_servant_of_ratvar(R.connected_ai))
+				to_chat(R, "<span class='boldwarning'>You have been desynced from your master AI.<br>\
+				In addition, your onboard camera is no longer active and you have gained additional equipment, including a limited clockwork slab.</span>")
+			else
+				to_chat(R, span_boldwarning("Your onboard camera is no longer active and you have gained additional equipment, including a limited clockwork slab."))
+		if(isAI(current))
+			to_chat(current, span_boldwarning("You are now able to use your cameras to listen in on conversations, but can no longer speak in anything but Ratvarian."))
+		to_chat(current, "[span_heavy_brass("You can communicate with other servants by using the Hierophant Network action button in the upper left.")]")
+	else if(isbrain(current) || isclockmob(current))
+		to_chat(current, span_nezbere("You can communicate with other servants by using the Hierophant Network action button in the upper left."))
+	..()
+	to_chat(current, "<b>This is Ratvar's will:</b> [CLOCKCULT_OBJECTIVE]")
+	antag_memory += "<b>Ratvar's will:</b> [CLOCKCULT_OBJECTIVE]<br>" //Memorize the objectives
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/apply_innate_effects(mob/living/mob_override)
+	. = ..()
+	var/mob/living/current = owner.current
+	if(istype(mob_override))
+		current = mob_override
+	GLOB.all_clockwork_mobs += current
+	current.faction |= "ratvar"
+	current.grant_language(/datum/language/ratvar)
+	current.update_mob_action_buttons() //because a few clockcult things are action buttons and we may be wearing/holding them for whatever reason, we need to update buttons
+	if(issilicon(current))
+		var/mob/living/silicon/S = current
+		if(iscyborg(S))
+			var/mob/living/silicon/robot/R = S
+			if(!R.shell)
+				R.UnlinkSelf()
+			R.module.rebuild_modules()
+		else if(isAI(S))
+			var/mob/living/silicon/ai/A = S
+			A.can_be_carded = FALSE
+			A.requires_power = POWER_REQ_CLOCKCULT
+			var/list/AI_frame = list(mutable_appearance('icons/mob/clockwork_mobs.dmi', "aiframe")) //make the AI's cool frame
+			for(var/d in GLOB.cardinals)
+				AI_frame += image('icons/mob/clockwork_mobs.dmi', A, "eye[rand(1, 10)]", dir = d) //the eyes are randomly fast or slow
+			A.add_overlay(AI_frame)
+			if(!A.lacks_power())
+				A.ai_restore_power()
+			if(A.eyeobj)
+				A.eyeobj.relay_speech = TRUE
+			for(var/mob/living/silicon/robot/R in A.connected_robots)
+				if(R.connected_ai == A)
+					add_servant_of_ratvar(R)
+		S.laws = new/datum/ai_laws/ratvar
+		S.laws.associate(S)
+		S.update_icons()
+		S.show_laws()
+		hierophant_network.title = "Silicon"
+		hierophant_network.span_for_name = "nezbere"
+		hierophant_network.span_for_message = "brass"
+	else if(isbrain(current))
+		hierophant_network.title = "Vessel"
+		hierophant_network.span_for_name = "nezbere"
+		hierophant_network.span_for_message = "alloy"
+	else if(isclockmob(current))
+		hierophant_network.title = "Construct"
+		hierophant_network.span_for_name = "nezbere"
+		hierophant_network.span_for_message = "brass"
+	hierophant_network.Grant(current)
+	current.throw_alert("clockinfo", /atom/movable/screen/alert/clockwork/infodump)
+	if(clockwork_ark_active() && ishuman(current))
+		current.add_overlay(mutable_appearance('icons/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER))
+	add_team_hud(current)
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/remove_innate_effects(mob/living/mob_override)
+	. = ..()
+	var/mob/living/current = owner.current
+	if(istype(mob_override))
+		current = mob_override
+	GLOB.all_clockwork_mobs -= current
+	current.faction -= "ratvar"
+	current.remove_language(/datum/language/ratvar)
+	current.clear_alert("clockinfo")
+	for(var/datum/action/innate/clockwork_armaments/C in owner.current.actions) //Removes any bound clockwork armor
+		qdel(C)
+	for(var/datum/action/innate/call_weapon/W in owner.current.actions) //and weapons too
+		qdel(W)
+	if(issilicon(current))
+		var/mob/living/silicon/S = current
+		if(isAI(S))
+			var/mob/living/silicon/ai/A = S
+			A.can_be_carded = initial(A.can_be_carded)
+			A.requires_power = initial(A.requires_power)
+			A.cut_overlays()
+		S.make_laws()
+		S.update_icons()
+		S.show_laws()
+	var/mob/living/temp_owner = current
+	if(iscyborg(temp_owner))
+		var/mob/living/silicon/robot/R = temp_owner
+		R.module.rebuild_modules()
+	if(temp_owner)
+		temp_owner.update_mob_action_buttons() //because a few clockcult things are action buttons and we may be wearing/holding them, we need to update buttons
+	temp_owner.cut_overlays()
+	temp_owner.regenerate_icons()
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/on_removal()
+	SSticker.mode.servants_of_ratvar -= owner
+	for(var/datum/action/item_action/clock/quickbind/existing_binds in owner.current.actions)
+		existing_binds.Remove(owner.current) //regenerate all our quickbound scriptures
+	if(!silent)
+		owner.current.visible_message("[span_deconversion_message("[owner.current] seems to have remembered [owner.current.p_their()] true allegiance!")]", null, null, null, owner.current)
+		to_chat(owner, span_userdanger("A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant."))
+	owner.current.log_message("has renounced the cult of Ratvar!", LOG_ATTACK, color="#BE8700")
+	owner.special_role = null
+	if(iscyborg(owner.current))
+		to_chat(owner.current, span_warning("Despite your freedom from Ratvar's influence, you are still irreparably damaged and no longer possess certain functions such as AI linking."))
+	return ..()
+
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/admin_add(datum/mind/new_owner,mob/admin)
+	add_servant_of_ratvar(new_owner.current, TRUE)
+	message_admins("[key_name_admin(admin)] has made [key_name_admin(new_owner)] into a servant of Ratvar.")
+	log_admin("[key_name(admin)] has made [key_name(new_owner)] into a servant of Ratvar.")
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/admin_remove(mob/user)
+	remove_servant_of_ratvar(owner.current, TRUE)
+	message_admins("[key_name_admin(user)] has removed clockwork servant status from [key_name_admin(owner)].")
+	log_admin("[key_name(user)] has removed clockwork servant status from [key_name(owner)].")
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/get_admin_commands()
+	. = ..()
+	.["Equip Cultist"] = CALLBACK(src, PROC_REF(admin_equip))
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/proc/admin_equip(mob/admin)
+	if(!SSticker.mode.equip_servant(owner.current))
+		to_chat(admin, span_warning("Failed to outfit [owner.current]!"))
+	else
+		to_chat(admin, span_notice("Successfully gave [owner.current] servant equipment!"))
+
+/datum/team/clockcult
+	name = "Clockcult"
+	var/list/objective
+	var/datum/mind/eminence
+
+/datum/team/hand_of_god/hand_of_ratvar/New(starting_members)
+	. = ..()
+	START_PROCESSING(SSobj,src)
+
+/datum/team/hand_of_god/hand_of_ratvar/process()
+	GLOB.scripture_states = scripture_unlock_alert(GLOB.scripture_states)
+
+/datum/team/hand_of_god/hand_of_ratvar/Destroy(force, ...)
+	STOP_PROCESSING(SSobj,src)
+	. = ..()
+
+/datum/team/hand_of_god/hand_of_ratvar/proc/check_clockwork_victory()
+	if(GLOB.clockwork_gateway_activated)
+		return TRUE
+	return FALSE
+
+/datum/team/hand_of_god/hand_of_ratvar/roundend_report()
+	var/list/parts = list()
+
+	if(check_clockwork_victory())
+		parts += "<span class='greentext big'>Ratvar's servants defended the Ark until its activation!</span>"
+		parts += "<span class='heavy_brass'>The Servants of Ratvar find themselves once more on the station, filled with a sense of pride and accomplishment. The vents beneath them hiss with steam as walls turn to brass, yet they do not feel content. Though Rat’var is free, they know that this is but the beginning of their duty. In the cold, dark expanse surrounding the new City of Cogs, there lay a billion stars, each waiting to be a part of Ratvars empire; their battle had just begun.</span>"
+		for(var/mind in SSticker.mode.servants_of_ratvar)
+			var/datum/mind/M = mind
+			if(M.current?.client)
+				SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar,M.current.client)
+		if(eminence?.current?.client)
+			SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar/eminence,eminence.current.client)
+	else
+		parts += "<span class='redtext big'>The Ark was destroyed! Ratvar will rust away for all eternity!</span>"
+	parts += " "
+	parts += "<b>The servants' objective was:</b> [CLOCKCULT_OBJECTIVE]."
+	parts += "<b>Construction Value(CV)</b> was: <b>[GLOB.clockwork_construction_value]</b>"
+	for(var/i in GLOB.scripture_states)
+		if(i != SCRIPTURE_DRIVER)
+			parts += "<b>[i] scripture</b> was: <b>[GLOB.scripture_states[i] ? "UN":""]LOCKED</b>"
+	if(eminence)
+		parts += "[span_header("The Eminence was:")] [printplayer(eminence)]"
+	if(members.len)
+		parts += span_header("Ratvar's servants were:")
+		parts += printplayerlist(members - eminence)
+
+	return "<div class='panel clockborder'>[parts.Join("<br>")]</div>"
+
+/datum/team/hand_of_god/hand_of_ratvar/proc/check_size()
+	if(GLOB.clockwork_hardmode_active)
+		return
+	var/alive = 0
+	var/servants = length(GLOB.all_clockwork_mobs)
+	for(var/I in GLOB.player_list)
+		var/mob/M = I
+		if(M.stat != DEAD)
+			++alive
+	var/ratio = servants/alive
+	if(ratio >= SERVANT_HARDMODE_PERCENT)
+		GLOB.clockwork_hardmode_active = TRUE
+		hierophant_message("<span class='large_brass bold'>As the cult increases in size, the Ark's connection to the material plane weakens. Warping with camera consoles will take substantially more time unless the destination is a clockwork tile!</span>")
+
+/datum/antagonist/hand_of_god/hand_of_ratvar/get_preview_icon()
+	var/icon/clockie_icon = icon('icons/effects/512x512.dmi', "ratvar")
+
+	clockie_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return clockie_icon
+

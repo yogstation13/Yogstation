@@ -1,12 +1,128 @@
 /*Hand of God
 its the silly little gamemode where two cults are vying to summon their respective gods ratvar or nar'sie
 pulls stuff from clock_cult and eldritch_cult mostly items
-the silliest part is BOTH gods can be summoned at once*/
+the silliest part is BOTH gods can be summoned at once
+Antag role is split into servant or cultist*/
 
+
+/* unnesscesary procs, here for reference for the moment
+//Procs Clockcult
+/proc/is_servant_of_ratvar(mob/M)
+	if(!istype(M))
+		return FALSE
+	return M?.mind?.has_antag_datum(/datum/antagonist/clockcult)
+
+/proc/is_eligible_servant(mob/M)
+	if(!istype(M))
+		return FALSE
+	if(M.mind)
+		if(ishuman(M) && (M.mind.assigned_role in list("Captain", "Chaplain")))
+			return FALSE
+		var/mob/living/master = M.mind.enslaved_to?.resolve()
+		if(master && !iscultist(master))
+			return FALSE
+		if(M.mind.unconvertable)
+			return FALSE
+	else
+		return FALSE
+	if(iscultist(M) || isconstruct(M) || ispAI(M))
+		return FALSE
+	if(isliving(M))
+		var/mob/living/L = M
+		if(HAS_TRAIT(L, TRAIT_MINDSHIELD))
+			return FALSE
+	if(ishuman(M) || isbrain(M) || isguardian(M) || issilicon(M) || isclockmob(M) || istype(M, /mob/living/simple_animal/drone/cogscarab) || istype(M, /mob/camera/eminence))
+		return TRUE
+	return FALSE
+
+/proc/add_servant_of_ratvar(mob/L, silent = FALSE, create_team = TRUE)
+	if(!L || !L.mind)
+		return
+	var/update_type = /datum/antagonist/clockcult
+	if(silent)
+		update_type = /datum/antagonist/clockcult/silent
+	var/datum/antagonist/clockcult/C = new update_type(L.mind)
+	C.make_team = create_team
+	C.show_in_roundend = create_team //tutorial scarabs begone
+
+	if(iscyborg(L))
+		var/mob/living/silicon/robot/R = L
+		if(R.deployed)
+			var/mob/living/silicon/ai/AI = R.mainframe
+			R.undeploy()
+			to_chat(AI, span_userdanger("Anomaly Detected. Returned to core!")) //The AI needs to be in its core to properly be converted
+
+	. = L.mind.add_antag_datum(C)
+
+	if(.)
+		var/datum/antagonist/clockcult/servant = .
+		var/datum/team/clockcult/cult = servant.get_team()
+		cult.check_size()
+	
+	if(!silent && L)
+		if(.)
+			to_chat(L, "<span class='heavy_brass'>The world before you suddenly glows a brilliant yellow. [issilicon(L) ? "You cannot compute this truth!" : \
+			"Your mind is racing!"] You hear the whooshing steam and cl[pick("ank", "ink", "unk", "ang")]ing cogs of a billion billion machines, and all at once it comes to you.<br>\
+			Ratvar, the Clockwork Justiciar, [GLOB.ratvar_awakens ? "has been freed from his eternal prison" : "lies in exile, derelict and forgotten in an unseen realm"].</span>")
+			flash_color(L, flash_color = list("#BE8700", "#BE8700", "#BE8700", rgb(0,0,0)), flash_time = 50)
+		else
+			L.visible_message(span_boldwarning("[L] seems to resist an unseen force!"), null, null, 7, L)
+			to_chat(L, "<span class='heavy_brass'>The world before you suddenly glows a brilliant yellow. [issilicon(L) ? "You cannot compute this truth!" : \
+			"Your mind is racing!"] You hear the whooshing steam and cl[pick("ank", "ink", "unk", "ang")]ing cogs of a billion billion machines, and the sound</span> <span class='boldwarning'>\
+			is a meaningless cacophony.</span><br>\
+			<span class='userdanger'>You see an abomination of rusting parts[GLOB.ratvar_awakens ? ", and it is here.<br>It is too late" : \
+			" in an endless grey void.<br>It cannot be allowed to escape"].</span>")
+			L.playsound_local(get_turf(L), 'sound/ambience/antag/clockcultalr.ogg', 40, TRUE, frequency = 100000, pressure_affected = FALSE)
+			flash_color(L, flash_color = list("#BE8700", "#BE8700", "#BE8700", rgb(0,0,0)), flash_time = 5)
+
+/proc/remove_servant_of_ratvar(mob/L, silent = FALSE)
+	if(!L || !L.mind)
+		return
+	var/datum/antagonist/clockcult/clock_datum = L.mind.has_antag_datum(/datum/antagonist/clockcult)
+	if(!clock_datum)
+		return FALSE
+	clock_datum.silent = silent
+	clock_datum.on_removal()
+	return TRUE
+
+//procs bloodcult
+/proc/iscultist(mob/living/M)
+	if(istype(M, /mob/living/carbon/human/dummy))
+		return TRUE
+	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
+
+/proc/is_convertable_to_cult(mob/living/M,datum/team/cult/specific_cult)
+	if(!istype(M))
+		return FALSE
+	if(M.mind)
+		if(ishuman(M) && (M.mind.holy_role))
+			return FALSE
+		if(specific_cult && specific_cult.is_sacrifice_target(M.mind))
+			return FALSE
+		var/mob/living/master = M.mind.enslaved_to?.resolve()
+		if(master && !iscultist(master))
+			return FALSE
+		if(M.mind.unconvertable)
+			return FALSE
+		if(M.is_convert_antag())
+			return FALSE
+	else
+		return FALSE
+	if(HAS_TRAIT(M, TRAIT_MINDSHIELD) || issilicon(M) || isbot(M) || isdrone(M) || ismouse(M) || is_servant_of_ratvar(M) || !M.client)
+		return FALSE //can't convert machines, shielded, braindead, mice, or ratvar's dogs
+	return TRUE
+*/
 /datum/game_mode
 	var/list/hand_of_ratvar = list() //The Enlightened servants of Ratvar
 	var/list/hand_of_narsie = list() //The devoted cult of Nar'sie
 
+/* cogcult
+	var/list/datum/mind/servant = list()
+	var/list/cogpillar_list = list()
+	var/anchor_cogpillar
+	var/anchor_time2kill = 3 MINUTES
+	var/cogpillar_cooldown = FALSE
+*/
 /datum/game_mode/hand_of_god
 	name = "Hand Of God"
 	config_tag = "hand_of_god"
@@ -86,7 +202,7 @@ the silliest part is BOTH gods can be summoned at once*/
 /datum/game_mode/hand_of_god/check_finished(force_ending)
 	if (..())
 		return TRUE
-	return !hog_cult.check_sacrifice_status()
+	return !hog_cult.check_sacrifice_status() //we should remove this any time soon
 
 //clockcult
 
@@ -115,6 +231,7 @@ the silliest part is BOTH gods can be summoned at once*/
 		return FALSE
 	var/mob/living/carbon/human/L = M
 	var/obj/item/clockwork/slab/S = new
+	var/slot = "At your feet"
 	var/list/slots = list("In your left pocket" = ITEM_SLOT_LPOCKET, "In your right pocket" = ITEM_SLOT_RPOCKET, "In your backpack" = ITEM_SLOT_BACKPACK, "On your belt" = ITEM_SLOT_BELT)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
@@ -134,17 +251,111 @@ the silliest part is BOTH gods can be summoned at once*/
 	return "Bluespace monitors near your sector have detected multiple streams of patterned fluctuations eminating from the station. It is most probable that powerful entities \
 	are using to the station as a vector to cross through ["REDACTED"]. if these entities are hostile, prevent said entities from causing harm to company personnel or property.\
 	<br><br>Keep a sharp on any crew that appear to be oddly-dressed or using what appear to be magical powers, as these crew may be defectors \
-	working for this entity. If they should turn out to be a credible threat, the task falls on you and your crew to dispatch it in a timely manner. "
+	working for these entities. If they should turn out to be a credible threat, divert all avaliable assets to preventing their summoning. "
 
 
-//Coggers point defense mode
+//Coggers point defense mode (to do, icons, cogpillar stuff )
+//Bloodcult point defense is handled in cod/game/gamemodes/cult/cult.dm
+/*
+/datum/game_mode/proc/begin_cogpillar_phase()
+	var/list/stone_spawns = GLOB.generic_event_spawns.Copy()
+	var/list/cogpillar_areas = list()
+	for(var/i = 0, i < 4, i++) //four cogpillars
+		var/stone_spawn = pick_n_take(stone_spawns)
+		if(!stone_spawn)
+			stone_spawn = pick(GLOB.generic_event_spawns) // Fallback on all spawns
+		var/spawnpoint = get_turf(stone_spawn)
+		var/stone = new /obj/structure/destructible/clock_cult/cogpillar(spawnpoint)
+		notify_ghosts("Bloodcult has an object of interest: [stone]!", source=stone, action=NOTIFY_ORBIT, header="Praise the Geometer!")
+		var/area/A = get_area(stone)
+		cogpillar_areas.Add(A.map_name)
 
+	priority_announce("Figments of a mechanical god are being pulled through the veil anomaly in [cogpillar_areas[1]], [cogpillar_areas[2]], [cogpillar_areas[3]], and [cogpillar_areas[4]]! Destroy any non-Nanotrasen sanctioned technological structures located in those areas!","Central Command Higher Dimensional Affairs")
+	addtimer(CALLBACK(src, PROC_REF(increase_cogpillar_power)), 30 SECONDS)
+	set_security_level(SEC_LEVEL_GAMMA)
 
+/datum/game_mode/proc/increase_cogpillar_power()
+	if(!cogpillar_list.len) //check if we somehow ran out of cogpillars
+		return
+	for(var/obj/structure/destructible/clock_cult/cogpillar/B in cogpillar_list)
+		if(B.current_fullness == 9)
+			create_anchor_cogpillar()
+			return //We're done here
+		else
+			B.current_fullness++
+		B.update_icon()
+	addtimer(CALLBACK(src, PROC_REF(increase_cogpillar_power)), 30 SECONDS)
 
+/datum/game_mode/proc/create_anchor_cogpillar()
+	if(SSticker.mode.anchor_cogpillar)
+		return
+	var/obj/structure/destructible/clock_cult/cogpillar/anchor_target = cogpillar_list[1] //which cogpillar is the current cantidate for anchorship
+	var/anchor_power = 0 //anchor will be faster if there are more stones
+	for(var/obj/structure/destructible/clock_cult/cogpillar/B in cogpillar_list)
+		anchor_power++
+		if(B.obj_integrity > anchor_target.obj_integrity)
+			anchor_target = B
+	SSticker.mode.anchor_cogpillar = anchor_target
+	anchor_target.name = "anchor cogpillar"
+	anchor_target.desc = "It rhythmically cl[pick("ank", "ink", "unk", "ang")] with golden light. Something is being reflected on every surface, something that isn't quite there..."
+	anchor_target.anchor = TRUE
+	anchor_target.max_integrity = 1200
+	anchor_target.obj_integrity = 1200
+	anchor_time2kill -= anchor_power * 1 MINUTES //one minute of bloodfuckery shaved off per surviving cogpillar.
+	anchor_target.set_animate()
+	var/area/A = get_area(anchor_target)
+	addtimer(CALLBACK(anchor_target, TYPE_PROC_REF(/obj/structure/destructible/clock_cult/cogpillar, summon)), anchor_time2kill)
+	priority_announce("The anomaly has weakened the veil to a hazardous level in [A.map_name]! Destroy whatever is causing it before something gets through!","Central Command Higher Dimensional Affairs")
 
+/datum/game_mode/proc/clock_cult_loss_cogpillars()
+	priority_announce("The veil anomaly appears to have been destroyed, shuttle locks have been lifted.","Central Command Higher Dimensional Affairs")
+	cogpillar_cooldown = TRUE
+	addtimer(CALLBACK(src, PROC_REF(disable_cogpillar_cooldown)), 5 MINUTES) //5 minutes
+	for(var/datum/mind/M in cult)
+		var/mob/living/cultist = M.current
+		if(!cultist)
+			continue
+		cultist.playsound_local(cultist, 'sound/magic/demon_dies.ogg', 75, FALSE)
+		if(isconstruct(cultist))
+			to_chat(cultist, span_cultbold("You feel your form lose some of its density, becoming more fragile!"))
+			cultist.maxHealth *= 0.75
+			cultist.health *= 0.75
+		else
+			cultist.Stun(20)
+			cultist.adjust_confusion(15 SECONDS)
+		to_chat(cultist, span_narsiesmall("Your mind is flooded with pain as the last cogpillar is destroyed!"))
 
+/datum/game_mode/proc/clock_cult_loss_anchor()
+	priority_announce("Whatever you did worked. Veil density has returned to a safe level. Shuttle locks lifted.","Central Command Higher Dimensional Affairs")
+	cogpillar_cooldown = TRUE
+	addtimer(CALLBACK(src, PROC_REF(disable_cogpillar_cooldown)), 7 MINUTES) //7 minutes
+	for(var/obj/structure/destructible/clock_cult/cogpillar/B in cogpillar_list)
+		qdel(B)
+		for(var/datum/mind/M in cult)
+			var/mob/living/cultist = M.current
+			if(!cultist)
+				continue
+			cultist.playsound_local(cultist, 'sound/effects/screech.ogg', 75, FALSE)
+			if(isconstruct(cultist))
+				to_chat(cultist, span_cultbold("You feel your form lose most of its density, becoming incredibly fragile!"))
+				cultist.maxHealth *= 0.5
+				cultist.health *= 0.5
+			else
+				cultist.Stun(4 SECONDS)
+				cultist.adjust_confusion(1 MINUTES)
+			to_chat(cultist, span_narsiesmall("You feel a bleakness as the destruction of the anchor cuts off your connection to Nar-Sie!"))
 
-
+/datum/game_mode/proc/disable_cogpillar_cooldown()
+	cogpillar_cooldown = FALSE
+	for(var/datum/mind/M in cult)
+		var/mob/living/L = M.current
+		if(L)
+			to_chat(M, span_narsiesmall("The veil has weakened enough for another attempt, prepare the summoning!"))
+		if(isconstruct(L))
+			L.maxHealth = initial(L.maxHealth)
+			to_chat(L, span_cult("Your form regains its original durability!"))
+	//send message to coggers saying they can do stuff again
+*/
 
 /datum/game_mode/hand_of_god/generate_credit_text()
 	var/list/round_credits = list()

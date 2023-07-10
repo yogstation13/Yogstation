@@ -60,6 +60,7 @@
 #define ROLE_NIGHTMARE			"Nightmare"
 #define ROLE_DISEASE			"Disease"
 #define ROLE_PIRATE				"Pirate"
+#define ROLE_HOG_CULT           "Hands of God"
 
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
@@ -108,7 +109,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_DISEASE = /datum/antagonist/disease,
 	ROLE_HIVE = /datum/antagonist/hivemind,
 	ROLE_PIRATE = /datum/antagonist/pirate,
-	ROLE_SENTIENCE = /datum/antagonist/sentient_creature
+	ROLE_SENTIENCE = /datum/antagonist/sentient_creature,
+	ROLE_HOG_CULT = /datum/antagonist/hand_of_god
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
