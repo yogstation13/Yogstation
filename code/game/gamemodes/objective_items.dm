@@ -86,8 +86,8 @@
 /datum/objective_item/steal/aiupload
 	name = "an AI Upload board."
 	targetitem = /obj/item/circuitboard/computer/aiupload
-	difficulty = 3
-	excludefromjob = list("Research Director")
+	difficulty = 5
+	excludefromjob = list("Chief Engineer", "Research Director") // CE has access. RD has authority. 
 
 /datum/objective_item/steal/reactive
 	name = "the Research Director's reactive teleport armor."
