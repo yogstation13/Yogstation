@@ -428,7 +428,7 @@
 			healSnake.grab_ghost()
 			qdel(owner)
 	else
-		if(!is_mining_level(owner.z)) // Makes the user passive, it's in their oath not to harm!
+		if(!is_mining_level(owner?.z)) // Makes the user passive, it's in their oath not to harm!
 			ADD_TRAIT(owner, TRAIT_PACIFISM, "hippocraticOath")
 		else // Unless they're on lavaland teehee
 			REMOVE_TRAIT(owner, TRAIT_PACIFISM, "hippocraticOath")
