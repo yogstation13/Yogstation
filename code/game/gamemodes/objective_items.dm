@@ -83,6 +83,12 @@
 	difficulty = 3
 	excludefromjob = list("Head of Security", "Warden")
 
+/datum/objective_item/steal/aiupload
+	name = "an AI Upload board."
+	targetitem = /obj/item/circuitboard/computer/aiupload
+	difficulty = 3
+	excludefromjob = list("Research Director")
+
 /datum/objective_item/steal/reactive
 	name = "the Research Director's reactive teleport armor."
 	targetitem = /obj/item/clothing/suit/armor/reactive/teleport
