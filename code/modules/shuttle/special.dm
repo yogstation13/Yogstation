@@ -213,14 +213,13 @@
 		2. Be rational.\n\
 		3. Be a member of the team.\n\
 		4. Have class.\n\
-		5. Show hospitality to others unless they don't show class. Heckle those who don't." //Actual mafia rules, look it up ;)
-		
+		5. Show hospitality to others unless they don't show class." //Actual mafia rules, look it up ;)
 	status_flags = GODMODE // Bad Idea to mess with hardened criminals
 	unique_name = TRUE
 	picked = TRUE //they will stay shady
 	initial_language_holder = /datum/language_holder/universal
 	default_hatmask = null //hats are on the table
-	default_storage = null
+	default_storage = /obj/item/melee/classic_baton/secconbaton
 
 //Luxury Shuttle Blockers
 
