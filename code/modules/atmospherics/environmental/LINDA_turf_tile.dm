@@ -8,7 +8,6 @@
 	var/list/atmos_adjacent_turfs
 	//bitfield of dirs in which we are superconducitng
 	var/atmos_supeconductivity = NONE
-	var/is_openturf = FALSE // used by extools shizz.
 
 	//used to determine whether we should archive
 	var/archived_cycle = 0
@@ -32,7 +31,6 @@
 	var/planetary_atmos = FALSE //air will revert to initial_gas_mix over time
 
 	var/list/atmos_overlay_types //gas IDs of current active gas overlays
-	is_openturf = TRUE
 
 /turf/open/Initialize(mapload)
 	if(!blocks_air)

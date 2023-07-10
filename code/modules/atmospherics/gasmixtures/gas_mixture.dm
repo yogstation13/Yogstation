@@ -39,18 +39,14 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	var/initial_volume = CELL_VOLUME //liters
 	var/list/reaction_results
 	var/list/analyzer_results //used for analyzer feedback - not initialized until its used
-	var/_extools_pointer_gasmixture = 0 // Contains the memory address of the shared_ptr object for this gas mixture in c++ land. Don't. Touch. This. Var.
 
 /datum/gas_mixture/New(volume)
 	if (!isnull(volume))
 		initial_volume = volume
-	ATMOS_EXTOOLS_CHECK
 	__gasmixture_register()
 	reaction_results = new
 
 /datum/gas_mixture/vv_edit_var(var_name, var_value)
-	if(var_name == "_extools_pointer_gasmixture")
-		return FALSE // please no. segfaults bad.
 	return ..()
 /*
 /datum/gas_mixture/Del()
@@ -191,7 +187,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 			path = gas_id2path(path) //a lot of these strings can't have embedded expressions (especially for mappers), so support for IDs needs to stick around
 		set_moles(path, text2num(gas[id]))
 	return 1
-	
+
 /datum/gas_mixture/react(datum/holder)
 	. = NO_REACTION
 	var/list/reactions = list()

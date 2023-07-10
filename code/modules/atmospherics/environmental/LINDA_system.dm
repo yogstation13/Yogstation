@@ -44,7 +44,7 @@
 	return FALSE
 
 /turf/proc/ImmediateCalculateAdjacentTurfs()
-	var/canpass = CANATMOSPASS(src, src) 
+	var/canpass = CANATMOSPASS(src, src)
 	var/canvpass = CANVERTICALATMOSPASS(src, src)
 	for(var/direction in GLOB.cardinals_multiz)
 		var/turf/T = get_step_multiz(src, direction)
@@ -56,19 +56,14 @@
 			LAZYINITLIST(T.atmos_adjacent_turfs)
 			atmos_adjacent_turfs[T] = direction
 			T.atmos_adjacent_turfs[src] = opp_dir
-			T.__update_extools_adjacent_turfs()
 		else
 			if (atmos_adjacent_turfs)
 				atmos_adjacent_turfs -= T
 			if (T.atmos_adjacent_turfs)
 				T.atmos_adjacent_turfs -= src
-				T.__update_extools_adjacent_turfs()
 			UNSETEMPTY(T.atmos_adjacent_turfs)
 	UNSETEMPTY(atmos_adjacent_turfs)
 	src.atmos_adjacent_turfs = atmos_adjacent_turfs
-	__update_extools_adjacent_turfs()
-
-/turf/proc/__update_extools_adjacent_turfs()
 
 
 //returns a list of adjacent turfs that can share air with this one.

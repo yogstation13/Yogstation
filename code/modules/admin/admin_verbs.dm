@@ -711,12 +711,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	holder.deactivate()
 
 	to_chat(src, span_interface("You are now a normal player."), confidential=TRUE)
-	
+
 	remove_mentor_verbs()
 	mentor_datum = null
 	GLOB.mentors -= src
 	add_verb(src, /client/proc/rementor)
-	
+
 	log_admin("[src] deadmined themself.")
 	message_admins("[src] deadmined themself.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Deadmin")
@@ -728,7 +728,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	if(!holder)
 		return
-	
+
 	if(tgui_alert(usr, "Are you sure? This will forget all the previously saved 2FA logins", "Confirmation", list("Yes", "No")) == "Yes")
 		mfa_reset(ckey, TRUE)
 
@@ -809,9 +809,6 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	if(!check_rights(R_DEV))
 		return
-	if(GLOB.enable_memdump == 0)
-		to_chat(world, span_userdanger("You should not be touching this without contacting developers!"))
-		return
 	if(tgui_alert(usr, "This will dump memory usage and potentially lag the server. Proceed?", "Alert", list("Yes", "No")) != "Yes")
 		return
 
@@ -822,10 +819,6 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("[key_name_admin(usr)] has initiated a memory dump into \"[fname]\".")
 
 	sleep(2 SECONDS)
-
-	if(!dump_memory_profile("data/logs/memory/[fname]"))
-		to_chat(usr, span_warning("Dumping memory failed at dll call."))
-		return
 
 	if(!fexists("data/logs/memory/[fname]"))
 		to_chat(usr, span_warning("File creation failed. Please check to see if the data/logs/memory folder actually exists."))

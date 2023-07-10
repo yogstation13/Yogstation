@@ -67,15 +67,12 @@ SUBSYSTEM_DEF(air)
 
 
 /datum/controller/subsystem/air/Initialize(timeofday)
-	extools_update_ssair()
 	map_loading = FALSE
 	setup_allturfs()
 	setup_atmos_machinery()
 	setup_pipenets()
 	gas_reactions = init_gas_reactions()
 	return SS_INIT_SUCCESS
-
-/datum/controller/subsystem/air/proc/extools_update_ssair()
 
 /datum/controller/subsystem/air/fire(resumed = 0)
 	var/timer = TICK_USAGE_REAL
@@ -287,8 +284,6 @@ SUBSYSTEM_DEF(air)
 			return
 
 /datum/controller/subsystem/air/proc/process_excited_groups(resumed = 0)
-	if(process_excited_groups_extools(resumed, (Master.current_ticklimit - TICK_USAGE) * 0.01 * world.tick_lag))
-		sleep()
 	/*
 	if (!resumed)
 		src.currentrun = excited_groups.Copy()
@@ -307,7 +302,6 @@ SUBSYSTEM_DEF(air)
 			return
 	*/
 
-/datum/controller/subsystem/air/proc/process_excited_groups_extools()
 /datum/controller/subsystem/air/proc/get_amt_excited_groups()
 
 /datum/controller/subsystem/air/proc/remove_from_active(turf/open/T)
@@ -399,7 +393,7 @@ SUBSYSTEM_DEF(air)
 		to_chat(GLOB.permissions.admins,
 		type = MESSAGE_TYPE_DEBUG,
 		html = span_notice(msg),
-		confidential = FALSE) 
+		confidential = FALSE)
 		warning(msg) // This logs it
 		//yogs end
 
