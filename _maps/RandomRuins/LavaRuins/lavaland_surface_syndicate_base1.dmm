@@ -437,9 +437,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
-"dP" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/cargo)
 "dQ" = (
 /obj/structure/sink{
 	pixel_y = 23
@@ -2072,9 +2069,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/powered/syndicate_lava_base/virology)
-"iN" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/vault)
 "iP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -7866,7 +7860,7 @@ kp
 Cg
 Lg
 Je
-dP
+dy
 jq
 Sr
 iV
@@ -7985,7 +7979,7 @@ iV
 ab
 FN
 ha
-iN
+ha
 ha
 FN
 ab
@@ -8095,7 +8089,7 @@ Hn
 oP
 iV
 dS
-iN
+ha
 Gv
 it
 dE
@@ -8209,7 +8203,7 @@ iV
 ab
 FN
 ha
-iN
+ha
 ha
 FN
 ab
@@ -8390,10 +8384,10 @@ lR
 hO
 JV
 hg
-hO
+hz
 dQ
 TY
-hO
+hz
 Yn
 FB
 mT
