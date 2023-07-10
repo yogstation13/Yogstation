@@ -313,7 +313,6 @@
 	desc = "An advanced chemical synthesizer and injection system, designed to stabilize patients."
 	default_reagent_types = BASE_DEFAULT_REAGENTS
 
-
 /// Syndicate medborg hypospray
 /obj/item/reagent_containers/borghypo/syndicate
 	name = "syndicate cyborg hypospray"
