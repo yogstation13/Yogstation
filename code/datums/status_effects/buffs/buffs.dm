@@ -400,8 +400,6 @@
 	. = ..()
 
 /datum/status_effect/hippocratic_oath/on_apply()
-	//Makes the user passive, it's in their oath not to harm!
-	ADD_TRAIT(owner, TRAIT_PACIFISM, "hippocraticOath")
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	H.show_to(owner)
 	return ..()
@@ -430,6 +428,10 @@
 			healSnake.grab_ghost()
 			qdel(owner)
 	else
+		if(!is_mining_level(owner.z)) // Makes the user passive, it's in their oath not to harm!
+			ADD_TRAIT(owner, TRAIT_PACIFISM, "hippocraticOath")
+		else // Unless they're on lavaland teehee
+			REMOVE_TRAIT(owner, TRAIT_PACIFISM, "hippocraticOath")
 		if(iscarbon(owner))
 			var/mob/living/carbon/itemUser = owner
 			var/obj/item/heldItem = itemUser.get_item_for_held_index(hand)
@@ -592,7 +594,7 @@
 	name = "Time Dilation"
 	desc = "Your actions are twice as fast, and the delay between them is halved. Additionally, you are immune to slowdown."
 	icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	icon_state = "time_dilation" 
+	icon_state = "time_dilation"
 
 /datum/status_effect/doubledown
 	id = "doubledown"
