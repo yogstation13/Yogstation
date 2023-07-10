@@ -1,0 +1,5 @@
+author: "Addust"
+delete-after: true 
+changes: 
+  - bugfix: "woops i misconfigured syndie lavaland atmos its fixed now"
+  - bugfix: "it also doesn't freeze the server anymore as an act of revenge whenever it is destroyed"
