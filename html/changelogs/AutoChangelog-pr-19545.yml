@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - bugfix: "Cyborgs are no longer mysteriously lying down even though their sprite appears to be standing up."
