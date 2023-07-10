@@ -179,7 +179,7 @@
 	if(ishuman(target) && !blocked)
 		var/mob/living/carbon/human/H = target
 		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
-	ricochets++ // so you can't shoot through someone to ricochet and hit them twice for 70 damage in one shot
+	ricochets = ricochets_max // so you can't shoot through someone to ricochet and hit them twice for 70 damage in one shot
 
 /obj/item/projectile/bullet/ipcmartial/on_ricochet(atom/A)
 	damage += 10 // more damage if you ricochet it, good luck hitting it consistently though
