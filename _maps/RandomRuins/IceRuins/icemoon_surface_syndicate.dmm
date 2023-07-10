@@ -24,6 +24,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/dorms)
+"ay" = (
+/obj/structure/window/reinforced/spawner/west,
+/obj/machinery/light{
+	dir = 1;
+	light_color = "#c1caff"
+	},
+/turf/open/floor/engine,
+/area/ruin/syndicate_icemoon/xenobio)
 "aG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -116,6 +124,9 @@
 /obj/machinery/airalarm/syndicate{
 	dir = 8;
 	pixel_x = 24
+	},
+/obj/effect/turf_decal/tile/purple/anticorner/contrasted{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
@@ -608,6 +619,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"hI" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/xenobio)
 "hN" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -633,6 +653,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"hT" = (
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/xenobio)
 "ib" = (
 /obj/machinery/computer/telecomms,
 /turf/open/lava/plasma/ice_moon,
@@ -704,6 +730,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
+"jw" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
 "jz" = (
 /obj/machinery/light{
 	dir = 8
@@ -856,6 +892,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "lD" = (
@@ -1006,6 +1045,7 @@
 /obj/structure/window/reinforced/spawner/east,
 /obj/structure/rack,
 /obj/item/slime_scanner,
+/obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "mW" = (
@@ -1069,6 +1109,7 @@
 "nJ" = (
 /obj/structure/window/reinforced/spawner/east,
 /mob/living/simple_animal/slime,
+/obj/machinery/light,
 /turf/open/floor/engine,
 /area/ruin/syndicate_icemoon/xenobio)
 "nK" = (
@@ -1115,9 +1156,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/research)
+"oo" = (
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/xenobio)
 "oB" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/machinery/processor/slime,
+/obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "oD" = (
@@ -1146,6 +1194,9 @@
 	req_access_txt = "150";
 	pixel_y = 24;
 	name = "Kill Chamber Access"
+	},
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
@@ -1546,6 +1597,7 @@
 /obj/machinery/computer/camera_advanced/xenobio/syndicateicemoon{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "tx" = (
@@ -1553,6 +1605,10 @@
 	dir = 4;
 	light_color = "#e8eaff"
 	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple/anticorner/contrasted,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "tz" = (
@@ -1633,6 +1689,9 @@
 	pixel_y = 28;
 	pixel_x = -6
 	},
+/obj/effect/turf_decal/tile/purple/anticorner/contrasted{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "ub" = (
@@ -1676,6 +1735,7 @@
 /area/ruin/syndicate_icemoon/xenobio)
 "uj" = (
 /obj/machinery/computer/camera_advanced/xenobio/syndicateicemoon,
+/obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "us" = (
@@ -1909,6 +1969,10 @@
 /obj/structure/chair/office/dark{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple/half/contrasted,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "yy" = (
@@ -1998,6 +2062,9 @@
 	pixel_y = 24;
 	name = "Kill Chamber Access"
 	},
+/obj/effect/turf_decal/tile/purple/anticorner/contrasted{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "zH" = (
@@ -2058,6 +2125,12 @@
 /obj/machinery/power/rtg/advanced,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors)
+"AB" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
 "AC" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/cafeteria,
@@ -2349,6 +2422,7 @@
 "Dj" = (
 /obj/structure/window/reinforced/spawner/west,
 /obj/machinery/processor/slime,
+/obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "Dm" = (
@@ -2568,6 +2642,7 @@
 /obj/structure/rack,
 /obj/item/slime_scanner,
 /obj/structure/window/reinforced/spawner/west,
+/obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "Gd" = (
@@ -2623,6 +2698,12 @@
 /obj/machinery/power/apc/auto_name/west{
 	req_access = list(150)
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/purple/anticorner/contrasted{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "Hk" = (
@@ -2653,6 +2734,10 @@
 	},
 /obj/structure/cable{
 	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/turf_decal/tile/purple/anticorner/contrasted{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
@@ -2936,6 +3021,15 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "Ly" = (
@@ -3030,10 +3124,9 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/syndicate_icemoon/medical)
 "Mu" = (
-/obj/structure/window/reinforced/spawner/east,
-/obj/machinery/light,
-/turf/open/floor/engine,
-/area/ruin/syndicate_icemoon/xenobio)
+/obj/effect/turf_decal/tile/purple,
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
 "MB" = (
 /obj/machinery/door/airlock/engineering{
 	req_access_txt = "150";
@@ -3113,6 +3206,10 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/shed)
 "NH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple/half/contrasted,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "NJ" = (
@@ -3154,6 +3251,21 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
+"Ob" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/hallway)
 "Oe" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/effect/turf_decal/trimline/blue/filled/corner,
@@ -3196,6 +3308,9 @@
 "ON" = (
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
@@ -3271,6 +3386,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
+/area/ruin/syndicate_icemoon/hallway)
+"PU" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
 "PW" = (
 /obj/structure/cable{
@@ -3590,6 +3709,9 @@
 /area/ruin/syndicate_icemoon/engine)
 "Up" = (
 /obj/structure/chair/office/dark,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "Us" = (
@@ -3796,6 +3918,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple/fourcorners,
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "XU" = (
@@ -3970,6 +4099,10 @@
 	},
 /obj/structure/cable{
 	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/hallway)
@@ -6290,7 +6423,7 @@ Di
 Jg
 sM
 nn
-RN
+Iw
 Il
 eJ
 qc
@@ -6364,7 +6497,7 @@ Jg
 Jg
 Jg
 vW
-RN
+Iw
 Il
 eJ
 qc
@@ -6438,7 +6571,7 @@ jz
 HA
 Jg
 Il
-RN
+Iw
 Il
 eJ
 qc
@@ -6512,7 +6645,7 @@ qh
 VO
 Jg
 Il
-RN
+Iw
 Il
 eJ
 qc
@@ -6586,7 +6719,7 @@ eZ
 HA
 Jg
 Il
-RN
+Iw
 Il
 eJ
 qc
@@ -6660,7 +6793,7 @@ ZO
 VO
 Jg
 Il
-RN
+Iw
 Il
 eJ
 qc
@@ -6734,7 +6867,7 @@ ho
 bb
 Jg
 Il
-RN
+Iw
 Il
 eJ
 qc
@@ -6808,7 +6941,7 @@ Jg
 Jg
 Jg
 Il
-RN
+Iw
 Il
 eJ
 eJ
@@ -6881,8 +7014,8 @@ eM
 eP
 eM
 kn
-Il
-RN
+Nz
+jw
 Il
 Il
 Il
@@ -6955,7 +7088,7 @@ eM
 eM
 eM
 kn
-Il
+PU
 ZT
 pO
 pO
@@ -7029,9 +7162,9 @@ nH
 fg
 eM
 kn
-Il
-RN
-Il
+Mu
+Ob
+AB
 Il
 Il
 Il
@@ -7325,7 +7458,7 @@ DM
 DM
 DM
 zq
-lA
+hI
 uj
 xX
 Rz
@@ -7403,7 +7536,7 @@ ab
 oB
 NH
 CO
-Mu
+eB
 DM
 qK
 Oy
@@ -7619,9 +7752,9 @@ qK
 qK
 qK
 DM
-ug
+ay
 rH
-NH
+hT
 mN
 NH
 Rz
@@ -7696,7 +7829,7 @@ DM
 rv
 Wx
 bt
-NH
+oo
 tx
 Ey
 Zt
