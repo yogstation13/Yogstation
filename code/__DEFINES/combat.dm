@@ -254,8 +254,10 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
 #define BODY_ZONE_PRECISE_R_FOOT	"r_foot"
 
-//We will round to this value in damage calculations.
+/// We will round to this value in damage calculations.
 #define DAMAGE_PRECISION 0.1
+/// Damage transferred to the chest when hitting a limb that has reached the damage cap
+#define DAMAGE_TRANSFER_COEFFICIENT 0.33
 
 //bullet_act() return values
 /// It's a successful hit, whatever that means in the context of the thing it's hitting.
