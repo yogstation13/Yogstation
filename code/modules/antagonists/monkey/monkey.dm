@@ -72,9 +72,6 @@
 		stack_trace("Wrong team type passed to [type] initialization.")
 	monkey_team = new_team
 
-/datum/antagonist/monkey/proc/forge_objectives()
-	objectives |= monkey_team.objectives
-
 /datum/antagonist/monkey/admin_remove(mob/admin)
 	var/mob/living/carbon/human/M = owner.current
 	if(ismonkey(M))
