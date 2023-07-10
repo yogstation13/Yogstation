@@ -2513,9 +2513,6 @@
 /obj/structure/flora/junglebush/b,
 /turf/open/floor/grass,
 /area/ruin/powered/syndicate_lava_base/virology)
-"jP" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
-/area/ruin/powered/syndicate_lava_base/bar)
 "jQ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -3438,9 +3435,6 @@
 /area/ruin/powered/syndicate_lava_base/cargo)
 "mn" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/powered/syndicate_lava_base/telecomms)
-"mo" = (
-/turf/closed/wall/mineral/plastitanium/explosive,
 /area/ruin/powered/syndicate_lava_base/telecomms)
 "mq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -7762,7 +7756,7 @@ zN
 Nq
 Nq
 ed
-jP
+jy
 ZV
 ov
 jZ
@@ -8098,7 +8092,7 @@ TA
 IC
 Ib
 jo
-hO
+hz
 KZ
 kf
 hz
@@ -8157,7 +8151,7 @@ da
 hz
 ft
 hz
-hO
+hz
 hz
 no
 hz
@@ -8298,7 +8292,7 @@ ab
 ab
 ab
 ab
-aL
+ae
 kw
 ae
 mJ
@@ -8486,7 +8480,7 @@ ju
 ju
 ie
 mn
-mo
+mn
 mn
 Hi
 mn
@@ -8877,7 +8871,7 @@ hA
 hl
 hU
 mH
-mo
+vl
 iJ
 qB
 kY
