@@ -48,10 +48,9 @@
 		/datum/reagent/consumable/superlaughter\
 	)
 #define BASE_SYNDICATE_REAGENTS list(\
-		/datum/reagent/medicine/inacusiate,\
-		/datum/reagent/medicine/morphine,\
-		/datum/reagent/medicine/potass_iodide,\
 		/datum/reagent/medicine/syndicate_nanites\
+		/datum/reagent/medicine/potass_iodide,\
+		/datum/reagent/medicine/morphine\
 	)
 
 #define BASE_SERVICE_REAGENTS list(/datum/reagent/consumable/applejuice, /datum/reagent/consumable/banana, /datum/reagent/consumable/coffee,\
