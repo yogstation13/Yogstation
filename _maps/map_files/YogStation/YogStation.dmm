@@ -23398,13 +23398,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"fwc" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/structure/rack,
-/turf/open/floor/plating,
-/area/security/prison)
 "fwi" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -45227,6 +45220,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"nSK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/security/prison)
 "nSQ" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
@@ -95057,7 +95059,7 @@ acd
 xGC
 rIv
 lao
-fwc
+nSK
 acd
 xPE
 xFt
