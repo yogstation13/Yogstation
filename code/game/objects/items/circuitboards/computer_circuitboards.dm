@@ -386,9 +386,13 @@
 	build_path = /obj/machinery/computer/robotics
 
 /obj/item/circuitboard/computer/xenobiology
-	name = "circuit board (Xenobiology Console)"
+	name = "Xenobiology Console (Computer Board)"
 	icon_state = "science"
 	build_path = /obj/machinery/computer/camera_advanced/xenobio
+
+/obj/item/circuitboard/computer/xenobiology/syndicateicemoon
+	name = "Syndicate Xenobiology Console (Computer Board)"
+	build_path = /obj/machinery/computer/camera_advanced/xenobio/syndicateicemoon
 	
 /obj/item/circuitboard/computer/shuttle/flight_control
 	name = "Shuttle Flight Control (Computer Board)"

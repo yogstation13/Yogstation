@@ -54,3 +54,4 @@
 
 /area/ruin/syndicate_icemoon/xenobio
 	name = "Syndicate Research Outpost Xenobiology"
+	xenobiology_compatible = TRUE
