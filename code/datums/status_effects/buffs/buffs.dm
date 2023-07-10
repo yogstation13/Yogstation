@@ -400,6 +400,8 @@
 	. = ..()
 
 /datum/status_effect/hippocratic_oath/on_apply()
+	if(is_mining_level(owner?.z))
+		to_chat(owner, span_info("The snake holds a terrible look towards the landscape. You feel unbound by the restraints of pacifism!"))
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	H.show_to(owner)
 	return ..()
