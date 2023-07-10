@@ -2135,13 +2135,13 @@
 	return ..()
 
 /datum/reagent/pax/peaceborg
-	name = "synth-pax"
+	name = "Synth-Pax"
 	description = "A colorless liquid that suppresses violence on the subjects. Cheaper to synthetize, but wears out faster than normal Pax."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/peaceborg/confuse
 	name = "Dizzying Solution"
-	description = "Makes the target off balance and dizzy"
+	description = "Makes the target off balance and dizzy."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "dizziness"
 

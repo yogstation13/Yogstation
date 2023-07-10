@@ -292,7 +292,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/borghypo,
+		/obj/item/reagent_containers/borghypo/medical,
 		/obj/item/reagent_containers/glass/beaker/large,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/syringe,
@@ -311,7 +311,7 @@
 		/obj/item/organ_storage,
 		/obj/item/borg/lollipop)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
-	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
+	emag_modules = list(/obj/item/reagent_containers/borghypo/medical/hacked)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/medical,
 		/obj/item/clockwork/weapon/ratvarian_spear)
