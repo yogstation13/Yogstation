@@ -48,7 +48,7 @@
 		/datum/reagent/consumable/superlaughter\
 	)
 #define BASE_SYNDICATE_REAGENTS list(\
-		/datum/reagent/medicine/syndicate_nanites\
+		/datum/reagent/medicine/syndicate_nanites,\
 		/datum/reagent/medicine/potass_iodide,\
 		/datum/reagent/medicine/morphine\
 	)
