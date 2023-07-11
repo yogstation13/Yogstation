@@ -7719,11 +7719,6 @@
 /obj/structure/chair/office/dark,
 /turf/open/floor/wood,
 /area/vacant_room)
-"bcX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/processor,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "bcZ" = (
 /obj/machinery/vending/cola/random,
 /turf/open/floor/wood,
@@ -16549,36 +16544,6 @@
 "cUT" = (
 /turf/open/indestructible/sound/pool/end,
 /area/crew_quarters/fitness)
-"cVh" = (
-/obj/structure/window,
-/obj/structure/closet/crate,
-/obj/item/reagent_containers/glass/bowl,
-/obj/item/reagent_containers/glass/bowl,
-/obj/item/reagent_containers/glass/bowl,
-/obj/item/reagent_containers/glass/bowl,
-/obj/item/reagent_containers/glass/bowl,
-/obj/item/reagent_containers/glass/bowl,
-/obj/item/reagent_containers/glass/bowl,
-/obj/item/reagent_containers/glass/bowl,
-/obj/item/storage/box/drinkingglasses,
-/obj/item/storage/box/drinkingglasses,
-/obj/item/reagent_containers/food/condiment/peppermill{
-	desc = "Often used to flavor food or make people sneeze. Fashionably moved to the left side of the table.";
-	pixel_x = -8;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	layer = 3.1;
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	pixel_x = 9;
-	pixel_y = 3
-	},
-/obj/item/book/manual/chef_recipes,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "cVx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -32115,16 +32080,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
-"iKh" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/old,
-/obj/structure/closet/crate,
-/obj/item/storage/box/ingredients/sweets,
-/obj/item/storage/box/ingredients/vegetarian,
-/obj/item/storage/box/ingredients/vegetarian,
-/obj/item/storage/box/ingredients/carnivore,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "iKk" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -33176,12 +33131,6 @@
 "jdO" = (
 /turf/closed/wall,
 /area/medical/storage)
-"jdX" = (
-/obj/structure/window,
-/obj/structure/table,
-/obj/machinery/microwave,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "jec" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8;
@@ -35880,10 +35829,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"kld" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "klD" = (
 /obj/structure/sign/departments/minsky/medical/chemistry/chemical2,
 /turf/closed/wall,
@@ -45790,6 +45735,44 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"ofi" = (
+/obj/structure/window,
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/storage/box/drinkingglasses,
+/obj/item/storage/box/drinkingglasses,
+/obj/item/reagent_containers/food/condiment/peppermill{
+	desc = "Often used to flavor food or make people sneeze. Fashionably moved to the left side of the table.";
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	layer = 3.1;
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = 9;
+	pixel_y = 3
+	},
+/obj/item/book/manual/chef_recipes,
+/obj/item/kitchen/rollingpin,
+/obj/item/kitchen/knife{
+	bare_wound_bonus = 0;
+	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come - unfortunately, those years have already come and gone.";
+	force = 2;
+	name = "blunt kitchen knife";
+	wound_bonus = 0
+	},
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "ofy" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -49919,6 +49902,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"pEO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/closet/crate,
+/obj/item/storage/box/ingredients/sweets,
+/obj/item/storage/box/ingredients/vegetarian,
+/obj/item/storage/box/ingredients/vegetarian,
+/obj/item/storage/box/ingredients/carnivore,
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "pFb" = (
 /obj/machinery/light{
 	dir = 4
@@ -51005,6 +50998,12 @@
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"qdi" = (
+/obj/structure/window,
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "qdv" = (
 /turf/open/floor/carpet,
 /area/crew_quarters/fitness)
@@ -60778,16 +60777,6 @@
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/plasteel,
 /area/security/courtroom)
-"tSc" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/obj/structure/closet/secure_closet/freezer/kitchen/maintenance{
-	name = "refrigerator"
-	},
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "tSu" = (
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plating,
@@ -62455,6 +62444,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
+"uBq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/processor,
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "uBw" = (
 /obj/machinery/door/window/eastright{
 	dir = 8;
@@ -65066,6 +65060,16 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/tcommsat/server)
+"vAT" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/obj/structure/closet/secure_closet/freezer/kitchen/maintenance{
+	name = "refrigerator"
+	},
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "vBj" = (
 /obj/machinery/camera{
 	c_tag = "Engineering Access"
@@ -66022,6 +66026,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"vTm" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "vTB" = (
 /obj/machinery/shower{
 	dir = 4
@@ -100460,9 +100468,9 @@ aaa
 aiT
 xer
 vWn
-bcX
-iKh
-cVh
+uBq
+pEO
+ofi
 aat
 mbY
 mbY
@@ -100974,9 +100982,9 @@ aaa
 aiT
 elb
 vWn
-kld
-tSc
-jdX
+vTm
+vAT
+qdi
 fBv
 uyC
 iyT
