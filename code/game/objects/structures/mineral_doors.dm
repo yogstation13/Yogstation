@@ -95,7 +95,7 @@
 	door_opened = TRUE
 	layer = OPEN_DOOR_LAYER
 	air_update_turf(1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	isSwitchingStates = FALSE
 
 	if(close_delay != -1)
@@ -116,10 +116,11 @@
 	door_opened = FALSE
 	layer = initial(layer)
 	air_update_turf(1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	isSwitchingStates = FALSE
 
-/obj/structure/mineral_door/update_icon()
+/obj/structure/mineral_door/update_icon(updates=ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)][door_opened ? "open":""]"
 
 /obj/structure/mineral_door/attackby(obj/item/I, mob/user)

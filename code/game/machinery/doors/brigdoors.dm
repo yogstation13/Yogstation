@@ -102,7 +102,7 @@
 
 	if(!targets.len)
 		obj_break()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/door_timer/attackby(obj/item/W, mob/user, params)
 	var/obj/item/card/id/card = W.GetID()
@@ -122,7 +122,7 @@
 	if(timing)
 		if(world.time - activation_time >= timer_duration)
 			timer_end() // open doors, reset timer, clear status screen
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 // open/closedoor checks if door_timer has power, if so it checks if the
 // linked door is open/closed (by density) then opens it/closes it.
@@ -144,7 +144,7 @@
 		if(C.opened && !C.close())
 			continue
 		C.locked = TRUE
-		C.update_icon()
+		C.update_appearance(UPDATE_ICON)
 
 	if(desired_crime)
 		var/datum/data/record/R = find_record("name", desired_name, GLOB.data_core.security)
@@ -172,7 +172,7 @@
 	timing = FALSE
 	activation_time = null
 	set_timer(0)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	var/datum/data/record/R = find_record("name", desired_name, GLOB.data_core.security)
 	if(R)
 		R.fields["criminal"] = WANTED_DISCHARGED
@@ -190,7 +190,7 @@
 		if(C.opened)
 			continue
 		C.locked = FALSE
-		C.update_icon()
+		C.update_appearance(UPDATE_ICON)
 
 	desired_crime = null
 	desired_name = null
@@ -314,7 +314,8 @@
 // if NOPOWER, display blank
 // if BROKEN, display blue screen of death icon AI uses
 // if timing=true, run update display function
-/obj/machinery/door_timer/update_icon()
+/obj/machinery/door_timer/update_icon(updates=ALL)
+	. = ..()
 	if(stat & (NOPOWER))
 		icon_state = "frame"
 		return

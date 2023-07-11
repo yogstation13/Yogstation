@@ -30,14 +30,14 @@
 /obj/item/defibrillator/Initialize(mapload) //starts without a cell for rnd
 	. = ..()
 	paddles = make_paddles()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return
 
 /obj/item/defibrillator/loaded/Initialize(mapload) //starts with hicap
 	. = ..()
 	paddles = make_paddles()
 	cell = new(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return
 
 /obj/item/defibrillator/fire_act(exposed_temperature, exposed_volume)
@@ -50,7 +50,8 @@
 	if(paddles?.loc == src)
 		paddles.extinguish()
 
-/obj/item/defibrillator/update_icon()
+/obj/item/defibrillator/update_icon(updates=ALL)
+	. = ..()
 	update_power()
 	update_overlays()
 	update_charge()
@@ -65,6 +66,7 @@
 		powered = FALSE
 
 /obj/item/defibrillator/proc/update_overlays()
+	. = ..()
 	cut_overlays()
 	if(!on)
 		add_overlay("[initial(icon_state)]-paddles")
@@ -85,7 +87,7 @@
 /obj/item/defibrillator/CheckParts(list/parts_list)
 	..()
 	cell = locate(/obj/item/stock_parts/cell) in contents
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/defibrillator/ui_action_click()
 	toggle_paddles()
@@ -133,15 +135,15 @@
 				return
 			cell = W
 			to_chat(user, span_notice("You install a cell in [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(cell)
-			cell.update_icon()
+			cell.update_appearance(UPDATE_ICON)
 			cell.forceMove(get_turf(src))
 			cell = null
 			to_chat(user, span_notice("You remove the cell from [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else
 		return ..()
 
@@ -169,7 +171,7 @@
 	else
 		visible_message(span_notice("[src] buzzes: Surge detected!"))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/defibrillator/proc/toggle_paddles()
 	set name = "Toggle Paddles"
@@ -182,14 +184,14 @@
 		if(!usr.put_in_hands(paddles))
 			on = FALSE
 			to_chat(user, span_warning("You need a free hand to hold the paddles!"))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 	else
 		//Remove from their hands and back onto the defib unit
 		paddles.unwield()
 		remove_paddles(user)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
@@ -201,7 +203,7 @@
 	..()
 	if((slot_flags == ITEM_SLOT_BACK && slot != ITEM_SLOT_BACK) || (slot_flags == ITEM_SLOT_BELT && slot != ITEM_SLOT_BELT))
 		remove_paddles(user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/defibrillator/item_action_slot_check(slot, mob/user)
 	if(slot == user.getBackSlot())
@@ -219,18 +221,18 @@
 		remove_paddles(M)
 	QDEL_NULL(paddles)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/defibrillator/proc/deductcharge(chrgdeductamt)
 	if(cell)
 		if(cell.charge < (paddles.revivecost+chrgdeductamt))
 			powered = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		if(cell.use(chrgdeductamt))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return TRUE
 		else
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return FALSE
 
 /obj/item/defibrillator/proc/cooldowncheck(mob/user)
@@ -243,8 +245,8 @@
 				user.visible_message(span_notice("[src] beeps: Charge depleted."))
 				playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		paddles.cooldown = FALSE
-		paddles.update_icon()
-		update_icon()
+		paddles.update_appearance(UPDATE_ICON)
+		update_appearance(UPDATE_ICON)
 
 /obj/item/defibrillator/compact
 	name = "compact defibrillator"
@@ -263,7 +265,7 @@
 	. = ..()
 	paddles = make_paddles()
 	cell = new(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/defibrillator/compact/combat
 	name = "combat defibrillator"
@@ -275,13 +277,13 @@
 	. = ..()
 	paddles = make_paddles()
 	cell = new /obj/item/stock_parts/cell/infinite(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/defibrillator/compact/combat/loaded/attackby(obj/item/W, mob/user, params)
 	if(W == paddles)
 		paddles.unwield()
 		toggle_paddles()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 //paddles
@@ -346,13 +348,13 @@
 	if(req_defib || !time)
 		return
 	cooldown = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	sleep(time)
 	var/turf/T = get_turf(src)
 	T.audible_message(span_notice("[src] beeps: Unit is recharged."))
 	playsound(src, 'sound/machines/defib_ready.ogg', 50, 0)
 	cooldown = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/twohanded/shockpaddles/New(mainunit)
 	..()
@@ -360,9 +362,10 @@
 		defib = mainunit
 		forceMove(defib)
 		busy = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/item/twohanded/shockpaddles/update_icon()
+/obj/item/twohanded/shockpaddles/update_icon(updates=ALL)
+	. = ..()
 	icon_state = "defibpaddles[wielded]"
 	item_state = "defibpaddles[wielded]"
 	if(cooldown)
@@ -397,7 +400,7 @@
 		return
 	defib.on = FALSE
 	forceMove(defib)
-	defib.update_icon()
+	defib.update_appearance(UPDATE_ICON)
 
 /obj/item/twohanded/shockpaddles/proc/check_defib_exists(mainunit, mob/living/carbon/M, obj/O)
 	if(!req_defib)
@@ -491,7 +494,7 @@
 		defib.deductcharge(revivecost)
 		cooldown = TRUE
 	busy = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(req_defib)
 		defib.cooldowncheck(user)
 	else
@@ -505,7 +508,7 @@
 	user.visible_message(span_warning("[user] begins to place [src] on [H]'s chest."),
 		span_warning("You overcharge the paddles and begin to place them onto [H]'s chest..."))
 	busy = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(do_after(user, 3 SECONDS, H))
 		user.visible_message(span_notice("[user] places [src] on [H]'s chest."),
 			span_warning("You place [src] on [H]'s chest and begin to charge them."))
@@ -518,13 +521,13 @@
 		if(do_after(user, 3 SECONDS, H)) //Takes longer due to overcharging
 			if(!H)
 				busy = FALSE
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				return
 			if(H && H.stat == DEAD)
 				to_chat(user, span_warning("[H] is dead."))
 				playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 				busy = FALSE
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				return
 			user.visible_message(span_boldannounce("<i>[user] shocks [H] with \the [src]!"), span_warning("You shock [H] with \the [src]!"))
 			playsound(src, 'sound/machines/defib_zap.ogg', 100, 1, -1)
@@ -544,18 +547,18 @@
 				defib.deductcharge(revivecost)
 				cooldown = TRUE
 			busy = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			if(!req_defib)
 				recharge(6 SECONDS)
 			if(req_defib && (defib.cooldowncheck(user)))
 				return
 	busy = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/twohanded/shockpaddles/proc/do_help(mob/living/carbon/H, mob/living/user)
 	user.visible_message(span_warning("[user] begins to place [src] on [H]'s chest."), span_warning("You begin to place [src] on [H]'s chest..."))
 	busy = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(do_after(user, 3 SECONDS, H)) //beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process
 		user.visible_message(span_notice("[user] places [src] on [H]'s chest."), span_warning("You place [src] on [H]'s chest."))
 		playsound(src, 'sound/machines/defib_charge.ogg', 75, 0)
@@ -573,7 +576,7 @@
 						user.audible_message(span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Patient's chest is obscured. Operation aborted."))
 						playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 						busy = FALSE
-						update_icon()
+						update_appearance(UPDATE_ICON)
 						return
 			if(H.stat == DEAD)
 				H.visible_message(span_warning("[H]'s body convulses a bit."))
@@ -640,7 +643,7 @@
 				if(req_defib)
 					defib.deductcharge(revivecost)
 					cooldown = 1
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				if(req_defib)
 					defib.cooldowncheck(user)
 				else
@@ -660,7 +663,7 @@
 				user.visible_message(span_warning("[req_defib ? "[defib]" : "[src]"] buzzes: Patient is not in a valid state. Operation aborted."))
 				playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 	busy = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/twohanded/shockpaddles/cyborg
 	name = "cyborg defibrillator paddles"

@@ -498,7 +498,8 @@
 	density = FALSE
 	clockwork = TRUE //it'd look weird
 
-/obj/machinery/computer/shuttle/pod/update_icon()
+/obj/machinery/computer/shuttle/pod/update_icon(updates=ALL)
+	. = ..()
 	return
 
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user)

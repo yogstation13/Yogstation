@@ -399,7 +399,7 @@ obj/machinery/holopad/secure/Initialize(mapload)
 				playsound(src, 'sound/machines/twobeep.ogg', 100)	//bring, bring!
 				ringing = TRUE
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/holopad/proc/activate_holo(mob/living/user)
 	var/mob/living/silicon/ai/AI = user
@@ -467,9 +467,10 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		set_light_on(TRUE)
 	else
 		set_light_on(FALSE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/holopad/update_icon()
+/obj/machinery/holopad/update_icon(updates=ALL)
+	. = ..()
 	var/total_users = LAZYLEN(masters) + LAZYLEN(holo_calls)
 	if(ringing)
 		icon_state = "holopad_ringing"

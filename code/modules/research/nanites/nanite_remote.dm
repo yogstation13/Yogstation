@@ -33,7 +33,7 @@
 		if(allowed(user))
 			to_chat(user, span_notice("You unlock [src]."))
 			locked = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("Access denied."))
 
@@ -44,9 +44,10 @@
 	obj_flags |= EMAGGED
 	if(locked)
 		locked = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/item/nanite_remote/update_icon()
+/obj/item/nanite_remote/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 	cut_overlays()
 	if(obj_flags & EMAGGED)
@@ -166,7 +167,7 @@
 		if("lock")
 			if(!(obj_flags & EMAGGED))
 				locked = TRUE
-				update_icon()
+				update_appearance(UPDATE_ICON)
 			. = TRUE
 
 

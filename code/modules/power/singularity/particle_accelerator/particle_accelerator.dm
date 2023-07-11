@@ -106,7 +106,7 @@
 				construction_state = PA_CONSTRUCTION_PANEL_OPEN
 
 	update_state()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/structure/particle_accelerator/deconstruct(disassembled = TRUE)
@@ -121,7 +121,8 @@
 		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
 
 
-/obj/structure/particle_accelerator/update_icon()
+/obj/structure/particle_accelerator/update_icon(updates=ALL)
+	. = ..()
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED,PA_CONSTRUCTION_UNWIRED)
 			icon_state="[reference]"

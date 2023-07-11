@@ -236,7 +236,7 @@
 	timing = !timing
 	if(timing)
 		valve_timer = world.time + (timer_set * 10)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/portable_atmospherics/canister/proto
 	name = "prototype canister"
@@ -274,7 +274,7 @@
 
 /obj/machinery/portable_atmospherics/canister/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/portable_atmospherics/canister/Destroy()
 	qdel(pump)
@@ -308,7 +308,8 @@
 #define CANISTER_LIGHT_RANGE 0.4
 #define CANISTER_LIGHT_POWER 0.5
 
-/obj/machinery/portable_atmospherics/canister/update_icon()
+/obj/machinery/portable_atmospherics/canister/update_icon(updates=ALL)
+	. = ..()
 	if(stat & BROKEN)
 		cut_overlays()
 		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
@@ -476,7 +477,7 @@
 	if(.)
 		if(close_valve)
 			valve_open = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			investigate_log("Valve was <b>closed</b> by [key_name(user)].<br>", INVESTIGATE_ATMOS)
 		else if(valve_open && holding)
 			investigate_log("[key_name(user)] started a transfer into [holding].<br>", INVESTIGATE_ATMOS)
@@ -501,7 +502,7 @@
 		pump.airs[1] = null
 		pump.airs[2] = null
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/portable_atmospherics/canister/ui_state(mob/user)
 	return GLOB.physical_state
@@ -647,7 +648,7 @@
 					investigate_log("[key_name(usr)] removed the [holding], leaving the valve open and transferring into the [span_boldannounce("air")].", INVESTIGATE_ATMOS)
 				replace_tank(usr, FALSE)
 				. = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/portable_atmospherics/canister/examine(mob/dead/observer/user)
 	if(istype(user))

@@ -121,7 +121,7 @@
 		pin = null
 	if(A == chambered)
 		chambered = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	if(A == bayonet)
 		clear_bayonet()
 	if(A == gun_light)
@@ -206,7 +206,7 @@
 			w_class -= suppressed.w_class
 			qdel(suppressed)
 			suppressed = null
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else
 		if(enloudened && enloudened.enloudened_sound)
 			playsound(user, enloudened.enloudened_sound, fire_sound_volume, vary_fire_sound)
@@ -355,7 +355,7 @@
 		firing_burst = FALSE
 		return FALSE
 	process_chamber()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /// cd_override is FALSE or 0 by default (no override), if you want to make a gun have no click cooldown then just make it something small like 0.001
@@ -409,7 +409,7 @@
 			shoot_with_empty_chamber(user)
 			return
 		process_chamber()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		semicd = TRUE
 		addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
 
@@ -419,7 +419,8 @@
 	recent_shoot = world.time
 	return TRUE
 
-/obj/item/gun/update_icon()
+/obj/item/gun/update_icon(updates=ALL)
+	. = ..()
 	..()
 
 
@@ -629,7 +630,7 @@
 	else
 		cut_overlay(flashlight_overlay, TRUE)
 		flashlight_overlay = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()

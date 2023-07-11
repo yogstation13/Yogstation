@@ -19,9 +19,10 @@
 	. = ..()
 	if(prob(50))
 		desc = "Oh no, not again."
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/power/emitter/energycannon/magical/update_icon()
+/obj/machinery/power/emitter/energycannon/magical/update_icon(updates=ALL)
+	. = ..()
 	if(active)
 		icon_state = icon_state_on
 	else
@@ -39,7 +40,7 @@
 			visible_message("<span class='revenboldnotice'>\
 				[src] closes its eyes.</span>")
 		active = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/emitter/energycannon/magical/attackby(obj/item/W, mob/user, params)
 	return

@@ -260,7 +260,8 @@
 	clockwork = TRUE //it'd look very weird
 	light_power = 0
 
-/obj/machinery/computer/security/telescreen/update_icon()
+/obj/machinery/computer/security/telescreen/update_icon(updates=ALL)
+	. = ..()
 	icon_state = initial(icon_state)
 	if(stat & BROKEN)
 		icon_state += "b"

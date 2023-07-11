@@ -31,7 +31,8 @@ GLOBAL_LIST_EMPTY(request_list)
 	GLOB.allbountyboards -= src
 	. = ..()
 
-/obj/machinery/bounty_board/update_icon()
+/obj/machinery/bounty_board/update_icon(updates=ALL)
+	. = ..()
 	..()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "request_kiosk_off"

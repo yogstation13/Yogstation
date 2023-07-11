@@ -71,9 +71,10 @@
 		var/stamp_count = rand(1, stamp_max)
 		for(var/i in 1 to stamp_count)
 			stamps += list("stamp_[rand(2, 6)]")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/mail/update_icon()
+/obj/item/mail/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 	var/bonus_stamp_offset = 0
 	for(var/stamp in stamps)
@@ -217,7 +218,8 @@
 	desc = "A certified post crate from CentCom."
 	icon_state = "mail"
 
-/obj/structure/closet/crate/mail/update_icon()
+/obj/structure/closet/crate/mail/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 	if(opened)
 		icon_state = "[initial(icon_state)]open"
@@ -255,7 +257,7 @@
 		else if(prob(MAIL_JUNK_CHANCE))
 			new_mail.junk_mail()
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	return mail_count
 

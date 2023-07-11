@@ -34,12 +34,12 @@
 	update_surrounding()
 
 /obj/structure/stairs/proc/update_surrounding()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	for(var/i in GLOB.cardinals)
 		var/turf/T = get_step(get_turf(src), i)
 		var/obj/structure/stairs/S = locate() in T
 		if(S)
-			S.update_icon()
+			S.update_appearance(UPDATE_ICON)
 
 /obj/structure/stairs/Uncross(atom/movable/AM, atom/newloc)
 	if(!newloc || !AM)
@@ -54,7 +54,8 @@
 		return FALSE
 	return ..()
 
-/obj/structure/stairs/update_icon()
+/obj/structure/stairs/update_icon(updates=ALL)
+	. = ..()
 	if(isTerminator())
 		icon_state = "stairs_t"
 	else

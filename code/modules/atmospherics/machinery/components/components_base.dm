@@ -24,7 +24,8 @@
 /obj/machinery/atmospherics/components/proc/update_icon_nopipes()
 	return
 
-/obj/machinery/atmospherics/components/update_icon()
+/obj/machinery/atmospherics/components/update_icon(updates=ALL)
+	. = ..()
 	update_icon_nopipes()
 
 	underlays.Cut()

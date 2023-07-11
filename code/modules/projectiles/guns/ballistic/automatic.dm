@@ -27,7 +27,8 @@
 /obj/item/gun/ballistic/automatic/proto/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/automatic/update_icon()
+/obj/item/gun/ballistic/automatic/update_icon(updates=ALL)
+	. = ..()
 	..()
 	if(!select)
 		add_overlay("[initial(icon_state)]_semi")
@@ -56,7 +57,7 @@
 		to_chat(user, span_notice("You switch to [burst_size]-rnd burst."))
 
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.build_all_button_icons()
@@ -82,7 +83,7 @@
 
 /obj/item/gun/ballistic/automatic/c20r/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/automatic/wt550
 	name = "\improper security auto carbine"
@@ -133,7 +134,7 @@
 /obj/item/gun/ballistic/automatic/m90/Initialize(mapload)
 	. = ..()
 	underbarrel = new /obj/item/gun/ballistic/revolver/grenadelauncher(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/automatic/m90/unrestricted
 	pin = /obj/item/firing_pin
@@ -141,7 +142,7 @@
 /obj/item/gun/ballistic/automatic/m90/unrestricted/Initialize(mapload)
 	. = ..()
 	underbarrel = new /obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/automatic/m90/afterattack(atom/target, mob/living/user, flag, params)
 	if(select == 2)
@@ -157,7 +158,8 @@
 	else
 		..()
 
-/obj/item/gun/ballistic/automatic/m90/update_icon()
+/obj/item/gun/ballistic/automatic/m90/update_icon(updates=ALL)
+	. = ..()
 	..()
 	switch(select)
 		if(0)
@@ -188,7 +190,7 @@
 			spread -= spread_difference
 			to_chat(user, span_notice("You switch to semi-auto."))
 	playsound(user, 'sound/weapons/empty.ogg', 100, 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return
 
 /obj/item/gun/ballistic/automatic/tommygun
@@ -262,10 +264,11 @@
 		playsound(user, 'sound/weapons/sawopen.ogg', 60, 1)
 	else
 		playsound(user, 'sound/weapons/sawopen.ogg', 60, 1)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
-/obj/item/gun/ballistic/automatic/l6_saw/update_icon()
+/obj/item/gun/ballistic/automatic/l6_saw/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 	add_overlay("l6_door_[cover_open ? "open" : "closed"]")
 
@@ -276,7 +279,7 @@
 		return
 	else
 		. = ..()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/gun/ballistic/automatic/l6_saw/attack_hand(mob/user)

@@ -34,7 +34,7 @@
 	panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
 	paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
 	paneloverlay.color = panelcolor
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/solar/Destroy()
 	unset_control() //remove from control computer
@@ -113,7 +113,8 @@
 			new /obj/item/shard(src.loc)
 	qdel(src)
 
-/obj/machinery/power/solar/update_icon()
+/obj/machinery/power/solar/update_icon(updates=ALL)
+	. = ..()
 	..()
 	cut_overlays()
 	var/matrix/turner = matrix()
@@ -134,7 +135,7 @@
 	if(azimuth_current != azimuth_target)
 		azimuth_current = azimuth_target
 		occlusion_setup()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		needs_to_update_solar_exposure = TRUE
 
 ///trace towards sun to see if we're in shadow
@@ -349,7 +350,7 @@
 		if(connected_tracker && length(connected_panels))
 			track = SOLAR_TRACK_AUTO
 			connected_tracker.sun_update(SSsun, SSsun.azimuth)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/solar_control/Destroy()
 	for(var/obj/machinery/power/solar/M in connected_panels)
@@ -372,7 +373,8 @@
 					if(!T.control) //i.e unconnected
 						T.set_control(src)
 
-/obj/machinery/power/solar_control/update_icon()
+/obj/machinery/power/solar_control/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(stat & NOPOWER)
 		add_overlay("[icon_keyboard]_off")

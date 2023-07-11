@@ -91,7 +91,8 @@
 	treatment_tox_avoid = null
 	treatment_tox = /datum/reagent/toxin/sodium_thiopental
 
-/mob/living/simple_animal/bot/medbot/update_icon()
+/mob/living/simple_animal/bot/medbot/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(skin)
 		add_overlay("medskin_[skin]")
@@ -116,11 +117,11 @@
 	prev_access = access_card.access
 	qdel(J)
 	skin = new_skin
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/update_mobility()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/bot_reset()
 	..()
@@ -129,14 +130,14 @@
 	oldloc = null
 	last_found = world.time
 	declare_cooldown = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/proc/soft_reset() //Allows the medibot to still actively perform its medical duties without being completely halted as a hard reset does.
 	path = list()
 	patient = null
 	mode = BOT_IDLE
 	last_found = world.time
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/medbot/set_custom_texts()
 
@@ -222,7 +223,7 @@
 	else if(href_list["stationary"])
 		stationary_mode = !stationary_mode
 		path = list()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(href_list["virus"])
 		treat_virus = !treat_virus
@@ -413,7 +414,7 @@
 	if(patient && (get_dist(src,patient) <= 1)) //Patient is next to us, begin treatment!
 		if(mode != BOT_HEALING)
 			mode = BOT_HEALING
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			frustration = 0
 			medicate_patient(patient)
 		return
@@ -554,9 +555,9 @@
 		var/mob/living/carbon/C = A
 		patient = C
 		mode = BOT_HEALING
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		medicate_patient(C)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		..()
 
@@ -664,7 +665,7 @@
 
 		if(failed)
 			visible_message("[src] retracts its syringe.")
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		soft_reset()
 		return
 

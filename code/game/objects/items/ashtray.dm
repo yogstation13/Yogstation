@@ -5,7 +5,8 @@
 	icon_state = "ashtray"
 	var/max_butts = 10
 
-/obj/item/ashtray/update_icon()
+/obj/item/ashtray/update_icon(updates=ALL)
+	. = ..()
 	..()
 	overlays.Cut()
 	if(contents.len == max_butts)
@@ -32,7 +33,7 @@
 
 		if(user.transferItemToLoc(W, src))
 			visible_message(span_notice("[user] places [W] in [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		return
 
 	..()
@@ -42,5 +43,5 @@
 		visible_message(span_danger("\The [src] slams into [hit_atom], spilling its contents!"))
 		for(var/obj/O in contents)
 			O.forceMove(drop_location())
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return ..()

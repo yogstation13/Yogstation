@@ -15,7 +15,8 @@
 	var/imp_type = null
 
 
-/obj/item/implanter/update_icon()
+/obj/item/implanter/update_icon(updates=ALL)
+	. = ..()
 	if(imp)
 		icon_state = "implanter1"
 	else
@@ -38,7 +39,7 @@
 					else
 						M.visible_message("[user] has implanted [M].", span_notice("[user] implants you."))
 					imp = null
-					update_icon()
+					update_appearance(UPDATE_ICON)
 				else
 					to_chat(user, span_warning("[src] fails to implant [M]."))
 
@@ -63,4 +64,4 @@
 	. = ..()
 	if(imp_type)
 		imp = new imp_type(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)

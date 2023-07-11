@@ -46,10 +46,11 @@
 // update the invisibility and icon
 /obj/machinery/magnetic_module/hide(intact)
 	invisibility = intact ? INVISIBILITY_MAXIMUM : 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 // update the icon_state
-/obj/machinery/magnetic_module/update_icon()
+/obj/machinery/magnetic_module/update_icon(updates=ALL)
+	. = ..()
 	var/state="floor_magnet"
 	var/onstate=""
 	if(!on)
@@ -161,7 +162,7 @@
 	else
 		use_power = NO_POWER_USE
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/machinery/magnetic_module/proc/magnetic_process() // proc that actually does the magneting

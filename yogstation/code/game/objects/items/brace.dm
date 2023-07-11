@@ -23,7 +23,8 @@
 	var/obj/machinery/door/airlock/placed_on
 	var/cover_open = FALSE
 
-/obj/structure/deployed_brace/update_icon()
+/obj/structure/deployed_brace/update_icon(updates=ALL)
+	. = ..()
 	..()
 	cut_overlays()
 	if(cover_open)
@@ -53,7 +54,7 @@
 	cover_open = !cover_open
 	tool.play_tool_sound(src)
 	to_chat(user, span_notice("You [cover_open ? "open" : "close"] the cover."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/deployed_brace/wrench_act(mob/user, obj/item/tool)
 	if(get_dist(user, placed_on) > 1)

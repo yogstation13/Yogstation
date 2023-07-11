@@ -91,7 +91,7 @@
 	addtimer(CALLBACK(src, PROC_REF(harvest)), interval)
 
 /obj/machinery/harvester/proc/harvest()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(!harvesting || state_open || !powered(AREA_USAGE_EQUIP) || !occupant || !iscarbon(occupant))
 		return
 	playsound(src, 'sound/machines/juicer.ogg', 20, 1)

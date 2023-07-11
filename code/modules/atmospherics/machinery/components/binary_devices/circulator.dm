@@ -36,7 +36,7 @@
 /obj/machinery/atmospherics/components/binary/circulator/Initialize(mapload)
 	. = ..()
 	component_parts = list(new /obj/item/circuitboard/machine/circulator)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
 
 /obj/machinery/atmospherics/components/binary/circulator/Destroy()
@@ -79,7 +79,8 @@
 	..()
 	update_icon_nopipes()
 
-/obj/machinery/atmospherics/components/binary/circulator/update_icon()
+/obj/machinery/atmospherics/components/binary/circulator/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 
 	if(anchored)
@@ -185,7 +186,7 @@
 			node2.addMember(src)
 		SSair.add_to_rebuild_queue(src)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	return TRUE
 
@@ -254,7 +255,7 @@
 		generator.cold_circ = null
 	else
 		generator.hot_circ = null
-	generator.update_icon()
+	generator.update_appearance(UPDATE_ICON)
 	generator = null
 
 /obj/machinery/atmospherics/components/binary/circulator/setPipingLayer(new_layer)
@@ -278,5 +279,5 @@
 /obj/machinery/atmospherics/components/binary/circulator/obj_break(damage_flag)
 	if(generator)
 		generator.kill_circs()
-		generator.update_icon()
+		generator.update_appearance(UPDATE_ICON)
 	..()

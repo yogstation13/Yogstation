@@ -313,7 +313,8 @@
 
 // ---------- Procs below are for tanks that are used exclusively in 1-tank bombs ----------
 
-/obj/item/tank/update_icon()
+/obj/item/tank/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(tank_assembly)
 		add_overlay(tank_assembly.icon_state)
@@ -402,7 +403,7 @@
 
 	throw_speed = max(2, throw_speed) //Make it a bit harder to throw
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	user.balloon_alert(user, "[assembly.name] attached")
 	return
 
@@ -415,7 +416,7 @@
 	bomb_status = FALSE
 	throw_speed = initial(throw_speed)
 	user.balloon_alert(user, "disassembled")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
 	var/fuel_moles = air_contents.get_moles(/datum/gas/tritium) + air_contents.get_moles(/datum/gas/hydrogen) + air_contents.get_moles(/datum/gas/plasma) + air_contents.get_moles(/datum/gas/oxygen)/6

@@ -35,7 +35,8 @@
 	/// See code/modules/projectiles/attachments/laser_sight.dm for example.
 	var/list/actions_list = list()
 
-/obj/item/attachment/update_icon()
+/obj/item/attachment/update_icon(updates=ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)][is_on ? "_on" : ""]"
 	. = ..()
 	attached_gun?.update_attachments()

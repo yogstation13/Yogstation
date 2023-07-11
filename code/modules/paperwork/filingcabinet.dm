@@ -60,7 +60,8 @@
 	icon_state = "coloredcabinet_frame"
 	name = "colored cabinet"
 
-/obj/structure/filingcabinet/colored/update_icon()
+/obj/structure/filingcabinet/colored/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	var/mutable_appearance/cab = mutable_appearance(icon, "coloredcabinet_trim")
 	cab.color = colour
@@ -68,7 +69,7 @@
 
 /obj/structure/filingcabinet/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(mapload)
 		for(var/obj/item/I in loc)
 			if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo))
@@ -185,7 +186,7 @@
 			colour = colour_choice
 			name = "colored cabinet" // Having a cabinet called 'Purple Cabinet' while it's green colored would be weird
 			playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
-			update_icon() // reset overlays
+			update_appearance(UPDATE_ICON) // reset overlays
 		return
 
 

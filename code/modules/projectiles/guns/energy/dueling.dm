@@ -173,7 +173,7 @@
 		if(DUEL_SETTING_C)
 			setting = DUEL_SETTING_A
 	to_chat(user,span_notice("You switch [src] setting to [setting] mode."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/energy/dueling/update_icon(force_update)
 	. = ..()
@@ -230,7 +230,8 @@
 	duration = 30
 	var/setting
 
-/obj/effect/temp_visual/dueling_chaff/update_icon()
+/obj/effect/temp_visual/dueling_chaff/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 	switch(setting)
 		if(DUEL_SETTING_A)
@@ -251,13 +252,13 @@
 	. = ..()
 	var/obj/item/projectile/energy/duel/D = BB
 	D.setting = setting
-	D.update_icon()
+	D.update_appearance(UPDATE_ICON)
 
 /obj/item/ammo_casing/energy/duel/fire_casing(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from)
 	. = ..()
 	var/obj/effect/temp_visual/dueling_chaff/C = new(get_turf(user))
 	C.setting = setting
-	C.update_icon()
+	C.update_appearance(UPDATE_ICON)
 
 //Projectile
 
@@ -268,7 +269,8 @@
 	homing = TRUE
 	var/setting
 
-/obj/item/projectile/energy/duel/update_icon()
+/obj/item/projectile/energy/duel/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 	switch(setting)
 		if(DUEL_SETTING_A)
@@ -323,7 +325,8 @@
 	STR.max_items = 2
 	STR.set_holdable(list(/obj/item/gun/energy/dueling))
 
-/obj/item/storage/lockbox/dueling/update_icon()
+/obj/item/storage/lockbox/dueling/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
 	if(locked)

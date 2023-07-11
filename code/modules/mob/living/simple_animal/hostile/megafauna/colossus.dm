@@ -300,7 +300,8 @@ Difficulty: Very Hard
 	var/list/stored_items = list()
 	var/list/blacklist = list()
 
-/obj/machinery/smartfridge/black_box/update_icon()
+/obj/machinery/smartfridge/black_box/update_icon(updates=ALL)
+	. = ..()
 	return
 
 /obj/machinery/smartfridge/black_box/accept_check(obj/item/O)

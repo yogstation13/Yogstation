@@ -119,7 +119,7 @@
 			var/y = text2num(params["y"])
 			grid[x][y] = color
 			used = TRUE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			. = TRUE
 		if("finalize")
 			. = TRUE
@@ -132,7 +132,8 @@
 	generate_proper_overlay()
 	try_rename(user)
 
-/obj/item/canvas/update_icon()
+/obj/item/canvas/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(!icon_generated)
 		if(used)
@@ -155,7 +156,7 @@
 		CRASH("Error generating painting png : [result]")
 	generated_icon = new(png_filename)
 	icon_generated = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/canvas/proc/get_data_string()
 	var/list/data = list()
@@ -281,7 +282,7 @@
 		C.forceMove(drop_location())
 		C = null
 		to_chat(user, span_notice("You remove the painting from the frame."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
@@ -290,13 +291,14 @@
 		if(!C.finalized)
 			C.finalize(user)
 		to_chat(user,span_notice("You frame [C]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/sign/painting/proc/try_rename(mob/user)
 	if(C.painting_name == initial(C.painting_name))
 		C.try_rename(user)
 
-/obj/structure/sign/painting/update_icon()
+/obj/structure/sign/painting/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 
 	if(C && C.generated_icon)
@@ -356,7 +358,7 @@
 	new_canvas.author_ckey = author
 	new_canvas.name = "painting - [title]"
 	C = new_canvas
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/sign/painting/proc/save_persistent()
 	if(!persistence_id || !C || C.no_save)

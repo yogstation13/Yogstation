@@ -55,7 +55,8 @@
 	playsound(loc, 'sound/items/eatfood.ogg', 50, 1, -1)
 	return (TOXLOSS)
 
-/obj/item/storage/bag/trash/update_icon()
+/obj/item/storage/bag/trash/update_icon(updates=ALL)
+	. = ..()
 	//yogs start
 	if(icon_state == "[initial(icon_state)]_broken")
 		return
@@ -75,7 +76,7 @@
 	if(insertable)
 		J.put_in_cart(src, user)
 		J.mybag=src
-		J.update_icon()
+		J.update_appearance(UPDATE_ICON)
 	else
 		to_chat(user, span_warning("You are unable to fit your [name] into the [J.name]."))
 		return
@@ -382,20 +383,21 @@
 	if(ishuman(M) || ismonkey(M))
 		if(prob(10))
 			M.Paralyze(40)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/bag/tray/update_icon()
+/obj/item/storage/bag/tray/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	for(var/obj/item/I in contents)
 		add_overlay(new /mutable_appearance(I))
 
 /obj/item/storage/bag/tray/Entered()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/bag/tray/Exited()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /*
  *	Chemistry bag

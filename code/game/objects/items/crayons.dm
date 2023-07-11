@@ -172,7 +172,7 @@
 		if(has_cap)
 			is_capped = !is_capped
 			to_chat(user, span_notice("The cap on [src] is now [is_capped ? "on" : "off"]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 /obj/item/toy/crayon/proc/staticDrawables()
 
@@ -262,7 +262,7 @@
 			. = TRUE
 			paint_mode = PAINT_NORMAL
 			drawtype = "a"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/toy/crayon/proc/crayon_text_strip(text)
 	var/static/regex/crayon_r = new /regex(@"[^\w!?,.=%#&+\/\-]")
@@ -548,9 +548,10 @@
 	new /obj/item/toy/crayon/blue(src)
 	new /obj/item/toy/crayon/purple(src)
 	new /obj/item/toy/crayon/black(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/crayons/update_icon()
+/obj/item/storage/crayons/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	for(var/obj/item/toy/crayon/crayon in contents)
 		add_overlay(mutable_appearance('icons/obj/crayons.dmi', crayon.crayon_color))
@@ -615,7 +616,7 @@
 			playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 5)
 		if(can_change_colour)
 			paint_color = "#C0C0C0"
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		if(actually_paints)
 			H.lip_style = "spray_face"
 			H.lip_color = paint_color
@@ -634,7 +635,7 @@
 		paint_color = pick("#DA0000","#FF9300","#FFF200","#A8E61D","#00B7EF",
 		"#DA00FF")
 	refill()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/toy/crayon/spraycan/examine(mob/user)
@@ -702,7 +703,8 @@
 
 	. = ..()
 
-/obj/item/toy/crayon/spraycan/update_icon()
+/obj/item/toy/crayon/spraycan/update_icon(updates=ALL)
+	. = ..()
 	icon_state = is_capped ? icon_capped : icon_uncapped
 	if(use_overlays)
 		cut_overlays()

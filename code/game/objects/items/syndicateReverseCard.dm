@@ -14,7 +14,8 @@
 	name = "[cardColor] Reverse"
 	icon_state = "sc_[cardColor] Reverse_uno"
 
-/obj/item/syndicateReverseCard/update_icon()
+/obj/item/syndicateReverseCard/update_icon(updates=ALL)
+	. = ..()
 	..()
 	if (used)
 		cut_overlays()
@@ -45,7 +46,7 @@
 	user.put_in_hands(target_gun)
 	firer.put_in_hands(src)
 	used = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/syndicateReverseCard/examine(mob/user)
 	. = ..()

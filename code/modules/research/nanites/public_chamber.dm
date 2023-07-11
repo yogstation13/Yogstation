@@ -30,7 +30,7 @@
 /obj/machinery/public_nanite_chamber/proc/set_busy(status, working_icon)
 	busy = status
 	busy_icon_state = working_icon
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/public_nanite_chamber/proc/inject_nanites(mob/living/attacker)
 	if(stat & (NOPOWER|BROKEN))
@@ -60,7 +60,8 @@
 		log_combat(attacker, occupant, "injected", null, "with nanites via [src]")
 	occupant.AddComponent(/datum/component/nanites, 75, cloud_id)
 
-/obj/machinery/public_nanite_chamber/update_icon()
+/obj/machinery/public_nanite_chamber/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 
 	if((stat & MAINT) || panel_open)
@@ -161,7 +162,7 @@
 
 /obj/machinery/public_nanite_chamber/attackby(obj/item/I, mob/user, params)
 	if(!occupant && default_deconstruction_screwdriver(user, icon_state, icon_state, I))//sent icon_state is irrelevant...
-		update_icon()//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
+		update_appearance(UPDATE_ICON)//..since we're updating the icon here, since the scanner can be unpowered when opened/closed
 		return
 
 	if(default_pry_open(I))

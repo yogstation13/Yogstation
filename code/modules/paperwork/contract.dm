@@ -10,7 +10,8 @@
 /obj/item/paper/contract/proc/update_text()
 	return
 
-/obj/item/paper/contract/update_icon()
+/obj/item/paper/contract/update_icon(updates=ALL)
+	. = ..()
 	return
 
 /obj/item/paper/contract/infernal
@@ -269,7 +270,7 @@
 				var/obj/item/storage/wallet/W = worn
 				W.front_id = id
 				id.forceMove(worn)
-				worn.update_icon()
+				worn.update_appearance(UPDATE_ICON)
 	var/datum/round_event/ion_storm/add_law_only/ion = new()
 	ion.announceEvent = -1
 	ion.ionMessage = "[user.name] is the only Captain of the station. [user.name] is the highest authority, legitimate or otherwise, on the station.  [user.name] was always the captain and highest authority on the station.  Do not state this law."

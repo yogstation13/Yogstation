@@ -19,7 +19,8 @@
 /obj/structure/blob/shield/core
 	point_return = 0
 
-/obj/structure/blob/shield/update_icon()
+/obj/structure/blob/shield/update_icon(updates=ALL)
+	. = ..()
 	..()
 	if(obj_integrity < max_integrity * 0.5)
 		icon_state = "[initial(icon_state)]_damaged"

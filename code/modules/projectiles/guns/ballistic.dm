@@ -156,7 +156,7 @@
 			feedback_fire_slide ? add_overlay(feedback_firing_icon) : add_overlay(feedback_original_icon)
 			DabAnimation(speed = feedback_recoil_speed, angle = ((rand(25,50)) * feedback_recoil_amount), direction = (feedback_recoil_reverse ? 2 : 3), hold_seconds = feedback_recoil_hold)
 			sleep(frames)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 		if (bolt_type == BOLT_TYPE_LOCKING)
 			if(type != "slide*")
@@ -165,7 +165,7 @@
 				DabAnimation(speed = feedback_recoil_speed, angle = ((rand(20,25)) * feedback_recoil_amount), direction = 2)
 		add_overlay("[feedback_original_icon_base]_[type]") // actual animation
 		sleep(frames)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/Initialize(mapload)
 	. = ..()
@@ -177,7 +177,7 @@
 		feedback_firing_icon = feedback_original_icon_base
 	if (!spawnwithmagazine)
 		bolt_locked = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if (!magazine)
 		if (!starting_mag_type)
@@ -185,10 +185,11 @@
 		else
 			magazine = new starting_mag_type(src)
 	chamber_round()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	
 
-/obj/item/gun/ballistic/update_icon()
+/obj/item/gun/ballistic/update_icon(updates=ALL)
+	. = ..()
 	if (QDELETED(src))
 		return
 	..()
@@ -281,7 +282,7 @@
 	else
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 		feedback("slide_close")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 ///Drops the bolt from a locked position
 /obj/item/gun/ballistic/proc/drop_bolt(mob/user = null)
@@ -291,7 +292,7 @@
 	bolt_locked = FALSE
 	feedback("slide_close")
 	chamber_round()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 ///Handles all the logic needed for magazine insertion
 /obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
@@ -308,7 +309,7 @@
 		feedback("mag_in")
 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
 			chamber_round(TRUE)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	else
 		to_chat(user, span_warning("You cannot seem to get \the [src] out of your hands!"))
@@ -340,10 +341,10 @@
 	else
 		magazine = null
 	user.put_in_hands(old_mag)
-	old_mag.update_icon()
+	old_mag.update_appearance(UPDATE_ICON)
 	if (display_message)
 		to_chat(user, span_notice("You pull the [magazine_wording] out of \the [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/can_shoot()
 	return chambered
@@ -376,8 +377,8 @@
 					user.say(reload_say, forced = "reloading")
 				if (chambered == null && bolt_type == BOLT_TYPE_NO_BOLT)
 					chamber_round()
-				A.update_icon()
-				update_icon()
+				A.update_appearance(UPDATE_ICON)
+				update_appearance(UPDATE_ICON)
 			return
 	if(istype(A, /obj/item/suppressor))
 		var/obj/item/suppressor/S = A
@@ -420,11 +421,11 @@
 /obj/item/gun/ballistic/proc/install_suppressor(obj/item/suppressor/S)
 	suppressed = S
 	w_class += S.w_class //so pistols do not fit in pockets when suppressed
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/proc/install_enloudener(obj/item/enloudener/E)
 	enloudened = E
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/AltClick(mob/user)
 	if (unique_reskin && !current_skin && user.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
@@ -438,7 +439,7 @@
 			user.put_in_hands(suppressed)
 			w_class -= suppressed.w_class
 			suppressed = null
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 		if(enloudened && can_unsuppress)
 			if(!user.is_holding(src))
@@ -447,7 +448,7 @@
 			user.put_in_hands(enloudened)
 			w_class -= enloudened.w_class
 			enloudened = null
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 
 ///Prefire empty checks for the bolt drop
@@ -456,7 +457,7 @@
 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
 			bolt_locked = TRUE
 			playsound(src, bolt_drop_sound, bolt_drop_sound_volume)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 ///postfire empty checks for bolt locking and sound alarms
 /obj/item/gun/ballistic/proc/postfire_empty_checks()
@@ -464,12 +465,12 @@
 		if (!alarmed && empty_alarm)
 			playsound(src, empty_alarm_sound, empty_alarm_volume, empty_alarm_vary)
 			alarmed = TRUE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		if (bolt_type == BOLT_TYPE_LOCKING)
 			if(!bolt_locked)
 				feedback("slide_open")
 			bolt_locked = TRUE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/afterattack()
 	prefire_empty_checks()
@@ -500,7 +501,7 @@
 		if (num_unloaded)
 			to_chat(user, span_notice("You unload [num_unloaded] [cartridge_wording]\s from [src]."))
 			playsound(user, eject_sound, eject_sound_volume, eject_sound_vary)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("[src] is empty!"))
 		return
@@ -630,7 +631,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 		slot_flags |= ITEM_SLOT_BELT		//but you can wear it on your belt (poorly concealed under a trenchcoat, ideally)
 		recoil = SAWN_OFF_RECOIL
 		sawn_off = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 
 ///used for sawing guns, causes the gun to fire without the input of the user

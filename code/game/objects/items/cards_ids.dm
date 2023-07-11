@@ -38,9 +38,10 @@
 
 /obj/item/card/data/Initialize(mapload)
 	.=..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/card/data/update_icon()
+/obj/item/card/data/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(detail_color == COLOR_FLOORTILE_GRAY)
 		return
@@ -614,7 +615,7 @@ update_label("John Doe", "Clowny")
 		if(holder.obj_integrity > holder.integrity_failure) //we dont want to heal it by accident
 			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN) //we do a bit of trolling for being naughty
 		else
-			holder.update_icon() //update the icon anyway so it pops out
+			holder.update_appearance(UPDATE_ICON) //update the icon anyway so it pops out
 		visible_message(span_danger("The heat of the temporary spare shatters the glass!"));
 	fire_act()
 	sleep(2 SECONDS)
@@ -622,7 +623,7 @@ update_label("John Doe", "Clowny")
 		var/obj/structure/fireaxecabinet/bridge/spare/holder = loc
 		forceMove(holder.loc)
 		holder.spareid = null
-		holder.update_icon()
+		holder.update_appearance(UPDATE_ICON)
 	burn()
 
 //yogs: redd ports holopay but as paystands

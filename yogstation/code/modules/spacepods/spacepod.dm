@@ -168,12 +168,12 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			if(W.use_tool(src, user, 50, amount=3, volume = 50))
 				if(repairing)
 					obj_integrity = min(max_integrity, obj_integrity + 10)
-					update_icon()
+					update_appearance(UPDATE_ICON)
 					to_chat(user, span_notice("You mend some [pick("dents","bumps","damage")] with [W]"))
 				else if(!cell && !internal_tank && !equipment.len && !pilot && !passengers.len && construction_state == SPACEPOD_ARMOR_WELDED)
 					user.visible_message("[user] slices off [src]'s armor.", span_notice("You slice off [src]'s armor."))
 					construction_state = SPACEPOD_ARMOR_SECURED
-					update_icon()
+					update_appearance(UPDATE_ICON)
 			return TRUE
 	return ..()
 
@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	max_integrity = armor.pod_integrity
 	obj_integrity = max_integrity - integrity_failure + obj_integrity
 	pod_armor = armor
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/spacepod/proc/remove_armor()
 	if(!pod_armor)
@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		max_integrity = integrity_failure
 		desc = initial(desc)
 		pod_armor = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 
 /obj/spacepod/proc/InterceptClickOn(mob/user, params, atom/target)
@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 
 /obj/spacepod/take_damage()
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/spacepod/return_air()
 	return cabin_air
@@ -396,7 +396,8 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		// there here's your frame pieces back, happy?
 	qdel(src)
 
-/obj/spacepod/update_icon()
+/obj/spacepod/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(construction_state != SPACEPOD_ARMOR_WELDED)
 		icon = 'goon/icons/obj/spacepods/construction_2x2.dmi'

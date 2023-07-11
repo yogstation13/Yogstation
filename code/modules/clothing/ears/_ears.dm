@@ -35,15 +35,16 @@
 
 /obj/item/clothing/ears/headphones/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/clothing/ears/headphones/update_icon()
+/obj/item/clothing/ears/headphones/update_icon(updates=ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)]_[headphones_on? "on" : "off"]"
 	item_state = "[initial(item_state)]_[headphones_on? "on" : "off"]"
 
 /obj/item/clothing/ears/headphones/proc/toggle(owner)
 	headphones_on = !headphones_on
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	var/mob/living/carbon/human/H = owner
 	if(istype(H))
 		H.update_inv_ears()

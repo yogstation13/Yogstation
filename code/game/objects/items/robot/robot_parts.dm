@@ -36,7 +36,7 @@
 
 /obj/item/robot_suit/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/robot_suit/prebuilt/Initialize(mapload)
 	. = ..()
@@ -51,7 +51,8 @@
 	chest.wired = TRUE
 	chest.cell = new /obj/item/stock_parts/cell/high/plus(chest)
 
-/obj/item/robot_suit/update_icon()
+/obj/item/robot_suit/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(l_arm)
 		add_overlay("[l_arm.icon_state]+o")
@@ -108,7 +109,7 @@
 			to_chat(user, span_notice("You disassemble the cyborg shell."))
 	else
 		to_chat(user, span_notice("There is nothing to remove from the endoskeleton."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/robot_suit/proc/put_in_hand_or_drop(mob/living/user, obj/item/I) //normal put_in_hands() drops the item ontop of the player, this drops it at the suit's loc
 	if(!user.put_in_hands(I))
@@ -172,7 +173,7 @@
 		W.icon_state = initial(W.icon_state)
 		W.cut_overlays()
 		l_leg = W
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(istype(W, /obj/item/bodypart/r_leg/robot))
 		var/obj/item/bodypart/r_leg/robot/L = W
@@ -186,7 +187,7 @@
 		W.icon_state = initial(W.icon_state)
 		W.cut_overlays()
 		r_leg = W
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(istype(W, /obj/item/bodypart/l_arm/robot))
 		var/obj/item/bodypart/l_leg/robot/L = W
@@ -200,7 +201,7 @@
 		W.icon_state = initial(W.icon_state)
 		W.cut_overlays()
 		l_arm = W
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(istype(W, /obj/item/bodypart/r_arm/robot))
 		if(r_arm)
@@ -210,7 +211,7 @@
 		W.icon_state = initial(W.icon_state)//in case it is a dismembered robotic limb
 		W.cut_overlays()
 		r_arm = W
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(istype(W, /obj/item/bodypart/chest/robot))
 		var/obj/item/bodypart/chest/robot/CH = W
@@ -222,7 +223,7 @@
 			CH.icon_state = initial(CH.icon_state) //in case it is a dismembered robotic limb
 			CH.cut_overlays()
 			chest = CH
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else if(!CH.wired)
 			to_chat(user, span_warning("You need to attach wires to it first!"))
 		else
@@ -242,7 +243,7 @@
 			HD.icon_state = initial(HD.icon_state)//in case it is a dismembered robotic limb
 			HD.cut_overlays()
 			head = HD
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("You need to attach a flash to it first!"))
 

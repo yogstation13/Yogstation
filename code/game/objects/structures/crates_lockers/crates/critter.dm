@@ -21,7 +21,8 @@
 
 	return ..()
 
-/obj/structure/closet/crate/critter/update_icon()
+/obj/structure/closet/crate/critter/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(opened)
 		add_overlay("crittercrate_door_open")

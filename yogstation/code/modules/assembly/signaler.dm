@@ -5,9 +5,10 @@
 
 /obj/item/assembly/signaler/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/assembly/signaler/update_icon()
+/obj/item/assembly/signaler/update_icon(updates=ALL)
+	. = ..()
 	if(label_color)
 		cut_overlays()
 		attached_overlays = list()

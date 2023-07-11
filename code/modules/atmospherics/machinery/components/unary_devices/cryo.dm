@@ -54,7 +54,7 @@
 	var/oldoccupant = occupant
 	. = ..() // Parent proc takes care of removing occupant if necessary
 	if (AM == oldoccupant)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/on_construction()
 	..(dir, dir)
@@ -102,7 +102,8 @@
 		beaker.forceMove(drop_location())
 		beaker = null
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 
 	if(panel_open)
@@ -181,7 +182,7 @@
 		return
 	if(!is_operational())
 		on = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(!occupant)
 		return
@@ -198,7 +199,7 @@
 		playsound(src,'sound/machines/cryo_warning_ignore.ogg',60,1)
 		on = FALSE
 		sleep(0.2 SECONDS)// here for timing. Shuts off right at climax of the effect before falloff.
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	var/robotic_limb_damage = 0 // brute and burn damage to robotic limbs
@@ -223,7 +224,7 @@
 		treating_wounds = has_cryo_wound
 		if(!treating_wounds)
 			on = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
 			var/msg = "Patient fully restored."
 			if(robotic_limb_damage)
@@ -270,7 +271,7 @@
 
 	if(!nodes[1] || !airs[1] || (air1.get_moles(/datum/gas/oxygen) < 5 && air1.get_moles(/datum/gas/pluoxium) < 5)) // Turn off if the machine won't work.
 		on = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	if(occupant)
@@ -310,7 +311,7 @@
 			var/mob/living/L = M
 			L.update_mobility()
 	occupant = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/close_machine(mob/living/carbon/user)
 	treating_wounds = FALSE
@@ -371,7 +372,7 @@
 		|| default_change_direction_wrench(user, I) \
 		|| default_pry_open(I) \
 		|| default_deconstruction_crowbar(I))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	else if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		to_chat(user, "<span class='notice'>You can't access the maintenance panel while the pod is " \
@@ -465,7 +466,7 @@
 				log_game("[key_name(usr)] removed an [beaker] to cryo containing [beaker.reagents.reagent_list]") // yogs -- Adds logging for when the beaker's removed from cryo
 				beaker = null
 				. = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_remote_sight(mob/living/user)
 	return // we don't see the pipe network while inside cryo.
@@ -511,7 +512,7 @@
 		on = FALSE
 	else if(!state_open)
 		on = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/AltClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
@@ -522,6 +523,6 @@
 		close_machine()
 	else
 		open_machine()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 #undef CRYOMOBS

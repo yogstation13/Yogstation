@@ -15,12 +15,13 @@
 	. = ..()
 	if(!icon_state)
 		icon_state = "bottle"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/glass/bottle/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/glass/bottle/update_icon()
+/obj/item/reagent_containers/glass/bottle/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(!filling_icon_state)
 		filling_icon_state = icon_state

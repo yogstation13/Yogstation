@@ -44,9 +44,10 @@
 	signal()
 	return TRUE
 
-/obj/item/assembly/signaler/update_icon()
+/obj/item/assembly/signaler/update_icon(updates=ALL)
+	. = ..()
 	if(holder)
-		holder.update_icon()
+		holder.update_appearance(UPDATE_ICON)
 	return
 
 /obj/item/assembly/signaler/ui_status(mob/user)
@@ -104,9 +105,9 @@
 			else
 				idx++
 			label_color = label_colors[idx]
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/assembly/signaler/attackby(obj/item/W, mob/user, params)
 	if(issignaler(W))
@@ -116,7 +117,7 @@
 			set_frequency(signaler2.frequency)
 			// yogs start - signaller colors
 			label_color = signaler2.label_color
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			// yogs end
 			to_chat(user, "You transfer the frequency and code of \the [signaler2.name] to \the [name]")
 	..()

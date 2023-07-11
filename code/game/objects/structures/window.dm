@@ -326,12 +326,13 @@
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(smooth)
 		queue_smooth_neighbors(src)
 
 //merges adjacent full-tile windows into one
-/obj/structure/window/update_icon()
+/obj/structure/window/update_icon(updates=ALL)
+	. = ..()
 	if(!QDELETED(src))
 		if(!fulltile)
 			return
@@ -807,7 +808,7 @@
 /obj/structure/window/reinforced/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
 		obj_integrity = max_integrity
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/structure/window/reinforced/clockwork/narsie_act()
 	take_damage(rand(25, 75), BRUTE)
@@ -873,7 +874,7 @@
 
 /obj/structure/window/paperframe/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/window/paperframe/examine(mob/user)
 	. = ..()
@@ -899,9 +900,10 @@
 		playsound(src, hitsound, 50, 1)
 		if(!QDELETED(src))
 			user.visible_message(span_danger("[user] tears a hole in [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
-/obj/structure/window/paperframe/update_icon()
+/obj/structure/window/paperframe/update_icon(updates=ALL)
+	. = ..()
 	if(obj_integrity < max_integrity)
 		cut_overlay(paper)
 		add_overlay(torn)
@@ -926,10 +928,10 @@
 			qdel(W)
 			user.visible_message("[user] patches some of the holes in \the [src].")
 			if(obj_integrity == max_integrity)
-				update_icon()
+				update_appearance(UPDATE_ICON)
 			return
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 
@@ -950,9 +952,10 @@
 
 /obj/structure/cloth_curtain/proc/toggle()
 	open = !open
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/cloth_curtain/update_icon()
+/obj/structure/cloth_curtain/update_icon(updates=ALL)
+	. = ..()
 	if(!open)
 		icon_state = "curtain_closed"
 		layer = WALL_OBJ_LAYER

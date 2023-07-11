@@ -51,7 +51,7 @@
 
 	current_tick_amount = 0
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	update_sound()
 
 /obj/item/geiger_counter/examine(mob/user)
@@ -78,7 +78,8 @@
 
 	. += span_notice("The last radiation amount detected was [last_tick_amount]")
 
-/obj/item/geiger_counter/update_icon()
+/obj/item/geiger_counter/update_icon(updates=ALL)
+	. = ..()
 	if(!scanning)
 		icon_state = "geiger_off"
 		return 1
@@ -116,11 +117,11 @@
 	if(amount <= RAD_BACKGROUND_RADIATION || !scanning)
 		return
 	current_tick_amount += amount
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/geiger_counter/attack_self(mob/user)
 	scanning = !scanning
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	to_chat(user, span_notice("[icon2html(src, user)] You switch [scanning ? "on" : "off"] [src]."))
 
 /obj/item/geiger_counter/afterattack(atom/target, mob/user)
@@ -163,7 +164,7 @@
 		user.visible_message(span_notice("[user] refastens [src]'s maintenance panel!"), span_notice("You reset [src] to its factory settings!"))
 		obj_flags &= ~EMAGGED
 		radiation_count = 0
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return 1
 	else
 		return ..()
@@ -176,7 +177,7 @@
 		return 0
 	radiation_count = 0
 	to_chat(usr, span_notice("You flush [src]'s radiation counts, resetting it to normal."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/geiger_counter/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
@@ -196,7 +197,7 @@
 	if(!scanning)
 		return
 	scanning = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/geiger_counter/cyborg/equipped(mob/user)
 	. = ..()

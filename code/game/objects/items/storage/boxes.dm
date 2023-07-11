@@ -36,7 +36,7 @@
 
 /obj/item/storage/box/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/box/suicide_act(mob/living/carbon/user)
 	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
@@ -49,7 +49,8 @@
 	user.visible_message(span_suicide("[user] attempts to put [user.p_their()] head into \the [src], but realizes [user.p_their()] has no head!"))
 	return SHAME
 
-/obj/item/storage/box/update_icon()
+/obj/item/storage/box/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 	if(illustration)
 		cut_overlays()
@@ -984,7 +985,8 @@
 	foldable = null
 	var/design = NODESIGN
 
-/obj/item/storage/box/papersack/update_icon()
+/obj/item/storage/box/papersack/update_icon(updates=ALL)
+	. = ..()
 	if(contents.len == 0)
 		icon_state = "[item_state]"
 	else icon_state = "[item_state]_closed"

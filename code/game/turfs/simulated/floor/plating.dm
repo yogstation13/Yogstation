@@ -44,7 +44,8 @@
 	else
 		icon_plating = initial(icon_state)
 
-/turf/open/floor/plating/update_icon()
+/turf/open/floor/plating/update_icon(updates=ALL)
+	. = ..()
 	if(!..())
 		return
 	if(!broken && !burnt)

@@ -39,7 +39,7 @@
 			return FALSE
 		forceMove(tongs)
 		tongs.shard = src
-		tongs.update_icon()
+		tongs.update_appearance(UPDATE_ICON)
 		to_chat(user, span_notice("You carefully pick up [src] with [tongs]."))
 	else if(istype(W, /obj/item/antinoblium_container/)) // we don't want it to dust
 		return
@@ -84,8 +84,8 @@
 	T.shard.forceMove(src)
 	shard = T.shard
 	T.shard = null
-	T.update_icon()
-	update_icon()
+	T.update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_ICON)
 	to_chat(user, span_warning("Container is resealing..."))
 	addtimer(CALLBACK(src, PROC_REF(seal)), 50)
 	return TRUE
@@ -96,8 +96,8 @@
 	shard.forceMove(T)
 	T.shard = shard
 	shard = null
-	T.update_icon()
-	update_icon()
+	T.update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_ICON)
 	visible_message(span_warning("[user] gingerly takes out the antinoblium shard with the tongs..."))
 	return TRUE
 
@@ -107,14 +107,14 @@
 	STOP_PROCESSING(SSobj, shard)
 	playsound(src, 'sound/items/deconstruct.ogg', 60, 1)
 	sealed = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	say("Hermetic locks re-engaged; [shard] is safely recontained.")
 
 /obj/item/antinoblium_container/proc/unseal()
 	if(!sealed)
 		return
 	sealed = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	say("Hermetic locks disengaged; [shard] is available for use.")
 
 /obj/item/antinoblium_container/attackby(obj/item/hemostat/antinoblium/tongs, mob/user)
@@ -138,7 +138,8 @@
 		seal()
 		to_chat(user, span_warning("[user] seals the [src]."))
 
-/obj/item/antinoblium_container/update_icon()
+/obj/item/antinoblium_container/update_icon(updates=ALL)
+	. = ..()
 	if(sealed)
 		icon_state = "antinoblium_container_sealed"
 	else if (shard)
@@ -160,7 +161,8 @@
 	QDEL_NULL(shard)
 	return ..()
 
-/obj/item/hemostat/antinoblium/update_icon()
+/obj/item/hemostat/antinoblium/update_icon(updates=ALL)
+	. = ..()
 	if(shard)
 		icon_state = "antinoblium_tongs_loaded"
 	else
@@ -178,7 +180,7 @@
 		shard.forceMove(loc)
 		visible_message(span_notice("\The [shard] falls out of \the [src] as it hits the ground."))
 		shard = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	..()
 
 /obj/item/hemostat/antinoblium/proc/Consume(atom/movable/AM, mob/user)
@@ -203,7 +205,7 @@
 	empulse(src, 5, 10)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, 1)
 	QDEL_NULL(shard)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/supermatter_corruptor
 	name = "supermatter data corruptor bug"

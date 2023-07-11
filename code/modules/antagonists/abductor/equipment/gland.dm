@@ -50,7 +50,8 @@
 	else
 		holder.icon_state = "hudgland_spent"
 
-/obj/item/organ/heart/gland/update_icon()
+/obj/item/organ/heart/gland/update_icon(updates=ALL)
+	. = ..()
 	return // stop it from switching to the non existent heart_on sprite
 	
 /obj/item/organ/heart/gland/proc/mind_control(command, mob/living/user)

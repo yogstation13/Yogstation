@@ -53,13 +53,14 @@
 			break
 	radio = new /obj/item/radio/(src)
 	radio.frequency = radio_freq
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/sci_bombardment/Destroy()
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/sci_bombardment/update_icon()
+/obj/machinery/sci_bombardment/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(!powered(power_channel))
 		add_overlay("LAM_radar0")
@@ -80,7 +81,7 @@
 			scibomb = B
 			playsound(src, 'sound/effects/bin_close.ogg', 100, 1)
 			to_chat(usr, span_notice("You load [B] into the firing mechanism."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(usr, span_warning("There is already a transfer valve loaded in the firing mechanism!"))
 	else
@@ -132,7 +133,7 @@
 	targetdest = initial(dest)
 	tcoords = initial(tcoords)
 	scibomb = initial(scibomb)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	. = TRUE
 
 /**
@@ -144,7 +145,7 @@
 */
 /obj/machinery/sci_bombardment/proc/reset_lam()
 	target_delay = !target_delay
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(target_delay)
 		spawn(100)
 			reset_lam()
@@ -202,7 +203,7 @@
 					radio.talk_into(src, "Controls [locked ? "locked" : "unlocked"] by [I.registered_name].",)
 				else
 					to_chat(usr, span_warning("Access denied. Please seek assistance from station AI or Research Director."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			. = TRUE
 		if("count")//Prompts user to change countdown timer (Minimum based on mincount)
 			if(locked)
@@ -222,7 +223,7 @@
 			to_chat(usr, span_notice("[scibomb] is ejected from the loading chamber."))
 			scibomb.forceMove(drop_location())
 			scibomb = null
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			. = TRUE
 		if("launch")//Transfers var/countdown to var/tick before proc'ing countdown()
 			if(locked || target_delay || !scibomb || !dest)

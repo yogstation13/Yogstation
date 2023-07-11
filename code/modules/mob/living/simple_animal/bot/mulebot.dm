@@ -112,7 +112,7 @@
 			..()
 	else
 		..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return
 
 /mob/living/simple_animal/bot/mulebot/emag_act(mob/user)
@@ -124,7 +124,8 @@
 	flick("mulebot-emagged", src)
 	playsound(src, "sparks", 100, 0)
 
-/mob/living/simple_animal/bot/mulebot/update_icon()
+/mob/living/simple_animal/bot/mulebot/update_icon(updates=ALL)
+	. = ..()
 	if(open)
 		icon_state="mulebot-hatch"
 	else
@@ -386,7 +387,7 @@
 
 	load = AM
 	mode = BOT_IDLE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/bot/mulebot/proc/load_mob(mob/living/M)
 	can_buckle = TRUE
@@ -460,7 +461,7 @@
 	num_steps--
 	if(!on || client)
 		return
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	switch(mode)
 		if(BOT_IDLE) // idle
@@ -569,7 +570,7 @@
 		mode = BOT_GO_HOME
 	else
 		mode = BOT_DELIVER
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	get_nav()
 
 // starts bot moving to home
@@ -580,7 +581,7 @@
 	spawn(0)
 		set_destination(home_destination)
 		mode = BOT_BLOCKED
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 // called when bot reaches current target
 /mob/living/simple_animal/bot/mulebot/proc/at_target()
@@ -688,7 +689,7 @@
 				loaddir = text2num(direction)
 			else
 				loaddir = 0
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			if(destination) // No need to calculate a path if you do not have a destination set!
 				calc_path()
 
@@ -710,7 +711,7 @@
 	new /obj/item/stack/cable_coil/cut(Tsec)
 	if(cell)
 		cell.forceMove(Tsec)
-		cell.update_icon()
+		cell.update_appearance(UPDATE_ICON)
 		cell = null
 
 	do_sparks(3, TRUE, src)

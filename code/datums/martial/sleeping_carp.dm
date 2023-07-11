@@ -181,7 +181,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	block_chance = 50
 
-/obj/item/twohanded/bostaff/update_icon()
+/obj/item/twohanded/bostaff/update_icon(updates=ALL)
+	. = ..()
 	icon_state = "bostaff[wielded]"
 	return
 

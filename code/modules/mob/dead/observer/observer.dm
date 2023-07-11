@@ -115,7 +115,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				facial_hair_style = body_human.facial_hair_style
 				facial_hair_color = brighten_color(body_human.facial_hair_color)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 	if(!T || is_secret_level(T.z))
 		var/list/turfs = get_area_turfs(/area/shuttle/arrival)
@@ -818,7 +818,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	
 	qdel(species)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
 	return IsAdminGhost(usr)

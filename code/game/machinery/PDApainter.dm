@@ -9,7 +9,8 @@
 	var/list/colorlist = list()
 
 
-/obj/machinery/pdapainter/update_icon()
+/obj/machinery/pdapainter/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 
 	if(stat & BROKEN)
@@ -61,7 +62,7 @@
 /obj/machinery/pdapainter/handle_atom_del(atom/A)
 	if(A == storedpda)
 		storedpda = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/pdapainter/attackby(obj/item/O, mob/user, params)
 	if(default_unfasten_wrench(user, O))
@@ -76,7 +77,7 @@
 			return
 		storedpda = O
 		O.add_fingerprint(user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	else if(O.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
 		if(stat & BROKEN)
@@ -91,7 +92,7 @@
 				to_chat(user, span_notice("You repair [src]."))
 				stat &= ~BROKEN
 				obj_integrity = max_integrity
-				update_icon()
+				update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_notice("[src] does not need repairs."))
 	else
@@ -136,6 +137,6 @@
 	if(storedpda)
 		storedpda.forceMove(drop_location())
 		storedpda = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		to_chat(usr, span_warning("[src] is empty!"))

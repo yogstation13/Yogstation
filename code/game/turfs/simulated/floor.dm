@@ -115,7 +115,8 @@
 /turf/open/floor/blob_act(obj/structure/blob/B)
 	return
 
-/turf/open/floor/update_icon()
+/turf/open/floor/update_icon(updates=ALL)
+	. = ..()
 	update_visuals()
 	return 1
 
@@ -164,7 +165,7 @@
 	W.icon_regular_floor = old_icon
 	W.icon_state_regular_floor = old_icon_state
 	W.setDir(old_dir)
-	W.update_icon()
+	W.update_appearance(UPDATE_ICON)
 	return W
 
 /turf/open/floor/attackby(obj/item/C, mob/user, params)
@@ -285,7 +286,7 @@
 					new_window.req_one_access = the_rcd.airlock_electronics.one_access
 					new_window.unres_sides = the_rcd.airlock_electronics.unres_sides
 				new_window.autoclose = TRUE
-				new_window.update_icon()
+				new_window.update_appearance(UPDATE_ICON)
 				return TRUE
 			to_chat(user, span_notice("You build an airlock."))
 			var/obj/machinery/door/airlock/new_airlock = new the_rcd.airlock_type(src)
@@ -304,7 +305,7 @@
 			if(new_airlock.electronics.unres_sides)
 				new_airlock.unres_sides = new_airlock.electronics.unres_sides
 			new_airlock.autoclose = TRUE
-			new_airlock.update_icon()
+			new_airlock.update_appearance(UPDATE_ICON)
 
 			return TRUE
 		if(RCD_DECONSTRUCT)

@@ -54,13 +54,14 @@
 
 /obj/item/tank/jetpack/proc/turn_on(mob/user)
 	on = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	ion_trail.start()
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 	if(full_speed)
 		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=jetspeed, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 
-/obj/item/tank/jetpack/update_icon()
+/obj/item/tank/jetpack/update_icon(updates=ALL)
+	. = ..()
 	icon_state = initial(icon_state)
 	if(!classic && on) //does the jetpack have its own on sprite?
 		icon_state = "[initial(icon_state)]-on"
@@ -72,7 +73,7 @@
 /obj/item/tank/jetpack/proc/turn_off(mob/user)
 	on = FALSE
 	stabilizers = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	ion_trail.stop()
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	user.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)

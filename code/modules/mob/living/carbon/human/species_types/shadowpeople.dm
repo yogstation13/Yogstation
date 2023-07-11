@@ -179,7 +179,8 @@
 /obj/item/organ/heart/nightmare/Stop()
 	return 0
 
-/obj/item/organ/heart/nightmare/update_icon()
+/obj/item/organ/heart/nightmare/update_icon(updates=ALL)
+	. = ..()
 	return //always beating visually
 
 /obj/item/organ/heart/nightmare/process()
@@ -261,7 +262,7 @@
 		var/obj/item/pda/PDA = O
 		PDA.set_light_on(FALSE)
 		PDA.set_light_range(0) //It won't be turning on again.
-		PDA.update_icon()
+		PDA.update_appearance(UPDATE_ICON)
 		visible_message(span_danger("The light in [PDA] shorts out!"))
 	else
 		visible_message(span_danger("[O] is disintegrated by [src]!"))

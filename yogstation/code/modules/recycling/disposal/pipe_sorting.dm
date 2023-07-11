@@ -27,7 +27,8 @@
 	if(!wires.is_cut(WIRE_SORT_SCAN))
 		sort_scan = TRUE
 
-/obj/structure/disposalpipe/sorting/update_icon()
+/obj/structure/disposalpipe/sorting/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	. = ..()
 	if(panel_open)
@@ -37,7 +38,7 @@
 	panel_open = !panel_open
 	I.play_tool_sound(src)
 	to_chat(user, span_notice("You [panel_open ? "open" : "close"] the wire panel."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/structure/disposalpipe/sorting/attackby(obj/item/I, mob/user)

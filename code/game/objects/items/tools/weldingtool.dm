@@ -46,7 +46,7 @@
 	. = ..()
 	create_reagents(max_fuel)
 	reagents.add_reagent(/datum/reagent/fuel, max_fuel)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/weldingtool/proc/update_torch()
@@ -57,7 +57,8 @@
 		item_state = "[initial(item_state)]"
 
 
-/obj/item/weldingtool/update_icon()
+/obj/item/weldingtool/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(change_icons)
 		var/ratio = get_fuel() / max_fuel
@@ -72,7 +73,7 @@
 		if(0)
 			force = 3
 			damtype = "brute"
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			if(!can_off_process)
 				STOP_PROCESSING(SSobj, src)
 			return
@@ -83,7 +84,7 @@
 			burned_fuel_for += delta_time
 			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
 				use(1)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 	//This is to start fires. process() is only called if the welder is on.
 	open_flame()
@@ -145,7 +146,7 @@
 	if(!status && O.is_refillable())
 		reagents.trans_to(O, reagents.total_volume, transfered_by = user)
 		to_chat(user, span_notice("You empty [src]'s fuel tank into [O]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	if(isOn())
 		use(1)
 		var/turf/location = get_turf(user)
@@ -166,7 +167,7 @@
 		explode()
 	switched_on(user)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, robo_check)
 	var/mutable_appearance/sparks = mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
@@ -206,7 +207,7 @@
 	if(get_fuel() <= 0 && welding)
 		set_light_on(FALSE)
 		switched_on(user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		//mob icon update
 		if(ismob(loc))
 			var/mob/M = loc
@@ -228,7 +229,7 @@
 			force = 15
 			damtype = BURN
 			hitsound = 'sound/items/welder.ogg'
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			START_PROCESSING(SSobj, src)
 		else
 			to_chat(user, span_warning("You need more fuel!"))
@@ -245,7 +246,7 @@
 	force = 3
 	damtype = "brute"
 	hitsound = "swing_hit"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/weldingtool/examine(mob/user)

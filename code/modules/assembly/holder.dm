@@ -23,7 +23,7 @@
 	attach(A,user)
 	attach(A2,user)
 	name = "[A.name]-[A2.name] assembly"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	SSblackbox.record_feedback("tally", "assembly_made", 1, "[initial(A.name)]-[initial(A2.name)]")
 
 /obj/item/assembly_holder/proc/attach(obj/item/assembly/A, mob/user)
@@ -40,7 +40,8 @@
 		a_right = A
 	A.holder_movement()
 
-/obj/item/assembly_holder/update_icon()
+/obj/item/assembly_holder/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(a_left)
 		add_overlay("[a_left.icon_state]_left")
@@ -81,7 +82,7 @@
 			add_overlay(right)
 
 	if(master)
-		master.update_icon()
+		master.update_appearance(UPDATE_ICON)
 
 /obj/item/assembly_holder/Crossed(atom/movable/AM as mob|obj)
 	. = ..()

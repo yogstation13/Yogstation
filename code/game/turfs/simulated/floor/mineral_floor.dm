@@ -23,7 +23,8 @@
 	icons = typelist("icons", icons)
 
 
-/turf/open/floor/mineral/update_icon()
+/turf/open/floor/mineral/update_icon(updates=ALL)
+	. = ..()
 	if(!..())
 		return 0
 	if(!broken && !burnt)

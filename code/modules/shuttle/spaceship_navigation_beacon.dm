@@ -29,7 +29,8 @@ obj/machinery/spaceship_navigation_beacon/emp_act()
 	return ..()
 
 // update the icon_state
-/obj/machinery/spaceship_navigation_beacon/update_icon()
+/obj/machinery/spaceship_navigation_beacon/update_icon(updates=ALL)
+	. = ..()
 	if(powered())
 		icon_state = "core"
 	else
@@ -37,7 +38,7 @@ obj/machinery/spaceship_navigation_beacon/emp_act()
 
 /obj/machinery/spaceship_navigation_beacon/power_change()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/spaceship_navigation_beacon/multitool_act(mob/living/user, obj/item/multitool/I)
 	if(panel_open)

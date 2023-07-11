@@ -16,7 +16,7 @@
 		return
 
 	ghost.ghost_accs = value
-	ghost.update_icon()
+	ghost.update_appearance(UPDATE_ICON)
 
 /datum/preference/choiced/ghost_accessories/deserialize(input, datum/preferences/preferences)
 	// Old ghost preferences used to be 1/50/100.

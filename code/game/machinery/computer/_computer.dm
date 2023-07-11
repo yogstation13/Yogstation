@@ -22,7 +22,7 @@
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	if(mapload)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	power_change()
 	if(!QDELETED(C))
 		qdel(circuit)
@@ -44,7 +44,7 @@
 		icon_screen = "ratvar[rand(1, 4)]"
 		icon_keyboard = "ratvar_key[rand(1, 6)]"
 		icon_state = "ratvarcomputer[rand(1, 4)]"
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/computer/narsie_act()
 	if(clockwork && clockwork != initial(clockwork)) //if it's clockwork but isn't normally clockwork
@@ -52,9 +52,10 @@
 		icon_screen = initial(icon_screen)
 		icon_keyboard = initial(icon_keyboard)
 		icon_state = initial(icon_state)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
-/obj/machinery/computer/update_icon()
+/obj/machinery/computer/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 

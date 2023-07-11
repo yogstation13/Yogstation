@@ -65,7 +65,7 @@
 		to_chat(user, span_notice("You install [M] in [src]!"))
 		mmi = M
 		transfer_personality(M)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return 1
 
 	else if(O.tool_behaviour == TOOL_WELDER && (user.a_intent != INTENT_HARM || user == src)) ///Removed needless self repair part
@@ -131,7 +131,8 @@
 	if(!QDELETED(src) && stat != DEAD)
 		death()
 
-/mob/living/simple_animal/spiderbot/update_icon()
+/mob/living/simple_animal/spiderbot/update_icon(updates=ALL)
+	. = ..()
 	if(mmi)
 		if(istype(mmi, /obj/item/mmi/posibrain))
 			icon_state = "spiderbot-chassis-posi"
@@ -150,10 +151,10 @@
 		else if(key)
 			mmi.brainmob.key = key
 		mmi.forceMove(loc)
-		mmi.update_icon()
+		mmi.update_appearance(UPDATE_ICON)
 		mmi = null
 		name = initial(name)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/spiderbot/gib()
 	eject_brain()

@@ -31,14 +31,15 @@
 
 /obj/item/pizzabox/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/item/pizzabox/Destroy()
 	unprocess()
 	return ..()
 
-/obj/item/pizzabox/update_icon()
+/obj/item/pizzabox/update_icon(updates=ALL)
+	. = ..()
 	// Description
 	desc = initial(desc)
 	if(open)
@@ -104,7 +105,7 @@
 		audible_message(span_warning("[icon2html(src, hearers(src))] *beep*"))
 		bomb_active = TRUE
 		START_PROCESSING(SSobj, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/pizzabox/attack_hand(mob/user)
@@ -115,13 +116,13 @@
 			user.put_in_hands(pizza)
 			to_chat(user, span_notice("You take [pizza] out of [src]."))
 			pizza = null
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else if(bomb)
 			if(wires.is_all_cut() && bomb_defused)
 				user.put_in_hands(bomb)
 				to_chat(user, span_notice("You carefully remove the [bomb] from [src]."))
 				bomb = null
-				update_icon()
+				update_appearance(UPDATE_ICON)
 				return
 			else
 				bomb_timer = input(user, "Set the [bomb] timer from [BOMB_TIMER_MIN] to [BOMB_TIMER_MAX].", bomb, bomb_timer) as num|null
@@ -136,14 +137,14 @@
 				bomb.adminlog = "The [bomb.name] in [src.name] that [key_name(user)] activated has detonated!"
 
 				to_chat(user, span_warning("You trap [src] with [bomb]."))
-				update_icon()
+				update_appearance(UPDATE_ICON)
 	else if(boxes.len)
 		var/obj/item/pizzabox/topbox = boxes[boxes.len]
 		boxes -= topbox
 		user.put_in_hands(topbox)
 		to_chat(user, span_notice("You remove the topmost [name] from the stack."))
-		topbox.update_icon()
-		update_icon()
+		topbox.update_appearance(UPDATE_ICON)
+		update_appearance(UPDATE_ICON)
 		user.regenerate_icons()
 
 /obj/item/pizzabox/attackby(obj/item/I, mob/user, params)
@@ -158,8 +159,8 @@
 			boxes += add
 			newbox.boxes.Cut()
 			to_chat(user, span_notice("You put [newbox] on top of [src]!"))
-			newbox.update_icon()
-			update_icon()
+			newbox.update_appearance(UPDATE_ICON)
+			update_appearance(UPDATE_ICON)
 			user.regenerate_icons()
 			if(boxes.len >= 5)
 				if(prob(10 * boxes.len))
@@ -179,7 +180,7 @@
 				return
 			pizza = I
 			to_chat(user, span_notice("You put [I] in [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 	else if(istype(I, /obj/item/bombcore/miniature/pizza))
 		if(open && !bomb)
@@ -188,7 +189,7 @@
 			wires = new /datum/wires/explosive/pizza(src)
 			bomb = I
 			to_chat(user, span_notice("You put [I] in [src]. Sneeki breeki..."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 		else if(bomb)
 			to_chat(user, span_notice("[src] already has a bomb in it!"))
@@ -202,7 +203,7 @@
 			if(!user.canUseTopic(src, BE_CLOSE))
 				return
 			to_chat(user, span_notice("You write with [I] on [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 	else if(is_wire_tool(I))
 		if(wires && bomb)
@@ -252,9 +253,9 @@
 			fall_dir = pick(GLOB.alldirs)
 			step(P.pizza, fall_dir)
 			P.pizza = null
-			P.update_icon()
+			P.update_appearance(UPDATE_ICON)
 		boxes -= P
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(isliving(loc))
 		var/mob/living/L = loc
 		L.regenerate_icons()
@@ -263,7 +264,7 @@
 	STOP_PROCESSING(SSobj, src)
 	qdel(wires)
 	wires = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/pizzabox/bomb/Initialize(mapload)
 	. = ..()

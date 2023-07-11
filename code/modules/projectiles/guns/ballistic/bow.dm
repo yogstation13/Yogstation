@@ -43,7 +43,7 @@
 /obj/item/gun/ballistic/bow/chamber_round()
 	chambered = magazine.get_round(1)
 	update_slowdown()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/bow/dropped()
 	. = ..()
@@ -61,7 +61,7 @@
 	chambered = null
 	magazine.give_round(old_chambered)
 	update_slowdown()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/bow/equipped(mob/user, slot)
 	..()
@@ -71,7 +71,7 @@
 	chambered = null
 	magazine.get_round(FALSE)
 	update_slowdown()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/bow/attack_self(mob/living/user)
 	if(drawing)
@@ -121,7 +121,7 @@
 		user.put_in_hands(AC)
 		to_chat(user, span_notice("You remove [AC]."))
 	update_slowdown()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/bow/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/ammo_casing))
@@ -131,9 +131,10 @@
 			to_chat(user, span_notice("You notch [I]."))
 			nerfed = istype(I, /obj/item/ammo_casing/reusable/arrow/toy)
 	update_slowdown()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/gun/ballistic/bow/update_icon()
+/obj/item/gun/ballistic/bow/update_icon(updates=ALL)
+	. = ..()
 	cut_overlay(arrow_overlay, TRUE)
 	icon_state = "[initial(icon_state)][chambered ? "_firing" : ""]"
 	if(get_ammo())
@@ -451,7 +452,8 @@
 	if(TIMER_COOLDOWN_CHECK(src, "arrow_recharge"))
 		. += span_warning("It is currently recharging!")
 
-/obj/item/gun/ballistic/bow/energy/update_icon()
+/obj/item/gun/ballistic/bow/energy/update_icon(updates=ALL)
+	. = ..()
 	cut_overlay(arrow_overlay, TRUE)
 
 	if(folded)
@@ -492,7 +494,7 @@
 		to_chat(user, span_notice("You fabricate an arrow."))
 		recharge_arrow()
 	update_slowdown()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/bow/energy/proc/recharge_arrow()
 	if(folded || magazine.get_round(TRUE))
@@ -500,7 +502,7 @@
 	var/ammo_type = magazine.ammo_type
 	magazine.give_round(new ammo_type())
 	update_slowdown()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/bow/energy/attackby(obj/item/I, mob/user, params)
 	return
@@ -512,7 +514,7 @@
 		QDEL_NULL(current_round)
 	if(!TIMER_COOLDOWN_CHECK(src, "arrow_recharge"))
 		recharge_arrow()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/bow/energy/proc/select_projectile(mob/living/user)
 	var/obj/item/ammo_box/magazine/internal/bow/energy/M = magazine
@@ -550,7 +552,7 @@
 			to_chat(user, span_notice("You switch \the [src]'s firing mode to \"[initial(choice.name)]\"."))
 			QDEL_NULL(choice_list)
 			QDEL_NULL(radial_list)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/bow/energy/CtrlClick(mob/living/user)
 	if(!can_fold || !user.is_holding(src))
@@ -580,7 +582,7 @@
 		//magazine.stored_ammo = stored_ammo
 		if(user)
 			to_chat(user, span_notice("You extend [src], allowing it to be fired."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gun/ballistic/bow/energy/advanced
 	name = "advanced hardlight bow"

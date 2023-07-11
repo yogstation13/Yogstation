@@ -183,7 +183,8 @@
 	SSjob.SendToLateJoin(H, FALSE)
 	return
 
-/obj/machinery/abductor/experiment/update_icon()
+/obj/machinery/abductor/experiment/update_icon(updates=ALL)
+	. = ..()
 	if(state_open)
 		icon_state = "experiment-open"
 	else

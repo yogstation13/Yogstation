@@ -25,9 +25,10 @@
 	if(!name)
 		name = "light switch ([area.name])"
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/light_switch/update_icon()
+/obj/machinery/light_switch/update_icon(updates=ALL)
+	. = ..()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	if(!(stat & NOPOWER))
 		if(area.lightswitch)
@@ -47,10 +48,10 @@
 	. = ..()
 
 	area.lightswitch = !area.lightswitch
-	area.update_icon()
+	area.update_appearance(UPDATE_ICON)
 
 	for(var/obj/machinery/light_switch/L in area)
-		L.update_icon()
+		L.update_appearance(UPDATE_ICON)
 
 	area.power_change()
 

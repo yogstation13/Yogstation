@@ -22,16 +22,17 @@
 				if((HAS_TRAIT(user, TRAIT_DUMB) || HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 					to_chat(user, span_warning("Your hand slips, setting off the trigger!"))
 					pulse(FALSE)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		playsound(src, 'sound/weapons/handcuffs.ogg', 30, TRUE, -3)
 
-/obj/item/assembly/mousetrap/update_icon()
+/obj/item/assembly/mousetrap/update_icon(updates=ALL)
+	. = ..()
 	if(armed)
 		icon_state = "mousetraparmed"
 	else
 		icon_state = "mousetrap"
 	if(holder)
-		holder.update_icon()
+		holder.update_appearance(UPDATE_ICON)
 
 /obj/item/assembly/mousetrap/proc/triggered(mob/target, type = "feet")
 	if(!armed)
@@ -42,7 +43,7 @@
 		if(HAS_TRAIT(H, TRAIT_PIERCEIMMUNE))
 			playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 			armed = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			pulse(FALSE)
 			return FALSE
 		switch(type)
@@ -69,7 +70,7 @@
 		M.splat()
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 	armed = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	pulse(FALSE)
 
 
@@ -87,7 +88,7 @@
 			return
 		to_chat(user, span_notice("You disarm [src]."))
 	armed = !armed
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/weapons/handcuffs.ogg', 30, TRUE, -3)
 
 

@@ -15,17 +15,18 @@
 	GLOB.blob_cores += src
 	START_PROCESSING(SSobj, src)
 	GLOB.poi_list |= src
-	update_icon() //so it atleast appears
+	update_appearance(UPDATE_ICON) //so it atleast appears
 	if(!placed && !overmind)
 		return INITIALIZE_HINT_QDEL
 	if(overmind)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/structure/blob/core/scannerreport()
 	return "Directs the blob's expansion, gradually expands, and sustains nearby blob spores and blobbernauts."
 
-/obj/structure/blob/core/update_icon()
+/obj/structure/blob/core/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	color = null
 	var/mutable_appearance/blob_overlay = mutable_appearance('icons/mob/blob.dmi', "blob")

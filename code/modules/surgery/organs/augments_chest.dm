@@ -169,9 +169,10 @@
 		if(!silent)
 			to_chat(owner, span_notice("You turn your thrusters set off."))
 		on = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/cyberimp/chest/thrusters/update_icon()
+/obj/item/organ/cyberimp/chest/thrusters/update_icon(updates=ALL)
+	. = ..()
 	if(on)
 		icon_state = "imp_jetpack-on"
 	else
@@ -275,9 +276,10 @@
 	on = !on
 	if(!silent)
 		to_chat(owner, span_notice("You turn your spinal implant [on? "on" : "off"]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/cyberimp/chest/spinalspeed/update_icon()
+/obj/item/organ/cyberimp/chest/spinalspeed/update_icon(updates=ALL)
+	. = ..()
 	if(on)
 		icon_state = "imp_spinal-on"
 	else

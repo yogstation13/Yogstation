@@ -64,7 +64,8 @@
 	caliber = ".45"
 	max_ammo = 8
 
-/obj/item/ammo_box/magazine/m45/update_icon()
+/obj/item/ammo_box/magazine/m45/update_icon(updates=ALL)
+	. = ..()
 	..()
 	if (ammo_count() >= 8)
 		icon_state = "45-8"
@@ -81,7 +82,8 @@
 	caliber = "9mm"
 	max_ammo = 15
 
-/obj/item/ammo_box/magazine/pistolm9mm/update_icon()
+/obj/item/ammo_box/magazine/pistolm9mm/update_icon(updates=ALL)
+	. = ..()
 	..()
 	icon_state = "9x19p-[ammo_count() ? "10" : "0"]"
 
@@ -95,7 +97,8 @@
 	caliber = ".50ae"
 	max_ammo = 7
 
-/obj/item/ammo_box/magazine/m50/update_icon()
+/obj/item/ammo_box/magazine/m50/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 	if (ammo_count() >= 7)
 		icon_state = "50ae-7"
@@ -112,7 +115,8 @@
 	caliber = "38"
 	max_ammo = 8
 
-/obj/item/ammo_box/magazine/v38/update_icon()
+/obj/item/ammo_box/magazine/v38/update_icon(updates=ALL)
+	. = ..()
 	..()
 	if (ammo_count() >= 8)
 		icon_state = "v38[sprite_designation]-8"

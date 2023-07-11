@@ -49,7 +49,7 @@
 		. |= COMPONENT_ITEM_BURNT_OUT
 
 	charges = max_charges
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	recharge_newshot()
 
 	return .
@@ -108,7 +108,8 @@
 		recharge_newshot()
 	return 1
 
-/obj/item/gun/magic/update_icon()
+/obj/item/gun/magic/update_icon(updates=ALL)
+	. = ..()
 	return
 
 /obj/item/gun/magic/shoot_with_empty_chamber(mob/living/user as mob|obj)

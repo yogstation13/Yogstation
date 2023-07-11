@@ -140,7 +140,7 @@
 	SEND_SIGNAL(parent, COMSIG_STORAGE_REMOVED, AM, new_location)
 	if(isobj(parent))
 		var/obj/O = parent
-		O.update_icon()
+		O.update_appearance(UPDATE_ICON)
 	return TRUE
 
 /datum/component/storage/concrete/proc/slave_can_insert_object(datum/component/storage/slave, obj/item/I, stop_messages = FALSE, mob/M)
@@ -191,13 +191,14 @@
 			if(!prevent_warning)
 				mob_item_insertion_feedback(usr, M, I)
 	SEND_SIGNAL(parent, COMSIG_STORAGE_INSERTED, I, M)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
-/datum/component/storage/concrete/update_icon()
+/datum/component/storage/concrete/update_icon(updates=ALL)
+	. = ..()
 	if(isobj(parent))
 		var/obj/O = parent
-		O.update_icon()
+		O.update_appearance(UPDATE_ICON)
 	for(var/i in slaves)
 		var/datum/component/storage/slave = i
-		slave.update_icon()
+		slave.update_appearance(UPDATE_ICON)

@@ -46,7 +46,8 @@
 		return FALSE
 	return ..()
 
-/obj/machinery/flasher/update_icon()
+/obj/machinery/flasher/update_icon(updates=ALL)
+	. = ..()
 	if (powered())
 		if(bulb.burnt_out)
 			icon_state = "[base_state]1-p"

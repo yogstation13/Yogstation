@@ -264,9 +264,10 @@
 
 /obj/item/restraints/legcuffs/beartrap/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/restraints/legcuffs/beartrap/update_icon()
+/obj/item/restraints/legcuffs/beartrap/update_icon(updates=ALL)
+	. = ..()
 	icon_state = "[initial(icon_state)][armed]"
 
 /obj/item/restraints/legcuffs/beartrap/suicide_act(mob/user)
@@ -281,12 +282,12 @@
 	..()
 	if(ishuman(user) && !user.stat && !user.restrained())
 		armed = !armed
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		to_chat(user, span_notice("[src] is now [armed ? "armed" : "disarmed"]"))
 
 /obj/item/restraints/legcuffs/beartrap/proc/close_trap()
 	armed = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 
 /obj/item/restraints/legcuffs/beartrap/Crossed(AM as mob|obj)

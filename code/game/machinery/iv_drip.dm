@@ -18,14 +18,15 @@
 
 /obj/machinery/iv_drip/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/iv_drip/Destroy()
 	attached = null
 	QDEL_NULL(beaker)
 	return ..()
 
-/obj/machinery/iv_drip/update_icon()
+/obj/machinery/iv_drip/update_icon(updates=ALL)
+	. = ..()
 	if(attached)
 		if(mode)
 			icon_state = "injecting"
@@ -75,7 +76,7 @@
 	if(attached)
 		visible_message(span_warning("[attached] is detached from [src]."))
 		attached = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	if(!target.has_dna())
@@ -89,7 +90,7 @@
 			add_fingerprint(usr)
 			attached = target
 			START_PROCESSING(SSmachines, src)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(usr, span_warning("There's nothing attached to the IV drip!"))
 
@@ -105,7 +106,7 @@
 		to_chat(user, span_notice("You attach [W] to [src]."))
 		user.log_message("attached a [W] to [src] at [AREACOORD(src)] containing ([beaker.reagents.log_list()])", LOG_ATTACK)
 		add_fingerprint(user)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	else if(istype(W,/obj/item/screwdriver))
 		return
@@ -125,7 +126,7 @@
 		to_chat(attached, span_userdanger("The IV drip needle is ripped out of you!"))
 		attached.apply_damage(3, BRUTE, pick(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM))
 		attached = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return PROCESS_KILL
 
 	if(beaker)
@@ -139,7 +140,7 @@
 				var/fraction = min(transfer_amount/beaker.reagents.total_volume, 1) //the fraction that is transfered of the total volume
 				beaker.reagents.reaction(attached, INJECT, fraction, FALSE) //make reagents reacts, but don't spam messages
 				beaker.reagents.trans_to(attached, transfer_amount * delta_time * 0.5)
-				update_icon()
+				update_appearance(UPDATE_ICON)
 
 		// Take blood
 		else
@@ -156,7 +157,7 @@
 				visible_message("[src] beeps loudly.")
 				playsound(loc, 'sound/machines/twobeep_high.ogg', 50, 1)
 			attached.transfer_blood_to(beaker, amount)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 /obj/machinery/iv_drip/attack_hand(mob/user)
 	. = ..()
@@ -167,7 +168,7 @@
 	if(attached)
 		visible_message("[attached] is detached from [src]")
 		attached = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	else if(beaker)
 		eject_beaker(user)
@@ -188,7 +189,7 @@
 	if(beaker)
 		beaker.forceMove(drop_location())
 		beaker = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/iv_drip/verb/toggle_mode()
 	set category = "Object"
@@ -203,7 +204,7 @@
 		return
 	mode = !mode
 	to_chat(usr, "The IV drip is now [mode ? "injecting" : "taking blood"].")
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/iv_drip/examine(mob/user)
 	. = ..()
@@ -248,7 +249,7 @@
     . = ..()
     beaker = new /obj/item/reagent_containers/glass/saline(src)
 
-/obj/machinery/iv_drip/saline/update_icon()
+/obj/machinery/iv_drip/saline/update_icon(updates=ALL)
     return
 
 /obj/machinery/iv_drip/saline/eject_beaker()

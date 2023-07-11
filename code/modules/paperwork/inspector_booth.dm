@@ -55,9 +55,10 @@
 
 /obj/machinery/inspector_booth/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/machinery/inspector_booth/update_icon()
+/obj/machinery/inspector_booth/update_icon(updates=ALL)
+	. = ..()
 	if (stat & NOPOWER)
 		icon_state = "booth_off"
 	else if (panel_open || stat & MAINT)

@@ -27,7 +27,7 @@
 		user.put_in_hands(stored)
 		stored = null
 		to_chat(user, span_notice("You remove the blackbox from [src]. The tapes stop spinning."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	else
 		to_chat(user, span_warning("It seems that the blackbox is missing..."))
@@ -43,7 +43,7 @@
 		span_notice("You press the device into [src], and it clicks into place. The tapes begin spinning again."))
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		stored = I
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return ..()
 	return ..()
 
@@ -53,7 +53,8 @@
 		new /obj/effect/decal/cleanable/oil(loc)
 	return ..()
 
-/obj/machinery/blackbox_recorder/update_icon()
+/obj/machinery/blackbox_recorder/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 	if(!stored)
 		icon_state = "blackbox_b"
@@ -157,7 +158,8 @@
 	if(!relay_information(signal, /obj/machinery/telecomms/hub))
 		relay_information(signal, /obj/machinery/telecomms/broadcaster)
 
-/obj/machinery/telecomms/message_server/update_icon()
+/obj/machinery/telecomms/message_server/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(calibrating && on)
 		var/mutable_appearance/calibrate = mutable_appearance(icon, "message_server_disabled")

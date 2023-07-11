@@ -357,7 +357,7 @@
 			mood_message = null
 	cheer_up()
 
-/obj/item/toy/plush/proc/update_desc()
+/obj/item/toy/plush/update_desc(updates=ALL)
 	desc = normal_desc
 	if(mood_message)
 		desc += mood_message

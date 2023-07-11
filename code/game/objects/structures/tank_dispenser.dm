@@ -23,9 +23,10 @@
 		new /obj/item/tank/internals/oxygen(src)
 	for(var/i in 1 to plasmatanks)
 		new /obj/item/tank/internals/plasma(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/tank_dispenser/update_icon()
+/obj/structure/tank_dispenser/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	switch(oxygentanks)
 		if(1 to 3)
@@ -69,7 +70,7 @@
 	if(!user.transferItemToLoc(I, src))
 		return
 	to_chat(user, span_notice("You put [I] in [src]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/tank_dispenser/ui_state(mob/user)
 	return GLOB.physical_state
@@ -109,7 +110,7 @@
 					usr.put_in_hands(tank)
 				oxygentanks--
 			. = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/structure/tank_dispenser/deconstruct(disassembled = TRUE)

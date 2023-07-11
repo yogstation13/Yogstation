@@ -497,7 +497,7 @@
 		user.balloon_alert(user, "you unsheathe \the [src].")
 		playsound(user, 'sound/items/unsheath.ogg', 25, TRUE)
 		swords = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/nullrod/dualsword/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -511,9 +511,10 @@
 
 		user.balloon_alert(user, "You sheathe \the [src].")
 		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		
-/obj/item/nullrod/dualsword/update_icon()
+/obj/item/nullrod/dualsword/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 	item_state = swords ? "fulldual" : "emptydual"
 	icon_state = item_state
@@ -566,7 +567,7 @@
 			sheath.swordleft.forceMove(sheath)
 		if(!sheath.swords)
 			user.balloon_alert(user, "you sheathe \the [sheath].")
-			sheath.update_icon()
+			sheath.update_appearance(UPDATE_ICON)
 			playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 		sheath.swords = TRUE
 	

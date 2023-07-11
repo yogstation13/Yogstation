@@ -21,7 +21,7 @@
 
 /obj/item/book/granter/martial/carp/on_reading_finished(mob/living/carbon/user)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/book/granter/martial/carp/update_icon(updates)
 	. = ..()

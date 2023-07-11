@@ -39,7 +39,8 @@
 		B += M.rating
 	heat_capacity = 5000 * ((B - 1) ** 2)
 
-/obj/machinery/atmospherics/components/unary/thermomachine/update_icon()
+/obj/machinery/atmospherics/components/unary/thermomachine/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 
 	if(panel_open)
@@ -68,7 +69,7 @@
 	if(can_interact(user))
 		on = !on
 		investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/thermomachine/AltClick(mob/living/user)
@@ -183,7 +184,7 @@
 				target_temperature = clamp(target, min_temperature, max_temperature)
 				investigate_log("was set to [target_temperature] K by [key_name(usr)]", INVESTIGATE_ATMOS)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer
 	name = "freezer"

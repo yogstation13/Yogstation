@@ -101,7 +101,7 @@
 			reagents.trans_to(W, W.max_fuel, transfered_by = user)
 			user.visible_message(span_notice("[user] refills [user.p_their()] [W.name]."), span_notice("You refill [W]."))
 			playsound(src, 'sound/effects/refill.ogg', 50, 1)
-			W.update_icon()
+			W.update_appearance(UPDATE_ICON)
 		else
 			user.visible_message(span_warning("[user] catastrophically fails at refilling [user.p_their()] [W.name]!"), span_userdanger("That was stupid of you."))
 

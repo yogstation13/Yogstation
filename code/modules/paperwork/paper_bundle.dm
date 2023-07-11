@@ -58,7 +58,7 @@
 			usr << browse("", "window=[name]") //Closes the dialog
 		P = src[page]
 		P.attackby(W, user)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	attack_self(usr) //Update the browsed page.
 	add_fingerprint(usr)
 	return
@@ -114,7 +114,7 @@
 /obj/item/paper_bundle/attack_self(mob/user as mob)
 	src.show_content(user)
 	add_fingerprint(usr)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return
 
 /obj/item/paper_bundle/proc/update_screen()
@@ -165,7 +165,7 @@
 				page = amount
 			if(page == amount)
 				screen = 2
-			update_icon()
+			update_appearance(UPDATE_ICON)
 	else
 		to_chat(usr, span_notice("You need to hold it in hand!"))
 	if (istype(src.loc, /mob) || istype(src.loc?.loc, /mob))
@@ -205,7 +205,8 @@
 /obj/item/paper_bundle/AltClick(mob/living/user)
 	unbundle()
 
-/obj/item/paper_bundle/update_icon()
+/obj/item/paper_bundle/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	var/obj/item/paper/P = src[1]
 	icon_state = P.icon_state

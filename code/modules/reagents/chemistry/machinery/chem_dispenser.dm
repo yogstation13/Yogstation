@@ -107,7 +107,7 @@
 		t4_upgrade_reagents = sortList(t4_upgrade_reagents, /proc/cmp_reagents_asc)
 		display_reagents |= t4_upgrade_reagents
 	//we don't sort display_reagents again after adding these because they will fuck up the order
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/chem_dispenser/Destroy()
 	QDEL_NULL(beaker)
@@ -145,7 +145,8 @@
 	if(working_state)
 		flick(working_state,src)
 
-/obj/machinery/chem_dispenser/update_icon()
+/obj/machinery/chem_dispenser/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	icon_state = "[(nopower_state && !powered()) ? nopower_state : initial(icon_state)]"
 	if(has_panel_overlay && panel_open)
@@ -347,7 +348,7 @@
 	if(default_unfasten_wrench(user, I))
 		return
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(default_deconstruction_crowbar(I))
 		return
@@ -375,7 +376,7 @@
 		replace_beaker(user, B)
 		to_chat(user, span_notice("You add [B] to [src]."))
 		updateUsrDialog()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(user.a_intent != INTENT_HARM && !istype(I, /obj/item/card/emag))
 		to_chat(user, span_warning("You can't load [I] into [src]!"))
 		return ..()
@@ -434,7 +435,7 @@
 		beaker = new_beaker
 	else
 		beaker = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/machinery/chem_dispenser/on_deconstruction()
@@ -479,7 +480,7 @@
 	var/old = dir
 	. = ..()
 	if(dir != old)
-		update_icon()  // the beaker needs to be re-positioned if we rotate
+		update_appearance(UPDATE_ICON)  // the beaker needs to be re-positioned if we rotate
 
 /obj/machinery/chem_dispenser/drinks/display_beaker()
 	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")

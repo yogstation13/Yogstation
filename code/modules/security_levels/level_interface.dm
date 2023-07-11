@@ -28,7 +28,8 @@
 	radio.independent = TRUE
 	radio.recalculateChannels()
 
-/obj/machinery/level_interface/update_icon()
+/obj/machinery/level_interface/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(!is_operational())
 		set_light_on(FALSE)

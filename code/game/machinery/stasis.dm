@@ -97,7 +97,7 @@
 		stasis_can_toggle = world.time + stasis_cooldown
 		playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 		play_power_sound()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/Exited(atom/movable/AM, atom/newloc)
 	if(AM == occupant)
@@ -109,7 +109,8 @@
 /obj/machinery/stasis/proc/stasis_running()
 	return stasis_enabled && is_operational()
 
-/obj/machinery/stasis/update_icon()
+/obj/machinery/stasis/update_icon(updates=ALL)
+	. = ..()
 	. = ..()
 	var/_running = stasis_running()
 	var/list/overlays_to_remove = managed_vis_overlays
@@ -166,13 +167,13 @@
 	occupant = L
 	if(stasis_running() && check_nap_violations())
 		chill_out(L)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/post_unbuckle_mob(mob/living/L)
 	thaw_them(L)
 	if(L == occupant)
 		occupant = null
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/process()
 	if( !( occupant && isliving(occupant) && check_nap_violations() ) )
@@ -189,7 +190,7 @@
 
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)
 	. = default_deconstruction_screwdriver(user, "stasis_maintenance", "stasis", I)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/stasis/wrench_act(mob/living/user, obj/item/I)
 	if(default_change_direction_wrench(user, I))

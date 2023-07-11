@@ -170,7 +170,8 @@
 	diag_hud_set_mechcell()
 	diag_hud_set_mechstat()
 
-/obj/mecha/update_icon()
+/obj/mecha/update_icon(updates=ALL)
+	. = ..()
 	if (silicon_pilot && silicon_icon_state)
 		icon_state = silicon_icon_state
 	. = ..()
@@ -914,7 +915,7 @@
 	occupant = AI
 	silicon_pilot = TRUE
 	icon_state = initial(icon_state)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 	if(!internal_damage)
 		SEND_SOUND(occupant, sound('sound/mecha/nominal.ogg',volume=50))
@@ -1097,7 +1098,7 @@
 	brainmob.update_mobility()
 	brainmob.update_mouse_pointer()
 	icon_state = initial(icon_state)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	setDir(dir_in)
 	log_message("[mmi_as_oc] moved in as pilot.", LOG_MECHA)
 	if(istype(mmi_as_oc, /obj/item/mmi/posibrain))											//yogs start reminder to posibrain to not be shitlers
@@ -1190,7 +1191,7 @@
 				L.forceMove(mmi)
 				L.reset_perspective()
 			mmi.mecha = null
-			mmi.update_icon()
+			mmi.update_appearance(UPDATE_ICON)
 			L.mobility_flags = NONE
 		icon_state = initial(icon_state)+"-open"
 		setDir(dir_in)

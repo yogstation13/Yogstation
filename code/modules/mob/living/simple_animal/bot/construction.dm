@@ -212,9 +212,10 @@
 
 /obj/item/bot_assembly/floorbot/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/bot_assembly/floorbot/update_icon()
+/obj/item/bot_assembly/floorbot/update_icon(updates=ALL)
+	. = ..()
 	..()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)
@@ -237,7 +238,7 @@
 				to_chat(user, span_notice("You add [W] to [src]."))
 				qdel(W)
 				build_step++
-				update_icon()
+				update_appearance(UPDATE_ICON)
 
 		if(ASSEMBLY_SECOND_STEP)
 			if(istype(W, /obj/item/bodypart/l_arm/robot) || istype(W, /obj/item/bodypart/r_arm/robot))

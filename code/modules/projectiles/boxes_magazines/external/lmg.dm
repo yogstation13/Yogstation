@@ -32,6 +32,7 @@
 	ammo_type = /obj/item/ammo_casing/mm712x82/inc
 	sprite_designation = "I"
 
-/obj/item/ammo_box/magazine/mm712x82/update_icon()
+/obj/item/ammo_box/magazine/mm712x82/update_icon(updates=ALL)
+	. = ..()
 	..()
 	icon_state = "a762[sprite_designation]-[round(ammo_count(),10)]"

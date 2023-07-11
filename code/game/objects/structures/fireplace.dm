@@ -69,7 +69,8 @@
 	else
 		. = ..()
 
-/obj/structure/fireplace/update_icon()
+/obj/structure/fireplace/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(lit)
 		switch(burn_time_remaining())
@@ -112,7 +113,7 @@
 	playsound(src, 'sound/effects/comfyfire.ogg',50,0, 0, 1)
 	var/turf/T = get_turf(src)
 	T.hotspot_expose(700, 2.5 * delta_time)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	adjust_light()
 
 /obj/structure/fireplace/extinguish()
@@ -142,11 +143,11 @@
 	desc = "A large stone brick fireplace, warm and cozy."
 	flame_expiry_timer = world.time + fuel_added
 	fuel_added = 0
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	adjust_light()
 
 /obj/structure/fireplace/proc/put_out()
 	lit = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	adjust_light()
 	desc = initial(desc)

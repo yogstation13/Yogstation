@@ -105,9 +105,10 @@
 /obj/item/map/station/Initialize(mapload)
 	..()
 	minimaps += SSmapping.station_minimaps
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/map/update_icon()
+/obj/item/map/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	var/datum/minimap/map = minimaps[1]
 	if(!map) return

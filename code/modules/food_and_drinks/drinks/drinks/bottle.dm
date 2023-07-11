@@ -23,9 +23,10 @@
 	age_restricted = TRUE
 
 /obj/item/reagent_containers/food/drinks/bottle/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/food/drinks/bottle/update_icon()
+/obj/item/reagent_containers/food/drinks/bottle/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 
 	if(reagents.total_volume)

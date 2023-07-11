@@ -34,14 +34,15 @@
 
 	if(broken)
 		holes = (holes | 16) //16 is the biggest hole
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	holes = (holes | (1 << rand(0,3))) //add random holes between 1 and 8
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/grille/update_icon()
+/obj/structure/grille/update_icon(updates=ALL)
+	. = ..()
 	if(QDELETED(src))
 		return
 	for(var/i = 0; i < 5; i++)
@@ -303,7 +304,7 @@
 /obj/structure/grille/broken/Initialize(mapload)
 	. = ..()
 	holes = (holes | 16)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/grille/ratvar
 	icon = 'icons/obj/structures.dmi'

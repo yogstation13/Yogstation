@@ -413,7 +413,8 @@
 	icon_state = "1"
 	color = rgb(0,0,255)
 
-/obj/structure/ladder/unbreakable/rune/update_icon()
+/obj/structure/ladder/unbreakable/rune/update_icon(updates=ALL)
+	. = ..()
 	return
 
 /obj/structure/ladder/unbreakable/rune/show_fluff_message(up,mob/user)

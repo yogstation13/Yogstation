@@ -28,7 +28,8 @@
 	icon_state = "folder_white"
 
 
-/obj/item/folder/update_icon()
+/obj/item/folder/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(contents.len)
 		add_overlay("folder_paper")
@@ -39,7 +40,7 @@
 		if(!user.transferItemToLoc(W, src))
 			return
 		to_chat(user, span_notice("You put [W] into [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(istype(W, /obj/item/pen))
 		if(!user.is_literate())
 			to_chat(user, span_notice("You scribble illegibly on the cover of [src]!"))
@@ -94,7 +95,7 @@
 
 		//Update everything
 		attack_self(usr)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/folder/documents
 	name = "folder- 'TOP SECRET'"
@@ -103,7 +104,7 @@
 /obj/item/folder/documents/Initialize(mapload)
 	. = ..()
 	new /obj/item/documents/nanotrasen(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/folder/syndicate
 	icon_state = "folder_syndie"
@@ -116,7 +117,7 @@
 /obj/item/folder/syndicate/red/Initialize(mapload)
 	. = ..()
 	new /obj/item/documents/syndicate/red(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/folder/syndicate/blue
 	icon_state = "folder_sblue"
@@ -124,9 +125,9 @@
 /obj/item/folder/syndicate/blue/Initialize(mapload)
 	. = ..()
 	new /obj/item/documents/syndicate/blue(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/folder/syndicate/mining/Initialize(mapload)
 	. = ..()
 	new /obj/item/documents/syndicate/mining(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)

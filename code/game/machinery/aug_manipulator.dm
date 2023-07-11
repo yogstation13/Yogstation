@@ -19,7 +19,8 @@
     initial_icon_state = initial(icon_state)
     return ..()
 
-/obj/machinery/aug_manipulator/update_icon()
+/obj/machinery/aug_manipulator/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 
 	if(stat & BROKEN)
@@ -50,7 +51,7 @@
 /obj/machinery/aug_manipulator/handle_atom_del(atom/A)
 	if(A == storedpart)
 		storedpart = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/aug_manipulator/attackby(obj/item/O, mob/user, params)
 	if(default_unfasten_wrench(user, O))
@@ -71,7 +72,7 @@
 				return
 			storedpart = O
 			O.add_fingerprint(user)
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 	else if(O.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
 		if(obj_integrity < max_integrity)
@@ -88,7 +89,7 @@
 				to_chat(user, span_notice("You repair [src]."))
 				stat &= ~BROKEN
 				obj_integrity = max(obj_integrity, max_integrity)
-				update_icon()
+				update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_notice("[src] does not need repairs."))
 	else
@@ -118,7 +119,7 @@
 	if(storedpart)
 		storedpart.forceMove(get_turf(src))
 		storedpart = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		to_chat(user, span_notice("[src] is empty."))
 

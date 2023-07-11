@@ -29,9 +29,10 @@
 			playsound(src,'sound/machines/synth_no.ogg',50,0)
 		if (SP_UNREADY)
 			ready = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/supplypod_beacon/update_icon()
+/obj/item/supplypod_beacon/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if (launched)
 		add_overlay("sp_green")

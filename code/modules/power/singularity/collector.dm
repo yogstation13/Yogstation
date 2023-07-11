@@ -159,7 +159,7 @@
 		if(!user.transferItemToLoc(W, src))
 			return
 		loaded_tank = W
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else if(W.GetID())
 		if(togglelock(user))
 			return TRUE
@@ -294,14 +294,15 @@
 	if(active)
 		toggle_power()
 	else
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/rad_collector/rad_act(pulse_strength, collectable_radiation)
 	. = ..()
 	if(loaded_tank && active && collectable_radiation && pulse_strength > RAD_COLLECTOR_EFFICIENCY)
 		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*(machine_tier+power_bonus)
 
-/obj/machinery/power/rad_collector/update_icon()
+/obj/machinery/power/rad_collector/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 	if(loaded_tank)
 		add_overlay("ptank")
@@ -327,7 +328,7 @@
 	else
 		icon_state = "ca"
 		flick("ca_deactive", src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/rad_collector/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy/nuclear_particle))

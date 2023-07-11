@@ -35,5 +35,6 @@
 			environs."
 
 //we don't want the silly text overlay!
-/obj/item/paper/pamphlet/update_icon()
+/obj/item/paper/pamphlet/update_icon(updates=ALL)
+	. = ..()
 	return

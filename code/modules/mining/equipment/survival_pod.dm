@@ -138,7 +138,8 @@
 	icon = 'icons/obj/lavaland/survival_pod.dmi'
 	icon_state = "sleeper"
 
-/obj/machinery/sleeper/survival_pod/update_icon()
+/obj/machinery/sleeper/survival_pod/update_icon(updates=ALL)
+	. = ..()
 	if(state_open)
 		cut_overlays()
 	else
@@ -154,7 +155,8 @@
 /obj/machinery/stasis/survival_pod/play_power_sound()
 	return
 
-/obj/machinery/stasis/survival_pod/update_icon()
+/obj/machinery/stasis/survival_pod/update_icon(updates=ALL)
+	. = ..()
 	return
 
 //Computer
@@ -206,7 +208,8 @@
 	pitches = FALSE
 	var/empty = FALSE
 
-/obj/machinery/smartfridge/survival_pod/update_icon()
+/obj/machinery/smartfridge/survival_pod/update_icon(updates=ALL)
+	. = ..()
 	return
 
 /obj/machinery/smartfridge/survival_pod/Initialize(mapload)

@@ -54,7 +54,7 @@
 			var/obj/structure/particle_accelerator/part = CP
 			part.strength = null
 			part.powered = FALSE
-			part.update_icon()
+			part.update_appearance(UPDATE_ICON)
 		connected_parts.Cut()
 		return
 	if(!part_scan())
@@ -62,7 +62,8 @@
 		active = FALSE
 		connected_parts.Cut()
 
-/obj/machinery/particle_accelerator/control_box/update_icon()
+/obj/machinery/particle_accelerator/control_box/update_icon(updates=ALL)
+	. = ..()
 	if(active)
 		icon_state = "control_boxp[strength]"		//yogs- fix sprite not updating		(note that /tg/ PA power 2 sprite is incomplete)
 	else
@@ -84,7 +85,7 @@
 	for(var/CP in connected_parts)
 		var/obj/structure/particle_accelerator/part = CP
 		part.strength = strength
-		part.update_icon()
+		part.update_appearance(UPDATE_ICON)
 
 /obj/machinery/particle_accelerator/control_box/proc/add_strength(s)
 	if(assembled && (strength < strength_upper_limit))
@@ -120,12 +121,12 @@
 		if(connected_parts.len < 6)
 			investigate_log("lost a connected part; It <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
 			toggle_power()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 		if(area_restricted && !istype(get_area(src),/area/engine))
 			investigate_log("had its area restriction turned on while in an invalid area; It <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
 			toggle_power()
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			return
 		//emit some particles
 		for(var/obj/structure/particle_accelerator/particle_emitter/PE in connected_parts)
@@ -198,14 +199,14 @@
 			var/obj/structure/particle_accelerator/part = CP
 			part.strength = strength
 			part.powered = TRUE
-			part.update_icon()
+			part.update_appearance(UPDATE_ICON)
 	else
 		use_power = IDLE_POWER_USE
 		for(var/CP in connected_parts)
 			var/obj/structure/particle_accelerator/part = CP
 			part.strength = null
 			part.powered = FALSE
-			part.update_icon()
+			part.update_appearance(UPDATE_ICON)
 	return TRUE
 
 
@@ -269,7 +270,7 @@
 	if(did_something)
 		user.changeNext_move(CLICK_CD_MELEE)
 		update_state()
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 
 	..()
@@ -365,7 +366,7 @@
 			to_chat(operator, "You [locked ? "enable" : "disable"] the area restriction.");
 			. = TRUE
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/particle_accelerator/control_box/charlie //for charlie station
 	locked = FALSE

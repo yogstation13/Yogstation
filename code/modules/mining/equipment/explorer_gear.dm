@@ -124,9 +124,10 @@
 /obj/item/clothing/head/helmet/space/hostile_environment/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/spraycan_paintable)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/clothing/head/helmet/space/hostile_environment/update_icon()
+/obj/item/clothing/head/helmet/space/hostile_environment/update_icon(updates=ALL)
+	. = ..()
 	..()
 	cut_overlays()
 	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hostile_env_glass")

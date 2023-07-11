@@ -58,12 +58,12 @@
 	if(thing == pai) //double check /mob/living/silicon/pai/Destroy() if you change these.
 		pai = null
 		emotion_icon = initial(emotion_icon)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/item/pai_card/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	SSpai.pai_card_list += src
 
 /obj/item/pai_card/suicide_act(mob/living/user)
@@ -72,6 +72,7 @@
 
 /obj/item/pai_card/proc/update_overlays()
 	. = ..()
+	. = ..()
 	. += "pai-[emotion_icon]"
 	if(pai?.hacking_cable)
 		. += "[initial(icon_state)]-connector"
@@ -79,7 +80,7 @@
 /obj/item/pai_card/vv_edit_var(vname, vval)
 	. = ..()
 	if(vname == NAMEOF(src, emotion_icon))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/pai_card/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -253,7 +254,7 @@
 		return FALSE
 	pai = downloaded
 	emotion_icon = "null"
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	playsound(src, 'sound/effects/pai_boot.ogg', 50, TRUE, -1)
 	audible_message("[src] plays a cheerful startup noise!")
 	return TRUE

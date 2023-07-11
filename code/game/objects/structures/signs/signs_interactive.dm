@@ -18,9 +18,10 @@ GLOBAL_LIST_EMPTY(map_delamination_counters)
 
 /obj/structure/sign/delamination_counter/proc/update_count(new_count)
 	since_last = min(new_count, 99)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/structure/sign/delamination_counter/update_icon()
+/obj/structure/sign/delamination_counter/update_icon(updates=ALL)
+	. = ..()
 	cut_overlays()
 
 	var/ones = since_last % 10
