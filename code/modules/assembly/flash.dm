@@ -51,6 +51,7 @@
 	if(burnt_out)
 		add_overlay("flashburnt")
 		attached_overlays += "flashburnt"
+		item_state = "flashburnt"
 	if(flash)
 		add_overlay(flashing_overlay)
 		attached_overlays += flashing_overlay
@@ -251,7 +252,7 @@
 	return
 /obj/item/assembly/flash/cyborg/screwdriver_act(mob/living/user, obj/item/I)
 	return
-	
+
 /obj/item/assembly/flash/cyborg/combat
 	name = "combat cyborg flash"
 	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production. This variant is able to stun cyborgs."

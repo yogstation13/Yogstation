@@ -185,11 +185,11 @@
 		icon_state = "emptyshaker"
 	else
 		icon_state = "peppermillsmall"
-		
+
 /obj/item/reagent_containers/food/condiment/mesophilic
 	name = "bottle of mesophilic culture"
 	desc = "A mixture of mesophilic bacteria used to make most cheese."
-	icon_state = "mixedcondiments"
+	icon_state = "mesophilic"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/mesophilicculture = 30)
@@ -198,7 +198,7 @@
 /obj/item/reagent_containers/food/condiment/pcandidum
 	name = "bottle of penicillium candidum"
 	desc = "A special bacterium used to make brie."
-	icon_state = "mixedcondiments"
+	icon_state = "penicillium_c"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/penicilliumcandidum = 30)
@@ -207,7 +207,7 @@
 /obj/item/reagent_containers/food/condiment/proqueforti
 	name = "bottle of penicillium roqueforti"
 	desc = "A special bacterium used to make blue cheese."
-	icon_state = "mixedcondiments"
+	icon_state = "penicillium_r"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/penicilliumroqueforti = 30)
@@ -216,7 +216,7 @@
 /obj/item/reagent_containers/food/condiment/thermophilic
 	name = "bottle of thermophilic culture"
 	desc = "A mixture of thermophilic bacteria used to make some cheese."
-	icon_state = "mixedcondiments"
+	icon_state = "thermophilic"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/thermophilicculture = 30)
@@ -243,7 +243,7 @@
 /obj/item/reagent_containers/food/condiment/flour/on_reagent_change(changetype) //born of intense hatred
 	if(!reagents.has_reagent(/datum/reagent/water, 10))
 		return ..()
-	
+
 	var/target
 	var/L
 	for(var/obj/structure/table/S in loc)

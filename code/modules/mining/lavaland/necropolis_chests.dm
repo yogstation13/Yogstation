@@ -888,7 +888,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 			var/mob/living/carbon/carbon_target = target
 			var/obj/item/bodypart/bodypart = pick(carbon_target.bodyparts)
 			var/datum/wound/slash/moderate/crit_wound = new
-			user.visible_message(span_boldwarning("[user] cleaves [target] delivering a viscious wound!"))
+			user.visible_message(span_boldwarning("[user] cleaves [target], delivering a vicious wound!"))
 			crit_wound.apply_wound(bodypart)
 
 /obj/item/melee/transforming/cleaving_saw/nemesis_effects(mob/living/user, mob/living/target)
@@ -902,7 +902,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		B.add_bleed(B.bleed_buildup)
 
 	if(B.needs_to_bleed)
-		to_chat(user, span_notice("You drink the blood spilled from [target] healing your wounds!"))
+		to_chat(user, span_notice("You drink the blood spilled from [target], healing your wounds!"))
 		user.adjustBruteLoss(-10)
 		user.adjustFireLoss(-10)
 		user.adjustToxLoss(-10)
