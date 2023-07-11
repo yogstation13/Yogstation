@@ -1492,18 +1492,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"akw" = (
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/mop,
-/obj/item/reagent_containers/glass/bottle/ammonia,
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 12
-	},
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/mouse/brown/Tom,
-/turf/open/floor/plating,
-/area/security/prison)
 "akx" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4
@@ -16896,6 +16884,16 @@
 /obj/machinery/papershredder,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
+"dbM" = (
+/obj/machinery/light/small{
+	dir = 1;
+	light_color = "#ffc1c1"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/obj/machinery/recharge_station,
+/turf/open/floor/plating,
+/area/security/prison)
 "dcn" = (
 /obj/machinery/door/airlock/security/glass{
 	id_tag = "permaouter";
@@ -29671,16 +29669,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"hQY" = (
-/obj/machinery/light/small{
-	dir = 1;
-	light_color = "#ffc1c1"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/old,
-/obj/machinery/recharge_station,
-/turf/open/floor/plating,
-/area/security/prison)
 "hRi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -46085,6 +46073,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"olG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/holopad,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "olT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -54200,6 +54193,18 @@
 /obj/effect/turf_decal/trimline/purple/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"rna" = (
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bottle/ammonia,
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 12
+	},
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/mouse/brown/Tom,
+/turf/open/floor/plating,
+/area/security/prison)
 "rnS" = (
 /turf/template_noop,
 /area/security/execution/transfer)
@@ -96610,7 +96615,7 @@ cVS
 scE
 xfH
 jFw
-aat
+olG
 aat
 uBb
 kNK
@@ -98672,7 +98677,7 @@ vnR
 kdm
 gSZ
 acd
-hQY
+dbM
 oNh
 acd
 fSk
@@ -98930,7 +98935,7 @@ pTP
 alC
 acd
 oqW
-akw
+rna
 acd
 nMO
 gjk
