@@ -104,7 +104,10 @@
 	return ..()
 
 /datum/game_mode/cult/check_finished(force_ending)
-	if (..())
+	if(!SSticker.setup_done || !gamemode_ready)
+		return FALSE
+	. = ..()
+	if (.)
 		return TRUE
 
 	return !main_cult.check_sacrifice_status() //we should remove this any time soon
