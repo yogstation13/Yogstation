@@ -162,13 +162,6 @@
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"ef" = (
-/obj/structure/lattice/catwalk/clockwork,
-/obj/effect/clockwork/servant_blocker{
-	dir = 1
-	},
-/turf/open/indestructible/reebe_void,
-/area/reebe/city_of_cogs)
 "er" = (
 /obj/effect/landmark/servant_of_ratvar/scarab,
 /turf/open/floor/clockwork/reebe,
@@ -179,14 +172,6 @@
 	dir = 4
 	},
 /turf/open/floor/clockwork/reebe,
-/area/reebe/city_of_cogs)
-"hA" = (
-/obj/structure/window/reinforced/clockwork/fulltile,
-/obj/structure/grille/ratvar,
-/obj/effect/clockwork/servant_blocker{
-	dir = 1
-	},
-/turf/open/indestructible/clock_spawn_room,
 /area/reebe/city_of_cogs)
 "mj" = (
 /obj/structure/table/reinforced/brass,
@@ -221,6 +206,17 @@
 /obj/item/paper/servant_primer/infirmarypaper,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
+"ry" = (
+/obj/structure/lattice/catwalk/clockwork,
+/obj/effect/clockwork/servant_blocker,
+/turf/open/indestructible/reebe_void,
+/area/reebe/city_of_cogs)
+"sl" = (
+/obj/structure/lattice/catwalk/clockwork,
+/obj/effect/clockwork/servant_blocker,
+/obj/effect/clockwork/servant_blocker,
+/turf/open/indestructible/reebe_void,
+/area/reebe/city_of_cogs)
 "wm" = (
 /obj/structure/table/reinforced/brass,
 /obj/item/kitchen/fork{
@@ -240,6 +236,19 @@
 "wT" = (
 /obj/structure/table/reinforced/brass,
 /turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
+"An" = (
+/obj/effect/clockwork/servant_blocker,
+/obj/structure/grille/ratvar,
+/obj/structure/window/reinforced/clockwork/fulltile,
+/turf/open/indestructible/clock_spawn_room,
+/area/reebe/city_of_cogs)
+"Bg" = (
+/obj/effect/clockwork/servant_blocker,
+/obj/structure/grille/ratvar,
+/obj/structure/grille/ratvar,
+/obj/structure/window/reinforced/clockwork/fulltile,
+/turf/open/indestructible/clock_spawn_room,
 /area/reebe/city_of_cogs)
 "Ct" = (
 /turf/closed/indestructible/riveted,
@@ -3475,17 +3484,17 @@ ab
 ab
 ab
 ab
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
 ab
 ab
 ab
@@ -3565,8 +3574,8 @@ ab
 ab
 ab
 ab
-hA
-hA
+An
+An
 az
 mj
 ai
@@ -3576,8 +3585,8 @@ aj
 ai
 at
 aF
-hA
-hA
+An
+An
 ab
 ab
 ab
@@ -3656,7 +3665,7 @@ ab
 ab
 ab
 ab
-hA
+An
 au
 aj
 aj
@@ -3668,7 +3677,7 @@ aE
 aj
 at
 aF
-hA
+An
 ab
 ab
 ab
@@ -3745,9 +3754,9 @@ ab
 ab
 ab
 ab
-hA
-hA
-hA
+An
+An
+An
 av
 aj
 aj
@@ -3759,9 +3768,9 @@ ai
 aj
 aj
 aj
-hA
-hA
-hA
+An
+An
+An
 ab
 ab
 ab
@@ -3835,8 +3844,8 @@ ab
 ab
 ab
 ab
-hA
-hA
+An
+An
 au
 ax
 aH
@@ -3852,8 +3861,8 @@ aj
 aH
 aj
 ay
-hA
-hA
+An
+An
 ab
 ab
 ab
@@ -3926,7 +3935,7 @@ ab
 ab
 ab
 ab
-hA
+An
 bj
 aj
 aj
@@ -3944,7 +3953,7 @@ aj
 aj
 av
 ay
-hA
+An
 ab
 ab
 ab
@@ -4017,7 +4026,7 @@ ab
 ab
 ab
 ab
-hA
+An
 wm
 aj
 aj
@@ -4035,7 +4044,7 @@ ax
 aj
 aj
 av
-hA
+An
 ab
 ab
 ab
@@ -4094,21 +4103,21 @@ aa
 aa
 aa
 aa
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
+Bg
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
 ai
 ag
 ai
@@ -4126,21 +4135,21 @@ ah
 ai
 aE
 ai
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
-hA
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
 aa
 aa
 aa
@@ -4185,7 +4194,7 @@ ah
 ac
 ac
 ac
-ef
+ry
 aj
 aj
 aj
@@ -4231,7 +4240,7 @@ aj
 aj
 aj
 aj
-ef
+ry
 ac
 ac
 ac
@@ -4276,7 +4285,7 @@ aP
 ac
 ac
 ac
-ef
+ry
 aj
 aO
 aj
@@ -4322,7 +4331,7 @@ aj
 aO
 aj
 aj
-ef
+ry
 ac
 ac
 ac
@@ -4367,7 +4376,7 @@ ah
 ac
 ac
 ac
-ef
+ry
 aj
 aj
 aj
@@ -4413,7 +4422,7 @@ aj
 aj
 aj
 aj
-ef
+ry
 ac
 ac
 ac
@@ -4458,7 +4467,7 @@ ah
 ac
 ac
 ac
-ef
+ry
 aj
 aj
 aj
@@ -4504,7 +4513,7 @@ aj
 aj
 aO
 aj
-ef
+ry
 ac
 ac
 ac
@@ -4549,7 +4558,7 @@ ah
 ac
 ac
 ac
-ef
+ry
 aj
 aO
 aj
@@ -4595,7 +4604,7 @@ aO
 aj
 aj
 aj
-ef
+ry
 ac
 ac
 ac
@@ -4640,7 +4649,7 @@ ah
 ac
 ac
 ac
-ef
+ry
 aj
 aj
 aj
@@ -4686,7 +4695,7 @@ aj
 aj
 aj
 aj
-ef
+ry
 ac
 ac
 ac
@@ -4731,8 +4740,8 @@ ah
 ac
 ac
 ac
-ef
-ef
+ry
+ry
 aj
 aj
 aj
@@ -4776,8 +4785,8 @@ aj
 aj
 aj
 aj
-ef
-ef
+ry
+ry
 ac
 ac
 ac
@@ -4823,7 +4832,7 @@ ah
 ac
 ac
 ac
-ef
+ry
 aj
 aO
 aj
@@ -4867,7 +4876,7 @@ aO
 aj
 aO
 aj
-ef
+ry
 ac
 ac
 ac
@@ -4914,7 +4923,7 @@ ah
 ac
 ac
 ac
-ef
+ry
 aj
 aj
 aj
@@ -4958,7 +4967,7 @@ aj
 aj
 aj
 aj
-ef
+ry
 ac
 ac
 ac
@@ -5005,8 +5014,8 @@ ah
 ac
 ac
 ac
-ef
-ef
+ry
+ry
 aj
 aj
 aO
@@ -5048,8 +5057,8 @@ aj
 aj
 aj
 aj
-ef
-ef
+ry
+ry
 ac
 ac
 ac
@@ -5097,7 +5106,7 @@ ah
 ac
 ac
 ac
-ef
+ry
 aj
 aj
 aj
@@ -5139,7 +5148,7 @@ aj
 aj
 aO
 aj
-ef
+ry
 ac
 ac
 ac
@@ -5188,8 +5197,8 @@ ah
 ac
 ac
 ac
-ef
-ef
+ry
+ry
 aj
 aj
 aj
@@ -5229,8 +5238,8 @@ aj
 aj
 aj
 aj
-ef
-ef
+ry
+ry
 ac
 ac
 ac
@@ -5280,7 +5289,7 @@ ah
 ac
 ac
 ac
-ef
+ry
 aj
 aj
 aO
@@ -5320,7 +5329,7 @@ aj
 aj
 aj
 aj
-ef
+ry
 ac
 ac
 ac
@@ -5371,8 +5380,8 @@ ah
 ac
 ac
 ac
-ef
-ef
+ry
+ry
 aj
 aj
 aj
@@ -5410,8 +5419,8 @@ aj
 aO
 aj
 aj
-ef
-ef
+ry
+ry
 ac
 ac
 ac
@@ -5463,8 +5472,8 @@ ah
 ac
 ac
 ac
-ef
-ef
+ry
+ry
 aj
 aj
 aO
@@ -5500,8 +5509,8 @@ aj
 aj
 aj
 aj
-ef
-ef
+ry
+ry
 ac
 ac
 ac
@@ -5555,8 +5564,8 @@ ah
 ac
 ac
 ac
-ef
-ef
+ry
+ry
 aj
 aj
 aj
@@ -5590,8 +5599,8 @@ aj
 aO
 aj
 aj
-ef
-ef
+ry
+ry
 ac
 ac
 ac
@@ -5647,8 +5656,8 @@ ac
 ac
 ac
 ac
-ef
-ef
+ry
+ry
 aj
 aj
 aj
@@ -5680,8 +5689,8 @@ aO
 aj
 aj
 aj
-ef
-ef
+sl
+ry
 ac
 ac
 ac
@@ -5739,8 +5748,8 @@ ac
 ac
 ac
 ac
-ef
-ef
+ry
+ry
 aj
 aj
 aO
@@ -5770,8 +5779,8 @@ aj
 aj
 aj
 aj
-ef
-ef
+ry
+ry
 ac
 ac
 ac
@@ -5831,8 +5840,8 @@ ac
 ac
 ac
 ac
-ef
-ef
+ry
+ry
 aj
 aj
 aj
@@ -5860,8 +5869,8 @@ aO
 aj
 aj
 aj
-ef
-ef
+ry
+ry
 ac
 ac
 ac
@@ -5923,8 +5932,8 @@ ac
 ac
 ac
 ac
-ef
-ef
+ry
+ry
 aj
 aj
 aj
@@ -5950,8 +5959,8 @@ aj
 aj
 aj
 aj
-ef
-ef
+ry
+ry
 ac
 ac
 ac
@@ -6015,8 +6024,8 @@ ac
 ac
 ac
 ac
-ef
-ef
+ry
+ry
 aj
 aj
 aj
@@ -6040,8 +6049,8 @@ aj
 aj
 aj
 aj
-ef
-ef
+ry
+ry
 ac
 ac
 ac
@@ -6107,9 +6116,9 @@ ac
 ac
 ac
 ac
-ef
-ef
-ef
+ry
+ry
+ry
 aj
 aj
 aj
@@ -6129,9 +6138,9 @@ aj
 aj
 aj
 aj
-ef
-ef
-ef
+ry
+ry
+ry
 ac
 ac
 ac
@@ -6200,9 +6209,9 @@ ac
 ac
 ac
 ac
-ef
-ef
-ef
+ry
+ry
+ry
 aj
 aj
 aj
@@ -6218,9 +6227,9 @@ aj
 aj
 aj
 aj
-ef
-ef
-ef
+ry
+ry
+ry
 ac
 ac
 ac
@@ -6293,10 +6302,10 @@ ac
 ac
 ac
 ac
-ef
-ef
-ef
-ef
+ry
+ry
+ry
+ry
 aj
 aj
 aj
@@ -6306,10 +6315,10 @@ aj
 aj
 aj
 aj
-ef
-ef
-ef
-ef
+ry
+ry
+ry
+ry
 ac
 ac
 ac
@@ -6387,17 +6396,17 @@ ac
 ac
 ac
 ac
-ef
-ef
-ef
-ef
-ef
-ef
-ef
-ef
-ef
-ef
-ef
+ry
+ry
+ry
+ry
+ry
+ry
+ry
+ry
+ry
+ry
+ry
 ac
 ac
 ac
