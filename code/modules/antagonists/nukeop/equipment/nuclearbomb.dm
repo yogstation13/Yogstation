@@ -179,28 +179,28 @@
 	else
 		return NUKE_OFF_UNLOCKED
 
-/obj/machinery/nuclearbomb/update_icon(updates=ALL)
-	. = ..()
-	if(deconstruction_state == NUKESTATE_INTACT)
-		switch(get_nuke_state())
-			if(NUKE_OFF_LOCKED, NUKE_OFF_UNLOCKED)
-				icon_state = "nuclearbomb_base"
-				update_appearance(UPDATE_ICON)
-			if(NUKE_ON_TIMING)
-				cut_overlays()
-				icon_state = "nuclearbomb_timing"
-			if(NUKE_ON_EXPLODING)
-				cut_overlays()
-				icon_state = "nuclearbomb_exploding"
-	else
+/obj/machinery/nuclearbomb/update_icon_state()
+	if(deconstruction_state != NUKESTATE_INTACT)
 		icon_state = "nuclearbomb_base"
-		update_appearance(UPDATE_ICON)
+		return ..()
+
+	switch(get_nuke_state())
+		if(NUKE_OFF_LOCKED, NUKE_OFF_UNLOCKED)
+			icon_state = "nuclearbomb_base"
+		if(NUKE_ON_TIMING)
+			icon_state = "nuclearbomb_timing"
+		if(NUKE_ON_EXPLODING)
+			icon_state = "nuclearbomb_exploding"
+
+	return ..()
 
 /obj/machinery/nuclearbomb/update_overlays()
 	. = ..()
-	cut_overlay(interior)
+
 	if(lights)
 		cut_overlay(lights)
+	cut_overlay(interior)
+
 	switch(deconstruction_state)
 		if(NUKESTATE_UNSCREWED)
 			interior = "panel-unscrewed"
@@ -214,7 +214,7 @@
 			interior = "core-removed"
 		if(NUKESTATE_INTACT)
 			return
-	add_overlay(interior)
+
 	switch(get_nuke_state())
 		if(NUKE_OFF_LOCKED)
 			lights = ""
@@ -225,8 +225,9 @@
 			lights = "lights-timing"
 		if(NUKE_ON_EXPLODING)
 			lights = "lights-exploding"
-	add_overlay(lights)
 
+	add_overlay(lights)
+	add_overlay(interior)
 
 /obj/machinery/nuclearbomb/process()
 	if(timing && !exploding)

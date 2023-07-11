@@ -652,35 +652,35 @@
 			frame_state = AIRLOCK_FRAME_OPENING
 			light_state = AIRLOCK_LIGHT_OPENING
 
-	. += get_airlock_overlay(frame_state, icon, src, em_block = TRUE)
+	. += get_airlock_overlay(frame_state, icon)
 	if(airlock_material)
-		. += get_airlock_overlay("[airlock_material]_[frame_state]", overlays_file, src, em_block = TRUE)
+		. += get_airlock_overlay("[airlock_material]_[frame_state]", overlays_file)
 	else
-		. += get_airlock_overlay("fill_[frame_state]", icon, src, em_block = TRUE)
+		. += get_airlock_overlay("fill_[frame_state]", icon)
 
 	if(lights && hasPower())
-		. += get_airlock_overlay("lights_[light_state]", overlays_file, src, em_block = FALSE)
+		. += get_airlock_overlay("lights_[light_state]", overlays_file)
 
 	if(panel_open)
-		. += get_airlock_overlay("panel_[frame_state][security_level ? "_protected" : null]", overlays_file, src, em_block = TRUE)
+		. += get_airlock_overlay("panel_[frame_state][security_level ? "_protected" : null]", overlays_file)
 	if(frame_state == AIRLOCK_FRAME_CLOSED && welded)
-		. += get_airlock_overlay("welded", overlays_file, src, em_block = TRUE)
+		. += get_airlock_overlay("welded", overlays_file)
 
 	if(airlock_state == AIRLOCK_EMAG)
-		. += get_airlock_overlay("sparks", overlays_file, src, em_block = FALSE)
+		. += get_airlock_overlay("sparks", overlays_file)
 
 	if(hasPower())
 		if(frame_state == AIRLOCK_FRAME_CLOSED)
 			if(obj_integrity < integrity_failure * max_integrity)
-				. += get_airlock_overlay("sparks_broken", overlays_file, src, em_block = FALSE)
+				. += get_airlock_overlay("sparks_broken", overlays_file)
 			else if(obj_integrity < (0.75 * max_integrity))
-				. += get_airlock_overlay("sparks_damaged", overlays_file, src, em_block = FALSE)
+				. += get_airlock_overlay("sparks_damaged", overlays_file)
 		else if(frame_state == AIRLOCK_FRAME_OPEN)
 			if(obj_integrity < (0.75 * max_integrity))
-				. += get_airlock_overlay("sparks_open", overlays_file, src, em_block = FALSE)
+				. += get_airlock_overlay("sparks_open", overlays_file)
 
 	if(note)
-		. += get_airlock_overlay(get_note_state(frame_state), note_overlay_file, src, em_block = TRUE)
+		. += get_airlock_overlay(get_note_state(frame_state), note_overlay_file)
 
 	if(hasPower() && unres_sides)
 		for(var/heading in list(NORTH,SOUTH,EAST,WEST))

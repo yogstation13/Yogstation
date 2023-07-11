@@ -145,13 +145,13 @@
 	if(open)
 		icon_state = initial(icon_state)
 		return ..()
-	icon_state = "[base_icon_state]_[!occupants.len ? "closed" : "occupied"]"
+	icon_state = "[initial(icon_state)]_[!occupants.len ? "closed" : "occupied"]"
 	return ..()
 
 /obj/item/pet_carrier/update_overlays()
 	. = ..()
 	if(!open)
-		. += "[base_icon_state]_[locked ? "" : "un"]locked"
+		. += "[initial(icon_state)]_[locked ? "" : "un"]locked"
 
 /obj/item/pet_carrier/MouseDrop(atom/over_atom)
 	. = ..()
