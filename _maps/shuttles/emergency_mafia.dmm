@@ -69,9 +69,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/shuttle/escape)
-"nh" = (
-/turf/open/floor/wood/broken/three,
-/area/shuttle/escape)
 "pD" = (
 /obj/structure/table/wood/fancy,
 /obj/item/clothing/head/fedora,
@@ -95,6 +92,11 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/exoticgreen,
 /area/shuttle/escape)
+"uo" = (
+/obj/structure/fans/tiny/invisible,
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/shuttle/escape)
 "uD" = (
 /turf/open/floor/wood/broken/seven,
 /area/shuttle/escape)
@@ -108,14 +110,6 @@
 /area/shuttle/escape)
 "wA" = (
 /turf/open/floor/carpet/exoticgreen,
-/area/shuttle/escape)
-"wS" = (
-/obj/machinery/door/airlock/wood,
-/obj/docking_port/mobile/emergency{
-	name = "mafia emergency shuttle"
-	},
-/obj/structure/fans/tiny/invisible,
-/turf/open/floor/wood,
 /area/shuttle/escape)
 "yS" = (
 /obj/structure/shuttle/engine/heater,
@@ -148,6 +142,22 @@
 "DZ" = (
 /mob/living/simple_animal/drone/snowflake/bardrone,
 /turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
+"EY" = (
+/obj/docking_port/mobile/emergency{
+	name = "mafia emergency shuttle"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/escape)
+"Fc" = (
+/obj/machinery/light{
+	dir = 8;
+	light_color = "#e8eaff"
+	},
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/wood,
 /area/shuttle/escape)
 "FA" = (
 /obj/structure/chair/comfy/black{
@@ -335,19 +345,19 @@ yT
 yT
 yT
 yT
-yT
-yT
-yT
-yT
-yT
-yT
-wS
+EY
 yT
 yT
 yT
 yT
 yT
 Vc
+yT
+uo
+yT
+yT
+yT
+yT
 yT
 vR
 vR
@@ -370,10 +380,10 @@ Oi
 TW
 Oi
 CE
+Oi
 fs
 fs
-fs
-CE
+Fc
 Oi
 yT
 yT
@@ -424,7 +434,7 @@ Oi
 TW
 Oi
 Oi
-nh
+Oi
 Vi
 Nk
 nb
