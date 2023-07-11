@@ -224,13 +224,6 @@
 /obj/structure/window/reinforced/clockwork/fulltile,
 /turf/open/indestructible/clock_spawn_room,
 /area/reebe/city_of_cogs)
-"um" = (
-/obj/effect/clockwork/servant_blocker,
-/obj/structure/grille/ratvar,
-/obj/structure/grille/ratvar,
-/obj/structure/window/reinforced/clockwork/fulltile,
-/turf/open/indestructible/clock_spawn_room,
-/area/reebe/city_of_cogs)
 "wm" = (
 /obj/structure/table/reinforced/brass,
 /obj/item/kitchen/fork{
@@ -4112,7 +4105,7 @@ aa
 aa
 aa
 aa
-um
+ty
 ty
 ty
 ty
