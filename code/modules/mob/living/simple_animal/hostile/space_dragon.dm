@@ -41,7 +41,7 @@
 	see_in_dark = 7 //Yogs
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE //yogs
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
+	flags_1 = HEAR_1 | PREVENT_CONTENTS_EXPLOSION_1
 	mob_size = MOB_SIZE_LARGE
 	melee_damage_upper = 35
 	melee_damage_lower = 35
