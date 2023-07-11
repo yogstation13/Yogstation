@@ -7675,18 +7675,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
-"bcG" = (
-/obj/machinery/shower{
-	dir = 8;
-	pixel_y = -4
-	},
-/obj/machinery/camera{
-	c_tag = "Prison Showers";
-	dir = 1;
-	network = list("ss13","prison")
-	},
-/turf/open/floor/plasteel/freezer,
-/area/security/prison)
 "bcL" = (
 /obj/machinery/light{
 	dir = 8
@@ -93797,7 +93785,7 @@ hqQ
 hqQ
 syi
 hqQ
-bcG
+hqQ
 acd
 mNH
 lRX
