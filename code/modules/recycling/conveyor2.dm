@@ -303,6 +303,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/interact(mob/user)
 	add_fingerprint(user)
+	play_click_sound("switch")
 	if(position == 0)
 		if(oneway)   //is it a oneway switch
 			position = oneway
