@@ -169,7 +169,7 @@ Antag role is split into servant or cultist*/
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 	var/starter_hog_cog = 3 //Guaranteed 3 tasty bodies
-	var/number_players = num_players()
+	number_players = num_players()
 	roundstart_player_count = number_players
 	starter_hog_cog = min(starter_hog_cog, 3) //max 3 
 	while(starter_hog_cog)
@@ -180,7 +180,7 @@ Antag role is split into servant or cultist*/
 		starter_hog_cog--
 	return 1
 	//is check cults
-	if(servants_to_blood.len + servants_to_cog.len>=required_enemies )
+	if(servants_to_blood + servants_to_cog>=required_enemies )
 		return TRUE
 	else
 		setup_error = "Not enough hands for the gods"
@@ -196,7 +196,7 @@ Antag role is split into servant or cultist*/
 
 	for(var/datum/mind/cult_mind in servants_to_blood)
 		add_cultist(cult_mind, 0, equip=TRUE, cult_team = hog_cult)
-	main_cult.setup_objectives() //Wait until all cultists are assigned to make sure none will be chosen as sacrifice.
+	hog_cult.setup_objectives() //Wait until all cultists are assigned to make sure none will be chosen as sacrifice.
 	return ..()
 
 /datum/game_mode/hand_of_god/check_finished(force_ending)
@@ -207,7 +207,6 @@ Antag role is split into servant or cultist*/
 //clockcult
 
 	for(var/datum/mind/servant)
-		var/datum/mind/servant = S
 		log_game("[key_name(servant)] has been selected as a hand of god clock cultist")
 		var/mob/living/L = servant.current
 		greet_cogger(L)
@@ -375,7 +374,7 @@ Antag role is split into servant or cultist*/
 	len_before_addition = round_credits.len
 	for(var/datum/mind/cultist in cult)
 		round_credits += "<center><h2>[cultist.name] as a cult fanatic</h2>"
-	var/datum/objective/eldergod/summon_objective = locate() in main_cult.objectives
+	var/datum/objective/eldergod/summon_objective = locate() in hog_cult.objectives
 	if(summon_objective && summon_objective.summoned)
 		round_credits += "<center><h2>Nar'sie as herself, in all her glory</h2>"
 	if(len_before_addition == round_credits.len)
