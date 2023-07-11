@@ -293,13 +293,23 @@
 	//back to our regularly scheduled program, we now actually apply damage if there's room below limb damage cap
 	var/can_inflict = max_damage - get_damage()
 	var/total_damage = brute + burn
+	var/surplus_damage = total_damage - can_inflict
+
+	// If the limb is at its maximum damage, apply some of the surplus damage to the chest
+	if(owner && surplus_damage > 0)
+		var/obj/item/bodypart/chest/chest = owner.get_bodypart(BODY_ZONE_CHEST)
+		chest.receive_damage(surplus_damage * DAMAGE_TRANSFER_COEFFICIENT) // the chest should always be there unless something fucked up
+
+	// End early if the limb is at its maximum damage
+	if(can_inflict <= 0)
+		return FALSE
+
+	// Set the damage applied to as much as the limb can handle
 	if(total_damage > can_inflict && total_damage > 0) // TODO: the second part of this check should be removed once disabling is all done
 		brute = round(brute * (can_inflict / total_damage),DAMAGE_PRECISION)
 		burn = round(burn * (can_inflict / total_damage),DAMAGE_PRECISION)
 
-	if(can_inflict <= 0)
-		return FALSE
-
+	// And finally, apply that damage to the limb
 	if(brute)
 		set_brute_dam(brute_dam + brute)
 	if(burn)
