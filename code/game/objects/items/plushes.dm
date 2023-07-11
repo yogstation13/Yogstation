@@ -585,6 +585,8 @@
 	name = "shark plushie"
 	desc = "A smaller, friendlier, and fluffier version of the real thing."
 	gender = MALE
+	lefthand_file = 'icons/mob/inhands/plushes_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/plushes_righthand.dmi'
 	icon_state = "blahaj"
 	item_state = "blahaj"
 	attack_verb = list("chomped", "gnawed", "bit")

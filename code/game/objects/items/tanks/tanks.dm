@@ -22,7 +22,11 @@
 	/// The volume of this tank. Among other things gas tank explosions (including TTVs) scale off of this. Be sure to account for that if you change this or you will break ~~toxins~~ordinance.
 	var/volume = 70
 	/// Mob that is currently breathing from the tank.
-	var/mob/living/carbon/breathing_mob = null
+	var/mob/living/carbon/breathing_mob
+	/// Attached igniter assembly, used to ignite its contents
+	var/obj/item/assembly_holder/tank_assembly
+	/// Whether or not it can explode when it receives a signal
+	var/bomb_status = FALSE
 
 /obj/item/tank/dropped(mob/living/user, silent)
 	. = ..()
@@ -80,6 +84,11 @@
 /obj/item/tank/Destroy()
 	if(air_contents)
 		qdel(air_contents)
+
+	if(tank_assembly)
+		qdel(tank_assembly)
+		tank_assembly.master = null
+		tank_assembly = null
 
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
@@ -159,6 +168,7 @@
 /obj/item/tank/attackby(obj/item/attacking_item, mob/user, params)
 	add_fingerprint(user)
 	if(istype(attacking_item, /obj/item/assembly_holder))
+		playsound(src, 'sound/items/tape_flip.ogg', 25, TRUE)
 		bomb_assemble(attacking_item, user)
 	else
 		. = ..()
@@ -300,3 +310,167 @@
 
 	else if(integrity < 3)
 		integrity++
+
+// ---------- Procs below are for tanks that are used exclusively in 1-tank bombs ----------
+
+/obj/item/tank/update_icon()
+	cut_overlays()
+	if(tank_assembly)
+		add_overlay(tank_assembly.icon_state)
+		copy_overlays(tank_assembly)
+		add_overlay("bomb_assembly")
+
+/obj/item/tank/wrench_act(mob/living/user, obj/item/I)
+	if(tank_assembly)
+		I.play_tool_sound(src)
+		bomb_disassemble(user)
+		return TRUE
+	return ..()
+
+/obj/item/tank/welder_act(mob/living/user, obj/item/I)
+	. = FALSE
+	if(bomb_status)
+		user.balloon_alert(user, "already welded!")
+		return
+	if(!I.tool_start_check(user, amount=0))
+		return
+	if(I.use_tool(src, user, 0, volume=40))
+		bomb_status = TRUE
+		log_bomber(user, "welded a single tank bomb,", src, "| Temp: [air_contents.return_temperature()-T0C]")
+		to_chat(user, span_notice("A pressure hole has been bored to [src]'s valve. \The [src] can now be ignited."))
+		add_fingerprint(user)
+		return TRUE
+
+/obj/item/tank/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
+	audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*")
+	playsound(src, 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
+	sleep(1 SECONDS)
+	if(QDELETED(src))
+		return
+	if(bomb_status)
+		ignite()	//if its not a dud, boom (or not boom if you made shitty mix) the ignite proc is below, in this file
+	else
+		release()
+
+//Assembly / attached device memes
+
+/obj/item/tank/Crossed(atom/movable/AM) //for mousetraps
+	..()
+	if(tank_assembly)
+		tank_assembly.Crossed(AM)
+
+/obj/item/tank/on_found(mob/finder) //for mousetraps
+	..()
+	if(tank_assembly)
+		tank_assembly.on_found(finder)
+
+/obj/item/tank/attack_hand() //also for mousetraps
+	if(..())
+		return
+	if(tank_assembly)
+		tank_assembly.attack_hand()
+
+/obj/item/tank/Move()
+	..()
+	if(tank_assembly)
+		tank_assembly.setDir(dir)
+		tank_assembly.Move()
+
+/obj/item/tank/dropped()
+	..()
+	if(tank_assembly)
+		tank_assembly.dropped()
+
+//Bomb assembly proc. This turns assembly+tank into a bomb
+/obj/item/tank/proc/bomb_assemble(obj/item/assembly_holder/assembly, mob/living/user)
+	//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it
+	if(isigniter(assembly.a_left) == isigniter(assembly.a_right))
+		return
+
+	if((src in user.get_equipped_items(TRUE)) && !user.canUnEquip(src))
+		to_chat(user, span_warning("[src] is stuck to you!"))
+		return
+
+	if(!user.canUnEquip(assembly))
+		to_chat(user, span_warning("[assembly] is stuck to your hand!"))
+		return
+
+	user.transferItemToLoc(assembly, src)
+
+	tank_assembly = assembly	//Tell the tank about its assembly part
+	assembly.master = src		//Tell the assembly about its new owner
+
+	throw_speed = max(2, throw_speed) //Make it a bit harder to throw
+
+	update_icon()
+	user.balloon_alert(user, "[assembly.name] attached")
+	return
+
+//Bomb disassembly
+/obj/item/tank/proc/bomb_disassemble(mob/living/user)
+	tank_assembly.forceMove(drop_location())
+	tank_assembly.master = null
+	tank_assembly = null
+
+	bomb_status = FALSE
+	throw_speed = initial(throw_speed)
+	user.balloon_alert(user, "disassembled")
+	update_icon()
+
+/obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
+	var/fuel_moles = air_contents.get_moles(/datum/gas/tritium) + air_contents.get_moles(/datum/gas/hydrogen) + air_contents.get_moles(/datum/gas/plasma) + air_contents.get_moles(/datum/gas/oxygen)/6
+	var/datum/gas_mixture/bomb_mixture = air_contents.copy()
+	var/strength = 1
+
+	var/turf/ground_zero = get_turf(loc)
+
+	if(master)
+		qdel(master)
+	qdel(src)
+
+	if(bomb_mixture.return_temperature() > (T0C + 400))
+		strength = (fuel_moles/15)
+
+		if(strength >=1)
+			explosion(ground_zero, round(strength,1), round(strength*2,1), round(strength*3,1), round(strength*4,1))
+		else if(strength >=0.5)
+			explosion(ground_zero, 0, 1, 2, 4)
+		else if(strength >=0.2)
+			explosion(ground_zero, -1, 0, 1, 2)
+		else
+			ground_zero.assume_air(bomb_mixture)
+			ground_zero.hotspot_expose(1000, 125)
+
+	else if(bomb_mixture.return_temperature() > (T0C + 250))
+		strength = (fuel_moles/20)
+
+		if(strength >=1)
+			explosion(ground_zero, 0, round(strength,1), round(strength*2,1), round(strength*3,1))
+		else if (strength >=0.5)
+			explosion(ground_zero, -1, 0, 1, 2)
+		else
+			ground_zero.assume_air(bomb_mixture)
+			ground_zero.hotspot_expose(1000, 125)
+
+	else if(bomb_mixture.return_temperature() > (T0C + 100))
+		strength = (fuel_moles/25)
+
+		if (strength >=1)
+			explosion(ground_zero, -1, 0, round(strength,1), round(strength*3,1))
+		else
+			ground_zero.assume_air(bomb_mixture)
+			ground_zero.hotspot_expose(1000, 125)
+
+	else
+		ground_zero.assume_air(bomb_mixture)
+		ground_zero.hotspot_expose(1000, 125)
+
+	ground_zero.air_update_turf()
+
+/obj/item/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
+	var/datum/gas_mixture/removed = air_contents.remove(air_contents.total_moles())
+	var/turf/T = get_turf(src)
+	if(!T)
+		return
+	T.assume_air(removed)
+	air_update_turf()

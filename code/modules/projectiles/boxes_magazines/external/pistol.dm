@@ -106,7 +106,7 @@
 
 /obj/item/ammo_box/magazine/v38
 	name = "handgun magazine (.38 special)"
-	desc = "A 8-round .38 special magazine designed for the Vatra M38 pistol. Not great against armor."
+	desc = "A 8-round .38 special magazine designed for the Vatra M38 pistol."
 	icon_state = "v38-8"
 	ammo_type = /obj/item/ammo_casing/c38
 	caliber = "38"
@@ -153,7 +153,7 @@
 	icon_state = "v38B-8"
 	ammo_type = /obj/item/ammo_casing/c38/bluespace
 	sprite_designation = "B"
-	
+
 // Bolt Pistol
 
 /obj/item/ammo_box/magazine/boltpistol

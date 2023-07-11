@@ -68,7 +68,7 @@
 		if(7)
 			msg += "[span_nicegreen("I feel pretty good.")]\n"
 		if(8)
-			msg += "[span_nicegreen("II feel amazing!")]\n"
+			msg += "[span_nicegreen("I feel amazing!")]\n"
 		if(9)
 			msg += "[span_nicegreen("I love life!")]\n"
 

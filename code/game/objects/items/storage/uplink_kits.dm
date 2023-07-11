@@ -401,6 +401,7 @@
 	new /obj/item/bodybag/environmental/prisoner/syndicate(src)
 
 	// All about 4 TC or less - some nukeops only items, but fit nicely to the theme.
+	// If you update this, consider updating yogstation/code/game/objects/items/implants/implant_dusting.dm reward
 	var/list/item_list = list(
 		/obj/item/storage/backpack/duffelbag/syndie/x4,
 		/obj/item/storage/box/syndie_kit/throwing_weapons,
@@ -434,6 +435,65 @@
 
 	// Paper guide
 	new /obj/item/paper/contractor_guide(src)
+
+/obj/item/storage/box/syndicate/contract_kit/plasmaman
+	real_name = "Contract Kit"
+	desc = "Supplied to Syndicate contractors."
+	icon_state = "syndiebox"
+	illustration = "writing_syndie"
+	
+/obj/item/storage/box/syndicate/contract_kit/plasmaman/PopulateContents()
+	new /obj/item/modular_computer/tablet/syndicate_contract_uplink/preset/uplink(src)
+	new /obj/item/storage/box/syndicate/contractor_loadout/plasmaman(src)
+	new /obj/item/melee/classic_baton/telescopic/contractor_baton(src)
+	new /obj/item/bodybag/environmental/prisoner/syndicate(src)
+	
+	var/list/item_list = list(
+		/obj/item/storage/backpack/duffelbag/syndie/x4,
+		/obj/item/storage/box/syndie_kit/throwing_weapons,
+		/obj/item/gun/syringe/syndicate,
+		/obj/item/pen/edagger,
+		/obj/item/pen/sleepy,
+		/obj/item/flashlight/emp,
+		/obj/item/book/granter/crafting_recipe/weapons,
+		/obj/item/clothing/shoes/chameleon/noslip/syndicate,
+		/obj/item/storage/firstaid/tactical,
+		/obj/item/clothing/shoes/airshoes,
+		/obj/item/clothing/glasses/thermal/syndi,
+		/obj/item/camera_bug,
+		/obj/item/storage/box/syndie_kit/imp_radio,
+		/obj/item/storage/box/syndie_kit/imp_uplink,
+		/obj/item/clothing/gloves/krav_maga/combatglovesplus,
+		/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
+		/obj/item/reagent_containers/syringe/stimulants,
+		/obj/item/storage/box/syndie_kit/imp_freedom,
+		/obj/item/storage/belt/chameleon/syndicate
+	)
+	
+	var/obj/item1 = pick_n_take(item_list)
+	var/obj/item2 = pick_n_take(item_list)
+	var/obj/item3 = pick_n_take(item_list)
+
+	new item1(src)
+	new item2(src)
+	new item3(src)
+
+	new /obj/item/paper/contractor_guide(src)
+
+/obj/item/storage/box/syndicate/contractor_loadout/plasmaman
+	real_name = "Standard Loadout"
+	desc = "Supplied to the Syndicate's plasmaman contractors, providing their specialised space suit and chameleon envirosuit."
+	icon_state = "syndiebox"
+	illustration = "writing_syndie"
+	
+/obj/item/storage/box/syndicate/contractor_loadout/plasmaman/PopulateContents()
+	new /obj/item/clothing/head/helmet/space/plasmaman/chameleon/syndicate(src)
+	new /obj/item/clothing/suit/space/syndicate/contract(src)
+	new /obj/item/clothing/under/plasmaman/chameleon/syndicate(src)
+	new /obj/item/clothing/mask/chameleon/syndicate(src)
+	new /obj/item/card/id/syndicate(src)
+	new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src)
+	new /obj/item/lighter(src)
 
 /obj/item/storage/box/syndie_kit
 	name = "box"

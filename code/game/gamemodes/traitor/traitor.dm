@@ -43,7 +43,7 @@
 
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
-		
+
 	if(CONFIG_GET(flag/protect_AI_from_traitor))
 		restricted_jobs += "AI"
 
@@ -77,7 +77,7 @@
 /datum/game_mode/traitor/post_setup()
 	for(var/datum/mind/traitor in pre_traitors)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/game_mode/traitor, add_traitor_delayed), traitor, null), rand(1 MINUTES, (3 MINUTES + 10 SECONDS)))
-		
+
 	if(!exchange_blue)
 		exchange_blue = -1 //Block latejoiners from getting exchange objectives
 	..()
@@ -131,11 +131,13 @@
 			continue
 		if(!applicant.mind)
 			continue
-		if(!applicant.stat != CONSCIOUS)
+		if(is_syndicate(applicant))
 			continue
-		if(applicant.mind.assigned_role in protected_jobs) 
+		if(applicant.stat != CONSCIOUS)
 			continue
-		if(applicant.mind.assigned_role in restricted_jobs) 
+		if(applicant.mind.assigned_role in protected_jobs)
+			continue
+		if(applicant.mind.assigned_role in restricted_jobs)
 			continue
 		if(!(applicant.mind.assigned_role in GLOB.command_positions + GLOB.engineering_positions + GLOB.medical_positions + GLOB.science_positions + GLOB.supply_positions + GLOB.civilian_positions + GLOB.security_positions + list("AI", "Cyborg")))
 			continue
@@ -151,14 +153,15 @@
 			continue
 		potential_candidates += applicant
 	if(!potential_candidates.len)
-		message_admins("Failed to find new antag after original one left! Check the antag balance please.")
-		return
+		message_admins("Tried to create a new traitor-like, but there were no eligible candidates!")
+		return FALSE
 	var/mob/living/carbon/human/picked = pick(potential_candidates)
 	if(!picked || !picked.client)
-		return
+		return FALSE
 	var/datum/antagonist/traitor/new_antag = new antag_datum()
 	picked.mind.add_antag_datum(new_antag)
 	picked.mind.special_role = traitor_name
+	return picked
 
 /datum/game_mode/traitor/proc/add_latejoin_traitor(datum/mind/character)
 	var/datum/antagonist/traitor/new_antag = new antag_datum()
