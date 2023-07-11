@@ -31,12 +31,12 @@
 	taste_description = "slime"
 	taste_mult = 0.9
 
-/datum/reagent/toxin/mutagen/reaction_mob(mob/living/carbon/M, method=TOUCH, reac_volume)
+/datum/reagent/toxin/mutagen/reaction_mob(mob/living/carbon/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!..())
 		return
 	if(!M.has_dna() || HAS_TRAIT(M, TRAIT_GENELESS) || HAS_TRAIT(M, TRAIT_BADDNA))
 		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
-	if((method==VAPOR && prob(min(33, reac_volume))) || ((method==INGEST || method==PATCH || method==INJECT) && reac_volume >= 5))
+	if(((methods & VAPOR) && prob(min(33, reac_volume) * permeability)) || ((methods & (INGEST|PATCH|INJECT)) && reac_volume >= 5))
 		M.randmuti()
 		if(prob(98))
 			M.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
@@ -85,8 +85,8 @@
 		T.atmos_spawn_air("plasma=[reac_volume];TEMP=[temp]")
 	return
 
-/datum/reagent/toxin/plasma/reaction_mob(mob/living/M, method=TOUCH, reac_volume)//Splashing people with plasma is stronger than fuel!
-	if(method == TOUCH || method == VAPOR)
+/datum/reagent/toxin/plasma/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)//Splashing people with plasma is stronger than fuel!
+	if(methods & (TOUCH|VAPOR))
 		M.adjust_fire_stacks(reac_volume / 5)
 		return
 	..()
@@ -147,18 +147,6 @@
 		. = 1
 	..()
 
-/datum/reagent/toxin/minttoxin
-	name = "Mint Toxin"
-	description = "Useful for dealing with undesirable customers."
-	color = "#CF3600" // rgb: 207, 54, 0
-	toxpwr = 0
-	taste_description = "mint"
-
-/datum/reagent/toxin/minttoxin/on_mob_life(mob/living/carbon/M)
-	if(HAS_TRAIT(M, TRAIT_FAT))
-		M.gib()
-	return ..()
-
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	description = "A deadly neurotoxin produced by the dreaded spess carp."
@@ -192,9 +180,9 @@
 	L.cure_fakedeath(type)
 	..()
 
-/datum/reagent/toxin/zombiepowder/reaction_mob(mob/living/L, method=TOUCH, reac_volume)
+/datum/reagent/toxin/zombiepowder/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
 	L.adjustOxyLoss(0.5*REM, 0)
-	if(method == INGEST)
+	if(methods & INGEST)
 		var/datum/reagent/toxin/zombiepowder/Z = L.reagents.has_reagent(/datum/reagent/toxin/zombiepowder)
 		if(istype(Z))
 			Z.fakedeath_active = TRUE
@@ -277,8 +265,8 @@
 		var/obj/structure/spacevine/SV = O
 		SV.on_chem_effect(src)
 
-/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(method == VAPOR)
+/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
+	if(methods & VAPOR)
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
 			if(!C.wear_mask) // If not wearing a mask
@@ -296,7 +284,7 @@
 	color = "#4B004B" // rgb: 75, 0, 75
 	toxpwr = 1
 
-/datum/reagent/toxin/pestkiller/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+/datum/reagent/toxin/pestkiller/reaction_mob(mob/living/M, methods=TOUCH, reac_volume)
 	..()
 	if(MOB_BUG in M.mob_biotypes)
 		var/damage = min(round(0.4*reac_volume, 0.1),10)
@@ -591,8 +579,8 @@
 	color = "#C8C8C8"
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
 
-/datum/reagent/itching_powder/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1, permeability = 1)
-	if(method == TOUCH || method == VAPOR)
+/datum/reagent/itching_powder/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
+	if(methods & (TOUCH|PATCH))
 		M.reagents?.add_reagent(/datum/reagent/itching_powder, reac_volume * permeability)
 
 /datum/reagent/itching_powder/on_mob_life(mob/living/carbon/M)
@@ -856,15 +844,15 @@
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
 
-/datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
+/datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, methods=TOUCH, reac_volume, show_message = 1, permeability = 1)
 	if(!istype(C))
 		return
-	reac_volume = round(reac_volume,0.1)
-	if(method == INGEST)
+	reac_volume = round(reac_volume * permeability, 0.1)
+	if(methods & INGEST)
 		if(!HAS_TRAIT(C, TRAIT_ACIDBLOOD))
 			C.adjustBruteLoss(min(6*toxpwr, reac_volume * toxpwr))
 		return
-	if(method == INJECT)
+	if(methods & INJECT)
 		if(!HAS_TRAIT(C, TRAIT_ACIDBLOOD))
 			C.adjustBruteLoss(1.5 * min(6*toxpwr, reac_volume * toxpwr))
 		return
@@ -1005,7 +993,7 @@
 /datum/reagent/toxin/ninjatoxin/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(3)
 	..()
-	
+
 /datum/reagent/toxin/mushroom_powder
 	name = "Mushroom Powder"
 	description = "Finely ground polypore mushrooms, ready to be steeped in water to make mushroom tea."

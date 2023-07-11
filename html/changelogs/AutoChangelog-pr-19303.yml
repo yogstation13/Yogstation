@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added the Security Level Interface to brig. It displays the current security level and can change it remotely."

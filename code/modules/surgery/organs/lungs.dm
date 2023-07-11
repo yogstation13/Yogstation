@@ -353,6 +353,20 @@
 			if(prob(33))
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 
+	// Hyper-noblium
+		gas_breathed = breath.get_moles(/datum/gas/hypernoblium)
+		if(gas_breathed > gas_stimulation_min)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/hypernoblium)
+			H.reagents.add_reagent(/datum/reagent/hypernoblium, max(0, eff - existing))
+		breath.adjust_moles(/datum/gas/hypernoblium, -gas_breathed)
+	
+	// Anti-noblium
+		gas_breathed = breath.get_moles(/datum/gas/antinoblium)
+		if(gas_breathed > gas_stimulation_min)
+			var/existing = H.reagents.get_reagent_amount(/datum/reagent/antinoblium)
+			H.reagents.add_reagent(/datum/reagent/antinoblium, max(0, eff - existing))
+		breath.adjust_moles(/datum/gas/antinoblium, -gas_breathed)
+
 	// Miasma
 		if (breath.get_moles(/datum/gas/miasma))
 			var/miasma_pp = breath.get_breath_partial_pressure(breath.get_moles(/datum/gas/miasma))
