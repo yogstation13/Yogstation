@@ -485,7 +485,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/mining
 	l_hand = /obj/item/storage/firstaid/hypospray/qmc
 	l_pocket = /obj/item/wormhole_jaunter
-	gloves = /obj/item/clothing/gloves/color/latex/nitrile
+	gloves = /obj/item/clothing/gloves/color/latex/fireproof
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
@@ -633,7 +633,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/chief_engineer
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	ears = /obj/item/radio/headset/heads/ce
-	gloves = /obj/item/clothing/gloves/color/black
+	gloves = /obj/item/clothing/gloves/atmos/ce
 	belt = /obj/item/storage/belt/utility/chief/full
 	backpack = /obj/item/storage/backpack/industrial
 	satchel = /obj/item/storage/backpack/satchel/eng
