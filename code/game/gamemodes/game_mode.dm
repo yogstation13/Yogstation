@@ -419,7 +419,7 @@
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY && player.check_preferences())
-			if(player.client.prefs.yogtoggles & QUIET_ROUND)
+			if(player.client.prefs.read_preference(/datum/preference/toggle/quiet_mode))
 				player.mind.quiet_round = TRUE
 			else
 				players += player

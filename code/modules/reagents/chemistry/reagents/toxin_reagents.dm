@@ -147,18 +147,6 @@
 		. = 1
 	..()
 
-/datum/reagent/toxin/minttoxin
-	name = "Mint Toxin"
-	description = "Useful for dealing with undesirable customers."
-	color = "#CF3600" // rgb: 207, 54, 0
-	toxpwr = 0
-	taste_description = "mint"
-
-/datum/reagent/toxin/minttoxin/on_mob_life(mob/living/carbon/M)
-	if(HAS_TRAIT(M, TRAIT_FAT))
-		M.gib()
-	return ..()
-
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	description = "A deadly neurotoxin produced by the dreaded spess carp."
@@ -866,7 +854,7 @@
 		return
 	if(methods & INJECT)
 		if(!HAS_TRAIT(C, TRAIT_ACIDBLOOD))
-			C.adjustBruteLoss(1.5 * min(6*toxpwr, reac_volume * toxpwr))
+			C.adjustBruteLoss(1.5 * min(2*toxpwr, reac_volume * toxpwr))
 		return
 	C.acid_act(acidpwr, reac_volume)
 
@@ -1005,7 +993,7 @@
 /datum/reagent/toxin/ninjatoxin/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(3)
 	..()
-	
+
 /datum/reagent/toxin/mushroom_powder
 	name = "Mushroom Powder"
 	description = "Finely ground polypore mushrooms, ready to be steeped in water to make mushroom tea."

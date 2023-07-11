@@ -213,6 +213,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	player_minimum = 20
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
+/datum/uplink_item/bundles_TC/contract_kit/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	if(is_species(user, /datum/species/plasmaman))
+		spawn_path = /obj/item/storage/box/syndicate/contract_kit/plasmaman
+	..()
+
 /datum/uplink_item/bundles_TC/bundle_A
 	name = "Syndi-kit Tactical"
 	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
@@ -361,7 +366,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/dangerous/clownsword
 	name = "Bananium Energy Sword"
-	desc = "An energy sword that deals no damage, but will slip anyone it contacts, be it by melee attack, thrown \
+	desc = "An energy sword that is incapable of physical harm, but will slip anyone it contacts, be it by melee attack, thrown \
 	impact, or just stepping on it. Beware friendly fire, as even anti-slip shoes will not protect against it."
 	item = /obj/item/melee/transforming/energy/sword/bananium
 	cost = 3
@@ -370,8 +375,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/dangerous/bioterror
 	name = "Biohazardous Chemical Sprayer"
-	desc = "A handheld chemical sprayer that allows a wide dispersal of selected chemicals. Especially tailored by the Tiger \
-			Cooperative, the deadly blend it comes stocked with will disorient, damage, and disable your foes... \
+	desc = "A handheld chemical sprayer that allows a wide dispersal of selected chemicals. Especially tailored by Vahlen \
+			Pharmaceuticals, the deadly blend it comes stocked with will disorient, damage, and disable your foes... \
 			Use with extreme caution, to prevent exposure to yourself and your fellow operatives."
 	item = /obj/item/reagent_containers/spray/chemsprayer/bioterror
 	cost = 20
@@ -552,7 +557,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/dangerous/pistol
 	name = "Stechkin Pistol"
 	desc = "A small, easily concealable handgun that uses 10mm auto rounds in 10-round magazines and is compatible \
-			with suppressors."
+			with suppressors. Ammo is included"
 	item = /obj/item/gun/ballistic/automatic/pistol
 	cost = 5
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
@@ -695,7 +700,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_weapons/martialarts
 	name = "Martial Arts Scroll"
-	desc = "This scroll contains the secrets of an ancient martial arts technique. You will master unarmed combat, \
+	desc = "This scroll contains the secrets of an ancient martial arts technique known as Sleeping Carp. You will master unarmed combat, \
 			deflecting all ranged weapon fire when throwmode is enabled, but you also refuse to use dishonorable ranged weaponry."
 	item = /obj/item/book/granter/martial/carp
 	cost = 14
@@ -727,7 +732,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_weapons/traitor_chem_bottle
 	name = "Poison Kit"
-	desc = "An assortment of deadly chemicals packed into a compact box. Comes prepackaged in large syringes for more precise application."
+	desc = "An assortment of deadly and illegal chemicals packed into a compact box. Comes prepackaged in large syringes for more precise application."
 	item = /obj/item/storage/box/syndie_kit/chemical
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 5
@@ -1625,7 +1630,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/airshoes
 	name = "Air Shoes"
 	desc = "Popular in underground racing rings, these shoes come with built-in jets, allowing the users to reach high speeds for prolonged durations and short bursts. \
-	Users should keep in mind that despite being easier to control than their Wheely cousins, this footwear will not protect you from high-speed impacts."
+	Users should keep in mind that despite being easier to control than their Wheely cousins, these will not protect you from high-speed impacts."
 	item = /obj/item/clothing/shoes/airshoes
 	cost = 4
 	manufacturer = /datum/corporation/traitor/cybersun
@@ -1799,9 +1804,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/mdrive
 	name = "Mirage Drive"
-	desc = "An experimental device created in an attempt to replicate the properties of bluespace. Utilizing coils with unique properties, the mirage drive is able to generate \
-	kinetic energy and use it in a way that moves the user to their destination at a speed comparable to teleportation. Additionally, if there are other beings near the landing\
-	 site, the mirage drive will draw on their energy to recharge itself, slowing them down in the process."
+	desc = "An experimental device created as a byproduct of research into faster than light travel. Utilizing magnetic coils, the mirage drive is able to generate \
+	kinetic energy and use it in a way that moves the user to their destination at a speed comparable to teleportation, so long as an unobstructed path between the\
+	 user and the target exists."
 	item = /obj/item/mdrive
 	cost = 7
 	manufacturer = /datum/corporation/traitor/waffleco
@@ -2024,7 +2029,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/implants/antistun
 	name = "Upgraded CNS Rebooter Implant"
-	desc = "This implant will help you get back up on your feet faster after being stunned. \
+	desc = "This implant will stimulate muscle movements to help you get back up on your feet faster after being stunned. \
 			This version is modified to help reduce exhaustion during combat. \
 			Comes with an autosurgeon."
 	item = /obj/item/autosurgeon/anti_stun
@@ -2068,8 +2073,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted = TRUE
 
 /datum/uplink_item/implants/reviver
-	name = "Syndicate reviver Implant"
-	desc = "This implant will attempt to revive and heal you if you lose consciousness. This experimental version is stronger than widely available versions. Comes with an autosurgeon."
+	name = "Syndicate Reviver Implant"
+	desc = "A more powerful and experimental version of the one utilized by Nanotrasen, this implant will attempt to revive and heal you if you are critically injured. Comes with an autosurgeon."
 	item = /obj/item/autosurgeon/reviver/syndicate
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
@@ -2138,13 +2143,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/implants/stechkin_implant
 	name = "Stechkin arm implant"
-	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm to allow for easy concealment."
 	item = /obj/item/autosurgeon/arm/syndicate/stechkin_implant
 	cost = 9
 
 /datum/uplink_item/implants/noslipall
 	name = "Slip Prevention Implant"
-	desc = "An implant that uses advanced sensors and motors to detect when you are slipping and attempt to prevent it."
+	desc = "An implant that uses advanced sensors to detect when you are slipping and utilize motors in order to prevent it."
 	item = /obj/item/multisurgeon/noslipall
 	cost = 6	//tax for them being nigh impossible to steal or lose
 
@@ -2157,7 +2162,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/implants/spinal
 	name = "Neural Overclocker Implant"
-	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
+	desc = "Stimulates your central nervous system in order to enable you to perform muscle movements faster. Careful not to overuse it."
 	item = /obj/item/autosurgeon/syndicate/spinalspeed
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 14
@@ -2166,7 +2171,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/implants/emp_shield
 	name = "EMP Shield Implant"
-	desc = "An implant that will render you and your insides immune to electromagnetic interference, protecting you from ion-based weaponry and EMPs. \
+	desc = "Developed by Cybersun to assist with the S.E.L.F. movement, this implant will protect you and your insides from electromagnetic interference. \
 			Due to technical limitations, it will overload and shut down for a short time if triggered too often."
 	manufacturer = /datum/corporation/traitor/cybersun
 	item = /obj/item/storage/box/syndie_kit/emp_shield
@@ -2231,7 +2236,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/race_restricted/syndilamp
 	name = "Extra-Bright Lantern"
-	desc = "We heard that moths such as yourself really like lamps, so we decided to grant you early access to a prototype \
+	desc = "We heard that ex'hai such as yourself really like lamps, so we decided to grant you early access to a prototype \
 	Syndicate brand \"Extra-Bright Lantern™\". Enjoy."
 	cost = 2
 	item = /obj/item/flashlight/lantern/syndicate
@@ -2239,7 +2244,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/race_restricted/syndigenetics
 	name = "Fire Breath implanter"
-	desc = "Recently Syndicate scientist have found the formula of returning lizards genetics back in time and giving them the ability to breath fire."
+	desc = "Recently Vahlen scientists have found the formula of genetical patterns that is needed to activate vuulen genes to grant them the ability to breath fire."
 	cost = 6
 	manufacturer = /datum/corporation/traitor/vahlen
 	item = /obj/item/dnainjector/firebreath
@@ -2247,7 +2252,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/race_restricted/flyingfang
 	name = "Flying Fang Tablet"
-	desc = "This tablet contains a set of old lizard fighting techniques, increasing your melee combat effectiveness but preventing you from using armor, most common stun weapons, or guns."
+	desc = "This tablet contains a set of old vuulek fighting techniques, increasing your melee combat effectiveness but preventing you from using armor, most common stun weapons, or guns."
 	cost = 14
 	item = /obj/item/book/granter/martial/flyingfang
 	restricted_species = list("lizard", "draconid")
@@ -2428,6 +2433,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/mecha_parts/concealed_weapon_bay
 	cost = 3
 	manufacturer = /datum/corporation/traitor/donkco
+	restricted_roles = list("Roboticist", "Research Director")
+
+/datum/uplink_item/role_restricted/nuclear_ejection
+	name = "Emergency Ejection System"
+	desc = "An exosuit modification designed to quickly eject the pilot after the exosuit suffers catastrophic damage. \
+			Cybersun Industries is not liable for any injuries suffered during the ejection sequence."
+	item = /obj/item/mecha_parts/mecha_equipment/emergency_eject
+	cost = 3
+	manufacturer = /datum/corporation/traitor/cybersun
 	restricted_roles = list("Roboticist", "Research Director")
 
 /datum/uplink_item/role_restricted/haunted_magic_eightball
@@ -2623,8 +2637,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/syndiefedora
 	name = "Syndicate Fedora"
-	desc = "This Syndicate Fedora of micro-woven adamantium silk is sure to prove your style! Layered with immensively protective fibers! \
-			The fedora can be activated to extend sharp blades out of its rim, functioning as a saw-like melee weapon that can be thrown for immense damage. Upon successfully hitting an object, the fedora will boomerang back to your hands."
+	desc = "This Syndicate Fedora of micro-woven adamantium silk is sure to prove your style! Layered with protective fibers! \
+			The fedora can be activated to extend sharp blades out from its rim, functioning as a saw-like melee weapon that can be thrown for immense damage. Upon successfully hitting an object, the fedora will boomerang back to your hands."
 	item = /obj/item/clothing/head/det_hat/evil
 	cost = 6
 
@@ -2648,7 +2662,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/syndiecards
 	name = "Syndicate Playing Cards"
-	desc = "A special deck of space-grade playing cards with a mono-molecular edge and metal reinforcement, \
+	desc = "A special deck of space-grade playing cards with a thin and sharp metal edge, \
 			making them slightly more robust than a normal deck of cards. \
 			You can also play card games with them or leave them on your victims."
 	item = /obj/item/toy/cards/deck/syndicate

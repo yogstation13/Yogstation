@@ -57,6 +57,8 @@
 	filling_color = "#FFD700"
 	dried_type = null
 	w_class = WEIGHT_CLASS_NORMAL
+	foodtype = FRUIT
+	juice_results = list(/datum/reagent/water/holywater = 0)
 	wine_power = 70 //Water to wine, baby.
 	wine_flavor = "divinity"
 

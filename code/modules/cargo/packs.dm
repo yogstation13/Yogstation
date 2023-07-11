@@ -312,7 +312,6 @@
 	name = "Lasers Crate"
 	desc = "Contains three lethal, high-energy laser guns. Requires Security access to open."
 	cost = 2000
-	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/gun/energy/laser,
 					/obj/item/gun/energy/laser,
 					/obj/item/gun/energy/laser)
@@ -326,6 +325,16 @@
 					/obj/item/storage/box/secfiringpins)
 	crate_name = "firing pins crate"
 
+/datum/supply_pack/security/dragnet
+	name = "DRAGnet Crate"
+	desc = "Contains three \"Dynamic Rapid-Apprehension of the Guilty\" netting devices, a recent breakthrough in law enforcement prisoner management technology. Requires Security access to open."
+	cost = 1500
+	access_view = ACCESS_SECURITY
+	contains = list(/obj/item/gun/energy/e_gun/dragnet,
+					/obj/item/gun/energy/e_gun/dragnet,
+					/obj/item/gun/energy/e_gun/dragnet)
+	crate_name = "\improper DRAGnet crate"
+
 /datum/supply_pack/security/ntusp
 	name = "NT-USP Crate"
 	desc = "Three stamina-draining ballistic weapons, along with three extra magazines. Requires Security access to open."
@@ -338,6 +347,30 @@
 					/obj/item/ammo_box/magazine/recharge/ntusp,
 					/obj/item/ammo_box/magazine/recharge/ntusp)
 	crate_name = "nt-usp crate"
+
+/datum/supply_pack/security/v38pistol
+	name = "Vatra M38 Pistol Crate"
+	desc = "A pack containing three Vatra M38s, an unusual handgun which loads .38 special designed for unarmored targets, loaded with non-lethal rounds. Three spare magazines are included. Requires Security access to open."
+	cost = 4000
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+					/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+					/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal,
+					/obj/item/ammo_box/magazine/v38/rubber,
+					/obj/item/ammo_box/magazine/v38/rubber,
+					/obj/item/ammo_box/magazine/v38/rubber)
+	crate_name = "pistol crate"
+	crate_type = /obj/structure/closet/crate/secure/gear
+
+/datum/supply_pack/security/tracrevolver
+	name = "TRAC Revolver Crate"
+	desc = "Contains one Caldwell Tracking Revolver and two speed loaders for it. Requires Security access to open."
+	cost = 4000
+	access = ACCESS_SECURITY
+	contains = list(/obj/item/gun/ballistic/revolver/tracking,
+					/obj/item/ammo_box/tra32,
+					/obj/item/ammo_box/tra32)
+	crate_name = "TRAC revolver crate"
 
 /datum/supply_pack/security/vending/security
 	name = "SecTech Supply Crate"
@@ -448,6 +481,19 @@
 					/obj/item/clothing/suit/armor/secconvest)
 	crate_name = "constable supply crate"
 
+/datum/supply_pack/security/stormtrooper
+	name = "Stormtrooper Crate"
+	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light-wielding wizards. Requires Security access to open."
+	cost = 10000
+	contains = list(/obj/item/clothing/suit/armor/stormtrooper,
+					/obj/item/clothing/suit/armor/stormtrooper,
+					/obj/item/clothing/suit/armor/stormtrooper,
+					/obj/item/clothing/head/helmet/stormtrooper,
+					/obj/item/clothing/head/helmet/stormtrooper,
+					/obj/item/clothing/head/helmet/stormtrooper)
+	crate_name = "stormtrooper crate"
+	crate_type = /obj/structure/closet/crate/secure/gear
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Armory //////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -482,15 +528,6 @@
 	cost = 2000
 	contains = list(/obj/item/storage/box/chemimp)
 	crate_name = "chemical implant crate"
-
-/datum/supply_pack/security/armory/dragnet
-	name = "DRAGnet Crate"
-	desc = "Contains three \"Dynamic Rapid-Apprehension of the Guilty\" netting devices, a recent breakthrough in law enforcement prisoner management technology. Requires armory access to open."
-	cost = 1500
-	contains = list(/obj/item/gun/energy/e_gun/dragnet,
-					/obj/item/gun/energy/e_gun/dragnet,
-					/obj/item/gun/energy/e_gun/dragnet)
-	crate_name = "\improper DRAGnet crate"
 
 /datum/supply_pack/security/armory/energy_single
 	name = "Energy Gun Single-Pack"
@@ -742,21 +779,6 @@
 		var/item = pick(contains)
 		new item(C)
 
-/datum/supply_pack/weaponry/stormtrooper
-	name = "Stormtrooper Crate"
-	desc = "Three Sets of standard issue Stormtrooper Armor, Should help you defeat light-wielding wizards. Requires Security access to open."
-	cost = 10000
-	access = ACCESS_SECURITY
-	access_view = FALSE
-	contains = list(/obj/item/clothing/suit/armor/stormtrooper,
-					/obj/item/clothing/suit/armor/stormtrooper,
-					/obj/item/clothing/suit/armor/stormtrooper,
-					/obj/item/clothing/head/helmet/stormtrooper,
-					/obj/item/clothing/head/helmet/stormtrooper,
-					/obj/item/clothing/head/helmet/stormtrooper)
-	crate_name = "stormtrooper crate"
-	crate_type = /obj/structure/closet/crate/secure/gear
-
 /datum/supply_pack/weaponry/wt550ammo
 	name = "Surplus Security Autocarbine Ammo Crate"
 	desc = "Contains four 20-round magazines for the surplus security autocarbine. Each magazine is designed to facilitate rapid tactical reloads. Requires Armory access to open."
@@ -796,29 +818,6 @@
 	cost = 2000
 	contains = list(/obj/item/gun/ballistic/automatic/wt550)
 	small_item = TRUE
-
-/datum/supply_pack/weaponry/tracrevolver
-	name = "TRAC Revolver Crate"
-	desc = "Contains one Caldwell Tracking Revolver and two speed loaders for it. Requires Armory access to open."
-	cost = 4000
-	contains = list(/obj/item/gun/ballistic/revolver/tracking,
-					/obj/item/ammo_box/tra32,
-					/obj/item/ammo_box/tra32)
-	crate_name = "TRAC revolver crate"
-
-/datum/supply_pack/weaponry/v38pistol
-	name = "Vatra M38 Pistol Crate"
-	desc = "A pack containing three Vatra M38s, an unusual handgun which loads .38 special designed for unarmored targets. Three spare magazines are included. Requires Security access to open."
-	cost = 4000
-	access = ACCESS_SECURITY
-	contains = list(/obj/item/gun/ballistic/automatic/pistol/v38,
-					/obj/item/gun/ballistic/automatic/pistol/v38,
-					/obj/item/gun/ballistic/automatic/pistol/v38,
-					/obj/item/ammo_box/magazine/v38,
-					/obj/item/ammo_box/magazine/v38,
-					/obj/item/ammo_box/magazine/v38)
-	crate_name = "pistol crate"
-	crate_type = /obj/structure/closet/crate/secure/gear
 
 /datum/supply_pack/weaponry/wintonrifle
 	name = "Winton Mk. VI Repeating Rifles Crate"
@@ -1218,10 +1217,10 @@
 					/obj/item/hfr_box/corner,
 					/obj/item/hfr_box/corner,
 					/obj/item/hfr_box/corner,
-					/obj/item/hfr_box/body,
-					/obj/item/hfr_box/body,
-					/obj/item/hfr_box/body,
-					/obj/item/hfr_box/body,
+					/obj/item/hfr_box/body/fuel_input,
+					/obj/item/hfr_box/body/moderator_input,
+					/obj/item/hfr_box/body/waste_output,
+					/obj/item/hfr_box/body/interface,
 					/obj/item/hfr_box/core)
 	crate_name = "HFR crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering

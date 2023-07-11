@@ -924,6 +924,9 @@
 	color = "#7D4E29"
 	quality = DRINK_NICE
 	taste_description = "chocolate milk"
+	glass_name = "glass of chocolate milk"
+	glass_desc = "Milk for cool kids."
+	glass_icon_state = "chocolateglass"
 
 /datum/reagent/consumable/menthol
 	name = "Menthol"

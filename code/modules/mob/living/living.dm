@@ -692,7 +692,9 @@
 	if((newdir in GLOB.cardinals) && (prob(50)))
 		newdir = turn(get_dir(target_turf, start), 180)
 	if(!blood_exists)
-		new /obj/effect/decal/cleanable/trail_holder(start, get_static_viruses())
+		var/obj/effect/decal/cleanable/trail_holder/TH = new(start, get_static_viruses())
+		if(isethereal(src))//ethereal blood glows
+			TH.Etherealify()
 
 	for(var/obj/effect/decal/cleanable/trail_holder/TH in start)
 		if((!(newdir in TH.existing_dirs) || trail_type == "trails_1" || trail_type == "trails_2") && TH.existing_dirs.len <= 16) //maximum amount of overlays is 16 (all light & heavy directions filled)
@@ -721,10 +723,14 @@
 	if(getBruteLoss() < 300)
 		if(ispolysmorph(src))
 			return pick("xltrails_1", "xltrails_2")
+		if(isethereal(src))
+			return pick("wltrails_1", "wltrails_2")
 		return pick("ltrails_1", "ltrails_2")
 	else
 		if(ispolysmorph(src))
 			return pick("xttrails_1", "xttrails_2")
+		if(isethereal(src))
+			return pick("wttrails_1", "wttrails_2")
 		return pick("trails_1", "trails_2")
 
 /mob/living/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)
