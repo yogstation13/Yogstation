@@ -1,0 +1,5 @@
+author: "tattax"
+delete-after: true 
+changes: 
+  - bugfix: "fixed a few abilities that dind't work (holos, golem, queen, a. crystal)"
+  - bugfix: "fixed hud issue with nuke ops"
