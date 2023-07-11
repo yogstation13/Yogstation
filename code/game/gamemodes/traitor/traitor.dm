@@ -131,7 +131,9 @@
 			continue
 		if(!applicant.mind)
 			continue
-		if(!applicant.stat != CONSCIOUS)
+		if(is_syndicate(applicant))
+			continue
+		if(applicant.stat != CONSCIOUS)
 			continue
 		if(applicant.mind.assigned_role in protected_jobs)
 			continue
@@ -151,7 +153,7 @@
 			continue
 		potential_candidates += applicant
 	if(!potential_candidates.len)
-		message_admins("Failed to find new antag after original one left! Check the antag balance please.")
+		message_admins("Tried to create a new traitor-like, but there were no eligible candidates!")
 		return FALSE
 	var/mob/living/carbon/human/picked = pick(potential_candidates)
 	if(!picked || !picked.client)
@@ -159,7 +161,7 @@
 	var/datum/antagonist/traitor/new_antag = new antag_datum()
 	picked.mind.add_antag_datum(new_antag)
 	picked.mind.special_role = traitor_name
-	return TRUE
+	return picked
 
 /datum/game_mode/traitor/proc/add_latejoin_traitor(datum/mind/character)
 	var/datum/antagonist/traitor/new_antag = new antag_datum()

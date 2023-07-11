@@ -105,24 +105,34 @@ Borg Hypospray
 					RG.add_reagent(reagent_ids[i], 5)		//And fill hypo with reagent.
 
 /obj/item/reagent_containers/borghypo/attack(mob/living/carbon/M, mob/user)
-	var/datum/reagents/R = reagent_list[mode]
-	if(!R.total_volume)
+	var/datum/reagents/hyporeagent = reagent_list[mode]
+	if(!hyporeagent.total_volume)
 		to_chat(user, span_notice("The injector is empty."))
 		return
 	if(!istype(M))
 		return
-	if(R.total_volume && M.can_inject(user, 1, user.zone_selected,bypass_protection))
+	if(hyporeagent.total_volume && M.can_inject(user, 1, user.zone_selected,bypass_protection))
+		if(user.a_intent == INTENT_HELP) // Prevents mediborgs from OD'ing people if they're on help intent
+			for(var/datum/reagent/reagent as anything in hyporeagent.reagent_list)
+				if(M.reagents.has_reagent(reagent.type) && reagent.overdose_threshold)
+					var/datum/reagent/mobreagent = M.reagents.get_reagent(reagent.type)
+					if(mobreagent.overdosed)
+						to_chat(user, span_warning("Injecting [M] with more [reagent] would further their overdose."))
+						return
+					if(((M.reagents.get_reagent_amount(reagent.type)) + amount_per_transfer_from_this > reagent.overdose_threshold))
+						to_chat(user, span_warning("Injecting [M] with more [reagent] would overdose them."))
+						return
 		to_chat(M, span_warning("You feel a tiny prick!"))
 		to_chat(user, span_notice("You inject [M] with the injector."))
-		var/fraction = min(amount_per_transfer_from_this/R.total_volume, 1)
-		R.reaction(M, INJECT, fraction)
+		var/fraction = min(amount_per_transfer_from_this/hyporeagent.total_volume, 1)
+		hyporeagent.reaction(M, INJECT, fraction)
 		if(M.reagents)
-			var/trans = R.trans_to(M, amount_per_transfer_from_this, transfered_by = user)
-			to_chat(user, span_notice("[trans] unit\s injected.  [R.total_volume] unit\s remaining."))
+			var/trans = hyporeagent.trans_to(M, amount_per_transfer_from_this, transfered_by = user)
+			to_chat(user, span_notice("[trans] unit\s injected.  [hyporeagent.total_volume] unit\s remaining."))
 
 	var/list/injected = list()
-	for(var/datum/reagent/RG in R.reagent_list)
-		injected += RG.name
+	for(var/datum/reagent/reagent in hyporeagent.reagent_list)
+		injected += reagent.name
 	log_combat(user, M, "injected", src, "(CHEMICALS: [english_list(injected)])")
 
 /obj/item/reagent_containers/borghypo/attack_self(mob/user)

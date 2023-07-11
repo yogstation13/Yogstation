@@ -498,11 +498,11 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/chameleon/Initialize(mapload)
 	. = ..()
-	chameleon_action = new /datum/action/item_action/chameleon/change
+	chameleon_action = new(src)
 	if(syndicate)
 		chameleon_action.syndicate = TRUE
-	chameleon_action.chameleon_type = /obj/item/clothing/head/helmet/space
-	chameleon_action.chameleon_name = "Hat"
+	chameleon_action.chameleon_type = /obj/item/clothing/head
+	chameleon_action.chameleon_name = "Helmet"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/head/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 	add_item_action(chameleon_action)
