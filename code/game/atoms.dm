@@ -29,6 +29,8 @@
 	///HUD images that this atom can provide.
 	var/list/hud_possible
 
+	var/list/alternate_appearances
+
 	///Value used to increment ex_act() if reactionary_explosions is on
 	var/explosion_block = 0
 
@@ -39,6 +41,7 @@
 	  */
 	var/list/atom_colours
 
+	var/datum/wires/wires = null
 
 	///overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays
