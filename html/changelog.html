@@ -58,6 +58,13 @@
 		<div class="commit sansserif">
 
 			<h2 class="date">11 July 2023</h2>
+			<h3 class="author">Chubbygummibear updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Laser pointer examine text now shows you the number of charges it has and can have, as well as the recharge rate in seconds</li>
+				<li class="rscadd">Laser pointer generates a charge every 30-5*diode rating seconds. so 25 seconds at base, 10 seconds at tier 4 part</li>
+				<li class="rscdel">Laser pointer batteries don't "burn out" anymore and lock you out of using them until fully recharged, and the recharge process is no longer % based chance</li>
+				<li class="bugfix">The laser pointer process would kill itself on every run because it called the parent proc which specifically says "never do this"</li>
+			</ul>
 			<h3 class="author">JohnFulpWillard updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="rscadd">Mood is now enabled in your prefs by default.</li>
