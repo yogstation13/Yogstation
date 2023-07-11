@@ -20,10 +20,9 @@
 	INVOKE_ASYNC(C, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(get_turf(C), 'sound/effects/dismember.ogg', 80, TRUE)
 	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
-	var/should_disintegrate = !HAS_TRAIT(owner, TRAIT_EASYDISMEMBER) // if their limb falls off easily it should just fall off instead
 	drop_limb()
 
-	if(dam_type == BURN && should_disintegrate)
+	if(dam_type == BURN)
 		burn()
 		return 1
 	add_mob_blood(C)

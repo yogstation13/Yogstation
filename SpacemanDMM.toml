@@ -1,5 +1,2 @@
 [langserver]
 dreamchecker = true
-
-[debugger]
-engine = "extools"

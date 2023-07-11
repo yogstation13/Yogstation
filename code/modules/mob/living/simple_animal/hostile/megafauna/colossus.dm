@@ -729,15 +729,11 @@ Difficulty: Very Hard
 	var/datum/action/cooldown/spell/conjure/plants/terrarium = new(src)
 	terrarium.Grant(src)
 
-/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/AttackingTarget() //photogeists can heal non plant stuff, but its incredibly low healing
+/mob/living/simple_animal/hostile/lightgeist/healing/photogeist/AttackingTarget() //photogeists can only heal plantlike stuff
 	var/mob/living/L = target
-	if(L.stat != DEAD)
-		if(!("vines" in L.faction) && !("plants" in L.faction))
-			L.heal_overall_damage(heal_power/6, heal_power/6)
-			new /obj/effect/temp_visual/heal(get_turf(target), heal_color)
-		else
-			L.heal_overall_damage(heal_power, heal_power)
-			new /obj/effect/temp_visual/heal(get_turf(target), heal_color)
+	if(!("vines" in L.faction) && !("plants" in L.faction))
+		return FALSE
+	. = ..()
 
 /datum/action/cooldown/spell/conjure/plants
 	name = "Seed Plants"
@@ -772,7 +768,7 @@ Difficulty: Very Hard
 	death = FALSE
 	roundstart = FALSE
 	short_desc = "You are a photogeist, a peaceful creature summoned by a plant god"
-	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them and can seed flowers and bushes into the floor. Healing non plantlike creatures is possible, but far slower."
+	flavour_text = "Try to prevent plant creatures from dying and listen to your summoner otherwise. You can also click a plantlike creature to heal them and can seed flowers and bushes into the floor."
 
 /obj/effect/mob_spawn/photogeist/Initialize(mapload)
 	. = ..()

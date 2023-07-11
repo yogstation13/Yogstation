@@ -154,7 +154,8 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 4)
 	w_class = WEIGHT_CLASS_NORMAL
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 4)
-	tastes = list("egg" = 1, "bacon" = 1, "bread" = 1)
+	tastes = list("egg" = 1, "bacon" = 1, "bun" = 1)
+
 	foodtype = MEAT | BREAKFAST | EGG
 
 /obj/item/reagent_containers/food/snacks/spidereggsham
@@ -165,7 +166,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	bitesize = 4
 	filling_color = "#7FFF00"
-	tastes = list("meat" = 1, "cobwebs" = 1, "salt" = 1)
+	tastes = list("meat" = 1, "the colour green" = 1)
 	foodtype = MEAT | EGG
 
 /obj/item/reagent_containers/food/snacks/eggwrap

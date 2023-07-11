@@ -43,8 +43,6 @@
 		"generic" = /obj/machinery/portable_atmospherics/canister/generic,
 		"generic striped" = /obj/machinery/portable_atmospherics/canister/generic/stripe,
 		"generic hazard" = /obj/machinery/portable_atmospherics/canister/generic/hazard,
-		"caution" = /obj/machinery/portable_atmospherics/canister,
-		"danger" = /obj/machinery/portable_atmospherics/canister/fusion_test,
 		"n2" = /obj/machinery/portable_atmospherics/canister/nitrogen,
 		"o2" = /obj/machinery/portable_atmospherics/canister/oxygen,
 		"co2" = /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -56,8 +54,8 @@
 		"water vapor" = /obj/machinery/portable_atmospherics/canister/water_vapor,
 		"tritium" = /obj/machinery/portable_atmospherics/canister/tritium,
 		"hyper-noblium" = /obj/machinery/portable_atmospherics/canister/nob,
-		"anti-noblium" = /obj/machinery/portable_atmospherics/canister/antinoblium,
 		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium,
+		"caution" = /obj/machinery/portable_atmospherics/canister,
 		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma,
 		"dilithium" = /obj/machinery/portable_atmospherics/canister/dilithium,
 		"freon" = /obj/machinery/portable_atmospherics/canister/freon,
@@ -222,7 +220,7 @@
 /obj/machinery/portable_atmospherics/canister/antinoblium
 	name = "Antinoblium canister"
 	desc = "Antinoblium, we still don't know what it does, but it sells for a lot"
-	icon_state = "antino"
+	icon_state = "halon"
 	gas_type = /datum/gas/antinoblium
 	filled = 1
 

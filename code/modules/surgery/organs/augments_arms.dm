@@ -29,9 +29,7 @@
 		if(BODY_ZONE_R_ARM)
 			slot = ORGAN_SLOT_RIGHT_ARM_AUG
 		else
-			stack_trace("Invalid zone for [type]")
-			return FALSE
-	return TRUE
+			CRASH("Invalid zone for [type]")
 
 /obj/item/organ/cyberimp/arm/update_icon()
 	if(zone == BODY_ZONE_R_ARM)
@@ -47,16 +45,14 @@
 	. = ..()
 	if(.)
 		return TRUE
+	I.play_tool_sound(src)
 	if(zone == BODY_ZONE_R_ARM)
 		zone = BODY_ZONE_L_ARM
-	else if(zone == BODY_ZONE_L_ARM)
-		zone = BODY_ZONE_R_ARM
-	if(SetSlotFromZone())
-		I.play_tool_sound(src)
-		update_icon()
-		to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."))
 	else
-		to_chat(user, span_warning("[src] cannot be modified!"))
+		zone = BODY_ZONE_R_ARM
+	SetSlotFromZone()
+	to_chat(user, span_notice("You modify [src] to be installed on the [zone == BODY_ZONE_R_ARM ? "right" : "left"] arm."))
+	update_icon()
 
 /obj/item/organ/cyberimp/arm/Remove(mob/living/carbon/M, special = 0)
 	Retract()
@@ -423,10 +419,7 @@
 	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
 	contents = newlist(/obj/item/apc_powercord)
 	slot = ORGAN_SLOT_STOMACH_AID //so ipcs don't get shafted for nothing
-	zone = BODY_ZONE_CHEST
-
-/obj/item/organ/cyberimp/arm/power_cord/SetSlotFromZone() // don't swap the zone
-	return FALSE
+	zone = "l_arm"
 
 /obj/item/organ/cyberimp/arm/flash/rev
 	name = "revolutionary brainwashing implant"
@@ -436,6 +429,6 @@
 
 /obj/item/organ/cyberimp/arm/stechkin_implant
 	name = "Stechkin implant"
-	desc = "A modified version of the Stechkin pistol placed inside of the forearm to allow for easy concealment."
+	desc = "A modified version of the Stechkin pistol placed inside of the forearm, allows easy concealment."
 	contents = newlist(/obj/item/gun/ballistic/automatic/pistol/implant)
 	syndicate_implant = TRUE

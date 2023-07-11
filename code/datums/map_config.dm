@@ -15,7 +15,6 @@
 
 	// Config actually from the JSON - should default to Box
 	var/map_name = "YogStation"
-	var/internal_name = "" //if we have a super secret name that isn't just the display one
 	var/map_path = "map_files/YogStation"
 	var/map_file = "YogStation.dmm"
 
@@ -77,8 +76,6 @@
 	map_name = json["map_name"]
 	CHECK_EXISTS("map_path")
 	map_path = json["map_path"]
-	if("internal_name" in json)
-		internal_name = json["internal_name"]
 
 	map_file = json["map_file"]
 	// "map_file": "BoxStation.dmm"

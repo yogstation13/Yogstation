@@ -12,6 +12,3 @@
 		"No pain, no gain...",
 		"One with the flame...",
 	)
-
-/obj/item/book/granter/action/spell/sacredflame/weak //grants the far weaker version
-	granted_action = /datum/action/cooldown/spell/aoe/sacred_flame/weak

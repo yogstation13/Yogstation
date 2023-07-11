@@ -687,7 +687,6 @@
 	new /obj/item/clothing/shoes/xeno_wraps/command(src)
 	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
 	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
-	new /obj/item/clothing/suit/armor/vest/hop_formal(src)
 	new /obj/item/clothing/under/yogs/hopcasual(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/hop(src)
 

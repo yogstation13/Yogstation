@@ -530,7 +530,7 @@
 
 /datum/status_effect/the_shadow/Destroy()
 	if(owner)
-		owner.overlays -= shadow
+		owner.cut_overlay(shadow)
 	QDEL_NULL(shadow)
 	return ..()
 

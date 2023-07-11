@@ -46,7 +46,6 @@
 	var/contact_poison // Reagent ID to transfer on contact
 	var/contact_poison_volume = 0
 	var/next_write_time = 0 // prevent crash exploit
-	var/timesstamped = 0 //prevent error exploit
 
 
 /obj/item/paper/pickup(user)
@@ -300,8 +299,7 @@
 			return
 
 	else if(istype(P, /obj/item/stamp))
-		if(timesstamped > 25)
-			return
+
 		if(!in_range(src, user))
 			return
 
@@ -317,7 +315,6 @@
 		add_overlay(stampoverlay)
 
 		to_chat(user, span_notice("You stamp the paper with your rubber stamp."))
-		timesstamped += 1
 
 	if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))

@@ -10,6 +10,8 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 15 SECONDS
 
+	invocation = "ASH'N P'SSG'"
+	invocation_type = INVOCATION_WHISPER
 	spell_requirements = NONE
 
 	exit_jaunt_sound = null

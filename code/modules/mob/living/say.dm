@@ -243,7 +243,9 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	if(succumbed)
 		succumb(1)
 		to_chat(src, compose_message(src, language, message, , spans, message_mods))
-	return TRUE
+	for(var/obj/item/I in contents)
+		I.on_mob_say(src, message, message_range)
+	return 1
 
 /mob/living/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()

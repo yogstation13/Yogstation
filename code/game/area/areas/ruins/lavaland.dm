@@ -66,6 +66,10 @@
 	name = "Lavaland Gas Station"
 	icon_state = "dk_yellow" // yogs end
 
+/area/ruin/powered/syndicate_lava_base
+	name = "Secret Base"
+	icon_state = "dk_yellow"
+	ambientsounds = HIGHSEC
 
 /area/ruin/powered/kinggoat_arena //yogs start
 	name = "King Goat Arena"
@@ -76,13 +80,6 @@
 /area/ruin/unpowered/russianbunker
 	name = "Russian Bunker"
 	noteleport = TRUE
-
-/area/ruin/powered/syndicate_lava_base
-	name = "Syndicate Lavaland"
-	icon_state = "syndie-control"
-	ambientsounds = HIGHSEC
-	hidden = FALSE
-	requires_power = TRUE
 
 /area/ruin/powered/syndicate_lava_base/engineering
 	name = "Syndicate Lavaland Engineering"
@@ -117,9 +114,6 @@
 /area/ruin/powered/syndicate_lava_base/telecomms
 	name = "Syndicate Lavaland Telecommunications"
 
-/area/ruin/powered/syndicate_lava_base/vault
-	name = "Syndicate Lavaland Vault"
-	
 /area/ruin/unpowered/dragonslair //yogs start
 	name = "Dragons Lair"
 	hidden = TRUE
