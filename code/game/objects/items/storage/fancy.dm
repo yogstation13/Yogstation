@@ -462,3 +462,25 @@
 /obj/item/storage/box/fancy/heart_box/PopulateContents()
 	for(var/i in 1 to 8)
 		new /obj/item/reagent_containers/food/snacks/tinychocolate(src)
+
+//////////////
+//NUGGET BOX//
+//////////////
+/obj/item/storage/box/fancy/nugget_box
+	name = "nugget box"
+	desc = "A cardboard box used for holding chicken nuggies."
+	icon = 'icons/obj/food/containers.dmi'
+	item_state = "nuggetbox"
+	icon_state = "nuggetbox"
+	icon_type = "nugget"
+	spawn_type = /obj/item/reagent_containers/food/snacks/nugget
+
+/obj/item/storage/box/fancy/nugget_box/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 6
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/nugget))
+
+/obj/item/storage/box/fancy/nugget_box/PopulateContents()
+	for(var/i in 1 to 6)
+		new /obj/item/reagent_containers/food/snacks/nugget(src)
