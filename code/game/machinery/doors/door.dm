@@ -359,7 +359,7 @@
 	sleep(open_speed)
 	density = TRUE
 	sleep(open_speed)
-	update_icon(UPDATE_ICON)
+	update_appearance(UPDATE_ICON)
 	if(visible && !glass)
 		set_opacity(1)
 	operating = FALSE

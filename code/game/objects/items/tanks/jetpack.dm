@@ -54,7 +54,7 @@
 
 /obj/item/tank/jetpack/proc/turn_on(mob/user)
 	on = TRUE
-	update_icon(UPDATE_ICON_STATE)
+	update_appearance(UPDATE_ICON)
 	ion_trail.start()
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 	if(full_speed)
@@ -72,7 +72,7 @@
 /obj/item/tank/jetpack/proc/turn_off(mob/user)
 	on = FALSE
 	stabilizers = FALSE
-	update_icon(UPDATE_ICON_STATE)
+	update_appearance(UPDATE_ICON)
 	ion_trail.stop()
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	user.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)
