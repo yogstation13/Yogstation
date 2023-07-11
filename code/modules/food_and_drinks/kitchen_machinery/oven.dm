@@ -54,7 +54,7 @@
 		icon_state = "oven_off"
 	return ..()
 
-/obj/machinery/oven/proc/update_overlays()
+/obj/machinery/oven/update_overlays()
 	. = ..()
 	cut_overlays()
 	var/mutable_appearance/door_overlay

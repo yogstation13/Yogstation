@@ -58,8 +58,6 @@
 	var/list/reverse_option_list = list("Mobs"=FALSE,"Objects"=FALSE,"Anchored"=FALSE,"Underfloor"=FALSE,"Wallmounted"=FALSE,"Floors"=FALSE,"Walls"=FALSE, "Mecha"=FALSE)
 	var/list/turfs_in_cargo = list()
 
-	var/list/managed_overlays
-
 /obj/structure/closet/supplypod/bluespacepod
 	style = STYLE_BLUESPACE
 	bluespace = TRUE
@@ -137,7 +135,7 @@
 		managed_overlays = new_overlays
 		add_overlay(new_overlays)
 
-/obj/structure/closet/supplypod/proc/update_overlays()
+/obj/structure/closet/supplypod/update_overlays()
 	. = ..()
 	. = list()
 	if(style == STYLE_INVISIBLE)

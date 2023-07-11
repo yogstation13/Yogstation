@@ -65,7 +65,7 @@
 	else
 		powered = FALSE
 
-/obj/item/defibrillator/proc/update_overlays()
+/obj/item/defibrillator/update_overlays()
 	. = ..()
 	cut_overlays()
 	if(!on)
