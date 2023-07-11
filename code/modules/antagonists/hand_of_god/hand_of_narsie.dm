@@ -13,7 +13,7 @@
 
 
 /datum/antagonist/hand_of_god/hand_of_narsie//get_team()
-	return cult_team
+	return hand_of_narsie
 
 /datum/antagonist/hand_of_god/hand_of_narsie//create_team(datum/team/hand_of_god/hand_of_narsie//new_team)
 	if(!new_team)
@@ -21,15 +21,15 @@
 		for(var/datum/antagonist/hand_of_god/hand_of_narsie//H in GLOB.antagonists)
 			if(!H.owner)
 				continue
-			if(H.cult_team)
-				cult_team = H.cult_team
+			if(H.hand_of_narsie)
+				hand_of_narsie = H.hand_of_narsie
 				return
-		cult_team = new /datum/team/hand_of_god/hand_of_narsie/
-		cult_team.setup_objectives()
+		hand_of_narsie = new /datum/team/hand_of_god/hand_of_narsie/
+		hand_of_narsie.setup_objectives()
 		return
 	if(!istype(new_team))
 		stack_trace("Wrong team type passed to [type] initialization.")
-	cult_team = new_team
+	hand_of_narsie = new_team
 
 /datum/antagonist/hand_of_god/hand_of_narsie/Destroy()
 	QDEL_NULL(communion)
@@ -39,7 +39,7 @@
 /datum/antagonist/hand_of_god/hand_of_narsie/can_be_owned(datum/mind/new_owner)
 	. = ..()
 	if(. && !ignore_implant)
-		. = is_convertable_to_cult(new_owner.current,cult_team)
+		. = is_convertable_to_cult(new_owner.current,hand_of_narsie)
 		var/list/no_team_antag = list(
 			/datum/antagonist/rev,
 			/datum/antagonist/clockcult,
@@ -68,8 +68,8 @@
 	SSticker.mode.cult += owner // Only add after they've been given objectives
 	current.log_message("has been converted to the cult of Nar'sie!", LOG_ATTACK, color="#960000")
 
-	if(cult_team.blood_target && cult_team.blood_target_image && current.client)
-		current.client.images += cult_team.blood_target_image
+	if(hand_of_narsie.blood_target && hand_of_narsie.blood_target_image && current.client)
+		current.client.images += hand_of_narsie.blood_target_image
 
 /datum/antagonist/hand_of_god/hand_of_narsie/on_removal()
 	SSticker.mode.cult -= owner
@@ -77,8 +77,8 @@
 		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just reverted to [owner.current.p_their()] old faith!")]", null, null, null, owner.current)
 		to_chat(owner.current, span_userdanger("An unfamiliar white light flashes through your mind, cleansing the taint of the Geometer and all your memories as her servant."))
 		owner.current.log_message("has renounced the cult of Nar'sie!", LOG_ATTACK, color="#960000")
-	if(cult_team.blood_target && cult_team.blood_target_image && owner.current.client)
-		owner.current.client.images -= cult_team.blood_target_image
+	if(hand_of_narsie.blood_target && hand_of_narsie.blood_target_image && owner.current.client)
+		owner.current.client.images -= hand_of_narsie.blood_target_image
 
 	return ..()
 
@@ -170,16 +170,16 @@
 	handle_clown_mutation(current, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 	current.faction |= "cult"
 	current.grant_language(/datum/language/narsie, TRUE, TRUE, LANGUAGE_CULTIST)
-	if(!cult_team.cult_master)
+	if(!hand_of_narsie.cult_master)
 		vote.Grant(current)
 	communion.Grant(current)
 	if(ishuman(current))
 		magic.Grant(current)
 	current.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
-	if(cult_team.cult_risen)
-		cult_team.rise(current)
-		if(cult_team.cult_ascendent)
-			cult_team.ascend(current)
+	if(hand_of_narsie.cult_risen)
+		hand_of_narsie.rise(current)
+		if(hand_of_narsie.cult_ascendent)
+			hand_of_narsie.ascend(current)
 
 	add_team_hud(current)
 
@@ -257,16 +257,16 @@
 	var/mob/living/current = owner.current
 	if(mob_override)
 		current = mob_override
-	if(!cult_team.reckoning_complete)
+	if(!hand_of_narsie.reckoning_complete)
 		reckoning.Grant(current)
 	bloodmark.Grant(current)
 	throwing.Grant(current)
 	current.update_mob_action_buttons()
 	current.apply_status_effect(/datum/status_effect/cult_master)
-	if(cult_team.cult_risen)
-		cult_team.rise(current)
-		if(cult_team.cult_ascendent)
-			cult_team.ascend(current)
+	if(hand_of_narsie.cult_risen)
+		hand_of_narsie.rise(current)
+		if(hand_of_narsie.cult_ascendent)
+			hand_of_narsie.ascend(current)
 	add_team_hud(current, /datum/antagonist/hand_of_god/hand_of_narsie)
 
 /datum/antagonist/hand_of_god/hand_of_narsie/master/remove_innate_effects(mob/living/mob_override)
@@ -347,7 +347,7 @@
 		ADD_TRAIT(H, CULT_EYES, CULT_TRAIT)
 		H.updateappearance()
 
-/datum/team/cult/proc/ascend(cultist)
+/datum/team/hand_of_god/hand_of_narsie/proc/ascend(cultist)
 	if(ishuman(cultist))
 		var/mob/living/carbon/human/H = cultist
 		new /obj/effect/temp_visual/cult/sparks(get_turf(H), H.dir)
@@ -356,7 +356,7 @@
 		H.overlays_standing[HALO_LAYER] = new_halo_overlay
 		H.apply_overlay(HALO_LAYER)
 
-/datum/team/cult/proc/make_image(datum/objective/sacrifice/sac_objective)
+/datum/team/hand_of_god/hand_of_narsie/proc/make_image(datum/objective/sacrifice/sac_objective)
 	var/datum/job/job_of_sacrifice = sac_objective.target.assigned_role
 	var/datum/preferences/prefs_of_sacrifice = sac_objective.target.current.client.prefs
 	var/icon/reshape = get_flat_human_icon(null, SSjob.GetJob(job_of_sacrifice), prefs_of_sacrifice, list(SOUTH))
@@ -366,7 +366,7 @@
 	reshape.Crop(-5,-3,26,30)
 	sac_objective.sac_image = reshape
 
-/datum/team/cult/proc/setup_objectives()
+/datum/team/hand_of_god/hand_of_narsie/proc/setup_objectives()
 	var/datum/objective/sacrifice/sacrifice_objective = new
 	sacrifice_objective.team = src
 	sacrifice_objective.find_target()
@@ -376,7 +376,7 @@
 	summon_objective.team = src
 	objectives += summon_objective
 
-/datum/team/cult/proc/get_sacrifice_target(allow_convertable = TRUE)
+/datum/team/hand_of_god/hand_of_narsie/proc/get_sacrifice_target(allow_convertable = TRUE)
 	var/list/target_candidates = list()
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && !is_convertable_to_cult(player) && player.stat != DEAD)
@@ -400,7 +400,7 @@
 // Checks if the current sacrifice target is still valid and gives the cult
 // their mulligan target if it isn't.  If the cult's mulligan target also fails,
 // returns FALSE; in that case, the round should end immediately.
-/datum/team/cult/proc/check_sacrifice_status()
+/datum/team/hand_of_god/hand_of_narsie/proc/check_sacrifice_status()
 	var/datum/objective/sacrifice/sac_objective = locate() in objectives
 	if (!sac_objective)
 		message_admins("A cult somehow doesn't have a sacrifice objective at all, causing the round to end.")
@@ -480,7 +480,7 @@
 	clear_sacrifice()
 	if(!istype(team, /datum/team/cult))
 		return
-	var/datum/team/cult/cult = team
+	var/datum/team/hand_of_god/hand_of_narsie/cult = team
 	var/list/target_candidates = list()
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		if(!player.mind)
@@ -584,7 +584,7 @@
 		return CULT_NARSIE_KILLED // You failed so hard that even the code went backwards.
 	return summoned || completed
 
-/datum/team/cult/proc/check_cult_victory()
+/datum/team/hand_of_god/hand_of_narsie/proc/check_cult_victory()
 	for(var/datum/objective/O in objectives)
 		if(O.check_completion() == CULT_NARSIE_KILLED)
 			return CULT_NARSIE_KILLED
@@ -592,7 +592,7 @@
 			return CULT_LOSS
 	return CULT_VICTORY
 
-/datum/team/cult/roundend_report()
+/datum/team/hand_of_god/hand_of_narsie/roundend_report()
 	var/list/parts = list()
 
 	var/victory = check_cult_victory()
@@ -629,11 +629,11 @@
 			return TRUE
 	return FALSE
 
-/datum/team/cult/is_gamemode_hero()
+/datum/team/hand_of_god/hand_of_narsie/is_gamemode_hero()
 	return SSticker.mode.name == "cult"
 
 /// Sets a blood target for the cult.
-/datum/team/cult/proc/set_blood_target(atom/new_target, mob/marker, duration = 90 SECONDS)
+/datum/team/hand_of_god/hand_of_narsie/proc/set_blood_target(atom/new_target, mob/marker, duration = 90 SECONDS)
 	if(QDELETED(new_target))
 		CRASH("A null or invalid target was passed to set_blood_target.")
 
@@ -663,7 +663,7 @@
 	return TRUE
 
 /// Unsets out blood target, clearing the images from all the cultists.
-/datum/team/cult/proc/unset_blood_target()
+/datum/team/hand_of_god/hand_of_narsie/proc/unset_blood_target()
 	blood_target_reset_timer = null
 
 	for(var/datum/mind/cultist as anything in members)
@@ -684,7 +684,7 @@
 	QDEL_NULL(blood_target_image)
 
 /// Unsets our blood target when they get deleted.
-/datum/team/cult/proc/unset_blood_target_and_timer(datum/source)
+/datum/team/hand_of_god/hand_of_narsie/proc/unset_blood_target_and_timer(datum/source)
 	SIGNAL_HANDLER
 
 	deltimer(blood_target_reset_timer)
