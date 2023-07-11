@@ -180,10 +180,14 @@
 		var/mob/living/carbon/human/H = target
 		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
 	ricochets = ricochets_max // so you can't shoot through someone to ricochet and hit them twice for 70 damage in one shot
+	damage -= 20
+	if(damage <= 0)
+		qdel(src)
 
 /obj/item/projectile/bullet/ipcmartial/on_ricochet(atom/A)
 	damage += 10 // more damage if you ricochet it, good luck hitting it consistently though
 	speed *= 0.5 // faster so it can hit more reliably
+	penetrating = FALSE
 	return ..()
 
 /obj/item/projectile/bullet/ipcmartial/check_ricochet()
