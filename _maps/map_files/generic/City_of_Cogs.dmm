@@ -162,6 +162,13 @@
 	},
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
+"ef" = (
+/obj/structure/lattice/catwalk/clockwork,
+/obj/effect/clockwork/servant_blocker{
+	dir = 1
+	},
+/turf/open/indestructible/reebe_void,
+/area/reebe/city_of_cogs)
 "er" = (
 /obj/effect/landmark/servant_of_ratvar/scarab,
 /turf/open/floor/clockwork/reebe,
@@ -172,6 +179,11 @@
 	dir = 4
 	},
 /turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
+"fT" = (
+/obj/structure/lattice/catwalk/clockwork,
+/obj/effect/clockwork/servant_blocker,
+/turf/open/indestructible/reebe_void,
 /area/reebe/city_of_cogs)
 "mj" = (
 /obj/structure/table/reinforced/brass,
@@ -206,16 +218,18 @@
 /obj/item/paper/servant_primer/infirmarypaper,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"ry" = (
-/obj/structure/lattice/catwalk/clockwork,
+"ty" = (
 /obj/effect/clockwork/servant_blocker,
-/turf/open/indestructible/reebe_void,
+/obj/structure/grille/ratvar,
+/obj/structure/window/reinforced/clockwork/fulltile,
+/turf/open/indestructible/clock_spawn_room,
 /area/reebe/city_of_cogs)
-"sl" = (
-/obj/structure/lattice/catwalk/clockwork,
+"um" = (
 /obj/effect/clockwork/servant_blocker,
-/obj/effect/clockwork/servant_blocker,
-/turf/open/indestructible/reebe_void,
+/obj/structure/grille/ratvar,
+/obj/structure/grille/ratvar,
+/obj/structure/window/reinforced/clockwork/fulltile,
+/turf/open/indestructible/clock_spawn_room,
 /area/reebe/city_of_cogs)
 "wm" = (
 /obj/structure/table/reinforced/brass,
@@ -237,19 +251,6 @@
 /obj/structure/table/reinforced/brass,
 /turf/open/floor/clockwork/reebe,
 /area/reebe/city_of_cogs)
-"An" = (
-/obj/effect/clockwork/servant_blocker,
-/obj/structure/grille/ratvar,
-/obj/structure/window/reinforced/clockwork/fulltile,
-/turf/open/indestructible/clock_spawn_room,
-/area/reebe/city_of_cogs)
-"Bg" = (
-/obj/effect/clockwork/servant_blocker,
-/obj/structure/grille/ratvar,
-/obj/structure/grille/ratvar,
-/obj/structure/window/reinforced/clockwork/fulltile,
-/turf/open/indestructible/clock_spawn_room,
-/area/reebe/city_of_cogs)
 "Ct" = (
 /turf/closed/indestructible/riveted,
 /area/reebe)
@@ -257,6 +258,14 @@
 /obj/item/clockwork/alloy_shards,
 /obj/effect/landmark/servant_of_ratvar/scarab,
 /turf/open/floor/clockwork/reebe,
+/area/reebe/city_of_cogs)
+"Qp" = (
+/obj/structure/grille/ratvar,
+/obj/structure/window/reinforced/clockwork/fulltile,
+/obj/effect/clockwork/servant_blocker{
+	dir = 1
+	},
+/turf/open/indestructible/clock_spawn_room,
 /area/reebe/city_of_cogs)
 
 (1,1,1) = {"
@@ -3484,17 +3493,17 @@ ab
 ab
 ab
 ab
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
+ty
+ty
+ty
+ty
+ty
+ty
+ty
+ty
+ty
+ty
+ty
 ab
 ab
 ab
@@ -3574,8 +3583,8 @@ ab
 ab
 ab
 ab
-An
-An
+ty
+ty
 az
 mj
 ai
@@ -3585,8 +3594,8 @@ aj
 ai
 at
 aF
-An
-An
+Qp
+Qp
 ab
 ab
 ab
@@ -3665,7 +3674,7 @@ ab
 ab
 ab
 ab
-An
+ty
 au
 aj
 aj
@@ -3677,7 +3686,7 @@ aE
 aj
 at
 aF
-An
+Qp
 ab
 ab
 ab
@@ -3754,9 +3763,9 @@ ab
 ab
 ab
 ab
-An
-An
-An
+ty
+ty
+ty
 av
 aj
 aj
@@ -3768,9 +3777,9 @@ ai
 aj
 aj
 aj
-An
-An
-An
+Qp
+Qp
+Qp
 ab
 ab
 ab
@@ -3844,8 +3853,8 @@ ab
 ab
 ab
 ab
-An
-An
+ty
+ty
 au
 ax
 aH
@@ -3861,8 +3870,8 @@ aj
 aH
 aj
 ay
-An
-An
+Qp
+Qp
 ab
 ab
 ab
@@ -3935,7 +3944,7 @@ ab
 ab
 ab
 ab
-An
+ty
 bj
 aj
 aj
@@ -3953,7 +3962,7 @@ aj
 aj
 av
 ay
-An
+Qp
 ab
 ab
 ab
@@ -4026,7 +4035,7 @@ ab
 ab
 ab
 ab
-An
+ty
 wm
 aj
 aj
@@ -4044,7 +4053,7 @@ ax
 aj
 aj
 av
-An
+Qp
 ab
 ab
 ab
@@ -4103,21 +4112,21 @@ aa
 aa
 aa
 aa
-Bg
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
+um
+ty
+ty
+ty
+ty
+ty
+ty
+ty
+ty
+ty
+ty
+ty
+ty
+ty
+ty
 ai
 ag
 ai
@@ -4135,21 +4144,21 @@ ah
 ai
 aE
 ai
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
-An
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
 aa
 aa
 aa
@@ -4194,7 +4203,7 @@ ah
 ac
 ac
 ac
-ry
+fT
 aj
 aj
 aj
@@ -4240,7 +4249,7 @@ aj
 aj
 aj
 aj
-ry
+ef
 ac
 ac
 ac
@@ -4285,7 +4294,7 @@ aP
 ac
 ac
 ac
-ry
+fT
 aj
 aO
 aj
@@ -4331,7 +4340,7 @@ aj
 aO
 aj
 aj
-ry
+ef
 ac
 ac
 ac
@@ -4376,7 +4385,7 @@ ah
 ac
 ac
 ac
-ry
+fT
 aj
 aj
 aj
@@ -4422,7 +4431,7 @@ aj
 aj
 aj
 aj
-ry
+ef
 ac
 ac
 ac
@@ -4467,7 +4476,7 @@ ah
 ac
 ac
 ac
-ry
+fT
 aj
 aj
 aj
@@ -4513,7 +4522,7 @@ aj
 aj
 aO
 aj
-ry
+ef
 ac
 ac
 ac
@@ -4558,7 +4567,7 @@ ah
 ac
 ac
 ac
-ry
+fT
 aj
 aO
 aj
@@ -4604,7 +4613,7 @@ aO
 aj
 aj
 aj
-ry
+ef
 ac
 ac
 ac
@@ -4649,7 +4658,7 @@ ah
 ac
 ac
 ac
-ry
+fT
 aj
 aj
 aj
@@ -4695,7 +4704,7 @@ aj
 aj
 aj
 aj
-ry
+ef
 ac
 ac
 ac
@@ -4740,8 +4749,8 @@ ah
 ac
 ac
 ac
-ry
-ry
+fT
+fT
 aj
 aj
 aj
@@ -4785,8 +4794,8 @@ aj
 aj
 aj
 aj
-ry
-ry
+ef
+ef
 ac
 ac
 ac
@@ -4832,7 +4841,7 @@ ah
 ac
 ac
 ac
-ry
+fT
 aj
 aO
 aj
@@ -4876,7 +4885,7 @@ aO
 aj
 aO
 aj
-ry
+ef
 ac
 ac
 ac
@@ -4923,7 +4932,7 @@ ah
 ac
 ac
 ac
-ry
+fT
 aj
 aj
 aj
@@ -4967,7 +4976,7 @@ aj
 aj
 aj
 aj
-ry
+ef
 ac
 ac
 ac
@@ -5014,8 +5023,8 @@ ah
 ac
 ac
 ac
-ry
-ry
+fT
+fT
 aj
 aj
 aO
@@ -5057,8 +5066,8 @@ aj
 aj
 aj
 aj
-ry
-ry
+ef
+ef
 ac
 ac
 ac
@@ -5106,7 +5115,7 @@ ah
 ac
 ac
 ac
-ry
+fT
 aj
 aj
 aj
@@ -5148,7 +5157,7 @@ aj
 aj
 aO
 aj
-ry
+ef
 ac
 ac
 ac
@@ -5197,8 +5206,8 @@ ah
 ac
 ac
 ac
-ry
-ry
+fT
+fT
 aj
 aj
 aj
@@ -5238,8 +5247,8 @@ aj
 aj
 aj
 aj
-ry
-ry
+ef
+ef
 ac
 ac
 ac
@@ -5289,7 +5298,7 @@ ah
 ac
 ac
 ac
-ry
+fT
 aj
 aj
 aO
@@ -5329,7 +5338,7 @@ aj
 aj
 aj
 aj
-ry
+ef
 ac
 ac
 ac
@@ -5380,8 +5389,8 @@ ah
 ac
 ac
 ac
-ry
-ry
+fT
+fT
 aj
 aj
 aj
@@ -5419,8 +5428,8 @@ aj
 aO
 aj
 aj
-ry
-ry
+ef
+ef
 ac
 ac
 ac
@@ -5472,8 +5481,8 @@ ah
 ac
 ac
 ac
-ry
-ry
+fT
+fT
 aj
 aj
 aO
@@ -5509,8 +5518,8 @@ aj
 aj
 aj
 aj
-ry
-ry
+ef
+ef
 ac
 ac
 ac
@@ -5564,8 +5573,8 @@ ah
 ac
 ac
 ac
-ry
-ry
+fT
+fT
 aj
 aj
 aj
@@ -5599,8 +5608,8 @@ aj
 aO
 aj
 aj
-ry
-ry
+ef
+ef
 ac
 ac
 ac
@@ -5656,8 +5665,8 @@ ac
 ac
 ac
 ac
-ry
-ry
+fT
+fT
 aj
 aj
 aj
@@ -5689,8 +5698,8 @@ aO
 aj
 aj
 aj
-sl
-ry
+ef
+ef
 ac
 ac
 ac
@@ -5748,8 +5757,8 @@ ac
 ac
 ac
 ac
-ry
-ry
+fT
+fT
 aj
 aj
 aO
@@ -5779,8 +5788,8 @@ aj
 aj
 aj
 aj
-ry
-ry
+ef
+ef
 ac
 ac
 ac
@@ -5840,8 +5849,8 @@ ac
 ac
 ac
 ac
-ry
-ry
+fT
+fT
 aj
 aj
 aj
@@ -5869,8 +5878,8 @@ aO
 aj
 aj
 aj
-ry
-ry
+ef
+ef
 ac
 ac
 ac
@@ -5932,8 +5941,8 @@ ac
 ac
 ac
 ac
-ry
-ry
+fT
+fT
 aj
 aj
 aj
@@ -5959,8 +5968,8 @@ aj
 aj
 aj
 aj
-ry
-ry
+ef
+ef
 ac
 ac
 ac
@@ -6024,8 +6033,8 @@ ac
 ac
 ac
 ac
-ry
-ry
+fT
+fT
 aj
 aj
 aj
@@ -6049,8 +6058,8 @@ aj
 aj
 aj
 aj
-ry
-ry
+ef
+ef
 ac
 ac
 ac
@@ -6116,9 +6125,9 @@ ac
 ac
 ac
 ac
-ry
-ry
-ry
+fT
+fT
+fT
 aj
 aj
 aj
@@ -6138,9 +6147,9 @@ aj
 aj
 aj
 aj
-ry
-ry
-ry
+ef
+ef
+ef
 ac
 ac
 ac
@@ -6209,9 +6218,9 @@ ac
 ac
 ac
 ac
-ry
-ry
-ry
+fT
+fT
+fT
 aj
 aj
 aj
@@ -6227,9 +6236,9 @@ aj
 aj
 aj
 aj
-ry
-ry
-ry
+ef
+ef
+ef
 ac
 ac
 ac
@@ -6302,10 +6311,10 @@ ac
 ac
 ac
 ac
-ry
-ry
-ry
-ry
+fT
+fT
+fT
+fT
 aj
 aj
 aj
@@ -6315,10 +6324,10 @@ aj
 aj
 aj
 aj
-ry
-ry
-ry
-ry
+ef
+ef
+ef
+ef
 ac
 ac
 ac
@@ -6396,17 +6405,17 @@ ac
 ac
 ac
 ac
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
+fT
 ac
 ac
 ac
