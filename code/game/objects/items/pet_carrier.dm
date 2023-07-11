@@ -141,15 +141,17 @@
 		update_appearance(UPDATE_ICON)
 		remove_occupant(user)
 
-/obj/item/pet_carrier/update_icon(updates=ALL)
-	. = ..()
-	cut_overlay("unlocked")
-	cut_overlay("locked")
+/obj/item/pet_carrier/update_icon_state()
 	if(open)
 		icon_state = initial(icon_state)
-	else
-		icon_state = "pet_carrier_[!occupants.len ? "closed" : "occupied"]"
-		add_overlay("[locked ? "" : "un"]locked")
+		return ..()
+	icon_state = "[base_icon_state]_[!occupants.len ? "closed" : "occupied"]"
+	return ..()
+
+/obj/item/pet_carrier/update_overlays()
+	. = ..()
+	if(!open)
+		. += "[base_icon_state]_[locked ? "" : "un"]locked"
 
 /obj/item/pet_carrier/MouseDrop(atom/over_atom)
 	. = ..()

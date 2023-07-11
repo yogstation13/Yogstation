@@ -688,8 +688,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		else if(I && I.w_class >= 3) //Otherwise they can only see large or normal items from a distance...
 			viewing.show_message(span_notice("[M] puts [I] [insert_preposition]to [parent]."), MSG_VISUAL)
 
-/datum/component/storage/proc/update_icon(updates=ALL)
-	. = ..()
+/datum/component/storage/proc/update_icon()
 	if(isobj(parent))
 		var/obj/O = parent
 		O.update_appearance(UPDATE_ICON)

@@ -86,6 +86,7 @@
 	add_overlay(getpipeimage(icon, "pipe", turn(dir, 180), COLOR_RED, piping_layer))
 
 /obj/machinery/atmospherics/components/binary/crystallizer/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "[base_icon]-open"
 	else if(on)
