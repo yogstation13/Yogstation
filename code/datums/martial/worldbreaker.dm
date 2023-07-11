@@ -169,6 +169,7 @@
 			ADD_TRAIT(user, TRAIT_RESISTCOLD, type)
 			ADD_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
 			ADD_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
+			ADD_TRAIT(user, TRAIT_STUNIMMUNE, type)
 		else
 			S.special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
 			S.special_step_volume = 50
@@ -176,6 +177,7 @@
 			REMOVE_TRAIT(user, TRAIT_RESISTCOLD, type)
 			REMOVE_TRAIT(user, TRAIT_RESISTHIGHPRESSURE, type)
 			REMOVE_TRAIT(user, TRAIT_RESISTLOWPRESSURE, type)
+			REMOVE_TRAIT(user, TRAIT_STUNIMMUNE, type)
 
 /datum/martial_art/worldbreaker/proc/adjust_plates(mob/living/carbon/human/user, amount = 0)
 	if(amount == 0)
@@ -581,6 +583,8 @@
 
 /datum/martial_art/worldbreaker/teach(mob/living/carbon/human/H, make_temporary=0)
 	..()
+	H.physiology.stun_mod *= 0.5
+	H.physiology.stamina_mod *= 0.5
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//burn bright my friend
 		S.power_drain *= 5
@@ -594,7 +598,6 @@
 	update_platespeed(H)
 	ADD_TRAIT(H, TRAIT_RESISTHEAT, type) //walk through that fire all you like, hope you don't care about your clothes
 	ADD_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
-	ADD_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	ADD_TRAIT(H, TRAIT_NOVEHICLE, type)
 	RegisterSignal(H, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(lose_plate))
 	if(!linked_stomp)
@@ -603,6 +606,8 @@
 	linked_stomp.Grant(H)
 
 /datum/martial_art/worldbreaker/on_remove(mob/living/carbon/human/H)
+	H.physiology.stun_mod /= 0.5
+	H.physiology.stamina_mod /= 0.5
 	var/datum/species/preternis/S = H.dna.species
 	if(istype(S))//but not that bright
 		S.power_drain /= 5
@@ -617,7 +622,6 @@
 	update_platespeed(H)
 	REMOVE_TRAIT(H, TRAIT_RESISTHEAT, type)
 	REMOVE_TRAIT(H, TRAIT_REDUCED_DAMAGE_SLOWDOWN, type)
-	REMOVE_TRAIT(H, TRAIT_STUNIMMUNE, type)
 	REMOVE_TRAIT(H, TRAIT_NOVEHICLE, type)
 	UnregisterSignal(H, COMSIG_MOB_APPLY_DAMAGE)
 	if(linked_stomp)
