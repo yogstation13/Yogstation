@@ -181,16 +181,13 @@
 	cut_overlay(object_overlays)
 	object_overlays.Cut()
 
-/atom/movable/screen/inventory/update_icon(updates=ALL)
-	. = ..()
+/atom/movable/screen/inventory/update_icon_state()
 	if(!icon_empty)
 		icon_empty = icon_state
 
-	if(hud && hud.mymob && slot_id && icon_full)
-		if(hud.mymob.get_item_by_slot(slot_id))
-			icon_state = icon_full
-		else
-			icon_state = icon_empty
+	if(hud?.mymob && slot_id && icon_full)
+		icon_state = hud.mymob.get_item_by_slot(slot_id) ? icon_full : icon_empty
+	return ..()
 
 /atom/movable/screen/inventory/proc/add_overlays()
 	var/mob/user = hud.mymob
@@ -217,15 +214,12 @@
 	var/static/mutable_appearance/blocked_overlay = mutable_appearance('icons/mob/screen_gen.dmi', "blocked")
 	var/held_index = 0
 
-/atom/movable/screen/inventory/hand/update_icon(updates=ALL)
+/atom/movable/screen/inventory/hand/update_overlays()
 	. = ..()
 
 	if(!handcuff_overlay)
-		var/ui_style = hud?.mymob?.client?.prefs?.read_preference(/datum/preference/choiced/ui_style)
 		var/state = (!(held_index % 2)) ? "markus" : "gabrielle"
-		handcuff_overlay = mutable_appearance((ui_style ? ui_style2icon(ui_style) : 'icons/mob/screen_gen.dmi'), state)
-
-	cut_overlays()
+		handcuff_overlay = mutable_appearance('icons/mob/screen_gen.dmi', state)
 
 	if(!hud?.mymob)
 		return
@@ -233,14 +227,14 @@
 	if(iscarbon(hud.mymob))
 		var/mob/living/carbon/C = hud.mymob
 		if(C.handcuffed)
-			add_overlay(handcuff_overlay)
+			. += handcuff_overlay
 
 		if(held_index)
 			if(!C.has_hand_for_held_index(held_index))
-				add_overlay(blocked_overlay)
+				. += blocked_overlay
 
 	if(held_index == hud.mymob.active_hand_index)
-		add_overlay((held_index % 2) ? "lhandactive" : "rhandactive")
+		. += (held_index % 2) ? "lhandactive" : "rhandactive"
 
 
 /atom/movable/screen/inventory/hand/Click(location, control, params)
@@ -330,16 +324,13 @@
 /atom/movable/screen/mov_intent/Click()
 	toggle(usr)
 
-/atom/movable/screen/mov_intent/update_icon(mob/user)
-	if(!user && hud)
-		user = hud.mymob
-	if(!user)
-		return
-	switch(user.m_intent)
+/atom/movable/screen/mov_intent/update_icon_state()
+	switch(hud?.mymob?.m_intent)
 		if(MOVE_INTENT_WALK)
 			icon_state = "walking"
 		if(MOVE_INTENT_RUN)
 			icon_state = "running"
+	return ..()
 
 /atom/movable/screen/mov_intent/proc/toggle(mob/user)
 	if(isobserver(user))
@@ -356,13 +347,9 @@
 		return
 	usr.stop_pulling()
 
-/atom/movable/screen/pull/update_icon(mob/mymob)
-	if(!mymob)
-		return
-	if(mymob.pulling)
-		icon_state = "pull"
-	else
-		icon_state = "pull0"
+/atom/movable/screen/pull/update_icon_state()
+	icon_state = "[initial(icon_state)][hud?.mymob?.pulling ? null : 0]"
+	return ..()
 
 /atom/movable/screen/resist
 	name = "resist"
@@ -388,14 +375,12 @@
 		var/mob/living/L = usr
 		L.lay_down()
 
-/atom/movable/screen/rest/update_icon(mob/mymob)
-	if(!isliving(mymob))
-		return
-	var/mob/living/L = mymob
-	if(!L.resting)
-		icon_state = "act_rest"
-	else
-		icon_state = "act_rest0"
+/atom/movable/screen/rest/update_icon_state()
+	var/mob/living/user = hud?.mymob
+	if(!istype(user))
+		return ..()
+	icon_state = "[initial(icon_state)][user.resting ? 0 : null]"
+	return ..()
 
 /atom/movable/screen/storage
 	name = "storage"
@@ -435,6 +420,7 @@
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
+	var/overlay_icon = 'icons/mob/screen_gen.dmi'
 	var/selecting = BODY_ZONE_CHEST
 	var/static/list/hover_overlays_cache = list()
 	var/hovering
@@ -536,18 +522,15 @@
 		update_icon(usr)
 	return 1
 
-/atom/movable/screen/zone_sel/update_icon(mob/user)
-	cut_overlays()
-	add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[selecting]"))
-	user.zone_selected = selecting
+/atom/movable/screen/zone_sel/update_overlays()
+	. = ..()
+	if(!hud?.mymob)
+		return
+	. += mutable_appearance(overlay_icon, "[hud.mymob.zone_selected]")
 
 /atom/movable/screen/zone_sel/alien
 	icon = 'icons/mob/screen_alien.dmi'
-
-/atom/movable/screen/zone_sel/alien/update_icon(mob/user)
-	cut_overlays()
-	add_overlay(mutable_appearance('icons/mob/screen_alien.dmi', "[selecting]"))
-	user.zone_selected = selecting
+	overlay_icon = 'icons/mob/screen_alien.dmi'
 
 /atom/movable/screen/zone_sel/robot
 	icon = 'icons/mob/screen_cyborg.dmi'

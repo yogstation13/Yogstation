@@ -2,6 +2,8 @@
 
 // This code allows for airlocks to be controlled externally by setting an id_tag and comm frequency (disables ID access)
 /obj/machinery/door/airlock
+	/// The current state of the airlock, used to construct the airlock overlays
+	var/airlock_state
 	var/id_tag
 	var/frequency
 	var/datum/radio_frequency/radio_connection
