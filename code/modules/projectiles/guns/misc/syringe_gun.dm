@@ -133,16 +133,20 @@
 
 /obj/item/gun/syringe/blowgun
 	name = "blowgun"
-	desc = "Fire syringes at a short distance."
+	desc = "Fire syringes a short distance."
 	icon_state = "blowgun"
 	item_state = "blowgun"
 	fire_sound = 'sound/items/syringeproj.ogg'
 	no_pin_required = TRUE
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL //it's a fucking blowgun it shouldn't even have a triggerguard
 
+/obj/item/gun/syringe/blowgun/Initialize(mapload)
+	. = ..()
+	update_icon()
+	chambered = new /obj/item/ammo_casing/blowgun(src)
+
+
 /obj/item/gun/syringe/blowgun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	visible_message(span_danger("[user] starts aiming with a blowgun!"))
-	if(do_after(user, 2.5 SECONDS, src))
-		user.adjustStaminaLoss(20)
-		user.adjustOxyLoss(20)
-		..()
+	user.adjustStaminaLoss(25)
+	user.adjustOxyLoss(25)
+	..()

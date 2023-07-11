@@ -9,6 +9,7 @@
 	name = "Syndicate Internal Affairs Agent"
 	special_role = "internal affairs agent" //Doesn't have it listed but employer should still be syndicate
 	antagpanel_category = "IAA"
+	job_rank = ROLE_INTERNAL_AFFAIRS
 	var/marauder = FALSE
 	var/last_man_standing = FALSE
 	var/list/datum/mind/targets_stolen

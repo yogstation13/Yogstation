@@ -1079,16 +1079,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 //specifically for "suture" type robotic healing items
 //amount is either the fuel of a welding tool, or the number of wires consumed
 //volume is how loud the sound of the item is
-#define ROBO_LIMB_HEAL_SELF 6 SECONDS
-#define ROBO_LIMB_HEAL_OTHER 2 SECONDS
-/obj/item/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal = 0, burn_heal = 0, amount = 0, volume = 0)
-	var/used_delay
-	if(H != user)
-		used_delay = ROBO_LIMB_HEAL_OTHER
-	else
-		used_delay = ROBO_LIMB_HEAL_SELF
 
-	if(I.use_tool(H, user, used_delay, amount, volume, null, TRUE))
+#define ROBO_LIMB_HEAL_SELF 3 SECONDS
+#define ROBO_LIMB_HEAL_OTHER 1 SECONDS
+
+/obj/item/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal = 0, burn_heal = 0, amount = 0, volume = 0)
+	if(I.use_tool(H, user, (H == user) ? ROBO_LIMB_HEAL_SELF : ROBO_LIMB_HEAL_OTHER, amount, volume, null, TRUE))
 		if(item_heal_robotic(H, user, brute_heal, burn_heal))
 			return heal_robo_limb(I, H, user, brute_heal, burn_heal, amount, volume)
 		return TRUE

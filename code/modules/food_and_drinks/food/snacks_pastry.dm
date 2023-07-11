@@ -508,7 +508,6 @@
 	tastes = list("bread" = 1, "egg" = 1, "cheese" = 1)
 	foodtype = GRAIN | MEAT | DAIRY
 
-
 /obj/item/reagent_containers/food/snacks/sugarcookie
 	name = "sugar cookie"
 	desc = "Just like your little sister used to make."
@@ -648,6 +647,28 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
 	tastes = list("lost dreams" = 1, "cinnamon" = 1)
+
+/obj/item/reagent_containers/food/snacks/raw_croissant
+	name = "raw croissant"
+	desc = "Folded dough ready to bake into a croissant."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "raw_croissant"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("raw dough" = 2, "butter" = 1)
+	foodtype = GRAIN | DAIRY | BREAKFAST | RAW
+
+/obj/item/reagent_containers/food/snacks/raw_croissant/MakeBakeable()
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/croissant, rand(15 SECONDS, 20 SECONDS), TRUE, TRUE)
+
+/obj/item/reagent_containers/food/snacks/croissant
+	name = "croissant"
+	desc = "A delicious, buttery croissant. The perfect start to the day."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "croissant"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("fluffy bread" = 2, "butter" = 1)
+	foodtype = GRAIN | DAIRY | BREAKFAST
+	burns_in_oven = TRUE
 
 /obj/item/reagent_containers/food/snacks/pancakes/Initialize(mapload)
 	. = ..()

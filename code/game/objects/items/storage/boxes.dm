@@ -128,7 +128,7 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
-	
+
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)
 		new /obj/item/radio/off(src)
@@ -188,17 +188,6 @@
 /obj/item/storage/box/plasmaman/miner/PopulateContents() //mining box for plasmemes
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/tank/internals/plasmaman/belt/full(src)
-	new /obj/item/crowbar/red(src)
-	new /obj/item/gps/mining(src)
-	new /obj/item/reagent_containers/autoinjector/medipen(src)
-
-// IPC survival box
-/obj/item/storage/box/ipc/PopulateContents()
-	new /obj/item/tank/internals/ipc_coolant(src)
-	new /obj/item/reagent_containers/autoinjector/medipen(src)
-
-/obj/item/storage/box/ipc/miner/PopulateContents() //IPC mining box
-	new /obj/item/tank/internals/ipc_coolant(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/gps/mining(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
@@ -485,7 +474,7 @@
 
 /obj/item/storage/box/donkpockets
 	name = "box of donk-pockets"
-	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
+	desc = "<B>Instructions:</B> <I>Heat in microwave.</I>"
 	icon_state = "donkpocketbox"
 	illustration=null
 	var/donktype = /obj/item/reagent_containers/food/snacks/donkpocket
@@ -600,7 +589,7 @@
 		new /obj/item/reagent_containers/food/snacks/monkeycube/chicken(src)
 	for(var/i in 1 to 4)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
-		
+
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
 	desc = "Has so many empty IDs."
@@ -901,7 +890,7 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
-	
+
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)
 		new /obj/item/radio/off(src)

@@ -209,7 +209,7 @@
 		affecting = bodyparts[1]
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 	send_item_attack_message(I, user, affecting.name, affecting)
-	if(I.force)		
+	if(I.force)
 		var/attack_direction = get_dir(user, src)
 		apply_damage(I.force, I.damtype, affecting, wound_bonus = I.wound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.sharpness, attack_direction = attack_direction)
 		if(I.damtype == BRUTE && affecting.status == BODYPART_ORGANIC)
@@ -467,12 +467,8 @@
 		else if(averagestacks < -1)
 			to_chat(src, span_notice("The hug [M] gave you was a little wet..."))
 
-	AdjustStun(-6 SECONDS)
-	AdjustKnockdown(-6 SECONDS)
-	AdjustUnconscious(-6 SECONDS)
-	AdjustSleeping(-10 SECONDS)
-	AdjustParalyzed(-6 SECONDS)
-	AdjustImmobilized(-6 SECONDS)
+	adjust_status_effects_on_shake_up()
+
 //	adjustStaminaLoss(-10) if you want hugs to recover stamina damage, uncomment this
 	if(dna && dna.check_mutation(ACTIVE_HULK))
 		if(prob(30))

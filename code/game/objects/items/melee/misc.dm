@@ -240,7 +240,7 @@
 		target.Knockdown(knockdown_time_carbon)
 		target.visible_message(desc["visible"], desc["local"])
 		return
-	
+
 	if(armor_block >= block_threshold)
 		target.visible_message(desc["visible"], desc["local"])
 		playsound(target, 'sound/weapons/genhit.ogg', 50, 1)
@@ -331,7 +331,8 @@
 		to_chat(user, "<span class ='danger'>You hit yourself over the head.</span>")
 		user.Paralyze(knockdown_time_carbon * force)
 		user.adjustStaminaLoss(stamina_damage)
-		additional_effects_carbon(user) // user is the target here
+		if(iscarbon(user))
+			additional_effects_carbon(user) // user is the target here
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.apply_damage(2*force, BRUTE, BODY_ZONE_HEAD)
@@ -487,7 +488,8 @@
 	playsound(get_turf(src), on_stun_sound, 75, 1, -1)
 	target.Knockdown(knockdown_time_carbon)
 	target.adjustStaminaLoss(stamina_damage)
-	additional_effects_carbon(target, user)
+	if(iscarbon(target))
+		additional_effects_carbon(target, user)
 
 	log_combat(user, target, "stunned", src)
 	add_fingerprint(user)
@@ -503,9 +505,11 @@
 /obj/item/melee/classic_baton/telescopic/contractor_baton/get_wait_description()
 	return span_danger("The baton is still charging!")
 
-/obj/item/melee/classic_baton/telescopic/contractor_baton/additional_effects_carbon(mob/living/target, mob/living/user)
+/obj/item/melee/classic_baton/telescopic/contractor_baton/additional_effects_carbon(mob/living/carbon/target, mob/living/user)
 	target.set_jitter_if_lower(40 SECONDS)
 	target.set_stutter_if_lower(40 SECONDS)
+	if(HAS_TRAIT_FROM(target, TRAIT_INCAPACITATED, STAMINA))
+		target.silent += 5
 
 /obj/item/melee/classic_baton/secconbaton
 	name = "billy club"

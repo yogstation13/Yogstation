@@ -41,7 +41,6 @@
 
 /datum/antagonist/nukeop/on_gain()
 	give_alias()
-	forge_objectives()
 	. = ..()
 	equip_op()
 	memorize_code()
@@ -93,10 +92,6 @@
 		to_chat(owner, "The nuclear authorization code is: <B>[nuke_team.memorized_code]</B>")
 	else
 		to_chat(owner, "Unfortunately the syndicate was unable to provide you with nuclear authorization code.")
-
-/datum/antagonist/nukeop/proc/forge_objectives()
-	if(nuke_team)
-		objectives |= nuke_team.objectives
 
 /datum/antagonist/nukeop/proc/move_to_spawnpoint()
 	var/team_number = 1

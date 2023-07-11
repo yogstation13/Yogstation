@@ -176,7 +176,7 @@
 		to_chat(usr, span_warning("\The [src]'s internal magic supply is still recharging!")) // Yogs -- text macro fix
 		return
 
-	usr.say("Rise, my creation! Off your page into this realm!", forced = "stickman summoning")
+	usr.say("Rise, my creation! Off your page into this realm!", ignore_spam = TRUE, forced = "stickman summoning")
 	playsound(src.loc, 'sound/magic/summon_magic.ogg', 50, 1, 1)
 	var/mob/living/M = new /mob/living/simple_animal/hostile/stickman(get_turf(usr))
 	var/list/factions = usr.faction

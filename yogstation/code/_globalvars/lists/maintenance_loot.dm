@@ -509,7 +509,7 @@ GLOBAL_LIST_INIT(maintenance_loot_makeshift,list(
 	/obj/item/stack/medical/gauze/improvised = W_UNCOMMON,
 	/obj/item/stack/medical/poultice = W_RARE,
 	/obj/item/stack/medical/suture/emergency/makeshift = W_UNCOMMON,
-	/obj/item/stamp/syndi = W_MYTHICAL,
+	/obj/item/stamp/syndiround = W_MYTHICAL,
 	/obj/item/storage/bag/trash = W_COMMON,
 	/obj/item/storage/bag/tray = W_UNCOMMON,
 	/obj/item/storage/belt/military/snack = W_RARE,
