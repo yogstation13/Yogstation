@@ -523,6 +523,17 @@
 	filling_color = "#FFD700"
 	tastes = list("butter" = 1)
 	foodtype = DAIRY
+	slice_path = /obj/item/reagent_containers/food/snacks/butterslice
+	slices_num = 4
+
+/obj/item/reagent_containers/food/snacks/butterslice
+	name = "slice of butter"
+	desc = "A slice of delicious, golden, fatty goodness."
+	icon_state = "butter_slice"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	filling_color = "#FFD700"
+	tastes = list("butter" = 1)
+	foodtype = DAIRY
 
 /obj/item/reagent_containers/food/snacks/onionrings
 	name = "onion rings"
