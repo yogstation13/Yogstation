@@ -1,0 +1,7 @@
+author: "Chubbygummibear"
+delete-after: true 
+changes: 
+  - rscadd: "Laser pointer examine text now shows you the number of charges it has and can have, as well as the recharge rate in seconds"
+  - rscadd: "Laser pointer generates a charge every 30-5*diode rating seconds. so 25 seconds at base, 10 seconds at tier 4 part"
+  - rscdel: "Laser pointer batteries don't \"burn out\" anymore and lock you out of using them until fully recharged, and the recharge process is no longer % based chance"
+  - bugfix: "The laser pointer process would kill itself on every run because it called the parent proc which specifically says \"never do this\""
