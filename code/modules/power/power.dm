@@ -113,6 +113,7 @@
   */
 /obj/machinery/proc/power_change()
 	if(stat & BROKEN)
+		update_appearance(UPDATE_ICON)
 		return
 	if(powered(power_channel))
 		if(stat & NOPOWER)

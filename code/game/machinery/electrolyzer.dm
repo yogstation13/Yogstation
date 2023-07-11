@@ -56,10 +56,12 @@
 
 /obj/machinery/electrolyzer/update_icon(updates=ALL)
 	. = ..()
-	cut_overlays()
 	icon_state = "electrolyzer-[on ? "[mode]" : "off"]"
+
+/obj/machinery/electrolyzer/update_overlays()
+	. = ..()
 	if(panel_open)
-		add_overlay("electrolyzer-open")
+		. += "electrolyzer-open"
 
 /obj/machinery/electrolyzer/process(delta_time)
 	if((stat & (BROKEN|MAINT)) && on)

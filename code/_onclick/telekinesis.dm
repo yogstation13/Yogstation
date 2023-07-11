@@ -183,17 +183,15 @@
 		return
 	new /obj/effect/temp_visual/telekinesis(get_turf(focus))
 
-/obj/item/tk_grab/update_icon(updates=ALL)
+/obj/item/tk_grab/update_overlays()
 	. = ..()
-	cut_overlays()
-	if(focus)
-		var/old_layer = focus.layer
-		var/old_plane = focus.plane
-		focus.layer = layer+0.01
-		focus.plane = ABOVE_HUD_PLANE
-		add_overlay(focus) //this is kind of ick, but it's better than using icon()
-		focus.layer = old_layer
-		focus.plane = old_plane
+	if(!focus)
+		return
+
+	var/mutable_appearance/focus_overlay = new(focus)
+	focus_overlay.layer = layer + 0.01
+	focus_overlay.plane = ABOVE_HUD_PLANE
+	. += focus_overlay
 
 /obj/item/tk_grab/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] is using [user.p_their()] telekinesis to choke [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!"))

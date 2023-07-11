@@ -13,16 +13,15 @@
 	var/chargelevel = -1
 	var/charge_rate = 250
 
-/obj/machinery/cell_charger/update_icon(updates=ALL)
+/obj/machinery/cell_charger/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(charging)
-		add_overlay(image(charging.icon, charging.icon_state))
-		add_overlay("ccharger-on")
+		. += image(charging.icon, charging.icon_state)
+		. += "ccharger-on"
 		if(!(stat & (BROKEN|NOPOWER)))
 			var/newlevel = 	round(charging.percent() * 4 / 100)
 			chargelevel = newlevel
-			add_overlay("ccharger-o[newlevel]")
+			. += "ccharger-o[newlevel]"
 
 /obj/machinery/cell_charger/examine(mob/user)
 	. = ..()

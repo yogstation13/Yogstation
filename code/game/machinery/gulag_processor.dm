@@ -60,10 +60,6 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 		id = null
 	..()
 
-/obj/machinery/gulag_processor/power_change()
-	..()
-	update_appearance(UPDATE_ICON)
-
 /obj/machinery/gulag_processor/interact(mob/user)
 	. = ..()
 	toggle_open()

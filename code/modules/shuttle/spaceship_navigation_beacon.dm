@@ -36,10 +36,6 @@ obj/machinery/spaceship_navigation_beacon/emp_act()
 	else
 		icon_state = "core-open"
 
-/obj/machinery/spaceship_navigation_beacon/power_change()
-	. = ..()
-	update_appearance(UPDATE_ICON)
-
 /obj/machinery/spaceship_navigation_beacon/multitool_act(mob/living/user, obj/item/multitool/I)
 	if(panel_open)
 		var/new_name = "Beacon_[input("Enter the custom name for this beacon", "It be Beacon ..your input..") as text]"

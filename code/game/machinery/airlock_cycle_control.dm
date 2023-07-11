@@ -107,7 +107,7 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir == 1 ? -24 : 24) : 0
 
-	update_appearance(UPDATE_ICON)
+	update_cycle_icon()
 
 /obj/machinery/advanced_airlock_controller/Destroy()
 	qdel(wires)
@@ -134,7 +134,7 @@
 			if(airlock.density && (cyclestate == AIRLOCK_CYCLESTATE_CLOSED || (airlocks[A] && cyclestate == AIRLOCK_CYCLESTATE_INOPEN) || (!airlocks[A] && cyclestate == AIRLOCK_CYCLESTATE_OUTOPEN)))
 				airlock.bolt()
 
-/obj/machinery/advanced_airlock_controller/update_icon(use_hash = FALSE)
+/obj/machinery/advanced_airlock_controller/proc/update_cycle_icon(use_hash = FALSE)
 	var/turf/location = get_turf(src)
 	if(!location)
 		return
@@ -193,7 +193,7 @@
 		if(WIRE_POWER)
 			if(!wires.is_cut(WIRE_POWER))
 				shorted = FALSE
-				update_appearance(UPDATE_ICON)
+				update_cycle_icon()
 		if(WIRE_AI)
 			if(!wires.is_cut(WIRE_AI))
 				aidisabled = FALSE
@@ -292,12 +292,12 @@
 
 /obj/machinery/advanced_airlock_controller/process_atmos()
 	if((stat & (NOPOWER|BROKEN)) || shorted)
-		update_icon(TRUE)
+		update_cycle_icon(TRUE)
 		return
 
 	var/turf/location = get_turf(src)
 	if(!location)
-		update_icon(TRUE)
+		update_cycle_icon(TRUE)
 		return
 	var/pressure = 0
 	if(location)
@@ -430,7 +430,7 @@
 				var/obj/machinery/atmospherics/components/unary/vent_pump/vent = V
 				vent.on = FALSE
 				vent.update_appearance(UPDATE_ICON)
-	update_icon(TRUE)
+	update_cycle_icon(TRUE)
 
 /obj/machinery/advanced_airlock_controller/attackby(obj/item/W, mob/user, params)
 	switch(buildstage)
@@ -440,13 +440,13 @@
 				to_chat(user, span_notice("You cut the final wires."))
 				new /obj/item/stack/cable_coil(loc, 5)
 				buildstage = 1
-				update_appearance(UPDATE_ICON)
+				update_cycle_icon()
 				return
 			else if(W.tool_behaviour == TOOL_SCREWDRIVER)  // Opening that up.
 				W.play_tool_sound(src)
 				panel_open = !panel_open
 				to_chat(user, span_notice("The wires have been [panel_open ? "exposed" : "unexposed"]."))
-				update_appearance(UPDATE_ICON)
+				update_cycle_icon()
 				return
 			else if(W.GetID())// trying to unlock the interface with an ID card
 				togglelock(user)
@@ -465,7 +465,7 @@
 						new /obj/item/electronics/advanced_airlock_controller( src.loc )
 						playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
 						buildstage = 0
-						update_appearance(UPDATE_ICON)
+						update_cycle_icon()
 				return
 
 			if(istype(W, /obj/item/stack/cable_coil))
@@ -486,14 +486,14 @@
 						cut_links()
 						shorted = 0
 						buildstage = 2
-						update_appearance(UPDATE_ICON)
+						update_cycle_icon()
 				return
 		if(0)
 			if(istype(W, /obj/item/electronics/advanced_airlock_controller))
 				if(user.temporarilyRemoveItemFromInventory(W))
 					to_chat(user, span_notice("You insert the circuit."))
 					buildstage = 1
-					update_appearance(UPDATE_ICON)
+					update_cycle_icon()
 					qdel(W)
 				return
 
@@ -504,7 +504,7 @@
 				user.visible_message(span_notice("[user] fabricates a circuit and places it into [src]."), \
 				span_notice("You adapt an airlock controller circuit and slot it into the assembly."))
 				buildstage = 1
-				update_appearance(UPDATE_ICON)
+				update_cycle_icon()
 				return
 
 			if(W.tool_behaviour == TOOL_WRENCH)
@@ -732,7 +732,7 @@
 			depressurization_target = clamp(text2num(params["pressure"]), 0, depressurization_margin - 0.15)
 		if("skip_delay")
 			skip_delay = clamp(text2num(params["skip_delay"]), 0, 1200)
-	update_icon(TRUE)
+	update_cycle_icon(TRUE)
 
 /obj/machinery/advanced_airlock_controller/proc/request_from_door(airlock)
 	var/role = airlocks[airlock]
@@ -775,7 +775,7 @@
 	else
 		if(src.allowed(usr) && !wires.is_cut(WIRE_IDSCAN))
 			locked = !locked
-			update_appearance(UPDATE_ICON)
+			update_cycle_icon()
 			to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] the airlock controller interface."))
 			updateUsrDialog()
 		else
@@ -783,8 +783,8 @@
 	return
 
 /obj/machinery/advanced_airlock_controller/power_change()
-	..()
-	update_appearance(UPDATE_ICON)
+	. = ..()
+	update_cycle_icon()
 
 /obj/machinery/advanced_airlock_controller/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
@@ -795,7 +795,7 @@
 
 /obj/machinery/advanced_airlock_controller/obj_break(damage_flag)
 	..()
-	update_appearance(UPDATE_ICON)
+	update_cycle_icon()
 
 /obj/machinery/advanced_airlock_controller/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

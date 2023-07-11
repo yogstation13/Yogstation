@@ -28,7 +28,7 @@
 /obj/machinery/holosign/power_change()
 	if(!is_operational())
 		lit = FALSE
-	update_appearance(UPDATE_ICON)
+	return ..()
 
 /obj/machinery/holosign/surgery
 	name = "surgery holosign"

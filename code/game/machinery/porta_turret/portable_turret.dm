@@ -219,10 +219,9 @@
 		interact(usr)
 
 /obj/machinery/porta_turret/power_change()
-	. = ..()
 	if(!anchored || (stat & BROKEN) || !powered())
-		update_appearance(UPDATE_ICON)
 		remove_control()
+	return ..()
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user, params)
 	if(stat & BROKEN)

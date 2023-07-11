@@ -519,21 +519,20 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		L.update()
 
 /**
-  * Update the icon of the area
+  * Update the icon state of the area
   *
   * Im not sure what the heck this does, somethign to do with weather being able to set icon
   * states on areas?? where the heck would that even display?
   */
-/area/update_icon(updates=ALL)
-	. = ..()
+/area/update_icon_state()
 	var/weather_icon
-	for(var/V in SSweather.processing)
-		var/datum/weather/W = V
+	for(var/datum/weather/W as anything in SSweather.processing)
 		if(W.stage != END_STAGE && (src in W.impacted_areas))
 			W.update_areas()
 			weather_icon = TRUE
 	if(!weather_icon)
 		icon_state = null
+	return ..()
 
 /**
   * Update the icon of the area (overridden to always be null for space

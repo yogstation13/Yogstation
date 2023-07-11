@@ -59,7 +59,6 @@
 /obj/machinery/rnd/server/power_change()
 	. = ..()
 	refresh_working()
-	return
 
 /obj/machinery/rnd/server/proc/refresh_working()
 	if(stat & EMPED || research_disabled || stat & NOPOWER)

@@ -137,7 +137,6 @@
 
 /obj/structure/closet/supplypod/update_overlays()
 	. = ..()
-	. = list()
 	if(style == STYLE_INVISIBLE)
 		return
 

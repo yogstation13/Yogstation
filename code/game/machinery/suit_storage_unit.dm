@@ -170,11 +170,10 @@
 		add_overlay("human")
 
 /obj/machinery/suit_storage_unit/power_change()
-	. = ..()
 	if(!is_operational() && state_open)
 		open_machine()
 		dump_contents()
-	update_appearance(UPDATE_ICON)
+	return ..()
 
 /obj/machinery/suit_storage_unit/proc/dump_contents()
 	dropContents()

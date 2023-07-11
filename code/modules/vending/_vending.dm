@@ -974,7 +974,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	else
 		stat |= NOPOWER
 
-	update_appearance(UPDATE_ICON)
+	return ..()
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /**

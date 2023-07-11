@@ -47,12 +47,11 @@
 		to_pickup.forceMove(src)
 
 /obj/machinery/decontamination_unit/power_change()
-	. = ..()
 	if(!is_operational() && state_open)
 		open_machine()
 		dump_mob()
 		playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
-	update_appearance(UPDATE_ICON)
+	return ..()
 
 /obj/machinery/decontamination_unit/proc/dump_mob()
 	var/turf/T = get_turf(src)

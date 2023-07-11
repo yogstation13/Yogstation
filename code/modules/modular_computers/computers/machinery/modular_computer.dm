@@ -112,7 +112,7 @@
 /obj/machinery/modular_computer/power_change()
 	if(cpu && cpu.use_power()) // If MC_CPU still has a power source, PC wouldn't go offline.
 		stat &= ~NOPOWER
-		update_appearance(UPDATE_ICON)
+		update_appearance(UPDATE_ICON) //modPCs should be changed to use powered() instead.
 		return
 	. = ..()
 

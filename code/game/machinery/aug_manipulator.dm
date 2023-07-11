@@ -21,19 +21,21 @@
 
 /obj/machinery/aug_manipulator/update_icon(updates=ALL)
 	. = ..()
-	cut_overlays()
-
 	if(stat & BROKEN)
 		icon_state = "[initial_icon_state]-broken"
 		return
-
-	if(storedpart)
-		add_overlay("[initial_icon_state]-closed")
 
 	if(powered())
 		icon_state = initial_icon_state
 	else
 		icon_state = "[initial_icon_state]-off"
+
+/obj/machinery/aug_manipulator/update_overlays()
+	. = ..()
+	if(stat & BROKEN)
+		return
+	if(storedpart)
+		. += "[initial_icon_state]-closed"
 
 /obj/machinery/aug_manipulator/Destroy()
 	QDEL_NULL(storedpart)

@@ -42,11 +42,11 @@
 ///Ran when an object starts grilling on something
 /datum/component/grillable/proc/StartGrilling(atom/grill_source)
 	currently_grilling = TRUE
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(OnMoved),TRUE)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(OnMoved))
 	AddGrilledItemOverlay(parent)
 
-	//var/atom/A = parent
-	//A.update_appearance(UPDATE_ICON)
+	var/atom/atom_parent = parent
+	atom_parent.update_appearance(UPDATE_ICON)
 
 ///Ran when an object finished grilling
 /datum/component/grillable/proc/FinishGrilling(atom/grill_source)
@@ -77,12 +77,12 @@
 
 ///Ran when an object moves from the grill
 /datum/component/grillable/proc/OnMoved(atom/A, atom/OldLoc, Dir, Forced)
+	SIGNAL_HANDLER
+
 	currently_grilling = FALSE
-	var/obj/O = parent;
-	O.cut_overlays()
-	//UnregisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS)
+	UnregisterSignal(parent, COMSIG_ATOM_UPDATE_OVERLAYS)
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
-	//A.update_appearance(UPDATE_ICON)
+	A.update_appearance()
 
 /datum/component/grillable/proc/AddGrilledItemOverlay(obj/source)
 

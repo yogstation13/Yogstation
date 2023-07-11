@@ -592,15 +592,12 @@
 		if(LAZYLEN(managed_vis_overlays))
 			SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 
-		var/list/new_overlays = update_overlays(updates)
+		var/list/new_overlays = update_overlays()
 		if(managed_overlays)
 			cut_overlay(managed_overlays)
 			managed_overlays = null
 		if(length(new_overlays))
-			if (length(new_overlays) == 1)
-				managed_overlays = new_overlays[1]
-			else
-				managed_overlays = new_overlays
+			managed_overlays = new_overlays
 			add_overlay(new_overlays)
 		. |= UPDATE_OVERLAYS
 

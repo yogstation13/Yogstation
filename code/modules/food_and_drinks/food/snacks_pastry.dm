@@ -734,12 +734,16 @@
 		return O.attackby(I, user, params)
 	..()
 
-/obj/item/reagent_containers/food/snacks/pancakes/update_overlays(obj/item/reagent_containers/food/snacks/P)
-	var/mutable_appearance/pancake = mutable_appearance(icon, "[P.item_state]_[rand(1,3)]")
-	pancake.pixel_x = rand(-1,1)
-	pancake.pixel_y = 3 * contents.len - 1
-	add_overlay(pancake)
-	update_appearance(UPDATE_ICON)
+/obj/item/reagent_containers/food/snacks/pancakes/update_icon(updates = ALL)
+	if(!(updates & UPDATE_OVERLAYS))
+		return ..()
+
+	updates &= ~UPDATE_OVERLAYS
+	. = ..() // Don't update overlays. We're doing that here
+
+	if(contents.len < LAZYLEN(overlays))
+		overlays -= overlays[overlays.len]
+	. |= UPDATE_OVERLAYS
 
 /obj/item/reagent_containers/food/snacks/pancakes/attack(mob/M, mob/user, def_zone, stacked = TRUE)
 	if(user.a_intent == INTENT_HARM || !contents.len || !stacked)
