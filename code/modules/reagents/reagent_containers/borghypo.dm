@@ -76,7 +76,7 @@
 		/datum/reagent/consumable/ethanol/fernet\
 	)
 
-#define BASE_DEFAULT_REAGENTS list(\
+#define BASE_STANDARD_REAGENTS list(\
 		/datum/reagent/medicine/epinephrine\
 	)
 
@@ -310,7 +310,7 @@
 /obj/item/reagent_containers/borghypo/epi
 	name = "epinephrine injector"
 	desc = "An advanced chemical synthesizer and injection system, designed to stabilize patients."
-	default_reagent_types = BASE_DEFAULT_REAGENTS
+	default_reagent_types = BASE_STANDARD_REAGENTS
 
 /// Syndicate medborg hypospray
 /obj/item/reagent_containers/borghypo/syndicate
@@ -411,4 +411,4 @@
 #undef BASE_SYNDICATE_REAGENTS
 #undef BASE_SERVICE_REAGENTS
 #undef HACKED_SERVICE_REAGENTS
-#undef BASE_DEFAULT_REAGENTS
+#undef BASE_STANDARD_REAGENTS
