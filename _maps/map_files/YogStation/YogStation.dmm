@@ -5482,11 +5482,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"aMi" = (
-/obj/structure/chair/stool,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "aMj" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -21645,6 +21640,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/clerk)
+"ePT" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/obj/machinery/microwave,
+/obj/structure/table,
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "eQc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -23942,6 +23946,11 @@
 /obj/effect/turf_decal/trimline/secred/warning/lower,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+"fGa" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/processor,
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "fGz" = (
 /obj/machinery/camera{
 	c_tag = "Atmospherics East";
@@ -30264,6 +30273,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"ibF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/closet/crate,
+/obj/item/storage/box/ingredients/sweets,
+/obj/item/storage/box/ingredients/vegetarian,
+/obj/item/storage/box/ingredients/vegetarian,
+/obj/item/storage/box/ingredients/carnivore,
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "ibH" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -36364,16 +36383,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"kxA" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/flour,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "kxF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -47116,11 +47125,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
-"oDX" = (
-/obj/machinery/microwave,
-/obj/structure/table,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "oEg" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
@@ -69119,6 +69123,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"xeY" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/food/condiment/flour,
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "xfb" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
@@ -69524,11 +69534,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/medical/psych)
-"xnv" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "xnF" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -100455,8 +100460,8 @@ aaa
 aiT
 xer
 vWn
-aMi
-xnv
+fGa
+ibF
 vqB
 aat
 mbY
@@ -100969,8 +100974,8 @@ aaa
 aiT
 elb
 vWn
-oDX
-kxA
+xeY
+ePT
 jWw
 fBv
 uyC
