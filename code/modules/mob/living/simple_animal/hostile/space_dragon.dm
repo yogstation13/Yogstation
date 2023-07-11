@@ -38,10 +38,10 @@
 	icon_dead = "spacedragon_dead"
 	health_doll_icon = "spacedragon"
 	obj_damage = 50
-	see_in_dark = 7 //Yogs
+	see_in_dark = 7 //yogs
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE //yogs
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
+	flags_1 = HEAR_1 | PREVENT_CONTENTS_EXPLOSION_1
 	mob_size = MOB_SIZE_LARGE
 	melee_damage_upper = 35
 	melee_damage_lower = 35
@@ -60,6 +60,7 @@
 	minbodytemp = 0
 	maxbodytemp = 1500
 	faction = list("carp")
+	speak_emote = list("gnashes")
 	pressure_resistance = 200
 	/// How much endlag using Wing Gust should apply.  Each use of wing gust increments this, and it decreases over time.
 	var/tiredness = 0
@@ -84,6 +85,7 @@
 
 /mob/living/simple_animal/hostile/space_dragon/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/content_barfer)
 	small_sprite = new
 	small_sprite.Grant(src)
 	RegisterSignal(small_sprite, COMSIG_ACTION_TRIGGER, PROC_REF(add_dragon_overlay))
@@ -100,7 +102,7 @@
 
 /mob/living/simple_animal/hostile/space_dragon/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	. = ..()
-	tiredness = max(tiredness - (0.5), 0)
+	tiredness = max(tiredness - (0.5 * seconds_per_tick), 0)
 	for(var/mob/living/consumed_mob in src)
 		if(consumed_mob.stat == DEAD)
 			continue
@@ -187,7 +189,7 @@
  * If the name is invalid, will re-prompt the dragon until a proper name is chosen.
  */
 /mob/living/simple_animal/hostile/space_dragon/proc/dragon_name()
-	var/chosen_name = stripped_input(src, "What would you like your name to be?", "Choose Your Name", real_name, MAX_NAME_LEN) //CHANGE THIS WHEN PROC HOLDERS GET MERGED
+	var/chosen_name = sanitize_name(reject_bad_text(tgui_input_text(src, "What would you like your name to be?", "Choose Your Name", real_name, MAX_NAME_LEN)))
 	if(!chosen_name)
 		to_chat(src, span_warning("Not a valid name, please try again."))
 		dragon_name()

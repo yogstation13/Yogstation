@@ -159,17 +159,13 @@
 
 /datum/reagent/medicine/clonexadone
 	name = "Clonexadone"
-	description = "A chemical that derives from Cryoxadone. It specializes in healing clone damage, but nothing else. Requires very cold temperatures to properly metabolize, and metabolizes quicker than cryoxadone."
+	description = "A chemical that derives from Cryoxadone. It specializes in healing clone damage, but nothing else."
 	color = "#0000C8"
 	taste_description = "muscle"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/carbon/M)
-	if(M.bodytemperature < T0C && M.IsSleeping()) //yes you have to be in cryo shut up and drink your corn syrup
-		M.adjustCloneLoss(0.001 * (M.bodytemperature ** 2) - 100, 0)
-		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
-		. = 1
-	metabolization_rate = REAGENTS_METABOLISM * (0.000015 * (M.bodytemperature ** 2) + 0.75)
+	M.adjustCloneLoss(-4*REM, 0)
 	..()
 
 /datum/reagent/medicine/pyroxadone

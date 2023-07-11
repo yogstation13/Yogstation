@@ -52983,36 +52983,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/hfr)
-"fDL" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -6;
-	pixel_y = 3
-	},
-/obj/item/taperecorder{
-	pixel_x = 5
-	},
-/obj/item/lighter{
-	pixel_x = 6;
-	pixel_y = -3
-	},
-/obj/item/flashlight/pen{
-	pixel_x = 7;
-	pixel_y = 8
-	},
-/obj/item/laser_pointer{
-	pixel_x = 4;
-	pixel_y = -10
-	},
-/obj/item/storage/box/beakers{
-	pixel_x = 2;
-	pixel_y = 7
-	},
-/turf/open/floor/carpet,
-/area/medical/psych)
 "fEQ" = (
 /turf/closed/wall,
 /area/science/nanite)
@@ -55988,19 +55958,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"hJz" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/machinery/door/window/brigdoor/southleft{
-	name = "Filing Room";
-	req_access_txt = "77"
-	},
-/turf/open/floor/wood,
-/area/medical/psych)
 "hJW" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/turf_decal/stripes/line,
@@ -58402,13 +58359,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
-"jng" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/closet/secure_closet/psych,
-/turf/open/floor/wood,
-/area/medical/psych)
 "jnh" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -60151,6 +60101,13 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos/distro)
+"krj" = (
+/obj/structure/closet/secure_closet/psych,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "kro" = (
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for monitoring medbay to ensure patient safety.";
@@ -64556,9 +64513,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/security/prison/hallway)
-"mWz" = (
-/turf/closed/wall/r_wall,
-/area/medical/psych)
 "mWK" = (
 /obj/effect/landmark/start/mime,
 /turf/open/floor/carpet,
@@ -69108,7 +69062,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock{
 	name = "Service Hall";
-	req_one_access_txt = "25;26;35;28;46;37;38"
+	req_one_access_txt = "25;26;35;28;46;37;38;36"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
@@ -71012,6 +70966,36 @@
 /obj/effect/turf_decal/tile/bar,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
+"rbS" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/taperecorder{
+	pixel_x = 5
+	},
+/obj/item/lighter{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/flashlight/pen{
+	pixel_x = 7;
+	pixel_y = 8
+	},
+/obj/item/laser_pointer{
+	pixel_x = 4;
+	pixel_y = -10
+	},
+/obj/item/storage/box/beakers{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/medical/psych)
 "rbU" = (
 /obj/machinery/door/airlock/medical{
 	name = "Medbay Backroom";
@@ -78135,6 +78119,19 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"vvo" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/machinery/door/window/brigdoor/southleft{
+	name = "Filing Room";
+	req_access_txt = "77"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/medical/psych)
 "vvN" = (
 /obj/machinery/space_heater,
 /obj/structure/sign/warning/vacuum/external{
@@ -78182,16 +78179,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
-"vyf" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 8
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/disposal/bin,
-/turf/open/floor/carpet,
-/area/medical/psych)
 "vzb" = (
 /obj/effect/landmark/blobstart,
 /turf/open/floor/engine,
@@ -78566,6 +78553,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
+"vOf" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/medical/psych)
 "vOg" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -106840,7 +106837,7 @@ cCe
 qHu
 cCe
 auQ
-hJz
+vvo
 fQD
 cdG
 tXA
@@ -107098,10 +107095,10 @@ ecc
 bPc
 auQ
 gLq
-vyf
-fDL
-jng
-mWz
+vOf
+rbS
+krj
+auQ
 bUs
 cLa
 cMI
@@ -107615,7 +107612,7 @@ mTn
 bSe
 qGP
 qMu
-mWz
+auQ
 qkN
 cZr
 qbF
@@ -107870,9 +107867,9 @@ tFJ
 auQ
 auQ
 bSm
-mWz
-mWz
-mWz
+auQ
+auQ
+auQ
 vrg
 hTx
 lsu

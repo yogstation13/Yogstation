@@ -9,10 +9,11 @@
 
 	default_button_position = "6:157,4:-2"
 
-/datum/action/item_action/cult_dagger/Grant(mob/M)
-	if(iscultist(M))
-		return ..()
-	Remove(owner)
+/datum/action/item_action/cult_dagger/Grant(mob/grant_to)
+	if(!iscultist(grant_to))
+		return
+
+	return ..()
 
 /datum/action/item_action/cult_dagger/Trigger(trigger_flags)
 	for(var/obj/item/held_item as anything in owner.held_items) // In case we were already holding a dagger

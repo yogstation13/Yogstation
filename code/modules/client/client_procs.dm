@@ -301,9 +301,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (prefs.unlock_content & DONOR_YOGS)
 		src.add_donator_verbs()
 	else
-		if(prefs.yogtoggles & QUIET_ROUND)
-			prefs.yogtoggles &= ~QUIET_ROUND
-			prefs.save_preferences()
+		if(prefs.read_preference(/datum/preference/toggle/quiet_mode))
+			prefs.write_preference(/datum/preference/toggle/quiet_mode, FALSE)
 
 	. = ..()	//calls mob.Login()
 
