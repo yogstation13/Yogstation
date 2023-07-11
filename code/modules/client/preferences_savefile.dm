@@ -1,11 +1,11 @@
 //This is the lowest supported version, anything below this is completely obsolete and the entire savefile will be wiped.
-#define SAVEFILE_VERSION_MIN	30
+#define SAVEFILE_VERSION_MIN 30
 
 //This is the current version, anything below this will attempt to update (if it's not obsolete)
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	42
+#define SAVEFILE_VERSION_MAX 43
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -63,6 +63,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		key_bindings["action_2"] = GLOB.default_hotkeys["action_2"]
 		key_bindings["action_3"] = GLOB.default_hotkeys["action_3"]
 		key_bindings["action_4"] = GLOB.default_hotkeys["action_4"]
+
+	if(current_version > 42)
+		migrate_yog_legacy_toggles(S)
 
 
 
@@ -158,7 +161,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["toggles"], toggles)
 	READ_FILE(S["chat_toggles"], chat_toggles)
 	READ_FILE(S["extra_toggles"], extra_toggles)
-	READ_FILE(S["yogtoggles"], yogtoggles)
 	
 	READ_FILE(S["ignoring"], ignoring)
 
@@ -216,7 +218,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["toggles"], toggles)
 	WRITE_FILE(S["chat_toggles"], chat_toggles)
 	WRITE_FILE(S["extra_toggles"], extra_toggles)
-	WRITE_FILE(S["yogtoggles"], yogtoggles)
 
 	WRITE_FILE(S["ignoring"], ignoring)
 

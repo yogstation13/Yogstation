@@ -1,5 +1,6 @@
 {
 	"map_name": "NVS Gax",
+	"internal_name": "GaxStation",
 	"map_path": "map_files/GaxStation",
 	"map_file": "GaxStation.dmm",
 	"shuttles": {

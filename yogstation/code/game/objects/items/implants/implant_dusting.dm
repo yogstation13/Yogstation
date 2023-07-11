@@ -72,8 +72,8 @@
 	if(is_syndicate(user))
 		// Reward
 		var/list/item_list = list( // Contract kit random items
-			/obj/item/storage/backpack/duffelbag/syndie/x4,
-			/obj/item/storage/box/syndie_kit/throwing_weapons,
+			/obj/item/grenade/plastic/x4,
+			/obj/item/restraints/legcuffs/bola/tactical,
 			/obj/item/gun/syringe/syndicate,
 			/obj/item/pen/edagger,
 			/obj/item/pen/sleepy,
@@ -84,12 +84,12 @@
 			/obj/item/clothing/shoes/airshoes,
 			/obj/item/clothing/glasses/thermal/syndi,
 			/obj/item/camera_bug,
-			/obj/item/storage/box/syndie_kit/imp_radio,
-			/obj/item/storage/box/syndie_kit/imp_uplink,
+			/obj/item/implanter/radio/syndicate,
+			/obj/item/implanter/uplink,
 			/obj/item/clothing/gloves/krav_maga/combatglovesplus,
 			// /obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
 			/obj/item/reagent_containers/syringe/stimulants,
-			/obj/item/storage/box/syndie_kit/imp_freedom,
+			/obj/item/implanter/freedom,
 			/obj/item/storage/belt/chameleon/syndicate,
 			// From here is extra items
 			/obj/item/storage/belt/military/shadowcloak,
@@ -122,8 +122,10 @@
 		// Spawn new IAA
 		if(istype(SSticker.mode, /datum/game_mode/traitor/internal_affairs))
 			var/datum/game_mode/traitor/internal_affairs/iaa_mode = SSticker.mode
-			if(iaa_mode.create_new_traitor())
+			var/mob/living/new_tot = iaa_mode.create_new_traitor()
+			if(new_tot)
 				to_chat(user, span_warning("You feel like someone is watching you... Keep on your guard."))
+				message_admins("[ADMIN_LOOKUPFLW(new_tot)] was made into a new IAA by \a [src].")
 		qdel(src)
 	else
 		to_chat(user, span_notice("\The [src] doesn't seem to do anything."))

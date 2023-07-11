@@ -16,6 +16,10 @@
 		return FALSE
 	for(var/mob/living/M in get_hearers_in_view(4, user))
 		if(iscarbon(M))
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(istype(H.ears, /obj/item/clothing/ears/earmuffs))
+					continue
 			var/mob/living/carbon/C = M
 			if(!C.mind || !C.mind.has_antag_datum(/datum/antagonist/changeling))
 				C.adjustEarDamage(0, 30)
