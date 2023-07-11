@@ -1,5 +1,5 @@
 
-/*
+
 //////////////////////////
 //CLOCKCULT ANTAG CONFIG//
 //////////////////////////
@@ -13,7 +13,7 @@
 	return ..()
 
 /datum/antagonist/hand_of_god/hand_of_ratvar/get_team()
-	return clock_team
+	return hand_of_ratvar
 
 /datum/antagonist/hand_of_god/hand_of_ratvar/create_team(datum/team/hand_of_god/hand_of_ratvar/new_team)
 	if(!new_team && make_team)
@@ -21,14 +21,14 @@
 		for(var/datum/antagonist/hand_of_god/hand_of_ratvar/H in GLOB.antagonists)
 			if(!H.owner)
 				continue
-			if(H.clock_team)
-				clock_team = H.clock_team
+			if(H.hand_of_ratvar)
+				hand_of_ratvar = H.hand_of_ratvar
 				return
-		clock_team = new /datum/team/clockcult
+		hand_of_ratvar = new /datum/team/clockcult
 		return
 	if(make_team && !istype(new_team))
 		stack_trace("Wrong team type passed to [type] initialization.")
-	clock_team = new_team
+	hand_of_ratvar = new_team
 
 /datum/antagonist/hand_of_god/hand_of_ratvar/can_be_owned(datum/mind/new_owner)
 	. = ..()
@@ -193,7 +193,7 @@
 	else
 		to_chat(admin, span_notice("Successfully gave [owner.current] servant equipment!"))
 
-/datum/team/clockcult
+/datum/team/hand_of_god/hand_of_ratvar
 	name = "Clockcult"
 	var/list/objective
 	var/datum/mind/eminence
