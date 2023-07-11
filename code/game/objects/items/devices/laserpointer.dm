@@ -14,7 +14,6 @@
 	var/charges = 5
 	var/max_charges = 5
 	var/effectchance = 33
-	var/recharge_locked = FALSE
 	///The diode is what determines the effectiveness and recharge rate of the laser pointer. Higher tier part means stronger pointer
 	var/obj/item/stock_parts/micro_laser/diode 
 	var/diode_type = /obj/item/stock_parts/micro_laser
