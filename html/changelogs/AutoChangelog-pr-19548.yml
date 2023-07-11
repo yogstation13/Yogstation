@@ -1,6 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - tweak: "You can now label antinob canister"
-  - tweak: "You can now label danger canister"
-  - imageadd: "Give antinoblium canister a sprite"
