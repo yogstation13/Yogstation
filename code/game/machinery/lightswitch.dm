@@ -27,14 +27,14 @@
 
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/light_switch/update_icon(updates=ALL)
+/obj/machinery/light_switch/update_overlays()
 	. = ..()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-	if(!(stat & NOPOWER))
-		if(area.lightswitch)
-			SSvis_overlays.add_vis_overlay(src, icon, "light1", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
-		else
-			SSvis_overlays.add_vis_overlay(src, icon, "light0", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+	if(stat & NOPOWER)
+		return
+	if(area.lightswitch)
+		. += "light1"
+	else
+		. += "light0"
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()

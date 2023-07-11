@@ -106,27 +106,26 @@
 	free_exit = !free_exit
 	to_chat(user, span_notice("Safety hatch [free_exit ? "unlocked" : "locked"]."))
 
-/obj/machinery/fat_sucker/update_icon(updates=ALL)
+/obj/machinery/fat_sucker/update_overlays()
 	. = ..()
-	overlays.Cut()
 	if(!state_open)
 		if(processing)
-			overlays += "[icon_state]_door_on"
-			overlays += "[icon_state]_stack"
-			overlays += "[icon_state]_smoke"
-			overlays += "[icon_state]_green"
+			. += "[icon_state]_door_on"
+			. += "[icon_state]_stack"
+			. += "[icon_state]_smoke"
+			. += "[icon_state]_green"
 		else
-			overlays += "[icon_state]_door_off"
+			. += "[icon_state]_door_off"
 			if(occupant)
 				if(powered(AREA_USAGE_EQUIP))
-					overlays += "[icon_state]_stack"
-					overlays += "[icon_state]_yellow"
+					. += "[icon_state]_stack"
+					. += "[icon_state]_yellow"
 			else
-				overlays += "[icon_state]_red"
+				. += "[icon_state]_red"
 	else if(powered(AREA_USAGE_EQUIP))
-		overlays += "[icon_state]_red"
+		. += "[icon_state]_red"
 	if(panel_open)
-		overlays += "[icon_state]_panel"
+		. += "[icon_state]_panel"
 
 /obj/machinery/fat_sucker/process(delta_time)
 	if(!processing)

@@ -102,7 +102,7 @@
 	QDEL_NULL(spark_system)
 	return ..()
 
-/obj/machinery/sparker/update_icon(updates=ALL)
+/obj/machinery/sparker/update_icon_state()
 	. = ..()
 	if(disable)
 		icon_state = "[initial(icon_state)]-d"

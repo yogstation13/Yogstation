@@ -37,7 +37,7 @@
 	decon_emagged = new(list(src), FALSE)
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/decontamination_unit/update_icon(updates=ALL)
+/obj/machinery/decontamination_unit/update_icon_state()
 	. = ..()
 	icon_state = uv? "tube_on" : (state_open? "tube_open" : "tube")
 

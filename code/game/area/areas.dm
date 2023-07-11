@@ -537,8 +537,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /**
   * Update the icon of the area (overridden to always be null for space
   */
-/area/space/update_icon(updates=ALL)
-	. = ..()
+/area/space/update_icon_state()
+	SHOULD_CALL_PARENT(FALSE)
 	icon_state = null
 
 

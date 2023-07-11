@@ -469,7 +469,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		set_light_on(FALSE)
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/holopad/update_icon(updates=ALL)
+/obj/machinery/holopad/update_icon_state()
 	. = ..()
 	var/total_users = LAZYLEN(masters) + LAZYLEN(holo_calls)
 	if(ringing)

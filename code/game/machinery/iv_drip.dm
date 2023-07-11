@@ -25,7 +25,7 @@
 	QDEL_NULL(beaker)
 	return ..()
 
-/obj/machinery/iv_drip/update_icon(updates=ALL)
+/obj/machinery/iv_drip/update_icon_state()
 	. = ..()
 	if(attached)
 		if(mode)
@@ -38,35 +38,36 @@
 		else
 			icon_state = "donateidle"
 
-	cut_overlays()
+/obj/machinery/iv_drip/update_overlays()
+	. = ..()
+	if(!beaker)
+		return
+	if(attached)
+		. += "beakeractive"
+	else
+		. += "beakeridle"
+	if(!beaker.reagents.total_volume)
+		return
+	var/mutable_appearance/filling_overlay = mutable_appearance('icons/obj/iv_drip.dmi', "reagent")
+	var/percent = round((beaker.reagents.total_volume / beaker.volume) * 100)
+	switch(percent)
+		if(0 to 9)
+			filling_overlay.icon_state = "reagent0"
+		if(10 to 24)
+			filling_overlay.icon_state = "reagent10"
+		if(25 to 49)
+			filling_overlay.icon_state = "reagent25"
+		if(50 to 74)
+			filling_overlay.icon_state = "reagent50"
+		if(75 to 79)
+			filling_overlay.icon_state = "reagent75"
+		if(80 to 90)
+			filling_overlay.icon_state = "reagent80"
+		if(91 to INFINITY)
+			filling_overlay.icon_state = "reagent100"
 
-	if(beaker)
-		if(attached)
-			add_overlay("beakeractive")
-		else
-			add_overlay("beakeridle")
-		if(beaker.reagents.total_volume)
-			var/mutable_appearance/filling_overlay = mutable_appearance('icons/obj/iv_drip.dmi', "reagent")
-
-			var/percent = round((beaker.reagents.total_volume / beaker.volume) * 100)
-			switch(percent)
-				if(0 to 9)
-					filling_overlay.icon_state = "reagent0"
-				if(10 to 24)
-					filling_overlay.icon_state = "reagent10"
-				if(25 to 49)
-					filling_overlay.icon_state = "reagent25"
-				if(50 to 74)
-					filling_overlay.icon_state = "reagent50"
-				if(75 to 79)
-					filling_overlay.icon_state = "reagent75"
-				if(80 to 90)
-					filling_overlay.icon_state = "reagent80"
-				if(91 to INFINITY)
-					filling_overlay.icon_state = "reagent100"
-
-			filling_overlay.color = list("#0000", "#0000", "#0000", "#000f", mix_color_from_reagents(beaker.reagents.reagent_list))
-			add_overlay(filling_overlay)
+	filling_overlay.color = list("#0000", "#0000", "#0000", "#000f", mix_color_from_reagents(beaker.reagents.reagent_list))
+	. += filling_overlay
 
 /obj/machinery/iv_drip/MouseDrop(mob/living/target)
 	. = ..()

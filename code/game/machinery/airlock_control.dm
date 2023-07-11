@@ -115,7 +115,7 @@
 	id_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_SENSOR
 	master_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_CONTROLLER
 
-/obj/machinery/airlock_sensor/update_icon(updates=ALL)
+/obj/machinery/airlock_sensor/update_icon_state()
 	. = ..()
 	if(on)
 		if(alert)

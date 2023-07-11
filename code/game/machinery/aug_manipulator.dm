@@ -19,7 +19,7 @@
     initial_icon_state = initial(icon_state)
     return ..()
 
-/obj/machinery/aug_manipulator/update_icon(updates=ALL)
+/obj/machinery/aug_manipulator/update_icon_state()
 	. = ..()
 	if(stat & BROKEN)
 		icon_state = "[initial_icon_state]-broken"

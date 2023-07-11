@@ -83,7 +83,7 @@
 
 	pull_icon = new /atom/movable/screen/pull()
 	pull_icon.icon = ui_style
-	pull_icon.update_icon(mymob)
+	pull_icon.update_appearance(UPDATE_ICON)
 	pull_icon.screen_loc = ui_above_movement
 	static_inventory += pull_icon
 
@@ -100,7 +100,7 @@
 		infodisplay += alien_queen_finder
 
 	zone_select = new /atom/movable/screen/zone_sel/alien()
-	zone_select.update_icon(mymob)
+	zone_select.update_appearance(UPDATE_ICON)
 	static_inventory += zone_select
 
 	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory))

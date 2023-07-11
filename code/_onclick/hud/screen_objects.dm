@@ -519,7 +519,7 @@
 
 	if(choice != selecting)
 		selecting = choice
-		update_icon(usr)
+		update_appearance(UPDATE_ICON)
 	return 1
 
 /atom/movable/screen/zone_sel/update_overlays()

@@ -54,7 +54,7 @@
 	else
 		. += "There is no power cell installed."
 
-/obj/machinery/electrolyzer/update_icon(updates=ALL)
+/obj/machinery/electrolyzer/update_icon_state()
 	. = ..()
 	icon_state = "electrolyzer-[on ? "[mode]" : "off"]"
 

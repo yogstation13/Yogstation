@@ -17,7 +17,7 @@
 	. = ..()
 	. += span_notice("It has <b>[uses]</b> uses of foam remaining.")
 
-/obj/machinery/ai_slipper/update_icon(updates=ALL)
+/obj/machinery/ai_slipper/update_icon_state()
 	. = ..()
 	if(stat & BROKEN)
 		return
