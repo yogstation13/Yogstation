@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			source.take_damage(source.obj_integrity - source.integrity_failure, BRUTE, "", TRUE, null, 100) // 100 armor pen
 	else
 		throw EXCEPTION("No computer or hard drive to detonate!")
-	
+
 	qdel(src)
 
 /datum/computer_file/program/pdamessager/proc/send_message(message, datum/computer_file/program/pdamessager/recipient, mob/user)
@@ -75,7 +75,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	set_computer()
 	computer.visible_message(span_notice("Sending message to [recipient.username]:"), null, null, 1)
 	computer.visible_message(span_notice("\"[message]\""), null, null, 1) // in case the message fails, they can copy+paste from here
-	
+
 	if(src == recipient)
 		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
 		computer.visible_message(span_danger("You are the recipient!"), null, null, 1)
@@ -85,17 +85,17 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
 		computer.visible_message(span_danger("Recipient has you blocked."), null, null, 1)
 		return FALSE
-	
+
 	if(recipient in blocked_users)
 		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
 		computer.visible_message(span_danger("You have recipient blocked."), null, null, 1)
 		return FALSE
-	
+
 	if(!recipient.receiving)
 		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
 		computer.visible_message(span_danger("Recipient is no longer accepting messages."), null, null, 1)
 		return FALSE
-	
+
 	var/fakemob = "ERROR"
 	var/fakejob = "ERROR"
 	var/language = /datum/language/common
@@ -122,7 +122,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	if (!signal.data["logged"])
 		computer.visible_message(span_danger("ERROR: Your message could not be processed by a messaging server."), null, null, 1)
 		return FALSE
-	
+
 	// Show ghosts (and admins)
 	deadchat_broadcast(" sent an <b>NTPDA Message</b> ([username] --> [recipient.username]): [span_message(message)]", user, user, speaker_key = user.ckey)
 	computer.visible_message(span_notice("Message sent!"), null, null, 1)
@@ -140,20 +140,20 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 
 		if(src in P.blocked_users)
 			continue
-		
+
 		if(P in blocked_users)
 			continue
-		
+
 		if(!P.receiving)
 			continue
-		
+
 		targets += P
-	
+
 	if(targets.len <= 0)
 		computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
 		computer.visible_message(span_danger("There were no valid recipients to deliver the message to."), null, null, 1)
 		return FALSE
-	
+
 	var/fakemob = "ERROR"
 	var/fakejob = "ERROR"
 	var/language = /datum/language/common
@@ -180,7 +180,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	if (!signal.data["logged"])
 		computer.visible_message(span_danger("ERROR: Your message could not be processed by a messaging server."), null, null, 1)
 		return FALSE
-	
+
 	// Show ghosts (and admins)
 	deadchat_broadcast(" sent an <b>NTPDA Message</b> ([username] --> <b>Everyone</b>): [span_message(message)]", user, user, speaker_key = user.ckey)
 	computer.visible_message(span_notice("Message sent!"), null, null, 1)
@@ -193,7 +193,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 
 	if(blocked_users.Find(sender))
 		return 2
-	
+
 	if(!receiving)
 		return 3
 
@@ -203,14 +203,14 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
 			playsound(holder, pick('sound/machines/twobeep_voice1.ogg', 'sound/machines/twobeep_voice2.ogg'), 50, FALSE)
 		else
-			playsound(holder, 'sound/machines/twobeep_high.ogg', 50, FALSE)
+			playsound(holder, 'sound/machines/notification_ping.ogg', 50, FALSE)
 		set_computer()
 		computer.audible_message("[icon2html(computer, hearers(computer))] *[ringtone]*", null, 3)
 		var/msg = "<b>Message from [sender.username], \"[message]\"</b>"
 		if(istype(computer, /obj/item/modular_computer/tablet))
 			msg += " (<a href='byond://?src=[REF(src)];target=[REF(signal.data["program"])]'>Reply</a>)"
 		computer.visible_message(span_notice(msg), null, null, 1)
-	
+
 	return TRUE
 
 /datum/computer_file/program/pdamessager/Topic(href, list/href_list)
@@ -234,7 +234,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 /datum/computer_file/program/pdamessager/proc/sanitizeinput(unsanitized, obj/item/modular_computer/computer)
 	if(!unsanitized)
 		return
-	
+
 	if(isnotpretty(unsanitized))
 		if(usr.client.prefs.muted & MUTE_IC)
 			return
@@ -251,8 +251,8 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		computer.visible_message(span_danger("Your message is too long/has bad text!"), null, null, 1)
 		return
 	return unsanitized
-		
-	
+
+
 
 /datum/computer_file/program/pdamessager/ui_act(action, params)
 	if(..())
@@ -263,7 +263,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		if("PRG_sendmsg")
 			if(next_message > world.time)
 				return
-			
+
 			var/unsanitized = params["message"]
 			var/message = sanitizeinput(unsanitized, computer)
 			if(!message)
@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 				user.log_talk(message, LOG_PDA, tag="as [username] to everyone")
 				return TRUE
 
-		
+
 		if("PRG_keytry")
 			if(next_keytry > world.time)
 				return
@@ -303,33 +303,33 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 				computer.visible_message(span_notice("Monitor key accepted. Welcome, administrator."), null, null, 1)
 				authed = TRUE
 			return TRUE
-		
+
 		if("PRG_logout")
 			authed = FALSE
 			return TRUE
-		
+
 		if("PRG_block")
 			var/datum/computer_file/program/pdamessager/recipient = locate(params["recipient"]) in GLOB.NTPDAs
 			if(!istype(recipient))
 				computer.visible_message(span_danger("Block failed."), null, null, 1)
 				computer.visible_message(span_danger("User does not exist!"), null, null, 1)
 				return
-			
+
 			computer.visible_message(span_danger("Blocked [recipient.username]."), null, null, 1)
 			blocked_users += recipient
 			return TRUE
-		
+
 		if("PRG_unblock")
 			var/datum/computer_file/program/pdamessager/recipient = locate(params["recipient"]) in GLOB.NTPDAs
 			if(!istype(recipient))
 				computer.visible_message(span_danger("Unblock failed."), null, null, 1)
 				computer.visible_message(span_danger("User does not exist!"), null, null, 1)
 				return
-			
+
 			computer.visible_message(span_notice("Unblocked [recipient.username]."), null, null, 1)
 			blocked_users.Remove(recipient)
 			return TRUE
-		
+
 		if("PRG_silence")
 			computer.visible_message(span_danger("Status set to Do Not Disturb."), null, null, 1)
 			silent = TRUE
@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			computer.visible_message(span_notice("Status set to Online."), null, null, 1)
 			silent = FALSE
 			return TRUE
-		
+
 		if("PRG_namechange")
 
 			if(computer.GetID())
@@ -362,10 +362,10 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			if(!newname)
 				computer.visible_message(span_danger("Your username is too long/has bad text!"), null, null, 1)
 				return
-			
+
 			for(var/datum/computer_file/program/pdamessager/P in GLOB.NTPDAs)
 				if(newname == P.username)
-					computer.visible_message(span_danger("Someone already has the username \"[newname]\"!"), null, null, 1)	
+					computer.visible_message(span_danger("Someone already has the username \"[newname]\"!"), null, null, 1)
 					return
 
 			username = newname
@@ -377,7 +377,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			message_history = list()
 			computer.visible_message(span_notice("Message history cleared."), null, null, 1)
 			return TRUE
-		
+
 		if("PRG_ringtone")
 			if(computer.uplink_check(usr, params["name"]))
 				return TRUE
@@ -393,27 +393,27 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 					message_admins(log_message)
 					log_say(log_message)
 					return
-				
+
 				var/newring = reject_bad_text(unsanitized, max_length = 10)
-				
+
 				if(!newring)
 					computer.visible_message(span_danger("Your ringtone is too long/has bad text!"), null, null, 1)
 					return
-				
+
 				ringtone = newring
 				computer.visible_message(span_notice("Ringtone set to [newring]."), null, null, 1)
 			return TRUE
-		
+
 		if("PRG_norecieve")
 			computer.visible_message(span_danger("Messenger offline."), null, null, 1)
 			receiving = FALSE
 			return TRUE
-		
+
 		if("PRG_yesrecieve")
 			computer.visible_message(span_notice("Messenger online."), null, null, 1)
 			receiving = TRUE
 			return TRUE
-		
+
 		if("PRG_showhistory")
 			showing_messages = TRUE
 			return TRUE
@@ -445,7 +445,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		else
 			modified_history += list(list(M[1], M[2], M[3]))
 	data["message_history"] = modified_history
-	
+
 	var/list/pdas = list()
 	for(var/datum/computer_file/program/pdamessager/P in GLOB.NTPDAs)
 		if(P == src)
