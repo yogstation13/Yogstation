@@ -108,10 +108,6 @@
 		return
 	unwield(user)
 
-/obj/item/twohanded/update_icon(updates=ALL)
-	. = ..()
-	return
-
 /obj/item/twohanded/attack_self(mob/user)
 	. = ..()
 	if(wielded) //Trying to unwield it
@@ -1407,8 +1403,6 @@
 	. = ..()
 	hitsound = wielded ? 'yogstation/sound/weapons/bat_hit.ogg' : 'sound/items/trayhit1.ogg' //big donk if wielded
 	item_state = "bigspoon[wielded]" //i don't know why it's item_state rather than icon_state like every other wielded weapon
-	return
-
 
 /*
 Broom

@@ -22,7 +22,6 @@
 
 /obj/structure/toilet_bong/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	cut_overlays()
 	if (LAZYLEN(contents))
 		add_overlay(weed_overlay)

@@ -32,7 +32,6 @@
 
 /obj/item/gun/energy/e_gun/mini/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if(gun_light && gun_light.on)
 		add_overlay("mini-light")
 

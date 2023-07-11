@@ -90,9 +90,9 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	is_cyborg = 1
 	cost = 250
 
-/obj/item/stack/rods/cyborg/update_icon(updates=ALL)
-	. = ..()
-	return
+/obj/item/stack/rods/cyborg/Initialize(mapload, new_amount, merge)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/stack/rods/ten
 	amount = 10

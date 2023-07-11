@@ -99,7 +99,6 @@
 			icon_state = "geiger_on_4"
 		if(RAD_LEVEL_CRITICAL + 1 to INFINITY)
 			icon_state = "geiger_on_5"
-	..()
 
 /obj/item/geiger_counter/proc/update_sound()
 	var/datum/looping_sound/geiger/loop = soundloop

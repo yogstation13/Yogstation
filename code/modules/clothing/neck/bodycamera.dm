@@ -56,7 +56,6 @@
 
 /obj/item/clothing/neck/bodycam/update_icon(updates=ALL)
 	. = ..()
-	..()
 	var/suffix = "off"
 	if(bodcam.status)
 		suffix = "on"

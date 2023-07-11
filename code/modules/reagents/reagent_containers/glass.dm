@@ -179,9 +179,8 @@
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
 
 /obj/item/reagent_containers/glass/beaker/plastic/update_icon(updates=ALL)
-	. = ..()
 	icon_state = "beakerlarge" // hack to lets us reuse the large beaker reagent fill states
-	..()
+	. = ..()
 	icon_state = "beakerwhite"
 
 /obj/item/reagent_containers/glass/beaker/meta

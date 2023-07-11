@@ -297,7 +297,7 @@
 
 /turf/open/floor/carpet/update_icon(updates=ALL)
 	. = ..()
-	if(!..())
+	if(!.)
 		return 0
 	if(!broken && !burnt)
 		if(smooth)

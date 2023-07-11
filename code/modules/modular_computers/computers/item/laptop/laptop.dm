@@ -36,10 +36,9 @@
 /obj/item/modular_computer/laptop/update_icon(updates=ALL)
 	. = ..()
 	if(screen_on)
-		..()
-	else
-		SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
-		icon_state = icon_state_closed
+		return
+	SSvis_overlays.remove_vis_overlay(physical, physical.managed_vis_overlays)
+	icon_state = icon_state_closed
 
 /obj/item/modular_computer/laptop/attack_self(mob/user)
 	if(!screen_on)

@@ -111,7 +111,6 @@
 
 /obj/machinery/stasis/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	var/_running = stasis_running()
 	var/list/overlays_to_remove = managed_vis_overlays
 

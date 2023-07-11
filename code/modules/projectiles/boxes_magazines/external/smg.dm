@@ -104,7 +104,6 @@
 
 /obj/item/ammo_box/magazine/uzim9mm/update_icon(updates=ALL)
 	. = ..()
-	..()
 	icon_state = "uzi9mm-[round(ammo_count(),4)]"
 
 //NT Saber SMG
@@ -119,7 +118,6 @@
 
 /obj/item/ammo_box/magazine/smgm9mm/update_icon(updates=ALL)
 	. = ..()
-	..()
 	icon_state = "smg9mm[sprite_designation]-[ammo_count() ? "42" : "0"]"
 
 /obj/item/ammo_box/magazine/smgm9mm/ap
@@ -150,7 +148,6 @@
 
 /obj/item/ammo_box/magazine/smgm45/update_icon(updates=ALL)
 	. = ..()
-	..()
 	icon_state = "c20r45[sprite_designation]-[round(ammo_count(),2)]"
 
 /obj/item/ammo_box/magazine/smgm45/ap

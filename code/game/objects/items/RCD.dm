@@ -738,7 +738,6 @@ RLD
 
 /obj/item/construction/rcd/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if(has_ammobar)
 		var/ratio = CEILING((matter / max_matter) * ammo_sections, 1)
 		cut_overlays()	//To prevent infinite stacking of overlays
@@ -879,8 +878,6 @@ RLD
 /obj/item/construction/rld/update_icon(updates=ALL)
 	. = ..()
 	icon_state = "rld-[round(matter/35)]"
-	..()
-
 
 /obj/item/construction/rld/attack_self(mob/user)
 	..()

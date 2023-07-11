@@ -216,7 +216,6 @@
 
 /obj/item/bot_assembly/floorbot/update_icon(updates=ALL)
 	. = ..()
-	..()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)
 			desc = initial(desc)

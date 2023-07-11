@@ -73,7 +73,6 @@
 
 /obj/machinery/recycler/update_icon(updates=ALL)
 	. = ..()
-	..()
 	var/is_powered = !(stat & (BROKEN|NOPOWER))
 	if(safety_mode)
 		is_powered = FALSE

@@ -421,7 +421,7 @@
 /obj/item/stack/medical/mesh/advanced/update_icon(updates=ALL)
 	. = ..()
 	if(is_open)
-		return ..()
+		return
 	icon_state = "aloe_mesh_closed"
 
 /obj/item/stack/medical/aloe

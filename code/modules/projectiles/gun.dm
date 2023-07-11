@@ -419,11 +419,6 @@
 	recent_shoot = world.time
 	return TRUE
 
-/obj/item/gun/update_icon(updates=ALL)
-	. = ..()
-	..()
-
-
 /obj/item/gun/proc/reset_semicd()
 	semicd = FALSE
 

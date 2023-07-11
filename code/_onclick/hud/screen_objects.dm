@@ -219,7 +219,6 @@
 
 /atom/movable/screen/inventory/hand/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 
 	if(!handcuff_overlay)
 		var/ui_style = hud?.mymob?.client?.prefs?.read_preference(/datum/preference/choiced/ui_style)

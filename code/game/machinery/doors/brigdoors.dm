@@ -334,8 +334,6 @@
 	else
 		if(maptext)
 			maptext = ""
-	return
-
 
 // Adds an icon in case the screen is broken/off, stolen from status_display.dm
 /obj/machinery/door_timer/proc/set_picture(state)

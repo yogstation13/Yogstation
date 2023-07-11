@@ -268,7 +268,6 @@
 	if(!broken)
 		var/mutable_appearance/led = mutable_appearance(icon, "led[locked]")
 		add_overlay(led)
-	..()
 
 /obj/item/storage/lockbox/vialbox/Initialize(mapload)
 	. = ..()

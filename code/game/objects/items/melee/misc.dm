@@ -739,7 +739,6 @@
 
 /obj/item/melee/roastingstick/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	cut_overlays()
 	if (held_sausage)
 		var/mutable_appearance/sausage = mutable_appearance(icon, "roastingstick_sausage")

@@ -216,7 +216,6 @@
 			flick("door_closing", src)
 
 /obj/machinery/door/firedoor/update_icon(updates=ALL)
-	. = ..()
 	cut_overlays()
 	if(density)
 		icon_state = "door_closed"
@@ -474,7 +473,6 @@
 			. += span_notice("There are no <i>firelock electronics</i> in the frame. The frame could be <b>cut</b> apart.")
 
 /obj/structure/firelock_frame/update_icon(updates=ALL)
-	. = ..()
 	..()
 	icon_state = "frame[constructionStep]"
 

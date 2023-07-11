@@ -10,7 +10,6 @@
 		switch(get_nuke_state())
 			if(NUKE_OFF_LOCKED, NUKE_OFF_UNLOCKED)
 				icon_state = "bananiumbomb_base"
-				update_appearance(UPDATE_ICON)
 			if(NUKE_ON_TIMING)
 				cut_overlays()
 				icon_state = "bananiumbomb_timing"
@@ -19,7 +18,6 @@
 				icon_state = "bananiumbomb_exploding"
 	else
 		icon_state = "bananiumbomb_base"
-		update_appearance(UPDATE_ICON)
 
 /obj/machinery/nuclearbomb/syndicate/bananium/get_cinematic_type(off_station)
 	switch(off_station)

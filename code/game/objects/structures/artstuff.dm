@@ -299,7 +299,6 @@
 
 /obj/structure/sign/painting/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 
 	if(C && C.generated_icon)
 		icon_state = null

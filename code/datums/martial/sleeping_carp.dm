@@ -184,7 +184,6 @@
 /obj/item/twohanded/bostaff/update_icon(updates=ALL)
 	. = ..()
 	icon_state = "bostaff[wielded]"
-	return
 
 /obj/item/twohanded/bostaff/attack(mob/target, mob/living/user)
 	add_fingerprint(user)

@@ -74,7 +74,6 @@
 	. = ..()
 	icon_state = "toilet[open][cistern]"
 
-
 /obj/structure/toilet/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_CROWBAR)
 		to_chat(user, span_notice("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]..."))

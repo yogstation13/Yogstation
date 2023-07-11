@@ -84,7 +84,6 @@
 		icon_state = "[initial(icon_state)]_2"
 	else
 		icon_state = "[initial(icon_state)]_3"
-	..()
 
 /obj/item/stack/examine(mob/user)
 	. = ..()

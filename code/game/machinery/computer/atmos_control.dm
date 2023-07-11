@@ -44,7 +44,7 @@
 
 /obj/machinery/air_sensor/update_icon(updates=ALL)
 	. = ..()
-		icon_state = "gsensor[on]"
+	icon_state = "gsensor[on]"
 
 /obj/machinery/air_sensor/process_atmos()
 	if(on)

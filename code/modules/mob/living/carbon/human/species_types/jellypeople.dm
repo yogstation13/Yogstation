@@ -512,7 +512,6 @@
 	species = _species
 
 /datum/action/innate/integrate_extract/proc/update_name()
-	. = ..()
 	if(!species || !species.current_extract)
 		name = "Integrate Extract"
 		desc = "Eat a slime extract to use its properties."

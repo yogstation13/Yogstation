@@ -174,7 +174,6 @@
 	. = ..()
 	if (silicon_pilot && silicon_icon_state)
 		icon_state = silicon_icon_state
-	. = ..()
 
 /obj/mecha/get_cell()
 	return cell

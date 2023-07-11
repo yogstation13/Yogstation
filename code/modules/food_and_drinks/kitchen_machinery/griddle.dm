@@ -108,7 +108,6 @@
 
 /obj/machinery/griddle/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	if(panel_open)
 		icon_state = "griddle[variant]_o"
 	else

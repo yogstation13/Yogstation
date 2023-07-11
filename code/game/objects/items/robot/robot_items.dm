@@ -177,12 +177,8 @@
 	var/static/list/charge_machines = typecacheof(list(/obj/machinery/cell_charger, /obj/machinery/recharger, /obj/machinery/recharge_station, /obj/machinery/mech_bay_recharge_port))
 	var/static/list/charge_items = typecacheof(list(/obj/item/stock_parts/cell, /obj/item/gun/energy))
 
-/obj/item/borg/charger/Initialize(mapload)
-	. = ..()
-
 /obj/item/borg/charger/update_icon(updates=ALL)
 	. = ..()
-	..()
 	icon_state = "charger_[mode]"
 
 /obj/item/borg/charger/attack_self(mob/user)

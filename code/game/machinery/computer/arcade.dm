@@ -89,7 +89,6 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		icon_screen = "invaders"
 	else
 		icon_screen = ""
-	. = ..()
 
 /obj/machinery/computer/arcade/proc/prizevend(mob/user)
 	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "arcade", /datum/mood_event/arcade)

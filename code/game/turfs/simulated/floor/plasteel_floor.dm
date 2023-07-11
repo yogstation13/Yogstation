@@ -15,7 +15,7 @@
 
 /turf/open/floor/plasteel/update_icon(updates=ALL)
 	. = ..()
-	if(!..())
+	if(!.)
 		return 0
 	if(!broken && !burnt)
 		icon = icon_regular_floor

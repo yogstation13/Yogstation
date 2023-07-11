@@ -53,7 +53,6 @@
 /obj/item/defibrillator/update_icon(updates=ALL)
 	. = ..()
 	update_power()
-	update_overlays()
 	update_charge()
 
 /obj/item/defibrillator/proc/update_power()

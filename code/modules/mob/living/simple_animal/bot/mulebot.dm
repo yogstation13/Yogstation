@@ -136,7 +136,6 @@
 		if(load.layer < layer)
 			load.layer = layer + 0.01
 		add_overlay(load)
-	return
 
 /mob/living/simple_animal/bot/mulebot/ex_act(severity)
 	unload(0)

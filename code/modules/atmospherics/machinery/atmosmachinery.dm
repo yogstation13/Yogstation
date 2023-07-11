@@ -126,7 +126,6 @@ GLOBAL_LIST_EMPTY(pipeimages)
 /obj/machinery/atmospherics/update_icon(updates=ALL)
 	. = ..()
 	layer = initial(layer) + piping_layer / 1000
-	return ..()
 
 /obj/machinery/atmospherics/proc/can_be_node(obj/machinery/atmospherics/target, iteration)
 	return connection_check(target, piping_layer)

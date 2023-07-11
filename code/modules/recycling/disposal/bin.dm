@@ -176,9 +176,9 @@
 	update_appearance(UPDATE_ICON)
 
 // update the icon & overlays to reflect mode & status
-/obj/machinery/disposal/update_icon(updates=ALL)
-	. = ..()
-	return
+/obj/machinery/disposal/Initialize(mapload, obj/structure/disposalconstruct/make_from)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/machinery/disposal/proc/flush()
 	flushing = TRUE

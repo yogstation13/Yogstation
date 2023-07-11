@@ -17,7 +17,6 @@
 
 obj/item/gun/ballistic/rifle/update_icon(updates=ALL)
 	. = ..()
-	..()
 	add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
 
 obj/item/gun/ballistic/rifle/rack(mob/user = null)

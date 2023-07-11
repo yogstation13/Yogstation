@@ -636,9 +636,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
  <br>
 "}
 
-/obj/item/paper/guides/antag/guardian/update_icon(updates=ALL)
-	. = ..()
-	return
+/obj/item/paper/guides/antag/guardian/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/paper/guides/antag/guardian/wizard
 	name = "Guardian Guide"

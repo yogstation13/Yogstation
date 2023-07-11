@@ -39,7 +39,6 @@
 
 /obj/machinery/decontamination_unit/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	icon_state = uv? "tube_on" : (state_open? "tube_open" : "tube")
 
 /obj/machinery/decontamination_unit/proc/store_items()

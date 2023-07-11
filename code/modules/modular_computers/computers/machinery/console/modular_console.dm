@@ -46,7 +46,6 @@
 
 /obj/machinery/modular_computer/console/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 
 	// this bit of code makes the computer hug the wall its next to
 	var/turf/T = get_turf(src)

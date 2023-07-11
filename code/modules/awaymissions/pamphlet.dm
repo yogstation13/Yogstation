@@ -35,6 +35,6 @@
 			environs."
 
 //we don't want the silly text overlay!
-/obj/item/paper/pamphlet/update_icon(updates=ALL)
-	. = ..()
-	return
+/obj/item/paper/pamphlet/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()

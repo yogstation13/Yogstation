@@ -40,7 +40,6 @@
 
 /obj/structure/headpike/update_icon(updates=ALL)
 	. = ..()
-	..()
 	var/obj/item/bodypart/head/H = locate() in contents
 	var/mutable_appearance/MA = new()
 	if(H)

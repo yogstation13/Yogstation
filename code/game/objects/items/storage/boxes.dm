@@ -51,7 +51,6 @@
 
 /obj/item/storage/box/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	if(illustration)
 		cut_overlays()
 		add_overlay(illustration)
@@ -989,7 +988,8 @@
 	. = ..()
 	if(contents.len == 0)
 		icon_state = "[item_state]"
-	else icon_state = "[item_state]_closed"
+	else
+		icon_state = "[item_state]_closed"
 
 /obj/item/storage/box/papersack/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pen))

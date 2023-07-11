@@ -192,7 +192,6 @@
 	. = ..()
 	if (QDELETED(src))
 		return
-	..()
 	if(current_skin)
 		icon_state = "[unique_reskin[current_skin]][sawn_off ? "_sawn" : ""]"
 	else

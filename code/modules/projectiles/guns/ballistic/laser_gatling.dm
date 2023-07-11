@@ -128,6 +128,7 @@
 		ammo_pack = loc
 	else
 		return INITIALIZE_HINT_QDEL //No pack, no gun
+	AddElement(/datum/element/update_icon_blocker)
 
 	return ..()
 

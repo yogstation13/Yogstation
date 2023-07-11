@@ -48,7 +48,6 @@
 	. = ..()
 	if(holder)
 		holder.update_appearance(UPDATE_ICON)
-	return
 
 /obj/item/assembly/signaler/ui_status(mob/user)
 	if(is_secured(user))

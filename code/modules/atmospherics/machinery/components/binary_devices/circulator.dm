@@ -95,8 +95,6 @@
 
 			add_overlay(cap)
 
-	return ..()
-
 /obj/machinery/atmospherics/components/binary/circulator/update_icon_nopipes()
 	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)

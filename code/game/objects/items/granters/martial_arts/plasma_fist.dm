@@ -22,7 +22,6 @@
 
 /obj/item/book/granter/martial/plasma_fist/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	if(uses <= 0)
 		name = "empty scroll"
 		desc = "It's completely blank."

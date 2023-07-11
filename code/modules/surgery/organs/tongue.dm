@@ -41,7 +41,6 @@
 
 /obj/item/organ/tongue/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	if(honked) // This tongue has a bike horn inside of it. Let's draw it
 		add_overlay("honked")
 

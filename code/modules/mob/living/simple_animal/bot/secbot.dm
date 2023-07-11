@@ -88,7 +88,6 @@
 	if(mode == BOT_HUNT)
 		icon_state = "[initial(icon_state)]-c"
 		return
-	..()
 
 /mob/living/simple_animal/bot/secbot/turn_off()
 	..()

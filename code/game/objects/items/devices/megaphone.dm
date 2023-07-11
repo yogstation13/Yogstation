@@ -48,7 +48,6 @@
 
 /obj/item/megaphone/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	cut_overlays()
 	var/mutable_appearance/base_overlay
 	if(last_used > world.time)

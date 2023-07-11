@@ -50,7 +50,6 @@
 
 /obj/structure/closet/body_bag/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if (tagged)
 		add_overlay("bodybag_label")
 
@@ -193,7 +192,6 @@
 
 /obj/structure/closet/body_bag/environmental/prisoner/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	if(sinched)
 		icon_state = initial(icon_state) + "_sinched"
 	else
@@ -295,7 +293,6 @@
 	sinch_time = 4 SECONDS
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_icon(updates=ALL)
-	. = ..()
 	. = ..()
 	var/obj/item/bodybag/environmental/prisoner/syndicate/inner_bag = foldedbag_instance
 	if(sinched && inner_bag && inner_bag.killing)

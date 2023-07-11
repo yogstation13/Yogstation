@@ -11,7 +11,6 @@
 
 /obj/item/ammo_box/magazine/sniper_rounds/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if(ammo_count())
 		icon_state = "[initial(icon_state)]-ammo"
 	else

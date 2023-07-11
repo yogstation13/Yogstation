@@ -155,9 +155,9 @@
 /obj/machinery/stasis/survival_pod/play_power_sound()
 	return
 
-/obj/machinery/stasis/survival_pod/update_icon(updates=ALL)
-	. = ..()
-	return
+/obj/machinery/stasis/survival_pod/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 //Computer
 /obj/item/gps/computer
@@ -208,9 +208,9 @@
 	pitches = FALSE
 	var/empty = FALSE
 
-/obj/machinery/smartfridge/survival_pod/update_icon(updates=ALL)
-	. = ..()
-	return
+/obj/machinery/smartfridge/survival_pod/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/machinery/smartfridge/survival_pod/Initialize(mapload)
 	. = ..()

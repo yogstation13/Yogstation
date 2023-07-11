@@ -75,7 +75,6 @@
 
 /obj/item/mail/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	var/bonus_stamp_offset = 0
 	for(var/stamp in stamps)
 		var/image/stamp_image = image(
@@ -219,7 +218,6 @@
 	icon_state = "mail"
 
 /obj/structure/closet/crate/mail/update_icon(updates=ALL)
-	. = ..()
 	. = ..()
 	if(opened)
 		icon_state = "[initial(icon_state)]open"

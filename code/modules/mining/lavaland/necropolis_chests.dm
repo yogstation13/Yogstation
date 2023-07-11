@@ -1747,7 +1747,6 @@ GLOBAL_LIST_EMPTY(aide_list)
 
 /obj/item/twohanded/bonespear/stalwartpike/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	if(wielded)
 		icon_state = "stalwart_spear1"
 	else

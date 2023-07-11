@@ -132,7 +132,6 @@
 		icon_state = "papershredder4"
 	if(paperamount == 9||paperamount == 10)
 		icon_state = "papershredder5"
-	return
 
 /obj/item/shreddedpaper
 	name = "shredded paper"

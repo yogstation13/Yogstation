@@ -33,8 +33,6 @@
 	. = ..()
 	cut_overlays()
 	add_overlay("[initial(icon_state)][lightlevel]")
-	return
-
 
 /obj/item/laserlevel/proc/update_overlay(mob/user)
 	user.clear_fullscreen("laser",0)

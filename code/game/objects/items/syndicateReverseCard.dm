@@ -16,7 +16,6 @@
 
 /obj/item/syndicateReverseCard/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if (used)
 		cut_overlays()
 		add_overlay(image('icons/obj/toy.dmi', icon_state = "reverse_overlay"))

@@ -55,7 +55,6 @@
 
 /obj/machinery/blackbox_recorder/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	if(!stored)
 		icon_state = "blackbox_b"
 	else

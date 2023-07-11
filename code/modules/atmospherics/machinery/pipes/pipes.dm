@@ -100,7 +100,6 @@
 
 /obj/machinery/atmospherics/pipe/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	update_alpha()
 
 /obj/machinery/atmospherics/pipe/proc/update_alpha()

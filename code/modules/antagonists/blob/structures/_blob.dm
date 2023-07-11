@@ -346,7 +346,6 @@
 
 /obj/structure/blob/normal/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if(obj_integrity <= 15)
 		icon_state = "blob_damaged"
 		name = "fragile blob"

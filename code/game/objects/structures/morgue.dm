@@ -29,6 +29,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	var/breakout_time = 600
 
 /obj/structure/bodycontainer/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	GLOB.bodycontainers += src
 	recursive_organ_check(src)
@@ -44,10 +45,6 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 /obj/structure/bodycontainer/on_log(login)
 	..()
 	update_appearance(UPDATE_ICON)
-
-/obj/structure/bodycontainer/update_icon(updates=ALL)
-	. = ..()
-	return
 
 /obj/structure/bodycontainer/relaymove(mob/user)
 	if(user.stat || !isturf(loc))
@@ -160,6 +157,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 /obj/structure/bodycontainer/morgue/Initialize(mapload)
 	. = ..()
+	RemoveElement(/datum/element/update_icon_blocker)
 	connected = new/obj/structure/tray/m_tray(src)
 	connected.connected = src
 
@@ -231,6 +229,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 
 /obj/structure/bodycontainer/crematorium/Initialize(mapload)
 	. = ..()
+	RemoveElement(/datum/element/update_icon_blocker)
 	connected = new /obj/structure/tray/c_tray(src)
 	connected.connected = src
 
@@ -238,17 +237,14 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	. = ..()
 	if(!connected || connected.loc != src)
 		icon_state = "crema0"
-	else
-
-		if(src.contents.len > 1)
-			src.icon_state = "crema2"
-		else
-			src.icon_state = "crema1"
-
-		if(locked)
-			src.icon_state = "crema_active"
-
-	return
+		return
+	if(locked)
+		icon_state = "crema_active"
+		return
+	if(contents.len > 1)
+		icon_state = "crema2"
+		return
+	icon_state = "crema1"
 
 /obj/structure/bodycontainer/crematorium/proc/cremate(mob/user)
 	if(locked)

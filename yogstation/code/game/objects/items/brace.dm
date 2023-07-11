@@ -25,7 +25,6 @@
 
 /obj/structure/deployed_brace/update_icon(updates=ALL)
 	. = ..()
-	..()
 	cut_overlays()
 	if(cover_open)
 		add_overlay("cover_open")

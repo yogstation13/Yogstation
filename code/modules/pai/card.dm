@@ -72,7 +72,6 @@
 
 /obj/item/pai_card/update_overlays()
 	. = ..()
-	. = ..()
 	. += "pai-[emotion_icon]"
 	if(pai?.hacking_cable)
 		. += "[initial(icon_state)]-connector"

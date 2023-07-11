@@ -45,7 +45,6 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 
 /obj/machinery/gravity_generator/update_icon(updates=ALL)
 	. = ..()
-	..()
 	icon_state = "[get_status()]_[sprite_number]"
 
 /obj/machinery/gravity_generator/proc/get_status()
@@ -262,7 +261,6 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 
 /obj/machinery/gravity_generator/main/update_icon(updates=ALL)
 	. = ..()
-	..()
 	for(var/obj/O in parts)
 		O.update_appearance(UPDATE_ICON)
 

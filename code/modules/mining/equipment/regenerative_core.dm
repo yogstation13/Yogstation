@@ -142,8 +142,7 @@
 	cut_overlays()
 	if(!inert && !preserved)
 		add_overlay("legion_soul_crackle")
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/organ/regenerative_core/legion/go_inert()

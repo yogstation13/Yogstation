@@ -160,7 +160,6 @@
 
 /obj/item/gun/ballistic/automatic/m90/update_icon(updates=ALL)
 	. = ..()
-	..()
 	switch(select)
 		if(0)
 			add_overlay("[initial(icon_state)]_semi")
@@ -268,7 +267,6 @@
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/update_icon(updates=ALL)
-	. = ..()
 	. = ..()
 	add_overlay("l6_door_[cover_open ? "open" : "closed"]")
 

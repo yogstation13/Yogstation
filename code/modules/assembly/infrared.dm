@@ -63,7 +63,6 @@
 
 	if(holder)
 		holder.update_appearance(UPDATE_ICON)
-	return
 
 /obj/item/assembly/infra/dropped()
 	. = ..()

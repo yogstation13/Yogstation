@@ -74,7 +74,6 @@
 
 /obj/machinery/atmospherics/components/unary/hypertorus/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	if(panel_open)
 		icon_state = icon_state_open
 	else if(active)

@@ -46,7 +46,7 @@
 
 /turf/open/floor/plating/update_icon(updates=ALL)
 	. = ..()
-	if(!..())
+	if(!.)
 		return
 	if(!broken && !burnt)
 		icon_state = icon_plating //Because asteroids are 'platings' too.

@@ -65,7 +65,6 @@
 		ratio = CEILING(ratio*4, 1) * 25
 		add_overlay("[initial(icon_state)][ratio]")
 	update_torch()
-	return
 
 
 /obj/item/weldingtool/process(delta_time)

@@ -48,7 +48,6 @@
 
 /obj/item/nanite_remote/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	cut_overlays()
 	if(obj_flags & EMAGGED)
 		add_overlay("nanite_remote_emagged")

@@ -15,7 +15,6 @@
 
 /obj/item/gun/ballistic/automatic/toy/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	add_overlay("[icon_state]_toy")
 
 /obj/item/gun/ballistic/automatic/toy/unrestricted
@@ -59,7 +58,6 @@
 
 /obj/item/gun/ballistic/shotgun/toy/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	add_overlay("[icon_state]_toy")
 
 /obj/item/gun/ballistic/shotgun/toy/unrestricted
@@ -94,7 +92,6 @@
 
 /obj/item/gun/ballistic/automatic/c20r/toy/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	add_overlay("[icon_state]_toy")
 
 /obj/item/gun/ballistic/automatic/l6_saw/toy //This is the syndicate variant with syndicate firing pin and riot darts.
@@ -114,6 +111,5 @@
 	mag_type = /obj/item/ammo_box/magazine/toy/m762/riot
 
 /obj/item/gun/ballistic/automatic/l6_saw/toy/update_icon(updates=ALL)
-	. = ..()
 	. = ..()
 	add_overlay("[icon_state]_toy")

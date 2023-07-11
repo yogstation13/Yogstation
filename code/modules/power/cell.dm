@@ -337,9 +337,9 @@
 	maxcharge = 50000
 	ratingdesc = FALSE
 
-/obj/item/stock_parts/cell/infinite/abductor/update_icon(updates=ALL)
-	. = ..()
-	return
+/obj/item/stock_parts/cell/infinite/abductor/Initialize(mapload, override_maxcharge)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 
 /obj/item/stock_parts/cell/potato

@@ -21,7 +21,6 @@
 
 /obj/vehicle/ridden/gigadrill/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	if(occupant_amount())
 		icon_state = "gigadrill_mov"
 	else

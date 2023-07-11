@@ -11,7 +11,6 @@
 
 /obj/machinery/plate_press/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	if(!is_operational())
 		icon_state = "offline"
 	else if(pressing)

@@ -55,7 +55,7 @@ Borg Hypospray
 		regenerate_reagents()
 		charge_timer = 0
 
-	//update_icon(updates=ALL)
+	update_appearance(UPDATE_ICON)
 	. = ..()
 	return 1
 

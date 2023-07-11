@@ -232,7 +232,6 @@
 
 /obj/effect/temp_visual/dueling_chaff/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	switch(setting)
 		if(DUEL_SETTING_A)
 			color = "red"
@@ -270,7 +269,6 @@
 	var/setting
 
 /obj/item/projectile/energy/duel/update_icon(updates=ALL)
-	. = ..()
 	. = ..()
 	switch(setting)
 		if(DUEL_SETTING_A)

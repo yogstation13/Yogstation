@@ -38,7 +38,6 @@
 /obj/item/attachment/update_icon(updates=ALL)
 	. = ..()
 	icon_state = "[initial(icon_state)][is_on ? "_on" : ""]"
-	. = ..()
 	attached_gun?.update_attachments()
 
 /obj/item/attachment/Destroy()

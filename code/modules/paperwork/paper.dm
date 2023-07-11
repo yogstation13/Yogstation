@@ -393,9 +393,9 @@
 	icon_state = "scrap"
 	slot_flags = null
 
-/obj/item/paper/crumpled/update_icon(updates=ALL)
-	. = ..()
-	return
+/obj/item/paper/crumpled/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/paper/crumpled/bloody
 	icon_state = "scrap_bloodied"

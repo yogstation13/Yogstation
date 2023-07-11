@@ -24,7 +24,6 @@
 		for(var/obj/item/I in contents)
 			var/mutable_appearance/M = I.get_belt_overlay()
 			add_overlay(M)
-	..()
 
 /obj/item/storage/belt/Initialize(mapload)
 	. = ..()
@@ -818,7 +817,6 @@
 
 /obj/item/storage/belt/quiver/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if(content_overlays && ismob(loc))
 		var/mob/M = loc
 		M.update_inv_belt()
@@ -1198,7 +1196,6 @@
 	if(loc && isliving(loc))
 		var/mob/living/L = loc
 		L.regenerate_icons()
-	..()
 
 /obj/item/storage/belt/sabre/PopulateContents()
 	new /obj/item/melee/sabre(src)

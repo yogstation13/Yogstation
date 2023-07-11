@@ -7,7 +7,6 @@
 
 /obj/item/ashtray/update_icon(updates=ALL)
 	. = ..()
-	..()
 	overlays.Cut()
 	if(contents.len == max_butts)
 		add_overlay(image('icons/obj/objects.dmi',"ashtray_full"))

@@ -60,8 +60,6 @@
 
 		add_overlay(cap)
 
-	return ..()
-
 /obj/machinery/atmospherics/components/trinary/filter/update_icon_nopipes()
 	var/on_state = on && nodes[1] && nodes[2] && nodes[3] && is_operational()
 	icon_state = "filter_[on_state ? "on" : "off"]-[set_overlay_offset(piping_layer)][flipped ? "_f" : ""]"

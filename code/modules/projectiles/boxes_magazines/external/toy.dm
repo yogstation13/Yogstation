@@ -11,7 +11,6 @@
 
 /obj/item/ammo_box/magazine/toy/smg/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if(ammo_count())
 		icon_state = "smg9mm-42"
 	else
@@ -38,7 +37,6 @@
 
 /obj/item/ammo_box/magazine/toy/smgm45/update_icon(updates=ALL)
 	. = ..()
-	..()
 	icon_state = "c20r45-[round(ammo_count(),2)]"
 
 /obj/item/ammo_box/magazine/toy/smgm45/riot
@@ -54,7 +52,6 @@
 
 /obj/item/ammo_box/magazine/toy/m762/update_icon(updates=ALL)
 	. = ..()
-	..()
 	icon_state = "a762-[round(ammo_count(),10)]"
 
 /obj/item/ammo_box/magazine/toy/m762/riot

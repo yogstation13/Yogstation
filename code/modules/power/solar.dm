@@ -115,7 +115,6 @@
 
 /obj/machinery/power/solar/update_icon(updates=ALL)
 	. = ..()
-	..()
 	cut_overlays()
 	var/matrix/turner = matrix()
 	turner.Turn(azimuth_current)

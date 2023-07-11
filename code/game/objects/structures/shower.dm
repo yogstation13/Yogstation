@@ -71,7 +71,6 @@
 
 /obj/machinery/shower/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	cut_overlays()
 	if(on)
 		add_overlay(mutable_appearance('icons/obj/watercloset.dmi', "water", ABOVE_MOB_LAYER))

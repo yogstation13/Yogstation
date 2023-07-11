@@ -57,7 +57,6 @@
 
 /obj/machinery/plantgenes/update_icon(updates=ALL)
 	. = ..()
-	..()
 	cut_overlays()
 	if((stat & (BROKEN|NOPOWER)))
 		icon_state = "dnamod-off"

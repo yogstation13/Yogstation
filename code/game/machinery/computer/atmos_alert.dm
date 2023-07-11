@@ -79,7 +79,6 @@
 
 /obj/machinery/computer/atmos_alert/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(priority_alarms.len)

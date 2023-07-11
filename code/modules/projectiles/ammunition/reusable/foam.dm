@@ -12,7 +12,6 @@
 
 /obj/item/ammo_casing/reusable/foam_dart/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if (modified)
 		icon_state = "foamdart_empty"
 	else

@@ -515,7 +515,6 @@
 		
 /obj/item/nullrod/dualsword/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	item_state = swords ? "fulldual" : "emptydual"
 	icon_state = item_state
 	if(ishuman(loc))

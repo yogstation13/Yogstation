@@ -32,7 +32,6 @@
 
 /obj/item/storage/toolbox/update_icon(updates=ALL)
 	. = ..()
-	..()
 	cut_overlays()
 	if(has_latches)
 		add_overlay(latches)

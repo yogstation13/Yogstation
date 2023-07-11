@@ -76,7 +76,6 @@
 
 /obj/machinery/computer/station_alert/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	var/active_alarms = FALSE

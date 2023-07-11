@@ -80,7 +80,6 @@
 
 /obj/item/gun/syringe/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	if(!has_syringe_overlay)
 		return
 	var/syringe_count = syringes.len

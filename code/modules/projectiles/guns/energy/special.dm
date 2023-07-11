@@ -36,7 +36,6 @@
 
 /obj/item/gun/energy/decloner/update_icon(updates=ALL)
 	. = ..()
-	..()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	if(!QDELETED(cell) && (cell.charge > shot.e_cost))
 		add_overlay("decloner_spin")
@@ -139,6 +138,7 @@
 	toolspeed = 2
 
 /obj/item/gun/energy/plasmacutter/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	AddComponent(/datum/component/butchering, 25, 105, 0, 'sound/weapons/plasma_cutter.ogg')
 
@@ -207,11 +207,6 @@
 		target.cut_overlay(sparks)
 	else
 		. = ..(amount=1)
-
-
-/obj/item/gun/energy/plasmacutter/update_icon(updates=ALL)
-	. = ..()
-	return
 
 /obj/item/gun/energy/plasmacutter/adv
 	name = "advanced plasma cutter"
@@ -378,6 +373,10 @@
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
 
+/obj/item/gun/energy/printer/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
+
 /obj/item/gun/energy/printer/flamethrower
 	name = "cyborg flame projector"
 	desc = "Originally intended for cyborgs to assist in atmospherics projects, was soon scrapped due to safety concerns."
@@ -386,10 +385,6 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/flamethrower)
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
-
-/obj/item/gun/energy/printer/update_icon(updates=ALL)
-	. = ..()
-	return
 
 /obj/item/gun/energy/printer/emp_act()
 	return

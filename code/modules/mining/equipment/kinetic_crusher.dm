@@ -511,7 +511,6 @@
 /obj/item/twohanded/kinetic_crusher/mega/update_icon(updates=ALL)
 	. = ..()
 	icon_state = "magmite_crusher[wielded]"
-	return
 
 /obj/item/projectile/destabilizer/mega
     name = "destabilizing force"

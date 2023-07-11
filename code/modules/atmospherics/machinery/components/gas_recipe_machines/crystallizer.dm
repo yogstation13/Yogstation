@@ -95,7 +95,6 @@
 
 /obj/machinery/atmospherics/components/binary/crystallizer/update_icon(updates=ALL)
 	. = ..()
-	. = ..()
 	update_icon_state()
 	update_overlays()
 

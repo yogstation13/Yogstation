@@ -42,7 +42,6 @@
 		H.update_inv_head()
 	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons(force = TRUE)
-	..()
 
 /obj/item/clothing/head/hardhat/proc/turn_on(mob/user)
 	set_light_on(TRUE)
@@ -162,7 +161,6 @@
 	cut_overlays()
 	if(!up)
 		add_overlay("weldvisor")
-	..()
 
 /obj/item/clothing/head/hardhat/weldhat/orange
 	icon_state = "hardhat0_orange"

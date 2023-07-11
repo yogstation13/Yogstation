@@ -10,9 +10,9 @@
 /obj/item/paper/contract/proc/update_text()
 	return
 
-/obj/item/paper/contract/update_icon(updates=ALL)
-	. = ..()
-	return
+/obj/item/paper/contract/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/paper/contract/infernal
 	var/contractType = 0

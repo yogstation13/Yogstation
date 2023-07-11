@@ -30,7 +30,6 @@
 /obj/structure/disposalpipe/sorting/update_icon(updates=ALL)
 	. = ..()
 	cut_overlays()
-	. = ..()
 	if(panel_open)
 		add_overlay(image('yogstation/icons/obj/atmospherics/pipes/disposal.dmi', "[icon_state]-open"))
 

@@ -52,7 +52,6 @@
 		icon_state = "oven_on"
 	else
 		icon_state = "oven_off"
-	return ..()
 
 /obj/machinery/oven/update_overlays()
 	. = ..()

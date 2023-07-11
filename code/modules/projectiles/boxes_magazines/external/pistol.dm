@@ -66,7 +66,6 @@
 
 /obj/item/ammo_box/magazine/m45/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if (ammo_count() >= 8)
 		icon_state = "45-8"
 	else
@@ -84,7 +83,6 @@
 
 /obj/item/ammo_box/magazine/pistolm9mm/update_icon(updates=ALL)
 	. = ..()
-	..()
 	icon_state = "9x19p-[ammo_count() ? "10" : "0"]"
 
 //Desert Eagle
@@ -98,7 +96,6 @@
 	max_ammo = 7
 
 /obj/item/ammo_box/magazine/m50/update_icon(updates=ALL)
-	. = ..()
 	. = ..()
 	if (ammo_count() >= 7)
 		icon_state = "50ae-7"
@@ -117,7 +114,6 @@
 
 /obj/item/ammo_box/magazine/v38/update_icon(updates=ALL)
 	. = ..()
-	..()
 	if (ammo_count() >= 8)
 		icon_state = "v38[sprite_designation]-8"
 	else

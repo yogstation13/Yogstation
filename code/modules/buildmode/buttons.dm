@@ -51,7 +51,6 @@
 /atom/movable/screen/buildmode/bdir/update_icon(updates=ALL)
 	. = ..()
 	dir = bd.build_dir
-	return
 
 /atom/movable/screen/buildmode/bdir/Click()
 	bd.toggle_dirswitch()
