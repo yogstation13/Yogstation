@@ -22,8 +22,7 @@
 
 /obj/structure/door_assembly/Initialize(mapload)
 	. = ..()
-	update_appearance(UPDATE_ICON)
-	update_name()
+	update_appearance()
 
 /obj/structure/door_assembly/examine(mob/user)
 	. = ..()
@@ -259,8 +258,7 @@
 				qdel(src)
 	else
 		return ..()
-	update_name()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /obj/structure/door_assembly/update_icon(updates=ALL)
 	. = ..()
@@ -271,7 +269,8 @@
 		add_overlay(get_airlock_overlay("glass_construction", overlays_file))
 	add_overlay(get_airlock_overlay("panel_c[state+1]", overlays_file))
 
-/obj/structure/door_assembly/proc/update_name()
+/obj/structure/door_assembly/update_name(updates=ALL)
+	. = ..()
 	name = ""
 	switch(state)
 		if(AIRLOCK_ASSEMBLY_NEEDS_WIRES)
@@ -294,8 +293,7 @@
 	if(electronics)
 		target.electronics = source.electronics
 		source.electronics.forceMove(target)
-	target.update_appearance(UPDATE_ICON)
-	target.update_name()
+	target.update_appearance()
 	qdel(source)
 
 /obj/structure/door_assembly/deconstruct(disassembled = TRUE)

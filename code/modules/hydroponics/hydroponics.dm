@@ -361,9 +361,8 @@
 	harvest = 0
 	weedlevel = 0 // Reset
 	pestlevel = 0 // Reset
-	update_appearance(UPDATE_ICON)
 	visible_message(span_warning("The [oldPlantName] is overtaken by some [myseed.plantname]!"))
-	update_name()
+	update_appearance()
 
 /obj/machinery/hydroponics/proc/mutate(lifemut = 2, endmut = 5, productmut = 1, yieldmut = 2, potmut = 25, wrmut = 2, wcmut = 5, traitmut = 0) // Mutates the current seed
 	if(!myseed)
@@ -395,9 +394,8 @@
 	weedlevel = 0 // Reset
 
 	sleep(0.5 SECONDS) // Wait a while
-	update_appearance(UPDATE_ICON)
 	visible_message(span_warning("[oldPlantName] suddenly mutates into [myseed.plantname]!"))
-	update_name()
+	update_appearance()
 
 /obj/machinery/hydroponics/proc/mutateweed() // If the weeds gets the mutagent instead. Mind you, this pretty much destroys the old plant
 	if( weedlevel > 5 )
@@ -415,9 +413,8 @@
 		weedlevel = 0 // Reset
 
 		sleep(0.5 SECONDS) // Wait a while
-		update_appearance(UPDATE_ICON)
 		visible_message(span_warning("The mutated weeds in [src] spawn some [myseed.plantname]!"))
-		update_name()
+		update_appearance()
 	else
 		to_chat(usr, span_warning("The few weeds in [src] seem to react, but only for a moment..."))
 
@@ -427,10 +424,8 @@
 	pestlevel = 0 // Pests die
 	lastproduce = 0
 	if(!dead)
+		dead = TRUE
 		update_appearance(UPDATE_ICON)
-		dead = 1
-
-
 
 /obj/machinery/hydroponics/proc/mutatepest(mob/user)
 	if(pestlevel > 5)
@@ -792,11 +787,10 @@
 			to_chat(user, span_notice("You plant [O]."))
 			dead = 0
 			myseed = O
-			update_name()
 			age = 1
 			plant_health = myseed.endurance
 			lastcycle = world.time
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 		else
 			to_chat(user, span_warning("[src] already has seeds in it!"))
 
@@ -863,9 +857,8 @@
 					harvest = FALSE //To make sure they can't just put in another seed and insta-harvest it
 				qdel(myseed)
 				myseed = null
-				update_name()
 			weedlevel = 0 //Has a side effect of cleaning up those nasty weeds
-			update_appearance(UPDATE_ICON)
+			update_appearance()
 
 	else
 		return ..()
@@ -895,8 +888,7 @@
 		to_chat(user, span_notice("You remove the dead plant from [src]."))
 		qdel(myseed)
 		myseed = null
-		update_name()
-		update_appearance(UPDATE_ICON)
+		update_appearance()
 	else
 		if(user)
 			examine(user)
@@ -930,9 +922,8 @@
 	if(!myseed.get_gene(/datum/plant_gene/trait/repeated_harvest))
 		qdel(myseed)
 		myseed = null
-		update_name()
 		dead = 0
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
 /// Tray Setters - The following procs adjust the tray or plants variables, and make sure that the stat doesn't go out of bounds.///
 /obj/machinery/hydroponics/proc/adjustNutri(adjustamt)
@@ -968,7 +959,8 @@
 	self_sustaining = TRUE
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/hydroponics/proc/update_name()
+/obj/machinery/hydroponics/update_name(updates=ALL)
+	. = ..()
 	if(myseed)
 		name = "[initial(name)] ([myseed.plantname])"
 	else

@@ -53,14 +53,14 @@
 			mix_filling_color(S)
 			S.reagents.trans_to(src,min(S.reagents.total_volume, 15), transfered_by = user) //limit of 15, we don't want our custom food to be completely filled by just one ingredient with large reagent volume.
 			foodtype |= S.foodtype
-			update_overlays(S)
 			to_chat(user, span_notice("You add the [I.name] to the [name]."))
-			update_name(S)
+			update_overlays(S = S)
+			update_name(S = S)
 	else
 		. = ..()
 
 
-/obj/item/reagent_containers/food/snacks/customizable/proc/update_name(obj/item/reagent_containers/food/snacks/S)
+/obj/item/reagent_containers/food/snacks/customizable/update_name(updates=ALL, obj/item/reagent_containers/food/snacks/S)
 	for(var/obj/item/I in ingredients)
 		if(!istype(S, I.type))
 			customname = "custom"

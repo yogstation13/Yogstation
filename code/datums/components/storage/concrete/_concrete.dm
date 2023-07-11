@@ -191,7 +191,7 @@
 			if(!prevent_warning)
 				mob_item_insertion_feedback(usr, M, I)
 	SEND_SIGNAL(parent, COMSIG_STORAGE_INSERTED, I, M)
-	update_appearance(UPDATE_ICON)
+	update_icon()
 	return TRUE
 
 /datum/component/storage/concrete/update_icon(updates=ALL)
@@ -201,4 +201,4 @@
 		O.update_appearance(UPDATE_ICON)
 	for(var/i in slaves)
 		var/datum/component/storage/slave = i
-		slave.update_appearance(UPDATE_ICON)
+		slave.update_icon()

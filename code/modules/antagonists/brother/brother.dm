@@ -169,6 +169,7 @@
 	meeting_areas -= meeting_area
 
 /datum/team/brother_team/proc/update_name()
+	. = ..()
 	var/list/last_names = list()
 	for(var/datum/mind/M in members)
 		var/list/split_name = splittext(M.name," ")

@@ -268,7 +268,7 @@
 	src.our_hud = our_hud
 	refresh_owner()
 
-/atom/movable/screen/button_palette/proc/update_name(updates)
+/atom/movable/screen/button_palette/update_name(updates)
 	if(expanded)
 		name = "Hide Buttons"
 	else

@@ -337,8 +337,7 @@
 								gene.value = max(gene.value, min_wrate)
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
-						disk.update_name()
-						disk.update_appearance(UPDATE_ICON)
+						disk.update_appearance()
 						qdel(seed)
 						seed = null
 						update_appearance(UPDATE_ICON)
@@ -447,7 +446,8 @@
 	if(gene)
 		add_overlay("datadisk_gene")
 
-/obj/item/disk/plantgene/proc/update_name()
+/obj/item/disk/plantgene/update_name(updates=ALL)
+	. = ..()
 	if(gene)
 		name = "[gene.get_name()] (plant data disk)"
 	else

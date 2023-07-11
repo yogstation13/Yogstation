@@ -1296,7 +1296,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 					playsound(get_turf(user),A.load_audio,50,1)
 					to_chat(user, span_notice("You add [ammo_needed] [A.round_term][ammo_needed > 1?"s":""] to the [gun.name]"))
 					A.rounds = A.rounds - ammo_needed
-					A.update_name()
+					A.update_appearance(UPDATE_NAME)
 					return TRUE
 
 				else
@@ -1307,7 +1307,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 					playsound(get_turf(user),A.load_audio,50,1)
 					to_chat(user, span_notice("You add [A.rounds] [A.round_term][A.rounds > 1?"s":""] to the [gun.name]"))
 					A.rounds = 0
-					A.update_name()
+					A.update_appearance(UPDATE_NAME)
 					return TRUE
 	if(!fail_chat_override)
 		if(found_gun)
