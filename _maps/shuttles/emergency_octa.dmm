@@ -71,17 +71,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
-"fQ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
-	dir = 5
-	},
-/obj/structure/table,
-/obj/item/storage/firstaid/advanced,
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape)
 "gU" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor/preopen{
@@ -99,15 +88,6 @@
 "hh" = (
 /turf/template_noop,
 /area/template_noop)
-"hD" = (
-/obj/machinery/button/door{
-	id = "escape_cockpit_windows";
-	name = "Cockpit Window Blast Doors";
-	pixel_x = -7;
-	req_access_txt = "19"
-	},
-/turf/closed/wall/mineral/titanium,
-/area/shuttle/escape)
 "hY" = (
 /obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
 	dir = 1
@@ -604,6 +584,24 @@
 /obj/machinery/light/floor,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
+"Vb" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/darkblue/filled/line/lower{
+	dir = 5
+	},
+/obj/structure/table,
+/obj/item/storage/firstaid/advanced,
+/obj/machinery/button/door{
+	id = "escape_cockpit_windows";
+	name = "Cockpit Window Blast Doors";
+	pixel_x = -7;
+	pixel_y = 32;
+	req_access_txt = "19"
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape)
 "Vk" = (
 /obj/structure/shuttle/engine/large,
 /turf/open/floor/plating/airless,
@@ -947,8 +945,8 @@ it
 Vk
 "}
 (13,1,1) = {"
-hD
-fQ
+Zw
+Vb
 Xt
 UJ
 lq

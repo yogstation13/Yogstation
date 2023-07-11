@@ -197,6 +197,10 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/exoticgreen,
 /area/shuttle/escape)
+"KI" = (
+/obj/machinery/computer/emergency_shuttle,
+/turf/open/floor/carpet/exoticgreen,
+/area/shuttle/escape)
 "La" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -317,13 +321,6 @@
 /area/shuttle/escape)
 "Yg" = (
 /obj/item/flashlight/lamp/green,
-/obj/structure/table/wood,
-/turf/open/floor/carpet/exoticgreen,
-/area/shuttle/escape)
-"ZY" = (
-/obj/machinery/computer/emergency_shuttle{
-	icon_state = "oldcomp"
-	},
 /obj/structure/table/wood,
 /turf/open/floor/carpet/exoticgreen,
 /area/shuttle/escape)
@@ -575,7 +572,7 @@ jZ
 yT
 FX
 ig
-ZY
+KI
 fV
 Oi
 Oi

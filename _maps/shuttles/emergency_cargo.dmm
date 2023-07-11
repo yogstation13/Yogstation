@@ -38,6 +38,19 @@
 "cQ" = (
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"dy" = (
+/obj/machinery/flasher{
+	id = "shuttle_flasher";
+	pixel_x = -25;
+	pixel_y = 36
+	},
+/obj/machinery/button/flasher{
+	id = "shuttle_flasher";
+	pixel_x = -25;
+	pixel_y = 25
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/shuttle/escape)
 "dR" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate/engineering,
@@ -51,22 +64,6 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/shuttle/escape)
-"eJ" = (
-/obj/machinery/button/door{
-	id = "escape_cockpit_windows";
-	name = "Cockpit Window Blast Doors";
-	pixel_x = -7;
-	req_access_txt = "19"
-	},
-/obj/machinery/button/door{
-	id = "ock_cargo_door";
-	name = "Cargo Airlock Blast Doors";
-	pixel_x = 5;
-	pixel_y = 0;
-	req_access_txt = "19"
-	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/escape)
 "eK" = (
 /obj/effect/turf_decal/bot,
@@ -179,12 +176,6 @@
 /obj/effect/spawner/lootdrop/costume,
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"lA" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plasteel/rockvault,
-/area/shuttle/escape)
 "lY" = (
 /obj/structure/railing{
 	dir = 8
@@ -220,6 +211,17 @@
 "om" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
+/turf/open/floor/plasteel/rockvault,
+/area/shuttle/escape)
+"oz" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/flasher{
+	id = "cockpit_flasher";
+	pixel_x = -7;
+	pixel_y = 24
+	},
 /turf/open/floor/plasteel/rockvault,
 /area/shuttle/escape)
 "oU" = (
@@ -817,6 +819,23 @@
 /obj/structure/table,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
+"Vq" = (
+/obj/machinery/button/door{
+	id = "escape_cockpit_windows";
+	name = "Cockpit Window Blast Doors";
+	pixel_x = 26;
+	pixel_y = 32;
+	req_access_txt = "19"
+	},
+/obj/machinery/button/door{
+	id = "ock_cargo_door";
+	name = "Cargo Airlock Blast Doors";
+	pixel_x = 39;
+	pixel_y = 32;
+	req_access_txt = "19"
+	},
+/turf/open/floor/plasteel/rockvault,
+/area/shuttle/escape)
 "VX" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/chair/comfy/shuttle{
@@ -828,6 +847,14 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
+/area/shuttle/escape)
+"We" = (
+/obj/machinery/button/flasher{
+	id = "cockpit_flasher";
+	pixel_x = -7;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/rockvault,
 /area/shuttle/escape)
 "WG" = (
 /obj/structure/shuttle/engine/huge,
@@ -956,7 +983,7 @@ AW
 uD
 uD
 IC
-Dm
+dy
 Dm
 gi
 Lo
@@ -1171,11 +1198,11 @@ cQ
 (11,1,1) = {"
 hN
 Hv
+Vq
 Lo
-Lo
-Lo
+We
 gi
-lA
+oz
 Lo
 Lo
 tx
@@ -1197,7 +1224,7 @@ AW
 "}
 (12,1,1) = {"
 uD
-eJ
+gi
 Lo
 kj
 Ih
