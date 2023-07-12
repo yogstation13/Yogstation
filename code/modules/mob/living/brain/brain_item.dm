@@ -56,6 +56,10 @@
 		BT.owner = owner
 		BT.on_gain()
 
+	/// Re-add the mindslave datum because we "lost" it when we got decapitated
+	for(var/obj/item/implant/mindslave/ms_implant in C.implants)
+		ms_implant.slave_mob(C)
+
 	//Update the body's icon so it doesnt appear debrained anymore
 	C.update_hair()
 
@@ -283,7 +287,7 @@
 		if(1)
 			to_chat(owner, span_warning("Alert: Posibrain heavily damaged."))
 		if(2)
-			to_chat(owner, span_warning("Alert: Posibrain damaged.")) 
+			to_chat(owner, span_warning("Alert: Posibrain damaged."))
 
 
 ////////////////////////////////////TRAUMAS////////////////////////////////////////

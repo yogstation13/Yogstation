@@ -1,0 +1,4 @@
+author: " ToasterBiome, dukeofsoleil, Chubbygummibear, Cowbot93"
+delete-after: true 
+changes: 
+  - rscadd: "revolutions get announced after 1 hour or all heads die (the first time)"

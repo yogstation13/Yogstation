@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "boop emote can be used by those with robotic tongues."
+  - soundadd: "boop emote makes boop sound."
