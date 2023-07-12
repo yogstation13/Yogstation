@@ -236,6 +236,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis/proc/handle_wetness(mob/living/carbon/human/H)	
 	if(H.fire_stacks <= -1 && (H.calculate_affecting_pressure(300) == 300 || soggy))//putting on a suit helps, but not if you're already wet
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_wet", /datum/mood_event/wet_preternis)
 		H.fire_stacks++ //makes them dry off faster so it's less tedious, more punchy
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
@@ -263,17 +264,23 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		chargemod *= 3 //hunger rate tripled
 	charge = clamp(charge - (power_drain * chargemod),PRETERNIS_LEVEL_NONE,PRETERNIS_LEVEL_FULL)
 
-	if(charge == PRETERNIS_LEVEL_NONE)
-		to_chat(H,span_danger("Warning! System power criti-$#@$"))
-		H.death()
-	else if(charge < PRETERNIS_LEVEL_STARVING)
-		H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 3)
-	else if(charge < PRETERNIS_LEVEL_HUNGRY)
-		H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 2)
-	else if(charge < PRETERNIS_LEVEL_FED)
-		H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 1)
-	else
-		H.clear_alert("preternis_charge")
+	switch(charge)
+		if(PRETERNIS_LEVEL_NONE)
+			SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "preternis_hunger")
+			to_chat(H,span_danger("Warning! System power criti-$#@$"))
+			H.death()
+		if(PRETERNIS_LEVEL_NONE to PRETERNIS_LEVEL_STARVING)
+			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_hunger", /datum/mood_event/starving)
+			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 3)
+		if(PRETERNIS_LEVEL_STARVING to PRETERNIS_LEVEL_HUNGRY)
+			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_hunger", /datum/mood_event/hungry)
+			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 2)
+		if(PRETERNIS_LEVEL_HUNGRY to PRETERNIS_LEVEL_FED)
+			SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "preternis_hunger")
+			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 1)
+		else
+			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_hunger", /datum/mood_event/wellfed)
+			H.clear_alert("preternis_charge")
 
 /datum/species/preternis/proc/attackslowdown(atom/target, mob/user, proximity_flag, click_parameters)//make weapon use slower
 	if(!ispreternis(user) || !proximity_flag || !ishuman(target))
