@@ -46,13 +46,8 @@
 
 /datum/antagonist/rev/on_gain()
 	. = ..()
-	create_objectives()
 	equip_rev()
 	owner.current.log_message("has been converted to the revolution!", LOG_ATTACK, color="red")
-
-/datum/antagonist/rev/on_removal()
-	remove_objectives()
-	return ..()
 
 /datum/antagonist/rev/greet()
 	to_chat(owner, span_userdanger("You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!"))
@@ -77,12 +72,6 @@
 
 /datum/antagonist/rev/get_team()
 	return rev_team
-
-/datum/antagonist/rev/proc/create_objectives()
-	objectives |= rev_team.objectives
-
-/datum/antagonist/rev/proc/remove_objectives()
-	objectives -= rev_team.objectives
 
 //Bump up to head_rev
 /datum/antagonist/rev/proc/promote()
