@@ -266,20 +266,15 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 	switch(charge)
 		if(PRETERNIS_LEVEL_NONE)
-			SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "preternis_hunger")
 			to_chat(H,span_danger("Warning! System power criti-$#@$"))
 			H.death()
 		if(PRETERNIS_LEVEL_NONE to PRETERNIS_LEVEL_STARVING)
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_hunger", /datum/mood_event/decharged)
 			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 3)
 		if(PRETERNIS_LEVEL_STARVING to PRETERNIS_LEVEL_HUNGRY)
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_hunger", /datum/mood_event/lowpower)
 			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 2)
 		if(PRETERNIS_LEVEL_HUNGRY to PRETERNIS_LEVEL_FED)
-			SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "preternis_hunger")
 			H.throw_alert("preternis_charge", /atom/movable/screen/alert/preternis_charge, 1)
 		else
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "preternis_hunger", /datum/mood_event/charged)
 			H.clear_alert("preternis_charge")
 
 /datum/species/preternis/proc/attackslowdown(atom/target, mob/user, proximity_flag, click_parameters)//make weapon use slower
