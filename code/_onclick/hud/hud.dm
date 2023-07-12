@@ -309,7 +309,6 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 		hand_box.screen_loc = ui_hand_position(i)
 		hand_box.held_index = i
 		hand_slots["[i]"] = hand_box
-		hand_box.hud = src
 		static_inventory += hand_box
 		hand_box.update_icon()
 

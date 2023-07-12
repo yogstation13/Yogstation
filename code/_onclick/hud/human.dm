@@ -280,7 +280,6 @@
 	infodisplay += healths
 
 	stamina = new /atom/movable/screen/stamina(src)
-	stamina.hud = src
 	infodisplay += stamina
 
 	healthdoll = new /atom/movable/screen/healthdoll(src)
@@ -302,7 +301,6 @@
 
 	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory))
 		if(inv.slot_id)
-			inv.hud = src
 			inv_slots[TOBITSHIFT(inv.slot_id) + 1] = inv
 			inv.update_icon()
 

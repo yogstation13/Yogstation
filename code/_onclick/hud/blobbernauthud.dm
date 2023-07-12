@@ -2,5 +2,4 @@
 	. = ..()
 
 	blobpwrdisplay = new /atom/movable/screen/healths/blob/overmind(src)
-	blobpwrdisplay.hud = src
 	infodisplay += blobpwrdisplay

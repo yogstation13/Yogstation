@@ -148,7 +148,6 @@
 
 	using = new /atom/movable/screen/blob/JumpToCore(src)
 	using.screen_loc = ui_zonesel
-	using.hud = src
 	static_inventory += using
 
 	using = new /atom/movable/screen/blob/Blobbernaut(src)
@@ -169,7 +168,6 @@
 
 	using = new /atom/movable/screen/blob/ReadaptStrain(src)
 	using.screen_loc = ui_storage1
-	using.hud = src
 	static_inventory += using
 
 	using = new /atom/movable/screen/blob/RelocateCore(src)

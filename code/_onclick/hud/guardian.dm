@@ -9,7 +9,6 @@
 	pull_icon.icon = ui_style
 	pull_icon.update_icon()
 	pull_icon.screen_loc = ui_living_pull
-	pull_icon.hud = src
 	static_inventory += pull_icon
 
 	healths = new /atom/movable/screen/healths/guardian(src)

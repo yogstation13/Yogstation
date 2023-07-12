@@ -8,10 +8,8 @@
 	pull_icon.icon = ui_style
 	pull_icon.update_icon()
 	pull_icon.screen_loc = ui_living_pull
-	pull_icon.hud = src
 	static_inventory += pull_icon
 
 	//mob health doll! assumes whatever sprite the mob is
 	healthdoll = new /atom/movable/screen/healthdoll/living(src)
-	healthdoll.hud = src
 	infodisplay += healthdoll

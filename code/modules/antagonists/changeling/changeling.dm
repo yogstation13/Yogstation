@@ -121,12 +121,10 @@
 
 	var/datum/hud/ling_hud = owner.current.hud_used
 
-	lingchemdisplay = new
-	lingchemdisplay.hud = ling_hud
+	lingchemdisplay = new(ling_hud)
 	ling_hud.infodisplay += lingchemdisplay
 
-	lingstingdisplay = new
-	lingstingdisplay.hud = ling_hud
+	lingstingdisplay = new(ling_hud)
 	ling_hud.infodisplay += lingstingdisplay
 
 	INVOKE_ASYNC(ling_hud, TYPE_PROC_REF(/datum/hud/, show_hud),ling_hud.hud_version)

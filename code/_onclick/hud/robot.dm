@@ -115,7 +115,6 @@
 
 	using = new /atom/movable/screen/robot/lamp(src)
 	using.screen_loc = ui_borg_lamp
-	using.hud = src
 	static_inventory += using
 	mymobR.lampButton = using
 	var/atom/movable/screen/robot/lamp/lampscreen = using
@@ -124,7 +123,6 @@
 //Photography stuff
 	using = new /atom/movable/screen/ai/image_take(src)
 	using.screen_loc = ui_borg_camera
-	using.hud = src
 	static_inventory += using
 
 //Sec/Med HUDs
@@ -141,7 +139,6 @@
 //Borg Integrated Tablet
 	using = new /atom/movable/screen/robot/modPC(src)
 	using.screen_loc = ui_borg_tablet
-	using.hud = src
 	static_inventory += using
 	mymobR.interfaceButton = using
 	if(mymobR.modularInterface)
