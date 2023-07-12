@@ -91,29 +91,29 @@
 	static_inventory += using
 
 //Radio
-	using = new /atom/movable/screen/robot/radio()
+	using = new /atom/movable/screen/robot/radio(src)
 	using.screen_loc = ui_borg_radio
 	static_inventory += using
 
 //Module select
-	using = new /atom/movable/screen/robot/module1()
+	using = new /atom/movable/screen/robot/module1(src)
 	using.screen_loc = ui_inv1
 	static_inventory += using
 	mymobR.inv1 = using
 
-	using = new /atom/movable/screen/robot/module2()
+	using = new /atom/movable/screen/robot/module2(src)
 	using.screen_loc = ui_inv2
 	static_inventory += using
 	mymobR.inv2 = using
 
-	using = new /atom/movable/screen/robot/module3()
+	using = new /atom/movable/screen/robot/module3(src)
 	using.screen_loc = ui_inv3
 	static_inventory += using
 	mymobR.inv3 = using
 
 //End of module select
 
-	using = new /atom/movable/screen/robot/lamp()
+	using = new /atom/movable/screen/robot/lamp(src)
 	using.screen_loc = ui_borg_lamp
 	using.hud = src
 	static_inventory += using
@@ -122,24 +122,24 @@
 	lampscreen.robot = mymobR
 
 //Photography stuff
-	using = new /atom/movable/screen/ai/image_take()
+	using = new /atom/movable/screen/ai/image_take(src)
 	using.screen_loc = ui_borg_camera
 	using.hud = src
 	static_inventory += using
 
 //Sec/Med HUDs
-	using = new /atom/movable/screen/ai/sensors()
+	using = new /atom/movable/screen/ai/sensors(src)
 	using.screen_loc = ui_borg_sensor
 	static_inventory += using
 
 //Thrusters
-	using = new /atom/movable/screen/robot/thrusters()
+	using = new /atom/movable/screen/robot/thrusters(src)
 	using.screen_loc = ui_borg_thrusters
 	static_inventory += using
 	mymobR.thruster_button = using
 
 //Borg Integrated Tablet
-	using = new /atom/movable/screen/robot/modPC()
+	using = new /atom/movable/screen/robot/modPC(src)
 	using.screen_loc = ui_borg_tablet
 	using.hud = src
 	static_inventory += using
@@ -150,32 +150,32 @@
 	tabletbutton.robot = mymobR
 
 //Intent
-	action_intent = new /atom/movable/screen/act_intent/robot()
+	action_intent = new /atom/movable/screen/act_intent/robot(src)
 	action_intent.icon_state = mymob.a_intent
 	static_inventory += action_intent
 
 //Health
-	healths = new /atom/movable/screen/healths/robot()
+	healths = new /atom/movable/screen/healths/robot(src)
 	infodisplay += healths
 
 //Installed Module
-	mymobR.hands = new /atom/movable/screen/robot/module()
+	mymobR.hands = new /atom/movable/screen/robot/module(src)
 	mymobR.hands.screen_loc = ui_borg_module
 	static_inventory += mymobR.hands
 
 //Store
-	module_store_icon = new /atom/movable/screen/robot/store()
+	module_store_icon = new /atom/movable/screen/robot/store(src)
 	module_store_icon.screen_loc = ui_borg_store
 
-	pull_icon = new /atom/movable/screen/pull()
+	pull_icon = new /atom/movable/screen/pull(src)
 	pull_icon.icon = 'icons/mob/screen_cyborg.dmi'
-	pull_icon.update_icon(mymob)
+	pull_icon.update_icon()
 	pull_icon.screen_loc = ui_borg_pull
 	hotkeybuttons += pull_icon
 
 
-	zone_select = new /atom/movable/screen/zone_sel/robot()
-	zone_select.update_icon(mymob)
+	zone_select = new /atom/movable/screen/zone_sel/robot(src)
+	zone_select.update_icon()
 	static_inventory += zone_select
 
 
