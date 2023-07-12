@@ -3,6 +3,7 @@
 	desc = "A specialized heart constructed from nanites that helps coordinate nanites allowing them to regenerate quicker inside the body without any ill effects. Caution this organ will fall apart without nanites to sustain itself!"
 	icon_state = "heart-nanites"
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = ORGANIC | SYNTHETIC
 	var/nanite_boost = 1
 
 /obj/item/organ/heart/nanite/emp_act()

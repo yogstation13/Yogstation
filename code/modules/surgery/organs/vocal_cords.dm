@@ -7,6 +7,7 @@
 	name = "vocal cords"
 	icon_state = "appendix"
 	visual = FALSE
+	process_flags = ORGANIC | SYNTHETIC
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_VOICE
 	gender = PLURAL
@@ -31,6 +32,7 @@
 	desc = "Fragments of adamantine exist in all golems, stemming from their origins as purely magical constructs. These are used to \"hear\" messages from their leaders."
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_ADAMANTINE_RESONATOR
+	process_flags = ORGANIC | SYNTHETIC
 	icon_state = "adamantine_resonator"
 	visual = FALSE
 

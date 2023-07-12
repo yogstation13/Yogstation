@@ -123,6 +123,7 @@
 	desc = "A mysterious structure that allows for instant communication between users. Pretty impressive until you need to eat something."
 	icon_state = "tongueayylmao"
 	say_mod = "gibbers"
+	process_flags = ORGANIC | SYNTHETIC // fuck it, alien technology
 	taste_sensitivity = NO_TASTE_SENSITIVITY // ayys cannot taste anything.
 	modifies_speech = TRUE
 	var/mothership

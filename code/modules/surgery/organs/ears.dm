@@ -120,6 +120,7 @@
 	damage_multiplier = 0.8
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = ORGANIC | SYNTHETIC
 
 /obj/item/organ/ears/penguin
 	name = "penguin ears"
