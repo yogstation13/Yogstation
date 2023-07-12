@@ -1,0 +1,4 @@
+author: "SomeguyManperson"
+delete-after: true 
+changes: 
+  - bugfix: "limbs causing damage to the chest when being hit past full damage no longer causes atmos to explode violently"
