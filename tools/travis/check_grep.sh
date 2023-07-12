@@ -10,7 +10,7 @@ if grep -El '^\".+\" = \(.+\)' _maps/**/*.dmm;	then
     echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
 fi;
-if grep -REl 'list\(.*[^ ]=' --include='*.dmm' _maps;    then
+if grep -REl 'list\(.*[^ ]=' --include='*.dmm' _maps; then
     echo "ERROR: Associative list missing leading and trailing space. Update your mapping tool!"
     st=1
 fi;
