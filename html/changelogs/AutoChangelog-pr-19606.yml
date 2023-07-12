@@ -1,0 +1,8 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "ultra violence revolver damage reduced to 30 and gives less style per damage"
+  - tweak: "ultra violence revolver can ricochet off of any wall once, unless it pierced a mob first"
+  - tweak: "ultra violence revolver bullet gains some damage and speed on ricochet, but loses damage after piercing a mob"
+  - bugfix: "fixed a duplicate definition in ultra_violence.dm"
+  - bugfix: "fixed ultra violence revolver getting stuck to your belt"
