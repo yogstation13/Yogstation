@@ -175,8 +175,8 @@
 				B.cell.charge = 0
 
 
-/obj/machinery/recharger/update_icon(updates=ALL)	//we have an update_appearance(UPDATE_ICON) in addition to the stuff in process to make it feel a tiny bit snappier.
-	cut_overlays()
+/obj/machinery/recharger/update_overlays()
+	. = ..()
 	if(charging)
 		var/mutable_appearance/scan = mutable_appearance(icon, "[initial(icon_state)]filled")
 		var/obj/item/stock_parts/cell/C = charging.get_cell()
@@ -194,7 +194,7 @@
 			scan.color = "#58d0ff"
 		else
 			scan.color = gradient(list(0, "#ff0000", 0.99, "#00ff00", 1, "#cece00"), num)
-		add_overlay(scan)
+		. += scan
 
 /obj/machinery/recharger/wallrecharger
 	name = "wall recharger"

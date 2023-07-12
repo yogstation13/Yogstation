@@ -59,19 +59,17 @@
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/sci_bombardment/update_icon(updates=ALL)
+/obj/machinery/sci_bombardment/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(!powered(power_channel))
-		add_overlay("LAM_radar0")
+		. += "LAM_radar0"
 		set_light(0)
 	else
-		add_overlay("LAM_screen[dest && !locked && !target_delay ? "Targ" : "Idle"]")
-		add_overlay("LAM_radar[target_delay || locked ? "0" : "1"]")
+		. += "LAM_screen[dest && !locked && !target_delay ? "Targ" : "Idle"]"
+		. += "LAM_radar[target_delay || locked ? "0" : "1"]"
 		set_light(2)
 	if(scibomb)
-		add_overlay("LAM_hatch")
-	return
+		. += "LAM_hatch"
 
 /obj/machinery/sci_bombardment/attackby(obj/item/transfer_valve/B, mob/user, params)
 	if(istype(B, /obj/item/transfer_valve) && B.tank_one && B.tank_two)

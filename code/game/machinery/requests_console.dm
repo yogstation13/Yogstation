@@ -75,11 +75,14 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		set_light(0)
 	else
 		set_light(1.4,0.7,"#34D352")//green light
+
+/obj/machinery/requests_console/update_icon_state()
+	. = ..()
 	if(open)
 		if(!hackState)
-			icon_state="req_comp_open"
+			icon_state = "req_comp_open"
 		else
-			icon_state="req_comp_rewired"
+			icon_state = "req_comp_rewired"
 	else if(stat & NOPOWER)
 		if(icon_state != "req_comp_off")
 			icon_state = "req_comp_off"

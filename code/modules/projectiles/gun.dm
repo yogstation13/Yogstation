@@ -643,7 +643,7 @@
 		attachment_overlays += M
 		att_position += 1
 
-	update_icon(TRUE)
+	update_appearance(UPDATE_ICON)
 	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 

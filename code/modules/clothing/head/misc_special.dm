@@ -134,7 +134,7 @@
 
 /obj/item/clothing/head/kitty/equipped(mob/living/carbon/human/user, slot)
 	if(ishuman(user) && slot == ITEM_SLOT_HEAD)
-		update_icon(user)
+		update_appearance(UPDATE_ICON)
 		user.update_inv_head() //Color might have been changed by update_icon.
 		var/datum/language_holder/LH = user.get_language_holder()
 		if(!LH.has_language(/datum/language/felinid) || !LH.can_speak_language(/datum/language/felinid))

@@ -109,6 +109,7 @@
 	using.icon = ui_style
 	using.icon_state = (mymob.m_intent == MOVE_INTENT_RUN ? "running" : "walking")
 	using.screen_loc = ui_movi
+	using.hud = src
 	static_inventory += using
 
 	using = new /atom/movable/screen/drop()
@@ -269,14 +270,17 @@
 	throw_icon = new /atom/movable/screen/throw_catch()
 	throw_icon.icon = ui_style
 	throw_icon.screen_loc = ui_drop_throw
+	throw_icon.hud = src
 	hotkeybuttons += throw_icon
 
 	rest_icon = new /atom/movable/screen/rest()
 	rest_icon.icon = ui_style
 	rest_icon.screen_loc = ui_above_movement
+	rest_icon.hud = src
 	static_inventory += rest_icon
 
 	healths = new /atom/movable/screen/healths()
+	healths.hud = src
 	infodisplay += healths
 
 	stamina = new /atom/movable/screen/stamina()
@@ -284,18 +288,21 @@
 	infodisplay += stamina
 
 	healthdoll = new /atom/movable/screen/healthdoll()
+	healthdoll.hud = src
 	infodisplay += healthdoll
 
 	pull_icon = new /atom/movable/screen/pull()
 	pull_icon.icon = ui_style
 	pull_icon.update_appearance(UPDATE_ICON)
 	pull_icon.screen_loc = ui_above_intent
+	pull_icon.hud = src
 	static_inventory += pull_icon
 
 	devilsouldisplay = new /atom/movable/screen/devil/soul_counter
 	infodisplay += devilsouldisplay
 
 	zone_select =  new /atom/movable/screen/zone_sel()
+	zone_select.hud = src
 	zone_select.icon = ui_style
 	zone_select.update_appearance(UPDATE_ICON)
 	static_inventory += zone_select

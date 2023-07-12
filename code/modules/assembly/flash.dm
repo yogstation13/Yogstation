@@ -45,7 +45,7 @@
 	attack(user,user)
 	return FIRELOSS
 
-/obj/item/assembly/flash/update_icon(flash = FALSE)
+/obj/item/assembly/flash/update_icon(updates=ALL, flash = FALSE)
 	cut_overlays()
 	attached_overlays = list()
 	if(burnt_out)
@@ -120,7 +120,7 @@
 	addtimer(CALLBACK(src, PROC_REF(flash_end)), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	times_used++
 	flash_recharge()
-	update_icon(TRUE)
+	update_icon(flash = TRUE)
 	if(user && !clown_check(user))
 		return FALSE
 	return TRUE
@@ -173,7 +173,7 @@
 		var/mob/living/silicon/robot/R = M
 		if(!R.sensor_protection)
 			log_combat(user, R, "flashed", src)
-			update_icon(1)
+			update_icon(flash = TRUE)
 			R.Paralyze(rand(80,120))
 			R.set_confusion_if_lower(5 SECONDS * CONFUSION_STACK_MAX_MULTIPLIER)
 			R.flash_act(affect_silicon = 1)
@@ -294,7 +294,7 @@
 	addtimer(CALLBACK(src, PROC_REF(flash_end)), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	addtimer(CALLBACK(src, PROC_REF(cooldown)), flashcd)
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
-	update_icon(1)
+	update_icon(flash = TRUE)
 	return TRUE
 
 

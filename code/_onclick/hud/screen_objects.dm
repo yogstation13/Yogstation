@@ -421,7 +421,6 @@
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 	var/overlay_icon = 'icons/mob/screen_gen.dmi'
-	var/selecting = BODY_ZONE_CHEST
 	var/static/list/hover_overlays_cache = list()
 	var/hovering
 
@@ -517,8 +516,8 @@
 	if(isobserver(user))
 		return
 
-	if(choice != selecting)
-		selecting = choice
+	if(choice != hud.mymob.zone_selected)
+		hud.mymob.zone_selected = choice
 		update_appearance(UPDATE_ICON)
 	return 1
 

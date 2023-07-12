@@ -203,12 +203,12 @@
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, span_warning("You short out the access controller."))
 
-/obj/machinery/shieldgen/update_icon(updates=ALL)
+/obj/machinery/shieldgen/update_icon_state()
 	. = ..()
 	if(active)
-		icon_state = (stat & BROKEN) ? "shieldonbr":"shieldon"
+		icon_state = (stat & BROKEN) ? "shieldonbr" : "shieldon"
 	else
-		icon_state = (stat & BROKEN) ? "shieldoffbr":"shieldoff"
+		icon_state = (stat & BROKEN) ? "shieldoffbr" : "shieldoff"
 
 #define ACTIVE_SETUPFIELDS 1
 #define ACTIVE_HASFIELDS 2

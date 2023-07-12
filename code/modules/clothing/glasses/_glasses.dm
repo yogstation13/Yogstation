@@ -338,7 +338,7 @@
 
 /obj/item/clothing/glasses/blindfold/white/equipped(mob/living/carbon/human/user, slot)
 	if(ishuman(user) && slot == ITEM_SLOT_EYES)
-		update_icon(user)
+		update_appearance(UPDATE_ICON)
 		user.update_inv_glasses() //Color might have been changed by update_icon.
 	..()
 

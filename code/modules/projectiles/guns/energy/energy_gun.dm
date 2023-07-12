@@ -163,7 +163,7 @@
 			I.use(1)
 			cell.give(250*charge_multiplier)
 			user.radiation += (75*charge_multiplier) //You are putting you hand into a nuclear reactor to put more uranium in it
-			update_icon(TRUE)
+			update_appearance(UPDATE_ICON)
 		else
 			if(!(previous_loc == user.loc))
 				to_chat(user, span_boldwarning("You move, bumping your hand on [src]'s nulear reactor's core!")) //when I said devoid of ANY safety measures I meant it

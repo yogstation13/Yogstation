@@ -9,7 +9,7 @@
 	var/obj/item/stack/license_plates/empty/current_plate
 	var/pressing = FALSE
 
-/obj/machinery/plate_press/update_icon(updates=ALL)
+/obj/machinery/plate_press/update_icon_state()
 	. = ..()
 	if(!is_operational())
 		icon_state = "offline"

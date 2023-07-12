@@ -317,12 +317,12 @@
 	)
 
 /mob/living/simple_animal/hostile/eldritch/rust_spirit/setDir(newdir)
-    . = ..()
-    if(newdir == NORTH)
-        icon_state = "rust_walker_n"
-    else if(newdir == SOUTH)
-        icon_state = "rust_walker_s"
-    //update_icon(updates=ALL)
+	. = ..()
+	if(newdir == NORTH)
+		icon_state = "rust_walker_n"
+	else if(newdir == SOUTH)
+		icon_state = "rust_walker_s"
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/hostile/eldritch/rust_spirit/Moved()
 	. = ..()

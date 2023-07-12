@@ -49,7 +49,7 @@
 	update_appearance(UPDATE_ICON)
 
 // update the icon_state
-/obj/machinery/magnetic_module/update_icon(updates=ALL)
+/obj/machinery/magnetic_module/update_icon_state()
 	. = ..()
 	var/state="floor_magnet"
 	var/onstate=""
@@ -57,8 +57,9 @@
 		onstate="0"
 
 	if(invisibility)
-		icon_state = "[state][onstate]-f"	// if invisible, set icon to faded version
-											// in case of being revealed by T-scanner
+		// if invisible, set icon to faded version
+		// in case of being revealed by T-scanner
+		icon_state = "[state][onstate]-f"
 	else
 		icon_state = "[state][onstate]"
 

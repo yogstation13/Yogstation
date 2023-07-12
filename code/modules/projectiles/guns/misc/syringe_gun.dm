@@ -142,7 +142,7 @@
 
 /obj/item/gun/syringe/blowgun/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	chambered = new /obj/item/ammo_casing/blowgun(src)
 
 

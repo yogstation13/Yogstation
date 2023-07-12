@@ -75,13 +75,14 @@
 	update_appearance(UPDATE_ICON)
 
 // update the icon_state
-/obj/machinery/navbeacon/update_icon(updates=ALL)
+/obj/machinery/navbeacon/update_icon_state()
 	. = ..()
-	var/state="navbeacon[open]"
+	var/state = "navbeacon[open]"
 
 	if(invisibility)
-		icon_state = "[state]-f"	// if invisible, set icon to faded version
-									// in case revealed by T-scanner
+		// if invisible, set icon to faded version
+		// in case revealed by T-scanner
+		icon_state = "[state]-f"
 	else
 		icon_state = "[state]"
 

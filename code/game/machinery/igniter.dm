@@ -69,7 +69,7 @@
 	wires = new /datum/wires/igniter(src)
 	icon_state = "igniter[on]"
 
-/obj/machinery/igniter/update_icon(updates=ALL)
+/obj/machinery/igniter/update_icon_state()
 	. = ..()
 	if(stat & NOPOWER)
 		icon_state = "igniter0"
