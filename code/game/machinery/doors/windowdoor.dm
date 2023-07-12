@@ -45,7 +45,7 @@
 	electronics = null
 	return ..()
 
-/obj/machinery/door/window/update_icon(updates=ALL)
+/obj/machinery/door/window/update_icon_state()
 	. = ..()
 	if(density)
 		icon_state = base_state

@@ -72,13 +72,12 @@
 	update_appearance(UPDATE_ICON)
 	TimerID = addtimer(CALLBACK(src, PROC_REF(DiscoFever)), 5, TIMER_STOPPABLE)  //Call ourselves every 0.5 seconds to change colors
 
-/obj/structure/discoball/update_icon(updates=ALL)
+/obj/structure/discoball/update_overlays()
 	. = ..()
-	cut_overlays()
 	icon_state = "disco_[TurnedOn]"
 	var/mutable_appearance/base_overlay = mutable_appearance(icon, "ethdisco_base")
 	base_overlay.appearance_flags = RESET_COLOR
-	add_overlay(base_overlay)
+	. += base_overlay
 
 /obj/structure/discoball/wrench_act(mob/living/user, obj/item/I)
 	. = ..()

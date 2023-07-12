@@ -157,7 +157,7 @@
 	colorize(null)
 	active = FALSE
 
-/obj/item/hot_potato/update_icon(updates=ALL)
+/obj/item/hot_potato/update_icon_state()
 	. = ..()
 	icon_state = "[initial(icon_state)]" + "[active ? "_active" : ""]"
 

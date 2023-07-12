@@ -84,7 +84,7 @@
 	busy = FALSE
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/doorButtons/access_button/update_icon(updates=ALL)
+/obj/machinery/doorButtons/access_button/update_icon_state()
 	. = ..()
 	if(stat & NOPOWER)
 		icon_state = "access_button_off"
@@ -244,7 +244,7 @@
 		else if(A.id_tag == idExterior)
 			exteriorAirlock = A
 
-/obj/machinery/doorButtons/airlock_controller/update_icon(updates=ALL)
+/obj/machinery/doorButtons/airlock_controller/update_icon_state()
 	. = ..()
 	if(stat & NOPOWER)
 		icon_state = "access_control_off"

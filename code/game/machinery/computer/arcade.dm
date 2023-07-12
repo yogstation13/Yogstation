@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		return INITIALIZE_HINT_QDEL
 	Reset()
 
-/obj/machinery/computer/arcade/update_icon(updates=ALL)
+/obj/machinery/computer/arcade/update_icon_state()
 	. = ..()
 	if(dir == 2)
 		icon_screen = "invaders"

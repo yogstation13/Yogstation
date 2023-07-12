@@ -77,11 +77,11 @@
 	update_appearance(UPDATE_ICON)
 	return
 
-/obj/machinery/computer/atmos_alert/update_icon(updates=ALL)
+/obj/machinery/computer/atmos_alert/update_overlays()
 	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(priority_alarms.len)
-		add_overlay("alert:2")
+		. += "alert:2"
 	else if(minor_alarms.len)
-		add_overlay("alert:1")
+		. += "alert:1"

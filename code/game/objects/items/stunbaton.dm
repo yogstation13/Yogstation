@@ -102,7 +102,7 @@
 			STOP_PROCESSING(SSobj, src) // no more charge? stop checking for discharge
 
 
-/obj/item/melee/baton/update_icon(updates=ALL)
+/obj/item/melee/baton/update_icon_state()
 	. = ..()
 	if(status)
 		icon_state = "[initial(icon_state)]_active"

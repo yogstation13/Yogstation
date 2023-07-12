@@ -255,7 +255,7 @@
 	new_prog.master = src
 	program = new_prog
 
-/obj/machinery/embedded_controller/radio/airlock_controller/update_icon(updates=ALL)
+/obj/machinery/embedded_controller/radio/airlock_controller/update_icon_state()
 	. = ..()
 	if(on && program)
 		if(program.memory["processing"])

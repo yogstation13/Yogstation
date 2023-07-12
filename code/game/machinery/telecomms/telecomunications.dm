@@ -120,20 +120,23 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 					T.links |= src
 
 
-/obj/machinery/telecomms/update_icon(updates=ALL)
+/obj/machinery/telecomms/update_icon_state()
 	. = ..()
-	cut_overlays()
-	if(on)
-		var/mutable_appearance/on_overlay
-		if(on_icon)
-			on_overlay = mutable_appearance(icon, on_icon)
-		else
-			on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
-		add_overlay(on_overlay)
 	if(panel_open)
 		icon_state = "[initial(icon_state)]_o"
 	else
 		icon_state = initial(icon_state)
+
+/obj/machinery/telecomms/update_overlays()
+	. = ..()
+	if(!on)
+		return
+	var/mutable_appearance/on_overlay
+	if(on_icon)
+		on_overlay = mutable_appearance(icon, on_icon)
+	else
+		on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
+	. += on_overlay
 
 /obj/machinery/telecomms/proc/update_power()
 

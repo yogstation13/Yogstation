@@ -53,7 +53,7 @@
 		new /obj/effect/decal/cleanable/oil(loc)
 	return ..()
 
-/obj/machinery/blackbox_recorder/update_icon(updates=ALL)
+/obj/machinery/blackbox_recorder/update_icon_state()
 	. = ..()
 	if(!stored)
 		icon_state = "blackbox_b"
@@ -157,14 +157,11 @@
 	if(!relay_information(signal, /obj/machinery/telecomms/hub))
 		relay_information(signal, /obj/machinery/telecomms/broadcaster)
 
-/obj/machinery/telecomms/message_server/update_icon(updates=ALL)
+/obj/machinery/telecomms/message_server/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(calibrating && on)
 		var/mutable_appearance/calibrate = mutable_appearance(icon, "message_server_disabled")
-		add_overlay(calibrate)
-	else if (!calibrating && on)
-		return ..()
+		. += calibrate
 
 
 // Root messaging signal datum

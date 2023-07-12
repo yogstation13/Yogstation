@@ -109,7 +109,17 @@
 /obj/machinery/stasis/proc/stasis_running()
 	return stasis_enabled && is_operational()
 
-/obj/machinery/stasis/update_icon(updates=ALL)
+/obj/machinery/stasis/update_icon_state()
+	. = ..()
+	if(stat & BROKEN)
+		icon_state = "stasis_broken"
+		return
+	if(panel_open || stat & MAINT)
+		icon_state = "stasis_maintenance"
+		return
+	icon_state = "stasis"
+
+/obj/machinery/stasis/update_overlays()
 	. = ..()
 	var/_running = stasis_running()
 	var/list/overlays_to_remove = managed_vis_overlays
@@ -126,14 +136,6 @@
 		overlays_to_remove = managed_vis_overlays - mattress_on
 
 	SSvis_overlays.remove_vis_overlay(src, overlays_to_remove)
-
-	if(stat & BROKEN)
-		icon_state = "stasis_broken"
-		return
-	if(panel_open || stat & MAINT)
-		icon_state = "stasis_maintenance"
-		return
-	icon_state = "stasis"
 
 /obj/machinery/stasis/obj_break(damage_flag)
 	. = ..()

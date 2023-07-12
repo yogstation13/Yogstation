@@ -194,14 +194,13 @@
 	if(opened)
 		. += span_notice("Its battery compartment is open.")
 
-/obj/item/inducer/update_icon(updates=ALL)
+/obj/item/inducer/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(opened)
 		if(!cell)
-			add_overlay("inducer-nobat")
+			. += "inducer-nobat"
 		else
-			add_overlay("inducer-bat")
+			. += "inducer-bat"
 
 /obj/item/inducer/sci
 	icon_state = "inducer-sci"

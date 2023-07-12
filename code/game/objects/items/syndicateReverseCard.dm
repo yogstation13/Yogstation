@@ -14,11 +14,10 @@
 	name = "[cardColor] Reverse"
 	icon_state = "sc_[cardColor] Reverse_uno"
 
-/obj/item/syndicateReverseCard/update_icon(updates=ALL)
+/obj/item/syndicateReverseCard/update_overlays()
 	. = ..()
-	if (used)
-		cut_overlays()
-		add_overlay(image('icons/obj/toy.dmi', icon_state = "reverse_overlay"))
+	if(used)
+		. += image('icons/obj/toy.dmi', icon_state = "reverse_overlay")
 
 /obj/item/syndicateReverseCard/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!(attack_type == PROJECTILE_ATTACK))

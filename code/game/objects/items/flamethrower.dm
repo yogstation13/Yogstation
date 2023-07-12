@@ -54,15 +54,14 @@
 		igniter.flamethrower_process(location)
 
 
-/obj/item/flamethrower/update_icon(updates=ALL)
+/obj/item/flamethrower/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(igniter)
-		add_overlay("+igniter[status]")
+		. += "+igniter[status]"
 	if(ptank)
-		add_overlay("+ptank")
+		. += "+ptank"
 	if(lit)
-		add_overlay("+lit")
+		. += "+lit"
 		item_state = "flamethrower_1"
 	else
 		item_state = "flamethrower_0"

@@ -192,7 +192,7 @@
 	embedded_flash.emp_act(severity)
 	update_appearance(UPDATE_ICON)
 
-/obj/item/shield/riot/flash/update_icon(updates=ALL)
+/obj/item/shield/riot/flash/update_icon_state()
 	. = ..()
 	if(!embedded_flash || embedded_flash.burnt_out)
 		icon_state = "riot"

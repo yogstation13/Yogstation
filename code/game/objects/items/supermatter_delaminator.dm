@@ -138,7 +138,7 @@
 		seal()
 		to_chat(user, span_warning("[user] seals the [src]."))
 
-/obj/item/antinoblium_container/update_icon(updates=ALL)
+/obj/item/antinoblium_container/update_icon_state()
 	. = ..()
 	if(sealed)
 		icon_state = "antinoblium_container_sealed"
@@ -161,7 +161,7 @@
 	QDEL_NULL(shard)
 	return ..()
 
-/obj/item/hemostat/antinoblium/update_icon(updates=ALL)
+/obj/item/hemostat/antinoblium/update_icon_state()
 	. = ..()
 	if(shard)
 		icon_state = "antinoblium_tongs_loaded"

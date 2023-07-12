@@ -30,7 +30,7 @@
 		charged++
 	return
 
-/obj/item/twohanded/singularityhammer/update_icon(updates=ALL)  //Currently only here to fuck with the on-mob icons.
+/obj/item/twohanded/singularityhammer/update_icon_state()  //Currently only here to fuck with the on-mob icons.
 	icon_state = "singhammer[wielded]"
 	return
 
@@ -119,6 +119,6 @@
 		else
 			shock(hit_atom)
 
-/obj/item/twohanded/mjollnir/update_icon(updates=ALL)  //Currently only here to fuck with the on-mob icons.
+/obj/item/twohanded/mjollnir/update_icon_state()  //Currently only here to fuck with the on-mob icons.
 	icon_state = "mjollnir[wielded]"
 	return

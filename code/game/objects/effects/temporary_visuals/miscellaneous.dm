@@ -183,7 +183,7 @@
 		if(EAST)
 			icon_state = "beam_splash_e"
 
-/obj/item/projectile/curse_hand/update_icon(updates=ALL)
+/obj/item/projectile/curse_hand/update_icon_state()
 	. = ..()
 	icon_state = "[icon_state][handedness]"
 
@@ -537,7 +537,7 @@
 	else
 		update_appearance(UPDATE_ICON)
 
-/obj/effect/constructing_effect/update_icon(updates=ALL)
+/obj/effect/constructing_effect/update_icon_state()
 	. = ..()
 	icon_state = "rcd"
 	if (delay < 10)

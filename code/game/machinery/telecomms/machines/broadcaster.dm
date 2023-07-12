@@ -57,17 +57,17 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	var/mutable_appearance/sending = mutable_appearance(icon, "broadcaster_send", 1)
 	flick(sending, src)
 
-/obj/machinery/telecomms/broadcaster/update_icon(updates=ALL) // Special fuckery
-	cut_overlays()
+/obj/machinery/telecomms/broadcaster/update_overlays()
+	. = ..()
 	if(on)
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, on_icon, 0)
-		add_overlay(on_overlay)
+		. += on_overlay
 	var/mutable_appearance/base_overlay
 	if(panel_open)
 		base_overlay = mutable_appearance(icon, "[initial(icon_state)]_o")
 	else
 		base_overlay = mutable_appearance(icon, initial(icon_state))
-	add_overlay(base_overlay)
+	. += base_overlay
 
 /obj/machinery/telecomms/broadcaster/Destroy()
 	// In case message_delay is left on 1, otherwise it won't reset the list and people can't say the same thing twice anymore.

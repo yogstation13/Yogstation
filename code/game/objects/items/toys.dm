@@ -104,7 +104,7 @@
 		icon_state = "burst"
 		qdel(src)
 
-/obj/item/toy/balloon/update_icon(updates=ALL)
+/obj/item/toy/balloon/update_icon_state()
 	. = ..()
 	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
@@ -240,9 +240,9 @@
 	materials = list(/datum/material/iron=10, /datum/material/glass=10)
 	var/amount_left = 7
 
-/obj/item/toy/ammo/gun/update_icon(updates=ALL)
+/obj/item/toy/ammo/gun/update_icon_state()
 	. = ..()
-	src.icon_state = text("357OLD-[]", src.amount_left)
+	icon_state = text("357OLD-[]", amount_left)
 
 /obj/item/toy/ammo/gun/examine(mob/user)
 	. = ..()
@@ -410,7 +410,7 @@
 		icon_state = "vxtvul_hammer_pirate0-0"
 		update_appearance(UPDATE_ICON)
 
-/obj/item/twohanded/vxtvulhammer/toy/update_icon(updates=ALL)
+/obj/item/twohanded/vxtvulhammer/toy/update_icon_state()
 	. = ..()
 	if(!pirated)
 		icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
@@ -809,7 +809,7 @@
 		drawsize=clamp(drawsize,1,min(cards.len,10))
 		draw_card(L,drawsize)
 
-/obj/item/toy/cards/deck/update_icon(updates=ALL)
+/obj/item/toy/cards/deck/update_icon_state()
 	. = ..()
 	if(cards.len > 26)
 		icon_state = "deck_[deckstyle]_full"
@@ -982,20 +982,21 @@
 	. = ..()
 	. += "<span class='notice'>This hand has [currenthand.len] cards in it.<span>"
 
-/obj/item/toy/cards/cardhand/update_icon(updates=ALL)
+/obj/item/toy/cards/cardhand/update_icon_state()
 	. = ..()
-	if(src.currenthand.len > 4)
-		src.icon_state = "[deckstyle]_hand5"
+	if(currenthand.len > 4)
+		icon_state = "[deckstyle]_hand5"
 	else
-		src.icon_state = "[deckstyle]_hand[currenthand.len]"
-	//radial menu stuff
-	cut_overlays()
+		icon_state = "[deckstyle]_hand[currenthand.len]"
+
+/obj/item/toy/cards/cardhand/update_overlays()
+	. = ..()
 	var/overlay_cards = currenthand.len
 
 	var/k = overlay_cards == 2 ? 1 : overlay_cards - 2
 	for(var/i = k; i <= overlay_cards; i++)
 		var/card_overlay = image(icon=src.icon,icon_state="sc_[currenthand[i]]_[deckstyle]",pixel_x=(1-i+k)*3,pixel_y=(1-i+k)*3)
-		add_overlay(card_overlay)
+		. += card_overlay
 
 /obj/item/toy/cards/singlecard
 	name = "card"
@@ -1147,7 +1148,7 @@
 		cards += "Wildcard"
 		cards += "Wild Draw Four"
 
-/obj/item/toy/cards/deck/uno/update_icon(updates=ALL)
+/obj/item/toy/cards/deck/uno/update_icon_state()
 	. = ..()
 	if(cards.len > 54)
 		icon_state = "deck_[deckstyle]_full"
@@ -1688,7 +1689,7 @@ obj/item/toy/turn_tracker
 	book_open = !book_open
 	update_appearance(UPDATE_ICON)
 
-/obj/item/toy/eldritch_book/update_icon(updates=ALL)
+/obj/item/toy/eldritch_book/update_icon_state()
 	. = ..()
 	icon_state = book_open ? "book_open" : "book"
 

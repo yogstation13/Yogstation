@@ -252,12 +252,11 @@
 		tank = thetank
 	update_appearance(UPDATE_ICON)
 
-/obj/item/pneumatic_cannon/update_icon(updates=ALL)
+/obj/item/pneumatic_cannon/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(!tank)
 		return
-	add_overlay(tank.icon_state)
+	. += tank.icon_state
 
 /obj/item/pneumatic_cannon/proc/fill_with_type(type, amount)
 	if(!ispath(type, /obj) && !ispath(type, /mob))

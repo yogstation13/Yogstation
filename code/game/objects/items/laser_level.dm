@@ -29,10 +29,9 @@
 	update_appearance(UPDATE_ICON)
 	update_overlay(user)
 
-/obj/item/laserlevel/update_icon(updates=ALL)
+/obj/item/laserlevel/update_overlays()
 	. = ..()
-	cut_overlays()
-	add_overlay("[initial(icon_state)][lightlevel]")
+	. += "[initial(icon_state)][lightlevel]"
 
 /obj/item/laserlevel/proc/update_overlay(mob/user)
 	user.clear_fullscreen("laser",0)

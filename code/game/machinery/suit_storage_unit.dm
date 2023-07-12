@@ -144,30 +144,29 @@
 	QDEL_NULL(storage)
 	return ..()
 
-/obj/machinery/suit_storage_unit/update_icon(updates=ALL)
+/obj/machinery/suit_storage_unit/update_overlays()
 	. = ..()
-	cut_overlays()
 
 	if(uv)
 		if(uv_super)
-			add_overlay("super")
+			. += "super"
 		else if(occupant)
-			add_overlay("uvhuman")
+			. += "uvhuman"
 		else
-			add_overlay("uv")
+			. += "uv"
 	else if(state_open)
 		if(stat & BROKEN)
-			add_overlay("broken")
+			. += "broken"
 		else
-			add_overlay("open")
+			. += "open"
 			if(suit)
-				add_overlay("suit")
+				. += "suit"
 			if(helmet)
-				add_overlay("helm")
+				. += "helm"
 			if(storage)
-				add_overlay("storage")
+				. += "storage"
 	else if(occupant)
-		add_overlay("human")
+		. += "human"
 
 /obj/machinery/suit_storage_unit/power_change()
 	if(!is_operational() && state_open)

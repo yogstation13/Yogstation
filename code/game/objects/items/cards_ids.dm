@@ -40,14 +40,13 @@
 	.=..()
 	update_appearance(UPDATE_ICON)
 
-/obj/item/card/data/update_icon(updates=ALL)
+/obj/item/card/data/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(detail_color == COLOR_FLOORTILE_GRAY)
 		return
 	var/mutable_appearance/detail_overlay = mutable_appearance('icons/obj/card.dmi', "[icon_state]-color")
 	detail_overlay.color = detail_color
-	add_overlay(detail_overlay)
+	. += detail_overlay
 
 /obj/item/card/data/full_color
 	desc = "A plastic magstripe card for simple and speedy data storage and transfer. This one has the entire card colored."

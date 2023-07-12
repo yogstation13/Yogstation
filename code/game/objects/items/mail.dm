@@ -217,7 +217,7 @@
 	desc = "A certified post crate from CentCom."
 	icon_state = "mail"
 
-/obj/structure/closet/crate/mail/update_icon(updates=ALL)
+/obj/structure/closet/crate/mail/update_icon_state()
 	. = ..()
 	if(opened)
 		icon_state = "[initial(icon_state)]open"

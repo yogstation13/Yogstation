@@ -51,10 +51,6 @@
 		paddles.extinguish()
 
 /obj/item/defibrillator/update_icon(updates=ALL)
-	update_power()
-	return ..()
-
-/obj/item/defibrillator/proc/update_power()
 	if(!QDELETED(cell))
 		if(QDELETED(paddles) || cell.charge < paddles.revivecost)
 			powered = FALSE
@@ -62,6 +58,7 @@
 			powered = TRUE
 	else
 		powered = FALSE
+	return ..()
 
 /obj/item/defibrillator/update_overlays()
 	. = ..()
@@ -359,7 +356,7 @@
 		busy = FALSE
 		update_appearance(UPDATE_ICON)
 
-/obj/item/twohanded/shockpaddles/update_icon(updates=ALL)
+/obj/item/twohanded/shockpaddles/update_icon_state()
 	. = ..()
 	icon_state = "defibpaddles[wielded]"
 	item_state = "defibpaddles[wielded]"

@@ -22,7 +22,7 @@
 /obj/item/holochip/get_item_credit_value()
 	return credits
 
-/obj/item/holochip/update_icon(updates=ALL)
+/obj/item/holochip/update_icon_state()
 	. = ..()
 	name = "\improper [credits] credit holochip"
 	var/rounded_credits = credits
@@ -38,6 +38,9 @@
 		if(1000000000 to INFINITY)
 			icon_state = "holochip_giga"
 			rounded_credits = round(rounded_credits * 0.000000001)
+
+/obj/item/holochip/update_overlays()
+	. = ..()
 	var/overlay_color = "#914792"
 	switch(rounded_credits)
 		if(0 to 4)
@@ -56,10 +59,9 @@
 			overlay_color = "#0153C1"
 		if(500 to INFINITY)
 			overlay_color = "#2C2C2C"
-	cut_overlays()
 	var/mutable_appearance/holochip_overlay = mutable_appearance('icons/obj/economy.dmi', "[icon_state]-color")
 	holochip_overlay.color = overlay_color
-	add_overlay(holochip_overlay)
+	. += holochip_overlay
 
 /obj/item/holochip/proc/spend(amount, pay_anyway = FALSE)
 	if(credits >= amount)

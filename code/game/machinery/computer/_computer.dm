@@ -54,11 +54,10 @@
 		icon_state = initial(icon_state)
 		update_appearance(UPDATE_ICON)
 
-/obj/machinery/computer/update_icon(updates=ALL)
+/obj/machinery/computer/update_overlays()
 	. = ..()
-	cut_overlays()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	//Prevents fuckery with subtypes that are meant to be pixel shifted or map shifted shit
 	if(pixel_x == 0 && pixel_y == 0)
 		// this bit of code makes the computer hug the wall its next to
@@ -86,9 +85,9 @@
 				pixel_y = offet_matrix[2]
 		
 	if(stat & NOPOWER)
-		add_overlay("[icon_keyboard]_off")
+		. += "[icon_keyboard]_off"
 		return
-	add_overlay(icon_keyboard)
+	. += icon_keyboard
 
 	// This whole block lets screens ignore lighting and be visible even in the darkest room
 	var/overlay_state = icon_screen

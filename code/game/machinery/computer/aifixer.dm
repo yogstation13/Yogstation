@@ -77,21 +77,20 @@
 			if(oldstat != occupier.stat)
 				update_appearance(UPDATE_ICON)
 
-/obj/machinery/computer/aifixer/update_icon(updates=ALL)
+/obj/machinery/computer/aifixer/update_overlays()
 	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
-	else
-		if(restoring)
-			add_overlay("ai-fixer-on")
-		if (occupier)
-			switch (occupier.stat)
-				if (0)
-					add_overlay("ai-fixer-full")
-				if (2)
-					add_overlay("ai-fixer-404")
-		else
-			add_overlay("ai-fixer-empty")
+	if(restoring)
+		. += "ai-fixer-on"
+	if(!occupier)
+		. += "ai-fixer-empty"
+		return
+	switch(occupier.stat)
+		if(0)
+			. += "ai-fixer-full"
+		if(2)
+			. += "ai-fixer-404"
 
 /obj/machinery/computer/aifixer/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
 	if(!..())

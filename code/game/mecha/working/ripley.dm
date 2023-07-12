@@ -39,15 +39,15 @@
 	..()
 	update_appearance(UPDATE_ICON)
 
-/obj/mecha/working/ripley/update_icon(updates=ALL)
+/obj/mecha/working/ripley/update_overlays()
 	. = ..()
 	var/datum/component/armor_plate/C = GetComponent(/datum/component/armor_plate)
-	if (C.amount)
-		cut_overlays()
-		if(C.amount < 3)
-			add_overlay(occupant ? "ripley-g" : "ripley-g-open")
-		else
-			add_overlay(occupant ? "ripley-g-full" : "ripley-g-full-open")
+	if(!C || !C.amount)
+		return
+	if(C.amount < 3)
+		. += (occupant ? "ripley-g" : "ripley-g-open")
+	else
+		. += (occupant ? "ripley-g-full" : "ripley-g-full-open")
 
 /obj/mecha/working/ripley/check_for_internal_damage(list/possible_int_damage,ignore_threshold=null)
 	if (!enclosed)

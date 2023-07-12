@@ -5,13 +5,12 @@
 	icon_state = "ashtray"
 	var/max_butts = 10
 
-/obj/item/ashtray/update_icon(updates=ALL)
+/obj/item/ashtray/update_overlays()
 	. = ..()
-	overlays.Cut()
 	if(contents.len == max_butts)
-		add_overlay(image('icons/obj/objects.dmi',"ashtray_full"))
+		. += image('icons/obj/objects.dmi', "ashtray_full")
 	else if(contents.len >= max_butts * 0.5)
-		add_overlay(image('icons/obj/objects.dmi',"ashtray_half"))
+		. += image('icons/obj/objects.dmi', "ashtray_half")
 
 /obj/item/ashtray/attackby(obj/item/W, mob/user)
 	if (user.a_intent == INTENT_HARM)

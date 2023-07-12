@@ -316,12 +316,10 @@
 // if timing=true, run update display function
 /obj/machinery/door_timer/update_icon(updates=ALL)
 	. = ..()
-	if(stat & (NOPOWER))
-		icon_state = "frame"
+	if(stat & BROKEN)
 		return
-
-	if(stat & (BROKEN))
-		set_picture("ai_bsod")
+	if(stat & NOPOWER)
+		icon_state = "frame"
 		return
 
 	if(timing)
@@ -331,16 +329,18 @@
 		if(length(disp2) > CHARS_PER_LINE)
 			disp2 = "Error"
 		update_display(disp1, disp2)
-	else
-		if(maptext)
-			maptext = ""
-
-// Adds an icon in case the screen is broken/off, stolen from status_display.dm
-/obj/machinery/door_timer/proc/set_picture(state)
+		return
 	if(maptext)
 		maptext = ""
-	cut_overlays()
-	add_overlay(mutable_appearance('icons/obj/status_display.dmi', state))
+
+// Adds an icon in case the screen is broken/off, stolen from status_display.dm
+/obj/machinery/door_timer/update_overlays()
+	. = ..()
+	if(!(stat & BROKEN))
+		return
+	if(maptext)
+		maptext = ""
+	 . += mutable_appearance('icons/obj/status_display.dmi', state)
 
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display

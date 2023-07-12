@@ -513,7 +513,7 @@
 		playsound(user, 'sound/items/sheath.ogg', 25, TRUE)
 		update_appearance(UPDATE_ICON)
 		
-/obj/item/nullrod/dualsword/update_icon(updates=ALL)
+/obj/item/nullrod/dualsword/update_icon_state()
 	. = ..()
 	item_state = swords ? "fulldual" : "emptydual"
 	icon_state = item_state

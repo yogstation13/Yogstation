@@ -208,10 +208,9 @@
 	else if(!src.throwing) //Dice was thrown and is coming to rest
 		visible_message(span_notice("[src] rolls to a stop, landing on [result]. [comment]"))
 
-/obj/item/dice/update_icon(updates=ALL)
+/obj/item/dice/update_overlays()
 	. = ..()
-	cut_overlays()
-	add_overlay("[src.icon_state]-[src.result]")
+	. += "[src.icon_state]-[src.result]"
 
 /obj/item/dice/microwave_act(obj/machinery/microwave/M)
 	if(microwave_riggable)

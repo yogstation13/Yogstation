@@ -34,7 +34,7 @@
 	QDEL_NULL(countdown)
 	. = ..()
 
-/obj/machinery/transformer/update_icon(updates=ALL)
+/obj/machinery/transformer/update_icon_state()
 	. = ..()
 	if(stat & (BROKEN|NOPOWER) || cooldown == 1)
 		icon_state = "separator-AO0"

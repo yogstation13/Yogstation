@@ -550,11 +550,10 @@
 	new /obj/item/toy/crayon/black(src)
 	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/crayons/update_icon(updates=ALL)
+/obj/item/storage/crayons/update_overlays()
 	. = ..()
-	cut_overlays()
 	for(var/obj/item/toy/crayon/crayon in contents)
-		add_overlay(mutable_appearance('icons/obj/crayons.dmi', crayon.crayon_color))
+		. += mutable_appearance('icons/obj/crayons.dmi', crayon.crayon_color)
 
 /obj/item/storage/crayons/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/toy/crayon))
@@ -703,14 +702,16 @@
 
 	. = ..()
 
-/obj/item/toy/crayon/spraycan/update_icon(updates=ALL)
+/obj/item/toy/crayon/spraycan/update_icon_state()
 	. = ..()
 	icon_state = is_capped ? icon_capped : icon_uncapped
+
+/obj/item/toy/crayon/spraycan/update_overlays()
+	. = ..()
 	if(use_overlays)
-		cut_overlays()
 		var/mutable_appearance/spray_overlay = mutable_appearance('icons/obj/crayons.dmi', "[is_capped ? "spraycan_cap_colors" : "spraycan_colors"]")
 		spray_overlay.color = paint_color
-		add_overlay(spray_overlay)
+		. += spray_overlay
 
 /obj/item/toy/crayon/spraycan/attackby(obj/item/S,mob/user)
 	if(S.is_sharp() || istype(S, /obj/item/screwdriver) || istype(S, /obj/item/surgicaldrill))

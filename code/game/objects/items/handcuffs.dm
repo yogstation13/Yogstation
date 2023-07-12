@@ -266,7 +266,7 @@
 	. = ..()
 	update_appearance(UPDATE_ICON)
 
-/obj/item/restraints/legcuffs/beartrap/update_icon(updates=ALL)
+/obj/item/restraints/legcuffs/beartrap/update_icon_state()
 	. = ..()
 	icon_state = "[initial(icon_state)][armed]"
 

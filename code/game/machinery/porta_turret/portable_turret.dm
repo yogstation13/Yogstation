@@ -97,27 +97,25 @@
 	if(!has_cover)
 		INVOKE_ASYNC(src, PROC_REF(popUp))
 
-/obj/machinery/porta_turret/update_icon(updates=ALL)
+/obj/machinery/porta_turret/update_icon_state()
 	. = ..()
-	cut_overlays()
 	if(!anchored)
 		icon_state = "turretCover"
 		return
 	if(stat & BROKEN)
 		icon_state = "[base_icon_state]_broken"
-	else
-		if(powered())
-			if(on && raised)
-				switch(mode)
-					if(TURRET_STUN)
-						icon_state = "[base_icon_state]_stun"
-					if(TURRET_LETHAL)
-						icon_state = "[base_icon_state]_lethal"
-			else
-				icon_state = "[base_icon_state]_off"
-		else
-			icon_state = "[base_icon_state]_unpowered"
-
+		return
+	if(!powered())
+		icon_state = "[base_icon_state]_unpowered"
+		return
+	if(!on || !raised)
+		icon_state = "[base_icon_state]_off"
+		return
+	switch(mode)
+		if(TURRET_STUN)
+			icon_state = "[base_icon_state]_stun"
+		if(TURRET_LETHAL)
+			icon_state = "[base_icon_state]_lethal"
 
 /obj/machinery/porta_turret/proc/setup(obj/item/gun/turret_gun)
 	if(stored_gun)
@@ -937,17 +935,18 @@
 		aTurret.setState(enabled, lethal)
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/turretid/update_icon(updates=ALL)
+/obj/machinery/turretid/update_icon_state()
 	. = ..()
 	if(stat & NOPOWER)
 		icon_state = "control_off"
-	else if (enabled)
-		if (lethal)
-			icon_state = "control_kill"
-		else
-			icon_state = "control_stun"
-	else
+		return
+	if(!enabled)
 		icon_state = "control_standby"
+		return
+	if(lethal)
+		icon_state = "control_kill"
+	else
+		icon_state = "control_stun"
 
 /obj/item/wallframe/turret_control
 	name = "turret control frame"

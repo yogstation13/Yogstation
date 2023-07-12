@@ -90,7 +90,7 @@
 	QDEL_NULL(wiring_gui_menu)
 	return ..()
 
-/obj/item/twohanded/rcl/update_icon(updates=ALL)
+/obj/item/twohanded/rcl/update_icon_state()
 	. = ..()
 	if(!loaded)
 		icon_state = "rcl-0"
@@ -316,7 +316,7 @@
 	name = "makeshift rapid cable layer"
 	ghetto = TRUE
 
-/obj/item/twohanded/rcl/ghetto/update_icon(updates=ALL)
+/obj/item/twohanded/rcl/ghetto/update_icon_state()
 	. = ..()
 	if(!loaded)
 		icon_state = "rclg-0"

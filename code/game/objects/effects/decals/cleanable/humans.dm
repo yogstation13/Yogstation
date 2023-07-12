@@ -225,23 +225,22 @@
 				update_appearance(UPDATE_ICON)
 
 
-/obj/effect/decal/cleanable/blood/footprints/update_icon(updates=ALL)
+/obj/effect/decal/cleanable/blood/footprints/update_overlays()
 	. = ..()
-	cut_overlays()
 
 	for(var/Ddir in GLOB.cardinals)
 		if(entered_dirs & Ddir)
 			var/image/bloodstep_overlay = GLOB.bloody_footprints_cache["entered-[blood_state]-[Ddir]"]
 			if(!bloodstep_overlay)
 				GLOB.bloody_footprints_cache["entered-[blood_state]-[Ddir]"] = bloodstep_overlay = image(icon, "[blood_state]1", dir = Ddir)
-			add_overlay(bloodstep_overlay)
+			. += bloodstep_overlay
 		if(exited_dirs & Ddir)
 			var/image/bloodstep_overlay = GLOB.bloody_footprints_cache["exited-[blood_state]-[Ddir]"]
 			if(!bloodstep_overlay)
 				GLOB.bloody_footprints_cache["exited-[blood_state]-[Ddir]"] = bloodstep_overlay = image(icon, "[blood_state]2", dir = Ddir)
-			add_overlay(bloodstep_overlay)
+			. += bloodstep_overlay
 
-	alpha = BLOODY_FOOTPRINT_BASE_ALPHA+bloodiness
+	alpha = BLOODY_FOOTPRINT_BASE_ALPHA + bloodiness
 
 
 /obj/effect/decal/cleanable/blood/footprints/examine(mob/user)

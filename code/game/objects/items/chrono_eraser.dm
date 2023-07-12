@@ -57,6 +57,7 @@
 	var/turf/startpos = null
 
 /obj/item/gun/energy/chrono_gun/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CHRONO_GUN_TRAIT)
 	if(istype(loc, /obj/item/chrono_eraser))
@@ -64,10 +65,6 @@
 	else //admin must have spawned it
 		TED = new(src.loc)
 		return INITIALIZE_HINT_QDEL
-
-/obj/item/gun/energy/chrono_gun/update_icon(updates=ALL)
-	. = ..()
-	return
 
 /obj/item/gun/energy/chrono_gun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(field)
