@@ -454,12 +454,11 @@
 		STOP_PROCESSING(SSobj, src)
 	update_appearance(UPDATE_ICON)
 
-/obj/item/borg/upgrade/selfrepair/update_icon(updates=ALL)
+/obj/item/borg/upgrade/selfrepair/update_icon_state()
 	. = ..()
 	if(cyborg)
 		icon_state = "selfrepair_[on ? "on" : "off"]"
-		for(var/X in actions)
-			var/datum/action/A = X
+		for(var/datum/action/A as anything in actions)
 			A.build_all_button_icons()
 	else
 		icon_state = "cyborg_upgrade5"

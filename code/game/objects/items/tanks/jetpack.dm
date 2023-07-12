@@ -60,15 +60,17 @@
 	if(full_speed)
 		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=jetspeed, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 
-/obj/item/tank/jetpack/update_icon(updates=ALL)
+/obj/item/tank/jetpack/update_icon_state()
 	. = ..()
-	icon_state = initial(icon_state)
 	if(!classic && on) //does the jetpack have its own on sprite?
 		icon_state = "[initial(icon_state)]-on"
-	else //or does it use the classic overlay
-		cut_overlays()
-		if(on)
-			add_overlay("on_overlay")
+	else
+		icon_state = initial(icon_state)
+
+/obj/item/tank/jetpack/update_overlays()
+	. = ..()
+	if(classic && on)
+		. += "on_overlay"
 
 /obj/item/tank/jetpack/proc/turn_off(mob/user)
 	on = FALSE

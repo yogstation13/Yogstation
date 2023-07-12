@@ -29,7 +29,7 @@
 	for(var/i = 1 to STR.max_items)
 		new spawn_type(src)
 
-/obj/item/storage/box/fancy/update_icon(updates=ALL)
+/obj/item/storage/box/fancy/update_icon_state()
 	. = ..()
 	if(fancy_open)
 		icon_state = "[icon_type]box[contents.len]"
@@ -197,31 +197,28 @@
 	else
 		to_chat(user, span_notice("There are no [icon_type]s left in the pack."))
 
-/obj/item/storage/box/fancy/cigarettes/update_icon(updates=ALL)
+/obj/item/storage/box/fancy/cigarettes/update_overlays()
 	. = ..()
-	if(fancy_open || !contents.len)
-		cut_overlays()
-		if(!contents.len)
-			icon_state = "[initial(icon_state)]_empty"
-		else
-			icon_state = initial(icon_state)
-			add_overlay("[icon_state]_open")
-			var/cig_position = 1
-			for(var/C in contents)
-				var/mutable_appearance/inserted_overlay = mutable_appearance(icon)
-
-				if(istype(C, /obj/item/lighter/greyscale))
-					inserted_overlay.icon_state = "lighter_in"
-				else if(istype(C, /obj/item/lighter))
-					inserted_overlay.icon_state = "zippo_in"
-				else
-					inserted_overlay.icon_state = "cigarette"
-
-				inserted_overlay.icon_state = "[inserted_overlay.icon_state]_[cig_position]"
-				add_overlay(inserted_overlay)
-				cig_position++
+	if(!fancy_open && contents.len)
+		return
+	if(!contents.len)
+		icon_state = "[initial(icon_state)]_empty"
 	else
-		cut_overlays()
+		icon_state = initial(icon_state)
+		. += "[icon_state]_open"
+		var/cig_position = 1
+
+		for(var/C in contents)
+			var/mutable_appearance/inserted_overlay = mutable_appearance(icon)
+			if(istype(C, /obj/item/lighter/greyscale))
+				inserted_overlay.icon_state = "lighter_in"
+			else if(istype(C, /obj/item/lighter))
+				inserted_overlay.icon_state = "zippo_in"
+			else
+				inserted_overlay.icon_state = "cigarette"
+			inserted_overlay.icon_state = "[inserted_overlay.icon_state]_[cig_position]"
+			. += inserted_overlay
+			cig_position++
 
 /obj/item/storage/box/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!ismob(M))
@@ -378,11 +375,10 @@
 	for(var/i in 1 to 10)
 		new /obj/item/rollingpaper(src)
 
-/obj/item/storage/box/fancy/rollingpapers/update_icon(updates=ALL)
+/obj/item/storage/box/fancy/rollingpapers/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(!contents.len)
-		add_overlay("[icon_state]_empty")
+		. += "[icon_state]_empty"
 
 /////////////
 //CIGAR BOX//
@@ -407,20 +403,22 @@
 	for(var/i in 1 to 5)
 		new /obj/item/clothing/mask/cigarette/cigar(src)
 
-/obj/item/storage/box/fancy/cigarettes/cigars/update_icon(updates=ALL)
+/obj/item/storage/box/fancy/cigarettes/cigars/update_icon_state()
 	. = ..()
-	cut_overlays()
 	if(fancy_open)
 		icon_state = "[initial(icon_state)]_open"
-
-		var/cigar_position = 1 //generate sprites for cigars in the box
-		for(var/obj/item/clothing/mask/cigarette/cigar/smokes in contents)
-			var/mutable_appearance/cigar_overlay = mutable_appearance(icon, "[smokes.icon_off]_[cigar_position]")
-			add_overlay(cigar_overlay)
-			cigar_position++
-
 	else
 		icon_state = "[initial(icon_state)]"
+
+/obj/item/storage/box/fancy/cigarettes/cigars/update_overlays()
+	. = ..()
+	if(!fancy_open)
+		return
+	var/cigar_position = 1 //generate sprites for cigars in the box
+	for(var/obj/item/clothing/mask/cigarette/cigar/smokes in contents)
+		var/mutable_appearance/cigar_overlay = mutable_appearance(icon, "[smokes.icon_off]_[cigar_position]")
+		. += cigar_overlay
+		cigar_position++
 
 /obj/item/storage/box/fancy/cigarettes/cigars/cohiba
 	name = "\improper Cohiba Robusto cigar case"

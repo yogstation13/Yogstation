@@ -74,10 +74,10 @@
 	else
 		w_class = full_w_class
 
-/obj/item/stack/update_icon(updates=ALL)
+/obj/item/stack/update_icon_state()
 	. = ..()
 	if(novariants)
-		return ..()
+		return
 	if(amount <= (max_amount * (1/3)))
 		icon_state = initial(icon_state)
 	else if (amount <= (max_amount * (2/3)))

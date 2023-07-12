@@ -49,11 +49,10 @@
 	user.visible_message(span_suicide("[user] attempts to put [user.p_their()] head into \the [src], but realizes [user.p_their()] has no head!"))
 	return SHAME
 
-/obj/item/storage/box/update_icon(updates=ALL)
+/obj/item/storage/box/update_overlays()
 	. = ..()
 	if(illustration)
-		cut_overlays()
-		add_overlay(illustration)
+		. += illustration
 
 /obj/item/storage/box/attack_self(mob/user)
 	..()
@@ -984,7 +983,7 @@
 	foldable = null
 	var/design = NODESIGN
 
-/obj/item/storage/box/papersack/update_icon(updates=ALL)
+/obj/item/storage/box/papersack/update_icon_state()
 	. = ..()
 	if(contents.len == 0)
 		icon_state = "[item_state]"

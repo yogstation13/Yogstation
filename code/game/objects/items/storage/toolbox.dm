@@ -30,11 +30,10 @@
 				latches = "triple_latch"
 	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/toolbox/update_icon(updates=ALL)
+/obj/item/storage/toolbox/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(has_latches)
-		add_overlay(latches)
+		. += latches
 
 
 /obj/item/storage/toolbox/suicide_act(mob/user)

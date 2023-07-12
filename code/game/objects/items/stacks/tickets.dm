@@ -12,7 +12,7 @@
 	. = ..()
 	update_appearance(UPDATE_ICON)
 
-/obj/item/stack/arcadeticket/update_icon(updates=ALL)
+/obj/item/stack/arcadeticket/update_icon_state()
 	. = ..()
 	var/amount = get_amount()
 	if((amount >= 12) && (amount > 0))

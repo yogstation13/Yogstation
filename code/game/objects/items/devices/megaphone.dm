@@ -46,15 +46,14 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), recharge_time)
 	return TRUE
 
-/obj/item/megaphone/update_icon(updates=ALL)
+/obj/item/megaphone/update_overlays()
 	. = ..()
-	cut_overlays()
 	var/mutable_appearance/base_overlay
 	if(last_used > world.time)
 		base_overlay = mutable_appearance(icon, "megaphone_recharging")
 	else
 		base_overlay = mutable_appearance(icon, "megaphone_charged")
-	add_overlay(base_overlay)
+	. += base_overlay
 
 /obj/item/megaphone/proc/handle_speech(mob/living/carbon/user, list/speech_args)
 	if (user.get_active_held_item() == src)

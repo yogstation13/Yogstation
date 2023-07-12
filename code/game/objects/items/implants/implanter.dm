@@ -15,7 +15,7 @@
 	var/imp_type = null
 
 
-/obj/item/implanter/update_icon(updates=ALL)
+/obj/item/implanter/update_icon_state()
 	. = ..()
 	if(imp)
 		icon_state = "implanter1"

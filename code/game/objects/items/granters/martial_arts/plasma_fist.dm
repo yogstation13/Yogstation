@@ -18,18 +18,29 @@
 
 /obj/item/book/granter/martial/plasma_fist/on_reading_finished(mob/living/carbon/user)
 	. = ..()
-	update_appearance(UPDATE_ICON)
+	update_appearance()
 
-/obj/item/book/granter/martial/plasma_fist/update_icon(updates=ALL)
+/obj/item/book/granter/martial/plasma_fist/update_name(updates)
 	. = ..()
 	if(uses <= 0)
 		name = "empty scroll"
-		desc = "It's completely blank."
-		icon_state = "blankscroll"
 	else
 		name = initial(name)
+
+/obj/item/book/granter/martial/plasma_fist/update_desc(updates)
+	. = ..()
+	if(uses <= 0)
+		desc = "It's completely blank."
+	else
 		desc = initial(desc)
+
+/obj/item/book/granter/martial/plasma_fist/update_icon_state()
+	. = ..()
+	if(uses <= 0)
+		icon_state = "blankscroll"
+	else
 		icon_state = initial(icon_state)
+
 
 /*/obj/item/book/granter/martial/plasma_fist/nobomb
 	martial = /datum/martial_art/plasma_fist/nobomb

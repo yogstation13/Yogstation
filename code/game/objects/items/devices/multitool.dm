@@ -77,7 +77,7 @@
 	if(hud_on)
 		remove_hud(user)
 
-/obj/item/multitool/ai_detect/update_icon(updates=ALL)
+/obj/item/multitool/ai_detect/update_icon_state()
 	. = ..()
 	icon_state = "[initial(icon_state)][detect_state]"
 

@@ -23,7 +23,7 @@
 	merge_type = /obj/item/stack/license_plates/filled
 
 ///Override to allow for variations
-/obj/item/stack/license_plates/filled/update_icon(updates=ALL)
+/obj/item/stack/license_plates/filled/update_icon_state()
 	. = ..()
 	if(novariants)
 		return

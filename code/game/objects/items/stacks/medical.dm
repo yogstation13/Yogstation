@@ -362,10 +362,10 @@
 		is_open = FALSE
 		update_appearance(UPDATE_ICON)
 
-/obj/item/stack/medical/mesh/update_icon(updates=ALL)
+/obj/item/stack/medical/mesh/update_icon_state()
 	. = ..()
 	if(is_open)
-		return ..()
+		return
 	icon_state = "regen_mesh_closed"
 
 /obj/item/stack/medical/mesh/heal(mob/living/M, mob/user)
@@ -418,7 +418,7 @@
 	flesh_regeneration = 3.5
 	grind_results = list(/datum/reagent/consumable/aloejuice = 1)
 
-/obj/item/stack/medical/mesh/advanced/update_icon(updates=ALL)
+/obj/item/stack/medical/mesh/advanced/update_icon_state()
 	. = ..()
 	if(is_open)
 		return

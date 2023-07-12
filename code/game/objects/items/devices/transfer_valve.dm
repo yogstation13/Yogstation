@@ -96,17 +96,17 @@
 /obj/item/transfer_valve/proc/toggle_off()
 	toggle = TRUE
 
-/obj/item/transfer_valve/update_icon(updates=ALL)
+/obj/item/transfer_valve/update_icon_state()
 	. = ..()
-	cut_overlays()
-
 	if(!tank_one && !tank_two && !attached_device)
 		icon_state = "valve_1"
 		return
 	icon_state = "valve"
 
+/obj/item/transfer_valve/update_overlays()
+	. = ..()
 	if(tank_one)
-		add_overlay("[tank_one.icon_state]")
+		. += "[tank_one.icon_state]"
 	if(tank_two)
 		var/mutable_appearance/J = mutable_appearance(icon, icon_state = "[tank_two.icon_state]")
 		var/matrix/T = matrix()
@@ -116,11 +116,11 @@
 	else
 		underlays = null
 	if(attached_device)
-		add_overlay("device")
+		. += "device"
 		if(istype(attached_device, /obj/item/assembly/infra))
 			var/obj/item/assembly/infra/sensor = attached_device
 			if(sensor.on && sensor.visible)
-				add_overlay("proxy_beam")
+				. += "proxy_beam"
 
 /obj/item/transfer_valve/proc/merge_gases(datum/gas_mixture/target, change_volume = TRUE)
 	var/target_self = FALSE

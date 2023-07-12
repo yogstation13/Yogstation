@@ -78,14 +78,14 @@
 
 	. += span_notice("The last radiation amount detected was [last_tick_amount]")
 
-/obj/item/geiger_counter/update_icon(updates=ALL)
+/obj/item/geiger_counter/update_icon_state()
 	. = ..()
 	if(!scanning)
 		icon_state = "geiger_off"
-		return 1
+		return
 	if(obj_flags & EMAGGED)
 		icon_state = "geiger_on_emag"
-		return 1
+		return
 	switch(radiation_count)
 		if(-INFINITY to RAD_LEVEL_NORMAL)
 			icon_state = "geiger_on_1"

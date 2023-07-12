@@ -17,13 +17,12 @@
 	user.visible_message(span_suicide("[user] begins belting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
-/obj/item/storage/belt/update_icon(updates=ALL)
+/obj/item/storage/belt/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(content_overlays)
 		for(var/obj/item/I in contents)
 			var/mutable_appearance/M = I.get_belt_overlay()
-			add_overlay(M)
+			. += M
 
 /obj/item/storage/belt/Initialize(mapload)
 	. = ..()

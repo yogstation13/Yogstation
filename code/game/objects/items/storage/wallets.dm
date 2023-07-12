@@ -61,13 +61,12 @@
 	. = ..()
 	refreshID()
 
-/obj/item/storage/wallet/update_icon(updates=ALL)
+/obj/item/storage/wallet/update_icon_state()
 	. = ..()
-	var/new_state = "wallet"
 	if(front_id)
-		new_state = "wallet_[front_id.icon_state]"
-	if(new_state != icon_state)		//avoid so many icon state changes.
-		icon_state = new_state
+		icon_state = "wallet_[front_id.icon_state]"
+		return
+	icon_state = "wallet"
 
 /obj/item/storage/wallet/GetID()
 	return front_id

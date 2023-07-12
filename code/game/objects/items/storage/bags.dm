@@ -55,7 +55,7 @@
 	playsound(loc, 'sound/items/eatfood.ogg', 50, 1, -1)
 	return (TOXLOSS)
 
-/obj/item/storage/bag/trash/update_icon(updates=ALL)
+/obj/item/storage/bag/trash/update_icon_state()
 	. = ..()
 	//yogs start
 	if(icon_state == "[initial(icon_state)]_broken")
@@ -67,7 +67,8 @@
 		icon_state = "[initial(icon_state)]1"
 	else if(contents.len < 21)
 		icon_state = "[initial(icon_state)]2"
-	else icon_state = "[initial(icon_state)]3"
+	else
+		icon_state = "[initial(icon_state)]3"
 
 /obj/item/storage/bag/trash/cyborg
 	insertable = FALSE
@@ -385,11 +386,10 @@
 			M.Paralyze(40)
 	update_appearance(UPDATE_ICON)
 
-/obj/item/storage/bag/tray/update_icon(updates=ALL)
+/obj/item/storage/bag/tray/update_overlays()
 	. = ..()
-	cut_overlays()
 	for(var/obj/item/I in contents)
-		add_overlay(new /mutable_appearance(I))
+		. += new /mutable_appearance(I)
 
 /obj/item/storage/bag/tray/Entered()
 	. = ..()
