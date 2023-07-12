@@ -260,11 +260,11 @@
 			stack_trace("Bad areastring path for [src], [src.areastring]")
 	else if(isarea(A) && src.areastring == null)
 		src.area = A
-	update_appearance(UPDATE_ICON)
 
 	make_terminal()
 
 	addtimer(CALLBACK(src, PROC_REF(update)), 5)
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/apc/examine(mob/user)
 	. = ..()

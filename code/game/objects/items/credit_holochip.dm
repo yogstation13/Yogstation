@@ -22,9 +22,12 @@
 /obj/item/holochip/get_item_credit_value()
 	return credits
 
-/obj/item/holochip/update_icon(updates=ALL)
+/obj/item/holochip/update_name(updates)
 	. = ..()
 	name = "\improper [credits] credit holochip"
+
+/obj/item/holochip/update_overlays()
+	. = ..()
 	var/rounded_credits = credits
 	switch(credits)
 		if(1 to 999)
