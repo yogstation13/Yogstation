@@ -340,7 +340,7 @@
 		return
 	if(maptext)
 		maptext = ""
-	 . += mutable_appearance('icons/obj/status_display.dmi', state)
+	. += mutable_appearance('icons/obj/status_display.dmi', "ai_bsod")
 
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display

@@ -22,7 +22,7 @@
 /obj/item/holochip/get_item_credit_value()
 	return credits
 
-/obj/item/holochip/update_icon_state()
+/obj/item/holochip/update_icon(updates=ALL)
 	. = ..()
 	name = "\improper [credits] credit holochip"
 	var/rounded_credits = credits
@@ -38,9 +38,6 @@
 		if(1000000000 to INFINITY)
 			icon_state = "holochip_giga"
 			rounded_credits = round(rounded_credits * 0.000000001)
-
-/obj/item/holochip/update_overlays()
-	. = ..()
 	var/overlay_color = "#914792"
 	switch(rounded_credits)
 		if(0 to 4)
