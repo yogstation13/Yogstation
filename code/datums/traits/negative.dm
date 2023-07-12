@@ -570,7 +570,7 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = species.reagent_tag == PROCESS_SYNTHETIC //can't lose blood if your species doesn't have any
+	var/disallowed_trait = !(species.process_flags & ORGANIC) //if you can't process organic chems you couldn't get addicted in the first place
 	qdel(species)
 
 	if(disallowed_trait)
@@ -701,7 +701,7 @@
 	var/species_type = prefs.read_preference(/datum/preference/choiced/species)
 	var/datum/species/species = new species_type
 
-	var/disallowed_trait = species.reagent_tag == PROCESS_SYNTHETIC //can't lose blood if your species doesn't have any
+	var/disallowed_trait = !(species.process_flags & ORGANIC) // why would robots be allergic to things
 	qdel(species)
 
 	if(disallowed_trait)
