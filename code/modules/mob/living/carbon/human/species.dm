@@ -95,6 +95,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/toxmod = 1
 	/// multiplier for stun duration
 	var/staminamod = 1
+	/// multiplier for pressure damage
+	var/pressuremod = 1
 	/// multiplier for money paid at payday, species dependent
 	var/payday_modifier = 1
 	///Type of damage attack does
@@ -136,8 +138,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///the icon used for the wings + details icon of a different source colour
 	var/wings_icon = "Angel"
 	var/wings_detail
-	/// Used for metabolizing reagents. We're going to assume you're a meatbag unless you say otherwise.
-	var/reagent_tag = PROCESS_ORGANIC
+	/// Used for reagents, organs, and virus symptoms. We're going to assume you're a meatbag unless you say otherwise.
+	var/process_flags = ORGANIC
 	/// What kind of gibs to spawn
 	var/species_gibs = "human"
 	/// Can this species use numbers in its name?
@@ -1294,12 +1296,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		H.reagents.del_reagent(chem.type)
 		return TRUE
 	//This handles dumping unprocessable reagents.
-	var/dump_reagent = TRUE
-	if((chem.process_flags & SYNTHETIC) && (H.dna.species.reagent_tag & PROCESS_SYNTHETIC))		//SYNTHETIC-oriented reagents require PROCESS_SYNTHETIC
-		dump_reagent = FALSE
-	if((chem.process_flags & ORGANIC) && (H.dna.species.reagent_tag & PROCESS_ORGANIC))		//ORGANIC-oriented reagents require PROCESS_ORGANIC
-		dump_reagent = FALSE
-	if(dump_reagent)
+	if(!(chem.process_flags & H.get_process_flags()))
 		chem.holder.remove_reagent(chem.type, chem.metabolization_rate)
 		return TRUE
 	return FALSE
@@ -2048,7 +2045,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	switch(adjusted_pressure)
 		if(HAZARD_HIGH_PRESSURE to INFINITY)
 			if(!HAS_TRAIT(H, TRAIT_RESISTHIGHPRESSURE))
-				H.adjustBruteLoss(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
+				H.adjustBruteLoss(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod * H.dna.species.pressuremod)
 				H.throw_alert("pressure", /atom/movable/screen/alert/highpressure, 2)
 			else
 				H.clear_alert("pressure")
@@ -2062,7 +2059,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(HAS_TRAIT(H, TRAIT_RESISTLOWPRESSURE))
 				H.clear_alert("pressure")
 			else
-				H.adjustBruteLoss(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod)
+				H.adjustBruteLoss(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod * H.dna.species.pressuremod)
 				H.throw_alert("pressure", /atom/movable/screen/alert/lowpressure, 2)
 
 //////////

@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Trays now only hold kitchen stuff"
+  - tweak: "Trays no longer stun on-hit"

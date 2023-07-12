@@ -203,7 +203,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 //Returns the team antagonist belongs to if any.
 /datum/antagonist/proc/get_team()
-	return
+	return null
 
 //Individual roundend report
 /datum/antagonist/proc/roundend_report()
@@ -401,8 +401,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/get_objectives()
 	var/objective_count = 1
 	var/list/objective_data = list()
+	var/datum/team/antag_team = get_team()
 	//all obj
-	for(var/datum/objective/objective in objectives)
+	for(var/datum/objective/objective in objectives + antag_team?.objectives)
 		objective_data += list(list(
 			"count" = objective_count,
 			"name" = objective.objective_name,

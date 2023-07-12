@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "sniper rifle is now bolt-action"
+  - imageadd: "adds sprites for sniper rifle bolt"

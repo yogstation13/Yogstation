@@ -23,6 +23,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	toxic_food = NONE
 	liked_food = FRIED | SUGAR | JUNKFOOD
 	disliked_food = GROSS | VEGETABLES
+	process_flags = ORGANIC | SYNTHETIC
 	burnmod = 1.1 //The plasteel has a really high heat capacity, however, if the heat does get through it will REALLY burn the flesh on the inside
 	coldmod = 3 //The plasteel around them saps their body heat quickly if it gets cold
 	heatmod = 2 //Once the heat gets through it's gonna BURN
@@ -170,9 +171,6 @@ adjust_charge - take a positive or negative value to adjust the charge level
 
 /datum/species/preternis/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	. = ..()
-
-	if(H.reagents.has_reagent(/datum/reagent/oil))
-		H.adjustFireLoss(-2*REAGENTS_EFFECT_MULTIPLIER,FALSE,FALSE, BODYPART_ANY)
 
 	if(H.reagents.has_reagent(/datum/reagent/teslium))
 		H.add_movespeed_modifier("preternis_teslium", update=TRUE, priority=101, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))

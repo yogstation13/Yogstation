@@ -34,14 +34,15 @@ GLOBAL_VAR(antag_prototypes)
 	var/command_part = commands.Join(" | ")
 	var/data_part = antag_panel_data()
 	var/objective_part = antag_panel_objectives()
+	var/team_objective_part = antag_panel_team_objectives()
 	var/memory_part = antag_panel_memory()
 
-	var/list/parts = listtrim(list(command_part,data_part,objective_part,memory_part))
+	var/list/parts = listtrim(list(command_part, data_part, objective_part, team_objective_part, memory_part))
 
 	return parts.Join("<br>")
 
 /datum/antagonist/proc/antag_panel_objectives()
-	var/result = "<i><b>Objectives</b></i>:<br>"
+	var/result = "<i><b>Personal Objectives</b></i>:<br>"
 	if (objectives.len == 0)
 		result += "EMPTY<br>"
 	else
@@ -51,6 +52,20 @@ GLOBAL_VAR(antag_prototypes)
 			obj_count++
 	result += "<a href='?src=[REF(owner)];obj_add=1;target_antag=[REF(src)]'>Add objective</a><br>"
 	result += "<a href='?src=[REF(owner)];obj_announce=1'>Announce objectives</a><br>"
+	return result
+
+/datum/antagonist/proc/antag_panel_team_objectives()
+	var/datum/team/antag_team = get_team()
+	if(!antag_team)
+		return
+	var/result = "<i><b>Team Objectives</b></i>:<br>"
+	if (antag_team.objectives.len == 0)
+		result += "EMPTY<br>"
+	else
+		var/obj_count = 1
+		for(var/datum/objective/objective in antag_team.objectives)
+			result += "<B>[obj_count]</B>: <font color=[objective.check_completion() ? "green" : "red"]>[objective.explanation_text][objective.check_completion() ? " (COMPLETED)" : ""]</font> <a href='?src=[REF(owner)];obj_edit=[REF(objective)]'>Edit</a> <a href='?src=[REF(owner)];obj_delete=[REF(objective)]'>Delete</a> <a href='?src=[REF(owner)];obj_completed=[REF(objective)]'><font color=[objective.completed ? "green" : "red"]>[objective.completed ? "Mark as incomplete" : "Mark as complete"]</font></a><br>"
+			obj_count++
 	return result
 
 /datum/antagonist/proc/antag_panel_memory()

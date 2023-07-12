@@ -83,6 +83,8 @@
 				to_chat(user, span_warning("\The [IT] is too small for \the [src]."))
 				return
 			updateTank(W, 0, user)
+		else
+			load_item(W, user) // if there's already a tank attached, load it instead
 	else if(W.type == type)
 		to_chat(user, span_warning("You're fairly certain that putting a pneumatic cannon inside another pneumatic cannon would cause a spacetime disruption."))
 	else if(W.tool_behaviour == TOOL_WRENCH)

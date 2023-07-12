@@ -80,7 +80,9 @@
 /area/ruin/powered/syndicate_lava_base
 	name = "Syndicate Lavaland"
 	icon_state = "syndie-control"
-	ambientsounds = HIGHSEC
+	ambience_index = AMBIENCE_DANGER
+	ambient_buzz = 'sound/ambience/magma.ogg'
+	ambient_buzz_vol = 10
 	hidden = FALSE
 	requires_power = TRUE
 
@@ -138,3 +140,4 @@
 //ash walker nest
 /area/ruin/unpowered/ash_walkers
 	icon_state = "red"
+	ambient_buzz = 'sound/ambience/magma.ogg'

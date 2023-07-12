@@ -64,5 +64,4 @@
 	satchel = /obj/item/storage/backpack/satchel/med
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival_mining
-	ipc_box = /obj/item/storage/box/ipc/miner
 	pda_slot = ITEM_SLOT_LPOCKET
