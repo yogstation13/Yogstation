@@ -164,6 +164,7 @@
 	power_light = FALSE
 	requires_power = TRUE
 	ambientsounds = MINING
+	blob_allowed = FALSE
 
 /area/icemoon/surface/outdoors
 	name = "Icemoon Wastes"
