@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(676 modules,
-    1829/8768 macros, 20.9%)</aside></h3>
+<aside>(679 modules,
+    1827/8769 macros, 20.8%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -257,6 +257,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/elements/ELEMENT_TEMPLATE.html" title="code&#x2F;datums&#x2F;elements&#x2F;ELEMENT_TEMPLATE">Template file for your new element</a> - See _element.dm for detailed explanations</li>
     <li><a href="code/datums/elements/_element.html" title="code&#x2F;datums&#x2F;elements&#x2F;_element">_element</a></li>
     <li><a href="code/datums/elements/connect_loc.html" title="code&#x2F;datums&#x2F;elements&#x2F;connect_loc">connect_loc</a></li>
+    <li><a href="code/datums/elements/content_barfer.html" title="code&#x2F;datums&#x2F;elements&#x2F;content_barfer">content_barfer</a></li>
     <li><a href="code/datums/elements/firestacker.html" title="code&#x2F;datums&#x2F;elements&#x2F;firestacker">firestacker</a></li>
     <li><a href="code/datums/elements/squish.html" title="code&#x2F;datums&#x2F;elements&#x2F;squish">squish</a></li>
     </ul></li>
@@ -374,6 +375,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/game/objects/items/devices/busterarm/wire_snatch.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices&#x2F;busterarm&#x2F;wire_snatch">wire_snatch</a></li>
     </ul></li>
     <li><a href="code/game/objects/items/devices/gps.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices&#x2F;gps">gps</a></li>
+    <li><a href="code/game/objects/items/devices/lightreplacer.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices&#x2F;lightreplacer">lightreplacer</a></li>
     <li><a href="code/game/objects/items/devices/multitool.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices&#x2F;multitool">multitool</a></li>
     <li><span class="no-substance">radio&#x2F;</span><a href="code/game/objects/items/devices/radio/radio.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices&#x2F;radio&#x2F;radio">radio</a></li>
     <li><a href="code/game/objects/items/devices/scanners.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices&#x2F;scanners">scanners</a></li>
@@ -952,6 +954,7 @@ SPDX-License-Identifier: MIT</li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;modules&#x2F;unit_tests">unit_tests</span><ul class="index-tree">
     <li><a href="code/modules/unit_tests/_unit_tests.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;_unit_tests">_unit_tests</a></li>
+    <li><a href="code/modules/unit_tests/dragon_expiration.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;dragon_expiration">dragon_expiration</a></li>
     <li><a href="code/modules/unit_tests/dynamic_ruleset_sanity.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;dynamic_ruleset_sanity">dynamic_ruleset_sanity</a></li>
     <li><a href="code/modules/unit_tests/focus_only_tests.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;focus_only_tests">focus_only_tests</a></li>
     <li><a href="code/modules/unit_tests/map_landmarks.html" title="code&#x2F;modules&#x2F;unit_tests&#x2F;map_landmarks">map_landmarks</a></li>
@@ -1000,7 +1003,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(851 detailed/1637 documented/27951 total, 5.9%)</aside></h3>
+<aside>(853 detailed/1642 documented/27954 total, 5.9%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1644,6 +1647,7 @@ and don't call start() in a loop that will be repeated otherwise it'll get spamm
     <li class="has-children"><a href="datum/element.html" title="&#x2F;datum&#x2F;element">element</a> - A holder for simple behaviour that can be attached to many different types<ul class="index-tree">
     <li><a href="datum/element/connect_loc.html" title="&#x2F;datum&#x2F;element&#x2F;connect_loc">connect_loc</a> - This element hooks a signal onto the loc the current object is on.
 When the object moves, it will unhook the signal and rehook it to the new object.</li>
+    <li><a href="datum/element/content_barfer.html" title="&#x2F;datum&#x2F;element&#x2F;content_barfer">content_barfer</a> - Content Barfer; which expels the contents of a mob when it dies, or is transformed</li>
     <li><a href="datum/element/firestacker.html" title="&#x2F;datum&#x2F;element&#x2F;firestacker">firestacker</a> - Can be applied to /atom/movable subtypes to make them apply fire stacks to things they hit</li>
     <li><a href="datum/element/squish.html" title="&#x2F;datum&#x2F;element&#x2F;squish">squish</a> - squish.dm</li>
     </ul></li>
@@ -2185,6 +2189,7 @@ the timer.</li>
     <li><a href="datum/turf_reservation.html" title="&#x2F;datum&#x2F;turf_reservation">turf_reservation</a></li>
     <li><a href="datum/ui_state.html" title="&#x2F;datum&#x2F;ui_state">ui_state</a></li>
     <li class="has-children"><a href="datum/unit_test.html" title="&#x2F;datum&#x2F;unit_test">unit_test</a><ul class="index-tree">
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;contents_barfer">contents_barfer</span> - Unit test for the contents barfer element</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;dynamic_roundstart_ruleset_sanity">dynamic_roundstart_ruleset_sanity</span> - Verifies that roundstart dynamic rulesets are setup properly without external configuration.</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;focus_only">focus_only</span> - These tests perform no behavior of their own, and have their tests offloaded onto other procs.
 This is useful in cases like in build_appearance_list where we want to know if any fail,
@@ -2196,6 +2201,7 @@ and you will only test the check for invalid overlays in appearance building.<ul
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;job_roundstart_spawnpoints">job_roundstart_spawnpoints</span> - Tests that [/datum/job/proc/get_default_roundstart_spawn_point] returns a landmark from all joinable jobs.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;log_mapping">log_mapping</span> - Conveys all log_mapping messages as unit test failures, as they all indicate mapping problems.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;unit_test&#x2F;space_dragon_expiration">space_dragon_expiration</span> - Unit tests that the space dragon - when its rift expires and it gets qdel'd - doesn't delete all the mobs it has eaten</li>
     </ul></li>
     <li class="has-children"><a href="datum/uplink_item.html" title="&#x2F;datum&#x2F;uplink_item">item name</a> - Uplink Items<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;uplink_item&#x2F;dangerous">dangerous</span> - Item re-balancing</li>
@@ -2740,7 +2746,9 @@ This has a shitload of vars on it, and I'm sorry for that, but it does make maki
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;kevlar_plating">debug plating</span> - ARMOR PLATES</li>
     <li><span class="no-substance">kitchen&#x2F;</span><a href="obj/item/kitchen/fork.html" title="&#x2F;obj&#x2F;item&#x2F;kitchen&#x2F;fork">fork</a></li>
+    <li><a href="obj/item/laser_pointer.html" title="&#x2F;obj&#x2F;item&#x2F;laser_pointer">laser pointer</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;lazarus_injector">lazarus injector</span> - Lazarus Injector</li>
+    <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;lightreplacer">light replacer</span> - The rate at which the laser regenerates charge. Clamped between 30 seconds and basically instantly just in case of weirdness. Knock off 5 seconds per diode rating</li>
     <li><a href="obj/item/living_heart.html" title="&#x2F;obj&#x2F;item&#x2F;living_heart">living heart</a></li>
     <li class="has-children"><a href="obj/item/mail.html" title="&#x2F;obj&#x2F;item&#x2F;mail">mail</a> - Mail is tamper-evident and unresealable, postmarked by CentCom for an individual recepient.<ul class="index-tree">
     <li><a href="obj/item/mail/junkmail.html" title="&#x2F;obj&#x2F;item&#x2F;mail&#x2F;junkmail">junkmail</a></li>
@@ -3271,7 +3279,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/05c1bf7f605df92edd8539f45ee7df6dc876744e">05c1bf7</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/ffb13431ad5e120614b1cf50beaf2e06bd76dec6">ffb1343</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
