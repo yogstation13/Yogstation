@@ -222,7 +222,7 @@
 	timeout = 1 MINUTES
 
 /datum/mood_event/wet_preternis
-	description = "<span class='boldwarning'>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>\n"
+	description = "<span class='boldwarning'>MY EVERYTHING HURTS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>\n"
 	mood_change = -10
 	timeout = 10 SECONDS
 
