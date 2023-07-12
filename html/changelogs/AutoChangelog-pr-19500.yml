@@ -1,0 +1,10 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "organics can no longer be given an IPC cooling radiator to become immune to breathing"
+  - tweak: "preternis now have both organic and synthetic processing"
+  - tweak: "robotic mobs like bots and borgs use synthetic processing"
+  - tweak: "liquid solder can only heal synthetic brains"
+  - tweak: "system cleaner only cures viruses in fully synthetic mobs"
+  - tweak: "organs meant for organics only work in organics, organs meant for synthetics only work in synthetics, implants and stuff still work in everyone"
+  - tweak: "androids and synths start with synthetic-compatible organs"
