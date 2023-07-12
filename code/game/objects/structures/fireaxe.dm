@@ -194,35 +194,34 @@
 	toggle_open()//yogs - consolidates opening code
 	return
 
-/obj/structure/fireaxecabinet/update_icon(updates=ALL)
+/obj/structure/fireaxecabinet/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(fireaxe)
-		add_overlay("axe")
+		. += "axe"
 	if(spareid)
-		add_overlay("card")
+		. += "card"
 	if(olreliable)
-		add_overlay("rod")
-	if(!open)
-		var/hp_percent = obj_integrity/max_integrity * 100
-		if(broken)
-			add_overlay("glass4")
-		else
-			switch(hp_percent)
-				if(-INFINITY to 40)
-					add_overlay("glass3")
-				if(40 to 60)
-					add_overlay("glass2")
-				if(60 to 80)
-					add_overlay("glass1")
-				if(80 to INFINITY)
-					add_overlay("glass")
-		if(locked)
-			add_overlay("locked")
-		else
-			add_overlay("unlocked")
+		. += "rod"
+	if(open)
+		. += "glass_raised"
+		return
+	var/hp_percent = obj_integrity/max_integrity * 100
+	if(broken)
+		. += "glass4"
 	else
-		add_overlay("glass_raised")
+		switch(hp_percent)
+			if(-INFINITY to 40)
+				. += "glass3"
+			if(40 to 60)
+				. += "glass2"
+			if(60 to 80)
+				. += "glass1"
+			if(80 to INFINITY)
+				. += "glass"
+	if(locked)
+		. += "locked"
+	else
+		. += "unlocked"
 
 //yogs NOTICE - toggle_lock() function MIRRORED to yogstation/code/game/objects/structure/fireaxe.dm
 //changes made to the below function will have no effect

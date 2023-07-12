@@ -78,31 +78,31 @@ GLOBAL_LIST_EMPTY(lockers)
 	GLOB.lockers -= src
 	return ..()
 
-/obj/structure/closet/update_icon(updates=ALL)
+/obj/structure/closet/update_overlays()
 	. = ..()
-	cut_overlays()
-	if(!opened)
-		layer = OBJ_LAYER
-		if(!is_animating_door)
-			if(icon_door)
-				add_overlay("[icon_door]_door")
-			else
-				add_overlay("[icon_state]_door")
-			if(welded)
-				add_overlay(icon_welded)
-			if(secure && !broken)
-				if(locked)
-					add_overlay("locked")
-				else
-					add_overlay("unlocked")
-
-	else
+	if(opened)
 		layer = BELOW_OBJ_LAYER
-		if(!is_animating_door)
-			if(icon_door_override)
-				add_overlay("[icon_door]_open")
+		if(is_animating_door)
+			return
+		if(icon_door_override)
+			. += "[icon_door]_open"
+		else
+			. += "[icon_state]_open"
+		return
+
+	layer = OBJ_LAYER
+	if(!is_animating_door)
+		if(icon_door)
+			. += "[icon_door]_door"
+		else
+			. += "[icon_state]_door"
+		if(welded)
+			. += icon_welded
+		if(secure && !broken)
+			if(locked)
+				. += "locked"
 			else
-				add_overlay("[icon_state]_open")
+				. += "unlocked"
 
 /obj/structure/closet/proc/animate_door(closing = FALSE)
 	if(!door_anim_time)

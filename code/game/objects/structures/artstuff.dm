@@ -132,20 +132,19 @@
 	generate_proper_overlay()
 	try_rename(user)
 
-/obj/item/canvas/update_icon(updates=ALL)
+/obj/item/canvas/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(!icon_generated)
 		if(used)
 			var/mutable_appearance/detail = mutable_appearance(icon,"[icon_state]wip")
 			detail.pixel_x = 1
 			detail.pixel_y = 1
-			add_overlay(detail)
+			. += detail
 	else
 		var/mutable_appearance/detail = mutable_appearance(generated_icon)
 		detail.pixel_x = 1
 		detail.pixel_y = 1
-		add_overlay(detail)
+		. += detail
 
 /obj/item/canvas/proc/generate_proper_overlay()
 	if(icon_generated)
@@ -297,7 +296,7 @@
 	if(C.painting_name == initial(C.painting_name))
 		C.try_rename(user)
 
-/obj/structure/sign/painting/update_icon(updates=ALL)
+/obj/structure/sign/painting/update_icon_state()
 	. = ..()
 
 	if(C && C.generated_icon)
@@ -305,16 +304,17 @@
 	else
 		icon_state = "frame-empty"
 
-	cut_overlays()
+/obj/structure/sign/painting/update_overlays()
+	. = ..()
 	if(C && C.generated_icon)
 		var/mutable_appearance/MA = mutable_appearance(C.generated_icon)
 		MA.pixel_x = C.framed_offset_x
 		MA.pixel_y = C.framed_offset_y
-		add_overlay(MA)
+		. += MA
 		var/mutable_appearance/frame = mutable_appearance(C.icon,"[C.icon_state]frame")
 		frame.pixel_x = C.framed_offset_x - 1
 		frame.pixel_y = C.framed_offset_y - 1
-		add_overlay(frame)
+		. += frame
 
 /**
  * Loads a painting from SSpersistence. Called globally by said subsystem when it inits

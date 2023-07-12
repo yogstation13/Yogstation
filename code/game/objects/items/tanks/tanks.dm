@@ -313,13 +313,12 @@
 
 // ---------- Procs below are for tanks that are used exclusively in 1-tank bombs ----------
 
-/obj/item/tank/update_icon(updates=ALL)
+/obj/item/tank/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(tank_assembly)
-		add_overlay(tank_assembly.icon_state)
+		. += tank_assembly.icon_state
 		copy_overlays(tank_assembly)
-		add_overlay("bomb_assembly")
+		. += "bomb_assembly"
 
 /obj/item/tank/wrench_act(mob/living/user, obj/item/I)
 	if(tank_assembly)

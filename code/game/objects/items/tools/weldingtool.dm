@@ -48,24 +48,21 @@
 	reagents.add_reagent(/datum/reagent/fuel, max_fuel)
 	update_appearance(UPDATE_ICON)
 
-
-/obj/item/weldingtool/proc/update_torch()
-	if(welding)
-		add_overlay("[initial(icon_state)]-on")
-		item_state = "[initial(item_state)]1"
-	else
-		item_state = "[initial(item_state)]"
-
-
-/obj/item/weldingtool/update_icon(updates=ALL)
+/obj/item/weldingtool/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(change_icons)
 		var/ratio = get_fuel() / max_fuel
 		ratio = CEILING(ratio*4, 1) * 25
-		add_overlay("[initial(icon_state)][ratio]")
-	update_torch()
+		. += "[initial(icon_state)][ratio]"
+	if(welding)
+		. += "[initial(icon_state)]-on"
 
+/obj/item/weldingtool/update_icon_state()
+	. = ..()
+	if(welding)
+		item_state = "[initial(item_state)]1"
+	else
+		item_state = "[initial(item_state)]"
 
 /obj/item/weldingtool/process(delta_time)
 	switch(welding)

@@ -56,7 +56,7 @@ FLOOR SAFES
 			space += I.w_class
 			I.forceMove(src)
 
-/obj/structure/safe/update_icon(updates=ALL)
+/obj/structure/safe/update_icon_state()
 	. = ..()
 	if(open)
 		icon_state = "[initial(icon_state)]-open"

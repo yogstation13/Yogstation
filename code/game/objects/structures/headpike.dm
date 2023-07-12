@@ -38,14 +38,15 @@
 	. = ..()
 	pixel_x = rand(-8, 8)
 
-/obj/structure/headpike/update_icon(updates=ALL)
+/obj/structure/headpike/update_overlays()
 	. = ..()
 	var/obj/item/bodypart/head/H = locate() in contents
+	if(!H)
+		return
 	var/mutable_appearance/MA = new()
-	if(H)
-		MA.copy_overlays(H)
-		MA.pixel_y = 12
-		add_overlay(H)
+	MA.copy_overlays(H)
+	MA.pixel_y = 12
+	. += MA
 
 /obj/structure/headpike/attack_hand(mob/user)
 	. = ..()

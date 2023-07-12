@@ -215,7 +215,7 @@
 /obj/structure/holosign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
 
-/obj/structure/holobed/update_icon(updates=ALL)
+/obj/structure/holobed/update_icon_state()
 	. = ..()
 	icon_state = "[initial(icon_state)][stasis ? "" : "_off"]"
 

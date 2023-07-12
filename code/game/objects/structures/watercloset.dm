@@ -70,7 +70,7 @@
 		update_appearance(UPDATE_ICON)
 
 
-/obj/structure/toilet/update_icon(updates=ALL)
+/obj/structure/toilet/update_icon_state()
 	. = ..()
 	icon_state = "toilet[open][cistern]"
 
@@ -394,7 +394,7 @@
 	open = !open
 	update_appearance(UPDATE_ICON)
 
-/obj/structure/curtain/update_icon(updates=ALL)
+/obj/structure/curtain/update_icon_state()
 	. = ..()
 	if(!open)
 		icon_state = "closed"

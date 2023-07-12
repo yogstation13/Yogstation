@@ -350,7 +350,7 @@ LINEN BINS
 		. += "There are [amount] bed sheets in the bin."
 
 
-/obj/structure/bedsheetbin/update_icon(updates=ALL)
+/obj/structure/bedsheetbin/update_icon_state()
 	. = ..()
 	switch(amount)
 		if(0)

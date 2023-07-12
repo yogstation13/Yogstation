@@ -223,27 +223,25 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/janitorialcart/update_icon(updates=ALL)
+/obj/structure/janitorialcart/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(mybag)
-		add_overlay("cart_garbage")
+		. += "cart_garbage"
 	if(mymop)
-		add_overlay("cart_mop")
+		. += "cart_mop"
 	if(myspray)
-		add_overlay("cart_spray")
+		. += "cart_spray"
 	if(myreplacer)
-		add_overlay("cart_replacer")
+		. += "cart_replacer"
 	if(myremover)
-		add_overlay("cart_remover")
+		. += "cart_remover"
 	if(myswatter)
-		add_overlay("cart_swatter")
+		. += "cart_swatter"
 	if(mylight)
-		add_overlay("cart_light")
+		. += "cart_light"
 	if(signs)
-		add_overlay("cart_sign[signs]")
+		. += "cart_sign[signs]"
 	if(reagents.total_volume > 0)
-		add_overlay("cart_water")
+		. += "cart_water"
 	if(mybroom)
-		add_overlay("cart_broom")
-
+		. += "cart_broom"

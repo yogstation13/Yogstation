@@ -287,6 +287,7 @@
 	force_wielded = 18
 
 /obj/item/twohanded/fireaxe/metal_h2_axe/update_icon(updates=ALL)  //Currently only here to fuck with the on-mob icons.
+	. = ..()
 	icon_state = "metalh2_axe[wielded]"
 	return
 

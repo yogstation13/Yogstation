@@ -120,7 +120,7 @@
 		opened = !opened
 		update_appearance(UPDATE_ICON)
 
-/obj/structure/extinguisher_cabinet/update_icon(updates=ALL)
+/obj/structure/extinguisher_cabinet/update_icon_state()
 	. = ..()
 	if(!opened)
 		icon_state = "extinguisher_closed"

@@ -172,7 +172,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	beeper = !beeper
 	to_chat(user, span_notice("You turn the speaker function [beeper ? "on" : "off"]."))
 
-/obj/structure/bodycontainer/morgue/update_icon(updates=ALL)
+/obj/structure/bodycontainer/morgue/update_icon_state()
 	. = ..()
 	if (!connected || connected.loc != src) // Open or tray is gone.
 		icon_state = "morgue0"
@@ -233,7 +233,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	connected = new /obj/structure/tray/c_tray(src)
 	connected.connected = src
 
-/obj/structure/bodycontainer/crematorium/update_icon(updates=ALL)
+/obj/structure/bodycontainer/crematorium/update_icon_state()
 	. = ..()
 	if(!connected || connected.loc != src)
 		icon_state = "crema0"

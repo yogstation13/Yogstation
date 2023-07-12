@@ -119,7 +119,7 @@
 	update_appearance(UPDATE_ICON)
 	isSwitchingStates = FALSE
 
-/obj/structure/mineral_door/update_icon(updates=ALL)
+/obj/structure/mineral_door/update_icon_state()
 	. = ..()
 	icon_state = "[initial(icon_state)][door_opened ? "open":""]"
 
