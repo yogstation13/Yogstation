@@ -102,16 +102,21 @@
 		beaker.forceMove(drop_location())
 		beaker = null
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon(updates=ALL)
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon_state()
 	. = ..()
-	cut_overlays()
-
-	if(panel_open)
-		add_overlay("pod-panel")
-
 	if(state_open)
 		icon_state = "pod-open"
 		return
+	if(on && is_operational())
+		icon_state = "pod-on"
+	else
+		icon_state = "pod-off"
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_overlays()
+	. = ..()
+
+	if(panel_open)
+		. += "pod-panel"
 
 	if(occupant)
 		var/image/occupant_overlay
@@ -139,20 +144,16 @@
 		occupant_overlay.pixel_y = 22
 
 		if(on && !running_anim && is_operational())
-			icon_state = "pod-on"
 			running_anim = TRUE
 			run_anim(TRUE, occupant_overlay)
 		else
-			icon_state = "pod-off"
-			add_overlay(occupant_overlay)
-			add_overlay("cover-off")
+			. += occupant_overlay
+			. += "cover-off"
 
 	else if(on && is_operational())
-		icon_state = "pod-on"
-		add_overlay("cover-on")
+		. += "cover-on"
 	else
-		icon_state = "pod-off"
-		add_overlay("cover-off")
+		. += "cover-off"
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, image/occupant_overlay)
 	if(!on || !occupant || !is_operational())

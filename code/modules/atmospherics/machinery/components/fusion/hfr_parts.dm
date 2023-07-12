@@ -72,7 +72,7 @@
 			node.addMember(src)
 		SSair.add_to_rebuild_queue(src)
 
-/obj/machinery/atmospherics/components/unary/hypertorus/update_icon(updates=ALL)
+/obj/machinery/atmospherics/components/unary/hypertorus/update_icon_state()
 	. = ..()
 	if(panel_open)
 		icon_state = icon_state_open
@@ -154,7 +154,7 @@
 		return
 	return ..()
 
-/obj/machinery/hypertorus/update_icon(updates=ALL)
+/obj/machinery/hypertorus/update_icon_state()
 	. = ..()
 	if(panel_open)
 		icon_state = icon_state_open

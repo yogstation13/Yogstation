@@ -81,6 +81,7 @@
 		update_appearance(UPDATE_ICON)
 
 /obj/item/clothing/head/helmet/space/plasmaman/update_icon(mob/living/carbon/human/user)
+	. = ..()
 	if(!user)
 		return
 	user.cut_overlay(helmet_mob_overlay)

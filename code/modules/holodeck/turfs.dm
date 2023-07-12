@@ -122,7 +122,7 @@
 /turf/open/floor/holofloor/carpet/update_icon(updates=ALL)
 	. = ..()
 	if(!.)
-		return 0
+		return FALSE
 	if(intact)
 		queue_smooth(src)
 

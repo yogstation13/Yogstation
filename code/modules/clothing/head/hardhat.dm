@@ -33,7 +33,7 @@
 		turn_off(user)
 	update_appearance(UPDATE_ICON)
 
-/obj/item/clothing/head/hardhat/update_icon(updates=ALL)
+/obj/item/clothing/head/hardhat/update_icon_state()
 	. = ..()
 	icon_state = "hardhat[on]_[hat_type]"
 	item_state = "hardhat[on]_[hat_type]"
@@ -156,11 +156,10 @@
 		if(!up)
 			. += mutable_appearance(mob_overlay_icon, "weldvisor")
 
-/obj/item/clothing/head/hardhat/weldhat/update_icon(updates=ALL)
+/obj/item/clothing/head/hardhat/weldhat/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(!up)
-		add_overlay("weldvisor")
+		. += "weldvisor"
 
 /obj/item/clothing/head/hardhat/weldhat/orange
 	icon_state = "hardhat0_orange"

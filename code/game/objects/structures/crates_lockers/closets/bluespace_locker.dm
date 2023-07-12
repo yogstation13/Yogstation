@@ -87,9 +87,8 @@
 	else
 		return ..()
 
-/obj/structure/closet/bluespace/internal/update_icon(updates=ALL)
+/obj/structure/closet/bluespace/internal/update_overlays()
 	. = ..()
-	cut_overlays()
 	var/obj/structure/closet/other = get_other_locker()
 	if(!other)
 		other = src
@@ -98,20 +97,20 @@
 	var/mutable_appearance/masking_icon = mutable_appearance(other.icon, other.icon_state)
 	masking_icon.blend_mode = BLEND_MULTIPLY
 	masked_icon.add_overlay(masking_icon)
-	//add_overlay(image('yogstation/icons/obj/closet.dmi', "bluespace_locker_frame"))
-	add_overlay(masked_icon)
+	//. += image('yogstation/icons/obj/closet.dmi', "bluespace_locker_frame")
+	. += masked_icon
 	if(!opened)
 		layer = OBJ_LAYER
 		if(other.icon_door)
-			add_overlay(image(other.icon, "[other.icon_door]_door"))
+			. += image(other.icon, "[other.icon_door]_door")
 		else
-			add_overlay(image(other.icon, "[other.icon_state]_door"))
+			. += image(other.icon, "[other.icon_state]_door")
 	else
 		layer = BELOW_OBJ_LAYER
 		if(other.icon_door_override)
-			add_overlay(image(other.icon, "[other.icon_door]_open"))
+			. += image(other.icon, "[other.icon_door]_open")
 		else
-			add_overlay(image(other.icon, "[other.icon_state]_open"))
+			. += image(other.icon, "[other.icon_state]_open")
 
 /obj/structure/closet/bluespace/external/onTransitZ(old_z,new_z)
 	var/obj/structure/closet/O = get_other_locker()

@@ -15,6 +15,8 @@
 	light_power = FLASH_LIGHT_POWER
 	light_on = FALSE
 	fryable = TRUE
+	/// Whether we currently have the flashing overlay.
+	var/flashing = FALSE
 	///flicked when we flash
 	var/flashing_overlay = "flash-f"
 	///Number of times the flash has been used.
@@ -46,18 +48,24 @@
 	return FIRELOSS
 
 /obj/item/assembly/flash/update_icon(updates=ALL, flash = FALSE)
-	cut_overlays()
-	attached_overlays = list()
+	. = ..()
+	flashing = flash
 	if(burnt_out)
-		add_overlay("flashburnt")
-		attached_overlays += "flashburnt"
 		item_state = "flashburnt"
 	if(flash)
-		add_overlay(flashing_overlay)
-		attached_overlays += flashing_overlay
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 5)
 	if(holder)
-		holder.update_appearance(UPDATE_ICON)
+		holder.update_icon(updates)
+
+/obj/item/assembly/flash/update_overlays()
+	. = ..()
+	attached_overlays = list()
+	if(burnt_out)
+		. += "flashburnt"
+		attached_overlays += "flashburnt"
+	if(flashing)
+		. += flashing_overlay
+		attached_overlays += flashing_overlay
 
 /obj/item/assembly/flash/proc/clown_check(mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
@@ -68,7 +76,7 @@
 /obj/item/assembly/flash/proc/burn_out() //Made so you can override it if you want to have an invincible flash from R&D or something.
 	if(!burnt_out)
 		burnt_out = TRUE
-		update_appearance(UPDATE_ICON)
+		update_icon(ALL, FALSE)
 	if(ismob(loc))
 		var/mob/M = loc
 		M.visible_message(span_danger("[src] burns out!"),span_userdanger("[src] burns out!"))
@@ -120,7 +128,7 @@
 	addtimer(CALLBACK(src, PROC_REF(flash_end)), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	times_used++
 	flash_recharge()
-	update_icon(flash = TRUE)
+	update_icon(ALL, flash = TRUE)
 	if(user && !clown_check(user))
 		return FALSE
 	return TRUE
@@ -173,7 +181,7 @@
 		var/mob/living/silicon/robot/R = M
 		if(!R.sensor_protection)
 			log_combat(user, R, "flashed", src)
-			update_icon(flash = TRUE)
+			update_icon(ALL, flash = TRUE)
 			R.Paralyze(rand(80,120))
 			R.set_confusion_if_lower(5 SECONDS * CONFUSION_STACK_MAX_MULTIPLIER)
 			R.flash_act(affect_silicon = 1)
@@ -294,7 +302,7 @@
 	addtimer(CALLBACK(src, PROC_REF(flash_end)), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	addtimer(CALLBACK(src, PROC_REF(cooldown)), flashcd)
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
-	update_icon(flash = TRUE)
+	update_icon(ALL, flash = TRUE)
 	return TRUE
 
 

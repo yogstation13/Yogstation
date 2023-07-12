@@ -445,7 +445,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	to_chat(usr, span_notice("You switch the baton to [txt] mode."))
 	update_appearance(UPDATE_ICON)
 
-/obj/item/abductor/baton/update_icon(updates=ALL)
+/obj/item/abductor/baton/update_icon_state()
 	. = ..()
 	switch(mode)
 		if(BATON_STUN)

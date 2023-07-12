@@ -114,7 +114,7 @@
 				pic = new('icons/turf/overlays.dmi', place, "redOverlay", AREA_LAYER)
 			flick_overlay(pic, list(user.client), 8)
 
-/obj/item/clothing/glasses/meson/engine/update_icon(updates=ALL)
+/obj/item/clothing/glasses/meson/engine/update_icon_state()
 	. = ..()
 	icon_state = "trayson-[mode]"
 	update_mob()

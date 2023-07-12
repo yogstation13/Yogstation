@@ -79,9 +79,8 @@
 	..()
 	update_icon_nopipes()
 
-/obj/machinery/atmospherics/components/binary/circulator/update_icon(updates=ALL)
+/obj/machinery/atmospherics/components/binary/circulator/update_overlays()
 	. = ..()
-	cut_overlays()
 
 	if(anchored)
 		for(var/direction in GLOB.cardinals)
@@ -93,7 +92,7 @@
 			if(node)
 				cap = getpipeimage(icon, "cap", direction, node.pipe_color, piping_layer = piping_layer)
 
-			add_overlay(cap)
+			. += cap
 
 /obj/machinery/atmospherics/components/binary/circulator/update_icon_nopipes()
 	cut_overlays()

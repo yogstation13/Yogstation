@@ -73,7 +73,7 @@
 			stamps += list("stamp_[rand(2, 6)]")
 	update_appearance(UPDATE_ICON)
 
-/obj/item/mail/update_icon(updates=ALL)
+/obj/item/mail/update_overlays()
 	. = ..()
 	var/bonus_stamp_offset = 0
 	for(var/stamp in stamps)
@@ -84,7 +84,7 @@
 			pixel_y = stamp_offset_y + bonus_stamp_offset
 		)
 		stamp_image.appearance_flags |= RESET_COLOR
-		add_overlay(stamp_image)
+		. += stamp_image
 		bonus_stamp_offset -= 5
 
 	if(postmarked == TRUE)
@@ -95,7 +95,7 @@
 			pixel_y = stamp_offset_y + rand(bonus_stamp_offset + 3, 1)
 		)
 		postmark_image.appearance_flags |= RESET_COLOR
-		add_overlay(postmark_image)
+		. += postmark_image
 
 /obj/item/mail/attackby(obj/item/W, mob/user, params)
 	// Destination tagging

@@ -118,7 +118,7 @@
 		anchored = FALSE
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/satellite/update_icon(updates=ALL)
+/obj/machinery/satellite/update_icon_state()
 	. = ..()
 	icon_state = active ? "sat_active" : "sat_inactive"
 

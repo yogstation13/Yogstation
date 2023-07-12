@@ -53,7 +53,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 		ready = TRUE
 	return ready
 
-/obj/machinery/gateway/update_icon(updates=ALL)
+/obj/machinery/gateway/update_icon_state()
 	. = ..()
 	if(active)
 		icon_state = "on"
@@ -101,7 +101,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 	var/obj/machinery/gateway/centeraway/awaygate = null
 	can_link = TRUE
 
-/obj/machinery/gateway/centerstation/update_icon(updates=ALL)
+/obj/machinery/gateway/centerstation/update_icon_state()
 	. = ..()
 	if(active)
 		icon_state = "oncenter"
@@ -185,7 +185,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 	stationgate = locate(/obj/machinery/gateway/centerstation)
 
 
-/obj/machinery/gateway/centeraway/update_icon(updates=ALL)
+/obj/machinery/gateway/centeraway/update_icon_state()
 	. = ..()
 	if(active)
 		icon_state = "oncenter"

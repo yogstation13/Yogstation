@@ -384,7 +384,7 @@
 	max = 40
 	prefix = "darkened"
 
-/obj/item/sharpener/cult/update_icon(updates=ALL)
+/obj/item/sharpener/cult/update_icon_state()
 	. = ..()
 	icon_state = "cult_sharpener[used ? "_used" : ""]"
 
@@ -691,7 +691,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 		qdel(spear_act)
 	..()
 
-/obj/item/twohanded/cult_spear/update_icon(updates=ALL)
+/obj/item/twohanded/cult_spear/update_icon_state()
 	. = ..()
 	icon_state = "bloodspear[wielded]"
 

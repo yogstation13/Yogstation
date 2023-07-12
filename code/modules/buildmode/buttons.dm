@@ -27,7 +27,7 @@
 	update_appearance(UPDATE_ICON)
 	return 1
 
-/atom/movable/screen/buildmode/mode/update_icon(updates=ALL)
+/atom/movable/screen/buildmode/mode/update_icon_state()
 	. = ..()
 	if(bd && bd.mode)
 		icon_state = bd.mode.get_button_iconstate()

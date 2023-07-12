@@ -36,15 +36,17 @@
 	air_update_turf()
 	return ..()
 
-/obj/machinery/portable_atmospherics/scrubber/update_icon(updates=ALL)
+/obj/machinery/portable_atmospherics/scrubber/update_icon_state()
 	. = ..()
 	icon_state = "pscrubber:[on]"
 
-	cut_overlays()
+/obj/machinery/portable_atmospherics/scrubber/update_overlays()
+	. = ..()
+
 	if(holding)
-		add_overlay("scrubber-open")
+		. += "scrubber-open"
 	if(connected_port)
-		add_overlay("scrubber-connector")
+		. += "scrubber-connector"
 
 /obj/machinery/portable_atmospherics/scrubber/process_atmos()
 	..()
@@ -150,7 +152,7 @@
 /obj/machinery/portable_atmospherics/scrubber/huge/movable
 	movable = TRUE
 
-/obj/machinery/portable_atmospherics/scrubber/huge/update_icon(updates=ALL)
+/obj/machinery/portable_atmospherics/scrubber/huge/update_icon_state()
 	. = ..()
 	icon_state = "scrubber:[on]"
 

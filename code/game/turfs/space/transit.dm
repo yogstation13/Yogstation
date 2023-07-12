@@ -67,7 +67,7 @@
 /turf/open/space/transit/east
 	dir = EAST
 
-/turf/open/space/transit/update_icon(updates=ALL)
+/turf/open/space/transit/update_icon_state()
 	. = ..()
 	icon_state = "speedspace_ns_[get_transit_state(src)]"
 	transform = turn(matrix(), get_transit_angle(src))

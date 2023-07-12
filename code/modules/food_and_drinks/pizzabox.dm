@@ -38,9 +38,8 @@
 	unprocess()
 	return ..()
 
-/obj/item/pizzabox/update_icon(updates=ALL)
+/obj/item/pizzabox/update_desc(updates)
 	. = ..()
-	// Description
 	desc = initial(desc)
 	if(open)
 		if(pizza)
@@ -58,34 +57,41 @@
 		if(box.boxtag != "")
 			desc = "[desc] The [boxes.len ? "top box" : "box"]'s tag reads: [box.boxtag]"
 
-	// Icon/Overlays
-	cut_overlays()
-	if(open)
+/obj/item/pizzabox/update_icon_state()
+	. = ..()
+	if(!open)
+		icon_state = "pizzabox"
+		return
+	if(pizza)
+		icon_state = "pizzabox_messy"
+	else if(bomb)
+		bomb.icon_state = "pizzabomb_[bomb_active ? "active" : "inactive"]"
+	else
 		icon_state = "pizzabox_open"
+
+/obj/item/pizzabox/update_overlays()
+	. = ..()
+	if(open)
 		if(pizza)
-			icon_state = "pizzabox_messy"
 			var/mutable_appearance/pizza_overlay = mutable_appearance(pizza.icon, pizza.icon_state)
 			pizza_overlay.pixel_y = -3
-			add_overlay(pizza_overlay)
+			. += pizza_overlay
 		if(bomb)
-			bomb.icon_state = "pizzabomb_[bomb_active ? "active" : "inactive"]"
 			var/mutable_appearance/bomb_overlay = mutable_appearance(bomb.icon, bomb.icon_state)
 			bomb_overlay.pixel_y = 5
-			add_overlay(bomb_overlay)
+			. += bomb_overlay
 	else
-		icon_state = "pizzabox"
 		var/current_offset = 3
-		for(var/V in boxes)
-			var/obj/item/pizzabox/P = V
+		for(var/obj/item/pizzabox/P as anything in boxes)
 			var/mutable_appearance/box_overlay = mutable_appearance(P.icon, P.icon_state)
 			box_overlay.pixel_y = current_offset
-			add_overlay(box_overlay)
+			. += box_overlay
 			current_offset += 3
 		var/obj/item/pizzabox/box = boxes.len ? boxes[boxes.len] : src
 		if(box.boxtag != "")
 			var/mutable_appearance/tag_overlay = mutable_appearance(icon, "pizzabox_tag")
 			tag_overlay.pixel_y = boxes.len * 3
-			add_overlay(tag_overlay)
+			. += tag_overlay
 
 /obj/item/pizzabox/worn_overlays(isinhands, icon_file)
 	. = list()

@@ -40,32 +40,31 @@
 		a_right = A
 	A.holder_movement()
 
-/obj/item/assembly_holder/update_icon(updates=ALL)
+/obj/item/assembly_holder/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(a_left)
-		add_overlay("[a_left.icon_state]_left")
+		. += "[a_left.icon_state]_left"
 		for(var/O in a_left.attached_overlays)
 			// yogs start - signaller colors
 			if(istext(O))
-				add_overlay("[O]_l")
+				. += "[O]_l"
 			else
 				var/mutable_appearance/A = new(O)
 				A.icon_state = "[A.icon_state]_l"
-				add_overlay(A)
+				. += A
 			// yogs end
 
 	if(a_right)
 		if(a_right.is_position_sensitive)
-			add_overlay("[a_right.icon_state]_right")
+			. += "[a_right.icon_state]_right"
 			for(var/O in a_right.attached_overlays)
 				// yogs start - signaller colors
 				if(istext(O))
-					add_overlay("[O]_r")
+					. += "[O]_r"
 				else
 					var/mutable_appearance/A = new(O)
 					A.icon_state = "[A.icon_state]_r"
-					add_overlay(A)
+					. += A
 				// yogs end
 		else
 			var/mutable_appearance/right = mutable_appearance(icon, "[a_right.icon_state]_left")
@@ -79,7 +78,7 @@
 					A.icon_state = "[A.icon_state]_l"
 					right.add_overlay(A)
 				// yogs end
-			add_overlay(right)
+			. += right
 
 	if(master)
 		master.update_appearance(UPDATE_ICON)

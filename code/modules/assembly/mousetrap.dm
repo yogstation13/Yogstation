@@ -27,12 +27,15 @@
 
 /obj/item/assembly/mousetrap/update_icon(updates=ALL)
 	. = ..()
+	if(holder)
+		holder.update_icon(updates)
+
+/obj/item/assembly/mousetrap/update_icon_state()
+	. = ..()
 	if(armed)
 		icon_state = "mousetraparmed"
 	else
 		icon_state = "mousetrap"
-	if(holder)
-		holder.update_appearance(UPDATE_ICON)
 
 /obj/item/assembly/mousetrap/proc/triggered(mob/target, type = "feet")
 	if(!armed)

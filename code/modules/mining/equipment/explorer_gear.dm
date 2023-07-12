@@ -126,12 +126,11 @@
 	AddComponent(/datum/component/spraycan_paintable)
 	update_appearance(UPDATE_ICON)
 
-/obj/item/clothing/head/helmet/space/hostile_environment/update_icon(updates=ALL)
+/obj/item/clothing/head/helmet/space/hostile_environment/update_overlays()
 	. = ..()
-	cut_overlays()
 	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hostile_env_glass")
 	glass_overlay.appearance_flags = RESET_COLOR
-	add_overlay(glass_overlay)
+	. += glass_overlay
 
 /obj/item/clothing/head/helmet/space/hostile_environment/worn_overlays(isinhands)
 	. = ..()

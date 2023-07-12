@@ -48,10 +48,10 @@
 		tagged = 0
 		update_appearance(UPDATE_ICON)
 
-/obj/structure/closet/body_bag/update_icon(updates=ALL)
+/obj/structure/closet/body_bag/update_overlays()
 	. = ..()
 	if (tagged)
-		add_overlay("bodybag_label")
+		. += "bodybag_label"
 
 /obj/structure/closet/body_bag/close()
 	if(..())
@@ -190,7 +190,7 @@
 		to_chat(the_folder, span_warning("You wrestle with [src], but it won't fold while its straps are fastened."))
 	return ..()
 
-/obj/structure/closet/body_bag/environmental/prisoner/update_icon(updates=ALL)
+/obj/structure/closet/body_bag/environmental/prisoner/update_icon_state()
 	. = ..()
 	if(sinched)
 		icon_state = initial(icon_state) + "_sinched"
@@ -292,11 +292,11 @@
 	breakout_time = 8 MINUTES
 	sinch_time = 4 SECONDS
 
-/obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_icon(updates=ALL)
+/obj/structure/closet/body_bag/environmental/prisoner/syndicate/update_overlays()
 	. = ..()
 	var/obj/item/bodybag/environmental/prisoner/syndicate/inner_bag = foldedbag_instance
 	if(sinched && inner_bag && inner_bag.killing)
-		add_overlay("kill_flash")
+		. += "kill_flash"
 
 /obj/structure/closet/body_bag/environmental/prisoner/syndicate/Initialize(mapload)
 	. = ..()

@@ -344,7 +344,7 @@
 		return "Currently weak to brute damage."
 	return "N/A"
 
-/obj/structure/blob/normal/update_icon(updates=ALL)
+/obj/structure/blob/normal/update_appearance(updates=ALL)
 	. = ..()
 	if(obj_integrity <= 15)
 		icon_state = "blob_damaged"

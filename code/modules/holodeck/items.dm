@@ -199,7 +199,7 @@
 	if(numbuttons == numready)
 		begin_event()
 
-/obj/machinery/readybutton/update_icon(updates=ALL)
+/obj/machinery/readybutton/update_icon_state()
 	. = ..()
 	if(ready)
 		icon_state = "auth_on"

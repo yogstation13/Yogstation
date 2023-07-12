@@ -29,7 +29,7 @@
 	name = linked_pod.name
 	. = ..()
 
-/mob/living/simple_animal/pet/gondola/gondolapod/update_icon(updates=ALL)
+/mob/living/simple_animal/pet/gondola/gondolapod/update_icon_state()
 	. = ..()
 	if(opened)
 		icon_state = "gondolapod_open"

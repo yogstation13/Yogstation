@@ -94,16 +94,18 @@
 
 /obj/item/assembly/prox_sensor/update_icon(updates=ALL)
 	. = ..()
-	cut_overlays()
+	if(holder)
+		holder.update_icon(updates)
+
+/obj/item/assembly/prox_sensor/update_overlays()
+	. = ..()
 	attached_overlays = list()
 	if(timing)
-		add_overlay("prox_timing")
+		. += "prox_timing"
 		attached_overlays += "prox_timing"
 	if(scanning)
-		add_overlay("prox_scanning")
+		. += "prox_scanning"
 		attached_overlays += "prox_scanning"
-	if(holder)
-		holder.update_appearance(UPDATE_ICON)
 
 /obj/item/assembly/prox_sensor/ui_status(mob/user)
 	if(is_secured(user))

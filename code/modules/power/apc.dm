@@ -205,7 +205,7 @@
 		operating = FALSE
 		name = "[area.name] APC"
 		stat |= MAINT
-		src.update_appearance(UPDATE_ICON)
+		update_appearance(UPDATE_ICON)
 		addtimer(CALLBACK(src, PROC_REF(update)), 5)
 
 /obj/machinery/power/apc/Destroy()
@@ -322,19 +322,18 @@
 		cell = best_cell
 		W.play_rped_sound()
 
+#define APC_UPDATE_STATE (1<<0)
+#define APC_UPDATE_OVERLAYS (1<<1)
 
 // update the APC icon to show the three base states
 // also add overlays for indicator lights
 /obj/machinery/power/apc/update_icon(updates=ALL)
 	. = ..()
-	var/update = check_updates() 		//returns 0 if no need to update icons.
-						// 1 if we need to update the icon_state
-						// 2 if we need to update the overlays
-	if(!update)
-		icon_update_needed = FALSE
+	updates=check_updates()
+	if(!updates)
 		return
 
-	if(update & 1) // Updating the icon state
+	if(updates & APC_UPDATE_STATE) // Updating the icon state
 		if(update_state & UPSTATE_ALLGOOD)
 			icon_state = "apc0"
 		else if(update_state & (UPSTATE_OPENED1|UPSTATE_OPENED2))
@@ -361,7 +360,7 @@
 	if(!(update_state & UPSTATE_ALLGOOD))
 		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 
-	if(update & 2)
+	if(updates & APC_UPDATE_OVERLAYS)
 		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 		if(!(stat & (BROKEN|MAINT)) && update_state & UPSTATE_ALLGOOD)
 			SSvis_overlays.add_vis_overlay(src, icon, "apcox-[locked]", layer, plane, dir)
@@ -454,14 +453,17 @@
 			update_overlay |= APC_UPOVERLAY_ENVIRON2
 
 
-	var/results = 0
+	var/results = NONE
 	if(last_update_state == update_state && last_update_overlay == update_overlay)
-		return 0
+		return results
 	if(last_update_state != update_state)
-		results += 1
+		results ^= APC_UPDATE_STATE
 	if(last_update_overlay != update_overlay)
-		results += 2
+		results ^= APC_UPDATE_OVERLAYS
 	return results
+
+#undef APC_UPDATE_STATE
+#undef APC_UPDATE_OVERLAYS
 
 // Used in process so it doesn't update the icon too much
 /obj/machinery/power/apc/proc/queue_icon_update()

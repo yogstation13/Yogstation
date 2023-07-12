@@ -94,11 +94,6 @@
 	else
 		icon_state = "[base_icon]-off"
 
-/obj/machinery/atmospherics/components/binary/crystallizer/update_icon(updates=ALL)
-	. = ..()
-	update_icon_state()
-	update_overlays()
-
 /obj/machinery/atmospherics/components/binary/crystallizer/AltClick(mob/user)
 	if(!can_interact(user))
 		return

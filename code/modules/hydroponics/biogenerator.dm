@@ -65,7 +65,7 @@
 /obj/machinery/biogenerator/on_reagent_change(changetype)			//When the reagents change, change the icon as well.
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/biogenerator/update_icon(updates=ALL)
+/obj/machinery/biogenerator/update_icon_state()
 	. = ..()
 	if(panel_open)
 		icon_state = "biogen-empty-o"

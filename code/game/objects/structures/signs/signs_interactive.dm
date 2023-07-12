@@ -20,19 +20,18 @@ GLOBAL_LIST_EMPTY(map_delamination_counters)
 	since_last = min(new_count, 99)
 	update_appearance(UPDATE_ICON)
 
-/obj/structure/sign/delamination_counter/update_icon(updates=ALL)
+/obj/structure/sign/delamination_counter/update_overlays()
 	. = ..()
-	cut_overlays()
 
 	var/ones = since_last % 10
 	var/mutable_appearance/ones_overlay = mutable_appearance('icons/obj/decals.dmi', "days_[ones]")
 	ones_overlay.pixel_x = 4
-	add_overlay(ones_overlay)
+	. += ones_overlay
 
 	var/tens = (since_last / 10) % 10
 	var/mutable_appearance/tens_overlay = mutable_appearance('icons/obj/decals.dmi', "days_[tens]")
 	tens_overlay.pixel_x = -5
-	add_overlay(tens_overlay)
+	. += tens_overlay
 
 /obj/structure/sign/delamination_counter/examine(mob/user)
 	. = ..()

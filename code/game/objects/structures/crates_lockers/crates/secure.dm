@@ -13,14 +13,14 @@
 		return 0
 	. = ..()
 
-/obj/structure/closet/crate/secure/update_icon(updates=ALL)
+/obj/structure/closet/crate/secure/update_overlays()
 	. = ..()
 	if(broken)
-		add_overlay("securecrateemag")
+		. += "securecrateemag"
 	else if(locked)
-		add_overlay("securecrater")
+		. += "securecrater"
 	else
-		add_overlay("securecrateg")
+		. += "securecrateg"
 
 /obj/structure/closet/crate/secure/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
 	if(prob(tamperproof) && damage_amount >= DAMAGE_PRECISION)

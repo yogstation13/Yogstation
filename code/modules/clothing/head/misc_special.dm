@@ -151,6 +151,7 @@
 	
 
 /obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
+	. = ..()
 	if(ishuman(user))
 		add_atom_colour("#[user.hair_color]", FIXED_COLOUR_PRIORITY)
 
@@ -209,18 +210,23 @@
 	. = ..()
 	update_appearance(UPDATE_ICON)
 
-/obj/item/clothing/head/wig/update_icon(updates=ALL)
+/obj/item/clothing/head/wig/update_icon_state()
 	. = ..()
-	cut_overlays()
 	icon_state = ""
 	var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
+	if(S)
+		return
+	icon_state = "pwig"
+
+/obj/item/clothing/head/wig/update_overlays()
+	. = ..()
+	var/datum/sprite_accessory/S = GLOB.hair_styles_list[hair_style]
 	if(!S)
-		icon_state = "pwig"
-	else
-		var/mutable_appearance/M = mutable_appearance(S.icon,S.icon_state)
-		M.appearance_flags |= RESET_COLOR
-		M.color = hair_color
-		add_overlay(M)
+		return
+	var/mutable_appearance/M = mutable_appearance(S.icon,S.icon_state)
+	M.appearance_flags |= RESET_COLOR
+	M.color = hair_color
+	. += M
 
 /obj/item/clothing/head/wig/worn_overlays(isinhands = FALSE, file2use)
 	. = list()

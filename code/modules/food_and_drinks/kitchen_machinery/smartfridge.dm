@@ -149,7 +149,7 @@
 		update_appearance(UPDATE_ICON)
 	..(damage_flag)
 
-/obj/machinery/smartfridge/update_icon(updates=ALL)
+/obj/machinery/smartfridge/update_icon_state()
 	. = ..()
 	var/startstate = initial(icon_state)
 	if(stat & BROKEN)
@@ -477,13 +477,12 @@
 	..()
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/smartfridge/drying_rack/update_icon(updates=ALL)
+/obj/machinery/smartfridge/drying_rack/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(drying)
-		add_overlay("drying_rack_drying")
+		. += "drying_rack_drying"
 	if(contents.len)
-		add_overlay("drying_rack_filled")
+		. += "drying_rack_filled"
 
 /obj/machinery/smartfridge/drying_rack/process()
 	..()

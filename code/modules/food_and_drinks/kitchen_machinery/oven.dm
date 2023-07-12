@@ -42,9 +42,8 @@
 	QDEL_NULL(particles)
 	. = ..()
 
-/obj/machinery/oven/update_icon(updates=ALL)
+/obj/machinery/oven/update_icon_state()
 	. = ..()
-	update_overlays()
 	if(panel_open) 
 		icon_state = "oven_o"
 		return ..()

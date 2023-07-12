@@ -138,12 +138,10 @@
 	icon = 'icons/obj/lavaland/survival_pod.dmi'
 	icon_state = "sleeper"
 
-/obj/machinery/sleeper/survival_pod/update_icon(updates=ALL)
+/obj/machinery/sleeper/survival_pod/update_overlays()
 	. = ..()
-	if(state_open)
-		cut_overlays()
-	else
-		add_overlay("sleeper_cover")
+	if(!state_open)
+		. += "sleeper_cover"
 
 //Lifeform Stasis Unit
 /obj/machinery/stasis/survival_pod

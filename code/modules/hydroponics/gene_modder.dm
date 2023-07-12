@@ -55,19 +55,21 @@
 			min_wchance = 0
 			min_wrate = 0
 
-/obj/machinery/plantgenes/update_icon(updates=ALL)
+/obj/machinery/plantgenes/update_icon_state()
 	. = ..()
-	cut_overlays()
 	if((stat & (BROKEN|NOPOWER)))
 		icon_state = "dnamod-off"
 	else
 		icon_state = "dnamod"
+
+/obj/machinery/plantgenes/update_overlays()
+	. = ..()
 	if(seed)
-		add_overlay("dnamod-dna")
+		. += "dnamod-dna"
 	if(disk)
-		add_overlay("dnamod-disk")
+		. += "dnamod-disk"
 	if(panel_open)
-		add_overlay("dnamod-open")
+		. += "dnamod-open"
 
 /obj/machinery/plantgenes/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "dnamod", "dnamod", I))
@@ -439,11 +441,10 @@
 	src.pixel_x = rand(-5, 5)
 	src.pixel_y = rand(-5, 5)
 
-/obj/item/disk/plantgene/update_icon(updates=ALL)
+/obj/item/disk/plantgene/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(gene)
-		add_overlay("datadisk_gene")
+		. += "datadisk_gene"
 
 /obj/item/disk/plantgene/update_name(updates=ALL)
 	. = ..()

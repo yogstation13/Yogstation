@@ -54,7 +54,7 @@
 		bodcam.status = TRUE
 		update_appearance(UPDATE_ICON)
 
-/obj/item/clothing/neck/bodycam/update_icon(updates=ALL)
+/obj/item/clothing/neck/bodycam/update_icon_state()
 	. = ..()
 	var/suffix = "off"
 	if(bodcam.status)

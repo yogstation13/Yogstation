@@ -22,26 +22,24 @@
 	var/list/stack_overlays
 	var/edible = FALSE //can a preternis eat it for some funny effect?
 
-/obj/item/stack/ore/update_icon(updates=ALL)
+/obj/item/stack/ore/update_overlays()
 	. = ..()
 	var/difference = min(ORESTACK_OVERLAYS_MAX, amount) - (LAZYLEN(stack_overlays)+1)
 	if(difference == 0)
 		return
 	else if(difference < 0 && LAZYLEN(stack_overlays))			//amount < stack_overlays, remove excess.
-		cut_overlays()
 		if (LAZYLEN(stack_overlays)-difference <= 0)
 			stack_overlays = null;
 		else
 			stack_overlays.len += difference
 	else if(difference > 0)			//amount > stack_overlays, add some.
-		cut_overlays()
 		for(var/i in 1 to difference)
 			var/mutable_appearance/newore = mutable_appearance(icon, icon_state)
 			newore.pixel_x = rand(-8,8)
 			newore.pixel_y = rand(-8,8)
 			LAZYADD(stack_overlays, newore)
 	if (stack_overlays)
-		add_overlay(stack_overlays)
+		. += stack_overlays
 
 /obj/item/stack/ore/welder_act(mob/living/user, obj/item/I)
 	if(!refined_type)
@@ -635,12 +633,11 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	if(antag > 1)
 		. += span_info("But they told me I could only have one at a time...")
 
-/obj/item/coinstack/update_icon(updates=ALL)
+/obj/item/coinstack/update_overlays()
 	. = ..()
-	cut_overlays()
 	for(var/i in 1 to length(coins))
 		var/obj/item/coin/C = coins[i]
-		src.add_overlay(image(icon = C.icon,icon_state = C.coin_stack_icon_state, pixel_y = (i-1)*2))
+		. += image(icon = C.icon,icon_state = C.coin_stack_icon_state, pixel_y = (i-1)*2)
 
 /obj/item/coinstack/attack_hand(mob/user) ///take a coin off the top of the stack
 	remove_from_stack(user)

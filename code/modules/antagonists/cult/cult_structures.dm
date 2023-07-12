@@ -312,7 +312,7 @@
 	new /obj/effect/decal/cleanable/ash(loc)
 	..()
 
-/obj/structure/destructible/cult/pillar/update_icon(updates=ALL)
+/obj/structure/destructible/cult/pillar/update_icon_state()
 	. = ..()
 	icon_state = "pillar[alt ? "alt": ""]2"
 	if (obj_integrity < max_integrity/3)
@@ -471,17 +471,19 @@
 			else
 				T.narsie_act(TRUE, TRUE)
 
-/obj/structure/destructible/cult/bloodstone/update_icon(updates=ALL)
+/obj/structure/destructible/cult/bloodstone/update_icon_state()
 	. = ..()
 	icon_state = "bloodstone-[current_fullness]"
-	cut_overlays()
+
+/obj/structure/destructible/cult/bloodstone/update_overlays()
+	. = ..()
 	var/image/I_base = image('icons/obj/cult_64x64.dmi',"bloodstone-base")
 	I_base.appearance_flags |= RESET_COLOR//we don't want the stone to pulse
 	overlays += I_base
 	if (obj_integrity <= max_integrity/3)
-		add_overlay("bloodstone_damage2")
+		. += "bloodstone_damage2"
 	else if (obj_integrity <= 2*max_integrity/3)
-		add_overlay("bloodstone_damage1")
+		. += "bloodstone_damage1"
 	set_light(3+current_fullness, 2+current_fullness)
 
 /obj/structure/destructible/cult/bloodstone/proc/set_animate()

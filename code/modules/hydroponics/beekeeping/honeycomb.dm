@@ -20,14 +20,13 @@
 	update_appearance(UPDATE_ICON)
 
 
-/obj/item/reagent_containers/honeycomb/update_icon(updates=ALL)
+/obj/item/reagent_containers/honeycomb/update_overlays()
 	. = ..()
-	cut_overlays()
 	var/mutable_appearance/honey_overlay = mutable_appearance(icon, /datum/reagent/consumable/honey)
 	if(honey_color)
 		honey_overlay.icon_state = "greyscale_honey"
 		honey_overlay.color = honey_color
-	add_overlay(honey_overlay)
+	. += honey_overlay
 
 
 /obj/item/reagent_containers/honeycomb/proc/set_reagent(reagent)

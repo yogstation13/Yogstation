@@ -44,9 +44,8 @@
 	SSradio.remove_object(src,frequency)
 	return ..()
 
-/obj/machinery/atmospherics/components/trinary/filter/update_icon(updates=ALL)
+/obj/machinery/atmospherics/components/trinary/filter/update_overlays()
 	. = ..()
-	cut_overlays()
 	for(var/direction in GLOB.cardinals)
 		if(!(direction & initialize_directions))
 			continue
@@ -58,7 +57,7 @@
 		else
 			cap = getpipeimage(icon, "cap", direction, piping_layer = piping_layer, trinary = TRUE)
 
-		add_overlay(cap)
+		. += cap
 
 /obj/machinery/atmospherics/components/trinary/filter/update_icon_nopipes()
 	var/on_state = on && nodes[1] && nodes[2] && nodes[3] && is_operational()

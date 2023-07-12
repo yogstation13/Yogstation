@@ -31,15 +31,14 @@
 			ready = FALSE
 	update_appearance(UPDATE_ICON)
 
-/obj/item/supplypod_beacon/update_icon(updates=ALL)
+/obj/item/supplypod_beacon/update_overlays()
 	. = ..()
-	cut_overlays()
 	if (launched)
-		add_overlay("sp_green")
+		. += "sp_green"
 	else if (ready)
-		add_overlay("sp_yellow")
+		. += "sp_yellow"
 	else if (linked)
-		add_overlay("sp_orange")
+		. += "sp_orange"
 
 /obj/item/supplypod_beacon/proc/endLaunch()
 	launched = FALSE

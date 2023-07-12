@@ -28,7 +28,7 @@
 	var/detonation_damage = 50
 	var/backstab_bonus = 30
 
-/obj/item/twohanded/kinetic_crusher/update_icon(updates=ALL)  //Updates the sprite for in-hand and on-mob.
+/obj/item/twohanded/kinetic_crusher/update_icon_state()  //Updates the sprite for in-hand and on-mob.
 	icon_state = "mining_hammer[wielded]"
 	return
 
@@ -508,7 +508,7 @@
     ..()
 
 
-/obj/item/twohanded/kinetic_crusher/mega/update_icon(updates=ALL)
+/obj/item/twohanded/kinetic_crusher/mega/update_icon_state()
 	. = ..()
 	icon_state = "magmite_crusher[wielded]"
 

@@ -345,7 +345,7 @@
 	do_sparks(5, TRUE, src)
 	..()
 
-/obj/machinery/mineral/ore_redemption/update_icon(updates=ALL)
+/obj/machinery/mineral/ore_redemption/update_icon_state()
 	. = ..()
 	if(powered())
 		icon_state = initial(icon_state)

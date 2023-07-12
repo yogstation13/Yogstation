@@ -23,12 +23,12 @@
 	icons = typelist("icons", icons)
 
 
-/turf/open/floor/mineral/update_icon(updates=ALL)
+/turf/open/floor/mineral/update_icon_state()
 	. = ..()
 	if(!.)
-		return 0
+		return
 	if(!broken && !burnt)
-		if( !(icon_state in icons) )
+		if(!(icon_state in icons))
 			icon_state = initial(icon_state)
 
 //PLASMA

@@ -630,7 +630,7 @@
 					"set_internal_pressure" = 0
 				), signal_source)
 
-/obj/machinery/airalarm/update_icon(updates=ALL)
+/obj/machinery/airalarm/update_icon_state()
 	. = ..()
 	if(panel_open)
 		switch(buildstage)

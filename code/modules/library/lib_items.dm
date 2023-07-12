@@ -139,7 +139,7 @@
 	qdel(src)
 
 
-/obj/structure/bookcase/update_icon(updates=ALL)
+/obj/structure/bookcase/update_icon_state()
 	. = ..()
 	if(contents.len < 5)
 		icon_state = "book-[contents.len]"

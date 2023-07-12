@@ -395,16 +395,15 @@
 	. = ..()
 	anchored = FALSE
 
-/obj/structure/bloodsucker/moldingstone/update_icon(updates=ALL)
+/obj/structure/bloodsucker/moldingstone/update_overlays()
 	. = ..()
-	cut_overlays()
 	switch(metal)
 		if(1 to 5)
-			add_overlay("metal")
+			. += "metal"
 		if(6 to 20)
-			add_overlay("metal_2")
+			. += "metal_2"
 		if(21 to 50)
-			add_overlay("metal_3")
+			. += "metal_3"
 
 /obj/structure/bloodsucker/moldingstone/attackby(obj/item/I, mob/user, params)
 	if(!anchored)
@@ -811,18 +810,17 @@
 	update_appearance(UPDATE_ICON)
 #undef MEATLIMIT
 
-/obj/structure/bloodsucker/vassalrack/update_icon(updates=ALL)
+/obj/structure/bloodsucker/vassalrack/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(bigmeat)
-		add_overlay("bigmeat_[bigmeat]")
+		. += "bigmeat_[bigmeat]"
 	if(intermeat)
-		add_overlay("mediummeat_[intermeat]")
-		add_overlay("smallmeat_[intermeat]")
+		. += "mediummeat_[intermeat]"
+		. += "smallmeat_[intermeat]"
 	if(mediummeat)
-		add_overlay("mediummeat_[mediummeat + intermeat]")
+		. += "mediummeat_[mediummeat + intermeat]"
 	if(smallmeat)
-		add_overlay("smallmeat_[smallmeat + intermeat]")
+		. += "smallmeat_[smallmeat + intermeat]"
 
 /obj/structure/bloodsucker/vassalrack/CtrlClick(mob/user)
 	if(!anchored)
@@ -1185,7 +1183,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/structure/bloodsucker/candelabrum/update_icon(updates=ALL)
+/obj/structure/bloodsucker/candelabrum/update_icon_state()
 	. = ..()
 	icon_state = "candelabrum[lit ? "_lit" : ""]"
 

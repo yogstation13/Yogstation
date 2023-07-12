@@ -95,14 +95,14 @@
 	else
 		update_appearance(UPDATE_ICON)
 
-/turf/closed/mineral/update_icon(updates=ALL)
+/turf/closed/mineral/update_overlays()
 	. = ..()
 	if(hardness != initial(hardness))
 		var/mutable_appearance/cracks = mutable_appearance('icons/turf/mining.dmi',"rock_cracks",ON_EDGED_TURF_LAYER)
 		var/matrix/M = new
 		M.Translate(4,4)
 		cracks.transform = M
-		add_overlay(cracks)
+		. += cracks
 
 
 /turf/closed/mineral/attack_animal(mob/living/simple_animal/user)

@@ -47,7 +47,7 @@
 /obj/item/assembly/signaler/update_icon(updates=ALL)
 	. = ..()
 	if(holder)
-		holder.update_appearance(UPDATE_ICON)
+		holder.update_icon(updates)
 
 /obj/item/assembly/signaler/ui_status(mob/user)
 	if(is_secured(user))

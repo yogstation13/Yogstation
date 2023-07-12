@@ -136,14 +136,16 @@
 	. = ..()
 	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/regenerative_core/update_icon(updates=ALL)
+/obj/item/organ/regenerative_core/update_icon_state()
 	. = ..()
 	icon_state = inert ? "legion_soul_inert" : "legion_soul"
-	cut_overlays()
-	if(!inert && !preserved)
-		add_overlay("legion_soul_crackle")
 	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
+
+/obj/item/organ/regenerative_core/update_overlays()
+	. = ..()
+	if(!inert && !preserved)
+		. += "legion_soul_crackle"
 
 /obj/item/organ/regenerative_core/legion/go_inert()
 	..()

@@ -106,7 +106,7 @@
 		if(prob(10))
 			visible_message("<span class='danger'>[griddled_item] doesn't seem to be doing too great on the [src]!</span>")
 
-/obj/machinery/griddle/update_icon(updates=ALL)
+/obj/machinery/griddle/update_icon_state()
 	. = ..()
 	if(panel_open)
 		icon_state = "griddle[variant]_o"

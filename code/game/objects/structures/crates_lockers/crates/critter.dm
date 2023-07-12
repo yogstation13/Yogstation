@@ -21,15 +21,14 @@
 
 	return ..()
 
-/obj/structure/closet/crate/critter/update_icon(updates=ALL)
+/obj/structure/closet/crate/critter/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(opened)
-		add_overlay("crittercrate_door_open")
+		. += "crittercrate_door_open"
 	else
-		add_overlay("crittercrate_door")
+		. += "crittercrate_door"
 		if(manifest)
-			add_overlay("manifest")
+			. += "manifest"
 
 /obj/structure/closet/crate/critter/return_air()
 	if(tank)
