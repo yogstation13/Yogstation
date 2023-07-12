@@ -22713,19 +22713,6 @@
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"fki" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "disposalshutter"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters{
-	id = "disposalshutters"
-	},
-/turf/open/floor/plating,
-/area/quartermaster/sorting)
 "fkk" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -35902,6 +35889,19 @@
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/medical)
+"kmI" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "packageSort2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters{
+	id = "disposalshutters"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/sorting)
 "kmT" = (
 /obj/machinery/button/door{
 	id = "kanyewest";
@@ -96701,7 +96701,7 @@ aBa
 aBa
 aaa
 mof
-fki
+kmI
 tcM
 bhZ
 mJV
