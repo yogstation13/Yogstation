@@ -1,0 +1,8 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "New UIs for decal painter and tile painter"
+  - tweak: "Splitted decal painter into two things: Decal Painer (for decal obviously) and Tile Painter (For tile)"
+  - tweak: "Tweaked toner ink examination for more precise ink level"
+  - tweak: "buffed toner and large toner to have more capacity"
+  - imageadd: "New sprites for decal painter and tile painter"

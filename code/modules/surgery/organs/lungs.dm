@@ -503,6 +503,7 @@
 	desc = "A radiator in the shape of a lung used to exchange heat to cool down"
 	icon_state = "lungs-c"
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = SYNTHETIC // no more humans with IPC lungs, that's just silly
 	status = ORGAN_ROBOTIC
 	COOLDOWN_DECLARE(last_message)
 

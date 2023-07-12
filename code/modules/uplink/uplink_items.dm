@@ -2471,7 +2471,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	Either a failed experiment or otherworldly monster, this creature has been trained to aid whoever wakes it up. If you aren't afraid of it entering your head, it can prove a useful ally. \
 	We take no responsibility for your newfound madness and accept no refunds."
 	item = /obj/item/horrorspawner
-	cost = 16
+	cost = 14
 	surplus = 0
 	restricted_roles = list("Curator")
 	player_minimum = 20

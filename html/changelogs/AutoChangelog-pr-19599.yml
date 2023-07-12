@@ -1,0 +1,5 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed double blocker tiles on the main ring"
+  - tweak: "Added blockers under the western glass wall"
