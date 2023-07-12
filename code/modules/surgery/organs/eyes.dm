@@ -53,6 +53,8 @@
 		var/mob/living/carbon/human/HMN = M
 		HMN.eye_color = old_eye_color
 		HMN.update_body()
+	M.cure_blind(list(EYE_DAMAGE)) // can't be blind from eye damage if there's no eye to be damaged, still blind from not having eyes though
+	M.cure_nearsighted(list(EYE_DAMAGE)) // likewise for nearsightedness
 	M.update_tint()
 	M.update_sight()
 
