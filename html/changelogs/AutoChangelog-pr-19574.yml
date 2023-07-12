@@ -1,5 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - rscadd: "You can now change the freezer/heater mode on the thermomachine interface"
-  - rscdel: "You can no longer use screwdriver on freezer/heater board to change mode"

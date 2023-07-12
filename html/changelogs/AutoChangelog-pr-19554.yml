@@ -1,9 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - rscdel: "Cyborgs can no longer drag n' drop circuit boards and stock parts into machine frames."
-  - rscdel: "Cyborgs can no longer drag n' drop circuit boards into computer frames."
-  - rscadd: "Cyborgs with an engineering-focus now have a gripper that can be used for engineering purposes."
-  - rscadd: "The gripper can pick up and use items such as circuit boards, stock parts, and electronics. Some exceptions apply."
-  - rscadd: "AI and Cyborgs can now eject a cell from a cell charger."
-  - imageadd: "Gripper sprite."
