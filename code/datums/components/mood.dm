@@ -383,7 +383,7 @@
 			add_event(null, "charge", /datum/mood_event/lowpower)
 		if(PRETERNIS_LEVEL_HUNGRY to PRETERNIS_LEVEL_FED)
 			clear_event(null, "charge")
-		else
+		if(PRETERNIS_LEVEL_FED to INFINITY)
 			add_event(null, "charge", /datum/mood_event/charged)
 
 /datum/component/mood/proc/check_area_mood(datum/source, area/A)
