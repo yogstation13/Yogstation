@@ -55,16 +55,15 @@
 		can_buckle = initial(can_buckle)
 	update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/chocobo/update_icon(updates=ALL)
+/mob/living/simple_animal/chocobo/update_overlays()
 	. = ..()
 	if(!random_color) //icon override
 		return
-	cut_overlays()
 	if(stat == DEAD)
 		var/mutable_appearance/base_overlay = mutable_appearance(icon, "chocobo_limbs_dead")
 		base_overlay.appearance_flags = RESET_COLOR
-		add_overlay(base_overlay)
+		. += base_overlay
 	else
 		var/mutable_appearance/base_overlay = mutable_appearance(icon, "chocobo_limbs")
 		base_overlay.appearance_flags = RESET_COLOR
-		add_overlay(base_overlay)
+		. += base_overlay

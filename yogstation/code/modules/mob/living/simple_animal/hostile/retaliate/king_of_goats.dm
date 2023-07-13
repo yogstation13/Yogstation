@@ -260,7 +260,7 @@ Difficulty: Insanely Hard
 	visible_message(span_cult("\The [src]' wounds close with a flash, and when he emerges, he's even larger than before!"))
 
 
-/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/update_icon(updates=ALL)
+/mob/living/simple_animal/hostile/retaliate/goat/king/phase2/update_icon_state()
 	. = ..()
 	var/matrix/M = new
 	if(phase3)

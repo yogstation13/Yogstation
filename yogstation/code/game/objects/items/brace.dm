@@ -23,11 +23,10 @@
 	var/obj/machinery/door/airlock/placed_on
 	var/cover_open = FALSE
 
-/obj/structure/deployed_brace/update_icon(updates=ALL)
+/obj/structure/deployed_brace/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(cover_open)
-		add_overlay("cover_open")
+		. += "cover_open"
 
 /obj/structure/deployed_brace/examine(mob/user)
 	. = ..()

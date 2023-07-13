@@ -145,12 +145,10 @@
 	update_appearance(UPDATE_ICON)
 	overheat = FALSE
 
-/obj/item/gun/energy/kinetic_accelerator/update_icon(updates=ALL)
+/obj/item/gun/energy/kinetic_accelerator/update_overlays()
 	. = ..()
 	if(!can_shoot())
-		add_overlay("[icon_state]_empty")
-	else
-		cut_overlays()
+		. += "[icon_state]_empty"
 
 /obj/item/gun/energy/kinetic_accelerator/mega
 	name = "mega proto-kinetic accelerator"

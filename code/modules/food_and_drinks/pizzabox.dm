@@ -38,7 +38,7 @@
 	unprocess()
 	return ..()
 
-/obj/item/pizzabox/update_desc(updates)
+/obj/item/pizzabox/update_desc(updates=ALL)
 	. = ..()
 	desc = initial(desc)
 	if(open)

@@ -39,7 +39,7 @@
 		tot_rating += SP.rating
 	heat_gen /= max(1, tot_rating)
 
-/obj/machinery/rnd/server/update_icon(updates=ALL)
+/obj/machinery/rnd/server/update_icon_state()
 	. = ..()
 	if(panel_open)
 		icon_state = "server_t"

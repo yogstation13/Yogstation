@@ -40,7 +40,7 @@
 			log_combat(user, AI, "carded", src)
 	update_appearance(UPDATE_ICON) //Whatever happened, update the card's state (icon, name) to match.
 
-/obj/item/aicard/update_name(updates)
+/obj/item/aicard/update_name(updates=ALL)
 	. = ..()
 	if(AI)
 		name = "[initial(name)] - [AI.name]"

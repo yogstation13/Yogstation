@@ -10,14 +10,19 @@
 	now_fixed = span_info("The pain in your abdomen has subsided.")
 	var/inflamed
 
-/obj/item/organ/appendix/update_icon(updates=ALL)
+/obj/item/organ/appendix/update_name(updates=ALL)
+	. = ..()
+	if(inflamed)
+		name = "inflamed appendix"
+	else
+		name = "appendix"
+
+/obj/item/organ/appendix/update_icon_state()
 	. = ..()
 	if(inflamed)
 		icon_state = "appendixinflamed"
-		name = "inflamed appendix"
 	else
 		icon_state = "appendix"
-		name = "appendix"
 
 /obj/item/organ/appendix/on_life()
 	..()
@@ -66,10 +71,13 @@
 		inflamed = FALSE
 		M.emote("chuckle") //you really think that will stop me?
 
+/obj/item/organ/appendix/cybernetic/update_name(updates=ALL)
+	. = ..()
+	name = "cybernetic appendix"
+
 /obj/item/organ/appendix/cybernetic/update_icon(updates=ALL)
 	. = ..()
 	icon_state = "implant-filter"
-	name = "cybernetic appendix"
 
 /obj/item/organ/appendix/cybernetic/emp_act(severity)
 	. = ..()

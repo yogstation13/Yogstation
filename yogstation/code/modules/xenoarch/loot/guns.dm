@@ -42,9 +42,7 @@
 
 	if(chargesound != oldsound)
 		playsound(src, chargesound, 100)
-
 		addtimer(CALLBACK(src, PROC_REF(playsound), src, chargesound, 75), 0.1 SECONDS)
-	return
 
 /obj/item/gun/energy/polarstar/spur
 	name = "Spur"

@@ -20,29 +20,29 @@
 /obj/item/reagent_containers/glass/bottle/on_reagent_change(changetype)
 	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/glass/bottle/update_icon(updates=ALL)
+/obj/item/reagent_containers/glass/bottle/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(!filling_icon_state)
 		filling_icon_state = icon_state
-	if(reagents.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[filling_icon_state]-10")
+	if(!reagents.total_volume)
+		return
+	var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[filling_icon_state]-10")
 
-		var/percent = round((reagents.total_volume / volume) * 100)
-		switch(percent)
-			if(0 to 9)
-				filling.icon_state = "[filling_icon_state]-10"
-			if(10 to 29)
-				filling.icon_state = "[filling_icon_state]25"
-			if(30 to 49)
-				filling.icon_state = "[filling_icon_state]50"
-			if(50 to 69)
-				filling.icon_state = "[filling_icon_state]75"
-			if(70 to INFINITY)
-				filling.icon_state = "[filling_icon_state]100"
+	var/percent = round((reagents.total_volume / volume) * 100)
+	switch(percent)
+		if(0 to 9)
+			filling.icon_state = "[filling_icon_state]-10"
+		if(10 to 29)
+			filling.icon_state = "[filling_icon_state]25"
+		if(30 to 49)
+			filling.icon_state = "[filling_icon_state]50"
+		if(50 to 69)
+			filling.icon_state = "[filling_icon_state]75"
+		if(70 to INFINITY)
+			filling.icon_state = "[filling_icon_state]100"
 
-		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+	filling.color = mix_color_from_reagents(reagents.reagent_list)
+	. += filling
 
 /obj/item/reagent_containers/glass/bottle/epinephrine
 	name = "epinephrine bottle"

@@ -15,7 +15,7 @@
 	connect_to_network()
 	return ..()
 
-/obj/machinery/power/validhunter_engine/update_icon(updates=ALL)
+/obj/machinery/power/validhunter_engine/update_icon_state()
 	. = ..()
 	if(operating)
 		icon_state = "throw_me_in_the_trash_and_feed_my_remains_to_the_devil_operating"

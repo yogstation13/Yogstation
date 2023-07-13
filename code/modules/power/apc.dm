@@ -206,7 +206,6 @@
 		operating = FALSE
 		name = "[area.name] APC"
 		stat |= MAINT
-		update_appearance(UPDATE_ICON)
 		addtimer(CALLBACK(src, PROC_REF(update)), 5)
 
 /obj/machinery/power/apc/Destroy()
@@ -251,7 +250,7 @@
 		cell = new cell_type
 		cell.charge = start_charge * cell.maxcharge / 100 		// (convert percentage to actual value)
 
-	var/area/A = src.loc.loc
+	var/area/A = get_area(loc)
 
 	//if area isn't specified use current
 	if(areastring)
@@ -330,7 +329,7 @@
 // also add overlays for indicator lights
 /obj/machinery/power/apc/update_icon(updates=ALL)
 	. = ..()
-	updates=check_updates()
+	updates = check_updates()
 	if(!updates)
 		return
 

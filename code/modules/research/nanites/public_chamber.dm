@@ -60,33 +60,29 @@
 		log_combat(attacker, occupant, "injected", null, "with nanites via [src]")
 	occupant.AddComponent(/datum/component/nanites, 75, cloud_id)
 
-/obj/machinery/public_nanite_chamber/update_icon(updates=ALL)
+/obj/machinery/public_nanite_chamber/update_overlays()
 	. = ..()
-	cut_overlays()
 
 	if((stat & MAINT) || panel_open)
-		add_overlay("maint")
+		. += "maint"
 
 	else if(!(stat & (NOPOWER|BROKEN)))
 		if(busy || locked)
-			add_overlay("red")
+			. += "red"
 			if(locked)
-				add_overlay("bolted")
+				. += "bolted"
 		else
-			add_overlay("green")
+			. += "green"
 
-
-
-	//running and someone in there
-	if(occupant)
-		if(busy)
-			icon_state = busy_icon_state
-		else
-			icon_state = initial(icon_state)+ "_occupied"
+/obj/machinery/public_nanite_chamber/update_icon_state()
+	. = ..()
+	if(!occupant)
+		icon_state = initial(icon_state)+ (state_open ? "_open" : "")
 		return
-
-	//running
-	icon_state = initial(icon_state)+ (state_open ? "_open" : "")
+	if(busy)
+		icon_state = busy_icon_state
+	else
+		icon_state = initial(icon_state)+ "_occupied"
 
 /obj/machinery/public_nanite_chamber/proc/toggle_open(mob/user)
 	if(panel_open)

@@ -167,16 +167,14 @@
 				mode = SYRINGE_DRAW
 				update_appearance(UPDATE_ICON)
 
-
-/obj/item/reagent_containers/syringe/update_icon(updates=ALL)
+/obj/item/reagent_containers/syringe/update_overlays()
 	. = ..()
-	cut_overlays()
 	var/rounded_vol
 	if(reagents && reagents.total_volume)
 		rounded_vol = clamp(round((reagents.total_volume / volume * 15),5), 1, 15)
 		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
 		filling_overlay.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling_overlay)
+		. += filling_overlay
 	else
 		rounded_vol = 0
 	icon_state = "[rounded_vol]"
@@ -189,7 +187,7 @@
 				injoverlay = "draw"
 			if (SYRINGE_INJECT)
 				injoverlay = "inject"
-		add_overlay(injoverlay)
+		. += injoverlay
 		M.update_inv_hands()
 
 /obj/item/reagent_containers/syringe/proc/embed_inject(target, mob/living/carbon/human/embedde, obj/item/bodypart/part)

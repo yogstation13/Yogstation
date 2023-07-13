@@ -27,11 +27,10 @@
 	if(!wires.is_cut(WIRE_SORT_SCAN))
 		sort_scan = TRUE
 
-/obj/structure/disposalpipe/sorting/update_icon(updates=ALL)
+/obj/structure/disposalpipe/sorting/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(panel_open)
-		add_overlay(image('yogstation/icons/obj/atmospherics/pipes/disposal.dmi', "[icon_state]-open"))
+		. += image('yogstation/icons/obj/atmospherics/pipes/disposal.dmi', "[icon_state]-open")
 
 /obj/structure/disposalpipe/sorting/screwdriver_act(mob/living/user, obj/item/I)
 	panel_open = !panel_open

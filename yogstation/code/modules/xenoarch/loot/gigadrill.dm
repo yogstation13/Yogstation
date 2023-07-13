@@ -19,7 +19,7 @@
 	. = ..()
 	update_appearance(UPDATE_ICON)
 
-/obj/vehicle/ridden/gigadrill/update_icon(updates=ALL)
+/obj/vehicle/ridden/gigadrill/update_icon_state()
 	. = ..()
 	if(occupant_amount())
 		icon_state = "gigadrill_mov"

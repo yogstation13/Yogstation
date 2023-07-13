@@ -40,7 +40,7 @@
 	setDir(old_dir) //pipes changing direction when moved is just annoying and buggy
 
 // update iconstate and dpdir due to dir and type
-/obj/structure/disposalconstruct/update_icon(updates=ALL)
+/obj/structure/disposalconstruct/update_icon_state()
 	. = ..()
 	icon_state = initial(pipe_type.icon_state)
 	if(is_pipe())

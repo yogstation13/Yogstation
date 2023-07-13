@@ -104,20 +104,19 @@
 		return
 	SEND_SIGNAL(occupant, COMSIG_NANITE_DELETE)
 
-/obj/machinery/nanite_chamber/update_icon(updates=ALL)
+/obj/machinery/nanite_chamber/update_overlays()
 	. = ..()
-	cut_overlays()
 
 	if((stat & MAINT) || panel_open)
-		add_overlay("maint")
+		. += "maint"
 
 	else if(!(stat & (NOPOWER|BROKEN)))
 		if(busy || locked)
-			add_overlay("red")
+			. += "red"
 			if(locked)
-				add_overlay("bolted")
+				. += "bolted"
 		else
-			add_overlay("green")
+			. += "green"
 
 	//running and someone in there
 	if(occupant)

@@ -99,12 +99,11 @@
 		AM.forceMove(drop_location())
 	holdingitems = list()
 
-/obj/machinery/reagentgrinder/update_icon(updates=ALL)
+/obj/machinery/reagentgrinder/update_icon_state()
 	. = ..()
 	if(!container)
 		icon_state = "juicer"
 		return
-
 	if(istype(container, /obj/item/reagent_containers/glass/mixbowl))
 		icon_state = "juicer_bowl"
 	else

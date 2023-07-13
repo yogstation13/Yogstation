@@ -568,9 +568,9 @@
 	if(autoexperiment)
 		do_experiment()
 
-/obj/machinery/rnd/experimentor/update_icon(updates=ALL)
+/obj/machinery/rnd/experimentor/update_icon_state()
 	. = ..()
-	icon_state = "h_lathe"
+	icon_state = initial(icon_state)
 
 /obj/machinery/rnd/experimentor/proc/warn_admins(user, ReactionName)
 	var/turf/T = get_turf(user)

@@ -100,10 +100,9 @@
 
 		update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/dropper/update_icon(updates=ALL)
+/obj/item/reagent_containers/dropper/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(reagents.total_volume)
 		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "dropper")
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+		. += filling

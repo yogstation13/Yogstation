@@ -22,15 +22,14 @@
 		attached_tank = T
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/anesthetic_machine/update_icon(updates=ALL)
+/obj/machinery/anesthetic_machine/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(mask_out)
-		add_overlay("mask_off")
+		. += "mask_off"
 	else
-		add_overlay("mask_on")
+		. += "mask_on"
 	if(attached_tank)
-		add_overlay("tank_on")
+		. += "tank_on"
 
 
 /obj/machinery/anesthetic_machine/attack_hand(mob/living/user)

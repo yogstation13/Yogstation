@@ -78,12 +78,12 @@
 			to_chat(user, span_warning("[src] cannot hold more syringes!"))
 	return FALSE
 
-/obj/item/gun/syringe/update_icon(updates=ALL)
+/obj/item/gun/syringe/update_overlays()
 	. = ..()
 	if(!has_syringe_overlay)
 		return
 	var/syringe_count = syringes.len
-	add_overlay("[initial(icon_state)]_[syringe_count ? clamp(syringe_count, 1, initial(max_syringes)) : "empty"]")
+	. += "[initial(icon_state)]_[syringe_count ? clamp(syringe_count, 1, initial(max_syringes)) : "empty"]"
 
 /obj/item/gun/syringe/rapidsyringe
 	name = "rapid syringe gun"

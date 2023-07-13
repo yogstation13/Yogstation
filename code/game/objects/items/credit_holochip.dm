@@ -22,7 +22,7 @@
 /obj/item/holochip/get_item_credit_value()
 	return credits
 
-/obj/item/holochip/update_name(updates)
+/obj/item/holochip/update_name(updates=ALL)
 	. = ..()
 	name = "\improper [credits] credit holochip"
 

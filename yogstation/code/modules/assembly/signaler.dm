@@ -7,14 +7,13 @@
 	. = ..()
 	update_appearance(UPDATE_ICON)
 
-/obj/item/assembly/signaler/update_icon(updates=ALL)
+/obj/item/assembly/signaler/update_overlays()
 	. = ..()
 	if(label_color)
-		cut_overlays()
 		attached_overlays = list()
 		var/mutable_appearance/A = mutable_appearance('yogstation/icons/obj/assemblies/new_assemblies.dmi', "signaller_color")
 		A.color = label_color
-		add_overlay(A)
+		. += A
 		attached_overlays += A
 	return ..()
 

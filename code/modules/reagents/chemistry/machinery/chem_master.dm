@@ -69,11 +69,13 @@
 	else if(A == bottle)
 		bottle = null
 
-/obj/machinery/chem_master/update_icon(updates=ALL)
+/obj/machinery/chem_master/update_overlays()
 	. = ..()
-	cut_overlays()
 	if (stat & BROKEN)
-		add_overlay("waitlight")
+		. += "waitlight"
+
+/obj/machinery/chem_master/update_icon_state()
+	. = ..()
 	if(beaker)
 		icon_state = "mixer1"
 	else

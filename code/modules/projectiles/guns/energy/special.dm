@@ -34,11 +34,11 @@
 	pin = null
 	ammo_x_offset = 1
 
-/obj/item/gun/energy/decloner/update_icon(updates=ALL)
+/obj/item/gun/energy/decloner/update_overlays()
 	. = ..()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	if(!QDELETED(cell) && (cell.charge > shot.e_cost))
-		add_overlay("decloner_spin")
+		. += "decloner_spin"
 
 /obj/item/gun/energy/decloner/unrestricted
 	pin = /obj/item/firing_pin
@@ -303,7 +303,7 @@
 	desc = "A projector that emits high density quantum-coupled bluespace beams. This one seems to be modified to go through glass."
 	ammo_type = list(/obj/item/ammo_casing/energy/wormhole/upgraded, /obj/item/ammo_casing/energy/wormhole/orange/upgraded)
 
-/obj/item/gun/energy/wormhole_projector/update_icon(updates=ALL)
+/obj/item/gun/energy/wormhole_projector/update_icon_state()
 	. = ..()
 	icon_state = "[initial(icon_state)][select]"
 	item_state = icon_state

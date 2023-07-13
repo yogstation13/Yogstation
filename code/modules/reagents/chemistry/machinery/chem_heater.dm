@@ -23,7 +23,7 @@
 		beaker = null
 		update_appearance(UPDATE_ICON)
 
-/obj/machinery/chem_heater/update_icon(updates=ALL)
+/obj/machinery/chem_heater/update_icon_state()
 	. = ..()
 	icon_state = "mixer[beaker ? 1 : 0][on ? "a" : "b"]"
 

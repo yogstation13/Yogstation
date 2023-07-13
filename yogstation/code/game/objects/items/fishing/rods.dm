@@ -209,7 +209,7 @@
 	update_appearance(UPDATE_ICON)
 	user.regenerate_icons()
 
-/obj/item/twohanded/fishingrod/collapsible/update_icon(updates=ALL)
+/obj/item/twohanded/fishingrod/collapsible/update_icon_state()
 	. = ..()
 	item_state = opened ? "fishing_rod" : ""
 	icon_state = "[rod_icon_state][opened ? "" : "_c"]"

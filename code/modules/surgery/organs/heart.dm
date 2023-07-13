@@ -26,7 +26,7 @@
 	icon_base = icon_state
 	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/heart/update_icon(updates=ALL)
+/obj/item/organ/heart/update_icon_state()
 	. = ..()
 	if(beating)
 		icon_state = "[icon_base]-on"

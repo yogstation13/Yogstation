@@ -138,13 +138,12 @@
 		recall(usr)
 	attack_self(usr)
 
-/obj/item/gangtool/update_icon(updates=ALL)
+/obj/item/gangtool/update_overlays()
 	. = ..()
-	overlays.Cut()
 	var/image/I = new(icon, "[icon_state]-overlay")
 	if(gang)
 		I.color = gang.color
-	overlays.Add(I)
+	. += I
 
 /obj/item/gangtool/proc/ping_gang(mob/user)
 	if(!can_use(user))

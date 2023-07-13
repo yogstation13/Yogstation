@@ -171,14 +171,13 @@
 		on = FALSE
 	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/cyberimp/chest/thrusters/update_icon(updates=ALL)
+/obj/item/organ/cyberimp/chest/thrusters/update_icon_state()
 	. = ..()
 	if(on)
 		icon_state = "imp_jetpack-on"
 	else
 		icon_state = "imp_jetpack"
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/thrusters/proc/move_react()
@@ -278,14 +277,13 @@
 		to_chat(owner, span_notice("You turn your spinal implant [on? "on" : "off"]."))
 	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/cyberimp/chest/spinalspeed/update_icon(updates=ALL)
+/obj/item/organ/cyberimp/chest/spinalspeed/update_icon_state()
 	. = ..()
 	if(on)
 		icon_state = "imp_spinal-on"
 	else
 		icon_state = "imp_spinal"
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage

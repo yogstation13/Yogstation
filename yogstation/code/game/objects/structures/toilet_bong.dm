@@ -20,11 +20,10 @@
 	weed_overlay = mutable_appearance('yogstation/icons/obj/watercloset.dmi', "weed")
 	START_PROCESSING(SSobj, src)
 
-/obj/structure/toilet_bong/update_icon(updates=ALL)
+/obj/structure/toilet_bong/update_overlays()
 	. = ..()
-	cut_overlays()
 	if (LAZYLEN(contents))
-		add_overlay(weed_overlay)
+		. += weed_overlay
 
 /obj/structure/toilet_bong/attack_hand(mob/user)
 	. = ..()

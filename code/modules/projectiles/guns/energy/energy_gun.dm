@@ -30,10 +30,10 @@
 	set_gun_light(new /obj/item/flashlight/seclite(src))
 	return ..()
 
-/obj/item/gun/energy/e_gun/mini/update_icon(updates=ALL)
+/obj/item/gun/energy/e_gun/mini/update_overlays()
 	. = ..()
 	if(gun_light && gun_light.on)
-		add_overlay("mini-light")
+		. += "mini-light"
 
 /obj/item/gun/energy/e_gun/stun
 	name = "tactical energy gun"

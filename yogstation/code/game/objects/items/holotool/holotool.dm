@@ -118,7 +118,7 @@
 		icon_state = "holotool"
 		set_light(0)
 
-	for(var/datum/action/A in actions)
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/holotool/proc/check_menu(mob/living/user)

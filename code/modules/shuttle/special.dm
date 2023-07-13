@@ -21,7 +21,7 @@
 		desc = "Oh no, not again."
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/power/emitter/energycannon/magical/update_icon(updates=ALL)
+/obj/machinery/power/emitter/energycannon/magical/update_icon_state()
 	. = ..()
 	if(active)
 		icon_state = icon_state_on

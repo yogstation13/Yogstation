@@ -23,14 +23,14 @@
 	. = ..()
 	update_appearance()
 
-/obj/item/book/granter/martial/carp/update_name(updates)
+/obj/item/book/granter/martial/carp/update_name(updates=ALL)
 	. = ..()
 	if(!uses)
 		name = "empty scroll"
 	else
 		name = initial(name)
 
-/obj/item/book/granter/martial/carp/update_desc(updates)
+/obj/item/book/granter/martial/carp/update_desc(updates=ALL)
 	. = ..()
 	if(!uses)
 		desc = "It's completely blank."

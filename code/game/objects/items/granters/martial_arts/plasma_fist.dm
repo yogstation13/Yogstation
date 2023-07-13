@@ -20,14 +20,14 @@
 	. = ..()
 	update_appearance()
 
-/obj/item/book/granter/martial/plasma_fist/update_name(updates)
+/obj/item/book/granter/martial/plasma_fist/update_name(updates=ALL)
 	. = ..()
 	if(uses <= 0)
 		name = "empty scroll"
 	else
 		name = initial(name)
 
-/obj/item/book/granter/martial/plasma_fist/update_desc(updates)
+/obj/item/book/granter/martial/plasma_fist/update_desc(updates=ALL)
 	. = ..()
 	if(uses <= 0)
 		desc = "It's completely blank."
