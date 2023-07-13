@@ -616,6 +616,7 @@
 /datum/outfit/syndicate_empty/icemoon_base/captain
 	name = "Syndicate Icemoon Outpost Commander"
 	glasses = /obj/item/clothing/glasses/sunglasses/big //big man get big sunglasses
+	ears = /obj/item/radio/headset/syndicate/alt/leader //big voice
 	accessory = /obj/item/clothing/accessory/medal/gold //because the captain one is NT brand
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	l_pocket = /obj/item/melee/transforming/energy/sword/saber/red
