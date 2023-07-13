@@ -901,6 +901,6 @@
 		/obj/item/plate,
 		/obj/item/plate/oven_tray,
 		/obj/item/reagent_containers/food,
-		/obj/item/kitchen/knife
+		/obj/item/kitchen/knife,
 		/obj/item/kitchen/rollingpin
 	)
