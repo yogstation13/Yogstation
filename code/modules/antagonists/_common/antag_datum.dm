@@ -140,6 +140,10 @@ GLOBAL_LIST_EMPTY(antagonists)
 	
 	SEND_SIGNAL(owner, COMSIG_ANTAGONIST_GAINED, src)
 
+	log_game("[owner.key] has been selected as a [name] with objectives: ")
+	for(var/datum/objective/O in objectives)
+		log_game("[O.explanation_text]")
+
 ///Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 ///This is called only once, even if your mind is moved to a new body (like brain transfer), remove_innate_effects should be used for stuff like HUDs.
 /datum/antagonist/proc/on_removal()

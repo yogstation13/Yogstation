@@ -164,3 +164,5 @@
 #define ANTAG_SECOND_WARNING 2
 #define ANTAG_AWAKE 3
 
+///How many souls a Devil needs to 'Ascend'.
+#define DEVIL_SOULS_TO_ASCEND 8

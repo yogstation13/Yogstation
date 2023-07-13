@@ -233,20 +233,6 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/assassinate/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
 
-/datum/objective/assassinate/internal
-	name = "assassinate internal"
-
-//We do not find a target, we'll be set manually in the game.
-/datum/objective/assassinate/internal/find_target_by_role(role, role_type = FALSE, invert = FALSE)
-	return
-
-/datum/objective/assassinate/internal/update_explanation_text()
-	. = ..()
-	if(target && target.current)
-		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
-	else
-		explanation_text = "Turn in the corpse of [target.name], who has been obliterated, to the Devil."
-
 /datum/objective/assassinate/once
 	name = "assassinate revival allowed"
 

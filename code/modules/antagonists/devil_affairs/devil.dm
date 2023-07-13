@@ -16,7 +16,12 @@
 	var/list/datum/action/devil_powers = list()
 
 /datum/antagonist/devil/on_gain()
+	var/datum/objective/devil_souls/devil_objective = new()
+	devil_objective.owner = owner
+	objectives += devil_objective
+
 	. = ..()
+
 	SSinfernal_affairs.devils += src
 	obtain_power(/datum/action/cooldown/spell/conjure_item/summon_contract)
 	obtain_power(/datum/action/cooldown/spell/pointed/collect_soul)
@@ -101,7 +106,7 @@
 			clear_power(/datum/action/cooldown/spell/summon_dancefloor)
 			clear_power(/datum/action/cooldown/spell/pointed/projectile/fireball/hellish)
 			clear_power(/datum/action/cooldown/spell/shapeshift/devil)
-		if(8)
+		if(DEVIL_SOULS_TO_ASCEND)
 			obtain_power(/datum/action/cooldown/spell/summon_dancefloor)
 			obtain_power(/datum/action/cooldown/spell/pointed/projectile/fireball/hellish)
 			obtain_power(/datum/action/cooldown/spell/shapeshift/devil)
