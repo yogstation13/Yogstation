@@ -47186,10 +47186,6 @@
 /area/hallway/primary/starboard)
 "oIa" = (
 /obj/structure/table/wood,
-/obj/item/toy/talking/codex_gigas{
-	pixel_x = -3;
-	pixel_y = 2
-	},
 /obj/item/toy/talking/AI{
 	pixel_x = 3
 	},

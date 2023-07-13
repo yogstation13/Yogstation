@@ -166,7 +166,6 @@
 /area/ruin/powered)
 "ax" = (
 /obj/structure/table/wood,
-/obj/item/toy/talking/codex_gigas,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "ay" = (

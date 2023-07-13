@@ -251,7 +251,6 @@
 /area/template_noop)
 "x" = (
 /obj/structure/table/wood,
-/obj/item/toy/talking/codex_gigas,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
