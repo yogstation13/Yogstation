@@ -196,7 +196,7 @@
 	update_controls()
 	update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/bot/atmosbot/update_icon(updates=ALL)
+/mob/living/simple_animal/bot/atmosbot/update_icon_state()
 	. = ..()
 	icon_state = "atmosbot[on][on?"_[action]":""]"
 

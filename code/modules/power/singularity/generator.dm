@@ -22,16 +22,19 @@
 		default_unfasten_wrench(user, W, 0)
 	else
 		return ..()
+
 /obj/machinery/the_singularitygen/update_icon(updates=ALL, power)
-	if(power)
-		if(power>150)
-			animate(src, icon_state = "[initial(icon_state)]_3", 10)
-		else if(power>100)
-			animate(src, icon_state = "[initial(icon_state)]_2", 10)
-		else if(power>50)
-			animate(src, icon_state = "[initial(icon_state)]_1", 10)
-		else
-			animate(src, icon_state = initial(icon_state), 10)
+	. = ..()
+	if(!power)
+		return
+	if(power>150)
+		animate(src, icon_state = "[initial(icon_state)]_3", 10)
+	else if(power>100)
+		animate(src, icon_state = "[initial(icon_state)]_2", 10)
+	else if(power>50)
+		animate(src, icon_state = "[initial(icon_state)]_1", 10)
+	else
+		animate(src, icon_state = initial(icon_state), 10)
 
 /obj/machinery/the_singularitygen/process(delta_time)
 	if(energy > 0)

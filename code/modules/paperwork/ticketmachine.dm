@@ -20,16 +20,18 @@
 	. = ..()
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/ticket_machine/update_icon(updates=ALL)
+/obj/machinery/ticket_machine/update_overlays()
 	. = ..()
 	var/Temp = screenNum //This whole thing breaks down a 3 digit number into 3 seperate digits, aka "69" becomes "0","6" and "9"
 	var/Digit1 = round(Temp%10)//The remainder of any number/10 is always that number's rightmost digit
 	var/Digit2 = round(((Temp-Digit1)*0.1)%10) //Same idea, but divided by ten, to find the middle digit
 	var/Digit3 = round(((Temp-Digit1-Digit2*10)*0.01)%10)//Same as above. Despite the weird notation these will only ever output integers, don't worry.
-	cut_overlays()//this clears the overlays, so they don't start stacking on each other
-	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_first_[Digit1]"))
-	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_second_[Digit2]"))
-	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_third_[Digit3]"))
+	. += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_first_[Digit1]")
+	. += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_second_[Digit2]")
+	. += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "machine_third_[Digit3]")
+
+/obj/machinery/ticket_machine/update_icon_state()
+	. = ..()
 	switch(currentNum) //Gives you an idea of how many tickets are left
 		if(0 to 200)
 			icon_state = "ticketmachine_100"
@@ -145,16 +147,15 @@
 	var/obj/machinery/ticket_machine/source
 	var/ticket_number
 
-/obj/item/ticket_machine_ticket/update_icon(updates=ALL)
+/obj/item/ticket_machine_ticket/update_overlays()
 	. = ..()
 	var/Temp = ticket_number //this stuff is a repeat from the other update_icon, but with new image files and the like
 	var/Digit1 = round(Temp%10)
 	var/Digit2 = round(((Temp-Digit1)*0.1)%10)
 	var/Digit3 = round(((Temp-Digit1-Digit2*10)*0.01)%10)
-	cut_overlays()//this clears the overlays, so they don't start stacking on each other
-	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_first_[Digit1]"))
-	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_second_[Digit2]"))
-	add_overlay(image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_third_[Digit3]"))
+	. += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_first_[Digit1]")
+	. += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_second_[Digit2]")
+	. += image('icons/obj/bureaucracy_overlays.dmi',icon_state = "ticket_third_[Digit3]")
 	if(resistance_flags & ON_FIRE)
 		icon_state = "ticket_onfire"
 

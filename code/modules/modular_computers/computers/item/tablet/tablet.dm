@@ -60,7 +60,7 @@
 	else
 		return ..()
 
-/obj/item/modular_computer/tablet/update_icon(updates=ALL)
+/obj/item/modular_computer/tablet/update_icon_state()
 	. = ..()
 	if (!isnull(variants))
 		if(!finish_color)

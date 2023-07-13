@@ -232,7 +232,7 @@
 		else
 			to_chat(user, span_warning("You need at least ten lengths of cable if you want to make a sling!"))
 
-/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon(updates=ALL)
+/obj/item/gun/ballistic/shotgun/doublebarrel/improvised/update_icon_state()
 	. = ..()
 	if(slung)
 		icon_state = "ishotgunsling"

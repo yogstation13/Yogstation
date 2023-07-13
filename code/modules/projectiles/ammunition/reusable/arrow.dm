@@ -40,21 +40,20 @@
 	if(LAZYLEN(new_parts))
 		CheckParts(new_parts)
 
-/obj/item/ammo_casing/reusable/arrow/update_icon(force_update)
+/obj/item/ammo_casing/reusable/arrow/update_overlays()
 	..()
-	cut_overlays()
 	if(istype(explosive))
-		add_overlay(mutable_appearance(icon, "arrow_explosive[explosive.active ? "_active" : ""]"), TRUE)
+		. += mutable_appearance(icon, "arrow_explosive[explosive.active ? "_active" : ""]")
 	if(istype(bola))
-		add_overlay(mutable_appearance(icon, "arrow_bola"), TRUE)
+		. += mutable_appearance(icon, "arrow_bola")
 	if(istype(syringe))
-		add_overlay(mutable_appearance(icon, "arrow_syringe"), TRUE)
+		. += mutable_appearance(icon, "arrow_syringe")
 		if(syringe.reagents && syringe.reagents.total_volume)
 			var/image/filling_overlay = mutable_appearance(icon, "arrow_syringe[clamp(round((syringe.reagents.total_volume / syringe.volume * 15),5), 1, 15)]")
 			filling_overlay.color = mix_color_from_reagents(syringe.reagents.reagent_list)
-			add_overlay(filling_overlay)
+			. += filling_overlay
 	if(flaming)
-		add_overlay(mutable_appearance(icon, "arrow_fire"), TRUE)
+		. += mutable_appearance(icon, "arrow_fire")
 
 /obj/item/ammo_casing/reusable/arrow/examine(mob/user)
 	. = ..()
@@ -442,10 +441,10 @@
 		update_appearance(UPDATE_ICON)
 	..()
 
-/obj/item/ammo_casing/reusable/arrow/singulo/update_icon(force_update)
-	..()
+/obj/item/ammo_casing/reusable/arrow/singulo/update_overlays()
+	. = ..()
 	if(istype(shard))
-		add_overlay(mutable_appearance(icon, "[icon_state]_[shard.icon_state]"), TRUE)
+		. += mutable_appearance(icon, "[icon_state]_[shard.icon_state]")
 
 /// Handles the special effect of the singulo arrow, called by the projectile on hit
 /obj/item/ammo_casing/reusable/arrow/singulo/proc/shard_effect()

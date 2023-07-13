@@ -57,7 +57,7 @@
 	. = ..()
 	update_appearance(UPDATE_ICON)
 
-/obj/machinery/inspector_booth/update_icon(updates=ALL)
+/obj/machinery/inspector_booth/update_icon_state()
 	. = ..()
 	if (stat & NOPOWER)
 		icon_state = "booth_off"

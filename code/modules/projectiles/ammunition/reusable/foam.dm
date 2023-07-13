@@ -10,7 +10,7 @@
 	var/modified = FALSE
 	var/obj/item/pen/pen
 
-/obj/item/ammo_casing/reusable/foam_dart/update_icon(updates=ALL)
+/obj/item/ammo_casing/reusable/foam_dart/update_icon_state()
 	. = ..()
 	if (modified)
 		icon_state = "foamdart_empty"

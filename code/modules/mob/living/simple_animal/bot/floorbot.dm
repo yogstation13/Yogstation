@@ -359,7 +359,7 @@
 	anchored = FALSE
 	target = null
 
-/mob/living/simple_animal/bot/floorbot/update_icon(updates=ALL)
+/mob/living/simple_animal/bot/floorbot/update_icon_state()
 	. = ..()
 	icon_state = "[toolbox_color]floorbot[on]"
 

@@ -563,12 +563,17 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 	return ..()
 
-/obj/item/stack/cable_coil/update_icon(updates=ALL)
+/obj/item/stack/cable_coil/update_icon_state()
 	. = ..()
 	if(novariants)
 		return
 	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"
 	item_state = "coil_[cable_color]"
+
+/obj/item/stack/cable_coil/update_name(updates)
+	. = ..()
+	if(novariants)
+		return
 	name = "cable [amount < 3 ? "piece" : "coil"]"
 
 /obj/item/stack/cable_coil/attack_hand(mob/user)

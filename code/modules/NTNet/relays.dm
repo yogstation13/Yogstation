@@ -32,12 +32,14 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/ntnet_relay/update_icon(updates=ALL)
+/obj/machinery/ntnet_relay/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(is_operational())
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
-		add_overlay(on_overlay)
+		. += on_overlay
+
+/obj/machinery/ntnet_relay/update_icon_state()
+	. = ..()
 	if(panel_open)
 		icon_state = "[initial(icon_state)]_o"
 	else

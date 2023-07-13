@@ -205,29 +205,26 @@
 		obj_break()
 
 
-/obj/machinery/power/smes/update_icon(updates=ALL)
+/obj/machinery/power/smes/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(stat & BROKEN)
 		return
-
 	if(panel_open)
 		return
 
 	if(outputting)
-		add_overlay("smes-out1")
+		. += "smes-out1"
 	else
-		add_overlay("smes-out0")
+		. += "smes-out0"
 
 	if(inputting)
-		add_overlay("smes-inp1")
-	else
-		if(input_attempt)
-			add_overlay("smes-inp0")
+		. += "smes-inp1"
+	else if(input_attempt)
+		. += "smes-inp0"
 
 	var/clevel = chargedisplay()
-	if(clevel>0)
-		add_overlay("smes-og[clevel]")
+	if(clevel > 0)
+		. += "smes-og[clevel]"
 
 
 /obj/machinery/power/smes/proc/chargedisplay()

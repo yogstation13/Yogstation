@@ -60,12 +60,11 @@
 	icon_state = "coloredcabinet_frame"
 	name = "colored cabinet"
 
-/obj/structure/filingcabinet/colored/update_icon(updates=ALL)
+/obj/structure/filingcabinet/colored/update_overlays()
 	. = ..()
-	cut_overlays()
 	var/mutable_appearance/cab = mutable_appearance(icon, "coloredcabinet_trim")
 	cab.color = colour
-	add_overlay(cab)
+	. += cab
 
 /obj/structure/filingcabinet/Initialize(mapload)
 	. = ..()

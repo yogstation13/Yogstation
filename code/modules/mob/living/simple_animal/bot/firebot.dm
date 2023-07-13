@@ -286,7 +286,7 @@
 		flick("firebot1_use", user)
 	internal_ext.afterattack(target, user, null)
 
-/mob/living/simple_animal/bot/firebot/update_icon(updates=ALL)
+/mob/living/simple_animal/bot/firebot/update_icon_state()
 	. = ..()
 	if(!on)
 		icon_state = "firebot0"

@@ -131,7 +131,7 @@
 	if(!QDELETED(src) && stat != DEAD)
 		death()
 
-/mob/living/simple_animal/spiderbot/update_icon(updates=ALL)
+/mob/living/simple_animal/spiderbot/update_icon_state()
 	. = ..()
 	if(mmi)
 		if(istype(mmi, /obj/item/mmi/posibrain))

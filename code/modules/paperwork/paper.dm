@@ -79,8 +79,8 @@
 	update_appearance(UPDATE_ICON)
 
 
-/obj/item/paper/update_icon(updates=ALL)
-
+/obj/item/paper/update_icon_state()
+	. = ..()
 	if(resistance_flags & ON_FIRE)
 		icon_state = "paper_onfire"
 		return

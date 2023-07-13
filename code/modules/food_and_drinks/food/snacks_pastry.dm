@@ -715,7 +715,7 @@
 	bitecount = originalBites
 
 /obj/item/reagent_containers/food/snacks/pancakes/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/pancakes/))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/pancakes))
 		var/obj/item/reagent_containers/food/snacks/pancakes/P = I
 		if((contents.len >= PANCAKE_MAX_STACK) || ((P.contents.len + contents.len) > PANCAKE_MAX_STACK) || (reagents.total_volume >= volume))
 			to_chat(user, span_warning("You can't add that many pancakes to [src]!"))
@@ -739,17 +739,6 @@
 		var/obj/O = contents[contents.len]
 		return O.attackby(I, user, params)
 	..()
-
-/obj/item/reagent_containers/food/snacks/pancakes/update_icon(updates = ALL)
-	if(!(updates & UPDATE_OVERLAYS))
-		return ..()
-
-	updates &= ~UPDATE_OVERLAYS
-	. = ..() // Don't update overlays. We're doing that here
-
-	if(contents.len < LAZYLEN(overlays))
-		overlays -= overlays[overlays.len]
-	. |= UPDATE_OVERLAYS
 
 /obj/item/reagent_containers/food/snacks/pancakes/attack(mob/M, mob/user, def_zone, stacked = TRUE)
 	if(user.a_intent == INTENT_HARM || !contents.len || !stacked)

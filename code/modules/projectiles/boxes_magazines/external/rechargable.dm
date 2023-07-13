@@ -8,16 +8,18 @@
 	caliber = LASER
 	max_ammo = 20
 
-/obj/item/ammo_box/magazine/recharge/update_icon(updates=ALL)
+/obj/item/ammo_box/magazine/recharge/update_desc(updates=ALL)
 	. = ..()
 	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
-	cut_overlays()
+
+/obj/item/ammo_box/magazine/recharge/update_overlays()
+	. = ..()
 	var/cur_ammo = ammo_count()
 	if(cur_ammo)
 		if(cur_ammo >= max_ammo)
-			add_overlay("[icon_state]_o_full")
+			. += "[icon_state]_o_full"
 		else
-			add_overlay("[icon_state]_o_mid")
+			. += "[icon_state]_o_mid"
 
 
 /obj/item/ammo_box/magazine/recharge/attack_self() //No popping out the "bullets"
@@ -28,10 +30,9 @@
 	icon = 'icons/obj/guns/grimdark.dmi'
 	icon_state = "lasgunmag"
 	desc = "A rechargeable, detachable battery that serves as a magazine for las weaponry."
-	
-/obj/item/ammo_box/magazine/recharge/lasgun/update_icon(updates=ALL)
+
+/obj/item/ammo_box/magazine/recharge/lasgun/update_icon_state()
 	. = ..()
-	desc = "[initial(desc)] It has [stored_ammo.len] shot\s left."
 	if(ammo_count())
 		icon_state = "[initial(icon_state)]"
 	else
@@ -135,15 +136,14 @@
 	icon_state = "powerpack_small-l"
 	max_ammo = 8
 
-/obj/item/ammo_box/magazine/recharge/ntusp/laser/update_icon(updates=ALL)
+/obj/item/ammo_box/magazine/recharge/ntusp/laser/update_overlays()
 	. = ..()
-	cut_overlays()
 	var/cur_ammo = ammo_count()
 	if(cur_ammo)
 		if(cur_ammo >= max_ammo)
-			add_overlay("powerpack_small_o_full")
+			. += "powerpack_small_o_full"
 		else
-			add_overlay("powerpack_small_o_mid")
+			. += "powerpack_small_o_mid"
 
 /obj/item/ammo_box/magazine/recharge/ntusp/laser/empty
 	start_empty = TRUE

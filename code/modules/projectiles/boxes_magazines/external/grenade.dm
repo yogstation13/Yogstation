@@ -5,7 +5,7 @@
 	caliber = "75"
 	max_ammo = 8
 
-/obj/item/ammo_box/magazine/m75/update_icon(updates=ALL)
+/obj/item/ammo_box/magazine/m75/update_icon_state()
 	. = ..()
 	if(ammo_count())
 		icon_state = "75-8"

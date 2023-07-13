@@ -7,7 +7,7 @@
 	var/iscopy = FALSE
 
 
-/obj/item/paper/carbon/update_icon(updates=ALL)
+/obj/item/paper/carbon/update_icon_state()
 	. = ..()
 	if(iscopy)
 		if(written.len)

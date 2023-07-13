@@ -205,9 +205,8 @@
 /obj/item/paper_bundle/AltClick(mob/living/user)
 	unbundle()
 
-/obj/item/paper_bundle/update_icon(updates=ALL)
+/obj/item/paper_bundle/update_overlays()
 	. = ..()
-	cut_overlays()
 	var/obj/item/paper/P = src[1]
 	icon_state = P.icon_state
 	overlays = P.overlays
@@ -229,12 +228,12 @@
 			var/datum/picture/picture2 = PR.picture
 			img = picture2.picture_icon
 			photo = 1
-			add_overlay(img)
+			. += img
 	if(i>1)
 		desc =  "[i] papers clipped to each other."
 	else
 		desc = "A single sheet of paper."
 	if(photo)
 		desc += "\nThere is a photo attached to it."
-	add_overlay(image('icons/obj/bureaucracy.dmi', icon_state= "clip"))
+	. += image('icons/obj/bureaucracy.dmi', icon_state= "clip")
 	return

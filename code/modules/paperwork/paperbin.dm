@@ -131,15 +131,17 @@
 	else
 		. += "It doesn't contain anything."
 
-/obj/item/paper_bin/update_icon(updates=ALL)
+/obj/item/paper_bin/update_icon_state()
 	. = ..()
 	if(total_paper < 1)
 		icon_state = "paper_bin0"
 	else
 		icon_state = "[initial(icon_state)]"
-	cut_overlays()
+
+/obj/item/paper_bin/update_overlays()
+	. = ..()
 	if(bin_pen)
-		add_overlay(mutable_appearance(bin_pen.icon, bin_pen.icon_state))
+		. += mutable_appearance(bin_pen.icon, bin_pen.icon_state)
 
 /obj/item/paper_bin/construction
 	name = "construction paper bin"

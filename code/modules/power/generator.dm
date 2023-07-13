@@ -31,30 +31,32 @@
 	SSair.atmos_machinery -= src
 	return ..()
 
-/obj/machinery/power/generator/update_icon(updates=ALL)
+/obj/machinery/power/generator/update_icon_state()
 	. = ..()
-	cut_overlays()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-
 	if(stat & (BROKEN))
 		icon_state = "teg-broken"
 		return
-	if(hot_circ && cold_circ)
-		icon_state = "teg-assembled"
-	else
+	if(!hot_circ || !cold_circ)
 		icon_state = "teg-unassembled"
-		if(panel_open)
-			add_overlay("teg-panel")
 		return
-		
+	icon_state = "teg-assembled"
+
+/obj/machinery/power/generator/update_overlays()
+	. = ..()
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+	if(stat & (BROKEN))
+		return
+
+	if(!hot_circ || !cold_circ)
+		if(panel_open)
+			. += "teg-panel"
+		return
 	if(!powernet)
-		add_overlay("teg-nogrid")
-	if(stat & (NOPOWER))
-		return 
-	else
-		var/L = min(round(lastgenlev/100000),11)
-		if(L != 0)
-			SSvis_overlays.add_vis_overlay(src, icon, "teg-op[L]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
+		. += "teg-nogrid"
+
+	var/L = min(round(lastgenlev/100000), 11)
+	if(L != 0)
+		SSvis_overlays.add_vis_overlay(src, icon, "teg-op[L]", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 
 #define GENRATE 800		// generator output coefficient from Q
 

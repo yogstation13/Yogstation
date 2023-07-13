@@ -83,11 +83,10 @@
 	if(prob(5))
 		russian = TRUE // imported from Russia
 
-/mob/living/simple_animal/bot/secbot/update_icon(updates=ALL)
+/mob/living/simple_animal/bot/secbot/update_icon_state()
 	. = ..()
 	if(mode == BOT_HUNT)
 		icon_state = "[initial(icon_state)]-c"
-		return
 
 /mob/living/simple_animal/bot/secbot/turn_off()
 	..()

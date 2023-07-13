@@ -43,7 +43,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
 		qdel(src)//like the singulo, tesla deletes it. stops it from exploding over and over
 
-/obj/machinery/gravity_generator/update_icon(updates=ALL)
+/obj/machinery/gravity_generator/update_icon_state()
 	. = ..()
 	icon_state = "[get_status()]_[sprite_number]"
 

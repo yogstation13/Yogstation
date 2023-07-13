@@ -113,14 +113,13 @@
 			new /obj/item/shard(src.loc)
 	qdel(src)
 
-/obj/machinery/power/solar/update_icon(updates=ALL)
+/obj/machinery/power/solar/update_overlays()
 	. = ..()
-	cut_overlays()
 	var/matrix/turner = matrix()
 	turner.Turn(azimuth_current)
 	panelstructure.transform = turner
 	paneloverlay.transform = turner
-	add_overlay(list(paneloverlay, panelstructure))
+	. += list(paneloverlay, panelstructure)
 
 /obj/machinery/power/solar/proc/queue_turn(azimuth)
 	needs_to_turn = TRUE
@@ -372,17 +371,16 @@
 					if(!T.control) //i.e unconnected
 						T.set_control(src)
 
-/obj/machinery/power/solar_control/update_icon(updates=ALL)
+/obj/machinery/power/solar_control/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(stat & NOPOWER)
-		add_overlay("[icon_keyboard]_off")
+		. += "[icon_keyboard]_off"
 		return
-	add_overlay(icon_keyboard)
+	. += icon_keyboard
 	if(stat & BROKEN)
-		add_overlay("[icon_state]_broken")
+		. += "[icon_state]_broken"
 	else
-		add_overlay(icon_screen)
+		. += icon_screen
 
 
 /obj/machinery/power/solar_control/ui_interact(mob/user, datum/tgui/ui)

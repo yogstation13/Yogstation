@@ -118,20 +118,21 @@
 /obj/machinery/papershredder/AltClick(mob/living/user)
 	emptypaper()
 
-/obj/machinery/papershredder/update_icon(updates=ALL)
+/obj/machinery/papershredder/update_icon_state()
 	. = ..()
-	if(paperamount == 0)
-		icon_state = "papershredder0"
-	if(paperamount == 1||paperamount == 2)
-		icon_state = "papershredder1"
-	if(paperamount == 3||paperamount == 4)
-		icon_state = "papershredder2"
-	if(paperamount == 5||paperamount == 6)
-		icon_state = "papershredder3"
-	if(paperamount == 7||paperamount == 8)
-		icon_state = "papershredder4"
-	if(paperamount == 9||paperamount == 10)
-		icon_state = "papershredder5"
+	switch(paperamount) //cant we just use round(paperamount, 2)
+		if(0)
+			icon_state = "papershredder0"
+		if(1, 2)
+			icon_state = "papershredder1"
+		if(3, 4)
+			icon_state = "papershredder2"
+		if(5, 6)
+			icon_state = "papershredder3"
+		if(7, 8)
+			icon_state = "papershredder4"
+		if(9, 10)
+			icon_state = "papershredder5"
 
 /obj/item/shreddedpaper
 	name = "shredded paper"

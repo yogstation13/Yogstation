@@ -8,7 +8,7 @@
 	caliber = ".45"
 	max_ammo = 10
 
-/obj/item/ammo_box/magazine/m10mm/rifle/update_icon(updates=ALL)
+/obj/item/ammo_box/magazine/m10mm/rifle/update_icon_state()
 	. = ..()
 	if(ammo_count())
 		icon_state = "75-8"
@@ -25,7 +25,7 @@
 	caliber = "a556"
 	max_ammo = 30
 
-/obj/item/ammo_box/magazine/m556/update_icon(updates=ALL)
+/obj/item/ammo_box/magazine/m556/update_icon_state()
 	. = ..()
 	icon_state = "5.56m[sprite_designation]-[round(ammo_count(),5)]"
 
@@ -55,7 +55,7 @@
 	caliber = "a556"
 	max_ammo = 30
 
-/obj/item/ammo_box/magazine/r556/update_icon(updates=ALL)
+/obj/item/ammo_box/magazine/r556/update_icon_state()
 	. = ..()
 	if(ammo_count())
 		icon_state = "arg556[sprite_designation]"
@@ -96,7 +96,7 @@
 	caliber = "m308"
 	max_ammo = 15
 
-/obj/item/ammo_box/magazine/m308/update_icon(updates=ALL)
+/obj/item/ammo_box/magazine/m308/update_icon_state()
 	. = ..()
 	if(ammo_count())
 		icon_state = "m308[sprite_designation]"
@@ -130,7 +130,7 @@
 	caliber = "a762"
 	max_ammo = 11
 
-/obj/item/ammo_box/magazine/ks762/update_icon(updates=ALL)
+/obj/item/ammo_box/magazine/ks762/update_icon_state()
 	. = ..()
 	if(ammo_count())
 		icon_state = "ks762[sprite_designation]"

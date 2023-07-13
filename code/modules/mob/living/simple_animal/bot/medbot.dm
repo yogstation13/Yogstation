@@ -91,11 +91,8 @@
 	treatment_tox_avoid = null
 	treatment_tox = /datum/reagent/toxin/sodium_thiopental
 
-/mob/living/simple_animal/bot/medbot/update_icon(updates=ALL)
+/mob/living/simple_animal/bot/medbot/update_icon_state()
 	. = ..()
-	cut_overlays()
-	if(skin)
-		add_overlay("medskin_[skin]")
 	if(!on)
 		icon_state = "medibot0"
 		return
@@ -109,6 +106,11 @@
 		icon_state = "medibot2"
 	else
 		icon_state = "medibot1"
+
+/mob/living/simple_animal/bot/medbot/update_overlays()
+	. = ..()
+	if(skin)
+		. += "medskin_[skin]"
 
 /mob/living/simple_animal/bot/medbot/Initialize(mapload, new_skin)
 	. = ..()

@@ -171,17 +171,23 @@
 
 /obj/item/ammo_box/update_icon(updates=ALL)
 	. = ..()
+	for(var/material in bullet_cost)
+		var/material_amount = bullet_cost[material]
+		material_amount = (material_amount*stored_ammo.len) + base_cost[material]
+		materials[material] = material_amount
+
+/obj/item/ammo_box/update_icon_state()
+	. = ..()
 	var/rounds_left = stored_ammo.len
 	switch(multiple_sprites)
 		if(AMMO_BOX_PER_BULLET)
 			icon_state = "[initial(icon_state)]-[rounds_left]"
 		if(AMMO_BOX_FULL_EMPTY)
 			icon_state = "[initial(icon_state)]-[rounds_left ? "[max_ammo]" : "0"]"
+
+/obj/item/ammo_box/update_desc(updates=ALL)
+	. = ..()
 	desc = "[initial(desc)] There [(rounds_left == 1) ? "is" : "are"] [rounds_left] round\s left!"
-	for (var/material in bullet_cost)
-		var/material_amount = bullet_cost[material]
-		material_amount = (material_amount*stored_ammo.len) + base_cost[material]
-		materials[material] = material_amount
 
 ///Count of number of bullets in the magazine
 /obj/item/ammo_box/magazine/proc/ammo_count(countempties = TRUE)

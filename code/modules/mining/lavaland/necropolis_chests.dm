@@ -683,14 +683,19 @@ GLOBAL_LIST_EMPTY(aide_list)
 	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
 	list_reagents = list(/datum/reagent/flightpotion = 5)
 
-/obj/item/reagent_containers/glass/bottle/potion/update_icon(updates=ALL)
+/obj/item/reagent_containers/glass/bottle/potion/update_desc(updates)
+	. = ..()
+	if(reagents.total_volume)
+		desc = initial(desc)
+	else
+		desc = "An ornate red bottle, with an \"S\" embossed into the underside."
+
+/obj/item/reagent_containers/glass/bottle/potion/update_icon_state()
 	. = ..()
 	if(reagents.total_volume)
 		icon_state = initial(icon_state)
-		desc = initial(desc)
 	else
 		icon_state = "[initial(icon_state)]_empty"
-		desc = "An ornate red bottle, with an \"S\" embossed into the underside."
 
 /datum/reagent/flightpotion
 	name = "Flight Potion"
@@ -1505,7 +1510,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 		chaser_speed = max(chaser_speed + health_percent, 0.5) //one tenth of a second faster for each missing 10% of health
 		blast_range -= round(health_percent * 10) //one additional range for each missing 10% of health
 
-/obj/item/hierophant_club/update_icon(updates=ALL)
+/obj/item/hierophant_club/update_icon_state()
 	. = ..()
 	icon_state = "hierophant_club[timer <= world.time ? "_ready":""][(beacon && !QDELETED(beacon)) ? "":"_beacon"]"
 	item_state = icon_state
@@ -1745,7 +1750,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	var/fauna_damage_type = BRUTE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
-/obj/item/twohanded/bonespear/stalwartpike/update_icon(updates=ALL)
+/obj/item/twohanded/bonespear/stalwartpike/update_icon_state()
 	. = ..()
 	if(wielded)
 		icon_state = "stalwart_spear1"

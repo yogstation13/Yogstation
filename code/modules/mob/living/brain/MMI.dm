@@ -24,7 +24,7 @@
 	Unless you are slaved as a silicon, you retain crew/antagonist/etc status and should behave as such.\n\
 	Being placed in a mech does not slave you to any laws.</b>"
 
-/obj/item/mmi/update_icon(updates=ALL)
+/obj/item/mmi/update_icon_state()
 	. = ..()
 	if(!brain)
 		icon_state = "mmi_off"
@@ -35,10 +35,13 @@
 	else
 		icon_state = "mmi_brain"
 		braintype = "Cyborg"
+
+/obj/item/mmi/update_overlays()
+	. = ..()
 	if(brainmob && brainmob.stat != DEAD)
-		add_overlay("mmi_alive")
+		. += "mmi_alive"
 	else
-		add_overlay("mmi_dead")
+		. += "mmi_dead"
 
 /obj/item/mmi/Initialize(mapload)
 	. = ..()

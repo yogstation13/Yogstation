@@ -133,14 +133,13 @@
 	update_slowdown()
 	update_appearance(UPDATE_ICON)
 
-/obj/item/gun/ballistic/bow/update_icon(updates=ALL)
+/obj/item/gun/ballistic/bow/update_overlays()
 	. = ..()
-	cut_overlay(arrow_overlay, TRUE)
 	icon_state = "[initial(icon_state)][chambered ? "_firing" : ""]"
 	if(get_ammo())
 		var/obj/item/ammo_casing/reusable/arrow/energy/E = magazine.get_round(TRUE)
 		arrow_overlay = mutable_appearance(icon, "[initial(E.item_state)][chambered ? "_firing" : ""]")
-		add_overlay(arrow_overlay, TRUE)
+		. += arrow_overlay, TRUE
 
 /obj/item/gun/ballistic/bow/proc/update_slowdown()
 	if(chambered || drawing)
@@ -452,26 +451,31 @@
 	if(TIMER_COOLDOWN_CHECK(src, "arrow_recharge"))
 		. += span_warning("It is currently recharging!")
 
-/obj/item/gun/ballistic/bow/energy/update_icon(updates=ALL)
+/obj/item/gun/ballistic/bow/energy/update_icon_state()
 	. = ..()
 	cut_overlay(arrow_overlay, TRUE)
 
 	if(folded)
 		icon_state = "[initial(icon_state)]_folded"
 		item_state = "[initial(item_state)]_folded"
-	else
+	else if(get_ammo())
+		item_state = "[item_state]_[E.icon_state]"
 		icon_state = initial(icon_state)
+	else
 		item_state = initial(item_state)
-
-		if(get_ammo())
-			var/obj/item/ammo_casing/reusable/arrow/energy/E = magazine.get_round(TRUE)
-			arrow_overlay = mutable_appearance(icon, "[initial(E.icon_state)][chambered ? "_firing" : ""]")
-			add_overlay(arrow_overlay, TRUE)
-			item_state = "[item_state]_[E.icon_state]"
+		icon_state = initial(icon_state)
 
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_hands()
+
+/obj/item/gun/ballistic/bow/energy/update_overlays()
+	. = ..()
+	if(folded || !get_ammo())
+		return
+	var/obj/item/ammo_casing/reusable/arrow/energy/E = magazine.get_round(TRUE)
+	arrow_overlay = mutable_appearance(icon, "[initial(E.icon_state)][chambered ? "_firing" : ""]")
+	. += arrow_overlay
 
 /obj/item/gun/ballistic/bow/energy/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
 	if(folded)

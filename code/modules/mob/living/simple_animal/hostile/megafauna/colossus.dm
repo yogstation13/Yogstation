@@ -300,10 +300,6 @@ Difficulty: Very Hard
 	var/list/stored_items = list()
 	var/list/blacklist = list()
 
-/obj/machinery/smartfridge/black_box/update_icon(updates=ALL)
-	. = ..()
-	return
-
 /obj/machinery/smartfridge/black_box/accept_check(obj/item/O)
 	if(!istype(O))
 		return FALSE
@@ -313,6 +309,7 @@ Difficulty: Very Hard
 	return TRUE
 
 /obj/machinery/smartfridge/black_box/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	var/static/obj/machinery/smartfridge/black_box/current
 	if(current && current != src)

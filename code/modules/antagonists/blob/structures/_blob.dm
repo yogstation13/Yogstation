@@ -83,6 +83,7 @@
 		. = . || (mover.pass_flags & PASSBLOB)
 
 /obj/structure/blob/update_icon(updates=ALL) //Updates color based on overmind color if we have an overmind.
+	. = ..()
 	if(overmind)
 		add_atom_colour(overmind.blobstrain.color, FIXED_COLOUR_PRIORITY)
 	else

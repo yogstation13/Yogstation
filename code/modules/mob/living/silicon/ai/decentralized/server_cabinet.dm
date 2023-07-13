@@ -96,27 +96,26 @@ GLOBAL_LIST_EMPTY(server_cabinets)
 			GLOB.ai_os.update_hardware()
 
 
-/obj/machinery/ai/server_cabinet/update_icon(updates=ALL)
+/obj/machinery/ai/server_cabinet/update_overlays()
 	. = ..()
-	cut_overlays()
 
 	if(installed_racks.len > 0) 
 		var/mutable_appearance/top_overlay = mutable_appearance(icon, "expansion_bus_top")
-		add_overlay(top_overlay)
+		. += top_overlay
 	if(installed_racks.len > 1) 
 		var/mutable_appearance/bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom")
-		add_overlay(bottom_overlay)
+		. += bottom_overlay
 	if(!(stat & (BROKEN|NOPOWER|EMPED)))
 		var/mutable_appearance/on_overlay = mutable_appearance(icon, "expansion_bus_on")
-		add_overlay(on_overlay)
+		. += on_overlay
 		if(!valid_ticks)
 			return
 		if(installed_racks.len > 0)
 			var/mutable_appearance/on_top_overlay = mutable_appearance(icon, "expansion_bus_top_on")
-			add_overlay(on_top_overlay)
+			. += on_top_overlay
 		if(installed_racks.len > 1)
 			var/mutable_appearance/on_bottom_overlay = mutable_appearance(icon, "expansion_bus_bottom_on")
-			add_overlay(on_bottom_overlay)
+			. += on_bottom_overlay
 
 /obj/machinery/ai/server_cabinet/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/server_rack))

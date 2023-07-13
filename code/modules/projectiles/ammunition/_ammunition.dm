@@ -35,9 +35,12 @@
 	setDir(pick(GLOB.alldirs))
 	update_appearance(UPDATE_ICON)
 
-/obj/item/ammo_casing/update_icon(updates=ALL)
+/obj/item/ammo_casing/update_icon_state()
 	. = ..()
 	icon_state = "[initial(icon_state)][BB && !CHECK_BITFIELD(casing_flags, CASINGFLAG_NO_LIVE_SPRITE) ? "-live" : ""]"
+
+/obj/item/ammo_casing/update_desc(updates=ALL)
+	. = ..()
 	desc = "[initial(desc)][!BB && !CHECK_BITFIELD(casing_flags, CASINGFLAG_NO_LIVE_SPRITE) ? " This one is spent." : ""]"
 
 //proc to magically refill a casing with a new projectile

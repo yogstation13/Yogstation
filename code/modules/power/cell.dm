@@ -96,17 +96,17 @@
 	else
 		return PROCESS_KILL
 
-/obj/item/stock_parts/cell/update_icon(updates=ALL)
+/obj/item/stock_parts/cell/update_overlays()
 	. = ..()
 	cut_overlays()
 	if(grown_battery)
-		add_overlay(image('icons/obj/power.dmi',"grown_wires"))
+		. += image('icons/obj/power.dmi',"grown_wires")
 	if(charge < 0.01)
 		return
 	else if(charge/maxcharge >=0.995)
-		add_overlay("cell-o2")
+		. += "cell-o2"
 	else
-		add_overlay("cell-o1")
+		. += "cell-o1"
 
 /obj/item/stock_parts/cell/proc/percent()		// return % charge of cell
 	return 100*charge/maxcharge

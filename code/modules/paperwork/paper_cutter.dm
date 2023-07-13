@@ -33,14 +33,14 @@
 		playsound(loc, 'sound/items/gavel.ogg', 50, 1, -1)
 		return (BRUTELOSS)
 
-
-/obj/item/papercutter/update_icon(updates=ALL)
+/obj/item/papercutter/update_icon_state()
 	. = ..()
-	cut_overlays()
 	icon_state = (storedcutter ? "[initial(icon_state)]-cutter" : "[initial(icon_state)]")
-	if(storedpaper)
-		add_overlay("paper")
 
+/obj/item/papercutter/update_overlays()
+	. = ..()
+	if(storedpaper)
+		. += "paper"
 
 /obj/item/papercutter/attackby(obj/item/P, mob/user, params)
 	if(istype(P, /obj/item/paper) && !storedpaper)

@@ -121,7 +121,7 @@
 		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
 
 
-/obj/structure/particle_accelerator/update_icon(updates=ALL)
+/obj/structure/particle_accelerator/update_icon_state()
 	. = ..()
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED,PA_CONSTRUCTION_UNWIRED)

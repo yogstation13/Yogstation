@@ -81,7 +81,7 @@
 				M.putItemFromInventoryInHandIfPossible(src, H.held_index)
 
 
-/obj/item/minigunpack/update_icon(updates=ALL)
+/obj/item/minigunpack/update_icon_state()
 	. = ..()
 	if(armed)
 		icon_state = "notholstered"

@@ -62,10 +62,10 @@
 		active = FALSE
 		connected_parts.Cut()
 
-/obj/machinery/particle_accelerator/control_box/update_icon(updates=ALL)
+/obj/machinery/particle_accelerator/control_box/update_icon_state()
 	. = ..()
 	if(active)
-		icon_state = "control_boxp[strength]"		//yogs- fix sprite not updating		(note that /tg/ PA power 2 sprite is incomplete)
+		icon_state = "control_boxp[strength]" //yogs- fix sprite not updating		(note that /tg/ PA power 2 sprite is incomplete)
 	else
 		if(use_power)
 			if(assembled)

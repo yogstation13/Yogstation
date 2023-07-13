@@ -10,7 +10,7 @@
 	max_ammo = 8
 	sprite_designation = "b"
 
-/obj/item/ammo_box/magazine/m12g/update_icon(updates=ALL)
+/obj/item/ammo_box/magazine/m12g/update_icon_state()
 	. = ..()
 	if(ammo_count())
 		icon_state = "m12g[sprite_designation]-8"

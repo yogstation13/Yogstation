@@ -159,10 +159,10 @@
 	update_appearance(UPDATE_ICON)
 	return
 
-/obj/item/gun/energy/update_icon(force_update)
+/obj/item/gun/energy/update_overlays()
 	if(QDELETED(src))
 		return
-	..()
+	. = ..()
 	if(!automatic_charge_overlays)
 		return
 	var/ratio = CEILING(clamp(cell.charge / cell.maxcharge, 0, 1) * charge_sections, 1)

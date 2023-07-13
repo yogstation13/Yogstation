@@ -214,7 +214,7 @@
 	. = ..()
 	update_appearance(UPDATE_ICON)
 
-/obj/item/bot_assembly/floorbot/update_icon(updates=ALL)
+/obj/item/bot_assembly/floorbot/update_appearance(updates=ALL)
 	. = ..()
 	switch(build_step)
 		if(ASSEMBLY_FIRST_STEP)

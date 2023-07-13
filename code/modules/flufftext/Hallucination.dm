@@ -116,6 +116,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.client.images |= current_image
 
 /obj/effect/hallucination/simple/update_icon(updates=ALL, new_state, new_icon, new_px=0, new_py=0)
+	. = ..()
 	image_state = new_state
 	if(new_icon)
 		image_icon = new_icon

@@ -301,15 +301,14 @@
 	if(loaded_tank && active && collectable_radiation && pulse_strength > RAD_COLLECTOR_EFFICIENCY)
 		stored_power += (pulse_strength-RAD_COLLECTOR_EFFICIENCY)*RAD_COLLECTOR_COEFFICIENT*(machine_tier+power_bonus)
 
-/obj/machinery/power/rad_collector/update_icon(updates=ALL)
+/obj/machinery/power/rad_collector/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(loaded_tank)
-		add_overlay("ptank")
+		. += "ptank"
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(active)
-		add_overlay("on")
+		. += "on"
 
 //honestly this should be balanced
 /obj/machinery/power/rad_collector/RefreshParts()
