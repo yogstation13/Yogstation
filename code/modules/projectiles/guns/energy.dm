@@ -166,7 +166,7 @@
 	if(!automatic_charge_overlays)
 		return
 	var/ratio = CEILING(clamp(cell.charge / cell.maxcharge, 0, 1) * charge_sections, 1)
-	if(ratio == old_ratio && !force_update)
+	if(ratio == old_ratio)
 		return
 	old_ratio = ratio
 	cut_overlays()

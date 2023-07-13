@@ -139,7 +139,7 @@
 	if(get_ammo())
 		var/obj/item/ammo_casing/reusable/arrow/energy/E = magazine.get_round(TRUE)
 		arrow_overlay = mutable_appearance(icon, "[initial(E.item_state)][chambered ? "_firing" : ""]")
-		. += arrow_overlay, TRUE
+		. += arrow_overlay
 
 /obj/item/gun/ballistic/bow/proc/update_slowdown()
 	if(chambered || drawing)
@@ -459,7 +459,6 @@
 		icon_state = "[initial(icon_state)]_folded"
 		item_state = "[initial(item_state)]_folded"
 	else if(get_ammo())
-		item_state = "[item_state]_[E.icon_state]"
 		icon_state = initial(icon_state)
 	else
 		item_state = initial(item_state)
@@ -474,6 +473,7 @@
 	if(folded || !get_ammo())
 		return
 	var/obj/item/ammo_casing/reusable/arrow/energy/E = magazine.get_round(TRUE)
+	item_state = "[item_state]_[E.icon_state]"
 	arrow_overlay = mutable_appearance(icon, "[initial(E.icon_state)][chambered ? "_firing" : ""]")
 	. += arrow_overlay
 

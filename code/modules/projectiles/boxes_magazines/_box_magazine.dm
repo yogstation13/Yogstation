@@ -187,6 +187,7 @@
 
 /obj/item/ammo_box/update_desc(updates=ALL)
 	. = ..()
+	var/rounds_left = stored_ammo.len
 	desc = "[initial(desc)] There [(rounds_left == 1) ? "is" : "are"] [rounds_left] round\s left!"
 
 ///Count of number of bullets in the magazine
