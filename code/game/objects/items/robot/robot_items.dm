@@ -860,13 +860,13 @@
 	. = ..()
 
 /// Resets overlays and adds a overlay if there is a held item.
-/obj/item/gripper/update_icon(updates)
-	cut_overlays()
+/obj/item/gripper/update_overlays()
+	. = ..()
 	if(wrapped)
 		var/mutable_appearance/wrapped_appearance = mutable_appearance(wrapped.icon, wrapped.icon_state)
 		// Shrinking it to 0.8 makes it a bit ugly, but this makes it obvious it is a held item.
 		wrapped_appearance.transform = matrix(0.8,0,0,0,0.8,0)
-		add_overlay(wrapped_appearance)
+		. += wrapped_appearance
 
 // Make it clear what we can do with it.
 /obj/item/gripper/examine(mob/user)

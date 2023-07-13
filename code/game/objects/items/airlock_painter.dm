@@ -51,6 +51,7 @@
 	ink = new initial_ink_type(src)
 
 /obj/item/airlock_painter/update_icon()
+	. = ..()
 	var/base = initial(icon_state)
 	if(!istype(ink))
 		icon_state = "[base]_none"

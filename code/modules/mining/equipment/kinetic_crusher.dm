@@ -29,8 +29,8 @@
 	var/backstab_bonus = 30
 
 /obj/item/twohanded/kinetic_crusher/update_icon_state()  //Updates the sprite for in-hand and on-mob.
+	. = ..()
 	icon_state = "mining_hammer[wielded]"
-	return
 
 /obj/item/twohanded/kinetic_crusher/Initialize(mapload)
 	. = ..()

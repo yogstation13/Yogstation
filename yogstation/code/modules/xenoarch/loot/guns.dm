@@ -18,6 +18,7 @@
 	playsound(src, 'yogstation/sound/weapons/spur_spawn.ogg')
 
 /obj/item/gun/energy/polarstar/update_icon(force_update)
+	. = ..()
 	var/maxcharge = cell.maxcharge
 	var/charge = cell.charge
 

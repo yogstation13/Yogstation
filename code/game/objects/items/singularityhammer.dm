@@ -31,8 +31,8 @@
 	return
 
 /obj/item/twohanded/singularityhammer/update_icon_state()  //Currently only here to fuck with the on-mob icons.
+	. = ..()
 	icon_state = "singhammer[wielded]"
-	return
 
 /obj/item/twohanded/singularityhammer/proc/vortex(turf/pull, mob/wielder)
 	for(var/atom/X in orange(5,pull))
@@ -120,5 +120,5 @@
 			shock(hit_atom)
 
 /obj/item/twohanded/mjollnir/update_icon_state()  //Currently only here to fuck with the on-mob icons.
+	. = ..()
 	icon_state = "mjollnir[wielded]"
-	return

@@ -258,14 +258,14 @@ All foods are distributed among various categories. Use common sense.
 			return
 
 /obj/item/reagent_containers/food/snacks/proc/update_snack_overlays(obj/item/reagent_containers/food/snacks/S)
-	. = ..()
+	cut_overlays()
 	var/mutable_appearance/filling = mutable_appearance(icon, "[initial(icon_state)]_filling")
 	if(S.filling_color == "#FFFFFF")
 		filling.color = pick("#FF0000","#0000FF","#008000","#FFFF00")
 	else
 		filling.color = S.filling_color
 
-	. += filling
+	add_overlay(filling)
 
 // initialize_cooked_food() is called when microwaving the food
 /obj/item/reagent_containers/food/snacks/proc/initialize_cooked_food(obj/item/reagent_containers/food/snacks/S, cooking_efficiency = 1)

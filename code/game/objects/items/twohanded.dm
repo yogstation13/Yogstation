@@ -252,8 +252,8 @@
 	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
 
 /obj/item/twohanded/fireaxe/update_icon(updates=ALL)  //Currently only here to fuck with the on-mob icons.
+	. = ..()
 	icon_state = "fireaxe[wielded]"
-	return
 
 /obj/item/twohanded/fireaxe/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] axes [user.p_them()]self from head to toe! It looks like [user.p_theyre()] trying to commit suicide!"))
