@@ -64,6 +64,7 @@
 				return FALSE
 			if(prob(0.1)) //Easteregg of the exploit that allowed you to buy an actual real ratvar mob
 				playsound(src, 'sound/magic/clockwork/ark_activation.ogg', 50, 0)
+				visible_message(message = "<span class='big_brass'>Ratvar has risen! ...from the vendor?</span>")
 				new /obj/item/toy/plush/plushvar(loc)
 			C.registered_account.sec_weapon_claimed = TRUE
 			return TRUE
