@@ -84,15 +84,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if(new_body.stat != DEAD)
 		new_body.add_to_current_living_antags()
 
-//This handles the application of antag huds/special abilities
-/datum/antagonist/proc/apply_innate_effects(mob/living/mob_override)
-	return
-
-//This handles the removal of antag huds/special abilities
-/datum/antagonist/proc/remove_innate_effects(mob/living/mob_override)
-	handle_clown_mutation(mob_override || owner.current, removing = FALSE)
-	return
-
 /// Handles adding and removing the clumsy mutation from clown antags. Gets called in apply/remove_innate_effects
 /datum/antagonist/proc/handle_clown_mutation(mob/living/mob_override, message, removing = TRUE)
 	if(!ishuman(mob_override) || owner.assigned_role != "Clown")
@@ -109,7 +100,19 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/create_team(datum/team/team)
 	return
 
-//Called by the add_antag_datum() mind proc after the instanced datum is added to the mind's antag_datums list.
+///This handles the application of antag huds/special abilities
+///This gets called on antags being added to a new body, on_gain is used for one-time effects.
+/datum/antagonist/proc/apply_innate_effects(mob/living/mob_override)
+	return
+
+///This handles the removal of antag huds/special abilities
+///This is called on antags being removed from a body, on_removal is used for one-time effects.
+/datum/antagonist/proc/remove_innate_effects(mob/living/mob_override)
+	handle_clown_mutation(mob_override || owner.current, removing = FALSE)
+	return
+
+///Called by the add_antag_datum() mind proc after the instanced datum is added to the mind's antag_datums list.
+///This is called only once, even if your mind is moved to a new body (like brain transfer), apply_innate_effects should be used for stuff like HUDs.
 /datum/antagonist/proc/on_gain()
 	SHOULD_CALL_PARENT(TRUE)
 	var/datum/action/antag_info/info_button
@@ -126,7 +129,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 		if(ui_name)
 			to_chat(owner.current, span_boldnotice("For more info, read the panel. you can always come back to it using the button in the top left."))
 			info_button.Trigger()
-	apply_innate_effects()
+	apply_innate_effects(owner.current)
 	give_antag_moodies()
 	if(is_banned(owner.current) && replace_banned)
 		replace_banned_player()
@@ -137,33 +140,14 @@ GLOBAL_LIST_EMPTY(antagonists)
 	
 	SEND_SIGNAL(owner, COMSIG_ANTAGONIST_GAINED, src)
 
-/datum/antagonist/proc/is_banned(mob/M)
-	if(!M)
-		return FALSE
-	. = (is_banned_from(M.ckey, list(ROLE_SYNDICATE, job_rank)) || QDELETED(M))
-
-/datum/antagonist/proc/replace_banned_player()
-	set waitfor = FALSE
-
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [name]?", "[name]", null, job_rank, 50, owner.current)
-	var/mob/dead/observer/C
-	
-	to_chat(owner, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
-	if(LAZYLEN(candidates))
-		C = pick(candidates)
-		
-	message_admins(" [key_name_admin(owner)] [C ? "has been replaced by [key_name_admin(C)]" : "is banned from [job_rank] and was unable to be replaced!"]")
-	owner.current.ghostize(0)
-	owner.current.key = C ? C.key : null
-	
-
-//Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
+///Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
+///This is called only once, even if your mind is moved to a new body (like brain transfer), remove_innate_effects should be used for stuff like HUDs.
 /datum/antagonist/proc/on_removal()
 	SHOULD_CALL_PARENT(TRUE)
 	if(!owner)
 		CRASH("Antag datum with no owner.")
 
-	remove_innate_effects()
+	remove_innate_effects(owner.current)
 	clear_antag_moodies()
 	LAZYREMOVE(owner.antag_datums, src)
 	if(!LAZYLEN(owner.antag_datums))
@@ -184,6 +168,25 @@ GLOBAL_LIST_EMPTY(antagonists)
 			antag_hud.hide_from(current)
 
 	qdel(src)
+
+/datum/antagonist/proc/is_banned(mob/M)
+	if(!M)
+		return FALSE
+	. = (is_banned_from(M.ckey, list(ROLE_SYNDICATE, job_rank)) || QDELETED(M))
+
+/datum/antagonist/proc/replace_banned_player()
+	set waitfor = FALSE
+
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [name]?", "[name]", null, job_rank, 50, owner.current)
+	var/mob/dead/observer/C
+	
+	to_chat(owner, "Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!")
+	if(LAZYLEN(candidates))
+		C = pick(candidates)
+		
+	message_admins(" [key_name_admin(owner)] [C ? "has been replaced by [key_name_admin(C)]" : "is banned from [job_rank] and was unable to be replaced!"]")
+	owner.current.ghostize(0)
+	owner.current.key = C ? C.key : null
 
 /datum/antagonist/proc/greet()
 	return

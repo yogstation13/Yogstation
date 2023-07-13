@@ -13,6 +13,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	if(!no_bodyparts)
 		spread_bodyparts(no_brain, no_organs)
 
+	SEND_SIGNAL(src, COMSIG_LIVING_GIBBED, no_brain, no_organs, no_bodyparts)
 	spawn_gibs(no_bodyparts)
 	qdel(src)
 

@@ -1738,7 +1738,6 @@
 #include "code\modules\antagonists\devil_affairs\devil_powers\devil_form.dm"
 #include "code\modules\antagonists\devil_affairs\devil_powers\fireball.dm"
 #include "code\modules\antagonists\devil_affairs\devil_powers\jaunt.dm"
-#include "code\modules\antagonists\devil_affairs\devil_powers\transfer_body.dm"
 #include "code\modules\antagonists\disease\disease_abilities.dm"
 #include "code\modules\antagonists\disease\disease_datum.dm"
 #include "code\modules\antagonists\disease\disease_disease.dm"
