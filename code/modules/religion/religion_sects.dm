@@ -455,6 +455,7 @@
 		H.update_damage_overlays()
 
 		adjust_favor(amount_healed, user)
+		user.apply_damage((amount_healed / 3), CLONE)
 		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
 		playsound(user, 'sound/magic/staff_healing.ogg', 25, TRUE, -1)
