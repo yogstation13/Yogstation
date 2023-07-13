@@ -37,7 +37,7 @@
 	staminamod = 0.8
 	siemens_coeff = 1.75
 	action_speed_coefficient = 0.9 // designed for labor, they should be good at it
-	reagent_tag = PROCESS_SYNTHETIC
+	process_flags = SYNTHETIC
 	species_gibs = "robotic"
 	attack_sound = 'sound/items/trayhit1.ogg'
 	screamsound = 'goon/sound/robot_scream.ogg'

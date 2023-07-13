@@ -516,6 +516,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 		new /datum/stack_recipe("donut box", /obj/item/storage/box/fancy/donut_box),				\
 		new /datum/stack_recipe("egg box", /obj/item/storage/box/fancy/egg_box),					\
 		new /datum/stack_recipe("monkey cube box", /obj/item/storage/box/monkeycubes),			\
+		new /datum/stack_recipe("nugget box", /obj/item/storage/box/fancy/nugget_box),			\
 		null,																					\
 
 		new /datum/stack_recipe("bean bag ammo box", /obj/item/storage/box/beanbag),			\

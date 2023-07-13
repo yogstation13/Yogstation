@@ -94,6 +94,7 @@
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "kitty"
 	visual = TRUE
+	process_flags = ORGANIC | SYNTHETIC // meowchine... turn back now
 	damage_multiplier = 2
 
 /obj/item/organ/ears/cat/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
@@ -119,6 +120,7 @@
 	damage_multiplier = 0.8
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = ORGANIC | SYNTHETIC
 
 /obj/item/organ/ears/penguin
 	name = "penguin ears"
@@ -152,6 +154,7 @@
 	gender = PLURAL
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = SYNTHETIC // for IPCs
 
 /obj/item/organ/ears/robot/emp_act(severity)
 	switch(severity)

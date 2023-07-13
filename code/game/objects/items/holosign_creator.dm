@@ -1,6 +1,6 @@
 /obj/item/holosign_creator
 	name = "holographic sign projector"
-	desc = "A handy-dandy holographic projector that displays a janitorial sign."
+	desc = "You shouldn't see this."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "signmaker"
 	item_state = "electronic"
@@ -63,8 +63,8 @@
 	name = "custodial holobarrier projector"
 	desc = "A holographic projector that creates hard light wet floor barriers."
 	holosign_type = /obj/structure/holosign/barrier/wetsign
-	creation_time = 2 SECONDS
-	max_signs = 12
+	creation_time = 0.5 SECONDS
+	max_signs = 25
 
 /obj/item/holosign_creator/security
 	name = "security holobarrier projector"
