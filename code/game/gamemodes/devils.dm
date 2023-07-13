@@ -7,7 +7,7 @@
 	required_enemies = 5
 	recommended_enemies = 8
 	reroll_friendly = 0
-	antag_flag = ROLE_INTERNAL_AFFAIRS
+	antag_flag = ROLE_INFERNAL_AFFAIRS
 	enemy_minimum_age = 14
 	title_icon = "traitor"
 
