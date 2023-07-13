@@ -16,6 +16,8 @@
 	. = ..()
 	SSinfernal_affairs.agent_datums += src
 	uplink_holder = owner.equip_traitor(employer = "The Devil", uplink_owner = src)
+	if(owner.assigned_role != "Lawyer")
+		uplink_holder.telecrystals = 10
 	RegisterSignal(uplink_holder, COMSIG_ON_UPLINK_PURCHASE, PROC_REF(on_uplink_purchase))
 
 /datum/antagonist/infernal_affairs/on_removal()
@@ -69,7 +71,7 @@
 		if(devil.owner.current)
 			devil.update_souls_owned(1)
 
-	if(killer)
+	if(killer && killer.owner.assigned_role != "Lawyer")
 		killer.uplink_holder.telecrystals += rand(3,5)
 	
 	SSinfernal_affairs.update_objective_datums()
