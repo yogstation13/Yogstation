@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(679 modules,
-    1827/8769 macros, 20.8%)</aside></h3>
+<aside>(683 modules,
+    1835/8817 macros, 20.8%)</aside></h3>
 <ul class="index-tree modules">
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;__DEFINES">__DEFINES</span><ul class="index-tree">
@@ -196,6 +196,7 @@ General Public License version 3.
     <li><a href="code/controllers/master.html" title="code&#x2F;controllers&#x2F;master">master</a></li>
     <li class="has-children"><a href="code/controllers/subsystem.html" title="code&#x2F;controllers&#x2F;subsystem">subsystem</a> - The amount of loading points this subsystem has, measured in deciseconds of approximate load time. This being 0 is fine.<ul class="index-tree">
     <li><a href="code/controllers/subsystem/achievements.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;achievements">achievements</a></li>
+    <li><a href="code/controllers/subsystem/ambience.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;ambience">ambience</a></li>
     <li><a href="code/controllers/subsystem/area_contents.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;area_contents">area_contents</a></li>
     <li><a href="code/controllers/subsystem/asset_loading.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;asset_loading">asset_loading</a></li>
     <li><a href="code/controllers/subsystem/chat.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;chat">chat</a></li>
@@ -366,6 +367,7 @@ SPDX-License-Identifier: MIT</li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;items">items</span><ul class="index-tree">
     <li><a href="code/game/objects/items/AI_modules.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;AI_modules">AI_modules</a></li>
     <li><a href="code/game/objects/items/RSF.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;RSF">RSF</a></li>
+    <li><a href="code/game/objects/items/airlock_painter.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;airlock_painter">airlock_painter</a></li>
     <li><a href="code/game/objects/items/bell.html" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;bell">bell</a></li>
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices">devices</span><ul class="index-tree">
     <li class="has-children"><span title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices&#x2F;busterarm">busterarm</span><ul class="index-tree">
@@ -417,6 +419,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/game/objects/structures/statues.html" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;statues">statues</a></li>
     </ul></li>
     </ul></li>
+    <li><a href="code/game/sound.html" title="code&#x2F;game&#x2F;sound">sound</a> - playsound</li>
     <li class="has-children"><span class="no-substance">turfs&#x2F;</span><span title="code&#x2F;game&#x2F;turfs&#x2F;simulated">simulated</span><ul class="index-tree">
     <li><span class="no-substance">floor&#x2F;plating&#x2F;</span><a href="code/game/turfs/simulated/floor/plating/asteroid.html" title="code&#x2F;game&#x2F;turfs&#x2F;simulated&#x2F;floor&#x2F;plating&#x2F;asteroid">asteroid</a></li>
     <li><a href="code/game/turfs/simulated/lava.html" title="code&#x2F;game&#x2F;turfs&#x2F;simulated&#x2F;lava">lava</a></li>
@@ -509,6 +512,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/modules/assembly/doorcontrol.html" title="code&#x2F;modules&#x2F;assembly&#x2F;doorcontrol">doorcontrol</a></li>
     <li><a href="code/modules/assembly/infrared.html" title="code&#x2F;modules&#x2F;assembly&#x2F;infrared">infrared</a></li>
     <li><a href="code/modules/assembly/radio.html" title="code&#x2F;modules&#x2F;assembly&#x2F;radio">radio</a></li>
+    <li><a href="code/modules/assembly/signaler.html" title="code&#x2F;modules&#x2F;assembly&#x2F;signaler">signaler</a></li>
     </ul></li>
     <li class="has-children"><a href="code/modules/asset_cache.html" title="code&#x2F;modules&#x2F;asset_cache">Asset cache system</a><ul class="index-tree">
     <li><a href="code/modules/asset_cache/asset_cache_item.html" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_cache_item">asset_cache_item</a></li>
@@ -1003,7 +1007,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(853 detailed/1642 documented/27954 total, 5.9%)</aside></h3>
+<aside>(859 detailed/1649 documented/27969 total, 5.9%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1322,6 +1326,7 @@ The namespace folder's name will change if any of the assets change. (excluding 
     </ul></li>
     <li class="has-children"><a href="datum/asset/spritesheet.html" title="&#x2F;datum&#x2F;asset&#x2F;spritesheet">spritesheet</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;asset&#x2F;spritesheet&#x2F;antagonists">antagonists</span> - Sprites generated for the antagonists panel</li>
+    <li><a href="datum/asset/spritesheet/decals.html" title="&#x2F;datum&#x2F;asset&#x2F;spritesheet&#x2F;decals">floor_decals</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;asset&#x2F;spritesheet&#x2F;preferences">preferences</span> - Assets generated from <code>/datum/preference</code> icons</li>
     </ul></li>
     </ul></li>
@@ -1453,6 +1458,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li class="has-children"><a href="datum/controller/subsystem.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem">Subsystem base class</a> - Defines a subsystem to be managed by the <a href="datum/controller/master.html" title="/datum/controller/master">Master Controller</a><ul class="index-tree">
     <li><a href="datum/controller/subsystem/Yogs.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;Yogs">Yog Features</a></li>
     <li><a href="datum/controller/subsystem/achievements.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;achievements">Achievements</a></li>
+    <li><a href="datum/controller/subsystem/ambience.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;ambience">Ambience</a></li>
     <li><a href="datum/controller/subsystem/atoms.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;atoms">Atoms</a></li>
     <li><a href="datum/controller/subsystem/economy.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;economy">Economy</a></li>
     <li><a href="datum/controller/subsystem/fluids.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;fluids">Fluid</a></li>
@@ -1538,7 +1544,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;design_disk">Design Storage Disk</span> - Disk Construction Disks</li>
     <li><span class="no-substance">disk&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;disk&#x2F;normal">Hard Disk Drive</span> - Computer Parts</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;handdrill">Hand Drill</span> - Tools</li>
-    <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;holosign">Holographic Sign Projector</span> - Holobarriers</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;holosign">Custodial Holobarrier Projector</span> - Holobarriers</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;implanter">Implanter</span> - Regular Implants</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;intellicard">Intellicard AI Transportation System</span> - Non-Board Computer Stuff</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;design&#x2F;leftarm">Left Arm</span> - Limb Grower Designs</li>
@@ -2516,7 +2522,11 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
     <li><span class="no-substance">zeroth&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;aiModule&#x2F;zeroth&#x2F;oneHuman">&#x27;OneHuman&#x27; AI Module</span> - OneHuman</li>
     </ul></li>
     <li><span class="no-substance">ai_cpu&#x2F;</span><a href="obj/item/ai_cpu/stalwart.html" title="&#x2F;obj&#x2F;item&#x2F;ai_cpu&#x2F;stalwart">bluespace data crystal</a></li>
-    <li><a href="obj/item/airlock_painter.html" title="&#x2F;obj&#x2F;item&#x2F;airlock_painter">airlock painter</a></li>
+    <li class="has-children"><a href="obj/item/airlock_painter.html" title="&#x2F;obj&#x2F;item&#x2F;airlock_painter">airlock painter</a><ul class="index-tree">
+    <li class="has-children"><a href="obj/item/airlock_painter/decal.html" title="&#x2F;obj&#x2F;item&#x2F;airlock_painter&#x2F;decal">decal painter</a><ul class="index-tree">
+    <li><a href="obj/item/airlock_painter/decal/tile.html" title="&#x2F;obj&#x2F;item&#x2F;airlock_painter&#x2F;decal&#x2F;tile">tile sprayer</a></li>
+    </ul></li>
+    </ul></li>
     <li class="has-children"><a href="obj/item/ammo_box.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_box">ammo box (null_reference_exception)</a><ul class="index-tree">
     <li><a href="obj/item/ammo_box/magazine.html" title="&#x2F;obj&#x2F;item&#x2F;ammo_box&#x2F;magazine">magazine</a></li>
     </ul></li>
@@ -2545,6 +2555,7 @@ The ammount of rads released on impact</li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;assembly">assembly</span><ul class="index-tree">
     <li><a href="obj/item/assembly/flash.html" title="&#x2F;obj&#x2F;item&#x2F;assembly&#x2F;flash">flash</a></li>
     <li><span class="no-substance">radio&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;assembly&#x2F;radio&#x2F;bell">desk bell announcer</span> - Desk Bells</li>
+    <li><span class="no-substance">signaler&#x2F;</span><a href="obj/item/assembly/signaler/button.html" title="&#x2F;obj&#x2F;item&#x2F;assembly&#x2F;signaler&#x2F;button">remote signaling button</a> - Button signaler</li>
     <li><a href="obj/item/assembly/voice_box.html" title="&#x2F;obj&#x2F;item&#x2F;assembly&#x2F;voice_box">voice box</a></li>
     </ul></li>
     <li class="has-children"><a href="obj/item/attachment.html" title="&#x2F;obj&#x2F;item&#x2F;attachment">attachment</a> - Base attachment.
@@ -2705,6 +2716,7 @@ the program that displays laws should always be usable, and the exceptions were 
     <li><span class="no-substance">plastic&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;plastic&#x2F;c4">C4</span> - The Explosives</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;grenade&#x2F;syndieminibomb">syndicate minibomb</span> - Own proc for this because the regular one would flash people which was dumb.</li>
     </ul></li>
+    <li><a href="obj/item/gripper.html" title="&#x2F;obj&#x2F;item&#x2F;gripper">cyborg gripper</a> - Grippers</li>
     <li><a href="obj/item/grown.html" title="&#x2F;obj&#x2F;item&#x2F;grown">grown_weapon</a></li>
     <li class="has-children"><a href="obj/item/gun.html" title="&#x2F;obj&#x2F;item&#x2F;gun">gun</a><ul class="index-tree">
     <li class="has-children"><a href="obj/item/gun/ballistic.html" title="&#x2F;obj&#x2F;item&#x2F;gun&#x2F;ballistic">projectile gun</a> - Subtype for any kind of ballistic gun
@@ -3250,6 +3262,7 @@ uranium</li>
     <li><span class="no-substance">vehicle&#x2F;ridden&#x2F;scooter&#x2F;</span><a href="obj/vehicle/ridden/scooter/skateboard.html" title="&#x2F;obj&#x2F;vehicle&#x2F;ridden&#x2F;scooter&#x2F;skateboard">improvised skateboard</a></li>
     </ul></li>
     <li><a href="procpath.html" title="&#x2F;procpath">procpath</a> - Represents a proc or verb path.</li>
+    <li><span class="no-substance" title="&#x2F;sound">sound</span> - Default override for echo</li>
     <li class="has-children"><a href="turf.html" title="&#x2F;turf">turf</a><ul class="index-tree">
     <li class="has-children"><span title="&#x2F;turf&#x2F;closed">closed</span><ul class="index-tree">
     <li><a href="turf/closed/mineral.html" title="&#x2F;turf&#x2F;closed&#x2F;mineral">rock</a> - Mineral deposits</li>
@@ -3279,7 +3292,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/ffb13431ad5e120614b1cf50beaf2e06bd76dec6">ffb1343</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/727a4ad8948c3a2b00d5ffca95670b0c30ba7949">727a4ad</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
