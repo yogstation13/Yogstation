@@ -20,6 +20,11 @@
 	var/altar_icon_state // Changes the Altar of Gods icon_state
 	var/list/active_rites // Currently Active (non-deleted) rites
 
+	//bless variables
+	var/heal_amt = 20
+	COOLDOWN_DECLARE(last_heal)
+	var/cooldown_duration = 10 SECONDS
+
 /datum/religion_sect/New()
 	. = ..()
 	if(desired_items)
@@ -80,6 +85,11 @@
 /datum/religion_sect/proc/sect_bless(mob/living/L, mob/living/user)
 	if(!ishuman(L))
 		return FALSE
+
+	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
+		user.visible_message(span_notice("[GLOB.deity] has been called on to heal too recently. You may call on them again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
+		return FALSE
+
 	var/mob/living/carbon/human/H = L
 	for(var/X in H.bodyparts)
 		var/obj/item/bodypart/BP = X
@@ -87,16 +97,15 @@
 			to_chat(user, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
 			return TRUE
 
-	var/heal_amt = 20
-
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
+		COOLDOWN_START(src, last_heal, cooldown_duration)
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ORGANIC)
 		H.update_damage_overlays()
 		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
 		playsound(user, "punch", 25, TRUE, -1)
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
-	return FALSE
+	return TRUE
 
 /datum/religion_sect/puritanism
 	name = "Puritanism (Default)"
@@ -111,9 +120,15 @@
 	desired_items = list(/obj/item/stock_parts/cell)
 	rites_list = list(/datum/religion_rites/synthconversion, /datum/religion_rites/botcreation, /datum/religion_rites/machine_blessing)
 	altar_icon_state = "convertaltar-blue"
+	heal_amt = 20
 
 /datum/religion_sect/technophile/sect_bless(mob/living/L, mob/living/user)
+	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
+		user.visible_message(span_notice("[GLOB.deity] has been called on to heal too recently. You may call on them again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
+		return FALSE
+
 	if(iscyborg(L))
+		COOLDOWN_START(src, last_heal, cooldown_duration)
 		var/mob/living/silicon/robot/R = L
 		var/charge_amt = 50
 		if(L.mind?.holy_role == HOLY_ROLE_HIGHPRIEST)
@@ -140,7 +155,6 @@
 		did_we_charge = TRUE
 
 	var/did_we_heal = FALSE
-	var/heal_amt = 20
 	var/list/limbs = H.bodyparts
 
 	//if we're not targetting someone with a robotic part we don't heal
@@ -153,17 +167,20 @@
 		H.update_damage_overlays()
 
 	if(did_we_heal)
+		COOLDOWN_START(src, last_heal, cooldown_duration)
 		H.visible_message(span_notice("[user] [did_we_charge ? "repairs" : "repairs and charges"] [H] with the power of [GLOB.deity]!"))
 		to_chat(H, span_boldnotice("The inner machinations of [GLOB.deity] [did_we_charge ? "repairs" : "repairs and charges"] you!"))
 		playsound(user, 'sound/effects/bang.ogg', 25, TRUE, -1)
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 	else if(did_we_charge)
+		COOLDOWN_START(src, last_heal, cooldown_duration)
 		H.visible_message(span_notice("[user] charges [H] with the power of [GLOB.deity]!"))
 		to_chat(H, span_boldnotice("You feel charged by the power of [GLOB.deity]!"))
 		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 		playsound(user, 'sound/machines/synth_yes.ogg', 25, TRUE, -1)
 	else
 		to_chat(user, span_warning("[GLOB.deity] scoffs at the idea of healing such fleshy matter!"))
+		return FALSE
 				
 	return TRUE
 
@@ -188,39 +205,40 @@
 	alignment = ALIGNMENT_EVIL
 	desired_items = list(/obj/item/holochip)
 	max_favor = 100000
-	var/last_dono = 0 // world.time
 	rites_list = list(/datum/religion_rites/toppercent,
-					  /datum/religion_rites/looks)
+					  /datum/religion_rites/looks)	  
+	heal_amt = 60
+	cooldown_duration = 15 SECONDS
 
 /datum/religion_sect/capitalists/sect_bless(mob/living/L, mob/living/user)
 	if(!ishuman(L))
 		return
-	if(world.time < last_dono) // immersion broken
-		user.visible_message(span_notice("You are getting too greedy! You can receive another donation in [(last_dono - world.time)/10] seconds!"))
-		return
+	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
+		user.visible_message(span_notice("You are getting too greedy! You can receive another donation in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds!"))
+		return FALSE
+
 	var/mob/living/carbon/human/H = L
 	var/obj/item/card/id/id_card = H.get_idcard()
 	var/obj/item/card/id/id_cardu = user.get_idcard()
 	if(!id_card)
 		to_chat(user,span_notice("[H] doesn't seem to have an id card to 'donate' from for your blessing..."))
-		return
+		return TRUE
 	if(!id_card.registered_account)
 		to_chat(user,span_notice("[H] doesn't seem to have an account to 'donate' from for your blessing..."))
-		return
+		return TRUE
 	if(!id_cardu)
 		to_chat(user,span_notice("You have no id card to receive your 'donation'"))
-		return
+		return TRUE
 	if(!id_cardu.registered_account)
 		to_chat(user,span_notice("You have no bank account to receive your 'donation'"))
-		return
+		return TRUE
 
 	var/money_to_donate = round(id_card.registered_account.account_balance * 0.1) // takes 10% of their money and rounds it down
-
+	
 	if(money_to_donate <= 0)
 		user.visible_message(span_notice("[H] is too poor to receive [GLOB.deity]'s blessing!"))
 	else
-		last_dono = world.time + 15 SECONDS // healing CD is 15 seconds but your healing strength is 3x stronger
-		var/heal_amt = 60
+		COOLDOWN_START(src, last_heal, cooldown_duration)
 
 		if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
 			H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ORGANIC)
@@ -254,32 +272,38 @@
 	desired_items = list(/obj/item/candle)
 	rites_list = list(/datum/religion_rites/fireproof, /datum/religion_rites/burning_sacrifice, /datum/religion_rites/infinite_candle, /datum/religion_rites/candletransformation)
 	altar_icon_state = "convertaltar-red"
+	heal_amt = 40 //it only heals burn
 
 //candle sect bibles only heal burn damage and only work on people who are on fire
 /datum/religion_sect/candle_sect/sect_bless(mob/living/L, mob/living/user)
 	if(!ishuman(L))
 		return
+
+	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
+		user.visible_message(span_notice("[GLOB.deity] has been called on to heal too recently. You may call on them again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
+		return FALSE
+
 	var/mob/living/carbon/human/H = L
 	if(!H.on_fire)
 		to_chat(user, span_warning("[GLOB.deity] refuses to heal this non-burning heathen!"))
-		return
+		return TRUE
 	for(var/X in H.bodyparts)
 		var/obj/item/bodypart/BP = X
 		if(BP.status == BODYPART_ROBOTIC)
 			to_chat(user, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
-			return 0
+			return TRUE
 
-	var/heal_amt = 40 //it only heals burn
-	
 	if(H.getFireLoss() > 0)
+		COOLDOWN_START(src, last_heal, cooldown_duration)
 		H.heal_overall_damage(0, heal_amt, 0, BODYPART_ORGANIC)
 		H.update_damage_overlays()
+		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
+		to_chat(H, span_boldnotice("The radiance of [GLOB.deity] heals you!"))
+		playsound(user, "punch", 25, TRUE, -1)
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
+		return TRUE
 
-	H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
-	to_chat(H, span_boldnotice("The radiance of [GLOB.deity] heals you!"))
-	playsound(user, "punch", 25, TRUE, -1)
-	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
-	return TRUE
+	return FALSE
 
 /datum/religion_sect/candle_sect/on_sacrifice(obj/item/candle/offering, mob/living/user)
 	if(!istype(offering))
@@ -307,31 +331,38 @@
 	rites_list = list(/datum/religion_rites/plantconversion, /datum/religion_rites/photogeist)
 	altar_icon_state = "convertaltar-green"
 
+	heal_amt = 20
+
 //plant sect bibles will only heal plant-like things
 /datum/religion_sect/plant/sect_bless(mob/living/L, mob/living/user)
 	if(!ishuman(L))
 		return
+
+	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
+		user.visible_message(span_notice("[GLOB.deity] has been called on to heal too recently. You may call on them again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
+		return FALSE
+
 	var/mob/living/carbon/human/H = L
 	if(!("vines" in H.faction) && !("plants" in H.faction))
 		to_chat(user, span_warning("[GLOB.deity] refuses to heal this fleshy creature!"))
-		return
+		return TRUE
 	for(var/X in H.bodyparts)
 		var/obj/item/bodypart/BP = X
 		if(BP.status == BODYPART_ROBOTIC)
 			to_chat(user, span_warning("[GLOB.deity] refuses to heal this metallic taint!"))
-			return 0
-
-	var/heal_amt = 20
+			return TRUE
 
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
+		COOLDOWN_START(src, last_heal, cooldown_duration)
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ORGANIC)
 		H.update_damage_overlays()
+		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
+		to_chat(H, span_boldnotice("The light of [GLOB.deity] heals you!"))
+		playsound(user, "punch", 25, TRUE, -1)
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
+		return TRUE
 
-	H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
-	to_chat(H, span_boldnotice("The light of [GLOB.deity] heals you!"))
-	playsound(user, "punch", 25, TRUE, -1)
-	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
-	return TRUE
+	return FALSE
 
 /datum/religion_sect/plant/on_sacrifice(obj/item/I, mob/living/L)
 	var/obj/item/reagent_containers/food/snacks/grown/offering = I
@@ -383,18 +414,25 @@
 	desired_items = list(/obj/item/reagent_containers/food/snacks/grown/banana)
 	rites_list = list(/datum/religion_rites/holypie, /datum/religion_rites/honkabot, /datum/religion_rites/bananablessing)
 	altar_icon_state = "convertaltar-red"
+	heal_amt = 20
 
 //honkmother bible is supposed to only cure clowns, honk, and be slippery. I don't know how I'll do that
 /datum/religion_sect/honkmother/sect_bless(mob/living/blessed, mob/living/user)
 	if(!ishuman(blessed))
 		return
+
+	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
+		user.visible_message(span_notice("[GLOB.deity] has been called on to heal too recently. You may call on them again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
+		return FALSE
+
 	var/mob/living/carbon/human/H = blessed
 	var/datum/mind/M = H.mind
 	if(M.assigned_role != "Clown")
-		return
+		return TRUE
 
-	var/heal_amt = 20
+
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
+		COOLDOWN_START(src, last_heal, cooldown_duration)
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
 		H.update_damage_overlays()
 
@@ -426,7 +464,8 @@
 	alignment = ALIGNMENT_GOOD // literally the only good sect besides default lol
 	rites_list = list(/datum/religion_rites/medibot, /datum/religion_rites/holysight, /datum/religion_rites/healrod, /datum/religion_rites/holyrevival)
 	altar_icon_state = "convertaltar-heal"
-	COOLDOWN_DECLARE(last_heal)
+	heal_amt = 40 //double healing, no chance to mess up
+	cooldown_duration = 12 SECONDS
 
 /datum/religion_sect/holylight/on_conversion(mob/living/L)
 	. = ..()
@@ -445,10 +484,9 @@
 		return FALSE
 
 	var/mob/living/carbon/human/H = L
-	var/heal_amt = 40 //double healing, no chance to mess up, and shorter cooldown than default
 
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
-		COOLDOWN_START(src, last_heal, 12 SECONDS)
+		COOLDOWN_START(src, last_heal, cooldown_duration)
 		var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
 
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
