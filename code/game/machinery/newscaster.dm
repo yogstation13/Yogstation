@@ -253,7 +253,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	if(alert)
 		. += "newscaster_alert"
 
-/obj/machinery/newscaster/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/machinery/newscaster/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	update_appearance(UPDATE_ICON)
 

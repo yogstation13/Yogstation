@@ -90,7 +90,7 @@
 			return TRUE
 		drawing = FALSE
 		to_chat(user, span_notice("You draw back the bowstring."))
-		playsound(src, draw_sound, 75, 0, falloff = 3) //gets way too high pitched if the freq varies
+		playsound(src, draw_sound, 75, 0, falloff_exponent = 3) //gets way too high pitched if the freq varies
 		chamber_round()
 		return TRUE
 

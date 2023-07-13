@@ -59,6 +59,7 @@
 	integrity_failure = 50
 	resistance_flags = FIRE_PROOF
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
+	clicksound = 'sound/machines/terminal_select.ogg'
 	works_with_rped_anyways = TRUE
 	FASTDMM_PROP(\
 		set_instance_vars(\

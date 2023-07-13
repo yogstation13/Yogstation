@@ -96,6 +96,8 @@
 
 	var/do_footstep = FALSE
 
+	var/magic_tameable = TRUE	//For special cases with the enchanted flowers
+
 	///How much wounding power it has
 	var/wound_bonus = CANT_WOUND
 	///How much bare wounding power it has
@@ -103,8 +105,11 @@
 	///If the attacks from this are sharp
 	var/sharpness = SHARP_NONE
 
+	//Music
 	var/music_component = null
 	var/music_path = null
+
+	
 
 /mob/living/simple_animal/Initialize(mapload)
 	. = ..()
@@ -289,9 +294,9 @@
 		new /obj/effect/temp_visual/gib_animation/animal(loc, icon_gib)
 
 /mob/living/simple_animal/say_mod(input, list/message_mods = list())
-	if(speak_emote && speak_emote.len)
+	if(length(speak_emote))
 		verb_say = pick(speak_emote)
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/emote(act, m_type=1, message = null, intentional = FALSE, is_keybind = FALSE)
 	if(stat)

@@ -110,7 +110,17 @@
 	removecell()
 
 /obj/machinery/cell_charger/attack_ai(mob/user)
+	if(!charging)
+		return
+
+	charging.forceMove(loc)
+	to_chat(user, "<span class='notice'>You remotely disconnect the battery port and eject [charging] from [src].</span>")
+
+	removecell()
 	return
+
+/obj/machinery/cell_charger/attack_robot(mob/user)
+	attack_ai(user)
 
 /obj/machinery/cell_charger/emp_act(severity)
 	. = ..()

@@ -304,7 +304,7 @@
 			qdel(O)
 	T.narsie_act()
 
-/obj/structure/destructible/cult/pillar/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+/obj/structure/destructible/cult/pillar/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	..()
 	update_appearance(UPDATE_ICON)
 
@@ -407,7 +407,7 @@
 	sleep(4 SECONDS)
 	new /obj/singularity/narsie/large/cult(loc)
 
-/obj/structure/destructible/cult/bloodstone/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+/obj/structure/destructible/cult/bloodstone/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	..()
 	update_appearance(UPDATE_ICON)
 

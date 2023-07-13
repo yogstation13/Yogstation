@@ -78,11 +78,9 @@
 	..()
 	initialize_outfits()
 
-/datum/action/chameleon_outfit/IsAvailable(feedback = FALSE)
+/datum/action/chameleon_outfit/Grant(mob/user)
 	if(syndicate)
-		if(!is_syndicate(owner))
-			HideFrom(owner)
-		return is_syndicate(owner)
+		owner_has_control = is_syndicate(user)
 	return ..()
 
 /datum/action/chameleon_outfit/proc/initialize_outfits()
@@ -157,10 +155,13 @@
 		if(!M.chameleon_item_actions)
 			M.chameleon_item_actions = list(src)
 			var/datum/action/chameleon_outfit/O = new /datum/action/chameleon_outfit()
+			O.syndicate = syndicate
 			O.Grant(M)
 		else
 			M.chameleon_item_actions |= src
-	..()
+	if(syndicate)
+		owner_has_control = is_syndicate(M)
+	return ..()
 
 /datum/action/item_action/chameleon/change/Remove(mob/M)
 	if(M && (M == owner))
@@ -168,7 +169,7 @@
 		if(!LAZYLEN(M.chameleon_item_actions))
 			var/datum/action/chameleon_outfit/O = locate(/datum/action/chameleon_outfit) in M.actions
 			qdel(O)
-	..()
+	return ..()
 
 /datum/action/item_action/chameleon/change/proc/initialize_disguises()
 	name = "Change [chameleon_name] Appearance"
@@ -183,14 +184,11 @@
 			var/chameleon_item_name = "[initial(I.name)] ([initial(I.icon_state)])"
 			chameleon_list[chameleon_item_name] = I
 
-
 /datum/action/item_action/chameleon/change/proc/select_look(mob/user)
-	var/obj/item/picked_item
-	var/picked_name
-	picked_name = input("Select [chameleon_name] to change into", "Chameleon [chameleon_name]", picked_name) as null|anything in chameleon_list
+	var/picked_name = tgui_input_list(user, "Select [chameleon_name] to change into", "Chameleon [chameleon_name]", chameleon_list)
 	if(!picked_name)
 		return
-	picked_item = chameleon_list[picked_name]
+	var/obj/item/picked_item = chameleon_list[picked_name]
 	if(!picked_item)
 		return
 	update_look(user, picked_item)

@@ -24,6 +24,7 @@
 	icon_state = "roro core 2"
 	visual = FALSE
 	item_flags = NOBLUDGEON
+	process_flags = ORGANIC | SYNTHETIC
 	slot = "hivecore"
 	force = 0
 	actions_types = list(/datum/action/item_action/organ_action/use)

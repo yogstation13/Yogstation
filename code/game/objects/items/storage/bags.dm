@@ -210,7 +210,7 @@
 	STR.set_holdable(list(/obj/item/gem))
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 48
-	STR.max_items = 48 
+	STR.max_items = 48
 
 /obj/item/storage/bag/gem/equipped(mob/user)
 	. = ..()
@@ -360,6 +360,15 @@
 /obj/item/storage/bag/tray/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 8 // Can hold two plates!
+	STR.set_holdable(list(
+		/obj/item/kitchen,
+		/obj/item/plate,
+		/obj/item/reagent_containers/food, // Includes drinking glasses, as they are a subtype
+		/obj/item/trash
+	), list(
+		/obj/item/plate/oven_tray
+	))
 	STR.insert_preposition = "on"
 
 /obj/item/storage/bag/tray/attack(mob/living/M, mob/living/user)
@@ -381,9 +390,6 @@
 	else
 		playsound(M, 'sound/items/trayhit2.ogg', 50, 1)
 
-	if(ishuman(M) || ismonkey(M))
-		if(prob(10))
-			M.Paralyze(40)
 	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/bag/tray/update_overlays()
@@ -466,7 +472,7 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 1000
 	STR.max_items = 100
-	
+
 /obj/item/storage/bag/construction/admin/full/PopulateContents()
 	new /obj/item/stack/cable_coil(src,MAXCOIL,"red")
 	for(var/i in 1 to 10)

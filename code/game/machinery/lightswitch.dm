@@ -49,6 +49,7 @@
 
 	area.lightswitch = !area.lightswitch
 	area.update_appearance(UPDATE_ICON)
+	play_click_sound("button")
 
 	for(var/obj/machinery/light_switch/L in area)
 		L.update_appearance(UPDATE_ICON)

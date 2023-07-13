@@ -53,6 +53,7 @@
 	desc = "One of the most advanced cybernetic organs ever created."
 	icon_state = "implant-filter"
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = ORGANIC | SYNTHETIC // THE GREATEST INVENTION IN THE HISTORY OF CYBERNETICS
 	now_failing = span_warning("NOT AGAIN!")
 	now_fixed = span_info("Thank god that's over.")
 

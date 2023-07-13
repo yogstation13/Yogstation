@@ -15,8 +15,15 @@
 	speech_span = SPAN_ROBOT
 	vis_flags = VIS_INHERIT_PLANE
 	appearance_flags = APPEARANCE_UI
-	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
-	var/datum/hud/hud = null // A reference to the owner HUD, if any.
+	/// A reference to the object in the slot. Grabs or items, generally.
+	var/obj/master = null
+	/// A reference to the owner HUD, if any.
+	VAR_PRIVATE/datum/hud/hud = null
+
+/atom/movable/screen/New(datum/hud/new_hud)
+	. = ..()
+	if(istype(new_hud))
+		hud = new_hud
 
 /atom/movable/screen/Destroy()
 	master = null
@@ -438,6 +445,7 @@
 	return set_selected_zone(choice, usr)
 
 /atom/movable/screen/zone_sel/MouseEntered(location, control, params)
+	. = ..()
 	MouseMove(location, control, params)
 
 /atom/movable/screen/zone_sel/MouseMove(location, control, params)
@@ -513,12 +521,13 @@
 				return BODY_ZONE_HEAD
 
 /atom/movable/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
-	if(isobserver(user))
+	if(user != hud?.mymob)
 		return
 
 	if(choice != hud.mymob.zone_selected)
 		hud.mymob.zone_selected = choice
 		update_appearance(UPDATE_ICON)
+		SEND_SIGNAL(user, COMSIG_MOB_SELECTED_ZONE_SET, choice)
 	return 1
 
 /atom/movable/screen/zone_sel/update_overlays()
@@ -533,7 +542,6 @@
 
 /atom/movable/screen/zone_sel/robot
 	icon = 'icons/mob/screen_cyborg.dmi'
-
 
 /atom/movable/screen/flash
 	name = "flash"
