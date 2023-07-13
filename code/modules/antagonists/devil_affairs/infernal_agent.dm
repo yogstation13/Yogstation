@@ -24,6 +24,24 @@
 	UnregisterSignal(uplink_holder, COMSIG_ON_UPLINK_PURCHASE)
 	QDEL_NULL(uplink_holder)
 
+/datum/antagonist/infernal_affairs/apply_innate_effects(mob/living/mob_override)
+	. = ..()
+	RegisterSignal(mob_override, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+
+/datum/antagonist/infernal_affairs/remove_innate_effects(mob/living/mob_override)
+	UnregisterSignal(mob_override, COMSIG_LIVING_DEATH)
+	return ..()
+
+///Handles affair agents when they die.
+///If there are devils, update objectives to let them know they should hand the body in.
+///If there aren't, go straight to harvesting (without the rewards).
+/datum/antagonist/infernal_affairs/proc/on_death(atom/source, gibbed)
+	SIGNAL_HANDLER
+	if(length(SSinfernal.devils))
+		SSinfernal_affairs.update_objective_datums()
+		return
+	INVOKE_ASYNC(src, PROC_REF(soul_harvested))
+
 /**
  * ## on_uplink_purchase
  * 

@@ -44,6 +44,9 @@ SUBSYSTEM_DEF(infernal_affairs)
 				agents.active_objective.target = agent_datums[list_position]
 				agents.active_objective.update_explanation_text()
 				agents.update_static_data(agents.owner.current)
+			else if(agents.active_objective.target.current.stat == DEAD)
+				agents.active_objective.update_explanation_text()
+				agents.update_static_data(agents.owner.current)
 			objective_set = TRUE
 			break
 	return TRUE
