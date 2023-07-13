@@ -141,9 +141,6 @@ Antag role is split into servant or cultist*/
 	<span class='danger'>Cults</span>: Free your god into the mortal realm.\n\
 	<span class='notice'>Crew</span>: Prevent the cults from summonning their god."
 
-	var/datum/team/clockcult/hog_clockcult
-	var/datum/team/cult/hog_cult
-
 //Presetup
 /datum/game_mode/hand_of_god/pre_setup()
 //bloodcult
@@ -195,14 +192,14 @@ Antag role is split into servant or cultist*/
 	hand_of_ratvar = new
 
 	for(var/datum/mind/cult_mind in servants_to_blood)
-		add_cultist(cult_mind, 0, equip=TRUE, cult_team = hog_cult)
-	hog_cult.setup_objectives() //Wait until all cultists are assigned to make sure none will be chosen as sacrifice.
+		add_cultist(cult_mind, 0, equip=TRUE, cult_team = hand_of_narsie)
+	hand_of_narsie.setup_objectives() //Wait until all cultists are assigned to make sure none will be chosen as sacrifice.
 	return ..()
 
 /datum/game_mode/hand_of_god/check_finished(force_ending)
 	if (..())
 		return TRUE
-	return !hog_cult.check_sacrifice_status() //we should remove this any time soon
+	return !hand_of_narsie.check_sacrifice_status() //we should remove this any time soon
 
 //clockcult
 
@@ -374,7 +371,7 @@ Antag role is split into servant or cultist*/
 	len_before_addition = round_credits.len
 	for(var/datum/mind/cultist in cult)
 		round_credits += "<center><h2>[cultist.name] as a cult fanatic</h2>"
-	var/datum/objective/eldergod/summon_objective = locate() in hog_cult.objectives
+	var/datum/objective/eldergod/summon_objective = locate() in hand_of_narsie.objectives
 	if(summon_objective && summon_objective.summoned)
 		round_credits += "<center><h2>Nar'sie as herself, in all her glory</h2>"
 	if(len_before_addition == round_credits.len)

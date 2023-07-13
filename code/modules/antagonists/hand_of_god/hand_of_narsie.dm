@@ -10,7 +10,7 @@
 /datum/antagonist/hand_of_god/hand_of_narsie/create_team(datum/team/hand_of_god/hand_of_narsie/new_team)
 	if(!new_team)
 		//todo remove this and allow admin buttons to create more than one cult
-		for(var/datum/antagonist/hand_of_god/hand_of_narsie//H in GLOB.antagonists)
+		for(var/datum/antagonist/hand_of_god/hand_of_narsie/H in GLOB.antagonists)
 			if(!H.owner)
 				continue
 			if(H.hand_of_narsie)
@@ -229,9 +229,9 @@
 	ignore_implant = TRUE
 	show_in_antagpanel = FALSE //Feel free to add this later
 	antag_hud_name = "cultmaster"
-	var/datum/action/innate/hand_of_god/hand_of_narsie/master/finalreck/reckoning = new
-	var/datum/action/innate/hand_of_god/hand_of_narsie/master/cultmark/bloodmark = new
-	var/datum/action/innate/hand_of_god/hand_of_narsie/master/pulse/throwing = new
+	var/datum/action/innate/cult/master/finalreck/reckoning = new
+	var/datum/action/innate/cult/master/cultmark/bloodmark = new
+	var/datum/action/innate/cult/master/pulse/throwing = new
 
 /datum/antagonist/hand_of_god/hand_of_narsie/master/Destroy()
 	QDEL_NULL(reckoning)
@@ -280,7 +280,7 @@
 		H.remove_overlay(HALO_LAYER)
 		H.updateappearance()
 
-/datum/team/hand_of_narsie
+/datum/team/hand_of_god/hand_of_narsie
 	name = "Cult"
 
 	///The blood mark target
@@ -456,17 +456,10 @@
 	return FALSE
 
 /datum/objective/sacrifice
-	var/sacced = FALSE
-	var/sac_image
+	sacced = FALSE
+	sac_image
 
 /// Unregister signals from the old target so it doesn't cause issues when sacrificed of when a new target is found.
-/datum/objective/sacrifice/proc/clear_sacrifice()
-	if(!target)
-		return
-	UnregisterSignal(target, COMSIG_MIND_TRANSFERRED)
-	if(target.current)
-		UnregisterSignal(target.current, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_MIND_TRANSFERRED_INTO))
-	target = null
 
 /datum/objective/sacrifice/find_target(dupe_search_range, list/blacklist)
 	clear_sacrifice()
@@ -516,7 +509,7 @@
 		if(mind.current)
 			mind.current.clear_alert("bloodsense")
 			mind.current.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
-
+/* HANDLED ON CULT.DM
 /datum/objective/sacrifice/proc/on_target_body_del()
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(find_target))
@@ -543,7 +536,7 @@
 		return
 	RegisterSignal(target.current, COMSIG_PARENT_QDELETING, PROC_REF(on_target_body_del))
 	RegisterSignal(target.current, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_possible_mindswap))
-
+*/
 /datum/objective/sacrifice/check_completion()
 	return sacced || completed
 
@@ -554,9 +547,9 @@
 		explanation_text = "The veil has already been weakened here, proceed to the final objective."
 
 /datum/objective/eldergod
-	var/summoned = FALSE
-	var/killed = FALSE
-	var/list/summon_spots = list()
+	summoned = FALSE
+	killed = FALSE
+	list/summon_spots = list()
 
 /datum/objective/eldergod/New()
 	..()
@@ -615,7 +608,7 @@
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
-/datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
+/datum/team/hand_of_god/hand_of_narsie/proc/is_sacrifice_target(datum/mind/mind)
 	for(var/datum/objective/sacrifice/sac_objective in objectives)
 		if(mind == sac_objective.target)
 			return TRUE

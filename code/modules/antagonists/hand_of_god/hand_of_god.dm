@@ -4,8 +4,6 @@ pre-setup assigns players to either bloodcult or cockcult
 bloodcult antag takes over the blood cultist
 clockcult gets special attention as reebe should never be accessed on this gamemode.
 configs are stolen from their respective gamemodes and modified
-Clockcult config begins on line 50
-Bloodcult config begins on line 311
 
 */
 /datum/antagonist/hand_of_god
@@ -13,7 +11,7 @@ Bloodcult config begins on line 311
 	roundend_category = "if you see this there is a bug"
 	antagpanel_category = "Hands of God"
 	job_rank = ROLE_HOG_CULT
-	antag_hud_name = "PLACEHOLDER"   //PLACEHOLDER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	antag_hud_name = "sintouched"   //PLACEHOLDER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/cult
 
