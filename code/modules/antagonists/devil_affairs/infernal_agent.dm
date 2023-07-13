@@ -39,7 +39,7 @@
 ///If there aren't, go straight to harvesting (without the rewards).
 /datum/antagonist/infernal_affairs/proc/on_death(atom/source, gibbed)
 	SIGNAL_HANDLER
-	if(length(SSinfernal.devils))
+	if(length(SSinfernal_affairs.devils))
 		SSinfernal_affairs.update_objective_datums()
 		return
 	INVOKE_ASYNC(src, PROC_REF(soul_harvested))
