@@ -244,26 +244,25 @@
 /datum/design/camera
 	name = "Camera"
 	id = "camera"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 50, /datum/material/glass = 100)
 	build_path = /obj/item/camera
-	category = list("initial", "Miscellaneous")
-
+	category = list("initial", "Miscellaneous","Service")
 /datum/design/camera_film
 	name = "Camera Film Cartridge"
 	id = "camera_film"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 10, /datum/material/glass = 10)
 	build_path = /obj/item/camera_film
-	category = list("initial", "Miscellaneous")
+	category = list("initial", "Miscellaneous","Service")
 
 /datum/design/earmuffs
 	name = "Earmuffs"
 	id = "earmuffs"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
 	build_path = /obj/item/clothing/ears/earmuffs
-	category = list("initial", "Miscellaneous")
+	category = list("initial", "Miscellaneous","Equipment")
 
 /datum/design/pipe_painter
 	name = "Pipe Painter"
@@ -366,18 +365,20 @@
 /datum/design/rcd_ammo
 	name = "Compressed Matter Cartridge"
 	id = "rcd_ammo"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 12000, /datum/material/glass=8000)
 	build_path = /obj/item/rcd_ammo
-	category = list("initial","Construction")
+	category = list("initial","Construction","Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/kitchen_knife
 	name = "Kitchen Knife"
 	id = "kitchen_knife"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 12000)
 	build_path = /obj/item/kitchen/knife
-	category = list("initial","Dinnerware")
+	category = list("initial","Dinnerware","Service")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/fork
 	name = "Fork"
@@ -624,7 +625,7 @@
 /datum/design/pillbottle
 	name = "Pill Bottle"
 	id = "pillbottle"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 20, /datum/material/glass = 100)
 	build_path = /obj/item/storage/pill_bottle
 	category = list("initial", "Medical", "Medical Designs")
@@ -649,26 +650,29 @@
 /datum/design/recorder
 	name = "Universal Recorder"
 	id = "recorder"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 60, /datum/material/glass = 30)
 	build_path = /obj/item/taperecorder/empty
-	category = list("initial", "Miscellaneous")
+	category = list("initial", "Miscellaneous","Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/recorder_tape
 	name = "Tape"
 	id = "recorder_tape"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 20, /datum/material/glass = 5)
 	build_path = /obj/item/tape/random
-	category = list("initial", "Miscellaneous")
+	category = list("initial", "Miscellaneous","Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/igniter
 	name = "Igniter"
 	id = "igniter"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 50)
 	build_path = /obj/item/assembly/igniter
-	category = list("initial", "Miscellaneous")
+	category = list("initial", "Miscellaneous", "Assemblies")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/signaler
 	name = "Remote Signaling Device"
@@ -1100,10 +1104,11 @@
 /datum/design/spraycan
 	name = "Spraycan"
 	id = "spraycan"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 100)
 	build_path = /obj/item/toy/crayon/spraycan
-	category = list("initial", "Tools")
+	category = list("initial", "Tools","Service")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/desttagger
 	name = "Destination Tagger"
@@ -1133,10 +1138,11 @@
 /datum/design/turret_control_frame
 	name = "Turret Control Frame"
 	id = "turret_control"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 12000)
 	build_path = /obj/item/wallframe/turret_control
-	category = list("initial", "Construction")
+	category = list("initial", "Construction","Misc. Machinery")
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/conveyor_belt
 	name = "Conveyor Belt"
