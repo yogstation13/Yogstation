@@ -422,11 +422,13 @@
 /datum/religion_sect/holylight
 	name = "Holy Light"
 	desc = "A sect dedicated to healing."
-	convert_opener = "Welcome to the Holy Light, disciple. Heal others to gain favor."
+	convert_opener = "Welcome to the Holy Light, disciple. Use holy water to heal and generate favor over time. Use your bible to heal for large amounts instantly, costing favor."
 	alignment = ALIGNMENT_GOOD // literally the only good sect besides default lol
-	rites_list = list(/datum/religion_rites/medibot, /datum/religion_rites/holysight, /datum/religion_rites/healrod, /datum/religion_rites/holyrevival)
+	rites_list = list(/datum/religion_rites/medibot, /datum/religion_rites/holysight, /datum/religion_rites/healrod, /datum/religion_rites/suffusion)
 	altar_icon_state = "convertaltar-heal"
 	COOLDOWN_DECLARE(last_heal)
+	var/heal_amt = 40 //double this is also the favour requirement
+	var/water_heal = 0.2 //how much holy water heals
 
 /datum/religion_sect/holylight/on_conversion(mob/living/L)
 	. = ..()
@@ -440,21 +442,26 @@
 	if(!L.client)
 		return FALSE
 
+	if(favor < heal_amt * 2)
+		user.visible_message(span_notice("You don't have enough favour to heal in this manner."))
+		return FALSE
+
 	if(!COOLDOWN_FINISHED(src, last_heal)) // immersion broken
 		user.visible_message(span_notice("The Holy Light has exhausted its power. It may heal again in [(COOLDOWN_TIMELEFT(src, last_heal))/10] seconds."))
 		return FALSE
 
 	var/mob/living/carbon/human/H = L
-	var/heal_amt = 40 //double healing, no chance to mess up, and shorter cooldown than default
 
 	if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
 		COOLDOWN_START(src, last_heal, 12 SECONDS)
+
 		var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
+		adjust_favor(-amount_healed, user)//costs favour to use
 
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
 		H.update_damage_overlays()
 
-		adjust_favor(amount_healed, user)
+		to_chat(H, span_notice("You spend [amount_healed] favor to heal [L]."))
 		H.visible_message(span_notice("[user] heals [H] with the power of [GLOB.deity]!"))
 		to_chat(H, span_boldnotice("May the power of [GLOB.deity] compel you to be healed!"))
 		playsound(user, 'sound/magic/staff_healing.ogg', 25, TRUE, -1)

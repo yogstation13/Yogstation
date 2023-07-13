@@ -210,10 +210,15 @@
 	glass_name = "glass of holy water"
 	glass_desc = "A glass of holy water."
 	self_consuming = TRUE //divine intervention won't be limited by the lack of a liver
+	var/healing = 0
 
 /datum/reagent/water/holywater/on_mob_metabolize(mob/living/L)
 	..()
 	ADD_TRAIT(L, TRAIT_HOLY, type)
+	if(GLOB.religious_sect)
+		var/datum/religion_sect/holylight/sect = GLOB.religious_sect
+		if(istype(sect))
+			healing = sect.water_heal
 
 /datum/reagent/water/holywater/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_HOLY, type)
@@ -225,6 +230,21 @@
 	..()
 
 /datum/reagent/water/holywater/on_mob_life(mob/living/carbon/M)
+	if(healing)
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/heal_amt = healing
+			var/favor = 2
+
+			var/area/A = get_area(H)
+			if(istype(A, /area/chapel))//stronger healing and more favor if in chapel
+				heal_amt *= 2
+				favor *= 2
+
+			if(H.getBruteLoss() > 0 || H.getFireLoss() > 0)
+				H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
+				GLOB.religious_sect.adjust_favor(favor)
+
 	if(M.blood_volume)
 		M.blood_volume += 0.1 // water is good for you!
 	if(!data)
