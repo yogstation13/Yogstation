@@ -1167,34 +1167,34 @@
 /datum/design/laptop
 	name = "Laptop Frame"
 	id = "laptop"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 1000)
 	build_path = /obj/item/modular_computer/laptop/buildable
-	category = list("initial","Miscellaneous")
+	category = list("initial","Miscellaneous","Equipment")
 
 /datum/design/tablet
 	name = "Tablet Frame"
 	id = "tablet"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
 	build_path = /obj/item/modular_computer/tablet
-	category = list("initial","Miscellaneous")
+	category = list("initial","Miscellaneous","Equipment")
 
 /datum/design/phone
 	name = "Phone Frame"
 	id = "phone"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 250)
 	build_path = /obj/item/modular_computer/tablet/phone
-	category = list("initial","Miscellaneous")
+	category = list("initial","Miscellaneous","Equipment")
 
 /datum/design/pda
 	name = "PDA Frame"
 	id = "pda"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 250)
 	build_path = /obj/item/modular_computer/tablet/pda
-	category = list("initial","Miscellaneous")
+	category = list("initial","Miscellaneous","Equipment")
 
 /datum/design/slime_scanner
 	name = "Slime Scanner"
