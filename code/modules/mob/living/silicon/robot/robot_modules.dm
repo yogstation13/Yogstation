@@ -507,6 +507,7 @@
 	name = "Service"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
+		/obj/item/gripper/service,
 		/obj/item/reagent_containers/food/drinks/drinkingglass,
 		/obj/item/reagent_containers/food/condiment/enzyme,
 		/obj/item/pen,
