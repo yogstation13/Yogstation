@@ -129,7 +129,7 @@
 		return ..()
 	var/datum/antagonist/infernal_affairs/affair_agent = IS_INFERNAL_AGENT(user)
 	if(affair_agent)
-		var/plane_response = tgui_input_list(user, "Do you wish for a plane a calling card?", "Your Calling", list("Calling Card", "Airplane"))
+		var/plane_response = tgui_input_list(user, "Do you wish for a plane or a calling card?", "Your Calling", list("Calling Card", "Airplane"))
 		if(plane_response == "Calling Card")
 			user.balloon_alert(user, "folded paper.")
 			user.temporarilyRemoveItemFromInventory(src)

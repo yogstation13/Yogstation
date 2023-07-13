@@ -35,4 +35,4 @@
 	if(target && target.current && (target.current.stat != DEAD))
 		explanation_text = "Assassinate [target.name], the [!target_role_type ? target.assigned_role : target.special_role]."
 	else
-		explanation_text = "Turn in the corpse of [target.name], who has been obliterated, to the Devil."
+		explanation_text = "Turn in the corpse of [target.name], who has been obliterated, to the Devil using a calling card (AltClick a paper)."
