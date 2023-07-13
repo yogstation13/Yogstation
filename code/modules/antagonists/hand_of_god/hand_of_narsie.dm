@@ -1,21 +1,13 @@
-
-/*
-
-
-//////////////////////////
-//BLOODCULT ANTAG CONFIG//
-//////////////////////////
-
 #define SUMMON_POSSIBILITIES 3
 #define CULT_VICTORY 1
 #define CULT_LOSS 0
 #define CULT_NARSIE_KILLED -1
 
 
-/datum/antagonist/hand_of_god/hand_of_narsie//get_team()
+/datum/antagonist/hand_of_god/hand_of_narsie/get_team()
 	return hand_of_narsie
 
-/datum/antagonist/hand_of_god/hand_of_narsie//create_team(datum/team/hand_of_god/hand_of_narsie//new_team)
+/datum/antagonist/hand_of_god/hand_of_narsie/create_team(datum/team/hand_of_god/hand_of_narsie/new_team)
 	if(!new_team)
 		//todo remove this and allow admin buttons to create more than one cult
 		for(var/datum/antagonist/hand_of_god/hand_of_narsie//H in GLOB.antagonists)
@@ -706,3 +698,4 @@
 	if(!isdummy(H))
 		hooded.MakeHood() // This is usually created on Initialize, but we run before atoms
 		hooded.ToggleHood()
+
