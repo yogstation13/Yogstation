@@ -508,8 +508,7 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/gripper/service,
-		/obj/item/gripper/cooking,
-		/obj/item/storage/bag/money,
+		/obj/item/storage/bag/money, // For charging a fee or getting onto the luxury shuttle.
 		/obj/item/reagent_containers/food/drinks/drinkingglass,
 		/obj/item/reagent_containers/food/condiment/enzyme,
 		/obj/item/pen,

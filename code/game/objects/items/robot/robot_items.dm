@@ -900,14 +900,7 @@
 		/obj/item/paper,
 		/obj/item/plate,
 		/obj/item/plate/oven_tray,
-		/obj/item/reagent_containers/food
-	)
-
-/obj/item/gripper/cooking
-	name = "cooking gripper"
-	desc = "A simple grasping tool solely dedicated to gripping either a knife or a rolling pin."
-	can_hold = list(
+		/obj/item/reagent_containers/food,
 		/obj/item/kitchen/knife,
 		/obj/item/kitchen/rollingpin
 	)
-
