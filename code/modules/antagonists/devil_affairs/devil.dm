@@ -49,12 +49,12 @@
 ///Begins your healing process when you die.
 /datum/antagonist/devil/proc/on_death(atom/source, gibbed)
 	SIGNAL_HANDLER
-	RegisterSignal(owner.current, COMSIG_LIVING_LIFE, PROC_REF(on_dead_life))
+	RegisterSignal(source, COMSIG_LIVING_LIFE, PROC_REF(on_dead_life))
 
 ///Ends your healing process when you are revived
 /datum/antagonist/devil/proc/on_revival(atom/source, full_heal, admin_revive)
 	SIGNAL_HANDLER
-	UnregisterSignal(owner.current, COMSIG_LIVING_LIFE)
+	UnregisterSignal(source, COMSIG_LIVING_LIFE)
 
 ///Removes you from the list of devils and makes you unrevivable if you are gibbed.
 ///You are completely killed and the round will continue without you.
