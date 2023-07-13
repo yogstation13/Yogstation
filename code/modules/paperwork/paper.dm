@@ -49,6 +49,7 @@
 	var/next_write_time = 0 // prevent crash exploit
 	///Whether the paper can be folded into a paper airplane.
 	var/foldable = TRUE
+	var/timesstamped = 0 //prevent error exploit
 
 /obj/item/paper/pickup(user)
 	if(contact_poison && ishuman(user))
@@ -301,7 +302,8 @@
 			return
 
 	else if(istype(P, /obj/item/stamp))
-
+		if(timesstamped > 25)
+			return
 		if(!in_range(src, user))
 			return
 
@@ -317,6 +319,7 @@
 		add_overlay(stampoverlay)
 
 		to_chat(user, span_notice("You stamp the paper with your rubber stamp."))
+		timesstamped += 1
 
 	if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))

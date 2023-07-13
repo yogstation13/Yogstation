@@ -113,6 +113,7 @@
 		if(1)
 			if(M.health >= 0)
 				if(ishuman(M))
+					M.adjust_status_effects_on_shake_up()
 					if(!(M.mobility_flags & MOBILITY_STAND))
 						user.visible_message(span_notice("[user] shakes [M] trying to get [M.p_them()] up!"), \
 										span_notice("You shake [M] trying to get [M.p_them()] up!"))
@@ -325,7 +326,7 @@
 
 	if(safety == TRUE)
 		user.visible_message("<font color='red' size='2'>[user] blares out a near-deafening siren from its speakers!</font>", \
-			span_userdanger("The siren pierces your hearing and confuses you!"), \
+			span_userdanger("Your siren blares around [iscyborg(user) ? "you" : "and confuses you"]!"), \
 			span_danger("The siren pierces your hearing!"))
 		for(var/mob/living/carbon/M in get_hearers_in_view(9, user))
 			if(M.get_ear_protection() == FALSE)
@@ -756,3 +757,138 @@
 /obj/item/borg/sight/hud/sec/Initialize(mapload)
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/security(src)
+
+/**********************************************************************
+						Grippers
+***********************************************************************/
+/obj/item/gripper
+	name = "cyborg gripper"
+	desc = "A simple grasping tool for interacting with various items."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gripper"
+	item_flags = NOBLUDGEON
+	/// Whitelist of items types that can be held.
+	var/list/can_hold = list()
+	/// Blacklist of item subtypes that should not be held.
+	var/list/cannot_hold = list()
+	/// Item currently being held if any.
+	var/obj/item/wrapped = null
+	var/mutable_appearance/appearance_wrapped = null
+
+/// Drops held item if possible.
+/obj/item/gripper/proc/drop_held(silent = FALSE)
+	if(wrapped)
+		wrapped.forceMove(get_turf(wrapped))
+		if(!silent)
+			to_chat(usr, span_notice("You drop the [wrapped]."))
+		wrapped = null
+		update_icon()
+		return TRUE
+	return FALSE
+
+/// Pick up item.
+/obj/item/gripper/proc/take_item(obj/item/item, silent = FALSE)
+	if(!silent)
+		to_chat(usr, span_notice("You collect \the [item]."))
+	item.loc = src
+	wrapped = item
+	update_icon()
+
+/obj/item/gripper/pre_attack(atom/target, mob/living/silicon/robot/user, params)
+	var/proximity = get_dist(user, target)
+	if(proximity > 1)
+		return
+	if(!wrapped)
+		for(var/obj/item/thing in src.contents)
+			wrapped = thing
+			break
+	if(wrapped) //Already have an item.
+		var/obj/item/item = wrapped
+		drop_held(TRUE)
+		//Temporary put wrapped into user so target's attackby() checks pass.
+		item.loc = user
+		//Pass the attack on to the target. This might delete/relocate wrapped.
+		var/resolved = target.attackby(item, user, params)
+		if(!resolved && item && target)
+			item.afterattack(target, user, proximity, params)
+		//If wrapped was neither deleted nor put into target, put it back into the gripper.
+		if(item && user && (item.loc == user))
+			take_item(item, TRUE)
+			return
+		else
+			item = null
+		return
+	else if(isitem(target))
+		var/obj/item/I = target
+		if(locate(target) in user.module.modules)//This prevents grabbing your own modules and grabbing similar items (if this is ever the case).
+			to_chat(user, span_danger("Your gripper cannot grab something that you already have."))
+			return
+		var/grab = 0
+		for(var/typepath in can_hold)
+			if(istype(I,typepath))
+				grab = 1
+				for(var/badpath in cannot_hold)
+					if(istype(I,badpath) && user.emagged)
+						grab = 0
+						continue
+		//Allowed to grab.
+		if(grab)
+			take_item(I)
+			return
+		to_chat(user, span_danger("Your gripper cannot hold \the [target]."))
+
+/obj/item/gripper/attack_self(mob/user)
+	if(wrapped)
+		wrapped.attack_self(user)
+		return
+	. = ..()
+
+/obj/item/gripper/AltClick(mob/user)
+	if(wrapped)
+		wrapped.AltClick(user)
+		return
+	. = ..()
+
+/obj/item/gripper/CtrlClick(mob/user)
+	if(wrapped)
+		wrapped.CtrlClick(user)
+		return
+	. = ..()
+
+/obj/item/gripper/CtrlShiftClick(mob/user)
+	if(wrapped)
+		wrapped.CtrlShiftClick(user)
+		return
+	. = ..()
+
+/// Resets overlays and adds a overlay if there is a held item.
+/obj/item/gripper/update_icon(updates)
+	cut_overlays()
+	if(wrapped)
+		var/mutable_appearance/wrapped_appearance = mutable_appearance(wrapped.icon, wrapped.icon_state)
+		// Shrinking it to 0.8 makes it a bit ugly, but this makes it obvious it is a held item.
+		wrapped_appearance.transform = matrix(0.8,0,0,0,0.8,0)
+		add_overlay(wrapped_appearance)
+
+// Make it clear what we can do with it.
+/obj/item/gripper/examine(mob/user)
+	. = ..()
+	if(wrapped)
+		. += span_notice("It is holding [icon2html(wrapped, user)] [wrapped]." )
+		. += span_notice("Attempting to drop the gripper will only drop [wrapped].")
+
+// Drop the item if the gripper is unequipped.
+/obj/item/gripper/cyborg_unequip(mob/user)
+	. = ..()
+	if(wrapped)
+		drop_held()
+
+/obj/item/gripper/engineering
+	name = "engineering gripper"
+	desc = "A simple grasping tool for interacting with a limited amount of engineering related items."
+	can_hold = list(
+		/obj/item/circuitboard,
+		/obj/item/electronics,
+		/obj/item/wallframe,
+		/obj/item/stock_parts
+	)

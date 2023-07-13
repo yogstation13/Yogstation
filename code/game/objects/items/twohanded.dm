@@ -1200,13 +1200,13 @@
 		var/turf/target_turf = get_turf(target) //Does the nice effects first so whatever happens to what's about to get clapped doesn't affect it
 		var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
 		K.color = color
-		playsound(loc, 'sound/effects/powerhammerhit.ogg', 80, FALSE) //Mainly this sound
+		playsound(loc, 'sound/effects/powerhammerhit.ogg', 65, FALSE) //Mainly this sound
 		playsound(loc, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
 		supercharge() //At start so it doesn't give an unintentional message if you hit yourself
 
 		if(ismachinery(target) && !toy)
 			var/obj/machinery/machine = target
-			machine.take_damage(machine.max_integrity * 2) //Should destroy machines in one hit
+			machine.take_damage(machine.max_integrity * 2, armour_penetration = 100) //Should destroy machines in one hit
 			if(istype(target, /obj/machinery/door))
 				for(var/obj/structure/door_assembly/door in target_turf) //Will destroy airlock assembly left behind, but drop the parts
 					door.take_damage(door.max_integrity * 2)
@@ -1219,10 +1219,10 @@
 
 		else if(isstructure(target) && !toy)
 			var/obj/structure/struct = target
-			struct.take_damage(struct.max_integrity * 2) //Destroy structures in one hit too
+			struct.take_damage(struct.max_integrity * 2, armour_penetration = 100) //Destroy structures in one hit too
 			if(istype(target, /obj/structure/table))
 				for(var/obj/structure/table_frame/platform in target_turf)
-					platform.take_damage(platform.max_integrity * 2) //Destroys table frames left behind
+					platform.take_damage(platform.max_integrity * 2, armour_penetration = 100) //Destroys table frames left behind
 			user.visible_message(span_danger("The hammer thunders against the [target.name], destroying it!"))
 
 		else if(iswallturf(target) && !toy)
@@ -1233,7 +1233,7 @@
 
 		else if(ismecha(target) && !toy)
 			var/obj/mecha/mech = target
-			mech.take_damage(mech.max_integrity/3) //A third of its max health is dealt as an untyped damage, in addition to the normal damage of the weapon (which has high AP)
+			mech.take_damage(mech.max_integrity/3, armour_penetration = armour_penetration) //A third of its max health is dealt as an untyped damage, in addition to the normal damage of the weapon (which has high AP)
 			user.visible_message(span_danger("The hammer thunders as it massively dents the plating of the [target.name]!"))
 
 		else if(isliving(target))

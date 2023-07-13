@@ -67,9 +67,6 @@ SUBSYSTEM_DEF(explosions)
 	return ..()
 
 
-#define SSEX_TURF "turf"
-#define SSEX_OBJ "obj"
-
 /datum/controller/subsystem/explosions/proc/is_exploding()
 	return (lowturf.len || medturf.len || highturf.len || flameturf.len || throwturf.len || low_mov_atom.len || med_mov_atom.len || high_mov_atom.len)
 

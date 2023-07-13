@@ -453,7 +453,7 @@
 		else
 			to_chat(user, "The wires seem fine, there's no need to fix them.")
 
-	else if(W.tool_behaviour == TOOL_CROWBAR)	// crowbar means open or close the cover
+	else if(W.tool_behaviour == TOOL_CROWBAR && (user.a_intent != INTENT_HARM || user == src))	// crowbar means open or close the cover
 		if(opened)
 			to_chat(user, span_notice("You close the cover."))
 			opened = 0
@@ -1092,6 +1092,11 @@
 	if(hud_used)
 		hud_used.update_robot_modules_display()
 
+	// Drops all items found in any storage bags on the Cyborg.
+	for(var/obj/item/storage/bag in module.contents)
+		for(var/obj/item in bag)
+			item.forceMove(drop_location())
+			
 	while(expansion_count)
 		resize = 0.5
 		expansion_count--

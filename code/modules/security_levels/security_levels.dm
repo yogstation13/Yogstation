@@ -33,7 +33,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					modTimer = 4
 				else
 					modTimer = 2
-				
+
 			if(SEC_LEVEL_BLUE)
 				if(GLOB.security_level < SEC_LEVEL_BLUE)
 					minor_announce(CONFIG_GET(string/alert_blue_upto), "Attention! Security level elevated to blue:", TRUE)
@@ -53,7 +53,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					minor_announce(CONFIG_GET(string/alert_red_downto), "Attention! Code red!")
 					if(GLOB.security_level == SEC_LEVEL_GAMMA)
 						modTimer = 2
-          
+
 			if(SEC_LEVEL_GAMMA)
 				minor_announce(CONFIG_GET(string/alert_gamma), "Attention! Gamma security level activated!", TRUE)
 				sound_to_playing_players('sound/misc/gamma_alert.ogg')
@@ -63,7 +63,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					modTimer = 0.50
 				else if(GLOB.security_level == SEC_LEVEL_RED)
 					modTimer = 0.75
-						
+
 			if(SEC_LEVEL_EPSILON)
 				minor_announce(CONFIG_GET(string/alert_epsilon), "Attention! Epsilon security level reached!", TRUE)
 				sound_to_playing_players('sound/misc/epsilon_alert.ogg')
@@ -83,6 +83,9 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 		for(var/obj/machinery/firealarm/FA in GLOB.machines)
 			if(is_station_level(FA.z))
 				FA.update_icon()
+
+		for(var/obj/machinery/level_interface/LI in GLOB.machines)
+			LI.update_icon()
 
 		if(level >= SEC_LEVEL_RED)
 			for(var/obj/machinery/computer/shuttle/pod/pod in GLOB.machines)

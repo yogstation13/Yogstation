@@ -1,10 +1,3 @@
-#define WIRE_RECEIVE		(1<<0)
-#define WIRE_PULSE			(1<<1)
-#define WIRE_PULSE_SPECIAL	(1<<2)
-#define WIRE_RADIO_RECEIVE	(1<<3)
-#define WIRE_RADIO_PULSE	(1<<4)
-#define ASSEMBLY_BEEP_VOLUME 5
-
 /obj/item/assembly
 	name = "assembly"
 	desc = "A small electronic device that should never exist."
@@ -121,6 +114,11 @@
 
 
 /obj/item/assembly/attack_self(mob/user)
+	if(HAS_TRAIT(user, TRAIT_NOINTERACT))
+		to_chat(user, span_notice("You can't use things!"))
+		return
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
+		return
 	if(!user)
 		return FALSE
 	user.set_machine(src)
@@ -128,6 +126,7 @@
 	return TRUE
 
 /obj/item/assembly/interact(mob/user)
+	add_fingerprint(user)
 	return ui_interact(user)
 
 /obj/item/assembly/ui_host(mob/user)

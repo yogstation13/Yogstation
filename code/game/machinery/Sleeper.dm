@@ -17,6 +17,7 @@
 	density = FALSE
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/sleeper
+	clicksound = 'sound/machines/pda_button1.ogg'
 
 	///efficiency, used to increase the effect of some healing methods
 	var/efficiency = 1
@@ -288,6 +289,7 @@
 /obj/machinery/sleeper/ui_act(action, params)
 	if(..())
 		return
+	playsound(src, pick('sound/items/hypospray.ogg','sound/items/hypospray2.ogg'), 50, TRUE, 2)
 	var/mob/living/mob_occupant = occupant
 	check_nap_violations()
 	switch(action)

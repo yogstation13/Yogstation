@@ -147,11 +147,11 @@
 	machine_name = "AtmosDrobe"
 
 /obj/machinery/vending/wardrobe/sig_wardrobe
-	name = "SigDrobe"
+	name = "NetDrobe"
 	desc = "A rarely used vending machine that provides clothing for Network Admins."
 	icon_state = "sigdrobe"
 	product_ads = "Dress to impress yourself!;The drones will love you!;Get your clothing here!"
-	vend_reply = "Thank you for using the SigDrobe!"
+	vend_reply = "Thank you for using the NetDrobe!"
 	products = list(/obj/item/storage/backpack/duffelbag/engineering = 1,
 					/obj/item/storage/backpack/industrial = 1,
 					/obj/item/storage/backpack/satchel/eng = 1,
@@ -162,7 +162,7 @@
 	refill_canister = /obj/item/vending_refill/wardrobe/sig_wardrobe
 	payment_department = ACCOUNT_ENG
 /obj/item/vending_refill/wardrobe/sig_wardrobe
-	machine_name = "SigDrobe"
+	machine_name = "NetDrobe"
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
 	name = "CargoDrobe"
@@ -331,10 +331,10 @@
 					/obj/item/storage/box/mousetraps = 2,
 					/obj/item/circuitboard/machine/dish_drive = 1,
 					/obj/item/clothing/suit/toggle/chef = 1,
-					/obj/item/clothing/under/rank/chef = 1,
+					/obj/item/clothing/under/rank/chef = 2,
 					/obj/item/clothing/under/rank/chef/skirt = 2,
 					/obj/item/clothing/head/chefhat = 1,
-					/obj/item/reagent_containers/glass/rag = 1,
+					/obj/item/reagent_containers/glass/rag = 2,
 					/obj/item/clothing/suit/hooded/wintercoat = 2,
 					/obj/item/clothing/accessory/armband/service = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/chef_wardrobe

@@ -92,3 +92,10 @@
 	to_chat(GLOB.permissions.admins, msg, confidential=TRUE)
 	for(var/obj/machinery/computer/communications/C in GLOB.machines)
 		C.override_cooldown()
+
+/proc/message_redphone_syndicateruin(text, mob/sender) //meant for Syndicate Lavaland and the listening post, doesn't trigger comms console cooldown and marks it as a ghostrole
+	var/msg = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
+	msg = span_adminnotice("<b><font color=crimson>SYNDICATE GHOSTROLE:</font>[ADMIN_FULLMONTY(sender)] [ADMIN_SYNDICATE_REPLY(sender)]:</b> [msg]")
+	to_chat(GLOB.permissions.admins, msg, confidential = TRUE)
+
+

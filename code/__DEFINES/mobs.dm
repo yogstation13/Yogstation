@@ -100,13 +100,9 @@
 #define LARVA_BODYPART "larva"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
 
-//Reagent Metabolization flags, defines the type of reagents that affect this mob
-#define PROCESS_ORGANIC 1		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC"
-#define PROCESS_SYNTHETIC 2		//Only processes reagents with "SYNTHETIC" or "ORGANIC | SYNTHETIC"
-
-// Reagent type flags, defines the types of mobs this reagent will affect
-#define ORGANIC 1
-#define SYNTHETIC 2
+// Processing flags, defines the types of mobs are compatible with certain reagents, organs, and symptoms
+#define ORGANIC (1<<0)
+#define SYNTHETIC (1<<1)
 
 // Health/damage defines for carbon mobs
 #define HUMAN_MAX_OXYLOSS 3
