@@ -1,11 +1,10 @@
 /datum/antagonist/paradox_clone
-	name = "\improper Paradox Clone"
+	name = "Paradox Clone"
 	roundend_category = "Paradox Clone"
 	job_rank = ROLE_PARADOX_CLONE
-	antagpanel_category = ANTAG_GROUP_PARADOX
+	antagpanel_category = "ParadoxClone"
 	antag_hud_name = "paradox_clone"
 	show_to_ghosts = TRUE
-	suicide_cry = "THERE CAN BE ONLY ONE!!"
 	preview_outfit = /datum/outfit/paradox_clone
 
 	///Weakref to the mind of the original, the clone's target.
@@ -78,7 +77,7 @@
 /datum/outfit/paradox_clone
 	name = "Paradox Clone (Preview only)"
 
-	uniform = /obj/item/clothing/under/rank/civilian/janitor
+	uniform = /obj/item/clothing/under/rank/janitor
 	gloves = /obj/item/clothing/gloves/color/black
 	head = /obj/item/clothing/head/soft/purple
 
@@ -94,4 +93,4 @@
 	if(!target?.current)
 		explanation_text = "Free Objective"
 		CRASH("WARNING! [ADMIN_LOOKUPFLW(owner)] paradox clone objectives forged without an original!")
-	explanation_text = "Murder and replace [target.name], the [!target_role_type ? target.assigned_role.title : target.special_role]. Remember, your mission is to blend in, do not kill anyone else unless you have to!"
+	explanation_text = "Murder and replace [target.name], the [!target_role_type ? target.assigned_role : target.special_role]. Remember, your mission is to blend in, do not kill anyone else unless you have to!"

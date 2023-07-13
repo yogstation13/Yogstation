@@ -60,6 +60,7 @@
 #define ROLE_NIGHTMARE			"Nightmare"
 #define ROLE_DISEASE			"Disease"
 #define ROLE_PIRATE				"Pirate"
+#define ROLE_PARADOX_CLONE      "Paradox Clone"
 
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
@@ -109,6 +110,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_HIVE = /datum/antagonist/hivemind,
 	ROLE_PIRATE = /datum/antagonist/pirate,
 	ROLE_SENTIENCE = /datum/antagonist/sentient_creature
+	ROLE_PARADOX_CLONE = /datum/antagonist/paradox_clone
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
