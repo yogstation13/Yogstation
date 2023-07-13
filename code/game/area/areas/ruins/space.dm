@@ -22,8 +22,11 @@
 	power_environ = FALSE
 	valid_territory = FALSE
 	outdoors = TRUE
-	ambientsounds = SPACE
 	blob_allowed = FALSE
+	ambience_index = null
+	ambient_music_index = AMBIENCE_SPACE
+	ambient_buzz = null
+	sound_environment = SOUND_AREA_SPACE
 
 /////////////
 

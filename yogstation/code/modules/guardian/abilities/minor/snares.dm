@@ -22,9 +22,9 @@
 		S.spawner = user
 		S.name = "[get_area(snare_loc)] snare ([rand(1, 1000)])"
 		ability.snares |= S
-		to_chat(user, span_bolddanger("Surveillance snare deployed!"))
+		user.balloon_alert(user, "snare deployed!")
 	else
-		to_chat(user, span_bolddanger("You have too many snares deployed. Remove some first."))
+		user.balloon_alert(user, "at snare limit!")
 
 /datum/action/guardian/disarm_snare
 	name = "Disarm Snare"
@@ -33,11 +33,11 @@
 
 /datum/action/guardian/disarm_snare/on_use(mob/living/simple_animal/hostile/guardian/user)
 	var/datum/guardian_ability/minor/snare/ability = user.has_ability(/datum/guardian_ability/minor/snare)
-	var/picked_snare = input(user, "Pick which snare to remove", "Remove Snare") as null|anything in ability.snares
+	var/picked_snare = tgui_input_list(user, "Pick which snare to remove", "Remove Snare", ability.snares) //kids, read your docs
 	if (picked_snare)
 		ability.snares -= picked_snare
 		qdel(picked_snare)
-		to_chat(ability, span_bolddanger("Snare disarmed."))
+		user.balloon_alert(user, "snare disarmed")
 
 // the snare
 

@@ -143,7 +143,7 @@
 	setDir(turn(dir, -90))
 
 /obj/structure/frame/computer/MouseDrop_T(atom/dropping, mob/user)
-	if(istype(dropping, /obj/item/circuitboard))
+	if(istype(dropping, /obj/item/circuitboard) && !issilicon(user))
 		attackby(dropping, user)
 	else
 		..()
