@@ -1141,7 +1141,7 @@
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 12000)
 	build_path = /obj/item/wallframe/turret_control
-	category = list("initial", "Construction","Misc. Machinery")
+	category = list("initial", "Construction","Assemblies")
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/conveyor_belt
