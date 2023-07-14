@@ -1,8 +1,5 @@
-#define SUMMON_POSSIBILITIES 3
-#define CULT_VICTORY 1
-#define CULT_LOSS 0
-#define CULT_NARSIE_KILLED -1
 
+/*
 
 /datum/antagonist/hand_of_god/hand_of_narsie/get_team()
 	return hand_of_narsie
@@ -17,7 +14,7 @@
 				hand_of_narsie = H.hand_of_narsie
 				return
 		hand_of_narsie = new /datum/team/hand_of_god/hand_of_narsie/
-		hand_of_narsie.setup_objectives()
+		cult_team.setup_objectives()
 		return
 	if(!istype(new_team))
 		stack_trace("Wrong team type passed to [type] initialization.")
@@ -60,8 +57,8 @@
 	SSticker.mode.cult += owner // Only add after they've been given objectives
 	current.log_message("has been converted to the cult of Nar'sie!", LOG_ATTACK, color="#960000")
 
-	if(hand_of_narsie.blood_target && hand_of_narsie.blood_target_image && current.client)
-		current.client.images += hand_of_narsie.blood_target_image
+	if(cult_team.blood_target && cult_team.blood_target_image && current.client)
+		current.client.images += cult_team.blood_target_image
 
 /datum/antagonist/hand_of_god/hand_of_narsie/on_removal()
 	SSticker.mode.cult -= owner
@@ -69,8 +66,8 @@
 		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just reverted to [owner.current.p_their()] old faith!")]", null, null, null, owner.current)
 		to_chat(owner.current, span_userdanger("An unfamiliar white light flashes through your mind, cleansing the taint of the Geometer and all your memories as her servant."))
 		owner.current.log_message("has renounced the cult of Nar'sie!", LOG_ATTACK, color="#960000")
-	if(hand_of_narsie.blood_target && hand_of_narsie.blood_target_image && owner.current.client)
-		owner.current.client.images -= hand_of_narsie.blood_target_image
+	if(cult_team.blood_target && cult_team.blood_target_image && owner.current.client)
+		owner.current.client.images -= cult_team.blood_target_image
 
 	return ..()
 
@@ -162,16 +159,16 @@
 	handle_clown_mutation(current, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 	current.faction |= "cult"
 	current.grant_language(/datum/language/narsie, TRUE, TRUE, LANGUAGE_CULTIST)
-	if(!hand_of_narsie.cult_master)
+	if(!cult_team.cult_master)
 		vote.Grant(current)
 	communion.Grant(current)
 	if(ishuman(current))
 		magic.Grant(current)
 	current.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
-	if(hand_of_narsie.cult_risen)
-		hand_of_narsie.rise(current)
-		if(hand_of_narsie.cult_ascendent)
-			hand_of_narsie.ascend(current)
+	if(cult_team.cult_risen)
+		cult_team.rise(current)
+		if(cult_team.cult_ascendent)
+			cult_team.ascend(current)
 
 	add_team_hud(current)
 
@@ -249,16 +246,16 @@
 	var/mob/living/current = owner.current
 	if(mob_override)
 		current = mob_override
-	if(!hand_of_narsie.reckoning_complete)
+	if(!cult_team.reckoning_complete)
 		reckoning.Grant(current)
 	bloodmark.Grant(current)
 	throwing.Grant(current)
 	current.update_mob_action_buttons()
 	current.apply_status_effect(/datum/status_effect/cult_master)
-	if(hand_of_narsie.cult_risen)
-		hand_of_narsie.rise(current)
-		if(hand_of_narsie.cult_ascendent)
-			hand_of_narsie.ascend(current)
+	if(cult_team.cult_risen)
+		cult_team.rise(current)
+		if(cult_team.cult_ascendent)
+			cult_team.ascend(current)
 	add_team_hud(current, /datum/antagonist/hand_of_god/hand_of_narsie)
 
 /datum/antagonist/hand_of_god/hand_of_narsie/master/remove_innate_effects(mob/living/mob_override)
@@ -281,7 +278,7 @@
 		H.updateappearance()
 
 /datum/team/hand_of_god/hand_of_narsie
-	name = "Cult"
+	name = "Hand of Narsie"
 
 	///The blood mark target
 	var/atom/blood_target
@@ -692,3 +689,4 @@
 		hooded.MakeHood() // This is usually created on Initialize, but we run before atoms
 		hooded.ToggleHood()
 
+*/

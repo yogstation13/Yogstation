@@ -113,8 +113,8 @@ Antag role is split into servant or cultist*/
 	return TRUE
 */
 /datum/game_mode
-	var/list/hand_of_ratvar = list() //The Enlightened servants of Ratvar
-	var/list/hand_of_narsie = list() //The devoted cult of Nar'sie
+	var/list/hog_clockcult = list() //The Enlightened servants of Ratvar
+	var/list/hog_cult = list() //The devoted cult of Nar'sie
 
 /* cogcult
 	var/list/datum/mind/servant = list()
@@ -140,6 +140,9 @@ Antag role is split into servant or cultist*/
 	announce_text = "A violent war between cults has errupted on the station!\n\
 	<span class='danger'>Cults</span>: Free your god into the mortal realm.\n\
 	<span class='notice'>Crew</span>: Prevent the cults from summonning their god."
+
+	var/datum/team/clockcult/hand_of_ratvar
+	var/datum/team/cult/hand_of_narsie
 
 //Presetup
 /datum/game_mode/hand_of_god/pre_setup()
@@ -188,8 +191,7 @@ Antag role is split into servant or cultist*/
 //bloodcult
 
 /datum/game_mode/hand_of_god/post_setup()
-	hand_of_narsie = new
-	hand_of_ratvar = new
+
 
 	for(var/datum/mind/cult_mind in servants_to_blood)
 		add_cultist(cult_mind, 0, equip=TRUE, cult_team = hand_of_narsie)
