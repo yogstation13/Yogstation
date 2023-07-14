@@ -33,6 +33,7 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 		cube_production += B.rating * 0.1
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		cube_production += M.rating * 0.1
+	cube_production = min(cube_production, 0.95)
 
 /obj/machinery/monkey_recycler/examine(mob/user)
 	. = ..()
