@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "The word \"speedy\" has been added to the syndicate toolbox uplink description to indicate that the tools are and have always been faster"
+  - rscadd: "Added the Deluxe Syndicate Toolbox to the uplink. Faster tools at a slightly higher price, but also more obvious!"
