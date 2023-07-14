@@ -60,22 +60,9 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"j" = (
-/mob/living/simple_animal/hostile/carp/ranged/chaos{
-	name = "Blossom"
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
 "k" = (
 /obj/machinery/light/small{
 	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/powered)
-"l" = (
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/carp/ranged/chaos{
-	name = "Buttercup"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -154,12 +141,10 @@
 /obj/item/toy/plush/stuffedmonkey,
 /turf/open/floor/wood,
 /area/ruin/powered)
-"D" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
+"C" = (
 /mob/living/simple_animal/hostile/carp/ranged/chaos{
-	name = "Bubbles"
+	allowed_projectile_types = list(/obj/item/projectile/magic/animate,/obj/item/projectile/magic/resurrection,/obj/item/projectile/magic/teleport,/obj/item/projectile/magic/door,/obj/item/projectile/magic/fireball,/obj/item/projectile/magic/spellblade,/obj/item/projectile/magic/arcane_barrage);
+	name = "Blossom"
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -168,6 +153,24 @@
 	dir = 8
 	},
 /turf/open/floor/wood/lavaland,
+/area/ruin/powered)
+"M" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/carp/ranged/chaos{
+	allowed_projectile_types = list(/obj/item/projectile/magic/animate,/obj/item/projectile/magic/resurrection,/obj/item/projectile/magic/teleport,/obj/item/projectile/magic/door,/obj/item/projectile/magic/fireball,/obj/item/projectile/magic/spellblade,/obj/item/projectile/magic/arcane_barrage);
+	name = "Buttercup"
+	},
+/turf/open/floor/wood,
+/area/ruin/powered)
+"N" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/carp/ranged/chaos{
+	allowed_projectile_types = list(/obj/item/projectile/magic/animate,/obj/item/projectile/magic/resurrection,/obj/item/projectile/magic/teleport,/obj/item/projectile/magic/door,/obj/item/projectile/magic/fireball,/obj/item/projectile/magic/spellblade,/obj/item/projectile/magic/arcane_barrage);
+	name = "Bubbles"
+	},
+/turf/open/floor/wood,
 /area/ruin/powered)
 "P" = (
 /obj/effect/decal/cleanable/dirt,
@@ -227,7 +230,7 @@ a
 a
 x
 e
-l
+M
 p
 x
 U
@@ -276,7 +279,7 @@ a
 x
 h
 h
-D
+N
 h
 g
 h
@@ -298,7 +301,7 @@ a
 (10,1,1) = {"
 a
 x
-j
+C
 n
 x
 s
