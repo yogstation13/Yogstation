@@ -456,7 +456,7 @@
 		COOLDOWN_START(src, last_heal, 12 SECONDS)
 
 		var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
-		adjust_favor(-amount_healed/2, user)//costs favour to use
+		adjust_favor(-round(amount_healed/2), user)//costs favour to use
 
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
 		H.update_damage_overlays()
