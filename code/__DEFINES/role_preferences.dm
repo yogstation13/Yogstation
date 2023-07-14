@@ -109,8 +109,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_DISEASE = /datum/antagonist/disease,
 	ROLE_HIVE = /datum/antagonist/hivemind,
 	ROLE_PIRATE = /datum/antagonist/pirate,
-	ROLE_SENTIENCE = /datum/antagonist/sentient_creature
-	ROLE_PARADOX_CLONE = /datum/antagonist/paradox_clone
+	ROLE_SENTIENCE = /datum/antagonist/sentient_creature,
+	ROLE_PARADOX_CLONE = /datum/antagonist/paradox_clone,
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
