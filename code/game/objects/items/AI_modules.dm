@@ -17,9 +17,13 @@
 	throw_speed = 3
 	throw_range = 7
 	materials = list(/datum/material/gold=50)
-	var/datum/ai_laws/laws = new()
+	var/datum/ai_laws/laws
 	/// Allow installing with no laws and ignoring of the lawcap.
 	var/bypass_law_amt_check = FALSE
+
+/obj/item/aiModule/Initialize(mapload)
+	. = ..()
+	laws = new()
 
 /obj/item/aiModule/examine(mob/user as mob)
 	. = ..()

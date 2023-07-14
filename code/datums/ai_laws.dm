@@ -22,11 +22,9 @@
 	/// The lawset id.
 	var/id = DEFAULT_AI_LAWID
 
-	// Ordered in law priority.
 	var/list/devil = list()
 	var/zeroth = null
-	/// A zeroth law that is phrased specifically for Cyborgs. i.e "your master AI's goals"
-	var/zeroth_borg = null
+	var/zeroth_borg = null // A zeroth law that is phrased specifically for Cyborgs. i.e "your master AI's goals"
 	var/list/hacked = list()
 	var/list/ion = list()
 	var/list/inherent = list()

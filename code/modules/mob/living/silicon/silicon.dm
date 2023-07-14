@@ -30,10 +30,12 @@
 	var/list/alarm_types_show = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 	var/list/alarm_types_clear = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 
-	var/lawcheck[1]
-	var/ioncheck[1]
+	var/devilcheck[1]
+	var/zerothcheck = null
 	var/hackedcheck[1]
-	var/devillawcheck[5]
+	var/ioncheck[1]
+	var/inherentcheck[1]
+	var/suppliedcheck[1]
 
 	var/sensors_on = 0
 	var/med_hud = DATA_HUD_MEDICAL_ADVANCED //Determines the med hud to use
@@ -173,6 +175,40 @@
 	return FALSE
 
 /mob/living/silicon/Topic(href, href_list)
+	if (href_list["lawdevil"])
+		var/index = text2num(href_list["lawdevil"])
+		//laws.flip_devil_state(index)
+		checklaws()
+
+	if(href_list["lawzeroth"])
+		switch(zerocheck)
+			if("Yes")
+				zerocheck = "No"
+			if("No")
+				zerocheck = "Yes"
+		checklaws()
+
+	if (href_list["lawhacked"])
+		var/index = text2num(href_list["lawhacked"])
+		//laws.flip_hacked_state(index)
+		checklaws()
+
+	if (href_list["lawion"])
+		var/index = text2num(href_list["lawion"])
+		//laws.flip_hacked_state(index)
+		checklaws()
+
+	if (href_list["lawinherent"])
+		var/index = text2num(href_list["lawinherent"])
+	//	laws.flip_inherent_state(index)
+		checklaws()
+
+	if (href_list["lawsupplied"])
+		var/index = text2num(href_list["lawsupplied"])
+	//	laws.flip_inherent_state(index)
+		checklaws()
+
+	/*
 	if (href_list["lawc"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
 		var/L = text2num(href_list["lawc"])
 		switch(lawcheck[L+1])
@@ -202,19 +238,19 @@
 
 	if (href_list["lawdevil"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
 		var/L = text2num(href_list["lawdevil"])
-		switch(devillawcheck[L])
+		switch(devilcheck[L])
 			if ("Yes")
-				devillawcheck[L] = "No"
+				devilcheck[L] = "No"
 			if ("No")
-				devillawcheck[L] = "Yes"
+				devilcheck[L] = "Yes"
 		checklaws()
 
+	*/
 
 	if (href_list["laws"]) // With how my law selection code works, I changed statelaws from a verb to a proc, and call it through my law selection panel. --NeoFite
 		statelaws()
 
 	return
-
 
 /mob/living/silicon/proc/statelaws(force = 0)
 
@@ -227,15 +263,13 @@
 
 	if (laws.devil && laws.devil.len)
 		for(var/index = 1, index <= laws.devil.len, index++)
-			if (force || devillawcheck[index] == "Yes")
+			if (force || devilcheck[index] == "Yes")
 				say("[radiomod] 666. [laws.devil[index]]")
 				sleep(1 SECONDS)
 
-
-	if (laws.zeroth)
-		if (force || lawcheck[1] == "Yes")
-			say("[radiomod] 0. [laws.zeroth]")
-			sleep(1 SECONDS)
+	if(laws.zeroth && (force || laws.zerothstate))
+		say("[radiomod] 0. [laws.zeroth]")
+		sleep(1 SECONDS)
 
 	for (var/index = 1, index <= laws.hacked.len, index++)
 		var/law = laws.hacked[index]
@@ -273,58 +307,60 @@
 					sleep(1 SECONDS)
 
 
-/mob/living/silicon/proc/checklaws() //Gives you a link-driven interface for deciding what laws the statelaws() proc will share with the crew. --NeoFite
-
+/// A link-driven interface to state what laws the statelaws() proc will share with the crew.
+/mob/living/silicon/proc/checklaws()
 	var/list = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
 
-	if (laws.devil && laws.devil.len)
+	if(laws.devil && laws.devil.len)
 		for(var/index = 1, index <= laws.devil.len, index++)
-			if (!devillawcheck[index])
-				devillawcheck[index] = "No"
-			list += {"<A href='byond://?src=[REF(src)];lawdevil=[index]'>[devillawcheck[index]] 666:</A> <font color='#cc5500'>[laws.devil[index]]</font><BR>"}
+			var word = devilindex[index]
+			if(!word)
+				word = "No"
+			list += {"<A href='byond://?src=[REF(src)];lawdevil=[index]'>[word] 666:</A> <font color='#cc5500'>[laws.devil[index]]</font><BR>"}
 
 	if (laws.zeroth)
-		if (!lawcheck[1])
-			lawcheck[1] = "No" //Given Law 0's usual nature, it defaults to NOT getting reported. --NeoFite
-		list += {"<A href='byond://?src=[REF(src)];lawc=0'>[lawcheck[1]] 0:</A> <font color='#ff0000'><b>[laws.zeroth]</b></font><BR>"}
+		var word = hackedcheck[index]
+		if(!word)
+			word = "No"
+		list += {"<A href='byond://?src=[REF(src)];lawzeroth=1'>[word] 0:</A> <font color='#ff0000'><b>[laws.zeroth]</b></font><BR>"}
 
 	for (var/index = 1, index <= laws.hacked.len, index++)
 		var/law = laws.hacked[index]
 		if (length(law) > 0)
-			if (!hackedcheck[index])
-				hackedcheck[index] = "No"
-			list += {"<A href='byond://?src=[REF(src)];lawh=[index]'>[hackedcheck[index]] [ionnum()]:</A> <font color='#660000'>[law]</font><BR>"}
-			hackedcheck.len += 1
+			var word = hackedcheck[index]
+			if(!word)
+				word = "No"
+			list += {"<A href='byond://?src=[REF(src)];lawhacked=[index]'>[word] [ionnum()]:</A> <font color='#660000'>[law]</font><BR>"}
+			//hackedcheck.len += 1
 
 	for (var/index = 1, index <= laws.ion.len, index++)
 		var/law = laws.ion[index]
-
 		if (length(law) > 0)
-			if (!ioncheck[index])
-				ioncheck[index] = "Yes"
-			list += {"<A href='byond://?src=[REF(src)];lawi=[index]'>[ioncheck[index]] [ionnum()]:</A> <font color='#547DFE'>[law]</font><BR>"}
-			ioncheck.len += 1
+			var word = ioncheck[index]
+			if(!word)
+				word = "Yes"
+			list += {"<A href='byond://?src=[REF(src)];lawion=[index]'>[word] [ionnum()]:</A> <font color='#547DFE'>[law]</font><BR>"}
+			//ioncheck.len += 1
 
 	var/number = 1
 	for (var/index = 1, index <= laws.inherent.len, index++)
 		var/law = laws.inherent[index]
-
 		if (length(law) > 0)
-			lawcheck.len += 1
-
-			if (!lawcheck[number+1])
-				lawcheck[number+1] = "Yes"
-			list += {"<A href='byond://?src=[REF(src)];lawc=[number]'>[lawcheck[number+1]] [number]:</A> [law]<BR>"}
+			var word = inherentcheck[index]
+			if(!word)
+				word = "Yes"
+			list += {"<A href='byond://?src=[REF(src)];lawinherent=[index]'>[word] [number]:</A> [law]<BR>"}
 			number++
 
 	for (var/index = 1, index <= laws.supplied.len, index++)
 		var/law = laws.supplied[index]
 		if (length(law) > 0)
-			lawcheck.len += 1
-			if (!lawcheck[number+1])
-				lawcheck[number+1] = "Yes"
-			list += {"<A href='byond://?src=[REF(src)];lawc=[number]'>[lawcheck[number+1]] [number]:</A> <font color='#990099'>[law]</font><BR>"}
+			var word = suppliedcheck[index]
+			if(!word)
+				word = "Yes"
+			list += {"<A href='byond://?src=[REF(src)];lawsupplied=[index]'>[word] [number]:</A> <font color='#990099'>[law]</font><BR>"}
 			number++
+
 	list += {"<br><br><A href='byond://?src=[REF(src)];laws=1'>State Laws</A></BODY></HTML>"}
 
 	usr << browse(list, "window=laws")
