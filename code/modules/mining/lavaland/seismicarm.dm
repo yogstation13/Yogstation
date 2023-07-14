@@ -40,11 +40,9 @@
 		for(var/obj/D in T.contents)
 			if(D.density == TRUE)
 				return
-		for(var/turf/open/chasm/C in T.contents)
-			return
 		for(var/turf/closed/indestructible/I in T.contents)
 			return
-		for(var/turf/open/lava/V in T.contents)
+		if(istype(T, /turf/open/lava) || (istype(T, /turf/open/chasm)))
 			return
 		for(var/obj/machinery/door/window/E in Z.contents)
 			if(E.density == TRUE)
@@ -92,7 +90,7 @@
 		for(var/obj/D in T.contents)
 			if(D.density == TRUE)
 				return
-		for (var/turf/open/chasm/C in T.contents)
+		if(istype(T, /turf/open/lava) || (istype(T, /turf/open/chasm)))
 			return
 		for (var/turf/closed/indestructible/I in T.contents)
 			return
@@ -106,18 +104,21 @@
 			animate(F, alpha = 0, color = "#00d9ff", time = 0.3 SECONDS)
 			for(var/mob/living/L in T.contents)
 				if(L != owner)
+					L.Immobilize(0.2 SECONDS)
 					mopped |= L
 					var/turf/Q = get_step(get_turf(owner), owner.dir)
 					var/mob/living/U = owner
-					animate(L, transform = matrix(90, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+					sweep(L)
 					if(ismineralturf(Q))
 						var/turf/closed/mineral/M = Q
 						M.attempt_drill()
 						L.adjustBruteLoss(5)
 					if(Q.density)
+						wakeup(L)
 						return
 					for(var/obj/D in Q.contents)
 						if(D.density == TRUE)
+							wakeup(L)
 							return
 					U.forceMove(get_turf(L))
 					to_chat(L, span_userdanger("[U] catches you with [U.p_their()] hand and drags you down!"))
@@ -134,10 +135,10 @@
 					if(issilicon(L))
 						L.adjustBruteLoss(5)
 					playsound(L,'sound/effects/meteorimpact.ogg', 60, 1)
+					wakeup(L)
 			T = get_step(owner,owner.dir)
 	for(var/mob/living/C in mopped)
-		if(C.stat == CONSCIOUS && C.resting == FALSE)
-			animate(C, transform = null, time = 0.5 SECONDS, loop = 0)
+		wakeup(C)
 	return TRUE
 
 /datum/action/cooldown/seismic/suplex
@@ -180,7 +181,8 @@
 		to_chat(L, span_userdanger("[owner] catches you with [owner.p_their()] hand and crushes you on the ground!"))
 		owner.visible_message(span_warning("[owner] turns around and slams [L] against the ground!"))
 		owner.setDir(turn(owner.dir,180))
-		animate(L, transform = matrix(179, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
+		if(L.mobility_flags & MOBILITY_STAND)
+			animate(L, transform = matrix(180, MATRIX_ROTATE), time = 0 SECONDS, loop = 0)
 		if(isanimal(L))
 			L.adjustBruteLoss(20)
 			if(L.stat == DEAD)
@@ -190,6 +192,8 @@
 			L.adjustBruteLoss(6)
 		if(issilicon(L))
 			L.adjustBruteLoss(8)
+		spawn(10)
+		wakeup(L)
 		
 /datum/action/cooldown/seismic/righthook
 	name = "Right Hook"
@@ -207,20 +211,6 @@
 	StartCooldown()
 	return TRUE
 
-/datum/action/cooldown/seismic/lefthook
-	name = "Left Hook"
-	desc = "Put the arm through its paces, cranking the outputs located at the front and back of the hand to full capacity for a powerful blow. This attack can only be readied \
-	 for five seconds."
-	button_icon = 'icons/mob/actions/actions_arm.dmi'
-	button_icon_state = "ponch"
-	cooldown_time = 3 SECONDS
-
-/datum/action/cooldown/seismic/righthook/Activate()
-	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
-	do_after(owner, 2 SECONDS, owner, TRUE, stayStill = FALSE)
-	owner.put_in_l_hand(new /obj/item/melee/overcharged_emitter)
-	owner.visible_message(span_warning("[owner]'s left arm begins crackling loudly!"))
-	return TRUE
 
 /obj/item/melee/overcharged_emitter
 	name = "supercharged emitter"
@@ -311,13 +301,6 @@
 	var/datum/action/cooldown/seismic/suplex/suplex = new/datum/action/cooldown/seismic/suplex()
 	var/datum/action/cooldown/seismic/righthook/righthook = new/datum/action/cooldown/seismic/righthook()
 
-/obj/item/bodypart/r_arm/robot/seismic/attack(mob/living/L, proximity)
-	if(!ishuman(L))
-		return
-	playsound(L,'sound/effects/phasein.ogg', 20, 1)
-	to_chat(L, span_notice("You bump the prosthetic near your shoulder. In a flurry faster than your eyes can follow, it takes the place of your right arm!"))
-	replace_limb(L)
-
 /obj/item/bodypart/r_arm/robot/seismic/attach_limb(mob/living/carbon/C, special)
 	. = ..()
 	lariat.Grant(C)
@@ -333,35 +316,3 @@
 	righthook.Remove(C)
 	return ..()
 
-/obj/item/bodypart/l_arm/robot/seismic
-	name = "seismic right arm"
-	desc = "A robotic arm adorned with subwoofers capable of emitting shockwaves to imitate strength."
-	icon = 'icons/mob/augmentation/augments_seismic.dmi'
-	icon_state = "seismic_r_arm"
-	max_damage = 60
-	var/datum/action/cooldown/seismic/lariat/lariat = new/datum/action/cooldown/seismic/lariat()
-	var/datum/action/cooldown/seismic/mop/mop = new/datum/action/cooldown/seismic/mop()
-	var/datum/action/cooldown/seismic/suplex/suplex = new/datum/action/cooldown/seismic/suplex()
-	var/datum/action/cooldown/seismic/lefthook/lefthook = new/datum/action/cooldown/seismic/lefthook()
-
-/obj/item/bodypart/l_arm/robot/seismic/attack(mob/living/L, proximity)
-	if(!ishuman(L))
-		return
-	playsound(L,'sound/effects/phasein.ogg', 20, 1)
-	to_chat(L, span_notice("You bump the prosthetic near your shoulder. In a flurry faster than your eyes can follow, it takes the place of your right arm!"))
-	replace_limb(L)
-
-/obj/item/bodypart/l_arm/robot/seismic/attach_limb(mob/living/carbon/C, special)
-	. = ..()
-	lariat.Grant(C)
-	mop.Grant(C)
-	suplex.Grant(C)
-	lefthook.Grant(C)
-
-/obj/item/bodypart/l_arm/robot/seismic/drop_limb(special)
-	var/mob/living/carbon/C = owner
-	lariat.Remove(C)
-	mop.Remove(C)
-	suplex.Remove(C)
-	lefthook.Remove(C)
-	return ..()
