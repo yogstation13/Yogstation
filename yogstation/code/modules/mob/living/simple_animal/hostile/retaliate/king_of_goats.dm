@@ -64,6 +64,7 @@ Difficulty: Insanely Hard
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	//break_stuff_probability = 35
+	magic_tameable = FALSE	//I YIELD TO NONE
 
 
 
@@ -96,6 +97,7 @@ Difficulty: Insanely Hard
 	//break_stuff_probability = 40
 	music_component = /datum/component/music_player/battle
 	music_path = /datum/music/sourced/battle/king_goat
+	magic_tameable = FALSE
 
 	var/spellscast = 0
 	var/phase3 = FALSE
@@ -138,6 +140,7 @@ Difficulty: Insanely Hard
 	armour_penetration = 10
 	melee_damage_lower = 10
 	melee_damage_upper = 15
+	magic_tameable = FALSE	//Loyal till death
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/master
 	name = "master of the guard"
@@ -151,6 +154,7 @@ Difficulty: Insanely Hard
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	move_to_delay = 3
+	magic_tameable = FALSE	//Loyal till death
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/pope
 	name = "Goat Pope"
@@ -165,6 +169,7 @@ Difficulty: Insanely Hard
 	melee_damage_upper = 30
 	move_to_delay = 3
 	loot = list(/obj/item/clothing/head/yogs/goatpope)
+	magic_tameable = FALSE	//his soul belongs to the goat god or something
 
 /mob/living/simple_animal/hostile/retaliate/goat/guard/harem
 	name = "goat with a wig"

@@ -14,6 +14,31 @@
 			C.bloodiness += bloodiness
 	return ..()
 
+/obj/effect/decal/cleanable/whiteblood
+	name = "\"blood\""
+	desc = "It's an unsettling colour. Maybe it's the chef's cooking?"
+	icon = 'icons/effects/blood.dmi'
+	icon_state = "genericsplatter1"
+	random_icon_states = list("genericsplatter1", "genericsplatter2", "genericsplatter3", "genericsplatter4", "genericsplatter5", "genericsplatter6")
+
+/obj/effect/decal/cleanable/whiteblood/ethereal
+	name = "glowing \"blood\""
+	desc = "It has a fading glow. Surely it's just the chef's cooking?"
+	light_power = 1
+	light_range = 2
+	light_color = "#eef442"
+
+/obj/effect/decal/cleanable/whiteblood/ethereal/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
+	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
+
+/obj/effect/decal/cleanable/whiteblood/ethereal/proc/Fade()
+	name = "faded \"blood\""
+	light_power = 0
+	light_range = 0
+	update_light()
+
 /obj/effect/decal/cleanable/blood/old
 	name = "dried blood"
 	desc = "Looks like it's been here a while.  Eew."
@@ -52,6 +77,21 @@
 
 /obj/effect/decal/cleanable/trail_holder/can_bloodcrawl_in()
 	return TRUE
+
+/obj/effect/decal/cleanable/trail_holder/proc/Etherealify()
+	name = "glowing \"blood\""
+	light_power = 1
+	light_range = 2
+	light_color = "#eef442"
+	update_light()
+	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
+	addtimer(CALLBACK(src, PROC_REF(Fade)), 1 MINUTES)
+
+/obj/effect/decal/cleanable/trail_holder/proc/Fade()
+	name = "faded \"blood\""
+	light_power = 0
+	light_range = 0
+	update_light()
 
 /obj/effect/decal/cleanable/blood/gibs
 	name = "gibs"

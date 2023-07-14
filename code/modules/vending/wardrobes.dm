@@ -331,10 +331,10 @@
 					/obj/item/storage/box/mousetraps = 2,
 					/obj/item/circuitboard/machine/dish_drive = 1,
 					/obj/item/clothing/suit/toggle/chef = 1,
-					/obj/item/clothing/under/rank/chef = 1,
+					/obj/item/clothing/under/rank/chef = 2,
 					/obj/item/clothing/under/rank/chef/skirt = 2,
 					/obj/item/clothing/head/chefhat = 1,
-					/obj/item/reagent_containers/glass/rag = 1,
+					/obj/item/reagent_containers/glass/rag = 2,
 					/obj/item/clothing/suit/hooded/wintercoat = 2,
 					/obj/item/clothing/accessory/armband/service = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/chef_wardrobe

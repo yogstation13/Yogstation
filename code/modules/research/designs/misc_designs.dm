@@ -147,7 +147,7 @@
 	build_path = /obj/item/bikehorn/airhorn
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL			//HONK!
-	
+
 /datum/design/clownshot
 	name = "Clownshot Shell"
 	desc = "A tactical round used by the clown planet's finest soldiers."
@@ -356,7 +356,7 @@
 	build_path = /obj/item/ticket_machine_remote
 	category = list ("Electronics")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_MEDICAL
-	
+
 /datum/design/wallframe/flasher
 	name = "Mounted Flash Frame"
 	id =  "wallframe/flasher"
@@ -425,22 +425,12 @@
 /////////////////////////////////////////
 
 /datum/design/holosign
-	name = "Holographic Sign Projector"
-	desc = "A holograpic projector used to project various warning signs."
-	id = "holosign"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/plastic = 500)
-	build_path = /obj/item/holosign_creator
-	category = list("Equipment")
-	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
-
-/datum/design/holobarrier_jani
 	name = "Custodial Holobarrier Projector"
 	desc = "A holograpic projector used to project hard light wet floor barriers."
-	id = "holobarrier_jani"
+	id = "holosign"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/plastic = 500)
-	build_path = /obj/structure/holosign/barrier/wetsign
+	build_path = /obj/item/holosign_creator/janibarrier
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
