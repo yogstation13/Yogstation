@@ -265,10 +265,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
-"aej" = (
-/obj/machinery/atmospherics/pipe/manifold/supplymain/visible,
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "aet" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -2965,13 +2961,6 @@
 /obj/item/stack/cable_coil,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/solar/starboard/fore)
-"aRd" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector/on{
-	dir = 4;
-	volume_rate = 200
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/mine/maintenance)
 "aRe" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -4026,13 +4015,6 @@
 	},
 /turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
-"bgi" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1;
-	scrubbing = 0
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/mine/maintenance)
 "bgq" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -9909,18 +9891,6 @@
 "cTy" = (
 /turf/closed/wall/r_wall,
 /area/science/storage)
-"cTH" = (
-/obj/structure/lattice/catwalk,
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/atmospherics/pipe/simple/violet/visible{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/preopen{
-	id = "mining1";
-	name = "Mining Lockdown Blast Doors"
-	},
-/turf/open/floor/plating,
-/area/mine/maintenance)
 "cTN" = (
 /obj/machinery/reagentgrinder{
 	pixel_y = 7
@@ -14778,6 +14748,12 @@
 	dir = 1
 	},
 /area/crew_quarters/kitchen)
+"eol" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "eoo" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -16981,14 +16957,6 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
-"eXL" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/pipe/simple/supplymain/visible{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "eXP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -17509,12 +17477,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"fgR" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "fhf" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/effect/turf_decal/delivery,
@@ -17985,6 +17947,14 @@
 /obj/item/stock_parts/subspace/amplifier,
 /turf/open/floor/plasteel/dark,
 /area/storage/tcom)
+"fnn" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/simple/supplymain/visible{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "fno" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/central)
@@ -20320,15 +20290,6 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/fore)
-"fTB" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/door/poddoor/preopen{
-	id = "mining1";
-	name = "Mining Lockdown Blast Doors"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/violet/visible,
-/turf/open/floor/plating,
-/area/mine/maintenance)
 "fTL" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
@@ -20588,6 +20549,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"fWR" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 4;
+	volume_rate = 200
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/mine/maintenance)
 "fXe" = (
 /obj/machinery/airalarm{
 	pixel_y = 24
@@ -21454,6 +21422,9 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"gii" = (
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/mine/maintenance)
 "gir" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
@@ -21790,14 +21761,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"glR" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 4;
-	name = "Mix to Distro";
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "glS" = (
 /obj/structure/fans/tiny/invisible,
 /obj/docking_port/stationary{
@@ -24579,6 +24542,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/toilet/auxiliary)
+"gVX" = (
+/obj/machinery/atmospherics/pipe/manifold/supplymain/visible,
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "gVZ" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -25030,6 +24997,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
+"hew" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/atmospherics/pipe/simple/violet/visible{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/mine/maintenance)
 "heL" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -26988,12 +26962,6 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"hIN" = (
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "hIZ" = (
 /obj/item/clothing/under/maid,
 /obj/item/clothing/shoes/sneakers/black,
@@ -27549,13 +27517,6 @@
 /obj/effect/turf_decal/trimline/blue/filled/warning,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"hQQ" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/atmospherics/pipe/simple/violet/visible{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/mine/maintenance)
 "hQX" = (
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -27754,6 +27715,9 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/security/prison/hallway)
+"hTE" = (
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "hTI" = (
 /obj/machinery/hydroponics/constructable,
 /obj/effect/turf_decal/bot,
@@ -28571,6 +28535,12 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"ihZ" = (
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "iib" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -28828,14 +28798,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"ilV" = (
-/obj/machinery/atmospherics/pipe/simple/violet/visible{
-	dir = 10
-	},
-/obj/machinery/meter/atmos,
-/obj/machinery/camera/autoname,
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "imh" = (
 /obj/structure/table,
 /obj/item/candle,
@@ -28933,6 +28895,20 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"ioR" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/hooded/wintercoat,
+/obj/item/clothing/shoes/winterboots,
+/obj/item/tank/internals/emergency_oxygen,
+/obj/item/clothing/mask/breath,
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/effect/turf_decal/bot,
+/obj/structure/window/spawner/east,
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "ioS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -31256,6 +31232,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"iVC" = (
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 4;
+	name = "Mix to Distro";
+	target_pressure = 4500
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "iWf" = (
 /obj/structure/chair/comfy/black,
 /obj/effect/landmark/start/assistant,
@@ -32202,6 +32186,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"jgY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "jhh" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Long-Term Cell 1";
@@ -32339,6 +32329,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"jiS" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet,
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/mine/eva)
 "jjd" = (
 /obj/structure/closet/secure_closet/miner{
 	anchored = 1
@@ -34034,12 +34031,6 @@
 "jHP" = (
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"jHR" = (
-/obj/machinery/atmospherics/pipe/simple/violet/hidden{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/mine/maintenance)
 "jHW" = (
 /obj/machinery/vending/wardrobe/chem_wardrobe,
 /obj/effect/turf_decal/trimline/chemorange/filled/line{
@@ -35956,13 +35947,6 @@
 /obj/effect/mapping_helpers/teleport_anchor,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/education)
-"kgt" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/structure/disposaloutlet,
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/mine/eva)
 "kgu" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -37331,6 +37315,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"kCz" = (
+/obj/structure/lattice/catwalk,
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/atmospherics/pipe/simple/violet/visible{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "mining1";
+	name = "Mining Lockdown Blast Doors"
+	},
+/turf/open/floor/plating,
+/area/mine/maintenance)
 "kCE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -38205,10 +38201,6 @@
 /obj/machinery/atmospherics/components/binary/pump/on,
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
-"kOQ" = (
-/obj/structure/lattice/catwalk,
-/turf/closed/wall,
-/area/mine/maintenance)
 "kPd" = (
 /obj/item/radio/intercom{
 	dir = 4;
@@ -43804,10 +43796,6 @@
 "msB" = (
 /turf/closed/wall,
 /area/security/prison)
-"msE" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/heater/on,
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "msF" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
@@ -46353,6 +46341,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"naO" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/heater/on,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "naQ" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder{
@@ -48478,6 +48471,10 @@
 "nHG" = (
 /turf/closed/wall/r_wall,
 /area/security/checkpoint/engineering)
+"nHM" = (
+/obj/structure/lattice/catwalk,
+/turf/closed/wall,
+/area/mine/maintenance)
 "nHX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -50804,6 +50801,13 @@
 /obj/item/key,
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
+"olH" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1;
+	scrubbing = 0
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/mine/maintenance)
 "olV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -51046,20 +51050,6 @@
 /obj/structure/dresser,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"opi" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/hooded/wintercoat,
-/obj/item/clothing/shoes/winterboots,
-/obj/item/tank/internals/emergency_oxygen,
-/obj/item/clothing/mask/breath,
-/obj/machinery/airalarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/window/spawner/east,
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "opx" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/disposalpipe/segment,
@@ -53094,16 +53084,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"oXW" = (
-/obj/machinery/light_switch{
-	pixel_y = 32
-	},
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	name = "Aux Waste Port"
-	},
-/obj/machinery/portable_atmospherics/scrubber,
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "oYj" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/machinery/door/airlock/external{
@@ -55499,12 +55479,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"pGU" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/mine/maintenance)
 "pHj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -61588,6 +61562,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"rwC" = (
+/obj/machinery/atmospherics/components/binary/pump/on{
+	name = "Waste to Filters";
+	target_pressure = 4500
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "rwD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -63866,6 +63847,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/mine/infirmary)
+"sdh" = (
+/obj/machinery/atmospherics/pipe/simple/violet/visible{
+	dir = 10
+	},
+/obj/machinery/meter/atmos,
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "sds" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
@@ -64443,9 +64432,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"sol" = (
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/mine/maintenance)
 "sot" = (
 /obj/effect/turf_decal/trimline/chemorange/filled/corner{
 	dir = 1
@@ -71574,13 +71560,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
-"unj" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	name = "Waste to Filters";
-	target_pressure = 4500
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "unr" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -73506,6 +73485,16 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
+"uND" = (
+/obj/machinery/light_switch{
+	pixel_y = 32
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	name = "Aux Waste Port"
+	},
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plasteel/dark,
+/area/mine/maintenance)
 "uNF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -73991,6 +73980,12 @@
 	dir = 5
 	},
 /area/crew_quarters/heads/hor)
+"uVI" = (
+/obj/machinery/atmospherics/pipe/simple/violet/hidden{
+	dir = 8
+	},
+/turf/closed/wall,
+/area/mine/maintenance)
 "uVT" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -75659,6 +75654,15 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"vwj" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/obj/machinery/door/poddoor/preopen{
+	id = "mining1";
+	name = "Mining Lockdown Blast Doors"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/violet/visible,
+/turf/open/floor/plating,
+/area/mine/maintenance)
 "vwp" = (
 /obj/structure/table,
 /obj/item/paper_bin{
@@ -75999,6 +76003,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
+"vAS" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor/plating/snowed/smoothed/icemoon,
+/area/mine/maintenance)
 "vBs" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -77416,12 +77426,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
-"vXd" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "vXe" = (
 /obj/item/radio/intercom{
 	pixel_y = 21
@@ -80369,9 +80373,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"wLX" = (
-/turf/open/floor/plasteel/dark,
-/area/mine/maintenance)
 "wMe" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -164396,7 +164397,7 @@ lSh
 lSh
 lSh
 lSh
-aRd
+fWR
 wMi
 wMi
 wMi
@@ -164653,8 +164654,8 @@ iSs
 hxv
 lbh
 lSh
-cTH
-kOQ
+kCz
+nHM
 xvP
 xvP
 xvP
@@ -164910,13 +164911,13 @@ eIs
 uKb
 ssA
 lSh
-ilV
+sdh
 krk
 ybY
 gnF
 mTt
 qnt
-bgi
+olH
 tVK
 wMi
 wMi
@@ -165173,7 +165174,7 @@ xhq
 oqw
 dtR
 rFg
-sol
+gii
 tVK
 wMi
 wMi
@@ -165422,7 +165423,7 @@ tmM
 xvP
 tCa
 qVG
-wLX
+hTE
 kWI
 xKX
 tBo
@@ -165430,7 +165431,7 @@ yhe
 egS
 nXw
 qnI
-bgi
+olH
 tVK
 wMi
 wMi
@@ -165679,7 +165680,7 @@ tfO
 xvP
 bli
 nIq
-opi
+ioR
 xvP
 wOT
 cCY
@@ -165687,7 +165688,7 @@ fXF
 oDF
 svr
 rFg
-sol
+gii
 tVK
 wMi
 wMi
@@ -165938,13 +165939,13 @@ mfh
 qHT
 xug
 xvP
-oXW
-eXL
+uND
+fnn
 lWL
 aXA
-unj
-fTB
-bgi
+rwC
+vwj
+olH
 tVK
 wMi
 wMi
@@ -166195,13 +166196,13 @@ fkI
 vvs
 pup
 xvP
-msE
-aej
-wLX
-fgR
-wLX
-jHR
-sol
+naO
+gVX
+hTE
+jgY
+hTE
+uVI
+gii
 tVK
 wMi
 wMi
@@ -166452,13 +166453,13 @@ xvP
 yaE
 xvP
 xvP
-vXd
-glR
-wLX
-fgR
-hIN
-hQQ
-pGU
+eol
+iVC
+hTE
+jgY
+ihZ
+hew
+vAS
 tVK
 wMi
 wMi
@@ -168771,7 +168772,7 @@ uPK
 iLV
 xzT
 bnr
-kgt
+jiS
 wMi
 wMi
 wMi
