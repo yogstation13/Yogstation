@@ -671,7 +671,8 @@
 /obj/item/reagent_containers/glass/bottle/vial/large/combat
 	name = "large vial (Combat Hypospray Mix)"
 	icon_state = "viallarge_black"
-	list_reagents = list(/datum/reagent/medicine/epinephrine = 2, /datum/reagent/medicine/omnizine = 10, /datum/reagent/medicine/leporazine = 9, /datum/reagent/medicine/atropine = 9)
+	list_reagents = list(/datum/reagent/medicine/salicyclic acid = 5, /datum/reagent/medicine/oxandrolone = 5, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 5, /datum/reagent/medicine/atropine = 5, /datum/reagent/medicine/morphine = 2/
+/datum/reagent/medicine/rhigoxane = 2, /datum/reagent/medicine/modafinil = 1)
 
 /obj/item/reagent_containers/glass/bottle/vial/large/stimulants
 	name = "large vial (Stimulants)"
