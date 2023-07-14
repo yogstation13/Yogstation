@@ -231,7 +231,7 @@
 
 /datum/reagent/water/holywater/on_mob_life(mob/living/carbon/M)
 	if(healing)
-		if(ishuman(M))
+		if(ishuman(M) && M.client)
 			var/mob/living/carbon/human/H = M
 			var/heal_amt = healing
 			var/favor = 2
