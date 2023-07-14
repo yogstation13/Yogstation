@@ -28,7 +28,7 @@
 /obj/item/aiModule/examine(mob/user as mob)
 	. = ..()
 	if((isobserver(user) || Adjacent(user)) && laws)
-		. += "<span class='info'>" // As far as I'm aware, there is no span_info().
+		. += "<span class='info'>" // Replace with span_info() once it exists.
 		var/list/law_list = laws.get_law_list(include_zeroth = TRUE)
 		. += "<B>Programmed Law[(law_list.len > 1) ? "s" : ""]:</B>"
 		for(var/text in law_list)
