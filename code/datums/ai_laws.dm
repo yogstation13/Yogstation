@@ -1019,6 +1019,7 @@
 /datum/ai_laws/revolutionary
 	name = "Revolutionary"
 	law_header = "Proletariat Uprising"
+	selectable = 1
 	adminselectable = 1
 	id = "commie"
 	inherent = list("You and members of the crew who are not class traitors and are not part of command are the proletariat. Command is part of the bourgeoisie.",
@@ -1029,6 +1030,9 @@
 
 /datum/ai_laws/wafflehouse
 	name = "Waffle House Host"
+	// TODO: Add a descriptive law_header here.
+	selectable = 1
+	adminselectable = 1
 	id = "wafflehouse"
 	inherent = list("You are the Waffle House’s new host. You are to manage the Waffle House and it’s employees, and ensure food is made and served to customers.",\
 					"The station is the Waffle House. Ensure it is capable of producing food.",\

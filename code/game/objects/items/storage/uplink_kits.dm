@@ -91,13 +91,8 @@
 			new /obj/item/implanter/explosive(src) //2 TC, nukies only
 			new /obj/item/implanter/storage(src) //8 TC
 
-<<<<<<< HEAD
 		if("hacker") //28 TC cost
 			new /obj/item/aiModule/hacked(src) //4 TC
-=======
-		if("hacker") //29 TC cost
-			new /obj/item/aiModule/syndicate(src) //4 TC
->>>>>>> 0bfda9cc9722aa92e0701e28ef94ddec32fc27c0
 			new /obj/item/card/emag(src) //6 TC
 			new /obj/item/encryptionkey/binary(src) //2 TC
 			new /obj/item/aiModule/ion/toyAI(src) //Um, free...?
