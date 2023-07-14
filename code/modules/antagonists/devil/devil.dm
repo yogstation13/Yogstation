@@ -538,7 +538,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	if(issilicon(owner.current))
 		var/mob/living/silicon/robot_devil = owner.current
 		var/laws = list("You may not use violence to coerce someone into selling their soul.", "You may not directly and knowingly physically harm a devil, other than yourself.", GLOB.lawlorify[LAW][ban], GLOB.lawlorify[LAW][obligation], "Accomplish your objectives at all costs.")
-		robot_devil.set_law_sixsixsix(laws)
+		robot_devil.set_devil_laws(laws)
 	handle_clown_mutation(owner.current, "Your infernal nature has allowed you to overcome your clownishness.")
 	return ..()
 

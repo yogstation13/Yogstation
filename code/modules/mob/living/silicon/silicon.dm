@@ -225,10 +225,10 @@
 	var/number = 1
 	sleep(1 SECONDS)
 
-	if (laws.devillaws && laws.devillaws.len)
-		for(var/index = 1, index <= laws.devillaws.len, index++)
+	if (laws.devil && laws.devil.len)
+		for(var/index = 1, index <= laws.devil.len, index++)
 			if (force || devillawcheck[index] == "Yes")
-				say("[radiomod] 666. [laws.devillaws[index]]")
+				say("[radiomod] 666. [laws.devil[index]]")
 				sleep(1 SECONDS)
 
 
@@ -277,11 +277,11 @@
 
 	var/list = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
 
-	if (laws.devillaws && laws.devillaws.len)
-		for(var/index = 1, index <= laws.devillaws.len, index++)
+	if (laws.devil && laws.devil.len)
+		for(var/index = 1, index <= laws.devil.len, index++)
 			if (!devillawcheck[index])
 				devillawcheck[index] = "No"
-			list += {"<A href='byond://?src=[REF(src)];lawdevil=[index]'>[devillawcheck[index]] 666:</A> <font color='#cc5500'>[laws.devillaws[index]]</font><BR>"}
+			list += {"<A href='byond://?src=[REF(src)];lawdevil=[index]'>[devillawcheck[index]] 666:</A> <font color='#cc5500'>[laws.devil[index]]</font><BR>"}
 
 	if (laws.zeroth)
 		if (!lawcheck[1])
@@ -433,9 +433,9 @@
 	.=..()
 	.+= ""
 	.+= "<h2>Current Silicon Laws:</h2>"
-	if (laws.devillaws && laws.devillaws.len)
-		for(var/index = 1, index <= laws.devillaws.len, index++)
-			.+= "[laws.devillaws[index]]"
+	if (laws.devil && laws.devil.len)
+		for(var/index = 1, index <= laws.devil.len, index++)
+			.+= "[laws.devil[index]]"
 
 	if (laws.zeroth)
 		.+= "<b><font color='#ff0000'>0: [laws.zeroth]</font></b>"
