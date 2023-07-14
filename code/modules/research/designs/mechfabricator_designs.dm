@@ -1047,15 +1047,6 @@
 	construction_time = 100
 	category = list("IPC Components")
 
-/datum/design/ipc_lungs
-	name = "Cooling Radiator"
-	id = "ipc_lungs"
-	build_type = MECHFAB
-	build_path = /obj/item/organ/lungs/ipc
-	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
-	construction_time = 100
-	category = list("IPC Components")
-
 /datum/design/power_cord
 	name = "Recharging Electronics"
 	id = "power_cord"

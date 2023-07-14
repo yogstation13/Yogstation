@@ -355,6 +355,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	var/value = 1
 	var/coinflip
 	var/coin_stack_icon_state = "coin_stack"
+	var/list/allowed_ricochet_types = list(/obj/item/projectile/bullet/c38, /obj/item/projectile/bullet/a357, /obj/item/projectile/bullet/ipcmartial)
 
 /obj/item/coin/get_item_credit_value()
 	return value
@@ -563,31 +564,38 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	transform = initial(transform)
 
 /obj/item/coin/bullet_act(obj/item/projectile/P)
-	if(P.flag != LASER && P.flag != ENERGY && !istype(P, /obj/item/projectile/bullet/c38) && !istype(P, /obj/item/projectile/bullet/a357) &&!istype(P, /obj/item/projectile/bullet/ipcmartial)) //only energy projectiles get deflected (also revolvers because damn thats cool)
+	if(P.flag != LASER && P.flag != ENERGY && !is_type_in_list(P, allowed_ricochet_types)) //only energy projectiles get deflected (also revolvers because damn thats cool)
 		return ..()
 		
 	if(cooldown >= world.time || istype(P, /obj/item/projectile/bullet/ipcmartial))//we ricochet the projectile
 		var/list/targets = list()
-		var/turf/center = get_turf(src)
 		for(var/mob/living/T in viewers(5, src))
-			if(T != P.firer && T.stat != DEAD && !(T in P.permutated)) //don't fire at someone if they're dead or if we already hit them
+			if(istype(T) && T != P.firer && T.stat != DEAD) //don't fire at someone if they're dead or if we already hit them
 				targets |= T
 		P.damage *= 1.5
+		P.speed *= 0.5
+		P.ricochets++
+		P.on_ricochet(src)
+		P.permutated = list(src)
+		P.pixel_x = pixel_x
+		P.pixel_y = pixel_y
 		if(!targets.len)
 			var/spr = rand(0, 360) //randomize the direction
 			P.preparePixelProjectile(src, src, spread = spr)
+			P.fire(rand(0, 360))
 		else
 			var/mob/living/target = get_closest_atom(/mob/living, targets, src)
 			P.preparePixelProjectile(target, src)
+			P.fire(get_angle(P, target))
 			targets -= target
 			if(targets.len)
 				P = DuplicateObject(P, sameloc=1) //split into another projectile
 				P.datum_flags = initial(P.datum_flags)	//we want to reset the projectile process that was duplicated
 				P.last_process = initial(P.last_process)
 				P.last_projectile_move = initial(P.last_projectile_move)
-				target = pick(targets)
-				P.preparePixelProjectile(target, center)
-				P.fire()
+				target = get_closest_atom(/mob/living, targets, src)
+				P.preparePixelProjectile(target, src)
+				P.fire(get_angle(P, target))
 		visible_message(span_danger("[P] ricochets off of [src]!"))
 		playsound(loc, 'sound/weapons/ricochet.ogg', 50, 1)
 		if(cooldown < world.time)

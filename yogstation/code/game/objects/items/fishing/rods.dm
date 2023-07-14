@@ -15,9 +15,8 @@
 	var/fishing_power = 10
 	var/obj/item/reagent_containers/food/snacks/bait/bait = null //what bait is attached to the rod
 	var/fishing = FALSE
-	var/bobber_image = 'yogstation/icons/obj/fishing/fishing.dmi'
-	var/bobber_icon_state =  "bobber"
 	var/static/mutable_appearance/bobber = mutable_appearance('yogstation/icons/obj/fishing/fishing.dmi',"bobber")
+	var/static/mutable_appearance/bobber_down = mutable_appearance('yogstation/icons/obj/fishing/fishing.dmi',"bobber_down")
 	var/datum/component/fishable/fishing_component
 	var/mob/fisher
 	var/bite = FALSE
@@ -47,6 +46,9 @@
 	if(bite)
 		to_chat(fisher, span_warning("Whatever was on the line drifts back into the deep..."))
 		bite = FALSE
+		var/turf/fishing_turf = fishing_component?.parent
+		fishing_turf?.cut_overlay(bobber_down)
+		fishing_turf?.add_overlay(bobber)
 		return
 
 	var/power = 0
@@ -56,6 +58,9 @@
 	if(prob(fishing_power + power))
 		to_chat(fisher, span_boldnotice("Something bites! Reel it in!"))
 		bite = TRUE
+		var/turf/fishing_turf = fishing_component?.parent
+		fishing_turf?.cut_overlay(bobber)
+		fishing_turf?.add_overlay(bobber_down)
 		do_fishing_alert(fisher)
 
 /obj/item/twohanded/fishingrod/Destroy()
@@ -85,7 +90,7 @@
 			var/mob/living/carbon/carbonfisher = fisher
 			power = carbonfisher.fishing_power
 		spawn_reward(fishing_power + power)
-		if(bait && prob(max(50 - bait.fishing_power,0))) //50 - bait.fishing_power% chance to lose your bait
+		if(bait && prob(max(1/(2 + (bait.fishing_power/6)), 0))) //goodbye bait
 			to_chat(fisher, span_notice("Your [bait] is lost!"))
 			cut_overlays()
 			QDEL_NULL(bait)
@@ -104,7 +109,8 @@
 	fisher = null
 	STOP_PROCESSING(SSobj,src)
 	var/turf/fishing_turf = fishing_component.parent
-	fishing_turf.cut_overlay(bobber)
+	fishing_turf?.cut_overlay(bobber)
+	fishing_turf?.cut_overlay(bobber_down)
 	fishing_component = null
 	bite = FALSE //just to be safe
 
@@ -120,18 +126,18 @@
 
 /obj/item/twohanded/fishingrod/proc/spawn_reward(fishing_power = 0)
 	var/picked_reward = fishing_component.get_reward(fishing_power)
-	if(!picked_reward || picked_reward == FISHING_LOOT_NOTHING) //nothing or something messed up
-		fisher.visible_message(span_notice("[fisher] reels in ... nothing!"), span_notice("You reel in... nothing! Better luck next time!"))
+	if(prob(14.29) || !picked_reward || picked_reward == FISHING_LOOT_NOTHING) //14.29% to always fail, sorry, also handles failures.
+		fisher.visible_message(span_notice("[fisher] tugs on the rod and the line snaps!"), span_notice("Your line snaps! Whatever was on it sinks back into the deep."))
 		return
 	var/obj/reward_item = new picked_reward(fishing_component.parent)
 	reward_item.alpha = 0
 	reward_item.pixel_y = -12
-	animate(reward_item,time = 0.25 SECONDS,pixel_y = 0,alpha = 255,easing = SINE_EASING)
+	animate(reward_item, time = 0.25 SECONDS, pixel_y = 0, alpha = 255, easing = SINE_EASING)
 	if(!fisher) //uh oh
 		return
 	fisher.visible_message(span_notice("[fisher] reels in [reward_item]!"), span_notice("You reel in [reward_item]!"))
 	if(fisher.Adjacent(fishing_component.parent))
-		unwield(fisher,show_message = FALSE)
+		unwield(fisher, show_message = FALSE)
 		if(fisher.put_in_hands(reward_item))
 			return
 	reward_item.throw_at(get_step(fishing_component,get_dir(fishing_component,fisher)),2,3,fisher) //whip it at them!
