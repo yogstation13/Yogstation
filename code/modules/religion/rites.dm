@@ -662,3 +662,57 @@
 	var/altar_turf = get_turf(religious_tool)
 	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 100, TRUE)
 	return TRUE
+
+/datum/religion_rites/holyrevival
+	name = "Rebirth"
+	desc = "Regenerates a being to its once pure state."
+	ritual_length = 60 SECONDS
+	ritual_invocations = list(
+	"This being is in dire need of your assistance...",
+	"...As they have been inflicted with great ailment...",
+	"...Please, grant us the unbridled power of the Holy Light...",
+	"...We will channel our power in your name...",
+	)
+	invoke_msg = "So that this being may be reborn in your image!"
+	favor_cost = 650
+
+/datum/religion_rites/holyrevival/perform_rite(mob/living/user, atom/religious_tool)
+	if(!ismovable(religious_tool))
+		to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+		return FALSE
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool)
+		return FALSE
+	if(!LAZYLEN(movable_reltool.buckled_mobs))
+		. = FALSE
+		if(!movable_reltool.can_buckle)
+			to_chat(user, span_warning("This rite requires a religious device that individuals can be buckled to."))
+			return
+		to_chat(user, span_warning("This rite requires an individual to be buckled to [movable_reltool]."))
+		return
+	return ..()
+
+/datum/religion_rites/holyrevival/invoke_effect(mob/living/user, atom/movable/religious_tool)
+	if(!ismovable(religious_tool))
+		CRASH("[name]'s perform_rite had a movable atom that has somehow turned into a non-movable!")
+	var/atom/movable/movable_reltool = religious_tool
+	if(!movable_reltool?.buckled_mobs?.len)
+		return FALSE
+	var/mob/living/carbon/human/man_to_revive
+	for(var/i in movable_reltool.buckled_mobs)
+		if(istype(i,/mob/living/carbon/human))
+			man_to_revive = i
+			break
+	if(!man_to_revive)
+		return FALSE
+	var/was_dead = man_to_revive.stat == DEAD
+	man_to_revive.revive(TRUE)
+	if(was_dead) // aheal needs downside
+		man_to_revive.adjustCloneLoss(75) // can be slowly healed with the rod of asclepius anyways
+	man_to_revive.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
+	to_chat(man_to_revive, span_userdanger("As you rise anew, you forget all that had previously harmed you!"))
+	man_to_revive.emote("smile")
+	man_to_revive.visible_message(span_notice("[man_to_revive] rises, reborn in the Holy Light!"))
+	var/altar_turf = get_turf(religious_tool)
+	playsound(altar_turf, 'sound/magic/staff_healing.ogg', 100, TRUE)
+	return TRUE

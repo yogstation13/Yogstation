@@ -424,7 +424,11 @@
 	desc = "A sect dedicated to healing."
 	convert_opener = "Welcome to the Holy Light, disciple. Use holy water to heal and generate favor over time. Use your bible to heal for large amounts instantly, costing favor."
 	alignment = ALIGNMENT_GOOD // literally the only good sect besides default lol
-	rites_list = list(/datum/religion_rites/medibot, /datum/religion_rites/holysight, /datum/religion_rites/healrod, /datum/religion_rites/suffusion)
+	rites_list = list(/datum/religion_rites/medibot, 
+					/datum/religion_rites/holysight, 
+					/datum/religion_rites/healrod, 
+					/datum/religion_rites/suffusion, 
+					/datum/religion_rites/holyrevival)
 	altar_icon_state = "convertaltar-heal"
 	COOLDOWN_DECLARE(last_heal)
 	var/heal_amt = 40 //this is also the favour requirement
@@ -442,7 +446,7 @@
 	if(!L.client)
 		return FALSE
 
-	if(favor < heal_amt)
+	if(favor < heal_amt * 2)
 		user.visible_message(span_notice("You don't have enough favour to heal in this manner."))
 		return FALSE
 
@@ -456,7 +460,7 @@
 		COOLDOWN_START(src, last_heal, 12 SECONDS)
 
 		var/amount_healed = (heal_amt * 2) + min(H.getBruteLoss() - heal_amt, 0) + min(H.getFireLoss() - heal_amt, 0)
-		adjust_favor(-round(amount_healed/2), user)//costs favour to use
+		adjust_favor(-amount_healed, user)//costs favour to use
 
 		H.heal_overall_damage(heal_amt, heal_amt, 0, BODYPART_ANY)
 		H.update_damage_overlays()
