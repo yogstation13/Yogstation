@@ -204,11 +204,15 @@
 
 /datum/action/cooldown/seismic/righthook/Activate()
 	playsound(owner,'sound/effects/beepskyspinsabre.ogg', 60, 1)
-	do_after(owner, 2 SECONDS, owner, TRUE, stayStill = FALSE)
-	owner.put_in_r_hand(new /obj/item/melee/overcharged_emitter)
-	owner.visible_message(span_warning("[owner]'s right arm begins crackling loudly!"))
-	StartCooldown()
-	return TRUE
+	if(do_after(owner, 2 SECONDS, owner, TRUE, stayStill = FALSE))
+		if(!owner.put_in_r_hand(new /obj/item/melee/overcharged_emitter))
+			to_chat(owner, span_warning("You can't do this with your right hand full!"))
+		else
+			owner.visible_message(span_danger("[owner]'s right arm begins shaking violently!"))
+			if(owner.active_hand_index % 2 == 1)
+				owner.swap_hand(0)
+			StartCooldown()
+	return
 
 
 /obj/item/melee/overcharged_emitter
