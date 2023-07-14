@@ -6,7 +6,7 @@
 	armor = list(MELEE = 30, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 100, RAD = 20, FIRE = 100, ACID = 100, WOUND = 20)
 	strip_delay = 50
 	equip_delay_other = 50
-	resistance_flags = FIRE_PROOF | ACID_PROOF
+	resistance_flags = FIRE_PROOF | ACID_PROOF | THICKMATERIAL
 	dog_fashion = /datum/dog_fashion/head/blue_wizard
 	hattable = FALSE
 
