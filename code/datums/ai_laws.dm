@@ -51,20 +51,25 @@
 // 
 /datum/ai_laws/proc/set_devil_laws(law_list)
 	devil = law_list
+	devilstate = list()
+	devilstate.len = devil.len
 
 /datum/ai_laws/proc/add_devil_law(law)
 	devil += law
+	devil.len += 1
 
 /datum/ai_laws/proc/clear_devil_laws(force)
 	if(force || !is_devil(owner))
 		qdel(devil)
 		devil = new()
+		devilstate = list()
 
 //
 // Zeroth Law
 // 
 /datum/ai_laws/proc/set_zeroth_law(law, law_borg = null)
 	zeroth = law
+	zeroth_state = "No"
 	if(law_borg)
 		zeroth_borg = law_borg
 
@@ -73,6 +78,7 @@
 	if(force)
 		zeroth = null
 		zeroth_borg = null
+		zeroth_state = null
 		return
 	if(owner?.mind?.special_role)
 		return
@@ -82,59 +88,75 @@
 			return
 	zeroth = null
 	zeroth_borg = null
-
+	zeroth_state = null
 //
 // Hacked Laws
 //
 /datum/ai_laws/proc/set_hacked_laws(law_list)
 	hacked = law_list
+	hackedstate = list()
+	hackedstate.len = hacked.len
 
 /datum/ai_laws/proc/add_hacked_law(law)
 	hacked += law
+	hacked.len += 1
 
 /datum/ai_laws/proc/clear_hacked_laws()
 	qdel(hacked)
 	hacked = new()
+	hackedstate = list()
 
 //
 // Ion Laws
 //
 /datum/ai_laws/proc/set_ion_laws(law_list)
 	ion = law_list
+	ionstate = list()
+	ionstate.len = ion.len
 
 /datum/ai_laws/proc/add_ion_law(law)
 	ion += law
+	ion.len += 1
 
 /datum/ai_laws/proc/clear_ion_laws()
 	qdel(ion)
 	ion = new()
+	ionstate = list()
 
 //
 // Inherent Laws
 // 
 /datum/ai_laws/proc/set_inherent_laws(law_list)
 	inherent = law_list
+	inherentstate = list()
+	inherentstate.len = inherent.len
 
 /datum/ai_laws/proc/add_inherent_law(law)
 	if (!(law in inherent)) // TODO: What does this mean? Why does all the other laws (hacked/ion/supplied) not use this?
 		inherent += law
+		inherentstate.len += 1
 
 /datum/ai_laws/proc/remove_inherent_law(number)
 	if(inherent.len && number > 0 && number <= inherent.len )
 		. = inherent[number]
 		inherent -= .
+		inherentstate[number] = null // may cause errors
+		//inherentstate.len -= 1 // probably not a good idea
 		return TRUE
 	return FALSE
 
 /datum/ai_laws/proc/clear_inherent_laws()
 	qdel(inherent)
 	inherent = list()
+	inherentstate = list()
 
 //
 // Supplied Laws
 // 
 /datum/ai_laws/proc/set_supplied_laws(law_list)
 	supplied = law_list
+	suppliedstate = list()
+	suppliedstate.len = supplied.len
 
 /datum/ai_laws/proc/add_supplied_law(number, law)
 	if(number <= 0) // No negatives or zero.
@@ -142,6 +164,7 @@
 
 	while (supplied.len < number )
 		supplied += ""
+		suppliedstate.len += 1
 
 	supplied[number] = law
 	remove_empty_supplied_laws()
@@ -158,7 +181,8 @@
 /datum/ai_laws/proc/clear_supplied_laws()
 	qdel(supplied)
 	supplied = list()
-
+	suppliedstate = list()
+	
 /// Removes all empty supplied laws that don't need to exist anymore.
 /datum/ai_laws/proc/remove_empty_supplied_laws()
 	var/last_nonempty_index
@@ -170,7 +194,8 @@
 	// Every law higher than the non-empty one is empty.
 	for(var/index = last_nonempty_index + 1, index <= supplied.len, index++)
 		supplied -= supplied[index]
-
+		suppliedstate[index] = null // may cause errors
+		//suppliedstate.len -= 1 // probably not a good idea
 //
 // Unsorted/General
 // 
