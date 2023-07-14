@@ -651,10 +651,16 @@
 	..()
 
 /obj/item/aiModule/remove/install(datum/ai_laws/law_datum, mob/user)
-	if(lawpos > (law_datum.get_law_amount(list(LAW_INHERENT = 1, LAW_SUPPLIED = 1))))
-		to_chat(user, span_warning("There is no law [lawpos] to delete!"))
+	if(lawpos <= law_datum.inherent.len) // Deleting an inherent law.
+		..()
 		return
-	..()
+	if(lawpos <= law_datum.supplied.len) // Deleting an supplied law which ..
+		if(length(law_datum.supplied[lawpos]) > 0) // .. is not empty.
+			..()
+			return
+	
+	to_chat(user, span_warning("There is no law [lawpos] to delete!"))
+	return
 
 /obj/item/aiModule/remove/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
 	..()

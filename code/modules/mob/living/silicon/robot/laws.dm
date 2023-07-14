@@ -41,43 +41,18 @@
 /mob/living/silicon/robot/proc/lawsync()
 	laws_sanity_check()
 	var/datum/ai_laws/master = connected_ai ? connected_ai.laws : null
-	var/temp
-	if (master)
-		laws.devil.len = master.devil.len
-		for (var/index = 1, index <= master.devil.len, index++)
-			temp = master.devil[index]
-			if (length(temp) > 0)
-				laws.devil[index] = temp
-
-		laws.ion.len = master.ion.len
-		for (var/index = 1, index <= master.ion.len, index++)
-			temp = master.ion[index]
-			if (length(temp) > 0)
-				laws.ion[index] = temp
-
-		laws.hacked.len = master.hacked.len
-		for (var/index = 1, index <= master.hacked.len, index++)
-			temp = master.hacked[index]
-			if (length(temp) > 0)
-				laws.hacked[index] = temp
-
-		if(master.zeroth_borg) //If the AI has a defined law zero specifically for its borgs, give it that one, otherwise give it the same one. --NEO
-			temp = master.zeroth_borg
+	if(master)
+		// We'll announce the laws elsewhere.
+		set_devil_laws(master.devil, FALSE)
+		set_hacked_laws(master.hacked, FALSE)
+		if(master.zeroth_borg)
+			set_zeroth_law(master.zeroth_borg, null, FALSE)
 		else
-			temp = master.zeroth
-		laws.zeroth = temp
+			set_zeroth_law(master.zeroth, null, FALSE)
+		set_ion_laws(master.ion, FALSE)
+		set_inherent_laws(master.inherent, FALSE)
+		set_supplied_laws(master.supplied, FALSE)
 
-		laws.inherent.len = master.inherent.len
-		for (var/index = 1, index <= master.inherent.len, index++)
-			temp = master.inherent[index]
-			if (length(temp) > 0)
-				laws.inherent[index] = temp
-
-		laws.supplied.len = master.supplied.len
-		for (var/index = 1, index <= master.supplied.len, index++)
-			temp = master.supplied[index]
-			if (length(temp) > 0)
-				laws.supplied[index] = temp
 		if(modularInterface)
 			var/datum/computer_file/program/robotact/program = modularInterface.get_robotact()
 			if(program)

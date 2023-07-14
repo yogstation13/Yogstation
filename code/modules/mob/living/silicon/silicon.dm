@@ -30,13 +30,6 @@
 	var/list/alarm_types_show = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 	var/list/alarm_types_clear = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 
-	var/devilcheck[1]
-	var/zerothcheck = null
-	var/hackedcheck[1]
-	var/ioncheck[1]
-	var/inherentcheck[1]
-	var/suppliedcheck[1]
-
 	var/sensors_on = 0
 	var/med_hud = DATA_HUD_MEDICAL_ADVANCED //Determines the med hud to use
 	var/sec_hud = DATA_HUD_SECURITY_ADVANCED //Determines the sec hud to use
@@ -175,95 +168,50 @@
 	return FALSE
 
 /mob/living/silicon/Topic(href, href_list)
-	if (href_list["lawdevil"])
+	if(href_list["lawdevil"])
 		var/index = text2num(href_list["lawdevil"])
-		//laws.flip_devil_state(index)
+		laws.flip_devil_state(index)
 		checklaws()
 
 	if(href_list["lawzeroth"])
-		switch(zerocheck)
-			if("Yes")
-				zerocheck = "No"
-			if("No")
-				zerocheck = "Yes"
+		laws.flip_zeroth_state()
 		checklaws()
 
 	if (href_list["lawhacked"])
 		var/index = text2num(href_list["lawhacked"])
-		//laws.flip_hacked_state(index)
+		laws.flip_hacked_state(index)
 		checklaws()
 
 	if (href_list["lawion"])
 		var/index = text2num(href_list["lawion"])
-		//laws.flip_hacked_state(index)
+		laws.flip_ion_state(index)
 		checklaws()
-
+	
 	if (href_list["lawinherent"])
 		var/index = text2num(href_list["lawinherent"])
-	//	laws.flip_inherent_state(index)
+		laws.flip_inherent_state(index)
 		checklaws()
 
 	if (href_list["lawsupplied"])
 		var/index = text2num(href_list["lawsupplied"])
-	//	laws.flip_inherent_state(index)
+		laws.flip_supplied_state(index)
 		checklaws()
 
-	/*
-	if (href_list["lawc"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawc"])
-		switch(lawcheck[L+1])
-			if ("Yes")
-				lawcheck[L+1] = "No"
-			if ("No")
-				lawcheck[L+1] = "Yes"
-		checklaws()
-
-	if (href_list["lawi"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawi"])
-		switch(ioncheck[L])
-			if ("Yes")
-				ioncheck[L] = "No"
-			if ("No")
-				ioncheck[L] = "Yes"
-		checklaws()
-
-	if (href_list["lawh"])
-		var/L = text2num(href_list["lawh"])
-		switch(hackedcheck[L])
-			if ("Yes")
-				hackedcheck[L] = "No"
-			if ("No")
-				hackedcheck[L] = "Yes"
-		checklaws()
-
-	if (href_list["lawdevil"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawdevil"])
-		switch(devilcheck[L])
-			if ("Yes")
-				devilcheck[L] = "No"
-			if ("No")
-				devilcheck[L] = "Yes"
-		checklaws()
-
-	*/
-
-	if (href_list["laws"]) // With how my law selection code works, I changed statelaws from a verb to a proc, and call it through my law selection panel. --NeoFite
+	if (href_list["laws"])
 		statelaws()
 
 	return
 
 /mob/living/silicon/proc/statelaws(force = 0)
+	laws_sanity_check()
 
 	//"radiomod" is inserted before a hardcoded message to change if and how it is handled by an internal radio.
 	say("[radiomod] Current Active Laws:")
-	//laws_sanity_check()
-	//laws.show_laws(world)
-	var/number = 1
 	sleep(1 SECONDS)
 
-	if (laws.devil && laws.devil.len)
+	if(laws.devil && laws.devil.len)
 		for(var/index = 1, index <= laws.devil.len, index++)
-			if (force || devilcheck[index] == "Yes")
+			if(force || laws.devilstate[index])
 				say("[radiomod] 666. [laws.devil[index]]")
 				sleep(1 SECONDS)
 
@@ -274,95 +222,74 @@
 	for (var/index = 1, index <= laws.hacked.len, index++)
 		var/law = laws.hacked[index]
 		var/num = ionnum()
-		if (length(law) > 0)
-			if (force || hackedcheck[index] == "Yes")
-				say("[radiomod] [num]. [law]")
-				sleep(1 SECONDS)
+		if(length(law) > 0 && (force || laws.hackedstate[index]) )
+			say("[radiomod] [num]. [law]")
+			sleep(1 SECONDS)
 
 	for (var/index = 1, index <= laws.ion.len, index++)
 		var/law = laws.ion[index]
 		var/num = ionnum()
-		if (length(law) > 0)
-			if (force || ioncheck[index] == "Yes")
-				say("[radiomod] [num]. [law]")
-				sleep(1 SECONDS)
-
-	for (var/index = 1, index <= laws.inherent.len, index++)
-		var/law = laws.inherent[index]
-
-		if (length(law) > 0)
-			if (force || lawcheck[index+1] == "Yes")
-				say("[radiomod] [number]. [law]")
-				number++
-				sleep(1 SECONDS)
-
-	for (var/index = 1, index <= laws.supplied.len, index++)
-		var/law = laws.supplied[index]
-
-		if (length(law) > 0)
-			if(lawcheck.len >= number+1)
-				if (force || lawcheck[number+1] == "Yes")
-					say("[radiomod] [number]. [law]")
-					number++
-					sleep(1 SECONDS)
-
-
-/// A link-driven interface to state what laws the statelaws() proc will share with the crew.
-/mob/living/silicon/proc/checklaws()
-	var/list = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
-
-	if(laws.devil && laws.devil.len)
-		for(var/index = 1, index <= laws.devil.len, index++)
-			var word = devilindex[index]
-			if(!word)
-				word = "No"
-			list += {"<A href='byond://?src=[REF(src)];lawdevil=[index]'>[word] 666:</A> <font color='#cc5500'>[laws.devil[index]]</font><BR>"}
-
-	if (laws.zeroth)
-		var word = hackedcheck[index]
-		if(!word)
-			word = "No"
-		list += {"<A href='byond://?src=[REF(src)];lawzeroth=1'>[word] 0:</A> <font color='#ff0000'><b>[laws.zeroth]</b></font><BR>"}
-
-	for (var/index = 1, index <= laws.hacked.len, index++)
-		var/law = laws.hacked[index]
-		if (length(law) > 0)
-			var word = hackedcheck[index]
-			if(!word)
-				word = "No"
-			list += {"<A href='byond://?src=[REF(src)];lawhacked=[index]'>[word] [ionnum()]:</A> <font color='#660000'>[law]</font><BR>"}
-			//hackedcheck.len += 1
-
-	for (var/index = 1, index <= laws.ion.len, index++)
-		var/law = laws.ion[index]
-		if (length(law) > 0)
-			var word = ioncheck[index]
-			if(!word)
-				word = "Yes"
-			list += {"<A href='byond://?src=[REF(src)];lawion=[index]'>[word] [ionnum()]:</A> <font color='#547DFE'>[law]</font><BR>"}
-			//ioncheck.len += 1
+		if(length(law) > 0 && (force || laws.ionstate[index]) )
+			say("[radiomod] [num]. [law]")
+			sleep(1 SECONDS)
 
 	var/number = 1
 	for (var/index = 1, index <= laws.inherent.len, index++)
 		var/law = laws.inherent[index]
+		if(length(law) > 0 && (force || laws.inherentstate[index]) )
+			say("[radiomod] [number]. [law]")
+			number++
+			sleep(1 SECONDS)
+
+	for (var/index = 1, index <= laws.supplied.len, index++)
+		var/law = laws.supplied[index]
+		if(length(law) > 0 && (force || laws.suppliedstate[index]) )
+			say("[radiomod] [number]. [law]")
+			number++
+			sleep(1 SECONDS)
+
+/// A link-driven interface to state what laws the statelaws() proc will share with the crew.
+/mob/living/silicon/proc/checklaws()
+	laws_sanity_check()
+	var/list = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
+
+	if (laws.devil && laws.devil.len)
+		for(var/index = 1, index <= laws.devil.len, index++)
+			var word = laws.devilstate[index] ? "Yes" : "No"
+			list += {"<A href='byond://?src=[REF(src)];lawdevil=[index]'>[word] 666:</A> <font color='#cc5500'>[laws.devil[index]]</font><BR>"}
+
+	if (laws.zeroth)
+		var word = laws.zerothstate ? "Yes" : "No"
+		list += {"<A href='byond://?src=[REF(src)];lawzeroth=0'>[word] 0:</A> <font color='#ff0000'><b>[laws.zeroth]</b></font><BR>"}
+
+	for (var/index = 1, index <= laws.hacked.len, index++)
+		var/law = laws.hacked[index]
 		if (length(law) > 0)
-			var word = inherentcheck[index]
-			if(!word)
-				word = "Yes"
-			list += {"<A href='byond://?src=[REF(src)];lawinherent=[index]'>[word] [number]:</A> [law]<BR>"}
+			var word = laws.hackedstate[index] ? "Yes" : "No"
+			list += {"<A href='byond://?src=[REF(src)];lawhacked=[index]'>[word] [ionnum()]:</A> <font color='#660000'>[law]</font><BR>"}
+
+	for (var/index = 1, index <= laws.ion.len, index++)
+		var/law = laws.ion[index]
+		if(length(law) > 0)
+			var word = laws.ionstate[index] ? "Yes" : "No"
+			list += {"<A href='byond://?src=[REF(src)];lawion=[index]'>[word] [ionnum()]:</A> <font color='#547DFE'>[law]</font><BR>"}
+
+	var/number = 1
+	for (var/index = 1, index <= laws.inherent.len, index++)
+		var/law = laws.inherent[index]
+		if(length(law) > 0)
+			var word = laws.inherentstate[index] ? "Yes" : "No"
+			list += {"<A href='byond://?src=[REF(src)];lawinherent=[number]'>[word] [number]:</A> [law]<BR>"}
 			number++
 
 	for (var/index = 1, index <= laws.supplied.len, index++)
 		var/law = laws.supplied[index]
-		if (length(law) > 0)
-			var word = suppliedcheck[index]
-			if(!word)
-				word = "Yes"
-			list += {"<A href='byond://?src=[REF(src)];lawsupplied=[index]'>[word] [number]:</A> <font color='#990099'>[law]</font><BR>"}
+		if(length(law) > 0)
+			var word = laws.suppliedstate[index] ? "Yes" : "No"
+			list += {"<A href='byond://?src=[REF(src)];lawsupplied=[number]'>[word] [number]:</A> <font color='#990099'>[law]</font><BR>"}
 			number++
 
 	list += {"<br><br><A href='byond://?src=[REF(src)];laws=1'>State Laws</A></BODY></HTML>"}
-
 	usr << browse(list, "window=laws")
 
 /mob/living/silicon/proc/ai_roster()
@@ -480,7 +407,6 @@
 		var/law = laws.hacked[index]
 		if (length(law) > 0)
 			.+= "<b><font color='#660000'>[ionnum()]:</b>	 [law]</font>"
-			hackedcheck.len += 1
 
 	for (var/index = 1, index <= laws.ion.len, index++)
 		var/law = laws.ion[index]
@@ -491,14 +417,12 @@
 	for (var/index = 1, index <= laws.inherent.len, index++)
 		var/law = laws.inherent[index]
 		if (length(law) > 0)
-			lawcheck.len += 1
 			.+= "<b>[number]:</b> [law]"
 			number++
 
 	for (var/index = 1, index <= laws.supplied.len, index++)
 		var/law = laws.supplied[index]
 		if (length(law) > 0)
-			lawcheck.len += 1
 			.+= "<b>[number]:</b> [law]"
 			number++
 	.+= ""
