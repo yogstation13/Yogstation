@@ -652,7 +652,7 @@
 	"...that I shall impart upon the water I bless...",
 	)
 	invoke_msg = "So that light may fill all!"
-	favor_cost = 600
+	favor_cost = 400
 
 /datum/religion_rites/suffusion/invoke_effect(mob/living/user, atom/movable/religious_tool)
 	if(GLOB.religious_sect)
