@@ -182,7 +182,7 @@
 		owner.visible_message(span_warning("[owner] turns around and slams [L] against the ground!"))
 		owner.setDir(turn(owner.dir,180))
 		if(L.mobility_flags & MOBILITY_STAND)
-			animate(L, transform = matrix(180, MATRIX_ROTATE), time = 0 SECONDS, loop = 0)
+			animate(L, transform = matrix(180, MATRIX_ROTATE))
 		if(isanimal(L))
 			L.adjustBruteLoss(20)
 			if(L.stat == DEAD)
@@ -192,8 +192,7 @@
 			L.adjustBruteLoss(6)
 		if(issilicon(L))
 			L.adjustBruteLoss(8)
-		spawn(10)
-		wakeup(L)
+		addtimer(CALLBACK(src, PROC_REF(wakeup), L), 1 SECONDS)
 		
 /datum/action/cooldown/seismic/righthook
 	name = "Right Hook"
