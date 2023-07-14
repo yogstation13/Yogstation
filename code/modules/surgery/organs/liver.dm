@@ -129,6 +129,7 @@
 	toxTolerance = -1
 	toxLethality = 0
 	status = ORGAN_ROBOTIC
+	process_flags = SYNTHETIC
 
 /obj/item/organ/liver/cybernetic/upgraded/ipc/emp_act(severity)
 	if(prob(10))

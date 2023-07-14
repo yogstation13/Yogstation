@@ -165,12 +165,12 @@
 	if(LAZYLEN(user.mind?.antag_datums) && severity > WOUND_SEVERITY_MODERATE) //antagonists can heal wounds better with ghetto alternatives, since they don't have as much access to proper medical treatment
 		self_penalty_mult = 1
 	user.visible_message(span_warning("[user] begins aiming [lasgun] directly at [victim]'s [limb.name]..."), span_userdanger("You begin aiming [lasgun] directly at [user == victim ? "your" : "[victim]'s"] [limb.name]..."))
-	playsound(lasgun, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff = 1)
+	playsound(lasgun, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff_exponent = 1)
 
 	if(!do_after(user, base_treat_time  * self_penalty_mult, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
-	playsound(lasgun, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff = 1)
+	playsound(lasgun, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff_exponent = 1)
 	var/damage = lasgun.chambered.BB.damage
 	lasgun.chambered.BB.bare_wound_bonus = 0
 	lasgun.chambered.BB.wound_bonus -= 30
@@ -189,12 +189,12 @@
 		self_penalty_mult = 0.5
 		improv_penalty_mult = 1
 	user.visible_message(span_danger("[user] begins cauterizing [victim]'s [limb.name] with [I]..."), span_warning("You begin cauterizing [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
-	playsound(I, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff = 1)
+	playsound(I, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff_exponent = 1)
 
 	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult * I.toolspeed, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
-	playsound(I, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff = 1)
+	playsound(I, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff_exponent = 1)
 	user.visible_message(span_green("[user] cauterizes some of the bleeding on [victim]."), span_green("You cauterize some of the bleeding on [victim]."))
 	limb.receive_damage(burn = 2 + severity, wound_bonus = CANT_WOUND)
 	if(prob(30))

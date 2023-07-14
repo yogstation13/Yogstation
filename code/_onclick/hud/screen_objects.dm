@@ -15,8 +15,15 @@
 	speech_span = SPAN_ROBOT
 	vis_flags = VIS_INHERIT_PLANE
 	appearance_flags = APPEARANCE_UI
-	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
-	var/datum/hud/hud = null // A reference to the owner HUD, if any.
+	/// A reference to the object in the slot. Grabs or items, generally.
+	var/obj/master = null
+	/// A reference to the owner HUD, if any.
+	VAR_PRIVATE/datum/hud/hud = null
+
+/atom/movable/screen/New(datum/hud/new_hud)
+	. = ..()
+	if(istype(new_hud))
+		hud = new_hud
 
 /atom/movable/screen/Destroy()
 	master = null
@@ -329,12 +336,8 @@
 /atom/movable/screen/mov_intent/Click()
 	toggle(usr)
 
-/atom/movable/screen/mov_intent/update_icon(mob/user)
-	if(!user && hud)
-		user = hud.mymob
-	if(!user)
-		return
-	switch(user.m_intent)
+/atom/movable/screen/mov_intent/update_icon()
+	switch(hud?.mymob?.m_intent)
 		if(MOVE_INTENT_WALK)
 			icon_state = "walking"
 		if(MOVE_INTENT_RUN)
@@ -355,13 +358,8 @@
 		return
 	usr.stop_pulling()
 
-/atom/movable/screen/pull/update_icon(mob/mymob)
-	if(!mymob)
-		return
-	if(mymob.pulling)
-		icon_state = "pull"
-	else
-		icon_state = "pull0"
+/atom/movable/screen/pull/update_icon()
+	icon_state = "[initial(icon_state)][hud?.mymob?.pulling ? null : 0]"
 
 /atom/movable/screen/resist
 	name = "resist"
@@ -387,14 +385,12 @@
 		var/mob/living/L = usr
 		L.lay_down()
 
-/atom/movable/screen/rest/update_icon(mob/mymob)
-	if(!isliving(mymob))
+/atom/movable/screen/rest/update_icon()
+	var/mob/living/user = hud?.mymob
+	if(!istype(user))
 		return
-	var/mob/living/L = mymob
-	if(!L.resting)
-		icon_state = "act_rest"
-	else
-		icon_state = "act_rest0"
+	icon_state = "[initial(icon_state)][user.resting ? 0 : null]"
+	return
 
 /atom/movable/screen/storage
 	name = "storage"
@@ -434,7 +430,7 @@
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
-	var/selecting = BODY_ZONE_CHEST
+	var/overlay_icon = 'icons/mob/screen_gen.dmi'
 	var/static/list/hover_overlays_cache = list()
 	var/hovering
 
@@ -452,6 +448,7 @@
 	return set_selected_zone(choice, usr)
 
 /atom/movable/screen/zone_sel/MouseEntered(location, control, params)
+	. = ..()
 	MouseMove(location, control, params)
 
 /atom/movable/screen/zone_sel/MouseMove(location, control, params)
@@ -527,30 +524,28 @@
 				return BODY_ZONE_HEAD
 
 /atom/movable/screen/zone_sel/proc/set_selected_zone(choice, mob/user)
-	if(isobserver(user))
+	if(user != hud?.mymob)
 		return
 
-	if(choice != selecting)
-		selecting = choice
-		update_icon(usr)
-	return 1
+	if(choice != hud.mymob.zone_selected)
+		hud.mymob.zone_selected = choice
+		update_icon()
+		SEND_SIGNAL(user, COMSIG_MOB_SELECTED_ZONE_SET, choice)
 
-/atom/movable/screen/zone_sel/update_icon(mob/user)
+	return TRUE
+
+/atom/movable/screen/zone_sel/update_icon()
+	if(!hud?.mymob)
+		return
 	cut_overlays()
-	add_overlay(mutable_appearance('icons/mob/screen_gen.dmi', "[selecting]"))
-	user.zone_selected = selecting
+	add_overlay(mutable_appearance(overlay_icon, "[hud.mymob.zone_selected]"))
 
 /atom/movable/screen/zone_sel/alien
 	icon = 'icons/mob/screen_alien.dmi'
-
-/atom/movable/screen/zone_sel/alien/update_icon(mob/user)
-	cut_overlays()
-	add_overlay(mutable_appearance('icons/mob/screen_alien.dmi', "[selecting]"))
-	user.zone_selected = selecting
+	overlay_icon = 'icons/mob/screen_alien.dmi'
 
 /atom/movable/screen/zone_sel/robot
 	icon = 'icons/mob/screen_cyborg.dmi'
-
 
 /atom/movable/screen/flash
 	name = "flash"

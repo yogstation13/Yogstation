@@ -477,3 +477,23 @@
 	strengthdiv = 1
 	noblium_suppression = FALSE
 	mob_react = FALSE // no
+
+/datum/chemical_reaction/frigorific_mixture
+	name = /datum/reagent/frigorific_mixture
+	id = /datum/reagent/frigorific_mixture
+	results = list(/datum/reagent/frigorific_mixture = 2)
+	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/ice = 1)
+
+/datum/chemical_reaction/frigorific_mixture/on_reaction(datum/reagents/holder, created_volume)
+	holder.chem_temp = 20 // cools the fuck down
+	return
+
+/datum/chemical_reaction/frigorific_mixture_water
+	name = "ephemeral salty reaction"
+	id = "frigorific_mixture_water"
+	results = list(/datum/reagent/frigorific_mixture = 1)
+	required_reagents = list(/datum/reagent/frigorific_mixture = 1, /datum/reagent/water = 1)
+	mob_react = FALSE
+
+/datum/chemical_reaction/frigorific_mixture_water/on_reaction(datum/reagents/holder, created_volume)
+	holder.chem_temp = max(holder.chem_temp - 10*created_volume,0)

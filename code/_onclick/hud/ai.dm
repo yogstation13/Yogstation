@@ -192,7 +192,7 @@
 	var/widescreen = owner?.client?.prefs?.read_preference(/datum/preference/toggle/widescreen)
 
 // Language menu
-	using = new /atom/movable/screen/language_menu
+	using = new /atom/movable/screen/language_menu(src)
 	if(widescreen)
 		using.screen_loc = ui_ai_language_menu_widescreen
 	else
@@ -200,12 +200,12 @@
 	static_inventory += using
 
 //AI core
-	using = new /atom/movable/screen/ai/aicore()
+	using = new /atom/movable/screen/ai/aicore(src)
 	using.screen_loc = ui_ai_core
 	static_inventory += using
 
 //Dashboard
-	using = new /atom/movable/screen/ai/dashboard
+	using = new /atom/movable/screen/ai/dashboard(src)
 	if(widescreen)
 		using.screen_loc = ui_ai_dashboard_widescreen
 	else
@@ -214,72 +214,72 @@
 	static_inventory += using
 
 //Camera list
-	using = new /atom/movable/screen/ai/camera_list()
+	using = new /atom/movable/screen/ai/camera_list(src)
 	using.screen_loc = ui_ai_camera_list
 	static_inventory += using
 
 //Track
-	using = new /atom/movable/screen/ai/camera_track()
+	using = new /atom/movable/screen/ai/camera_track(src)
 	using.screen_loc = ui_ai_track_with_camera
 	static_inventory += using
 
 //Camera light
-	using = new /atom/movable/screen/ai/camera_light()
+	using = new /atom/movable/screen/ai/camera_light(src)
 	using.screen_loc = ui_ai_camera_light
 	static_inventory += using
 
 //Crew Monitoring
-	using = new /atom/movable/screen/ai/crew_monitor()
+	using = new /atom/movable/screen/ai/crew_monitor(src)
 	using.screen_loc = ui_ai_crew_monitor
 	static_inventory += using
 
 //Crew Manifest
-	using = new /atom/movable/screen/ai/crew_manifest()
+	using = new /atom/movable/screen/ai/crew_manifest(src)
 	using.screen_loc = ui_ai_crew_manifest
 	static_inventory += using
 
 //Alerts
-	using = new /atom/movable/screen/ai/alerts()
+	using = new /atom/movable/screen/ai/alerts(src)
 	using.screen_loc = ui_ai_alerts
 	static_inventory += using
 
 //Announcement
-	using = new /atom/movable/screen/ai/announcement()
+	using = new /atom/movable/screen/ai/announcement(src)
 	using.screen_loc = ui_ai_announcement
 	static_inventory += using
 
 //Shuttle
-	using = new /atom/movable/screen/ai/call_shuttle()
+	using = new /atom/movable/screen/ai/call_shuttle(src)
 	using.screen_loc = ui_ai_shuttle
 	static_inventory += using
 
 //Laws
-	using = new /atom/movable/screen/ai/state_laws()
+	using = new /atom/movable/screen/ai/state_laws(src)
 	using.screen_loc = ui_ai_state_laws
 	static_inventory += using
 
 //Integrated Tablet
-	using = new /atom/movable/screen/ai/mod_pc()
+	using = new /atom/movable/screen/ai/mod_pc(src)
 	using.screen_loc = ui_ai_pda_send
 	static_inventory += using
 
 //Take image
-	using = new /atom/movable/screen/ai/image_take()
+	using = new /atom/movable/screen/ai/image_take(src)
 	using.screen_loc = ui_ai_take_picture
 	static_inventory += using
 
 //View images
-	using = new /atom/movable/screen/ai/image_view()
+	using = new /atom/movable/screen/ai/image_view(src)
 	using.screen_loc = ui_ai_view_images
 	static_inventory += using
 
 //Medical/Security sensors
-	using = new /atom/movable/screen/ai/sensors()
+	using = new /atom/movable/screen/ai/sensors(src)
 	using.screen_loc = ui_ai_sensor
 	static_inventory += using
 
 //Multicamera mode
-	using = new /atom/movable/screen/ai/multicam()
+	using = new /atom/movable/screen/ai/multicam(src)
 	if(widescreen)
 		using.screen_loc = ui_ai_multicam_widescreen
 	else
@@ -287,7 +287,7 @@
 	static_inventory += using
 
 //Add multicamera camera
-	using = new /atom/movable/screen/ai/add_multicam()
+	using = new /atom/movable/screen/ai/add_multicam(src)
 	if(widescreen)
 		using.screen_loc = ui_ai_add_multicam_widescreen
 	else

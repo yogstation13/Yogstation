@@ -118,7 +118,7 @@
 			new /obj/item/storage/box/syndie_kit/emp(src) //2 TC
 
 		if("sniper") //28 TC, you only get 11 shots total with the sniper and 14 with the revolver. A mini-ebow would probably be better than the sniper in a normal traitor game
-			new /obj/item/gun/ballistic/automatic/sniper_rifle(src) //12 TC, nukies only
+			new /obj/item/gun/ballistic/rifle/sniper_rifle(src) //12 TC, nukies only
 			new /obj/item/ammo_box/magazine/sniper_rounds/penetrator(src) //5 TC, nukies only
 			new /obj/item/gun/ballistic/revolver(src) //6 TC
 			new /obj/item/ammo_box/a357/heartpiercer(src) //1 TC
