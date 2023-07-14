@@ -89,5 +89,3 @@
 	COOLDOWN_DECLARE(bleeding_message_cd)
 
 	var/list/image/infra_images
-
-	zone_selected = BODY_ZONE_CHEST
