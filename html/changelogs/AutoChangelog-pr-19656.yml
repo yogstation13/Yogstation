@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "revs announce when all heads die/disconnect the first time instead of when all head revs disconnect whoops"
