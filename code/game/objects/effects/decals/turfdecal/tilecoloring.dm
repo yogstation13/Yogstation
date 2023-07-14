@@ -343,6 +343,48 @@
 	icon_state = "diagonal_edge"
 	name = "dark diagonal edge"
 
+/// Chemistry Orange tiles
+
+/obj/effect/turf_decal/tile/chemorange
+	color = "#F29A4D"
+	alpha = 220
+
+/obj/effect/turf_decal/tile/chemorange/opposingcorners
+	icon_state = "tile_opposing_corners"
+	name = "opposing orange corners"
+
+/obj/effect/turf_decal/tile/chemorange/half
+	icon_state = "tile_half"
+	name = "orange half"
+
+/obj/effect/turf_decal/tile/chemorange/half/contrasted
+	icon_state = "tile_half_contrasted"
+	name = "contrasted orange half"
+
+/obj/effect/turf_decal/tile/chemorange/anticorner
+	icon_state = "tile_anticorner"
+	name = "orange anticorner"
+
+/obj/effect/turf_decal/tile/chemorange/anticorner/contrasted
+	icon_state = "tile_anticorner_contrasted"
+	name = "contrasted orange anticorner"
+
+/obj/effect/turf_decal/tile/chemorange/fourcorners
+	icon_state = "tile_fourcorners"
+	name = "orange fourcorners"
+
+/obj/effect/turf_decal/tile/chemorange/full
+	icon_state = "tile_full"
+	name = "orange full"
+
+/obj/effect/turf_decal/tile/chemorange/diagonal_centre
+	icon_state = "diagonal_centre"
+	name = "orange diagonal centre"
+
+/obj/effect/turf_decal/tile/chemorange/diagonal_edge
+	icon_state = "diagonal_edge"
+	name = "orange diagonal edge"
+
 /// Weird snowflake ones
 
 /obj/effect/turf_decal/tile/bar
