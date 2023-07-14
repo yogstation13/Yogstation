@@ -510,6 +510,11 @@
 	name = "'CommunistOS' Core AI Module"
 	law_id = "commie"
 
+// Waffle House Host
+/obj/item/aiModule/core/full/wafflehouse
+	name = "'Waffle House Host' Core AI Module"
+	law_id = "wafflehouse"
+
 //
 // Supplied
 //
