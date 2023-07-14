@@ -878,6 +878,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"xf" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
+/turf/closed/wall,
+/area/engine/engineering)
 "xw" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/structure/lattice/catwalk,
@@ -1216,11 +1220,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
-"Hi" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/turf/open/floor/plating,
 /area/engine/engineering)
 "Hj" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1673,11 +1672,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"UW" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/shutter,
-/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "Vc" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -2073,7 +2067,7 @@ LU
 MT
 mI
 Ju
-UW
+xf
 qR
 Bg
 OD
@@ -2125,7 +2119,7 @@ aW
 UM
 Et
 fK
-Hi
+xf
 xw
 PK
 PK
