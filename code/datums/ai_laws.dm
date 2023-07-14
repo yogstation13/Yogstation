@@ -30,6 +30,13 @@
 	var/list/inherent = list()
 	var/list/supplied = list()
 
+	var/list/devilstate = list()
+	var/zerothstate = null
+	var/list/hackedstate = list()
+	var/list/ionstate = list()
+	var/list/inherentstate = list()
+	var/list/suppliedstate = list()
+
 /// Returns the lawset that has the same id as the given one.
 /datum/ai_laws/proc/lawid_to_type(lawid)
 	var/all_ai_laws = subtypesof(/datum/ai_laws)
