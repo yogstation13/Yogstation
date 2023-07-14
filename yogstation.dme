@@ -2554,6 +2554,7 @@
 #include "code\modules\mining\lavaland\necropolis_chests.dm"
 #include "code\modules\mining\lavaland\seismicarm.dm"
 #include "code\modules\mining\lavaland\world_anvil.dm"
+#include "code\modules\mining\lavaland\midasgauntlet.dm"
 #include "code\modules\mining\lavaland\ruins\gym.dm"
 #include "code\modules\mob\death.dm"
 #include "code\modules\mob\emote.dm"
