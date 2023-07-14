@@ -18665,18 +18665,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/storage)
-"fvU" = (
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_y = -32
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/obj/machinery/photocopier{
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "fvW" = (
 /turf/closed/wall/r_wall,
 /area/security/range)
@@ -43566,6 +43554,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"mqv" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/level_interface{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "mqE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -61376,6 +61373,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/range)
+"ruJ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/machinery/photocopier{
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "ruM" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -112941,9 +112947,9 @@ wtP
 mcV
 tfK
 gnS
-fvU
+ruJ
 mcV
-jdb
+mqv
 aoc
 tjs
 tCW
