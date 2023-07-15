@@ -515,6 +515,26 @@
 	if(remove_supplied_law(number))
 		return
 
+/datum/ai_laws/proc/remove_random_inherent_or_supplied_law()
+	var/inherent_count = inherent.len
+	var/supplied_count = supplied.len
+	if(!inherent_count && !supplied_count)
+		return
+
+	var/luck = rand(1, (inherent_count + supplied_count))
+	if(inherent_count > 0 && luck <= inherent.len )
+		remove_inherent_law(luck)
+	else
+		if(supplied_count > 0)
+			var/list/supplied_indexes = list()
+			for(var/index = 1, index <= supplied.len, index++)
+				var/law = supplied[index]
+				if(length(law) > 0)
+					supplied_indexes += index
+			if(supplied_indexes.len > 0)
+				var/index_to_remove = rand(1, supplied_indexes.len)
+				remove_supplied_law(supplied_indexes[index_to_remove])
+
 /datum/ai_laws/proc/show_laws(who)
 	var/list/printable_laws = get_law_list(include_zeroth = TRUE)
 	for(var/law in printable_laws)
