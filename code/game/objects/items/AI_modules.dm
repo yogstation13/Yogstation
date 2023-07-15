@@ -559,6 +559,13 @@ AI MODULES
 	name = "'Detective' Core AI Module"
 	law_id = "detective"
 
+
+/******************** Waffle House Host ************************/
+
+/obj/item/aiModule/core/full/wafflehouse
+	name = "'Waffle House Host' Core AI Module"
+	law_id = "wafflehouse"
+
 	
 /******************** Freeform Core ******************/
 
