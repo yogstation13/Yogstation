@@ -162,6 +162,7 @@
 	has_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
 	area_flags = FLORA_ALLOWED
+	blob_allowed = FALSE
 
 /area/icemoon/surface
 	name = "Icemoon"
@@ -173,7 +174,6 @@
 	power_light = FALSE
 	requires_power = TRUE
 	ambience_index = AMBIENCE_MINING
-	blob_allowed = FALSE
 
 /area/icemoon/surface/outdoors
 	name = "Icemoon Wastes"
