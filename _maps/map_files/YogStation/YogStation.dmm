@@ -66048,10 +66048,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"vTm" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "vTB" = (
 /obj/machinery/shower{
 	dir = 4
@@ -68437,6 +68433,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"wPh" = (
+/obj/structure/closet/secure_closet/freezer/fridge/open,
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "wPn" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -101000,7 +101000,7 @@ gXs
 aiT
 elb
 vWn
-vTm
+wPh
 jmq
 tdO
 fBv
