@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Removing a container from a IV drip while it is attached now properly detaches them."
-  - tweak: "Cyborgs can interact with IV drips more. Real hands are still needed to put things on the drip though!"
-  - spellcheck: "Punctuation for detaching people from IV drips."
