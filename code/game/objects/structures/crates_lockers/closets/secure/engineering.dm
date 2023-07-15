@@ -96,5 +96,6 @@
 	new /obj/item/clothing/head/hardhat/atmos(src)
 	new /obj/item/clothing/glasses/meson/engine/tray(src)
 	new /obj/item/clothing/gloves/atmos(src)
+	new /obj/item/clothing/mask/gas/atmos(src)
 	new /obj/item/extinguisher/advanced(src)
 	new /obj/item/barrier_taperoll/engineering(src)
