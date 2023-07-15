@@ -86,7 +86,7 @@
 	else
 		visible_message(span_notice("[src] refuses to eat \the [tasty]."))
 
-/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/vomit()
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/vomit()
 	var/turf/T = get_turf(src)
 	var/obj/item/reagent_containers/food/consumed = locate() in contents //Barf out a single food item from our guts
 	if (prob(50) && consumed)

@@ -292,7 +292,7 @@
 			victory()
 
 /obj/machinery/capture_the_flag/proc/victory()
-	for(var/mob/M in GLOB.mob_list)
+	for(var/mob/living/M as anything in GLOB.mob_list)
 		var/area/mob_area = get_area(M)
 		if(istype(mob_area, /area/ctf))
 			to_chat(M, "<span class='narsie [team_span]'>[team] team wins!</span>")
@@ -354,8 +354,7 @@
 	ctf_enabled = FALSE
 	arena_reset = FALSE
 	var/area/A = get_area(src)
-	for(var/i in GLOB.mob_list)
-		var/mob/M = i
+	for(var/mob/living/M as anything in GLOB.mob_list)
 		if((get_area(A) == A) && (M.ckey in team_members))
 			M.dust()
 	team_members.Cut()

@@ -366,8 +366,8 @@
 	projectile_type = /obj/item/projectile/bullet/reusable/arrow/supermatter
 
 /obj/item/ammo_casing/reusable/arrow/supermatter/proc/disintigrate(atom/dusting)
-	if(ismob(dusting))
-		var/mob/ded = dusting
+	if(isliving(dusting))
+		var/mob/living/ded = dusting
 		if(ded.status_flags & GODMODE)
 			return FALSE
 		dusting.visible_message(span_danger("As [ded] is impacted by [src], [ded.p_their()] body starts to glow and bursts into flames before flashing into dust!"),\
