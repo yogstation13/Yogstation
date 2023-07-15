@@ -41,7 +41,7 @@
 					to_chat(H, span_warning("You feel [pick("full", "nauseated", "sweaty", "weak", "tired", "short on breath", "uneasy")]."))
 			if(3 to 4)
 				if(!sound)
-					H.playsound_local(H, 'sound/health/slowbeat.ogg',40,0, channel = CHANNEL_HEARTBEAT)
+					H.playsound_local(H, 'sound/health/slowbeat.ogg',40,0, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
 					sound = TRUE
 				if(prob(3))
 					to_chat(H, span_danger("You feel a sharp pain in your chest!"))

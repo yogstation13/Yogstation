@@ -140,6 +140,7 @@
 	desc = "A micro-cell, for IPC use only. Do not swallow."
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = SYNTHETIC
 
 /obj/item/organ/stomach/cell/emp_act(severity)
 	switch(severity)
