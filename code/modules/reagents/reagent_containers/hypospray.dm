@@ -573,7 +573,6 @@
 	name = "hypospray deluxe"
 	desc = "The Deluxe Hypospray can take larger-size vials. It also acts faster and delivers more reagents per spray."
 	icon_state = "hypo_deluxe"
-	max_container_size = WEIGHT_CLASS_SMALL
 	possible_transfer_amounts = list(1, 5)
 	inject_wait = 0 SECONDS
 	inject_self = 0 SECONDS
@@ -601,7 +600,6 @@
 	desc = "A highly advanced hypospray that uses bluespace magic to instantly inject people with reagents."
 	allowed_containers = list(/obj/item/reagent_containers)
 	container = /obj/item/reagent_containers/glass/bottle/adminordrazine
-	max_container_size = WEIGHT_CLASS_TINY
 	penetrates = TRUE
 	possible_transfer_amounts = list(0.1, 1, 5, 10, 15, 20, 30, 50, 100)
 	spray_wait = 0 SECONDS
@@ -612,8 +610,7 @@
 	desc = "A combat-ready deluxe hypospray that acts almost instantly."
 	icon_state = "hypo_syndie"
 	allowed_containers = list(/obj/item/reagent_containers/glass/bottle)
-	container = /obj/item/reagent_containers/glass/bottle/vial/large/combat
-	max_container_size = WEIGHT_CLASS_SMALL
+	container = /obj/item/reagent_containers/glass/bottle/vial/combat
 	inject_wait = 0 SECONDS
 	inject_self = 0 SECONDS
 	spray_wait = 0 SECONDS

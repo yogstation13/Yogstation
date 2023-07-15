@@ -299,12 +299,12 @@
 	req_access = list(ACCESS_MEDICAL)
 
 /obj/item/storage/lockbox/vialbox/hypo_deluxe/PopulateContents()
-	new /obj/item/reagent_containers/glass/bottle/vial/large/omnizine(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/brute(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/burn(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/tox(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/oxy(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/epi(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/omnizine(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/brute(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/burn(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/tox(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/oxy(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/epi/full(src)
 
 /obj/item/storage/lockbox/vialbox/virology
 	name = "virology vial box"
