@@ -398,31 +398,31 @@
 	.=..()
 	.+= ""
 	.+= "<h2>Current Silicon Laws:</h2>"
-	if (laws.devil && laws.devil.len)
+	if(laws.devil && laws.devil.len)
 		for(var/index = 1, index <= laws.devil.len, index++)
 			.+= "[laws.devil[index]]"
 
-	if (laws.zeroth)
+	if(laws.zeroth)
 		.+= "<b><font color='#ff0000'>0: [laws.zeroth]</font></b>"
 
-	for (var/index = 1, index <= laws.hacked.len, index++)
+	for(var/index = 1, index <= laws.hacked.len, index++)
 		var/law = laws.hacked[index]
 		if (length(law) > 0)
 			.+= "<b><font color='#660000'>[ionnum()]:</b> [law]</font>"
 
-	for (var/index = 1, index <= laws.ion.len, index++)
+	for(var/index = 1, index <= laws.ion.len, index++)
 		var/law = laws.ion[index]
 		if (length(law) > 0)
 			.+= "<b><font color='#547DFE'>[ionnum()]:</b> [law]</font>"
 
 	var/number = 1
-	for (var/index = 1, index <= laws.inherent.len, index++)
+	for(var/index = 1, index <= laws.inherent.len, index++)
 		var/law = laws.inherent[index]
 		if (length(law) > 0)
 			.+= "<b>[number]:</b> [law]"
 			number++
 
-	for (var/index = 1, index <= laws.supplied.len, index++)
+	for(var/index = 1, index <= laws.supplied.len, index++)
 		var/law = laws.supplied[index]
 		if (length(law) > 0)
 			.+= "<b><font color='#547DFE'>[number]:</b> [law]</font>"

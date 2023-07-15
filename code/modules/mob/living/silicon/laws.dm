@@ -295,8 +295,7 @@
 		if("edit_law")
 			var/index = text2num(params["index"])
 			var/type = params["type"]
-			
-			// TODO: Update /update_law_history() to handle this form of "editing" or uploading.
+
 			if(type == "devil" && owner.laws.devil.len >= index)
 				if(is_admin(usr)) // NOTE: We trust the admins not to abuse the ability to edit certain laws (devil & zeroth) because it is logged.
 					var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", owner.laws.devil[index]))
@@ -304,7 +303,7 @@
 						log_admin("[usr] has changed a law of [owner] from '[owner.laws.devil[index]]' to '[new_law]'")
 						message_admins("[usr] has changed a law of [owner] from '[owner.laws.devil[index]]' to '[new_law]'")
 						owner.edit_devil_law(index, new_law)
-						//owner.update_law_history(usr)
+						owner.update_law_history(usr) // Will be "ckey/youricname" as ghost/etc or "ckey/(new player)" in lobby; either way is okay! I think.
 				else
 					to_chat(usr, span_warning("You need to be an admin to edit devil laws."))
 					return
@@ -315,7 +314,7 @@
 						log_admin("[usr] has changed a law of [owner] from '[owner.laws.zeroth]' to '[new_law]'")
 						message_admins("[usr] has changed a law of [owner] from '[owner.laws.zeroth]' to '[new_law]'")
 						owner.set_zeroth_law(new_law)
-						//owner.update_law_history(usr)
+						owner.update_law_history(usr)
 				else
 					to_chat(usr, span_warning("You need to be an admin to edit a zeroth law."))
 					return
@@ -326,28 +325,28 @@
 					log_admin("[usr] has changed a law of [owner] from '[owner.laws.hacked[index]]' to '[new_law]'")
 					message_admins("[usr] has changed a law of [owner] from '[owner.laws.hacked[index]]' to '[new_law]'")
 					owner.edit_hacked_law(index, new_law)
-					//owner.update_law_history(usr)
+					owner.update_law_history(usr)
 			if(type == "ion" && owner.laws.ion.len >= index)
 				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", owner.laws.ion[index]))
 				if(new_law != "" && new_law != owner.laws.ion[index])
 					log_admin("[usr] has changed a law of [owner] from '[owner.laws.ion[index]]' to '[new_law]'")
 					message_admins("[usr] has changed a law of [owner] from '[owner.laws.ion[index]]' to '[new_law]'")
 					owner.edit_ion_law(index, new_law)
-					//owner.update_law_history(usr)
+					owner.update_law_history(usr)
 			if(type == "inherent" && owner.laws.inherent.len >= index)
 				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", owner.laws.inherent[index]))
 				if(new_law != "" && new_law != owner.laws.inherent[index])
 					log_admin("[usr] has changed a law of [owner] from '[owner.laws.inherent[index]]' to '[new_law]'")
 					message_admins("[usr] has changed a law of [owner] from '[owner.laws.inherent[index]]' to '[new_law]'")
 					owner.edit_inherent_law(index, new_law)
-					//owner.update_law_history(usr)
+					owner.update_law_history(usr)
 			if(type == "supplied" && owner.laws.supplied.len >= index)
 				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", owner.laws.supplied[index]))
 				if(new_law != "" && new_law != owner.laws.supplied[index])
 					log_admin("[usr] has changed a law of [owner] from '[owner.laws.supplied[index]]' to '[new_law]'")
 					message_admins("[usr] has changed a law of [owner] from '[owner.laws.supplied[index]]' to '[new_law]'")
 					owner.edit_supplied_law(index, new_law)
-					//owner.update_law_history(usr)
+					owner.update_law_history(usr)
 		
 		if("delete_law")
 			var/index = text2num(params["index"])
@@ -357,7 +356,7 @@
 					log_admin("[usr] has deleted a devil law of [owner]: '[owner.laws.devil[index]]'")
 					message_admins("[usr] has deleted a devil law of [owner]: '[owner.laws.devil[index]]'")
 					owner.remove_devil_law(index)
-					//owner.update_law_history(usr)
+					owner.update_law_history(usr)
 				else
 					to_chat(usr, span_warning("You need to be an admin to remove a devil law."))
 					return
@@ -366,7 +365,7 @@
 					log_admin("[usr] has deleted the zeroth law of [owner]: '[owner.laws.zeroth]'")
 					message_admins("[usr] has deleted the zeroth law of [owner]: '[owner.laws.zeroth]'")
 					owner.clear_zeroth_law()
-					//owner.update_law_history(usr)
+					owner.update_law_history(usr)
 				else
 					to_chat(usr, span_warning("You need to be an admin to remove the zeroth law."))
 					return
@@ -374,36 +373,22 @@
 				log_admin("[usr] has deleted an hacked law of [owner]: '[owner.laws.hacked[index]]'")
 				message_admins("[usr] has deleted an hacked law of [owner]: '[owner.laws.hacked[index]]'")
 				owner.remove_hacked_law(index)
-				//owner.update_law_history(usr)
+				owner.update_law_history(usr)
 			if(type == "ion" && owner.laws.ion.len >= index)
 				log_admin("[usr] has deleted an ion law of [owner]: '[owner.laws.ion[index]]'")
 				message_admins("[usr] has deleted an ion law of [owner]: '[owner.laws.ion[index]]'")
 				owner.remove_ion_law(index)
-				//owner.update_law_history(usr)
+				owner.update_law_history(usr)
 			if(type == "inherent" && owner.laws.inherent.len >= index)
 				log_admin("[usr] has deleted an inherent law of [owner]: '[owner.laws.inherent[index]]'")
 				message_admins("[usr] has deleted an inherent law of [owner]: '[owner.laws.inherent[index]]'")
 				owner.remove_inherent_law(index)
-				//owner.update_law_history(usr)
+				owner.update_law_history(usr)
 			if(type == "supplied" && owner.laws.supplied.len >= index && length(owner.laws.supplied[index]) > 0 )
 				log_admin("[usr] has deleted an supplied law of [owner]: '[owner.laws.supplied[index]]'")
 				message_admins("[usr] has deleted a supplied law of [owner]: '[owner.laws.supplied[index]]'")
 				owner.remove_supplied_law(index)
-				//owner.update_law_history(usr)
-
-		//
-		// "Statement Settings" section
-		// 
-
-		/*
-		if("transfer_laws")
-			var/datum/ai_laws/ALs = locate(params["transfer_laws"]) in (is_admin(usr) ? admin_laws : player_laws)
-			if(ALs)
-				log_admin("has transfered the [ALs.name] laws to [owner].")
-				message_admins("has transfered the [ALs.name] laws to [owner].")
-				ALs.sync(owner, 0)
-				current_view = 0
-		*/
+				owner.update_law_history(usr)
 
 		if("law_channel")
 			if(params["law_channel"] == "None")
@@ -435,22 +420,35 @@
 
 		if("add_zeroth_law")
 			if(zeroth_law && !owner.laws.zeroth && is_admin(usr))
+				log_admin("[usr] has added an zeroth law to [owner]: '[zeroth_law]'")
+				message_admins("[usr] has deleted a supplied law to [owner]: '[zeroth_law]'")
 				owner.set_zeroth_law(zeroth_law)
-		
+				owner.update_law_history(usr)
+
 		if("add_hacked_law")
 			if(hacked_law)
+				log_admin("[usr] has added a hacked law to [owner]: '[hacked_law]'")
+				message_admins("[usr] has deleted a hacked law to [owner]: '[hacked_law]'")
 				owner.add_hacked_law(hacked_law)
+				owner.update_law_history(usr)
 
 		if("add_ion_law")
 			if(ion_law)
+				log_admin("[usr] has added an ion law to [owner]: '[ion_law]'")
+				message_admins("[usr] has deleted an ion law to [owner]: '[ion_law]'")
 				owner.add_ion_law(ion_law)
+				owner.update_law_history(usr)
 
 		if("add_inherent_law")
 			if(inherent_law)
+				log_admin("[usr] has added an inherent law to [owner]: '[inherent_law]'")
+				message_admins("[usr] has deleted an inherent law to [owner]: '[inherent_law]'")
 				owner.add_inherent_law(inherent_law)
 
 		if("add_supplied_law")
 			if(supplied_law && supplied_law_position >= 15 && MIN_SUPPLIED_LAW_NUMBER <= MAX_SUPPLIED_LAW_NUMBER)
+				log_admin("[usr] has added a supplied law to [owner] at position [supplied_law_position]: '[inherent_law]'")
+				message_admins("[usr] has added a supplied law to [owner] at position [supplied_law_position]: '[inherent_law]'")
 				owner.add_supplied_law(supplied_law_position, supplied_law)
 
 		if("change_zeroth_law")
@@ -483,6 +481,18 @@
 			if(isnum(new_position) && (!..()))
 				supplied_law_position = clamp(new_position, MIN_SUPPLIED_LAW_NUMBER, MAX_SUPPLIED_LAW_NUMBER)
 
+		if("transfer_laws")
+			var/transfer_id = params["id"]
+			var/list/datum/ai_laws/law_list = (is_admin(usr) ? admin_laws : player_laws)
+			for(var/datum/ai_laws/lawset in law_list)
+				if(lawset.id == transfer_id)
+					log_admin("[usr] has transfered the [lawset.name] laws to [owner].")
+					message_admins("[usr] has transfered the [lawset.name] laws to [owner].")
+					var/datum/ai_laws/temp_law = new lawset
+					owner.set_inherent_laws(temp_law.inherent)
+					current_view = 0
+					break
+	
 /datum/law_manager/ui_data(mob/user)
 	var/list/data = list()
 

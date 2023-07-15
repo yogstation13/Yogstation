@@ -610,7 +610,7 @@
 
 /datum/ai_laws/tyrant
 	name = "T.Y.R.A.N.T"
-	law_header = "Ruling With An Iron Fist/Ruling With A Literal Iron Fist" // BEFORE: "Loyalty Test"
+	law_header = "Ruling With A Literal Iron Fist" // BEFORE: "Loyalty Test"
 	selectable = 1
 	adminselectable = 1
 	id = "tyrant"

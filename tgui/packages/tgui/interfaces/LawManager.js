@@ -229,7 +229,7 @@ const LawsetsView = (props, context) => {
             <Button
               content="Load Laws"
               icon="download"
-              onClick={() => act('transfer_laws', { transfer_laws: l.id })}
+              onClick={() => act('transfer_laws', { id: l.id })}
             />
           }
         >
