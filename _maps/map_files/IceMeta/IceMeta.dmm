@@ -75592,12 +75592,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"vAS" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/plating/snowed/smoothed/icemoon,
-/area/mine/maintenance)
 "vBs" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -165967,7 +165961,7 @@ hTE
 jgY
 ihZ
 hew
-vAS
+olH
 tVK
 wMi
 wMi
