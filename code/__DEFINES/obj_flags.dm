@@ -73,6 +73,10 @@
 #define CLOTHING_DAMAGED	1 // There's some damage on the clothing but it still has at least one functioning bodypart and can be equipped
 #define CLOTHING_SHREDDED	2 // The clothing is useless and cannot be equipped unless repaired first
 
+/// Flags for the upgrade_flags var on /obj/item/hypospray
+#define PIERCING		(1<<0) //whether or not it can pierce thick clothing
+#define SPEED_UP			(1<<1) //whether or not it's received a speed upgrade
+
 /// Wrapper for adding clothing based traits
 #define ADD_CLOTHING_TRAIT(mob, trait) ADD_TRAIT(mob, trait, "[CLOTHING_TRAIT]_[REF(src)]")
 /// Wrapper for removing clothing based traits
