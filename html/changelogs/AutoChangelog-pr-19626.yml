@@ -1,0 +1,4 @@
+author: "azzzertyy"
+delete-after: true 
+changes: 
+  - rscadd: "New keybinding pref for ai to jump into or exit a borg shell"
