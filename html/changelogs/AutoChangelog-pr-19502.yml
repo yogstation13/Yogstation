@@ -1,0 +1,7 @@
+author: " SapphicOverload, carlarctg"
+delete-after: true 
+changes: 
+  - rscadd: "adds atmos gas masks"
+  - tweak: "edits a few alternate mask sprites"
+  - imageadd: "adds atmos gas mask sprites"
+  - imageadd: "adds sterile mask alternate sprite"
