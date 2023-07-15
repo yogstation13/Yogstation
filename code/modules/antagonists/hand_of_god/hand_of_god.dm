@@ -37,7 +37,7 @@ configs are stolen from their respective gamemodes and modified
 	antag_hud_name = "cult"
 	var/ignore_implant = FALSE
 	var/give_equipment = FALSE
-	var/datum/team/hand_of_god/hand_of_narsie
+	var/datum/team/hand_of_god/hand_of_narsie/hand_of_narsie //cope
 	var/original_eye_color = "000" //this will store the eye color of the cultist so it can be returned if they get deconverted
 	show_to_ghosts = TRUE
 
