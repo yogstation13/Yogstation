@@ -3,14 +3,14 @@
 	transparent_when_unavailable = TRUE
 	button_icon = 'icons/mob/actions/actions_arm.dmi'
 
-/datum/action/cooldown/seismic/proc/sweep(mob/living/target)
-	if(target.mobility_flags & MOBILITY_STAND)
-		animate(target, transform = matrix(90, MATRIX_ROTATE), time = 0 SECONDS, loop = 0)
-
-//Check for if someone is allowed to be stood back up
+//animation procs
 /datum/action/cooldown/seismic/proc/wakeup(mob/living/target)
 	if(target.mobility_flags & MOBILITY_STAND)
-		animate(target, transform = null, time = 0.4 SECONDS, loop = 0)
+		animate(target, transform = null, time = 0.4 SECONDS)
+
+/datum/action/cooldown/seismic/proc/sweep(mob/living/target)
+	if(target.mobility_flags & MOBILITY_STAND)
+		animate(target, transform = matrix(90, MATRIX_ROTATE))
 
 /datum/action/cooldown/seismic/IsAvailable(feedback = FALSE)
 	. = ..()
@@ -236,6 +236,7 @@
 	if(L == user)
 		return
 	if(isliving(L))
+		L.Immobilize(0.3 SECONDS)
 		qdel(src, force = TRUE)
 		L.SpinAnimation(0.5 SECONDS, 2)
 		playsound(L,'sound/effects/gravhit.ogg', 60, 1)
@@ -282,7 +283,6 @@
 				if(issilicon(M))
 					M.adjustBruteLoss(11)
 			for(var/mob/living/S in knockedback)
-				S.forceMove(T)
 				S.SpinAnimation(0.2 SECONDS, 1)
 
 /obj/item/melee/overcharged_emitter/Initialize(mapload)
