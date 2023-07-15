@@ -22,6 +22,8 @@
 	var/list/alarms_to_clear = list()
 	var/designation = ""
 	var/radiomod = "" //Radio character used before state laws/arrivals announce to allow department transmissions, default, or none at all.
+	/// The channel name of which /proc/statelaws will use to broadcast. Can be null.
+	var/radiomodname = null
 	var/obj/item/camera/siliconcam/aicamera = null //photography
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_TRACK_HUD)
 
@@ -406,12 +408,12 @@
 	for (var/index = 1, index <= laws.hacked.len, index++)
 		var/law = laws.hacked[index]
 		if (length(law) > 0)
-			.+= "<b><font color='#660000'>[ionnum()]:</b>	 [law]</font>"
+			.+= "<b><font color='#660000'>[ionnum()]:</b> [law]</font>"
 
 	for (var/index = 1, index <= laws.ion.len, index++)
 		var/law = laws.ion[index]
 		if (length(law) > 0)
-			.+= "<b><font color='#547DFE'>[ionnum()]:</b> 	[law]</font>"
+			.+= "<b><font color='#547DFE'>[ionnum()]:</b> [law]</font>"
 
 	var/number = 1
 	for (var/index = 1, index <= laws.inherent.len, index++)
@@ -423,7 +425,7 @@
 	for (var/index = 1, index <= laws.supplied.len, index++)
 		var/law = laws.supplied[index]
 		if (length(law) > 0)
-			.+= "<b>[number]:</b> [law]"
+			.+= "<b><font color='#547DFE'>[number]:</b> [law]</font>"
 			number++
 	.+= ""
 

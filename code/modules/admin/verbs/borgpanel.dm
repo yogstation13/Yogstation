@@ -217,25 +217,3 @@
 				borg.lawsync()
 
 	. = TRUE
-
-/datum/admins/proc/change_laws()
-	set category = "Admin.Player Interaction"
-	set name = "Change Silicon Laws"
-	set desc = "Change Silicon Laws"
-
-	if(!check_rights(R_ADMIN))
-		return
-	var/chosensilicon = input("Select a Silicon", "Select a Silicon", null, null) as null|anything in GLOB.silicon_mobs
-	if (!istype(chosensilicon, /mob/living/silicon))
-		to_chat(usr, span_warning("Silicon is required for law changes"), confidential=TRUE)
-		return
-	var/chosen = pick_closest_path(null, make_types_fancy(typesof(/obj/item/aiModule)))
-	if (!chosen)
-		return
-	var/new_board = new chosen(src)
-	var/obj/item/aiModule/chosenboard = new_board
-	var/mob/living/silicon/beepboop = chosensilicon
-	chosenboard.install(beepboop.laws, usr)
-	message_admins("[key_name_admin(usr)] added [chosenboard] to [ADMIN_LOOKUPFLW(beepboop)].")
-	log_admin("[key_name(usr)] added [chosenboard] to [key_name(beepboop)].")
-	qdel(new_board)

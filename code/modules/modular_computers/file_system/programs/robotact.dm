@@ -82,7 +82,7 @@
 		return data
 	var/mob/living/silicon/robot/borgo = user
 
-	data["Laws"] = borgo.laws.get_law_list(TRUE, TRUE, TRUE)
+	data["Laws"] = borgo.laws.get_law_list(TRUE, TRUE, FALSE)
 	data["borgLog"] = tablet.borglog
 	data["borgUpgrades"] = borgo.upgrades
 	return data
