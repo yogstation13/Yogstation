@@ -7,13 +7,11 @@
 	can_weld_shut = FALSE
 	open_flags = HORIZONTAL_HOLD | HORIZONTAL_LID | ALLOW_OBJECTS | ALLOW_DENSE
 	dense_when_open = TRUE
-	climbable = TRUE
-	climb_time = 10 //real fast, because let's be honest stepping into or onto a crate is easy
-	climb_stun = 0 //climbing onto crates isn't hard, guys
 	delivery_icon = "deliverycrate"
 	door_anim_time = 0 // no animation
-	var/obj/item/paper/fluff/jobs/cargo/manifest/manifest
 	breakout_time = 20 SECONDS
+	var/crate_climb_time = 20
+	var/obj/item/paper/fluff/jobs/cargo/manifest/manifest
 	///The resident (owner) of this crate/coffin.
 	var/mob/living/resident
 	///The time it takes to pry this open with a crowbar.
@@ -21,6 +19,7 @@
 
 /obj/structure/closet/crate/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/climbable, climb_time = crate_climb_time, climb_stun = 0) //add element in closed state before parent init opens it(if it does)
 	if(icon_state == "[initial(icon_state)]open")
 		opened = TRUE
 	update_icon()
@@ -51,12 +50,19 @@
 
 /obj/structure/closet/crate/open(mob/living/user)
 	. = ..()
+	RemoveElement(/datum/element/climbable, climb_time = crate_climb_time, climb_stun = 0)
+	AddElement(/datum/element/climbable, climb_time = crate_climb_time * 0.5, climb_stun = 0)
 	if(. && manifest)
 		to_chat(user, span_notice("The manifest is torn off [src]."))
 		playsound(src, 'sound/items/poster_ripped.ogg', 75, 1)
 		manifest.forceMove(get_turf(src))
 		manifest = null
 		update_icon()
+
+/obj/structure/closet/crate/close(mob/living/user)
+	. = ..()
+	RemoveElement(/datum/element/climbable, climb_time = crate_climb_time * 0.5, climb_stun = 0)
+	AddElement(/datum/element/climbable, climb_time = crate_climb_time, climb_stun = 0)
 
 /obj/structure/closet/crate/proc/tear_manifest(mob/user)
 	to_chat(user, span_notice("You tear the manifest off of [src]."))

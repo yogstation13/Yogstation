@@ -6,7 +6,6 @@
 	density = TRUE
 	anchored = TRUE
 	layer = TABLE_LAYER
-	climbable = TRUE
 	pass_flags = LETPASSTHROW
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
@@ -22,6 +21,7 @@
 /obj/structure/world_anvil/Initialize(mapload)
 	. = ..()
 	internal = new /obj/item/gps/internal/world_anvil(src)
+	AddElement(/datum/element/climbable)
 
 /obj/structure/world_anvil/Destroy()
 	QDEL_NULL(internal)
