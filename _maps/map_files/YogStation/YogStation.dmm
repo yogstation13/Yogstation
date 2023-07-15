@@ -14405,12 +14405,6 @@
 	},
 /turf/open/space,
 /area/solar/starboard/aft)
-"cpm" = (
-/obj/effect/turf_decal/tile/blue/opposingcorners{
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/space)
 "cpn" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plating{
@@ -111354,7 +111348,7 @@ jXL
 wgu
 pbD
 elr
-cpm
+vcC
 dmN
 lcC
 guV
