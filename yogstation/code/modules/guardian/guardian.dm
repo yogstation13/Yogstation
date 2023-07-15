@@ -44,6 +44,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	obj_damage = 40
 	melee_damage_lower = 15
 	melee_damage_upper = 15
+	projectilesound = 'sound/weapons/lasgun.ogg'
 	AIStatus = AI_OFF
 	light_system = MOVABLE_LIGHT
 	light_range = 3
@@ -353,7 +354,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 		return
 	var/turf/startloc = get_turf(targets_from)
 	var/obj/item/projectile/guardian/emerald_splash = new(startloc)
-	playsound(src, projectilesound, 100, 1)
+	playsound(src, projectilesound, 50, TRUE)
 	if (namedatum)
 		emerald_splash.color = namedatum.color
 	emerald_splash.guardian_master = summoner
@@ -639,7 +640,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 			var/mob/living/simple_animal/hostile/guardian/G = para
 			if(G.summoner?.current.ckey == src.ckey)
 				users += carbon_minds
-				
+
 
 	for(var/datum/mind/user_minds in users)
 		if(!user_minds.current || user_minds.current == src)
@@ -665,7 +666,7 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	/// Will yield a "?"
 	else
 		to_chat(src, span_notice("There are no users nearby."))
-		
+
 /mob/living/simple_animal/hostile/guardian/verb/Battlecry()
 	set name = "Set Battlecry"
 	set category = "Guardian"
@@ -792,5 +793,6 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	icon_state = "greyscale_bolt"
 	damage = 10
 	damage_type = BRUTE
-	armour_penetration = 100 // no one can just deflect the emerald splash!
+	flag = ENERGY
+	hitsound = 'sound/weapons/pierce_slow.ogg'
 	var/datum/mind/guardian_master
