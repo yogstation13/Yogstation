@@ -269,6 +269,8 @@
 #define TRAIT_MAGICALLY_PHASED "magically_phased"
 ///This mob can't use vehicles
 #define TRAIT_NOVEHICLE	"no_vehicle"
+/// BALD!!!
+#define TRAIT_BALD "bald"
 
 /// This person is crying
 #define TRAIT_CRYING "crying"
