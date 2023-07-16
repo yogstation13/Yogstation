@@ -1750,11 +1750,18 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/device_tools/toolbox
 	name = "Full Syndicate Toolbox"
-	desc = "A suspicious black and red syndicate toolbox. It comes loaded with a full tool set including a \
+	desc = "A suspicious black and red syndicate toolbox. It comes loaded with a full speedy tool set including a \
 			multitool and combat gloves that are resistant to shocks and heat. It is very compact and will \
 			fit in any standard Nanotrasen backpack."
 	item = /obj/item/storage/toolbox/syndicate
 	cost = 1
+
+/datum/uplink_item/device_tools/toolboxreal
+	name = "Deluxe Syndicate Toolbox"
+	desc = "A syndicate toolbox that comes stocked with ultra-fast syndicate tools. Be careful, as \
+			these tools are more obviously marked and will be easily spotted by anyone observant."
+	item = /obj/item/storage/toolbox/syndicate/real
+	cost = 2
 
 /datum/uplink_item/device_tools/tactical_gloves
 	name = "Tactical Fingerless Gloves"

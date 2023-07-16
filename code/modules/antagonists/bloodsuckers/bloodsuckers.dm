@@ -157,16 +157,13 @@
 
 	var/datum/hud/bloodsucker_hud = owner.current.hud_used
 
-	blood_display = new /atom/movable/screen/bloodsucker/blood_counter()
-	blood_display.hud = bloodsucker_hud
+	blood_display = new /atom/movable/screen/bloodsucker/blood_counter(bloodsucker_hud)
 	bloodsucker_hud.infodisplay += blood_display
 
-	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter()
-	vamprank_display.hud = bloodsucker_hud
+	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter(bloodsucker_hud)
 	bloodsucker_hud.infodisplay += vamprank_display
 
-	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter()
-	sunlight_display.hud = bloodsucker_hud
+	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter(bloodsucker_hud)
 	bloodsucker_hud.infodisplay += sunlight_display
 
 	INVOKE_ASYNC(bloodsucker_hud, TYPE_PROC_REF(/datum/hud/, show_hud), bloodsucker_hud.hud_version)

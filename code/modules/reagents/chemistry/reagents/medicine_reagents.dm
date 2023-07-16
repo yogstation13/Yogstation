@@ -1296,6 +1296,7 @@
 	if(prob(20))
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 50)
 	M.adjustStaminaLoss(2.5*REM, 0)
+	M.clear_stamina_regen()
 	..()
 	return TRUE
 
@@ -1436,6 +1437,7 @@
 		if(41 to 80)
 			M.adjustOxyLoss(0.1*REM, 0)
 			M.adjustStaminaLoss(0.1*REM, 0)
+			M.clear_stamina_regen()
 			M.adjust_jitter_up_to(1 SECONDS, 20 SECONDS)
 			M.adjust_stutter_up_to(1 SECONDS, 20 SECONDS)
 			M.adjust_dizzy(10)
@@ -1449,10 +1451,12 @@
 			to_chat(M, "You feel too exhausted to continue!") // at this point you will eventually die unless you get charcoal
 			M.adjustOxyLoss(0.1*REM, 0)
 			M.adjustStaminaLoss(0.1*REM, 0)
+			M.clear_stamina_regen()
 		if(82 to INFINITY)
 			M.Sleeping(100, 0, TRUE)
 			M.adjustOxyLoss(1.5*REM, 0)
 			M.adjustStaminaLoss(1.5*REM, 0)
+			M.clear_stamina_regen()
 	..()
 	return TRUE
 
@@ -1897,4 +1901,3 @@
 	if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(M, COMSIG_NANITE_ADJUST_VOLUME, nanite_reduction)
 	return ..()
-	
