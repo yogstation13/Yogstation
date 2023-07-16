@@ -38,7 +38,6 @@
 /obj/item/attachment/update_icon_state()
 	. = ..()
 	icon_state = "[initial(icon_state)][is_on ? "_on" : ""]"
-	attached_gun?.update_attachments()
 
 /obj/item/attachment/Destroy()
 	if(attached_gun)
@@ -61,7 +60,7 @@
 			pickup_user(user)
 	G.attachment_flags |= attachment_type
 	G.current_attachments += src
-	G.update_attachments()
+	G.update_appearance(UPDATE_ICON)
 	forceMove(G)
 
 	if(user)
@@ -84,7 +83,7 @@
 		drop_user(user)
 	G.attachment_flags ^= attachment_type
 	G.current_attachments -= src
-	G.update_attachments()
+	G.update_appearance(UPDATE_ICON)
 	if(user)
 		user.put_in_hands(src)
 	else

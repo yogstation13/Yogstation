@@ -143,19 +143,19 @@
 
 /obj/machinery/chem_dispenser/proc/work_animation()
 	if(working_state)
-		flick(working_state,src)
+		flick(working_state, src)
+
+/obj/machinery/chem_dispenser/update_icon_state()
+	. = ..()
+	icon_state = "[(nopower_state && !powered()) ? nopower_state : initial(icon_state)]"
 
 /obj/machinery/chem_dispenser/update_overlays()
 	. = ..()
-	icon_state = "[(nopower_state && !powered()) ? nopower_state : initial(icon_state)]"
 	if(has_panel_overlay && panel_open)
 		. += mutable_appearance(icon, "[initial(icon_state)]_panel-o")
-
 	if(beaker)
 		beaker_overlay = display_beaker()
 		. += beaker_overlay
-
-
 
 /obj/machinery/chem_dispenser/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
@@ -493,7 +493,7 @@
 		if(WEST)
 			b_o.pixel_x = -5
 			b_o.pixel_y = rand(-5, 7)
-		else//SOUTH
+		if(SOUTH)
 			b_o.pixel_y = -7
 			b_o.pixel_x = rand(-9, 9)
 	return b_o

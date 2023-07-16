@@ -161,6 +161,7 @@
 /obj/item/gun/energy/update_icon(updates=ALL)
 	if(QDELETED(src))
 		return
+	. = ..()
 	var/ratio = get_charge_ratio()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	var/iconState = "[icon_state]_charge"
@@ -174,7 +175,6 @@
 	if(itemState)
 		itemState += "[ratio]"
 		item_state = itemState
-		return ..()
 
 /obj/item/gun/energy/update_overlays()
 	if(QDELETED(src))
@@ -186,14 +186,13 @@
 	var/overlay_icon_state = "[icon_state]_charge"
 	if(modifystate)
 		var/obj/item/ammo_casing/energy/shot = ammo_type[select]
+		if(cell.charge < shot.e_cost)
+			. += "[icon_state]_empty"
+			return
 		. += "[icon_state]_[initial(shot.select_name)]"
 		overlay_icon_state += "_[initial(shot.select_name)]"
 
 	var/ratio = get_charge_ratio()
-	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
-	if(cell.charge < shot.e_cost)
-		. += "[icon_state]_empty"
-		return
 	if(shaded_charge)
 		. += "[icon_state]_charge[ratio]"
 		return

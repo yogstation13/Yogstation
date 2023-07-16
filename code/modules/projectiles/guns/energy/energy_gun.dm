@@ -25,15 +25,14 @@
 	ammo_x_offset = 2
 	charge_sections = 3
 	can_flashlight = FALSE // Can't attach or detach the flashlight, and override it's icon update
+	gunlight_state = "mini-light"
+	flight_x_offset = 19
+	flight_y_offset = 13
 
 /obj/item/gun/energy/e_gun/mini/Initialize(mapload)
-	set_gun_light(new /obj/item/flashlight/seclite(src))
-	return ..()
-
-/obj/item/gun/energy/e_gun/mini/update_overlays()
 	. = ..()
-	if(gun_light && gun_light.on)
-		. += "mini-light"
+	var/obj/item/flashlight/seclite/new_seclite = new()
+	set_gun_light(new_seclite)
 
 /obj/item/gun/energy/e_gun/stun
 	name = "tactical energy gun"
