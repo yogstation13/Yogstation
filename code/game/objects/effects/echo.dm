@@ -8,6 +8,6 @@
 	lifespan = 2 SECONDS
 	fade = 1 SECONDS
 	gravity = list(0, -0.1)
-	position = generator(GEN_BOX, list(-240, -240), list(240, 240), NORMAL_RAND)
-	drift = generator(GEN_VECTOR, list(-0.1, 0), list(0.1, 0))
-	rotation = generator(GEN_NUM, 0, 360, NORMAL_RAND)
+	position = generator("box", list(-240, -240), list(240, 240), NORMAL_RAND)
+	drift = generator("vector", list(-0.1, 0), list(0.1, 0))
+	rotation = generator("num", 0, 360, NORMAL_RAND)

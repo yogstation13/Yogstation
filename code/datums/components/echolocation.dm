@@ -13,10 +13,6 @@
 	var/images_are_static = TRUE
 	/// With mobs that have this echo group in their echolocation receiver trait, we share echo images.
 	var/echo_group = null
-	/// This trait blocks us from receiving echolocation.
-	var/blocking_trait
-	/// Ref of the client color we give to the echolocator.
-	var/client_color
 	/// Associative list of world.time when created to a list of the images.
 	var/list/images = list()
 	/// Associative list of world.time when created to a list of receivers.
@@ -31,10 +27,11 @@
 	var/static/list/black_white_matrix = list(85, 85, 85, 0, 85, 85, 85, 0, 85, 85, 85, 0, 0, 0, 0, 1, -254, -254, -254, 0)
 	/// A matrix that turns everything into pure white.
 	var/static/list/white_matrix = list(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 1, 0, -0, 0, 0)
+
 	/// Cooldown for the echolocation.
 	COOLDOWN_DECLARE(cooldown_last)
 
-/datum/component/echolocation/Initialize(echo_range, cooldown_time, image_expiry_time, fade_in_time, fade_out_time, images_are_static, blocking_trait, echo_group, echo_icon, color_path)
+/datum/component/echolocation/Initialize()
 	. = ..()
 	var/mob/living/echolocator = parent
 	if(!istype(echolocator))
@@ -55,20 +52,15 @@
 		src.fade_out_time = fade_out_time
 	if(!isnull(images_are_static))
 		src.images_are_static = images_are_static
-	if(!isnull(blocking_trait))
-		src.blocking_trait = blocking_trait
-	if(ispath(color_path))
-		client_color = echolocator.add_client_colour(color_path)
 	src.echo_group = echo_group || REF(src)
 	echolocator.add_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_NIGHT_VISION), echo_group) //so they see all the tiles they echolocated, even if they are in the dark
 	echolocator.become_blind(TRAIT_BLIND_ECHO)
-	echolocator.overlay_fullscreen("echo", /atom/movable/screen/fullscreen/echo, echo_icon)
+	echolocator.overlay_fullscreen("echo", /atom/movable/screen/fullscreen/echo)
 	START_PROCESSING(SSfastprocess, src)
 
 /datum/component/echolocation/Destroy(force, silent)
 	STOP_PROCESSING(SSfastprocess, src)
 	var/mob/living/echolocator = parent
-	QDEL_NULL(client_color)
 	echolocator.remove_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_NIGHT_VISION), echo_group)
 	echolocator.cure_blind(TRAIT_BLIND_ECHO)
 	echolocator.clear_fullscreen("echo")
@@ -100,10 +92,7 @@
 	images[current_time] = list()
 	receivers[current_time] = list()
 	for(var/mob/living/viewer in filtered)
-		if(blocking_trait && HAS_TRAIT(viewer, blocking_trait))
-			continue
-		if(HAS_TRAIT_FROM(viewer, TRAIT_ECHOLOCATION_RECEIVER, echo_group))
-			receivers[current_time] += viewer
+		receivers[current_time] += viewer
 	for(var/atom/filtered_atom as anything in filtered)
 		show_image(saved_appearances["[filtered_atom.icon]-[filtered_atom.icon_state]"] || generate_appearance(filtered_atom), filtered_atom, current_time)
 	addtimer(CALLBACK(src, PROC_REF(fade_images), current_time), image_expiry_time)
