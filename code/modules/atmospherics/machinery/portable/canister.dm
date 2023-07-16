@@ -308,55 +308,10 @@
 	if(connected_port)
 		. += "can-connector"
 
-	var/light_state = get_pressure_state(air_contents.return_pressure())
+	var/light_state = get_pressure_state(air_contents?.return_pressure())
 	if(light_state) //happens when pressure is below 10kpa which means no light
 		. += mutable_appearance(icon, light_state)
 		. += emissive_appearance(icon, "[light_state]-light", src, alpha = src.alpha)
-
-/*
-	if(pressure < ONE_ATMOSPHERE)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o0", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o0", layer, EMISSIVE_PLANE, dir)
-		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_RED_LIGHT)
-	else if(pressure < 5 * ONE_ATMOSPHERE)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o1", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o1", layer, EMISSIVE_PLANE, dir)
-		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_RED_LIGHT)
-	else if(pressure < 10 * ONE_ATMOSPHERE)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o2", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o2", layer, EMISSIVE_PLANE, dir)
-		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_ORANGE)
-	else if(pressure < 20 * ONE_ATMOSPHERE)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o3", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o3", layer, EMISSIVE_PLANE, dir)
-		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_ORANGE)
-	else if(pressure < 30 * ONE_ATMOSPHERE)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o4", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o4", layer, EMISSIVE_PLANE, dir)
-		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_YELLOW)
-	else if(pressure < 40 * ONE_ATMOSPHERE) //pressure pump max
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o5", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o5", layer, EMISSIVE_PLANE, dir)
-		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_LIME)
-	else if(pressure < 9100) //volume pump max
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o6", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-o6", layer, EMISSIVE_PLANE, dir)
-		set_light_on(TRUE)
-		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_GREEN)
-	else if(pressure < 9100)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-oF", layer, plane, dir)
-		SSvis_overlays.add_vis_overlay(src, icon, "can-oF", layer, EMISSIVE_PLANE, dir)
-		set_light_on(TRUE)
-		set_light_range_power_color(2, 2, COLOR_WHITE)
-	else
-		set_light_on(FALSE)
-*/
 
 ///return the icon_state component for the canister's indicator light based on its current pressure reading
 /obj/machinery/portable_atmospherics/canister/proc/get_pressure_state(air_pressure)

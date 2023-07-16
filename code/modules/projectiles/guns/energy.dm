@@ -10,11 +10,10 @@
 	var/list/ammo_type = list(/obj/item/ammo_casing/energy)
 	var/select = 1 //The state of the select fire switch. Determines from the ammo_type list what kind of shot is fired next.
 	var/can_charge = TRUE //Can it be charged in a recharger?
-	var/automatic_charge_overlays = TRUE	//Do we handle overlays with base update_appearance(UPDATE_ICON)?
+	var/automatic_charge_overlays = TRUE	//Do we handle overlays with base update_overlays?
 	var/charge_sections = 4
 	ammo_x_offset = 2
 	var/shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
-	var/old_ratio = 0 // stores the gun's previous ammo "ratio" to see if it needs an updated icon
 	var/selfcharge = 0
 	var/charge_timer = 0
 	var/charge_delay = 8
@@ -159,41 +158,55 @@
 	update_appearance(UPDATE_ICON)
 	return
 
-/obj/item/gun/energy/update_overlays()
+/obj/item/gun/energy/update_icon(updates=ALL)
 	if(QDELETED(src))
 		return
-	. = ..()
-	if(!automatic_charge_overlays)
-		return
-	var/ratio = CEILING(clamp(cell.charge / cell.maxcharge, 0, 1) * charge_sections, 1)
-	if(ratio == old_ratio)
-		return
-	old_ratio = ratio
-	cut_overlays()
+	var/ratio = get_charge_ratio()
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	var/iconState = "[icon_state]_charge"
 	var/itemState = null
 	if(!initial(item_state))
 		itemState = icon_state
 	if (modifystate)
-		add_overlay("[icon_state]_[shot.select_name]")
 		iconState += "_[shot.select_name]"
 		if(itemState)
 			itemState += "[shot.select_name]"
-	if(cell.charge < shot.e_cost)
-		add_overlay("[icon_state]_empty")
-	else
-		if(!shaded_charge)
-			var/mutable_appearance/charge_overlay = mutable_appearance(icon, iconState)
-			for(var/i = ratio, i >= 1, i--)
-				charge_overlay.pixel_x = ammo_x_offset * (i - 1)
-				charge_overlay.pixel_y = ammo_y_offset * (i - 1)
-				add_overlay(charge_overlay)
-		else
-			add_overlay("[icon_state]_charge[ratio]")
 	if(itemState)
 		itemState += "[ratio]"
 		item_state = itemState
+		return ..()
+
+/obj/item/gun/energy/update_overlays()
+	if(QDELETED(src))
+		return
+	. = ..()
+	if(!automatic_charge_overlays)
+		return
+	
+	var/overlay_icon_state = "[icon_state]_charge"
+	if(modifystate)
+		var/obj/item/ammo_casing/energy/shot = ammo_type[select]
+		. += "[icon_state]_[initial(shot.select_name)]"
+		overlay_icon_state += "_[initial(shot.select_name)]"
+
+	var/ratio = get_charge_ratio()
+	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
+	if(cell.charge < shot.e_cost)
+		. += "[icon_state]_empty"
+		return
+	if(shaded_charge)
+		. += "[icon_state]_charge[ratio]"
+		return
+	var/mutable_appearance/charge_overlay = mutable_appearance(icon, overlay_icon_state)
+	for(var/i = ratio, i >= 1, i--)
+		charge_overlay.pixel_x = ammo_x_offset * (i - 1)
+		charge_overlay.pixel_y = ammo_y_offset * (i - 1)
+		. += charge_overlay
+
+///Used by update_icon_state() and update_overlays()
+/obj/item/gun/energy/proc/get_charge_ratio()
+	return can_shoot() ? CEILING(clamp(cell.charge / cell.maxcharge, 0, 1) * charge_sections, 1) : 0
+	// Sets the ratio to 0 if the gun doesn't have enough charge to fire, or if its power cell is removed.
 
 /obj/item/gun/energy/suicide_act(mob/living/user)
 	if (istype(user) && can_shoot() && can_trigger_gun(user) && user.get_bodypart(BODY_ZONE_HEAD))
