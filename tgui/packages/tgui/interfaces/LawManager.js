@@ -129,7 +129,7 @@ const LawManagementView = (props, context) => {
               <Table.Cell width="10%">Index</Table.Cell>
               <Table.Cell width="20%">Actions</Table.Cell>
             </Table.Row>
-            {!!(!has_zeroth) && (
+            {!!(true && !has_zeroth) && (
               <Table.Row>
                 <Table.Cell>Zero</Table.Cell>
                 <Table.Cell color="#ff0000">{zeroth_law}</Table.Cell>
