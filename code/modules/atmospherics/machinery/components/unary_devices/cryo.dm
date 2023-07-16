@@ -103,14 +103,8 @@
 		beaker = null
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon_state()
-	. = ..()
-	if(state_open)
-		icon_state = "pod-open"
-		return
-	if(on && is_operational())
-		icon_state = "pod-on"
-	else
-		icon_state = "pod-off"
+	icon_state = (state_open) ? "pod-open" : ((on && is_operational()) ? "pod-on" : "pod-off")
+	return ..()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_overlays()
 	. = ..()
@@ -119,26 +113,26 @@
 		. += "pod-panel"
 
 	if(occupant)
-		var/image/occupant_overlay
+		var/mutable_appearance/occupant_overlay
 
 		if(ismonkey(occupant)) // Monkey
-			occupant_overlay = image(CRYOMOBS, "monkey")
+			occupant_overlay = mutable_appearance(CRYOMOBS, "monkey")
 		else if(isalienadult(occupant))
 			if(isalienroyal(occupant)) // Queen and prae
-				occupant_overlay = image(CRYOMOBS, "alienq")
+				occupant_overlay = mutable_appearance(CRYOMOBS, "alienq")
 			else if(isalienhunter(occupant)) // Hunter
-				occupant_overlay = image(CRYOMOBS, "alienh")
+				occupant_overlay = mutable_appearance(CRYOMOBS, "alienh")
 			else if(isaliensentinel(occupant)) // Sentinel
-				occupant_overlay = image(CRYOMOBS, "aliens")
+				occupant_overlay = mutable_appearance(CRYOMOBS, "aliens")
 			else // Drone or other
-				occupant_overlay = image(CRYOMOBS, "aliend")
+				occupant_overlay = mutable_appearance(CRYOMOBS, "aliend")
 
 		else if(ishuman(occupant) || islarva(occupant) || (isanimal(occupant) && !ismegafauna(occupant))) // Mobs that are smaller than cryotube
-			occupant_overlay = image(occupant.icon, occupant.icon_state)
+			occupant_overlay = mutable_appearance(occupant.icon, occupant.icon_state)
 			occupant_overlay.copy_overlays(occupant)
 
 		else
-			occupant_overlay = image(CRYOMOBS, "generic")
+			occupant_overlay = mutable_appearance(CRYOMOBS, "generic")
 
 		occupant_overlay.dir = SOUTH
 		occupant_overlay.pixel_y = 22
@@ -152,14 +146,16 @@
 
 	else if(on && is_operational())
 		. += "cover-on"
-	else
-		. += "cover-off"
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, image/occupant_overlay)
-	if(!on || !occupant || !is_operational())
+/obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, mutable_appearance/occupant_overlay)
+	cut_overlays()
+	if(!occupant)
 		running_anim = FALSE
 		return
-	cut_overlays()
+	if(!on || !is_operational())
+		running_anim = FALSE
+		add_overlay(occupant_overlay) //so they don't turn invisible
+		return
 	if(occupant_overlay.pixel_y != 23) // Same effect as occupant_overlay.pixel_y == 22 || occupant_overlay.pixel_y == 24
 		anim_up = occupant_overlay.pixel_y == 22 // Same effect as if(occupant_overlay.pixel_y == 22) anim_up = TRUE ; if(occupant_overlay.pixel_y == 24) anim_up = FALSE
 	if(anim_up)
