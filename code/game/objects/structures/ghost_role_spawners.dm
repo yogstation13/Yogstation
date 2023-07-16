@@ -571,7 +571,7 @@
 
 /datum/outfit/syndicate_empty/icemoon_base/scientist
 	name = "Syndicate Icemoon Outpost Scientist"
-	r_hand = /obj/item/gun/ballistic/automatic/sniper_rifle/ultrasecure //get fucked in every single comprehensible way.
+	r_hand = /obj/item/gun/ballistic/rifle/sniper_rifle/ultrasecure //get fucked in every single comprehensible way.
 	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	accessory = /obj/item/clothing/accessory/armband/science
 	glasses = /obj/item/clothing/glasses/hud/diagnostic/sunglasses/rd //it's a syndicate nerd
