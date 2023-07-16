@@ -186,31 +186,39 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		icon_state = icon_on
 		item_state = icon_on
 		return
-
+	var/exploded = FALSE
+	var/face_explodable = FALSE
 	lit = TRUE
 	name = "lit [name]"
 	attack_verb = list("burnt", "singed")
 	hitsound = 'sound/items/welder.ogg'
 	damtype = BURN
 	force = 4
+	var/mob/living/carbon/C = null
+	if(iscarbon(loc))
+		C = loc
+		if(src == C.wear_mask)
+			face_explodable = TRUE
+
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
-		var/datum/effect_system/reagents_explosion/e = new()
-		e.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) / 2.5, 1), get_turf(src), 0, 0)
-		e.start()
-		qdel(src)
-		return
+		explosion(get_turf(src),-1,0,2,2)
+		exploded = TRUE
+		reagents.clear_reagents()
 	if(reagents.get_reagent_amount(/datum/reagent/fuel)) // the fuel explodes, too, but much less violently
-		var/datum/effect_system/reagents_explosion/e = new()
-		e.set_up(round(reagents.get_reagent_amount(/datum/reagent/fuel) / 5, 1), get_turf(src), 0, 0)
-		e.start()
+		explosion(get_turf(src),-1,0,1,2)
+		exploded = TRUE
+		reagents.clear_reagents()
+	if(reagents.get_reagent_amount(/datum/reagent/nitroglycerin)) // nitrogylcerin explodes a little more
+		explosion(get_turf(src),-1,0,3,3)
+		exploded = TRUE
+		reagents.clear_reagents()
+	if(exploded)
+		if(C && face_explodable)
+			C.apply_damage(150,BRUTE,BODY_ZONE_HEAD)
+			to_chat(C, span_userdanger("Your [name] explodes in your face!"))
 		qdel(src)
 		return
-	if(reagents.get_reagent_amount(/datum/reagent/nitroglycerin)) // nitrogylcerin explodes with a whole lot more strength
-		var/datum/effect_system/reagents_explosion/e = new()
-		e.set_up(round(reagents.get_reagent_amount(/datum/reagent/nitroglycerin), 1), get_turf(src), 0, 0)
-		e.start()
-		qdel(src)
-		return
+	
 	// allowing reagents to react after being lit
 	DISABLE_BITFIELD(reagents.flags, NO_REACT)
 	reagents.handle_reactions()
@@ -222,10 +230,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	START_PROCESSING(SSobj, src)
 
 	//can't think of any other way to update the overlays :<
-	if(ismob(loc))
-		var/mob/M = loc
-		M.update_inv_wear_mask()
-		M.update_inv_hands()
+	if(C)
+		C.update_inv_wear_mask()
+		C.update_inv_hands()
 
 /obj/item/clothing/mask/cigarette/extinguish()
 	if(!lit)

@@ -176,6 +176,12 @@
 	for(var/obj/item/I in contents)
 		I.toolspeed = 0.5
 
+/obj/item/storage/toolbox/syndicate/real/PopulateContents()
+	. = ..()
+	for(var/obj/item/I in contents)
+		I.toolspeed = 0.33
+		I.name = "syndicate [I.name]"
+
 /obj/item/storage/toolbox/drone
 	name = "mechanical toolbox"
 	icon_state = "blue"
@@ -283,7 +289,8 @@
 							/obj/item/storage/toolbox/electrical,
 							/obj/item/storage/toolbox/mechanical,
 							/obj/item/storage/toolbox/artistic,
-							/obj/item/storage/toolbox/syndicate)
+							/obj/item/storage/toolbox/syndicate,
+							/obj/item/storage/toolbox/syndicate/real)
 
 	if(!istype(T, /obj/item/stack/tile/plasteel))
 		..()
@@ -306,6 +313,8 @@
 			if(/obj/item/storage/toolbox/artistic)
 				B.toolbox_color = "g"
 			if(/obj/item/storage/toolbox/syndicate)
+				B.toolbox_color = "s"
+			if(/obj/item/storage/toolbox/syndicate/real)
 				B.toolbox_color = "s"
 		user.put_in_hands(B)
 		B.update_appearance(UPDATE_ICON)
