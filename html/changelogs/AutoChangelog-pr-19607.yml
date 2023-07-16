@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Cyborgs drop everything in their storage bags if their module gets reset instead of just disappearing."

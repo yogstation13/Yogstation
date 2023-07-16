@@ -1,6 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "custodial holobarrier projectors now have doubled capacity and deploy much faster"
-  - tweak: "wet floor holobarriers now automatically vanish when the floor is no longer wet"
-  - bugfix: "fixed custodial holobarrier projectors being unprintable"
