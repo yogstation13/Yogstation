@@ -217,3 +217,23 @@
 				borg.lawsync()
 
 	. = TRUE
+
+// TODO: Give this its own file.
+/datum/admins/proc/manage_silicon_laws()
+	set category = "Admin.Player Interaction"
+	set name = "Manage Silicon Laws"
+	set desc = "Manage silicon laws"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in GLOB.silicon_mobs
+	if(!S) return
+
+	var/datum/law_manager/L = new(S)
+	L.ui_interact(usr)
+
+	log_admin("[key_name(usr)] has opened [S]'s law manager.")
+	message_admins("[key_name(usr)] has opened [S]'s law manager.")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Manage Silicon Laws") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	

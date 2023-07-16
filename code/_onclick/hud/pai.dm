@@ -105,7 +105,7 @@
 
 /atom/movable/screen/pai/state_laws
 	name = "Law Manager"
-	icon_state = "state_laws"
+	icon_state = "state_laws" // TODO: Perhaps a better icon_state to match the word "Law Manager".
 
 /atom/movable/screen/pai/state_laws/Click()
 	if(!..())

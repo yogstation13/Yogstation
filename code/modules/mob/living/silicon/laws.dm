@@ -260,6 +260,7 @@
 	return (is_admin(user) || owner == user) ? GLOB.always_state : GLOB.never_state
 
 /datum/law_manager/ui_status(mob/user)
+	// TODO: If the owner suddenly stops existing/is deleted, do UI_CLOSE
 	return (is_admin(user) || owner == user) ? UI_INTERACTIVE : UI_CLOSE // This should handle the pains of 'GLOB.always_state'.
 
 /datum/law_manager/ui_act(action, params)
@@ -429,7 +430,7 @@
 				owner.show_laws()
 			if(usr != owner)
 				to_chat(usr, span_notice("Laws displayed."))
-		if("add_zeroth_law")
+		if("add_zeroth_law") // TODO: Combine all of the "add_[type]_laws" into one "add_law"
 			if(owner == usr && !is_special_character(owner) && !is_admin(usr) )
 				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to give themselves a zeroth law!")
 				return
@@ -490,7 +491,7 @@
 				log_admin("[usr] has added a supplied law to [owner] at position [supplied_law_position]: '[supplied_law]'")
 				message_admins("[usr] has added a supplied law to [owner] at position [supplied_law_position]: '[supplied_law]'")
 				owner.add_supplied_law(supplied_law_position, supplied_law)
-		if("change_zeroth_law")
+		if("change_zeroth_law") // TODO: Combine all of the "change_[type]_laws" into one "change_law"
 			var/new_law = sanitize(input("Enter new zeroth law. Leaving the field blank will cancel the edit.", "Edit Law", zeroth_law))
 			if(new_law && new_law != zeroth_law && (!..()))
 				zeroth_law = new_law

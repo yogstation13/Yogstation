@@ -20,6 +20,7 @@
 	var/datum/ai_laws/laws
 	/// Allow installing with no laws and ignoring of the lawcap.
 	var/bypass_law_amt_check = FALSE
+	/// Determines if the programmed laws should appear at all in the description.
 	var/show_laws = TRUE
 
 /obj/item/aiModule/Initialize(mapload)
@@ -29,20 +30,20 @@
 /obj/item/aiModule/examine(mob/user as mob)
 	. = ..()
 	if((isobserver(user) || Adjacent(user)) && laws && show_laws)
-		. += "<span class='info'>" // Replace with span_info() once it exists.
+		. += "<span class='info'>"
 		var/list/law_list = laws.get_law_list(include_zeroth = TRUE)
 		. += "<B>Programmed Law[(law_list.len > 1) ? "s" : ""]:</B>"
 		for(var/text in law_list)
 			. += "\"[text]\""
 		. += "</span>"
 
-//The proc other things should be calling.
+/// Handles checks, overflowing, calling /transmitInstructions(), and logging.
 /obj/item/aiModule/proc/install(datum/ai_laws/current_laws, mob/user)
-	if(!laws) // This shouldn't be happening.
+	if(!laws) // This shouldn't be happening, but if it does:
 		to_chat(user, span_warning("The board fizzles out..."))
 		return
 
-	if(!current_laws) // Somehow using this on a thing that doesn't have laws..?
+	if(!current_laws) // This shouldn't be happening too, but if it does:
 		to_chat(user, span_warning("You use the board to no effect."))
 		return
 
@@ -76,14 +77,11 @@
 	if(current_laws.owner) // "Ownerless" laws are non-silicon. Thus, cannot update their law history.
 		current_laws.owner.update_law_history(user)
 
-//The proc that actually changes the silicon's laws.
+/// Should contain the changes to the silicon's laws.
 /obj/item/aiModule/proc/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow = FALSE)
 	if(law_datum.owner)
 		to_chat(law_datum.owner, span_userdanger("[sender] has uploaded a change to the laws you must follow using a [name]."))
 
-//
-// Modules
-// 
 //
 // Zeroth
 // 

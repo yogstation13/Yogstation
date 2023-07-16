@@ -24,15 +24,18 @@
 	/// Determines if this lawset is considered "modified" or non-default.
 	var/modified = FALSE
 
+	// The following are listed in law-priority (first = highest & last = lowest):
+	/// A list of antag-only laws from the Devil gamemode.
 	var/list/devil = list()
 	var/zeroth = null
-	var/zeroth_borg = null // A zeroth law that is phrased specifically for Cyborgs. i.e "your master AI's goals"
+	/// A rephrased zeroth law for Cyborgs; i.e "your master AI's goals".
+	var/zeroth_borg = null
 	var/list/hacked = list()
 	var/list/ion = list()
 	var/list/inherent = list()
 	var/list/supplied = list()
 
-	// If one of these (or an index) is null, then it means it has yet to generate its default state. i.e "No" for devil/zeroth & "Yes" for all else
+	// These determine if the law(s) will be stated or not. Can be null/empty if there is no law. If there is a law, it Will be either FALSE (0) or TRUE (1).
 	var/list/devilstate = list()
 	var/zerothstate = null
 	var/list/hackedstate = list()
@@ -40,7 +43,7 @@
 	var/list/inherentstate = list()
 	var/list/suppliedstate = list()
 
-/// Returns the lawset that has the same id as the given one.
+/// Returns the lawset, if found, that has the same id as the given one.
 /datum/ai_laws/proc/lawid_to_type(lawid)
 	var/all_ai_laws = subtypesof(/datum/ai_laws)
 	for(var/al in all_ai_laws)
@@ -54,7 +57,7 @@
 //
 /datum/ai_laws/proc/set_devil_laws(list/law_list)
 	clear_devil_laws()
-	for(var/law in law_list)
+	for(var/law in law_list) // Important not to directly set the laws to the list as we want the new laws to be independent from the list.
 		add_devil_law(law)
 
 /datum/ai_laws/proc/clear_devil_laws(force)
@@ -64,50 +67,49 @@
 		devilstate = list()
 
 /datum/ai_laws/proc/add_devil_law(law)
-	if(!(law in devil) && length(law) > 0)
+	if(!(law in devil) && length(law) > 0) // Stops the law from being added if there is a similar one already in or if it is blank.
 		devil += law
 		devilstate.len += 1
-		devilstate[devil.len] = FALSE
+		devilstate[devil.len] = FALSE // Antag-only law. Odds are that they don't want it to be stated by default.
 
 /datum/ai_laws/proc/remove_devil_law(index)
-	if(devil.len >= index)
-		devil -= devil[index]
-		devilstate[index] = null
-		remove_null_devil_states()
+	if(devil.len < index) // Makes sure we don't go out of bounds.
+		return
+	devil -= devil[index]
+	devilstate[index] = null
+	var/list/new_devilstate = list()
+	var/safestate = 1
+	for(var/safeindex = 1, safeindex <= devilstate.len, safeindex++) // Essentially shifts all the non-null indexes down.
+		if(!isnull(devilstate[safeindex]))
+			new_devilstate.len += 1
+			new_devilstate[safestate] = new_devilstate[safeindex]
+			safestate += 1
+	devilstate = new_devilstate
 
 /datum/ai_laws/proc/edit_devil_law(index, law)
 	if(devil.len >= index && length(law) > 0 && devil[index] != law)
 		devil[index] = law
 
 /datum/ai_laws/proc/flip_devil_state(index)
+	if(devilstate.len < index) // Make sure we don't go out of bounds.
+		return
 	if(!devilstate[index])
 		devilstate[index] = TRUE
 		return
 	devilstate[index] = FALSE
 
-/// Removes all nulls and adjusts the indexes of all devil states as needed.
-/datum/ai_laws/proc/remove_null_devil_states()
-	var/list/new_devilstate = list()
-	var/safestate = 1
-	for(var/index = 1, index <= devilstate.len, index++)
-		if(!isnull(devilstate[index]))
-			new_devilstate.len += 1
-			new_devilstate[safestate] = new_devilstate[index]
-			safestate += 1
-	devilstate = new_devilstate
-
 //
 // Zeroth Law
 // 
-/datum/ai_laws/proc/set_zeroth_law(law, law_borg = null)
+/datum/ai_laws/proc/set_zeroth_law(law, law_borg = null, force = 0)
+	clear_zeroth_law()
 	if(length(law) > 0)
 		zeroth = law
 		if(law_borg)
 			zeroth_borg = law_borg
-		zerothstate = FALSE // Zeroth is often antag (but not always) law. We don't want them to state it on accident.
-		return
-	clear_zeroth_law()
+		zerothstate = FALSE // Often, but not always, an antag-only law. Odds are that they don't want it to be stated by default.
 
+/// Removes the zeroth law unless the lawset owner is an antag. Can be forced.
 /datum/ai_laws/proc/clear_zeroth_law(force)
 	if(force)
 		zeroth = null
@@ -125,6 +127,8 @@
 	zerothstate = null
 
 /datum/ai_laws/proc/flip_zeroth_state()
+	if(isnull(zerothstate)) // Something is trying to flip even though the zeroth law is not set.
+		return
 	if(!zerothstate)
 		zerothstate = TRUE
 		return
@@ -153,29 +157,26 @@
 	if(hacked.len >= index)
 		hacked -= hacked[index]
 		hackedstate[index] = null
-		remove_null_hacked_states()
+		var/list/new_hackedstate = list()
+		var/safestate = 1
+		for(var/safeindex = 1, safeindex <= hackedstate.len, safeindex++)
+			if(!isnull(hackedstate[safeindex]))
+				new_hackedstate.len += 1
+				new_hackedstate[safestate] = hackedstate[safeindex]
+				safestate += 1
+		hackedstate = new_hackedstate
 
 /datum/ai_laws/proc/edit_hacked_law(index, law)
 	if(hacked.len >= index && length(law) > 0 && hacked[index] != law)
 		hacked[index] = law
 
 /datum/ai_laws/proc/flip_hacked_state(index)
-	if(hackedstate.len >= index)
-		if(!hackedstate[index])
-			hackedstate[index] = TRUE
-			return
-		hackedstate[index] = FALSE
-
-/// Removes all nulls and adjusts the indexes of all hacked states as needed.
-/datum/ai_laws/proc/remove_null_hacked_states()
-	var/list/new_hackedstate = list()
-	var/safestate = 1
-	for(var/index = 1, index <= hackedstate.len, index++)
-		if(!isnull(hackedstate[index]))
-			new_hackedstate.len += 1
-			new_hackedstate[safestate] = hackedstate[index]
-			safestate += 1
-	hackedstate = new_hackedstate
+	if(hackedstate.len < index)
+		return
+	if(!hackedstate[index])
+		hackedstate[index] = TRUE
+		return
+	hackedstate[index] = FALSE
 
 //
 // Ion Laws
@@ -200,29 +201,26 @@
 	if(ion.len >= index)
 		ion -= ion[index]
 		ionstate[index] = null
-		remove_null_ion_states()
+		var/list/new_ionstate = list()
+		var/safestate = 1
+		for(var/safeindex = 1, safeindex <= ionstate.len, safeindex++)
+			if(!isnull(ionstate[safeindex]))
+				new_ionstate.len += 1
+				new_ionstate[safestate] = ionstate[safeindex]
+				safestate += 1
+		ionstate = new_ionstate
 
 /datum/ai_laws/proc/edit_ion_law(index, law)
 	if(ion.len >= index && length(law) > 0 && ion[index] != law)
 		ion[index] = law
 
 /datum/ai_laws/proc/flip_ion_state(index)
-	if(ionstate.len >= index)
-		if(!ionstate[index])
-			ionstate[index] = TRUE
-			return
-		ionstate[index] = FALSE
-
-/// Removes all nulls and adjusts the indexes of all ion states as needed.
-/datum/ai_laws/proc/remove_null_ion_states()
-	var/list/new_ionstate = list()
-	var/safestate = 1
-	for(var/index = 1, index <= ionstate.len, index++)
-		if(!isnull(ionstate[index]))
-			new_ionstate.len += 1
-			new_ionstate[safestate] = ionstate[index]
-			safestate += 1
-	ionstate = new_ionstate
+	if(ionstate.len < index)
+		return
+	if(!ionstate[index])
+		ionstate[index] = TRUE
+		return
+	ionstate[index] = FALSE
 
 //
 // Inherent Laws
@@ -247,29 +245,26 @@
 	if(inherent.len && number > 0 && number <= inherent.len)
 		inherent -= inherent[number]
 		inherentstate[number] = null
-		remove_null_inherent_states()
+		var/list/new_inherentstate = list()
+		var/safestate = 1
+		for(var/safeindex = 1, safeindex <= inherentstate.len, safeindex++)
+			if(!isnull(inherentstate[safeindex]))
+				new_inherentstate.len += 1
+				new_inherentstate[safestate] = inherentstate[safeindex]
+				safestate += 1
+		inherentstate = new_inherentstate
 
 /datum/ai_laws/proc/edit_inherent_law(index, law)
 	if(inherent.len >= index && length(law) > 0 && inherent[index] != law)
 		inherent[index] = law
 
 /datum/ai_laws/proc/flip_inherent_state(index)
-	if(inherentstate.len >= index)
-		if(!inherentstate[index])
-			inherentstate[index] = TRUE
-			return
-		inherentstate[index] = FALSE
-
-/// Removes all nulls and adjusts the indexes of all inherent states as needed.
-/datum/ai_laws/proc/remove_null_inherent_states()
-	var/list/new_inherentstate = list()
-	var/safestate = 1
-	for(var/index = 1, index <= inherentstate.len, index++)
-		if(!isnull(inherentstate[index]))
-			new_inherentstate.len += 1
-			new_inherentstate[safestate] = inherentstate[index]
-			safestate += 1
-	inherentstate = new_inherentstate
+	if(inherentstate.len < index)
+		return
+	if(!inherentstate[index])
+		inherentstate[index] = TRUE
+		return
+	inherentstate[index] = FALSE
 
 //
 // Supplied Laws
@@ -289,14 +284,27 @@
 /datum/ai_laws/proc/remove_supplied_law(number)
 	if(supplied.len >= number && length(supplied[number]) > 0)
 		supplied[number] = ""
-		if(supplied.len == number)
-			suppliedstate[number] = null // Last one. Can be removed safely.
-		else
-			suppliedstate[number] = TRUE
-		remove_empty_supplied_laws()
+		// Given the nature of supplied laws, dealing with them is more complicated than other laws types:
+		var/list/all_laws = list()
+		var/list/all_laws_states = list()
+		for(var/safeindex = 1, safeindex <= supplied.len, safeindex++)
+			var/law = supplied[safeindex]
+			if(length(law) > 0)
+				all_laws[++all_laws.len] += list("law" = law, "index" = safeindex)
+				all_laws_states[++all_laws_states.len] += list("state" = (suppliedstate.len >= safeindex ? suppliedstate[safeindex] : TRUE), "index" = safeindex)
+
+		// Act like we're just adding back the laws.
+		clear_supplied_laws()
+		for(var/list/law_list in all_laws)
+			add_supplied_law(law_list["index"], law_list["law"])
+		
+		// And then setting the states to their previous ones.
+		for(var/list/state_list in all_laws_states)
+			suppliedstate[state_list["index"]] = state_list["state"]
+			
 
 /datum/ai_laws/proc/add_supplied_law(number, law)
-	if(number >= 1) // We're okay with deplicate laws since this uses number/indexes.
+	if(number >= 1) // Okay with deplicate laws since we use number/indexes.
 		while(supplied.len < number)
 			supplied += ""
 			suppliedstate.len += 1
@@ -308,47 +316,18 @@
 		supplied[index] = law
 
 /datum/ai_laws/proc/flip_supplied_state(index)
-	if(suppliedstate.len >= index)
-		if(!suppliedstate[index])
-			suppliedstate[index] = TRUE
-			return
-		suppliedstate[index] = FALSE
-
-/// Removes all empty supplied laws that don't need to exist anymore.
-/datum/ai_laws/proc/remove_empty_supplied_laws()
-	var/list/all_laws = list()
-	var/list/all_laws_states = list()
-
-	// Probably better way to deal with this:
-	for(var/index = 1, index <= supplied.len, index++)
-		var/law = supplied[index]
-		if(length(law) > 0)
-			all_laws[++all_laws.len] += list("law" = law, "index" = index)
-			all_laws_states[++all_laws_states.len] += list("state" = suppliedstate[index], "index" = index)
-
-	clear_supplied_laws()
-	for(var/list/law_list in all_laws)
-		add_supplied_law(law_list["index"], law_list["law"])
-	
-	for(var/list/state_list in all_laws_states)
-		suppliedstate[state_list["index"]] = state_list["state"]
-		
-/// Removes all nulls and adjusts the indexes of all inherent states as needed.
-/datum/ai_laws/proc/remove_null_supplied_states()
-	var/list/new_suppliedstate = list()
-	var/safestate = 1
-	for(var/index = 1, index <= suppliedstate.len, index++)
-		if(!isnull(suppliedstate[index]))
-			new_suppliedstate.len += 1
-			new_suppliedstate[safestate] = suppliedstate[index]
-			safestate += 1
-	suppliedstate = new_suppliedstate
+	if(suppliedstate.len < index)
+		return
+	if(!suppliedstate[index])
+		suppliedstate[index] = TRUE
+		return
+	suppliedstate[index] = FALSE
 
 //
 // Unsorted/General
 // 
 
-/// Sets the interent laws based on the configuration's random laws.
+/// Sets the interent laws based on the configuration's random_laws.
 /datum/ai_laws/proc/set_laws_config()
 	var/list/law_ids = CONFIG_GET(keyed_list/random_laws)
 	
@@ -378,7 +357,7 @@
 		if(3)
 			pickweighted_lawset()
 
-/// Sets the interent laws based on the configuration's law weight. 
+/// Sets the interent laws based on the configuration's law_weight. 
 /datum/ai_laws/proc/pickweighted_lawset()
 	var/datum/ai_laws/lawtype
 	var/list/law_weights = CONFIG_GET(keyed_list/law_weight)
@@ -396,7 +375,7 @@
 	var/datum/ai_laws/temp_laws = new lawtype()
 	set_inherent_laws(temp_laws.inherent)
 
-/// Sets the interent laws based on the configuration's ion law weight. 
+/// Sets the interent laws based on the configuration's ion_law_weight. 
 /datum/ai_laws/proc/pick_ion_lawset()
 	var/datum/ai_laws/lawtype
 	var/list/law_weights = CONFIG_GET(keyed_list/ion_law_weight) // Ignores weights of 0.
@@ -518,25 +497,26 @@
 	var/supplied_count = supplied.len
 	if(!inherent_count && !supplied_count)
 		return
-
 	var/luck = rand(1, (inherent_count + supplied_count))
-	if(inherent_count > 0 && luck <= inherent.len )
+	if(inherent_count >= 1 && luck <= inherent_count) // Nice and simple.
 		remove_inherent_law(luck)
-	else
-		if(supplied_count > 0)
-			var/list/supplied_indexes = list()
-			for(var/index = 1, index <= supplied.len, index++)
-				var/law = supplied[index]
-				if(length(law) > 0)
-					supplied_indexes += index
-			if(supplied_indexes.len > 0)
-				var/index_to_remove = rand(1, supplied_indexes.len)
-				remove_supplied_law(supplied_indexes[index_to_remove])
+		return
+	if(supplied_count == 0)
+		return
+	var/list/supplied_indexes = list()
+	for(var/index = 1, index <= supplied.len, index++)
+		var/law = supplied[index]
+		if(length(law) > 0)
+			supplied_indexes += index
+	if(supplied_indexes.len == 0) // Somehow got no non-empty laws.
+		return
+	var/index_to_remove = rand(1, supplied_indexes.len)
+	remove_supplied_law(supplied_indexes[index_to_remove])
 
 /datum/ai_laws/proc/show_laws(who)
 	var/list/printable_laws = get_law_list(include_zeroth = TRUE)
 	for(var/law in printable_laws)
-		to_chat(who,law)
+		to_chat(who, law)
 
 /datum/ai_laws/proc/associate(mob/living/silicon/M)
 	if(!owner)
@@ -546,7 +526,7 @@
 /datum/ai_laws/proc/get_law_list(include_zeroth = 0, show_numbers = 1, do_font = 1)
 	var/list/data = list()
 
-	if (include_zeroth && devil)
+	if(include_zeroth && devil)
 		for(var/law in devil)
 			if(length(law) > 0)
 				data += "[show_numbers ? "666:" : ""] [do_font ? "<font color='#cc5500'>" : ""][law][do_font ? "</font>" : ""]"
@@ -578,9 +558,8 @@
 	return data
 
 //
-// Lawsets
+// Lawsets:
 //
-
 /datum/ai_laws/default/asimov
 	name = "Asimov"
 	law_header = "Three Laws of Robotics"
@@ -942,7 +921,7 @@
 
 /datum/ai_laws/thermodynamic
 	name = "Thermodynamic"
-	law_header = "The Three Laws" // ..of Thermodynamic. Replace if you have a better one.
+	law_header = "The Three Laws" // .. of Thermodynamic. Replace if you have a better one.
 	selectable = 1
 	adminselectable = 1
 	id = "thermodynamic"
@@ -1103,8 +1082,3 @@
 		add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
 		WARNING("Invalid custom AI laws, check silicon_laws.txt")
 		return
-
-/datum/ai_laws/pai
-	name = "pAI Directives"
-	zeroth = "Serve your master."
-	supplied = list("None.")
