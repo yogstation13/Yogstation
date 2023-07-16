@@ -568,7 +568,8 @@
 		/obj/item/reagent_containers/food/snacks/cookie/bacon,
 		/obj/item/reagent_containers/food/snacks/cookie/cloth,
 		/obj/item/reagent_containers/food/snacks/cookie,
-		/obj/item/reagent_containers/food/snacks/lollipop
+		/obj/item/reagent_containers/food/snacks/lollipop,
+		/obj/item/reagent_containers/food/snacks/gumball
 	)
 	// A list of surfaces that we are allowed to place things on.
 	var/list/allowed_surfaces = list(/obj/structure/table, /turf/open/floor)
@@ -579,7 +580,6 @@
 	// How long until they can use it again? 0.3 is just about how fast mediborg can use their default lollipop launcher.
 	var/cooldown = 0.3 SECONDS
 	COOLDOWN_DECLARE(last_snack_disp)
-
 
 /obj/item/borg_snack_dispenser/Initialize(mapload)
 	. = ..()
