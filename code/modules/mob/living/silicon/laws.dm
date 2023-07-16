@@ -574,7 +574,7 @@
 	var/list/zeroth = list()
 	if(laws.zeroth)
 		zeroth[++zeroth.len] = list("law" = laws.zeroth, "index" = 0, "indexdisplay" = 0, "state" = (!isnull(laws.zerothstate) ? laws.zerothstate : 0), "type" = "zeroth", "hidebuttons" = data["isAntag"] ? TRUE : FALSE)
-		data["has_zeroth"] = devil.len
+		data["has_zeroth"] = zeroth.len
 	data["zeroth"] = zeroth
 
 	var/list/hacked = list()

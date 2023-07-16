@@ -641,6 +641,7 @@
 	name = "'Remove Law' AI module"
 	desc = "An AI Module for removing single laws." // This means the ability to remove inherent and supplied laws (since they use indexes).
 	bypass_law_amt_check = TRUE
+	show_laws = FALSE
 	var/lawpos = 1
 
 /obj/item/aiModule/remove/attack_self(mob/user)
