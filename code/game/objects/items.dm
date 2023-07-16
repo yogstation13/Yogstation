@@ -899,6 +899,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				outline_color = COLOR_THEME_CLOCKWORK //if you want free gbp go fix the fact that clockwork's tooltip css is glass'
 			if("glass")
 				outline_color = COLOR_THEME_GLASS
+			if("detective")
+				outline_color = COLOR_THEME_DETECTIVE
 			else //this should never happen, hopefully
 				outline_color = COLOR_WHITE
 	if(color)
