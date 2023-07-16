@@ -44,7 +44,7 @@
 			new /obj/item/encryptionkey/syndicate(src) //2 TC
 			new /obj/item/reagent_containers/syringe/mulligan(src) //4 TC
 			new /obj/item/switchblade/backstab(src) //3 TC
-			new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
+			new /obj/item/storage/fancy/cigarettes/cigpack_syndicate (src) //2 TC (for now)
 			new /obj/item/flashlight/emp(src) //2 TC
 			new /obj/item/chameleon(src) //7 TC
 			new /obj/item/card/emag(src) //6 TC
@@ -149,7 +149,7 @@
 			new /obj/item/gun/ballistic/automatic/toy/pistol/riot(src) //1 TC, not a tranq pistol but it's something
 			new /obj/item/kitchen/knife/combat/survival(src) //Simple miner knife, in flavor. Maybe-maybe 1 TC, but basically free
 			new /obj/item/implanter/stealth(src) //Just a box. 8 TC
-			new /obj/item/storage/box/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
+			new /obj/item/storage/fancy/cigarettes/cigars(src) //It's no Phantom Cigar, but it'll still be badass
 			new /obj/item/lighter(src) //Need to light the cigar
 
 		if("oddjob") //Total TC value of 26ish TC
@@ -266,7 +266,7 @@
 			new /obj/item/clothing/suit/yogs/pinksweater(src) //close enough
 			new /obj/item/guardiancreator/tech(src) //15 TC
 			new /obj/item/stand_arrow/boss(src) //priceless, but if it had to get a price it'd be ~45 for 3 holoparasite injectors and ~21 3 mindslave implants. although its difficult to conceal and the holoparasites are random.
-			new /obj/item/storage/box/fancy/donut_box(src) //d o n u t s
+			new /obj/item/storage/fancy/donut_box(src) //d o n u t s
 			new /obj/item/reagent_containers/glass/bottle/drugs(src)
 			new /obj/item/slimecross/stabilized/green(src) //secret identity
 
@@ -391,7 +391,7 @@
 	new /obj/item/clothing/under/chameleon/syndicate(src)
 	new /obj/item/clothing/mask/chameleon/syndicate(src)
 	new /obj/item/card/id/syndicate(src)
-	new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src)
+	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
 	new /obj/item/lighter(src)
 
 /obj/item/storage/box/syndicate/contract_kit/PopulateContents()
@@ -492,7 +492,7 @@
 	new /obj/item/clothing/under/plasmaman/chameleon/syndicate(src)
 	new /obj/item/clothing/mask/chameleon/syndicate(src)
 	new /obj/item/card/id/syndicate(src)
-	new /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate(src)
+	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate(src)
 	new /obj/item/lighter(src)
 
 /obj/item/storage/box/syndie_kit

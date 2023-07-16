@@ -369,7 +369,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/red,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate,
+/obj/item/storage/fancy/cigarettes/cigpack_syndicate,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation)
 "ady" = (
@@ -402,7 +402,7 @@
 /area/science/test_area)
 "adL" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/wood,
 /area/vacant_room)
 "adP" = (
@@ -1395,7 +1395,7 @@
 /area/science/research)
 "amm" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/item/coin/silver,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
@@ -6570,7 +6570,7 @@
 /area/medical/patients_rooms/room_b)
 "bkf" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes/cigpack_robustgold,
+/obj/item/storage/fancy/cigarettes/cigpack_robustgold,
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "bkh" = (
@@ -13351,7 +13351,7 @@
 	pixel_x = 24
 	},
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
 	},
@@ -18197,7 +18197,7 @@
 /area/medical/chemistry)
 "fgb" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box{
+/obj/item/storage/fancy/donut_box{
 	pixel_x = -2;
 	pixel_y = 10
 	},
@@ -22192,7 +22192,7 @@
 /area/maintenance/department/tcoms)
 "gyp" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "gyr" = (
@@ -22300,7 +22300,7 @@
 /obj/item/bedsheet/red,
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/russian,
-/obj/item/storage/box/fancy/cigarettes/cigpack_cannabis,
+/obj/item/storage/fancy/cigarettes/cigpack_cannabis,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/listeningstation)
 "gzO" = (
@@ -28626,7 +28626,7 @@
 	pixel_y = 5
 	},
 /obj/item/restraints/handcuffs/cable/zipties,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "iEo" = (
@@ -33007,7 +33007,7 @@
 /area/hallway/primary/fore)
 "jWJ" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/carpet/blue,
 /area/bridge/meeting_room)
 "jXf" = (
@@ -53293,11 +53293,11 @@
 /area/maintenance/port)
 "qAZ" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes/cigars/cohiba{
+/obj/item/storage/fancy/cigarettes/cigars/cohiba{
 	pixel_x = 2;
 	pixel_y = 3
 	},
-/obj/item/storage/box/fancy/cigarettes/cigars/havana{
+/obj/item/storage/fancy/cigarettes/cigars/havana{
 	pixel_x = -3;
 	pixel_y = 9
 	},
@@ -56127,9 +56127,9 @@
 /area/maintenance/starboard/aft)
 "rwo" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/candle_box,
-/obj/item/storage/box/fancy/candle_box,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /obj/item/storage/crayons,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/wood,

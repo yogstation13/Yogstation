@@ -37,7 +37,6 @@
 	var/restricted = FALSE
 	req_access = list()
 
-	var/update = 0
 	//list of canister types for relabeling
 	var/static/list/label2types = list(
 		"generic" = /obj/machinery/portable_atmospherics/canister/generic,
@@ -293,137 +292,95 @@
 	air_contents.set_moles(/datum/gas/oxygen, (O2STANDARD * maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
 	air_contents.set_moles(/datum/gas/nitrogen, (N2STANDARD * maximum_pressure * filled) * air_contents.return_volume() / (R_IDEAL_GAS_EQUATION * air_contents.return_temperature()))
 
-#define CANISTER_UPDATE_HOLDING		(1<<0)
-#define CANISTER_UPDATE_CONNECTED	(1<<1)
-#define CANISTER_UPDATE_OPEN		(1<<2)
-#define CANISTER_UPDATE_EMPTY		(1<<3)
-#define CANISTER_UPDATE_PRESSURE_0	(1<<4)
-#define CANISTER_UPDATE_PRESSURE_1	(1<<5)
-#define CANISTER_UPDATE_PRESSURE_2	(1<<6)
-#define CANISTER_UPDATE_PRESSURE_3	(1<<7)
-#define CANISTER_UPDATE_PRESSURE_4	(1<<8)
-#define CANISTER_UPDATE_PRESSURE_5	(1<<9)
-#define CANISTER_UPDATE_FULL		(1<<10)
-#define CANISTER_UPDATE_FUSION		(1<<11)
-#define CANISTER_LIGHT_RANGE 0.4
-#define CANISTER_LIGHT_POWER 0.5
+/obj/machinery/portable_atmospherics/canister/update_icon_state()
+	if(stat & BROKEN)
+		icon_state = "[initial(icon_state)]-1"
+	return ..()
 
-/obj/machinery/portable_atmospherics/canister/update_icon(updates=ALL)
+/obj/machinery/portable_atmospherics/canister/update_overlays()
 	. = ..()
 	if(stat & BROKEN)
-		cut_overlays()
-		SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-		if(!findtext(icon_state,"-1")) //A wise man once said, if it's already broke, don't break it more.
-			icon_state = "[icon_state]-1"
 		return
-
-	var/last_update = update
-	update = 0
-
-	if(holding)
-		update |= CANISTER_UPDATE_HOLDING
-	if(connected_port)
-		update |= CANISTER_UPDATE_CONNECTED
 	if(valve_open)
-		update |= CANISTER_UPDATE_OPEN
-	if(!air_contents)
-		update |= CANISTER_UPDATE_EMPTY
-	else
-		var/pressure = air_contents.return_pressure()
-		if(pressure < 10)
-			update |= CANISTER_UPDATE_EMPTY
-		else if(pressure < ONE_ATMOSPHERE)
-			update |= CANISTER_UPDATE_PRESSURE_0
-		else if(pressure < 5 * ONE_ATMOSPHERE)
-			update |= CANISTER_UPDATE_PRESSURE_1
-		else if(pressure < 10 * ONE_ATMOSPHERE)
-			update |= CANISTER_UPDATE_PRESSURE_2
-		else if(pressure < 20 * ONE_ATMOSPHERE)
-			update |= CANISTER_UPDATE_PRESSURE_3
-		else if(pressure < 30 * ONE_ATMOSPHERE)
-			update |= CANISTER_UPDATE_PRESSURE_4
-		else if(pressure < 40 * ONE_ATMOSPHERE) //pressure pump max
-			update |= CANISTER_UPDATE_PRESSURE_5
-		else if(pressure < 9100) //volume pump max
-			update |= CANISTER_UPDATE_FULL
-		else
-			update |= CANISTER_UPDATE_FUSION
+		. += "can-open"
+	if(holding)
+		. += "can-tank"
+	if(connected_port)
+		. += "can-connector"
 
-	if(update == last_update)
-		return
+	var/light_state = get_pressure_state(air_contents.return_pressure())
+	if(light_state) //happens when pressure is below 10kpa which means no light
+		. += mutable_appearance(icon, light_state)
+		. += emissive_appearance(icon, "[light_state]-light", src, alpha = src.alpha)
 
-	cut_overlays()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-
-	if(update & CANISTER_UPDATE_OPEN)
-		add_overlay("can-open")
-	if(update & CANISTER_UPDATE_HOLDING)
-		add_overlay("can-tank")
-	if(update & CANISTER_UPDATE_CONNECTED)
-		add_overlay("can-connector")
-
-	if(update & CANISTER_UPDATE_PRESSURE_0)
+/*
+	if(pressure < ONE_ATMOSPHERE)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o0", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o0", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
 		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_RED_LIGHT)
-	else if(update & CANISTER_UPDATE_PRESSURE_1)
+	else if(pressure < 5 * ONE_ATMOSPHERE)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o1", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o1", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
 		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_RED_LIGHT)
-	else if(update & CANISTER_UPDATE_PRESSURE_2)
+	else if(pressure < 10 * ONE_ATMOSPHERE)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o2", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o2", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
 		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_ORANGE)
-	else if(update & CANISTER_UPDATE_PRESSURE_3)
+	else if(pressure < 20 * ONE_ATMOSPHERE)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o3", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o3", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
 		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_ORANGE)
-	else if(update & CANISTER_UPDATE_PRESSURE_4)
+	else if(pressure < 30 * ONE_ATMOSPHERE)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o4", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o4", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
 		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_YELLOW)
-	else if(update & CANISTER_UPDATE_PRESSURE_5)
+	else if(pressure < 40 * ONE_ATMOSPHERE) //pressure pump max
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o5", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o5", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
 		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_LIME)
-	else if(update & CANISTER_UPDATE_FULL)
+	else if(pressure < 9100) //volume pump max
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o6", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-o6", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
 		set_light_range_power_color(CANISTER_LIGHT_RANGE, CANISTER_LIGHT_POWER, COLOR_GREEN)
-	else if(update & CANISTER_UPDATE_FUSION)
+	else if(pressure < 9100)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-oF", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "can-oF", layer, EMISSIVE_PLANE, dir)
 		set_light_on(TRUE)
 		set_light_range_power_color(2, 2, COLOR_WHITE)
 	else
 		set_light_on(FALSE)
+*/
 
-#undef CANISTER_UPDATE_HOLDING
-#undef CANISTER_UPDATE_CONNECTED
-#undef CANISTER_UPDATE_OPEN
-#undef CANISTER_UPDATE_EMPTY
-#undef CANISTER_UPDATE_PRESSURE_0
-#undef CANISTER_UPDATE_PRESSURE_1
-#undef CANISTER_UPDATE_PRESSURE_2
-#undef CANISTER_UPDATE_PRESSURE_3
-#undef CANISTER_UPDATE_PRESSURE_4
-#undef CANISTER_UPDATE_PRESSURE_5
-#undef CANISTER_UPDATE_FULL
-#undef CANISTER_UPDATE_FUSION
-#undef CANISTER_LIGHT_RANGE
-#undef CANISTER_LIGHT_POWER
+///return the icon_state component for the canister's indicator light based on its current pressure reading
+/obj/machinery/portable_atmospherics/canister/proc/get_pressure_state(air_pressure)
+	switch(air_pressure)
+		if((9100) to INFINITY)
+			return "can-oF"
+		if((40 * ONE_ATMOSPHERE) to (9100)) //volume pump max
+			return "can-o6"
+		if((30 * ONE_ATMOSPHERE) to (40 * ONE_ATMOSPHERE))
+			return "can-o5"
+		if((20 * ONE_ATMOSPHERE) to (30 * ONE_ATMOSPHERE))
+			return "can-o4"
+		if((10 * ONE_ATMOSPHERE) to (20 * ONE_ATMOSPHERE))
+			return "can-o3"
+		if((5 * ONE_ATMOSPHERE) to (10 * ONE_ATMOSPHERE))
+			return "can-o2"
+		if((10) to (5 * ONE_ATMOSPHERE))
+			return "can-o1"
+		else
+			return "can-o1"
 
 /obj/machinery/portable_atmospherics/canister/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > temperature_resistance)
 		take_damage(5, BURN, 0)
-
 
 /obj/machinery/portable_atmospherics/canister/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

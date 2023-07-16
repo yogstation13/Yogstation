@@ -4422,7 +4422,7 @@
 	pixel_x = 6;
 	pixel_y = -4
 	},
-/obj/item/storage/box/fancy/cigarettes/cigpack_robust{
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
 	pixel_x = 12;
 	pixel_y = 7
 	},
@@ -7587,7 +7587,7 @@
 /area/tcommsat/server)
 "bch" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
 "bcn" = (
@@ -14211,7 +14211,7 @@
 /area/hallway/secondary/entry)
 "cmV" = (
 /obj/structure/chair,
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cna" = (
@@ -18932,7 +18932,7 @@
 /area/construction/mining/aux_base)
 "dRK" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes{
+/obj/item/storage/fancy/cigarettes{
 	pixel_y = 2
 	},
 /obj/item/lighter/greyscale{
@@ -22895,7 +22895,7 @@
 	pixel_x = 2;
 	pixel_y = -2
 	},
-/obj/item/storage/box/fancy/donut_box{
+/obj/item/storage/fancy/donut_box{
 	pixel_x = -2;
 	pixel_y = 10
 	},
@@ -27513,7 +27513,7 @@
 /area/medical/medbay/lobby)
 "hcu" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/heart_box{
+/obj/item/storage/fancy/heart_box{
 	pixel_x = 15;
 	pixel_y = -1
 	},
@@ -38694,7 +38694,7 @@
 /area/storage/tech)
 "lqw" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box{
+/obj/item/storage/fancy/donut_box{
 	pixel_x = 4;
 	pixel_y = -3
 	},
@@ -39051,7 +39051,7 @@
 	pixel_x = -8;
 	pixel_y = 2
 	},
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 9
 	},
@@ -51495,7 +51495,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "qmf" = (
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/structure/table,
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -67449,7 +67449,7 @@
 /area/engine/engineering)
 "wts" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/cigarettes{
+/obj/item/storage/fancy/cigarettes{
 	pixel_x = -5;
 	pixel_y = 6
 	},
