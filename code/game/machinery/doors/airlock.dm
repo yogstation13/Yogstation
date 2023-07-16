@@ -737,7 +737,26 @@
 		if(AIRLOCK_OPENING)
 			if(lights && hasPower())
 				SSvis_overlays.add_vis_overlay(src, overlays_file, "lights_opening", FLOAT_LAYER, FLOAT_PLANE, dir)
-	check_unres()
+	
+	if(hasPower() && unres_sides)
+		for(var/heading in list(NORTH,SOUTH,EAST,WEST))
+			if(!(unres_sides & heading))
+				continue
+			var/mutable_appearance/floorlight = mutable_appearance('icons/obj/doors/airlocks/station/overlays.dmi', "unres_[heading]", FLOAT_LAYER, ABOVE_LIGHTING_PLANE)
+			switch (heading)
+				if (NORTH)
+					floorlight.pixel_x = 0
+					floorlight.pixel_y = 32
+				if (SOUTH)
+					floorlight.pixel_x = 0
+					floorlight.pixel_y = -32
+				if (EAST)
+					floorlight.pixel_x = 32
+					floorlight.pixel_y = 0
+				if (WEST)
+					floorlight.pixel_x = -32
+					floorlight.pixel_y = 0
+			. += floorlight
 
 /proc/get_airlock_overlay(icon_state, icon_file)
 	var/obj/machinery/door/airlock/A
@@ -746,35 +765,6 @@
 	var/iconkey = "[icon_state][icon_file]"
 	if((!(. = airlock_overlays[iconkey])))
 		. = airlock_overlays[iconkey] = mutable_appearance(icon_file, icon_state)
-
-/obj/machinery/door/airlock/proc/check_unres() //unrestricted sides. This overlay indicates which directions the player can access even without an ID
-	if(hasPower() && unres_sides)
-		if(unres_sides & NORTH)
-			var/image/I = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_n")
-			I.appearance_flags |= KEEP_APART
-			I.pixel_y = 32
-			set_light(l_range = 2, l_power = 1)
-			add_overlay(I)
-		if(unres_sides & SOUTH)
-			var/image/I = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_s")
-			I.appearance_flags |= KEEP_APART
-			I.pixel_y = -32
-			set_light(l_range = 2, l_power = 1)
-			add_overlay(I)
-		if(unres_sides & EAST)
-			var/image/I = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_e")
-			I.appearance_flags |= KEEP_APART
-			I.pixel_x = 32
-			set_light(l_range = 2, l_power = 1)
-			add_overlay(I)
-		if(unres_sides & WEST)
-			var/image/I = image(icon='icons/obj/doors/airlocks/station/overlays.dmi', icon_state="unres_w")
-			I.appearance_flags |= KEEP_APART
-			I.pixel_x = -32
-			set_light(l_range = 2, l_power = 1)
-			add_overlay(I)
-	else
-		set_light(0)
 
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)

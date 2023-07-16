@@ -2,7 +2,7 @@
 /proc/emissive_appearance(icon, icon_state = "", atom/offset_spokesman, layer = FLOAT_LAYER, alpha = 255, appearance_flags = NONE, offset_const)
 	// Note: alpha doesn't "do" anything, since it's overriden by the color set shortly after
 	// Consider removing it someday? (I wonder if we made emissives blend right we could make alpha actually matter. dreams man, dreams)
-	var/mutable_appearance/appearance = mutable_appearance(icon, icon_state, layer, offset_spokesman, EMISSIVE_PLANE, 255, appearance_flags | EMISSIVE_APPEARANCE_FLAGS, offset_const)
+	var/mutable_appearance/appearance = mutable_appearance(icon, icon_state, layer, /*offset_spokesman, */EMISSIVE_PLANE, 255, appearance_flags | EMISSIVE_APPEARANCE_FLAGS/*, offset_const*/)
 	appearance.color = GLOB.emissive_color
 
 	//Test to make sure emissives with broken or missing icon states are created
