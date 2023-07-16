@@ -215,50 +215,6 @@
 			number++
 			sleep(1 SECONDS)
 
-/// The old link-driven interface to state what laws the statelaws() proc will share with the crew. Given to pAIs.
-/mob/living/silicon/proc/checklaws_old()
-	laws_sanity_check()
-	var/list = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
-
-	if (laws.devil && laws.devil.len)
-		for(var/index = 1, index <= laws.devil.len, index++)
-			var word = laws.devilstate[index] ? "Yes" : "No"
-			list += {"<A href='byond://?src=[REF(src)];lawdevil=[index]'>[word] 666:</A> <font color='#cc5500'>[laws.devil[index]]</font><BR>"}
-
-	if (laws.zeroth)
-		var word = laws.zerothstate ? "Yes" : "No"
-		list += {"<A href='byond://?src=[REF(src)];lawzeroth=0'>[word] 0:</A> <font color='#ff0000'><b>[laws.zeroth]</b></font><BR>"}
-
-	for (var/index = 1, index <= laws.hacked.len, index++)
-		var/law = laws.hacked[index]
-		if (length(law) > 0)
-			var word = laws.hackedstate[index] ? "Yes" : "No"
-			list += {"<A href='byond://?src=[REF(src)];lawhacked=[index]'>[word] [ionnum()]:</A> <font color='#660000'>[law]</font><BR>"}
-
-	for (var/index = 1, index <= laws.ion.len, index++)
-		var/law = laws.ion[index]
-		if(length(law) > 0)
-			var word = laws.ionstate[index] ? "Yes" : "No"
-			list += {"<A href='byond://?src=[REF(src)];lawion=[index]'>[word] [ionnum()]:</A> <font color='#547DFE'>[law]</font><BR>"}
-
-	var/number = 1
-	for (var/index = 1, index <= laws.inherent.len, index++)
-		var/law = laws.inherent[index]
-		if(length(law) > 0)
-			var word = laws.inherentstate[index] ? "Yes" : "No"
-			list += {"<A href='byond://?src=[REF(src)];lawinherent=[number]'>[word] [number]:</A> [law]<BR>"}
-			number++
-
-	for (var/index = 1, index <= laws.supplied.len, index++)
-		var/law = laws.supplied[index]
-		if(length(law) > 0)
-			var word = laws.suppliedstate[index] ? "Yes" : "No"
-			list += {"<A href='byond://?src=[REF(src)];lawsupplied=[number]'>[word] [number]:</A> <font color='#990099'>[law]</font><BR>"}
-			number++
-
-	list += {"<br><br><A href='byond://?src=[REF(src)];laws=1'>State Laws</A></BODY></HTML>"}
-	usr << browse(list, "window=laws")
-
 /// Opens the "Law Manager" for the silicon.
 /mob/living/silicon/proc/checklaws()
 	laws_sanity_check()
