@@ -406,6 +406,7 @@
 #define CHANGESTING_TRAIT "changesting"
 #define POSIBRAIN_TRAIT "positrait"
 #define WRIST_STRAP_TRAIT "wrist_strap"
+#define GAUNTLET_TRAIT "gauntlet_trait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"

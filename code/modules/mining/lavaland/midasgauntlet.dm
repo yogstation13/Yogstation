@@ -7,20 +7,8 @@
 	var/list/summons = list()
 	attack_verb = list("thumped", "brushed", "bumped")
 
-/obj/item/midasgaunt/attack_self(mob/user)
-	var/turf/T = get_turf(user)
-	var/area/A = get_area(user)
-	if(next_summon > world.time)
-		to_chat(user, span_warning("You can't do that yet!"))
-		return
-	if(is_station_level(T.z) && !A.outdoors)
-		to_chat(user, span_warning("You feel like calling a bunch of animals indoors is a bad idea."))
-		return
-	user.visible_message(span_warning("[user] holds the bouquet out, summoning their allies!"))
-	for(var/mob/m in summons)
-		m.forceMove(T)
-	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
-	next_summon = world.time + COOLDOWN_SUMMON
+/obj/item/midasgaunt/attack_self(mob/living/user)
+	user.apply_status_effect(STATUS_EFFECT_SOULSHIELD)
 
 /obj/item/midasgaunt/afterattack(mob/living/simple_animal/M, mob/user, proximity)
 	var/datum/status_effect/taming/G = M.has_status_effect(STATUS_EFFECT_TAMING)
