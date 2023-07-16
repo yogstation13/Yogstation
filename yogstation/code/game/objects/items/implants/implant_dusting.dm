@@ -122,8 +122,10 @@
 		// Spawn new IAA
 		if(istype(SSticker.mode, /datum/game_mode/traitor/internal_affairs))
 			var/datum/game_mode/traitor/internal_affairs/iaa_mode = SSticker.mode
-			if(iaa_mode.create_new_traitor())
+			var/mob/living/new_tot = iaa_mode.create_new_traitor()
+			if(new_tot)
 				to_chat(user, span_warning("You feel like someone is watching you... Keep on your guard."))
+				message_admins("[ADMIN_LOOKUPFLW(new_tot)] was made into a new IAA by \a [src].")
 		qdel(src)
 	else
 		to_chat(user, span_notice("\The [src] doesn't seem to do anything."))

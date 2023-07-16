@@ -237,8 +237,8 @@
  */
 /obj/machinery/atmospherics/components/unary/hypertorus/core/proc/moderator_fuel_process(delta_time, production_amount, consumption_amount, datum/gas_mixture/internal_output, moderator_list, datum/hfr_fuel/fuel, fuel_list)
 	// Adjust fusion consumption/production based on this recipe's characteristics
-	var/fuel_consumption = consumption_amount * 0.85 * selected_fuel.fuel_consumption_multiplier
-	var/scaled_production = production_amount * selected_fuel.gas_production_multiplier
+	var/fuel_consumption = consumption_amount * 0.85 * selected_fuel.fuel_consumption_multiplier * max(power_level, 1)
+	var/scaled_production = production_amount * selected_fuel.gas_production_multiplier * max(power_level, 1)
 
 	for(var/gas_id in fuel.requirements)
 		internal_fusion.adjust_moles(gas_id, -min(fuel_list[gas_id], fuel_consumption))

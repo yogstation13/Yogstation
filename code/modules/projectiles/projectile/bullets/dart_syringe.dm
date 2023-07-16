@@ -29,6 +29,11 @@
 	name = "syringe"
 	icon_state = "syringeproj"
 
+/obj/item/projectile/bullet/reusable/dart/syringe/blowgun
+	name = "syringe"
+	icon_state = "syringeproj"
+	range = 2
+
 /obj/item/projectile/bullet/reusable/dart/hidden
 	name = "beanbag slug"
 	icon_state = "bullet" //So it doesn't look like a goddamned syringe

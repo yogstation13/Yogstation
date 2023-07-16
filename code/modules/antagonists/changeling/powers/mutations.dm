@@ -643,6 +643,6 @@
 			T.deconstruct(FALSE)
 			return
 		if(!isnull(target))
-			S.take_damage(structure_damage, BRUTE, "melee", 0)
+			S.take_damage(structure_damage, BRUTE, "melee", 0, null, armour_penetration)
 		if(make_sound)
 			playsound(src, 'sound/effects/bang.ogg', 50, 1)

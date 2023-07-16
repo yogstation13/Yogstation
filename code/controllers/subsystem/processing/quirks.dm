@@ -74,7 +74,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		prefs = client.prefs
 
 	// If moods are globally enabled, or this guy does indeed have his mood pref set to Enabled
-	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (prefs.yogtoggles & PREF_MOOD))
+	var/ismoody = (!CONFIG_GET(flag/disable_human_mood) || (prefs.read_preference(/datum/preference/toggle/mood_enabled)))
 
 	for (var/quirk_name in quirks)
 		var/datum/quirk/quirk = SSquirks.quirks[quirk_name]

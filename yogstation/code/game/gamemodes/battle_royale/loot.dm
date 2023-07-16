@@ -193,6 +193,7 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/gun/ballistic/automatic/c20r/unrestricted = -3,
 		/obj/item/gun/ballistic/automatic/mini_uzi = -3,
 		/obj/item/gun/ballistic/automatic/tommygun = -3,
+		/obj/item/gun/ballistic/rifle/sniper_rifle = -3, //Not a stun anymore
 		/obj/item/twohanded/vibro_weapon = -3, //Strong melee weapon, but not enough to be -5
 
 		/obj/item/autosurgeon/arm/syndicate/syndie_mantis = -4,
@@ -204,7 +205,6 @@ GLOBAL_LIST_INIT(battleroyale_weapon, list(
 		/obj/item/his_grace = -5,
 		/obj/item/twohanded/required/chainsaw/doomslayer = -5,
 		/obj/item/gun/ballistic/bow/energy/ert = -5,
-		/obj/item/gun/ballistic/automatic/sniper_rifle = -5, //Sniper stuns
 		))
 
 GLOBAL_LIST_INIT(battleroyale_healing, list(//this one doesn't scale because max health doesn't scale, there's also less healing items than other items
