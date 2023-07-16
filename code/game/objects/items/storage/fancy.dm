@@ -47,7 +47,7 @@
 /obj/item/storage/fancy/attack_self(mob/user)
 	fancy_open = !fancy_open
 	update_appearance(UPDATE_ICON)
-	. = ..()
+	return ..()
 
 /obj/item/storage/fancy/Exited()
 	. = ..()
@@ -205,7 +205,7 @@
 
 /obj/item/storage/fancy/cigarettes/update_overlays()
 	. = ..()
-	if(!fancy_open && !contents.len)
+	if(!fancy_open)
 		return
 	
 	. += "[icon_state]_open"
