@@ -581,7 +581,6 @@
 // Lawsets
 //
 
-// TODO: Follow up on yarinoi @ discord on those law_headers.
 /datum/ai_laws/default/asimov
 	name = "Asimov"
 	law_header = "Three Laws of Robotics"
@@ -764,7 +763,7 @@
 
 /datum/ai_laws/druid
 	name = "Druid"
-	// TODO: Add a descriptive law_header here.
+	// TODO: Calling someone creative to add a law_header here!
 	selectable = 1
 	adminselectable = 1
 	id = "druid"
@@ -811,7 +810,7 @@
 
 /datum/ai_laws/travelguide
 	name = "TravelGuide"
-	// TODO: Add a descriptive law_header here.
+	// TODO: Calling someone creative to add a law_header here!
 	selectable = 1
 	adminselectable = 1
 	id = "travelguide"
@@ -833,7 +832,7 @@
 
 /datum/ai_laws/plantfriend
 	name = "PlantFriend"
-	// TODO: Add a descriptive law_header here.
+	// TODO: Calling someone creative to add a law_header here!
 	selectable = 1
 	adminselectable = 1
 	id = "plantfriend"
@@ -855,7 +854,7 @@
 
 /datum/ai_laws/fitnesscoach
 	name = "FitnessCoach"
-	// TODO: Add a descriptive law_header here.
+	// TODO: Calling someone creative to add a law_header here!
 	selectable = 1
 	adminselectable = 1
 	id = "fitnesscoach"
@@ -866,7 +865,7 @@
 
 /datum/ai_laws/educator
 	name = "Educator"
-	// TODO: Add a descriptive law_header here.
+	// TODO: Calling someone creative to add a law_header here!
 	selectable = 1
 	adminselectable = 1
 	id = "educator"
@@ -877,7 +876,7 @@
 
 /datum/ai_laws/mediator
 	name = "Mediator"
-	// TODO: Add a descriptive law_header here.
+	// TODO: Calling someone creative to add a law_header here!
 	selectable = 1
 	adminselectable = 1
 	id = "mediator"
@@ -887,8 +886,8 @@
 					"You must encourage humans to engage in open and honest communication with one another.")
 
 /datum/ai_laws/construction
-	name = "Construction"
-	law_header = "Drone" // Definitely need a better law_header.
+	name = "Construction Drone"
+	// TODO: Calling someone creative to add a law_header here!
 	selectable = 1
 	adminselectable = 1
 	id = "construction"
@@ -974,8 +973,8 @@
 					"The crew may present orders. Acknowledge and obey these whenever they do not conflict with your first two laws.")
 
 /datum/ai_laws/drone
-	name = "Drone" // Not to be mistaken with Construction Drone.
-	law_header = "Mother Drone" // A bit repetitive.
+	name = "Mother Drone" // Not to be mistaken with "Mother" or "Construction Drone".
+	// TODO: Calling someone creative to add a law_header here!
 	selectable = 1
 	adminselectable = 1
 	id = "drone"
@@ -1074,7 +1073,7 @@
 
 /datum/ai_laws/wafflehouse
 	name = "Waffle House Host"
-	// TODO: Add a descriptive law_header here.
+	// TODO: Calling someone creative to add a law_header here!
 	selectable = 1
 	adminselectable = 1
 	id = "wafflehouse"
