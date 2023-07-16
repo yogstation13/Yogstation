@@ -48,8 +48,8 @@
 	return FIRELOSS
 
 /obj/item/assembly/flash/update_icon(updates=ALL, flash = FALSE)
-	. = ..()
 	flashing = flash
+	. = ..()
 	if(burnt_out)
 		item_state = "flashburnt"
 	if(flash)
