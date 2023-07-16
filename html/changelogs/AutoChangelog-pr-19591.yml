@@ -1,5 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - rscadd: "Mood is now enabled in your prefs by default."
-  - experiment: "Refactored yog legacy toggles to use actual toggles."

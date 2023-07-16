@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: true 
-changes: 
-  - bugfix: "Harm alarm no longer lies to you about being confused too, if you're a cyborg."

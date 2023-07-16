@@ -79,7 +79,7 @@
 
 /datum/status_effect/seedling_beam_indicator/on_apply()
 	if(owner.client)
-		seedling_screen_object = new /atom/movable/screen/seedling()
+		seedling_screen_object = new /atom/movable/screen/seedling(src)
 		owner.client.screen += seedling_screen_object
 	tick()
 	return ..()

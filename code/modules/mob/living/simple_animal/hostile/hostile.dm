@@ -67,7 +67,6 @@
 	. = ..()
 	if(!.) //dead
 		walk(src, 0) //stops walking
-		return 0
 
 /mob/living/simple_animal/hostile/handle_automated_action()
 	if(AIStatus == AI_OFF)

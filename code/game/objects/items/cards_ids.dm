@@ -612,7 +612,7 @@ update_label("John Doe", "Clowny")
 		forceMove(holder.loc)
 		holder.spareid = null
 		if(holder.obj_integrity > holder.integrity_failure) //we dont want to heal it by accident
-			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN) //we do a bit of trolling for being naughty
+			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN, armour_penetration = 100) //we do a bit of trolling for being naughty
 		else
 			holder.update_icon() //update the icon anyway so it pops out
 		visible_message(span_danger("The heat of the temporary spare shatters the glass!"));
