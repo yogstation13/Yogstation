@@ -38,9 +38,13 @@
 
 /obj/item/mmi/update_overlays()
 	. = ..()
+	. += add_mmi_overlay()
+
+/obj/item/mmi/proc/add_mmi_overlay()
 	if(brainmob && brainmob.stat != DEAD)
 		. += "mmi_alive"
-	else
+		return
+	if(brain)
 		. += "mmi_dead"
 
 /obj/item/mmi/Initialize(mapload)
