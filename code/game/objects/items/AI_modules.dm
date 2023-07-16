@@ -20,6 +20,7 @@
 	var/datum/ai_laws/laws
 	/// Allow installing with no laws and ignoring of the lawcap.
 	var/bypass_law_amt_check = FALSE
+	var/show_laws = TRUE
 
 /obj/item/aiModule/Initialize(mapload)
 	. = ..()
@@ -27,7 +28,7 @@
 
 /obj/item/aiModule/examine(mob/user as mob)
 	. = ..()
-	if((isobserver(user) || Adjacent(user)) && laws)
+	if((isobserver(user) || Adjacent(user)) && laws && show_laws)
 		. += "<span class='info'>" // Replace with span_info() once it exists.
 		var/list/law_list = laws.get_law_list(include_zeroth = TRUE)
 		. += "<B>Programmed Law[(law_list.len > 1) ? "s" : ""]:</B>"
@@ -188,6 +189,7 @@
 	desc = "A little toy model AI core with real law uploading action!" // This is the only tell that shows you can upload with this.
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "AI"
+	show_laws = FALSE
 
 /obj/item/aiModule/ion/toyAI/Initialize(mapload)
 	. = ..()
@@ -266,6 +268,7 @@
 /obj/item/aiModule/core/full/damaged
 	name = "damaged Core AI Module"
 	desc = "An AI Module for programming laws to an AI. It looks slightly damaged."
+	show_laws = FALSE
 
 /obj/item/aiModule/core/full/damaged/install(datum/ai_laws/law_datum, mob/user)
 	laws.add_ion_law(generate_ion_law())
@@ -681,6 +684,7 @@
 	name = "'Reset' AI module"
 	desc = "An AI Module for removing all non-core laws."
 	bypass_law_amt_check = TRUE
+	show_laws = FALSE
 
 /obj/item/aiModule/reset/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
 	..()
