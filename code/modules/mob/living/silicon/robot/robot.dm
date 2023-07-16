@@ -743,7 +743,7 @@
 
 /mob/living/silicon/robot/verb/outputlaws()
 	set category = "Robot Commands"
-	set name = "Open Law Manager"
+	set name = "Law Manager"
 
 	if(usr.stat == DEAD)
 		return //won't work if dead

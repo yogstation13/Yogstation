@@ -445,29 +445,34 @@
 		replaceable_groups[LAW_ION] = hacked.len
 	if(inherent.len && (LAW_INHERENT in groups))
 		replaceable_groups[LAW_INHERENT] = inherent.len
-	if(supplied.len && (LAW_SUPPLIED in groups))
-		replaceable_groups[LAW_SUPPLIED] = supplied.len
+	var/law_amount = 0
+	for(var/index = 1, index <= supplied.len, index++)
+		var/supplied_law = supplied[index]
+		if(length(supplied_law) > 0)
+			law_amount++
+	if(law_amount && (LAW_SUPPLIED in groups))
+		replaceable_groups[LAW_SUPPLIED] = law_amount
 	var/picked_group = pickweight(replaceable_groups)
 	switch(picked_group)
 		if(LAW_ZEROTH)
-			. = zeroth
 			set_zeroth_law(law)
 		if(LAW_ION)
 			var/i = rand(1, ion.len)
-			. = ion[i]
-			ion[i] = law
+			edit_ion_law(i, law)
 		if(LAW_HACKED)
 			var/i = rand(1, hacked.len)
-			. = hacked[i]
-			hacked[i] = law
+			edit_hacked_law(i, law)
 		if(LAW_INHERENT)
 			var/i = rand(1, inherent.len)
-			. = inherent[i]
-			inherent[i] = law
+			edit_inherent_law(i, law)
 		if(LAW_SUPPLIED)
-			var/i = rand(1, supplied.len)
-			. = supplied[i]
-			supplied[i] = law
+			var/i = rand(1, law_amount)
+			var/supplied_indexes = list()
+			for(var/index = 1, index <= supplied.len, index++)
+				var/supplied_law = supplied[index]
+				if(length(supplied_law) > 0)
+					supplied_indexes += index
+			edit_supplied_law(supplied_indexes[i], law)
 
 /// Shuffle the laws that are part of the listed groups. Devil laws and zeroth law not supported.
 /datum/ai_laws/proc/shuffle_laws(list/groups)

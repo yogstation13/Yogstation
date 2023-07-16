@@ -105,7 +105,7 @@
 	pAI.ai_roster()
 
 /atom/movable/screen/pai/state_laws
-	name = "Open Law Manager"
+	name = "Law Manager"
 	icon_state = "state_laws"
 
 /atom/movable/screen/pai/state_laws/Click()

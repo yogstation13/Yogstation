@@ -327,7 +327,7 @@ const LawTable = (props, context) => {
                   act('state_law', { index: l.index, type: l.type })
                 }
               />
-              {!!(isAntag || isAdmin) && (
+              {!!(isAntag || isAdmin) && !l.hidebuttons && (
                 <Fragment>
                   <Button
                     content="Edit"

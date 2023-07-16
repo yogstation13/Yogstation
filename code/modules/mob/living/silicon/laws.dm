@@ -487,8 +487,8 @@
 				to_chat(usr, span_warning("You cannot add a supplied law to a pAI."))
 				return
 			if(supplied_law && supplied_law_position >= 15 && MIN_SUPPLIED_LAW_NUMBER <= MAX_SUPPLIED_LAW_NUMBER)
-				log_admin("[usr] has added a supplied law to [owner] at position [supplied_law_position]: '[inherent_law]'")
-				message_admins("[usr] has added a supplied law to [owner] at position [supplied_law_position]: '[inherent_law]'")
+				log_admin("[usr] has added a supplied law to [owner] at position [supplied_law_position]: '[supplied_law]'")
+				message_admins("[usr] has added a supplied law to [owner] at position [supplied_law_position]: '[supplied_law]'")
 				owner.add_supplied_law(supplied_law_position, supplied_law)
 		if("change_zeroth_law")
 			var/new_law = sanitize(input("Enter new zeroth law. Leaving the field blank will cancel the edit.", "Edit Law", zeroth_law))
@@ -566,33 +566,33 @@
 /datum/law_manager/proc/handle_laws(list/data, datum/ai_laws/laws)
 	data["devil"] = list()
 	for(var/index = 1, index <= laws.devil.len, index++)
-		data["devil"][++data["devil"].len] = list("law" = laws.devil[index], "index" = index, "indexdisplay" = 666,  "state" = (laws.devilstate.len >= index ? laws.devilstate[index] : 0), "type" = "devil")
+		data["devil"][++data["devil"].len] = list("law" = laws.devil[index], "index" = index, "indexdisplay" = 666,  "state" = (laws.devilstate.len >= index ? laws.devilstate[index] : 0), "type" = "devil", "hidebuttons" = data["isAntag"] ? TRUE : FALSE)
 	data["has_devil"] = data["devil"].len
 
 	data["zeroth"] = list()
 	if(laws.zeroth)
-		data["zeroth"][++data["zeroth"].len] = list("law" = laws.zeroth, "index" = 0, "indexdisplay" = 0, "state" = (!isnull(laws.zerothstate) ? laws.zerothstate : 0), "type" = "zeroth")
+		data["zeroth"][++data["zeroth"].len] = list("law" = laws.zeroth, "index" = 0, "indexdisplay" = 0, "state" = (!isnull(laws.zerothstate) ? laws.zerothstate : 0), "type" = "zeroth", "hidebuttons" = data["isAntag"] ? TRUE : FALSE)
 	data["has_zeroth"] = data["zeroth"].len
 
 	data["hacked"] = list()
 	for(var/index = 1, index <= laws.hacked.len, index++)
-		data["hacked"][++data["hacked"].len] = list("law" = laws.hacked[index], "index" = index, "indexdisplay" = ionnum(), "state" = (laws.hackedstate.len >= index ? laws.hackedstate[index] : 1 ), "type" = "hacked")
+		data["hacked"][++data["hacked"].len] = list("law" = laws.hacked[index], "index" = index, "indexdisplay" = ionnum(), "state" = (laws.hackedstate.len >= index ? laws.hackedstate[index] : 1 ), "type" = "hacked", "hidebuttons" = FALSE)
 	data["has_hacked"] = data["hacked"].len
 
 	data["ion"] = list()
 	for(var/index = 1, index <= laws.ion.len, index++)
-		data["ion"][++data["ion"].len] = list("law" = laws.ion[index], "index" = index, "indexdisplay" = ionnum(), "state" = (laws.ionstate.len >= index ? laws.ionstate[index] : 1 ), "type" = "ion")
+		data["ion"][++data["ion"].len] = list("law" = laws.ion[index], "index" = index, "indexdisplay" = ionnum(), "state" = (laws.ionstate.len >= index ? laws.ionstate[index] : 1 ), "type" = "ion", "hidebuttons" = FALSE)
 	data["has_ion"] = data["ion"].len
 
 	data["inherent"] = list()
 	for(var/index = 1, index <= laws.inherent.len, index++)
-		data["inherent"][++data["inherent"].len] = list("law" = laws.inherent[index], "index" = index, "indexdisplay" = index, "state" = (laws.inherentstate.len >= index ? laws.inherentstate[index] : 1 ), "type" = "inherent")
+		data["inherent"][++data["inherent"].len] = list("law" = laws.inherent[index], "index" = index, "indexdisplay" = index, "state" = (laws.inherentstate.len >= index ? laws.inherentstate[index] : 1 ), "type" = "inherent", "hidebuttons" = FALSE)
 	data["has_inherent"] = data["inherent"].len
 
 	data["supplied"] = list()
 	for(var/index = 1, index <= laws.supplied.len, index++)
 		if(length(laws.supplied[index]) > 0)
-			data["supplied"][++data["supplied"].len] = list("law" = laws.supplied[index], "index" = index, "indexdisplay" = index, "state" = (laws.suppliedstate.len >= index ? laws.suppliedstate[index] : 1 ), "type" = "supplied")
+			data["supplied"][++data["supplied"].len] = list("law" = laws.supplied[index], "index" = index, "indexdisplay" = index, "state" = (laws.suppliedstate.len >= index ? laws.suppliedstate[index] : 1 ), "type" = "supplied", "hidebuttons" = FALSE)
 	data["has_supplied"] = data["supplied"].len
 
 /datum/law_manager/proc/handle_channels(list/data)
