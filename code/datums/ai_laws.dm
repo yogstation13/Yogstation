@@ -21,6 +21,8 @@
 	var/mob/living/silicon/owner
 	/// The lawset id.
 	var/id = DEFAULT_AI_LAWID
+	/// Determines if this lawset is considered "modified" or non-default.
+	var/modified = FALSE
 
 	var/list/devil = list()
 	var/zeroth = null

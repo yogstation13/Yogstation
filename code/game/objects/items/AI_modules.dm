@@ -65,6 +65,7 @@
 		current_laws.owner.law_change_counter++
 	else
 		to_chat(user, span_notice("Upload complete."))
+	current_laws.modified = TRUE
 
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	var/ainame = current_laws.owner ? current_laws.owner.name : "an MMI object"
