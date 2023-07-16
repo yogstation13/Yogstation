@@ -21482,15 +21482,6 @@
 /obj/machinery/door/window/westright,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
-"gwQ" = (
-/obj/structure/closet/secure_closet/warden,
-/obj/item/gun/energy/laser,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "gwV" = (
 /obj/machinery/computer/mech_bay_power_console,
 /obj/item/radio/intercom{
@@ -54048,6 +54039,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+"qfD" = (
+/obj/structure/closet/secure_closet/warden,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
 "qfQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/closed/wall,
@@ -109242,7 +109241,7 @@ gmV
 rzU
 ogt
 pKP
-gwQ
+qfD
 woC
 eqP
 fWv
