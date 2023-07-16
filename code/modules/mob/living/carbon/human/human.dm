@@ -1129,6 +1129,10 @@
 		return FALSE
 	return ..()
 
+/// Returns the type of organs, reagents, and symptoms this mob is compatible with
+/mob/living/carbon/human/get_process_flags()
+	return dna?.species?.process_flags // uses the process flags of whichever species we are
+
 /mob/living/carbon/human/monkeybrain
 	ai_controller = /datum/ai_controller/monkey
 

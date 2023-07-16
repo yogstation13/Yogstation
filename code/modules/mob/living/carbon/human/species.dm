@@ -146,8 +146,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	///the icon used for the wings + details icon of a different source colour
 	var/wings_icon = "Angel"
 	var/wings_detail
-	/// Used for metabolizing reagents. We're going to assume you're a meatbag unless you say otherwise.
-	var/reagent_tag = PROCESS_ORGANIC
+	/// Used for reagents, organs, and virus symptoms. We're going to assume you're a meatbag unless you say otherwise.
+	var/process_flags = ORGANIC
 	/// What kind of gibs to spawn
 	var/species_gibs = "human"
 	/// Can this species use numbers in its name?
@@ -1301,12 +1301,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		H.reagents.del_reagent(chem.type)
 		return TRUE
 	//This handles dumping unprocessable reagents.
-	var/dump_reagent = TRUE
-	if((chem.process_flags & SYNTHETIC) && (H.dna.species.reagent_tag & PROCESS_SYNTHETIC))		//SYNTHETIC-oriented reagents require PROCESS_SYNTHETIC
-		dump_reagent = FALSE
-	if((chem.process_flags & ORGANIC) && (H.dna.species.reagent_tag & PROCESS_ORGANIC))		//ORGANIC-oriented reagents require PROCESS_ORGANIC
-		dump_reagent = FALSE
-	if(dump_reagent)
+	if(!(chem.process_flags & H.get_process_flags()))
 		chem.holder.remove_reagent(chem.type, chem.metabolization_rate)
 		return TRUE
 	return FALSE

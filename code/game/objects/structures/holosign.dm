@@ -84,6 +84,18 @@
 	desc = "When it says walk it means walk."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "holosign"
+	var/turf/slippery_floor
+
+/obj/structure/holosign/barrier/wetsign/Initialize(mapload)
+	. = ..()
+	slippery_floor = get_turf(src)
+	if(!slippery_floor?.GetComponent(/datum/component/slippery))
+		return INITIALIZE_HINT_QDEL
+	RegisterSignal(slippery_floor.GetComponent(/datum/component/slippery), COMSIG_PARENT_QDELETING, PROC_REF(del_self))
+
+/obj/structure/holosign/barrier/wetsign/proc/del_self()
+	SIGNAL_HANDLER
+	qdel(src)
 
 /obj/structure/holosign/barrier/wetsign/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

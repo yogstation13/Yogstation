@@ -95,24 +95,6 @@
 			return -1
 		tool = I
 
-	if(isipc(target))
-		if(istype(tool, /obj/item/organ/brain/positron))
-			var/obj/item/bodypart/affected = target.get_bodypart(check_zone(target_zone))
-			if(!affected)
-				return -1
-			if(affected.status != ORGAN_ROBOTIC)
-				to_chat(user, "<span class='notice'>You can't put [tool] into a meat enclosure!</span>")
-				return -1
-			if(target_zone != BODY_ZONE_CHEST)
-				to_chat(user, "<span class='notice'>You have to install [tool] in [target]'s chest!</span>")
-				return -1
-			if(target.get_organ_slot(ORGAN_SLOT_BRAIN))
-				to_chat(user, "<span class='notice'>[target] already has a brain! You'd rather not find out what would happen with two in there.</span>")
-				return -1
-		else if(istype(tool, /obj/item/organ/brain))
-			to_chat(user, "<span class='notice'>[target] does not have the proper connectors to interface with [tool].</span>")
-			return -1
-
 	if(isorgan(tool))
 		current_type = "insert"
 		preop_sound = initial(preop_sound)
@@ -120,6 +102,11 @@
 		I = tool
 		if(target_zone != I.zone || target.get_organ_slot(I.slot))
 			to_chat(user, span_notice("There is no room for [I] in [target]'s [parse_zone(target_zone)]!"))
+			return -1
+
+		var/obj/item/organ/O = tool
+		if(!(O.process_flags & target.get_process_flags()))
+			to_chat(user, span_notice("[target] is not compatible with [O]!"))
 			return -1
 
 		display_results(user, target, span_notice("You begin to insert [tool] into [target]'s [parse_zone(target_zone)]..."),

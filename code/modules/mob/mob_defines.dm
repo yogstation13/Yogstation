@@ -215,3 +215,5 @@
 	var/datum/client_interface/mock_client
 
 	var/create_area_cooldown
+
+	var/sound_environment_override = SOUND_ENVIRONMENT_NONE

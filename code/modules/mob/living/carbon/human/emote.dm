@@ -273,6 +273,15 @@
 /datum/emote/living/carbon/human/robot_tongue/beep/get_sound(mob/living/user)
 	return 'sound/machines/twobeep.ogg'
 
+
+/datum/emote/living/carbon/human/robot_tongue/boop
+	key = "boop"
+	key_third_person = "boops"
+	message = "boops."
+
+/datum/emote/living/carbon/human/robot_tongue/boop/get_sound(mob/living/user)
+	return 'sound/machines/boop.ogg'
+
 /datum/emote/living/carbon/human/robot_tongue/buzz
 	key = "buzz"
 	key_third_person = "buzzes"

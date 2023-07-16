@@ -796,6 +796,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(M.faction == user.faction)
 		to_chat(user, span_warning("[M] is already on your side!"))
 		return
+	if(!M.magic_tameable)
+		to_chat(user, span_warning("[M] cannot be tamed!"))
+		return
 	if(M.sentience_type == SENTIENCE_BOSS)
 		if(!G)
 			M.apply_status_effect(STATUS_EFFECT_TAMING, user)

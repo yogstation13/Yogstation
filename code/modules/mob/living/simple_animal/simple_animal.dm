@@ -95,6 +95,8 @@
 
 	var/do_footstep = FALSE
 
+	var/magic_tameable = TRUE	//For special cases with the enchanted flowers
+
 	///How much wounding power it has
 	var/wound_bonus = CANT_WOUND
 	///How much bare wounding power it has
@@ -102,8 +104,11 @@
 	///If the attacks from this are sharp
 	var/sharpness = SHARP_NONE
 
+	//Music
 	var/music_component = null
 	var/music_path = null
+
+	
 
 /mob/living/simple_animal/Initialize(mapload)
 	. = ..()
