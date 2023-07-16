@@ -21,8 +21,7 @@
 
 	var/turf/our_tile = get_turf(src)
 	var/obj/visual = new /obj/effect/temp_visual/point(our_tile, invisibility)
-
-	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointed_atom.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointed_atom.pixel_y, time = 1.7, easing = EASE_OUT)
+	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointed_atom.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointed_atom.pixel_y, time = 0.17 SECONDS, easing = EASE_OUT)
 
 /atom/movable/proc/create_point_bubble(atom/pointed_atom)
 	var/obj/effect/thought_bubble_effect = new
@@ -69,16 +68,17 @@
 	name = "pointer"
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "arrow"
-	plane = POINT_LAYER
+	layer = POINT_LAYER
 	duration = POINT_TIME
 
 /obj/effect/temp_visual/point/Initialize(mapload, set_invis = 0)
 	. = ..()
 	var/atom/old_loc = loc
-	abstract_move(get_turf(src))
+	loc = get_turf(src) // We don't want to actualy trigger anything when it moves
 	pixel_x = old_loc.pixel_x
 	pixel_y = old_loc.pixel_y
 	invisibility = set_invis
+
 
 #undef POINT_TIME
 
@@ -95,16 +95,16 @@
  *
  * overridden here and in /mob/dead/observer for different point span classes and sanity checks
  */
-/mob/verb/pointed(atom/target as mob|obj|turf in view())
+/mob/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Point To"
 	set category = "Object"
 
-	if(client && !(target in view(client.view, src)))
+	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
 		return FALSE
-	if(istype(target, /obj/effect/temp_visual/point))
+	if(istype(A, /obj/effect/temp_visual/point))
 		return FALSE
 
-	point_at(target)
+	point_at(A)
 
-	SEND_SIGNAL(src, COMSIG_MOB_POINTED, target)
+	SEND_SIGNAL(src, COMSIG_MOB_POINTED, A)
 	return TRUE
