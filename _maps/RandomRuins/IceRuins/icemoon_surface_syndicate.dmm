@@ -3318,6 +3318,11 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"Bv" = (
+/obj/structure/window/reinforced/spawner/west,
+/obj/structure/window/reinforced/spawner/north,
+/turf/open/floor/fakespace,
+/area/ruin/syndicate_icemoon/dorms)
 "Bz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -4074,7 +4079,11 @@
 /obj/structure/sign/painting{
 	pixel_x = 32
 	},
-/turf/open/floor/wood,
+/obj/machinery/door/window{
+	dir = 1;
+	name = "Carp Pen"
+	},
+/turf/open/floor/fakespace,
 /area/ruin/syndicate_icemoon/dorms)
 "HA" = (
 /turf/open/floor/mineral/plastitanium,
@@ -4158,6 +4167,11 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/syndicate_icemoon/command)
+"Ip" = (
+/obj/machinery/light,
+/obj/structure/window/reinforced/spawner/west,
+/turf/open/floor/fakespace,
+/area/ruin/syndicate_icemoon/dorms)
 "Is" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
@@ -4193,6 +4207,14 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/plasteel/showroomfloor,
+/area/ruin/syndicate_icemoon/dorms)
+"IO" = (
+/mob/living/simple_animal/hostile/carp{
+	faction = list("Syndicate");
+	name = "Cayenne III";
+	desc = "Cayenne the Third, a descendent of Cayenne the Second, who was a descendent of Cayenne the First."
+	},
+/turf/open/floor/fakespace,
 /area/ruin/syndicate_icemoon/dorms)
 "IP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -7815,8 +7837,8 @@ qi
 qi
 an
 qi
-qi
-sO
+Bv
+Ip
 DV
 eM
 eM
@@ -7890,7 +7912,7 @@ Uz
 an
 qi
 Hz
-qi
+IO
 DV
 eM
 VN
