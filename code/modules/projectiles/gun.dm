@@ -622,7 +622,7 @@
 	
 	var/att_position = 0
 	for(var/obj/item/attachment/A as anything in current_attachments)
-		var/mutable_appearance/M = mutable_appearance('icons/obj/guns/attachment.dmi', "[A.icon_state]_a")
+		var/mutable_appearance/M = mutable_appearance(A.icon, "[A.icon_state]_a")
 		M.pixel_x = att_position * 6
 		. += M
 		att_position++

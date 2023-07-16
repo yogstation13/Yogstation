@@ -2,9 +2,9 @@
 	name = "energy gun"
 	desc = "A basic hybrid energy gun with two settings: disable and kill."
 	icon_state = "energy"
-	item_state = null	//so the human update icon uses the icon_state instead.
+	item_state = null //so the human update icon uses the icon_state instead.
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
-	modifystate = 1
+	modifystate = TRUE
 	can_flashlight = TRUE
 	ammo_x_offset = 3
 	flight_x_offset = 15
