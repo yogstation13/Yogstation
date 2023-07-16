@@ -181,7 +181,6 @@
 		if(cell.charge < shot.e_cost)
 			. += "[icon_state]_empty"
 			return
-		. += "[icon_state]_[initial(shot.select_name)]"
 		overlay_icon_state += "_[initial(shot.select_name)]"
 
 	var/ratio = get_charge_ratio()
