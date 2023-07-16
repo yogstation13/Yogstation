@@ -914,36 +914,43 @@
 
 /obj/item/borg/upgrade/snack_dispenser
 	name = "Cyborg Upgrade (Snack Dispenser)"
-	desc = "Gives the ability to dispense speciality snacks to medical, peacekeeper, and service cyborgs."
-	/// For storing modules that we remove, since the upgraded snack dispensor automatically removes inferior versions
-	var/list/removed_modules = list()
+	desc = "Gives the ability to dispense speciality snacks to medical, peacekeeper, service, and clown cyborgs."
 
 /obj/item/borg/upgrade/snack_dispenser/action(mob/living/silicon/robot/R, user)
 	if(R.stat == DEAD)
 		to_chat(user, span_notice("[src] will not function on a deceased cyborg."))
 		return FALSE
 	// module_type doesn't support more than 1 module. Thus, this:
-	if( !istype(R.module, /obj/item/robot_module/medical) && !istype(R.module, /obj/item/robot_module/peacekeeper) && !istype(R.module, /obj/item/robot_module/butler))
+	if(!istype(R.module, /obj/item/robot_module/medical) && !istype(R.module, /obj/item/robot_module/peacekeeper) && !istype(R.module, /obj/item/robot_module/butler) && !istype(R.module, /obj/item/robot_module/clown))
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
 		to_chat(user, "There's no mounting point for the module!")
 		return FALSE
+
 	var/obj/item/borg_snack_dispenser/snack_dispenser = new(R.module)
 	R.module.basic_modules += snack_dispenser
 	R.module.add_module(snack_dispenser, FALSE, TRUE)
-	for(var/obj/item/rsf/cookiesynth/cookiesynth in R.module)
-		removed_modules += cookiesynth
-		R.module.remove_module(cookiesynth)
-	for(var/obj/item/borg/lollipop/lollipop in R.module)
-		removed_modules += lollipop
-		R.module.remove_module(lollipop)
+
+	for(var/obj/item/borg_snack_dispenser/peacekeeper/cookiesynth in R.module.modules) // the SC stands for shitcode
+		R.module.remove_module(cookiesynth, TRUE)
+
+	for(var/obj/item/borg_snack_dispenser/medical/lollipopshooter in R.module.modules)
+		R.module.remove_module(lollipopshooter, TRUE)
+
 	return TRUE
 
 /obj/item/borg/upgrade/snack_dispenser/deactivate(mob/living/silicon/robot/R, user)
 	. = ..()
 	if(!.)
 		return
-	for(var/obj/item/borg_snack_dispenser/dispenser in R.module)
-		R.module.remove_module(dispenser, TRUE)
-	for(var/obj/item as anything in removed_modules)
-		R.module.basic_modules += item
-		R.module.add_module(item, FALSE, TRUE)
+
+	for(var/obj/item/borg_snack_dispenser/snack_dispenser in R.module.modules)
+		R.module.remove_module(snack_dispenser, TRUE)
+
+	if(istype(R.module, /obj/item/robot_module/peacekeeper))
+		var/obj/item/borg_snack_dispenser/peacekeeper/cookiesynth = new(R.module)
+		R.module.basic_modules += cookiesynth
+		R.module.add_module(cookiesynth, FALSE, TRUE)
+	else // Guess they're medical, service, or clown.
+		var/obj/item/borg_snack_dispenser/medical/lollipopshooter = new(R.module)
+		R.module.basic_modules += lollipopshooter
+		R.module.add_module(lollipopshooter, FALSE, TRUE)
