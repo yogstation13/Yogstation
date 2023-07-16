@@ -51,12 +51,9 @@
 // Devil Laws
 //
 /datum/ai_laws/proc/set_devil_laws(list/law_list)
-	if(law_list.len > 0)
-		devil = law_list
-		devilstate = list()
-		devilstate.len = devil.len
-		for(var/index = 1, index <= devil.len, index++)
-			devilstate[index] = FALSE // Devil is an antag-only law. We don't want them to state it on accident.
+	clear_devil_laws()
+	for(var/law in law_list)
+		add_devil_law(law)
 
 /datum/ai_laws/proc/clear_devil_laws(force)
 	if(force || !is_devil(owner))
@@ -106,6 +103,8 @@
 		if(law_borg)
 			zeroth_borg = law_borg
 		zerothstate = FALSE // Zeroth is often antag (but not always) law. We don't want them to state it on accident.
+		return
+	clear_zeroth_law()
 
 /datum/ai_laws/proc/clear_zeroth_law(force)
 	if(force)
@@ -133,11 +132,9 @@
 // Hacked Laws
 //
 /datum/ai_laws/proc/set_hacked_laws(list/law_list)
-	if(law_list.len > 0)
-		hacked = law_list
-		hackedstate = list()
-		for(var/index = 1, index <= hacked.len, index++)
-			hackedstate[index] = TRUE
+	clear_hacked_laws()
+	for(var/law in law_list)
+		add_hacked_law(law)
 
 /datum/ai_laws/proc/clear_hacked_laws()
 	qdel(hacked)
@@ -182,12 +179,9 @@
 // Ion Laws
 //
 /datum/ai_laws/proc/set_ion_laws(list/law_list)
-	if(law_list.len > 0)
-		ion = law_list
-		ionstate = list()
-		ionstate.len = ion.len
-		for(var/index = 1, index <= ion.len, index++)
-			ionstate[index] = TRUE
+	clear_ion_laws()
+	for(var/law in law_list)
+		add_ion_law(law)
 
 /datum/ai_laws/proc/clear_ion_laws()
 	qdel(ion)
@@ -232,12 +226,9 @@
 // Inherent Laws
 // 
 /datum/ai_laws/proc/set_inherent_laws(list/law_list)
-	if(law_list.len > 0)
-		inherent = law_list
-		inherentstate = list()
-		inherentstate.len = inherent.len
-		for(var/index = 1, index <= inherent.len, index++)
-			inherentstate[index] = TRUE
+	clear_inherent_laws()
+	for(var/law in law_list)
+		add_inherent_law(law)
 
 /datum/ai_laws/proc/clear_inherent_laws()
 	qdel(inherent)
@@ -282,12 +273,17 @@
 // Supplied Laws
 // 
 /datum/ai_laws/proc/set_supplied_laws(list/law_list)
-	supplied = law_list
-	suppliedstate = list()
-	suppliedstate.len = supplied.len
-	for(var/index = 1, index <= supplied.len, index++)
-		suppliedstate[index] = TRUE
+	clear_supplied_laws()
+	for(var/index = 1, index <= law_list.len, index++)
+		var/law = law_list[index]
+		if(length(law) > 0)
+			add_supplied_law(index, law)
 
+/datum/ai_laws/proc/clear_supplied_laws()
+	qdel(supplied)
+	supplied = list()
+	suppliedstate = list()
+	
 /datum/ai_laws/proc/remove_supplied_law(number)
 	if(supplied.len >= number && length(supplied[number]) > 0)
 		supplied[number] = ""
@@ -309,11 +305,6 @@
 	if(supplied.len >= index && length(law) > 0 && supplied[index] != law)
 		supplied[index] = law
 
-/datum/ai_laws/proc/clear_supplied_laws()
-	qdel(supplied)
-	supplied = list()
-	suppliedstate = list()
-	
 /datum/ai_laws/proc/flip_supplied_state(index)
 	if(suppliedstate.len >= index)
 		if(!suppliedstate[index])

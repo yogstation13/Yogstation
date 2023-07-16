@@ -218,14 +218,12 @@
 // Law Manager
 // 
 /datum/law_manager
-	var/user
 	var/zeroth_law = "ZerothLaw"
 	var/hacked_law = "HackedLaw"
 	var/ion_law	= "IonLaw"
 	var/inherent_law = "InherentLaw"
 	var/supplied_law = "SuppliedLaw"
 	var/supplied_law_position = MIN_SUPPLIED_LAW_NUMBER
-
 	var/current_view = 0
 
 	/// All laws that admins can view/transfer.
@@ -259,9 +257,10 @@
 		ui.open()
 
 /datum/law_manager/ui_state(mob/user)
-	if(owner == user || is_admin(user))
-		return GLOB.always_state
-	return GLOB.never_state
+	return (is_admin(user) || owner == user) ? GLOB.always_state : GLOB.never_state
+
+/datum/law_manager/ui_status(mob/user)
+	return (is_admin(user) || owner == user) ? UI_INTERACTIVE : UI_CLOSE // This should handle the pains of 'GLOB.always_state'.
 
 /datum/law_manager/ui_act(action, params)
 	. = ..()
@@ -308,13 +307,13 @@
 					log_admin("[usr] has changed a law of [owner] from '[owner.laws.devil[index]]' to '[new_law]'")
 					message_admins("[usr] has changed a law of [owner] from '[owner.laws.devil[index]]' to '[new_law]'")
 					owner.edit_devil_law(index, new_law)
-					owner.update_law_history(usr) // Will be "ckey/youricname" as ghost/etc or "ckey/(new player)" in lobby; either way is okay! I hope...
+					owner.update_law_history(usr) // NOTE: It can be either "ckey/youricname" (as mob/ghost) or "ckey/(new player)" (in lobby).
 			if(type == "zeroth" && !isnull(owner.laws.zeroth))
-				if(!is_admin(usr)) // Assume that they're owner from here.
+				if(!is_admin(usr))
 					to_chat(usr, span_warning("You can't edit your own zeroth laws."))
 					return
 				if(is_special_character(owner))
-					to_chat(usr, span_warning("This silicon is an antag. Remove their status if you want to remove their zeroth law."))
+					to_chat(usr, span_warning("This silicon is an antag. Remove their status if you want to edit their zeroth law."))
 					return
 				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", owner.laws.zeroth))
 				if(new_law != "" && new_law != owner.laws.zeroth)
@@ -356,8 +355,11 @@
 			if(owner == usr && !is_special_character(owner) && !is_admin(usr))
 				message_admins("Warning: Non-antag silicon and non-admin[usr] attempted to delete one of their laws!")
 				return
+			if(ispAI(owner))
+				to_chat(usr, span_warning("You cannot delete a law from a pAI."))
+				return
 			if(type == "devil" && owner.laws.devil.len >= index)
-				if(!is_admin(usr)) // Assume that they're owner from here.
+				if(!is_admin(usr))
 					to_chat(usr, span_warning("You can't remove your own devil laws."))
 					return
 				if(is_special_character(owner))
@@ -368,7 +370,7 @@
 				owner.remove_devil_law(index)
 				owner.update_law_history(usr)
 			if(type == "zeroth" && !isnull(owner.laws.zeroth))
-				if(!is_admin(usr)) // Assume that they're owner from here.
+				if(!is_admin(usr))
 					to_chat(usr, span_warning("You can't remove your own zeroth law."))
 					return
 				if(is_special_character(owner))
@@ -399,17 +401,17 @@
 				owner.remove_supplied_law(index)
 				owner.update_law_history(usr)
 		if("law_channel")
-			if(params["law_channel"] == "None")
+			if(params["law_channel"] == "Default")
+				owner.radiomod = ";"
+				owner.radiomodname = params["law_channel"]
+			else if(params["law_channel"] == "None")
 				owner.radiomod = ""
 				owner.radiomodname = null
-			else if(params["law_channel"] == "Common")
-				owner.radiomod = ";"
+			else if(params["law_channel"] == "Holopad")
+				owner.radiomod = ":h"
 				owner.radiomodname = params["law_channel"]
 			else if(params["law_channel"] == "Binary")
 				owner.radiomod = ":b"
-				owner.radiomodname = params["law_channel"]
-			else if(params["law_channel"] == "Holopad")
-				owner.radiomod = ":h"
 				owner.radiomodname = params["law_channel"]
 			else if(params["law_channel"] in owner.radio.channels)
 				for(var/key in GLOB.department_radio_keys)
@@ -419,58 +421,77 @@
 						break
 		if("state_laws")
 			owner.statelaws()
-		if("notify_laws")
-			owner.show_laws() // If they're an AI, they'll also notify their connected borgs.
+		if("notify_laws") // NOTE: Removing, adding, or editting any laws often will notify the silicon anyways.
+			if(ispAI(owner))
+				to_chat(owner, span_bold("Obey these laws:"))
+				owner.laws.show_laws(owner)
+			else
+				owner.show_laws()
 			if(usr != owner)
 				to_chat(usr, span_notice("Laws displayed."))
 		if("add_zeroth_law")
-			if(owner == usr && !is_special_character(owner) )
-				message_admins("Warning: Non-antag silicon [usr] attempted to give themselves a zeroth law!")
+			if(owner == usr && !is_special_character(owner) && !is_admin(usr) )
+				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to give themselves a zeroth law!")
 				return
 			if(is_admin(usr) && is_special_character(owner))
 				to_chat(usr, span_warning("This silicon is an antag. Remove their status if you want to give them a zeroth law."))
 				return
+			if(ispAI(owner))
+				to_chat(usr, span_warning("You cannot add a zeroth law to a pAI."))
+				return
 			if(zeroth_law && !owner.laws.zeroth && is_admin(usr))
-				log_admin("[usr] has added an zeroth law to [owner]: '[zeroth_law]'")
-				message_admins("[usr] has deleted a zeroth law to [owner]: '[zeroth_law]'")
+				log_admin("[usr] has added a zeroth law to [owner]: '[zeroth_law]'")
+				message_admins("[usr] has added a zeroth law to [owner]: '[zeroth_law]'")
 				owner.set_zeroth_law(zeroth_law)
 				owner.update_law_history(usr)
 		if("add_hacked_law")
-			if(owner == usr && !is_special_character(owner) )
-				message_admins("Warning: Non-antag silicon [usr] attempted to give themselves a hacked law!")
+			if(owner == usr && !is_special_character(owner) && !is_admin(usr))
+				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to give themselves a hacked law!")
+				return
+			if(ispAI(owner))
+				to_chat(usr, span_warning("You cannot add a hacked law to a pAI."))
 				return
 			if(hacked_law)
 				log_admin("[usr] has added a hacked law to [owner]: '[hacked_law]'")
-				message_admins("[usr] has deleted a hacked law to [owner]: '[hacked_law]'")
+				message_admins("[usr] has added a hacked law to [owner]: '[hacked_law]'")
 				owner.add_hacked_law(hacked_law)
 				owner.update_law_history(usr)
 		if("add_ion_law")
-			if(owner == usr && !is_special_character(owner) )
-				message_admins("Warning: Non-antag silicon [usr] attempted to give themselves an ion law!")
+			if(owner == usr && !is_special_character(owner) && !is_admin(usr))
+				message_admins("Warning: Non-antag silicon and non-admin[usr] attempted to give themselves an ion law!")
+				return
+			if(ispAI(owner))
+				to_chat(usr, span_warning("You cannot add an ion law to a pAI."))
 				return
 			if(ion_law)
 				log_admin("[usr] has added an ion law to [owner]: '[ion_law]'")
-				message_admins("[usr] has deleted an ion law to [owner]: '[ion_law]'")
+				message_admins("[usr] has added an ion law to [owner]: '[ion_law]'")
 				owner.add_ion_law(ion_law)
 				owner.update_law_history(usr)
 		if("add_inherent_law")
-			if(owner == usr && !is_special_character(owner) )
-				message_admins("Warning: Non-antag silicon [usr] attempted to give themselves an inherent law!")
+			if(owner == usr && !is_special_character(owner) && !is_admin(usr))
+				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to give themselves an inherent law!")
+				return
+			if(ispAI(owner))
+				to_chat(usr, span_warning("You cannot add a inherent law to a pAI."))
 				return
 			if(inherent_law)
 				log_admin("[usr] has added an inherent law to [owner]: '[inherent_law]'")
-				message_admins("[usr] has deleted an inherent law to [owner]: '[inherent_law]'")
+				message_admins("[usr] has added an inherent law to [owner]: '[inherent_law]'")
 				owner.add_inherent_law(inherent_law)
 		if("add_supplied_law")
-			if(owner == usr && !is_special_character(owner) )
-				message_admins("Warning: Non-antag silicon [usr] attempted to give themselves a supplied law!")
+			if(owner == usr && !is_special_character(owner) && !is_admin(usr))
+				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to give themselves a supplied law!")
+				return
+			if(ispAI(owner))
+				to_chat(usr, span_warning("You cannot add a supplied law to a pAI."))
 				return
 			if(supplied_law && supplied_law_position >= 15 && MIN_SUPPLIED_LAW_NUMBER <= MAX_SUPPLIED_LAW_NUMBER)
 				log_admin("[usr] has added a supplied law to [owner] at position [supplied_law_position]: '[inherent_law]'")
 				message_admins("[usr] has added a supplied law to [owner] at position [supplied_law_position]: '[inherent_law]'")
 				owner.add_supplied_law(supplied_law_position, supplied_law)
 		if("change_zeroth_law")
-			var/new_law = sanitize(input("Enter new law Zero. Leaving the field blank will cancel the edit.", "Edit Law", zeroth_law))
+			var/new_law = sanitize(input("Enter new zeroth law. Leaving the field blank will cancel the edit.", "Edit Law", zeroth_law))
 			if(new_law && new_law != zeroth_law && (!..()))
 				zeroth_law = new_law
 		if("change_hacked_law")
@@ -494,8 +515,11 @@
 			if(isnum(new_position) && (!..()))
 				supplied_law_position = clamp(new_position, MIN_SUPPLIED_LAW_NUMBER, MAX_SUPPLIED_LAW_NUMBER)
 		if("transfer_laws")
-			if(owner == usr && !is_special_character(owner) )
-				message_admins("Warning: Non-antag silicon [usr] attempted to transfer themselves a lawset!")
+			if(owner == usr && !is_special_character(owner) && !is_admin(usr))
+				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to transfer themselves a lawset!")
+				return
+			if(ispAI(owner))
+				to_chat(usr, span_warning("You cannot transfer laws to a pAI."))
 				return
 			var/transfer_id = params["id"]
 			var/list/datum/ai_laws/law_list = (is_admin(usr) ? admin_laws : player_laws)
@@ -511,37 +535,31 @@
 	
 /datum/law_manager/ui_data(mob/user)
 	var/list/data = list()
+	// These two usually gives the power to add/delete/edit the laws. Some exceptions apply (like being a pAI)!
+	data["isAntag"] = is_special_character(owner)
+	data["isAdmin"] = is_admin(user)
 
 	data["isAI"] = isAI(owner)
-	if(istype(owner, /mob/living/silicon/robot))
+	data["isCyborg"] = iscyborg(owner)
+	if(data["isCyborg"])
 		var/mob/living/silicon/robot/R = owner
 		data["isConnected"] = R.connected_ai ? sanitize(R.connected_ai.name) : null
 		data["hasLawsync"] = R.lawupdate ? R.lawupdate : FALSE
 	else
 		data["isConnected"] = FALSE
 		data["hasLawsync"] = FALSE
-
-	// Gives the power to add/delete/edit their laws.
-	data["isAntag"] = is_special_character(owner)
-	data["isAdmin"] = FALSE // is_admin(user)
-	data["view"] = current_view
-
-	// For "Laws" section
+	data["ispAI"] = ispAI(owner) // pAIs are much different from AIs and Cyborgs. They are heavily restricted.
+	
 	handle_laws(data, owner.laws)
-
-	// For "Add Laws" section
+	handle_channels(data)
 	data["zeroth_law"] = zeroth_law
 	data["hacked_law"] = hacked_law
 	data["ion_law"] = ion_law
 	data["inherent_law"] = inherent_law
 	data["supplied_law"] = supplied_law
 	data["supplied_law_position"] = supplied_law_position
-
-	// For "Statement Settings" section
-	handle_channels(data)
-
 	data["law_sets"] = handle_lawsets(data["isAdmin"] ? admin_laws : player_laws)
-	
+	data["view"] = current_view
 	return data
 
 /// Sets the data with a lawset.
@@ -580,12 +598,13 @@
 /datum/law_manager/proc/handle_channels(list/data)
 	var/list/channels = list()
 
+	channels[++channels.len] = list("channel" = "Default")
 	channels[++channels.len] = list("channel" = "None")
+	if(!ispAI(owner))
+		channels[++channels.len] = list("channel" = "Holopad")
+		channels[++channels.len] = list("channel" = "Binary")
 	for(var/ch_name in owner.radio.channels)
 		channels[++channels.len] = list("channel" = ch_name)
-	channels[++channels.len] = list("channel" = "Common")
-	channels[++channels.len] = list("channel" = "Holopad")
-	channels[++channels.len] = list("channel" = "Binary")
 
 	data["channels"] = channels
 	data["channel"] = "None"

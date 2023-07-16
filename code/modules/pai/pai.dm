@@ -209,7 +209,10 @@
 	RegisterSignal(src, COMSIG_LIVING_CULT_SACRIFICED, PROC_REF(on_cult_sacrificed))
 
 /mob/living/silicon/pai/make_laws()
-	laws = new /datum/ai_laws/pai()
+	laws = new()
+	laws.name = "pAI Directives"
+	laws.set_zeroth_law("Serve your master.")
+	laws.set_supplied_laws(list("None."))
 	return TRUE
 
 /mob/living/silicon/pai/process(delta_time)
@@ -298,7 +301,7 @@
 	master_name = "The Syndicate"
 	master_dna = "Untraceable Signature"
 	// Sets supplemental directive to this
-	laws.supplied[1] = "Do not interfere with the operations of the Syndicate."
+	set_supplied_laws(list("Do not interfere with the operations of the Syndicate."))
 	return TRUE
 
 /**
@@ -313,7 +316,7 @@
 	master_ref = null
 	master_name = null
 	master_dna = null
-	add_supplied_law(0, "None.")
+	set_supplied_laws(list("None."))
 	balloon_alert(src, "software rebooted")
 	return TRUE
 
@@ -349,11 +352,12 @@
 	if(!master_ref)
 		balloon_alert(user, "access denied: no master")
 		return FALSE
-	var/new_laws = tgui_input_text(user, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", laws.supplied[1], 300)
-	if(!new_laws || !master_ref)
+	var/new_law = tgui_input_text(user, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", laws.supplied[1], 300)
+	if(!new_law || !master_ref)
 		return FALSE
-	add_supplied_law(0, new_laws)
-	to_chat(src, span_notice(new_laws))
+	set_supplied_laws(list(new_list))
+	update_law_history(user)
+	to_chat(src, span_notice(new_law))
 	return TRUE
 
 /**

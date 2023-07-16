@@ -21,13 +21,13 @@
 	var/list/alarms_to_show = list()
 	var/list/alarms_to_clear = list()
 	var/designation = ""
-	var/radiomod = "" //Radio character used before state laws/arrivals announce to allow department transmissions, default, or none at all.
-	/// The channel name of which /proc/statelaws will use to broadcast. Can be null.
-	var/radiomodname = null
 	var/obj/item/camera/siliconcam/aicamera = null //photography
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_TRACK_HUD)
 
 	var/obj/item/radio/borg/radio = null //All silicons make use of this, with (p)AI's creating headsets
+	var/radiomod = "" //Radio character used before state laws/arrivals announce to allow department transmissions, default, or none at all.
+	/// The channel name of which /proc/statelaws will use to broadcast. Can be null.
+	var/radiomodname = null
 
 	var/list/alarm_types_show = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 	var/list/alarm_types_clear = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
@@ -169,41 +169,6 @@
 		return TRUE
 	return FALSE
 
-/mob/living/silicon/Topic(href, href_list)
-	if(href_list["lawdevil"])
-		var/index = text2num(href_list["lawdevil"])
-		laws.flip_devil_state(index)
-		checklaws()
-
-	if(href_list["lawzeroth"])
-		laws.flip_zeroth_state()
-		checklaws()
-
-	if (href_list["lawhacked"])
-		var/index = text2num(href_list["lawhacked"])
-		laws.flip_hacked_state(index)
-		checklaws()
-
-	if (href_list["lawion"])
-		var/index = text2num(href_list["lawion"])
-		laws.flip_ion_state(index)
-		checklaws()
-	
-	if (href_list["lawinherent"])
-		var/index = text2num(href_list["lawinherent"])
-		laws.flip_inherent_state(index)
-		checklaws()
-
-	if (href_list["lawsupplied"])
-		var/index = text2num(href_list["lawsupplied"])
-		laws.flip_supplied_state(index)
-		checklaws()
-
-	if (href_list["laws"])
-		statelaws()
-
-	return
-
 /mob/living/silicon/proc/statelaws(force = 0)
 	laws_sanity_check()
 
@@ -250,8 +215,8 @@
 			number++
 			sleep(1 SECONDS)
 
-/// A link-driven interface to state what laws the statelaws() proc will share with the crew.
-/mob/living/silicon/proc/checklaws()
+/// The old link-driven interface to state what laws the statelaws() proc will share with the crew. Given to pAIs.
+/mob/living/silicon/proc/checklaws_old()
 	laws_sanity_check()
 	var/list = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
 
@@ -294,6 +259,13 @@
 	list += {"<br><br><A href='byond://?src=[REF(src)];laws=1'>State Laws</A></BODY></HTML>"}
 	usr << browse(list, "window=laws")
 
+/// Opens the "Law Manager" for the silicon.
+/mob/living/silicon/proc/checklaws()
+	laws_sanity_check()
+
+	var/datum/law_manager/L = new(src)
+	L.ui_interact(src)
+
 /mob/living/silicon/proc/ai_roster()
 	if(!client)
 		return
@@ -311,7 +283,7 @@
 		return
 
 	//Ask the user to pick a channel from what it has available.
-	var/Autochan = input("Select a channel:") as null|anything in list("Default","None") + radio.channels
+	var/Autochan = input("Select a channel:") as null|anything in list("Default", "None", "Holopad", "Binary") + radio.channels
 
 	if(!Autochan)
 		return

@@ -12,7 +12,7 @@ import { Window } from '../layouts';
 
 export const LawManager = (props, context) => {
   const { act, data } = useBackend(context);
-  const { isAI, isConnected, hasLawsync, isAntag, isAdmin, view } = data;
+  const { isCyborg, isAI, isConnected, hasLawsync, isAntag, isAdmin, ispAI, view } = data;
 
   return (
     <Window>
@@ -20,18 +20,23 @@ export const LawManager = (props, context) => {
         {!!(isAntag) && (
           <NoticeBox>This unit is malfunctioning.</NoticeBox>
         )}
-        {!!(isConnected) && (
-          <NoticeBox>This unit is connected to {isConnected}.</NoticeBox>
-        ) && !!(true && !hasLawsync) && (
-          <NoticeBox>This unit does not have lawsync on.</NoticeBox>
+        {!!(ispAI) && (
+          <NoticeBox>This unit is a pAI. Options have been limited.</NoticeBox>
         )}
+        {!!(isCyborg && isConnected && hasLawsync) && (
+          <NoticeBox>This unit is connected to {isConnected}. Law changes here will be ineffective.</NoticeBox>
+        )}
+        {!!(isCyborg && isConnected && !hasLawsync) && (
+          <NoticeBox>This unit is connected to {isConnected} with Lawsync off.</NoticeBox>
+        )}
+
         <Box>
           <Button
             content="Law Management"
             selected={view === 0}
             onClick={() => act('set_view', { set_view: 0 })}
           />
-          {!!(isAntag || isAdmin) && (
+          {!!(isAntag || isAdmin) && !ispAI && (
             <Button
               content="Lawsets"
               selected={view === 1}
@@ -40,7 +45,7 @@ export const LawManager = (props, context) => {
           )}
         </Box>
         {!!(view === 0) && <LawManagementView />}
-        {!!(view === 1) && (isAntag || isAdmin) && <LawsetsView />}
+        {!!(view === 1) && <LawsetsView />}
       </Window.Content>
     </Window>
   );
@@ -51,6 +56,7 @@ const LawManagementView = (props, context) => {
   const {
     isAntag,
     isAdmin,
+    ispAI,
     devil,
     zeroth,
     hacked,
@@ -114,7 +120,7 @@ const LawManagementView = (props, context) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      {((isAdmin || isAntag) &&
+      {!!(isAdmin || isAntag) && !ispAI && (
         <Section title="Add Laws">
           <Table>
             <Table.Row header>
@@ -123,7 +129,7 @@ const LawManagementView = (props, context) => {
               <Table.Cell width="10%">Index</Table.Cell>
               <Table.Cell width="20%">Actions</Table.Cell>
             </Table.Row>
-            {!!(true && !has_zeroth) && (
+            {!!(!has_zeroth) && (
               <Table.Row>
                 <Table.Cell>Zero</Table.Cell>
                 <Table.Cell color="#ff0000">{zeroth_law}</Table.Cell>
@@ -290,6 +296,7 @@ const LawTable = (props, context) => {
   const {
     isAntag,
     isAdmin,
+    ispAI,
   } = data;
   return (
     <Section>
@@ -302,12 +309,12 @@ const LawTable = (props, context) => {
         {props.laws.map((l) => (
           <Table.Row key={l.law}>
             <Table.Cell>{l.indexdisplay}</Table.Cell>
-            { props.color && (
+            {props.color && (
               <Table.Cell color={props.color}>
                   {l.law}
               </Table.Cell>
             ) }
-            { !props.color && (
+            {!props.color && (
               <Table.Cell>
                   {l.law}
               </Table.Cell>
@@ -320,19 +327,21 @@ const LawTable = (props, context) => {
                   act('state_law', { index: l.index, type: l.type })
                 }
               />
-              {!!((isAntag || isAdmin) &&
+              {!!(isAntag || isAdmin) && (
                 <Fragment>
                   <Button
                     content="Edit"
                     icon="pencil-alt"
                     onClick={() => act('edit_law', { index: l.index, type: l.type })}
                   />
-                  <Button
-                    content="Delete"
-                    icon="trash"
-                    color="red"
-                    onClick={() => act('delete_law', { index: l.index, type: l.type })}
-                  />
+                  {!!(true && !ispAI) && (
+                    <Button
+                      content="Delete"
+                      icon="trash"
+                      color="red"
+                      onClick={() => act('delete_law', { index: l.index, type: l.type })}
+                    />
+                  )}
                 </Fragment>
               )}
             </Table.Cell>
