@@ -14,7 +14,10 @@
 			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
 				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
-				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
+				if (HAS_TRAIT(src, TRAIT_BLIND_ECHO))
+					AddComponent(/datum/component/echolocation)
+				else
+					overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 
 /**
   * Adjust a mobs blindness by an amount
@@ -31,7 +34,10 @@
 			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
 				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
-				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
+				if (HAS_TRAIT(src, TRAIT_BLIND_ECHO))
+					AddComponent(/datum/component/echolocation)
+				else
+					overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else if(eye_blind)
 		var/blind_minimum = 0
 		if((stat != CONSCIOUS && stat != SOFT_CRIT))
@@ -44,6 +50,8 @@
 		if(!eye_blind)
 			clear_alert("blind")
 			clear_fullscreen("blind")
+			if (GetComponent(/datum/component/echolocation))
+				GetComponent(/datum/component/echolocation).RemoveComponent()
 /**
   * Force set the blindness of a mob to some level
   */
@@ -57,7 +65,10 @@
 			if(stat != CONSCIOUS && HAS_TRAIT(src, TRAIT_HEAVY_SLEEPER))
 				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
-				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
+				if (HAS_TRAIT(src, TRAIT_BLIND_ECHO))
+					AddComponent(/datum/component/echolocation)
+				else
+					overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else if(eye_blind)
 		var/blind_minimum = 0
 		if(stat != CONSCIOUS && stat != SOFT_CRIT)
@@ -70,6 +81,8 @@
 		if(!eye_blind)
 			clear_alert("blind")
 			clear_fullscreen("blind")
+			if (GetComponent(/datum/component/echolocation))
+				GetComponent(/datum/component/echolocation).RemoveComponent()
 
 /**
   * Make the mobs vision blurry

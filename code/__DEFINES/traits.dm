@@ -137,6 +137,8 @@
 #define TRAIT_INCAPACITATED 	"incapacitated"
 #define HANDCUFFED_TRAIT 		"handcuffed"
 #define TRAIT_BLIND 			"blind"
+#define TRAIT_BLIND_ECHO		"blind_echolocation"
+#define TRAIT_ECHOLOCATION_RECEIVER "echolocation_receiver"
 #define TRAIT_MUTE				"mute"
 #define TRAIT_EMOTEMUTE			"emotemute"
 #define TRAIT_DEAF				"deaf"

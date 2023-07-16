@@ -55,7 +55,7 @@
 	medical_record_text = "Patient has permanent blindness."
 
 /datum/quirk/blindness/add()
-	quirk_holder.become_blind(ROUNDSTART_TRAIT)
+	quirk_holder.become_blind_echolocation(ROUNDSTART_TRAIT)
 
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
