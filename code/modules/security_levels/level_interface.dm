@@ -30,10 +30,8 @@
 
 /obj/machinery/level_interface/update_icon(updates=ALL)
 	. = ..()
-	cut_overlays()
 	if(!is_operational())
 		set_light_on(FALSE)
-		return
 	else
 		set_light_on(TRUE)
 
@@ -61,15 +59,13 @@
 		ui = new(user, src, "LevelInterface", name)
 		ui.open()
 
-/obj/machinery/level_interface/ui_act(action, list/params)
-	. = ..()
-
 /obj/machinery/level_interface/ui_data(mob/user)
 	var/list/data = ..()
 	data["alertLevel"] = GLOB.security_level
 	return data
 
 /obj/machinery/level_interface/ui_act(action, list/params, mob/user)
+	. = ..()
 	if(..())
 		return TRUE
 
@@ -87,7 +83,7 @@
 				balloon_alert(usr, "Nanotrasen override in progress!")
 				return TRUE
 			if(!check_access(usr.get_idcard()))
-				balloon_alert(usr, "No access!")
+				balloon_alert(usr, "no access!")
 				return TRUE
 			var/alert_level = params["level_number"]
 			if(!isnum(alert_level))
@@ -98,7 +94,7 @@
 				return TRUE
 			for(var/obj/machinery/computer/communications/comms_console in GLOB.machines)
 				if(!COOLDOWN_FINISHED(comms_console, important_action_cooldown))
-					balloon_alert(usr, "On cooldown!")
+					balloon_alert(usr, "on cooldown!")
 					to_chat(usr, span_warning("The system is not able to change the security alert level more than once per minute, please wait."))
 					return TRUE
 				COOLDOWN_START(comms_console, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
