@@ -796,6 +796,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(M.faction == user.faction)
 		to_chat(user, span_warning("[M] is already on your side!"))
 		return
+	if(!M.magic_tameable)
+		to_chat(user, span_warning("[M] cannot be tamed!"))
+		return
 	if(M.sentience_type == SENTIENCE_BOSS)
 		if(!G)
 			M.apply_status_effect(STATUS_EFFECT_TAMING, user)
@@ -1288,10 +1291,10 @@ GLOBAL_LIST_EMPTY(aide_list)
 	log_combat(user, L, "took out a blood contract on", src)
 	qdel(src)
 
-#define COOLDOWN 150
-#define COOLDOWN_HUMAN 100
-#define COOLDOWN_ANIMAL 60
-#define COOLDOWN_SPLASH 100
+#define COOLDOWN_ATTACK_HUMAN (10 SECONDS)
+#define COOLDOWN_ATTACK_ANIMAL (6 SECONDS)
+#define COOLDOWN_SPLASH (10 SECONDS)
+#define COOLDOWN_REACH (15 SECONDS)
 
 /datum/action/item_action/visegrip
 	name = "Vise Grip"
@@ -1316,9 +1319,9 @@ GLOBAL_LIST_EMPTY(aide_list)
 	item_state = "knuckles"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 18
-	var/next_reach = 0
-	var/next_splash = 0
-	var/next_knuckle = 0
+	COOLDOWN_DECLARE(next_reach)
+	COOLDOWN_DECLARE(next_splash)
+	COOLDOWN_DECLARE(next_knuckle)
 	var/splash_range = 9
 	var/fauna_damage_bonus = 32
 	var/fauna_damage_type = BRUTE
@@ -1326,66 +1329,65 @@ GLOBAL_LIST_EMPTY(aide_list)
 	actions_types = list(/datum/action/item_action/reach, /datum/action/item_action/visegrip)
 
 /obj/item/melee/knuckles/afterattack(mob/living/target, mob/living/user, proximity)
-	var/mob/living/L = target
-	if(ismegafauna(L) || istype(L, /mob/living/simple_animal/hostile/asteroid))
-		L.apply_damage(fauna_damage_bonus,fauna_damage_type)
+	if(!istype(target))
+		return
+	if(ismegafauna(target) || isfauna(target))
+		target.apply_damage(fauna_damage_bonus, fauna_damage_type)
 	if(proximity)
-		if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
-			L.apply_status_effect(/datum/status_effect/roots)
+		if(target.has_status_effect(STATUS_EFFECT_KNUCKLED))
+			target.apply_status_effect(/datum/status_effect/roots)
 			return
-		if(next_knuckle > world.time)
+		if(!COOLDOWN_FINISHED(src, next_knuckle))
 			to_chat(user, span_warning("The knuckles aren't ready to mark yet."))
 			return
 		else
-			L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
-			if(ishuman(L))
-				next_knuckle = world.time + COOLDOWN_HUMAN
-				return
-			next_knuckle = world.time + COOLDOWN_ANIMAL
+			target.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+			COOLDOWN_START(src, next_knuckle, (ishuman(target) ? COOLDOWN_ATTACK_HUMAN : COOLDOWN_ATTACK_ANIMAL))
 
 /obj/item/melee/knuckles/attack_self(mob/user)
-	var/turf/T = get_turf(user)
-	if(next_splash > world.time)
+	var/turf/user_turf = get_turf(user)
+	if(!COOLDOWN_FINISHED(src, next_splash))
 		to_chat(user, span_warning("You can't do that yet!"))
 		return
 	user.visible_message(span_warning("[user] splashes blood from [user.p_their()] knuckles!"))
-	playsound(T, 'sound/effects/splat.ogg', 80, 5, -1)
+	playsound(user_turf, 'sound/effects/splat.ogg', 80, TRUE, -1)
 	for(var/i = 0 to splash_range)
-		if(T)
-			new /obj/effect/decal/cleanable/blood(T)
-		T = get_step(T,user.dir)
-	next_splash = world.time + COOLDOWN_SPLASH
+		if(user_turf)
+			new /obj/effect/decal/cleanable/blood(user_turf)
+		user_turf = get_step(user_turf, user.dir)
+	COOLDOWN_START(src, next_splash, COOLDOWN_SPLASH)
 
 /obj/item/melee/knuckles/ui_action_click(mob/living/user, action)
-	var/mob/living/U = user
 	if(istype(action, /datum/action/item_action/reach))
-		if(next_reach > world.time)
-			to_chat(U, span_warning("You can't do that yet!"))
+		if(!COOLDOWN_FINISHED(src, next_reach))
+			to_chat(user, span_warning("You can't do that yet!"))
 			return
 		var/valid_reaching = FALSE
-		for(var/mob/living/L in view(7, U))
-			if(L == U)
+		for(var/mob/living/target in view(7, user))
+			if(target == user)
 				continue
-			for(var/obj/effect/decal/cleanable/B in range(0,L))
-				if(istype(B, /obj/effect/decal/cleanable/blood )|| istype(B, /obj/effect/decal/cleanable/trail_holder))
+			for(var/obj/effect/decal/cleanable/decal in range(0, target))
+				if(istype(decal, /obj/effect/decal/cleanable/blood )|| istype(decal, /obj/effect/decal/cleanable/trail_holder))
 					valid_reaching = TRUE
-					L.apply_status_effect(STATUS_EFFECT_KNUCKLED)
+					target.apply_status_effect(STATUS_EFFECT_KNUCKLED)
 		if(!valid_reaching)
-			to_chat(U, span_warning("There's nobody to use this on!"))
+			to_chat(user, span_warning("There's nobody to use this on!"))
 			return
-		next_reach = world.time + COOLDOWN
-	else if(istype(action, /datum/action/item_action/visegrip))
+		COOLDOWN_START(src, next_reach, COOLDOWN_REACH)
+	if(istype(action, /datum/action/item_action/visegrip))
 		var/valid_casting = FALSE
-		for(var/mob/living/L in view(8, U))
-			if(L.has_status_effect(STATUS_EFFECT_KNUCKLED))
+		for(var/mob/living/target in view(8, user))
+			if(target.has_status_effect(STATUS_EFFECT_KNUCKLED))
 				valid_casting = TRUE
-				L.apply_status_effect(/datum/status_effect/roots)
+				target.apply_status_effect(/datum/status_effect/roots)
 		if(!valid_casting)
-			to_chat(U, span_warning("There's nobody to use this on!"))
+			to_chat(user, span_warning("There's nobody to use this on!"))
 			return
-		#undef COOLDOWN
-		#undef COOLDOWN_HUMAN
-		#undef COOLDOWN_ANIMAL
+
+#undef COOLDOWN_ATTACK_HUMAN
+#undef COOLDOWN_ATTACK_ANIMAL
+#undef COOLDOWN_SPLASH
+#undef COOLDOWN_REACH
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
 	name = "colossus chest"

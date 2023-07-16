@@ -254,8 +254,8 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		weapon.fire_weapons(target)
 	return TRUE
 
-/obj/spacepod/take_damage()
-	..()
+/obj/spacepod/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
+	. = ..()
 	update_icon()
 
 /obj/spacepod/return_air()

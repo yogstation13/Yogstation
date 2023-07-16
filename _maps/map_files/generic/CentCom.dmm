@@ -23127,8 +23127,8 @@
 /obj/item/gun/ballistic/automatic/proto/unrestricted{
 	pixel_y = 12
 	},
-/obj/item/gun/ballistic/automatic/sniper_rifle,
-/obj/item/gun/ballistic/automatic/sniper_rifle,
+/obj/item/gun/ballistic/rifle/sniper_rifle,
+/obj/item/gun/ballistic/rifle/sniper_rifle,
 /turf/open/floor/plasteel,
 /area/centcom/testchamber)
 "aUY" = (

@@ -55,6 +55,9 @@
 	if(!can_use(A))
 		return
 	A.emote("spin")
+	if(A.wear_suit?.flags_inv & HIDEJUMPSUIT)
+		to_chat(A, span_warning("Your tail is covered by your [A.wear_suit]!"))
+		return
 	var/obj/item/organ/tail = A.getorganslot(ORGAN_SLOT_TAIL)
 	if(!istype(tail, /obj/item/organ/tail/lizard))
 		A.visible_message(span_danger("[A] spins around."), \
@@ -87,6 +90,9 @@
 
 /datum/martial_art/flyingfang/proc/Chomp(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
+		return
+	if(A.is_mouth_covered())
+		to_chat(A, span_warning("Your mouth is obstructed!"))
 		return
 	if((D.mobility_flags & MOBILITY_STAND))
 		return harm_act(A,D)
@@ -199,6 +205,10 @@
 /datum/action/innate/lizard_leap/InterceptClickOn(mob/living/carbon/human/A, params, atom/target)
 	if(linked_martial.leaping)
 		return
+	if(A.wear_suit?.clothing_flags & THICKMATERIAL)
+		to_chat(A, span_warning("Your [A.wear_suit] is too bulky to pounce with!"))
+		Deactivate() //might want your click intercept back :)
+		return
 	linked_martial.leaping = TRUE
 	COOLDOWN_START(linked_martial, next_leap, 5 SECONDS)
 	A.Knockdown(5 SECONDS)
@@ -251,14 +261,14 @@
 	to_chat(usr, "<b><i>You try to remember some of the basics of Flying Fang.</i></b>")
 
 	to_chat(usr, span_notice("Your training has rendered you more resistant to pain, allowing you to keep fighting effectively for longer and reducing the effectiveness of stun and stamina weapons by about a third."))
-	to_chat(usr, span_warning("However, the primitive instincts gained through this training prevent you from using guns, stun weapons, or armor."))
+	to_chat(usr, span_warning("However, the primitive instincts gained through this training prevent you from using guns or stun weapons."))
 	to_chat(usr, span_notice("<b>All of your unarmed attacks deal increased brute damage with a small amount of armor piercing</b>"))
 	
 	to_chat(usr, "[span_notice("Disarm Intent")]: Headbutt your enemy, Deals minor stamina and brute damage, as well as causing eye blurriness. Prevents the target from using ranged weapons effectively for a few seconds if they are not wearing a helmet.")
 
-	to_chat(usr, "[span_notice("Tail Slap")]: Disarm Disarm Disarm. High armor piercing attack that causes a short slow followed by a knockdown. Deals heavy stamina damage.")
-	to_chat(usr, "[span_notice("Neck Bite")]: Grab Harm. Target must be prone. Stuns you and your target for a short period, dealing heavy brute damage and bleeding. If the target is not in crit, this attack will heal you.")
-	to_chat(usr, "[span_notice("Leap")]: Action: Jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds.")
+	to_chat(usr, "[span_notice("Tail Slap")]: Disarm Disarm Disarm. High armor piercing attack that causes a short slow followed by a knockdown. Deals heavy stamina damage. Requires you to have a tail, which must be exposed")
+	to_chat(usr, "[span_notice("Neck Bite")]: Grab Harm. Target must be prone. Stuns you and your target for a short period, dealing heavy brute damage and bleeding. If the target is not in crit, this attack will heal you. Requires your mouth to be exposed.")
+	to_chat(usr, "[span_notice("Leap")]: Action: Jump at a target, with a successful hit stunning them and preventing you from moving for a few seconds. Cannot be done while wearing thick clothing.")
 
 /datum/martial_art/flyingfang/teach(mob/living/carbon/human/H,make_temporary=0)
 	..()
@@ -272,9 +282,6 @@
 	H.physiology.stamina_mod *= 0.66
 	H.physiology.stun_mod *= 0.66
 	H.physiology.crawl_speed -= 2 // "funny lizard skitter around on the floor" - mqiib
-	var/datum/species/S = H.dna?.species
-	if(S)
-		S.add_no_equip_slot(H, ITEM_SLOT_OCLOTHING)
 
 /datum/martial_art/flyingfang/on_remove(mob/living/carbon/human/H)
 	..()
@@ -285,6 +292,3 @@
 	H.physiology.stamina_mod /= 0.66
 	H.physiology.stun_mod /= 0.66
 	H.physiology.crawl_speed += 2
-	var/datum/species/S = H.dna?.species
-	if(S)
-		S.remove_no_equip_slot(H, ITEM_SLOT_OCLOTHING)

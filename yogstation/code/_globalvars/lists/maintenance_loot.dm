@@ -912,7 +912,7 @@ GLOBAL_LIST_INIT(maintenance_loot_major,list(
 	/obj/item/clothing/glasses/eyepatch/bigboss = W_LEGENDARY,
 	/obj/item/deployablemine/creampie = W_RARE,
 	/obj/item/deployablemine/honk = W_RARE,
-	/obj/item/disk/nuclear/fake = W_RARE,
+	/obj/item/disk/nuclear/fake = W_MYTHICAL,
 	/obj/item/enloudener = W_RARE,
 	/obj/item/flamethrower = W_RARE,
 	/obj/item/grenade/chem_grenade/antiweed = W_UNCOMMON,

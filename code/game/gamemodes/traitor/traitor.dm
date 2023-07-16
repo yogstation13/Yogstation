@@ -104,8 +104,9 @@
 						add_latejoin_traitor(character.mind)
 
 /datum/game_mode/traitor/proc/add_traitor_delayed(datum/mind/traitor, datum/antagonist/cached_antag = null)
-	if(!traitor || !traitor.current || !traitor.current.client || (traitor.current.stat != CONSCIOUS) || istype(traitor.current.loc, /obj/machinery/cryopod))
-		create_new_traitor()
+	if(!traitor || !traitor.current || istype(traitor.current.loc, /obj/machinery/cryopod))
+		if(!cached_antag && (!traitor.current.client || (traitor.current.stat != CONSCIOUS))) //you have to actually be connected and alive to get delayed traitor but ONLY the first one, feel free to crash or reset your game for the next ones. 
+			create_new_traitor()
 		return
 	if(!cached_antag)
 		cached_antag = new antag_datum()
