@@ -466,7 +466,7 @@
 	process_flags = SYNTHETIC
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/M)
-	var/obj/item/organ/O = M.getorganslot(ORGAN_SLOT_BRAIN)
+	var/obj/item/organ/O = M.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!(O.organ_flags & ORGAN_SYNTHETIC)) // don't heal organic brains in partially synthetic mobs
 		return ..()
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3*REM)
