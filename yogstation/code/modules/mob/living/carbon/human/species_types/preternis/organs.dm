@@ -39,10 +39,10 @@
 	. = ..()
 	if(!owner)
 		return
-	if(ispreternis(owner) && !powered)
+	if((ispreternis(owner) || isipc(owner)) && !powered)
 		powered = TRUE
 		to_chat(owner, span_notice("A battery icon disappears from your vision as your [src] switch to external power."))
-	if(!ispreternis(owner) && powered) //these eyes depend on being inside a preternis for power
+	if(!ispreternis(owner) && !isipc(owner) && powered) //these eyes depend on being inside a preternis for power
 		powered = FALSE
 		to_chat(owner, span_boldwarning("Your [src] flash warnings that they've lost their power source, and are running on emergency power!"))
 	if(powered)
