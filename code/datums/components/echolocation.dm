@@ -91,7 +91,6 @@
 	COOLDOWN_START(src, cooldown_last, cooldown_time)
 	var/mob/living/echolocator = parent
 	echo_range = echo_sound_environment(echolocator, default_echo_range)
-
 	var/list/filtered = list()
 	var/list/seen = dview(echo_range, get_turf(echolocator.client?.eye || echolocator), invis_flags = echolocator.see_invisible)
 	for(var/atom/seen_atom as anything in seen)
@@ -133,6 +132,8 @@
 			return range -1
 		if(SOUND_AREA_WOODFLOOR)
 			return range +1
+		else
+			return range
 
 /datum/component/echolocation/proc/show_image(image/input_appearance, atom/input, current_time)
 	var/image/final_image = image(input_appearance)
