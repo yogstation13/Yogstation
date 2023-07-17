@@ -478,7 +478,7 @@
 		snack = new selected_snack(get_turf(src))
 		if(user.emagged)
 			snack.throwforce = 3
-			RegisterSignal(snack, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
+			RegisterSignal(snack, COMSIG_MOVABLE_THROW_LANDED, PROC_REF(post_throw))
 		snack.throw_at(target, 7, 2, user, TRUE, FALSE)
 		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 		if(istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
