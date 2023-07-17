@@ -359,8 +359,7 @@
 		cooldown = world.time + 1 MINUTES
 		log_game("[key_name(user)] used an emagged Cyborg Harm Alarm in [AREACOORD(user)]")
 
-// TODO: If anyone figures it out, please make it so that emagged status gives these cookies 10u Chloral Hydrate && lollipops throw force of 3 (removed on pickup).
-// TODO: And also, readd vanilla ice cream once someone figures that out.
+// TODO: Re-add vanilla ice cream once someone figures that out.
 /obj/item/borg_snack_dispenser
 	name = "\improper Automated Borg Snack Dispenser"
 	desc = "Has the ability to automatically print many different forms of snacks. Now Vuulek approved!"
