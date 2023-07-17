@@ -453,7 +453,7 @@
 /obj/machinery/door/proc/on_magic_unlock(datum/source, datum/action/cooldown/spell/aoe/knock/spell, mob/living/caster)
 	SIGNAL_HANDLER
 
-	INVOKE_ASYNC(src, PROC_REF(open))
+	INVOKE_ASYNC(src, PROC_REF(open), TRUE)
 
 /obj/machinery/door/GetExplosionBlock()
 	return density ? real_explosion_block : 0
