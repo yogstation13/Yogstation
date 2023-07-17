@@ -298,6 +298,6 @@
 
 /obj/item/projectile/energy/arrow/clockbolt
 	name = "redlight bolt"
-	damage = 18
+	damage = 30
 	wound_bonus = 5
 	embed_type = /obj/item/ammo_casing/reusable/arrow/energy/clockbolt
