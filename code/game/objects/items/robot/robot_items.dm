@@ -453,11 +453,6 @@
 	to_chat(patron, span_notice("[user] dispenses a [snack.name] into your empty hand and you reflexively grasp it."))
 	to_chat(user, span_notice("You dispense a [snack.name] into the hand of [patron]."))
 
-	if(snack && istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
-		var/obj/item/reagent_containers/food/snacks/icecream/icecream = snack
-		icecream.add_ice_cream("vanilla")
-		icecream.desc = "Eat the ice cream."
-
 /obj/item/borg_snack_dispenser/AltClick(mob/user)
 	launch_mode = !launch_mode
 	to_chat(user, span_notice("[src] is [(launch_mode ? "now" : "no longer")] launching snacks at a distance."))
