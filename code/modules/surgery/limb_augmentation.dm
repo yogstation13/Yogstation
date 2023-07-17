@@ -63,7 +63,7 @@
 	requires_real_bodypart = TRUE
 
 /datum/surgery/augmentation/can_start(mob/user, mob/living/carbon/target)
-	if(isgolem(target) || target.dna?.species.armor > 50) // no armor stacking
+	if(isgolem(target)) // no armor stacking
 		to_chat(user, span_warning("[target]'s exterior is too strong already!"))
 		return FALSE
 	else
