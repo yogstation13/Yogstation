@@ -375,7 +375,8 @@
 		/obj/item/reagent_containers/food/snacks/cookie/bacon,
 		/obj/item/reagent_containers/food/snacks/cookie/cloth,
 		/obj/item/reagent_containers/food/snacks/lollipop,
-		/obj/item/reagent_containers/food/snacks/gumball
+		/obj/item/reagent_containers/food/snacks/gumball,
+		/obj/item/reagent_containers/food/snacks/icecream // Becomes vanilla icecream down the line.
 	)
 	// A list of surfaces that we are allowed to place things on.
 	var/list/allowed_surfaces = list(/obj/structure/table, /turf/open/floor)
@@ -399,7 +400,10 @@
 /obj/item/borg_snack_dispenser/attack_self(mob/user, modifiers)
 	var/list/choices = list()
 	for(var/atom/snack as anything in valid_snacks)
-		choices[initial(snack.name)] = snack
+		if(snack == /obj/item/reagent_containers/food/snacks/icecream)
+			choices["vanilla icecream"] = snack // Would be "ice cream cone" in the menu otherwise.
+		else
+			choices[initial(snack.name)] = snack
 	if(!length(choices))
 		to_chat(user, span_warning("No valid snacks in database."))
 	if(length(choices) == 1)
@@ -439,8 +443,20 @@
 	patron.put_in_hand(snack, empty_hand)
 	user.do_item_attack_animation(patron, null, snack)
 	playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
+
+	// Vanilla Icecream & Setting 'snack.name' Early
+	if(istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
+		var/obj/item/reagent_containers/food/snacks/icecream/icecream = snack
+		icecream.add_ice_cream("vanilla")
+		icecream.desc = "Eat the ice cream."
+		
 	to_chat(patron, span_notice("[user] dispenses a [snack.name] into your empty hand and you reflexively grasp it."))
 	to_chat(user, span_notice("You dispense a [snack.name] into the hand of [patron]."))
+
+	if(snack && istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
+		var/obj/item/reagent_containers/food/snacks/icecream/icecream = snack
+		icecream.add_ice_cream("vanilla")
+		icecream.desc = "Eat the ice cream."
 
 /obj/item/borg_snack_dispenser/AltClick(mob/user)
 	launch_mode = !launch_mode
@@ -470,11 +486,19 @@
 			RegisterSignal(snack, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
 		snack.throw_at(target, 7, 2, user, TRUE, FALSE)
 		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
+		if(istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
+			var/obj/item/reagent_containers/food/snacks/icecream/icecream = snack
+			icecream.add_ice_cream("vanilla")
+			icecream.desc = "Eat the ice cream."
 		user.visible_message(span_notice("[src] launches a [snack.name] at [target]!"))
 	else if(user.Adjacent(target) && is_allowed(target, user))
 		COOLDOWN_START(src, last_snack_disp, cooldown)
 		snack = new selected_snack(get_turf(target))
 		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
+		if(istype(snack, /obj/item/reagent_containers/food/snacks/icecream))
+			var/obj/item/reagent_containers/food/snacks/icecream/icecream = snack
+			icecream.add_ice_cream("vanilla")
+			icecream.desc = "Eat the ice cream."
 		user.visible_message(span_notice("[user] dispenses a [snack.name]."))
 
 	if(snack && user.emagged && istype(snack, /obj/item/reagent_containers/food/snacks/cookie))
@@ -499,7 +523,7 @@
 /obj/item/borg_snack_dispenser/medical
 	name = "\improper Treat Borg Snack Dispenser" // Not calling this "Medical Borg Snack Dispenser" since Service & Clown Cyborgs use this too.
 	desc = "A dispenser that dispenses treats such as lollipops and gumballs!"
-	valid_snacks = list(/obj/item/reagent_containers/food/snacks/lollipop, /obj/item/reagent_containers/food/snacks/gumball)
+	valid_snacks = list(/obj/item/reagent_containers/food/snacks/lollipop, /obj/item/reagent_containers/food/snacks/gumball, /obj/item/reagent_containers/food/snacks/icecream)
 
 #define PKBORG_DAMPEN_CYCLE_DELAY 20
 
