@@ -500,7 +500,7 @@
 		var/obj/item/reagent_containers/food/snacks/cookie/cookie = snack
 		cookie.list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin/chloralhydrate = 10)
 
-/obj/item/borg_snack_dispenser/proc/post_throw(atom/movable/thrown_snack)
+/obj/item/borg_snack_dispenser/proc/post_throw(atom/movable/thrown_snack) 
 	SIGNAL_HANDLER
 	thrown_snack.throwforce = 0
 
