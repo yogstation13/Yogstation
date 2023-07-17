@@ -246,6 +246,9 @@
 /mob/living/proc/setStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
 	return
 
+/mob/living/proc/clear_stamina_regen()
+	return
+
 // heal ONE external organ, organ gets randomly selected from damaged ones.
 /mob/living/proc/heal_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status)
 	adjustBruteLoss(-brute, FALSE) //zero as argument for no instant health update

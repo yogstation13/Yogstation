@@ -45,7 +45,7 @@
 		GLOB.ark_of_the_clockwork_justiciar = src
 	START_PROCESSING(SSprocessing, src)
 
-/obj/structure/destructible/clockwork/massive/celestial_gateway/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/destructible/clockwork/massive/celestial_gateway/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.)
 		flick("clockwork_gateway_damaged", glow)

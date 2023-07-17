@@ -159,17 +159,13 @@
 
 /datum/reagent/medicine/clonexadone
 	name = "Clonexadone"
-	description = "A chemical that derives from Cryoxadone. It specializes in healing clone damage, but nothing else. Requires very cold temperatures to properly metabolize, and metabolizes quicker than cryoxadone."
+	description = "A chemical that derives from Cryoxadone. It specializes in healing clone damage, but nothing else."
 	color = "#0000C8"
 	taste_description = "muscle"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/carbon/M)
-	if(M.bodytemperature < T0C && M.IsSleeping()) //yes you have to be in cryo shut up and drink your corn syrup
-		M.adjustCloneLoss(0.001 * (M.bodytemperature ** 2) - 100, 0)
-		REMOVE_TRAIT(M, TRAIT_DISFIGURED, TRAIT_GENERIC)
-		. = 1
-	metabolization_rate = REAGENTS_METABOLISM * (0.000015 * (M.bodytemperature ** 2) + 0.75)
+	M.adjustCloneLoss(-4*REM, 0)
 	..()
 
 /datum/reagent/medicine/pyroxadone
@@ -449,9 +445,10 @@
 	process_flags = SYNTHETIC
 
 /datum/reagent/medicine/system_cleaner/reaction_mob(mob/living/L, methods=TOUCH, reac_volume)
-	for(var/thing in L.diseases)//lets it cure viruses from IPC
-		var/datum/disease/D = thing
-		D.cure()
+	if(!(L.get_process_flags() & ORGANIC))
+		for(var/thing in L.diseases) // can clean viruses from fully synthetic hosts
+			var/datum/disease/D = thing
+			D.cure()
 
 /datum/reagent/medicine/system_cleaner/on_mob_life(mob/living/M)
 	M.adjustToxLoss(-2*REM, 0)
@@ -469,6 +466,9 @@
 	process_flags = SYNTHETIC
 
 /datum/reagent/medicine/liquid_solder/on_mob_life(mob/living/M)
+	var/obj/item/organ/O = M.getorganslot(ORGAN_SLOT_BRAIN)
+	if(!(O.organ_flags & ORGAN_SYNTHETIC)) // don't heal organic brains in partially synthetic mobs
+		return ..()
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3*REM)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
@@ -1296,6 +1296,7 @@
 	if(prob(20))
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM, 50)
 	M.adjustStaminaLoss(2.5*REM, 0)
+	M.clear_stamina_regen()
 	..()
 	return TRUE
 
@@ -1436,6 +1437,7 @@
 		if(41 to 80)
 			M.adjustOxyLoss(0.1*REM, 0)
 			M.adjustStaminaLoss(0.1*REM, 0)
+			M.clear_stamina_regen()
 			M.adjust_jitter_up_to(1 SECONDS, 20 SECONDS)
 			M.adjust_stutter_up_to(1 SECONDS, 20 SECONDS)
 			M.adjust_dizzy(10)
@@ -1449,10 +1451,12 @@
 			to_chat(M, "You feel too exhausted to continue!") // at this point you will eventually die unless you get charcoal
 			M.adjustOxyLoss(0.1*REM, 0)
 			M.adjustStaminaLoss(0.1*REM, 0)
+			M.clear_stamina_regen()
 		if(82 to INFINITY)
 			M.Sleeping(100, 0, TRUE)
 			M.adjustOxyLoss(1.5*REM, 0)
 			M.adjustStaminaLoss(1.5*REM, 0)
+			M.clear_stamina_regen()
 	..()
 	return TRUE
 
@@ -1897,4 +1901,3 @@
 	if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(M, COMSIG_NANITE_ADJUST_VOLUME, nanite_reduction)
 	return ..()
-	

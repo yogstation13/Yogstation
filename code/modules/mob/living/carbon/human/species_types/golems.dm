@@ -1349,18 +1349,18 @@
 	deactive_msg = span_notice("You stop channeling your telecrystal core.")
 	spell_requirements = NONE
 
-/datum/action/cooldown/spell/pointed/phase_jump/InterceptClickOn(atom/target, params, mob/living/user)
+/datum/action/cooldown/spell/pointed/phase_jump/InterceptClickOn(mob/living/user, params, atom/target)
 	. = ..()
 	if(!.)
 		return FALSE
-	var/turf/T = get_turf(target)
+	var/turf/target_turf = get_turf(target)
 	var/phasein = /obj/effect/temp_visual/dir_setting/cult/phase
 	var/phaseout = /obj/effect/temp_visual/dir_setting/cult/phase/out
 	var/obj/spot1 = new phaseout(get_turf(user), user.dir)
-	user.forceMove(T)
+	owner.forceMove(target_turf)
 	var/obj/spot2 = new phasein(get_turf(user), user.dir)
-	spot1.Beam(spot2,"tentacle",time=20)
-	user.visible_message("<span class='danger'>[user] phase shifts away!", span_warning("You shift around the space around you."))
+	spot1.Beam(spot2, "tentacle", time=2 SECONDS)
+	user.visible_message(span_danger("[user] phase shifts away!"), span_warning("You shift around the space around you."))
 	return TRUE
 
 /datum/action/cooldown/spell/pointed/phase_jump/is_valid_target(atom/target)
@@ -1371,7 +1371,7 @@
 	var/area/AU = get_area(owner)
 	var/area/AT = get_area(T)
 	if(AT.noteleport || AU.noteleport)
-		owner.balloon_alert(owner, "something omnious prevents your teleport!")
+		owner.balloon_alert(owner, "can't teleport there!")
 		return FALSE
 	return TRUE
 

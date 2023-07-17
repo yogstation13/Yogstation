@@ -293,3 +293,24 @@
 		M.adjust_fire_stacks(-reac_volume)
 		M.extinguish_mob()
 	..()
+
+datum/reagent/frigorific_mixture
+	name = "Frigorific Mixture"
+	description = "Comes into existence at 20K. As long as there is sufficient water for it to react with, frigorific mixture slowly cools all other reagents in the container 0K."
+	color = "#a2ccf3"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	taste_description = "bitterness"
+	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
+
+
+/datum/reagent/frigorific_mixture/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube
+	if(M.reagents.has_reagent(/datum/reagent/water))
+		M.reagents.remove_reagent(/datum/reagent/water, 1)
+		M.adjust_bodytemperature(-15)
+	..()
+
+/datum/reagent/frigorific_mixture/reaction_turf(turf/T, reac_volume)
+	if(reac_volume >= 5)
+		for(var/mob/living/simple_animal/slime/M in T)
+			M.adjustToxLoss(rand(15,30))

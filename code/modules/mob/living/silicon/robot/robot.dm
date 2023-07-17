@@ -1092,6 +1092,11 @@
 	if(hud_used)
 		hud_used.update_robot_modules_display()
 
+	// Drops all items found in any storage bags on the Cyborg.
+	for(var/obj/item/storage/bag in module.contents)
+		for(var/obj/item in bag)
+			item.forceMove(drop_location())
+			
 	while(expansion_count)
 		resize = 0.5
 		expansion_count--

@@ -123,3 +123,11 @@
 	w_class = WEIGHT_CLASS_SMALL
 	materials = list(/datum/material/iron=50, /datum/material/glass=50)
 	grind_results = list(/datum/reagent/iron = 10, /datum/reagent/silicon = 10)
+
+/obj/item/electronics/ui_status(mob/user)
+	. = ..()
+	if(issilicon(user))
+		var/mob/living/silicon/robot/robotuser = user
+		var/obj/item/gripper/gripper = robotuser.get_active_held_item(TRUE)
+		if(!istype(gripper) || (istype(gripper) && Adjacent(src))) // basically you have to be holding it
+			. = min(., UI_UPDATE)

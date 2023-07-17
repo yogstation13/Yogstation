@@ -1,4 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: true 
-changes: 
-  - bugfix: "Blood Cult should not end the round immediately anymore."
