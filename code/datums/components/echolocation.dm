@@ -1,6 +1,8 @@
 /datum/component/echolocation
-	/// Radius of our view.
-	var/echo_range = 4
+	///Default echo range
+	var/default_echo_range = 4
+	/// Current radius, will set itself to default
+	var/echo_range
 	/// Time between echolocations.
 	var/cooldown_time = 2 SECONDS
 	/// Time for the image to start fading out.
@@ -11,8 +13,10 @@
 	var/fade_out_time = 0.5 SECONDS
 	/// Are images static? If yes, spawns them on the turf and makes them not change location. Otherwise they change location and pixel shift with the original.
 	var/images_are_static = TRUE
-	/// With mobs that have this echo group in their echolocation receiver trait, we share echo images.
+	/// With mobs that have this echo group in their echolocation receiver trait, we share echo images, defaults to quirk
 	var/echo_group = null
+	/// Color applied over the client
+	var/client_color = null
 	/// Associative list of world.time when created to a list of the images.
 	var/list/images = list()
 	/// Associative list of world.time when created to a list of receivers.
@@ -28,20 +32,22 @@
 	/// A matrix that turns everything into pure white.
 	var/static/list/white_matrix = list(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 1, 0, -0, 0, 0)
 
+	var/isalien = FALSE
+
 	/// Cooldown for the echolocation.
 	COOLDOWN_DECLARE(cooldown_last)
 
-/datum/component/echolocation/Initialize()
+/datum/component/echolocation/Initialize(echo_range, cooldown_time, image_expiry_time, fade_in_time, fade_out_time, images_are_static, blocking_trait, echo_group, echo_icon, color_path)
 	. = ..()
 	var/mob/living/echolocator = parent
 	if(!istype(echolocator))
 		return COMPONENT_INCOMPATIBLE
 	if(!danger_turfs)
-		danger_turfs = typecacheof(list(/turf/open/space, /turf/open/openspace, /turf/open/chasm, /turf/open/lava, /turf/open/floor/fakespace, /turf/open/floor/fakepit))
+		danger_turfs = typecacheof(list(/turf/open/chasm, /turf/open/lava, /turf/open/floor/fakepit))
 	if(!allowed_paths)
 		allowed_paths = typecacheof(list(/turf/closed, /obj, /mob/living)) + danger_turfs - typecacheof(/obj/effect/decal)
 	if(!isnull(echo_range))
-		src.echo_range = echo_range
+		src.echo_range = default_echo_range
 	if(!isnull(cooldown_time))
 		src.cooldown_time = cooldown_time
 	if(!isnull(image_expiry_time))
@@ -52,6 +58,11 @@
 		src.fade_out_time = fade_out_time
 	if(!isnull(images_are_static))
 		src.images_are_static = images_are_static
+	if(ispath(color_path))
+		client_color = echolocator.add_client_colour(color_path)
+	else
+		client_color = echolocator.add_client_colour(/datum/client_colour/echolocate)
+
 	src.echo_group = echo_group || REF(src)
 	echolocator.add_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_NIGHT_VISION), echo_group) //so they see all the tiles they echolocated, even if they are in the dark
 	echolocator.become_blind(TRAIT_BLIND_ECHO)
@@ -79,6 +90,8 @@
 		return
 	COOLDOWN_START(src, cooldown_last, cooldown_time)
 	var/mob/living/echolocator = parent
+	echo_range = echo_sound_environment(echolocator, default_echo_range)
+
 	var/list/filtered = list()
 	var/list/seen = dview(echo_range, get_turf(echolocator.client?.eye || echolocator), invis_flags = echolocator.see_invisible)
 	for(var/atom/seen_atom as anything in seen)
@@ -92,10 +105,34 @@
 	images[current_time] = list()
 	receivers[current_time] = list()
 	for(var/mob/living/viewer in filtered)
-		receivers[current_time] += viewer
+		if(HAS_TRAIT_FROM(viewer, TRAIT_ECHOLOCATION_RECEIVER, echo_group))
+			receivers[current_time] += viewer
 	for(var/atom/filtered_atom as anything in filtered)
 		show_image(saved_appearances["[filtered_atom.icon]-[filtered_atom.icon_state]"] || generate_appearance(filtered_atom), filtered_atom, current_time)
 	addtimer(CALLBACK(src, PROC_REF(fade_images), current_time), image_expiry_time)
+
+/datum/component/echolocation/proc/echo_sound_environment(mob/living/H, range)
+	var/area/A = get_area(H)
+	var/sound_environment = A.sound_environment	
+	switch(sound_environment)
+		if(SOUND_AREA_SPACE)
+			return range -3
+		if(SOUND_AREA_STANDARD_STATION)
+			return range
+		if(SOUND_AREA_LARGE_ENCLOSED)
+			return range -1
+		if(SOUND_AREA_SMALL_ENCLOSED)
+			return range +1
+		if(SOUND_AREA_TUNNEL_ENCLOSED)
+			return range +2
+		if(SOUND_AREA_LARGE_SOFTFLOOR)
+			return range -1
+		if(SOUND_AREA_ASTEROID)
+			return range -2
+		if(SOUND_AREA_LAVALAND)
+			return range -1
+		if(SOUND_AREA_WOODFLOOR)
+			return range +1
 
 /datum/component/echolocation/proc/show_image(image/input_appearance, atom/input, current_time)
 	var/image/final_image = image(input_appearance)

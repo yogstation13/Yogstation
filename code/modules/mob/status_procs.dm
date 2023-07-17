@@ -15,7 +15,7 @@
 				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
 				if (HAS_TRAIT(src, TRAIT_BLIND_ECHO))
-					AddComponent(/datum/component/echolocation)
+					AddComponent(/datum/component/echolocation, echo_group = "quirk")
 				else
 					overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 
@@ -35,7 +35,7 @@
 				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
 				if (HAS_TRAIT(src, TRAIT_BLIND_ECHO))
-					AddComponent(/datum/component/echolocation)
+					AddComponent(/datum/component/echolocation, echo_group = "quirk")
 				else
 					overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else if(eye_blind)
@@ -51,7 +51,7 @@
 			clear_alert("blind")
 			clear_fullscreen("blind")
 			if (GetComponent(/datum/component/echolocation))
-				GetComponent(/datum/component/echolocation).RemoveComponent()
+				GetComponent(/datum/component/echolocation).Destroy()
 /**
   * Force set the blindness of a mob to some level
   */
@@ -66,7 +66,7 @@
 				overlay_fullscreen("blind", /atom/movable/screen/fullscreen/black)
 			else
 				if (HAS_TRAIT(src, TRAIT_BLIND_ECHO))
-					AddComponent(/datum/component/echolocation)
+					AddComponent(/datum/component/echolocation, echo_group = "quirk")
 				else
 					overlay_fullscreen("blind", /atom/movable/screen/fullscreen/blind)
 	else if(eye_blind)
