@@ -7,6 +7,7 @@
  *
  * Not intended as a replacement for the mob verb
  */
+
 /atom/movable/proc/point_at(atom/pointed_atom)
 	if(!isturf(loc))
 		return
@@ -29,13 +30,12 @@
 	var/mutable_appearance/thought_bubble = mutable_appearance(
 		'icons/effects/effects.dmi',
 		"thought_bubble",
-		plane = POINT_LAYER,
+		layer = FLOAT_LAYER,
 		appearance_flags = KEEP_APART,
 	)
 
 	var/mutable_appearance/pointed_atom_appearance = new(pointed_atom.appearance)
 	pointed_atom_appearance.blend_mode = BLEND_INSET_OVERLAY
-	pointed_atom_appearance.plane = thought_bubble.plane
 	pointed_atom_appearance.layer = FLOAT_LAYER
 	pointed_atom_appearance.pixel_x = 0
 	pointed_atom_appearance.pixel_y = 0
@@ -53,7 +53,7 @@
 	var/mutable_appearance/point_visual = mutable_appearance(
 		'icons/mob/screen_gen.dmi',
 		"arrow", 
-		plane = thought_bubble.plane,
+		layer = thought_bubble.layer,
 	)
 
 	thought_bubble.overlays += point_visual
@@ -99,7 +99,7 @@
 	set name = "Point To"
 	set category = "Object"
 
-	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
+	if(client && !(A in view(client.view, src)))
 		return FALSE
 	if(istype(A, /obj/effect/temp_visual/point))
 		return FALSE
