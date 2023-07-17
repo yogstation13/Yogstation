@@ -333,7 +333,7 @@
 	desc = "A specialized ointment, designed with preventing infections in mind."
 	icon_state = "aointment"
 	sanitization = 1.0 // its main purpose is to disinfect
-	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 5)
+	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 4)
 
 /obj/item/stack/medical/mesh
 	name = "regenerative mesh"
