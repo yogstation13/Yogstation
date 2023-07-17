@@ -685,6 +685,7 @@
 	result = /obj/item/stack/medical/ointment
 	reqs = list(/datum/reagent/water = 10,
 				/datum/reagent/ash = 10)
+	tools = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/antisepticointment
@@ -693,6 +694,7 @@
 	reqs = list(/datum/reagent/water = 10,
 				/datum/reagent/ash = 10,
 				/datum/reagent/space_cleaner/sterilizine = 5)
+	tools = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/advancedmesh
