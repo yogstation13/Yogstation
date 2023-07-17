@@ -22746,11 +22746,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"gGu" = (
-/obj/structure/beebox,
-/obj/item/queen_bee/bought,
-/turf/open/floor/grass,
-/area/hydroponics/garden)
 "gGE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -74174,6 +74169,12 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"xyZ" = (
+/obj/structure/beebox,
+/obj/item/honey_frame,
+/obj/item/queen_bee/bought,
+/turf/open/floor/grass,
+/area/hydroponics/garden)
 "xza" = (
 /obj/structure/toilet{
 	dir = 4
@@ -109266,7 +109267,7 @@ vrt
 bEw
 iSr
 uAR
-gGu
+xyZ
 jLH
 alW
 fhK
@@ -109780,7 +109781,7 @@ imK
 bEw
 iSr
 uAR
-gGu
+xyZ
 iya
 beN
 rls
