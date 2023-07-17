@@ -4,6 +4,7 @@
 #define BLOOD_BURST "HH"
 #define MAX_DASH_DIST 4
 #define DASH_SPEED 2
+
 #define STYLE_REVOLVER "revolver"
 #define STYLE_SHOTGUN "shotgun"
 #define STYLE_PUNCH "punch"
@@ -135,6 +136,7 @@
 	var/mob/gun_owner
 	spread = 0
 	semi_auto_spread = 0
+	slot_flags = 0 // so it doesn't get stuck on your belt
 
 /obj/item/ammo_box/magazine/internal/cylinder/ipcmartial
 	name = "\improper Piercer cylinder"
@@ -143,18 +145,20 @@
 	max_ammo = 3
 
 /obj/item/ammo_casing/ipcmartial
-	name = ".357 piercer bullet casing"
-	desc = "A .357 piercer bullet casing."
+	name = ".357 sharpshooter bullet casing"
+	desc = "A .357 sharpshooter bullet casing."
 	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/ipcmartial
 	click_cooldown_override = 0.1 //this gun shoots faster
 
 /obj/item/projectile/bullet/ipcmartial //literally just default 357 with mob piercing
-	name = ".357 piercer bullet"
-	damage = 40
+	name = ".357 sharpshooter bullet"
+	damage = 30 // can't 3-shot against sec armor
 	armour_penetration = 15
 	wound_bonus = -45
 	wound_falloff_tile = -2.5
+	ricochets_max = 1 // so you can't use it in a small room to obliterate everyone inside
+	ricochet_chance = INFINITY // ALWAYS ricochet
 	penetrating = TRUE
 
 /obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
@@ -171,13 +175,26 @@
 			if(ricochets) // the most powerful weapon: coins
 				UV.handle_style(H, 1)
 				H.balloon_alert(H, "+RICOSHOT")
-			UV.handle_style(H, 0.2 * damage / initial(damage), STYLE_REVOLVER)
-
-/obj/item/projectile/bullet/ipcmartial/on_hit(atom/target, blocked)
-	. = ..()
+			UV.handle_style(H, 0.1 * damage / initial(damage), STYLE_REVOLVER)
 	if(ishuman(target) && !blocked)
 		var/mob/living/carbon/human/H = target
 		H.add_splatter_floor(H.loc, TRUE)//janitors everywhere cry when they hear that an ipc is going off
+	ricochets = ricochets_max // so you can't shoot through someone to ricochet and hit them twice for 70 damage in one shot
+	damage -= 20
+	if(damage <= 0)
+		qdel(src)
+
+/obj/item/projectile/bullet/ipcmartial/on_ricochet(atom/A)
+	damage += 10 // more damage if you ricochet it, good luck hitting it consistently though
+	speed *= 0.5 // faster so it can hit more reliably
+	penetrating = FALSE
+	return ..()
+
+/obj/item/projectile/bullet/ipcmartial/check_ricochet()
+	return TRUE
+
+/obj/item/projectile/bullet/ipcmartial/check_ricochet_flag(atom/A)
+	return !ismob(A) // don't ricochet off of mobs, that would be weird
 
 /obj/item/gun/ballistic/revolver/ipcmartial/Initialize(mapload)
 	. = ..()

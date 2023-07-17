@@ -18,7 +18,7 @@
 	var/preview_outfit_behind = /datum/outfit/nuclear_operative
 
 /datum/antagonist/nukeop/apply_innate_effects(mob/living/mob_override)
-	add_team_hud(mob_override || owner.current)
+	add_team_hud(mob_override || owner.current, /datum/antagonist/nukeop)
 	ADD_TRAIT(owner, TRAIT_DISK_VERIFIER, NUKEOP_TRAIT)
 
 /datum/antagonist/nukeop/remove_innate_effects(mob/living/mob_override)
