@@ -306,15 +306,15 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	apply_sounds = list('sound/effects/ointment.ogg')
-	amount = 8
-	max_amount = 8
-	self_delay = 40
-	other_delay = 20
+	amount = 15
+	max_amount = 15
+	self_delay = 4 SECONDS
+	other_delay = 2 SECONDS
 	repeating = TRUE
 	heal_burn = 5
 	flesh_regeneration = 2.5
 	sanitization = 0.25
-	grind_results = list(/datum/reagent/medicine/c2/lenturi = 10)
+	grind_results = null
 
 /obj/item/stack/medical/ointment/heal(mob/living/M, mob/user)
 	if(M.stat == DEAD)
@@ -332,11 +332,8 @@
 	name = "antiseptic ointment"
 	desc = "A specialized ointment, designed with preventing infections in mind."
 	icon_state = "aointment"
-	amount = 15
-	max_amount = 15
-	heal_burn = 3
 	sanitization = 1.0 // its main purpose is to disinfect
-	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 10)
+	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 5)
 
 /obj/item/stack/medical/mesh
 	name = "regenerative mesh"
