@@ -33,7 +33,6 @@
 	var/draw_time = 0.5 SECONDS
 	var/draw_slowdown = 0.75
 	var/draw_sound = 'sound/weapons/sound_weapons_bowdraw.ogg'
-	var/mutable_appearance/arrow_overlay
 	/// If the last loaded arrow was a toy arrow or not, used to see if foam darts / arrows should do stamina damage
 	var/nerfed = FALSE
 
@@ -133,12 +132,15 @@
 	update_slowdown()
 	update_appearance(UPDATE_ICON)
 
-/obj/item/gun/ballistic/bow/update_overlays()
+/obj/item/gun/ballistic/bow/update_icon_state()
 	. = ..()
 	icon_state = "[initial(icon_state)][chambered ? "_firing" : ""]"
+
+/obj/item/gun/ballistic/bow/update_overlays()
+	. = ..()
 	if(get_ammo())
-		var/obj/item/ammo_casing/reusable/arrow/energy/E = magazine.get_round(TRUE)
-		arrow_overlay = mutable_appearance(icon, "[initial(E.item_state)][chambered ? "_firing" : ""]")
+		var/obj/item/ammo_casing/reusable/arrow/E = magazine.get_round(TRUE)
+		var/mutable_appearance/arrow_overlay = mutable_appearance(icon, "[initial(E.item_state)][chambered ? "_firing" : ""]")
 		. += arrow_overlay
 
 /obj/item/gun/ballistic/bow/proc/update_slowdown()
@@ -453,8 +455,6 @@
 
 /obj/item/gun/ballistic/bow/energy/update_icon_state()
 	. = ..()
-	cut_overlay(arrow_overlay, TRUE)
-
 	if(folded)
 		icon_state = "[initial(icon_state)]_folded"
 		item_state = "[initial(item_state)]_folded"
@@ -467,15 +467,6 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_hands()
-
-/obj/item/gun/ballistic/bow/energy/update_overlays()
-	. = ..()
-	if(folded || !get_ammo())
-		return
-	var/obj/item/ammo_casing/reusable/arrow/energy/E = magazine.get_round(TRUE)
-	item_state = "[item_state]_[E.icon_state]"
-	arrow_overlay = mutable_appearance(icon, "[initial(E.icon_state)][chambered ? "_firing" : ""]")
-	. += arrow_overlay
 
 /obj/item/gun/ballistic/bow/energy/shoot_live_shot(mob/living/user, pointblank, atom/pbtarget, message)
 	if(folded)
