@@ -462,19 +462,29 @@
 		return
 	if(!istype(user))
 		CRASH("[src] being used by non borg [user]")
+	var/atom/movable/snack
 	if(launch_mode)
 		COOLDOWN_START(src, last_snack_disp, cooldown)
-		var/atom/movable/snack = new selected_snack(get_turf(src))
+		snack = new selected_snack(get_turf(src))
+		if(user.emagged)
+			snack.throwforce = 3
+			RegisterSignal(snack, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
 		snack.throw_at(target, 7, 2, user, TRUE, FALSE)
 		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 		user.visible_message(span_notice("[src] launches a [snack.name] at [target]!"))
-		return
-	if(user.Adjacent(target) && is_allowed(target, user))
+	else if(user.Adjacent(target) && is_allowed(target, user))
 		COOLDOWN_START(src, last_snack_disp, cooldown)
-		var/atom/movable/snack = new selected_snack(get_turf(target))
+		snack = new selected_snack(get_turf(target))
 		playsound(loc, 'sound/machines/click.ogg', 10, TRUE)
 		user.visible_message(span_notice("[user] dispenses a [snack.name]."))
-		return
+
+	if(snack && user.emagged && istype(snack, /obj/item/reagent_containers/food/snacks/cookie))
+		var/obj/item/reagent_containers/food/snacks/cookie/cookie = snack
+		cookie.list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/toxin/chloralhydrate = 10)
+
+/obj/item/borg_snack_dispenser/proc/post_throw(atom/movable/thrown_snack)
+	SIGNAL_HANDLER
+	thrown_snack.throwforce = 0
 
 /obj/item/borg_snack_dispenser/proc/is_allowed(atom/to_check, mob/user)
 	for(var/sort in allowed_surfaces)
