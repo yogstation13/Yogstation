@@ -32,7 +32,7 @@
 /obj/item/assembly/signaler/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
-
+	update_appearance(UPDATE_ICON)
 
 /obj/item/assembly/signaler/Destroy()
 	SSradio.remove_object(src,frequency)
