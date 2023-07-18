@@ -489,19 +489,28 @@
 	var/actual_range = STOMP_RADIUS + plates
 	for(var/mob/living/L in range(actual_range, owner))
 		if(L == owner)
+			shake_camera(L, 1 SECONDS, 2)
 			continue
 		var/damage = 0
 		var/throwdistance = 1
-		if(L in range(actual_range/2, owner))//more damage and CC if closer
+		var/shake_duration = 1 SECONDS
+		var/shake_strength = sqrt((actual_range - (get_dist(get_turf(L), owner)))*0.1)
+
+		if(L in range(actual_range/2, owner))//damage and CC if closer
+			shake_duration += 1 SECONDS
 			damage = heavy ? 20 : 10
 			throwdistance = 2
 			L.Knockdown(30)
+
 		if(L.loc == owner.loc)//if they are standing directly ontop of you, you're probably fucked
+			shake_duration += 1 SECONDS
 			to_chat(L, span_userdanger("[owner] slams you into the ground with so much force that you're certain your ribs have been collapsed!"))
 			damage *= 4
 			L.Stun(5 SECONDS)
+
 		linked_martial.hurt(owner, L, damage)
 		linked_martial.push_away(owner, L, throwdistance)
+		shake_camera(L, shake_duration, shake_strength)
 		if(L.loc == owner.loc && isanimal(L) && L.stat == DEAD)//gib any animals you are standing on
 			L.gib()
 	for(var/obj/item/I in range(actual_range, owner))
