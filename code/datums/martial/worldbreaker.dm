@@ -489,13 +489,13 @@
 	var/actual_range = STOMP_RADIUS + plates
 	for(var/mob/living/L in range(actual_range, owner))
 		if(L == owner)
-			shake_camera(L, 1 SECONDS, 1)
+			shake_camera(L, 1 SECONDS, 0.5)
 			continue
 		var/damage = 0
 		var/throwdistance = 1
 		var/shake_duration = 1 SECONDS
 		var/distance = get_dist(get_turf(L), owner)
-		var/shake_strength = clamp(sqrt(actual_range - distance), 0, 10)
+		var/shake_strength = clamp(sqrt(actual_range - distance) * 0.5, 0, 5)
 
 		if(L in range(actual_range/2, owner))//damage and CC if closer
 			shake_duration += 1 SECONDS
