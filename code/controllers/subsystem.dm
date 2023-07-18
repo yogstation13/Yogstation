@@ -310,8 +310,6 @@
 	.["@measurement"] = "subsystem"
 	.["@tags"] = list("subsystem" = type)
 	.["$cost"] = cost
-	.["$cpu"] = world.cpu
-	.["$map_cpu"] = world.map_cpu
 	.["$tick_usage"] = tick_usage
 	.["$tick_overrun"] = tick_overrun
 	.["$last_fire"] = last_fire
@@ -319,9 +317,3 @@
 	.["$tick_allocation_avg"] = tick_allocation_avg
 	.["$times_fired"] = times_fired
 	.["$postponed_fires"] = postponed_fires
-	.["$elapsed_processed"] = world.time
-	.["$elapsed_real"] = (REALTIMEOFDAY - SSmetrics.world_init_time)
-	if(!isnull(GLOB.round_id))
-		.["$round_id"] = GLOB.round_id
-	.["$clients"] = length(GLOB.clients)
-	.["$runlevel"] = Master.current_runlevel
