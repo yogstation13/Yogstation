@@ -546,6 +546,7 @@
 	l_pocket = /obj/item/gun/ballistic/automatic/pistol
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
 	mask = /obj/item/clothing/mask/gas/syndicate
+	id = /obj/item/card/id/syndicate/anyone
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/security
 	name = "Syndicate Outpost Security Officer"

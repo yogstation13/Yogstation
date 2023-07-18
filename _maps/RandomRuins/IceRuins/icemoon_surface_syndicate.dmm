@@ -1926,21 +1926,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/syndicate_icemoon/canteen)
-"oG" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/button/door{
-	id = "syndicateicemoon_xenokill";
-	req_access_txt = "150";
-	pixel_y = 24;
-	name = "Kill Chamber Access"
-	},
-/obj/effect/turf_decal/tile/purple/half/contrasted{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/xenobio)
 "oL" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -10200,7 +10185,7 @@ pq
 Yi
 AT
 MH
-oG
+ON
 ab
 oB
 NH
