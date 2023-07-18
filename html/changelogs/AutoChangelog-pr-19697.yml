@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscdel: "Ethereals no longer get heart disease from discharging"
