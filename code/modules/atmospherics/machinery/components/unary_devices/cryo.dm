@@ -12,7 +12,7 @@
 	pixel_y = 22
 	appearance_flags = KEEP_TOGETHER
 
-/atom/movable/visual/cryo_occupant/Initialize()
+/atom/movable/visual/cryo_occupant/Initialize(mapload)
 	. = ..()
 	// Alpha masking
 	// It will follow this as the animation goes, but that's no problem as the "mask" icon state
