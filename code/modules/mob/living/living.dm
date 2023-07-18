@@ -1253,7 +1253,7 @@
 		if(buckled.buckle_lying != -1)
 			should_be_lying = buckled.buckle_lying
 
-	if(should_be_lying)
+	if(should_be_lying && !HAS_TRAIT(src, TRAIT_FORCED_STANDING))
 		mobility_flags &= ~MOBILITY_STAND
 		if(buckled)
 			if(buckled.buckle_lying != -1)
