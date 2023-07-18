@@ -1,0 +1,4 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscdel: "Ethereals no longer increase and decrease brutemod based on charge"
