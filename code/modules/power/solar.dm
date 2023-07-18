@@ -20,8 +20,6 @@
 	var/obj/machinery/power/solar_control/control
 	var/needs_to_turn = TRUE //do we need to turn next tick?
 	var/needs_to_update_solar_exposure = TRUE //do we need to call update_solar_exposure() next tick?
-	var/mutable_appearance/panelstructure
-	var/mutable_appearance/paneloverlay
 	var/multiplier
 	var/panelcolor
 	var/obj/item/stack/sheet/glass_type
@@ -31,9 +29,6 @@
 	Make(S)
 	connect_to_network()
 	RegisterSignal(SSsun, COMSIG_SUN_MOVED, PROC_REF(queue_update_solar_exposure))
-	panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
-	paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
-	paneloverlay.color = panelcolor
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/power/solar/Destroy()
@@ -117,9 +112,15 @@
 	. = ..()
 	var/matrix/turner = matrix()
 	turner.Turn(azimuth_current)
+
+	var/mutable_appearance/panelstructure = mutable_appearance(icon, "solar_panel", FLY_LAYER)
 	panelstructure.transform = turner
+	. += panelstructure
+
+	var/mutable_appearance/paneloverlay = mutable_appearance(icon, "solar_panel-o", FLY_LAYER)
 	paneloverlay.transform = turner
-	. += list(paneloverlay, panelstructure)
+	paneloverlay.color = panelcolor
+	. += paneloverlay
 
 /obj/machinery/power/solar/proc/queue_turn(azimuth)
 	needs_to_turn = TRUE
