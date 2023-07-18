@@ -56,7 +56,7 @@
 				squirrel.visible_message(span_boldwarning("A massive brass spike erupts from the ground, rending [squirrel]'s chassis but shattering into pieces!"), \
 				span_userdanger("A massive brass spike rips through your chassis and bursts into shrapnel in your casing!"))
 				squirrel.adjustBruteLoss(50)
-				squirrel.Stun(2 SECONDS)
+				squirrel.Stun(4 SECONDS)
 				addtimer(CALLBACK(src, PROC_REF(take_damage), max_integrity), 1)
 		else
 			squirrel.visible_message(span_boldwarning("A massive brass spike erupts from the ground, impaling [squirrel]!"), \
@@ -65,7 +65,7 @@
 			playsound(squirrel, 'sound/effects/splat.ogg', 50, TRUE)
 			playsound(squirrel, 'sound/misc/desceration-03.ogg', 50, TRUE)
 			squirrel.apply_damage(20, BRUTE, BODY_ZONE_CHEST)
-			squirrel.Stun(2 SECONDS)
+			squirrel.Stun(4 SECONDS)
 		buckle_mob(squirrel, TRUE)
 	else
 		visible_message(span_danger("A massive brass spike erupts from the ground!"))
@@ -93,7 +93,7 @@
 		user.visible_message(span_warning("[user] starts wriggling off of [src]!"), \
 		span_danger("You start agonizingly working your way off of [src]..."))
 		wiggle_wiggle = TRUE
-		if(!do_after(user, 10 SECONDS, user))
+		if(!do_after(user, 6 SECONDS, user))
 			user.visible_message(span_warning("[user] slides back down [src]!"))
 			user.emote("scream")
 			user.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
