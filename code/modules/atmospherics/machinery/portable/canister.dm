@@ -330,7 +330,7 @@
 		if((10) to (5 * ONE_ATMOSPHERE))
 			return "can-o1"
 		else
-			return "can-o1"
+			return "can-o0"
 
 /obj/machinery/portable_atmospherics/canister/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > temperature_resistance)
