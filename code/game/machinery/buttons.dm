@@ -45,7 +45,7 @@
 /obj/machinery/button/update_icon()
 	cut_overlays()
 	if(panel_open)
-		icon_state = "button-open"
+		icon_state = "doorctrl-open"
 		if(device)
 			add_overlay("button-device")
 		if(board)
