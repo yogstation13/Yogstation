@@ -14,7 +14,7 @@
 	resistance_flags = INDESTRUCTIBLE|ACID_PROOF|FIRE_PROOF
 	var/spawn_id = null
 	var/spawn_temp = T20C
-	var/spawn_mol = MOLES_CELLSTANDARD * 5
+	var/spawn_mol = MOLES_CELLSTANDARD * 20
 	var/max_ext_mol = INFINITY
 	var/max_ext_kpa = 6500
 	var/overlay_color = "#FFFFFF"
