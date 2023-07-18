@@ -147,7 +147,6 @@
 	H.visible_message(span_danger("[H] stops flickering and goes back to their normal state!"))
 
 /datum/species/ethereal/proc/handle_charge(mob/living/carbon/human/H)
-	brutemod = 1.25
 	switch(get_charge(H))
 		if(ETHEREAL_CHARGE_NONE)
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 3)
@@ -155,16 +154,12 @@
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 2)
 			if(H.health > 10.5)
 				apply_damage(0.65, TOX, null, null, H)
-			brutemod = 1.75
 		if(ETHEREAL_CHARGE_LOWPOWER to ETHEREAL_CHARGE_NORMAL)
 			H.throw_alert("ethereal_charge", /atom/movable/screen/alert/etherealcharge, 1)
-			brutemod = 1.5
 		if(ETHEREAL_CHARGE_FULL to ETHEREAL_CHARGE_OVERLOAD)
 			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 1)
-			brutemod = 1.5
 		if(ETHEREAL_CHARGE_OVERLOAD to ETHEREAL_CHARGE_DANGEROUS)
 			H.throw_alert("ethereal_overcharge", /atom/movable/screen/alert/ethereal_overcharge, 2)
-			brutemod = 1.75
 			if(prob(10)) //10% each tick for ethereals to explosively release excess energy if it reaches dangerous levels
 				discharge_process(H)
 		else
