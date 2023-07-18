@@ -17,14 +17,14 @@ SUBSYSTEM_DEF(metrics)
 
 /datum/controller/subsystem/metrics/get_metrics()
 	. = ..()
-	.["$cpu"] = world.cpu
-	.["$map_cpu"] = world.map_cpu
-	.["$elapsed_real"] = (REALTIMEOFDAY - SSmetrics.world_init_time)
-	.["$elapsed_processed"] = world.time
+	.["cpu"] = world.cpu
+	.["map_cpu"] = world.map_cpu
+	.["elapsed_real"] = (REALTIMEOFDAY - SSmetrics.world_init_time)
+	.["elapsed_processed"] = world.time
 	if(!isnull(GLOB.round_id))
-		.["$round_id"] = GLOB.round_id
-	.["$clients"] = length(GLOB.clients)
-	.["$runlevel"] = Master.current_runlevel
+		.["round_id"] = GLOB.round_id
+	.["clients"] = length(GLOB.clients)
+	.["runlevel"] = Master.current_runlevel
 
 /datum/controller/subsystem/metrics/Initialize(start_timeofday)
 	if(!CONFIG_GET(string/metrics_api))
