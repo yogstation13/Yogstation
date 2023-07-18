@@ -1702,9 +1702,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
-"mJ" = (
-/turf/open/space/basic,
-/area/ruin/syndicate_icemoon/dorms)
 "mN" = (
 /obj/item/storage/box/monkeycubes,
 /obj/item/storage/box/monkeycubes{
@@ -8305,7 +8302,7 @@ GS
 qi
 Ck
 zz
-mJ
+qi
 Bx
 IO
 zv
