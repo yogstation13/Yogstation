@@ -517,6 +517,7 @@
 /datum/config_entry/string/vpn_lookup_key	// Key for VPN lookup API
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
+/datum/config_entry/flag/auto_profile
 /datum/config_entry/string/metrics_api
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
