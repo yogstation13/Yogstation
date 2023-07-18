@@ -310,6 +310,8 @@
 	.["@measurement"] = "subsystem"
 	.["@tags"] = list("subsystem" = type)
 	.["$cost"] = cost
+	.["$cpu"] = world.cpu
+	.["$map_cpu"] = world.map_cpu
 	.["$tick_usage"] = tick_usage
 	.["$tick_overrun"] = tick_overrun
 	.["$last_fire"] = last_fire
