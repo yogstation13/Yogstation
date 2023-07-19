@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	warned that the arm renders them unable to wear gloves and sticks out of most outerwear."
 	item = /obj/item/storage/box/syndie_kit/buster
 	player_minimum = 25
-	cost = 15
+	cost = 12
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
 
