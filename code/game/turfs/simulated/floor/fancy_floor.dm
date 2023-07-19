@@ -17,6 +17,7 @@
 	clawfootstep = FOOTSTEP_WOOD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+	flammability = 3 // yikes, better put that out quick
 
 /turf/open/floor/wood/examine(mob/user)
 	. = ..()
@@ -286,6 +287,7 @@
 	clawfootstep = FOOTSTEP_CARPET_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+	flammability = 3 // this will be abused and i am all for it
 
 /turf/open/floor/carpet/examine(mob/user)
 	. = ..()

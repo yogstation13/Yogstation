@@ -87,7 +87,7 @@ GLOBAL_VAR_INIT(glowshrooms, 0)
 		myseed.genes += G
 	set_light(G.glow_range(myseed), G.glow_power(myseed), G.glow_color)
 	setDir(calc_dir())
-	var/base_icon_state = initial(icon_state)
+	base_icon_state = initial(icon_state)
 	if(!floor)
 		switch(dir) //offset to make it be on the wall rather than on the floor
 			if(NORTH)
