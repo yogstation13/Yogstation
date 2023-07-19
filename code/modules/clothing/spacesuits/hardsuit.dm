@@ -228,7 +228,7 @@
 	hardsuit_type = "engineering"
 	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 100, FIRE = 100, ACID = 75, WOUND = 10)
 	resistance_flags = FIRE_PROOF
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	max_heat_protection_temperature = FIRE_EXTREME_MAX_TEMP_PROTECT
 
 /obj/item/clothing/suit/space/hardsuit/engine
 	name = "engineering hardsuit"
@@ -238,7 +238,7 @@
 	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 100, FIRE = 100, ACID = 75, WOUND = 10)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/engine
 	resistance_flags = FIRE_PROOF
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	max_heat_protection_temperature = FIRE_EXTREME_MAX_TEMP_PROTECT
 
 	//Atmospherics
 /obj/item/clothing/head/helmet/space/hardsuit/engine/atmos
@@ -250,7 +250,7 @@
 	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 100, FIRE = 100, ACID = 75, WOUND = 10)
 	heat_protection = HEAD												//Uncomment to enable firesuit protection
 	resistance_flags = FIRE_PROOF
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	max_heat_protection_temperature = FIRE_EXTREME_MAX_TEMP_PROTECT
 
 /obj/item/clothing/suit/space/hardsuit/engine/atmos
 	name = "atmospherics hardsuit"
@@ -259,7 +259,7 @@
 	item_state = "atmo_hardsuit"
 	armor = list(MELEE = 30, BULLET = 5, LASER = 10, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 100, FIRE = 100, ACID = 75, WOUND = 10)
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS					//Uncomment to enable firesuit protection
-	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	max_heat_protection_temperature = FIRE_EXTREME_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/engine/atmos
 
