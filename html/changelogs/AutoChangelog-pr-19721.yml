@@ -1,7 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - tweak: "Brass skewer stuns for 4 seconds on trigger instead of 2"
-  - tweak: "Brass skewer takes 6 seconds to get off manually instead of 30"
-  - tweak: "Helping someone else off a brass skewer takes 2 seconds instead of 6"
-  - tweak: "Brass skewer no longer stuns for 3 seconds after getting off it"
