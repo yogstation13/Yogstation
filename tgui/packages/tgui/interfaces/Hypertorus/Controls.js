@@ -130,7 +130,7 @@ export const HypertorusSecondaryControls = (props, context) => {
             parameter="magnetic_constrictor"
             icon="magnet"
             flipIcon
-            help="Adjusts the density of the fusion reaction. Denser reactions expose more energy, but may destabilize the reaction if too much mass is involved."
+            help="Adjusts the density of the fusion reaction. Denser reactions are much faster, but may become unstable if too much mass is involved."
           />
         </LabeledControls.Item>
         <LabeledControls.Item label="Current Damper">

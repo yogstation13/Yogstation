@@ -209,14 +209,12 @@
 		return
 
 	// Phew. Lets calculate what this means in practice.
-	var/fuel_consumption_rate = clamp(fuel_injection_rate * 0.01 * 5 * power_level, 0.05, 30)
-	var/consumption_amount = fuel_consumption_rate * delta_time
-	var/production_amount
+	var/reaction_rate = clamp((power_level * 0.5) * (500 / magnetic_constrictor) * delta_time, 0.05, 30) // constrictor controls reaction rate instead of fuel injection
 	switch(power_level)
 		if(3,4)
-			production_amount = clamp(heat_output * 5e-4, 0, fuel_consumption_rate) * delta_time
+			reaction_rate = clamp(reaction_rate * heat_output * 5e-4, 0, reaction_rate)
 		else
-			production_amount = clamp(heat_output / 10 ** (power_level+1), 0, fuel_consumption_rate) * delta_time
+			reaction_rate = clamp(reaction_rate * heat_output / (10 ** (power_level+1)), 0, reaction_rate)
 
 	// antinob production is special, and uses its own calculations from how stale the fusion mix is (via byproduct ratio and fresh fuel rate)
 	var/dirty_production_rate = scaled_fuel_list[scaled_fuel_list[3]] / fuel_injection_rate
@@ -224,52 +222,38 @@
 	// Run the effects of our selected fuel recipe
 
 	var/datum/gas_mixture/internal_output = new
-	moderator_fuel_process(delta_time, production_amount, consumption_amount, internal_output, moderator_list, selected_fuel, fuel_list)
+	moderator_fuel_process(delta_time, reaction_rate, internal_output, moderator_list, selected_fuel, fuel_list)
 
 	// Run the common effects, committing changes where applicable
 
 	// This is repetition, but is here as a placeholder for what will need to be done to allow concurrently running multiple recipes
-	var/common_production_amount = production_amount * selected_fuel.gas_production_multiplier
+	var/common_production_amount = reaction_rate * selected_fuel.gas_production_multiplier
 	moderator_common_process(delta_time, common_production_amount, internal_output, moderator_list, dirty_production_rate, heat_output, radiation_modifier)
 
 /**
  * Perform recipe specific actions. Fuel consumption and recipe based gas production happens here.
  */
-/obj/machinery/atmospherics/components/unary/hypertorus/core/proc/moderator_fuel_process(delta_time, production_amount, consumption_amount, datum/gas_mixture/internal_output, moderator_list, datum/hfr_fuel/fuel, fuel_list)
+/obj/machinery/atmospherics/components/unary/hypertorus/core/proc/moderator_fuel_process(delta_time, reaction_rate, datum/gas_mixture/internal_output, moderator_list, datum/hfr_fuel/fuel, fuel_list)
 	// Adjust fusion consumption/production based on this recipe's characteristics
-	var/fuel_consumption = consumption_amount * 0.85 * selected_fuel.fuel_consumption_multiplier * max(power_level, 1)
-	var/scaled_production = production_amount * selected_fuel.gas_production_multiplier * max(power_level, 1)
+	var/fuel_consumption = reaction_rate * 0.85 * selected_fuel.fuel_consumption_multiplier
+	var/scaled_production = reaction_rate * selected_fuel.gas_production_multiplier
 
 	for(var/gas_id in fuel.requirements)
 		internal_fusion.adjust_moles(gas_id, -min(fuel_list[gas_id], fuel_consumption))
 	for(var/gas_id in fuel.primary_products)
 		internal_fusion.adjust_moles(gas_id, fuel_consumption * 0.5)
 
+	if(power_level < 1)
+		return // can't produce any gases, don't need to continue
+
 	// Each recipe provides a tier list of six output gases.
 	// Which gases are produced depend on what the fusion level is.
 	var/list/tier = fuel.secondary_products
-	switch(power_level)
-		if(1)
-			moderator_internal.adjust_moles(tier[1], scaled_production * 0.95)
-			moderator_internal.adjust_moles(tier[2], scaled_production * 0.75)
-		if(2)
-			moderator_internal.adjust_moles(tier[1], scaled_production * 1.65)
-			moderator_internal.adjust_moles(tier[2], scaled_production)
-			if(moderator_list[/datum/gas/plasma] > 50)
-				moderator_internal.adjust_moles(tier[3], scaled_production * 1.15)
-		if(3)
-			moderator_internal.adjust_moles(tier[2], scaled_production * 0.5)
-			moderator_internal.adjust_moles(tier[3], scaled_production * 0.45)
-		if(4)
-			moderator_internal.adjust_moles(tier[3], scaled_production * 1.65)
-			moderator_internal.adjust_moles(tier[4], scaled_production * 1.25)
-		if(5)
-			moderator_internal.adjust_moles(tier[4], scaled_production * 0.65)
-			moderator_internal.adjust_moles(tier[5], scaled_production)
-			moderator_internal.adjust_moles(tier[6], scaled_production * 0.75)
-		if(6)
-			moderator_internal.adjust_moles(tier[5], scaled_production * 0.35)
-			moderator_internal.adjust_moles(tier[6], scaled_production)
+	moderator_internal.adjust_moles(tier[power_level], scaled_production) // gases on the same tier are produced at normal rate
+	if(power_level < 6)
+		moderator_internal.adjust_moles(tier[power_level + 1], scaled_production * 0.5) // gases on the above tier are produced at reduced rate
+	if(power_level > 1)
+		moderator_internal.adjust_moles(tier[power_level - 1], scaled_production * 1.5) // gases on the below tier are produced at increased rate
 
 /**
  * Perform common fusion actions:
