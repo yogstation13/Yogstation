@@ -451,6 +451,7 @@
 
 	if(last_update_state == update_state && last_update_overlay == update_overlay)
 		return
+	var/results = NONE
 	if(last_update_state != update_state)
 		results ^= UPDATE_ICON_STATE
 	if(last_update_overlay != update_overlay)
