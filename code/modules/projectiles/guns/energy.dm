@@ -3,6 +3,7 @@
 	name = "energy gun"
 	desc = "A basic energy-based gun."
 	icon = 'icons/obj/guns/energy.dmi'
+	ammo_x_offset = 2
 
 	var/obj/item/stock_parts/cell/cell //What type of power cell this uses
 	var/cell_type = /obj/item/stock_parts/cell
@@ -12,7 +13,6 @@
 	var/can_charge = TRUE //Can it be charged in a recharger?
 	var/automatic_charge_overlays = TRUE	//Do we handle overlays with base update_overlays?
 	var/charge_sections = 4
-	ammo_x_offset = 2
 	var/shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
 	var/selfcharge = 0
 	var/charge_timer = 0
@@ -178,6 +178,7 @@
 	var/overlay_icon_state = "[icon_state]_charge"
 	if(modifystate)
 		var/obj/item/ammo_casing/energy/shot = ammo_type[select]
+		. += mutable_appearance(icon, "[icon_state]_[initial(shot.select_name)]")
 		if(cell.charge < shot.e_cost)
 			. += "[icon_state]_empty"
 			return
