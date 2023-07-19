@@ -25,13 +25,8 @@
 	update_brightness()
 
 /obj/item/flashlight/proc/update_brightness(mob/user)
-	if(on)
-		icon_state = "[initial(icon_state)]-on"
-	else
-		icon_state = initial(icon_state)
-	set_light_on(on)
-	if(light_system == STATIC_LIGHT)
-		update_light()
+	remove_emitter("spark")
+	remove_emitter("smoke")
 
 /obj/item/flashlight/attack_self(mob/user)
 	on = !on
@@ -361,6 +356,9 @@
 		damtype = BURN
 		attack_verb = list("burnt","scorched","scalded")
 		hitsound = 'sound/items/welder.ogg'
+		if(!istype(src, /obj/item/flashlight/flare/torch))
+			add_emitter(/obj/emitter/sparks/flare, "spark", 10)
+			add_emitter(/obj/emitter/flare_smoke, "smoke", 9)
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/is_hot()
