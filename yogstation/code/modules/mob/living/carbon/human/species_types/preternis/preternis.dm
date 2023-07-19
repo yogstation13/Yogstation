@@ -83,8 +83,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		maglock = new
 		maglock.Grant(C)
 		lockdown = FALSE
-		
-	C.AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF)
+	
+	ADD_TRAIT(C, TRAIT_EMPPROOF_SELF, "preternis")
 
 /datum/species/preternis/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	. = ..()
@@ -98,9 +98,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		
 	UnregisterSignal(C, COMSIG_MOB_ITEM_AFTERATTACK)
 
-	var/datum/component/empprotection/empproof = C.GetExactComponent(/datum/component/empprotection)
-	if(empproof)
-		empproof.RemoveComponent()//remove emp proof if they stop being a preternis
+	REMOVE_TRAIT(C, TRAIT_EMPPROOF_SELF, "preternis")
 
 	C.clear_alert("preternis_emag") //this means a changeling can transform from and back to a preternis to clear the emag status but w/e i cant find a solution to not do that
 	C.clear_fullscreen("preternis_emag")

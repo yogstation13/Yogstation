@@ -185,6 +185,7 @@
 			return
 		if(10)
 			to_chat(user, "<span class='neovgre'>[I] suddenly transforms, gaining the magical properties of shungite, it will protect your from EMPs!</span>")
-			I.AddComponent(/datum/component/empprotection)
+			ADD_TRAIT(I, TRAIT_EMPPROOF_SELF, "stargazer_empproof")
+			ADD_TRAIT(I, TRAIT_EMPPROOF_CONTENTS, "stargazer_empproof")
 			I.color = COLOR_ALMOST_BLACK
 			return

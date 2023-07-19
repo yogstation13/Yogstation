@@ -655,7 +655,8 @@
 
 /obj/machinery/porta_turret/syndicate/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 
 /obj/machinery/porta_turret/syndicate/setup()
 	return
@@ -763,7 +764,8 @@
 
 /obj/machinery/porta_turret/centcom_shuttle/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 
 /obj/machinery/porta_turret/centcom_shuttle/assess_perp(mob/living/carbon/human/perp)
 	return 0
