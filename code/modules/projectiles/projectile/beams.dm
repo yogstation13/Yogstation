@@ -52,6 +52,9 @@
 		M.ignite_mob()
 	else if(isturf(target))
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
+	var/turf/open/target_turf = get_turf(target)
+	if(istype(target_turf))
+		target_turf.IgniteTurf(rand(8, 16))
 	return ..()
 
 /obj/item/projectile/beam/weak
