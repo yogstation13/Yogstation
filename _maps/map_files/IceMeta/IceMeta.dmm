@@ -21704,18 +21704,6 @@
 "gzI" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
-"gzO" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/modular_computer/telescreen/preset/medical{
-	pixel_y = -32
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/cmo)
 "gzZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
@@ -48460,6 +48448,28 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/cmo)
+"ord" = (
+/obj/machinery/requests_console{
+	department = "Genetics";
+	name = "Genetics Requests Console";
+	pixel_y = 30
+	},
+/obj/item/storage/box/monkeycubes,
+/obj/item/radio/headset/headset_medsci,
+/obj/item/flashlight/pen{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/flashlight/pen{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/structure/table/glass,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "ore" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
@@ -50235,6 +50245,21 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"oWs" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/cmo)
 "oWB" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -64648,18 +64673,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"tpd" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/cmo)
 "tpf" = (
 /obj/structure/grille,
 /obj/structure/lattice,
@@ -69643,19 +69656,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
-"uPh" = (
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/storage/box/disks{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "uPk" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "26";
@@ -72113,6 +72113,26 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
+"vCK" = (
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/storage/box/disks{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/structure/table/glass,
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/structure/noticeboard{
+	pixel_x = -32;
+	pixel_y = 32
+	},
+/obj/machinery/vending/wallgene{
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "vCR" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -73036,32 +73056,6 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai_upload)
-"vSe" = (
-/obj/machinery/requests_console{
-	department = "Genetics";
-	name = "Genetics Requests Console";
-	pixel_y = 30
-	},
-/obj/item/storage/box/monkeycubes,
-/obj/item/radio/headset/headset_medsci,
-/obj/item/flashlight/pen{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/flashlight/pen{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/structure/noticeboard{
-	pixel_x = -32;
-	pixel_y = 32
-	},
-/obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "vSj" = (
 /turf/open/floor/wood,
 /area/vacant_room/office)
@@ -105974,7 +105968,7 @@ saW
 hSc
 ehK
 lmW
-tpd
+oWs
 prw
 prw
 prw
@@ -106231,7 +106225,7 @@ ybi
 fBT
 sTb
 ikX
-gzO
+vNB
 prw
 iFX
 iKM
@@ -106490,7 +106484,7 @@ ikX
 ikX
 vNB
 prw
-uPh
+vCK
 wZY
 jlE
 lAi
@@ -106747,7 +106741,7 @@ opQ
 ptR
 fLo
 prw
-vSe
+ord
 jlE
 oSm
 grK
