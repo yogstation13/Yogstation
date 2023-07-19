@@ -21725,18 +21725,6 @@
 /obj/item/electronics/airlock,
 /turf/open/floor/plasteel/dark,
 /area/storage/tech)
-"bby" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/cmo)
 "bbE" = (
 /obj/machinery/light{
 	dir = 4
@@ -53672,42 +53660,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"gcm" = (
-/obj/machinery/requests_console{
-	department = "Genetics";
-	name = "Genetics Requests Console";
-	pixel_y = 30
-	},
-/obj/item/storage/box/monkeycubes,
-/obj/item/radio/headset/headset_medsci,
-/obj/item/flashlight/pen{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/flashlight/pen{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/structure/noticeboard{
-	pixel_x = -32;
-	pixel_y = 32
-	},
-/obj/structure/table/glass,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "gcR" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -66876,6 +66828,21 @@
 	},
 /turf/open/floor/plating,
 /area/science/explab)
+"orE" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/machinery/modular_computer/telescreen/preset/medical{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/cmo)
 "orT" = (
 /turf/closed/wall/r_wall,
 /area/janitor)
@@ -67648,6 +67615,36 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"oWl" = (
+/obj/item/storage/box/monkeycubes,
+/obj/item/radio/headset/headset_medsci,
+/obj/item/flashlight/pen{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/flashlight/pen{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
+/obj/machinery/vending/wallgene{
+	pixel_y = 29
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "oXa" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -70406,6 +70403,38 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
+"qLM" = (
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/storage/box/disks{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
+/obj/structure/noticeboard{
+	pixel_x = -32;
+	pixel_y = 32
+	},
+/obj/machinery/requests_console{
+	department = "Genetics";
+	name = "Genetics Requests Console";
+	pixel_y = 30
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
 "qLW" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -71436,29 +71465,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
-"rpI" = (
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/storage/box/disks{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/structure/table/glass,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "rpR" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/item/storage/box/lights/mixed,
@@ -78758,18 +78764,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/mix)
-"vUe" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/modular_computer/telescreen/preset/medical{
-	pixel_y = -32
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/cmo)
 "vUv" = (
 /obj/machinery/light{
 	dir = 4
@@ -106822,7 +106816,7 @@ svF
 wDw
 iLt
 rbe
-bby
+orE
 ctA
 ctA
 ctA
@@ -107079,7 +107073,7 @@ uqF
 uam
 vZy
 naO
-vUe
+oLl
 ctA
 bVX
 iXc
@@ -107338,7 +107332,7 @@ naO
 naO
 oLl
 ctA
-rpI
+qLM
 uOH
 mol
 gvR
@@ -107595,7 +107589,7 @@ vUv
 gHw
 rMU
 ctA
-gcm
+oWl
 mol
 cdL
 kbN
