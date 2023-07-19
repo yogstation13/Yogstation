@@ -3237,6 +3237,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/storage/eva)
+"axD" = (
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "axG" = (
 /obj/machinery/gulag_processor,
 /turf/open/floor/plasteel,
@@ -22728,24 +22734,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
-"fkD" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "fkK" = (
 /obj/machinery/vending/gifts,
 /obj/structure/sign/poster/official/random{
@@ -26052,6 +26040,21 @@
 /obj/item/twohanded/required/pool/rubber_ring,
 /turf/open/indestructible/sound/pool,
 /area/crew_quarters/fitness)
+"gzN" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "gzP" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -28700,13 +28703,6 @@
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"hwZ" = (
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/obj/effect/landmark/start/detective,
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "hxl" = (
 /obj/effect/turf_decal/tile,
 /turf/open/floor/plasteel,
@@ -32642,22 +32638,6 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
-"iUQ" = (
-/obj/effect/landmark/blobstart,
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 4;
-	sortType = 30
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
@@ -38292,6 +38272,19 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"ljN" = (
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/landmark/start/detective,
+/obj/machinery/button/door{
+	id = "kanyewest";
+	name = "Privacy Shutters";
+	pixel_x = -4;
+	pixel_y = 32
+	},
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "lkd" = (
 /obj/structure/table,
 /obj/machinery/button/ignition{
@@ -38729,15 +38722,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/security/main)
-"lqJ" = (
-/obj/machinery/button/door{
-	id = "kanyewest";
-	name = "Privacy Shutters";
-	pixel_x = -36;
-	pixel_y = 63
-	},
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "lrb" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -56443,6 +56427,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
+"seA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/blobstart,
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "seC" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -58543,24 +58543,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
-"sXD" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "sXH" = (
 /turf/closed/wall/r_wall,
 /area/engine/atmos/foyer)
@@ -96024,7 +96006,7 @@ fDO
 cZJ
 wRt
 apd
-mMW
+axD
 mGY
 elt
 vog
@@ -96541,7 +96523,7 @@ apd
 mej
 mMW
 pby
-hwZ
+ljN
 qSt
 dqo
 rso
@@ -96799,7 +96781,7 @@ aQi
 mMW
 aZB
 qSt
-lqJ
+qSt
 iUh
 rso
 mkD
@@ -99617,7 +99599,7 @@ cbn
 aph
 aph
 aph
-fkD
+avt
 ayL
 abt
 pIj
@@ -99874,7 +99856,7 @@ pXI
 lfX
 uUT
 bNR
-iUQ
+gzN
 ayL
 aug
 pIj
@@ -100131,7 +100113,7 @@ rDe
 anz
 kUv
 bNR
-sXD
+seA
 ayL
 ars
 axw
