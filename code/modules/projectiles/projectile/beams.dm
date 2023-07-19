@@ -37,6 +37,12 @@
 	. = ..()
 	transform *= 2
 
+/obj/item/projectile/beam/laser/hellfire/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/turf/open/target_turf = get_turf(target)
+	if(istype(target_turf))
+		target_turf.IgniteTurf(rand(8, 16))
+
 /obj/item/projectile/beam/laser/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
@@ -52,9 +58,6 @@
 		M.ignite_mob()
 	else if(isturf(target))
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
-	var/turf/open/target_turf = get_turf(target)
-	if(istype(target_turf))
-		target_turf.IgniteTurf(rand(8, 16))
 	return ..()
 
 /obj/item/projectile/beam/weak
