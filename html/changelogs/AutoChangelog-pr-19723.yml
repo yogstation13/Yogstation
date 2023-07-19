@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - soundadd: "Removes 0.2 seconds of delay from Imperial Lasgun fire sounds"
