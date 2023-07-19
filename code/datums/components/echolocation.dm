@@ -32,8 +32,6 @@
 	/// A matrix that turns everything into pure white.
 	var/static/list/white_matrix = list(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 1, 0, -0, 0, 0)
 
-	var/isalien = FALSE
-
 	/// Cooldown for the echolocation.
 	COOLDOWN_DECLARE(cooldown_last)
 
