@@ -193,6 +193,7 @@
 	var/ore_type = /obj/item/stack/ore/glass
 	var/turfverb = "uproot"
 	tiled_dirt = FALSE
+	flammability = 2 // california simulator
 
 /turf/open/floor/grass/Initialize(mapload)
 	. = ..()

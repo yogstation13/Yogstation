@@ -228,8 +228,8 @@
 	var/datum/gas_mixture/turf_air = target.return_air()
 	damage = min(damage, turf_air.get_moles(/datum/gas/oxygen) + fuel_mix.get_moles(/datum/gas/oxygen), max_damage)
 
-	// If there's not enough fuel and/or oxygen to do more than 4 damage, shut itself off
-	if(damage < 4)
+	// If there's not enough fuel and/or oxygen to do more than 1 damage, shut itself off
+	if(damage < 1)
 		return kill_flame()
 	return damage
 

@@ -1,4 +1,3 @@
-#define TURF_FIRE_REQUIRED_TEMP (T0C+600)
 #define TURF_FIRE_TEMP_BASE (T0C+650)
 #define TURF_FIRE_POWER_LOSS_ON_LOW_TEMP 7
 #define TURF_FIRE_TEMP_INCREMENT_PER_POWER 3
@@ -20,7 +19,7 @@
 /obj/effect/abstract/turf_fire
 	icon = 'icons/effects/turf_fire.dmi'
 	icon_state = "fire_small"
-	layer = BELOW_OPEN_DOOR_LAYER
+	layer = GASFIRE_LAYER
 	anchored = TRUE
 	base_icon_state = "red"
 	move_resist = INFINITY
@@ -85,6 +84,7 @@
 		color = fire_color
 		base_icon_state = "greyscale"
 	UpdateFireState()
+	alpha = 160 // be slightly transparent
 
 /obj/effect/abstract/turf_fire/Destroy()
 	open_turf.turf_fire = null
@@ -133,8 +133,9 @@
 			return
 	if(!magical)
 		fire_power += open_turf.flammability
-		if(open_turf.air.return_temperature() < TURF_FIRE_REQUIRED_TEMP)
-			fire_power -= TURF_FIRE_POWER_LOSS_ON_LOW_TEMP
+		var/temperature = open_turf.air.return_temperature()
+		if(temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+			fire_power -= TURF_FIRE_POWER_LOSS_ON_LOW_TEMP * ((FIRE_MINIMUM_TEMPERATURE_TO_EXIST - temperature) / FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 		fire_power--
 		if(fire_power <= 0)
 			qdel(src)
@@ -143,9 +144,9 @@
 	open_turf.hotspot_expose(TURF_FIRE_TEMP_BASE + (TURF_FIRE_TEMP_INCREMENT_PER_POWER*fire_power), TURF_FIRE_VOLUME)
 	for(var/atom/movable/burning_atom as anything in open_turf)
 		burning_atom.fire_act(TURF_FIRE_TEMP_BASE + (TURF_FIRE_TEMP_INCREMENT_PER_POWER*fire_power), TURF_FIRE_VOLUME)
-	var/list/turfs_to_spread = get_adjacent_open_turfs(open_turf)
+	var/list/turfs_to_spread = open_turf.GetAtmosAdjacentTurfs()
 	for(var/turf/open/T in turfs_to_spread)
-		if(CanAtmosPass(T) && prob(T.flammability * fire_power * TURF_FIRE_SPREAD_RATE))
+		if(prob(T.flammability * fire_power * TURF_FIRE_SPREAD_RATE))
 			T.IgniteTurf(fire_power * TURF_FIRE_SPREAD_RATE)
 	if(magical)
 		if(prob(fire_power))
@@ -205,7 +206,6 @@
 			icon_state = "[base_icon_state]_big"
 			set_light_range(3)
 
-#undef TURF_FIRE_REQUIRED_TEMP
 #undef TURF_FIRE_TEMP_BASE
 #undef TURF_FIRE_POWER_LOSS_ON_LOW_TEMP
 #undef TURF_FIRE_TEMP_INCREMENT_PER_POWER
