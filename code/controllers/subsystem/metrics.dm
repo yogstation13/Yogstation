@@ -59,6 +59,8 @@ SUBSYSTEM_DEF(metrics_publish)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	flags = SS_BACKGROUND 
 	var/threshold = METRICS_BUFFER_PUBLISH_DEFAULT
+	var/last_profile_publish = 0
+	var/profile_publish_interval = 5 MINUTES
 
 /datum/controller/subsystem/metrics_publish/stat_entry(msg)
 	msg = "Q:[length(SSmetrics.queue)]/[threshold]([round(length(SSmetrics.queue)/threshold*100, 0.1)]%)"
@@ -70,11 +72,26 @@ SUBSYSTEM_DEF(metrics_publish)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/metrics_publish/fire(resumed)
-	if (length(SSmetrics.queue) < threshold) return
+	queue_publish()
+	profile_publish()
 
-	RUSTG_CALL(RUST_G, "influxdb2_publish")(json_encode(SSmetrics.queue), CONFIG_GET(string/metrics_api), CONFIG_GET(string/metrics_token))
-	SSmetrics.queue = list()
+/datum/controller/subsystem/metrics_publish/proc/queue_publish()
+	if (length(SSmetrics.queue) > threshold)
+		RUSTG_CALL(RUST_G, "influxdb2_publish")(json_encode(SSmetrics.queue), CONFIG_GET(string/metrics_api), CONFIG_GET(string/metrics_token))
+		SSmetrics.queue = list()
 
+/datum/controller/subsystem/metrics_publish/proc/profile_publish()
+	if ((last_profile_publish + profile_publish_interval) < REALTIMEOFDAY)
+		last_profile_publish = REALTIMEOFDAY
+		var/data = world.Profile(PROFILE_REFRESH, "json")
+		world.Profile(PROFILE_CLEAR)
+		message_admins(data)
+		RUSTG_CALL(RUST_G, "influxdb2_publish_profile")(
+			data, 
+			CONFIG_GET(string/metrics_api_profile), 
+			CONFIG_GET(string/metrics_token_profile), 
+			GLOB.round_id
+		)
 
 #undef METRICS_BUFFER_MAX_DEFAULT
 #undef METRICS_BUFFER_PUBLISH_DEFAULT
