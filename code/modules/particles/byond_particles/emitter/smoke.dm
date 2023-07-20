@@ -14,6 +14,7 @@
 /obj/emitter/flare_smoke/Initialize(mapload, time, _color)
 	. = ..()
 	add_filter("blur", 1, list(type="blur", size=1.5))
+	particles.position = list(8,-10,0)
 
 /particles/smoke
     icon = 'icons/effects/particles/smoke.dmi'
