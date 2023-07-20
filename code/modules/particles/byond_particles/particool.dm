@@ -169,10 +169,10 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 	if(istype(L,/list))
 		for(var/elem in L)
 			if(istype(elem,/list))
-				world.log << nodeName
+				log_game(nodeName)
 				debugOutput(elem, nodeName + ":LIST" + elem)
 			else
-				world.log << nodeName + ":" + elem + ":" + text("[]",elem)
+				log_game(nodeName + ":" + elem + ":" + text("[]",elem))
 	else
 		world.log << L
 
