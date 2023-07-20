@@ -288,5 +288,6 @@
 		if(isliving(passed))
 			var/mob/living/m_passed = passed
 			m_passed.apply_damage(HEAT_DAMAGE_LEVEL_3, BURN)
+			new /obj/effect/temp_visual/ratvar/ocular_warden(get_turf(m_passed))
 		else
 			passed.fire_act(460, 100)
