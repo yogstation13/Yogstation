@@ -14371,12 +14371,6 @@
 	},
 /turf/open/space,
 /area/solar/starboard/aft)
-"cpm" = (
-/obj/effect/turf_decal/tile/blue/opposingcorners{
-	dir = 1
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/space)
 "cpn" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plating{
@@ -66048,10 +66042,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"vTm" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor/plasteel/white,
-/area/security/prison)
 "vTB" = (
 /obj/machinery/shower{
 	dir = 4
@@ -68437,6 +68427,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"wPh" = (
+/obj/structure/closet/secure_closet/freezer/fridge/open,
+/turf/open/floor/plasteel/white,
+/area/security/prison)
 "wPn" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -101000,7 +100994,7 @@ gXs
 aiT
 elb
 vWn
-vTm
+wPh
 jmq
 tdO
 fBv
@@ -111354,7 +111348,7 @@ jXL
 wgu
 pbD
 elr
-cpm
+vcC
 dmN
 lcC
 guV

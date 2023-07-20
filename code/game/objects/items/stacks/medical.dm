@@ -242,8 +242,6 @@
 	desc = "A value pack of cheap sutures, not very good at repairing damage, but still decent at stopping bleeding."
 	icon_state = "suture_green"
 	heal_brute = 5
-	amount = 5
-	max_amount = 5
 	grind_results = list(/datum/reagent/space_cleaner/sterilizine = 1)
 
 /obj/item/stack/medical/suture/emergency/makeshift
@@ -251,8 +249,6 @@
 	desc = "A makeshift suture, gnarly looking, but it...should work."
 	heal_brute = 4
 	stop_bleeding = 0.44
-	amount = 5
-	max_amount = 5
 	grind_results = null
 
 /obj/item/stack/medical/suture/emergency/makeshift/tribal
@@ -261,8 +257,6 @@
 	icon_state = "suture_tribal"
 	heal_brute = 6
 	stop_bleeding = 0.55
-	amount = 10
-	max_amount = 10
 	grind_results = list(/datum/reagent/liquidgibs = 2)
 
 /obj/item/stack/medical/suture/medicated
