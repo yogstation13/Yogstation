@@ -20,7 +20,6 @@
 	var/refined_type = null //What this ore defaults to being refined into
 	novariants = TRUE // Ore stacks handle their icon updates themselves to keep the illusion that there's more going
 	var/list/stack_overlays
-	var/edible = FALSE //can a preternis eat it for some funny effect?
 
 /obj/item/stack/ore/update_icon()
 	var/difference = min(ORESTACK_OVERLAYS_MAX, amount) - (LAZYLEN(stack_overlays)+1)
@@ -67,7 +66,7 @@
 			qdel(src)
 
 /obj/item/stack/ore/attack(mob/living/M, mob/living/user)
-	if(!edible || user.a_intent == INTENT_HARM || M != user || !ishuman(user))
+	if(user.a_intent == INTENT_HARM || M != user || !ishuman(user))
 		return ..()
 	
 	var/mob/living/carbon/human/H = user
@@ -76,18 +75,19 @@
 	if(!istype(S, /obj/item/organ/stomach/preternis))//need a fancy stomach for it
 		return ..()
 
-	H.visible_message("[H] takes a bite of [src], crunching happily.", "You take a bite of [src], minerals do a body good.")
+	if(!eaten(H))
+		return ..()
+
+	use(1)//only eat one at a time
+
+	H.visible_message("[H] takes a bite of [src], crunching happily.")
 	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
 	
 	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
 		H.changeNext_move(CLICK_CD_MELEE * 0.5)
 
-	use(1)//only eat one at a time
-	eaten(H)
-	
-
-/obj/item/stack/ore/proc/eaten(mob/living/carbon/human/H)//override to give certain ores effects when eaten
-	return
+/obj/item/stack/ore/proc/eaten(mob/living/carbon/human/H)//override to give certain ores effects when eaten, return true for it to consume stacks
+	return FALSE
 
 /obj/item/stack/ore/uranium
 	name = "uranium ore"
@@ -98,6 +98,11 @@
 	materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/uranium
 
+/obj/item/stack/ore/uranium/eaten(mob/living/carbon/human/H)
+	to_chat(H, "The [src] tingles a bit as it goes down."), 
+	radiation_pulse(H, 20)
+	return TRUE
+
 /obj/item/stack/ore/iron
 	name = "iron ore"
 	icon_state = "Iron ore"
@@ -106,9 +111,9 @@
 	points = 1
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/metal
-	edible = TRUE
 
 /obj/item/stack/ore/iron/eaten(mob/living/carbon/human/H)
+	to_chat(H, "You take a bite of [src], minerals do a body good.")
 	H.heal_overall_damage(2, 0, 0, BODYPART_ROBOTIC)
 
 /obj/item/stack/ore/glass
@@ -124,6 +129,12 @@
 GLOBAL_LIST_INIT(sand_recipes, list(\
 		new /datum/stack_recipe("sandstone", /obj/item/stack/sheet/mineral/sandstone, 1, 1, 50)\
 		))
+
+/obj/item/stack/ore/glass/eaten(mob/living/carbon/human/H)
+	to_chat(H, "The [src] scratches a bit as it goes down.")
+	H.take_overall_damage(3)
+	H.heal_overall_damage(0, 1, 0, BODYPART_ROBOTIC)
+	return TRUE
 
 /obj/item/stack/ore/glass/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.sand_recipes
@@ -161,15 +172,15 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 15
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/plasma
-	edible = TRUE
 
 /obj/item/stack/ore/plasma/eaten(mob/living/carbon/human/H)
+	to_chat(H, "You take a bite of [src], minerals do a body good.")
 	H.heal_overall_damage(0, 2, 0, BODYPART_ROBOTIC)
+	return TRUE
 
 /obj/item/stack/ore/plasma/welder_act(mob/living/user, obj/item/I)
 	to_chat(user, span_warning("You can't hit a high enough temperature to smelt [src] properly!"))
 	return TRUE
-
 
 /obj/item/stack/ore/silver
 	name = "silver ore"
@@ -206,6 +217,20 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 60
 	materials = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/bananium
+
+/obj/item/stack/ore/bananium/eaten(mob/living/carbon/human/H)//why are you eating bananium ore?
+	to_chat(H, span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
+	H.emote("scream")
+	playsound(M, 'sound/effects/supermatter.ogg', 100)
+	var/S = H.petrify(600, TRUE)
+	if(S)
+		var/obj/structure/statue/petrified/statue = S
+		statue.name = "bananium plated [statue.name]"
+		statue.desc = "An incredibly lifelike bananium carving."
+		statue.add_atom_colour("#ffd700", FIXED_COLOUR_PRIORITY)
+		statue.max_integrity = 9999
+		statue.obj_integrity = 9999
+	return TRUE
 
 /obj/item/stack/ore/titanium
 	name = "titanium ore"
