@@ -216,7 +216,9 @@
 
 //
 // Law Manager
-// 
+// All of these issues related to the menu (which I'm not good at) and can be temporarily fixed by reopening the menu.
+// 1. Removing all laws of any category (i.e inherent) will keep the LawTable visible, despite having no laws.
+// 2. Extreme spam changing of laws will cause fake duplicate laws to appear.
 /datum/law_manager
 	var/zeroth_law = "ZerothLaw"
 	var/hacked_law = "HackedLaw"
@@ -581,7 +583,7 @@
 	for(var/index = 1, index <= laws.hacked.len, index++)
 		hacked[++hacked.len] += list("law" = laws.hacked[index], "index" = index, "indexdisplay" = ionnum(), "state" = (laws.hackedstate.len >= index ? laws.hackedstate[index] : 1 ), "type" = "hacked", "hidebuttons" = FALSE)
 		data["has_hacked"] = hacked.len
-	data["zeroth"] = zeroth
+	data["hacked"] = hacked
 
 	var/list/ion = list()
 	for(var/index = 1, index <= laws.ion.len, index++)
