@@ -166,7 +166,7 @@
 	restricted_species = list("preternis")
 	player_minimum = 25 //basically a fuckin megafauna
 	cant_discount = TRUE
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
+	include_objectives = list(/datum/objective/hijack)
 
 /datum/uplink_item/race_restricted/explosive_fist_art
 	name = "Burned scroll"
