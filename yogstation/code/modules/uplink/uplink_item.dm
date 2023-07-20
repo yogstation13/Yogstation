@@ -161,10 +161,11 @@
 	Said to cause rapid muscle and plate growth in any Preternis that consumes it. It's believed to have been used by Vxtrin to transform their workers into highly effective commando units.\
 	It is not uncommon for Preterni that have consumed it to be crushed under the weight of their own ever-growing skin. The weight will also prevent use of conventional vehicles."
 	cost = 20
-	player_minimum = 25 //basically a fuckin megafauna
 	item = /obj/item/book/granter/martial/worldbreaker
 	manufacturer = /datum/corporation/traitor/vahlen
 	restricted_species = list("preternis")
+	player_minimum = 25 //basically a fuckin megafauna
+	cant_discount = TRUE
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
 
 /datum/uplink_item/race_restricted/explosive_fist_art
