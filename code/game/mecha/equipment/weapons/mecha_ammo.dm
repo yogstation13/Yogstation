@@ -60,6 +60,13 @@
 	rounds = 300
 	ammo_type = "lmg"
 
+/obj/item/mecha_ammo/bfg
+	name = "energy packs"
+	desc = "A box of energy packs, designed to power the BFG-90 Magnum."
+	icon_state = "bfg"
+	rounds = 5
+	ammo_type = "bfg"
+
 /obj/item/mecha_ammo/missiles_br
 	name = "breaching missiles"
 	desc = "A box of large missiles, ready for loading into a BRM-6 exosuit missile rack."

@@ -270,3 +270,23 @@
 /obj/item/projectile/beam/laser/lasgun/hotshot
 	damage = 30
 	wound_bonus = -5
+
+/// BFG, inspired by the Beam Magnum, think of it like a VERY hot steel rod
+/obj/item/projectile/beam/bfg
+	name = "searing rod"
+	icon_state = "lava"
+	damage = 35
+	light_power = 2
+	light_color = "#ffff00"
+	speed = 1
+
+/obj/item/projectile/beam/bfg/Range()
+	. = ..()
+	for(var/atom/movable/passed in range(1, src))
+		if(passed == src)
+			continue
+		if(isliving(passed))
+			var/mob/living/m_passed = passed
+			m_passed.apply_damage(HEAT_DAMAGE_LEVEL_3, BURN)
+		else
+			passed.fire_act(460, 100)
