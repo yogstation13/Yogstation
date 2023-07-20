@@ -1,0 +1,4 @@
+author: "azzzertyy"
+delete-after: true 
+changes: 
+  - rscadd: "Pointing at an item on your character now displays it to others"
