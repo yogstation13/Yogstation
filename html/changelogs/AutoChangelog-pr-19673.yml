@@ -1,0 +1,5 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - soundadd: "Guardian bolts now make a distinct sound when being fired and when landing on a mob"
+  - tweak: "Guardian bolts now resolve against energy armor instead of having 100 armor pen"
