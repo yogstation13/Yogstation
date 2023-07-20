@@ -126,14 +126,14 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 
 	/*
 	Generator type | Result | Description
-	num	        | num    | A random number between A and B.
-	vector         | vector | A random vector on a line between A and B.
-	box            | vector | A random vector within a box whose corners are at A and B.
-	color          | color  | (string) or color matrix	Result type depends on whether A or B are matrices or not. The result is interpolated between A and B; components are not randomized separately.
-	circle         | vector | A random XY-only vector in a ring between radius A and B, centered at 0,0.
-	sphere         | vector | A random vector in a spherical shell between radius A and B, centered at 0,0,0.
-	square         | vector | A random XY-only vector between squares of sizes A and B. (The length of the square is between A*2 and B*2, centered at 0,0.)
-	cube           | vector | A random vector between cubes of sizes A and B. (The length of the cube is between A*2 and B*2, centered at 0,0,0.)
+	num			| num	| A random number between A and B.
+	vector		 | vector | A random vector on a line between A and B.
+	box			| vector | A random vector within a box whose corners are at A and B.
+	color		  | color  | (string) or color matrix	Result type depends on whether A or B are matrices or not. The result is interpolated between A and B; components are not randomized separately.
+	circle		 | vector | A random XY-only vector in a ring between radius A and B, centered at 0,0.
+	sphere		 | vector | A random vector in a spherical shell between radius A and B, centered at 0,0,0.
+	square		 | vector | A random XY-only vector between squares of sizes A and B. (The length of the square is between A*2 and B*2, centered at 0,0.)
+	cube		   | vector | A random vector between cubes of sizes A and B. (The length of the cube is between A*2 and B*2, centered at 0,0,0.)
 	*/
 
 	// I write code like this because I hate myself
@@ -144,9 +144,9 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 	var/rand_type = parse_rand_type(L["rand"])
 
 	switch(L["genType"])
-		if("num")    return generator(L["genType"], a, b, rand_type)
+		if("num")	return generator(L["genType"], a, b, rand_type)
 		if("vector") return generator(L["genType"], a, b, rand_type)
-		if("box")    return generator(L["genType"], a, b, rand_type)
+		if("box")	return generator(L["genType"], a, b, rand_type)
 		if("color") //Color can be string or matrix
 			a = length(a) > 1 ? a : L["a"]
 			b = length(b) > 1 ? b : L["b"]
