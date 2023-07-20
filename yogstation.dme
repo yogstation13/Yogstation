@@ -2039,6 +2039,7 @@
 #include "code\modules\client\preferences\gender.dm"
 #include "code\modules\client\preferences\ghost.dm"
 #include "code\modules\client\preferences\hotkeys.dm"
+#include "code\modules\client\preferences\itemoutline.dm"
 #include "code\modules\client\preferences\items.dm"
 #include "code\modules\client\preferences\jobless_role.dm"
 #include "code\modules\client\preferences\mood.dm"
