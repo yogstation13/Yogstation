@@ -604,6 +604,8 @@
 		air_update_turf()
 
 /turf/open/IgniteTurf(power, fire_color="red")
+	if(air.get_moles(/datum/gas/oxygen) < 1)
+		return
 	if(turf_fire)
 		turf_fire.AddPower(power)
 		return

@@ -226,7 +226,7 @@
 	damage += fuel_mix.get_moles(/datum/gas/hydrogen) * 32
 	// Maximum damage restricted by the available oxygen, with a hard cap at 16
 	var/datum/gas_mixture/turf_air = target.return_air()
-	damage = min(damage, turf_air.get_moles(/datum/gas/oxygen) + fuel_mix.get_moles(/datum/gas/oxygen), max_damage)
+	damage = min(damage, turf_air.get_moles(/datum/gas/oxygen) + fuel_mix.get_moles(/datum/gas/oxygen), max_damage) // capped by combined oxygen in the fuel mix and enviroment
 
 	// If there's not enough fuel and/or oxygen to do more than 1 damage, shut itself off
 	if(damage < 1)
