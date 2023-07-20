@@ -1,5 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscdel: "Small vials no longer exist"
-  - tweak: "Large vials are now just \"vials\" and are weight class tiny instead of weight class small"
