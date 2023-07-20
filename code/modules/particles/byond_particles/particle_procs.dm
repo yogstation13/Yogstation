@@ -6,9 +6,6 @@ this creates dummy objects to store the particles in useful for objects that hav
 particles like bonfires.
 */
 
-/atom
-	var/obj/effect/abstract/particle_holder/master_holder
-
 /// priority is in descending order so 10 is the highest 1 is the lowest
 /atom/proc/add_emitter(obj/emitter/updatee, particle_key, priority = 10, var/lifespan = null, burst_mode = FALSE)
 

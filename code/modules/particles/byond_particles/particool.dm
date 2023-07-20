@@ -169,12 +169,12 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 	if(istype(L,/list))
 		for(var/elem in L)
 			if(istype(elem,/list))
-				log_game(nodeName)
+				log_world(nodeName)
 				debugOutput(elem, nodeName + ":LIST" + elem)
 			else
-				log_game(nodeName + ":" + elem + ":" + text("[]",elem))
+				log_world(nodeName + ":" + elem + ":" + text("[]",elem))
 	else
-		log_game(L)
+		log_world(L)
 
 /datum/particle_editor/ui_act(action, list/params)
 	. = ..()

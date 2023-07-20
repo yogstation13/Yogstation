@@ -13,6 +13,7 @@
 
 /atom
 	var/datum/wires/wires = null
+	var/obj/effect/abstract/particle_holder/master_holder
 
 /atom/proc/attempt_wire_interaction(mob/user)
 	if(!wires)
