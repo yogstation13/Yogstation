@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 			else
 				log_game(nodeName + ":" + elem + ":" + text("[]",elem))
 	else
-		world.log << L
+		log_game(L)
 
 /datum/particle_editor/ui_act(action, list/params)
 	. = ..()
