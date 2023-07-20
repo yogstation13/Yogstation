@@ -85,7 +85,6 @@ SUBSYSTEM_DEF(metrics_publish)
 		last_profile_publish = REALTIMEOFDAY
 		var/data = world.Profile(PROFILE_REFRESH, "json")
 		world.Profile(PROFILE_CLEAR)
-		message_admins(data)
 		RUSTG_CALL(RUST_G, "influxdb2_publish_profile")(
 			data, 
 			CONFIG_GET(string/metrics_api_profile), 
