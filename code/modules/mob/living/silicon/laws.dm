@@ -299,11 +299,8 @@
 				message_admins("Warning: Non-antag silicon and non-admin [usr] attempted to edit one of their laws!")
 				return
 			if(type == "devil" && owner.laws.devil.len >= index)
-				if(!is_admin(usr)) // Assume that they're owner from here.
+				if(!is_admin(usr))
 					to_chat(usr, span_warning("You can't edit your own devil laws."))
-					return
-				if(is_special_character(owner))
-					to_chat(usr, span_warning("This silicon is an antag. Remove their status if you want to edit their devil laws."))
 					return
 				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", owner.laws.devil[index]))
 				if(new_law != "" && new_law != owner.laws.devil[index])
@@ -314,9 +311,6 @@
 			if(type == "zeroth" && !isnull(owner.laws.zeroth))
 				if(!is_admin(usr))
 					to_chat(usr, span_warning("You can't edit your own zeroth laws."))
-					return
-				if(is_special_character(owner))
-					to_chat(usr, span_warning("This silicon is an antag. Remove their status if you want to edit their zeroth law."))
 					return
 				var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", owner.laws.zeroth))
 				if(new_law != "" && new_law != owner.laws.zeroth)
