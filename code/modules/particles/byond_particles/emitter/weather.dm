@@ -13,7 +13,7 @@
 	name = "Rain"
 	particles = null
 
-/obj/emitter/rain/sideways/tile/Initialize()
+/obj/emitter/rain/sideways/tile/Initialize(mapload)
 	.=..()
 	LAZYINITLIST(z_particles)
 	var/z_level_str
