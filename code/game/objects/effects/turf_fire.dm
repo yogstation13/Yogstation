@@ -7,7 +7,7 @@
 
 #define TURF_FIRE_ENERGY_PER_BURNED_OXY_MOL 12000
 #define TURF_FIRE_BURN_RATE_BASE 0.15
-#define TURF_FIRE_BURN_RATE_PER_POWER 0.06
+#define TURF_FIRE_BURN_RATE_PER_POWER 0.03
 #define TURF_FIRE_BURN_CARBON_DIOXIDE_MULTIPLIER 0.75
 #define TURF_FIRE_BURN_MINIMUM_OXYGEN_REQUIRED 1
 #define TURF_FIRE_BURN_PLAY_SOUND_EFFECT_CHANCE 6
@@ -141,9 +141,11 @@
 			qdel(src)
 			return
 		fire_pressure_check()
-	open_turf.hotspot_expose(TURF_FIRE_TEMP_BASE + (TURF_FIRE_TEMP_INCREMENT_PER_POWER*fire_power), TURF_FIRE_VOLUME)
+	var/fire_temp = TURF_FIRE_TEMP_BASE + (TURF_FIRE_TEMP_INCREMENT_PER_POWER*fire_power)
+	open_turf.hotspot_expose(fire_temp, TURF_FIRE_VOLUME)
 	for(var/atom/movable/burning_atom as anything in open_turf)
-		burning_atom.fire_act(TURF_FIRE_TEMP_BASE + (TURF_FIRE_TEMP_INCREMENT_PER_POWER*fire_power), TURF_FIRE_VOLUME)
+		burning_atom.temperature_expose(open_turf.air, fire_temp, TURF_FIRE_VOLUME)
+		burning_atom.fire_act(fire_temp, TURF_FIRE_VOLUME)
 	var/list/turfs_to_spread = open_turf.GetAtmosAdjacentTurfs()
 	for(var/turf/open/T in turfs_to_spread)
 		if(prob(T.flammability * fire_power * TURF_FIRE_SPREAD_RATE))
