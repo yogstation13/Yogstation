@@ -99,7 +99,7 @@
 	refined_type = /obj/item/stack/sheet/mineral/uranium
 
 /obj/item/stack/ore/uranium/eaten(mob/living/carbon/human/H)
-	to_chat(H, "The [src] tingles a bit as it goes down."), 
+	to_chat(H, "The [src] tingles a bit as it goes down.")
 	radiation_pulse(H, 20)
 	return TRUE
 
