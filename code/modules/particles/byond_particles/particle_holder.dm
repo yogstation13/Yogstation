@@ -32,10 +32,10 @@
 	update_visual_contents(loc)
 
 /obj/effect/abstract/particle_holder/Destroy(force)
-	var/atom/movable/attached = weak_attached.resolve()
+	var/atom/movable/attached = weak_attached?.resolve()
 	var/atom/movable/additional_attached
 	if(weak_additional)
-		additional_attached = weak_additional.resolve()
+		additional_attached = weak_additional?.resolve()
 	if(attached)
 		attached.vis_contents -= src
 		UnregisterSignal(loc, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
@@ -61,7 +61,7 @@
 /obj/effect/abstract/particle_holder/proc/update_visual_contents(atom/movable/attached_to)
 	//remove old
 	if(weak_additional)
-		var/atom/movable/resolved_location = weak_additional.resolve()
+		var/atom/movable/resolved_location = weak_additional?.resolve()
 		if(resolved_location)
 			resolved_location.vis_contents -= src
 	//add to new

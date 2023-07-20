@@ -14,7 +14,7 @@ particles like bonfires.
 	if(!particle_key)
 		CRASH("add_emitter called without a key ref.")
 
-	if(!src.loc)
+	if(!loc)
 		CRASH("add_emitter called on a turf without a loc, avoid this!.")
 
 	if(!master_holder)

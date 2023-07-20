@@ -110,19 +110,30 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 	//string/float/int come in as the correct type, so just whack em in
 
 	switch(L["type"])
-		if("string") return L["value"]
-		if("float") return L["value"]
-		if("int") return L["value"]
-		if("vector") return L["value"]
-		if("vector2") return L["value"]
-		if("color") return stringToNum(L["value"], TRUE)
-		if("text") return L["value"]
-		if("list") return stringToList(L["value"], TRUE, TRUE)
-		if("numList") return stringToList(L["value"],TRUE)
-		if("matrix") return ListToMatrix(L["value"])
-		if("generator") return generateGenerator(L["value"]) // This value should be a new list, if it isn't then we will explode
+		if("string")
+			return L["value"]
+		if("float")
+			return L["value"]
+		if("int")
+			return L["value"]
+		if("vector")
+			return L["value"]
+		if("vector2")
+			return L["value"]
+		if("color")
+			return stringToNum(L["value"], TRUE)
+		if("text")
+			return L["value"]
+		if("list")
+			return stringToList(L["value"], TRUE, TRUE)
+		if("numList")
+			return stringToList(L["value"],TRUE)
+		if("matrix")
+			return ListToMatrix(L["value"])
+		if("generator") // This value should be a new list, if it isn't then we will explode
+			return generateGenerator(L["value"])
 
-/datum/particle_editor/proc/generateGenerator(L)
+/datum/particle_editor/proc/generateGenerator(list/L)
 
 	/*
 	Generator type | Result | Description
@@ -144,17 +155,24 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 	var/rand_type = parse_rand_type(L["rand"])
 
 	switch(L["genType"])
-		if("num")	return generator(L["genType"], a, b, rand_type)
-		if("vector") return generator(L["genType"], a, b, rand_type)
-		if("box")	return generator(L["genType"], a, b, rand_type)
+		if("num")	
+			return generator(L["genType"], a, b, rand_type)
+		if("vector") 
+			return generator(L["genType"], a, b, rand_type)
+		if("box")	
+			return generator(L["genType"], a, b, rand_type)
 		if("color") //Color can be string or matrix
 			a = length(a) > 1 ? a : L["a"]
 			b = length(b) > 1 ? b : L["b"]
 			return generator(L["genType"], a, b, rand_type)
-		if("circle") return generator(L["genType"], a, b, rand_type)
-		if("sphere") return generator(L["genType"], a, b, rand_type)
-		if("square") return generator(L["genType"], a, b, rand_type)
-		if("cube")   return generator(L["genType"], a, b, rand_type)
+		if("circle") 
+			return generator(L["genType"], a, b, rand_type)
+		if("sphere") 
+			return generator(L["genType"], a, b, rand_type)
+		if("square") 
+			return generator(L["genType"], a, b, rand_type)
+		if("cube")   
+			return generator(L["genType"], a, b, rand_type)
 	return null
 
 /datum/particle_editor/proc/parse_rand_type(rand_type)
@@ -166,15 +184,20 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 	CRASH("Unknown rand type [rand_type]")
 
 /datum/particle_editor/proc/debugOutput(L, nodeName)
-	if(istype(L,/list))
-		for(var/elem in L)
-			if(istype(elem,/list))
-				log_world(nodeName)
-				debugOutput(elem, nodeName + ":LIST" + elem)
-			else
-				log_world(nodeName + ":" + elem + ":" + text("[]",elem))
-	else
+	if (!istype(L, /list))
 		log_world(L)
+		return
+
+	for (var/elem in L)
+		if (istype(elem, /list))
+			log_world(nodeName)
+			log_world(":LIST")
+			debugOutput(elem, nodeName)
+			continue
+
+		log_world(nodeName + ":" + elem + ":" + text("[]", elem))
+
+
 
 /datum/particle_editor/ui_act(action, list/params)
 	. = ..()
@@ -194,7 +217,7 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 			target.modify_particle_value(params["new_data"]["name"], translate_value(params["new_data"]))
 			. = TRUE
 		if("modify_color_value")
-			var/new_color = input(usr, "Pick new particle color", "Particool Colors!") as color|null
+			var/new_color = sanitize_color(input(usr, "Pick new particle color", "Particool Colors!") as color|null)
 			if(new_color)
 				target.modify_particle_value("color",new_color)
 				. = TRUE
@@ -203,6 +226,7 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 			if(new_icon && target.particles)
 				target.modify_particle_value("icon", new_icon)
 				. = TRUE
+
 
 
 //movable procs n stuff
