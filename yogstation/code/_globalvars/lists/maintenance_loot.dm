@@ -654,7 +654,6 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 	/obj/item/storage/box/rxglasses = W_RARE,
 	/obj/item/storage/box/syringes = W_RARE,
 	/obj/item/storage/box/vials = W_RARE,
-	/obj/item/storage/box/vials/large = W_MYTHICAL,
 	/obj/item/transfer_valve = W_RARE,
 	/obj/item/wheelchair = W_RARE,
 	/obj/item/clothing/gloves/botanic_leather = W_RARE,
