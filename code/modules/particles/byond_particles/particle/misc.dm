@@ -6,9 +6,9 @@
 	spawning = 0.3
 	lifespan = 30
 	fade = 10
-	#ifndef SPACEMAN_DMM
-		fadein = 10
-	#endif
+#ifndef SPACEMAN_DMM
+	fadein = 10
+#endif
 	gravity = list(0, 0.2, 0)
 	position = generator("circle", 10, 12, NORMAL_RAND)
 	friction = generator("num", 0.1, 0.3, NORMAL_RAND)
