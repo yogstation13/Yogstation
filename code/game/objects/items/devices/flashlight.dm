@@ -26,7 +26,7 @@
 
 /obj/item/flashlight/proc/update_brightness(mob/user)
 	if(on)
-		if(istype(src, /obj/item/flashlight/flare/)))
+		if(istype(src, /obj/item/flashlight/flare/))
 			add_emitter(/obj/emitter/sparks/flare, "spark", 10)
 			add_emitter(/obj/emitter/flare_smoke, "smoke", 9)
 		icon_state = "[initial(icon_state)]-on"
