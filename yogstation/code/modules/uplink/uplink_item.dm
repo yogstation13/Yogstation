@@ -165,6 +165,7 @@
 	item = /obj/item/book/granter/martial/worldbreaker
 	manufacturer = /datum/corporation/traitor/vahlen
 	restricted_species = list("preternis")
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr)
 
 /datum/uplink_item/race_restricted/explosive_fist_art
 	name = "Burned scroll"
