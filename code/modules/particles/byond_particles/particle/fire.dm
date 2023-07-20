@@ -15,14 +15,14 @@
 
 ///GENERIC FIRE EFEFCT
 /particles/fire
-    width = 500
-    height = 500
-    count = 3000
-    spawning = 3
-    lifespan = 10
-    fade = 10
-    velocity = list(0, 0)
-    position = generator("vector", list(-9,3,0), list(9,3,0), NORMAL_RAND)
-    drift = generator("vector", list(0, -0.2), list(0, 0.2))
-    gravity = list(0, 0.65)
-    color = "white"
+	width = 500
+	height = 500
+	count = 3000
+	spawning = 3
+	lifespan = 10
+	fade = 10
+	velocity = list(0, 0)
+	position = generator("vector", list(-9,3,0), list(9,3,0), NORMAL_RAND)
+	drift = generator("vector", list(0, -0.2), list(0, 0.2))
+	gravity = list(0, 0.65)
+	color = "white"

@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 
 	/*
 	Generator type | Result | Description
-	num            | num    | A random number between A and B.
+	num	        | num    | A random number between A and B.
 	vector         | vector | A random vector on a line between A and B.
 	box            | vector | A random vector within a box whose corners are at A and B.
 	color          | color  | (string) or color matrix	Result type depends on whether A or B are matrices or not. The result is interpolated between A and B; components are not randomized separately.
@@ -214,33 +214,34 @@ GLOBAL_LIST_INIT(master_particle_info, list())
 	particles = null
 
 /atom/movable/proc/modify_particle_value(varName, varVal)
-	var/list/default_particle = list(width = 100, ///DO NOT make this list look nicer, maintainers at tg didn't like the fact its like this and its funny so keep it :) - Borbop
-									height = 100,
-									count = 100,
-									spawning = 1,
-									bound1 = list(-1000, -1000, -1000),
-									bound2 = list(1000, 1000, 1000),
-									icon_state = "",
-									grow = list(0, 0),
-									position = list(0, 0, 0),
-									scale = list(1, 1),
-									velocity = list(0, 0, 0),
-									rotation = 0,
-									spin = 0,
-									friction = list(0, 0, 0),
-									drift = list(0, 0, 0),
-									gravity = list(0, 0, 0),
-									// The following variables either handle null or will evaluate to 0 via Particool
-									// gravity
-									// gradient
-									// transform
-									// lifespan
-									// fade
-									// fadein
-									// icon
-									// color
-									// color_change
-									)
+	var/list/default_particle = list(
+		width = 100,
+		height = 100,
+		count = 100,
+		spawning = 1,
+		bound1 = list(-1000, -1000, -1000),
+		bound2 = list(1000, 1000, 1000),
+		icon_state = "",
+		grow = list(0, 0),
+		position = list(0, 0, 0),
+		scale = list(1, 1),
+		velocity = list(0, 0, 0),
+		rotation = 0,
+		spin = 0,
+		friction = list(0, 0, 0),
+		drift = list(0, 0, 0),
+		gravity = list(0, 0, 0),
+		// The following variables either handle null or will evaluate to 0 via Particool
+		// gravity
+		// gradient
+		// transform
+		// lifespan
+		// fade
+		// fadein
+		// icon
+		// color
+		// color_change
+		)
 
 	if(particles)
 		if(isnull(varVal) && !isnull(default_particle[varName]))

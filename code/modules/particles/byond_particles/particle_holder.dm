@@ -4,8 +4,6 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
 
-
-
 ///objects can only have one particle on them at a time, so we use these abstract effects to hold and display the effects. You know, so multiple particle effects can exist at once.
 ///also because some objects do not display particles due to how their visuals are built
 /obj/effect/abstract/particle_holder
@@ -28,8 +26,8 @@
 		stack_trace("particle holder was created with no loc!")
 		return INITIALIZE_HINT_QDEL
 	if(ismovable(loc))
-		RegisterSignal(loc, COMSIG_MOVABLE_MOVED, .proc/on_move)
-	RegisterSignal(loc, COMSIG_PARENT_QDELETING, .proc/on_qdel)
+		RegisterSignal(loc, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+	RegisterSignal(loc, COMSIG_PARENT_QDELETING, PROC_REF(on_qdel))
 	weak_attached = WEAKREF(loc)
 	update_visual_contents(loc)
 
