@@ -24,28 +24,6 @@
 	category = list("Control Interfaces", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/suture
-	name = "Suture"
-	desc = "Basic sterile sutures used to seal up cuts and lacerations and stop bleeding."
-	id = "suture"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 10, /datum/material/glass = 5)
-	maxstack = 15
-	build_path = /obj/item/stack/medical/suture
-	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
-/datum/design/regenmesh
-	name = "Regenerative Mesh"
-	desc = "A bacteriostatic mesh used to dress burns."
-	id = "regenmesh"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 10, /datum/material/glass = 5)
-	maxstack = 15
-	build_path = /obj/item/stack/medical/mesh
-	category = list("Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/bluespacebeaker
 	name = "Bluespace Beaker"
 	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
@@ -302,7 +280,7 @@
 	materials = list(/datum/material/glass = 2000, /datum/material/diamond = 1000)
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
+	
 /datum/design/hyposprayspeedupg
 	name = "Hypospray Speed Upgrade"
 	desc = "An upgrade for hyposprays that installs a springloaded mechanism, allowing it to inject with reduced delay."
@@ -547,7 +525,7 @@
 	build_path = /obj/item/organ/cyberimp/leg/magboot
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
+		
 /////////////////////////////////////////
 ////////////Regular Implants/////////////
 /////////////////////////////////////////
