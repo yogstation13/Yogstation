@@ -28,7 +28,7 @@
 
 /obj/item/stack/ore/dilithium_crystal/eaten(mob/living/carbon/human/H)
 	to_chat(H, "The sparks created by eating [src] ignite your innards.")
-	H.ignite()
+	H.ignite_mob()
 	return TRUE
 
 /obj/item/stack/sheet/dilithium_crystal

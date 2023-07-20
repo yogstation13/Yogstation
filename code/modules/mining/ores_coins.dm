@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/stack/ore/bananium/eaten(mob/living/carbon/human/H)//why are you eating bananium ore?
 	to_chat(H, span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
 	H.emote("scream")
-	playsound(M, 'sound/effects/supermatter.ogg', 100)
+	playsound(H, 'sound/effects/supermatter.ogg', 100)
 	var/S = H.petrify(600, TRUE)
 	if(S)
 		var/obj/structure/statue/petrified/statue = S
