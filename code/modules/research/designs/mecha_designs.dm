@@ -224,8 +224,8 @@
 	combat_design = TRUE
 
 /datum/design/mech_bfg
-	name = "Exosuit Weapon (BFG-90 \"Graze\" Magnum)"
-	desc = "Allows for the construction of the BFG-90 \"Graze\" Magnum."
+	name = "Exosuit Weapon (BFG-90 \"Graze\" Radioactive Cannon)"
+	desc = "Allows for the construction of the BFG-90 \"Graze\" Radioactive Cannon."
 	id = "mech_bfg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/bfg
@@ -235,8 +235,8 @@
 	combat_design = TRUE
 
 /datum/design/mech_bfg_ammo
-	name = "BFG-90 Magnum Ammunition"
-	desc = "Ammunition for the BFG-90 \"Graze\" Magnum."
+	name = "BFG-90 Radioactive Cannon Ammunition"
+	desc = "Ammunition for the BFG-90 \"Graze\" Radioactive Cannon."
 	id = "mech_bfg_ammo"
 	build_type = PROTOLATHE | MECHFAB
 	build_path = /obj/item/mecha_ammo/bfg

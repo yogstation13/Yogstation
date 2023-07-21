@@ -271,7 +271,7 @@
 	damage = 30
 	wound_bonus = -5
 
-/// BFG, inspired by the Beam Magnum, think of it like a VERY hot steel rod
+/// BFG
 /obj/item/projectile/beam/bfg
 	name = "searing rod"
 	icon_state = "lava"

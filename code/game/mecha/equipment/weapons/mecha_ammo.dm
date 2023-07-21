@@ -62,7 +62,7 @@
 
 /obj/item/mecha_ammo/bfg
 	name = "energy packs"
-	desc = "A box of energy packs, designed to power the BFG-90 Magnum."
+	desc = "A box of energy packs, designed to power the BFG-90 Radioactive Cannon."
 	icon_state = "bfg"
 	rounds = 5
 	ammo_type = "bfg"

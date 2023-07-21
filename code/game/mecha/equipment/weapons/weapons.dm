@@ -370,7 +370,7 @@
 	ammo_type = "lmg"
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/bfg
-	name = "\improper BFG-90 \"Graze\" Magnum"
+	name = "\improper BFG-90 \"Graze\" Radioactive Cannon"
 	desc = "A weapon for combat exosuits. Shoots an incredibly hot beam surrounded by a field of plasma."
 	icon_state = "mecha_laser"
 	equip_cooldown = 2 SECONDS

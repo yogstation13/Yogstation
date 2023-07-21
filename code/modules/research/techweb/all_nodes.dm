@@ -865,7 +865,7 @@
 
 /datum/techweb_node/mech_bfg
 	id = "mech_bfg"
-	display_name = "Exosuit Weapon (BFG-90 \"Graze\" Magnum)"
+	display_name = "Exosuit Weapon (BFG-90 \"Graze\" Radioactive Cannon)"
 	description = "An advanced piece of mech weaponry"
 	prereq_ids = list("ballistic_weapons", "adv_beam_weapons")
 	design_ids = list("mech_bfg", "mech_bfg_ammo")
