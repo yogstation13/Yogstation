@@ -27,7 +27,6 @@
 	var/amount = 30
 	var/recharge_amount = 10
 	var/recharge_counter = 0
-	var/mutable_appearance/beaker_overlay
 	var/working_state = "dispenser_working"
 	var/nopower_state = "dispenser_nopower"
 	var/has_panel_overlay = TRUE
@@ -136,7 +135,7 @@
 	recharge_counter += delta_time
 
 /obj/machinery/chem_dispenser/proc/display_beaker()
-	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
+	var/mutable_appearance/b_o = mutable_appearance(icon, "disp_beaker")
 	b_o.pixel_y = -4
 	b_o.pixel_x = -7
 	return b_o
@@ -154,7 +153,7 @@
 	if(has_panel_overlay && panel_open)
 		. += mutable_appearance(icon, "[initial(icon_state)]_panel-o")
 	if(beaker)
-		beaker_overlay = display_beaker()
+		var/mutable_appearance/beaker_overlay = display_beaker()
 		. += beaker_overlay
 
 /obj/machinery/chem_dispenser/emag_act(mob/user)
@@ -482,7 +481,7 @@
 		update_appearance(UPDATE_ICON)  // the beaker needs to be re-positioned if we rotate
 
 /obj/machinery/chem_dispenser/drinks/display_beaker()
-	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
+	var/mutable_appearance/b_o = mutable_appearance(icon, "disp_beaker")
 	switch(dir)
 		if(NORTH)
 			b_o.pixel_y = 7
