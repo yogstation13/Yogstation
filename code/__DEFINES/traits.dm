@@ -415,7 +415,6 @@
 #define STATION_TRAIT_FILLED_MAINT "station_trait_filled_maint"
 #define STATION_TRAIT_EMPTY_MAINT "station_trait_empty_maint"
 #define STATION_TRAIT_PDA_GLITCHED "station_trait_pda_glitched"
-#define STATION_TRAIT_STATION_ADRIFT "station_trait_station_adrift"
 
 //important_recursive_contents traits
 /*
