@@ -72,7 +72,7 @@
 			to_chat(user, span_notice("There is no one inside [src] to use it on."))
 			return
 		if(!borging)
-			if(do_after(user, 0.5 SECONDS, src)) // To prevent instant use.
+			if(do_after(user, 2 SECONDS, src)) // To prevent instant use.
 				visible_message(span_notice("[user] press a button on the [src]!"), span_notice("You press a button on the [src].") ) // To indicate that they tried something (evil).
 				if(!can_borg())
 					visible_message(span_danger("[src] buzzes."))
@@ -134,7 +134,7 @@
 		if(prob(50))
 			human.emote("scream")
 		bodypart.dismember() // Will kill if 4 dismembers while in hard crit. 
-
+		human.spawn_gibs(FALSE) // Immersion.
 		sleep(2 SECONDS)
 	if(!src || human != occupant || !borging)
 		borging = FALSE
@@ -214,12 +214,14 @@
 	if(user == occupant && borging)
 		borging_resist(user)
 		return FALSE
+	toggle_open()
+	return TRUE
+
+/obj/machinery/recharge_station/proc/toggle_open()
 	if(state_open)
-		if(do_after(user, 1 SECONDS, src))
-			close_machine()
+		close_machine()
 	else
 		open_machine()
-	return TRUE
 
 /obj/machinery/recharge_station/open_machine()
 	. = ..()
