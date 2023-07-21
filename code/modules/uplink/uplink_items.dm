@@ -335,6 +335,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
+	exclude_modes = list(/datum/game_mode/infiltration, /datum/game_mode/traitor/internal_affairs)
 
 /datum/uplink_item/dangerous/rawketlawnchair
 	name = "84mm Rocket Propelled Grenade Launcher"
