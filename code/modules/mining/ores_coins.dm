@@ -225,7 +225,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	to_chat(H, span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
 	H.emote("scream")
 	playsound(H, 'sound/effects/supermatter.ogg', 100)
-	var/petrified = H.petrify(1 MINUTES)
+	var/petrified = H.petrify(5 MINUTES, TRUE)
 	if(petrified)
 		var/obj/structure/statue/petrified/statue = petrified
 		statue.name = "bananium plated [statue.name]"
