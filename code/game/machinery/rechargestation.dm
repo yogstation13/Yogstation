@@ -20,13 +20,13 @@
 	// The countdown in which the borging process will officially begin.
 	COOLDOWN_DECLARE(borg_countdown)
 	/// How many seconds does 'borg_countdown' start at?
-	var/borging_time = 60 SECONDS
+	var/borging_time = 30 SECONDS
 	/// How many seconds does it take to break out of borging process if left uninterpreted?
-	var/breakout_time = 15 SECONDS
+	var/breakout_time = 6 SECONDS
 	// The countdown in which the shock can be used again.
 	COOLDOWN_DECLARE(shock_countdown)
 	/// How many seconds must pass before the shock can be used again?
-	var/shock_time = 12 SECONDS // This "shock" stuns for 1 seconds.
+	var/shock_time = 12 SECONDS // This "shock" paralyzes for 1 second. Should be higher than 'breakout_time' to prevent stunlock.
 
 /obj/machinery/recharge_station/Initialize(mapload)
 	. = ..()
@@ -149,14 +149,14 @@
 			do_sparks(1, FALSE, src)
 		if(prob(50))
 			human.emote("scream")
-		bodypart.dismember() // Will kill if 4 dismembers while in hard crit.
+		bodypart.dismember() // Will kill if 4 dismembers while in hard crit. 
 
 		sleep(2 SECONDS)
 	if(!src || human != occupant || !borging)
 		borging = FALSE
 		borging_active = FALSE
 		return
-	if(human.stat == DEAD) // Should of kept this flesh bag healthy until then.
+	if(human.stat == DEAD) // Should of kept this flesh bag healthy (enough) until then.
 		open_machine()
 		return
 	var/mob/living/silicon/robot/R = human.Robotize()
