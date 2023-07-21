@@ -43,7 +43,7 @@
 		return
 	obj_flags |= EMAGGED
 	playsound(src, "sparks", 75, TRUE, -1)
-	to_chat(user, span_notice("You use the cryptographic sequencer on [src] causing a well-hidden panel to open."))
+	to_chat(user, span_notice("You use the cryptographic sequencer on [src] causing both the repair system to malfunction, but also revealing a maintenance button in order to manually initiate the repair systems."))
 	
 /obj/machinery/recharge_station/examine(mob/user)
 	. = ..()
@@ -54,18 +54,18 @@
 		if(obj_flags & EMAGGED)
 			if(borging)
 				if(COOLDOWN_FINISHED(src, borg_countdown))
-					. += span_danger("A full loading bar appears: \"NOW CONVERTING.\"")
+					. += span_danger("The screen says: \"INITATING FULL REPAIR.\"")
 				else
 					var/timeleft = round(COOLDOWN_TIMELEFT(src, borg_countdown))/10
-					. += span_danger("A incomplete loading bar appears: \"Beginning in... [timeleft] [timeleft > 1 ? "seconds" : "second"].\"")
+					. += span_danger("The screen says \"SCANNING FOR DAMAGE. COMPLETION IN: [timeleft] [timeleft > 1 ? "SECONDS" : "SECOND"].\"")
 			else
-				. += span_notice("A hidden button labeled \"CONVERT\" is visible near the bottom of it.")
+				. += span_notice("A tiny button labeled \"BEGIN FULL REPAIR\" is visible near the bottom of it.")
 
 /obj/machinery/recharge_station/AltClick(mob/user)
 	if(user == occupant || !Adjacent(user))
 		return ..()
 	if(obj_flags & EMAGGED)
-		if(issilicon(user)) // Would of been an effective replacement of the Robotic Factory if not for this.
+		if(issilicon(user)) // This would be an effective replacement of the Robotic Factory if silicons could use it.
 			to_chat(user, span_notice("You can't press the button with your hands - since you don't have any."))
 			return
 		if(!occupant)	
@@ -140,7 +140,7 @@
 		borging = FALSE
 		borging_active = FALSE
 		return
-	if(human.stat == DEAD) // Should of kept this flesh bag healthy (enough) until then.
+	if(human.stat == DEAD) // You should have kept this flesh bag healthy if you wanted to convert them.
 		open_machine()
 		return
 	var/mob/living/silicon/robot/R = human.Robotize()
