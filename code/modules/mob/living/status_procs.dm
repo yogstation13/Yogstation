@@ -422,12 +422,6 @@
 	if(!HAS_TRAIT(src, TRAIT_BLIND))
 		blind_eyes(1)
 	ADD_TRAIT(src, TRAIT_BLIND, source)
-
-/mob/living/proc/cure_blind_echolocation(list/sources)
-	REMOVE_TRAIT(src, TRAIT_BLIND_ECHO, sources)
-
-/mob/living/proc/become_blind_echolocation(source)
-	ADD_TRAIT(src, TRAIT_BLIND_ECHO, source)
 		
 /mob/living/proc/cure_nearsighted(list/sources)
 	REMOVE_TRAIT(src, TRAIT_NEARSIGHT, sources)
