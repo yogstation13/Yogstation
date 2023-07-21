@@ -91,7 +91,7 @@
 			new /obj/item/implanter/explosive(src) //2 TC, nukies only
 			new /obj/item/implanter/storage(src) //8 TC
 
-		if("hacker") //28 TC cost
+		if("hacker") //29 TC cost
 			new /obj/item/aiModule/hacked(src) //4 TC
 			new /obj/item/card/emag(src) //6 TC
 			new /obj/item/encryptionkey/binary(src) //2 TC
