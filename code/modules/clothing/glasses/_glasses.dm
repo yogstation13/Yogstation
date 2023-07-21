@@ -337,16 +337,19 @@
 	var/colored_before = FALSE
 
 /obj/item/clothing/glasses/blindfold/white/equipped(mob/living/carbon/human/user, slot)
-	if(ishuman(user) && slot == ITEM_SLOT_EYES)
+	if(ishuman(user) && slot & ITEM_SLOT_EYES)
 		update_appearance(UPDATE_ICON)
 		user.update_inv_glasses() //Color might have been changed by update_icon.
-	..()
+	return ..()
 
-/obj/item/clothing/glasses/blindfold/white/update_icon(mob/living/carbon/human/user)
-	. = ..()
-	if(ishuman(user) && !colored_before)
-		add_atom_colour("#[user.eye_color]", FIXED_COLOUR_PRIORITY)
+/obj/item/clothing/glasses/blindfold/white/update_icon(updates=ALL)
+	if(!ishuman(loc))
+		return ..()
+	var/mob/living/carbon/human/loc_human = loc
+	if(!colored_before)
+		add_atom_colour("#[loc_human.eye_color]", FIXED_COLOUR_PRIORITY)
 		colored_before = TRUE
+	return ..()
 
 /obj/item/clothing/glasses/blindfold/white/worn_overlays(isinhands = FALSE, file2use)
 	. = list()

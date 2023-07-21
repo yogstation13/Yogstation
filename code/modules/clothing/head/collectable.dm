@@ -109,10 +109,12 @@
 		user.update_inv_head() //Color might have been changed by update_icon.
 	..()
 
-/obj/item/clothing/head/collectable/kitty/update_icon(mob/living/carbon/human/user)
+/obj/item/clothing/head/collectable/kitty/update_icon(updates=ALL)
 	. = ..()
-	if(ishuman(user))
-		add_atom_colour("#[user.hair_color]", FIXED_COLOUR_PRIORITY)
+	if(!ishuman(loc))
+		return
+	var/mob/living/carbon/human/loc_human = loc
+	add_atom_colour("#[loc_human.hair_color]", FIXED_COLOUR_PRIORITY)
 
 /obj/item/clothing/head/collectable/rabbitears
 	name = "collectable rabbit ears"

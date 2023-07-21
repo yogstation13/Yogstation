@@ -148,12 +148,13 @@
 	if(LH.has_language(/datum/language/felinid) || LH.can_speak_language(/datum/language/felinid)) //sanity
 		to_chat(user, "You lose the keenness in your ears.")
 		LH.remove_language(/datum/language/felinid,TRUE,TRUE,LANGUAGE_CATEARS)
-	
 
-/obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
+/obj/item/clothing/head/kitty/update_icon(updates=ALL)
 	. = ..()
-	if(ishuman(user))
-		add_atom_colour("#[user.hair_color]", FIXED_COLOUR_PRIORITY)
+	if(!ishuman(loc))
+		return
+	var/mob/living/carbon/human/loc_human = loc
+	add_atom_colour("#[loc_human.hair_color]", FIXED_COLOUR_PRIORITY)
 
 /obj/item/clothing/head/kitty/genuine
 	desc = "A pair of kitty ears. A tag on the inside says \"Hand made from real cats.\""
