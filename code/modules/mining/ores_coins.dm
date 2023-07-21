@@ -225,9 +225,9 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	to_chat(H, span_userdanger("The [src] rapidly starts permeating you until there's nothing left!"))
 	H.emote("scream")
 	playsound(H, 'sound/effects/supermatter.ogg', 100)
-	var/S = H.petrify(600, TRUE)
-	if(S)
-		var/obj/structure/statue/petrified/statue = S
+	var/petrified = H.petrify(1 MINUTES)
+	if(petrified)
+		var/obj/structure/statue/petrified/statue = petrified
 		statue.name = "bananium plated [statue.name]"
 		statue.desc = "An incredibly lifelike bananium carving."
 		statue.add_atom_colour("#ffd700", FIXED_COLOUR_PRIORITY)
