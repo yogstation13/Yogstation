@@ -56,6 +56,7 @@
 
 /datum/quirk/blindness/add()
 	ADD_TRAIT(quirk_holder, TRAIT_BLIND_ECHO, ROUNDSTART_TRAIT)
+	ADD_TRAIT(quirk_holder, TRAIT_BLIND, source)
 
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
