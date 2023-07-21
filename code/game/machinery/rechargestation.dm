@@ -26,7 +26,7 @@
 
 /obj/machinery/recharge_station/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/recharge_station/RefreshParts()
 	recharge_speed = 0
@@ -239,7 +239,8 @@
 		use_power = ACTIVE_POWER_USE //It always tries to charge, even if it can't.
 		add_fingerprint(occupant)
 
-/obj/machinery/recharge_station/update_icon()
+/obj/machinery/recharge_station/update_icon_state()
+	. = ..()
 	if(is_operational())
 		if(state_open)
 			icon_state = "borgcharger0"
@@ -263,7 +264,7 @@
 
 /obj/machinery/recharge_station/fullupgrade/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/cyborgrecharger(null)
 	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)

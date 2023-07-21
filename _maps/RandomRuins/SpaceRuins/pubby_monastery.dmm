@@ -290,7 +290,7 @@
 /area/ruin/space/has_grav/monastery)
 "dF" = (
 /obj/structure/table/wood/fancy,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)
@@ -1627,7 +1627,7 @@
 /area/ruin/space/has_grav/monastery)
 "uP" = (
 /obj/structure/table/wood/fancy,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /turf/open/floor/carpet,
 /area/ruin/space/has_grav/monastery/library)
 "uX" = (
@@ -1669,7 +1669,7 @@
 /area/hydroponics/garden/monastery)
 "vs" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/monastery)

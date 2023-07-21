@@ -48,7 +48,7 @@
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/book))
 			I.forceMove(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bookcase/attackby(obj/item/I, mob/user, params)
 	switch(state)
@@ -82,13 +82,13 @@
 			if(is_type_in_list(I, allowed_books))
 				if(!user.transferItemToLoc(I, src))
 					return
-				update_icon()
+				update_appearance(UPDATE_ICON)
 			else if(STR)
 				for(var/obj/item/T in I.contents)
 					if(istype(T, /obj/item/book) || istype(T, /obj/item/spellbook))
 						STR.remove_from_storage(T, src)
 				to_chat(user, span_notice("You empty \the [I] into \the [src]."))
-				update_icon()
+				update_appearance(UPDATE_ICON)
 			else if(istype(I, /obj/item/pen))
 				if(!user.is_literate())
 					to_chat(user, span_notice("You scribble illegibly on the side of [src]!"))
@@ -129,7 +129,7 @@
 					user.put_in_hands(choice)
 			else
 				choice.forceMove(drop_location())
-			update_icon()
+			update_appearance(UPDATE_ICON)
 
 
 /obj/structure/bookcase/deconstruct(disassembled = TRUE)
@@ -139,7 +139,8 @@
 	qdel(src)
 
 
-/obj/structure/bookcase/update_icon()
+/obj/structure/bookcase/update_icon_state()
+	. = ..()
 	if(contents.len < 5)
 		icon_state = "book-[contents.len]"
 	else
@@ -152,7 +153,7 @@
 /obj/structure/bookcase/manuals/medical/Initialize(mapload)
 	. = ..()
 	new /obj/item/book/manual/wiki/medical_cloning(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/structure/bookcase/manuals/engineering
@@ -165,7 +166,7 @@
 	new /obj/item/book/manual/wiki/engineering_guide(src)
 	new /obj/item/book/manual/wiki/engineering_singulo_tesla(src)
 	new /obj/item/book/manual/wiki/robotics_cyborgs(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /obj/structure/bookcase/manuals/research_and_development
@@ -174,7 +175,7 @@
 /obj/structure/bookcase/manuals/research_and_development/Initialize(mapload)
 	. = ..()
 	new /obj/item/book/manual/wiki/research_and_development(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 
 /*
