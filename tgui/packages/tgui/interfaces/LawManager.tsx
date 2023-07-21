@@ -79,13 +79,13 @@ export const LawManager = (props, context) => {
           <NoticeBox>This AI is currently an antagonist.</NoticeBox>
         ) }
         {!!(admin && cyborg && !connected) && (
-          <NoticeBox>This Cyborg has no master AI. Law modifications will be effective.</NoticeBox>
+          <NoticeBox>This Cyborg has no master AI.</NoticeBox>
         ) }
         {!!(admin && cyborg && connected && lawsync) && (
-          <NoticeBox>This Cyborg has lawsync active. Law modifications will be ineffective.</NoticeBox>
+          <NoticeBox>This Cyborg is connected to {connected} with lawsync.</NoticeBox>
         ) }
         {!!(admin && cyborg && connected && !lawsync) && (
-          <NoticeBox>This Cyborg has lawsync off. Law modifications will be effective.</NoticeBox>
+          <NoticeBox>This Cyborg is connected to {connected} without lawsync.</NoticeBox>
         ) }
         {!!(admin && pai) && (
           <NoticeBox>This pAI has less editing features due to their nature of being a pAI.</NoticeBox>
