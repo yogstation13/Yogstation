@@ -383,7 +383,7 @@
 	name = "Droni Fedora"
 	description = "I'm gonna make you an offer you can't refuse, the drone mafia has offered their 'services' to shuttle the crew. \
 		Just be careful, if you don't show class they might heckle you. Canoli not incuded."
-	admin_notes = "has 5 mafia drones that are pacified. By drone law they should only heckle people if provoked. Has a pair of sentient barstaff also."
+	admin_notes = "has 5 mafia drones that are pacified. By drone law they should only stun people if provoked. Has a pair of sentient barstaff also."
 	emag_buy = TRUE
 	credit_cost = 100000//service fee
 
@@ -526,6 +526,7 @@
 	description = "A large shuttle for a large station, this shuttle can comfortably fit all your overpopulation and crowding needs. Complete with all facilities plus additional equipment."
 	admin_notes = "Go big or go home."
 	credit_cost = 7500
+
 /* Disabled for having fucked atmos
 /datum/map_template/shuttle/emergency/raven
 	suffix = "raven"
@@ -536,6 +537,7 @@
 	admin_notes = "Comes with turrets that will target anything without the neutral faction (nuke ops, xenos etc, but not pets)."
 	credit_cost = 30000
 */
+
 /datum/map_template/shuttle/arrival/box
 	suffix = "box"
 	name = "arrival shuttle (Box)"
