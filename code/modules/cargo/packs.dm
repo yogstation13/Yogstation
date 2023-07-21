@@ -897,7 +897,7 @@
 /datum/supply_pack/engineering/atmos/fire
 	name = "Advanced Firefighting Crate"
 	desc = "Station is burning? Don't worry we got you. Introducing 4 atmos firesuits, gloves and advanced extinguishers!"
-	cost = 2000
+	cost = 3000
 	contains = list(/obj/item/clothing/suit/fire/atmos,
 					/obj/item/clothing/suit/fire/atmos,
 					/obj/item/clothing/suit/fire/atmos,
