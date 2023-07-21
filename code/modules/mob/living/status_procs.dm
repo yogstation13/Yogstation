@@ -425,14 +425,9 @@
 
 /mob/living/proc/cure_blind_echolocation(list/sources)
 	REMOVE_TRAIT(src, TRAIT_BLIND_ECHO, sources)
-	if(!HAS_TRAIT(src, TRAIT_BLIND_ECHO))
-		adjust_blindness(-1)
 
 /mob/living/proc/become_blind_echolocation(source)
-	var/v1 = !HAS_TRAIT(src, TRAIT_BLIND_ECHO)
 	ADD_TRAIT(src, TRAIT_BLIND_ECHO, source)
-	if(v1)
-		blind_eyes(1)
 		
 /mob/living/proc/cure_nearsighted(list/sources)
 	REMOVE_TRAIT(src, TRAIT_NEARSIGHT, sources)
