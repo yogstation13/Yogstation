@@ -240,7 +240,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
 		H.clear_stamina_regen()
 		H.adjustFireLoss(5 - (H.fire_stacks / 2))
-		H.set_jitter(100 SECONDS)
+		H.set_jitter_if_lower(100 SECONDS)
 		H.set_stutter(1 SECONDS)
 		if(!soggy)//play once when it starts
 			H.emote("scream")
