@@ -220,7 +220,7 @@ SUBSYSTEM_DEF(mapping)
 
 	for(var/N in nuke_tiles)
 		var/turf/open/floor/circuit/C = N
-		C.update_icon()
+		C.update_appearance(UPDATE_ICON)
 
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT

@@ -567,7 +567,7 @@
 /area/shuttle/caravan/pirate)
 "qC" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box{
+/obj/item/storage/fancy/donut_box{
 	pixel_y = 18
 	},
 /obj/item/storage/box/donkpockets{

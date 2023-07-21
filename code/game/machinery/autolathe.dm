@@ -177,7 +177,7 @@
 			if(printdirection > 8)  // Simple Sanity Check
 				printdirection = 0
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/autolathe/on_deconstruction()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
@@ -372,7 +372,7 @@
 				A = location
 			if(is_stack) // If its a stack we need to define it as so
 				var/obj/item/stack/N = new D.build_path(A, multiplier)
-				N.update_icon()
+				N.update_appearance(UPDATE_ICON)
 				N.autolathe_crafted(src)
 			else
 				for(var/i=1, i<=multiplier, i++)
