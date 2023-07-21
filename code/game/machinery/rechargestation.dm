@@ -122,6 +122,7 @@
 		return FALSE
 	return TRUE
 
+/// Starts the final process to borg. 
 /obj/machinery/recharge_station/proc/try_borg()
 	var/mob/living/carbon/human/human = occupant
 	if(!human)
