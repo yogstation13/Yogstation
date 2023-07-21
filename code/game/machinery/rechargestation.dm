@@ -124,7 +124,7 @@
 			continue
 		bodyparts += bodypart
 	playsound(src, 'sound/machines/juicer.ogg', 80, 1) // Juicer sounds more horrifying than Blender.
-	for(var/obj/item/bodypart/bodypart in bodyparts) // Goodbye limbs.
+	for(var/obj/item/bodypart/bodypart in bodyparts) // Goodbye limbs. But will buy you time if rescue is real soon.
 		if(!src || human != occupant || !borging) // Something happened which allowed them to escape.
 			borging = FALSE
 			borging_active = FALSE
