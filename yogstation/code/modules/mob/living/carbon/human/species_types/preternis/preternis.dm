@@ -39,8 +39,8 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
 	mutantstomach = /obj/item/organ/stomach/preternis
-	yogs_virus_infect_chance = 20
 	virus_resistance_boost = 10 //YEOUTCH,good luck getting it out
+	virus_stage_rate_boost = 5 //Weak as fuck immune system
 	special_step_sounds = list('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg')
 	attack_sound = 'sound/items/trayhit2.ogg'
 	//deathsound = //change this when sprite gets reworked
@@ -238,7 +238,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		H.add_movespeed_modifier("preternis_water", update = TRUE, priority = 102, multiplicative_slowdown = 4, blacklisted_movetypes=(FLYING|FLOATING))
 		//damage has a flat amount with an additional amount based on how wet they are
 		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
-		H.adjustFireLoss(5 - (H.fire_stacks / 2))
+		H.adjustFireLoss(5.5 - (H.fire_stacks / 2))
 		H.adjust_jitter(100 SECONDS)
 		H.set_stutter(1 SECONDS)
 		if(!soggy)//play once when it starts
@@ -279,13 +279,13 @@ adjust_charge - take a positive or negative value to adjust the charge level
 	var/mob/living/carbon/human/H = user
 	var/obj/item/weapon = H.get_active_held_item()
 	if(weapon && istype(weapon) && weapon.force)
-		H.next_move += 2 //adds 0.2 second delay to weapon combat
+		H.next_move += 3 //adds 0.2 second delay to weapon combat
 
 /datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)//make their punches slower
 	. = ..()
 	if(!ispreternis(user) || attacker_style?.nonlethal || (user.gloves && istype(user.gloves, /obj/item/clothing/gloves/rapid)) || (user.mind.martial_art.type in subtypesof(/datum/martial_art)))
 		return	
-	user.next_move += 2 //adds 0.2 second delay to combat
+	user.next_move += 3 //adds 0.2 second delay to combat
 
 /datum/species/preternis/has_toes()//their toes are mine, they shall never have them back
 	return FALSE
