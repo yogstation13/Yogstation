@@ -1,6 +1,6 @@
 
 ///the essential proc to call when an obj must receive damage of any kind.
-/obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
+/obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	if(QDELETED(src))
 		stack_trace("[src] taking damage after deletion")
 		return

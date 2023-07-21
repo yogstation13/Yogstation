@@ -1,6 +1,0 @@
-author: "azzzertyy"
-delete-after: true 
-changes: 
-  - rscadd: "Added soundscapes"
-  - tweak: "Ambient sounds are now more dynamic, playing randomly instead of on area enter"
-  - soundadd: "Added ambient sounds for virology, maints & lavaland"

@@ -47,7 +47,14 @@
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
 	//suit/armor
 	if(wear_suit)
-		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
+		//badge
+		var/badge_msg
+		if(istype(wear_suit, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/S = wear_suit
+			if(S.attached_badge)
+				badge_msg += " with [icon2html(S.attached_badge, user)] \a [S.attached_badge]"
+
+		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)][badge_msg]."
 		//suit/armor storage
 		if(s_store && !(ITEM_SLOT_SUITSTORE in obscured))
 			. += "[t_He] [t_is] carrying [s_store.get_examine_string(user)] on [t_his] [wear_suit.name]."
@@ -131,7 +138,7 @@
 				highest_trauma = 2
 			else if(istype(B, /datum/brain_trauma/mild) && highest_trauma < 1)
 				highest_trauma = 1
-		
+
 		switch(highest_trauma)
 			if(1)
 				. += span_warning("[t_His] behavior seems a bit off.")
@@ -235,7 +242,7 @@
 				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
 				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-				
+
 	if(surgeries.len)
 		var/surgery_text
 		for(var/datum/surgery/S in surgeries)
@@ -499,7 +506,7 @@
 	var/t_his = p_their()
 	var/t_has = p_have()
 	var/t_is = p_are()
-	
+
 	. = list("<span class='info'>This is <EM>[name]</EM>!")
 
 	var/list/obscured = check_obscured_slots()
@@ -519,7 +526,14 @@
 		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
 	//suit/armor
 	if(wear_suit)
-		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
+		//badge
+		var/badge_msg
+		if(istype(wear_suit, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/S = wear_suit
+			if(S.attached_badge)
+				badge_msg += " with [icon2html(S.attached_badge, user)] \a [S.attached_badge]"
+
+		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)][badge_msg]."
 	//back
 	if(back)
 		. += "[t_He] [t_has] [back.get_examine_string(user)] on [t_his] back."

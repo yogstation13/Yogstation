@@ -44,7 +44,7 @@
 	item_state = "facehugger_impregnated"
 	stat = DEAD
 
-/obj/item/clothing/mask/facehugger/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/item/clothing/mask/facehugger/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	..()
 	if(obj_integrity < 90)
 		Die()

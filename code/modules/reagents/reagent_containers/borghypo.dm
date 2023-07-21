@@ -140,6 +140,8 @@
 		if(upgraded)
 			regenerate_reagents(expanded_reagent_types)
 		charge_timer = 0
+	update_appearance(UPDATE_ICON)
+	. = ..()
 	return 1
 
 /// Use this to add more chemicals for the borghypo to produce.

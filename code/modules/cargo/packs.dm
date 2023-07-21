@@ -2181,7 +2181,7 @@
 					/obj/item/reagent_containers/food/condiment/saltshaker,
 					/obj/item/reagent_containers/food/condiment/peppermill,
 					/obj/item/reagent_containers/food/condiment/cinnamon, // Yogs -- Adds cinnamon shakers to this crate
-					/obj/item/storage/box/fancy/egg_box,
+					/obj/item/storage/fancy/egg_box,
 					/obj/item/reagent_containers/food/condiment/enzyme,
 					/obj/item/reagent_containers/food/condiment/sugar,
 					/obj/item/reagent_containers/food/snacks/meat/slab/monkey,
@@ -2605,8 +2605,8 @@
 					/obj/item/toy/cards/deck/syndicate,
 					/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 					/obj/item/clothing/under/syndicate/tacticool,
-					/obj/item/storage/box/fancy/cigarettes/cigpack_syndicate,
-					/obj/item/storage/box/fancy/cigarettes/cigpack_shadyjims,
+					/obj/item/storage/fancy/cigarettes/cigpack_syndicate,
+					/obj/item/storage/fancy/cigarettes/cigpack_shadyjims,
 					/obj/item/clothing/mask/gas/syndicate,
 					/obj/item/clothing/neck/necklace/dope,
 					/obj/item/vending_refill/donksoft)

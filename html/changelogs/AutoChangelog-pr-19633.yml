@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed using wheelchair with no arms not being slow"

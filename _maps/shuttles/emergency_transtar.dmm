@@ -281,7 +281,7 @@
 "rY" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light,
-/obj/item/storage/box/fancy/cigarettes/cigpack_robust,
+/obj/item/storage/fancy/cigarettes/cigpack_robust,
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "sp" = (
