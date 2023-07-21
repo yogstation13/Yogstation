@@ -79,6 +79,7 @@
 					playsound(src, 'sound/machines/buzz-sigh.ogg', 20, TRUE)
 					return
 				borging = TRUE
+				update_icon() // Gets us the red recharger sprite.
 				COOLDOWN_START(src, borg_countdown, borging_time)
 				visible_message(span_danger("[src] omniously hums."))
 		return
@@ -243,7 +244,10 @@
 		if(state_open)
 			icon_state = "borgcharger0"
 		else
-			icon_state = (occupant ? "borgcharger1" : "borgcharger2")
+			if(!occupant)
+				icon_state = "borgcharger2"
+			else
+				icon_state = (borging ? "borgcharger1red" : "borgcharger1")
 	else
 		icon_state = (state_open ? "borgcharger-u0" : "borgcharger-u1")
 
