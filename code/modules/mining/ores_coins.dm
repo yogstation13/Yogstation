@@ -20,6 +20,7 @@
 	var/refined_type = null //What this ore defaults to being refined into
 	novariants = TRUE // Ore stacks handle their icon updates themselves to keep the illusion that there's more going
 	var/list/stack_overlays
+	var/eaten_text
 
 /obj/item/stack/ore/update_icon()
 	var/difference = min(ORESTACK_OVERLAYS_MAX, amount) - (LAZYLEN(stack_overlays)+1)
@@ -80,7 +81,9 @@
 
 	use(1)//only eat one at a time
 
-	H.visible_message("[H] takes a bite of [src], crunching happily.")
+	H.visible_message(span_notice("[H] takes a bite of [src], crunching happily."))
+	if(eaten_text)
+		to_chat(H, span_notice(eaten_text))
 	playsound(H, 'sound/items/eatfood.ogg', 50, 1)
 	
 	if(HAS_TRAIT(H, TRAIT_VORACIOUS))//I'M VERY HONGRY
@@ -97,9 +100,9 @@
 	points = 30
 	materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/uranium
+	eaten_text = "The uranium ore tingles a bit as it goes down."
 
 /obj/item/stack/ore/uranium/eaten(mob/living/carbon/human/H)
-	to_chat(H, "The [src] tingles a bit as it goes down.")
 	radiation_pulse(H, 20)
 	return TRUE
 
@@ -111,9 +114,9 @@
 	points = 1
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/metal
+	eaten_text = "You take a bite of iron ore, minerals do a body good."
 
 /obj/item/stack/ore/iron/eaten(mob/living/carbon/human/H)
-	to_chat(H, "You take a bite of [src], minerals do a body good.")
 	H.heal_overall_damage(2, 0, 0, BODYPART_ROBOTIC)
 
 /obj/item/stack/ore/glass
@@ -125,13 +128,13 @@
 	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/glass
 	w_class = WEIGHT_CLASS_TINY
+	eaten_text = "The glass bits in the sand scratch your throat as you eat them."
 
 GLOBAL_LIST_INIT(sand_recipes, list(\
 		new /datum/stack_recipe("sandstone", /obj/item/stack/sheet/mineral/sandstone, 1, 1, 50)\
 		))
 
 /obj/item/stack/ore/glass/eaten(mob/living/carbon/human/H)
-	to_chat(H, "The [src] scratches a bit as it goes down.")
 	H.take_overall_damage(3)
 	H.heal_overall_damage(0, 1, 0, BODYPART_ROBOTIC)
 	return TRUE
@@ -172,9 +175,9 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	points = 15
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/plasma
+	eaten_text = "You take a bite of plasma ore, you feel energized."
 
 /obj/item/stack/ore/plasma/eaten(mob/living/carbon/human/H)
-	to_chat(H, "You take a bite of [src], minerals do a body good.")
 	H.heal_overall_damage(0, 2, 0, BODYPART_ROBOTIC)
 	return TRUE
 
