@@ -1143,7 +1143,8 @@
 		/obj/item/stock_parts/scanning_module = 3,
 		/obj/item/stock_parts/manipulator = 5,
 		/obj/item/stock_parts/micro_laser = 4,
-		/obj/item/stock_parts/matter_bin = 5)
+		/obj/item/stock_parts/matter_bin = 5,
+	)
 
 //Security
 
