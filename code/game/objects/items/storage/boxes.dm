@@ -282,13 +282,6 @@
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/glass/bottle/vial(src)
 
-/obj/item/storage/box/vials/large
-	name = "box of large vials"
-
-/obj/item/storage/box/vials/large/PopulateContents()
-	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/glass/bottle/vial/large(src)
-
 /obj/item/storage/box/vials/bluespace
 	name = "box of bluespace vials"
 
