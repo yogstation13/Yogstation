@@ -23,6 +23,7 @@
 	pin = null
 	bolt_type = BOLT_TYPE_LOCKING
 	mag_display = TRUE
+	show_bolt_icon = FALSE
 
 /obj/item/gun/ballistic/automatic/proto/unrestricted
 	pin = /obj/item/firing_pin
@@ -113,6 +114,7 @@
 	burst_size = 2
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
+	show_bolt_icon = FALSE
 	rack_sound = "sound/weapons/pistollock.ogg"
 
 /obj/item/gun/ballistic/automatic/m90
@@ -204,6 +206,7 @@
 	spread = 30
 	fire_delay = 1
 	bolt_type = BOLT_TYPE_OPEN
+	show_bolt_icon = FALSE
 
 /obj/item/gun/ballistic/automatic/ar
 	name = "\improper NT-ARG 'Boarder' Rifle"
@@ -238,6 +241,7 @@
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
 	mag_display_ammo = TRUE
+	show_bolt_icon = FALSE
 	tac_reloads = FALSE
 	automatic = TRUE
 	fire_sound = 'sound/weapons/rifleshot.ogg'

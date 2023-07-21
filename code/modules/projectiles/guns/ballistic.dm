@@ -45,6 +45,8 @@
 	///whether empty alarm sound varies
 	var/empty_alarm_vary = TRUE
 
+	///Hides the bolt icon.
+	var/show_bolt_icon = TRUE
 	///Whether the gun will spawn loaded with a magazine
 	var/spawnwithmagazine = TRUE
 	///Compatible magazines with the gun
@@ -152,14 +154,12 @@
 		feedback_fire_slide ? add_overlay(feedback_firing_icon) : add_overlay(feedback_original_icon)
 		DabAnimation(speed = feedback_recoil_speed, angle = ((rand(25,50)) * feedback_recoil_amount), direction = (feedback_recoil_reverse ? 2 : 3), hold_seconds = feedback_recoil_hold)
 	else if(bolt_type == BOLT_TYPE_LOCKING)
-		if(type != "slide*")
-			add_overlay("[icon_state]_bolt[bolt_locked ? "_locked" : ""]")
 		if(type == "slide_close") // cause the gun to move clockwise if slide is closed
 			DabAnimation(speed = feedback_recoil_speed, angle = ((rand(20,25)) * feedback_recoil_amount), direction = 2)
 	if(type != "fire")
 		add_overlay("[feedback_original_icon_base]_[type]") // actual animation
 	sleep(frames)
-	update_appearance(UPDATE_OVERLAYS)	
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/item/gun/ballistic/update_icon_state()
 	if(QDELETED(src))
@@ -174,37 +174,47 @@
 	if(QDELETED(src))
 		return
 	. = ..()
-	if (bolt_type == BOLT_TYPE_LOCKING)
-		. += "[icon_state]_bolt[bolt_locked ? "_locked" : ""]"
-	if (bolt_type == BOLT_TYPE_OPEN && bolt_locked)
-		. += "[icon_state]_bolt"
+	if(show_bolt_icon)
+		if (bolt_type == BOLT_TYPE_LOCKING)
+			. += "[icon_state]_bolt[bolt_locked ? "_locked" : ""]"
+		if (bolt_type == BOLT_TYPE_OPEN && bolt_locked)
+			. += "[icon_state]_bolt"
+
 	if (suppressed)
 		. += "[icon_state]_[suppressed.icon_state]"
 	if (enloudened)
 		. += "[icon_state]_[enloudened.icon_state]"
+
 	if(!chambered && empty_indicator)
 		. += "[icon_state]_empty"
-	if (magazine && chambered)
-		if (special_mags)
-			. += "[icon_state]_mag_[initial(magazine.icon_state)]"
-			if (!magazine.ammo_count())
-				. += "[icon_state]_mag_empty"
-		else
-			. += "[icon_state]_mag"
-			var/capacity_number = 0
-			switch(get_ammo() / magazine.max_ammo)
-				if(0.2 to 0.39)
-					capacity_number = 20
-				if(0.4 to 0.59)
-					capacity_number = 40
-				if(0.6 to 0.79)
-					capacity_number = 60
-				if(0.8 to 0.99)
-					capacity_number = 80
-				if(1.0)
-					capacity_number = 100
-			if (capacity_number)
-				. += "[icon_state]_mag_[capacity_number]"
+
+	if(!magazine || internal_magazine || !mag_display)
+		return
+
+	if(special_mags)
+		. += "[icon_state]_mag_[initial(magazine.icon_state)]"
+		if(mag_display_ammo && !magazine.ammo_count())
+			. += "[icon_state]_mag_empty"
+		return
+
+	. += "[icon_state]_mag"
+	if(!mag_display_ammo)
+		return
+
+	var/capacity_number = 0
+	switch(get_ammo() / magazine.max_ammo)
+		if(1 to INFINITY) //cause we can have one in the chamber.
+			capacity_number = 100
+		if(0.8 to 1)
+			capacity_number = 80
+		if(0.6 to 0.8)
+			capacity_number = 60
+		if(0.4 to 0.6)
+			capacity_number = 40
+		if(0.2 to 0.4)
+			capacity_number = 20
+	if (capacity_number)
+		. += "[icon_state]_mag_[capacity_number]"
 
 
 /obj/item/gun/ballistic/process_chamber(empty_chamber = TRUE, from_firing = TRUE, chamber_next_round = TRUE)
