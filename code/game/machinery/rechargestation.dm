@@ -22,11 +22,7 @@
 	/// How many seconds does 'borg_countdown' start at?
 	var/borging_time = 30 SECONDS
 	/// How many seconds does it take to break out of borging process if left uninterpreted?
-	var/breakout_time = 6 SECONDS
-	// The countdown in which the shock can be used again.
-	COOLDOWN_DECLARE(shock_countdown)
-	/// How many seconds must pass before the shock can be used again?
-	var/shock_time = 12 SECONDS // This "shock" paralyzes for 1 second. Should be higher than 'breakout_time' to prevent stunlock.
+	var/breakout_time = 4 SECONDS
 
 /obj/machinery/recharge_station/Initialize(mapload)
 	. = ..()
@@ -56,14 +52,14 @@
 		if(repairs)
 			. += span_notice("[src] has been upgraded to support automatic repairs.")
 		if(obj_flags & EMAGGED)
-			if(!borging_active)
-				. += span_notice("A hidden button labeled \"[!borging ? "CONVERT" : "SHOCK"]\" is visible near the bottom of it.")
 			if(borging)
 				if(COOLDOWN_FINISHED(src, borg_countdown))
 					. += span_danger("A full loading bar appears: \"NOW CONVERTING.\"")
 				else
 					var/timeleft = round(COOLDOWN_TIMELEFT(src, borg_countdown))/10
 					. += span_danger("A incomplete loading bar appears: \"Beginning in... [timeleft] [timeleft > 1 ? "seconds" : "second"].\"")
+			else
+				. += span_notice("A hidden button labeled \"CONVERT\" is visible near the bottom of it.")
 
 /obj/machinery/recharge_station/AltClick(mob/user)
 	if(user == occupant || !Adjacent(user))
@@ -75,28 +71,16 @@
 		if(!occupant)	
 			to_chat(user, span_notice("There is no one inside [src] to use it on."))
 			return
-		if(do_after(user, 0.5 SECONDS, src)) // To prevent instant use.
-			if(borging)
-				if(!COOLDOWN_FINISHED(src, shock_countdown))
-					var/timeleft = round(COOLDOWN_TIMELEFT(src, shock_countdown))/10
-					to_chat(user, span_notice("Wait [timeleft] more [timeleft > 1 ? "seconds" : "second"] to shock again."))
+		if(!borging)
+			if(do_after(user, 0.5 SECONDS, src)) // To prevent instant use.
+				visible_message(span_notice("[user] press a button on the [src]!"), span_notice("You press a button on the [src].") ) // To indicate that they tried something (evil).
+				if(!can_borg())
+					visible_message(span_danger("[src] buzzes."))
+					playsound(src, 'sound/machines/buzz-sigh.ogg', 20, TRUE)
 					return
-				visible_message(span_notice("[user] press a button on the [src]!"), span_notice("You press a button on the [src].") )
-				visible_message(span_danger("[src] releases a shock."))
-				COOLDOWN_START(src, shock_countdown, shock_time)
-				var/mob/living/carbon/occupant_carbon = occupant
-				if(!HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
-					occupant_carbon.Paralyze(1 SECONDS) // The reason why this is not '/electrocute_mob' is because they don't support short stuns.
-				playsound(src, get_sfx("sparks"), 20, TRUE)
-				return
-			visible_message(span_notice("[user] press a button on the [src]!"), span_notice("You press a button on the [src].") ) // To indicate that they tried something (evil).
-			if(!can_borg())
-				visible_message(span_danger("[src] buzzes."))
-				playsound(src, 'sound/machines/buzz-sigh.ogg', 20, TRUE)
-				return
-			borging = TRUE
-			COOLDOWN_START(src, borg_countdown, borging_time)
-			visible_message(span_danger("[src] omniously hums."))
+				borging = TRUE
+				COOLDOWN_START(src, borg_countdown, borging_time)
+				visible_message(span_danger("[src] omniously hums."))
 		return
 	return ..()
 
@@ -161,7 +145,7 @@
 		return
 	var/mob/living/silicon/robot/R = human.Robotize()
 	R.cell = new /obj/item/stock_parts/cell/upgraded/plus(R, 5000)
-	R.Paralyze(3 SECONDS)
+	R.Paralyze(4 SECONDS)
 	borging = FALSE
 	borging_active = FALSE
 	open_machine()
