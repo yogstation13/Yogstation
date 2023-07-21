@@ -914,7 +914,7 @@
 					/obj/item/extinguisher/advanced,
 					/obj/item/extinguisher/advanced,
 					/obj/item/extinguisher/advanced)
-	crate_name = "advanced atmos firesuit crate"
+	crate_name = "advanced firefighting crate"
 
 /datum/supply_pack/engineering/engiequipment
 	name = "Engineering Gear Crate"
