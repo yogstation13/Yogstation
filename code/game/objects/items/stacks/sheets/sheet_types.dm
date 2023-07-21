@@ -513,10 +513,10 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 		new /datum/stack_recipe("donk-pockets pizza box", /obj/item/storage/box/donkpockets/donkpocketpizza),			\
 		new /datum/stack_recipe("donk-pockets teriyaki box", /obj/item/storage/box/donkpockets/donkpocketteriyaki),		\
 		new /datum/stack_recipe("donk-pockets spicy box", /obj/item/storage/box/donkpockets/donkpocketspicy),			\
-		new /datum/stack_recipe("donut box", /obj/item/storage/box/fancy/donut_box),				\
-		new /datum/stack_recipe("egg box", /obj/item/storage/box/fancy/egg_box),					\
+		new /datum/stack_recipe("donut box", /obj/item/storage/fancy/donut_box),				\
+		new /datum/stack_recipe("egg box", /obj/item/storage/fancy/egg_box),					\
 		new /datum/stack_recipe("monkey cube box", /obj/item/storage/box/monkeycubes),			\
-		new /datum/stack_recipe("nugget box", /obj/item/storage/box/fancy/nugget_box),			\
+		new /datum/stack_recipe("nugget box", /obj/item/storage/fancy/nugget_box),			\
 		null,																					\
 
 		new /datum/stack_recipe("bean bag ammo box", /obj/item/storage/box/beanbag),			\
@@ -538,7 +538,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 		new /datum/stack_recipe("syringe box", /obj/item/storage/box/syringes),					\
 		null,																					\
 
-		new /datum/stack_recipe("candle box", /obj/item/storage/box/fancy/candle_box),			\
+		new /datum/stack_recipe("candle box", /obj/item/storage/fancy/candle_box),			\
 		new /datum/stack_recipe("disk box", /obj/item/storage/box/disks),						\
 		new /datum/stack_recipe("light bulbs box", /obj/item/storage/box/lights/bulbs),			\
 		new /datum/stack_recipe("light tubes box", /obj/item/storage/box/lights/tubes),			\

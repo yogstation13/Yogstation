@@ -757,7 +757,7 @@
 /obj/item/taperecorder{
 	pixel_x = -3
 	},
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /obj/item/assembly/flash/handheld,
 /obj/item/reagent_containers/spray/pepper,
 /obj/effect/turf_decal/tile/red{
@@ -781,7 +781,7 @@
 	pixel_x = -24
 	},
 /obj/structure/rack,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/item/gun/energy/e_gun/dragnet,
 /obj/item/gun/energy/e_gun/dragnet,
 /obj/effect/turf_decal/tile/neutral{
@@ -5688,7 +5688,7 @@
 "apS" = (
 /obj/structure/table,
 /obj/item/folder/red,
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /obj/item/clothing/mask/gas/sechailer,
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -7933,7 +7933,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/item/storage/box/fancy/candle_box{
+/obj/item/storage/fancy/candle_box{
 	pixel_y = 5
 	},
 /obj/structure/table/wood,
@@ -16909,7 +16909,7 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/item/storage/box/donkpockets,
 /obj/machinery/airalarm{
 	dir = 8;
@@ -18930,7 +18930,7 @@
 	icon_state = "0-4"
 	},
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "aUJ" = (
@@ -22183,7 +22183,7 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "bdc" = (
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/structure/table/glass,
 /obj/machinery/firealarm{
 	dir = 8;
@@ -23005,7 +23005,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain/private)
 "bff" = (
@@ -25597,7 +25597,7 @@
 /area/bridge)
 "bkJ" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "kitchen";
 	name = "Serving Hatch"
@@ -45566,8 +45566,8 @@
 	name = "memorial board";
 	pixel_y = 32
 	},
-/obj/item/storage/box/fancy/candle_box,
-/obj/item/storage/box/fancy/candle_box{
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box{
 	pixel_x = -2;
 	pixel_y = 2
 	},
@@ -66132,7 +66132,7 @@
 	icon_state = "minibar";
 	name = "skeletal minibar"
 	},
-/obj/item/storage/box/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
 /turf/open/floor/engine/cult,
 /area/library)
 "nXM" = (
@@ -70844,7 +70844,7 @@
 /obj/item/gps{
 	gpstag = "QM0"
 	},
-/obj/item/storage/box/fancy/cigarettes/cigars{
+/obj/item/storage/fancy/cigarettes/cigars{
 	pixel_y = 4
 	},
 /obj/item/lighter,
@@ -81797,7 +81797,7 @@
 /area/crew_quarters/theatre)
 "xTA" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /turf/open/floor/carpet,

@@ -427,7 +427,7 @@
 					/obj/item/clothing/suit/hooded/caretakercloak = 1,
 					/obj/item/clothing/suit/yogs/monkrobes = 1,
 					/obj/item/clothing/suit/hooded/amech = 2,
-					/obj/item/storage/box/fancy/candle_box = 2,
+					/obj/item/storage/fancy/candle_box = 2,
 					/obj/item/clothing/head/kippah = 3,
 					/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,
 					/obj/item/clothing/head/taqiyahwhite = 1,
