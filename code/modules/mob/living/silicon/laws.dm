@@ -359,9 +359,6 @@
 				if(!is_admin(usr))
 					to_chat(usr, span_warning("You can't remove your own devil laws."))
 					return
-				if(is_special_character(owner))
-					to_chat(usr, span_warning("This silicon is an antag. Remove their status if you want to delete their devil laws."))
-					return
 				log_admin("[usr] has deleted a devil law of [owner]: '[owner.laws.devil[index]]'")
 				message_admins("[usr] has deleted a devil law of [owner]: '[owner.laws.devil[index]]'")
 				owner.remove_devil_law(index)
@@ -369,9 +366,6 @@
 			if(type == "zeroth" && !isnull(owner.laws.zeroth))
 				if(!is_admin(usr))
 					to_chat(usr, span_warning("You can't remove your own zeroth law."))
-					return
-				if(is_special_character(owner))
-					to_chat(usr, span_warning("This silicon is an antag. Remove their status if you want to delete their zeroth law."))
 					return
 				log_admin("[usr] has deleted the zeroth law of [owner]: '[owner.laws.zeroth]'")
 				message_admins("[usr] has deleted the zeroth law of [owner]: '[owner.laws.zeroth]'")
