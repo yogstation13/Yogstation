@@ -239,7 +239,7 @@ adjust_charge - take a positive or negative value to adjust the charge level
 		//damage has a flat amount with an additional amount based on how wet they are
 		H.adjustStaminaLoss(11 - (H.fire_stacks / 2))
 		H.adjustFireLoss(5 - (H.fire_stacks / 2))
-		H.adjust_jitter(100 SECONDS)
+		H.set_jitter(100 SECONDS)
 		H.set_stutter(1 SECONDS)
 		if(!soggy)//play once when it starts
 			H.emote("scream")
