@@ -16,4 +16,4 @@
 
 	if(!active)
 		toggle_power()
-	update_icon()
+	update_appearance(UPDATE_ICON)

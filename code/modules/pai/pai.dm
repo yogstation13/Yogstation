@@ -170,7 +170,7 @@
 		hacking_cable = null
 		SStgui.update_user_uis(src)
 		if(!QDELETED(card))
-			card.update_icon()
+			card.update_appearance(UPDATE_ICON)
 	if(deleting_atom == atmos_analyzer)
 		atmos_analyzer = null
 	if(deleting_atom == camera)

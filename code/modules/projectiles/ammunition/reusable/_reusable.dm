@@ -31,4 +31,4 @@
 	if(!BB)
 		newshot()
 	in_air = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)

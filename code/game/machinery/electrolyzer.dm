@@ -32,7 +32,7 @@
 	. = ..()
 	if(ispath(cell))
 		cell = new cell(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/electrolyzer/Destroy()
 	if(cell)
@@ -54,37 +54,40 @@
 	else
 		. += "There is no power cell installed."
 
-/obj/machinery/electrolyzer/update_icon()
-	cut_overlays()
+/obj/machinery/electrolyzer/update_icon_state()
+	. = ..()
 	icon_state = "electrolyzer-[on ? "[mode]" : "off"]"
+
+/obj/machinery/electrolyzer/update_overlays()
+	. = ..()
 	if(panel_open)
-		add_overlay("electrolyzer-open")
+		. += "electrolyzer-open"
 
 /obj/machinery/electrolyzer/process(delta_time)
 	if((stat & (BROKEN|MAINT)) && on)
 		on = FALSE
 	if(!on)
 		active_power_usage = 0
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return PROCESS_KILL
 
 	if((stat & NOPOWER) && (!cell || cell.charge <= 0))
 		on = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return FALSE
 
 	var/turf/L = loc
 	if(!istype(L))
 		if(mode != ELECTROLYZER_MODE_STANDBY)
 			mode = ELECTROLYZER_MODE_STANDBY
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		return
 
 	var/newMode = on ? ELECTROLYZER_MODE_WORKING : ELECTROLYZER_MODE_STANDBY //change the mode to working if the machine is on
 
 	if(mode != newMode) //check if the mode is set correctly
 		mode = newMode
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 	if(mode == ELECTROLYZER_MODE_STANDBY)
 		return
@@ -114,7 +117,7 @@
 		if (!cell.use((5 * proportion) / (efficiency + workingPower)))
 			//automatically turn off machine when cell depletes
 			on = FALSE
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			working = FALSE
 	else
 		active_power_usage = (5 * proportion) / (efficiency + workingPower)
@@ -167,7 +170,7 @@
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		panel_open = !panel_open
 		user.visible_message(span_notice("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on \the [src]."))
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return
 	if(default_deconstruction_crowbar(I))
 		return
@@ -200,7 +203,7 @@
 			on = !on
 			mode = ELECTROLYZER_MODE_STANDBY
 			usr.visible_message(span_notice("[usr] switches [on ? "on" : "off"] \the [src]."), span_notice("You switch [on ? "on" : "off"] \the [src]."))
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			if (on)
 				START_PROCESSING(SSmachines, src)
 			. = TRUE
