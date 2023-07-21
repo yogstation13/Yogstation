@@ -314,6 +314,8 @@
 
 ///return the icon_state component for the canister's indicator light based on its current pressure reading
 /obj/machinery/portable_atmospherics/canister/proc/get_pressure_state(air_pressure)
+	if(air_pressure < 10)
+		return null
 	switch(air_pressure)
 		if((9100) to INFINITY)
 			return "can-oF"
