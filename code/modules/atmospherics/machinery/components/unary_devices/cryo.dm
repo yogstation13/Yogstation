@@ -166,7 +166,7 @@
 		beaker.forceMove(drop_location())
 		beaker = null
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon(updates=ALL)
 	. = ..()
 	plane = initial(plane)
 

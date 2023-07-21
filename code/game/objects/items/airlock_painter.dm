@@ -50,13 +50,13 @@
 	. = ..()
 	ink = new initial_ink_type(src)
 
-/obj/item/airlock_painter/update_icon()
+/obj/item/airlock_painter/update_icon_state()
 	. = ..()
 	var/base = initial(icon_state)
-	if(!istype(ink))
+	if(!ink || !istype(ink))
 		icon_state = "[base]_none"
 		return
-	switch(ink.charges/ink.max_charges)
+	switch(ink.charges / ink.max_charges)
 		if(0.001 to PAINTER_LOW)
 			icon_state = "[base]_low"
 		if(PAINTER_LOW to PAINTER_MID)
@@ -76,7 +76,7 @@
 /obj/item/airlock_painter/proc/use_paint(mob/user)
 	if(can_use(user))
 		ink.charges--
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		playsound(src.loc, 'sound/effects/spray2.ogg', 50, TRUE)
 		return TRUE
 	else
@@ -163,28 +163,27 @@
 
 
 /obj/item/airlock_painter/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/toner))
-		if(ink)
-			to_chat(user, span_warning("[src] already contains \a [ink]!"))
-			return
-		if(!user.transferItemToLoc(W, src))
-			return
-		to_chat(user, span_notice("You install [W] into [src]."))
-		ink = W
-		update_icon()
-		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-	else
+	if(!istype(W, /obj/item/toner))
 		return ..()
+	if(ink)
+		to_chat(user, span_warning("[src] already contains \a [ink]!"))
+		return
+	if(!user.transferItemToLoc(W, src))
+		return
+	to_chat(user, span_notice("You install [W] into [src]."))
+	ink = W
+	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
+	update_appearance(UPDATE_ICON)
 
 /obj/item/airlock_painter/AltClick(mob/user, obj/item/W)
 	. = ..()
 	if(ink)
-		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
+		playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 		ink.forceMove(user.drop_location())
 		user.put_in_hands(ink)
-		update_icon()
 		to_chat(user, span_notice("You remove [ink] from [src]."))
 		ink = null
+		update_appearance(UPDATE_ICON)
 
 /obj/item/airlock_painter/decal
 	name = "decal painter"

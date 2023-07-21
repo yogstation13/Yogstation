@@ -780,7 +780,7 @@
 		if(!silent)
 			to_chat(usr, span_notice("You drop the [wrapped]."))
 		wrapped = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		return TRUE
 	return FALSE
 
@@ -790,7 +790,7 @@
 		to_chat(usr, span_notice("You collect \the [item]."))
 	item.loc = src
 	wrapped = item
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/gripper/pre_attack(atom/target, mob/living/silicon/robot/user, params)
 	var/proximity = get_dist(user, target)
