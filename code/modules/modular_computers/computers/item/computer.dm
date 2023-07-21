@@ -22,6 +22,8 @@
 	var/last_battery_percent = 0
 	var/last_world_time = "00:00"
 	var/list/last_header_icons
+	///A pAI currently loaded into the modular computer.
+	var/obj/item/paicard/inserted_pai
 
 	/// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_active_power_usage = 50
@@ -87,7 +89,7 @@
 	var/list/interact_sounds = list('sound/machines/computers/keypress1.ogg', 'sound/machines/computers/keypress2.ogg', 'sound/machines/computers/keypress3.ogg', 'sound/machines/computers/keypress4.ogg', 'sound/machines/computers/keystroke1.ogg', 'sound/machines/computers/keystroke2.ogg', 'sound/machines/computers/keystroke3.ogg', 'sound/machines/computers/keystroke4.ogg')
 
 
-/obj/item/modular_computer/Initialize()
+/obj/item/modular_computer/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	if(!physical)
@@ -102,13 +104,10 @@
 /obj/item/modular_computer/Destroy()
 	kill_program(forced = TRUE)
 	STOP_PROCESSING(SSobj, src)
-	for(var/H in all_components)
-		var/obj/item/computer_hardware/CH = all_components[H]
-		if(CH.holder == src)
-			CH.on_remove(src)
-			CH.holder = null
-			all_components.Remove(CH.device_type)
-			qdel(CH)
+	for(var/port in all_components)
+		var/obj/item/computer_hardware/component = all_components[port]
+		qdel(component)
+	all_components.Cut() //Die demon die
 	physical = null
 	return ..()
 
@@ -116,7 +115,7 @@
 	if(active_program?.tap(A, user, params))
 		user.do_attack_animation(A) //Emulate this animation since we kill the attack in three lines
 		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
-		addtimer(CALLBACK(src, .proc/play_ping), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
+		addtimer(CALLBACK(src, PROC_REF(play_ping)), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
 		return
 	return ..()
 

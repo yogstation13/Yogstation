@@ -80,6 +80,9 @@
 
 /datum/config_entry/flag/log_pda	// log pda messages
 
+/// log uplink/spellbook/codex ciatrix purchases and refunds
+/datum/config_entry/flag/log_uplink
+
 /datum/config_entry/flag/log_telecomms	// log telecomms messages
 
 /datum/config_entry/flag/log_ntsl		// log NTSL compilation
@@ -531,6 +534,9 @@
 
 /// logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
 /datum/config_entry/flag/log_timers_on_bucket_reset
+
+/datum/config_entry/flag/cache_assets
+	default = TRUE
 
 /// Whether demos are written, if not set demo SS never initializes
 /datum/config_entry/flag/demos_enabled

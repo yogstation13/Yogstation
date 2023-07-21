@@ -19,7 +19,7 @@
 	tastes = list("fish" = 1)
 	foodtype = SEAFOOD | GROSS
 
-/obj/item/reagent_containers/food/snacks/carpmeat/Initialize()
+/obj/item/reagent_containers/food/snacks/carpmeat/Initialize(mapload)
 	. = ..()
 	eatverb = pick("bite","chew","gnaw","swallow","chomp")
 
@@ -197,6 +197,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("seaweed" = 1)
 	foodtype = VEGETABLES
+	custom_food_type = /obj/item/reagent_containers/food/snacks/customizable/sushi
 
 /obj/item/reagent_containers/food/snacks/shrimpcocktail
 	name = "shrimp cocktail"
@@ -232,6 +233,7 @@
 /obj/item/reagent_containers/food/snacks/spaghetti/ink
 	name = "squid ink spaghetti"
 	desc = "Spaghetti and squid ink sauce. Just like your completely normal and not-a-squid father used to make!"
+	icon = 'icons/obj/food/food.dmi'
 	icon_state = "pastasquid"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/colorful_reagent/crayonpowder/black = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/colorful_reagent/crayonpowder/black = 10, /datum/reagent/consumable/nutriment/vitamin = 4)

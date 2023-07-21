@@ -15,7 +15,7 @@
 	var/datum/action/innate/darkspawn/devour_will/linked_ability //The ability that keeps data for us
 	var/full_restore = TRUE
 
-/obj/item/dark_bead/Initialize()
+/obj/item/dark_bead/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	animate(src, alpha = 50, time = 5 SECONDS)
@@ -56,31 +56,35 @@
 		full_restore = FALSE
 		to_chat(user, span_warning("[L] has been veiled and will not produce as much psi as an unmodified victim."))
 	eating = TRUE
+	L.Stun(5 SECONDS)
+	user.Immobilize(1 SECONDS) // So they don't accidentally move while beading
+	ADD_TRAIT(L, TRAIT_PARALYSIS, "bead-trait")
 	if(user.loc != L)
 		user.visible_message(span_warning("[user] grabs [L] and leans in close..."), "<span class='velvet bold'>cera qo...</span><br>\
 		[span_danger("You begin siphoning [L]'s mental energy...")]")
 		to_chat(L, span_userdanger("<i>AAAAAAAAAAAAAA-</i>"))
-		L.Stun(50)
 		L.silent += 4
 		playsound(L, 'yogstation/sound/magic/devour_will.ogg', 65, FALSE) //T A S T Y   S O U L S
-		if(!do_mob(user, L, 30))
-			user.Knockdown(30)
+		if(!do_mob(user, L, 3 SECONDS))
+			REMOVE_TRAIT(L, TRAIT_PARALYSIS, "bead-trait")
+			user.Knockdown(3 SECONDS)
 			to_chat(L, span_boldwarning("All right. You're all right."))
-			L.Knockdown(30)
+			L.Knockdown(3 SECONDS)
 			qdel(src, force = TRUE)
 			return
 	else
 		L.visible_message("<span class='userdanger italics'>[L] suddenly howls and clutches as their face as violet light screams from their eyes!</span>", \
 		"<span class='userdanger italics'>AAAAAAAAAAAAAAA-</span>")
 		to_chat(user, span_velvet("<b>cera qo...</b><br>You begin siphoning [L]'s will..."))
-		L.Stun(50)
 		playsound(L, 'yogstation/sound/magic/devour_will_long.ogg', 65, FALSE)
-		if(!do_mob(user, L, 50))
-			user.Knockdown(50)
+		if(!do_mob(user, L, 5 SECONDS))
+			REMOVE_TRAIT(L, TRAIT_PARALYSIS, "bead-trait")
+			user.Knockdown(5 SECONDS)
 			to_chat(L, span_boldwarning("All right. You're all right."))
-			L.Knockdown(50)
+			L.Knockdown(5 SECONDS)
 			qdel(src, force = TRUE)
 			return
+	REMOVE_TRAIT(L, TRAIT_PARALYSIS, "bead-trait")
 	user.visible_message(span_warning("[user] gently lowers [L] to the ground..."), "<span class='velvet'><b>...aranupdejc</b><br>\
 	You devour [L]'s will. Your Psi has been [!full_restore ? "partially restored." : "fully restored.\n\
 	Additionally, you have gained one lucidity. Use it to purchase and upgrade abilities."]<br>\
@@ -105,6 +109,6 @@
 	L.Unconscious(15)
 	L.apply_effect(EFFECT_STUTTER, 20)
 	L.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
-	addtimer(CALLBACK(linked_ability, /datum/action/innate/darkspawn/devour_will/.proc/make_eligible, L), 600)
+	addtimer(CALLBACK(linked_ability, TYPE_PROC_REF(/datum/action/innate/darkspawn/devour_will, make_eligible), L), 600)
 	qdel(src, force = TRUE)
 	return TRUE

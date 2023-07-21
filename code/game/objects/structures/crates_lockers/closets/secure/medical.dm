@@ -42,7 +42,7 @@
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/clothing/glasses/hud/health(src)
-	return
+	new /obj/item/gun/syringe(src)
 
 /obj/structure/closet/secure_closet/CMO
 	name = "\proper chief medical officer's locker"
@@ -129,9 +129,10 @@
 	new /obj/item/clothing/suit/toggle/labcoat/emt/explorer(src)
 	new /obj/item/clothing/head/beret/emt/mining(src)
 	new /obj/item/clothing/under/yogs/rank/miner/medic(src)
+	new /obj/item/clothing/suit/toggle/labcoat/explorer(src)
 	new /obj/item/storage/belt/medical/mining(src)
 	new /obj/item/clothing/glasses/hud/health/meson(src)
-	new /obj/item/clothing/gloves/color/latex/nitrile(src)
+	new /obj/item/clothing/gloves/color/latex/fireproof(src)
 	new /obj/item/clothing/shoes/sneakers/white(src)
 	new	/obj/item/radio/headset/headset_medcargo(src)
 	new /obj/item/clothing/mask/gas/explorer(src)
@@ -181,3 +182,21 @@
 	new /obj/item/storage/box/syringes/variety(src)
 	new /obj/item/storage/box/beakers/variety(src)
 	new /obj/item/clothing/glasses/science(src)
+
+/obj/structure/closet/secure_closet/psych
+	name = "psychiatrist's cabinet"
+	desc = "Packed with a psychiatrist's tools of the trade"
+	req_access = list(ACCESS_PSYCH)
+	icon_state = "cabinet"
+
+/obj/structure/closet/secure_closet/psych/PopulateContents()
+	..()
+	new /obj/item/clothing/suit/straight_jacket(src)
+	new /obj/item/clothing/mask/muzzle(src)
+	new /obj/item/storage/pill_bottle/happiness(src)
+	new /obj/item/storage/pill_bottle/dice(src)
+	new /obj/item/storage/pill_bottle/happy(src)
+	new /obj/item/storage/pill_bottle/lsd(src)
+	new /obj/item/storage/pill_bottle/psicodine(src)
+	new /obj/item/assembly/flash(src)
+	new /obj/item/assembly/flash(src)

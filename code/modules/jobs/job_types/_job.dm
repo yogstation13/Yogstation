@@ -1,20 +1,36 @@
 /datum/job
 	/// The name of the job used for preferences, bans, etc.
 	var/title = "NOPE"
+
 	/// The description of the job, used for preferences menu.
 	/// Keep it short and useful. Avoid in-jokes, these are for new players.
 	var/description
+
 	/// This job comes with these accesses by default
 	var/list/base_access = list()
+
 	/// Additional accesses for the job if config.jobs_have_minimal_access is set to false
 	var/list/added_access = list()
+
 	/// Who is responsible for demoting them
 	var/department_head = list()
+
 	/// Tells the given channels that the given mob is the new department head. See communications.dm for valid channels.
 	var/list/head_announce = null
-	// Used for something in preferences_savefile.dm
-	var/department_flag = NONE
-	var/flag = NONE //Deprecated
+
+	/// Bitfield of departments this job belongs to. These get setup when adding the job into the department, on job datum creation.
+	var/departments_bitflags = NONE
+
+	/// If specified, this department will be used for the preferences menu.
+	var/datum/job_department/department_for_prefs = null
+
+	/// Lazy list with the departments this job belongs to.
+	/// Required to be set for playable jobs.
+	/// The first department will be used in the preferences menu,
+	/// unless department_for_prefs is set.
+	/// TODO: Currently not used so will always be empty! Change this to department datums
+	var/list/departments_list = null
+	
 	/// Automatic deadmin for a job. Usually head/security positions
 	var/auto_deadmin_role_flags = NONE
 	// Players will be allowed to spawn in as jobs that are set to "Station"
@@ -45,16 +61,20 @@
 	var/exp_requirements = 0
 	/// Which type of XP is required see `EXP_TYPE_` in __DEFINES/preferences.dm
 	var/exp_type = ""
-	/// Department XP required
+	/// Department XP required YOGS THIS IS NOT FUCKING SET FOR EVERY JOB I HATE WHOEVER DID THIS
 	var/exp_type_department = ""
 	/// How much antag rep this job gets increase antag chances next round unless its overriden in antag_rep.txt
-	var/antag_rep = 10
+	var/antag_rep = 3
 	/// Base pay of the job
 	var/paycheck = PAYCHECK_MINIMAL
 	/// Where to pull money to pay people
 	var/paycheck_department = ACCOUNT_CIV
-	/// Traits assigned from jobs
+	/// Traits added to the mind of the mob assigned this job
 	var/list/mind_traits
+
+	///Lazylist of traits added to the liver of the mob assigned this job (used for the classic "cops heal from donuts" reaction, among others)
+	var/list/liver_traits = null
+
 	/// Display order of the job
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
@@ -94,6 +114,16 @@
 	/datum/job/warden/proc/OmegaStationChanges()
 		total_positions = 2
 		spawn_positions = 2
+
+	Here is another example of using this:
+
+	/datum/job/doctor/proc/OmegaStationChanges()
+	selection_color = "#ffffff"
+	total_positions = 3
+	spawn_positions = 3
+	added_access = list()
+	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE)
+	supervisors = "the captain and the head of personnel"
 	*/
 
 /datum/job/New()
@@ -104,13 +134,17 @@
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
-/datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
-	//do actions on H but send messages to M as the key may not have been transferred_yet
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, H, M, latejoin)
-	if(mind_traits)
-		for(var/t in mind_traits)
-			ADD_TRAIT(H.mind, t, JOB_TRAIT)
-	H.mind.add_employee(/datum/corporation/nanotrasen)
+/datum/job/proc/after_spawn(mob/living/spawned, mob/M, latejoin = FALSE)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, spawned, M, latejoin)
+	for(var/trait in mind_traits)
+		ADD_TRAIT(spawned.mind, trait, JOB_TRAIT)
+
+	var/obj/item/organ/liver/liver = spawned.getorganslot(ORGAN_SLOT_LIVER)
+	if(liver)
+		for(var/trait in liver_traits)
+			ADD_TRAIT(liver, trait, JOB_TRAIT)
+	spawned.mind.add_employee(/datum/corporation/nanotrasen)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
@@ -124,7 +158,7 @@
 	return TRUE
 
 /datum/job/proc/GetAntagRep()
-	. = CONFIG_GET(keyed_list/antag_rep)[lowertext(title)]
+	. = CONFIG_GET(keyed_list/antag_rep)[replacetext(lowertext(title)," ", "_")]
 	if(. == null)
 		return antag_rep
 
@@ -137,7 +171,7 @@
 	if(CONFIG_GET(keyed_list/job_species_whitelist)[type] && !splittext(CONFIG_GET(keyed_list/job_species_whitelist)[type], ",").Find(H.dna.species.id))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
-			H.apply_pref_name("human", preference_source)
+			H.apply_pref_name(/datum/preference/name/backup_human, preference_source)
 
 	if(!visualsOnly)
 		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
@@ -168,10 +202,17 @@
 	if(CONFIG_GET(flag/everyone_has_maint_access)) //Config has global maint access set
 		. |= list(ACCESS_MAINT_TUNNELS)
 
-/datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+/mob/living/proc/dress_up_as_job(datum/job/equipping, visual_only = FALSE)
+	return
+
+/mob/living/carbon/human/dress_up_as_job(datum/job/equipping, visual_only = FALSE)
+	dna.species.before_equip_job(equipping, src, visual_only)
+	equipOutfit(equipping.outfit, visual_only)
+
+/datum/job/proc/announce_head(mob/living/carbon/human/H, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/_addtimer_here, CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, PROC_REF(_addtimer_here), CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
@@ -211,7 +252,6 @@
 	back = /obj/item/storage/backpack
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	box = /obj/item/storage/box/survival
-	ipc_box = /obj/item/storage/box/ipc
 
 	preload = TRUE // These are used by the prefs ui, and also just kinda could use the extra help at roundstart
 
@@ -224,7 +264,7 @@
 	var/uniform_skirt = null
 
 	/// Which slot the PDA defaults to
-	var/pda_slot = SLOT_BELT
+	var/pda_slot = ITEM_SLOT_BELT
 
 	/// What shoes digitgrade crew should wear
 	var/digitigrade_shoes
@@ -251,8 +291,6 @@
 
 	if (isplasmaman(H) && !(visualsOnly)) //this is a plasmaman fix to stop having two boxes
 		box = null
-	if (isipc(H) && !(visualsOnly)) // IPCs get their own box with special internals in it
-		box = ipc_box
 
 	if((DIGITIGRADE in H.dna.species.species_traits) && digitigrade_shoes) 
 		shoes = digitigrade_shoes
@@ -287,22 +325,18 @@
 
 	var/obj/item/modular_computer/PDA = new pda_type()
 	if(istype(PDA))
-		if (H.id_in_pda)
-			PDA.InsertID(C)
-			H.equip_to_slot_if_possible(PDA, SLOT_WEAR_ID)
-		else // just in case you hate change
-			H.equip_to_slot_if_possible(PDA, pda_slot)
-			H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
-		
+		PDA.InsertID(C)
+		H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
+
 		PDA.update_label()
 		PDA.update_icon()
 		PDA.update_filters()
 		
 	else
-		H.equip_to_slot_if_possible(C, SLOT_WEAR_ID)
+		H.equip_to_slot_if_possible(C, ITEM_SLOT_ID)
 
 	if(H.stat != DEAD)//if a job has a gps and it isn't a decorative corpse, rename the GPS to the owner's name
-		for(var/obj/item/gps/G in H.GetAllContents())
+		for(var/obj/item/gps/G in H.get_all_contents())
 			G.gpstag = H.real_name
 			G.name = "global positioning system ([G.gpstag])"
 			continue

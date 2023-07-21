@@ -1,19 +1,36 @@
 // Cleaning flags
 
+///Whether we should not attempt to clean.
+#define DO_NOT_CLEAN "do_not_clean"
+
 // Different kinds of things that can be cleaned.
 // Use these when overriding the wash proc or registering for the clean signals to check if your thing should be cleaned
+/// Cleans blood off of the cleanable atom.
 #define CLEAN_TYPE_BLOOD (1 << 0)
-#define CLEAN_TYPE_RUNES (1 << 1)
-#define CLEAN_TYPE_FINGERPRINTS (1 << 2)
-#define CLEAN_TYPE_FIBERS (1 << 3)
-#define CLEAN_TYPE_RADIATION (1 << 4)
-#define CLEAN_TYPE_DISEASE (1 << 5)
-#define CLEAN_TYPE_WEAK (1 << 6) // Special type, add this flag to make some cleaning processes non-instant. Currently only used for showers when removing radiation.
-#define CLEAN_TYPE_PAINT (1 << 7)
+/// Cleans fingerprints off of the cleanable atom.
+#define CLEAN_TYPE_FINGERPRINTS (1 << 1)
+/// Cleans fibres off of the cleanable atom.
+#define CLEAN_TYPE_FIBERS (1 << 2)
+/// Cleans radiation off of the cleanable atom.
+#define CLEAN_TYPE_RADIATION (1 << 3)
+/// Cleans diseases off of the cleanable atom.
+#define CLEAN_TYPE_DISEASE (1 << 4)
+/// Cleans acid off of the cleanable atom.
+#define CLEAN_TYPE_ACID (1 << 5)
+/// Cleans decals such as dirt and oil off the floor
+#define CLEAN_TYPE_LIGHT_DECAL (1 << 6)
+/// Cleans decals such as cobwebs off the floor
+#define CLEAN_TYPE_HARD_DECAL (1 << 7)
+
+//Yog specific cleaning flags
+/// Cleans radiation slowly
+#define CLEAN_TYPE_WEAK (1 << 8)
+/// Cleans cult runes
+#define CLEAN_TYPE_RUNES (1 << 9)
 
 // Different cleaning methods.
 // Use these when calling the wash proc for your cleaning apparatus
-#define CLEAN_WASH (CLEAN_TYPE_BLOOD | CLEAN_TYPE_RUNES | CLEAN_TYPE_DISEASE)
-#define CLEAN_SCRUB (CLEAN_WASH | CLEAN_TYPE_FINGERPRINTS | CLEAN_TYPE_FIBERS | CLEAN_TYPE_PAINT)
+#define CLEAN_WASH (CLEAN_TYPE_BLOOD | CLEAN_TYPE_DISEASE | CLEAN_TYPE_ACID | CLEAN_TYPE_LIGHT_DECAL | CLEAN_TYPE_RUNES)
+#define CLEAN_SCRUB (CLEAN_WASH | CLEAN_TYPE_FINGERPRINTS | CLEAN_TYPE_FIBERS | CLEAN_TYPE_HARD_DECAL)
 #define CLEAN_RAD CLEAN_TYPE_RADIATION
 #define CLEAN_ALL (ALL & ~CLEAN_TYPE_WEAK)

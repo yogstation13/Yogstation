@@ -31,7 +31,6 @@
 	return ..()
 
 //Ash walker eggs: Spawns in ash walker dens in lavaland. Ghosts become unbreathing lizards that worship the Necropolis and are advised to retrieve corpses to create more ash walkers.
-
 /obj/effect/mob_spawn/human/ash_walker
 	name = "ash walker egg"
 	desc = "A man-sized yellow egg, spawned from some unfathomable creature. A humanoid silhouette lurks within."
@@ -54,7 +53,6 @@
 /obj/effect/mob_spawn/human/ash_walker/special(mob/living/new_spawn)
 	new_spawn.fully_replace_character_name(null,random_unique_lizard_name(gender))
 	to_chat(new_spawn, "<b>Drag the corpses of men and beasts to your nest. It will absorb them to create more of your kind. Glory to the Necropolis!</b>") //yogs - removed a sentence
-
 	new_spawn.mind.add_antag_datum(/datum/antagonist/ashwalker, team)
 
 /obj/effect/mob_spawn/human/ash_walker/Initialize(mapload, datum/team/ashwalkers/ashteam)
@@ -62,7 +60,19 @@
 	var/area/A = get_area(src)
 	team = ashteam
 	if(A)
-		notify_ghosts("An ash walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
+		notify_ghosts("[mob_name] egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACKORBIT, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
+
+//Ash walker shaman eggs: Spawns in ash walker dens in lavaland. Only one can exist at a time, they are squishier than regular ashwalkers, and have the sole purpose of keeping other ashwalkers alive.
+/obj/effect/mob_spawn/human/ash_walker/shaman
+	name = "ash walker shaman egg"
+	desc = "A man-sized, amber egg spawned from some unfathomable creature. A humanoid silhouette lurks within."
+	mob_name = "an ash walker shaman"
+	mob_species = /datum/species/lizard/ashwalker/shaman
+	outfit = /datum/outfit/ashwalker/shaman //might be OP, but the flavour is there
+	short_desc = "You are an ash walker shaman. Your tribe worships the Necropolis."
+	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. You and your people have become one with the tendril and its land. \
+	You have seen lights in the distance and from the skies: outsiders that come with greed in their hearts. Fresh sacrifices for your nest."
+	assignedrole = "Ash Walker Shaman"
 
 /datum/outfit/ashwalker
 	name = "Ashwalker"
@@ -81,7 +91,7 @@
 	uniform = /obj/item/clothing/under/ash_robe/hunter
 	suit = /obj/item/clothing/suit/hooded/cloak/goliath/desert
 	back = /obj/item/gun/ballistic/bow/ashen
-	belt = /obj/item/storage/belt/quiver/ashwalker
+	belt = /obj/item/storage/belt/quiver/weaver/ashwalker
 	shoes = /obj/item/clothing/shoes/xeno_wraps
 
 /datum/outfit/ashwalker/warrior
@@ -409,11 +419,11 @@
 	random = TRUE
 	id_job = "SuperFriend"
 	id_access = "assistant"
-	var/obj/effect/proc_holder/spell/targeted/summon_friend/spell
+	var/datum/action/cooldown/spell/summon_friend/spell
 	var/datum/mind/owner
 	assignedrole = "SuperFriend"
 
-/obj/effect/mob_spawn/human/demonic_friend/Initialize(mapload, datum/mind/owner_mind, obj/effect/proc_holder/spell/targeted/summon_friend/summoning_spell)
+/obj/effect/mob_spawn/human/demonic_friend/Initialize(mapload, datum/mind/owner_mind, datum/action/cooldown/spell/summon_friend/summoning_spell)
 	. = ..()
 	owner = owner_mind
 	flavour_text = "You have been given a reprieve from your eternity of torment, to be [owner.name]'s friend for [owner.p_their()] short mortal coil."
@@ -424,13 +434,11 @@
 	objectives = "Be [owner.name]'s friend, and keep [owner.name] alive, so you don't get sent back to hell."
 	spell = summoning_spell
 
-
 /obj/effect/mob_spawn/human/demonic_friend/special(mob/living/L)
 	if(!QDELETED(owner.current) && owner.current.stat != DEAD)
 		L.fully_replace_character_name(null,"[owner.name]'s best friend")
 		soullink(/datum/soullink/oneway, owner.current, L)
 		spell.friend = L
-		spell.charge_counter = spell.charge_max
 		L.mind.hasSoul = FALSE
 		var/mob/living/carbon/human/H = L
 		var/obj/item/worn = H.wear_id
@@ -439,7 +447,7 @@
 		id.update_label()
 	else
 		to_chat(L, span_userdanger("Your owner is already dead!  You will soon perish."))
-		addtimer(CALLBACK(L, /mob.proc/dust, 150)) //Give em a few seconds as a mercy.
+		addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, dust), 150)) //Give em a few seconds as a mercy.
 
 /datum/outfit/demonic_friend
 	name = "Demonic Friend"

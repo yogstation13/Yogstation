@@ -90,7 +90,7 @@ GLOBAL_LIST_EMPTY(holopads)
 	desc = "It's a floor-mounted device for projecting holographic images. This one will refuse to auto-connect incoming calls."
 	secure = TRUE
 
-obj/machinery/holopad/secure/Initialize()
+obj/machinery/holopad/secure/Initialize(mapload)
 	. = ..()
 	var/obj/item/circuitboard/machine/holopad/board = circuit
 	board.secure = TRUE
@@ -128,7 +128,7 @@ obj/machinery/holopad/secure/Initialize()
 	if(!replay_mode && (disk && disk.record))
 		replay_start()
 
-/obj/machinery/holopad/Initialize()
+/obj/machinery/holopad/Initialize(mapload)
 	. = ..()
 	if(!padname)
 		var/area/A = get_area(src)
@@ -280,7 +280,7 @@ obj/machinery/holopad/secure/Initialize()
 					if(pad.padname)
 						LAZYADD(callnames[pad.padname], pad)
 				callnames -= padname
-				var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sortNames(callnames))
+				var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sortList(callnames))
 				if(QDELETED(usr) || !result || outgoing_call)
 					return
 				if(usr.loc == loc)
@@ -671,7 +671,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		if(HOLORECORD_SOUND)
 			playsound(src,entry[2],50,TRUE)
 		if(HOLORECORD_DELAY)
-			addtimer(CALLBACK(src,.proc/replay_entry,entry_number+1),entry[2])
+			addtimer(CALLBACK(src, PROC_REF(replay_entry),entry_number+1),entry[2])
 			return
 		if(HOLORECORD_LANGUAGE)
 			var/datum/language_holder/holder = replay_holo.get_language_holder()

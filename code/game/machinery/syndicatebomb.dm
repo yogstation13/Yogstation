@@ -38,6 +38,10 @@
 	if(.)
 		payload.detonate()
 
+/obj/machinery/syndicatebomb/ex_act(severity, target) // Little boom can chain a big boom.
+	if(!try_detonate())
+		..()
+
 /obj/machinery/syndicatebomb/obj_break()
 	if(!try_detonate())
 		..()
@@ -80,7 +84,7 @@
 		update_icon()
 		try_detonate(TRUE)
 
-/obj/machinery/syndicatebomb/Initialize()
+/obj/machinery/syndicatebomb/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/syndicatebomb(src)
 	if(payload)
@@ -239,7 +243,7 @@
 	open_panel = TRUE
 	timer_set = 120
 
-/obj/machinery/syndicatebomb/empty/Initialize()
+/obj/machinery/syndicatebomb/empty/Initialize(mapload)
 	. = ..()
 	wires.cut_all()
 
@@ -405,7 +409,7 @@
 		chem_splash(get_turf(src), spread_range, list(reactants), temp_boost)
 
 		// Detonate it again in one second, until it's out of juice.
-		addtimer(CALLBACK(src, .proc/detonate), 10)
+		addtimer(CALLBACK(src, PROC_REF(detonate)), 10)
 
 	// If it's not a time release bomb, do normal explosion
 

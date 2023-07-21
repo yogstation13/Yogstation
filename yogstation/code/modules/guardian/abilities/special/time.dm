@@ -2,20 +2,31 @@
 	name = "Time Stop"
 	desc = "The guardian can stop time in a localized area."
 	cost = 5
-	spell_type = /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/guardian
+	spell_type = /datum/action/cooldown/spell/timestop/guardian
 
 /datum/guardian_ability/major/special/timestop/Berserk()
-	guardian.RemoveSpell(spell)
-	spell = new /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/guardian/berserk
-	guardian.AddSpell(spell)
+	spell.Remove(guardian)
+	spell = new /datum/action/cooldown/spell/timestop/guardian/beserk
+	spell.Grant(guardian)
 
-/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/guardian
-	invocation_type = "none"
-	clothes_req = FALSE
-	summon_type = list(/obj/effect/timestop)
+/datum/action/cooldown/spell/timestop/guardian
+	invocation_type = INVOCATION_NONE
+	spell_requirements = NONE
 
-/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/guardian/berserk
-	summon_type = list(/obj/effect/timestop/berserk)
+/datum/action/cooldown/spell/timestop/guardian/Grant(mob/grant_to)
+	. = ..()
+	var/mob/living/simple_animal/hostile/guardian/guardian = owner
+	if(guardian && istype(guardian) && guardian.summoner)
+		ADD_TRAIT(guardian.summoner, TRAIT_TIME_STOP_IMMUNE, REF(src))
+
+/datum/action/cooldown/spell/timestop/guardian/Remove(mob/remove_from)
+	var/mob/living/simple_animal/hostile/guardian/guardian = owner
+	if(guardian && istype(guardian) && guardian.summoner)
+		REMOVE_TRAIT(guardian.summoner, TRAIT_TIME_STOP_IMMUNE, REF(src))
+	return ..()
+
+/datum/action/cooldown/spell/timestop/guardian/beserk
+	timestop_effect = /obj/effect/timestop/berserk
 
 /obj/effect/timestop/berserk
 	name = "lagfield"

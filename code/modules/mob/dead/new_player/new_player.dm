@@ -19,7 +19,7 @@
 	/// Used to track if the player's jobs menu sent a message saying it successfully mounted.
 	var/jobs_menu_mounted = FALSE
 
-/mob/dead/new_player/Initialize()
+/mob/dead/new_player/Initialize(mapload)
 	if(client && SSticker.state == GAME_STATE_STARTUP)
 		var/atom/movable/screen/splash/S = new(client, TRUE, TRUE)
 		S.Fade(TRUE)
@@ -29,7 +29,7 @@
 	else
 		forceMove(locate(1,1,1))
 
-	ComponentInitialize()
+	add_verb(usr, /datum/latejoin_menu/verb/open_fallback_ui)
 
 	. = ..()
 
@@ -46,6 +46,7 @@
 	var/datum/asset/asset_datum = get_asset_datum(/datum/asset/simple/lobby)
 	asset_datum.send(client)
 	var/output = "<center><p><a href='byond://?src=[REF(src)];show_preferences=1'>Setup Character</a></p>"
+	output += "<center><p><a href='byond://?src=[REF(src)];show_gameoptions=1'>Game Options</a></p>"
 
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
 		switch(ready)
@@ -117,8 +118,18 @@
 		relevant_cap = max(hpc, epc)
 
 	if(href_list["show_preferences"])
-		client.prefs.ShowChoices(src)
-		return 1
+		var/datum/preferences/preferences = client.prefs
+		preferences.current_window = PREFERENCE_TAB_CHARACTER_PREFERENCES
+		preferences.update_static_data(usr)
+		preferences.ui_interact(usr)
+		return TRUE
+
+	if(href_list["show_gameoptions"])
+		var/datum/preferences/preferences = client.prefs
+		preferences.current_window = PREFERENCE_TAB_GAME_PREFERENCES
+		preferences.update_static_data(usr)
+		preferences.ui_interact(usr)
+		return TRUE
 
 	if(href_list["ready"])
 		var/tready = text2num(href_list["ready"])
@@ -142,10 +153,6 @@
 			to_chat(usr, span_danger("The round is either not ready, or has already finished..."))
 			return
 
-		if(href_list["late_join"] == "override")
-			GLOB.latejoin_menu.ui_interact(src)
-			return
-
 		if(SSticker.queued_players.len || (relevant_cap && living_player_count() >= relevant_cap && !(ckey(key) in GLOB.permissions.admin_datums)))
 			//yogs start -- donors bypassing the queue
 			if(ckey(key) in get_donators())
@@ -165,9 +172,7 @@
 				to_chat(usr, span_notice("You have been added to the queue to join the game. Your position in queue is [SSticker.queued_players.len]."))
 			return
 
-		// TODO: Fallback menu
 		GLOB.latejoin_menu.ui_interact(usr)
-
 
 	if(href_list["manifest"])
 		ViewManifest()
@@ -289,7 +294,7 @@
 	observer.client = client
 	observer.set_ghost_appearance()
 	if(observer.client && observer.client.prefs)
-		observer.real_name = observer.client.prefs.real_name
+		observer.real_name = observer.client.prefs.read_preference(/datum/preference/name/real_name)
 		observer.name = observer.real_name
 		observer.client.init_verbs()
 	observer.update_icon()
@@ -368,7 +373,7 @@
 	SSjob.AssignRole(src, rank, 1)
 
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
-	character.mind.quiet_round = character.client.prefs.yogtoggles & QUIET_ROUND // yogs - Donor Features
+	character.mind.quiet_round = character.client.prefs.read_preference(/datum/preference/toggle/quiet_mode) // yogs - Donor Features
 	var/equip = SSjob.EquipRank(character, rank, TRUE)
 	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
 		character = equip
@@ -396,7 +401,6 @@
 			SSshuttle.arrivals.QueueAnnounce(humanc, rank)
 		else
 			AnnounceArrival(humanc, rank)
-		AddEmploymentContract(humanc)
 		if(GLOB.highlander)
 			to_chat(humanc, span_userdanger("<i>THERE CAN BE ONLY ONE!!!</i>"))
 			humanc.make_scottish()
@@ -425,14 +429,6 @@
 
 	log_manifest(character.mind.key,character.mind,character,latejoin = TRUE)
 
-/mob/dead/new_player/proc/AddEmploymentContract(mob/living/carbon/human/employee)
-	//TODO:  figure out a way to exclude wizards/nukeops/demons from this.
-	for(var/C in GLOB.employmentCabinets)
-		var/obj/structure/filingcabinet/employment/employmentCabinet = C
-		if(!employmentCabinet.virgin)
-			employmentCabinet.addFile(employee)
-
-
 /mob/dead/new_player/proc/create_character(transfer_after)
 	spawning = TRUE
 	close_spawn_windows()
@@ -445,13 +441,11 @@
 		if(QDELETED(src))
 			return
 	if(frn)
-		client.prefs.random_character()
-		client.prefs.accent = null
-		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
-	client.prefs.copy_to(H)
+		client.prefs.randomise_appearance_prefs()
 
-	client.prefs.copy_to(H)
+	client.prefs.apply_prefs_to(H)
 	H.dna.update_dna_identity()
+
 	if(mind)
 		if(mind.assigned_role)
 			var/datum/job/J = SSjob.GetJob(mind.assigned_role)
@@ -462,8 +456,11 @@
 			mind.late_joiner = TRUE
 		mind.active = FALSE					//we wish to transfer the key manually
 		mind.original_character_slot_index = client.prefs.default_slot
-		if(!HAS_TRAIT(H,TRAIT_RANDOM_ACCENT))
-			mind.accent_name = client.prefs.accent
+		if(!HAS_TRAIT(H, TRAIT_RANDOM_ACCENT))
+			var/accent_name = client.prefs.read_preference(/datum/preference/choiced/accent)
+			if (accent_name == ACCENT_NONE)
+				accent_name = null
+			mind.accent_name = accent_name
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
 		mind.original_character = H
 
@@ -512,7 +509,7 @@
 /mob/dead/new_player/proc/check_preferences()
 	if(!client)
 		return FALSE //Not sure how this would get run without the mob having a client, but let's just be safe.
-	if(client.prefs.joblessrole != RETURNTOLOBBY)
+	if(client.prefs.read_preference(/datum/preference/choiced/jobless_role) != RETURNTOLOBBY)
 		return TRUE
 	// If they have antags enabled, they're potentially doing this on purpose instead of by accident. Notify admins if so.
 	var/has_antags = FALSE

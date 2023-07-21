@@ -1,10 +1,8 @@
 /datum/job/paramedic
 	title = "Paramedic"
 	description = "Constantly reminder the crew about their suit sensor. Come to their aid when they die."
-	flag = PARAMEDIC
 	orbit_icon = "truck-medical"
 	department_head = list("Chief Medical Officer")
-	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
@@ -21,7 +19,9 @@
 	display_order = JOB_DISPLAY_ORDER_PARAMEDIC
 	minimal_character_age = 20 //As a paramedic you just need to know basic first aid and handling of patients in shock. Ideally you're also strong and able to stay cool. You don't know surgery
 
-	changed_maps = list("OmegaStation", "EclipseStation")
+	departments_list = list(
+		/datum/job_department/medical,
+	)
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/autoinjector/medipen = 10,//these are already super plentiful
@@ -32,15 +32,6 @@
 	)
 
 	smells_like = "pre-packaged oxygen"
-
-/datum/job/paramedic/proc/OmegaStationChanges()
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the captain and the head of personnel"
-
-/datum/job/paramedic/proc/EclipseStationChanges()
-	total_positions = 4
-	spawn_positions = 2
 
 /datum/outfit/job/paramedic
 	name = "Paramedic"

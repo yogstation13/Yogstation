@@ -123,7 +123,7 @@
 	soft_type = "fishfear"
 	dog_fashion = /datum/dog_fashion/head/fishfear
 
-/obj/item/clothing/head/soft/fishfear/Initialize()
+/obj/item/clothing/head/soft/fishfear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,5)
 
@@ -133,7 +133,7 @@
 	icon_state = "froghat"
 	item_state = "froghat"
 
-/obj/item/clothing/head/yogs/froghat/Initialize()
+/obj/item/clothing/head/yogs/froghat/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/fishingbonus,10)
 
@@ -184,3 +184,20 @@
 	item_state = "axolotl"
 	attack_verb = list("nibbles", "splats")
 	squeak_override = list('sound/effects/axolotl.ogg' = 1)
+
+/obj/item/storage/box/boxta
+	name = "Inmate belongings box"
+	desc = "A criminals' belongings, returned upon their release. Just stop killing people."
+
+/obj/item/storage/box/boxta/PopulateContents() 
+	. = ..()
+	new /obj/item/clothing/neck/falcon(src)
+	new /obj/item/clothing/head/fedora/gtrim_fedora(src)
+
+/obj/item/bedsheet/pride
+	name = "Pride Bedsheet"
+	desc = "A very prideful queen size bedsheet. How you are carrying all that weight is beyond me though."
+	mob_overlay_icon = 'icons/mob/clothing/neck/sheets.dmi'
+	icon_state = "sheetpride"
+	item_state = "sheetpride"
+	randomizable = FALSE

@@ -7,7 +7,7 @@
 	var/on = FALSE
 	var/retrievalmessage = "Retrieval complete."
 
-/obj/item/implant/teleporter/Initialize()
+/obj/item/implant/teleporter/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	.=..()
 
@@ -71,10 +71,8 @@
 	src.forceMove(target)
 	imp_in = target
 	target.implants += src
-	if(activated)
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.Grant(target)
+	for(var/datum/action/A as anything in actions)
+		A.Grant(target)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.sec_hud_set_implants()

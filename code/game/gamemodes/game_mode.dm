@@ -100,7 +100,7 @@
 
 	if(!report)
 		report = !CONFIG_GET(flag/no_intercept_report)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
+	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(display_roundstart_logout_report)), ROUNDSTART_LOGOUT_REPORT_TIME)
 
 	if(CONFIG_GET(flag/reopen_roundstart_suicide_roles))
 		var/delay = CONFIG_GET(number/reopen_roundstart_suicide_roles_delay)
@@ -108,7 +108,7 @@
 			delay = (delay SECONDS)
 		else
 			delay = (4 MINUTES) //default to 4 minutes if the delay isn't defined.
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/reopen_roundstart_suicide_roles), delay)
+		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(reopen_roundstart_suicide_roles)), delay)
 
 	if(SSdbcore.Connect())
 		var/list/to_set  = list()
@@ -128,7 +128,7 @@
 			query_round_game_mode.Execute()
 			qdel(query_round_game_mode)
 	if(report)
-		addtimer(CALLBACK(src, .proc/send_intercept, 0), rand(waittime_l, waittime_h))
+		addtimer(CALLBACK(src, PROC_REF(send_intercept), 0), rand(waittime_l, waittime_h))
 	generate_station_goals()
 	gamemode_ready = TRUE
 	return TRUE
@@ -183,7 +183,7 @@
 	var/list/antag_candidates = list()
 
 	for(var/mob/living/carbon/human/H in living_crew)
-		if(H.client && H.client.prefs.allow_midround_antag && !is_centcom_level(H.z))
+		if(H.client && !is_centcom_level(H.z))
 			antag_candidates += H
 
 	if(!antag_candidates)
@@ -310,10 +310,13 @@
 
 	intercepttext += generate_station_goal_report()
 
-	print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
-	priority_announce("A summary has been copied and printed to all communications consoles.\n\n[generate_station_trait_announcement()]", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
-	if(GLOB.security_level < SEC_LEVEL_BLUE)
-		set_security_level(SEC_LEVEL_BLUE)
+	if(CONFIG_GET(flag/auto_blue_alert))
+		print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
+		priority_announce("A summary has been copied and printed to all communications consoles.\n\n[generate_station_trait_announcement()]", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
+		if(GLOB.security_level < SEC_LEVEL_BLUE)
+			set_security_level(SEC_LEVEL_BLUE)
+	else
+		print_command_report(intercepttext, "Central Command Status Summary")
 		
 /*
  * Generate a list of station goals available to purchase to report to the crew.
@@ -360,7 +363,7 @@
 			var/mob/dead/new_player/player = M
 			if(player.ready == PLAYER_READY_TO_PLAY)
 				if(!is_banned_from(player.ckey, list(antag_flag, ROLE_SYNDICATE)) && !QDELETED(player))
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/antag_token_used, C.ckey, C), 5 MINUTES + 10 SECONDS)
+					addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(antag_token_used), C.ckey, C), 5 MINUTES + 10 SECONDS)
 					player.mind.token_picked = TRUE
 					return player.mind
 
@@ -416,7 +419,7 @@
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY && player.check_preferences())
-			if(player.client.prefs.yogtoggles & QUIET_ROUND)
+			if(player.client.prefs.read_preference(/datum/preference/toggle/quiet_mode))
 				player.mind.quiet_round = TRUE
 			else
 				players += player

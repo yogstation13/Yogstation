@@ -214,7 +214,7 @@
 /proc/random_skin_tone()
 	return pick(GLOB.skin_tones)
 
-GLOBAL_LIST_INIT(skin_tones, list(
+GLOBAL_LIST_INIT(skin_tones, sortList(list(
 	"albino",
 	"caucasian1",
 	"caucasian2",
@@ -227,7 +227,22 @@ GLOBAL_LIST_INIT(skin_tones, list(
 	"indian",
 	"african1",
 	"african2"
-	))
+	)))
+
+GLOBAL_LIST_INIT(skin_tone_names, list(
+	"african1" = "Medium brown",
+	"african2" = "Dark brown",
+	"albino" = "Albino",
+	"arab" = "Light brown",
+	"asian1" = "Ivory",
+	"asian2" = "Beige",
+	"caucasian1" = "Porcelain",
+	"caucasian2" = "Light peach",
+	"caucasian3" = "Peach",
+	"indian" = "Brown",
+	"latino" = "Light beige",
+	"mediterranean" = "Olive",
+))
 
 GLOBAL_LIST_EMPTY(species_list)
 
@@ -263,6 +278,10 @@ GLOBAL_LIST_EMPTY(species_list)
 		return 0
 	var/user_loc = user.loc
 
+	if(target)
+		LAZYADD(user.do_afters, target)
+		LAZYADD(target.targeted_by, user)
+
 	var/drifting = 0
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
 		drifting = 1
@@ -285,6 +304,11 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(QDELETED(user) || QDELETED(target))
 			. = 0
 			break
+
+		if(target && !(target in user.do_afters))
+			. = FALSE
+			break
+
 		if(uninterruptible)
 			continue
 
@@ -297,6 +321,10 @@ GLOBAL_LIST_EMPTY(species_list)
 			break
 	if (progress)
 		qdel(progbar)
+
+	if(!QDELETED(target))
+		LAZYREMOVE(user.do_afters, target)
+		LAZYREMOVE(target.targeted_by, user)
 
 
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action

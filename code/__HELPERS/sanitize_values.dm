@@ -6,6 +6,13 @@
 			return number
 	return default
 
+/proc/sanitize_float(number, min=0, max=1, accuracy=1, default=0)
+	if(isnum(number))
+		number = round(number, accuracy)
+		if(min <= number && number <= max)
+			return number
+	return default
+
 /proc/sanitize_text(text, default="")
 	if(istext(text))
 		return text
@@ -79,7 +86,7 @@
 
 	return crunch + .
 
-/proc/sanitize_ooccolor(color)
+/proc/sanitize_color(color)
 	if(length(color) != length_char(color))
 		CRASH("Invalid characters in color '[color]'")
 	var/list/HSL = rgb2hsl(hex2num(copytext(color, 2, 4)), hex2num(copytext(color, 4, 6)), hex2num(copytext(color, 6, 8)))

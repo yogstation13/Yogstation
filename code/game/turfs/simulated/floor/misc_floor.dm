@@ -18,7 +18,7 @@
 	floor_tile = /obj/item/stack/tile/circuit
 	var/on = TRUE
 
-/turf/open/floor/circuit/Initialize()
+/turf/open/floor/circuit/Initialize(mapload)
 	SSmapping.nuke_tiles += src
 	update_icon()
 	. = ..()
@@ -168,7 +168,7 @@
 /turf/open/floor/clockwork/Bless() //Who needs holy blessings when you have DADDY RATVAR?
 	return
 
-/turf/open/floor/clockwork/Initialize()
+/turf/open/floor/clockwork/Initialize(mapload)
 	. = ..()
 	if(uses_overlay)
 		new /obj/effect/temp_visual/ratvar/floor(src)
@@ -259,6 +259,7 @@
 	baseturfs = /turf/open/floor/clockwork/reebe
 	uses_overlay = FALSE
 	planetary_atmos = TRUE
+	made_baseturf = TRUE // prevent spacing reebe
 
 /turf/open/floor/bluespace
 	slowdown = -1

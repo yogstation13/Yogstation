@@ -1,13 +1,13 @@
 /obj/item/clothing/head/yogs/goatpelt
 	name = "goat pelt hat"
-	desc = "Fuzzy and Warm!"
+	desc = "Fuzzy and warm!"
 	icon_state = "goatpelt"
 	item_state = "goatpelt"
 
 
 /obj/item/clothing/head/yogs/goatpelt/king
 	name = "king goat pelt hat"
-	desc = "Fuzzy, Warm and Robust!"
+	desc = "Fuzzy, warm and robust!"
 	icon_state = "goatpelt"
 	item_state = "goatpelt"
 	color = "#ffd700"
@@ -18,7 +18,7 @@
 
 /obj/item/clothing/head/yogs/goatpelt/king/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if (slot == SLOT_HEAD)
+	if (slot == ITEM_SLOT_HEAD)
 		user.faction |= "goat"
 
 /obj/item/clothing/head/yogs/goatpelt/king/dropped(mob/living/carbon/human/user)
@@ -59,5 +59,5 @@
 
 /obj/item/clothing/head/yogs/goatpope/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if (slot == SLOT_HEAD)
+	if (slot == ITEM_SLOT_HEAD)
 		user.faction |= "goat"

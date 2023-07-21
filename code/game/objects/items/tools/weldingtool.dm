@@ -42,7 +42,7 @@
 	wound_bonus = 10
 	bare_wound_bonus = 15
 
-/obj/item/weldingtool/Initialize()
+/obj/item/weldingtool/Initialize(mapload)
 	. = ..()
 	create_reagents(max_fuel)
 	reagents.add_reagent(/datum/reagent/fuel, max_fuel)
@@ -118,28 +118,26 @@
 			playsound(src, 'sound/items/lighter/light.ogg', 50, 2)
 			return TRUE
 
-	if(isOn() && user.a_intent == INTENT_HELP && ishuman(M))
+	if(user.a_intent == INTENT_HELP && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 		if(affecting?.status == BODYPART_ROBOTIC)
 			if(affecting.brute_dam <= 0)
 				to_chat(user, span_warning("[affecting] is already in good condition!"))
 				return FALSE
+			if(INTERACTING_WITH(user, H))
+				return FALSE
+			if(!tool_start_check(user, 1))
+				return FALSE
 			user.changeNext_move(CLICK_CD_MELEE)
 			user.visible_message(span_notice("[user] starts to fix some of the dents on [M]'s [affecting.name]."), span_notice("You start fixing some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
-			heal_robo_limb(src, H, user, 15, 0)
+			heal_robo_limb(src, H, user, 10, 0, 1, 50)
 			user.visible_message(span_notice("[user] fixes some of the dents on [M]'s [affecting.name]."), span_notice("You fix some of the dents on [M == user ? "your" : "[M]'s"] [affecting.name]."))
 			return TRUE
 
 	if(!isOn() || user.a_intent == INTENT_HARM || !attempt_initiate_surgery(src, M, user))
 		..()
 
-/obj/item/weldingtool/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal, burn_heal)
-	if(I.use_tool(H, user, 2 SECONDS, volume=50, amount=1))
-		if(item_heal_robotic(H, user, brute_heal, burn_heal))
-			return heal_robo_limb(I, H, user, brute_heal, burn_heal)
-		return TRUE
-	
 /obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	. = ..()
 	if(!proximity)
@@ -157,7 +155,7 @@
 
 		if(isliving(O))
 			var/mob/living/L = O
-			if(L.IgniteMob())
+			if(L.ignite_mob())
 				message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(L)] on fire with [src] at [AREACOORD(user)]")
 				log_game("[key_name(user)] set [key_name(L)] on fire with [src] at [AREACOORD(user)]")
 
@@ -171,9 +169,10 @@
 	update_icon()
 
 /obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, robo_check)
-	target.add_overlay(GLOB.welding_sparks)
+	var/mutable_appearance/sparks = mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
+	target.add_overlay(sparks)
 	. = ..()
-	target.cut_overlay(GLOB.welding_sparks)
+	target.cut_overlay(sparks)
 
 // Returns the amount of fuel in the welder
 /obj/item/weldingtool/proc/get_fuel()

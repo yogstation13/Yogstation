@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		computer = holder.loc
 
 /datum/computer_file/program/pdamessager/proc/explode() // Why does NT have bombs in their modular tablets?
-	var/atom/source
+	var/obj/source
 	if(computer)
 		source = computer
 	else if(istype(holder.loc, /obj/item/modular_computer))
@@ -60,6 +60,8 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 
 	if(source)
 		explosion(source, -1, 0, 3, 4)
+		if(!QDELETED(source) && source.obj_integrity > source.integrity_failure) // Ensure the screen breaks
+			source.take_damage(source.obj_integrity - source.integrity_failure, BRUTE, "", TRUE, null, 100) // 100 armor pen
 	else
 		throw EXCEPTION("No computer or hard drive to detonate!")
 	
@@ -223,6 +225,8 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		var/datum/computer_file/program/pdamessager/recipient = locate(href_list["target"]) in GLOB.NTPDAs
 		if(istype(recipient))
 			send_message(msg, recipient, usr)
+			var/mob/living/user = usr
+			user.log_talk(msg, LOG_PDA, tag="as [username] to user [recipient.username]")
 		else
 			computer.visible_message(span_danger("Your message could not be delivered."), null, null, 1)
 			computer.visible_message(span_danger("Recipient does not exist!"), null, null, 1)
@@ -275,7 +279,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 				next_message = world.time + 1 SECONDS
 				send_message(message, recipient, usr)
 				var/mob/living/user = usr
-				user.log_talk(message, LOG_CHAT, tag="as [username] to user [recipient.username]")
+				user.log_talk(message, LOG_PDA, tag="as [username] to user [recipient.username]")
 				return TRUE
 			else // @everyone
 				if(!(ACCESS_LAWYER in computer.GetAccess()))
@@ -283,7 +287,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 				next_message = world.time + 10 SECONDS
 				send_message_everyone(message, usr)
 				var/mob/living/user = usr
-				user.log_talk(message, LOG_CHAT, tag="as [username] to everyone")
+				user.log_talk(message, LOG_PDA, tag="as [username] to everyone")
 				return TRUE
 
 		

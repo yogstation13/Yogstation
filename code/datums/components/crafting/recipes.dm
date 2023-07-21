@@ -147,7 +147,7 @@
 				/obj/item/stack/rods = 6)
 	time = 10 SECONDS
 	category = CAT_MISC
-	
+
 /datum/crafting_recipe/motorized_wheelchair
 	name = "Motorized Wheelchair"
 	result = /obj/vehicle/ridden/wheelchair/motorized
@@ -227,6 +227,12 @@
 	name = "Toy Sword"
 	reqs = list(/obj/item/light/bulb = 1, /obj/item/stack/cable_coil = 1, /obj/item/stack/sheet/plastic = 4)
 	result = /obj/item/toy/sword
+	category = CAT_MISC
+
+/datum/crafting_recipe/toysword
+	name = "Toy Sledgehammer"
+	reqs = list(/obj/item/light/bulb = 2, /obj/item/stack/cable_coil = 1, /obj/item/stack/sheet/plastic = 4)
+	result = /obj/item/twohanded/vxtvulhammer/toy/pirate // not authentic!!!!
 	category = CAT_MISC
 
 /datum/crafting_recipe/toybat
@@ -620,7 +626,7 @@
 	name = "Refill Atropine Autoinjector"
 	result = /obj/item/reagent_containers/autoinjector/medipen/atropine
 	time = 4 SECONDS
-	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine,
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/atropine = 1,
 				/datum/reagent/medicine/atropine = 10)
 	category = CAT_MEDICAL
 
@@ -628,7 +634,7 @@
 	name = "Refill Maintenance Pump-Up"
 	result = /obj/item/reagent_containers/autoinjector/medipen/pumpup
 	time = 4 SECONDS
-	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup,
+	reqs = list(/obj/item/reagent_containers/autoinjector/medipen/pumpup = 1,
 				/datum/reagent/drug/pumpup = 15)
 	category = CAT_MEDICAL
 
@@ -677,17 +683,18 @@
 /datum/crafting_recipe/ointment
 	name = "Ointment"
 	result = /obj/item/stack/medical/ointment
-	reqs = list(/obj/item/reagent_containers/glass/beaker/waterbottle = 1,
-				/datum/reagent/ash = 10,
-				/datum/reagent/medicine/c2/lenturi = 15)
+	reqs = list(/datum/reagent/water = 10,
+				/datum/reagent/ash = 10)
+	tools = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/antisepticointment
 	name = "Antiseptic Ointment"
 	result = /obj/item/stack/medical/ointment/antiseptic
-	reqs = list(/obj/item/reagent_containers/glass/beaker/waterbottle = 1,
+	reqs = list(/datum/reagent/water = 10,
 				/datum/reagent/ash = 10,
-				/datum/reagent/space_cleaner/sterilizine = 15)
+				/datum/reagent/silver = 10)
+	tools = list(/obj/item/weldingtool)
 	category = CAT_MEDICAL
 
 /datum/crafting_recipe/advancedmesh

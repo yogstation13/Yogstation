@@ -24,6 +24,7 @@
  *		Toy Daggers
  *		Turn Tracker
  *		ceremonial Rod of Asclepius
+ *		cult sickles
  */
 
 
@@ -45,7 +46,7 @@
 	item_state = "balloon-empty"
 
 
-/obj/item/toy/balloon/Initialize()
+/obj/item/toy/balloon/Initialize(mapload)
 	. = ..()
 	create_reagents(10)
 
@@ -355,7 +356,7 @@
 		icon_state = "his_grace_awakened"
 		to_chat(user, span_warning("You wind up [src], it begins to rumble."))
 		active = TRUE
-		addtimer(CALLBACK(src, .proc/stopRumble), 600)
+		addtimer(CALLBACK(src, PROC_REF(stopRumble)), 600)
 	else
 		to_chat(user, "[src] is already active.")
 
@@ -381,6 +382,40 @@
 
 /obj/item/twohanded/dualsaber/toy/IsReflect()//Stops Toy Dualsabers from reflecting energy projectiles
 	return 0
+
+/*
+ * Subtype of Vxtvul Hammer
+ */
+/obj/item/twohanded/vxtvulhammer/toy
+	name = "toy sledgehammer"
+	desc = "A Donksoft motorized hammer with realistic flashing lights and speakers."
+	force = 0
+	force_wielded = 0 // after recreating the dozen procs this thing has I decided it should be a subtype
+	throwforce = 0
+	resistance_flags = NONE
+	armour_penetration = 0
+	block_chance = 0
+	w_class = WEIGHT_CLASS_NORMAL
+	toy = TRUE
+	var/pirated = FALSE // knockoff brand!
+
+/obj/item/twohanded/vxtvulhammer/toy/Initialize(mapload)
+	. = ..()
+	if(pirated || prob(10)) // man i got scammed!
+		pirated = TRUE
+		name = "toy pirate sledgehammer"
+		desc += " This one looks different from the ones you see on commercials..."
+		icon_state = "vxtvul_hammer_pirate0-0"
+		update_icon()
+
+/obj/item/twohanded/vxtvulhammer/toy/update_icon()
+	if(!pirated)
+		icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
+	else
+		icon_state = "vxtvul_hammer[wielded]-[supercharged]"
+
+/obj/item/twohanded/vxtvulhammer/toy/pirate
+	pirated = TRUE
 
 /obj/item/toy/katana
 	name = "replica katana"
@@ -420,7 +455,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	var/ash_type = /obj/effect/decal/cleanable/ash
 
-/obj/item/toy/snappop/proc/pop_burst(var/n=3, var/c=1)
+/obj/item/toy/snappop/proc/pop_burst(n=3, c=1)
 	var/datum/effect_system/spark_spread/s = new()
 	s.set_up(n, c, src)
 	s.start()
@@ -453,9 +488,9 @@
 /obj/effect/decal/cleanable/ash/snappop_phoenix
 	var/respawn_time = 300
 
-/obj/effect/decal/cleanable/ash/snappop_phoenix/Initialize()
+/obj/effect/decal/cleanable/ash/snappop_phoenix/Initialize(mapload)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/respawn), respawn_time)
+	addtimer(CALLBACK(src, PROC_REF(respawn)), respawn_time)
 
 /obj/effect/decal/cleanable/ash/snappop_phoenix/proc/respawn()
 	new /obj/item/toy/snappop/phoenix(get_turf(src))
@@ -688,7 +723,7 @@
 	var/obj/machinery/computer/holodeck/holo = null // Holodeck cards should not be infinite
 	var/list/cards = list()
 
-/obj/item/toy/cards/deck/Initialize()
+/obj/item/toy/cards/deck/Initialize(mapload)
 	. = ..()
 	populate_deck()
 
@@ -864,7 +899,7 @@
 	if(!(cardUser.mobility_flags & MOBILITY_USE))
 		return
 	var/O = src
-	var/choice = show_radial_menu(usr,src, handradial, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 36, require_near = TRUE)
+	var/choice = show_radial_menu(usr,src, handradial, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 	if(!choice)
 		return FALSE
 	var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(cardUser.loc)
@@ -1379,7 +1414,7 @@ obj/item/toy/turn_tracker
 	var/toysay = "What the fuck did you do?"
 	var/toysound = 'sound/machines/click.ogg'
 
-/obj/item/toy/figure/Initialize()
+/obj/item/toy/figure/Initialize(mapload)
 	. = ..()
 	desc = "A \"Space Life\" brand [src]."
 
@@ -1599,7 +1634,7 @@ obj/item/toy/turn_tracker
 	icon_state = "ling"
 	toysay = ";g absorbing AI in traitor maint!"
 
-/obj/item/toy/figure/ling/Initialize()
+/obj/item/toy/figure/ling/Initialize(mapload)
 	. = ..()
 	if(prob(25))
 		icon_state = "ling[rand(1,3)]"
@@ -1679,3 +1714,77 @@ obj/item/toy/turn_tracker
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	icon_state = "asclepius_dormant"
+
+/*
+ * Cult sickles
+ */
+
+/obj/item/gun/magic/sickly_blade_toy
+	name = "plastic replica blade"
+	desc = "A sickly green crescent blade, decorated with a plastic eye. You feel like this was cheaply made. A Donk Co logo is on the hilt."
+	icon = 'icons/obj/eldritch.dmi'
+	icon_state = "eldritch_blade"
+	item_state = "eldritch_blade"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 0
+	throwforce = 0
+	throw_speed = 3
+	throw_range = 5
+	w_class = WEIGHT_CLASS_NORMAL
+	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "rends")
+	recharge_rate = 3 // seconds
+	ammo_type = /obj/item/ammo_casing/magic/sickly_blade_toy
+	fire_sound = 'sound/effects/snap.ogg'
+	item_flags = NEEDS_PERMIT // doesn't include NOBLUDGEON for obvious reasons
+
+/obj/item/gun/magic/sickly_blade_toy/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	to_chat(user, span_warning("The [name] grumbles quietly. It is not yet ready to fire again!"))
+
+/obj/item/ammo_casing/magic/sickly_blade_toy
+	projectile_type = /obj/item/projectile/sickly_blade_toy
+	harmful = FALSE
+/obj/item/projectile/sickly_blade_toy
+	name = "hook"
+	icon_state = "hook"
+	icon = 'icons/obj/lavaland/artefacts.dmi'
+	pass_flags = PASSTABLE
+	damage = 0
+	knockdown = 0
+	immobilize = 0 // there's no escape
+	range = 5 // hey now cowboy
+	armour_penetration = 0 // no piercing shields
+	knockdown = 0
+	hitsound = 'sound/effects/gravhit.ogg'
+
+/obj/item/projectile/sickly_blade_toy/on_hit(atom/target, blocked)
+	. = ..()
+	if(ismovable(target) && blocked != 100)
+		var/atom/movable/A = target
+		A.visible_message(span_danger("[A] is snagged by [firer]'s hook!"))
+	return 
+
+/obj/item/gun/magic/sickly_blade_toy/attack(mob/living/M, mob/living/user)
+	if((IS_HERETIC(user) || IS_HERETIC_MONSTER(user)))
+		to_chat(user,span_danger("You feel a pulse of the old gods lash out at your mind, laughing how you're using a fake blade!")) //the outer gods need a lil chuckle every now and then
+	return ..()
+
+/obj/item/gun/magic/sickly_blade_toy/rust_toy
+	name = "rustic replica blade"
+	desc = "This crescent blade is decrepit, wasting to dust. Yet still it bites, catching flesh with jagged, rotten foam."
+	icon_state = "rust_blade"
+	item_state = "rust_blade"
+
+/obj/item/gun/magic/sickly_blade_toy/ash_toy
+	name = "metallic replica blade"
+	desc = "A hunk of molten soft injection plastic warped to cinders and slag. Unmade and remade countless times over, it aspires to be more than it is."
+	icon_state = "ash_blade"
+	item_state = "ash_blade"
+
+/obj/item/gun/magic/sickly_blade_toy/flesh_toy
+	name = "flesh-like replica blade"
+	desc = "A blade of strange material born from a fleshwarped creature. Keenly aware, it seeks to spread the excruciating comedy it has endured from dread origins."
+	icon_state = "flesh_blade"
+	item_state = "flesh_blade"

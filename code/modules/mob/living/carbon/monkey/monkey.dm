@@ -100,13 +100,6 @@
 			. += "Chemical Storage: [changeling.chem_charges]/[changeling.chem_storage]"
 			. += "Absorbed DNA: [changeling.absorbedcount]"
 
-/mob/living/carbon/monkey/verb/removeinternal()
-	set name = "Remove Internals"
-	set category = "IC"
-	internal = null
-	return
-
-
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
 	if(mind && is_monkey(mind))
 		return TRUE
@@ -165,9 +158,9 @@
 /mob/living/carbon/monkey/angry
 	aggressive = TRUE
 
-/mob/living/carbon/monkey/angry/Initialize()
+/mob/living/carbon/monkey/angry/Initialize(mapload)
 	. = ..()
 	if(prob(10))
 		var/obj/item/clothing/head/helmet/justice/escape/helmet = new(src)
-		equip_to_slot_or_del(helmet,SLOT_HEAD)
+		equip_to_slot_or_del(helmet,ITEM_SLOT_HEAD)
 		helmet.attack_self(src) // todo encapsulate toggle

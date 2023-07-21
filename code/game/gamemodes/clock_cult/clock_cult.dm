@@ -55,7 +55,8 @@ Credit where due:
 	if(M.mind)
 		if(ishuman(M) && (M.mind.assigned_role in list("Captain", "Chaplain")))
 			return FALSE
-		if(M.mind.enslaved_to && !is_servant_of_ratvar(M.mind.enslaved_to))
+		var/mob/living/master = M.mind.enslaved_to?.resolve()
+		if(master && !iscultist(master))
 			return FALSE
 		if(M.mind.unconvertable)
 			return FALSE
@@ -205,9 +206,13 @@ Credit where due:
 	if(!M)
 		return 0
 	to_chat(M, "<span class='bold large_brass'>You are a servant of Ratvar, the Clockwork Justiciar!</span>")
+	to_chat(M, span_brass("He came to you in a dream, whispering softly in your ear, showing you visions of a majestic city, covered in brass. You were not the first to be reached out to by him, and you will not be the last."))
+	to_chat(M, span_brass("However, you are one of the few worthy enough to have found his home, hidden among the stars, and as such you shall be rewarded for your dedication. One last trial remains."))
+	to_chat(M, span_brass("Start the ark to weaken the veil and ensure the return of your lord; but beware, as there are those that seek to hinder you. They are unenlightened, show them Ratvars light to help them gain understanding and join your cause."))
 	to_chat(M, span_brass("You have approximately <b>[ark_time]</b> minutes until the Ark activates."))
 	to_chat(M, span_brass("Unlock <b>Script</b> scripture by converting a new servant."))
 	to_chat(M, span_brass("<b>Application</b> scripture will be unlocked halfway until the Ark's activation."))
+	to_chat(M, span_brass("Soon, Ratvar shall create a new City of Cogs, and forge a golden age for all sentient beings."))
 	M.playsound_local(get_turf(M), 'sound/ambience/antag/clockcultalr.ogg', 100, FALSE, pressure_affected = FALSE)
 	return 1
 
@@ -218,7 +223,7 @@ Credit where due:
 	L.equipOutfit(/datum/outfit/servant_of_ratvar)
 	var/obj/item/clockwork/slab/S = new
 	var/slot = "At your feet"
-	var/list/slots = list("In your left pocket" = SLOT_L_STORE, "In your right pocket" = SLOT_R_STORE, "In your backpack" = SLOT_IN_BACKPACK, "On your belt" = SLOT_BELT)
+	var/list/slots = list("In your left pocket" = ITEM_SLOT_LPOCKET, "In your right pocket" = ITEM_SLOT_RPOCKET, "In your backpack" = ITEM_SLOT_BACKPACK, "On your belt" = ITEM_SLOT_BELT)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		slot = H.equip_in_one_of_slots(S, slots)
@@ -260,18 +265,6 @@ Credit where due:
 	working for this entity and utilizing highly-advanced technology to cross the great distance at will. If they should turn out to be a credible threat, the task falls on you and \
 	your crew to dispatch it in a timely manner."
 
-/datum/game_mode/proc/update_servant_icons_added(datum/mind/M)
-	var/datum/atom_hud/antag/A = GLOB.huds[ANTAG_HUD_CLOCKWORK]
-	A.join_hud(M.current)
-	set_antag_hud(M.current, "clockwork")
-
-/datum/game_mode/proc/update_servant_icons_removed(datum/mind/M)
-	var/datum/atom_hud/antag/A = GLOB.huds[ANTAG_HUD_CLOCKWORK]
-	A.leave_hud(M.current)
-	set_antag_hud(M.current, null)
-
-
-
 //Servant of Ratvar outfit
 /datum/outfit/servant_of_ratvar
 	name = "Servant of Ratvar"
@@ -283,7 +276,9 @@ Credit where due:
 	belt = /obj/item/storage/belt/utility/servant //Take this off and pour it into a toolbox if you want
 	backpack_contents = list(/obj/item/storage/box/engineer = 1, \
 	/obj/item/clockwork/replica_fabricator = 1, /obj/item/stack/tile/brass/fifty = 1, /obj/item/paper/servant_primer = 1)
-	id = /obj/item/pda
+
+	var/obj/item/id_type = /obj/item/card/id
+	var/obj/item/modular_computer/pda_type = /obj/item/modular_computer/tablet/pda/preset/basic
 	var/plasmaman //We use this to determine if we should activate internals in post_equip()
 
 /datum/outfit/servant_of_ratvar/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -295,23 +290,29 @@ Credit where due:
 		plasmaman = TRUE
 
 /datum/outfit/servant_of_ratvar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/obj/item/card/id/W = new(H)
-	var/obj/item/pda/PDA = H.wear_id
-	W.assignment = "Assistant"
-	W.originalassignment = "Assistant"
-	W.access += ACCESS_MAINT_TUNNELS
-	W.registered_name = H.real_name
-	W.update_label()
-	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
-		H.internal = H.get_item_for_held_index(2)
-		H.update_internals_hud_icon(1)
-	PDA.hidden = TRUE
-	PDA.owner = H.real_name
-	PDA.ownjob = "Assistant"
-	PDA.update_label()
-	PDA.id_check(H, W)
-	H.sec_hud_set_ID()
+	var/obj/item/card/id/C = new id_type()
+	if(istype(C))
+		C.access += ACCESS_MAINT_TUNNELS
+		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
+		C.registered_name = H.real_name
+		C.assignment = "Assistant"
+		C.originalassignment = "Assistant"
+		if(H.age)
+			C.registered_age = H.age
+		C.update_label()
+		H.sec_hud_set_ID()
 
+	var/obj/item/modular_computer/PDA = new pda_type()
+	if(istype(PDA))
+		PDA.InsertID(C)
+		H.equip_to_slot_if_possible(PDA, ITEM_SLOT_ID)
+
+		PDA.update_label()
+		PDA.update_icon()
+		PDA.update_filters()
+
+	if(plasmaman && !visualsOnly) //If we need to breathe from the plasma tank, we should probably start doing that
+		H.open_internals(H.get_item_for_held_index(2))
 
 //This paper serves as a quick run-down to the cult as well as a changelog to refer to.
 //Check strings/clockwork_cult_changelog.txt for the changelog, and update it when you can!
@@ -349,7 +350,7 @@ Credit where due:
 	<hr>\
 	<b>Good luck!</b>"
 
-/obj/item/paper/servant_primer/Initialize()
+/obj/item/paper/servant_primer/Initialize(mapload)
 	. = ..()
 	var/changelog = world.file2list("strings/clockwork_cult_changelog.txt")
 	var/changelog_contents = ""

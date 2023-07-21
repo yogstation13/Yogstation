@@ -1,10 +1,8 @@
 /datum/job/cook
 	title = "Cook"
 	description = "Serve food, cook meat, keep the crew fed."
-	flag = COOK
 	orbit_icon = "utensils"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 1
@@ -24,7 +22,9 @@
 	display_order = JOB_DISPLAY_ORDER_COOK
 	minimal_character_age = 18 //My guy they just a cook
 
-	changed_maps = list("OmegaStation", "EclipseStation")
+	departments_list = list(
+		/datum/job_department/service,
+	)
 
 	mail_goodies = list(
 		///obj/item/storage/box/ingredients/random = 80,
@@ -33,19 +33,12 @@
 		/obj/item/reagent_containers/food/condiment/rice = 20,
 		/obj/item/reagent_containers/food/condiment/enzyme = 15,
 		/obj/item/reagent_containers/food/condiment/soymilk = 15,
-		/obj/item/kitchen/knife = 4,
-		/obj/item/kitchen/knife/butcher = 2
+		/obj/item/kitchen/knife/butcher = 2,
+		/obj/item/taster = 2,
+		/obj/item/sharpener = 1
 	)
 
 	smells_like = "delicious food"
-
-/datum/job/cook/proc/OmegaStationChanges()
-	added_access = list()
-	base_access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
-
-/datum/job/cook/proc/EclipseStationChanges()
-	total_positions = 4
-	spawn_positions = 3
 
 /datum/outfit/job/cook
 	name = "Cook"
@@ -78,7 +71,7 @@
 	var/list/possible_boxes = subtypesof(/obj/item/storage/box/ingredients)
 	var/chosen_box = pick(possible_boxes)
 	var/obj/item/storage/box/I = new chosen_box(src)
-	H.equip_to_slot_or_del(I,SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(I,ITEM_SLOT_BACKPACK)
 	var/datum/martial_art/cqc/under_siege/justacook = new
 	justacook.teach(H)
 

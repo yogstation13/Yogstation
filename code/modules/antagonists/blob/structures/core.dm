@@ -11,6 +11,7 @@
 	resistance_flags = LAVA_PROOF
 
 /obj/structure/blob/core/Initialize(mapload, client/new_overmind = null, placed = 0)
+	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 	GLOB.blob_cores += src
 	START_PROCESSING(SSobj, src)
 	GLOB.poi_list |= src
@@ -19,7 +20,7 @@
 		return INITIALIZE_HINT_QDEL
 	if(overmind)
 		update_icon()
-	. = ..()
+	return ..()
 
 /obj/structure/blob/core/scannerreport()
 	return "Directs the blob's expansion, gradually expands, and sustains nearby blob spores and blobbernauts."
@@ -48,7 +49,7 @@
 	var/damage = 50 - 10 * severity //remember, the core takes half brute damage, so this is 20/15/10 damage based on severity
 	take_damage(damage, BRUTE, BOMB, 0)
 
-/obj/structure/blob/core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, overmind_reagent_trigger = 1)
+/obj/structure/blob/core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0, overmind_reagent_trigger = 1)
 	. = ..()
 	if(obj_integrity > 0)
 		if(overmind) //we should have an overmind, but...
@@ -67,10 +68,6 @@
 		if(DT_PROB(2.5, delta_time))
 			B.change_to(/obj/structure/blob/shield/core, overmind)
 	..()
-
-/obj/structure/blob/core/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/stationloving, FALSE, TRUE)
 
 /obj/structure/blob/core/onTransitZ(old_z, new_z)
 	if(overmind && is_station_level(new_z))

@@ -49,7 +49,7 @@
 					break
 
 		if(!available_surgeries.len)
-			to_chat(user, span_warning("You can't preform any surgeries on [M]'s [parse_zone(selected_zone)]!"))
+			to_chat(user, span_warning("You can't perform any surgeries on [M]'s [parse_zone(selected_zone)]!"))
 			return TRUE
 		
 		var/P = show_radial_menu(user, M, radial_list, radius = 40, require_near = TRUE, tooltips = TRUE)
@@ -79,7 +79,7 @@
 				var/datum/surgery/procedure = new S.type(M, selected_zone, affecting)
 				user.visible_message("[user] prepares to operate on [M]'s [parse_zone(selected_zone)].", \
 					span_notice("You prepare to operate on [M]'s [parse_zone(selected_zone)]."))
-				playsound(get_turf(M), 'sound/items/handling/cloth_drop.ogg', 30, TRUE, falloff = 1)
+				playsound(get_turf(M), 'sound/items/handling/cloth_drop.ogg', 30, TRUE, falloff_exponent = 1)
 				log_combat(user, M, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
 				if(S.self_operable || user != M)
 					procedure.next_step(user, user.a_intent)

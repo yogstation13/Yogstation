@@ -128,7 +128,7 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
-	
+
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)
 		new /obj/item/radio/off(src)
@@ -188,17 +188,6 @@
 /obj/item/storage/box/plasmaman/miner/PopulateContents() //mining box for plasmemes
 	new /obj/item/clothing/mask/gas/explorer(src)
 	new /obj/item/tank/internals/plasmaman/belt/full(src)
-	new /obj/item/crowbar/red(src)
-	new /obj/item/gps/mining(src)
-	new /obj/item/reagent_containers/autoinjector/medipen(src)
-
-// IPC survival box
-/obj/item/storage/box/ipc/PopulateContents()
-	new /obj/item/tank/internals/ipc_coolant(src)
-	new /obj/item/reagent_containers/autoinjector/medipen(src)
-
-/obj/item/storage/box/ipc/miner/PopulateContents() //IPC mining box
-	new /obj/item/tank/internals/ipc_coolant(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/gps/mining(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
@@ -292,13 +281,6 @@
 /obj/item/storage/box/vials/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/glass/bottle/vial(src)
-
-/obj/item/storage/box/vials/large
-	name = "box of large vials"
-
-/obj/item/storage/box/vials/large/PopulateContents()
-	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/glass/bottle/vial/large(src)
 
 /obj/item/storage/box/vials/bluespace
 	name = "box of bluespace vials"
@@ -485,12 +467,12 @@
 
 /obj/item/storage/box/donkpockets
 	name = "box of donk-pockets"
-	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
+	desc = "<B>Instructions:</B> <I>Heat in microwave.</I>"
 	icon_state = "donkpocketbox"
 	illustration=null
 	var/donktype = /obj/item/reagent_containers/food/snacks/donkpocket
 
-/obj/item/storage/box/donkpockets/ComponentInitialize()
+/obj/item/storage/box/donkpockets/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/donkpocket))
@@ -536,7 +518,7 @@
 	illustration = null
 	var/cube_type = /obj/item/reagent_containers/food/snacks/monkeycube
 
-/obj/item/storage/box/monkeycubes/ComponentInitialize()
+/obj/item/storage/box/monkeycubes/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -555,7 +537,7 @@
 	desc = "Waffle Co. brand mouse cubes. Just add water and a dash of subterfuge!"
 	cube_type = /obj/item/reagent_containers/food/snacks/monkeycube/mouse/syndicate
 
-/obj/item/storage/box/monkeycubes/syndicate/mice/ComponentInitialize()
+/obj/item/storage/box/monkeycubes/syndicate/mice/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 24
@@ -571,7 +553,7 @@
 	icon_state = "monkeycubebox"
 	illustration = null
 
-/obj/item/storage/box/gorillacubes/ComponentInitialize()
+/obj/item/storage/box/gorillacubes/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
@@ -587,7 +569,7 @@
 	icon_state = "monkeycubebox"
 	illustration = null
 
-/obj/item/storage/box/mixedcubes/ComponentInitialize()
+/obj/item/storage/box/mixedcubes/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
@@ -597,8 +579,9 @@
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/goat(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/sheep(src)
-		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
 		new /obj/item/reagent_containers/food/snacks/monkeycube/chicken(src)
+	for(var/i in 1 to 4)
+		new /obj/item/reagent_containers/food/snacks/monkeycube/cow(src)
 
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
@@ -669,6 +652,15 @@
 /obj/item/storage/box/firingpins/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/firing_pin(src)
+
+/obj/item/storage/box/secfiringpins
+	name = "box of mindshield firing pins"
+	desc = "A box full of mindshield firing pins, to allow newly-developed firearms to operate."
+	illustration = "id"
+
+/obj/item/storage/box/secfiringpins/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/firing_pin/implant/mindshield(src)
 
 /obj/item/storage/box/lasertagpins
 	name = "box of laser tag firing pins"
@@ -743,7 +735,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "spbox"
 
-/obj/item/storage/box/snappops/ComponentInitialize()
+/obj/item/storage/box/snappops/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(list(/obj/item/toy/snappop))
@@ -763,7 +755,7 @@
 	drop_sound = 'sound/items/handling/matchbox_drop.ogg'
 	pickup_sound =  'sound/items/handling/matchbox_pickup.ogg'
 
-/obj/item/storage/box/matches/ComponentInitialize()
+/obj/item/storage/box/matches/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 10
@@ -786,7 +778,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 
-/obj/item/storage/box/lights/ComponentInitialize()
+/obj/item/storage/box/lights/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 21
@@ -891,7 +883,7 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/reagent_containers/autoinjector/medipen(src)
-	
+
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PREMIUM_INTERNALS))
 		new /obj/item/flashlight/flare(src)
 		new /obj/item/radio/off(src)
@@ -902,7 +894,7 @@
 	icon_state = "rubbershot_box"
 	illustration = null
 
-/obj/item/storage/box/rubbershot/ComponentInitialize()
+/obj/item/storage/box/rubbershot/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -918,7 +910,7 @@
 	icon_state = "lethalshot_box"
 	illustration = null
 
-/obj/item/storage/box/lethalshot/ComponentInitialize()
+/obj/item/storage/box/lethalshot/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -934,7 +926,7 @@
 	icon_state = "breachershot_box"
 	illustration = null
 
-/obj/item/storage/box/breacherslug/ComponentInitialize()
+/obj/item/storage/box/breacherslug/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -950,7 +942,7 @@
 	icon_state = "rubbershot_box"
 	illustration = null
 
-/obj/item/storage/box/beanbag/ComponentInitialize()
+/obj/item/storage/box/beanbag/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
@@ -1045,7 +1037,7 @@
 	illustration = "fruit"
 	var/theme_name
 
-/obj/item/storage/box/ingredients/Initialize()
+/obj/item/storage/box/ingredients/Initialize(mapload)
 	. = ..()
 	if(theme_name)
 		name = "[name] ([theme_name])"
@@ -1310,7 +1302,7 @@
 		/obj/item/stack/sheet/mineral/bananium/fifty = 1)
 	generate_items_inside(items_inside,src)
 
-/obj/item/storage/box/materials/ComponentInitialize()
+/obj/item/storage/box/materials/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 200

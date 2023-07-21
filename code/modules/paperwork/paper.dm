@@ -32,6 +32,7 @@
 	drop_sound = 'sound/items/handling/paper_drop.ogg'
 	pickup_sound =  'sound/items/handling/paper_pickup.ogg'
 	grind_results = list(/datum/reagent/cellulose = 3)
+	fryable = TRUE
 
 	var/info = "" // What's prewritten on the paper. Appears first and is a special snowflake callback to how paper used to work.
 	var/coloroverride // A hexadecimal as a string that, if set, overrides the font color of the whole document. Used by photocopiers
@@ -45,6 +46,7 @@
 	var/contact_poison // Reagent ID to transfer on contact
 	var/contact_poison_volume = 0
 	var/next_write_time = 0 // prevent crash exploit
+	var/timesstamped = 0 //prevent error exploit
 
 
 /obj/item/paper/pickup(user)
@@ -69,7 +71,7 @@
 			affecting?.receive_damage(1)
 
 
-/obj/item/paper/Initialize()
+/obj/item/paper/Initialize(mapload)
 	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
@@ -137,7 +139,7 @@
 		if(!spam_flag)
 			spam_flag = TRUE
 			playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)
-			addtimer(CALLBACK(src, .proc/reset_spamflag), 20)
+			addtimer(CALLBACK(src, PROC_REF(reset_spamflag)), 20)
 
 
 /obj/item/paper/attack_ai(mob/living/silicon/ai/user)
@@ -298,7 +300,8 @@
 			return
 
 	else if(istype(P, /obj/item/stamp))
-
+		if(timesstamped > 25)
+			return
 		if(!in_range(src, user))
 			return
 
@@ -314,6 +317,7 @@
 		add_overlay(stampoverlay)
 
 		to_chat(user, span_notice("You stamp the paper with your rubber stamp."))
+		timesstamped += 1
 
 	if(P.is_hot())
 		if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10))
@@ -321,7 +325,7 @@
 								span_userdanger("You miss the paper and accidentally light yourself on fire!"))
 			user.dropItemToGround(P)
 			user.adjust_fire_stacks(1)
-			user.IgniteMob()
+			user.ignite_mob()
 			return
 
 		if(!(in_range(user, src))) //to prevent issues as a result of telepathically lighting a paper
@@ -372,7 +376,7 @@
 
 /obj/item/paper/construction
 
-/obj/item/paper/construction/Initialize()
+/obj/item/paper/construction/Initialize(mapload)
 	. = ..()
 	color = pick("FF0000", "#33cc33", "#ffb366", "#551A8B", "#ff80d5", "#4d94ff")
 
@@ -380,7 +384,7 @@
  * Natural paper
  */
 
-/obj/item/paper/natural/Initialize()
+/obj/item/paper/natural/Initialize(mapload)
 	. = ..()
 	color = "#FFF5ED"
 

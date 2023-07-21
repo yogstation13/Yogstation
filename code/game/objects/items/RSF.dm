@@ -34,7 +34,7 @@ RSF
 	var/list/allowed_surfaces = list(/obj/structure/table) 	///A list of surfaces that we are allowed to place things on.
 	var/action_type = "Dispensing" 	///The verb that describes what we're doing, for use in text
 
-/obj/item/rsf/Initialize()
+/obj/item/rsf/Initialize(mapload)
 	. = ..()
 	to_dispense = cost_by_item[1]
 	dispense_cost = cost_by_item[to_dispense]
@@ -74,7 +74,7 @@ RSF
 	var/cost = 0
 	//Warning, prepare for bodgecode
 	while(islist(target))//While target is a list we continue the loop
-		var/picked = show_radial_menu(user, src, formRadial(target), custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
+		var/picked = show_radial_menu(user, src, formRadial(target), custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE)
 		if(!check_menu(user) || picked == null)
 			return
 		for(var/emem in target)//Back through target agian
@@ -171,7 +171,7 @@ RSF
 	var/cooldown = 0 	///Holds a copy of world.time taken the last time the synth gained a charge. Used with cooldowndelay to track when the next charge should be gained
 	var/cooldowndelay = 10 	///The period between recharges
 
-/obj/item/rsf/cookiesynth/Initialize()
+/obj/item/rsf/cookiesynth/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 

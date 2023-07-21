@@ -6,7 +6,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/photobook/ComponentInitialize()
+/obj/item/storage/photobook/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -16,13 +16,13 @@
 
 /obj/item/storage/bag/photo
 	name = "Photo Bag"
-	desc = "This Satchel can be used to store all your photo related items."
+	desc = "This satchel can be used to store all your photo related items."
 	icon = 'yogstation/icons/obj/toy.dmi'
 	icon_state = "photobag"
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 
-/obj/item/storage/bag/photo/ComponentInitialize()
+/obj/item/storage/bag/photo/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL

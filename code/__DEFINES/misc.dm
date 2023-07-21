@@ -31,12 +31,12 @@
 #define BACK_LAYER				11
 #define NECK_LAYER				10
 #define HAIR_LAYER				9		//TODO: make part of head layer?
-#define FACEMASK_LAYER			8
-#define HEAD_LAYER				7
-#define HANDCUFF_LAYER			6
-#define LEGCUFF_LAYER			5
-#define HANDS_LAYER				4
-#define BODY_FRONT_LAYER		3
+#define HANDCUFF_LAYER			8
+#define LEGCUFF_LAYER			7
+#define HANDS_LAYER				6
+#define BODY_FRONT_LAYER		5
+#define FACEMASK_LAYER			4
+#define HEAD_LAYER				3
 #define HALO_LAYER				2		//blood cult ascended halo, because there's currently no better solution for adding/removing
 #define FIRE_LAYER				1		//If you're on fire
 #define TOTAL_LAYERS			28		//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
@@ -192,42 +192,40 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 #define GHOST_ORBIT_SQUARE		"square"
 #define GHOST_ORBIT_PENTAGON	"pentagon"
 
+#define GHOST_ORBIT_DEFAULT_OPTION GHOST_ORBIT_CIRCLE
+
 //Ghost showing preferences:
-#define GHOST_ACCS_NONE		1
-#define GHOST_ACCS_DIR		50
-#define GHOST_ACCS_FULL		100
+#define GHOST_ACCS_NONE "Default sprites"
+#define GHOST_ACCS_DIR "Only directional sprites"
+#define GHOST_ACCS_FULL "Full accessories"
 
-#define GHOST_ACCS_NONE_NAME		"default sprites"
-#define GHOST_ACCS_DIR_NAME			"only directional sprites"
-#define GHOST_ACCS_FULL_NAME		"full accessories"
+#define GHOST_ACCS_DEFAULT_OPTION GHOST_ACCS_FULL
 
-#define GHOST_ACCS_DEFAULT_OPTION	GHOST_ACCS_FULL
+#define GHOST_OTHERS_SIMPLE "White ghosts"
+#define GHOST_OTHERS_DEFAULT_SPRITE "Default sprites"
+#define GHOST_OTHERS_THEIR_SETTING "Their sprites"
 
-GLOBAL_LIST_INIT(ghost_accs_options, list(GHOST_ACCS_NONE, GHOST_ACCS_DIR, GHOST_ACCS_FULL)) //So save files can be sanitized properly.
-
-#define GHOST_OTHERS_SIMPLE 			1
-#define GHOST_OTHERS_DEFAULT_SPRITE		50
-#define GHOST_OTHERS_THEIR_SETTING 		100
-
-#define GHOST_OTHERS_SIMPLE_NAME 			"white ghost"
-#define GHOST_OTHERS_DEFAULT_SPRITE_NAME 	"default sprites"
-#define GHOST_OTHERS_THEIR_SETTING_NAME 	"their setting"
-
-#define GHOST_OTHERS_DEFAULT_OPTION			GHOST_OTHERS_THEIR_SETTING
+#define GHOST_OTHERS_DEFAULT_OPTION GHOST_OTHERS_THEIR_SETTING
 
 #define GHOST_MAX_VIEW_RANGE_DEFAULT 10
 #define GHOST_MAX_VIEW_RANGE_MEMBER 14
 
 
-GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DEFAULT_SPRITE, GHOST_OTHERS_THEIR_SETTING)) //Same as ghost_accs_options.
-
 //pda fonts
-#define MONO		"Monospaced"
-#define VT			"VT323"
-#define ORBITRON	"Orbitron"
-#define SHARE		"Share Tech Mono"
+#define PDA_FONT_MONO "Monospaced"
+#define PDA_FONT_VT "VT323"
+#define PDA_FONT_ORBITRON "Orbitron"
+#define PDA_FONT_SHARE "Share Tech Mono"
 
-GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
+GLOBAL_LIST_INIT(pda_styles, list(PDA_FONT_MONO, PDA_FONT_VT, PDA_FONT_ORBITRON, PDA_FONT_SHARE))
+
+//pda colours
+#define PDA_COLOR_NORMAL "Normal"
+#define PDA_COLOR_TRANSPARENT "Transparent"
+#define PDA_COLOR_PIPBOY "Pip Boy"
+#define PDA_COLOR_RAINBOW "Rainbow"
+
+GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_COLOR_PIPBOY, PDA_COLOR_RAINBOW))
 
 /////////////////////////////////////
 // atom.appearence_flags shortcuts //
@@ -357,11 +355,6 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define BEAT_SLOW 2
 #define BEAT_NONE 0
 
-//https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
-#define MOUSE_OPACITY_TRANSPARENT 0
-#define MOUSE_OPACITY_ICON 1
-#define MOUSE_OPACITY_OPAQUE 2
-
 //world/proc/shelleo
 #define SHELLEO_ERRORLEVEL 1
 #define SHELLEO_STDOUT 2
@@ -373,7 +366,6 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define SECURITY_TRUSTED 3
 
 //Dummy mob reserve slots
-#define DUMMY_HUMAN_SLOT_PREFERENCES "dummy_preference_preview"
 #define DUMMY_HUMAN_SLOT_ADMIN "admintools"
 #define DUMMY_HUMAN_SLOT_MANIFEST "dummy_manifest_generation"
 
@@ -403,13 +395,23 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define STACK_CHECK_ADJACENT "adjacent" //checks if there is an object of the result type within one tile
 
 //text files
+/// File location for brain damage traumas
 #define BRAIN_DAMAGE_FILE "traumas.json"
+/// File location for AI ion laws
 #define ION_FILE "ion_laws.json"
+/// File location for pirate names
 #define PIRATE_NAMES_FILE "pirates.json"
+/// File location for redpill questions
 #define REDPILL_FILE "redpill.json"
+/// File location for wanted posters messages
 #define WANTED_FILE "wanted_message.json"
+/// File location for really dumb suggestions memes
+#define VISTA_FILE "steve.json"
+/// File location for flesh wound descriptions
 #define FLESH_SCAR_FILE "wounds/flesh_scar_desc.json"
+/// File location for bone wound descriptions
 #define BONE_SCAR_FILE "wounds/bone_scar_desc.json"
+/// File location for scar wound descriptions
 #define SCAR_LOC_FILE "wounds/scar_loc.json"
 
 //Fullscreen overlay resolution in tiles.
@@ -452,6 +454,9 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 #define CAMERA_SEE_GHOSTS_ORBIT 2
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
+
+/// Possible value of [/atom/movable/buckle_lying]. If set to a different (positive-or-zero) value than this, the buckling thing will force a lying angle on the buckled.
+#define NO_BUCKLE_LYING -1
 
 #define AREASELECT_CORNERA "corner A"
 #define AREASELECT_CORNERB "corner B"

@@ -295,13 +295,26 @@
 	icon = 'icons/obj/food/soupsalad.dmi'
 	icon_state = "wishsoup"
 
-/obj/item/reagent_containers/food/snacks/customizable/soup/Initialize()
+/obj/item/reagent_containers/food/snacks/customizable/soup/Initialize(mapload)
 	. = ..()
 	eatverb = pick("slurp","sip","inhale","drink")
 
+/obj/item/reagent_containers/food/snacks/customizable/sushi
+	name = "sushi"
+	desc = "A roll of sushi."
+	ingMax = 4
+	slices_num = 4
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "vegetariansushiroll"
+	foodtype = VEGETABLES
+	slice_path = /obj/item/reagent_containers/food/snacks/sushislice
 
-
-
+/obj/item/reagent_containers/food/snacks/sushislice
+	name = "sushi slice"
+	desc = "A slice of sushi."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "vegetariansushislice"
+	foodtype = VEGETABLES
 
 // Bowl ////////////////////////////////////////////////
 

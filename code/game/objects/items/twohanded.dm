@@ -46,7 +46,7 @@
 	else //something wrong
 		name = "[initial(name)]"
 	update_icon()
-	if(user.get_item_by_slot(SLOT_BACK) == src)
+	if(user.get_item_by_slot(ITEM_SLOT_BACK) == src)
 		user.update_inv_back()
 	else
 		user.update_inv_hands()
@@ -199,14 +199,13 @@
 
 /obj/item/twohanded/required/equipped(mob/user, slot)
 	..()
-	var/slotbit = slotdefine2slotbit(slot)
-	if(slot_flags & slotbit)
+	if(slot_flags & slot)
 		var/datum/O = user.is_holding_item_of_type(/obj/item/twohanded/offhand)
 		if(!O || QDELETED(O))
 			return
 		qdel(O)
 		return
-	if(slot == SLOT_HANDS)
+	if(slot == ITEM_SLOT_HANDS)
 		wield(user)
 	else
 		unwield(user)
@@ -242,7 +241,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	force_wielded = 19
-	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
+	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut", "axed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 	max_integrity = 200
@@ -251,7 +250,7 @@
 	wound_bonus = -15
 	bare_wound_bonus = 20
 
-/obj/item/twohanded/fireaxe/Initialize()
+/obj/item/twohanded/fireaxe/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
 
@@ -267,13 +266,19 @@
 	. = ..()
 	if(!proximity)
 		return
-	if(wielded) //destroys windows and grilles in one hit
+	if(wielded && !QDELETED(A)) //destroys windows and grilles in one or two hits, most of the time
 		if(istype(A, /obj/structure/window))
 			var/obj/structure/window/W = A
-			W.take_damage(W.max_integrity*2, BRUTE, MELEE, 0)
+			W.take_damage(W.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 		else if(istype(A, /obj/structure/grille))
 			var/obj/structure/grille/G = A
-			G.take_damage(G.max_integrity*2, BRUTE, MELEE, 0)
+			G.take_damage(G.max_integrity*2, BRUTE, MELEE, FALSE, null, armour_penetration)
+		else if(istype(A, /obj/machinery/door)) //Nines hits for reinforced airlock, seven for normal
+			var/obj/machinery/door/D = A
+			D.take_damage((force+25), BRUTE, MELEE, FALSE, null, armour_penetration)
+		else if(istype(A, /obj/structure/door_assembly)) //Two hits for frames left behind
+			var/obj/machinery/door/D = A
+			D.take_damage((force+25), BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /*
  * Metal Hydrogen Axe
@@ -289,6 +294,87 @@
 	return
 
 /*
+ * Energy Fire Axe
+ */
+
+/obj/item/twohanded/fireaxe/energy
+	name = "energy fire axe"
+	desc = "A massive, two handed, energy-based hardlight axe capable of cutting through solid metal. 'Glory to atmosia' is carved on the side of the handle."
+	icon = 'icons/obj/weapons/energy.dmi'
+	icon_state = "energy-fireaxe0"
+	force_wielded = 25
+	armour_penetration = 50 // Probably doesn't care much for armor given how it can destroy solid metal structures
+	block_chance = 50 // Big handle and large flat energy blade, good for blocking things
+	heat = 1800 // It's a FIRE axe
+	w_class = WEIGHT_CLASS_NORMAL
+	var/w_class_on = WEIGHT_CLASS_BULKY
+	hitsound = "swing_hit"
+	wieldsound = 'sound/weapons/saberon.ogg'
+	unwieldsound = 'sound/weapons/saberoff.ogg'
+	light_system = MOVABLE_LIGHT
+	light_range = 6 //This is NOT a stealthy weapon
+	light_color = "#ff4800" //red-orange
+	light_on = FALSE
+	sharpness = SHARP_NONE
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/twohanded/fireaxe/energy/wield(mob/living/carbon/M) //Specific wield () to switch hitsounds.
+	..()
+	if(wielded)
+		sharpness = SHARP_EDGED
+		w_class = w_class_on
+		hitsound = 'sound/weapons/blade1.ogg'
+		START_PROCESSING(SSobj, src)
+		set_light_on(TRUE)
+
+/obj/item/twohanded/fireaxe/energy/unwield() //Specific unwield () to switch hitsounds.
+	sharpness = initial(sharpness)
+	w_class = initial(w_class)
+	..()
+	hitsound = "swing_hit"
+	STOP_PROCESSING(SSobj, src)
+	set_light_on(FALSE)
+
+/obj/item/twohanded/fireaxe/energy/attack(mob/living/M, mob/living/user)
+	..()
+	M.ignite_mob() // Ignites you if you're flammable
+
+/obj/item/twohanded/fireaxe/energy/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	if(wielded && !QDELETED(A)) // Does x2 damage against inanimate objects like machines, structures, mechs, etc
+		if(isobj(A) && !isitem(A))
+			var/obj/O = A
+			O.take_damage(force, BRUTE, MELEE, FALSE, null, armour_penetration)
+
+/obj/item/twohanded/fireaxe/energy/update_icon()
+	icon_state = "energy-fireaxe[wielded]"
+	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_TYPE_BLOOD)
+
+/obj/item/twohanded/fireaxe/energy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type)
+	if(!wielded)
+		return 0 // large energy blade can only block stuff if it's actually on
+	return ..()
+
+/obj/item/twohanded/fireaxe/energy/ignition_effect(atom/A, mob/user)
+	if(!wielded)
+		return "[user] tries to light [A] with [src] while it's off. Nothing happens."
+	playsound(loc, hitsound, get_clamped_volume(), 1, -1)
+	return "[user] casually raises [src] up to [user.p_their()] face and lights [A]. Hot damn."
+
+/obj/item/twohanded/fireaxe/energy/is_hot()
+	if(!wielded)
+		return FALSE // Shouldn't be able to ignite stuff if it's off
+	..()
+
+/obj/item/twohanded/fireaxe/energy/process()
+	if(!wielded)
+		STOP_PROCESSING(SSobj, src)
+		return PROCESS_KILL
+	open_flame(heat)
+
+/*
  * Double-Bladed Energy Swords - Cheridan
  */
 /obj/item/twohanded/dualsaber
@@ -297,7 +383,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	name = "double-bladed energy sword"
-	desc = "Handle with care."
+	desc = "A more powerful version on the energy sword, it is more capable of blocking energy projectiles than its single bladed counterpart. 'At last we will have revenge' is carved on the side of the handle."
 	force = 3
 	throwforce = 5
 	throw_speed = 3
@@ -349,7 +435,7 @@
 		user.visible_message(span_suicide("[user] begins beating [user.p_them()]self to death with \the [src]'s handle! It probably would've been cooler if [user.p_they()] turned it on first!"))
 	return BRUTELOSS
 
-/obj/item/twohanded/dualsaber/Initialize()
+/obj/item/twohanded/dualsaber/Initialize(mapload)
 	. = ..()
 	if(LAZYLEN(possible_colors))
 		saber_color = pick(possible_colors)
@@ -387,7 +473,7 @@
 		impale(user)
 		return
 	if((wielded) && prob(50))
-		INVOKE_ASYNC(src, .proc/jedi_spin, user)
+		INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
 
 /obj/item/twohanded/dualsaber/proc/jedi_spin(mob/living/user)
 	for(var/i in list(NORTH,SOUTH,EAST,WEST,EAST,SOUTH,NORTH,SOUTH,EAST,WEST,EAST,SOUTH))
@@ -444,7 +530,7 @@
 
 /obj/item/twohanded/dualsaber/IsReflect()
 	if(wielded)
-		return 1
+		return TRUE
 
 /obj/item/twohanded/dualsaber/ignition_effect(atom/A, mob/user)
 	// same as /obj/item/melee/transforming/energy, mostly
@@ -459,7 +545,7 @@
 	playsound(loc, hitsound, get_clamped_volume(), 1, -1)
 	add_fingerprint(user)
 	// Light your candles while spinning around the room
-	INVOKE_ASYNC(src, .proc/jedi_spin, user)
+	INVOKE_ASYNC(src, PROC_REF(jedi_spin), user)
 
 /obj/item/twohanded/dualsaber/green
 	possible_colors = list("green")
@@ -484,6 +570,16 @@
 			to_chat(user, span_warning("It's starting to look like a triple rainbow - no, nevermind."))
 	else
 		return ..()
+
+/obj/item/twohanded/dualsaber/makeshift
+	name = "makeshift double-bladed energy sword"
+	desc = "Two energy swords taped crudely together. 'at last we finally get some revenge' is scribbled on the side with crayon."
+	force_wielded = 27 //total of 30 to be equal to an esword, it's literally just two duct taped together
+
+/obj/item/twohanded/dualsaber/makeshift/IsReflect()//only 50% chance to reflect, so it still has the cool effect, but not 100% chance
+	if(prob(50))
+		return ..()
+	return FALSE
 
 //spears
 /obj/item/twohanded/spear
@@ -516,7 +612,7 @@
 	wound_bonus = -15
 	bare_wound_bonus = 15
 
-/obj/item/twohanded/spear/Initialize()
+/obj/item/twohanded/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 100, 70) //decent in a pinch, but pretty bad.
 
@@ -524,7 +620,7 @@
 	user.visible_message(span_suicide("[user] begins to sword-swallow \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
-/obj/item/twohanded/spear/Initialize()
+/obj/item/twohanded/spear/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/jousting)
 
@@ -612,6 +708,10 @@
 		qdel(src)
 
 // CHAINSAW
+
+/datum/action/item_action/startchainsaw
+	name = "Pull The Starting Cord"
+
 /obj/item/twohanded/required/chainsaw
 	name = "chainsaw"
 	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
@@ -634,7 +734,7 @@
 	actions_types = list(/datum/action/item_action/startchainsaw)
 	var/on = FALSE
 
-/obj/item/twohanded/required/chainsaw/Initialize()
+/obj/item/twohanded/required/chainsaw/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 30, 100, 0, 'sound/weapons/chainsawhit.ogg', TRUE)
 
@@ -668,7 +768,7 @@
 		user.update_inv_hands()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/twohanded/required/chainsaw/doomslayer
 	name = "THE GREAT COMMUNICATOR"
@@ -690,7 +790,7 @@
 	force_on = 30
 	icon_name = "demon"
 
-/obj/item/twohanded/required/chainsaw/demon/Initialize()
+/obj/item/twohanded/required/chainsaw/demon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/lifesteal, 30)
 
@@ -828,7 +928,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
-/obj/item/twohanded/vibro_weapon/Initialize()
+/obj/item/twohanded/vibro_weapon/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 20, 105)
 
@@ -848,6 +948,19 @@
 
 /obj/item/twohanded/vibro_weapon/update_icon()
 	icon_state = "hfrequency[wielded]"
+
+/obj/item/twohanded/vibro_weapon/wizard
+	desc = "A blade that was mastercrafted by a legendary blacksmith. Its' enchantments let it slash through anything."
+	force = 8
+	throwforce = 20
+	wound_bonus = 20
+	bare_wound_bonus = 25
+
+/obj/item/twohanded/vibro_weapon/wizard/wizard/attack_self(mob/user, modifiers)
+	if(!iswizard(user))
+		balloon_alert(user, "you're too weak!")
+		return
+	return ..()
 
 /*
  * Bone Axe
@@ -924,8 +1037,8 @@
 	. = ..()
 	if(!wielded)
 		return
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/unwield)
-	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(unwield))
+	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate))
 	listeningTo = user
 	user.visible_message("[user] holds [src] up to [user.p_their()] eyes.","You hold [src] up to your eyes.")
 	item_state = "binoculars_wielded"
@@ -973,6 +1086,14 @@
  * Vxtvul Hammer
  */
 
+/datum/action/item_action/charge_hammer
+	name = "Charge the Blast Pads"
+
+/datum/action/item_action/charge_hammer/Trigger()
+	var/obj/item/twohanded/vxtvulhammer/vxtvulhammer = target
+	if(istype(vxtvulhammer))
+		vxtvulhammer.charge_hammer(owner)
+
 /obj/item/twohanded/vxtvulhammer
 	icon = 'icons/obj/weapons/misc.dmi'
 	icon_state = "vxtvul_hammer0-0"
@@ -982,7 +1103,7 @@
 	desc = "A relic sledgehammer with charge packs wired to two blast pads on its head. \
 			While wielded in two hands, the user can charge a massive blow that will shatter construction and hurl bodies."
 	force = 4 //It's heavy as hell
-	force_wielded = 24 
+	force_wielded = 24
 	armour_penetration = 50 //Designed for shattering walls in a single blow, I don't think it cares much about armor
 	throwforce = 18
 	attack_verb = list("attacked", "hit", "struck", "bludgeoned", "bashed", "smashed")
@@ -993,21 +1114,24 @@
 	max_integrity = 200
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	w_class = WEIGHT_CLASS_HUGE
+	hitsound = 'sound/effects/hammerhitbasic.ogg'
 	slot_flags = ITEM_SLOT_BACK
 	actions_types = list(/datum/action/item_action/charge_hammer)
 	light_system = MOVABLE_LIGHT
-	light_color = LIGHT_COLOR_LIGHT_CYAN
+	light_color = LIGHT_COLOR_HALOGEN
 	light_range = 2
 	light_power = 2
 	var/datum/effect_system/spark_spread/spark_system //It's a surprise tool that'll help us later
 	var/charging = FALSE
 	var/supercharged = FALSE
+	var/toy = FALSE
 
-/obj/item/twohanded/vxtvulhammer/Initialize() //For the sparks when you begin to charge it
+/obj/item/twohanded/vxtvulhammer/Initialize(mapload) //For the sparks when you begin to charge it
 	. = ..()
 	spark_system = new
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+	set_light_on(FALSE)
 
 /obj/item/twohanded/vxtvulhammer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK || !wielded) //Doesn't work against ranged or if it's not wielded
@@ -1051,10 +1175,11 @@
 	supercharged = !supercharged
 	if(supercharged)
 		set_light_on(TRUE) //Glows when charged
-		force = initial(force) + (wielded ? force_wielded : 0) + 12 //12 additional damage for a total of 40 has to be a massively irritating check because of how force_wielded works
-		armour_penetration = 100
+		if(!toy)
+			force = initial(force) + (wielded ? force_wielded : 0) + 12 //12 additional damage for a total of 40 has to be a massively irritating check because of how force_wielded works
+			armour_penetration = 100
 	else
-		set_light_on(TRUE)
+		set_light_on(FALSE)
 		force = initial(force) + (wielded ? force_wielded : 0)
 		armour_penetration = initial(armour_penetration)
 	update_icon()
@@ -1068,7 +1193,7 @@
 	else
 		charging = TRUE
 		to_chat(user, span_notice("You begin charging the weapon, concentration flowing into it..."))
-		user.visible_message(span_warning("[user] flicks the hammer on, tilting their head down as if in thought."))
+		user.visible_message(span_warning("[user] flicks the hammer on, tilting [user.p_their()] head down as if in thought."))
 		spark_system.start() //Generates sparks when you charge
 		if(!do_mob(user, user, ispreternis(user)? 5 SECONDS : 6 SECONDS))
 			if(!charging) //So no duplicate messages
@@ -1079,7 +1204,7 @@
 		if(!charging) //No charging for you if you cheat
 			return //Has to double-check return because attacking or one-handing won't actually proc !do_mob, so the channel will seem to continue despite the message that pops out, but this actually ensures that it won't charge despite attacking or one-handing
 		to_chat(user, span_notice("You complete charging the weapon."))
-		user.visible_message(span_warning("[user] looks up as their hammer begins to crackle and hum!"))
+		user.visible_message(span_warning("[user] looks up as [user.p_their()] hammer begins to crackle and hum!"))
 		playsound(loc, 'sound/magic/lightningshock.ogg', 60, TRUE) //Mainly electric crack
 		playsound(loc, 'sound/effects/magic.ogg', 40, TRUE) //Reverb undertone
 		supercharge()
@@ -1091,21 +1216,24 @@
 		return
 	if(isfloorturf(target)) //So you don't just lose your supercharge if you miss and wack the floor. No I will NOT let people space with this thing
 		return
+
 	if(charging) //Needs a special snowflake check if you hit something that isn't a mob
 		if(ismachinery(target) || isstructure(target) || ismecha(target))
 			to_chat(user, span_notice("You flip the switch off after your blow."))
 			user.visible_message(span_warning("[user] flicks the hammer off after striking [target]!"))
 			charging = FALSE
+
 	if(supercharged)
 		var/turf/target_turf = get_turf(target) //Does the nice effects first so whatever happens to what's about to get clapped doesn't affect it
 		var/obj/effect/temp_visual/kinetic_blast/K = new /obj/effect/temp_visual/kinetic_blast(target_turf)
 		K.color = color
-		playsound(loc, 'sound/effects/gravhit.ogg', 80, TRUE) //Mainly this sound
+		playsound(loc, 'sound/effects/powerhammerhit.ogg', 65, FALSE) //Mainly this sound
 		playsound(loc, 'sound/effects/explosion3.ogg', 20, TRUE) //Bit of a reverb
 		supercharge() //At start so it doesn't give an unintentional message if you hit yourself
-		if(ismachinery(target))
+
+		if(ismachinery(target) && !toy)
 			var/obj/machinery/machine = target
-			machine.take_damage(machine.max_integrity * 2) //Should destroy machines in one hit
+			machine.take_damage(machine.max_integrity * 2, armour_penetration = 100) //Should destroy machines in one hit
 			if(istype(target, /obj/machinery/door))
 				for(var/obj/structure/door_assembly/door in target_turf) //Will destroy airlock assembly left behind, but drop the parts
 					door.take_damage(door.max_integrity * 2)
@@ -1115,30 +1243,41 @@
 				for(var/obj/structure/light_construct/light in target_turf) //Also light frames because why not
 					light.take_damage(light.max_integrity * 2)
 			user.visible_message(span_danger("The hammer thunders against the [target.name], demolishing it!"))
-		if(isstructure(target))
+
+		else if(isstructure(target) && !toy)
 			var/obj/structure/struct = target
-			struct.take_damage(struct.max_integrity * 2) //Destroy structures in one hit too
+			struct.take_damage(struct.max_integrity * 2, armour_penetration = 100) //Destroy structures in one hit too
 			if(istype(target, /obj/structure/table))
 				for(var/obj/structure/table_frame/platform in target_turf)
-					platform.take_damage(platform.max_integrity * 2) //Destroys table frames left behind
+					platform.take_damage(platform.max_integrity * 2, armour_penetration = 100) //Destroys table frames left behind
 			user.visible_message(span_danger("The hammer thunders against the [target.name], destroying it!"))
-		if(iswallturf(target))
+
+		else if(iswallturf(target) && !toy)
 			var/turf/closed/wall/fort = target
 			fort.dismantle_wall(1) //Deletes the wall but drop the materials, just like destroying a machine above
 			user.visible_message(span_danger("The hammer thunders against the [target.name], shattering it!"))
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 50, TRUE) //Otherwise there's no sound for hitting the wall, since it's just dismantled
-		if(ismecha(target))
+
+		else if(ismecha(target) && !toy)
 			var/obj/mecha/mech = target
-			mech.take_damage(mech.max_integrity/3) //A third of its max health is dealt as an untyped damage, in addition to the normal damage of the weapon (which has high AP)
+			mech.take_damage(mech.max_integrity/3, armour_penetration = armour_penetration) //A third of its max health is dealt as an untyped damage, in addition to the normal damage of the weapon (which has high AP)
 			user.visible_message(span_danger("The hammer thunders as it massively dents the plating of the [target.name]!"))
-		if(isliving(target))
+
+		else if(isliving(target))
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
 			var/mob/living/victim = target
-			victim.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
-			victim.Paralyze(2 SECONDS)
-			user.visible_message(span_danger("The hammer thunders as it viscerally strikes [target.name]!"))
-			to_chat(victim, span_userdanger("Agony sears through you as [user]'s blow cracks your body off its feet!"))
-			victim.emote("scream")
+			if(toy)
+				ADD_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
+				victim.safe_throw_at(throw_target, rand(1,2), 3, callback = CALLBACK(src, PROC_REF(afterimpact), victim))
+			else
+				victim.throw_at(throw_target, 15, 5) //Same distance as maxed out power fist with three extra force
+				victim.Paralyze(2 SECONDS)
+				user.visible_message(span_danger("The hammer thunders as it viscerally strikes [target.name]!"))
+				to_chat(victim, span_userdanger("Agony sears through you as [user]'s blow cracks your body off its feet!"))
+				victim.emote("scream")
+
+/obj/item/twohanded/vxtvulhammer/proc/afterimpact(mob/living/victim)
+	REMOVE_TRAIT(victim, TRAIT_IMPACTIMMUNE, "Toy Hammer")
 
 /obj/item/twohanded/vxtvulhammer/pirate //Exact same but different text and sprites
 	icon_state = "vxtvul_hammer_pirate0-0"
@@ -1227,3 +1366,109 @@
 			target.Paralyze(40)
 		else
 			return TRUE
+
+/obj/item/twohanded/bigspoon
+	name = "comically large spoon"
+	desc = "For when you're only allowed one spoonful of something."
+	icon = 'yogstation/icons/obj/kitchen.dmi'
+	mob_overlay_icon = 'yogstation/icons/mob/clothing/back.dmi'
+	icon_state = "bigspoon"
+	item_state = "bigspoon0"
+	lefthand_file = 'yogstation/icons/mob/inhands/weapons/bigspoon_lefthand.dmi'
+	righthand_file = 'yogstation/icons/mob/inhands/weapons/bigspoon_righthand.dmi'
+	force = 2 //It's a big unwieldy for one hand
+	force_wielded = 16 //cleaver is 15 and sharp, this at least gets to be on-par with a nullrod
+	sharpness = SHARP_NONE //issa spoon
+	armour_penetration = -50 //literally couldn't possibly be a worse weapon for hitting armour
+	throwforce = 1 //it's terribly weighted, what do you expect?
+	hitsound = 'sound/items/trayhit1.ogg'
+	attack_verb = list("scooped", "bopped", "spooned", "wacked")
+	block_chance = 30 //Only works in melee, but I bet your ass you could raise its handle to deflect a sword
+	wound_bonus = -10
+	bare_wound_bonus = -15
+	materials = list(/datum/material/iron=18000)
+	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = ITEM_SLOT_BACK
+
+/obj/item/twohanded/bigspoon/update_icon()
+	hitsound = wielded ? 'yogstation/sound/weapons/bat_hit.ogg' : 'sound/items/trayhit1.ogg' //big donk if wielded
+	item_state = "bigspoon[wielded]" //i don't know why it's item_state rather than icon_state like every other wielded weapon
+	return
+
+
+/*
+Broom
+*/
+
+#define BROOM_PUSH_LIMIT 20
+/obj/item/twohanded/broom
+	name = "broom"
+	desc = "This is my BROOMSTICK! It can be used manually or braced with two hands to sweep items as you move."
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "broom0"
+	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/custodial_righthand.dmi'
+	force = 8
+	throwforce = 10
+	throw_speed = 3
+	throw_range = 7
+	w_class = WEIGHT_CLASS_BULKY
+	force_wielded = 4
+	attack_verb = list("swept", "brushed off", "bludgeoned", "whacked")
+	resistance_flags = FLAMMABLE
+
+/obj/item/twohanded/broom/update_icon()
+	icon_state = "broom[wielded]"
+
+/obj/item/twohanded/broom/wield(mob/user)
+	. = ..()
+	if(!wielded)
+		return
+
+	to_chat(user, span_notice("You brace the [src] against the ground in a firm sweeping stance."))
+	RegisterSignal(user, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(sweep))
+
+/obj/item/twohanded/broom/unwield(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOVABLE_PRE_MOVE)
+
+/obj/item/twohanded/broom/afterattack(atom/A, mob/user, proximity)
+	. = ..()
+	if(!proximity)
+		return
+	sweep(user, A)
+
+/obj/item/twohanded/broom/proc/sweep(mob/user, atom/A)
+
+	var/turf/current_item_loc = isturf(A) ? A : get_turf(A)
+	if (!isturf(current_item_loc))
+		return
+	var/turf/new_item_loc = get_step(current_item_loc, user.dir)
+	var/obj/machinery/disposal/bin/target_bin = locate(/obj/machinery/disposal/bin) in new_item_loc.contents
+	var/i = 1
+	for (var/obj/item/garbage in current_item_loc.contents)
+		if (!garbage.anchored)
+			if (target_bin)
+				garbage.forceMove(target_bin)
+			else
+				garbage.Move(new_item_loc, user.dir)
+			i++
+		if (i > BROOM_PUSH_LIMIT)
+			break
+	if (i > 1)
+		if (target_bin)
+			target_bin.update_icon()
+			to_chat(user, span_notice("You sweep the pile of garbage into [target_bin]."))
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 30, TRUE, -1)
+
+/obj/item/twohanded/broom/proc/janicart_insert(mob/user, obj/structure/janitorialcart/J) //bless you whoever fixes this copypasta
+	J.put_in_cart(src, user)
+	J.mybroom=src
+	J.update_icon()
+
+/obj/item/twohanded/broom/cyborg
+	name = "robotic push broom"
+
+/obj/item/twohanded/broom/cyborg/janicart_insert(mob/user, obj/structure/janitorialcart/J)
+	to_chat(user, span_notice("You cannot place your [src] into the [J]"))
+	return FALSE

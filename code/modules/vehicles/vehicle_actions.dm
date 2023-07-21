@@ -92,8 +92,8 @@
 //ACTION DATUMS
 
 /datum/action/vehicle
-	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
-	icon_icon = 'icons/mob/actions/actions_vehicle.dmi'
+	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_CONSCIOUS
+	button_icon = 'icons/mob/actions/actions_vehicle.dmi'
 	button_icon_state = "vehicle_eject"
 	var/obj/vehicle/vehicle_target
 
@@ -225,7 +225,7 @@
 		if(locate(/obj/structure/table) in V.loc.contents)
 			V.grinding = TRUE
 			V.icon_state = "[V.board_icon]-grind"
-			addtimer(CALLBACK(V, /obj/vehicle/ridden/scooter/skateboard/.proc/grind), 2)
+			addtimer(CALLBACK(V, TYPE_PROC_REF(/obj/vehicle/ridden/scooter/skateboard, grind)), 2)
 		next_ollie = world.time + 5
 
 /datum/action/vehicle/ridden/scooter/airshoes/ollie
@@ -262,5 +262,5 @@
 		if(locate(/obj/structure/table) in V.loc.contents)
 			V.grinding = TRUE
 			V.icon_state = "[V.board_icon]-grind"
-			addtimer(CALLBACK(V, /obj/vehicle/ridden/scooter/airshoes/.proc/grind), 2)
+			addtimer(CALLBACK(V, TYPE_PROC_REF(/obj/vehicle/ridden/scooter/airshoes, grind)), 2)
 		next_ollie = world.time + 5

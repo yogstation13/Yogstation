@@ -136,12 +136,15 @@
 	/// Log of who is shocking this door
 	var/list/shocking_log
 
+	///Whether wires should all cut themselves when this door is broken.
+	var/cut_wires_on_break = TRUE
+
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
 
 	var/static/list/airlock_overlays = list()
 
-/obj/machinery/door/airlock/Initialize()
+/obj/machinery/door/airlock/Initialize(mapload)
 	. = ..()
 	bolt_log = list() //yogs
 	shocking_log = list() //yogs
@@ -151,7 +154,7 @@
 		set_frequency(frequency)
 
 	if(closeOtherId != null)
-		addtimer(CALLBACK(.proc/update_other_id), 5)
+		addtimer(CALLBACK(src, PROC_REF(update_other_id)), 5)
 	if(glass)
 		airlock_material = "glass"
 	if(security_level > AIRLOCK_SECURITY_METAL)
@@ -164,13 +167,22 @@
 		damage_deflection = AIRLOCK_DAMAGE_DEFLECTION_R
 	prepare_huds()
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_electrified()
 
 	rebuild_parts()
-	RegisterSignal(src, COMSIG_MACHINERY_BROKEN, .proc/on_break)
+	AddComponent(/datum/component/ntnet_interface)
 
 	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/door/airlock/obj_break(damage_flag)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!panel_open)
+		panel_open = TRUE
+	if(cut_wires_on_break)
+		wires.cut_all()
 
 /obj/machinery/door/airlock/LateInitialize()
 	. = ..()
@@ -203,10 +215,6 @@
 			if(24 to 30)
 				panel_open = TRUE
 	update_icon()
-
-/obj/machinery/door/airlock/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/ntnet_interface)
 
 /obj/machinery/door/airlock/proc/rebuild_parts()
 	if(part_overlays)
@@ -339,9 +347,9 @@
 				return
 
 			if(density)
-				INVOKE_ASYNC(src, .proc/open)
+				INVOKE_ASYNC(src, PROC_REF(open))
 			else
-				INVOKE_ASYNC(src, .proc/close)
+				INVOKE_ASYNC(src, PROC_REF(close))
 
 		if("bolt")
 			if(command_value == "on" && locked)
@@ -440,7 +448,7 @@
 			D.removeMe(src)
 	qdel(note)
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.remove_from_hud(src)
+		diag_hud.remove_atom_from_hud(src)
 	if(brace) //yogs
 		brace.remove() //yogs
 	return ..()
@@ -492,7 +500,7 @@
 			if(cyclelinkedairlock.operating)
 				cyclelinkedairlock.delayed_close_requested = TRUE
 			else
-				addtimer(CALLBACK(cyclelinkedairlock, .proc/close), 2)
+				addtimer(CALLBACK(cyclelinkedairlock, PROC_REF(close)), 2)
 	if(locked && allowed(user) && aac)
 		aac.request_from_door(src)
 		return
@@ -552,7 +560,7 @@
 			secondsBackupPowerLost = 10
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
-	INVOKE_ASYNC(src, .proc/handlePowerRestore)
+	INVOKE_ASYNC(src, PROC_REF(handlePowerRestore))
 	update_icon()
 
 /obj/machinery/door/airlock/proc/loseBackupPower()
@@ -560,7 +568,7 @@
 		secondsBackupPowerLost = 60
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
-	INVOKE_ASYNC(src, .proc/handlePowerRestore)
+	INVOKE_ASYNC(src, PROC_REF(handlePowerRestore))
 	update_icon()
 
 /obj/machinery/door/airlock/proc/regainBackupPower()
@@ -926,7 +934,7 @@
 		set_electrified(MACHINE_ELECTRIFIED_PERMANENT)
 	updateDialog()
 
-/obj/machinery/door/airlock/Topic(href, href_list, var/nowindow = 0)
+/obj/machinery/door/airlock/Topic(href, href_list, nowindow = 0)
 	// If you add an if(..()) check you must first remove the var/nowindow parameter.
 	// Otherwise it will runtime with this kind of error: null.Topic()
 	if(!nowindow)
@@ -1110,6 +1118,20 @@
 		update_icon()
 		user.transferItemToLoc(C, src, TRUE)
 		charge = C
+	else if(istype(C,/obj/item/electronics/airlock))
+		if(!security_level && panel_open)
+			var/obj/item/electronics/airlock/ae = C
+			if(!electronics)
+				if(req_one_access)
+					ae.one_access = 1
+					ae.accesses = req_one_access
+				else
+					ae.accesses = req_access
+			else
+				ae.one_access = electronics.one_access
+				ae.accesses = electronics.req_access
+			to_chat(user, span_notice("You copy the access of [src] to [ae]."))
+
 	else if(istype(C, /obj/item/paper) || istype(C, /obj/item/photo))
 		if(note)
 			to_chat(user, span_warning("There's already something pinned to this airlock! Use wirecutters to remove it."))
@@ -1134,7 +1156,13 @@
 		if(!T.darkspawn)
 			return ..()
 		else if(user.a_intent == INTENT_DISARM && density)
+			// we dont want Duality double-hitting the airlock when we're trying to pry it open
+			if(user.get_active_held_item() != C)
+				return
 			if(!locked && !welded)
+				if(!hasPower()) // a crowbar can do this and you're telling me tentacles struggle?
+					open(2)
+					return
 				if(!T.darkspawn.has_psi(15))
 					to_chat(user, span_warning("You need at least 15 Psi to force open an airlock!"))
 					return
@@ -1186,7 +1214,7 @@
 			user.visible_message("[user] is [welded ? "unwelding":"welding"] the airlock.", \
 							span_notice("You begin [welded ? "unwelding":"welding"] the airlock..."), \
 							span_italics("You hear welding."))
-			if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, .proc/weld_checks, W, user)))
+			if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(weld_checks), W, user)))
 				welded = !welded
 				user.visible_message("[user.name] has [welded? "welded shut":"unwelded"] [src].", \
 									span_notice("You [welded ? "weld the airlock shut":"unweld the airlock"]."))
@@ -1198,7 +1226,7 @@
 				user.visible_message("[user] is welding the airlock.", \
 								span_notice("You begin repairing the airlock..."), \
 								span_italics("You hear welding."))
-				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, .proc/weld_checks, W, user)))
+				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(weld_checks), W, user)))
 					obj_integrity = max_integrity
 					stat &= ~BROKEN
 					user.visible_message("[user.name] has repaired [src].", \
@@ -1245,12 +1273,18 @@
 			if(!F.wielded)
 				to_chat(user, span_warning("You need to be wielding the fire axe to do that!"))
 				return
-		INVOKE_ASYNC(src, (density ? .proc/open : .proc/close), 2)
+		INVOKE_ASYNC(src, (density ? PROC_REF(open) : PROC_REF(close)), 2)
 
-	if(istype(I, /obj/item/jawsoflife))
+	if(istype(I, /obj/item/jawsoflife) || istype(I, /obj/item/mantis/blade))
 		if(isElectrified())
-			shock(user,100)//it's like sticking a fork in a power socket
-			return
+			if(shock(user,100))//it's like sticking a fork in a power socket
+				return
+
+		if(istype(I, /obj/item/mantis/blade))
+			var/obj/item/mantis/blade/secondsword = user.get_inactive_held_item()
+			if(!istype(secondsword, /obj/item/mantis/blade))
+				to_chat(user, span_warning("You need a second [I] to pry open doors!"))
+				return
 
 		if(!density)//already open
 			return
@@ -1267,12 +1301,11 @@
 			to_chat(user, span_warning("The airlock won't budge!"))
 			return
 
-		var/time_to_open = 5
+		var/time_to_open = 9 SECONDS
+
 		if(hasPower() && !prying_so_hard)
 			if (I.tool_behaviour == TOOL_CROWBAR) //we need another check, futureproofing for if/when bettertools actually completely replaces the old jaws
-				time_to_open = 50
 				if(istype(I,/obj/item/jawsoflife/jimmy))
-					time_to_open = 30
 					var/obj/item/jawsoflife/jimmy/J = I
 					if(J.pump_charge >= J.pump_cost)
 						J.pump_charge = J.pump_charge - J.pump_cost
@@ -1280,7 +1313,7 @@
 							J.pump_charge = 0
 						playsound(src, 'sound/items/jimmy_pump.ogg', 100, TRUE)
 						if(J.obj_flags & EMAGGED)
-							time_to_open = 15
+							time_to_open /= 2
 					else
 						if(user)
 							to_chat(user, span_warning("You do not have enough charge in the [J] for this. You need at least [J.pump_cost]% "))
@@ -1288,7 +1321,9 @@
 
 				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 100, TRUE) //is it aliens or just the CE being a dick?
 				prying_so_hard = TRUE
-				if(do_after(user, time_to_open, src))
+				if(I.use_tool(src, user, time_to_open))
+					if(!istype(I,/obj/item/jawsoflife/jimmy)) //You get to be special
+						take_damage(max_integrity/8, sound_effect = FALSE) //Forcing open a door messes it up a little
 					open(2)
 					if(density && !open(2))
 						to_chat(user, span_warning("Despite your attempts, [src] refuses to open."))
@@ -1371,7 +1406,7 @@
 	operating = FALSE
 	if(delayed_close_requested)
 		delayed_close_requested = FALSE
-		addtimer(CALLBACK(src, .proc/close), 1)
+		addtimer(CALLBACK(src, PROC_REF(close)), 1)
 	return TRUE
 
 
@@ -1440,8 +1475,8 @@
 		return
 
 	// reads from the airlock painter's `available paintjob` list. lets the player choose a paint option, or cancel painting
-	var/current_paintjob = input(user, "Please select a paintjob for this airlock.") as null|anything in sortList(painter.available_paint_jobs)
-	if(!current_paintjob) // if the user clicked cancel on the popup, return
+	var/current_paintjob = tgui_input_list(user, "Paintjob for this airlock", "Customize", sortList(painter.available_paint_jobs))
+	if(isnull(current_paintjob)) // if the user clicked cancel on the popup, return
 		return
 
 	var/airlock_type = painter.available_paint_jobs["[current_paintjob]"] // get the airlock type path associated with the airlock name the user just chose
@@ -1524,17 +1559,11 @@
 		open()
 		safe = TRUE
 
-
-/obj/machinery/door/airlock/proc/on_break()
-	if(!panel_open)
-		panel_open = TRUE
-	wires.cut_all()
-
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)
 	secondsElectrified = seconds
 	diag_hud_set_electrified()
 	if(secondsElectrified > MACHINE_NOT_ELECTRIFIED)
-		INVOKE_ASYNC(src, .proc/electrified_loop)
+		INVOKE_ASYNC(src, PROC_REF(electrified_loop))
 
 	if(user)
 		var/message
@@ -1549,7 +1578,7 @@
 		log_combat(user, src, message)
 		add_hiddenprint(user)
 
-/obj/machinery/door/airlock/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/machinery/door/airlock/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(obj_integrity < (0.75 * max_integrity))
 		update_icon()
@@ -1794,7 +1823,7 @@
 	for(var/mob/living/carbon/human/H in orange(2,src))
 		H.Unconscious(160)
 		H.adjust_fire_stacks(20)
-		H.IgniteMob() //Guaranteed knockout and ignition for nearby people
+		H.ignite_mob() //Guaranteed knockout and ignition for nearby people
 		H.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
 
 

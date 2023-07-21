@@ -53,11 +53,11 @@
 	var/vomitTimeBonus = 0
 	var/datum/action/cooldown/vomit/goosevomit
 
-/mob/living/simple_animal/hostile/retaliate/goose/vomit/Initialize()
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/Initialize(mapload)
 	. = ..()
 	goosevomit = new
 	goosevomit.Grant(src)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/goosement)
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(goosement))
 
 /mob/living/simple_animal/hostile/retaliate/goose/vomit/Destroy()
 	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
@@ -95,7 +95,7 @@
 		playsound(T, 'sound/effects/splat.ogg', 50, 1)
 		T.add_vomit_floor(src)
 
-/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/barf_food(var/atom/A, var/hard = FALSE)
+/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/barf_food(atom/A, hard = FALSE)
 	if(!istype(A, /obj/item/reagent_containers/food))
 		return
 	var/turf/currentTurf = get_turf(src)
@@ -113,13 +113,13 @@
 
 /mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/vomit_prestart(duration)
 	flick("vomit_start",src)
-	addtimer(CALLBACK(src, .proc/vomit_start, duration), 13) //13 is the length of the vomit_start animation in gooseloose.dmi
+	addtimer(CALLBACK(src, PROC_REF(vomit_start), duration), 13) //13 is the length of the vomit_start animation in gooseloose.dmi
 
 /mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/vomit_start(duration)
 	vomiting = TRUE
 	icon_state = "vomit"
 	vomit()
-	addtimer(CALLBACK(src, .proc/vomit_preend), duration)
+	addtimer(CALLBACK(src, PROC_REF(vomit_preend)), duration)
 
 /mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/vomit_preend()
 	for (var/obj/item/consumed in contents) //Get rid of any food left in the poor thing
@@ -153,7 +153,7 @@
 	name = "Vomit"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "vomit"
-	icon_icon = 'icons/mob/animal.dmi'
+	button_icon = 'icons/mob/animal.dmi'
 	cooldown_time = 250
 
 /datum/action/cooldown/vomit/Trigger()

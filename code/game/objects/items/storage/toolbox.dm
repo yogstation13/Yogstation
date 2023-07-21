@@ -21,7 +21,7 @@
 	var/has_latches = TRUE
 	wound_bonus = 5
 
-/obj/item/storage/toolbox/Initialize()
+/obj/item/storage/toolbox/Initialize(mapload)
 	. = ..()
 	if(has_latches)
 		if(prob(10))
@@ -110,7 +110,7 @@
 
 /obj/item/storage/toolbox/mechanical/old/clean/proc/calc_damage()
 	var/power = 0
-	for (var/obj/item/stack/telecrystal/TC in GetAllContents())
+	for (var/obj/item/stack/telecrystal/TC in get_all_contents())
 		power += TC.amount
 	force = 19 + power
 	throwforce = 22 + power
@@ -139,17 +139,17 @@
 	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/electrical/PopulateContents()
-	var/pickedcolor = pick("red","yellow","green","blue","pink","orange","cyan","white")
+	var/pickedcolor = pick(GLOB.cable_colors)
 	new /obj/item/screwdriver(src)
 	new /obj/item/wirecutters(src)
 	new /obj/item/t_scanner(src)
 	new /obj/item/crowbar(src)
-	new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
-	new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
+	new /obj/item/stack/cable_coil(src, MAXCOIL, pickedcolor)
+	new /obj/item/stack/cable_coil(src, MAXCOIL, pickedcolor)
 	if(prob(50))
 		new /obj/item/clothing/gloves/color/fyellow(src)
 	else
-		new /obj/item/stack/cable_coil(src,MAXCOIL,pickedcolor)
+		new /obj/item/stack/cable_coil(src, MAXCOIL, pickedcolor)
 
 /obj/item/storage/toolbox/syndicate
 	name = "suspicious looking toolbox"
@@ -160,7 +160,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	material_flags = MATERIAL_NO_COLOR
 
-/obj/item/storage/toolbox/syndicate/ComponentInitialize()
+/obj/item/storage/toolbox/syndicate/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.silent = TRUE
@@ -176,6 +176,12 @@
 	//YOGS start - toolspeed
 	for(var/obj/item/I in contents)
 		I.toolspeed = 0.5
+
+/obj/item/storage/toolbox/syndicate/real/PopulateContents()
+	. = ..()
+	for(var/obj/item/I in contents)
+		I.toolspeed = 0.33
+		I.name = "syndicate [I.name]"
 
 /obj/item/storage/toolbox/drone
 	name = "mechanical toolbox"
@@ -205,7 +211,7 @@
 	var/fabricator_type = /obj/item/clockwork/replica_fabricator/scarab
 	material_flags = MATERIAL_NO_COLOR
 
-/obj/item/storage/toolbox/brass/ComponentInitialize()
+/obj/item/storage/toolbox/brass/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -243,7 +249,7 @@
 	item_state = "artistic_toolbox"
 	w_class = WEIGHT_CLASS_GIGANTIC //Holds more than a regular toolbox!
 
-/obj/item/storage/toolbox/artistic/ComponentInitialize()
+/obj/item/storage/toolbox/artistic/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 20
@@ -284,7 +290,8 @@
 							/obj/item/storage/toolbox/electrical,
 							/obj/item/storage/toolbox/mechanical,
 							/obj/item/storage/toolbox/artistic,
-							/obj/item/storage/toolbox/syndicate)
+							/obj/item/storage/toolbox/syndicate,
+							/obj/item/storage/toolbox/syndicate/real)
 
 	if(!istype(T, /obj/item/stack/tile/plasteel))
 		..()
@@ -307,6 +314,8 @@
 			if(/obj/item/storage/toolbox/artistic)
 				B.toolbox_color = "g"
 			if(/obj/item/storage/toolbox/syndicate)
+				B.toolbox_color = "s"
+			if(/obj/item/storage/toolbox/syndicate/real)
 				B.toolbox_color = "s"
 		user.put_in_hands(B)
 		B.update_icon()

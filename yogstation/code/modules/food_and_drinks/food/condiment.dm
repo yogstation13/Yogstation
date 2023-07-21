@@ -47,7 +47,7 @@
 
 /obj/item/reagent_containers/food/condiment/cinnamon
 	name = "cinnamon shaker"
-	desc = "A spice obtained from the bark of a cinnamomum tree"
+	desc = "A spice obtained from the bark of a cinnamomum tree."
 	icon_state = "cinnamonshaker"
 	list_reagents = list(/datum/reagent/consumable/cinnamon = 50)
 	possible_states = list()

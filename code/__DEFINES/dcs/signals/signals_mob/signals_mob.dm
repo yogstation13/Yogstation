@@ -69,7 +69,7 @@
 #define COMSIG_MOB_RESTRICT_MAGIC "mob_cast_magic"
 ///from base of mob/can_block_magic(): (mob/user, casted_magic_flags, charge_cost)
 #define COMSIG_MOB_RECEIVE_MAGIC "mob_receive_magic"
-	#define COMPONENT_BLOCK_MAGIC (1<<0)
+	#define COMPONENT_MAGIC_BLOCKED (1<<0)
 
 ///from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"
@@ -141,6 +141,10 @@
 ///Called on user, from base of /datum/strippable_item/try_(un)equip() (atom/target, obj/item/equipping?)
 #define COMSIG_TRY_STRIP "try_strip"
 	#define COMPONENT_CANT_STRIP (1<<0)
+///Called on user by /mob/verb/quick_equip() (atom/target, obj/item/equipping?)
+#define COMSIG_MOB_QUICK_EQUIP "quick_equip"
+	/// return this if you want to stop the rest of the quick equip logic
+	#define COMPONENT_BLOCK_QUICK_EQUIP (1<<0)
 ///From /datum/component/creamed/Initialize()
 #define COMSIG_MOB_CREAMED "mob_creamed"
 ///From /obj/item/gun/proc/check_botched()

@@ -51,7 +51,7 @@
 	needs_heater = FALSE
 	cooldown = 90
 
-/obj/machinery/shuttle/engine/Initialize()
+/obj/machinery/shuttle/engine/Initialize(mapload)
 	. = ..()
 	check_setup()
 
@@ -217,7 +217,7 @@
 		UnregisterSignal(capacitor_bank, COMSIG_PARENT_QDELETING)
 	capacitor_bank = new_bank 
 	if(capacitor_bank)
-		RegisterSignal(capacitor_bank, COMSIG_PARENT_QDELETING, .proc/on_capacitor_deleted)
+		RegisterSignal(capacitor_bank, COMSIG_PARENT_QDELETING, PROC_REF(on_capacitor_deleted))
 	update_engine()
 
 /obj/machinery/shuttle/engine/ion/proc/on_capacitor_deleted(datum/source, force)

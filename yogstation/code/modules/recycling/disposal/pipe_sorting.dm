@@ -4,7 +4,7 @@
 	var/sort_scan = TRUE
 	var/panel_open = FALSE
 
-/obj/structure/disposalpipe/sorting/Initialize()
+/obj/structure/disposalpipe/sorting/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/disposals(src)
 

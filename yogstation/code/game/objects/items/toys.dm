@@ -65,7 +65,7 @@
 
 /obj/item/toy/frisbee
 	name = "frisbee"
-	desc = "Comes further in life then you."
+	desc = "Comes further in life than you."
 	icon_state = "frisbee"
 	icon = 'yogstation/icons/obj/toy.dmi'
 	force = 0

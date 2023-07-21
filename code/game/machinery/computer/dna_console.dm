@@ -46,6 +46,7 @@
 	idle_power_usage = 10
 	active_power_usage = 400
 	light_color = LIGHT_COLOR_BLUE
+	clicksound = null
 
 	/// Link to the techweb's stored research. Used to retrieve stored mutations
 	var/datum/techweb/stored_research
@@ -181,7 +182,7 @@
 
 	return ..()
 
-/obj/machinery/computer/scan_consolenew/Initialize()
+/obj/machinery/computer/scan_consolenew/Initialize(mapload)
 	. = ..()
 
 	// Connect with a nearby DNA Scanner on init
@@ -340,7 +341,7 @@
 
 	return data
 
-/obj/machinery/computer/scan_consolenew/ui_act(action, var/list/params)
+/obj/machinery/computer/scan_consolenew/ui_act(action, list/params)
 	if(..())
 		return TRUE
 

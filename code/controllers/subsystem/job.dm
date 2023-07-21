@@ -3,10 +3,19 @@ SUBSYSTEM_DEF(job)
 	init_order = INIT_ORDER_JOBS
 	flags = SS_NO_FIRE
 
-	var/list/occupations = list()		//List of all jobs
-	var/list/datum/job/name_occupations = list()	//Dict of jobs, keys are titles
-	var/list/datum/job/name_occupations_all = list()	//Dict of ALL JOBS, EVEN DISABLED ONES, keys are titles
+	/// List of all jobs.
+	var/list/occupations = list()
+	/// List of jobs that can be joined through the starting menu.
+	var/list/datum/job/joinable_occupations = list()
+	/// Dictionary of all jobs, keys are titles.
+	var/list/name_occupations = list()
+	/// Dictionary of all jobs EVEN DISABLED, keys are types.
+	var/list/name_occupations_all = list()
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types
+	/// List of all departments with joinable jobs.
+	var/list/datum/job_department/joinable_departments = list()
+	/// List of all joinable departments indexed by their typepath, sorted by their own display order.
+	var/list/datum/job_department/joinable_departments_by_type = list()
 	var/list/unassigned = list()		//Players who need jobs
 	var/initial_players_to_assign = 0 	//used for checking against population caps
 
@@ -18,11 +27,10 @@ SUBSYSTEM_DEF(job)
 	var/list/level_order = list(JP_HIGH,JP_MEDIUM,JP_LOW)
 
 /datum/controller/subsystem/job/Initialize(timeofday)
-	if(!occupations.len)
+	if(!length(occupations))
 		SetupOccupations()
 	if(CONFIG_GET(flag/load_jobs_from_txt))
 		LoadJobs()
-	generate_selectable_species()
 	set_overflow_role(CONFIG_GET(string/overflow_job))
 	return SS_INIT_SUCCESS
 
@@ -46,6 +54,11 @@ SUBSYSTEM_DEF(job)
 	if(!all_jobs.len)
 		to_chat(world, span_boldannounce("Error setting up jobs, no job datums found"))
 		return 0
+	
+	var/list/new_occupations = list()
+	var/list/new_joinable_occupations = list()
+	var/list/new_joinable_departments = list()
+	var/list/new_joinable_departments_by_type = list()
 
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
@@ -58,25 +71,64 @@ SUBSYSTEM_DEF(job)
 
 		name_occupations_all[job.title] = job
 
-		if(SEND_SIGNAL(job, SSmapping.config.map_name))	//Even though we initialize before mapping, this is fine because the config is loaded at new
+		if(SEND_SIGNAL(job, SSmapping.config.internal_name != "" ? SSmapping.config.internal_name : SSmapping.config.map_name))	//Even though we initialize before mapping, this is fine because the config is loaded at new
 			testing("Removed [job.type] due to map config")
 			continue
-		occupations += job
+
+		// All jobs are late joinable at the moment
+
+		new_occupations += job
+		new_joinable_occupations += job
 		name_occupations[job.title] = job
 		type_occupations[J] = job
 
-	return 1
+		if(!LAZYLEN(job.departments_list))
+			var/datum/job_department/department = new_joinable_departments_by_type[/datum/job_department/undefined]
+			if(!department)
+				department = new /datum/job_department/undefined()
+				new_joinable_departments_by_type[/datum/job_department/undefined] = department
+			department.add_job(job)
+			continue
+		for(var/department_type in job.departments_list)
+			var/datum/job_department/department = new_joinable_departments_by_type[department_type]
+			if(!department)
+				department = new department_type()
+				new_joinable_departments_by_type[department_type] = department
+			department.add_job(job)
+
+	sortTim(new_occupations, /proc/cmp_job_display_asc)
+
+	sortTim(new_joinable_departments_by_type, /proc/cmp_department_display_asc, associative = TRUE)
+	for(var/department_type in new_joinable_departments_by_type)
+		var/datum/job_department/department = new_joinable_departments_by_type[department_type]
+		sortTim(department.department_jobs, /proc/cmp_job_display_asc)
+		new_joinable_departments += department
+
+	occupations = new_occupations
+	joinable_occupations = sortTim(new_joinable_occupations, /proc/cmp_job_display_asc)
+	joinable_departments = new_joinable_departments
+	joinable_departments_by_type = new_joinable_departments_by_type
+
+	return TRUE
 
 
 /datum/controller/subsystem/job/proc/GetJob(rank)
-	if(!occupations.len)
+	RETURN_TYPE(/datum/job)
+	if(!length(occupations))
 		SetupOccupations()
 	return name_occupations[rank]
 
 /datum/controller/subsystem/job/proc/GetJobType(jobtype)
-	if(!occupations.len)
+	RETURN_TYPE(/datum/job)
+	if(!length(occupations))
 		SetupOccupations()
 	return type_occupations[jobtype]
+
+/datum/controller/subsystem/job/proc/get_department_type(department_type)
+	RETURN_TYPE(/datum/job_department)
+	if(!length(occupations))
+		SetupOccupations()
+	return joinable_departments_by_type[department_type]
 
 /datum/controller/subsystem/job/proc/GetPlayerAltTitle(mob/dead/new_player/player, rank)
 	return player.client.prefs.GetPlayerAltTitle(GetJob(rank))
@@ -135,7 +187,7 @@ SUBSYSTEM_DEF(job)
 			JobDebug("FOC incompatible with antagonist role, Player: [player]")
 			continue
 		// yogs start - Donor features, quiet round
-		if(((job.title in GLOB.command_positions) || (job.title in GLOB.nonhuman_positions)) && (player.client.prefs.yogtoggles & QUIET_ROUND))
+		if(((job.title in GLOB.command_positions) || (job.title in GLOB.nonhuman_positions)) && (player.client.prefs.read_preference(/datum/preference/toggle/quiet_mode)))
 			JobDebug("FOC quiet check failed, Player: [player]")
 			continue
 		// yogs end
@@ -436,26 +488,32 @@ SUBSYSTEM_DEF(job)
 
 //We couldn't find a job from prefs for this guy.
 /datum/controller/subsystem/job/proc/HandleUnassigned(mob/dead/new_player/player)
+	var/jobless_role = player.client.prefs.read_preference(/datum/preference/choiced/jobless_role)
+
 	if(PopcapReached())
 		RejectPlayer(player)
-	else if(player.client.prefs.joblessrole == BEOVERFLOW)
-		var/allowed_to_be_a_loser = !is_banned_from(player.ckey, SSjob.overflow_role)
-		if(QDELETED(player) || !allowed_to_be_a_loser)
-			RejectPlayer(player)
-		else
-			if(!AssignRole(player, SSjob.overflow_role))
+		return
+	
+	switch (jobless_role)
+		if (BEOVERFLOW)
+			var/allowed_to_be_a_loser = !is_banned_from(player.ckey, SSjob.overflow_role)
+			if(QDELETED(player) || !allowed_to_be_a_loser)
 				RejectPlayer(player)
-	else if(player.client.prefs.joblessrole == BERANDOMJOB)
-		if(!GiveRandomJob(player))
+			else
+				if(!AssignRole(player, SSjob.overflow_role))
+					RejectPlayer(player)
+		if (BERANDOMJOB)
+			if(!GiveRandomJob(player))
+				RejectPlayer(player)
+		if (RETURNTOLOBBY)
 			RejectPlayer(player)
-	else if(player.client.prefs.joblessrole == RETURNTOLOBBY)
-		RejectPlayer(player)
-	else //Something gone wrong if we got here.
-		var/message = "DO: [player] fell through handling unassigned"
-		JobDebug(message)
-		log_game(message)
-		message_admins(message)
-		RejectPlayer(player)
+		else //Something gone wrong if we got here.
+			var/message = "DO: [player] fell through handling unassigned"
+			JobDebug(message)
+			log_game(message)
+			message_admins(message)
+			RejectPlayer(player)
+
 //Gives the player the stuff he should have with his rank
 /datum/controller/subsystem/job/proc/EquipRank(mob/M, rank, joined_late = FALSE)
 	var/mob/dead/new_player/newplayer
@@ -491,7 +549,7 @@ SUBSYSTEM_DEF(job)
 		if(S)
 			S.JoinPlayerHere(living_mob, FALSE)
 		if(!S && !spawning_handled) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
-			log_world("Couldn't find a round start spawn point for [rank]")
+			log_mapping("Job [job.title] ([job.type]) couldn't find a round start spawn point.")
 			SendToLateJoin(living_mob)
 
 	var/alt_title = null
@@ -537,9 +595,9 @@ SUBSYSTEM_DEF(job)
 	job.give_donor_stuff(living_mob, M) // yogs - Donor Features
 	job.give_cape(living_mob, M)
 	job.give_map_flare(living_mob, M)
-	var/obj/item/modular_computer/RPDA = locate(/obj/item/modular_computer/tablet) in living_mob.GetAllContents()
+	var/obj/item/modular_computer/RPDA = locate(/obj/item/modular_computer/tablet) in living_mob.get_all_contents()
 	if(istype(RPDA))
-		RPDA.device_theme = GLOB.pda_themes[M.client.prefs.pda_theme]
+		RPDA.device_theme = GLOB.pda_themes[M.client?.prefs.read_preference(/datum/preference/choiced/pda_theme)]
 		var/obj/item/computer_hardware/hard_drive/hard_drive = RPDA.all_components[MC_HDD]
 		var/datum/computer_file/program/pdamessager/msgr = locate(/datum/computer_file/program/pdamessager) in hard_drive.stored_files
 		if(msgr)
@@ -554,7 +612,7 @@ SUBSYSTEM_DEF(job)
 	return living_mob
 
 /datum/controller/subsystem/job/proc/irish_override()
-	var/datum/map_template/template = SSmapping.station_room_templates["St. Patrick's Day"]
+	var/datum/map_template/template = SSmapping.station_room_templates["Bar Irish"]
 
 	for(var/obj/effect/landmark/stationroom/box/bar/B in GLOB.landmarks_list)
 		template.load(B.loc, centered = FALSE)
@@ -565,7 +623,7 @@ SUBSYSTEM_DEF(job)
 		var/list/player_box = list()
 		for(var/mob/H in GLOB.player_list)
 			if(H.client && H.client.prefs) // Prefs was null once and there was no bar
-				player_box += H.client.prefs.bar_choice
+				player_box += H.client.prefs.read_preference(/datum/preference/choiced/bar_choice)
 
 		var/choice
 		if(player_box.len == 0)
@@ -734,7 +792,7 @@ SUBSYSTEM_DEF(job)
 	var/oldjobs = SSjob.occupations
 	sleep(2 SECONDS)
 	for (var/datum/job/J in oldjobs)
-		INVOKE_ASYNC(src, .proc/RecoverJob, J)
+		INVOKE_ASYNC(src, PROC_REF(RecoverJob), J)
 
 /datum/controller/subsystem/job/proc/RecoverJob(datum/job/J)
 	var/datum/job/newjob = GetJob(J.title)

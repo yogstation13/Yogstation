@@ -4,11 +4,11 @@
 	id = "silver_tongue"
 	desc = "When used near a communications console, allows you to forcefully transmit a message to Central Command, initiating a shuttle recall. Only usable if the shuttle is inbound. Costs 60 Psi."
 	button_icon_state = "silver_tongue"
-	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_STUN
+	check_flags = AB_CHECK_CONSCIOUS |  AB_CHECK_IMMOBILE
 	psi_cost = 60
 	lucidity_price = 1 //Very niche, so low cost
 
-/datum/action/innate/darkspawn/silver_tongue/IsAvailable()
+/datum/action/innate/darkspawn/silver_tongue/IsAvailable(feedback = FALSE)
 	if(SSshuttle.emergency.mode != SHUTTLE_CALL)
 		return
 	return ..()

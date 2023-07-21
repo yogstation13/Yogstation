@@ -40,7 +40,7 @@
 	payment_department = ACCOUNT_MED
 
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/Initialize()
+/obj/machinery/atmospherics/components/unary/cryo_cell/Initialize(mapload)
 	. = ..()
 	initialize_directions = dir
 
@@ -166,7 +166,7 @@
 		occupant_overlay.pixel_y--
 	add_overlay(occupant_overlay)
 	add_overlay("cover-on")
-	addtimer(CALLBACK(src, .proc/run_anim, anim_up, occupant_overlay), 7, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(run_anim), anim_up, occupant_overlay), 7, TIMER_UNIQUE)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/nap_violation(mob/violator)
 	open_machine()
@@ -209,16 +209,18 @@
 			robotic_limb_damage += limb.get_damage(stamina=FALSE)
 
 	if(mob_occupant.health >= mob_occupant.getMaxHealth() - robotic_limb_damage) // Don't bother with fully healed people. Now takes robotic limbs into account.
-		if(C)
-			if(C.all_wounds)
-				if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
-					treating_wounds = TRUE
-					playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
-					var/msg = "Patient vitals fully recovered, continuing automated wound treatment."
-					radio.talk_into(src, msg, radio_channel)
-			else // otherwise if we were only treating wounds and now we don't have any, turn off treating_wounds so we can boot 'em out
-				treating_wounds = FALSE
+		var/has_cryo_wound = FALSE
+		if(C && C.all_wounds)
+			for(var/datum/wound/wound as anything in C.all_wounds)
+				if(wound.wound_flags & ACCEPTS_CRYO)
+					if(!treating_wounds) // if we have wounds and haven't already alerted the doctors we're only dealing with the wounds, let them know
+						playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
+						var/msg = "Patient vitals fully recovered, continuing automated burn treatment."
+						radio.talk_into(src, msg, radio_channel)
+					has_cryo_wound = TRUE
+					break
 
+		treating_wounds = has_cryo_wound
 		if(!treating_wounds)
 			on = FALSE
 			update_icon()
@@ -252,12 +254,10 @@
 			reagent_transfer += 0.5 * delta_time
 			if(reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 				reagent_transfer = 0
-		if(air1.get_moles(/datum/gas/healium) > 5) //healium check, if theres enough we get some extra healing from our favorite pink gas.
-			mob_occupant.adjustBruteLoss(-5) //healium healing factor from lungs, occupant should be asleep.
-			mob_occupant.adjustToxLoss(-5)
-			mob_occupant.adjustFireLoss(-7)
-			air1.adjust_moles(/datum/gas/healium, -max(0,air1.get_moles(/datum/gas/oxygen) - 2 / efficiency))
-
+		if(air1.get_moles(/datum/gas/healium) > 1) //healium check, if theres enough we get some extra healing from our favorite pink gas.
+			var/existing = mob_occupant.reagents.get_reagent_amount(/datum/reagent/healium)
+			mob_occupant.reagents.add_reagent(/datum/reagent/healium, 1 - existing)
+			air1.set_moles(/datum/gas/healium, max(0, air1.get_moles(/datum/gas/healium) - 0.1 / efficiency))
 	return 1
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos()

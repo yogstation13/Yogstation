@@ -53,6 +53,9 @@
 		var/mob/living/carbon/human/HMN = M
 		HMN.eye_color = old_eye_color
 		HMN.update_body()
+	M.cure_blind(list(EYE_DAMAGE)) // can't be blind from eye damage if there's no eye to be damaged, still blind from not having eyes though
+	M.cure_nearsighted(list(EYE_DAMAGE)) // likewise for nearsightedness
+	M.set_blurriness(0) // no eyes to blur
 	M.update_tint()
 	M.update_sight()
 
@@ -162,19 +165,18 @@
 	desc = "Your vision is augmented."
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
+	process_flags = ORGANIC | SYNTHETIC
 
 /obj/item/organ/eyes/robotic/emp_act(severity)
 	. = ..()
 	if(!owner || . & EMP_PROTECT_SELF)
-		return
-	if(prob(20 * severity))
 		return
 	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	to_chat(owner, span_danger("your eyes overload and blind you!"))
 	owner.flash_act(override_blindness_check = 1)
 	owner.blind_eyes(5)
 	owner.blur_eyes(8)
-	eyes.applyOrganDamage(25)
+	eyes.applyOrganDamage(20 / severity)
 
 /obj/item/organ/eyes/robotic/xray
 	name = "\improper meson eyes"
@@ -231,7 +233,7 @@
 	M.become_blind("flashlight_eyes")
 
 
-/obj/item/organ/eyes/robotic/flashlight/Remove(var/mob/living/carbon/M, var/special = 0)
+/obj/item/organ/eyes/robotic/flashlight/Remove(mob/living/carbon/M, special = 0)
 	eye.on = FALSE
 	eye.update_brightness(M)
 	eye.forceMove(src)
@@ -265,7 +267,7 @@
 	var/image/mob_overlay
 	var/datum/component/mobhook
 
-/obj/item/organ/eyes/robotic/glow/Initialize()
+/obj/item/organ/eyes/robotic/glow/Initialize(mapload)
 	. = ..()
 	mob_overlay = image('icons/mob/human_face.dmi', "eyes_glow_gs")
 
@@ -334,7 +336,7 @@
 
 /obj/item/organ/eyes/robotic/glow/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
 	. = ..()
-	RegisterSignal(M, COMSIG_ATOM_DIR_CHANGE, .proc/update_visuals)
+	RegisterSignal(M, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_visuals))
 
 /obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()
@@ -345,20 +347,22 @@
 	return ..()
 
 /obj/item/organ/eyes/robotic/glow/proc/activate(silent = FALSE)
-	start_visuals()
 	if(!silent)
 		to_chat(owner, span_warning("Your [src] clicks and makes a whining noise, before shooting out a beam of light!"))
 	active = TRUE
+	start_visuals()
 	cycle_mob_overlay()
 
 /obj/item/organ/eyes/robotic/glow/proc/deactivate(silent = FALSE)
-	clear_visuals()
 	if(!silent)
 		to_chat(owner, span_warning("Your [src] shuts off!"))
 	active = FALSE
+	clear_visuals()
 	remove_mob_overlay()
 
 /obj/item/organ/eyes/robotic/glow/proc/update_visuals(datum/source, olddir, newdir)
+	if(!active)
+		return
 	if((LAZYLEN(eye_lighting) < light_beam_distance) || !on_mob)
 		regenerate_light_effects()
 	var/turf/scanfrom = get_turf(owner)

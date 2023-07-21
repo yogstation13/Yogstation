@@ -17,6 +17,7 @@
 	var/list/activate_reagents = list() ///Reagents required for activation
 	var/recurring = FALSE
 	var/plort_value = 10 //For setting the research points given from each core
+	var/react_time = 5 SECONDS // For grenades to react instantly
 
 /obj/item/slime_extract/examine(mob/user)
 	. = ..()
@@ -37,7 +38,7 @@
 		qdel(O)
 	..()
 
-/obj/item/slime_extract/Initialize()
+/obj/item/slime_extract/Initialize(mapload)
 	. = ..()
 	create_reagents(100, INJECTABLE | DRAWABLE)
 
@@ -272,7 +273,7 @@
 				to_chat(user, span_warning("Your glow is already enhanced!"))
 				return
 			species.update_glow(user, 5)
-			addtimer(CALLBACK(species, /datum/species/jelly/luminescent.proc/update_glow, user, LUMINESCENT_DEFAULT_GLOW), 600)
+			addtimer(CALLBACK(species, TYPE_PROC_REF(/datum/species/jelly/luminescent, update_glow), user, LUMINESCENT_DEFAULT_GLOW), 600)
 			to_chat(user, span_notice("You start glowing brighter."))
 
 		if(SLIME_ACTIVATE_MAJOR)
@@ -320,11 +321,7 @@
 			return 250
 
 		if(SLIME_ACTIVATE_MAJOR)
-			var/location = get_turf(user)
-			var/datum/effect_system/foam_spread/s = new()
-			s.set_up(20, location, user.reagents)
-			s.start()
-			user.reagents.clear_reagents()
+			user.reagents.create_foam(/datum/effect_system/fluid_spread/foam, 20)
 			user.visible_message(span_danger("Foam spews out from [user]'s skin!"), span_warning("You activate [src], and foam bursts out of your skin!"))
 			return 600
 
@@ -339,7 +336,7 @@
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
 			to_chat(user, span_notice("You activate [src]. You start feeling colder!"))
-			user.ExtinguishMob()
+			user.extinguish_mob()
 			user.adjust_fire_stacks(-20)
 			user.reagents.add_reagent(/datum/reagent/consumable/frostoil,4)
 			user.reagents.add_reagent(/datum/reagent/medicine/cryoxadone,5)
@@ -492,7 +489,7 @@
 				return
 			to_chat(user, span_notice("You feel your skin harden and become more resistant."))
 			species.armor += 25
-			addtimer(CALLBACK(src, .proc/reset_armor, species), 1200)
+			addtimer(CALLBACK(src, PROC_REF(reset_armor), species), 1200)
 			return 450
 
 		if(SLIME_ACTIVATE_MAJOR)
@@ -733,6 +730,7 @@
 		SM.key = C.key
 		SM.sentience_act()
 		SM.mind.enslave_mind_to_creator(user)
+		SM.mind.add_antag_datum(/datum/antagonist/sentient_creature)
 		to_chat(SM, span_warning("All at once it makes sense: you know what you are and who you are! Self awareness is yours!"))
 		to_chat(SM, span_userdanger("You are grateful to be self aware and owe [user.real_name] a great debt. Serve [user.real_name], and assist [user.p_them()] in completing [user.p_their()] goals at any cost."))
 		if(SM.flags_1 & HOLOGRAM_1) //Check to see if it's a holodeck creature

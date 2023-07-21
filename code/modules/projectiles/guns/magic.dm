@@ -12,7 +12,7 @@
 	var/checks_antimagic = TRUE
 	var/max_charges = 6
 	var/charges = 0
-	var/recharge_rate = 8
+	var/recharge_rate = 8 // Seconds per charge
 	var/charge_timer = 0
 	var/can_charge = TRUE
 	var/ammo_type
@@ -25,6 +25,34 @@
 
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi' //not really a gun and some toys use these inhands
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+
+/obj/item/gun/magic/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_ITEM_MAGICALLY_CHARGED, PROC_REF(on_magic_charge))
+
+/**
+ * Signal proc for [COMSIG_ITEM_MAGICALLY_CHARGED]
+ *
+ * Adds uses to wands or staffs.
+ */
+/obj/item/gun/magic/proc/on_magic_charge(datum/source, datum/action/cooldown/spell/charge/spell, mob/living/caster)
+	SIGNAL_HANDLER
+
+	. = COMPONENT_ITEM_CHARGED
+
+	// Non-self charging staves and wands can potentially expire
+	if(!can_charge && max_charges && prob(80))
+		max_charges--
+
+	if(max_charges <= 0)
+		max_charges = 0
+		. |= COMPONENT_ITEM_BURNT_OUT
+
+	charges = max_charges
+	update_icon()
+	recharge_newshot()
+
+	return .
 
 /obj/item/gun/magic/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	if(no_den_usage)
@@ -53,7 +81,7 @@
 		charges--//... drain a charge
 		recharge_newshot()
 
-/obj/item/gun/magic/Initialize()
+/obj/item/gun/magic/Initialize(mapload)
 	. = ..()
 	charges = max_charges
 	chambered = new ammo_type(src)
@@ -68,8 +96,11 @@
 
 
 /obj/item/gun/magic/process(delta_time)
+	if(charges >= max_charges)
+		charge_timer = 0
+		return 0
 	charge_timer += delta_time
-	if(charge_timer < recharge_rate || charges >= max_charges)
+	if(charge_timer < recharge_rate)
 		return 0
 	charge_timer = 0
 	charges++

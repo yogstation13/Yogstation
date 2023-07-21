@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	var/bounce_factor = 0.2 // how much of our velocity to keep on collision
 	var/lateral_bounce_factor = 0.95 // mostly there to slow you down when you drive (pilot?) down a 2x2 corridor
 
-/obj/spacepod/Initialize()
+/obj/spacepod/Initialize(mapload)
 	. = ..()
 	GLOB.spacepods_list += src
 	START_PROCESSING(SSfastprocess, src)
@@ -248,14 +248,14 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 
 /obj/spacepod/proc/InterceptClickOn(mob/user, params, atom/target)
 	var/list/params_list = params2list(params)
-	if(target == src || istype(target, /atom/movable/screen) || (target && (target in user.GetAllContents())) || user != pilot || params_list["shift"] || params_list["alt"] || params_list["ctrl"])
+	if(target == src || istype(target, /atom/movable/screen) || (target && (target in user.get_all_contents())) || user != pilot || params_list["shift"] || params_list["alt"] || params_list["ctrl"])
 		return FALSE
 	if(weapon)
 		weapon.fire_weapons(target)
 	return TRUE
 
-/obj/spacepod/take_damage()
-	..()
+/obj/spacepod/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
+	. = ..()
 	update_icon()
 
 /obj/spacepod/return_air()

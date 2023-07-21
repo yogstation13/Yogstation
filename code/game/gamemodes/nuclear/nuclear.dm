@@ -5,8 +5,8 @@
 	config_tag = "nuclear"
 	report_type = "nuclear"
 	false_report_weight = 10
-	required_players = 30 // 30 players - 3 players to be the nuke ops = 27 players remaining
-	required_enemies = 2
+	required_players = 35 // 35 players - 3 players to be the nuke ops = 32 players remaining
+	required_enemies = 3
 	recommended_enemies = 5
 	antag_flag = ROLE_OPERATIVE
 	enemy_minimum_age = 14
@@ -137,6 +137,7 @@
 	id = /obj/item/card/id/syndicate/nuke_leader
 	gloves = /obj/item/clothing/gloves/krav_maga/combatglovesplus
 	r_hand = /obj/item/nuclear_challenge
+	neck = /obj/item/clothing/neck/cloak/nukie
 	command_radio = TRUE
 
 /datum/outfit/syndicate/no_crystals
@@ -152,7 +153,7 @@
 
 	if(ispath(uplink_type, /obj/item/uplink/nuclear) || tc) // /obj/item/uplink/nuclear understands 0 tc
 		var/obj/item/U = new uplink_type(H, H.key, tc)
-		H.equip_to_slot_or_del(U, SLOT_IN_BACKPACK)
+		H.equip_to_slot_or_del(U, ITEM_SLOT_BACKPACK)
 
 	var/obj/item/implant/weapons_auth/W = new/obj/item/implant/weapons_auth(H)
 	W.implant(H)
@@ -168,7 +169,7 @@
 	mask = /obj/item/clothing/mask/gas/syndicate
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
-	internals_slot = SLOT_R_STORE
+	internals_slot = ITEM_SLOT_RPOCKET
 	belt = /obj/item/storage/belt/military
 	r_hand = /obj/item/gun/ballistic/shotgun/bulldog
 	backpack_contents = list(/obj/item/storage/box/syndie=1,\

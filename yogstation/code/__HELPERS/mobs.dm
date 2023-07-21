@@ -5,7 +5,7 @@
 		if(!findname(.))
 			break
 
-/proc/is_admin(var/user)
+/proc/is_admin(user)
 	if(ismob(user))
 		var/mob/temp = user
 		if(temp && temp.client && temp.client.holder)
@@ -18,7 +18,7 @@
 
 	return FALSE
 
-/proc/is_mentor(var/user) //Why is this needed
+/proc/is_mentor(user) //Why is this needed
 	if(is_admin(user))
 		return TRUE
 
@@ -36,7 +36,7 @@
 
 	return FALSE
 
-/proc/is_deadmin(var/user)
+/proc/is_deadmin(user)
 	if(ismob(user))
 		var/mob/temp = user
 		if(temp)
@@ -49,7 +49,7 @@
 
 	return FALSE
 
-/proc/is_donator(var/user)
+/proc/is_donator(user)
 	if(is_admin(user))
 		return TRUE
 
@@ -61,11 +61,11 @@
 
 	if(ismob(user))
 		var/mob/temp = user
-		if(temp && temp.client)
+		if(temp?.client)
 			if(temp.client.is_mentor()) //Mentors are donors
 				return TRUE
 			if(temp.client.prefs)
-				return (temp.client.prefs.unlock_content & 2)
+				return (temp.client.prefs.unlock_content & DONOR_YOGS)
 
 	else if(istype(user, /client))
 		var/client/temp = user
@@ -73,7 +73,7 @@
 			if(temp.is_mentor()) //Mentors are donors
 				return TRUE
 			if(temp.prefs)
-				return (temp.prefs.unlock_content & 2)
+				return (temp.prefs.unlock_content & DONOR_YOGS)
 
 	return FALSE
 
@@ -103,7 +103,7 @@
 	qdel(query)
 	return GLOB.donators
 
-/proc/compare_ckey(var/user, var/target)
+/proc/compare_ckey(user, target)
 	if(!user || !target)
 		return FALSE
 

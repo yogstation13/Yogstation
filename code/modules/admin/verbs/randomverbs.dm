@@ -34,7 +34,6 @@
 	if(!msg)
 		message_admins("[key_name_admin(src)] decided not to answer [ADMIN_LOOKUPFLW(M)]'s prayer")
 		return
-	msg = to_utf8(msg, src)
 	if(usr)
 		if (usr.client)
 			if(usr.client.holder)
@@ -75,7 +74,6 @@
 	if(!input)
 		message_admins("[key_name_admin(src)] decided not to answer [key_name_admin(H)]'s [sender] request.")
 		return
-	input = to_utf8(input, src)
 
 	log_directed_talk(mob, H, input, LOG_ADMIN, "reply")
 	message_admins("[key_name_admin(src)] replied to [key_name_admin(H)]'s [sender] message with: \"[input]\"")
@@ -83,7 +81,7 @@
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Headset Message") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_mod_antag_rep(client/C in GLOB.clients, var/operation)
+/client/proc/cmd_admin_mod_antag_rep(client/C in GLOB.clients, operation)
 	set category = "Misc.Unused"
 	set name = "Modify Antagonist Reputation"
 
@@ -140,7 +138,6 @@
 
 	if (!msg)
 		return
-	msg = to_utf8(msg, src)
 	to_chat(world, "[msg]")
 	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")
 	message_admins(span_adminnotice("[key_name_admin(usr)] Sent a global narrate"))
@@ -164,8 +161,6 @@
 	if( !msg )
 		return
 
-	msg = to_utf8(msg, src)
-
 	to_chat(M, msg)
 	log_admin("DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]")
 	msg = "DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]" // yogs - Yog Tickets
@@ -187,7 +182,6 @@
 	var/msg = input("Message:", text("Enter the text you wish to appear to everyone within view:")) as text|null
 	if (!msg)
 		return
-	msg = to_utf8(msg, src)
 	for(var/mob/M in view(range,A))
 		to_chat(M, msg)
 
@@ -402,7 +396,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		//check if they were a monkey
 		else if(findtext(G_found.real_name,"monkey"))
-			if(tgui_alert("This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
+			if(tgui_alert(usr, "This character appears to have been a monkey. Would you like to respawn them as such?",,list("Yes","No"))=="Yes")
 				var/mob/living/carbon/monkey/new_monkey = new
 				SSjob.SendToLateJoin(new_monkey)
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
@@ -432,9 +426,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.age = record_found.fields["age"]
 		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], null, record_found.fields["name"], record_found.fields["blood_type"], new record_found.fields["species"], record_found.fields["features"])
 	else
-		var/datum/preferences/A = new()
-		A.copy_to(new_character)
-		A.real_name = G_found.real_name
+		new_character.randomize_human_appearance(~(RANDOMIZE_NAME|RANDOMIZE_SPECIES))
+		new_character.name = G_found.real_name
+		new_character.real_name = G_found.real_name
 		new_character.dna.update_dna_identity()
 
 	new_character.name = new_character.real_name
@@ -826,13 +820,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			newview = input("Enter custom view range:","FUCK YEEEEE") as num
 			if(!newview)
 				return
-		if(newview > 64)
+		if(newview >= 64)
 			if(alert("Warning: Setting your view range to that large size may cause horrendous lag, visual bugs, and/or game crashes. Are you sure?",,"Yes","No") != "Yes")
 				return
 		view_size.setTo(newview)
 		//yogs end
 	else
-		view_size.resetToDefault(getScreenSize(prefs.widescreenpref))
+		view_size.resetToDefault(getScreenSize(prefs.read_preference(/datum/preference/toggle/widescreen)))
 
 	log_admin("[key_name(usr)] changed their view range to [view].")
 	//message_admins("\blue [key_name_admin(usr)] changed their view range to [view].")	//why? removed by order of XSI
@@ -977,32 +971,45 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/adding_hud = !has_antag_hud()
+	if (combo_hud_enabled)
+		disable_combo_hud()
+	else
+		enable_combo_hud()
 
-	for(var/hudtype in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED)) // add data huds
-		var/datum/atom_hud/H = GLOB.huds[hudtype]
-		(adding_hud) ? H.add_hud_to(usr) : H.remove_hud_from(usr)
-	for(var/datum/atom_hud/antag/H in GLOB.huds) // add antag huds
-		(adding_hud) ? H.add_hud_to(usr) : H.remove_hud_from(usr)
+	to_chat(usr, "You toggled your admin combo HUD [combo_hud_enabled ? "ON" : "OFF"].", confidential = TRUE)
+	message_admins("[key_name_admin(usr)] toggled their admin combo HUD [combo_hud_enabled ? "ON" : "OFF"].")
+	log_admin("[key_name(usr)] toggled their admin combo HUD [combo_hud_enabled ? "ON" : "OFF"].")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Combo HUD", "[combo_hud_enabled ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	if(prefs.toggles & COMBOHUD_LIGHTING)
-		if(adding_hud)
-			mob.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		else
-			mob.lighting_alpha = initial(mob.lighting_alpha)
+/client/proc/enable_combo_hud()
+	if (combo_hud_enabled)
+		return
+
+	combo_hud_enabled = TRUE
+
+	for (var/hudtype in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED))
+		var/datum/atom_hud/atom_hud = GLOB.huds[hudtype]
+		atom_hud.show_to(mob)
+
+	for (var/datum/atom_hud/alternate_appearance/basic/antagonist_hud/antag_hud in GLOB.active_alternate_appearances)
+		antag_hud.show_to(mob)
 
 	mob.update_sight()
 
-	to_chat(usr, "You toggled your admin combo HUD [adding_hud ? "ON" : "OFF"].", confidential=TRUE)
-	message_admins("[key_name_admin(usr)] toggled their admin combo HUD [adding_hud ? "ON" : "OFF"].")
-	log_admin("[key_name(usr)] toggled their admin combo HUD [adding_hud ? "ON" : "OFF"].")
-	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Combo HUD", "[adding_hud ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/client/proc/disable_combo_hud()
+	if (!combo_hud_enabled)
+		return
 
+	combo_hud_enabled = FALSE
 
-/client/proc/has_antag_hud()
-	var/datum/atom_hud/A = GLOB.huds[ANTAG_HUD_TRAITOR]
-	return A.hudusers[mob]
+	for (var/hudtype in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED))
+		var/datum/atom_hud/atom_hud = GLOB.huds[hudtype]
+		atom_hud.hide_from(mob)
 
+	for (var/datum/atom_hud/alternate_appearance/basic/antagonist_hud/antag_hud in GLOB.active_alternate_appearances)
+		antag_hud.hide_from(mob)
+
+	mob.update_sight()
 
 /client/proc/run_weather()
 	set category = "Admin.Round Interaction"
@@ -1342,7 +1349,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 					var/shots_this_limb = 0
 					for(var/t in shuffle(open_adj_turfs))
 						var/turf/iter_turf = t
-						addtimer(CALLBACK(GLOBAL_PROC, .proc/firing_squad, dude, iter_turf, slice_part.body_zone, wound_bonuses[wound_bonus_rep], damage), delay_counter)
+						addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(firing_squad), dude, iter_turf, slice_part.body_zone, wound_bonuses[wound_bonus_rep], damage), delay_counter)
 						delay_counter += delay_per_shot
 						shots_this_limb++
 						if(shots_this_limb > shots_per_limb_per_rep)
@@ -1393,7 +1400,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	divine_wrath.preparePixelProjectile(target, source_turf)
 	divine_wrath.fire()
 
-/client/proc/punish_log(var/whom, var/punishment)
+/client/proc/punish_log(whom, punishment)
 	var/msg = "[key_name(usr)] punished [key_name_admin(whom)] with [punishment]." //yogs - Yog tickets
 	message_admins(msg)
 	admin_ticket_log(whom, msg)
@@ -1509,8 +1516,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		var/mob/M = usr
 		if(isobserver(M))
 			var/mob/living/carbon/human/H = new(T)
-			var/datum/preferences/A = new
-			A.copy_to(H)
+			H.randomize_human_appearance(~(RANDOMIZE_SPECIES))
 			H.dna.update_dna_identity()
 			H.equipOutfit(/datum/outfit/centcom/official/nopda)
 
@@ -1537,7 +1543,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /mob/living/proc/whistle()
-	INVOKE_ASYNC(src, .proc/whistletrigger, "whistle")
+	INVOKE_ASYNC(src, PROC_REF(whistletrigger), "whistle")
 
 /mob/living/proc/whistletrigger()
 	var/turf/T = get_turf(src)
@@ -1577,8 +1583,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		var/mob/M = usr
 		if(isobserver(M))
 			var/mob/living/carbon/human/H = new(T)
-			var/datum/preferences/A = new
-			A.copy_to(H)
+			H.randomize_human_appearance(~(RANDOMIZE_SPECIES))
 			H.dna.update_dna_identity()
 
 			var/datum/mind/Mind = new /datum/mind(M.key) // Reusing the mob's original mind actually breaks objectives for any antag who had this person as their target.

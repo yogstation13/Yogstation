@@ -35,7 +35,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 	var/obj/item/stock_parts/cell/integrated_battery
 
 
-/obj/machinery/ai/data_core/Initialize()
+/obj/machinery/ai/data_core/Initialize(mapload)
 	. = ..()
 	GLOB.data_cores += src
 	if(primary && !GLOB.primary_data_core)
@@ -146,7 +146,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 		return TRUE
 	return FALSE
 
-/obj/machinery/ai/data_core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
+/obj/machinery/ai/data_core/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	for(var/mob/living/silicon/ai/AI in contents)
 		AI.disconnect_shell()
@@ -227,7 +227,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 /obj/machinery/ai/data_core/proc/partytime()
 	var/current_color = random_color()
 	set_light(7, 3, current_color)
-	TimerID = addtimer(CALLBACK(src, .proc/partytime), 0.5 SECONDS, TIMER_STOPPABLE)
+	TimerID = addtimer(CALLBACK(src, PROC_REF(partytime)), 0.5 SECONDS, TIMER_STOPPABLE)
 
 /obj/machinery/ai/data_core/proc/stoptheparty()
 	set_light(0)

@@ -15,6 +15,9 @@
 	mode = MODE_CHANGELING
 
 /datum/saymode/changeling/handle_message(mob/living/user, message, datum/language/language)
+	if(ismob(user.pulledby) && is_changeling(user.pulledby) && user.pulledby.grab_state >= GRAB_NECK)
+		to_chat(user, span_warning("Our abilities are being dampened! We cannot speak through the hivemind!"))
+		return FALSE
 	switch(user.lingcheck())
 		if(LINGHIVE_LINK)
 			var/msg = span_changeling("<b>[user.mind]:</b> [message]")

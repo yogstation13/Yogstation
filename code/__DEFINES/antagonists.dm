@@ -45,6 +45,9 @@
 #define BLOB_RANDOM_PLACEMENT 1
 
 
+/// The dimensions of the antagonist preview icon. Will be scaled to this size.
+#define ANTAGONIST_PREVIEW_ICON_SIZE 96
+
 /// How many telecrystals a normal traitor starts with
 #define TELECRYSTALS_DEFAULT 20
 /// How many telecrystals mapper/admin only "precharged" uplink implant
@@ -119,8 +122,40 @@
 #define TIER_3 6
 #define TIER_ASCEND 7
 
-//Bloodsuckers
+///Whether a mob is a Bloodsucker
 #define IS_BLOODSUCKER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/bloodsucker))
+///Whether a mob is a Vassal
 #define IS_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal))
+///Whether a mob is a Favorite Vassal
+#define IS_FAVORITE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/favorite))
+///Whether a mob is a Revenge Vassal
+#define IS_REVENGE_VASSAL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vassal/revenge))
+///Whether a mob is a Monster Hunter
 #define IS_MONSTERHUNTER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/monsterhunter))
+
+/// The Classic Wizard wizard loadout.
+#define WIZARD_LOADOUT_CLASSIC "loadout_classic"
+/// Mjolnir's Power wizard loadout.
+#define WIZARD_LOADOUT_MJOLNIR "loadout_hammer"
+/// Fantastical Army wizard loadout.
+#define WIZARD_LOADOUT_WIZARMY "loadout_army"
+/// Soul Tapper wizard loadout.
+#define WIZARD_LOADOUT_SOULTAP "loadout_tap"
+/// Convenient list of all wizard loadouts for unit testing.
+#define ALL_WIZARD_LOADOUTS list( \
+	WIZARD_LOADOUT_CLASSIC, \
+	WIZARD_LOADOUT_MJOLNIR, \
+	WIZARD_LOADOUT_WIZARMY, \
+	WIZARD_LOADOUT_SOULTAP, \
+)
+
+/// Used in logging spells for roundend results
+#define LOG_SPELL_TYPE "type"
+#define LOG_SPELL_AMOUNT "amount"
+
+//antagonist awaken stages
+#define ANTAG_ASLEEP 0
+#define ANTAG_FIRST_WARNING 1
+#define ANTAG_SECOND_WARNING 2
+#define ANTAG_AWAKE 3
 

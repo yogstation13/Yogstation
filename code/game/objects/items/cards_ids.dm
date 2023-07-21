@@ -36,7 +36,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	var/detail_color = COLOR_ASSEMBLY_ORANGE
 
-/obj/item/card/data/Initialize()
+/obj/item/card/data/Initialize(mapload)
 	.=..()
 	update_icon()
 
@@ -99,13 +99,14 @@
 			if (prob(5))
 				var/mob/living/M = user
 				M.adjust_fire_stacks(1)
-				M.IgniteMob()
+				M.ignite_mob()
 				to_chat(user, span_danger("The card shorts out and catches fire in your hands!"))
 			log_combat(user, target, "attempted to emag")
-			if (!istype(target, /obj/machinery/computer/cargo))
-				target.emag_act(user)
-			else
+			if(istype(target, /obj/machinery/computer/bounty)) //we can't have nice things
 				to_chat(user, span_notice("The cheap circuitry isn't strong enough to subvert this!"))
+				emagging = FALSE
+				return
+			target.emag_act(user)
 		emagging = FALSE
 
 /obj/item/card/emag/improvised/attackby(obj/item/W, mob/user, params)
@@ -161,9 +162,28 @@
 	var/originalassignment = null
 	var/access_txt // mapping aid
 	var/datum/bank_account/registered_account
-	var/obj/machinery/paystand/my_store
 	var/registered_age = 21 // default age for ss13 players
 	var/critter_money = FALSE //does exactly what it says
+
+	//yogs: redd ports holopay but as paystands
+	/// Linked holopay.
+	var/obj/machinery/paystand/my_store = null
+	/// List of logos available for holopay customization - via font awesome 5
+	var/static/list/available_logos = list("angry", "ankh", "bacon", "band-aid", "cannabis", "cat", "cocktail", "coins", "comments-dollar",
+	"cross", "cut", "dog", "donate", "dna", "fist-raised", "flask", "glass-cheers", "glass-martini-alt", "hamburger", "hand-holding-usd",
+	"hat-wizard", "head-side-cough-slash", "heart", "heart-broken",  "laugh-beam", "leaf", "money-check-alt", "music", "piggy-bank",
+	"pizza-slice", "prescription-bottle-alt", "radiation", "robot", "smile", "skull-crossbones", "smoking", "space-shuttle", "tram",
+	"trash", "user-ninja", "utensils", "wrench")
+	/// Replaces the "pay whatever" functionality with a set amount when non-zero.
+	var/holopay_fee = 0
+	/// The holopay icon chosen by the user
+	var/holopay_logo = "donate"
+	/// Maximum forced fee. It's unlikely for a user to encounter this type of money, much less pay it willingly.
+	var/holopay_max_fee = 5000
+	/// Minimum forced fee for holopay stations. Registers as "pay what you want."
+	var/holopay_min_fee = 0
+	/// The holopay name chosen by the user
+	var/holopay_name = "registered pay stand"
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
@@ -171,10 +191,10 @@
 		access = text2access(access_txt)
 
 /obj/item/card/id/Destroy()
-	if (registered_account)
+	if(registered_account)
 		registered_account.bank_cards -= src
-	if (my_store && my_store.my_card == src)
-		my_store.my_card = null
+	if(my_store && my_store.linked_card == src)
+		my_store.linked_card = null
 	return ..()
 
 /obj/item/card/id/attack_self(mob/user)
@@ -385,7 +405,7 @@ update_label("John Doe", "Clowny")
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
 
-/obj/item/card/id/syndicate/Initialize()
+/obj/item/card/id/syndicate/Initialize(mapload)
 	. = ..()
 	var/datum/action/item_action/chameleon/change/chameleon_action = new(src)
 	chameleon_action.syndicate = TRUE
@@ -417,7 +437,7 @@ update_label("John Doe", "Clowny")
 			return
 		if(popup_input == "Forge/Reset" && !forged)
 			var/input_name = stripped_input(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
-			input_name = reject_bad_name(input_name)
+			input_name = reject_bad_name(input_name, TRUE) //some species (IPCs) can have numbers in their name
 			if(!input_name)
 				// Invalid/blank names give a randomly generated one.
 				if(user.gender == FEMALE)
@@ -564,7 +584,7 @@ update_label("John Doe", "Clowny")
 	originalassignment = "Captain"
 	registered_age = null
 
-/obj/item/card/id/captains_spare/Initialize()
+/obj/item/card/id/captains_spare/Initialize(mapload)
 	var/datum/job/captain/J = new/datum/job/captain
 	access = J.get_access()
 	. = ..()
@@ -574,11 +594,11 @@ update_label("John Doe", "Clowny")
 	desc = "A temporary ID for access to secure areas in the event of an emergency"
 	resistance_flags = FLAMMABLE
 
-/obj/item/card/id/captains_spare/temporary/Initialize()
+/obj/item/card/id/captains_spare/temporary/Initialize(mapload)
 	. = ..()
 	access -= ACCESS_CHANGE_IDS
 	access -= ACCESS_HEADS
-	addtimer(CALLBACK(src, .proc/wipe_id), 50 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(wipe_id)), 50 SECONDS)
 
 /obj/item/card/id/captains_spare/temporary/proc/wipe_id()
 	visible_message(span_danger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"), span_userdanger("The temporary spare begins to smolder"))
@@ -586,13 +606,13 @@ update_label("John Doe", "Clowny")
 	if(isliving(loc))
 		var/mob/living/M = loc
 		M.adjust_fire_stacks(1)
-		M.IgniteMob()
+		M.ignite_mob()
 	if(istype(loc,/obj/structure/fireaxecabinet/bridge/spare)) //if somebody is being naughty and putting the temporary spare in the cabinet
 		var/obj/structure/fireaxecabinet/bridge/spare/holder = loc
 		forceMove(holder.loc)
 		holder.spareid = null
 		if(holder.obj_integrity > holder.integrity_failure) //we dont want to heal it by accident
-			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN) //we do a bit of trolling for being naughty
+			holder.take_damage(holder.obj_integrity - holder.integrity_failure, BURN, armour_penetration = 100) //we do a bit of trolling for being naughty
 		else
 			holder.update_icon() //update the icon anyway so it pops out
 		visible_message(span_danger("The heat of the temporary spare shatters the glass!"));
@@ -604,6 +624,44 @@ update_label("John Doe", "Clowny")
 		holder.spareid = null
 		holder.update_icon()
 	burn()
+
+//yogs: redd ports holopay but as paystands
+/**
+ * Setter for the shop logo on linked holopays
+ *
+ * Arguments:
+ * * new_logo - The new logo to be set.
+ */
+/obj/item/card/id/proc/set_holopay_logo(new_logo)
+	if(!available_logos.Find(new_logo))
+		CRASH("User input a holopay shop logo that didn't exist.")
+	holopay_logo = new_logo
+
+/**
+ * Setter for changing the force fee on a holopay.
+ *
+ * Arguments:
+ * * new_fee - The new fee to be set.
+ */
+/obj/item/card/id/proc/set_holopay_fee(new_fee)
+	if(!isnum(new_fee))
+		CRASH("User input a non number into the holopay fee field.")
+	if(new_fee < holopay_min_fee || new_fee > holopay_max_fee)
+		CRASH("User input a number outside of the valid range into the holopay fee field.")
+	holopay_fee = new_fee
+
+/**
+ * Setter for changing the holopay name.
+ *
+ * Arguments:
+ * * new_name - The new name to be set.
+ */
+/obj/item/card/id/proc/set_holopay_name(name)
+	if(length(name) < 3 || length(name) > MAX_NAME_LEN)
+		to_chat(usr, span_warning("Must be between 3 - 42 characters."))
+	else
+		holopay_name = html_encode(trim(name, MAX_NAME_LEN))
+//yogs end
 
 /obj/item/card/id/centcom
 	name = "\improper CentCom ID"
@@ -626,7 +684,7 @@ update_label("John Doe", "Clowny")
 
 
 
-/obj/item/card/id/centcom/Initialize()
+/obj/item/card/id/centcom/Initialize(mapload)
 	access = get_all_centcom_access()
 	. = ..()
 
@@ -639,7 +697,7 @@ update_label("John Doe", "Clowny")
 	originalassignment = "Emergency Response Team Commander"
 	registered_age = null
 
-/obj/item/card/id/ert/debug/Initialize()
+/obj/item/card/id/ert/debug/Initialize(mapload)
 	. = ..()
 	access = get_debug_access()
 
@@ -655,11 +713,11 @@ update_label("John Doe", "Clowny")
 	assignment = "Occupying Officer"
 	originalassignment = "Occupying Officer"
 
-/obj/item/card/id/ert/occupying/Initialize()
+/obj/item/card/id/ert/occupying/Initialize(mapload)
     access = list(ACCESS_SECURITY,ACCESS_BRIG,ACCESS_WEAPONS,ACCESS_SEC_DOORS,ACCESS_MAINT_TUNNELS)+get_ert_access("sec")
     . = ..()
     
-/obj/item/card/id/ert/Initialize()
+/obj/item/card/id/ert/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("commander")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -668,7 +726,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Security Response Officer"
 	originalassignment = "Security Response Officer"
 
-/obj/item/card/id/ert/Security/Initialize()
+/obj/item/card/id/ert/Security/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -677,7 +735,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Engineer Response Officer"
 	originalassignment = "Engineer Response Officer"
 
-/obj/item/card/id/ert/Engineer/Initialize()
+/obj/item/card/id/ert/Engineer/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("eng")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -686,7 +744,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Medical Response Officer"
 	originalassignment = "Medical Response Officer"
 
-/obj/item/card/id/ert/Medical/Initialize()
+/obj/item/card/id/ert/Medical/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("med")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -695,7 +753,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Religious Response Officer"
 	originalassignment = "Religious Response Officer"
 
-/obj/item/card/id/ert/chaplain/Initialize()
+/obj/item/card/id/ert/chaplain/Initialize(mapload)
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
 	. = ..()
 
@@ -704,7 +762,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Janitorial Response Officer"
 	originalassignment = "Janitorial Response Officer"
 
-/obj/item/card/id/ert/Janitor/Initialize()
+/obj/item/card/id/ert/Janitor/Initialize(mapload)
 	access = get_all_accesses()
 	. = ..()
 
@@ -713,7 +771,7 @@ update_label("John Doe", "Clowny")
 	assignment = "Clown ERT"
 	originalassignment = "Clown ERT"
 
-/obj/item/card/id/ert/clown/Initialize()
+/obj/item/card/id/ert/clown/Initialize(mapload)
 	access = get_all_accesses()
 	. = ..()
 
@@ -822,7 +880,7 @@ update_label("John Doe", "Clowny")
 	var/department_name = ACCOUNT_CIV_NAME
 	registered_age = null
 
-/obj/item/card/id/departmental_budget/Initialize()
+/obj/item/card/id/departmental_budget/Initialize(mapload)
 	. = ..()
 	var/datum/bank_account/B = SSeconomy.get_dep_account(department_ID)
 	if(B)

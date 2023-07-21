@@ -28,7 +28,7 @@
 /obj/machinery/electrolyzer/get_cell()
 	return cell
 
-/obj/machinery/electrolyzer/Initialize()
+/obj/machinery/electrolyzer/Initialize(mapload)
 	. = ..()
 	if(ispath(cell))
 		cell = new cell(src)
@@ -95,24 +95,31 @@
 	if(!removed)
 		return
 
-	var/proportion = min(removed.get_moles(/datum/gas/water_vapor), (1.5 * delta_time * workingPower))//Works to max 12 moles at a time.
-	removed.adjust_moles(/datum/gas/water_vapor, -(proportion * 2 * workingPower))
-	removed.adjust_moles(/datum/gas/oxygen, (proportion * workingPower))
-	removed.adjust_moles(/datum/gas/hydrogen, (proportion * 2 * workingPower))
+	var/proportion = 0
+	if(removed.get_moles(/datum/gas/water_vapor))
+		proportion = min(removed.get_moles(/datum/gas/water_vapor), (3 * delta_time * workingPower)) //Works to max 12 moles at a time.
+		removed.adjust_moles(/datum/gas/water_vapor, -proportion)
+		removed.adjust_moles(/datum/gas/oxygen, proportion / 2)
+		removed.adjust_moles(/datum/gas/hydrogen, proportion)
+	if(removed.get_moles(/datum/gas/hypernoblium))
+		proportion = min(removed.get_moles(/datum/gas/hypernoblium), (delta_time * workingPower)) // up to 4 moles at a time
+		removed.adjust_moles(/datum/gas/hypernoblium, -proportion)
+		removed.adjust_moles(/datum/gas/antinoblium, proportion)
 	env.merge(removed) //put back the new gases in the turf
 	air_update_turf()
 
 	var/working = TRUE
 
 	if(stat & NOPOWER)
-		if (!cell.use((5 * proportion * workingPower) / (efficiency + workingPower)))
+		if (!cell.use((5 * proportion) / (efficiency + workingPower)))
 			//automatically turn off machine when cell depletes
 			on = FALSE
 			update_icon()
 			working = FALSE
 	else
-		active_power_usage = (5 * proportion * workingPower) / (efficiency + workingPower)
-		cell.give(charge_rate)
+		active_power_usage = (5 * proportion) / (efficiency + workingPower)
+		if(cell)
+			cell.give(charge_rate)
 
 	if(!working)
 		return PROCESS_KILL

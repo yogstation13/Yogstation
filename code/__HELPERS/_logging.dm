@@ -35,7 +35,6 @@
 	SEND_TEXT(world.log, text)
 #endif
 
-
 /* Items with ADMINPRIVATE prefixed are stripped from public logs. */
 /proc/log_admin(text)
 	GLOB.admin_log.Add(text)
@@ -183,6 +182,11 @@
 	if (CONFIG_GET(flag/log_job_debug))
 		WRITE_LOG(GLOB.world_job_debug_log, "JOB: [text]")
 
+/// Logging for wizard powers learned
+/proc/log_spellbook(text)
+	if (CONFIG_GET(flag/log_uplink))
+		WRITE_LOG(GLOB.world_uplink_log, "SPELLBOOK: [text]")
+
 /* Log to both DD and the logfile. */
 /proc/log_world(text)
 #ifdef USE_CUSTOM_ERROR_HANDLER
@@ -203,7 +207,11 @@
 	SEND_TEXT(world.log, text)
 
 /proc/log_mapping(text)
+#ifdef UNIT_TESTS
+	GLOB.unit_test_mapping_logs += text
+#endif
 	WRITE_LOG(GLOB.world_map_error_log, text)
+	
 
 /**
  * Appends a tgui-related log entry. All arguments are optional.

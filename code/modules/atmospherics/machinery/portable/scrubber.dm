@@ -12,17 +12,21 @@
 		/datum/gas/plasma,
 		/datum/gas/carbon_dioxide,
 		/datum/gas/nitrous_oxide,
+		/datum/gas/miasma,
 		/datum/gas/bz,
-		/datum/gas/nitryl,
+		/datum/gas/nitrium,
 		/datum/gas/tritium,
 		/datum/gas/hypernoblium,
+		/datum/gas/dilithium,
 		/datum/gas/freon,
 		/datum/gas/hydrogen,
 		/datum/gas/water_vapor,
 		/datum/gas/healium,
+		/datum/gas/pluoxium,
 		/datum/gas/pluonium,
 		/datum/gas/halon,
 		/datum/gas/zauker,
+		/datum/gas/antinoblium,
 		/datum/gas/hexane,
 	)
 
@@ -52,7 +56,7 @@
 		var/turf/T = get_turf(src)
 		scrub(T.return_air())
 
-/obj/machinery/portable_atmospherics/scrubber/proc/scrub(var/datum/gas_mixture/mixture)
+/obj/machinery/portable_atmospherics/scrubber/proc/scrub(datum/gas_mixture/mixture)
 	if(air_contents.return_pressure() >= overpressure_m * ONE_ATMOSPHERE)
 		return
 

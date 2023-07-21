@@ -281,7 +281,7 @@
 	icon_state = "tube-empty"
 	start_with_cell = FALSE
 
-/obj/machinery/light/built/Initialize()
+/obj/machinery/light/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
 	update(0)
@@ -289,7 +289,7 @@
 /obj/machinery/light/floor/built
 	icon_state = "floor-empty"
 
-/obj/machinery/light/floor/built/Initialize()
+/obj/machinery/light/floor/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
 	update(0)
@@ -297,17 +297,16 @@
 /obj/machinery/light/small/built
 	icon_state = "bulb-empty"
 
-/obj/machinery/light/small/built/Initialize()
+/obj/machinery/light/small/built/Initialize(mapload)
 	. = ..()
 	status = LIGHT_EMPTY
 	update(0)
-
-
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload)
 	. = ..()
 
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(clean_light))
 	if(!mapload) //sync up nightshift lighting for player made lights
 		var/area/A = get_area(src)
 		var/obj/machinery/power/apc/temp_apc = A.get_apc()
@@ -365,6 +364,12 @@
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
 	return
+
+/obj/machinery/light/proc/clean_light(O,strength)
+	if(strength < CLEAN_TYPE_BLOOD)
+		return
+	bulb_colour = initial(bulb_colour)
+	update()
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE)
@@ -430,7 +435,7 @@
 		if(!start_only)
 			do_sparks(3, TRUE, src)
 		var/delay = rand(BROKEN_SPARKS_MIN, BROKEN_SPARKS_MAX)
-		addtimer(CALLBACK(src, .proc/broken_sparks), delay, TIMER_UNIQUE | TIMER_NO_HASH_WAIT)
+		addtimer(CALLBACK(src, PROC_REF(broken_sparks)), delay, TIMER_UNIQUE | TIMER_NO_HASH_WAIT)
 
 /obj/machinery/light/process()
 	if (!cell)
@@ -583,7 +588,7 @@
 			if(prob(12))
 				electrocute_mob(user, get_area(src), src, 0.3, TRUE)
 
-/obj/machinery/light/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
+/obj/machinery/light/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(. && !QDELETED(src))
 		if(prob(damage_amount * 5))
@@ -638,7 +643,7 @@
 	return TRUE
 
 
-/obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
+/obj/machinery/light/proc/flicker(amount = rand(10, 20))
 	set waitfor = 0
 	if(flickering)
 		return
@@ -877,12 +882,9 @@
 			icon_state = "[base_state]-broken"
 			desc = "A broken [name]."
 
-/obj/item/light/Initialize()
+/obj/item/light/Initialize(mapload)
 	. = ..()
 	update()
-
-/obj/item/light/ComponentInitialize()
-	. = ..()
 	AddComponent(/datum/component/caltrop, force)
 
 /obj/item/light/Crossed(atom/movable/AM)

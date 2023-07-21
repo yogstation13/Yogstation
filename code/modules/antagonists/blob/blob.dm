@@ -4,8 +4,10 @@
 	antagpanel_category = "Blob"
 	show_to_ghosts = TRUE
 	job_rank = ROLE_BLOB
-
+	ui_name = "AntagInfoBlob"
+	/// Action to release a blob infection
 	var/datum/action/innate/blobpop/pop_action
+	/// Initial points for a human blob
 	var/starting_points_human_blob = 60
 	var/point_rate_human_blob = 2
 
@@ -41,6 +43,16 @@
 	to_chat(owner.current, "<span class='alertsyndie'><font color=\"#EE4000\">You are no longer the Blob!</font></span>")
 	return ..()
 
+/datum/antagonist/blob/get_preview_icon()
+	var/datum/blobstrain/reagent/reactive_spines/reactive_spines = /datum/blobstrain/reagent/reactive_spines
+
+	var/icon/icon = icon('icons/mob/blob.dmi', "blob_core")
+	icon.Blend(initial(reactive_spines.color), ICON_MULTIPLY)
+	icon.Blend(icon('icons/mob/blob.dmi', "blob_core_overlay"), ICON_OVERLAY)
+	icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+
+	return icon
+
 /datum/antagonist/blob/proc/create_objectives()
 	var/datum/objective/blob_takeover/main = new
 	main.owner = owner
@@ -59,7 +71,7 @@
 /datum/action/innate/blobpop
 	name = "Pop"
 	desc = "Unleash the blob"
-	icon_icon = 'icons/mob/blob.dmi'
+	button_icon = 'icons/mob/blob.dmi'
 	button_icon_state = "blob"
 	var/autoplace_time = OVERMIND_STARTING_AUTO_PLACE_TIME
 
@@ -67,7 +79,7 @@
 /datum/action/innate/blobpop/Grant(Target)
 	. = ..()
 	if(owner)
-		addtimer(CALLBACK(src, .proc/Activate, TRUE), autoplace_time, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(Activate), TRUE), autoplace_time, TIMER_UNIQUE|TIMER_OVERRIDE)
 		to_chat(owner, "<span class='big'><font color=\"#EE4000\">You will automatically pop and place your blob core in [DisplayTimeText(autoplace_time)].</font></span>")
 
 /datum/action/innate/blobpop/Activate(timer_activated = FALSE)

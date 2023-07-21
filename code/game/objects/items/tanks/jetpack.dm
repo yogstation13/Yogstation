@@ -17,7 +17,7 @@
 	var/datum/effect_system/trail_follow/ion/ion_trail
 	var/jetspeed = -0.3 // Negative increases speed
 
-/obj/item/tank/jetpack/Initialize()
+/obj/item/tank/jetpack/Initialize(mapload)
 	. = ..()
 	ion_trail = new
 	ion_trail.set_up(src)
@@ -49,14 +49,14 @@
 		to_chat(user, span_notice("You turn the jetpack off."))
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 
 /obj/item/tank/jetpack/proc/turn_on(mob/user)
 	on = TRUE
 	update_icon()
 	ion_trail.start()
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/move_react)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 	if(full_speed)
 		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=jetspeed, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 
@@ -200,7 +200,7 @@
 	var/obj/item/tank/internals/tank = null
 	var/mob/living/carbon/human/cur_user
 
-/obj/item/tank/jetpack/suit/Initialize()
+/obj/item/tank/jetpack/suit/Initialize(mapload)
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
 	temp_air_contents = air_contents

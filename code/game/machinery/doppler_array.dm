@@ -10,14 +10,13 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	var/next_announce = 0
 	var/integrated = FALSE
 	var/max_dist = 150
+	var/allow_all = FALSE //lets the doppler array process any kind of bomb, in case admins want to be funny
 	verb_say = "states coldly"
 
-/obj/machinery/doppler_array/Initialize()
+/obj/machinery/doppler_array/Initialize(mapload)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, .proc/sense_explosion)
-
-/obj/machinery/doppler_array/ComponentInitialize()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE,null,null,CALLBACK(src,.proc/rot_message))
+	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, PROC_REF(sense_explosion))
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE, null, null, CALLBACK(src, PROC_REF(rot_message)))
 
 /obj/machinery/doppler_array/examine(mob/user)
 	..()
@@ -107,11 +106,13 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	var/point_gain = 0
 
 	/*****The Point Calculator*****/
-
-	if(orig_light_range > -TOXINS_RESEARCH_LAMBDA && orig_light_range < 10)
+	if(orig_light_range < 0 && !allow_all) // Sarah-proofs the doppler array
+		say("WARNING: NEGATIVE TACHYON DENSITY DETECTED.")
+		point_gain = TOXINS_RESEARCH_MAX
+	else if(orig_light_range < 10 && !allow_all)
 		say("Explosion not large enough for research calculations.")
 		return
-	else if(orig_light_range <= -INFINITY || orig_light_range >= INFINITY) // Colton-proofs the doppler array
+	else if(orig_light_range >= INFINITY && !allow_all) // Colton-proofs the doppler array
 		say("WARNING: INFINITE DENSITY OF TACHYONS DETECTED.")
 		point_gain = TOXINS_RESEARCH_MAX
 	else
@@ -127,13 +128,14 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		if(D)
 			D.adjust_money(point_gain)
 			linked_techweb.add_stored_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
-			say("Explosion details and mixture analyzed and sold to the highest bidder for $[point_gain], with a reward of [point_gain] points to be processed by research servers.")
+			var/msg = (orig_light_range < 0) ? "Implosion" : "Explosion"
+			say(msg + " details and mixture analyzed and sold to the highest bidder for $[point_gain], with a reward of [point_gain] points to be processed by research servers.")
 
 	else //you've made smaller bombs
 		say("Data already captured. Aborting.")
 		return
 
 
-/obj/machinery/doppler_array/research/science/Initialize()
+/obj/machinery/doppler_array/research/science/Initialize(mapload)
 	. = ..()
 	linked_techweb = SSresearch.science_tech

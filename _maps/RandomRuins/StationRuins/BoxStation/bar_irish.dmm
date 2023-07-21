@@ -27,12 +27,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"ah" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "ai" = (
 /obj/machinery/door/window/southleft{
 	base_state = "left";
@@ -177,12 +171,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "av" = (
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"aw" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "ax" = (
@@ -1652,6 +1640,12 @@
 /obj/machinery/oven,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"wR" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "yt" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/door/poddoor/preopen{
@@ -1837,6 +1831,15 @@
 	name = "bar shutters"
 	},
 /turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"WE" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "XT" = (
 /obj/structure/table,
@@ -2074,7 +2077,7 @@ cY
 ad
 "}
 (15,1,1) = {"
-ah
+wR
 av
 aN
 bd
@@ -2091,7 +2094,7 @@ ad
 "}
 (16,1,1) = {"
 ad
-aw
+WE
 aO
 ad
 ad

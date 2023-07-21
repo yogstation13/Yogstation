@@ -45,7 +45,7 @@
 	song_length = length
 	song_beat = beat
 
-/obj/machinery/jukebox/Initialize()
+/obj/machinery/jukebox/Initialize(mapload)
 	. = ..()
 	var/list/tracks = flist("[global.config.directory]/jukebox_music/sounds/")
 
@@ -176,6 +176,17 @@
 	active = TRUE
 	update_icon()
 	START_PROCESSING(SSobj, src)
+	var/sound/song_played = sound(selection.song_path)
+	var/list/close = range(10,src)
+	for(var/mob/L in GLOB.player_list)
+		if(!L || !L.client)
+			continue
+		// it doesn't send at 0 volume so you get 0.001 volume on init
+		L.playsound_local(get_turf(L), null, 0.001, channel = CHANNEL_JUKEBOX, S = song_played)
+		if(L in close && L.client.prefs.toggles & SOUND_JUKEBOX)
+			L.set_sound_channel_volume(CHANNEL_JUKEBOX, volume) // TURN THAT SHIT UP!!!!
+		else
+			L.set_sound_channel_volume(CHANNEL_JUKEBOX, 0)
 	stop = world.time + selection.song_length
 
 /obj/machinery/jukebox/disco/activate_music()
@@ -185,7 +196,8 @@
 
 /obj/machinery/jukebox/disco/proc/dance_setup()
 	var/turf/cen = get_turf(src)
-	FOR_DVIEW(var/turf/t, 3, get_turf(src),INVISIBILITY_LIGHTING)
+	var/turf/t
+	FOR_DVIEW(t, 3, get_turf(src),INVISIBILITY_LIGHTING)
 		if(t.x == cen.x && t.y > cen.y)
 			spotlights += new /obj/item/flashlight/spotlight(t, 1 + get_dist(src, t), 30 - (get_dist(src, t) * 8), LIGHT_COLOR_RED)
 			continue
@@ -310,14 +322,14 @@
 						glow.set_light_color(LIGHT_COLOR_RED)
 			glow.even_cycle = !glow.even_cycle
 		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
-			INVOKE_ASYNC(src, .proc/hierofunk)
+			INVOKE_ASYNC(src, PROC_REF(hierofunk))
 		sleep(selection.song_beat)
 		if(QDELETED(src))
 			return
 
 #undef DISCO_INFENO_RANGE
 
-/obj/machinery/jukebox/disco/proc/dance(var/mob/living/M) //Show your moves
+/obj/machinery/jukebox/disco/proc/dance(mob/living/M) //Show your moves
 	set waitfor = FALSE
 	switch(rand(0,6))
 		if(0 to 1)
@@ -329,14 +341,14 @@
 
 /obj/machinery/jukebox/disco/proc/dance2(mob/living/M)
 	for(var/i in 0 to 9)
-		dance_rotate(M, CALLBACK(M, /mob.proc/dance_flip))
+		dance_rotate(M, CALLBACK(M, TYPE_PROC_REF(/mob, dance_flip)))
 		sleep(2 SECONDS)
 
 /mob/proc/dance_flip()
 	if(dir == WEST)
 		emote("flip")
 
-/obj/machinery/jukebox/disco/proc/dance3(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance3(mob/living/M)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 75)
 		if (!M)
@@ -383,7 +395,7 @@
 		sleep(0.1 SECONDS)
 	M.lying_fix()
 
-/obj/machinery/jukebox/disco/proc/dance4(var/mob/living/M)
+/obj/machinery/jukebox/disco/proc/dance4(mob/living/M)
 	animate(M, transform = matrix(180, MATRIX_ROTATE), time = 0.1 SECONDS, loop = 0)
 	var/matrix/initial_matrix = matrix(M.transform)
 	for (var/i in 1 to 60)
@@ -423,7 +435,7 @@
 	lying_prev = 0
 
 /obj/machinery/jukebox/proc/dance_over()
-	for(var/mob/living/L in rangers)
+	for(var/mob/L in GLOB.player_list)
 		if(!L || !L.client)
 			continue
 		L.stop_sound_channel(CHANNEL_JUKEBOX)
@@ -436,20 +448,18 @@
 
 /obj/machinery/jukebox/process()
 	if(world.time < stop && active)
-		var/sound/song_played = sound(selection.song_path)
-
 		for(var/mob/M in range(10,src))
 			if(!M.client || !(M.client.prefs.toggles & SOUND_JUKEBOX))
 				continue
 			if(!(M in rangers))
 				rangers[M] = TRUE
-				M.playsound_local(get_turf(M), null, volume, channel = CHANNEL_JUKEBOX, S = song_played)
+			M.set_sound_channel_volume(CHANNEL_JUKEBOX, volume) // We want volume updated without having to walk away!!
 		for(var/mob/L in rangers)
 			if(get_dist(src,L) > 10)
 				rangers -= L
 				if(!L || !L.client)
 					continue
-				L.stop_sound_channel(CHANNEL_JUKEBOX)
+				L.set_sound_channel_volume(CHANNEL_JUKEBOX, 0)
 	else if(active)
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)

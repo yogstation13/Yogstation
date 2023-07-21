@@ -7,14 +7,14 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 1000
-	req_access = list(ACCESS_ROBOTICS)
+	req_access = list(ACCESS_ROBO_CONTROL)
 	state_open = TRUE
 	circuit = /obj/item/circuitboard/machine/cyborgrecharger
 	occupant_typecache = list(/mob/living/silicon/robot, /mob/living/carbon/human)
 	var/recharge_speed
 	var/repairs
 
-/obj/machinery/recharge_station/Initialize()
+/obj/machinery/recharge_station/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -105,7 +105,7 @@
 /obj/machinery/recharge_station/fullupgrade
 	flags_1 = NODECONSTRUCT_1
 
-/obj/machinery/recharge_station/fullupgrade/Initialize()
+/obj/machinery/recharge_station/fullupgrade/Initialize(mapload)
 	. = ..()
 	update_icon()
 	component_parts = list()

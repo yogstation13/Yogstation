@@ -11,10 +11,10 @@
 	var/apply_type = INGEST
 	var/apply_method = "chew"
 	var/rename_with_volume = FALSE
-	var/self_delay = 1.5 SECONDS
+	var/self_delay = 1 SECONDS
 	var/dissolvable = TRUE
 
-/obj/item/reagent_containers/gummy/Initialize()
+/obj/item/reagent_containers/gummy/Initialize(mapload)
 	. = ..()
 	if(prob(1))
 		name = "chubby gummi bear" //le player reference
@@ -178,8 +178,8 @@
 	, "Surely, there's no way this could go bad.")
 	color = null
 
-/obj/item/reagent_containers/gummy/floorbear/Initialize()
-	list_reagents = list(get_random_reagent_id() = 15)
+/obj/item/reagent_containers/gummy/floorbear/Initialize(mapload)
+	list_reagents = list(get_random_reagent_id() = 30)
 	. = ..()
 	name = pick(names2)
 	if(prob(20))

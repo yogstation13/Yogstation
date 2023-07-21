@@ -17,7 +17,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
 
-/obj/structure/showcase/fakeid/Initialize()
+/obj/structure/showcase/fakeid/Initialize(mapload)
 	. = ..()
 	add_overlay("id")
 	add_overlay("id_key")
@@ -28,7 +28,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
 
-/obj/structure/showcase/fakesec/Initialize()
+/obj/structure/showcase/fakesec/Initialize(mapload)
 	. = ..()
 	add_overlay("security")
 	add_overlay("security_key")
@@ -61,6 +61,20 @@
 	desc = "A stand with an empty old Nanotrasen Corporation combat mech bolted to it. It is described as the premier unit used to defend corporate interests and employees."
 	icon = 'icons/mecha/mecha.dmi'
 	icon_state = "marauder"
+
+/obj/structure/showcase/mecha/marauder/mauler
+	desc = "A stand with an empty old Syndicate combat mech bolted to it. It is described as a hard-hitting premier unit for nuclear strike teams."
+	icon_state = "mauler"
+
+/obj/structure/showcase/mecha/gygax
+	name = "combat mech exhibit"
+	desc = "A stand with an empty old Nanotrasen Corporation combat mech bolted to it. It is described as a lightweight forward combat exosuit for security teams."
+	icon = 'icons/mecha/mecha.dmi'
+	icon_state = "gygax"
+
+/obj/structure/showcase/mecha/gygax/dark
+	desc = "A stand with an empty old Syndicate combat mech bolted to it. It is described as a high-speed unit for nuclear strike teams."
+	icon_state = "darkgygax"
 
 /obj/structure/showcase/mecha/ripley
 	name = "construction mech exhibit"

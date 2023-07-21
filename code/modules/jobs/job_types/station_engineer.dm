@@ -2,10 +2,8 @@
 	title = "Station Engineer"
 	description = "Start the Supermatter, wire the solars, repair station hull \
 		and wiring damage."
-	flag = ENGINEER
 	orbit_icon = "gears"
 	department_head = list("Chief Engineer")
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
@@ -17,7 +15,7 @@
 
 	outfit = /datum/outfit/job/engineer
 
-	added_access = list(ACCESS_ATMOSPHERICS)
+	added_access = list(ACCESS_ATMOSPHERICS, ACCESS_RESEARCH)
 	base_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE,
 									ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_TCOMSAT, ACCESS_MINERAL_STOREROOM)
 	paycheck = PAYCHECK_MEDIUM
@@ -26,28 +24,21 @@
 	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
 	minimal_character_age = 22 //You need to know a lot of complicated stuff about engines, could theoretically just have a traditional bachelor's
 
-	changed_maps = list("EclipseStation", "OmegaStation")
+	departments_list = list(
+		/datum/job_department/engineering,
+	)
 
 	mail_goodies = list(
-		/obj/item/storage/box/lights/mixed = 20,
-		/obj/item/lightreplacer = 10,
+		/obj/item/stack/sheet/metal/fifty = 25,
+		/obj/item/stack/sheet/glass/fifty = 25,
 		/obj/item/holosign_creator/engineering = 8,
 		/obj/item/rcd_ammo = 5,
-		/obj/item/clothing/head/hardhat/red/upgraded = 1
+		/obj/item/stack/sheet/plasteel/twenty = 5,
+		/obj/item/clothing/head/hardhat/red/upgraded = 2,
+		/obj/item/clothing/suit/space/hardsuit/engine = 1
 	)
 
 	smells_like = "welding fuel"
-
-/datum/job/engineer/proc/EclipseStationChanges()
-	total_positions = 6
-	spawn_positions = 5
-
-/datum/job/engineer/proc/OmegaStationChanges()
-	total_positions = 2
-	spawn_positions = 2
-	added_access = list()
-	base_access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS)
-	supervisors = "the captain and the head of personnel"
 
 GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, ENG_DEPT_SUPPLY, ENG_DEPT_SERVICE))
 
@@ -56,7 +47,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	// Assign department engineering
 	var/department
 	if(M && M.client && M.client.prefs)
-		department = M.client.prefs.prefered_engineering_department
+		department = M.client.prefs.read_preference(/datum/preference/choiced/engineering_department)
 		if(!LAZYLEN(GLOB.available_depts_eng) || department == "None")
 			return
 		else if(department in GLOB.available_depts_eng)
@@ -90,7 +81,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	if(ears)
 		if(H.ears)
 			qdel(H.ears)
-		H.equip_to_slot_or_del(new ears(H),SLOT_EARS)
+		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
 
 	var/obj/item/card/id/W = H.get_idcard()
 	W.access |= dep_access
@@ -120,7 +111,7 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/engineer/gloved
 	name = "Station Engineer (Gloves)"
@@ -132,9 +123,9 @@ GLOBAL_LIST_INIT(available_depts_eng, list(ENG_DEPT_MEDICAL, ENG_DEPT_SCIENCE, E
 	suit = /obj/item/clothing/suit/space/hardsuit/engine
 	suit_store = /obj/item/tank/internals/oxygen
 	head = null
-	internals_slot = SLOT_S_STORE
+	internals_slot = ITEM_SLOT_SUITSTORE
 
-/obj/item/radio/headset/headset_eng/department/Initialize()
+/obj/item/radio/headset/headset_eng/department/Initialize(mapload)
 	. = ..()
 	wires = new/datum/wires/radio(src)
 	secure_radio_connections = new

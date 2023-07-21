@@ -29,7 +29,7 @@
 
 	if(animated)
 		animate(screen, alpha = 0, time = animated)
-		addtimer(CALLBACK(src, .proc/clear_fullscreen_after_animate, screen), animated, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, PROC_REF(clear_fullscreen_after_animate), screen), animated, TIMER_CLIENT_TIME)
 	else
 		if(client)
 			client.screen -= screen
@@ -180,7 +180,7 @@
 	color = "#000000"
 	show_when_dead = TRUE
 
-/atom/movable/screen/fullscreen/cinematic_backdrop/Initialize()
+/atom/movable/screen/fullscreen/cinematic_backdrop/Initialize(mapload)
 	. = ..()
 	layer = SPLASHSCREEN_LAYER - 1
 
@@ -211,8 +211,18 @@
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
 
+/atom/movable/screen/fullscreen/red_eye
+	icon_state = "red_eye"
+	plane = FULLSCREEN_PLANE
+	layer = CURSE_LAYER
+
 //Triggered by übercharge activation
 /atom/movable/screen/fullscreen/uber
 	icon_state = "uberoverlay"
+	plane = FULLSCREEN_PLANE
+	layer = CURSE_LAYER
+
+/atom/movable/screen/fullscreen/blue_eye
+	icon_state = "blue_eye"
 	plane = FULLSCREEN_PLANE
 	layer = CURSE_LAYER

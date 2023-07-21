@@ -22,7 +22,7 @@
 		forceMove(get_turf(A))
 		update_parallax_contents()
 
-/mob/dead/observer/ClickOn(var/atom/A, var/params)
+/mob/dead/observer/ClickOn(atom/A, params)
 	if(check_click_intercept(params,A))
 		return
 
@@ -61,7 +61,7 @@
 			return TRUE
 		else if(IsAdminGhost(user))
 			attack_ai(user)
-		else if(user.client.prefs.inquisitive_ghost)
+		else if(user.client.prefs.read_preference(/datum/preference/toggle/inquisitive_ghost))
 			user.examinate(src)
 	return FALSE
 

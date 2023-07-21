@@ -35,7 +35,7 @@
 	name = "lizard tail kebab"
 	desc = "Severed lizard tail on a stick."
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
-	tastes = list("meat" = 8, "metal" = 4, "scales" = 1)
+	tastes = list("meat" = 3, "metal" = 1, "scales" = 1)
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/kebab/rat
@@ -76,7 +76,7 @@
 	icon_state = "spiderleg"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/toxin = 2)
 	filling_color = "#000000"
-	tastes = list("cobwebs" = 1)
+	tastes = list("cobwebs" = 1, "meat" = 1)
 	foodtype = MEAT | TOXIC
 
 /obj/item/reagent_containers/food/snacks/spiderleg/MakeGrillable()
@@ -164,9 +164,11 @@
 
 /obj/item/reagent_containers/food/snacks/meatball/human
 	name = "strange meatball"
+	tastes = list("strange meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/meatball/corgi
 	name = "corgi meatball"
+	tastes = list("corgi meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/meatball/bear
 	name = "bear meatball"
@@ -196,10 +198,12 @@
 
 /obj/item/reagent_containers/food/snacks/raw_patty/human
 	name = "strange raw patty"
+	tastes = list("strange meat" = 1)
 	patty_type = /obj/item/reagent_containers/food/snacks/patty/human
 
 /obj/item/reagent_containers/food/snacks/raw_patty/corgi
 	name = "raw corgi patty"
+	tastes = list("corgi meat" = 1)
 	patty_type = /obj/item/reagent_containers/food/snacks/patty/corgi
 
 /obj/item/reagent_containers/food/snacks/raw_patty/bear
@@ -209,7 +213,7 @@
 
 /obj/item/reagent_containers/food/snacks/raw_patty/xeno
 	name = "raw xenomorph patty"
-	tastes = list("meat" = 1,"acid" = 1)
+	tastes = list("meat" = 1, "acid" = 1)
 	patty_type = /obj/item/reagent_containers/food/snacks/patty/xeno
 
 /obj/item/reagent_containers/food/snacks/raw_patty/chicken
@@ -232,9 +236,11 @@
 
 /obj/item/reagent_containers/food/snacks/patty/human
 	name = "strange patty"
+	tastes = list("strange meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/patty/corgi
 	name = "corgi patty"
+	tastes = list("corgi meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/patty/bear
 	name = "bear patty"
@@ -258,7 +264,7 @@
 	foodtype = MEAT | RAW
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/reagent_containers/food/snacks/raw_sausage/Initialize()
+/obj/item/reagent_containers/food/snacks/raw_sausage/Initialize(mapload)
 	. = ..()
 	eatverb = pick("bite","chew","nibble","gobble","chomp")
 
@@ -277,7 +283,7 @@
 	var/roasted = FALSE
 	burns_on_grill = TRUE
 
-/obj/item/reagent_containers/food/snacks/sausage/Initialize()
+/obj/item/reagent_containers/food/snacks/sausage/Initialize(mapload)
 	. = ..()
 	eatverb = pick("bite","chew","nibble","gobble","chomp")
 
@@ -330,7 +336,7 @@
 	bitesize = 4
 	filling_color = "#FFA07A"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/capsaicin = 6)
-	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "sour cream" = 1)
+	tastes = list("hot peppers" = 1, "meat" = 3, "cheese" = 1, "tortilla" = 1)
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/chipsandsalsa
@@ -351,7 +357,7 @@
 	tastes = list("soy" = 1, "vegetables" = 1)
 	foodtype = VEGETABLES
 
-/obj/item/reagent_containers/food/snacks/stewedsoymeat/Initialize()
+/obj/item/reagent_containers/food/snacks/stewedsoymeat/Initialize(mapload)
 	. = ..()
 	eatverb = pick("slurp","sip","inhale","drink")
 
@@ -362,7 +368,7 @@
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/capsaicin = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/capsaicin = 2)
 	filling_color = "#000000"
-	tastes = list("hot peppers" = 1, "cobwebs" = 1)
+	tastes = list("meat" = 1, "cobwebs" = 1)
 	foodtype = MEAT
 	burns_on_grill = TRUE
 
@@ -375,7 +381,7 @@
 	foodtype = MEAT
 	var/mob/living/nugget_man
 
-/obj/item/reagent_containers/food/snacks/nugget/Initialize()
+/obj/item/reagent_containers/food/snacks/nugget/Initialize(mapload)
 	. = ..()
 	var/shape = pick("lump", "star", "lizard", "corgi")
 	desc = "A 'chicken' nugget vaguely shaped like a [shape]."
@@ -405,7 +411,7 @@
   tastes = list("fish" = 1,"cruelty" = 2)
   foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize()
+/obj/item/reagent_containers/food/snacks/dolphinmeat/Initialize(mapload)
   . = ..()
   eatverb = pick("bite","chew","choke down","gnaw","swallow","chomp")
 
@@ -418,7 +424,7 @@
 	tastes = list("meat" = 5, "clowns" = 3, "sixteen teslas" = 1)
 	foodtype = MEAT
 
-/obj/item/reagent_containers/food/snacks/meatclown/ComponentInitialize()
+/obj/item/reagent_containers/food/snacks/meatclown/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/slippery, 30)
 
@@ -427,7 +433,8 @@
 /obj/item/reagent_containers/food/snacks/monkeycube
 	name = "monkey cube"
 	desc = "Just add water!"
-	icon_state = "monkeycube"
+	icon = 'icons/obj/food/animalcubes.dmi'
+	icon_state = "monkey"
 	bitesize = 12
 	list_reagents = list(/datum/reagent/monkey_powder = 30)
 	filling_color = "#CD853F"
@@ -462,7 +469,7 @@
 		return SHAME
 	playsound(M, 'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	M.temporarilyRemoveItemFromInventory(src) //removes from hands, keeps in M
-	addtimer(CALLBACK(src, .proc/finish_suicide, M), 15) //you've eaten it, you can run now
+	addtimer(CALLBACK(src, PROC_REF(finish_suicide), M), 15) //you've eaten it, you can run now
 	return MANUAL_SUICIDE
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/finish_suicide(mob/living/M) ///internal proc called by a monkeycube's suicide_act using a timer and callback. takes as argument the mob/living who activated the suicide
@@ -481,6 +488,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/gorilla
 	name = "gorilla cube"
 	desc = "A Waffle Co. brand gorilla cube. Now with extra molecules! Just add water!"
+	icon_state = "gorilla"
 	bitesize = 35
 	list_reagents = list(/datum/reagent/gorilla_powder = 30, /datum/reagent/medicine/strange_reagent = 5)
 	tastes = list("the jungle" = 1, "bananas" = 1, "power" = 1)
@@ -490,6 +498,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/bee
 	name = "bee cube"
 	desc = "We were sure it was a good idea. Just add water."
+	icon_state = "bee"
 	bitesize = 20
 	list_reagents = list(/datum/reagent/consumable/honey = 10, /datum/reagent/toxin = 5, /datum/reagent/medicine/strange_reagent = 1)
 	tastes = list("buzzing" = 1, "honey" = 1, "regret" = 1)
@@ -498,6 +507,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/sheep
 	name = "sheep cube"
 	desc = "A Farm Town brand sheep cube. Just add water!"
+	icon_state = "sheep"
 	bitesize = 35
 	list_reagents = list(/datum/reagent/sheep_powder = 30, /datum/reagent/consumable/nutriment = 5)
 	tastes = list("fluff" = 1, "the farm" = 1)
@@ -507,6 +517,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/cow
 	name = "cow cube"
 	desc = "A Farm Town brand cow cube. Just add water!"
+	icon_state = "cow"
 	bitesize = 45
 	list_reagents = list(/datum/reagent/cow_powder = 30, /datum/reagent/consumable/nutriment = 15)
 	tastes = list("milk" = 1, "blood" = 1, "the farm" = 1)
@@ -516,8 +527,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/goat
 	name = "goat cube"
 	desc = "A Goat Tech Industries goat cube. Just add water!"
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "goatcube"
+	icon_state = "goat"
 	bitesize = 40
 	list_reagents = list(/datum/reagent/goat_powder = 30, /datum/reagent/consumable/nutriment = 10)
 	tastes = list("fur" = 1, "blood" = 1, "rage" = 1)
@@ -527,8 +537,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/chicken
 	name = "chicken cube"
 	desc = "A Farm Town brand chicken cube. Just add water!"
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "chickencube"
+	icon_state = "chicken"
 	bitesize = 40
 	list_reagents = list(/datum/reagent/chicken_powder = 30, /datum/reagent/consumable/nutriment = 10)
 	tastes = list("feathers" = 1, "blood" = 1, "albumin" = 1)
@@ -538,8 +547,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/mouse
 	name = "mouse cube"
 	desc = "A Waffle Co. brand mouse cube. Just add water!"
-	icon = 'icons/obj/food/food.dmi'
-	icon_state = "mousecube"
+	icon_state = "mouse"
 	bitesize = 40
 	list_reagents = list(/datum/reagent/mouse_powder = 30, /datum/reagent/consumable/nutriment = 10)
 	tastes = list("fur" = 1, "blood" = 1, "cheese" = 1)

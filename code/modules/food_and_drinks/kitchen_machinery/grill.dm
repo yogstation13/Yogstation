@@ -16,7 +16,7 @@
 	var/grill_time = 0
 	var/datum/looping_sound/grill/grill_loop
 
-/obj/machinery/grill/Initialize()
+/obj/machinery/grill/Initialize(mapload)
 	. = ..()
 	grill_loop = new(list(src), FALSE)
 
@@ -56,7 +56,7 @@
 				return
 			else if(!grilled_item && user.transferItemToLoc(food_item, src))
 				grilled_item = food_item
-				RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
+				RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, PROC_REF(GrillCompleted))
 				grilled_item.foodtype |= GRILLED
 				to_chat(user, span_notice("You put the [grilled_item] on [src]."))
 				update_icon()
@@ -80,8 +80,8 @@
 		if(!grilled_item)
 			grill_fuel -= GRILL_FUELUSAGE_IDLE
 		if(DT_PROB(0.5, delta_time))
-			var/datum/effect_system/smoke_spread/bad/smoke = new
-			smoke.set_up(1, loc)
+			var/datum/effect_system/fluid_spread/smoke/bad/smoke = new
+			smoke.set_up(1, location = loc)
 			smoke.start()
 	if(grilled_item)
 		SEND_SIGNAL(grilled_item, COMSIG_ITEM_GRILLED, src, 1)
@@ -146,7 +146,7 @@
 			grilled_item.desc = "A [grilled_item.name]. Reminds you of your wife, wait, no, it's prettier!"
 			grilled_item.foodtype |= GRILLED
 	grill_time = 0
-	UnregisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
+	UnregisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, PROC_REF(GrillCompleted))
 	grill_loop.stop()
 
 ///Called when a food is transformed by the grillable component

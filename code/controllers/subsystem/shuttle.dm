@@ -1,4 +1,10 @@
 #define MAX_TRANSIT_REQUEST_RETRIES 10
+/// How many turfs to allow before we stop blocking transit requests
+#define MAX_TRANSIT_TILE_COUNT (150 ** 2)
+/// How many turfs to allow before we start freeing up existing "soft reserved" transit docks
+/// If we're under load we want to allow for cycling, but if not we want to preserve already generated docks for use
+#define SOFT_TRANSIT_RESERVATION_THRESHOLD (100 ** 2)
+
 
 SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
@@ -9,12 +15,16 @@ SUBSYSTEM_DEF(shuttle)
 	loading_points = 4.9 SECONDS // Yogs -- loading times
 
 	var/list/mobile = list()
+	/// A list of all the stationary docking ports.
 	var/list/stationary = list()
 	var/list/beacons = list()
 	var/list/transit = list()
 
 	var/list/transit_requesters = list()
 	var/list/transit_request_failures = list()
+
+	/// How many turfs our shuttles are currently utilizing in reservation space
+	var/transit_utilized = 0
 
 		//emergency shuttle stuff
 	var/obj/docking_port/mobile/emergency/emergency
@@ -71,7 +81,7 @@ SUBSYSTEM_DEF(shuttle)
 			continue
 		supply_packs[P.type] = P
 
-	initial_load()
+	setup_shuttles(stationary)
 
 	if(!arrivals)
 		WARNING("No /obj/docking_port/mobile/arrivals placed on the map!")
@@ -83,10 +93,9 @@ SUBSYSTEM_DEF(shuttle)
 		WARNING("No /obj/docking_port/mobile/supply placed on the map!")
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/shuttle/proc/initial_load()
-	for(var/s in stationary)
-		var/obj/docking_port/stationary/S = s
-		S.load_roundstart()
+/datum/controller/subsystem/shuttle/proc/setup_shuttles(list/ports)
+	for(var/obj/docking_port/stationary/port as anything in ports)
+		port.load_roundstart()
 		CHECK_TICK
 
 /datum/controller/subsystem/shuttle/fire()
@@ -103,6 +112,11 @@ SUBSYSTEM_DEF(shuttle)
 		// This next one removes transit docks/zones that aren't
 		// immediately being used. This will mean that the zone creation
 		// code will be running a lot.
+
+		// If we're below the soft reservation threshold, don't clear the old space
+		// We're better off holding onto it for now
+		if(transit_utilized < SOFT_TRANSIT_RESERVATION_THRESHOLD)
+			continue
 		var/obj/docking_port/mobile/owner = T.owner
 		if(owner)
 			var/idle = owner.mode == SHUTTLE_IDLE
@@ -115,7 +129,10 @@ SUBSYSTEM_DEF(shuttle)
 	if(!SSmapping.clearing_reserved_turfs)
 		while(transit_requesters.len)
 			var/requester = popleft(transit_requesters)
-			var/success = generate_transit_dock(requester)
+			var/success = null
+			// Do not try and generate any transit if we're using more then our max already
+			if(transit_utilized < MAX_TRANSIT_TILE_COUNT)
+				success = generate_transit_dock(requester)
 			if(!success) // BACK OF THE QUEUE
 				transit_request_failures[requester]++
 				if(transit_request_failures[requester] < MAX_TRANSIT_REQUEST_RETRIES)
@@ -153,7 +170,7 @@ SUBSYSTEM_DEF(shuttle)
 
 /datum/controller/subsystem/shuttle/proc/block_recall(lockout_timer)
 	emergencyNoRecall = TRUE
-	addtimer(CALLBACK(src, .proc/unblock_recall), lockout_timer)
+	addtimer(CALLBACK(src, PROC_REF(unblock_recall)), lockout_timer)
 
 /datum/controller/subsystem/shuttle/proc/unblock_recall()
 	emergencyNoRecall = FALSE
@@ -531,8 +548,17 @@ SUBSYSTEM_DEF(shuttle)
 	// Add 180, because ports point inwards, rather than outwards
 	new_transit_dock.setDir(angle2dir(dock_angle))
 
+	// Proposals use 2 extra hidden tiles of space, from the cordons that surround them
+	transit_utilized += (proposal.width + 2) * (proposal.height + 2)
 	M.assigned_transit = new_transit_dock
+	RegisterSignal(proposal, COMSIG_PARENT_QDELETING, PROC_REF(transit_space_clearing))
+
 	return new_transit_dock
+
+/// Gotta manage our space brother
+/datum/controller/subsystem/shuttle/proc/transit_space_clearing(datum/turf_reservation/source)
+	SIGNAL_HANDLER
+	transit_utilized -= (source.width + 2) * (source.height + 2)
 
 /datum/controller/subsystem/shuttle/Recover()
 	if (istype(SSshuttle.mobile))
@@ -936,3 +962,6 @@ SUBSYSTEM_DEF(shuttle)
 					log_admin("[key_name(usr)] loaded [mdp] with the shuttle manipulator.</span>")
 					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[mdp.name]")
 
+#undef MAX_TRANSIT_REQUEST_RETRIES
+#undef MAX_TRANSIT_TILE_COUNT
+#undef SOFT_TRANSIT_RESERVATION_THRESHOLD

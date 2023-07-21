@@ -18,8 +18,18 @@
 #define LAZYACCESS(L, I) (L ? (isnum(I) ? (I > 0 && I <= length(L) ? L[I] : null) : L[I]) : null)
 #define LAZYSET(L, K, V) if(!L) { L = list(); } L[K] = V;
 #define LAZYLEN(L) length(L)
-#define LAZYCLEARLIST(L) if(L) L.Cut()
+///Sets a list to null
+#define LAZYNULL(L) L = null
+///Accesses an associative list, returns null if nothing is found
 #define LAZYACCESSASSOC(L, I, K) L ? L[I] ? L[I][K] ? L[I][K] : null : null : null
+///Qdel every item in the list before setting the list to null
+#define QDEL_LAZYLIST(L) for(var/I in L) qdel(I); L = null;
+//These methods don't null the list
+///Use LAZYLISTDUPLICATE instead if you want it to null with no entries
+#define LAZYCOPY(L) (L ? L.Copy() : list() )
+/// Consider LAZYNULL instead
+#define LAZYCLEARLIST(L) if(L) L.Cut()
+///Returns the list if it's actually a valid list, otherwise will initialize it
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 #define reverseList(L) reverseRange(L.Copy())
 #define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
@@ -334,13 +344,15 @@
 	var/total = 0
 	var/item
 	for (item in L)
-		if (!L[item])
-			L[item] = 0
+		if (L[item] <= 0)//edited to also allow negatives
+			continue //edited to not modify the input list
 		total += L[item]
 
 	total = rand(0, total)
 	for (item in L)
-		total -=L [item]
+		if (L[item] <= 0) //edited to skip all numbers not actually added to the total
+			continue
+		total -= L[item]
 		if (total <= 0 && L[item])
 			return item
 
@@ -698,11 +710,12 @@
 		else
 			L1[key] = other_value
 
-/proc/assoc_list_strip_value(list/input)
-	var/list/ret = list()
+/// Turns an associative list into a flat list of keys
+/proc/assoc_to_keys(list/input)
+	var/list/keys = list()
 	for(var/key in input)
-		ret += key
-	return ret
+		keys += key
+	return keys
 
 /proc/compare_list(list/l,list/d)
 	if(!islist(l) || !islist(d))

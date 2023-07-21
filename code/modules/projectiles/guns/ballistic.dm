@@ -167,7 +167,7 @@
 		sleep(frames)
 		update_icon()
 
-/obj/item/gun/ballistic/Initialize()
+/obj/item/gun/ballistic/Initialize(mapload)
 	. = ..()
 	feedback_original_icon_base = icon_state
 	if (bolt_type == BOLT_TYPE_LOCKING)
@@ -231,11 +231,15 @@
 
 
 /obj/item/gun/ballistic/process_chamber(empty_chamber = TRUE, from_firing = TRUE, chamber_next_round = TRUE)
-	if(!semi_auto && from_firing)
-		return
 	var/obj/item/ammo_casing/AC = chambered //Find chambered round
+	if(!semi_auto && from_firing)
+		if(istype(AC) && CHECK_BITFIELD(AC.casing_flags, CASINGFLAG_FORCE_CLEAR_CHAMBER))
+			chambered = null
+		return
 	if(istype(AC)) //there's a chambered round
-		if(casing_ejector || !from_firing)
+		if(CHECK_BITFIELD(AC.casing_flags, CASINGFLAG_FORCE_CLEAR_CHAMBER) && from_firing)
+			chambered = null
+		else if(casing_ejector || !from_firing)
 			AC.forceMove(drop_location()) //Eject casing onto ground.
 			AC.bounce_away(TRUE)
 			chambered = null
@@ -257,6 +261,10 @@
 /obj/item/gun/ballistic/proc/rack(mob/user = null)
 	if (bolt_type == BOLT_TYPE_NO_BOLT) //If there's no bolt, nothing to rack
 		return
+	if (weapon_weight != WEAPON_LIGHT) //Can't rack it if the weapon doesn't permit dual-wielding and your off-hand is full
+		if (user.get_inactive_held_item())
+			to_chat(user, span_warning("You cannot rack the [bolt_wording] of \the [src] while your other hand is full!"))
+			return
 	if (bolt_type == BOLT_TYPE_OPEN)
 		if(!bolt_locked)	//If it's an open bolt, racking again would do nothing
 			if (user)
@@ -360,7 +368,7 @@
 				chambered.forceMove(drop_location())
 				chambered = null
 			var/can_reload_say = !get_ammo(FALSE, FALSE)
-			var/num_loaded = magazine.attackby(A, user, params, TRUE)
+			var/num_loaded = magazine.attempt_load(A, user, params, TRUE)
 			if (num_loaded)
 				to_chat(user, span_notice("You load [num_loaded] [cartridge_wording]\s into \the [src]."))
 				playsound(src, load_sound, load_sound_volume, load_sound_vary)

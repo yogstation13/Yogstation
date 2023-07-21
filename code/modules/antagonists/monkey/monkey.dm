@@ -18,6 +18,16 @@
 /datum/antagonist/monkey/get_team()
 	return monkey_team
 
+/datum/antagonist/monkey/get_preview_icon()
+	// Creating a *real* monkey is fairly involved before atoms init.
+	var/icon/icon = icon('icons/mob/monkey.dmi', "monkey1")
+
+	icon.Crop(4, 9, 28, 33)
+	icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+	icon.Shift(SOUTH, 10)
+
+	return icon
+
 /datum/antagonist/monkey/on_gain()
 	. = ..()
 	SSticker.mode.ape_infectees += owner
@@ -61,9 +71,6 @@
 	if(!istype(new_team))
 		stack_trace("Wrong team type passed to [type] initialization.")
 	monkey_team = new_team
-
-/datum/antagonist/monkey/proc/forge_objectives()
-	objectives |= monkey_team.objectives
 
 /datum/antagonist/monkey/admin_remove(mob/admin)
 	var/mob/living/carbon/human/M = owner.current

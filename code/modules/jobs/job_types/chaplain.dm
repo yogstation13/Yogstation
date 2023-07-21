@@ -2,10 +2,8 @@
 	title = "Chaplain"
 	description = "Hold services and funerals, cremate people, preach your \
 		religion, protect the crew against cults."
-	flag = CHAPLAIN
 	orbit_icon = "cross"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -23,6 +21,10 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHAPLAIN
 	minimal_character_age = 18 //My guy you are literally just a priest
+
+	departments_list = list(
+		/datum/job_department/service,
+	)
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/drinks/bottle/holywater = 30,
@@ -50,7 +52,7 @@
 		B.icon_state = GLOB.bible_icon_state
 		B.item_state = GLOB.bible_item_state
 		to_chat(H, "There is already an established religion onboard the station. You are an acolyte of [GLOB.deity]. Defer to the Chaplain.")
-		H.equip_to_slot_or_del(B, SLOT_IN_BACKPACK)
+		H.equip_to_slot_or_del(B, ITEM_SLOT_BACKPACK)
 		var/nrt = GLOB.holy_weapon_type || /obj/item/nullrod
 		var/obj/item/nullrod/N = new nrt(H)
 		if(GLOB.holy_weapon_type)
@@ -62,16 +64,10 @@
 	if(H.mind)
 		H.mind.holy_role = HOLY_ROLE_HIGHPRIEST
 
-	var/new_religion = DEFAULT_RELIGION
-	if(M.client && M.client.prefs.custom_names["religion"])
-		new_religion = M.client.prefs.custom_names["religion"]
-
-	var/new_deity = DEFAULT_DEITY
-	if(M.client && M.client.prefs.custom_names["deity"])
-		new_deity = M.client.prefs.custom_names["deity"]
+	var/new_religion = M.client?.prefs?.read_preference(/datum/preference/name/religion) || DEFAULT_RELIGION
+	var/new_deity = M.client?.prefs?.read_preference(/datum/preference/name/deity) || DEFAULT_DEITY
 
 	B.deity_name = new_deity
-
 
 	switch(lowertext(new_religion))
 		if("christianity") // DEFAULT_RELIGION
@@ -165,7 +161,7 @@
 	GLOB.bible_name = B.name
 	GLOB.deity = B.deity_name
 
-	H.equip_to_slot_or_del(B, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(B, ITEM_SLOT_BACKPACK)
 
 	SSblackbox.record_feedback("text", "religion_name", 1, "[new_religion]", 1)
 	SSblackbox.record_feedback("text", "religion_deity", 1, "[new_deity]", 1)

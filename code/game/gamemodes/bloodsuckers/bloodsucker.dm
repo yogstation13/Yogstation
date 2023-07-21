@@ -38,8 +38,8 @@
 		if(!antag_candidates.len)
 			break
 		var/datum/mind/bloodsucker = antag_pick(antag_candidates)
-		//Yogs start -- fixes plasmaman vampires
-		if(bloodsucker?.current?.client.prefs.pref_species && (NOBLOOD in bloodsucker.current.client.prefs.pref_species.species_traits))
+
+		if(!bloodsucker.prepare_bloodsucker(bloodsucker))
 			antag_candidates -= bloodsucker // kinda need to do this to prevent some edge-case infinite loop or whatever
 			i-- // to undo the imminent increment
 			continue

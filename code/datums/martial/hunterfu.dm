@@ -1,7 +1,7 @@
 #define BODYSLAM_COMBO "GH"
-#define STAKESTAB_COMBO "HH"
+#define STAKESTAB_COMBO "HDH"
 #define NECKSNAP_COMBO "GDH"
-#define HOLYKICK_COMBO "DG"
+#define HOLYKICK_COMBO "DHG"
 
 // From CQC.dm
 /datum/martial_art/hunterfu
@@ -206,7 +206,7 @@
 		D.grabbedby(A, 1)
 		if(old_grab_state == GRAB_PASSIVE)
 			D.drop_all_held_items()
-			A.grab_state = GRAB_AGGRESSIVE // Instant agressive grab
+			A.setGrabState(GRAB_AGGRESSIVE) // Instant agressive grab
 			log_combat(A, D, "grabbed (Hunter-Fu)")
 			D.visible_message(
 				span_warning("[A] violently grabs [D]!"),
@@ -224,8 +224,8 @@
 	to_chat(usr, span_notice("<b><i>You try to remember some of the basics of Hunter-Fu.</i></b>"))
 
 	to_chat(usr, span_notice("<b>Body Slam</b>: Grab Harm. Slam opponent into the ground, knocking you both down."))
-	to_chat(usr, span_notice("<b>Stake Stab</b>: Harm Harm. Stabs opponent with your bare fist, as strong as a Stake."))
+	to_chat(usr, span_notice("<b>Stake Stab</b>: Harm Disarm Harm. Stabs opponent with your bare fist, as strong as a Stake."))
 	to_chat(usr, span_notice("<b>Neck Snap</b>: Grab Disarm Harm. Snaps an opponents neck, knocking them out."))
-	to_chat(usr, span_notice("<b>Holy Kick</b>: Disarm Grab. Splashes the user with Holy Water, removing Cult Spells, while dealing stamina damage."))
+	to_chat(usr, span_notice("<b>Holy Kick</b>: Disarm Harm Grab. Splashes the user with Holy Water, removing Cult Spells, while dealing stamina damage."))
 
 	to_chat(usr, span_notice("<b><i>In addition, by having your throw mode on, you take a defensive position, allowing you to block and sometimes even counter attacks done to you.</i></b>"))

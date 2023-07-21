@@ -1,4 +1,4 @@
-/proc/key_name_params(var/whom, var/include_link = null, var/include_name = 1, var/anchor_params = null, var/datum/admin_help/T = null)
+/proc/key_name_params(whom, include_link = null, include_name = 1, anchor_params = null, datum/admin_help/T = null)
 	var/mob/M
 	var/client/C
 	var/key
@@ -51,7 +51,7 @@
 		else if(M.name)
 			. += "/([M.name])"
 
-/proc/generate_admin_info(var/msg, key)
+/proc/generate_admin_info(msg, key)
 	//explode the input msg into a list
 
 	var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","alien","as", "i")

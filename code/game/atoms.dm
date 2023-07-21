@@ -20,8 +20,12 @@
 	///Reagents holder
 	var/datum/reagents/reagents = null
 
-	///This atom's HUD (med/sec, etc) images. Associative list.
+	///all of this atom's HUD (med/sec, etc) images. Associative list of the form: list(hud category = hud image or images for that category).
+	///most of the time hud category is associated with a single image, sometimes its associated with a list of images.
+	///not every hud in this list is actually used. for ones available for others to see, look at active_hud_list.
 	var/list/image/hud_list = null
+	///all of this atom's HUD images which can actually be seen by players with that hud
+	var/list/image/active_hud_list = null
 	///HUD images that this atom can provide.
 	var/list/hud_possible
 
@@ -78,6 +82,10 @@
 
 	var/chat_color_darkened // A luminescence-shifted value of the last color calculated for chatmessage overlays
 
+	///Default pixel x shifting for the atom's icon.
+	var/base_pixel_x = 0
+	///Default pixel y shifting for the atom's icon.
+	var/base_pixel_y = 0
 	///Mobs that are currently do_after'ing this atom, to be cleared from on Destroy()
 	var/list/targeted_by
 
@@ -171,8 +179,6 @@
 		custom_materials = null //Null the list to prepare for applying the materials properly
 		set_custom_materials(temp_list)
 
-	ComponentInitialize()
-
 	return INITIALIZE_HINT_NORMAL
 
 /**
@@ -190,10 +196,6 @@
 /atom/proc/LateInitialize()
 	return
 
-/// Put your AddComponent() calls here
-/atom/proc/ComponentInitialize()
-	return
-
 /**
   * Top level of the destroy chain for most atoms
   *
@@ -206,16 +208,18 @@
   */
 /atom/Destroy()
 	if(alternate_appearances)
-		for(var/K in alternate_appearances)
-			var/datum/atom_hud/alternate_appearance/AA = alternate_appearances[K]
-			AA.remove_from_hud(src)
+		for(var/current_alternate_appearance in alternate_appearances)
+			var/datum/atom_hud/alternate_appearance/selected_alternate_appearance = alternate_appearances[current_alternate_appearance]
+			selected_alternate_appearance.remove_atom_from_hud(src)
 
 	if(reagents)
 		qdel(reagents)
 
 	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
-	LAZYCLEARLIST(overlays)
+	// Checking length(overlays) before cutting has significant speed benefits
+	if (length(overlays))
+		overlays.Cut()
 	LAZYCLEARLIST(priority_overlays)
 
 	for(var/i in targeted_by)
@@ -225,6 +229,8 @@
 	targeted_by = null
 
 	QDEL_NULL(light)
+	if (length(light_sources))
+		light_sources.Cut()
 
 	return ..()
 
@@ -428,7 +434,9 @@
   * Default behaviour is to send the COMSIG_ATOM_BULLET_ACT and then call on_hit() on the projectile
   */
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
-	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone)
+	var/sig_return = SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone)
+	if(sig_return != NONE)
+		return sig_return
 	. = P.on_hit(src, 0, def_zone)
 
 ///Return true if we're inside the passed in atom
@@ -505,6 +513,24 @@
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
 /**
+ * Shows any and all examine text related to any status effects the user has.
+ */
+/mob/living/proc/get_status_effect_examinations()
+	var/list/examine_list = list()
+
+	for(var/datum/status_effect/effect as anything in status_effects)
+		var/effect_text = effect.get_examine_text()
+		if(!effect_text)
+			continue
+
+		examine_list += effect_text
+
+	if(!length(examine_list))
+		return
+
+	return examine_list.Join("\n")
+
+/**
   * Called when a mob examines (shift click or verb) this atom twice (or more) within EXAMINE_MORE_WINDOW (default 1.5 seconds)
   *
   * This is where you can put extra information on something that may be superfluous or not important in critical gameplay
@@ -518,6 +544,8 @@
 	if(!LAZYLEN(.)) // lol ..length
 		return FALSE
 
+/atom/proc/update_icon()
+	return
 /**
   * An atom we are buckled or is contained within us has tried to move
   *
@@ -569,7 +597,7 @@
   */
 /atom/proc/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	if(density && !has_gravity(AM)) //thrown stuff bounces off dense stuff in no grav, unless the thrown stuff ends up inside what it hit(embedding, bola, etc...).
-		addtimer(CALLBACK(src, .proc/hitby_react, AM), 2)
+		addtimer(CALLBACK(src, PROC_REF(hitby_react), AM), 2)
 
 /**
   * We have have actually hit the passed in atom
@@ -696,8 +724,8 @@
   *
   * Default behaviour is to send COMSIG_ATOM_RAD_ACT and return
   */
-/atom/proc/rad_act(strength)
-	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength)
+/atom/proc/rad_act(strength, collectable_radiation)
+	SEND_SIGNAL(src, COMSIG_ATOM_RAD_ACT, strength, collectable_radiation)
 
 /**
   * Respond to narsie eating our atom
@@ -769,7 +797,7 @@
 		to_chat(user,span_warning("You can't dump the contents of [src_object.parent] into itself!"))
 		return
 	//yogs end
-	while (do_after(user, 1 SECONDS, src, TRUE, FALSE, CALLBACK(STR, /datum/component/storage.proc/handle_mass_item_insertion, things, src_object, user, progress)))
+	while (do_after(user, 1 SECONDS, src, TRUE, FALSE, CALLBACK(STR, TYPE_PROC_REF(/datum/component/storage, handle_mass_item_insertion), things, src_object, user, progress)))
 		stoplag(1)
 	qdel(progress)
 	to_chat(user, span_notice("You dump as much of [src_object.parent]'s contents into [STR.insert_preposition]to [src] as you can."))
@@ -838,19 +866,19 @@
 
 	var/new_x = pixel_x
 	var/new_y = pixel_y
-	
+
 	if (dir & NORTH)
 		new_y++
-	
+
 	if (dir & EAST)
 		new_x++
-	
+
 	if (dir & SOUTH)
 		new_y--
-	
+
 	if (dir & WEST)
 		new_x--
-	
+
 	pixel_x = clamp(new_x, -16, 16)
 	pixel_y = clamp(new_y, -16, 16)
 
@@ -1031,6 +1059,8 @@
 		var/newname = input(usr, "What do you want to rename this to?", "Automatic Rename") as null|text
 		// Check the new name against the chat filter. If it triggers the IC chat filter, give an option to confirm.
 		if(newname)
+			log_admin("[key_name(usr)] renamed [src] to [newname].")
+			message_admins("Admin [key_name_admin(usr)] renamed [ADMIN_FLW(src)] to [newname].")
 			vv_auto_rename(newname)
 
 /atom/proc/vv_auto_rename(newname)
@@ -1184,6 +1214,8 @@
 			log_ooc(log_text)
 		if(LOG_LOOC) // yogs - LOOC log
 			log_looc(log_text) // yogs - LOOC log
+		if(LOG_DONATOR) // yogs - Donator log
+			log_donator(log_text) // yogs - Donator log
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_ADMIN_PRIVATE)
@@ -1262,7 +1294,7 @@
   * * dealt_bare_wound_bonus- The bare_wound_bonus, if one was specified *and applied*, of the wounding attack. Not shown if armor was present
   * * base_roll- Base wounding ability of an attack is a random number from 1 to (dealt_damage ** WOUND_DAMAGE_EXPONENT). This is the number that was rolled in there, before mods
   */
-/proc/log_wound(atom/victim, datum/wound/suffered_wound, dealt_damage, dealt_wound_bonus, dealt_bare_wound_bonus, base_roll)
+/proc/log_wound(atom/victim, datum/wound/suffered_wound, dealt_damage, dealt_wound_bonus, dealt_bare_wound_bonus, base_roll, attack_direction = null)
 	if(QDELETED(victim) || !suffered_wound)
 		return
 	var/message = "has suffered: [suffered_wound][suffered_wound.limb ? " to [suffered_wound.limb.name]" : null]"// maybe indicate if it's a promote/demote?
@@ -1278,6 +1310,9 @@
 
 	if(dealt_bare_wound_bonus)
 		message += " | BWB: [dealt_bare_wound_bonus]"
+
+	if(attack_direction)
+		message += " | AtkDir: [attack_direction]"
 
 	victim.log_message(message, LOG_ATTACK, color="blue")
 
@@ -1303,11 +1338,16 @@
 	. = ..()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /atom/movable/proc/get_filter(name)
 	if(filter_data && filter_data[name])
 		return filters[filter_data.Find(name)]
+
+/// Returns the indice in filters of the given filter name.
+/// If it is not found, returns null.
+/atom/proc/get_filter_index(name)
+	return filter_data?.Find(name)
 
 /atom/movable/proc/remove_filter(name)
 	if(filter_data && filter_data[name])
@@ -1337,13 +1377,20 @@
 		for(var/comp_mat in material_comp)
 			.[comp_mat] += material_comp[comp_mat]
 
+///Setter for the `density` variable to append behavior related to its changing.
+/atom/proc/set_density(new_value)
+	SHOULD_CALL_PARENT(TRUE)
+	if(density == new_value)
+		return
+	. = density
+	density = new_value
+
 /**
   * Causes effects when the atom gets hit by a rust effect from heretics
   *
   * Override this if you want custom behaviour in whatever gets hit by the rust
   */
 /atom/proc/rust_heretic_act()
-	return
 
 /**
  * Used to set something as 'open' if it's being used as a supplypod
@@ -1381,7 +1428,7 @@
 	return output
 
 ///Sets the custom materials for an item.
-/atom/proc/set_custom_materials(var/list/materials, multiplier = 1)
+/atom/proc/set_custom_materials(list/materials, multiplier = 1)
 	if(custom_materials) //Only runs if custom materials existed at first. Should usually be the case but check anyways
 		for(var/i in custom_materials)
 			var/datum/material/custom_material = i

@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 			qdel(query_antag_token_existing)
 			return
 		to_chat(src, span_userdanger("You will be notified if your antag token is used"))
-		C.antag_token_timer = addtimer(CALLBACK(src, .proc/deny_antag_token_request), 45 SECONDS, TIMER_STOPPABLE)
+		C.antag_token_timer = addtimer(CALLBACK(src, PROC_REF(deny_antag_token_request)), 45 SECONDS, TIMER_STOPPABLE)
 		to_chat(GLOB.permissions.admins, span_adminnotice("<b><font color=orange>ANTAG TOKEN REQUEST:</font></b>[ADMIN_LOOKUPFLW(usr)] wants to use their antag token! (will auto-DENY in [DisplayTimeText(45 SECONDS)]). (<A HREF='?_src_=holder;[HrefToken(TRUE)];approve_antag_token=[REF(C)]'>APPROVE</A>)"))
 		for(var/client/A in GLOB.permissions.admins)
 			if(check_rights_for(A, R_ADMIN) && (A.prefs.toggles & SOUND_ADMINHELP)) // Can't use check_rights here since it's dependent on $usr

@@ -65,7 +65,7 @@
 	animate(thealert, transform = matrix(), time = 0.25 SECONDS, easing = CUBIC_EASING)
 
 	if(thealert.timeout)
-		addtimer(CALLBACK(src, .proc/alert_timeout, thealert, category), thealert.timeout)
+		addtimer(CALLBACK(src, PROC_REF(alert_timeout), thealert, category), thealert.timeout)
 		thealert.timeout = world.time + thealert.timeout - world.tick_lag
 	return thealert
 
@@ -299,7 +299,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	add_overlay(receiving)
 	src.receiving = receiving
 	src.giver = giver
-	RegisterSignal(taker, COMSIG_MOVABLE_MOVED, /atom/movable/screen/alert/give/.proc/removeAlert)
+	RegisterSignal(taker, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/alert/give, removeAlert))
 
 /atom/movable/screen/alert/give/proc/removeAlert()
 	to_chat(mob_viewer, span_warning("You moved out of range of [giver]!"))
@@ -350,7 +350,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	var/angle = 0
 	var/mob/living/simple_animal/hostile/construct/Cviewer = null
 
-/atom/movable/screen/alert/bloodsense/Initialize()
+/atom/movable/screen/alert/bloodsense/Initialize(mapload)
 	. = ..()
 	narnar = new('icons/mob/screen_alert.dmi', "mini_nar")
 	START_PROCESSING(SSprocessing, src)
@@ -387,13 +387,13 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 			angle = 0
 			cut_overlays()
 			icon_state = "runed_sense0"
-			desc = "Nar-Sie demands that [sac_objective.target] be sacrificed before the summoning ritual can begin."
+			desc = "Nar'sie demands that [sac_objective.target] be sacrificed before the summoning ritual can begin."
 			add_overlay(sac_objective.sac_image)
 		else
 			var/datum/objective/eldergod/summon_objective = locate() in antag.cult_team.objectives
 			if(!summon_objective)
 				return
-			desc = "The sacrifice is complete, summon Nar-Sie! The summoning can only take place in [english_list(summon_objective.summon_spots)]!"
+			desc = "The sacrifice is complete, summon Nar'sie! The summoning can only take place in [english_list(summon_objective.summon_spots)]!"
 			if(icon_state == "runed_sense1")
 				return
 			animate(src, transform = null, time = 0.1 SECONDS, loop = 0)
@@ -515,6 +515,11 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	name = "Dashes"
 	desc = "This is how many dash charges you have."
 	icon_state = "ipcdash"
+
+/atom/movable/screen/alert/style
+	name = "Style"
+	desc = "This is how stylish you are."
+	icon_state = "style"
 
 //SILICONS
 
@@ -662,6 +667,24 @@ so as to remain in compliance with the most up-to-date laws."
 	L.changeNext_move(CLICK_CD_RESIST)
 	if(L.last_special <= world.time)
 		return L.resist_buckle()
+
+/atom/movable/screen/alert/revolution
+	name = "Revolution"
+	desc = "VIVA! VIVA! VIVA! You shouldn't be seeing this!"
+	icon_state = "revolution"
+
+/atom/movable/screen/alert/revolution/MouseEntered(location,control,params)
+	if(!istype(SSticker.mode, /datum/game_mode/revolution))
+		return
+	var/datum/game_mode/revolution/R = SSticker.mode
+	if(!R.loud && R.go_fucking_loud_time)
+		var/time_left = R.go_fucking_loud_time - world.time
+		desc = "Soon the revolution will boil over. If need be, rally yourselves and make preparations for fighting.<br>\
+			We will be discovered in [time_left / (1 MINUTES)] minutes if we sit idly.<br>\
+			If we eliminate all of the Command personnel, we will also be detected."
+	else if(R.loud)
+		desc = "The revolution has boiled over. Fight for your life and the life of your allies."
+	..()
 
 // PRIVATE = only edit, use, or override these if you're editing the system as a whole
 

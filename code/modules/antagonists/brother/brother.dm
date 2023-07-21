@@ -3,6 +3,7 @@
 	antagpanel_category = "Brother"
 	job_rank = ROLE_BROTHER
 	var/special_role = ROLE_BROTHER
+	antag_hud_name = "brother"
 	var/datum/team/brother_team/team
 	antag_moodlet = /datum/mood_event/focused
 	can_hijack = HIJACK_HIJACKER
@@ -19,7 +20,6 @@
 
 /datum/antagonist/brother/on_gain()
 	SSticker.mode.brothers += owner
-	objectives += team.objectives
 	owner.special_role = special_role
 	if(owner.current)
 		give_pinpointer()
@@ -42,6 +42,34 @@
 
 /datum/antagonist/brother/antag_panel_data()
 	return "Conspirators : [get_brother_names()]"
+
+/datum/antagonist/brother/get_preview_icon()
+	var/mob/living/carbon/human/dummy/consistent/brother1 = new
+	var/mob/living/carbon/human/dummy/consistent/brother2 = new
+
+	brother1.dna.features["ethcolor"] = GLOB.color_list_ethereal["Faint Red"]
+	brother1.set_species(/datum/species/ethereal)
+
+	brother2.dna.features["moth_antennae"] = "Plain"
+	brother2.dna.features["moth_markings"] = "None"
+	brother2.dna.features["moth_wings"] = "Plain"
+	brother2.set_species(/datum/species/moth)
+
+	var/icon/brother1_icon = render_preview_outfit(/datum/outfit/job/quartermaster, brother1)
+	brother1_icon.Blend(icon('icons/effects/blood.dmi', "maskblood"), ICON_OVERLAY)
+	brother1_icon.Shift(WEST, 8)
+
+	var/icon/brother2_icon = render_preview_outfit(/datum/outfit/job/scientist, brother2)
+	brother2_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
+	brother2_icon.Shift(EAST, 8)
+
+	var/icon/final_icon = brother1_icon
+	final_icon.Blend(brother2_icon, ICON_OVERLAY)
+
+	qdel(brother1)
+	qdel(brother2)
+
+	return finish_preview_icon(final_icon)
 
 /datum/antagonist/brother/proc/get_brother_names()
 	var/list/brothers = team.members - owner
@@ -74,7 +102,6 @@
 	for(var/datum/mind/M in team.members) // Link the implants of all team members
 		var/obj/item/implant/bloodbrother/T = locate() in M.current.implants
 		I.link_implant(T)
-	SSticker.mode.update_brother_icons_added(owner)
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/brother/admin_add(datum/mind/new_owner,mob/admin)
@@ -102,10 +129,10 @@
 
 /datum/antagonist/brother/get_admin_commands()
 	. = ..()
-	.["Convert To Traitor"] = CALLBACK(src, .proc/make_traitor)
+	.["Convert To Traitor"] = CALLBACK(src, PROC_REF(make_traitor))
 
 /datum/antagonist/brother/proc/make_traitor()
-	if(alert("Are you sure? This will turn the blood brother into a traitor with the same objectives!",,"Yes","No") != "Yes")
+	if(tgui_alert(usr, "Are you sure? This will turn the blood brother into a traitor with the same objectives!",,list("Yes","No")) != "Yes")
 		return
 
 	var/datum/antagonist/traitor/tot = new()
@@ -188,8 +215,8 @@
 	if(is_hijacker)
 		if(!locate(/datum/objective/hijack) in objectives)
 			add_objective(new/datum/objective/hijack)
-	else if(!locate(/datum/objective/escape) in objectives)
-		add_objective(new/datum/objective/escape)
+	else if(!locate(/datum/objective/escape/onesurvivor) in objectives)
+		add_objective(new/datum/objective/escape/onesurvivor)
 
 /datum/team/brother_team/proc/forge_single_objective()
 	if(prob(50))

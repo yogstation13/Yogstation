@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	if(inserted_item && (!isturf(loc)))
 		. += span_notice("Ctrl-click to remove [inserted_item].")
 
-/obj/item/pda/Initialize()
+/obj/item/pda/Initialize(mapload)
 	. = ..()
 
 	GLOB.PDAs += src
@@ -146,18 +146,18 @@ GLOBAL_LIST_EMPTY(PDAs)
 	. = ..()
 	if(!equipped)
 		if(user.client)
-			background_color = user.client.prefs.pda_color
-			switch(user.client.prefs.pda_style)
-				if(MONO)
+			background_color = user.client.prefs.read_preference(/datum/preference/color/pda_color)
+			switch(user.client.prefs.read_preference(/datum/preference/choiced/pda_style))
+				if(PDA_FONT_MONO)
 					font_index = MODE_MONO
 					font_mode = FONT_MONO
-				if(SHARE)
+				if(PDA_FONT_SHARE)
 					font_index = MODE_SHARE
 					font_mode = FONT_SHARE
-				if(ORBITRON)
+				if(PDA_FONT_ORBITRON)
 					font_index = MODE_ORBITRON
 					font_mode = FONT_ORBITRON
-				if(VT)
+				if(PDA_FONT_VT)
 					font_index = MODE_VT
 					font_mode = FONT_VT
 				else
@@ -952,7 +952,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon()
+		A.build_all_button_icons()
 
 /obj/item/pda/proc/remove_pen()
 

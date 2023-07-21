@@ -18,6 +18,7 @@
 #define MOVE_INTENT_RUN  "run"
 
 //Blood volumes, in cL
+#define BLOOD_VOLUME_MAX_LETHAL		2150 // The lethal amount for a good semaritan, based off IRL data about vampires
 #define BLOOD_VOLUME_GENERIC		560 // The default amount of blood in a blooded creature, in cL, based off IRL data about humans
 #define BLOOD_VOLUME_MONKEY			325 // Based on IRL data bout Chimpanzees
 #define BLOOD_VOLUME_XENO			700 // Based off data from my asshole
@@ -100,13 +101,9 @@
 #define DEVIL_BODYPART "devil"
 /*see __DEFINES/inventory.dm for bodypart bitflag defines*/
 
-//Reagent Metabolization flags, defines the type of reagents that affect this mob
-#define PROCESS_ORGANIC 1		//Only processes reagents with "ORGANIC" or "ORGANIC | SYNTHETIC"
-#define PROCESS_SYNTHETIC 2		//Only processes reagents with "SYNTHETIC" or "ORGANIC | SYNTHETIC"
-
-// Reagent type flags, defines the types of mobs this reagent will affect
-#define ORGANIC 1
-#define SYNTHETIC 2
+// Processing flags, defines the types of mobs are compatible with certain reagents, organs, and symptoms
+#define ORGANIC (1<<0)
+#define SYNTHETIC (1<<1)
 
 // Health/damage defines for carbon mobs
 #define HUMAN_MAX_OXYLOSS 3
@@ -384,3 +381,5 @@
 
 ///Swarmer flags
 #define SWARMER_LIGHT_ON (1<<0)
+
+#define ACCENT_NONE "None"

@@ -416,17 +416,6 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/cyberimp_thermals
-	name = "Thermal Eyes"
-	desc = "These cybernetic eyes will give you Thermal vision. Vertical slit pupil included."
-	id = "ci-thermals"
-	build_type = PROTOLATHE | MECHFAB
-	construction_time = 60
-	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/silver = 600, /datum/material/gold = 600, /datum/material/plasma = 1000, /datum/material/diamond = 2000)
-	build_path = /obj/item/organ/eyes/robotic/thermals
-	category = list("Implants", "Medical Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
-
 /datum/design/cyberimp_antidrop
 	name = "Anti-Drop Implant"
 	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ears to toggle."
@@ -493,10 +482,10 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/noslipwater
+/datum/design/cymberimp_noslipwater
 	name = "Slip Resistance Implant"
 	desc = "An implant that uses sensors and motors to detect when you are slipping and attempt to prevent it. It probably won't help if the floor is too slippery."
-	id = "noslipwater"
+	id = "ci-noslipwater"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 80
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1500, /datum/material/silver = 1000, /datum/material/diamond = 1000, /datum/material/uranium = 400)
@@ -504,10 +493,10 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/jumpbootsimplant
+/datum/design/cymberimp_jumpboots
 	name = "Jumpboots implant"
 	desc = "An implant with a specialized propulsion system for rapid foward movement."
-	id = "jumpbootsimplant"
+	id = "ci-jumpboots"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 80
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/uranium = 1000)
@@ -515,10 +504,10 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/wheeliesimplant
+/datum/design/cymberimp_wheelies
 	name = "Wheelies implant"
 	desc = "Wicked sick wheelies, but now they're not in the heel of your shoes, they just in your heels."
-	id = "wheeliesimplant"
+	id = "ci-wheelies"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 80
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/gold = 500)
@@ -526,10 +515,10 @@
 	category = list("Implants", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/magbootimplant
+/datum/design/cymberimp_magboot
 	name = "Magboot implant"
 	desc = "Integrated maglock implant, allows easy movement in a zero-gravity environment."
-	id = "magbootimplant"
+	id = "ci-magboots"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 80
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 1000, /datum/material/gold = 500, /datum/material/diamond = 200)
@@ -818,7 +807,7 @@
 	name = "DNA Recovery"
 	desc = "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
 	id = "surgery_dna_recovery"
-	surgery = list(/datum/surgery/advanced/dna_recovery, /datum/surgery/advanced/dna_recovery/alien)
+	surgery = list(/datum/surgery/advanced/dna_recovery, /datum/surgery/advanced/dna_recovery/mechanic, /datum/surgery/advanced/dna_recovery/alien)
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/brainwashing

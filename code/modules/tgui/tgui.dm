@@ -1,4 +1,4 @@
-/**
+/*!
  * Copyright (c) 2020 Aleksej Komarov
  * SPDX-License-Identifier: MIT
  */
@@ -54,7 +54,7 @@
  */
 /datum/tgui/New(mob/user, datum/src_object, interface, title, ui_x, ui_y)
 	log_tgui(user,
-		"new [interface] fancy [user.client.prefs.tgui_fancy]",
+		"new [interface] fancy [user?.client?.prefs.read_preference(/datum/preference/toggle/tgui_fancy)]",
 		src_object = src_object)
 	src.user = user
 	src.src_object = src_object
@@ -62,10 +62,15 @@
 	src.interface = interface
 	if(title)
 		src.title = title
-	src.state = src_object.ui_state()
+	src.state = src_object.ui_state(user)
 	// Deprecated
 	if(ui_x && ui_y)
 		src.window_size = list(ui_x, ui_y)
+
+/datum/tgui/Destroy()
+	user = null
+	src_object = null
+	return ..()
 
 /**
  * public
@@ -88,9 +93,9 @@
 	opened_at = world.time
 	window.acquire_lock(src)
 	if(!window.is_ready())
-		window.initialize(
-			fancy = user.client.prefs.tgui_fancy,
-			inline_assets = list(
+		window.Initialize(
+			fancy = user.client.prefs.read_preference(/datum/preference/toggle/tgui_fancy),
+			assets = list(
 				get_asset_datum(/datum/asset/simple/tgui),
 			))
 	else
@@ -181,7 +186,7 @@
 		return
 	if(!COOLDOWN_FINISHED(src, refresh_cooldown))
 		refreshing = TRUE
-		addtimer(CALLBACK(src, .proc/send_full_update), TGUI_REFRESH_FULL_UPDATE_COOLDOWN, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, PROC_REF(send_full_update)), TGUI_REFRESH_FULL_UPDATE_COOLDOWN, TIMER_UNIQUE)
 		return
 	refreshing = FALSE
 	var/should_update_data = force || status >= UI_UPDATE
@@ -224,8 +229,8 @@
 		"window" = list(
 			"key" = window_key,
 			"size" = window_size,
-			"fancy" = user.client.prefs.tgui_fancy,
-			"locked" = user.client.prefs.tgui_lock,
+			"fancy" = user.client.prefs.read_preference(/datum/preference/toggle/tgui_fancy),
+			"locked" = user.client.prefs.read_preference(/datum/preference/toggle/tgui_lock),
 		),
 		"client" = list(
 			"ckey" = user.client.ckey,
@@ -308,7 +313,7 @@
 		return FALSE
 	switch(type)
 		if("ready")
-		// Send a full update when the user manually refreshes the UI
+			// Send a full update when the user manually refreshes the UI
 			if(initialized)
 				send_full_update()
 			initialized = TRUE

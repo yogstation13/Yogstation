@@ -32,6 +32,14 @@
 #define HAND_ITEM 				(1<<15) // If an item is just your hand (circled hand, slapper) and shouldn't block things like riding
 #define AUTOLATHED				(1<<16) // Autolathed item innit
 
+
+// Flags for the open_flags var on /obj/structure/closet
+
+#define ALLOW_OBJECTS			(1<<0) //whether or not it can allow chameleon dummies
+#define ALLOW_DENSE				(1<<1) //whether or not it can contain objects with density
+#define HORIZONTAL_HOLD			(1<<2) //whether people need to be lying down to enter it
+#define HORIZONTAL_LID			(1<<3) //whether people standing on it prevent opening and closing
+
 // Flags for the clothing_flags var on /obj/item/clothing
 
 #define LAVAPROTECT (1<<0)
@@ -46,6 +54,8 @@
 #define SHOWEROKAY				(1<<9)	//prevents you from being stupid if you shower in them
 #define SCAN_REAGENTS (1<<10) // Allows helmets and glasses to scan reagents.
 #define MASKEXTENDRANGE			(1<<12) //! For masks, allows you to breathe from internals on adjecent tiles
+/// Headgear/helmet allows internals
+#define HEADINTERNALS (1<<13)
 
 /// Flags for the organ_flags var on /obj/item/organ
 
@@ -62,3 +72,8 @@
 #define CLOTHING_PRISTINE	0 // We have no damage on the clothing
 #define CLOTHING_DAMAGED	1 // There's some damage on the clothing but it still has at least one functioning bodypart and can be equipped
 #define CLOTHING_SHREDDED	2 // The clothing is useless and cannot be equipped unless repaired first
+
+/// Wrapper for adding clothing based traits
+#define ADD_CLOTHING_TRAIT(mob, trait) ADD_TRAIT(mob, trait, "[CLOTHING_TRAIT]_[REF(src)]")
+/// Wrapper for removing clothing based traits
+#define REMOVE_CLOTHING_TRAIT(mob, trait) REMOVE_TRAIT(mob, trait, "[CLOTHING_TRAIT]_[REF(src)]")

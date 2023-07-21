@@ -2,7 +2,7 @@
 	var/owner //owner's ckey, as text
 	var/list/log = list()
 
-/datum/mentorticket/New(var/client/who)
+/datum/mentorticket/New(client/who)
 	if(!who)
 		return
 	owner = who.ckey

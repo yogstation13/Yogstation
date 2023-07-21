@@ -1,10 +1,8 @@
 /datum/job/clown
 	title = "Clown"
 	description = "Entertain the crew, make bad jokes, go on a holy quest to find bananium, HONK!"
-	flag = CLOWN
 	orbit_icon = "face-grin-tears"
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -22,12 +20,16 @@
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
 	minimal_character_age = 18 //Honk
+	
+	departments_list = list(
+		/datum/job_department/service,
+	)
 
 	mail_goodies = list(
 		/obj/item/reagent_containers/food/snacks/grown/banana = 100,
 		/obj/item/reagent_containers/food/snacks/pie/cream = 50,
-		/obj/item/clothing/shoes/clown_shoes/combat = 10,
-		/obj/item/reagent_containers/spray/waterflower/lube = 20 // lube
+		/obj/item/reagent_containers/spray/waterflower/lube = 20, // lube
+		/obj/item/clothing/shoes/clown_shoes/combat = 10
 		///obj/item/reagent_containers/spray/waterflower/superlube = 1 // Superlube, good lord.
 	)
 
@@ -36,7 +38,7 @@
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
-	H.apply_pref_name("clown", M.client)
+	H.apply_pref_name(/datum/preference/name/clown, M.client)
 
 /datum/outfit/job/clown
 	name = "Clown"

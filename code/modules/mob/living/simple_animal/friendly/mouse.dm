@@ -53,7 +53,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	var/cheesed = FALSE
 	var/cheese_time = 0
 
-/mob/living/simple_animal/mouse/Initialize()
+/mob/living/simple_animal/mouse/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/mousesqueek.ogg'=1), 100)
 	if(!body_color)
@@ -267,7 +267,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	if(istype(F, /obj/item/reagent_containers/food/snacks/royalcheese))
 		evolve()
 	if(istype(F, /obj/item/grown/bananapeel/bluespace))
-		var/obj/item/grown/bananapeel/bluespace/B
+		var/obj/item/grown/bananapeel/bluespace/B = F
 		var/teleport_radius = max(round(B.seed.potency / 10), 1)
 		var/turf/T = get_turf(src)
 		do_teleport(src, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)

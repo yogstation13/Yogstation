@@ -11,7 +11,7 @@
 	max_integrity = 200 //The shield can only take so much beating (prevents perma-prisons)
 	CanAtmosPass = ATMOS_PASS_DENSITY
 
-/obj/structure/emergency_shield/Initialize()
+/obj/structure/emergency_shield/Initialize(mapload)
 	. = ..()
 	setDir(pick(GLOB.cardinals))
 	air_update_turf(1)
@@ -38,7 +38,7 @@
 		if(BRUTE)
 			playsound(loc, 'sound/effects/empulse.ogg', 75, 1)
 
-/obj/structure/emergency_shield/take_damage(damage, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/emergency_shield/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.) //damage was dealt
 		new /obj/effect/temp_visual/impact_effect/ion(loc)
@@ -440,7 +440,7 @@
 			playsound(loc, 'sound/effects/empulse.ogg', 75, 1)
 
 //the shield wall is immune to damage but it drains the stored power of the generators.
-/obj/machinery/shieldwall/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/machinery/shieldwall/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(damage_type == BRUTE || damage_type == BURN)
 		drain_power(damage_amount)

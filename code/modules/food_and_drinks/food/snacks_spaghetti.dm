@@ -6,7 +6,7 @@
 	filling_color = "#F0E68C"
 	foodtype = GRAIN
 
-/obj/item/reagent_containers/food/snacks/spaghetti/Initialize()
+/obj/item/reagent_containers/food/snacks/spaghetti/Initialize(mapload)
 	. = ..()
 	if(!cooked_type) // This isn't cooked, why would you put uncooked spaghetti in your pocket?
 		var/list/display_message = list(

@@ -51,28 +51,39 @@
 
 /mob/living/simple_animal/hostile/guardian/dextrous/can_equip(obj/item/I, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	switch(slot)
-		if(SLOT_GENERC_DEXTROUS_STORAGE)
+		if(ITEM_SLOT_DEX_STORAGE)
 			if(internal_storage)
 				return 0
 			return 1
 	..()
+
+/mob/living/simple_animal/hostile/guardian/dextrous/get_item_by_slot(slot_id)
+	if(slot_id == ITEM_SLOT_DEX_STORAGE)
+		return internal_storage
+	return ..()
+
+/mob/living/simple_animal/hostile/guardian/dextrous/get_slot_by_item(obj/item/looking_for)
+	if(internal_storage == looking_for)
+		return ITEM_SLOT_DEX_STORAGE
+	return ..()
+
 
 /mob/living/simple_animal/hostile/guardian/dextrous/equip_to_slot(obj/item/I, slot)
 	if(!..())
 		return
 
 	switch(slot)
-		if(SLOT_GENERC_DEXTROUS_STORAGE)
+		if(ITEM_SLOT_DEX_STORAGE)
 			internal_storage = I
 			update_inv_internal_storage()
 		else
 			to_chat(src, span_danger("You are trying to equip this item to an unsupported inventory slot. Report this to a coder!"))
 
 /mob/living/simple_animal/hostile/guardian/dextrous/getBackSlot()
-	return SLOT_GENERC_DEXTROUS_STORAGE
+	return ITEM_SLOT_DEX_STORAGE
 
 /mob/living/simple_animal/hostile/guardian/dextrous/getBeltSlot()
-	return SLOT_GENERC_DEXTROUS_STORAGE
+	return ITEM_SLOT_DEX_STORAGE
 
 /mob/living/simple_animal/hostile/guardian/dextrous/proc/update_inv_internal_storage()
 	if(internal_storage && client && hud_used && hud_used.hud_shown)

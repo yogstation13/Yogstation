@@ -64,7 +64,7 @@
 
 /obj/machinery/suit_storage_unit/atmos
 	suit_type = /obj/item/clothing/suit/space/hardsuit/engine/atmos
-	mask_type = /obj/item/clothing/mask/gas
+	mask_type = /obj/item/clothing/mask/gas/atmos
 	storage_type = /obj/item/watertank/atmos
 
 /obj/machinery/suit_storage_unit/mining
@@ -230,7 +230,7 @@
 				mob_occupant.adjustFireLoss(rand(2, 8))
 			mob_occupant.emote("scream")
 		decon.start()
-		addtimer(CALLBACK(src, .proc/cook), 50)
+		addtimer(CALLBACK(src, PROC_REF(cook)), 50)
 	else
 		uv_cycles = initial(uv_cycles)
 		uv = FALSE
@@ -254,22 +254,22 @@
 			else
 				visible_message(span_warning("[src]'s door slides open, barraging you with the nauseating smell of charred flesh."))
 			playsound(src, 'sound/machines/airlockclose.ogg', 25, 1)
-			var/list/things_to_clear = list() //Done this way since using GetAllContents on the SSU itself would include circuitry and such.
+			var/list/things_to_clear = list() //Done this way since using get_all_contents on the SSU itself would include circuitry and such.
 			if(suit)
 				things_to_clear += suit
-				things_to_clear += suit.GetAllContents()
+				things_to_clear += suit.get_all_contents()
 			if(helmet)
 				things_to_clear += helmet
-				things_to_clear += helmet.GetAllContents()
+				things_to_clear += helmet.get_all_contents()
 			if(mask)
 				things_to_clear += mask
-				things_to_clear += mask.GetAllContents()
+				things_to_clear += mask.get_all_contents()
 			if(storage)
 				things_to_clear += storage
-				things_to_clear += storage.GetAllContents()
+				things_to_clear += storage.get_all_contents()
 			if(occupant)
 				things_to_clear += occupant
-				things_to_clear += occupant.GetAllContents()
+				things_to_clear += occupant.get_all_contents()
 			for(var/am in things_to_clear) //Scorches away blood and forensic evidence, although the SSU itself is unaffected
 				var/atom/movable/dirty_movable = am
 				dirty_movable.wash(CLEAN_ALL)
@@ -322,7 +322,7 @@
 	if(locked)
 		visible_message(span_notice("You hear someone kicking against the doors of [src]!"), \
 			span_notice("You start kicking against the doors..."))
-		addtimer(CALLBACK(src, .proc/resist_open, user), 300)
+		addtimer(CALLBACK(src, PROC_REF(resist_open), user), 300)
 	else
 		open_machine()
 		dump_contents()

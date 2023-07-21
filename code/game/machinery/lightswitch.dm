@@ -13,7 +13,7 @@
 	/// instead of the switch's location.
 	var/area/area = null
 
-/obj/machinery/light_switch/Initialize()
+/obj/machinery/light_switch/Initialize(mapload)
 	. = ..()
 	if(istext(area))
 		area = text2path(area)
@@ -47,6 +47,7 @@
 	. = ..()
 
 	area.lightswitch = !area.lightswitch
+	play_click_sound("button")
 	area.update_icon()
 
 	for(var/obj/machinery/light_switch/L in area)

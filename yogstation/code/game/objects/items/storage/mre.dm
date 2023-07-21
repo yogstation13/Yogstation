@@ -10,7 +10,7 @@
 	. = ..()
 	. += "<span_clas='notice'>An expiry date is listed on it. It reads: [expiry_date]</span>"
 
-/obj/item/storage/box/mre/Initialize()
+/obj/item/storage/box/mre/Initialize(mapload)
 	. = ..()
 	expiry_date = rand(2300, 2700)
 
@@ -27,19 +27,23 @@
 	icon_state = "menu3"
 	item_state = "box"
 
+/obj/item/storage/box/mre/menu4
+	name = "Nanotrasen MRE Ration Kit (Stewed meat and potato, cracker with cheesy spread, chocolate bar)"
+	icon = 'yogstation/icons/obj/storage.dmi'
+	icon_state = "mre"
+	item_state = "box"
+
 /obj/item/storage/box/mre/PopulateContents()
-	new /obj/item/reagent_containers/food/snacks/breadslice/plain(src)
 	new /obj/item/reagent_containers/food/snacks/breadslice/creamcheese(src)
 	new /obj/item/reagent_containers/food/condiment/pack/ketchup(src)
+	new /obj/item/reagent_containers/food/snacks/meat/steak/plain(src)
 	new /obj/item/reagent_containers/food/snacks/chocolatebar(src)
-	new /obj/item/tank/internals/emergency_oxygen(src)
 
 /obj/item/storage/box/mre/menu2/PopulateContents()
 	new /obj/item/reagent_containers/food/snacks/omelette(src)
-	new /obj/item/reagent_containers/food/snacks/meat/cutlet/plain(src)
 	new /obj/item/reagent_containers/food/snacks/fries(src)
+	new /obj/item/reagent_containers/food/snacks/meat/cutlet/plain(src)
 	new /obj/item/reagent_containers/food/snacks/chocolatebar(src)
-	new /obj/item/tank/internals/emergency_oxygen(src)
 
 /obj/item/storage/box/mre/menu3/PopulateContents()
 	new /obj/item/reagent_containers/food/snacks/pizzaslice/pepperoni(src)
@@ -47,7 +51,13 @@
 	new /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar(src)
 	new /obj/item/reagent_containers/food/snacks/grown/chili(src)
 	new /obj/item/reagent_containers/food/drinks/coffee/type2(src)
-	new /obj/item/tank/internals/emergency_oxygen(src)
+
+/obj/item/storage/box/mre/menu4/PopulateContents()
+	new /obj/item/reagent_containers/food/snacks/stewedsoymeat(src)
+	new /obj/item/reagent_containers/food/snacks/tatortot(src)
+	new /obj/item/reagent_containers/food/snacks/cracker(src)
+	new /obj/item/reagent_containers/food/snacks/cheesewedge/cheddar(src)
+	new /obj/item/reagent_containers/food/snacks/chocolatebar(src)
 
 /obj/item/reagent_containers/food/drinks/coffee/type2
 	name = "Coffee, instant (type 2)"
@@ -65,11 +75,11 @@
 
 /datum/supply_pack/organic/mre
 	name = "MRE supply kit (emergency rations)"
-	desc = "The lights are out. Oxygen's running low. You've run out of food except space weevils. Don't let this be you! Order our NT branded MRE kits today! This pack contains 5 MRE packs with a randomized menu and an oxygen tank."
+	desc = "The lights are out. Oxygen's running low. You've run out of food except space weevils. Don't let this be you! Order our NT branded MRE kits today! This pack contains 5 MRE packs with a randomized menu."
 	cost = 2000 // Best prices this side of the galaxy.
 	contains = list(/obj/item/storage/box/mre,
 					/obj/item/storage/box/mre,
 					/obj/item/storage/box/mre/menu2,
-					/obj/item/storage/box/mre/menu2,
-					/obj/item/storage/box/mre/menu3)
+					/obj/item/storage/box/mre/menu3,
+					/obj/item/storage/box/mre/menu4)
 	crate_name = "MRE crate (emergency rations)"

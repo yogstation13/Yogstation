@@ -42,7 +42,7 @@
 /datum/emote/flip
 	key = "flip"
 	key_third_person = "flips"
-	restraint_check = TRUE
+	hands_use_check = TRUE
 	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)
 	mob_type_ignore_stat_typecache = list(/mob/dead/observer)
 	cooldown = 0 SECONDS
@@ -54,32 +54,32 @@
 
 /datum/emote/flip/check_cooldown(mob/user, intentional, update=TRUE, is_keybind = FALSE)
 	. = ..()
-	if(!.)
-		return
 	if (!is_keybind)
 		return
 	if(!can_run_emote(user, intentional=intentional))
 		return
-	if(isliving(user))
-		var/mob/living/flippy_mcgee = user
-		if(prob(20))
-			flippy_mcgee.Knockdown(1 SECONDS)
-			flippy_mcgee.visible_message(
-				span_notice("[flippy_mcgee] attempts to do a flip and falls over, what a doofus!"),
-				span_notice("You attempt to do a flip while still off balance from the last flip and fall down!")
-			)
-			if(prob(50))
-				flippy_mcgee.adjustBruteLoss(1)
-		else
-			flippy_mcgee.visible_message(
-				span_notice("[flippy_mcgee] stumbles a bit after their flip."),
-				span_notice("You stumble a bit from still being off balance from your last flip.")
-			)
+	if(!.)
+		if(isliving(user)) // Spammers get punished!
+			var/mob/living/flippy_mcgee = user
+			if(prob(40))
+				flippy_mcgee.Knockdown(1 SECONDS)
+				flippy_mcgee.visible_message(
+					span_notice("[flippy_mcgee] attempts to do a flip and falls over, what a doofus!"),
+					span_notice("You attempt to do a flip while still off balance from the last flip and fall down!")
+				)
+				if(prob(75))
+					flippy_mcgee.adjustBruteLoss(1)
+			else
+				flippy_mcgee.visible_message(
+					span_notice("[flippy_mcgee] stumbles a bit after their flip."),
+					span_notice("You stumble a bit from still being off balance from your last flip.")
+				)
+		return
 
 /datum/emote/spin
 	key = "spin"
 	key_third_person = "spins"
-	restraint_check = TRUE
+	hands_use_check = TRUE
 	mob_type_allowed_typecache = list(/mob/living, /mob/dead/observer)
 	mob_type_ignore_stat_typecache = list(/mob/dead/observer)
 	cooldown = 0 SECONDS
@@ -109,15 +109,14 @@
 		return
 	if(!iscarbon(user))
 		return
-	var/current_confusion = user.confused
-	if(current_confusion > BEYBLADE_PUKE_THRESHOLD)
+	if(user.get_timed_status_effect_duration(/datum/status_effect/confusion) > BEYBLADE_PUKE_THRESHOLD)
 		user.vomit(BEYBLADE_PUKE_NUTRIENT_LOSS, distance = 0)
 		return
+
 	if(prob(BEYBLADE_DIZZINESS_PROBABILITY))
-		to_chat(user, "<span class='warning'>You feel woozy from spinning.</span>")
-		user.Dizzy(BEYBLADE_DIZZINESS_DURATION)
-		if(current_confusion < BEYBLADE_CONFUSION_LIMIT)
-			user.confused += BEYBLADE_CONFUSION_INCREMENT
+		to_chat(user, span_warning("You feel woozy from spinning."))
+		user.set_dizzy_if_lower(BEYBLADE_DIZZINESS_DURATION)
+		user.adjust_confusion_up_to(BEYBLADE_CONFUSION_INCREMENT, BEYBLADE_CONFUSION_LIMIT)
 
 #undef BEYBLADE_PUKE_THRESHOLD
 #undef BEYBLADE_PUKE_NUTRIENT_LOSS

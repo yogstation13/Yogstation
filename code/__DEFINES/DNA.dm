@@ -24,6 +24,7 @@
 #define BADSIGHT	/datum/mutation/human/nearsight
 #define LASEREYES	/datum/mutation/human/laser_eyes
 #define CHAMELEON	/datum/mutation/human/chameleon
+#define SUPER_CHAMELEON		/datum/mutation/human/chameleon/super
 #define WACKY		/datum/mutation/human/wacky
 #define MUT_MUTE	/datum/mutation/human/mute
 #define SMILE		/datum/mutation/human/smile
@@ -153,33 +154,35 @@
 #define NOMOUTH			27
 /// has a tail
 #define HAS_TAIL		28
+#define NONANITES		29
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"
 #define ORGAN_SLOT_APPENDIX "appendix"
-#define ORGAN_SLOT_RIGHT_ARM_AUG "r_arm_device"
-#define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
-#define ORGAN_SLOT_RIGHT_LEG_AUG "r_leg_device"
-#define ORGAN_SLOT_LEFT_LEG_AUG "l_leg_device"
 #define ORGAN_SLOT_STOMACH "stomach"
-#define ORGAN_SLOT_STOMACH_AID "stomach_aid"
-#define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
 #define ORGAN_SLOT_EARS "ears"
 #define ORGAN_SLOT_EYES "eye_sight"
 #define ORGAN_SLOT_LUNGS "lungs"
 #define ORGAN_SLOT_HEART "heart"
 #define ORGAN_SLOT_ZOMBIE "zombie_infection"
-#define ORGAN_SLOT_THRUSTERS "thrusters"
-#define ORGAN_SLOT_HUD "eye_hud"
 #define ORGAN_SLOT_LIVER "liver"
 #define ORGAN_SLOT_TONGUE "tongue"
 #define ORGAN_SLOT_VOICE "vocal_cords"
 #define ORGAN_SLOT_ADAMANTINE_RESONATOR "adamantine_resonator"
-#define ORGAN_SLOT_HEART_AID "heartdrive"
-#define ORGAN_SLOT_BRAIN_ANTIDROP "brain_antidrop"
-#define ORGAN_SLOT_BRAIN_ANTISTUN "brain_antistun"
 #define ORGAN_SLOT_TAIL "tail"
 #define ORGAN_SLOT_PARASITE_EGG "parasite_egg"
+
+//implants
+#define ORGAN_SLOT_BRAIN_IMPLANT "brain_implant"
+#define ORGAN_SLOT_HUD "eye_hud"
+#define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
+#define ORGAN_SLOT_TORSO_IMPLANT "torso_implant"
+#define ORGAN_SLOT_HEART_AID "heartdrive"
+#define ORGAN_SLOT_STOMACH_AID "stomach_aid"
+#define ORGAN_SLOT_RIGHT_ARM_AUG "r_arm_device"
+#define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
+#define ORGAN_SLOT_RIGHT_LEG_AUG "r_leg_device"
+#define ORGAN_SLOT_LEFT_LEG_AUG "l_leg_device"
 
 //organ defines
 #define STANDARD_ORGAN_THRESHOLD 	100
@@ -195,3 +198,19 @@
 #define G_MALE 1
 #define G_FEMALE 2
 #define G_PLURAL 3
+
+// Defines for used in creating "perks" for the species preference pages.
+/// A key that designates UI icon displayed on the perk.
+#define SPECIES_PERK_ICON "ui_icon"
+/// A key that designates the name of the perk.
+#define SPECIES_PERK_NAME "name"
+/// A key that designates the description of the perk.
+#define SPECIES_PERK_DESC "description"
+/// A key that designates what type of perk it is (see below).
+#define SPECIES_PERK_TYPE "perk_type"
+
+// The possible types each perk can be.
+// Positive perks are shown in green, negative in red, and neutral in grey.
+#define SPECIES_POSITIVE_PERK "positive"
+#define SPECIES_NEGATIVE_PERK "negative"
+#define SPECIES_NEUTRAL_PERK "neutral"

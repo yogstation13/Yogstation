@@ -34,11 +34,11 @@
 	/// If the cyborg's cover panel starts locked
 	var/panel_locked = TRUE
 
-/obj/item/robot_suit/Initialize()
+/obj/item/robot_suit/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/robot_suit/prebuilt/Initialize()
+/obj/item/robot_suit/prebuilt/Initialize(mapload)
 	. = ..()
 	l_arm = new(src)
 	r_arm = new(src)
@@ -332,6 +332,8 @@
 			if(O.mmi) //we delete the mmi created by robot/New()
 				qdel(O.mmi)
 			O.mmi = W //and give the real mmi to the borg.
+
+			REMOVE_TRAIT(O, TRAIT_PACIFISM, POSIBRAIN_TRAIT) // remove the posibrain's pacifism
 
 			O.updatename(BM.client)
 

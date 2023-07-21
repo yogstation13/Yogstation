@@ -7,7 +7,7 @@
 	antagpanel_category = "Revolution"
 	job_rank = ROLE_REV
 	antag_moodlet = /datum/mood_event/revolution
-	var/hud_type = "rev"
+	antag_hud_name = "rev"
 	var/datum/team/revolution/rev_team
 
 /datum/antagonist/rev/can_be_owned(datum/mind/new_owner)
@@ -31,25 +31,25 @@
 				return FALSE
 
 /datum/antagonist/rev/apply_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/M = mob_override || owner.current
-	update_rev_icons_added(M)
+	M.grant_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
+	M.throw_alert("revolution", /atom/movable/screen/alert/revolution)
+	add_team_hud(M, /datum/antagonist/rev)
 
 /datum/antagonist/rev/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
-	update_rev_icons_removed(M)
+	M.remove_language(/datum/language/french, TRUE, TRUE, LANGUAGE_REVOLUTIONARY)
+	M.clear_alert("revolution")
+	return ..()
 
 /datum/antagonist/rev/proc/equip_rev()
 	return
 
 /datum/antagonist/rev/on_gain()
 	. = ..()
-	create_objectives()
 	equip_rev()
 	owner.current.log_message("has been converted to the revolution!", LOG_ATTACK, color="red")
-
-/datum/antagonist/rev/on_removal()
-	remove_objectives()
-	. = ..()
 
 /datum/antagonist/rev/greet()
 	to_chat(owner, span_userdanger("You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!"))
@@ -75,12 +75,6 @@
 /datum/antagonist/rev/get_team()
 	return rev_team
 
-/datum/antagonist/rev/proc/create_objectives()
-	objectives |= rev_team.objectives
-
-/datum/antagonist/rev/proc/remove_objectives()
-	objectives -= rev_team.objectives
-
 //Bump up to head_rev
 /datum/antagonist/rev/proc/promote()
 	var/old_team = rev_team
@@ -96,7 +90,7 @@
 
 /datum/antagonist/rev/get_admin_commands()
 	. = ..()
-	.["Promote"] = CALLBACK(src,.proc/admin_promote)
+	.["Promote"] = CALLBACK(src, PROC_REF(admin_promote))
 
 /datum/antagonist/rev/proc/admin_promote(mob/admin)
 	var/datum/mind/O = owner
@@ -116,10 +110,10 @@
 /datum/antagonist/rev/head/get_admin_commands()
 	. = ..()
 	. -= "Promote"
-	.["Take flash"] = CALLBACK(src,.proc/admin_take_flash)
-	.["Give flash"] = CALLBACK(src,.proc/admin_give_flash)
-	.["Repair flash"] = CALLBACK(src,.proc/admin_repair_flash)
-	.["Demote"] = CALLBACK(src,.proc/admin_demote)
+	.["Take flash"] = CALLBACK(src, PROC_REF(admin_take_flash))
+	.["Give flash"] = CALLBACK(src, PROC_REF(admin_give_flash))
+	.["Repair flash"] = CALLBACK(src, PROC_REF(admin_repair_flash))
+	.["Demote"] = CALLBACK(src, PROC_REF(admin_demote))
 
 /datum/antagonist/rev/head/proc/admin_take_flash(mob/admin)
 	var/obj/item/organ/cyberimp/arm/flash/rev/flash = owner.current.getorgan(/obj/item/organ/cyberimp/arm/flash/rev)
@@ -157,10 +151,11 @@
 
 /datum/antagonist/rev/head
 	name = "Head Revolutionary"
-	hud_type = "rev_head"
+	antag_hud_name = "rev_head"
 	var/remove_clumsy = FALSE
 	var/give_flash = TRUE
 	var/give_hud = TRUE
+	preview_outfit = /datum/outfit/revolutionary
 
 /datum/antagonist/rev/head/antag_listing_name()
 	return ..() + "(Leader)"
@@ -170,20 +165,41 @@
 		equip_head()
 	return ..()
 
+/datum/antagonist/rev/head/get_preview_icon()
+	var/icon/final_icon = render_preview_outfit(preview_outfit)
+
+	final_icon.Blend(make_assistant_icon("Business Hair"), ICON_UNDERLAY, -8, 0)
+	final_icon.Blend(make_assistant_icon("CIA"), ICON_UNDERLAY, 8, 0)
+
+	// Apply the rev head HUD, but scale up the preview icon a bit beforehand.
+	// Otherwise, the R gets cut off.
+	final_icon.Scale(64, 64)
+
+	var/icon/rev_head_icon = icon('yogstation/icons/mob/antag_hud.dmi', "rev_head")
+	rev_head_icon.Scale(48, 48)
+	rev_head_icon.Crop(1, 1, 64, 64)
+	rev_head_icon.Shift(EAST, 10)
+	rev_head_icon.Shift(NORTH, 16)
+	final_icon.Blend(rev_head_icon, ICON_OVERLAY)
+
+	return finish_preview_icon(final_icon)
+
+/datum/antagonist/rev/head/proc/make_assistant_icon(hairstyle)
+	var/mob/living/carbon/human/dummy/consistent/assistant = new
+	assistant.hair_style = hairstyle
+	assistant.update_hair()
+
+	var/icon/assistant_icon = render_preview_outfit(/datum/outfit/job/assistant/consistent, assistant)
+	assistant_icon.ChangeOpacity(0.5)
+
+	qdel(assistant)
+
+	return assistant_icon
+
 /datum/antagonist/rev/head/proc/equip_head()
 	var/obj/item/book/granter/crafting_recipe/weapons/W = new
 	W.on_reading_finished(owner.current)
 	qdel(W)
-
-/datum/antagonist/rev/proc/update_rev_icons_added(mob/living/M)
-	var/datum/atom_hud/antag/revhud = GLOB.huds[ANTAG_HUD_REV]
-	revhud.join_hud(M)
-	set_antag_hud(M,hud_type)
-
-/datum/antagonist/rev/proc/update_rev_icons_removed(mob/living/M)
-	var/datum/atom_hud/antag/revhud = GLOB.huds[ANTAG_HUD_REV]
-	revhud.leave_hud(M)
-	set_antag_hud(M, null)
 
 /datum/antagonist/rev/proc/can_be_converted(mob/living/candidate)
 	if(!candidate.mind)
@@ -247,9 +263,7 @@
 	if(!ishuman(H) && !ismonkey(H))
 		return
 
-	if(remove_clumsy && owner.assigned_role == "Clown")
-		to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
-		H.dna.remove_mutation(CLOWNMUT)
+	handle_clown_mutation(owner.current, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 
 	if(give_flash)
 		var/obj/item/organ/cyberimp/arm/flash/rev/T = new
@@ -291,7 +305,7 @@
 		var/datum/antagonist/rev/R = M.has_antag_datum(/datum/antagonist/rev)
 		R.objectives |= objectives
 
-	addtimer(CALLBACK(src,.proc/update_objectives),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(update_objectives)),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
 
 /datum/team/revolution/proc/head_revolutionaries()
 	. = list()
@@ -323,7 +337,7 @@
 				var/datum/antagonist/rev/rev = new_leader.has_antag_datum(/datum/antagonist/rev)
 				rev.promote()
 
-	addtimer(CALLBACK(src,.proc/update_heads),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(update_heads)),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
 
 /datum/team/revolution/proc/save_members()
 	ex_headrevs = get_antag_minds(/datum/antagonist/rev/head, TRUE)
@@ -437,3 +451,12 @@
 
 /datum/team/revolution/is_gamemode_hero()
 	return SSticker.mode.name == "revolution"
+
+/datum/outfit/revolutionary
+	name = "Revolutionary (Preview only)"
+
+	uniform = /obj/item/clothing/under/yogs/soviet_dress_uniform
+	head = /obj/item/clothing/head/ushanka
+	gloves = /obj/item/clothing/gloves/color/black
+	l_hand = /obj/item/twohanded/spear
+	r_hand = /obj/item/assembly/flash

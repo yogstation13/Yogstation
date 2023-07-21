@@ -19,7 +19,7 @@
 		var/mob/living/carbon/human/M = target
 		var/current_oxygen_damage = M.getOxyLoss()
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, current_oxygen_damage) //the more oxygen damage you have the more brain damage you get
-		M.hallucination = max(50, M.hallucination) //50 hallucination (5 seconds) when the target get hit but you can't stack it to make someone hallucinate for 5 hours because door shock hallucination exist
+		M.adjust_hallucinations_up_to(5 SECONDS, 5 SECONDS) //50 hallucination (5 seconds) when the target get hit but you can't stack it to make someone hallucinate for 5 hours because door shock hallucination exist
 
 /obj/item/projectile/beam/anoxia/bounce
 	name = "bouncing anoxia ball"

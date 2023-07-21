@@ -1,10 +1,8 @@
 /datum/job/atmos
 	title = "Atmospheric Technician"
 	description = "Ensure the air is breathable on the station, fill oxygen tanks, fight fires, purify the air."
-	flag = ATMOSTECH
 	orbit_icon = "fire-extinguisher"
 	department_head = list("Chief Engineer")
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
@@ -16,32 +14,27 @@
 
 	outfit = /datum/outfit/job/atmos
 
-	added_access = list(ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_EXTERNAL_AIRLOCKS)
-	base_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_MINERAL_STOREROOM, ACCESS_ENGINE)
+	added_access = list(ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE)
+	base_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_CONSTRUCTION, ACCESS_MECH_ENGINE, ACCESS_MINERAL_STOREROOM, ACCESS_ENGINE, ACCESS_EXTERNAL_AIRLOCKS)
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
 	minimal_character_age = 24 //Intense understanding of thermodynamics, gas law, gas interaction, construction and safe containment of gases, creation of new ones, math beyond your wildest imagination
 
+	departments_list = list(
+		/datum/job_department/engineering,
+	)
+
 	mail_goodies = list(
 		///obj/item/rpd_upgrade/unwrench = 30,
 		/obj/item/grenade/gas_crystal/crystal_foam = 10,
-		/obj/item/grenade/gas_crystal/proto_nitrate_crystal = 10,
+		/obj/item/grenade/gas_crystal/pluonium_crystal = 10,
 		/obj/item/grenade/gas_crystal/healium_crystal = 10,
 		/obj/item/grenade/gas_crystal/nitrous_oxide_crystal = 5,
+		/obj/item/clothing/suit/space/hardsuit/engine/atmos = 1,
 	)
 
-	changed_maps = list("OmegaStation", "EclipseStation")
-
 	smells_like = "a gas leak"
-
-/datum/job/atmos/proc/OmegaStationChanges()
-	total_positions = 3
-	supervisors = "the captain and the head of personnel"
-
-/datum/job/atmos/proc/EclipseStationChanges()
-	total_positions = 3
-	spawn_positions = 3
 
 /datum/outfit/job/atmos
 	name = "Atmospheric Technician"
@@ -61,7 +54,7 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/engineering
 	box = /obj/item/storage/box/engineer
 
-	pda_slot = SLOT_L_STORE
+	pda_slot = ITEM_SLOT_LPOCKET
 
 /datum/outfit/job/atmos/rig
 	name = "Atmospheric Technician (Hardsuit)"
@@ -69,4 +62,4 @@
 	mask = /obj/item/clothing/mask/gas
 	suit = /obj/item/clothing/suit/space/hardsuit/engine/atmos
 	suit_store = /obj/item/tank/internals/oxygen
-	internals_slot = SLOT_S_STORE
+	internals_slot = ITEM_SLOT_SUITSTORE

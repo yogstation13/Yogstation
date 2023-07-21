@@ -9,12 +9,12 @@
 
 /datum/mutation/human/nervousness/on_life()
 	if(prob(10))
-		owner.stuttering = max(10, owner.stuttering)
+		owner.set_stutter_if_lower(20 SECONDS)
 
 
 /datum/mutation/human/wacky
 	name = "Wacky"
-	desc = "Unknown."
+	desc = "Causes the user to talk in an odd manner."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = span_sans("You feel an off sensation in your voicebox.")
 	text_lose_indication = span_notice("The off sensation passes.")
@@ -22,7 +22,7 @@
 /datum/mutation/human/wacky/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/mutation/human/wacky/on_losing(mob/living/carbon/human/owner)
 	if(..())
@@ -60,7 +60,7 @@
 /datum/mutation/human/smile/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/mutation/human/smile/on_losing(mob/living/carbon/human/owner)
 	if(..())
@@ -146,7 +146,7 @@
 /datum/mutation/human/swedish/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/mutation/human/swedish/on_losing(mob/living/carbon/human/owner)
 	if(..())
@@ -168,7 +168,7 @@
 
 /datum/mutation/human/chav
 	name = "Chav"
-	desc = "Unknown"
+	desc = "Causes the user to construct sentences in a more rudimentary manner."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = span_notice("Ye feel like a reet prat like, innit?")
 	text_lose_indication = span_notice("You no longer feel like being rude and sassy.")
@@ -176,7 +176,7 @@
 /datum/mutation/human/chav/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/mutation/human/chav/on_losing(mob/living/carbon/human/owner)
 	if(..())
@@ -233,7 +233,7 @@
 /datum/mutation/human/elvis/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/mutation/human/elvis/on_losing(mob/living/carbon/human/owner)
 	if(..())

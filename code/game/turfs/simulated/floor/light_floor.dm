@@ -32,7 +32,7 @@
 		"z" = image(icon = src.icon, icon_state = "light_on-z")
 		)
 
-/turf/open/floor/light/Initialize()
+/turf/open/floor/light/Initialize(mapload)
 	. = ..()
 	update_icon()
 	if(!length(lighttile_designs))
@@ -75,7 +75,7 @@
 		return
 	if(!can_modify_colour)
 		return
-	var/choice = show_radial_menu(user,src, lighttile_designs, custom_check = CALLBACK(src, .proc/check_menu, user, I), radius = 36, require_near = TRUE)
+	var/choice = show_radial_menu(user,src, lighttile_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user, I), radius = 36, require_near = TRUE)
 	if(!choice)
 		return FALSE
 	currentcolor = choice

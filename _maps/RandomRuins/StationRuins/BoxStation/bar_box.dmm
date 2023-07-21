@@ -24,12 +24,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"af" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 28
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "ag" = (
 /turf/closed/wall,
 /area/crew_quarters/bar)
@@ -186,12 +180,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"aA" = (
-/obj/machinery/camera{
-	c_tag = "Bar Storage"
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "aB" = (
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -1254,6 +1242,12 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"mQ" = (
+/obj/machinery/chem_master/condimaster{
+	name = "HoochMaster 2000"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "pe" = (
 /obj/machinery/griddle,
 /turf/open/floor/plasteel/cafeteria,
@@ -1295,6 +1289,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"vb" = (
+/obj/machinery/camera{
+	c_tag = "Bar Storage"
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "vA" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/that{
@@ -1686,7 +1689,7 @@ dd
 ag
 "}
 (15,1,1) = {"
-af
+mQ
 aB
 aJ
 bf
@@ -1703,7 +1706,7 @@ ag
 "}
 (16,1,1) = {"
 ag
-aA
+vb
 aK
 ag
 ag

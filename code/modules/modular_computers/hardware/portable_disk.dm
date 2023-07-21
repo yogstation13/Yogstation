@@ -12,7 +12,7 @@
 	. = ..()
 	. += span_notice("Insert this disk into a modular computer and open the File Manager program to interact with it.")
 
-/obj/item/computer_hardware/hard_drive/portable/on_remove(obj/item/modular_computer/MC, mob/user)
+/obj/item/computer_hardware/hard_drive/portable/on_remove(obj/item/modular_computer/remove_from, mob/user)
 	return //this is a floppy disk, let's not shut the computer down when it gets pulled out.
 
 /obj/item/computer_hardware/hard_drive/portable/install_default_programs()
@@ -86,7 +86,7 @@
 	if(IS_JOB(user, "Network Admin"))
 		. += span_notice("It appears to be rigged with explosives!")
 
-/obj/item/computer_hardware/hard_drive/portable/syndicate/trap/diagnostics(var/mob/user)
+/obj/item/computer_hardware/hard_drive/portable/syndicate/trap/diagnostics(mob/user)
 	..()
 	to_chat(user, "Payload Status: TRIGGERED!") // A little too late
 	trigger()

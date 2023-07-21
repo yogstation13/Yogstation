@@ -10,7 +10,7 @@
 	var/tank_volume = 1000 //In units, how much the dispenser can hold
 	var/reagent_id = /datum/reagent/water //The ID of the reagent that the dispenser uses
 
-/obj/structure/reagent_dispensers/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/reagent_dispensers/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(. && obj_integrity > 0)
 		if(tank_volume && (damage_flag == BULLET || damage_flag == LASER))
@@ -22,7 +22,7 @@
 	else
 		return ..()
 
-/obj/structure/reagent_dispensers/Initialize()
+/obj/structure/reagent_dispensers/Initialize(mapload)
 	create_reagents(tank_volume, DRAINABLE | AMOUNT_VISIBLE)
 	if(reagent_id)
 		reagents.add_reagent(reagent_id, tank_volume)
@@ -120,7 +120,7 @@
 	density = FALSE
 	reagent_id = /datum/reagent/consumable/condensedcapsaicin
 
-/obj/structure/reagent_dispensers/peppertank/Initialize()
+/obj/structure/reagent_dispensers/peppertank/Initialize(mapload)
 	. = ..()
 	if(prob(1))
 		desc = "IT'S PEPPER TIME, BITCH!"
@@ -208,7 +208,8 @@
 		else
 			CP.disable()
 
-/obj/structure/reagent_dispensers/plumbed/ComponentInitialize()
+/obj/structure/reagent_dispensers/plumbed/Initialize(mapload)
+	. = ..()
 	AddComponent(/datum/component/plumbing/simple_supply)
 
 /obj/structure/reagent_dispensers/plumbed/storage
@@ -216,5 +217,6 @@
 	icon_state = "tank_stationairy"
 	reagent_id = null //start empty
 
-/obj/structure/reagent_dispensers/plumbed/storage/ComponentInitialize()
+/obj/structure/reagent_dispensers/plumbed/storage/Initialize(mapload)
+	. = ..()
 	AddComponent(/datum/component/plumbing/tank)

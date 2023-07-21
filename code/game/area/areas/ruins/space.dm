@@ -22,8 +22,11 @@
 	power_environ = FALSE
 	valid_territory = FALSE
 	outdoors = TRUE
-	ambientsounds = SPACE
 	blob_allowed = FALSE
+	ambience_index = null
+	ambient_music_index = AMBIENCE_SPACE
+	ambient_buzz = null
+	sound_environment = SOUND_AREA_SPACE
 
 /////////////
 
@@ -35,19 +38,19 @@
 // Ruins of "onehalf" ship
 
 /area/ruin/space/has_grav/onehalf/hallway
-	name = "Hallway"
+	name = "Destroyed Ship Hallway"
 	icon_state = "hallC"
 
 /area/ruin/space/has_grav/onehalf/drone_bay
-	name = "Mining Drone Bay"
+	name = "Destroyed Ship Mining Drone Bay"
 	icon_state = "engine"
 
 /area/ruin/space/has_grav/onehalf/dorms_med
-	name = "Crew Quarters"
+	name = "Destroyed Ship Crew Quarters"
 	icon_state = "Sleep"
 
 /area/ruin/space/has_grav/onehalf/bridge
-	name = "Bridge"
+	name = "Destroyed Ship Bridge"
 	icon_state = "bridge"
 
 /area/ruin/space/has_grav/powered/spacebar //yogs start
@@ -355,7 +358,7 @@
 	icon_state = "engine"
 
 /area/ruin/space/derelict/se_solar
-	name = "South East Solars"
+	name = "Derelict South East Solars"
 	icon_state = "engine"
 
 /area/ruin/space/derelict/medical
@@ -417,15 +420,41 @@
 
 /area/ruin/space/has_grav/whiteship/box
 
-	name = "Abandoned Ship"
+	name = "Adrift Ship" //it might get confused with whiteship
 	icon_state = "red"
 
 
 //SYNDICATE LISTENING POST STATION
 
 /area/ruin/space/has_grav/listeningstation
-	name = "Listening Post"
+	name = "Unidentified Asteroid"
 	icon_state = "yellow"
+
+/area/ruin/space/has_grav/listeningstation/telecomms
+	name = "Listening Post Telecommunications"
+	icon_state = "tcomsatcham"
+
+/area/ruin/space/has_grav/listeningstation/engineering
+	name = "Listening Post Maintenance"
+	icon_state = "engine"
+
+/area/ruin/space/has_grav/listeningstation/quarters
+	name = "Listening Post Crew Quarters"
+	icon_state = "green"
+
+/area/ruin/space/has_grav/listeningstation/warehouse
+	name = "Listening Post Warehouse"
+	icon_state = "storage"
+
+/area/ruin/space/has_grav/listeningstation/hallway
+	name = "Listening Post Central Hallway"
+	icon_state = "hallP"
+
+/area/ruin/space/has_grav/listeningstation/airlock
+	name = "Listening Post Dock"
+	icon_state = "red"
+
+//ANCIENT SHUTTLE
 
 /area/ruin/space/has_grav/powered/ancient_shuttle
 	name = "Ancient Shuttle"

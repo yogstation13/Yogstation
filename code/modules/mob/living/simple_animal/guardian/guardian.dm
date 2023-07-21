@@ -3,6 +3,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 #define GUARDIAN_HANDS_LAYER 1
 #define GUARDIAN_TOTAL_LAYERS 1
+#define GUARDIAN_SCAN_DISTANCE 50
 
 /mob/living/simple_animal/hostile/guardian
 	name = "Guardian Spirit"
@@ -129,7 +130,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	to_chat(src, span_holoparasite("While personally invincible, you will die if [summoner.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.p_them()] as you feed upon [summoner.p_them()] to sustain yourself."))
 	to_chat(src, playstyle_string)
 
-/mob/living/simple_animal/hostile/guardian/Life() //Dies if the summoner dies
+/mob/living/simple_animal/hostile/guardian/Life(seconds_per_tick = SSMOBS_DT, times_fired) //Dies if the summoner dies
 	. = ..()
 	update_health_hud() //we need to update all of our health displays to match our summoner and we can't practically give the summoner a hook to do it
 	med_hud_set_health()
@@ -398,7 +399,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	src.log_talk(input, LOG_SAY, tag="guardian")
 
 //FORCE RECALL/RESET
-
 /mob/living/proc/guardian_recall()
 	set name = "Recall Guardian"
 	set category = "Guardian"
@@ -506,7 +506,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		used = FALSE
 
 
-/obj/item/guardiancreator/proc/spawn_guardian(var/mob/living/user, var/key)
+/obj/item/guardiancreator/proc/spawn_guardian(mob/living/user, key)
 	var/guardiantype = "Standard"
 	if(random)
 		guardiantype = pick(possible_guardians)
@@ -575,7 +575,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 	add_verb(user, list(/mob/living/proc/guardian_comm, \
 						/mob/living/proc/guardian_recall, \
-						/mob/living/proc/guardian_reset))
+						/mob/living/proc/guardian_reset, \
+						/mob/living/proc/finduser))
 	G?.client.init_verbs()
 
 /obj/item/guardiancreator/choose

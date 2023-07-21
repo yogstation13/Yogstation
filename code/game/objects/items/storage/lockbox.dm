@@ -13,7 +13,7 @@
 	var/icon_closed = "lockbox"
 	var/icon_broken = "lockbox+b"
 
-/obj/item/storage/lockbox/ComponentInitialize()
+/obj/item/storage/lockbox/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
@@ -121,7 +121,7 @@
 	icon_closed = "medalbox"
 	icon_broken = "medalbox+b"
 
-/obj/item/storage/lockbox/medal/ComponentInitialize()
+/obj/item/storage/lockbox/medal/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
@@ -268,11 +268,11 @@
 		add_overlay(led)
 	..()
 
-/obj/item/storage/lockbox/vialbox/Initialize()
+/obj/item/storage/lockbox/vialbox/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/storage/lockbox/vialbox/ComponentInitialize()
+/obj/item/storage/lockbox/vialbox/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_SMALL
@@ -299,12 +299,12 @@
 	req_access = list(ACCESS_MEDICAL)
 
 /obj/item/storage/lockbox/vialbox/hypo_deluxe/PopulateContents()
-	new /obj/item/reagent_containers/glass/bottle/vial/large/omnizine(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/brute(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/burn(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/tox(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/oxy(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/epi(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/omnizine(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/brute(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/burn(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/tox(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/oxy(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/epi/full(src)
 
 /obj/item/storage/lockbox/vialbox/virology
 	name = "virology vial box"

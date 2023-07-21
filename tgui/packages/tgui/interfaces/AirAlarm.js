@@ -230,17 +230,22 @@ const AirAlarmControlModes = (props, context) => {
   if (!modes || modes.length === 0) {
     return 'Nothing to show';
   }
-  return modes.map(mode => (
-    <Button key={mode.mode}>
-      <Button
-        icon={mode.selected ? 'check-square-o' : 'square-o'}
-        selected={mode.selected}
-        color={mode.selected && mode.danger && 'danger'}
-        content={mode.name}
-        onClick={() => act('mode', { mode: mode.mode })} />
-      <Box mt={1} />
-    </Button>
-  ));
+  return (
+    <>
+      {modes.map((mode) => (
+        <Fragment key={mode.mode}>
+          <Button
+            icon={mode.selected ? 'check-square-o' : 'square-o'}
+            color={mode.selected && mode.danger && 'danger'}
+            selected={mode.selected}
+            content={mode.name}
+            onClick={() => act('mode', { mode: mode.mode })}
+          />
+          <Box mt={1} />
+        </Fragment>
+      ))}
+    </>
+  );
 };
 
 

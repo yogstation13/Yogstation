@@ -58,12 +58,6 @@
 	var/obj/item/broken_bottle/B = new (loc)
 	if(!ranged && thrower)
 		thrower.put_in_hands(B)
-	else
-		var/matrix/M = matrix(B.transform)
-		M.Turn(rand(-170, 170))
-		B.transform = M
-		B.pixel_x = rand(-12, 12)
-		B.pixel_y = rand(-12, 12)
 	B.icon_state = icon_state
 
 	var/icon/I = new('icons/obj/drinks.dmi', src.icon_state)
@@ -173,7 +167,7 @@
 	sharpness = SHARP_EDGED
 	var/static/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
-/obj/item/broken_bottle/Initialize()
+/obj/item/broken_bottle/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 200, 55)
 
@@ -276,7 +270,7 @@
 	icon_state = "absinthebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/absinthe = 100)
 
-/obj/item/reagent_containers/food/drinks/bottle/absinthe/Initialize()
+/obj/item/reagent_containers/food/drinks/bottle/absinthe/Initialize(mapload)
 	. = ..()
 	redact()
 
@@ -349,7 +343,7 @@
 	icon_state = "sakebottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/sake = 100)
 
-/obj/item/reagent_containers/food/drinks/bottle/sake/Initialize()
+/obj/item/reagent_containers/food/drinks/bottle/sake/Initialize(mapload)
 	. = ..()
 	if(prob(10))
 		name = "Fluffy Tail Sake"

@@ -22,7 +22,7 @@
 	var/obj/effect/countdown/dominator/countdown
 	var/obj/item/disk/nuclear/nukedisk
 
-/obj/machinery/dominator/Initialize()
+/obj/machinery/dominator/Initialize(mapload)
 	set_light(2)
 	GLOB.poi_list |= src
 	spark_system = new
@@ -129,7 +129,7 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
-/obj/machinery/dominator/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
+/obj/machinery/dominator/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	. = ..()
 	if(.)
 		if(obj_integrity/max_integrity > 0.66)

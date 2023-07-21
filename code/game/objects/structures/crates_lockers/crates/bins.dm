@@ -5,10 +5,10 @@
 	open_sound = 'sound/effects/bin_open.ogg'
 	close_sound = 'sound/effects/bin_close.ogg'
 	anchored = TRUE
-	horizontal = FALSE
+	open_flags = ALLOW_OBJECTS | ALLOW_DENSE
 	delivery_icon = null
 
-/obj/structure/closet/crate/bin/Initialize()
+/obj/structure/closet/crate/bin/Initialize(mapload)
 	. = ..()
 	update_icon()
 

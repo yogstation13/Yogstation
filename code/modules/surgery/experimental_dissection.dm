@@ -27,7 +27,7 @@
 
 /datum/surgery_step/dissection
 	name = "dissection"
-	implements = list(/obj/item/scalpel/augment = 75, /obj/item/scalpel/advanced = 60, /obj/item/scalpel = 45, /obj/item/kitchen/knife = 20, /obj/item/shard = 10)// special tools not only cut down time but also improve probability
+	implements = list(/obj/item/scalpel/alien = 100, /obj/item/toolset_handler = 75, /obj/item/scalpel/advanced = 60, /obj/item/scalpel = 45, /obj/item/kitchen/knife = 20, /obj/item/shard = 10)// special tools not only cut down time but also improve probability
 	time = 12.5 SECONDS
 	silicons_obey_prob = TRUE
 	repeatable = TRUE
@@ -37,6 +37,11 @@
 /datum/surgery_step/dissection/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	user.visible_message("[user] starts dissecting [target].", span_notice("You start dissecting [target]."))
 
+/datum/surgery_step/dissection/try_op(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail)
+	if(istype(tool, /obj/item/toolset_handler) && tool.tool_behaviour != TOOL_SCALPEL)//toolset implants are janky
+		return FALSE
+	. = ..()
+	
 /datum/surgery_step/dissection/proc/check_value(mob/living/target, datum/surgery/experimental_dissection/ED)
 	var/cost = EXPDIS_BASE_REWARD
 	var/multi_surgery_adjust = 0

@@ -70,9 +70,9 @@ BONUS
 				to_chat(M, "<span notice='userdanger'>[pick("You have a coughing fit!", "You can't stop coughing!")]</span>")
 				M.Immobilize(20)
 				M.emote("cough")
-				addtimer(CALLBACK(M, /mob/.proc/emote, "cough"), 6)
-				addtimer(CALLBACK(M, /mob/.proc/emote, "cough"), 12)
-				addtimer(CALLBACK(M, /mob/.proc/emote, "cough"), 18)
+				addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, emote), "cough"), 6)
+				addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, emote), "cough"), 12)
+				addtimer(CALLBACK(M, TYPE_PROC_REF(/mob, emote), "cough"), 18)
 			if(infective && M.CanSpreadAirborneDisease())
 				A.spread(1)
 

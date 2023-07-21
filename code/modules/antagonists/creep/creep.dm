@@ -2,7 +2,9 @@
 	name = "Obsessed"
 	show_in_antagpanel = TRUE
 	antagpanel_category = "Other"
+	preview_outfit = /datum/outfit/obsessed
 	job_rank = ROLE_OBSESSED
+	antag_hud_name = "obsessed"
 	show_name_in_check_antagonists = TRUE
 	roundend_category = "obsessed"
 	silent = TRUE //not actually silent, because greet will be called by the trauma anyway.
@@ -21,6 +23,40 @@
 	//PRESTO FUCKIN MAJESTO
 	C.gain_trauma(/datum/brain_trauma/special/obsessed)//ZAP
 
+/datum/antagonist/obsessed/get_preview_icon()
+	var/mob/living/carbon/human/dummy/consistent/victim_dummy = new
+	victim_dummy.hair_color = "b96" // Brown
+	victim_dummy.hair_style = "Messy"
+	victim_dummy.update_hair()
+
+	var/icon/obsessed_icon = render_preview_outfit(preview_outfit)
+	obsessed_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
+
+	var/icon/final_icon = finish_preview_icon(obsessed_icon)
+
+	final_icon.Blend(
+	icon('icons/UI_Icons/antags/obsessed.dmi', "obsession"),
+		ICON_OVERLAY,
+		ANTAGONIST_PREVIEW_ICON_SIZE - 30,
+		20,
+	)
+
+	return final_icon
+
+/datum/outfit/obsessed
+	name = "Obsessed (Preview only)"
+
+	uniform = /obj/item/clothing/under/yogs/redoveralls
+	gloves = /obj/item/clothing/gloves/color/latex
+	mask = /obj/item/clothing/mask/surgical
+	neck = /obj/item/camera
+	suit = /obj/item/clothing/suit/apron
+
+/datum/outfit/obsessed/post_equip(mob/living/carbon/human/H)
+	for(var/obj/item/carried_item in H.get_equipped_items(TRUE))
+		carried_item.add_mob_blood(H)//Oh yes, there will be blood...
+	H.regenerate_icons()
+
 /datum/antagonist/obsessed/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/creepalert.ogg', 100, FALSE, pressure_affected = FALSE)
 	to_chat(owner, span_boldannounce("You are the Obsessed!"))
@@ -37,14 +73,13 @@
 
 /datum/antagonist/obsessed/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
-	update_obsession_icons_added(M)
-	if(owner.current && ishuman(owner.current) && !owner.current.GetComponent(/datum/component/mood))
+	if(M && ishuman(M) && !M.GetComponent(/datum/component/mood))
 		to_chat(owner, span_danger("You feel more aware of your condition, mood has been enabled!"))
-		owner.current.AddComponent(/datum/component/mood) //you fool you absolute buffoon to think you could escape
+		M.AddComponent(/datum/component/mood) //you fool you absolute buffoon to think you could escape
 
 /datum/antagonist/obsessed/remove_innate_effects(mob/living/mob_override)
+	. = ..()
 	var/mob/living/M = mob_override || owner.current
-	update_obsession_icons_removed(M)
 	var/mob/living/carbon/human/H = M
 	if(H && !H.mood_enabled)
 		var/datum/component/C = M.GetComponent(/datum/component/mood)
@@ -52,7 +87,7 @@
 			to_chat(owner, span_danger("Your need for mental fitness vanishes alongside the voices, mood has been disabled."))
 			C.RemoveComponent()
 
-/datum/antagonist/obsessed/proc/forge_objectives(var/datum/mind/obsessionmind)
+/datum/antagonist/obsessed/proc/forge_objectives(datum/mind/obsessionmind)
 	var/list/objectives_left = list("spendtime", "polaroid", "hug")
 	var/datum/quirk/family_heirloom/family_heirloom
 
@@ -275,7 +310,7 @@
 	for(var/datum/mind/M in owners)
 		if(!isliving(M.current))
 			continue
-		var/list/all_items = M.current.GetAllContents()	//this should get things in cheesewheels, books, etc.
+		var/list/all_items = M.current.get_all_contents()	//this should get things in cheesewheels, books, etc.
 		for(var/obj/I in all_items) //Check for wanted items
 			if(istype(I, /obj/item/photo))
 				var/obj/item/photo/P = I
@@ -293,13 +328,3 @@
 		explanation_text = "Steal [target.name]'s family heirloom, [steal_target] they cherish."
 	else
 		explanation_text = "Free Objective"
-
-/datum/antagonist/obsessed/proc/update_obsession_icons_added(var/mob/living/carbon/human/obsessed)
-	var/datum/atom_hud/antag/creephud = GLOB.huds[ANTAG_HUD_OBSESSED]
-	creephud.join_hud(obsessed)
-	set_antag_hud(obsessed, "obsessed")
-
-/datum/antagonist/obsessed/proc/update_obsession_icons_removed(var/mob/living/carbon/human/obsessed)
-	var/datum/atom_hud/antag/creephud = GLOB.huds[ANTAG_HUD_OBSESSED]
-	creephud.leave_hud(obsessed)
-	set_antag_hud(obsessed, null)

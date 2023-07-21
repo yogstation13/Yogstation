@@ -141,12 +141,12 @@
 	bot_reset() //Resets an AI's call, should it exist.
 	update_icon()
 
-/mob/living/simple_animal/bot/Initialize()
+/mob/living/simple_animal/bot/Initialize(mapload)
 	. = ..()
 	GLOB.bots_list += src
 	access_card = new /obj/item/card/id(src)
 //This access is so bots can be immediately set to patrol and leave Robotics, instead of having to be let out first.
-	access_card.access += ACCESS_ROBOTICS
+	access_card.access += ACCESS_ROBO_CONTROL
 	set_custom_texts()
 	Radio = new/obj/item/radio(src)
 	if(radio_key)
@@ -160,7 +160,7 @@
 	//Adds bot to the diagnostic HUD system
 	prepare_huds()
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
-		diag_hud.add_to_hud(src)
+		diag_hud.add_atom_to_hud(src)
 	diag_hud_set_bothealth()
 	diag_hud_set_botstat()
 	diag_hud_set_botmode()
@@ -168,10 +168,10 @@
 	//If a bot has its own HUD (for player bots), provide it.
 	if(data_hud_type)
 		var/datum/atom_hud/datahud = GLOB.huds[data_hud_type]
-		datahud.add_hud_to(src)
+		datahud.show_to(src)
 	if(path_hud)
-		path_hud.add_to_hud(src)
-		path_hud.add_hud_to(src)
+		path_hud.add_atom_to_hud(src)
+		path_hud.show_to(src)
 
 /mob/living/simple_animal/bot/update_mobility()
 	. = ..()
@@ -545,7 +545,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 			turn_on() //Saves the AI the hassle of having to activate a bot manually.
 		access_card = all_access //Give the bot all-access while under the AI's command.
 		if(client)
-			reset_access_timer_id = addtimer(CALLBACK (src, .proc/bot_reset), 600, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE) //if the bot is player controlled, they get the extra access for a limited time
+			reset_access_timer_id = addtimer(CALLBACK (src, PROC_REF(bot_reset)), 600, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE) //if the bot is player controlled, they get the extra access for a limited time
 			to_chat(src, span_notice("<span class='big'>Priority waypoint set by [icon2html(calling_ai, src)] <b>[caller]</b>. Proceed to <b>[end_area]</b>.</span><br>[path.len-1] meters to destination. You have been granted additional door access for 60 seconds."))
 		if(message)
 			to_chat(calling_ai, span_notice("[icon2html(src, calling_ai)] [name] called to [end_area]. [path.len-1] meters to destination."))
@@ -855,7 +855,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 				ejectpai(usr)
 	update_controls()
 
-/mob/living/simple_animal/bot/proc/update_icon()
+/mob/living/simple_animal/bot/update_icon()
 	icon_state = "[initial(icon_state)][on]"
 
 // Machinery to simplify topic and access calls
@@ -864,7 +864,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	anchored = FALSE
 	var/mob/living/simple_animal/bot/owner = null
 
-/obj/machinery/bot_core/Initialize()
+/obj/machinery/bot_core/Initialize(mapload)
 	. = ..()
 	owner = loc
 	if(!istype(owner))
@@ -989,7 +989,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 		path_huds_watching_me += path_hud
 	for(var/V in path_huds_watching_me)
 		var/datum/atom_hud/H = V
-		H.remove_from_hud(src)
+		H.remove_atom_from_hud(src)
 
 	var/list/path_images = hud_list[DIAG_PATH_HUD]
 	QDEL_LIST(path_images)
@@ -1032,7 +1032,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 	for(var/V in path_huds_watching_me)
 		var/datum/atom_hud/H = V
-		H.add_to_hud(src)
+		H.add_atom_to_hud(src)
 
 
 /mob/living/simple_animal/bot/proc/increment_path()

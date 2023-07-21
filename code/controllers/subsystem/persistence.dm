@@ -1,4 +1,5 @@
 #define FILE_ANTAG_REP "data/AntagReputation.json"
+#define ROUNDCOUNT_ENGINE_JUST_EXPLODED 0
 
 SUBSYSTEM_DEF(persistence)
 	name = "Persistence"
@@ -14,8 +15,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/picture_logging_information = list()
 	var/list/obj/structure/sign/picture_frame/photo_frames = list()
 	var/list/obj/item/storage/photo_album/photo_albums = list()
-	var/list/obj/structure/sign/painting/painting_frames = list()
-	var/list/paintings = list()
+	var/rounds_since_engine_exploded = 0
 
 /datum/controller/subsystem/persistence/Initialize()
 	LoadPoly()
@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(persistence)
 	if(CONFIG_GET(flag/use_antag_rep))
 		LoadAntagReputation()
 	LoadRandomizedRecipes()
-	LoadPaintings()
+	LoadDelaminationCounter()
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/persistence/proc/LoadPoly()
@@ -151,8 +151,8 @@ SUBSYSTEM_DEF(persistence)
 	if(CONFIG_GET(flag/use_antag_rep))
 		CollectAntagReputation()
 	SaveRandomizedRecipes()
-	SavePaintings()
 	SaveScars()
+	SaveDelaminationCounter()
 
 /datum/controller/subsystem/persistence/proc/GetPhotoAlbums()
 	var/album_path = file("data/photo_albums.json")
@@ -332,30 +332,32 @@ SUBSYSTEM_DEF(persistence)
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
 
-/datum/controller/subsystem/persistence/proc/LoadPaintings()
-	var/json_file = file("data/paintings.json")
-	if(fexists(json_file))
-		paintings = json_decode(file2text(json_file))
-
-	for(var/obj/structure/sign/painting/P in painting_frames)
-		P.load_persistent()
-
-/datum/controller/subsystem/persistence/proc/SavePaintings()
-	for(var/obj/structure/sign/painting/P in painting_frames)
-		P.save_persistent()
-
-	var/json_file = file("data/paintings.json")
-	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(paintings))
-
 /datum/controller/subsystem/persistence/proc/SaveScars()
 	for(var/i in GLOB.joined_player_list)
 		var/mob/living/carbon/human/ending_human = get_mob_by_ckey(i)
-		if(!istype(ending_human) || !ending_human.mind?.original_character_slot_index || !ending_human.client || !ending_human.client.prefs || !ending_human.client.prefs.persistent_scars)
+		if(!istype(ending_human) || !ending_human.mind?.original_character_slot_index || !ending_human.client || !ending_human.client.prefs || !ending_human.client.prefs.read_preference(/datum/preference/toggle/persistent_scars))
 			continue
 
 		var/mob/living/carbon/human/original_human = ending_human.mind.original_character
-		if(!original_human || original_human.stat == DEAD || !original_human.all_scars || original_human != ending_human)
+
+		if(!original_human)
+			continue
+
+		if(original_human.stat == DEAD || !original_human.all_scars || original_human != ending_human)
 			original_human.save_persistent_scars(TRUE)
 		else
 			original_human.save_persistent_scars()
+
+#define DELAMINATION_COUNT_FILEPATH "data/rounds_since_delamination.txt"
+
+/datum/controller/subsystem/persistence/proc/LoadDelaminationCounter()
+	if (!fexists(DELAMINATION_COUNT_FILEPATH))
+		return
+	rounds_since_engine_exploded = text2num(file2text(DELAMINATION_COUNT_FILEPATH))
+	for (var/obj/structure/sign/delamination_counter/sign as anything in GLOB.map_delamination_counters)
+		sign.update_count(rounds_since_engine_exploded)
+
+/datum/controller/subsystem/persistence/proc/SaveDelaminationCounter()
+	rustg_file_write("[rounds_since_engine_exploded + 1]", DELAMINATION_COUNT_FILEPATH)
+
+#undef DELAMINATION_COUNT_FILEPATH

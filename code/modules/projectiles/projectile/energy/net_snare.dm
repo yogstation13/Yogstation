@@ -7,7 +7,7 @@
 	range = 10
 	var/obj/item/beacon/teletarget = null
 
-/obj/item/projectile/energy/net/Initialize()
+/obj/item/projectile/energy/net/Initialize(mapload)
 	. = ..()
 	SpinAnimation()
 
@@ -32,7 +32,7 @@
 
 /obj/effect/nettingportal/New(obj/item/beacon/destination)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/pop, destination), 30)
+	addtimer(CALLBACK(src, PROC_REF(pop), destination), 30)
 
 /obj/effect/nettingportal/proc/pop(obj/item/beacon/destination)
 	if(destination)

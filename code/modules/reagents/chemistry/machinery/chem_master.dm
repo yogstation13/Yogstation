@@ -22,17 +22,8 @@
 	var/useramount = 30 // Last used amount
 	var/list/pillStyles = null
 
-/obj/machinery/chem_master/Initialize()
+/obj/machinery/chem_master/Initialize(mapload)
 	create_reagents(100)
-
-	//Calculate the span tags and ids fo all the available pill icons
-	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
-	pillStyles = list()
-	for (var/x in 1 to PILL_STYLE_COUNT)
-		var/list/SL = list()
-		SL["id"] = x
-		SL["className"] = assets.icon_class_name("pill[x]")
-		pillStyles += list(SL)
 
 	. = ..()
 
@@ -151,6 +142,16 @@
 		bottle = null
 	return ..()
 
+/obj/machinery/chem_master/proc/load_styles()
+	//Calculate the span tags and ids fo all the available pill icons
+	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
+	pillStyles = list()
+	for (var/x in 1 to PILL_STYLE_COUNT)
+		var/list/SL = list()
+		SL["id"] = x
+		SL["className"] = assets.icon_class_name("pill[x]")
+		pillStyles += list(SL)
+
 /obj/machinery/chem_master/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/simple/pills),
@@ -190,7 +191,9 @@
 			bufferContents.Add(list(list("name" = N.name, "id" = ckey(N.name), "volume" = N.volume))) // ^
 	data["bufferContents"] = bufferContents
 
-	//Calculated at init time as it never changes
+	//Calculated once since it'll never change
+	if(!pillStyles)
+		load_styles()
 	data["pillStyles"] = pillStyles
 	return data
 
@@ -260,7 +263,7 @@
 		var/vol_each_text = params["volume"]
 		var/vol_each_max = reagents.total_volume / amount
 		if (item_type == "pill")
-			vol_each_max = min(10, vol_each_max)
+			vol_each_max = min(15, vol_each_max)
 		else if (item_type == "patch")
 			vol_each_max = min(40, vol_each_max)
 		else if (item_type == "bottle")

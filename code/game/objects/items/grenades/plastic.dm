@@ -21,12 +21,9 @@
 	var/full_damage_on_mobs = FALSE
 	var/alert_admins = TRUE
 
-/obj/item/grenade/plastic/Initialize()
+/obj/item/grenade/plastic/Initialize(mapload)
 	. = ..()
 	plastic_overlay = mutable_appearance(icon, "[item_state]2", HIGH_OBJ_LAYER)
-
-/obj/item/grenade/plastic/ComponentInitialize()
-	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
 /obj/item/grenade/plastic/Destroy()
@@ -139,7 +136,7 @@
 		target.add_overlay(plastic_overlay, TRUE)
 		if(!nadeassembly)
 			to_chat(user, span_notice("You plant the bomb. Timer counting down from [det_time]."))
-			addtimer(CALLBACK(src, .proc/prime), det_time*10)
+			addtimer(CALLBACK(src, PROC_REF(prime)), det_time*10)
 		else
 			qdel(src)	//How?
 
@@ -187,7 +184,7 @@
 	var/open_panel = 0
 	can_attach_mob = TRUE
 
-/obj/item/grenade/plastic/c4/Initialize()
+/obj/item/grenade/plastic/c4/Initialize(mapload)
 	. = ..()
 	wires = new /datum/wires/explosive/c4(src)
 

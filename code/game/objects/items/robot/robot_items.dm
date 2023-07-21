@@ -36,15 +36,15 @@
 			to_chat(M, span_warning("You muscles seize, making you collapse!"))
 		else
 			M.Paralyze(stunforce)
-		M.Jitter(20)
-		M.confused = max(8, M.confused)
+		M.adjust_jitter(20 SECONDS)
+		M.adjust_confusion_up_to(8 SECONDS, 40 SECONDS)
 		M.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage > 70)
-		M.Jitter(10)
-		M.confused = max(8, M.confused)
+		M.adjust_jitter(10 SECONDS)
+		M.adjust_confusion_up_to(8 SECONDS, 40 SECONDS)
 		M.apply_effect(EFFECT_STUTTER, stunforce)
 	else if(current_stamina_damage >= 20)
-		M.Jitter(5)
+		M.adjust_jitter(5 SECONDS)
 		M.apply_effect(EFFECT_STUTTER, stunforce)
 
 	M.visible_message(span_danger("[user] has prodded [M] with [src]!"), \
@@ -113,6 +113,7 @@
 		if(1)
 			if(M.health >= 0)
 				if(ishuman(M))
+					M.adjust_status_effects_on_shake_up()
 					if(!(M.mobility_flags & MOBILITY_STAND))
 						user.visible_message(span_notice("[user] shakes [M] trying to get [M.p_them()] up!"), \
 										span_notice("You shake [M] trying to get [M.p_them()] up!"))
@@ -176,7 +177,7 @@
 	var/static/list/charge_machines = typecacheof(list(/obj/machinery/cell_charger, /obj/machinery/recharger, /obj/machinery/recharge_station, /obj/machinery/mech_bay_recharge_port))
 	var/static/list/charge_items = typecacheof(list(/obj/item/stock_parts/cell, /obj/item/gun/energy))
 
-/obj/item/borg/charger/Initialize()
+/obj/item/borg/charger/Initialize(mapload)
 	. = ..()
 
 /obj/item/borg/charger/update_icon()
@@ -325,11 +326,11 @@
 
 	if(safety == TRUE)
 		user.visible_message("<font color='red' size='2'>[user] blares out a near-deafening siren from its speakers!</font>", \
-			span_userdanger("The siren pierces your hearing and confuses you!"), \
+			span_userdanger("Your siren blares around [iscyborg(user) ? "you" : "and confuses you"]!"), \
 			span_danger("The siren pierces your hearing!"))
 		for(var/mob/living/carbon/M in get_hearers_in_view(9, user))
 			if(M.get_ear_protection() == FALSE)
-				M.confused += 6
+				M.adjust_confusion(6 SECONDS)
 		audible_message("<font color='red' size='7'>HUMAN HARM</font>")
 		playsound(get_turf(src), 'sound/ai/default/harmalarm.ogg', 70, 3)
 		cooldown = world.time + 200
@@ -346,16 +347,16 @@
 			var/bang_effect = C.soundbang_act(2, 0, 0, 5)
 			switch(bang_effect)
 				if(1)
-					C.confused += 5
-					C.stuttering += 10
-					C.Jitter(10)
+					C.adjust_confusion(5 SECONDS)
+					C.adjust_stutter(10 SECONDS)
+					C.adjust_jitter(10 SECONDS)
 				if(2)
-					C.Paralyze(40)
-					C.confused += 10
-					C.stuttering += 15
-					C.Jitter(25)
+					C.Paralyze(4 SECONDS)
+					C.adjust_confusion(10 SECONDS)
+					C.adjust_stutter(15 SECONDS)
+					C.adjust_jitter(25 SECONDS)
 		playsound(get_turf(src), 'sound/machines/warning-buzzer.ogg', 130, 3)
-		cooldown = world.time + 600
+		cooldown = world.time + 1 MINUTES
 		log_game("[key_name(user)] used an emagged Cyborg Harm Alarm in [AREACOORD(user)]")
 
 #define DISPENSE_LOLLIPOP_MODE 1
@@ -393,7 +394,7 @@
 	if(charging)
 		return
 	if(candy < candymax)
-		addtimer(CALLBACK(src, .proc/charge_lollipops), charge_delay)
+		addtimer(CALLBACK(src, PROC_REF(charge_lollipops)), charge_delay)
 		charging = TRUE
 
 /obj/item/borg/lollipop/proc/charge_lollipops()
@@ -518,7 +519,6 @@
 	projectile_type = /obj/item/projectile/bullet/reusable/gumball
 	click_cooldown_override = 2
 
-
 /obj/item/projectile/bullet/reusable/gumball
 	name = "gumball"
 	desc = "Oh noes! A fast-moving gumball!"
@@ -526,12 +526,10 @@
 	ammo_type = /obj/item/reagent_containers/food/snacks/gumball/cyborg
 	nodamage = TRUE
 
-/obj/item/projectile/bullet/reusable/gumball/handle_drop()
-	if(!dropped)
-		var/turf/T = get_turf(src)
-		var/obj/item/reagent_containers/food/snacks/gumball/S = new ammo_type(T)
-		S.color = color
-		dropped = TRUE
+/obj/item/projectile/bullet/reusable/gumball/Initialize(mapload)
+	. = ..()
+	ammo_type = new ammo_type(src)
+	color = ammo_type.color
 
 /obj/item/ammo_casing/caseless/lollipop	//NEEDS RANDOMIZED COLOR LOGIC.
 	name = "Lollipop"
@@ -547,20 +545,14 @@
 	var/color2 = rgb(0, 0, 0)
 	nodamage = TRUE
 
-/obj/item/projectile/bullet/reusable/lollipop/Initialize()
+/obj/item/projectile/bullet/reusable/lollipop/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/food/snacks/lollipop/S = new ammo_type(src)
+	ammo_type = S
 	color2 = S.headcolor
 	var/mutable_appearance/head = mutable_appearance('icons/obj/projectiles.dmi', "lollipop_2")
 	head.color = color2
 	add_overlay(head)
-
-/obj/item/projectile/bullet/reusable/lollipop/handle_drop()
-	if(!dropped)
-		var/turf/T = get_turf(src)
-		var/obj/item/reagent_containers/food/snacks/lollipop/S = new ammo_type(T)
-		S.change_head_color(color2)
-		dropped = TRUE
 
 #define PKBORG_DAMPEN_CYCLE_DELAY 20
 
@@ -592,7 +584,7 @@
 	energy = 50000
 	energy_recharge = 5000
 
-/obj/item/borg/projectile_dampen/Initialize()
+/obj/item/borg/projectile_dampen/Initialize(mapload)
 	. = ..()
 	projectile_effect = image('icons/effects/fields.dmi', "projectile_dampen_effect")
 	tracked = list()
@@ -753,7 +745,7 @@
 	name = "medical hud"
 	icon_state = "healthhud"
 
-/obj/item/borg/sight/hud/med/Initialize()
+/obj/item/borg/sight/hud/med/Initialize(mapload)
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health(src)
 
@@ -762,6 +754,141 @@
 	name = "security hud"
 	icon_state = "securityhud"
 
-/obj/item/borg/sight/hud/sec/Initialize()
+/obj/item/borg/sight/hud/sec/Initialize(mapload)
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/security(src)
+
+/**********************************************************************
+						Grippers
+***********************************************************************/
+/obj/item/gripper
+	name = "cyborg gripper"
+	desc = "A simple grasping tool for interacting with various items."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gripper"
+	item_flags = NOBLUDGEON
+	/// Whitelist of items types that can be held.
+	var/list/can_hold = list()
+	/// Blacklist of item subtypes that should not be held.
+	var/list/cannot_hold = list()
+	/// Item currently being held if any.
+	var/obj/item/wrapped = null
+	var/mutable_appearance/appearance_wrapped = null
+
+/// Drops held item if possible.
+/obj/item/gripper/proc/drop_held(silent = FALSE)
+	if(wrapped)
+		wrapped.forceMove(get_turf(wrapped))
+		if(!silent)
+			to_chat(usr, span_notice("You drop the [wrapped]."))
+		wrapped = null
+		update_icon()
+		return TRUE
+	return FALSE
+
+/// Pick up item.
+/obj/item/gripper/proc/take_item(obj/item/item, silent = FALSE)
+	if(!silent)
+		to_chat(usr, span_notice("You collect \the [item]."))
+	item.loc = src
+	wrapped = item
+	update_icon()
+
+/obj/item/gripper/pre_attack(atom/target, mob/living/silicon/robot/user, params)
+	var/proximity = get_dist(user, target)
+	if(proximity > 1)
+		return
+	if(!wrapped)
+		for(var/obj/item/thing in src.contents)
+			wrapped = thing
+			break
+	if(wrapped) //Already have an item.
+		var/obj/item/item = wrapped
+		drop_held(TRUE)
+		//Temporary put wrapped into user so target's attackby() checks pass.
+		item.loc = user
+		//Pass the attack on to the target. This might delete/relocate wrapped.
+		var/resolved = target.attackby(item, user, params)
+		if(!resolved && item && target)
+			item.afterattack(target, user, proximity, params)
+		//If wrapped was neither deleted nor put into target, put it back into the gripper.
+		if(item && user && (item.loc == user))
+			take_item(item, TRUE)
+			return
+		else
+			item = null
+		return
+	else if(isitem(target))
+		var/obj/item/I = target
+		if(locate(target) in user.module.modules)//This prevents grabbing your own modules and grabbing similar items (if this is ever the case).
+			to_chat(user, span_danger("Your gripper cannot grab something that you already have."))
+			return
+		var/grab = 0
+		for(var/typepath in can_hold)
+			if(istype(I,typepath))
+				grab = 1
+				for(var/badpath in cannot_hold)
+					if(istype(I,badpath) && user.emagged)
+						grab = 0
+						continue
+		//Allowed to grab.
+		if(grab)
+			take_item(I)
+			return
+		to_chat(user, span_danger("Your gripper cannot hold \the [target]."))
+
+/obj/item/gripper/attack_self(mob/user)
+	if(wrapped)
+		wrapped.attack_self(user)
+		return
+	. = ..()
+
+/obj/item/gripper/AltClick(mob/user)
+	if(wrapped)
+		wrapped.AltClick(user)
+		return
+	. = ..()
+
+/obj/item/gripper/CtrlClick(mob/user)
+	if(wrapped)
+		wrapped.CtrlClick(user)
+		return
+	. = ..()
+
+/obj/item/gripper/CtrlShiftClick(mob/user)
+	if(wrapped)
+		wrapped.CtrlShiftClick(user)
+		return
+	. = ..()
+
+/// Resets overlays and adds a overlay if there is a held item.
+/obj/item/gripper/update_icon(updates)
+	cut_overlays()
+	if(wrapped)
+		var/mutable_appearance/wrapped_appearance = mutable_appearance(wrapped.icon, wrapped.icon_state)
+		// Shrinking it to 0.8 makes it a bit ugly, but this makes it obvious it is a held item.
+		wrapped_appearance.transform = matrix(0.8,0,0,0,0.8,0)
+		add_overlay(wrapped_appearance)
+
+// Make it clear what we can do with it.
+/obj/item/gripper/examine(mob/user)
+	. = ..()
+	if(wrapped)
+		. += span_notice("It is holding [icon2html(wrapped, user)] [wrapped]." )
+		. += span_notice("Attempting to drop the gripper will only drop [wrapped].")
+
+// Drop the item if the gripper is unequipped.
+/obj/item/gripper/cyborg_unequip(mob/user)
+	. = ..()
+	if(wrapped)
+		drop_held()
+
+/obj/item/gripper/engineering
+	name = "engineering gripper"
+	desc = "A simple grasping tool for interacting with a limited amount of engineering related items."
+	can_hold = list(
+		/obj/item/circuitboard,
+		/obj/item/electronics,
+		/obj/item/wallframe,
+		/obj/item/stock_parts
+	)

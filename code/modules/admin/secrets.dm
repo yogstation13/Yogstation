@@ -388,7 +388,7 @@
 			for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 				if(!get_turf(H))
 					continue
-				if(H.client?.prefs?.disable_alternative_announcers)
+				if(H.client?.prefs?.read_preference(/datum/preference/toggle/disable_alternative_announcers))
 					SEND_SOUND(H, sound(SSstation.default_announcer.event_sounds[ANNOUNCER_ANIMES]))
 				else
 					SEND_SOUND(H, sound(SSstation.announcer.event_sounds[ANNOUNCER_ANIMES]))
@@ -409,7 +409,7 @@
 					var/obj/item/clothing/under/schoolgirl/I = new seifuku
 					var/olduniform = H.w_uniform
 					H.temporarilyRemoveItemFromInventory(H.w_uniform, TRUE, FALSE)
-					H.equip_to_slot_or_del(I, SLOT_W_UNIFORM)
+					H.equip_to_slot_or_del(I, ITEM_SLOT_ICLOTHING)
 					qdel(olduniform)
 					if(droptype == "Yes")
 						ADD_TRAIT(I, TRAIT_NODROP, ADMIN_TRAIT)

@@ -90,7 +90,7 @@
 						"Command Blue" = "pen-fountain-cb"
 						)
 
-/obj/item/pen/fountain/captain/Initialize()
+/obj/item/pen/fountain/captain/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 200, 115) //the pen is mightier than the sword
 
@@ -163,7 +163,7 @@
 	if(!reagents.total_volume || !M.reagents)
 		return
 		
-	to_chat(user, span_warning("You begin to injecting [src]'s contents into [M]"))
+	to_chat(user, span_warning("You begin to inject [src]'s contents into [M]"))
 	if(!do_after(user, 0.5 SECONDS, M))
 		return
 	reagents.reaction(M, INJECT, reagents.total_volume)
@@ -171,7 +171,7 @@
 				
 
 
-/obj/item/pen/sleepy/Initialize()
+/obj/item/pen/sleepy/Initialize(mapload)
 	. = ..()
 	create_reagents(75)
 	reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 20)
@@ -187,7 +187,7 @@
 	sharpness = SHARP_EDGED
 	var/on = FALSE
 
-/obj/item/pen/edagger/Initialize()
+/obj/item/pen/edagger/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 60, 100, 0, 'sound/weapons/blade1.ogg', TRUE)
 
@@ -212,7 +212,7 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 5, 1)
 		to_chat(user, span_warning("[src] can now be concealed."))
 	else
-		if(!is_syndicate(user)) // this is just a normal pen to non syndicates as they don't know how to switch it on.
+		if(!is_syndicate(user) && !is_battleroyale(user)) // this is just a normal pen to non syndicates as they don't know how to switch it on.
 			. = ..()
 			return
 		on = TRUE

@@ -34,7 +34,7 @@
 
 
 
-/obj/item/ai_cpu/Initialize()
+/obj/item/ai_cpu/Initialize(mapload)
 	growth_scale = rand(minimum_growth * 100, maximum_growth * 100) / 100
 	max_power_multiplier = (rand(minimum_max_power * 100, maximum_max_power * 100) / 100) * power_multiplier
 

@@ -11,4 +11,4 @@
 			var/datum/chemical_reaction/R = V
 			for(var/id in (R.required_reagents + R.required_catalysts))
 				if(!GLOB.chemical_reagents_list[id])
-					Fail("Unknown chemical path \"[id]\" in recipe [R.type]")
+					TEST_FAIL("Unknown chemical path \"[id]\" in recipe [R.type]")

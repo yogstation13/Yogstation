@@ -2,6 +2,9 @@
 
 #define in_range(source, user) (get_dist(source, user) <= 1 && (get_step(source, 0)?:z) == (get_step(user, 0)?:z))
 
+/// Within given range, but not counting z-levels
+#define IN_GIVEN_RANGE(source, other, given_range) (get_dist(source, other) <= given_range && (get_step(source, 0)?:z) == (get_step(other, 0)?:z))
+
 #define isatom(A) (isloc(A))
 
 #define isweakref(D) (istype(D, /datum/weakref))
@@ -85,6 +88,7 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isipc(A) (is_species(A, /datum/species/ipc))
 #define issnail(A) (is_species(A, /datum/species/snail))
 #define isandroid(A) (is_species(A, /datum/species/android))
+#define isdummy(A) (istype(A, /mob/living/carbon/human/dummy))
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
@@ -150,6 +154,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isclockmob(A) (istype(A, /mob/living/simple_animal/hostile/clockwork))
 
 #define isconstruct(A) (istype(A, /mob/living/simple_animal/hostile/construct))
+
+#define isfauna(A) (istype(A, /mob/living/simple_animal/hostile/asteroid))
 
 #define ismegafauna(A) (istype(A, /mob/living/simple_animal/hostile/megafauna))
 

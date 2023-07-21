@@ -1,6 +1,6 @@
 /obj/structure/table/bananium
 	name = "bananium table"
-	desc = "A table made out of bananium very squeaky."
+	desc = "A table made out of bananium. Very squeaky."
 	icon = 'yogstation/icons/obj/smooth_structures/bananium_table.dmi'
 	icon_state = "bananium_table"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
