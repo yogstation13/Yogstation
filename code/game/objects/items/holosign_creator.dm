@@ -15,7 +15,7 @@
 	var/list/signs = list()
 	var/max_signs = 10
 	var/creation_time = 0 SECONDS //time to create a holosign in deciseconds.
-	var/holosign_type = /obj/structure/holosign/wetsign
+	var/obj/structure/holosign/holosign_type = /obj/structure/holosign/wetsign
 	var/holocreator_busy = FALSE //to prevent placing multiple holo barriers at once
 
 /obj/item/holosign_creator/afterattack(atom/target, mob/user, flag)
@@ -157,8 +157,11 @@
 			qdel(H)
 		to_chat(user, span_notice("You clear all active hard light barriers."))
 
+///Multi-barrier type that allows you to swap between several types of barriers.
+///You can only use one type at a time, you have to clear them to swap to the other.
 /obj/item/holosign_creator/multi
-	name = "multiple holosign projector"  //Fork from this to make multiple barriers
+	name = "multiple holosign projector"
+	///List of all designs that this can choose.
 	var/list/holodesigns = list()
 
 /obj/item/holosign_creator/multi/attack_self(mob/user)
@@ -168,9 +171,9 @@
 		to_chat(user, span_notice("You clear all active hard light barriers."))
 	else
 		holosign_type = next_list_item(holosign_type, holodesigns)
-		to_chat(user, span_notice("You switch to [holosign_type]"))
+		to_chat(user, span_notice("You switch to [initial(holosign_type.name)]"))
 
-/obj/item/holosign_creator/multi/CE
+/obj/item/holosign_creator/multi/chief_engineer
 	name = "CE holofan projector"
 	desc = "A holographic projector that creates hard light barriers that prevent changes in atmosphere conditions or engineering barriers."
 	icon_state = "signmaker_atmos"
