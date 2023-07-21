@@ -867,7 +867,7 @@
 	id = "mech_bfg"
 	display_name = "Exosuit Weapon (BFG-90 \"Graze\" Radioactive Cannon)"
 	description = "An advanced piece of mech weaponry"
-	prereq_ids = list("ballistic_weapons", "adv_beam_weapons")
+	prereq_ids = list("adv_beam_weapons")
 	design_ids = list("mech_bfg", "mech_bfg_ammo")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
