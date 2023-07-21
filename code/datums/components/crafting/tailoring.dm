@@ -605,3 +605,12 @@
 				/obj/item/stack/sheet/animalhide/weaver_chitin = 3) //Also just one spider!
 	category = CAT_APPAREL
 	subcategory = CAT_EQUIPMENT
+
+/datum/crafting_recipe/advancedgloves
+	name = "Advanced Insulated Gloves"
+	result = /obj/item/clothing/gloves/atmos/ce
+	time = 2 SECONDS
+	reqs = list(/obj/item/clothing/gloves/atmos = 1,
+				/obj/item/clothing/gloves/color/yellow = 1)
+	category = CAT_APPAREL
+	subcategory = CAT_EQUIPMENT
