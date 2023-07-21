@@ -82,8 +82,9 @@
 		if(!eye_blind)
 			clear_alert("blind")
 			clear_fullscreen("blind")
-			if (GetComponent(/datum/component/echolocation))
-				GetComponent(/datum/component/echolocation).Destroy()
+			var/datum/component/echo_component = GetComponent(/datum/component/echolocation)
+			if (echo_component)
+				echo_component.Destroy()
 
 /**
   * Make the mobs vision blurry

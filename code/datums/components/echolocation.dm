@@ -62,7 +62,7 @@
 		client_color = echolocator.add_client_colour(/datum/client_colour/echolocate)
 
 	src.echo_group = echo_group || REF(src)
-	echolocator.add_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_NIGHT_VISION), echo_group) //so they see all the tiles they echolocated, even if they are in the dark
+	echolocator.add_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_NIGHT_VISION), src.echo_group) //so they see all the tiles they echolocated, even if they are in the dark
 	echolocator.become_blind()
 	echolocator.overlay_fullscreen("echo", /atom/movable/screen/fullscreen/echo)
 	START_PROCESSING(SSfastprocess, src)
@@ -108,8 +108,8 @@
 		show_image(saved_appearances["[filtered_atom.icon]-[filtered_atom.icon_state]"] || generate_appearance(filtered_atom), filtered_atom, current_time)
 	addtimer(CALLBACK(src, PROC_REF(fade_images), current_time), image_expiry_time)
 
-/datum/component/echolocation/proc/echo_sound_environment(mob/living/H, range)
-	var/area/A = get_area(H)
+/datum/component/echolocation/proc/echo_sound_environment(mob/living/creature, range)
+	var/area/A = get_area(creature)
 	var/sound_environment = A.sound_environment	
 	switch(sound_environment)
 		if(SOUND_AREA_SPACE)
