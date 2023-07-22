@@ -206,3 +206,5 @@
 /atom/movable/screen/fullscreen/echo/Destroy()
 	QDEL_NULL(particles)
 	return ..()
+
+#undef DEFAULT_ECHO_RANGE
