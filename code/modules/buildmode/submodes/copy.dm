@@ -24,5 +24,8 @@
 			log_admin("Build Mode: [key_name(c)] copied [stored] to [AREACOORD(object)]")
 	else if(right_click)
 		if(ismovable(object)) // No copying turfs for now.
+			if(iscarbon(object))
+				to_chat(c, span_notice("Copying carbons is disabled due to how much it breaks the game."))
+				return
 			to_chat(c, span_notice("[object] set as template."))
 			stored = object
