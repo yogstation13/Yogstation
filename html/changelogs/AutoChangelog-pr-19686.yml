@@ -1,5 +1,0 @@
-author: "azzzertyy"
-delete-after: true 
-changes: 
-  - bugfix: "Ambience settings now change in real time"
-  - tweak: "Ambience is slightly more common"
