@@ -1,0 +1,5 @@
+author: "azzzertyy"
+delete-after: true 
+changes: 
+  - rscadd: "Blind people can now echolocate"
+  - tweak: "Blindness quirk point reduction reduced to -6"
