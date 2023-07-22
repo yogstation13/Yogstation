@@ -735,7 +735,7 @@
 	..()
 	if(!istype(H))
 		return
-	if(!H.dna || !H.dna.species || !(MOB_ORGANIC in H.mob_biotypes))
+	if(!H.dna || !H.dna.species || !(H.mob_biotypes & MOB_ORGANIC))
 		return
 
 	if(isjellyperson(H))
@@ -1144,7 +1144,7 @@
 	..()
 
 /datum/reagent/fuel/on_mob_life(mob/living/carbon/M)
-	if(MOB_ROBOTIC in M.mob_biotypes)
+	if(M.mob_biotypes & MOB_ROBOTIC)
 		M.adjustFireLoss(-1*REM, FALSE, FALSE, BODYPART_ROBOTIC)
 	else
 		M.adjustToxLoss(1*REM, 0)
