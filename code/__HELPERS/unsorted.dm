@@ -1131,7 +1131,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 //returns the number of ticks slept
 /proc/stoplag(initial_delay)
-	if (!Master || !(Master.current_runlevel & RUNLEVELS_DEFAULT))
+	if (!Master || Master.init_stage_completed < INITSTAGE_MAX)
 		sleep(world.tick_lag)
 		return 1
 	if (!initial_delay)
