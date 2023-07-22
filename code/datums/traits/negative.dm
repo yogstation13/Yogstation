@@ -55,7 +55,7 @@
 	medical_record_text = "Patient has permanent blindness."
 
 /datum/quirk/blindness/add()
-	AddComponent(/datum/component/echolocation, echo_group = "quirk")
+	quirk_holder.AddComponent(/datum/component/echolocation)
 
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
