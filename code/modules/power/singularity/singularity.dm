@@ -532,7 +532,7 @@
 	shockwave.transform = matrix().Scale(0.5)
 	shockwave.pixel_x = -240
 	shockwave.pixel_y = -240
-	animate(shockwave, alpha = 0, transform = matrix().Scale(15), time = 10 SECONDS, easing = QUAD_EASING)
+	animate(shockwave, alpha = 0, transform = matrix().Scale(20), time = 10 SECONDS, easing = QUAD_EASING)
 	kill_all_lights()
 	QDEL_IN(shockwave, 10.5 SECONDS)
 
