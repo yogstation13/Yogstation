@@ -1632,7 +1632,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		return FALSE
 	if(user.loc == target.loc)
 		return FALSE
-	if(!QDELETED(pulledby) && HAS_TRAIT(pulledby, TRAIT_STRONG_GRIP) && pulledby != user)
+	if(!QDELETED(target.pulledby) && HAS_TRAIT(target.pulledby, TRAIT_STRONG_GRIP) && target.pulledby != user)
 		return FALSE
 	if(user.pulledby && user.pulledby.grab_state >= GRAB_AGGRESSIVE)
 		return FALSE
