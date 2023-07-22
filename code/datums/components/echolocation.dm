@@ -63,7 +63,7 @@
 
 	src.echo_group = echo_group || REF(src)
 	echolocator.add_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_NIGHT_VISION), src.echo_group) //so they see all the tiles they echolocated, even if they are in the dark
-	echolocator.become_blind()
+	echolocator.become_blind(ECHOLOCATION_TRAIT)
 	echolocator.overlay_fullscreen("echo", /atom/movable/screen/fullscreen/echo)
 	START_PROCESSING(SSfastprocess, src)
 
@@ -71,7 +71,7 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	var/mob/living/echolocator = parent
 	echolocator.remove_traits(list(TRAIT_ECHOLOCATION_RECEIVER, TRAIT_NIGHT_VISION), echo_group)
-	echolocator.cure_blind()
+	echolocator.cure_blind(ECHOLOCATION_TRAIT)
 	echolocator.clear_fullscreen("echo")
 	for(var/timeframe in images)
 		delete_images(timeframe)
