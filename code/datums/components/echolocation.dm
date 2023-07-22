@@ -1,5 +1,3 @@
-#define DEFAULT_ECHO_RANGE 4
-
 /datum/component/echolocation
 	/// Current radius, will set itself to default
 	var/echo_range
@@ -35,7 +33,7 @@
 	COOLDOWN_DECLARE(cooldown_last)
 
 /datum/component/echolocation/Initialize(
-	echo_range = DEFAULT_ECHO_RANGE,
+	echo_range = 4,
 	cooldown_time = 2 SECONDS,
 	image_expiry_time = 1.5 SECONDS,
 	fade_in_time = 0.5 SECONDS,
@@ -92,9 +90,9 @@
 		return
 	COOLDOWN_START(src, cooldown_last, cooldown_time)
 	var/mob/living/echolocator = parent
-	echo_range = echo_sound_environment(echolocator, DEFAULT_ECHO_RANGE)
+	var/real_echo_range = echo_sound_environment(echolocator, echo_range)
 	var/list/filtered = list()
-	var/list/seen = dview(echo_range, get_turf(echolocator.client?.eye || echolocator), invis_flags = echolocator.see_invisible)
+	var/list/seen = dview(real_echo_range, get_turf(echolocator.client?.eye || echolocator), invis_flags = echolocator.see_invisible)
 	for(var/atom/seen_atom as anything in seen)
 		if(!seen_atom.alpha)
 			continue
@@ -206,5 +204,3 @@
 /atom/movable/screen/fullscreen/echo/Destroy()
 	QDEL_NULL(particles)
 	return ..()
-
-#undef DEFAULT_ECHO_RANGE
