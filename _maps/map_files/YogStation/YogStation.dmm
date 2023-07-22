@@ -65528,10 +65528,6 @@
 /obj/item/folder/blue,
 /turf/open/floor/wood,
 /area/lawoffice)
-"vGk" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall,
-/area/security/prison)
 "vGx" = (
 /turf/closed/wall/r_wall,
 /area/medical/genetics)
@@ -100350,7 +100346,7 @@ jWf
 gWA
 dVi
 mhB
-vGk
+acd
 aat
 aat
 aat

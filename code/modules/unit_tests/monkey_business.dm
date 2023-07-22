@@ -18,7 +18,7 @@
 		monkey.set_species(/datum/species/monkey)
 		monkey.set_name("Monkey [monkey_id]")
 		if(monkey_id % monkey_angry_nth == 0) // BLOOD FOR THE BLOOD GODS
-			monkey.put_in_active_hand(new /obj/item/knife/shiv)
+			monkey.put_in_active_hand(new /obj/item/kitchen/knife/shank)
 			new /datum/ai_controller/monkey/angry(monkey)
 		else
 			new /datum/ai_controller/monkey(monkey)
