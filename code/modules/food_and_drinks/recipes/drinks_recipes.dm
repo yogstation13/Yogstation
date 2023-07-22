@@ -932,3 +932,10 @@
 	results = list(/datum/reagent/consumable/ethanol/triumphal_arch = 10)
 	required_reagents = list(/datum/reagent/consumable/ethanol/mushi_kombucha = 5, /datum/reagent/consumable/ethanol/grappa = 2, /datum/reagent/consumable/lemonjuice = 2, /datum/reagent/gold = 1)
 	mix_message = "The mixture turns a deep golden hue."
+
+/datum/chemical_reaction/syndicate_screwdriver
+	name = "Syndicate Screwdriver"
+	id = /datum/reagent/consumable/ethanol/syndicate_screwdriver
+	results = list(datum/reagent/ethanol/syndicate_screwdriver = 2)
+	required_reagents = list (/datum/reagent/consumable/ethanol/screwdriver = 2, /datum/reagent/consumable/ethanol/syndicatebomb = 2)
+	mix_message = "The drink sparkles red with syndicate power"
