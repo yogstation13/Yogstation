@@ -90,7 +90,7 @@
 	///Used to decide what the minimum time between ambience is
 	var/min_ambience_cooldown = 30 SECONDS
 	///Used to decide what the maximum time between ambience is
-	var/max_ambience_cooldown = 240 SECONDS
+	var/max_ambience_cooldown = 175 SECONDS
 	///Used to decide what kind of reverb the area makes sound have
 	var/sound_environment = SOUND_ENVIRONMENT_NONE
 
