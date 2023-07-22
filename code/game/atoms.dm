@@ -423,6 +423,7 @@
   * We then return the protection value
   */
 /atom/proc/emp_act(severity)
+	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT, severity)
 	var/list/protection = list()
 	if(HAS_TRAIT(src, TRAIT_EMPPROOF_CONTENTS))
 		protection |= TRAIT_EMPPROOF_CONTENTS
