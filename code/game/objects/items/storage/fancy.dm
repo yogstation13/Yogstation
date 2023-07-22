@@ -111,8 +111,6 @@
 
 	. += image(icon = initial(icon), icon_state = "donutbox_top")
 
-#undef DONUT_INBOX_SPRITE_WIDTH
-
 /obj/item/storage/fancy/donut_box/deadly
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "donutbox6"
@@ -131,7 +129,7 @@
 	for(var/i in 1 to 6)
 		new /obj/item/reagent_containers/food/snacks/donut/deadly(src)
 
-
+#undef DONUT_INBOX_SPRITE_WIDTH
 /*
  * Egg Box
  */
