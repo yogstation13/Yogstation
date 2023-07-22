@@ -3,7 +3,7 @@
 	desc = "A suspicious revolver. Uses .357 magnum ammo." //usually used by syndicates
 	icon_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder
-	fire_sound = 'sound/weapons/revolver357shot.ogg'
+	fire_sound = 'sound/weapons/revolver357tgmc.ogg' // See attributions.txt
 	load_sound = 'sound/weapons/revolverload.ogg'
 	eject_sound = 'sound/weapons/revolverempty.ogg'
 	vary_fire_sound = FALSE
