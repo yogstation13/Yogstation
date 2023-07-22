@@ -107,6 +107,7 @@
 	reagents.reaction(A, TOUCH, reaction_volume)
 
 	if(isliving(A))
+		reduce_rads(A)
 		check_heat(A)
 
 /obj/machinery/shower/process()
@@ -120,6 +121,9 @@
 /obj/machinery/shower/deconstruct(disassembled = TRUE)
 	new /obj/item/stack/sheet/metal(drop_location(), 3)
 	qdel(src)
+
+/obj/machinery/shower/proc/reduce_rads(mob/living/L)
+	L.radiation -= min(M.radiation, 5)
 
 /obj/machinery/shower/proc/check_heat(mob/living/L)
 	var/mob/living/carbon/C = L
