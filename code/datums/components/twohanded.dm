@@ -97,6 +97,7 @@
 	icon_wielded,
 	datum/callback/wield_callback,
 	datum/callback/unwield_callback,
+	list/wielded_stats,
 )
 	if(!original)
 		return
@@ -120,6 +121,8 @@
 		src.wield_callback = wield_callback
 	if(unwield_callback)
 		src.unwield_callback = unwield_callback
+	if(wielded_stats)
+		src.wielded_stats = wielded_stats
 
 // register signals withthe parent item
 /datum/component/two_handed/RegisterWithParent()
