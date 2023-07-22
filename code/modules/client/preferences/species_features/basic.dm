@@ -63,7 +63,6 @@
 	savefile_key = "hair_color"
 	savefile_identifier = PREFERENCE_CHARACTER
 	relevant_species_trait = HAIR
-	unique = TRUE
 
 /datum/preference/color_legacy/hair_color/apply_to_human(mob/living/carbon/human/target, value)
 	target.hair_color = value
