@@ -119,39 +119,39 @@
 
 /obj/item/reagent_containers/glass/beaker/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/reagent_containers/glass/beaker/get_part_rating()
 	return reagents.maximum_volume
 
 /obj/item/reagent_containers/glass/beaker/on_reagent_change(changetype)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/glass/beaker/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/glass/beaker/update_overlays()
+	. = ..()
+	if(!reagents.total_volume)
+		return
+	var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]10")
 
-	if(reagents.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]10")
+	var/percent = round((reagents.total_volume / volume) * 100)
+	switch(percent)
+		if(0 to 9)
+			filling.icon_state = "[icon_state]-10"
+		if(10 to 24)
+			filling.icon_state = "[icon_state]10"
+		if(25 to 49)
+			filling.icon_state = "[icon_state]25"
+		if(50 to 74)
+			filling.icon_state = "[icon_state]50"
+		if(75 to 79)
+			filling.icon_state = "[icon_state]75"
+		if(80 to 90)
+			filling.icon_state = "[icon_state]80"
+		if(91 to INFINITY)
+			filling.icon_state = "[icon_state]100"
 
-		var/percent = round((reagents.total_volume / volume) * 100)
-		switch(percent)
-			if(0 to 9)
-				filling.icon_state = "[icon_state]-10"
-			if(10 to 24)
-				filling.icon_state = "[icon_state]10"
-			if(25 to 49)
-				filling.icon_state = "[icon_state]25"
-			if(50 to 74)
-				filling.icon_state = "[icon_state]50"
-			if(75 to 79)
-				filling.icon_state = "[icon_state]75"
-			if(80 to 90)
-				filling.icon_state = "[icon_state]80"
-			if(91 to INFINITY)
-				filling.icon_state = "[icon_state]100"
-
-		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+	filling.color = mix_color_from_reagents(reagents.reagent_list)
+	. += filling
 
 /obj/item/reagent_containers/glass/beaker/jar
 	name = "honey jar"
@@ -177,9 +177,9 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
 
-/obj/item/reagent_containers/glass/beaker/plastic/update_icon()
+/obj/item/reagent_containers/glass/beaker/plastic/update_icon_state()
 	icon_state = "beakerlarge" // hack to lets us reuse the large beaker reagent fill states
-	..()
+	. = ..()
 	icon_state = "beakerwhite"
 
 /obj/item/reagent_containers/glass/beaker/meta
@@ -422,29 +422,29 @@
 
 /obj/item/reagent_containers/glass/mixbowl/on_reagent_change(changetype)
 	..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/reagent_containers/glass/mixbowl/update_icon()
-	cut_overlays()
+/obj/item/reagent_containers/glass/mixbowl/update_overlays()
+	. = ..()
+	if(!reagents.total_volume)
+		return
+	var/mutable_appearance/filling = mutable_appearance('yogstation/icons/obj/reagentfillings.dmi', "[icon_state]11")
 
-	if(reagents.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('yogstation/icons/obj/reagentfillings.dmi', "[icon_state]11")
+	var/percent = round((reagents.total_volume / volume) * 100)
+	switch(percent)
+		if(0 to 9)
+			filling.icon_state = "[icon_state]0"
+		if(10 to 24)
+			filling.icon_state = "[icon_state]10"
+		if(25 to 49)
+			filling.icon_state = "[icon_state]25"
+		if(50 to 74)
+			filling.icon_state = "[icon_state]50"
+		if(75 to INFINITY)
+			filling.icon_state = "[icon_state]75"
 
-		var/percent = round((reagents.total_volume / volume) * 100)
-		switch(percent)
-			if(0 to 9)
-				filling.icon_state = "[icon_state]0"
-			if(10 to 24)
-				filling.icon_state = "[icon_state]10"
-			if(25 to 49)
-				filling.icon_state = "[icon_state]25"
-			if(50 to 74)
-				filling.icon_state = "[icon_state]50"
-			if(75 to INFINITY)
-				filling.icon_state = "[icon_state]75"
-
-		filling.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling)
+	filling.color = mix_color_from_reagents(reagents.reagent_list)
+	. += filling
 
 /obj/item/reagent_containers/glass/urn
 	name = "urn"

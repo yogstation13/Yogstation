@@ -86,7 +86,7 @@
 	var/list/items = list()
 	for(var/obj/item/wep in inventory)
 		var/obj/item/gun/weapon = wep
-		weapon.update_icon(TRUE)
+		weapon.update_appearance(UPDATE_ICON)
 		var/icon/gun_icon = getFlatIcon(wep)
 		
 		var/list/details = list()

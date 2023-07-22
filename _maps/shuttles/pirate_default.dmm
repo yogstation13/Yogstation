@@ -1091,7 +1091,7 @@
 	locked = 0;
 	name = "fridge"
 	},
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/item/reagent_containers/food/snacks/cookie,
 /obj/item/reagent_containers/food/snacks/cookie{
 	pixel_x = -6;
@@ -1263,25 +1263,25 @@
 "Yj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/item/storage/box/fancy/cigarettes{
+/obj/item/storage/fancy/cigarettes{
 	pixel_x = 2;
 	pixel_y = 6
 	},
-/obj/item/storage/box/fancy/cigarettes/cigpack_carp{
+/obj/item/storage/fancy/cigarettes/cigpack_carp{
 	pixel_x = 10;
 	pixel_y = 6
 	},
-/obj/item/storage/box/fancy/cigarettes/cigpack_robust{
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
 	pixel_x = 2
 	},
-/obj/item/storage/box/fancy/cigarettes/cigpack_midori{
+/obj/item/storage/fancy/cigarettes/cigpack_midori{
 	pixel_x = 10
 	},
-/obj/item/storage/box/fancy/cigarettes/cigpack_shadyjims{
+/obj/item/storage/fancy/cigarettes/cigpack_shadyjims{
 	pixel_x = 2;
 	pixel_y = -6
 	},
-/obj/item/storage/box/fancy/cigarettes/cigpack_uplift{
+/obj/item/storage/fancy/cigarettes/cigpack_uplift{
 	pixel_x = 10;
 	pixel_y = -6
 	},
