@@ -49,7 +49,7 @@
 	if(!istype(echolocator))
 		return COMPONENT_INCOMPATIBLE
 	if(!danger_turfs)
-		danger_turfs = typecacheof(list(/turf/open/chasm, /turf/open/lava, /turf/open/floor/fakepit, /turf/open/space, /turf/open/openspace, /turf/open/floor/fakespace))
+		danger_turfs = typecacheof(list(/turf/open/chasm, /turf/open/lava, /turf/open/floor/fakepit))
 	if(!allowed_paths)
 		allowed_paths = typecacheof(list(/turf/closed, /obj, /mob/living)) + danger_turfs - typecacheof(/obj/effect/decal)
 	if(!isnull(echo_range))
