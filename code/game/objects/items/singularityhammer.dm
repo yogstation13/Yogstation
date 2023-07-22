@@ -27,6 +27,7 @@
 	)
 
 /obj/item/singularityhammer/update_icon_state()
+	. = ..()
 	icon_state = "[base_icon_state]0"
 
 /obj/item/singularityhammer/Destroy()
@@ -103,6 +104,7 @@
 	)
 
 /obj/item/mjolnir/update_icon_state()
+	. = ..()
 	icon_state = "[base_icon_state]0"
 
 /obj/item/mjolnir/proc/shock(mob/living/target)

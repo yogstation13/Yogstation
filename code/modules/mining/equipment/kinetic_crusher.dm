@@ -30,6 +30,7 @@
 	var/projectile_type = /obj/item/projectile/destabilizer
 
 /obj/item/kinetic_crusher/update_icon_state()
+	. = ..()
 	item_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED)]" // this is not icon_state and not supported by 2hcomponent
 
 /obj/item/kinetic_crusher/Initialize(mapload)
