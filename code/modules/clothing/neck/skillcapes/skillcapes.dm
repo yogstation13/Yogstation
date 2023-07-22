@@ -196,6 +196,7 @@
 	icon_state = "atmos-trimmed"
 	item_state = "atmos-trimmed"
 	resistance_flags = FIRE_PROOF
+
 /obj/item/clothing/neck/skillcape/engineer
 	name = "cape of the station engineer"
 	icon_state = "engi-skillcape"
