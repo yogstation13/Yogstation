@@ -63,7 +63,7 @@
 /datum/station_trait/station_adrift
 	name = "Adrift station"
 	trait_type = STATION_TRAIT_NEUTRAL
-	weight = 0
+	weight = -1
 	show_in_report = TRUE
 	report_message = "Your station's gravitational anchor has malfunctioned. You are now drifting freely in space."
 	trait_to_give = STATION_TRAIT_STATION_ADRIFT
