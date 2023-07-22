@@ -532,7 +532,7 @@
 		m_intent = MOVE_INTENT_RUN
 	if(hud_used && hud_used.static_inventory)
 		for(var/atom/movable/screen/mov_intent/selector in hud_used.static_inventory)
-			selector.update_icon(src)
+			selector.update_appearance(UPDATE_ICON)
 
 ///Moves a mob upwards in z level
 /mob/verb/up()

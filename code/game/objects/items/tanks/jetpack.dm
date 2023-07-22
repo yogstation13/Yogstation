@@ -84,25 +84,28 @@
 	if(SEND_SIGNAL(src, COMSIG_JETPACK_ACTIVATED) & JETPACK_ACTIVATION_FAILED)
 		return FALSE
 	on = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	if(full_speed)
 		user.add_movespeed_modifier(MOVESPEED_ID_JETPACK, priority=100, multiplicative_slowdown=jetspeed, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
 	return TRUE
 
-/obj/item/tank/jetpack/update_icon()
-	icon_state = initial(icon_state)
+/obj/item/tank/jetpack/update_icon_state()
+	. = ..()
 	if(!classic && on) //does the jetpack have its own on sprite?
 		icon_state = "[initial(icon_state)]-on"
-	else //or does it use the classic overlay
-		cut_overlays()
-		if(on)
-			add_overlay("on_overlay")
+	else
+		icon_state = initial(icon_state)
+
+/obj/item/tank/jetpack/update_overlays()
+	. = ..()
+	if(classic && on)
+		. += "on_overlay"
 
 /obj/item/tank/jetpack/proc/turn_off(mob/user)
 	SEND_SIGNAL(src, COMSIG_JETPACK_DEACTIVATED)
 	on = FALSE
 	set_stabilizers(FALSE)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	user?.remove_movespeed_modifier(MOVESPEED_ID_JETPACK)
 
 /obj/item/tank/jetpack/proc/allow_thrust(num, use_fuel = TRUE)

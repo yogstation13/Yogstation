@@ -473,7 +473,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an \
 			organic host as a home base and source of fuel. Holoparasites come in various types and share damage with their host."
 	item = /obj/item/guardiancreator/tech
-	cost = 12
+	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/infiltration)
@@ -2390,7 +2390,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Box of Singulonuts"
 	desc = "A box with six Waffle Co. brand Singulonuts. Banned in four sectors for their sheer calorie content. \
 			Caution: Product known to the safety board of Nanotrasen to increase risks of stomach cancer and cause instant obesity. \ Disguised as a regular box of regular donuts."
-	item = /obj/item/storage/box/fancy/donut_box/deadly
+	item = /obj/item/storage/fancy/donut_box/deadly
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Assistant", "Cook", "Clerk")
@@ -2682,7 +2682,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/badass/syndiecigs
 	name = "Syndicate Smokes"
 	desc = "Strong flavor, dense smoke, infused with omnizine."
-	item = /obj/item/storage/box/fancy/cigarettes/cigpack_syndicate
+	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	manufacturer = /datum/corporation/traitor/donkco
 	illegal_tech = FALSE

@@ -104,7 +104,7 @@
 			return
 		src.master = F
 		F.ptank = src
-		F.update_icon()
+		F.update_appearance(UPDATE_ICON)
 	else
 		return ..()
 

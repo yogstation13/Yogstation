@@ -460,7 +460,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 					var/obj/item/storage/wallet/W = worn
 					W.front_id = id
 					id.forceMove(W)
-					W.update_icon()
+					W.update_appearance(UPDATE_ICON)
 			else
 				H.equip_to_slot(id,ITEM_SLOT_ID)
 	else if(isanimal(M))
@@ -851,7 +851,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			F.anchored = TRUE
 			F.warming_up = 3
 			F.start_fields()
-			F.update_icon()
+			F.update_appearance(UPDATE_ICON)
 
 	spawn(30)
 		for(var/obj/machinery/the_singularitygen/G in GLOB.machines)

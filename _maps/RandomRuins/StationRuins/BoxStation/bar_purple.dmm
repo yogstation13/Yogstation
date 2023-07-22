@@ -1264,7 +1264,7 @@
 /obj/structure/table/reinforced{
 	color = "purple"
 	},
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},

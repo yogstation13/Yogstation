@@ -75,8 +75,9 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "demon_heart-on"
 
-/obj/item/organ/heart/demon/update_icon()
-	return //always beating visually
+/obj/item/organ/heart/demon/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
+	return ..()
 
 /obj/item/organ/heart/demon/attack(mob/M, mob/living/carbon/user, obj/target)
 	if(M != user)

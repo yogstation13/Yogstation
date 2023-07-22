@@ -39,10 +39,10 @@
 	. = ..()
 	languages_possible = languages_possible_base
 
-/obj/item/organ/tongue/update_icon()
+/obj/item/organ/tongue/update_overlays()
 	. = ..()
 	if(honked) // This tongue has a bike horn inside of it. Let's draw it
-		add_overlay("honked")
+		. += "honked"
 
 /obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args)
 	if(honked) // you have a bike horn inside of your tongue. Time to honk
@@ -75,7 +75,7 @@
 
 /obj/item/organ/tongue/Initialize(mapload) // this only exists to make sure the spawned tongue has a horn inside of it visually
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/organ/tongue/examine(mob/user)
 	. = ..()

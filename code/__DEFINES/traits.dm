@@ -137,6 +137,7 @@
 #define TRAIT_INCAPACITATED 	"incapacitated"
 #define HANDCUFFED_TRAIT 		"handcuffed"
 #define TRAIT_BLIND 			"blind"
+#define TRAIT_ECHOLOCATION_RECEIVER "echolocation_receiver"
 #define TRAIT_MUTE				"mute"
 #define TRAIT_EMOTEMUTE			"emotemute"
 #define TRAIT_DEAF				"deaf"
@@ -269,6 +270,8 @@
 #define TRAIT_MAGICALLY_PHASED "magically_phased"
 ///This mob can't use vehicles
 #define TRAIT_NOVEHICLE	"no_vehicle"
+/// BALD!!!
+#define TRAIT_BALD "bald"
 
 /// trait that prevents AI controllers from planning detached from ai_status to prevent weird state stuff.
 #define TRAIT_AI_PAUSED "TRAIT_AI_PAUSED"
@@ -351,6 +354,7 @@
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
 /// trait associated to being held in a chokehold
 #define CHOKEHOLD_TRAIT "chokehold"
+#define CRYO_TRAIT "cryo_trait"
 
 // unique trait sources, still defines
 #define CLONING_POD_TRAIT "cloning-pod"
@@ -409,6 +413,7 @@
 #define CHANGESTING_TRAIT "changesting"
 #define POSIBRAIN_TRAIT "positrait"
 #define WRIST_STRAP_TRAIT "wrist_strap"
+#define ECHOLOCATION_TRAIT "echolocation_trait"
 
 ///Traits given by station traits
 #define STATION_TRAIT_BANANIUM_SHIPMENTS "station_trait_bananium_shipments"
@@ -418,7 +423,6 @@
 #define STATION_TRAIT_FILLED_MAINT "station_trait_filled_maint"
 #define STATION_TRAIT_EMPTY_MAINT "station_trait_empty_maint"
 #define STATION_TRAIT_PDA_GLITCHED "station_trait_pda_glitched"
-#define STATION_TRAIT_STATION_ADRIFT "station_trait_station_adrift"
 
 //important_recursive_contents traits
 /*

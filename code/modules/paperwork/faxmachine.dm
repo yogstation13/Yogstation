@@ -196,7 +196,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 				templist += L
 
 		P.written += templist
-		P.update_icon()
+		P.update_appearance(UPDATE_ICON)
 		playsound(loc, "sound/items/polaroid1.ogg", 50, 1)
 
 		// Stamps

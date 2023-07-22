@@ -64,28 +64,28 @@
 		if(!myspray)
 			put_in_cart(I, user)
 			myspray=I
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, fail_msg)
 	else if(istype(I, /obj/item/paint/paint_remover))
 		if(!myremover)
 			put_in_cart(I, user)
 			myremover=I
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, fail_msg)
 	else if(istype(I, /obj/item/melee/flyswatter))
 		if(!myswatter)
 			put_in_cart(I, user)
 			myswatter=I
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, fail_msg)
 	else if(istype(I, /obj/item/flashlight))
 		if(!mylight)
 			put_in_cart(I, user)
 			mylight=I
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, fail_msg)
 	else if(istype(I, /obj/item/lightreplacer))
@@ -104,7 +104,7 @@
 		if(signs < max_signs)
 			put_in_cart(I, user)
 			signs++
-			update_icon()
+			update_appearance(UPDATE_ICON)
 		else
 			to_chat(user, span_warning("[src] can't hold any more signs!"))
 	else if(mybag)
@@ -208,7 +208,7 @@
 		else
 			return
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
   /*
    check_menu: Checks if we are allowed to interact with a radial menu
@@ -223,26 +223,25 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/janitorialcart/update_icon()
-	cut_overlays()
+/obj/structure/janitorialcart/update_overlays()
+	. = ..()
 	if(mybag)
-		add_overlay("cart_garbage")
+		. += "cart_garbage"
 	if(mymop)
-		add_overlay("cart_mop")
+		. += "cart_mop"
 	if(myspray)
-		add_overlay("cart_spray")
+		. += "cart_spray"
 	if(myreplacer)
-		add_overlay("cart_replacer")
+		. += "cart_replacer"
 	if(myremover)
-		add_overlay("cart_remover")
+		. += "cart_remover"
 	if(myswatter)
-		add_overlay("cart_swatter")
+		. += "cart_swatter"
 	if(mylight)
-		add_overlay("cart_light")
+		. += "cart_light"
 	if(signs)
-		add_overlay("cart_sign[signs]")
+		. += "cart_sign[signs]"
 	if(reagents.total_volume > 0)
-		add_overlay("cart_water")
+		. += "cart_water"
 	if(mybroom)
-		add_overlay("cart_broom")
-
+		. += "cart_broom"

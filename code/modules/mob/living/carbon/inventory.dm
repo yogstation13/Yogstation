@@ -93,6 +93,7 @@
 			wear_mask_update(I, toggle_off = 0)
 		if(ITEM_SLOT_HEAD)
 			head = I
+			SEND_SIGNAL(src, COMSIG_CARBON_EQUIP_HAT, I)
 			head_update(I)
 		if(ITEM_SLOT_NECK)
 			wear_neck = I
@@ -128,6 +129,7 @@
 	if(I == head)
 		head = null
 		if(!QDELETED(src))
+			SEND_SIGNAL(src, COMSIG_CARBON_UNEQUIP_HAT, I, force, newloc, no_move, invdrop, silent)
 			head_update(I)
 	else if(I == back)
 		back = null

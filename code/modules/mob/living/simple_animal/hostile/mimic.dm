@@ -240,19 +240,19 @@ GLOBAL_LIST_INIT(animatable_blacklist, list(/obj/structure/table, /obj/structure
 			var/obj/item/ammo_casing/energy/shot = Zapgun.ammo_type[Zapgun.select]
 			if(Zapgun.cell.charge >= shot.e_cost)
 				Zapgun.cell.use(shot.e_cost)
-				Zapgun.update_icon()
+				Zapgun.update_appearance(UPDATE_ICON)
 				..()
 	else if(Zapstick)
 		if(Zapstick.charges)
 			Zapstick.charges--
-			Zapstick.update_icon()
+			Zapstick.update_appearance(UPDATE_ICON)
 			..()
 	else if(Pewgun)
 		if(Pewgun.chambered)
 			if(Pewgun.chambered.BB)
 				qdel(Pewgun.chambered.BB)
 				Pewgun.chambered.BB = null //because qdel takes too long, ensures icon update
-				Pewgun.chambered.update_icon()
+				Pewgun.chambered.update_appearance(UPDATE_ICON)
 				..()
 			else
 				visible_message(span_danger("The <b>[src]</b> clears a jam!"))
@@ -261,7 +261,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, list(/obj/structure/table, /obj/structure
 			if(Pewgun.magazine && Pewgun.magazine.stored_ammo.len)
 				Pewgun.chambered = Pewgun.magazine.get_round(0)
 				Pewgun.chambered.forceMove(Pewgun)
-			Pewgun.update_icon()
+			Pewgun.update_appearance(UPDATE_ICON)
 		else if(Pewgun.magazine && Pewgun.magazine.stored_ammo.len) //only true for pumpguns i think
 			Pewgun.chambered = Pewgun.magazine.get_round(0)
 			Pewgun.chambered.forceMove(Pewgun)

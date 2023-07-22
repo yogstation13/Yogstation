@@ -530,28 +530,35 @@
 	if(fuel <=  0)
 		turn_off()
 		STOP_PROCESSING(SSobj, src)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/item/flashlight/glowstick/proc/turn_off()
 	on = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/flashlight/glowstick/update_icon()
-	item_state = "glowstick"
-	cut_overlays()
+/obj/item/flashlight/glowstick/update_icon(updates=ALL)
+	. = ..()
 	if(fuel <= 0)
-		icon_state = "glowstick-empty"
-		cut_overlays()
 		set_light_on(FALSE)
 	else if(on)
+		set_light_on(TRUE)
+
+/obj/item/flashlight/glowstick/update_overlays()
+	. = ..()
+	if(on)
 		var/mutable_appearance/glowstick_overlay = mutable_appearance(icon, "glowstick-glow")
 		glowstick_overlay.color = color
-		add_overlay(glowstick_overlay)
-		item_state = "glowstick-on"
-		set_light_on(TRUE)
+		. += glowstick_overlay
+
+/obj/item/flashlight/glowstick/update_icon_state()
+	. = ..()
+	item_state = "glowstick" //item state
+	if(fuel <= 0)
+		icon_state = "glowstick-empty"
+	else if(on)
+		item_state = "glowstick-on" //item state
 	else
 		icon_state = "glowstick"
-		cut_overlays()
 
 /obj/item/flashlight/glowstick/attack_self(mob/user)
 	if(fuel <= 0)

@@ -239,8 +239,8 @@
 				C.charge = newcharge
 				if(isobj(C.loc))
 					var/obj/O = C.loc
-					O.update_icon() //update power meters and such
-				C.update_icon()
+					O.update_appearance(UPDATE_ICON) //update power meters and such
+				C.update_appearance(UPDATE_ICON)
 				batteries_recharged = 1
 		if(batteries_recharged)
 			to_chat(target, span_notice("Your batteries are recharged!"))

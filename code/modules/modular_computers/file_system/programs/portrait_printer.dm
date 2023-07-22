@@ -73,7 +73,7 @@
 	printed_canvas.name = "painting - [title]"
 	///this is a copy of something that is already in the database- it should not be able to be saved.
 	printed_canvas.no_save = TRUE
-	printed_canvas.update_icon()
+	printed_canvas.update_appearance(UPDATE_ICON)
 	to_chat(usr, span_notice("You have printed [title] onto a new canvas."))
 	playsound(computer.physical, 'sound/items/poster_being_created.ogg', 100, TRUE)
 

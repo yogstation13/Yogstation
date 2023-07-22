@@ -12273,7 +12273,7 @@
 	pixel_x = 8;
 	pixel_y = 4
 	},
-/obj/item/storage/box/fancy/donut_box{
+/obj/item/storage/fancy/donut_box{
 	pixel_x = -5;
 	pixel_y = -6
 	},
@@ -23685,7 +23685,7 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "lEP" = (
@@ -41074,7 +41074,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/item/storage/box/fancy/cigarettes,
+/obj/item/storage/fancy/cigarettes,
 /turf/open/floor/plating,
 /area/maintenance/department/eva)
 "ujT" = (
@@ -45521,7 +45521,7 @@
 /area/engine/engineering)
 "wsU" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/machinery/light_switch{
 	pixel_x = 24
 	},
@@ -47198,7 +47198,7 @@
 /area/hallway/primary/central)
 "xjw" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/fancy/donut_box{
+/obj/item/storage/fancy/donut_box{
 	pixel_x = -5;
 	pixel_y = 6
 	},

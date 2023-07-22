@@ -29,6 +29,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	var/breakout_time = 600
 
 /obj/structure/bodycontainer/Initialize(mapload)
+	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	GLOB.bodycontainers += src
 	recursive_organ_check(src)
@@ -43,10 +44,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 /obj/structure/bodycontainer/on_log(login)
 	..()
-	update_icon()
-
-/obj/structure/bodycontainer/update_icon()
-	return
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bodycontainer/relaymove(mob/user)
 	if(user.stat || !isturf(loc))
@@ -130,7 +128,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	for(var/atom/movable/AM in src)
 		AM.forceMove(T)
 	recursive_organ_check(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bodycontainer/proc/close()
 	playsound(src, 'sound/effects/roll.ogg', 5, 1)
@@ -140,7 +138,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 			if(ismob(AM) && !isliving(AM))
 				continue
 			AM.forceMove(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/structure/bodycontainer/get_remote_view_fullscreens(mob/user)
 	if(user.stat == DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
@@ -159,6 +157,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 /obj/structure/bodycontainer/morgue/Initialize(mapload)
 	. = ..()
+	RemoveElement(/datum/element/update_icon_blocker)
 	connected = new/obj/structure/tray/m_tray(src)
 	connected.connected = src
 
@@ -173,7 +172,8 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	beeper = !beeper
 	to_chat(user, span_notice("You turn the speaker function [beeper ? "on" : "off"]."))
 
-/obj/structure/bodycontainer/morgue/update_icon()
+/obj/structure/bodycontainer/morgue/update_icon_state()
+	. = ..()
 	if (!connected || connected.loc != src) // Open or tray is gone.
 		icon_state = "morgue0"
 	else
@@ -229,23 +229,22 @@ GLOBAL_LIST_EMPTY(crematoriums)
 
 /obj/structure/bodycontainer/crematorium/Initialize(mapload)
 	. = ..()
+	RemoveElement(/datum/element/update_icon_blocker)
 	connected = new /obj/structure/tray/c_tray(src)
 	connected.connected = src
 
-/obj/structure/bodycontainer/crematorium/update_icon()
+/obj/structure/bodycontainer/crematorium/update_icon_state()
+	. = ..()
 	if(!connected || connected.loc != src)
 		icon_state = "crema0"
-	else
-
-		if(src.contents.len > 1)
-			src.icon_state = "crema2"
-		else
-			src.icon_state = "crema1"
-
-		if(locked)
-			src.icon_state = "crema_active"
-
-	return
+		return
+	if(locked)
+		icon_state = "crema_active"
+		return
+	if(contents.len > 1)
+		icon_state = "crema2"
+		return
+	icon_state = "crema1"
 
 /obj/structure/bodycontainer/crematorium/proc/cremate(mob/user)
 	if(locked)
@@ -260,7 +259,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	else
 		audible_message(span_italics("You hear a roar as the crematorium fires up."))
 		locked = TRUE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		cremate_timer = addtimer(CALLBACK(src, PROC_REF(finish_cremate), user), (breakout_time + cremate_time ), TIMER_STOPPABLE)
 		
 
@@ -271,7 +270,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1) //you horrible people
 		deltimer(cremate_timer)
 		cremate_timer = null
-		update_icon()
+		update_appearance(UPDATE_ICON)
 
 /obj/structure/bodycontainer/crematorium/proc/finish_cremate(mob/user)
 	var/list/conts = get_all_contents() - src - connected
@@ -327,7 +326,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 
 	if(!QDELETED(src))
 		locked = FALSE
-		update_icon()
+		update_appearance(UPDATE_ICON)
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1) //you horrible people
 
 /obj/structure/bodycontainer/crematorium/creamatorium
@@ -362,7 +361,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 /obj/structure/tray/Destroy()
 	if(connected)
 		connected.connected = null
-		connected.update_icon()
+		connected.update_appearance(UPDATE_ICON)
 		connected = null
 	return ..()
 

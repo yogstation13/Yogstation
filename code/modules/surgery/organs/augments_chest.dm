@@ -163,7 +163,7 @@
 		deactivate()
 	else
 		activate()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/organ/cyberimp/chest/thrusters/proc/activate(silent = FALSE)
 	if(on)
@@ -189,10 +189,13 @@
 		to_chat(owner, span_notice("You turn your thrusters set off."))
 	on = FALSE
 
-/obj/item/organ/cyberimp/chest/thrusters/update_icon()
-	icon_state = "[initial(icon_state)][on ? "-on" : null]"
-	for(var/X in actions) //REMOVE WHEN PROC HOLDERS GET MERGED
-		var/datum/action/A = X
+/obj/item/organ/cyberimp/chest/thrusters/update_icon_state()
+	. = ..()
+	if(on)
+		icon_state = "imp_jetpack-on"
+	else
+		icon_state = "imp_jetpack"
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/thrusters/proc/move_react()
@@ -296,15 +299,15 @@
 	on = !on
 	if(!silent)
 		to_chat(owner, span_notice("You turn your spinal implant [on? "on" : "off"]."))
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
-/obj/item/organ/cyberimp/chest/spinalspeed/update_icon()
+/obj/item/organ/cyberimp/chest/spinalspeed/update_icon_state()
+	. = ..()
 	if(on)
 		icon_state = "imp_spinal-on"
 	else
 		icon_state = "imp_spinal"
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/organ/cyberimp/chest/spinalspeed/proc/move_react()//afterimage

@@ -52,7 +52,7 @@
 /obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
 	occupant_typecache = GLOB.typecache_living
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/machinery/sleeper/RefreshParts()
 	var/E
@@ -70,7 +70,8 @@
 		available_treatments |= treatments[i]
 	stasis = (I >= 4)
 
-/obj/machinery/sleeper/update_icon()
+/obj/machinery/sleeper/update_icon_state()
+	. = ..()
 	if(state_open)
 		icon_state = "[initial(icon_state)]-open"
 	else

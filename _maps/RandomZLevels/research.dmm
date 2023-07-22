@@ -2910,7 +2910,7 @@
 /area/awaymission/research/interior/security)
 "gb" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/donut_box,
+/obj/item/storage/fancy/donut_box,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -5704,7 +5704,7 @@
 /area/awaymission/research/interior/medbay)
 "lx" = (
 /obj/structure/table,
-/obj/item/storage/box/fancy/cigarettes/dromedaryco,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},

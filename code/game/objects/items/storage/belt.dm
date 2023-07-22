@@ -17,17 +17,16 @@
 	user.visible_message(span_suicide("[user] begins belting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return BRUTELOSS
 
-/obj/item/storage/belt/update_icon()
-	cut_overlays()
+/obj/item/storage/belt/update_overlays()
+	. = ..()
 	if(content_overlays)
 		for(var/obj/item/I in contents)
 			var/mutable_appearance/M = I.get_belt_overlay()
-			add_overlay(M)
-	..()
+			. += M
 
 /obj/item/storage/belt/Initialize(mapload)
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/utility
 	name = "toolbelt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
@@ -250,7 +249,7 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/reagent_containers/medspray,
 		/obj/item/lighter,
-		/obj/item/storage/box/fancy/cigarettes,
+		/obj/item/storage/fancy/cigarettes,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
@@ -353,7 +352,7 @@
 	SSwardrobe.provide_type(/obj/item/assembly/flash/handheld, src)
 	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
 	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/security/chief
 	name = "\improper Head of Security's toolbelt"
@@ -375,7 +374,7 @@
 	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
 	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
 	SSwardrobe.provide_type(/obj/item/shield/riot/tele, src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/security/webbing
 	name = "security webbing"
@@ -424,7 +423,7 @@
 		/obj/item/stack/sheet/sinew,
 		/obj/item/stack/sheet/bone,
 		/obj/item/lighter,
-		/obj/item/storage/box/fancy/cigarettes,
+		/obj/item/storage/fancy/cigarettes,
 		/obj/item/reagent_containers/food/drinks/bottle,
 		/obj/item/stack/medical,
 		/obj/item/kitchen/knife,
@@ -815,8 +814,8 @@
 	content_overlays = TRUE
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 
-/obj/item/storage/belt/quiver/update_icon()
-	..()
+/obj/item/storage/belt/quiver/update_icon(updates=ALL)
+	. = ..()
 	if(content_overlays && ismob(loc))
 		var/mob/M = loc
 		M.update_inv_belt()
@@ -908,7 +907,7 @@
 			if(bow.chambered == arrow)
 				bow.chambered = null
 			bow.update_slowdown()
-			bow.update_icon()
+			bow.update_appearance(UPDATE_ICON)
 
 	if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, arrow, null, TRUE, TRUE))
 		return
@@ -1182,11 +1181,12 @@
 		var/obj/item/I = contents[1]
 		user.visible_message("[user] takes [I] out of [src].", span_notice("You take [I] out of [src]."))
 		user.put_in_hands(I)
-		update_icon()
+		update_appearance(UPDATE_ICON)
 	else
 		to_chat(user, "[src] is empty.")
 
-/obj/item/storage/belt/sabre/update_icon()
+/obj/item/storage/belt/sabre/update_icon(updates=ALL)
+	. = ..()
 	icon_state = "sheath"
 	item_state = "sheath"
 	if(contents.len)
@@ -1195,11 +1195,10 @@
 	if(loc && isliving(loc))
 		var/mob/living/L = loc
 		L.regenerate_icons()
-	..()
 
 /obj/item/storage/belt/sabre/PopulateContents()
 	new /obj/item/melee/sabre(src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/multi
 	name = "multi-belt"

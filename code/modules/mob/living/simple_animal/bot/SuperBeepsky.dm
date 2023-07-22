@@ -49,7 +49,7 @@
 
 /mob/living/simple_animal/bot/secbot/grievous/stun_attack(mob/living/carbon/C) //Criminals don't deserve to live
 	weapon.attack(C, src)
-	playsound(src, 'sound/weapons/blade1.ogg', 50, TRUE, -1)
+	playsound(src, 'sound/weapons/blade1.ogg', 50, TRUE, -1)	
 	if(C.stat == DEAD)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/, update_icon)), 2)
 		back_to_idle()
@@ -60,13 +60,13 @@
 		return
 	switch(mode)
 		if(BOT_IDLE)		// idle
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			SSmove_manager.stop_looping(src)
 			look_for_perp()	// see if any criminals are in range
 			if(!mode && auto_patrol)	// still idle, and set to patrol
 				mode = BOT_START_PATROL	// switch to patrol mode
 		if(BOT_HUNT)		// hunting for perp
-			update_icon()
+			update_appearance(UPDATE_ICON)
 			playsound(src,'sound/effects/beepskyspinsabre.ogg',100,TRUE,-1)
 			// general beepsky doesn't give up so easily, jedi scum
 			if(frustration >= 20)

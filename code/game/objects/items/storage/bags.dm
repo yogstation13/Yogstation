@@ -55,7 +55,8 @@
 	playsound(loc, 'sound/items/eatfood.ogg', 50, 1, -1)
 	return (TOXLOSS)
 
-/obj/item/storage/bag/trash/update_icon()
+/obj/item/storage/bag/trash/update_icon_state()
+	. = ..()
 	//yogs start
 	if(icon_state == "[initial(icon_state)]_broken")
 		return
@@ -66,7 +67,8 @@
 		icon_state = "[initial(icon_state)]1"
 	else if(contents.len < 21)
 		icon_state = "[initial(icon_state)]2"
-	else icon_state = "[initial(icon_state)]3"
+	else
+		icon_state = "[initial(icon_state)]3"
 
 /obj/item/storage/bag/trash/cyborg
 	insertable = FALSE
@@ -75,7 +77,7 @@
 	if(insertable)
 		J.put_in_cart(src, user)
 		J.mybag=src
-		J.update_icon()
+		J.update_appearance(UPDATE_ICON)
 	else
 		to_chat(user, span_warning("You are unable to fit your [name] into the [J.name]."))
 		return
@@ -384,7 +386,7 @@
 	else
 		playsound(M, 'sound/items/trayhit2.ogg', 50, 1)
 
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/bag/tray/proc/do_scatter(obj/item/tray_item)
 	var/delay = rand(2,4)
@@ -399,18 +401,18 @@
 	source.lifetime = count * new_delay
 	source.delay = new_delay
 
-/obj/item/storage/bag/tray/update_icon()
-	cut_overlays()
+/obj/item/storage/bag/tray/update_overlays()
+	. = ..()
 	for(var/obj/item/I in contents)
-		add_overlay(new /mutable_appearance(I))
+		. += new /mutable_appearance(I)
 
 /obj/item/storage/bag/tray/Entered()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/bag/tray/Exited()
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /*
  *	Chemistry bag
