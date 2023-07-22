@@ -102,7 +102,7 @@ GLOBAL_PROTECT(duplicate_forbidden_vars)
 			var/obj/item/implant/copied_implant = new original_implants.type
 			copied_implant.implant(made_copy, silent = TRUE, force = TRUE)
 		//transfer quirks, we do this because transfering the original's quirks keeps the 'owner' as the original.
-		for(var/datum/quirk/original_quirks as anything in original_living.quirks)
+		for(var/datum/quirk/original_quirks as anything in original_living.roundstart_quirks)
 			original_living.add_quirk(original_quirks.type)
 
 	if(holoitem)

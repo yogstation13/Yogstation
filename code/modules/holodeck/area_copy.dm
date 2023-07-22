@@ -57,7 +57,7 @@
 		B.icon_state = old_icon_state1
 
 		for(var/obj/O in T)
-			var/obj/O2 = duplicate_object(O , perfectcopy=TRUE, newloc = B, nerf=nerf_weapons, holoitem=TRUE)
+			var/obj/O2 = duplicate_object(O, spawning_location = B, nerf=nerf_weapons, holoitem=TRUE)
 			if(!O2)
 				continue
 			copiedobjs += O2.get_all_contents()
@@ -65,7 +65,7 @@
 		for(var/mob/M in T)
 			if(iscameramob(M))
 				continue // If we need to check for more mobs, I'll add a variable
-			var/mob/SM = duplicate_object(M , perfectcopy=TRUE, newloc = B, holoitem=TRUE)
+			var/mob/SM = duplicate_object(M, spawning_location = B, holoitem=TRUE)
 			copiedobjs += SM.get_all_contents()
 
 		for(var/V in T.vars - GLOB.duplicate_forbidden_vars)
