@@ -191,7 +191,7 @@
 	weldtool.status = FALSE
 	igniter.secured = FALSE
 	status = TRUE
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /obj/item/flamethrower/proc/process_fuel(turf/open/target, release_all = FALSE)
 	if(!(ptank.air_contents && ptank.air_contents.return_pressure()))
@@ -240,7 +240,7 @@
 	set_light_on(0)
 	playsound(loc, 'sound/weapons/flamethrower_empty.ogg', 50, TRUE)
 	STOP_PROCESSING(SSobj,src)
-	update_icon()
+	update_appearance(UPDATE_ICON)
 	return FALSE
 
 //Called from turf.dm turf/dblclick
