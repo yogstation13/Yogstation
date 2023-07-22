@@ -546,7 +546,7 @@
 /mob/living/carbon/human/emp_act(severity)
 	dna?.species.spec_emp_act(src, severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	var/list/affected_parts = list()
 	for(var/obj/item/bodypart/BP in bodyparts)

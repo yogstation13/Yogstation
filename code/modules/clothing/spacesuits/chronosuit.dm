@@ -70,7 +70,7 @@
 
 /obj/item/clothing/suit/space/chronos/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	var/mob/living/carbon/human/user = src.loc
 	switch(severity)

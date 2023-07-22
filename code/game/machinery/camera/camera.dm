@@ -144,7 +144,7 @@
 	. = ..()
 	if(!status)
 		return
-	if(!(. & EMP_PROTECT_SELF))
+	if(!(. & TRAIT_EMPPROOF_SELF))
 		if(prob(150/severity))
 			update_icon()
 			var/list/previous_network = network

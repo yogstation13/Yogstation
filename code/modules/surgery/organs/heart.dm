@@ -230,7 +230,7 @@
 
 /obj/item/organ/heart/cybernetic/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	Stop()
 	addtimer(CALLBACK(src, PROC_REF(Restart)), restartTimer/severity) //Can restart itself after an EMP so it isnt an insta death

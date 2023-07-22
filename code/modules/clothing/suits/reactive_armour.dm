@@ -54,7 +54,7 @@
 
 /obj/item/clothing/suit/armor/reactive/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	active = 0
 	icon_state = "reactiveoff"

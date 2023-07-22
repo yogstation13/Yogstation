@@ -71,6 +71,6 @@
 
 /obj/item/organ/appendix/cybernetic/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	damage += 100/severity

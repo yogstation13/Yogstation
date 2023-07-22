@@ -370,7 +370,7 @@
 
 /mob/living/carbon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	for(var/X in internal_organs)
 		var/obj/item/organ/O = X

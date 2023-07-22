@@ -34,7 +34,7 @@
 
 /obj/item/organ/cyberimp/brain/emp_act(severity)
 	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
+	if(!owner || . & TRAIT_EMPPROOF_SELF)
 		return
 	owner.Stun(stun_amount / severity)
 	to_chat(owner, span_warning("Your body seizes up!"))
@@ -72,7 +72,7 @@
 
 /obj/item/organ/cyberimp/brain/anti_drop/emp_act(severity)
 	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
+	if(!owner || . & TRAIT_EMPPROOF_SELF)
 		return
 	var/range = severity ? 10 : 5
 	var/atom/A
@@ -135,7 +135,7 @@
 
 /obj/item/organ/cyberimp/brain/anti_stun/emp_act(severity)
 	. = ..()
-	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
+	if((organ_flags & ORGAN_FAILING) || . & TRAIT_EMPPROOF_SELF)
 		return
 	organ_flags |= ORGAN_FAILING
 	addtimer(CALLBACK(src, PROC_REF(reboot)), stun_cap_amount * 2 / severity)
@@ -181,7 +181,7 @@
 
 /obj/item/organ/cyberimp/mouth/breathing_tube/emp_act(severity)
 	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
+	if(!owner || . & TRAIT_EMPPROOF_SELF)
 		return
 	if(prob(60/severity))
 		to_chat(owner, span_warning("Your breathing tube suddenly closes!"))

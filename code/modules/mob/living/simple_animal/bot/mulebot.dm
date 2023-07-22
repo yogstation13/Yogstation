@@ -694,7 +694,7 @@
 
 /mob/living/simple_animal/bot/mulebot/emp_act(severity)
 	. = ..()
-	if(cell && !(. & EMP_PROTECT_CONTENTS))
+	if(cell && !(. & TRAIT_EMPPROOF_CONTENTS))
 		cell.emp_act(severity)
 	if(load)
 		load.emp_act(severity)

@@ -200,7 +200,7 @@
 
 /obj/structure/blob/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	if(severity > 0)
 		if(overmind)

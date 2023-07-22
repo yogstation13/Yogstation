@@ -59,7 +59,7 @@
 
 /obj/machinery/portable_atmospherics/pump/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	if(is_operational())
 		if(prob(50 / severity))

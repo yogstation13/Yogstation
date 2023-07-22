@@ -100,7 +100,7 @@
 
 /obj/item/holochip/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	var/wipe_chance = 60 / severity
 	if(prob(wipe_chance))

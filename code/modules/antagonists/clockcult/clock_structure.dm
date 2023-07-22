@@ -118,7 +118,7 @@
 
 /obj/structure/destructible/clockwork/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	if(anchored && unanchored_icon)
 		anchored = FALSE
@@ -207,7 +207,7 @@
 
 /obj/structure/destructible/clockwork/powered/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	if(forced_disable(TRUE))
 		new /obj/effect/temp_visual/emp(loc)

@@ -426,7 +426,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/emp_act(severity)
 	. = ..()
-	if (. & EMP_PROTECT_SELF)
+	if (. & TRAIT_EMPPROOF_SELF)
 		return
 	emped++ //There's been an EMP; better count it
 	var/curremp = emped //Remember which EMP this was

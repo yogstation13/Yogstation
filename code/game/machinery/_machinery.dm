@@ -185,7 +185,7 @@ Class Procs:
 
 /obj/machinery/emp_act(severity)
 	. = ..()
-	if(use_power && !stat && !(. & EMP_PROTECT_SELF))
+	if(use_power && !stat && !(. & TRAIT_EMPPROOF_SELF))
 		use_power(7500/severity)
 		new /obj/effect/temp_visual/emp(loc)
 

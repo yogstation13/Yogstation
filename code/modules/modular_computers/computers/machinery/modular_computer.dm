@@ -141,7 +141,7 @@
 // EMPs are similar to explosions, but don't cause physical damage to the casing. Instead they screw up the components
 /obj/machinery/modular_computer/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_CONTENTS)
+	if(. & TRAIT_EMPPROOF_CONTENTS)
 		return
 	if(cpu)
 		cpu.emp_act(severity)

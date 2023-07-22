@@ -293,7 +293,7 @@
 
 /obj/machinery/porta_turret/emp_act(severity)
 	. = ..()
-	if (. & EMP_PROTECT_SELF)
+	if (. & TRAIT_EMPPROOF_SELF)
 		return
 	if(on)
 		//if the turret is on, the EMP no matter how severe disables the turret for a while

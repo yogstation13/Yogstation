@@ -30,7 +30,7 @@
 
 /obj/item/organ/cyberimp/chest/nutriment/emp_act(severity)
 	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
+	if(!owner || . & TRAIT_EMPPROOF_SELF)
 		return
 	owner.reagents.add_reagent(/datum/reagent/toxin/bad_food, poison_amount / severity)
 	to_chat(owner, span_warning("You feel like your insides are burning."))
@@ -92,7 +92,7 @@
 
 /obj/item/organ/cyberimp/chest/reviver/emp_act(severity)
 	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
+	if(!owner || . & TRAIT_EMPPROOF_SELF)
 		return
 
 	if(reviving)

@@ -305,7 +305,7 @@
 
 /obj/item/clothing/under/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -339,7 +339,7 @@
 
 /obj/item/clothing/under/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -371,7 +371,7 @@
 
 /obj/item/clothing/suit/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -405,7 +405,7 @@
 
 /obj/item/clothing/glasses/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -440,7 +440,7 @@
 
 /obj/item/clothing/gloves/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -474,7 +474,7 @@
 
 /obj/item/clothing/head/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -507,7 +507,7 @@
 
 /obj/item/clothing/head/helmet/space/plasmaman/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -558,7 +558,7 @@
 
 /obj/item/clothing/mask/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -619,7 +619,7 @@
 
 /obj/item/clothing/shoes/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -656,7 +656,7 @@
 
 /obj/item/storage/backpack/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -687,7 +687,7 @@
 
 /obj/item/storage/belt/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -714,7 +714,7 @@
 
 /obj/item/radio/headset/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 
@@ -742,7 +742,7 @@
 
 /obj/item/pda/chameleon/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	chameleon_action.emp_randomise()
 

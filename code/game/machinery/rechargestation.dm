@@ -51,9 +51,9 @@
 /obj/machinery/recharge_station/emp_act(severity)
 	. = ..()
 	if(!(stat & (BROKEN|NOPOWER)))
-		if(occupant && !(. & EMP_PROTECT_CONTENTS))
+		if(occupant && !(. & TRAIT_EMPPROOF_CONTENTS))
 			occupant.emp_act(severity)
-		if (!(. & EMP_PROTECT_SELF))
+		if (!(. & TRAIT_EMPPROOF_SELF))
 			open_machine()
 
 /obj/machinery/recharge_station/attackby(obj/item/P, mob/user, params)

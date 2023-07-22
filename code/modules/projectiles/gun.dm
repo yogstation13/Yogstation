@@ -219,7 +219,7 @@
 
 /obj/item/gun/emp_act(severity)
 	. = ..()
-	if(!(. & EMP_PROTECT_CONTENTS))
+	if(!(. & TRAIT_EMPPROOF_CONTENTS))
 		for(var/obj/O in contents)
 			O.emp_act(severity)
 

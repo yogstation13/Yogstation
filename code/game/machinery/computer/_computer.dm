@@ -136,7 +136,7 @@
 
 /obj/machinery/computer/emp_act(severity)
 	. = ..()
-	if (!(. & EMP_PROTECT_SELF))
+	if (!(. & TRAIT_EMPPROOF_SELF))
 		switch(severity)
 			if(1)
 				if(prob(50))

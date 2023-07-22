@@ -284,7 +284,7 @@
 
 /obj/item/melee/baton/emp_act(severity)
 	. = ..()
-	if (!(. & EMP_PROTECT_SELF))
+	if (!(. & TRAIT_EMPPROOF_SELF))
 		deductcharge(1000 / severity)
 
 //Makeshift stun baton. Replacement for stun gloves.

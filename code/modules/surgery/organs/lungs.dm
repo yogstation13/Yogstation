@@ -608,7 +608,7 @@
 
 /obj/item/organ/lungs/cybernetic/emp_act()
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	owner.losebreath = 20
 

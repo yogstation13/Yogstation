@@ -345,7 +345,7 @@
 
 /mob/living/simple_animal/bot/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	var/was_on = on
 	stat |= EMPED

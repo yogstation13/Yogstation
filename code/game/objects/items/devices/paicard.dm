@@ -168,7 +168,7 @@
 
 /obj/item/paicard/emp_act(severity)
 	. = ..()
-	if (. & EMP_PROTECT_SELF)
+	if (. & TRAIT_EMPPROOF_SELF)
 		return
 	if(pai && !pai.holoform)
 		pai.emp_act(severity)

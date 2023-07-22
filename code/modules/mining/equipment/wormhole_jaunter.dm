@@ -54,7 +54,7 @@
 
 /obj/item/wormhole_jaunter/emp_act(power)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 
 	var/mob/M = loc

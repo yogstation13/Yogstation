@@ -23,7 +23,7 @@
 
 /obj/structure/emergency_shield/emp_act(severity)
 	. = ..()
-	if (. & EMP_PROTECT_SELF)
+	if (. & TRAIT_EMPPROOF_SELF)
 		return
 	switch(severity)
 		if(1)

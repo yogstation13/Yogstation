@@ -161,7 +161,7 @@
 
 /obj/machinery/recharger/emp_act(severity)
 	. = ..()
-	if (. & EMP_PROTECT_CONTENTS)
+	if (. & TRAIT_EMPPROOF_CONTENTS)
 		return
 	if(!(stat & (NOPOWER|BROKEN)) && anchored)
 		if(istype(charging,  /obj/item/gun/energy))

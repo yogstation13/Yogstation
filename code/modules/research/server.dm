@@ -69,7 +69,7 @@
 
 /obj/machinery/rnd/server/emp_act()
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	stat |= EMPED
 	addtimer(CALLBACK(src, PROC_REF(unemp)), 600)

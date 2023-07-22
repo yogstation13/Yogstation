@@ -98,7 +98,7 @@
 
 /mob/living/simple_animal/hostile/swarmer/emp_act()
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
 	if(health > 1)
 		adjustHealth(health-1)

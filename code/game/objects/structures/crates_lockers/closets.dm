@@ -538,12 +538,12 @@ GLOBAL_LIST_EMPTY(lockers)
 
 /obj/structure/closet/emp_act(severity)
 	. = ..()
-	if(. & EMP_PROTECT_SELF)
+	if(. & TRAIT_EMPPROOF_SELF)
 		return
-	if (!(. & EMP_PROTECT_CONTENTS))
+	if (!(. & TRAIT_EMPPROOF_CONTENTS))
 		for(var/obj/O in src)
 			O.emp_act(severity)
-	if(secure && !broken && !(. & EMP_PROTECT_SELF))
+	if(secure && !broken && !(. & TRAIT_EMPPROOF_SELF))
 		if(prob(50 / severity))
 			locked = !locked
 			update_icon()

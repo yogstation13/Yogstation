@@ -529,7 +529,7 @@ GLOBAL_VAR_INIT(clones, 0)
 
 /obj/machinery/clonepod/emp_act(severity)
 	. = ..()
-	if (!(. & EMP_PROTECT_SELF))
+	if (!(. & TRAIT_EMPPROOF_SELF))
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && prob(100/(severity*efficiency)))
 			log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] due to EMP pulse.")

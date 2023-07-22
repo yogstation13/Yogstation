@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 /obj/item/gps/emp_act(severity)
 	. = ..()
-	if (. & EMP_PROTECT_SELF)
+	if (. & TRAIT_EMPPROOF_SELF)
 		return
 	emped = TRUE
 	cut_overlay("working")

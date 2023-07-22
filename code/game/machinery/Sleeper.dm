@@ -114,7 +114,7 @@
 
 /obj/machinery/sleeper/emp_act(severity)
 	. = ..()
-	if (. & EMP_PROTECT_SELF)
+	if (. & TRAIT_EMPPROOF_SELF)
 		return
 	if(is_operational() && occupant)
 		open_machine()

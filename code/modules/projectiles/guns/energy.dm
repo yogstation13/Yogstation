@@ -36,7 +36,7 @@
 
 /obj/item/gun/energy/emp_act(severity)
 	. = ..()
-	if(!(. & EMP_PROTECT_CONTENTS))
+	if(!(. & TRAIT_EMPPROOF_CONTENTS))
 		cell.use(round(cell.charge / (severity*2)))
 		emp_jammed = TRUE
 		deltimer(emp_jam_timer)

@@ -158,7 +158,7 @@
 
 /obj/mecha/emp_act(severity)
 	. = ..()
-	if (. & EMP_PROTECT_SELF)
+	if (. & TRAIT_EMPPROOF_SELF)
 		return
 	if(get_charge())
 		use_power((cell.charge/3)/(severity*2))

@@ -169,7 +169,7 @@
 
 /obj/item/organ/eyes/robotic/emp_act(severity)
 	. = ..()
-	if(!owner || . & EMP_PROTECT_SELF)
+	if(!owner || . & TRAIT_EMPPROOF_SELF)
 		return
 	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
 	to_chat(owner, span_danger("your eyes overload and blind you!"))
@@ -330,7 +330,7 @@
 
 /obj/item/organ/eyes/robotic/glow/emp_act()
 	. = ..()
-	if(!active || . & EMP_PROTECT_SELF)
+	if(!active || . & TRAIT_EMPPROOF_SELF)
 		return
 	deactivate(silent = TRUE)
 
