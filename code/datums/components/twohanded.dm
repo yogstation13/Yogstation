@@ -285,7 +285,7 @@
 		parent_item.name = "[initial(parent_item.name)]"
 
 	// Update icons
-	parent_item.update_icon()
+	parent_item.update_appearance(UPDATE_ICON)
 
 	if(istype(user)) // tk showed that we might not have a mob here
 		if(user.get_item_by_slot(ITEM_SLOT_BACK) == parent)

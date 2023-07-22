@@ -58,6 +58,8 @@
 			powered = TRUE
 	else
 		powered = FALSE
+	if(istype(loc, /obj/machinery/defibrillator_mount))
+		loc.update_appearance(UPDATE_ICON)
 	return ..()
 
 /obj/item/defibrillator/update_overlays()
@@ -282,7 +284,6 @@
 	desc = "A pair of plastic-gripped paddles with flat metal surfaces that are used to deliver powerful electric shocks."
 	icon = 'icons/obj/defib.dmi'
 	icon_state = "defibpaddles0"
-	item_state = "defibpaddles0"
 	base_icon_state = "defibpaddles"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
@@ -310,11 +311,12 @@
 		force_wielded = 12, \
 		icon_wielded = "[base_icon_state]1", \
 	)
-	if(check_defib_exists(spawned_in, src) && spawned_in)
-		defib = spawned_in
-		forceMove(defib)
-		busy = FALSE
-		update_appearance(UPDATE_ICON)
+	if(!req_defib)
+		return
+	if (!loc || !istype(loc, /obj/item/defibrillator)) //To avoid weird issues from admin spawns
+		return INITIALIZE_HINT_QDEL
+	defib = loc
+	busy = FALSE
 
 /obj/item/shockpaddles/equipped(mob/user, slot)
 	. = ..()
@@ -361,12 +363,8 @@
 /obj/item/shockpaddles/update_icon_state()
 	. = ..()
 	icon_state = "[base_icon_state]0"
-	item_state = "[base_icon_state]0"
 	if(cooldown)
 		icon_state = "[base_icon_state][!!HAS_TRAIT(src, TRAIT_WIELDED)]_cooldown"
-	if(iscarbon(loc))
-		var/mob/living/carbon/C = loc
-		C.update_inv_hands()
 
 /obj/item/shockpaddles/suicide_act(mob/user)
 	if(req_defib && !defib.deductcharge(revivecost))
@@ -392,14 +390,6 @@
 	defib.on = FALSE
 	forceMove(defib)
 	defib.update_appearance(UPDATE_ICON)
-
-/obj/item/shockpaddles/proc/check_defib_exists(obj/item/defibrillator/spawned_in, mob/living/carbon/M, obj/O)
-	if(!req_defib)
-		return TRUE //If it doesn't need a defib, just say it exists
-	if(!spawned_in || !istype(spawned_in)) //To avoid weird issues from admin spawns
-		qdel(O)
-		return FALSE
-	return TRUE
 
 /obj/item/shockpaddles/attack(mob/M, mob/user)
 
@@ -658,7 +648,6 @@
 /obj/item/shockpaddles/cyborg
 	name = "cyborg defibrillator paddles"
 	icon_state = "defibpaddles0"
-	item_state = "defibpaddles0"
 	req_defib = FALSE
 
 /obj/item/shockpaddles/cyborg/attack(mob/M, mob/user)
@@ -678,7 +667,6 @@
 	desc = "A pair of paddles used to revive deceased operatives. It possesses both the ability to penetrate armor and to deliver powerful shocks offensively."
 	combat = TRUE
 	icon_state = "defibpaddles0"
-	item_state = "defibpaddles0"
 	req_defib = FALSE
 
 #undef HALFWAYCRITDEATH

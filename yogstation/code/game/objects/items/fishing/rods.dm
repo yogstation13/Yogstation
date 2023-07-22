@@ -180,10 +180,10 @@
 	name = "collapsible fishing rod"
 	desc = "A collapsible fishing rod! This one can fit into your backpack for space hikes and the like."
 	icon_state = "fishing_rod_collapse_c"
+	base_icon_state = "fishing_rod_collapse"
 	fishing_power = 15
 	w_class = WEIGHT_CLASS_SMALL //it starts collapsed and small
 	var/opened = FALSE
-	var/rod_icon_state = "fishing_rod_collapse"
 	
 
 /obj/item/fishingrod/collapsible/attackby(obj/item/B, mob/user, params)
@@ -217,7 +217,7 @@
 /obj/item/fishingrod/collapsible/update_icon_state()
 	. = ..()
 	item_state = opened ? "fishing_rod" : ""
-	icon_state = "[rod_icon_state][opened ? "" : "_c"]"
+	icon_state = "[base_icon_state][opened ? "" : "_c"]"
 
 /obj/item/fishingrod/collapsible/attack_self(mob/user)
 	if(!opened)
@@ -235,5 +235,5 @@
 	name = "ol' reliable"
 	desc = "Hey! I caught a miner!"
 	icon_state = "fishing_rod_miningmedic_c"
-	rod_icon_state = "fishing_rod_miningmedic"
+	base_icon_state = "fishing_rod_miningmedic"
 	fishing_power = 1 //Rescue Yo Miners Bitch Damn! Fuck You Doin Fishin For!

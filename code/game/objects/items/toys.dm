@@ -410,17 +410,12 @@
 		pirated = TRUE
 		name = "toy pirate sledgehammer"
 		desc += " This one looks different from the ones you see on commercials..."
-		icon_state = "vxtvul_hammer_pirate0-0"
+		base_icon_state = "vxtvul_hammer_pirate"
+		icon_state = "[base_icon_state]0-0"
 		update_appearance(UPDATE_ICON)
 
-/obj/item/melee/vxtvulhammer/toy/update_icon_state()
-	. = ..()
-	if(!pirated)
-		icon_state = "vxtvul_hammer_pirate[wielded]-[supercharged]"
-	else
-		icon_state = "vxtvul_hammer[wielded]-[supercharged]"
-
 /obj/item/melee/vxtvulhammer/toy/pirate
+	base_icon_state = "vxtvul_hammer_pirate"
 	pirated = TRUE
 
 /obj/item/toy/katana
