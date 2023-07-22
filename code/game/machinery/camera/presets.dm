@@ -93,7 +93,8 @@
 /obj/machinery/camera/proc/removeEmpProof(ignore_malf_upgrades)
 	if(ignore_malf_upgrades) //don't downgrade it if malf software is forced onto it.
 		return
-	emp_component.RemoveComponent()
+	REMOVE_TRAIT(src, TRAIT_EMPPROOF_SELF, "empproof_upgrade")
+	REMOVE_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "empproof_upgrade")
 	upgrades &= ~CAMERA_UPGRADE_EMP_PROOF
 
 
