@@ -317,7 +317,11 @@
 /mob/proc/hallucinating()
 	return FALSE
 
-
+/mob/living/carbon/hallucinating()
+	if(has_status_effect(/datum/status_effect/hallucination))
+		return TRUE
+	return FALSE
+	
 // moved out of admins.dm because things other than admin procs were calling this.
 /**
   * Is this mob special to the gamemode?
